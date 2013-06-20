@@ -243,10 +243,19 @@ class j03110guestconfirmationemail {
 				$custom_field_output[]=array("DESCRIPTION"=>jr_gettext('JOMRES_CUSTOMTEXT'.$f['uid'],$f['description']),"VALUE"=>$tmpBookingHandler->tmpbooking[$formfieldname]);
 				}
 			}
-			
-			
-
-			
+		
+		$output['_JOMRES_PLEASE_PRINT']=jr_gettext('_JOMRES_PLEASE_PRINT',_JOMRES_PLEASE_PRINT,FALSE,FALSE);
+		$output['_JOMRES_OFFICE_USE_ONLY']=jr_gettext('_JOMRES_OFFICE_USE_ONLY',_JOMRES_OFFICE_USE_ONLY,FALSE,FALSE);
+		$output['_JOMRES_SCAN_FOR_DIRECTIONS']=jr_gettext('_JOMRES_SCAN_FOR_DIRECTIONS',_JOMRES_SCAN_FOR_DIRECTIONS,FALSE,FALSE);
+		
+		$url = JOMRES_SITEPAGE_URL_NOSEF."&task=editBooking&thisProperty=".$propertyUid."&contract_uid=".$componentArgs['contract_uid'];
+		$qr_code_office = jomres_make_qr_code($url);
+		$url = make_gmap_url_for_property_uid($property_uid);
+		$qr_code_map = jomres_make_qr_code($url);
+		
+		$output['OFFICE_QR_CODE_IMAGE'] = "'cid:office_qr_code\'";
+		$output['DIRECTIONS_QR_CODE'] = "'cid:map_qr_code\'";
+		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
@@ -272,7 +281,14 @@ class j03110guestconfirmationemail {
 
 			if (count($useremail)>0 )
 				{
-				if(!jomresMailer( $hotelemail, $propertyName, $useremail, $subject, $text,$mode=1))
+				
+				$office_qr_code =  array("type"=>"image","image_path"=>$qr_code_office['absolute_path'],"CID"=>"office_qr_code" );
+				$attachments[] = $office_qr_code;
+
+				$map_qr_code =  array("type"=>"image","image_path"=>$qr_code_map['absolute_path'],"CID"=>"map_qr_code" );
+				$attachments[] = $map_qr_code;
+				
+				if(!jomresMailer( $hotelemail, $propertyName, $useremail, $subject, $text,$mode=1,$attachments))
 					error_logging('Failure in sending confirmation email to guest. Target address: '.$useremail.' Subject '.$subject);
 				}
 			}

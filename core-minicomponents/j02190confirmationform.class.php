@@ -60,24 +60,6 @@ class j02190confirmationform {
 		$property_checkintimes=$current_property_details->property_checkintimes;
 		
 		
-		// To be used in the future
-		/*
-		$guesttypeOutput=array();
-		$varianceArray=explode(",",$variances);
-		foreach ($varianceArray as $v)
-			{
-			$vDeets=explode("_",$v);
-			if ($vDeets[0]=="guesttype")
-				{
-				$vu=$vDeets[1];
-				$vq=$vDeets[2];
-				$vv=$vDeets[3];
-				$query="SELECT `type` FROM `#__jomres_customertypes` where id = '".(int)$vu."' ";
-				$vtitle=doSelectSql($query,1);
-				$guesttypeOutput[]=array('title'=>$vtitle,'qty'=>$vq,'value'=>$vv);
-				}
-			}
-		*/
 		$guestDetails = getGuestDetailsForContract($contract_uid);
 		$rows=array();
 		if (count($guestDetails)>0)
@@ -238,6 +220,27 @@ class j02190confirmationform {
 		
 		$output['CSS_STYLES'] = mailer_get_css();
 		
+		$output['_JOMRES_PLEASE_PRINT']=jr_gettext('_JOMRES_PLEASE_PRINT',_JOMRES_PLEASE_PRINT);
+		$output['_JOMRES_OFFICE_USE_ONLY']=jr_gettext('_JOMRES_OFFICE_USE_ONLY',_JOMRES_OFFICE_USE_ONLY);
+		$output['_JOMRES_SCAN_FOR_DIRECTIONS']=jr_gettext('_JOMRES_SCAN_FOR_DIRECTIONS',_JOMRES_SCAN_FOR_DIRECTIONS);
+		
+		$url = JOMRES_SITEPAGE_URL_NOSEF."&task=editBooking&thisProperty=".$propertyUid."&contract_uid=".$contract_uid;
+		$qr_code_office = jomres_make_qr_code($url);
+		
+		$url = make_gmap_url_for_property_uid($propertyUid);
+		$qr_code_map = jomres_make_qr_code($url);
+		
+		if ($sendemail ==0)
+			{
+			$output['OFFICE_QR_CODE_IMAGE'] = $qr_code_office['relative_path'];
+			$output['DIRECTIONS_QR_CODE'] = $qr_code_map['relative_path'];
+			}
+		else
+			{
+			$output['OFFICE_QR_CODE_IMAGE'] = "'cid:office_qr_code\'";
+			$output['DIRECTIONS_QR_CODE'] = "'cid:map_qr_code\'";
+			}
+
 		$pageoutput[]=$output;
 
 		$tmpl = new patTemplate();
@@ -263,8 +266,14 @@ class j02190confirmationform {
 
 			if (count($useremail)>0)
 				{
-				$result=jomresMailer( $output['PROP_EMAIL'], $output['PROP_NAME'], $useremail, $subject, $text,$mode=1);
-				$result=jomresMailer($output['PROP_EMAIL'], $output['PROP_NAME'], $output['PROP_EMAIL'], $subject, $text,$mode=1);// Let's send this to the property too, so that they have a seperate record
+				$office_qr_code =  array("type"=>"image","image_path"=>$qr_code_office['absolute_path'],"CID"=>"office_qr_code" );
+				$attachments[] = $office_qr_code;
+
+				$map_qr_code =  array("type"=>"image","image_path"=>$qr_code_map['absolute_path'],"CID"=>"map_qr_code" );
+				$attachments[] = $map_qr_code;
+				
+				$result=jomresMailer( $output['PROP_EMAIL'], $output['PROP_NAME'], $useremail, $subject, $text,$mode=1,$attachments);
+				$result=jomresMailer($output['PROP_EMAIL'], $output['PROP_NAME'], $output['PROP_EMAIL'], $subject, $text,$mode=1,$attachments);// Let's send this to the property too, so that they have a seperate record
 				}
 			echo jr_gettext('_JOMRES_CONFIRMATION_EMAIL_SENT',_JOMRES_CONFIRMATION_EMAIL_SENT);
 			}
