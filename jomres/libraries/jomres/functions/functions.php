@@ -13,6 +13,23 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function make_gmap_url_for_property_uid($property_uid)
+	{
+	if ($property_uid<1)
+		return false;
+	$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
+	$current_property_details->gather_data($property_uid);
+
+	$dest_address = 
+		$current_property_details->property_name.",".
+		$current_property_details->property_street.",".
+		$current_property_details->property_town.",".
+		$current_property_details->property_region.",".
+		$current_property_details->property_country.",".
+		$current_property_details->property_postcode;
+		
+	return 'https://maps.google.com/maps?daddr='.$dest_address;
+	}
 
 function jomres_make_qr_code ($string = "", $format = "text")
 	{
