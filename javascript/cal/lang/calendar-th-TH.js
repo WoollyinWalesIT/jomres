@@ -1,4 +1,4 @@
-﻿// ** I18N
+// ** I18N
 
 // Calendar EN language
 // Author: Gampol Thitinilnithi, <gampolt@gmail.com>
