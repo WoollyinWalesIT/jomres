@@ -1,23 +1,24 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<h2>{PAGETITLE}</h2>
-<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-{JOMRESTOOLBAR}
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<tr>
-		<td width="30%">{HSERVICEDESCRIPTION}</td>
-		<td><input class="inputbox" type="text" size="40" name="service_description" value="" /></td>
-	</tr>
-	<tr>
-		<td>{HSERVICEVALUE}</td>
-		<td>{CURRENCY}<input class="inputbox" type="text" size="6" name="service_value" value="" /></td>
-	</tr>
-	<tr>
-		<td>{HTAXRATE}</td>
-		<td>{TAXRATEDROPDOWN}</td>
-	</tr>
-</table>
-{JOMRESTOKEN}
-<input type="hidden" name="contract_uid" value="{CONTRACTUID}" />
-<input type="hidden" name="task" value="addServiceToBill" />
-</form>
+    <h2>{PAGETITLE}</h2>
+
+    <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+        {JOMRESTOOLBAR}
+        <table class="ui-widget-content ui-corner-all" border="0" width="100%">
+            <tr>
+                <td width="30%">{HSERVICEDESCRIPTION}</td>
+                <td><input class="inputbox" type="text" size="40" name="service_description" value=""/></td>
+            </tr>
+            <tr>
+                <td>{HSERVICEVALUE}</td>
+                <td>{CURRENCY}<input class="inputbox" type="text" size="6" name="service_value" value=""/></td>
+            </tr>
+            <tr>
+                <td>{HTAXRATE}</td>
+                <td>{TAXRATEDROPDOWN}</td>
+            </tr>
+        </table>
+        {JOMRESTOKEN}
+        <input type="hidden" name="contract_uid" value="{CONTRACTUID}"/>
+        <input type="hidden" name="task" value="addServiceToBill"/>
+    </form>
 </patTemplate:tmpl>

@@ -1,102 +1,108 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<h2>{HINVOICENO}: {ID}</h2>
-<table width="100%" border="0">
-	<tr>
-		<td width="50%" valign="top">{BUSINESS_DETAILS_TEMPLATE}</td>
-		<td valign="top">{CLIENT_DETAILS_TEMPLATE}</td>
-	</tr>
-</table>
-<br />
-<h3>{PAGETITLE}</h3>
+    <h2>{HINVOICENO}: {ID}</h2>
+    <table width="100%" border="0">
+        <tr>
+            <td width="50%" valign="top">{BUSINESS_DETAILS_TEMPLATE}</td>
+            <td valign="top">{CLIENT_DETAILS_TEMPLATE}</td>
+        </tr>
+    </table>
+    <br/>
 
-<table class="ui-widget-content ui-corner-all" width="100%" border="0">
-	<tr>
-		<th class="ui-state-default">{_JOMRES_BOOKING_NUMBER}</th>
-		<td>{BOOKING_NUMBER}</td>
-	</tr>
-	<tr>
-		<th class="ui-state-default">{JOMRES_GRANDTOTAL_EX_TAX}</th>
-		<td>{GRAND_TOTAL_EX_TAX}</td>
-	</tr>
-	<tr>
-		<th class="ui-state-default">{JOMRES_GRANDTOTAL_TOTAL_TAX}</th>
-		<td>{GRAND_TOTAL_TAX}</td>
-	</tr>
-	<tr>
-		<th class="ui-state-default">{JOMRES_GRANDTOTAL_INC_TAX}</th>
-		<td>{GRAND_TOTAL_INC_TAX}</td>
-	</tr>
-</table>
+    <h3>{PAGETITLE}</h3>
 
-<table class="ui-widget-content ui-corner-all" width="100%" border="0">
-	<tr>
-		<th class="ui-state-default">{HSTATUS}</th>
-		<th class="ui-state-default">{HRAISED}</th>
-		<th class="ui-state-default">{HDUE}</th>
-		<th class="ui-state-default">{HSUBSCRIPTION}</th>
-		<th class="ui-state-default">{HCURRENCYCODE}</th>
-		<th class="ui-state-default">{HINITTOTAL}</th>
-		<patTemplate:tmpl name="hrecurtotal" type="simpleCondition" requiredVars="hrecurtotal">
-		<th class="ui-state-default">{HRECURTOTAL}</th>
-		</patTemplate:tmpl>
-	</tr>
-	<tr>
-		<td>{STATUS}</td>
-		<td>{RAISED}</td>
-		<td>{DUE}</td>
-		<td>{SUBSCRIPTION}</td>
-		<td>{CURRENCYCODE}</td>
-		<td><div id="init_grand_total">{INITTOTAL}</div></td>
-		<patTemplate:tmpl name="recurtotal" type="simpleCondition" requiredVars="recurtotal">
-		<td><div id="recur_grand_total">{RECURTOTAL}</div></td>
-		</patTemplate:tmpl>
-	</tr>
-</table>
-<h3>{LIPAGETITLE}</h3>
-<table class="ui-widget-content ui-corner-all" width="100%" border="0">
-	<tr>
-		<th class="ui-state-default">{HLI_NAME}</th>
-		<th class="ui-state-default">{HLI_INIT_PRICE}</th>
-		<th class="ui-state-default">{HLI_INIT_QTY}</th>
-		<th class="ui-state-default">{HLI_INIT_DISCOUNT}</th>
-		<th class="ui-state-default">{HLI_INIT_TOTAL}</th>
-		<th class="ui-state-default">{HLI_INIT_TOTAL_INCLUSIVE}</th>
-		<patTemplate:tmpl name="hli_recur_price" type="simpleCondition" requiredVars="hli_recur_price">
-		<th class="ui-state-default">{HLI_RECUR_PRICE}</th>
-		<th class="ui-state-default">{HLI_RECUR_QTY}</th>
-		<th class="ui-state-default">{HLI_RECUR_DISCOUNT}</th>
-		<th class="ui-state-default">{HLI_RECUR_TOTAL}</th>
-		</patTemplate:tmpl>
-		<th class="ui-state-default">{HLI_TAX_DESCRIPTION}</th>
-		<th class="ui-state-default">{HLI_TAX_RATE}</th>
-	</tr>
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr>
-		<td>{LI_NAME}</td>
-		<td>{LI_INIT_PRICE}</td>
-		<td>{LI_INIT_QTY}</td>
-		<td>{LI_INIT_DISCOUNT}</td>
-		<td>{LI_INIT_TOTAL}</td>
-		<td>{LI_INIT_TOTAL_INCLUSIVE}</td>
-		<patTemplate:sub condition="li_recur_price">
-		<td>{LI_RECUR_PRICE}</td>
-		<td>{LI_RECUR_QTY}</td>
-		<td>{LI_RECUR_DISCOUNT}</td>
-		<td>{LI_RECUR_TOTAL}</td>
-		</patTemplate:sub>
-		<td>{LI_TAX_DESCRIPTION}</td>
-		<td>{LI_TAX_RATE}%</td>
-	</tr>
-	</patTemplate:tmpl>
-</table>
-<patTemplate:tmpl name="immediate_pay" type="simpleCondition" requiredVars="IMMEDIATE">
-<table width="100%" border="0">
-	<tr>
-		<td width="100%" align="center"><p>{IMMEDIATE}</p></td>
-	</tr>
-	<tr>
-		<td align="center"><a href="{JOMRES_SITEPAGE_URL}&task=immediatepay&id={INV_ID}"><img src = "{LIVESITE}/jomres/images/btn_paynowCC_LG.gif" /></a></td>
-	</tr>
-</table>
-</patTemplate:tmpl>
+    <table class="ui-widget-content ui-corner-all" width="100%" border="0">
+        <tr>
+            <th class="ui-state-default">{_JOMRES_BOOKING_NUMBER}</th>
+            <td>{BOOKING_NUMBER}</td>
+        </tr>
+        <tr>
+            <th class="ui-state-default">{JOMRES_GRANDTOTAL_EX_TAX}</th>
+            <td>{GRAND_TOTAL_EX_TAX}</td>
+        </tr>
+        <tr>
+            <th class="ui-state-default">{JOMRES_GRANDTOTAL_TOTAL_TAX}</th>
+            <td>{GRAND_TOTAL_TAX}</td>
+        </tr>
+        <tr>
+            <th class="ui-state-default">{JOMRES_GRANDTOTAL_INC_TAX}</th>
+            <td>{GRAND_TOTAL_INC_TAX}</td>
+        </tr>
+    </table>
+
+    <table class="ui-widget-content ui-corner-all" width="100%" border="0">
+        <tr>
+            <th class="ui-state-default">{HSTATUS}</th>
+            <th class="ui-state-default">{HRAISED}</th>
+            <th class="ui-state-default">{HDUE}</th>
+            <th class="ui-state-default">{HSUBSCRIPTION}</th>
+            <th class="ui-state-default">{HCURRENCYCODE}</th>
+            <th class="ui-state-default">{HINITTOTAL}</th>
+            <patTemplate:tmpl name="hrecurtotal" type="simpleCondition" requiredVars="hrecurtotal">
+                <th class="ui-state-default">{HRECURTOTAL}</th>
+            </patTemplate:tmpl>
+        </tr>
+        <tr>
+            <td>{STATUS}</td>
+            <td>{RAISED}</td>
+            <td>{DUE}</td>
+            <td>{SUBSCRIPTION}</td>
+            <td>{CURRENCYCODE}</td>
+            <td>
+                <div id="init_grand_total">{INITTOTAL}</div>
+            </td>
+            <patTemplate:tmpl name="recurtotal" type="simpleCondition" requiredVars="recurtotal">
+                <td>
+                    <div id="recur_grand_total">{RECURTOTAL}</div>
+                </td>
+            </patTemplate:tmpl>
+        </tr>
+    </table>
+    <h3>{LIPAGETITLE}</h3>
+    <table class="ui-widget-content ui-corner-all" width="100%" border="0">
+        <tr>
+            <th class="ui-state-default">{HLI_NAME}</th>
+            <th class="ui-state-default">{HLI_INIT_PRICE}</th>
+            <th class="ui-state-default">{HLI_INIT_QTY}</th>
+            <th class="ui-state-default">{HLI_INIT_DISCOUNT}</th>
+            <th class="ui-state-default">{HLI_INIT_TOTAL}</th>
+            <th class="ui-state-default">{HLI_INIT_TOTAL_INCLUSIVE}</th>
+            <patTemplate:tmpl name="hli_recur_price" type="simpleCondition" requiredVars="hli_recur_price">
+                <th class="ui-state-default">{HLI_RECUR_PRICE}</th>
+                <th class="ui-state-default">{HLI_RECUR_QTY}</th>
+                <th class="ui-state-default">{HLI_RECUR_DISCOUNT}</th>
+                <th class="ui-state-default">{HLI_RECUR_TOTAL}</th>
+            </patTemplate:tmpl>
+            <th class="ui-state-default">{HLI_TAX_DESCRIPTION}</th>
+            <th class="ui-state-default">{HLI_TAX_RATE}</th>
+        </tr>
+        <patTemplate:tmpl name="rows" unusedvars="nbsp">
+            <tr>
+                <td>{LI_NAME}</td>
+                <td>{LI_INIT_PRICE}</td>
+                <td>{LI_INIT_QTY}</td>
+                <td>{LI_INIT_DISCOUNT}</td>
+                <td>{LI_INIT_TOTAL}</td>
+                <td>{LI_INIT_TOTAL_INCLUSIVE}</td>
+                <patTemplate:sub condition="li_recur_price">
+                    <td>{LI_RECUR_PRICE}</td>
+                    <td>{LI_RECUR_QTY}</td>
+                    <td>{LI_RECUR_DISCOUNT}</td>
+                    <td>{LI_RECUR_TOTAL}</td>
+                </patTemplate:sub>
+                <td>{LI_TAX_DESCRIPTION}</td>
+                <td>{LI_TAX_RATE}%</td>
+            </tr>
+        </patTemplate:tmpl>
+    </table>
+    <patTemplate:tmpl name="immediate_pay" type="simpleCondition" requiredVars="IMMEDIATE">
+        <table width="100%" border="0">
+            <tr>
+                <td width="100%" align="center"><p>{IMMEDIATE}</p></td>
+            </tr>
+            <tr>
+                <td align="center"><a href="{JOMRES_SITEPAGE_URL}&task=immediatepay&id={INV_ID}"><img
+                        src="{LIVESITE}/jomres/images/btn_paynowCC_LG.gif"/></a></td>
+            </tr>
+        </table>
+    </patTemplate:tmpl>
 </patTemplate:tmpl>

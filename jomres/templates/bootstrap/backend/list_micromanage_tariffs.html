@@ -1,52 +1,52 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script type="text/javascript">
-<!--
-jomresJquery(document).ready(function() {
-	make_datatable('list_micromanage_tariffs','{PAGETITLE}','{LIVESITE}');
-} );
-//-->
-</script>
-<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<div class="well">
-	{JOMRESTOOLBAR}
-</div>
-<table width="100%" id="list_micromanage_tariffs" class="table table-striped">
-	<thead>
-		<tr>
-			<th>{HLINKTEXT}</th>
-			<th>{HROOMCLASS}</th>
-			<th>{HRATETITLE}</th>         
-			<th>{HMINDAYS}</th>
-			<th>{HMAXDAYS}</th>
-			<th>{HMINPEOPLE}</th>
-			<th>{HMAXPEOPLE}</th>
-		</tr>
-	</thead>
-	<tbody>
-		<patTemplate:tmpl name="rows">
-		<tr>
-			<td>
-				<div class="btn-group">
-					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="icon-edit"></i>
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-						<li><a tabindex="-1" href="{EDIT_URL}">{COMMON_EDIT}</a></li>
-						<li><a tabindex="-1" href="{COPY_URL}">{COMMON_COPY}</a></li>
-					</ul>
-				</div>
-			</td>
-			<td>{ROOMCLASS}</td>
-			<td>{RATETITLE}</td>         
-			<td>{MINDAYS}</td>
-			<td>{MAXDAYS}</td>
-			<td>{MINPEOPLE}</td>
-			<td>{MAXPEOPLE}</td>
-		</tr>
-		</patTemplate:tmpl>
-	</tbody>
-</table>
-<input type="hidden" name="task" value="saveTariff" />
-</form>
+    <script type="text/javascript">
+        <!--
+        jomresJquery(document).ready(function () {
+            make_datatable('list_micromanage_tariffs', '{PAGETITLE}', '{LIVESITE}');
+        });
+        //-->
+    </script>
+    <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+        <div class="well">
+            {JOMRESTOOLBAR}
+        </div>
+        <table width="100%" id="list_micromanage_tariffs" class="table table-striped">
+            <thead>
+            <tr>
+                <th>{HLINKTEXT}</th>
+                <th>{HROOMCLASS}</th>
+                <th>{HRATETITLE}</th>
+                <th>{HMINDAYS}</th>
+                <th>{HMAXDAYS}</th>
+                <th>{HMINPEOPLE}</th>
+                <th>{HMAXPEOPLE}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <patTemplate:tmpl name="rows">
+                <tr>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="icon-edit"></i>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                <li><a tabindex="-1" href="{EDIT_URL}">{COMMON_EDIT}</a></li>
+                                <li><a tabindex="-1" href="{COPY_URL}">{COMMON_COPY}</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>{ROOMCLASS}</td>
+                    <td>{RATETITLE}</td>
+                    <td>{MINDAYS}</td>
+                    <td>{MAXDAYS}</td>
+                    <td>{MINPEOPLE}</td>
+                    <td>{MAXPEOPLE}</td>
+                </tr>
+            </patTemplate:tmpl>
+            </tbody>
+        </table>
+        <input type="hidden" name="task" value="saveTariff"/>
+    </form>
 </patTemplate:tmpl>

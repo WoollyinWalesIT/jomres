@@ -1,13 +1,20 @@
 <patTemplate:tmpl name="completed" unusedvars="strip">
-<table class="ui-widget-content ui-corner-all" width="100%" border="0">
-	<tr>
-		<td><center>{SAVEDMESSAGE}</center></td>
-	</tr>
-	<tr>
-		<td><center>{JR_GATEWAY_AFTERWORD}</center></td>
-	</tr>
-	<tr>
-		<td><center><a href="{RETURN_URL}&task=viewproperty&property_uid={PROPERTYUID}">{BACKTOPROPERTY}</a></center></td>
-	</tr>
-</table>
+    <table class="ui-widget-content ui-corner-all" width="100%" border="0">
+        <tr>
+            <td>
+                <center>{SAVEDMESSAGE}</center>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <center>{JR_GATEWAY_AFTERWORD}</center>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <center><a href="{RETURN_URL}&task=viewproperty&property_uid={PROPERTYUID}">{BACKTOPROPERTY}</a>
+                </center>
+            </td>
+        </tr>
+    </table>
 </patTemplate:tmpl>

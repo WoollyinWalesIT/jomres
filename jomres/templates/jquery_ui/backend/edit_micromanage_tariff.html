@@ -1,237 +1,243 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <style type="text/css">
-.tariffinputbox {
-	padding: 1px;
-	 font-size: 9px;
-	border:solid 1px #cccccc;
-	background-color: #ffffff;
-}
+    .tariffinputbox {
+        padding: 1px;
+        font-size: 9px;
+        border: solid 1px #cccccc;
+        background-color: #ffffff;
+    }
 </style>
 <h2>{_JOMRES_COM_MR_LISTTARIFF_LINKTEXT}</h2>
+
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
 <table class="ui-widget-content ui-corner-all" width="100%" border="0">
-	<tr>
-		<td width="30%">{HTARIFFTITLE}</td>
-		<td><input type="text" size="20" class="inputbox" name="tarifftypename" value="{TARIFFTYPENAME}" /></td>
-	</tr>
-	<tr>
-		<td>{HMINDAYS}</td>
-		<td><input class="inputbox" type="text" style="text-align:right" size="4" name="mindays" value="{MINDAYS}" /></td>
-	</tr>
-	<tr>
-		<td>{HMAXDAYS}</td>
-		<td><input class="inputbox" type="text" style="text-align:right" size="4" name="maxdays" value="{MAXDAYS}" /></td>
-	</tr>
-	<tr>
-		<td>{HMINPEOPLE}</td>
-		<td><input class="inputbox" type="text" style="text-align:right" size="4" name="minpeople" value="{MINPEOPLE}" /></td>
-	</tr>
-	<tr>
-		<td>{HMAXPEOPLE}</td>
-		<td><input class="inputbox" type="text" style="text-align:right" size="4" name="maxpeople" value="{MAXPEOPLE}" /></td>
-	</tr>
-	<tr>
-		<td>{HROOMTYPEDROPDOWN}</td>
-		<td>{ROOMTYPEDROPDOWN}</td>
-	</tr>
-	<tr>
-		<td>{HIGNOREPPPNDROPDOWN}</td>
-		<td>{IGNOREPPPNDROPDOWN}</td>
-	</tr>
-	<tr>
-		<td>{HALLOWWEEKENDSDROPDOWN}</td>
-		<td>{ALLOWWEEKENDSDROPDOWN}</td>
-	</tr>
-	<tr>
-		<td>{HWEEKENDONLY}</td>
-		<td>{WEEKENDONLY}</td>
-	</tr>
-	<tr>
-		<td>{HFIXED_DAYOFWEEK}</td>
-		<td>{FIXED_ARRIVAL_DAYOFWEEK}</td>
-	</tr>
-	<patTemplate:tmpl name="already_selected_rows" type="simpleCondition" requiredVars="hminrooms">
-	<tr>
-		<td>{HMINROOMS}*</td>
-		<td>{MINROOMS_ALREADYSELECTED}</td>
-	</tr>
-	<tr>
-		<td>{HMAXROOMS}**</td>
-		<td>{MAXROOMS_ALREADYSELECTED}</td>
-	</tr>
-	<tr>
-		<td colspan="2" >
-			<p>*{MINROOMS_DESC}</p>
-			<p>**{MAXROOMS_DESC}</p>
-		</td>
-	</tr>
-	</patTemplate:tmpl>
+    <tr>
+        <td width="30%">{HTARIFFTITLE}</td>
+        <td><input type="text" size="20" class="inputbox" name="tarifftypename" value="{TARIFFTYPENAME}"/></td>
+    </tr>
+    <tr>
+        <td>{HMINDAYS}</td>
+        <td><input class="inputbox" type="text" style="text-align:right" size="4" name="mindays" value="{MINDAYS}"/>
+        </td>
+    </tr>
+    <tr>
+        <td>{HMAXDAYS}</td>
+        <td><input class="inputbox" type="text" style="text-align:right" size="4" name="maxdays" value="{MAXDAYS}"/>
+        </td>
+    </tr>
+    <tr>
+        <td>{HMINPEOPLE}</td>
+        <td><input class="inputbox" type="text" style="text-align:right" size="4" name="minpeople" value="{MINPEOPLE}"/>
+        </td>
+    </tr>
+    <tr>
+        <td>{HMAXPEOPLE}</td>
+        <td><input class="inputbox" type="text" style="text-align:right" size="4" name="maxpeople" value="{MAXPEOPLE}"/>
+        </td>
+    </tr>
+    <tr>
+        <td>{HROOMTYPEDROPDOWN}</td>
+        <td>{ROOMTYPEDROPDOWN}</td>
+    </tr>
+    <tr>
+        <td>{HIGNOREPPPNDROPDOWN}</td>
+        <td>{IGNOREPPPNDROPDOWN}</td>
+    </tr>
+    <tr>
+        <td>{HALLOWWEEKENDSDROPDOWN}</td>
+        <td>{ALLOWWEEKENDSDROPDOWN}</td>
+    </tr>
+    <tr>
+        <td>{HWEEKENDONLY}</td>
+        <td>{WEEKENDONLY}</td>
+    </tr>
+    <tr>
+        <td>{HFIXED_DAYOFWEEK}</td>
+        <td>{FIXED_ARRIVAL_DAYOFWEEK}</td>
+    </tr>
+    <patTemplate:tmpl name="already_selected_rows" type="simpleCondition" requiredVars="hminrooms">
+        <tr>
+            <td>{HMINROOMS}*</td>
+            <td>{MINROOMS_ALREADYSELECTED}</td>
+        </tr>
+        <tr>
+            <td>{HMAXROOMS}**</td>
+            <td>{MAXROOMS_ALREADYSELECTED}</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p>*{MINROOMS_DESC}</p>
+
+                <p>**{MAXROOMS_DESC}</p>
+            </td>
+        </tr>
+    </patTemplate:tmpl>
 </table>
-<br />
+<br/>
 <table class="ui-widget-content ui-corner-all" width="100%" border="0">
-	<tr>
-		<td colspan="7">{PICKER_DAYSOFWEEK}</td>
-	</tr>
-	<tr>
-	<patTemplate:tmpl name="prefillbuttons" unusedvars="nbsp">
-		<td>
-		{BUTTON}{JS}
-		</td>
-	</patTemplate:tmpl>
-	</tr>
-	<tr>
-	<patTemplate:tmpl name="prefills" unusedvars="nbsp">
-		<td>
-		{INPUT}
-		</td>
-	</patTemplate:tmpl>
-	</tr>
+    <tr>
+        <td colspan="7">{PICKER_DAYSOFWEEK}</td>
+    </tr>
+    <tr>
+        <patTemplate:tmpl name="prefillbuttons" unusedvars="nbsp">
+            <td>
+                {BUTTON}{JS}
+            </td>
+        </patTemplate:tmpl>
+    </tr>
+    <tr>
+        <patTemplate:tmpl name="prefills" unusedvars="nbsp">
+            <td>
+                {INPUT}
+            </td>
+        </patTemplate:tmpl>
+    </tr>
 </table>
 <script>
-function jomres_micromanage_rate_picker()
-	{
-	from_value = jomresJquery('input[name=picker_from]').val();
-	to_value = jomresJquery('input[name=picker_to]').val();
-	new_rate = jomresJquery('#picker_value').val();
+    function jomres_micromanage_rate_picker() {
+        from_value = jomresJquery('input[name=picker_from]').val();
+        to_value = jomresJquery('input[name=picker_to]').val();
+        new_rate = jomresJquery('#picker_value').val();
 
-	epoch_from = jomres_micromanage_picker_get_epoch(from_value);
-	epoch_to = jomres_micromanage_picker_get_epoch(to_value);
-	var i = epoch_from;
-	var r_colour = random_colour();
-	
-	while (i <= epoch_to)
-		{
-		jomresJquery("input[name='tariffinput["+i/1000+"]']").css("border","2px solid #"+r_colour);
-		jomresJquery("input[name='tariffinput["+i/1000+"]']").val(new_rate);
-		tomorrow = new Date( i.getTime() + 86400000 ); 
-		i = tomorrow;
-		}
-	}
+        epoch_from = jomres_micromanage_picker_get_epoch(from_value);
+        epoch_to = jomres_micromanage_picker_get_epoch(to_value);
+        var i = epoch_from;
+        var r_colour = random_colour();
 
-function jomres_micromanage_picker_get_epoch(jsdate)
-	{
-	dformat = "{DATE_FORMAT}";
-	var day=0
-	var mon=0
-	var year=0
-	if (dformat=="%d/%m/%Y"){
-		dateArray=jsdate.split("/")
-		day=dateArray[0]
-		mon=dateArray[1]
-		year=dateArray[2]
-		}
-	if (dformat=="%Y/%m/%d"){
-		dateArray=jsdate.split("/")
-		day=dateArray[2]
-		mon=dateArray[1]
-		year=dateArray[0]
-		}
-	if (dformat=="%m/%d/%Y"){
-		dateArray=jsdate.split("/")
-		day=dateArray[1]
-		mon=dateArray[0]
-		year=dateArray[2]
-		}
-	if (dformat=="%d-%m-%Y"){
-		dateArray=jsdate.split("-")
-		day=dateArray[0]
-		mon=dateArray[1]
-		year=dateArray[2]
-		}
-	if (dformat=="%Y-%m-%d"){
-		dateArray=jsdate.split("-")
-		day=dateArray[2]
-		mon=dateArray[1]
-		year=dateArray[0]
-		}
-	if (dformat=="%m-%d-%Y"){
-		dateArray=jsdate.split("-")
-		day=dateArray[1]
-		mon=dateArray[0]
-		year=dateArray[2]
-		}
-	return new Date(Date.UTC(year,mon-1,day,0,0,0)); 
-	}
+        while (i <= epoch_to) {
+            jomresJquery("input[name='tariffinput[" + i / 1000 + "]']").css("border", "2px solid #" + r_colour);
+            jomresJquery("input[name='tariffinput[" + i / 1000 + "]']").val(new_rate);
+            tomorrow = new Date(i.getTime() + 86400000);
+            i = tomorrow;
+        }
+    }
 
-	// http://www.namepros.com/code/37251-javascript-random-hex-color.html
-	function random_colour()
-		{
-		colours = new Array(14)
-		colours[0]="0"
-		colours[1]="1"
-		colours[2]="2"
-		colours[3]="3"
-		colours[4]="4"
-		colours[5]="5"
-		colours[5]="6"
-		colours[6]="7"
-		colours[7]="8"
-		colours[8]="9"
-		colours[9]="a"
-		colours[10]="b"
-		colours[11]="c"
-		colours[12]="d"
-		colours[13]="e"
-		colours[14]="f"
+    function jomres_micromanage_picker_get_epoch(jsdate) {
+        dformat = "{DATE_FORMAT}";
+        var day = 0
+        var mon = 0
+        var year = 0
+        if (dformat == "%d/%m/%Y") {
+            dateArray = jsdate.split("/")
+            day = dateArray[0]
+            mon = dateArray[1]
+            year = dateArray[2]
+        }
+        if (dformat == "%Y/%m/%d") {
+            dateArray = jsdate.split("/")
+            day = dateArray[2]
+            mon = dateArray[1]
+            year = dateArray[0]
+        }
+        if (dformat == "%m/%d/%Y") {
+            dateArray = jsdate.split("/")
+            day = dateArray[1]
+            mon = dateArray[0]
+            year = dateArray[2]
+        }
+        if (dformat == "%d-%m-%Y") {
+            dateArray = jsdate.split("-")
+            day = dateArray[0]
+            mon = dateArray[1]
+            year = dateArray[2]
+        }
+        if (dformat == "%Y-%m-%d") {
+            dateArray = jsdate.split("-")
+            day = dateArray[2]
+            mon = dateArray[1]
+            year = dateArray[0]
+        }
+        if (dformat == "%m-%d-%Y") {
+            dateArray = jsdate.split("-")
+            day = dateArray[1]
+            mon = dateArray[0]
+            year = dateArray[2]
+        }
+        return new Date(Date.UTC(year, mon - 1, day, 0, 0, 0));
+    }
 
-		digit = new Array(5)
-		colour=""
-		for (i=0;i<6;i++){
-			digit[i]=colours[Math.round(Math.random()*14)]
-			colour = colour+digit[i]
-			}
-		return colour;
-		}
+    // http://www.namepros.com/code/37251-javascript-random-hex-color.html
+    function random_colour() {
+        colours = new Array(14)
+        colours[0] = "0"
+        colours[1] = "1"
+        colours[2] = "2"
+        colours[3] = "3"
+        colours[4] = "4"
+        colours[5] = "5"
+        colours[5] = "6"
+        colours[6] = "7"
+        colours[7] = "8"
+        colours[8] = "9"
+        colours[9] = "a"
+        colours[10] = "b"
+        colours[11] = "c"
+        colours[12] = "d"
+        colours[13] = "e"
+        colours[14] = "f"
+
+        digit = new Array(5)
+        colour = ""
+        for (i = 0; i < 6; i++) {
+            digit[i] = colours[Math.round(Math.random() * 14)]
+            colour = colour + digit[i]
+        }
+        return colour;
+    }
 </script>
-<br />
+<br/>
 <table class="ui-widget-content ui-corner-all" width="100%" border="0">
-	<tr>
-		<td colspan="4">{PICKER_DATERANGES}</td>
-	</tr>
-	<tr>
-		<th class="ui-state-default">{PICKER_DATERANGES_START}</th>
-		<th class="ui-state-default">{PICKER_DATERANGES_END}</th>
-		<th class="ui-state-default">{PICKER_DATERANGES_RATE}</th>
-		<th class="ui-state-default">&nbsp;<th>
-	</tr>
-	<tr>
-		<td>{PICKER_FROM}</td>
-		<td>{PICKER_TO}</td>
-		<td><input type="text" size="5" style="padding: 1px; font-size: 9px;border:solid 1px #cccccc; background-color: #ffffff;" id="picker_value" value="55" /></td>
-		<td><input type="button" id="set_value" value="{PICKER_DATERANGES_SET}" onClick="jomres_micromanage_rate_picker()" /></td>
-	</tr>
+    <tr>
+        <td colspan="4">{PICKER_DATERANGES}</td>
+    </tr>
+    <tr>
+        <th class="ui-state-default">{PICKER_DATERANGES_START}</th>
+        <th class="ui-state-default">{PICKER_DATERANGES_END}</th>
+        <th class="ui-state-default">{PICKER_DATERANGES_RATE}</th>
+        <th class="ui-state-default">&nbsp;
+        <th>
+    </tr>
+    <tr>
+        <td>{PICKER_FROM}</td>
+        <td>{PICKER_TO}</td>
+        <td><input type="text" size="5"
+                   style="padding: 1px; font-size: 9px;border:solid 1px #cccccc; background-color: #ffffff;"
+                   id="picker_value" value="55"/></td>
+        <td><input type="button" id="set_value" value="{PICKER_DATERANGES_SET}"
+                   onClick="jomres_micromanage_rate_picker()"/></td>
+    </tr>
 </table>
-<br />
+<br/>
 <table class="ui-widget-content ui-corner-all" width="100%" border="0">
-	<patTemplate:tmpl name="daterows" unusedvars="nbsp">
-	<tr>
-		<th class="ui-state-default">{YEAR} {MONTH}</td>
-	</tr>
-	<tr>
-		<td>
-			<table width="100%" border="0">
-				<tr>
-					<td>{DAYS1}</td>
-				</tr>
-				<tr>
-					<td>{INPUTS1}</td>
-				</tr>
-			</table>
-			<table width="100%" border="0">
-				<tr>
-					<td>{DAYS2}</td>
-				</tr>
-				<tr>
-					<td>{INPUTS2}</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	</patTemplate:tmpl>
+    <patTemplate:tmpl name="daterows" unusedvars="nbsp">
+        <tr>
+            <th class="ui-state-default">{YEAR} {MONTH}</td>
+        </tr>
+        <tr>
+            <td>
+                <table width="100%" border="0">
+                    <tr>
+                        <td>{DAYS1}</td>
+                    </tr>
+                    <tr>
+                        <td>{INPUTS1}</td>
+                    </tr>
+                </table>
+                <table width="100%" border="0">
+                    <tr>
+                        <td>{DAYS2}</td>
+                    </tr>
+                    <tr>
+                        <td>{INPUTS2}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </patTemplate:tmpl>
 </table>
 {JOMRESTOKEN}
-<input type="hidden" name="tarifftypeid" value="{TARIFFTYPEID}" />
-<input type="hidden" name="task" value="saveTariff" />
+<input type="hidden" name="tarifftypeid" value="{TARIFFTYPEID}"/>
+<input type="hidden" name="task" value="saveTariff"/>
 </form>
 </patTemplate:tmpl>

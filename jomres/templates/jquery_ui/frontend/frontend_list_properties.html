@@ -1,36 +1,37 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script type="text/javascript">
-<!--
-jomresJquery(document).ready(function() {
-	var oTable = jomresJquery('#frontend_list_properties').dataTable({
-		"bJQueryUI": true,
-		"bStateSave": true,
-		"sPaginationType": "full_numbers"
-	});
-} );
-//-->
-</script>
-<h2>{PAGETITLE}</h2>
-<form action="index.php" method="post" name="adminForm">
-<table width="100%" id="frontend_list_properties" border="0">
-	<thead>
-		<tr>
-			<th>{HPUBLISHLINK}</th>
-			<th>{HPROPERTYNAME}</th>
-			<th>{HPROPERTYADDRESS}</th>
-		</tr>
-	</thead>
-	<tbody>
-		<patTemplate:tmpl name="rows" unusedvars="nbsp">
-		<tr>
-			<td>{PUBLISHLINK}</td>
-			<td><a href="{SWITCHLINK}">{PROPERTYNAME}</a></td>
-			<td>{PROPERTYADDRESS}</td>
-		</tr>
-		</patTemplate:tmpl>
-	</tbody>
-</table>
-<input type="hidden" name="option" value="com_jomres" />
-<input type="hidden" name="task" value="" />
-</form>
+    <script type="text/javascript">
+        <!--
+        jomresJquery(document).ready(function () {
+            var oTable = jomresJquery('#frontend_list_properties').dataTable({
+                "bJQueryUI": true,
+                "bStateSave": true,
+                "sPaginationType": "full_numbers"
+            });
+        });
+        //-->
+    </script>
+    <h2>{PAGETITLE}</h2>
+
+    <form action="index.php" method="post" name="adminForm">
+        <table width="100%" id="frontend_list_properties" border="0">
+            <thead>
+            <tr>
+                <th>{HPUBLISHLINK}</th>
+                <th>{HPROPERTYNAME}</th>
+                <th>{HPROPERTYADDRESS}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <patTemplate:tmpl name="rows" unusedvars="nbsp">
+                <tr>
+                    <td>{PUBLISHLINK}</td>
+                    <td><a href="{SWITCHLINK}">{PROPERTYNAME}</a></td>
+                    <td>{PROPERTYADDRESS}</td>
+                </tr>
+            </patTemplate:tmpl>
+            </tbody>
+        </table>
+        <input type="hidden" name="option" value="com_jomres"/>
+        <input type="hidden" name="task" value=""/>
+    </form>
 </patTemplate:tmpl>
