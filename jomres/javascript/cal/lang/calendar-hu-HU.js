@@ -1,4 +1,4 @@
-﻿// ** I18N
+// ** I18N
 
 // Calendar HU language
 // Author: ???

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Internationalization: thai language
  *
  * Depends on jWYSIWYG, $.wysiwyg.i18n
