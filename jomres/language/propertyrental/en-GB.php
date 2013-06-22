@@ -2016,3 +2016,8 @@ jr_define( "JOMRES_GOOGLE_MAPS_POIS" , "Enable Gmap Points of Interest (includin
 
 
 jr_define( "_JOMRES_METAKEYWORDS" , "Meta Keywords");
+
+jr_define( "_JOMRES_PLEASE_PRINT" , "Please print this email and present it on your arrival.");
+jr_define( "_JOMRES_OFFICE_USE_ONLY" , "Office use only");
+jr_define( "_JOMRES_SCAN_FOR_DIRECTIONS" , "Scan this code into your phone to get directions to us.");
+
