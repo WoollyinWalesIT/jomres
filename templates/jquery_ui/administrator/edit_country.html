@@ -1,20 +1,20 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<h2>{_JOMRES_EDIT_COUNTRY_TITLE}</h2>
-{JOMRESTOOLBAR}
-<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-<table class="ui-widget-content ui-corner-all" width="100%">
-	<tr>
-		<td width="30%">{_JOMRES_EDIT_COUNTRY_COUNTRYCODE}</td>
-		<td><input class="inputbox" type="text" name="country_code" value="{COUNTRYCODE}" /></td>
-	</tr>
-	<tr>
-		<td>{_JOMRES_EDIT_COUNTRY_COUNTRYNAME}</td>
-		<td><input class="inputbox" type="text" name="country_name" value="{COUNTRYNAME}" /></td>
-	</tr>
-</table>
-<input type="hidden" name="id" value="{ID}" />
-<input type="hidden" name="option" value="com_jomres" />
-<input type="hidden" name="task" value="save_country" />
-<input type="hidden" name="no_html" value="1" />
-</form>
+    <h2>{_JOMRES_EDIT_COUNTRY_TITLE}</h2>
+    {JOMRESTOOLBAR}
+    <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+        <table class="ui-widget-content ui-corner-all" width="100%">
+            <tr>
+                <td width="30%">{_JOMRES_EDIT_COUNTRY_COUNTRYCODE}</td>
+                <td><input class="inputbox" type="text" name="country_code" value="{COUNTRYCODE}"/></td>
+            </tr>
+            <tr>
+                <td>{_JOMRES_EDIT_COUNTRY_COUNTRYNAME}</td>
+                <td><input class="inputbox" type="text" name="country_name" value="{COUNTRYNAME}"/></td>
+            </tr>
+        </table>
+        <input type="hidden" name="id" value="{ID}"/>
+        <input type="hidden" name="option" value="com_jomres"/>
+        <input type="hidden" name="task" value="save_country"/>
+        <input type="hidden" name="no_html" value="1"/>
+    </form>
 </patTemplate:tmpl>

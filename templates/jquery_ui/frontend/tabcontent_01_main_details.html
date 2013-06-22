@@ -1,8 +1,8 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<div class="full-width ui-helper-clearfix">
-    	<patTemplate:tmpl name="discount_output" type="simpleCondition" requiredVars="discount_output">
-        <div class="ui-state-highlight">{DISCOUNT_OUTPUT}</div>
-        <div>&nbsp;</div>
+    <div class="full-width ui-helper-clearfix">
+        <patTemplate:tmpl name="discount_output" type="simpleCondition" requiredVars="discount_output">
+            <div class="ui-state-highlight">{DISCOUNT_OUTPUT}</div>
+            <div>&nbsp;</div>
         </patTemplate:tmpl>
         <div class="left-column float-left">
             <!--<div class="ui-widget-header">{HDESCRIPTION}</div>-->
@@ -17,7 +17,7 @@
             </patTemplate:tmpl>
             <div style="clear:both;">
                 <strong>{HFEATURES}</strong>
-            </div>  
+            </div>
             <patTemplate:tmpl name="feature_icons" type="simpleCondition" requiredVars="feature">
                 {FEATURE}
             </patTemplate:tmpl>

@@ -1,51 +1,54 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script language="javascript">
-<!--
-function OnChange(dropdown)
-	{	
-	cty=jomresJquery("select#xyz").val();
-	var baseURL= "{JOMRES_SITEPAGE_URL}&task=registerProp_step1"
-	location.href = baseURL + "&xyz="+cty;
-	return true;
-	}
-function submitCountry(){
-	document.regForm.action = "{JOMRES_SITEPAGE_URL}&task=registerProp_step2"
-	document.regForm.submit();
-	return true;
-	}
-//-->
-</script>
-<h2>{_JOMRES_REGISTRATION_STEP_1_OF_2}</h2>
-<p>{REGISTRATION_INSTRUCTIONS_STEP1}</p>
-<p>{MANAGEMENTPROCESS_DESC}
-	<ul>
-	<patTemplate:tmpl name="rows">
-	<li>{DESCRIPTION}</li>
-	</patTemplate:tmpl>
-	</ul>
-</p>
-<form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm" >
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<tr>
-		<td width="30%">{HCOUNTRY}</td>
-		<td>{COUNTRIESDROPDOWN}</td>
-	</tr>
-	<tr>
-		<td>{HREGION}</td>
-		<td>{REGIONDROPDOWN}</td>
-	</tr>
-	<tr>
-		<td>{HPROPERTY_TYPE}</td>
-		<td>{PROPERTY_TYPE_DROPDOWN}</td>
-	</tr>
-	<tr>
-		<td>{MANAGEMENTPROCESS}</td>
-		<td>{REALESTATEDROPDOWN}</td>
-	</tr>
-	<tr>
-		<td colspan="2"><input type="button" name="send" value="{_JOMRES_REVIEWS_SUBMIT}" class="fg-button ui-state-default ui-corner-all" onclick="submitCountry();" /></td>
-	</tr>
-</table>
-<input type="hidden" name="task" value="registerProp_step2" />
-</form>
+    <script language="javascript">
+        <!--
+        function OnChange(dropdown) {
+            cty = jomresJquery("select#xyz").val();
+            var baseURL = "{JOMRES_SITEPAGE_URL}&task=registerProp_step1"
+            location.href = baseURL + "&xyz=" + cty;
+            return true;
+        }
+        function submitCountry() {
+            document.regForm.action = "{JOMRES_SITEPAGE_URL}&task=registerProp_step2"
+            document.regForm.submit();
+            return true;
+        }
+        //-->
+    </script>
+    <h2>{_JOMRES_REGISTRATION_STEP_1_OF_2}</h2>
+
+    <p>{REGISTRATION_INSTRUCTIONS_STEP1}</p>
+
+    <p>{MANAGEMENTPROCESS_DESC}
+    <ul>
+        <patTemplate:tmpl name="rows">
+            <li>{DESCRIPTION}</li>
+        </patTemplate:tmpl>
+    </ul>
+    </p>
+    <form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm">
+        <table class="ui-widget-content ui-corner-all" border="0" width="100%">
+            <tr>
+                <td width="30%">{HCOUNTRY}</td>
+                <td>{COUNTRIESDROPDOWN}</td>
+            </tr>
+            <tr>
+                <td>{HREGION}</td>
+                <td>{REGIONDROPDOWN}</td>
+            </tr>
+            <tr>
+                <td>{HPROPERTY_TYPE}</td>
+                <td>{PROPERTY_TYPE_DROPDOWN}</td>
+            </tr>
+            <tr>
+                <td>{MANAGEMENTPROCESS}</td>
+                <td>{REALESTATEDROPDOWN}</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="button" name="send" value="{_JOMRES_REVIEWS_SUBMIT}"
+                                       class="fg-button ui-state-default ui-corner-all" onclick="submitCountry();"/>
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="task" value="registerProp_step2"/>
+    </form>
 </patTemplate:tmpl>

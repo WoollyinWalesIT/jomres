@@ -1,54 +1,54 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script type="text/javascript">
-<!--
-jomresJquery(document).ready(function() {
-	var oTable = jomresJquery('#list_advanced_tariffs').dataTable({
-		"bJQueryUI": true,
-		"bStateSave": true,
-		"sPaginationType": "full_numbers"
-	});
-} );
-//-->
-</script>
-{JOMRESTOOLBAR}
-<table width="100%" border="0" id="list_advanced_tariffs">
-	<thead>
-		<tr>
-			<th>{HLINKTEXT}</th>
-			<th>{HROOMCLASS}</th>
-			<th>{HRATETITLE}</th>
-			<!-- <th>{HRATEDESCRIPTION}</th> -->
-			<th>{HVALIDFROM}</th>
-			<th>{HVALIDTO}</th>
-			<th>{HROOMRATEPERDAY}</th>
-			<th>{HMINDAYS}</th>
-			<th>{HMAXDAYS}</th>
-			<th>{HMINPEOPLE}</th>
-			<th>{HMAXPEOPLE}</th>
-			<!-- <th>{HIGNOREPPN}</th> -->
-			<th>{HALLOWWE}</th>
-			<th>{HWEEKENDONLY}</th>
-		</tr>
-	</thead>
-	<tbody>
-		<patTemplate:tmpl name="rows" unusedvars="nbsp">
-		<tr>
-			<td class="jradmin_field_ca">{LINKTEXT}</td>
-			<td class="jradmin_field_ca">{ROOMCLASS}</td>
-			<td class="jradmin_field_ca">{RATETITLE}</td>
-			<!-- <td class="jradmin_field_ca">{RATEDESCRIPTION}</td> -->
-			<td class="jradmin_field_ca">{VALIDFROM}</td>
-			<td class="jradmin_field_ca">{VALIDTO}</td>
-			<td class="jradmin_field_ca">{ROOMRATEPERDAY}</td> 
-			<td class="jradmin_field_ca">{MINDAYS}</td>
-			<td class="jradmin_field_ca">{MAXDAYS}</td>
-			<td class="jradmin_field_ca">{MINPEOPLE}</td>
-			<td class="jradmin_field_ca">{MAXPEOPLE}</td>
-			<!-- <td class="jradmin_field_ca">{IGNOREPPN}</td> -->
-			<td class="jradmin_field_ca">{ALLOWWE}</td> 
-			<td class="jradmin_field_ca">{WEEKENDONLY}</td>
-		</tr>
-		</patTemplate:tmpl>
-	</tbody>
-</table>
+    <script type="text/javascript">
+        <!--
+        jomresJquery(document).ready(function () {
+            var oTable = jomresJquery('#list_advanced_tariffs').dataTable({
+                "bJQueryUI": true,
+                "bStateSave": true,
+                "sPaginationType": "full_numbers"
+            });
+        });
+        //-->
+    </script>
+    {JOMRESTOOLBAR}
+    <table width="100%" border="0" id="list_advanced_tariffs">
+        <thead>
+        <tr>
+            <th>{HLINKTEXT}</th>
+            <th>{HROOMCLASS}</th>
+            <th>{HRATETITLE}</th>
+            <!-- <th>{HRATEDESCRIPTION}</th> -->
+            <th>{HVALIDFROM}</th>
+            <th>{HVALIDTO}</th>
+            <th>{HROOMRATEPERDAY}</th>
+            <th>{HMINDAYS}</th>
+            <th>{HMAXDAYS}</th>
+            <th>{HMINPEOPLE}</th>
+            <th>{HMAXPEOPLE}</th>
+            <!-- <th>{HIGNOREPPN}</th> -->
+            <th>{HALLOWWE}</th>
+            <th>{HWEEKENDONLY}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <patTemplate:tmpl name="rows" unusedvars="nbsp">
+            <tr>
+                <td class="jradmin_field_ca">{LINKTEXT}</td>
+                <td class="jradmin_field_ca">{ROOMCLASS}</td>
+                <td class="jradmin_field_ca">{RATETITLE}</td>
+                <!-- <td class="jradmin_field_ca">{RATEDESCRIPTION}</td> -->
+                <td class="jradmin_field_ca">{VALIDFROM}</td>
+                <td class="jradmin_field_ca">{VALIDTO}</td>
+                <td class="jradmin_field_ca">{ROOMRATEPERDAY}</td>
+                <td class="jradmin_field_ca">{MINDAYS}</td>
+                <td class="jradmin_field_ca">{MAXDAYS}</td>
+                <td class="jradmin_field_ca">{MINPEOPLE}</td>
+                <td class="jradmin_field_ca">{MAXPEOPLE}</td>
+                <!-- <td class="jradmin_field_ca">{IGNOREPPN}</td> -->
+                <td class="jradmin_field_ca">{ALLOWWE}</td>
+                <td class="jradmin_field_ca">{WEEKENDONLY}</td>
+            </tr>
+        </patTemplate:tmpl>
+        </tbody>
+    </table>
 </patTemplate:tmpl>

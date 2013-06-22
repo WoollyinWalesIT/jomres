@@ -1,12 +1,12 @@
 <?php
 /**
-* Core file
-* @author Vince Wooll <sales@jomres.net>
-* @version Jomres 7
-* @package Jomres
-* @copyright	2005-2013 Vince Wooll
-* Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly, however all images, css and javascript which are copyright Vince Wooll are not GPL licensed and are not freely distributable. 
-**/
+ * Core file
+ * @author Vince Wooll <sales@jomres.net>
+ * @version Jomres 7
+ * @package Jomres
+ * @copyright    2005-2013 Vince Wooll
+ * Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly, however all images, css and javascript which are copyright Vince Wooll are not GPL licensed and are not freely distributable.
+ **/
 
 
 // ################################################################
@@ -14,59 +14,61 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 
-class j06001addnote {
-	function j06001addnote()
-		{
-		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
-		if ($MiniComponents->template_touch)
-			{
-			$this->template_touchable=true; return;
-			}
-		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
-		if (!$thisJRUser->userIsManager)
-			return;
-		$pageoutput=array();
-		$output=array();
-		$contract_uid			= jomresGetParam( $_REQUEST, 'contract_uid', 0 );
-		if ($contract_uid==0)
-			return;
+class j06001addnote
+    {
+    function j06001addnote()
+        {
+        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+        if ( $MiniComponents->template_touch )
+            {
+            $this->template_touchable = true;
 
-		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
-		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('save','','',true,'savenote');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".$contract_uid),'');
-		$jrtb .= $jrtbar->endTable();
-		$output['JOMRESTOOLBAR']=$jrtb;
+            return;
+            }
+        $thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+        if ( !$thisJRUser->userIsManager ) return;
+        $pageoutput   = array ();
+        $output       = array ();
+        $contract_uid = jomresGetParam( $_REQUEST, 'contract_uid', 0 );
+        if ( $contract_uid == 0 ) return;
 
-		$output['HNEWTEXT']=jr_gettext('_JOMCOMP_BOOKINGNOTES_ADD',_JOMCOMP_BOOKINGNOTES_ADD);
-		$output['CONTRACT_UID']=$contract_uid;
+        $jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
+        $jrtb   = $jrtbar->startTable();
+        $jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'savenote' );
+        $jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=editBooking&contract_uid=" . $contract_uid ), '' );
+        $jrtb .= $jrtbar->endTable();
+        $output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-		$pageoutput[]=$output;
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-		$tmpl->addRows( 'pageoutput',$pageoutput);
-		$tmpl->readTemplatesFromInput( 'add_note.html' );
-		$tmpl->displayParsedTemplate();
-		}
+        $output[ 'HNEWTEXT' ]     = jr_gettext( '_JOMCOMP_BOOKINGNOTES_ADD', _JOMCOMP_BOOKINGNOTES_ADD );
+        $output[ 'CONTRACT_UID' ] = $contract_uid;
 
-	function touch_template_language()
-		{
-		$output=array();
+        $pageoutput[ ] = $output;
+        $tmpl          = new patTemplate();
+        $tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+        $tmpl->addRows( 'pageoutput', $pageoutput );
+        $tmpl->readTemplatesFromInput( 'add_note.html' );
+        $tmpl->displayParsedTemplate();
+        }
 
-		$output[]		=jr_gettext('_JOMCOMP_BOOKINGNOTES_ADD',_JOMCOMP_BOOKINGNOTES_ADD);
+    function touch_template_language()
+        {
+        $output = array ();
 
-		foreach ($output as $o)
-			{
-			echo $o;
-			echo "<br/>";
-			}
-		}
+        $output[ ] = jr_gettext( '_JOMCOMP_BOOKINGNOTES_ADD', _JOMCOMP_BOOKINGNOTES_ADD );
 
-	// This must be included in every Event/Mini-component
-	function getRetVals()
-		{
-		return null;
-		}
-	}
+        foreach ( $output as $o )
+            {
+            echo $o;
+            echo "<br/>";
+            }
+        }
+
+    // This must be included in every Event/Mini-component
+    function getRetVals()
+        {
+        return null;
+        }
+    }
+
 ?>

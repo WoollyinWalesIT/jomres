@@ -1,27 +1,28 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<h2>Submit your bug report</h2>
-<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-{SENDBUTTON}
-<table border="0" width="100%" class="ui-widget-content ui-corner-all">
-	<tr>
-		<td width="30%">{_JOMRES_DEBUGGING_SUBJECT}</td>
-		<td><input type="text" name="subject" value="" size="30" /></td>
-	</tr>
-	<tr>
-		<td>{_JOMRES_DEBUGGING_FULLNAME}</td>
-		<td><input type="text" name="fromname" value="" size="30" /></td>
-	</tr>
-	<tr>
-		<td>{_JOMRES_DEBUGGING_YOUREMAIL}</td>
-		<td><input type="text" name="fromemail" value="{ADMINEMAIL}" size="30" /></td>
-	</tr>
-	<tr>
-		<td valign="top">{_JOMRES_DEBUGGING_ISSUE}</td>
-		<td><textarea name="contents"	rows="15" cols="70">{DEBUGINFO}</textarea></td>
-	</tr>
-</table>
-{JOMRESTOKEN}
-<input type="hidden" name="task" value="" />
-<input type="hidden" name="no_html" value="1" />
-</form>
+    <h2>Submit your bug report</h2>
+
+    <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+        {SENDBUTTON}
+        <table border="0" width="100%" class="ui-widget-content ui-corner-all">
+            <tr>
+                <td width="30%">{_JOMRES_DEBUGGING_SUBJECT}</td>
+                <td><input type="text" name="subject" value="" size="30"/></td>
+            </tr>
+            <tr>
+                <td>{_JOMRES_DEBUGGING_FULLNAME}</td>
+                <td><input type="text" name="fromname" value="" size="30"/></td>
+            </tr>
+            <tr>
+                <td>{_JOMRES_DEBUGGING_YOUREMAIL}</td>
+                <td><input type="text" name="fromemail" value="{ADMINEMAIL}" size="30"/></td>
+            </tr>
+            <tr>
+                <td valign="top">{_JOMRES_DEBUGGING_ISSUE}</td>
+                <td><textarea name="contents" rows="15" cols="70">{DEBUGINFO}</textarea></td>
+            </tr>
+        </table>
+        {JOMRESTOKEN}
+        <input type="hidden" name="task" value=""/>
+        <input type="hidden" name="no_html" value="1"/>
+    </form>
 </patTemplate:tmpl>
