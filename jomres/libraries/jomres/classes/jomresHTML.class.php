@@ -20,7 +20,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomresHTML
     {
-    function makeOption( $val, $text = '', $value_name = 'value', $text_name = 'text' )
+    static function makeOption( $val, $text = '', $value_name = 'value', $text_name = 'text' )
         {
         if ( !defined( 'SELECTLISTJAVASCRIPT' ) && using_bootstrap() && !AJAXCALL )
             {
@@ -56,7 +56,7 @@ class jomresHTML
         return $obj;
         }
 
-    function selectList( $arr, $name, $attribs, $key, $text, $default = null, $use_bootstrap_radios = true )
+    static function selectList( $arr, $name, $attribs, $key, $text, $default = null, $use_bootstrap_radios = true )
         {
         $not_for_these_dropdowns = array ( "jomreslang", "jomres_editing_mode", "user_timezone", "existingCustomers", "management_process", "all_guests", "force[]", "guestnumber", "country", "region", "town" );
         if ( !$use_bootstrap_radios ) $not_for_these_dropdowns[ ] = $name;
@@ -104,7 +104,7 @@ class jomresHTML
         return $output;
         }
 
-    function integerSelectList( $start, $end, $increment, $name, $attribs, $selected, $format = "", $use_bootstrap_radios = true )
+    static function integerSelectList( $start, $end, $increment, $name, $attribs, $selected, $format = "", $use_bootstrap_radios = true )
         {
         $attribs = str_replace( ' class="inputbox" ', "", $attribs );
         $attribs = str_replace( ' class="input-medium" ', "", $attribs );
