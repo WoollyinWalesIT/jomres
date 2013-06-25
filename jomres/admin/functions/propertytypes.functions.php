@@ -28,6 +28,7 @@ function publishPropertyType()
     $id        = jomresGetParam( $_GET, 'id', 0 );
     $query     = "SELECT published FROM #__jomres_ptypes WHERE id = '" . (int) $id . "'";
     $ptypeList = doSelectSql( $query );
+    $published=0;
     foreach ( $ptypeList as $ptype )
         {
         $published = $ptype->published;
