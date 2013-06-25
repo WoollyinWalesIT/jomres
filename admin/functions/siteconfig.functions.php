@@ -23,8 +23,6 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  */
 function showSiteConfig()
     {
-    global $version;
-
     $siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
     $jrConfig   = $siteConfig->get();
 
@@ -39,7 +37,6 @@ function showSiteConfig()
     if ( !isset( $jrConfig[ 'load_jquery_ui' ] ) ) $jrConfig[ 'load_jquery_ui' ] = "1";
 
     $lists = array ();
-    $list  = array ();
     // make a standard yes/no list
     $yesno    = array ();
     $yesno[ ] = jomresHTML::makeOption( '0', jr_gettext( _JOMRES_COM_MR_NO, '_JOMRES_COM_MR_NO', false ) );
@@ -332,7 +329,7 @@ function saveSiteConfig()
                 if ( count( $settingsList ) == 0 ) $query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('0','jomres_licensekey','$lkey')";
                 else
                 $query = "UPDATE #__jomres_settings SET `value`='" . $lkey . "' WHERE property_uid = '0' and akey = 'jomres_licensekey'";
-                $result = doInsertSql( $query, '' );
+                doInsertSql( $query, '' );
                 }
             else
                 {
@@ -370,7 +367,6 @@ function getJomresLanguagesDropdown()
         {
         while ( false !== ( $entry = $d->read() ) )
             {
-            $filename = $entry;
             if ( substr( $entry, 0, 1 ) != '.' && !is_dir( JOMRESPATH_BASE . "/language/" . $entry ) )
                 {
                 $docs[ ] = $entry;
@@ -402,7 +398,6 @@ function searchCSSThemesDirForCSSFiles()
         {
         while ( false !== ( $entry = $d->read() ) )
             {
-            $filename = $entry;
             if ( substr( $entry, 0, 1 ) != '.' )
                 {
                 $docs[ ] = $entry;
@@ -438,4 +433,3 @@ function searchCSSThemesDirForCSSFiles()
     return $cssFiles;
     }
 
-?>

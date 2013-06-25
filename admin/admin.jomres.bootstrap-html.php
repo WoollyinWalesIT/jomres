@@ -13,16 +13,16 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 class HTML_jomres
     {
 
-    function controlPanel( $version )
+/*    function controlPanel( $version )
         {
-        ?>
+        */?><!--
             <table class="adminheading" width="100%">
                 <tr>
                     <th class="cpanel">Jomres Control Panel</th>
                 </tr>
             </table>
-        <?php
-        if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS . 'jomres_cpanel.php' ) )
+        --><?php
+/*        if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS . 'jomres_cpanel.php' ) )
             {
             require JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS . 'jomres_cpanel.php';
             }
@@ -31,7 +31,7 @@ class HTML_jomres
             echo '<br />File does not exist: ' . $path . ' .... help!!';
             //mosLoadAdminModules( 'cpanel', 1 );
             }
-        }
+        }*/
 
     /**
     #
@@ -142,9 +142,9 @@ class HTML_jomres
 		</tr>
 		
 		<tr>
-			<td>' . jr_gettext( _JOMRES_APPROVALS_CONFIG_TITLE ) . '</td>
+			<td>' . jr_gettext( _JOMRES_APPROVALS_CONFIG_TITLE, _JOMRES_APPROVALS_CONFIG_TITLE ) . '</td>
 			<td>' . $lists[ 'automatically_approve_new_properties' ] . '</td>
-			<td>' . jr_gettext( _JOMRES_APPROVALS_CONFIG_DESC ) . '</td>
+			<td>' . jr_gettext( _JOMRES_APPROVALS_CONFIG_DESC, _JOMRES_APPROVALS_CONFIG_DESC ) . '</td>
 		</tr>
 		
 		<tr>
@@ -570,9 +570,9 @@ class HTML_jomres
 				<td>&nbsp;</td>
 			</tr>
 			<tr> 
-				<td>' . jr_gettext( _JOMRES_CONVERSION_TITLE, '_JOMRES_CONVERSION_TITLE', false ) . '</td> 
+				<td>' . jr_gettext( _JOMRES_CONVERSION_TITLE, '_JOMRES_CONVERSION_TITLE', false ) . '</td>
 				<td>' . $lists[ 'use_conversion_feature' ] . '</td> 
-				<td>' . jr_gettext( _JOMRES_CONVERSION_TITLE_DESC, '_JOMRES_CONVERSION_TITLE_DESC', false ) . '</td> 
+				<td>' . jr_gettext( _JOMRES_CONVERSION_TITLE_DESC, '_JOMRES_CONVERSION_TITLE_DESC', false ) . '</td>
 			</tr>
 			<tr>
 				<td>' . jr_gettext( _JOMRES_IP_DETECTION_API_KEY_TITLE, '_JOMRES_IP_DETECTION_API_KEY_TITLE', false ) . '</td>
