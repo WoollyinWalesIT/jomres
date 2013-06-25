@@ -37,6 +37,9 @@ function editProfile()
 
     $query          = "SELECT access_level,pu,apikey FROM #__jomres_managers WHERE userid = " . $userid . " LIMIT 1";
     $managerDetails = doSelectSql( $query );
+    $accessLevel=0;
+    $superPropertyManager=false;
+    $apikey='';
     foreach ( $managerDetails as $m )
         {
         $accessLevel          = $m->access_level;
@@ -69,6 +72,8 @@ function editProfile()
 
     $query        = "SELECT propertys_uid,property_name FROM #__jomres_propertys ORDER BY property_name";
     $propertyList = doSelectSql( $query );
+    $propertyIdArray=array();
+    $propertynameArray=array();
     foreach ( $propertyList as $property )
         {
         $propertyIdArray[ $property->propertys_uid ]   = $property->propertys_uid;
@@ -82,6 +87,7 @@ function editProfile()
         {
         $managersArray[ $m->userid ] = $m->username;
         }
+    $rows=array();
     foreach ( $propertyIdArray as $i )
         {
         $r                = array ();
@@ -194,7 +200,7 @@ function grantMosUser()
     if ( $userid > 0 )
         {
         $userList = jomres_cmsspecific_getCMSUsers();
-
+        $username='';
         foreach ( $userList as $u )
             {
             if ( $u[ 'id' ] == $userid ) $username = $u[ 'username' ];

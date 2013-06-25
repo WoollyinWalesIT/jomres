@@ -18,7 +18,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 /**
 #
- * Compiles data in preperation for showing the site configuration panel
+ * Compiles data in preparation for showing the site configuration panel
 #
  */
 function showSiteConfig()
@@ -385,6 +385,7 @@ function getJomresLanguagesDropdown()
             return $langDropdown;
             }
         }
+    return '';
     }
 
 
