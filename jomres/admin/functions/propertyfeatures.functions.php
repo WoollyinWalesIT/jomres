@@ -18,4 +18,3 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 //-C R E A T E P R O P E R T Y  FEATURES   ----
 //---------------------------------------------
 
-?>

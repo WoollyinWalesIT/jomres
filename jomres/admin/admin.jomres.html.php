@@ -13,16 +13,16 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 class HTML_jomres
     {
 
-    function controlPanel( $version )
+/*    function controlPanel( $version )
         {
-        ?>
+        */?><!--
             <table class="adminheading" border="0">
                 <tr>
                     <th class="cpanel">Jomres Control Panel</th>
                 </tr>
             </table>
-        <?php
-        if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS . 'jomres_cpanel.php' ) )
+        --><?php
+/*        if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS . 'jomres_cpanel.php' ) )
             {
             require JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS . 'jomres_cpanel.php';
             }
@@ -31,7 +31,7 @@ class HTML_jomres
             echo '<br />File does not exist: ' . $path . ' .... help!!';
             //mosLoadAdminModules( 'cpanel', 1 );
             }
-        }
+        }*/
 
     /**
     #
@@ -140,9 +140,9 @@ class HTML_jomres
 			<td valign="middle">' . jr_gettext( _JOMRES_COOKIEPOLICY_DESC, '_JOMRES_COOKIEPOLICY_DESC', false ) . '</td>
 		</tr>
 		<tr valign="middle" class="odd">
-			<td valign="middle">' . jr_gettext( _JOMRES_APPROVALS_CONFIG_TITLE ) . '</td>
+			<td valign="middle">' . jr_gettext( _JOMRES_APPROVALS_CONFIG_TITLE,_JOMRES_APPROVALS_CONFIG_TITLE ) . '</td>
 			<td valign="middle">' . $lists[ 'automatically_approve_new_properties' ] . '</td>
-			<td valign="middle">' . jr_gettext( _JOMRES_APPROVALS_CONFIG_DESC ) . '</td>
+			<td valign="middle">' . jr_gettext( _JOMRES_APPROVALS_CONFIG_DESC,_JOMRES_APPROVALS_CONFIG_DESC ) . '</td>
 		</tr>
 		<tr valign="middle" class="even">
 			<td valign="middle">' . jr_gettext( _JOMRES_DEFAULT_LAT_STARTPOINT, '_JOMRES_DEFAULT_LAT_STARTPOINT', false ) . '</td>

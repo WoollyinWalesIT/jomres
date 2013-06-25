@@ -28,7 +28,6 @@ set_showtime( 'logFiles', $logFiles );
 function characterData( $parser, &$data )
     {
     global $current_tag, $temp;
-    global $lastdata, $lastTag;
     $temp[ 'LIVESITE' ] = get_showtime( 'live_site' );
     switch ( $current_tag )
     {
@@ -54,7 +53,7 @@ function characterData( $parser, &$data )
 
 function startElement( $parser, $name, $attrs = '' )
     {
-    global $open_tags, $temp, $current_tag, $xml_entry_key;
+    global $current_tag, $xml_entry_key;
     $current_tag = $name;
     switch ( $name )
     {
@@ -67,7 +66,7 @@ function startElement( $parser, $name, $attrs = '' )
 
 function endElement( $parser, $name, $attrs = '' )
     {
-    global $close_tags, $temp, $current_tag, $xml_entry_key;
+    global $temp, $xml_entry_key;
     switch ( $name )
     {
         case strtoupper( $xml_entry_key ):
@@ -92,4 +91,3 @@ function return_page()
     $rows[ ]           = $temp;
     }
 
-?>

@@ -46,7 +46,6 @@ function publishPropertyType()
 function editPropertyType()
     {
     $id                                    = jomresGetParam( $_GET, 'id', 0 );
-    $ptypeData                             = array ();
     $output                                = array ();
     $output[ 'PAGETITLE' ]                 = jr_gettext( "_JOMRES_COM_PTYPES_LIST_TITLE_EDIT", _JOMRES_COM_PTYPES_LIST_TITLE_EDIT, false );
     $output[ 'HPTYPE' ]                    = jr_gettext( "_JOMRES_COM_PTYPES_PTYPE", _JOMRES_COM_PTYPES_PTYPE, false );
@@ -154,4 +153,3 @@ function deletePropertyType()
     if ( $success ) jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes", jr_gettext( "_JOMRES_COM_PTYPES_DELETED", _JOMRES_COM_PTYPES_DELETED, false ) );
     }
 
-?>

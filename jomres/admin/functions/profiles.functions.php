@@ -82,7 +82,6 @@ function editProfile()
         {
         $managersArray[ $m->userid ] = $m->username;
         }
-    $n = count( $propertyIdArray );
     foreach ( $propertyIdArray as $i )
         {
         $r                = array ();
@@ -96,8 +95,7 @@ function editProfile()
                 }
             $propertyManagers = substr( $propertyManagers, 0, -2 );
             }
-        $row = "0";
-        if ( $i % 2 ) $row = "1";
+         if ( $i % 2 ) $row = "1";
         $checked = "";
         if ( in_array( $propertyIdArray[ $i ], $managersToPropertyArray ) ) $checked = "checked";
         $r[ 'INPUT' ]        = '<input type="checkbox" id="cb' . count( $rows ) . '" name="chosenHotel[]" value="' . $propertyIdArray[ $i ] . '" ' . $checked . '>';
@@ -144,7 +142,6 @@ function saveProfile()
         return;
         }
     updateManagerIdToPropertyXrefTable( $userid, $chosenHotels );
-    $acsLvlStr = "";
     if ( $accesslevel == 1 )
         {
         $acsLvlStr = ", pu='0'";
@@ -218,4 +215,3 @@ function grantMosUser()
     echo "Hmm, that userid is 0";
     }
 
-?>
