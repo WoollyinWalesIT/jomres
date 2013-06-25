@@ -1,9 +1,8 @@
 /* Jomres Email CSS */
 body {
     margin: 10px;
-    padding: 0;
     background: #fff;
-    padding-bottom: 1px;
+    padding: 0 0 1px;
     font-size: 11px;
     font-family: Arial, Helvetica, sans-serif;
 }

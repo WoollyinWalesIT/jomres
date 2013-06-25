@@ -28,8 +28,7 @@ ul.potato-menu li.potato-menu-item {
     margin: 0;
     padding: 0;
     position: relative;
-    list-style: none;
-    list-style-position: outside;
+    list-style: none outside none;
     display: inline;
     float: left;
 }
