@@ -126,7 +126,7 @@ class jomres_mc_registry
         $class_structure_end            = "
 		}
 	}
-?>";
+";
         $nowVar                         = '
 		$this->mcRegistry_now=' . $this->now . ';';
         $registryVar                    = '
