@@ -12,27 +12,6 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class HTML_jomres
     {
-
-/*    function controlPanel( $version )
-        {
-        */?><!--
-            <table class="adminheading" border="0">
-                <tr>
-                    <th class="cpanel">Jomres Control Panel</th>
-                </tr>
-            </table>
-        --><?php
-/*        if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS . 'jomres_cpanel.php' ) )
-            {
-            require JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS . 'jomres_cpanel.php';
-            }
-        else
-            {
-            echo '<br />File does not exist: ' . $path . ' .... help!!';
-            //mosLoadAdminModules( 'cpanel', 1 );
-            }
-        }*/
-
     /**
     #
      * Outputs the site configuration panel
