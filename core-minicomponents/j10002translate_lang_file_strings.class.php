@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,25 +15,25 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j10002translate_lang_file_strings
-    {
-    function j10002translate_lang_file_strings()
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j10002translate_lang_file_strings()
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
+			return;
+			}
 
-        $htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-        $this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=translate_lang_file_strings', 'EditText.png', jr_gettext( "_JOMRES_COM_TRANSLATE_LANGUAGEFILES", _JOMRES_COM_TRANSLATE_LANGUAGEFILES, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", _JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES, false, false ) );
-        }
+		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
+		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=translate_lang_file_strings', 'EditText.png', jr_gettext( "_JOMRES_COM_TRANSLATE_LANGUAGEFILES", _JOMRES_COM_TRANSLATE_LANGUAGEFILES, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", _JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES, false, false ) );
+		}
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return $this->cpanelButton;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return $this->cpanelButton;
+		}
+	}

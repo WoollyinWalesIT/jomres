@@ -1,45 +1,45 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-    <script>
-        var jomres_using_bootstrap = '{USING_BOOTSTRAP}';
-    </script>
+	<script>
+		var jomres_using_bootstrap = '{USING_BOOTSTRAP}';
+	</script>
 
-    <div id="jomres_alternate_menu_position"></div>
-    <!-- available if required by a plugin -->
-    <div id="jomres_content_area">
-        <noscript>
-            <blockquote>
-                <p><font size="3" color="#FF0000"><b>You do not have JavaScript enabled.</b></font><br/>
-                    <font size="2" color="#000080">The functionality of this site requires the use of JavaScript so
-                        please enable before continuing. For assistance in enabling JavaScript, please contact the
-                        webmaster.</font></p>
-            </blockquote>
-        </noscript>
-        <h2>{PROPERTYNAME}</h2>
+	<div id="jomres_alternate_menu_position"></div>
+	<!-- available if required by a plugin -->
+	<div id="jomres_content_area">
+		<noscript>
+			<blockquote>
+				<p><font size="3" color="#FF0000"><b>You do not have JavaScript enabled.</b></font><br/>
+					<font size="2" color="#000080">The functionality of this site requires the use of JavaScript so
+						please enable before continuing. For assistance in enabling JavaScript, please contact the
+						webmaster.</font></p>
+			</blockquote>
+		</noscript>
+		<h2>{PROPERTYNAME}</h2>
 
-        <div style="text-align:right;width:100%;">
-            <div>{MANAGEMENT_VIEW_DROPDOWN}</div>
-            <patTemplate:tmpl name="timezone_dropdown" type="simpleCondition" requiredVars="timezoneblurb">
-                <div>{TIMEZONEBLURB}</div>
-                <div style="width:280px;;float:right;">{TIMEZONE_DROPDOWN}</div>
-            </patTemplate:tmpl>
-            <patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
-                <div style="width:160px;float:right;">{LANGDROPDOWN}</div>
-            </patTemplate:tmpl>
-            <patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
-                <div style="width:160px;float:right;">{EDITING_MODE_DROPDOWN}</div>
-            </patTemplate:tmpl>
-        </div>
+		<div style="text-align:right;width:100%;">
+			<div>{MANAGEMENT_VIEW_DROPDOWN}</div>
+			<patTemplate:tmpl name="timezone_dropdown" type="simpleCondition" requiredVars="timezoneblurb">
+				<div>{TIMEZONEBLURB}</div>
+				<div style="width:280px;;float:right;">{TIMEZONE_DROPDOWN}</div>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
+				<div style="width:160px;float:right;">{LANGDROPDOWN}</div>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
+				<div style="width:160px;float:right;">{EDITING_MODE_DROPDOWN}</div>
+			</patTemplate:tmpl>
+		</div>
 
-        <div style="clear:both;"></div>
-        {SANITY_CHECKS}
-        <patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
-            <script type="text/javascript"><!--
-            jomresJquery.jGrowl("{MESSAGE}", { life: 10000 });//-->
-            </script>
-        </patTemplate:tmpl>
-        <patTemplate:tmpl name="sticky_messages" type="simpleCondition" requiredVars="message">
-            <script type="text/javascript"><!--
-            jomresJquery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });//-->
-            </script>
-        </patTemplate:tmpl>
+		<div style="clear:both;"></div>
+		{SANITY_CHECKS}
+		<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
+			<script type="text/javascript"><!--
+			jomresJquery.jGrowl("{MESSAGE}", { life: 10000 });//-->
+			</script>
+		</patTemplate:tmpl>
+		<patTemplate:tmpl name="sticky_messages" type="simpleCondition" requiredVars="message">
+			<script type="text/javascript"><!--
+			jomresJquery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });//-->
+			</script>
+		</patTemplate:tmpl>
 </patTemplate:tmpl>

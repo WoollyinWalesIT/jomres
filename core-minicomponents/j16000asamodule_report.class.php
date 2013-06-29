@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,23 +15,23 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j16000asamodule_report
-    {
-    function j16000asamodule_report()
-        {
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j16000asamodule_report()
+		{
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
-        $MiniComponents->asamodule_report();
-        }
+			return;
+			}
+		$MiniComponents->asamodule_report();
+		}
 
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return null;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return null;
+		}
+	}

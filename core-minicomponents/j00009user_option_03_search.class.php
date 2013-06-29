@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -16,49 +17,50 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 #
  * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 #
+ *
  * @package Jomres
 #
  */
 class j00009user_option_03_search
-    {
+	{
 
-    /**
-    #
-     * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    #
-     */
-    function j00009user_option_03_search( $componentArgs )
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = true;
+	/**
+	#
+	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	#
+	 */
+	function j00009user_option_03_search( $componentArgs )
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = true;
 
-            return;
-            }
-        $this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=search", 'find.png', jr_gettext( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', _JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH, false, false ), null, jr_gettext( "_JOMRES_SEARCH_BUTTON", _JOMRES_SEARCH_BUTTON, false, false ) );
-        }
+			return;
+			}
+		$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=search", 'find.png', jr_gettext( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', _JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH, false, false ), null, jr_gettext( "_JOMRES_SEARCH_BUTTON", _JOMRES_SEARCH_BUTTON, false, false ) );
+		}
 
-    function touch_template_language()
-        {
-        $output    = array ();
-        $output[ ] = jr_gettext( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', _JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH );
-        $output[ ] = jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON );
+	function touch_template_language()
+		{
+		$output    = array ();
+		$output[ ] = jr_gettext( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', _JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH );
+		$output[ ] = jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON );
 
 
-        foreach ( $output as $o )
-            {
-            echo $o;
-            echo "<br/>";
-            }
-        }
+		foreach ( $output as $o )
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return $this->cpanelButton;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return $this->cpanelButton;
+		}
+	}
 
 ?>

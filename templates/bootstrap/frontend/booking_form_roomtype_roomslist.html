@@ -1,26 +1,26 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-    <table class="table table-striped" width="100%">
-        <thead>
-        <tr>
-            <th class="hidden-phone">{HNUMBEROFROOMS}</th>
-            <th class="hidden-phone">{HROOM_TYPE_TEXT}</th>
-            <th class="hidden-phone">{HTARIFF_NAME_TEXT}</th>
-            <th class="hidden-phone">{HGUESTPER_ROOM}</th>
-            <th class="hidden-phone">{HGUESTPER_BOOKING}</th>
-            <th class="hidden-phone">{HRATE_TEXT}</th>
-            <th class="hidden-desktop hidden-tablet"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <patTemplate:tmpl name="rows">
-            <tr>
-                <td class="hidden-phone">{NUMBEROFROOMS}</td>
-                <td class="hidden-phone">{ROOM_TYPE_TEXT}</td>
-                <td class="hidden-phone">{TARIFF_NAME_TEXT}</td>
-                <td class="hidden-phone">{GUESTPER_ROOM}</td>
-                <td class="hidden-phone">{GUESTPER_BOOKING}</td>
-                <td class="hidden-phone">{RATE_TEXT}</td>
-                <td class="hidden-desktop hidden-tablet">{NUMBEROFROOMS} {ROOM_TYPE_TEXT} - {RATE_TEXT}</td>
-            </tr>
-        </patTemplate:tmpl>
+	<table class="table table-striped" width="100%">
+		<thead>
+		<tr>
+			<th class="hidden-phone">{HNUMBEROFROOMS}</th>
+			<th class="hidden-phone">{HROOM_TYPE_TEXT}</th>
+			<th class="hidden-phone">{HTARIFF_NAME_TEXT}</th>
+			<th class="hidden-phone">{HGUESTPER_ROOM}</th>
+			<th class="hidden-phone">{HGUESTPER_BOOKING}</th>
+			<th class="hidden-phone">{HRATE_TEXT}</th>
+			<th class="hidden-desktop hidden-tablet"></th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows">
+			<tr>
+				<td class="hidden-phone">{NUMBEROFROOMS}</td>
+				<td class="hidden-phone">{ROOM_TYPE_TEXT}</td>
+				<td class="hidden-phone">{TARIFF_NAME_TEXT}</td>
+				<td class="hidden-phone">{GUESTPER_ROOM}</td>
+				<td class="hidden-phone">{GUESTPER_BOOKING}</td>
+				<td class="hidden-phone">{RATE_TEXT}</td>
+				<td class="hidden-desktop hidden-tablet">{NUMBEROFROOMS} {ROOM_TYPE_TEXT} - {RATE_TEXT}</td>
+			</tr>
+		</patTemplate:tmpl>
 </patTemplate:tmpl>

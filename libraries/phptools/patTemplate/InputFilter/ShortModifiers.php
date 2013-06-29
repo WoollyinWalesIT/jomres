@@ -8,9 +8,9 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  *
  * $Id: ShortModifiers.php 449 2006-12-12 21:00:38Z schst $
  *
- * @package		patTemplate
- * @subpackage	Filters
- * @author		Stephan Schmidt <schst@php.net>
+ * @package        patTemplate
+ * @subpackage    Filters
+ * @author        Stephan Schmidt <schst@php.net>
  */
 
 /**
@@ -22,102 +22,109 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * This will replace the variables with patTemplate:var/> tags that
  * have the name and the modifier attribute set.
  *
- * @package		patTemplate
- * @subpackage	Filters
- * @author		Stephan Schmidt <schst@php.net>
+ * @package        patTemplate
+ * @subpackage    Filters
+ * @author        Stephan Schmidt <schst@php.net>
  */
 class patTemplate_InputFilter_ShortModifiers extends patTemplate_InputFilter
-{
-   /**
-    * filter name
-	*
-	* @access	private
-	* @var	    string
-	*/
-	var	$_name = 'ShortModifiers';
+	{
+	/**
+	 * filter name
+	 *
+	 * @access    private
+	 * @var        string
+	 */
+	var $_name = 'ShortModifiers';
 
-   /**
-	* parameters of the filter
-	*
-	* @access  private
-	* @var     array
-	*/
-    var $_params = array(
-                            'copyVars' => true
-                        );
+	/**
+	 * parameters of the filter
+	 *
+	 * @access  private
+	 * @var     array
+	 */
+	var $_params = array ( 'copyVars' => true );
 
-   /**
-    * namespace
-	*
-	* @access	private
-	* @var	    string
-	*/
-	var	$_ns = null;
+	/**
+	 * namespace
+	 *
+	 * @access    private
+	 * @var        string
+	 */
+	var $_ns = null;
 
-   /**
-    * reference to the patTemplate object
-	*
-	* @var	   object patTemplate
-	* @access  private
-	*/
+	/**
+	 * reference to the patTemplate object
+	 *
+	 * @var       object patTemplate
+	 * @access  private
+	 */
 	var $_tmpl = null;
 
-   /**
-	* set the template reference
-	*
-	* @access	public
-	* @param    object patTemplate
-	*/
-	function setTemplateReference(&$tmpl)
-	{
-		$this->_tmpl = &$tmpl;
-	}
+	/**
+	 * set the template reference
+	 *
+	 * @access    public
+	 * @param    object patTemplate
+	 */
+	function setTemplateReference( &$tmpl )
+		{
+		$this->_tmpl = & $tmpl;
+		}
 
-   /**
-	* generate the <patTemplate:var/> tag
-	*
-	* @access	public
-	* @param	array       matches from preg_replace
-	* @return	string		tag
-	*/
-	function _generateReplace($matches)
-	{
-        if ($this->getParam('copyVars') === true) {
-            $newName = $matches[2] . '_' . $matches[3];
-            if (isset( $matches[4] )) {
-                $newName .= $matches[4];
-            }
-            $replace = $matches[1] . '<' . $this->_ns . ':var copyFrom="' . $matches[2] . '" name="' . $newName . '" modifier="' . $matches[3] . '"';
-        } else {
-            $replace = $matches[1] . '<' . $this->_ns . ':var name="' . $matches[2] . '" modifier="' . $matches[3] . '"';
-        }
-        $n = count($matches) - 1;
-        for ($i = 4; $i < $n; $i++ ) {
-            $replace .= ' ' . $matches[++$i] . '="' . $matches[++$i] . '"';
-        }
-        $replace .= '/>';
-        return $replace;
-	}
+	/**
+	 * generate the <patTemplate:var/> tag
+	 *
+	 * @access    public
+	 * @param    array       matches from preg_replace
+	 * @return    string        tag
+	 */
+	function _generateReplace( $matches )
+		{
+		if ( $this->getParam( 'copyVars' ) === true )
+			{
+			$newName = $matches[ 2 ] . '_' . $matches[ 3 ];
+			if ( isset( $matches[ 4 ] ) )
+				{
+				$newName .= $matches[ 4 ];
+				}
+			$replace = $matches[ 1 ] . '<' . $this->_ns . ':var copyFrom="' . $matches[ 2 ] . '" name="' . $newName . '" modifier="' . $matches[ 3 ] . '"';
+			}
+		else
+			{
+			$replace = $matches[ 1 ] . '<' . $this->_ns . ':var name="' . $matches[ 2 ] . '" modifier="' . $matches[ 3 ] . '"';
+			}
+		$n = count( $matches ) - 1;
+		for ( $i = 4; $i < $n; $i++ )
+			{
+			$replace .= ' ' . $matches[ ++$i ] . '="' . $matches[ ++$i ] . '"';
+			}
+		$replace .= '/>';
 
-   /**
-	* replace the variables
-	*
-	* @access	public
-	* @param	string		data
-	* @return	string		data with variables replaced
-	*/
-	function apply($data)
-	{
-	    $startTag = $this->_tmpl->getStartTag();
-	    $endTag   = $this->_tmpl->getEndTag();
+		return $replace;
+		}
 
-	    $this->_ns = $this->_tmpl->getNamespace();
-	    if (is_array($this->_ns)) {
-	    	$this->_ns = array_shift($this->_ns);
-	    }
+	/**
+	 * replace the variables
+	 *
+	 * @access    public
+	 * @param    string        data
+	 * @return    string        data with variables replaced
+	 */
+	function apply( $data )
+		{
+		$startTag = $this->_tmpl->getStartTag();
+		$endTag   = $this->_tmpl->getEndTag();
+
+		$this->_ns = $this->_tmpl->getNamespace();
+		if ( is_array( $this->_ns ) )
+			{
+			$this->_ns = array_shift( $this->_ns );
+			}
 		$regex = chr( 1 ) . "([^\\\])" . $startTag . "([^a-z]+)\|(.+[^\\\])(\|(.+):(.+[^\\\]))*" . $endTag . chr( 1 ) . "U";
-		$data = preg_replace_callback($regex, array( $this, '_generateReplace' ), $data);
+		$data  = preg_replace_callback( $regex, array ( $this, '_generateReplace' ), $data );
+
 		return $data;
+		}
 	}
-}
+
 ?>

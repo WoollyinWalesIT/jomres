@@ -12,18 +12,18 @@
 // full day names
 Calendar._DN = new Array
 ("Sonntag",
- "Montag",
- "Dienstag",
- "Mittwoch",
- "Donnerstag",
- "Freitag",
- "Samstag",
- "Sonntag");
+	"Montag",
+	"Dienstag",
+	"Mittwoch",
+	"Donnerstag",
+	"Freitag",
+	"Samstag",
+	"Sonntag");
 
 // First day of the week. "0" means display Sunday first, "1" means display
 // Monday first, etc.
 Calendar._FD = 1;
- 
+
 // Please note that the following array of short day names (and the same goes
 // for short month names, _SMN) isn't absolutely necessary.  We give it here
 // for exemplification on how one can customize the short day names, but if
@@ -39,63 +39,63 @@ Calendar._FD = 1;
 // short day names
 Calendar._SDN = new Array
 ("So",
- "Mo",
- "Di",
- "Mi",
- "Do",
- "Fr",
- "Sa",
- "So");
+	"Mo",
+	"Di",
+	"Mi",
+	"Do",
+	"Fr",
+	"Sa",
+	"So");
 
 // full month names
 Calendar._MN = new Array
 ("Januar",
- "Februar",
- "M\u00e4rz",
- "April",
- "Mai",
- "Juni",
- "Juli",
- "August",
- "September",
- "Oktober",
- "November",
- "Dezember");
+	"Februar",
+	"M\u00e4rz",
+	"April",
+	"Mai",
+	"Juni",
+	"Juli",
+	"August",
+	"September",
+	"Oktober",
+	"November",
+	"Dezember");
 
 // short month names
 Calendar._SMN = new Array
 ("Jan",
- "Feb",
- "M\u00e4r",
- "Apr",
- "Mai",
- "Jun",
- "Jul",
- "Aug",
- "Sep",
- "Okt",
- "Nov",
- "Dez");
+	"Feb",
+	"M\u00e4r",
+	"Apr",
+	"Mai",
+	"Jun",
+	"Jul",
+	"Aug",
+	"Sep",
+	"Okt",
+	"Nov",
+	"Dez");
 
 // tooltips
 Calendar._TT = {};
 Calendar._TT["INFO"] = "\u00DCber dieses Kalendarmodul";
 
 Calendar._TT["ABOUT"] =
-"DHTML Date/Time Selector\n" +
-"(c) dynarch.com 2002-2005 / Author: Mihai Bazon\n" + // don't translate this ;-)
-"For latest version visit: http://www.dynarch.com/projects/calendar/\n" +
-"Distributed under GNU LGPL.  See http://gnu.org/licenses/lgpl.html for details." +
-"\n\n" +
-"Datum ausw\u00e4hlen:\n" +
-"- Benutzen Sie die \xab, \xbb Buttons um das Jahr zu w\u00e4hlen\n" +
-"- Benutzen Sie die " + String.fromCharCode(0x2039) + ", " + String.fromCharCode(0x203a) + " Buttons um den Monat zu w\u00e4hlen\n" +
-"- F\u00fcr eine Schnellauswahl halten Sie die Maustaste \u00fcber diesen Buttons fest.";
+	"DHTML Date/Time Selector\n" +
+		"(c) dynarch.com 2002-2005 / Author: Mihai Bazon\n" + // don't translate this ;-)
+		"For latest version visit: http://www.dynarch.com/projects/calendar/\n" +
+		"Distributed under GNU LGPL.  See http://gnu.org/licenses/lgpl.html for details." +
+		"\n\n" +
+		"Datum ausw\u00e4hlen:\n" +
+		"- Benutzen Sie die \xab, \xbb Buttons um das Jahr zu w\u00e4hlen\n" +
+		"- Benutzen Sie die " + String.fromCharCode(0x2039) + ", " + String.fromCharCode(0x203a) + " Buttons um den Monat zu w\u00e4hlen\n" +
+		"- F\u00fcr eine Schnellauswahl halten Sie die Maustaste \u00fcber diesen Buttons fest.";
 Calendar._TT["ABOUT_TIME"] = "\n\n" +
-"Zeit ausw\u00e4hlen:\n" +
-"- Klicken Sie auf die Teile der Uhrzeit, um diese zu erh\u00F6hen\n" +
-"- oder klicken Sie mit festgehaltener Shift-Taste um diese zu verringern\n" +
-"- oder klicken und festhalten f\u00fcr Schnellauswahl.";
+	"Zeit ausw\u00e4hlen:\n" +
+	"- Klicken Sie auf die Teile der Uhrzeit, um diese zu erh\u00F6hen\n" +
+	"- oder klicken Sie mit festgehaltener Shift-Taste um diese zu verringern\n" +
+	"- oder klicken und festhalten f\u00fcr Schnellauswahl.";
 
 Calendar._TT["TOGGLE"] = "Ersten Tag der Woche w\u00e4hlen";
 Calendar._TT["PREV_YEAR"] = "Vorheriges Jahr (Festhalten f\u00fcr Men\u00fc)";

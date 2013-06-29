@@ -69,7 +69,7 @@
 				"upload_action": "upload_action",
 				"mkdir_action": "mkdir_action",
 				"remove_action": "เอาออก",
-				"rename_action": "ทำการแก้ไขชื่อ" ,
+				"rename_action": "ทำการแก้ไขชื่อ",
 				"delete_message": "ลบข้อความ",
 				"new_directory": "new_directory",
 				"previous_directory": "previous_directory",

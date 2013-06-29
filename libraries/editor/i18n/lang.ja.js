@@ -1,6 +1,6 @@
 /**
  * Internationalization: japanese language
- * 
+ *
  * Depends on jWYSIWYG, $.wysiwyg.i18n
  *
  * By: https://github.com/rosiro

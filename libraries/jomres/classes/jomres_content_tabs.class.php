@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -15,19 +16,19 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 
 if ( !using_bootstrap() )
-    {
-    jr_import( 'jomres_content_tabs_normal' );
+	{
+	jr_import( 'jomres_content_tabs_normal' );
 
-    class jomres_content_tabs extends jomres_content_tabs_normal
-        {
-        }
-    }
+	class jomres_content_tabs extends jomres_content_tabs_normal
+		{
+		}
+	}
 else
-    {
-    jr_import( 'jomres_content_tabs_bootstrap' );
+	{
+	jr_import( 'jomres_content_tabs_bootstrap' );
 
-    class jomres_content_tabs extends jomres_content_tabs_bootstrap
-        {
-        }
-    }
+	class jomres_content_tabs extends jomres_content_tabs_bootstrap
+		{
+		}
+	}
 ?>

@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,23 +15,23 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j16010stats_properties_clicks
-    {
-    function j16010stats_properties_clicks()
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j16010stats_properties_clicks()
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
-        $this->retVal = array ( "task" => "stats_properties_clicks", "text" => jr_gettext( '_JRPORTAL_STATS_STATTYPE_PROPERTIES', _JRPORTAL_STATS_STATTYPE_PROPERTIES ) );
-        }
+			return;
+			}
+		$this->retVal = array ( "task" => "stats_properties_clicks", "text" => jr_gettext( '_JRPORTAL_STATS_STATTYPE_PROPERTIES', _JRPORTAL_STATS_STATTYPE_PROPERTIES ) );
+		}
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return $this->retVal;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return $this->retVal;
+		}
+	}

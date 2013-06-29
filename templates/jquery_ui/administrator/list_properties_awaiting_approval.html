@@ -1,68 +1,68 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
-    <script type="text/javascript">
-        <!--
-        function review_property(property_uid) {
-            //console.log(property_uid);
-            cmd = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=ajax_list_properties_awaiting_approval&property_uid=' + property_uid;
-            jomresJquery.get(cmd, function (data) {
-                populateDiv("property_preview", data)
-            });
+	<script type="text/javascript">
+		<!--
+		function review_property(property_uid) {
+			//console.log(property_uid);
+			cmd = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=ajax_list_properties_awaiting_approval&property_uid=' + property_uid;
+			jomresJquery.get(cmd, function (data) {
+				populateDiv("property_preview", data)
+			});
 
-        }
+		}
 
-        function approve_property(property_uid) {
-            //console.log(property_uid);
-            cmd = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=ajax_list_properties_approve&property_uid=' + property_uid;
-            jomresJquery.get(cmd, function (data) {
-                jomresJquery('#tablerow_' + property_uid).remove();
-            });
-        }
-        //-->
-    </script>
+		function approve_property(property_uid) {
+			//console.log(property_uid);
+			cmd = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=ajax_list_properties_approve&property_uid=' + property_uid;
+			jomresJquery.get(cmd, function (data) {
+				jomresJquery('#tablerow_' + property_uid).remove();
+			});
+		}
+		//-->
+	</script>
 
-    <h2>Properties awaiting approval</h2>
+	<h2>Properties awaiting approval</h2>
 
-    <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-        {JOMRESTOOLBAR}
-        <table width="100%" border="0">
-            <tr>
-                <td width="50%" valign="top">
-                    <table class="ui-widget-content ui-corner-all" width="100%">
-                        <thead>
-                        <tr>
-                            <th class="ui-state-default">{HPROPERTYNAME}</th>
-                            <th class="ui-state-default">{HPROPERTYADDRESS}</th>
-                            <th class="ui-state-default"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <patTemplate:tmpl name="rows" unusedvars="nbsp">
-                            <tr id="tablerow_{PROPERTY_UID}">
-                                <td>{VIEWLINK}{PROPERTYNAME}</td>
-                                <td>{PROPERTYADDRESS}</td>
-                                <td align="right">
-                                    <input type="button" name="review" value="{_JOMRES_APPROVALS_REVIEW}"
-                                           onClick="review_property({PROPERTY_UID});"
-                                           class="fg-button ui-state-default ui-corner-all"/>
-                                    <input type="button" name="review" value="{_JOMRES_APPROVALS_APPROVE}"
-                                           onClick="approve_property({PROPERTY_UID});"
-                                           class="fg-button ui-state-default ui-corner-all"/>
-                                </td>
-                            </tr>
-                        </patTemplate:tmpl>
-                        </tbody>
-                    </table>
-                </td>
-                <td valign="top">
-                    <div id="property_preview">
+	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+		{JOMRESTOOLBAR}
+		<table width="100%" border="0">
+			<tr>
+				<td width="50%" valign="top">
+					<table class="ui-widget-content ui-corner-all" width="100%">
+						<thead>
+						<tr>
+							<th class="ui-state-default">{HPROPERTYNAME}</th>
+							<th class="ui-state-default">{HPROPERTYADDRESS}</th>
+							<th class="ui-state-default"></th>
+						</tr>
+						</thead>
+						<tbody>
+						<patTemplate:tmpl name="rows" unusedvars="nbsp">
+							<tr id="tablerow_{PROPERTY_UID}">
+								<td>{VIEWLINK}{PROPERTYNAME}</td>
+								<td>{PROPERTYADDRESS}</td>
+								<td align="right">
+									<input type="button" name="review" value="{_JOMRES_APPROVALS_REVIEW}"
+										   onClick="review_property({PROPERTY_UID});"
+										   class="fg-button ui-state-default ui-corner-all"/>
+									<input type="button" name="review" value="{_JOMRES_APPROVALS_APPROVE}"
+										   onClick="approve_property({PROPERTY_UID});"
+										   class="fg-button ui-state-default ui-corner-all"/>
+								</td>
+							</tr>
+						</patTemplate:tmpl>
+						</tbody>
+					</table>
+				</td>
+				<td valign="top">
+					<div id="property_preview">
 
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <input type="hidden" name="option" value="com_jomres"/>
-        <input type="hidden" name="task" value="editcrate"/>
-        <input type="hidden" name="boxchecked" value="0">
-    </form>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<input type="hidden" name="option" value="com_jomres"/>
+		<input type="hidden" name="task" value="editcrate"/>
+		<input type="hidden" name="boxchecked" value="0">
+	</form>
 </patTemplate:tmpl>

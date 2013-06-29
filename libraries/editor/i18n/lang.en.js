@@ -1,8 +1,8 @@
 /**
  * Internationalization: English language
- * 
+ *
  * Depends on jWYSIWYG, $.wysiwyg.i18n
- * 
+ *
  * By: frost-nzcr4 on github.com
  */
 (function ($) {
@@ -63,25 +63,25 @@
 			},
 
 			fileManager: {
-				"file_manager": 		"File Manager",
-				"upload_title":			"Upload File",
-				"rename_title":			"Rename File",
-				"remove_title":			"Remove File",
-				"mkdir_title":			"Create Directory",
-				"upload_action": 		"Upload new file to current directory",
-				"mkdir_action": 		"Create new directory",
-				"remove_action": 		"Remove this file",
-				"rename_action": 		"Rename this file" ,	
-				"delete_message": 		"Are you sure you want to delete this file?",
-				"new_directory": 		"New Directory",
-				"previous_directory": 	"Go to previous directory",
-				"rename":				"Rename",
-				"select": 				"Select",
-				"create": 				"Create",
-				"submit": 				"Submit",
-				"cancel": 				"Cancel",
-				"yes":					"Yes",
-				"no":					"No"
+				"file_manager": "File Manager",
+				"upload_title": "Upload File",
+				"rename_title": "Rename File",
+				"remove_title": "Remove File",
+				"mkdir_title": "Create Directory",
+				"upload_action": "Upload new file to current directory",
+				"mkdir_action": "Create new directory",
+				"remove_action": "Remove this file",
+				"rename_action": "Rename this file",
+				"delete_message": "Are you sure you want to delete this file?",
+				"new_directory": "New Directory",
+				"previous_directory": "Go to previous directory",
+				"rename": "Rename",
+				"select": "Select",
+				"create": "Create",
+				"submit": "Submit",
+				"cancel": "Cancel",
+				"yes": "Yes",
+				"no": "No"
 			},
 
 			image: {

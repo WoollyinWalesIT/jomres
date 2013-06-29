@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -17,53 +18,54 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 #
  * Puts the colour scheme css file into the header
 #
+ *
  * @package Jomres
 #
  */
 class j00021colourscheme
-    {
-    /**
-    #
-     * Constructor: Puts the colour scheme css file into the header
-    #
-     */
-    function j00021colourscheme()
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	/**
+	#
+	 * Constructor: Puts the colour scheme css file into the header
+	#
+	 */
+	function j00021colourscheme()
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
+			return;
+			}
 
-        if ( !using_bootstrap() )
-            {
-            if ( file_exists( JOMRESPATH_BASE . JRDS . "temp" . JRDS . "jomrescss.css" ) ) jomres_cmsspecific_addheaddata( "css", 'jomres/temp/', "jomrescss.css" );
-            else
-            jomres_cmsspecific_addheaddata( "css", JOMRES_CSSRELPATH, "jomrescss.css" );
-            }
-        else
-            {
-            if ( file_exists( JOMRESPATH_BASE . JRDS . "temp" . JRDS . "jomrescss_bootstrap.css" ) ) jomres_cmsspecific_addheaddata( "css", 'jomres/temp/', "jomrescss_bootstrap.css" );
-            else
-            jomres_cmsspecific_addheaddata( "css", JOMRES_CSSRELPATH, "jomrescss_bootstrap.css" );
-            }
+		if ( !using_bootstrap() )
+			{
+			if ( file_exists( JOMRESPATH_BASE . JRDS . "temp" . JRDS . "jomrescss.css" ) ) jomres_cmsspecific_addheaddata( "css", 'jomres/temp/', "jomrescss.css" );
+			else
+			jomres_cmsspecific_addheaddata( "css", JOMRES_CSSRELPATH, "jomrescss.css" );
+			}
+		else
+			{
+			if ( file_exists( JOMRESPATH_BASE . JRDS . "temp" . JRDS . "jomrescss_bootstrap.css" ) ) jomres_cmsspecific_addheaddata( "css", 'jomres/temp/', "jomrescss_bootstrap.css" );
+			else
+			jomres_cmsspecific_addheaddata( "css", JOMRES_CSSRELPATH, "jomrescss_bootstrap.css" );
+			}
 
-        }
+		}
 
-    /**
-    #
-     * Must be included in every mini-component
-    #
-     * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
-    #
-     */
-    function getRetVals()
-        {
-        return null;
-        }
-    }
+	/**
+	#
+	 * Must be included in every mini-component
+	#
+	 * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
+	#
+	 */
+	function getRetVals()
+		{
+		return null;
+		}
+	}
 
 ?>

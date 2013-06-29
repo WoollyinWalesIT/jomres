@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,31 +15,31 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class jomres_messages
-    {
-    function jomres_messages()
-        {
-        $jomres_messages = array ();
-        if ( isset( $_COOKIE[ 'jomres_messages' ] ) ) $this->jomres_messages = $_COOKIE[ 'jomres_messages' ];
-        }
+	{
+	function jomres_messages()
+		{
+		$jomres_messages = array ();
+		if ( isset( $_COOKIE[ 'jomres_messages' ] ) ) $this->jomres_messages = $_COOKIE[ 'jomres_messages' ];
+		}
 
-    function get_messages()
-        {
+	function get_messages()
+		{
 
-        foreach ( $this->jomres_messages as $key => $val )
-            {
-            $index = "jomres_messages[" . $key . "]";
-            setcookie( $index, "", time() - 3600 );
-            }
+		foreach ( $this->jomres_messages as $key => $val )
+			{
+			$index = "jomres_messages[" . $key . "]";
+			setcookie( $index, "", time() - 3600 );
+			}
 
-        return $this->jomres_messages;
-        }
+		return $this->jomres_messages;
+		}
 
-    function set_message( $message )
-        {
-        $counter = count( $this->jomres_messages ) + 1;
-        $index   = "jomres_messages[" . $counter . "]";
-        setcookie( $index, htmlspecialchars( $message ), time() + 5, "/" );
-        }
-    }
+	function set_message( $message )
+		{
+		$counter = count( $this->jomres_messages ) + 1;
+		$index   = "jomres_messages[" . $counter . "]";
+		setcookie( $index, htmlspecialchars( $message ), time() + 5, "/" );
+		}
+	}
 
 ?>

@@ -7,36 +7,37 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  *
  * $Id: String.php 181 2004-04-23 22:01:02Z schst $
  *
- * @package		patTemplate
- * @subpackage	Readers
- * @author		Stephan Schmidt <schst@php.net>
+ * @package        patTemplate
+ * @subpackage    Readers
+ * @author        Stephan Schmidt <schst@php.net>
  */
 
 /**
  * patTemplate Reader that reads from a string
  *
- * @package		patTemplate
- * @subpackage	Readers
- * @author		Stephan Schmidt <schst@php.net>
+ * @package        patTemplate
+ * @subpackage    Readers
+ * @author        Stephan Schmidt <schst@php.net>
  */
 class patTemplate_Reader_String extends patTemplate_Reader
-{
-   /**
-    * Read templates from a string
-	*
-	* @final
-	* @access	public
-	* @param	string	string to parse
-	* @param	array	options, not implemented in current versions, but future versions will allow passing of options
-	* @return	array	templates
-	*/
-	function readTemplates( $input )
 	{
+	/**
+	 * Read templates from a string
+	 *
+	 * @final
+	 * @access    public
+	 * @param    string    string to parse
+	 * @param    array    options, not implemented in current versions, but future versions will allow passing of options
+	 * @return    array    templates
+	 */
+	function readTemplates( $input )
+		{
 		$this->_currentInput = $input;
 
-		$templates	=	$this->parseString( $input );
-		
-		return	$templates;
+		$templates = $this->parseString( $input );
+
+		return $templates;
+		}
 	}
-}
+
 ?>

@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,110 +15,110 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j16000view_property_reviews
-    {
-    function j16000view_property_reviews( $componentArgs )
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j16000view_property_reviews( $componentArgs )
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
-        $output     = array ();
-        $pageoutput = array ();
-        $rows       = array ();
+			return;
+			}
+		$output     = array ();
+		$pageoutput = array ();
+		$rows       = array ();
 
-        $property_uid = $componentArgs[ 'property_uid' ];
+		$property_uid = $componentArgs[ 'property_uid' ];
 
-        if ( is_null( $property_uid ) ) $property_uid = jomresGetParam( $_REQUEST, 'property_uid', 0 );
+		if ( is_null( $property_uid ) ) $property_uid = jomresGetParam( $_REQUEST, 'property_uid', 0 );
 
-        jr_import( 'jrportal_property_functions' );
-        $propertyFunctions = new jrportal_property_functions();
+		jr_import( 'jrportal_property_functions' );
+		$propertyFunctions = new jrportal_property_functions();
 
-        $propertyDetails           = $propertyFunctions->getPropertyDetails( array ( $property_uid ) );
-        $output[ 'PROPERTY_NAME' ] = stripslashes( $propertyDetails[ $property_uid ][ 'property_name' ] );
+		$propertyDetails           = $propertyFunctions->getPropertyDetails( array ( $property_uid ) );
+		$output[ 'PROPERTY_NAME' ] = stripslashes( $propertyDetails[ $property_uid ][ 'property_name' ] );
 
-        jr_import( 'jomres_reviews' );
-        $Reviews          = new jomres_reviews();
-        $all_reviews      = $Reviews->get_all_reviews_index_by_property_uid();
-        $property_reviews = $all_reviews[ $property_uid ];
-        $all_reports      = $Reviews->get_all_reports_index_by_rating_id();
+		jr_import( 'jomres_reviews' );
+		$Reviews          = new jomres_reviews();
+		$all_reviews      = $Reviews->get_all_reviews_index_by_property_uid();
+		$property_reviews = $all_reviews[ $property_uid ];
+		$all_reports      = $Reviews->get_all_reports_index_by_rating_id();
 
-        $all_users = jomres_cmsspecific_getCMSUsers();
+		$all_users = jomres_cmsspecific_getCMSUsers();
 
-        $unpublish_icon = get_showtime( 'live_site' ) . "/jomres/images/jomresimages/small/tick.png";
-        $publish_icon   = get_showtime( 'live_site' ) . "/jomres/images/jomresimages/small/Cancel.png";
-        $delete_icon    = get_showtime( 'live_site' ) . "/jomres/images/jomresimages/small/WasteBasket.png";
+		$unpublish_icon = get_showtime( 'live_site' ) . "/jomres/images/jomresimages/small/tick.png";
+		$publish_icon   = get_showtime( 'live_site' ) . "/jomres/images/jomresimages/small/Cancel.png";
+		$delete_icon    = get_showtime( 'live_site' ) . "/jomres/images/jomresimages/small/WasteBasket.png";
 
-        $output[ 'UNPUBLISH_IMAGE' ] = $unpublish_icon;
-        $output[ 'PUBLISH_IMAGE' ]   = $publish_icon;
-        $output[ 'AJAXURL' ]         = JOMRES_SITEPAGE_URL_ADMIN . "&format=raw&no_html=1";
-        $output[ 'HPROPERTYNAME' ]   = jr_gettext( '_JRPORTAL_PROPERTIES_PROPERTYNAME', _JRPORTAL_PROPERTIES_PROPERTYNAME );
-        $output[ 'PROPERTY_UID' ]    = $property_uid;
+		$output[ 'UNPUBLISH_IMAGE' ] = $unpublish_icon;
+		$output[ 'PUBLISH_IMAGE' ]   = $publish_icon;
+		$output[ 'AJAXURL' ]         = JOMRES_SITEPAGE_URL_ADMIN . "&format=raw&no_html=1";
+		$output[ 'HPROPERTYNAME' ]   = jr_gettext( '_JRPORTAL_PROPERTIES_PROPERTYNAME', _JRPORTAL_PROPERTIES_PROPERTYNAME );
+		$output[ 'PROPERTY_UID' ]    = $property_uid;
 
-        $output[ '_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW' ] = jr_gettext( '_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW', _JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW );
-        $output[ '_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW' ] = jr_gettext( '_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW', _JOMRES_REVIEWS_ADMIN_DELETEREVEIEW );
-        $output[ '_JOMRES_MR_AUDIT_LISTING_USER' ]       = jr_gettext( '_JOMRES_MR_AUDIT_LISTING_USER', _JOMRES_MR_AUDIT_LISTING_USER );
-        $output[ '_JOMRES_REVIEWS_SUBMITTEDDATE' ]       = jr_gettext( '_JOMRES_REVIEWS_SUBMITTEDDATE', _JOMRES_REVIEWS_SUBMITTEDDATE );
-        $output[ '_JOMRES_REVIEWS_TITLE' ]               = jr_gettext( '_JOMRES_REVIEWS_TITLE', _JOMRES_REVIEWS_TITLE );
-        $output[ '_JOMRES_REVIEWS_REVIEWBODY_SAID' ]     = jr_gettext( '_JOMRES_REVIEWS_REVIEWBODY_SAID', _JOMRES_REVIEWS_REVIEWBODY_SAID );
-        $output[ '_JOMRES_REVIEWS_PROS' ]                = jr_gettext( '_JOMRES_REVIEWS_PROS', _JOMRES_REVIEWS_PROS );
-        $output[ '_JOMRES_REVIEWS_CONS' ]                = jr_gettext( '_JOMRES_REVIEWS_CONS', _JOMRES_REVIEWS_CONS );
-        $output[ '_JOMRES_REVIEWS_RATING' ]              = jr_gettext( '_JOMRES_REVIEWS_RATING', _JOMRES_REVIEWS_RATING );
-        $output[ '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE' ] = jr_gettext( '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE', _JOMRES_REVIEWS_REPORT_REVIEW_TITLE );
-        $output[ '_JOMRES_REVIEWS_REPORT_INSTRUCTIONS' ] = jr_gettext( '_JOMRES_REVIEWS_REPORT_INSTRUCTIONS', _JOMRES_REVIEWS_REPORT_INSTRUCTIONS );
-
-
-        foreach ( $property_reviews as $review )
-            {
-            $r = array ();
-
-            $r[ 'rating_id' ]          = $review[ "rating_id" ];
-            $r[ 'user_id' ]            = $all_users[ $review[ "user_id" ] ][ 'username' ];
-            $r[ 'review_title' ]       = $review[ "review_title" ];
-            $r[ 'review_description' ] = $review[ "review_description" ];
-            $r[ 'pros' ]               = $review[ "pros" ];
-            $r[ 'cons' ]               = $review[ "cons" ];
-            $r[ 'rating' ]             = $review[ "rating" ];
-            $r[ 'rating_date' ]        = $review[ "rating_date" ];
-            $r[ 'published' ]          = $review[ "published" ];
-
-            $r[ 'reports' ] = '';
-            if ( isset( $all_reports[ $r[ 'rating_id' ] ] ) )
-                {
-                $review_reports = $all_reports[ $r[ 'rating_id' ] ];
-                foreach ( $review_reports as $report )
-                    {
-                    $report_userid = $all_users[ $report[ 'user_id' ] ][ 'username' ];
-                    $r[ 'reports' ] .= jr_gettext( '_JOMRES_REVIEWS_REPORT_CREATED_BY', _JOMRES_REVIEWS_REPORT_CREATED_BY ) . $report_userid . " " . $report[ 'report_date' ] . "<br/>" . $report[ 'report' ];
-                    }
-                }
-
-            $r[ 'publish_icon' ] = $unpublish_icon;
-            if ( $r[ 'published' ] == 0 ) $r[ 'publish_icon' ] = $publish_icon;
-
-            $r[ 'delete_icon' ] = $delete_icon;
-
-            $r[ 'row_id' ] = 'rating_id' . $r[ 'rating_id' ];
-
-            $rows[ ] = $r;
-            }
-
-        $pageoutput[ ] = $output;
-        $tmpl          = new patTemplate();
-        $tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-        $tmpl->readTemplatesFromInput( 'view_property_reviews.html' );
-        $tmpl->addRows( 'pageoutput', $pageoutput );
-        $tmpl->addRows( 'rows', $rows );
-        $tmpl->displayParsedTemplate();
-        }
+		$output[ '_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW' ] = jr_gettext( '_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW', _JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW );
+		$output[ '_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW' ] = jr_gettext( '_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW', _JOMRES_REVIEWS_ADMIN_DELETEREVEIEW );
+		$output[ '_JOMRES_MR_AUDIT_LISTING_USER' ]       = jr_gettext( '_JOMRES_MR_AUDIT_LISTING_USER', _JOMRES_MR_AUDIT_LISTING_USER );
+		$output[ '_JOMRES_REVIEWS_SUBMITTEDDATE' ]       = jr_gettext( '_JOMRES_REVIEWS_SUBMITTEDDATE', _JOMRES_REVIEWS_SUBMITTEDDATE );
+		$output[ '_JOMRES_REVIEWS_TITLE' ]               = jr_gettext( '_JOMRES_REVIEWS_TITLE', _JOMRES_REVIEWS_TITLE );
+		$output[ '_JOMRES_REVIEWS_REVIEWBODY_SAID' ]     = jr_gettext( '_JOMRES_REVIEWS_REVIEWBODY_SAID', _JOMRES_REVIEWS_REVIEWBODY_SAID );
+		$output[ '_JOMRES_REVIEWS_PROS' ]                = jr_gettext( '_JOMRES_REVIEWS_PROS', _JOMRES_REVIEWS_PROS );
+		$output[ '_JOMRES_REVIEWS_CONS' ]                = jr_gettext( '_JOMRES_REVIEWS_CONS', _JOMRES_REVIEWS_CONS );
+		$output[ '_JOMRES_REVIEWS_RATING' ]              = jr_gettext( '_JOMRES_REVIEWS_RATING', _JOMRES_REVIEWS_RATING );
+		$output[ '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE' ] = jr_gettext( '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE', _JOMRES_REVIEWS_REPORT_REVIEW_TITLE );
+		$output[ '_JOMRES_REVIEWS_REPORT_INSTRUCTIONS' ] = jr_gettext( '_JOMRES_REVIEWS_REPORT_INSTRUCTIONS', _JOMRES_REVIEWS_REPORT_INSTRUCTIONS );
 
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return null;
-        }
-    }
+		foreach ( $property_reviews as $review )
+			{
+			$r = array ();
+
+			$r[ 'rating_id' ]          = $review[ "rating_id" ];
+			$r[ 'user_id' ]            = $all_users[ $review[ "user_id" ] ][ 'username' ];
+			$r[ 'review_title' ]       = $review[ "review_title" ];
+			$r[ 'review_description' ] = $review[ "review_description" ];
+			$r[ 'pros' ]               = $review[ "pros" ];
+			$r[ 'cons' ]               = $review[ "cons" ];
+			$r[ 'rating' ]             = $review[ "rating" ];
+			$r[ 'rating_date' ]        = $review[ "rating_date" ];
+			$r[ 'published' ]          = $review[ "published" ];
+
+			$r[ 'reports' ] = '';
+			if ( isset( $all_reports[ $r[ 'rating_id' ] ] ) )
+				{
+				$review_reports = $all_reports[ $r[ 'rating_id' ] ];
+				foreach ( $review_reports as $report )
+					{
+					$report_userid = $all_users[ $report[ 'user_id' ] ][ 'username' ];
+					$r[ 'reports' ] .= jr_gettext( '_JOMRES_REVIEWS_REPORT_CREATED_BY', _JOMRES_REVIEWS_REPORT_CREATED_BY ) . $report_userid . " " . $report[ 'report_date' ] . "<br/>" . $report[ 'report' ];
+					}
+				}
+
+			$r[ 'publish_icon' ] = $unpublish_icon;
+			if ( $r[ 'published' ] == 0 ) $r[ 'publish_icon' ] = $publish_icon;
+
+			$r[ 'delete_icon' ] = $delete_icon;
+
+			$r[ 'row_id' ] = 'rating_id' . $r[ 'rating_id' ];
+
+			$rows[ ] = $r;
+			}
+
+		$pageoutput[ ] = $output;
+		$tmpl          = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+		$tmpl->readTemplatesFromInput( 'view_property_reviews.html' );
+		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->addRows( 'rows', $rows );
+		$tmpl->displayParsedTemplate();
+		}
+
+
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return null;
+		}
+	}

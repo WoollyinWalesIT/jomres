@@ -9,9 +9,9 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  *
  * Will remove all HTML comments.
  *
- * @package		patTemplate
- * @subpackage	Filters
- * @author		Stephan Schmidt <schst@php.net>
+ * @package        patTemplate
+ * @subpackage    Filters
+ * @author        Stephan Schmidt <schst@php.net>
  */
 
 /**
@@ -21,34 +21,35 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  *
  * Will remove all HTML comments.
  *
- * @package		patTemplate
- * @subpackage	Filters
- * @author		Stephan Schmidt <schst@php.net>
+ * @package        patTemplate
+ * @subpackage    Filters
+ * @author        Stephan Schmidt <schst@php.net>
  */
 class patTemplate_InputFilter_StripComments extends patTemplate_InputFilter
-{
-   /**
-    * filter name
-	*
-	* @access	protected
-	* @abstract
-	* @var	string
-	*/
-	var	$_name	=	'StripComments';
-
-   /**
-	* compress the data
-	*
-	* @access	public
-	* @param	string		data
-	* @return	string		data without whitespace
-	*/
-	function apply( $data )
 	{
-        $data = preg_replace( '°<!--.*-->°msU', '', $data );
-        $data = preg_replace( '°/\*.*\*/°msU', '', $data );
+	/**
+	 * filter name
+	 *
+	 * @access    protected
+	 * @abstract
+	 * @var    string
+	 */
+	var $_name = 'StripComments';
+
+	/**
+	 * compress the data
+	 *
+	 * @access    public
+	 * @param    string        data
+	 * @return    string        data without whitespace
+	 */
+	function apply( $data )
+		{
+		$data = preg_replace( 'ï¿½<!--.*-->ï¿½msU', '', $data );
+		$data = preg_replace( 'ï¿½/\*.*\*/ï¿½msU', '', $data );
 
 		return $data;
+		}
 	}
-}
+
 ?>

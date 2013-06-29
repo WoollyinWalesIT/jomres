@@ -1,65 +1,65 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-    <script language="JavaScript" type="text/javascript">
-        <!--
-        jomresJquery(document).ready(function () {
-            make_datatable('frontend_list_invoices', '{PAGETITLE}', '{LIVESITE}');
-        });
-        //-->
-    </script>
-    <h2 class="page-header">{PAGETITLE}</h2>
+	<script language="JavaScript" type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('frontend_list_invoices', '{PAGETITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
 
-    <div class="well">
-        <a href="{TASK_FILTER_ANY}" class="btn"><i class="icon-list-view"></i> {_JOMRES_FRONT_ROOMSMOKING_EITHER}</a>
-        <a href="{TASK_FILTER_UNPAID}" class="btn"><i class="icon-list-view"></i> {_JRPORTAL_INVOICES_STATUS_UNPAID}</a>
-        <a href="{TASK_FILTER_PAID}" class="btn"><i class="icon-list-view"></i> {_JRPORTAL_INVOICES_STATUS_PAID}</a>
-        <a href="{TASK_FILTER_CANCELLED}" class="btn"><i class="icon-list-view"></i>
-            {_JRPORTAL_INVOICES_STATUS_CANCELLED}</a>
-        <a href="{TASK_FILTER_PENDING}" class="btn"><i class="icon-list-view"></i>
-            {_JRPORTAL_INVOICES_STATUS_PENDING}</a>
-    </div>
-    <p>&nbsp;</p>
-    <table id="frontend_list_invoices" class="table table-striped" width="100%">
-        <thead>
-        <tr>
-            <th>&nbsp;</th>
-            <th>ID</th>
-            <th>{HUSER}</th>
-            <th>{HSTATUS}</th>
-            <th class="hidden-phone hidden-tablet">Line Items</th>
-            <patTemplate:comment>
-                <th class="hidden-phone hidden-tablet">{HRAISED}</th>
-            </patTemplate:comment>
-            <th class="hidden-phone hidden-tablet">{HDUE}</th>
-            <patTemplate:comment>
-                <th class="hidden-phone hidden-tablet">{HPAID}</th>
-                <th>{HSUBSCRIPTION}</th>
-            </patTemplate:comment>
-            <th>{HINITTOTAL}</th>
-            <th class="hidden-phone hidden-tablet">{HRECURTOTAL}</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <patTemplate:tmpl name="rows" unusedvars="nbsp">
-            <tr>
-                <td><a href="{EDIT_URL}" class="btn"><i class="icon-edit"></i> {EDIT_TEXT}</a></td>
-                <td>{ID}</td>
-                <td>{USER}</td>
-                <td>{STATUS}</td>
-                <td class="hidden-phone hidden-tablet">{ITEMS}</td>
-                <patTemplate:comment>
-                    <td class="hidden-phone hidden-tablet">{RAISED}</td>
-                </patTemplate:comment>
-                <td class="hidden-phone hidden-tablet">{DUE}</td>
-                <patTemplate:comment>
-                    <td class="hidden-phone hidden-tablet">{PAID}</td>
-                    <td>{SUBSCRIPTION}</td>
-                </patTemplate:comment>
-                <td>{INITTOTAL}({CURRENCYCODE})</td>
-                <td class="hidden-phone hidden-tablet">{RECURTOTAL}({CURRENCYCODE})</td>
-                <td>{PAYNOW}</td>
-            </tr>
-        </patTemplate:tmpl>
-        </tbody>
-    </table>
+	<div class="well">
+		<a href="{TASK_FILTER_ANY}" class="btn"><i class="icon-list-view"></i> {_JOMRES_FRONT_ROOMSMOKING_EITHER}</a>
+		<a href="{TASK_FILTER_UNPAID}" class="btn"><i class="icon-list-view"></i> {_JRPORTAL_INVOICES_STATUS_UNPAID}</a>
+		<a href="{TASK_FILTER_PAID}" class="btn"><i class="icon-list-view"></i> {_JRPORTAL_INVOICES_STATUS_PAID}</a>
+		<a href="{TASK_FILTER_CANCELLED}" class="btn"><i class="icon-list-view"></i>
+			{_JRPORTAL_INVOICES_STATUS_CANCELLED}</a>
+		<a href="{TASK_FILTER_PENDING}" class="btn"><i class="icon-list-view"></i>
+			{_JRPORTAL_INVOICES_STATUS_PENDING}</a>
+	</div>
+	<p>&nbsp;</p>
+	<table id="frontend_list_invoices" class="table table-striped" width="100%">
+		<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>ID</th>
+			<th>{HUSER}</th>
+			<th>{HSTATUS}</th>
+			<th class="hidden-phone hidden-tablet">Line Items</th>
+			<patTemplate:comment>
+				<th class="hidden-phone hidden-tablet">{HRAISED}</th>
+			</patTemplate:comment>
+			<th class="hidden-phone hidden-tablet">{HDUE}</th>
+			<patTemplate:comment>
+				<th class="hidden-phone hidden-tablet">{HPAID}</th>
+				<th>{HSUBSCRIPTION}</th>
+			</patTemplate:comment>
+			<th>{HINITTOTAL}</th>
+			<th class="hidden-phone hidden-tablet">{HRECURTOTAL}</th>
+			<th></th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+			<tr>
+				<td><a href="{EDIT_URL}" class="btn"><i class="icon-edit"></i> {EDIT_TEXT}</a></td>
+				<td>{ID}</td>
+				<td>{USER}</td>
+				<td>{STATUS}</td>
+				<td class="hidden-phone hidden-tablet">{ITEMS}</td>
+				<patTemplate:comment>
+					<td class="hidden-phone hidden-tablet">{RAISED}</td>
+				</patTemplate:comment>
+				<td class="hidden-phone hidden-tablet">{DUE}</td>
+				<patTemplate:comment>
+					<td class="hidden-phone hidden-tablet">{PAID}</td>
+					<td>{SUBSCRIPTION}</td>
+				</patTemplate:comment>
+				<td>{INITTOTAL}({CURRENCYCODE})</td>
+				<td class="hidden-phone hidden-tablet">{RECURTOTAL}({CURRENCYCODE})</td>
+				<td>{PAYNOW}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
 </patTemplate:tmpl>

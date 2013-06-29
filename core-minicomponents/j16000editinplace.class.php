@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,45 +15,45 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 
 class j16000editinplace
-    {
-    function j16000editinplace()
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j16000editinplace()
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
-        $customText  = jomresGetParam( $_POST, 'value', '', 'string' );
-        $theConstant = filter_var( $_POST[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS );
-        $lang        = jomresGetParam( $_REQUEST, 'lang', '' );
-
-
-        $query    = "SELECT customtext FROM #__jomres_custom_text WHERE constant = '" . $theConstant . "' and property_uid = 0 AND language = '" . $lang . "'";
-        $textList = doSelectSql( $query );
-        if ( strlen( $customText ) == 0 )
-            {
-            $query = "DELETE FROM	#__jomres_custom_text WHERE constant = '" . $theConstant . "' AND property_uid = 0 AND language = '" . $lang . "'";
-            }
-        else
-            {
-            if ( count( $textList ) < 1 ) $query = "INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('" . $theConstant . "','" . $customText . "',0,'" . $lang . "')";
-            else
-            $query = "UPDATE #__jomres_custom_text SET `customtext`='" . $customText . "' WHERE constant = '" . $theConstant . "' AND property_uid = 0 AND language = '" . $lang . "'";
-            }
-        if ( doInsertSql( $query ) ) echo jomres_decode( $customText );
-        else
-        echo "Something burped";
-        }
+			return;
+			}
+		$customText  = jomresGetParam( $_POST, 'value', '', 'string' );
+		$theConstant = filter_var( $_POST[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS );
+		$lang        = jomresGetParam( $_REQUEST, 'lang', '' );
 
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return null;
-        }
-    }
+		$query    = "SELECT customtext FROM #__jomres_custom_text WHERE constant = '" . $theConstant . "' and property_uid = 0 AND language = '" . $lang . "'";
+		$textList = doSelectSql( $query );
+		if ( strlen( $customText ) == 0 )
+			{
+			$query = "DELETE FROM	#__jomres_custom_text WHERE constant = '" . $theConstant . "' AND property_uid = 0 AND language = '" . $lang . "'";
+			}
+		else
+			{
+			if ( count( $textList ) < 1 ) $query = "INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('" . $theConstant . "','" . $customText . "',0,'" . $lang . "')";
+			else
+			$query = "UPDATE #__jomres_custom_text SET `customtext`='" . $customText . "' WHERE constant = '" . $theConstant . "' AND property_uid = 0 AND language = '" . $lang . "'";
+			}
+		if ( doInsertSql( $query ) ) echo jomres_decode( $customText );
+		else
+		echo "Something burped";
+		}
+
+
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return null;
+		}
+	}
 
 ?>

@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -26,42 +27,42 @@ $no_html = 0;
 
 
 if ( !strstr( $scriptname, 'install_jomres.php' ) )
-    {
-    //JFactory::getConfig()->setValue('config.caching', 0);
-    //JRegistry::set('config.caching', 0);
-    if ( class_exists( 'JURI' ) )
-        {
-        $jomresConfig_live_site = @JURI::root();
-        }
-    else
-        {
-        if ( $IIS > 0 ) // Win NT, therefore $_SERVER['REQUEST_URI'] == null
-            {
-            $path_info = $_SERVER[ 'PATH_INFO' ];
-            $_URI      = explode( "/", $path_info );
-            }
-        else
-            {
-            list( $path, $args ) = explode( "?", $_SERVER[ 'REQUEST_URI' ] );
-            $_URI = explode( "/", $path );
-            }
-        array_shift( $_URI );
-        $_URI = array_slice( $_URI, 0, count( $_URI ) - 1 );
-        array_unshift( $_URI, $_SERVER[ 'SERVER_NAME' ] );
+	{
+	//JFactory::getConfig()->setValue('config.caching', 0);
+	//JRegistry::set('config.caching', 0);
+	if ( class_exists( 'JURI' ) )
+		{
+		$jomresConfig_live_site = @JURI::root();
+		}
+	else
+		{
+		if ( $IIS > 0 ) // Win NT, therefore $_SERVER['REQUEST_URI'] == null
+			{
+			$path_info = $_SERVER[ 'PATH_INFO' ];
+			$_URI      = explode( "/", $path_info );
+			}
+		else
+			{
+			list( $path, $args ) = explode( "?", $_SERVER[ 'REQUEST_URI' ] );
+			$_URI = explode( "/", $path );
+			}
+		array_shift( $_URI );
+		$_URI = array_slice( $_URI, 0, count( $_URI ) - 1 );
+		array_unshift( $_URI, $_SERVER[ 'SERVER_NAME' ] );
 
-        $jomresConfig_live_site = "http://" . implode( "/", $_URI );
-        }
+		$jomresConfig_live_site = "http://" . implode( "/", $_URI );
+		}
 
-    $thisSvrName = $_SERVER[ 'SERVER_NAME' ];
-    if ( stristr( $thisSvrName, "xn--", $thisSvrName ) && !strpos( $_SERVER[ 'SCRIPT_NAME' ], "administrator" ) ) // Is and IDN domain, we need to convert the url to utf8 otherwise we won't be able to use ajax on this server
-        {
-        require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'idna_converter' . JRDS . 'idna_convert.class.php' );
-        $IDN                    = new idna_convert();
-        $decoded                = $IDN->decode( $thisSvrName );
-        $new                    = str_replace( $thisSvrName, $decoded, $jomresConfig_live_site );
-        $jomresConfig_live_site = $new;
-        }
-    }
+	$thisSvrName = $_SERVER[ 'SERVER_NAME' ];
+	if ( stristr( $thisSvrName, "xn--", $thisSvrName ) && !strpos( $_SERVER[ 'SCRIPT_NAME' ], "administrator" ) ) // Is and IDN domain, we need to convert the url to utf8 otherwise we won't be able to use ajax on this server
+		{
+		require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'idna_converter' . JRDS . 'idna_convert.class.php' );
+		$IDN                    = new idna_convert();
+		$decoded                = $IDN->decode( $thisSvrName );
+		$new                    = str_replace( $thisSvrName, $decoded, $jomresConfig_live_site );
+		$jomresConfig_live_site = $new;
+		}
+	}
 
 $jomresConfig_live_site = str_replace( "/administrator/", "", $jomresConfig_live_site );
 $jomresConfig_live_site = str_replace( "/administrator", "", $jomresConfig_live_site );
@@ -69,10 +70,10 @@ if ( substr( $jomresConfig_live_site, -1 ) == "/" ) $jomresConfig_live_site = su
 
 $scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 if ( !strstr( $scriptname, 'install_jomres.php' ) )
-    {
-    $lang              = @ JFactory::getLanguage();
-    $jomresConfig_lang = $lang->getTag();
-    }
+	{
+	$lang              = @ JFactory::getLanguage();
+	$jomresConfig_lang = $lang->getTag();
+	}
 $showtime = jomres_singleton_abstract::getInstance( 'showtime' );
 
 $showtime->error_reporting = $CONFIG->error_reporting;

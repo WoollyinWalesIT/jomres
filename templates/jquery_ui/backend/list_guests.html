@@ -1,53 +1,53 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-    <script type="text/javascript">
-        <!--
-        jomresJquery(document).ready(function () {
-            var oTable = jomresJquery('#list_guests').dataTable({
-                "bJQueryUI": true,
-                "bStateSave": true,
-                "sPaginationType": "full_numbers"
-            });
-        });
-        //-->
-    </script>
-    <h2>{PAGETITLE}</h2>
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			var oTable = jomresJquery('#list_guests').dataTable({
+				"bJQueryUI": true,
+				"bStateSave": true,
+				"sPaginationType": "full_numbers"
+			});
+		});
+		//-->
+	</script>
+	<h2>{PAGETITLE}</h2>
 
-    <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-        <table width="100%" border="0">
-            <tr>
-                <td width="50%" align="left">{JOMRESTOOLBAR}</td>
-                <td width="50%" align="right">{HISTORIC_GUESTS_DROPDOWN}<!--{SURNAMEDROPDOWN}--></td>
-            </tr>
-        </table>
-        <table width="100%" border="0" id="list_guests">
-            <thead>
-            <tr>
-                <th>{HEDITLINK}</th>
-                <th>{HINVOICELINK}</th>
-                <th>{HFIRSTNAME}</th>
-                <th>{HSURNAME}</th>
-                <th>{HHOUSE}</th>
-                <th>{HSTREET}</th>
-                <th>{HTOWN}</th>
-                <!-- <th>&nbsp;</th> -->
-            </tr>
-            </thead>
-            <tbody>
-            <patTemplate:tmpl name="rows" unusedvars="nbsp">
-                <tr>
-                    <td>{EDITLINK}</td>
-                    <td>{INVOICELINK}</td>
-                    <td>{FIRSTNAME}</td>
-                    <td>{SURNAME}</td>
-                    <td>{HOUSE}</td>
-                    <td>{STREET}</td>
-                    <td>{TOWN}</td>
-                    <!-- <td>{CREDITCARDLINK}</td> -->
-                </tr>
-            </patTemplate:tmpl>
-            </tbody>
-        </table>
-        <input type="hidden" name="guestUid" value=""/>
-        <input type="hidden" name="task" value="listguests"/>
-    </form>
+	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+		<table width="100%" border="0">
+			<tr>
+				<td width="50%" align="left">{JOMRESTOOLBAR}</td>
+				<td width="50%" align="right">{HISTORIC_GUESTS_DROPDOWN}<!--{SURNAMEDROPDOWN}--></td>
+			</tr>
+		</table>
+		<table width="100%" border="0" id="list_guests">
+			<thead>
+			<tr>
+				<th>{HEDITLINK}</th>
+				<th>{HINVOICELINK}</th>
+				<th>{HFIRSTNAME}</th>
+				<th>{HSURNAME}</th>
+				<th>{HHOUSE}</th>
+				<th>{HSTREET}</th>
+				<th>{HTOWN}</th>
+				<!-- <th>&nbsp;</th> -->
+			</tr>
+			</thead>
+			<tbody>
+			<patTemplate:tmpl name="rows" unusedvars="nbsp">
+				<tr>
+					<td>{EDITLINK}</td>
+					<td>{INVOICELINK}</td>
+					<td>{FIRSTNAME}</td>
+					<td>{SURNAME}</td>
+					<td>{HOUSE}</td>
+					<td>{STREET}</td>
+					<td>{TOWN}</td>
+					<!-- <td>{CREDITCARDLINK}</td> -->
+				</tr>
+			</patTemplate:tmpl>
+			</tbody>
+		</table>
+		<input type="hidden" name="guestUid" value=""/>
+		<input type="hidden" name="task" value="listguests"/>
+	</form>
 </patTemplate:tmpl>

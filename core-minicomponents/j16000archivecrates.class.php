@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,31 +15,31 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j16000archivecrates
-    {
-    function j16000archivecrates()
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j16000archivecrates()
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
-        $idArray = jomresGetParam( $_REQUEST, 'idarray', array () );
-        jr_import( 'jrportal_crate_functions' );
-        $crateFunctions = new jrportal_crate_functions();
-        if ( count( $idArray ) > 0 )
-            {
-            $crateFunctions->batchArchive( $idArray );
-            jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listcrates", '' );
-            }
-        }
+			return;
+			}
+		$idArray = jomresGetParam( $_REQUEST, 'idarray', array () );
+		jr_import( 'jrportal_crate_functions' );
+		$crateFunctions = new jrportal_crate_functions();
+		if ( count( $idArray ) > 0 )
+			{
+			$crateFunctions->batchArchive( $idArray );
+			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listcrates", '' );
+			}
+		}
 
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return null;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return null;
+		}
+	}

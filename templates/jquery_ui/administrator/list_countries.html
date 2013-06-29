@@ -1,33 +1,33 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-    <script type="text/javascript">
-        <!--
-        jomresJquery(document).ready(function () {
-            var oTable = jomresJquery('#admin_list_countries').dataTable({
-                "bJQueryUI": true,
-                "bStateSave": true,
-                "sPaginationType": "full_numbers"
-            });
-        });
-        //-->
-    </script>
-    <h2>{_JOMRES_EDIT_COUNTRY_TITLE}</h2>
-    {JOMRESTOOLBAR}
-    <table id="admin_list_countries" class="ui-widget-content ui-corner-all" border="0" width="100%">
-        <thead>
-        <tr>
-            <th></th>
-            <th>{_JOMRES_EDIT_COUNTRY_COUNTRYNAME}</th>
-            <th>{_JOMRES_EDIT_COUNTRY_COUNTRYCODE}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <patTemplate:tmpl name="rows" unusedvars="nbsp">
-            <tr>
-                <td><a href="{EDIT_URL}">{COMMON_EDIT}</a></td>
-                <td>{COUNTRYNAME}</td>
-                <td>{COUNTRYCODE}</td>
-            </tr>
-        </patTemplate:tmpl>
-        </tbody>
-    </table>
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			var oTable = jomresJquery('#admin_list_countries').dataTable({
+				"bJQueryUI": true,
+				"bStateSave": true,
+				"sPaginationType": "full_numbers"
+			});
+		});
+		//-->
+	</script>
+	<h2>{_JOMRES_EDIT_COUNTRY_TITLE}</h2>
+	{JOMRESTOOLBAR}
+	<table id="admin_list_countries" class="ui-widget-content ui-corner-all" border="0" width="100%">
+		<thead>
+		<tr>
+			<th></th>
+			<th>{_JOMRES_EDIT_COUNTRY_COUNTRYNAME}</th>
+			<th>{_JOMRES_EDIT_COUNTRY_COUNTRYCODE}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+			<tr>
+				<td><a href="{EDIT_URL}">{COMMON_EDIT}</a></td>
+				<td>{COUNTRYNAME}</td>
+				<td>{COUNTRYCODE}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
 </patTemplate:tmpl>

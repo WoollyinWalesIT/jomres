@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,34 +15,34 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 function jr_substr( $str, $arg1, $arg2 )
-    {
-    if ( !function_exists( 'mb_substr' ) ) $result = substr( $str, $arg1, $arg2 );
-    else
-    $result = mb_substr( $str, $arg1, $arg2, 'UTF-8' );
+	{
+	if ( !function_exists( 'mb_substr' ) ) $result = substr( $str, $arg1, $arg2 );
+	else
+	$result = mb_substr( $str, $arg1, $arg2, 'UTF-8' );
 
-    return $result;
-    }
+	return $result;
+	}
 
 function jr_strtolower( $str )
-    {
-    if ( !function_exists( 'mb_strtolower' ) ) $result = strtolower( $str );
-    else
-    $result = mb_strtolower( $str );
+	{
+	if ( !function_exists( 'mb_strtolower' ) ) $result = strtolower( $str );
+	else
+	$result = mb_strtolower( $str );
 
-    return $result;
-    }
+	return $result;
+	}
 
 function jr_ucwords( $str )
-    {
-    return mb_ucwords( $str );
-    }
+	{
+	return mb_ucwords( $str );
+	}
 
 if ( !function_exists( 'mb_ucwords' ) )
-    {
-    function mb_ucwords( $str )
-        {
-        return mb_convert_case( $str, MB_CASE_TITLE, "UTF-8" );
-        }
-    }
+	{
+	function mb_ucwords( $str )
+		{
+		return mb_convert_case( $str, MB_CASE_TITLE, "UTF-8" );
+		}
+	}
 
 ?>

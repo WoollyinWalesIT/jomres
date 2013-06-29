@@ -1,49 +1,49 @@
 // ** I18N
 Calendar._DN = new Array
 ("Zondag",
- "Maandag",
- "Dinsdag",
- "Woensdag",
- "Donderdag",
- "Vrijdag",
- "Zaterdag",
- "Zondag");
+	"Maandag",
+	"Dinsdag",
+	"Woensdag",
+	"Donderdag",
+	"Vrijdag",
+	"Zaterdag",
+	"Zondag");
 
 Calendar._SDN_len = 2;
 
 Calendar._MN = new Array
 ("Januari",
- "Februari",
- "Maart",
- "April",
- "Mei",
- "Juni",
- "Juli",
- "Augustus",
- "September",
- "Oktober",
- "November",
- "December");
+	"Februari",
+	"Maart",
+	"April",
+	"Mei",
+	"Juni",
+	"Juli",
+	"Augustus",
+	"September",
+	"Oktober",
+	"November",
+	"December");
 
 // tooltips
 Calendar._TT = {};
 Calendar._TT["INFO"] = "Info";
 
 Calendar._TT["ABOUT"] =
-"DHTML Datum/Tijd Selector\n" +
-"(c) dynarch.com 2002-2005 / Author: Mihai Bazon\n" +
-"Ga voor de meest recente versie naar: http://www.dynarch.com/projects/calendar/\n" +
-"Verspreid onder de GNU LGPL. Zie http://gnu.org/licenses/lgpl.html voor details." +
-"\n\n" +
-"Datum selectie:\n" +
-"- Gebruik de \xab \xbb knoppen om een jaar te selecteren\n" +
-"- Gebruik de " + String.fromCharCode(0x2039) + ", " + String.fromCharCode(0x203a) + " knoppen om een maand te selecteren\n" +
-"- Houd de muis ingedrukt op de genoemde knoppen voor een snellere selectie.";
+	"DHTML Datum/Tijd Selector\n" +
+		"(c) dynarch.com 2002-2005 / Author: Mihai Bazon\n" +
+		"Ga voor de meest recente versie naar: http://www.dynarch.com/projects/calendar/\n" +
+		"Verspreid onder de GNU LGPL. Zie http://gnu.org/licenses/lgpl.html voor details." +
+		"\n\n" +
+		"Datum selectie:\n" +
+		"- Gebruik de \xab \xbb knoppen om een jaar te selecteren\n" +
+		"- Gebruik de " + String.fromCharCode(0x2039) + ", " + String.fromCharCode(0x203a) + " knoppen om een maand te selecteren\n" +
+		"- Houd de muis ingedrukt op de genoemde knoppen voor een snellere selectie.";
 Calendar._TT["ABOUT_TIME"] = "\n\n" +
-"Tijd selectie:\n" +
-"- Klik op een willekeurig onderdeel van het tijd gedeelte om het te verhogen\n" +
-"- of Shift-klik om het te verlagen\n" +
-"- of klik en sleep voor een snellere selectie.";
+	"Tijd selectie:\n" +
+	"- Klik op een willekeurig onderdeel van het tijd gedeelte om het te verhogen\n" +
+	"- of Shift-klik om het te verlagen\n" +
+	"- of klik en sleep voor een snellere selectie.";
 
 //Calendar._TT["TOGGLE"] = "Selecteer de eerste week-dag";
 Calendar._TT["PREV_YEAR"] = "Vorig jaar (ingedrukt voor menu)";

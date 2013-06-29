@@ -1,6 +1,6 @@
 /**
  * Internationalization: french language
- * 
+ *
  * Depends on jWYSIWYG, $.wysiwyg.i18n
  *
  * By: Tom Barbette <mappam0@gmail.com>

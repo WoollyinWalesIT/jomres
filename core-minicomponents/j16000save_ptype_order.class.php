@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,32 +15,32 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j16000save_ptype_order
-    {
-    function j16000save_ptype_order()
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j16000save_ptype_order()
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
-        $order_array = jomresGetParam( $_REQUEST, 'order_array', array () );
+			return;
+			}
+		$order_array = jomresGetParam( $_REQUEST, 'order_array', array () );
 
-        foreach ( $order_array as $ptype_id => $order )
-            {
-            $query = "UPDATE #__jomres_ptypes SET `order`='" . $order . "' WHERE id='" . (int) $ptype_id . "'";
-            doInsertSql( $query, '' );
-            }
-        jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes" ), "" );
-        }
+		foreach ( $order_array as $ptype_id => $order )
+			{
+			$query = "UPDATE #__jomres_ptypes SET `order`='" . $order . "' WHERE id='" . (int) $ptype_id . "'";
+			doInsertSql( $query, '' );
+			}
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes" ), "" );
+		}
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return null;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return null;
+		}
+	}
 
 ?>

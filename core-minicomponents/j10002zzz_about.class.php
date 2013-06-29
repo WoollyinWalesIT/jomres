@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,39 +15,39 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j10002zzz_about
-    {
-    function j10002zzz_about()
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = true;
+	{
+	function j10002zzz_about()
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = true;
 
-            return;
-            }
-        global $htmlFuncs; // We'll leave this one instance of this variable as global here because some older plugins will need it, and as this plugin's the first to be run in administrator, this should fix it
-        $htmlFuncs = jomres_singleton_abstract::getInstance( 'html_functions' );
+			return;
+			}
+		global $htmlFuncs; // We'll leave this one instance of this variable as global here because some older plugins will need it, and as this plugin's the first to be run in administrator, this should fix it
+		$htmlFuncs = jomres_singleton_abstract::getInstance( 'html_functions' );
 
-        $this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . "&task=about_jomres", 'jrhouse.png', jr_gettext( "_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES", _JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", _JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP, false, false ) );
-        }
+		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . "&task=about_jomres", 'jrhouse.png', jr_gettext( "_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES", _JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", _JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP, false, false ) );
+		}
 
-    function touch_template_language()
-        {
-        $output = array ();
+	function touch_template_language()
+		{
+		$output = array ();
 
-        $output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES", _JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES", _JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES );
 
-        foreach ( $output as $o )
-            {
-            echo $o;
-            echo "<br/>";
-            }
-        }
+		foreach ( $output as $o )
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return $this->cpanelButton;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return $this->cpanelButton;
+		}
+	}

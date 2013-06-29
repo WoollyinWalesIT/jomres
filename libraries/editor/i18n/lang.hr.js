@@ -1,6 +1,6 @@
 /**
  * Internationalization: Croatian language
- * 
+ *
  * Depends on jWYSIWYG, $.wysiwyg.i18n
  *
  * By: Boris Strahija (bstrahija) <boris@creolab.hr>

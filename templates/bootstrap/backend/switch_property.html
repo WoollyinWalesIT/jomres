@@ -1,25 +1,25 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-    <script type="text/javascript">
-        <!--
-        function get_properties(initial) {
-            jomresJquery.get('{NOFOLLOW}&task=ui_find_properties&initial=' + initial,
-                    function (data) {
-                        populateDiv('found_properties', data);
-                    }
-            );
-        }
-        //-->
-    </script>
-    <h2 class="page-header">{_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY}</h2>
+	<script type="text/javascript">
+		<!--
+		function get_properties(initial) {
+			jomresJquery.get('{NOFOLLOW}&task=ui_find_properties&initial=' + initial,
+					function (data) {
+						populateDiv('found_properties', data);
+					}
+			);
+		}
+		//-->
+	</script>
+	<h2 class="page-header">{_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY}</h2>
 
-    <p>{_JOMRES_PORTALUI_CLICKINITIAL}</p>
+	<p>{_JOMRES_PORTALUI_CLICKINITIAL}</p>
 
-    <div class="btn-toolbar">
-        <patTemplate:tmpl name="rows">
-            <a href="javascript:void(0);" class="btn" onclick="get_properties('{INITIAL}');">{INITIAL} ({COUNT})</a>
-        </patTemplate:tmpl>
-    </div>
-    <h3 class="page-header">{_JOMRES_FOUNDPROPERTIES}</h3>
+	<div class="btn-toolbar">
+		<patTemplate:tmpl name="rows">
+			<a href="javascript:void(0);" class="btn" onclick="get_properties('{INITIAL}');">{INITIAL} ({COUNT})</a>
+		</patTemplate:tmpl>
+	</div>
+	<h3 class="page-header">{_JOMRES_FOUNDPROPERTIES}</h3>
 
-    <div id="found_properties"></div>
+	<div id="found_properties"></div>
 </patTemplate:tmpl>

@@ -2,7 +2,7 @@
  * Controls: Element CSS Wrapper plugin
  *
  * Depends on jWYSIWYG
- * 
+ *
  * By Yotam Bar-On (https://github.com/tudmotu)
  */
 (function ($) {
@@ -10,15 +10,15 @@
 		throw "wysiwyg.cssWrap.js depends on $.wysiwyg";
 	}
 	/* For core enhancements #143
-	$.wysiwyg.ui.addControl("cssWrap", {
-		visible : false,
-		groupIndex: 6,
-		tooltip: "CSS Wrapper",
-		exec: function () { 
-				$.wysiwyg.controls.cssWrap.init(this);
-			}
-	}
-	*/	
+	 $.wysiwyg.ui.addControl("cssWrap", {
+	 visible : false,
+	 groupIndex: 6,
+	 tooltip: "CSS Wrapper",
+	 exec: function () {
+	 $.wysiwyg.controls.cssWrap.init(this);
+	 }
+	 }
+	 */
 	if (!$.wysiwyg.controls) {
 		$.wysiwyg.controls = {};
 	}
@@ -30,18 +30,18 @@
 		init: function (Wysiwyg) {
 			var self = this, formWrapHtml, key, translation,
 				dialogReplacements = {
-					legend	: "Wrap Element",
-					wrapperType : "Wrapper Type",
-					ID : "ID",
-					"class" : "Class",
-					wrap  : "Wrap",
+					legend: "Wrap Element",
+					wrapperType: "Wrapper Type",
+					ID: "ID",
+					"class": "Class",
+					wrap: "Wrap",
 					unwrap: "Unwrap",
-					cancel   : "Cancel"
+					cancel: "Cancel"
 				};
 
 			formWrapHtml = '<form class="wysiwyg"><fieldset><legend>{legend}</legend>' +
 				'<div class="wysiwyg-dialogRow"><label>{wrapperType}: &nbsp;<select name="type"><option value="span">Span</option><option value="div">Div</option></select></label></div>' +
-				'<div class="wysiwyg-dialogRow"><label>{ID}: &nbsp;<input name="id" type="text" /></label></div>' + 
+				'<div class="wysiwyg-dialogRow"><label>{ID}: &nbsp;<input name="id" type="text" /></label></div>' +
 				'<div class="wysiwyg-dialogRow"><label>{class}: &nbsp;<input name="class" type="text" /></label></div>' +
 				'<div class="wysiwyg-dialogRow"><input type="button" class="button cssWrap-unwrap" style="display:none;" value="{unwrap}"/></label>' +
 				'<input type="submit"  class="button cssWrap-submit" value="{wrap}"/></label>' +
@@ -50,7 +50,7 @@
 			for (key in dialogReplacements) {
 				if ($.wysiwyg.i18n) {
 					translation = $.wysiwyg.i18n.t(dialogReplacements[key]);
-					if (translation === dialogReplacements[key]) { // if not translated search in dialogs 
+					if (translation === dialogReplacements[key]) { // if not translated search in dialogs
 						translation = $.wysiwyg.i18n.t(dialogReplacements[key], "dialogs");
 					}
 					dialogReplacements[key] = translation;
@@ -62,13 +62,13 @@
 				$("form.wysiwyg").dialog({
 					modal: true,
 					open: function (ev, ui) {
-						var $this = $(this), range	= Wysiwyg.getInternalRange(), common, $nodeName;
+						var $this = $(this), range = Wysiwyg.getInternalRange(), common, $nodeName;
 						// We make sure that there is some selection:
 						if (range) {
 							if ($.browser.msie) {
 								Wysiwyg.ui.focus();
 							}
-							common	= $(range.commonAncestorContainer);
+							common = $(range.commonAncestorContainer);
 						} else {
 							alert("You must select some elements before you can wrap them.");
 							$this.dialog("close");

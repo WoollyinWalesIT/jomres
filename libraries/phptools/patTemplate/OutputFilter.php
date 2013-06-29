@@ -11,9 +11,9 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * after it has been processed by patTemplate, but before
  * it is sent to the browser.
  *
- * @package		patTemplate
- * @subpackage	Filters
- * @author		Stephan Schmidt <schst@php.net>
+ * @package        patTemplate
+ * @subpackage    Filters
+ * @author        Stephan Schmidt <schst@php.net>
  */
 
 /**
@@ -26,22 +26,23 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * it is sent to the browser.
  *
  * @abstract
- * @package		patTemplate
- * @subpackage	Filters
- * @author		Stephan Schmidt <schst@php.net>
+ * @package        patTemplate
+ * @subpackage    Filters
+ * @author        Stephan Schmidt <schst@php.net>
  */
 class patTemplate_OutputFilter extends patTemplate_Module
-{
-   /**
-	* apply the filter
-	*
-	* @access	public
-	* @param	string		data
-	* @return	string		filtered data
-	*/
-	function apply( $data )
 	{
+	/**
+	 * apply the filter
+	 *
+	 * @access    public
+	 * @param    string        data
+	 * @return    string        filtered data
+	 */
+	function apply( $data )
+		{
 		return $data;
+		}
 	}
-}
+
 ?>

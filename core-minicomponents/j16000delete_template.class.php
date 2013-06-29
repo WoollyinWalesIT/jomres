@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -13,37 +14,37 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j16000delete_template
-    {
-    function j16000delete_template()
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j16000delete_template()
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
-        if ( !jomresCheckToken() )
-            {
-            trigger_error( "Invalid token", E_USER_ERROR );
-            }
+			return;
+			}
+		if ( !jomresCheckToken() )
+			{
+			trigger_error( "Invalid token", E_USER_ERROR );
+			}
 
-        $id = jomresGetParam( $_REQUEST, 'id', '' );
+		$id = jomresGetParam( $_REQUEST, 'id', '' );
 
-        $query  = "DELETE FROM  #__jomres_custom_templates WHERE `uid`= '" . $id . "'";
-        $result = doInsertSql( $query, '' );
+		$query  = "DELETE FROM  #__jomres_custom_templates WHERE `uid`= '" . $id . "'";
+		$result = doInsertSql( $query, '' );
 
-        if ( $templatename == "jomrescss.css" ) unlink( JOMRESPATH_BASE . JRDS . "temp" . JRDS . "jomrescss.css" );
+		if ( $templatename == "jomrescss.css" ) unlink( JOMRESPATH_BASE . JRDS . "temp" . JRDS . "jomrescss.css" );
 
-        jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=listTemplates' ), "" );
-        }
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=listTemplates' ), "" );
+		}
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return null;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return null;
+		}
+	}
 
 ?>

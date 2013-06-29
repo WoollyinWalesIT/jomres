@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,30 +15,30 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j10002rebuildregistry
-    {
-    function j10002rebuildregistry()
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j10002rebuildregistry()
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
-        $siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-        $jrConfig   = $siteConfig->get();
-        if ( $jrConfig[ 'advanced_site_config' ] == 1 )
-            {
-            $htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-            $this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=rebuildregistry', 'rebuildregistry.png', jr_gettext( "_JOMRES_REGISTRYREBUILD", _JOMRES_REGISTRYREBUILD, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE, false, false ) );
-            }
-        }
+			return;
+			}
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
+			{
+			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=rebuildregistry', 'rebuildregistry.png', jr_gettext( "_JOMRES_REGISTRYREBUILD", _JOMRES_REGISTRYREBUILD, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE, false, false ) );
+			}
+		}
 
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return $this->cpanelButton;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return $this->cpanelButton;
+		}
+	}

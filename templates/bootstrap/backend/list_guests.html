@@ -1,59 +1,59 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-    <script type="text/javascript">
-        <!--
-        jomresJquery(document).ready(function () {
-            make_datatable('list_guests', '{PAGETITLE}', '{LIVESITE}');
-        });
-        //-->
-    </script>
-    <h2 class="page-header">{PAGETITLE}</h2>
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('list_guests', '{PAGETITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
 
-    <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-        <div class="well">
-            <div class="pull-left">
-                {JOMRESTOOLBAR}
-            </div>
-            <div class="pull-right">
-                {HISTORIC_GUESTS_DROPDOWN}<!--{SURNAMEDROPDOWN}-->
-            </div>
-        </div>
-        <table width="100%" id="list_guests" class="table table-striped">
-            <thead>
-            <tr>
-                <th>{HEDITLINK}</th>
-                <th>{HFIRSTNAME}</th>
-                <th>{HSURNAME}</th>
-                <th class="hidden-phone">{HHOUSE}</th>
-                <th class="hidden-phone">{HSTREET}</th>
-                <th class="hidden-phone">{HTOWN}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <patTemplate:tmpl name="rows" unusedvars="nbsp">
-                <tr>
-                    <td>
-                        <div class="btn-group">
-                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="icon-edit"></i>
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-                                <li><a tabindex="-1" href="{EDIT_URL}">{EDIT_TEXT}</a></li>
-                                <li><a tabindex="-1" href="{INVOICE_URL}">{INVOICE_TEXT}</a></li>
-                            </ul>
-                        </div>
-                    </td>
+	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+		<div class="well">
+			<div class="pull-left">
+				{JOMRESTOOLBAR}
+			</div>
+			<div class="pull-right">
+				{HISTORIC_GUESTS_DROPDOWN}<!--{SURNAMEDROPDOWN}-->
+			</div>
+		</div>
+		<table width="100%" id="list_guests" class="table table-striped">
+			<thead>
+			<tr>
+				<th>{HEDITLINK}</th>
+				<th>{HFIRSTNAME}</th>
+				<th>{HSURNAME}</th>
+				<th class="hidden-phone">{HHOUSE}</th>
+				<th class="hidden-phone">{HSTREET}</th>
+				<th class="hidden-phone">{HTOWN}</th>
+			</tr>
+			</thead>
+			<tbody>
+			<patTemplate:tmpl name="rows" unusedvars="nbsp">
+				<tr>
+					<td>
+						<div class="btn-group">
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+								<i class="icon-edit"></i>
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+								<li><a tabindex="-1" href="{EDIT_URL}">{EDIT_TEXT}</a></li>
+								<li><a tabindex="-1" href="{INVOICE_URL}">{INVOICE_TEXT}</a></li>
+							</ul>
+						</div>
+					</td>
 
-                    <td>{FIRSTNAME}</td>
-                    <td>{SURNAME}</td>
-                    <td class="hidden-phone">{HOUSE}</td>
-                    <td class="hidden-phone">{STREET}</td>
-                    <td class="hidden-phone">{TOWN}</td>
-                </tr>
-            </patTemplate:tmpl>
-            </tbody>
-        </table>
-        <input type="hidden" name="guestUid" value=""/>
-        <input type="hidden" name="task" value="listguests"/>
-    </form>
+					<td>{FIRSTNAME}</td>
+					<td>{SURNAME}</td>
+					<td class="hidden-phone">{HOUSE}</td>
+					<td class="hidden-phone">{STREET}</td>
+					<td class="hidden-phone">{TOWN}</td>
+				</tr>
+			</patTemplate:tmpl>
+			</tbody>
+		</table>
+		<input type="hidden" name="guestUid" value=""/>
+		<input type="hidden" name="task" value="listguests"/>
+	</form>
 </patTemplate:tmpl>

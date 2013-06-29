@@ -12,13 +12,13 @@
 // full day names
 Calendar._DN = new Array
 ("воскресенье",
- "понедельник",
- "вторник",
- "среда",
- "четверг",
- "пятница",
- "суббота",
- "воскресенье");
+	"понедельник",
+	"вторник",
+	"среда",
+	"четверг",
+	"пятница",
+	"суббота",
+	"воскресенье");
 
 // Please note that the following array of short day names (and the same goes
 // for short month names, _SMN) isn't absolutely necessary.  We give it here
@@ -35,63 +35,63 @@ Calendar._DN = new Array
 // short day names
 Calendar._SDN = new Array
 ("вск",
- "пон",
- "втр",
- "срд",
- "чет",
- "пят",
- "суб",
- "вск");
+	"пон",
+	"втр",
+	"срд",
+	"чет",
+	"пят",
+	"суб",
+	"вск");
 
 // full month names
 Calendar._MN = new Array
 ("январь",
- "февраль",
- "март",
- "апрель",
- "май",
- "июнь",
- "июль",
- "август",
- "сентябрь",
- "октябрь",
- "ноябрь",
- "декабрь");
+	"февраль",
+	"март",
+	"апрель",
+	"май",
+	"июнь",
+	"июль",
+	"август",
+	"сентябрь",
+	"октябрь",
+	"ноябрь",
+	"декабрь");
 
 // short month names
 Calendar._SMN = new Array
 ("янв",
- "фев",
- "мар",
- "апр",
- "май",
- "июн",
- "июл",
- "авг",
- "сен",
- "окт",
- "ноя",
- "дек");
+	"фев",
+	"мар",
+	"апр",
+	"май",
+	"июн",
+	"июл",
+	"авг",
+	"сен",
+	"окт",
+	"ноя",
+	"дек");
 
 // tooltips
 Calendar._TT = {};
 Calendar._TT["INFO"] = "О календаре...";
 
 Calendar._TT["ABOUT"] =
-"DHTML Date/Time Selector\n" +
-"(c) dynarch.com 2002-2005 / Author: Mihai Bazon\n" + // don't translate this this ;-)
-"For latest version visit: http://www.dynarch.com/projects/calendar/\n" +
-"Distributed under GNU LGPL.  See http://gnu.org/licenses/lgpl.html for details." +
-"\n\n" +
-"Как выбрать дату:\n" +
-"- При помощи кнопок \xab, \xbb можно выбрать год\n" +
-"- При помощи кнопок " + String.fromCharCode(0x2039) + ", " + String.fromCharCode(0x203a) + " можно выбрать месяц\n" +
-"- Подержите эти кнопки нажатыми, чтобы появилось меню быстрого выбора.";
+	"DHTML Date/Time Selector\n" +
+		"(c) dynarch.com 2002-2005 / Author: Mihai Bazon\n" + // don't translate this this ;-)
+		"For latest version visit: http://www.dynarch.com/projects/calendar/\n" +
+		"Distributed under GNU LGPL.  See http://gnu.org/licenses/lgpl.html for details." +
+		"\n\n" +
+		"Как выбрать дату:\n" +
+		"- При помощи кнопок \xab, \xbb можно выбрать год\n" +
+		"- При помощи кнопок " + String.fromCharCode(0x2039) + ", " + String.fromCharCode(0x203a) + " можно выбрать месяц\n" +
+		"- Подержите эти кнопки нажатыми, чтобы появилось меню быстрого выбора.";
 Calendar._TT["ABOUT_TIME"] = "\n\n" +
-"Как выбрать время:\n" +
-"- При клике на часах или минутах они увеличиваются\n" +
-"- при клике с нажатой клавишей Shift они уменьшаются\n" +
-"- если нажать и двигать мышкой влево/вправо, они будут меняться быстрее.";
+	"Как выбрать время:\n" +
+	"- При клике на часах или минутах они увеличиваются\n" +
+	"- при клике с нажатой клавишей Shift они уменьшаются\n" +
+	"- если нажать и двигать мышкой влево/вправо, они будут меняться быстрее.";
 
 Calendar._TT["PREV_YEAR"] = "На год назад (удерживать для меню)";
 Calendar._TT["PREV_MONTH"] = "На месяц назад (удерживать для меню)";

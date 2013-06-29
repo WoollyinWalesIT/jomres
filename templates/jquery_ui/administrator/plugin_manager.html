@@ -1,50 +1,50 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <script type="text/javascript">
-    <!--
-    var plugins_to_upgrade = '{PLUGINS_TO_UPGRADE}';
+	<!--
+	var plugins_to_upgrade = '{PLUGINS_TO_UPGRADE}';
 
 
-    function upgrade_core_plugins() {
-        plugins = plugins_to_upgrade.split(",");
-        for (var i = 0, l = plugins.length; i < l; i++) {
-            plugin = plugins[i];
-            if (plugin != '') {
-                jomresJquery.ajax({ url: '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=addplugin&plugin=' + plugin + '&autoupgrade=1', success: function (data) {
-                    //console.log(data);
-                }, async: false
-                });
-            }
-        }
-        window.location.reload();
-    }
-    //-->
+	function upgrade_core_plugins() {
+		plugins = plugins_to_upgrade.split(",");
+		for (var i = 0, l = plugins.length; i < l; i++) {
+			plugin = plugins[i];
+			if (plugin != '') {
+				jomresJquery.ajax({ url: '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=addplugin&plugin=' + plugin + '&autoupgrade=1', success: function (data) {
+					//console.log(data);
+				}, async: false
+				});
+			}
+		}
+		window.location.reload();
+	}
+	//-->
 </script>
 <style>
-    .fixed-dialog {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-    }
+	.fixed-dialog {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+	}
 </style>
 
 <h2>{PAGETITLE}</h2>
 
 <table width="100%" border="0">
-    <tr>
-        <td width="75%" valign="top">
+	<tr>
+		<td width="75%" valign="top">
 
-            <patTemplate:tmpl name="bronze_users" type="simpleCondition" requiredVars="license_server_username">
-                <!--
-                <p><a href="javascript:showCart();" class="ui-button fg-button ui-state-default ui-corner-all">Show cart</a></p>
-                <br />
-                <p class="ui-state-highlight">Prices do not include VAT. If you are liable to pay VAT this will show on your invoice once you have placed your order.</p>
-                    <div id="cart_wrapper" class="ui-helper-hidden">
-                        <div class="ui-widget-header ui-corner-all"><img src = "{LIVE_SITE}/jomres/images/cart_red_transparent.png" width="30" height="30"/>Your shopping cart</div>
-                        <div style="margin-top:5px;"><button id="purchase" class="fg-button ui-state-default ui-corner-all" onClick="purchase();">Order plugin(s)</button>
-                        <form id="cart" style="margin-top:5px;">
-                        </form>
-                        </div>
-                        <div class="ui-state-highlight ui-corner-all" style="margin-top:5px;">Total <strong>&pound;<span id="total"></span></strong></div>
+			<patTemplate:tmpl name="bronze_users" type="simpleCondition" requiredVars="license_server_username">
+				<!--
+				<p><a href="javascript:showCart();" class="ui-button fg-button ui-state-default ui-corner-all">Show cart</a></p>
+				<br />
+				<p class="ui-state-highlight">Prices do not include VAT. If you are liable to pay VAT this will show on your invoice once you have placed your order.</p>
+					<div id="cart_wrapper" class="ui-helper-hidden">
+						<div class="ui-widget-header ui-corner-all"><img src = "{LIVE_SITE}/jomres/images/cart_red_transparent.png" width="30" height="30"/>Your shopping cart</div>
+						<div style="margin-top:5px;"><button id="purchase" class="fg-button ui-state-default ui-corner-all" onClick="purchase();">Order plugin(s)</button>
+						<form id="cart" style="margin-top:5px;">
+						</form>
+						</div>
+						<div class="ui-state-highlight ui-corner-all" style="margin-top:5px;">Total <strong>&pound;<span id="total"></span></strong></div>
 					
 					<p>
 					Note, if you have a Jomres  Silver or Gold license number, please make sure you've entered it in the <i>Site Configuration -> Misc tab -> Support key</i> field, otherwise you will not be able to download plugins that you are entitled to.
@@ -72,160 +72,160 @@
 				</div>
 				<br/><br/><br/>
 			-->
-            </patTemplate:tmpl>
+			</patTemplate:tmpl>
 
-            <patTemplate:tmpl name="developer_users" type="simpleCondition" requiredVars="dummy">
-                <h3>Please do not install all plugins with the hope that they will come in useful later. They are not
-                    all mutually exclusive, I.E. one plug may interfere with another, so it is recommended that you only
-                    install a plugin when you\'ve identified a requirement that the individual plugin fulfills. </h3>
-                <br/>Bold items in the core plugins list are generally essential when building a portal, and if you have
-                upgraded from v4 you should consider installing those plugins to continue working as before.
-            </patTemplate:tmpl>
-        </td>
+			<patTemplate:tmpl name="developer_users" type="simpleCondition" requiredVars="dummy">
+				<h3>Please do not install all plugins with the hope that they will come in useful later. They are not
+					all mutually exclusive, I.E. one plug may interfere with another, so it is recommended that you only
+					install a plugin when you\'ve identified a requirement that the individual plugin fulfills. </h3>
+				<br/>Bold items in the core plugins list are generally essential when building a portal, and if you have
+				upgraded from v4 you should consider installing those plugins to continue working as before.
+			</patTemplate:tmpl>
+		</td>
 
-        <td width="25%" valign="top">
-            <table width="100%" border="0">
-                <tr>
-                    <td class="ui-widget-header ui-corner-tl ui-corner-tr" align="center">Legend</td>
-                </tr>
-                <tr class="ui-state-highlight">
-                    <td align="center">Already installed</td>
-                </tr>
-                <tr class="ui-state-error">
-                    <td align="center">Upgrade is available</td>
-                </tr>
-                <!--
-                <tr>
-                    <td align="center" style="border-style:solid;border-color:#00ff00;border-width:1px;">Free plugin</td>
-                </tr>
-                -->
-                <!--<tr>
-                    <td align="center" class="ui-widget-content">Third party plugin</td>
-                </tr>-->
-            </table>
-        </td>
-    </tr>
+		<td width="25%" valign="top">
+			<table width="100%" border="0">
+				<tr>
+					<td class="ui-widget-header ui-corner-tl ui-corner-tr" align="center">Legend</td>
+				</tr>
+				<tr class="ui-state-highlight">
+					<td align="center">Already installed</td>
+				</tr>
+				<tr class="ui-state-error">
+					<td align="center">Upgrade is available</td>
+				</tr>
+				<!--
+				<tr>
+					<td align="center" style="border-style:solid;border-color:#00ff00;border-width:1px;">Free plugin</td>
+				</tr>
+				-->
+				<!--<tr>
+					<td align="center" class="ui-widget-content">Third party plugin</td>
+				</tr>-->
+			</table>
+		</td>
+	</tr>
 </table>
 
 <table width="100%" border="0">
-    <tr>
-        <th class="ui-widget-header ui-corner-tl ui-corner-tr" colspan="6">Third party plugins</th>
-    </tr>
-    <tr>
-        <th class="ui-state-default">Name</th>
-        <th class="ui-state-default">Your Version</th>
-        <th class="ui-state-default">Description</th>
-        <th class="ui-state-default">Author</th>
-        <th class="ui-state-default">Author email</th>
-        <th class="ui-state-default">Remove plugin</th>
-    </tr>
-    <patTemplate:tmpl name="thirdpartyplugins" unusedvars="nbsp">
-        <tr class="{ROWCLASS}">
-            <td class="ui-widget-content ui-corner-all">{NAME}</td>
-            <td class="ui-widget-content ui-corner-all">{LOCALVERSION}</td>
-            <td class="ui-widget-content ui-corner-all">{DESCRIPTION}</td>
-            <td class="ui-widget-content ui-corner-all">{AUTHOR}</td>
-            <td class="ui-widget-content ui-corner-all"><a href="mailto:{AUTHOREMAIL}?subject={NAME}">{AUTHOREMAIL}</a>
-            </td>
-            <td class="ui-widget-content ui-corner-all"><a href="{UNINSTALLLINK}">{UNINSTALL}</td>
-        </tr>
-    </patTemplate:tmpl>
+	<tr>
+		<th class="ui-widget-header ui-corner-tl ui-corner-tr" colspan="6">Third party plugins</th>
+	</tr>
+	<tr>
+		<th class="ui-state-default">Name</th>
+		<th class="ui-state-default">Your Version</th>
+		<th class="ui-state-default">Description</th>
+		<th class="ui-state-default">Author</th>
+		<th class="ui-state-default">Author email</th>
+		<th class="ui-state-default">Remove plugin</th>
+	</tr>
+	<patTemplate:tmpl name="thirdpartyplugins" unusedvars="nbsp">
+		<tr class="{ROWCLASS}">
+			<td class="ui-widget-content ui-corner-all">{NAME}</td>
+			<td class="ui-widget-content ui-corner-all">{LOCALVERSION}</td>
+			<td class="ui-widget-content ui-corner-all">{DESCRIPTION}</td>
+			<td class="ui-widget-content ui-corner-all">{AUTHOR}</td>
+			<td class="ui-widget-content ui-corner-all"><a href="mailto:{AUTHOREMAIL}?subject={NAME}">{AUTHOREMAIL}</a>
+			</td>
+			<td class="ui-widget-content ui-corner-all"><a href="{UNINSTALLLINK}">{UNINSTALL}</td>
+		</tr>
+	</patTemplate:tmpl>
 </table>
 
 <br/><br/>
 
 <form enctype="multipart/form-data" action="{JOMRES_SITEPAGE_URL_ADMIN}&task=addplugin&thirdparty=1" method="post">
-    <input type="hidden" name="no_html" value="1"/>
-    <table width="100%" border="0">
-        <tr>
-            <th class="ui-widget-header ui-corner-tl ui-corner-tr">Install third party plugin</th>
-        </tr>
-        <tr>
-            <td class="ui-widget-content ui-corner-all"><input type="file" name="pluginfile" size="40"/> <input
-                    type="submit" value="Install" class="fg-button ui-state-default ui-corner-all"/></td>
-        </tr>
-    </table>
+	<input type="hidden" name="no_html" value="1"/>
+	<table width="100%" border="0">
+		<tr>
+			<th class="ui-widget-header ui-corner-tl ui-corner-tr">Install third party plugin</th>
+		</tr>
+		<tr>
+			<td class="ui-widget-content ui-corner-all"><input type="file" name="pluginfile" size="40"/> <input
+					type="submit" value="Install" class="fg-button ui-state-default ui-corner-all"/></td>
+		</tr>
+	</table>
 </form>
 <br/>
 <br/>
 
 <h2>Jomres.net plugins</h2>
 <patTemplate:tmpl name="plugins_require_upgrade" type="simpleCondition" requiredVars="upgrade_text">
-    <a href="javascript:void(0);" onclick="upgrade_core_plugins()" class="fg-button ui-state-default ui-corner-all">{UPGRADE_TEXT}</a>
+	<a href="javascript:void(0);" onclick="upgrade_core_plugins()" class="fg-button ui-state-default ui-corner-all">{UPGRADE_TEXT}</a>
 </patTemplate:tmpl>
 <br/><br/><br/>
 <table width="100%" border="0">
-    <tr>
-        <th class="ui-state-default">Name</th>
-        <!--
-        <th class="ui-state-default">Image</th>
-        -->
-        <th class="ui-state-default">Minimum Jomres version</th>
-        <th class="ui-state-default">Your Version</th>
-        <th class="ui-state-default">Current Version</th>
-        <th class="ui-state-default">Last updated</th>
-        <th class="ui-state-default">Description</th>
-        <th class="ui-state-default">Changelog</th>
-        <th class="ui-state-default">Warnings</th>
-        <th class="ui-state-default">Add/reinstall/upgrade plugin</th>
-        <th class="ui-state-default">Remove plugin</th>
-        <!--<th class="ui-state-default">Plugin price<br/> (Click to add to your cart)</th>-->
-    </tr>
+	<tr>
+		<th class="ui-state-default">Name</th>
+		<!--
+		<th class="ui-state-default">Image</th>
+		-->
+		<th class="ui-state-default">Minimum Jomres version</th>
+		<th class="ui-state-default">Your Version</th>
+		<th class="ui-state-default">Current Version</th>
+		<th class="ui-state-default">Last updated</th>
+		<th class="ui-state-default">Description</th>
+		<th class="ui-state-default">Changelog</th>
+		<th class="ui-state-default">Warnings</th>
+		<th class="ui-state-default">Add/reinstall/upgrade plugin</th>
+		<th class="ui-state-default">Remove plugin</th>
+		<!--<th class="ui-state-default">Plugin price<br/> (Click to add to your cart)</th>-->
+	</tr>
 
-    <patTemplate:tmpl name="jomresdotnet_plugins" unusedvars="nbsp">
-        <tr class="{ROWCLASS}">
-            <td class="ui-corner-all"
-            {STYLE}>
-            <a name="{PLUGIN_NAME}"></a> {STRONG1}{READABLE_NAME}{STRONG2}
-            </td>
-            <!--
-            <td class="ui-corner-all" {STYLE}>
-                <a href="#" class="thumbnail">
-                    <img src="{IMAGE}" alt="">
-                </a>
-            </td>
-            -->
-            <td class="ui-corner-all"
-            {STYLE}>
-            {MIN_JOMRES_VER}
-            </td>
-            <td class="ui-corner-all"
-            {STYLE}>
-            {LOCAL_VER}
-            </td>
-            <td class="ui-corner-all"
-            {STYLE}>
-            {REMOTE_VER}
-            </td>
-            <td class="ui-corner-all"
-            {STYLE}>
-            {LASTUPDATE}
-            </td>
-            <td class="ui-corner-all"
-            {STYLE}>
-            {STRONG1}{PLUGIN_DESC}{STRONG2} <a href="{MANUAL_LINK}">{MANUAL_TEXT}</a> <a
-                href="{DEMO_LINK}">{DEMO_TEXT}</a>
-            </td>
-            <td class="ui-corner-all"
-            {STYLE}>
-            {CHANGELOG_TOOLTIP}
-            </td>
-            <td class="ui-corner-all"
-            {STYLE}>
-            {HIGHLIGHT_TOOLTIP}
-            </td>
-            <td class="ui-corner-all"
-            {STYLE}>
-            {INSTALL} {LATERVERSION}
-            </td>
-            <td class="ui-corner-all"
-            {STYLE}>
-            {UNINSTALL}
-            </td>
-            <!--<td class="ui-corner-all" {STYLE}>
-                {ADD_TO_CART_BUTTON}
-            </td>-->
-    </patTemplate:tmpl>
-    </tr>
+	<patTemplate:tmpl name="jomresdotnet_plugins" unusedvars="nbsp">
+		<tr class="{ROWCLASS}">
+			<td class="ui-corner-all"
+			{STYLE}>
+			<a name="{PLUGIN_NAME}"></a> {STRONG1}{READABLE_NAME}{STRONG2}
+			</td>
+			<!--
+			<td class="ui-corner-all" {STYLE}>
+				<a href="#" class="thumbnail">
+					<img src="{IMAGE}" alt="">
+				</a>
+			</td>
+			-->
+			<td class="ui-corner-all"
+			{STYLE}>
+			{MIN_JOMRES_VER}
+			</td>
+			<td class="ui-corner-all"
+			{STYLE}>
+			{LOCAL_VER}
+			</td>
+			<td class="ui-corner-all"
+			{STYLE}>
+			{REMOTE_VER}
+			</td>
+			<td class="ui-corner-all"
+			{STYLE}>
+			{LASTUPDATE}
+			</td>
+			<td class="ui-corner-all"
+			{STYLE}>
+			{STRONG1}{PLUGIN_DESC}{STRONG2} <a href="{MANUAL_LINK}">{MANUAL_TEXT}</a> <a
+				href="{DEMO_LINK}">{DEMO_TEXT}</a>
+			</td>
+			<td class="ui-corner-all"
+			{STYLE}>
+			{CHANGELOG_TOOLTIP}
+			</td>
+			<td class="ui-corner-all"
+			{STYLE}>
+			{HIGHLIGHT_TOOLTIP}
+			</td>
+			<td class="ui-corner-all"
+			{STYLE}>
+			{INSTALL} {LATERVERSION}
+			</td>
+			<td class="ui-corner-all"
+			{STYLE}>
+			{UNINSTALL}
+			</td>
+			<!--<td class="ui-corner-all" {STYLE}>
+				{ADD_TO_CART_BUTTON}
+			</td>-->
+	</patTemplate:tmpl>
+	</tr>
 </table>
 </patTemplate:tmpl>

@@ -1,9 +1,9 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-    <div class="page-header">
-        <div class="row-fluid">
-            <div class="span10">
-                <h1>{PROPERTY_NAME}&nbsp;{STARS} <span class="superior">{SUPERIOR}</span></h1>
-                <address>
+	<div class="page-header">
+		<div class="row-fluid">
+			<div class="span10">
+				<h1>{PROPERTY_NAME}&nbsp;{STARS} <span class="superior">{SUPERIOR}</span></h1>
+				<address>
 				<span itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
 					<span itemprop="street-address">{STREET}</span>,
 					<span itemprop="locality">{TOWN}</span>, 
@@ -17,21 +17,21 @@
 					<span class="hidden-tablet hidden-desktop">
 						<br/>
 						<a href="tel:{TELEPHONE}" class="btn btn-success" itemprop="tel"><i class="icon-mobile"></i>
-                            {JOMRES_TAPTOCALL} {TELEPHONE}</a>
+							{JOMRES_TAPTOCALL} {TELEPHONE}</a>
 					</span>
 				</span>
 
-                    <div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
-                </address>
-                <!--
-                <img src="{IMAGETHUMB}"/>
-                <patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">{ROOM_TYPE}</patTemplate:tmpl>
-                <patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">{FEATURE}</patTemplate:tmpl>
-                -->
-            </div>
-            <div class="span2">
-                <img src="{QR_CODE_MAP}" title="{_JOMRES_SCAN_FOR_DIRECTIONS}" align="qrcode"/>
-            </div>
-        </div>
-    </div>
+					<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
+				</address>
+				<!--
+				<img src="{IMAGETHUMB}"/>
+				<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">{ROOM_TYPE}</patTemplate:tmpl>
+				<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">{FEATURE}</patTemplate:tmpl>
+				-->
+			</div>
+			<div class="span2">
+				<img src="{QR_CODE_MAP}" title="{_JOMRES_SCAN_FOR_DIRECTIONS}" align="qrcode"/>
+			</div>
+		</div>
+	</div>
 </patTemplate:tmpl>

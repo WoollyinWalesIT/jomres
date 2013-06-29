@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,11 +15,11 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class jomres_qr_code
-    {
-    function jomres_qr_code()
-        {
-        require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'qr_code_lib' . JRDS . 'qrlib.php' );
-        }
-    }
+	{
+	function jomres_qr_code()
+		{
+		require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'qr_code_lib' . JRDS . 'qrlib.php' );
+		}
+	}
 
 ?>

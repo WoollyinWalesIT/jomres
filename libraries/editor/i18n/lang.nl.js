@@ -1,6 +1,6 @@
 /**
  * Internationalization: Dutch
- * 
+ *
  * Depends on jWYSIWYG, $.wysiwyg.i18n
  *
  * By: Erik van Dongen <dongen@connexys.com>

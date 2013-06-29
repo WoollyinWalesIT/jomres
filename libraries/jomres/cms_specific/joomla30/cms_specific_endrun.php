@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -17,6 +18,6 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowe
 // Cheers Nic (http://www.akeebabackup.com/)
 
 if ( AJAXCALL )
-    {
-    JFactory::getApplication()->close();
-    }
+	{
+	JFactory::getApplication()->close();
+	}

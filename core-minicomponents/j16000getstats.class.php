@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -13,37 +14,37 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j16000getstats
-    {
-    function j16000getstats()
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j16000getstats()
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
+			return;
+			}
 
-        $jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
-        $jrtb   = $jrtbar->startTable();
-        $jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=showstats", jr_gettext( '_JRPORTAL_CANCEL', _JRPORTAL_CANCEL, false ) );
-        $jrtb .= $jrtbar->endTable();
-        echo $jrtb;
+		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
+		$jrtb   = $jrtbar->startTable();
+		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=showstats", jr_gettext( '_JRPORTAL_CANCEL', _JRPORTAL_CANCEL, false ) );
+		$jrtb .= $jrtbar->endTable();
+		echo $jrtb;
 
-        $statoption = jomresGetParam( $_GET, 'statoption', "" );
+		$statoption = jomresGetParam( $_GET, 'statoption', "" );
 
-        if ( $MiniComponents->eventSpecificlyExistsCheck( '16020', $statoption ) )
-            {
-            $MiniComponents->specificEvent( '16020', $statoption ); // Custom task
-            }
-        else
-        echo "No data";
-        }
+		if ( $MiniComponents->eventSpecificlyExistsCheck( '16020', $statoption ) )
+			{
+			$MiniComponents->specificEvent( '16020', $statoption ); // Custom task
+			}
+		else
+		echo "No data";
+		}
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return null;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return null;
+		}
+	}

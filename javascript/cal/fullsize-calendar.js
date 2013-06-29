@@ -84,8 +84,7 @@ Calendar = function (firstDayOfWeek, dateStr, onSelected, onClose) {
 Calendar._C = null;
 
 /// detect a special case of "web browser"
-Calendar.is_ie = ( /msie/i.test(navigator.userAgent) &&
-		   !/opera/i.test(navigator.userAgent) );
+Calendar.is_ie = ( /msie/i.test(navigator.userAgent) && !/opera/i.test(navigator.userAgent) );
 
 Calendar.is_ie5 = ( Calendar.is_ie && /msie 5\.0/i.test(navigator.userAgent) );
 
@@ -98,7 +97,7 @@ Calendar.is_khtml = /Konqueror|Safari|KHTML/i.test(navigator.userAgent);
 // BEGIN: UTILITY FUNCTIONS; beware that these might be moved into a separate
 //        library, at some point.
 
-Calendar.getAbsolutePos = function(el) {
+Calendar.getAbsolutePos = function (el) {
 	var SL = 0, ST = 0;
 	var is_div = /^div$/i.test(el.tagName);
 	if (is_div && el.scrollLeft)
@@ -131,14 +130,14 @@ Calendar.isRelated = function (el, evt) {
 		try {
 			related = related.parentNode;
 		}
-		catch( err ) {
+		catch (err) {
 			return false;
 		}
 	}
 	return false;
 };
 
-Calendar.removeClass = function(el, className) {
+Calendar.removeClass = function (el, className) {
 	if (!(el && el.className)) {
 		return;
 	}
@@ -152,27 +151,27 @@ Calendar.removeClass = function(el, className) {
 	el.className = ar.join(" ");
 };
 
-Calendar.addClass = function(el, className) {
+Calendar.addClass = function (el, className) {
 	Calendar.removeClass(el, className);
 	el.className += " " + className;
 };
 
 // FIXME: the following 2 functions totally suck, are useless and should be replaced immediately.
-Calendar.getElement = function(ev) {
+Calendar.getElement = function (ev) {
 	var f = Calendar.is_ie ? window.event.srcElement : ev.currentTarget;
 	while (f.nodeType != 1 || /^div$/i.test(f.tagName))
 		f = f.parentNode;
 	return f;
 };
 
-Calendar.getTargetElement = function(ev) {
+Calendar.getTargetElement = function (ev) {
 	var f = Calendar.is_ie ? window.event.srcElement : ev.target;
 	while (f.nodeType != 1)
 		f = f.parentNode;
 	return f;
 };
 
-Calendar.stopEvent = function(ev) {
+Calendar.stopEvent = function (ev) {
 	ev || (ev = window.event);
 	if (Calendar.is_ie) {
 		ev.cancelBubble = true;
@@ -184,7 +183,7 @@ Calendar.stopEvent = function(ev) {
 	return false;
 };
 
-Calendar.addEvent = function(el, evname, func) {
+Calendar.addEvent = function (el, evname, func) {
 	if (el.attachEvent) { // IE
 		el.attachEvent("on" + evname, func);
 	} else if (el.addEventListener) { // Gecko / W3C
@@ -194,7 +193,7 @@ Calendar.addEvent = function(el, evname, func) {
 	}
 };
 
-Calendar.removeEvent = function(el, evname, func) {
+Calendar.removeEvent = function (el, evname, func) {
 	if (el.detachEvent) { // IE
 		el.detachEvent("on" + evname, func);
 	} else if (el.removeEventListener) { // Gecko / W3C
@@ -204,7 +203,7 @@ Calendar.removeEvent = function(el, evname, func) {
 	}
 };
 
-Calendar.createElement = function(type, parent) {
+Calendar.createElement = function (type, parent) {
 	var el = null;
 	if (document.createElementNS) {
 		// use the XHTML namespace; IE won't normally get here unless
@@ -224,7 +223,7 @@ Calendar.createElement = function(type, parent) {
 // BEGIN: CALENDAR STATIC FUNCTIONS
 
 /** Internal -- adds a set of events to make some element behave like a button. */
-Calendar._add_evs = function(el) {
+Calendar._add_evs = function (el) {
 	with (Calendar) {
 		addEvent(el, "mouseover", dayMouseOver);
 		addEvent(el, "mousedown", dayMouseDown);
@@ -236,7 +235,7 @@ Calendar._add_evs = function(el) {
 	}
 };
 
-Calendar.findMonth = function(el) {
+Calendar.findMonth = function (el) {
 	if (typeof el.month != "undefined") {
 		return el;
 	} else if (typeof el.parentNode.month != "undefined") {
@@ -245,7 +244,7 @@ Calendar.findMonth = function(el) {
 	return null;
 };
 
-Calendar.findYear = function(el) {
+Calendar.findYear = function (el) {
 	if (typeof el.year != "undefined") {
 		return el;
 	} else if (typeof el.parentNode.year != "undefined") {
@@ -278,7 +277,7 @@ Calendar.showMonthsCombo = function () {
 	else {
 		var mcw = mc.offsetWidth;
 		if (typeof mcw == "undefined")
-			// Konqueror brain-dead techniques
+		// Konqueror brain-dead techniques
 			mcw = 50;
 		s.left = (cd.offsetLeft + cd.offsetWidth - mcw) + "px";
 	}
@@ -323,7 +322,7 @@ Calendar.showYearsCombo = function (fwd) {
 		else {
 			var ycw = yc.offsetWidth;
 			if (typeof ycw == "undefined")
-				// Konqueror brain-dead techniques
+			// Konqueror brain-dead techniques
 				ycw = 50;
 			s.left = (cd.offsetLeft + cd.offsetWidth - ycw) + "px";
 		}
@@ -333,7 +332,7 @@ Calendar.showYearsCombo = function (fwd) {
 
 // event handlers
 
-Calendar.tableMouseUp = function(ev) {
+Calendar.tableMouseUp = function (ev) {
 	var cal = Calendar._C;
 	if (!cal) {
 		return false;
@@ -423,7 +422,7 @@ Calendar.tableMouseOver = function (ev) {
 			if (decrease) {
 				if (--i < 0)
 					i = range.length - 1;
-			} else if ( ++i >= range.length )
+			} else if (++i >= range.length)
 				i = 0;
 		var newval = range[i];
 		el.innerHTML = newval;
@@ -504,7 +503,7 @@ Calendar.calDragEnd = function (ev) {
 	cal.hideShowCovered();
 };
 
-Calendar.dayMouseDown = function(ev) {
+Calendar.dayMouseDown = function (ev) {
 	var el = Calendar.getElement(ev);
 	if (el.disabled) {
 		return false;
@@ -535,14 +534,14 @@ Calendar.dayMouseDown = function(ev) {
 	return Calendar.stopEvent(ev);
 };
 
-Calendar.dayMouseDblClick = function(ev) {
+Calendar.dayMouseDblClick = function (ev) {
 	Calendar.cellClick(Calendar.getElement(ev), ev || window.event);
 	if (Calendar.is_ie) {
 		document.selection.empty();
 	}
 };
 
-Calendar.dayMouseOver = function(ev) {
+Calendar.dayMouseOver = function (ev) {
 	var el = Calendar.getElement(ev);
 	if (Calendar.isRelated(el, ev) || Calendar._C || el.disabled) {
 		return false;
@@ -562,7 +561,7 @@ Calendar.dayMouseOver = function(ev) {
 	return Calendar.stopEvent(ev);
 };
 
-Calendar.dayMouseOut = function(ev) {
+Calendar.dayMouseOut = function (ev) {
 	with (Calendar) {
 		var el = getElement(ev);
 		if (isRelated(el, ev) || _C || el.disabled)
@@ -580,7 +579,7 @@ Calendar.dayMouseOut = function(ev) {
  *  A generic "click" handler :) handles all types of buttons defined in this
  *  calendar.
  */
-Calendar.cellClick = function(el, ev) {
+Calendar.cellClick = function (el, ev) {
 	var cal = el.calendar;
 	var closing = false;
 	var newdate = false;
@@ -620,6 +619,7 @@ Calendar.cellClick = function(el, ev) {
 		cal.dateClicked = false;
 		var year = date.getFullYear();
 		var mon = date.getMonth();
+
 		function setMonth(m) {
 			var day = date.getDate();
 			var max = date.getMonthDays(m);
@@ -629,73 +629,73 @@ Calendar.cellClick = function(el, ev) {
 			date.setMonth(m);
 		};
 		switch (el.navtype) {
-		    case 400:
-			Calendar.removeClass(el, "hilite");
-			var text = Calendar._TT["ABOUT"];
-			if (typeof text != "undefined") {
-				text += cal.showsTime ? Calendar._TT["ABOUT_TIME"] : "";
-			} else {
-				// FIXME: this should be removed as soon as lang files get updated!
-				text = "Help and about box text is not translated into this language.\n" +
-					"If you know this language and you feel generous please update\n" +
-					"the corresponding file in \"lang\" subdir to match calendar-en.js\n" +
-					"and send it back to <mihai_bazon@yahoo.com> to get it into the distribution  ;-)\n\n" +
-					"Thank you!\n" +
-					"http://dynarch.com/mishoo/calendar.epl\n";
-			}
-			alert(text);
-			return;
-		    case -2:
-			if (year > cal.minYear) {
-				date.setFullYear(year - 1);
-			}
-			break;
-		    case -1:
-			if (mon > 0) {
-				setMonth(mon - 1);
-			} else if (year-- > cal.minYear) {
-				date.setFullYear(year);
-				setMonth(11);
-			}
-			break;
-		    case 1:
-			if (mon < 11) {
-				setMonth(mon + 1);
-			} else if (year < cal.maxYear) {
-				date.setFullYear(year + 1);
-				setMonth(0);
-			}
-			break;
-		    case 2:
-			if (year < cal.maxYear) {
-				date.setFullYear(year + 1);
-			}
-			break;
-		    case 100:
-			cal.setFirstDayOfWeek(el.fdow);
-			return;
-		    case 50:
-			var range = el._range;
-			var current = el.innerHTML;
-			for (var i = range.length; --i >= 0;)
-				if (range[i] == current)
-					break;
-			if (ev && ev.shiftKey) {
-				if (--i < 0)
-					i = range.length - 1;
-			} else if ( ++i >= range.length )
-				i = 0;
-			var newval = range[i];
-			el.innerHTML = newval;
-			cal.onUpdateTime();
-			return;
-		    case 0:
-			// TODAY will bring us here
-			if ((typeof cal.getDateStatus == "function") &&
-			    cal.getDateStatus(date, date.getFullYear(), date.getMonth(), date.getDate())) {
-				return false;
-			}
-			break;
+			case 400:
+				Calendar.removeClass(el, "hilite");
+				var text = Calendar._TT["ABOUT"];
+				if (typeof text != "undefined") {
+					text += cal.showsTime ? Calendar._TT["ABOUT_TIME"] : "";
+				} else {
+					// FIXME: this should be removed as soon as lang files get updated!
+					text = "Help and about box text is not translated into this language.\n" +
+						"If you know this language and you feel generous please update\n" +
+						"the corresponding file in \"lang\" subdir to match calendar-en.js\n" +
+						"and send it back to <mihai_bazon@yahoo.com> to get it into the distribution  ;-)\n\n" +
+						"Thank you!\n" +
+						"http://dynarch.com/mishoo/calendar.epl\n";
+				}
+				alert(text);
+				return;
+			case -2:
+				if (year > cal.minYear) {
+					date.setFullYear(year - 1);
+				}
+				break;
+			case -1:
+				if (mon > 0) {
+					setMonth(mon - 1);
+				} else if (year-- > cal.minYear) {
+					date.setFullYear(year);
+					setMonth(11);
+				}
+				break;
+			case 1:
+				if (mon < 11) {
+					setMonth(mon + 1);
+				} else if (year < cal.maxYear) {
+					date.setFullYear(year + 1);
+					setMonth(0);
+				}
+				break;
+			case 2:
+				if (year < cal.maxYear) {
+					date.setFullYear(year + 1);
+				}
+				break;
+			case 100:
+				cal.setFirstDayOfWeek(el.fdow);
+				return;
+			case 50:
+				var range = el._range;
+				var current = el.innerHTML;
+				for (var i = range.length; --i >= 0;)
+					if (range[i] == current)
+						break;
+				if (ev && ev.shiftKey) {
+					if (--i < 0)
+						i = range.length - 1;
+				} else if (++i >= range.length)
+					i = 0;
+				var newval = range[i];
+				el.innerHTML = newval;
+				cal.onUpdateTime();
+				return;
+			case 0:
+				// TODAY will bring us here
+				if ((typeof cal.getDateStatus == "function") &&
+					cal.getDateStatus(date, date.getFullYear(), date.getMonth(), date.getDate())) {
+					return false;
+				}
+				break;
 		}
 		if (!date.equalsTo(cal.date)) {
 			cal.setDate(date);
@@ -724,7 +724,7 @@ Calendar.cellClick = function(el, ev) {
  */
 Calendar.prototype.create = function (_par) {
 	var parent = null;
-	if (! _par) {
+	if (!_par) {
 		// default parent is the document body, in which case we create
 		// a popup calendar.
 		parent = document.getElementsByTagName("body")[0];
@@ -848,7 +848,7 @@ Calendar.prototype.create = function (_par) {
 		cell.className = "time";
 		cell.colSpan = this.weekNumbers ? 4 : 3;
 
-		(function(){
+		(function () {
 			function makeTimePart(className, init, range_start, range_end) {
 				var part = Calendar.createElement("span", cell);
 				part.className = className;
@@ -889,7 +889,7 @@ Calendar.prototype.create = function (_par) {
 			else
 				cell.innerHTML = "&nbsp;";
 
-			cal.onSetTime = function() {
+			cal.onSetTime = function () {
 				var pm, hrs = this.date.getHours(),
 					mins = this.date.getMinutes();
 				if (t12) {
@@ -902,7 +902,7 @@ Calendar.prototype.create = function (_par) {
 				M.innerHTML = (mins < 10) ? ("0" + mins) : mins;
 			};
 
-			cal.onUpdateTime = function() {
+			cal.onUpdateTime = function () {
 				var date = this.date;
 				var h = parseInt(H.innerHTML, 10);
 				if (t12) {
@@ -924,7 +924,8 @@ Calendar.prototype.create = function (_par) {
 			};
 		})();
 	} else {
-		this.onSetTime = this.onUpdateTime = function() {};
+		this.onSetTime = this.onUpdateTime = function () {
+		};
 	}
 
 	var tfoot = Calendar.createElement("tfoot", table);
@@ -965,7 +966,7 @@ Calendar.prototype.create = function (_par) {
 };
 
 /** keyboard navigation, only for popup calendars */
-Calendar._keyEvent = function(ev) {
+Calendar._keyEvent = function (ev) {
 	var cal = window._dynarch_popupCalendar;
 	if (!cal || cal.multiple)
 		return false;
@@ -974,108 +975,109 @@ Calendar._keyEvent = function(ev) {
 		K = ev.keyCode;
 	if (ev.ctrlKey) {
 		switch (K) {
-		    case 37: // KEY left
-			act && Calendar.cellClick(cal._nav_pm);
-			break;
-		    case 38: // KEY up
-			act && Calendar.cellClick(cal._nav_py);
-			break;
-		    case 39: // KEY right
-			act && Calendar.cellClick(cal._nav_nm);
-			break;
-		    case 40: // KEY down
-			act && Calendar.cellClick(cal._nav_ny);
-			break;
-		    default:
-			return false;
+			case 37: // KEY left
+				act && Calendar.cellClick(cal._nav_pm);
+				break;
+			case 38: // KEY up
+				act && Calendar.cellClick(cal._nav_py);
+				break;
+			case 39: // KEY right
+				act && Calendar.cellClick(cal._nav_nm);
+				break;
+			case 40: // KEY down
+				act && Calendar.cellClick(cal._nav_ny);
+				break;
+			default:
+				return false;
 		}
 	} else switch (K) {
-	    case 32: // KEY space (now)
-		Calendar.cellClick(cal._nav_now);
-		break;
-	    case 27: // KEY esc
-		act && cal.callCloseHandler();
-		break;
-	    case 37: // KEY left
-	    case 38: // KEY up
-	    case 39: // KEY right
-	    case 40: // KEY down
-		if (act) {
-			var prev, x, y, ne, el, step;
-			prev = K == 37 || K == 38;
-			step = (K == 37 || K == 39) ? 1 : 7;
-			function setVars() {
-				el = cal.currentDateEl;
-				var p = el.pos;
-				x = p & 15;
-				y = p >> 4;
-				ne = cal.ar_days[y][x];
-			};setVars();
-			function prevMonth() {
-				var date = new Date(cal.date);
-				date.setDate(date.getDate() - step);
-				cal.setDate(date);
-			};
-			function nextMonth() {
-				var date = new Date(cal.date);
-				date.setDate(date.getDate() + step);
-				cal.setDate(date);
-			};
-			while (1) {
-				switch (K) {
-				    case 37: // KEY left
-					if (--x >= 0)
-						ne = cal.ar_days[y][x];
-					else {
-						x = 6;
-						K = 38;
-						continue;
-					}
-					break;
-				    case 38: // KEY up
-					if (--y >= 0)
-						ne = cal.ar_days[y][x];
-					else {
-						prevMonth();
-						setVars();
-					}
-					break;
-				    case 39: // KEY right
-					if (++x < 7)
-						ne = cal.ar_days[y][x];
-					else {
-						x = 0;
-						K = 40;
-						continue;
-					}
-					break;
-				    case 40: // KEY down
-					if (++y < cal.ar_days.length)
-						ne = cal.ar_days[y][x];
-					else {
-						nextMonth();
-						setVars();
+		case 32: // KEY space (now)
+			Calendar.cellClick(cal._nav_now);
+			break;
+		case 27: // KEY esc
+			act && cal.callCloseHandler();
+			break;
+		case 37: // KEY left
+		case 38: // KEY up
+		case 39: // KEY right
+		case 40: // KEY down
+			if (act) {
+				var prev, x, y, ne, el, step;
+				prev = K == 37 || K == 38;
+				step = (K == 37 || K == 39) ? 1 : 7;
+				function setVars() {
+					el = cal.currentDateEl;
+					var p = el.pos;
+					x = p & 15;
+					y = p >> 4;
+					ne = cal.ar_days[y][x];
+				};
+				setVars();
+				function prevMonth() {
+					var date = new Date(cal.date);
+					date.setDate(date.getDate() - step);
+					cal.setDate(date);
+				};
+				function nextMonth() {
+					var date = new Date(cal.date);
+					date.setDate(date.getDate() + step);
+					cal.setDate(date);
+				};
+				while (1) {
+					switch (K) {
+						case 37: // KEY left
+							if (--x >= 0)
+								ne = cal.ar_days[y][x];
+							else {
+								x = 6;
+								K = 38;
+								continue;
+							}
+							break;
+						case 38: // KEY up
+							if (--y >= 0)
+								ne = cal.ar_days[y][x];
+							else {
+								prevMonth();
+								setVars();
+							}
+							break;
+						case 39: // KEY right
+							if (++x < 7)
+								ne = cal.ar_days[y][x];
+							else {
+								x = 0;
+								K = 40;
+								continue;
+							}
+							break;
+						case 40: // KEY down
+							if (++y < cal.ar_days.length)
+								ne = cal.ar_days[y][x];
+							else {
+								nextMonth();
+								setVars();
+							}
+							break;
 					}
 					break;
 				}
-				break;
+				if (ne) {
+					if (!ne.disabled)
+						Calendar.cellClick(ne);
+					else if (prev)
+						prevMonth();
+					else
+						nextMonth();
+				}
 			}
-			if (ne) {
-				if (!ne.disabled)
-					Calendar.cellClick(ne);
-				else if (prev)
-					prevMonth();
-				else
-					nextMonth();
-			}
-		}
-		break;
-	    case 13: // KEY enter
-		if (act)
-			Calendar.cellClick(cal.currentDateEl, ev);
-		break;
-	    default:
-		return false;
+			break;
+		case 13: // KEY enter
+			if (act)
+				Calendar.cellClick(cal.currentDateEl, ev);
+			break;
+		default:
+			return false;
 	}
 	return Calendar.stopEvent(ev);
 };
@@ -1172,13 +1174,13 @@ Calendar.prototype._init = function (firstDayOfWeek, date) {
 				cell.caldate = new Date(date);
 				cell.ttip = "_";
 				if (!this.multiple && current_month
-				    && iday == mday && this.hiliteToday) {
+					&& iday == mday && this.hiliteToday) {
 					cell.className += " selected";
 					this.currentDateEl = cell;
 				}
 				if (date.getFullYear() == TY &&
-				    date.getMonth() == TM &&
-				    iday == TD) {
+					date.getMonth() == TM &&
+					iday == TD) {
 					cell.className += " today";
 					cell.ttip += Calendar._TT["PART_TODAY"];
 				}
@@ -1197,7 +1199,7 @@ Calendar.prototype._init = function (firstDayOfWeek, date) {
 	// this.tooltips.innerHTML = "Generated in " + ((new Date()) - today) + " ms";
 };
 
-Calendar.prototype._initMultipleDates = function() {
+Calendar.prototype._initMultipleDates = function () {
 	if (this.multiple) {
 		for (var i in this.multiple) {
 			var cell = this.datesCells[i];
@@ -1210,7 +1212,7 @@ Calendar.prototype._initMultipleDates = function() {
 	}
 };
 
-Calendar.prototype._toggleMultipleDate = function(date) {
+Calendar.prototype._toggleMultipleDate = function (date) {
 	if (this.multiple) {
 		var ds = date.print("%Y%m%d");
 		var cell = this.datesCells[ds];
@@ -1309,7 +1311,7 @@ Calendar.prototype.reparent = function (new_parent) {
 // This gets called when the user presses a mouse button anywhere in the
 // document, if the calendar is shown.  If the click was outside the open
 // calendar this function closes it.
-Calendar._checkCalendar = function(ev) {
+Calendar._checkCalendar = function (ev) {
 	var calendar = window._dynarch_popupCalendar;
 	if (!calendar) {
 		return false;
@@ -1407,7 +1409,7 @@ Calendar.prototype.showAtElement = function (el, opts) {
 		if (tmp > 0) box.y -= tmp;
 	};
 	this.element.style.display = "block";
-	Calendar.continuation_for_the_fucking_khtml_browser = function() {
+	Calendar.continuation_for_the_fucking_khtml_browser = function () {
 		var w = self.element.offsetWidth;
 		var h = self.element.offsetHeight;
 		self.element.style.display = "none";
@@ -1418,19 +1420,37 @@ Calendar.prototype.showAtElement = function (el, opts) {
 		}
 		// vertical alignment
 		switch (valign) {
-		    case "T": p.y -= h; break;
-		    case "B": p.y += el.offsetHeight; break;
-		    case "C": p.y += (el.offsetHeight - h) / 2; break;
-		    case "t": p.y += el.offsetHeight - h; break;
-		    case "b": break; // already there
+			case "T":
+				p.y -= h;
+				break;
+			case "B":
+				p.y += el.offsetHeight;
+				break;
+			case "C":
+				p.y += (el.offsetHeight - h) / 2;
+				break;
+			case "t":
+				p.y += el.offsetHeight - h;
+				break;
+			case "b":
+				break; // already there
 		}
 		// horizontal alignment
 		switch (halign) {
-		    case "L": p.x -= w; break;
-		    case "R": p.x += el.offsetWidth; break;
-		    case "C": p.x += (el.offsetWidth - w) / 2; break;
-		    case "l": p.x += el.offsetWidth - w; break;
-		    case "r": break; // already there
+			case "L":
+				p.x -= w;
+				break;
+			case "R":
+				p.x += el.offsetWidth;
+				break;
+			case "C":
+				p.x += (el.offsetWidth - w) / 2;
+				break;
+			case "l":
+				p.x += el.offsetWidth - w;
+				break;
+			case "r":
+				break; // already there
 		}
 		p.width = w;
 		p.height = h + 40;
@@ -1458,7 +1478,7 @@ Calendar.prototype.setTtDateFormat = function (str) {
  *  Tries to identify the date represented in a string.  If successful it also
  *  calls this.setDate which moves the calendar to the given date.
  */
-Calendar.prototype.parseDate = function(str, fmt) {
+Calendar.prototype.parseDate = function (str, fmt) {
 	if (!fmt)
 		fmt = this.dateFormat;
 	this.setDate(Date.parseDate(str, fmt));
@@ -1467,7 +1487,7 @@ Calendar.prototype.parseDate = function(str, fmt) {
 Calendar.prototype.hideShowCovered = function () {
 	if (!Calendar.is_ie && !Calendar.is_opera)
 		return;
-	function getVisib(obj){
+	function getVisib(obj) {
 		var value = obj.style.visibility;
 		if (!value) {
 			if (document.defaultView && typeof (document.defaultView.getComputedStyle) == "function") { // Gecko, W3C
@@ -1493,7 +1513,7 @@ Calendar.prototype.hideShowCovered = function () {
 	var EY1 = p.y;
 	var EY2 = el.offsetHeight + EY1;
 
-	for (var k = tags.length; k > 0; ) {
+	for (var k = tags.length; k > 0;) {
 		var ar = document.getElementsByTagName(tags[--k]);
 		var cc = null;
 
@@ -1577,16 +1597,16 @@ Calendar.prototype._dragStart = function (ev) {
 // BEGIN: DATE OBJECT PATCHES
 
 /** Adds the number of days array to the Date object. */
-Date._MD = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+Date._MD = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 
 /** Constants used for time computations */
 Date.SECOND = 1000 /* milliseconds */;
 Date.MINUTE = 60 * Date.SECOND;
-Date.HOUR   = 60 * Date.MINUTE;
-Date.DAY    = 24 * Date.HOUR;
-Date.WEEK   =  7 * Date.DAY;
+Date.HOUR = 60 * Date.MINUTE;
+Date.DAY = 24 * Date.HOUR;
+Date.WEEK = 7 * Date.DAY;
 
-Date.parseDate = function(str, fmt) {
+Date.parseDate = function (str, fmt) {
 	var today = new Date();
 	var y = 0;
 	var m = -1;
@@ -1600,46 +1620,49 @@ Date.parseDate = function(str, fmt) {
 		if (!a[i])
 			continue;
 		switch (b[i]) {
-		    case "%d":
-		    case "%e":
-			d = parseInt(a[i], 10);
-			break;
+			case "%d":
+			case "%e":
+				d = parseInt(a[i], 10);
+				break;
 
-		    case "%m":
-			m = parseInt(a[i], 10) - 1;
-			break;
+			case "%m":
+				m = parseInt(a[i], 10) - 1;
+				break;
 
-		    case "%Y":
-		    case "%y":
-			y = parseInt(a[i], 10);
-			(y < 100) && (y += (y > 29) ? 1900 : 2000);
-			break;
+			case "%Y":
+			case "%y":
+				y = parseInt(a[i], 10);
+				(y < 100) && (y += (y > 29) ? 1900 : 2000);
+				break;
 
-		    case "%b":
-		    case "%B":
-			for (j = 0; j < 12; ++j) {
-				if (Calendar._MN[j].substr(0, a[i].length).toLowerCase() == a[i].toLowerCase()) { m = j; break; }
-			}
-			break;
+			case "%b":
+			case "%B":
+				for (j = 0; j < 12; ++j) {
+					if (Calendar._MN[j].substr(0, a[i].length).toLowerCase() == a[i].toLowerCase()) {
+						m = j;
+						break;
+					}
+				}
+				break;
 
-		    case "%H":
-		    case "%I":
-		    case "%k":
-		    case "%l":
-			hr = parseInt(a[i], 10);
-			break;
+			case "%H":
+			case "%I":
+			case "%k":
+			case "%l":
+				hr = parseInt(a[i], 10);
+				break;
 
-		    case "%P":
-		    case "%p":
-			if (/pm/i.test(a[i]) && hr < 12)
-				hr += 12;
-			else if (/am/i.test(a[i]) && hr >= 12)
-				hr -= 12;
-			break;
+			case "%P":
+			case "%p":
+				if (/pm/i.test(a[i]) && hr < 12)
+					hr += 12;
+				else if (/am/i.test(a[i]) && hr >= 12)
+					hr -= 12;
+				break;
 
-		    case "%M":
-			min = parseInt(a[i], 10);
-			break;
+			case "%M":
+				min = parseInt(a[i], 10);
+				break;
 		}
 	}
 	if (isNaN(y)) y = today.getFullYear();
@@ -1649,21 +1672,26 @@ Date.parseDate = function(str, fmt) {
 	if (isNaN(min)) min = today.getMinutes();
 	if (y != 0 && m != -1 && d != 0)
 		return new Date(y, m, d, hr, min, 0);
-	y = 0; m = -1; d = 0;
+	y = 0;
+	m = -1;
+	d = 0;
 	for (i = 0; i < a.length; ++i) {
 		if (a[i].search(/[a-zA-Z]+/) != -1) {
 			var t = -1;
 			for (j = 0; j < 12; ++j) {
-				if (Calendar._MN[j].substr(0, a[i].length).toLowerCase() == a[i].toLowerCase()) { t = j; break; }
+				if (Calendar._MN[j].substr(0, a[i].length).toLowerCase() == a[i].toLowerCase()) {
+					t = j;
+					break;
+				}
 			}
 			if (t != -1) {
 				if (m != -1) {
-					d = m+1;
+					d = m + 1;
 				}
 				m = t;
 			}
 		} else if (parseInt(a[i], 10) <= 12 && m == -1) {
-			m = a[i]-1;
+			m = a[i] - 1;
 		} else if (parseInt(a[i], 10) > 31 && y == 0) {
 			y = parseInt(a[i], 10);
 			(y < 100) && (y += (y > 29) ? 1900 : 2000);
@@ -1679,12 +1707,12 @@ Date.parseDate = function(str, fmt) {
 };
 
 /** Returns the number of days in the current month */
-Date.prototype.getMonthDays = function(month) {
+Date.prototype.getMonthDays = function (month) {
 	var year = this.getFullYear();
 	if (typeof month == "undefined") {
 		month = this.getMonth();
 	}
-	if (((0 == (year%4)) && ( (0 != (year%100)) || (0 == (year%400)))) && month == 1) {
+	if (((0 == (year % 4)) && ( (0 != (year % 100)) || (0 == (year % 400)))) && month == 1) {
 		return 29;
 	} else {
 		return Date._MD[month];
@@ -1692,7 +1720,7 @@ Date.prototype.getMonthDays = function(month) {
 };
 
 /** Returns the number of day in the year. */
-Date.prototype.getDayOfYear = function() {
+Date.prototype.getDayOfYear = function () {
 	var now = new Date(this.getFullYear(), this.getMonth(), this.getDate(), 0, 0, 0);
 	var then = new Date(this.getFullYear(), 0, 0, 0, 0, 0);
 	var time = now - then;
@@ -1700,7 +1728,7 @@ Date.prototype.getDayOfYear = function() {
 };
 
 /** Returns the number of the week in year, as defined in ISO 8601. */
-Date.prototype.getWeekNumber = function() {
+Date.prototype.getWeekNumber = function () {
 	var d = new Date(this.getFullYear(), this.getMonth(), this.getDate(), 0, 0, 0);
 	var DoW = d.getDay();
 	d.setDate(d.getDate() - (DoW + 6) % 7 + 3); // Nearest Thu
@@ -1711,7 +1739,7 @@ Date.prototype.getWeekNumber = function() {
 };
 
 /** Checks date and time equality */
-Date.prototype.equalsTo = function(date) {
+Date.prototype.equalsTo = function (date) {
 	return ((this.getFullYear() == date.getFullYear()) &&
 		(this.getMonth() == date.getMonth()) &&
 		(this.getDate() == date.getDate()) &&
@@ -1720,7 +1748,7 @@ Date.prototype.equalsTo = function(date) {
 };
 
 /** Set only the year, month, date parts (keep existing time) */
-Date.prototype.setDateOnly = function(date) {
+Date.prototype.setDateOnly = function (date) {
 	var tmp = new Date(date);
 	this.setDate(1);
 	this.setFullYear(tmp.getFullYear());
@@ -1759,7 +1787,7 @@ Date.prototype.print = function (str) {
 	s["%j"] = (dy < 100) ? ((dy < 10) ? ("00" + dy) : ("0" + dy)) : dy; // day of the year (range 001 to 366)
 	s["%k"] = hr;		// hour, range 0 to 23 (24h format)
 	s["%l"] = ir;		// hour, range 1 to 12 (12h format)
-	s["%m"] = (m < 9) ? ("0" + (1+m)) : (1+m); // month, range 01 to 12
+	s["%m"] = (m < 9) ? ("0" + (1 + m)) : (1 + m); // month, range 01 to 12
 	s["%M"] = (min < 10) ? ("0" + min) : min; // minute, range 00 to 59
 	s["%n"] = "\n";		// a newline character
 	s["%p"] = pm ? "PM" : "AM";
@@ -1781,7 +1809,9 @@ Date.prototype.print = function (str) {
 
 	var re = /%./g;
 	if (!Calendar.is_ie5 && !Calendar.is_khtml)
-		return str.replace(re, function (par) { return s[par] || par; });
+		return str.replace(re, function (par) {
+			return s[par] || par;
+		});
 
 	var a = str.match(re);
 	for (var i = 0; i < a.length; i++) {
@@ -1796,7 +1826,7 @@ Date.prototype.print = function (str) {
 };
 
 Date.prototype.__msh_oldSetFullYear = Date.prototype.setFullYear;
-Date.prototype.setFullYear = function(y) {
+Date.prototype.setFullYear = function (y) {
 	var d = new Date(this);
 	d.__msh_oldSetFullYear(y);
 	if (d.getMonth() != this.getMonth())

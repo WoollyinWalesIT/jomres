@@ -17,8 +17,8 @@
 	}
 
 	/*
-	* Wysiwyg namespace: public properties and methods
-	*/
+	 * Wysiwyg namespace: public properties and methods
+	 */
 	$.wysiwyg.controls.link = {
 		init: function (Wysiwyg) {
 			var self = this, elements, dialog, url, a, selection,
@@ -27,8 +27,8 @@
 
 			dialogReplacements = {
 				legend: "Insert Link",
-				url   : "Link URL",
-				title : "Link Title",
+				url: "Link URL",
+				title: "Link Title",
 				target: "Link Target",
 				submit: "Insert Link",
 				reset: "Cancel"
@@ -45,7 +45,7 @@
 				if ($.wysiwyg.i18n) {
 					translation = $.wysiwyg.i18n.t(dialogReplacements[key], "dialogs.link");
 
-					if (translation === dialogReplacements[key]) { // if not translated search in dialogs 
+					if (translation === dialogReplacements[key]) { // if not translated search in dialogs
 						translation = $.wysiwyg.i18n.t(dialogReplacements[key], "dialogs");
 					}
 

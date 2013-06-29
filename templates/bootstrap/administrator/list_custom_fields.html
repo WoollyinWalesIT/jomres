@@ -1,39 +1,39 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-    <script type="text/javascript">
-        <!--
-        jomresJquery(document).ready(function () {
-            make_datatable('list_custom_fields', '{TITLE}', '{LIVESITE}');
-        });
-        //-->
-    </script>
-    <h2 class="page-header">{TITLE}</h2>
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('list_custom_fields', '{TITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{TITLE}</h2>
 
-    <p>{INSTRUCTIONS}</p>
+	<p>{INSTRUCTIONS}</p>
 
-    <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-        {JOMRESTOOLBAR}
-        <table id="list_custom_fields" class="table table-striped" width="100%">
-            <thead>
-            <tr>
-                <th></th>
-                <th>{HFIELDNAME}</th>
-                <th class="hidden-phone">{HDEFAULTVALUE}</th>
-                <th class="hidden-phone">{HDESCRIPTION}</th>
-                <th class="hidden-phone">{HREQUIRED}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <patTemplate:tmpl name="rows" unusedvars="nbsp">
-                <tr>
-                    <td>{EDITLINK}</td>
-                    <td>{FIELDNAME}</td>
-                    <td class="hidden-phone">{DEFAULT_VALUE}</td>
-                    <td class="hidden-phone">{DESCRIPTION}</td>
-                    <td class="hidden-phone">{REQUIRED}</td>
-                </tr>
-            </patTemplate:tmpl>
-            </tbody>
-        </table>
-        <input type="hidden" name="task" value="edit_custom_field"/>
-    </form>
+	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+		{JOMRESTOOLBAR}
+		<table id="list_custom_fields" class="table table-striped" width="100%">
+			<thead>
+			<tr>
+				<th></th>
+				<th>{HFIELDNAME}</th>
+				<th class="hidden-phone">{HDEFAULTVALUE}</th>
+				<th class="hidden-phone">{HDESCRIPTION}</th>
+				<th class="hidden-phone">{HREQUIRED}</th>
+			</tr>
+			</thead>
+			<tbody>
+			<patTemplate:tmpl name="rows" unusedvars="nbsp">
+				<tr>
+					<td>{EDITLINK}</td>
+					<td>{FIELDNAME}</td>
+					<td class="hidden-phone">{DEFAULT_VALUE}</td>
+					<td class="hidden-phone">{DESCRIPTION}</td>
+					<td class="hidden-phone">{REQUIRED}</td>
+				</tr>
+			</patTemplate:tmpl>
+			</tbody>
+		</table>
+		<input type="hidden" name="task" value="edit_custom_field"/>
+	</form>
 </patTemplate:tmpl>

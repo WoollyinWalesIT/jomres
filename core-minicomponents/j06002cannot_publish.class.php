@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -15,32 +16,32 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 
 class j06002cannot_publish
-    {
-    function j06002cannot_publish()
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j06002cannot_publish()
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
+			return;
+			}
 
-        $pageoutput    = array ();
-        $pageoutput[ ] = array ( "_JOMRES_APPROVALS_CANNOT_PUBLISH" => jr_gettext( _JOMRES_APPROVALS_CANNOT_PUBLISH ) );
-        $tmpl          = new patTemplate();
-        $tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-        $tmpl->readTemplatesFromInput( 'cannot_publish.html' );
-        $tmpl->addRows( 'pageoutput', $pageoutput );
-        $tmpl->displayParsedTemplate();
-        }
+		$pageoutput    = array ();
+		$pageoutput[ ] = array ( "_JOMRES_APPROVALS_CANNOT_PUBLISH" => jr_gettext( _JOMRES_APPROVALS_CANNOT_PUBLISH ) );
+		$tmpl          = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+		$tmpl->readTemplatesFromInput( 'cannot_publish.html' );
+		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->displayParsedTemplate();
+		}
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return null;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return null;
+		}
+	}
 
 ?>

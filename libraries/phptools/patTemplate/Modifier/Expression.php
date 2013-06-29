@@ -7,9 +7,9 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  *
  * $Id: Expression.php 330 2004-11-30 20:46:36Z schst $
  *
- * @package		patTemplate
- * @subpackage	Modifiers
- * @author		Stephan Schmidt <schst@php.net>
+ * @package        patTemplate
+ * @subpackage    Modifiers
+ * @author        Stephan Schmidt <schst@php.net>
  */
 
 /**
@@ -23,41 +23,42 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * - true (string)
  * - false (string)
  *
- * @package		patTemplate
- * @subpackage	Modifiers
- * @author		Stephan Schmidt <schst@php.net>
- * @link		http://www.php.net/manual/en/function.wordwrap.php
+ * @package        patTemplate
+ * @subpackage    Modifiers
+ * @author        Stephan Schmidt <schst@php.net>
+ * @link        http://www.php.net/manual/en/function.wordwrap.php
  */
 class patTemplate_Modifier_Expression extends patTemplate_Modifier
-{
-   /**
-	* modify the value
-	*
-	* @access	public
-	* @param	string		value
-	* @return	string		modified value
-	*/
-	function modify( $value, $params = array() )
 	{
+	/**
+	 * modify the value
+	 *
+	 * @access    public
+	 * @param    string        value
+	 * @return    string        modified value
+	 */
+	function modify( $value, $params = array () )
+		{
 		/*
 		 * true and false
 		 */
-		if( !isset( $params['true'] ) )
-			$params['true']	=	'true';
-		if( !isset( $params['false'] ) )
-			$params['false']=	'false';
+		if ( !isset( $params[ 'true' ] ) ) $params[ 'true' ] = 'true';
+		if ( !isset( $params[ 'false' ] ) ) $params[ 'false' ] = 'false';
 
-        /*
-         * replace the value in the expression
-         */
-        $params['expression'] = str_replace( '$self', "'$value'", $params['expression'] );
+		/*
+		 * replace the value in the expression
+		 */
+		$params[ 'expression' ] = str_replace( '$self', "'$value'", $params[ 'expression' ] );
 
-        @eval( '$result = '.$params['expression'].';' );
-        
-        if ($result === true) {
-            return str_replace( '$self', $value, $params['true'] );
-        }
-        return str_replace( '$self', $value, $params['false'] );
+		@eval( '$result = ' . $params[ 'expression' ] . ';' );
+
+		if ( $result === true )
+			{
+			return str_replace( '$self', $value, $params[ 'true' ] );
+			}
+
+		return str_replace( '$self', $value, $params[ 'false' ] );
+		}
 	}
-}
+
 ?>

@@ -1,43 +1,43 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-    <h2>{PAGETITLE}</h2>
+	<h2>{PAGETITLE}</h2>
 
-    <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-        {JOMRESTOOLBAR}
-        <table width="100%" border="0" class="ui-widget-content ui-corner-all">
-            <tr>
-                <td width="30%">{HTYPE}</td>
-                <td width="60%"><input class="inputbox" type="text" name="type" value="{TYPE}" size="10"/></td>
-                <td width="10%" align="right">{HTYPE_TT}</td>
-            </tr>
-            <tr>
-                <td>{HNOTES}</td>
-                <td><input class="inputbox" type="text" name="notes" value="{NOTES}" size="50"/></td>
-                <td align="right">{HNOTES_TT}</td>
-            </tr>
-            <tr>
-                <td>{HMAXIMUM}</td>
-                <td><input class="inputbox" type="text" name="maximum" value="{MAXIMUM}" size="3"/></td>
-                <td align="right">{HMAXIMUM_TT}</td>
+	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+		{JOMRESTOOLBAR}
+		<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+			<tr>
+				<td width="30%">{HTYPE}</td>
+				<td width="60%"><input class="inputbox" type="text" name="type" value="{TYPE}" size="10"/></td>
+				<td width="10%" align="right">{HTYPE_TT}</td>
+			</tr>
+			<tr>
+				<td>{HNOTES}</td>
+				<td><input class="inputbox" type="text" name="notes" value="{NOTES}" size="50"/></td>
+				<td align="right">{HNOTES_TT}</td>
+			</tr>
+			<tr>
+				<td>{HMAXIMUM}</td>
+				<td><input class="inputbox" type="text" name="maximum" value="{MAXIMUM}" size="3"/></td>
+				<td align="right">{HMAXIMUM_TT}</td>
 
-            </tr>
-            <tr>
-                <td>{HPOSNEG}</td>
-                <td>{POSNEG}</td>
-                <td align="right">{HPOSNEG_TT}</td>
-            </tr>
-            <tr>
-                <td>{HISPERCENTAGE}</td>
-                <td>{ISPERCENTAGE}</td>
-                <td align="right">{HISPERCENTAGE_TT}</td>
-            </tr>
-            <tr>
-                <td>{HVARIANCE}</td>
-                <td><input class="inputbox" type="text" name="variance" value="{VARIANCE}" size="3"/></td>
-                <td align="right">{HVARIANCE_TT}</td>
-            </tr>
-        </table>
-        <input type="hidden" name="typeid" value="{ID}"/>
-        <input type="hidden" name="task" value="saveCustomerType"/>
-        <input type="hidden" name="no_html" value="1"/>
-    </form>
+			</tr>
+			<tr>
+				<td>{HPOSNEG}</td>
+				<td>{POSNEG}</td>
+				<td align="right">{HPOSNEG_TT}</td>
+			</tr>
+			<tr>
+				<td>{HISPERCENTAGE}</td>
+				<td>{ISPERCENTAGE}</td>
+				<td align="right">{HISPERCENTAGE_TT}</td>
+			</tr>
+			<tr>
+				<td>{HVARIANCE}</td>
+				<td><input class="inputbox" type="text" name="variance" value="{VARIANCE}" size="3"/></td>
+				<td align="right">{HVARIANCE_TT}</td>
+			</tr>
+		</table>
+		<input type="hidden" name="typeid" value="{ID}"/>
+		<input type="hidden" name="task" value="saveCustomerType"/>
+		<input type="hidden" name="no_html" value="1"/>
+	</form>
 </patTemplate:tmpl>

@@ -13,13 +13,13 @@
 // full day names
 Calendar._DN = new Array
 ("Vasárnap",
- "Hétfõ",
- "Kedd",
- "Szerda",
- "Csütörtök",
- "Péntek",
- "Szombat",
- "Vasárnap");
+	"Hétfõ",
+	"Kedd",
+	"Szerda",
+	"Csütörtök",
+	"Péntek",
+	"Szombat",
+	"Vasárnap");
 
 // Please note that the following array of short day names (and the same goes
 // for short month names, _SMN) isn't absolutely necessary.  We give it here
@@ -36,63 +36,63 @@ Calendar._DN = new Array
 // short day names
 Calendar._SDN = new Array
 ("v",
- "h",
- "k",
- "sze",
- "cs",
- "p",
- "szo",
- "v");
+	"h",
+	"k",
+	"sze",
+	"cs",
+	"p",
+	"szo",
+	"v");
 
 // full month names
 Calendar._MN = new Array
 ("január",
- "február",
- "március",
- "április",
- "május",
- "június",
- "július",
- "augusztus",
- "szeptember",
- "október",
- "november",
- "december");
+	"február",
+	"március",
+	"április",
+	"május",
+	"június",
+	"július",
+	"augusztus",
+	"szeptember",
+	"október",
+	"november",
+	"december");
 
 // short month names
 Calendar._SMN = new Array
 ("jan",
- "feb",
- "már",
- "ápr",
- "máj",
- "jún",
- "júl",
- "aug",
- "sze",
- "okt",
- "nov",
- "dec");
+	"feb",
+	"már",
+	"ápr",
+	"máj",
+	"jún",
+	"júl",
+	"aug",
+	"sze",
+	"okt",
+	"nov",
+	"dec");
 
 // tooltips
 Calendar._TT = {};
 Calendar._TT["INFO"] = "A kalendáriumról";
 
 Calendar._TT["ABOUT"] =
-"DHTML dátum/idõ kiválasztó\n" +
-"(c) dynarch.com 2002-2005 / Author: Mihai Bazon\n" + // don't translate this this ;-)
-"a legfrissebb verzió megtalálható: http://www.dynarch.com/projects/calendar/\n" +
-"GNU LGPL alatt terjesztve.  Lásd a http://gnu.org/licenses/lgpl.html oldalt a részletekhez." +
-"\n\n" +
-"Dátum választás:\n" +
-"- használja a \xab, \xbb gombokat az év kiválasztásához\n" +
-"- használja a " + String.fromCharCode(0x2039) + ", " + String.fromCharCode(0x203a) + " gombokat a hónap kiválasztásához\n" +
-"- tartsa lenyomva az egérgombot a gyors választáshoz.";
+	"DHTML dátum/idõ kiválasztó\n" +
+		"(c) dynarch.com 2002-2005 / Author: Mihai Bazon\n" + // don't translate this this ;-)
+		"a legfrissebb verzió megtalálható: http://www.dynarch.com/projects/calendar/\n" +
+		"GNU LGPL alatt terjesztve.  Lásd a http://gnu.org/licenses/lgpl.html oldalt a részletekhez." +
+		"\n\n" +
+		"Dátum választás:\n" +
+		"- használja a \xab, \xbb gombokat az év kiválasztásához\n" +
+		"- használja a " + String.fromCharCode(0x2039) + ", " + String.fromCharCode(0x203a) + " gombokat a hónap kiválasztásához\n" +
+		"- tartsa lenyomva az egérgombot a gyors választáshoz.";
 Calendar._TT["ABOUT_TIME"] = "\n\n" +
-"Idõ választás:\n" +
-"- kattintva növelheti az idõt\n" +
-"- shift-tel kattintva csökkentheti\n" +
-"- lenyomva tartva és húzva gyorsabban kiválaszthatja.";
+	"Idõ választás:\n" +
+	"- kattintva növelheti az idõt\n" +
+	"- shift-tel kattintva csökkentheti\n" +
+	"- lenyomva tartva és húzva gyorsabban kiválaszthatja.";
 
 Calendar._TT["PREV_YEAR"] = "Elõzõ év (tartsa nyomva a menühöz)";
 Calendar._TT["PREV_MONTH"] = "Elõzõ hónap (tartsa nyomva a menühöz)";

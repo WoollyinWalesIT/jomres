@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -13,41 +14,41 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j16000review_publish
-    {
-    function j16000review_publish()
-        {
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j16000review_publish()
+		{
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
+			return;
+			}
 
-        $rating_id = (int) $_GET[ 'rating_id' ];
-        $state     = (int) $_GET[ 'state' ];
+		$rating_id = (int) $_GET[ 'rating_id' ];
+		$state     = (int) $_GET[ 'state' ];
 
-        if ( $rating_id > 0 )
-            {
-            jr_import( 'jomres_reviews' );
-            $Reviews = new jomres_reviews();
-            if ( $state == 0 ) $result = $Reviews->publish_review( $rating_id );
-            else
-            $result = $Reviews->unpublish_review( $rating_id );
-            if ( $result ) echo "1";
-            else
-            echo "0";
+		if ( $rating_id > 0 )
+			{
+			jr_import( 'jomres_reviews' );
+			$Reviews = new jomres_reviews();
+			if ( $state == 0 ) $result = $Reviews->publish_review( $rating_id );
+			else
+			$result = $Reviews->unpublish_review( $rating_id );
+			if ( $result ) echo "1";
+			else
+			echo "0";
 
-            return;
-            }
-        echo "2";
+			return;
+			}
+		echo "2";
 
-        return;
-        }
+		return;
+		}
 
 
-    function getRetVals()
-        {
-        return $this->retVals;
-        }
-    }
+	function getRetVals()
+		{
+		return $this->retVals;
+		}
+	}
