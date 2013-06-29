@@ -1,168 +1,168 @@
 /* Jomres CSS */
 .big-price {
-    font-weight: bold;
-    font-size: 150%;
-    display: block;
-    line-height: 120%;
+	font-weight: bold;
+	font-size: 150%;
+	display: block;
+	line-height: 120%;
 }
 
 .align-center {
-    text-align: center;
+	text-align: center;
 }
 
 .jomres_bt_tooltip_features, .jomres_bt_tooltip_room_type, .jomres_bt_tooltip_imageonly {
-    float: left;
-    padding: 5px;
+	float: left;
+	padding: 5px;
 }
 
 .jomres_dashboard a.jomres_bt_tooltip_features {
-    padding: 0;
+	padding: 0;
 }
 
 .property_details_buttons {
-    min-width: 219px !important;
+	min-width: 219px !important;
 }
 
 #jomres_content_area {
-    padding-bottom: 20px;
+	padding-bottom: 20px;
 }
 
 .jomres_message {
-    color: #ff0000;
+	color: #ff0000;
 }
 
 input[class^="jomres_te_"] {
-    width: 25px !important;
+	width: 25px !important;
 }
 
 .dataTable th {
-    color: #0088CC;
+	color: #0088CC;
 }
 
 .jomres-compare {
-    line-height: 27px;
+	line-height: 27px;
 }
 
 #jomres_content_area .well {
-    padding: 10px;
+	padding: 10px;
 }
 
 .jomres-propertylist-toolbar form {
-    margin: 0;
+	margin: 0;
 }
 
 .photoview-ptitle, .photoview-paddress {
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 @media (max-width: 768px) {
-    .photoview {
-        width: 100%;
-    }
+	.photoview {
+		width: 100%;
+	}
 
-    .photoview-image img {
-        max-height: 130px;
-    }
+	.photoview-image img {
+		max-height: 130px;
+	}
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
-    .photoview {
-        width: 31.3%;
-        margin-right: 10px;
-    }
+	.photoview {
+		width: 31.3%;
+		margin-right: 10px;
+	}
 
-    .photoview-image img {
-        height: 86px;
-    }
+	.photoview-image img {
+		height: 86px;
+	}
 }
 
 @media (min-width: 980px) and (max-width: 1199px) {
-    .photoview {
-        width: 31.8%;
-        margin-right: 10px;
-    }
+	.photoview {
+		width: 31.8%;
+		margin-right: 10px;
+	}
 
-    .photoview-image img {
-        height: 110px;
-    }
+	.photoview-image img {
+		height: 110px;
+	}
 }
 
 @media (min-width: 1200px) {
-    .photoview {
-        width: 31.9%;
-        margin-right: 10px;
-    }
+	.photoview {
+		width: 31.9%;
+		margin-right: 10px;
+	}
 
-    .photoview-image img {
-        height: 130px;
-    }
+	.photoview-image img {
+		height: 130px;
+	}
 }
 
 #toolbar .btn-primary {
-    width: 148px;
+	width: 148px;
 }
 
 .superior {
-    font-size: 16px;
-    font-style: italic;
+	font-size: 16px;
+	font-style: italic;
 }
 
 /* Availability Calendar */
 .calendar_background_quarter a, td.calendar_background_quarter {
-    background: #B1FB17 !important;
+	background: #B1FB17 !important;
 }
 
 .calendar_background_half a, td.calendar_background_half {
-    background: #FFFC17 !important;
+	background: #FFFC17 !important;
 }
 
 .calendar_background_threequarter a, td.calendar_background_threequarter {
-    background: #F88017 !important;
+	background: #F88017 !important;
 }
 
 .calendar_background_full a, td.calendar_background_full {
-    background: #FF0000 !important;
+	background: #FF0000 !important;
 }
 
 .arrival-select a#legend_dialog_opener {
-    font-size: 10px;
-    line-height: 10px;
-    margin-left: 5px;
-    font-weight: normal;
-    text-decoration: none;
+	font-size: 10px;
+	line-height: 10px;
+	margin-left: 5px;
+	font-weight: normal;
+	text-decoration: none;
 }
 
 table .rescal td, .rescal td, table .rescal_dashboard td, .rescal_dashboard td {
-    border: 1px solid #FFFFFF;
-    padding-bottom: 2px;
-    padding-top: 2px;
-    text-align: center;
-    width: 16px;
+	border: 1px solid #FFFFFF;
+	padding-bottom: 2px;
+	padding-top: 2px;
+	text-align: center;
+	width: 16px;
 }
 
 a.rescal:hover {
-    background-color: white;
-    color: black;
+	background-color: white;
+	color: black;
 }
 
 /* Radio Button Groups */
 .radio.btn-group input[type=radio] {
-    display: none;
+	display: none;
 }
 
 .radio.btn-group > label:first-of-type {
-    margin-left: 0;
-    -webkit-border-bottom-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    -webkit-border-top-left-radius: 4px;
-    border-top-left-radius: 4px;
-    -moz-border-radius-bottomleft: 4px;
-    -moz-border-radius-topleft: 4px;
+	margin-left: 0;
+	-webkit-border-bottom-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	-webkit-border-top-left-radius: 4px;
+	border-top-left-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-topleft: 4px;
 }
 
 fieldset.radio.btn-group {
-    padding-left: 0;
+	padding-left: 0;
 }

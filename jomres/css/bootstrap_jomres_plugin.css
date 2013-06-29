@@ -45,66 +45,66 @@ table.table thead .sorting_asc,
 table.table thead .sorting_desc,
 table.table thead .sorting_asc_disabled,
 table.table thead .sorting_desc_disabled {
-    cursor: pointer;
-    *cursor: hand;
+	cursor: pointer;
+	*cursor: hand;
 }
 
 table.table thead .sorting {
-    background: url('images/sort_both.png') no-repeat center right;
+	background: url('images/sort_both.png') no-repeat center right;
 }
 
 table.table thead .sorting_asc {
-    background: url('images/sort_asc.png') no-repeat center right;
+	background: url('images/sort_asc.png') no-repeat center right;
 }
 
 table.table thead .sorting_desc {
-    background: url('images/sort_desc.png') no-repeat center right;
+	background: url('images/sort_desc.png') no-repeat center right;
 }
 
 table.table thead .sorting_asc_disabled {
-    background: url('images/sort_asc_disabled.png') no-repeat center right;
+	background: url('images/sort_asc_disabled.png') no-repeat center right;
 }
 
 table.table thead .sorting_desc_disabled {
-    background: url('images/sort_desc_disabled.png') no-repeat center right;
+	background: url('images/sort_desc_disabled.png') no-repeat center right;
 }
 
 .input_90perc {
-    width: 90%
+	width: 90%
 }
 
 .input_80perc {
-    width: 80%
+	width: 80%
 }
 
 .input_70perc {
-    width: 70%
+	width: 70%
 }
 
 .input_60perc {
-    width: 60%
+	width: 60%
 }
 
 .input_50perc {
-    width: 50%
+	width: 50%
 }
 
 .input_40perc {
-    width: 40%
+	width: 40%
 }
 
 .input_30perc {
-    width: 30%
+	width: 30%
 }
 
 .input_20perc {
-    width: 20%
+	width: 20%
 }
 
 .input_10perc {
-    width: 10%
+	width: 10%
 }
 
 .input_5perc {
-    width: 5%
+	width: 5%
 }
