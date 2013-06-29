@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -20,82 +21,83 @@ jr_import( 'jomres_content_tabs' );
 #
  * Creates the Jomres config panel object
 #
+ *
  * @package Jomres
  * @since 2.6
 #
  */
 class jomres_configpanel extends jomres_content_tabs
-    {
-    /**
-    #
-     * Inserts the settings into the panes array
-    #
-     */
-    function insertSetting()
-        {
-        $rowclass = "";
-        if ( !$this->counter ) $this->counter = 0;
-        if ( !using_bootstrap() )
-            {
-            if ( $this->counter % 2 ) $rowclass = "odd";
-            else
-            $rowclass = "even";
-            $this->panes[ ] = '
+	{
+	/**
+	#
+	 * Inserts the settings into the panes array
+	#
+	 */
+	function insertSetting()
+		{
+		$rowclass = "";
+		if ( !$this->counter ) $this->counter = 0;
+		if ( !using_bootstrap() )
+			{
+			if ( $this->counter % 2 ) $rowclass = "odd";
+			else
+			$rowclass = "even";
+			$this->panes[ ] = '
 			<tr class="' . $rowclass . '">
 				<td width="30%">' . $this->left . '</td>
 				<td>' . $this->middle . '</td>
 				<td>' . $this->right . '</td>
 			</tr>
 			';
-            }
-        else
-            {
-            if ( $this->counter % 2 ) $rowclass = "row-even";
-            else
-            $rowclass = "row-odd";
-            $this->panes[ ] = '
+			}
+		else
+			{
+			if ( $this->counter % 2 ) $rowclass = "row-even";
+			else
+			$rowclass = "row-odd";
+			$this->panes[ ] = '
 			<div class="row-fluid ' . $rowclass . '">
 				<div class="span3">' . $this->left . '</div>
 				<div class="span4">' . $this->middle . '</div>
 				<div class="span5">' . $this->right . '</div>
 			</div>
 			';
-            }
-        $this->left   = "&nbsp;";
-        $this->middle = "&nbsp;";
-        $this->right  = "&nbsp;";
-        $this->counter++;
-        }
+			}
+		$this->left   = "&nbsp;";
+		$this->middle = "&nbsp;";
+		$this->right  = "&nbsp;";
+		$this->counter++;
+		}
 
-    /**
-    #
-     * setleft panel
-    #
-     */
-    function setleft( $val = "&nbsp;" )
-        {
-        $this->left = $val;
-        }
+	/**
+	#
+	 * setleft panel
+	#
+	 */
+	function setleft( $val = "&nbsp;" )
+		{
+		$this->left = $val;
+		}
 
-    /**
-    #
-     * setmiddle panel
-    #
-     */
-    function setmiddle( $val = "&nbsp;" )
-        {
-        $this->middle = $val;
-        }
+	/**
+	#
+	 * setmiddle panel
+	#
+	 */
+	function setmiddle( $val = "&nbsp;" )
+		{
+		$this->middle = $val;
+		}
 
-    /**
-    #
-     * setright panel
-    #
-     */
-    function setright( $val = "&nbsp;" )
-        {
-        $this->right = $val;
-        }
-    }
+	/**
+	#
+	 * setright panel
+	#
+	 */
+	function setright( $val = "&nbsp;" )
+		{
+		$this->right = $val;
+		}
+	}
 
 ?>

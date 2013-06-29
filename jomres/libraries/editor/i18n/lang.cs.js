@@ -70,7 +70,7 @@
 				"upload_action": "Nahrát nový soubor do aktualního adresáře",
 				"mkdir_action": "Vytvořit nový adresář",
 				"remove_action": "Odstranit tento soubor",
-				"rename_action": "Přejmenovat tento soubor" ,
+				"rename_action": "Přejmenovat tento soubor",
 				"delete_message": "Jste si jist, že chcete smazat tento soubor?",
 				"new_directory": "Nový adresář",
 				"previous_directory": "Vrať se do přechozího adresáře",

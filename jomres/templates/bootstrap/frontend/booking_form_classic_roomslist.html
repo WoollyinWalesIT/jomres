@@ -1,89 +1,89 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-    <patTemplate:comment>
-        Also possibly available to the template :
-        {HEADER_SMOKING} e.g. 'Smoking'
-        {HEADER_ROOMFLOOR} e.g. 'Floor'
-        {HEADER_FEATURES} e.g. 'Resource features list'
-        {HDESC} e.g. 'Tariff description'
-        {HSTARTS} e.g. 'Valid from'
-        {HENDS} e.g. 'Valid til'
-        {HMINDAYS} e.g. 'Minimum days'
-        {HMAXDAYS} e.g. 'Maximum days'
-        {HMINPEEPS} e.g. 'Min people'
-    </patTemplate:comment>
-    <table class="table table-striped" width="100%">
-        <thead>
-        <tr>
-            <th class="hidden-phone"></th>
-            <th class="hidden-phone">{HEADER_ROOMNUMBER}</th>
-            <th class="hidden-phone">{HEADER_IMAGE}</th>
-            <th class="hidden-phone">{HEADER_ROOMTYPE}</th>
-            <th class="hidden-phone">{HEADER_ROOMIMAGE}</th>
-            <th class="hidden-phone">{HEADER_ROOMNAME}</th>
-            <th class="hidden-phone">{HTITLE}</th>
-            <th class="hidden-phone">{HRATEPERNIGHT}</th>
-            <th class="hidden-phone">{HEADER_DISABLEDACCESS}</th>
-            <th class="hidden-phone">{HMAXPEEPS}</th>
-            <th class="hidden-desktop hidden-tablet"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <patTemplate:tmpl name="rows">
-            <tr>
-                <td class="hidden-phone">
-                    <div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);"
-                                                      onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );"
-                                                      class="btn {BUTTON_CLASS} btn-small" title="{CAPTION}"><i
-                            class="{ICON} icon-white"></i><!--{CAPTION}--></a></div>
-                </td>
-                <td class="hidden-phone"><a href="javascript:void(0);"
-                                            onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );">{ROOMNUMBER}</a>
-                </td>
-                <td class="hidden-phone"><img src="{ROOM_IMAGE}" height="30" width="30"/></td>
-                <td class="hidden-phone"><img src="{ROOM_TYPE_IMAGE}" height="30" width="30"/></td>
-                <td class="hidden-phone"><a href="javascript:void(0);"
-                                            onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{ROOMTYPE}</a>
-                </td>
-                <td class="hidden-phone"><a href="javascript:void(0);"
-                                            onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{ROOMNAME}</a>
-                </td>
-                <td class="hidden-phone"><a href="javascript:void(0);"
-                                            onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{TITLE}</a>
-                </td>
-                <td class="hidden-phone">{FORMATTED_PRICE}</td>
-                <td class="hidden-phone"><a href="javascript:void(0);"
-                                            onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{DISABLEDACCESS}</a>
-                </td>
-                <td class="hidden-phone"><a href="javascript:void(0);"
-                                            onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{MAXPEOPLE_INROOM}</a>
-                </td>
-                <td class="hidden-desktop hidden-tablet">
-                    <div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);"
-                                                      onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );"
-                                                      class="btn {BUTTON_CLASS} btn-small" title="{CAPTION}"><i
-                            class="{ICON}  icon-white"></i><!--{CAPTION}--></a> <!--{ROOMNAME}-->{ROOMTYPE} -
-                        {FORMATTED_PRICE}
-                    </div>
-                </td>
-            </tr>
-        </patTemplate:tmpl>
-        </tbody>
-    </table>
-    <patTemplate:comment>
-        Also possibly available to the template :
-        'VALIDFROM' e.g. '5th Jun 2012'
-        'VALIDTO' e.g. '7th Jun 2014'
-        'MINDAYS' e.g. '1'
-        'MAXDAYS' e.g. '10'
-        'MINPEOPLE' e.g. '1'
-        'RATEPERNIGHT' e.g. '100'
-        'TARIFF_ROOMTYPE' e.g. '3'
-        'SMOKING e.g. 'Yes'
-        'ROOMFLOOR e.g. '1'
-        'MAXPEOPLE e.g. '10'
-        'FEATURES e.g. 'Tea & Coffee Making facilities<br/>'
-        'FORMATTED_PRICE' => float 120
-        'ROOMTARIFFOUTPUTID e.g. '1^6'
-        'CAPTION e.g. 'Add to your selection'
-    </patTemplate:comment>
+	<patTemplate:comment>
+		Also possibly available to the template :
+		{HEADER_SMOKING} e.g. 'Smoking'
+		{HEADER_ROOMFLOOR} e.g. 'Floor'
+		{HEADER_FEATURES} e.g. 'Resource features list'
+		{HDESC} e.g. 'Tariff description'
+		{HSTARTS} e.g. 'Valid from'
+		{HENDS} e.g. 'Valid til'
+		{HMINDAYS} e.g. 'Minimum days'
+		{HMAXDAYS} e.g. 'Maximum days'
+		{HMINPEEPS} e.g. 'Min people'
+	</patTemplate:comment>
+	<table class="table table-striped" width="100%">
+		<thead>
+		<tr>
+			<th class="hidden-phone"></th>
+			<th class="hidden-phone">{HEADER_ROOMNUMBER}</th>
+			<th class="hidden-phone">{HEADER_IMAGE}</th>
+			<th class="hidden-phone">{HEADER_ROOMTYPE}</th>
+			<th class="hidden-phone">{HEADER_ROOMIMAGE}</th>
+			<th class="hidden-phone">{HEADER_ROOMNAME}</th>
+			<th class="hidden-phone">{HTITLE}</th>
+			<th class="hidden-phone">{HRATEPERNIGHT}</th>
+			<th class="hidden-phone">{HEADER_DISABLEDACCESS}</th>
+			<th class="hidden-phone">{HMAXPEEPS}</th>
+			<th class="hidden-desktop hidden-tablet"></th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows">
+			<tr>
+				<td class="hidden-phone">
+					<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);"
+													  onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );"
+													  class="btn {BUTTON_CLASS} btn-small" title="{CAPTION}"><i
+							class="{ICON} icon-white"></i><!--{CAPTION}--></a></div>
+				</td>
+				<td class="hidden-phone"><a href="javascript:void(0);"
+											onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );">{ROOMNUMBER}</a>
+				</td>
+				<td class="hidden-phone"><img src="{ROOM_IMAGE}" height="30" width="30"/></td>
+				<td class="hidden-phone"><img src="{ROOM_TYPE_IMAGE}" height="30" width="30"/></td>
+				<td class="hidden-phone"><a href="javascript:void(0);"
+											onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{ROOMTYPE}</a>
+				</td>
+				<td class="hidden-phone"><a href="javascript:void(0);"
+											onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{ROOMNAME}</a>
+				</td>
+				<td class="hidden-phone"><a href="javascript:void(0);"
+											onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{TITLE}</a>
+				</td>
+				<td class="hidden-phone">{FORMATTED_PRICE}</td>
+				<td class="hidden-phone"><a href="javascript:void(0);"
+											onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{DISABLEDACCESS}</a>
+				</td>
+				<td class="hidden-phone"><a href="javascript:void(0);"
+											onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{MAXPEOPLE_INROOM}</a>
+				</td>
+				<td class="hidden-desktop hidden-tablet">
+					<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);"
+													  onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );"
+													  class="btn {BUTTON_CLASS} btn-small" title="{CAPTION}"><i
+							class="{ICON}  icon-white"></i><!--{CAPTION}--></a> <!--{ROOMNAME}-->{ROOMTYPE} -
+						{FORMATTED_PRICE}
+					</div>
+				</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+	<patTemplate:comment>
+		Also possibly available to the template :
+		'VALIDFROM' e.g. '5th Jun 2012'
+		'VALIDTO' e.g. '7th Jun 2014'
+		'MINDAYS' e.g. '1'
+		'MAXDAYS' e.g. '10'
+		'MINPEOPLE' e.g. '1'
+		'RATEPERNIGHT' e.g. '100'
+		'TARIFF_ROOMTYPE' e.g. '3'
+		'SMOKING e.g. 'Yes'
+		'ROOMFLOOR e.g. '1'
+		'MAXPEOPLE e.g. '10'
+		'FEATURES e.g. 'Tea & Coffee Making facilities<br/>'
+		'FORMATTED_PRICE' => float 120
+		'ROOMTARIFFOUTPUTID e.g. '1^6'
+		'CAPTION e.g. 'Add to your selection'
+	</patTemplate:comment>
 </patTemplate:tmpl>

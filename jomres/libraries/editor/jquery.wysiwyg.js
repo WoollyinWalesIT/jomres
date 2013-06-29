@@ -67,11 +67,11 @@
 				tags: ["a"],
 				tooltip: "Create link"
 			},
-			
-			unLink : {
+
+			unLink: {
 				groupIndex: 6,
 				visible: true,
-				exec : function() {
+				exec: function () {
 					this.editorDoc.execCommand("unlink", false, null);
 				},
 				tooltip: "Remove link"
@@ -107,7 +107,7 @@
 				groupIndex: 7,
 				visible: true,
 				className: "h2",
-				command: ($.browser.msie || $.browser.safari)	? "FormatBlock" : "heading",
+				command: ($.browser.msie || $.browser.safari) ? "FormatBlock" : "heading",
 				"arguments": ($.browser.msie || $.browser.safari) ? "<h2>" : "h2",
 				tags: ["h2"],
 				tooltip: "Header 2"
@@ -124,10 +124,10 @@
 			},
 
 			highlight: {
-				tooltip:     "Highlight",
-				className:   "highlight",
-				groupIndex:  1,
-				visible:     false,
+				tooltip: "Highlight",
+				className: "highlight",
+				groupIndex: 1,
+				visible: false,
 				css: {
 					backgroundColor: "rgb(255, 255, 102)"
 				},
@@ -155,7 +155,7 @@
 					}
 
 					if (node.style.backgroundColor === "rgb(255, 255, 102)" ||
-							node.style.backgroundColor === "#ffff66") {
+						node.style.backgroundColor === "#ffff66") {
 						args = "#ffffff";
 					} else {
 						args = "#ffff66";
@@ -191,7 +191,7 @@
 								alsoResize: this.editor
 							}, this.options.resizeOptions));
 						}
-						
+
 						this.ui.toolbar.find("li").each(function () {
 							var li = $(this);
 
@@ -205,12 +205,12 @@
 						this.saveContent();
 
 						$(this.original).css({
-							width:	this.element.outerWidth() - 6,
+							width: this.element.outerWidth() - 6,
 							height: this.element.height() - this.ui.toolbar.height() - 6,
 							resize: "none"
 						}).show();
 						this.editor.hide();
-						
+
 						if (this.options.resizeOptions && $.fn.resizable) {
 							// if element.height still the same after frame was hidden
 							if (elementHeight === this.element.height()) {
@@ -376,7 +376,7 @@
 					$(p).attr("dir", "ltr");
 					return true;
 				},
-				tooltip : "Left to Right"
+				tooltip: "Left to Right"
 			},
 
 			outdent: {
@@ -429,7 +429,7 @@
 					$(p).attr("dir", "rtl");
 					return true;
 				},
-				tooltip : "Right to Left"
+				tooltip: "Right to Left"
 			},
 
 			strikeThrough: {
@@ -474,12 +474,12 @@
 			},
 
 			code: {
-				visible : true,
+				visible: true,
 				groupIndex: 6,
 				tooltip: "Code snippet",
 				exec: function () {
-					var range	= this.getInternalRange(),
-						common	= $(range.commonAncestorContainer),
+					var range = this.getInternalRange(),
+						common = $(range.commonAncestorContainer),
 						$nodeName = range.commonAncestorContainer.nodeName.toLowerCase();
 					if (common.parent("code").length) {
 						common.unwrap();
@@ -490,20 +490,20 @@
 					}
 				}
 			},
-			
+
 			cssWrap: {
-				visible : false,
+				visible: false,
 				groupIndex: 6,
 				tooltip: "CSS Wrapper",
-				exec: function () { 
+				exec: function () {
 					$.wysiwyg.controls.cssWrap.init(this);
 				}
 			}
-			
+
 		};
 
 		this.defaults = {
-html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" style="margin:0"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body style="margin:0;">INITIAL_CONTENT</body></html>',
+			html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" style="margin:0"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body style="margin:0;">INITIAL_CONTENT</body></html>',
 			debug: false,
 			controls: {},
 			css: {},
@@ -544,8 +544,8 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 					rmMsWordMarkup: false
 				}
 			},
-			
-			dialog : "default"
+
+			dialog: "default"
 		};
 
 		//these properties are set from control hashes
@@ -565,37 +565,37 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 			"visible"
 		];
 
-		this.editor			= null;  //jquery iframe holder
-		this.editorDoc		= null;
-		this.element		= null;
-		this.options		= {};
-		this.original		= null;
-		this.savedRange		= null;
-		this.timers			= [];
-		this.validKeyCodes	= [8, 9, 13, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46];
+		this.editor = null;  //jquery iframe holder
+		this.editorDoc = null;
+		this.element = null;
+		this.options = {};
+		this.original = null;
+		this.savedRange = null;
+		this.timers = [];
+		this.validKeyCodes = [8, 9, 13, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46];
 
-		this.isDestroyed	= false;
+		this.isDestroyed = false;
 
-		this.dom		= { // DOM related properties and methods
-			ie:		{
+		this.dom = { // DOM related properties and methods
+			ie: {
 				parent: null // link to dom
 			},
-			w3c:	{
+			w3c: {
 				parent: null // link to dom
 			}
 		};
-		this.dom.parent		= this;
-		this.dom.ie.parent	= this.dom;
-		this.dom.w3c.parent	= this.dom;
+		this.dom.parent = this;
+		this.dom.ie.parent = this.dom;
+		this.dom.w3c.parent = this.dom;
 
-		this.ui			= {};	// UI related properties and methods
-		this.ui.self	= this;
-		this.ui.toolbar	= null;
+		this.ui = {};	// UI related properties and methods
+		this.ui.self = this;
+		this.ui.toolbar = null;
 		this.ui.initialHeight = null; // ui.grow
 
 		this.dom.getAncestor = function (element, filterTagName) {
 			filterTagName = filterTagName.toLowerCase();
-			
+
 			while (element && typeof element.tagName != "undefined" && "body" !== element.tagName.toLowerCase()) {
 				if (filterTagName === element.tagName.toLowerCase()) {
 					return element;
@@ -603,17 +603,17 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 
 				element = element.parentNode;
 			}
-			if(!element.tagName && (element.previousSibling || element.nextSibling)) {
-				if(element.previousSibling) {
-					if(element.previousSibling.tagName.toLowerCase() == filterTagName) {
+			if (!element.tagName && (element.previousSibling || element.nextSibling)) {
+				if (element.previousSibling) {
+					if (element.previousSibling.tagName.toLowerCase() == filterTagName) {
 						return element.previousSibling;
 					}
-				}	
-				if(element.nextSibling) {
-					if(element.nextSibling.tagName.toLowerCase() == filterTagName) {
+				}
+				if (element.nextSibling) {
+					if (element.nextSibling.tagName.toLowerCase() == filterTagName) {
 						return element.nextSibling;
 					}
-				}	
+				}
 			}
 
 			return null;
@@ -621,8 +621,8 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 
 		this.dom.getElement = function (filterTagName) {
 			var dom = this;
-			
-			filterTagName = filterTagName.toLowerCase();			
+
+			filterTagName = filterTagName.toLowerCase();
 
 			if (window.getSelection) {
 				return dom.w3c.getElement(filterTagName);
@@ -632,9 +632,9 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 		};
 
 		this.dom.ie.getElement = function (filterTagName) {
-			var dom			= this.parent,
-				selection	= dom.parent.getInternalSelection(),
-				range		= selection.createRange(),
+			var dom = this.parent,
+				selection = dom.parent.getInternalSelection(),
+				range = selection.createRange(),
 				element;
 
 			if ("Control" === selection.type) {
@@ -653,15 +653,15 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 		};
 
 		this.dom.w3c.getElement = function (filterTagName) {
-			var dom		= this.parent,
-				range	= dom.parent.getInternalRange(),
+			var dom = this.parent,
+				range = dom.parent.getInternalRange(),
 				element;
-				
+
 			if (!range) {
 				return null;
 			}
 
-			element	= range.commonAncestorContainer;
+			element = range.commonAncestorContainer;
 
 			if (3 === element.nodeType) {
 				element = element.parentNode;
@@ -673,18 +673,18 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 			if (element === range.startContainer) {
 				element = element.childNodes[range.startOffset];
 			}
-			
-			if(!element.tagName && (element.previousSibiling || element.nextSibling)) {
-				if(element.previousSibiling) {
-					if(element.previousSibiling.tagName.toLowerCase() == filterTagName) {
+
+			if (!element.tagName && (element.previousSibiling || element.nextSibling)) {
+				if (element.previousSibiling) {
+					if (element.previousSibiling.tagName.toLowerCase() == filterTagName) {
 						return element.previousSibiling;
 					}
-				}	
-				if(element.nextSibling) {
-					if(element.nextSibling.tagName.toLowerCase() == filterTagName) {
+				}
+				if (element.nextSibling) {
+					if (element.nextSibling.tagName.toLowerCase() == filterTagName) {
 						return element.nextSibling;
 					}
-				}	
+				}
 			}
 
 			return dom.getAncestor(element, filterTagName);
@@ -698,7 +698,7 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 			var ui = this,
 				self = this.self,
 				controls = self.parseControls(),
-				hasVisibleControls	= true, // to prevent separator before first item
+				hasVisibleControls = true, // to prevent separator before first item
 				groups = [],
 				controlsByGroup = {},
 				i,
@@ -789,8 +789,8 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 					self.triggerControl.apply(self, [name, control]);
 
 					/**
-					* @link https://github.com/akzhan/jwysiwyg/issues/219
-					*/
+					 * @link https://github.com/akzhan/jwysiwyg/issues/219
+					 */
 					var $target = $(event.target);
 					for (var controlName in self.controls) {
 						if ($target.hasClass(controlName)) {
@@ -799,7 +799,7 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 							break;
 						}
 					}
-                    
+
 					this.blur();
 					self.ui.returnRange();
 					self.ui.focus();
@@ -917,30 +917,32 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 			var attempts = 3,
 				self = this.self,
 				runner;
-				runner = function (attempts) {
-					if ("on" === self.editorDoc.designMode) {
-						if (self.timers.designMode) {
-							window.clearTimeout(self.timers.designMode);
-						}
-
-						// IE needs to reget the document element (this.editorDoc) after designMode was set
-						if (self.innerDocument() !== self.editorDoc) {
-							self.ui.initFrame();
-						}
-
-						return;
+			runner = function (attempts) {
+				if ("on" === self.editorDoc.designMode) {
+					if (self.timers.designMode) {
+						window.clearTimeout(self.timers.designMode);
 					}
 
-					try {
-						self.editorDoc.designMode = "on";
-					} catch (e) {
+					// IE needs to reget the document element (this.editorDoc) after designMode was set
+					if (self.innerDocument() !== self.editorDoc) {
+						self.ui.initFrame();
 					}
 
-					attempts -= 1;
-					if (attempts > 0) {
-						self.timers.designMode = window.setTimeout(function () { runner(attempts); }, 100);
-					}
-				};
+					return;
+				}
+
+				try {
+					self.editorDoc.designMode = "on";
+				} catch (e) {
+				}
+
+				attempts -= 1;
+				if (attempts > 0) {
+					self.timers.designMode = window.setTimeout(function () {
+						runner(attempts);
+					}, 100);
+				}
+			};
 
 			runner(attempts);
 		};
@@ -1041,7 +1043,7 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 		this.increaseFontSize = function () {
 			if ($.browser.mozilla || $.browser.opera) {
 				this.editorDoc.execCommand("increaseFontSize", false, null);
-			} else if ($.browser.safari) {				
+			} else if ($.browser.safari) {
 				var Range = this.getInternalRange(),
 					Selection = this.getInternalSelection(),
 					newNode = this.editorDoc.createElement("big");
@@ -1080,10 +1082,10 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 					var text = Range.commonAncestorContainer.nodeValue.toString(),
 						start = text.lastIndexOf(" ", Range.startOffset) + 1,
 						end = (-1 === text.indexOf(" ", Range.startOffset)) ? text : text.indexOf(" ", Range.startOffset);
-	
+
 					Range.setStart(Range.commonAncestorContainer, start);
 					Range.setEnd(Range.commonAncestorContainer, end);
-	
+
 					Range.surroundContents(newNode);
 					Selection.addRange(Range);
 				} else {
@@ -1102,35 +1104,35 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 			}
 			return this.events.filter('getContent', this.editorDoc.body.innerHTML);
 		};
-		
+
 		/**
 		 * A jWysiwyg specific event system.
 		 *
 		 * Example:
-		 * 
+		 *
 		 * $("#editor").getWysiwyg().events.bind("getContent", function (orig) {
 		 *     return "<div id='content'>"+orgi+"</div>";
 		 * });
-		 * 
+		 *
 		 * This makes it so that when ever getContent is called, it is wrapped in a div#content.
 		 */
 		this.events = {
-			_events : {},
-			
+			_events: {},
+
 			/**
 			 * Similar to jQuery's bind, but for jWysiwyg only.
 			 */
-			bind : function (eventName, callback) {
+			bind: function (eventName, callback) {
 				if (typeof (this._events.eventName) !== "object") {
 					this._events[eventName] = [];
 				}
 				this._events[eventName].push(callback);
 			},
-			
+
 			/**
 			 * Similar to jQuery's trigger, but for jWysiwyg only.
 			 */
-			trigger : function (eventName, args) {
+			trigger: function (eventName, args) {
 				if (typeof (this._events.eventName) === "object") {
 					var editor = this.editor;
 					$.each(this._events[eventName], function (k, v) {
@@ -1140,14 +1142,14 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 					});
 				}
 			},
-			
+
 			/**
 			 * This "filters" `originalText` by passing it as the first argument to every callback
 			 * with the name `eventName` and taking the return value and passing it to the next function.
 			 *
 			 * This function returns the result after all the callbacks have been applied to `originalText`.
 			 */
-			filter : function (eventName, originalText) {
+			filter: function (eventName, originalText) {
 				if (typeof (this._events[eventName]) === "object") {
 					var editor = this.editor,
 						args = Array.prototype.slice.call(arguments, 1);
@@ -1262,9 +1264,9 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 				newY = (element.height || element.clientHeight || 0)
 				;
 
-			this.options	= this.extendOptions(options);
-			this.original	= element;
-			this.ui.toolbar	= $(this.options.toolbarHtml);
+			this.options = this.extendOptions(options);
+			this.original = element;
+			this.ui.toolbar = $(this.options.toolbarHtml);
 
 			if ($.browser.msie && parseInt($.browser.version, 10) < 8) {
 				this.options.autoGrow = false;
@@ -1291,13 +1293,13 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 					this.editor.css("height", newY.toString() + "px");
 				}
 			}
-			/** 
-			 * Automagically add id to iframe if textarea has its own when possible 
+			/**
+			 * Automagically add id to iframe if textarea has its own when possible
 			 * ( http://github.com/akzhan/jwysiwyg/issues/245 )
 			 */
 			if (element.id) {
 				var proposedId = element.id + '-wysiwyg-iframe';
-				if (! document.getElementById(proposedId)) {
+				if (!document.getElementById(proposedId)) {
 					this.editor.attr('id', proposedId);
 				}
 			}
@@ -1332,10 +1334,14 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 			}
 
 			if (this.options.autoSave) {
-				$form.bind("submit.wysiwyg", function () { self.autoSaveFunction(); });
+				$form.bind("submit.wysiwyg", function () {
+					self.autoSaveFunction();
+				});
 			}
 
-			$form.bind("reset.wysiwyg", function () { self.resetFunction(); });
+			$form.bind("reset.wysiwyg", function () {
+				self.resetFunction();
+			});
 		};
 
 		this.ui.initFrame = function () {
@@ -1362,10 +1368,12 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 			self.editorDoc.open();
 			self.editorDoc.write(
 				self.options.html
-					/**
-					 * @link http://code.google.com/p/jwysiwyg/issues/detail?id=144
-					 */
-					.replace(/INITIAL_CONTENT/, function () { return self.wrapInitialContent(); })
+				/**
+				 * @link http://code.google.com/p/jwysiwyg/issues/detail?id=144
+				 */
+					.replace(/INITIAL_CONTENT/, function () {
+						return self.wrapInitialContent();
+					})
 			);
 			self.editorDoc.close();
 
@@ -1377,29 +1385,31 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 				self.ui.checkTargets(event.target ? event.target : event.srcElement);
 			});
 
-            /**
-             * @link https://github.com/akzhan/jwysiwyg/issues/251
-             */
-            setInterval(function () {
-                var offset = null;
+			/**
+			 * @link https://github.com/akzhan/jwysiwyg/issues/251
+			 */
+			setInterval(function () {
+				var offset = null;
 
-                try {
-                    var range = self.getInternalRange();
-                    if (range) {
-                        offset = {
-                            range: range,
-                            parent: $.browser.msie ? range.parentElement() : range.endContainer.parentNode,
-                            width: ($.browser.msie ? range.boundingWidth : range.startOffset - range.endOffset) || 0
-                        };
-                    }
-                }
-                catch (e) { console.error(e); }
+				try {
+					var range = self.getInternalRange();
+					if (range) {
+						offset = {
+							range: range,
+							parent: $.browser.msie ? range.parentElement() : range.endContainer.parentNode,
+							width: ($.browser.msie ? range.boundingWidth : range.startOffset - range.endOffset) || 0
+						};
+					}
+				}
+				catch (e) {
+					console.error(e);
+				}
 
-                if (offset && offset.width == 0 && !self.editorDoc.rememberCommand) {
-                    self.ui.checkTargets(offset.parent);
-                }
-            }, 400);
-            
+				if (offset && offset.width == 0 && !self.editorDoc.rememberCommand) {
+					self.ui.checkTargets(offset.parent);
+				}
+			}, 400);
+
 			/**
 			 * @link http://code.google.com/p/jwysiwyg/issues/detail?id=20
 			 */
@@ -1419,20 +1429,20 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 						return false;
 					}
 				}
-                
-                self.editorDoc.rememberCommand = false;
+
+				self.editorDoc.rememberCommand = false;
 				return true;
 			});
 
 			if (!$.browser.msie) {
 				$(self.editorDoc).keydown(function (event) {
 					var controlName;
-                    			var control;
+					var control;
 
 					/* Meta for Macs. tom@punkave.com */
 					if (event.ctrlKey || event.metaKey) {
 						for (controlName in self.options.controls) {
-                            				control = self.options.controls[controlName];
+							control = self.options.controls[controlName];
 							if (control.hotkey && control.hotkey.ctrl) {
 								if (event.keyCode === control.hotkey.key) {
 									self.triggerControl.apply(self, [controlName, control]);
@@ -1477,10 +1487,18 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 			}
 
 			if (self.options.autoSave) {
-				$(self.editorDoc).keydown(function () { self.autoSaveFunction(); })
-					.keyup(function () { self.autoSaveFunction(); })
-					.mousedown(function () { self.autoSaveFunction(); })
-					.bind($.support.noCloneEvent ? "input.wysiwyg" : "paste.wysiwyg", function () { self.autoSaveFunction(); });
+				$(self.editorDoc).keydown(function () {
+					self.autoSaveFunction();
+				})
+					.keyup(function () {
+						self.autoSaveFunction();
+					})
+					.mousedown(function () {
+						self.autoSaveFunction();
+					})
+					.bind($.support.noCloneEvent ? "input.wysiwyg" : "paste.wysiwyg", function () {
+						self.autoSaveFunction();
+					});
 			}
 
 			if (self.options.autoGrow) {
@@ -1507,14 +1525,14 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 					if ($.browser.msie) {
 						stylesheet = self.editorDoc.createStyleSheet(self.options.css);
 						$(stylesheet).attr({
-							"media":	"all"
+							"media": "all"
 						});
 					} else {
 						stylesheet = $("<link/>").attr({
-							"href":		self.options.css,
-							"media":	"all",
-							"rel":		"stylesheet",
-							"type":		"text/css"
+							"href": self.options.css,
+							"media": "all",
+							"rel": "stylesheet",
+							"type": "text/css"
 						});
 
 						$(self.editorDoc).find("head").append(stylesheet);
@@ -1541,11 +1559,11 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 					}
 				});
 			}
-			
+
 			// Support event callbacks
 			$.each(self.options.events, function (key, handler) {
 				$(self.editorDoc).bind(key + ".wysiwyg", function (event) {
-					// Trigger event handler, providing the event and api to 
+					// Trigger event handler, providing the event and api to
 					// support additional functionality.
 					handler.apply(self.editorDoc, [event, self]);
 				});
@@ -1579,12 +1597,12 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 					$(self.editorDoc).bind("cut.wysiwyg", saveHandler);
 				}
 			}
-			
+
 			/**
 			 * XHTML5 {@link https://github.com/akzhan/jwysiwyg/issues/152}
 			 */
 			if (self.options.xhtml5 && self.options.unicode) {
-				var replacements = {ne:8800,le:8804,para:182,xi:958,darr:8595,nu:957,oacute:243,Uacute:218,omega:969,prime:8242,pound:163,igrave:236,thorn:254,forall:8704,emsp:8195,lowast:8727,brvbar:166,alefsym:8501,nbsp:160,delta:948,clubs:9827,lArr:8656,Omega:937,Auml:196,cedil:184,and:8743,plusmn:177,ge:8805,raquo:187,uml:168,equiv:8801,laquo:171,rdquo:8221,Epsilon:917,divide:247,fnof:402,chi:967,Dagger:8225,iacute:237,rceil:8969,sigma:963,Oslash:216,acute:180,frac34:190,lrm:8206,upsih:978,Scaron:352,part:8706,exist:8707,nabla:8711,image:8465,prop:8733,zwj:8205,omicron:959,aacute:225,Yuml:376,Yacute:221,weierp:8472,rsquo:8217,otimes:8855,kappa:954,thetasym:977,harr:8596,Ouml:214,Iota:921,ograve:242,sdot:8901,copy:169,oplus:8853,acirc:226,sup:8835,zeta:950,Iacute:205,Oacute:211,crarr:8629,Nu:925,bdquo:8222,lsquo:8216,apos:39,Beta:914,eacute:233,egrave:232,lceil:8968,Kappa:922,piv:982,Ccedil:199,ldquo:8220,Xi:926,cent:162,uarr:8593,hellip:8230,Aacute:193,ensp:8194,sect:167,Ugrave:217,aelig:230,ordf:170,curren:164,sbquo:8218,macr:175,Phi:934,Eta:919,rho:961,Omicron:927,sup2:178,euro:8364,aring:229,Theta:920,mdash:8212,uuml:252,otilde:245,eta:951,uacute:250,rArr:8658,nsub:8836,agrave:224,notin:8713,ndash:8211,Psi:936,Ocirc:212,sube:8838,szlig:223,micro:181,not:172,sup1:185,middot:183,iota:953,ecirc:234,lsaquo:8249,thinsp:8201,sum:8721,ntilde:241,scaron:353,cap:8745,atilde:227,lang:10216,__replacement:65533,isin:8712,gamma:947,Euml:203,ang:8736,upsilon:965,Ntilde:209,hearts:9829,Alpha:913,Tau:932,spades:9824,dagger:8224,THORN:222,"int":8747,lambda:955,Eacute:201,Uuml:220,infin:8734,rlm:8207,Aring:197,ugrave:249,Egrave:200,Acirc:194,rsaquo:8250,ETH:208,oslash:248,alpha:945,Ograve:210,Prime:8243,mu:956,ni:8715,real:8476,bull:8226,beta:946,icirc:238,eth:240,prod:8719,larr:8592,ordm:186,perp:8869,Gamma:915,reg:174,ucirc:251,Pi:928,psi:968,tilde:732,asymp:8776,zwnj:8204,Agrave:192,deg:176,AElig:198,times:215,Delta:916,sim:8764,Otilde:213,Mu:924,uArr:8657,circ:710,theta:952,Rho:929,sup3:179,diams:9830,tau:964,Chi:935,frac14:188,oelig:339,shy:173,or:8744,dArr:8659,phi:966,iuml:239,Lambda:923,rfloor:8971,iexcl:161,cong:8773,ccedil:231,Icirc:206,frac12:189,loz:9674,rarr:8594,cup:8746,radic:8730,frasl:8260,euml:235,OElig:338,hArr:8660,Atilde:195,Upsilon:933,there4:8756,ouml:246,oline:8254,Ecirc:202,yacute:253,auml:228,permil:8240,sigmaf:962,iquest:191,empty:8709,pi:960,Ucirc:219,supe:8839,Igrave:204,yen:165,rang:10217,trade:8482,lfloor:8970,minus:8722,Zeta:918,sub:8834,epsilon:949,yuml:255,Sigma:931,Iuml:207,ocirc:244};
+				var replacements = {ne: 8800, le: 8804, para: 182, xi: 958, darr: 8595, nu: 957, oacute: 243, Uacute: 218, omega: 969, prime: 8242, pound: 163, igrave: 236, thorn: 254, forall: 8704, emsp: 8195, lowast: 8727, brvbar: 166, alefsym: 8501, nbsp: 160, delta: 948, clubs: 9827, lArr: 8656, Omega: 937, Auml: 196, cedil: 184, and: 8743, plusmn: 177, ge: 8805, raquo: 187, uml: 168, equiv: 8801, laquo: 171, rdquo: 8221, Epsilon: 917, divide: 247, fnof: 402, chi: 967, Dagger: 8225, iacute: 237, rceil: 8969, sigma: 963, Oslash: 216, acute: 180, frac34: 190, lrm: 8206, upsih: 978, Scaron: 352, part: 8706, exist: 8707, nabla: 8711, image: 8465, prop: 8733, zwj: 8205, omicron: 959, aacute: 225, Yuml: 376, Yacute: 221, weierp: 8472, rsquo: 8217, otimes: 8855, kappa: 954, thetasym: 977, harr: 8596, Ouml: 214, Iota: 921, ograve: 242, sdot: 8901, copy: 169, oplus: 8853, acirc: 226, sup: 8835, zeta: 950, Iacute: 205, Oacute: 211, crarr: 8629, Nu: 925, bdquo: 8222, lsquo: 8216, apos: 39, Beta: 914, eacute: 233, egrave: 232, lceil: 8968, Kappa: 922, piv: 982, Ccedil: 199, ldquo: 8220, Xi: 926, cent: 162, uarr: 8593, hellip: 8230, Aacute: 193, ensp: 8194, sect: 167, Ugrave: 217, aelig: 230, ordf: 170, curren: 164, sbquo: 8218, macr: 175, Phi: 934, Eta: 919, rho: 961, Omicron: 927, sup2: 178, euro: 8364, aring: 229, Theta: 920, mdash: 8212, uuml: 252, otilde: 245, eta: 951, uacute: 250, rArr: 8658, nsub: 8836, agrave: 224, notin: 8713, ndash: 8211, Psi: 936, Ocirc: 212, sube: 8838, szlig: 223, micro: 181, not: 172, sup1: 185, middot: 183, iota: 953, ecirc: 234, lsaquo: 8249, thinsp: 8201, sum: 8721, ntilde: 241, scaron: 353, cap: 8745, atilde: 227, lang: 10216, __replacement: 65533, isin: 8712, gamma: 947, Euml: 203, ang: 8736, upsilon: 965, Ntilde: 209, hearts: 9829, Alpha: 913, Tau: 932, spades: 9824, dagger: 8224, THORN: 222, "int": 8747, lambda: 955, Eacute: 201, Uuml: 220, infin: 8734, rlm: 8207, Aring: 197, ugrave: 249, Egrave: 200, Acirc: 194, rsaquo: 8250, ETH: 208, oslash: 248, alpha: 945, Ograve: 210, Prime: 8243, mu: 956, ni: 8715, real: 8476, bull: 8226, beta: 946, icirc: 238, eth: 240, prod: 8719, larr: 8592, ordm: 186, perp: 8869, Gamma: 915, reg: 174, ucirc: 251, Pi: 928, psi: 968, tilde: 732, asymp: 8776, zwnj: 8204, Agrave: 192, deg: 176, AElig: 198, times: 215, Delta: 916, sim: 8764, Otilde: 213, Mu: 924, uArr: 8657, circ: 710, theta: 952, Rho: 929, sup3: 179, diams: 9830, tau: 964, Chi: 935, frac14: 188, oelig: 339, shy: 173, or: 8744, dArr: 8659, phi: 966, iuml: 239, Lambda: 923, rfloor: 8971, iexcl: 161, cong: 8773, ccedil: 231, Icirc: 206, frac12: 189, loz: 9674, rarr: 8594, cup: 8746, radic: 8730, frasl: 8260, euml: 235, OElig: 338, hArr: 8660, Atilde: 195, Upsilon: 933, there4: 8756, ouml: 246, oline: 8254, Ecirc: 202, yacute: 253, auml: 228, permil: 8240, sigmaf: 962, iquest: 191, empty: 8709, pi: 960, Ucirc: 219, supe: 8839, Igrave: 204, yen: 165, rang: 10217, trade: 8482, lfloor: 8970, minus: 8722, Zeta: 918, sub: 8834, epsilon: 949, yuml: 255, Sigma: 931, Iuml: 207, ocirc: 244};
 				self.events.bind("getContent", function (text) {
 					return text.replace(/&(?:amp;)?(?!amp|lt|gt|quot)([a-z][a-z0-9]*);/gi, function (str, p1) {
 						if (!replacements[p1]) {
@@ -1593,7 +1611,7 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 								p1 = "__replacement";
 							}
 						}
-						
+
 						var num = replacements[p1];
 						/* Numeric return if ever wanted: return replacements[p1] ? "&#"+num+";" : ""; */
 						return String.fromCharCode(num);
@@ -1656,18 +1674,18 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 					if (!this.editorDoc.execCommand("insertHTML", false, szHTML)) {
 						this.editor.focus();
 						/* :TODO: place caret at the end
-						if (window.getSelection) {
-						} else {
-						}
-						this.editor.focus();
-						*/
+						 if (window.getSelection) {
+						 } else {
+						 }
+						 this.editor.focus();
+						 */
 						this.editorDoc.execCommand("insertHTML", false, szHTML);
 					}
 				}
 			}
 
 			this.saveContent();
-			
+
 			return this;
 		};
 
@@ -1722,8 +1740,7 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 		};
 
 		this.saveContent = function () {
-			if (this.viewHTML)
-			{
+			if (this.viewHTML) {
 				return; // no need
 			}
 			if (this.original) {
@@ -1755,7 +1772,7 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 							element.replaceWith(p);
 						}
 					});
-					
+
 					content = newContent.html();
 				}
 
@@ -1913,9 +1930,9 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 
 			return oWysiwyg.getContent();
 		},
-    
-    		getSelection: function (object) {
-  			// no chains because of return
+
+		getSelection: function (object) {
+			// no chains because of return
 			var oWysiwyg = object.data("wysiwyg");
 
 			if (!oWysiwyg) {
@@ -2119,7 +2136,10 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 		},
 
 		utils: {
-			extraSafeEntities: [["<", ">", "'", '"', " "], [32]],
+			extraSafeEntities: [
+				["<", ">", "'", '"', " "],
+				[32]
+			],
 
 			encodeEntities: function (str) {
 				var self = this, aStr, aRet = [];
@@ -2146,7 +2166,7 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 
 	/**
 	 * Unifies dialog methods to allow custom implementations
-	 * 
+	 *
 	 * Events:
 	 *     * afterOpen
 	 *     * beforeShow
@@ -2155,29 +2175,29 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 	 *     * afterHide
 	 *     * beforeClose
 	 *     * afterClose
-	 * 
+	 *
 	 * Example:
 	 * var dialog = new ($.wysiwyg.dialog)($('#idToTextArea').data('wysiwyg'), {"title": "Test", "content": "form data, etc."});
-	 * 
+	 *
 	 * dialog.bind("afterOpen", function () { alert('you should see a dialog behind this one!'); });
-	 * 
+	 *
 	 * dialog.open();
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	$.wysiwyg.dialog = function (jWysiwyg, opts) {
-		
-		var theme	= (jWysiwyg && jWysiwyg.options && jWysiwyg.options.dialog) ? jWysiwyg.options.dialog : (opts.theme ? opts.theme : "default"),
-			obj		= new $.wysiwyg.dialog.createDialog(theme),
-			that	= this,
-			$that	= $(that);
-				
+
+		var theme = (jWysiwyg && jWysiwyg.options && jWysiwyg.options.dialog) ? jWysiwyg.options.dialog : (opts.theme ? opts.theme : "default"),
+			obj = new $.wysiwyg.dialog.createDialog(theme),
+			that = this,
+			$that = $(that);
+
 		this.options = {
 			"modal": true,
 			"draggable": true,
 			"title": "Title",
 			"content": "Content",
-			"width":  "auto",
+			"width": "auto",
 			"height": "auto",
 			"zIndex": 2000,
 			"open": false,
@@ -2198,39 +2218,39 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 			var $dialog = obj.show.apply(that, []);
 
 			$that.trigger("afterOpen", [$dialog]);
-			
+
 		};
 
 		this.show = function () {
 			this.isOpen = true;
-			
+
 			$that.trigger("beforeShow");
-			
+
 			var $dialog = obj.show.apply(that, []);
-			
+
 			$that.trigger("afterShow");
 		};
 
 		this.hide = function () {
 			this.isOpen = false;
-			
+
 			$that.trigger("beforeHide");
-			
+
 			var $dialog = obj.hide.apply(that, []);
-			
+
 			$that.trigger("afterHide", [$dialog]);
 		};
 
 		// Closes the dialog window.
 		this.close = function () {
 			this.isOpen = false;
-						
+
 			var $dialog = obj.hide.apply(that, []);
-			
+
 			$that.trigger("beforeClose", [$dialog]);
-			
+
 			obj.destroy.apply(that, []);
-			
+
 			$that.trigger("afterClose", [$dialog]);
 
 			jWysiwyg.ui.focus();
@@ -2248,23 +2268,23 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 
 	// "Static" Dialog methods.
 	$.extend(true, $.wysiwyg.dialog, {
-		_themes : {}, // sample {"Theme Name": object}
-		_theme : "", // the current theme
+		_themes: {}, // sample {"Theme Name": object}
+		_theme: "", // the current theme
 
-		register : function(name, obj) {
+		register: function (name, obj) {
 			$.wysiwyg.dialog._themes[name] = obj;
 		},
 
-		deregister : function (name) {
+		deregister: function (name) {
 			delete $.wysiwyg.dialog._themes[name];
 		},
 
-		createDialog : function (name) {
+		createDialog: function (name) {
 			return new ($.wysiwyg.dialog._themes[name]);
 		},
-		
-		getDimensions : function () {
-			var width  = document.body.scrollWidth,
+
+		getDimensions: function () {
+			var width = document.body.scrollWidth,
 				height = document.body.scrollHeight;
 
 			if ($.browser.opera) {
@@ -2285,14 +2305,14 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 
 				this._$dialog = null;
 
-				this.init = function() {
-					var abstractDialog	= this,
-						content 		= this.options.content;
+				this.init = function () {
+					var abstractDialog = this,
+						content = this.options.content;
 
 					if (typeof content === 'object') {
 						if (typeof content.html === 'function') {
 							content = content.html();
-						} else if(typeof content.toString === 'function') {
+						} else if (typeof content.toString === 'function') {
 							content = content.toString();
 						}
 					}
@@ -2303,7 +2323,7 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 						dialogWidth = this.options.width == 'auto' ? 450 : this.options.width;
 
 					// console.log(that._$dialog);
-					
+
 					that._$dialog.dialog({
 						modal: this.options.modal,
 						draggable: this.options.draggable,
@@ -2324,7 +2344,7 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 					return that._$dialog;
 				};
 
-				this.destroy = function() {
+				this.destroy = function () {
 					that._$dialog.dialog("destroy");
 					return that._$dialog;
 				};
@@ -2336,34 +2356,34 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 
 			this._$dialog = null;
 
-			this.init = function() {
-				var abstractDialog	= this,
-					content 		= this.options.content;
+			this.init = function () {
+				var abstractDialog = this,
+					content = this.options.content;
 
 				if (typeof content === 'object') {
-					if(typeof content.html === 'function') {
+					if (typeof content.html === 'function') {
 						content = content.html();
 					}
-					else if(typeof content.toString === 'function') {
+					else if (typeof content.toString === 'function') {
 						content = content.toString();
 					}
 				}
 
 				that._$dialog = $('<div class="wysiwyg-dialog"></div>').css({"z-index": this.options.zIndex});
 
-				var $topbar = $('<div class="wysiwyg-dialog-topbar"><div class="wysiwyg-dialog-close-wrapper"></div><div class="wysiwyg-dialog-title">'+this.options.title+'</div></div>');
+				var $topbar = $('<div class="wysiwyg-dialog-topbar"><div class="wysiwyg-dialog-close-wrapper"></div><div class="wysiwyg-dialog-title">' + this.options.title + '</div></div>');
 				var $link = $('<a href="#" class="wysiwyg-dialog-close-button">X</a>');
 
 				$link.click(function () {
-					abstractDialog.close(); // this is important it makes sure that is close from the abstract $.wysiwyg.dialog instace, not just locally 
+					abstractDialog.close(); // this is important it makes sure that is close from the abstract $.wysiwyg.dialog instace, not just locally
 				});
-				
+
 				$topbar.find('.wysiwyg-dialog-close-wrapper').prepend($link);
 
-				var $dcontent = $('<div class="wysiwyg-dialog-content">'+content+'</div>');
+				var $dcontent = $('<div class="wysiwyg-dialog-content">' + content + '</div>');
 
 				that._$dialog.append($topbar).append($dcontent);
-				
+
 				// Set dialog's height & width, and position it correctly:
 				var dialogHeight = this.options.height == 'auto' ? 300 : this.options.height,
 					dialogWidth = this.options.width == 'auto' ? 450 : this.options.width;
@@ -2384,16 +2404,16 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 				// Modal feature:
 				if (this.options.modal) {
 					var dimensions = $.wysiwyg.dialog.getDimensions(),
-						wrapper    = $('<div class="wysiwyg-dialog-modal-div"></div>')
-						.css({"width": dimensions[0], "height": dimensions[1]});
+						wrapper = $('<div class="wysiwyg-dialog-modal-div"></div>')
+							.css({"width": dimensions[0], "height": dimensions[1]});
 					that._$dialog.wrap(wrapper);
 				}
-				
+
 				// Draggable feature:
-				if (this.options.draggable) { 
-					
+				if (this.options.draggable) {
+
 					var mouseDown = false;
-					
+
 					that._$dialog.find("div.wysiwyg-dialog-topbar").bind("mousedown", function (e) {
 						e.preventDefault();
 						$(this).css({ "cursor": "move" });
@@ -2403,8 +2423,8 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 							offsetY = (e.pageY - parseInt(_dialog.css("top"), 10));
 						mouseDown = true;
 						$(this).css({ "cursor": "move" });
-						
-						$(document).bind("mousemove", function (e) {
+
+						$(document).bind("mousemove",function (e) {
 							e.preventDefault();
 							if (mouseDown) {
 								_dialog.css({
@@ -2413,15 +2433,15 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 								});
 							}
 						}).bind("mouseup", function (e) {
-							e.preventDefault();
-							mouseDown = false;
-							$topbar.css({ "cursor": "auto" });
-							$(document).unbind("mousemove").unbind("mouseup");
-						});
-					
+								e.preventDefault();
+								mouseDown = false;
+								$topbar.css({ "cursor": "auto" });
+								$(document).unbind("mousemove").unbind("mouseup");
+							});
+
 					});
 				}
-				
+
 				that._$dialog.show();
 				return that._$dialog;
 
@@ -2432,18 +2452,18 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 				return that._$dialog;
 			};
 
-			this.destroy = function() {
-			
+			this.destroy = function () {
+
 				// Modal feature:
-				if (this.options.modal) { 
+				if (this.options.modal) {
 					that._$dialog.unwrap();
 				}
-				
+
 				// Draggable feature:
-				if (this.options.draggable) { 
+				if (this.options.draggable) {
 					that._$dialog.find("div.wysiwyg-dialog-topbar").unbind("mousedown");
 				}
-				
+
 				that._$dialog.remove();
 				return that._$dialog;
 			};
@@ -2466,10 +2486,10 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 			args = Array.prototype.concat.call([args[0]], [this], Array.prototype.slice.call(args, 1));
 			return $.wysiwyg[plugin.name][plugin.method].apply($.wysiwyg[plugin.name], Array.prototype.slice.call(args, 1));
 		} else {
-			console.error("Method '" +  method + "' does not exist on jQuery.wysiwyg.\nTry to include some extra controls or plugins");
+			console.error("Method '" + method + "' does not exist on jQuery.wysiwyg.\nTry to include some extra controls or plugins");
 		}
 	};
-	
+
 	$.fn.getWysiwyg = function () {
 		return this.data("wysiwyg");
 	};

@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -15,51 +16,51 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 
 class j00006sanity_checks
-    {
-    function j00006sanity_checks( $componentArgs )
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j00006sanity_checks( $componentArgs )
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
-        if ( !defined( 'JOMRES_NOHTML' ) )
-            {
-            $thisJRUser  = jomres_singleton_abstract::getInstance( 'jr_user' );
-            $accessLevel = $thisJRUser->accesslevel;
+			return;
+			}
+		if ( !defined( 'JOMRES_NOHTML' ) )
+			{
+			$thisJRUser  = jomres_singleton_abstract::getInstance( 'jr_user' );
+			$accessLevel = $thisJRUser->accesslevel;
 
-            if ( $thisJRUser->accesslevel == 2 )
-                {
-                $output = array ();
-                jr_import( 'jomres_sanity_check' );
-                $sanity_checks        = new jomres_sanity_check();
-                $output[ 'WARNINGS' ] = $sanity_checks->do_sanity_checks();
+			if ( $thisJRUser->accesslevel == 2 )
+				{
+				$output = array ();
+				jr_import( 'jomres_sanity_check' );
+				$sanity_checks        = new jomres_sanity_check();
+				$output[ 'WARNINGS' ] = $sanity_checks->do_sanity_checks();
 
-                $pageoutput[ ] = $output;
-                $tmpl          = new patTemplate();
-                $tmpl->addRows( 'pageoutput', $pageoutput );
-                $tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-                $tmpl->readTemplatesFromInput( 'sanity_checks.html' );
-                set_showtime( "sanity_check_warnings", $tmpl->getParsedTemplate() );
-                }
-            }
-        }
+				$pageoutput[ ] = $output;
+				$tmpl          = new patTemplate();
+				$tmpl->addRows( 'pageoutput', $pageoutput );
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+				$tmpl->readTemplatesFromInput( 'sanity_checks.html' );
+				set_showtime( "sanity_check_warnings", $tmpl->getParsedTemplate() );
+				}
+			}
+		}
 
-    /**
-    #
-     * Must be included in every mini-component
-    #
-     * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
-    #
-     */
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return null;
-        }
-    }
+	/**
+	#
+	 * Must be included in every mini-component
+	#
+	 * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
+	#
+	 */
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return null;
+		}
+	}
 
 ?>

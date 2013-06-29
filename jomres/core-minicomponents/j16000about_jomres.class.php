@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,29 +15,29 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j16000about_jomres
-    {
-    function j16000about_jomres()
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j16000about_jomres()
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
-        if ( !using_bootstrap() )
-            {
-            $class = "ui-widget-content ui-corner-all";
-            $style = "margin-left:5px;margin-right:5px;";
-            }
-        else
-            {
-            $class = "";
-            $style = "";
-            }
+			return;
+			}
+		if ( !using_bootstrap() )
+			{
+			$class = "ui-widget-content ui-corner-all";
+			$style = "margin-left:5px;margin-right:5px;";
+			}
+		else
+			{
+			$class = "";
+			$style = "";
+			}
 
-        echo '
+		echo '
 		<h2 class=page-header>About Jomres</h2>
 		<div class="' . $class . '" style="width:100%;">
 		<div style="' . $style . '">
@@ -48,11 +49,11 @@ class j16000about_jomres
 		<p>We are very proud of Jomres, and hope that you enjoy working on it as much as we continue to enjoy working with our users. If you have a support license, you can get support for the system through our ticket system at <a href="http://tickets.jomres.net" target="_blank">tickets.jomres.net</a>, or if you\'d like to just chat, please say "Hi" <a href="http://www.jomres.net/index.php?option=com_kunena&view=listcat&Itemid=291" target="_blank">in the forums</a>.
 		</div></div>
 		';
-        }
+		}
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return null;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return null;
+		}
+	}

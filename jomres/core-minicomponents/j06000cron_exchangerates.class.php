@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -13,30 +14,30 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j06000cron_exchangerates
-    {
-    function j06000cron_exchangerates()
-        {
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j06000cron_exchangerates()
+		{
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
-        $jomresConfig_secret = get_showtime( 'secret' );
-        $secret              = jomresGetParam( $_REQUEST, "secret", "" );
-        if ( $secret == $jomresConfig_secret )
-            {
-            jr_import( 'jomres_currency_exchange_rates' );
-            $exchange_rates = new jomres_currency_exchange_rates( "GBP", true );
-            }
-        }
+			return;
+			}
+		$jomresConfig_secret = get_showtime( 'secret' );
+		$secret              = jomresGetParam( $_REQUEST, "secret", "" );
+		if ( $secret == $jomresConfig_secret )
+			{
+			jr_import( 'jomres_currency_exchange_rates' );
+			$exchange_rates = new jomres_currency_exchange_rates( "GBP", true );
+			}
+		}
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return null;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return null;
+		}
+	}
 
 ?>

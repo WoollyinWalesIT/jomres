@@ -8,9 +8,9 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  *
  * $Id: Time.php 95 2004-04-06 18:50:25Z schst $
  *
- * @package		patTemplate
- * @subpackage	Functions
- * @author		Stephan Schmidt <schst@php.net>
+ * @package        patTemplate
+ * @subpackage    Functions
+ * @author        Stephan Schmidt <schst@php.net>
  */
 
 /**
@@ -19,45 +19,47 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  *
  * $Id: Time.php 95 2004-04-06 18:50:25Z schst $
  *
- * @package		patTemplate
- * @subpackage	Functions
- * @author		Stephan Schmidt <schst@php.net>
+ * @package        patTemplate
+ * @subpackage    Functions
+ * @author        Stephan Schmidt <schst@php.net>
  */
 class patTemplate_Function_Time extends patTemplate_Function
-{
-   /**
-	* name of the function
-	* @access	private
-	* @var		string
-	*/
-	var $_name	=	'Time';
-
-   /**
-	* call the function
-	*
-	* @access	public
-	* @param	array	parameters of the function (= attributes of the tag)
-	* @param	string	content of the tag
-	* @return	string	content to insert into the template
-	*/ 
-	function call( $params, $content )
 	{
-		if( !empty( $content ) )
+	/**
+	 * name of the function
+	 *
+	 * @access    private
+	 * @var        string
+	 */
+	var $_name = 'Time';
+
+	/**
+	 * call the function
+	 *
+	 * @access    public
+	 * @param    array    parameters of the function (= attributes of the tag)
+	 * @param    string    content of the tag
+	 * @return    string    content to insert into the template
+	 */
+	function call( $params, $content )
 		{
-			$params['time'] = $content;
-		}
-		
-		if( isset( $params['time'] ) )
-		{
-			$params['time'] = strtotime( $params['time'] );
-		}
+		if ( !empty( $content ) )
+			{
+			$params[ 'time' ] = $content;
+			}
+
+		if ( isset( $params[ 'time' ] ) )
+			{
+			$params[ 'time' ] = strtotime( $params[ 'time' ] );
+			}
 		else
-		{
-			$params['time'] = time();
+			{
+			$params[ 'time' ] = time();
+			}
+
+
+		return date( $params[ 'format' ], $params[ 'time' ] );
 		}
-		
-		
-		return date( $params['format'], $params['time'] );
 	}
-}
+
 ?>

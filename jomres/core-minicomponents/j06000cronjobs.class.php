@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,28 +15,28 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 
 class j06000cronjobs
-    {
-    function j06000cronjobs()
-        {
-        $jomresConfig_secret = get_showtime( 'secret' );
-        $secret              = jomresGetParam( $_REQUEST, "secret", "" );
-        if ( $secret == $jomresConfig_secret )
-            {
-            jr_import( 'jomres_cron' );
-            $cron = new jomres_cron();
-            if ( $cron->method == "Cron" )
-                {
-                $cron->triggerJobs();
-                $cron->displayDebug();
-                }
-            }
-        }
+	{
+	function j06000cronjobs()
+		{
+		$jomresConfig_secret = get_showtime( 'secret' );
+		$secret              = jomresGetParam( $_REQUEST, "secret", "" );
+		if ( $secret == $jomresConfig_secret )
+			{
+			jr_import( 'jomres_cron' );
+			$cron = new jomres_cron();
+			if ( $cron->method == "Cron" )
+				{
+				$cron->triggerJobs();
+				$cron->displayDebug();
+				}
+			}
+		}
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return array ( 'filepath' => $this->filepath, 'gatewayname' => $this->gatewayname );
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return array ( 'filepath' => $this->filepath, 'gatewayname' => $this->gatewayname );
+		}
+	}
 
 ?>

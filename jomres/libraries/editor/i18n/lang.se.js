@@ -1,6 +1,6 @@
 /**
  * Internationalization: swedish language
- * 
+ *
  * Depends on jWYSIWYG, $.wysiwyg.i18n
  *
  * By: ippa@rubylicio.us

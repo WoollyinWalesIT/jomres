@@ -1,6 +1,6 @@
 /**
  * Internationalization plugin
- * 
+ *
  * Depends on jWYSIWYG
  */
 (function ($) {

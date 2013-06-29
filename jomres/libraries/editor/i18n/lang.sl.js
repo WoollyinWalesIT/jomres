@@ -56,7 +56,7 @@
 			// for all
 			"Apply": "Uporabi",
 			"Cancel": "Prekliči",
-			
+
 			colorpicker: {
 				"Colorpicker": "Izbirnik barv",
 				"Color": "Barva"

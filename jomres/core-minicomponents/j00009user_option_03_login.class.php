@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -16,53 +17,54 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 #
  * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 #
+ *
  * @package Jomres
 #
  */
 class j00009user_option_03_login
-    {
+	{
 
-    /**
-    #
-     * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    #
-     */
-    function j00009user_option_03_login( $componentArgs )
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = true;
+	/**
+	#
+	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	#
+	 */
+	function j00009user_option_03_login( $componentArgs )
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = true;
 
-            return;
-            }
-        $thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+			return;
+			}
+		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 
-        $login_task = jomres_cmsspecific_getlogin_task();
+		$login_task = jomres_cmsspecific_getlogin_task();
 
-        if ( !$thisJRUser->userIsRegistered ) $this->cpanelButton = jomres_mainmenu_option( get_showtime( 'live_site' ) . '/' . $login_task, '', jr_gettext( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', _JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT, false, false ) );
-        }
+		if ( !$thisJRUser->userIsRegistered ) $this->cpanelButton = jomres_mainmenu_option( get_showtime( 'live_site' ) . '/' . $login_task, '', jr_gettext( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', _JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT, false, false ) );
+		}
 
-    function touch_template_language()
-        {
-        $output    = array ();
-        $output[ ] = jr_gettext( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', _JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN );
+	function touch_template_language()
+		{
+		$output    = array ();
+		$output[ ] = jr_gettext( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', _JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN );
 
-        foreach ( $output as $o )
-            {
-            echo $o;
-            echo "<br/>";
-            }
-        }
+		foreach ( $output as $o )
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        if ( isset( $this->cpanelButton ) ) return $this->cpanelButton;
-        else
-        return null;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		if ( isset( $this->cpanelButton ) ) return $this->cpanelButton;
+		else
+		return null;
+		}
+	}
 
 ?>

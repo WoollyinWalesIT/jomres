@@ -1,6 +1,6 @@
 /**
  * Internationalization: italian language
- * 
+ *
  * Depends on jWYSIWYG, $.wysiwyg.i18n
  *
  * By: Mauro Franceschini <mauro.franceschini@gmail.com>

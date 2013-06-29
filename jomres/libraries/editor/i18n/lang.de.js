@@ -1,6 +1,6 @@
 /**
  * Internationalization: German language
- * 
+ *
  * Depends on jWYSIWYG, $.wysiwyg.i18n
  *
  * By: Markus Schirp (mbj) <mbj@seonic.net>

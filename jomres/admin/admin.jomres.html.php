@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -11,38 +12,38 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class HTML_jomres
-    {
-    /**
-    #
-     * Outputs the site configuration panel
-    #
-     */
-    function showSiteConfig( $jrConfig, &$lists, $jsInputFormatDropdownList, $licensekey, $jrtb, $langDropdown, $geosearchDropdownList, $currency_codes_dropdown, $jqueryUIthemesDropdownList, $sortArrayDropdown, $calendarStartDaysDropdownList, $language_context_dropdown, $guestnumbersearchDropdownList, $filtering_level_dropdown, $layouts, $mapWeatherTempGradDropdownList )
-        {
-        $siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-        $jrConfig     = $siteConfig->get();
-        $contentPanel = jomres_singleton_abstract::getInstance( 'jomres_content_tabs' );
+	{
+	/**
+	#
+	 * Outputs the site configuration panel
+	#
+	 */
+	function showSiteConfig( $jrConfig, &$lists, $jsInputFormatDropdownList, $licensekey, $jrtb, $langDropdown, $geosearchDropdownList, $currency_codes_dropdown, $jqueryUIthemesDropdownList, $sortArrayDropdown, $calendarStartDaysDropdownList, $language_context_dropdown, $guestnumbersearchDropdownList, $filtering_level_dropdown, $layouts, $mapWeatherTempGradDropdownList )
+		{
+		$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig     = $siteConfig->get();
+		$contentPanel = jomres_singleton_abstract::getInstance( 'jomres_content_tabs' );
 
-        ?>
-            <h2>Jomres <?php echo jr_gettext( _JOMRES_A, '_JOMRES_A', false ); ?></h2>
-            <form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="post" name="adminForm">
+		?>
+			<h2>Jomres <?php echo jr_gettext( _JOMRES_A, '_JOMRES_A', false ); ?></h2>
+			<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="post" name="adminForm">
 
-            <?php
-            echo $jrtb;
+			<?php
+			echo $jrtb;
 
-            $sslinput = "";
+			$sslinput = "";
 
-            // Disabled due to joomla's url rewriting making it virtually impossible to modify urls for ssl handling AND sef with any confidence.
-            // $sslinput=
-            // '<tr valign="middle">
-            // <td valign="middle">'.JOMRES_COM_A_USE_SSL.'</td>
-            // <td valign="middle">'.$lists['useSSLinBookingform'].'</td>
-            // <td valign="middle">'.JOMRES_COM_A_USE_SSL_DESC.get_showtime('live_site').'</td>
-            // </tr>';
+			// Disabled due to joomla's url rewriting making it virtually impossible to modify urls for ssl handling AND sef with any confidence.
+			// $sslinput=
+			// '<tr valign="middle">
+			// <td valign="middle">'.JOMRES_COM_A_USE_SSL.'</td>
+			// <td valign="middle">'.$lists['useSSLinBookingform'].'</td>
+			// <td valign="middle">'.JOMRES_COM_A_USE_SSL_DESC.get_showtime('live_site').'</td>
+			// </tr>';
 
-            $contentPanel->startTabs();
-            $contentPanel->startPanel( jr_gettext( '_JOMRES_A_TABS_MISC', _JOMRES_A_TABS_MISC, false ) );
-            $contentPanel->setcontent( '
+			$contentPanel->startTabs();
+			$contentPanel->startPanel( jr_gettext( '_JOMRES_A_TABS_MISC', _JOMRES_A_TABS_MISC, false ) );
+			$contentPanel->setcontent( '
 		<table width="100%" class="jradmin_table" border="0">
 		<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
@@ -50,7 +51,7 @@ class HTML_jomres
 					<th width="60%" class="ui-state-default">' . jr_gettext( _JOMRES_COM_A_EXPLANATION, '_JOMRES_COM_A_EXPLANATION', false ) . '</th>
 		</tr>' );
 
-            $contentPanel->setcontent( '
+			$contentPanel->setcontent( '
 		<tr valign="middle" class="even">
 			<td valign="middle">' . jr_gettext( _JOMRES_COM_ADVANCED_SITE_CONFIG, '_JOMRES_COM_ADVANCED_SITE_CONFIG', false ) . '</td>
 			<td valign="middle">' . $lists[ 'advanced_site_config' ] . '</td>
@@ -101,27 +102,27 @@ class HTML_jomres
 		</tr>
 		' );
 
-            if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" )
-                {
-                $contentPanel->setcontent( '
+			if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" )
+				{
+				$contentPanel->setcontent( '
 			<tr valign="middle" class="odd">
 				 <td>' . jr_gettext( _JOMRES_BOOTSTRAPSWITCH_ADMINISTRATOR, '_JOMRES_BOOTSTRAPSWITCH_ADMINISTRATOR', false ) . '</td>
 				 <td>' . $lists[ 'use_bootstrap_in_admin' ] . '</td>
 				 <td></td>
 			</tr>
 			' );
-                }
+				}
 
-            $contentPanel->setcontent( '
+			$contentPanel->setcontent( '
 		<tr valign="middle" class="even">
 			<td valign="middle">' . jr_gettext( _JOMRES_COOKIEPOLICY_TITLE, '_JOMRES_COOKIEPOLICY_TITLE', false ) . '</td>
 			<td valign="middle">' . $lists[ 'use_cookie_policy' ] . '</td>
 			<td valign="middle">' . jr_gettext( _JOMRES_COOKIEPOLICY_DESC, '_JOMRES_COOKIEPOLICY_DESC', false ) . '</td>
 		</tr>
 		<tr valign="middle" class="odd">
-			<td valign="middle">' . jr_gettext( _JOMRES_APPROVALS_CONFIG_TITLE,_JOMRES_APPROVALS_CONFIG_TITLE ) . '</td>
+			<td valign="middle">' . jr_gettext( _JOMRES_APPROVALS_CONFIG_TITLE, _JOMRES_APPROVALS_CONFIG_TITLE ) . '</td>
 			<td valign="middle">' . $lists[ 'automatically_approve_new_properties' ] . '</td>
-			<td valign="middle">' . jr_gettext( _JOMRES_APPROVALS_CONFIG_DESC,_JOMRES_APPROVALS_CONFIG_DESC ) . '</td>
+			<td valign="middle">' . jr_gettext( _JOMRES_APPROVALS_CONFIG_DESC, _JOMRES_APPROVALS_CONFIG_DESC ) . '</td>
 		</tr>
 		<tr valign="middle" class="even">
 			<td valign="middle">' . jr_gettext( _JOMRES_DEFAULT_LAT_STARTPOINT, '_JOMRES_DEFAULT_LAT_STARTPOINT', false ) . '</td>
@@ -136,16 +137,16 @@ class HTML_jomres
 		' );
 
 
-            if ( !using_bootstrap() )
-                {
-                $contentPanel->setcontent( '<tr valign="middle" class="even">
+			if ( !using_bootstrap() )
+				{
+				$contentPanel->setcontent( '<tr valign="middle" class="even">
 				<td valign="middle">' . jr_gettext( _JOMRES_JQUERYTHEME, '_JOMRES_JQUERYTHEME', false ) . '</td>
 				<td valign="middle">' . $jqueryUIthemesDropdownList . '</td>
 				<td valign="middle">' . jr_gettext( _JOMRES_JQUERYTHEME_DESC, '_JOMRES_JQUERYTHEME_DESC', false ) . '</td>
 			</tr>' );
-                }
+				}
 
-            $contentPanel->setcontent( '<tr valign="middle" class="even">
+			$contentPanel->setcontent( '<tr valign="middle" class="even">
 			<td valign="middle">' . jr_gettext( _JOMRES_COM_LANGUAGE_CONTEXT, '_JOMRES_COM_LANGUAGE_CONTEXT', false ) . '</td>
 			<td valign="middle">' . $language_context_dropdown . '</td>
 			<td valign="middle">' . jr_gettext( _JOMRES_COM_LANGUAGE_CONTEXT_DESC, '_JOMRES_COM_LANGUAGE_CONTEXT_DESC', false ) . '</td>
@@ -175,7 +176,7 @@ class HTML_jomres
 		' );
 
 
-            if ( $jrConfig[ 'advanced_site_config' ] == 1 ) $contentPanel->setcontent( '
+			if ( $jrConfig[ 'advanced_site_config' ] == 1 ) $contentPanel->setcontent( '
 			<tr valign="middle" class="odd">
 				<td valign="middle">' . jr_gettext( _JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO, '_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO', false ) . '</td>
 				<td valign="middle">' . $lists[ 'limit_property_country' ] . '</td>
@@ -297,16 +298,16 @@ class HTML_jomres
 				<td valign="middle">' . jr_gettext( _JOMRES_CSS_CACHING_DESC, '_JOMRES_CSS_CACHING_DESC', false ) . '</td>
 			</tr>-->
 			' );
-            $contentPanel->setcontent( '
+			$contentPanel->setcontent( '
 		<tr valign="middle">
 			<th colspan="3">&nbsp;</th>
 		</tr>
 		</table>' );
-            $contentPanel->insertContent();
-            $contentPanel->endPanel();
+			$contentPanel->insertContent();
+			$contentPanel->endPanel();
 
-            $contentPanel->startPanel( jr_gettext( JOMRES_GOOGLE_MAPS, 'JOMRES_GOOGLE_MAPS', false ) );
-            $contentPanel->setcontent( '
+			$contentPanel->startPanel( jr_gettext( JOMRES_GOOGLE_MAPS, 'JOMRES_GOOGLE_MAPS', false ) );
+			$contentPanel->setcontent( '
 		<table class="table table-striped" width="100%">
 			<p>' . jr_gettext( JOMRES_GOOGLE_MAPS_INFO, 'JOMRES_GOOGLE_MAPS_INFO', false ) . '</p>
 			<thead>
@@ -354,16 +355,16 @@ class HTML_jomres
 				</tr>
 			</tbody>
 		</table>' );
-            $contentPanel->insertContent();
-            $contentPanel->endPanel();
+			$contentPanel->insertContent();
+			$contentPanel->endPanel();
 
-            if ( $jrConfig[ 'advanced_site_config' ] == 1 )
-                {
-                if ( !isset( $jrConfig[ 'html_purifier_allowed_tags' ] ) ) $jrConfig[ 'html_purifier_allowed_tags' ] = "p,b,strong,a[href],i,img[src]";
-                if ( !isset( $jrConfig[ 'inputs_allowing_html' ] ) ) $jrConfig[ 'inputs_allowing_html' ] = "property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers";
+			if ( $jrConfig[ 'advanced_site_config' ] == 1 )
+				{
+				if ( !isset( $jrConfig[ 'html_purifier_allowed_tags' ] ) ) $jrConfig[ 'html_purifier_allowed_tags' ] = "p,b,strong,a[href],i,img[src]";
+				if ( !isset( $jrConfig[ 'inputs_allowing_html' ] ) ) $jrConfig[ 'inputs_allowing_html' ] = "property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers";
 
-                $contentPanel->startPanel( jr_gettext( '_JOMRES_INPUTFILTERING', _JOMRES_INPUTFILTERING, false ) );
-                $contentPanel->setcontent( '
+				$contentPanel->startPanel( jr_gettext( '_JOMRES_INPUTFILTERING', _JOMRES_INPUTFILTERING, false ) );
+				$contentPanel->setcontent( '
 			<table class="table table-striped" width="100%">
 			<thead>
 			<tr>
@@ -393,14 +394,14 @@ class HTML_jomres
 			</tr>
 			</tbody>
 			</table>' );
-                $contentPanel->insertContent();
-                $contentPanel->endPanel();
-                }
+				$contentPanel->insertContent();
+				$contentPanel->endPanel();
+				}
 
-            if ( $jrConfig[ 'advanced_site_config' ] == 1 )
-                {
-                $contentPanel->startPanel( jr_gettext( '_JOMRES_MOBILE_SETTINGS', _JOMRES_MOBILE_SETTINGS, false ) );
-                $contentPanel->setcontent( '
+			if ( $jrConfig[ 'advanced_site_config' ] == 1 )
+				{
+				$contentPanel->startPanel( jr_gettext( '_JOMRES_MOBILE_SETTINGS', _JOMRES_MOBILE_SETTINGS, false ) );
+				$contentPanel->setcontent( '
 			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle" class="even">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
@@ -426,14 +427,14 @@ class HTML_jomres
 				<th colspan="3">&nbsp;</th>
 			</tr>
 			</table>' );
-                $contentPanel->insertContent();
-                $contentPanel->endPanel();
-                }
+				$contentPanel->insertContent();
+				$contentPanel->endPanel();
+				}
 
-            if ( $jrConfig[ 'advanced_site_config' ] == 1 )
-                {
-                $contentPanel->startPanel( jr_gettext( '_JOMRES_PATHWAY_BOOKINGFORM', _JOMRES_PATHWAY_BOOKINGFORM, false ) );
-                $contentPanel->setcontent( '
+			if ( $jrConfig[ 'advanced_site_config' ] == 1 )
+				{
+				$contentPanel->startPanel( jr_gettext( '_JOMRES_PATHWAY_BOOKINGFORM', _JOMRES_PATHWAY_BOOKINGFORM, false ) );
+				$contentPanel->setcontent( '
 			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle" class="even">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
@@ -490,14 +491,14 @@ class HTML_jomres
 				<th colspan="3">&nbsp;</th>
 			</tr>
 			</table>' );
-                $contentPanel->insertContent();
-                $contentPanel->endPanel();
-                }
+				$contentPanel->insertContent();
+				$contentPanel->endPanel();
+				}
 
-            if ( $jrConfig[ 'advanced_site_config' ] == 1 )
-                {
-                $contentPanel->startPanel( jr_gettext( '_JRPORTAL_ROI_TAB', _JRPORTAL_ROI_TAB, false ) );
-                $contentPanel->setcontent( '
+			if ( $jrConfig[ 'advanced_site_config' ] == 1 )
+				{
+				$contentPanel->startPanel( jr_gettext( '_JRPORTAL_ROI_TAB', _JRPORTAL_ROI_TAB, false ) );
+				$contentPanel->setcontent( '
 			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle" class="even">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
@@ -535,13 +536,13 @@ class HTML_jomres
 				<th colspan="3">&nbsp;</th>
 			</tr>
 			</table>' );
-                $contentPanel->insertContent();
-                $contentPanel->endPanel();
-                }
+				$contentPanel->insertContent();
+				$contentPanel->endPanel();
+				}
 
 
-            $contentPanel->startPanel( jr_gettext( '_JOMRES_CURRENCYCONVERSION_TAB', _JOMRES_CURRENCYCONVERSION_TAB, false ) );
-            $contentPanel->setcontent( '
+			$contentPanel->startPanel( jr_gettext( '_JOMRES_CURRENCYCONVERSION_TAB', _JOMRES_CURRENCYCONVERSION_TAB, false ) );
+			$contentPanel->setcontent( '
 			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle" class="even">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
@@ -574,12 +575,12 @@ class HTML_jomres
 				<th colspan="3">&nbsp;</th>
 			</tr>
 			</table>' );
-            $contentPanel->insertContent();
-            $contentPanel->endPanel();
+			$contentPanel->insertContent();
+			$contentPanel->endPanel();
 
 
-            $contentPanel->startPanel( jr_gettext( '_JOMRES_REVIEWS', _JOMRES_REVIEWS, false ) );
-            $contentPanel->setcontent( '
+			$contentPanel->startPanel( jr_gettext( '_JOMRES_REVIEWS', _JOMRES_REVIEWS, false ) );
+			$contentPanel->setcontent( '
 			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle" class="even">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
@@ -610,33 +611,33 @@ class HTML_jomres
 				<th colspan="3">&nbsp;</th>
 			</tr>
 			</table>' );
-            $contentPanel->insertContent();
-            $contentPanel->endPanel();
+			$contentPanel->insertContent();
+			$contentPanel->endPanel();
 
-            $currentLangFile = $jrConfig[ 'jscalendarLangfile' ];
-            $calendarFileNamesArray = array ( "calendar-en.js", "calendar-af.js", "calendar-al.js", "calendar-bg.js", "calendar-big5.js", "calendar-big5-utf8.js", "calendar-br.js", "calendar-ca.js", "calendar-cs-utf8.js", "calendar-cs-win.js", "calendar-da.js", "calendar-de.js", "calendar-du.js", "calendar-el.js", "calendar-es.js", "calendar-fi.js", "calendar-fr.js", "calendar-he-utf8.js", "calendar-hr.js", "calendar-hr-utf8.js", "calendar-hu.js", "calendar-it.js", "calendar-jp.js", "calendar-ko.js", "calendar-ko-utf8.js", "calendar-lt.js", "calendar-lt-utf8.js", "calendar-lv.js", "calendar-nl.js", "calendar-no.js", "calendar-pl.js", "calendar-pl-utf8.js", "calendar-pt.js", "calendar-ro.js", "calendar-ru.js", "calendar-ru_win_.js", "calendar-si.js", "calendar-sk.js", "calendar-sp.js", "calendar-sv.js", "calendar-tr.js", "calendar-zh.js", "cn_utf8.js" );
-            $jsCalLangfile = "<select class=\"inputbox\" name=\"cfg_jscalendarLangfile\">";
-            foreach ( $calendarFileNamesArray as $fileName )
-                {
-                $selected = "";
-                if ( $fileName == $currentLangFile ) $selected = "selected";
-                $jsCalLangfile .= "<option " . $selected . " value=\"" . $fileName . "\" >" . $fileName . "</option>/n";
-                }
-            $jsCalLangfile .= "</select>";
+			$currentLangFile = $jrConfig[ 'jscalendarLangfile' ];
+			$calendarFileNamesArray = array ( "calendar-en.js", "calendar-af.js", "calendar-al.js", "calendar-bg.js", "calendar-big5.js", "calendar-big5-utf8.js", "calendar-br.js", "calendar-ca.js", "calendar-cs-utf8.js", "calendar-cs-win.js", "calendar-da.js", "calendar-de.js", "calendar-du.js", "calendar-el.js", "calendar-es.js", "calendar-fi.js", "calendar-fr.js", "calendar-he-utf8.js", "calendar-hr.js", "calendar-hr-utf8.js", "calendar-hu.js", "calendar-it.js", "calendar-jp.js", "calendar-ko.js", "calendar-ko-utf8.js", "calendar-lt.js", "calendar-lt-utf8.js", "calendar-lv.js", "calendar-nl.js", "calendar-no.js", "calendar-pl.js", "calendar-pl-utf8.js", "calendar-pt.js", "calendar-ro.js", "calendar-ru.js", "calendar-ru_win_.js", "calendar-si.js", "calendar-sk.js", "calendar-sp.js", "calendar-sv.js", "calendar-tr.js", "calendar-zh.js", "cn_utf8.js" );
+			$jsCalLangfile = "<select class=\"inputbox\" name=\"cfg_jscalendarLangfile\">";
+			foreach ( $calendarFileNamesArray as $fileName )
+				{
+				$selected = "";
+				if ( $fileName == $currentLangFile ) $selected = "selected";
+				$jsCalLangfile .= "<option " . $selected . " value=\"" . $fileName . "\" >" . $fileName . "</option>/n";
+				}
+			$jsCalLangfile .= "</select>";
 
-            $currentCSSFile = $jrConfig[ 'jscalendarCSSfile' ];
-            $calendarFileNamesArray = array ( "calendar-win2k-cold-2.css", "calendar-blue2.css", "calendar-blue.css", "calendar-brown.css", "calendar-green.css", "calendar-system.css", "calendar-tas.css", "calendar-win2k-1.css", "calendar-win2k-2.css", "calendar-win2k-cold-1.css" );
-            $jsCalCSSfile = "<select class=\"inputbox\" name=\"cfg_jscalendarCSSfile\">";
-            foreach ( $calendarFileNamesArray as $fileName )
-                {
-                $selected = "";
-                if ( $fileName == $currentCSSFile ) $selected = "selected";
-                $jsCalCSSfile .= "<option " . $selected . " value=\"" . $fileName . "\" >" . $fileName . "</option>/n";
-                }
-            $jsCalCSSfile .= "</select>";
+			$currentCSSFile = $jrConfig[ 'jscalendarCSSfile' ];
+			$calendarFileNamesArray = array ( "calendar-win2k-cold-2.css", "calendar-blue2.css", "calendar-blue.css", "calendar-brown.css", "calendar-green.css", "calendar-system.css", "calendar-tas.css", "calendar-win2k-1.css", "calendar-win2k-2.css", "calendar-win2k-cold-1.css" );
+			$jsCalCSSfile = "<select class=\"inputbox\" name=\"cfg_jscalendarCSSfile\">";
+			foreach ( $calendarFileNamesArray as $fileName )
+				{
+				$selected = "";
+				if ( $fileName == $currentCSSFile ) $selected = "selected";
+				$jsCalCSSfile .= "<option " . $selected . " value=\"" . $fileName . "\" >" . $fileName . "</option>/n";
+				}
+			$jsCalCSSfile .= "</select>";
 
-            $contentPanel->startPanel( jr_gettext( '_JOMRES_COM_A_JSCALENDAR', _JOMRES_COM_A_JSCALENDAR, false ) );
-            $contentPanel->setcontent( '
+			$contentPanel->startPanel( jr_gettext( '_JOMRES_COM_A_JSCALENDAR', _JOMRES_COM_A_JSCALENDAR, false ) );
+			$contentPanel->setcontent( '
 		<table width="100%" class="jradmin_table" border="0">
 		<tr valign="middle" class="even">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
@@ -663,13 +664,13 @@ class HTML_jomres
 			<th colspan="3">&nbsp;</th>
 		</tr>
 		</table>' );
-            $contentPanel->insertContent();
-            $contentPanel->endPanel();
+			$contentPanel->insertContent();
+			$contentPanel->endPanel();
 
-            if ( $jrConfig[ 'advanced_site_config' ] == 1 )
-                {
-                $contentPanel->startPanel( jr_gettext( '_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE', _JOMRES_COM_A_INTEGRATEDSEARCH_TITLE, false ) );
-                $contentPanel->setcontent( '
+			if ( $jrConfig[ 'advanced_site_config' ] == 1 )
+				{
+				$contentPanel->startPanel( jr_gettext( '_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE', _JOMRES_COM_A_INTEGRATEDSEARCH_TITLE, false ) );
+				$contentPanel->setcontent( '
 			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle">
 				<td valign="top" colspan="3"><p>' . jr_gettext( _JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC, '_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC', false ) . '</p></td>
@@ -776,22 +777,22 @@ class HTML_jomres
 			</tr>
 			
 			' );
-                $contentPanel->setcontent( '
+				$contentPanel->setcontent( '
 			<tr valign="middle">
 				<th colspan="3">&nbsp;</th>
 			</tr>
 			</table>' );
-                $contentPanel->insertContent();
-                $contentPanel->endPanel();
-                }
+				$contentPanel->insertContent();
+				$contentPanel->endPanel();
+				}
 
 
-            if ( $jrConfig[ 'advanced_site_config' ] == 1 )
-                {
-                $max_upload_size = ini_get( 'upload_max_filesize' );
+			if ( $jrConfig[ 'advanced_site_config' ] == 1 )
+				{
+				$max_upload_size = ini_get( 'upload_max_filesize' );
 
-                $contentPanel->startPanel( jr_gettext( '_JOMRES_COM_A_JOMRES_FILE_UPLOADS', _JOMRES_COM_A_JOMRES_FILE_UPLOADS, false ) );
-                $contentPanel->setcontent( '
+				$contentPanel->startPanel( jr_gettext( '_JOMRES_COM_A_JOMRES_FILE_UPLOADS', _JOMRES_COM_A_JOMRES_FILE_UPLOADS, false ) );
+				$contentPanel->setcontent( '
 			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
@@ -829,19 +830,19 @@ class HTML_jomres
 				<td valign="middle">' . jr_gettext( _JOMRES_COM_A_UPLOADS_FILESIZE_DESC, '_JOMRES_COM_A_UPLOADS_FILESIZE_DESC', false ) . '</td>
 			</tr>
 			<tr>' );
-                $contentPanel->setcontent( '
+				$contentPanel->setcontent( '
 			<tr valign="middle">
 				<th colspan="3">&nbsp;</th>
 			</tr>
 			</table>' );
-                $contentPanel->insertContent();
-                $contentPanel->endPanel();
-                }
+				$contentPanel->insertContent();
+				$contentPanel->endPanel();
+				}
 
-            if ( $jrConfig[ 'advanced_site_config' ] == 1 )
-                {
-                $contentPanel->startPanel( jr_gettext( 'JOMRES_COM_A_SEARCHOPTIONSTAB', JOMRES_COM_A_SEARCHOPTIONSTAB, false ) );
-                $contentPanel->setcontent( '
+			if ( $jrConfig[ 'advanced_site_config' ] == 1 )
+				{
+				$contentPanel->startPanel( jr_gettext( 'JOMRES_COM_A_SEARCHOPTIONSTAB', JOMRES_COM_A_SEARCHOPTIONSTAB, false ) );
+				$contentPanel->setcontent( '
 			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
@@ -888,12 +889,12 @@ class HTML_jomres
 				<th colspan="3">&nbsp;</th>
 			</tr>
 			</table>' );
-                $contentPanel->insertContent();
-                $contentPanel->endPanel();
-                }
+				$contentPanel->insertContent();
+				$contentPanel->endPanel();
+				}
 
-            $contentPanel->startPanel( jr_gettext( '_JOMRES_DEBUGGING_TAB', _JOMRES_DEBUGGING_TAB, false ) );
-            $contentPanel->setcontent( '
+			$contentPanel->startPanel( jr_gettext( '_JOMRES_DEBUGGING_TAB', _JOMRES_DEBUGGING_TAB, false ) );
+			$contentPanel->setcontent( '
 			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
@@ -919,11 +920,11 @@ class HTML_jomres
 				<th colspan="3">&nbsp;</th>
 			</tr>
 			</table>' );
-            $contentPanel->insertContent();
-            $contentPanel->endPanel();
+			$contentPanel->insertContent();
+			$contentPanel->endPanel();
 
-            $contentPanel->startPanel( jr_gettext( _JOMRES_CONFIG_ALTERNATE_SMTP_TITLE, "_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE", false ) );
-            $contentPanel->setcontent( '
+			$contentPanel->startPanel( jr_gettext( _JOMRES_CONFIG_ALTERNATE_SMTP_TITLE, "_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE", false ) );
+			$contentPanel->setcontent( '
 			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
@@ -974,15 +975,15 @@ class HTML_jomres
 				<th colspan="3">&nbsp;</th>
 			</tr>
 			</table>' );
-            $contentPanel->insertContent();
-            $contentPanel->endPanel();
+			$contentPanel->insertContent();
+			$contentPanel->endPanel();
 
-            if ( _JOMRES_DETECTED_CMS == "joomla15" )
-                {
-                if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'components' . JRDS . 'com_sh404sef' . JRDS . 'sef_ext' . JRDS . 'com_jomres.php' ) )
-                    {
-                    $contentPanel->startPanel( "SEF" );
-                    $contentPanel->setcontent( '
+			if ( _JOMRES_DETECTED_CMS == "joomla15" )
+				{
+				if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'components' . JRDS . 'com_sh404sef' . JRDS . 'sef_ext' . JRDS . 'com_jomres.php' ) )
+					{
+					$contentPanel->startPanel( "SEF" );
+					$contentPanel->setcontent( '
 				<table width="100%" class="jradmin_table" border="0">
 				<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
@@ -1084,23 +1085,23 @@ class HTML_jomres
 					<th colspan="3">&nbsp;</th>
 				</tr>
 				</table>' );
-                    $contentPanel->insertContent();
-                    $contentPanel->endPanel();
-                    }
-                else
-                    {
-                    $contentPanel->startPanel( "SEF" );
-                    $contentPanel->setcontent( _JOMRES_COM_SEF_NOTINSTALLED );
-                    $contentPanel->insertContent();
-                    $contentPanel->endPanel();
-                    }
-                }
+					$contentPanel->insertContent();
+					$contentPanel->endPanel();
+					}
+				else
+					{
+					$contentPanel->startPanel( "SEF" );
+					$contentPanel->setcontent( _JOMRES_COM_SEF_NOTINSTALLED );
+					$contentPanel->insertContent();
+					$contentPanel->endPanel();
+					}
+				}
 
-            if ( $jrConfig[ 'advanced_site_config' ] == 1 )
-                {
-                // Logging configuration
-                $contentPanel->startPanel( jr_gettext( _JOMRES_COM_LOGGING, '_JOMRES_COM_LOGGING', false ) );
-                $contentPanel->setcontent( '
+			if ( $jrConfig[ 'advanced_site_config' ] == 1 )
+				{
+				// Logging configuration
+				$contentPanel->startPanel( jr_gettext( _JOMRES_COM_LOGGING, '_JOMRES_COM_LOGGING', false ) );
+				$contentPanel->setcontent( '
 			<table width="100%" class="jradmin_table" border="0">
 				<tr valign="middle">
 					<td valign="top" colspan="3"><p>' . jr_gettext( _JOMRES_COM_LOGGING_WARNING, '_JOMRES_COM_LOGGING_WARNING', false ) . '</p></td>
@@ -1139,11 +1140,11 @@ class HTML_jomres
 					<th colspan="3">&nbsp;</th>
 				</tr>
 				</table>' );
-                $contentPanel->insertContent();
-                $contentPanel->endPanel();
+				$contentPanel->insertContent();
+				$contentPanel->endPanel();
 
-                $contentPanel->startPanel( jr_gettext( _JOMRES_COM_YOURBUSINESS, '_JOMRES_COM_YOURBUSINESS', false ) );
-                $contentPanel->setcontent( '
+				$contentPanel->startPanel( jr_gettext( _JOMRES_COM_YOURBUSINESS, '_JOMRES_COM_YOURBUSINESS', false ) );
+				$contentPanel->setcontent( '
 			<table width="100%" class="jradmin_table" border="0">
 				<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
@@ -1204,12 +1205,12 @@ class HTML_jomres
 					<th colspan="3">&nbsp;</th>
 				</tr>
 				</table>' );
-                $contentPanel->insertContent();
-                $contentPanel->endPanel();
-                }
+				$contentPanel->insertContent();
+				$contentPanel->endPanel();
+				}
 
-            $contentPanel->startPanel( jr_gettext( RECAPTCHA_TITLE, 'RECAPTCHA_TITLE', false ) );
-            $contentPanel->setcontent( '
+			$contentPanel->startPanel( jr_gettext( RECAPTCHA_TITLE, 'RECAPTCHA_TITLE', false ) );
+			$contentPanel->setcontent( '
 			<table width="100%" class="jradmin_table" border="0">
 				<tr valign="middle">
 					<td valign="top" colspan="3"><p>' . jr_gettext( RECAPTCHA_INFO, 'RECAPTCHA_INFO', false ) . '</p></td>
@@ -1233,117 +1234,117 @@ class HTML_jomres
 					<th colspan="3">&nbsp;</th>
 				</tr>
 				</table>' );
-            $contentPanel->insertContent();
-            $contentPanel->endPanel();
+			$contentPanel->insertContent();
+			$contentPanel->endPanel();
 
-            $contentPanel->endTabs();
-            ?>
+			$contentPanel->endTabs();
+			?>
 
-            <input type="hidden" name="cfg_useGlobalPFeatures"
-                   value="<?php echo $jrConfig[ 'useGlobalPFeatures' ]; ?>"/>
-            <input type="hidden" name="cfg_useGlobalRoomTypes"
-                   value="<?php echo $jrConfig[ 'useGlobalRoomTypes' ]; ?>"/>
-            <input type="hidden" name="cfg_dynamicMinIntervalRecalculation"
-                   value="<?php echo $jrConfig[ 'dynamicMinIntervalRecalculation' ]; ?>"/>
-            <input type="hidden" name="cfg_disableAudit" value="<?php echo $jrConfig[ 'disableAudit' ]; ?>"/>
-            <input type="hidden" name="cfg_allowedTags" value="<?php echo $jrConfig[ 'allowedTags' ]; ?>"/>
-            <input type="hidden" name="cfg_utfHTMLdecode" value="<?php echo $jrConfig[ 'utfHTMLdecode' ]; ?>"/>
-            <input type="hidden" name="no_html" value="1"/>
-            <input type="hidden" name="task" value="saveSiteConfig"/>
-            <input type="hidden" name="option" value="com_jomres"/>
-            </form>
-        <?php
-        }
+			<input type="hidden" name="cfg_useGlobalPFeatures"
+			       value="<?php echo $jrConfig[ 'useGlobalPFeatures' ]; ?>"/>
+			<input type="hidden" name="cfg_useGlobalRoomTypes"
+			       value="<?php echo $jrConfig[ 'useGlobalRoomTypes' ]; ?>"/>
+			<input type="hidden" name="cfg_dynamicMinIntervalRecalculation"
+			       value="<?php echo $jrConfig[ 'dynamicMinIntervalRecalculation' ]; ?>"/>
+			<input type="hidden" name="cfg_disableAudit" value="<?php echo $jrConfig[ 'disableAudit' ]; ?>"/>
+			<input type="hidden" name="cfg_allowedTags" value="<?php echo $jrConfig[ 'allowedTags' ]; ?>"/>
+			<input type="hidden" name="cfg_utfHTMLdecode" value="<?php echo $jrConfig[ 'utfHTMLdecode' ]; ?>"/>
+			<input type="hidden" name="no_html" value="1"/>
+			<input type="hidden" name="task" value="saveSiteConfig"/>
+			<input type="hidden" name="option" value="com_jomres"/>
+			</form>
+		<?php
+		}
 
-    /**
-    #
-     * Calls the edit property feature tempate file
-    #
-     */
-    function editPfeature_html( $output, $rows )
-        {
-        $pageoutput    = array ();
-        $pageoutput[ ] = $output;
-        $tmpl          = new patTemplate();
-        $tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-        $tmpl->readTemplatesFromInput( 'edit_property_feature.html' );
-        $tmpl->addRows( 'pageoutput', $pageoutput );
-        $tmpl->addRows( 'rows', $rows );
-        $tmpl->displayParsedTemplate();
-        }
+	/**
+	#
+	 * Calls the edit property feature tempate file
+	#
+	 */
+	function editPfeature_html( $output, $rows )
+		{
+		$pageoutput    = array ();
+		$pageoutput[ ] = $output;
+		$tmpl          = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+		$tmpl->readTemplatesFromInput( 'edit_property_feature.html' );
+		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->addRows( 'rows', $rows );
+		$tmpl->displayParsedTemplate();
+		}
 
 
-    /**
-    #
-     * Shows the edit property type form
-    #
-     */
-    function editpropertyType_html( $pList, $rowInfo, $hidden, $jrtb )
-        {
-        ?>
-            <h2><?php echo $pList[ 'PAGETITLE' ]; ?></h2>
-            <p><?php echo $pList[ 'FURTHER' ]; ?></p>
-            <form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="POST" name="adminForm">
-                <?php echo $jrtb; ?>
-                <table class="ui-widget-content ui-corner-all" border="0" width="100%">
-                    <tr>
-                        <th class="ui-state-default"><?php echo $pList[ 'HPTYPE' ]; ?></th>
-                        <th class="ui-state-default"><?php echo $pList[ 'HPTYPE_DESC' ]; ?></th>
-                    </tr>
-                    <?php echo $rowInfo; ?>
-                </table>
-                <input type="hidden" name="task" value=""/>
-                <input type="hidden" name="option" value="com_jomres"/>
-                <?php echo $hidden; ?>
-            </form>
-        <?php
-        }
+	/**
+	#
+	 * Shows the edit property type form
+	#
+	 */
+	function editpropertyType_html( $pList, $rowInfo, $hidden, $jrtb )
+		{
+		?>
+			<h2><?php echo $pList[ 'PAGETITLE' ]; ?></h2>
+			<p><?php echo $pList[ 'FURTHER' ]; ?></p>
+			<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="POST" name="adminForm">
+				<?php echo $jrtb; ?>
+				<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+					<tr>
+						<th class="ui-state-default"><?php echo $pList[ 'HPTYPE' ]; ?></th>
+						<th class="ui-state-default"><?php echo $pList[ 'HPTYPE_DESC' ]; ?></th>
+					</tr>
+					<?php echo $rowInfo; ?>
+				</table>
+				<input type="hidden" name="task" value=""/>
+				<input type="hidden" name="option" value="com_jomres"/>
+				<?php echo $hidden; ?>
+			</form>
+		<?php
+		}
 
-    //end function List property types
+	//end function List property types
 
-    /**
-    #
-     * Called, ultimately, by the show profiles option
-    #
-     */
-    function listMosUsers_html( $userRowInfo, $option )
-        {
-        ?>
-            <script type="text/javascript">
-                function select_all(obj) {
-                    var text_val = eval(obj);
-                    text_val.focus();
-                    text_val.select();
-                    if (!document.all) return; // IE only
-                    r = text_val.createTextRange();
-                    r.execCommand('copy');
-                } </script>
-            <form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="POST" name="adminForm">
-                <table class="ui-widget-content ui-corner-all" border="0" width="75%">
-                    <tr>
-                        <th class="ui-widget-header ui-corner-all"
-                            colspan="9"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_TITLE, '_JOMRES_COM_MR_ASSIGNUSER_TITLE', false ); ?></th>
-                    </tr>
-                    <tr>
-                        <th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_ID, '_JOMRES_COM_MR_ASSIGNUSER_ID', false ); ?></th>
-                        <th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_NAME, '_JOMRES_COM_MR_ASSIGNUSER_NAME', false ); ?></th>
-                        <th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_USERNAME, '_JOMRES_COM_MR_ASSIGNUSER_USERNAME', false ); ?></th>
-                        <th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER, '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER', false ); ?></th>
-                        <th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDDEFAULTHOTEL, '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDDEFAULTHOTEL', false ); ?></th>
-                        <th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS, '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS', false ); ?></th>
-                        <th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL, '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL', false ); ?></th>
-                        <th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS, '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS', false ); ?></th>
-                        <th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_USERIS_SUPERPROPERTYMANAGER, '_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER', false ); ?></th>
-                    </tr>
-                    <?php echo $userRowInfo; ?>
-                </table>
-                <input type="hidden" name="jomrestoken" value="<?php echo jomresSetToken(); ?>">
-                <input type="hidden" name="option" value="<?php echo $option; ?>"/>
-            </form>
-        <?php
-        }
-    //end function List mos users
+	/**
+	#
+	 * Called, ultimately, by the show profiles option
+	#
+	 */
+	function listMosUsers_html( $userRowInfo, $option )
+		{
+		?>
+			<script type="text/javascript">
+				function select_all(obj) {
+					var text_val = eval(obj);
+					text_val.focus();
+					text_val.select();
+					if (!document.all) return; // IE only
+					r = text_val.createTextRange();
+					r.execCommand('copy');
+				} </script>
+			<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="POST" name="adminForm">
+				<table class="ui-widget-content ui-corner-all" border="0" width="75%">
+					<tr>
+						<th class="ui-widget-header ui-corner-all"
+						    colspan="9"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_TITLE, '_JOMRES_COM_MR_ASSIGNUSER_TITLE', false ); ?></th>
+					</tr>
+					<tr>
+						<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_ID, '_JOMRES_COM_MR_ASSIGNUSER_ID', false ); ?></th>
+						<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_NAME, '_JOMRES_COM_MR_ASSIGNUSER_NAME', false ); ?></th>
+						<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_USERNAME, '_JOMRES_COM_MR_ASSIGNUSER_USERNAME', false ); ?></th>
+						<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER, '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER', false ); ?></th>
+						<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDDEFAULTHOTEL, '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDDEFAULTHOTEL', false ); ?></th>
+						<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS, '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS', false ); ?></th>
+						<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL, '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL', false ); ?></th>
+						<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS, '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS', false ); ?></th>
+						<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext( _JOMRES_COM_USERIS_SUPERPROPERTYMANAGER, '_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER', false ); ?></th>
+					</tr>
+					<?php echo $userRowInfo; ?>
+				</table>
+				<input type="hidden" name="jomrestoken" value="<?php echo jomresSetToken(); ?>">
+				<input type="hidden" name="option" value="<?php echo $option; ?>"/>
+			</form>
+		<?php
+		}
+	//end function List mos users
 
-    }
+	}
 
 ?>

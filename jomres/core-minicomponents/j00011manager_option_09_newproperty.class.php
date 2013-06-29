@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -16,42 +17,43 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 #
  * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 #
+ *
  * @package Jomres
 #
  */
 class j00011manager_option_09_newproperty
-    {
+	{
 
-    /**
-    #
-     * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    #
-     */
-    function j00011manager_option_09_newproperty( $componentArgs )
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	/**
+	#
+	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	#
+	 */
+	function j00011manager_option_09_newproperty( $componentArgs )
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
-        $thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-        $siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-        $jrConfig   = $siteConfig->get();
-        if ( $jrConfig[ 'is_single_property_installation' ] == "0" )
-            {
-            if ( $jrConfig[ 'selfRegistrationAllowed' ] == '1' || $thisJRUser->superPropertyManager ) $this->cpanelButton = jomres_mainmenu_option( jomresURL( JOMRES_SITEPAGE_URL . "&task=registerProp_step1" ), 'AddProperty.png', jr_gettext( '_JOMRES_COM_MR_NEWPROPERTY', _JOMRES_COM_MR_NEWPROPERTY, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME, false, false ), false, true );
-            }
-        }
+			return;
+			}
+		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+		if ( $jrConfig[ 'is_single_property_installation' ] == "0" )
+			{
+			if ( $jrConfig[ 'selfRegistrationAllowed' ] == '1' || $thisJRUser->superPropertyManager ) $this->cpanelButton = jomres_mainmenu_option( jomresURL( JOMRES_SITEPAGE_URL . "&task=registerProp_step1" ), 'AddProperty.png', jr_gettext( '_JOMRES_COM_MR_NEWPROPERTY', _JOMRES_COM_MR_NEWPROPERTY, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME, false, false ), false, true );
+			}
+		}
 
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return $this->cpanelButton;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return $this->cpanelButton;
+		}
+	}
 
 ?>

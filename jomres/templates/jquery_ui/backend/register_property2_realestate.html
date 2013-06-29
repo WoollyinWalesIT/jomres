@@ -1,239 +1,239 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <style>
-    .REmail {
+	.REmail {
 
-    border:solid
+	border:solid
 
-    1
-    px {
-        INPUTBOXERRORBORDER
-    }
+	1
+	px {
+		INPUTBOXERRORBORDER
+	}
 
-    ;
-    background-color: {
-        INPUTBOXERRORBACKGROUND
-    }
+	;
+	background-color: {
+		INPUTBOXERRORBACKGROUND
+	}
 
-    ;
-        }
+	;
+		}
 
-    span.required {
-        color: red;
-    }
+	span.required {
+		color: red;
+	}
 </style>
 <script type="text/javascript">
-    <!--
-    function validatePropertyRegistration() {
-        valid = true;
-        missingfields = "";
-        document.regForm.property_name.className = "inputbox";
-        document.regForm.property_street.className = "inputbox";
-        document.regForm.property_town.className = "inputbox";
-        document.regForm.property_postcode.className = "inputbox";
-        document.regForm.property_tel.className = "inputbox";
-        document.regForm.property_email.className = "inputbox";
-        document.regForm.property_description.className = "inputbox";
-        if (document.regForm.property_name.value == "") {
-            document.regForm.property_name.className = "REmail";
-            valid = false;
-        }
-        if (document.regForm.property_street.value == "") {
-            document.regForm.property_street.className = "REmail";
-            valid = false;
-        }
-        if (document.regForm.property_town.value == "") {
-            document.regForm.property_town.className = "REmail";
-            valid = false;
-        }
-        if (document.regForm.property_street.value == "") {
-            document.regForm.property_street.className = "REmail";
-            valid = false;
-        }
-        if (document.regForm.property_postcode.value == "") {
-            document.regForm.property_postcode.className = "REmail";
-            valid = false;
-        }
-        if (document.regForm.property_tel.value == "") {
-            document.regForm.property_tel.className = "REmail";
-            valid = false;
-        }
+	<!--
+	function validatePropertyRegistration() {
+		valid = true;
+		missingfields = "";
+		document.regForm.property_name.className = "inputbox";
+		document.regForm.property_street.className = "inputbox";
+		document.regForm.property_town.className = "inputbox";
+		document.regForm.property_postcode.className = "inputbox";
+		document.regForm.property_tel.className = "inputbox";
+		document.regForm.property_email.className = "inputbox";
+		document.regForm.property_description.className = "inputbox";
+		if (document.regForm.property_name.value == "") {
+			document.regForm.property_name.className = "REmail";
+			valid = false;
+		}
+		if (document.regForm.property_street.value == "") {
+			document.regForm.property_street.className = "REmail";
+			valid = false;
+		}
+		if (document.regForm.property_town.value == "") {
+			document.regForm.property_town.className = "REmail";
+			valid = false;
+		}
+		if (document.regForm.property_street.value == "") {
+			document.regForm.property_street.className = "REmail";
+			valid = false;
+		}
+		if (document.regForm.property_postcode.value == "") {
+			document.regForm.property_postcode.className = "REmail";
+			valid = false;
+		}
+		if (document.regForm.property_tel.value == "") {
+			document.regForm.property_tel.className = "REmail";
+			valid = false;
+		}
 
 
-        var emailID = document.regForm.property_email
-        if ((emailID.value == null) || (emailID.value == "")) {
-            document.regForm.property_email.className = "REmail";
-            emailID.focus()
-            valid = false;
-        }
-        else {
-            if (echeck(emailID.value) == false) {
-                document.regForm.property_email.className = "REmail";
-                emailID.value = ""
-                emailID.focus()
-                valid = false;
-            }
-        }
-        if (valid) {
-            document.regForm.action = "{JOMRES_SITEPAGE_URL}&task=saveRegisterProp"
-            document.regForm.submit();
-        }
-        else {
-            alert("{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2_BUTTON}");
-        }
-    }
-    /**
-     * DHTML email validation script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
-     */
-    function echeck(str) {
-        var at = "@"
-        var dot = "."
-        var lat = str.indexOf(at)
-        var lstr = str.length
-        var ldot = str.indexOf(dot)
-        if (str.indexOf(at) == -1) {
-            alert("Invalid E-mail ID")
-            return false
-        }
-        if (str.indexOf(at) == -1 || str.indexOf(at) == 0 || str.indexOf(at) == lstr) {
-            alert("Invalid E-mail ID");
-            return false;
-        }
-        if (str.indexOf(dot) == -1 || str.indexOf(dot) == 0 || str.indexOf(dot) == lstr) {
-            alert("Invalid E-mail ID")
-            return false
-        }
-        if (str.indexOf(at, (lat + 1)) != -1) {
-            alert("Invalid E-mail ID")
-            return false
-        }
-        if (str.substring(lat - 1, lat) == dot || str.substring(lat + 1, lat + 2) == dot) {
-            alert("Invalid E-mail ID")
-            return false
-        }
-        if (str.indexOf(dot, (lat + 2)) == -1) {
-            alert("Invalid E-mail ID")
-            return false
-        }
-        if (str.indexOf(" ") != -1) {
-            alert("Invalid E-mail ID")
-            return false
-        }
-        return true
-    }
+		var emailID = document.regForm.property_email
+		if ((emailID.value == null) || (emailID.value == "")) {
+			document.regForm.property_email.className = "REmail";
+			emailID.focus()
+			valid = false;
+		}
+		else {
+			if (echeck(emailID.value) == false) {
+				document.regForm.property_email.className = "REmail";
+				emailID.value = ""
+				emailID.focus()
+				valid = false;
+			}
+		}
+		if (valid) {
+			document.regForm.action = "{JOMRES_SITEPAGE_URL}&task=saveRegisterProp"
+			document.regForm.submit();
+		}
+		else {
+			alert("{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2_BUTTON}");
+		}
+	}
+	/**
+	 * DHTML email validation script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
+	 */
+	function echeck(str) {
+		var at = "@"
+		var dot = "."
+		var lat = str.indexOf(at)
+		var lstr = str.length
+		var ldot = str.indexOf(dot)
+		if (str.indexOf(at) == -1) {
+			alert("Invalid E-mail ID")
+			return false
+		}
+		if (str.indexOf(at) == -1 || str.indexOf(at) == 0 || str.indexOf(at) == lstr) {
+			alert("Invalid E-mail ID");
+			return false;
+		}
+		if (str.indexOf(dot) == -1 || str.indexOf(dot) == 0 || str.indexOf(dot) == lstr) {
+			alert("Invalid E-mail ID")
+			return false
+		}
+		if (str.indexOf(at, (lat + 1)) != -1) {
+			alert("Invalid E-mail ID")
+			return false
+		}
+		if (str.substring(lat - 1, lat) == dot || str.substring(lat + 1, lat + 2) == dot) {
+			alert("Invalid E-mail ID")
+			return false
+		}
+		if (str.indexOf(dot, (lat + 2)) == -1) {
+			alert("Invalid E-mail ID")
+			return false
+		}
+		if (str.indexOf(" ") != -1) {
+			alert("Invalid E-mail ID")
+			return false
+		}
+		return true
+	}
 
-    jomresJquery(document).ready(function () {
-        var select = '#mySelect';
-        jomresJquery(select).attr('selectedIndex', '-1');
-        jomresJquery(select).change(function () {
-            jomresJquery(select + ' option').each(function () {
-                jomresJquery('#' + this.value).hide();
-            });
-            jomresJquery(select + ' option:selected').each(function () {
-                jomresJquery('#' + this.value).show();
-            });
-        }).change();
-    });
-    //-->
+	jomresJquery(document).ready(function () {
+		var select = '#mySelect';
+		jomresJquery(select).attr('selectedIndex', '-1');
+		jomresJquery(select).change(function () {
+			jomresJquery(select + ' option').each(function () {
+				jomresJquery('#' + this.value).hide();
+			});
+			jomresJquery(select + ' option:selected').each(function () {
+				jomresJquery('#' + this.value).show();
+			});
+		}).change();
+	});
+	//-->
 </script>
 <h2>{_JOMRES_REGISTRATION_STEP_2_OF_2}</h2>
 
 <p>{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1} {JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2}</p>
 
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm">
-    <table class="ui-widget-content ui-corner-all" border="0" width="100%">
-        <tr>
-            <td>{HNAME}<span class="required">*</span></td>
-            <td><input class="inputbox" type="text" size="20" name="property_name" value="{PROPERTY_NAME}"/></td>
-        </tr>
-        <tr>
-            <td>{HSTREET}<span class="required">*</span></td>
-            <td><input class="inputbox" type="text" size="20" name="property_street" value="{PROPERTY_STREET}"/></td>
-        </tr>
-        <tr>
-            <td>{HTOWN}<span class="required">*</span></td>
-            <td><input class="inputbox" type="text" size="20" name="property_town" value="{PROPERTY_TOWN}"/></td>
-        </tr>
-        <tr>
-            <td>{HPOSTCODE}<span class="required">*</span></td>
-            <td><input class="inputbox" type="text" size="20" name="property_postcode" value="{PROPERTY_POSTCODE}"/>
-            </td>
-        </tr>
-        <tr>
-            <td>{HTELEPHONE}<span class="required">*</span></td>
-            <td><input class="inputbox" type="text" size="20" name="property_tel" value="{PROPERTY_TEL}"/></td>
-        </tr>
-        <tr>
-            <td>{HFAX}</td>
-            <td><input class="inputbox" type="text" size="20" name="property_fax" value="{PROPERTY_FAX}"/></td>
-        </tr>
-        <tr>
-            <td>{HEMAIL}<span class="required">*</span></td>
-            <td><input class="inputbox" type="text" size="20" name="property_email" value="{PROPERTY_EMAIL}"/></td>
-        </tr>
-        <tr>
-            <td>{HPRICE}</td>
-            <td>{CURRENCY}<input class="inputbox" type="text" size="20" name="price" value="{PRICE}"/></td>
-        </tr>
-        <tr>
-            <td>Lat: (nn.nnnn)</td>
-            <td><input id="lat" class="inputbox" type="text" size="20" name="lat" value="{LAT}"/></td>
-        </tr>
-        <tr>
-            <td>Long: (nn.nnnn)</td>
-            <td><input id="lng" class="inputbox" type="text" size="20" name="long" value="{LONG}"/></td>
-        </tr>
-        <tr>
-            <td>{LATLONG_DESC}</td>
-            <td>{MAP}</td>
-        </tr>
-        <tr>
-            <td>{HFEATURES}</td>
-            <td>
-                <patTemplate:tmpl name="globalPfeatures">
-                    <div style="float:left;">
-                        <input type="checkbox" name="pid[]" value="{PID}" style="float:left;"> {FEATURE}
-                    </div>
-                </patTemplate:tmpl>
-            </td>
-        </tr>
-        <tr>
-            <td>{HPROPDESCRIPTION}<span class="required">*</span></td>
-            <td>{PROPERTY_DESCRIPTION}</td>
-        </tr>
-        <!--<tr>
-            <td>{HCHECKINTIMES}</td>
-            <td>{PROPERTY_CHECKIN_TIMES}</td>
-        </tr>
-        <tr>
-            <td>{HAREAACTIVITIES}</td>
-            <td>{PROPERTY_AREA_ACTIVITIES}</td>
-        </tr>
-        <tr>
-            <td>{HDRIVINGDIRECTIONS}</td>
-            <td>{PROPERTY_DRIVING_DIRECTIONS}</td>
-        </tr>
-        <tr>
-            <td>{HAIRPORTS}</td>
-            <td>{PROPERTY_AIRPORTS}</td>
-        </tr>
-        <tr>
-            <td>{HOTHERTRANSPORT}</td>
-            <td>{PROPERTY_OTHERTRANSPORT}</td>
-        </tr>
-        <tr>
-            <td>{HPOLICIESDISCLAIMERS}</td>
-            <td>{PROPERTY_POLICIES_DISCLAIMERS}</td>
-        </tr>-->
-        <tr>
-            <td colspan="2"><input type="button" name="send" value="Submit"
-                                   class="fg-button ui-state-default ui-corner-all"
-                                   onclick="validatePropertyRegistration();"/></td>
-        </tr>
-    </table>
-    <input type="hidden" name="propertyType" value="{PROPERTYTYPE}"/>
-    <input type="hidden" name="property_region" value="{PROPERTY_REGION}"/>
-    <input type="hidden" name="property_country" value="{PROPERTY_COUNTRY}"/>
-    <input type="hidden" name="realestate" value="1"/>
-    <input type="hidden" name="no_html" value="1"/>
+	<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+		<tr>
+			<td>{HNAME}<span class="required">*</span></td>
+			<td><input class="inputbox" type="text" size="20" name="property_name" value="{PROPERTY_NAME}"/></td>
+		</tr>
+		<tr>
+			<td>{HSTREET}<span class="required">*</span></td>
+			<td><input class="inputbox" type="text" size="20" name="property_street" value="{PROPERTY_STREET}"/></td>
+		</tr>
+		<tr>
+			<td>{HTOWN}<span class="required">*</span></td>
+			<td><input class="inputbox" type="text" size="20" name="property_town" value="{PROPERTY_TOWN}"/></td>
+		</tr>
+		<tr>
+			<td>{HPOSTCODE}<span class="required">*</span></td>
+			<td><input class="inputbox" type="text" size="20" name="property_postcode" value="{PROPERTY_POSTCODE}"/>
+			</td>
+		</tr>
+		<tr>
+			<td>{HTELEPHONE}<span class="required">*</span></td>
+			<td><input class="inputbox" type="text" size="20" name="property_tel" value="{PROPERTY_TEL}"/></td>
+		</tr>
+		<tr>
+			<td>{HFAX}</td>
+			<td><input class="inputbox" type="text" size="20" name="property_fax" value="{PROPERTY_FAX}"/></td>
+		</tr>
+		<tr>
+			<td>{HEMAIL}<span class="required">*</span></td>
+			<td><input class="inputbox" type="text" size="20" name="property_email" value="{PROPERTY_EMAIL}"/></td>
+		</tr>
+		<tr>
+			<td>{HPRICE}</td>
+			<td>{CURRENCY}<input class="inputbox" type="text" size="20" name="price" value="{PRICE}"/></td>
+		</tr>
+		<tr>
+			<td>Lat: (nn.nnnn)</td>
+			<td><input id="lat" class="inputbox" type="text" size="20" name="lat" value="{LAT}"/></td>
+		</tr>
+		<tr>
+			<td>Long: (nn.nnnn)</td>
+			<td><input id="lng" class="inputbox" type="text" size="20" name="long" value="{LONG}"/></td>
+		</tr>
+		<tr>
+			<td>{LATLONG_DESC}</td>
+			<td>{MAP}</td>
+		</tr>
+		<tr>
+			<td>{HFEATURES}</td>
+			<td>
+				<patTemplate:tmpl name="globalPfeatures">
+					<div style="float:left;">
+						<input type="checkbox" name="pid[]" value="{PID}" style="float:left;"> {FEATURE}
+					</div>
+				</patTemplate:tmpl>
+			</td>
+		</tr>
+		<tr>
+			<td>{HPROPDESCRIPTION}<span class="required">*</span></td>
+			<td>{PROPERTY_DESCRIPTION}</td>
+		</tr>
+		<!--<tr>
+			<td>{HCHECKINTIMES}</td>
+			<td>{PROPERTY_CHECKIN_TIMES}</td>
+		</tr>
+		<tr>
+			<td>{HAREAACTIVITIES}</td>
+			<td>{PROPERTY_AREA_ACTIVITIES}</td>
+		</tr>
+		<tr>
+			<td>{HDRIVINGDIRECTIONS}</td>
+			<td>{PROPERTY_DRIVING_DIRECTIONS}</td>
+		</tr>
+		<tr>
+			<td>{HAIRPORTS}</td>
+			<td>{PROPERTY_AIRPORTS}</td>
+		</tr>
+		<tr>
+			<td>{HOTHERTRANSPORT}</td>
+			<td>{PROPERTY_OTHERTRANSPORT}</td>
+		</tr>
+		<tr>
+			<td>{HPOLICIESDISCLAIMERS}</td>
+			<td>{PROPERTY_POLICIES_DISCLAIMERS}</td>
+		</tr>-->
+		<tr>
+			<td colspan="2"><input type="button" name="send" value="Submit"
+								   class="fg-button ui-state-default ui-corner-all"
+								   onclick="validatePropertyRegistration();"/></td>
+		</tr>
+	</table>
+	<input type="hidden" name="propertyType" value="{PROPERTYTYPE}"/>
+	<input type="hidden" name="property_region" value="{PROPERTY_REGION}"/>
+	<input type="hidden" name="property_country" value="{PROPERTY_COUNTRY}"/>
+	<input type="hidden" name="realestate" value="1"/>
+	<input type="hidden" name="no_html" value="1"/>
 </form>
 </patTemplate:tmpl>

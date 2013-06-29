@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,94 +15,94 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class jrportal_invoice
-    {
-    function jrportal_invoice()
-        {
-        $this->id               = 0;
-        $this->cms_user_id      = 0;
-        $this->guest_id         = 0;
-        $this->status           = 0;
-        $this->raised_date      = '';
-        $this->due_date         = '';
-        $this->paid             = '';
-        $this->subscription     = false;
-        $this->init_total       = 0.00;
-        $this->recur_total      = 0.00;
-        $this->recur_frequency  = '';
-        $this->recur_dayofmonth = 0;
-        $this->currencycode     = "GBP";
-        $this->subscription_id  = 0;
-        $this->contract_id      = 0;
-        $this->property_uid     = 0;
-        $this->is_commission    = 0;
-        }
+	{
+	function jrportal_invoice()
+		{
+		$this->id               = 0;
+		$this->cms_user_id      = 0;
+		$this->guest_id         = 0;
+		$this->status           = 0;
+		$this->raised_date      = '';
+		$this->due_date         = '';
+		$this->paid             = '';
+		$this->subscription     = false;
+		$this->init_total       = 0.00;
+		$this->recur_total      = 0.00;
+		$this->recur_frequency  = '';
+		$this->recur_dayofmonth = 0;
+		$this->currencycode     = "GBP";
+		$this->subscription_id  = 0;
+		$this->contract_id      = 0;
+		$this->property_uid     = 0;
+		$this->is_commission    = 0;
+		}
 
-    function getInvoice()
-        {
-        if ( $this->id > 0 )
-            {
-            $query = "SELECT
+	function getInvoice()
+		{
+		if ( $this->id > 0 )
+			{
+			$query = "SELECT
 				`id`,`cms_user_id`,`guest_id`,`status`,`raised_date`,`due_date`,`paid`,`subscription`,`init_total`,
 				`recur_total`,`recur_frequency`,`recur_dayofmonth`,`currencycode`,`subscription_id`,`contract_id`,`property_uid`,`is_commission`
 				FROM #__jomresportal_invoices WHERE `id`='$this->id' LIMIT 1";
 
-            $result = doSelectSql( $query );
-            if ( $result && count( $result ) == 1 )
-                {
-                foreach ( $result as $r )
-                    {
-                    $this->id               = $r->id;
-                    $this->cms_user_id      = $r->cms_user_id;
-                    $this->guest_id         = $r->guest_id;
-                    $this->status           = $r->status;
-                    $this->raised_date      = $r->raised_date;
-                    $this->due_date         = $r->due_date;
-                    $this->paid             = $r->paid;
-                    $this->subscription     = $r->subscription;
-                    $this->init_total       = $r->init_total;
-                    $this->recur_total      = $r->recur_total;
-                    $this->recur_frequency  = $r->recur_frequency;
-                    $this->recur_dayofmonth = $r->recur_dayofmonth;
-                    $this->currencycode     = $r->currencycode;
-                    $this->subscription_id  = $r->subscription_id;
-                    $this->contract_id      = $r->contract_id;
-                    $this->property_uid     = $r->property_uid;
-                    $this->is_commission    = $r->is_commission;
+			$result = doSelectSql( $query );
+			if ( $result && count( $result ) == 1 )
+				{
+				foreach ( $result as $r )
+					{
+					$this->id               = $r->id;
+					$this->cms_user_id      = $r->cms_user_id;
+					$this->guest_id         = $r->guest_id;
+					$this->status           = $r->status;
+					$this->raised_date      = $r->raised_date;
+					$this->due_date         = $r->due_date;
+					$this->paid             = $r->paid;
+					$this->subscription     = $r->subscription;
+					$this->init_total       = $r->init_total;
+					$this->recur_total      = $r->recur_total;
+					$this->recur_frequency  = $r->recur_frequency;
+					$this->recur_dayofmonth = $r->recur_dayofmonth;
+					$this->currencycode     = $r->currencycode;
+					$this->subscription_id  = $r->subscription_id;
+					$this->contract_id      = $r->contract_id;
+					$this->property_uid     = $r->property_uid;
+					$this->is_commission    = $r->is_commission;
 
-                    }
+					}
 
-                return true;
-                }
-            else
-                {
-                if ( count( $result ) == 0 )
-                    {
-                    error_logging( "No Invoices were found with that id" );
+				return true;
+				}
+			else
+				{
+				if ( count( $result ) == 0 )
+					{
+					error_logging( "No Invoices were found with that id" );
 
-                    return false;
-                    }
-                if ( count( $result ) > 1 )
-                    {
-                    error_logging( "More than one Invoice was found with that id" );
+					return false;
+					}
+				if ( count( $result ) > 1 )
+					{
+					error_logging( "More than one Invoice was found with that id" );
 
-                    return false;
-                    }
-                }
-            }
-        else
-            {
-            error_logging( "ID of Invoice not available" );
+					return false;
+					}
+				}
+			}
+		else
+			{
+			error_logging( "ID of Invoice not available" );
 
-            return false;
-            }
+			return false;
+			}
 
-        }
+		}
 
-    function commitNewInvoice()
-        {
-        if ( $this->id < 1 )
-            {
-            $query = "INSERT INTO #__jomresportal_invoices
+	function commitNewInvoice()
+		{
+		if ( $this->id < 1 )
+			{
+			$query = "INSERT INTO #__jomresportal_invoices
 				(
 				`cms_user_id`,
 				`guest_id`,
@@ -139,30 +140,30 @@ class jrportal_invoice
 				'$this->property_uid',
 				" . (int) $this->is_commission . "
 				)";
-            $id    = doInsertSql( $query, "" );
-            if ( $id )
-                {
-                $this->id = $id;
+			$id    = doInsertSql( $query, "" );
+			if ( $id )
+				{
+				$this->id = $id;
 
-                return true;
-                }
-            else
-                {
-                error_logging( "ID of Invoice could not be found after apparent successful insert" );
+				return true;
+				}
+			else
+				{
+				error_logging( "ID of Invoice could not be found after apparent successful insert" );
 
-                return false;
-                }
-            }
-        error_logging( "ID of Invoice already available. Are you sure you are creating a new Invoice?" );
+				return false;
+				}
+			}
+		error_logging( "ID of Invoice already available. Are you sure you are creating a new Invoice?" );
 
-        return false;
-        }
+		return false;
+		}
 
-    function commitUpdateInvoice()
-        {
-        if ( $this->id > 0 )
-            {
-            $query = "UPDATE #__jomresportal_invoices SET
+	function commitUpdateInvoice()
+		{
+		if ( $this->id > 0 )
+			{
+			$query = "UPDATE #__jomresportal_invoices SET
 				`cms_user_id`		= '$this->cms_user_id',
 				`guest_id`			= '$this->guest_id',
 				`status`			= '$this->status',
@@ -183,49 +184,49 @@ class jrportal_invoice
 				
 				WHERE `id`='$this->id'";
 
-            return doInsertSql( $query, "" );
-            }
-        error_logging( "ID of Invoice not available" );
+			return doInsertSql( $query, "" );
+			}
+		error_logging( "ID of Invoice not available" );
 
-        return false;
-        }
+		return false;
+		}
 
-    function get_invoice_balance()
-        {
-        if ( $this->id > 0 )
-            {
-            $bal    = 0.0;
-            $query  = "SELECT * FROM #__jomresportal_lineitems WHERE inv_id = " . (int) $this->id;
-            $result = doSelectSql( $query );
-            if ( count( $result ) > 0 )
-                {
-                foreach ( $result as $r )
-                    {
-                    $bal = $bal + (float) $r->init_total;
-                    }
-                }
+	function get_invoice_balance()
+		{
+		if ( $this->id > 0 )
+			{
+			$bal    = 0.0;
+			$query  = "SELECT * FROM #__jomresportal_lineitems WHERE inv_id = " . (int) $this->id;
+			$result = doSelectSql( $query );
+			if ( count( $result ) > 0 )
+				{
+				foreach ( $result as $r )
+					{
+					$bal = $bal + (float) $r->init_total;
+					}
+				}
 
-            return $bal;
-            }
-        else
-        return false;
-        }
+			return $bal;
+			}
+		else
+		return false;
+		}
 
 
-    function get_invoice_booking_number()
-        {
-        if ( (int) $this->contract_id > 0 )
-            {
-            $query  = "SELECT tag FROM #__jomres_contracts WHERE contract_uid = " . (int) $this->contract_id;
-            $result = doSelectSql( $query, 1 );
-            if ( $result ) return $result;
-            else
-            return false;
-            }
-        else
-        return false;
-        }
+	function get_invoice_booking_number()
+		{
+		if ( (int) $this->contract_id > 0 )
+			{
+			$query  = "SELECT tag FROM #__jomres_contracts WHERE contract_uid = " . (int) $this->contract_id;
+			$result = doSelectSql( $query, 1 );
+			if ( $result ) return $result;
+			else
+			return false;
+			}
+		else
+		return false;
+		}
 
-    }
+	}
 
 ?>

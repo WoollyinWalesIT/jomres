@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -30,18 +31,18 @@ define( 'JOMRES_ADMINISTRATORDIRECTORY', "administrator" );
 $query        = "SELECT id" . "\n FROM #__menu" . "\n WHERE " . "\n published = 1" . "\n AND link LIKE 'index.php?option=com_jomres' LIMIT 1";
 $itemQueryRes = doSelectSql( $query );
 if ( count( $itemQueryRes ) > 0 )
-    {
-    foreach ( $itemQueryRes as $i )
-        {
-        $jomresItemid = $i->id;
-        }
-    }
+	{
+	foreach ( $itemQueryRes as $i )
+		{
+		$jomresItemid = $i->id;
+		}
+	}
 else
-    {
-    if ( isset( $jrConfig[ 'jomresItemid' ] ) ) $jomresItemid = $jrConfig[ 'jomresItemid' ];
-    else
-    $jomresItemid = 0; //should only kick in on install
-    }
+	{
+	if ( isset( $jrConfig[ 'jomresItemid' ] ) ) $jomresItemid = $jrConfig[ 'jomresItemid' ];
+	else
+	$jomresItemid = 0; //should only kick in on install
+	}
 //	}
 
 $jrConfig = $siteConfig->set_setting( "jomresItemid", $jomresItemid );
@@ -51,51 +52,51 @@ $tmpl  = "";
 if ( !isset( $_GET[ 'tmpl' ] ) ) $_GET[ 'tmpl' ] = false;
 
 if ( ( $jrConfig[ 'isInIframe' ] == (bool) "1" || strstr( $scriptname, 'index2.php' ) || $_GET[ 'tmpl' ] == 'component' ) && !isset( $_REQUEST[ 'nofollowtmpl' ] ) )
-    {
-    $index = "index.php";
-    $tmpl  = "&tmpl=component";
-    define( "JOMRES_WRAPPED", 1 );
-    }
+	{
+	$index = "index.php";
+	$tmpl  = "&tmpl=component";
+	define( "JOMRES_WRAPPED", 1 );
+	}
 else
 define( "JOMRES_WRAPPED", 0 );
 
 if ( isset( $_GET[ 'format' ] ) )
-    {
-    if ( $_GET[ 'format' ] == "raw" ) define( "JOMRES_WRAPPED", 1 );
-    }
+	{
+	if ( $_GET[ 'format' ] == "raw" ) define( "JOMRES_WRAPPED", 1 );
+	}
 
 if ( isset( $_REQUEST[ 'is_wrapped' ] ) )
-    {
-    if ( $_REQUEST[ 'is_wrapped' ] == "1" ) $tmpl .= "&is_wrapped=1";
-    }
+	{
+	if ( $_REQUEST[ 'is_wrapped' ] == "1" ) $tmpl .= "&is_wrapped=1";
+	}
 
 if ( isset( $_REQUEST[ 'menuoff' ] ) )
-    {
-    if ( $_REQUEST[ 'menuoff' ] == "1" )
-        {
-        $tmpl .= "&menuoff=1";
-        set_showtime( 'menuoff', true );
-        }
-    else
-        {
-        $tmpl .= "&menuoff=0";
-        set_showtime( 'menuoff', false );
-        }
-    }
+	{
+	if ( $_REQUEST[ 'menuoff' ] == "1" )
+		{
+		$tmpl .= "&menuoff=1";
+		set_showtime( 'menuoff', true );
+		}
+	else
+		{
+		$tmpl .= "&menuoff=0";
+		set_showtime( 'menuoff', false );
+		}
+	}
 
 if ( isset( $_REQUEST[ 'topoff' ] ) )
-    {
-    if ( $_REQUEST[ 'topoff' ] == "1" )
-        {
-        $tmpl .= "&topoff=1";
-        set_showtime( 'topoff', true );
-        }
-    else
-        {
-        $tmpl .= "&topoff=0";
-        set_showtime( 'topoff', false );
-        }
-    }
+	{
+	if ( $_REQUEST[ 'topoff' ] == "1" )
+		{
+		$tmpl .= "&topoff=1";
+		set_showtime( 'topoff', true );
+		}
+	else
+		{
+		$tmpl .= "&topoff=0";
+		set_showtime( 'topoff', false );
+		}
+	}
 
 $lang = substr( get_showtime( 'lang' ), 0, 2 );
 
@@ -105,17 +106,17 @@ define( "JOMRES_SITEPAGE_URL_ADMIN", get_showtime( 'live_site' ) . '/' . JOMRES_
 define( "JOMRES_SITEPAGE_URL_ADMIN_AJAX", get_showtime( 'live_site' ) . '/' . JOMRES_ADMINISTRATORDIRECTORY . "/index.php?option=com_jomres&tmpl=component&jrajax=1&format=raw&no_html=1" );
 
 if ( class_exists( 'JFactory' ) )
-    {
-    $app =& JFactory::getApplication(); // Many thanks maakit
-    if ( $app->getCfg( 'sef' ) )
-        {
-        //if (get_showtime('sef') == "1") // If SEF is enabled we need to set the sitepage url to the full url, otherwise Jomres can't detect when we need to rewrite urls overwritng http:// with https//
-        //	define("JOMRES_SITEPAGE_URL", get_showtime('live_site')."/".$index."?option=com_jomres&Itemid=".$jomresItemid.$tmpl);
-        //else
-        define( "JOMRES_SITEPAGE_URL", $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl );
-        }
-    else
-    define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl );
-    }
+	{
+	$app =& JFactory::getApplication(); // Many thanks maakit
+	if ( $app->getCfg( 'sef' ) )
+		{
+		//if (get_showtime('sef') == "1") // If SEF is enabled we need to set the sitepage url to the full url, otherwise Jomres can't detect when we need to rewrite urls overwritng http:// with https//
+		//	define("JOMRES_SITEPAGE_URL", get_showtime('live_site')."/".$index."?option=com_jomres&Itemid=".$jomresItemid.$tmpl);
+		//else
+		define( "JOMRES_SITEPAGE_URL", $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl );
+		}
+	else
+	define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl );
+	}
 else
 define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl );

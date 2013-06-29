@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -24,33 +25,33 @@ header( "Cache-Control: no-cache, no-store" );
 header( "Pragma: no-cache" );
 
 if ( !defined( 'JOMRESPATH_BASE' ) )
-    {
-    if ( !defined( 'JRDS' ) )
-        {
-        $apacheSig = false;
+	{
+	if ( !defined( 'JRDS' ) )
+		{
+		$apacheSig = false;
 
-        $detect_os = strtoupper( $_SERVER[ "SERVER_SOFTWARE" ] ); // converted to uppercase
-        $isWin32   = strpos( $detect_os, "WIN32" );
-        $IIS       = strpos( $detect_os, "IIS" );
-        if ( isset( $_SERVER[ "SERVER_SIGNATURE" ] ) )
-            {
-            $signature = strtoupper( $_SERVER[ "SERVER_SIGNATURE" ] );
-            $apacheSig = strpos( $signature, "APACHE" );
-            }
-        $dir = dirname( realpath( __FILE__ ) );
-        if ( strpos( $dir, ":\\" ) ) define( "JRDS", "\\" );
-        else
-            {
-            if ( $isWin32 === false || $apacheSig == true ) define( "JRDS", "/" );
-            else
-            define( "JRDS", "\\" );
-            }
-        }
-    if ( isset( $_SERVER[ 'SCRIPT_FILENAME' ] ) ) $dir_path = str_replace( $_SERVER[ 'SCRIPT_FILENAME' ], "", dirname( realpath( __FILE__ ) ) );
-    else
-    $dir_path = str_replace( $_SERVER[ 'SCRIPT_NAME' ], "", dirname( realpath( __FILE__ ) ) );
-    define( 'JOMRESPATH_BASE', $dir_path );
-    }
+		$detect_os = strtoupper( $_SERVER[ "SERVER_SOFTWARE" ] ); // converted to uppercase
+		$isWin32   = strpos( $detect_os, "WIN32" );
+		$IIS       = strpos( $detect_os, "IIS" );
+		if ( isset( $_SERVER[ "SERVER_SIGNATURE" ] ) )
+			{
+			$signature = strtoupper( $_SERVER[ "SERVER_SIGNATURE" ] );
+			$apacheSig = strpos( $signature, "APACHE" );
+			}
+		$dir = dirname( realpath( __FILE__ ) );
+		if ( strpos( $dir, ":\\" ) ) define( "JRDS", "\\" );
+		else
+			{
+			if ( $isWin32 === false || $apacheSig == true ) define( "JRDS", "/" );
+			else
+			define( "JRDS", "\\" );
+			}
+		}
+	if ( isset( $_SERVER[ 'SCRIPT_FILENAME' ] ) ) $dir_path = str_replace( $_SERVER[ 'SCRIPT_FILENAME' ], "", dirname( realpath( __FILE__ ) ) );
+	else
+	$dir_path = str_replace( $_SERVER[ 'SCRIPT_NAME' ], "", dirname( realpath( __FILE__ ) ) );
+	define( 'JOMRESPATH_BASE', $dir_path );
+	}
 
 $jomresConfig_absolute_path = substr( JOMRESPATH_BASE, 0, strlen( JOMRESPATH_BASE ) - 7 );
 define( 'JOMRESCONFIG_ABSOLUTE_PATH', $jomresConfig_absolute_path );
@@ -88,11 +89,11 @@ require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' 
 
 if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS . 'code_changes' . JRDS . 'countries.php' ) ) require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS . 'code_changes' . JRDS . 'countries.php' );
 else
-    {
-    if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . 'countries.php' ) ) require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . 'countries.php' );
-    else
-    require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'countries.php' );
-    }
+	{
+	if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . 'countries.php' ) ) require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . 'countries.php' );
+	else
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'countries.php' );
+	}
 
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'imagehandling.php' );
 require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_functions.php" );
@@ -103,32 +104,32 @@ $siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_single
 $jrConfig   = $siteConfig->get();
 
 if ( isset( $jrConfig[ 'loggingBooking' ] ) )
-    {
-    define( 'LOGGINGBOOKING', $jrConfig[ 'loggingBooking' ] );
-    define( 'LOGGINGGATEWAY', $jrConfig[ 'loggingGateway' ] );
-    define( 'LOGGINGSYSTEM', $jrConfig[ 'loggingSystem' ] );
-    define( 'LOGGINGREQUEST', $jrConfig[ 'loggingRequest' ] );
-    define( 'LOGGINGPORTAL', $jrConfig[ 'loggingPortal' ] );
-    }
+	{
+	define( 'LOGGINGBOOKING', $jrConfig[ 'loggingBooking' ] );
+	define( 'LOGGINGGATEWAY', $jrConfig[ 'loggingGateway' ] );
+	define( 'LOGGINGSYSTEM', $jrConfig[ 'loggingSystem' ] );
+	define( 'LOGGINGREQUEST', $jrConfig[ 'loggingRequest' ] );
+	define( 'LOGGINGPORTAL', $jrConfig[ 'loggingPortal' ] );
+	}
 
 if ( !defined( "AJAXCALL" ) )
-    {
-    if ( isset( $_REQUEST[ 'jrajax' ] ) )
-        {
-        if ( (int) $_REQUEST[ 'jrajax' ] == 1 ) define( 'AJAXCALL', true );
-        else
-        define( 'AJAXCALL', false );
-        }
-    else
-    define( 'AJAXCALL', false );
-    }
+	{
+	if ( isset( $_REQUEST[ 'jrajax' ] ) )
+		{
+		if ( (int) $_REQUEST[ 'jrajax' ] == 1 ) define( 'AJAXCALL', true );
+		else
+		define( 'AJAXCALL', false );
+		}
+	else
+	define( 'AJAXCALL', false );
+	}
 
 // loads en language file by default
 if ( $jomresConfig_lang == '' )
-    {
-    set_showtime( 'lang', 'en-GB' );
-    $jomresConfig_lang = 'en-GB';
-    }
+	{
+	set_showtime( 'lang', 'en-GB' );
+	$jomresConfig_lang = 'en-GB';
+	}
 
 $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 $MiniComponents->triggerEvent( '00001' ); // Start
@@ -143,10 +144,10 @@ set_error_handler( 'errorHandler' );
 jomres_parseRequest();
 
 if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )
-    {
-    define( 'JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'uploadedimages' . JRDS );
-    define( 'JOMRES_IMAGELOCATION_RELPATH', get_showtime( 'live_site' ) . '/jomres/uploadedimages/' );
-    }
+	{
+	define( 'JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'uploadedimages' . JRDS );
+	define( 'JOMRES_IMAGELOCATION_RELPATH', get_showtime( 'live_site' ) . '/jomres/uploadedimages/' );
+	}
 
 // In case somebody removes the above lines, we still need to set this define otherwise folks will not be able to create new properties
 if ( !defined( 'JOMRES_SINGLEPROPERTY' ) ) define( 'JOMRES_SINGLEPROPERTY', false );

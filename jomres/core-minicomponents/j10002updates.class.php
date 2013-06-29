@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,42 +15,42 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j10002updates
-    {
-    function j10002updates()
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = true;
+	{
+	function j10002updates()
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = true;
 
-            return;
-            }
-        $htmlFuncs = jomres_singleton_abstract::getInstance( 'html_functions' );
-        if ( function_exists( "curl_init" ) )
-            {
-            $this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=updates', 'upgrades.png', jr_gettext( "_JOMRES_CUSTOMCODE_UPGRADES", _JOMRES_CUSTOMCODE_UPGRADES, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE, false, false ) );
-            }
-        else
-        $this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=nocurl', 'DownloadDisabled.png', jr_gettext( "_JOMRES_CUSTOMCODE_UPGRADES", _JOMRES_CUSTOMCODE_UPGRADES, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE, false, false ) );
-        }
+			return;
+			}
+		$htmlFuncs = jomres_singleton_abstract::getInstance( 'html_functions' );
+		if ( function_exists( "curl_init" ) )
+			{
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=updates', 'upgrades.png', jr_gettext( "_JOMRES_CUSTOMCODE_UPGRADES", _JOMRES_CUSTOMCODE_UPGRADES, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE, false, false ) );
+			}
+		else
+		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=nocurl', 'DownloadDisabled.png', jr_gettext( "_JOMRES_CUSTOMCODE_UPGRADES", _JOMRES_CUSTOMCODE_UPGRADES, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE, false, false ) );
+		}
 
-    function touch_template_language()
-        {
-        $output = array ();
+	function touch_template_language()
+		{
+		$output = array ();
 
-        $output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE );
 
-        foreach ( $output as $o )
-            {
-            echo $o;
-            echo "<br/>";
-            }
-        }
+		foreach ( $output as $o )
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return $this->cpanelButton;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return $this->cpanelButton;
+		}
+	}

@@ -1,6 +1,6 @@
 /**
  * Controls: Table plugin
- * 
+ *
  * Depends on jWYSIWYG
  */
 (function ($) {
@@ -49,8 +49,8 @@
 
 		dialogReplacements = {
 			legend: "Insert table",
-			cols  : "Count of columns",
-			rows  : "Count of rows",
+			cols: "Count of columns",
+			rows: "Count of rows",
 			submit: "Insert table",
 			reset: "Cancel"
 		};
@@ -60,12 +60,12 @@
 			'<label>{rows}: <input type="text" name="rowCount" value="3" /></label><br/>' +
 			'<input type="submit" class="button" value="{submit}"/> ' +
 			'<input type="reset" value="{reset}"/></fieldset></form>';
-		
+
 		for (key in dialogReplacements) {
 			if ($.wysiwyg.i18n) {
 				translation = $.wysiwyg.i18n.t(dialogReplacements[key], "dialogs.table");
 
-				if (translation === dialogReplacements[key]) { // if not translated search in dialogs 
+				if (translation === dialogReplacements[key]) { // if not translated search in dialogs
 					translation = $.wysiwyg.i18n.t(dialogReplacements[key], "dialogs");
 				}
 
@@ -81,9 +81,9 @@
 		}
 
 		adialog = new $.wysiwyg.dialog(Wysiwyg, {
-			"title"   : dialogReplacements.legend,
-			"content" : formTableHtml,
-			"open"    : function (e, dialog) {
+			"title": dialogReplacements.legend,
+			"content": formTableHtml,
+			"open": function (e, dialog) {
 				dialog.find("form#wysiwyg-tableInsert").submit(function (e) {
 					e.preventDefault();
 					rowCount = dialog.find("input[name=rowCount]").val();
@@ -102,7 +102,7 @@
 				});
 			}
 		});
-		
+
 		adialog.open();
 
 		$(Wysiwyg.editorDoc).trigger("editorRefresh.wysiwyg");

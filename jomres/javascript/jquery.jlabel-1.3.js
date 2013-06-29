@@ -29,146 +29,161 @@
 // ####### OTHER DEALINGS IN THE SOFTWARE.                                      #######
 // #######                                                                      #######
 // ####################################################################################
-(function($) {
-    
-    // Public: jLabel Plugin
-    $.fn.jLabel = function(options) {
+(function ($) {
 
-        var states = new Array();
-        var opts = $.extend({}, $.fn.jLabel.defaults, options);
+	// Public: jLabel Plugin
+	$.fn.jLabel = function (options) {
 
-        return this.each(function() {
-            $this = $(this);
+		var states = new Array();
+		var opts = $.extend({}, $.fn.jLabel.defaults, options);
 
-            states.push(new state($this));
+		return this.each(function () {
+			$this = $(this);
 
-            $this
-                .focus(function() { focus($(this)); })
-                .blur(function() { blur($(this)); })
-                .keyup(function() { keyup($(this)); });
-        });
+			states.push(new state($this));
 
-        // Private: state object
-        function state($input) {
+			$this
+				.focus(function () {
+					focus($(this));
+				})
+				.blur(function () {
+					blur($(this));
+				})
+				.keyup(function () {
+					keyup($(this));
+				});
+		});
 
-            // Public Method: equals
-            this.equals = function($input) {
-                return $input.attr('id') == this.input.attr('id');
-            };
+		// Private: state object
+		function state($input) {
 
-            // Public Properties
-            this.input = $input;
-            this.label = getLabel($input);                     
-            
-            // Construction code
-            if (this.input.val() != '') this.label.hide();
+			// Public Method: equals
+			this.equals = function ($input) {
+				return $input.attr('id') == this.input.attr('id');
+			};
 
-        };
+			// Public Properties
+			this.input = $input;
+			this.label = getLabel($input);
 
-        // Private: Get an input's related state
-        function getState($input) {
-            var state; 
+			// Construction code
+			if (this.input.val() != '') this.label.hide();
 
-            $.each(states, function() {
-                if (this.equals($input)) {
-                    state = this;
-                    return false; // Stop the jQuery loop running
-                };
-            });
+		};
+
+		// Private: Get an input's related state
+		function getState($input) {
+			var state;
+
+			$.each(states, function () {
+				if (this.equals($input)) {
+					state = this;
+					return false; // Stop the jQuery loop running
+				}
+				;
+			});
 
 			return state;
-        };
+		};
 
-        // Private: Get an input's related label, or create a new one if none found
-        function getLabel($input) {
-			
+		// Private: Get an input's related label, or create a new one if none found
+		function getLabel($input) {
+
 			// Get the label related to the passed input
 			var $label = $('label[for=' + $input.attr('id') + ']');
 
 			// If no label has been found create one
 			if ($label.size() == 0) {
 				$label = $('<label>')
-                                .attr('for', $input.attr('id'))
-                                .text($input.attr('title'));
-			};
-			
+					.attr('for', $input.attr('id'))
+					.text($input.attr('title'));
+			}
+			;
+
 			// If this is a new label insert it into the DOM, if not then move it directly before it's related input
 			$input.before($label);
 
 			// Style the label to mimic it's textbox formatting
 			$label
 				.css({
-					'font-family' 	    : $input.css('font-family'),
-					'font-size' 	    : $input.css('font-size'),
-					'font-style' 	    : $input.css('font-style'),
-					'font-variant' 	    : $input.css('font-variant'),
-					'font-weight' 	    : $input.css('font-weight'),
-                    'letter-spacing' 	: $input.css('letter-spacing'),
-                    'line-height' 	    : $input.css('line-height'),
-                    'text-decoration' 	: $input.css('text-decoration'),
-                    'text-transform' 	: $input.css('text-transform'),
-					'color' 		    : $input.css('color'),
-					'cursor' 		    : $input.css('cursor'),
-					'display' 		    : 'inline-block'
+					'font-family': $input.css('font-family'),
+					'font-size': $input.css('font-size'),
+					'font-style': $input.css('font-style'),
+					'font-variant': $input.css('font-variant'),
+					'font-weight': $input.css('font-weight'),
+					'letter-spacing': $input.css('letter-spacing'),
+					'line-height': $input.css('line-height'),
+					'text-decoration': $input.css('text-decoration'),
+					'text-transform': $input.css('text-transform'),
+					'color': $input.css('color'),
+					'cursor': $input.css('cursor'),
+					'display': 'inline-block'
 				});
-				
+
 			// Vince added because the stock code doesn't work (presumably because of bootstrap).
 			$label_pos = jomresJquery($label).position();
 			$for = $label.attr('for');
-			$input_pos = jomresJquery('#'+$for).position();
-			$new_left =  opts.xShift + parseInt($input.css("padding-left"))+ jLabel_left_adjustment,
-			$new_top = $input_pos.top-$label_pos.top + (parseInt($input.css("padding-top"))+jLabel_top_adjustment);
+			$input_pos = jomresJquery('#' + $for).position();
+			$new_left = opts.xShift + parseInt($input.css("padding-left")) + jLabel_left_adjustment,
+				$new_top = $input_pos.top - $label_pos.top + (parseInt($input.css("padding-top")) + jLabel_top_adjustment);
 			// original str : 'left' 			: opts.xShift + parseInt($input.css("padding-left")) + 'px',
 			// 'top'			: (opts.yShift+20) + 'px'
 			///////
-			
+
 			// Stop the label from being selectable and position it relative to it's input
-            $label
-					.mousedown(function() { return false; })
-					.css({
-						'position' 		: 'relative',
-						'z-index' 		: '100',
-						'margin-right' 	: -$label.width(),
-						'left' 			: $new_left + 'px',
-						'top'			: $new_top + 'px'
-					});
+			$label
+				.mousedown(function () {
+					return false;
+				})
+				.css({
+					'position': 'relative',
+					'z-index': '100',
+					'margin-right': -$label.width(),
+					'left': $new_left + 'px',
+					'top': $new_top + 'px'
+				});
 
-            return $label;
-        };
+			return $label;
+		};
 
-        // Private: Toggle label opacity on input focus
-        function focus($input) {
-            if ($input.val() == '') {
-                getState($input).label.stop().fadeTo(opts.speed, opts.opacity);
-			};
-        };
-
-        // Private: Toggle label opacity on input blur
-        function blur($input) {
-            if ($input.val() == '') {
-                getState($input).label.stop().fadeTo(opts.speed, 1);
-			};
-        };
-
-        // Private: Toggle label opacity on input key up
-        function keyup($input) {
-			var $label = getState($input).label;
-			
+		// Private: Toggle label opacity on input focus
+		function focus($input) {
 			if ($input.val() == '') {
-            	$label.stop().fadeTo(opts.speed, opts.opacity);
+				getState($input).label.stop().fadeTo(opts.speed, opts.opacity);
+			}
+			;
+		};
+
+		// Private: Toggle label opacity on input blur
+		function blur($input) {
+			if ($input.val() == '') {
+				getState($input).label.stop().fadeTo(opts.speed, 1);
+			}
+			;
+		};
+
+		// Private: Toggle label opacity on input key up
+		function keyup($input) {
+			var $label = getState($input).label;
+
+			if ($input.val() == '') {
+				$label.stop().fadeTo(opts.speed, opts.opacity);
 			} else {
-				if ($label.is(":visible")) $label.stop().fadeTo(opts.speed, 0, function() { $label.hide(); });
-			};
-        };
+				if ($label.is(":visible")) $label.stop().fadeTo(opts.speed, 0, function () {
+					$label.hide();
+				});
+			}
+			;
+		};
 
-    };
+	};
 
-    // Public: Default values
-    $.fn.jLabel.defaults = {
-        speed 	: 200,
-        opacity : 0.4,
-        xShift 	: 2,
-        yShift 	: 0
-    };
+	// Public: Default values
+	$.fn.jLabel.defaults = {
+		speed: 200,
+		opacity: 0.4,
+		xShift: 2,
+		yShift: 0
+	};
 
 })(jQuery);

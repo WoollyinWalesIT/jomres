@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file Swedish transltion
+ *
  * @author Christer Toivonen <christer_1@hotmail.com>
  * @version Jomres 7
  * @package Jomres

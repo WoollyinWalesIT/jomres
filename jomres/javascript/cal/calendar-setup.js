@@ -60,37 +60,41 @@
  *  saying "nothing to setup".
  */
 Calendar.setup = function (params) {
-	function param_default(pname, def) { if (typeof params[pname] == "undefined") { params[pname] = def; } };
+	function param_default(pname, def) {
+		if (typeof params[pname] == "undefined") {
+			params[pname] = def;
+		}
+	};
 
-	param_default("inputField",     null);
-	param_default("displayArea",    null);
-	param_default("button",         null);
-	param_default("eventName",      "click");
-	param_default("ifFormat",       "%Y/%m/%d");
-	param_default("daFormat",       "%Y/%m/%d");
-	param_default("singleClick",    true);
-	param_default("disableFunc",    null);
+	param_default("inputField", null);
+	param_default("displayArea", null);
+	param_default("button", null);
+	param_default("eventName", "click");
+	param_default("ifFormat", "%Y/%m/%d");
+	param_default("daFormat", "%Y/%m/%d");
+	param_default("singleClick", true);
+	param_default("disableFunc", null);
 	param_default("dateStatusFunc", params["disableFunc"]);	// takes precedence if both are defined
-	param_default("dateText",       null);
-	param_default("firstDay",       0);
+	param_default("dateText", null);
+	param_default("firstDay", 0);
 	//param_default("firstDay",       null);
-	param_default("align",          "Br");
-	param_default("range",          [1900, 2999]);
-	param_default("weekNumbers",    true);
-	param_default("flat",           null);
-	param_default("flatCallback",   null);
-	param_default("onSelect",       null);
-	param_default("onClose",        null);
-	param_default("onUpdate",       null);
-	param_default("date",           null);
-	param_default("showsTime",      false);
-	param_default("timeFormat",     "24");
-	param_default("electric",       true);
-	param_default("step",           2);
-	param_default("position",       null);
-	param_default("cache",          false);
-	param_default("showOthers",     false);
-	param_default("multiple",       null);
+	param_default("align", "Br");
+	param_default("range", [1900, 2999]);
+	param_default("weekNumbers", true);
+	param_default("flat", null);
+	param_default("flatCallback", null);
+	param_default("onSelect", null);
+	param_default("onClose", null);
+	param_default("onUpdate", null);
+	param_default("date", null);
+	param_default("showsTime", false);
+	param_default("timeFormat", "24");
+	param_default("electric", true);
+	param_default("step", 2);
+	param_default("position", null);
+	param_default("cache", false);
+	param_default("showOthers", false);
+	param_default("multiple", null);
 
 	var tmp = ["inputField", "displayArea", "button"];
 	for (var i in tmp) {
@@ -151,7 +155,7 @@ Calendar.setup = function (params) {
 	}
 
 	var triggerEl = params.button || params.displayArea || params.inputField;
-	triggerEl["on" + params.eventName] = function() {
+	triggerEl["on" + params.eventName] = function () {
 		var dateEl = params.inputField || params.displayArea;
 		var dateFmt = params.inputField ? params.ifFormat : params.daFormat;
 		var mustCreate = false;
@@ -160,9 +164,11 @@ Calendar.setup = function (params) {
 			params.date = Date.parseDate(dateEl.value || dateEl.innerHTML, dateFmt);
 		if (!(cal && params.cache)) {
 			window.calendar = cal = new Calendar(params.firstDay,
-							     params.date,
-							     params.onSelect || onSelect,
-							     params.onClose || function(cal) { cal.hide(); });
+				params.date,
+				params.onSelect || onSelect,
+				params.onClose || function (cal) {
+					cal.hide();
+				});
 			cal.showsTime = params.showsTime;
 			cal.time24 = (params.timeFormat == "24");
 			cal.weekNumbers = params.weekNumbers;

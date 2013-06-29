@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -26,68 +27,68 @@ set_showtime( 'xmlelements', $xmlelements );
 set_showtime( 'logFiles', $logFiles );
 
 function characterData( $parser, &$data )
-    {
-    global $current_tag, $temp;
-    $temp[ 'LIVESITE' ] = get_showtime( 'live_site' );
-    switch ( $current_tag )
-    {
-        case 'DATETIME':
-            $temp[ 'datetime' ] .= $data;
-            break;
-        case 'JOMRESSESSION':
-            $temp[ 'jomressession' ] .= $data;
-            break;
-        case 'TASK':
-            $temp[ 'task' ] .= $data;
-            break;
-        case 'REQUESTURI':
-            $temp[ 'requesturi' ] .= $data;
-            break;
-        case 'MESSAGE':
-            $temp[ 'messagefull' ] .= $data;
-            break;
-        default:
-            break;
-    }
-    }
+	{
+	global $current_tag, $temp;
+	$temp[ 'LIVESITE' ] = get_showtime( 'live_site' );
+	switch ( $current_tag )
+	{
+		case 'DATETIME':
+			$temp[ 'datetime' ] .= $data;
+			break;
+		case 'JOMRESSESSION':
+			$temp[ 'jomressession' ] .= $data;
+			break;
+		case 'TASK':
+			$temp[ 'task' ] .= $data;
+			break;
+		case 'REQUESTURI':
+			$temp[ 'requesturi' ] .= $data;
+			break;
+		case 'MESSAGE':
+			$temp[ 'messagefull' ] .= $data;
+			break;
+		default:
+			break;
+	}
+	}
 
 function startElement( $parser, $name, $attrs = '' )
-    {
-    global $current_tag, $xml_entry_key;
-    $current_tag = $name;
-    switch ( $name )
-    {
-        case strtoupper( $xml_entry_key ):
-            break;
-        default:
-            break;
-    }
-    }
+	{
+	global $current_tag, $xml_entry_key;
+	$current_tag = $name;
+	switch ( $name )
+	{
+		case strtoupper( $xml_entry_key ):
+			break;
+		default:
+			break;
+	}
+	}
 
 function endElement( $parser, $name, $attrs = '' )
-    {
-    global $temp, $xml_entry_key;
-    switch ( $name )
-    {
-        case strtoupper( $xml_entry_key ):
-            return_page( $temp );
-            $temp = array ();
-            break;
-        default:
-            break;
-    }
-    }
+	{
+	global $temp, $xml_entry_key;
+	switch ( $name )
+	{
+		case strtoupper( $xml_entry_key ):
+			return_page( $temp );
+			$temp = array ();
+			break;
+		default:
+			break;
+	}
+	}
 
 function return_page()
-    {
-    global $temp, $rows, $counter;
+	{
+	global $temp, $rows, $counter;
 
-    $counter++;
-    if ( $counter % 2 ) $temp[ 'style' ] = "odd";
-    else
-    $temp[ 'style' ] = "even";
+	$counter++;
+	if ( $counter % 2 ) $temp[ 'style' ] = "odd";
+	else
+	$temp[ 'style' ] = "even";
 
-    $temp[ 'counter' ] = $counter;
-    $rows[ ]           = $temp;
-    }
+	$temp[ 'counter' ] = $counter;
+	$rows[ ]           = $temp;
+	}
 

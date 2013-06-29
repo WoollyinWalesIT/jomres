@@ -1,6 +1,6 @@
 /**
  * Internationalization: Polish language
- * 
+ *
  * Depends on jWYSIWYG, $.wysiwyg.i18n
  *
  * By: Andrzej Herok

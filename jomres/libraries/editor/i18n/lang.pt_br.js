@@ -1,6 +1,6 @@
 /**
  * Internationalization: Brazilian Portugese language
- * 
+ *
  * Depends on jWYSIWYG, $.wysiwyg.i18n
  *
  * By: Marcelo Wergles <mwergles@gmail.com>

@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -13,62 +14,62 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j06005review_confirm
-    {
-    function j06005review_confirm()
-        {
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j06005review_confirm()
+		{
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
-        $siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-        $jrConfig   = $siteConfig->get();
+			return;
+			}
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
 
-        $rating_id = (int) $_GET[ 'rating_id' ];
-        $state     = (int) $_GET[ 'state' ];
+		$rating_id = (int) $_GET[ 'rating_id' ];
+		$state     = (int) $_GET[ 'state' ];
 
-        if ( $jrConfig[ 'use_reviews' ] == "1" && $rating_id > 0 )
-            {
-            $string = '';
+		if ( $jrConfig[ 'use_reviews' ] == "1" && $rating_id > 0 )
+			{
+			$string = '';
 
-            jr_import( 'jomres_reviews' );
-            $Reviews              = new jomres_reviews();
-            $this_user_can_review = $Reviews->this_user_can_review();
-            if ( $this_user_can_review )
-                {
-                $property_uid = $Reviews->get_property_uid_for_rating_id( $rating_id );
-                if ( $property_uid == 0 ) // This definately isn't right. Just return without doing anything else.
-                return;
-                $Reviews->property_uid = $property_uid;
+			jr_import( 'jomres_reviews' );
+			$Reviews              = new jomres_reviews();
+			$this_user_can_review = $Reviews->this_user_can_review();
+			if ( $this_user_can_review )
+				{
+				$property_uid = $Reviews->get_property_uid_for_rating_id( $rating_id );
+				if ( $property_uid == 0 ) // This definately isn't right. Just return without doing anything else.
+				return;
+				$Reviews->property_uid = $property_uid;
 
-                if ( $Reviews->checkConfirmUniqueIp( $rating_id ) != 0 )
-                    {
-                    echo "0";
+				if ( $Reviews->checkConfirmUniqueIp( $rating_id ) != 0 )
+					{
+					echo "0";
 
-                    return;
-                    }
-                if ( $Reviews->checkConfirmUniqueUser( $rating_id ) != 0 )
-                    {
-                    echo "0";
+					return;
+					}
+				if ( $Reviews->checkConfirmUniqueUser( $rating_id ) != 0 )
+					{
+					echo "0";
 
-                    return;
-                    }
-                $Reviews->save_confirmation( $rating_id, $state );
-                echo "1";
+					return;
+					}
+				$Reviews->save_confirmation( $rating_id, $state );
+				echo "1";
 
-                return;
-                }
-            echo "2";
+				return;
+				}
+			echo "2";
 
-            return;
-            }
-        }
+			return;
+			}
+		}
 
 
-    function getRetVals()
-        {
-        return $this->retVals;
-        }
-    }
+	function getRetVals()
+		{
+		return $this->retVals;
+		}
+	}

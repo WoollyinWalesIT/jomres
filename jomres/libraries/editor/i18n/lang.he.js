@@ -1,10 +1,10 @@
 /**
  * Internationalization: English language
- * 
+ *
  * Depends on jWYSIWYG, $.wysiwyg.i18n
- * 
- * By: 	Tudmotu, frost-nzcr4 on github.com
- * 		Yotam Bar-On
+ *
+ * By:    Tudmotu, frost-nzcr4 on github.com
+ *        Yotam Bar-On
  */
 (function ($) {
 	if (undefined === $.wysiwyg) {

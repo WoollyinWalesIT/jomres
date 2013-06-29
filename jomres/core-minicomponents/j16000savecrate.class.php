@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,44 +15,44 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j16000savecrate
-    {
-    function j16000savecrate()
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = false;
+	{
+	function j16000savecrate()
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
 
-            return;
-            }
-        if ( !jomresCheckToken() )
-            {
-            trigger_error( "Invalid token", E_USER_ERROR );
-            }
-        $id           = jomresGetParam( $_REQUEST, 'id', 0 );
-        $title        = jomresGetParam( $_REQUEST, 'title', '' );
-        $type         = jomresGetParam( $_REQUEST, 'type', 0 );
-        $value        = jomresGetParam( $_REQUEST, 'value', 0.00 );
-        $currencycode = jomresGetParam( $_REQUEST, 'currencycode', '' );
+			return;
+			}
+		if ( !jomresCheckToken() )
+			{
+			trigger_error( "Invalid token", E_USER_ERROR );
+			}
+		$id           = jomresGetParam( $_REQUEST, 'id', 0 );
+		$title        = jomresGetParam( $_REQUEST, 'title', '' );
+		$type         = jomresGetParam( $_REQUEST, 'type', 0 );
+		$value        = jomresGetParam( $_REQUEST, 'value', 0.00 );
+		$currencycode = jomresGetParam( $_REQUEST, 'currencycode', '' );
 
-        jr_import( 'jrportal_crate' );
-        $crateObj     = new jrportal_crate();
-        $crateObj->id = $id;
-        if ( $id > 0 ) $crateObj->getCrate();
-        $crateObj->title        = $title;
-        $crateObj->type         = $type;
-        $crateObj->value        = $value;
-        $crateObj->currencycode = $currencycode;
-        if ( $id > 0 ) $crateObj->commitUpdateCrate();
-        else
-        $crateObj->commitNewCrate();
-        jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listcrates", '' );
-        }
+		jr_import( 'jrportal_crate' );
+		$crateObj     = new jrportal_crate();
+		$crateObj->id = $id;
+		if ( $id > 0 ) $crateObj->getCrate();
+		$crateObj->title        = $title;
+		$crateObj->type         = $type;
+		$crateObj->value        = $value;
+		$crateObj->currencycode = $currencycode;
+		if ( $id > 0 ) $crateObj->commitUpdateCrate();
+		else
+		$crateObj->commitNewCrate();
+		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listcrates", '' );
+		}
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return null;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return null;
+		}
+	}

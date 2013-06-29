@@ -1,8 +1,8 @@
 /**
  * Internationalization: Chinese (Simplified) language
- * 
+ *
  * Depends on jWYSIWYG, $.wysiwyg.i18n
- * 
+ *
  * By: https://github.com/mengxy
  */
 (function ($) {

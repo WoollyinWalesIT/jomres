@@ -33,60 +33,73 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * @author      gERD Schaufelberger <gerd@php-tools.net>
  */
 class patTemplate_Modifier_Truncate extends patTemplate_Modifier
-{
+	{
 
-   /**
-    * modify the value
-    *
-    * @access  public
-    * @param  string    value
-    * @return  string    modified value
-    */
-    function modify($value, $params = array())
-    {
-        // length
-        if (!isset( $params['length'])) {
-            return $value;
-        }
-        settype($params['length'], 'integer');
+	/**
+	 * modify the value
+	 *
+	 * @access  public
+	 * @param  string    value
+	 * @return  string    modified value
+	 */
+	function modify( $value, $params = array () )
+		{
+		// length
+		if ( !isset( $params[ 'length' ] ) )
+			{
+			return $value;
+			}
+		settype( $params[ 'length' ], 'integer' );
 
-        // use multibyte strings
-        $strlen =   'strlen';
-        $substr =   'substr';
-        if( isset( $params['usemb'] ) && $params['usemb'] == 'yes' ) {
-            $strlen =   'mb_strlen';
-            $substr =   'mb_substr';
-        }
-        
-        // start
-        if (isset($params['start'])) {
-            settype( $params['start'], 'integer' );
-        } else {
-            $params['start'] = 0;
-        }
-        
-        // prefix
-        if (isset($params['prefix'])) {
-            $prefix = ($params['start'] == 0 ? '' : $params['prefix']);
-        } else {
-            $prefix = '';
-        }
-        
-        // suffix
-        if (isset($params['suffix'])) {
-            $suffix = $params['suffix'];
-        } else {
-            $suffix = '';
-        }
-        
-        $initial_len = $strlen($value);    
-        $value = $substr($value, $params['start'], $params['length']);
-        
-        if ($initial_len <= $strlen($value)) {
-            $suffix = '';
-        }
+		// use multibyte strings
+		$strlen = 'strlen';
+		$substr = 'substr';
+		if ( isset( $params[ 'usemb' ] ) && $params[ 'usemb' ] == 'yes' )
+			{
+			$strlen = 'mb_strlen';
+			$substr = 'mb_substr';
+			}
 
-        return $prefix.$value.$suffix;
-    }
-}
+		// start
+		if ( isset( $params[ 'start' ] ) )
+			{
+			settype( $params[ 'start' ], 'integer' );
+			}
+		else
+			{
+			$params[ 'start' ] = 0;
+			}
+
+		// prefix
+		if ( isset( $params[ 'prefix' ] ) )
+			{
+			$prefix = ( $params[ 'start' ] == 0 ? '' : $params[ 'prefix' ] );
+			}
+		else
+			{
+			$prefix = '';
+			}
+
+		// suffix
+		if ( isset( $params[ 'suffix' ] ) )
+			{
+			$suffix = $params[ 'suffix' ];
+			}
+		else
+			{
+			$suffix = '';
+			}
+
+		$initial_len = $strlen( $value );
+		$value       = $substr( $value, $params[ 'start' ], $params[ 'length' ] );
+
+		if ( $initial_len <= $strlen( $value ) )
+			{
+			$suffix = '';
+			}
+
+		return $prefix . $value . $suffix;
+		}
+	}
+
 ?>

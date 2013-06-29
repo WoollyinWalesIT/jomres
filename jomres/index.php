@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -24,11 +25,11 @@ $jomressession = jomresGetParam( $_REQUEST, 'jsid', "" );
 $tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 $tmpBookingHandler->initBookingSession( $jomressession );
 if ( !defined( 'TEMPLATES_FRONTEND' ) )
-    {
-    define( "TEMPLATES_ADMIN", _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "templates" . JRDS . "admin" . JRDS );
-    define( "TEMPLATES_FRONTEND", _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "templates" . JRDS . "frontend" . JRDS );
-    define( "TEMPLATES_CSS_REL_PATH", get_showtime( 'live_site' ) . "/jomres/libraries/jomres/cms_specific/jomressa/templates/css/" );
-    }
+	{
+	define( "TEMPLATES_ADMIN", _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "templates" . JRDS . "admin" . JRDS );
+	define( "TEMPLATES_FRONTEND", _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "templates" . JRDS . "frontend" . JRDS );
+	define( "TEMPLATES_CSS_REL_PATH", get_showtime( 'live_site' ) . "/jomres/libraries/jomres/cms_specific/jomressa/templates/css/" );
+	}
 
 $JSAuser           = jomressa_getSingleton( 'jomressa_access_user' );
 $jomresConfig      = jomressa_getSingleton( 'jomressa_config' );
@@ -43,9 +44,9 @@ require( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . 'language' . JRDS . 'en-GB.php' )
 //$lang = new jomressa_language(get_showtime('lang'));
 
 if ( isset( $_GET[ 'action' ] ) && $_GET[ 'action' ] == "log_out" )
-    {
-    $JSAuser->log_out(); // the method to log off
-    }
+	{
+	$JSAuser->log_out(); // the method to log off
+	}
 if ( isset( $_REQUEST[ 'admin' ] ) ) jomressa_startTask( "admin_page_render" );
 else
 jomressa_startTask( "frontend_page_render" );

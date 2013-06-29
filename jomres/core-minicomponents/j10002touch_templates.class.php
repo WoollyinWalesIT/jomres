@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,38 +15,38 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j10002touch_templates
-    {
-    function j10002touch_templates()
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = true;
+	{
+	function j10002touch_templates()
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = true;
 
-            return;
-            }
+			return;
+			}
 
-        $htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-        $this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=touch_templates', 'EditText.png', jr_gettext( "_JOMRES_TOUCHTEMPLATES", _JOMRES_TOUCHTEMPLATES, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", _JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES, false, false ) );
-        }
+		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
+		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=touch_templates', 'EditText.png', jr_gettext( "_JOMRES_TOUCHTEMPLATES", _JOMRES_TOUCHTEMPLATES, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", _JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES, false, false ) );
+		}
 
-    function touch_template_language()
-        {
-        $output = array ();
+	function touch_template_language()
+		{
+		$output = array ();
 
-        $output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", _JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", _JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES );
 
-        foreach ( $output as $o )
-            {
-            echo $o;
-            echo "<br/>";
-            }
-        }
+		foreach ( $output as $o )
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return $this->cpanelButton;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return $this->cpanelButton;
+		}
+	}

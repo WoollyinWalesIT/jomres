@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -14,35 +15,35 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 
 class html_functions
-    {
-    function html_functions()
-        {
-        }
+	{
+	function html_functions()
+		{
+		}
 
-    function cpanelButton( $link, $image, $text, $path = '/jomres/images/jomresimages/small/', $category = null, $external = false, $disabled = false )
-        {
-        if ( !isset( $category ) ) $category = 'misc';
-        $control_panel_buttons = get_showtime( 'control_panel_buttons' );
+	function cpanelButton( $link, $image, $text, $path = '/jomres/images/jomresimages/small/', $category = null, $external = false, $disabled = false )
+		{
+		if ( !isset( $category ) ) $category = 'misc';
+		$control_panel_buttons = get_showtime( 'control_panel_buttons' );
 
-        if ( !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'images' . JRDS . $image ) )
-            {
-            if ( !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'images' . JRDS . 'jomresimages' . JRDS . 'small' . JRDS . $image ) ) $path = get_showtime( 'eLiveSite' ) . $image;
-            else
-            $path = get_showtime( 'live_site' ) . $path . $image;
-            }
-        else
-        $path = get_showtime( 'live_site' ) . '/jomres/images/' . $image;
+		if ( !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'images' . JRDS . $image ) )
+			{
+			if ( !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'images' . JRDS . 'jomresimages' . JRDS . 'small' . JRDS . $image ) ) $path = get_showtime( 'eLiveSite' ) . $image;
+			else
+			$path = get_showtime( 'live_site' ) . $path . $image;
+			}
+		else
+		$path = get_showtime( 'live_site' ) . '/jomres/images/' . $image;
 
-        $control_panel_buttons[ ] = array ( "link" => $link, "image" => $image, "menu_name" => $text, "image_path" => $path, "category" => $category, "external" => $external, "disabled" => $disabled );
-        set_showtime( 'control_panel_buttons', $control_panel_buttons );
-        }
+		$control_panel_buttons[ ] = array ( "link" => $link, "image" => $image, "menu_name" => $text, "image_path" => $path, "category" => $category, "external" => $external, "disabled" => $disabled );
+		set_showtime( 'control_panel_buttons', $control_panel_buttons );
+		}
 
-    function cpanelInfoRow( $text, $info )
-        {
-        return '
+	function cpanelInfoRow( $text, $info )
+		{
+		return '
 			<span>' . $text . ' : ' . $info . '</span>
 		';
-        }
-    }
+		}
+	}
 
 ?>

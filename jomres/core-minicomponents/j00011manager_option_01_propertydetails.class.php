@@ -1,6 +1,7 @@
 <?php
 /**
  * Core file
+ *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 7
  * @package Jomres
@@ -16,48 +17,49 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 #
  * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 #
+ *
  * @package Jomres
 #
  */
 class j00011manager_option_01_propertydetails
-    {
+	{
 
-    /**
-    #
-     * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    #
-     */
-    function j00011manager_option_01_propertydetails( $componentArgs )
-        {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-        if ( $MiniComponents->template_touch )
-            {
-            $this->template_touchable = true;
+	/**
+	#
+	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	#
+	 */
+	function j00011manager_option_01_propertydetails( $componentArgs )
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = true;
 
-            return;
-            }
-        $this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=editProperty&propertyUid=" . (int) getDefaultProperty(), 'TariffsConfig.png', jr_gettext( '_JOMRES_PATHWAY_PROPERTYDETAILS', _JOMRES_PATHWAY_PROPERTYDETAILS, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS, false, false ) );
-        }
+			return;
+			}
+		$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=editProperty&propertyUid=" . (int) getDefaultProperty(), 'TariffsConfig.png', jr_gettext( '_JOMRES_PATHWAY_PROPERTYDETAILS', _JOMRES_PATHWAY_PROPERTYDETAILS, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS, false, false ) );
+		}
 
-    function touch_template_language()
-        {
-        $output = array ();
+	function touch_template_language()
+		{
+		$output = array ();
 
-        $output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS );
 
-        foreach ( $output as $o )
-            {
-            echo $o;
-            echo "<br/>";
-            }
-        }
+		foreach ( $output as $o )
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
 
-    // This must be included in every Event/Mini-component
-    function getRetVals()
-        {
-        return $this->cpanelButton;
-        }
-    }
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return $this->cpanelButton;
+		}
+	}
 
 ?>
