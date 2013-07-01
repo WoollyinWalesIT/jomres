@@ -108,8 +108,10 @@ class vat_number_validation
 
 	function get_euro_countries()
 		{
-		return array ( "AT" => "Austria", "BE" => "Belgium", "CY" => "Cyprus", "CZ" => "Czech R.ublic", "DK" => "Denmark", "EE" => "Estonia", "FI" => "Finland", "FR" => "France", "DE" => "Germany", "GR" => "Greece", "HU" => "Hungary", "IE" => "Ireland", "IT" => "Italy", "LV" => "Latvia", "LT" => "Lithuania", "LU" => "Luxembourg", "MT" => "Malta", "NL" => "Netherlands", "PL" => "Poland", "PT" => "Portugal", "SK" => "Slovakia", "SI" => "Slovenia", "ES" => "Spain", "SE" => "Sweden", "GB" => "United Kingdom", "RO" => "Romania", "BG" => "Bulgaria" );
+		return array ( "AT" => "Austria", "BE" => "Belgium", "CY" => "Cyprus", "CZ" => "Czech R.ublic", "DK" => "Denmark", "EE" => "Estonia", "FI" => "Finland", "FR" => "France", "DE" => "Germany", "GR" => "Greece", "HU" => "Hungary", "IE" => "Ireland", "IT" => "Italy", "LV" => "Latvia", "LT" => "Lithuania", "LU" => "Luxembourg", "MT" => "Malta", "NL" => "Netherlands", "PL" => "Poland", "PT" => "Portugal", "SK" => "Slovakia", "SI" => "Slovenia", "ES" => "Spain", "SE" => "Sweden", "GB" => "United Kingdom", "RO" => "Romania", "BG" => "Bulgaria" "HR" => "Croatia" );
 		}
+		
+	
 	}
 
 ?>
