@@ -1,6 +1,17 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<script language="JavaScript" type="text/javascript">
 		<!--
+		
+		jomresJquery(function(){
+			jomresJquery("#guest_country").change(function(){
+				var selectedValue = jomresJquery(this).find(":selected").val();
+				clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+				jomresJquery.get(live_site_ajax + clause, function (data) {
+					populateDiv("guest_region_div",data);
+					});
+				});
+			});
+
 		jomresJquery.validator.setDefaults({
 			highlight: function (input) {
 				jomresJquery(input).addClass("ui-state-highlight");
@@ -78,7 +89,7 @@
 			</tr>
 			<tr>
 				<td><label for="review_title">{HREGION}</label></td>
-				<td><input name="region" type="text" size="20" value="{REGION}" class="inputbox required "/></td>
+				<td><div id="guest_region_div">{REGION}</div></td>
 			</tr>
 			<tr>
 				<td><label for="review_title">{HCOUNTRY}</label></td>

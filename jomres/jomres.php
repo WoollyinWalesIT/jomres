@@ -33,10 +33,6 @@ global $loggingEnabled, $loggingBooking, $loggingGateway, $loggingSystem, $loggi
 
 require_once( dirname( __FILE__ ) . '/integration.php' );
 
-
-//$result = $countries->validate_vat_no($woolly_vat_no);
-
-
 set_showtime( 'heavyweight_system', false );
 $query                      = "SELECT propertys_uid,published FROM #__jomres_propertys";
 $countproperties            = doSelectSql( $query );

@@ -158,7 +158,7 @@ function setupRegions( $countryCode = "GB", $currentRegion = "Pembrokeshire" )
 			}
 		}
 	else
-	$currentRegion = jomres_decode( $currentRegion );
+		$currentRegion = jomres_decode( $currentRegion );
 
 	$regionDropdown = "";
 	if ( count( $regionArray ) > 0 )
