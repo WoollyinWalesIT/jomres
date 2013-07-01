@@ -140,7 +140,7 @@ if ( !AJAXCALL )
 	$obsolete_files->set_default_obs_files_array();
 	$obsolete_files->add_obs_file( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'administrator' . JRDS . 'components' . JRDS . 'com_jomres' . JRDS . 'jomres_webinstall.php' );
 
-	if ( jomresGetDomain() != "localhost" && !strstr( $_SERVER[ 'SERVER_ADDR' ], '192.168.1' ) ) $obsolete_files->add_obs_file( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'install_jomres.php' );
+	if ( jomresGetDomain() != "localhost" && !strstr( $_SERVER[ 'SERVER_ADDR' ], '192.168.1' ) && !strstr( $_SERVER[ 'SERVER_ADDR' ], '127.0.0.1' ) ) $obsolete_files->add_obs_file( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'install_jomres.php' );
 
 	if ( $obsolete_files->ready_to_go() )
 		{
