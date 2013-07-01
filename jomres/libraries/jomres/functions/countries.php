@@ -123,16 +123,22 @@ function createCountriesDropdown( $selectedCountry, $input_name = "country", $in
 		}
 	asort( $countryCodes );
 	$countryDropdown = '<select id="' . $input_name . '" name="' . $input_name . '" ';
-	if ( $include_onchange ) $countryDropdown .= 'onchange="OnChange(this.form.' . $input_name . ')">';
+	if ( $include_onchange ) 
+		$countryDropdown .= 'onchange="OnChange(this.form.' . $input_name . ')">';
 	else
-	$countryDropdown .= '>';
+		$countryDropdown .= '>';
 
 	foreach ( $countryCodes as $k => $v )
 		{
 		$loopedCountry = $v;
-		if ( $selectedCountry != "" && $selectedCountry == $k ) $selected = "selected";
+		if ( $selectedCountry != "" && $selectedCountry == $k )
+			{
+			$selected = "selected";
+			}
 		else
-		$selected = "";
+			{
+			$selected = "";
+			}
 		$countryDropdown .= "<option value=\"" . $k . "\" " . $selected . " >" . $loopedCountry . "</option>";
 		}
 	$countryDropdown .= "</select>";
@@ -141,20 +147,26 @@ function createCountriesDropdown( $selectedCountry, $input_name = "country", $in
 	}
 
 
-function setupRegions( $countryCode = "GB", $currentRegion = "Pembrokeshire" )
+function setupRegions( $countryCode = "GB", $currentRegion = "Pembrokeshire", $firstBlank = false )
 	{
 	$regionArray    = array ();
 	$jomres_regions = jomres_singleton_abstract::getInstance( 'jomres_regions' );
 	foreach ( $jomres_regions->regions as $region )
 		{
-		if ( $region[ 'countrycode' ] == $countryCode ) $regionArray[ $region[ 'id' ] ] = $region[ 'regionname' ];
+		if ( $region[ 'countrycode' ] == $countryCode ) 
+			{
+			$regionArray[ $region[ 'id' ] ] = $region[ 'regionname' ];
+			}
 		}
 
 	if ( !is_numeric( $currentRegion ) ) // This allows us to transition from using region names in the dropdown's value field, to region ids.
 		{
 		foreach ( $regionArray as $id => $r )
 			{
-			if ( $r == $currentRegion ) $currentRegion = $id;
+			if ( $r == $currentRegion ) 
+				{
+				$currentRegion = $id;
+				}
 			}
 		}
 	else
@@ -164,6 +176,11 @@ function setupRegions( $countryCode = "GB", $currentRegion = "Pembrokeshire" )
 	if ( count( $regionArray ) > 0 )
 		{
 		natcasesort( $regionArray );
+		if ($firstBlank)
+			{
+			$regions[ ] = jomresHTML::makeOption( '', '' );
+			}
+		
 		foreach ( $regionArray as $k => $v )
 			{
 			$regions[ ] = jomresHTML::makeOption( $k, $v );

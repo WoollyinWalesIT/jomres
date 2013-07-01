@@ -91,13 +91,11 @@ class jrportal_taxrate
 			if ( $result )
 				{
 				$this->id = $result;
-
 				return true;
 				}
 			else
 				{
 				error_logging( "ID of Tax Rate could not be found after apparent successful insert" );
-
 				return false;
 				}
 			}
@@ -150,6 +148,21 @@ class jrportal_taxrate
 		error_logging( "ID of Tax Rate not available" );
 
 		return false;
+		}
+		
+	function deleteAllTaxRates()
+		{
+		$query = "TRUNCATE TABLE #__jomresportal_taxrates";
+		$result = doInsertSql( $query, "" );
+		if ( $result )
+			{
+			return true;
+			}
+		else
+			{
+			error_logging( "Could not empty tax rates table." );
+			return false;
+			}
 		}
 	}
 

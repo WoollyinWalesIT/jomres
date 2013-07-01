@@ -7,7 +7,7 @@
 		//-->
 	</script>
 	<h2 class="page-header">{PAGETITLE}</h2>
-
+	<div class="alert alert-info">{_JOMRES_TAX_RULE_INFO}</div>
 	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 		{JOMRESTOOLBAR}
 		<table id="list_taxrates" width="100%" class="table table-striped">
@@ -15,9 +15,11 @@
 			<tr>
 				<th></th>
 				<th class="hidden-phone">ID</th>
-				<th>{HCODE}</th>
-				<th>{HDESCRIPTION}</th>
-				<th>{HRATE}</th>
+				<th>{_JRPORTAL_TAXRATES_CODE}</th>
+				<th>{_JRPORTAL_TAXRATES_DESCRIPTION}</th>
+				<th>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY}</th>
+				<th>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION}</th>
+				<th>{_JRPORTAL_TAXRATES_RATE}</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -27,6 +29,8 @@
 					<td class="hidden-phone">{ID}</td>
 					<td>{CODE}</td>
 					<td>{DESCRIPTION}</td>
+					<td>{COUNTRY}</td>
+					<td>{REGION}</td>
 					<td>{RATE}</td>
 				</tr>
 			</patTemplate:tmpl>
@@ -34,9 +38,4 @@
 		</table>
 		<input type="hidden" name="task" value="editTaxrate"/>
 	</form>
-	
-	<div>{_JOMRES_TAX_RATES_IMPORT_INFO}</div>
-	<div><a href="{IMPORT_LINK}" class="btn btn-danger">{_JOMRES_TAX_RATES_IMPORT}</a></div>
-	
-	
 </patTemplate:tmpl>

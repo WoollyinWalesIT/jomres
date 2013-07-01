@@ -429,8 +429,42 @@ function doTableUpdates()
 	if ( !checkPropertysMetakeywordsColExists() ) alterPropertysMetakeywordsCol();
 
 	if ( !checkGuestsVatcodeColExists() ) alterGuestsVatcodeCol();
-
+	
+	if ( !checkTaxRulesTableExists() ) createTaxRulesTable();
+	
 	if ( _JOMRES_DETECTED_CMS == "joomla15" ) checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
+	}
+
+function createTaxRulesTable()
+	{
+	if ( !AUTO_UPGRADE ) echo "Creating jomres_tax_rules table<br>";
+	$query  = "CREATE TABLE IF NOT EXISTS `#__jomres_tax_rules` (
+		`id` int(11) auto_increment,
+		`tax_rate_id`  int(11),
+		`country_id` int(11),
+		`region_id` int(11),
+		PRIMARY KEY	(`id`)
+		) ";
+	$result = doInsertSql( $query, "" );
+	if ( !$result )
+		{
+		if ( !AUTO_UPGRADE ) echo "<b>Error creating table table jomres_tax_rules </b><br>";
+		}
+	}
+
+function checkTaxRulesTableExists()
+	{
+	global $jomresConfig_db;
+	$tablesFound = false;
+	$query       = "SHOW TABLES";
+	$result      = doSelectSql( $query, $mode = false );
+	$string      = "Tables_in_" . $jomresConfig_db;
+	foreach ( $result as $r )
+		{
+		if ( strstr( $r->$string, '_jomres_tax_rules' ) ) return true;
+		}
+
+	return false;
 	}
 
 function alterGuestsVatcodeCol()
@@ -1972,6 +2006,15 @@ function deleteCurrentLicenseFiles()
 
 function createJomresTables()
 	{
+	$query  = "CREATE TABLE IF NOT EXISTS `#__jomres_tax_rules` (
+		`id` int(11) auto_increment,
+		`tax_rate_id`  int(11),
+		`country_id` int(11),
+		`region_id` int(11),
+		PRIMARY KEY	(`id`)
+		) ";
+	doInsertSql( $query, "" );
+	
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_access_control` (
 		`id` int(11) auto_increment,
 		`scriptname` VARCHAR(255),
