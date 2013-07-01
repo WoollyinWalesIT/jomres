@@ -54,7 +54,7 @@ class j06005edit_my_account
 		$output[ 'HOUSE' ]     = '';
 		$output[ 'STREET' ]    = '';
 		$output[ 'TOWN' ]      = '';
-		$output[ 'REGION' ]    = '';
+		$output[ 'REGION' ]    = $dropdown = setupRegions( null, null );
 		$output[ 'COUNTRY' ]   = createSimpleCountriesDropdown( $jrConfig[ 'limit_property_country_country' ] );
 		$output[ 'POSTCODE' ]  = '';
 		$output[ 'LANDLINE' ]  = '';
@@ -86,7 +86,7 @@ class j06005edit_my_account
 					$output[ 'HOUSE' ]                = $data->house;
 					$output[ 'STREET' ]               = $data->street;
 					$output[ 'TOWN' ]                 = $data->town;
-					$output[ 'REGION' ]               = $data->county;
+					$output[ 'REGION' ]               = $dropdown = setupRegions( $data->country, $data->county );
 					$output[ 'COUNTRY' ]              = createSimpleCountriesDropdown( $data->country );
 					$output[ 'POSTCODE' ]             = $data->postcode;
 					$output[ 'LANDLINE' ]             = $data->tel_landline;
