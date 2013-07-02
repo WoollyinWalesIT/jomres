@@ -94,6 +94,21 @@
 					<input id="email" name="email" type="text" value="{EMAIL}" class="required "/>
 				</div>
 			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="vat_number">{_JOMRES_COM_YOURBUSINESS_VATNO}</label>
+				<div class="controls">
+					<input id="vat_number" name="vat_number" type="text" value="{VAT_NUMBER}"/>
+					<patTemplate:tmpl name="validation" type="simpleCondition" requiredVars="validation_class">
+					<span class="help-block">
+						<div class="alert {VALIDATION_CLASS}">
+							{VAT_NUMBER_VALIDATION_STATUS}
+						</div>
+					</span>
+					</patTemplate:tmpl>
+				</div>
+			</div>
+			
 			<div class="control-group">
 				<label class="control-label" for="discount">{HDISCOUNT}</label>
 

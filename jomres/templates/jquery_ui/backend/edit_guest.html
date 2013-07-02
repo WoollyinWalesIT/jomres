@@ -67,6 +67,19 @@
 				<td><input type="text" class="inputbox" name="email" value="{EMAIL}"/></td>
 			</tr>
 			<tr>
+				<td><label for="review_title">{_JOMRES_COM_YOURBUSINESS_VATNO}</label></td>
+				<td>
+					<input id="email" name="vat_number" type="text" value="{VAT_NUMBER}"/>
+					<patTemplate:tmpl name="validation" type="simpleCondition" requiredVars="validation_class">
+					<span class="help-block">
+						<div class="alert {VALIDATION_CLASS}">
+							{VAT_NUMBER_VALIDATION_STATUS}
+						</div>
+					</span>
+					</patTemplate:tmpl>
+				</td>
+			</tr>
+			<tr>
 				<td>{HDISCOUNT}</td>
 				<td>{DISCOUNT} (%)</td>
 			</tr>

@@ -2774,9 +2774,14 @@ function saveHotelSettings()
 					//echo $oldSettingKey. ' '.$oldSettingVal.'<br>';
 					$query  = "SELECT uid FROM #__jomres_settings WHERE property_uid = '" . (int) $property_uid . "' and akey = '" . substr( $k, 4 ) . "'";
 					$result = doSelectSql( $query );
-					if ( count( $result ) == 0 ) $query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('" . (int) $property_uid . "','" . substr( $k, 4 ) . "','" . $v . "')";
+					if ( count( $result ) == 0 ) 
+						{
+						$query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('" . (int) $property_uid . "','" . substr( $k, 4 ) . "','" . $v . "')";
+						}
 					else
-					$query = "UPDATE #__jomres_settings SET `value`='" . $v . "' WHERE property_uid = '" . (int) $property_uid . "' and akey = '" . substr( $k, 4 ) . "'";
+						{
+						$query = "UPDATE #__jomres_settings SET `value`='" . $v . "' WHERE property_uid = '" . (int) $property_uid . "' and akey = '" . substr( $k, 4 ) . "'";
+						}
 					//echo $query."<br>";
 					doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', _JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS, false ) );
 					}
@@ -2784,17 +2789,22 @@ function saveHotelSettings()
 			}
 		}
 
-	/*
-	if (!isset($_POST['cfg_currencyCodes']) || empty($_POST['cfg_currencyCodes'])	) // The currency codes list is empty, update the value field with an empty string
+	if( trim($_POST['cfg_property_vat_number']) != "")
 		{
-		$query="UPDATE #__jomres_settings SET `value`='' WHERE property_uid = '".(int)$property_uid."' and akey = 'currencyCodes'";
-		doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS',_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS,FALSE));
+		jr_import( 'vat_number_validation' );
+		$validation = new vat_number_validation( $property_uid , false );
+		$validation->get_vat_number_and_validation_state();
+		$result = $validation->validate_vat_number();
 		}
-	*/
-	//var_dump($tariffmodeChange);exit;
-	if ( $tariffmodeChange && $mrConfig[ 'is_real_estate_listing' ] != 1 ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=propertyadmin" ), '' );
+	
+	if ( $tariffmodeChange && $mrConfig[ 'is_real_estate_listing' ] != 1 ) 
+		{
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=propertyadmin" ), '' );
+		}
 	else
-	jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=hotelSettings&property_uid=$property_uid" ), '' );
+		{
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=hotelSettings&property_uid=$property_uid" ), '' );
+		}
 	}
 
 function removeAllPropertyEnhanceTariffsXref( $property_uid )

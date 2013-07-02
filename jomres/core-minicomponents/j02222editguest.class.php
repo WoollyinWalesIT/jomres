@@ -49,7 +49,7 @@ class j02222editguest
 			$link   = makePopupLink( JOMRES_SITEPAGE_URL_AJAX . "&task=editCreditcard&popup=1&guestUid=$guestUid", jr_gettext( '_JOMRES_MR_CREDITCARD_EDIT', _JOMRES_MR_CREDITCARD_EDIT, false ) );
 			//$link="<a href=\"javascript:void window.open('".$link."', 'win2', '".$status."');\" title=\"\">".jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT)."</a>";
 			$output[ 'CREDITCARDLINK' ] = $link;
-			$query                      = "SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,tel_fax,ccard_no,ccard_issued,ccard_expiry,ccard_iss_no,ccard_name,email,discount FROM #__jomres_guests WHERE guests_uid = '" . (int) $guestUid . "'  AND property_uid = '" . (int) $defaultProperty . "'";
+			$query                      = "SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,tel_fax,ccard_no,ccard_issued,ccard_expiry,ccard_iss_no,ccard_name,email,discount,vat_number,vat_number_validated,vat_number_validation_response FROM #__jomres_guests WHERE guests_uid = '" . (int) $guestUid . "'  AND property_uid = '" . (int) $defaultProperty . "'";
 			$guestData                  = doSelectSql( $query );
 			$numberOfReturns            = count( $guestData );
 			if ( $numberOfReturns > 0 )
@@ -69,6 +69,29 @@ class j02222editguest
 					$output[ 'FAX' ]       = jomres_decode( $data->tel_fax );
 					$output[ 'EMAIL' ]     = $data->email;
 					$output[ 'DISCOUNT' ]  = jomresHTML::integerSelectList( 0, 100, 1, 'discount', 'class="inputbox" size="1"', $data->discount );
+					
+					$output[ 'VAT_NUMBER' ]           = $data->vat_number;
+					$output[ 'VAT_NUMBER_VALIDATED' ] = $data->vat_number_validated;
+					$validation_success    = json_decode( $data->vat_number_validation_response );
+					if (strlen($validation_success->message)>0)
+						{
+						$validation = array();
+						$validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] =$validation_success->message;
+						if ($data->vat_number_validated)
+							{
+							if (using_bootstrap())
+								$validation[0][ 'VALIDATION_CLASS'] = 'alert-success';
+							else
+								$validation[0][ 'VALIDATION_CLASS'] = 'ui-state-highlight';
+							}
+						else
+							{
+							if (using_bootstrap())
+								$validation[0][ 'VALIDATION_CLASS'] = 'alert-error';
+							else
+								$validation[0][ 'VALIDATION_CLASS'] = 'ui-state-error ';
+							}
+						}
 					}
 				}
 			else $guestUid = 0;
@@ -93,6 +116,7 @@ class j02222editguest
 		$output[ 'HFAX' ]       = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FAX', _JOMRES_COM_MR_DISPGUEST_FAX );
 		$output[ 'HEMAIL' ]     = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL );
 		$output[ 'HDISCOUNT' ]  = jr_gettext( '_JOMRES_AJAXFORM_BILLING_DISCOUNT', _JOMRES_AJAXFORM_BILLING_DISCOUNT );
+		$output[ '_JOMRES_COM_YOURBUSINESS_VATNO' ] = jr_gettext( '_JOMRES_COM_YOURBUSINESS_VATNO', _JOMRES_COM_YOURBUSINESS_VATNO, false );
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
@@ -112,6 +136,7 @@ class j02222editguest
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
 		$tmpl->readTemplatesFromInput( 'edit_guest.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->addRows( 'validation', $validation );
 		$tmpl->displayParsedTemplate();
 		}
 
