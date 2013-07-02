@@ -758,7 +758,6 @@ function checkaddressfields() {
 	var house = jomresJquery.trim(jomresJquery('#house').val());
 	var street = jomresJquery.trim(jomresJquery('#street').val());
 	var town = jomresJquery.trim(jomresJquery('#town').val());
-	var region = jomresJquery.trim(jomresJquery('#region').val());
 	var postcode = jomresJquery.trim(jomresJquery('#postcode').val());
 	var exists = document.ajaxform.country;
 	if (exists != null)
@@ -772,11 +771,13 @@ function checkaddressfields() {
 	setInputFillToOkColour('#house');
 	setInputFillToOkColour('#street');
 	setInputFillToOkColour('#town');
-	setInputFillToOkColour('#region');
 	setInputFillToOkColour('#postcode');
 	setInputFillToOkColour('#tel_landline');
 	setInputFillToOkColour('#tel_mobile');
 	setInputFillToOkColour('#eemail');
+
+	jomresJquery("#region").closest('.control-group').addClass('success');
+	jomresJquery("#country").closest('.control-group').addClass('success');
 
 	var pass = true;
 
@@ -798,10 +799,6 @@ function checkaddressfields() {
 	}
 	if (validation_town && town.length == 0) {
 		setInputFillToErrorColour("#town");
-		pass = false;
-	}
-	if (validation_region && region.length == 0) {
-		setInputFillToErrorColour("#region");
 		pass = false;
 	}
 	if (validation_postcode && postcode.length == 0) {

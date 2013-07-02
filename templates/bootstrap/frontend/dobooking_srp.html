@@ -34,7 +34,6 @@
 	var validation_street = {VALIDATION_STREET};
 	var validation_town = {VALIDATION_TOWN};
 	var validation_postcode = {VALIDATION_POSTCODE};
-	var validation_region = {VALIDATION_REGION};
 	var validation_country = {VALIDATION_COUNTRY};
 	var validation_landline = {VALIDATION_LANDLINE};
 	var validation_cellmobile = {VALIDATION_CELLMOBILE};
@@ -92,10 +91,6 @@
 						town: {
 							minlength: 1,
 							required: {VALIDATION_TOWN}
-						},
-						region: {
-							minlength: 1,
-							required: {VALIDATION_REGION}
 						},
 						postcode: {
 							minlength: 1,
@@ -158,6 +153,15 @@
 	}
 	;
 
+	jomresJquery(function(){
+		jomresJquery("#country").change(function(){
+			var selectedValue = jomresJquery(this).find(":selected").val();
+			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+			jomresJquery.get(live_site_ajax + clause, function (data) {
+				populateDiv("guest_region_div",data);
+				});
+			});
+		});
 	//-->
 </script>
 {CUSTOMFIELD_JAVASCRIPT}
@@ -344,8 +348,7 @@
 				<label class="control-label" for="region">{HREGION}</label>
 
 				<div class="controls">
-					<input type="text" name="region" id="region" value="{REGION}" title="{HREGION}"
-						   class="input-medium"/>
+					<div id="guest_region_div">{REGION_DROPDOWN}</div>
 				</div>
 			</div>
 

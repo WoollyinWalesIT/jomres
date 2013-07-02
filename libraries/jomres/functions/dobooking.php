@@ -138,7 +138,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$guest = $bkg->makeGuestData();
 
 	$output = array_merge( $text, $guest );
-
+	$output[ 'REGION_DROPDOWN' ]  = setupRegions( $bkg->country, $bkg->region );
 	if ( $bkg->cfg_showdepartureinput == "0" ) $output[ 'HDEPARTUREDATE' ] = "";
 
 	$requiredIcons = $bkg->makeRequiredIcons();
@@ -233,12 +233,20 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		{
 		$arrivalDate = $defaultArrivalDate = $bkg->initArrivalDate();
 
-		if ( !isset( $mrConfig[ 'auto_detect_country_for_booking_form' ] ) ) $mrConfig[ 'auto_detect_country_for_booking_form' ] = "1";
-
-		if ( $mrConfig[ 'auto_detect_country_for_booking_form' ] == "1" ) $bkg->setGuest_country( $tmpBookingHandler->user_settings[ 'geolocated_country' ] );
+		if ( !isset( $mrConfig[ 'auto_detect_country_for_booking_form' ] ) ) 
+			{
+			$mrConfig[ 'auto_detect_country_for_booking_form' ] = "1";
+			}
+		
+		if ( $mrConfig[ 'auto_detect_country_for_booking_form' ] == "1" ) 
+			{
+			$bkg->setGuest_country( $tmpBookingHandler->user_settings[ 'geolocated_country' ] );
+			}
 		else
-		$bkg->setGuest_country( $mrConfig[ 'defaultcountry' ] );
-//var_dump($bkg->country);exit;
+			{
+			$bkg->setGuest_country( $mrConfig[ 'defaultcountry' ] );
+			}
+		$output[ 'REGION_DROPDOWN' ]  = setupRegions( $bkg->country, $bkg->region );
 		if ( $thisdate && isset( $_REQUEST[ 'arrivalDate' ] ) )
 			{
 			if ( $bkg->checkArrivalDate( $thisdate ) )
@@ -247,7 +255,9 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 				$arrivalDate = $thisdate;
 				}
 			else
-			$arrivalDate = $defaultArrivalDate;
+				{
+				$arrivalDate = $defaultArrivalDate;
+				}
 			}
 		else if ( $thisdate )
 			{
@@ -262,9 +272,14 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		$defaultdepartureDate = $bkg->initDepartureDate();
 		if ( !isset( $_REQUEST[ 'arrivalDate' ] ) )
 			{
-			if ( $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == "" ) $departureDate = $defaultdepartureDate;
+			if ( $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == "" ) 
+				{
+				$departureDate = $defaultdepartureDate;
+				}
 			else
-			$departureDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ];
+				{
+				$departureDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ];
+				}
 			}
 		else
 		$departureDate = JSCalConvertInputDates( jomresGetParam( $_REQUEST, 'departureDate', "" ) );
@@ -316,9 +331,14 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 			$current = $bkg->getGuestVariantDetails( $gst[ 'ID' ] );
 			if ( $current == false )
 				{
-				if ( $counter == 0 ) $bkg->initGuestVariant( $gst[ 'ID' ], $mrConfig[ 'defaultNumberOfFirstGuesttype' ] );
+				if ( $counter == 0 ) 
+					{
+					$bkg->initGuestVariant( $gst[ 'ID' ], $mrConfig[ 'defaultNumberOfFirstGuesttype' ] );
+					}
 				else
-				$bkg->initGuestVariant( $gst[ 'ID' ], 0 );
+					{
+					$bkg->initGuestVariant( $gst[ 'ID' ], 0 );
+					}
 				}
 			$counter++;
 			}

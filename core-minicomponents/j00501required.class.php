@@ -79,11 +79,13 @@ class j00501required
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 
+			/*
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION", _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION ) );
 			$configurationPanel->setmiddle( $lists[ 'bookingform_requiredfields_region' ] );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
-
+			*/
+			
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY", _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY ) );
 			$configurationPanel->setmiddle( $lists[ 'bookingform_requiredfields_country' ] );
 			$configurationPanel->setright();

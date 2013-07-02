@@ -1854,7 +1854,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 
 	if ( $mode == 1 && !strstr( $body, '<meta http-equiv="Content-Type" content="text/html; utf-8" />' ) )
 		{
-		$body = preg_replace( '@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>', $body );
+		//$body = preg_replace( '@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>', $body );
 		}
 
 	if ( get_showtime( 'smtpauth' ) == "1" )

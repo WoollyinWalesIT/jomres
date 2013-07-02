@@ -403,7 +403,7 @@ class j02990showconfirmation
 		$booking_parts[ 'HOUSENO' ]   = stripslashes( $guestList[ 'house' ] );
 		$booking_parts[ 'STREET' ]    = stripslashes( $guestList[ 'street' ] );
 		$booking_parts[ 'TOWN' ]      = stripslashes( $guestList[ 'town' ] );
-		$booking_parts[ 'COUNTY' ]    = stripslashes( $guestList[ 'region' ] );
+		$booking_parts[ 'COUNTY' ]    = find_region_name( $guestList[ 'region' ] );
 		$booking_parts[ 'COUNTRY' ]   = getSimpleCountry( $guestList[ 'country' ] );
 		$booking_parts[ 'POSTCODE' ]  = stripslashes( $guestList[ 'postcode' ] );
 		$booking_parts[ 'LANDLINE' ]  = stripslashes( $guestList[ 'tel_landline' ] );
