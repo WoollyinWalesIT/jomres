@@ -521,11 +521,12 @@ function updateBookingFormAddressDetails( &$bkg )
 	echo '; document.ajaxform.house.value="' . jomres_decode( $result[ 'house' ] ) . '"';
 	echo '; document.ajaxform.street.value="' . jomres_decode( $result[ 'street' ] ) . '"';
 	echo '; document.ajaxform.town.value="' . jomres_decode( $result[ 'town' ] ) . '"';
-	echo '; document.ajaxform.region.value="' . jomres_decode( $result[ 'region' ] ) . '"';
+	//echo '; document.ajaxform.region.value="' . jomres_decode( $result[ 'region' ] ) . '"';
 	echo '; document.ajaxform.country.value="' . jomres_decode( $result[ 'country' ] ) . '"';
 	echo '; document.ajaxform.postcode.value="' . jomres_decode( $result[ 'postcode' ] ) . '"';
 	echo '; document.ajaxform.tel_landline.value="' . jomres_decode( $result[ 'tel_landline' ] ) . '"';
 	echo '; document.ajaxform.tel_mobile.value="' . jomres_decode( $result[ 'tel_mobile' ] ) . '"';
+	echo '; populateDiv("guest_region_div","'.str_replace('"','\"',setupRegions( $result[ 'country' ], $result[ 'region' ] ) ).'")';
 	if ( $bkg->checkEmail( $result[ 'email' ] ) ) echo '; document.ajaxform.eemail.value="' . jomres_decode( $result[ 'email' ] ) . '"';
 	}
 
