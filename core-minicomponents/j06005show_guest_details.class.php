@@ -67,7 +67,7 @@ class j06005show_guest_details
 				$output[ 'HOUSE' ]     = $data->house;
 				$output[ 'STREET' ]    = $data->street;
 				$output[ 'TOWN' ]      = $data->town;
-				$output[ 'REGION' ]    = $data->county;
+				$output[ 'REGION' ]    = find_region_name($data->county);
 				$output[ 'COUNTRY' ]   = getSimpleCountry( $data->country );
 				$output[ 'POSTCODE' ]  = $data->postcode;
 				$output[ 'LANDLINE' ]  = $data->tel_landline;
