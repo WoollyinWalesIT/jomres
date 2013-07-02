@@ -55,9 +55,10 @@ class j06005show_guest_details
 				return;
 				}
 			}
-		$query           = "SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email FROM #__jomres_guests WHERE guests_uid = " . (int) $guestUid . "";
+		$query           = "SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email,vat_number FROM #__jomres_guests WHERE guests_uid = " . (int) $guestUid . "";
 		$guestData       = doSelectSql( $query );
 		$numberOfReturns = count( $guestData );
+		$vat_output=array();
 		if ( $numberOfReturns > 0 )
 			{
 			foreach ( $guestData as $data )
@@ -74,6 +75,7 @@ class j06005show_guest_details
 				$output[ 'MOBILE' ]    = $data->tel_mobile;
 				$output[ 'FAX' ]       = $data->tel_fax;
 				$output[ 'EMAIL' ]     = $data->email;
+				$vat_output[0][ 'VAT_NUMBER' ]     = $data->vat_number;
 				}
 			}
 		else
@@ -91,12 +93,17 @@ class j06005show_guest_details
 		$output[ 'HMOBILE' ]    = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_MOBILE', _JOMRES_COM_MR_DISPGUEST_MOBILE );
 		$output[ 'HFAX' ]       = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FAX', _JOMRES_COM_MR_DISPGUEST_FAX );
 		$output[ 'HEMAIL' ]     = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL );
+		$vat_output[0][ '_JOMRES_COM_YOURBUSINESS_VATNO' ]     = jr_gettext( '_JOMRES_COM_YOURBUSINESS_VATNO', _JOMRES_COM_YOURBUSINESS_VATNO );
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		$tmpl->readTemplatesFromInput( 'show_guest_details.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
+		if (trim($vat_output[0][ 'VAT_NUMBER' ]) != "")
+			{
+			$tmpl->addRows( 'vat_output', $vat_output );
+			}
 		$this->retVals = $tmpl->getParsedTemplate();
 		}
 

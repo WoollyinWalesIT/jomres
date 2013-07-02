@@ -70,6 +70,11 @@ class j06000show_hotel_details
 		$output[ 'TELEPHONE' ]     = $basic_property_details->property_tel;
 		$output[ 'FAX' ]           = $basic_property_details->property_fax;
 		$output[ 'EMAIL' ]         = $basic_property_details->property_email;
+		
+		$mrConfig     = getPropertySpecificSettings( $property_uid );
+		$output[ '_JOMRES_COM_YOURBUSINESS_VATNO' ]        = jr_gettext( '_JOMRES_COM_YOURBUSINESS_VATNO', _JOMRES_COM_YOURBUSINESS_VATNO );
+		$output[ 'PROPERTY_VAT_NUMBER' ]         = $mrConfig['property_vat_number'];
+
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
