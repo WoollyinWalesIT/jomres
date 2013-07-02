@@ -59,6 +59,8 @@ class j02224saveguest
 		$mobile    = jomresGetParam( $_REQUEST, 'mobile', "" );
 		$fax       = jomresGetParam( $_REQUEST, 'fax', "" );
 		$email     = jomresGetParam( $_REQUEST, 'email', "" );
+		$vat_number= jomresGetParam( $_REQUEST, 'vat_number', "" );
+		
 		$discount  = (int) jomresGetParam( $_REQUEST, 'discount', 0 );
 
 		if ( $guests_uid != 0 )
@@ -76,6 +78,26 @@ class j02224saveguest
 			if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_GUEST', _JOMRES_MR_AUDIT_INSERT_GUEST, false ) ) ) trigger_error( "Unable to insert guest details, mysql db failure", E_USER_ERROR );
 
 			}
+			
+		// Guests will not always be associated with a CMS user, so we need a mechanism that checks and validates a VAT number, without necessarily saving those details to a system wide user
+		if ( trim($vat_number) != '')
+			{
+			jr_import( 'vat_number_validation' );
+			$validation = new vat_number_validation( 0 );
+			$response = $validation->vies_check( $vat_number );
+			$messages = json_encode( $validation->validation_messages );
+			if ($response)
+				{
+				$validated = "1";
+				}
+			else
+				{
+				$validated = "0";
+				}
+			$query = "UPDATE #__jomres_guests SET `vat_number_validated`='".$validated."',`vat_number`='" . $validation->validation_messages[ 'clean_vat_no' ] . "',`vat_number_validation_response`='".$messages."' WHERE guests_uid = '" . (int) $guests_uid . "' AND `property_uid` = " . (int) $defaultProperty;
+			if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_GUEST', _JOMRES_MR_AUDIT_UPDATE_GUEST, false ) ) ) trigger_error( "Unable to update guest details, mysql db failure", E_USER_ERROR );
+			}
+
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=listguests" ) );
 		}
 

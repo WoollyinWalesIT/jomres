@@ -87,6 +87,7 @@ class j06005save_my_account
 			{
 			jr_import( 'vat_number_validation' );
 			$validation = new vat_number_validation( $thisJRUser->id );
+			$validation->get_vat_number_and_validation_state();
 			$validation->validate_vat_number();
 			}
 
