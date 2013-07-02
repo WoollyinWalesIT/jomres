@@ -1,4 +1,18 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script language="JavaScript" type="text/javascript">
+		<!--
+		
+		jomresJquery(function(){
+			jomresJquery("#guest_country").change(function(){
+				var selectedValue = jomresJquery(this).find(":selected").val();
+				clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+				jomresJquery.get(live_site_ajax + clause, function (data) {
+					populateDiv("guest_region_div",data);
+					});
+				});
+			});
+			//-->
+	</script>
 	<h2 class="page-header">{PAGETITLE}</h2>
 
 	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
@@ -49,7 +63,7 @@
 				<label class="control-label" for="region">{HREGION}</label>
 
 				<div class="controls">
-					<input id="region" name="region" type="text" value="{REGION}" class="required "/>
+					<div id="guest_region_div">{REGION}</div>
 				</div>
 			</div>
 			<div class="control-group">

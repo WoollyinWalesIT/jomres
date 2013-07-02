@@ -61,7 +61,7 @@ class j02222editguest
 					$output[ 'HOUSE' ]     = jomres_decode( $data->house );
 					$output[ 'STREET' ]    = jomres_decode( $data->street );
 					$output[ 'TOWN' ]      = jomres_decode( $data->town );
-					$output[ 'REGION' ]    = jomres_decode( $data->county );
+					$output[ 'REGION' ]    = setupRegions( $data->country, $data->county );
 					$output[ 'COUNTRY' ]   = createSimpleCountriesDropdown( $data->country );
 					$output[ 'POSTCODE' ]  = jomres_decode( $data->postcode );
 					$output[ 'LANDLINE' ]  = jomres_decode( $data->tel_landline );
@@ -75,6 +75,7 @@ class j02222editguest
 			}
 		else
 			{
+			$output[ 'REGION' ]    = setupRegions( "GB" );
 			$output[ 'COUNTRY' ]  = createSimpleCountriesDropdown( "GB" );
 			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList( 0, 100, 1, 'discount', 'class="inputbox" size="1"', $data->discount );
 			}
