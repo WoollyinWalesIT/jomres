@@ -7,7 +7,10 @@
 		//-->
 	</script>
 	<h2 class="page-header">{PAGETITLE}</h2>
-
+	<div class="alert">
+		<p>{_JOMRES_TAX_RATES_IMPORT_INFO}</p>
+		<p><a href="{IMPORT_LINK}" class="btn btn-warning">{_JOMRES_TAX_RATES_IMPORT}</a></p>
+	</div>
 	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 		{JOMRESTOOLBAR}
 		<table id="list_taxrates" width="100%" class="table table-striped">
@@ -32,11 +35,6 @@
 			</patTemplate:tmpl>
 			</tbody>
 		</table>
-		<input type="hidden" name="task" value="editTaxrate"/>
+		<input type="hidden" name="task" value="edit_taxrate"/>
 	</form>
-	
-	<div>{_JOMRES_TAX_RATES_IMPORT_INFO}</div>
-	<div><a href="{IMPORT_LINK}" class="btn btn-danger">{_JOMRES_TAX_RATES_IMPORT}</a></div>
-	
-	
 </patTemplate:tmpl>
