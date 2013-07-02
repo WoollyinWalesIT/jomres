@@ -11,18 +11,19 @@
 		//-->
 	</script>
 	<h2>{PAGETITLE}</h2>
-
+	<p class="ui-state-highlight">{_JOMRES_TAX_RATES_IMPORT_INFO}</p>
+	<p class="ui-helper-clearfix"><a href="{IMPORT_LINK}" class="fg-button ui-state-default ui-corner-all">{_JOMRES_TAX_RATES_IMPORT}</a></p>
 	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 		{JOMRESTOOLBAR}
 		<table id="list_taxrates" width="100%">
 			<thead>
-			<tr>
-				<th></th>
-				<th>ID</th>
-				<th>{HCODE}</th>
-				<th>{HDESCRIPTION}</th>
-				<th>{HRATE}</th>
-			</tr>
+				<tr>
+					<th></th>
+					<th>ID</th>
+					<th>{HCODE}</th>
+					<th>{HDESCRIPTION}</th>
+					<th>{HRATE}</th>
+				</tr>
 			</thead>
 			<tbody>
 			<patTemplate:tmpl name="rows" unusedvars="strip">
@@ -36,10 +37,6 @@
 			</patTemplate:tmpl>
 			</tbody>
 		</table>
-		<input type="hidden" name="task" value="editTaxrate"/>
+		<input type="hidden" name="task" value="edit_taxrate"/>
 	</form>
-	
-	
-	<div>{_JOMRES_TAX_RATES_IMPORT_INFO}</div>
-	<div><a href="{IMPORT_LINK}" class="btn btn-danger">{_JOMRES_TAX_RATES_IMPORT}</a></div>
 </patTemplate:tmpl>
