@@ -270,6 +270,7 @@ class jrportal_invoice
 		if ($mrConfig['vat_number_validated'] == "0")
 			{
 			$this->vat_will_be_charged = false;
+			return;
 			}
 
 		// From this point onwards we know that the property is using a valid VAT number.
@@ -285,6 +286,7 @@ class jrportal_invoice
 		if (!array_key_exists($guest_validation->guest_country,$euro_countries) && $this->property_is_in_eu )
 			{
 			$this->vat_will_be_charged = false;
+			return;
 			}
 
  		$guest_vat_number_country_code = substr( $guest_validation->vat_number, 0, 2 );
@@ -299,6 +301,7 @@ class jrportal_invoice
 		if ( $guest_vat_number_country_code == $property_vat_number_country_code)
 			{
 			$this->vat_will_be_charged = true;
+			return;
 			}
 
 		// Test case
@@ -316,6 +319,7 @@ class jrportal_invoice
 			)
 			{
 			$this->vat_will_be_charged = true;
+			return;
 			}
 
 
@@ -328,6 +332,7 @@ class jrportal_invoice
 			)
 			{
 			$this->vat_will_be_charged = false;
+			return;
 			}
 		}
 	}
