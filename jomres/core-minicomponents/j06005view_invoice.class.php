@@ -279,8 +279,15 @@ class j06005view_invoice
 					{
 					$grand_total_inc_tax = $grand_total_inc_tax + $li[ 'init_total_inclusive' ];
 					$grand_total_ex_tax  = $grand_total_ex_tax + $li[ 'init_total' ];
-
-					$tax             = $li[ 'init_total_inclusive' ] - $li[ 'init_total' ];
+					if ($invoice->vat_will_be_charged)
+						{
+						$tax             = $li[ 'init_total_inclusive' ] - $li[ 'init_total' ];
+						}
+					else
+						{
+						$tax             = 0;
+						}
+					
 					$grand_total_tax = $grand_total_tax + $tax;
 					}
 

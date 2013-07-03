@@ -18,8 +18,8 @@ class vat_number_validation
 	{
 	function __construct( $id , $is_guest = true )
 		{
-		$this->euro_countries      = $this->get_euro_countries();
 		$this->is_guest = (bool)$is_guest;
+		$this->id_is_cms_id  = true;		// Set this to false and the validator will search for the guest's id, not the cms user id.
 		$this->id            = (int) $id;
 		$this->validation_messages = array ();
 		}
@@ -33,13 +33,22 @@ class vat_number_validation
 			{
 			if ((int) $this->id > 0)
 				{
-				$query  = "SELECT `vat_number`,`vat_number_validated` FROM #__jomres_guest_profile WHERE cms_user_id = " . (int) $this->id . " LIMIT 1";
+				if (!$this->id_is_cms_id)
+					{
+					$query  = "SELECT `vat_number`,`vat_number_validated`,country FROM #__jomres_guests WHERE guests_uid = " . (int) $this->id . " LIMIT 1";
+					}
+				else
+					{
+					$query  = "SELECT `vat_number`,`vat_number_validated`,country FROM #__jomres_guest_profile WHERE cms_user_id = " . (int) $this->id . " LIMIT 1";
+					}
 				$result = doSelectSql( $query, 2 );
 				if (count($result)>0)
 					{
 					$this->vat_number           = $result[ 'vat_number' ];
 					$this->vat_number_validated = $result[ 'vat_number_validated' ];
+					$this->guest_country        = $result[ 'country' ];
 					}
+					
 				}
 			}
 		else
@@ -186,6 +195,11 @@ class vat_number_validation
 	function get_euro_countries()
 		{
 		return array ( "AT" => "Austria", "BE" => "Belgium", "CY" => "Cyprus", "CZ" => "Czech R.ublic", "DK" => "Denmark", "EE" => "Estonia", "FI" => "Finland", "FR" => "France", "DE" => "Germany", "GR" => "Greece", "HU" => "Hungary", "IE" => "Ireland", "IT" => "Italy", "LV" => "Latvia", "LT" => "Lithuania", "LU" => "Luxembourg", "MT" => "Malta", "NL" => "Netherlands", "PL" => "Poland", "PT" => "Portugal", "SK" => "Slovakia", "SI" => "Slovenia", "ES" => "Spain", "SE" => "Sweden", "GB" => "United Kingdom", "RO" => "Romania", "BG" => "Bulgaria", "HR" => "Croatia" );
+		}
+		
+	function get_euro_countr_xref() // Greece use different codes, in our database they're GR, but for VAT numbers they're using EL, so we'll need a cross reference in case a new joiner creates the same situation in the future
+		{
+		return array ( "AT" => "AT", "BE" => "BE", "CY" => "CY", "CZ" => "CZ", "DK" => "DK", "EE" => "EE", "FI" => "FE", "FR" => "FR", "DE" => "DE", "GR" => "EL", "HU" => "HU", "IE" => "IE", "IT" => "IT", "LV" => "LV", "LT" => "LT", "LU" => "LU", "MT" => "MT", "NL" => "NL", "PL" => "PL", "PT" => "PT", "SK" => "SK", "SI" => "SI", "ES" => "ES", "SE" => "SE", "GB" => "GB", "RO" => "RO", "BG" => "BG", "HR" => "HR" );
 		}
 	}
 
