@@ -161,27 +161,53 @@ class j16000list_invoices
 				}
 			else
 				{
-				if ( $invoice[ 'guest_id' ] > 0 ) $guest_name = $guests[ $invoice[ 'guest_id' ] ][ 'firstname' ] . " " . $guests[ $invoice[ 'guest_id' ] ][ 'surname' ];
+				if ( $invoice[ 'guest_id' ] > 0 ) 
+					{
+					$guest_name = $guests[ $invoice[ 'guest_id' ] ][ 'firstname' ] . " " . $guests[ $invoice[ 'guest_id' ] ][ 'surname' ];
+					}
 				else
-				$guest_name = jr_gettext( "_JOMRES_MR_AUDIT_UNKNOWNUSER", _JOMRES_MR_AUDIT_UNKNOWNUSER );
+					{
+					$guest_name = jr_gettext( "_JOMRES_MR_AUDIT_UNKNOWNUSER", _JOMRES_MR_AUDIT_UNKNOWNUSER );
+					}
 				$user_deets = array ( 'cms_user_id' => 0, 'name' => $guest_name );
 				}
 
 
-			if ( $invoice[ 'cms_user_id' ] == 0 ) $r[ 'USER' ] = $user_deets[ 'name' ];
+			if ( $invoice[ 'cms_user_id' ] == 0 ) 
+				{
+				$r[ 'USER' ] = $user_deets[ 'name' ];
+				}
 			else
-			$r[ 'USER' ] = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=list_usersinvoices&id=' . $invoice[ 'cms_user_id' ] . '">' . $user_deets[ 'name' ] . '</a>';
-			if ( $invoice[ 'status' ] == "0" ) $r[ 'STATUS' ] = jr_gettext( "_JRPORTAL_INVOICES_STATUS_UNPAID", _JRPORTAL_INVOICES_STATUS_UNPAID );
-			elseif ( $invoice[ 'status' ] == "1" ) $r[ 'STATUS' ] = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PAID", _JRPORTAL_INVOICES_STATUS_PAID );
-			elseif ( $invoice[ 'status' ] == "2" ) $r[ 'STATUS' ] = jr_gettext( "_JRPORTAL_INVOICES_STATUS_CANCELLED", _JRPORTAL_INVOICES_STATUS_CANCELLED );
+				{
+				$r[ 'USER' ] = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=list_usersinvoices&id=' . $invoice[ 'cms_user_id' ] . '">' . $user_deets[ 'name' ] . '</a>';
+				}
+			if ( $invoice[ 'status' ] == "0" ) 
+				{
+				$r[ 'STATUS' ] = jr_gettext( "_JRPORTAL_INVOICES_STATUS_UNPAID", _JRPORTAL_INVOICES_STATUS_UNPAID );
+				}
+			elseif ( $invoice[ 'status' ] == "1" ) 
+				{
+				$r[ 'STATUS' ] = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PAID", _JRPORTAL_INVOICES_STATUS_PAID );
+				}
+			elseif ( $invoice[ 'status' ] == "2" ) 
+				{
+				$r[ 'STATUS' ] = jr_gettext( "_JRPORTAL_INVOICES_STATUS_CANCELLED", _JRPORTAL_INVOICES_STATUS_CANCELLED );
+				}
 			else
-			$r[ 'STATUS' ] = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PENDING", _JRPORTAL_INVOICES_STATUS_PENDING );
+				{
+				$r[ 'STATUS' ] = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PENDING", _JRPORTAL_INVOICES_STATUS_PENDING );
+				}
 			$r[ 'RAISED' ] = $invoice[ 'raised_date' ];
 			$r[ 'DUE' ]    = $invoice[ 'due_date' ];
 			$r[ 'PAID' ]   = $invoice[ 'paid' ];
-			if ( $invoice[ 'subscription' ] == "1" ) $r[ 'SUBSCRIPTION' ] = jr_gettext( "_JOMRES_COM_MR_YES", _JOMRES_COM_MR_YES );
+			if ( $invoice[ 'subscription' ] == "1" ) 
+				{
+				$r[ 'SUBSCRIPTION' ] = jr_gettext( "_JOMRES_COM_MR_YES", _JOMRES_COM_MR_YES );
+				}
 			else
-			$r[ 'SUBSCRIPTION' ] = jr_gettext( "_JOMRES_COM_MR_NO", _JOMRES_COM_MR_NO );
+				{
+				$r[ 'SUBSCRIPTION' ] = jr_gettext( "_JOMRES_COM_MR_NO", _JOMRES_COM_MR_NO );
+				}
 			$r[ 'INITTOTAL' ]    = output_price( $balance, $invoice[ 'currencycode' ] );
 			$r[ 'RECURTOTAL' ]   = output_price( $invoice[ 'recur_total' ], $invoice[ 'currencycode' ] );
 			$r[ 'FREQ' ]         = $invoice[ 'recur_frequency' ];
