@@ -74,28 +74,30 @@ class jrportal_invoice
 					$this->is_commission    = $r->is_commission;
 
 					}
-
-				$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-				$current_property_details->gather_data( $this->property_uid );
-
-				jr_import('vat_number_validation');
-				$validation = new vat_number_validation( 0 );
-				$euro_countries      =$validation->get_euro_countries();
-
-				if (array_key_exists($current_property_details->property_country_code,$euro_countries))
-					$this->property_is_in_eu = true;
-				else
-					$this->property_is_in_eu = false;
-
-				if (!$this->property_is_in_eu)
+				
+				if ($this->property_uid > 0)
 					{
-					$this->vat_will_be_charged = true; // We don't (yet) have a mechanism for handling other trading blocs, so we'll just enable VAT to be charged for all non-european countries for now.
-					}
-				else
-					{
-					$this->b2b_transaction_is_vat_to_be_charged();
-					}
+					$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+					$current_property_details->gather_data( $this->property_uid );
 
+					jr_import('vat_number_validation');
+					$validation = new vat_number_validation( 0 );
+					$euro_countries      =$validation->get_euro_countries();
+
+					if (array_key_exists($current_property_details->property_country_code,$euro_countries))
+						$this->property_is_in_eu = true;
+					else
+						$this->property_is_in_eu = false;
+
+					if (!$this->property_is_in_eu)
+						{
+						$this->vat_will_be_charged = true; // We don't (yet) have a mechanism for handling other trading blocs, so we'll just enable VAT to be charged for all non-european countries for now.
+						}
+					else
+						{
+						$this->b2b_transaction_is_vat_to_be_charged();
+						}
+					}
 				return true;
 				}
 			else
