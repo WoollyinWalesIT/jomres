@@ -39,7 +39,7 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 				if ( $property_uid > 0 )
 					{
 					$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-					$current_property_details->property_uid = $property_uid;
+					//$current_property_details->property_uid = $property_uid;
 					$current_property_details->gather_data( $property_uid );
 					$property_type = $current_property_details->ptype_id;
 					}
