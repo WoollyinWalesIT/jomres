@@ -98,16 +98,14 @@ class j06005view_invoice
 				}
 			else // Let's check that this property manager can view this commission/subscription invoice
 				{
-
 				if ( $thisJRUser->id != $invoice->cms_user_id )
 					{
 					trigger_error( "Unable to view invoice, either invoice id not found, or invoice id tampered with.", E_USER_ERROR );
-
 					return;
 					}
 				$output[ 'BUSINESS_DETAILS_TEMPLATE' ] = $MiniComponents->specificEvent( '6000', 'show_site_business', array () );
-				if ( count( $thisJRUser->authorisedProperties ) > 0 ) $output[ 'CLIENT_DETAILS_TEMPLATE' ] = $MiniComponents->specificEvent( '6000', 'show_hotel_details', array () );
-
+				if ( count( $thisJRUser->authorisedProperties ) > 0 ) 
+					$output[ 'CLIENT_DETAILS_TEMPLATE' ] = $MiniComponents->specificEvent( '6000', 'show_hotel_details', array ( 'property_uid' => $invoice->property_uid ) );
 				}
 			}
 		else

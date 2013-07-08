@@ -124,6 +124,7 @@ class j02260editbooking
 		$guest_tel_fax      = "N/A";
 		$guest_email        = "N/A";
 		$guest_preferences  = "N/A";
+		$guest_vat_number   = "N/A";
 
 		foreach ( $guestData as $guest )
 			{
@@ -134,8 +135,14 @@ class j02260editbooking
 			$guest_house        = $guest->house;
 			$guest_street       = $guest->street;
 			$guest_town         = $guest->town;
-			$guest_region       = $guest->county;
-			$guest_country      = $guest->country;
+			if ( is_numeric( $guest->county ) )
+				{
+				$jomres_regions        = jomres_singleton_abstract::getInstance( 'jomres_regions' );
+				$guest_region = jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $guest->county, $jomres_regions->regions[ $guest->county ][ 'regionname' ], $editable, false );
+				}
+			else
+				$guest_region = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_REGION' . $guest->county, $guest->county, $editable, false );
+			$guest_country      = getSimpleCountry($guest->country);
 			$guest_postcode     = $guest->postcode;
 			$guest_tel_landline = $guest->tel_landline;
 			$guest_tel_mobile   = $guest->tel_mobile;
@@ -148,6 +155,7 @@ class j02260editbooking
 			$guest_ccard_expiry = $guest->ccard_expiry;
 			$guest_ccard_iss_no = $guest->ccard_iss_no;
 			$guest_ccard_name   = $guest->ccard_name;
+			$guest_vat_number   = $guest->vat_number;
 			}
 
 		foreach ( $bookingData as $booking )
@@ -407,6 +415,8 @@ class j02260editbooking
 		$output[ 'GUEST_TEL_LANDLINE' ]                           = $guest_tel_landline;
 		$output[ '_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL' ]   = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL );
 		$output[ 'GUEST_TEL_MOBILE' ]                             = $guest_tel_mobile;
+		$output[ 'HGUEST_VAT_NUMBER' ]							  = jr_gettext( '_JOMRES_COM_YOURBUSINESS_VATNO', _JOMRES_COM_YOURBUSINESS_VATNO );
+		$output[ 'GUEST_VAT_NUMBER' ]                             = $guest_vat_number;
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();

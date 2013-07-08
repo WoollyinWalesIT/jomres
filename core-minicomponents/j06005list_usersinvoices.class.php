@@ -106,6 +106,7 @@ class j06005list_usersinvoices
 					$item_name_string = "";
 					foreach ( $invoice_items as $invoice_item )
 						{
+						if ( $item_name_string != "Commission<br/>" ) // We can filter out other line items as Commission only needs to be named once in the invoices list. Also, invoices of commission should not have other items added to them.
 						$item_name_string .= $invoice_item[ 'name' ] . "<br/>";
 						}
 					$r[ 'ITEMS' ] = $item_name_string;

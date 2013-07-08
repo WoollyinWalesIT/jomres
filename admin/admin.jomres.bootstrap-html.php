@@ -23,8 +23,26 @@ class HTML_jomres
 		$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig     = $siteConfig->get();
 		$contentPanel = jomres_singleton_abstract::getInstance( 'jomres_content_tabs' );
+		
+		$country_dropdown   = createSimpleCountriesDropdown( $jrConfig[ 'business_country' ] , "cfg_business_country" );
+		$region_dropdown    = setupRegions( $jrConfig[ 'business_country' ], $jrConfig[ 'business_region' ] , false, "cfg_business_region");
 
 		?>
+	<script language="JavaScript" type="text/javascript">
+		<!--
+		
+		jomresJquery(function(){
+			jomresJquery("#cfg_business_country").change(function(){
+				var selectedValue = jomresJquery(this).find(":selected").val();
+				clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+				jomresJquery.get(live_site_ajax + clause, function (data) {
+					populateDiv("business_region_div",data);
+					});
+				});
+			});
+			//-->
+	</script>
+		
 			<h2 class="page-header">Jomres <?php echo jr_gettext( _JOMRES_A, '_JOMRES_A', false );; ?></h2>
 			<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="post" name="adminForm">
 
@@ -1137,6 +1155,7 @@ class HTML_jomres
 
 				$contentPanel->startPanel( jr_gettext( _JOMRES_COM_YOURBUSINESS, '_JOMRES_COM_YOURBUSINESS', false ) );
 				$contentPanel->setcontent( '
+				<p>'.jr_gettext( _JOMRES_COM_YOURBUSINESS_INSTRUCTIONS, '_JOMRES_COM_YOURBUSINESS_INSTRUCTIONS', false ).'</p>
 			<table class="table table-striped" width="100%">
 				<thead>
 				<tr>
@@ -1173,12 +1192,12 @@ class HTML_jomres
 				</tr>
 				<tr>
 					<td>' . jr_gettext( _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION, '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false ) . '</td>
-					<td><input type="text" class="input-large" name="cfg_business_region" value="' . $jrConfig[ 'business_region' ] . '" /></td>
+					<td><div id="business_region_div">'. $region_dropdown .' </div></td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
 					<td>' . jr_gettext( _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY, '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false ) . '</td>
-					<td><input type="text" class="input-large" name="cfg_business_country" value="' . $jrConfig[ 'business_country' ] . '" /></td>
+					<td>'.$country_dropdown . '</td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>

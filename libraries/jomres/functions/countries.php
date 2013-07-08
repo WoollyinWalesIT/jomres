@@ -65,7 +65,7 @@ function configCountries()
 	}
 
 
-function createSimpleCountriesDropdown( $selectedCountry )
+function createSimpleCountriesDropdown( $selectedCountry ,$input_name = "guest_country" )
 	{
 	global $mrConfig;
 	if ( !isset( $selectedCountry ) || empty( $selectedCountry ) ) $selectedCountry = $mrConfig[ 'defaultcountry' ];
@@ -83,7 +83,7 @@ function createSimpleCountriesDropdown( $selectedCountry )
 		{
 		$thecountryCodes[ ] = jomresHTML::makeOption( $k, $v );
 		}
-	$countryDropdown = jomresHTML::selectList( $thecountryCodes, 'guest_country', '', 'value', 'text', $selectedCountry );
+	$countryDropdown = jomresHTML::selectList( $thecountryCodes, $input_name, '', 'value', 'text', $selectedCountry );
 
 	return $countryDropdown;
 	}
@@ -147,7 +147,7 @@ function createCountriesDropdown( $selectedCountry, $input_name = "country", $in
 	}
 
 
-function setupRegions( $countryCode = "GB", $currentRegion = "Pembrokeshire", $firstBlank = false )
+function setupRegions( $countryCode = "GB", $currentRegion = "Pembrokeshire", $firstBlank = false, $input_name = "region" )
 	{
 	$regionArray    = array ();
 	$jomres_regions = jomres_singleton_abstract::getInstance( 'jomres_regions' );
@@ -185,7 +185,7 @@ function setupRegions( $countryCode = "GB", $currentRegion = "Pembrokeshire", $f
 			{
 			$regions[ ] = jomresHTML::makeOption( $k, $v );
 			}
-		$regionDropdown = jomresHTML::selectList( $regions, 'region', 'class="inputbox"', 'value', 'text', $currentRegion );
+		$regionDropdown = jomresHTML::selectList( $regions, $input_name, 'class="inputbox"', 'value', 'text', $currentRegion );
 		}
 
 	return $regionDropdown;
