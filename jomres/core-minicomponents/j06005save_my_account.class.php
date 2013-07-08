@@ -56,8 +56,10 @@ class j06005save_my_account
 		$email      = (string) jomresGetParam( $_REQUEST, 'email', "" );
 		$vat_number = filter_var( $_REQUEST[ 'vat_number' ], FILTER_SANITIZE_STRING );
 
-		$query               = "SELECT vat_number FROM #__jomres_guest_profile WHERE cms_user_id = " . (int) $thisJRUser->id . " LIMIT 1 ";
-		$original_vat_number = doSelectSql( $query, 1 );
+		$query               = "SELECT vat_number,vat_number_validated FROM #__jomres_guest_profile WHERE cms_user_id = " . (int) $thisJRUser->id . " LIMIT 1 ";
+		$vat_data = doSelectSql( $query, 2 );
+		$original_vat_number = $vat_data [ 'vat_number' ];
+		$original_vat_number_validated = (int)$vat_data [ 'vat_number_validated' ];
 
 		if ( $firstname == "" || $surname == "" || $house == "" || $street == "" || $town == "" || $region == "" || $country == "" || $postcode == "" || $email == "" ) // Not going to mess about. If they've bypassed the javascript to get this far we're not going to waste time telling them they've missed something out. Just return.
 		return;
@@ -67,10 +69,10 @@ class j06005save_my_account
 		// Whilst the profiles table might be empty, the guests table might not. We'll update the guests table as well as the profiles table, at the same time.
 		if ( count( $result ) > 0 )
 			{
-			$query = "UPDATE #__jomres_guest_profile SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',`town`='$town',`county`='$region',`country`='$country',`postcode`='$postcode',`tel_landline`='$landline',`tel_mobile`='$mobile',`tel_fax`='$fax',`email`='$email',`vat_number`='$vat_number',`vat_number_validated`=0 WHERE cms_user_id = " . (int) $thisJRUser->id;
+			$query = "UPDATE #__jomres_guest_profile SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',`town`='$town',`county`='$region',`country`='$country',`postcode`='$postcode',`tel_landline`='$landline',`tel_mobile`='$mobile',`tel_fax`='$fax',`email`='$email',`vat_number`='$vat_number',`vat_number_validated`=$original_vat_number_validated WHERE cms_user_id = " . (int) $thisJRUser->id;
 			if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_GUEST', _JOMRES_MR_AUDIT_UPDATE_GUEST, false ) ) ) trigger_error( "Unable to update guest details, mysql db failure", E_USER_ERROR );
 
-			$query = "UPDATE #__jomres_guests SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',`town`='$town',`county`='$region',`country`='$country',`postcode`='$postcode',`tel_landline`='$landline',`tel_mobile`='$mobile',`tel_fax`='$fax',`email`='$email',`vat_number`='$vat_number',`vat_number_validated`=0 WHERE mos_userid = " . (int) $thisJRUser->id;
+			$query = "UPDATE #__jomres_guests SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',`town`='$town',`county`='$region',`country`='$country',`postcode`='$postcode',`tel_landline`='$landline',`tel_mobile`='$mobile',`tel_fax`='$fax',`email`='$email',`vat_number`='$vat_number',`vat_number_validated`=$original_vat_number_validated WHERE mos_userid = " . (int) $thisJRUser->id;
 			doInsertSql( $query, '' );
 			}
 		else
@@ -78,7 +80,7 @@ class j06005save_my_account
 			$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`tel_fax`,`email`,`vat_number`,`vat_number_validated`)VALUES ('" . (int) $thisJRUser->id . "','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$fax','$email','$vat_number',0)";
 			if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_GUEST', _JOMRES_MR_AUDIT_INSERT_GUEST, false ) ) ) trigger_error( "Unable to insert guest details, mysql db failure", E_USER_ERROR );
 
-			$query = "UPDATE #__jomres_guests SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',`town`='$town',`county`='$region',`country`='$country',`postcode`='$postcode',`tel_landline`='$landline',`tel_mobile`='$mobile',`tel_fax`='$fax',`email`='$email',`vat_number`='$vat_number',`vat_number_validated`=0 WHERE mos_userid = " . (int) $thisJRUser->id;
+			$query = "UPDATE #__jomres_guests SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',`town`='$town',`county`='$region',`country`='$country',`postcode`='$postcode',`tel_landline`='$landline',`tel_mobile`='$mobile',`tel_fax`='$fax',`email`='$email',`vat_number`='$vat_number',`vat_number_validated`=$original_vat_number_validated WHERE mos_userid = " . (int) $thisJRUser->id;
 			doInsertSql( $query, '' );
 			}
 

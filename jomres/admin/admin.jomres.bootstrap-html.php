@@ -34,7 +34,7 @@ class HTML_jomres
 		jomresJquery(function(){
 			jomresJquery("#cfg_business_country").change(function(){
 				var selectedValue = jomresJquery(this).find(":selected").val();
-				clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+				clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue+"&input_name=cfg_business_region";
 				jomresJquery.get(live_site_ajax + clause, function (data) {
 					populateDiv("business_region_div",data);
 					});
