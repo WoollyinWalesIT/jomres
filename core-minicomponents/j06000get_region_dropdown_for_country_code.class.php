@@ -25,7 +25,9 @@ class j06000get_region_dropdown_for_country_code
 			}
 		$countryCode = jomresGetParam( $_REQUEST, 'country', "" );
 		$currentRegion = jomresGetParam( $_REQUEST, 'region', "" );
-		$dropdown = setupRegions( $countryCode, $currentRegion );
+		$input_name = jomresGetParam( $_REQUEST, 'input_name', "" );
+		
+		$dropdown = setupRegions( $countryCode, $currentRegion , false , $input_name);
 		echo $dropdown;
 		}
 
