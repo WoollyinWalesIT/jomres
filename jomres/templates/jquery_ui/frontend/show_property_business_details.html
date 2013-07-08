@@ -1,8 +1,12 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<table class="ui-widget-content ui-corner-all" width="100%" border="0">
 		<tr>
-			<td width="30%"><strong>{HPROPERTYNAME}</strong></td>
-			<td>{PROPERTY_NAME}</td>
+			<td width="30%"><strong>{HBUSINESSNAME}</strong></td>
+			<td>{BUSINESSNAME}</td>
+		</tr>
+		<tr>
+			<td><strong>{HHOUSENO}</strong></td>
+			<td>{HOUSENO}</td>
 		</tr>
 		<tr>
 			<td><strong>{HSTREET}</strong></td>
@@ -31,6 +35,10 @@
 		<tr>
 			<td><strong>{HEMAIL}</strong></td>
 			<td>{EMAIL}</td>
+		</tr>
+		<tr>
+			<td><strong>{_JOMRES_COM_YOURBUSINESS_VATNO}</strong></td>
+			<td>{PROPERTY_VAT_NUMBER}</td>
 		</tr>
 	</table>
 </patTemplate:tmpl>

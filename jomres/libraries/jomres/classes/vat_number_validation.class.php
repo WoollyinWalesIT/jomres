@@ -73,7 +73,8 @@ class vat_number_validation
 		if ( $this->vat_number_validated == 0 )
 			{
 			$response = $this->vies_check( $this->vat_number );
-			$messages = json_encode( $this->validation_messages );
+			//$messages = json_encode( $this->validation_messages );
+			$messages=htmlspecialchars($this->validation_messages [ 'message' ], ENT_QUOTES);
 
 			$this->vat_number = $this->validation_messages[ 'clean_vat_no' ];
 			if ($this->validation_messages[ 'result' ] == true)

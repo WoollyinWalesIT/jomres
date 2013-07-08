@@ -24,7 +24,24 @@ class HTML_jomres
 		$jrConfig     = $siteConfig->get();
 		$contentPanel = jomres_singleton_abstract::getInstance( 'jomres_content_tabs' );
 
+		$country_dropdown   = createSimpleCountriesDropdown( $jrConfig[ 'business_country' ] , "cfg_business_country" );
+		$region_dropdown    = setupRegions( $jrConfig[ 'business_country' ], $jrConfig[ 'business_region' ] , false, "cfg_business_region");
+		
 		?>
+	<script language="JavaScript" type="text/javascript">
+		<!--
+		
+		jomresJquery(function(){
+			jomresJquery("#cfg_business_country").change(function(){
+				var selectedValue = jomresJquery(this).find(":selected").val();
+				clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+				jomresJquery.get(live_site_ajax + clause, function (data) {
+					populateDiv("business_region_div",data);
+					});
+				});
+			});
+			//-->
+	</script>
 			<h2>Jomres <?php echo jr_gettext( _JOMRES_A, '_JOMRES_A', false ); ?></h2>
 			<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="post" name="adminForm">
 
@@ -1147,6 +1164,7 @@ class HTML_jomres
 
 				$contentPanel->startPanel( jr_gettext( _JOMRES_COM_YOURBUSINESS, '_JOMRES_COM_YOURBUSINESS', false ) );
 				$contentPanel->setcontent( '
+				<p>'.jr_gettext( _JOMRES_COM_YOURBUSINESS_INSTRUCTIONS, '_JOMRES_COM_YOURBUSINESS_INSTRUCTIONS', false ).'</p>
 			<table width="100%" class="jradmin_table" border="0">
 				<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
@@ -1180,12 +1198,12 @@ class HTML_jomres
 				</tr>
 				<tr valign="middle" class="even">
 					<td valign="middle">' . jr_gettext( _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION, '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false ) . '</td>
-					<td valign="middle"><input type="text" class="inputbox" name="cfg_business_region" value="' . $jrConfig[ 'business_region' ] . '" /></td>
+					<td valign="middle"><div id="business_region_div">'. $region_dropdown .' </div></td>
 					<td valign="middle">&nbsp;</td>
 				</tr>
 				<tr valign="middle" class="odd">
 					<td valign="middle">' . jr_gettext( _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY, '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false ) . '</td>
-					<td valign="middle"><input type="text" class="inputbox" name="cfg_business_country" value="' . $jrConfig[ 'business_country' ] . '" /></td>
+					<td valign="middle">'.$country_dropdown . '</td>
 					<td valign="middle">&nbsp;</td>
 				</tr>
 				<tr valign="middle" class="even">

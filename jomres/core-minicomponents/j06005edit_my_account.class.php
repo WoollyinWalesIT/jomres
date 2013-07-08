@@ -54,7 +54,7 @@ class j06005edit_my_account
 		$output[ 'HOUSE' ]     = '';
 		$output[ 'STREET' ]    = '';
 		$output[ 'TOWN' ]      = '';
-		$output[ 'REGION' ]    = setupRegions( null, null );
+		$output[ 'REGION' ]    = setupRegions();
 		$output[ 'COUNTRY' ]   = createSimpleCountriesDropdown( $jrConfig[ 'limit_property_country_country' ] );
 		$output[ 'POSTCODE' ]  = '';
 		$output[ 'LANDLINE' ]  = '';
@@ -96,11 +96,11 @@ class j06005edit_my_account
 					
 					$output[ 'VAT_NUMBER' ]           = $data->vat_number;
 					$output[ 'VAT_NUMBER_VALIDATED' ] = $data->vat_number_validated;
-					$validation_success               = json_decode( $data->vat_number_validation_response );
-					if (strlen($validation_success->message)>0)
+
+					if (strlen($data->vat_number_validation_response)>0)
 						{
 						$validation = array();
-						$validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] =$validation_success->message;
+						$validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] =$data->vat_number_validation_response;
 						if ($data->vat_number_validated)
 							{
 							if (using_bootstrap())

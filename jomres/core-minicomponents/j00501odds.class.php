@@ -58,19 +58,6 @@ class j00501odds
 		$configurationPanel->setright( jr_gettext( "_JOMRES_PROPERTY_LANG_DESC", _JOMRES_PROPERTY_LANG_DESC, false ) );
 		$configurationPanel->insertSetting();
 		
-		if ($mrConfig[ 'property_vat_number_validated' ] =="1")
-			{
-			$image = '<img src="jomres/images/jomresimages/small/Tick.png" />';
-			}
-		else
-			{
-			$image = '<img src="jomres/images/jomresimages/small/Cancel.png" />';
-			}
-		$configurationPanel->setleft( jr_gettext( "_JOMRES_VAT_PROPERTY_NUMBER", _JOMRES_VAT_PROPERTY_NUMBER, false ) );
-		$configurationPanel->setmiddle( '<input type="text" class="inputbox"  size="50" name="cfg_property_vat_number" value="' . $mrConfig[ 'property_vat_number' ] . '" />'.$image );
-		$configurationPanel->setright( jr_gettext( "_JOMRES_VAT_PROPERTY_NUMBER_DESC", _JOMRES_VAT_PROPERTY_NUMBER_DESC, false ) );
-		$configurationPanel->insertSetting();
-		
 		$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT", _JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT, false ) );
 		$configurationPanel->setmiddle( $lists[ 'auto_detect_country_for_booking_form' ] );
 		$configurationPanel->setright( jr_gettext( "_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC", _JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC, false ) );

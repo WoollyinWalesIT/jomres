@@ -2017,4 +2017,7 @@ jr_define( "_JOMRES_TAX_RATES_IMPORT_INFO", "We can import tax rates for the EU 
 jr_define( "_JRPORTAL_TAX_RULE_EDIT", "Edit tax rule" );
 jr_define( "_JOMRES_VAT_PROPERTY_NUMBER", "The VAT number for this property." );
 jr_define( "_JOMRES_VAT_PROPERTY_NUMBER_DESC", "Please enter the VAT number for this property." );
+jr_define( "_JOMRES_VAT_PROPERTY_VAT_NUMBER_VALIDATED", "VAT number validated." );
+jr_define( "_JOMRES_VAT_PROPERTY_VAT_NUMBER_NOT_VALIDATED", "VAT number not validated." );
+jr_define( "_JOMRES_COM_YOURBUSINESS_INSTRUCTIONS", "Business details entered here will be used on commission and subscriptions invoices." );
 

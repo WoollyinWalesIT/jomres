@@ -198,8 +198,14 @@ class j02190confirmationform
 		$output[ 'GUEST_STREET' ]    = $guestDetailsArray[ 3 ];
 		$output[ 'GUEST_TOWN' ]      = $guestDetailsArray[ 4 ];
 		$output[ 'GUEST_POSTCODE' ]  = $guestDetailsArray[ 5 ];
-		$output[ 'GUEST_REGION' ]    = $guestDetailsArray[ 6 ];
-		$output[ 'GUEST_COUNTRY' ]   = $guestDetailsArray[ 7 ];
+		if ( is_numeric( $guestDetailsArray[ 6 ] ) )
+			{
+			$jomres_regions        = jomres_singleton_abstract::getInstance( 'jomres_regions' );
+			$output[ 'GUEST_REGION' ] = jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $guestDetailsArray[ 6 ], $jomres_regions->regions[ $guestDetailsArray[ 6 ] ][ 'regionname' ], $editable, false );
+			}
+		else
+			$output[ 'GUEST_REGION' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_REGION' . $guestDetailsArray[ 6 ], $guestDetailsArray[ 6 ], $editable, false );
+		$output[ 'GUEST_COUNTRY' ]   = getSimpleCountry($guestDetailsArray[ 7 ]);
 
 		$output[ 'BOOKINGNO' ]   = $booking_number;
 		$output[ 'ROOM_NAME' ]   = $room_name;

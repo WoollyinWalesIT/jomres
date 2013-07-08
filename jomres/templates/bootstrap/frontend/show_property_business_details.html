@@ -1,18 +1,18 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<div class="row-fluid">
 		<div class="span6">
-			<strong>{HFIRSTNAME}</strong>
+			<strong>{HBUSINESSNAME}</strong>
 		</div>
 		<div class="span6">
-			{FIRSTNAME} {SURNAME}
+			{BUSINESSNAME}
 		</div>
 	</div>
 	<div class="row-fluid">
 		<div class="span6">
-			<strong>{HHOUSE}</strong>
+			<strong>{HHOUSENO}</strong>
 		</div>
 		<div class="span6">
-			{HOUSE}
+			{HOUSENO}
 		</div>
 	</div>
 	<div class="row-fluid">
@@ -21,14 +21,6 @@
 		</div>
 		<div class="span6">
 			{STREET}
-		</div>
-	</div>
-	<div class="row-fluid">
-		<div class="span6">
-			<strong>{HPOSTCODE}</strong>
-		</div>
-		<div class="span6">
-			{POSTCODE}
 		</div>
 	</div>
 	<div class="row-fluid">
@@ -57,18 +49,18 @@
 	</div>
 	<div class="row-fluid">
 		<div class="span6">
-			<strong>{HLANDLINE}</strong>
+			<strong>{HPOSTCODE}</strong>
 		</div>
 		<div class="span6">
-			{LANDLINE}
+			{POSTCODE}
 		</div>
 	</div>
 	<div class="row-fluid">
 		<div class="span6">
-			<strong>{HMOBILE}</strong>
+			<strong>{HTELEPHONE}</strong>
 		</div>
 		<div class="span6">
-			{MOBILE}
+			{TELEPHONE}
 		</div>
 	</div>
 	<div class="row-fluid">
@@ -79,14 +71,12 @@
 			{EMAIL}
 		</div>
 	</div>
-	<patTemplate:tmpl name="vat_output" type="simpleCondition"  requiredVars="_jomres_com_yourbusiness_vatno">
 	<div class="row-fluid">
 		<div class="span6">
 			<strong><small>{_JOMRES_COM_YOURBUSINESS_VATNO}</small></strong>
 		</div>
 		<div class="span6">
-			<small>{VAT_NUMBER}</small>
+			<small>{PROPERTY_VAT_NUMBER}</small>
 		</div>
 	</div>
-	</patTemplate:tmpl>
 </patTemplate:tmpl>
