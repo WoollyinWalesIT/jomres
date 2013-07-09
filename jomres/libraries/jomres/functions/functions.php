@@ -2793,8 +2793,8 @@ function saveHotelSettings()
 		{
 		jr_import( 'vat_number_validation' );
 		$validation = new vat_number_validation( $property_uid , false );
-		$validation->get_vat_number_and_validation_state();
-		$result = $validation->validate_vat_number();
+		$validation->vies_check($_POST['cfg_property_vat_number']);
+		$validation->save_subject($type = "property", array( "property_uid"=>$property_uid ) );
 		}
 	
 	if ( $tariffmodeChange && $mrConfig[ 'is_real_estate_listing' ] != 1 ) 
@@ -4432,6 +4432,7 @@ function invoices_getallcommissioninvoices( $dec, $status = null )
 			$invoices[ $r->id ][ 'recur_frequency' ]  = $r->recur_frequency;
 			$invoices[ $r->id ][ 'recur_dayofmonth' ] = $r->recur_dayofmonth;
 			$invoices[ $r->id ][ 'currencycode' ]     = $r->currencycode;
+			$invoices[ $r->id ][ 'vat_will_be_charged' ] = $r->vat_will_be_charged;
 			}
 		}
 
@@ -4467,6 +4468,7 @@ function invoices_getallinvoices( $dec, $status = null )
 			$invoices[ $r->id ][ 'currencycode' ]     = $r->currencycode;
 			$invoices[ $r->id ][ 'property_uid' ]     = $r->property_uid;
 			$invoices[ $r->id ][ 'is_commission' ]    = $r->is_commission;
+			$invoices[ $r->id ][ 'vat_will_be_charged' ] = $r->vat_will_be_charged;
 			}
 		}
 
@@ -4498,6 +4500,7 @@ function invoices_getinvoicefor_contract_id( $contract_id = 0 )
 			$invoice[ 'currencycode' ]     = $r->currencycode;
 			$invoice[ 'property_uid' ]     = $r->property_uid;
 			$invoice[ 'is_commission' ]    = $r->is_commission;
+			$invoice[ $r->id ][ 'vat_will_be_charged' ] = $r->vat_will_be_charged;
 			}
 		}
 
@@ -4530,6 +4533,7 @@ function invoices_getinvoicesfor_manager_allproperties( $status = 0, $property_u
 			$invoices[ $r->id ][ 'currencycode' ]     = $r->currencycode;
 			$invoices[ $r->id ][ 'property_uid' ]     = $r->property_uid;
 			$invoices[ $r->id ][ 'is_commission' ]    = $r->is_commission;
+			$invoices[ $r->id ][ 'vat_will_be_charged' ] = $r->vat_will_be_charged;
 			}
 		}
 
@@ -4564,6 +4568,7 @@ function invoices_getinvoicesfor_juser( $juser = 0, $status = null )
 			$invoices[ $r->id ][ 'currencycode' ]     = $r->currencycode;
 			$invoices[ $r->id ][ 'property_uid' ]     = $r->property_uid;
 			$invoices[ $r->id ][ 'is_commission' ]    = $r->is_commission;
+			$invoices[ $r->id ][ 'vat_will_be_charged' ] = $r->vat_will_be_charged;
 			}
 		}
 
@@ -4597,6 +4602,7 @@ function invoices_getinvoicesfor_jomresuserid_byproperty_uid( $mos_id = 0, $stat
 			$invoices[ $r->id ][ 'currencycode' ]     = $r->currencycode;
 			$invoices[ $r->id ][ 'property_uid' ]     = $r->property_uid;
 			$invoices[ $r->id ][ 'is_commission' ]    = $r->is_commission;
+			$invoices[ $r->id ][ 'vat_will_be_charged' ] = $r->vat_will_be_charged;
 			}
 		}
 
@@ -4630,6 +4636,7 @@ function invoices_getinvoicesfor_juser_byproperty_uid( $juser = 0, $status = nul
 			$invoices[ $r->id ][ 'currencycode' ]     = $r->currencycode;
 			$invoices[ $r->id ][ 'property_uid' ]     = $r->property_uid;
 			$invoices[ $r->id ][ 'is_commission' ]    = $r->is_commission;
+			$invoices[ $r->id ][ 'vat_will_be_charged' ] = $r->vat_will_be_charged;
 			}
 		}
 
@@ -4665,12 +4672,14 @@ function invoices_getinvoicesfor_property_byproperty_uid( $status = null, $prope
 			$invoices[ $r->id ][ 'contract_id' ]      = $r->contract_id;
 			$invoices[ $r->id ][ 'property_uid' ]     = $r->property_uid;
 			$invoices[ $r->id ][ 'is_commission' ]    = $r->is_commission;
+			$invoices[ $r->id ][ 'vat_will_be_charged' ] = $r->vat_will_be_charged;
 
 			}
 		}
 
 	return $invoices;
 	}
+
 
 
 function invoices_makeInvoiceStatusDropdown( $selected = '0' )

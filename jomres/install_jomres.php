@@ -432,7 +432,31 @@ function doTableUpdates()
 	
 	if ( !checkTaxRulesTableExists() ) createTaxRulesTable();
 	
+	if ( !checkInvoicesVATFlagColExists() ) alterInvoicesVATFlagCol();
+	
 	if ( _JOMRES_DETECTED_CMS == "joomla15" ) checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
+	}
+
+function checkInvoicesVATFlagColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomresportal_invoices LIKE 'vat_will_be_charged'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
+
+function alterInvoicesVATFlagCol()
+	{
+	if ( !AUTO_UPGRADE ) echo "Editing __jomresportal_invoices table adding vat_will_be_charged column<br>";
+	$query = "ALTER TABLE `#__jomresportal_invoices` ADD `vat_will_be_charged` BOOL NOT NULL DEFAULT '1' AFTER `is_commission` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomresportal_invoices vat_will_be_charged</b><br>";
+		}
 	}
 
 function createTaxRulesTable()
@@ -2189,6 +2213,7 @@ function createJomresTables()
 		`contract_id` int(11),
 		`property_uid` INT NULL DEFAULT '0',
 		`is_commission` INT NULL DEFAULT '0',
+		`vat_will_be_charged` BOOL NOT NULL DEFAULT '1',
 		PRIMARY KEY  (`id`)
 	)";
 	doInsertSql( $query, "" );
@@ -4079,6 +4104,7 @@ function addNewTables()
 		`contract_id` int(11),
 		`property_uid` INT NULL DEFAULT '0',
 		`is_commission` INT NULL DEFAULT '0',
+		`vat_will_be_charged` BOOL NOT NULL DEFAULT '1',
 		PRIMARY KEY  (`id`)
 		)";
 	if ( !doInsertSql( $query ) )

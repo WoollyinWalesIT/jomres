@@ -70,26 +70,31 @@ class j02222editguest
 					$output[ 'EMAIL' ]     = $data->email;
 					$output[ 'DISCOUNT' ]  = jomresHTML::integerSelectList( 0, 100, 1, 'discount', 'class="inputbox" size="1"', $data->discount );
 					
-					$output[ 'VAT_NUMBER' ]           = $data->vat_number;
-					$output[ 'VAT_NUMBER_VALIDATED' ] = $data->vat_number_validated;
-					$validation_success    = json_decode( $data->vat_number_validation_response );
-					if (strlen($validation_success->message)>0)
+					jr_import( 'vat_number_validation' );
+					$validation = new vat_number_validation();
+					$validation->get_subject("guest_registered_byguest_id",array("property_uid"=>$defaultProperty,"guest_id"=>$guestUid));
+					
+					$output[ 'VAT_NUMBER' ]           = $validation->vat_number;
+					$output[ 'VAT_NUMBER_VALIDATED' ] = $validation->vat_number_validated;
+					
+					$validation_success    = $validation->vat_number_validation_response;
+					if (strlen($validation_success)>0)
 						{
-						$validation = array();
-						$validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] =$validation_success->message;
-						if ($data->vat_number_validated)
+						$vat_validation = array();
+						$vat_validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] =$validation_success;
+						if ($validation->vat_number_validated)
 							{
 							if (using_bootstrap())
-								$validation[0][ 'VALIDATION_CLASS'] = 'alert-success';
+								$vat_validation[0][ 'VALIDATION_CLASS'] = 'alert-success';
 							else
-								$validation[0][ 'VALIDATION_CLASS'] = 'ui-state-highlight';
+								$vat_validation[0][ 'VALIDATION_CLASS'] = 'ui-state-highlight';
 							}
 						else
 							{
 							if (using_bootstrap())
-								$validation[0][ 'VALIDATION_CLASS'] = 'alert-error';
+								$vat_validation[0][ 'VALIDATION_CLASS'] = 'alert-error';
 							else
-								$validation[0][ 'VALIDATION_CLASS'] = 'ui-state-error ';
+								$vat_validation[0][ 'VALIDATION_CLASS'] = 'ui-state-error ';
 							}
 						}
 					}
@@ -136,7 +141,7 @@ class j02222editguest
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
 		$tmpl->readTemplatesFromInput( 'edit_guest.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'validation', $validation );
+		$tmpl->addRows( 'validation', $vat_validation );
 		$tmpl->displayParsedTemplate();
 		}
 

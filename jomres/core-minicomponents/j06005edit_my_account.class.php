@@ -94,26 +94,31 @@ class j06005edit_my_account
 					$output[ 'FAX' ]                  = $data->tel_fax;
 					$output[ 'EMAIL' ]                = $data->email;
 					
-					$output[ 'VAT_NUMBER' ]           = $data->vat_number;
-					$output[ 'VAT_NUMBER_VALIDATED' ] = $data->vat_number_validated;
-
-					if (strlen($data->vat_number_validation_response)>0)
+					jr_import( 'vat_number_validation' );
+					$validation = new vat_number_validation();
+					$validation->get_subject("guest_registered_byprofile_id",array("profile_id"=>$thisJRUser->id));
+					
+					$output[ 'VAT_NUMBER' ]           = $validation->vat_number;
+					$output[ 'VAT_NUMBER_VALIDATED' ] = $validation->vat_number_validated;
+					
+					$validation_success    = $validation->vat_number_validation_response;
+					if (strlen($validation_success)>0)
 						{
-						$validation = array();
-						$validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] =$data->vat_number_validation_response;
-						if ($data->vat_number_validated)
+						$vat_validation = array();
+						$vat_validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] =$validation_success;
+						if ($validation->vat_number_validated)
 							{
 							if (using_bootstrap())
-								$validation[0][ 'VALIDATION_CLASS'] = 'alert-success';
+								$vat_validation[0][ 'VALIDATION_CLASS'] = 'alert-success';
 							else
-								$validation[0][ 'VALIDATION_CLASS'] = 'ui-state-highlight';
+								$vat_validation[0][ 'VALIDATION_CLASS'] = 'ui-state-highlight';
 							}
 						else
 							{
 							if (using_bootstrap())
-								$validation[0][ 'VALIDATION_CLASS'] = 'alert-error';
+								$vat_validation[0][ 'VALIDATION_CLASS'] = 'alert-error';
 							else
-								$validation[0][ 'VALIDATION_CLASS'] = 'ui-state-error ';
+								$vat_validation[0][ 'VALIDATION_CLASS'] = 'ui-state-error ';
 							}
 						}
 					}
@@ -153,7 +158,7 @@ class j06005edit_my_account
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			$tmpl->readTemplatesFromInput( 'edit_my_account.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
-			$tmpl->addRows( 'validation', $validation );
+			$tmpl->addRows( 'validation', $vat_validation );
 			$tmpl->displayParsedTemplate();
 			}
 		}

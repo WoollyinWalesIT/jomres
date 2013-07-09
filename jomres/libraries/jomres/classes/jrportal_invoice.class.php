@@ -20,7 +20,6 @@ class jrportal_invoice
 		{
 		$this->id               = 0;
 		$this->cms_user_id      = 0;
-		$this->guest_id         = 0;
 		$this->status           = 0;
 		$this->raised_date      = '';
 		$this->due_date         = '';
@@ -36,7 +35,7 @@ class jrportal_invoice
 		$this->property_uid     = 0;
 		$this->is_commission    = 0;
 
-		$this->property_is_in_eu = false; // If the property isn't in the EU then we'll ignore the VAT question and just charge tax anyway.
+		$this->charging_business_is_in_eu = false; // If the seller isn't in the EU then we'll ignore the VAT question and just charge tax anyway.
 
 		$this->vat_will_be_charged = true;
 		}
@@ -46,7 +45,7 @@ class jrportal_invoice
 		if ( $this->id > 0 )
 			{
 			$query = "SELECT
-				`id`,`cms_user_id`,`guest_id`,`status`,`raised_date`,`due_date`,`paid`,`subscription`,`init_total`,
+				`id`,`cms_user_id`,`status`,`raised_date`,`due_date`,`paid`,`subscription`,`init_total`,
 				`recur_total`,`recur_frequency`,`recur_dayofmonth`,`currencycode`,`subscription_id`,`contract_id`,`property_uid`,`is_commission`
 				FROM #__jomresportal_invoices WHERE `id`='$this->id' LIMIT 1";
 
@@ -57,7 +56,6 @@ class jrportal_invoice
 					{
 					$this->id               = $r->id;
 					$this->cms_user_id      = $r->cms_user_id;
-					$this->guest_id         = $r->guest_id;
 					$this->status           = $r->status;
 					$this->raised_date      = $r->raised_date;
 					$this->due_date         = $r->due_date;
@@ -72,32 +70,9 @@ class jrportal_invoice
 					$this->contract_id      = $r->contract_id;
 					$this->property_uid     = $r->property_uid;
 					$this->is_commission    = $r->is_commission;
-
+					$this->vat_will_be_charged = $r->vat_will_be_charged;
 					}
-				
-				if ($this->property_uid > 0)
-					{
-					$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-					$current_property_details->gather_data( $this->property_uid );
-
-					jr_import('vat_number_validation');
-					$validation = new vat_number_validation( 0 );
-					$euro_countries      =$validation->get_euro_countries();
-
-					if (array_key_exists($current_property_details->property_country_code,$euro_countries))
-						$this->property_is_in_eu = true;
-					else
-						$this->property_is_in_eu = false;
-
-					if (!$this->property_is_in_eu)
-						{
-						$this->vat_will_be_charged = true; // We don't (yet) have a mechanism for handling other trading blocs, so we'll just enable VAT to be charged for all non-european countries for now.
-						}
-					else
-						{
-						$this->b2b_transaction_is_vat_to_be_charged();
-						}
-					}
+				$this->set_vat_charging_flag();
 				return true;
 				}
 			else
@@ -127,12 +102,12 @@ class jrportal_invoice
 
 	function commitNewInvoice()
 		{
+		$this->set_vat_charging_flag();
 		if ( $this->id < 1 )
 			{
 			$query = "INSERT INTO #__jomresportal_invoices
 				(
 				`cms_user_id`,
-				`guest_id`,
 				`status`,
 				`raised_date`,
 				`due_date`,
@@ -146,12 +121,12 @@ class jrportal_invoice
 				`subscription_id`,
 				`contract_id`,
 				`property_uid`,
-				`is_commission`
+				`is_commission`,
+				`vat_will_be_charged`
 				)
 				VALUES
 				(
 				'$this->cms_user_id',
-				'$this->guest_id',
 				'$this->status',
 				'$this->raised_date',
 				'$this->due_date',
@@ -165,7 +140,8 @@ class jrportal_invoice
 				'$this->subscription_id',
 				'$this->contract_id',
 				'$this->property_uid',
-				" . (int) $this->is_commission . "
+				" . (int) $this->is_commission . ",
+				'$this->vat_will_be_charged'
 				)";
 			$id    = doInsertSql( $query, "" );
 			if ( $id )
@@ -188,11 +164,11 @@ class jrportal_invoice
 
 	function commitUpdateInvoice()
 		{
+		$this->set_vat_charging_flag();
 		if ( $this->id > 0 )
 			{
 			$query = "UPDATE #__jomresportal_invoices SET
 				`cms_user_id`		= '$this->cms_user_id',
-				`guest_id`			= '$this->guest_id',
 				`status`			= '$this->status',
 				`raised_date`		= '$this->raised_date',
 				`due_date`			= '$this->due_date',
@@ -206,9 +182,8 @@ class jrportal_invoice
 				`subscription_id` 	= '$this->subscription_id',
 				`contract_id` 		= '$this->contract_id',
 				`property_uid` 		= '$this->property_uid',
-				`is_commission`		= '$this->is_commission'
-
-
+				`is_commission`		= '$this->is_commission',
+				`vat_will_be_charged` = '$this->vat_will_be_charged'
 				WHERE `id`='$this->id'";
 
 			return doInsertSql( $query, "" );
@@ -256,85 +231,159 @@ class jrportal_invoice
 
 	function b2b_transaction_is_vat_to_be_charged()
 		{
-		$mrConfig     = getPropertySpecificSettings( $this->property_uid );
+		////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//
+		// VAT for hotel bookings is complicated by cross border issues, the whole subject is very difficult so at this point it's much easier to say that if it's a hotel booking, then 
+		// we will always charge VAT. Change bookings_can_be_vat_exempt to true to allow bookings to be exempt.
+		// 
+		////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		$bookings_can_be_vat_exempt = false;
+		if ($this->subscription_id == "0" && $this->is_commission == "0")
+			{
+			if (!$bookings_can_be_vat_exempt)
+				{
+				$this->vat_will_be_charged = true;
+				return;
+				}
+			}
+		
+		
+		
 		jr_import('vat_number_validation');
-		$guest_validation = new vat_number_validation( $this->guest_id ); // We'll call this validation object the guest validation obj here to make clear who/what it's referring to.
-		$guest_validation->id_is_cms_id = false;
-		$guest_validation->get_vat_number_and_validation_state();
-		$euro_countries      =$guest_validation->get_euro_countries();
+		
+		if ($this->subscription_id == "1" || $this->is_commission == "1") // It's a site -> property transaction, let's get the property's vat details.
+			{
+			$buyer_validation = new vat_number_validation( );
+			$buyer_validation->get_subject("property",array( "property_uid"=>$this->property_uid ));
+
+			$seller_validation = new vat_number_validation( );
+			$seller_validation->get_subject( "site" , array() );
+			}
+		else // It's a Property -> buyer transaction
+			{
+			$buyer_validation = new vat_number_validation( );
+			$buyer_validation->get_subject("buyer_registered_byprofile_id",array( "profile_id"=>$this->cms_user_id ));
+			
+			$seller_validation = new vat_number_validation( );
+			$seller_validation->get_subject( "property" , array( "property_uid"=>$this->property_uid ) );
+			}
+
+		$euro_countries      =$buyer_validation->get_euro_countries();
+
 
 		// Test case
-		// $mrConfig['vat_number_validated'] = "0";
-		// $mrConfig['vat_number_validated'] = "1";
+		// $seller_validation->vat_number_validated = "0";
+		// $seller_validation->vat_number_validated = "1";
 		////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		// You can't charge vat if you're not vat registered (In the UK, presumably it's the same across the EU).
-		if ($mrConfig['vat_number_validated'] == "0")
+		if ($seller_validation->vat_number_validated == "0")
 			{
 			$this->vat_will_be_charged = false;
 			return;
 			}
 
-		// From this point onwards we know that the property is using a valid VAT number.
+		// From this point onwards we know that the seller is using a valid VAT number.
 
 		// Test case
-		// $guest_validation->guest_country = "GB"; $this->property_is_in_eu = false; // Guest is in EU, property is not
-		// $guest_validation->guest_country = "GB"; $this->property_is_in_eu = true; // Guest is in EU, property is in EU
-		// $guest_validation->guest_country = "US"; $this->property_is_in_eu = false; // Guest is not in EU, property is not in EU
-		// $guest_validation->guest_country = "US"; $this->property_is_in_eu = true; // Guest is not in EU, property is in EU
+		// $buyer_validation->country = "GB"; $this->charging_business_is_in_eu = false; // buyer is in EU, seller is not
+		// $buyer_validation->country = "GB"; $this->charging_business_is_in_eu = true; // buyer is in EU, seller is in EU
+		// $buyer_validation->country = "US"; $this->charging_business_is_in_eu = false; // buyer is not in EU, seller is not in EU
+		// $buyer_validation->country = "US"; $this->charging_business_is_in_eu = true; // buyer is not in EU, seller is in EU
 		////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// The guest isn't in an EU country, but the property is, we will not charge them VAT
-		if (!array_key_exists($guest_validation->guest_country,$euro_countries) && $this->property_is_in_eu )
+		// The buyer isn't in an EU country, but the seller is, we will not charge them VAT
+		if (!array_key_exists($buyer_validation->country,$euro_countries) && $this->charging_business_is_in_eu )
 			{
 			$this->vat_will_be_charged = false;
 			return;
 			}
 
- 		$guest_vat_number_country_code = substr( $guest_validation->vat_number, 0, 2 );
-		$property_vat_number_country_code = substr( $mrConfig['property_vat_number'], 0, 2 );
 
 		// Test case
-		// $guest_vat_number_country_code = "GB"; $property_vat_number_country_code = "FR"; // Guest is in GB, property is in FR
-		//  $guest_vat_number_country_code = "GB"; $property_vat_number_country_code = "GB"; // Guest is in GB, property is in GB
+		// $buyer_validation->country = "GB"; $seller_validation->country = "FR"; // buyer is in GB, seller is in FR
+		// $buyer_validation->country = "GB"; $seller_validation->country = "GB"; // buyer is in GB, seller is in GB
 		////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 		// They're in the same country,  VAT'll be charged
-		if ( $guest_vat_number_country_code == $property_vat_number_country_code)
+		if ( $buyer_validation->country == $seller_validation->country)
 			{
 			$this->vat_will_be_charged = true;
 			return;
 			}
 
 		// Test case
-		// $guest_validation->guest_country = "GB"; $this->property_is_in_eu = true; $guest_vat_number_country_code ="GB"; $property_vat_number_country_code ="DE"; $guest_validation->vat_number_validated = false;
-		// $guest_validation->guest_country = "GB"; $this->property_is_in_eu = true; $guest_vat_number_country_code ="GB"; $property_vat_number_country_code ="DE"; $guest_validation->vat_number_validated = true; // Guest is in EU, property is in EU
+		// $buyer_validation->country = "GB"; $this->charging_business_is_in_eu = true; $buyer_validation->country ="GB"; $seller_validation->country ="DE"; $buyer_validation->vat_number_validated = false;
+		// $buyer_validation->country = "GB"; $this->charging_business_is_in_eu = true; $buyer_validation->country ="GB"; $seller_validation->country ="DE"; $buyer_validation->vat_number_validated = true; // buyer is in EU, seller is in EU
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// They're both in the EU, but in different countries, and the guest is not using a registered VAT number, VAT will be charged
+		// They're both in the EU, but in different countries, and the buyer is not using a registered VAT number, VAT will be charged
 		if (
-			array_key_exists($guest_validation->guest_country,$euro_countries) &&
-			$this->property_is_in_eu &&
-			$guest_vat_number_country_code != $property_vat_number_country_code &&
-			$guest_validation->vat_number_validated == false
+			array_key_exists($buyer_validation->country,$euro_countries) &&
+			$this->charging_business_is_in_eu &&
+			$buyer_validation->country != $seller_validation->country &&
+			$buyer_validation->vat_number_validated == "0"
 			)
 			{
 			$this->vat_will_be_charged = true;
 			return;
 			}
+			
 
-
-		// They're both in the EU, and in different countries. The guest's VAT number has been Validated. The Property's VAT number has been Validated. VAT will not be charged.
+		// They're both in the EU, and in different countries. The buyer's VAT number has been Validated. The seller's VAT number has been Validated. VAT will not be charged.
 		if (
-			array_key_exists($guest_validation->guest_country,$euro_countries) &&
-			$this->property_is_in_eu &&
-			$guest_vat_number_country_code != $property_vat_number_country_code &&
-			$guest_validation->vat_number_validated == true
+			array_key_exists($buyer_validation->country,$euro_countries) &&
+			$this->charging_business_is_in_eu &&
+			$buyer_validation->country != $seller_validation->country &&
+			$buyer_validation->vat_number_validated == "1"
 			)
 			{
 			$this->vat_will_be_charged = false;
 			return;
+			}
+		}
+		
+	function set_vat_charging_flag()
+		{
+		jr_import('vat_number_validation');
+		$validation = new vat_number_validation( 0 );
+		$euro_countries      =$validation->get_euro_countries();
+				
+		if ($this->subscription_id == "0" && $this->is_commission == "0")
+			{
+			$validation = new vat_number_validation();
+			$validation->get_subject("property",array("property_uid"=>$this->property_uid));
+			}
+		else // It's not a booking for a hotel, instead it's a website -> property manager invoice of some description
+			{
+			$validation = new vat_number_validation();
+			$validation->get_subject("site",array("property_uid"=>$this->property_uid));
+			}
+		$seller_business_country = $validation->country;
+
+		if (array_key_exists($seller_business_country,$euro_countries))
+			$this->charging_business_is_in_eu = true;
+		else
+			$this->charging_business_is_in_eu = false;
+				
+				
+		if ($this->cms_user_id == 0) // There's no cms user id stored, ergo we will not have VAT details for this user so we must charge VAT
+			{
+			$this->vat_will_be_charged = true;
+			}
+		else
+			{
+			if (!$this->charging_business_is_in_eu)
+				{
+				$this->vat_will_be_charged = true; // We don't (yet) have a mechanism for handling other trading blocs, so we'll just enable VAT to be charged for all non-european countries for now.
+				}
+			else
+				{
+				$this->b2b_transaction_is_vat_to_be_charged();
+				}
 			}
 		}
 	}

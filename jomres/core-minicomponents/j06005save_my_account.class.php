@@ -88,9 +88,9 @@ class j06005save_my_account
 		if ( $original_vat_number != $vat_number )
 			{
 			jr_import( 'vat_number_validation' );
-			$validation = new vat_number_validation( $thisJRUser->id );
-			$validation->get_vat_number_and_validation_state();
-			$validation->validate_vat_number();
+			$validation = new vat_number_validation();
+			$response = $validation->vies_check( $vat_number );
+			$validation->save_subject("guest_registered_byprofile_id",array("profile_id"=>$thisJRUser->id));
 			}
 
 		if ( count( $_FILES ) == 1 )
