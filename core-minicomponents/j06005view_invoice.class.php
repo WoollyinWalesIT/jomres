@@ -117,7 +117,7 @@ class j06005view_invoice
 		if ( $popup != 1 )
 			{
 			$output[ 'PRINTLINK' ] = JOMRES_SITEPAGE_URL . '&tmpl=component&popup=1&task=view_invoice&id=' . $id;
-			$output[ 'PRINTTEXT' ] = jr_gettext( '_JOMRES_COM_INVOICE_PRINT', _JOMRES_COM_INVOICE_PRINT );
+			$output[ 'PRINTTEXT' ] = jr_gettext( '_JOMRES_COM_INVOICE_PRINT', _JOMRES_COM_INVOICE_PRINT, false);
 			}
 
 		$output[ 'PAGETITLE' ]     = jr_gettext( '_JOMRES_COM_INVOICE_TITLE', _JOMRES_COM_INVOICE_TITLE );
@@ -155,14 +155,14 @@ class j06005view_invoice
 		elseif ( $invoice->status == "1" ) $output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PAID', _JRPORTAL_INVOICES_STATUS_PAID );
 		elseif ( $invoice->status == "2" ) $output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_CANCELLED', _JRPORTAL_INVOICES_STATUS_CANCELLED );
 		else
-		$output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PENDING', _JRPORTAL_INVOICES_STATUS_PENDING );
+		$output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PENDING', _JRPORTAL_INVOICES_STATUS_PENDING,false );
 
-		$output[ 'USER' ]   = jr_gettext( '_JRPORTAL_INVOICES_USER', _JRPORTAL_INVOICES_USER );
+		$output[ 'USER' ]   = jr_gettext( '_JRPORTAL_INVOICES_USER', _JRPORTAL_INVOICES_USER,false );
 		$output[ 'RAISED' ] = $invoice->raised_date;
 		$output[ 'DUE' ]    = $invoice->due_date;
-		if ( $invoice->subscription == "1" ) $output[ 'SUBSCRIPTION' ] = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES );
+		if ( $invoice->subscription == "1" ) $output[ 'SUBSCRIPTION' ] = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES,false );
 		else
-		$output[ 'SUBSCRIPTION' ] = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO );
+		$output[ 'SUBSCRIPTION' ] = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO,false );
 		
 		// See note at the end of this line!
 		$output[ 'INITTOTAL' ] = output_price( $invoice->init_total, $invoice->currencycode, true, true ); // This is now wrong. The init total is calculated when the invoice is generated, but recent VAT related changes mean that on older invoices which were created before the VAT changes were added, it's possible that this sum is incorrect. The newer GRAND_TOTAL_INC_TAX output variable is correct, as it's adjusted according to the VAT rules, so we'll replace INITTOTAL with GRAND_TOTAL_INC_TAX in invoice template files.

@@ -31,9 +31,9 @@ class j16000edit_region
 		$jomres_regions = jomres_singleton_abstract::getInstance( 'jomres_regions' );
 		$region         = $jomres_regions->get_region_by_id( $id );
 
-		$output[ '_JOMRES_EDIT_REGION_TITLE' ]        = jr_gettext( '_JOMRES_EDIT_REGION_TITLE', _JOMRES_EDIT_REGION_TITLE );
-		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYNAME' ] = jr_gettext( '_JOMRES_EDIT_COUNTRY_COUNTRYNAME', _JOMRES_EDIT_COUNTRY_COUNTRYNAME );
-		$output[ '_JOMRES_EDIT_REGION_REGIONNAME' ]   = jr_gettext( '_JOMRES_EDIT_REGION_REGIONNAME', _JOMRES_EDIT_REGION_REGIONNAME );
+		$output[ '_JOMRES_EDIT_REGION_TITLE' ]        = jr_gettext( '_JOMRES_EDIT_REGION_TITLE', _JOMRES_EDIT_REGION_TITLE,false );
+		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYNAME' ] = jr_gettext( '_JOMRES_EDIT_COUNTRY_COUNTRYNAME', _JOMRES_EDIT_COUNTRY_COUNTRYNAME,false );
+		$output[ '_JOMRES_EDIT_REGION_REGIONNAME' ]   = jr_gettext( '_JOMRES_EDIT_REGION_REGIONNAME', _JOMRES_EDIT_REGION_REGIONNAME,false );
 
 		$output[ 'ID' ]              = $id;
 		$output[ 'COUNTRYDROPDOWN' ] = createCountriesDropdown( $region[ 'countrycode' ], "countrycode", false );

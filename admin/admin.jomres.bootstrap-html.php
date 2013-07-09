@@ -140,9 +140,9 @@ class HTML_jomres
 		</tr>
 		
 		<tr>
-			<td>' . jr_gettext( _JOMRES_APPROVALS_CONFIG_TITLE, _JOMRES_APPROVALS_CONFIG_TITLE ) . '</td>
+			<td>' . jr_gettext( _JOMRES_APPROVALS_CONFIG_TITLE, _JOMRES_APPROVALS_CONFIG_TITLE,false ) . '</td>
 			<td>' . $lists[ 'automatically_approve_new_properties' ] . '</td>
-			<td>' . jr_gettext( _JOMRES_APPROVALS_CONFIG_DESC, _JOMRES_APPROVALS_CONFIG_DESC ) . '</td>
+			<td>' . jr_gettext( _JOMRES_APPROVALS_CONFIG_DESC, _JOMRES_APPROVALS_CONFIG_DESC,false ) . '</td>
 		</tr>
 		
 		<tr>

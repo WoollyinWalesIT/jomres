@@ -48,6 +48,11 @@ class jomres_editing_mode
 			$this->editing_allowed                            = false;
 			$tmpBookingHandler->user_settings[ 'editing_on' ] = false;
 			}
+		if ( $jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager )
+			{
+			$this->editing_allowed                            = true;
+			$tmpBookingHandler->user_settings[ 'editing_on' ] = true;
+			}
 		$this->editing = $tmpBookingHandler->user_settings[ 'editing_on' ];
 		$tmpBookingHandler->close_jomres_session();
 		}

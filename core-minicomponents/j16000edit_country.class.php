@@ -34,10 +34,10 @@ class j16000edit_country
 		$jomres_countries = jomres_singleton_abstract::getInstance( 'jomres_countries' );
 		$country          = $jomres_countries->get_country_by_id( $id );
 
-		$output[ '_JOMRES_EDIT_COUNTRY_TITLE' ]       = jr_gettext( '_JOMRES_EDIT_COUNTRY_TITLE', _JOMRES_EDIT_COUNTRY_TITLE );
-		$output[ '_JOMRES_EDIT_COUNTRY_ID' ]          = jr_gettext( '_JOMRES_EDIT_COUNTRY_ID', _JOMRES_EDIT_COUNTRY_ID );
-		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYCODE' ] = jr_gettext( '_JOMRES_EDIT_COUNTRY_COUNTRYCODE', _JOMRES_EDIT_COUNTRY_COUNTRYCODE );
-		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYNAME' ] = jr_gettext( '_JOMRES_EDIT_COUNTRY_COUNTRYNAME', _JOMRES_EDIT_COUNTRY_COUNTRYNAME );
+		$output[ '_JOMRES_EDIT_COUNTRY_TITLE' ]       = jr_gettext( '_JOMRES_EDIT_COUNTRY_TITLE', _JOMRES_EDIT_COUNTRY_TITLE,false );
+		$output[ '_JOMRES_EDIT_COUNTRY_ID' ]          = jr_gettext( '_JOMRES_EDIT_COUNTRY_ID', _JOMRES_EDIT_COUNTRY_ID,false );
+		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYCODE' ] = jr_gettext( '_JOMRES_EDIT_COUNTRY_COUNTRYCODE', _JOMRES_EDIT_COUNTRY_COUNTRYCODE,false );
+		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYNAME' ] = jr_gettext( '_JOMRES_EDIT_COUNTRY_COUNTRYNAME', _JOMRES_EDIT_COUNTRY_COUNTRYNAME,false );
 
 		$output[ 'ID' ]          = $country[ 'id' ];
 		$output[ 'COUNTRYCODE' ] = $country[ 'countrycode' ];

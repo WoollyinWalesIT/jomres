@@ -39,12 +39,12 @@ class j16000viewproperty
 		$bookingFunctions  = new jrportal_booking_functions();
 		$crateFunctions    = new jrportal_crate_functions();
 
-		$output[ 'PAGETITLE' ]           = jr_gettext( "_JRPORTAL_PROPERTIES_VIEWPROPERTY", _JRPORTAL_PROPERTIES_VIEWPROPERTY );
-		$output[ 'HPROPERTYNAME' ]       = jr_gettext( "_JRPORTAL_PROPERTIES_PROPERTYNAME", _JRPORTAL_PROPERTIES_PROPERTYNAME );
-		$output[ 'HPROPERTYADDRESS' ]    = jr_gettext( "_JRPORTAL_PROPERTIES_PROPERTYADDRESS", _JRPORTAL_PROPERTIES_PROPERTYADDRESS );
-		$output[ 'HNUMBEROFBOOKINGS' ]   = jr_gettext( "_JRPORTAL_PROPERTIES_NUMBEROFBOOKINGS", _JRPORTAL_PROPERTIES_NUMBEROFBOOKINGS );
-		$output[ 'HVALUEOFBOOKINGS' ]    = jr_gettext( "_JRPORTAL_PROPERTIES_VALUEOFBOOKINGS", _JRPORTAL_PROPERTIES_VALUEOFBOOKINGS );
-		$output[ 'HCOMMISSIONESTIMATE' ] = jr_gettext( "_JRPORTAL_PROPERTIES_COMMISSIONESTIMATE", _JRPORTAL_PROPERTIES_COMMISSIONESTIMATE );
+		$output[ 'PAGETITLE' ]           = jr_gettext( "_JRPORTAL_PROPERTIES_VIEWPROPERTY", _JRPORTAL_PROPERTIES_VIEWPROPERTY,false );
+		$output[ 'HPROPERTYNAME' ]       = jr_gettext( "_JRPORTAL_PROPERTIES_PROPERTYNAME", _JRPORTAL_PROPERTIES_PROPERTYNAME,false );
+		$output[ 'HPROPERTYADDRESS' ]    = jr_gettext( "_JRPORTAL_PROPERTIES_PROPERTYADDRESS", _JRPORTAL_PROPERTIES_PROPERTYADDRESS,false );
+		$output[ 'HNUMBEROFBOOKINGS' ]   = jr_gettext( "_JRPORTAL_PROPERTIES_NUMBEROFBOOKINGS", _JRPORTAL_PROPERTIES_NUMBEROFBOOKINGS,false );
+		$output[ 'HVALUEOFBOOKINGS' ]    = jr_gettext( "_JRPORTAL_PROPERTIES_VALUEOFBOOKINGS", _JRPORTAL_PROPERTIES_VALUEOFBOOKINGS,false );
+		$output[ 'HCOMMISSIONESTIMATE' ] = jr_gettext( "_JRPORTAL_PROPERTIES_COMMISSIONESTIMATE", _JRPORTAL_PROPERTIES_COMMISSIONESTIMATE,false );
 		$output[ 'ID' ]                  = $id;
 
 		$propertyDetails               = $propertyFunctions->getPropertyDetails( array ( $id ) );
@@ -61,7 +61,7 @@ class j16000viewproperty
 			{
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb   = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=listpropertys", jr_gettext( "_JRPORTAL_CANCEL", _JRPORTAL_CANCEL ) );
+			$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=listpropertys", jr_gettext( "_JRPORTAL_CANCEL", _JRPORTAL_CANCEL,false ) );
 			$jrtb .= $jrtbar->endTable();
 			$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 			}
@@ -84,11 +84,11 @@ class j16000viewproperty
 		$output[ 'CRATE_VALUE' ]        = $crate[ 'value' ];
 		$output[ 'CRATE_CURRENCYCODE' ] = $crate[ 'currencycode' ];
 
-		$output[ 'HCOMMISSIONRATE' ]     = jr_gettext( "_JRPORTAL_PROPERTIES_COMMISSIONRATE", _JRPORTAL_PROPERTIES_COMMISSIONRATE );
-		$output[ 'HCRATE_TITLE' ]        = jr_gettext( "_JRPORTAL_CRATE_TITLE", _JRPORTAL_CRATE_TITLE );
-		$output[ 'HCRATE_TYPE' ]         = jr_gettext( "_JRPORTAL_CRATE_TYPE", _JRPORTAL_CRATE_TYPE );
-		$output[ 'HCRATE_VALUE' ]        = jr_gettext( "_JRPORTAL_CRATE_VALUE", _JRPORTAL_CRATE_VALUE );
-		$output[ 'HCRATE_CURRENCYCODE' ] = jr_gettext( "_JRPORTAL_CRATE_CURRENCYCODE", _JRPORTAL_CRATE_CURRENCYCODE );
+		$output[ 'HCOMMISSIONRATE' ]     = jr_gettext( "_JRPORTAL_PROPERTIES_COMMISSIONRATE", _JRPORTAL_PROPERTIES_COMMISSIONRATE,false );
+		$output[ 'HCRATE_TITLE' ]        = jr_gettext( "_JRPORTAL_CRATE_TITLE", _JRPORTAL_CRATE_TITLE,false );
+		$output[ 'HCRATE_TYPE' ]         = jr_gettext( "_JRPORTAL_CRATE_TYPE", _JRPORTAL_CRATE_TYPE,false );
+		$output[ 'HCRATE_VALUE' ]        = jr_gettext( "_JRPORTAL_CRATE_VALUE", _JRPORTAL_CRATE_VALUE,false );
+		$output[ 'HCRATE_CURRENCYCODE' ] = jr_gettext( "_JRPORTAL_CRATE_CURRENCYCODE", _JRPORTAL_CRATE_CURRENCYCODE,false );
 
 
 		// Let's get the bookings

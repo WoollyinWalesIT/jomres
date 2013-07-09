@@ -42,7 +42,7 @@ class j16000editPfeature
 			}
 		if ( $clone ) $propertyFeatureUid = 0;
 
-		$output[ 'HPROPERTY_TYPE' ]         = jr_gettext( '_JOMRES_FRONT_PTYPE', _JOMRES_FRONT_PTYPE );
+		$output[ 'HPROPERTY_TYPE' ]         = jr_gettext( '_JOMRES_FRONT_PTYPE', _JOMRES_FRONT_PTYPE,false );
 		$output[ 'PROPERTY_TYPE_DROPDOWN' ] = getPropertyTypeDropdown( $ptypeid, true );
 
 		$map  = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS;
@@ -67,25 +67,25 @@ class j16000editPfeature
 				}
 			$d->close();
 			}
-		$output[ 'PROPERTYFEATUREINFO' ] = jr_gettext( '_JOMRES_A_GLOBALPFEATURES_INFO', _JOMRES_A_GLOBALPFEATURES_INFO );
+		$output[ 'PROPERTYFEATUREINFO' ] = jr_gettext( '_JOMRES_A_GLOBALPFEATURES_INFO', _JOMRES_A_GLOBALPFEATURES_INFO,false );
 		$output[ 'PROPERTYFEATUREUID' ]  = $propertyFeatureUid;
 
 		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = JOMRES_SITEPAGE_URL_ADMIN;
 
-		$output[ 'HLINKTEXT' ]                                = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK );
-		$output[ 'HLINKTEXTCLONE' ]                           = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE', _JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE );
-		$output[ 'HFEATUREABBV' ]                             = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV );
-		$output[ 'HFEATUREDESCRIPTION' ]                      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC );
+		$output[ 'HLINKTEXT' ]                                = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK,false );
+		$output[ 'HLINKTEXTCLONE' ]                           = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE', _JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE,false );
+		$output[ 'HFEATUREABBV' ]                             = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV,false );
+		$output[ 'HFEATUREDESCRIPTION' ]                      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC,false );
 		$output[ 'MOSCONFIGLIVESITE' ]                        = get_showtime( 'live_site' );
-		$output[ 'PAGETITLE' ]                                = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK );
-		$output[ 'BACKLINK' ]                                 = '<a href="javascript:submitbutton(\'cpanel\')">' . jr_gettext( '_JOMRES_COM_MR_BACK', _JOMRES_COM_MR_BACK ) . '</a>';
-		$output[ '_JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT' ] = jr_gettext( '_JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT', _JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT );
+		$output[ 'PAGETITLE' ]                                = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK,false );
+		$output[ 'BACKLINK' ]                                 = '<a href="javascript:submitbutton(\'cpanel\')">' . jr_gettext( '_JOMRES_COM_MR_BACK', _JOMRES_COM_MR_BACK,false ) . '</a>';
+		$output[ '_JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT' ] = jr_gettext( '_JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT', _JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT,false );
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
 		$image  = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/Save.png" );
 		$link   = JOMRES_SITEPAGE_URL_ADMIN;
-		$jrtb .= $jrtbar->customToolbarItem( 'savePfeature', $link, jr_gettext( _JOMRES_COM_MR_SAVE ), $submitOnClick = true, $submitTask = "savePfeature", $image );
+		$jrtb .= $jrtbar->customToolbarItem( 'savePfeature', $link, jr_gettext( '_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,false ), $submitOnClick = true, $submitTask = "savePfeature", $image );
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeatures", '' );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
