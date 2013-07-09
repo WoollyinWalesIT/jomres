@@ -47,7 +47,7 @@ class j16000list_properties_awaiting_approval
 
 		if ( count( $jomresPropertyList ) == 0 )
 			{
-			echo jr_gettext( "_JOMRES_APPROVALS_PROPERTIES_NO_AWAITING_APPROVAL" );
+			echo jr_gettext( "_JOMRES_APPROVALS_PROPERTIES_NO_AWAITING_APPROVAL", _JOMRES_APPROVALS_PROPERTIES_NO_AWAITING_APPROVAL,false);
 			}
 		else
 			{
@@ -63,18 +63,18 @@ class j16000list_properties_awaiting_approval
 				}
 
 
-			$output[ 'PAGETITLE' ]          = jr_gettext( "_JOMRES_APPROVALS_PROPERTIES_AWAITING_APPROVAL", _JOMRES_APPROVALS_PROPERTIES_AWAITING_APPROVAL );
+			$output[ 'PAGETITLE' ]          = jr_gettext( "_JOMRES_APPROVALS_PROPERTIES_AWAITING_APPROVAL", _JOMRES_APPROVALS_PROPERTIES_AWAITING_APPROVAL,false );
 			$output[ 'TOTALINLISTPLUSONE' ] = count( $crateList );
-			$output[ 'HPROPERTYNAME' ]      = jr_gettext( "_JRPORTAL_PROPERTIES_PROPERTYNAME", _JRPORTAL_PROPERTIES_PROPERTYNAME );
-			$output[ 'HPROPERTYADDRESS' ]   = jr_gettext( "_JRPORTAL_PROPERTIES_PROPERTYADDRESS", _JRPORTAL_PROPERTIES_PROPERTYADDRESS );
+			$output[ 'HPROPERTYNAME' ]      = jr_gettext( "_JRPORTAL_PROPERTIES_PROPERTYNAME", _JRPORTAL_PROPERTIES_PROPERTYNAME,false );
+			$output[ 'HPROPERTYADDRESS' ]   = jr_gettext( "_JRPORTAL_PROPERTIES_PROPERTYADDRESS", _JRPORTAL_PROPERTIES_PROPERTYADDRESS,false );
 			$counter                        = 0;
 
 			foreach ( $jomresPropertyList as $k => $p )
 				{
 				$r = array ();
 
-				$r[ '_JOMRES_APPROVALS_REVIEW' ]  = jr_gettext( "_JOMRES_APPROVALS_REVIEW" );
-				$r[ '_JOMRES_APPROVALS_APPROVE' ] = jr_gettext( "_JOMRES_APPROVALS_APPROVE" );
+				$r[ '_JOMRES_APPROVALS_REVIEW' ]  = jr_gettext( "_JOMRES_APPROVALS_REVIEW",_JOMRES_APPROVALS_REVIEW,false );
+				$r[ '_JOMRES_APPROVALS_APPROVE' ] = jr_gettext( "_JOMRES_APPROVALS_APPROVE",_JOMRES_APPROVALS_APPROVE,false );
 
 				$r[ 'PROPERTYNAME' ]    = getPropertyName( $p[ 'id' ] );
 				$r[ 'PROPERTY_UID' ]    = $p[ 'id' ];
@@ -85,7 +85,7 @@ class j16000list_properties_awaiting_approval
 
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb   = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, jr_gettext( "_JRPORTAL_CANCEL", _JRPORTAL_CANCEL ) );
+			$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, jr_gettext( "_JRPORTAL_CANCEL", _JRPORTAL_CANCEL,false ) );
 			$jrtb .= $jrtbar->endTable();
 			$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 

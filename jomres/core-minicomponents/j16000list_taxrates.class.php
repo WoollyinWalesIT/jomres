@@ -32,13 +32,13 @@ class j16000list_taxrates
 		$pageoutput = array ();
 		$rows       = array ();
 
-		$output[ 'PAGETITLE' ]    = jr_gettext( '_JRPORTAL_TAXRATES_TITLE', _JRPORTAL_TAXRATES_TITLE );
-		$output[ 'HCODE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_CODE', _JRPORTAL_TAXRATES_CODE );
-		$output[ 'HDESCRIPTION' ] = jr_gettext( '_JRPORTAL_TAXRATES_DESCRIPTION', _JRPORTAL_TAXRATES_DESCRIPTION );
-		$output[ 'HRATE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_RATE', _JRPORTAL_TAXRATES_RATE );
+		$output[ 'PAGETITLE' ]    = jr_gettext( '_JRPORTAL_TAXRATES_TITLE', _JRPORTAL_TAXRATES_TITLE,false );
+		$output[ 'HCODE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_CODE', _JRPORTAL_TAXRATES_CODE,false );
+		$output[ 'HDESCRIPTION' ] = jr_gettext( '_JRPORTAL_TAXRATES_DESCRIPTION', _JRPORTAL_TAXRATES_DESCRIPTION,false );
+		$output[ 'HRATE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_RATE', _JRPORTAL_TAXRATES_RATE,false );
 		
-		$output[ '_JOMRES_TAX_RATES_IMPORT' ]        = jr_gettext( '_JOMRES_TAX_RATES_IMPORT', _JOMRES_TAX_RATES_IMPORT );
-		$output[ '_JOMRES_TAX_RATES_IMPORT_INFO' ]   = jr_gettext( '_JOMRES_TAX_RATES_IMPORT_INFO', _JOMRES_TAX_RATES_IMPORT_INFO );
+		$output[ '_JOMRES_TAX_RATES_IMPORT' ]        = jr_gettext( '_JOMRES_TAX_RATES_IMPORT', _JOMRES_TAX_RATES_IMPORT,false );
+		$output[ '_JOMRES_TAX_RATES_IMPORT_INFO' ]   = jr_gettext( '_JOMRES_TAX_RATES_IMPORT_INFO', _JOMRES_TAX_RATES_IMPORT_INFO,false );
 		$output[ 'IMPORT_LINK'] = JOMRES_SITEPAGE_URL_ADMIN . "&task=import_eu_tax_rates";
 		
 		foreach ( $rates as $rate )

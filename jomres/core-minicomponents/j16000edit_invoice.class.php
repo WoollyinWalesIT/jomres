@@ -38,44 +38,44 @@ class j16000edit_invoice
 			$invoice->getInvoice();
 			}
 
-		$output[ 'PAGETITLE' ]     = jr_gettext( "_JRPORTAL_INVOICES_TITLE", _JRPORTAL_INVOICES_TITLE );
+		$output[ 'PAGETITLE' ]     = jr_gettext( "_JRPORTAL_INVOICES_TITLE", _JRPORTAL_INVOICES_TITLE,false );
 		$output[ 'LIVESITE' ]      = get_showtime( 'live_site' );
-		$output[ 'HUSER' ]         = jr_gettext( "_JRPORTAL_INVOICES_USER", _JRPORTAL_INVOICES_USER );
-		$output[ 'HSTATUS' ]       = jr_gettext( "_JRPORTAL_INVOICES_STATUS", _JRPORTAL_INVOICES_STATUS );
-		$output[ 'HRAISED' ]       = jr_gettext( "_JRPORTAL_INVOICES_RAISED", _JRPORTAL_INVOICES_RAISED );
-		$output[ 'HDUE' ]          = jr_gettext( "_JRPORTAL_INVOICES_DUE", _JRPORTAL_INVOICES_DUE );
-		$output[ 'HSUBSCRIPTION' ] = jr_gettext( "_JRPORTAL_INVOICES_SUBSCRIPTION", _JRPORTAL_INVOICES_SUBSCRIPTION );
-		$output[ 'HINITTOTAL' ]    = jr_gettext( "_JRPORTAL_INVOICES_INITTOTAL", _JRPORTAL_INVOICES_INITTOTAL );
-		$output[ 'HRECURTOTAL' ]   = jr_gettext( "_JRPORTAL_INVOICES_RECUR_TOTAL", _JRPORTAL_INVOICES_RECUR_TOTAL );
-		$output[ 'HFREQ' ]         = jr_gettext( "_JRPORTAL_INVOICES_RECUR_FREQUENCY", _JRPORTAL_INVOICES_RECUR_FREQUENCY );
-		$output[ 'HDOM' ]          = jr_gettext( "_JRPORTAL_INVOICES_RECUR_DOMONTH", _JRPORTAL_INVOICES_RECUR_DOMONTH );
+		$output[ 'HUSER' ]         = jr_gettext( "_JRPORTAL_INVOICES_USER", _JRPORTAL_INVOICES_USER,false );
+		$output[ 'HSTATUS' ]       = jr_gettext( "_JRPORTAL_INVOICES_STATUS", _JRPORTAL_INVOICES_STATUS,false );
+		$output[ 'HRAISED' ]       = jr_gettext( "_JRPORTAL_INVOICES_RAISED", _JRPORTAL_INVOICES_RAISED,false );
+		$output[ 'HDUE' ]          = jr_gettext( "_JRPORTAL_INVOICES_DUE", _JRPORTAL_INVOICES_DUE,false );
+		$output[ 'HSUBSCRIPTION' ] = jr_gettext( "_JRPORTAL_INVOICES_SUBSCRIPTION", _JRPORTAL_INVOICES_SUBSCRIPTION,false );
+		$output[ 'HINITTOTAL' ]    = jr_gettext( "_JRPORTAL_INVOICES_INITTOTAL", _JRPORTAL_INVOICES_INITTOTAL,false );
+		$output[ 'HRECURTOTAL' ]   = jr_gettext( "_JRPORTAL_INVOICES_RECUR_TOTAL", _JRPORTAL_INVOICES_RECUR_TOTAL,false );
+		$output[ 'HFREQ' ]         = jr_gettext( "_JRPORTAL_INVOICES_RECUR_FREQUENCY", _JRPORTAL_INVOICES_RECUR_FREQUENCY,false );
+		$output[ 'HDOM' ]          = jr_gettext( "_JRPORTAL_INVOICES_RECUR_DOMONTH", _JRPORTAL_INVOICES_RECUR_DOMONTH,false );
 
-		$output[ 'LIPAGETITLE' ]              = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS", _JRPORTAL_INVOICES_LINEITEMS );
-		$output[ 'HLI_NAME' ]                 = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_NAME", _JRPORTAL_INVOICES_LINEITEMS_NAME );
-		$output[ 'HLI_DESCRIPTION' ]          = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_DESCRIPTION", _JRPORTAL_INVOICES_LINEITEMS_DESCRIPTION );
-		$output[ 'HCURRENCYCODE' ]            = jr_gettext( "_JRPORTAL_INVOICES_CURRENCYCODE", _JRPORTAL_INVOICES_CURRENCYCODE );
-		$output[ 'HLI_INIT_PRICE' ]           = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE", _JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE );
-		$output[ 'HLI_INIT_QTY' ]             = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_INIT_QTY", _JRPORTAL_INVOICES_LINEITEMS_INIT_QTY );
-		$output[ 'HLI_INIT_DISCOUNT' ]        = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_INIT_DISCOUNT", _JRPORTAL_INVOICES_LINEITEMS_INIT_DISCOUNT );
-		$output[ 'HLI_INIT_TOTAL' ]           = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_INIT_TOTAL", _JRPORTAL_INVOICES_LINEITEMS_INIT_TOTAL );
-		$output[ 'HLI_INIT_TOTAL_INCLUSIVE' ] = jr_gettext( '_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX', _JOMRES_LINEITEM_TOTAL_INCLUDINGTAX );
-		$output[ 'HLI_RECUR_PRICE' ]          = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_RECUR_PRICE", _JRPORTAL_INVOICES_LINEITEMS_RECUR_PRICE );
-		$output[ 'HLI_RECUR_QTY' ]            = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_RECUR_QTY", _JRPORTAL_INVOICES_LINEITEMS_RECUR_QTY );
-		$output[ 'HLI_RECUR_DISCOUNT' ]       = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_RECUR_DISCOUNT", _JRPORTAL_INVOICES_LINEITEMS_RECUR_DISCOUNT );
-		$output[ 'HLI_RECUR_TOTAL' ]          = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_RECUR_TOTAL", _JRPORTAL_INVOICES_LINEITEMS_RECUR_TOTAL );
-		$output[ 'HLI_TAX_CODE' ]             = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_TAX_CODE", _JRPORTAL_INVOICES_LINEITEMS_TAX_CODE );
-		$output[ 'HLI_TAX_DESCRIPTION' ]      = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION", _JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION );
-		$output[ 'HLI_TAX_RATE' ]             = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE", _JRPORTAL_INVOICES_LINEITEMS_TAX_RATE );
+		$output[ 'LIPAGETITLE' ]              = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS", _JRPORTAL_INVOICES_LINEITEMS,false );
+		$output[ 'HLI_NAME' ]                 = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_NAME", _JRPORTAL_INVOICES_LINEITEMS_NAME,false );
+		$output[ 'HLI_DESCRIPTION' ]          = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_DESCRIPTION", _JRPORTAL_INVOICES_LINEITEMS_DESCRIPTION,false );
+		$output[ 'HCURRENCYCODE' ]            = jr_gettext( "_JRPORTAL_INVOICES_CURRENCYCODE", _JRPORTAL_INVOICES_CURRENCYCODE,false );
+		$output[ 'HLI_INIT_PRICE' ]           = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE", _JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE,false );
+		$output[ 'HLI_INIT_QTY' ]             = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_INIT_QTY", _JRPORTAL_INVOICES_LINEITEMS_INIT_QTY,false );
+		$output[ 'HLI_INIT_DISCOUNT' ]        = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_INIT_DISCOUNT", _JRPORTAL_INVOICES_LINEITEMS_INIT_DISCOUNT,false );
+		$output[ 'HLI_INIT_TOTAL' ]           = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_INIT_TOTAL", _JRPORTAL_INVOICES_LINEITEMS_INIT_TOTAL,false );
+		$output[ 'HLI_INIT_TOTAL_INCLUSIVE' ] = jr_gettext( '_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX', _JOMRES_LINEITEM_TOTAL_INCLUDINGTAX,false );
+		$output[ 'HLI_RECUR_PRICE' ]          = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_RECUR_PRICE", _JRPORTAL_INVOICES_LINEITEMS_RECUR_PRICE,false );
+		$output[ 'HLI_RECUR_QTY' ]            = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_RECUR_QTY", _JRPORTAL_INVOICES_LINEITEMS_RECUR_QTY,false );
+		$output[ 'HLI_RECUR_DISCOUNT' ]       = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_RECUR_DISCOUNT", _JRPORTAL_INVOICES_LINEITEMS_RECUR_DISCOUNT,false );
+		$output[ 'HLI_RECUR_TOTAL' ]          = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_RECUR_TOTAL", _JRPORTAL_INVOICES_LINEITEMS_RECUR_TOTAL,false );
+		$output[ 'HLI_TAX_CODE' ]             = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_TAX_CODE", _JRPORTAL_INVOICES_LINEITEMS_TAX_CODE,false );
+		$output[ 'HLI_TAX_DESCRIPTION' ]      = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION", _JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION,false );
+		$output[ 'HLI_TAX_RATE' ]             = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE", _JRPORTAL_INVOICES_LINEITEMS_TAX_RATE,falsev );
 
 		if ( $id > 0 )
 			{
 			$output[ 'ID' ] = $invoice->id;
 			if ( $invoice->status != 1 ) $output[ 'STATUS' ] = invoices_makeInvoiceStatusDropdown( $invoice->status );
 			else
-			$output[ 'STATUS' ] = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PAID", _JRPORTAL_INVOICES_STATUS_PAID );
+			$output[ 'STATUS' ] = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PAID", _JRPORTAL_INVOICES_STATUS_PAID,false );
 
-			$output[ 'USER' ]                               = jr_gettext( "_JRPORTAL_INVOICES_USER", _JRPORTAL_INVOICES_USER );
-			$output[ '_JOMRES_ADMIN_LISTALLUSERSINVOICES' ] = jr_gettext( "_JOMRES_ADMIN_LISTALLUSERSINVOICES", _JOMRES_ADMIN_LISTALLUSERSINVOICES );
+			$output[ 'USER' ]                               = jr_gettext( "_JRPORTAL_INVOICES_USER", _JRPORTAL_INVOICES_USER,false );
+			$output[ '_JOMRES_ADMIN_LISTALLUSERSINVOICES' ] = jr_gettext( "_JOMRES_ADMIN_LISTALLUSERSINVOICES", _JOMRES_ADMIN_LISTALLUSERSINVOICES,false );
 
 			jr_import( 'jrportal_user_functions' );
 			$user_obj                      = new jrportal_user_functions();
@@ -83,9 +83,9 @@ class j16000edit_invoice
 			$output[ 'USERSINVOICESLINK' ] = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=list_usersinvoices&id=' . $invoice->cms_user_id . '">' . $user_deets[ 'name' ] . '</a>';
 			$output[ 'RAISED' ]            = $invoice->raised_date;
 			$output[ 'DUE' ]               = $invoice->due_date;
-			if ( $invoice->subscription == "1" ) $output[ 'SUBSCRIPTION' ] = jr_gettext( "_JOMRES_COM_MR_YES", _JOMRES_COM_MR_YES );
+			if ( $invoice->subscription == "1" ) $output[ 'SUBSCRIPTION' ] = jr_gettext( "_JOMRES_COM_MR_YES", _JOMRES_COM_MR_YES,false );
 			else
-			$output[ 'SUBSCRIPTION' ] = jr_gettext( "_JOMRES_COM_MR_NO", _JOMRES_COM_MR_NO );
+			$output[ 'SUBSCRIPTION' ] = jr_gettext( "_JOMRES_COM_MR_NO", _JOMRES_COM_MR_NO,false );
 			$output[ 'INITTOTAL' ] = $invoice->init_total;
 
 			$output[ 'RECURTOTAL' ]   = $invoice->recur_total;
@@ -127,16 +127,16 @@ class j16000edit_invoice
 			$output[ 'ID' ] = $invoice->id;
 
 			$output[ 'STATUS' ] = invoices_makeInvoiceStatusDropdown( $invoice->status );
-			$output[ 'USER' ]   = jr_gettext( "_JRPORTAL_INVOICES_USER", _JRPORTAL_INVOICES_USER );
+			$output[ 'USER' ]   = jr_gettext( "_JRPORTAL_INVOICES_USER", _JRPORTAL_INVOICES_USER,false );
 			jr_import( 'jrportal_user_functions' );
 			$user_obj                      = new jrportal_user_functions();
 			$user_deets                    = $user_obj->getJoomlaUserDetailsForJoomlaId( $invoice->cms_user_id );
 			$output[ 'USERSINVOICESLINK' ] = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=list_usersinvoices&id=' . $invoice->cms_user_id . '">' . $user_deets[ 'name' ] . '</a>';
 			$output[ 'RAISED' ]            = $invoice->raised_date;
 			$output[ 'DUE' ]               = $invoice->due_date;
-			if ( $invoice->subscription == "1" ) $output[ 'SUBSCRIPTION' ] = jr_gettext( "_JOMRES_COM_MR_YES", _JOMRES_COM_MR_YES );
+			if ( $invoice->subscription == "1" ) $output[ 'SUBSCRIPTION' ] = jr_gettext( "_JOMRES_COM_MR_YES", _JOMRES_COM_MR_YES,false );
 			else
-			$output[ 'SUBSCRIPTION' ] = jr_gettext( "_JOMRES_COM_MR_NO", _JOMRES_COM_MR_NO );
+			$output[ 'SUBSCRIPTION' ] = jr_gettext( "_JOMRES_COM_MR_NO", _JOMRES_COM_MR_NO,false );
 			$output[ 'INITTOTAL' ]    = $invoice->init_total;
 			$output[ 'RECURTOTAL' ]   = $invoice->recur_total;
 			$output[ 'FREQ' ]         = $invoice->recur_frequency;

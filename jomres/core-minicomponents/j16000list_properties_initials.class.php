@@ -31,8 +31,8 @@ class j16000list_properties_initials
 		$rows       = array ();
 
 		$output[ 'AJAXURL' ]                     = JOMRES_SITEPAGE_URL_ADMIN . '&nofollowtmpl';
-		$output[ '_JOMRES_CRATES_CLICKINITIAL' ] = jr_gettext( "_JOMRES_CRATES_CLICKINITIAL", _JOMRES_CRATES_CLICKINITIAL );
-		$output[ '_JRPORTAL_CPANEL_LISTCRATES' ] = jr_gettext( "_JRPORTAL_CPANEL_LISTCRATES", _JRPORTAL_CPANEL_LISTCRATES );
+		$output[ '_JOMRES_CRATES_CLICKINITIAL' ] = jr_gettext( "_JOMRES_CRATES_CLICKINITIAL", _JOMRES_CRATES_CLICKINITIAL,false );
+		$output[ '_JRPORTAL_CPANEL_LISTCRATES' ] = jr_gettext( "_JRPORTAL_CPANEL_LISTPROPERTIES", _JRPORTAL_CPANEL_LISTPROPERTIES,false );
 
 
 		jr_import( 'jrportal_property_functions' );

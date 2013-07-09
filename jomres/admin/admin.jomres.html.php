@@ -137,9 +137,9 @@ class HTML_jomres
 			<td valign="middle">' . jr_gettext( _JOMRES_COOKIEPOLICY_DESC, '_JOMRES_COOKIEPOLICY_DESC', false ) . '</td>
 		</tr>
 		<tr valign="middle" class="odd">
-			<td valign="middle">' . jr_gettext( _JOMRES_APPROVALS_CONFIG_TITLE, _JOMRES_APPROVALS_CONFIG_TITLE ) . '</td>
+			<td valign="middle">' . jr_gettext( _JOMRES_APPROVALS_CONFIG_TITLE, _JOMRES_APPROVALS_CONFIG_TITLE,false ) . '</td>
 			<td valign="middle">' . $lists[ 'automatically_approve_new_properties' ] . '</td>
-			<td valign="middle">' . jr_gettext( _JOMRES_APPROVALS_CONFIG_DESC, _JOMRES_APPROVALS_CONFIG_DESC ) . '</td>
+			<td valign="middle">' . jr_gettext( _JOMRES_APPROVALS_CONFIG_DESC, _JOMRES_APPROVALS_CONFIG_DESC,false ) . '</td>
 		</tr>
 		<tr valign="middle" class="even">
 			<td valign="middle">' . jr_gettext( _JOMRES_DEFAULT_LAT_STARTPOINT, '_JOMRES_DEFAULT_LAT_STARTPOINT', false ) . '</td>

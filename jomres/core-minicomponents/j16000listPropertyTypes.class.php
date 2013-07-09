@@ -29,11 +29,11 @@ class j16000listPropertyTypes
 		$editIcon                              = '<IMG SRC="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/EditItem.png" border="0">';
 		$ptypeData                             = array ();
 		$output                                = array ();
-		$output[ 'PAGETITLE' ]                 = jr_gettext( '_JOMRES_COM_PTYPES_LIST_TITLE', _JOMRES_COM_PTYPES_LIST_TITLE );
-		$output[ 'HPTYPE' ]                    = jr_gettext( '_JOMRES_COM_PTYPES_PTYPE', _JOMRES_COM_PTYPES_PTYPE );
-		$output[ 'HPTYPE_DESC' ]               = jr_gettext( '_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR', _JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR );
-		$output[ 'HPUBLISHED' ]                = jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISHED', _JOMRES_COM_MR_VRCT_PUBLISHED );
-		$output[ '_JOMRES_ORDER' ]             = jr_gettext( '_JOMRES_ORDER', _JOMRES_ORDER );
+		$output[ 'PAGETITLE' ]                 = jr_gettext( '_JOMRES_COM_PTYPES_LIST_TITLE', _JOMRES_COM_PTYPES_LIST_TITLE,false );
+		$output[ 'HPTYPE' ]                    = jr_gettext( '_JOMRES_COM_PTYPES_PTYPE', _JOMRES_COM_PTYPES_PTYPE,false );
+		$output[ 'HPTYPE_DESC' ]               = jr_gettext( '_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR', _JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR,false );
+		$output[ 'HPUBLISHED' ]                = jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISHED', _JOMRES_COM_MR_VRCT_PUBLISHED,false );
+		$output[ '_JOMRES_ORDER' ]             = jr_gettext( '_JOMRES_ORDER', _JOMRES_ORDER,false );
 		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = JOMRES_SITEPAGE_URL_ADMIN;
 
 		$query     = "SELECT `id`,`ptype`,`ptype_desc`,`published`,`order` FROM #__jomres_ptypes ORDER BY `order` ASC";
@@ -71,12 +71,12 @@ class j16000listPropertyTypes
 		$jrtb   = $jrtbar->startTable();
 		$image  = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/AddItem.png" );
 		$link   = JOMRES_SITEPAGE_URL_ADMIN;
-		$jrtb .= $jrtbar->customToolbarItem( 'editPropertyType', $link, jr_gettext( '_JOMRES_COM_MR_NEWTARIFF', _JOMRES_COM_MR_NEWTARIFF ), $submitOnClick = true, $submitTask = "editPropertyType", $image );
+		$jrtb .= $jrtbar->customToolbarItem( 'editPropertyType', $link, jr_gettext( '_JOMRES_COM_MR_NEWTARIFF', _JOMRES_COM_MR_NEWTARIFF,false ), $submitOnClick = true, $submitTask = "editPropertyType", $image );
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, '' );
 		$jrtb .= $jrtbar->spacer();
 		$image = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/WasteBasket.png" );
 		$link  = JOMRES_SITEPAGE_URL_ADMIN;
-		$jrtb .= $jrtbar->customToolbarItem( 'deletePropertyType', $link, jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', _JOMRES_COM_MR_ROOM_DELETE ), $submitOnClick = true, $submitTask = "deletePropertyType", $image );
+		$jrtb .= $jrtbar->customToolbarItem( 'deletePropertyType', $link, jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', _JOMRES_COM_MR_ROOM_DELETE,false ), $submitOnClick = true, $submitTask = "deletePropertyType", $image );
 		$jrtb .= $jrtbar->endTable();
 
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;

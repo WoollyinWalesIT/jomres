@@ -26,7 +26,7 @@ class j16010stats_properties_clicks
 
 			return;
 			}
-		$this->retVal = array ( "task" => "stats_properties_clicks", "text" => jr_gettext( '_JRPORTAL_STATS_STATTYPE_PROPERTIES', _JRPORTAL_STATS_STATTYPE_PROPERTIES ) );
+		$this->retVal = array ( "task" => "stats_properties_clicks", "text" => jr_gettext( '_JRPORTAL_STATS_STATTYPE_PROPERTIES', _JRPORTAL_STATS_STATTYPE_PROPERTIES,false ) );
 		}
 
 	// This must be included in every Event/Mini-component

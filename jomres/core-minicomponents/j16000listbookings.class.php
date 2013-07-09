@@ -31,19 +31,19 @@ class j16000listbookings
 
 		$property_uid_array = array ();
 
-		$output[ 'HPROPERTYID' ]                   = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID", _JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID );
-		$output[ 'HGUESTID' ]                      = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_GUEST_ID", _JRPORTAL_LISTBOOKINGS_HEADER_GUEST_ID );
-		$output[ 'HAFFILIATEID' ]                  = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_AFFILIATE_ID", _JRPORTAL_LISTBOOKINGS_HEADER_AFFILIATE_ID );
-		$output[ 'HINVOICEID' ]                    = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_INVOICE_ID", _JRPORTAL_LISTBOOKINGS_HEADER_INVOICE_ID );
-		$output[ 'HBOOKINGTOTAL' ]                 = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL", _JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL );
-		$output[ 'HCONTRACTID' ]                   = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_CONTRACT_ID", _JRPORTAL_LISTBOOKINGS_HEADER_CONTRACT_ID );
-		$output[ 'HCONTRACTNUMBER' ]               = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_CONTRACT_NUMBER", _JRPORTAL_LISTBOOKINGS_HEADER_CONTRACT_NUMBER );
-		$output[ 'HCURRENCYCODE' ]                 = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_CURRENCYCODE", _JRPORTAL_LISTBOOKINGS_HEADER_CURRENCYCODE );
-		$output[ 'HCREATED' ]                      = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_CREATED", _JRPORTAL_LISTBOOKINGS_HEADER_CREATED );
-		$output[ 'HARCHIVED' ]                     = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_ARCHIVED", _JRPORTAL_LISTBOOKINGS_HEADER_ARCHIVED );
-		$output[ 'HARCHIVEDDATE' ]                 = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED", _JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED );
+		$output[ 'HPROPERTYID' ]                   = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID", _JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID,false );
+		$output[ 'HGUESTID' ]                      = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_GUEST_ID", _JRPORTAL_LISTBOOKINGS_HEADER_GUEST_ID,false );
+		$output[ 'HAFFILIATEID' ]                  = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_AFFILIATE_ID", _JRPORTAL_LISTBOOKINGS_HEADER_AFFILIATE_ID,false );
+		$output[ 'HINVOICEID' ]                    = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_INVOICE_ID", _JRPORTAL_LISTBOOKINGS_HEADER_INVOICE_ID,false );
+		$output[ 'HBOOKINGTOTAL' ]                 = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL", _JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL,false );
+		$output[ 'HCONTRACTID' ]                   = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_CONTRACT_ID", _JRPORTAL_LISTBOOKINGS_HEADER_CONTRACT_ID,false );
+		$output[ 'HCONTRACTNUMBER' ]               = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_CONTRACT_NUMBER", _JRPORTAL_LISTBOOKINGS_HEADER_CONTRACT_NUMBER,false );
+		$output[ 'HCURRENCYCODE' ]                 = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_CURRENCYCODE", _JRPORTAL_LISTBOOKINGS_HEADER_CURRENCYCODE,false );
+		$output[ 'HCREATED' ]                      = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_CREATED", _JRPORTAL_LISTBOOKINGS_HEADER_CREATED,false );
+		$output[ 'HARCHIVED' ]                     = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_ARCHIVED", _JRPORTAL_LISTBOOKINGS_HEADER_ARCHIVED,false );
+		$output[ 'HARCHIVEDDATE' ]                 = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED", _JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED,false );
 		$output[ 'LIVESITE' ]                      = get_showtime( 'live_site' );
-		$output[ '_JRPORTAL_CPANEL_LISTBOOKINGS' ] = jr_gettext( "_JRPORTAL_CPANEL_LISTBOOKINGS", _JRPORTAL_CPANEL_LISTBOOKINGS );
+		$output[ '_JRPORTAL_CPANEL_LISTBOOKINGS' ] = jr_gettext( "_JRPORTAL_CPANEL_LISTBOOKINGS", _JRPORTAL_CPANEL_LISTBOOKINGS,false );
 
 		jr_import( 'jrportal_booking_functions' );
 		$bookingsFunctions = new jrportal_booking_functions();
@@ -55,7 +55,7 @@ class j16000listbookings
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, jr_gettext( "_JRPORTAL_CANCEL", _JRPORTAL_CANCEL ) );
+		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, jr_gettext( "_JRPORTAL_CANCEL", _JRPORTAL_CANCEL,false ) );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 

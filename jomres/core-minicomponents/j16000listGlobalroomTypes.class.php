@@ -43,13 +43,13 @@ class j16000listGlobalroomTypes
 
 		$rows                       = array ();
 		$output[ 'INDEX' ]          = "index.php";
-		$output[ 'PAGETITLE' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK );
-		$output[ 'BACKLINK' ]       = '<a href="javascript:submitbutton(\'cpanel\')">' . jr_gettext( '_JOMRES_COM_MR_BACK', _JOMRES_COM_MR_BACK ) . '</a>';
-		$output[ 'HLINKTEXT' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV );
-		$output[ 'HLINKTEXTCLONE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC );
-		$output[ 'HRTTITLE' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV );
-		$output[ 'HRTDESCRIPTION' ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_DESC', _JOMRES_COM_MR_EB_ROOM_CLASS_DESC );
-		$output[ 'HJOMRES_A_ICON' ] = jr_gettext( '_JOMRES_A_ICON', _JOMRES_A_ICON );
+		$output[ 'PAGETITLE' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK,false );
+		$output[ 'BACKLINK' ]       = '<a href="javascript:submitbutton(\'cpanel\')">' . jr_gettext( '_JOMRES_COM_MR_BACK', _JOMRES_COM_MR_BACK,false ) . '</a>';
+		$output[ 'HLINKTEXT' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV,false );
+		$output[ 'HLINKTEXTCLONE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC,false );
+		$output[ 'HRTTITLE' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV,false );
+		$output[ 'HRTDESCRIPTION' ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_DESC', _JOMRES_COM_MR_EB_ROOM_CLASS_DESC,false );
+		$output[ 'HJOMRES_A_ICON' ] = jr_gettext( '_JOMRES_A_ICON', _JOMRES_A_ICON,false );
 
 		foreach ( $roomtypeList as $roomtype )
 			{
@@ -80,12 +80,12 @@ class j16000listGlobalroomTypes
 		$jrtb   = $jrtbar->startTable();
 		$image  = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/AddItem.png" );
 		$link   = JOMRES_SITEPAGE_URL_ADMIN;
-		$jrtb .= $jrtbar->customToolbarItem( 'editGlobalroomTypes', $link, jr_gettext( '_JOMRES_COM_MR_NEWTARIFF', _JOMRES_COM_MR_NEWTARIFF ), $submitOnClick = true, $submitTask = "editGlobalroomTypes", $image );
+		$jrtb .= $jrtbar->customToolbarItem( 'editGlobalroomTypes', $link, jr_gettext( '_JOMRES_COM_MR_NEWTARIFF', _JOMRES_COM_MR_NEWTARIFF,false ), $submitOnClick = true, $submitTask = "editGlobalroomTypes", $image );
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, '' );
 		$jrtb .= $jrtbar->spacer();
 		$image = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/WasteBasket.png" );
 		$link  = JOMRES_SITEPAGE_URL_ADMIN;
-		$jrtb .= $jrtbar->customToolbarItem( 'deleteGlobalroomTypes', $link, jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', _JOMRES_COM_MR_ROOM_DELETE ), $submitOnClick = true, $submitTask = "deleteGlobalroomTypes", $image );
+		$jrtb .= $jrtbar->customToolbarItem( 'deleteGlobalroomTypes', $link, jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', _JOMRES_COM_MR_ROOM_DELETE,false ), $submitOnClick = true, $submitTask = "deleteGlobalroomTypes", $image );
 		$jrtb .= $jrtbar->endTable();
 
 		$output[ 'JOMRESTOOLBAR' ]             = $jrtb;

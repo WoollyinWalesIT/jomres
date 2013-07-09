@@ -34,12 +34,12 @@ class j16000list_reviews
 		$propertyFunctions  = new jrportal_property_functions();
 		$jomresPropertyList = $propertyFunctions->getAllJomresProperties();
 
-		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ]               = jr_gettext( 'JOMRES_SITEPAGE_URL_ADMIN', JOMRES_SITEPAGE_URL_ADMIN );
-		$output[ '_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO' ]  = jr_gettext( '_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO', _JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO );
-		$output[ '_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED' ] = jr_gettext( '_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED', _JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED );
-		$output[ '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL' ]       = jr_gettext( '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', _JOMRES_REVIEWS_ADMIN_NUMBERTOTAL );
-		$output[ '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE' ]     = jr_gettext( '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE', _JOMRES_REVIEWS_REPORT_REVIEW_TITLE );
-		$output[ '_JOMRES_REVIEWS' ]                         = jr_gettext( '_JOMRES_REVIEWS', _JOMRES_REVIEWS );
+		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ]               = jr_gettext( 'JOMRES_SITEPAGE_URL_ADMIN', JOMRES_SITEPAGE_URL_ADMIN,false );
+		$output[ '_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO' ]  = jr_gettext( '_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO', _JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO,false );
+		$output[ '_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED' ] = jr_gettext( '_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED', _JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED,false );
+		$output[ '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL' ]       = jr_gettext( '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', _JOMRES_REVIEWS_ADMIN_NUMBERTOTAL,false );
+		$output[ '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE' ]     = jr_gettext( '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE', _JOMRES_REVIEWS_REPORT_REVIEW_TITLE,false );
+		$output[ '_JOMRES_REVIEWS' ]                         = jr_gettext( '_JOMRES_REVIEWS', _JOMRES_REVIEWS,false );
 
 		$editIcon = '<IMG SRC="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
 
