@@ -126,7 +126,7 @@ class invoicehandler extends jrportal_invoice
 		$this->commitUpdateInvoice();
 		}
 
-
+	// Note to self, this method is used by 16000save_invoice, it is not redundant
 	function update_line_item( $line_item_data )
 		{
 		/*
@@ -172,7 +172,15 @@ class invoicehandler extends jrportal_invoice
 
 		$i_total                         = ( (float) $line_item->init_price * (int) $line_item->init_qty ) - (float) $line_item->init_discount;
 		$line_item->init_total           = $i_total;
-		$init_toal_tax                   = number_format( $i_total / 100 * $line_item->tax_rate, 2, '.', '' );
+		if ($this->vat_will_be_charged)
+			{
+			$init_toal_tax                   = number_format( $i_total / 100 * $line_item->tax_rate, 2, '.', '' );
+			}
+		else
+			{
+			$init_toal_tax                   = 0;
+			}
+
 		$line_item->init_total_inclusive = $i_total + $init_toal_tax;
 
 		$this->init_total = $this->init_total + $line_item->init_total_inclusive;
@@ -224,7 +232,15 @@ class invoicehandler extends jrportal_invoice
 
 			$i_total                         = ( (float) $line_item->init_price * (int) $line_item->init_qty ) - (float) $line_item->init_discount;
 			$line_item->init_total           = $i_total;
-			$init_toal_tax                   = number_format( $i_total / 100 * $line_item->tax_rate, 2, '.', '' );
+			if ($this->vat_will_be_charged)
+				{
+				$init_toal_tax                   = number_format( $i_total / 100 * $line_item->tax_rate, 2, '.', '' );
+				}
+			else
+				{
+				$init_toal_tax                   = 0;
+				}
+			
 			$line_item->init_total_inclusive = $i_total + $init_toal_tax;
 
 			$this->init_total = $this->init_total + $line_item->init_total_inclusive;

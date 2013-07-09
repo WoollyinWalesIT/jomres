@@ -16,137 +16,166 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class vat_number_validation
 	{
-	function __construct( $id , $is_guest = true )
+	function __construct()
 		{
-		$this->is_guest = (bool)$is_guest;
-		$this->id_is_cms_id  = true;		// Set this to false and the validator will search for the guest's id, not the cms user id.
-		$this->id            = (int) $id;
+		$this->vat_number = '';
+		$this->vat_number_validated = false;
 		$this->validation_messages = array ();
+		$this->validation_messages[ 'result' ] = false;
+		$this->validation_messages[ 'message' ] = "VIES not yet called";
+		$this->country        = '';
 		}
 	
-	function get_vat_number_and_validation_state()
+	function get_subject($type = "", $arguments = array() )
 		{
-		$this->vat_number           = '';
-		$this->vat_number_validated = false;
-		
-		if ($this->is_guest)
+		switch ( $type )
 			{
-			if ((int) $this->id > 0)
-				{
-				if (!$this->id_is_cms_id)
-					{
-					$query  = "SELECT `vat_number`,`vat_number_validated`,country FROM #__jomres_guests WHERE guests_uid = " . (int) $this->id . " LIMIT 1";
-					}
-				else
-					{
-					$query  = "SELECT `vat_number`,`vat_number_validated`,country FROM #__jomres_guest_profile WHERE cms_user_id = " . (int) $this->id . " LIMIT 1";
-					}
-				$result = doSelectSql( $query, 2 );
-				if (count($result)>0)
-					{
-					$this->vat_number           = $result[ 'vat_number' ];
-					$this->vat_number_validated = $result[ 'vat_number_validated' ];
-					$this->guest_country        = $result[ 'country' ];
-					}
+			case 'guest_registered_byguest_id':
+					$id = $arguments["guest_id"];
+					$property_uid = $arguments["property_uid"];
+					$query  = "SELECT `vat_number`,`vat_number_validated`,`country`,`vat_number_validation_response` FROM #__jomres_guests WHERE guests_uid = " . (int) $id . " AND property_uid = ".(int)$property_uid." LIMIT 1";
+					$result = doSelectSql( $query, 2 );
+					if (count($result)>0)
+						{
+						$this->vat_number                            = $result[ 'vat_number' ];
+						$this->vat_number_validated                  = $result[ 'vat_number_validated' ];
+						$this->country                               = $result[ 'country' ];
+						$this->vat_number_validation_response        = $result[ 'vat_number_validation_response' ];
+						}
+					else
+						{
+						$this->vat_number                                  = '';
+						$this->vat_number_validated                        = false;
+						$this->country                                     = false;
+						$this->vat_number_validation_response              = false;
+						}
+				break;
+			
+			case 'guest_registered_byprofile_id':
+					$id = $arguments["profile_id"];
+					$query  = "SELECT `vat_number`,`vat_number_validated`,`country`,`vat_number_validation_response` FROM #__jomres_guest_profile WHERE cms_user_id = " . (int) $id . " LIMIT 1";
+					$result = doSelectSql( $query, 2 );
+					if (count($result)>0)
+						{
+						$this->vat_number           = $result[ 'vat_number' ];
+						$this->vat_number_validated = $result[ 'vat_number_validated' ];
+						$this->country              = $result[ 'country' ];
+						$this->vat_number_validation_response        = $result[ 'vat_number_validation_response' ];
+						}
+					else
+						{
+						$this->vat_number           = '';
+						$this->vat_number_validated = false;
+						$this->country              = false;
+						$this->vat_number_validation_response = false;
+						}
+				break;
+			
+			case 'property':
+					$property_uid = $arguments["property_uid"];
+					$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 					
-				}
+					$mrConfig                   = getPropertySpecificSettings($property_uid);
+					$current_property_details->gather_data($property_uid);
+					$this->vat_number           = $mrConfig[ 'property_vat_number' ];
+					$this->vat_number_validated = $mrConfig[ 'vat_number_validated' ];
+					$this->country              = $current_property_details->property_country_code;
+					
+				break;
+			
+			case 'site':
+					$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+					$jrConfig   = $siteConfig->get();
+					$this->vat_number_validated = "1";
+					$this->vat_number = trim($jrConfig[ 'business_vat_number' ]);
+					$this->country =  $this->get_adjusted_country_code(substr( trim($jrConfig["business_vat_number"]), 0, 2 ));
+				break;
+			
+			default :
+					$this->vat_number = $arguments["vat_number"];
+					$this->vat_number_validated = false;
+					$this->validation_messages = array ();
+					$this->country        = $this->get_adjusted_country_code(substr( $arguments["vat_number"], 0, 2 ));
+				break;
+			}
+		}
+	
+	function save_subject($type = "", $arguments = array() )
+		{
+		$messages=htmlspecialchars($this->validation_messages [ 'message' ], ENT_QUOTES);
+		if ($this->validation_messages[ 'result' ] == true)
+			{
+			$validated = "1";
 			}
 		else
 			{
-			if (isset($_POST['cfg_property_vat_number']))
-				{
-				$mrConfig[ 'property_vat_number' ] =jomresGetParam( $_POST, 'cfg_property_vat_number', '');
-				$mrConfig[ 'property_vat_number_validated' ] = 0;
-				}
-			else
-				{
-				$mrConfig                   = getPropertySpecificSettings($this->id);
-				}
-			$this->vat_number           = $mrConfig[ 'property_vat_number' ];
-			$this->vat_number_validated = $mrConfig[ 'property_vat_number_validated' ];
+			$validated = "0";
+			}
+
+		switch ( $type )
+			{
+			case 'guest_registered_byguest_id':
+					$id = $arguments["guest_id"];
+					$property_uid = $arguments["property_uid"];
+					$query = "UPDATE #__jomres_guests SET `vat_number_validated`='".$validated."',`vat_number`='" . $this->validation_messages[ 'clean_vat_no' ] . "',`vat_number_validation_response`='".$messages."' WHERE guests_uid = '" . (int) $id . "' AND `property_uid` = " . (int)$property_uid;
+					if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_GUEST', _JOMRES_MR_AUDIT_UPDATE_GUEST, false ) ) ) 
+						{
+						trigger_error( "Unable to update guest details, mysql db failure", E_USER_ERROR );
+						}
+				break;
+			
+			case 'guest_registered_byprofile_id':
+					$id = $arguments["profile_id"];
+					$query = "UPDATE #__jomres_guests SET `vat_number`='" . $this->validation_messages[ 'clean_vat_no' ] . "', `vat_number_validated`='".$validated."',`vat_number_validation_response`='" . $messages . "' WHERE `mos_userid`=" . (int) $id;
+					doInsertSql( $query, '' );
+					$query = "UPDATE #__jomres_guest_profile SET `vat_number`='" . $this->validation_messages[ 'clean_vat_no' ] . "',`vat_number_validated`='".$validated."',`vat_number_validation_response`='" . $messages . "' WHERE cms_user_id = " . (int) $id;
+					doInsertSql( $query, '' );
+				break;
+			
+			case 'property':
+					$property_uid = $arguments["property_uid"];
+					$query  = "SELECT uid FROM #__jomres_settings WHERE property_uid = '" . (int) $property_uid . "' and akey = 'property_vat_number'";
+					$result = doSelectSql( $query );
+					if ( count( $result ) == 0 ) 
+						{
+						$query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('" . (int) $property_uid . "','property_vat_number','" . $this->validation_messages[ 'clean_vat_no' ] . "')";
+						}
+					else
+						{
+						$query = "UPDATE #__jomres_settings SET `value`='" . $this->validation_messages[ 'clean_vat_no' ] . "' WHERE property_uid = '" . (int) $property_uid . "' and akey = 'property_vat_number'";
+						}
+					doInsertSql( $query, '' );
+					$query  = "SELECT uid FROM #__jomres_settings WHERE property_uid = '" . (int) $property_uid . "' and akey = 'vat_number_validated'";
+					$result = doSelectSql( $query );
+					if ( count( $result ) == 0 ) 
+						{
+						$query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('" . (int) $property_uid . "','vat_number_validated','" . $validated . "')";
+						}
+					else
+						{
+						$query = "UPDATE #__jomres_settings SET `value`='" . $validated . "' WHERE property_uid = '" . (int) $property_uid . "' and akey = 'vat_number_validated'";
+						}
+					doInsertSql( $query, '' );
+				break;
+			
+			case 'site':
+					// We don't (currently) validate Site VAT details, so we'll not offer a "save" option for site vat settings, as this is already covered by Site Config
+				break;
+			
+			default :
+					$this->vat_number = '';
+					$this->vat_number_validated = false;
+					$this->validation_messages = array ();
+					$this->country        = '';
+				break;
 			}
 		}
 	
-	function validate_vat_number()
-		{
-		$this->get_vat_number_and_validation_state();
-		if ( $this->vat_number_validated == 0 )
-			{
-			$response = $this->vies_check( $this->vat_number );
-			//$messages = json_encode( $this->validation_messages );
-			$messages=htmlspecialchars($this->validation_messages [ 'message' ], ENT_QUOTES);
-
-			$this->vat_number = $this->validation_messages[ 'clean_vat_no' ];
-			if ($this->validation_messages[ 'result' ] == true)
-				{
-				$validated = "1";
-				}
-			else
-				{
-				$validated = "0";
-				}
-			if ($this->is_guest) // We're validated a guest's vat number. If not, then it's a property's vat number
-				{
-				$query = "UPDATE #__jomres_guests SET `vat_number`='" . $this->validation_messages[ 'clean_vat_no' ] . "', `vat_number_validated`='".$validated."',`vat_number_validation_response`='" . $messages . "' WHERE `mos_userid`=" . (int) $this->id;
-				doInsertSql( $query, '' );
-
-				$query = "UPDATE #__jomres_guest_profile SET `vat_number`='" . $this->validation_messages[ 'clean_vat_no' ] . "',`vat_number_validated`='".$validated."',`vat_number_validation_response`='" . $messages . "' WHERE cms_user_id = " . (int) $this->id;
-				doInsertSql( $query, '' );
-					
-				$this->vat_number           = $this->validation_messages[ 'clean_vat_no' ];
-				$this->vat_number_validated = $validated;
-				}
-			else
-				{
-				$query  = "SELECT uid FROM #__jomres_settings WHERE property_uid = '" . (int) $this->id . "' and akey = 'property_vat_number'";
-				$result = doSelectSql( $query );
-				if ( count( $result ) == 0 ) 
-					{
-					$query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('" . (int) $this->id . "','property_vat_number','" . $this->validation_messages[ 'clean_vat_no' ] . "')";
-					}
-				else
-					{
-					$query = "UPDATE #__jomres_settings SET `value`='" . $this->validation_messages[ 'clean_vat_no' ] . "' WHERE property_uid = '" . (int) $this->id . "' and akey = 'property_vat_number'";
-					}
-				doInsertSql( $query, '' );
-				
-
-				$query  = "SELECT uid FROM #__jomres_settings WHERE property_uid = '" . (int) $this->id . "' and akey = 'vat_number_validated'";
-				$result = doSelectSql( $query );
-				if ( count( $result ) == 0 ) 
-					{
-					$query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('" . (int) $this->id . "','vat_number_validated','" . $validated . "')";
-					}
-				else
-					{
-					$query = "UPDATE #__jomres_settings SET `value`='" . $validated . "' WHERE property_uid = '" . (int) $this->id . "' and akey = 'vat_number_validated'";
-					}
-				doInsertSql( $query, '' );
-
-				$this->vat_number           = $this->validation_messages[ 'clean_vat_no' ];
-				$this->vat_number_validated = $validated;
-			
-				// Property settings have max 255 chars, this easily breaks that. Disabled for now unless we need to save the validation message at a later time.
-/* 				$query  = "SELECT uid FROM #__jomres_settings WHERE property_uid = '" . (int) $this->id . "' and akey = 'vat_number_validation_response'";
-				$result = doSelectSql( $query );
-				if ( count( $result ) == 0 ) 
-					{
-					$query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('" . (int) $this->id . "','vat_number_validation_response','" . $messages . "')";
-					}
-				else
-					{
-					$query = "UPDATE #__jomres_settings SET `value`='" . $messages . "' WHERE property_uid = '" . (int) $this->id . "' and akey = 'vat_number_validation_response'";
-					}
-				doInsertSql( $query, '' ); */
-
-				}
-			}
-		}
-
 	function vies_check( $vat_number )
 		{
 		if ( $vat_number != '' )
 			{
+			$vat_number  = filter_var( $vat_number, FILTER_SANITIZE_SPECIAL_CHARS );
 			$vatNumber   = str_replace( array ( ' ', '.', '-', ',', ', ' ), '', $vat_number );
 			$countryCode = substr( $vatNumber, 0, 2 );
 			$vatNumber   = substr( $vatNumber, 2, strlen( $vatNumber ) );
@@ -154,10 +183,12 @@ class vat_number_validation
 			if ( strlen( $countryCode ) != 2 || is_numeric( substr( $countryCode, 0, 1 ) ) || is_numeric( substr( $countryCode, 1, 2 ) ) )
 				{
 				$this->validation_messages = array ( 'result' => false, 'message' => jr_gettext( '_JOMRES_VIES_VATCHECK_INCORRECT_SYNTAX', _JOMRES_VIES_VATCHECK_INCORRECT_SYNTAX, false ), 'clean_vat_no' => $countryCode . $vatNumber );
-
+				$this->vat_number_validated = "0";
 				return false;
 				}
-
+			
+			$this->vat_number = $countryCode . $vatNumber;
+			
 			require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'nusoap' . JRDS . 'nusoap.php' );
 
 			$client = new nusoap_client( "http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl", 'wsdl' );
@@ -177,28 +208,38 @@ class vat_number_validation
 			if ( $result[ 'valid' ] != "true" )
 				{
 				$this->validation_messages = array ( 'result' => false, 'message' => jr_gettext( '_JOMRES_VIES_VATCHECK_INCORRECT_COULDNOTVALIDATE', _JOMRES_VIES_VATCHECK_INCORRECT_COULDNOTVALIDATE, false ), 'response_content' => $results, 'clean_vat_no' => $countryCode . $vatNumber );
-
+				$this->vat_number_validated = "0";
 				return false;
 				}
 			else
 				{
 				$this->validation_messages = array ( 'result' => true, 'message' => jr_gettext( '_JOMRES_VIES_VATCHECK_INCORRECT_VALIDATED', _JOMRES_VIES_VATCHECK_INCORRECT_VALIDATED, false ), 'response_content' => $results, 'clean_vat_no' => $countryCode . $vatNumber );
-
+				$this->vat_number_validated = "1";
 				return true;
 				}
 			}
 		$this->validation_messages = array ( 'result' => false, 'message' => jr_gettext( '_JOMRES_VIES_VATCHECK_INCORRECT_NUMBERNOTENTERED', _JOMRES_VIES_VATCHECK_INCORRECT_NUMBERNOTENTERED, false ), 'clean_vat_no' => '' );
-
+		$this->vat_number_validated = "0";
 		return false;
 		}
 
+	// The purpose of this method is for it to be passed a country code that's been pulled from a VAT number, and to convert it to a country code that Jomres will recognise. Countries like Greece use EL instead of Jomres' GR, so we need to pass EL, cycle through the xref array until we find that code, then return the key, which would be GR
+	function get_adjusted_country_code($country_code)
+		{
+		$xref_array = $this->get_euro_country_xref();
+		foreach ( $xref_array as $jomres_country_code => $vat_number_country_code)
+			{
+			if ($country_code == $vat_number_country_code)
+				return $jomres_country_code;
+			}
+		}
 
 	function get_euro_countries()
 		{
 		return array ( "AT" => "Austria", "BE" => "Belgium", "CY" => "Cyprus", "CZ" => "Czech R.ublic", "DK" => "Denmark", "EE" => "Estonia", "FI" => "Finland", "FR" => "France", "DE" => "Germany", "GR" => "Greece", "HU" => "Hungary", "IE" => "Ireland", "IT" => "Italy", "LV" => "Latvia", "LT" => "Lithuania", "LU" => "Luxembourg", "MT" => "Malta", "NL" => "Netherlands", "PL" => "Poland", "PT" => "Portugal", "SK" => "Slovakia", "SI" => "Slovenia", "ES" => "Spain", "SE" => "Sweden", "GB" => "United Kingdom", "RO" => "Romania", "BG" => "Bulgaria", "HR" => "Croatia" );
 		}
-		
-	function get_euro_countr_xref() // Greece use different codes, in our database they're GR, but for VAT numbers they're using EL, so we'll need a cross reference in case a new joiner creates the same situation in the future
+	
+	function get_euro_country_xref() // Greece use different codes, in our database they're GR, but for VAT numbers they're using EL, so we'll need a cross reference in case a new joiner creates the same situation in the future
 		{
 		return array ( "AT" => "AT", "BE" => "BE", "CY" => "CY", "CZ" => "CZ", "DK" => "DK", "EE" => "EE", "FI" => "FE", "FR" => "FR", "DE" => "DE", "GR" => "EL", "HU" => "HU", "IE" => "IE", "IT" => "IT", "LV" => "LV", "LT" => "LT", "LU" => "LU", "MT" => "MT", "NL" => "NL", "PL" => "PL", "PT" => "PT", "SK" => "SK", "SI" => "SI", "ES" => "ES", "SE" => "SE", "GB" => "GB", "RO" => "RO", "BG" => "BG", "HR" => "HR" );
 		}

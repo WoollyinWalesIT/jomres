@@ -83,19 +83,9 @@ class j02224saveguest
 		if ( trim($vat_number) != '')
 			{
 			jr_import( 'vat_number_validation' );
-			$validation = new vat_number_validation( 0 );
+			$validation = new vat_number_validation();
 			$response = $validation->vies_check( $vat_number );
-			$messages = json_encode( $validation->validation_messages );
-			if ($response)
-				{
-				$validated = "1";
-				}
-			else
-				{
-				$validated = "0";
-				}
-			$query = "UPDATE #__jomres_guests SET `vat_number_validated`='".$validated."',`vat_number`='" . $validation->validation_messages[ 'clean_vat_no' ] . "',`vat_number_validation_response`='".$messages."' WHERE guests_uid = '" . (int) $guests_uid . "' AND `property_uid` = " . (int) $defaultProperty;
-			if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_GUEST', _JOMRES_MR_AUDIT_UPDATE_GUEST, false ) ) ) trigger_error( "Unable to update guest details, mysql db failure", E_USER_ERROR );
+			$validation->save_subject("guest_registered_byguest_id",array("property_uid"=>$defaultProperty,"guest_id"=>$guests_uid));
 			}
 
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=listguests" ) );

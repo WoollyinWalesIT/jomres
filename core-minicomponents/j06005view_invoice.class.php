@@ -163,7 +163,9 @@ class j06005view_invoice
 		if ( $invoice->subscription == "1" ) $output[ 'SUBSCRIPTION' ] = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES );
 		else
 		$output[ 'SUBSCRIPTION' ] = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO );
-		$output[ 'INITTOTAL' ] = output_price( $invoice->init_total, $invoice->currencycode, true, true );
+		
+		// See note at the end of this line!
+		$output[ 'INITTOTAL' ] = output_price( $invoice->init_total, $invoice->currencycode, true, true ); // This is now wrong. The init total is calculated when the invoice is generated, but recent VAT related changes mean that on older invoices which were created before the VAT changes were added, it's possible that this sum is incorrect. The newer GRAND_TOTAL_INC_TAX output variable is correct, as it's adjusted according to the VAT rules, so we'll replace INITTOTAL with GRAND_TOTAL_INC_TAX in invoice template files.
 
 
 		$output[ 'FREQ' ]         = $invoice->recur_frequency;
@@ -254,9 +256,17 @@ class j06005view_invoice
 				$r[ 'LI_INIT_QTY' ]             = $li[ 'init_qty' ];
 				$r[ 'LI_INIT_DISCOUNT' ]        = output_price( $li[ 'init_discount' ], $invoice->currencycode, false, true );
 				$r[ 'LI_INIT_TOTAL' ]           = output_price( $li[ 'init_total' ], $invoice->currencycode, false, true );
-				$r[ 'LI_INIT_TOTAL_INCLUSIVE' ] = output_price( $li[ 'init_total_inclusive' ], $invoice->currencycode, false, true );
-
-
+				if ($invoice->vat_will_be_charged)
+					{
+					$r[ 'LI_INIT_TOTAL_INCLUSIVE' ] = output_price( $li[ 'init_total_inclusive' ], $invoice->currencycode, false, true );
+					$r[ 'LI_TAX_RATE' ]        = $li[ 'tax_rate' ];
+					}
+				else
+					{
+					$r[ 'LI_INIT_TOTAL_INCLUSIVE' ] = output_price( $li[ 'init_total' ], $invoice->currencycode, false, true );
+					$r[ 'LI_TAX_RATE' ]        = 0;
+					}
+				
 				if ( (float) $invoice->recur_total > 0.00 )
 					{
 					$r[ 'LI_RECUR_PRICE' ]    = output_price( $li[ 'recur_price' ], $invoice->currencycode, false, true );
@@ -267,7 +277,7 @@ class j06005view_invoice
 
 				$r[ 'LI_TAX_CODE' ]        = $li[ 'tax_code' ];
 				$r[ 'LI_TAX_DESCRIPTION' ] = $li[ 'tax_description' ];
-				$r[ 'LI_TAX_RATE' ]        = $li[ 'tax_rate' ];
+				
 				$r[ 'LI_INV_ID' ]          = $li[ 'inv_id' ];
 				$r[ 'COUNTER' ]            = $counter;
 				$counter++;
@@ -275,14 +285,15 @@ class j06005view_invoice
 
 				if ( $li[ 'init_total_inclusive' ] >= 0 )
 					{
-					$grand_total_inc_tax = $grand_total_inc_tax + $li[ 'init_total_inclusive' ];
 					$grand_total_ex_tax  = $grand_total_ex_tax + $li[ 'init_total' ];
 					if ($invoice->vat_will_be_charged)
 						{
+						$grand_total_inc_tax = $grand_total_inc_tax + $li[ 'init_total_inclusive' ];
 						$tax             = $li[ 'init_total_inclusive' ] - $li[ 'init_total' ];
 						}
 					else
 						{
+						$grand_total_inc_tax = $grand_total_inc_tax + $li[ 'init_total' ];
 						$tax             = 0;
 						}
 					
