@@ -247,15 +247,21 @@ class jrportal_invoice
 				return;
 				}
 			}
-		
-		
-		
+
 		jr_import('vat_number_validation');
 		
-		if ($this->subscription_id == "1" || $this->is_commission == "1") // It's a site -> property transaction, let's get the property's vat details.
+		if ($this->subscription == "0" && $this->is_commission == "1") // It's a site -> property transaction (commission), let's get the property's vat details.
 			{
 			$buyer_validation = new vat_number_validation( );
 			$buyer_validation->get_subject("property",array( "property_uid"=>$this->property_uid ));
+
+			$seller_validation = new vat_number_validation( );
+			$seller_validation->get_subject( "site" , array() );
+			}
+		else if ($this->subscription > 0 && $this->is_commission == "0") // It's a site -> property transaction (subscription), let's get the manager's vat details.
+			{
+			$buyer_validation = new vat_number_validation( );
+			$buyer_validation->get_subject("buyer_registered_byprofile_id",array( "profile_id"=>$this->cms_user_id ));
 
 			$seller_validation = new vat_number_validation( );
 			$seller_validation->get_subject( "site" , array() );
@@ -351,8 +357,8 @@ class jrportal_invoice
 		jr_import('vat_number_validation');
 		$validation = new vat_number_validation( 0 );
 		$euro_countries      =$validation->get_euro_countries();
-				
-		if ($this->subscription_id == "0" && $this->is_commission == "0")
+
+		if ( !$this->subscription && $this->is_commission == "0")
 			{
 			$validation = new vat_number_validation();
 			$validation->get_subject("property",array("property_uid"=>$this->property_uid));

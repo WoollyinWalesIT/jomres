@@ -97,7 +97,7 @@ class jrportal_subscribers
 				'" . (string) $this->firstname . "',
 				'" . (string) $this->surname . "',
 				'" . (string) $this->address . "',
-				'" . (int) $this->country . "',
+				'" . (string) $this->country . "',
 				'" . (string) $this->postcode . "'
 				)";
 

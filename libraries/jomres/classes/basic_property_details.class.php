@@ -142,7 +142,8 @@ class basic_property_details
 		{
 		if ( $this->property_uid === 0 )
 			{
-			echo "Fatal Error, property uid not set, exiting";
+			echo "Fatal Error, property uid not set, exiting <br/>";
+			//echo_backtrace();
 			exit;
 			}
 		if ( $property_uid == $this->property_uid ) // No need to re-gather the info
