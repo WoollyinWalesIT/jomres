@@ -269,10 +269,19 @@ class j06005view_invoice
 				
 				if ( (float) $invoice->recur_total > 0.00 )
 					{
-					$r[ 'LI_RECUR_PRICE' ]    = output_price( $li[ 'recur_price' ], $invoice->currencycode, false, true );
-					$r[ 'LI_RECUR_QTY' ]      = $li[ 'recur_qty' ];
-					$r[ 'LI_RECUR_DISCOUNT' ] = output_price( $li[ 'recur_discount' ], $invoice->currencycode, false, true );
-					$r[ 'LI_RECUR_TOTAL' ]    = output_price( $li[ 'recur_total' ], $invoice->currencycode, false, true );
+					$snip = array();
+					$snippet=array();
+					$snip[ 'LI_RECUR_PRICE' ]    = output_price( $li[ 'recur_price' ], $invoice->currencycode, false, true );
+					$snip[ 'LI_RECUR_QTY' ]      = $li[ 'recur_qty' ];
+					$snip[ 'LI_RECUR_DISCOUNT' ] = output_price( $li[ 'recur_discount' ], $invoice->currencycode, false, true );
+					$snip[ 'LI_RECUR_TOTAL' ]    = output_price( $li[ 'recur_total' ], $invoice->currencycode, false, true );
+					
+					$snippet[ ] = $snip;
+					$tmpl          = new patTemplate();
+					$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+					$tmpl->readTemplatesFromInput( 'invoice_recurring_row_snippet.html' );
+					$tmpl->addRows( 'snippet', $snippet );
+					$r['RECURRING_ROWS']= $tmpl->getParsedTemplate();
 					}
 
 				$r[ 'LI_TAX_CODE' ]        = $li[ 'tax_code' ];

@@ -239,7 +239,7 @@ class jrportal_invoice
 		////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		$bookings_can_be_vat_exempt = false;
-		if ($this->subscription_id == "0" && $this->is_commission == "0")
+		if ($this->subscription == false && $this->is_commission == "0")
 			{
 			if (!$bookings_can_be_vat_exempt)
 				{
