@@ -246,7 +246,14 @@ class invoicehandler extends jrportal_invoice
 			$this->init_total = $this->init_total + $line_item->init_total_inclusive;
 
 			$r_total                = ( (float) $line_item->recur_price * (int) $line_item->recur_qty ) - (float) $line_item->recur_discount;
-			$recur_total_tax        = number_format( ( $r_total / 100 ) * $line_item->tax_rate, 2, '.', '' );
+			if ($this->vat_will_be_charged)
+				{
+				$recur_total_tax        = number_format( ( $r_total / 100 ) * $line_item->tax_rate, 2, '.', '' );
+				}
+			else
+				{
+				$recur_total_tax                   = 0;
+				}
 			$line_item->recur_total = $r_total + $recur_total_tax;
 
 			$this->recur_total = $this->recur_total + $line_item->recur_total;

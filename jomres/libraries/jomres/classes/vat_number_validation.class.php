@@ -51,7 +51,7 @@ class vat_number_validation
 						}
 				break;
 			
-			case 'guest_registered_byprofile_id':
+			case 'buyer_registered_byprofile_id':
 					$id = $arguments["profile_id"];
 					$query  = "SELECT `vat_number`,`vat_number_validated`,`country`,`vat_number_validation_response` FROM #__jomres_guest_profile WHERE cms_user_id = " . (int) $id . " LIMIT 1";
 					$result = doSelectSql( $query, 2 );
