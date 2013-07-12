@@ -33,7 +33,38 @@ class j06005subscribe
 			}
 		else
 			{
-			$package_id = (int) jomresGetParam( $_REQUEST, 'id', 0 );
+			$profile_check_pass = true;
+			$query     = "SELECT firstname,surname,house,street,town,postcode,country,email FROM #__jomres_guest_profile WHERE cms_user_id = '" . (int) $thisJRUser->id . "' LIMIT 1";
+			$guestData = doSelectSql( $query, 2 );
+			foreach ($guestData as $key=>$val)
+				{
+				if (trim($val) == "")
+					{
+					$profile_check_pass = false;
+					}
+				}
+			if (!$profile_check_pass)
+				{
+				$output = array();
+				$output['_JRPORTAL_INVOICES_SUBSCRIPTION_PROFILE_ERROR_EXPL'] = jr_gettext( '_JRPORTAL_INVOICES_SUBSCRIPTION_PROFILE_ERROR_EXPL', _JRPORTAL_INVOICES_SUBSCRIPTION_PROFILE_ERROR_EXPL, false );
+				$output[ '_JOMRES_MY_ACCOUNT_EDIT' ] = jr_gettext( '_JOMRES_MY_ACCOUNT_EDIT', _JOMRES_MY_ACCOUNT_EDIT, false );
+				$output[ 'LINK' ] = JOMRES_SITEPAGE_URL . "&task=edit_my_account";
+				 
+				$pageoutput[]                = $output;
+				$tmpl                        = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->readTemplatesFromInput( 'subscription_error_incomplete_details.html' );
+				$tmpl->addRows( 'pageoutput', $pageoutput );
+				$tmpl->displayParsedTemplate(); 
+				}
+			else
+				{
+				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=save_subscriber&package_id=".(int) jomresGetParam( $_REQUEST, 'id', 0 ), "" ));
+				}
+
+		
+		
+/* 			$package_id = (int) jomresGetParam( $_REQUEST, 'id', 0 );
 
 			$output     = array ();
 			$pageoutput = array ();
@@ -88,7 +119,7 @@ class j06005subscribe
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			$tmpl->readTemplatesFromInput( 'frontend_subscriber_register.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
-			$tmpl->displayParsedTemplate();
+			$tmpl->displayParsedTemplate(); */
 			}
 		}
 

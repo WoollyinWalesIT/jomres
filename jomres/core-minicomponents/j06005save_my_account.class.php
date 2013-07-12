@@ -61,7 +61,7 @@ class j06005save_my_account
 		$original_vat_number = $vat_data [ 'vat_number' ];
 		$original_vat_number_validated = (int)$vat_data [ 'vat_number_validated' ];
 
-		if ( $firstname == "" || $surname == "" || $house == "" || $street == "" || $town == "" || $region == "" || $country == "" || $postcode == "" || $email == "" ) // Not going to mess about. If they've bypassed the javascript to get this far we're not going to waste time telling them they've missed something out. Just return.
+		if ( $firstname == "" || $surname == "" || $house == "" || $street == "" || $town == "" || $country == "" || $postcode == "" || $email == "" ) // Not going to mess about. If they've bypassed the javascript to get this far we're not going to waste time telling them they've missed something out. Just return.
 		return;
 		$query  = "SELECT id FROM #__jomres_guest_profile WHERE cms_user_id = " . (int) $thisJRUser->id;
 		$result = doSelectSql( $query );

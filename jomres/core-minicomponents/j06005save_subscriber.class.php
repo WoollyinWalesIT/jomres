@@ -33,13 +33,16 @@ class j06005save_subscriber
 			}
 		else
 			{
-			$package_id = (int) jomresGetParam( $_POST, 'package_id', 0 );
-
-			$firstname = (string) jomresGetParam( $_POST, 'firstname', '' );
-			$surname   = (string) jomresGetParam( $_POST, 'surname', '' );
-			$address   = (string) jomresGetParam( $_POST, 'address', '' );
-			$country   = (string) jomresGetParam( $_POST, 'country', '' );
-			$postcode  = (string) jomresGetParam( $_POST, 'postcode', '' );
+			$package_id = (int) jomresGetParam( $_REQUEST, 'package_id', 0 );
+			
+			$query     = "SELECT firstname,surname,house,street,town,postcode,country,email FROM #__jomres_guest_profile WHERE cms_user_id = '" . (int) $thisJRUser->id . "' LIMIT 1";
+			$subscriber_profile_data = doSelectSql( $query, 2 );
+			
+			$firstname = $subscriber_profile_data['firstname'];
+			$surname   = $subscriber_profile_data['surname'];
+			$address   = $subscriber_profile_data['street'];
+			$country   = $subscriber_profile_data['country'];
+			$postcode  = $subscriber_profile_data['postcode'];
 
 			if ( strlen( $firstname ) == 0 || strlen( $surname ) == 0 || strlen( $address ) == 0 || strlen( $country ) == 0 || strlen( $postcode ) == 0 )
 				{
@@ -87,6 +90,7 @@ class j06005save_subscriber
 						}
 					}
 				}
+
 
 			jr_import( 'jrportal_subscribers' );
 			$subscriber = new jrportal_subscribers();
