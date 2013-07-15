@@ -76,28 +76,31 @@ class j00012pathway
 		if ( $popup == 0 && !JOMRES_SINGLEPROPERTY && $numberOfPropertiesInSystem > 1 )
 			{
 			$pathwayArray = array ();
-
-			$property_uid = $componentArgs[ 'property_uid' ];
-			if ( $thisJRUser->userIsManager ) $property_uid = (int) $thisJRUser->defaultproperty;
-
 			$task = get_showtime( 'task' );
+			
+			$property_uid = $componentArgs[ 'property_uid' ];
+			if ( $thisJRUser->userIsManager ) 
+				{
+				$property_uid = (int) $thisJRUser->defaultproperty;
+				}
+			
+			if ($property_uid > 0)
+				{
+				$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+				$current_property_details->gather_data( $property_uid );
 
-			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-			$current_property_details->gather_data( $property_uid );
+				$query         = "SELECT ptype FROM #__jomres_ptypes WHERE id=" . (int) $current_property_details->ptype_id;
+				$ptype         = doSelectSql( $query, 1 );
+				$property_type = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPES' . (int) $current_property_details->ptype_id, $ptype, false, false );
 
-			$query         = "SELECT ptype FROM #__jomres_ptypes WHERE id=" . (int) $current_property_details->ptype_id;
-			$ptype         = doSelectSql( $query, 1 );
-			$property_type = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPES' . (int) $current_property_details->ptype_id, $ptype, false, false );
+				$tasks = array ();
 
-			$tasks = array ();
-
-			//$tasks['XXXXXX']			=array('text'=>_JOMRES_PATHWAY_PROPERTYLIST,										'url'=>JOMRES_SITEPAGE_URL);
-			//$tasks['listProperties']	=array('text'=>_JOMRES_PATHWAY_PROPERTYLIST,										'url'=>JOMRES_SITEPAGE_URL);
-			$tasks[ 'property_type' ] = array ( 'text' => $property_type, 'url' => jomresURL( JOMRES_SITEPAGE_URL . "&amp;task=search&amp;ptype=" . $current_property_details->ptype_id ) );
-
-			$tasks[ 'country' ]      = array ( 'text' => $current_property_details->property_country, 'url' => JOMRES_SITEPAGE_URL . '&amp;task=search&country=' . $current_property_details->property_country_code );
-			$tasks[ 'region' ]       = array ( 'text' => $current_property_details->property_region, 'url' => JOMRES_SITEPAGE_URL . "&amp;task=search&amp;region=" . $current_property_details->property_region );
-			$tasks[ 'town' ]         = array ( 'text' => $current_property_details->property_town, 'url' => JOMRES_SITEPAGE_URL . "&amp;task=search&amp;town=" . $current_property_details->property_town );
+				$tasks[ 'property_type' ] = array ( 'text' => $property_type, 'url' => jomresURL( JOMRES_SITEPAGE_URL . "&amp;task=search&amp;ptype=" . $current_property_details->ptype_id ) );
+				$tasks[ 'country' ]      = array ( 'text' => $current_property_details->property_country, 'url' => JOMRES_SITEPAGE_URL . '&amp;task=search&country=' . $current_property_details->property_country_code );
+				$tasks[ 'region' ]       = array ( 'text' => $current_property_details->property_region, 'url' => JOMRES_SITEPAGE_URL . "&amp;task=search&amp;region=" . $current_property_details->property_region );
+				$tasks[ 'town' ]         = array ( 'text' => $current_property_details->property_town, 'url' => JOMRES_SITEPAGE_URL . "&amp;task=search&amp;town=" . $current_property_details->property_town );
+				}
+			
 			$tasks[ 'viewproperty' ] = array ( 'text' => getPropertyName( $property_uid ), 'url' => JOMRES_SITEPAGE_URL . '&task=viewproperty&amp;property_uid=' . $property_uid );
 			$tasks[ 'showTariffs' ]  = array ( 'text' => jr_gettext( "_JOMRES_COM_MR_LISTTARIFF_TITLE", _JOMRES_COM_MR_LISTTARIFF_TITLE ) . " " . getPropertyName( $property_uid ), 'url' => JOMRES_SITEPAGE_URL . '&task=showTariffs&amp;op=1&amp;property_uid=' . $property_uid );
 			$tasks[ 'dobooking' ]    = array ( 'text' => jr_gettext( "_JOMRES_PATHWAY_BOOKINGFORM", _JOMRES_PATHWAY_BOOKINGFORM ), 'url' => JOMRES_SITEPAGE_URL . '&task=dobooking&amp;selectedProperty=' . $property_uid );
