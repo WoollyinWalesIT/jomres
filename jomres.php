@@ -40,6 +40,11 @@ $numberOfPropertiesInSystem = count( $countproperties );
 if ( $numberOfPropertiesInSystem > 200 ) set_showtime( 'heavyweight_system', true );
 
 $thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' ); // 00002 event is triggered here
+if (count($thisJRUser->authorisedProperties)==0)
+	{
+	echo "Error, manager has no properties";
+	return;
+	}
 $siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 $jrConfig   = $siteConfig->get();
 

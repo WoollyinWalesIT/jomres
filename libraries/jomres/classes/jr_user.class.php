@@ -124,6 +124,10 @@ class jr_user
 
 						$query                  = "SELECT property_uid FROM #__jomres_managers_propertys_xref  WHERE manager_id = '" . (int) $this->id . "'";
 						$managersToPropertyList = doSelectSql( $query );
+						if (count($managersToPropertyList)==0)
+							{
+							return;
+							}
 						foreach ( $managersToPropertyList as $x )
 							{
 							$this->authorisedProperties[ ] = $x->property_uid;
