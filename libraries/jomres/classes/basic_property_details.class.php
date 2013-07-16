@@ -140,15 +140,20 @@ class basic_property_details
 
 	public function gather_data( $property_uid = 0 )
 		{
+		if ( $property_uid == $this->property_uid ) // No need to re-gather the info
+			{
+			return true;
+			}
+		
+		$this->property_uid = (int) $property_uid;
+		
 		if ( $this->property_uid === 0 )
 			{
 			echo "Fatal Error, property uid not set, exiting <br/>";
 			//echo_backtrace();
 			exit;
 			}
-		if ( $property_uid == $this->property_uid ) // No need to re-gather the info
-		return true;
-		$this->property_uid = (int) $property_uid;
+		
 		$customTextObj      = jomres_singleton_abstract::getInstance( 'custom_text' );
 		$customTextObj->get_custom_text_for_property( $this->property_uid );
 
