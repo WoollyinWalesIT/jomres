@@ -35,6 +35,7 @@ class j16000savecrate
 		$type         = jomresGetParam( $_REQUEST, 'type', 0 );
 		$value        = jomresGetParam( $_REQUEST, 'value', 0.00 );
 		$currencycode = jomresGetParam( $_REQUEST, 'currencycode', '' );
+		$tax_rate     = jomresGetParam( $_REQUEST, 'tax_rate', 0 );
 
 		jr_import( 'jrportal_crate' );
 		$crateObj     = new jrportal_crate();
@@ -44,9 +45,12 @@ class j16000savecrate
 		$crateObj->type         = $type;
 		$crateObj->value        = $value;
 		$crateObj->currencycode = $currencycode;
+		$crateObj->tax_rate     = $tax_rate;
+		
 		if ( $id > 0 ) $crateObj->commitUpdateCrate();
 		else
 		$crateObj->commitNewCrate();
+		
 		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listcrates", '' );
 		}
 

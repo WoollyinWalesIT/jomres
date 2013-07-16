@@ -26,6 +26,7 @@ class jrportal_crate
 		$this->created       = "0000-00-00 00:00:00";
 		$this->archived      = 0;
 		$this->archived_date = "0000-00-00 00:00:00";
+		$this->tax_rate      = 0;
 		$this->error         = null;
 		}
 
@@ -35,7 +36,7 @@ class jrportal_crate
 			{
 			$query = "SELECT
 				`id`,`title`,`type`,`value`,`currencycode`,
-				`created`,`archived`,`archived_date`
+				`created`,`archived`,`archived_date`,`tax_rate`
 				FROM #__jomresportal_c_rates WHERE `id`='$this->id' LIMIT 1";
 
 			$result = doSelectSql( $query );
@@ -52,6 +53,7 @@ class jrportal_crate
 					$this->created       = $r->created;
 					$this->archived      = $r->archived;
 					$this->archived_date = $r->archived_date;
+					$this->tax_rate      = $r->tax_rate;
 					}
 
 				return true;
@@ -93,7 +95,8 @@ class jrportal_crate
 				`currencycode`,
 				`created`,
 				`archived`,
-				`archived_date`
+				`archived_date`,
+				`tax_rate`
 				)
 				VALUES
 				(
@@ -103,7 +106,8 @@ class jrportal_crate
 				'$this->currencycode',
 				'" . date( "Y-m-d H-i-s" ) . "',
 				'0',
-				'$this->archived_date'
+				'$this->archived_date',
+				'$this->tax_rate',
 				)";
 			$result = doInsertSql( $query, '' );
 			if ( $result )
@@ -135,7 +139,8 @@ class jrportal_crate
 				`currencycode` 		= '$this->currencycode',
 				`created` 			= '$this->created',
 				`archived` 			= '$this->archived',
-				`archived_date` 	= '$this->archived_date'
+				`archived_date` 	= '$this->archived_date',
+				`tax_rate` 			= '$this->tax_rate'
 				WHERE `id`='$this->id'";
 
 			return doInsertSql( $query, '' );

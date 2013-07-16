@@ -96,8 +96,8 @@ class j06005edit_my_account
 					
 					jr_import( 'vat_number_validation' );
 					$validation = new vat_number_validation();
-					$validation->get_subject("guest_registered_byprofile_id",array("profile_id"=>$thisJRUser->id));
-					
+					$validation->get_subject("buyer_registered_byprofile_id",array("profile_id"=>$thisJRUser->id));
+
 					$output[ 'VAT_NUMBER' ]           = $validation->vat_number;
 					$output[ 'VAT_NUMBER_VALIDATED' ] = $validation->vat_number_validated;
 					
