@@ -207,18 +207,32 @@ function grantMosUser()
 			if ( $u[ 'id' ] == $userid ) $username = $u[ 'username' ];
 			}
 		$apikey = createNewAPIKey();
-		if ( $grantAct == "y" ) $query = "INSERT INTO #__jomres_managers (`userid`,`username`,`property_uid`,`access_level`,`currentproperty`,`apikey`)VALUES ('" . (int) $userid . "','$username','-1','1','-1','$apikey')";
-		else
-		$query = "DELETE FROM #__jomres_managers WHERE userid = '" . (int) $userid . "'";
-
-		if ( doInsertSql( $query, '' ) )
+		if ( $grantAct == "y" ) 
 			{
-			if ( $grantAct == "y" ) jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=editProfile&id=" . (int) $userid, jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
-			else
+			$query = "INSERT INTO #__jomres_managers (`userid`,`username`,`property_uid`,`access_level`,`currentproperty`,`apikey`)VALUES ('" . (int) $userid . "','$username','-1','1','-1','$apikey')";
+			doInsertSql( $query, '' );
+			}
+		else
+			{
+			$query = "DELETE FROM #__jomres_managers WHERE `userid` = '" . (int) $userid . "'";
+			doInsertSql( $query, '' );
+			
+			$query = "DELETE FROM #__jomres_managers_propertys_xref WHERE `manager_id` = '" . (int) $userid . "'";
+			doInsertSql( $query, '' );
+			}
+
+		if ( $grantAct == "y" ) 
+			{
+			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=editProfile&id=" . (int) $userid, jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
+			}
+		else
+			{
 			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose", jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
 			}
 		}
 	else
-	echo "Hmm, that userid is 0";
+		{
+		echo "Hmm, that userid is 0";
+		}
 	}
 
