@@ -50,6 +50,17 @@ class j03200jrportal
 
 		$booking->commitNewBooking();
 
+		$super_managers = array();
+		$query         = "SELECT userid FROM #__jomres_managers WHERE `pu` = 1";
+		$superManagerList   = doSelectSql( $query );
+		if (count($superManagerList)>0)
+			{
+			foreach ($superManagerList as $m)
+				{
+				$super_managers[]=$m->userid;
+				}
+			}
+		
 		jr_import( 'jrportal_user_functions' );
 		$userFunctions = new jrportal_user_functions();
 		$usersArray    = $userFunctions->getManagerIdsForProperty( $property_uid );
@@ -59,18 +70,21 @@ class j03200jrportal
 			foreach ( $usersArray as $u )
 				{
 				$jos_id     = $u[ 'manager_id' ];
-				$userDeets  = $userFunctions->getJoomlaUserDetailsForJoomlaId( $jos_id );
-				$manager_id = $userFunctions->getManagerIdForJosId( $jos_id );
-				jr_import( 'jrportal_user' );
-				$user                    = new jrportal_user();
-				$user->manager_uid       = $manager_id;
-				$user->jos_id            = $jos_id;
-				$user->portal_booking_id = $booking->id;
-				$user->username          = $userDeets[ 'username' ];
-				$user->email             = $userDeets[ 'email' ];
-				$user->commitNewUser();
-
-				$userObjsArray[ ] = $user;
+				if (!in_array($jos_id,$super_managers))
+					{
+					$userDeets  = $userFunctions->getJoomlaUserDetailsForJoomlaId( $jos_id );
+					$manager_id = $userFunctions->getManagerIdForJosId( $jos_id );
+					jr_import( 'jrportal_user' );
+					$user                    = new jrportal_user();
+					$user->manager_uid       = $manager_id;
+					$user->jos_id            = $jos_id;
+					$user->portal_booking_id = $booking->id;
+					$user->username          = $userDeets[ 'username' ];
+					$user->email             = $userDeets[ 'email' ];
+					$user->commitNewUser();
+						
+					$userObjsArray[ ] = $user;
+					}
 				}
 			}
 
