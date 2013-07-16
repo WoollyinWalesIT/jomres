@@ -96,9 +96,9 @@ class j00012pathway
 				$tasks = array ();
 
 				$tasks[ 'property_type' ] = array ( 'text' => $property_type, 'url' => jomresURL( JOMRES_SITEPAGE_URL . "&amp;task=search&amp;ptype=" . $current_property_details->ptype_id ) );
-				$tasks[ 'country' ]      = array ( 'text' => $current_property_details->property_country, 'url' => JOMRES_SITEPAGE_URL . '&amp;task=search&country=' . $current_property_details->property_country_code );
-				$tasks[ 'region' ]       = array ( 'text' => $current_property_details->property_region, 'url' => JOMRES_SITEPAGE_URL . "&amp;task=search&amp;region=" . $current_property_details->property_region );
-				$tasks[ 'town' ]         = array ( 'text' => $current_property_details->property_town, 'url' => JOMRES_SITEPAGE_URL . "&amp;task=search&amp;town=" . $current_property_details->property_town );
+				$tasks[ 'country' ]      = array ( 'text' => $current_property_details->property_country, 'url' => JOMRES_SITEPAGE_URL . '&send=Search&calledByModule=mod_jomsearch_m0&country=' . $current_property_details->property_country_code );
+				$tasks[ 'region' ]       = array ( 'text' => $current_property_details->property_region, 'url' => JOMRES_SITEPAGE_URL . "&send=Search&calledByModule=mod_jomsearch_m0&region=" . $current_property_details->property_region );
+				$tasks[ 'town' ]         = array ( 'text' => $current_property_details->property_town, 'url' => JOMRES_SITEPAGE_URL . "&send=Search&calledByModule=mod_jomsearch_m0&town=" . $current_property_details->property_town );
 				}
 			
 			$tasks[ 'viewproperty' ] = array ( 'text' => getPropertyName( $property_uid ), 'url' => JOMRES_SITEPAGE_URL . '&task=viewproperty&amp;property_uid=' . $property_uid );
