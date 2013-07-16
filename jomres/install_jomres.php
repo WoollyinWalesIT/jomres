@@ -434,7 +434,31 @@ function doTableUpdates()
 	
 	if ( !checkInvoicesVATFlagColExists() ) alterInvoicesVATFlagCol();
 	
+	if ( !checkCratesTaxRateColExists() ) alterCratesTaxRateCol();
+	
 	if ( _JOMRES_DETECTED_CMS == "joomla15" ) checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
+	}
+
+function checkCratesTaxRateColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomresportal_c_rates LIKE 'tax_rate'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
+
+function alterCratesTaxRateCol()
+	{
+	if ( !AUTO_UPGRADE ) echo "Editing __jomresportal_c_rates table adding tax_rate column<br>";
+	$query = "ALTER TABLE `#__jomresportal_c_rates` ADD `tax_rate` INT NULL DEFAULT '1' AFTER `archived_date` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomresportal_c_rates tax_rate</b><br>";
+		}
 	}
 
 function checkInvoicesVATFlagColExists()
@@ -2311,6 +2335,7 @@ function createJomresTables()
 		`created` datetime,
 		`archived` bool DEFAULT 0,
 		`archived_date` datetime,
+		`tax_rate` INT NULL DEFAULT '0',
 		PRIMARY KEY(id)
 		)";
 	if ( !doInsertSql( $query ) )
@@ -3590,6 +3615,7 @@ function insertPortalTables()
 		`created` datetime,
 		`archived` bool DEFAULT 0,
 		`archived_date` datetime,
+		`tax_rate` INT NULL DEFAULT '0',
 		PRIMARY KEY(id)
 		)";
 	if ( !doInsertSql( $query ) )
@@ -4205,6 +4231,7 @@ function addNewTables()
 		`created` datetime,
 		`archived` bool DEFAULT 0,
 		`archived_date` datetime,
+		`tax_rate` INT NULL DEFAULT '0',
 		PRIMARY KEY(id)
 		)";
 	if ( !doInsertSql( $query ) )

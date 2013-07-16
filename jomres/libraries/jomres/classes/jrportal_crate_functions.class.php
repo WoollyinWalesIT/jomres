@@ -73,7 +73,7 @@ class jrportal_crate_functions // Functions supplied as a class so that they can
 		{
 		$retResult = array ();
 		$query     = "SELECT `id`,`title`,`type`,`value`,`currencycode`,
-				`created`,`archived`,`archived_date`
+				`created`,`archived`,`archived_date`,`tax_rate`
 				FROM #__jomresportal_c_rates " . $clause;
 		$result    = doSelectSql( $query );
 		if ( count( $result ) > 0 )
@@ -88,6 +88,7 @@ class jrportal_crate_functions // Functions supplied as a class so that they can
 				$retResult[ $r->id ][ 'created' ]       = $r->created;
 				$retResult[ $r->id ][ 'archived' ]      = $r->archived;
 				$retResult[ $r->id ][ 'archived_date' ] = $r->archived_date;
+				$retResult[ $r->id ][ 'tax_rate' ]      = $r->tax_rate;
 				}
 			}
 

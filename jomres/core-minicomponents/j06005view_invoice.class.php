@@ -104,8 +104,15 @@ class j06005view_invoice
 					return;
 					}
 				$output[ 'BUSINESS_DETAILS_TEMPLATE' ] = $MiniComponents->specificEvent( '6000', 'show_site_business', array () );
-				if ( count( $thisJRUser->authorisedProperties ) > 0 ) 
+
+				if ( count( $thisJRUser->authorisedProperties ) > 0 )
+					{
 					$output[ 'CLIENT_DETAILS_TEMPLATE' ] = $MiniComponents->specificEvent( '6000', 'show_hotel_details', array ( 'property_uid' => $invoice->property_uid ) );
+					}
+				else // It's a subscription invoice. The manager doesn't yet have any properties, we need to pull their information from the profiles table.
+					{
+					$output[ 'CLIENT_DETAILS_TEMPLATE' ] = $MiniComponents->specificEvent( '6005', 'show_manager_details', array ( 'manager_profile_id' => $invoice->cms_user_id ) );
+					}
 				}
 			}
 		else
