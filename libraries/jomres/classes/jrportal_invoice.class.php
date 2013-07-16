@@ -253,7 +253,7 @@ class jrportal_invoice
 		if ($this->subscription == "0" && $this->is_commission == "1") // It's a site -> property transaction (commission), let's get the property's vat details.
 			{
 			$buyer_validation = new vat_number_validation( );
-			$buyer_validation->get_subject("property",array( "property_uid"=>$this->property_uid ));
+			$buyer_validation->get_subject("buyer_registered_byprofile_id",array( "profile_id"=>$this->cms_user_id ));
 
 			$seller_validation = new vat_number_validation( );
 			$seller_validation->get_subject( "site" , array() );
