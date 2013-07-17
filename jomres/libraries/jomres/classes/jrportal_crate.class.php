@@ -107,7 +107,7 @@ class jrportal_crate
 				'" . date( "Y-m-d H-i-s" ) . "',
 				'0',
 				'$this->archived_date',
-				'$this->tax_rate',
+				'$this->tax_rate'
 				)";
 			$result = doInsertSql( $query, '' );
 			if ( $result )
