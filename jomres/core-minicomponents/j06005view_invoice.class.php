@@ -87,10 +87,31 @@ class j06005view_invoice
 						}
 					}
 
-				$query    = "SELECT guest_uid FROM #__jomres_contracts WHERE contract_uid = " . (int) $invoice->contract_id . " LIMIT 1";
-				$guestUid = doSelectSql( $query, 1 );
-
-				$query     = "SELECT guests_uid FROM #__jomres_guests WHERE guests_uid = '" . (int) $guestUid . "'  AND property_uid = '" . (int) $invoice->property_uid . "'";
+				$query    = "SELECT guest_uid,arrival,departure FROM #__jomres_contracts WHERE contract_uid = " . (int) $invoice->contract_id . " LIMIT 1";
+				$contract = doSelectSql( $query, 2 );
+				$guestUid = $contract['guest_uid'];
+				
+				$mrConfig            = getPropertySpecificSettings($invoice->property_uid);
+				$snip = array();
+				$snippet=array();
+				
+				$snip[ 'HARRIVAL' ]   = jr_gettext( '_JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL', _JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL, false, false );
+				$snip[ 'ARRIVAL' ]    = outputDate( $contract['arrival'] );
+				if ( $mrConfig[ 'showdepartureinput' ] == "1" )
+					{
+					$snip[ 'HDEPARTURE' ] = jr_gettext( '_JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE', _JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE, false, false );
+					$snip[ 'DEPARTURE' ]  = outputDate( $contract['departure'] );
+					}
+				
+				$snippet[ ] = $snip;
+				$tmpl          = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->readTemplatesFromInput( 'invoice_arrival_snippet.html' );
+				$tmpl->addRows( 'snippet', $snippet );
+				$output['ARRIVAL_DEPARTURE_SNIPPET']= $tmpl->getParsedTemplate();
+					
+				
+				$query     = "SELECT guests_uid FROM #__jomres_guests WHERE guests_uid = '" . (int) $guestUid . "'  AND property_uid = '" . (int) $invoice->property_uid . "' LIMIT 1";
 				$guest_uid = doSelectSql( $query, 1 );
 
 				$output[ 'CLIENT_DETAILS_TEMPLATE' ]   = $MiniComponents->specificEvent( '06005', 'show_guest_details', array ( 'guest_uid' => $guest_uid ) );
