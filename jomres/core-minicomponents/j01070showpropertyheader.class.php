@@ -173,8 +173,12 @@ class j01070showpropertyheader
 
 				if ( $mrConfig[ 'galleryLink' ] != "" )
 					{
-					$output[ 'GALLERYLINK' ]   = str_replace( "&#38;#38;amp;", "&", filter_var( $mrConfig[ 'galleryLink' ], FILTER_SANITIZE_URL ) );
-					$domain                    = parse_url( str_replace( "&#38;#38;amp;", "&", filter_var( $mrConfig[ 'galleryLink' ], FILTER_SANITIZE_URL ) ) );
+					// http://www.worldofwebcraft.com/blog.php?id=250
+					$pattern = '/[^\pL\pN$-_.+!*\'\(\)\,\{\}\|\\\\\^\~\[\]`\<\>\#\%\"\;\/\?\:\@\&\=\.]/u';
+					$url = preg_replace($pattern, '', $mrConfig[ 'galleryLink' ]);
+
+					$output[ 'GALLERYLINK' ]   = str_replace( "&#38;#38;amp;", "&", $url );
+					$domain                    = parse_url( str_replace( "&#38;#38;amp;", "&", $url ) );
 					$output[ 'GALLERYDOMAIN' ] = $domain[ 'host' ];
 					}
 
