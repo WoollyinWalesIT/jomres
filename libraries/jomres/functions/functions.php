@@ -3028,10 +3028,10 @@ function insertInternetBooking( $jomressession = "", $depositPaid = false, $conf
 				echo $jrtb;
 				}
 			gateway_log( "<h2>Resetting temp booking data</h2>" );
-			$tmpBookingHandler->resetCart();
 
-			return $MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'insertSuccessful' ];
 			}
+		$tmpBookingHandler->resetCart();
+		return $MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'insertSuccessful' ];
 		}
 	else
 		{
