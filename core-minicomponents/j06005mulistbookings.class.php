@@ -102,10 +102,10 @@ class j06005mulistbookings
 					$tmpl->readTemplatesFromInput( 'list_bookings.html' );
 					$tmpl->displayParsedTemplate();
 					}
-				}
-			else
-				{
-				echo jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKINGS_NONE', _JOMCOMP_MYUSER_VIEWBOOKINGS_NONE, $editable = false, $isLink = false );
+				else
+					{
+					echo jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKINGS_NONE', _JOMCOMP_MYUSER_VIEWBOOKINGS_NONE, false, false );
+					}
 				}
 			}
 		}
