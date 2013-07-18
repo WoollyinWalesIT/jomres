@@ -78,7 +78,7 @@ class j06000cron_invoice
 				$subject     = jr_gettext( '_JRPORTAL_INVOICES_COMMISSION_INVOICE_RAISED_EMAIL_SUBJECT', _JRPORTAL_INVOICES_COMMISSION_INVOICE_RAISED_EMAIL_SUBJECT, false );
 				$message     = jr_gettext( '_JRPORTAL_INVOICES_COMMISSION_INVOICE_RAISED_EMAIL_MESSAGE', _JRPORTAL_INVOICES_COMMISSION_INVOICE_RAISED_EMAIL_MESSAGE, false ) . " " . JOMRES_SITEPAGE_URL_NOSEF . "&task=view_invoice&id=" . $invoice_handler->id;
 
-				if ( !jomresMailer( get_showtime( 'mailfrom' ), get_showtime( 'sitename' ), $users_email[ $key ][ 'email' ], $subject, $message, $mode = 0 ) ) error_logging( 'Failure in sending commission invoice email to property manager. Target address: ' . $users_email . ' Subject' . $subject );
+				if ( !jomresMailer( get_showtime( 'mailfrom' ), get_showtime( 'sitename' ), $users_email[ $key ][ 'email' ], $subject, $message, $mode = 0 ) ) error_logging( 'Failure in sending commission invoice email to property manager. Target address: ' . $users_email[ $key ][ 'email' ] . ' Subject' . $subject );
 
 				}
 			}
