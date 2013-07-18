@@ -141,9 +141,7 @@
 				});
 
 
-		{
-			MODAL
-		}
+		{MODAL}
 		jomresJquery.jheartbeat.set({
 			url: ajaxurl + "&task=handlereq&no_html=1&field=heartbeat",
 			delay: 30000
@@ -169,8 +167,7 @@
 </script>
 {CUSTOMFIELD_JAVASCRIPT}
 {OPENBOOKINGOFRM_BUTTON} {BUTTON_BACK_TO_PROPERTY_DETAILS}
-<div id="booking_form"
-{HIDDENSTYLE} title="{PROPERTYNAME}">
+<div id="booking_form" {HIDDENSTYLE} title="{PROPERTYNAME}">
 <form action="javascript:dobooking_validate();" name="ajaxform" id="ajaxform" method="post" class="form-horizontal">
 <div id="messages">&nbsp;</div>
 <!--<p>{AJAXFORM_INSTRUCTIONS}</p>-->
@@ -276,8 +273,7 @@
 	<div class="alert">
 		{ESTIMATEWARNING}
 	</div>
-	<patTemplate:tmpl name="roomfeaturesrowheader" type="simpleCondition"
-					  requiredVars="_jomres_bookingorm_roomfeature_filter">
+	<patTemplate:tmpl name="roomfeaturesrowheader" type="simpleCondition" requiredVars="_jomres_bookingorm_roomfeature_filter">
 		<h3 class="page-header">{_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER}</h3>
 	</patTemplate:tmpl>
 	<patTemplate:tmpl name="roomfeaturesrow" type="simpleCondition" requiredVars="inputbox">
