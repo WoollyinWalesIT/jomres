@@ -76,7 +76,7 @@ class j00013x_listyourproperties
 			$r[ 'PUBLISHLINK' ]     = $jrtb .= $jrtbar->endTable();
 			$r[ 'PROPERTYNAME' ]    = jomres_decode( $p->property_name );
 			$r[ 'SWITCHLINK' ]      = jomresURL( JOMRES_SITEPAGE_URL . '&thisProperty=' . $p->propertys_uid );
-			$r[ 'PROPERTYADDRESS' ] = jomres_decode( $p->property_street ) . ', ' . jomres_decode( $p->property_town ) . ', ' . jomres_decode( $p->property_region ) . ', ' . jomres_decode( $p->property_country ) . ', ' . $p->property_postcode;
+			$r[ 'PROPERTYADDRESS' ] = jomres_decode( $p->property_street ) . ', ' . jomres_decode( $p->property_town ) . ', ' . jomres_decode( find_region_name( $p->property_region ) ) . ', ' . jomres_decode( $p->property_country ) . ', ' . $p->property_postcode;
 			$rows[ ]                = $r;
 			}
 
