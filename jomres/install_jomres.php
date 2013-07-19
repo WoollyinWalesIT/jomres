@@ -1692,12 +1692,9 @@ function trashTables()
 			}
 		//	return true;
 		}
-	$query = "DELETE FROM #__components WHERE `option` = 'com_jomres'";
-	doInsertSql( $query, '' );
-	
 	$query = "DELETE FROM #__extensions WHERE `name` = 'com_jomres'";
 	doInsertSql( $query, '' );
-	
+
 	return false;
 	}
 
