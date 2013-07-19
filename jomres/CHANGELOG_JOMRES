@@ -1,3 +1,63 @@
+Jomres 7.3.0
+
+Added new functionality that allows Jomres to communicate with the VIES webservice and validate VAT numbers saved when a user enters their account details. (Euro properties only)
+
+Added the qr code library to the core system, and associated code to the email functionality to allow us to include images in emails. 
+Added "office use" qr code, which prints a qr code to the edit booking page, and "gmap directions" qr code for users to get directions to their property, to the confirmation email and confirmation letter pages. The QR code in the email is intended to give receptionists a quick way of accessing the booking information page in Jomres, allowing them to book guests in/out while on the move.
+Added the ability for the booking form to receive a coupon code via the url. The Coupon code plugin has been updated to allow managers to show lists of coupons with QR codes. These can then be handed out to guests who'd scan the code into their phone and immediately benefit from the discount code in the booking form.
+Added gmap qr code to property header for users who want to get directions.
+
+Edit my account form changed, now the region input is a dropdown, not a freeform input.
+Modified the booking engine so that the guest region is now a dropdown, rather than the free-form'd input used previously.
+Added region dropdowns to the guest admin page(s).
+
+Added new functionality that allows us to offer to import tax rates for all of the EU.
+
+Added a number of changes that allow property managers to store the vat number associated with the property, and managers/receptionists to add a VAT number to a guest's details. (note : guests cannot currently be offered VAT free invoices for bookings, that's specifically disabled, but the code is in-situ to achieve that if desired).
+Added functionality to add VAT numbers to the invoice printouts in the frontend.
+Added code to help us to determine if a guest should or should not be charged VAT.
+Added a new tab to the property configuration area where the property's business details can be added, making them distinct from the property's location. Changed Site Config so that the site business address details country and region are chosen through a dropdown.
+Added some changes that allow us to associate a tax code with a commission rate.
+
+Modified the subscription functionality so that it doesn't need the manager to re-enter their details again, fixed an issue where invoices wouldn't be saved (due to our new changes).
+
+Modified functionality of the og code so that it's added to the head of the page instead of the body.
+Modified the invoice view to have rows relating to recurring prices added to the template as a snippet from another template.
+
+
+Added a tweak to allow redirection directly to urls when the active property is changed
+Improved a new change that saves space at the top of the page depending on whether timezone/language dropdowns are enabled in Site Config.
+Modified the grand total figuring to exclude init totals that're < 0, because they're payment line items which will cause the grand total to show incorrectly.
+Added no cache headers to integration.php to prevent IE's developer tools causing problems.
+Tweaked some autocomplete = off in inputs to lowercase. 
+Changed how a new line in the invoice has the grant total of tax calculated.
+Improved the invoice output a little. Commented a couple of columns in the list invoices page to make it fit better, and made the view invoice page only show recurring items if the recurring total is > 0.00
+Updated phpmailer to mailer 5.2.6. Made older mailer class obsolete.
+Changed how the add your property link is shown in the main menu, so that non-managers can also see that option without the site manger needing to add a module, if they don't want to.
+Added some new changes to the printable invoice so that they also show the new grand total outputs.
+Removed BOM from a number of files.
+Corrected a language string that incorrectly referred to an older implementation of Jomres that no longer exists.
+Added nusoap library to Jomres.
+Added a new minicomponent that'll return the region dropdown, intended for use via ajax.
+Changed the show guest details script to find the region name using the find_region_name function.
+Disabled the Jomres caching switch in Site Config. Given the dynamic nature of the system, there's too many things that can change so it's better not to use it atm.
+Renamed the Venezuelan region Dependencias Federales to Territorio Insular Francisco de Miranda
+Added a number of changes to fix an issue where sometimes the global editing mode wouldn't work in the frontend.
+Prevented pathway script from calling basic property details class when it doesn't need to.
+Modified pathway functionality so that the urls are sef'd.
+Updated the de-authorisation procedure to ensure that manager ids are also removed from the manager/property xref table.
+Tweaked the jrportal functionality that calls 07010 (which is mainly used to insert orphan commission line items) so that if the booker is a super manager, then their details aren't used for raising commisssion items.
+Added a check to see if the manager trying to log in hasn't got any properties. If they don't, then we back out gracefully.
+Added arrival/departure date output to the invoice.
+Changed how external urls are filtered before they're shown in the property header.
+Changed the point where the shopping cart is emptied after bookings are created.
+Ensured that the javascript inclusion plugin imports the IDN conversion script as in some edge cases it wasn't being included beforehand.
+Improved the cron invoice logging so that the email address is readable.
+Added some changes that (again) prevent double clicking when making payments to prevent the blank emails that some people get.
+Added a check to the manager's first run script to ensure that only super property managers see the Wizzard.
+
+
+
 Jomres 7.2.19
 
 Reversed the previous change that prevents double clicking as it does not work on Chrome. Special release for this as it's a fairly major issue.
