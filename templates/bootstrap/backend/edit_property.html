@@ -1,21 +1,9 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<style>
-		.REmail {
-
-		border:solid
-
-		1
-		px {
-			INPUTBOXERRORBORDER
+	.REmail {
+		border:solid 1px {INPUTBOXERRORBORDER};
+		background-color: {INPUTBOXERRORBACKGROUND};
 		}
-
-		;
-		background-color: {
-			INPUTBOXERRORBACKGROUND
-		}
-
-		;
-			}
 
 		span.required {
 			color: red;
@@ -35,7 +23,7 @@
 	<h2 class="page-header">{PAGETITLE}</h2>
 	<patTemplate:tmpl name="change_country_warning" type="simpleCondition" requiredVars="changecountrywarning"
 	<p class="alert alert-info">{CHANGECOUNTRYWARNING}</p>
-</patTemplate:tmpl>
+	</patTemplate:tmpl>
 <p>{DELETEWARNING}</p>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
 	<fieldset>
