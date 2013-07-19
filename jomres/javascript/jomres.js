@@ -844,13 +844,14 @@ function checkaddressfields() {
 function dobooking_validate() {
 	if (checkaddressfields()) {
 		getResponse_guest();
+		document.ajaxform.confirmbooking.disabled = true;
 		setTimeout('submitBooking()', 2000);
 	}
 };
 
 function submitBooking() {
 	document.ajaxform.action = livesite;
-	document.ajaxform.submit();
+	document.ajaxform.submit(document.ajaxform.confirmbooking.disabled = true);
 };
 
 function setInputFillToOkColour(field) {
