@@ -34,7 +34,11 @@ class j00012manager_first_run
 			}
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		if ( AJAXCALL ) return;
-		if ( $thisJRUser->id != 42 ) return;
+		$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
+		if (!$thisJRUser->superPropertyManager)
+			{
+			return;
+			}
 		if ( get_showtime( 'numberOfPropertiesInSystem' ) > 1 ) return;
 
 		$logfile    = JOMRES_SYSTEMLOG_PATH . 'managers_first_run' . $thisJRUser->id . '.txt';
