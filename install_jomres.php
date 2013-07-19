@@ -1694,7 +1694,10 @@ function trashTables()
 		}
 	$query = "DELETE FROM #__components WHERE `option` = 'com_jomres'";
 	doInsertSql( $query, '' );
-
+	
+	$query = "DELETE FROM #__extensions WHERE `name` = 'com_jomres'";
+	doInsertSql( $query, '' );
+	
 	return false;
 	}
 
@@ -2335,7 +2338,7 @@ function createJomresTables()
 		`created` datetime,
 		`archived` bool DEFAULT 0,
 		`archived_date` datetime,
-		`tax_rate` INT NULL DEFAULT '0',
+		`tax_rate` INT NULL DEFAULT '1',
 		PRIMARY KEY(id)
 		)";
 	if ( !doInsertSql( $query ) )
@@ -3057,7 +3060,7 @@ function insertSampleData()
 
 	$result = doInsertSql( "delete FROM `#__jomres_propertys`", "" );
 
-	$result = doInsertSql( "INSERT INTO `#__jomresportal_c_rates` VALUES (1,'default',2,10,'GBP','2009-05-04 13:07:51',0,'0000-00-00 00:00:00')", "" );
+	$result = doInsertSql( "INSERT INTO `#__jomresportal_c_rates` VALUES (1,'default',2,10,'GBP','2009-05-04 13:07:51',0,'0000-00-00 00:00:00',1)", "" );
 
 	$result = doInsertSql( "INSERT INTO `#__jomres_hotel_features` (`hotel_features_uid`, `hotel_feature_abbv`, `hotel_feature_full_desc`, `image`, `property_uid`, `ptype_id`) VALUES
 			(3, 'Airport', 'Close to the airport', 'jomres/uploadedimages/pfeatures/airport_nearby.png', '0', 0),
@@ -3615,7 +3618,7 @@ function insertPortalTables()
 		`created` datetime,
 		`archived` bool DEFAULT 0,
 		`archived_date` datetime,
-		`tax_rate` INT NULL DEFAULT '0',
+		`tax_rate` INT NULL DEFAULT '1',
 		PRIMARY KEY(id)
 		)";
 	if ( !doInsertSql( $query ) )
@@ -4231,7 +4234,7 @@ function addNewTables()
 		`created` datetime,
 		`archived` bool DEFAULT 0,
 		`archived_date` datetime,
-		`tax_rate` INT NULL DEFAULT '0',
+		`tax_rate` INT NULL DEFAULT '1',
 		PRIMARY KEY(id)
 		)";
 	if ( !doInsertSql( $query ) )
