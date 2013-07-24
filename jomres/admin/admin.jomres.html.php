@@ -11,6 +11,12 @@
 
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 
+/**
+* The bootstrapped version of the Site Configuration tabs. 
+*
+* @ TODO : Template it
+*
+*/
 class HTML_jomres
 	{
 	/**
