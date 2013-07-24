@@ -92,7 +92,14 @@ class j16000editPfeature
 
 		$output[ 'JOMRESTOKEN' ] = '<input type="hidden" name="jomrestoken" value="' . jomresSetToken() . '"><input type="hidden" name="no_html" value="1"/>';
 
-		HTML_jomres::editPfeature_html( $output, $rows );
+		$pageoutput    = array ();
+		$pageoutput[ ] = $output;
+		$tmpl          = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+		$tmpl->readTemplatesFromInput( 'edit_property_feature.html' );
+		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->addRows( 'rows', $rows );
+		$tmpl->displayParsedTemplate();
 		}
 
 	// This must be included in every Event/Mini-component
