@@ -14,7 +14,13 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-
+/**
+ *
+ * On Jomres startup this will detect if the browser is a mobile device and if so, if the site config settings say that mobile devices should be redirected to a template-less output. Will set the "showtime" variable mobile_browser to True.
+ *
+ * This class is largely obsolete now. It was written during Joomla 2.5, and before Joomla 3 and the responsive bootstrap templates came into being. As a result, there are few people who're likely to need this however I know from long experience that if I take it out somebody, somewhere will be upset because they're using Jomres' frameless detection for some reason. 
+ *
+ */
 class j00003mobile
 	{
 	function j00003mobile( $componentArgs )

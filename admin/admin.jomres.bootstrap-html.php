@@ -11,7 +11,12 @@
 
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 
-
+/**
+* The bootstrapped version of the Site Configuration tabs. 
+*
+* @ TODO : Template it
+*
+*/
 class HTML_jomres
 	{
 	/**
@@ -51,14 +56,6 @@ class HTML_jomres
 			echo $jrtb;
 
 			$sslinput = "";
-
-			// Disabled due to joomla's url rewriting making it virtually impossible to modify urls for ssl handling AND sef with any confidence.
-			// $sslinput=
-			// '<tr>
-			// <td>'.JOMRES_COM_A_USE_SSL.'</td>
-			// <td>'.$lists['useSSLinBookingform'].'</td>
-			// <td>'.JOMRES_COM_A_USE_SSL_DESC.get_showtime('live_site').'</td>
-			// </tr>';
 
 			$contentPanel->startTabs();
 			$contentPanel->startPanel( jr_gettext( '_JOMRES_A_TABS_MISC', _JOMRES_A_TABS_MISC, false ) );
