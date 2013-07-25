@@ -33,16 +33,25 @@ class j06005subscribe
 			}
 		else
 			{
-			$profile_check_pass = true;
+			$profile_check_pass = false;
 			$query     = "SELECT firstname,surname,house,street,town,postcode,country,email FROM #__jomres_guest_profile WHERE cms_user_id = '" . (int) $thisJRUser->id . "' LIMIT 1";
 			$guestData = doSelectSql( $query, 2 );
-			foreach ($guestData as $key=>$val)
+
+			if ( $guestData )
 				{
-				if (trim($val) == "")
-					{
+				if (
+					$guestData['firstname'] != "" &&
+					$guestData['surname'] != "" &&
+					$guestData['house'] != "" &&
+					$guestData['street'] != "" &&
+					$guestData['town'] != "" &&
+					$guestData['postcode'] != "" &&
+					$guestData['country'] != "" &&
+					$guestData['email'] != ""
+					)
 					$profile_check_pass = false;
-					}
 				}
+
 			if (!$profile_check_pass)
 				{
 				$output = array();
