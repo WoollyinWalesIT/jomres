@@ -23,6 +23,10 @@ function editProfile()
 	{
 	$userid = jomresGetParam( $_REQUEST, 'id', 0 );
 
+ 	if ($userid == 0)
+		{
+		return;
+		}
 	$yesno    = array ();
 	$yesno[ ] = jomresHTML::makeOption( '0', jr_gettext( "_JOMRES_COM_MR_NO", _JOMRES_COM_MR_NO, false ) );
 	$yesno[ ] = jomresHTML::makeOption( '1', jr_gettext( "_JOMRES_COM_MR_YES", _JOMRES_COM_MR_YES, false ) );
