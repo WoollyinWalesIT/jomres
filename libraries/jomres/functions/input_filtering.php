@@ -145,7 +145,7 @@ function jomresGetParam( $request, $element, $def = null, $mask = '' ) // variab
 	return $def;
 
 	// We'll discover the type of $dirty, so that we can cast the variable to a given type
-	$type = jomres_get_var_type( $dirty );
+	$type = jomres_get_var_type( $def );
 	if ( !$type ) // If the data passed isn't recognised, we'll just return out, passing a nice safe null the calling script can work with.
 	return null;
 
