@@ -1916,10 +1916,11 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 			switch ( $attachment[ 'type' ] ) // Use a switch as it allows us to expand this later if we wish
 			{
 				case 'image':
+					$image_arr = explode(JRDS,$attachment[ 'image_path' ]);
+					$image_name = $image_arr [ count($image_arr)-1 ] ;
 					$image_path = $attachment[ 'image_path' ];
 					$cid        = $attachment[ 'CID' ];
-					$mail->AddEmbeddedImage( $image_path, $cid, 'office_qr_code.png' );
-					$mail->Body = 'Your <b>HTML</b> with an embedded Image: <img src="cid:office_qr_code"> Here is an image!';
+					$mail->AddEmbeddedImage( $image_path, $cid, $image_name );
 					break;
 			}
 			}
