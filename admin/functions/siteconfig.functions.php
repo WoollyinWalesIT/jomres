@@ -135,7 +135,7 @@ function showSiteConfig()
 
 	$mapWeatherTempGrad             = array ();
 	$mapWeatherTempGrad[ ]          = jomresHTML::makeOption( 'CELCIUS', jr_gettext( JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS, 'JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS', false ) );
-	$mapWeatherTempGrad[ ]          = jomresHTML::makeOption( 'FARENHEIT', jr_gettext( JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT, 'JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT', false ) );
+	$mapWeatherTempGrad[ ]          = jomresHTML::makeOption( 'FAHRENHEIT', jr_gettext( JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT, 'JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT', false ) );
 	$mapWeatherTempGradDropdownList = jomresHTML::selectList( $mapWeatherTempGrad, 'cfg_gmap_layer_temperature_grad', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_layer_temperature_grad' ] );
 
 	$calendarStartDays             = array ();
