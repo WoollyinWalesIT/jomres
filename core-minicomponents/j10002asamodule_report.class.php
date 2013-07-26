@@ -26,11 +26,14 @@ class j10002asamodule_report
 
 			return;
 			}
-		// Currently disabled, until we decide if this is a good idea
-		//return;
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
 
-		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=asamodule_report', 'EditText.png', jr_gettext( "_JOMRES_CUSTOMCODE_ASAMODULE", _JOMRES_CUSTOMCODE_ASAMODULE, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS, false, false ) );
+		if ($jrConfig[ 'advanced_site_config' ] == "1")
+			{
+			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=asamodule_report', 'EditText.png', jr_gettext( "_JOMRES_CUSTOMCODE_ASAMODULE", _JOMRES_CUSTOMCODE_ASAMODULE, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS, false, false ) );
+			}
 		}
 
 	// This must be included in every Event/Mini-component
