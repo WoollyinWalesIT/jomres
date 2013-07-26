@@ -26,11 +26,14 @@ class j10002approvals
 
 			return;
 			}
-		// Currently disabled, until we decide if this is a good idea
-		//return;
-
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+	
+		if ($jrConfig[ 'automatically_approve_new_properties' ] == "0")
+			{
 		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
 		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=list_properties_awaiting_approval', 'thumb_up.png', jr_gettext( "_JOMRES_APPROVALS_MENU_NAME", _JOMRES_APPROVALS_MENU_NAME, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN, false, false ) );
+			}
 		}
 
 	// This must be included in every Event/Mini-component
