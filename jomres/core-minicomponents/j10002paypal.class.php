@@ -25,8 +25,15 @@ class j10002paypal
 
 			return;
 			}
-		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=paypal_settings', 'paypal.png', jr_gettext( "_JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE", _JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS, false, false ) );
+		
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+		
+		if ($jrConfig[ 'advanced_site_config' ] == "1")
+			{
+			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=paypal_settings', 'paypal.png', jr_gettext( "_JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE", _JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS, false, false ) );
+			}
 		}
 
 	function touch_template_language()

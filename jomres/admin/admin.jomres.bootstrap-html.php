@@ -98,24 +98,31 @@ class HTML_jomres
 			<td></td>
 		</tr>
 		-->
+		' );
+
+
+		if ( $jrConfig[ 'advanced_site_config' ] == 1 ) 
+			{
+		$contentPanel->setcontent( '
+			<tr>
+				 <td>' . jr_gettext( _JOMRES_REGION_TRANSLATION_SWITCH_TITLE, '_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', false ) . '</td>
+				 <td>' . $lists[ 'region_names_are_translatable' ] . '</td>
+				 <td>' . jr_gettext( _JOMRES_REGION_TRANSLATION_SWITCH_DESC, '_JOMRES_REGION_TRANSLATION_SWITCH_DESC', false ) . '</td>
+			</tr>
+			
+			<tr>
+				 <td>' . jr_gettext( _JOMRES_PROPERTYLIST_IMAGESASGIFS, '_JOMRES_PROPERTYLIST_IMAGESASGIFS', false ) . '</td>
+				 <td>' . $lists[ 'make_gifs_from_slideshows' ] . '</td>
+				 <td></td>
+			</tr>
+			<tr>
+				 <td>' . jr_gettext( _JOMRES_PROPERTYLIST_IMAGESASGIFS_FEATURED_ONLY, '_JOMRES_PROPERTYLIST_IMAGESASGIFS_FEATURED_ONLY', false ) . '</td>
+				 <td>' . $lists[ 'only_featured_properties_as_gifs' ] . '</td>
+				 <td></td>
+			</tr>');
+			}
 		
-		<tr>
-			 <td>' . jr_gettext( _JOMRES_REGION_TRANSLATION_SWITCH_TITLE, '_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', false ) . '</td>
-			 <td>' . $lists[ 'region_names_are_translatable' ] . '</td>
-			 <td>' . jr_gettext( _JOMRES_REGION_TRANSLATION_SWITCH_DESC, '_JOMRES_REGION_TRANSLATION_SWITCH_DESC', false ) . '</td>
-		</tr>
-		
-		<tr>
-			 <td>' . jr_gettext( _JOMRES_PROPERTYLIST_IMAGESASGIFS, '_JOMRES_PROPERTYLIST_IMAGESASGIFS', false ) . '</td>
-			 <td>' . $lists[ 'make_gifs_from_slideshows' ] . '</td>
-			 <td></td>
-		</tr>
-		<tr>
-			 <td>' . jr_gettext( _JOMRES_PROPERTYLIST_IMAGESASGIFS_FEATURED_ONLY, '_JOMRES_PROPERTYLIST_IMAGESASGIFS_FEATURED_ONLY', false ) . '</td>
-			 <td>' . $lists[ 'only_featured_properties_as_gifs' ] . '</td>
-			 <td></td>
-		</tr>
-		
+		$contentPanel->setcontent( '
 		<tr>
 			 <td>' . jr_gettext( _JOMRES_BOOTSTRAPSWITCH_FRONTEND, '_JOMRES_BOOTSTRAPSWITCH_FRONTEND', false ) . '</td>
 			 <td>' . $lists[ 'use_bootstrap_in_frontend' ] . '</td>
@@ -131,18 +138,27 @@ class HTML_jomres
 			<td>' . $lists[ 'property_details_in_tabs' ] . '</td>
 			<td>' . jr_gettext( _JOMRES_PROPERTYDETAILS_INTABS_DESC, '_JOMRES_PROPERTYDETAILS_INTABS_DESC', false ) . '</td>
 		</tr>
-		<tr>
-			<td>' . jr_gettext( _JOMRES_COOKIEPOLICY_TITLE, '_JOMRES_COOKIEPOLICY_TITLE', false ) . '</td>
-			<td>' . $lists[ 'use_cookie_policy' ] . '</td>
-			<td>' . jr_gettext( _JOMRES_COOKIEPOLICY_DESC, '_JOMRES_COOKIEPOLICY_DESC', false ) . '</td>
-		</tr>
+		' );
+
+
+		if ( $jrConfig[ 'advanced_site_config' ] == 1 ) 
+			{
+			$contentPanel->setcontent( '
+			<tr>
+				<td>' . jr_gettext( _JOMRES_COOKIEPOLICY_TITLE, '_JOMRES_COOKIEPOLICY_TITLE', false ) . '</td>
+				<td>' . $lists[ 'use_cookie_policy' ] . '</td>
+				<td>' . jr_gettext( _JOMRES_COOKIEPOLICY_DESC, '_JOMRES_COOKIEPOLICY_DESC', false ) . '</td>
+			</tr>
+			
+			<tr>
+				<td>' . jr_gettext( _JOMRES_APPROVALS_CONFIG_TITLE, _JOMRES_APPROVALS_CONFIG_TITLE,false ) . '</td>
+				<td>' . $lists[ 'automatically_approve_new_properties' ] . '</td>
+				<td>' . jr_gettext( _JOMRES_APPROVALS_CONFIG_DESC, _JOMRES_APPROVALS_CONFIG_DESC,false ) . '</td>
+			</tr>
+			' );
+			}
 		
-		<tr>
-			<td>' . jr_gettext( _JOMRES_APPROVALS_CONFIG_TITLE, _JOMRES_APPROVALS_CONFIG_TITLE,false ) . '</td>
-			<td>' . $lists[ 'automatically_approve_new_properties' ] . '</td>
-			<td>' . jr_gettext( _JOMRES_APPROVALS_CONFIG_DESC, _JOMRES_APPROVALS_CONFIG_DESC,false ) . '</td>
-		</tr>
-		
+		$contentPanel->setcontent( '
 		<tr>
 			<td>' . jr_gettext( _JOMRES_DEFAULT_LAT_STARTPOINT, '_JOMRES_DEFAULT_LAT_STARTPOINT', false ) . '</td>
 			<td><input type="text" class="input-large" name="cfg_default_lat" value="' . $jrConfig[ 'default_lat' ] . '" /></td>
@@ -153,45 +169,44 @@ class HTML_jomres
 			<td><input type="text" class="input-large" name="cfg_default_long" value="' . $jrConfig[ 'default_long' ] . '" /></td>
 			<td></td>
 		</tr>
-		' );
-
-
-			$contentPanel->setcontent( '
 		<tr>
 			<td>' . jr_gettext( _JOMRES_JQUERYTHEME, '_JOMRES_JQUERYTHEME', false ) . '</td>
 			<td>' . $jqueryUIthemesDropdownList . '</td>
 			<td>' . jr_gettext( _JOMRES_JQUERYTHEME_DESC, '_JOMRES_JQUERYTHEME_DESC', false ) . '</td>
 		</tr>' );
-
-			$contentPanel->setcontent( '<tr>
-			<td>' . jr_gettext( _JOMRES_COM_LANGUAGE_CONTEXT, '_JOMRES_COM_LANGUAGE_CONTEXT', false ) . '</td>
-			<td>' . $language_context_dropdown . '</td>
-			<td>' . jr_gettext( _JOMRES_COM_LANGUAGE_CONTEXT_DESC, '_JOMRES_COM_LANGUAGE_CONTEXT_DESC', false ) . '</td>
-		</tr>
-		<tr>
-			<td>' . jr_gettext( _JOMRES_SINGLEPROPERTYINSTALLATION_TITLE, '_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', false ) . '</td>
-			<td>' . $lists[ 'is_single_property_installation' ] . '</td>
-			<td>' . jr_gettext( _JOMRES_SINGLEPROPERTYINSTALLATION_DESC, '_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', false ) . '</td>
-		</tr>
-		<tr>
-			<td>' . jr_gettext( JOMRES_COM_A_MAPSKEY, 'JOMRES_COM_A_MAPSKEY', false ) . '</td>
-			<td><input type="text" class="input-large" name="cfg_google_maps_api_key" value="' . $jrConfig[ 'google_maps_api_key' ] . '" /></td>
-			<td>' . jr_gettext( JOMRES_COM_A_MAPSKEY_DESC, 'JOMRES_COM_A_MAPSKEY_DESC', false ) . '</td>
-		</tr>
-		<tr>
-			 <td>' . jr_gettext( _JOMRES_COM_ALLOWHTMLEDITOR, '_JOMRES_COM_ALLOWHTMLEDITOR', false ) . '</td>
-			 <td>' . $lists[ 'allowHTMLeditor' ] . '</td>
-			 <td>' . jr_gettext( _JOMRES_COM_ALLOWHTMLEDITOR_DESC, '_JOMRES_COM_ALLOWHTMLEDITOR_DESC', false ) . '</td>
-		</tr>
-		<!-- More trouble than it is worth atm, if somebody enters something that creates a javascript error the editor crashes and burns
-		<tr>
-			 <td>' . jr_gettext( _JOMRES_USE_JOMRESEDITOR, '_JOMRES_USE_JOMRESEDITOR', false ) . '</td>
-			 <td>' . $lists[ 'use_jomres_own_editor' ] . '</td>
-			 <td>' . jr_gettext( _JOMRES_USE_JOMRESEDITOR_DESC, '_JOMRES_USE_JOMRESEDITOR_DESC', false ) . '</td>
-		</tr>
-		-->
-		' );
-
+		
+		if ( $jrConfig[ 'advanced_site_config' ] == 1 ) 
+			{
+			$contentPanel->setcontent( '
+			<tr>
+				<td>' . jr_gettext( _JOMRES_COM_LANGUAGE_CONTEXT, '_JOMRES_COM_LANGUAGE_CONTEXT', false ) . '</td>
+				<td>' . $language_context_dropdown . '</td>
+				<td>' . jr_gettext( _JOMRES_COM_LANGUAGE_CONTEXT_DESC, '_JOMRES_COM_LANGUAGE_CONTEXT_DESC', false ) . '</td>
+			</tr>
+			<tr>
+				<td>' . jr_gettext( _JOMRES_SINGLEPROPERTYINSTALLATION_TITLE, '_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', false ) . '</td>
+				<td>' . $lists[ 'is_single_property_installation' ] . '</td>
+				<td>' . jr_gettext( _JOMRES_SINGLEPROPERTYINSTALLATION_DESC, '_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', false ) . '</td>
+			</tr>
+			<tr>
+				<td>' . jr_gettext( JOMRES_COM_A_MAPSKEY, 'JOMRES_COM_A_MAPSKEY', false ) . '</td>
+				<td><input type="text" class="input-large" name="cfg_google_maps_api_key" value="' . $jrConfig[ 'google_maps_api_key' ] . '" /></td>
+				<td>' . jr_gettext( JOMRES_COM_A_MAPSKEY_DESC, 'JOMRES_COM_A_MAPSKEY_DESC', false ) . '</td>
+			</tr>
+			<tr>
+				 <td>' . jr_gettext( _JOMRES_COM_ALLOWHTMLEDITOR, '_JOMRES_COM_ALLOWHTMLEDITOR', false ) . '</td>
+				 <td>' . $lists[ 'allowHTMLeditor' ] . '</td>
+				 <td>' . jr_gettext( _JOMRES_COM_ALLOWHTMLEDITOR_DESC, '_JOMRES_COM_ALLOWHTMLEDITOR_DESC', false ) . '</td>
+			</tr>
+			<!-- More trouble than it is worth atm, if somebody enters something that creates a javascript error the editor crashes and burns
+			<tr>
+				 <td>' . jr_gettext( _JOMRES_USE_JOMRESEDITOR, '_JOMRES_USE_JOMRESEDITOR', false ) . '</td>
+				 <td>' . $lists[ 'use_jomres_own_editor' ] . '</td>
+				 <td>' . jr_gettext( _JOMRES_USE_JOMRESEDITOR_DESC, '_JOMRES_USE_JOMRESEDITOR_DESC', false ) . '</td>
+			</tr>
+			-->
+			' );
+			}
 
 			if ( $jrConfig[ 'advanced_site_config' ] == 1 ) $contentPanel->setcontent( '
 			<tr>
