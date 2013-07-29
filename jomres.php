@@ -19,9 +19,7 @@ ob_start( "removeBOM" );
 
 @ini_set( "memory_limit", "128M" );
 @ini_set( "max_execution_time", "480" );
-ini_set( "display_errors", 1 );
-//ini_set('error_reporting', E_ALL| E_STRICT);
-//@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
+
 
 global $thisJRUser, $task, $jomresPathway;
 global $property_uid, $Itemid, $jomressession;
@@ -48,6 +46,13 @@ if (count($thisJRUser->authorisedProperties)==0 && $thisJRUser->userIsManager)
 	}
 $siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 $jrConfig   = $siteConfig->get();
+
+if ($jrConfig[ 'development_production' ]  != "production")
+	{
+	ini_set( "display_errors", 1 );
+	ini_set('error_reporting', E_ALL| E_STRICT);
+	//@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
+	}
 
 jr_import( 'jomres_timezones' );
 $tz = new jomres_timezones();

@@ -112,6 +112,12 @@ if ( isset( $jrConfig[ 'loggingBooking' ] ) )
 	define( 'LOGGINGPORTAL', $jrConfig[ 'loggingPortal' ] );
 	}
 
+if ( !isset( $jrConfig[ 'development_production' ] ) )
+	{
+	$jrConfig[ 'development_production' ] = "production";
+	}
+
+
 if ( !defined( "AJAXCALL" ) )
 	{
 	if ( isset( $_REQUEST[ 'jrajax' ] ) )

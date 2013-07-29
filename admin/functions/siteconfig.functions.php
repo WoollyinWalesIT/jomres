@@ -181,6 +181,11 @@ function showSiteConfig()
 	$filtering_level[ ]       = jomresHTML::makeOption( 'strong', jr_gettext( _JOMRES_INPUTFILTERING_LEVEL_STRONG, '_JOMRES_INPUTFILTERING_LEVEL_STRONG', false ) );
 	$filtering_level_dropdown = jomresHTML::selectList( $filtering_level, 'cfg_input_filtering', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'input_filtering' ] );
 
+	$production_development          = array ();
+	$production_development[ ]       = jomresHTML::makeOption( 'production', jr_gettext( _JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION, '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION', false ) );
+	$production_development[ ]       = jomresHTML::makeOption( 'development', jr_gettext( _JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT, '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT', false ) );
+	$production_development_dropdown = jomresHTML::selectList( $production_development, 'cfg_development_production', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'development_production' ] );
+	
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	$MiniComponents->triggerEvent( '01004', $componentArgs ); // optional
 	$property_list_layouts = get_showtime( 'property_list_layouts' );
@@ -303,7 +308,7 @@ function showSiteConfig()
 	$lists[ 'use_bootstrap_in_admin' ]    = jomresHTML::selectList( $yesno, 'cfg_use_bootstrap_in_admin', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_bootstrap_in_admin' ] );
 	$lists[ 'use_bootstrap_in_frontend' ] = jomresHTML::selectList( $yesno, 'cfg_use_bootstrap_in_frontend', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_bootstrap_in_frontend' ] );
 
-	HTML_jomres::showSiteConfig( $jrConfig, $lists, $jsInputFormatDropdownList, $licensekey, $jrtb, $langDropdown, $geosearchDropdownList, $currency_codes_dropdown, $jqueryUIthemesDropdownList, $sortArrayDropdown, $calendarStartDaysDropdownList, $language_context_dropdown, $guestnumbersearchDropdownList, $filtering_level_dropdown, $layouts, $mapWeatherTempGradDropdownList );
+	HTML_jomres::showSiteConfig( $jrConfig, $lists, $jsInputFormatDropdownList, $licensekey, $jrtb, $langDropdown, $geosearchDropdownList, $currency_codes_dropdown, $jqueryUIthemesDropdownList, $sortArrayDropdown, $calendarStartDaysDropdownList, $language_context_dropdown, $guestnumbersearchDropdownList, $filtering_level_dropdown, $layouts, $mapWeatherTempGradDropdownList,$production_development_dropdown );
 	}
 
 /**

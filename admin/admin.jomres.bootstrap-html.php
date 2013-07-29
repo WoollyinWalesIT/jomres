@@ -24,7 +24,7 @@ class HTML_jomres
 	 * Outputs the site configuration panel
 	#
 	 */
-	function showSiteConfig( $jrConfig, &$lists, $jsInputFormatDropdownList, $licensekey, $jrtb, $langDropdown, $geosearchDropdownList, $currency_codes_dropdown, $jqueryUIthemesDropdownList, $sortArrayDropdown, $calendarStartDaysDropdownList, $language_context_dropdown, $guestnumbersearchDropdownList, $filtering_level_dropdown, $layouts, $mapWeatherTempGradDropdownList )
+	function showSiteConfig( $jrConfig, &$lists, $jsInputFormatDropdownList, $licensekey, $jrtb, $langDropdown, $geosearchDropdownList, $currency_codes_dropdown, $jqueryUIthemesDropdownList, $sortArrayDropdown, $calendarStartDaysDropdownList, $language_context_dropdown, $guestnumbersearchDropdownList, $filtering_level_dropdown, $layouts, $mapWeatherTempGradDropdownList,$production_development_dropdown )
 		{
 		$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig     = $siteConfig->get();
@@ -926,6 +926,12 @@ class HTML_jomres
 			</tr>
 			</thead>
 			<tbody>
+			
+			<tr>
+				<td>' . jr_gettext( _JOMRES_CONFIG_PRODUCTION_DEVELOPMENT, '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT', false ) . '</td>
+				<td>' . $production_development_dropdown . '</td>
+				<td>' . jr_gettext( _JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC, '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', false ) . '</td>
+			</tr>
 			<tr>
 				<td>' . jr_gettext( _JOMRES_SAFEMODE, '_JOMRES_SAFEMODE', false ) . '</td>
 				<td>' . $lists[ 'safe_mode' ] . '</td>

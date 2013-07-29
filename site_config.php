@@ -268,3 +268,5 @@ $jrConfig[ 'gmap_layer_traffic' ]          = "0";
 $jrConfig[ 'gmap_layer_bicycling' ]        = "0";
 $jrConfig[ 'gmap_layer_temperature_grad' ] = "CELCIUS";
 
+$jrConfig[ 'development_production' ] = "production";
+
