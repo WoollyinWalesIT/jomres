@@ -254,8 +254,8 @@ class j03110guestconfirmationemail
 		$url            = make_gmap_url_for_property_uid( $property_uid );
 		$qr_code_map    = jomres_make_qr_code( $url );
 
-		$output[ 'OFFICE_QR_CODE_IMAGE' ] = "'cid:office_qr_code\'";
-		$output[ 'DIRECTIONS_QR_CODE' ]   = "'cid:map_qr_code\'";
+		$output[ 'OFFICE_QR_CODE_IMAGE' ] = "cid:office_qr_code";
+		$output[ 'DIRECTIONS_QR_CODE' ]   = "cid:map_qr_code";
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();

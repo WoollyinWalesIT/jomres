@@ -232,13 +232,13 @@ class j02190confirmationform
 
 		if ( $sendemail == 0 )
 			{
-			$output[ 'OFFICE_QR_CODE_IMAGE' ] = '"'.$qr_code_office[ 'relative_path' ].'"';
-			$output[ 'DIRECTIONS_QR_CODE' ]   = '"'.$qr_code_map[ 'relative_path' ].'"';
+			$output[ 'OFFICE_QR_CODE_IMAGE' ] = $qr_code_office[ 'relative_path' ];
+			$output[ 'DIRECTIONS_QR_CODE' ]   = $qr_code_map[ 'relative_path' ];
 			}
 		else
 			{
-			$output[ 'OFFICE_QR_CODE_IMAGE' ] = "'cid:office_qr_code\'";
-			$output[ 'DIRECTIONS_QR_CODE' ]   = "'cid:map_qr_code\'";
+			$output[ 'OFFICE_QR_CODE_IMAGE' ] = "cid:office_qr_code";
+			$output[ 'DIRECTIONS_QR_CODE' ]   = "cid:map_qr_code";
 			}
 
 		$pageoutput[ ] = $output;
