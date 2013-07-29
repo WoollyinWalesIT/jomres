@@ -16,14 +16,18 @@ defined( '_JOMRES_INITCHECK_ADMIN' ) or die( 'Admin Access to this file is not a
 ob_start( "removeBOM" );
 @ini_set( "memory_limit", "128M" );
 @ini_set( "max_execution_time", "480" );
-@ini_set( "display_errors", 1 );
-//error_reporting(E_ALL);
-@ini_set( 'error_reporting', E_ERROR | E_WARNING | E_PARSE );
 
 require_once( dirname( __FILE__ ) . '/integration.php' );
 $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 $siteConfig     = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 $jrConfig       = $siteConfig->get();
+
+if ($jrConfig[ 'development_production' ]  != "production")
+	{
+	ini_set( "display_errors", 1 );
+	ini_set('error_reporting', E_ALL| E_STRICT);
+	//@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
+	}
 
 $thisJRUser = $MiniComponents->triggerEvent( '00002' ); // Register user
 $jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
