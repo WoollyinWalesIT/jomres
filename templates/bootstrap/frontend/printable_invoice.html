@@ -62,9 +62,6 @@
 				<patTemplate:tmpl name="hrecurtotal" type="simpleCondition" requiredVars="hrecurtotal">
 					<th>{HRECURTOTAL}</th>
 				</patTemplate:tmpl>
-				<td>{JOMRES_GRANDTOTAL_TOTAL_TAX}</td>
-				<td>{JOMRES_GRANDTOTAL_EX_TAX}</td>
-				<td>{JOMRES_GRANDTOTAL_INC_TAX}</td>
 			</tr>
 			</thead>
 			<tbody>
@@ -75,16 +72,14 @@
 				<td class="hidden-phone">{SUBSCRIPTION}</td>
 				<td class="hidden-phone">{CURRENCYCODE}</td>
 				<td>
-					<div id="init_grand_total">{INITTOTAL}</div>
+					<div id="init_grand_total">{OUTSTANDING_TOTAL}</div>
 				</td>
+	
 				<patTemplate:tmpl name="recurtotal" type="simpleCondition" requiredVars="recurtotal">
 					<td>
 						<div id="recur_grand_total">{RECURTOTAL}</div>
 					</td>
 				</patTemplate:tmpl>
-				<td>{GRAND_TOTAL_TAX}</td>
-				<td>{GRAND_TOTAL_EX_TAX}</td>
-				<td>{GRAND_TOTAL_INC_TAX}</td>
 			</tr>
 			</tbody>
 		</table>

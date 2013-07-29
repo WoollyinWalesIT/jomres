@@ -271,7 +271,9 @@ class j06005view_invoice
 		$grand_total_inc_tax = 0.0;
 		$grand_total_ex_tax  = 0.0;
 		$grand_total_tax     = 0.0;
-
+		$amount_already_paid = 0.0;
+		
+		
 		if ( count( $lineitems ) > 0 )
 			{
 			foreach ( $lineitems as $li )
@@ -336,10 +338,14 @@ class j06005view_invoice
 					
 					$grand_total_tax = $grand_total_tax + $tax;
 					}
-
+				else
+					{
+					$amount_already_paid = $li[ 'init_total_inclusive' ];
+					}
 				$rows[ ] = $r;
 				}
 			}
+
 
 		$output[ 'JOMRES_GRANDTOTAL_TOTAL_TAX' ] = jr_gettext( 'JOMRES_GRANDTOTAL_TOTAL_TAX', JOMRES_GRANDTOTAL_TOTAL_TAX );
 		$output[ 'JOMRES_GRANDTOTAL_EX_TAX' ]    = jr_gettext( 'JOMRES_GRANDTOTAL_EX_TAX', JOMRES_GRANDTOTAL_EX_TAX );
@@ -348,8 +354,8 @@ class j06005view_invoice
 		$output[ 'GRAND_TOTAL_INC_TAX' ] = output_price( $grand_total_inc_tax, $invoice->currencycode, false, true );
 		$output[ 'GRAND_TOTAL_EX_TAX' ]  = output_price( $grand_total_ex_tax, $invoice->currencycode, false, true );
 		$output[ 'GRAND_TOTAL_TAX' ]     = output_price( $grand_total_tax, $invoice->currencycode, false, true );
-
-
+		$output[ 'OUTSTANDING_TOTAL' ]   = output_price( $grand_total_inc_tax+$amount_already_paid, $invoice->currencycode, false, true );
+		
 		$output[ 'BOOKING_NUMBER' ] = $invoice->get_invoice_booking_number();
 		if ( $output[ 'BOOKING_NUMBER' ] ) $output[ '_JOMRES_BOOKING_NUMBER' ] = jr_gettext( '_JOMRES_BOOKING_NUMBER', _JOMRES_BOOKING_NUMBER );
 
