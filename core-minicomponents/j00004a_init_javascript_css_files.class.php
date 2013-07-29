@@ -202,7 +202,7 @@ class j00004a_init_javascript_css_files
 		if ( stristr( $ls, ".xn--", $ls ) && !jomres_cmsspecific_areweinadminarea() ) // We check to see if we're in the admin area because our one and only client with an umlat in the domain name has found that the redirect function doesn't work in the administrator area if the domain's been converted.
 			{
 			require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'idna_converter' . JRDS . 'idna_convert.class.php' );
-			$IDN = new idna_convert();
+			$IDN = new jomres_idna_convert();
 			$ls  = $IDN->decode( $ls );
 			}
 		set_showtime( "module_popup.js", $ls . "_" . get_showtime( 'lang' ) . "_module_popup.js" ); // We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.

@@ -50,7 +50,7 @@
  * @copyright 2004-2011 phlyLabs Berlin, http://phlylabs.de
  * @version 0.8.0 2011-03-11
  */
-class idna_convert
+class jomres_idna_convert
 	{
 	// NP See below
 
