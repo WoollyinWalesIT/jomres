@@ -62,7 +62,8 @@ class j06000module_popup
 				{
 				$output[ 'STARSIMAGES' ] .= "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/star.png\" alt=\"star\" border=\"0\" />";
 				}
-
+			
+			$output[ 'PROPERTY_NAME' ]                 = $current_property_details->property_name;
 			$output[ 'PROPERTY_STREET' ]               = $current_property_details->property_street;
 			$output[ 'PROPERTY_TOWN' ]                 = $current_property_details->property_town;
 			$output[ 'PROPERTY_POSTCODE' ]             = $current_property_details->property_postcode;
