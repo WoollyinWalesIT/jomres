@@ -168,6 +168,7 @@ class j00004x_init_javascript_css_files
 					file_put_contents( get_showtime( "misc_url_definitions.js.abspath" ) . get_showtime( "misc_url_definitions.js" ), $livesite_ajax . $compare_url );
 					}
 				jomres_cmsspecific_addheaddata( "javascript", get_showtime( "misc_url_definitions.js.relpath" ), get_showtime( "misc_url_definitions.js" ) );
+				add_gmaps_source();
 				}
 			}
 		}

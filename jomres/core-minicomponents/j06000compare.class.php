@@ -25,7 +25,7 @@ class j06000compare
 
 			return;
 			}
-		add_gmaps_source();
+		//add_gmaps_source();
 		$property_uids = jomresGetParam( $_REQUEST, "property_uids", '' );
 
 		// Clean them sukkas up

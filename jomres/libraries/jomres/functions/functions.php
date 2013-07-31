@@ -291,7 +291,7 @@ function add_gmaps_source( $sensor = 0 )
 
 		if ( $libraries != '' ) $libraries = '&libraries=' . $libraries;
 
-		echo '<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=' . $s . '&amp;key=' . $jrConfig[ 'google_maps_api_key' ] . '&amp;language=' . $shortcode . $libraries . '"></script>';
+		jomres_cmsspecific_addheaddata('javascript' , 'http://maps.googleapis.com/maps/api/js?sensor=' . $s . '&key=' . $jrConfig[ 'google_maps_api_key' ] . '&language=' . $shortcode , $libraries );
 		}
 	}
 
@@ -708,7 +708,7 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 	{
 	// for testing
 	//$property_uid_array = array(1,12,43,14);
-	add_gmaps_source();
+	//add_gmaps_source();
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	if ( !defined( '_JOMRES_COM_MR_SHOWPROFILES' ) )
 		{
