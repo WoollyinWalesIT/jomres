@@ -102,7 +102,10 @@ request_log( $loggingRequest );
 set_showtime( 'jomressession', "" );
 
 if ( isset( $_REQUEST[ 'jsid' ] ) ) // jsid is passed by gateway services sending response codes
-$jomressession = jomresGetParam( $_REQUEST, 'jsid', "" );
+	{
+	$jomressession = jomresGetParam( $_REQUEST, 'jsid', "" );
+	}
+
 $tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 $tmpBookingHandler->initBookingSession( $jomressession );
 

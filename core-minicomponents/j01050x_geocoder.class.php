@@ -46,7 +46,7 @@ class j01050x_geocoder
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
 		$editing      = $componentArgs[ 'editing_map' ];
 
-		add_gmaps_source();
+		//add_gmaps_source();
 
 		$output     = array ();
 		$pageoutput = array ();
