@@ -79,9 +79,14 @@ class j01010listpropertys
 		$layout = $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ];
 
 		$propertys_uids = $componentArgs[ 'propertys_uid' ];
-		if ( !isset( $componentArgs[ 'live_scrolling_enabled' ] ) ) $live_scrolling_enabled = true;
+		if ( !isset( $componentArgs[ 'live_scrolling_enabled' ] ) ) 
+			{
+			$live_scrolling_enabled = true;
+			}
 		else
-		$live_scrolling_enabled = (bool) $componentArgs[ 'live_scrolling_enabled' ];
+			{
+			$live_scrolling_enabled = (bool) $componentArgs[ 'live_scrolling_enabled' ];
+			}
 
 		if ( $propertys_uids == "" ) $propertys_uids = array ();
 
@@ -102,7 +107,10 @@ class j01010listpropertys
 				{
 				$tmpArray[ ] = $propertys_uids[ $key ];
 				$counter++;
-				if ( $counter == $maximumProperties ) break;
+				if ( $counter == $maximumProperties ) 
+					{
+					break;
+					}
 				}
 			$propertys_uids = $tmpArray;
 			}
@@ -194,36 +202,6 @@ class j01010listpropertys
 							}
 						}
 
-					// Tariffs
-					// Believe this section is depreciated, however we'll leave it in-situ for now, as people may be using it. Will leave it for some months until we can be reasonably confident that people are now using the get_property_price_for_display_in_lists function instead.
-
-					// Disabled for 7.2.11 on 21/2/2013
-
-					/* 					$pricesFromArray=array();
-										$maxPeopleArray = array();
-										$searchDate = date("Y/m/d");
-										if (isset($_REQUEST['arrivalDate']))
-											{
-											$searchDate	=JSCalConvertInputDates(jomresGetParam( $_REQUEST, 'arrivalDate', "" ));
-											}
-										$query = "SELECT property_uid, roomrateperday,maxpeople FROM #__jomres_rates WHERE ".$g_pid." AND DATE_FORMAT('".$searchDate."', '%Y/%m/%d') BETWEEN DATE_FORMAT(`validfrom`, '%Y/%m/%d') AND DATE_FORMAT(`validto`, '%Y/%m/%d') AND roomrateperday > '0' ";
-
-										$tariffList = doSelectSql($query);
-										if (count($tariffList) > 0)
-											{
-											foreach ($tariffList as $t)
-												{
-												if ( !isset($pricesFromArray[$t->property_uid]) )
-													$pricesFromArray[$t->property_uid]=$t->roomrateperday;
-												elseif ( isset($pricesFromArray[$t->property_uid]) && $pricesFromArray[$t->property_uid] > $t->roomrateperday )
-													$pricesFromArray[$t->property_uid]=$t->roomrateperday;
-
-												if (!isset($maxPeopleArray[$t->property_uid]))
-													$maxPeopleArray[$t->property_uid]=$t->maxpeople;
-												elseif ($maxPeopleArray[$t->property_uid] < $t->maxpeople)
-													$maxPeopleArray[$t->property_uid]=$t->maxpeople;
-												}
-											} */
 
 					// Room types
 					$rtArray   = array ();
