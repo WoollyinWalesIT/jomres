@@ -141,9 +141,9 @@ class j06000show_property_reviews
 					$r[ 'RATING_ID' ]          = $review[ 'rating_id' ];
 					$r[ 'USERNAME' ]           = $site_userids[ $review[ 'user_id' ] ][ 'username' ];
 					$r[ 'REVIEW_TITLE' ]       = $review[ 'review_title' ];
-					$r[ 'REVIEW_DESCRIPTION' ] = html_entity_decode( $review[ 'review_description' ] );
-					$r[ 'PROS' ]               = html_entity_decode( $review[ 'pros' ] );
-					$r[ 'CONS' ]               = html_entity_decode( $review[ 'cons' ] );
+					$r[ 'REVIEW_DESCRIPTION' ] = jomres_decode( $review[ 'review_description' ] );
+					$r[ 'PROS' ]               = jomres_decode( $review[ 'pros' ] );
+					$r[ 'CONS' ]               = jomres_decode( $review[ 'cons' ] );
 					$r[ 'RATING' ]             = $review[ 'rating' ];
 					$r[ 'RATING_STARS' ]       = "";
 					for ( $i = 1; $i <= $review[ 'rating' ]; $i++ ) $r[ 'RATING_STARS' ] .= '<img src="' . $star . '"/>';

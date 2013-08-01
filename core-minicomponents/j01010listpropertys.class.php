@@ -79,7 +79,10 @@ class j01010listpropertys
 		$layout = $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ];
 
 		$propertys_uids = $componentArgs[ 'propertys_uid' ];
-		if ( !isset( $componentArgs[ 'live_scrolling_enabled' ] ) ) 
+		
+		$live_scrolling_enabled = get_showtime("live_scrolling_enabled");
+		
+		if ( !isset( $componentArgs[ 'live_scrolling_enabled' ] ) && is_null($live_scrolling_enabled) ) 
 			{
 			$live_scrolling_enabled = true;
 			}
@@ -441,10 +444,10 @@ class j01010listpropertys
 						$property_deets[ 'LONG' ]      = $current_property_details->multi_query_result[ $property->propertys_uid ][ 'long' ];
 						//var_dump($property_deets['PROP_NAME']);exit;
 						$property_deets[ 'PROP_STREET' ]   = stripslashes( $propertyContactArray[ 1 ] );
-						$property_deets[ 'PROP_TOWN' ]     = '<a href="' . jomresURL( JOMRES_SITEPAGE_URL . '&send=Search&calledByModule=mod_jomsearch_m0&town=' . html_entity_decode( $propertyContactArray[ 2 ] ) ) . '">' . html_entity_decode( $propertyContactArray[ 2 ] ) . '</a>';
+						$property_deets[ 'PROP_TOWN' ]     = '<a href="' . jomresURL( JOMRES_SITEPAGE_URL . '&send=Search&calledByModule=mod_jomsearch_m0&town=' . jomres_decode( $propertyContactArray[ 2 ] ) ) . '">' . jomres_decode( $propertyContactArray[ 2 ] ) . '</a>';
 						$property_deets[ 'PROP_POSTCODE' ] = stripslashes( $propertyContactArray[ 3 ] );
-						$property_deets[ 'PROP_REGION' ]   = '<a href="' . jomresURL( JOMRES_SITEPAGE_URL . '&send=Search&calledByModule=mod_jomsearch_m0&region=' . html_entity_decode( $propertyContactArray[ 4 ] ) ) . '">' . html_entity_decode( $propertyContactArray[ 4 ] ) . '</a>';
-						$property_deets[ 'PROP_COUNTRY' ]  = '<a href="' . jomresURL( JOMRES_SITEPAGE_URL . '&send=Search&calledByModule=mod_jomsearch_m0&country=' . html_entity_decode( $propertyContactArray[ 5 ] ) ) . '">' . html_entity_decode( getSimpleCountry( $propertyContactArray[ 5 ] ) ) . '</a>';
+						$property_deets[ 'PROP_REGION' ]   = '<a href="' . jomresURL( JOMRES_SITEPAGE_URL . '&send=Search&calledByModule=mod_jomsearch_m0&region=' . jomres_decode( $propertyContactArray[ 4 ] ) ) . '">' . jomres_decode( $propertyContactArray[ 4 ] ) . '</a>';
+						$property_deets[ 'PROP_COUNTRY' ]  = '<a href="' . jomresURL( JOMRES_SITEPAGE_URL . '&send=Search&calledByModule=mod_jomsearch_m0&country=' . jomres_decode( $propertyContactArray[ 5 ] ) ) . '">' . jomres_decode( getSimpleCountry( $propertyContactArray[ 5 ] ) ) . '</a>';
 
 						$property_deets[ 'LIVESITE' ]                    = get_showtime( 'live_site' );
 						$property_deets[ 'UID' ]                         = $property->propertys_uid;
@@ -457,11 +460,11 @@ class j01010listpropertys
 						$property_deets[ '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES );
 						$property_deets[ '_JOMRES_FRONT_ROOMTYPES' ]                  = jr_gettext( '_JOMRES_FRONT_ROOMTYPES', _JOMRES_FRONT_ROOMTYPES );
 						$property_deets[ 'JS_SAFE_PROPERTYNAME' ]                     = preg_replace( '/[^A-Za-z0-9_-]+/', "", $property_deets[ 'PROP_NAME' ] );
-						$property_deets[ 'PROPERTYTOWN' ]                             = html_entity_decode( $ptown );
-						$property_deets[ 'PROPERTYREGION' ]                           = html_entity_decode( stripslashes( $propertyContactArray[ 4 ] ) );
-						$property_deets[ 'PROPERTYCOUNTRY' ]                          = html_entity_decode( stripslashes( getSimpleCountry( $propertyContactArray[ 5 ] ) ) );
+						$property_deets[ 'PROPERTYTOWN' ]                             = jomres_decode( $ptown );
+						$property_deets[ 'PROPERTYREGION' ]                           = jomres_decode( stripslashes( $propertyContactArray[ 4 ] ) );
+						$property_deets[ 'PROPERTYCOUNTRY' ]                          = jomres_decode( stripslashes( getSimpleCountry( $propertyContactArray[ 5 ] ) ) );
 
-						$property_deets[ 'TELEPHONE_NUMBER' ] = html_entity_decode( $current_property_details->property_tel );
+						$property_deets[ 'TELEPHONE_NUMBER' ] = jomres_decode( $current_property_details->property_tel );
 
 						if ( strlen( $propertyDesc ) > (int) $jrConfig[ 'propertyListDescriptionLimit' ] ) $property_deets[ 'PROPERTYDESC' ] = jr_substr( $propertyDesc, 0, $jrConfig[ 'propertyListDescriptionLimit' ] ) . "...";
 						else
