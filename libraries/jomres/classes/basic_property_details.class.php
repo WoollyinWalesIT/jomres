@@ -75,7 +75,6 @@ class basic_property_details
 			$customTextObj                                      = jomres_singleton_abstract::getInstance( 'custom_text' );
 			$customTextObj->get_custom_text_for_property( $property_uid );
 			$property_name = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $property_name, false, false );
-			$property_name = str_replace( "&#39;", "'", $property_name );
 			set_showtime( 'property_uid', $original_property_uid );
 			}
 		else
@@ -119,7 +118,6 @@ class basic_property_details
 				set_showtime( 'property_uid', $p->propertys_uid );
 				$this->untranslated_property_names[ $p->propertys_uid ] = $p->property_name;
 				$property_name                                          = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $p->property_name, false, false );
-				$property_name                                          = str_replace( "&#39;", "'", $property_name );
 				$this->property_names[ $p->propertys_uid ]              = $property_name;
 				}
 			}
