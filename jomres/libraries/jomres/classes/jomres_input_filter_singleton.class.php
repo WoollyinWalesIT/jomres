@@ -42,10 +42,16 @@ class jomres_input_filter_singleton
 		{
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
-		if ( !isset( $jrConfig[ 'html_purifier_allowed_tags' ] ) ) $jrConfig[ 'html_purifier_allowed_tags' ] = "p,b,strong,a[href],i";
+		if ( !isset( $jrConfig[ 'html_purifier_allowed_tags' ] ) ) 
+			{
+			$jrConfig[ 'html_purifier_allowed_tags' ] = "p,b,strong,a[href],i";
+			}
 
-		if ( !class_exists( 'HTMLPurifier' ) ) require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'htmlpurifier' . JRDS . 'htmlpurifier-4.4.0-standalone' . JRDS . 'HTMLPurifier.standalone.php' );
-
+		if ( !class_exists( 'HTMLPurifier' ) )
+			{
+			require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'htmlpurifier' . JRDS . 'htmlpurifier-4.4.0-standalone' . JRDS . 'HTMLPurifier.standalone.php' );
+			}
+		
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set( 'HTML.Allowed', $jrConfig[ 'html_purifier_allowed_tags' ] );
 		$this->purifier_allow_html = new HTMLPurifier( $config );
@@ -57,10 +63,15 @@ class jomres_input_filter_singleton
 
 	public function purify( $dirty, $allow_html = false )
 		{
-		if ( !$allow_html ) $clean = $this->purifier_no_html->purify( $dirty );
+		if ( !$allow_html ) 
+			{
+			$clean = $this->purifier_no_html->purify( $dirty );
+			}
 		else
-		$clean = $this->purifier_allow_html->purify( $dirty );
-
+			{
+			$clean = $this->purifier_allow_html->purify( $dirty );
+			}
+			
 		return $clean;
 		}
 	}
