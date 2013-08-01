@@ -14,6 +14,10 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+/*
+An output filter.
+*/
+
 function jomres_decode( $string )
 	{
 	$string = str_replace( "&#34;", '&ldquo;', $string );
