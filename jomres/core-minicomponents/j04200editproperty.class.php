@@ -88,12 +88,12 @@ class j04200editproperty
 				$output[ 'HSUPERIOR' ]         = jr_gettext( 'JOMRES_SUPERIOR', JOMRES_SUPERIOR );
 
 				//$output['PROPERTY_NAME']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', getEscaped($property->property_name),false,false);
-				$output[ 'PROPERTY_STREET' ]   = html_entity_decode( $property->property_street );
-				$output[ 'PROPERTY_TOWN' ]     = html_entity_decode( $property->property_town );
-				$output[ 'PROPERTY_POSTCODE' ] = html_entity_decode( $property->property_postcode );
-				$output[ 'PROPERTY_TEL' ]      = html_entity_decode( $property->property_tel );
-				$output[ 'PROPERTY_FAX' ]      = html_entity_decode( $property->property_fax );
-				$output[ 'PROPERTY_EMAIL' ]    = html_entity_decode( $property->property_email );
+				$output[ 'PROPERTY_STREET' ]   = jomres_decode( $property->property_street );
+				$output[ 'PROPERTY_TOWN' ]     = jomres_decode( $property->property_town );
+				$output[ 'PROPERTY_POSTCODE' ] = jomres_decode( $property->property_postcode );
+				$output[ 'PROPERTY_TEL' ]      = jomres_decode( $property->property_tel );
+				$output[ 'PROPERTY_FAX' ]      = jomres_decode( $property->property_fax );
+				$output[ 'PROPERTY_EMAIL' ]    = jomres_decode( $property->property_email );
 
 				if ( $property->lat != "" )
 					{
@@ -111,19 +111,19 @@ class j04200editproperty
 				$output[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
 
 				$output[ 'PRICE' ]           = $property->property_key;
-				$output[ 'METATITLE' ]       = html_entity_decode( jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE', $property->metatitle, false, false ) );
-				$output[ 'METADESCRIPTION' ] = html_entity_decode( jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION', $property->metadescription, false, false ) );
-				$output[ 'METAKEYWORDS' ]    = html_entity_decode( jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS', $property->metakeywords, false, false ) );
+				$output[ 'METATITLE' ]       = jomres_decode( jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE', $property->metatitle, false, false ) );
+				$output[ 'METADESCRIPTION' ] = jomres_decode( jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION', $property->metadescription, false, false ) );
+				$output[ 'METAKEYWORDS' ]    = jomres_decode( jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS', $property->metakeywords, false, false ) );
 
 				if ( !isset( $jrConfig[ 'allowHTMLeditor' ] ) ) $jrConfig[ 'allowHTMLeditor' ] = "1";
 
-				$property_description         = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', html_entity_decode( trim( stripslashes( $property->property_description ) ) ), false, false );
-				$property_checkintimes        = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES', html_entity_decode( trim( stripslashes( $property->property_checkin_times ) ) ), false, false );
-				$property_areaactivities      = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES', html_entity_decode( trim( stripslashes( $property->property_area_activities ) ) ), false, false );
-				$property_drivingdirections   = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS', html_entity_decode( trim( stripslashes( $property->property_driving_directions ) ) ), false, false );
-				$property_airports            = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS', html_entity_decode( trim( stripslashes( $property->property_airports ) ) ), false, false );
-				$property_othertransport      = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT', html_entity_decode( trim( stripslashes( $property->property_othertransport ) ) ), false, false );
-				$property_policiesdisclaimers = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS', html_entity_decode( trim( stripslashes( $property->property_policies_disclaimers ) ) ), false, false );
+				$property_description         = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', jomres_decode( trim( stripslashes( $property->property_description ) ) ), false, false );
+				$property_checkintimes        = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES', jomres_decode( trim( stripslashes( $property->property_checkin_times ) ) ), false, false );
+				$property_areaactivities      = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES', jomres_decode( trim( stripslashes( $property->property_area_activities ) ) ), false, false );
+				$property_drivingdirections   = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS', jomres_decode( trim( stripslashes( $property->property_driving_directions ) ) ), false, false );
+				$property_airports            = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS', jomres_decode( trim( stripslashes( $property->property_airports ) ) ), false, false );
+				$property_othertransport      = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT', jomres_decode( trim( stripslashes( $property->property_othertransport ) ) ), false, false );
+				$property_policiesdisclaimers = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS', jomres_decode( trim( stripslashes( $property->property_policies_disclaimers ) ) ), false, false );
 
 				if ( $jrConfig[ 'allowHTMLeditor' ] == "1" )
 					{
