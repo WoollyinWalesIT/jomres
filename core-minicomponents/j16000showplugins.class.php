@@ -85,7 +85,10 @@ class j16000showplugins
 
 		$current_licenses = array ();
 
-		if ( $this->key_valid ) $developer_user = true;
+		if ( $this->key_valid ) 
+			{
+			$developer_user = true;
+			}
 		else
 			{
 			$request  = "request=get_license_numbers&username=" . $jrConfig[ 'license_server_username' ] . "&password=" . $jrConfig[ 'license_server_password' ];
@@ -250,7 +253,21 @@ class j16000showplugins
 		$jomresdotnet_plugins = array ();
 
 		$plugins_needing_upgrading = array ();
-
+		
+		$button_disabled_text = "";
+		if (!$this->key_valid)
+			{
+			if ( using_bootstrap() )
+				{
+				$button_disabled_text = " disabled ";
+				}
+			else
+				{
+				$button_disabled_text = " ui-state-disabled ";
+				}
+			
+			
+			}
 		foreach ( $remote_plugins as $rp )
 			{
 			$r = array ();
@@ -286,11 +303,11 @@ class j16000showplugins
 
 			$r[ 'INSTALL_LINK' ] = '';
 			$r[ 'INSTALL_TEXT' ] = '';
-			if ( array_key_exists( $plugin_name, $current_licenses ) || $developer_user )
-				{
+			//if ( array_key_exists( $plugin_name, $current_licenses ) || $developer_user )
+			//	{
 				$r[ 'INSTALL_LINK' ] = JOMRES_SITEPAGE_URL_ADMIN . '&task=addplugin&plugin=' . $n;
 				$r[ 'INSTALL_TEXT' ] = $installAction;
-				}
+			//	}
 
 			$r[ 'HPLUGINPRICE' ] = '';
 			if ( !$developer_user )
@@ -411,12 +428,18 @@ class j16000showplugins
 
 			if ( $condition == 1 ) $r[ 'LATERVERSION' ] = "";
 
-			if ( $condition == 1 && ( array_key_exists( $rp[ 'name' ], $current_licenses ) || $developer_user ) )
-				{
-				if ( using_bootstrap() ) $r[ 'INSTALL' ] = '<a href="' . $r[ 'INSTALL_LINK' ] . '" class="btn btn-primary" >' . $r[ 'INSTALL_TEXT' ] . '</a>';
+			// The following condition is no longer needed, as we no longer sell plugins individually, but we'll keep it in place in case that policy changes.
+			//if ( $condition == 1 && ( array_key_exists( $rp[ 'name' ], $current_licenses ) || $developer_user ) )
+			//	{
+				if ( using_bootstrap() ) 
+					{
+					$r[ 'INSTALL' ] = '<a href="' . $r[ 'INSTALL_LINK' ] . '" class="btn btn-primary" '.$button_disabled_text.' >' . $r[ 'INSTALL_TEXT' ] . '</a>';
+					}
 				else
-				$r[ 'INSTALL' ] = '<a href="' . $r[ 'INSTALL_LINK' ] . '" class="fg-button ui-state-default ui-corner-all" >' . $r[ 'INSTALL_TEXT' ] . '</a>';
-				}
+					{
+					$r[ 'INSTALL' ] = '<a href="' . $r[ 'INSTALL_LINK' ] . '" class="fg-button ui-state-default ui-corner-all '.$button_disabled_text.'"   >' . $r[ 'INSTALL_TEXT' ] . '</a>';
+					}
+			//	}
 
 
 			$r[ 'PRICE' ] = $rp[ 'price' ];
