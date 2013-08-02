@@ -140,14 +140,22 @@ function jomresGetParam( $request, $element, $def = null, $mask = '' ) // variab
 	$jrConfig   = $siteConfig->get();
 
 	// If the array element is set, we'll set $dirty to that, otherwise we'll simply return the default
-	if ( isset( $request[ $element ] ) ) $dirty = $request[ $element ];
+	if ( isset( $request[ $element ] ) ) 
+		{
+		$dirty = $request[ $element ];
+		}
 	else
-	return $def;
+		{
+		return $def;
+		}
 
 	// We'll discover the type of $dirty, so that we can cast the variable to a given type
 	$type = jomres_get_var_type( $def );
+	
 	if ( !$type ) // If the data passed isn't recognised, we'll just return out, passing a nice safe null the calling script can work with.
-	return null;
+		{
+		return null;
+		}
 
 	// Mostly we'll use type casting to clean the passed data. Array ALWAYS assumes that the array passed is an array of integers,
 	// if you want to use another type of array you'll need to clean that up youself.
@@ -192,10 +200,16 @@ function jomresGetParam( $request, $element, $def = null, $mask = '' ) // variab
 		default : // treat everything else as a string.
 
 			$allowed_inputs = get_showtime( "inputs_allowing_html" );
-			if ( !is_array( $allowed_inputs ) ) $allowed_inputs = array ();
-
-			if ( !isset( $jrConfig[ 'input_filtering' ] ) ) $jrConfig[ 'input_filtering' ] = 'strong';
-
+			if ( !is_array( $allowed_inputs ) ) 
+				{
+				$allowed_inputs = array ();
+				}
+			
+			if ( !isset( $jrConfig[ 'input_filtering' ] ) )
+				{
+				$jrConfig[ 'input_filtering' ] = 'strong';
+				}
+			
 			$dirty = (string) $dirty;
 
 			if ( in_array( $element, $allowed_inputs ) )

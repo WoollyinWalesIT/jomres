@@ -86,14 +86,22 @@ class j10004generate_control_panel
 
 				parse_str( $val[ 'link' ], $url_params );
 				$button_task = $url_params[ 'task' ];
-				if ( $button_task == jomresGetParam( $_REQUEST, 'task', "" ) )
+				if ( $button_task == get_showtime( 'task' ) )
 					{
-					if ( !using_bootstrap() ) $r[ 'ACTIVE' ] = "ui-state-active";
+					if ( !using_bootstrap() ) 
+						{
+						$r[ 'ACTIVE' ] = "ui-state-active";
+						}
 					else
-					$r[ 'ACTIVE' ] = "active";
+						{
+						$r[ 'ACTIVE' ] = "active";
+						}
 					}
 				else
-				$r[ 'ACTIVE' ] = "";
+					{
+					$r[ 'ACTIVE' ] = "";
+					}
+				
 				$rows[ ] = $r;
 				}
 
