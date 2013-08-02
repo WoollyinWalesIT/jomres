@@ -51,7 +51,7 @@ class j06002sendbug
 			$subject   = jomresGetParam( $_REQUEST, 'subject', '' );
 			$fromname  = jomresGetParam( $_REQUEST, 'fromname', '' );
 			$fromemail = jomresGetParam( $_REQUEST, 'fromemail', '' );
-			$contents  = $_REQUEST[ 'contents' ];
+			$contents  = jomresGetParam( $_REQUEST,  'contents', '' );
 			$contents  = str_replace( "\n", "<br/>\n", $contents );
 
 			$result = jomresMailer( $fromemail, $fromname, $toemail, $subject, $contents, $mode = 1 );

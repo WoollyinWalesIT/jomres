@@ -62,8 +62,11 @@ class j06002delslideshowimages
 				}
 
 			$full_filename = '';
-			for ( $i = 0; $i < count( $filename ) - 1; $i++ ) $full_filename .= $filename[ $i ];
-
+			for ( $i = 0; $i < count( $filename ) - 1; $i++ ) 
+				{
+				$full_filename .= filter_var( $filename[ $i ] , FILTER_SANITIZE_SPECIAL_CHARS );
+				}
+			
 			if ( file_exists( $mrp . $imageName ) )
 				{
 				if ( is_writable( $mrp . $imageName ) )
