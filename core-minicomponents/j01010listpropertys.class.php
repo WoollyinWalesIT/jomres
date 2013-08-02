@@ -74,7 +74,7 @@ class j01010listpropertys
 
 		if ( isset( $_REQUEST[ 'layout' ] ) && in_array( $_REQUEST[ 'layout' ], $all_layouts ) )
 			{
-			$tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ] = $_REQUEST[ 'layout' ];
+			$tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ] = jomresGetParam( $_REQUEST, 'layout', "" );
 			}
 		$layout = $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ];
 
