@@ -159,11 +159,11 @@ class j02220listguests
 					$rw[ 'INVOICE_URL' ]  = $link;
 					}
 
-				$rw[ 'FIRSTNAME' ] = jomres_decode( $guest->firstname );
-				$rw[ 'SURNAME' ]   = jomres_decode( $guest->surname );
-				$rw[ 'HOUSE' ]     = jomres_decode( $guest->house );
-				$rw[ 'STREET' ]    = jomres_decode( $guest->street );
-				$rw[ 'TOWN' ]      = jomres_decode( $guest->town );
+				$rw[ 'FIRSTNAME' ] = $guest->firstname;
+				$rw[ 'SURNAME' ]   = $guest->surname;
+				$rw[ 'HOUSE' ]     = $guest->house;
+				$rw[ 'STREET' ]    = $guest->street;
+				$rw[ 'TOWN' ]      = $guest->town;
 				// $status = 'status=no,toolbar=20,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=400,height=400,directories=no,location=no';
 				// $link =makePopupLink(JOMRES_SITEPAGE_URL_AJAX."?option=com_jomres&task=editCreditcard&popup=1&guestUid=".$guest->guests_uid."",jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT,false));
 				// $rw['CREDITCARDLINK']=$link;
