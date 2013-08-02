@@ -3625,8 +3625,8 @@ function showLiveBookings( $contractsList, $title, $arrivaldateDropdown )
 		$r[ 'EDIT_URL' ]    = jomresURL( JOMRES_SITEPAGE_URL . "&task=editBooking&contract_uid=" . ( $row->contract_uid ) );
 		$r[ 'EDIT_TEXT' ]   = jr_gettext( '_JOMRES_COM_MR_EDITBOOKINGTITLE', _JOMRES_COM_MR_EDITBOOKINGTITLE, false );
 
-		$r[ 'FIRSTNAME' ] = jomres_decode( $row->firstname );
-		$r[ 'SURNAME' ]   = jomres_decode( $row->surname );
+		$r[ 'FIRSTNAME' ] = $row->firstname;
+		$r[ 'SURNAME' ]   = $row->surname;
 
 		$r[ 'BOOKING_NO' ]  = $row->tag;
 		$r[ 'ARRIVALDATE' ] = outputDate( $row->arrival );
@@ -3695,10 +3695,10 @@ function getPropertyAddressForPrint( $propertyUid )
 
 	foreach ( $propertyData as $data )
 		{
-		$property_name     = jomres_decode( $data->property_name );
-		$property_street   = jomres_decode( $data->property_street );
-		$property_town     = jomres_decode( $data->property_town );
-		$property_postcode = jomres_decode( $data->property_postcode );
+		$property_name     = $data->property_name;
+		$property_street   = $data->property_street;
+		$property_town     = $data->property_town;
+		$property_postcode = $data->property_postcode;
 		if ( is_numeric( $data->property_region ) )
 			{
 			$jomres_regions  = jomres_singleton_abstract::getInstance( 'jomres_regions' );
@@ -3712,22 +3712,22 @@ function getPropertyAddressForPrint( $propertyUid )
 		$property_email   = $data->property_email;
 
 		$obj                    = new stdClass; // For use by queries that used to call mysql for this information, we'll just dress the data up as it used to come out of a query
-		$obj->property_name     = jomres_decode( $property_name );
-		$obj->property_street   = jomres_decode( $property_street );
-		$obj->property_town     = jomres_decode( $property_town );
-		$obj->property_postcode = jomres_decode( $property_postcode );
-		$obj->property_region   = jomres_decode( $property_region );
+		$obj->property_name     = $property_name;
+		$obj->property_street   = $property_street;
+		$obj->property_town     = $property_town;
+		$obj->property_postcode = $property_postcode;
+		$obj->property_region   = $property_region;
 		$obj->property_country  = $property_country;
 		$obj->property_tel      = $property_tel;
 		$obj->property_features = $data->property_features;
 
-		$obj->property_description          = jomres_decode( $data->property_description );
-		$obj->property_checkin_times        = jomres_decode( $data->property_checkin_times );
-		$obj->property_area_activities      = jomres_decode( $data->property_area_activities );
-		$obj->property_driving_directions   = jomres_decode( $data->property_driving_directions );
-		$obj->property_airports             = jomres_decode( $data->property_airports );
-		$obj->property_othertransport       = jomres_decode( $data->property_othertransport );
-		$obj->property_policies_disclaimers = jomres_decode( $data->property_policies_disclaimers );
+		$obj->property_description          = $data->property_description;
+		$obj->property_checkin_times        = $data->property_checkin_times;
+		$obj->property_area_activities      = $data->property_area_activities;
+		$obj->property_driving_directions   = $data->property_driving_directions;
+		$obj->property_airports             = $data->property_airports;
+		$obj->property_othertransport       = $data->property_othertransport;
+		$obj->property_policies_disclaimers = $data->property_policies_disclaimers;
 
 		$obj->property_email = $property_email;
 		$obj->published      = (int) $data->published;
