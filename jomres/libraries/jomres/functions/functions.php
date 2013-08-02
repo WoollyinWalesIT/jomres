@@ -2816,11 +2816,6 @@ function saveHotelSettings()
 				$v = filter_var( $v, FILTER_SANITIZE_SPECIAL_CHARS );
 				}
 
-			if ( substr( $k, 4 ) == "currencyCodes" )
-				{
-				$theArray = $_POST[ 'cfg_currencyCodes' ];
-				$v        = implode( ",", $theArray );
-				}
 			if ( substr( $k, 4 ) == "encKey" )
 				{
 				//saveKey($v); // Commented out, the function is no longer available, however keeping the IF statement here allows to be absolutely sure that if encKey is set (by a very naughty person) then nothing is done.
@@ -2829,13 +2824,9 @@ function saveHotelSettings()
 				{
 				$oldSettingKey = 'oldsetting_' . $k;
 				$oldSettingVal = $_POST[ $oldSettingKey ];
-				if ( $k == "cfg_currency" && $_POST[ $k ] == '&#8364;' ) // We'll add this here because the input filter doesn't like euro currency entities.
-					{
-					$v = '&#8364;';
-					}
+
 				if ( $oldSettingVal != $v )
 					{
-					//echo $oldSettingKey. ' '.$oldSettingVal.'<br>';
 					$query  = "SELECT uid FROM #__jomres_settings WHERE property_uid = '" . (int) $property_uid . "' and akey = '" . substr( $k, 4 ) . "'";
 					$result = doSelectSql( $query );
 					if ( count( $result ) == 0 ) 
@@ -2846,7 +2837,6 @@ function saveHotelSettings()
 						{
 						$query = "UPDATE #__jomres_settings SET `value`='" . $v . "' WHERE property_uid = '" . (int) $property_uid . "' and akey = '" . substr( $k, 4 ) . "'";
 						}
-					//echo $query."<br>";
 					doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', _JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS, false ) );
 					}
 				}
@@ -2857,7 +2847,7 @@ function saveHotelSettings()
 		{
 		jr_import( 'vat_number_validation' );
 		$validation = new vat_number_validation( $property_uid , false );
-		$validation->vies_check($_POST['cfg_property_vat_number']);
+		$validation->vies_check(filter_var( $_POST['cfg_property_vat_number'] , FILTER_SANITIZE_SPECIAL_CHARS ) );
 		$validation->save_subject($type = "property", array( "property_uid"=>$property_uid ) );
 		}
 	
@@ -5572,31 +5562,10 @@ function jomresURLToken()
 	return "&jomrestoken=" . $t;
 	}
 
-// if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 function jomresCheckToken()
 	{
 	return true;
-	/*
-	if (!@session_start())
-		{
-		@ini_set('session.save_handler', 'files');
-		session_start();
-		}
-	if (in_array($_REQUEST['jomrestoken'], $_SESSION['jomresValidTokens']))
-		{
-		$t=$_REQUEST['jomrestoken'];
-		$idx=array_search($t,$_SESSION['jomresValidTokens']);
-		// Caching can cause problems with tokens being reused, so we'll only trash the token if it's not in $_GET
-		if (!isset($_REQUEST['jomrestoken']) )
-			unset($_SESSION['jomresValidTokens'][$idx]);
-		session_write_close();
-		return true;
-		}
-	session_write_close();
-	return false;
-	*/
 	}
-
 
 class dummy_params_class
 	{

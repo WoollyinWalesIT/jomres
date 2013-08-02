@@ -52,7 +52,7 @@ class j00002usermanagement
 			$cache = new jomres_cache();
 			$cache->trashCacheForUser( $thisJRUser->userid );
 			$new_url = get_showtime( 'live_site' ) . '/index.php?';
-			foreach ( $_REQUEST as $key => $val )
+			foreach ( $_REQUEST as $key => $val ) // There's no need for these elements to be sanitised, as we're just redirecting again to a new url, these items will be sanitised at that point.
 				{
 				if ( $key != 'thisProperty' )
 					{

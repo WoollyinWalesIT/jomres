@@ -54,8 +54,8 @@ class j16000addplugin
 		$pk = "";
 		if ( isset( $_REQUEST[ 'plugin_key' ] ) )
 			{
-			$pk     = $_REQUEST[ 'plugin_key' ];
-			$plugin = $_REQUEST[ 'plugin' ];
+			$pk     = jomresGetParam( $_REQUEST, 'plugin_key' , '' );
+			$plugin = jomresGetParam( $_REQUEST, 'plugin' , '' );
 			}
 
 		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=addplugin&no_html=1&plugin=" . $pluginName, $pk, $plugin );
