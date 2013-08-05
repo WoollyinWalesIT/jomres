@@ -147,7 +147,8 @@ if ( get_showtime( 'task' ) != "error" )
 	$usersProperty = $thisJRUser->defaultproperty;
 	if ( !$thisJRUser->userIsManager && $thisJRUser->userIsRegistered )
 		{
-		$tmpBookingHandler->updateGuestField( 'mos_userid', $thisJRUser->id );
+		if (!isset($_REQUEST['jsid'])) // Don't want to reset mos userid if jsid is set. jsid is sent back by gateways and if we set mos id to the gateway's session, we'll never be able to  associate the booking with the guest
+			$tmpBookingHandler->updateGuestField( 'mos_userid', $thisJRUser->id );
 		if ( get_showtime( 'task' ) != "handlereq" && get_showtime( 'task' ) != "completebk" && get_showtime( 'task' ) != "processpayment" && get_showtime( 'task' ) != "confirmbooking" )
 			{
 			$not_in_profile_table = false;
