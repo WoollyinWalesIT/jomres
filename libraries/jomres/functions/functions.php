@@ -3027,93 +3027,107 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
  */
 function insertInternetBooking( $jomressession = "", $depositPaid = false, $confirmationPageRequired = true, $customTextForConfirmationForm = "", $usejomressessionasCartid = false )
 	{
-	$jomressession     = get_showtime( 'jomressession' );
-	$MiniComponents    = jomres_singleton_abstract::getInstance( 'mcHandler' );
-	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+	$jomresConfig_secret = get_showtime( 'secret' );
+	$thisJRUser          = jomres_singleton_abstract::getInstance( 'jr_user' );
+	$tmpBookingHandler   = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+	$userIsManager       = checkUserIsManager();
 
+	$xCustomers = $tmpBookingHandler->getGuestData();
 
-	gateway_log( "insertInternetBooking: Attempting to insert booking jsid: " . get_showtime( 'jomressession' ) );
-	if ( $tmpBookingHandler->getBookingFieldVal( "cart_payment" ) ) // I'm probably being lazy, creating this condition like this, but I'd rather keep things clear in my own mind atm, it can be tidied up later
+	$guests_uid   = (int) $xCustomers[ 'guests_uid' ];
+	$mos_userid   = (int) $xCustomers[ 'mos_userid' ];
+	$existing_id  = (int) $xCustomers[ 'existing_id' ];
+	$email        = $xCustomers[ 'email' ];
+	$firstname    = $xCustomers[ 'firstname' ];
+	$surname      = $xCustomers[ 'surname' ];
+	$house        = $xCustomers[ 'house' ];
+	$street       = $xCustomers[ 'street' ];
+	$town         = $xCustomers[ 'town' ];
+	$region       = $xCustomers[ 'region' ];
+	$country      = $xCustomers[ 'country' ];
+	$postcode     = $xCustomers[ 'postcode' ];
+	$landline     = $xCustomers[ 'tel_landline' ];
+	$mobile       = $xCustomers[ 'tel_mobile' ];
+	$property_uid = (int) $tmpBookingHandler->getBookingPropertyId( $tmpBookingHandler );
+	$defaultProperty = $property_uid;
+	
+	if ($mos_userid == 0)
 		{
-		$insert_failed = false;
-
-		foreach ( $tmpBookingHandler->cart_data as $key => $cart_data )
+		if ( !$userIsManager && $thisJRUser->id > 0 )
 			{
-			$tmpBookingHandler->tmpbooking = $cart_data;
-			$tmpBookingHandler->tmpguest   = $cart_data[ 'tmpguest' ];
-			$componentArgs                 = array ( 'jomressession' => get_showtime( 'jomressession' ), 'depositPaid' => $depositPaid, 'usejomressessionasCartid' => $usejomressessionasCartid );
-			$result                        = $MiniComponents->triggerEvent( '03020', $componentArgs ); // Trigger the insert booking mini-comp
-			gateway_log( "insertInternetBooking: " . serialize( $MiniComponents->miniComponentData[ '03020' ] ) );
-			if ( !$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'insertSuccessful' ] ) $insert_failed = true;
-			$tmpBookingHandler->resetTempBookingData();
-			$tmpBookingHandler->resetTempGuestData();
+			$mos_userid      = $thisJRUser->id;
 			}
-
-		gateway_log( "insertInternetBooking: Insert successful " );
-		if ( $confirmationPageRequired && !$insert_failed )
+		else if ( !$userIsManager && $thisJRUser->id == 0 )
 			{
-			gateway_log( "insertInternetBooking:Outputting confirmation page " );
-			$property_uid  = (int) $tmpBookingHandler->getBookingFieldVal( "property_uid" );
-			$componentArgs = array ( 'property_uid' => $property_uid );
-			$componentArgs = array ( 'customText' => $customTextForConfirmationForm );
-			$MiniComponents->triggerEvent( '03030', $componentArgs ); // Booking completed message
-			$userIsManager = checkUserIsManager();
-			if ( $userIsManager )
+			$mos_userid      = 0;
+			}
+		}
+
+	if ( $mos_userid > 0 )
+		{
+		$query         = "SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '" . (int) $mos_userid . "' AND `property_uid`= $property_uid LIMIT 1";
+		$xistingGuests = doSelectSql( $query );
+		if ( count( $xistingGuests ) > 0 )
+			{
+			foreach ( $xistingGuests as $g )
 				{
-				echo jr_gettext( '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE', _JOMRES_COM_MR_BOOKINGSAVEDMESSAGE ) . "<br />";
-				$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
-				$jrtb   = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem( 'editbooking', jomresURL( JOMRES_SITEPAGE_URL . "&task=editDeposit&contractUid=" . $MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ] ), '' );
-				$jrtb .= $jrtbar->endTable();
-				echo $jrtb;
+				$guests_uid = $g->guests_uid;
 				}
-			gateway_log( "<h2>Resetting temp booking data</h2>" );
-
 			}
-		$tmpBookingHandler->resetCart();
-		return $MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'insertSuccessful' ];
+		else
+			{
+			$guests_uid = 0;
+			}
+		}
+	elseif ( $existing_id > 0 ) 
+		{
+		$guests_uid = $existing_id;
 		}
 	else
 		{
-		$userIsManager = checkUserIsManager();
-		$componentArgs = array ( 'jomressession' => get_showtime( 'jomressession' ), 'depositPaid' => $depositPaid, 'usejomressessionasCartid' => $usejomressessionasCartid );
-		$result        = $MiniComponents->triggerEvent( '03020', $componentArgs ); // Trigger the insert booking mini-comp
-		gateway_log( "insertInternetBooking: " . serialize( $MiniComponents->miniComponentData[ '03020' ] ) );
-		if ( $MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'insertSuccessful' ] )
-			{
-			gateway_log( "insertInternetBooking: Insert successful " );
-			if ( $confirmationPageRequired )
-				{
-				gateway_log( "insertInternetBooking:Outputting confirmation page " );
-				$property_uid  = (int) $tmpBookingHandler->getBookingFieldVal( "property_uid" );
-				$componentArgs = array ( 'property_uid' => $property_uid );
-				$componentArgs = array ( 'customText' => $customTextForConfirmationForm );
-				$MiniComponents->triggerEvent( '03030', $componentArgs ); // Booking completed message
-				if ( $userIsManager )
-					{
-					echo jr_gettext( '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE', _JOMRES_COM_MR_BOOKINGSAVEDMESSAGE ) . "<br />";
-					//echo "<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=$contract_uid")."\">".jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE)."</a>";
-					$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
-					$jrtb   = $jrtbar->startTable();
-					$jrtb .= $jrtbar->toolbarItem( 'editbooking', jomresURL( JOMRES_SITEPAGE_URL . "&task=editDeposit&contractUid=" . $MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ] ), '' );
-					$jrtb .= $jrtbar->endTable();
-					echo $jrtb;
-					}
-				}
+		$guests_uid = 0;
+		}
+		
+	if ( $guests_uid > 0 )
+		{
+		$query = "UPDATE	#__jomres_guests SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',
+		`town`= '$town',`county`= '$region',`country`= '$country',`postcode`= '$postcode',`tel_landline`= '$landline',`tel_mobile`= '$mobile',
+		`property_uid`='" . (int) $property_uid . "',`email`='$email'
+		WHERE guests_uid = '" . (int) $guests_uid . "'";
+		doInsertSql( $query, false );
+		$returnid = $guests_uid;
+		}
+	else
+		{
+		$query = "INSERT INTO #__jomres_guests
+		(`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`property_uid`,`email`";
+		$query .= ",`mos_userid`";
+		$query .= ") VALUES ('$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$property_uid','$email'";
+		$query .= ",'" . (int) $mos_userid . "'";
+		$query .= ")";
+		$returnid = doInsertSql( $query, false );
+		}
 
-			gateway_log( "<h2>Resetting temp booking data</h2>" );
-			$tmpBookingHandler->resetTempBookingData();
-
-			return $MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'insertSuccessful' ];
-			}
-		else // If there's a failure at this point it shouldn't be because the guest cancelled at any stage. This is intended to trap errors that shouldn't be passed to the guest on the site
+	// New for 4.5.9. We need now to look in the new guest profile table and see if this user already exists. If they do not, we'll take these details and add them to the profile table too, then in future the profile table's data will be used as the primary source of this guest's information, continuing to ensure that guest details are not shared between properties. No property should ever be able to access a guest's details unless that guest has already booked with that property.
+	// First, we'll look at this user's id. If it's the same as mos_userid above, then the user making the booking is a guest.
+	if ( ( $thisJRUser->id == $mos_userid && $thisJRUser->id > 0 ) || ( $mos_userid > 0 && isset($_REQUEST['jsid']) ) ) // Either it's the guest making the booking, or it's a gateway call and the user's a registered user. Either way, we can update the profile table.
+		{
+		$query     = "SELECT id FROM #__jomres_guest_profile WHERE cms_user_id = '" . (int) $mos_userid . "' LIMIT 1";
+		$guestData = doSelectSql( $query, 2 );
+		if ( !$guestData ) // The guest doesn't have information in the profile table yet.
 			{
-			$subject = "Insert of booking failed. Likely caused by a database insert function failure.\n\n";
-			gateway_log( $subject );
+			$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`email`) VALUES ('" . (int) $mos_userid . "','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$email')";
+			doInsertSql( $query, '' );
 			}
 		}
 
-	return false;
+	if ( !$returnid )
+		{
+		echo "Error saving users details";
+		exit;
+		}
+
+	return $returnid;
 	}
 
 /**

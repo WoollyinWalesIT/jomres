@@ -293,7 +293,7 @@ class j03020insertbooking
 						}
 					else // Booked by a non-logged in user
 						{
-						$bookersUsername = jr_gettext( "JOMRES_NON_REGISTERED_USER", JOMRES_NON_REGISTERED_USER, false );;
+						$bookersUsername = $tmpBookingHandler->tmpguest['firstname']." ".$tmpBookingHandler->tmpguest['surname'];
 						}
 
 					// The extras quantites is passed with ALL extra uids and default quanties. At this point we will strip out the extra uid that weren't actually selected before adding the serialized extras quantities to the db
