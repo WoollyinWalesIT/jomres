@@ -128,11 +128,16 @@ class jomres_temp_booking_handler
 
 			if ( isset( $_COOKIE[ 'jomressession_id' ] ) )
 				{
-				if ( $_COOKIE[ 'jomressession_id' ] != $sh1_session_id ) $_COOKIE[ 'jomressession' ] = null;
+				if ( $_COOKIE[ 'jomressession_id' ] != $sh1_session_id ) 
+					{
+					$_COOKIE[ 'jomressession' ] = null;
+					}
 				}
 			else
-			$_COOKIE[ 'jomressession' ] = null;
-
+				{
+				$_COOKIE[ 'jomressession' ] = null;
+				}
+			
 			if ( !isset( $_COOKIE[ 'jomressession' ] ) || is_null( $_COOKIE[ 'jomressession' ] ) )
 				{
 				$this->part = generateJomresRandomString();
