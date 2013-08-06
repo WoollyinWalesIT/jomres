@@ -1,3 +1,41 @@
+Jomres 7.3.1
+
+Modified the jomres_decode function (the output filter) as it was allowing users to inject javascript into certain pages.
+Modified the input filtering script. Ensured that the default value that's passed to the jomresGetParam function is used to set the type of variable that's passed, this is used later on to decide how we'll filter the entered value.
+Modified the Edit Profiles function to do nothing if the profile id = 0
+Modified the input filtering script. Ensured that the default value that's passed to the jomresGetParam function is used to set the type of variable that's passed, this is used later on to decide how we'll filter the entered value.
+
+Modified show plugins script so that if the license isn't valid or entered, they buttons show but in their disabled state. Makes it more obvious to new users how plugins are obtained.
+Fixed a bug in the confirmation letter where qr codes wouldn't show because of image sizes in the html.
+Tweaked the confirmation form printout so that quote marks are included where appropriate.
+Modified the Jomres mailer functionality to set the image name in the email body, rather than a generic name.
+Modified the subscribe script so that only a specific set of circumstances will allow it to proceed, otherwise there's a chance that the script will go into an eternal loop.
+Tweaked the layout of the jq ui frontend_view_invoice.html template file.
+Fixed a typo that prevented switching from C to F in google map weather layer.
+Modified the Approvals menu script to only show the option if automatic approvals are disabled (IE site managers have to manually approve properties).
+Simplified the backend a little more so that if Advanced Site Config is set to No then fewer options are viewable.
+Removed a recommendation from the Getting Started text that referred to adding a login option. It is redundant now as we've got a link in the Jomres main menu that goes to that form (because people didn't read the getting started and didn't add the module).
+Added a new option to site config to set the site into production or development mode. Setting it to development allows us to enable error reporting.
+Renamed idna_convert class to jomres_idna_convert because several other Joomla components use this class, and we want to prevent fatal errors because they also include the same class.
+Modified invoice output to ensure that the correct outstanding amount is shown.
+Tweaked QR code generation and display to ensure that it images in emails work in all devices.
+Property name added to module popup.
+Changed how Gmaps is called, added gmaps to head of the page and instead of calling it "as needed", we're calling it right at the beginning of the run. When called "as needed" it was loading the gmaps source multiple times which prevented the maps from loading properly.
+Solved a problem that's created when all layers are disabled in gmaps.
+Modified the printable_invoice.html template to include arrival/departure dates snippets.
+Replaced references to html_entities_decode, instead sending the strings to jomres_decode function, which parses strings before output.
+Removed some string replace quotes code that's no longer needed.
+Modified show property header so that meta data is passed through jomres decode before display.
+Modified edit property so that output data is NOT passed through jomres decode.
+Modified the call to the layout variable to ensure that it's sanitised properly.
+Modified generate control panel script to use the showtime variable.
+Worked through the code to ensure that all inputs have been properly sanitised, where appropriate.
+Removed several usages of the jomres_decode function that we believe are no longer necessary.
+Fixed a bug where bookings from gateways wouldn't be associated with existing users, if they hadn't booked before.
+Modified booking insert stage so that if the user isn't an existing guest then the first/surname they entered is used as a reference to who made the booking.
+
+
+
 Jomres 7.3.0
 
 Added new functionality that allows Jomres to communicate with the VIES webservice and validate VAT numbers saved when a user enters their account details. (Euro properties only)
