@@ -38,10 +38,6 @@ class j02110savecustomertypeorder
 
 			return;
 			}
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
 		$defaultProperty = getDefaultProperty();
 		$order           = jomresGetParam( $_POST, 'order', array () );
 		foreach ( $order as $key => $val )

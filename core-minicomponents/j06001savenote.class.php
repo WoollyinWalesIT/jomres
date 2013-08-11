@@ -27,10 +27,7 @@ class j06001savenote
 
 			return;
 			}
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
+
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		if ( !$thisJRUser->userIsManager ) return;
 

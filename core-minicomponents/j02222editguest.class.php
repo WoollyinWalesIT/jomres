@@ -127,14 +127,12 @@ class j02222editguest
 		$jrtb   = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'saveGuest' );
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=listguests" ), '' );
-		if ( $guestUid != 0 ) $jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=deleteGuest" . jomresURLToken() . "&guestUid=$guestUid&no_html=1" ), '' );
+		if ( $guestUid != 0 ) $jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=deleteGuest" . "&guestUid=$guestUid&no_html=1" ), '' );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
 		$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN', _JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN );
 		$output[ 'GUESTUID' ]  = $guestUid;
-
-		$output[ 'JOMRESTOKEN' ] = '<input type="hidden" name="jomrestoken" value="' . jomresSetToken() . '"><input type="hidden" name="no_html" value="1"/>';
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();

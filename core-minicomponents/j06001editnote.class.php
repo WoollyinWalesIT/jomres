@@ -48,7 +48,6 @@ class j06001editnote
 		$output[ 'HNEWTEXT' ] = jr_gettext( '_JOMCOMP_BOOKINGNOTES_EDIT', _JOMCOMP_BOOKINGNOTES_EDIT );
 		$output[ 'NOTE_ID' ]  = $note_id;
 
-		$output[ 'JOMRESTOKEN' ]         = '<input type="hidden" name="no_html" value="1"/>';
 		$output[ 'JOMRES_SITEPAGE_URL' ] = JOMRES_SITEPAGE_URL;
 
 		$pageoutput[ ] = $output;

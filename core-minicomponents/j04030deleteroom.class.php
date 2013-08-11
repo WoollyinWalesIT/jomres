@@ -40,10 +40,6 @@ class j04030deleteroom
 
 			return;
 			}
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
 		$roomUid         = intval( jomresGetParam( $_REQUEST, 'roomUid', 0 ) );
 		$defaultProperty = getDefaultProperty();
 		jr_import( 'jomres_cache' );

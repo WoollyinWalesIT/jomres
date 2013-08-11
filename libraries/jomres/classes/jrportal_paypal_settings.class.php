@@ -56,7 +56,7 @@ class jrportal_paypal_settings
 			{
 			$dirty = (string) $k;
 			$k     = addslashes( $dirty );
-			if ( $k != 'task' && $k != 'plugin' && $k != "jomrestoken" && $k != "option" ) $values[ $k ] = jomresGetParam( $_POST, $k, "" );
+			if ( $k != 'task' && $k != 'plugin' && $k != "option" ) $values[ $k ] = jomresGetParam( $_POST, $k, "" );
 			}
 		foreach ( $values as $k => $v )
 			{

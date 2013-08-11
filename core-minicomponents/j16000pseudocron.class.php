@@ -121,16 +121,12 @@ class j16000pseudocron
 
 	function savecronconfigPlugin( $plugin )
 		{
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
 		$defaultProperty = "0";
 		foreach ( $_POST as $k => $v )
 			{
 			$dirty = (string) $k;
 			$k     = addslashes( $dirty );
-			if ( $k != 'task' && $k != 'plugin' && $k != "jomrestoken" && $k != "option" ) $values[ $k ] = jomresGetParam( $_POST, $k, "" );
+			if ( $k != 'task' && $k != 'plugin' && $k != "option" ) $values[ $k ] = jomresGetParam( $_POST, $k, "" );
 			}
 		foreach ( $values as $k => $v )
 			{

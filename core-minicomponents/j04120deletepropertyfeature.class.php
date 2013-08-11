@@ -39,10 +39,6 @@ class j04120deletepropertyfeature
 
 			return;
 			}
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
 		$propertyFeatureUid = intval( jomresGetParam( $_REQUEST, 'propertyFeatureUid', 0 ) );
 		$defaultProperty    = getDefaultProperty();
 		$saveMessage        = jr_gettext( '_JOMRES_COM_MR_PROPERTYFEATURE_DELETED', _JOMRES_COM_MR_PROPERTYFEATURE_DELETED, false );

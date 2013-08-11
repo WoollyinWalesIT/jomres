@@ -39,10 +39,6 @@ class j02224saveguest
 
 			return;
 			}
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
 		$guests_uid = jomresGetParam( $_REQUEST, 'guestUid', 0 );
 		if ( $guests_uid == "0" ) $guests_uid = false;
 		$defaultProperty = getDefaultProperty();

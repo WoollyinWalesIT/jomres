@@ -39,10 +39,7 @@ class j04080saveroomfeature
 
 			return;
 			}
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
+
 		$roomFeatureUid      = intval( jomresGetParam( $_POST, 'roomFeatureUid', 0 ) );
 		$feature_description = getEscaped( jomresGetParam( $_POST, 'feature_description', '' ) );
 		$defaultProperty     = getDefaultProperty();

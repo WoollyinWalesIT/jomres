@@ -2744,7 +2744,6 @@ function hotelSettings()
 
 			$configurationPanel->endTabs();
 
-			echo '<input type="hidden" name="jomrestoken" value="' . jomresSetToken() . '">';
 			?>
 			<input type="hidden" name="no_html" value="1">
 			<input type="hidden" name="task" value="saveHotelSettings"/>
@@ -5285,7 +5284,6 @@ function editCustomText()
 		}
 
 	$output[ 'NEWTEXT' ]     = $tmpTxt;
-	$output[ 'JOMRESTOKEN' ] = '<input type="hidden" name="jomrestoken" value="' . jomresSetToken() . '">';
 
 	$pageoutput[ ] = $output;
 
@@ -5300,10 +5298,6 @@ function saveCustomText()
 	{
 	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig   = $siteConfig->get();
-	if ( !jomresCheckToken() )
-		{
-		trigger_error( "Invalid token", E_USER_ERROR );
-		}
 	$property_uid = (int) getDefaultProperty();
 	if ( $jrConfig[ 'allowHTMLeditor' ] == "1" )
 		{
@@ -5535,51 +5529,10 @@ function jomresURL( $link, $ssl = 2 )
 	if ( !$jrConfig[ 'isInIframe' ] )
 		{
 		$link = jomres_cmsspecific_makeSEF_URL( $link );
-
-		// As we've dropped support for "ssl in the booking form" in 4.7, these lines are no longer applicable.
-		// if ($ssl == 1)
-		// $link	= str_replace("http://","https://",$link);
-		// else
-		// $link	= str_replace("https://","http://",$link);
 		}
-
-	// else
-	// {
-	// $link=str_replace("index.php","index.php",$link);
-	// }
-	// $link=str_replace("&amp;","&",$link);
-	// $link=str_replace("&","&amp;",$link);
 	return $link;
 	}
 
-// Called by, eg, $output['TOKEN']='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'">';
-function jomresSetToken()
-	{
-	/*
-	$token = md5(uniqid(rand(), TRUE));
-	if (!@session_start())
-		{
-		@ini_set('session.save_handler', 'files');
-		session_start();
-		}
-	$_SESSION['jomresValidTokens'][] = $token;
-	session_write_close();
-	return $token;
-	*/
-	return "xxx";
-	}
-
-function jomresURLToken()
-	{
-	$t = jomresSetToken();
-
-	return "&jomrestoken=" . $t;
-	}
-
-function jomresCheckToken()
-	{
-	return true;
-	}
 
 class dummy_params_class
 	{

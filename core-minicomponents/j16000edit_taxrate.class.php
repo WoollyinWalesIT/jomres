@@ -49,13 +49,12 @@ class j16000edit_taxrate
 		$jrtb   = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_taxrate' );
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=list_taxrates", '' );
-		if ( $id > 0 ) $jrtb .= $jrtbar->toolbarItem( 'delete', JOMRES_SITEPAGE_URL_ADMIN . "&task=delete_taxrate" . jomresURLToken() . "&no_html=1&id=" . $id, '' );
+		if ( $id > 0 ) $jrtb .= $jrtbar->toolbarItem( 'delete', JOMRES_SITEPAGE_URL_ADMIN . "&task=delete_taxrate" . "&no_html=1&id=" . $id, '' );
 		else
 		echo jr_gettext( '_JRPORTAL_TAXRATES_CANNOTDELETE', _JRPORTAL_TAXRATES_CANNOTDELETE,false );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-		$output[ 'JOMRESTOKEN' ]               = '<input type="hidden" name="jomrestoken" value="' . jomresSetToken() . '"><input type="hidden" name="no_html" value="1"/>';
 		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = JOMRES_SITEPAGE_URL_ADMIN;
 
 		$pageoutput[ ] = $output;

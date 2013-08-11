@@ -45,10 +45,7 @@ class j04900saveproperty
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
+
 		$this->newpropertyId = 0;
 		$propertyUid         = intval( jomresGetParam( $_POST, 'property_uid', 0 ) );
 		jr_import( 'jomres_cache' );

@@ -26,7 +26,6 @@ class j16000save_invoice
 
 			return;
 			}
-		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$line_items   = array ();
 		$invoice_data = array ();
 

@@ -25,10 +25,7 @@ class j16000savePfeature
 
 			return;
 			}
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
+
 		$propertyFeatureUid      = jomresGetParam( $_POST, 'propertyFeatureUid', 0 );
 		$hotel_feature_abbv      = jomresGetParam( $_POST, 'feature_abbv', "" );
 		$hotel_feature_full_desc = jomresGetParam( $_POST, 'feature_description', "" );

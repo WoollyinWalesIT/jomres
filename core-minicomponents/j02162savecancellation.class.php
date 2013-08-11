@@ -40,10 +40,6 @@ class j02162savecancellation
 			return;
 			}
 		$mrConfig = getPropertySpecificSettings();
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
 		$contract_uid = jomresGetParam( $_POST, 'contract_uid', 0 );
 		$reason       = jomresGetParam( $_POST, 'reason', "" );
 		if ( $contract_uid != 0 )

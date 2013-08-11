@@ -159,11 +159,9 @@ class j04010editroom
 			$jrtb       = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'saveRoom' );
 			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=propertyadmin" ), $cancelText );
-			if ( $clone < 1 ) $jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=deleteRoom" . jomresURLToken() . "&roomUid=" . $roomUid ), $deleteText );
+			if ( $clone < 1 ) $jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=deleteRoom" . "&roomUid=" . $roomUid ), $deleteText );
 			$jrtb .= $jrtbar->endTable();
 			$output[ 'JOMRESTOOLBAR' ] = $jrtb;
-
-			$output[ 'JOMRESTOKEN' ] = '<input type="hidden" name="jomrestoken" value="' . jomresSetToken() . '"><input type="hidden" name="no_html" value="1"/>';
 
 			$output[ 'JOMRES_SITEPAGE_URL' ] = JOMRES_SITEPAGE_URL;
 

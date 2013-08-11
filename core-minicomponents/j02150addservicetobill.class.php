@@ -63,8 +63,6 @@ class j02150addservicetobill
 			$jrtb .= $jrtbar->endTable();
 			$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-			$output[ 'JOMRESTOKEN' ] = '<input type="hidden" name="jomrestoken" value="' . jomresSetToken() . '"><input type="hidden" name="no_html" value="1"/>';
-
 			$pageoutput[ ] = $output;
 			$tmpl          = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
@@ -74,10 +72,6 @@ class j02150addservicetobill
 			}
 		else
 			{
-			if ( !jomresCheckToken() )
-				{
-				trigger_error( "Invalid token", E_USER_ERROR );
-				}
 			$contract_uid        = jomresGetParam( $_POST, 'contract_uid', 0 );
 			$service_description = ucfirst( jomresGetParam( $_POST, 'service_description', '' ) );
 			$service_value       = jomresGetParam( $_POST, 'service_value', 0.00 );

@@ -25,10 +25,7 @@ class j16000deleteGlobalroomTypes
 
 			return;
 			}
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
+
 		$success = true;
 		$idarray = jomresGetParam( $_POST, 'idarray', array () );
 		if ( count( $idarray ) > 0 )

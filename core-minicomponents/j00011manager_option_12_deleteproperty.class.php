@@ -40,7 +40,7 @@ class j00011manager_option_12_deleteproperty
 			return;
 			}
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-		if ( $thisJRUser->superPropertyManager ) $this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=deleteProperty" . jomresURLToken(), 'WasteBasket.png', jr_gettext( '_JOMRES_COM_MR_PROPERTY_DELETE', _JOMRES_COM_MR_PROPERTY_DELETE, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME, false, false ), false, true );
+		if ( $thisJRUser->superPropertyManager ) $this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=deleteProperty" , 'WasteBasket.png', jr_gettext( '_JOMRES_COM_MR_PROPERTY_DELETE', _JOMRES_COM_MR_PROPERTY_DELETE, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME, false, false ), false, true );
 		}
 
 
