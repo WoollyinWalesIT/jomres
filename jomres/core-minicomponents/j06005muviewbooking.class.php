@@ -501,14 +501,18 @@ class j06005muviewbooking
 			<tr>
 				<td>' . jr_gettext( '_JOMRES_COM_ADDSERVICE_BOOKINGDESC', _JOMRES_COM_ADDSERVICE_BOOKINGDESC ) . '</td>
 				<td>' );
+		
+		$other_services_rows = array ();
+		$otherServiceTotal   = 0.00;
 		if ( count( $extraBillingData ) > 0 )
 			{
 			foreach ( $extraBillingData as $extras )
 				{
 				$service_description = $extras->service_description;
 				$service_value       = $extras->service_value;
-				$contentPanel->setcontent( $service_description . ' ' . output_price( $service_value ) . '<br>' );
-				$otherServiceTotal = $otherServiceTotal + $service_value;
+				$xs_tax              = ( $extras->service_value / 100 ) * (float) $extras->tax_rate_val;
+				$otherServiceTotal   = $otherServiceTotal + ( $service_value + $xs_tax );
+				$contentPanel->setcontent( $service_description . ' ' . output_price( $service_value + $xs_tax) . '<br>' );
 				}
 			}
 		$contentPanel->setcontent( '
