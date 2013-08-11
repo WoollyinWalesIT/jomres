@@ -340,7 +340,7 @@ class j06005view_invoice
 					}
 				else
 					{
-					$amount_already_paid = $li[ 'init_total_inclusive' ];
+					$amount_already_paid += $li[ 'init_total_inclusive' ];
 					}
 				$rows[ ] = $r;
 				}
