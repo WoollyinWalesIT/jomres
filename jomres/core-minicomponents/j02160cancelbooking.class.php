@@ -92,8 +92,6 @@ class j02160cancelbooking
 				$jrtb .= $jrtbar->endTable();
 				$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-				$output[ 'JOMRESTOKEN' ] = '<input type="hidden" name="jomrestoken" value="' . jomresSetToken() . '"><input type="hidden" name="no_html" value="1"/>';
-
 				$output[ 'JOMRES_SITEPAGE_URL' ] = JOMRES_SITEPAGE_URL;
 
 				$pageoutput[ ] = $output;

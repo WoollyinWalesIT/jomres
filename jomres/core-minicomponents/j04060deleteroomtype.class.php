@@ -39,10 +39,7 @@ class j04060deleteroomtype
 
 			return;
 			}
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
+
 		$roomClassUid    = intval( jomresGetParam( $_REQUEST, 'roomClassUid', 0 ) );
 		$defaultProperty = getDefaultProperty();
 		$saveMessage     = jr_gettext( '_JOMRES_COM_MR_ROOMCLASS_DELETED', _JOMRES_COM_MR_ROOMCLASS_DELETED, false );

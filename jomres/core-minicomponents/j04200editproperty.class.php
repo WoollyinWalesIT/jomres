@@ -318,8 +318,6 @@ class j04200editproperty
 			}
 		$output[ 'UPLOADIMAGE' ] = jr_gettext( '_JOMRES_UPLOAD_IMAGE', _JOMRES_UPLOAD_IMAGE, false );
 
-		$output[ 'JOMRESTOKEN' ] = '<input type="hidden" name="jomrestoken" value="' . jomresSetToken() . '"><input type="hidden" name="no_html" value="1"/>';
-
 		$output[ 'JOMRES_SITEPAGE_URL' ] = JOMRES_SITEPAGE_URL;
 
 		$pageoutput[ ] = $output;

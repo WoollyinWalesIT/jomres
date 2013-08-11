@@ -39,10 +39,6 @@ class j02148deleteextra
 
 			return;
 			}
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
 		$uid             = jomresGetParam( $_REQUEST, 'uid', 0 );
 		$defaultProperty = getDefaultProperty();
 		$saveMessage     = jr_gettext( '_JOMRES_COM_MR_EXTRA_DELETED', _JOMRES_COM_MR_EXTRA_DELETED, false );

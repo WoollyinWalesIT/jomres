@@ -45,7 +45,7 @@ class j06002save_normalmode_tariffs
 
 
 		$mrConfig = getPropertySpecificSettings();
-		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
+
 		$defaultProperty = getDefaultProperty();
 		jr_import( 'jomres_cache' );
 		$cache = new jomres_cache();

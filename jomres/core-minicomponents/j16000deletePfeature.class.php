@@ -26,10 +26,7 @@ class j16000deletePfeature
 
 			return;
 			}
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
+
 		$idarray = jomresGetParam( $_POST, 'idarray', array () );
 		if ( count( $idarray ) > 0 )
 			{

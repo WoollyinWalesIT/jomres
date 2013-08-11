@@ -319,10 +319,6 @@ function showSiteConfig()
 function saveSiteConfig()
 	{
 	ignore_user_abort( true );
-	if ( !jomresCheckToken() )
-		{
-		trigger_error( "Invalid token", E_USER_ERROR );
-		}
 	foreach ( $_POST as $k => $v )
 		{
 		if ( strpos( $k, 'cfg_' ) === 0 )

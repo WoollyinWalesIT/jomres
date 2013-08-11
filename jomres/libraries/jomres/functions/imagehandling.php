@@ -183,10 +183,6 @@ function dropImage( $defaultProperty = 0, $imageType = "", $itemUid = "", $redir
  */
 function uploadPropertyImage()
 	{
-	if ( !jomresCheckToken() )
-		{
-		trigger_error( "Invalid token", E_USER_ERROR );
-		}
 	$defaultProperty = getDefaultProperty();
 	$saveMessage     = jr_gettext( '_JOMRES_FILE_UPDATED', _JOMRES_FILE_UPDATED, false );
 
@@ -221,10 +217,6 @@ function uploadPropertyImage()
 
 function uploadRoomImage()
 	{
-	if ( !jomresCheckToken() )
-		{
-		trigger_error( "Invalid token", E_USER_ERROR );
-		}
 	$defaultProperty = getDefaultProperty();
 	$saveMessage     = _JOMRES_FILE_UPDATED;
 	$roomUid         = intval( jomresGetParam( $_POST, 'roomUid', 0 ) );

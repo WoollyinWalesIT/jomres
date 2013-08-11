@@ -40,11 +40,6 @@ class j04020saveroom
 			return;
 			}
 		$mrConfig = getPropertySpecificSettings();
-
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
 		$defaultProperty = getDefaultProperty();
 
 		if ( $mrConfig[ 'singleRoomProperty' ] == "0" )

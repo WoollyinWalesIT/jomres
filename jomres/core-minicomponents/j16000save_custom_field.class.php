@@ -26,7 +26,6 @@ class j16000save_custom_field
 
 			return;
 			}
-		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 
 		$uid           = intval( jomresGetParam( $_REQUEST, 'uid', 0 ) );
 		$fieldname     = jomresGetParam( $_REQUEST, 'fieldname', '' );

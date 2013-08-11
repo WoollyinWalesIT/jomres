@@ -41,10 +41,7 @@ class j06002sendbug
 			}
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		if ( !$thisJRUser->superPropertyManager ) return;
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
+
 		if ( $thisJRUser->superPropertyManager )
 			{
 			$toemail   = "bugs@jomres.net";

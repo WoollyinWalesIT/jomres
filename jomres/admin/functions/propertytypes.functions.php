@@ -99,10 +99,6 @@ function editPropertyType()
  */
 function savePropertyType()
 	{
-	if ( !jomresCheckToken() )
-		{
-		trigger_error( "Invalid token", E_USER_ERROR );
-		}
 	$id         = jomresGetParam( $_POST, 'id', 0 );
 	$ptype      = jomresGetParam( $_POST, 'ptype', '' );
 	$ptype_desc = strtolower( jomresGetParam( $_POST, 'ptype_desc', '' ) );
@@ -128,10 +124,6 @@ function savePropertyType()
  */
 function deletePropertyType()
 	{
-	if ( !jomresCheckToken() )
-		{
-		trigger_error( "Invalid token", E_USER_ERROR );
-		}
 	$idArray = jomresGetParam( $_POST, 'idarray', array () );
 	$success = true;
 	if ( count( $idArray ) > 0 )

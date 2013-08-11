@@ -214,53 +214,6 @@ class j04005roomsconfig
 			$tmpl->addRows( 'rows', $rows );
 			$tariffRoomOutput = $tmpl->getParsedTemplate();
 			}
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////property/business tab disabled
-		/*foreach($propertysList as $property)
-			{
-			$published=$property->published;
-			if ($published)
-				{
-				$img = get_showtime('live_site')."/jomres/images/jomresimages/small/tick.png";
-				}
-			else
-				{
-				$img = get_showtime('live_site')."/jomres/images/jomresimages/small/publish_x.png";
-				}
-
-			$property_image=getImageForProperty("property",$property->propertys_uid,$property->propertys_uid);
-
-			$propertyRowInfo .="<tr>";
-			$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
-			$jrtb  = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&amp;propertyUid=".$property->propertys_uid),'');
-			if (!$published)
-				$jrtb .= $jrtbar->toolbarItem('unpublish',jomresURL(JOMRES_SITEPAGE_URL.'&task=publishProperty'.jomresURLToken()),jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISH',_JOMRES_COM_MR_VRCT_PUBLISH,false));
-			else
-				$jrtb .= $jrtbar->toolbarItem('publish',jomresURL(JOMRES_SITEPAGE_URL.'&task=publishProperty'.jomresURLToken()),jr_gettext('_JOMRES_COM_MR_VRCT_UNPUBLISH',_JOMRES_COM_MR_VRCT_UNPUBLISH,false) );
-			$jrtb .= $jrtbar->endTable();
-			$propertyRowInfo .="<td>".$jrtb."</td>";
-			$propertyRowInfo .="<td>".stripslashes(($property->property_street ))."</td>";
-			$propertyRowInfo .="<td>".stripslashes(($property->property_town) )."</td>";
-			$propertyRowInfo .="<td>".($property->property_region )."</td>";
-			$propertyRowInfo .="<td>".($property->property_country )."</td>";
-			$propertyRowInfo .="<td>".stripslashes(($property->property_postcode))."</td></tr>";
-			$propertyRowInfo .='<tr><td colspan="6"><img src="'.$property_image.'" border="0" width="'.$mrConfig['editiconsize'].'" height="'.$mrConfig['editiconsize'].'"></td>';
-			$propertyRowInfo .="</tr>";
-
-			// Uncomment the following lines to show the apikey in the frontend property admin
-			$propertyRowInfo .='
-			<script type="text/javascript">
-			function select_all(obj)
-				{ var text_val=eval(obj);
-				text_val.focus();
-				text_val.select();
-				if (!document.all) return; // IE only
-					r= text_val.createTextRange();
-				r.execCommand(\'copy\');
-				} </script>
-				';
-			$propertyRowInfo .='<tr><td class=\"jradmin_subheader_la\" colspan=\"6\">APIKEY: <input type="text" size="50" class="inputbox" name="apikey'.$id.'" value="'.$property->apikey.'" READONLY onclick="select_all(this)"/></td></tr>';
-			}*/
 
 		$thisJRUser      = jomres_singleton_abstract::getInstance( 'jr_user' );
 		$defaultProperty = $thisJRUser->defaultproperty;
@@ -273,24 +226,6 @@ class j04005roomsconfig
 		$contentPanel->setcontent( $tariffRoomOutput );
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();
-
-		//property/business tab removed
-		/*$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYS',_JOMRES_COM_MR_VRCT_TAB_PROPERTYS,FALSE));
-		$contentPanel->setcontent($newPropertyButton);
-		$contentPanel->setcontent('<table>
-			<tr>
-			<td class="fg-toolbar ui-widget-header ui-corner-all">&nbsp;</td>
-			<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET).'</td>
-			<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN).'</td>
-			<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION).'</td>
-			<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY).'</td>
-			<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE).'</td>
-			');
-		$contentPanel->setcontent('</tr>');
-		$contentPanel->setcontent($propertyRowInfo);
-		$contentPanel->setcontent('</table>');
-		$contentPanel->insertContent();
-		$contentPanel->endPanel();*/
 
 		$contentPanel->endTabs();
 		}

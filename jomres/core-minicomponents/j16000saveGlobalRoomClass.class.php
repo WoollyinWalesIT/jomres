@@ -26,10 +26,7 @@ class j16000saveGlobalRoomClass
 
 			return;
 			}
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
+
 		$roomClassUid         = jomresGetParam( $_POST, 'roomClassUid', 0 );
 		$room_class_abbv      = jomresGetParam( $_POST, 'room_class_abbv', "" );
 		$room_class_full_desc = jomresGetParam( $_POST, 'room_class_full_desc', "" );

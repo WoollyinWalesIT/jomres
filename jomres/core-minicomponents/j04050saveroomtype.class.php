@@ -38,10 +38,6 @@ class j04050saveroomtype
 
 			return;
 			}
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
 		$roomClassUid         = intval( jomresGetParam( $_POST, 'roomClassUid', 0 ) );
 		$room_class_abbv      = getEscaped( jomresGetParam( $_POST, 'room_class_abbv', "" ) );
 		$room_class_full_desc = getEscaped( jomresGetParam( $_POST, 'room_class_full_desc', "" ) );

@@ -43,10 +43,6 @@ class j02272publishprop
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
 		$defaultProperty = getDefaultProperty();
 
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );

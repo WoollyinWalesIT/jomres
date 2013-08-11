@@ -39,10 +39,6 @@ class j02226deleteguest
 
 			return;
 			}
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
 		$guestUid                 = jomresGetParam( $_REQUEST, 'guestUid', 0 );
 		$defaultProperty          = getDefaultProperty();
 		$saveMessage              = jr_gettext( '_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', _JOMRES_FRONT_DELETEGUEST_GUESTDELETED, false );

@@ -68,11 +68,9 @@ class j04100editpropertyfeature
 		$jrtb   = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'savePropertyFeature' );
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=propertyadmin" ), $cancelText );
-		if ( !$clone ) $jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=deletePropertyFeature" . jomresURLToken() . "&propertyFeatureUid=" . $propertyFeatureUid . "" ), $deleteText );
+		if ( !$clone ) $jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=deletePropertyFeature" . "&propertyFeatureUid=" . $propertyFeatureUid . "" ), $deleteText );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
-
-		$output[ 'JOMRESTOKEN' ] = '<input type="hidden" name="jomrestoken" value="' . jomresSetToken() . '"><input type="hidden" name="no_html" value="1"/>';
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();

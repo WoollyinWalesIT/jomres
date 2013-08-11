@@ -43,7 +43,7 @@ class j16000edit_region
 		$jrtb   = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_region' );
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=list_regions", '' );
-		if ( $id > 0 ) $jrtb .= $jrtbar->toolbarItem( 'delete', JOMRES_SITEPAGE_URL_ADMIN . "&task=delete_region" . jomresURLToken() . "&no_html=1&id=" . $id, '' );
+		if ( $id > 0 ) $jrtb .= $jrtbar->toolbarItem( 'delete', JOMRES_SITEPAGE_URL_ADMIN . "&task=delete_region" . "&no_html=1&id=" . $id, '' );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 

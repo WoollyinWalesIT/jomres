@@ -70,13 +70,12 @@ class j04070editroomfeature
 		$jrtb   = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'saveRoomFeature' );
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=propertyadmin" ), $cancelText );
-		if ( !$clone && $featureUid ) $jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=deleteRoomFeature" . jomresURLToken() . "&roomFeatureUid=" . $featureUid . "" ), $deleteText );
+		if ( !$clone && $featureUid ) $jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=deleteRoomFeature" . "&roomFeatureUid=" . $featureUid . "" ), $deleteText );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
 		$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES', _JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES );
 
-		$output[ 'JOMRESTOKEN' ]         = '<input type="hidden" name="jomrestoken" value="' . jomresSetToken() . '"><input type="hidden" name="no_html" value="1"/>';
 		$output[ 'JOMRES_SITEPAGE_URL' ] = JOMRES_SITEPAGE_URL;
 
 		$pageoutput[ ] = $output;

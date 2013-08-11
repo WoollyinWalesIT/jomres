@@ -28,7 +28,6 @@ class j16000saveregisterprop
 			}
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
-		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 
 		$roomClass                     = jomresGetParam( $_POST, 'roomClass', 0 );
 		$property_name                 = jomresGetParam( $_POST, 'property_name', "New Property" );

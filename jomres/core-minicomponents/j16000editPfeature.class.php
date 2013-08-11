@@ -90,7 +90,6 @@ class j16000editPfeature
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-		$output[ 'JOMRESTOKEN' ] = '<input type="hidden" name="jomrestoken" value="' . jomresSetToken() . '"><input type="hidden" name="no_html" value="1"/>';
 
 		$pageoutput    = array ();
 		$pageoutput[ ] = $output;

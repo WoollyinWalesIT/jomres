@@ -26,10 +26,6 @@ class j16000save_taxrate
 
 			return;
 			}
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
 		$id          = intval( jomresGetParam( $_POST, 'id', 0 ) );
 		$code        = jomresGetParam( $_POST, 'code', "" );
 		$description = jomresGetParam( $_POST, 'description', "" );

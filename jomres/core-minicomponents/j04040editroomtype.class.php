@@ -68,11 +68,9 @@ class j04040editroomtype
 		$jrtb   = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'saveRoomClass' );
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=propertyadmin" ), $cancelText );
-		if ( !$clone ) $jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=deleteRoomClass" . jomresURLToken() . "&roomClassUid=" . $classUid . "" ), $deleteText );
+		if ( !$clone ) $jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=deleteRoomClass" . "&roomClassUid=" . $classUid . "" ), $deleteText );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
-
-		$output[ 'JOMRESTOKEN' ] = '<input type="hidden" name="jomrestoken" value="' . jomresSetToken() . '"><input type="hidden" name="no_html" value="1"/>';
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();

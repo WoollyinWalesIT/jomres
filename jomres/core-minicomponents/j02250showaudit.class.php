@@ -143,7 +143,7 @@ class j02250showaudit
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem( 'archive', jomresURL( JOMRES_SITEPAGE_URL . "&task=archiveAudit" . jomresURLToken() . "&no_html=1" ), '' );
+		$jrtb .= $jrtbar->toolbarItem( 'archive', jomresURL( JOMRES_SITEPAGE_URL . "&task=archiveAudit" . "&no_html=1" ), '' );
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL ), '' );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;

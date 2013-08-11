@@ -38,10 +38,7 @@ class j16000delete_taxrate
 
 			return;
 			}
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
+
 		$id = jomresGetParam( $_REQUEST, 'id', 0 );
 		if ( $id > 1 )
 			{

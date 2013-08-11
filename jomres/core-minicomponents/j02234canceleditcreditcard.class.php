@@ -39,11 +39,6 @@ class j02234canceleditcreditcard
 
 			return;
 			}
-
-		if ( !jomresCheckToken() )
-			{
-			trigger_error( "Invalid token", E_USER_ERROR );
-			}
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
 		$tmpl->readTemplatesFromInput( 'save_creditcard.html' );
