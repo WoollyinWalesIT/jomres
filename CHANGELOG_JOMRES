@@ -1,3 +1,12 @@
+Jomres 7.3.2
+
+Modified user booking page to ensure that correct prices are shown.
+Fixed a counting error in the view invoice script, ensuring that the Amount Already Paid var is set correctly. Thanks Marinhio.
+Removed references to no longer used Jomres token functionality.
+Resolved an issue where no bookings could be taken. 
+Removed contents of $_SERVER magic var from the session file. 
+
+
 Jomres 7.3.1
 
 Modified the jomres_decode function (the output filter) as it was allowing users to inject javascript into certain pages.
