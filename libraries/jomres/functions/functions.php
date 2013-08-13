@@ -3121,7 +3121,6 @@ function insertInternetBooking( $jomressession = "", $depositPaid = false, $conf
  */
 function insertGuestDeets( $jomressession )
 	{
-	$jomresConfig_secret = get_showtime( 'secret' );
 	$thisJRUser          = jomres_singleton_abstract::getInstance( 'jr_user' );
 	$tmpBookingHandler   = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 	$userIsManager       = checkUserIsManager();
@@ -3143,17 +3142,18 @@ function insertGuestDeets( $jomressession )
 	$landline     = $xCustomers[ 'tel_landline' ];
 	$mobile       = $xCustomers[ 'tel_mobile' ];
 	$property_uid = (int) $tmpBookingHandler->getBookingPropertyId( $tmpBookingHandler );
-
-	$defaultProperty = getDefaultProperty();
-	if ( !$userIsManager && $thisJRUser->id > 0 )
+	$defaultProperty = $property_uid;
+	
+	if ($mos_userid == 0)
 		{
-		$defaultProperty = $property_uid;
-		$mos_userid      = $thisJRUser->id;
-		}
-	else if ( !$userIsManager && $thisJRUser->id == 0 )
-		{
-		$defaultProperty = $property_uid;
-		$mos_userid      = 0;
+		if ( !$userIsManager && $thisJRUser->id > 0 )
+			{
+			$mos_userid      = $thisJRUser->id;
+			}
+		else if ( !$userIsManager && $thisJRUser->id == 0 )
+			{
+			$mos_userid      = 0;
+			}
 		}
 
 	if ( $mos_userid > 0 )
@@ -3168,17 +3168,24 @@ function insertGuestDeets( $jomressession )
 				}
 			}
 		else
+			{
+			$guests_uid = 0;
+			}
+		}
+	elseif ( $existing_id > 0 ) 
+		{
+		$guests_uid = $existing_id;
+		}
+	else
+		{
 		$guests_uid = 0;
 		}
-	elseif ( $existing_id > 0 ) $guests_uid = $existing_id;
-	else
-	$guests_uid = 0;
-
+		
 	if ( $guests_uid > 0 )
 		{
 		$query = "UPDATE	#__jomres_guests SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',
 		`town`= '$town',`county`= '$region',`country`= '$country',`postcode`= '$postcode',`tel_landline`= '$landline',`tel_mobile`= '$mobile',
-		`property_uid`='" . (int) $defaultProperty . "',`email`='$email'
+		`property_uid`='" . (int) $property_uid . "',`email`='$email'
 		WHERE guests_uid = '" . (int) $guests_uid . "'";
 		doInsertSql( $query, false );
 		$returnid = $guests_uid;
@@ -3188,7 +3195,7 @@ function insertGuestDeets( $jomressession )
 		$query = "INSERT INTO #__jomres_guests
 		(`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`property_uid`,`email`";
 		$query .= ",`mos_userid`";
-		$query .= ") VALUES ('$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$defaultProperty','$email'";
+		$query .= ") VALUES ('$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$property_uid','$email'";
 		$query .= ",'" . (int) $mos_userid . "'";
 		$query .= ")";
 		$returnid = doInsertSql( $query, false );
@@ -3196,13 +3203,13 @@ function insertGuestDeets( $jomressession )
 
 	// New for 4.5.9. We need now to look in the new guest profile table and see if this user already exists. If they do not, we'll take these details and add them to the profile table too, then in future the profile table's data will be used as the primary source of this guest's information, continuing to ensure that guest details are not shared between properties. No property should ever be able to access a guest's details unless that guest has already booked with that property.
 	// First, we'll look at this user's id. If it's the same as mos_userid above, then the user making the booking is a guest.
-	if ( $thisJRUser->id == $mos_userid )
+	if ( ( $thisJRUser->id == $mos_userid && $thisJRUser->id > 0 ) || ( $mos_userid > 0 && isset($_REQUEST['jsid']) ) ) // Either it's the guest making the booking, or it's a gateway call and the user's a registered user. Either way, we can update the profile table.
 		{
-		$query     = "SELECT id,firstname,surname,house,street,town,postcode,county,country,tel_landline,tel_mobile,email FROM #__jomres_guest_profile WHERE cms_user_id = '" . (int) $thisJRUser->id . "' LIMIT 1";
+		$query     = "SELECT id FROM #__jomres_guest_profile WHERE cms_user_id = '" . (int) $mos_userid . "' LIMIT 1";
 		$guestData = doSelectSql( $query, 2 );
 		if ( !$guestData ) // The guest doesn't have information in the profile table yet.
 			{
-			$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`email`) VALUES ('" . (int) $thisJRUser->id . "','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$email')";
+			$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`email`) VALUES ('" . (int) $mos_userid . "','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$email')";
 			doInsertSql( $query, '' );
 			}
 		}
