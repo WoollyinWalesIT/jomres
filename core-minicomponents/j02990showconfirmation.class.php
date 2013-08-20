@@ -398,17 +398,17 @@ class j02990showconfirmation
 			$booking_parts[ 'SPECIAL_REQUIREMENTS' ]  = getEscaped( jomresGetParam( $_POST, 'specialReqs', "" ) );
 			}
 		$guestList                    = $tmpBookingHandler->getGuestData();
-		$booking_parts[ 'FIRSTNAME' ] = stripslashes( $guestList[ 'firstname' ] );
-		$booking_parts[ 'SURNAME' ]   = stripslashes( $guestList[ 'surname' ] );
-		$booking_parts[ 'HOUSENO' ]   = stripslashes( $guestList[ 'house' ] );
-		$booking_parts[ 'STREET' ]    = stripslashes( $guestList[ 'street' ] );
-		$booking_parts[ 'TOWN' ]      = stripslashes( $guestList[ 'town' ] );
+		$booking_parts[ 'FIRSTNAME' ] = $guestList[ 'firstname' ];
+		$booking_parts[ 'SURNAME' ]   = $guestList[ 'surname' ];
+		$booking_parts[ 'HOUSENO' ]   = $guestList[ 'house' ];
+		$booking_parts[ 'STREET' ]    = $guestList[ 'street' ];
+		$booking_parts[ 'TOWN' ]      = $guestList[ 'town' ];
 		$booking_parts[ 'COUNTY' ]    = find_region_name( $guestList[ 'region' ] );
 		$booking_parts[ 'COUNTRY' ]   = getSimpleCountry( $guestList[ 'country' ] );
-		$booking_parts[ 'POSTCODE' ]  = stripslashes( $guestList[ 'postcode' ] );
-		$booking_parts[ 'LANDLINE' ]  = stripslashes( $guestList[ 'tel_landline' ] );
-		$booking_parts[ 'MOBILE' ]    = stripslashes( $guestList[ 'tel_mobile' ] );
-		$booking_parts[ 'EMAIL' ]     = stripslashes( $guestList[ 'email' ] );
+		$booking_parts[ 'POSTCODE' ]  = $guestList[ 'postcode' ];
+		$booking_parts[ 'LANDLINE' ]  = $guestList[ 'tel_landline' ];
+		$booking_parts[ 'MOBILE' ]    = $guestList[ 'tel_mobile' ];
+		$booking_parts[ 'EMAIL' ]     = $guestList[ 'email' ];
 
 		if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 			{
