@@ -226,21 +226,23 @@ function jomresGetParam( $request, $element, $def = null, $mask = '' ) // variab
 				}
 			else
 				{
-				$clean = jomres_sanitise_string( $dirty );
+				$clean = jomres_sanitise_string( $dirty , $element );
+				
 				}
+			
 			break;
 	}
 
 	return $clean;
 	}
 
-function jomres_sanitise_string( $dirty )
+function jomres_sanitise_string( $dirty , $element )
 	{
 	$html_purifier = jomres_singleton_abstract::getInstance( 'jomres_input_filter_singleton' );
 	$dirty         = jomres_remove_HTML( $dirty ); // Strip out any html
 	$dirty         = $html_purifier->purify( $dirty );
+	$dirty         = str_replace("&amp;","&",$dirty); // Without this ampersands will be double encoded
 	$clean         = filter_var( $dirty, FILTER_SANITIZE_SPECIAL_CHARS );
-
 	return $clean;
 	}
 
@@ -248,6 +250,7 @@ function jomres_purify_html( $dirty )
 	{
 	$html_purifier = jomres_singleton_abstract::getInstance( 'jomres_input_filter_singleton' );
 	$dirty         = $html_purifier->purify( $dirty, $allow_html = true );
+	$dirty         = str_replace("&amp;","&",$dirty);  // Without this ampersands will be double encoded
 	$clean         = filter_var( $dirty, FILTER_SANITIZE_SPECIAL_CHARS );
 
 	return $clean;
