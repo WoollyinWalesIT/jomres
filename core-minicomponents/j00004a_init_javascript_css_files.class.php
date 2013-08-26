@@ -108,7 +108,16 @@ class j00004a_init_javascript_css_files
 			set_showtime( "jquery.cookee.for_tabs.js", "jquery.cookee.for_tabs.js" );
 			set_showtime( "jquery.cookee.for_tabs.js.relpath", "jomres/javascript/" );
 			}
+		
+		if (using_bootstrap())
+			{
+			set_showtime( "bootstrap-multiselect.css", "bootstrap-multiselect.css" );
+			set_showtime( "bootstrap-multiselect.css.relpath", "jomres/css/" );
 
+			set_showtime( "bootstrap-multiselect.js", "bootstrap-multiselect.js" );
+			set_showtime( "bootstrap-multiselect.js.relpath", "jomres/javascript/" );
+			}
+		
 		set_showtime( "jomres.js", "jomres.js" );
 		set_showtime( "jomres.js.relpath", "jomres/javascript/" );
 
