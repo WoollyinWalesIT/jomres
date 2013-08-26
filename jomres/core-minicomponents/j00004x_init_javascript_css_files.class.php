@@ -143,6 +143,12 @@ class j00004x_init_javascript_css_files
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.ui.potato.menu.js.relpath" ), get_showtime( "jquery.ui.potato.menu.js" ) );
 					jomres_cmsspecific_addheaddata( "css", get_showtime( "jquery.ui.potato.menu.css.relpath" ), get_showtime( "jquery.ui.potato.menu.css" ) );
 					}
+					
+				if ( using_bootstrap() )
+					{
+					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "bootstrap-multiselect.js.relpath" ), get_showtime( "bootstrap-multiselect.js" ) );
+					jomres_cmsspecific_addheaddata( "css", get_showtime( "bootstrap-multiselect.css.relpath" ), get_showtime( "bootstrap-multiselect.css" ) );
+					}
 				$MiniComponents        = jomres_singleton_abstract::getInstance( 'mcHandler' );
 				$colourSchemeDataArray = $MiniComponents->triggerEvent( '00021', $componentArgs ); // Get the colour scheme
 
