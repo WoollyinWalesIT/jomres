@@ -46,7 +46,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 		if ( count( $languageChoices ) > 0 )
 			{
-			$languageChoices = filter_var( $languageChoices, FILTER_SANITIZE_SPECIAL_CHARS );
+			$languageChoices = jomresGetParam($_POST, 'idarray', array());
 			$formString .= serialize( $languageChoices ) . "');
 			}
 			";
