@@ -63,6 +63,31 @@ require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' 
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'jr_gettext.php' );
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . 'jomres_singleton_abstract.class.php' );
 
+if (!function_exists('json_encode')) 
+	{
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'json' . JRDS . 'JSON.php' );
+
+	function json_encode($arg)
+		{
+		global $services_json;
+		if (!isset($services_json)) 
+			{
+			$services_json = new Services_JSON();
+			}
+		return $services_json->encode($arg);
+		}
+
+	function json_decode($arg)
+		{
+		global $services_json;
+		if (!isset($services_json)) 
+			{
+			$services_json = new Services_JSON();
+			}
+		return $services_json->decode($arg);
+		}
+	} 
+
 jr_import( 'jomresHTML' );
 
 $showtime            = jomres_singleton_abstract::getInstance( 'showtime' );
