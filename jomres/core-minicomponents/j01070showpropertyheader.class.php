@@ -71,7 +71,7 @@ class j01070showpropertyheader
 					$starslink .= "";
 					}
 
-				if ( $current_property_details->superior == 1 ) $output[ 'SUPERIOR' ] = jr_gettext( 'JOMRES_SUPERIOR_S', JOMRES_SUPERIOR_S );
+				if ( $current_property_details->superior == 1 ) $output[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/superior.png\" alt=\"superior\" border=\"0\" />";
 				else
 				$output[ 'SUPERIOR' ] = '';
 

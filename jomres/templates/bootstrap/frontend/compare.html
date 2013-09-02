@@ -110,19 +110,16 @@
 		</div>
 		<patTemplate:tmpl name="rows" unusedvars="strip">
 			<div class="span3">
-				<table title="{PROPERTY_NAME}" class="table table-condensed table-striped table-bordered compare-table"
-					   width="23%">
+				<table title="{PROPERTY_NAME}" class="table table-condensed table-striped table-bordered compare-table" width="23%">
 					<thead>
-					<tr>
-						<th width="100%">{PROPERTY_NAME}</th>
-					</tr>
+						<tr>
+							<th width="100%">{PROPERTY_NAME}</th>
+						</tr>
 					</thead>
 					<tbody>
 					<tr>
 						<td>
-							<div id="module_{RANDOM_IDENTIFIER}"><a
-									href="javascript: module_popup('{RANDOM_IDENTIFIER}',{PROPERTY_UID});"
-									class="thumbnail"><img src="{IMAGETHUMB}" alt="{PROPERTY_NAME}"/></a></div>
+							<div id="module_{RANDOM_IDENTIFIER}"><a href="javascript: module_popup('{RANDOM_IDENTIFIER}',{PROPERTY_UID});" class="thumbnail"><img src="{IMAGETHUMB}" alt="{PROPERTY_NAME}"/></a></div>
 						</td>
 					</tr>
 					<tr>
@@ -139,26 +136,23 @@
 					</tr>
 					<tr>
 						<td><p class="big-price align-center">{PRICE_PRICE}</p>
-
-							<p class="align-center">{PRICE_POST_TEXT}</p></td>
+							<p class="align-center">{PRICE_POST_TEXT}</p>
+						</td>
 					</tr>
 					<tr>
 						<td>{MAP}</td>
 					</tr>
 					{FEATURES}
 					<tr>
-						<td><a href="{MOREINFORMATIONLINK}" class="btn btn-primary"><i
-								class="icon-info-sign icon-white"></i> {MOREINFORMATION}</a></td>
+						<td><a href="{MOREINFORMATIONLINK}" class="btn btn-primary">{MOREINFORMATION} <i class="icon-arrow-right icon-white"></i></a></td>
 					</tr>
 					<tr>
-						<td><a href="{REMOVE_LINK}" class="btn btn-danger"><i class="icon-remove icon-white"></i>
-							{_JOMRES_REMOVE}</a></td>
+						<td><a href="{REMOVE_LINK}" class="btn btn-danger"><i class="icon-trash icon-white"></i> {_JOMRES_REMOVE}</a></td>
 					</tr>
 					</tbody>
 				</table>
 			</div>
-			<div id='module_{RANDOM_IDENTIFIER}_popup' style="display:none;" title="{PROPERTY_NAME}"><img
-					src="{LIVE_SITE}/jomres/images/ajax_animation/broken_circle.gif"/></div>
+			<div id='module_{RANDOM_IDENTIFIER}_popup' style="display:none;" title="{PROPERTY_NAME}"><img src="{LIVE_SITE}/jomres/images/ajax_animation/broken_circle.gif"/></div>
 		</patTemplate:tmpl>
 	</div>
 	<patTemplate:comment>

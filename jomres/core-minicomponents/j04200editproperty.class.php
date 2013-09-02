@@ -201,26 +201,54 @@ class j04200editproperty
 		$propertyFeaturesArray              = explode( ",", $propertyFeatures );
 
 
-		$query                = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features  WHERE property_uid = '0' AND (`ptype_id`= 0 OR `ptype_id` = " . (int) $ptypeid . ")  ORDER BY hotel_feature_abbv ";
+		$query = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid,ptype_xref FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
 		$propertyFeaturesList = doSelectSql( $query );
 		$counter              = 1;
 		foreach ( $propertyFeaturesList as $propertyFeature )
 			{
-			$r          = array ();
-			$r[ 'PID' ] = $propertyFeature->hotel_features_uid;
-			if ( in_array( $propertyFeature->hotel_features_uid, $propertyFeaturesArray ) ) $r[ 'ischecked' ] = "checked";
-			//$r['FEATURE']=makeFeatureImages($propertyFeature->image,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$retString=TRUE);
-			$feature_abbv   = jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_ABBV' . (int) $propertyFeature->hotel_features_uid, stripslashes( $propertyFeature->hotel_feature_abbv ), false, false );
-			$feature_desc   = jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_DESC' . (int) $propertyFeature->hotel_features_uid, stripslashes( $propertyFeature->hotel_feature_full_desc ), false, false );
-			$r[ 'FEATURE' ] = jomres_makeTooltip( $feature_abbv, $feature_abbv, $feature_desc, $propertyFeature->image, "", "property_feature", array () );
-			$r[ 'BR' ]      = "";
-			if ( $counter == 8 )
+			if (!is_numeric($propertyFeature->ptype_xref))
 				{
-				$r[ 'BR' ] = "<br />";
-				$counter   = 0;
+				$ptype_xref=unserialize($propertyFeature->ptype_xref);
+				if (in_array ($property->ptype_id, $ptype_xref))
+					{
+					$r          = array ();
+					$r[ 'PID' ] = $propertyFeature->hotel_features_uid;
+					if ( in_array( $propertyFeature->hotel_features_uid, $propertyFeaturesArray ) ) $r[ 'ischecked' ] = "checked";
+					//$r['FEATURE']=makeFeatureImages($propertyFeature->image,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$retString=TRUE);
+					$feature_abbv   = jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_ABBV' . (int) $propertyFeature->hotel_features_uid, stripslashes( $propertyFeature->hotel_feature_abbv ), false, false );
+					$feature_desc   = jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_DESC' . (int) $propertyFeature->hotel_features_uid, stripslashes( $propertyFeature->hotel_feature_full_desc ), false, false );
+					$r[ 'FEATURE' ] = jomres_makeTooltip( $feature_abbv, $feature_abbv, $feature_desc, $propertyFeature->image, "", "property_feature", array () );
+					$r[ 'BR' ]      = "";
+					if ( $counter == 8 )
+						{
+						$r[ 'BR' ] = "<br />";
+						$counter   = 0;
+						}
+					$counter++;
+					$globalPfeatures[ ] = $r;
+					}
 				}
-			$counter++;
-			$globalPfeatures[ ] = $r;
+			else //for backward compatibility
+				{
+				if ($property->ptype_id == $propertyFeature->ptype_xref || $propertyFeature->ptype_xref == 0)
+					{
+					$r          = array ();
+					$r[ 'PID' ] = $propertyFeature->hotel_features_uid;
+					if ( in_array( $propertyFeature->hotel_features_uid, $propertyFeaturesArray ) ) $r[ 'ischecked' ] = "checked";
+					//$r['FEATURE']=makeFeatureImages($propertyFeature->image,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$retString=TRUE);
+					$feature_abbv   = jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_ABBV' . (int) $propertyFeature->hotel_features_uid, stripslashes( $propertyFeature->hotel_feature_abbv ), false, false );
+					$feature_desc   = jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_DESC' . (int) $propertyFeature->hotel_features_uid, stripslashes( $propertyFeature->hotel_feature_full_desc ), false, false );
+					$r[ 'FEATURE' ] = jomres_makeTooltip( $feature_abbv, $feature_abbv, $feature_desc, $propertyFeature->image, "", "property_feature", array () );
+					$r[ 'BR' ]      = "";
+					if ( $counter == 8 )
+						{
+						$r[ 'BR' ] = "<br />";
+						$counter   = 0;
+						}
+					$counter++;
+					$globalPfeatures[ ] = $r;
+					}
+				}
 			}
 
 		if ( isset( $listTxt ) ) $output[ 'FEATURES' ] = $listTxt;

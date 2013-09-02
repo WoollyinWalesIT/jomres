@@ -409,34 +409,81 @@ function doTableUpdates()
 	if ( !checkLineitemsInclusiveColExists() ) alterLineitemsInclusiveCol();
 	if ( !checkExtrasAutoselectColExists() ) alterExtrasAutoSelectCol();
 	if ( !checkPtypesOrderColExists() ) alterPtypesOrderCol();
-
 	if ( !checkAccessControlTableExists() ) createAccessControlTable();
-
 	if ( !checkInvoicesGuestidColExists() ) alterInvoicesGuestidCol();
-
 	if ( !checkExtraServicesTaxtax_codeColExists() ) alterExtraServicesTaxtax_codeCol();
-
 	if ( !checkCountriesTableExists() ) createCountriesTable();
-
 	if ( !checkCustomtemplatesPtypeidColExists() ) alterCustomtemplatesPtypeidCol();
 
 	migrate_region_names();
 
 	if ( !checkPropertysApprovedColExists() ) alterPropertysApprovedCol();
-
 	if ( !checkPropertysSuperiorColExists() ) alterPropertysSuperiorCol();
-
 	if ( !checkPropertysMetakeywordsColExists() ) alterPropertysMetakeywordsCol();
-
 	if ( !checkGuestsVatcodeColExists() ) alterGuestsVatcodeCol();
-	
 	if ( !checkTaxRulesTableExists() ) createTaxRulesTable();
-	
 	if ( !checkInvoicesVATFlagColExists() ) alterInvoicesVATFlagCol();
-	
 	if ( !checkCratesTaxRateColExists() ) alterCratesTaxRateCol();
+
+	if ( !checkPTypeXrefColExists() ) alterPTypeXrefCol();
+	
 	
 	if ( _JOMRES_DETECTED_CMS == "joomla15" ) checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
+	}
+
+function checkPTypeXrefColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_hotel_features LIKE 'ptype_xref'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
+
+function alterPTypeXrefCol()
+	{
+	if ( !AUTO_UPGRADE ) echo "Editing __jomres_hotel_features table renaming ptype_id column<br>";
+	$query = "ALTER TABLE `#__jomres_hotel_features` CHANGE COLUMN ptype_id ptype_xref text NULL DEFAULT NULL";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_hotel_features ptype_xref</b><br>";
+		}
+	
+	global $jomresConfig_db;
+	$tablesFound = false;
+	$query       = "SHOW TABLES";
+	$result      = doSelectSql( $query, $mode = false );
+	$string      = "Tables_in_" . $jomresConfig_db;
+	foreach ( $result as $r )
+		{
+		if ( strstr( $r->$string, 'jomres_custom_property_fields_fields' ) ) 
+			{
+			$query = "ALTER TABLE `#__jomres_custom_property_fields_fields` ADD `ptype_xref` text NULL DEFAULT NULL AFTER `order` ";
+			if ( !doInsertSql( $query, '' ) )
+				{
+				if ( !AUTO_UPGRADE )
+					{
+					echo "<b>Error, unable to add __jomres_custom_property_fields_fields column ptype_xref</b><br>";
+					}
+				}
+			}
+		}
+	
+	$query = "ALTER TABLE `#__jomres_room_features` ADD `ptype_xref` text NULL DEFAULT NULL AFTER `property_uid` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_room_features ptype_xref</b><br>";
+		}
+
+	$query = "ALTER TABLE `#__jomres_custom_fields` ADD `ptype_xref` text NULL DEFAULT NULL AFTER `required` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_custom_fields ptype_xref</b><br>";
+		}
+		
 	}
 
 function checkCratesTaxRateColExists()
@@ -2143,6 +2190,7 @@ function createJomresTables()
 		`default_value` VARCHAR( 255 ) ,
 		`description` VARCHAR( 255 ) ,
 		`required` BOOL NOT NULL DEFAULT '0',
+		`ptype_xref` text NULL DEFAULT NULL,
 		PRIMARY KEY ( `uid` )
 		) ";
 	$result = doInsertSql( $query, "" );
@@ -2754,6 +2802,7 @@ function createJomresTables()
 		`room_features_uid` int(11) NOT NULL auto_increment,
 		`feature_description` TEXT NULL,
 		`property_uid` VARCHAR(11),
+		`ptype_xref` text NULL DEFAULT NULL,
 		PRIMARY KEY(`room_features_uid`)
 		) ";
 	if ( !doInsertSql( $query ) )
@@ -4030,6 +4079,7 @@ function addNewTables()
 		`default_value` VARCHAR( 255 ) ,
 		`description` VARCHAR( 255 ) ,
 		`required` BOOL NOT NULL DEFAULT '0',
+		`ptype_xref` text NULL DEFAULT NULL,
 		PRIMARY KEY ( `uid` )
 		) ";
 	if ( !doInsertSql( $query ) )

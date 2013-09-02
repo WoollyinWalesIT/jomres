@@ -314,7 +314,7 @@ class j01010listpropertys
 						$stars        = $property->stars;
 						$propertyDesc = strip_tags( jomres_decode( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', $property->property_description, false, false ) ) );
 
-						if ( in_array( $property->propertys_uid, $featured_properties ) )
+						if ( in_array( $property->propertys_uid, $tmpBookingHandler->tmpsearch_data[ 'featured_properties' ] ) )
 							{
 							if ( !isset( $jrConfig[ 'featured_listings_emphasis' ] ) ) $jrConfig[ 'featured_listings_emphasis' ] = "";
 							$property_deets[ 'FEATURED_LISTINGS_CLASS' ] = $jrConfig[ 'featured_listings_emphasis' ];
@@ -365,7 +365,7 @@ class j01010listpropertys
 							}
 
 						$property_deets[ 'SUPERIOR' ] = '';
-						if ( $current_property_details->superior == 1 ) $property_deets[ 'SUPERIOR' ] = jr_gettext( 'JOMRES_SUPERIOR_S', JOMRES_SUPERIOR_S );
+						if ( $current_property_details->superior == 1 ) $property_deets[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/superior.png\" alt=\"superior\" border=\"0\" />";
 
 						$propertyFeaturesArray = explode( ",", ( $property->property_features ) );
 

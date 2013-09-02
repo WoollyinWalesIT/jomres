@@ -320,7 +320,7 @@ class basic_property_details
 			if ( !isset( $this->room_features ) ) $this->room_features = array ();
 			if ( !isset( $this->room_features[ $this->property_uid ] ) )
 				{
-				$query        = "SELECT room_features_uid,feature_description FROM #__jomres_room_features WHERE property_uid = '" . $this->property_uid . "'";
+				$query        = "SELECT room_features_uid,feature_description FROM #__jomres_room_features WHERE property_uid = '" . $this->property_uid . "' OR property_uid = '0' ";
 				$roomFeatures = doSelectSql( $query );
 				if ( count( $roomFeatures ) > 0 )
 					{

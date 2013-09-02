@@ -104,8 +104,8 @@ jr_define( '_JOMRES_COM_MR_QUICKRES_STEP4_NUMBEROFGUESTS', 'Number of guests' );
 jr_define( '_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE', 'Total' );
 jr_define( '_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE', 'View pitches & campsite config' );
 jr_define( '_JOMRES_COM_MR_VRCT_TAB_ROOM', 'Pitches' );
-jr_define( '_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES', 'Rm features' );
-jr_define( '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', 'Rm types' );
+jr_define( '_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES', 'Pitch features' );
+jr_define( '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', 'Pitch types' );
 jr_define( '_JOMRES_COM_MR_VRCT_TAB_PROPERTYS', 'Campsite' );
 jr_define( '_JOMRES_COM_MR_VRCT_TAB_PROPERTYFEATURES', 'Prop feats' );
 jr_define( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK', 'Pitch' );
@@ -118,7 +118,7 @@ jr_define( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', 'Max people' );
 jr_define( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES', 'Features' );
 jr_define( '_JOMRES_COM_MR_VRCT_ROOM_SAVE_INSERT', 'Pitch added' );
 jr_define( '_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT', 'Edit item' );
-jr_define( '_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_LINK', 'Rm features' );
+jr_define( '_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_LINK', 'Pitch features' );
 jr_define( '_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_INPUT', 'Feature description' );
 jr_define( '_JOMRES_COM_MR_VRCT_ROOMFEATURES_SAVE_INSERT', 'Pitch feature added' );
 jr_define( '_JOMRES_COM_MR_VRCT_ROOMFEATURES_SAVE_UPDATE', 'Pitch feature updated' );
@@ -2041,3 +2041,10 @@ jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC", "If you set this option
 jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION", "Production" );
 jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT", "Development" );
 
+//v7.3.3
+jr_define( '_JOMRES_COM_MR_EB_HROOM_DETAILS', 'Resource details' );
+jr_define( '_JOMRES_COM_MR_EB_HTARIFF_DETAILS', 'Tariff details' );
+jr_define( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', 'Only' );
+jr_define( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'left!' );
+jr_define( '_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'Resource feature' );
+jr_define( '_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'Unable to remove this resource feature, it is assigned to a resource. Remove the feature from this resource and retry.' );

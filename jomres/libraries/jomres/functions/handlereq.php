@@ -308,6 +308,8 @@ switch ( $field )
 		break;
 	case 'multiroom_select':
 		$ajrq = " -- Selected multiple rooms -- ";
+		jr_import( 'jomres_roomlocks' );
+		$room_locker = new jomres_roomlocks();
 		$bkg->setOkToBook( false );
 		$value           = $bkg->sanitiseInput( "string", $value );
 		$room_selections = explode( ",", $value );
@@ -328,6 +330,7 @@ switch ( $field )
 						{
 						//$bkg->setPopupMessage( "Removing ".$bkg->requestedRoom[$index]);
 						unset( $bkg->requestedRoom[ $index ] );
+						$room_locker->unlock_room( $currently_selected_rooms[ 0 ], $bkg->dateRangeString );
 						}
 					}
 				}
@@ -591,11 +594,11 @@ function bookingformlistRooms( $isSingleRoomProperty, &$bkg )
 
 		if ( !$isSingleRoomProperty )
 			{
-			$selected_rooms_text = '<div><h4>' . jr_gettext( '_JOMRES_AJAXFORM_SELECTEDROOMS', _JOMRES_AJAXFORM_SELECTEDROOMS, false, false ) . '</h4></div>';
+			$selected_rooms_text = '<div><h4 class="page-header">' . jr_gettext( '_JOMRES_AJAXFORM_SELECTEDROOMS', _JOMRES_AJAXFORM_SELECTEDROOMS, false, false ) . '</h4></div>';
 			if ( $bkg->numberOfCurrentlySelectedRooms() > 0 ) $currently_selected = '<div>' . $bkg->listCurrentlySelectedRooms() . '</div>';
 			else
 			$currently_selected = '<div id="noroomsselected" >' . jr_gettext( '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', _JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET, false, false ) . '</div>';
-			$available_rooms_text = '<div><h4>' . jr_gettext( '_JOMRES_AJAXFORM_AVAILABLEROOMS', _JOMRES_AJAXFORM_AVAILABLEROOMS, false, false ) . '</h4></div><div id="rooms_listing"></div>';
+			$available_rooms_text = '<div><h4 class="page-header">' . jr_gettext( '_JOMRES_AJAXFORM_AVAILABLEROOMS', _JOMRES_AJAXFORM_AVAILABLEROOMS, false, false ) . '</h4></div><div id="rooms_listing"></div>';
 
 
 			$selected_rooms_text  = $bkg->sanitise_for_eval( $selected_rooms_text );

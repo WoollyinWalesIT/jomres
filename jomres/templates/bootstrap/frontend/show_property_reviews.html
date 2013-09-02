@@ -21,11 +21,13 @@
 				if (data == 1) {
 					jomresJquery(div_name).empty();
 					jomresJquery(div_name).addClass('alert alert-success');
+					jomresJquery(div_name).css({"font-size":"12px"});
 					jomresJquery(div_name).text(confirmation_thanks);
 				}
 				else {
 					jomresJquery(div_name).empty();
 					jomresJquery(div_name).addClass('alert alert-error');
+					jomresJquery(div_name).css({"font-size":"12px"});
 					jomresJquery(div_name).text(confirmation_already);
 				}
 			});
@@ -111,7 +113,7 @@
 					<div class="btn-group" id="agree_thumbs{RATING_ID}">
 						{THUMB_UP}{THUMB_DOWN}
 					</div>
-					<div class="btn-group"><a href="{REPORT_URL}" class="btn"><i class="icon-exclamation-sign"></i>
+					<div class="btn-group"><a href="{REPORT_URL}" class="btn"><i class="icon-warning"></i>
 						{REPORT_TEXT}</a></div>
 				</div>
 			</div>

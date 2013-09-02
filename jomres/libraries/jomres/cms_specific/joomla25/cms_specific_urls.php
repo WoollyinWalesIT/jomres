@@ -128,11 +128,12 @@ define( "JOMRES_SITEPAGE_URL_ADMIN_AJAX", get_showtime( 'live_site' ) . '/' . JO
 
 if ( class_exists( 'JFactory' ) )
 	{
-	$app = JFactory::getApplication(); // Many thanks maakit
-	if ( $app->getCfg( 'sef' ) ) define( "JOMRES_SITEPAGE_URL", $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl . "&lang=" . $lang );
+	$config = JFactory::getConfig();
+	if ( $config->getValue( 'config.sef' ) == '1' )
+		define( "JOMRES_SITEPAGE_URL", $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl . "&lang=" . $lang );
 	else
-	define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl . "&lang=" . $lang );
+		define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl . "&lang=" . $lang );
 	}
 else
-define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl . "&lang=" . $lang );
+	define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl . "&lang=" . $lang );
 
