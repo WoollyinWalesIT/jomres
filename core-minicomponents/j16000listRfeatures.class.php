@@ -14,9 +14,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j16000listPfeatures
+class j16000listRfeatures
 	{
-	function j16000listPfeatures()
+	function j16000listRfeatures()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -27,8 +27,8 @@ class j16000listPfeatures
 			return;
 			}
 		$editIcon             = '<img src="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/EditItem.png" border="0" />';
-		$query                = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid,ptype_xref FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
-		$propertyFeaturesList = doSelectSql( $query );
+		$query                = "SELECT  room_features_uid,feature_description,ptype_xref FROM #__jomres_room_features WHERE property_uid = '0' ORDER BY feature_description";
+		$roomFeaturesList	= doSelectSql( $query );
 		$rows                 = array ();
 
 		$ptypes    = array ();
@@ -44,39 +44,32 @@ class j16000listPfeatures
 			}
 
 		$output[ 'INDEX' ]          = "index.php";
-		$output[ 'PAGETITLE' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK,false );
+		$output[ 'PAGETITLE' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES', _JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES,false );
 		$output[ 'HLINKTEXT' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV,false );
 		$output[ 'HLINKTEXTCLONE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC,false );
-		//$output['PROPERTYFEATUREUID']=$propertyFeatureUid;
-		$output[ 'HPFEATURETITLE' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV,false );
-		$output[ 'HPFEATUREDESCRIPTION' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC,false );
-		$output[ 'HJOMRES_A_ICON' ]       = jr_gettext( '_JOMRES_A_ICON', _JOMRES_A_ICON,false );
+		$output[ 'HRFEATURETITLE' ]       = jr_gettext( '_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', _JOMRES_COM_MR_EB_HRESOURCE_FEATURE,false );
 		$output[ 'HPROPERTY_TYPES' ] = jr_gettext( '_JOMRES_FRONT_PTYPE', _JOMRES_FRONT_PTYPE,false );
 		$output[ 'BACKLINK' ]             = '<a href="javascript:submitbutton(\'cpanel\')">' . jr_gettext( '_JOMRES_COM_MR_BACK', _JOMRES_COM_MR_BACK,false ) . '</a>';
 
-		foreach ( $propertyFeaturesList as $propertyFeature )
+		$selected_ptype_rows='';
+		foreach ( $roomFeaturesList as $roomFeature )
 			{
-			if (!is_numeric($propertyFeature->ptype_xref))
+			if ($roomFeature->ptype_xref)
 				{
-				$ptype_xref=unserialize($propertyFeature->ptype_xref);
+				$ptype_xref=unserialize($roomFeature->ptype_xref);
 				$selected_ptype_rows = "";
 				foreach ( $ptype_xref as $ptype )
 					{
 					$selected_ptype_rows .= $all_ptypes[ $ptype ] . ", ";
 					}
 				}
-			else //for backward compatibility
-				$selected_ptype_rows = $all_ptypes[$propertyFeature->ptype_xref];
 
-			$r[ 'CHECKBOX' ]            = '<input type="checkbox" id="cb' . count( $rows ) . '" name="idarray[]" value="' . $propertyFeature->hotel_features_uid . '" onClick="jomres_isChecked(this.checked);">';
-			$r[ 'LINKTEXT' ]            = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=editPfeature&propertyFeatureUid=' . $propertyFeature->hotel_features_uid . '">' . $editIcon . '</a>';
-			$r[ 'LINKTEXTCLONE' ]       = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=editPfeature&propertyFeatureUid=' . $propertyFeature->hotel_features_uid . '&clone=1">' . $cloneIcon . '</a>';
-			$r[ 'PFEATURETITLE' ]       = $propertyFeature->hotel_feature_abbv;
-			$r[ 'PFEATUREDESCRIPTION' ] = $propertyFeature->hotel_feature_full_desc;
-
+			$r[ 'CHECKBOX' ]            = '<input type="checkbox" id="cb' . count( $rows ) . '" name="idarray[]" value="' . $roomFeature->room_features_uid . '" onClick="jomres_isChecked(this.checked);">';
+			$r[ 'LINKTEXT' ]            = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=editRfeature&roomFeatureUid=' . $roomFeature->room_features_uid . '">' . $editIcon . '</a>';
+			$r[ 'LINKTEXTCLONE' ]       = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=editRfeature&roomFeatureUid=' . $roomFeature->hotel_features_uid . '&clone=1">' . $cloneIcon . '</a>';
+			$r[ 'RFEATURETITLE' ]       = $roomFeature->feature_description;
 			$r[ 'PROPERTY_TYPES' ] = $selected_ptype_rows;
-
-			$r[ 'IMAGE' ] = get_showtime( 'live_site' ) . '/' . $propertyFeature->image;
+			
 			$rows[ ]      = $r;
 			}
 		$output[ 'COUNTER' ]            = count( $rows );
@@ -86,12 +79,12 @@ class j16000listPfeatures
 		$jrtb   = $jrtbar->startTable();
 		$image  = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/AddItem.png" );
 		$link   = JOMRES_SITEPAGE_URL_ADMIN;
-		$jrtb .= $jrtbar->customToolbarItem( 'editPfeature', $link, jr_gettext( '_JOMRES_COM_MR_NEWTARIFF', _JOMRES_COM_MR_NEWTARIFF,false ), $submitOnClick = true, $submitTask = "editPfeature", $image );
+		$jrtb .= $jrtbar->customToolbarItem( 'editRfeature', $link, jr_gettext( '_JOMRES_COM_MR_NEWTARIFF', _JOMRES_COM_MR_NEWTARIFF,false ), $submitOnClick = true, $submitTask = "editRfeature", $image );
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, '' );
 		$jrtb .= $jrtbar->spacer();
 		$image = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/WasteBasket.png" );
 		$link  = JOMRES_SITEPAGE_URL_ADMIN;
-		$jrtb .= $jrtbar->customToolbarItem( 'deletePfeature', $link, jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', _JOMRES_COM_MR_ROOM_DELETE,false), $submitOnClick = true, $submitTask = "deletePfeature", $image );
+		$jrtb .= $jrtbar->customToolbarItem( 'deleteRfeature', $link, jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', _JOMRES_COM_MR_ROOM_DELETE,false), $submitOnClick = true, $submitTask = "deleteRfeature", $image );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
@@ -101,7 +94,7 @@ class j16000listPfeatures
 
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-		$tmpl->readTemplatesFromInput( 'list_pfeatures.html' );
+		$tmpl->readTemplatesFromInput( 'list_rfeatures.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'rows', $rows );
 		$tmpl->displayParsedTemplate();

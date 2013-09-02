@@ -62,7 +62,7 @@ class j04010editroom
 			if ( $roomUid )
 				{
 
-				$query    = "SELECT room_classes_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking,singleperson_suppliment  FROM #__jomres_rooms WHERE  room_uid  = '" . (int) $roomUid . "' AND propertys_uid = '" . (int) $defaultProperty . "'";
+				$query    = "SELECT room_classes_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking,singleperson_suppliment FROM #__jomres_rooms WHERE  room_uid  = '" . (int) $roomUid . "' AND propertys_uid = '" . (int) $defaultProperty . "'";
 				$roomList = doSelectSql( $query );
 				foreach ( $roomList as $room )
 					{
@@ -95,21 +95,38 @@ class j04010editroom
 			$smokingOptions[ ]      = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false ) );
 			$smokingOptions[ ]      = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false ) );
 			$smokingDropdown        = jomresHTML::selectList( $smokingOptions, 'smoking', 'class="inputbox" size="1"', 'value', 'text', $smoking );
+			
+			$ptype_id = $basic_property_details->ptype_id;
 
-			if ( $roomUid ) $roomFeaturesArray = explode( ",", $room_features_uid );
+			if ( $roomUid ) 
+				$roomFeaturesArray = explode( ",", $room_features_uid );
 			else
-			$roomFeaturesArray = array ();
+				$roomFeaturesArray = array ();
 			$featureListTxt   = "";
-			$query            = "SELECT  room_features_uid,feature_description FROM #__jomres_room_features WHERE property_uid = '" . (int) $defaultProperty . "' ORDER BY feature_description ";
+			$query            = "SELECT room_features_uid,feature_description,ptype_xref FROM #__jomres_room_features WHERE property_uid = '" . (int) $defaultProperty . "' OR property_uid = '0' ORDER BY feature_description ";
 			$roomFeaturesList = doSelectSql( $query );
 			foreach ( $roomFeaturesList as $roomFeature )
 				{
 				$checked = "";
-				if ( in_array( ( $roomFeature->room_features_uid ), $roomFeaturesArray ) ) $checked = "checked";
-				$featureListTxt .= "<input type=\"checkbox\" name=\"features_list[]\" value=\"" . ( $roomFeature->room_features_uid ) . "\" " . $checked . " >" . ( $roomFeature->feature_description ) . "<br>";
+				if ($roomFeature->ptype_xref)
+					{
+					$ptype_xref=unserialize($roomFeature->ptype_xref);
+					if (in_array($ptype_id, $ptype_xref))
+						{
+						if ( in_array( ( $roomFeature->room_features_uid ), $roomFeaturesArray ) ) 	
+							$checked = "checked";
+						$featureListTxt .= "<input type=\"checkbox\" name=\"features_list[]\" value=\"" . ( $roomFeature->room_features_uid ) . "\" " . $checked . " >" . ( $roomFeature->feature_description ) . "<br>";
+						}
+					}
+				else
+					{
+					if ( in_array( ( $roomFeature->room_features_uid ), $roomFeaturesArray ) ) 	
+							$checked = "checked";
+						$featureListTxt .= "<input type=\"checkbox\" name=\"features_list[]\" value=\"" . ( $roomFeature->room_features_uid ) . "\" " . $checked . " >" . ( $roomFeature->feature_description ) . "<br>";
+					}
 				}
 
-			$roomImageLocation = '<img src="' . getImageForProperty( "room", $defaultProperty, (int) $roomUid ) . '">';
+			$roomImageLocation = '<img src="' . getImageForProperty( "room", $defaultProperty, (int) $roomUid ) . '" />';
 
 			$output[ 'ROOMUID' ]      = $roomUid;
 			$output[ 'TYPEDROPDOWN' ] = $classDropDownList;

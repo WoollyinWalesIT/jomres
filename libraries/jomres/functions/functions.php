@@ -828,6 +828,10 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 				{
 				$property_data[ 'STARSIMAGES' ] .= "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/star.png\" alt=\"star\" border=\"0\" />";
 				}
+			
+			$property_data[ 'SUPERIOR' ] = '';
+			if ( $property_data[ 'superior' ] == 1 ) 
+				$property_data[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/superior.png\" alt=\"superior\" border=\"0\" />";
 
 			$pageoutput = array ( $property_data );
 			$tmpl       = new patTemplate();

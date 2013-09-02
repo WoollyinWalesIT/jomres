@@ -603,14 +603,15 @@ class dobooking
 
 	function getAllRoomFeatures()
 		{
-		$query                 = "SELECT room_features_uid,feature_description FROM #__jomres_room_features WHERE property_uid = '$this->property_uid'";
+		$gor       = genericOr( $this->allFeatureIds, 'room_features_uid' );
+		$query                 = "SELECT room_features_uid,feature_description FROM #__jomres_room_features WHERE $gor AND ( property_uid = '$this->property_uid' OR property_uid = '0' ) ";
 		$roomFeatures          = doSelectSql( $query );
 		$this->allRoomFeatures = array ();
 		if ( count( $roomFeatures ) > 0 )
 			{
 			foreach ( $roomFeatures as $feature )
 				{
-				$feature_description                                  = $fd = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURES' . (int) $feature->room_features_uid, $feature->feature_description, false, false );
+				$feature_description                                  = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURES' . (int) $feature->room_features_uid, $feature->feature_description, false, false );
 				$this->allRoomFeatures[ $feature->room_features_uid ] = $feature_description;
 				}
 			}
@@ -4715,6 +4716,7 @@ class dobooking
 			if ( $this->cfg_bookingform_roomlist_showmaxpeople == "1" ) ;
 			$dropdown_output[ $tariff_id ][ 'max_guests_per_room' ]    = $tariff_and_roomtypes[ 'max_guests_per_room' ];
 			$dropdown_output[ $tariff_id ][ 'max_guests_per_booking' ] = $tariff_and_roomtypes[ 'max_guests_per_booking' ];
+			$dropdown_output[ $tariff_id ][ 'number_of_rooms' ] = $number_of_rooms;
 			}
 
 
@@ -4722,7 +4724,16 @@ class dobooking
 		$gpr_text        = jr_gettext( '_JOMRES_MAX_GUESTS_PER_ROOM', _JOMRES_MAX_GUESTS_PER_ROOM, false, false );
 		$rmtype_text     = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK, false, false );
 		$tariffname_text = jr_gettext( '_JOMRES_FRONT_TARIFFS_TITLE', _JOMRES_FRONT_TARIFFS_TITLE, false, false );
-		$rate_text       = jr_gettext( '_JOMRES_MICROMANAGE_PICKER_DATERANGES_RATE', _JOMRES_MICROMANAGE_PICKER_DATERANGES_RATE, false, false );
+		
+		if ( $this->cfg_tariffChargesStoredWeeklyYesNo != "1" )
+			{
+			if ( $mrConfig[ 'wholeday_booking' ] == "1" )
+				$rate_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY, false, false ) );
+			else
+				$rate_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY, false, false ) );
+			}
+		else
+			$rate_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK, false, false ) );
 
 		$gpb_text = '';
 		if ( $this->cfg_bookingform_roomlist_showmaxpeople == "1" ) $gpb_text = jr_gettext( '_JOMRES_MAX_GUESTS_PER_BOOKING', _JOMRES_MAX_GUESTS_PER_BOOKING, false, false );
@@ -4748,6 +4759,9 @@ class dobooking
 			$r[ 'ROOM_TYPE_TEXT' ]   = $routput[ 'room_type' ];
 			$r[ 'TARIFF_NAME_TEXT' ] = $routput[ 'tariff_title' ];
 			$r[ 'RATE_TEXT' ]        = $routput[ 'room_price_inc_tax' ];
+			$r[ 'NUMBER_OF_ROOMS' ]  = $routput[ 'number_of_rooms' ];
+			$r[ 'NUMBER_OF_ROOMS_PRE' ] = jr_gettext( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', _JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE, false, false );
+			$r[ 'NUMBER_OF_ROOMS_POST' ] = jr_gettext( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', _JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST, false, false );
 
 			$rows[ ] = $r;
 			}
@@ -4952,7 +4966,10 @@ class dobooking
 		$roomRow[ 'HEADER_DISABLEDACCESS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS', _JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS, false, false ) );
 		$roomRow[ 'HEADER_MAXPEOPLE' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE, false, false ) );
 		$roomRow[ 'HEADER_FEATURES' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST', _JOMRES_COM_MR_EB_ROOM_FEATURES_LIST, false, false ) );
+		$roomRow[ 'HTITLE' ]   				= $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_TITLE', _JOMRES_FRONT_TARIFFS_TITLE, false, false ) );
+		$roomRow[ 'HMOREINFO' ]   			= $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION, false, false ) );
 
+		$roomRow[ 'ROOMUID' ]=$roomUid;
 		$roomRow[ 'ROOMNUMBER' ] = $this->sanitiseOutput( stripslashes( $room[ 'room_number' ] ) );
 		$roomRow[ 'ROOMTYPE' ]   = $classAbbv;
 		//$roomRow['ROOMTYPEIMAGE']= $typeImage;
@@ -4991,7 +5008,10 @@ class dobooking
 			$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY, false, false ) );
 			}
 		else
-		$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK, false, false ) );
+		$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK, false, false ) );		
+		$output[ 'HROOM_DETAILS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_HROOM_DETAILS', _JOMRES_COM_MR_EB_HROOM_DETAILS, false, false ) );		
+		$output[ 'HTARIFF_DETAILS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_HTARIFF_DETAILS', _JOMRES_COM_MR_EB_HTARIFF_DETAILS, false, false ) );
+		
 		if ( $this->cfg_tariffmode == "2" )
 			{
 			$query             = "SELECT tarifftype_id FROM #__jomcomp_tarifftype_rate_xref WHERE tariff_id = " . (int) $tariffUid;
@@ -5144,7 +5164,10 @@ class dobooking
 			}
 		else
 		$tariffStuff[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK, false, false ) );
-
+		
+		$tariffStuff[ 'HRESOURCE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK', _JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK, false, false ) );
+		$tariffStuff[ 'HBOOKNOW' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', _JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY, false, false ) );
+		
 		switch ( $this->cfg_booking_form_daily_weekly_monthly )
 		{
 			case "D":

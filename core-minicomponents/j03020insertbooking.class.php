@@ -499,7 +499,11 @@ class j03020insertbooking
 
 			jr_import( 'jomres_custom_field_handler' );
 			$custom_fields   = new jomres_custom_field_handler();
-			$allCustomFields = $custom_fields->getAllCustomFields();
+			
+			$query = "SELECT ptype_id FROM #__jomres_propertys WHERE propertys_uid = '" . (int) $property_uid . "'";
+			$ptype_id = (int)doSelectSql( $query,1 );
+			
+			$allCustomFields = $custom_fields->getAllCustomFieldsByPtypeId($ptype_id);
 			if ( count( $allCustomFields ) > 0 )
 				{
 				$note = "";

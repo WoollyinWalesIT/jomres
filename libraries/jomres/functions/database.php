@@ -19,7 +19,7 @@ function doSelectSql( $query, $mode = false )
 	{
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	$jomres_db      = jomres_singleton_abstract::getInstance( 'jomres_database' );
-	$jomres_db->setQuery( $query );
+	$jomres_db->setQuery( "/*qc=on*//*qc_ttl=5*/".$query );
 	$result = $jomres_db->loadObjectList();
 	$num    = count( $result );
 	switch ( $mode )

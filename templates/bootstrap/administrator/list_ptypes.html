@@ -15,6 +15,7 @@
 			<tr>
 				<th width="1%"></th>
 				<th></th>
+				<th>ID</th>
 				<th>{HPTYPE}</th>
 				<th class="hidden-phone">{HPTYPE_DESC}</th>
 			</tr>
@@ -22,10 +23,9 @@
 			<tbody>
 			<patTemplate:tmpl name="rows" unusedvars="nbsp">
 				<tr>
-					<td><input type="checkbox" id="cb{COUNTER}" name="idarray[]" value="{ID}"
-							   onClick="jomres_isChecked(this.checked);"></td>
-					<td><a href="{PUBLISHURL}"><img src="{PUBLISHIMAGE}" border="0" alt="image"/></a> <a
-							href="{EDITURL}">{EDITICON}</a></td>
+					<td><input type="checkbox" id="cb{COUNTER}" name="idarray[]" value="{ID}" onClick="jomres_isChecked(this.checked);"></td>
+					<td><a href="{PUBLISHURL}"><img src="{PUBLISHIMAGE}" border="0" alt="image"/></a> <a href="{EDITURL}">{EDITICON}</a></td>
+					<td>{ID}</td>
 					<td>{PTYPE}</td>
 					<td class="hidden-phone">{PTYPEDESC}</td>
 				</tr>

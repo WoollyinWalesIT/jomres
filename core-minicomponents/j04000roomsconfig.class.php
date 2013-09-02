@@ -64,7 +64,7 @@ class j04000roomsconfig
 			$propertyFeaturesRowInfo = "";
 			$query                   = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $defaultProperty . "' ORDER BY propertys_uid,room_number ";
 			$roomsList               = doSelectSql( $query );
-			$query                   = "SELECT room_features_uid,feature_description,property_uid FROM #__jomres_room_features  WHERE property_uid = '" . (int) $defaultProperty . "' ORDER BY feature_description ";
+			$query                   = "SELECT room_features_uid,feature_description,property_uid FROM #__jomres_room_features WHERE property_uid = '" . (int) $defaultProperty . "' OR property_uid = '0' ORDER BY feature_description ";
 			$roomFeaturesList        = doSelectSql( $query );
 			$query                   = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid FROM #__jomres_room_classes  WHERE property_uid = '" . (int) $roomTypeSearchParameter . "' ORDER BY room_class_abbv ";
 			$roomsClassList          = doSelectSql( $query );
@@ -235,17 +235,20 @@ class j04000roomsconfig
 			$roomFeaturesRowInfo = array ();
 			foreach ( $roomFeaturesList as $roomFeature )
 				{
-				$feature = array ();
-				$jrtbar  = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
-				$jrtb    = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem( 'edit', jomresURL( JOMRES_SITEPAGE_URL . "&task=editRoomFeature&amp;featureUid=" . ( $roomFeature->room_features_uid ) ), '' );
-				$jrtb .= $jrtbar->toolbarItem( 'copy', jomresURL( JOMRES_SITEPAGE_URL . "&task=editRoomFeature&amp;featureUid=" . ( $roomFeature->room_features_uid ) . "&clone=1" ), '' );
-				$jrtb .= $jrtbar->endTable();
-				$feature[ 'BUTTONS' ]   = $jrtb;
-				$feature[ 'EDIT_URL' ]  = jomresURL( JOMRES_SITEPAGE_URL . "&task=editRoomFeature&amp;featureUid=" . ( $roomFeature->room_features_uid ) );
-				$feature[ 'COPY_URL' ]  = jomresURL( JOMRES_SITEPAGE_URL . "&task=editRoomFeature&amp;featureUid=" . ( $roomFeature->room_features_uid ) . "&clone=1" );
-				$feature[ 'FEATURE' ]   = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION' . $roomFeature->room_features_uid, $roomFeature->feature_description );
-				$roomFeaturesRowInfo[ ] = $feature;
+				if ($roomFeature->property_uid != 0)
+					{
+					$feature = array ();
+					$jrtbar  = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
+					$jrtb    = $jrtbar->startTable();
+					$jrtb .= $jrtbar->toolbarItem( 'edit', jomresURL( JOMRES_SITEPAGE_URL . "&task=editRoomFeature&amp;featureUid=" . ( $roomFeature->room_features_uid ) ), '' );
+					$jrtb .= $jrtbar->toolbarItem( 'copy', jomresURL( JOMRES_SITEPAGE_URL . "&task=editRoomFeature&amp;featureUid=" . ( $roomFeature->room_features_uid ) . "&clone=1" ), '' );
+					$jrtb .= $jrtbar->endTable();
+					$feature[ 'BUTTONS' ]   = $jrtb;
+					$feature[ 'EDIT_URL' ]  = jomresURL( JOMRES_SITEPAGE_URL . "&task=editRoomFeature&amp;featureUid=" . ( $roomFeature->room_features_uid ) );
+					$feature[ 'COPY_URL' ]  = jomresURL( JOMRES_SITEPAGE_URL . "&task=editRoomFeature&amp;featureUid=" . ( $roomFeature->room_features_uid ) . "&clone=1" );
+					$feature[ 'FEATURE' ]   = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION' . $roomFeature->room_features_uid, $roomFeature->feature_description );
+					$roomFeaturesRowInfo[ ] = $feature;
+					}
 				}
 
 			$this->roomPropertyConfig_html( $newPropertyButton, $newRoomButton, $newRoomFeatureButton, $newRoomClassButton, $newPropertyFeatureButton, $roomRowInfo, $roomFeaturesRowInfo, $propertyRowInfo, $option, $roomCount, $roomTypeCount );

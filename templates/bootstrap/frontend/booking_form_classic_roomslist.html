@@ -1,89 +1,88 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<patTemplate:comment>
-		Also possibly available to the template :
-		{HEADER_SMOKING} e.g. 'Smoking'
-		{HEADER_ROOMFLOOR} e.g. 'Floor'
-		{HEADER_FEATURES} e.g. 'Resource features list'
-		{HDESC} e.g. 'Tariff description'
-		{HSTARTS} e.g. 'Valid from'
-		{HENDS} e.g. 'Valid til'
-		{HMINDAYS} e.g. 'Minimum days'
-		{HMAXDAYS} e.g. 'Maximum days'
-		{HMINPEEPS} e.g. 'Min people'
-	</patTemplate:comment>
-	<table class="table table-striped" width="100%">
-		<thead>
-		<tr>
-			<th class="hidden-phone"></th>
-			<th class="hidden-phone">{HEADER_ROOMNUMBER}</th>
-			<th class="hidden-phone">{HEADER_IMAGE}</th>
-			<th class="hidden-phone">{HEADER_ROOMTYPE}</th>
-			<th class="hidden-phone">{HEADER_ROOMIMAGE}</th>
-			<th class="hidden-phone">{HEADER_ROOMNAME}</th>
-			<th class="hidden-phone">{HTITLE}</th>
-			<th class="hidden-phone">{HRATEPERNIGHT}</th>
-			<th class="hidden-phone">{HEADER_DISABLEDACCESS}</th>
-			<th class="hidden-phone">{HMAXPEEPS}</th>
-			<th class="hidden-desktop hidden-tablet"></th>
-		</tr>
-		</thead>
-		<tbody>
-		<patTemplate:tmpl name="rows">
-			<tr>
-				<td class="hidden-phone">
-					<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);"
-													  onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );"
-													  class="btn {BUTTON_CLASS} btn-small" title="{CAPTION}"><i
-							class="{ICON} icon-white"></i><!--{CAPTION}--></a></div>
-				</td>
-				<td class="hidden-phone"><a href="javascript:void(0);"
-											onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );">{ROOMNUMBER}</a>
-				</td>
-				<td class="hidden-phone"><img src="{ROOM_IMAGE}" height="30" width="30"/></td>
-				<td class="hidden-phone"><img src="{ROOM_TYPE_IMAGE}" height="30" width="30"/></td>
-				<td class="hidden-phone"><a href="javascript:void(0);"
-											onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{ROOMTYPE}</a>
-				</td>
-				<td class="hidden-phone"><a href="javascript:void(0);"
-											onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{ROOMNAME}</a>
-				</td>
-				<td class="hidden-phone"><a href="javascript:void(0);"
-											onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{TITLE}</a>
-				</td>
-				<td class="hidden-phone">{FORMATTED_PRICE}</td>
-				<td class="hidden-phone"><a href="javascript:void(0);"
-											onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{DISABLEDACCESS}</a>
-				</td>
-				<td class="hidden-phone"><a href="javascript:void(0);"
-											onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{MAXPEOPLE_INROOM}</a>
-				</td>
-				<td class="hidden-desktop hidden-tablet">
-					<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);"
-													  onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );"
-													  class="btn {BUTTON_CLASS} btn-small" title="{CAPTION}"><i
-							class="{ICON}  icon-white"></i><!--{CAPTION}--></a> <!--{ROOMNAME}-->{ROOMTYPE} -
-						{FORMATTED_PRICE}
+<div class="muted">
+	<div class="row-fluid">
+		<div class="span2"> </div>
+		<div class="span4">{HRESOURCE}</div>
+		<div class="span3">{HRATEPERNIGHT}</div>
+		<div class="span3">{HBOOKNOW}</div>
+	</div>
+</div>
+<patTemplate:tmpl name="rows">
+<div class="well well-small">
+	<div class="row-fluid">
+		<div class="span2">
+			<a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal" class="thumbnail hidden-phone hidden-tablet"><img src="{ROOM_IMAGE}" alt="room image"/></a>
+			<div class="thumbnail hidden-desktop"><img src="{ROOM_IMAGE}" alt="room image"/></div>
+		</div>
+		<div class="span4">
+			<h4 class="hidden-phone hidden-tablet"><a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal">{ROOMTYPE}</a></h4>
+			<h4 class="hidden-desktop">{ROOMTYPE}</h4>
+			<p>
+				{HEADER_MAXPEOPLE}: {MAXPEOPLE_INROOM}<br />
+				{HTITLE}: {TITLE}<br />
+				{HDESC}: {DESC}<br />
+				<a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal" class="hidden-phone hidden-tablet">{HMOREINFO}...</a>
+			</p>
+		</div>
+		<div class="span3">
+			<p><span class="big-price">{FORMATTED_PRICE}</span></p>
+		</div>
+		<div class="span3" align="right">
+			<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn {BUTTON_CLASS}" title="{CAPTION}"><i class="{ICON} icon-white"></i> {CAPTION}</a></div>
+		</div>
+	</div>
+	
+	<div id="roomdetails{ROOMUID}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{ROOMUID}" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+			<h3 id="myModalLabel{ROOMUID}">{ROOMTYPE}</h3>
+		</div>
+		<div class="modal-body">
+			<div class="row-fluid">
+				<div class="span5">
+					<div class="thumbnail"><img src="{ROOM_IMAGE}" alt="room image"/></div>
+				</div>
+				<div class="span7">
+					<h4 class="page-header">{HROOM_DETAILS}</h4>
+					<p>
+						<!--<img src="{ROOM_TYPE_IMAGE}" alt="room type image"/><br />-->
+						{HEADER_ROOMTYPE}: {ROOMTYPE}<br />
+						{HEADER_ROOMNAME}: {ROOMNAME}<br />
+						{HEADER_ROOMNUMBER}: {ROOMNUMBER}<br />
+						{HEADER_MAXPEOPLE}: {MAXPEOPLE_INROOM}<br />
+						{HEADER_DISABLEDACCESS}: {DISABLEDACCESS}<br />
+						{HEADER_SMOKING}: {SMOKING}<br />
+						{HEADER_ROOMFLOOR}: {ROOMFLOOR}<br />
+						{HEADER_FEATURES}: {FEATURES}
+					</p>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span5" align="center">
+					<div class="well">
+						<p>{HRATEPERNIGHT}<span class="big-price">{FORMATTED_PRICE}</span></p>
 					</div>
-				</td>
-			</tr>
-		</patTemplate:tmpl>
-		</tbody>
-	</table>
-	<patTemplate:comment>
-		Also possibly available to the template :
-		'VALIDFROM' e.g. '5th Jun 2012'
-		'VALIDTO' e.g. '7th Jun 2014'
-		'MINDAYS' e.g. '1'
-		'MAXDAYS' e.g. '10'
-		'MINPEOPLE' e.g. '1'
-		'RATEPERNIGHT' e.g. '100'
-		'TARIFF_ROOMTYPE' e.g. '3'
-		'SMOKING e.g. 'Yes'
-		'ROOMFLOOR e.g. '1'
-		'MAXPEOPLE e.g. '10'
-		'FEATURES e.g. 'Tea & Coffee Making facilities<br/>'
-		'FORMATTED_PRICE' => float 120
-		'ROOMTARIFFOUTPUTID e.g. '1^6'
-		'CAPTION e.g. 'Add to your selection'
-	</patTemplate:comment>
+				</div>
+				<div class="span7">
+					<h4 class="page-header">{HTARIFF_DETAILS}</h4>
+					<p>
+						{HTITLE}: {TITLE}<br />
+						{HDESC}: {DESC}<br />
+						{HSTARTS}: {VALIDFROM}<br />
+						{HENDS}: {VALIDTO}<br />
+						{HMINDAYS}: {MINDAYS}<br />
+						{HMAXDAYS}: {MAXDAYS}<br />
+						{HMINPEEPS}: {MINPEOPLE}<br />
+						{HMAXPEEPS}: {MAXPEOPLE}
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a class="btn" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</a>
+			<a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn {BUTTON_CLASS}" title="{CAPTION}" data-dismiss="modal" aria-hidden="true"><i class="{ICON} icon-white"></i> {CAPTION}</a>
+		</div>
+	</div>
+</div>
+</patTemplate:tmpl>
 </patTemplate:tmpl>

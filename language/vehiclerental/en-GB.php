@@ -485,7 +485,7 @@ jr_define( '_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT', 'Updated custom text.' );
 jr_define( '_JOMRES_FRONT_MR_MENU_ADMIN_LANGUAGE', 'Edit Language' );
 jr_define( '_JOMRES_COM_A_AUDITING_SHOWING', 'Number of unarchived records: ' );
 jr_define( '_JOMRES_FRONT_PTYPE', 'Business type' );
-jr_define( '_JOMRES_COM_PTYPES_LIST_TITLE', 'List business types' );
+jr_define( '_JOMRES_COM_PTYPES_LIST_TITLE', 'Business types' );
 jr_define( '_JOMRES_COM_PTYPES_LIST_TITLE_EDIT', 'Edit business type' );
 jr_define( '_JOMRES_COM_PTYPES_PTYPE', 'Business type' );
 jr_define( '_JOMRES_COM_PTYPES_PTYPE_DESC', 'Business type description' );
@@ -2072,3 +2072,10 @@ jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC", "If you set this option
 jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION", "Production" );
 jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT", "Development" );
 
+//v7.3.3
+jr_define( '_JOMRES_COM_MR_EB_HROOM_DETAILS', 'Resource details' );
+jr_define( '_JOMRES_COM_MR_EB_HTARIFF_DETAILS', 'Tariff details' );
+jr_define( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', 'Only' );
+jr_define( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'left!' );
+jr_define( '_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'Resource feature' );
+jr_define( '_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'Unable to remove this resource feature, it is assigned to a resource. Remove the feature from this resource and retry.' );

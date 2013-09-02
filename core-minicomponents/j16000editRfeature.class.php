@@ -13,9 +13,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j16000editPfeature
+class j16000editRfeature
 	{
-	function j16000editPfeature()
+	function j16000editRfeature()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -25,29 +25,25 @@ class j16000editPfeature
 
 			return;
 			}
-		$propertyFeatureUid = jomresGetParam( $_REQUEST, 'propertyFeatureUid', 0 );
+		$roomFeatureUid = jomresGetParam( $_REQUEST, 'roomFeatureUid', 0 );
 		$clone              = intval( jomresGetParam( $_REQUEST, 'clone', false ) );
-		//$ptypeid            = 0;
-		if ( $propertyFeatureUid > 0 )
+
+		if ( $roomFeatureUid > 0 )
 			{
-			$query        = "SELECT hotel_feature_abbv,hotel_feature_full_desc,image,property_uid,ptype_xref FROM #__jomres_hotel_features WHERE hotel_features_uid  = '" . (int) $propertyFeatureUid . "' AND property_uid = '0'";
-			$pFeatureList = doSelectSql( $query );
-			foreach ( $pFeatureList as $pFeature )
+			$query        = "SELECT feature_description,ptype_xref FROM #__jomres_room_features WHERE room_features_uid  = '" . (int) $roomFeatureUid . "' AND property_uid = '0'";
+			$rFeatureList = doSelectSql( $query );
+			foreach ( $rFeatureList as $rFeature )
 				{
-				$output[ 'FEATURE_ABBV' ]        = stripslashes( $pFeature->hotel_feature_abbv );
-				$output[ 'FEATURE_DESCRIPTION' ] = stripslashes( $pFeature->hotel_feature_full_desc );
-				if (!is_numeric($pFeature->ptype_xref))
-					$ptype_xref                      = unserialize($pFeature->ptype_xref);
-				else
-					$ptype_xref                      = $pFeature->ptype_xref;
-				$image                           = $pFeature->image;
+				$output[ 'FEATURE_DESCRIPTION' ] = stripslashes( $rFeature->feature_description );
+				if ($rFeature->ptype_xref)
+					$ptype_xref                      = unserialize($rFeature->ptype_xref);
 				}
 			}
-		if ( $clone ) $propertyFeatureUid = 0;
+		if ( $clone ) $roomFeatureUid = 0;
 
 		$output[ 'HPROPERTY_TYPE' ] = jr_gettext( '_JOMRES_FRONT_PTYPE', _JOMRES_FRONT_PTYPE,false );
 		
-		$query     = "SELECT * FROM #__jomres_ptypes";
+		$query     = "SELECT id, ptype FROM #__jomres_ptypes";
 		$ptypeList = doSelectSql( $query );
 		
 		$all_ptype_rows = array ();
@@ -73,39 +69,14 @@ class j16000editPfeature
 				}
 			}
 
-		$map  = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS;
-		$mrp  = get_showtime( 'live_site' ) . '/jomres/uploadedimages/pfeatures/';
-		$d    = @dir( $map );
-		$docs = array ();
-		$rows = array ();
-		if ( $d )
-			{
-			while ( false !== ( $entry = $d->read() ) )
-				{
-				$filename = $entry;
-				if ( is_file( $map . $filename ) && substr( $entry, 0, 1 ) != '.' && strtolower( $entry ) !== 'cvs' )
-					{
-					$docs                = array ();
-					$docs[ 'ISCHECKED' ] = "";
-					$docs[ 'IMAGEPATH' ] = 'jomres/uploadedimages/pfeatures/' . $filename;
-					$docs[ 'IMAGE' ]     = $mrp . $filename;
-					if ( isset( $image ) && $docs[ 'IMAGEPATH' ] == $image ) $docs[ 'ISCHECKED' ] = "checked";
-					$rows[ ] = $docs;
-					}
-				}
-			$d->close();
-			}
-		$output[ 'PROPERTYFEATUREINFO' ] = jr_gettext( '_JOMRES_A_GLOBALPFEATURES_INFO', _JOMRES_A_GLOBALPFEATURES_INFO,false );
-		$output[ 'PROPERTYFEATUREUID' ]  = $propertyFeatureUid;
+		$output[ 'ROOMFEATUREUID' ]  = $roomFeatureUid;
 
 		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = JOMRES_SITEPAGE_URL_ADMIN;
 
 		$output[ 'HLINKTEXT' ]                                = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK,false );
 		$output[ 'HLINKTEXTCLONE' ]                           = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE', _JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE,false );
-		$output[ 'HFEATUREABBV' ]                             = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV,false );
-		$output[ 'HFEATUREDESCRIPTION' ]                      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC,false );
-		$output[ 'MOSCONFIGLIVESITE' ]                        = get_showtime( 'live_site' );
-		$output[ 'PAGETITLE' ]                                = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK,false );
+		$output[ 'HFEATUREDESCRIPTION' ]                      = jr_gettext( '_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', _JOMRES_COM_MR_EB_HRESOURCE_FEATURE,false );
+		$output[ 'PAGETITLE' ]                                = jr_gettext( '_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', _JOMRES_COM_MR_EB_HRESOURCE_FEATURE,false );
 		$output[ 'BACKLINK' ]                                 = '<a href="javascript:submitbutton(\'cpanel\')">' . jr_gettext( '_JOMRES_COM_MR_BACK', _JOMRES_COM_MR_BACK,false ) . '</a>';
 		$output[ '_JOMRES_PROPERTY_TYPE_ASSIGNMENT' ] = jr_gettext( '_JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT', _JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT,false );
 
@@ -113,8 +84,8 @@ class j16000editPfeature
 		$jrtb   = $jrtbar->startTable();
 		$image  = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/Save.png" );
 		$link   = JOMRES_SITEPAGE_URL_ADMIN;
-		$jrtb .= $jrtbar->customToolbarItem( 'savePfeature', $link, jr_gettext( '_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,false ), $submitOnClick = true, $submitTask = "savePfeature", $image );
-		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeatures", '' );
+		$jrtb .= $jrtbar->customToolbarItem( 'saveRfeature', $link, jr_gettext( '_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,false ), $submitOnClick = true, $submitTask = "saveRfeature", $image );
+		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=listRfeatures", '' );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
@@ -123,7 +94,7 @@ class j16000editPfeature
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-		$tmpl->readTemplatesFromInput( 'edit_property_feature.html' );
+		$tmpl->readTemplatesFromInput( 'edit_rfeature.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'all_ptype_rows', $all_ptype_rows );
 		$tmpl->addRows( 'rows', $rows );

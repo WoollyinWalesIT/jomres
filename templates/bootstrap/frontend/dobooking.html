@@ -287,11 +287,10 @@
 
 	<div class="clearfix"></div>
 	<div>
-		<div id="selectedRooms" class="well">
+		<div id="selectedRooms">
 			{SELECTEDROOM}
 		</div>
-		<hr>
-		<div id="availRooms" class="well">
+		<div id="availRooms">
 			{AVAILABLEROOMS}
 		</div>
 	</div>
@@ -387,15 +386,7 @@
 					<input type="text" name="town" id="town" value="{TOWN}" title="{HTOWN}" class="input-medium"/>
 				</div>
 			</div>
-
-			<div class="control-group {BOOTSTRAP_REGION_WARNING}">
-				<label class="control-label" for="region">{HREGION}</label>
-
-				<div class="controls">
-					<div id="guest_region_div">{REGION_DROPDOWN}</div>
-				</div>
-			</div>
-
+			
 			<div class="control-group {BOOTSTRAP_POSTCODE_WARNING}">
 				<label class="control-label" for="postcode">{HPOSTCODE}</label>
 
@@ -410,6 +401,14 @@
 
 				<div class="controls">
 					{COUNTRY}
+				</div>
+			</div>
+
+			<div class="control-group {BOOTSTRAP_REGION_WARNING}">
+				<label class="control-label" for="region">{HREGION}</label>
+
+				<div class="controls">
+					<div id="guest_region_div">{REGION_DROPDOWN}</div>
 				</div>
 			</div>
 
