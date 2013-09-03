@@ -1468,6 +1468,14 @@ function alterPfeaturesPtypeidCol()
 
 function checkPfeaturesPtypeidColExists()
 	{
+	// Jomres 7.3.3 changed the ptype_id column to ptype_xref. If we leave this function as-is, the ptype Id column will be added on subsequent installations so we'll need to double check for that.
+	$query  = "SHOW COLUMNS FROM #__jomres_hotel_features LIKE 'ptype_xref'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true; // We'll lie about ptype_id existing if instead phtype_xref instead exists.
+		}
+	
 	$query  = "SHOW COLUMNS FROM #__jomres_hotel_features LIKE 'ptype_id'";
 	$result = doSelectSql( $query );
 	if ( count( $result ) > 0 )
