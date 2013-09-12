@@ -42,6 +42,10 @@ class j04050saveroomtype
 		$room_class_abbv      = getEscaped( jomresGetParam( $_POST, 'room_class_abbv', "" ) );
 		$room_class_full_desc = getEscaped( jomresGetParam( $_POST, 'room_class_full_desc', "" ) );
 		$defaultProperty      = getDefaultProperty();
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$c->eraseAll();
+		
 		if ( $roomClassUid == "" )
 			{
 			$saveMessage = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', _JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT, false );

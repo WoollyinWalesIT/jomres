@@ -30,6 +30,10 @@ function publishPropertyType()
 	$query     = "SELECT published FROM #__jomres_ptypes WHERE id = '" . (int) $id . "'";
 	$ptypeList = doSelectSql( $query );
 	$published = 0;
+	
+	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+	$c->eraseAll();
+	
 	foreach ( $ptypeList as $ptype )
 		{
 		$published = $ptype->published;
@@ -103,6 +107,9 @@ function savePropertyType()
 	$ptype      = jomresGetParam( $_POST, 'ptype', '' );
 	$ptype_desc = strtolower( jomresGetParam( $_POST, 'ptype_desc', '' ) );
 	$ptype_desc = preg_replace( '/[^A-Za-z0-9_-]+/', "", $ptype_desc );
+	
+	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+	$c->eraseAll();
 
 	if ( !is_dir( JOMRESPATH_BASE . '/language/' . $ptype_desc ) && is_writable( JOMRESPATH_BASE . '/language/' ) )
 		{
@@ -144,6 +151,10 @@ function deletePropertyType()
 				}
 			}
 		}
+	
+	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+	$c->eraseAll();
+	
 	if ( $success ) jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes", jr_gettext( "_JOMRES_COM_PTYPES_DELETED", _JOMRES_COM_PTYPES_DELETED, false ) );
 	}
 

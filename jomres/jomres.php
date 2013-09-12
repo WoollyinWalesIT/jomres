@@ -32,10 +32,35 @@ global $loggingEnabled, $loggingBooking, $loggingGateway, $loggingSystem, $loggi
 require_once( dirname( __FILE__ ) . '/integration.php' );
 
 set_showtime( 'heavyweight_system', false );
-$query                      = "SELECT propertys_uid,published FROM #__jomres_propertys";
-$countproperties            = doSelectSql( $query );
-$numberOfPropertiesInSystem = count( $countproperties );
-if ( $numberOfPropertiesInSystem > 200 ) set_showtime( 'heavyweight_system', true );
+
+$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+$all_property_uids=$c->retrieve('all_property_uids');
+
+if ($all_property_uids)
+	{
+	set_showtime( 'numberOfPropertiesInSystem', count($all_property_uids['all_propertys']) );
+	set_showtime( 'all_properties_in_system', $all_property_uids['all_propertys'] );
+	set_showtime( 'published_properties_in_system', $all_property_uids['all_published_propertys'] );
+	}
+else
+	{
+	$query                      = "SELECT propertys_uid,published FROM #__jomres_propertys";
+	$countproperties            = doSelectSql( $query );
+	$numberOfPropertiesInSystem = count( $countproperties );
+	if ( $numberOfPropertiesInSystem > 200 ) set_showtime( 'heavyweight_system', true );
+	set_showtime( 'numberOfPropertiesInSystem', $numberOfPropertiesInSystem );
+	$all_propertys           = array ();
+	$all_published_propertys = array ();
+	foreach ( $countproperties as $p )
+		{
+		$all_propertys[ ] = $p->propertys_uid;
+		if ( $p->published == "1" ) $all_published_propertys[ ] = $p->propertys_uid;
+		}
+	set_showtime( 'all_properties_in_system', $all_propertys );
+	set_showtime( 'published_properties_in_system', $all_published_propertys );
+	
+	$c->store('all_property_uids',array('all_propertys'=>$all_propertys,'all_published_propertys'=>$all_published_propertys));
+	}
 
 $thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' ); // 00002 event is triggered here
 
@@ -241,6 +266,8 @@ if ( ( isset( $property_uid ) && !empty( $property_uid ) ) || ( isset( $selected
 if ( $property_uid > 0 )
 	{
 	set_showtime( 'property_uid', $property_uid );
+	$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+	$current_property_details->gather_data($property_uid);
 
 	$pdeets                    = getPropertyAddressForPrint( $property_uid );
 	$thisJomresPropertyDetails = $pdeets[ 3 ];
@@ -261,19 +288,20 @@ if ( $property_uid > 0 )
 // Getting the language file
 if ( !empty( $property_uid ) || isset( $_REQUEST[ 'propertyType' ] ) || isset( $_REQUEST[ 'ptype' ] ) )
 	{
-	if ( isset( $_REQUEST[ 'propertyType' ] ) ) $ptype_id = (int) $_REQUEST[ 'propertyType' ];
-	elseif ( isset( $_REQUEST[ 'ptype' ] ) ) $ptype_id = (int) jomresGetParam( $_REQUEST, 'ptype', 0 );
+	if ( isset( $_REQUEST[ 'propertyType' ] ) )
+		$ptype_id = (int) $_REQUEST[ 'propertyType' ];
+	elseif ( isset( $_REQUEST[ 'ptype' ] ) ) 
+		$ptype_id = (int) jomresGetParam( $_REQUEST, 'ptype', 0 );
 	else
-	$ptype_id = $thisJomresPropertyDetails[ 'ptype_id' ];
+		$ptype_id = $thisJomresPropertyDetails[ 'ptype_id' ];
 
 	if ( $ptype_id > 0 )
 		{
-		$query        = "SELECT ptype_desc FROM #__jomres_ptypes WHERE id = '" . (int) $ptype_id . "'";
-		$propertytype = doSelectSql( $query, 1 );
+		$propertytype = $current_property_details->property_type;
 		}
 	}
 else
-$propertytype = "";
+	$propertytype = "";
 
 //$performance_monitor->set_point("pre-lang file inclusion");
 
@@ -857,10 +885,6 @@ if ( get_showtime( 'numberOfPropertiesInSystem' ) > 0 )
 			property_header( $property_uid );
 			$MiniComponents->triggerEvent( '01020' ); //showTariffs();
 			break;
-		#########################################################################################
-		// case 'doSearch':
-		// doSearch();
-		// break;
 		#########################################################################################
 		case 'listProperties':
 

@@ -140,62 +140,40 @@ class jomSearch
 			$searchOutput[ 'feature_uids' ] = "";
 			}
 
-		$query               = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1'";
 		$this->searchOptions = $searchOptions;
 		$this->searchOutput  = $searchOutput;
-		$allPuids            = doSelectSql( $query );
-		foreach ( $allPuids as $puid )
-			{
-			$tmpArray[ ] = $puid->propertys_uid;
-			}
-		$this->propertys_uid[ ] = $tmpArray;
+		$this->propertys_uid[ ] = get_showtime('published_properties_in_system');
 
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 		if ( in_array( "propertyname", $this->searchOptions ) )
 			{
-			$query            = "SELECT propertys_uid,property_name FROM  #__jomres_propertys WHERE published = '1' ORDER BY  property_name ASC";
-			$propertynameList = doSelectSql( $query );
+			$puids=array();
+			$basic_property_details          = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 
-			foreach ( $propertynameList as $property )
+			$all_published_properties = get_showtime('published_properties_in_system');
+			
+			$basic_property_details->get_property_name_multi( $all_published_properties );
+			foreach ($all_published_properties as $puid)
 				{
-				$basic_property_details          = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-				$pname                           = $basic_property_details->get_property_name( $property->propertys_uid );
-				$this->prep[ 'propertyname' ][ ] = array ( 'pn' => $pname, 'puid' => $property->propertys_uid );
+				$this->prep[ 'propertyname' ][ ] = array ( 'pn' => $basic_property_details->property_names[$puid], 'puid' => $puid );
 				}
 			}
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 		if ( in_array( "country", $this->searchOptions ) )
 			{
 			$allCountries        = countryCodesArray();
-			$query               = "SELECT property_country FROM  #__jomres_propertys WHERE published = '1' ORDER BY  property_country ASC";
+			$query               = "SELECT DISTINCT property_country FROM  #__jomres_propertys WHERE published = '1' ORDER BY  property_country ASC";
 			$activeCountriesList = doSelectSql( $query );
 			$tmpCountryArray     = array ();
-
-			//$allLegitimateRegions = regionNamesArray(); // Replaced by following ...
-			$query      = "SELECT id,countrycode,regionname FROM #__jomres_regions ORDER BY countrycode,regionname";
-			$regionList = doSelectSql( $query );
-			if ( count( $regionList > 0 ) )
-				{
-				foreach ( $regionList as $region )
-					{
-					$allLegitimateRegions = jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $region->id, $region->regionname );
-					}
-				}
-
-			//$this->prep['country'][$this->searchAll]=array('countrycode'=>$this->searchAll,'countryname'=>$this->searchAll);
 			$tmpCountryArray[ ] = $this->searchAll;
 
 			foreach ( $activeCountriesList as $country )
 				{
 				if ( !in_array( $country->property_country, $tmpCountryArray ) )
 					{
-
-					//if (array_key_exists($country->property_country,$allLegitimateRegions))
-					//	{
 					$this->prep[ 'country' ][ $allCountries[ $country->property_country ] ] = array ( 'countrycode' => $country->property_country, 'countryname' => $allCountries[ $country->property_country ] );
-					$tmpCountryArray[ ]                                                     = $country->property_country;
-					//	}
+					$tmpCountryArray[ ] = $country->property_country;
 					}
 				}
 
@@ -226,7 +204,7 @@ class jomSearch
 		if ( in_array( "town", $this->searchOptions ) )
 			{
 			//$result=prepGeographicSearch();
-			$query          = "SELECT property_region,property_country,property_town FROM #__jomres_propertys WHERE published = '1' ORDER BY property_town ASC";
+			$query          = "SELECT DISTINCT property_region,property_country,property_town FROM #__jomres_propertys WHERE published = '1' ORDER BY property_town ASC";
 			$activeTownList = doSelectSql( $query );
 			$tmpTownArray   = array ();
 
@@ -383,8 +361,33 @@ class jomSearch
 	 */
 	function jomSearch_random()
 		{
-		$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE published='1' ORDER BY RAND(),property_name LIMIT " . (int) $this->randomSearchLimit . " ";
-		$this->resultBucket = doSelectSql( $query );
+		//$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE published='1' ORDER BY RAND(),property_name LIMIT " . (int) $this->randomSearchLimit . " ";
+		//$this->resultBucket = doSelectSql( $query );
+		$random_keys=array();
+		$result=array();
+		$all_published_properties=get_showtime( 'published_properties_in_system');
+		$randomSearchLimit=(int)$this->randomSearchLimit;
+		if (count($all_published_properties) > $randomSearchLimit)
+			{
+			$random_keys=array_rand($all_published_properties, $randomSearchLimit);
+			foreach ($random_keys as $key)
+				{
+				$obj                = new stdClass();
+				$obj->propertys_uid = $all_published_properties[$key];
+				$result[ ]          = $obj;
+				}
+			$this->resultBucket=$result;
+			}
+		else
+			{
+			foreach ($all_published_properties as $puid)
+				{
+				$obj                = new stdClass();
+				$obj->propertys_uid = $puid;
+				$result[ ]          = $obj;
+				}
+			$this->resultBucket=$result;
+			}
 		$this->sortResult();
 		}
 
@@ -472,6 +475,7 @@ class jomSearch
 		$filter = $this->filter[ 'description' ];
 		$this->makeOrs();
 		$property_ors = $this->ors;
+		$lang=get_showtime('lang');
 		if ( !empty( $filter ) && $property_ors )
 			{
 			$keywords = getEscaped( $filter );
@@ -504,17 +508,17 @@ class jomSearch
 			foreach ( $words as $word )
 				{
 				$wheres2    = array ();
-				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_NAME' AND LOWER(a.customtext) LIKE '%$word%'";
-				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_STREET' AND LOWER(a.customtext)  LIKE '%$word%'";
-				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' AND LOWER(a.customtext)  LIKE '%$word%'";
-				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE' AND LOWER(a.customtext)  LIKE '%$word%'";
-				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION' AND LOWER(a.customtext)  LIKE '%$word%'";
-				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES' AND LOWER(a.customtext)  LIKE '%$word%'";
-				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES' AND LOWER(a.customtext)  LIKE '%$word%'";
-				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS' AND LOWER(a.customtext)  LIKE '%$word%'";
-				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS' AND LOWER(a.customtext)  LIKE '%$word%'";
-				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT' AND LOWER(a.customtext)  LIKE '%$word%'";
-				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS' AND LOWER(a.customtext)  LIKE '%$word%'";
+				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_NAME' AND LOWER(a.customtext) LIKE '%$word%' AND a.language = $lang";
+				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_STREET' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = $lang";
+				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = $lang";
+				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = $lang";
+				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = $lang";
+				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = $lang";
+				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = $lang";
+				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = $lang";
+				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = $lang";
+				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = $lang";
+				$wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = $lang";
 				$wheres[ ]  = implode( ' OR ', $wheres2 );
 				}
 			$where = '(' . implode( ( $phrase == 'all' ? ') AND (' : ') OR (' ), $wheres ) . ')';
@@ -889,34 +893,6 @@ class jomSearch
 		}
 	} // End class jomSearch
 
-
-/**
-#
- * Performs a random search, results limited to 10
-#
- */
-// Depreciated ??
-function dorandomSearch()
-	{
-	$query         = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' ORDER BY RAND() LIMIT 10";
-	$propertysList = doSelectSql( $query );
-	listPropertys( $propertysList );
-	}
-
-/**
-#
- * Performs a search
-#
- */
-// Depreciated ??
-function doSearch()
-	{
-	$result = createQuery();
-	if ( $result ) listPropertys( $result );
-	else
-	echo _JOMRES_FRONT_NORESULTS;
-	}
-
 /**
 #
  * Prepares data for geographic searching. To save queries this is done once by getting data for all properties, then seperating the data into various arrays, which are then parsed by methods in the search class
@@ -926,7 +902,7 @@ function prepGeographicSearch()
 	{
 	// Prepares the geographic data required for a search
 	$allCountries         = countryCodesArray();
-	$query                = "SELECT property_postcode,property_region,property_country,property_town FROM #__jomres_propertys WHERE published = '1' ORDER BY property_country,property_region,property_town desc ";
+	$query                = "SELECT DISTINCT property_postcode,property_region,property_country,property_town FROM #__jomres_propertys WHERE published = '1' ORDER BY property_country,property_region,property_town desc ";
 	$propertyLocations    = doSelectSql( $query );
 	$allPropertyLocations = array ();
 	foreach ( $propertyLocations as $location )
@@ -976,8 +952,9 @@ function prepFeatureSearch()
 	// Prepares the Feature data required for a search
 	$result               = array ();
 	$searchAll            = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
-	$query                = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features  WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
-	$propertyFeaturesList = doSelectSql( $query );
+	
+	$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+	$propertyFeaturesList=$basic_property_details->all_property_features;
 
 	// Added to speed up listing of features. Finds all property features against published propertys and creates a unique array of the feature uids. This way we can still have our list of features but not include any that are not assigned to any properties
 	$uniqueFeatures    = array ();
@@ -999,15 +976,15 @@ function prepFeatureSearch()
 	$r[ 'image' ]       = '';
 	$result[ ]          = $r;
 
-	foreach ( $propertyFeaturesList as $propertyFeature )
+	foreach ( $propertyFeaturesList as $propertyFeatureId=>$feature )
 		{
-		if ( in_array( $propertyFeature->hotel_features_uid, $uniqueFeatures ) )
+		if ( in_array( $propertyFeatureId, $uniqueFeatures ) )
 			{
 			$r                  = array ();
-			$r[ 'id' ]          = $propertyFeature->hotel_features_uid;
-			$r[ 'title' ]       = $propertyFeature->hotel_feature_abbv;
-			$r[ 'description' ] = $propertyFeature->hotel_feature_full_desc;
-			$r[ 'image' ]       = $propertyFeature->image;
+			$r[ 'id' ]          = $propertyFeatureId;
+			$r[ 'title' ]       = $feature['abbv'];
+			$r[ 'description' ] = $feature['desc'];
+			$r[ 'image' ]       = $feature['image'];
 			$result[ ]          = $r;
 			}
 		}
@@ -1024,8 +1001,10 @@ function prepRoomtypeSearch()
 	{
 	// Prepares the Room type data required for a search
 	$searchAll          = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
-	$query              = "SELECT room_classes_uid, room_class_abbv, room_class_full_desc,image FROM #__jomres_room_classes WHERE property_uid = '0' ORDER BY room_class_abbv ";
-	$roomTypeList       = doSelectSql( $query );
+	
+	$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+	$roomTypeList=$basic_property_details->all_room_types;
+
 	$result             = array ();
 	$r                  = array ();
 	$r[ 'id' ]          = $searchAll;
@@ -1037,10 +1016,10 @@ function prepRoomtypeSearch()
 	foreach ( $roomTypeList as $roomType )
 		{
 		$r                  = array ();
-		$r[ 'id' ]          = $roomType->room_classes_uid;
-		$r[ 'title' ]       = $roomType->room_class_abbv;
-		$r[ 'description' ] = $roomType->room_class_full_desc;
-		$r[ 'image' ]       = $roomType->image;
+		$r[ 'id' ]          = $roomType['room_classes_uid'];
+		$r[ 'title' ]       = $roomType['room_class_abbv'];
+		$r[ 'description' ] = $roomType['room_class_full_desc'];
+		$r[ 'image' ]       = $roomType['image'];
 		$result[ ]          = $r;
 		}
 
@@ -1130,8 +1109,6 @@ function prepPropertyTypeSearch()
 	{
 	// Prepares the PropertyType data required for a search
 	$searchAll = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
-	$query     = "SELECT id, ptype,ptype_desc FROM #__jomres_ptypes WHERE published = '1' ORDER BY `order` ASC";
-	$ptypeList = doSelectSql( $query );
 	$result    = array ();
 	$r         = array ();
 
@@ -1139,16 +1116,21 @@ function prepPropertyTypeSearch()
 	$r[ 'ptype' ]      = $searchAll;
 	$r[ 'ptype_desc' ] = $searchAll;
 	$result[ ]         = $r;
+	
+	$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+	$ptypeIds=$basic_property_details->all_property_types;
+	$allPtypeTitles=$basic_property_details->all_property_type_titles;
 
-	foreach ( $ptypeList as $ptype )
+	foreach ( $ptypeIds as $ptypeid=>$ptype )
 		{
 		$r                 = array ();
-		$r[ 'id' ]         = $ptype->id;
-		$r[ 'ptype' ]      = $ptype->ptype;
-		$r[ 'ptype_desc' ] = $ptype->ptype_desc;
-		$query             = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND ptype_id = '" . (int) $ptype->id . "'";
-		$number            = doSelectSql( $query );
-		$r[ 'number' ]     = count( $number );
+		$r[ 'id' ]         = $ptypeid;
+		$r[ 'ptype' ]      = $allPtypeTitles[$ptypeid];
+		$r[ 'ptype_desc' ] = $ptype;
+		//this query is executed in a foreach just to count properties of each property type in the system, it`s too heavy. is it needed somewhere?
+		//$query             = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND ptype_id = '" . (int) $r[ 'id' ] . "'";
+		//$number            = doSelectSql( $query );
+		//$r[ 'number' ]     = count( $number );
 		$result[ ]         = $r;
 		}
 

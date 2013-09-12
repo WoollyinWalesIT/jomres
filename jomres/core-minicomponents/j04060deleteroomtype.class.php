@@ -63,6 +63,9 @@ class j04060deleteroomtype
 			}
 		if ( $safeToDelete )
 			{
+			$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+			$c->eraseAll();
+			
 			$query = "DELETE FROM #__jomres_room_classes  WHERE room_classes_uid = '" . (int) $roomClassUid . "' AND property_uid = '" . (int) $defaultProperty . "'";
 			if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_DELETE_ROOM_TYPE', _JOMRES_MR_AUDIT_DELETE_ROOM_TYPE, false ) ) ) returnToPropertyConfig( $saveMessage );
 			trigger_error( "Unable to delete from room classes table, mysql db failure", E_USER_ERROR );

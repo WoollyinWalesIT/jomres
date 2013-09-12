@@ -42,12 +42,13 @@ class j00009user_option_01_listbookings
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		if ( $thisJRUser->userIsRegistered && !$thisJRUser->userIsManager )
 			{
-			$query        = "SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = " . (int) $thisJRUser->id;
-			$guestEntries = doSelectSql( $query );
-			if ( count( $guestEntries ) > 0 )
-				{
+			//it`s not worth it to have a query just to show this menu. better show it for all. When there is no data a blank table will be displayed.
+			//$query        = "SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = " . (int) $thisJRUser->id;
+			//$guestEntries = doSelectSql( $query );
+			//if ( count( $guestEntries ) > 0 )
+				//{
 				$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=mulistbookings", '', jr_gettext( '_JOMCOMP_MYUSER_LISTBOOKINGS', _JOMCOMP_MYUSER_LISTBOOKINGS, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT, false, false ) );
-				}
+				//}
 			}
 		}
 

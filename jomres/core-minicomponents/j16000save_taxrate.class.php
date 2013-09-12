@@ -45,6 +45,9 @@ class j16000save_taxrate
 		else
 		$rate->commitTaxRate();
 		//echo $rate->error;
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$c->eraseAll();
 
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_taxrates" ), "" );
 		}

@@ -30,8 +30,11 @@ class j16000savePfeature
 		$hotel_feature_abbv      = jomresGetParam( $_POST, 'feature_abbv', "" );
 		$hotel_feature_full_desc = jomresGetParam( $_POST, 'feature_description', "" );
 		$ptype_ids		         = jomresGetParam( $_POST, 'ptype_ids', array() );
-
 		$image = jomresGetParam( $_POST, 'image', "" );
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$c->eraseAll();
+		
 		if ( empty( $propertyFeatureUid ) )
 			{
 			$query = "INSERT INTO #__jomres_hotel_features (`hotel_feature_abbv`,`hotel_feature_full_desc`,`image`,`property_uid`,`ptype_xref` )VALUES ('$hotel_feature_abbv','$hotel_feature_full_desc','$image','0','" . serialize($ptype_ids) . "')";

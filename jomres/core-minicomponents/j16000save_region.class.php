@@ -39,6 +39,10 @@ class j16000save_region
 			$query  = "UPDATE #__jomres_regions SET `countrycode`='" . $countrycode . "',`regionname`='" . $regionname . "' WHERE id = " . $id;
 			$result = doInsertSql( $query );
 			}
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$c->eraseAll();
+
 		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=edit_region&id=" . $id, '' );
 		}
 

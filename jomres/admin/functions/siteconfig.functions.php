@@ -221,6 +221,7 @@ function showSiteConfig()
 
 
 	$lists[ 'useCaching' ]                          = jomresHTML::selectList( $yesno, 'cfg_useCaching', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useCaching' ] );
+	$lists[ 'useArrayCaching' ]                     = jomresHTML::selectList( $yesno, 'cfg_useArrayCaching', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useArrayCaching' ] );
 	$lists[ 'showLangDropdown' ]                    = jomresHTML::selectList( $yesno, 'cfg_showLangDropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'showLangDropdown' ] );
 	$lists[ 'useJomresMessaging' ]                  = jomresHTML::selectList( $yesno, 'cfg_useJomresMessaging', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useJomresMessaging' ] );
 	$lists[ 'useSubscriptions' ]                    = jomresHTML::selectList( $yesno, 'cfg_useSubscriptions', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useSubscriptions' ] );
@@ -354,6 +355,10 @@ function saveSiteConfig()
 	jr_import( 'minicomponent_registry' );
 	$registry = new minicomponent_registry( false );
 	$registry->regenerate_registry();
+	
+	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+	$c->eraseAll();
+	
 	jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=showSiteConfig", "Configuration saved" );
 	}
 

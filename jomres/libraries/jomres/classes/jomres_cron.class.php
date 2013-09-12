@@ -43,6 +43,7 @@ class jomres_cron
 
 	function checkForStalledJobs()
 		{
+		$lockedJobs=array();
 		$query        = "SELECT id,job,schedule,last_ran,parameters,locked FROM #__jomcomp_cron";
 		$this->dbJobs = doSelectSql( $query );
 
@@ -78,10 +79,12 @@ class jomres_cron
 					}
 					if ( $jobDue )
 						{
-						$this->unlockJob( $job->id );
+						$lockedJobs[]=$job->id;
 						}
 					}
 				}
+			if (count($lockedJobs>0))
+				$this->unlockJobs($lockedJobs);
 			}
 		}
 
@@ -128,6 +131,7 @@ class jomres_cron
 
 	function findDueJobs()
 		{
+		$unlockedJobs=array();
 		if ( count( $this->allUnlockedJobs ) > 0 )
 			{
 			foreach ( $this->allUnlockedJobs as $job )
@@ -169,43 +173,52 @@ class jomres_cron
 							}
 						break;
 				}
+				if ( $jobDue )
+					$unlockedJobs[]=$job[ 'id' ];
 
-				if ( $jobDue ) $this->lockJob( $job[ 'id' ] );
 				if ( $this->verboselog )
 					{
 					$this->debug[ ] = "Found job name " . $job[ 'job_name' ];
-					if ( $jobDue ) $this->debug[ ] = "<b>This job is due now.</b>";
+					if ( $jobDue ) 
+						$this->debug[ ] = "<b>This job is due now.</b>";
 					}
 				}
+			if (count($unlockedJobs>0))
+				$this->lockJobs($unlockedJobs);
 			}
-		else if ( $this->verboselog ) $this->debug[ ] = "No jobs due";
+		elseif ( $this->verboselog ) 
+			$this->debug[ ] = "No jobs due";
 		}
 
-	function lockJob( $jobId )
+	function lockJobs( $jobIds )
 		{
-		if ( $this->verboselog ) $this->debug[ ] = "Locking " . (int) $jobId;
-		$query = "UPDATE #__jomcomp_cron SET `locked`='1' WHERE `id`=" . (int) $jobId;
-		if ( !doInsertSql( $query, "" ) )
+		if (count($jobIds)>0)
 			{
-			$this->debug[ ] = "Failed to lock job " . (int) $jobId;
-
-			return false;
+			$gor=genericOr($jobIds, 'id');
+			if ( $this->verboselog ) $this->debug[ ] = "Locking " . count($jobIds) . " jobs";
+			$query = "UPDATE #__jomcomp_cron SET `locked`='1' WHERE $gor ";
+			if ( !doInsertSql( $query, "" ) )
+				{
+				$this->debug[ ] = "Failed to lock jobs ";
+				return false;
+				}
 			}
-
 		return true;
 		}
 
-	function unlockJob( $jobId )
+	function unlockJobs( $jobIds )
 		{
-		if ( $this->verboselog ) $this->debug[ ] = "Unlocking " . (int) $jobId;
-		$query = "UPDATE #__jomcomp_cron SET `locked`='0' WHERE `id`=" . (int) $jobId;
-		if ( !doInsertSql( $query, "" ) )
+		if (count($jobIds)>0)
 			{
-			$this->debug[ ] = "Failed to unlock job " . (int) $jobId;
-
-			return false;
+			$gor=genericOr($jobIds, 'id');
+			if ( $this->verboselog ) $this->debug[ ] = "Unlocking " . count($jobIds) . " jobs";
+			$query = "UPDATE #__jomcomp_cron SET `locked`='0' WHERE $gor ";
+			if ( !doInsertSql( $query, "" ) )
+				{
+				$this->debug[ ] = "Failed to unlock jobs ";
+				return false;
+				}
 			}
-
 		return true;
 		}
 
@@ -213,6 +226,7 @@ class jomres_cron
 	// We will use jomresConfig_secret to prevent outsiders from triggering a specific cron job remotely. The cron 6000 minicomponent can be edited to disable this check if the developer wants to run the job manually while testing
 	function runDueJobs()
 		{
+		$lockedJobs=array();
 		if ( function_exists( "curl_init" ) )
 			{
 			$jomresConfig_secret = get_showtime( 'secret' );
@@ -240,26 +254,33 @@ class jomres_cron
 					curl_setopt( $ch, CURLOPT_HTTPHEADER, array ( 'Content-Type: text/html; charset=utf-8' ) );
 					$curl_output = curl_exec( $ch );
 					curl_close( $ch );
-					$this->updateJob_lastran( $job[ 'id' ], $job[ 'job_name' ], $this->now );
 					$this->debug[ ] = "Triggered " . (string) $job[ 'job_name' ] . " at " . strftime( "%H:%M %d/%m/%Y", $this->now );
-					$this->unlockJob( $job[ 'id' ] );
+					$lockedJobs[]=$job[ 'id' ];
 					}
 				}
 			}
+		if (count($lockedJobs>0))
+			{
+			$this->unlockJobs($lockedJobs);
+			$this->updateJob_lastrans( $lockedJobs );
+			}
 		}
 
-	function updateJob_lastran( $jobId, $jobName, $lastRan )
+	function updateJob_lastrans( $jobIds )
 		{
-		if ( $this->verboselog ) $this->debug[ ] = "Updating " . (string) $jobName;
-		$query = "UPDATE #__jomcomp_cron SET `last_ran` = " . (int) $lastRan . " WHERE `id` = " . (int) $jobId . " ";
-		if ( !doInsertSql( $query, "" ) )
+		if (count($jobIds)>0)
 			{
-			$this->debug[ ] = "Failed to update " . (string) $jobName . " last_ran to " . (int) $lastRan;
-
-			return false;
+			if ( $this->verboselog ) 
+				$this->debug[ ] = "Updating jobs last rans";
+			$query= "UPDATE #__jomcomp_cron SET last_ran = '" . $this->now . "' WHERE id IN (" . implode(",",$jobIds) . ")";
+			if ( !doInsertSql( $query, "" ) )
+				{
+				$this->debug[ ] = "Failed to update last ran times";
+				return false;
+				}
+			if ( $this->verboselog ) 
+				$this->debug[ ] = "Updated jobs last rans";
 			}
-		if ( $this->verboselog ) $this->debug[ ] = "Updated " . (string) $jobName . " set last_ran to " . (int) $lastRan;
-
 		return true;
 		}
 

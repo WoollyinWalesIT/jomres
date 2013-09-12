@@ -255,6 +255,11 @@ class HTML_jomres
 			</tr>
 			-->
 			<tr>
+				<td>' . jr_gettext( _JOMRES_COM_CACHING, '_JOMRES_COM_CACHING', false ) . '</td>
+				<td>' . $lists[ 'useArrayCaching' ] . '</td>
+				<td>' . jr_gettext( _JOMRES_COM_CACHING_DESC, '_JOMRES_COM_CACHING_DESC', false ) . '</td>
+			</tr>
+			<tr>
 				<td>' . jr_gettext( _JRPORTAL_CONFIG_DEFAULT_CRATE, '_JRPORTAL_CONFIG_DEFAULT_CRATE', false ) . '</td>
 				<td>' . $lists[ 'defaultCrate' ] . '</td>
 				<td>' . jr_gettext( _JRPORTAL_CONFIG_DEFAULT_CRATE_DESC, '_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', false ) . '</td>

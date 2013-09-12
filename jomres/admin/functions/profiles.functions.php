@@ -166,12 +166,16 @@ function saveProfile()
 	if ( doInsertSql( $query, 'Changed access level to ' . $accesslevel ) )
 		{
 		// If this is a super property manager, then we can grab all the property uids, return the first one and set the default property as that property uid. If we don't, the user will bomb out on login
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$c->eraseAll();
+		
 		if ( $superpropertymanager == 1 )
 			{
-			$query        = "SELECT propertys_uid,property_name FROM #__jomres_propertys LIMIT 1";
-			$property_uid = doSelectSql( $query, 1 );
-			$query        = "UPDATE #__jomres_managers SET `currentproperty`='$property_uid' WHERE userid = '" . $userid . "'";
-			if ( !doInsertSql( $query, false ) ) trigger_error( "Unable to set current property, mysql db failure", E_USER_ERROR );
+			$all_properties_in_system = get_showtime( 'all_properties_in_system');
+			$property_uid = $all_properties_in_system[0];
+			$query        = "UPDATE #__jomres_managers SET `currentproperty`='".(int)$property_uid."' WHERE userid = '" . $userid . "'";
+			if ( !doInsertSql( $query, false ) ) 
+				trigger_error( "Unable to set current property, mysql db failure", E_USER_ERROR );
 			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose", jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
 			}
 		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose", jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
@@ -224,7 +228,10 @@ function grantMosUser()
 			$query = "DELETE FROM #__jomres_managers_propertys_xref WHERE `manager_id` = '" . (int) $userid . "'";
 			doInsertSql( $query, '' );
 			}
-
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$c->eraseAll();
+		
 		if ( $grantAct == "y" ) 
 			{
 			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=editProfile&id=" . (int) $userid, jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );

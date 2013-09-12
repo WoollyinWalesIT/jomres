@@ -78,15 +78,18 @@ class j00015viewproperty
 			$property_deets = $MiniComponents->triggerEvent( '00040', array ( 'property_uid' => $property_uid ) );
 
 			$stars     = $current_property_details->stars;
-			$starslink = "<IMG SRC=\"" . get_showtime( 'live_site' ) . "/jomres/images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\">";
-			if ( $stars != "0" )
-				{
-				$starslink = "";
-				for ( $i = 1; $i <= $stars; $i++ )
+				$starslink = "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" alt=\"blank\" />";
+				if ( $stars != "0" )
 					{
-					$starslink .= "<IMG SRC=\"" . get_showtime( 'live_site' ) . "/jomres/images/star.png\" border=\"0\">";
+					$starslink = "";
+					for ( $i = 1; $i <= $stars; $i++ )
+						{
+						$starslink .= "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/star.png\" border=\"0\" alt=\"star\" />";
+						}
+					$starslink .= "";
 					}
-				}
+
+				if ( $current_property_details->superior == 1 ) $output[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/superior.png\" alt=\"superior\" border=\"0\" />";
 
 			$features = $current_property_details->features;
 			if ( count( $features ) > 0 )
@@ -100,42 +103,20 @@ class j00015viewproperty
 				}
 			else
 			$property[ 'HFEATURES' ] = "";
-
-			$rtRows    = array ();
-			$roomtypes = array ();
-
-			$RoomClassAbbvs = array ();
-			$query          = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes";
-			$roomsClassList = doSelectSql( $query );
-			foreach ( $roomsClassList as $roomClass )
-				{
-				$RoomClassAbbvs[ (int) $roomClass->room_classes_uid ] = array ( 'abbv' => jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV' . (int) $roomClass->room_classes_uid, stripslashes( $roomClass->room_class_abbv ), false, false ), 'desc' => jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC' . (int) $roomClass->room_classes_uid, stripslashes( $roomClass->room_class_full_desc ), false, false ), 'image' => $roomClass->image );
-				}
-
+			
+			$roomtypes    = array ();
 			$property[ 'HRTYPES' ] = "";
 			if ( !get_showtime( 'is_jintour_property' ) )
 				{
-				$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $property_uid . "' ";
-				$rt    = doSelectSql( $query );
-				if ( count( $rt ) > 0 )
+				$property[ 'HRTYPES' ] = "";
+				if ( count( $current_property_details->room_types ) > 0 )
 					{
-					$roomTypeArray = array ();
-					foreach ( $rt as $roomtype )
+					$property[ 'HRTYPES' ] = jr_gettext( '_JOMRES_FRONT_ROOMTYPES', _JOMRES_FRONT_ROOMTYPES );
+					foreach ( $current_property_details->room_types as $type )
 						{
-						$roomTypeArray[ ] = $roomtype->room_classes_uid;
-						}
-
-					if ( count( $roomTypeArray ) > 1 ) $roomTypeArray = array_unique( $roomTypeArray );
-					if ( count( $roomTypeArray ) > 0 )
-						{
-						$property[ 'HRTYPES' ] = jr_gettext( '_JOMRES_FRONT_ROOMTYPES', _JOMRES_FRONT_ROOMTYPES );
-						foreach ( $roomTypeArray as $type )
-							{
-							$roomtype_abbv         = $RoomClassAbbvs[ $type ][ 'abbv' ];
-							$roomtype_desc         = $RoomClassAbbvs[ $type ][ 'desc' ];
-							$rtRows[ 'ROOM_TYPE' ] = jomres_makeTooltip( $roomtype_abbv, $roomtype_abbv, $roomtype_desc, $RoomClassAbbvs[ $type ][ 'image' ], "", "room_type", array () );
-							$roomtypes[ ]          = $rtRows;
-							}
+						$rtRows                = array ();
+						$rtRows[ 'ROOM_TYPE' ] = jomres_makeTooltip( $type['abbv'], $type['abbv'], $type['desc'], $type['image'], "", "room_type", array () );
+						$roomtypes[ ]          = $rtRows;
 						}
 					}
 				}
@@ -143,7 +124,6 @@ class j00015viewproperty
 				{
 				$roomtypes[ ] = array ( 'ROOM_TYPE' => $current_property_details->property_type_title );
 				}
-
 
 			if ( $mrConfig[ 'showSlideshowInline' ] == "1" && ( $jrConfig[ 'slideshowLocation' ] == 1 || $jrConfig[ 'slideshowLocation' ] == 3 ) )
 				{

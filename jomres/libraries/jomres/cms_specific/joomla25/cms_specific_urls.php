@@ -23,28 +23,29 @@ define( 'JOMRES_ADMINISTRATORDIRECTORY', "administrator" );
 $scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 if ( !strstr( $scriptname, 'install_jomres.php' ) )
 	{
-	$query = "SELECT id" . "\n FROM #__menu" . "\n WHERE " . "\n published = 1" . "\n AND link LIKE 'index.php?option=com_jomres&view=default%' AND language LIKE '" . get_showtime( 'lang' ) . "' LIMIT 1 ";
+	$query = "SELECT id,language FROM #__menu WHERE published = 1 AND link LIKE 'index.php?option=com_jomres&view=default%' ";
+	$itemQueryRes = doSelectSql( $query );
 
-	$itemQueryRes = doSelectSql( $query, 1 );
-	if ( $itemQueryRes )
+	$itemIdFound=false;
+	foreach ($itemQueryRes as $item)
 		{
-		$jomresItemid = $itemQueryRes;
+		if ($item->language==get_showtime('lang'))
+			{
+			$itemIdFound=true;
+			$jomresItemid=$item->id;
+			}
+		elseif (!$itemIdFound && $item->language=='*')
+			{
+			$itemIdFound=true;
+			$jomresItemid=$item->id;
+			}
 		}
-	else
+	if ( !$itemIdFound )
 		{
-		$query = "SELECT id" . "\n FROM #__menu" . "\n WHERE " . "\n published = 1" . "\n AND link LIKE 'index.php?option=com_jomres&view=default%' LIMIT 1 ";
-
-		$itemQueryRes = doSelectSql( $query, 1 );
-		if ( $itemQueryRes )
-			{
-			$jomresItemid = $itemQueryRes;
-			}
+		if ( isset( $jrConfig[ 'jomresItemid' ] ) ) 
+			$jomresItemid = $jrConfig[ 'jomresItemid' ];
 		else
-			{
-			if ( isset( $jrConfig[ 'jomresItemid' ] ) ) $jomresItemid = $jrConfig[ 'jomresItemid' ];
-			else
 			$jomresItemid = 0;
-			}
 		}
 	}
 else

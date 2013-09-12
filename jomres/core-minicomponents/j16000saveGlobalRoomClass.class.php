@@ -33,13 +33,15 @@ class j16000saveGlobalRoomClass
 		$srp_only             = jomresGetParam( $_POST, 'srp_only', 0 );
 		$ptype_ids            = jomresGetParam( $_POST, 'ptype_ids', array () );
 		$image                = jomresGetParam( $_POST, 'image', "" );
-
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 
 		if ( empty( $roomClassUid ) )
 			{
-			$query        = "INSERT INTO #__jomres_room_classes (`room_class_abbv`,`room_class_full_desc`,`image`,`property_uid`,`srp_only` )VALUES ('$room_class_abbv','$room_class_full_desc','$image','0','" . (int) $srp_only . "')";
+			$query = "INSERT INTO #__jomres_room_classes (`room_class_abbv`,`room_class_full_desc`,`image`,`property_uid`,`srp_only` )VALUES ('$room_class_abbv','$room_class_full_desc','$image','0','" . (int) $srp_only . "')";
 			$roomClassUid = doInsertSql( $query, '' );
 			$this->update_roomtype_propertytype_xref_table( $roomClassUid, $ptype_ids );
+			$c->eraseAll();
 			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listGlobalroomTypes", jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', _JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT, false ) );
 			}
 		else
@@ -47,6 +49,7 @@ class j16000saveGlobalRoomClass
 			$query = "UPDATE #__jomres_room_classes SET `image`='$image',`room_class_abbv`='$room_class_abbv',`room_class_full_desc`='$room_class_full_desc',`srp_only`='" . (int) $srp_only . "' WHERE room_classes_uid='" . (int) $roomClassUid . "' AND property_uid = '0'";
 			doInsertSql( $query, '' );
 			$this->update_roomtype_propertytype_xref_table( $roomClassUid, $ptype_ids );
+			$c->eraseAll();
 			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listGlobalroomTypes", jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', _JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE, false ) );
 			}
 		}

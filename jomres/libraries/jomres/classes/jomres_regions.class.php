@@ -27,24 +27,39 @@ class jomres_regions
 		{
 		$performance_monitor = jomres_singleton_abstract::getInstance( 'jomres_performance_monitor' );
 		$performance_monitor->set_point( "Setting up regions. Let's ensure we're not doing this more than once." );
-
-		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig   = $siteConfig->get();
-		if ( !isset( $jrConfig[ 'region_names_are_translatable' ] ) ) $jrConfig[ 'region_names_are_translatable' ] = 0;
-
-		$query      = "SELECT id,countrycode,regionname FROM #__jomres_regions ORDER BY countrycode,regionname";
-		$regionList = doSelectSql( $query );
-		if ( count( $regionList ) > 0 )
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$regions=$c->retrieve('regions');
+		
+		if ($regions)
 			{
-			foreach ( $regionList as $region )
-				{
-				if ( $jrConfig[ 'region_names_are_translatable' ] == 1 ) $this->regions[ $region->id ] = array ( "id" => $region->id, "countrycode" => $region->countrycode, "regionname" => jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $region->id, $region->regionname, false, false ) );
-				else
-				$this->regions[ $region->id ] = array ( "id" => $region->id, "countrycode" => $region->countrycode, "regionname" => $region->regionname );
-				}
+			$performance_monitor->set_point( "Setting regions from cache." );
+			$this->regions=$regions;
 			}
-		$performance_monitor->set_point( "Region generation done." );
+		else
+			{
+			$performance_monitor->set_point( "Setting regions from db." );
+			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+			$jrConfig   = $siteConfig->get();
+			if ( !isset( $jrConfig[ 'region_names_are_translatable' ] ) ) $jrConfig[ 'region_names_are_translatable' ] = 0;
+	
+			$query      = "SELECT id,countrycode,regionname FROM #__jomres_regions ORDER BY countrycode,regionname";
+			$regionList = doSelectSql( $query );
+			if ( count( $regionList ) > 0 )
+				{
+				foreach ( $regionList as $region )
+					{
+					if ( $jrConfig[ 'region_names_are_translatable' ] == 1 ) 
+						$this->regions[ $region->id ] = array ( "id" => $region->id, "countrycode" => $region->countrycode, "regionname" => jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $region->id, $region->regionname, false, false ) );
+					else
+						$this->regions[ $region->id ] = array ( "id" => $region->id, "countrycode" => $region->countrycode, "regionname" => $region->regionname );
+					}
+				}
+			$c->store('regions',$this->regions);
+			}
 
+		$performance_monitor->set_point( "Region generation done." );
+		
 		return $this->regions;
 		}
 

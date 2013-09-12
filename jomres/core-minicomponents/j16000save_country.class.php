@@ -39,6 +39,10 @@ class j16000save_country
 			$query  = "UPDATE #__jomres_countries SET `countrycode`='" . $countrycode . "',`countryname`='" . $countryname . "' WHERE id = " . $id;
 			$result = doInsertSql( $query );
 			}
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$c->eraseAll();
+		
 		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=edit_country&id=" . $id, '' );
 		}
 

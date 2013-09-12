@@ -129,14 +129,26 @@ class jomres_access_control
 	private function init()
 		{
 		$this->controlled = array ();
-		$query            = "SELECT id,scriptname,access_level FROM #__jomres_access_control";
-		$scripts          = doSelectSql( $query );
-		if ( count( $scripts ) > 0 )
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$controlled=$c->retrieve('jomres_access_control_scripts');
+
+		if (true===is_array($controlled))
 			{
-			foreach ( $scripts as $script )
+			if (isset($controlled['jomres_access_control_scripts']))
+				$this->controlled=$controlled['jomres_access_control_scripts'];
+			}
+		else
+			{
+			$query            = "SELECT id,scriptname,access_level FROM #__jomres_access_control";
+			$scripts          = doSelectSql( $query );
+			if ( count( $scripts ) > 0 )
 				{
-				$this->controlled[ $script->scriptname ] = array ( "scriptname" => $script->scriptname, "access_level" => $script->access_level );
+				foreach ( $scripts as $script )
+					{
+					$this->controlled[ $script->scriptname ] = array ( "scriptname" => $script->scriptname, "access_level" => $script->access_level );
+					}
 				}
+			$c->store('jomres_access_control_scripts',$this->controlled);
 			}
 		}
 

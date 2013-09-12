@@ -33,8 +33,7 @@ class j99995jomres_mainmenu
 		if ( get_showtime( 'menuoff' ) ) return;
 
 		$output                             = array ();
-		$query                              = "SELECT propertys_uid FROM #__jomres_propertys WHERE published='1'";
-		$publishedProperties                = count( doSelectSql( $query ) );
+		$publishedProperties                = count( get_showtime('published_properties_in_system') );
 		$output[ 'PUBLISHEDPROPERTIESTXT' ] = jr_gettext( '_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES', _JOMCOMP_MYUSER_PUBLISHEDPROPERTIES, $editable = false, $isLink = false );
 		$output[ 'PUBLISHEDPROPERTIES' ]    = $publishedProperties;
 		$output[ 'TITLE' ]                  = jr_gettext( '_JOMCOMP_MYUSER_MENUTITLE', _JOMCOMP_MYUSER_MENUTITLE, $editable = false, $isLink = false );

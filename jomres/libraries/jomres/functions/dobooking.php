@@ -121,6 +121,10 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 
 	$mrConfig = getPropertySpecificSettings( $selectedProperty );
 	if ( $jrConfig[ 'is_single_property_installation' ] == "0" && !defined( 'DOBOOKING_IN_DETAILS' ) ) property_header( $selectedProperty );
+	
+	$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+	$current_property_details->gather_data($selectedProperty);
+	
 	$MiniComponents->triggerEvent( '00102' ); // First-form generation
 	$bkg                      = $MiniComponents->triggerEvent( '05000' ); // Create the booking object
 	$bkg->room_feature_filter = array ();
@@ -458,9 +462,8 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 
 	jr_import( 'jomres_custom_field_handler' );
 	$custom_fields   = new jomres_custom_field_handler();
-	
-	$query = "SELECT ptype_id FROM #__jomres_propertys WHERE propertys_uid = '" . (int) $selectedProperty . "'";
-	$ptype_id = (int)doSelectSql( $query,1 );
+
+	$ptype_id = $current_property_details->ptype_id;
 	
 	$allCustomFields = $custom_fields->getAllCustomFieldsByPtypeId($ptype_id);
 	if ( count( $allCustomFields ) > 0 )
@@ -508,8 +511,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$output[ 'TOTALS_PANEL_BG_PATH' ] = get_showtime( 'live_site' ) . '/jomres/images/';
 	if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'uploadedimages' . JRDS . 'totals_panel_bg.jpg' ) ) $output[ 'TOTALS_PANEL_BG_PATH' ] = 'jomres/uploadedimages/';
 
-	$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-	$output[ 'PROPERTYNAME' ] = $current_property_details->get_property_name( $selectedProperty );
+	$output[ 'PROPERTYNAME' ] = $current_property_details->property_name;
 
 	$output[ 'BOOKEDDATES' ] = $booked_dates_output;
 	$output[ 'MODAL' ]       = ''; // Needs to be here. If not, a javascript error will occur when the booking form is shown in the property details page.

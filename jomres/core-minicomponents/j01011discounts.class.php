@@ -42,29 +42,26 @@ class j01011discounts
 
 		if ( isset( $componentArgs[ 'property_uid' ] ) ) $property_uid = $componentArgs[ 'property_uid' ];
 		if ( isset( $componentArgs[ 'property_uids' ] ) ) $property_uids = $componentArgs[ 'property_uids' ];
+		
+		$allPropertiesConfig = jomres_singleton_abstract::getInstance( 'jomres_config_property_singleton' );
 
 		if ( is_array( $property_uids ) )
 			{
 			$relevant_properties = array ();
-			$g                   = genericOr( $property_uids, 'property_uid' );
-			$query               = "SELECT property_uid,akey,value FROM #__jomres_settings WHERE (`akey`='lastminuteactive' OR `akey` = 'wisepriceactive') AND " . $g . " AND `value`='1'";
-			$result              = doSelectSql( $query );
-			if ( count( $result ) > 0 )
+			foreach ($property_uids as $property_uid)
 				{
-				foreach ( $result as $r )
+				$tmpConfig=$allPropertiesConfig->load_property_config($property_uid);
+				if ($tmpConfig['lastminuteactive']=='1')
 					{
-					$relevant_properties[ $r->property_uid ][ 'discount_type' ] = $r->akey;
-					$discounted_properties[ ]                                   = $r->property_uid;
+					$relevant_properties[ $property_uid ][ 'discount_type' ] = 'lastminuteactive';
+					$relevant_properties[ $property_uid ][ 'lastminutethreshold' ] = $tmpConfig['lastminutethreshold'];
+					$relevant_properties[ $property_uid ][ 'lastminutediscount' ] = $tmpConfig['lastminutediscount'];
 					}
-				$g2      = genericOr( $discounted_properties, 'property_uid' );
-				$query   = "SELECT property_uid,akey,value FROM #__jomres_settings WHERE (`akey`='wisepricethreshold' OR `akey` = 'wiseprice75discount' OR `akey` = 'lastminutethreshold' OR `akey` = 'lastminutediscount') AND " . $g2 . "";
-				$result2 = doSelectSql( $query );
-				foreach ( $result2 as $r )
+				elseif ($tmpConfig['wisepriceactive']=='1')
 					{
-					if ( $r->akey == 'wisepricethreshold' ) $relevant_properties[ $r->property_uid ][ 'wisepricethreshold' ] = $r->value;
-					if ( $r->akey == 'wiseprice75discount' ) $relevant_properties[ $r->property_uid ][ 'wiseprice75discount' ] = $r->value;
-					if ( $r->akey == 'lastminutethreshold' ) $relevant_properties[ $r->property_uid ][ 'lastminutethreshold' ] = $r->value;
-					if ( $r->akey == 'lastminutediscount' ) $relevant_properties[ $r->property_uid ][ 'lastminutediscount' ] = $r->value;
+					$relevant_properties[ $property_uid ][ 'discount_type' ] = 'wisepriceactive';
+					$relevant_properties[ $property_uid ][ 'wisepricethreshold' ] = $tmpConfig['wisepricethreshold'];
+					$relevant_properties[ $property_uid ][ 'wiseprice75discount' ] = $tmpConfig['wiseprice75discount'];
 					}
 				}
 			set_showtime( 'propertylist_discounts', $relevant_properties );

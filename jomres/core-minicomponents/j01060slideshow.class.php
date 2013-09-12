@@ -69,7 +69,6 @@ class j01060slideshow
 		$output[ 'PROPERTYIMAGE' ] = getImageForProperty( "property", $property_uid, $property_uid );
 		$output[ 'PROPERTYNAME' ]  = getPropertyName( $property_uid, false );
 
-		$propertyName = getPropertyNameNoTables( $property_uid );
 		if ( isset( $imageData ) ) $numberOfImages = count( $imageData );
 		else
 		$numberOfImages = 0;

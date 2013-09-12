@@ -59,7 +59,13 @@ class j16000deletePfeature
 					}
 				}
 			}
-		if ( $allDeleted ) jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeatures", $saveMessage );
+		if ( $allDeleted ) 
+			{
+			$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+			$c->eraseAll();
+	
+			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeatures", $saveMessage );
+			}
 		}
 
 	// This must be included in every Event/Mini-component

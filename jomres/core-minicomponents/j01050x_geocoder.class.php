@@ -80,17 +80,11 @@ class j01050x_geocoder
 		else
 			{
 			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+			$current_property_details->gather_data($property_uid);
 
-			if ( isset( $current_property_details->multi_query_result[ $property_uid ] ) )
-				{
-				$propertyData[ 'lat' ]  = $current_property_details->multi_query_result[ $property_uid ][ 'lat' ];
-				$propertyData[ 'long' ] = $current_property_details->multi_query_result[ $property_uid ][ 'long' ];
-				}
-			else
-				{
-				$query        = "SELECT `lat`,`long` FROM #__jomres_propertys WHERE propertys_uid = '" . (int) $property_uid . "' LIMIT 1";
-				$propertyData = doSelectSql( $query, 2 );
-				}
+			$propertyData[ 'lat' ]  = $current_property_details->multi_query_result[ $property_uid ][ 'lat' ];
+			$propertyData[ 'long' ] = $current_property_details->multi_query_result[ $property_uid ][ 'long' ];
+			
 			if ( $propertyData[ 'lat' ] != null )
 				{
 				$output[ 'LAT' ]  = $propertyData[ 'lat' ];

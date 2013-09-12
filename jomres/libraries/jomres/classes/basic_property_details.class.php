@@ -27,8 +27,10 @@ class basic_property_details
 		self::$property_data               = array ();
 		$this->multi_query_result          = array ();
 		$this->untranslated_property_names = array ();
+		$this->property_names = array();
 		$this->get_all_room_types();
 		$this->get_all_property_types();
+		$this->get_all_property_features();
 		}
 
 	public static function getInstance()
@@ -78,7 +80,7 @@ class basic_property_details
 			set_showtime( 'property_uid', $original_property_uid );
 			}
 		else
-		$property_name = $this->property_names[ $property_uid ];
+			$property_name = $this->property_names[ $property_uid ];
 
 		return $property_name;
 		}
@@ -155,6 +157,8 @@ class basic_property_details
 		$customTextObj      = jomres_singleton_abstract::getInstance( 'custom_text' );
 		$customTextObj->get_custom_text_for_property( $this->property_uid );
 
+		$this->gather_data_multi(array($this->property_uid)); //if more properties are on the same page (for example if we have an NGM module published) and changes the property uid showtime, when the showtime is set back to this property uid, the query will be executed again, because this property uid is not in the multi_query_result. So we use gather_data_multi to get data for this property_uid, then reuse this data later from $this->multi_query_result if necessary.
+		
 		if ( array_key_exists( $this->property_uid, $this->multi_query_result ) )
 			{
 			$this->property_name         = $this->multi_query_result[ $this->property_uid ][ 'property_name' ];
@@ -192,8 +196,11 @@ class basic_property_details
 			$this->property_policies_disclaimers = $this->multi_query_result[ $this->property_uid ][ 'property_policies_disclaimers' ];
 			$this->apikey                        = $this->multi_query_result[ $this->property_uid ][ 'apikey' ];
 			$this->approved                      = $this->multi_query_result[ $this->property_uid ][ 'approved' ];
+			
+			$this->property_names[$this->property_uid] = $this->multi_query_result[ $this->property_uid ][ 'property_name' ];
+			$this->room_types=$this->multi_query_result[ $this->property_uid ][ 'room_types' ];
 			}
-		else
+		else //this part may become redundant, since we always get the property data with gather_data_multi;
 			{
 			$no_html  = get_showtime( 'no_html' );
 			$popup    = get_showtime( 'popup' );
@@ -259,23 +266,14 @@ class basic_property_details
 				$this->property_policies_disclaimers = jomres_cmsspecific_parseByBots( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS', trim( stripslashes( $data->property_policies_disclaimers ) ), $editable, false ) );
 				$this->apikey                        = $data->apikey;
 				$this->approved                      = (bool) $data->approved;
+				
+				$this->property_names[$this->property_uid] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false );
 				}
 			}
 
-		// $this->classAbbvs = array();
-		// $query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes";
-		// $roomsClassList =doSelectSql($query);
-		// foreach ($roomsClassList as $roomClass)
-		// {
-		// $this->classAbbvs[(int)$roomClass->room_classes_uid]['abbv'] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_abbv),false,false);
-		// $this->classAbbvs[(int)$roomClass->room_classes_uid]['desc'] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_desc),false,false);
-		// $this->classAbbvs[(int)$roomClass->room_classes_uid]['image'] = $roomClass->image;
-		// }
-
 		$mrConfig = getPropertySpecificSettings( $this->property_uid );
-		if ( $mrConfig[ 'singleRoomProperty' ] == '0' ) $srp_only = 0;
-		else
-		$srp_only = 1;
+		$mrConfig[ 'singleRoomProperty' ] == '0' ? $srp_only = 0 : $srp_only = 1;
+		
 		if ( !isset( $this->this_property_room_classes ) )
 			{
 			$this->this_property_room_classes = array ();
@@ -286,6 +284,19 @@ class basic_property_details
 				$this->this_property_room_classes[ (int) $roomClass->roomtype_id ] = $this->classAbbvs[ $roomClass->roomtype_id ];
 				}
 			}
+		
+		if ( !isset( $this->room_types ) )
+			{
+			$this->room_types = array ();
+			$query      = "SELECT DISTINCT `room_classes_uid` FROM #__jomres_rooms WHERE propertys_uid = '".$this->property_uid."' ";
+			$rooms      = doSelectSql( $query );
+			foreach ( $rooms as $room )
+				{
+				$this->room_types[ $room->room_classes_uid ][ 'abbv' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'abbv' ];
+				$this->room_types[ $room->room_classes_uid ][ 'desc' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'desc' ];
+				$this->room_types[ $room->room_classes_uid ][ 'image' ] = get_showtime( 'live_site' ) . '/' . $this->all_room_types[ $room->room_classes_uid ][ 'image' ];
+				}
+			}
 
 		$bang                  = explode( ",", $this->property_features );
 		$propertyFeaturesArray = array ();
@@ -293,24 +304,14 @@ class basic_property_details
 			{
 			if ( (int) $b != 0 ) $propertyFeaturesArray[ ] = (int) $b;
 			}
-
-		if ( !isset( $this->features ) )
+		if (count($propertyFeaturesArray)>0)
 			{
-			$this->features = array ();
-			if ( count( $propertyFeaturesArray ) > 0 )
+			$this->features=array();
+			foreach($propertyFeaturesArray as $f)
 				{
-				$query                = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
-				$propertyFeaturesList = doSelectSql( $query );
-				foreach ( $propertyFeaturesList as $propertyFeature )
-					{
-					if ( in_array( ( $propertyFeature->hotel_features_uid ), $propertyFeaturesArray ) )
-						{
-						//$propertyFeatureDescriptionsArray['FEATURE']=stripslashes($propertyFeature->hotel_feature_full_desc);
-						$this->features[ (int) $propertyFeature->hotel_features_uid ][ 'abbv' ]  = jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_ABBV' . (int) $propertyFeature->hotel_features_uid, stripslashes( $propertyFeature->hotel_feature_abbv ), false, false );
-						$this->features[ (int) $propertyFeature->hotel_features_uid ][ 'desc' ]  = jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_DESC' . (int) $propertyFeature->hotel_features_uid, stripslashes( $propertyFeature->hotel_feature_full_desc ), false, false );
-						$this->features[ (int) $propertyFeature->hotel_features_uid ][ 'image' ] = $propertyFeature->image;
-						}
-					}
+				$this->features[$f]['abbv'] = $this->all_property_features[$f]['abbv'];
+				$this->features[$f]['desc'] = $this->all_property_features[$f]['desc'];
+				$this->features[$f]['image'] =$this->all_property_features[$f]['image'];;
 				}
 			}
 
@@ -446,28 +447,34 @@ class basic_property_details
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_policies_disclaimers' ] = jomres_cmsspecific_parseByBots( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS', $data->property_policies_disclaimers, $editable, false ) );
 				$this->multi_query_result[ $data->propertys_uid ][ 'apikey' ]                        = $data->apikey;
 				$this->multi_query_result[ $data->propertys_uid ][ 'approved' ]                      = (bool) $data->approved;
+				
+				$this->property_names[$data->propertys_uid] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false );
 				}
 
 			$temp_rooms = array ();
 			$gor        = genericOr( $property_uids, 'propertys_uid' );
-			$query      = "SELECT `room_uid`,`room_classes_uid`,`propertys_uid` FROM #__jomres_rooms WHERE " . $gor;
+			$query      = "SELECT `room_classes_uid`,`propertys_uid` FROM #__jomres_rooms WHERE " . $gor;
 			$rooms      = doSelectSql( $query );
 			foreach ( $rooms as $room )
 				{
 				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'abbv' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'room_class_abbv' ];
 				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'desc' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'room_class_full_desc' ];
-				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'image' ] = get_showtime( 'live_site' ) . '/' . $this->all_room_types[ $room->room_classes_uid ][ 'image' ];
+				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'image' ] = $this->all_room_types[ $room->room_classes_uid ][ 'image' ];
 				}
 
-			$gor                 = genericOr( $property_uids, 'property_uid' );
-			$this->room_features = array ();
-			$query               = "SELECT room_features_uid,feature_description,property_uid FROM #__jomres_room_features WHERE " . $gor;
-			$roomFeatures        = doSelectSql( $query );
-			if ( count( $roomFeatures ) > 0 )
+			// This array is only used by the showRoomDetails task. It's pointless constantly running this query when it's not used anywhere else.
+			if ( get_showtime( 'task' ) == "showRoomDetails" )
 				{
-				foreach ( $roomFeatures as $f )
+				$gor                 = genericOr( $property_uids, 'property_uid' );
+				$this->room_features = array ();
+				$query               = "SELECT room_features_uid,feature_description,property_uid FROM #__jomres_room_features WHERE " . $gor;
+				$roomFeatures        = doSelectSql( $query );
+				if ( count( $roomFeatures ) > 0 )
 					{
-					$this->multi_query_result[ $f->property_uid ][ 'room_features' ][ $f->room_features_uid ][ 'desc' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION' . (int) $f->room_features_uid, stripslashes( $f->feature_description ) );
+					foreach ( $roomFeatures as $f )
+						{
+						$this->multi_query_result[ $f->property_uid ][ 'room_features' ][ $f->room_features_uid ][ 'desc' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION' . (int) $f->room_features_uid, stripslashes( $f->feature_description ) );
+						}
 					}
 				}
 
@@ -489,34 +496,48 @@ class basic_property_details
 		{
 		$this->classAbbvs     = array ();
 		$this->all_room_types = array ();
-		$room_type_ids        = array ();
-		$query                = "SELECT `room_classes_uid`,`room_class_abbv`,`room_class_full_desc`,`image`,`srp_only` FROM #__jomres_room_classes WHERE property_uid =0 ";
-		$roomtypes            = doSelectSql( $query );
-		if ( count( $roomtypes ) > 0 )
-			{
-			foreach ( $roomtypes as $rt )
-				{
-				$this->all_room_types[ $rt->room_classes_uid ][ 'room_classes_uid' ] = $rt->room_classes_uid;
-				$this->all_room_types[ $rt->room_classes_uid ][ 'room_class_abbv' ]  = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV' . (int) $rt->room_classes_uid, stripslashes( $rt->room_class_abbv ), false, false );;
-				$this->all_room_types[ $rt->room_classes_uid ][ 'room_class_full_desc' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC' . (int) $rt->room_classes_uid, stripslashes( $rt->room_class_full_desc ), false, false );
-				$this->all_room_types[ $rt->room_classes_uid ][ 'image' ]                = $rt->image;
-				$this->all_room_types[ $rt->room_classes_uid ][ 'srp_only' ]             = $rt->srp_only;
-				$room_type_ids[ ]                                                        = $rt->room_classes_uid;
-
-				// To a degree, this is a duplication of effort, however we don't know if other scripts are using the $this->classAbbvs variable, so we'll reuse this code from the previous gather_data method.
-				$this->classAbbvs[ (int) $rt->room_classes_uid ][ 'abbv' ]  = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV' . (int) $rt->room_classes_uid, stripslashes( $rt->room_class_abbv ), false, false );
-				$this->classAbbvs[ (int) $rt->room_classes_uid ][ 'desc' ]  = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC' . (int) $rt->room_classes_uid, stripslashes( $rt->room_class_full_desc ), false, false );
-				$this->classAbbvs[ (int) $rt->room_classes_uid ][ 'image' ] = $rt->image;
-				}
-			}
-
 		$this->roomtypes_propertytypes_xref = array ();
-		$query                              = "SELECT roomtype_id,propertytype_id FROM #__jomres_roomtypes_propertytypes_xref";
-		$roomtypes                          = doSelectSql( $query );
-		foreach ( $roomtypes as $roomClass )
+		$room_type_ids        = array ();
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$all_room_types_details=$c->retrieve('all_room_types_details');
+		
+		if (true===is_array($all_room_types_details))
 			{
-			$this->roomtypes_propertytypes_xref[ (int) $roomClass->propertytype_id ] = $this->classAbbvs[ $roomClass->roomtype_id ];
+			$this->all_room_types=$all_room_types_details['all_room_types'];
+			$this->classAbbvs=$all_room_types_details['classAbbvs'];
+			$this->roomtypes_propertytypes_xref=$all_room_types_details['roomtypes_propertytypes_xref'];
 			}
+		else
+			{
+			$query                = "SELECT `room_classes_uid`,`room_class_abbv`,`room_class_full_desc`,`image`,`srp_only` FROM #__jomres_room_classes WHERE property_uid =0 ";
+			$roomtypes            = doSelectSql( $query );
+			if ( count( $roomtypes ) > 0 )
+				{
+				foreach ( $roomtypes as $rt )
+					{
+					$this->all_room_types[ $rt->room_classes_uid ][ 'room_classes_uid' ] = $rt->room_classes_uid;
+					$this->all_room_types[ $rt->room_classes_uid ][ 'room_class_abbv' ]  = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV' . (int) $rt->room_classes_uid, stripslashes( $rt->room_class_abbv ), false, false );;
+					$this->all_room_types[ $rt->room_classes_uid ][ 'room_class_full_desc' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC' . (int) $rt->room_classes_uid, stripslashes( $rt->room_class_full_desc ), false, false );
+					$this->all_room_types[ $rt->room_classes_uid ][ 'image' ]                = $rt->image;
+					$this->all_room_types[ $rt->room_classes_uid ][ 'srp_only' ]             = $rt->srp_only;
+					$room_type_ids[ ]                                                        = $rt->room_classes_uid;
+	
+					// To a degree, this is a duplication of effort, however we don't know if other scripts are using the $this->classAbbvs variable, so we'll reuse this code from the previous gather_data method.
+					$this->classAbbvs[ (int) $rt->room_classes_uid ][ 'abbv' ]  = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV' . (int) $rt->room_classes_uid, stripslashes( $rt->room_class_abbv ), false, false );
+					$this->classAbbvs[ (int) $rt->room_classes_uid ][ 'desc' ]  = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC' . (int) $rt->room_classes_uid, stripslashes( $rt->room_class_full_desc ), false, false );
+					$this->classAbbvs[ (int) $rt->room_classes_uid ][ 'image' ] = $rt->image;
+					}
+				}
+	
+			$query                              = "SELECT roomtype_id,propertytype_id FROM #__jomres_roomtypes_propertytypes_xref";
+			$roomtypes                          = doSelectSql( $query );
+			foreach ( $roomtypes as $roomClass )
+				{
+				$this->roomtypes_propertytypes_xref[ (int) $roomClass->propertytype_id ] = $this->classAbbvs[ $roomClass->roomtype_id ];
+				}
+			$c->store('all_room_types_details',array('all_room_types'=>$this->all_room_types,'classAbbvs'=>$this->classAbbvs,'roomtypes_propertytypes_xref'=>$this->roomtypes_propertytypes_xref));
+			}	
 		}
 
 
@@ -524,35 +545,58 @@ class basic_property_details
 		{
 		$this->all_property_types       = array ();
 		$this->all_property_type_titles = array ();
-		$query                          = "SELECT id,ptype,ptype_desc FROM #__jomres_ptypes";
-		$propertytypes                  = doSelectSql( $query );
-		if ( count( $propertytypes ) > 0 )
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$all_property_types_details=$c->retrieve('all_property_types_details');
+		
+		if (true===is_array($all_property_types_details))
 			{
-			foreach ( $propertytypes as $pt )
-				{
-				$this->all_property_types[ $pt->id ]       = $pt->ptype_desc;
-				$this->all_property_type_titles[ $pt->id ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $pt->id, $pt->ptype, false, false );
-				}
+			$this->all_property_types       = $all_property_types_details['all_property_types'];
+			$this->all_property_type_titles = $all_property_types_details['all_property_type_titles'];
 			}
-		}
-	/*
-
-		private function get_all_property_features()
+		else
 			{
-			$this->features = array();
-			$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
-			$propertyFeaturesList= doSelectSql($query);
-			foreach($propertyFeaturesList as $propertyFeature)
+			$query                          = "SELECT id,ptype,ptype_desc FROM #__jomres_ptypes";
+			$propertytypes                  = doSelectSql( $query );
+			if ( count( $propertytypes ) > 0 )
 				{
-				if (in_array(($propertyFeature->hotel_features_uid),$propertyFeaturesArray ))
+				foreach ( $propertytypes as $pt )
 					{
-					//$propertyFeatureDescriptionsArray['FEATURE']=stripslashes($propertyFeature->hotel_feature_full_desc);
-					$this->features[(int)$propertyFeature->hotel_features_uid]['abbv'] = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_abbv),false,false);
-					$this->features[(int)$propertyFeature->hotel_features_uid]['desc'] = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_full_desc),false,false);
-					$this->features[(int)$propertyFeature->hotel_features_uid]['image'] =$propertyFeature->image;
+					$this->all_property_types[ $pt->id ]       = $pt->ptype_desc;
+					$this->all_property_type_titles[ $pt->id ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $pt->id, $pt->ptype, false, false );
 					}
 				}
-			} */
+			$c->store('all_property_types_details',array('all_property_types'=>$this->all_property_types,'all_property_type_titles'=>$this->all_property_type_titles));
+			}
+		}
+	
+
+	private function get_all_property_features()
+		{
+		$this->all_property_features = array();
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$all_property_features_details=$c->retrieve('all_property_features_details');
+		
+		if (true===is_array($all_property_features_details))
+			{
+			$this->all_property_features=$all_property_features_details;
+			}
+		else
+			{
+			$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
+			$propertyFeaturesList= doSelectSql($query);
+			if (count($propertyFeaturesList)>0)
+				{
+				foreach($propertyFeaturesList as $propertyFeature)
+					{
+					$this->all_property_features[(int)$propertyFeature->hotel_features_uid]['abbv'] = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$propertyFeature->hotel_features_uid,	stripslashes($propertyFeature->hotel_feature_abbv),false,false);
+					$this->all_property_features[(int)$propertyFeature->hotel_features_uid]['desc'] = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$propertyFeature->hotel_features_uid,	stripslashes($propertyFeature->hotel_feature_full_desc),false,false);
+					$this->all_property_features[(int)$propertyFeature->hotel_features_uid]['image'] =$propertyFeature->image;
+					}
+				}
+			$c->store('all_property_features_details',$this->all_property_features);
+			}
+		} 
 
 	}
 

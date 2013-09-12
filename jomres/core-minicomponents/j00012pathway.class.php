@@ -88,10 +88,7 @@ class j00012pathway
 				{
 				$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 				$current_property_details->gather_data( $property_uid );
-
-				$query         = "SELECT ptype FROM #__jomres_ptypes WHERE id=" . (int) $current_property_details->ptype_id;
-				$ptype         = doSelectSql( $query, 1 );
-				$property_type = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPES' . (int) $current_property_details->ptype_id, $ptype, false, false );
+				$property_type = $current_property_details->property_type_title;
 
 				$tasks = array ();
 
