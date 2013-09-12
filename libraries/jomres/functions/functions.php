@@ -158,7 +158,9 @@ function find_region_name( $region_id )
 function find_region_id( $region )
 	{
 	if ( is_numeric( $region ) ) // It's already numeric
-	return $region;
+		return $region;
+	else
+		$region=jomres_cmsspecific_stringURLSafe($region);
 
 	$jomres_regions = jomres_singleton_abstract::getInstance( 'jomres_regions' );
 	foreach ( $jomres_regions->regions as $r )
@@ -175,15 +177,28 @@ function find_region_id( $region )
 
 function build_property_manager_xref_array()
 	{
-	$query                  = "SELECT property_uid,manager_id FROM #__jomres_managers_propertys_xref";
-	$managersToPropertyList = doSelectSql( $query );
-	$arr                    = array ();
-	if ( count( $managersToPropertyList ) > 0 )
+	$arr = array ();
+	
+	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+	$jomres_managers_propertys_xref=$c->retrieve('jomres_managers_propertys_xref');
+	
+	if (true===is_array($jomres_managers_propertys_xref))
 		{
-		foreach ( $managersToPropertyList as $x )
+		$arr=$jomres_managers_propertys_xref;
+		}
+	else
+		{
+		$query = "SELECT property_uid,manager_id FROM #__jomres_managers_propertys_xref";
+		$managersToPropertyList = doSelectSql( $query );
+		if ( count( $managersToPropertyList ) > 0 )
 			{
-			if ( !array_key_exists( $x->property_uid, $arr ) ) $arr[ $x->property_uid ] = $x->manager_id;
+			foreach ( $managersToPropertyList as $x )
+				{
+				if ( !array_key_exists( $x->property_uid, $arr ) ) 
+					$arr[ $x->property_uid ] = $x->manager_id;
+				}
 			}
+		$c->store('jomres_managers_propertys_xref',$arr);
 		}
 	set_showtime( 'property_manager_xref', $arr );
 
@@ -769,36 +784,21 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 	$return_data = array ();
 
 	$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-	$property_data_array      = $current_property_details->gather_data_multi( $property_uid_array );
-
+	$current_property_details->gather_data_multi( $property_uid_array );
+	
+	$jomres_property_list_prices = jomres_singleton_abstract::getInstance( 'jomres_property_list_prices' );
+	$jomres_property_list_prices->gather_lowest_prices_multi($property_uid_array);
 
 	// Same as list properties
 	$g_pids = genericOr( $property_uid_array, 'propertys_uid' );
 	$g_pid  = genericOr( $property_uid_array, 'property_uid' );
-
-	$pricesFromArray = array ();
-	$searchDate      = date( "Y/m/d" );
-	if ( isset( $_REQUEST[ 'arrivalDate' ] ) )
-		{
-		$searchDate = JSCalConvertInputDates( jomresGetParam( $_REQUEST, 'arrivalDate', "" ) );
-		}
-	$query      = "SELECT property_uid, roomrateperday FROM #__jomres_rates WHERE " . $g_pid . " AND DATE_FORMAT('" . $searchDate . "', '%Y/%m/%d') BETWEEN DATE_FORMAT(`validfrom`, '%Y/%m/%d') AND DATE_FORMAT(`validto`, '%Y/%m/%d') AND roomrateperday > '0' ";
-	$tariffList = doSelectSql( $query );
-	if ( count( $tariffList ) > 0 )
-		{
-		foreach ( $tariffList as $t )
-			{
-			if ( !isset( $pricesFromArray[ $t->property_uid ] ) ) $pricesFromArray[ $t->property_uid ] = $t->roomrateperday;
-			elseif ( isset( $pricesFromArray[ $t->property_uid ] ) && $pricesFromArray[ $t->property_uid ] > $t->roomrateperday ) $pricesFromArray[ $t->property_uid ] = $t->roomrateperday;
-			}
-		}
 
 	$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 	foreach ( $property_uid_array as $property_uid )
 		{
 		if ( $property_uid > 0 )
 			{
-			$property_data = $property_data_array[ $property_uid ];
+			$property_data=$current_property_details->multi_query_result[ $property_uid ];
 			$mrConfig      = getPropertySpecificSettings( $property_uid );
 
 			$current_property_details->gather_data( $property_uid );
@@ -811,11 +811,10 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_uid . "_property_" . $property_uid . ".jpg" ) ) $property_image = JOMRES_IMAGELOCATION_RELPATH . "/" . $property_uid . "_property_" . $property_uid . ".jpg";
 			$property_data[ 'THUMBNAIL' ] = getThumbnailForImage( $property_image );
 			if ( !$property_data[ 'THUMBNAIL' ] ) $property_data[ 'THUMBNAIL' ] = $property_image;
-
-			$price_output                       = get_property_price_for_display_in_lists( $property_uid );
-			$property_data[ 'PRICE_PRE_TEXT' ]  = $price_output[ 'PRE_TEXT' ];
-			$property_data[ 'PRICE_PRICE' ]     = $price_output[ 'PRICE' ];
-			$property_data[ 'PRICE_POST_TEXT' ] = $price_output[ 'POST_TEXT' ];
+					
+			$property_data[ 'PRICE_PRE_TEXT' ]  = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRE_TEXT' ];
+			$property_data[ 'PRICE_PRICE' ]     = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE' ];
+			$property_data[ 'PRICE_POST_TEXT' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'POST_TEXT' ];
 
 			$property_data[ 'PROPERTY_UID' ]      = $property_uid;
 			$property_data[ 'RANDOM_IDENTIFIER' ] = generateJomresRandomString( 10 );
@@ -835,16 +834,18 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 
 			$pageoutput = array ( $property_data );
 			$tmpl       = new patTemplate();
-			if ( $alt_template_path != '' ) $tmpl->setRoot( $alt_template_path );
+			if ( $alt_template_path != '' )
+				$tmpl->setRoot( $alt_template_path );
 			else
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
-			if ( count( $property_data_array[ $property_uid ][ 'room_types' ] ) > 0 ) $tmpl->addRows( 'room_types', $property_data_array[ $property_uid ][ 'room_types' ] );
-			if ( count( $property_data_array[ $property_uid ][ 'room_features' ] ) > 0 ) $tmpl->addRows( 'room_features', $property_data_array[ $property_uid ][ 'room_features' ] );
+			if ( count( $current_property_details->multi_query_result[ $property_uid ][ 'room_types' ] ) > 0 ) $tmpl->addRows( 'room_types', $current_property_details->multi_query_result[ $property_uid ][ 'room_types' ] );
+			if ( count( $current_property_details->multi_query_result[ $property_uid ][ 'room_features' ] ) > 0 ) $tmpl->addRows( 'room_features', $current_property_details->multi_query_result[ $property_uid ][ 'room_features' ] );
 
-			if ( $alt_template_name != '' ) $tmpl->readTemplatesFromInput( $alt_template_name );
+			if ( $alt_template_name != '' ) 
+				$tmpl->readTemplatesFromInput( $alt_template_name );
 			else
-			$tmpl->readTemplatesFromInput( 'basic_module_output.html' );
+				$tmpl->readTemplatesFromInput( 'basic_module_output.html' );
 			$res[ $property_uid ][ 'template' ] = $tmpl->getParsedTemplate();
 			$res[ $property_uid ][ 'data' ]     = $property_data;
 			}
@@ -934,36 +935,24 @@ function detect_property_uid()
 	$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 
 	// Finding the property uid
-	$query                      = "SELECT propertys_uid,published FROM #__jomres_propertys";
-	$countproperties            = doSelectSql( $query );
-	$numberOfPropertiesInSystem = count( $countproperties );
-	set_showtime( 'numberOfPropertiesInSystem', $numberOfPropertiesInSystem );
-	$propertys           = array ();
-	$published_propertys = array ();
-	foreach ( $countproperties as $p )
-		{
-		$propertys[ ] = $p->propertys_uid;
-		if ( $p->published == "1" ) $published_propertys[ ] = $p->propertys_uid;
-		}
-	set_showtime( 'all_properties_in_system', $propertys );
-	set_showtime( 'published_properties_in_system', $published_propertys );
-
+	$numberOfPropertiesInSystem = (int) get_showtime( 'numberOfPropertiesInSystem');
+	$all_properties_in_system=get_showtime( 'all_properties_in_system' );
 
 	if ( $numberOfPropertiesInSystem == 1 )
 		{
 		if ( !$thisJRUser->userIsManager )
 			{
-			foreach ( $countproperties as $prop )
+			foreach ( $all_properties_in_system as $prop )
 				{
-				$property_uid = (int) $prop->propertys_uid;
+				$property_uid = (int) $prop;
 				}
 			}
 		else
 			{
 			$parray = array ();
-			foreach ( $countproperties as $prop )
+			foreach ( $all_properties_in_system as $prop )
 				{
-				$parray[ ] = (int) $prop->propertys_uid;
+				$parray[ ] = (int) $prop;
 				}
 			if ( in_array( $defaultProperty, $parray ) ) $property_uid = $defaultProperty;
 			else
@@ -2568,7 +2557,7 @@ function hotelSettings()
 	$tariffMode    = array ();
 	$tariffMode[ ] = jomresHTML::makeOption( '0', jr_gettext( "JOMRES_COM_A_TARIFFMODE_NORMAL", JOMRES_COM_A_TARIFFMODE_NORMAL, false ) );
 
-	if ( isset( $MiniComponents->registeredClasses[ '04006rooms_config_advanced' ] ) )
+	if ( isset( $MiniComponents->registeredClasses[ '02213edittariff_micromanage' ] ) )
 		{
 		$tariffMode[ ] = jomresHTML::makeOption( '2', jr_gettext( "JOMRES_COM_A_TARIFFMODE_TARIFFTYPES", JOMRES_COM_A_TARIFFMODE_TARIFFTYPES, false ) );
 		$tariffMode[ ] = jomresHTML::makeOption( '1', jr_gettext( "JOMRES_COM_A_TARIFFMODE_ADVANCED", JOMRES_COM_A_TARIFFMODE_ADVANCED, false ) );
@@ -2845,6 +2834,9 @@ function saveHotelSettings()
 				}
 			}
 		}
+	
+	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+	$c->eraseAll();
 
 	if( trim($_POST['cfg_property_vat_number']) != "")
 		{
@@ -3666,96 +3658,74 @@ function showLiveBookings( $contractsList, $title, $arrivaldateDropdown )
 function getPropertyAddressForPrint( $propertyUid )
 	{
 	$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-	if ( !isset( $current_property_details->multi_query_result[ $propertyUid ] ) )
-		{
-		//Returns an array containing the property address & contact details in table/row format. A rather crappy function, it's overused by other areas of Jomres, added indexedPropertyDetails for use by the global thisJomresPropertyDetails
-		$query        = "SELECT * FROM #__jomres_propertys WHERE propertys_uid = '" . (int) $propertyUid . "' LIMIT 1";
-		$propertyData = doSelectSql( $query );
-		}
-	else
-		{
-		$data                                = new stdClass;
-		$data->property_name                 = $current_property_details->multi_query_result[ $propertyUid ][ 'property_name' ];
-		$data->property_street               = $current_property_details->multi_query_result[ $propertyUid ][ 'property_street' ];
-		$data->property_town                 = $current_property_details->multi_query_result[ $propertyUid ][ 'property_town' ];
-		$data->property_postcode             = $current_property_details->multi_query_result[ $propertyUid ][ 'property_postcode' ];
-		$data->property_region               = $current_property_details->multi_query_result[ $propertyUid ][ 'property_region' ];
-		$data->property_country              = $current_property_details->multi_query_result[ $propertyUid ][ 'property_country_code' ];
-		$data->property_tel                  = $current_property_details->multi_query_result[ $propertyUid ][ 'property_tel' ];
-		$data->property_fax                  = $current_property_details->multi_query_result[ $propertyUid ][ 'property_fax' ];
-		$data->property_email                = $current_property_details->multi_query_result[ $propertyUid ][ 'property_email' ];
-		$data->property_features             = $current_property_details->multi_query_result[ $propertyUid ][ 'property_features' ];
-		$data->property_description          = $current_property_details->multi_query_result[ $propertyUid ][ 'property_description' ];
-		$data->property_checkin_times        = $current_property_details->multi_query_result[ $propertyUid ][ 'property_checkin_times' ];
-		$data->property_area_activities      = $current_property_details->multi_query_result[ $propertyUid ][ 'property_area_activities' ];
-		$data->property_driving_directions   = $current_property_details->multi_query_result[ $propertyUid ][ 'property_driving_directions' ];
-		$data->property_airports             = $current_property_details->multi_query_result[ $propertyUid ][ 'property_airports' ];
-		$data->property_othertransport       = $current_property_details->multi_query_result[ $propertyUid ][ 'property_othertransport' ];
-		$data->property_policies_disclaimers = $current_property_details->multi_query_result[ $propertyUid ][ 'property_policies_disclaimers' ];
-		$data->published                     = $current_property_details->multi_query_result[ $propertyUid ][ 'published' ];
-		$data->ptype_id                      = $current_property_details->multi_query_result[ $propertyUid ][ 'ptype_id' ];
-		$data->stars                         = $current_property_details->multi_query_result[ $propertyUid ][ 'stars' ];
-		$data->lat                           = $current_property_details->multi_query_result[ $propertyUid ][ 'lat' ];
-		$data->long                          = $current_property_details->multi_query_result[ $propertyUid ][ 'long' ];
-		$data->metatitle                     = $current_property_details->multi_query_result[ $propertyUid ][ 'metatitle' ];
-		$data->metadescription               = $current_property_details->multi_query_result[ $propertyUid ][ 'metadescription' ];
-		$propertyData                        = array ( $data );
-		}
+	$current_property_details->gather_data($propertyUid);
 
-	foreach ( $propertyData as $data )
-		{
-		$property_name     = $data->property_name;
-		$property_street   = $data->property_street;
-		$property_town     = $data->property_town;
-		$property_postcode = $data->property_postcode;
-		if ( is_numeric( $data->property_region ) )
-			{
-			$jomres_regions  = jomres_singleton_abstract::getInstance( 'jomres_regions' );
-			$property_region = jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $data->property_region, $jomres_regions->regions[ $data->property_region ][ 'regionname' ], $editable, false );
-			}
-		else
-		$property_region = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_REGION', $data->property_region, $editable, false );
-		$property_country = jomres_decode( $data->property_country );
-		$property_tel     = $data->property_tel;
-		$property_fax     = $data->property_fax;
-		$property_email   = $data->property_email;
+	$obj = new stdClass; // For use by queries that used to call mysql for this information, we'll just dress the data up as it used to come out of a query
+	$obj->property_name     = $current_property_details->property_name;
+	$obj->property_street   = $current_property_details->property_street;
+	$obj->property_town     = $current_property_details->property_town;
+	$obj->property_postcode = $current_property_details->property_postcode;
+	$obj->property_region   = $current_property_details->property_region;
+	$obj->property_country  = $current_property_details->property_country;
+	$obj->property_tel      = $current_property_details->property_tel;
+	$obj->property_features = $current_property_details->property_features;
 
-		$obj                    = new stdClass; // For use by queries that used to call mysql for this information, we'll just dress the data up as it used to come out of a query
-		$obj->property_name     = $property_name;
-		$obj->property_street   = $property_street;
-		$obj->property_town     = $property_town;
-		$obj->property_postcode = $property_postcode;
-		$obj->property_region   = $property_region;
-		$obj->property_country  = $property_country;
-		$obj->property_tel      = $property_tel;
-		$obj->property_features = $data->property_features;
+	$obj->property_description          = $current_property_details->property_description;
+	$obj->property_checkin_times        = $current_property_details->property_checkin_times;
+	$obj->property_area_activities      = $current_property_details->property_area_activities;
+	$obj->property_driving_directions   = $current_property_details->property_driving_directions;
+	$obj->property_airports             = $current_property_details->property_airports;
+	$obj->property_othertransport       = $current_property_details->property_othertransport;
+	$obj->property_policies_disclaimers = $current_property_details->property_policies_disclaimers;
 
-		$obj->property_description          = $data->property_description;
-		$obj->property_checkin_times        = $data->property_checkin_times;
-		$obj->property_area_activities      = $data->property_area_activities;
-		$obj->property_driving_directions   = $data->property_driving_directions;
-		$obj->property_airports             = $data->property_airports;
-		$obj->property_othertransport       = $data->property_othertransport;
-		$obj->property_policies_disclaimers = $data->property_policies_disclaimers;
+	$obj->property_email = $current_property_details->property_email;
+	$obj->published      = (int) $current_property_details->published;
+	$obj->ptype_id       = (int) $current_property_details->ptype_id;
+	$obj->stars          = (int) $current_property_details->stars;
+	$obj->propertys_uid  = (int) $propertyUid;
 
-		$obj->property_email = $property_email;
-		$obj->published      = (int) $data->published;
-		$obj->ptype_id       = (int) $data->ptype_id;
-		$obj->stars          = (int) $data->stars;
-		$obj->propertys_uid  = (int) $propertyUid;
+	$indexedPropertyDetails = array ( "property_name" => $current_property_details->property_name, 
+									 "property_street" => $current_property_details->property_street, 
+									 "property_town" => $current_property_details->property_town, 
+									 "property_postcode" => $current_property_details->property_postcode, 
+									 "property_region" => $current_property_details->property_region, 
+									 "property_country" => $current_property_details->property_country, 
+									 "property_tel" => $current_property_details->property_tel, 
+									 "property_features" => $current_property_details->property_features, 
+									 "property_email" => $current_property_details->property_email, 
+									 "published" => (int) $current_property_details->published, 
+									 "ptype_id" => (int) $current_property_details->ptype_id, 
+									 "stars" => (int) $current_property_details->stars,
+									 "property_description" => $current_property_details->property_description, 
+									 "property_checkin_times" => $current_property_details->property_checkin_times, 
+									 "property_area_activities" => $current_property_details->property_area_activities, 
+									 "property_driving_directions" => $current_property_details->property_driving_directions, 
+									 "property_airports" => $current_property_details->property_airports, 
+									 "property_othertransport" => $current_property_details->property_othertransport, 
+									 "property_policies_disclaimers" => $current_property_details->property_policies_disclaimers,
+									 "lat" => $current_property_details->lat, 
+									 "long" => $current_property_details->long, 
+									 "metatitle" => $current_property_details->metatitle, 
+									 "metadescription" => $current_property_details->metadescription,
+									 "propertys_uid" => (int) $propertyUid, 
+									 "obj" => array ( $obj ) );
 
-		$indexedPropertyDetails = array ( "property_name"        => $property_name, "property_street" => $property_street, "property_town" => $property_town, "property_postcode" => $property_postcode, "property_region" => $property_region, "property_country" => $property_country, "property_tel" => $property_tel, "property_features" => $data->property_features, "property_email" => $property_email, "published" => (int) $data->published, "ptype_id" => (int) $data->ptype_id, "stars" => (int) $data->stars,
-
-		                                  "property_description" => $data->property_description, "property_checkin_times" => $data->property_checkin_times, "property_area_activities" => $data->property_area_activities, "property_driving_directions" => $data->property_driving_directions, "property_airports" => $data->property_airports, "property_othertransport" => $data->property_othertransport, "property_policies_disclaimers" => $data->property_policies_disclaimers,
-
-		                                  "lat"                  => $data->lat, "long" => $data->long, "metatitle" => $data->metatitle, "metadescription" => $data->metadescription,
-
-		                                  "propertys_uid"        => (int) $propertyUid, "obj" => array ( $obj ) );
-		}
-
-	$propertyAddress   = array ( $property_name, $property_street, $property_town, $property_postcode, $property_region, $property_country );
-	$propertyContact   = array ( $property_tel, $property_fax, $property_email, get_showtime( 'live_site' ) );
-	$propertyDataArray = array ( $property_name, $propertyAddress, $propertyContact, $indexedPropertyDetails );
+	$propertyAddress   = array ( $current_property_details->property_name,
+								$current_property_details->property_street,
+								$current_property_details->property_town,
+								$current_property_details->property_postcode,
+								$current_property_details->property_region,
+								$current_property_details->property_country_code );
+	
+	$propertyContact   = array ( $current_property_details->property_tel,
+								$current_property_details->property_fax,
+								$current_property_details->property_email,
+								get_showtime( 'live_site' ) );
+	
+	$propertyDataArray = array ( $current_property_details->property_name,
+								$propertyAddress,
+								$propertyContact,
+								$indexedPropertyDetails );
 
 	return $propertyDataArray;
 	}
@@ -5020,20 +4990,31 @@ function subscriptions_packages_makeroomslimitDropdown( $selected = 0 )
 function taxrates_getalltaxrates()
 	{
 	$rates = get_showtime( 'all_tax_rates' );
+	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+	$all_tax_rates=$c->retrieve('all_tax_rates');
+	
 	if ( is_null( $rates ) )
 		{
 		$rates  = array ();
-		$query  = "SELECT * FROM #__jomresportal_taxrates";
-		$result = doSelectSql( $query );
-		if ( count( $result ) > 0 )
+		if (true===is_array($all_tax_rates))
 			{
-			foreach ( $result as $r )
+			$rates=$all_tax_rates;
+			}
+		else
+			{
+			$query  = "SELECT id,code,description,rate FROM #__jomresportal_taxrates";
+			$result = doSelectSql( $query );
+			if ( count( $result ) > 0 )
 				{
-				$rates[ $r->id ][ 'id' ]          = $r->id;
-				$rates[ $r->id ][ 'code' ]        = $r->code;
-				$rates[ $r->id ][ 'description' ] = $r->description;
-				$rates[ $r->id ][ 'rate' ]        = $r->rate;
+				foreach ( $result as $r )
+					{
+					$rates[ $r->id ][ 'id' ]          = $r->id;
+					$rates[ $r->id ][ 'code' ]        = $r->code;
+					$rates[ $r->id ][ 'description' ] = $r->description;
+					$rates[ $r->id ][ 'rate' ]        = $r->rate;
+					}
 				}
+			$c->store('all_tax_rates',$rates);
 			}
 		set_showtime( 'all_tax_rates', $rates );
 		}
@@ -5308,7 +5289,7 @@ function saveCustomText()
 	// Not currently used, but put into place if I decide that people are translating Yes to No in error too often
 	//if ($theConstant == "_JOMRES_COM_MR_YES" || $theConstant == "_JOMRES_COM_MR_NO")
 	//	return;
-	$result = updateCustomText( $theConstant, $customText, $property_uid );
+	$result = updateCustomText( $theConstant, $customText, true, $property_uid );
 	if ( $result )
 		{
 		$tmpl = new patTemplate();
@@ -5332,9 +5313,10 @@ function updateCustomText( $theConstant, $theValue, $audit = true, $property_uid
 	if ( strlen( $testStr ) == 0 && $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION" && $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES" && $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES" && $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS" && $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS" && $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT" && $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS" ) return false;
 	if ( !isset( $property_uid ) )
 		{
-		if ( $jrConfig[ 'editingModeAffectsAllProperties' ] == "1" && $thisJRUser->superPropertyManager == true ) $property_uid = 0;
+		if ( $jrConfig[ 'editingModeAffectsAllProperties' ] == "1" && $thisJRUser->superPropertyManager == true ) 
+			$property_uid = 0;
 		else
-		$property_uid = (int) getDefaultProperty();
+			$property_uid = (int) getDefaultProperty();
 		}
 	//$theValue=htmlentities($theValue);
 	$query    = "SELECT customtext FROM #__jomres_custom_text WHERE constant = '" . $theConstant . "' and property_uid = '" . (int) $property_uid . "' AND language = '" . get_showtime( 'lang' ) . "'";
@@ -5345,17 +5327,23 @@ function updateCustomText( $theConstant, $theValue, $audit = true, $property_uid
 		}
 	else
 		{
-		if ( count( $textList ) < 1 ) $query = "INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('" . $theConstant . "','" . $theValue . "','" . (int) $property_uid . "','" . get_showtime( 'lang' ) . "')";
+		if ( count( $textList ) < 1 ) 
+			$query = "INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('" . $theConstant . "','" . $theValue . "','" . (int) $property_uid . "','" . get_showtime( 'lang' ) . "')";
 		else
-		$query = "UPDATE #__jomres_custom_text SET `customtext`='" . $theValue . "' WHERE constant = '" . $theConstant . "' AND property_uid = '" . (int) $property_uid . "' AND language = '" . get_showtime( 'lang' ) . "'";
+			$query = "UPDATE #__jomres_custom_text SET `customtext`='" . $theValue . "' WHERE constant = '" . $theConstant . "' AND property_uid = '" . (int) $property_uid . "' AND language = '" . get_showtime( 'lang' ) . "'";
 		}
 	//echo $query;
-	if ( $audit ) $audit = jr_gettext( "_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT", _JOMRES_MR_AUDIT_UPDATECUSTOMTEXT );
+	if ( $audit ) 
+		$audit = jr_gettext( "_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT", _JOMRES_MR_AUDIT_UPDATECUSTOMTEXT );
 
 	doInsertSql( $query, $audit );
 
 	//$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = '".(int)$property_uid."' AND language = '".get_showtime('lang')."'";
 	//echo doSelectSql($query,1);
+	
+	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+	$c->eraseAll();
+	
 	return true;
 	}
 
@@ -5501,21 +5489,6 @@ function getDefaultProperty()
 
 	return (int) $defaultProperty;
 	}
-
-function getPropertyNameNoTables( $property_uid )
-	{
-	global $propertyNamesArray;
-	$query         = "SELECT property_name FROM #__jomres_propertys WHERE propertys_uid = '" . (int) $property_uid . "'";
-	$propertysList = doSelectSql( $query );
-	foreach ( $propertysList as $propertys )
-		{
-		$propertyName = $propertys->property_name;
-		}
-	$propertyNamesArray[ ] = $propertyName;
-
-	return $propertyName;
-	}
-
 
 function jomresURL( $link, $ssl = 2 )
 	{

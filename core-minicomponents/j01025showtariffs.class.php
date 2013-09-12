@@ -45,6 +45,7 @@ class j01025showtariffs
 		$mrConfig                 = getPropertySpecificSettings( $property_uid );
 		$pop                      = jomresGetParam( $_REQUEST, 'popup', '0' );
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$current_property_details->gather_data($property_uid);
 
 		$output_now = (bool) jomresGetParam( $_REQUEST, 'op', false );
 
@@ -91,17 +92,17 @@ class j01025showtariffs
 				$tariffRoomClass = $tariff->roomclass_uid;
 				if ( $tariffRoomClass != "" )
 					{
-					$query     = "SELECT room_class_abbv, room_class_full_desc FROM #__jomres_room_classes WHERE room_classes_uid = '$tariffRoomClass'";
-					$classList = doSelectSql( $query );
-
-					foreach ( $classList as $rclass )
+					if ( count( $current_property_details->room_types ) > 0 )
 						{
-						$roomClassAbbv     = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV' . (int) $tariffRoomClass, stripslashes( $rclass->room_class_abbv ), false, false );
-						$roomClassFullDesc = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC' . (int) $tariffRoomClass, stripslashes( $rclass->room_class_full_desc ), false, false );
+						foreach ( $current_property_details->room_types as $type )
+							{
+							$roomClassAbbv     = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV' . (int) $tariffRoomClass, stripslashes( $type['abbv'] ), false, false );
+							$roomClassFullDesc = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC' . (int) $tariffRoomClass, stripslashes( $type['desc'] ), false, false );
+							}
 						}
 					}
 				else
-				$roomClassAbbv = "";
+					$roomClassAbbv = "";
 				$validfrom     = $tariff->validfrom;
 				$validto       = $tariff->validto;
 				$date_elements = explode( "/", $validfrom );

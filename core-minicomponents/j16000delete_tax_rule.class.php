@@ -43,6 +43,10 @@ class j16000delete_tax_rule
 			{
 			$query = "DELETE FROM #__jomres_tax_rules WHERE id = ".$id;
 			$result = doInsertSql($query);
+			
+			$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+			$c->eraseAll();
+			
 			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_tax_rules", $saveMessage );
 			}
 		else

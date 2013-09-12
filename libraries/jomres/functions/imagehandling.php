@@ -36,11 +36,17 @@ function gif_builder( $property_uid )
 		{
 		$data                   = file_get_contents( $gif_dir . 'slideshow_lib.php' );
 		$original_image_library = unserialize( $data );
-		if ( $images != $original_image_library ) $build_gif = true;
+		if ( $images != $original_image_library ) 
+			{
+			$build_gif = true;
+			}
 		}
 
-	if ( !is_dir( $gif_dir ) ) $build_gif = true;
-
+	if ( !is_dir( $gif_dir ) ) 
+		{
+		$build_gif = true;
+		}
+	
 	if ( $build_gif && count( $images ) > 0 )
 		{
 		require_once( JOMRESPATH_BASE . JRDS . 'libraries' . JRDS . 'sybio' . JRDS . 'gifCreator' . JRDS . 'GifCreator.php' );

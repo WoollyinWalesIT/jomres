@@ -35,7 +35,7 @@ class j16000touch_templates
 		$packages = subscriptions_packages_getallpackages();
 		if ( count( $packages ) > 0 )
 			{
-			echo _JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE . "<br/>";
+			echo jr_gettext( '_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE',_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE) . "<br/>";
 			foreach ( $packages as $package )
 				{
 				$pack_name = jr_gettext( '_JOMRES_CUSTOMTEXT_SUBSCRIPTIONPACKAGES_NAME' . $package[ 'id' ], stripslashes( $package[ 'name' ] ) );
@@ -48,8 +48,8 @@ class j16000touch_templates
 			}
 
 
-		echo "<hr>";
-		$query     = "SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 ";
+		echo "<hr/>";
+		$query     = "SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes WHERE property_uid = '0' ";
 		$roomtypes = doSelectSql( $query );
 		foreach ( $roomtypes as $rType )
 			{
@@ -62,7 +62,7 @@ class j16000touch_templates
 			//echo $roomtype_desc;
 			echo "<br/>";
 			}
-		echo "<hr>";
+		echo "<hr/>";
 		$query                = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
 		$propertyFeaturesList = doSelectSql( $query );
 		foreach ( $propertyFeaturesList as $propertyFeature )
@@ -77,7 +77,7 @@ class j16000touch_templates
 			echo $feature_desc;
 			echo "<br/>";
 			}
-		echo "<hr>";
+		echo "<hr/>";
 		$MiniComponents->touch_templates();
 
 		}

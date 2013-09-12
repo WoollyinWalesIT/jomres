@@ -78,7 +78,7 @@ class j16000editRfeature
 		$output[ 'HFEATUREDESCRIPTION' ]                      = jr_gettext( '_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', _JOMRES_COM_MR_EB_HRESOURCE_FEATURE,false );
 		$output[ 'PAGETITLE' ]                                = jr_gettext( '_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', _JOMRES_COM_MR_EB_HRESOURCE_FEATURE,false );
 		$output[ 'BACKLINK' ]                                 = '<a href="javascript:submitbutton(\'cpanel\')">' . jr_gettext( '_JOMRES_COM_MR_BACK', _JOMRES_COM_MR_BACK,false ) . '</a>';
-		$output[ '_JOMRES_PROPERTY_TYPE_ASSIGNMENT' ] = jr_gettext( '_JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT', _JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT,false );
+		$output[ '_JOMRES_PROPERTY_TYPE_ASSIGNMENT' ] = jr_gettext( '_JOMRES_PROPERTY_TYPE_ASSIGNMENT', _JOMRES_PROPERTY_TYPE_ASSIGNMENT,false );
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();

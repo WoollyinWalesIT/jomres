@@ -64,9 +64,11 @@ class j04005roomsconfig
 
 		$query          = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid,srp_only FROM #__jomres_room_classes  WHERE property_uid = '0' AND " . $genericOrClasses . " ORDER BY room_class_abbv ";
 		$roomsClassList = doSelectSql( $query );
-
-		$query         = "SELECT propertys_uid,property_name,property_street,property_town,property_postcode,property_region,property_country,property_tel,property_fax,property_email,property_features,published,apikey FROM #__jomres_propertys  WHERE propertys_uid = '" . (int) $defaultProperty . "' ORDER BY property_name ";
-		$propertysList = doSelectSql( $query );
+		
+		//this is not used
+		//$query         = "SELECT propertys_uid,property_name,property_street,property_town,property_postcode,property_region,property_country,property_tel,property_fax,property_email,property_features,published,apikey FROM #__jomres_propertys  WHERE propertys_uid = '" . (int) $defaultProperty . "' ORDER BY property_name ";
+		//$propertysList = doSelectSql( $query );
+		
 		$query         = "SELECT `roomrateperday`,`roomclass_uid`,`maxpeople` FROM #__jomres_rates WHERE property_uid = '" . (int) $defaultProperty . "'";
 		$tariffList    = doSelectSql( $query );
 

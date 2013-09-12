@@ -32,14 +32,15 @@ class j06002editinplace
 		$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig     = $siteConfig->get();
 		$property_uid = (int) getDefaultProperty();
-		if ( $jrConfig[ 'allowHTMLeditor' ] == "1" ) $customText = jomresGetParam( $_POST, 'value', "", _MOS_ALLOWHTML );
+		if ( $jrConfig[ 'allowHTMLeditor' ] == "1" )
+			$customText = jomresGetParam( $_POST, 'value', "", _MOS_ALLOWHTML );
 		else
-		$customText = jomresGetParam( $_POST, 'value', '', 'string' );
+			$customText = jomresGetParam( $_POST, 'value', '', 'string' );
 
 		$theConstant = filter_var( $_POST[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS );
 
-		$result = updateCustomText( $theConstant, $customText, $property_uid );
-		$result = false;
+		$result = updateCustomText( $theConstant, $customText, true, $property_uid );
+		//$result = false;
 		if ( $result )
 			{
 			header( "Status: 200" );

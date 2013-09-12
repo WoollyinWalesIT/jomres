@@ -32,17 +32,14 @@ class j00035tabcontent_01_main_details
 		$discount_output = array ();
 		$featureList     = $MiniComponents->miniComponentData[ '00015' ][ 'viewproperty' ][ 'featurelist' ];
 		$rtRows          = $MiniComponents->miniComponentData[ '00015' ][ 'viewproperty' ][ 'roomtypes' ];
-		if ( $mrConfig[ 'singleRoomProperty' ] == 1 ) // Using last minute calculations
+		$MiniComponents->triggerEvent( '01011', array ( 'property_uids' => array('0'=>$property_uid) ) );
+		$discount=get_showtime( 'propertylist_discounts');
+		if(count($discount)>0)
 			{
-			$this->returnValue = array ();
-			$query             = "SELECT akey,value FROM #__jomres_settings WHERE property_uid = '" . (int) $property_uid . "' AND `akey`='lastminuteactive' AND `value`='1' LIMIT 1";
-			$lastminSettings   = doSelectSql( $query );
-			if ( count( $lastminSettings ) > 0 )
+			if ($discount[$property_uid]['discount_type']=='lastminuteactive') // Using last minute calculations
 				{
-				$query               = "SELECT value FROM #__jomres_settings WHERE property_uid = '" . (int) $property_uid . "' AND `akey`='lastminutethreshold' LIMIT 1";
-				$lastminutethreshold = doSelectSql( $query, 1 );
-				$query               = "SELECT value FROM #__jomres_settings WHERE property_uid = '" . (int) $property_uid . "' AND `akey`='lastminutediscount' LIMIT 1";
-				$lastminutediscount  = doSelectSql( $query, 1 );
+				$lastminutethreshold = $discount[$property_uid]['lastminutethreshold'];
+				$lastminutediscount  = $discount[$property_uid]['lastminutediscount'];
 
 				$todaysDate     = date( "Y/m/d" );
 				$date_elements  = explode( "/", $todaysDate );
@@ -55,18 +52,10 @@ class j00035tabcontent_01_main_details
 				$discount_text .= $latestDate;
 				$discount_text .= jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', _JOMCOMP_LASTMINUTE_PROPERTYLIST_POST, false, true );
 				}
-			}
-		else // Using wiseprice calculations
-			{
-			$this->returnValue = array ();
-			$query             = "SELECT akey,value FROM #__jomres_settings WHERE property_uid = '" . (int) $property_uid . "' AND `akey`='wisepriceactive' AND `value`='1' LIMIT 1";
-			$wisepriceSettings = doSelectSql( $query );
-			if ( count( $wisepriceSettings ) > 0 )
+			else // Using wiseprice calculations
 				{
-				$query              = "SELECT value FROM #__jomres_settings WHERE property_uid = '" . (int) $property_uid . "' AND `akey`='wisepricethreshold' LIMIT 1";
-				$wisepricethreshold = doSelectSql( $query, 1 );
-				$query              = "SELECT value FROM #__jomres_settings WHERE property_uid = '" . (int) $property_uid . "' AND `akey`='wiseprice75discount' LIMIT 1";
-				$wisepricediscount  = doSelectSql( $query, 1 );
+				$wisepricethreshold = $discount[$property_uid]['wisepricethreshold'];
+				$wisepricediscount  = $discount[$property_uid]['wisepricediscount'];
 
 				$todaysDate     = date( "Y/m/d" );
 				$date_elements  = explode( "/", $todaysDate );
@@ -79,7 +68,8 @@ class j00035tabcontent_01_main_details
 				$discount_text .= jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', _JOMCOMP_LASTMINUTE_PROPERTYLIST_POST, false, true );
 				}
 			}
-		if ( $discount_text != "" ) $discount_output[ ] = array ( "DISCOUNT_OUTPUT" => $discount_text );
+		if ( $discount_text != "" )
+			$discount_output[ ] = array ( "DISCOUNT_OUTPUT" => $discount_text );
 
 		$output[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
 

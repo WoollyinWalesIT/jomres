@@ -51,7 +51,10 @@ class jomres_custom_field_handler
 					$this->custom_fields[ $t->uid ] = array ( 'uid' => $t->uid, 'fieldname' => $t->fieldname, 'default_value' => $t->default_value, 'description' => $t->description, 'required' => $t->required, 'ptype_xref' => $t->ptype_xref );
 					}
 				}
-			set_showtime( 'custom_field_handler_fields', $this->custom_fields );
+			if (count($this->custom_fields)>0)
+				set_showtime( 'custom_field_handler_fields', $this->custom_fields );
+			else
+				set_showtime( 'custom_field_handler_fields', array() );
 			}
 
 		return $this->custom_fields;
@@ -59,7 +62,7 @@ class jomres_custom_field_handler
 	
 	function getAllCustomFieldsByPtypeId( $ptype_id = 0 )
 		{
-		if ($ptype_id > 0)
+		if ( ($ptype_id > 0) && (count($this->custom_fields)>0) )
 			{
 			$this->custom_fields_by_ptype_id[ $ptype_id ] = get_showtime( 'custom_field_handler_fields'.$ptype_id );
 			if ( is_null( $this->custom_fields_by_ptype_id[ $ptype_id ] ) )

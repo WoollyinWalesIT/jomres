@@ -51,6 +51,9 @@ class j16000save_tax_rule
 			$query = "UPDATE #__jomres_tax_rules SET `tax_rate_id`='".(int)$tax_rate."',`country_id`='".(int)$country_id."',`region_id`='".(int)$region_id."' WHERE id=".(int)$id;
 			doInsertSql( $query );
 			}
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$c->eraseAll();
 
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_tax_rules" ), "" );
 		}

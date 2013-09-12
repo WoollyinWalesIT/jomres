@@ -326,14 +326,21 @@ function jomresAccessControlSanityCheck()
 		// Now, it's possible that a minicomponent has been uninstalled, therefore we must go through the $jomres_access_control->controlled array and remove those records that refer to minicomps that aren't found in the $controllable array
 		if ( count( $jomres_access_control->controlled ) > 0 )
 			{
+			$removed=false;
 			foreach ( $jomres_access_control->controlled as $key => $val )
 				{
 				if ( !array_key_exists( $key, $controllable ) )
 					{
 					$jomres_access_control->remove_minicomp_from_access_control_table( $key );
+					$removed=true;
 					}
 				}
-
+			if ($removed)
+				{
+				$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+				$c->eraseAll();
+				$jomres_access_control->recount_controlled_scripts();
+				}
 			}
 		else $pass = false;
 

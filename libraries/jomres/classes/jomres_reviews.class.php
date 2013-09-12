@@ -67,16 +67,15 @@ class jomres_reviews
 
 		if ( $jrConfig[ 'only_guests_can_review' ] == "1" )
 			{
-			$sql        = "SELECT count(*) FROM #__jomres_guests WHERE property_uid = '" . (int) $this->property_uid . "' and mos_userid = '" . (int) $this->userid . "'";
+			$sql        = "SELECT count(guests_uid) FROM #__jomres_guests WHERE property_uid = '" . (int) $this->property_uid . "' and mos_userid = '" . (int) $this->userid . "'";
 			$guestcount = (int) doSelectSql( $sql, 1 );
 			if ( $guestcount != 1 ) return false;
 			}
 
-		$sql     = "SELECT count(*) FROM #__jomres_reviews_ratings WHERE item_id = '" . (int) $this->property_uid . "' and rating_ip = '" . $this->ip . "'";
-		$result1 = (int) doSelectSql( $sql, 1 );
-		$sql     = "SELECT count(*) as cnt FROM #__jomres_reviews_ratings WHERE item_id = '" . (int) $this->property_uid . "' and user_id = '" . (int) $this->userid . "'";
-		$result2 = (int) doSelectSql( $sql, 1 );
-		if ( $result1 == 0 && $result2 == 0 ) return true;
+		$sql     = "SELECT count(rating_id) as cnt1 FROM #__jomres_reviews_ratings WHERE item_id = '" . (int) $this->property_uid . "' and rating_ip = '" . $this->ip . "' ";
+		$sql     .= "UNION SELECT count(rating_id) as cnt2 FROM #__jomres_reviews_ratings WHERE item_id = '" . (int) $this->property_uid . "' and user_id = '" . (int) $this->userid . "'";
+		$result = doSelectSql( $sql );
+		if ( count($result == 0)) return true;
 
 		return false;
 		}

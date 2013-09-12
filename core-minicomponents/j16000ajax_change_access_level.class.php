@@ -30,10 +30,16 @@ class j16000ajax_change_access_level
 		$minicomp  = jomresGetParam( $_GET, 'minicomp', "" );
 		$new_level = jomresGetParam( $_GET, 'new_level', "" );
 
-		if ( array_key_exists( $minicomp, $jomres_access_control->controlled ) ) $query = "UPDATE #__jomres_access_control SET `access_level` = '" . (string) $new_level . "' WHERE scriptname = '" . $minicomp . "'";
+		if ( array_key_exists( $minicomp, $jomres_access_control->controlled ) )
+			$query = "UPDATE #__jomres_access_control SET `access_level` = '" . (string) $new_level . "' WHERE scriptname = '" . $minicomp . "'";
 		else
-		$query = "INSERT INTO #__jomres_access_control (`scriptname`,`access_level`) VALUES ('" . $minicomp . "','" . $new_level . "');";
-		if ( !doInsertSql( $query, "" ) ) trigger_error( "Error saving new access control level $new_level for $minicomp", "mysql db failure", E_USER_ERROR );
+			$query = "INSERT INTO #__jomres_access_control (`scriptname`,`access_level`) VALUES ('" . $minicomp . "','" . $new_level . "');";
+		if ( !doInsertSql( $query, "" ) ) 
+			trigger_error( "Error saving new access control level $new_level for $minicomp", "mysql db failure", E_USER_ERROR );
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$c->eraseAll();
+		$jomres_access_control->recount_controlled_scripts();
 
 		}
 

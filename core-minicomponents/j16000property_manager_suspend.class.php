@@ -33,6 +33,9 @@ class j16000property_manager_suspend
 		$jomres_suspensions->set_manager_id( $id );
 		$jomres_suspensions->suspend_manager();
 		$jomres_suspensions->unpublish_managers_properties();
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$c->eraseAll();
 
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose" ), "" );
 		}

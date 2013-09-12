@@ -48,8 +48,8 @@ class j06000ui_availability_calendar
 			}
 		else
 			{
-			$query                         = "SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $property_uid . "'";
-			$this->numberOfRoomsInProperty = count( doSelectSql( $query ) );
+			$query                         = "SELECT COUNT(room_uid) FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $property_uid . "'";
+			$this->numberOfRoomsInProperty = (int) doSelectSql( $query,1 );
 
 			$mrConfig = getPropertySpecificSettings( $property_uid );
 

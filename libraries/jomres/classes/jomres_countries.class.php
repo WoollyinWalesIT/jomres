@@ -25,14 +25,23 @@ class jomres_countries
 
 	function get_countries()
 		{
-		$query       = "SELECT id,countrycode,countryname FROM #__jomres_countries ORDER BY countryname";
-		$countryList = doSelectSql( $query );
-		if ( count( $countryList ) > 0 )
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$countries=$c->retrieve('countries');
+		
+		if ($countries)
+			$this->countries=$countries;
+		else
 			{
-			foreach ( $countryList as $country )
+			$query       = "SELECT id,countrycode,countryname FROM #__jomres_countries ORDER BY countryname";
+			$countryList = doSelectSql( $query );
+			if ( count( $countryList ) > 0 )
 				{
-				$this->countries[ $country->countrycode ] = array ( "id" => $country->id, "countrycode" => $country->countrycode, "countryname" => jr_gettext( "_JOMRES_CUSTOMTEXT_COUNTRIES_" . $country->id, $country->countryname, false, false ) );
+				foreach ( $countryList as $country )
+					{
+					$this->countries[ $country->countrycode ] = array ( "id" => $country->id, "countrycode" => $country->countrycode, "countryname" => jr_gettext( "_JOMRES_CUSTOMTEXT_COUNTRIES_" . $country->id, $country->countryname, false, false ) );
+					}
 				}
+			$c->store('countries',$this->countries);
 			}
 
 		return $this->countries;

@@ -43,12 +43,13 @@ class j00009user_option_01_myfavourites
 		$this->cpanelButton = "";
 		if ( $thisJRUser->userIsRegistered )
 			{
-			$query      = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE my_id='" . (int) $thisJRUser->id . "'";
-			$favourites = doSelectSql( $query );
-			if ( count( $favourites ) > 0 )
-				{
+			//it`s not worth it to have a query just to show this menu. better show it for all. When there is no data a blank table will be displayed.
+			//$query      = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE my_id='" . (int) $thisJRUser->id . "'";
+			//$favourites = doSelectSql( $query );
+			//if ( count( $favourites ) > 0 )
+				//{
 				$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=muviewfavourites", '', jr_gettext( '_JOMCOMP_MYUSER_VIEWFAVOURITES', _JOMCOMP_MYUSER_VIEWFAVOURITES, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT, false, false ) );
-				}
+				//}
 			}
 		}
 

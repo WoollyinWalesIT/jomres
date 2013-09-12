@@ -59,11 +59,16 @@ class j02272publishprop
 			$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
 
 
-			if ( !isset( $_REQUEST[ 'property_uid' ] ) ) $defaultProperty = getDefaultProperty();
+			if ( !isset( $_REQUEST[ 'property_uid' ] ) ) 
+				$defaultProperty = getDefaultProperty();
 			else
-			$defaultProperty = jomresGetParam( $_REQUEST, 'property_uid', 0 );
+				$defaultProperty = jomresGetParam( $_REQUEST, 'property_uid', 0 );
 			$cache->trashCacheForProperty( $defaultProperty );
 			$cache->trashCacheForUser( $thisJRUser->userid );
+			
+			$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+			$c->eraseAll();
+
 			if ( in_array( $defaultProperty, $thisJRUser->authorisedProperties ) )
 				{
 				$query     = "SELECT published FROM #__jomres_propertys WHERE propertys_uid = " . (int) $defaultProperty . " LIMIT 1";

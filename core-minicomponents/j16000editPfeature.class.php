@@ -107,7 +107,8 @@ class j16000editPfeature
 		$output[ 'MOSCONFIGLIVESITE' ]                        = get_showtime( 'live_site' );
 		$output[ 'PAGETITLE' ]                                = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK,false );
 		$output[ 'BACKLINK' ]                                 = '<a href="javascript:submitbutton(\'cpanel\')">' . jr_gettext( '_JOMRES_COM_MR_BACK', _JOMRES_COM_MR_BACK,false ) . '</a>';
-		$output[ '_JOMRES_PROPERTY_TYPE_ASSIGNMENT' ] = jr_gettext( '_JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT', _JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT,false );
+		$output[ '_JOMRES_PROPERTY_TYPE_ASSIGNMENT' ] = jr_gettext( '_JOMRES_PROPERTY_TYPE_ASSIGNMENT', _JOMRES_PROPERTY_TYPE_ASSIGNMENT,false );
+		$output[ 'HIMAGE' ] = jr_gettext( '_JOMRES_A_ICON', _JOMRES_A_ICON,false );
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();

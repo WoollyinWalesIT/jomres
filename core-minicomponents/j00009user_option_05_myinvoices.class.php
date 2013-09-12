@@ -42,12 +42,12 @@ class j00009user_option_05_myinvoices
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		if ( $thisJRUser->userIsRegistered )
 			{
-
-			$invoices = invoices_getinvoicesfor_juser( (int) $thisJRUser->id );
-			if ( count( $invoices ) > 0 )
-				{
+			//it`s not really needed to get * from such a big table just to show a menu item. better show it for all and when there`s no data, a blank table will be displayed
+			//$invoices = invoices_getinvoicesfor_juser( (int) $thisJRUser->id );
+			//if ( count( $invoices ) > 0 )
+				//{
 				$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=list_usersinvoices", '', jr_gettext( '_JRPORTAL_INVOICES_SHOWINVOICES', _JRPORTAL_INVOICES_SHOWINVOICES, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT, false, false ) );
-				}
+				//}
 			}
 		}
 

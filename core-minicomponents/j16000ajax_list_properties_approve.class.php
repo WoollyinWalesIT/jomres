@@ -31,6 +31,9 @@ class j16000ajax_list_properties_approve
 
 		$query  = "UPDATE #__jomres_propertys SET `approved`=1 WHERE propertys_uid = " . (int) $property_uid;
 		$result = doSelectSql( $query );
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$c->eraseAll();
 
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$current_property_details->gather_data( $property_uid );

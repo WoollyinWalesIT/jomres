@@ -68,10 +68,11 @@ class j04000roomsconfig
 			$roomFeaturesList        = doSelectSql( $query );
 			$query                   = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid FROM #__jomres_room_classes  WHERE property_uid = '" . (int) $roomTypeSearchParameter . "' ORDER BY room_class_abbv ";
 			$roomsClassList          = doSelectSql( $query );
-			$query                   = "SELECT propertys_uid,property_name,property_street,property_town,property_postcode,property_region,property_country,property_tel,property_fax,property_email,property_features,published,apikey FROM #__jomres_propertys  WHERE propertys_uid = '" . (int) $defaultProperty . "' ORDER BY property_name ";
-			$propertysList           = doSelectSql( $query );
-			$query                   = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,property_uid FROM #__jomres_hotel_features  WHERE property_uid = '" . (int) $defaultProperty . "' ORDER BY hotel_feature_abbv ";
-			$propertyFeaturesList    = doSelectSql( $query );
+			//these are not used.
+			//$query                   = "SELECT propertys_uid,property_name,property_street,property_town,property_postcode,property_region,property_country,property_tel,property_fax,property_email,property_features,published,apikey FROM #__jomres_propertys  WHERE propertys_uid = '" . (int) $defaultProperty . "' ORDER BY property_name ";
+			//$propertysList           = doSelectSql( $query );
+			//$query                   = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,property_uid FROM #__jomres_hotel_features  WHERE property_uid = '" . (int) $defaultProperty . "' ORDER BY hotel_feature_abbv ";
+			//$propertyFeaturesList    = doSelectSql( $query );
 
 			$newPropertyButton = "";
 			if ( $thisJRUser->defaultproperty == "ANY" && !function_exists( 'botJRHP' ) )

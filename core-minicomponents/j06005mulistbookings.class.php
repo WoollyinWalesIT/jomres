@@ -48,12 +48,13 @@ class j06005mulistbookings
 					{
 					$allGuestUids[ ] = $g->guests_uid;
 					}
+				}
 
 				$gOr       = genericOr( $allGuestUids, "guest_uid" );
 				$query     = "SELECT * FROM #__jomres_contracts WHERE " . $gOr . " AND cancelled = 0 ORDER BY tag";
 				$contracts = doSelectSql( $query );
-				if ( count( $contracts ) > 0 )
-					{
+				//if ( count( $contracts ) > 0 ) //we`ll just display an empty table if there are no bookings.
+					//{
 					$output[ 'HARRIVAL' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL, $editable = false, $isLink = false );
 					$output[ 'HDEPARTURE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE, $editable = false, $isLink = false );
 					$output[ 'HTOTAL' ]     = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTAL', _JOMRES_AJAXFORM_BILLING_TOTAL, $editable = false, $isLink = false );
@@ -102,12 +103,12 @@ class j06005mulistbookings
 					$tmpl->readTemplatesFromInput( 'list_bookings.html' );
 					$tmpl->displayParsedTemplate();
 					}
-				else
-					{
-					echo jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKINGS_NONE', _JOMCOMP_MYUSER_VIEWBOOKINGS_NONE, false, false );
-					}
-				}
-			}
+				//else
+					//{
+					//echo jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKINGS_NONE', _JOMCOMP_MYUSER_VIEWBOOKINGS_NONE, false, false );
+					//}
+				//}
+			//}
 		}
 
 

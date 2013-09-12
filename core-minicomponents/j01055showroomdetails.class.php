@@ -39,16 +39,18 @@ class j01055showroomdetails
 			return;
 			}
 		$all = $componentArgs[ 'all' ];
-		if ( $all ) $property_uid = (int) $componentArgs[ 'property_uid' ];
+		if ( $all ) 
+			$property_uid = (int) $componentArgs[ 'property_uid' ];
 		global $noshowroom;
 		$mrConfig                 = getPropertySpecificSettings();
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$this->retVals            = '';
 		$roomUid                  = intval( jomresGetParam( $_REQUEST, 'roomUid', 0 ) );
 		$featureList              = array ();
-		if ( !$all ) $query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE room_uid = '" . (int) $roomUid . "'";
+		if ( !$all ) 
+			$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE room_uid = '" . (int) $roomUid . "'";
 		else
-		$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $property_uid . "' ORDER BY room_number,room_name";
+			$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $property_uid . "' ORDER BY room_number,room_name";
 		$roomList = doSelectSql( $query );
 		if ( count( $roomList ) > 0 )
 			{
@@ -61,6 +63,9 @@ class j01055showroomdetails
 				getPropertySpecificSettings( $property_uid );
 				//property_header($property_uid);
 				}
+			
+			$current_property_details->gather_data($property_uid);
+			
 			$headersList[ 'HIMAGEHEADER' ]                        = "";
 			$headersList[ 'COM_A_BASICTEMPLATE_SHOWROOMS' ]       = jr_gettext( '_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS', _JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS, false );
 			$headersList[ 'COM_A_BASICTEMPLATE_SHOWROOMS_TITLE' ] = jr_gettext( '_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS_TITLE', _JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS_TITLE, false );
@@ -74,14 +79,6 @@ class j01055showroomdetails
 			$headersList[ 'HEADER_ROOMFLOOR' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR, false );
 			$headersList[ 'HEADER_DISABLEDACCESS' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS', _JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS, false );
 			$headersList[ 'HEADER_MAXPEOPLE' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE, false );
-
-			$classAbbvs     = array ();
-			$query          = "SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes";
-			$roomsClassList = doSelectSql( $query );
-			foreach ( $roomsClassList as $roomClass )
-				{
-				$classAbbvs[ (int) $roomClass->room_classes_uid ] = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV' . (int) $roomClass->room_classes_uid, stripslashes( $roomClass->room_class_abbv ), false, false );
-				}
 
 			foreach ( $roomList as $room )
 				{
@@ -102,7 +99,7 @@ class j01055showroomdetails
 
 				$avl_link  = jomresURL( JOMRES_SITEPAGE_URL . "&task=showRoomDetails&roomUid=$room_uid" );
 				$avl_title = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY, false, false );
-				$classAbbv = $classAbbvs[ (int) $room_classes_uid ];
+				$classAbbv = $current_property_details->all_room_types[ (int) $room_classes_uid ];
 
 				//$propertyName getPropertyNameNoTables($property_uid)
 				if ( $room_disabled_access == 1 ) $disabledAccess = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
