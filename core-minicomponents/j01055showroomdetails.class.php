@@ -99,7 +99,7 @@ class j01055showroomdetails
 
 				$avl_link  = jomresURL( JOMRES_SITEPAGE_URL . "&task=showRoomDetails&roomUid=$room_uid" );
 				$avl_title = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY, false, false );
-				$classAbbv = $current_property_details->all_room_types[ (int) $room_classes_uid ];
+				$classAbbv = $current_property_details->all_room_types[ (int) $room_classes_uid ]['room_class_abbv'];
 
 				//$propertyName getPropertyNameNoTables($property_uid)
 				if ( $room_disabled_access == 1 ) $disabledAccess = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
