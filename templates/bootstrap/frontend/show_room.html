@@ -1,11 +1,12 @@
 <patTemplate:tmpl name="property_header" unusedvars="strip">
 	<div>&nbsp;</div>
+	{SLIDESHOW}
 	<div class="well">
 		<table class="table table-condensed">
 			<patTemplate:tmpl name="room_headers">
+			
 				<thead>
 				<tr>
-					<th></th>
 					<th>{HEADER_ROOMNUMBER}</th>
 					<th>{HEADER_ROOMTYPE}</th>
 					<th>{HEADER_MAXPEOPLE}</th>
@@ -19,7 +20,6 @@
 			<patTemplate:tmpl name="room_details">
 				<tbody>
 				<tr align="center">
-					<td>{IMAGE}</td>
 					<td>{ROOMNUMBER}</td>
 					<td>{ROOMTYPE}</td>
 					<td>{MAXPEOPLE}</td>

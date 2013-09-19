@@ -1,0 +1,64 @@
+<?php
+/**
+ * Core file
+ *
+ * @author Vince Wooll <sales@jomres.net>
+ * @version Jomres 7
+ * @package Jomres
+ * @copyright    2005-2013 Vince Wooll
+ * Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly, however all images, css and javascript which are copyright Vince Wooll are not GPL licensed and are not freely distributable.
+ **/
+
+
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
+
+class j07100media_centre_uploader_contexts
+	{
+	function j07100media_centre_uploader_contexts( $componentArgs )
+		{
+
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
+
+			return;
+			}
+		
+		// This script will set the "context" for the media centre uploader
+		// For example, frontend image uploading for properties context means that we decide if resource ids for the resource will be part of the pattern, the resource type gathering is done on trigger 3379, resource id gathering is done by 3381 and post processing is done by 3382 and that uploading allows files of type XXXX. We will also set the root of uploaded images, e.g. JOMRES_IMAGELOCATION_ABSPATH . $property_id . JRDS
+		
+		// Here we will give other plugins the opportunity to register their own upload contexts
+		$MiniComponents->triggerEvent( '07110' );
+		$contexts = $MiniComponents->miniComponentData['07110'];
+		
+		$plugin_upload_contexts = array();
+		foreach ($contexts as $context)
+			{
+			foreach ($context as $key=>$val)
+				{
+				$plugin_upload_contexts[$key]=$val;
+				}
+			}
+		$upload_context = jomresGetParam( $_REQUEST, 'upload_context', 'properties' );
+		if ( $plugin_upload_contexts[ $upload_context ] == null)
+			{
+			die ( "Something is seriously wrong" );
+			}
+		else
+			{
+			set_showtime ( "upload_context" , $plugin_upload_contexts [ $upload_context ] );
+			}
+		}
+
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return mull;
+		}
+	}
+
+?>

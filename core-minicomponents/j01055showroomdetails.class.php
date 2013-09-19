@@ -96,7 +96,21 @@ class j01055showroomdetails
 
 				$room_image = getImageForProperty( "room", $property_uid, $room->room_uid );
 				$imagethumb = getThumbnailForImage( $room_image );
-
+				
+				if (!$all)
+					{
+					$images = $current_property_details->images[$property_uid]['resources']['rooms'][$room_uid];
+					$result = $MiniComponents->specificEvent( '01060', 'slideshow' , array( "images" => $images ) );
+					if (count($images)>0)
+						{
+						$property_header[0][ 'SLIDESHOW' ] = $result ['slideshow'];
+						}
+					else
+						{
+						$property_header[0][ 'SLIDESHOW' ] = '';
+						}
+					}
+				
 				$avl_link  = jomresURL( JOMRES_SITEPAGE_URL . "&task=showRoomDetails&roomUid=$room_uid" );
 				$avl_title = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY, false, false );
 				$classAbbv = $current_property_details->all_room_types[ (int) $room_classes_uid ]['room_class_abbv'];
@@ -146,8 +160,13 @@ class j01055showroomdetails
 			$headers[ ] = $headersList;
 
 			$tmpl = new patTemplate();
-			if ( $featurelist[ 0 ] ) $tmpl->addRows( 'room_features', $featurelist );
-
+			if ( $featurelist[ 0 ] )
+				{
+				$tmpl->addRows( 'room_features', $featurelist );
+				}
+			
+			$tmpl->addRows( 'property_header', $property_header );
+			
 			$tmpl->addRows( 'room_headers', $headers );
 			$tmpl->addRows( 'room_details', $rows );
 			$mcOutput = $MiniComponents->getAllEventPointsData( '01050' );
