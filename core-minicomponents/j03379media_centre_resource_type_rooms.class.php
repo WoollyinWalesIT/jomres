@@ -27,22 +27,27 @@ class j03379media_centre_resource_type_rooms
 
 			return;
 			}
+		$defaultProperty = getDefaultProperty();
+		$mrConfig = getPropertySpecificSettings( $defaultProperty );
 		
-		$this->ret_vals = array ( "resource_type" => "rooms" , "resource_id_required" => true , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', _JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM, false ) );
-		
-		
-		if ( !AJAXCALL && !defined("MEDIACENTRE_ROOMJS") )
+		if ($mrConfig[ 'singleRoomProperty' ] != "1")
 			{
-			define ("MEDIACENTRE_ROOMJS",1);
-			echo '
-			<script>
-			jomresJquery(function () {
-				jomresJquery("#resource_id_dropdown").change(function () {
-					get_existing_images(); 
+			$this->ret_vals = array ( "resource_type" => "rooms" , "resource_id_required" => true , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', _JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM, false ) );
+			
+			
+			if ( !AJAXCALL && !defined("MEDIACENTRE_ROOMJS") )
+				{
+				define ("MEDIACENTRE_ROOMJS",1);
+				echo '
+				<script>
+				jomresJquery(function () {
+					jomresJquery("#resource_id_dropdown").change(function () {
+						get_existing_images(); 
+						});
 					});
-				});
-			</script>
-			';
+				</script>
+				';
+				}
 			}
 		}
 
