@@ -63,10 +63,13 @@ class j06000media_centre
 
 			foreach ( $resource_types as $type)
 				{
-				$resource_type_options[ ] = jomresHTML::makeOption( $type['resource_type'], $type['name'] );
-				if (isset($type['notes']))
+				if ($type['name'] != '')
 					{
-					$notes[] = array ( "NOTE" => $type['notes'] );
+					$resource_type_options[ ] = jomresHTML::makeOption( $type['resource_type'], $type['name'] );
+					if (isset($type['notes']))
+						{
+						$notes[] = array ( "NOTE" => $type['notes'] );
+						}
 					}
 				}
 			$javascript      = 'onchange="get_resource_ids_for_resource_type(this.value);"';
