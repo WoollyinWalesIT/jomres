@@ -134,7 +134,7 @@ class j01055showroomdetails
 						$featurelist[ ]                                = $roomFeatureDescriptionsArray;
 						}
 					}
-				$roomRow[ 'IMAGE' ] = jomres_make_image_popup( $room_name, $room_image, "", array (), $imagethumb );
+				$roomRow[ 'IMAGE' ] = jomres_make_image_popup( $room_name, $current_property_details->images[$property_uid]['resources']['rooms'][$room_uid] [0] ['large'], "", array (), $current_property_details->images[$property_uid]['resources']['rooms'][$room_uid] [0] ['small'] );
 
 				$roomRow[ 'ROOMNUMBER' ] = $room_number;
 				$roomRow[ 'ROOMTYPE' ]   = $classAbbv;
