@@ -21,7 +21,7 @@
 			</tr>
 			</thead>
 			<tbody>
-			<patTemplate:tmpl name="rows" unusedvars="nbsp">
+			<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="id">
 				<tr>
 					<td><input type="checkbox" id="cb{COUNTER}" name="idarray[]" value="{ID}" onClick="jomres_isChecked(this.checked);"></td>
 					<td><a href="{PUBLISHURL}"><img src="{PUBLISHIMAGE}" border="0" alt="image"/></a> <a href="{EDITURL}">{EDITICON}</a></td>

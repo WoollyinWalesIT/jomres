@@ -36,7 +36,6 @@ class j06005subscribe
 			$profile_check_pass = false;
 			$query     = "SELECT firstname,surname,house,street,town,postcode,country,email FROM #__jomres_guest_profile WHERE cms_user_id = '" . (int) $thisJRUser->id . "' LIMIT 1";
 			$guestData = doSelectSql( $query, 2 );
-
 			if ( $guestData )
 				{
 				if (
@@ -49,7 +48,7 @@ class j06005subscribe
 					$guestData['country'] != "" &&
 					$guestData['email'] != ""
 					)
-					$profile_check_pass = false;
+					$profile_check_pass = true;
 				}
 
 			if (!$profile_check_pass)

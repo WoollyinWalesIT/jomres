@@ -174,9 +174,8 @@ class j00004x_init_javascript_css_files
 					file_put_contents( get_showtime( "misc_url_definitions.js.abspath" ) . get_showtime( "misc_url_definitions.js" ), $livesite_ajax . $compare_url );
 					}
 				jomres_cmsspecific_addheaddata( "javascript", get_showtime( "misc_url_definitions.js.relpath" ), get_showtime( "misc_url_definitions.js" ) );
-				add_gmaps_source();
-				
-				
+				//add_gmaps_source();
+
 				if (get_showtime ( "task" ) == "media_centre")
 					{
 					jomres_cmsspecific_addheaddata( "css", get_showtime( "jquery.fileupload-ui.css.relpath" ), get_showtime( "jquery.fileupload-ui.css" ) );
@@ -189,6 +188,7 @@ class j00004x_init_javascript_css_files
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.fileupload-image.js.relpath" ), get_showtime( "jquery.fileupload-image.js" ) );
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.fileupload-validate.js.relpath" ), get_showtime( "jquery.fileupload-validate.js" ) );
 					}
+					
 				}
 			}
 		}

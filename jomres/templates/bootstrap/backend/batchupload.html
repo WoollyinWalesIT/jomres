@@ -62,7 +62,7 @@
 	<form action="{JOMRES_SITEPAGE_URL_DELIMAGES}" method="post" name="imageList" class="form-horizontal">
 		<fieldset>
 			<div class="row-striped">
-				<patTemplate:tmpl name="rows">
+				<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="imagename">
 					<div class="row-fluid">
 						<div class="span1">
 							{CHECKBOX}

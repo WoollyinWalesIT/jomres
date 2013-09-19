@@ -1,6 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<div class="row-striped">
-		<patTemplate:tmpl name="rows" unusedvars="strip">
+		<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="datetime">
 			<div class="row-fluid">
 				<div class="span2">{DATETIME}</div>
 				<div class="span6">{NOTE}</div>
