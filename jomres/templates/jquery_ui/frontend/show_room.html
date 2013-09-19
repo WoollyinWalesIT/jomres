@@ -1,9 +1,9 @@
 <patTemplate:tmpl name="property_header" unusedvars="strip">
 	<div>&nbsp;</div>
+	{SLIDESHOW}
 	<table border="0" width="100%" class="ui-widget-content ui-corner-all">
 		<patTemplate:tmpl name="room_headers">
 			<tr>
-				<th class="ui-widget-header"></th>
 				<th class="ui-widget-header">{HEADER_ROOMNUMBER}</th>
 				<th class="ui-widget-header">{HEADER_ROOMTYPE}</th>
 				<th class="ui-widget-header">{HEADER_MAXPEOPLE}</th>
@@ -15,7 +15,6 @@
 		</patTemplate:tmpl>
 		<patTemplate:tmpl name="room_details">
 			<tr align="center">
-				<td>{IMAGE}</td>
 				<td>{ROOMNUMBER}</td>
 				<td>{ROOMTYPE}</td>
 				<td>{MAXPEOPLE}</td>
