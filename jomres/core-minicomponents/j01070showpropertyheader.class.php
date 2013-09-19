@@ -71,20 +71,36 @@ class j01070showpropertyheader
 					$starslink .= "";
 					}
 
-				if ( $current_property_details->superior == 1 ) $output[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/superior.png\" alt=\"superior\" border=\"0\" />";
+				if ( $current_property_details->superior == 1 ) 
+					{
+					$output[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/superior.png\" alt=\"superior\" border=\"0\" />";
+					}
 				else
-				$output[ 'SUPERIOR' ] = '';
-
-				$output[ 'IMAGE' ]      = getImageForProperty( "property", $property_uid, $property_uid );
+					{
+					$output[ 'SUPERIOR' ] = '';
+					}
+				
+				
+				
+/* 				$output[ 'IMAGE' ]      = getImageForProperty( "property", $property_uid, $property_uid );
 				$output[ 'IMAGETHUMB' ] = getThumbnailForImage( $output[ 'IMAGE' ], true );
-				if ( !$output[ 'IMAGETHUMB' ] ) $output[ 'IMAGETHUMB' ] = $output[ 'IMAGE' ];
+				if ( !$output[ 'IMAGETHUMB' ] ) 
+					{
+					$output[ 'IMAGETHUMB' ] = $output[ 'IMAGE' ];
+					} */
+				
+				$images = get_images();
+				$output[ 'IMAGELARGE' ]  = $images ['property'][0][0]['large'];
+				$output[ 'IMAGEMEDIUM' ] = $images ['property'][0][0]['small'];
+				$output[ 'IMAGETHUMB' ]  = $images ['property'][0][0]['small'];
 
-				$output[ 'MOSCONFIGLIVESITE' ] = get_showtime( 'live_site' );
+/* 				$sizes = array ( 'thwidth' => $jrConfig[ 'thumbnail_width' ], 'thheight' => $jrConfig[ 'thumbnail_width' ] );
+				if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . $property_uid . "_property_" . $property_uid . ".jpg" ) ) 
+					{
+					$sizes = getImagesSize( JOMRES_IMAGELOCATION_ABSPATH . $property_uid . "_property_" . $property_uid . ".jpg" );
+					}
 
-				$sizes = array ( 'thwidth' => $jrConfig[ 'thumbnail_width' ], 'thheight' => $jrConfig[ 'thumbnail_width' ] );
-				if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . $property_uid . "_property_" . $property_uid . ".jpg" ) ) $sizes = getImagesSize( JOMRES_IMAGELOCATION_ABSPATH . $property_uid . "_property_" . $property_uid . ".jpg" );
-
-				$output[ 'TOOLTIP_PROPERTY_IMAGE' ] = jomres_makeTooltip( "property_image", "", $output[ 'IMAGE' ], $output[ 'IMAGE' ], "", "imageonly", $type_arguments = array ( "imagethumb" => $output[ 'IMAGETHUMB' ], "width" => $sizes[ 'thwidth' ], "height" => $sizes[ 'thheight' ], "border" => 0 ) );
+				$output[ 'TOOLTIP_PROPERTY_IMAGE' ] = jomres_makeTooltip( "property_image", "", $output[ 'IMAGE' ], $output[ 'IMAGE' ], "", "imageonly", $type_arguments = array ( "imagethumb" => $output[ 'IMAGETHUMB' ], "width" => $sizes[ 'thwidth' ], "height" => $sizes[ 'thheight' ], "border" => 0 ) ); */
 
 				///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				$rtRows    = array ();

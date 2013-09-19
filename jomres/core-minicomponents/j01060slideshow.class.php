@@ -27,51 +27,61 @@ class j01060slideshow
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
 			return;
 			}
-		global $jomresConfig_live_site, $ePointFilepath;
-
-		$ePointFilepath = get_showtime( 'ePointFilepath' );
-
-
-		$output                = array ();
-		$output[ 'LIVE_SITE' ] = $jomresConfig_live_site;
-		$property_uid          = $componentArgs[ 'property_uid' ];
-		$thumbnail_width       = 50;
-		if ( !isset( $property_uid ) ) $property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
-		if ( $property_uid == 0 ) return;
-		$imagesArray = listImages( $property_uid );
-		if ( count( $imagesArray ) > 0 )
+		
+		if (!isset($componentArgs[ 'images' ]))
+			{
+			$property_uid          = $componentArgs[ 'property_uid' ];
+			if ( !isset( $property_uid ) ) 
+				{
+				$property_uid = (int)jomresGetParam( $_REQUEST, 'property_uid', 0 );
+				}
+			if ( $property_uid == 0 ) 
+				return;
+			$images = get_images($property_uid); // An array of images, 
+			$imagesArray = $images ['slideshow'] [0];
+			}
+		else
+			{
+			$imagesArray = $componentArgs[ 'images' ];
+			}
+		
+		$count = count( $imagesArray );
+		if ( $count > 0 )
 			{
 			$filecount = 0;
-			for ( $i = 0; $i < count( $imagesArray ); $i++ )
+			for ( $i = 0; $i < $count; $i++ )
 				{
-				$filename      = split( "\.", $imagesArray[ $i ] );
-				$numExtensions = count( $filename ) - 1;
-				$fileExt       = strtoupper( $filename[ $numExtensions ] );
+				$image_name_array =explode ( "/" , $imagesArray[ $i ] ['large'] );
+				
+				$filename = $image_name_array[count($image_name_array)-1];
+				$fileExt = strtoupper(substr(strrchr($filename, '.'), 1));
 				if ( $fileExt == "JPG" || $fileExt == "JPEG" )
 					{
-					$imageData[ $i ][ 'filename' ]      = $imagesArray[ $i ];
-					$sizes                              = getImagesSize( JOMRES_IMAGELOCATION_ABSPATH . $property_uid . JRDS . $imagesArray[ $i ] );
+					$imageData[ $i ][ 'filename' ]      = $filename;
+					$sizes                              = getImagesSize( $imagesArray[ $i ] ['large'] );
 					$imageData[ $i ][ 'actualwidth' ]   = $sizes[ 'actualwidth' ];
 					$imageData[ $i ][ 'actualheight' ]  = $sizes[ 'actualheight' ];
 					$imageData[ $i ][ 'fullwidth' ]     = $sizes[ 'fullwidth' ];
 					$imageData[ $i ][ 'fullheight' ]    = $sizes[ 'fullheight' ];
 					$imageData[ $i ][ 'thwidth' ]       = $sizes[ 'thwidth' ];
 					$imageData[ $i ][ 'thheight' ]      = $sizes[ 'thheight' ];
-					$imageData[ $i ][ 'imagelocation' ] = JOMRES_IMAGELOCATION_RELPATH . $property_uid . "/";
+					$imageData[ $i ][ 'imagelocation' ] = str_replace ( $filename , "" ,$imagesArray[ $i ] ['large'] ) ;
 					$filecount++;
 					}
 				}
 			}
 
+		$output                = array ();
 		$output[ 'PROPERTYIMAGE' ] = getImageForProperty( "property", $property_uid, $property_uid );
 		$output[ 'PROPERTYNAME' ]  = getPropertyName( $property_uid, false );
 
-		if ( isset( $imageData ) ) $numberOfImages = count( $imageData );
-		else
 		$numberOfImages = 0;
+		if ( isset( $imageData ) ) 
+			{
+			$numberOfImages = count( $imageData );
+			}
 
 		if ( $numberOfImages > 0 )
 			{
@@ -112,13 +122,16 @@ class j01060slideshow
 			}
 		else
 			{
-			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_uid . "_property_" . $property_uid . ".jpg" ) ) $this->retVals[ 'slideshow' ] = '<img src="' . get_showtime( 'live_site' ) . '/jomres/uploadedimages/' . $property_uid . '_property_' . $property_uid . '.jpg" />';
+			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_uid . "_property_" . $property_uid . ".jpg" ) ) 
+				{
+				$this->retVals[ 'slideshow' ] = '<img src="' . get_showtime( 'live_site' ) . '/jomres/uploadedimages/' . $property_uid . '_property_' . $property_uid . '.jpg" />';
+				}
 			else
-			$this->retVals[ 'slideshow' ] = jr_gettext( '_JOMRES_COM_A_SLIDESHOWS_NOIMAGES', _JOMRES_COM_A_SLIDESHOWS_NOIMAGES, '' );
+				{
+			//	$this->retVals[ 'slideshow' ] = jr_gettext( '_JOMRES_COM_A_SLIDESHOWS_NOIMAGES', _JOMRES_COM_A_SLIDESHOWS_NOIMAGES, '' );
+				$this->retVals[ 'slideshow' ] = '<img src="'.get_showtime( 'live_site' ) . "/jomres/images/noimage.gif".'" />';
+				}
 			}
-
-
-		//$this->retVals['slideshow']=getSlideshow($property_uid);
 		}
 
 	/**

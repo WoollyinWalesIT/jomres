@@ -43,8 +43,8 @@ class j06000module_popup
 			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_uid . "_property_" . $property_uid . ".jpg" ) ) $property_image = get_showtime( 'live_site' ) . "/jomres/uploadedimages/" . $property_uid . "_property_" . $property_uid . ".jpg";
 
 			$output                = array ();
-			$output[ 'THUMBNAIL' ] = getThumbnailForImage( $property_image );
-			if ( !$output[ 'THUMBNAIL' ] ) $output[ 'THUMBNAIL' ] = $property_image;
+			
+
 
 			$price_output                = get_property_price_for_display_in_lists( $property_uid );
 			$output[ 'PRICE_PRE_TEXT' ]  = $price_output[ 'PRE_TEXT' ];
@@ -89,21 +89,20 @@ class j06000module_popup
 
 			$output[ '_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS' ] = jr_gettext( _JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS, _JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS, false, false );
 			$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE' ]        = jr_gettext( _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE, _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE, false, false );
+			
+			$images = get_images();
+			$output[ 'IMAGELARGE' ]  = $images ['property'][0][0]['large'];
+			$output[ 'IMAGEMEDIUM' ] = $images ['property'][0][0]['small'];
+			$output[ 'IMAGETHUMB' ]  = $images ['property'][0][0]['small'];
 
-			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_uid . "_property_" . $property_uid . ".jpg" ) )
+			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+			$jrConfig   = $siteConfig->get();
+			if ( $jrConfig[ 'make_gifs_from_slideshows' ] == "1" && $images ['gif'] [ 'small' ] != '' )
 				{
-				$output[ 'PROPERTY_IMAGE_LARGE' ]  = JOMRES_IMAGELOCATION_RELPATH . $property_uid . "_property_" . $property_uid . ".jpg";
-				$output[ 'PROPERTY_IMAGE_MEDIUM' ] = JOMRES_IMAGELOCATION_RELPATH . $property_uid . "_property_" . $property_uid . "_thumbnail_med.jpg";
-				$output[ 'PROPERTY_IMAGE_SMALL' ]  = JOMRES_IMAGELOCATION_RELPATH . $property_uid . "_property_" . $property_uid . "_thumbnail.jpg";
+				$output[ 'IMAGETHUMB' ]  = $images ['gif'] [ 'small' ];
+				$output[ 'IMAGEMEDIUM' ] = $images ['gif'] [ 'medium' ];
 				}
-			else
-				{
-				$output[ 'PROPERTY_IMAGE_LARGE' ]  = get_showtime( 'live_site' ) . "/jomres/images/noimage.gif";
-				$output[ 'PROPERTY_IMAGE_MEDIUM' ] = get_showtime( 'live_site' ) . "/jomres/images/noimage.gif";
-				$output[ 'PROPERTY_IMAGE_SMALL' ]  = get_showtime( 'live_site' ) . "/jomres/images/noimage.gif";
-				}
-
-			if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . JRDS . $property_uid . JRDS . 'gif' . JRDS . 'medium_thumb.gif' ) ) $output[ 'PROPERTY_IMAGE_MEDIUM' ] = JOMRES_IMAGELOCATION_RELPATH . $property_uid . "/gif/medium_thumb.gif";
+				
 
 			$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $property_uid . "' ";
 			$rt    = doSelectSql( $query );

@@ -26,7 +26,8 @@ function gif_builder( $property_uid )
 	$build_gif = false;
 
 	$gif_dir    = JOMRES_IMAGELOCATION_ABSPATH . $property_uid . JRDS . 'gif' . JRDS;
-	$thumbs_dir = JOMRES_IMAGELOCATION_ABSPATH . JRDS . $property_uid . JRDS . 'joomla' . JRDS . 'small';
+	$thumbs_dir = JOMRES_IMAGELOCATION_ABSPATH . $property_uid . JRDS . 'slideshow' . JRDS . '0' . JRDS . 'thumbnail';
+	
 	$images     = scandir_getfiles( $thumbs_dir );
 
 	$result[ 'SMALL' ]  = '';
@@ -68,8 +69,9 @@ function gif_builder( $property_uid )
 		file_put_contents( $gif_dir . 'small_thumb.gif', $gifBinary );
 
 		// Might as well make the medium animated gif while we're at it
-		$thumbs_dir = JOMRES_IMAGELOCATION_ABSPATH . JRDS . $property_uid . JRDS . 'joomla' . JRDS . 'medium';
+		$thumbs_dir = JOMRES_IMAGELOCATION_ABSPATH . $property_uid . JRDS . 'slideshow' . JRDS . '0' . JRDS . 'medium';
 		$images     = scandir_getfiles( $thumbs_dir );
+		//var_dump($images);
 		$arr        = array ();
 		foreach ( $images as $i )
 			{
@@ -513,7 +515,10 @@ function batchUploadPropertyImages()
  * Gets a list of filenames from the slideshow folder for this property
 #
  */
-function listImages( $property_uid )
+ 
+// As of 7.4 this should be redundant
+
+/* function listImages( $property_uid )
 	{
 	$abs  = JOMRES_IMAGELOCATION_ABSPATH . $property_uid . JRDS;
 	$d    = @dir( $abs );
@@ -535,7 +540,7 @@ function listImages( $property_uid )
 
 	return $docs;
 	}
-
+ */
 /**
 #
  * Does a bunch of checks on the uploaded image to ensure that it's actually an image, and a few other checks

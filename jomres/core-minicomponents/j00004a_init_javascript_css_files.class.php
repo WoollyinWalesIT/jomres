@@ -227,6 +227,27 @@ class j00004a_init_javascript_css_files
 
 		set_showtime( "jomres_consolidated_files_min.js", "jomres_consolidated_files_min.js" );
 		set_showtime( "jomres_consolidated_files_min.js.relpath", "jomres/javascript/" );
+		
+		if (get_showtime ( "task" ) == "media_centre")
+			{
+			set_showtime( "jquery.fileupload-ui.css", "jquery.fileupload-ui.css" );
+			set_showtime( "jquery.fileupload-ui.css.relpath",  "jomres/css/" );
+
+			set_showtime( "load-image.min.js",                     "load-image.min.js" );
+			set_showtime( "load-image.min.js.relpath",             "jomres/javascript/media_centre/" );
+			set_showtime( "canvas-to-blob.min.js",                 "canvas-to-blob.min.js" );
+			set_showtime( "canvas-to-blob.min.js.relpath",         "jomres/javascript/media_centre/" );
+			set_showtime( "jquery.iframe-transport.js",            "jquery.iframe-transport.js" );
+			set_showtime( "jquery.iframe-transport.js.relpath",    "jomres/javascript/media_centre/" );
+			set_showtime( "jquery.fileupload.js",                  "jquery.fileupload.js" );
+			set_showtime( "jquery.fileupload.js.relpath",          "jomres/javascript/media_centre/" );
+			set_showtime( "jquery.fileupload-process.js",          "jquery.fileupload-process.js" );
+			set_showtime( "jquery.fileupload-process.js.relpath",  "jomres/javascript/media_centre/" );
+			set_showtime( "jquery.fileupload-image.js",            "jquery.fileupload-image.js" );
+			set_showtime( "jquery.fileupload-image.js.relpath",    "jomres/javascript/media_centre/" );
+			set_showtime( "jquery.fileupload-validate.js",         "jquery.fileupload-validate.js" );
+			set_showtime( "jquery.fileupload-validate.js.relpath", "jomres/javascript/media_centre/" );
+			}
 		}
 
 	/**

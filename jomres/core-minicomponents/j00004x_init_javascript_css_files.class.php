@@ -175,6 +175,20 @@ class j00004x_init_javascript_css_files
 					}
 				jomres_cmsspecific_addheaddata( "javascript", get_showtime( "misc_url_definitions.js.relpath" ), get_showtime( "misc_url_definitions.js" ) );
 				add_gmaps_source();
+				
+				
+				if (get_showtime ( "task" ) == "media_centre")
+					{
+					jomres_cmsspecific_addheaddata( "css", get_showtime( "jquery.fileupload-ui.css.relpath" ), get_showtime( "jquery.fileupload-ui.css" ) );
+
+					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "load-image.min.js.relpath" ), get_showtime( "load-image.min.js" ) );
+					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "canvas-to-blob.min.js.relpath" ), get_showtime( "canvas-to-blob.min.js" ) );
+					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.iframe-transport.js.relpath" ), get_showtime( "jquery.iframe-transport.js" ) );
+					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.fileupload.js.relpath" ), get_showtime( "jquery.fileupload.js" ) );
+					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.fileupload-process.js.relpath" ), get_showtime( "jquery.fileupload-process.js" ) );
+					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.fileupload-image.js.relpath" ), get_showtime( "jquery.fileupload-image.js" ) );
+					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.fileupload-validate.js.relpath" ), get_showtime( "jquery.fileupload-validate.js" ) );
+					}
 				}
 			}
 		}

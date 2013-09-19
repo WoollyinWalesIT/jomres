@@ -312,9 +312,9 @@ class j01010listpropertys
 
 						//$property_deets['AVAILABILITY_CALENDAR'] = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property->propertys_uid,'return_calendar'=>"1",'noshowlegend'=>1) );
 
-						$no_image_image = get_showtime( 'live_site' ) . "/jomres/images/noimage.gif";
+/* 						$no_image_image = get_showtime( 'live_site' ) . "/jomres/images/noimage.gif";
 						$property_image = get_showtime( 'live_site' ) . "/jomres/images/noimage.gif";
-						if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $propertys_uid . "_property_" . $propertys_uid . ".jpg" ) ) $property_image = get_showtime( 'live_site' ) . "/jomres/uploadedimages/" . $propertys_uid . "_property_" . $propertys_uid . ".jpg";
+						if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $propertys_uid . "_property_" . $propertys_uid . ".jpg" ) ) $property_image = get_showtime( 'live_site' ) . "/jomres/uploadedimages/" . $propertys_uid . "_property_" . $propertys_uid . ".jpg"; */
 						$starslink = "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/blank.png\" alt=\"star\" border=\"0\" height=\"1\" hspace=\"10\" vspace=\"1\" />";
 						if ( $stars != "0" )
 							{
@@ -437,13 +437,20 @@ class j01010listpropertys
 						else
 						$property_deets[ 'PROPERTYDESC' ] = $propertyDesc;
 
+						/* 
 						$property_deets[ 'IMAGE' ] = $property_image;
 
 						$property_deets[ 'IMAGETHUMB' ] = getThumbnailForImage( $property_deets[ 'IMAGE' ] );
 						if ( !$property_deets[ 'IMAGETHUMB' ] ) $property_deets[ 'IMAGETHUMB' ] = $no_image_image;
 						$property_deets[ 'IMAGEMEDIUM' ] = getThumbnailForImage( $property_deets[ 'IMAGE' ], true );
 						if ( !$property_deets[ 'IMAGEMEDIUM' ] ) $property_deets[ 'IMAGEMEDIUM' ] = $no_image_image;
-						$property_deets[ 'IMAGELARGE' ] = $property_image;
+						$property_deets[ 'IMAGELARGE' ] = $property_image; */
+						
+						$images = get_images();
+						$property_deets[ 'IMAGELARGE' ]  = $images ['property'][0][0]['large'];
+						$property_deets[ 'IMAGEMEDIUM' ] = $images ['property'][0][0]['small'];
+						$property_deets[ 'IMAGETHUMB' ]  = $images ['property'][0][0]['small'];
+				
 						//$property_deets['IMAGE_POPUP']=jomres_make_image_popup($property_deets['PROPERTYNAME'],$property_image,"",array(),$property_deets['IMAGETHUMB'],""); // disabled, we're not using it and it's taking about a second to run for each thumbnail that shows in the image list.
 						$property_deets[ '_JOMRES_QUICK_INFO' ] = jr_gettext( '_JOMRES_QUICK_INFO', _JOMRES_QUICK_INFO, false, false );
 						$property_deets[ 'REMOTE_URL' ]         = $mrConfig[ 'galleryLink' ];
@@ -495,9 +502,7 @@ class j01010listpropertys
 								$property_deets[ 'IMAGEMEDIUM' ] = $result[ 'MEDIUM' ];
 								}
 							}
-
-
-						$property_deets[ 'TOOLTIP_IMAGE' ] = jomres_makeTooltip( "property_image" . $propertys_uid, "", $property_deets[ 'IMAGE' ], $property_deets[ 'IMAGE' ], "", "imageonly", $type_arguments = array ( "imagethumb" => $property_deets[ 'IMAGETHUMB' ], "width" => $sizes[ 'thwidth' ], "height" => $sizes[ 'thheight' ], "border" => 0 ) );
+						
 						if ( $output_lowest ) $property_deets[ 'LOWESTPRICE' ] = $price;
 						else
 						$property_deets[ 'LOWESTPRICE' ] = '';

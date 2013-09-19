@@ -1,0 +1,14 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<li id="{RANDOM_ID}">
+	<div class="thumbnail">
+		<img src="{IMAGE_REL_SMALL}" style="width: {WIDTH}px; height: {HEIGHT}px;" />
+		<div class="caption">
+			<h4>{FILENAME}</h4>
+				<p>
+					<a class="btn btn-primary" target="_blank" href="{IMAGE_REL_LARGE}">{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}</a>
+					<a class="btn btn-danger" onclick="delete_file('{DELETE_URL}' , '{RANDOM_ID}')" href="javascript:void(0);">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>
+				</p>
+		</div>
+	</div>
+</li>
+</patTemplate:tmpl>

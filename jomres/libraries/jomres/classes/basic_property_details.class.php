@@ -161,6 +161,8 @@ class basic_property_details
 		
 		if ( array_key_exists( $this->property_uid, $this->multi_query_result ) )
 			{
+			$this->images                = $property_images = jomres_get_property_images( $this->property_uid );
+			
 			$this->property_name         = $this->multi_query_result[ $this->property_uid ][ 'property_name' ];
 			$this->property_street       = $this->multi_query_result[ $this->property_uid ][ 'property_street' ];
 			$this->property_town         = $this->multi_query_result[ $this->property_uid ][ 'property_town' ];
@@ -198,7 +200,8 @@ class basic_property_details
 			$this->approved                      = $this->multi_query_result[ $this->property_uid ][ 'approved' ];
 			
 			$this->property_names[$this->property_uid] = $this->multi_query_result[ $this->property_uid ][ 'property_name' ];
-			$this->room_types=$this->multi_query_result[ $this->property_uid ][ 'room_types' ];
+			$this->room_types                    =$this->multi_query_result[ $this->property_uid ][ 'room_types' ];
+			$this->rooms                         =$this->multi_query_result[ $this->property_uid ][ 'rooms' ];
 			}
 		else //this part may become redundant, since we always get the property data with gather_data_multi;
 			{
@@ -298,6 +301,17 @@ class basic_property_details
 				}
 			}
 
+		if ( !isset( $this->rooms ) )
+			{
+			$this->rooms = array ();
+			$query      = "SELECT `room_uid` FROM #__jomres_rooms WHERE propertys_uid = '".$this->property_uid."' ";
+			$rooms      = doSelectSql( $query );
+			foreach ( $rooms as $room )
+				{
+				$this->rooms[ $room->room_uid ] = $room->room_uid ;
+				}
+			}
+		
 		$bang                  = explode( ",", $this->property_features );
 		$propertyFeaturesArray = array ();
 		foreach ( $bang as $b )
@@ -394,6 +408,7 @@ class basic_property_details
 			$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 			foreach ( $propertyData as $data )
 				{
+				
 				set_showtime( 'property_uid', $data->propertys_uid );
 				set_showtime( 'property_type', $this->all_property_types[ (int) $data->ptype_id ] );
 				$countryname = getSimpleCountry( $data->property_country );
@@ -401,7 +416,8 @@ class basic_property_details
 
 				$this->untranslated_property_names[ $data->propertys_uid ] = $data->property_name;
 
-
+				$this->multi_query_result[ $data->propertys_uid ][ 'images' ]            = jomres_get_property_images($data->propertys_uid);
+				
 				$this->multi_query_result[ $data->propertys_uid ][ 'propertys_uid' ]     = $data->propertys_uid;
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_name' ]     = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false );
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_street' ]   = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_STREET', $data->property_street, $editable, false );
@@ -461,6 +477,16 @@ class basic_property_details
 				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'desc' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'room_class_full_desc' ];
 				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'image' ] = $this->all_room_types[ $room->room_classes_uid ][ 'image' ];
 				}
+			
+		if ( !isset( $this->rooms ) )
+			{
+			$query      = "SELECT `room_uid`,`propertys_uid` FROM #__jomres_rooms WHERE " . $gor;
+			$rooms      = doSelectSql( $query );
+			foreach ( $rooms as $room )
+				{
+				$this->multi_query_result[ $room->propertys_uid ][ 'rooms' ][ $room->room_uid ] = $room->room_uid ;
+				}
+			}
 
 			// This array is only used by the showRoomDetails task. It's pointless constantly running this query when it's not used anywhere else.
 			if ( get_showtime( 'task' ) == "showRoomDetails" )
