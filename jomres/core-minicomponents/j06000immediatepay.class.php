@@ -44,16 +44,20 @@ class j06000immediatepay
 		$invoice->id = $invoice_id;
 		$invoice->getInvoice();
 
-		if ( !$thisJRUser->userIsManager )
+		if ($invoice->subscription!="1" && $invoice->is_commission!="1")
 			{
-			$settingArray                            = get_plugin_settings( "paypal", $invoice->property_uid );
-			$this->paypal_settings[ 'usesandbox' ]   = $settingArray[ 'usesandbox' ];
-			$this->paypal_settings[ 'email' ]        = $settingArray[ 'paypalemail' ];
-			$this->paypal_settings[ 'currencycode' ] = $settingArray[ 'currencycode' ];
-
-			if ( $this->paypal_settings[ 'usesandbox' ] == "1" ) $this->paypal_settings[ 'submit_url' ] = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
-			else
-			$this->paypal_settings[ 'submit_url' ] = 'https://www.paypal.com/cgi-bin/webscr';
+			if ( !$thisJRUser->userIsManager )
+				{
+				$settingArray                            = get_plugin_settings( "paypal", $invoice->property_uid );
+				$this->paypal_settings[ 'usesandbox' ]   = $settingArray[ 'usesandbox' ];
+				$this->paypal_settings[ 'email' ]        = $settingArray[ 'paypalemail' ];
+				$this->paypal_settings[ 'currencycode' ] = $settingArray[ 'currencycode' ];
+	
+				if ( $this->paypal_settings[ 'usesandbox' ] == "1" ) 
+					$this->paypal_settings[ 'submit_url' ] = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
+				else
+					$this->paypal_settings[ 'submit_url' ] = 'https://www.paypal.com/cgi-bin/webscr';
+				}
 			}
 		else
 			{
