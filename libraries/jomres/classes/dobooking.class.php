@@ -519,12 +519,14 @@ class dobooking
 
 	function getAllRoomsData()
 		{
+		$images = get_images(); // Gets the property images
+		$room_images = $images [ 'rooms' ] ;
 		$tmpFeatures = "";
 		$query       = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking,singleperson_suppliment  FROM #__jomres_rooms WHERE  propertys_uid = '$this->property_uid'";
 		$rooms       = doSelectSql( $query );
 		foreach ( $rooms as $r )
 			{
-			$this->allPropertyRooms[ $r->room_uid ] = array ( 'room_uid' => $r->room_uid, 'room_classes_uid' => $r->room_classes_uid, 'propertys_uid' => $r->propertys_uid, 'room_features_uid' => $r->room_features_uid, 'room_name' => $r->room_name, 'room_number' => $r->room_number, 'room_floor' => $r->room_floor, 'room_disabled_access' => $r->room_disabled_access, 'max_people' => $r->max_people, 'smoking' => $r->smoking, 'singleperson_suppliment' => $r->singleperson_suppliment );
+			$this->allPropertyRooms[ $r->room_uid ] = array ( 'room_uid' => $r->room_uid, 'room_classes_uid' => $r->room_classes_uid, 'propertys_uid' => $r->propertys_uid, 'room_features_uid' => $r->room_features_uid, 'room_name' => $r->room_name, 'room_number' => $r->room_number, 'room_floor' => $r->room_floor, 'room_disabled_access' => $r->room_disabled_access, 'max_people' => $r->max_people, 'smoking' => $r->smoking, 'singleperson_suppliment' => $r->singleperson_suppliment , "small_room_image" => $room_images [$r->room_uid] [0] ['small']);
 
 			$this->allPropertyRoomUids[ ] = $r->room_uid;
 			if ( strlen( $r->room_features_uid ) > 0 )
@@ -535,6 +537,7 @@ class dobooking
 				}
 			if ( !in_array( $r->room_classes_uid, $this->allRoomClassIds ) ) $this->allRoomClassIds[ ] = $r->room_classes_uid;
 			}
+
 		$featuresArray = explode( ",", $tmpFeatures );
 		/*
 		if (count($featuresArray)>1)
@@ -4815,10 +4818,7 @@ class dobooking
 	 */
 	function makeRoomTariffDetails( $roomuid, $tariffuid )
 		{
-		if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . $this->property_uid . '_room_' . $roomuid . '.jpg' ) ) $this->roomImagePath = JOMRES_IMAGELOCATION_RELPATH . $this->property_uid . '_room_' . $roomuid . '.jpg';
-		else
-		$this->roomImagePath = get_showtime( 'live_site' ) . "/jomres/images/noimage.gif";
-
+		$this->roomImagePath  = $this->allPropertyRooms [ $roomuid ] [ 'small_room_image' ];
 		$roomTariffOutputId   = $roomuid . "^" . $tariffuid;
 		$roomTariffOutputText = "";
 
@@ -4847,6 +4847,7 @@ class dobooking
 				$this->room_type_style_output                         = array ();
 				}
 			}
+
 
 		$tariffStuff = $this->GetTariffDetails( $tariffUid );
 		$roomStuff   = $this->GetRoomDetails( $roomUid );
@@ -4878,6 +4879,16 @@ class dobooking
 		$roomStuff[ 'ROOM_TYPE_IMAGE' ] = $this->typeImage;
 		$roomStuff[ 'ROOM_IMAGE' ]      = $this->roomImagePath;
 
+		/*
+		This code is for generating the rooms slideshow in the popup, but it will not trigger currently. Disabled for now but left in-situ for when we decide to revisit this
+		$images = get_images(); // Gets the property images
+		$room_images = $images [ 'rooms' ] [ $roomUid ] ;
+
+		$MiniComponents     = jomres_getSingleton( 'mcHandler' );
+		$result = $MiniComponents->specificEvent( '01060', 'slideshow' , array( "images" => $room_images ) );
+		$roomStuff[ 'SLIDESHOW' ] = $result ['slideshow'];
+		*/
+		
 		if ( $this->cfg_booking_form_rooms_list_style == "1" )
 			{
 			return array_merge( $roomStuff, $tariffStuff );
