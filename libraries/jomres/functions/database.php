@@ -44,8 +44,8 @@ function doSelectSql( $query, $mode = false )
 				echo "Error, more than one result returned. One expected. Stop.";
 				exit;
 				}
-			$jomres_db->setQuery( $query );
-			$result = $jomres_db->loadObjectList();
+			//$jomres_db->setQuery( $query );
+			//$result = $jomres_db->loadObjectList();
 			$ob     = $result[ 0 ];
 			if ( count( $ob ) == 0 )
 				{

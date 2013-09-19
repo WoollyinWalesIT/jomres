@@ -14,6 +14,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+
 function get_images($property_id = null)
 	{
 	if ($property_id == null)
@@ -304,7 +305,7 @@ function jomres_formatBytes($bytes, $precision = 2)
     $pow = min($pow, count($units) - 1); 
     return round($bytes, $precision) . ' ' . $units[$pow]; 
 	} 
-
+	
 /*
 An output filter.
 */
@@ -620,7 +621,7 @@ function init_javascript()
 function add_gmaps_source( $sensor = 0 )
 	{
 	if ( defined( 'JOMRES_NOHTML' ) ) return;
-	if ( !defined( 'GMAPS_SOURCE_ADDED' ) )
+	if ( !defined( 'GMAPS_SOURCE_ADDED' ) && !AJAXCALL)
 		{
 		define( 'GMAPS_SOURCE_ADDED', 1 );
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
