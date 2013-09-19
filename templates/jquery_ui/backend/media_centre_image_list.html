@@ -1,0 +1,14 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<tr id="{RANDOM_ID}" class="ui-widget-content ui-corner-all" style="border-bottom:1pt solid black;">
+	<td align="center">
+		<img src="{IMAGE_REL_SMALL}" style="width: {WIDTH}px; height: {HEIGHT}px;" />
+		<div class="caption">
+			<h4>{FILENAME}</h4>
+				<p>
+					<a class="fg-button ui-state-default ui-corner-all ui-priority-primary" target="_blank" href="{IMAGE_REL_LARGE}">{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}</a>
+					<a class="fg-button ui-state-default ui-corner-all" onclick="delete_file('{DELETE_URL}' , '{RANDOM_ID}')" href="javascript:void(0);">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>
+				</p>
+		</div>
+	</td>
+</tr>
+</patTemplate:tmpl>
