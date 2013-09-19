@@ -901,25 +901,33 @@ class jomSearch
 function prepGeographicSearch()
 	{
 	// Prepares the geographic data required for a search
-	$allCountries         = countryCodesArray();
-	$query                = "SELECT DISTINCT property_postcode,property_region,property_country,property_town FROM #__jomres_propertys WHERE published = '1' ORDER BY property_country,property_region,property_town desc ";
-	$propertyLocations    = doSelectSql( $query );
-	$allPropertyLocations = array ();
-	foreach ( $propertyLocations as $location )
+	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+	$allPropertyLocations=$c->retrieve('all_property_locations');
+	
+	if (!$allPropertyLocations)
 		{
-		$r               = array ();
-		$r[ 'postcode' ] = $location->property_postcode;
-		if ( is_numeric( $location->property_region ) )
+		$allCountries         = countryCodesArray();
+		$query                = "SELECT DISTINCT property_town,property_region,property_country,property_postcode FROM #__jomres_propertys WHERE published = '1' ORDER BY property_country,property_region,property_town desc ";
+		$propertyLocations    = doSelectSql( $query );
+		$allPropertyLocations = array ();
+		foreach ( $propertyLocations as $location )
 			{
-			$jomres_regions = jomres_singleton_abstract::getInstance( 'jomres_regions' );
-			$r[ 'region' ]  = jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $location->property_region, $jomres_regions->regions[ $location->property_region ][ 'regionname' ], false, false );
+			$r               = array ();
+			$r[ 'postcode' ] = $location->property_postcode;
+			if ( is_numeric( $location->property_region ) )
+				{
+				$jomres_regions = jomres_singleton_abstract::getInstance( 'jomres_regions' );
+				$r[ 'region' ]  = jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $location->property_region, $jomres_regions->regions[ $location->property_region ][ 'regionname' ], false, false );
+				}
+			else
+			$r[ 'region' ] = $location->property_region;
+			$r[ 'country' ]       = $location->property_country;
+			$r[ 'countryname' ]   = $allCountries[ $r[ 'country' ] ];
+			$r[ 'property_town' ] = $location->property_town;
+			if ( !empty( $r[ 'property_town' ] ) ) 
+				$allPropertyLocations[ ] = $r;
 			}
-		else
-		$r[ 'region' ] = $location->property_region;
-		$r[ 'country' ]       = $location->property_country;
-		$r[ 'countryname' ]   = $allCountries[ $r[ 'country' ] ];
-		$r[ 'property_town' ] = $location->property_town;
-		if ( !empty( $r[ 'property_town' ] ) ) $allPropertyLocations[ ] = $r;
+		$c->store('all_property_locations',$allPropertyLocations);
 		}
 
 	$result[ 'propertyLocations' ] = $allPropertyLocations;
@@ -950,43 +958,51 @@ function prepGuestnumberSearch()
 function prepFeatureSearch()
 	{
 	// Prepares the Feature data required for a search
-	$result               = array ();
-	$searchAll            = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
+	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+	$result=$c->retrieve('all_used_property_features');
 	
-	$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-	$propertyFeaturesList=$basic_property_details->all_property_features;
-
-	// Added to speed up listing of features. Finds all property features against published propertys and creates a unique array of the feature uids. This way we can still have our list of features but not include any that are not assigned to any properties
-	$uniqueFeatures    = array ();
-	$query             = "SELECT property_features FROM #__jomres_propertys WHERE published = '1'";
-	$propertysfeatures = doSelectSql( $query );
-	foreach ( $propertysfeatures as $pf )
+	if (!$result)
 		{
-		$tmpArray = explode( ",", $pf->property_features );
-		foreach ( $tmpArray as $featureuid )
+		$result               = array ();
+		$searchAll            = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
+		
+		$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$propertyFeaturesList=$basic_property_details->all_property_features;
+	
+		// Added to speed up listing of features. Finds all property features against published propertys and creates a unique array of the feature uids. This way we can still have our list of features but not include any that are not assigned to any properties
+		
+		$uniqueFeatures    = array ();
+		$query             = "SELECT property_features FROM #__jomres_propertys WHERE published = '1'";
+		$propertysfeatures = doSelectSql( $query );
+		foreach ( $propertysfeatures as $pf )
 			{
-			if ( !in_array( $featureuid, $uniqueFeatures ) ) $uniqueFeatures[ ] = $featureuid;
+			$tmpArray = explode( ",", $pf->property_features );
+			foreach ( $tmpArray as $featureuid )
+				{
+				if ( !in_array( $featureuid, $uniqueFeatures ) ) $uniqueFeatures[ ] = $featureuid;
+				}
 			}
-		}
-
-	$r                  = array ();
-	$r[ 'id' ]          = 0;
-	$r[ 'title' ]       = $searchAll;
-	$r[ 'description' ] = $searchAll;
-	$r[ 'image' ]       = '';
-	$result[ ]          = $r;
-
-	foreach ( $propertyFeaturesList as $propertyFeatureId=>$feature )
-		{
-		if ( in_array( $propertyFeatureId, $uniqueFeatures ) )
+	
+		$r                  = array ();
+		$r[ 'id' ]          = 0;
+		$r[ 'title' ]       = $searchAll;
+		$r[ 'description' ] = $searchAll;
+		$r[ 'image' ]       = '';
+		$result[ ]          = $r;
+	
+		foreach ( $propertyFeaturesList as $propertyFeatureId=>$feature )
 			{
-			$r                  = array ();
-			$r[ 'id' ]          = $propertyFeatureId;
-			$r[ 'title' ]       = $feature['abbv'];
-			$r[ 'description' ] = $feature['desc'];
-			$r[ 'image' ]       = $feature['image'];
-			$result[ ]          = $r;
+			if ( in_array( $propertyFeatureId, $uniqueFeatures ) )
+				{
+				$r                  = array ();
+				$r[ 'id' ]          = $propertyFeatureId;
+				$r[ 'title' ]       = $feature['abbv'];
+				$r[ 'description' ] = $feature['desc'];
+				$r[ 'image' ]       = $feature['image'];
+				$result[ ]          = $r;
+				}
 			}
+		$c->store('all_used_property_features', $result);
 		}
 
 	return $result;
@@ -1146,53 +1162,61 @@ function prepPropertyTypeSearch()
 function prepPriceRangeSearch( $increments = 10 )
 	{
 	// Prepares the PropertyType data required for a search
-	$searchAll = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
-
-	$query    = "SELECT DISTINCT roomrateperday FROM #__jomres_rates,#__jomres_propertys WHERE #__jomres_rates.property_uid = #__jomres_propertys.propertys_uid AND #__jomres_propertys.published = 1 ORDER by #__jomres_rates.roomrateperday";
-	$rateList = doSelectSql( $query );
-
-	$query          = "SELECT DISTINCT property_key FROM #__jomres_propertys WHERE published = 1 ORDER by property_key";
-	$realestateList = doSelectSql( $query );
-
-	$result     = array ();
-	$result[ ]  = $searchAll;
-	$allTariffs = array ();
-	foreach ( $rateList as $rate )
+	
+	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+	$result=$c->retrieve('price_ranges');
+	
+	if (!$result)
 		{
-		$allTariffs[ ] = $rate->roomrateperday;
-		}
-
-	foreach ( $realestateList as $rate )
-		{
-		if ( (float) $rate->property_key > 0.00 ) $allTariffs[ ] = $rate->property_key;
-		}
-
-	sort( $allTariffs );
-	$lowest  = $allTariffs[ 0 ];
-	$count   = count( $allTariffs ) - 1;
-	$highest = $allTariffs[ $count ];
-
-	// Found during testing, when one property has the price 100,000,000 and the increments is left to the default 20, you'll get an out of memory error.
-	// This is because you'll have up to half a million possible ranges. Here we'll test highest/increments. If the result is > 100 we'll have to set the increments to something a bit more sensible to stave off out of memory errors.
-	if ( $highest / $increments > 10000 ) $increments = $increments * 1000;
-
-	$ranges = my_range( 0, $highest, $increments );
-	foreach ( $ranges as $range )
-		{
-		$startRange       = $range;
-		$endRange         = $range + $increments;
-		$rangeHasElements = false;
-		foreach ( $allTariffs as $t )
+		$searchAll = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
+	
+		$query    = "SELECT DISTINCT roomrateperday FROM #__jomres_rates,#__jomres_propertys WHERE #__jomres_rates.property_uid = #__jomres_propertys.propertys_uid AND #__jomres_propertys.published = 1 ORDER by #__jomres_rates.roomrateperday";
+		$rateList = doSelectSql( $query );
+	
+		$query          = "SELECT DISTINCT property_key FROM #__jomres_propertys WHERE published = 1 ORDER by property_key";
+		$realestateList = doSelectSql( $query );
+	
+		$result     = array ();
+		$result[ ]  = $searchAll;
+		$allTariffs = array ();
+		foreach ( $rateList as $rate )
 			{
-			if ( $t > $startRange && $t <= $endRange )
+			$allTariffs[ ] = $rate->roomrateperday;
+			}
+	
+		foreach ( $realestateList as $rate )
+			{
+			if ( (float) $rate->property_key > 0.00 ) $allTariffs[ ] = $rate->property_key;
+			}
+	
+		sort( $allTariffs );
+		$lowest  = $allTariffs[ 0 ];
+		$count   = count( $allTariffs ) - 1;
+		$highest = $allTariffs[ $count ];
+	
+		// Found during testing, when one property has the price 100,000,000 and the increments is left to the default 20, you'll get an out of memory error.
+		// This is because you'll have up to half a million possible ranges. Here we'll test highest/increments. If the result is > 100 we'll have to set the increments to something a bit more sensible to stave off out of memory errors.
+		if ( $highest / $increments > 10000 ) $increments = $increments * 1000;
+	
+		$ranges = my_range( 0, $highest, $increments );
+		foreach ( $ranges as $range )
+			{
+			$startRange       = $range;
+			$endRange         = $range + $increments;
+			$rangeHasElements = false;
+			foreach ( $allTariffs as $t )
 				{
-				$rangeHasElements = true;
+				if ( $t > $startRange && $t <= $endRange )
+					{
+					$rangeHasElements = true;
+					}
+				}
+			if ( $rangeHasElements )
+				{
+				$result[ ] = $startRange . "-" . $endRange;
 				}
 			}
-		if ( $rangeHasElements )
-			{
-			$result[ ] = $startRange . "-" . $endRange;
-			}
+		$c->store('price_ranges',$result);
 		}
 
 	return $result;
