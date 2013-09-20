@@ -14,130 +14,6 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-
-function get_images($property_id = null)
-	{
-	if ($property_id == null)
-		{
-		$property_id = get_showtime("property_uid");
-		}
-		
-	$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-	$current_property_details->gather_data( $property_id );
-
-	if (!isset( $current_property_details->images[$property_id]['resources']['property'][0][0]))
-		{
-		$current_property_details->images [$property_id]['resources']['property'][0][0] = array ( 
-			"large" =>  $current_property_details->images[ 'noimage' ] ,
-			"medium" => $current_property_details->images[ 'noimage' ] ,
-			"small" => $current_property_details->images[ 'noimage' ] ,
-			"gifs" => array ( )
-			);
-		}
-	
-	foreach ( $current_property_details->rooms as $room_id)
-		{
-		if (!isset( $current_property_details->images[$property_id]['resources']['rooms'][$room_id]))
-			{
-			$current_property_details->images [ $property_id ] [ 'resources' ] [ 'rooms' ] [ $room_id ] [] = array ( 
-				"large" =>  $current_property_details->images[ 'noimage' ] ,
-				"medium" => $current_property_details->images[ 'noimage' ] ,
-				"small" => $current_property_details->images[ 'noimage' ] ,
-				"gifs" => array ( )
-				);
-			}
-		}
-
-	if (!isset( $current_property_details->images[$property_id]['resources']['slideshow'][0]))
-		{
-		$current_property_details->images [$property_id]['resources']['slideshow'][0] = array ( 
-			"large" =>  $current_property_details->images[ 'noimage' ] ,
-			"medium" => $current_property_details->images[ 'noimage' ] ,
-			"small" => $current_property_details->images[ 'noimage' ] ,
-			"gifs" => array ( )
-			);
-		}
-	return $current_property_details->images[$property_id] ['resources'];
-	}
-
-function jomres_get_property_images($property_ids)
-	{
-	// As we're going to let this function work on both single and multiple lists of property uids, we'll cast property_ids to an array if it isn't one already
-	if ( !is_array($property_ids) )
-		{
-		$property_ids = array ( $property_ids );
-		}
-	
-	foreach ($property_ids as $property_id)
-		{
-		$property_id = (int) $property_id;
-		
-		$base_path = JOMRES_IMAGELOCATION_ABSPATH . $property_id . JRDS;
-		$rel_path  = JOMRES_IMAGELOCATION_RELPATH . $property_id . "/" ;
-		
-		// if the file exists, we haven't yet imported this property's old images into the media centre's sub directories, let's do that now
-		// We will do this every time, for the time being as this will give people's system's time to catch up. Will need to have a condition added in 2015.
-		import_images_to_media_centre_directories($property_id);
-
-		
-		$images = array();
-		$images [ 'noimage' ] = get_showtime( 'live_site' ) . "/jomres/images/noimage.gif";
-		
-		$MiniComponents =jomres_getSingleton('mcHandler');
-		$MiniComponents->triggerEvent( '03379' );
-		$resource_types = $MiniComponents->miniComponentData['03379'];
-		
-		// This section will find all images uploaded by the new media centre's functionality
-		if (count($resource_types)>0)
-			{
-			$all_types = array();
-			foreach ($resource_types as $type)
-				{
-				$all_types[] = $type['resource_type'];
-				}
-			$dir_contents = scandir_getdirectories( $base_path );
-
-			foreach ($dir_contents as $dir)
-				{
-				if (in_array($dir,$all_types))
-					{
-					$sub_directories = scandir_getdirectories( $base_path . $dir . JRDS );
-					if (count($sub_directories)>0)
-						{
-						foreach ($sub_directories as $resouce_id )
-							{
-							$resource_images = scandir_getfiles( $base_path . $dir . JRDS . $resouce_id . JRDS );
-							
-							if (count ($resource_images) > 0 )
-								{
-								foreach ($resource_images as $image)
-									{
-									$images [ $property_id ] [ 'resources' ] [ $dir ] [ $resouce_id ] [] = array ( 
-										"large" =>  $rel_path .  $dir . "/" . $resouce_id . "/" . $image ,
-										"medium" => $rel_path  . $dir . "/" . $resouce_id . "/medium/". $image ,
-										"small" => $rel_path  . $dir . "/" . $resouce_id . "/thumbnail/" . $image
-										);
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		$small_gif = '';
-		$medium_gif = '';
-		if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . $property_id . JRDS . 'gif' . JRDS . 'small_thumb.gif') )
-			{
-			$small_gif  = $rel_path . "gif/small_thumb.gif";
-			$medium_gif = $rel_path . "gif/medium_thumb.gif";
-			}
-		$images [ $property_id ] [ 'resources' ] [ 'gif' ] [ 'small' ]  = $small_gif ;
-		$images [ $property_id ] [ 'resources' ] [ 'gif' ] [ 'medium' ] = $medium_gif ;
-		}
-	
-	return $images;
-	}
-
 function import_images_to_media_centre_directories($property_id)
 	{
 	// We are going to move any property images, slideshow images and room images into the new media centre's resource directories.
@@ -1080,6 +956,9 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 	
 	$jomres_property_list_prices = jomres_singleton_abstract::getInstance( 'jomres_property_list_prices' );
 	$jomres_property_list_prices->gather_lowest_prices_multi($property_uid_array);
+	
+	$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+	$jomres_media_centre_images->get_images_multi($property_uid_array, array('property'));
 
 	// Same as list properties
 	$g_pids = genericOr( $property_uid_array, 'propertys_uid' );
@@ -1098,11 +977,10 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 			set_showtime( 'property_type', $current_property_details->property_type );
 			set_showtime( 'property_uid', $property_uid );
 			$customTextObj->get_custom_text_for_property( $property_uid );
+			
+			$jomres_media_centre_images->get_images($property_uid, array('property'));
 
-			$property_image = get_showtime( 'live_site' ) . "/jomres/images/jrhouse.png";
-			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_uid . "_property_" . $property_uid . ".jpg" ) ) $property_image = JOMRES_IMAGELOCATION_RELPATH . "/" . $property_uid . "_property_" . $property_uid . ".jpg";
-			$property_data[ 'THUMBNAIL' ] = getThumbnailForImage( $property_image );
-			if ( !$property_data[ 'THUMBNAIL' ] ) $property_data[ 'THUMBNAIL' ] = $property_image;
+			$property_data[ 'THUMBNAIL' ] = $jomres_media_centre_images->images ['property'][0][0]['small'];
 					
 			$property_data[ 'PRICE_PRE_TEXT' ]  = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRE_TEXT' ];
 			$property_data[ 'PRICE_PRICE' ]     = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE' ];

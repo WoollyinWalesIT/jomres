@@ -30,8 +30,7 @@ class j06000module_popup
 		if ( $property_uid > 0 )
 			{
 			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-			//$current_property_details->gather_data($property_uid);
-
+			$current_property_details->gather_data($property_uid);
 
 			$inline_calendar = $MiniComponents->specificEvent( '06000', 'ui_availability_calendar', array ( 'property_uid' => $property_uid, 'return_calendar' => "1", 'noshowlegend' => "1" ) );
 
@@ -39,12 +38,11 @@ class j06000module_popup
 			set_showtime( 'property_uid', $property_uid );
 			$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 
-			$property_image = get_showtime( 'live_site' ) . "/jomres/images/jrhouse.png";
-			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_uid . "_property_" . $property_uid . ".jpg" ) ) $property_image = get_showtime( 'live_site' ) . "/jomres/uploadedimages/" . $property_uid . "_property_" . $property_uid . ".jpg";
+			//$property_image = get_showtime( 'live_site' ) . "/jomres/images/jrhouse.png";
+			//if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_uid . "_property_" . $property_uid . ".jpg" ) ) 
+				//$property_image = get_showtime( 'live_site' ) . "/jomres/uploadedimages/" . $property_uid . "_property_" . $property_uid . ".jpg";
 
 			$output                = array ();
-			
-
 
 			$price_output                = get_property_price_for_display_in_lists( $property_uid );
 			$output[ 'PRICE_PRE_TEXT' ]  = $price_output[ 'PRE_TEXT' ];
@@ -90,10 +88,11 @@ class j06000module_popup
 			$output[ '_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS' ] = jr_gettext( _JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS, _JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS, false, false );
 			$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE' ]        = jr_gettext( _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE, _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE, false, false );
 			
-			$images = get_images();
-			$output[ 'IMAGELARGE' ]  = $images ['property'][0][0]['large'];
-			$output[ 'IMAGEMEDIUM' ] = $images ['property'][0][0]['small'];
-			$output[ 'IMAGETHUMB' ]  = $images ['property'][0][0]['small'];
+			$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+			$jomres_media_centre_images->get_images($property_uid, array('property'));
+			$output[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images ['property'][0][0]['large'];
+			$output[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images ['property'][0][0]['medium'];
+			$output[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images ['property'][0][0]['small'];
 
 			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 			$jrConfig   = $siteConfig->get();
