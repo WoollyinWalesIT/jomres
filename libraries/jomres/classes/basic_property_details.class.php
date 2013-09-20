@@ -66,7 +66,10 @@ class basic_property_details
 	public function get_property_name( $property_uid = 0, $editable = true )
 		{
 		if ( $property_uid == 0 ) $property_uid = $this->property_uid;
+		
+		$this->get_property_name_multi(array($property_uid));
 
+		/* this part became reduntant since we`re always getting the property names with the get_property_name_multi function, which has caching support
 		if ( !array_key_exists( $property_uid, $this->property_names ) )
 			{
 			$original_property_uid = get_showtime( 'property_uid' );
@@ -79,7 +82,7 @@ class basic_property_details
 			$property_name = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $property_name, false, false );
 			set_showtime( 'property_uid', $original_property_uid );
 			}
-		else
+		else*/
 			$property_name = $this->property_names[ $property_uid ];
 
 		return $property_name;
@@ -87,54 +90,74 @@ class basic_property_details
 
 	public function get_property_name_multi( $property_uids = array (), $database_obj = false )
 		{
-		$performance_monitor = jomres_singleton_abstract::getInstance( 'jomres_performance_monitor' );
-		$performance_monitor->set_point( "pre-property name multi" );
-
 		$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
-
-		if ( !isset( $this->property_names ) ) $this->property_names = array ();
-
-		$original_property_uid = get_showtime( 'property_uid' );
-		if ( count( $property_uids ) == 0 ) return false;
-
-		// We've been passed a database object's search results, so we'll find the propertys_uids, dump them into an array and generate $gor from that.
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		
+		//let`s see if we`re trying to get all property names in the system and if yes, cache them.
 		if ( $database_obj )
 			{
 			$tmp_arr = array ();
 			foreach ( $property_uids as $id )
 				{
-				$tmp_arr[ ] = $id->propertys_uid;
-				}
-			$gor = genericOr( $tmp_arr, 'propertys_uid' );
-			}
-		else
-		$gor = genericOr( $property_uids, 'propertys_uid' );
-
-		$query          = "SELECT property_name,propertys_uid FROM #__jomres_propertys WHERE " . $gor;
-		$property_names = doSelectSql( $query );
-		if ( !get_showtime( 'heavyweight_system' ) )
-			{
-			foreach ( $property_names as $p )
-				{
-				// We need to set showtime here otherwise the jr_gettext function won't know which property's info we're looking for
-				set_showtime( 'property_uid', $p->propertys_uid );
-				$this->untranslated_property_names[ $p->propertys_uid ] = $p->property_name;
-				$property_name                                          = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $p->property_name, false, false );
-				$this->property_names[ $p->propertys_uid ]              = $property_name;
+				$tmp_arr[] = $id->propertys_uid;
 				}
 			}
 		else
-			{
-			foreach ( $property_names as $p )
-				{
-				$this->property_names[ $p->propertys_uid ]              = $p->property_name;
-				$this->untranslated_property_names[ $p->propertys_uid ] = $p->property_name;
-				}
-			}
-		set_showtime( 'property_uid', $original_property_uid );
-		$performance_monitor->set_point( "post-property name multi" );
+			$tmp_arr=$property_uids;
 
-		return $property_name;
+		sort($tmp_arr);
+		$all_properties_in_system=get_showtime('all_properties_in_system');
+		sort($all_properties_in_system);
+		$diff=array_diff($tmp_arr, $all_properties_in_system);
+		$this->property_names=$c->retrieve('all_property_names_in_system');
+		$this->untranslated_property_names=$c->retrieve('all_property_names_in_system_untranslated');
+
+		if ( !$this->property_names )
+			{
+			$performance_monitor = jomres_singleton_abstract::getInstance( 'jomres_performance_monitor' );
+			$performance_monitor->set_point( "pre-property name multi" );
+			$this->property_names = array ();
+
+			$original_property_uid = get_showtime( 'property_uid' );
+			if ( count( $property_uids ) == 0 ) return false;
+	
+			// We've been passed a database object's search results, so we'll find the propertys_uids, dump them into an array and generate $gor from that.
+			if ( $database_obj )
+				$gor = genericOr( $tmp_arr, 'propertys_uid' );
+			else
+				$gor = genericOr( $property_uids, 'propertys_uid' );
+	
+			$query          = "SELECT property_name,propertys_uid FROM #__jomres_propertys WHERE " . $gor;
+			$property_names = doSelectSql( $query );
+			if ( !get_showtime( 'heavyweight_system' ) )
+				{
+				foreach ( $property_names as $p )
+					{
+					// We need to set showtime here otherwise the jr_gettext function won't know which property's info we're looking for
+					set_showtime( 'property_uid', $p->propertys_uid );
+					$this->untranslated_property_names[ $p->propertys_uid ] = $p->property_name;
+					$property_name                                          = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $p->property_name, false, false );
+					$this->property_names[ $p->propertys_uid ]              = $property_name;
+					}
+				}
+			else
+				{
+				foreach ( $property_names as $p )
+					{
+					$this->property_names[ $p->propertys_uid ]              = $p->property_name;
+					$this->untranslated_property_names[ $p->propertys_uid ] = $p->property_name;
+					}
+				}
+			set_showtime( 'property_uid', $original_property_uid );
+			if (count($diff)==0)
+				{
+				$c->store('all_property_names_in_system',$this->property_names);
+				$c->store('all_property_names_in_system_untranslated',$this->untranslated_property_names);
+				}
+			$performance_monitor->set_point( "post-property name multi" );
+			}
+
+		return $this->property_names;
 		}
 
 
@@ -161,7 +184,7 @@ class basic_property_details
 		
 		if ( array_key_exists( $this->property_uid, $this->multi_query_result ) )
 			{
-			$this->images                = $property_images = jomres_get_property_images( $this->property_uid );
+			//$this->images                = $this->multi_query_result[ $this->property_uid ][ 'images' ];
 			
 			$this->property_name         = $this->multi_query_result[ $this->property_uid ][ 'property_name' ];
 			$this->property_street       = $this->multi_query_result[ $this->property_uid ][ 'property_street' ];
@@ -203,7 +226,7 @@ class basic_property_details
 			$this->room_types                    =$this->multi_query_result[ $this->property_uid ][ 'room_types' ];
 			$this->rooms                         =$this->multi_query_result[ $this->property_uid ][ 'rooms' ];
 			}
-		else //this part may become redundant, since we always get the property data with gather_data_multi;
+		/*else //this part became redundant, since we always get the property data with gather_data_multi;
 			{
 			$no_html  = get_showtime( 'no_html' );
 			$popup    = get_showtime( 'popup' );
@@ -272,7 +295,7 @@ class basic_property_details
 				
 				$this->property_names[$this->property_uid] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false );
 				}
-			}
+			}*/
 
 		$mrConfig = getPropertySpecificSettings( $this->property_uid );
 		$mrConfig[ 'singleRoomProperty' ] == '0' ? $srp_only = 0 : $srp_only = 1;
@@ -416,7 +439,7 @@ class basic_property_details
 
 				$this->untranslated_property_names[ $data->propertys_uid ] = $data->property_name;
 
-				$this->multi_query_result[ $data->propertys_uid ][ 'images' ]            = jomres_get_property_images($data->propertys_uid);
+				//$this->multi_query_result[ $data->propertys_uid ][ 'images' ]            = jomres_get_property_images($data->propertys_uid);
 				
 				$this->multi_query_result[ $data->propertys_uid ][ 'propertys_uid' ]     = $data->propertys_uid;
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_name' ]     = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false );

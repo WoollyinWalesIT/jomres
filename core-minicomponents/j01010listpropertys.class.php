@@ -197,6 +197,9 @@ class j01010listpropertys
 					$jomres_property_list_prices = jomres_singleton_abstract::getInstance( 'jomres_property_list_prices' );
 					$jomres_property_list_prices->gather_lowest_prices_multi($propertysToShow);
 					
+					$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+					$jomres_media_centre_images->get_images_multi($propertysToShow, array('property'));
+					
 					// Now we'll grab all of the room type/classes information for these properties. The will cut the number of queries performed by this room listing script considerably.
 					// For historical reasons some tables in Jomres use propertys_uid and some use property_uid (note the 's') so g_pids is for those tables that use propertys_uid, while g_pid is for those without
 					$g_pids = genericOr( $propertysToShow, 'propertys_uid' );
@@ -438,7 +441,7 @@ class j01010listpropertys
 						else
 						$property_deets[ 'PROPERTYDESC' ] = $propertyDesc;
 
-						$property_deets[ 'IMAGE' ] = $property_image;
+						//$property_deets[ 'IMAGE' ] = $property_image;
 
 						/* $property_deets[ 'IMAGETHUMB' ] = getThumbnailForImage( $property_deets[ 'IMAGE' ] );
 						if ( !$property_deets[ 'IMAGETHUMB' ] ) $property_deets[ 'IMAGETHUMB' ] = $no_image_image;
@@ -446,23 +449,23 @@ class j01010listpropertys
 						if ( !$property_deets[ 'IMAGEMEDIUM' ] ) $property_deets[ 'IMAGEMEDIUM' ] = $no_image_image;
 						$property_deets[ 'IMAGELARGE' ] = $property_image; */
 						//$property_deets['IMAGE_POPUP']=jomres_make_image_popup($property_deets['PROPERTYNAME'],$property_image,"",array(),$property_deets['IMAGETHUMB'],""); // disabled, we're not using it and it's taking about a second to run for each thumbnail that shows in the image list.
-						
-						$images = get_images();
-						$property_deets[ 'IMAGELARGE' ]  = $images ['property'][0][0]['large'];
-						$property_deets[ 'IMAGEMEDIUM' ] = $images ['property'][0][0]['small'];
-						$property_deets[ 'IMAGETHUMB' ]  = $images ['property'][0][0]['small'];
-						
+
+						$jomres_media_centre_images->get_images($propertys_uid, array('property'));
+						$property_deets[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images['property'][0][0]['large'];
+						$property_deets[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['property'][0][0]['medium'];
+						$property_deets[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images['property'][0][0]['small'];
 						
 						$property_deets[ '_JOMRES_QUICK_INFO' ] = jr_gettext( '_JOMRES_QUICK_INFO', _JOMRES_QUICK_INFO, false, false );
 						$property_deets[ 'REMOTE_URL' ]         = $mrConfig[ 'galleryLink' ];
 						$property_deets[ 'RANDOM_IDENTIFIER' ]  = generateJomresRandomString( 10 );
 						$property_deets[ '_JOMRES_COMPARE' ]    = jr_gettext( '_JOMRES_COMPARE', _JOMRES_COMPARE, false, false );
 
-						if ( !in_array( $propertys_uid, $shortlist_items ) ) $property_deets[ 'SHORTLIST' ] = jr_gettext( '_JOMRES_ADDTOSHORTLIST', _JOMRES_ADDTOSHORTLIST, false, false );
+						if ( !in_array( $propertys_uid, $shortlist_items ) ) 
+							$property_deets[ 'SHORTLIST' ] = jr_gettext( '_JOMRES_ADDTOSHORTLIST', _JOMRES_ADDTOSHORTLIST, false, false );
 						else
-						$property_deets[ 'SHORTLIST' ] = jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', _JOMRES_REMOVEFROMSHORTLIST, false, false );
+							$property_deets[ 'SHORTLIST' ] = jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', _JOMRES_REMOVEFROMSHORTLIST, false, false );
 
-						//add_gmaps_source(); // Needs to be included, regardless of the settings below because the module popup will not work without it.
+						add_gmaps_source(); // Needs to be included, regardless of the settings below because the module popup will not work without it.
 						
 						$showmaps = false;
 						$layout   = $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ];

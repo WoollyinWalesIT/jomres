@@ -1,3 +1,36 @@
+Jomres 7.4.0
+
+Added a new feature called array cache, which significantly speeds up Jomres performance.
+Added the new Jomres Media Centre, which improves the image uploading process.
+Added a complete new global rooms feature that works like business features. This will alow managers to select room features when editing the room, without the need to create them first in the room features tab. The room features tab and functionality is still kept, so managers can still add their own room features too.
+
+Fixed a bug where new user's bookings weren't always being associated with their user ids.
+Modified the input filtering functions so that ampersands aren't double encoded.
+Removed some unnecessary stripslashes calls.
+Removed a couple of no_html hidden inputs that were causing black bookings to give white pages on step 2.
+Fixed a bug where language choice selection wasn't being saved, as a result of code hardening.
+Added bootstrap multiselect to Jomres.
+Changed how the exchange rate dropdown is rendered to fix markup.
+Removed a no-longer needed style from Jomres bootstrap css file.
+Business features feature has been changed, so now we can assign more property types to one feature instead of duplicating it for each property type where we want to show it.
+Added a cms specific change to ensure we're getting the SEF setting correctly.
+For Joomla 3.1 installations we've removed Jomres native IDN, as J3.1 has this feature now.
+In database.php, we've added query caching. It`s not visible when one guest is visiting the website, but when more are doing it at the same time, queries will be executed once and results provided to all, instead of executing the queries for each guest.
+Found and resolved an issue on the booking form when rooms list style is enabled. When deselecting rooms, they were not unlocked.
+Added Superior as image, same size as stars. This will make it display better. Also add S to property list list with maps, module popup and ngm module output.
+Fixed a minor issue where featured listings css class was not added to the next results displayed when live scrolling.
+j16000save_custom_field.class.php moved into the Custom Field plugin, where it belongs.
+Modified several default language files so that instead of referring to "Room features" we're using language more appropriate to the situation.
+Added a JSON library to adapt to the situation where CERTAIN linux builds do not include JSON in PHP 5.5. It's a pre-emptive strike against silliness.
+Tweaked the installer to adapt to the new property type changes, tricked an older upgrade function to not trigger if a new column already exists. 
+Added room abbv to showroomdetails output
+Modified the tool tip room type template.
+Updated the Polish language file, many thanks Patryk.
+Added a variety of changes that reduce the amount of calls to gmaps, updated galleria slideshow, and some layout changes for empty tables to improve how they look.
+Improved how the immediate pay plugin shows the paypal icon/link.
+Removed the hr from the tooltip popups. (Bootstrap)
+
+
 Jomres 7.3.2
 
 Modified user booking page to ensure that correct prices are shown.

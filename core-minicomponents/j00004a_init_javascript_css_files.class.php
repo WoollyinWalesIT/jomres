@@ -247,6 +247,8 @@ class j00004a_init_javascript_css_files
 			set_showtime( "jquery.fileupload-image.js.relpath",    "jomres/javascript/media_centre/" );
 			set_showtime( "jquery.fileupload-validate.js",         "jquery.fileupload-validate.js" );
 			set_showtime( "jquery.fileupload-validate.js.relpath", "jomres/javascript/media_centre/" );
+			set_showtime( "tmpl.min.js",							"tmpl.min.js" );
+			set_showtime( "tmpl.min.js.relpath", 					"jomres/javascript/media_centre/" );
 			}
 		}
 

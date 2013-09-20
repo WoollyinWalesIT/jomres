@@ -31,9 +31,9 @@ class j03383properties
 		$resource_type   = jomresGetParam( $_REQUEST, 'resource_type', '' );
 		$resource_id     = jomresGetParam( $_REQUEST, 'resource_id', 0 );
 		
-		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-		$current_property_details->gather_data( $defaultProperty );
-		$this->ret_vals = $current_property_details->images [$defaultProperty] ['resources'] [$resource_type] [$resource_id];
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+		$jomres_media_centre_images->get_images($defaultProperty);
+		$this->ret_vals = $jomres_media_centre_images->images [$resource_type] [$resource_id];
 		}
 
 	// This must be included in every Event/Mini-component

@@ -187,6 +187,7 @@ class j00004x_init_javascript_css_files
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.fileupload-process.js.relpath" ), get_showtime( "jquery.fileupload-process.js" ) );
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.fileupload-image.js.relpath" ), get_showtime( "jquery.fileupload-image.js" ) );
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.fileupload-validate.js.relpath" ), get_showtime( "jquery.fileupload-validate.js" ) );
+					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.fileupload-validate.js.relpath" ), get_showtime( "tmpl.min.js" ) );
 					}
 					
 				}

@@ -48,8 +48,10 @@ class j06005muviewfavourites
 					$fav[ ] = $prop->property_uid;
 					}
 				$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-				$current_property_details->get_property_name_multi( $fav );
 				$current_property_details->gather_data_multi( $fav );
+				
+				$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+				$jomres_media_centre_images->get_images_multi($fav, array('property'));
 
 				$output[ 'HPNAME' ]                         = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME', _JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME, $editable = false, $isLink = false );
 				$counter                                    = 0;
@@ -72,30 +74,8 @@ class j06005muviewfavourites
 					$query       = "SELECT ptype FROM #__jomres_ptypes WHERE id = '" . (int) $current_property_details->multi_query_result[ $f ][ 'ptype_id' ] . "' LIMIT 1";
 					$ptype       = doSelectSql( $query, 1 );
 					$r[ 'TYPE' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPES' . (int) $current_property_details->multi_query_result[ $f ][ 'ptype_id' ], $ptype, false, false );
-
-					// $query="SELECT ptype_id FROM #__jomres_propertys WHERE propertys_uid = '".(int)$f->property_uid."' LIMIT 1";
-					// $type_id=doSelectSql($query,1);
-
-					//
-
-					// $mrConfig=getPropertySpecificSettings($f->property_uid);
-					// $propertyAddressArray=getPropertyAddressForPrint($f->property_uid);
-					// $propertyContactArray=$propertyAddressArray[1];
-					// $propertyAddyArray=$propertyAddressArray[2];
-
-					//$r['PROPERTYNAME']=$propertyContactArray[0];
-					// $r['PROP_STREET']=$propertyContactArray[1];
-					// $r['PROP_TOWN']=$propertyContactArray[2];
-					// $r['PROP_POSTCODE']=$propertyContactArray[3];
-					// $r['PROP_REGION']=$propertyContactArray[4];
-					// $countryname=getSimpleCountry($propertyContactArray[5]);
-					// $r['PROP_COUNTRY']=ucwords($countryname);
-					// $r['PROP_TEL']=$propertyAddyArray[0];
-					// $r['TYPE']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$type_id,$ptype,false,false);
-
-					$property_image = get_showtime( 'live_site' ) . "/jomres/images/jrlogo.png";
-					if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $f . "_property_" . $f . ".jpg" ) ) $property_image = get_showtime( 'live_site' ) . "/jomres/uploadedimages/" . $f . "_property_" . $f . ".jpg";
-					$r[ 'IMAGE' ] = '<img src="' . $property_image . '" width="40">';
+					$jomres_media_centre_images->get_images($f, array('property'));
+					$r[ 'IMAGE' ] = jomres_make_image_popup( $r[ 'PROPERTYNAME' ], $jomres_media_centre_images->images ['property'][0][0]['large'], "", array (), $jomres_media_centre_images->images ['property'][0][0]['small'] );
 
 					$r[ 'PROPERTYDETAILSLINK' ] = JOMRES_SITEPAGE_URL . '&task=viewproperty&property_uid=' . $f;
 					$r[ 'REMOVELINK' ]          = JOMRES_SITEPAGE_URL . '&task=muremovefavourite&no_html=1&property_uid=' . $f;

@@ -519,14 +519,15 @@ class dobooking
 
 	function getAllRoomsData()
 		{
-		$images = get_images(); // Gets the property images
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+		$images = $jomres_media_centre_images->get_images($this->property_uid, array('rooms')); // Gets the property images
 		$room_images = $images [ 'rooms' ] ;
 		$tmpFeatures = "";
 		$query       = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking,singleperson_suppliment  FROM #__jomres_rooms WHERE  propertys_uid = '$this->property_uid'";
 		$rooms       = doSelectSql( $query );
 		foreach ( $rooms as $r )
 			{
-			$this->allPropertyRooms[ $r->room_uid ] = array ( 'room_uid' => $r->room_uid, 'room_classes_uid' => $r->room_classes_uid, 'propertys_uid' => $r->propertys_uid, 'room_features_uid' => $r->room_features_uid, 'room_name' => $r->room_name, 'room_number' => $r->room_number, 'room_floor' => $r->room_floor, 'room_disabled_access' => $r->room_disabled_access, 'max_people' => $r->max_people, 'smoking' => $r->smoking, 'singleperson_suppliment' => $r->singleperson_suppliment , "small_room_image" => $room_images [$r->room_uid] [0] ['small']);
+			$this->allPropertyRooms[ $r->room_uid ] = array ( 'room_uid' => $r->room_uid, 'room_classes_uid' => $r->room_classes_uid, 'propertys_uid' => $r->propertys_uid, 'room_features_uid' => $r->room_features_uid, 'room_name' => $r->room_name, 'room_number' => $r->room_number, 'room_floor' => $r->room_floor, 'room_disabled_access' => $r->room_disabled_access, 'max_people' => $r->max_people, 'smoking' => $r->smoking, 'singleperson_suppliment' => $r->singleperson_suppliment , "small_room_image" => $room_images [$r->room_uid] [0] ['small'], "medium_room_image" => $room_images [$r->room_uid] [0] ['medium']);
 
 			$this->allPropertyRoomUids[ ] = $r->room_uid;
 			if ( strlen( $r->room_features_uid ) > 0 )
@@ -4877,7 +4878,8 @@ class dobooking
 		$tariffStuff[ 'CAPTION' ]            = $caption;
 
 		$roomStuff[ 'ROOM_TYPE_IMAGE' ] = $this->typeImage;
-		$roomStuff[ 'ROOM_IMAGE' ]      = $this->roomImagePath;
+		$roomStuff[ 'ROOM_IMAGE' ]      = $this->allPropertyRooms [ $roomUid ] [ 'small_room_image' ];
+		$roomStuff[ 'ROOM_IMAGE_MEDIUM' ]      = $this->allPropertyRooms [ $roomUid ] [ 'medium_room_image' ];
 
 		/*
 		This code is for generating the rooms slideshow in the popup, but it will not trigger currently. Disabled for now but left in-situ for when we decide to revisit this

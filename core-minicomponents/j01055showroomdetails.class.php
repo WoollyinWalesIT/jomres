@@ -44,14 +44,18 @@ class j01055showroomdetails
 		global $noshowroom;
 		$mrConfig                 = getPropertySpecificSettings();
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 		$this->retVals            = '';
 		$roomUid                  = intval( jomresGetParam( $_REQUEST, 'roomUid', 0 ) );
 		$featureList              = array ();
+		$output = array();
+		
 		if ( !$all ) 
 			$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE room_uid = '" . (int) $roomUid . "'";
 		else
 			$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $property_uid . "' ORDER BY room_number,room_name";
 		$roomList = doSelectSql( $query );
+		
 		if ( count( $roomList ) > 0 )
 			{
 			if ( !$all )
@@ -65,6 +69,7 @@ class j01055showroomdetails
 				}
 			
 			$current_property_details->gather_data($property_uid);
+			$jomres_media_centre_images->get_images($property_uid, array('rooms'));
 			
 			$headersList[ 'HIMAGEHEADER' ]                        = "";
 			$headersList[ 'COM_A_BASICTEMPLATE_SHOWROOMS' ]       = jr_gettext( '_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS', _JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS, false );
@@ -94,20 +99,16 @@ class j01055showroomdetails
 				$max_people           = $room->max_people;
 				$smoking              = $room->smoking;
 
-				$room_image = getImageForProperty( "room", $property_uid, $room->room_uid );
-				$imagethumb = getThumbnailForImage( $room_image );
-				
 				if (!$all)
 					{
-					$images = $current_property_details->images[$property_uid]['resources']['rooms'][$room_uid];
-					$result = $MiniComponents->specificEvent( '01060', 'slideshow' , array( "images" => $images ) );
-					if (count($images)>0)
+					if (count($jomres_media_centre_images->images['rooms'][$room_uid])>0)
 						{
-						$property_header[0][ 'SLIDESHOW' ] = $result ['slideshow'];
+						$result = $MiniComponents->specificEvent( '01060', 'slideshow' , array( "images" => $jomres_media_centre_images->images['rooms'][$room_uid] ) );
+						$output[ 'SLIDESHOW' ] = $result ['slideshow'];
 						}
 					else
 						{
-						$property_header[0][ 'SLIDESHOW' ] = '';
+						$output[ 'SLIDESHOW' ] = '';
 						}
 					}
 				
@@ -116,12 +117,14 @@ class j01055showroomdetails
 				$classAbbv = $current_property_details->all_room_types[ (int) $room_classes_uid ]['room_class_abbv'];
 
 				//$propertyName getPropertyNameNoTables($property_uid)
-				if ( $room_disabled_access == 1 ) $disabledAccess = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
+				if ( $room_disabled_access == 1 ) 
+					$disabledAccess = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
 				else
-				$disabledAccess = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
-				if ( $smoking == 1 ) $smoking = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
+					$disabledAccess = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
+				if ( $smoking == 1 ) 
+					$smoking = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
 				else
-				$smoking = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
+					$smoking = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
 
 				$roomFeatureDescriptionsArray = array ();
 				$roomFeatureUidsArray         = explode( ",", $room_features_uid );
@@ -134,7 +137,8 @@ class j01055showroomdetails
 						$featurelist[ ]                                = $roomFeatureDescriptionsArray;
 						}
 					}
-				$roomRow[ 'IMAGE' ] = jomres_make_image_popup( $room_name, $current_property_details->images[$property_uid]['resources']['rooms'][$room_uid] [0] ['large'], "", array (), $current_property_details->images[$property_uid]['resources']['rooms'][$room_uid] [0] ['small'] );
+
+				$roomRow[ 'IMAGE' ] = jomres_make_image_popup( $room_name, $jomres_media_centre_images->images['rooms'][$room_uid][0]['large'], "", array (), $jomres_media_centre_images->images['rooms'][$room_uid][0]['small'] );
 
 				$roomRow[ 'ROOMNUMBER' ] = $room_number;
 				$roomRow[ 'ROOMTYPE' ]   = $classAbbv;
@@ -165,7 +169,9 @@ class j01055showroomdetails
 				$tmpl->addRows( 'room_features', $featurelist );
 				}
 			
-			$tmpl->addRows( 'property_header', $property_header );
+			$pageoutput=array();
+			$pageoutput[]=$output;
+			$tmpl->addRows( 'pageoutput', $pageoutput );
 			
 			$tmpl->addRows( 'room_headers', $headers );
 			$tmpl->addRows( 'room_details', $rows );

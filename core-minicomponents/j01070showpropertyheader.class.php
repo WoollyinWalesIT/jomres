@@ -88,11 +88,12 @@ class j01070showpropertyheader
 					{
 					$output[ 'IMAGETHUMB' ] = $output[ 'IMAGE' ];
 					} */
-				
-				$images = get_images();
-				$output[ 'IMAGELARGE' ]  = $images ['property'][0][0]['large'];
-				$output[ 'IMAGEMEDIUM' ] = $images ['property'][0][0]['small'];
-				$output[ 'IMAGETHUMB' ]  = $images ['property'][0][0]['small'];
+
+				$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+				$jomres_media_centre_images->get_images($property_uid, array('property'));
+				$output[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images ['property'][0][0]['large'];
+				$output[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images ['property'][0][0]['medium'];
+				$output[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images ['property'][0][0]['small'];
 
 /* 				$sizes = array ( 'thwidth' => $jrConfig[ 'thumbnail_width' ], 'thheight' => $jrConfig[ 'thumbnail_width' ] );
 				if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . $property_uid . "_property_" . $property_uid . ".jpg" ) ) 

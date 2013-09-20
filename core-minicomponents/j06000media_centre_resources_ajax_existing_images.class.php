@@ -68,9 +68,11 @@ class j06000media_centre_resources_ajax_existing_images
 			{
 			foreach ($images as $image)
 				{
-				
 				$image_name_array =explode ( "/" , $image['large'] );
 				$image_name = $image_name_array[count($image_name_array)-1];
+				
+				$base_path = JOMRES_IMAGELOCATION_ABSPATH;
+				$image_small_path=str_replace(get_showtime('live_site').'/jomres/uploadedimages/','',$image['small']);
 
 				$output = array();
 				$pageoutput = array();
@@ -78,14 +80,16 @@ class j06000media_centre_resources_ajax_existing_images
 				$output['RANDOM_ID'] = generateJomresRandomString( 10 );
 				$output['FILENAME'] = $image_name;
 
-				if (!file_exists($image['small']))  // In the case of features images, it's possible that small images don't exist, so we'll swap to using the "large" (heh, relatively speaking) image instead.
+				if (!file_exists($base_path . $image_small_path))  // In the case of features images, it's possible that small images don't exist, so we'll swap to using the "large" (heh, relatively speaking) image instead.
 					{
+					var_dump($image_small_path);
 					$output['IMAGE_REL_SMALL'] = $image['large'];
 					}
 				else
 					{
 					$output['IMAGE_REL_SMALL'] = $image['small'];
 					}
+
 				$sizes = getimagesize ( $output['IMAGE_REL_SMALL'] );
 				if ($sizes[0] > 60)
 					{
