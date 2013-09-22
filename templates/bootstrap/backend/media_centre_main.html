@@ -54,10 +54,14 @@
 				<!-- The file input field used as target for the file upload widget -->
 				<input id="fileupload" type="file" name="files[]" multiple>
 			</span>
+			<span class="btn btn-inverse">
+				<button id="upload_all">{_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL}</button>
+			</span>
 			<div class="btn" id="clearbutton">
 				<i class="icon-minus"></i>
 				{_JOMRES_MEDIA_CENTRE_CLEAR}
 			</div>
+			
 			<!--<button type="submit" class="btn btn-primary start">
 				<i class="icon-upload"></i>
 				<span>Start upload</span>
@@ -88,7 +92,7 @@ jomresJquery(function () {
     // Change this to the location of your server-side upload handler:
     var url = ajax_url + '&task=media_centre_handler{URL_CONTEXT}',
         uploadButton = jomresJquery('<button/>')
-            .addClass('btn btn-primary')
+            .addClass('btn btn-primary start')
             .prop('disabled', true)
             .text('Processing...')
             .on('click', function () {
@@ -279,6 +283,13 @@ function get_existing_images()
 jomresJquery(document).ready(function () {
 	get_existing_images();
 	});
+	
+jomresJquery('#upload_all').click(function () {
+console.log("hi");
+            jomresJquery('.start').each(function () {
+                jomresJquery(this).click();
+            })
+        });
 </script>
 
 <!-- The template to display files available for upload -->

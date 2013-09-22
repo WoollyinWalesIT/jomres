@@ -62,12 +62,14 @@ class j99997generate_mainmenu
 					if ( $bob[ 0 ] == "task" )
 						{
 						$old_task = '&attempted_task=' . $bob[ 1 ];
+						$id = $bob[ 1 ];
 						}
 					}
 
 				$r               = $val;
 				$r[ 'LIVESITE' ] = get_showtime( 'live_site' );
 				$r[ 'TARGET' ]   = '';
+				$r[ 'ID_OPTION' ]   = $id;
 				if ( $val[ 'external' ] ) $r[ 'TARGET' ] = ' target="_blank" ';
 
 				$r[ 'disabled_class' ] = '';
@@ -111,10 +113,12 @@ class j99997generate_mainmenu
 
 				$rows[ ] = $r;
 				}
-
-			$pageoutput            = array ();
+			
 			$output[ 'CATEGORY' ]  = ucwords( $category );
+			$output[ 'ID_CATEGORY' ] = str_replace (" " , "_" , $category );
 			$output[ 'LIVE_SITE' ] = get_showtime( 'live_site' );
+			
+			$pageoutput            = array ();
 			$pageoutput[ ]         = $output;
 			$tmpl                  = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
