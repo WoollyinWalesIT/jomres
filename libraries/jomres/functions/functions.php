@@ -31,6 +31,13 @@ function import_images_to_media_centre_directories($property_id)
 			mkdir ( $base_path );
 			}
 		
+		
+		if (is_dir($base_path.'joomla'))
+			{
+			emptyDir($base_path.'joomla');
+			rmdir($base_path.'joomla');
+			}
+		
 		$all_types = array();
 		foreach ($resource_types as $type)
 			{
