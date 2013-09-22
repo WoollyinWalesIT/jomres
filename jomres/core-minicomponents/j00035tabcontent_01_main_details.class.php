@@ -85,7 +85,7 @@ class j00035tabcontent_01_main_details
 		$parsedTemplate = $tmpl->getParsedTemplate();
 
 		$anchor        = jomres_generate_tab_anchor( $output[ 'HDESCRIPTION' ] );
-		$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'HDESCRIPTION' ], "TAB_CONTENT" => $parsedTemplate );
+		$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'HDESCRIPTION' ], "TAB_CONTENT" => $parsedTemplate , "TAB_ID" => 'tour_target_property_details_main_details');
 		$this->retVals = $tab;
 		}
 

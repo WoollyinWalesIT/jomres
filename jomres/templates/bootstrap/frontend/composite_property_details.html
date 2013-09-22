@@ -2,7 +2,7 @@
 	<div id="property_details">
 		<div class="row-fluid">
 			<div id="gallerywrapper" class="span7 well">{SLIDESHOW}</div>
-			<div class="span5">
+			<div class="span5" id="tour_target_property_details_buttons">
 				<div class="big-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
 				<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
 					<div class="btn-toolbar"><a href="{LINK}"
@@ -28,7 +28,7 @@
 				<div class="btn-toolbar"><a href="{PRINT_LINK}" target="_blank" class="btn property_details_buttons"><i
 						class="icon-printer  pull-left"></i> {COMMON_PRINT}</a></div>
 				<div style="clear:both;"></div>
-				<div>{INLINE_CALENDAR}</div>
+				<div id="tour_target_inline_calendar">{INLINE_CALENDAR}</div>
 			</div>
 		</div>
 	</div>

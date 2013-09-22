@@ -189,7 +189,12 @@ class j00004x_init_javascript_css_files
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.fileupload-validate.js.relpath" ), get_showtime( "jquery.fileupload-validate.js" ) );
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.fileupload-validate.js.relpath" ), get_showtime( "tmpl.min.js" ) );
 					}
-					
+				
+				if (using_bootstrap())
+					{
+					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "bootstrap-tour.js.relpath" ), get_showtime( "bootstrap-tour.js" ) );
+					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.cookie.js.relpath" ), get_showtime( "jquery.cookie.js" ) );
+					}
 				}
 			}
 		}
