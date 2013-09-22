@@ -36,7 +36,7 @@ class j00035tabcontent_03_reviews
 			$reviews_title = jr_gettext( '_JOMRES_REVIEWS', _JOMRES_REVIEWS, false, false );
 
 			$anchor        = jomres_generate_tab_anchor( $reviews_title );
-			$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $reviews_title, "TAB_CONTENT" => $MiniComponents->miniComponentData[ '06000' ][ 'show_property_reviews' ] );
+			$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $reviews_title, "TAB_CONTENT" => $MiniComponents->miniComponentData[ '06000' ][ 'show_property_reviews' ] , "TAB_ID" => 'tour_target_reviews_list');
 			$this->retVals = $tab;
 			}
 		}

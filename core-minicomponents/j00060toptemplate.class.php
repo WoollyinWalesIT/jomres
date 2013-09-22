@@ -92,15 +92,31 @@ class j00060toptemplate
 			else
 			$output[ 'LOGO_RELATIVE_URL' ] = get_showtime( 'live_site' ) . '/jomres/images/jrlogo.png';
 
-			$output[ 'SANITY_CHECKS' ] = get_showtime( "sanity_check_warnings" );
-			$output[ 'NEXT' ]          = jr_gettext( '_PN_NEXT', _PN_NEXT, false, false );
-			$output[ 'PREVIOUS' ]      = jr_gettext( '_PN_PREVIOUS', _PN_PREVIOUS, false, false );
-
-			$lang_dropdown[ ][ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
-			set_showtime( "menuitem_langdropdown", $lang_dropdown[ 0 ][ 'LANGDROPDOWN' ] );
+			$output[ 'SANITY_CHECKS' ]  = get_showtime( "sanity_check_warnings" );
+			$output[ 'NEXT' ]           = jr_gettext( '_PN_NEXT', _PN_NEXT, false, false );
+			$output[ 'PREVIOUS' ]       = jr_gettext( '_PN_PREVIOUS', _PN_PREVIOUS, false, false );
+			
+			if (get_showtime("task") == "")
+				{
+				$task = "dashboard";
+				}
+			else
+				{
+				$task = get_showtime("task");
+				}
 			$output[ 'BACKLINK' ]       = '<a href="javascript:history.go(-1)">' . jr_gettext( '_JOMRES_COM_MR_BACK', _JOMRES_COM_MR_BACK ) . '</a>';
 			$output[ 'LIVESITE' ]       = get_showtime( 'live_site' );
 			$output[ 'DATEPICKERLANG' ] = JOMRESDATEPICKERLANG;
+
+			if (file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'javascript' . JRDS . 'tours' . JRDS . $task."-tour.js"))
+				{
+				jomres_cmsspecific_addheaddata( "javascript", "jomres/javascript/tours/", $task."-tour.js" );
+				$help [0] [ '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP' ]      = jr_gettext( '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', _JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP, false, false );
+				}
+
+			$lang_dropdown[ ][ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
+			set_showtime( "menuitem_langdropdown", $lang_dropdown[ 0 ][ 'LANGDROPDOWN' ] );
+
 			$messaging                  = array ();
 			$sticky_messaging           = array ();
 			if ( $jrConfig[ 'useJomresMessaging' ] == '1' )
@@ -141,7 +157,7 @@ class j00060toptemplate
 			$tmpl->readTemplatesFromInput( 'top.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'messages', $messaging );
-
+			$tmpl->addRows( 'help', $help );
 			$tmpl->addRows( 'timezone_dropdown', $timezone_dropdown );
 			$tmpl->addRows( 'lang_dropdown', $lang_dropdown );
 			$tmpl->addRows( 'editing_dropdown', $editing_dropdown );

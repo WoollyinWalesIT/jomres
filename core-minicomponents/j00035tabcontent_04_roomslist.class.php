@@ -34,7 +34,7 @@ class j00035tabcontent_04_roomslist
 			if ( $mrConfig[ 'roomslistinpropertydetails' ] == "1" )
 				{
 				$anchor        = jomres_generate_tab_anchor( $output[ 'TITLE_ROOMSLIST' ] );
-				$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'TITLE_ROOMSLIST' ], "TAB_CONTENT" => $MiniComponents->miniComponentData[ '01055' ][ 'showroomdetails' ] );
+				$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'TITLE_ROOMSLIST' ], "TAB_CONTENT" => $MiniComponents->miniComponentData[ '01055' ][ 'showroomdetails' ] , "TAB_ID" => 'tour_target_rooms_list' );
 				$this->retVals = $tab;
 				}
 			}

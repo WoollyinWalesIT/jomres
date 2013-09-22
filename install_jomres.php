@@ -322,8 +322,10 @@ function updateImages()
 					unset( $medium_images_array[ $key ] );
 					}
 				}
+			
+			// Disabled for Jomres 7.4
 			// Now we need to copy files from xxx.$dir tothe joomla/large, medium and small dirs
-			$joomla_dir = JOMRES_IMAGELOCATION_ABSPATH . $dir . JRDS . 'joomla';
+			/*$joomla_dir = JOMRES_IMAGELOCATION_ABSPATH . $dir . JRDS . 'joomla';
 
 			if ( !mkdir( $joomla_dir ) )
 				{
@@ -361,7 +363,7 @@ function updateImages()
 						copy( JOMRES_IMAGELOCATION_ABSPATH . $dir . JRDS . $image, $joomla_dir . JRDS . 'small' . JRDS . $image );
 						}
 					}
-				}
+				} */
 
 			}
 

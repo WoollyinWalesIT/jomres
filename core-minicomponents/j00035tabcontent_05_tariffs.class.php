@@ -35,7 +35,7 @@ class j00035tabcontent_05_tariffs
 			if ( $mrConfig[ 'showTariffsInline' ] == "1" )
 				{
 				$anchor        = jomres_generate_tab_anchor( $output[ 'TITLE_TARIFF' ] );
-				$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'TITLE_TARIFF' ], "TAB_CONTENT" => $MiniComponents->miniComponentData[ '01020' ][ 'showtariffs' ] );
+				$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'TITLE_TARIFF' ], "TAB_CONTENT" => $MiniComponents->miniComponentData[ '01020' ][ 'showtariffs' ] , "TAB_ID" => 'tour_target_property_details_tariffs');
 				$this->retVals = $tab;
 				}
 			}

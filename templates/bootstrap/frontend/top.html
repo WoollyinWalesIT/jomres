@@ -1,5 +1,9 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-
+<script>
+<!--
+var jomres_task = "{TASK}";
+-->
+</script>
 	<div id="jomres_alternate_menu_position"></div>
 	<!-- available if required by a plugin -->
 	<div id="jomres_content_area">
@@ -13,22 +17,25 @@
 		</noscript>
 
 		<div class="">
-			<h2>{PROPERTYNAME}<span class="small pull-right">{MANAGEMENT_VIEW_DROPDOWN}</span></h2>
+			<h2 id="tour_target_property_name">{PROPERTYNAME}<span class="small pull-right">{MANAGEMENT_VIEW_DROPDOWN}</span></h2>
+			<patTemplate:tmpl name="help" type="simpleCondition" requiredVars="_jomres_customcode_menucategories_help">
+			<a class="start btn-primary btn pull-right" id="start" href="#" onClick="start_tour()">{_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP}</a>
+			</patTemplate:tmpl>
 
 			<div class="row-fluid">
 				<patTemplate:tmpl name="timezone_dropdown" type="simpleCondition" requiredVars="timezoneblurb">
-					<div class="span4">
+					<div class="span4" id="tour_target_timezone_dropdown">
 						{TIMEZONEBLURB}
 						{TIMEZONE_DROPDOWN}
 					</div>
 				</patTemplate:tmpl>
 				<patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
-					<div class="span4">
+					<div class="span4" id="tour_target_lang_dropdown">
 						{LANGDROPDOWN}
 					</div>
 				</patTemplate:tmpl>
 				<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
-					<div class="span4">
+					<div class="span4" id="tour_target_editing_mode_dropdown">
 						{EDITING_MODE_DROPDOWN}
 					</div>
 				</patTemplate:tmpl>
@@ -46,4 +53,6 @@
 			jomresJquery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });//-->
 			</script>
 		</patTemplate:tmpl>
+
+<div id="tour_target_content"></div>
 </patTemplate:tmpl>

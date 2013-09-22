@@ -51,13 +51,13 @@ class j00035tabcontent_04_availability_calendar
 				if ( ( $mrConfig[ 'showAvailabilityCalendar' ] && $mrConfig[ 'singleRoomProperty' ] ) )
 					{
 					$anchor        = jomres_generate_tab_anchor( $output[ 'TITLE_AVAILABILITYCALENDAR' ] );
-					$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'TITLE_AVAILABILITYCALENDAR' ], "TAB_CONTENT" => $MiniComponents->miniComponentData[ '00017' ][ 'SRPavailabilitycalendar' ] );
+					$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'TITLE_AVAILABILITYCALENDAR' ], "TAB_CONTENT" => $MiniComponents->miniComponentData[ '00017' ][ 'SRPavailabilitycalendar' ]  , "TAB_ID" => 'tour_target_availability_calendar_srp');
 					$this->retVals = $tab;
 					}
 				elseif ( $mrConfig[ 'showAvailabilityCalendar' ] )
 					{
 					$anchor        = jomres_generate_tab_anchor( $output[ 'TITLE_AVAILABILITYCALENDAR' ] );
-					$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'TITLE_AVAILABILITYCALENDAR' ], "TAB_CONTENT" => $MiniComponents->miniComponentData[ '00018' ][ 'MRPavailabilitycalendar' ] );
+					$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'TITLE_AVAILABILITYCALENDAR' ], "TAB_CONTENT" => $MiniComponents->miniComponentData[ '00018' ][ 'MRPavailabilitycalendar' ] , "TAB_ID" => 'tour_target_availability_calendar_mrp' );
 					$this->retVals = $tab;
 					}
 				}
