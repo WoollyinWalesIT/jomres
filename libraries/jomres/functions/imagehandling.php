@@ -205,9 +205,6 @@ function uploadPropertyImage()
 
 	if ( $checkedImage )
 		{
-		jr_import( 'jomres_cache' );
-		$cache = new jomres_cache();
-		$cache->trashCacheForProperty( $defaultProperty );
 		$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
 		$jomres_messaging = new jomres_messages();
 		$jomres_messaging->set_message( $saveMessage );
@@ -250,9 +247,6 @@ function uploadRoomImage()
 
 		if ( $checkedImage )
 			{
-			jr_import( 'jomres_cache' );
-			$cache = new jomres_cache();
-			$cache->trashCacheForProperty( $defaultProperty );
 			$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
 			$jomres_messaging = new jomres_messages();
 			$jomres_messaging->set_message( $saveMessage );
@@ -433,9 +427,6 @@ function batchUploadForm()
 	$siteConfig      = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig        = $siteConfig->get();
 	$defaultProperty = getDefaultProperty();
-	jr_import( 'jomres_cache' );
-	$cache = new jomres_cache();
-	$cache->trashCacheForProperty( $defaultProperty );
 
 	$output[ 'PAGETITLE' ]                              = jr_gettext( '_JOMRES_JR_A_IMAGEHANDLING_BATCHUPLOAD', _JOMRES_JR_A_IMAGEHANDLING_BATCHUPLOAD, false );
 	$output[ 'ITEMID' ]                                 = $Itemid;
@@ -491,10 +482,6 @@ function batchUploadForm()
 function batchUploadPropertyImages()
 	{
 	$defaultProperty = getDefaultProperty();
-	jr_import( 'jomres_cache' );
-	$cache = new jomres_cache();
-	$cache->trashCacheForProperty( $defaultProperty );
-
 	$uploadedImagesArray = array ();
 	for ( $i = 0; $i < 12; $i++ )
 		{
