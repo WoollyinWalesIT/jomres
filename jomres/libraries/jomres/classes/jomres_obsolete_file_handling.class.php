@@ -759,6 +759,19 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file( $this->dir_minicomponents . 'j16000save_custom_field.class.php' );
 		
+		// 7.4
+		
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'edit_advanced_tariff.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'edit_micromanage_tariff.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'list_micromanage_tariffs.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'list_advanced_tariffs.html' );
+		
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'edit_advanced_tariff.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'edit_micromanage_tariff.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'list_micromanage_tariffs.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'list_advanced_tariffs.html' );
+		
+		
 		}
 
 	function add_obs_file( $path_and_file )
