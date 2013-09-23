@@ -26,8 +26,7 @@ class j00011manager_option_05_media_centre
 
 			return;
 			}
-		$mrConfig = getPropertySpecificSettings( $property_uid );
-		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) return;
+
 		$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=media_centre&upload_context=properties", 'Picture.png', jr_gettext( '_JOMRES_MEDIA_CENTRE_TITLE', _JOMRES_MEDIA_CENTRE_TITLE, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS, false, false ), false, false );
 		}
 

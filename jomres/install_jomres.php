@@ -235,11 +235,14 @@ if ( $folderChecksPassed && $functionChecksPassed && ACTION != "Migration" )
 				$registry->regenerate_registry();
 				if ( !AUTO_UPGRADE ) echo "Data already installed, no need to re-create it<br>";
 				doTableUpdates();
+				
 				updateImages();
 
 				import_countries();
 				import_regions();
-
+				
+				import_images_to_media_centre_directories();
+				
 				require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_upgrade.php" );
 				showCompletedText();
 				}
@@ -301,7 +304,7 @@ function updateImages()
 				$large_images_array[ ] = $file;
 				}
 			// Next, we're going to look for thumbnails that don't have a corresponding larger image. This is because previous versions of Jomres didn't clean up thumbnails properly when main images were deleted
-			if ( !AUTO_UPGRADE ) echo "<strong>Cleaning up " . JOMRES_IMAGELOCATION_ABSPATH . $dir . ", deleting any images that do not have a corresponding main image file.</strong><br>";
+			//if ( !AUTO_UPGRADE ) echo "<strong>Cleaning up " . JOMRES_IMAGELOCATION_ABSPATH . $dir . ", deleting any images that do not have a corresponding main image file.</strong><br>";
 			foreach ( $small_images_array as $key => $small_image )
 				{
 				$main_filename = str_replace( "_thumbnail.jpg", ".jpg", $small_image );
