@@ -100,6 +100,7 @@ class jomres_array_cache {
 	*/
 	public function isCached($key)
 		{
+		if (!$this->_useCaching) return false;
 		return isset($this->_cachedData[$key]['data']);
 		}
 

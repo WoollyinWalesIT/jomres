@@ -26,9 +26,8 @@ class j07020list_reviews
 
 			return;
 			}
-		jr_import( 'jrportal_property_functions' );
-		$propertyFunctions  = new jrportal_property_functions();
-		$jomresPropertyList = $propertyFunctions->getAllJomresProperties();
+
+		$jomresPropertyList = get_showtime('published_properties_in_system');
 
 		jr_import( 'jomres_reviews' );
 		$Reviews                 = new jomres_reviews();
@@ -39,14 +38,14 @@ class j07020list_reviews
 		$unpublished_count = 0;
 		$report_count      = 0;
 
-		foreach ( $jomresPropertyList as $key => $val )
+		foreach ( $jomresPropertyList as $property_uid )
 			{
 			foreach ( $all_reviews as $property_reviews )
 				{
 				foreach ( $property_reviews as $review )
 					{
 					$rating_id = $review[ 'rating_id' ];
-					if ( $review[ 'property_uid' ] == $key )
+					if ( $review[ 'property_uid' ] == $property_uid )
 						{
 						if ( isset( $all_reports[ $rating_id ] ) ) $report_count = count( $all_reports[ $rating_id ] );
 						if ( $review[ 'published' ] == 0 ) $unpublished_count++;

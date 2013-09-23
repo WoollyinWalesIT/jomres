@@ -82,7 +82,6 @@ class j06000media_centre_resources_ajax_existing_images
 
 				if (!file_exists($base_path . $image_small_path))  // In the case of features images, it's possible that small images don't exist, so we'll swap to using the "large" (heh, relatively speaking) image instead.
 					{
-					var_dump($image_small_path);
 					$output['IMAGE_REL_SMALL'] = $image['large'];
 					}
 				else

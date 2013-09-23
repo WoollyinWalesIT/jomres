@@ -41,6 +41,21 @@ class j06000cron_optimise
 					$foundTables[ ] = $r->$string;
 					}
 				}
+			
+			//repair tables
+			/*$query      = "REPAIR TABLE";
+			$tableCount = count( $foundTables );
+			$counter    = 0;
+			foreach ( $foundTables as $t )
+				{
+				$query .= " `" . $t . "`";
+				$counter++;
+				if ( $counter < $tableCount ) $query .= ",";
+				$query .= " ";
+				}
+			$result = doInsertSql( $query, "" );*/
+			
+			//optimize tables
 			$query      = "OPTIMIZE TABLE";
 			$tableCount = count( $foundTables );
 			$counter    = 0;

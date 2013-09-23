@@ -54,19 +54,15 @@
 				<!-- The file input field used as target for the file upload widget -->
 				<input id="fileupload" type="file" name="files[]" multiple>
 			</span>
-			<span class="btn btn-inverse">
-				<button id="upload_all">{_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL}</button>
-			</span>
 			<div class="btn" id="clearbutton">
 				<i class="icon-minus"></i>
 				{_JOMRES_MEDIA_CENTRE_CLEAR}
 			</div>
-			
-			<!--<button type="submit" class="btn btn-primary start">
+			<span class="btn btn-primary" id="upload_all">
 				<i class="icon-upload"></i>
-				<span>Start upload</span>
-			</button>
-			<button type="button" class="btn btn-danger delete">
+				Upload all
+			</span>
+			<!--<button type="button" class="btn btn-danger delete">
 				<i class="icon-trash"></i>
 				<span>Delete</span>
 			</button>
@@ -193,7 +189,7 @@ jomresJquery(function () {
 				}
 			else
 				{
-				var delete_link = '<a href="javascript:void(0);" class="btn btn-danger" onclick="delete_file(\''+file.deleteUrl+'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
+				var delete_link = '<a href="javascript:void(0);" class="btn btn-danger" onclick="delete_file(\''+file.deleteUrl+ '{URL_CONTEXT}'+'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
 				var view_link = '<a href="'+file.url+'" target="_blank" class="btn btn-primary">{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}</a>';
 
 				var links = view_link + " " + delete_link;
@@ -265,6 +261,12 @@ function delete_file(url , id )
 			}
 		});
 	}
+
+jomresJquery('#upload_all').click(function () {
+	jomresJquery('.start').each(function () {
+		jomresJquery(this).click();
+		})
+	});
 	
 function get_existing_images()
 	{
@@ -283,13 +285,6 @@ function get_existing_images()
 jomresJquery(document).ready(function () {
 	get_existing_images();
 	});
-	
-jomresJquery('#upload_all').click(function () {
-console.log("hi");
-            jomresJquery('.start').each(function () {
-                jomresJquery(this).click();
-            })
-        });
 </script>
 
 <!-- The template to display files available for upload -->

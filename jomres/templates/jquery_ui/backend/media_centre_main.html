@@ -3,9 +3,9 @@
 #dropzone {
 border-width:5px;
 border-style:dashed;
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
+border-color:#333;
+    height: 100px;
+    line-height: 100px;
     text-align: center;
     font-weight: bold;
 }
@@ -27,67 +27,63 @@ border-style:dashed;
     opacity: 1;
 }
 </style>
-	<div class="row-fluid">
-		<div class="span12">
-			<h1>{TITLE} ({UPLOAD_CONTEXT_TITLE})</h1>
-
-			<br>
-			<blockquote>
-				<p>{_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS}</p>
-			</blockquote>
-			<br>
-			<table>
+<h2>{TITLE} ({UPLOAD_CONTEXT_TITLE})</h2>
+<p>{_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS}</p>
+<patTemplate:tmpl name="notes" type="simpleCondition" requiredVars="note">
+<div class="ui-state-default">
+	{NOTE}
+</div>
+</patTemplate:tmpl>
+<div class="ui-state-highlight">
+	{_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS}
+</div>
+<table width="100%" border="0">
+	<tr>
+		<td width="60%" valign="top">
+			<p>{RESOURCE_TYPE_OPTIONS} <span id="resource_id_dropdown"><input type="hidden" id="resource_id" value="" /></span></p>
+			<div id="existing_images"></div>
+		</td>
+		<td width="40%" valign="top">
+			<table width="100%" border="0" class="ui-widget-content ui-corner-all">
 				<tr>
-					<td>
-						{RESOURCE_TYPE_OPTIONS}
+					<td valign="top">
+						<!-- The fileinput-button span is used to style the file input field as button -->
+						<input id="fileupload" type="file" name="files[]" multiple>
 					</td>
-					<td id="resource_id_dropdown">
-						<input type="hidden" id="resource_id" value="" />
+					<td>
+						<span class="fg-button ui-state-default ui-corner-all" id="upload_all">
+							{_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL}
+						</span>
+					</td>
+					<td>
+						<span class="fg-button ui-state-default ui-corner-all" id="clearbutton">
+							{_JOMRES_MEDIA_CENTRE_CLEAR}
+						</span>
 					</td>
 				</tr>
-			</table>
-			<table style="width:100%;">
 				<tr>
-					<td style="white-space:nowrap;vertical-align: top;" width="50%" >
-						<div id="existing_images"></div>
-					</td>
-					<td align="center" style="vertical-align: top;">
-						<!-- The fileinput-button span is used to style the file input field as button -->
-						<span class="fg-button ui-state-default ui-corner-all">
-							<i class="icon-plus"></i>
-							<span>{_JOMRES_MEDIA_CENTRE_BUTTON_ADD}</span>
-							<!-- The file input field used as target for the file upload widget -->
-							
-						</span><input id="fileupload" type="file" name="files[]" multiple>
-
-						<div class="fg-button ui-state-default ui-corner-all" id="clearbutton">
-							<i class="icon-minus"></i>
-							{_JOMRES_MEDIA_CENTRE_CLEAR}
-						</div>
-						
+					<td width="100%" colspan="3">	
 						<!-- The global progress bar -->
-						<div id="progress" class="ui-progressbar-value ui-widget-header ui-corner-left">
-							<div class="bar"></div>
+						<div id="progress" class="ui-progressbar ui-widget ui-widget-content ui-corner-all">
+							<div class="bar ui-progressbar-value ui-widget-header ui-corner-left" style="width:0%;"></div>
 						</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" colspan="3">
 						<div id="dropzone" class="fade well">{_JOMRES_MEDIA_CENTRE_DRAGNDROP}</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" colspan="3">
 						<!-- The container for the uploaded files -->
 						<div id="files" class="files" style="float:left"></div>
 					</td>
 				</tr>
 			</table>
-        </div>
-			<div class="span12">
-				<patTemplate:tmpl name="notes">
-				<div class="ui-state-highlight ui-corner-all">
-					{NOTE}
-				</div>
-				</patTemplate:tmpl>
-				<div class="ui-state-highlight ui-corner-all">
-					{_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS}
-				</div>
-			</div>
-
-	</div>
+		</td>
+	</tr>
+</table>
 
 <script>
 var ajax_url = "{AJAX_URL}";
@@ -97,7 +93,7 @@ jomresJquery(function () {
     // Change this to the location of your server-side upload handler:
     var url = ajax_url + '&task=media_centre_handler{URL_CONTEXT}',
         uploadButton = jomresJquery('<button/>')
-            .addClass('fg-button ui-state-default ui-corner-all')
+            .addClass('fg-button ui-state-default ui-corner-all start')
             .prop('disabled', true)
             .text('Processing...')
             .on('click', function () {
@@ -198,7 +194,7 @@ jomresJquery(function () {
 				}
 			else
 				{
-				var delete_link = '<a href="javascript:void(0);" class="fg-button ui-state-default ui-corner-all" onclick="delete_file(\''+file.deleteUrl+'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
+				var delete_link = '<a href="javascript:void(0);" class="fg-button ui-state-default ui-corner-all" onclick="delete_file(\''+file.deleteUrl + '{URL_CONTEXT}'+'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
 				var view_link = '<a href="'+file.url+'" target="_blank" class="fg-button ui-state-default ui-priority-primary ui-corner-all">{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}</a>';
 
 				var links = view_link + " " + delete_link;
@@ -270,6 +266,12 @@ function delete_file(url , id )
 			}
 		});
 	}
+
+jomresJquery('#upload_all').click(function () {
+	jomresJquery('.start').each(function () {
+		jomresJquery(this).click();
+		})
+	});
 	
 function get_existing_images()
 	{

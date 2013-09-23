@@ -49,9 +49,11 @@ class j16000listbookings
 		$bookingsFunctions = new jrportal_booking_functions();
 		$bookingsArray     = $bookingsFunctions->getBookings( "" );
 		$counter           = 0;
-		jr_import( 'jrportal_property_functions' );
-		$propertyFunctions  = new jrportal_property_functions();
-		$jomresPropertyList = $propertyFunctions->getAllJomresProperties();
+		
+		$jomresPropertyList = get_showtime('published_properties_in_system');
+		
+		$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
+		$current_property_details->get_property_name_multi($jomresPropertyList);
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
@@ -66,7 +68,7 @@ class j16000listbookings
 			$rw[ 'STYLE' ] = "";
 			if ( $this->bc_is_even( $counter ) ) $rw[ 'STYLE' ] = 'class="alt"';
 			$puid                  = $r[ 'property_uid' ];
-			$rw[ 'PROPERTY_UID' ]  = $jomresPropertyList[ $puid ][ "property_name" ];
+			$rw[ 'PROPERTY_UID' ]  = $current_property_details->property_names[ $puid ];
 			$rw[ 'GUEST_ID' ]      = $r[ 'guest_id' ];
 			$rw[ 'AFFILIATE_ID' ]  = $r[ 'affiliate_id' ];
 			$rw[ 'INVOICE_ID' ]    = $r[ 'invoice_id' ];

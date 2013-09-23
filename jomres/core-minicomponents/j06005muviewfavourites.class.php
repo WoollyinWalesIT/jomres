@@ -70,10 +70,8 @@ class j06005muviewfavourites
 					$r[ 'PROP_COUNTRY' ]  = $current_property_details->multi_query_result[ $f ][ 'property_country' ];
 					$r[ 'PROP_TEL' ]      = $current_property_details->multi_query_result[ $f ][ 'property_tel' ];
 
-
-					$query       = "SELECT ptype FROM #__jomres_ptypes WHERE id = '" . (int) $current_property_details->multi_query_result[ $f ][ 'ptype_id' ] . "' LIMIT 1";
-					$ptype       = doSelectSql( $query, 1 );
-					$r[ 'TYPE' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPES' . (int) $current_property_details->multi_query_result[ $f ][ 'ptype_id' ], $ptype, false, false );
+					$r[ 'TYPE' ] = $current_property_details->multi_query_result[ $f ][ 'property_type_title' ];
+					
 					$jomres_media_centre_images->get_images($f, array('property'));
 					$r[ 'IMAGE' ] = jomres_make_image_popup( $r[ 'PROPERTYNAME' ], $jomres_media_centre_images->images ['property'][0][0]['large'], "", array (), $jomres_media_centre_images->images ['property'][0][0]['small'] );
 

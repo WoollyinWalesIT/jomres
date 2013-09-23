@@ -33,7 +33,7 @@ class j07110media_centre_upload_context_features_images
 			}
 		
 		
-		$upload_context = jomresGetParam( $_REQUEST, 'upload_context', 'properties' );
+		$upload_context = jomresGetParam( $_REQUEST, 'upload_context', 'features_images' );
 		
 		$arr = array();
 		$arr [ 'resource_type_gathering_trigger'] = '11010';
@@ -46,7 +46,7 @@ class j07110media_centre_upload_context_features_images
 		$arr [ 'resource_subdirectories_used']    = false ;
 		$arr [ 'url_context']                     = '&upload_context=features_images' ;
 		$arr [ 'context']                         = 'features_images' ;
-		$arr [ 'upload_context_title']            = jr_gettext( '_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY', _JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY );
+		$arr [ 'upload_context_title']            = jr_gettext( '_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES', _JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES );
 		
 		
 		$this->ret_vals ['features_images']  = $arr;

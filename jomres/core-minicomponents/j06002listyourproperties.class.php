@@ -30,13 +30,8 @@ class j06002listyourproperties
 		$rows       = array ();
 		if ( $thisJRUser->superPropertyManager && $thisJRUser->superPropertyManagersAreGods )
 			{
-			$query              = "SELECT propertys_uid FROM #__jomres_propertys";
-			$managersProperties = doSelectSql( $query );
-			$mp                 = array ();
-			foreach ( $managersProperties as $p )
-				{
-				$mp[ ] = (int) $p->propertys_uid;
-				}
+			$mp = array ();
+			$mp = get_showtime('all_properties_in_system');
 			$clause = "WHERE ";
 			$clause .= genericOr( $mp, 'propertys_uid' );
 			}
@@ -53,8 +48,11 @@ class j06002listyourproperties
 			$clause .= genericOr( $mp, 'propertys_uid' );
 			}
 		if ( count( $mp ) == 0 ) return;
+		
+		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$current_property_details->get_property_name_multi($mp);
 
-		$query                          = "SELECT propertys_uid,property_name,property_street,property_town,property_region,property_country,property_postcode,published,apikey
+		$query                          = "SELECT propertys_uid,property_street,property_town,property_region,property_country,property_postcode,published,apikey
 		FROM #__jomres_propertys " . $clause . " LIMIT " . count( $mp );
 		$jomresPropertyList             = doSelectSql( $query );
 		$output[ 'PAGETITLE' ]          = jr_gettext( "_JRPORTAL_CPANEL_LISTPROPERTIES", _JRPORTAL_CPANEL_LISTPROPERTIES, false );
@@ -73,7 +71,7 @@ class j06002listyourproperties
 			else
 			$jrtb .= $jrtbar->toolbarItem( 'publish', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty'  . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_UNPUBLISH', _JOMRES_COM_MR_VRCT_UNPUBLISH, false ) );
 			$r[ 'PUBLISHLINK' ]     = $jrtb .= $jrtbar->endTable();
-			$r[ 'PROPERTYNAME' ]    = jomres_decode( $p->property_name );
+			$r[ 'PROPERTYNAME' ]    = $current_property_details->property_names[$p->propertys_uid];
 			$r[ 'SWITCHLINK' ]      = jomresURL( JOMRES_SITEPAGE_URL . '&thisProperty=' . $p->propertys_uid );
 			$r[ 'PROPERTYADDRESS' ] = jomres_decode( $p->property_street ) . ', ' . jomres_decode( $p->property_town ) . ', ' . jomres_decode( find_region_name( $p->property_region ) ) . ', ' . jomres_decode( $p->property_country ) . ', ' . $p->property_postcode;
 			$rows[ ]                = $r;

@@ -31,12 +31,21 @@ function toggle_button_class(id) {
 		jomresJquery(id).addClass('active btn-success');
 }
 
-function make_datatable(div_id, pagetitle, livesite) {
+function make_datatable(div_id, pagetitle, livesite, ajaxurl) {
+	bProcessing = false;
+	bServerSide = false;
+	if (ajaxurl) {
+		bProcessing = true;
+		bServerSide = true;
+		}
 	var oTable = jomresJquery('#' + div_id).dataTable({
+		"bProcessing": bProcessing,
+		"bServerSide": bServerSide,
+		"sAjaxSource": ajaxurl,
 		"bJQueryUI": false,
 		"bStateSave": true,
 		"sPaginationType": "bootstrap",
-		"sDom": "<'row-fluid'<'span4'l><'span4'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>>rt<'row-fluid'<'span5'i><'span7'p>>",
 		"sWrapper": "dataTables_wrapper form-inline",
 		"fnStateSave": function (oSettings, oData) {
 			localStorage.setItem('DataTables', JSON.stringify(oData));

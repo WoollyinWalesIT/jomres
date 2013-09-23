@@ -67,33 +67,23 @@ class basic_property_details
 		{
 		if ( $property_uid == 0 ) $property_uid = $this->property_uid;
 		
-		$this->get_property_name_multi(array($property_uid));
-
-		/* this part became reduntant since we`re always getting the property names with the get_property_name_multi function, which has caching support
-		if ( !array_key_exists( $property_uid, $this->property_names ) )
-			{
-			$original_property_uid = get_showtime( 'property_uid' );
-			set_showtime( 'property_uid', $property_uid );
-			$query                                              = "SELECT property_name FROM #__jomres_propertys WHERE propertys_uid = '" . $property_uid . "' LIMIT 1";
-			$property_name                                      = doSelectSql( $query, 1 );
-			$this->untranslated_property_names[ $property_uid ] = $property_name;
-			$customTextObj                                      = jomres_singleton_abstract::getInstance( 'custom_text' );
-			$customTextObj->get_custom_text_for_property( $property_uid );
-			$property_name = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $property_name, false, false );
-			set_showtime( 'property_uid', $original_property_uid );
-			}
-		else*/
-			$property_name = $this->property_names[ $property_uid ];
+		if (!array_key_exists($property_uid, $this->property_names))
+			$this->get_property_name_multi(array($property_uid));
+		
+		$property_name = $this->property_names[ $property_uid ];
 
 		return $property_name;
 		}
 
 	public function get_property_name_multi( $property_uids = array (), $database_obj = false )
 		{
+		//return false if there are no property uids in the array/object
+		if ( count( $property_uids ) == 0 ) return false;
+
 		$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
-		
-		//let`s see if we`re trying to get all property names in the system and if yes, cache them.
+
+		//change $property_uids object to array
 		if ( $database_obj )
 			{
 			$tmp_arr = array ();
@@ -101,31 +91,50 @@ class basic_property_details
 				{
 				$tmp_arr[] = $id->propertys_uid;
 				}
+			if (count($tmp_arr)>0)
+				{
+				$property_uids=array();
+				$property_uids=$tmp_arr;
+				unset ( $tmp_arr );
+				}
 			}
-		else
-			$tmp_arr=$property_uids;
-
-		sort($tmp_arr);
+		
+		//check if we`re getting property names for all properties in the system
+		sort($property_uids);
 		$all_properties_in_system=get_showtime('all_properties_in_system');
 		sort($all_properties_in_system);
-		$diff=array_diff($tmp_arr, $all_properties_in_system);
-		$this->property_names=$c->retrieve('all_property_names_in_system');
-		$this->untranslated_property_names=$c->retrieve('all_property_names_in_system_untranslated');
+		$diff=array_diff($all_properties_in_system, $property_uids);
+		
+		//check if property names are cached
+		$cached_property_names=$c->isCached('all_property_names_in_system');
+		$cached_property_names_untranslated=$c->isCached('all_property_names_in_system_untranslated');
 
-		if ( !$this->property_names )
+		//set property names from cache if available
+		if ( $cached_property_names )
+			{
+			$this->property_names=$c->retrieve('all_property_names_in_system');
+			$this->untranslated_property_names=$c->retrieve('all_property_names_in_system_untranslated');
+			
+			return $this->property_names;
+			}
+		
+		if ( !$cached_property_names )
 			{
 			$performance_monitor = jomres_singleton_abstract::getInstance( 'jomres_performance_monitor' );
 			$performance_monitor->set_point( "pre-property name multi" );
-			$this->property_names = array ();
 
 			$original_property_uid = get_showtime( 'property_uid' );
-			if ( count( $property_uids ) == 0 ) return false;
-	
-			// We've been passed a database object's search results, so we'll find the propertys_uids, dump them into an array and generate $gor from that.
-			if ( $database_obj )
-				$gor = genericOr( $tmp_arr, 'propertys_uid' );
-			else
-				$gor = genericOr( $property_uids, 'propertys_uid' );
+			
+			//unset property uids that already have been handled by $this->gather_data_multi() function
+			$temp_array = array ();
+			foreach ( $property_uids as $id )
+				{
+				if ( !array_key_exists( $id, $this->multi_query_result ) ) $temp_array[ ] = $id;
+				}
+			$property_uids = $temp_array;
+			unset ( $temp_array );
+
+			$gor = genericOr( $property_uids, 'propertys_uid' );
 	
 			$query          = "SELECT property_name,propertys_uid FROM #__jomres_propertys WHERE " . $gor;
 			$property_names = doSelectSql( $query );
@@ -148,12 +157,12 @@ class basic_property_details
 					$this->untranslated_property_names[ $p->propertys_uid ] = $p->property_name;
 					}
 				}
-			set_showtime( 'property_uid', $original_property_uid );
-			if (count($diff)==0)
+			if (count($diff)==0 && get_showtime('all_properties_in_system'))
 				{
 				$c->store('all_property_names_in_system',$this->property_names);
 				$c->store('all_property_names_in_system_untranslated',$this->untranslated_property_names);
 				}
+			set_showtime( 'property_uid', $original_property_uid );
 			$performance_monitor->set_point( "post-property name multi" );
 			}
 
@@ -184,8 +193,6 @@ class basic_property_details
 		
 		if ( array_key_exists( $this->property_uid, $this->multi_query_result ) )
 			{
-			//$this->images                = $this->multi_query_result[ $this->property_uid ][ 'images' ];
-			
 			$this->property_name         = $this->multi_query_result[ $this->property_uid ][ 'property_name' ];
 			$this->property_street       = $this->multi_query_result[ $this->property_uid ][ 'property_street' ];
 			$this->property_town         = $this->multi_query_result[ $this->property_uid ][ 'property_town' ];
@@ -221,81 +228,11 @@ class basic_property_details
 			$this->property_policies_disclaimers = $this->multi_query_result[ $this->property_uid ][ 'property_policies_disclaimers' ];
 			$this->apikey                        = $this->multi_query_result[ $this->property_uid ][ 'apikey' ];
 			$this->approved                      = $this->multi_query_result[ $this->property_uid ][ 'approved' ];
-			
-			$this->property_names[$this->property_uid] = $this->multi_query_result[ $this->property_uid ][ 'property_name' ];
+
+			$this->accommodation_tax_rate		 =$this->multi_query_result[ $this->property_uid ][ 'accommodation_tax_rate' ];
 			$this->room_types                    =$this->multi_query_result[ $this->property_uid ][ 'room_types' ];
 			$this->rooms                         =$this->multi_query_result[ $this->property_uid ][ 'rooms' ];
 			}
-		/*else //this part became redundant, since we always get the property data with gather_data_multi;
-			{
-			$no_html  = get_showtime( 'no_html' );
-			$popup    = get_showtime( 'popup' );
-			$editable = true;
-			if ( $no_html == "1" || $popup == "1" ) $editable = false;
-
-			$query = "SELECT `propertys_uid`,`property_name`,`property_street`,`property_town`,`property_postcode`,`property_region`,`property_country`,`property_tel`,`property_fax`,`property_email`,`published`,`ptype_id`,
-`stars`,`superior`,`lat`,`long`,`metatitle`,`metadescription`,`metakeywords`,`property_features`,`property_mappinglink`,`property_key`,`property_description`,`property_checkin_times`,`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`apikey`,`approved` FROM #__jomres_propertys WHERE propertys_uid = '" . $this->property_uid . "' LIMIT 1";
-
-			$propertyData = doSelectSql( $query );
-
-
-			foreach ( $propertyData as $data )
-				{
-				//$countryname=getSimpleCountry($data->property_country);
-
-
-				$countryname = getSimpleCountry( $data->property_country );
-
-				$this->untranslated_property_names[ $this->property_uid ] = $data->property_name;
-
-				$this->property_name     = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false );
-				$this->property_street   = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_STREET', $data->property_street, $editable, false );
-				$this->property_town     = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN', $data->property_town, $editable, false );
-				$this->property_postcode = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE', $data->property_postcode, $editable, false );
-				if ( is_numeric( $data->property_region ) )
-					{
-					$jomres_regions        = jomres_singleton_abstract::getInstance( 'jomres_regions' );
-					$this->property_region = jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $data->property_region, $jomres_regions->regions[ $data->property_region ][ 'regionname' ], $editable, false );
-					}
-				else
-				$this->property_region = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_REGION' . $data->property_region, $data->property_region, $editable, false );
-
-				$this->property_country      = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_COUNTRY', $countryname, $editable, false );
-				$this->property_country_code = $data->property_country;
-
-				$this->property_tel        = $data->property_tel;
-				$this->property_fax        = $data->property_fax;
-				$this->property_email      = $data->property_email;
-				$this->published           = (int) $data->published;
-				$this->ptype_id            = (int) $data->ptype_id;
-				$this->property_type       = $this->all_property_types[ (int) $data->ptype_id ];
-				$this->property_type_title = $this->all_property_type_titles[ (int) $data->ptype_id ];
-
-
-				$this->stars                      = (int) $data->stars;
-				$this->superior                   = (int) $data->superior;
-				$this->lat                        = $data->lat;
-				$this->long                       = $data->long;
-				$this->metatitle                  = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE', $data->metatitle, false, false );
-				$this->metadescription            = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION', $data->metadescription, false, false );
-				$this->metakeywords               = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS', $data->metakeywords, false, false );
-				$this->property_features          = $data->property_features;
-				$this->property_mappinglink       = $data->property_mappinglink;
-				$this->real_estate_property_price = $data->property_key;
-
-				$this->property_description          = jomres_cmsspecific_parseByBots( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', trim( stripslashes( $data->property_description ) ), $editable, false ) );
-				$this->property_checkin_times        = jomres_cmsspecific_parseByBots( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES', trim( stripslashes( $data->property_checkin_times ) ), $editable, false ) );
-				$this->property_area_activities      = jomres_cmsspecific_parseByBots( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES', trim( stripslashes( $data->property_area_activities ) ), $editable, false ) );
-				$this->property_driving_directions   = jomres_cmsspecific_parseByBots( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS', trim( stripslashes( $data->property_driving_directions ) ), $editable, false ) );
-				$this->property_airports             = jomres_cmsspecific_parseByBots( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS', trim( stripslashes( $data->property_airports ) ), $editable, false ) );
-				$this->property_othertransport       = jomres_cmsspecific_parseByBots( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT', trim( stripslashes( $data->property_othertransport ) ), $editable, false ) );
-				$this->property_policies_disclaimers = jomres_cmsspecific_parseByBots( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS', trim( stripslashes( $data->property_policies_disclaimers ) ), $editable, false ) );
-				$this->apikey                        = $data->apikey;
-				$this->approved                      = (bool) $data->approved;
-				
-				$this->property_names[$this->property_uid] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false );
-				}
-			}*/
 
 		$mrConfig = getPropertySpecificSettings( $this->property_uid );
 		$mrConfig[ 'singleRoomProperty' ] == '0' ? $srp_only = 0 : $srp_only = 1;
@@ -310,32 +247,8 @@ class basic_property_details
 				$this->this_property_room_classes[ (int) $roomClass->roomtype_id ] = $this->classAbbvs[ $roomClass->roomtype_id ];
 				}
 			}
-		
-		if ( !isset( $this->room_types ) )
-			{
-			$this->room_types = array ();
-			$query      = "SELECT DISTINCT `room_classes_uid` FROM #__jomres_rooms WHERE propertys_uid = '".$this->property_uid."' ";
-			$rooms      = doSelectSql( $query );
-			foreach ( $rooms as $room )
-				{
-				$this->room_types[ $room->room_classes_uid ][ 'abbv' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'abbv' ];
-				$this->room_types[ $room->room_classes_uid ][ 'desc' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'desc' ];
-				$this->room_types[ $room->room_classes_uid ][ 'image' ] = get_showtime( 'live_site' ) . '/' . $this->all_room_types[ $room->room_classes_uid ][ 'image' ];
-				}
-			}
 
-		if ( !isset( $this->rooms ) )
-			{
-			$this->rooms = array ();
-			$query      = "SELECT `room_uid` FROM #__jomres_rooms WHERE propertys_uid = '".$this->property_uid."' ";
-			$rooms      = doSelectSql( $query );
-			foreach ( $rooms as $room )
-				{
-				$this->rooms[ $room->room_uid ] = $room->room_uid ;
-				}
-			}
-		
-		$bang                  = explode( ",", $this->property_features );
+		$bang = explode( ",", $this->property_features );
 		$propertyFeaturesArray = array ();
 		foreach ( $bang as $b )
 			{
@@ -369,12 +282,6 @@ class basic_property_details
 					}
 				}
 			}
-
-		$mrConfig                     = getPropertySpecificSettings( $this->property_uid );
-		$taxrates                     = taxrates_getalltaxrates();
-		$cfgcode                      = $mrConfig[ 'accommodation_tax_code' ];
-		$rate                         = $taxrates[ $cfgcode ];
-		$this->accommodation_tax_rate = (float) $rate[ 'rate' ];
 		}
 
 	function get_gross_accommodation_price( $nett_amount, $property_uid = 0 )
@@ -436,10 +343,6 @@ class basic_property_details
 				set_showtime( 'property_type', $this->all_property_types[ (int) $data->ptype_id ] );
 				$countryname = getSimpleCountry( $data->property_country );
 				$customTextObj->get_custom_text_for_property( $data->propertys_uid );
-
-				$this->untranslated_property_names[ $data->propertys_uid ] = $data->property_name;
-
-				//$this->multi_query_result[ $data->propertys_uid ][ 'images' ]            = jomres_get_property_images($data->propertys_uid);
 				
 				$this->multi_query_result[ $data->propertys_uid ][ 'propertys_uid' ]     = $data->propertys_uid;
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_name' ]     = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false );
@@ -488,6 +391,7 @@ class basic_property_details
 				$this->multi_query_result[ $data->propertys_uid ][ 'approved' ]                      = (bool) $data->approved;
 				
 				$this->property_names[$data->propertys_uid] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false );
+				$this->untranslated_property_names[$data->propertys_uid] = $data->property_name;
 				}
 
 			$temp_rooms = array ();
@@ -500,16 +404,14 @@ class basic_property_details
 				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'desc' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'room_class_full_desc' ];
 				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'image' ] = $this->all_room_types[ $room->room_classes_uid ][ 'image' ];
 				}
-			
-		if ( !isset( $this->rooms ) )
-			{
+
 			$query      = "SELECT `room_uid`,`propertys_uid` FROM #__jomres_rooms WHERE " . $gor;
 			$rooms      = doSelectSql( $query );
 			foreach ( $rooms as $room )
 				{
 				$this->multi_query_result[ $room->propertys_uid ][ 'rooms' ][ $room->room_uid ] = $room->room_uid ;
 				}
-			}
+			
 
 			// This array is only used by the showRoomDetails task. It's pointless constantly running this query when it's not used anywhere else.
 			if ( get_showtime( 'task' ) == "showRoomDetails" )

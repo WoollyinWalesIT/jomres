@@ -31,10 +31,13 @@ class j16000ajax_list_properties_awaiting_approval
 
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$current_property_details->gather_data( $property_uid );
+		
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+		$jomres_media_centre_images->get_images($property_uid, array('property'));
 
 		$output = array ();
 
-		$output[ 'IMAGE' ] = getImageForProperty( "property", $property_uid, $property_uid );
+		$output[ 'IMAGE' ] = $jomres_media_centre_images->images ['property'][0][0]['large'];
 
 		$output[ 'property_name' ]     = $current_property_details->property_name;
 		$output[ 'property_street' ]   = $current_property_details->property_street;

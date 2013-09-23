@@ -125,13 +125,12 @@ class j02190confirmationform
 			$room_class_abbv .= ".";
 			$counter++;
 			}
+		
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+		$jomres_media_centre_images->get_images($defaultProperty, array('property'));
 
-		$output[ 'PROPERTYIMAGE' ] = '<img src="' . getImageForProperty( "property", $propertyUid, $propertyUid ) . '" width="50" height="50" />';
-		$output[ 'IMAGETHUMB' ]    = getThumbnailForImage( $output[ 'IMAGE' ], true );
-		if ( $output[ 'IMAGETHUMB' ] )
-			{
-			$output[ 'PROPERTYIMAGE' ] = '<img src="' . $output[ 'IMAGETHUMB' ] . '" />';
-			}
+		$output[ 'PROPERTYIMAGE' ] = $jomres_media_centre_images->images ['property'][0][0]['medium'];
+		$output[ 'IMAGETHUMB' ]    = $jomres_media_centre_images->images ['property'][0][0]['small'];
 
 		$output[ 'BL_DEAR' ]   = jr_gettext( '_JOMRES_COM_CONFIRMATION_DEAR', _JOMRES_COM_CONFIRMATION_DEAR );
 		$output[ 'BL_INTRO1' ] = jr_gettext( '_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1', _JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1 );
