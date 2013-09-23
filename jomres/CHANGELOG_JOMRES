@@ -1,7 +1,7 @@
 Jomres 7.4.0
 
 Added a new feature called array cache, which significantly speeds up Jomres performance.
-Added the new Jomres Media Centre, which improves the image uploading process.
+Added the new Jomres Media Centre, which improves the image uploading process. This is available to the frontend for uploading images to properties, and in the backend for uploading room type and property feature images.
 Added a complete new global rooms feature that works like business features. This will alow managers to select room features when editing the room, without the need to create them first in the room features tab. The room features tab and functionality is still kept, so managers can still add their own room features too.
 
 Fixed a bug where new user's bookings weren't always being associated with their user ids.
