@@ -30,6 +30,8 @@ class j00004build_tour_strings
 			return;
 			}
 		
+		return; // Not currently used as not ready for 7.4
+		
 		// Documentation http://bootstraptour.com/
 		
 		$testing = true;
@@ -137,7 +139,7 @@ class j00004build_tour_strings
 			$id = 'tour_target_property_details_main_details';
 			$tour_items [ $id ] = array(
 				"id"                 => $id,
-				"position"           => 'left',
+				"position"           => 'top',
 				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
 				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
 				);
@@ -145,7 +147,7 @@ class j00004build_tour_strings
 			$id = 'tour_target_property_details_moreinfo';
 			$tour_items [ $id ] = array(
 				"id"                 => $id,
-				"position"           => 'left',
+				"position"           => 'top',
 				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
 				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
 				);
@@ -153,7 +155,7 @@ class j00004build_tour_strings
 			$id = 'tour_target_property_details_booking_form';
 			$tour_items [ $id ] = array(
 				"id"                 => $id,
-				"position"           => 'left',
+				"position"           => 'top',
 				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
 				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
 				);
@@ -161,7 +163,7 @@ class j00004build_tour_strings
 			$id = 'tour_target_property_details_map';
 			$tour_items [ $id ] = array(
 				"id"                 => $id,
-				"position"           => 'left',
+				"position"           => 'top',
 				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
 				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
 				);
@@ -169,7 +171,7 @@ class j00004build_tour_strings
 			$id = 'tour_target_reviews_list';
 			$tour_items [ $id ] = array(
 				"id"                 => $id,
-				"position"           => 'left',
+				"position"           => 'top',
 				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
 				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
 				);
@@ -177,7 +179,7 @@ class j00004build_tour_strings
 			$id = 'tour_target_rooms_list';
 			$tour_items [ $id ] = array(
 				"id"                 => $id,
-				"position"           => 'left',
+				"position"           => 'top',
 				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
 				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
 				);
@@ -185,13 +187,141 @@ class j00004build_tour_strings
 			$id = 'tour_target_property_details_tariffs';
 			$tour_items [ $id ] = array(
 				"id"                 => $id,
-				"position"           => 'left',
+				"position"           => 'top',
 				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
 				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
 				);
 			
 			
+			$id = 'tour_target_local_attractions';
+			$tour_items [ $id ] = array(
+				"id"                 => $id,
+				"position"           => 'top',
+				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
+				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
+				);
 			
+			$id = 'tour_target_local_events';
+			$tour_items [ $id ] = array(
+				"id"                 => $id,
+				"position"           => 'top',
+				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
+				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
+				);
+			
+			$id = 'jomres_auction_house_content_body';
+			$tour_items [ $id ] = array(
+				"id"                 => $id,
+				"position"           => 'top',
+				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
+				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
+				);
+			
+			
+
+			$id = 'tab_Bookingrooms';
+			$tour_items [ $id ] = array(
+				"id"                 => $id,
+				"position"           => 'top',
+				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
+				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
+				);
+
+			$id = 'tab_Yourbusinessdetails';
+			$tour_items [ $id ] = array(
+				"id"                 => $id,
+				"position"           => 'top',
+				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
+				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
+				);
+
+			$id = 'tab_Externallink';
+			$tour_items [ $id ] = array(
+				"id"                 => $id,
+				"position"           => 'top',
+				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
+				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
+				);
+
+			$id = 'tab_Gateways';
+			$tour_items [ $id ] = array(
+				"id"                 => $id,
+				"position"           => 'top',
+				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
+				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
+				);
+
+			$id = 'tab_Misc';
+			$tour_items [ $id ] = array(
+				"id"                 => $id,
+				"position"           => 'top',
+				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
+				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
+				);
+
+			$id = 'tab_Propertydetails';
+			$tour_items [ $id ] = array(
+				"id"                 => $id,
+				"position"           => 'top',
+				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
+				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
+				);
+
+			$id = 'tab_Required';
+			$tour_items [ $id ] = array(
+				"id"                 => $id,
+				"position"           => 'top',
+				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
+				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
+				);
+
+			$id = 'tab_SRPs';
+			$tour_items [ $id ] = array(
+				"id"                 => $id,
+				"position"           => 'top',
+				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
+				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
+				);
+
+			$id = 'tab_Supplements';
+			$tour_items [ $id ] = array(
+				"id"                 => $id,
+				"position"           => 'top',
+				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
+				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
+				);
+
+			$id = 'tab_TariffsCurrency';
+			$tour_items [ $id ] = array(
+				"id"                 => $id,
+				"position"           => 'top',
+				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
+				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
+				);
+
+			$id = 'tab_Touristtax';
+			$tour_items [ $id ] = array(
+				"id"                 => $id,
+				"position"           => 'top',
+				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
+				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
+				);
+
+			$id = 'tab_Micromanage';
+			$tour_items [ $id ] = array(
+				"id"                 => $id,
+				"position"           => 'top',
+				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
+				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
+				);
+
+			$id = 'tab_Wiseprice';
+			$tour_items [ $id ] = array(
+				"id"                 => $id,
+				"position"           => 'top',
+				"title"              => jr_gettext ( "TOUR_ID_".strtoupper($id)."_TITLE" , '' , false ),
+				"content"            => jr_gettext ( "TOUR_ID_".strtoupper($id)."_CONTENT" , '' , false )
+				);
 			
 			$string = json_encode ($tour_items);
 			$sanitised = str_replace( "'" , "&#34;" , $string );

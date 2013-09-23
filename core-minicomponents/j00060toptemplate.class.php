@@ -108,11 +108,12 @@ class j00060toptemplate
 			$output[ 'LIVESITE' ]       = get_showtime( 'live_site' );
 			$output[ 'DATEPICKERLANG' ] = JOMRESDATEPICKERLANG;
 
-			if (file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'javascript' . JRDS . 'tours' . JRDS . $task."-tour.js"))
+			// Not ready for 7.4, will be put into 7.5
+ 			/* if (file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'javascript' . JRDS . 'tours' . JRDS . $task."-tour.js"))
 				{
 				jomres_cmsspecific_addheaddata( "javascript", "jomres/javascript/tours/", $task."-tour.js" );
 				$help [0] [ '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP' ]      = jr_gettext( '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', _JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP, false, false );
-				}
+				} */
 
 			$lang_dropdown[ ][ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
 			set_showtime( "menuitem_langdropdown", $lang_dropdown[ 0 ][ 'LANGDROPDOWN' ] );

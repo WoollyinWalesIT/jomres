@@ -70,7 +70,7 @@ class jomres_content_tabs_bootstrap
 		if ( strlen( $anchor ) == 0 ) $anchor = generateJomresRandomString( 10 );
 		$tabCookieString     = "";
 		$this->panelNames[ ] = $anchor;
-		$this->paneLink[ ]   = '<li class="' . $active . '"><a href="#' . $anchor . '" data-toggle="tab">' . $tabpage . '</a></li>
+		$this->paneLink[ ]   = '<li class="' . $active . '"><div id="tab_'.$anchor.'"></div><a href="#' . $anchor . '" data-toggle="tab">' . $tabpage . '</a></li>
 		';
 		$this->panes[ ]      = '<div class="tab-pane ' . $active . '" id="' . $anchor . '"><!-- start content tab panel -->';
 		}
