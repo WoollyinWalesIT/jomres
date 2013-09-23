@@ -396,22 +396,15 @@ class basic_property_details
 
 			$temp_rooms = array ();
 			$gor        = genericOr( $property_uids, 'propertys_uid' );
-			$query      = "SELECT `room_classes_uid`,`propertys_uid` FROM #__jomres_rooms WHERE " . $gor;
-			$rooms      = doSelectSql( $query );
-			foreach ( $rooms as $room )
-				{
-				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'abbv' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'room_class_abbv' ];
-				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'desc' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'room_class_full_desc' ];
-				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'image' ] = $this->all_room_types[ $room->room_classes_uid ][ 'image' ];
-				}
-
-			$query      = "SELECT `room_uid`,`propertys_uid` FROM #__jomres_rooms WHERE " . $gor;
+			$query      = "SELECT `room_uid`,`room_classes_uid`,`propertys_uid` FROM #__jomres_rooms WHERE " . $gor;
 			$rooms      = doSelectSql( $query );
 			foreach ( $rooms as $room )
 				{
 				$this->multi_query_result[ $room->propertys_uid ][ 'rooms' ][ $room->room_uid ] = $room->room_uid ;
+				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'abbv' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'room_class_abbv' ];
+				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'desc' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'room_class_full_desc' ];
+				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'image' ] = $this->all_room_types[ $room->room_classes_uid ][ 'image' ];
 				}
-			
 
 			// This array is only used by the showRoomDetails task. It's pointless constantly running this query when it's not used anywhere else.
 			if ( get_showtime( 'task' ) == "showRoomDetails" )
