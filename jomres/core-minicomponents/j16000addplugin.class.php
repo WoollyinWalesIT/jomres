@@ -115,6 +115,7 @@ class j16000addplugin
 			$progress_messages[ ] = array ( "MESSAGE" => "Cleaning up " . $updateDirPath . " unpacked for a new installation of the plugin." );
 			emptyDir( $updateDirPath . "unpacked" );
 			rmdir( $updateDirPath . "unpacked" );
+			rmdir( $updateDirPath );
 			}
 
 		if ( is_dir( $updateDirPath ) )
@@ -124,7 +125,10 @@ class j16000addplugin
 			rmdir( $updateDirPath );
 			}
 
-		if ( mkdir( $updateDirPath ) ) $progress_messages[ ] = array ( "MESSAGE" => "Made " . $updateDirPath . " for a new installation of the plugin." );
+		if ( mkdir( $updateDirPath ) ) 
+			{
+			$progress_messages[ ] = array ( "MESSAGE" => "Made " . $updateDirPath . " for a new installation of the plugin." );
+			}
 		else
 			{
 			$error_messsage[ "ERROR" ] = "Couldn't make the folder " . $updateDirPath . " so quitting.";
@@ -357,7 +361,18 @@ class j16000addplugin
 				{
 				//echo $remote_pluginsDirPath.$pluginName.JRDS."plugin_install.php";exit;
 				$progress_messages[ ] = array ( "MESSAGE" => "Moved contents of $newfilename to " . $remote_pluginsDirPath . $pluginName . "" );
-				if ( !rmdir( $updateDirPath . "unpacked" ) ) echo "Error removing $updateDirPath/unpacked";
+				
+				emptyDir($updateDirPath . "unpacked");
+				if ( !rmdir( $updateDirPath . "unpacked" ) ) 
+					{
+					echo "Error removing ".$updateDirPath."unpacked";
+					}
+				if ( !rmdir( $updateDirPath  ) ) 
+					{
+					echo "Error removing $updateDirPath";
+					}
+				
+				
 				if ( file_exists( $remote_pluginsDirPath . $pluginName . JRDS . "plugin_install.php" ) )
 					{
 					require_once( $remote_pluginsDirPath . $pluginName . JRDS . "plugin_install.php" );
