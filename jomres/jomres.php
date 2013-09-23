@@ -917,16 +917,9 @@ if ( get_showtime( 'numberOfPropertiesInSystem' ) > 0 )
 			if ( $thisJRUser->userIsManager )
 				{
 				property_header( $property_uid );
-				jr_import( 'jomres_cache' );
-				$cache        = new jomres_cache( "preview", $property_uid, false );
-				$cacheContent = $cache->readCache();
-				if ( $cacheContent ) echo $cacheContent;
-				else
-					{
-					$componentArgs                   = array ();
-					$componentArgs[ 'property_uid' ] = $property_uid;
-					$MiniComponents->triggerEvent( '00016', $componentArgs );
-					}
+				$componentArgs                   = array ();
+				$componentArgs[ 'property_uid' ] = $property_uid;
+				$MiniComponents->triggerEvent( '00016', $componentArgs );
 				}
 			else
 			userHasBeenLoggedOut();

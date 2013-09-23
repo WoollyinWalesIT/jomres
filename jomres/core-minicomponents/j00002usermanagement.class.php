@@ -40,17 +40,13 @@ class j00002usermanagement
 			return;
 			}
 
-		//jr_import('jr_user');
 		set_showtime( "jr_user_ready", false );
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-		//$thisJRUser= new jr_user();
-		if ( $thisJRUser->userIsManager == true ) $thisJRUser->check_currentproperty();
+		if ( $thisJRUser->userIsManager == true ) 
+			$thisJRUser->check_currentproperty();
 		$thisProperty = trim( jomresGetParam( $_REQUEST, 'thisProperty', 0 ) );
 		if ( in_array( $thisProperty, $thisJRUser->authorisedProperties ) && $thisProperty != $thisJRUser->currentproperty )
 			{
-			jr_import( 'jomres_cache' );
-			$cache = new jomres_cache();
-			$cache->trashCacheForUser( $thisJRUser->userid );
 			$new_url = get_showtime( 'live_site' ) . '/index.php?';
 			foreach ( $_REQUEST as $key => $val ) // There's no need for these elements to be sanitised, as we're just redirecting again to a new url, these items will be sanitised at that point.
 				{
@@ -60,14 +56,14 @@ class j00002usermanagement
 					}
 				}
 
-
 			if ( $thisJRUser->userIsManager == true && $thisProperty > 0 )
 				{
 				$thisJRUser->set_currentproperty( $thisProperty );
 				jomresRedirect( jomresURL( $new_url ) );
 				}
 			}
-		if ( $thisJRUser->currentproperty == 0 && $thisJRUser->userIsManager ) $thisJRUser->setToAnyAuthorisedProperty();
+		if ( $thisJRUser->currentproperty == 0 && $thisJRUser->userIsManager ) 
+			$thisJRUser->setToAnyAuthorisedProperty();
 		$this->userObject = $thisJRUser;
 		set_showtime( "jr_user_ready", true );
 		}
@@ -85,6 +81,4 @@ class j00002usermanagement
 		return $this->userObject;
 		}
 	}
-
-
 ?>

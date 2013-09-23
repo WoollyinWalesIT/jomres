@@ -44,9 +44,6 @@ class j04020saveroom
 
 		if ( $mrConfig[ 'singleRoomProperty' ] == "0" )
 			{
-			jr_import( 'jomres_cache' );
-			$cache = new jomres_cache();
-			$cache->trashCacheForProperty( $defaultProperty );
 			$roomUid                 = intval( jomresGetParam( $_POST, 'roomUid', 0 ) );
 			$roomClasses             = intval( jomresGetParam( $_POST, 'roomClasses', 0 ) );
 			$disabledAccess          = intval( jomresGetParam( $_POST, 'disabledAccess', 0 ) );
@@ -103,7 +100,7 @@ class j04020saveroom
 
 				}
 			else
-			trigger_error( "Room class uid not set", E_USER_ERROR );
+				trigger_error( "Room class uid not set", E_USER_ERROR );
 			}
 		}
 

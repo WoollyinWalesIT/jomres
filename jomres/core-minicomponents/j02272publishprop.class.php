@@ -53,18 +53,12 @@ class j02272publishprop
 			}
 		else
 			{
-			jr_import( 'jomres_cache' );
-			$cache = new jomres_cache();
-
 			$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
-
 
 			if ( !isset( $_REQUEST[ 'property_uid' ] ) ) 
 				$defaultProperty = getDefaultProperty();
 			else
 				$defaultProperty = jomresGetParam( $_REQUEST, 'property_uid', 0 );
-			$cache->trashCacheForProperty( $defaultProperty );
-			$cache->trashCacheForUser( $thisJRUser->userid );
 			
 			$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 			$c->eraseAll();
@@ -112,7 +106,7 @@ class j02272publishprop
 					}
 				}
 			else
-			echo "You naughty little tinker, that's not your property";
+				echo "You naughty little tinker, that's not your property";
 			}
 		}
 

@@ -41,15 +41,11 @@ class j06002save_normalmode_tariffs
 			return;
 			}
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-		if ( !$thisJRUser->userIsManager ) return;
-
+		if ( !$thisJRUser->userIsManager ) 
+			return;
 
 		$mrConfig = getPropertySpecificSettings();
-
 		$defaultProperty = getDefaultProperty();
-		jr_import( 'jomres_cache' );
-		$cache = new jomres_cache();
-		$cache->trashCacheForProperty( $defaultProperty );
 		// New Room defaults
 		$room_floor           = "N/A";
 		$room_disabled_access = 0;
