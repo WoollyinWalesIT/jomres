@@ -42,9 +42,6 @@ class j04090deleteroomfeature
 
 		$roomFeatureUid  = intval( jomresGetParam( $_REQUEST, 'roomFeatureUid', '' ) );
 		$defaultProperty = getDefaultProperty();
-		jr_import( 'jomres_cache' );
-		$cache = new jomres_cache();
-		$cache->trashCacheForProperty( $defaultProperty );
 		//Lets delete this room feature
 		$saveMessage = jr_gettext( '_JOMRES_COM_MR_ROOMFEATURE_DELETED', _JOMRES_COM_MR_ROOMFEATURE_DELETED, false );
 		// First we need to check that the feature isn't recorded against any rooms. If it is, we can't move forward

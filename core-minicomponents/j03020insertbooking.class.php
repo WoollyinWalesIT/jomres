@@ -516,9 +516,6 @@ class j03020insertbooking
 				doInsertSql( $query, "" );
 				}
 			}
-		jr_import( 'jomres_cache' );
-		$cache = new jomres_cache( "", $property_uid );
-		$cache->trashCacheForProperty( $property_uid );
 		}
 
 	/**

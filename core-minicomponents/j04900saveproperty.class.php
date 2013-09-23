@@ -48,9 +48,7 @@ class j04900saveproperty
 
 		$this->newpropertyId = 0;
 		$propertyUid         = intval( jomresGetParam( $_POST, 'property_uid', 0 ) );
-		jr_import( 'jomres_cache' );
-		$cache = new jomres_cache();
-		$cache->trashCacheForProperty( $propertyUid );
+
 		if ( $propertyUid > 0 && !in_array( $propertyUid, $jrConfig->authorisedProperties ) ) $propertyUid = getDefaultProperty();
 		if ( $jrConfig[ 'selfRegistrationAllowed' ] == "0" && $propertyUid == 0 ) $propertyUid = getDefaultProperty();
 

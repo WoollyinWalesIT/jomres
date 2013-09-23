@@ -41,9 +41,6 @@ class j02202savedeposit
 			return;
 			}
 		$defaultProperty = getDefaultProperty();
-		jr_import( 'jomres_cache' );
-		$cache = new jomres_cache();
-		$cache->trashCacheForProperty( $defaultProperty );
 		$contractUid = intval( jomresGetParam( $_POST, 'contractUid', 0 ) );
 		$depositRef  = getEscaped( jomresGetParam( $_POST, 'depositRef', "" ) );
 		if ( $contractUid > 0 )

@@ -26,7 +26,7 @@ class j06001dashboard extends jomres_dashboard
 
 			return;
 			}
-		//
+
 		$property_uid = $componentArgs[ 'property_uid' ];
 		if ( is_null( $property_uid ) ) $property_uid = getDefaultProperty();
 
@@ -47,103 +47,93 @@ class j06001dashboard extends jomres_dashboard
 		elseif ( get_showtime( "task" ) == "dashboard" ) $this->show_date_dropdown = true;
 		if ( $mrConfig[ 'singleRoomProperty' ] == "1" ) $this->show_date_dropdown = false;
 
-		jr_import( 'jomres_cache' );
-		$cache        = new jomres_cache( "dashboard", $this->property_uid, false );
-		$cacheContent = $cache->readCache();
-		if ( $cacheContent && !isset( $_REQUEST[ 'requestedMonth' ] ) ) echo $cacheContent;
-		else
-			{
-			$this->cfg_todaycolor        = $mrConfig[ 'avlcal_todaycolor' ]; ## font color for the current date
-			$this->cfg_inmonthface       = $mrConfig[ 'avlcal_inmonthface' ]; ## font color for days in the display month
-			$this->cfg_outmonthface      = $mrConfig[ 'avlcal_outmonface' ]; ## font color for days not in the display month
-			$this->cfg_inbgcolor         = $mrConfig[ 'avlcal_inbgcolour' ]; ## cell bgcolor for days in the display month
-			$this->cfg_outbgcolor        = $mrConfig[ 'avlcal_outbgcolour' ]; ## cell bgcolor for days not in display month
-			$this->cfg_occupiedcolour    = $mrConfig[ 'avlcal_occupiedcolour' ]; ## cell bgcolour for occupied days
-			$this->cfg_provisionalcolour = $mrConfig[ 'avlcal_provisionalcolour' ]; ## cell bgcolour for occupied days
-			$this->cfg_pastcolour        = $mrConfig[ 'avlcal_pastcolour' ]; ## cell bgcolour for occupied days
-			$this->cfg_booking           = $mrConfig[ 'avlcal_booking' ]; ## font color for days where the room is booked up
-			$this->cfg_black             = $mrConfig[ 'avlcal_black' ]; ## font color for days where the room is black booked
-			$this->cfg_weekendborder     = $mrConfig[ 'avlcal_weekendborder' ]; ## font color for days where the room is black booked
-			$this->requestedMonth        = jomresGetParam( $_REQUEST, 'requestedMonth', 0 );
-			$this->dashboardmonthcookie  = jomresGetParam( $_COOKIE, 'dashboardmonth', '' );
+		$this->cfg_todaycolor        = $mrConfig[ 'avlcal_todaycolor' ]; ## font color for the current date
+		$this->cfg_inmonthface       = $mrConfig[ 'avlcal_inmonthface' ]; ## font color for days in the display month
+		$this->cfg_outmonthface      = $mrConfig[ 'avlcal_outmonface' ]; ## font color for days not in the display month
+		$this->cfg_inbgcolor         = $mrConfig[ 'avlcal_inbgcolour' ]; ## cell bgcolor for days in the display month
+		$this->cfg_outbgcolor        = $mrConfig[ 'avlcal_outbgcolour' ]; ## cell bgcolor for days not in display month
+		$this->cfg_occupiedcolour    = $mrConfig[ 'avlcal_occupiedcolour' ]; ## cell bgcolour for occupied days
+		$this->cfg_provisionalcolour = $mrConfig[ 'avlcal_provisionalcolour' ]; ## cell bgcolour for occupied days
+		$this->cfg_pastcolour        = $mrConfig[ 'avlcal_pastcolour' ]; ## cell bgcolour for occupied days
+		$this->cfg_booking           = $mrConfig[ 'avlcal_booking' ]; ## font color for days where the room is booked up
+		$this->cfg_black             = $mrConfig[ 'avlcal_black' ]; ## font color for days where the room is black booked
+		$this->cfg_weekendborder     = $mrConfig[ 'avlcal_weekendborder' ]; ## font color for days where the room is black booked
+		$this->requestedMonth        = jomresGetParam( $_REQUEST, 'requestedMonth', 0 );
+		$this->dashboardmonthcookie  = jomresGetParam( $_COOKIE, 'dashboardmonth', '' );
 
-			if ( $this->requestedMonth == 0 )
+		if ( $this->requestedMonth == 0 )
+			{
+			$currentMonth = date( "Y/m" );
+			$dateElements = explode( "/", $currentMonth );
+			if ( !$this->dashboardmonthcookie )
 				{
-				$currentMonth = date( "Y/m" );
-				$dateElements = explode( "/", $currentMonth );
-				if ( !$this->dashboardmonthcookie )
-					{
-					$this->dashboardmonthcookie = mktime( 0, 0, 0, $dateElements[ 1 ], 1, $dateElements[ 0 ] );
-					SetCookie( "dashboardmonth", "$this->dashboardmonthcookie", time() + 3600 );
-					$this->requestedMonth = $this->dashboardmonthcookie;
-					}
-				else
-					{
-					$this->requestedMonth = $this->dashboardmonthcookie;
-					}
+				$this->dashboardmonthcookie = mktime( 0, 0, 0, $dateElements[ 1 ], 1, $dateElements[ 0 ] );
+				SetCookie( "dashboardmonth", "$this->dashboardmonthcookie", time() + 3600 );
+				$this->requestedMonth = $this->dashboardmonthcookie;
 				}
 			else
-			SetCookie( "dashboardmonth", "$this->dashboardmonthcookie", time() + 3600 );
-			$this->roomsArray           = array ();
-			$this->thisMonthsDatesArray = array ();
-			$this->unixLatestDate       = 0;
-			$this->monthsToShow         = 16;
-
-			// Let's do some data collection to try to minimise the db queries
-			$this->contracts = array ();
-			$query           = "SELECT contract_uid,deposit_paid,arrival,departure,guest_uid FROM #__jomres_contracts WHERE property_uid = '" . (int) $this->property_uid . "' AND `cancelled` != 1 ";
-			$contractList    = doSelectSql( $query );
-			if ( count( $contractList ) > 0 )
 				{
-				foreach ( $contractList as $c )
-					{
-					$this->contracts[ $c->contract_uid ] = array ( "deposit_paid" => $c->deposit_paid, "arrival" => $c->arrival, "departure" => $c->departure, "guest_uid" => $c->guest_uid );
-					}
+				$this->requestedMonth = $this->dashboardmonthcookie;
 				}
-
-			$this->guestInfo = array ();
-			$query           = "SELECT firstname,surname,guests_uid FROM #__jomres_guests WHERE property_uid = '" . (int) $this->property_uid . "'";
-			$guestList       = doSelectSql( $query );
-			if ( count( $guestList ) > 0 )
-				{
-				foreach ( $guestList as $c )
-					{
-					$this->guestInfo[ $c->guests_uid ] = array ( "firstname" => $c->firstname, "surname" => $c->surname );
-					}
-				}
-
-			$this->room_bookings = array ();
-			$query               = "SELECT room_uid,contract_uid,black_booking,date FROM #__jomres_room_bookings WHERE property_uid = " . (int) $this->property_uid;
-			$bookingsList        = doSelectSql( $query );
-			if ( count( $bookingsList ) > 0 )
-				{
-				foreach ( $bookingsList as $c )
-					{
-					$this->room_bookings[ ] = array ( "room_uid" => $c->room_uid, "contract_uid" => $c->contract_uid, "black_booking" => $c->black_booking, "date" => $c->date );
-					}
-				}
-
-
-			$this->todaysDate     = date( "Y/m/d" );
-			$today                = getdate();
-			$this->unixTodaysDate = mktime( 0, 0, 0, $today[ 'mon' ], $today[ 'mday' ], $today[ 'year' ] );
-			$this->setDates();
-			$this->getRoomsForProperty();
-
-
-			$cachableContent = '';
-
-			if ( $this->show_date_dropdown ) $cachableContent .= $this->dashboardMakeMonthList();
-
-			$cachableContent .= $this->viewRoomsHorizontal();
-
-			if ( $this->show_legend ) $cachableContent .= $this->getLegend();
-
-			$cache->setCache( $cachableContent );
-			unset( $cache );
-			echo $cachableContent;
-
 			}
+		else
+		SetCookie( "dashboardmonth", "$this->dashboardmonthcookie", time() + 3600 );
+		$this->roomsArray           = array ();
+		$this->thisMonthsDatesArray = array ();
+		$this->unixLatestDate       = 0;
+		$this->monthsToShow         = 16;
+
+		// Let's do some data collection to try to minimise the db queries
+		$this->contracts = array ();
+		$query           = "SELECT contract_uid,deposit_paid,arrival,departure,guest_uid FROM #__jomres_contracts WHERE property_uid = '" . (int) $this->property_uid . "' AND `cancelled` != 1 ";
+		$contractList    = doSelectSql( $query );
+		if ( count( $contractList ) > 0 )
+			{
+			foreach ( $contractList as $c )
+				{
+				$this->contracts[ $c->contract_uid ] = array ( "deposit_paid" => $c->deposit_paid, "arrival" => $c->arrival, "departure" => $c->departure, "guest_uid" => $c->guest_uid );
+				}
+			}
+
+		$this->guestInfo = array ();
+		$query           = "SELECT firstname,surname,guests_uid FROM #__jomres_guests WHERE property_uid = '" . (int) $this->property_uid . "'";
+		$guestList       = doSelectSql( $query );
+		if ( count( $guestList ) > 0 )
+			{
+			foreach ( $guestList as $c )
+				{
+				$this->guestInfo[ $c->guests_uid ] = array ( "firstname" => $c->firstname, "surname" => $c->surname );
+				}
+			}
+
+		$this->room_bookings = array ();
+		$query               = "SELECT room_uid,contract_uid,black_booking,date FROM #__jomres_room_bookings WHERE property_uid = " . (int) $this->property_uid;
+		$bookingsList        = doSelectSql( $query );
+		if ( count( $bookingsList ) > 0 )
+			{
+			foreach ( $bookingsList as $c )
+				{
+				$this->room_bookings[ ] = array ( "room_uid" => $c->room_uid, "contract_uid" => $c->contract_uid, "black_booking" => $c->black_booking, "date" => $c->date );
+				}
+			}
+
+
+		$this->todaysDate     = date( "Y/m/d" );
+		$today                = getdate();
+		$this->unixTodaysDate = mktime( 0, 0, 0, $today[ 'mon' ], $today[ 'mday' ], $today[ 'year' ] );
+		$this->setDates();
+		$this->getRoomsForProperty();
+
+
+		$cachableContent = '';
+
+		if ( $this->show_date_dropdown ) $cachableContent .= $this->dashboardMakeMonthList();
+
+		$cachableContent .= $this->viewRoomsHorizontal();
+
+		if ( $this->show_legend ) $cachableContent .= $this->getLegend();
+
+		echo $cachableContent;
 		}
 
 

@@ -43,12 +43,14 @@ class j00016composite_property_details
 		$jrConfig     = $siteConfig->get();
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
-		if ( !isset( $jrConfig[ 'show_booking_form_in_property_details' ] ) ) $jrConfig[ 'show_booking_form_in_property_details' ] = "1";
+		if ( !isset( $jrConfig[ 'show_booking_form_in_property_details' ] ) ) 
+			$jrConfig[ 'show_booking_form_in_property_details' ] = "1";
 		$componentArgs[ 'property_uid' ] = $property_uid;
 
 		$MiniComponents->triggerEvent( '00015', $componentArgs );
 		$output = $MiniComponents->miniComponentData[ '00015' ][ 'viewproperty' ][ 'property_deets' ][ 0 ];
-		if ( $jrConfig[ 'show_booking_form_in_property_details' ] == "0" && $mrConfig[ 'is_real_estate_listing' ] == 0 ) $bookinglink = $MiniComponents->miniComponentData[ '00015' ][ 'viewproperty' ][ 'bookinglink' ];
+		if ( $jrConfig[ 'show_booking_form_in_property_details' ] == "0" && $mrConfig[ 'is_real_estate_listing' ] == 0 ) 
+			$bookinglink = $MiniComponents->miniComponentData[ '00015' ][ 'viewproperty' ][ 'bookinglink' ];
 		$slideshowlink = $MiniComponents->miniComponentData[ '00015' ][ 'viewproperty' ][ 'slideshowlink' ];
 		if ( get_showtime( 'include_room_booking_functionality' ) ) $tariffslink = $MiniComponents->miniComponentData[ '00015' ][ 'viewproperty' ][ 'tariffslink' ];
 		$gallerylink   = $MiniComponents->miniComponentData[ '00015' ][ 'viewproperty' ][ 'gallerylink' ];
@@ -142,25 +144,23 @@ class j00016composite_property_details
 
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 
-		if ( isset( $_REQUEST[ 'jr_printable' ] ) ) $tmpl->readTemplatesFromInput( 'composite_property_details_printable.html' );
+		if ( isset( $_REQUEST[ 'jr_printable' ] ) ) 
+			$tmpl->readTemplatesFromInput( 'composite_property_details_printable.html' );
 		else
 			{
-			if ( !isset( $jrConfig[ 'property_details_in_tabs' ] ) ) $jrConfig[ 'property_details_in_tabs' ] = "1";
+			if ( !isset( $jrConfig[ 'property_details_in_tabs' ] ) ) 
+				$jrConfig[ 'property_details_in_tabs' ] = "1";
 
-			if ( $jrConfig[ 'property_details_in_tabs' ] == "1" ) $tmpl->readTemplatesFromInput( 'composite_property_details.html' );
+			if ( $jrConfig[ 'property_details_in_tabs' ] == "1" ) 
+				$tmpl->readTemplatesFromInput( 'composite_property_details.html' );
 			else
-			$tmpl->readTemplatesFromInput( 'composite_property_details_notabs.html' );
+				$tmpl->readTemplatesFromInput( 'composite_property_details_notabs.html' );
 			}
 
-		$cachableContent = $tmpl->getParsedTemplate();
-		$task            = get_showtime( 'task' );
-		jr_import( 'jomres_cache' );
-		$cache = new jomres_cache( $task, $property_uid, false );
-		$cache->setCache( $cachableContent );
-		unset( $cache );
-		echo $cachableContent;
+		$tmpl->displayParsedTemplate();
 
-		if ( $jrConfig[ 'dumpTemplate' ] == "1" && isset( $tmpl ) ) $tmpl->dump();
+		if ( $jrConfig[ 'dumpTemplate' ] == "1" && isset( $tmpl ) ) 
+			$tmpl->dump();
 		}
 
 	/**
