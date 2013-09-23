@@ -175,12 +175,6 @@ class jomres_media_centre_images
 					{
 					$all_types[] = $type['resource_type'];
 					}
-				
-				//if (count($requested_types)>0)
-//					{
-//					$all_types=array_intersect($all_types,$requested_types);
-//					var_dump($all_types);
-//					}
 				}
 			
 			if (count($all_types)>0)
@@ -190,10 +184,6 @@ class jomres_media_centre_images
 					$base_path = JOMRES_IMAGELOCATION_ABSPATH . $property_id . JRDS;
 					$rel_path  = JOMRES_IMAGELOCATION_RELPATH . $property_id . "/" ;
 					
-					// if the file exists, we haven't yet imported this property's old images into the media centre's sub directories, let's do that now
-					// We will do this every time, for the time being as this will give people's system's time to catch up. Will need to have a condition added in 2015.
-					//this has to be moved to the installer.
-					import_images_to_media_centre_directories($property_id);
 					
 					$dir_contents = scandir_getdirectories( $base_path );
 						

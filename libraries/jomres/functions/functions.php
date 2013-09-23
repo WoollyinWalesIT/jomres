@@ -14,163 +14,174 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-function import_images_to_media_centre_directories($property_id)
+function import_images_to_media_centre_directories()
 	{
 	// We are going to move any property images, slideshow images and room images into the new media centre's resource directories.
-	
-	// First we'll make the sub-dirs, if we need to
-	$MiniComponents =jomres_getSingleton('mcHandler');
-	$MiniComponents->triggerEvent( '03379' );
-	$resource_types = $MiniComponents->miniComponentData['03379'];
-	if (count($resource_types)>0)
+	$query                 = "SELECT propertys_uid,published FROM #__jomres_propertys";
+	$properties            = doSelectSql( $query );
+	$all_propertys         = array();
+	foreach ( $properties as $p )
 		{
-		$base_path = JOMRES_IMAGELOCATION_ABSPATH . $property_id . JRDS;
-		
-		if ( !is_dir($base_path) )
+		$all_propertys[ ] = $p->propertys_uid;
+		}
+	
+	$resource_types = array();
+	$resource_types[] = array ( "resource_type" => "rooms" , "resource_id_required" => true , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', _JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM, false ) );
+	$resource_types[] = array ( "resource_type" => "slideshow" , "resource_id_required" => false , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', _JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW, false ) );
+	$resource_types[] = array ( "resource_type" => "property" , "resource_id_required" => false , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', _JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY, false ) , "notes" => jr_gettext( '_JOMRES_MEDIA_CENTRE_NOTES_CORE', _JOMRES_MEDIA_CENTRE_NOTES_CORE, false )  );
+	
+	if (count($resource_types)>0 && count($all_propertys) > 0)
+		{
+		foreach ($all_propertys as $property_id)
 			{
-			mkdir ( $base_path );
-			}
-		
-		
-		if (is_dir($base_path.'joomla'))
-			{
-			emptyDir($base_path.'joomla');
-			rmdir($base_path.'joomla');
-			}
-		
-		$all_types = array();
-		foreach ($resource_types as $type)
-			{
-			if ( !is_dir($base_path . $type['resource_type']) )
-				{
-				mkdir ( $base_path . $type['resource_type'] );
-				}
-			}
-
-			if (!is_dir ($base_path . "property" . JRDS .  "0" ))
-				{
-				mkdir ($base_path . "property" . JRDS .  "0");
-				}
-			if (!is_dir ($base_path . "property" . JRDS .  "0" . JRDS . "thumbnail"))
-				{
-				mkdir ($base_path . "property" . JRDS .  "0" . JRDS . "thumbnail");
-				}
-			if (!is_dir ($base_path . "property" . JRDS .  "0" . JRDS . "medium"))
-				{
-				mkdir ($base_path . "property" . JRDS .  "0" . JRDS . "medium");
-				}
-		
-		// Let's start with the property image
- 		if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . ".jpg" ) )
-			{
-			rename (
-				JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . ".jpg",
-				$base_path . "property" . JRDS . "0". JRDS . $property_id . "_property_" . $property_id . ".jpg"
-				);
-			}
- 		if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . "_thumbnail.jpg" ) )
-			{
-			rename (
-				JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . "_thumbnail.jpg",
-				$base_path . "property" . JRDS . "0". JRDS . "thumbnail" . JRDS . $property_id . "_property_" . $property_id . ".jpg"
-				);
-			}
- 		if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . "_thumbnail_med.jpg" ) )
-			{
-			rename (
-				JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . "_thumbnail_med.jpg",
-				$base_path . "property" . JRDS . JRDS . "0". JRDS . "medium" . JRDS . $property_id . "_property_" . $property_id . ".jpg"
-				);
-			}
+			$base_path = JOMRES_IMAGELOCATION_ABSPATH . $property_id . JRDS;
 			
-		
-		// Now any slideshow images
-		$slideshow_images = scandir_getfiles( $base_path );
-
-		if (count($slideshow_images)>0)
-			{
-			if (!is_dir ($base_path . "slideshow" . JRDS .  "0" ))
+			if ( !is_dir($base_path) )
 				{
-				mkdir ($base_path . "slideshow" . JRDS .  "0");
+				mkdir ( $base_path );
 				}
-			if (!is_dir ($base_path . "slideshow" . JRDS .  "0" . JRDS . "thumbnail"))
+			
+			
+			if (is_dir($base_path.'joomla'))
 				{
-				mkdir ($base_path . "slideshow" . JRDS .  "0" . JRDS . "thumbnail");
+				emptyDir($base_path.'joomla');
+				rmdir($base_path.'joomla');
 				}
-			if (!is_dir ($base_path . "slideshow" . JRDS .  "0" . JRDS . "medium"))
+			
+			$all_types = array();
+			foreach ($resource_types as $type)
 				{
-				mkdir ($base_path . "slideshow" . JRDS .  "0" . JRDS . "medium");
-				}
-
-			foreach ($slideshow_images as $image)
-				{
-				// The slideshow image files directly under /N/ have the pattern filename/filename_thumbnail/filename_thumbnail_med, so we need to find the main file, then move it's medium/thumbnails over afterwards
-				if ( !strstr ( "_thumbnail" , $image) )
+				if ( !is_dir($base_path . $type['resource_type']) )
 					{
-					$image_name_array =explode ( "." , $image );
-					unset($image_name_array[count($image_name_array)-1]);
-					$image_name = implode($image_name_array);
-					
-					rename (
-						$base_path . $image_name.".jpg",
-						$base_path . "slideshow" . JRDS . "0". JRDS . $image_name . ".jpg"
-						);
-					rename (
-						$base_path . $image_name."_thumbnail.jpg",
-						$base_path . "slideshow" . JRDS . "0". JRDS . "thumbnail" . JRDS .$image_name . ".jpg"
-						);
-					rename (
-						$base_path . $image_name."_thumbnail_med.jpg",
-						$base_path . "slideshow" . JRDS . "0". JRDS . "medium" . JRDS . $image_name . ".jpg"
-						);
+					mkdir ( $base_path . $type['resource_type'] );
 					}
 				}
-			}
-		
-		// Finally we'll look for room images
-		$room_images = scandir_getfiles( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS );
-		if (count($room_images)>0)
-			{
-			$pattern = $property_id . "_room";
-			foreach ($room_images as $image)
-				{
-				$pos1 = strpos ($image , "_thumbnail"  );
-				if ( $pos1 === false )
+
+				if (!is_dir ($base_path . "property" . JRDS .  "0" ))
 					{
-					$pos2 = strpos ($image , $pattern );
-					if ( $pos2 === 0 )
+					mkdir ($base_path . "property" . JRDS .  "0");
+					}
+				if (!is_dir ($base_path . "property" . JRDS .  "0" . JRDS . "thumbnail"))
+					{
+					mkdir ($base_path . "property" . JRDS .  "0" . JRDS . "thumbnail");
+					}
+				if (!is_dir ($base_path . "property" . JRDS .  "0" . JRDS . "medium"))
+					{
+					mkdir ($base_path . "property" . JRDS .  "0" . JRDS . "medium");
+					}
+			
+			// Let's start with the property image
+			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . ".jpg" ) )
+				{
+				rename (
+					JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . ".jpg",
+					$base_path . "property" . JRDS . "0". JRDS . $property_id . "_property_" . $property_id . ".jpg"
+					);
+				}
+			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . "_thumbnail.jpg" ) )
+				{
+				rename (
+					JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . "_thumbnail.jpg",
+					$base_path . "property" . JRDS . "0". JRDS . "thumbnail" . JRDS . $property_id . "_property_" . $property_id . ".jpg"
+					);
+				}
+			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . "_thumbnail_med.jpg" ) )
+				{
+				rename (
+					JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . "_thumbnail_med.jpg",
+					$base_path . "property" . JRDS . JRDS . "0". JRDS . "medium" . JRDS . $property_id . "_property_" . $property_id . ".jpg"
+					);
+				}
+				
+			
+			// Now any slideshow images
+			$slideshow_images = scandir_getfiles( $base_path );
+
+			if (count($slideshow_images)>0)
+				{
+				if (!is_dir ($base_path . "slideshow" . JRDS .  "0" ))
+					{
+					mkdir ($base_path . "slideshow" . JRDS .  "0");
+					}
+				if (!is_dir ($base_path . "slideshow" . JRDS .  "0" . JRDS . "thumbnail"))
+					{
+					mkdir ($base_path . "slideshow" . JRDS .  "0" . JRDS . "thumbnail");
+					}
+				if (!is_dir ($base_path . "slideshow" . JRDS .  "0" . JRDS . "medium"))
+					{
+					mkdir ($base_path . "slideshow" . JRDS .  "0" . JRDS . "medium");
+					}
+
+				foreach ($slideshow_images as $image)
+					{
+					// The slideshow image files directly under /N/ have the pattern filename/filename_thumbnail/filename_thumbnail_med, so we need to find the main file, then move it's medium/thumbnails over afterwards
+					if ( !strstr ( "_thumbnail" , $image) )
 						{
 						$image_name_array =explode ( "." , $image );
 						unset($image_name_array[count($image_name_array)-1]);
 						$image_name = implode($image_name_array);
-						$bang = explode( "_" , $image_name);
-						$resource_id = $bang[2];
 						
-						if (!is_dir ($base_path . "rooms" . JRDS . $resource_id ))
-							{
-							mkdir ($base_path . "rooms" . JRDS . $resource_id);
-							}
-						if (!is_dir ($base_path . "rooms" . JRDS . $resource_id . JRDS . "thumbnail"))
-							{
-							mkdir ($base_path . "rooms" . JRDS . $resource_id . JRDS . "thumbnail");
-							}
-						if (!is_dir ($base_path . "rooms" . JRDS . $resource_id . JRDS . "medium"))
-							{
-							mkdir ($base_path . "rooms" . JRDS . $resource_id . JRDS . "medium");
-							}
-				
 						rename (
-							JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $image_name.".jpg",
-							$base_path . "rooms" . JRDS . $resource_id. JRDS . $image_name . ".jpg"
+							$base_path . $image_name.".jpg",
+							$base_path . "slideshow" . JRDS . "0". JRDS . $image_name . ".jpg"
 							);
 						rename (
-							JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $image_name."_thumbnail.jpg",
-							$base_path . "rooms" . JRDS . $resource_id. JRDS . "thumbnail" . JRDS .$image_name . ".jpg"
+							$base_path . $image_name."_thumbnail.jpg",
+							$base_path . "slideshow" . JRDS . "0". JRDS . "thumbnail" . JRDS .$image_name . ".jpg"
 							);
 						rename (
-							JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $image_name."_thumbnail_med.jpg",
-							$base_path . "rooms" . JRDS . $resource_id. JRDS . "medium" . JRDS . $image_name . ".jpg"
+							$base_path . $image_name."_thumbnail_med.jpg",
+							$base_path . "slideshow" . JRDS . "0". JRDS . "medium" . JRDS . $image_name . ".jpg"
 							);
+						}
+					}
+				}
+			
+			// Finally we'll look for room images
+			$room_images = scandir_getfiles( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS );
+			if (count($room_images)>0)
+				{
+				$pattern = $property_id . "_room";
+				foreach ($room_images as $image)
+					{
+					$pos1 = strpos ($image , "_thumbnail"  );
+					if ( $pos1 === false )
+						{
+						$pos2 = strpos ($image , $pattern );
+						if ( $pos2 === 0 )
+							{
+							$image_name_array =explode ( "." , $image );
+							unset($image_name_array[count($image_name_array)-1]);
+							$image_name = implode($image_name_array);
+							$bang = explode( "_" , $image_name);
+							$resource_id = $bang[2];
+							
+							if (!is_dir ($base_path . "rooms" . JRDS . $resource_id ))
+								{
+								mkdir ($base_path . "rooms" . JRDS . $resource_id);
+								}
+							if (!is_dir ($base_path . "rooms" . JRDS . $resource_id . JRDS . "thumbnail"))
+								{
+								mkdir ($base_path . "rooms" . JRDS . $resource_id . JRDS . "thumbnail");
+								}
+							if (!is_dir ($base_path . "rooms" . JRDS . $resource_id . JRDS . "medium"))
+								{
+								mkdir ($base_path . "rooms" . JRDS . $resource_id . JRDS . "medium");
+								}
+					
+							rename (
+								JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $image_name.".jpg",
+								$base_path . "rooms" . JRDS . $resource_id. JRDS . $image_name . ".jpg"
+								);
+							rename (
+								JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $image_name."_thumbnail.jpg",
+								$base_path . "rooms" . JRDS . $resource_id. JRDS . "thumbnail" . JRDS .$image_name . ".jpg"
+								);
+							rename (
+								JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $image_name."_thumbnail_med.jpg",
+								$base_path . "rooms" . JRDS . $resource_id. JRDS . "medium" . JRDS . $image_name . ".jpg"
+								);
+							}
 						}
 					}
 				}
