@@ -40,6 +40,15 @@ class j16000listGlobalroomTypes
 				$all_ptypes[ $ptype->id ] = $ptype->ptype;
 				}
 			}
+		
+		$rtxrefList=array();
+		$query               = "SELECT roomtype_id,propertytype_id FROM #__jomres_roomtypes_propertytypes_xref ";
+		$rtxref          = doSelectSql( $query );
+
+		foreach ($rtxref as $xref)
+			{
+			$rtxrefList[$xref->roomtype_id][]=$xref->propertytype_id;
+			}
 
 		$rows                       = array ();
 		$output[ 'INDEX' ]          = "index.php";
@@ -54,13 +63,11 @@ class j16000listGlobalroomTypes
 		foreach ( $roomtypeList as $roomtype )
 			{
 			$selected_ptype_rows = "";
-			$query               = "SELECT propertytype_id FROM #__jomres_roomtypes_propertytypes_xref WHERE roomtype_id =" . (int) $roomtype->room_classes_uid;
-			$rtxrefList          = doSelectSql( $query );
 			if ( count( $rtxrefList ) > 0 )
 				{
-				foreach ( $rtxrefList as $ptype )
+				foreach ( $rtxrefList[$roomtype->room_classes_uid] as $ptype )
 					{
-					$selected_ptype_rows .= $all_ptypes[ $ptype->propertytype_id ] . " ";
+					$selected_ptype_rows .= $all_ptypes[ $ptype ] . " ";
 					}
 				}
 

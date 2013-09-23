@@ -135,7 +135,7 @@ class j03100hotelconfirmationemail
 			}
 		$output[ 'ISO' ] = _ISO;
 
-		$output[ 'IMAGE' ]             = getImageForProperty( "property", $property_uid, $property_uid );
+		//$output[ 'IMAGE' ]             = getImageForProperty( "property", $property_uid, $property_uid );
 		$output[ 'MOSCONFIGLIVESITE' ] = get_showtime( 'live_site' );
 		$output[ 'HROOM' ]             = jr_gettext( '_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM', _JOMRES_FRONT_MR_EMAIL_TEXT_ROOM, false, false );
 		$output[ 'ROOM' ]              = $roomNumber . " " . $room_name;

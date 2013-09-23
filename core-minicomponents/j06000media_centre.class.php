@@ -39,6 +39,13 @@ class j06000media_centre
 			$this->template_touchable = false;
 			return;
 			}
+
+		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		if (!$thisJRUser->userIsManager)
+			{
+			return;
+			}
+
 		// Let's the appropriate upload context details
 		$MiniComponents->triggerEvent( '07100' );  // As the upload context is relevant to neither the frontend or backend, it is numbered in the 07000s
 		$upload_context = get_showtime ( "upload_context");
@@ -46,11 +53,6 @@ class j06000media_centre
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 
-		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-		if (!$thisJRUser->userIsManager)
-			{
-			return;
-			}
 		$output = array();
 		$pageoutput = array();
 

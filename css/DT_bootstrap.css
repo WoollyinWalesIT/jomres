@@ -20,6 +20,10 @@ div.dataTables_paginate {
 	margin: 0;
 }
 
+div.dataTables_processing {
+	color:#F00;
+}
+
 table.table {
 	clear: both;
 	margin-bottom: 6px !important;

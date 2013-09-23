@@ -58,8 +58,13 @@ class j06000compare
 			$cross = get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/Cancel.png';
 
 			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-			//$current_property_details->get_property_name_multi($propertys_uids);
 			$current_property_details->gather_data_multi( $property_uids );
+			
+			$jomres_property_list_prices = jomres_singleton_abstract::getInstance( 'jomres_property_list_prices' );
+			$jomres_property_list_prices->gather_lowest_prices_multi($property_uids);
+			
+			$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+			$jomres_media_centre_images->get_images_multi($property_uids, array('property'));
 
 			$featuresArray        = array ();
 			$query                = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
@@ -104,18 +109,16 @@ class j06000compare
 				$MiniComponents->specificEvent( '01050', 'x_geocoder', $Args );
 				$r[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
 
-				$prices                 = get_property_price_for_display_in_lists( $property_uid );
-				$r[ 'PRICE_PRE_TEXT' ]  = $prices[ 'PRE_TEXT' ];
-				$r[ 'PRICE_PRICE' ]     = $prices[ 'PRICE' ];
-				$r[ 'PRICE_POST_TEXT' ] = $prices[ 'POST_TEXT' ];
+				$r[ 'PRICE_PRE_TEXT' ]  = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRE_TEXT' ];
+				$r[ 'PRICE_PRICE' ]     = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE' ];
+				$r[ 'PRICE_POST_TEXT' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'POST_TEXT' ];
 
 				$property_image = get_showtime( 'live_site' ) . "/jomres/images/noimage.gif";
 				if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_uid . "_property_" . $property_uid . ".jpg" ) ) $property_image = get_showtime( 'live_site' ) . "/jomres/uploadedimages/" . $property_uid . "_property_" . $property_uid . ".jpg";
 
-				$r[ 'IMAGETHUMB' ] = getThumbnailForImage( $property_image );
-				if ( !$r[ 'IMAGETHUMB' ] ) $r[ 'IMAGETHUMB' ] = $no_image_image;
-				$r[ 'IMAGEMEDIUM' ] = getThumbnailForImage( $property_image, true );
-				if ( !$r[ 'IMAGEMEDIUM' ] ) $r[ 'IMAGEMEDIUM' ] = $no_image_image;
+				$jomres_media_centre_images->get_images($property_uid, array('property'));
+				$r[ 'IMAGETHUMB' ] = $jomres_media_centre_images->images ['property'][0][0]['small'];
+				$r[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images ['property'][0][0]['medium'];
 
 				$propertyFeaturesArray = explode( ",", ( $property[ 'property_features' ] ) );
 				if ( count( $propertyFeaturesArray ) > 0 )

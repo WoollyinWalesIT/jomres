@@ -56,6 +56,9 @@ class j04000roomsconfig
 			if ( $jrConfig[ 'useGlobalRoomTypes' ] == "1" ) $roomTypeSearchParameter = "0";
 			else
 			$roomTypeSearchParameter = $defaultProperty;
+			
+			$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+			$jomres_media_centre_images->get_images($defaultProperty, array('rooms'));
 
 			$roomRowInfo             = "";
 			$roomFeaturesRowInfo     = "";
@@ -199,12 +202,7 @@ class j04000roomsconfig
 				$roomRow[ 'SMOKING' ] = '';
 				if ( $mrConfig[ 'showSmoking' ] == "1" ) $roomRow[ 'SMOKING' ] = $smokingRoom;
 
-				$room_image = getImageForProperty( "room", $defaultProperty, $room->room_uid );
-				$thumb      = getThumbnailForImage( $room_image );
-				if ( $thumb ) $room_image = $thumb;
-				else
-				$room_image = get_showtime( 'live_site' ) . "/jomres/images/noimage_small.gif";
-				$roomRow[ 'ROOM_IMAGE' ] = $room_image;
+				$roomRow[ 'ROOM_IMAGE' ] = $jomres_media_centre_images->images['rooms'][$room->room_uid][0]['small'];
 
 				$roomFeaturesString = $room->room_features_uid;
 				$roomFeaturesArray  = explode( ",", $roomFeaturesString );

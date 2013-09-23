@@ -41,7 +41,7 @@ class j00009user_option_01_myfavourites
 			}
 		$thisJRUser         = jomres_singleton_abstract::getInstance( 'jr_user' );
 		$this->cpanelButton = "";
-		if ( $thisJRUser->userIsRegistered )
+		if ( $thisJRUser->userIsRegistered && !$thisJRUser->userIsManager)
 			{
 			//it`s not worth it to have a query just to show this menu. better show it for all. When there is no data a blank table will be displayed.
 			//$query      = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE my_id='" . (int) $thisJRUser->id . "'";

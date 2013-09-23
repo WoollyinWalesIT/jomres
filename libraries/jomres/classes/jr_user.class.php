@@ -54,12 +54,13 @@ class jr_user
 
 		$this->id = jomres_cmsspecific_getcurrentusers_id();
 
-		if ( $this->id > 0 && $this->id != "0" && !is_null( $this->id ) )
+		if ( $this->id > 0 && $this->id != 0 && !is_null( $this->id ) )
 			{
 			$this->userIsRegistered = true;
 
 			$query           = "SELECT * FROM #__jomres_managers WHERE userid = '" . (int) $this->id . "' LIMIT 1";
 			$authorisedUsers = doSelectSql( $query );
+
 			if ( count( $authorisedUsers ) > 0 )
 				{
 				$this->userIsManager = true;
@@ -71,58 +72,33 @@ class jr_user
 					$this->accesslevel     = $authUser->access_level;
 					$this->defaultproperty = $authUser->currentproperty;
 					$this->currentproperty = $authUser->currentproperty;
-					if ( isset( $authUser->users_timezone ) ) $this->users_timezone = $authUser->users_timezone;
 					$this->jomres_manager_id = $authUser->manager_uid;
-					if ( $authUser->suspended == "1" ) $this->userIsSuspended = true;
+					if ( isset( $authUser->users_timezone ) ) 
+						$this->users_timezone = $authUser->users_timezone;
+					if ( $authUser->suspended == "1" ) 
+						$this->userIsSuspended = true;
 
 					$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 
-					if ( $authUser->pu == "1" )
+					if ( $authUser->pu == "1" ) //this user is a super property manager and has access to all properties
 						{
 						$this->superPropertyManager = true;
-						if ( $this->superPropertyManagersAreGods )
-							{
-							$query = "SELECT propertys_uid,property_name FROM #__jomres_propertys ORDER BY property_name ASC";;
-							$propertysList = doSelectSql( $query );
-							$basic_property_details->get_property_name_multi( $propertysList, true );
-							if ( count( $propertysList ) > 0 )
-								{
-								foreach ( $propertysList as $p )
-									{
-									$this->authorisedProperties[ ]                        = $p->propertys_uid;
-									$this->authorisedPropertyDetails[ $p->propertys_uid ] = array ( 'property_name' => $p->property_name );
-									}
-								}
-							}
-						else
-							{
-							$query                  = "SELECT property_uid FROM #__jomres_managers_propertys_xref  WHERE manager_id = '" . (int) $this->id . "'";
-							$managersToPropertyList = doSelectSql( $query );
-							foreach ( $managersToPropertyList as $x )
-								{
-								$this->authorisedProperties[ ] = $x->property_uid;
-								}
-							$gor   = genericOr( $this->authorisedProperties, 'propertys_uid' );
-							$query = "SELECT propertys_uid,property_name FROM #__jomres_propertys WHERE " . $gor . "ORDER BY property_name ASC";;
-							$propertysList = doSelectSql( $query );
-							$basic_property_details->get_property_name_multi( $propertysList, true );
 
-							if ( count( $propertysList ) > 0 )
+						$this->authorisedProperties=get_showtime('all_properties_in_system');
+						if ( count( $this->authorisedProperties ) > 0 )
+							{
+							$basic_property_details->get_property_name_multi( $this->authorisedProperties );
+							foreach ( $this->authorisedProperties as $p )
 								{
-								foreach ( $propertysList as $p )
-									{
-
-									$obj->property_name                                   = $basic_property_details->get_property_name( $key );
-									$this->authorisedPropertyDetails[ $p->propertys_uid ] = array ( 'property_name' => $pname );
-									}
+								$this->authorisedPropertyDetails[ $p ] = array ( 'property_name' => $basic_property_details->property_names[$p] );
 								}
 							}
 						}
-					else
+					else //this user is a manager or receptionist and has access only to it`s own  properties
 						{
 						$this->superPropertyManager = false;
 
-						$query                  = "SELECT property_uid FROM #__jomres_managers_propertys_xref  WHERE manager_id = '" . (int) $this->id . "'";
+						$query = "SELECT property_uid FROM #__jomres_managers_propertys_xref  WHERE manager_id = '" . (int) $this->id . "'";
 						$managersToPropertyList = doSelectSql( $query );
 						if (count($managersToPropertyList)==0)
 							{
@@ -130,16 +106,14 @@ class jr_user
 							}
 						foreach ( $managersToPropertyList as $x )
 							{
-							$this->authorisedProperties[ ] = $x->property_uid;
+							$this->authorisedProperties[] = $x->property_uid;
 							}
-						$gor   = genericOr( $this->authorisedProperties, 'propertys_uid' );
-						$query = "SELECT propertys_uid,property_name FROM #__jomres_propertys WHERE " . $gor . "ORDER BY property_name ASC";;
-						$propertysList = doSelectSql( $query );
-						if ( count( $propertysList ) > 0 )
+						if ( count( $this->authorisedProperties ) > 0 )
 							{
-							foreach ( $propertysList as $p )
+							$basic_property_details->get_property_name_multi( $this->authorisedProperties );
+							foreach ( $this->authorisedProperties as $p )
 								{
-								$this->authorisedPropertyDetails[ $p->propertys_uid ] = array ( 'property_name' => $p->property_name );
+								$this->authorisedPropertyDetails[ $p ] = array ( 'property_name' => $basic_property_details->property_names[$p] );
 								}
 							}
 						else if ( !defined( '_JOMRES_INITCHECK_ADMIN' ) )
@@ -147,7 +121,13 @@ class jr_user
 							trigger_error( "This manager " . (int) $this->id . "  hasn't got any properties.", E_USER_ERROR );
 							}
 						}
-					if ( !in_array( $this->currentproperty, $this->authorisedProperties ) ) $this->currentproperty = $this->setToAnyAuthorisedProperty();
+					if ( count($this->authorisedProperties)>0)
+						{
+						if (!in_array( $this->currentproperty, $this->authorisedProperties ))
+							{
+							$this->currentproperty = $this->setToAnyAuthorisedProperty();
+							}
+						}
 					}
 				}
 			else
@@ -163,9 +143,7 @@ class jr_user
 			}
 		else
 			{
-
-			define( $this->userIsManager, false );
-
+			$this->userIsManager=false;
 			}
 		}
 
@@ -173,7 +151,7 @@ class jr_user
 		{
 		if ( !self::$configInstance )
 			{
-			self::$configInstance = new showtime();
+			self::$configInstance = new jr_user();
 			}
 
 		return self::$configInstance;
@@ -226,7 +204,7 @@ class jr_user
 
 		if ( in_array( $currentProperty, $this->authorisedProperties ) )
 			{
-			$query = "UPDATE #__jomres_managers SET `currentproperty`='$currentProperty' WHERE userid = '" . (int) $this->id . "'";
+			$query = "UPDATE #__jomres_managers SET `currentproperty`='".(int)$currentProperty."' WHERE userid = '" . (int) $this->id . "'";
 			if ( !doInsertSql( $query, false ) ) trigger_error( "Unable to set current property, mysql db failure", E_USER_ERROR );
 			$this->currentproperty = $currentProperty;
 			}
@@ -254,7 +232,7 @@ class jr_user
 				return $this->authorisedProperties[ 1 ];
 				}
 			}
-		else if ( !defined( '_JOMRES_INITCHECK_ADMIN' ) )
+		elseif ( !defined( '_JOMRES_INITCHECK_ADMIN' ) )
 			{
 			trigger_error( "Unable to reassign a manager to any existing, authorised property. Either last property in database has been deleted, or this manager has rights to no properties.", E_USER_ERROR );
 			}

@@ -54,8 +54,11 @@ class j00013x_listyourproperties
 			}
 		$clause = "WHERE ";
 		$clause .= genericOr( $mp, 'propertys_uid' );
+		
+		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$current_property_details->get_property_name_multi($mp);
 
-		$query                 = "SELECT propertys_uid,property_name,property_street,property_town,property_region,property_country,property_postcode,published,apikey
+		$query                 = "SELECT propertys_uid,property_street,property_town,property_region,property_country,property_postcode,published,apikey
 		FROM #__jomres_propertys " . $clause . " LIMIT " . count( $mp );
 		$jomresPropertyList    = doSelectSql( $query );
 		$output[ 'PAGETITLE' ] = jr_gettext( '_JRPORTAL_CPANEL_LISTPROPERTIES', _JRPORTAL_CPANEL_LISTPROPERTIES, false );;
@@ -74,7 +77,7 @@ class j00013x_listyourproperties
 			else
 			$jrtb .= $jrtbar->toolbarItem( 'publish', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty' . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_UNPUBLISH', _JOMRES_COM_MR_VRCT_UNPUBLISH, false ) );
 			$r[ 'PUBLISHLINK' ]     = $jrtb .= $jrtbar->endTable();
-			$r[ 'PROPERTYNAME' ]    = $p->property_name;
+			$r[ 'PROPERTYNAME' ]    = $current_property_details->property_names[$p->propertys_uid];
 			$r[ 'SWITCHLINK' ]      = jomresURL( JOMRES_SITEPAGE_URL . '&thisProperty=' . $p->propertys_uid );
 			$r[ 'PROPERTYADDRESS' ] = $p->property_street . ', ' . $p->property_town . ', ' . find_region_name( $p->property_region ) . ', ' . $p->property_country . ', ' . $p->property_postcode;
 			$rows[ ]                = $r;

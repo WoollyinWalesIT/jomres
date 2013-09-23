@@ -130,7 +130,7 @@ class j03100adminconfirmationemail
 
 		$output            = array ();
 		$output[ 'ISO' ]   = _ISO;
-		$output[ 'IMAGE' ] = getImageForProperty( "property", $property_uid, $property_uid );
+		//$output[ 'IMAGE' ] = getImageForProperty( "property", $property_uid, $property_uid );
 
 		$output[ 'MOSCONFIGLIVESITE' ] = get_showtime( 'live_site' );
 		$output[ 'HROOM' ]             = jr_gettext( '_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM', _JOMRES_FRONT_MR_EMAIL_TEXT_ROOM, false );
