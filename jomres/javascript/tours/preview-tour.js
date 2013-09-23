@@ -49,6 +49,19 @@ function start_tour()
 	var id = tour_strings.tour_target_property_details_tariffs;
 	add_tour_step(tour,id,target);
 
+	var target = 'tour_target_local_attractions';
+	var id = tour_strings.tour_target_local_attractions;
+	add_tour_step(tour,id,target);
+
+	var target = 'tour_target_local_events';
+	var id = tour_strings.tour_target_local_events;
+	add_tour_step(tour,id,target);
+	
+	var target = 'jomres_auction_house_content_body';
+	var id = tour_strings.jomres_auction_house_content_body;
+	add_tour_step(tour,id,target);
+	
+	
     tour.start();
 
     jomresJquery(document).on("click", ".start", function(e) {
