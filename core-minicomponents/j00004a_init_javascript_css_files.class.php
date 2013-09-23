@@ -256,13 +256,13 @@ class j00004a_init_javascript_css_files
 			set_showtime( "tmpl.min.js.relpath", 					"jomres/javascript/media_centre/" );
 			}
 			
-		if (using_bootstrap())
+		/* if (using_bootstrap())
 			{
 			set_showtime( "bootstrap-tour.js", "bootstrap-tour.js" );
 			set_showtime( "bootstrap-tour.js.relpath", "jomres/javascript/" );
 			set_showtime( "jquery.cookie.js", "jquery.cookie.js" );
 			set_showtime( "jquery.cookie.js.relpath", "jomres/javascript/" );
-			}
+			} */
 		}
 
 	/**
