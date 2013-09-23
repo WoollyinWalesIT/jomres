@@ -88,9 +88,14 @@ class j00004a_init_javascript_css_files
 			{
 			if ( !isset( $jrConfig[ 'jquery18_2_switch' ] ) ) $jrConfig[ 'jquery18_2_switch' ] = 0; // By default the 19_2 switch will be set to No, so that jq 1.8 will be loaded.
 
-			if ( $jrConfig[ 'jquery18_2_switch' ] == "1" ) set_showtime( "jquery.core.js", 'jquery-2.0.0.min.js' );
+			if ( $jrConfig[ 'jquery18_2_switch' ] == "1" ) 
+				{
+				set_showtime( "jquery.core.js", 'jquery-2.0.3.min.js' );
+				}
 			else
-			set_showtime( "jquery.core.js", 'jquery-1.8.2.min.js' );
+				{
+				set_showtime( "jquery.core.js", 'jquery-1.8.2.min.js' );
+				}
 			set_showtime( "jquery.core.js.relpath", 'jomres/javascript/' );
 			}
 

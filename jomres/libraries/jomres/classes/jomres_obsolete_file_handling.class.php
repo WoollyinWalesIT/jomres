@@ -771,7 +771,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'list_micromanage_tariffs.html' );
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'list_advanced_tariffs.html' );
 		
-		
+		$this->add_obs_file( $this->dir_javascript . 'jquery-2.0.0.min.js' );
 		}
 
 	function add_obs_file( $path_and_file )
