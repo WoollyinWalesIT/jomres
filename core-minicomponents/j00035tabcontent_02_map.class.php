@@ -45,7 +45,7 @@ class j00035tabcontent_02_map
 					});
 				</script>
 			<?php
-			$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_ID" => $tab_id, "TAB_TITLE" => $output[ 'TITLE_MAP' ], "TAB_CONTENT" => $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ] , "TAB_ID" => 'tour_target_property_details_map');
+			$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_ID" => $tab_id, "TAB_TITLE" => $output[ 'TITLE_MAP' ], "TAB_CONTENT" => $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ] );
 			$this->retVals = $tab;
 			}
 		}
