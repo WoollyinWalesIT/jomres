@@ -1,0 +1,29 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+function start_tour()
+	{
+    var tour = new Tour({
+		backdrop: true
+	});
+
+<patTemplate:tmpl name="rows" unusedvars="strip">
+tour.addStep({
+	element: "#{ID}",
+	placement: "{POSITION}",
+	title: "{TITLE}",
+	content: "{DESCRIPTION}",
+	orphan : false
+	});
+</patTemplate:tmpl>
+
+tour.start();
+
+jomresJquery(document).on("click", ".start", function(e) {
+		e.preventDefault();
+	if (jomresJquery(this).hasClass("disabled")) {
+		return false;
+		}
+	tour.restart();
+	return jomresJquery(".alert").alert("close");
+	});
+};
+</patTemplate:tmpl>

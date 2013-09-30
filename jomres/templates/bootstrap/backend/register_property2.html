@@ -120,23 +120,22 @@
 	});
 	//-->
 </script>
+<div id="tour_target_registration_2"></div>
 <h2 class="page-header">{_JOMRES_REGISTRATION_STEP_2_OF_2}</h2>
 
 <p>{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1} {JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2}</p>
 
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm" class="form-horizontal">
 	<fieldset>
-		<div class="control-group">
+		<div class="control-group"><div id="tour_target_registration_2_mrpsrp"></div>
 			<label class="control-label" for="mrpsrp"><!--{ISTHISANMRP}-->MRP/SRP</label>
 
 			<div class="controls">
 				{ISTHISANMRP_DROPDOWN}<span class="add-on"></span>
-
-				<p class="help-block">{ISTHISANMRP_DESC}</p>
 			</div>
 		</div>
 		<div class="control-group warning">
-			<label class="control-label" for="property_name">{HNAME}</label>
+			<label class="control-label" for="property_name">{HNAME}</label><div id="tour_target_registration_2_name_address"></div>
 
 			<div class="controls">
 				<input id="property_name" name="property_name" type="text" size="20" value="{PROPERTY_NAME}"/>
@@ -186,7 +185,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="stars">{HSTARS}</label>
+			<label class="control-label" for="stars">{HSTARS}</label><div id="tour_target_registration_2_stars"></div>
 
 			<div class="controls">
 				{STARSDROPDOWN}
@@ -207,14 +206,14 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="firstname">{LATLONG_DESC}</label>
+			<label class="control-label" for="firstname">{LATLONG_DESC}</label><div id="tour_target_registration_2_latlong"></div>
 
 			<div class="controls">
 				{MAP}
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="pid">{HFEATURES}</label>
+			<label class="control-label" for="pid">{HFEATURES}</label><div id="tour_target_registration_2_features"></div>
 
 			<div class="controls">
 				<patTemplate:tmpl name="globalPfeatures">
@@ -227,7 +226,7 @@
 			</div>
 		</div>
 		<div class="control-group warning">
-			<label class="control-label" for="property_description">{HPROPDESCRIPTION}</label>
+			<label class="control-label" for="property_description">{HPROPDESCRIPTION}</label><div id="tour_target_registration_2_description"></div>
 
 			<div class="controls">
 				{PROPERTY_DESCRIPTION}
@@ -269,7 +268,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="property_policies_disclaimers">{HPOLICIESDISCLAIMERS}</label>
+			<label class="control-label" for="property_policies_disclaimers">{HPOLICIESDISCLAIMERS}</label><div id="tour_target_registration_2_policies"></div>
 
 			<div class="controls">
 				{PROPERTY_POLICIES_DISCLAIMERS}

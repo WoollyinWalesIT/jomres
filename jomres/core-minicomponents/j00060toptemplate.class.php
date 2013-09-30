@@ -95,26 +95,38 @@ class j00060toptemplate
 			$output[ 'SANITY_CHECKS' ]  = get_showtime( "sanity_check_warnings" );
 			$output[ 'NEXT' ]           = jr_gettext( '_PN_NEXT', _PN_NEXT, false, false );
 			$output[ 'PREVIOUS' ]       = jr_gettext( '_PN_PREVIOUS', _PN_PREVIOUS, false, false );
-			
-			if (get_showtime("task") == "")
-				{
-				$task = "dashboard";
-				}
-			else
-				{
-				$task = get_showtime("task");
-				}
+
 			$output[ 'BACKLINK' ]       = '<a href="javascript:history.go(-1)">' . jr_gettext( '_JOMRES_COM_MR_BACK', _JOMRES_COM_MR_BACK ) . '</a>';
 			$output[ 'LIVESITE' ]       = get_showtime( 'live_site' );
 			$output[ 'DATEPICKERLANG' ] = JOMRESDATEPICKERLANG;
-
-			// Not ready for 7.4, will be put into 7.5
- 			/* if (file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'javascript' . JRDS . 'tours' . JRDS . $task."-tour.js"))
+			
+/* 			if ($thisJRUser->userIsManager)
 				{
-				jomres_cmsspecific_addheaddata( "javascript", "jomres/javascript/tours/", $task."-tour.js" );
-				$help [0] [ '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP' ]      = jr_gettext( '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', _JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP, false, false );
+				if (get_showtime("task") == "")
+					{
+					$task = "dashboard";
+					}
+				else
+					{
+					$task = get_showtime("task");
+					}
+				
+				require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'build_product_tour_files.php' );
+				build_product_tour_javascript_file();
+				 if (file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang")."-tour.js") )
+					{
+					
+					jomres_cmsspecific_addheaddata( "javascript", "jomres/temp/product_tours/", $task.'_' . get_showtime("lang")."-tour.js" );
+					$help [0] [ '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP' ]      = jr_gettext( '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', _JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP, false, false );
+					}
+				$output['TOUR_LABELS'] = "
+					var tour_next = '".jr_gettext("_PN_NEXT",_PN_NEXT,false)."';
+					var tour_prev = '".jr_gettext("_PN_PREVIOUS",_PN_PREVIOUS,false)."';
+					var tour_end = '".jr_gettext("END_TOUR",END_TOUR,false)."';
+				";
+			
 				} */
-
+				
 			$lang_dropdown[ ][ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
 			set_showtime( "menuitem_langdropdown", $lang_dropdown[ 0 ][ 'LANGDROPDOWN' ] );
 

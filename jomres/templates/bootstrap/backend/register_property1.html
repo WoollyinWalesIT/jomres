@@ -14,6 +14,7 @@
 		}
 		//-->
 	</script>
+	<div id="tour_target_registration_1"></div>
 	<h2 class="page-header">{_JOMRES_REGISTRATION_STEP_1_OF_2}</h2>
 
 	<p>{REGISTRATION_INSTRUCTIONS_STEP1}</p>
@@ -29,29 +30,30 @@
 	</div>
 	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm" class="form-horizontal">
 		<fieldset>
+			
 			<div class="control-group">
-				<label class="control-label" for="xyz">{HCOUNTRY}</label>
+				<label class="control-label" for="xyz">{HCOUNTRY}</label><div id="tour_target_registration_1_country"></div>
 
 				<div class="controls">
 					{COUNTRIESDROPDOWN}
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="region">{HREGION}</label>
+				<label class="control-label" for="region">{HREGION}</label><div id="tour_target_registration_1_region"></div>
 
 				<div class="controls">
 					{REGIONDROPDOWN}
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="propertyType">{HPROPERTY_TYPE}</label>
+				<label class="control-label" for="propertyType">{HPROPERTY_TYPE}</label><div id="tour_target_registration_1_property_type"></div>
 
 				<div class="controls">
 					{PROPERTY_TYPE_DROPDOWN}
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="management_process">{MANAGEMENTPROCESS}</label>
+				<label class="control-label" for="management_process">{MANAGEMENTPROCESS}</label><div id="tour_target_registration_1_process"></div>
 
 				<div class="controls">
 					{REALESTATEDROPDOWN}
