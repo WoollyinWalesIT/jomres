@@ -188,14 +188,25 @@ class vat_number_validation
 				}
 			
 			$this->vat_number = $countryCode . $vatNumber;
-			
+
 			require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'nusoap' . JRDS . 'nusoap.php' );
 
 			$client = new nusoap_client( "http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl", 'wsdl' );
 			$params = array ( 'countryCode' => $countryCode, 'vatNumber' => $vatNumber );
 			$result = $client->call( 'checkVat', $params );
-
+			
 			$results = array ();
+			
+			if (!$result) // Oddly, at least one valid vat number is returned as false, so we'll double check the response string to see if it contains <valid>true</valid>. If so, we'll manually set the response
+				{
+				$xmltxt = trim(substr($client->response, strpos ($client->response, '<soap:Envelope')));
+				if (stristr( $xmltxt , '<valid>true</valid>') )
+					{
+					$results[ 'vat_number' ]	= $this->vat_number;
+					$result[ 'valid' ]			= true;
+					}
+				}
+			
 			foreach ( $result as $key => $val )
 				{
 				$key = filter_var( $key, FILTER_SANITIZE_SPECIAL_CHARS );
@@ -223,6 +234,46 @@ class vat_number_validation
 		return false;
 		}
 
+	/**
+	 * What to do when the parser finds a start element
+	 *
+	 * @param $parser object
+	 * @param $element_name string name of the element found
+	 */
+	function startElement($parser, $element_name, $attributes) {
+		switch($element_name) {
+			case "VALID" : $this->output = true;
+				break;
+			default:
+				$this->output = false;
+				break;
+		}
+	}
+
+	/**
+	 * What to do when the parser finds a closing element
+	 *
+	 * @param $parser object
+	 * @param $element_name string name of the element found
+	 */
+	function endElement($parser, $element_name) {
+	}
+
+	/**
+	 * What to do when the parser finds data in the element
+	 *
+	 * @param $parser object
+	 * @param $xml_data string data found in between tags
+	 */
+	function characterData($parser, $xml_data) {
+		if ($this->output) {
+			if ($xml_data) {
+				if ($xml_data == "false") $this->validvatid = false;
+				else if ($xml_data == "true") $this->validvatid = true;
+			}
+			$this->output = false;
+		}
+	}
 	// The purpose of this method is for it to be passed a country code that's been pulled from a VAT number, and to convert it to a country code that Jomres will recognise. Countries like Greece use EL instead of Jomres' GR, so we need to pass EL, cycle through the xref array until we find that code, then return the key, which would be GR
 	function get_adjusted_country_code($country_code)
 		{
