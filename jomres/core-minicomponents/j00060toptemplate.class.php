@@ -100,7 +100,7 @@ class j00060toptemplate
 			$output[ 'LIVESITE' ]       = get_showtime( 'live_site' );
 			$output[ 'DATEPICKERLANG' ] = JOMRESDATEPICKERLANG;
 			
-/* 			if ($thisJRUser->userIsManager)
+			if ($thisJRUser->userIsManager)
 				{
 				if (get_showtime("task") == "")
 					{
@@ -125,7 +125,7 @@ class j00060toptemplate
 					var tour_end = '".jr_gettext("END_TOUR",END_TOUR,false)."';
 				";
 			
-				} */
+				}
 				
 			$lang_dropdown[ ][ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
 			set_showtime( "menuitem_langdropdown", $lang_dropdown[ 0 ][ 'LANGDROPDOWN' ] );

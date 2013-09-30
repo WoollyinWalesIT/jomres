@@ -173,6 +173,7 @@
 <!--<p>{AJAXFORM_INSTRUCTIONS}</p>-->
 
 <patTemplate:tmpl name="manager_pricing" type="simpleCondition" requiredVars="_jomcomp_amend_override_accommodation_total">
+	<div id="tour_target_booking_overrides"></div>
 	<fieldset>
 		<div class="control-group">
 			<label class="control-label" for="override_room_total">{_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL}</label>
@@ -205,7 +206,7 @@
 
 <patTemplate:tmpl name="coupons" type="simpleCondition" requiredVars="coupon_title">
 	<h2 class="page-header">{COUPON_TITLE}</h2>
-
+	<div id="tour_target_booking_coupons"></div>
 	<p>{COUPON_INSTRUCTIONS}</p>
 	<fieldset>
 		<div class="control-group">
@@ -226,7 +227,7 @@
 
 <div id="arrivalcontainer">
 	<h2 class="page-header">{AJAXFORM_PARTICULARS}</h2>
-
+	<div id="tour_target_booking_particulars"></div>
 	<p>{AJAXFORM_PARTICULARS_DESC}</p>
 	<fieldset>
 		<div class="control-group">
@@ -263,7 +264,7 @@
 		</patTemplate:tmpl>
 	</fieldset>
 </div>
-
+<div id="tour_target_booking_room_features"></div>
 <patTemplate:comment> ---------------------------------------- Classic rooms list ---------------------------------------- </patTemplate:comment>
 <patTemplate:tmpl name="classic_rooms_list" type="simpleCondition" requiredVars="ajaxform_available_desc">
 	<h2 class="page-header">{AJAXFORM_AVAILABLE_DESC}</h2>
@@ -273,7 +274,9 @@
 	<div class="alert">
 		{ESTIMATEWARNING}
 	</div>
+	
 	<patTemplate:tmpl name="roomfeaturesrowheader" type="simpleCondition" requiredVars="_jomres_bookingorm_roomfeature_filter">
+		
 		<h3 class="page-header">{_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER}</h3>
 	</patTemplate:tmpl>
 	<patTemplate:tmpl name="roomfeaturesrow" type="simpleCondition" requiredVars="inputbox">
@@ -308,7 +311,7 @@
 		{AVAILABLEROOMS}
 	</div>
 </patTemplate:tmpl>
-
+<div id="tour_target_booking_extras"></div>
 <patTemplate:tmpl name="extrasrow" type="simpleCondition" requiredVars="extras_header">
 	<div id="extrascontainer">
 		<h2 class="page-header">{EXTRAS_HEADER}</h2>
@@ -336,12 +339,15 @@
 
 <div class="row-fluid">
 <div class="span7">
+	<div id="tour_target_booking_existing_guests"></div>
+	<div id="tour_target_booking_required"></div>
 	<div id="bookingform_address">
 		<h2 class="page-header">{AJAXFORM_ADDRESS}</h2>
-
+		
 		<div class="btn-toolbar">
 			{GUESTDROPDOWN}
 		</div>
+		
 		<fieldset>
 			<div class="control-group {BOOTSTRAP_FIRSTNAME_WARNING}">
 				<label class="control-label" for="firstname">{HFIRSTNAME}</label>
