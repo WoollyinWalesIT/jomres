@@ -14,6 +14,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+
 function import_images_to_media_centre_directories()
 	{
 	// We are going to move any property images, slideshow images and room images into the new media centre's resource directories.
@@ -3824,7 +3825,20 @@ function showLiveBookings( $contractsList, $title, $arrivaldateDropdown )
 		$r[ 'DEPARTURE' ] = "&nbsp;";
 		$rows[ ] = $r;
 		}
-
+	
+	if ( get_showtime( "task" ) == "listLiveBookings")
+		{
+		$output[ 'TOUR_DIV_ID' ] = 'tour_target_listall_bookings';
+		}
+	elseif ( get_showtime( "task" ) == "listNewBookings")
+		{
+		$output[ 'TOUR_DIV_ID' ] = 'tour_target_listnew_bookings';
+		}
+	else
+		{
+		$output[ 'TOUR_DIV_ID' ] = 'tour_target_listold_bookings';
+		}
+	
 	$pageoutput[ ] = $output;
 
 	$tmpl = new patTemplate();
