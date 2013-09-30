@@ -51,6 +51,14 @@ class j04000roomsconfig
 		if ( $mrConfig[ 'tariffmode' ] == "0" ) $MiniComponents->triggerEvent( '04005' ); //
 		else
 			{
+			if ( $mrConfig[ 'singleRoomProperty' ] == '1')
+				{
+				echo '<div id="tour_target_roomsandtariffs_srp"></div>';
+				}
+			else
+				{
+				echo '<div id="tour_target_roomsandtariffs_mrp"></div>';
+				}
 			$defaultProperty = getDefaultProperty();
 			$option          = "com_jomres";
 			if ( $jrConfig[ 'useGlobalRoomTypes' ] == "1" ) $roomTypeSearchParameter = "0";

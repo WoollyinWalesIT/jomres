@@ -35,9 +35,7 @@ class j04005roomsconfig
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )
 			{
-			$this->template_touchable = true;
-
-			return;
+			$this->template_touchable = true;return;
 			}
 
 		$mrConfig        = getPropertySpecificSettings();

@@ -130,7 +130,7 @@
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm" class="form-horizontal">
 	<fieldset>
 		<div class="control-group warning">
-			<label class="control-label" for="property_name">{HNAME}</label>
+			<label class="control-label" for="property_name">{HNAME}</label><div id="tour_target_registration_2_name_address"></div>
 
 			<div class="controls">
 				<input id="property_name" name="property_name" type="text" size="20" value="{PROPERTY_NAME}"/>
@@ -201,14 +201,14 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="firstname">{LATLONG_DESC}</label>
+			<label class="control-label" for="firstname">{LATLONG_DESC}</label><div id="tour_target_registration_2_latlong"></div>
 
 			<div class="controls">
 				{MAP}
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="pid">{HFEATURES}</label>
+			<label class="control-label" for="pid">{HFEATURES}</label><div id="tour_target_registration_2_features"></div>
 
 			<div class="controls">
 				<patTemplate:tmpl name="globalPfeatures">
@@ -221,7 +221,7 @@
 			</div>
 		</div>
 		<div class="control-group warning">
-			<label class="control-label" for="property_description">{HPROPDESCRIPTION}</label>
+			<label class="control-label" for="property_description">{HPROPDESCRIPTION}</label><div id="tour_target_registration_2_realestate_description"></div>
 
 			<div class="controls">
 				{PROPERTY_DESCRIPTION}

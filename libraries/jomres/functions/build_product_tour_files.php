@@ -41,39 +41,39 @@ function build_product_tour_javascript_file()
 			$target_ids['found_properties'] 						= 'top' ;
 		break;
 		case "preview":
-			$target_ids['tour_target_property_header'] 				= 'top' ;
-			$target_ids['gallerywrapper'] 							= 'top' ;
+			$target_ids['tour_target_property_header']				= 'top' ;
+			$target_ids['gallerywrapper']							= 'top' ;
 			$target_ids['tour_target_property_details_buttons'] 	= 'top' ;
-			$target_ids['tour_target_inline_calendar'] 				= 'left' ;
+			$target_ids['tour_target_inline_calendar']				= 'left' ;
 			$target_ids['tour_target_property_details_main_details']= 'top' ;
-			$target_ids['tour_target_property_details_moreinfo'] 	= 'top' ;
+			$target_ids['tour_target_property_details_moreinfo']	= 'top' ;
 			$target_ids['tour_target_property_details_booking_form']= 'top' ;
-			$target_ids['mapTab'] 									= 'top' ;
+			$target_ids['mapTab']									= 'top' ;
 			$target_ids['tour_target_reviews_list'] 				= 'top' ;
-			$target_ids['tour_target_rooms_list'] 					= 'top' ;
+			$target_ids['tour_target_rooms_list']					= 'top' ;
 			$target_ids['tour_target_property_details_tariffs'] 	= 'top' ;
-			$target_ids['tour_target_local_attractions'] 			= 'top' ;
-			$target_ids['tour_target_local_events'] 				= 'top' ;
-			$target_ids['jomres_auction_house_content_body'] 		= 'top' ;
+			$target_ids['tour_target_local_attractions']			= 'top' ;
+			$target_ids['tour_target_local_events']					= 'top' ;
+			$target_ids['jomres_auction_house_content_body']		= 'top' ;
 		break;
 		case "hotelSettings":
 			$target_ids['tab_Bookingrooms'] 						= 'top' ;
-			$target_ids['tab_Yourbusinessdetails'] 					= 'top' ;
-			$target_ids['tab_Externallink'] 						= 'top' ;
-			$target_ids['tab_Gateways'] 							= 'top' ;
+			$target_ids['tab_Yourbusinessdetails']					= 'top' ;
+			$target_ids['tab_Externallink']							= 'top' ;
+			$target_ids['tab_Gateways']								= 'top' ;
 			$target_ids['tab_Misc']									= 'top' ;
 			$target_ids['tab_Propertydetails']						= 'top' ;
 			$target_ids['tab_Required']								= 'top' ;
-			$target_ids['tab_SRPs'] 								= 'top' ;
-			$target_ids['tab_Supplements'] 							= 'top' ;
-			$target_ids['tab_TariffsCurrency'] 						= 'top' ;
+			$target_ids['tab_SRPs']									= 'top' ;
+			$target_ids['tab_Supplements']							= 'top' ;
+			$target_ids['tab_TariffsCurrency']						= 'top' ;
 			$target_ids['tab_Touristtax']							= 'top' ;
 			$target_ids['tab_Micromanage']							= 'top' ;
 			$target_ids['tab_Wiseprice']							= 'top' ;
 		break;
 		case "listyourproperties":
 			$target_ids['tour_target_frontend_list_properties']		= 'top' ;
-			$target_ids['tour_target_table_tools'] 					= 'left' ;
+			$target_ids['tour_target_table_tools']					= 'left' ;
 		break;
 		case "registerProp_step1":
 			$target_ids['tour_target_registration_1']				= 'top' ;
@@ -90,32 +90,77 @@ function build_product_tour_javascript_file()
 			$target_ids['tour_target_registration_2_latlong']		= 'left' ;
 			$target_ids['tour_target_registration_2_features']		= 'left' ;
 			$target_ids['tour_target_registration_2_description']	= 'left' ;
+			$target_ids['tour_target_registration_2_realestate_description'] = 'left' ;
 			$target_ids['tour_target_registration_2_policies']		= 'left' ;
 		break;
 		case "listLiveBookings":
 			$target_ids['tour_target_listall_bookings']				= 'top' ;
-			$target_ids['tour_target_table_tools'] 					= 'top' ;
+			$target_ids['tour_target_table_tools']					= 'top' ;
 		break;
 		case "listNewBookings":
 			$target_ids['tour_target_listnew_bookings']				= 'top' ;
-			$target_ids['tour_target_table_tools'] 					= 'top' ;
+			$target_ids['tour_target_table_tools']					= 'top' ;
 		break;
 		case "listoldbookings":
 			$target_ids['tour_target_listold_bookings']				= 'top' ;
-			$target_ids['tour_target_table_tools'] 					= 'top' ;
+			$target_ids['tour_target_table_tools']					= 'top' ;
+		break;
+		case "listguests":
+			$target_ids['tour_target_list_guests']					= 'top' ;
+			$target_ids['tour_target_table_tools']					= 'top' ;
+		break;
+		case "listguests":
+			$target_ids['tour_target_list_guests']					= 'top' ;
+			$target_ids['tour_target_table_tools']					= 'top' ;
+		break;
+		case "dobooking":
+			$target_ids['tour_target_booking_overrides']			= 'left' ;
+			$target_ids['tour_target_booking_coupons']				= 'left' ;
+			$target_ids['tour_target_booking_particulars']			= 'left' ;
+			$target_ids['tour_target_booking_room_features']		= 'left' ;
+			$target_ids['tour_target_booking_extras']				= 'left' ;
+			$target_ids['tour_target_booking_existing_guests']		= 'left' ;
+			$target_ids['tour_target_booking_required']				= 'left' ;
+		break;
+		case "listguests":
+			$target_ids['tour_target_list_guests']					= 'top' ;
+			$target_ids['tour_target_table_tools']					= 'top' ;
+		break;
+		case "listBlackBookings":
+			$target_ids['tour_target_list_blackbookings']			= 'top' ;
+			$target_ids['tour_target_table_tools']					= 'top' ;
+		break;
+		case "editProperty":
+			$target_ids['tour_target_registration_2_name_address']	= 'left' ;
+			$target_ids['tour_target_registration_2_stars']			= 'left' ;
+			$target_ids['tour_target_registration_2_latlong']		= 'left' ;
+			$target_ids['tour_target_registration_2_features']		= 'left' ;
+			$target_ids['tour_target_registration_2_description']	= 'left' ;
+			$target_ids['tour_target_registration_2_realestate_description']= 'left' ;
+			$target_ids['tour_target_registration_2_policies']		= 'left' ;
+		break;
+		case "propertyadmin":
+			$target_ids['tour_target_listtariffs_normal_mrp']		= 'top' ;
+			$target_ids['tour_target_listtariffs_normal_srp']		= 'top' ;
+			$target_ids['tour_target_roomsandtariffs_mrp']			= 'top' ;
+			$target_ids['tour_target_roomsandtariffs_srp']			= 'top' ;
+		break;
+		case "listCustomerTypes":
+			$target_ids['tour_target_guest_types']					= 'top' ;
+			$target_ids['tour_target_table_tools']					= 'top' ;
+		break;
+		case "listCoupons":
+			$target_ids['tour_target_coupons']						= 'top' ;
+			$target_ids['tour_target_table_tools']					= 'top' ;
 		break;
 		
-		
-		
-		
-		
-		
+
+
+
 		default:
 			//We could add code here to find information from plugins
 		break;
 		}
-		
-		
 
 /* 
 		case "XXXXX":
