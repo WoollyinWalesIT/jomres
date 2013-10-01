@@ -331,7 +331,7 @@ class basic_property_details
 			$gor = genericOr( $property_uids, 'propertys_uid' );
 
 			$query = "SELECT `propertys_uid`,`property_name`,`property_street`,`property_town`,`property_postcode`,`property_region`,`property_country`,`property_tel`,`property_fax`,`property_email`,`published`,`ptype_id`,
-`stars`,`superior`,`lat`,`long`,`metatitle`,`metadescription`,`metakeywords`,`property_features`,`property_mappinglink`,`property_key`,`property_description`,`property_checkin_times`,`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`apikey`,`approved` FROM #__jomres_propertys WHERE " . $gor;
+`stars`,`superior`,`lat`,`long`,`metatitle`,`metadescription`,`metakeywords`,`property_features`,`property_mappinglink`,`property_key`,`property_description`,`property_checkin_times`,`property_area_activities`,`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`apikey`,`approved` FROM #__jomres_propertys WHERE " . $gor;
 
 			$propertyData = doSelectSql( $query );
 
