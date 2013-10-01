@@ -1,3 +1,11 @@
+/***
+ *
+ * Jomres Note
+ * If you need to make any changes to the javascript in the file, please remember that you will need to minify the javascript afterwards. We use http://jscompress.com/ to minify this file.
+ *
+ */
+
+
 /**
  * Copyright (c) 2005 - 2010, James Auldridge
  * All rights reserved.

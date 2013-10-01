@@ -153,7 +153,18 @@ function build_product_tour_javascript_file()
 			$target_ids['tour_target_coupons']						= 'top' ;
 			$target_ids['tour_target_table_tools']					= 'top' ;
 		break;
-		
+		case "listExtras":
+			$target_ids['tour_target_extras']						= 'top' ;
+			$target_ids['tour_target_table_tools']					= 'top' ;
+		break;
+		case "media_centre":
+			$target_ids['tour_target_mediacentre_introduction']		= 'top' ;
+			$target_ids['tour_target_mediacentre_resourcepicker']	= 'left' ;
+			$target_ids['tour_target_mediacentre_existingimages']	= 'left' ;
+			$target_ids['tour_target_mediacentre_selectedimages']	= 'right' ;
+			$target_ids['tour_target_mediacentre_uploadcontrols']	= 'right' ;
+		break;
+
 
 
 
