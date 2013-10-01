@@ -102,9 +102,6 @@ class j00004a_init_javascript_css_files
 		set_showtime( "jquery.ui.js", "jquery-ui-1.9.2.custom.min.js" );
 		set_showtime( "jquery.ui.js.relpath", 'jomres/javascript/' );
 
-		set_showtime( "jquery.rating.css", 'jquery.rating.css' );
-		set_showtime( "jquery.rating.css.relpath", 'jomres/css/' );
-
 		if ( !using_bootstrap() )
 			{
 			set_showtime( "jquery.ui.potato.menu.css", "jquery.ui.potato.menu.css" );
@@ -131,9 +128,6 @@ class j00004a_init_javascript_css_files
 
 		set_showtime( "jquery.hoverIntent.js", "jquery.hoverIntent.js" );
 		set_showtime( "jquery.hoverIntent.js.relpath", "jomres/javascript/" );
-
-		set_showtime( "jquery.rating.js", "jquery.rating.js" );
-		set_showtime( "jquery.rating.js.relpath", "jomres/javascript/" );
 
 		set_showtime( "jquery.validate.js", "jquery.validate.js" );
 		set_showtime( "jquery.validate.js.relpath", "jomres/javascript/" );
@@ -175,12 +169,6 @@ class j00004a_init_javascript_css_files
 		set_showtime( "jquery.jeditable.js", "jquery.jeditable.js" );
 		set_showtime( "jquery.jeditable.js.relpath", "jomres/javascript/" );
 
-		set_showtime( "jquery.jgrowl.css", "jquery.jgrowl.css" );
-		set_showtime( "jquery.jgrowl.css.relpath", "jomres/css/" );
-
-		set_showtime( "jquery.jgrowl.js", "jquery.jgrowl.js" );
-		set_showtime( "jquery.jgrowl.js.relpath", "jomres/javascript/" );
-
 		set_showtime( "excanvas.js", "excanvas.js" );
 		set_showtime( "excanvas.js.relpath", "jomres/javascript/" );
 
@@ -192,7 +180,6 @@ class j00004a_init_javascript_css_files
 
 		set_showtime( "TableTools_JUI.css", "TableTools_JUI.css" );
 		set_showtime( "TableTools_JUI.css.relpath", "jomres/css/" );
-
 
 		set_showtime( "jquery.dataTables.min.js", "jquery.dataTables.min.js" );
 		set_showtime( "jquery.dataTables.min.js.relpath", "jomres/javascript/" );
@@ -247,14 +234,12 @@ class j00004a_init_javascript_css_files
 			set_showtime( "tmpl.min.js.relpath", 					"jomres/javascript/media_centre/" );
 			}
 			
-		 if (using_bootstrap())
+		if (using_bootstrap())
 			{
 			set_showtime( "bootstrap-tour.js", "bootstrap-tour.js" );
 			set_showtime( "bootstrap-tour.js.relpath", "jomres/javascript/" );
-			/* set_showtime( "jquery.cookie.js", "jquery.cookie.js" );
-			set_showtime( "jquery.cookie.js.relpath", "jomres/javascript/" ); */
-			/* set_showtime( "jquery.smooth-scroll.min.js", "jquery.smooth-scroll.min.js" );
-			set_showtime( "jquery.smooth-scroll.min.js.relpath", "jomres/javascript/" ); */
+			//set_showtime( "jquery.cookie.js", "jquery.cookie.js" );
+			//set_showtime( "jquery.cookie.js.relpath", "jomres/javascript/" );
 			}
 		}
 

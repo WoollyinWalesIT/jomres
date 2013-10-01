@@ -37,6 +37,8 @@ class j06005add_review
 			}
 
 		jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/jomres/javascript/', "jquery.validate.js" );
+		jomres_cmsspecific_addheaddata( "javascript", 'jomres/javascript/', "jquery.rating.js" );
+		jomres_cmsspecific_addheaddata( "css", 'jomres/css/', 'jquery.rating.css', true );
 
 
 		//property_header($property_uid);

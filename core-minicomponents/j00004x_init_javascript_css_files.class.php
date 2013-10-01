@@ -68,8 +68,6 @@ class j00004x_init_javascript_css_files
 				if ( jomres_cmsspecific_areweinadminarea() ) // Regardless of the frontend setting, if we're in the admin area, we'll need the jquery UI
 				jomres_cmsspecific_addheaddata( "css", get_showtime( "jquery.ui.theme.relpath" ), get_showtime( "jquery.ui.theme" ), $skip = true );
 
-				jomres_cmsspecific_addheaddata( "css", get_showtime( "jquery.rating.css.relpath" ), get_showtime( "jquery.rating.css" ), true );
-
 
 				if ( jomres_cmsspecific_areweinadminarea() )
 					{
@@ -94,13 +92,9 @@ class j00004x_init_javascript_css_files
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.cookee.for_tabs.js.relpath"),get_showtime("jquery.cookee.for_tabs.js"));
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("heartbeat.js.relpath"),get_showtime("heartbeat.js"));
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.hoverIntent.js.relpath"),get_showtime("jquery.hoverIntent.js"));
-				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.rating.js.relpath"),get_showtime("jquery.rating.js"));
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.validate.js.relpath"),get_showtime("jquery.validate.js"));
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("excanvas.js.relpath"),get_showtime("excanvas.js"));
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.chainedSelects.js.relpath"),get_showtime("jquery.chainedSelects.js"));
-
-				jomres_cmsspecific_addheaddata( "css", get_showtime( "jquery.jgrowl.css.relpath" ), get_showtime( "jquery.jgrowl.css" ) );
-				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jgrowl.js.relpath"),get_showtime("jquery.jgrowl.js"));
 
 				// Tipsy tooltips were added to Jomres 7.2.8 because beautytips don't work in jquery 1.9.2
 				jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.tipsy.js.relpath" ), get_showtime( "jquery.tipsy.js" ) );
@@ -135,8 +129,11 @@ class j00004x_init_javascript_css_files
 
 				if ( using_bootstrap() )
 					{
-					jomres_cmsspecific_addheaddata( "css", get_showtime( "DT_bootstrap.css.relpath" ), get_showtime( "DT_bootstrap.css" ) );
-					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "DT_bootstrap.js.relpath" ), get_showtime( "DT_bootstrap.js" ) );
+					if ( $thisJRUser->userIsRegistered )
+						{
+						jomres_cmsspecific_addheaddata( "css", get_showtime( "DT_bootstrap.css.relpath" ), get_showtime( "DT_bootstrap.css" ) );
+						jomres_cmsspecific_addheaddata( "javascript", get_showtime( "DT_bootstrap.js.relpath" ), get_showtime( "DT_bootstrap.js" ) );
+						}
 					}
 				else
 					{
@@ -185,12 +182,11 @@ class j00004x_init_javascript_css_files
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.fileupload-validate.js.relpath" ), get_showtime( "tmpl.min.js" ) );
 					}
 				
-				if (using_bootstrap())
+				 if (using_bootstrap())
 					{
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "bootstrap-tour.js.relpath" ), get_showtime( "bootstrap-tour.js" ) );
-					/* jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.cookie.js.relpath" ), get_showtime( "jquery.cookie.js" ) ); */
-					/* jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.smooth-scroll.min.js.relpath" ), get_showtime( "jquery.smooth-scroll.min.js.js" ) ); */
-					} 
+					//jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.cookie.js.relpath" ), get_showtime( "jquery.cookie.js" ) );
+					}
 				}
 			}
 		}
