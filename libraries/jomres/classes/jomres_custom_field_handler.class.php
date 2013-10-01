@@ -74,7 +74,7 @@ class jomres_custom_field_handler
 					foreach ( $fields as $t )
 						{
 						$ptype_xref=unserialize($t->ptype_xref);
-						if (count($ptype_xref)>0)
+						if ($t->ptype_xref!='' && count($ptype_xref)>0)
 							{
 							if (in_array ($ptype_id, $ptype_xref))
 								$this->custom_fields_by_ptype_id[ $ptype_id ][ $t->uid ] = array ( 'uid' => $t->uid, 'fieldname' => $t->fieldname, 'default_value' => $t->default_value, 'description' => $t->description, 'required' => $t->required, 'ptype_xref' => $t->ptype_xref );
