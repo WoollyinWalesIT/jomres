@@ -144,14 +144,6 @@ class j00004x_init_javascript_css_files
 				$MiniComponents        = jomres_singleton_abstract::getInstance( 'mcHandler' );
 				$colourSchemeDataArray = $MiniComponents->triggerEvent( '00021', $componentArgs ); // Get the colour scheme
 
-				if ( !file_exists( get_showtime( "module_popup.js.abspath" ) . get_showtime( "module_popup.js" ) ) )
-					{
-					$module_popup_str = '
-					var module_pop_ajax_url = "' . JOMRES_SITEPAGE_URL_AJAX . '&task=module_popup&nofollowtmpl=1&id=";
-					';
-					file_put_contents( get_showtime( "module_popup.js.abspath" ) . get_showtime( "module_popup.js" ), $module_popup_str );
-					}
-				jomres_cmsspecific_addheaddata( "javascript", get_showtime( "module_popup.js.relpath" ), get_showtime( "module_popup.js" ) );
 				if ( !file_exists( get_showtime( "misc_url_definitions.js.abspath" ) . get_showtime( "misc_url_definitions.js" ) ) )
 					{
 					$livesite_ajax = '
@@ -163,9 +155,12 @@ class j00004x_init_javascript_css_files
 					$compare_url .= '
 					var path_to_jomres_dir = \'' . get_showtime( 'live_site' ) . '/\';
 					';
-					file_put_contents( get_showtime( "misc_url_definitions.js.abspath" ) . get_showtime( "misc_url_definitions.js" ), $livesite_ajax . $compare_url );
+					$module_popup_str = '
+					var module_pop_ajax_url = "' . JOMRES_SITEPAGE_URL_AJAX . '&task=module_popup&nofollowtmpl=1&id=";
+					';
+					file_put_contents( get_showtime( "misc_url_defs.js.abspath" ) . get_showtime( "misc_url_defs.js" ), $livesite_ajax . $compare_url . $module_popup_str);
 					}
-				jomres_cmsspecific_addheaddata( "javascript", get_showtime( "misc_url_definitions.js.relpath" ), get_showtime( "misc_url_definitions.js" ) );
+				jomres_cmsspecific_addheaddata( "javascript", get_showtime( "misc_url_defs.js.relpath" ), get_showtime( "misc_url_defs.js" ) );
 				//add_gmaps_source();
 
 				if (get_showtime ( "task" ) == "media_centre")
