@@ -197,13 +197,10 @@ class j00004a_init_javascript_css_files
 			$IDN = new jomres_idna_convert();
 			$ls  = $IDN->decode( $ls );
 			}
-		set_showtime( "module_popup.js", $ls . "_" . get_showtime( 'lang' ) . "_module_popup.js" ); // We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
-		set_showtime( "module_popup.js.abspath", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS );
-		set_showtime( "module_popup.js.relpath", "jomres/temp/" );
-
-		set_showtime( "misc_url_definitions.js", $ls . "_" . get_showtime( 'lang' ) . "_misc_url_definitions.js" ); // We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
-		set_showtime( "misc_url_definitions.js.abspath", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS );
-		set_showtime( "misc_url_definitions.js.relpath", "jomres/temp/" );
+		
+		set_showtime( "misc_url_defs.js", $ls . "_" . get_showtime( 'lang' ) . "_misc_url_defs.js" ); // We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
+		set_showtime( "misc_url_defs.js.abspath", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS );
+		set_showtime( "misc_url_defs.js.relpath", "jomres/temp/" );
 
 		set_showtime( "jomres_consolidated_files.js", "jomres_consolidated_files.js" );
 		set_showtime( "jomres_consolidated_files.js.relpath", "jomres/javascript/" );
