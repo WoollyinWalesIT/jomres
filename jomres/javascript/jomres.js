@@ -564,7 +564,7 @@ function getResponse_guest() {
 
  */
 function show_log(lastfield) {
-	jomresJquery('#jGrowl').jGrowl('close');
+	//jomresJquery('#jGrowl').jGrowl('close');
 	// var form_property_uid = jomresJquery("#booking_form_property_uid").val();
 	// jomresJquery.get(ajaxurl+'&task=handlereq',{ field: "property_uid_check",'value': form_property_uid },
 	// function(data){
