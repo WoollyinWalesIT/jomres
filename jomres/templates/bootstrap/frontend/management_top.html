@@ -57,7 +57,7 @@
 																					  alt="Jomres logo"/></a>
 				</div>
 				<div class="span10">
-					<h1 class="page-title">{PROPERTYNAME}</h1>
+					<h1 class="page-title" id="tour_target_property_name">{PROPERTYNAME}</h1>
 				</div>
 			</div>
 		</div>
@@ -72,15 +72,15 @@
 			<div class="span2">
 				<h4 class="page-header" style="margin-top:20px;">Tools</h4>
 				<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
-					<p>{EDITING_MODE_DROPDOWN}</p>
+					<p id="tour_target_editing_mode_dropdown">{EDITING_MODE_DROPDOWN}</p>
 				</patTemplate:tmpl>
 				<patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
-					<p>{LANGDROPDOWN}</p>
+					<p id="tour_target_lang_dropdown">{LANGDROPDOWN}</p>
 				</patTemplate:tmpl>
 				<patTemplate:tmpl name="timezone_dropdown" type="simpleCondition" requiredVars="timezoneblurb">
 					<p>{TIMEZONEBLURB}</p>
 
-					<p>{TIMEZONE_DROPDOWN}</p>
+					<p id="tour_target_timezone_dropdown">{TIMEZONE_DROPDOWN}</p>
 				</patTemplate:tmpl>
 			</div>
 			<div class="span10">
@@ -105,4 +105,5 @@
 							jomresJquery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });
 						</script>
 					</patTemplate:tmpl>
+					<div id="tour_target_content"></div>
 </patTemplate:tmpl>

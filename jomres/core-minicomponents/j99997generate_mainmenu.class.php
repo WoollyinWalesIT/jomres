@@ -149,6 +149,38 @@ class j99997generate_mainmenu
 		$output[ '_JOMRES_CONTROLPANEL' ] = jr_gettext( "_JOMRES_CONTROLPANEL", _JOMRES_CONTROLPANEL, false );
 		$output[ '_JOMRES_MENU_SHOW' ]    = jr_gettext( "_JOMRES_MENU_SHOW", _JOMRES_MENU_SHOW, false );
 		$output[ '_JOMRES_MENU_HIDE' ]    = jr_gettext( "_JOMRES_MENU_HIDE", _JOMRES_MENU_HIDE, false );
+		
+		$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
+		
+		if (get_showtime("task") == "")
+			{
+			$task = "dashboard";
+			}
+		else
+			{
+			$task = get_showtime("task");
+			}		
+		
+		
+		
+		if ($thisJRUser->userIsManager || $task == 'registerProp_step1' || $task == 'registerProp_step2' )
+			{
+			require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'build_product_tour_files.php' );
+			build_product_tour_javascript_file();
+			 if (file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang")."-tour.js") )
+				{
+				jomres_cmsspecific_addheaddata( "javascript", "jomres/temp/product_tours/", $task.'_' . get_showtime("lang")."-tour.js" );
+				$help [0] [ 'PRODUCT_TOUR_PAGE_INFORMATION' ]      = jr_gettext( 'PRODUCT_TOUR_PAGE_INFORMATION', PRODUCT_TOUR_PAGE_INFORMATION, false, false );
+				}
+			$output['TOUR_LABELS'] = "
+				var tour_next = '".jr_gettext("_PN_NEXT",_PN_NEXT,false)."';
+				var tour_prev = '".jr_gettext("_PN_PREVIOUS",_PN_PREVIOUS,false)."';
+				var tour_end = '".jr_gettext("END_TOUR",END_TOUR,false)."';
+				";
+			$output[ 'TASK' ]    = $task;
+			}
+		
+		
 		$pageoutput[ ]                    = $output;
 		$tmpl                             = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
@@ -162,6 +194,7 @@ class j99997generate_mainmenu
 		$tmpl->readTemplatesFromInput( 'management_menu_wrapper.html' );
 		$tmpl->addRows( 'button_output', $button_o );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->addRows( 'help', $help );
 		$this->ret_vals = $tmpl->getParsedTemplate();
 		echo $this->ret_vals;
 		}
