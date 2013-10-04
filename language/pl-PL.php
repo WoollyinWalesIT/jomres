@@ -8,7 +8,7 @@
 * @copyright	2005-2013 Vince Wooll
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly. 
 * @Polska adaptacja Patryk Doering - http://www.rekinet.pl - kontakt@rekinet.pl
-* @Aktualizacja wersji językowej z 10-09-2013r.
+* @Aktualizacja wersji językowej z 25-09-2013r.
 **/
 
 ##################################################################
@@ -1976,38 +1976,45 @@ jr_define("_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC","Włączenie opcji trybu 
 jr_define("_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION","Produkcyjny");
 jr_define("_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT","Rozwojowy");
 
-//v7.3.3
-jr_define( '_JOMRES_COM_MR_EB_HROOM_DETAILS', 'Resource details' );
-jr_define( '_JOMRES_COM_MR_EB_HTARIFF_DETAILS', 'Tariff details' );
-jr_define( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', 'Only' );
-jr_define( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'left!' );
-jr_define( '_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'Resource feature' );
-jr_define( '_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'Unable to remove this resource feature, it is assigned to a resource. Remove the feature from this resource and retry.' );
 
-// v7.4
-$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-$jrConfig   = $siteConfig->get();
 
-jr_define('_JOMRES_MEDIA_CENTRE_TITLE',"Media Centre");
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY',"Property image upload service");
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD',"Add images");
 
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM',"Room images");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY',"Property main image");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW',"Slideshow images");
-jr_define('_JOMRES_MEDIA_CENTRE_CLEAR',"Clear list");
-jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP',"Drag & Drop files here");
 
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS',"Choose the resource you want to upload images for. If you can upload images for individual resources (e.g. rooms) you will be given a second dropdown to choose the specific resource. ");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS',"The maximum file size for uploads is ". jomres_formatBytes($jrConfig[ 'fileSize' ]) . ". Only JPG and PNG images are allowed.");
-jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE',"If you upload multiple images as the \"Main property image\" only the first of those images will be used.");
 
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW',"View your image");
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE',"Delete image");
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD',"Upload image");
 
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES',"Feature and Room type images");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOMTYPE_IMAGES',"Room types images");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY_FEATURES',"Property feature images");
 
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL',"Upload all files");
+
+
+
+
+
+
+
+jr_define('_JOMRES_COM_MR_EB_HROOM_DETAILS','Szczegóły zasobów');
+jr_define('_JOMRES_COM_MR_EB_HTARIFF_DETAILS','Informacje taryfowe');
+jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE','Tylko');
+jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST','lewo!');
+jr_define('_JOMRES_COM_MR_EB_HRESOURCE_FEATURE','Cecha oferty');
+jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE','Nie można usunąć tej cechy oferty jest przypisana do zasobu. Usuń cechę z tego zasobu i spróbuj ponownie.');
+
+	$siteConfig=jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+
+jr_define('_JOMRES_MEDIA_CENTRE_TITLE',"Centrum mediów");
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY',"Przesyłanie zdjęć oferty");
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD',"Dodaj zdjęcia");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM',"Zdjęcia przedmiotów rezerwacji");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY',"Zdjęcie główne oferty");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW',"Zdjęcia pokazu slajdów");
+jr_define('_JOMRES_MEDIA_CENTRE_CLEAR',"Wyczyść listę");
+jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP',"Przeciągnij i Upuść tutaj pliki");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS',"Wybierz zasób, dla którego chcesz przesłać zdjęcia. Jeśli będziesz mógł przesłać zdjęcia dla poszczególnych zasobów (np. pokoi) zostanie wyświetlona lista rozwijana z możliwością wyboru odpowiedniego zasobu.");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS',"Maksymalny rozmiar przesyłanego pliku to ". jomres_formatBytes($jrConfig[ 'fileSize' ]) . ". Akceptowane formaty plików to JPG i PNG.");
+jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE',"Jeśli prześlesz kilka zdjęć jako \"Zdjęcie główne oferty\" tylko pierwsze z tych zdjęć będzie używane.");
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW',"Zobacz zdjęcie");
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE',"Usuń zdjęcie");
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD',"Prześlij zdjęcie");
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES',"Cechy ofert i zdjęcia przedmiotów rezerwacji");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOMTYPE_IMAGES',"Zdjęcia przedmiotów rezerwacji");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY_FEATURES',"Zdjęcia cech ofert");
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL',"Prześlij wszystkie pliki");
