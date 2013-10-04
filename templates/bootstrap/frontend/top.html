@@ -1,13 +1,8 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script>
-<!--
-var jomres_task = "{TASK}";
--->
-{TOUR_LABELS}
-</script>
+
 <style>
 .bootstrap-tour {
-max-width: 600px;
+max-width: 350px;
 width: auto;
 }
 </style>
@@ -25,10 +20,6 @@ width: auto;
 
 		<div class="">
 			<h2 id="tour_target_property_name">{PROPERTYNAME}<span class="small pull-right">{MANAGEMENT_VIEW_DROPDOWN}</span></h2>
-			<patTemplate:tmpl name="help" type="simpleCondition" requiredVars="_jomres_customcode_menucategories_help">
-			<a class="start btn-primary btn pull-right" id="start" href="#" onClick="start_tour()">{_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP}</a>
-			</patTemplate:tmpl>
-
 			<div class="row-fluid">
 				<patTemplate:tmpl name="timezone_dropdown" type="simpleCondition" requiredVars="timezoneblurb">
 					<div class="span4" id="tour_target_timezone_dropdown">

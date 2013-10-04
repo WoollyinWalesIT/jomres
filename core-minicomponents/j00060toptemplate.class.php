@@ -100,33 +100,6 @@ class j00060toptemplate
 			$output[ 'LIVESITE' ]       = get_showtime( 'live_site' );
 			$output[ 'DATEPICKERLANG' ] = JOMRESDATEPICKERLANG;
 			
-			if ($thisJRUser->userIsManager)
-				{
-				if (get_showtime("task") == "")
-					{
-					$task = "dashboard";
-					}
-				else
-					{
-					$task = get_showtime("task");
-					}
-				
-				require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'build_product_tour_files.php' );
-				build_product_tour_javascript_file();
-				 if (file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang")."-tour.js") )
-					{
-					
-					jomres_cmsspecific_addheaddata( "javascript", "jomres/temp/product_tours/", $task.'_' . get_showtime("lang")."-tour.js" );
-					$help [0] [ '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP' ]      = jr_gettext( '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', _JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP, false, false );
-					}
-				$output['TOUR_LABELS'] = "
-					var tour_next = '".jr_gettext("_PN_NEXT",_PN_NEXT,false)."';
-					var tour_prev = '".jr_gettext("_PN_PREVIOUS",_PN_PREVIOUS,false)."';
-					var tour_end = '".jr_gettext("END_TOUR",END_TOUR,false)."';
-				";
-			
-				}
-				
 			$lang_dropdown[ ][ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
 			set_showtime( "menuitem_langdropdown", $lang_dropdown[ 0 ][ 'LANGDROPDOWN' ] );
 

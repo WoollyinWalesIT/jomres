@@ -7,7 +7,8 @@
 			jomresJquery('#jomres_alternate_menu_position').html($content);
 			jomresJquery('#jomres-menu-pinned').empty(); // making sure that the old div doesn't have the accordion applied to it.
 		});
-
+		var jomres_task = "{TASK}";
+		{TOUR_LABELS}
 		//-->
 	</script>
 	
@@ -31,6 +32,9 @@
 							<patTemplate:comment> for Pills add 'nav-pills' to the class here</patTemplate:comment>
 							<patTemplate:tmpl name="button_output">
 								{DIV}
+							</patTemplate:tmpl>
+							<patTemplate:tmpl name="help" type="simpleCondition" requiredVars="product_tour_page_information">
+							<li><a id="start" href="javascript:start_tour();">{PRODUCT_TOUR_PAGE_INFORMATION}</a></li>
 							</patTemplate:tmpl>
 						</ul>
 					</div>

@@ -29,16 +29,18 @@ function build_product_tour_javascript_file()
 	switch ( $task )
 		{
 		case "dashboard":
-			$target_ids['tour_target_main_menu']					= 'left' ;
+			$target_ids['tour_target_main_menu']					= 'bottom' ;
 			$target_ids['tour_target_property_name']				= 'left' ;
-			$target_ids['tour_target_timezone_dropdown']			= 'left' ;
+			$target_ids['tour_target_timezone_dropdown']			= 'right' ;
 			$target_ids['tour_target_lang_dropdown']				= 'right' ;
 			$target_ids['tour_target_editing_mode_dropdown']		= 'right' ;
 			$target_ids['tour_target_content']						= 'top' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "switch_active_property":
-			$target_ids['tour_target_property_name']				= 'top' ;
+			$target_ids['tour_target_switcher_active_property_initials'] = 'top' ;
 			$target_ids['found_properties'] 						= 'top' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "preview":
 			$target_ids['tour_target_property_header']				= 'top' ;
@@ -55,6 +57,7 @@ function build_product_tour_javascript_file()
 			$target_ids['tour_target_local_attractions']			= 'top' ;
 			$target_ids['tour_target_local_events']					= 'top' ;
 			$target_ids['jomres_auction_house_content_body']		= 'top' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "hotelSettings":
 			$target_ids['tab_Bookingrooms'] 						= 'top' ;
@@ -70,17 +73,19 @@ function build_product_tour_javascript_file()
 			$target_ids['tab_Touristtax']							= 'top' ;
 			$target_ids['tab_Micromanage']							= 'top' ;
 			$target_ids['tab_Wiseprice']							= 'top' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "listyourproperties":
 			$target_ids['tour_target_frontend_list_properties']		= 'top' ;
-			$target_ids['tour_target_table_tools']					= 'left' ;
+			$target_ids['tour_target_table_tools']					= 'top' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "registerProp_step1":
 			$target_ids['tour_target_registration_1']				= 'top' ;
 			$target_ids['tour_target_registration_1_country'] 		= 'left' ;
-			$target_ids['tour_target_registration_1_region']		= 'left' ;
 			$target_ids['tour_target_registration_1_property_type']	= 'left' ;
 			$target_ids['tour_target_registration_1_process']		= 'left' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "registerProp_step2":
 			$target_ids['tour_target_registration_2']				= 'top' ;
@@ -92,26 +97,32 @@ function build_product_tour_javascript_file()
 			$target_ids['tour_target_registration_2_description']	= 'left' ;
 			$target_ids['tour_target_registration_2_realestate_description'] = 'left' ;
 			$target_ids['tour_target_registration_2_policies']		= 'left' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "listLiveBookings":
 			$target_ids['tour_target_listall_bookings']				= 'top' ;
 			$target_ids['tour_target_table_tools']					= 'top' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "listNewBookings":
 			$target_ids['tour_target_listnew_bookings']				= 'top' ;
 			$target_ids['tour_target_table_tools']					= 'top' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "listoldbookings":
 			$target_ids['tour_target_listold_bookings']				= 'top' ;
 			$target_ids['tour_target_table_tools']					= 'top' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "listguests":
 			$target_ids['tour_target_list_guests']					= 'top' ;
 			$target_ids['tour_target_table_tools']					= 'top' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "listguests":
 			$target_ids['tour_target_list_guests']					= 'top' ;
 			$target_ids['tour_target_table_tools']					= 'top' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "dobooking":
 			$target_ids['tour_target_booking_overrides']			= 'left' ;
@@ -121,14 +132,17 @@ function build_product_tour_javascript_file()
 			$target_ids['tour_target_booking_extras']				= 'left' ;
 			$target_ids['tour_target_booking_existing_guests']		= 'left' ;
 			$target_ids['tour_target_booking_required']				= 'left' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "listguests":
 			$target_ids['tour_target_list_guests']					= 'top' ;
 			$target_ids['tour_target_table_tools']					= 'top' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "listBlackBookings":
 			$target_ids['tour_target_list_blackbookings']			= 'top' ;
 			$target_ids['tour_target_table_tools']					= 'top' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "editProperty":
 			$target_ids['tour_target_registration_2_name_address']	= 'left' ;
@@ -138,24 +152,29 @@ function build_product_tour_javascript_file()
 			$target_ids['tour_target_registration_2_description']	= 'left' ;
 			$target_ids['tour_target_registration_2_realestate_description']= 'left' ;
 			$target_ids['tour_target_registration_2_policies']		= 'left' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "propertyadmin":
 			$target_ids['tour_target_listtariffs_normal_mrp']		= 'top' ;
 			$target_ids['tour_target_listtariffs_normal_srp']		= 'top' ;
 			$target_ids['tour_target_roomsandtariffs_mrp']			= 'top' ;
 			$target_ids['tour_target_roomsandtariffs_srp']			= 'top' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "listCustomerTypes":
 			$target_ids['tour_target_guest_types']					= 'top' ;
 			$target_ids['tour_target_table_tools']					= 'top' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "listCoupons":
 			$target_ids['tour_target_coupons']						= 'top' ;
 			$target_ids['tour_target_table_tools']					= 'top' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "listExtras":
 			$target_ids['tour_target_extras']						= 'top' ;
 			$target_ids['tour_target_table_tools']					= 'top' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 		case "media_centre":
 			$target_ids['tour_target_mediacentre_introduction']		= 'top' ;
@@ -163,6 +182,7 @@ function build_product_tour_javascript_file()
 			$target_ids['tour_target_mediacentre_existingimages']	= 'left' ;
 			$target_ids['tour_target_mediacentre_selectedimages']	= 'right' ;
 			$target_ids['tour_target_mediacentre_uploadcontrols']	= 'right' ;
+			$target_ids['tour_target_end']							= 'top' ;
 		break;
 
 
