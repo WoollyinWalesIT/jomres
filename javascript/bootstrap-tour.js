@@ -1048,7 +1048,7 @@ var __slice = [].slice,
         */
 
         template: function(step) {
-          return "<div class=\"popover\">\n  <div class=\"arrow\"></div>\n  <div class=\"popover-inner\"><h3 class=\"popover-title\"></h3>\n    <div class=\"popover-content\"></div>\n    <div class=\"modal-footer\">\n    <a href=\"#\" class=\"btn btn-warning end pull-left\">"+tour_end+"</a>\n    <span><a href=\"" + step.prev + "\" class=\"btn prev\">"+tour_prev+"</a>\n    <a href=\"" + step.next + "\" class=\"btn btn-primary pull-right next\">"+tour_next+"</a></span>\n    </div>\n  </div>\n</div>";
+          return "<div class=\"popover\">\n  <div class=\"arrow\"></div>\n  <div class=\"popover-inner\"><h3 class=\"popover-title\"></h3>\n    <div class=\"popover-content\"></div>\n    <div class=\"modal-footer\">\n    <a href=\"#\" class=\"btn btn-warning end pull-left\">"+tour_end+"</a>\n    <span><a href=\"" + step.prev + "\" class=\"btn prev\"><i class=\"icon-arrow-left\"></i> "+tour_prev+"</a>\n    <a href=\"" + step.next + "\" class=\"btn btn-primary pull-right next\">"+tour_next+" <i class=\"icon-arrow-right\"></i></a></span>\n    </div>\n  </div>\n</div>";
         }
       }
     };
