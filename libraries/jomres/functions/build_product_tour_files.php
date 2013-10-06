@@ -25,6 +25,11 @@ function build_product_tour_javascript_file()
 		$task = get_showtime("task");
 		}
 	
+	$file = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang").'-tour.js';
+	if (file_exists($file))
+		{
+		return;
+		}
 	$target_ids = array();
 	switch ( $task )
 		{
@@ -185,21 +190,11 @@ function build_product_tour_javascript_file()
 			$target_ids['tour_target_end']							= 'top' ;
 		break;
 
-
-
-
 		default:
 			//We could add code here to find information from plugins
 		break;
 		}
 
-/* 
-		case "XXXXX":
-			$target_ids['xxxxxxxxxxxxx']					= 'left' ;
-			$target_ids['xxxxxxxxxxxxx']					= 'left' ;
-		break;
-		 */
-		
 	build_tour( $target_ids , $task );
 	}
 
