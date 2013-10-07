@@ -75,6 +75,10 @@ class j02990showconfirmation
 		$bookingDeets = gettempBookingdata();
 		$tag          = $bookingDeets[ 'tag' ];
 		$property_uid = $bookingDeets[ 'property_uid' ];
+		
+		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$current_property_details->gather_data($property_uid);
+		
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
 
 		if ( $amend_contract )
@@ -99,9 +103,12 @@ class j02990showconfirmation
 		$accommodation_tax_output = "";
 		if ( $this->accommodation_tax_rate > 0 ) $accommodation_tax_output = " (" . $this->accommodation_tax_rate . "%)";
 
+		$ptype_id = $current_property_details->ptype_id;
+		
 		jr_import( 'jomres_custom_field_handler' );
 		$custom_fields   = new jomres_custom_field_handler();
-		$allCustomFields = $custom_fields->getAllCustomFields();
+		$allCustomFields = $custom_fields->getAllCustomFieldsByPtypeId($ptype_id);
+	
 		$customFields    = array ();
 		if ( count( $allCustomFields ) > 0 )
 			{
