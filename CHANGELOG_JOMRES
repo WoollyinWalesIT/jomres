@@ -1,3 +1,20 @@
+Jomres 7.5
+
+Added a new feature that offers integrated help on many of the top level pages in the frontend of Jomres. As this more suitable for property managers we will be retiring the old Manual plugin as that had too much information which wasn't relevant to property managers.
+
+
+Removed an important hard coded maptab id by mistake, by overwriting an array index. Restored that now.
+Fixed an odd bug where some, valid, VAT numbers wouldn't be validated.
+Removed some code from the integration script that prevented caching, as the issue it's trying to fix is negligible.
+Fixed a bug new to 7.4 where the profiles list was empty.
+Property area activities added to a query in the basic property details class.
+Modified the custom field handler to cope if the appropriate xreference field is empty.
+Moved review and growl messaging javascript into the consolidated minified javascript files.
+Disabled a growl popup that has been left in a depreciated javascript function because it causes errors when popups are disabled.
+Combined two dynamically generated files into one.
+Added new language translations to Polish lang file. Many thanks Patryk.
+
+
 Jomres 7.4.0
 
 Added a new feature called array cache, which significantly speeds up Jomres performance.
