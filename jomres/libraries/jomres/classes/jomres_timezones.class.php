@@ -20,7 +20,7 @@ class jomres_timezones
 	function jomres_timezones()
 		{
 		$this->check_timezone_change();
-		if ( _JOMRES_DETECTED_CMS == "joomla25" )
+		if ( _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31")
 			{
 			$CONFIG                 = new JConfig();
 			$this->default_timezone = $CONFIG->offset;
