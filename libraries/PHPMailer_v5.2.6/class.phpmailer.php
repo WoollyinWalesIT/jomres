@@ -3389,17 +3389,20 @@ class jomresPHPMailer
  *
  * @package PHPMailer
  */
-class phpmailerException extends Exception
+if (!class_exists('phpmailerException'))
 	{
-	/**
-	 * Prettify error message output
-	 *
-	 * @return string
-	 */
-	public function errorMessage()
+	class phpmailerException extends Exception
 		{
-		$errorMsg = '<strong>' . $this->getMessage() . "</strong><br />\n";
+		/**
+		 * Prettify error message output
+		 *
+		 * @return string
+		 */
+		public function errorMessage()
+			{
+			$errorMsg = '<strong>' . $this->getMessage() . "</strong><br />\n";
 
-		return $errorMsg;
+			return $errorMsg;
+			}
 		}
 	}
