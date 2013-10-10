@@ -153,6 +153,18 @@ class jomSearch
 
 			$all_published_properties = get_showtime('published_properties_in_system');
 			
+			if (!$all_published_properties)
+				{
+				$all_published_properties=array();
+				$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE `published`='1' ";
+				$result = doSelectSql( $query );
+				foreach ($result as $r)
+					{
+					$all_published_properties[]=$r->propertys_uid;
+					}
+				set_showtime('published_properties_in_system',$all_published_properties);
+				}
+			
 			$basic_property_details->get_property_name_multi( $all_published_properties );
 			foreach ($all_published_properties as $puid)
 				{
