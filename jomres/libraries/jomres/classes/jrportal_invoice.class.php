@@ -23,7 +23,7 @@ class jrportal_invoice
 		$this->status           = 0;
 		$this->raised_date      = '';
 		$this->due_date         = '';
-		$this->paid             = '';
+		$this->paid             = '0000-00-00 00:00:00';
 		$this->subscription     = false;
 		$this->init_total       = 0.00;
 		$this->recur_total      = 0.00;
