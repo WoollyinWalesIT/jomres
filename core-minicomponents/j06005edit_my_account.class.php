@@ -54,7 +54,7 @@ class j06005edit_my_account
 		$output[ 'HOUSE' ]     = '';
 		$output[ 'STREET' ]    = '';
 		$output[ 'TOWN' ]      = '';
-		$output[ 'REGION' ]    = setupRegions();
+		$output[ 'REGION' ]    = setupRegions($jrConfig[ 'limit_property_country_country' ]);
 		$output[ 'COUNTRY' ]   = createSimpleCountriesDropdown( $jrConfig[ 'limit_property_country_country' ] );
 		$output[ 'POSTCODE' ]  = '';
 		$output[ 'LANDLINE' ]  = '';
