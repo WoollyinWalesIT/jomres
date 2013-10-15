@@ -55,7 +55,7 @@ class j00035tabcontent_01_main_details
 			else // Using wiseprice calculations
 				{
 				$wisepricethreshold = $discount[$property_uid]['wisepricethreshold'];
-				$wisepricediscount  = $discount[$property_uid]['wisepricediscount'];
+				$wisepricediscount  = $discount[$property_uid]['wiseprice75discount'];
 
 				$todaysDate     = date( "Y/m/d" );
 				$date_elements  = explode( "/", $todaysDate );

@@ -378,9 +378,15 @@ class j00030search
 			if ( count( $sch->prep[ 'propertyname' ] ) > 0 )
 				{
 				$propertyname = array ();
-				if ( empty( $sch->filter[ 'propertyname' ] ) ) $selectOption = $sch->prep[ 'propertyname' ][ 0 ][ 'pn' ];
+				if ( empty( $sch->filter[ 'propertyname' ] ) ) 
+					{
+					$selectOption = $sch->prep[ 'propertyname' ][ 0 ][ 'pn' ];
+					}
 				else
-				$selectOption = $sch->filter[ 'propertyname' ];
+					{
+					$selectOption = $sch->filter[ 'propertyname' ];
+					}
+				
 				if ( $searchOutput[ 'propertyname' ] == "dropdown" )
 					{
 					foreach ( $sch->prep[ 'propertyname' ] as $property )
