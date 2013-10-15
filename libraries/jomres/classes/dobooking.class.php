@@ -5724,16 +5724,20 @@ class dobooking
 				$discountable_room_total     = $this->room_total;
 				$non_discountable_room_total = 0;
 				}
-
-			if ( $this->coupon_details[ 'is_percentage' ] == "1" )
+			
+			$this->coupon_discount_value = 0.00;
+			if ($number_of_times_coupon_is_valid_for_booking_date_range > 0)
 				{
-				$this->coupon_discount_value = ( $discountable_room_total / 100 ) * (float) $this->coupon_details[ 'amount' ];
-				$this->room_total            = ( $discountable_room_total - $this->coupon_discount_value ) + $non_discountable_room_total;
-				}
-			else
-				{
-				$this->coupon_discount_value = (float) $this->coupon_details[ 'amount' ];
-				$this->room_total            = ( $discountable_room_total - $this->coupon_discount_value ) + $non_discountable_room_total;
+				if ( $this->coupon_details[ 'is_percentage' ] == "1" )
+					{
+					$this->coupon_discount_value = ( $discountable_room_total / 100 ) * (float) $this->coupon_details[ 'amount' ];
+					$this->room_total            = ( $discountable_room_total - $this->coupon_discount_value ) + $non_discountable_room_total;
+					}
+				else
+					{
+					$this->coupon_discount_value = (float) $this->coupon_details[ 'amount' ];
+					$this->room_total            = ( $discountable_room_total - $this->coupon_discount_value ) + $non_discountable_room_total;
+					}
 				}
 
 			$fb1      = jr_gettext( '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', _JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK, false, false );
