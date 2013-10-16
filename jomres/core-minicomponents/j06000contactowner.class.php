@@ -116,7 +116,7 @@ class j06000contactowner
 			{
 			if ( isset( $_POST[ "recaptcha_challenge_field" ] ) )
 				{
-				$resp = recaptcha_check_answer( $jrConfig[ 'recaptcha_private_key' ], $_SERVER[ "REMOTE_ADDR" ], jomresGetParam( $_POST, 'recaptcha_challenge_field', 0 ), jomresGetParam( $_POST, 'recaptcha_response_field', 0 ) );
+				$resp = recaptcha_check_answer( $jrConfig[ 'recaptcha_private_key' ], $_SERVER[ "REMOTE_ADDR" ], jomresGetParam( $_POST, 'recaptcha_challenge_field', '' ), jomresGetParam( $_POST, 'recaptcha_response_field', '' ) );
 				}
 			else
 				{
