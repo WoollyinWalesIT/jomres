@@ -1,3 +1,16 @@
+Jomres 7.5.1
+
+Modified the mailer exception class to check and see if the class already exists and to not include it if it does.
+Modified the basic module output to standardise the images available to the template.
+Modified search functionality so that the property name dropdown will be shown when the module is used on non-Jomres pages.
+Resolved an issue that one user was having where mysql would not accept '' as null for the paid date (because the invoice isn't paid yet).
+Fixed wiseprice discount so that it would show in the property details tabs.
+Tweaked the edit my account page so that if the site config option "properties are in this country" is used, then by default the edit my account page defaults to that property and the regions are available as appropriate.
+Fixed an issue where once a discount coupon code is found to be valid, it's applied to other bookings during that session where the dates are not valid.
+Fixed an issue where if captcha was enabled, then messages couldn't be sent.
+Modified the installer, changed a column type for new installations to prevent error messages in the installer.
+
+
 Jomres 7.5
 
 Added a new feature that offers integrated help on many of the top level pages in the frontend of Jomres. As this more suitable for property managers we will be retiring the old Manual plugin as that had too much information which wasn't relevant to property managers.
