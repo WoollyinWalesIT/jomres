@@ -2829,7 +2829,7 @@ function createJomresTables()
 		`hotel_feature_full_desc` TEXT NULL,
 		`image` text,
 		`property_uid` VARCHAR(11),
-		`ptype_id` INT( 11 ) DEFAULT '0' NOT NULL,
+		`ptype_xref` text NULL DEFAULT NULL,
 		PRIMARY KEY(`hotel_features_uid`)
 		) ";
 	if ( !doInsertSql( $query ) )
@@ -3121,7 +3121,7 @@ function insertSampleData()
 
 	$result = doInsertSql( "INSERT INTO `#__jomresportal_c_rates` VALUES (1,'default',2,10,'GBP','2009-05-04 13:07:51',0,'0000-00-00 00:00:00',1)", "" );
 
-	$result = doInsertSql( "INSERT INTO `#__jomres_hotel_features` (`hotel_features_uid`, `hotel_feature_abbv`, `hotel_feature_full_desc`, `image`, `property_uid`, `ptype_id`) VALUES
+	$result = doInsertSql( "INSERT INTO `#__jomres_hotel_features` (`hotel_features_uid`, `hotel_feature_abbv`, `hotel_feature_full_desc`, `image`, `property_uid`, `ptype_xref`) VALUES
 			(3, 'Airport', 'Close to the airport', 'jomres/uploadedimages/pfeatures/airport_nearby.png', '0', 0),
 			(4, 'Minibar', 'Minibar in room', 'jomres/uploadedimages/pfeatures/air_conditioning.png', '0', 1),
 			(5, 'All Inclusive', 'All inclusive rates available', 'jomres/uploadedimages/pfeatures/allinc.png', '0', 0),
