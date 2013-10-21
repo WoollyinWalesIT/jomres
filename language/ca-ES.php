@@ -1377,7 +1377,7 @@ jr_define( '_JOMRES_CALENDAR_NEXT', 'Següent' );
 jr_define( '_JOMRES_CALENDAR_RTL', 'fals' );
 jr_define( '_JOMRES_ROOMALLOCATIONS_ROOM', 'Habitació ' );
 jr_define( '_JOMRES_ROOMALLOCATIONS_GUESTS', 'hoste(s). ' );
-jr_define( '_JOMRES_ROOMALLOCATIONS_INFORMATION', "Hem assignat el número d'hostes a les seves habitacions. Si desitja canviar aquesta assignació, haurà de contactar amb l'hotel després de fer la reserva. Es poden aplicar càrrecs extra si canvia les assignacions." );
+jr_define( '_JOMRES_ROOMALLOCATIONS_INFORMATION', "Hem assignat el número d'hostes a les seves habitacions. Si desitja canviar aquesta assignació, haurà de contactar amb l\'hotel després de fer la reserva. Es poden aplicar càrrecs extra si canvia les assignacions." );
 jr_define( '_JOMRES_SANITY_CHECK_NOT_PUBLISHED', "Tingui en compte que la seva propietat no s'ha publicat encara, només es pot veure la propietat, els visitants del lloc no la veuran" );
 // 4.5.5
 jr_define( '_JOMRES_PROPERTYLIST_FILTERS_DEFAULT', 'Ordre de resultats predeterminat per a cerca per defecte' );
@@ -1758,7 +1758,7 @@ jr_define( '_JOMRES_MOBILE_REDIRECT', 'Redireccionar a pàgina sense marcs en di
 jr_define( '_JOMRES_MOBILE_REDIRECT_DESC', "Jomres inclou una característica que redirecciona a un usuari a una vista de joomla que no inclou ni mòduls ni capçaleres quan detecta que el navegador pertany a un dispositiu mòvil. Si la seva plantilla de joomla està optimitzada per a dispositius mòvils, pot desactivar aquesta característica marcant l'opció No." );
 
 jr_define( '_JOMRES_SYSTEM_EMAILS', "Desde quina direcció s'envien els e-mails?" );
-jr_define( '_JOMRES_SYSTEM_EMAILS_DESC', "Deixi aquesta opció en blanc per a desactivar-la. Jomres utilitzarà la direcció(ns) de l'hotel quan envïi emails als clients, però el seu servei d'email pot no acceptar emails desde direccions arbitràries (ex. només admeten mails d'una direcció autoritzada). En aquest cas pot utilitzar aquest camp per introduïr una direcció que s'introduïrà en el camp DESDE per a tots els emails." );
+jr_define( '_JOMRES_SYSTEM_EMAILS_DESC', "Deixi aquesta opció en blanc per a desactivar-la. Jomres utilitzarà la direcció(ns) de l\'hotel quan envïi emails als clients, però el seu servei d'email pot no acceptar emails desde direccions arbitràries (ex. només admeten mails d'una direcció autoritzada). En aquest cas pot utilitzar aquest camp per introduïr una direcció que s'introduïrà en el camp DESDE per a tots els emails." );
 
 jr_define( '_JOMRES_CSS_CACHING_TITLE', "Utilitzar caché css?" );
 jr_define( '_JOMRES_CSS_CACHING_DESC', "" );
