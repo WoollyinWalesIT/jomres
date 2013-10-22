@@ -30,6 +30,31 @@ else
 
 define( '_JOMRES_INITCHECK', 1 );
 
+if (isset($_REQUEST ['layout']))
+	{
+	$_REQUEST ['task'] = "search";
+	$_REQUEST ['calledByModule'] = "mod_jomsearch_m0";
+	
+	
+	switch ( $_REQUEST ['layout'] )
+		{
+		case 'countries':
+			$_REQUEST ['country'] = $_REQUEST ['selected_country'];
+			break;
+		case 'regions':
+			$_REQUEST ['region'] = $_REQUEST ['selected_region'];
+			break;
+		case 'towns':
+			$_REQUEST ['town'] = $_REQUEST ['selected_town'];
+			break;
+		case 'propertytypes':
+			$_REQUEST ['ptype'] = $_REQUEST ['selected_ptype'];
+			break;
+		default:
+			break;
+		}
+	}
+
 require_once( dirname( __FILE__ ) . '/../../jomres/jomres.php' );
 
 ?>
