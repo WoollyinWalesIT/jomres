@@ -23,7 +23,7 @@ define( 'JOMRES_ADMINISTRATORDIRECTORY', "administrator" );
 $scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 if ( !strstr( $scriptname, 'install_jomres.php' ) )
 	{
-	$query = "SELECT id,language FROM #__menu WHERE published = 1 AND link LIKE 'index.php?option=com_jomres&view=default%' ";
+	$query = "SELECT id,language FROM #__menu WHERE published = 1 AND link LIKE 'index.php?option=com_jomres&view=default' ";
 	$itemQueryRes = doSelectSql( $query );
 
 	$itemIdFound=false;
