@@ -144,7 +144,7 @@ class j00004x_init_javascript_css_files
 				$MiniComponents        = jomres_singleton_abstract::getInstance( 'mcHandler' );
 				$colourSchemeDataArray = $MiniComponents->triggerEvent( '00021', $componentArgs ); // Get the colour scheme
 
-				if ( !file_exists( get_showtime( "misc_url_definitions.js.abspath" ) . get_showtime( "misc_url_definitions.js" ) ) )
+				if ( !file_exists( get_showtime( "misc_url_defs.js.abspath" ) . get_showtime( "misc_url_defs.js" ) ) )
 					{
 					$livesite_ajax = '
 					var live_site_ajax = \'' . JOMRES_SITEPAGE_URL_AJAX . '\';
