@@ -47,10 +47,9 @@ class j04200editproperty
 		$jrConfig       = $siteConfig->get();
 		$defaultText    = "Change Me!";
 		$propertyRights = $thisJRUser->defaultproperty;
-		$propertyUid    = intval( jomresGetParam( $_REQUEST, 'propertyUid', 0 ) );
-		if ( $propertyUid > 0 && !in_array( $propertyUid, $jrConfig->authorisedProperties ) ) $propertyUid = getDefaultProperty();
-		if ( $jrConfig[ 'selfRegistrationAllowed' ] == "0" && $propertyUid == 0 ) $propertyUid = getDefaultProperty();
-		if ( JOMRES_SINGLEPROPERTY ) $propertyUid = getDefaultProperty();
+		
+		$propertyUid = getDefaultProperty();
+
 		$propertyRegion[ ]                = array ( "GB", "" );
 		$ptypeid                          = "";
 		$propertyFeatures                 = "";
