@@ -167,7 +167,7 @@ if ( !is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedima
 	}
 
 // Have to do this automatically otherwise Jomres will never run when upgrading from v2.5 to v3.x of joomla
-if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" )
+if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" )
 	{
 	$result = true;
 	if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ADMINISTRATORDIRECTORY . JRDS . 'components' . JRDS . 'com_jomres' . JRDS . 'admin.jomres.php' ) )
