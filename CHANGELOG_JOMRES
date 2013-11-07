@@ -1,3 +1,11 @@
+Jomres 7.5.2
+
+Added Joomla 3.2 specific changes to Jomres.
+Added new functionality to allow easy inclusion of searches for countries, regions, towns and property types as joomla menu items.
+Updated both Polish and Catalan language files.
+Tweaked how a misc url definitions file is generated.
+
+
 Jomres 7.5.1
 
 Modified the mailer exception class to check and see if the class already exists and to not include it if it does.
