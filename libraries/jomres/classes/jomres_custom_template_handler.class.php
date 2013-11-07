@@ -36,7 +36,7 @@ class jomres_custom_template_handler
 			{
 			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 			$jrConfig   = $siteConfig->get();
-			if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" ) $this->using_bootstrap = true;
+			if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" ) $this->using_bootstrap = true;
 			else
 				{
 				if ( $jrConfig[ 'use_bootstrap_in_frontend' ] == "1" ) $this->using_bootstrap = true;
