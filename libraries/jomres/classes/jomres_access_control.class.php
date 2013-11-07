@@ -129,13 +129,14 @@ class jomres_access_control
 	private function init()
 		{
 		$this->controlled = array ();
+		$controlled=false;
 		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
-		$controlled=$c->retrieve('jomres_access_control_scripts');
+		if ($c->isCached('jomres_access_control_scripts'))
+			$controlled=$c->retrieve('jomres_access_control_scripts');
 
-		if (true===is_array($controlled))
+		if ($controlled)
 			{
-			if (isset($controlled['jomres_access_control_scripts']))
-				$this->controlled=$controlled['jomres_access_control_scripts'];
+			$this->controlled=$controlled;
 			}
 		else
 			{
