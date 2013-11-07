@@ -29,4 +29,6 @@ else
 define( '_JOMRES_INITCHECK', 1 );
 define( '_JOMRES_INITCHECK_ADMIN', 1 );
 
+JToolBarHelper::title( 'Jomres', 'home.png' );
+
 require_once( dirname( __FILE__ ) . '/../../../jomres/admin.php' );
