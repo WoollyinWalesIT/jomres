@@ -28,7 +28,14 @@ if (isset($_REQUEST ['layout']))
 			$_REQUEST ['region'] = $_REQUEST ['selected_region'];
 			break;
 		case 'towns':
-			$_REQUEST ['town'] = $_REQUEST ['selected_town'];
+			if (isset($_REQUEST ['selected_town']))
+				{
+				$_REQUEST ['town'] = $_REQUEST ['selected_town'];
+				}
+			else
+				{
+				$_REQUEST ['town'] = $_REQUEST ['value'];
+				}
 			break;
 		case 'propertytypes':
 			$_REQUEST ['ptype'] = $_REQUEST ['selected_ptype'];
