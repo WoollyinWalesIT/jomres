@@ -125,7 +125,7 @@ class HTML_jomres
 		</tr>
 		' );
 
-			if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" )
+			if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32")
 				{
 				$contentPanel->setcontent( '
 			<tr valign="middle" class="odd">
