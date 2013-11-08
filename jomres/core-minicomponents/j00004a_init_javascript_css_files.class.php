@@ -84,7 +84,7 @@ class j00004a_init_javascript_css_files
 
 		$management_view = jomresGetParam( $_REQUEST, 'tmpl', false );
 
-		if ( _JOMRES_DETECTED_CMS != "joomla30" && _JOMRES_DETECTED_CMS != "joomla31" )
+		if ( _JOMRES_DETECTED_CMS != "joomla30" && _JOMRES_DETECTED_CMS != "joomla31" && _JOMRES_DETECTED_CMS != "joomla32")
 			{
 			if ( !isset( $jrConfig[ 'jquery18_2_switch' ] ) ) $jrConfig[ 'jquery18_2_switch' ] = 0; // By default the 19_2 switch will be set to No, so that jq 1.8 will be loaded.
 
