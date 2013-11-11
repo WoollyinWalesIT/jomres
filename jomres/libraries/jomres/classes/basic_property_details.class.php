@@ -500,7 +500,7 @@ class basic_property_details
 			}
 		else
 			{
-			$query                          = "SELECT id,ptype,ptype_desc FROM #__jomres_ptypes";
+			$query                          = "SELECT id,ptype,ptype_desc FROM #__jomres_ptypes WHERE published = '1' ";
 			$propertytypes                  = doSelectSql( $query );
 			if ( count( $propertytypes ) > 0 )
 				{
