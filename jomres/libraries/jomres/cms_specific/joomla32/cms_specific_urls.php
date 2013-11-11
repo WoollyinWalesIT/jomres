@@ -125,7 +125,10 @@ $lang_param = '';
 if ( isset( $_REQUEST[ 'jomreslang' ] ) )
 	{
 	$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
-	if ( array_key_exists( $_REQUEST[ 'jomreslang' ], $jomreslang->datepicker_crossref ) ) $lang_param .= "&jomreslang=" .  jomresGetParam( $_REQUEST , 'jomreslang' , '' );
+	if ( array_key_exists( $_REQUEST[ 'jomreslang' ], $jomreslang->datepicker_crossref ) ) 
+		{
+		$lang_param .= "&jomreslang=" .  jomresGetParam( $_REQUEST , 'jomreslang' , '' );
+		}
 	}
 
 /* 
