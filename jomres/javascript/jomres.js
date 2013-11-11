@@ -9,7 +9,7 @@ function Block_Error() {
 };
 
 jomresJquery(function () {
-	jomresJquery(".jomres_bt_tooltip_features").tipsy({html: true, fade: true, gravity: 'sw', delayOut: 100});
+	jomresJquery(".jomres_bt_tooltip_features").tipsy({html: true, fade: true, gravity: jomresJquery.fn.tipsy.autoNS, delayOut: 100});
 });
 
 jomresJquery.fn.fadeThenSlideToggle = function (speed, easing, callback) {
