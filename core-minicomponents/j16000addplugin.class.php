@@ -381,7 +381,7 @@ class j16000addplugin
 
 				if ( $plugin_class->data[ 'type' ] == "mambot" || $plugin_class->data[ 'type' ] == "module" )
 					{
-					if ( _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" )
+					if ( _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32")
 						{
 						if ( !$autoupgrade )
 							{
