@@ -29,9 +29,10 @@ class j00013dashboard
 			return;
 			}
 
-		$property_uid = getDefaultProperty();
-		$result       = $MiniComponents->specificEvent( '06001', 'dashboard', array ( 'property_uid' => $property_uid, 'show_legend' => true, 'show_date_dropdown' => true ) );
-		echo $result;
+		$property_uid = $componentArgs[ 'property_uid' ];
+		if ( is_null( $property_uid ) ) $property_uid = getDefaultProperty();
+		
+		$MiniComponents->specificEvent( '06001', 'dashboard', array ( 'property_uid' => $property_uid, 'show_legend' => true, 'show_date_dropdown' => true ) );
 		}
 
 

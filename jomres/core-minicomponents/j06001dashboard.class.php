@@ -26,6 +26,12 @@ class j06001dashboard extends jomres_dashboard
 
 			return;
 			}
+		
+		if (using_bootstrap())
+			{
+			$MiniComponents->specificEvent( '06001', 'bootstrap_dashboard', array ( 'property_uid' => $componentArgs[ 'property_uid' ] ) );
+			return;
+			}
 
 		$property_uid = $componentArgs[ 'property_uid' ];
 		if ( is_null( $property_uid ) ) $property_uid = getDefaultProperty();
