@@ -47,7 +47,6 @@ class j00501tariffs
 		$lists                = $componentArgs[ 'lists' ];
 		$paymentAmounts       = $componentArgs[ 'paymentAmounts' ];
 		$tariffModelsDropdown = $componentArgs[ 'tariffModelsDropdown' ];
-		$tariffModeDD         = $componentArgs[ 'tariffModeDD' ];
 
 		$this->outputConversionJavascript();
 		$currfmt         = jomres_singleton_abstract::getInstance( 'jomres_currency_format' );
@@ -77,11 +76,6 @@ class j00501tariffs
 			{
 			if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
 				{
-				$configurationPanel->setleft( jr_gettext( "JOMRES_COM_A_TARIFFMODE", JOMRES_COM_A_TARIFFMODE, false ) );
-				$configurationPanel->setmiddle( $tariffModeDD );
-				$configurationPanel->setright( jr_gettext( "JOMRES_COM_A_TARIFFMODE_DESC", JOMRES_COM_A_TARIFFMODE_DESC, false ) );
-				$configurationPanel->insertSetting();
-
 				$configurationPanel->setleft( jr_gettext( "_JOMRES_CURRENCYFORMAT", _JOMRES_CURRENCYFORMAT, false ) );
 				$configurationPanel->setmiddle( $cformatdropdown );
 				$configurationPanel->setright();
