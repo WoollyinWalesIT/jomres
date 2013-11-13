@@ -476,7 +476,7 @@ class j06001dashboard extends jomres_dashboard
 				$is_firstday = false;
 
 				$guest_uid = $this->contracts[ $contract_uid ][ 'guest_uid' ];
-				$content   = $this->guestInfo[ $guest_uid ][ 'firstname' ] . ' ' . $this->guestInfo[ $guest_uid ][ 'surname' ] . "<br/><hr/>" . outputDate( $this->contracts[ $contract_uid ][ 'arrival' ] ) . '-' . outputDate( $this->contracts[ $contract_uid ][ 'departure' ] );
+				$content   = $this->guestInfo[ $guest_uid ][ 'firstname' ] . ' ' . $this->guestInfo[ $guest_uid ][ 'surname' ];
 
 				$output .= jomres_makeTooltip( date( "d", $currdate ) . "_" . $contract_uid . "_" . $guest_uid, '', $content, date( "d", $currdate ), "", "dashboard_tooltip", "", jomresValidateUrl( jomresURL( $viewbookinglink ) ) ) . "</td>";
 				}
