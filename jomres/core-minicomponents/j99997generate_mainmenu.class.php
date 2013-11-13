@@ -162,7 +162,7 @@ class j99997generate_mainmenu
 			}		
 		
 		
-		if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31")
+		if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32")
 			{
 			if ($thisJRUser->userIsManager || $task == 'registerProp_step1' || $task == 'registerProp_step2' )
 				{
