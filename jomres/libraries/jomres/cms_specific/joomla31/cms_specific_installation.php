@@ -52,19 +52,8 @@ if ( $folderChecksPassed )
 	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "admin.jomres.php", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "jomres.php" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "admin.jomres.php to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "jomres.php
 			automatically, please do this manually through FTP</h1><br/>";
 
- 	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "jomres.xml", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "default.xml" ) ) 
-	echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "jomres.xml to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "default.xml automatically, please do this manually through FTP</h1><br/>";
-
-	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "countries.xml", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS .  "countries.xml") ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "countries.xml to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "countries.xml
+	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "jomres.xml", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "jomres.xml" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "jomres.xml to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "jomres.xml
 			automatically, please do this manually through FTP</h1><br/>";
-	
-	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "regions.xml", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "regions.xml" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "regions.xml
-			automatically, please do this manually through FTP</h1><br/>";
-
-	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "towns.xml", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "towns.xml" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "towns.xml to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "towns.xml automatically, please do this manually through FTP</h1><br/>";
-	
-	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "propertytypes.xml", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "propertytypes.xml" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "propertytypes.xml automatically, please do this manually through FTP</h1><br/>";
-	
 
 	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "uninstall.jomres.php", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "uninstall.jomres.php" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "uninstall.jomres.php to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "uninstall.jomres.php
 			automatically, please do this manually through FTP</h1><br/>";
@@ -78,7 +67,17 @@ if ( $folderChecksPassed )
 	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "jomres_view.xml", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "default.xml" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "jomres_view.xml to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "jomres.xml
 			automatically, please do this manually through FTP</h1><br/>";
 
+	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "countries.xml", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "countries.xml" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "countries.xml to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "countries.xml
+			automatically, please do this manually through FTP</h1><br/>";
 
+	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "regions.xml", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "regions.xml" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "regions.xml to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "regions.xml
+			automatically, please do this manually through FTP</h1><br/>";
+	
+	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "towns.xml", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "towns.xml" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "towns.xml to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "towns.xml
+			automatically, please do this manually through FTP</h1><br/>";
+	
+	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "propertytypes.xml", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "propertytypes.xml" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "propertytypes.xml to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "propertytypes.xml
+			automatically, please do this manually through FTP</h1><br/>";
 	}
 
 
