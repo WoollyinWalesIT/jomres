@@ -772,6 +772,10 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'list_advanced_tariffs.html' );
 		
 		$this->add_obs_file( $this->dir_javascript . 'jquery-2.0.0.min.js' );
+		
+		// 7.5.3
+		$this->add_obs_file( $this->dir_minicomponents . 'j00012manager_first_run.class.php' );
+		
 		}
 
 	function add_obs_file( $path_and_file )
