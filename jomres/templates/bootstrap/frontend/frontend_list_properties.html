@@ -1,33 +1,32 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<script language="JavaScript" type="text/javascript">
-		<!--
-		jomresJquery(document).ready(function () {
-			make_datatable('frontend_list_properties', '{PAGETITLE}', '{LIVESITE}');
+<script language="JavaScript" type="text/javascript">
+	<!--
+	jomresJquery(document).ready(function () {
+			make_datatable('frontend_list_properties', '{PAGETITLE}', '{LIVESITE}', '{AJAX_URL}');
 		});
-		//-->
-	</script>
-	<h2 class="page-header">{PAGETITLE}</h2>
-	<div id="tour_target_frontend_list_properties"></div><div id="tour_target_table_tools"></div>
-	<form action="index.php" method="post" name="adminForm">
-		<table width="100%" id="frontend_list_properties" class="table table-striped">
-			<thead>
+	//-->
+</script>
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<form action="index.php" method="post" name="adminForm">
+	<table width="100%" id="frontend_list_properties" class="table table-striped">
+		<thead>
 			<tr>
-				<th>{HPUBLISHLINK}</th>
+				<th width="20%">{COMMON_ACTION}</th>
 				<th>{HPROPERTYNAME}</th>
-				<th class="hidden-phone">{HPROPERTYADDRESS}</th>
+				<th class="hidden-phone">{HPROPERTY_STREET}</th>
+				<th class="hidden-phone">{HPROPERTY_TOWN}</th>
+				<th class="hidden-phone">{HPROPERTY_REGION}</th>
+				<th class="hidden-phone">{HPROPERTY_COUNTRY}</th>
+				<th class="hidden-phone">{HPROPERTY_POSTCODE}</th>
+				<th class="hidden-phone">{HPROPERTY_TEL}</th>
+				<th class="hidden-phone">{HPROPERTY_EMAIL}</th>
 			</tr>
-			</thead>
-			<tbody>
-			<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="propertyname">
-				<tr>
-					<td>{PUBLISHLINK}</td>
-					<td><a href="{SWITCHLINK}">{PROPERTYNAME}</a></td>
-					<td class="hidden-phone">{PROPERTYADDRESS}</td>
-				</tr>
-			</patTemplate:tmpl>
-			</tbody>
-		</table>
-		<input type="hidden" name="option" value="com_jomres"/>
-		<input type="hidden" name="task" value=""/>
-	</form>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	<input type="hidden" name="option" value="com_jomres"/>
+	<input type="hidden" name="task" value=""/>
+</form>
 </patTemplate:tmpl>
