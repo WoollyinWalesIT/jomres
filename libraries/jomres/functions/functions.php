@@ -2958,6 +2958,9 @@ function hotelSettings()
  */
 function saveHotelSettings()
 	{
+	
+	$MiniComponents->triggerEvent( '00502', array() ); // This trigger allows plugins to check saves, for example to prevent future changes to a setting once it's been made.
+	
 	$property_uid = (int) getDefaultProperty();
 	$mrConfig     = getPropertySpecificSettings( $property_uid );
 
