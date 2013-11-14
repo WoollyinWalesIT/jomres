@@ -30,7 +30,7 @@
 <h2 class="page-header">{TITLE} ({UPLOAD_CONTEXT_TITLE})</h2>
 <div id="tour_target_mediacentre_introduction"></div>
 
-<patTemplate:tmpl name="notes">
+<patTemplate:tmpl name="notes" unusedvars="strip" type="simpleCondition" requiredVars="note">
 <div class="alert">
 	{NOTE}
 </div>
@@ -48,7 +48,7 @@
 			<div id="tour_target_mediacentre_uploadcontrols"></div>
 			<div id="tour_target_mediacentre_selectedimages"></div>
 
-			<h3 class="page-header">Upload form</h3>
+			<div class="page-header"><h3>Upload form</h3></div>
 			<!-- The fileinput-button span is used to style the file input field as button -->
 			<span class="btn btn-success fileinput-button">
 				<i class="icon-plus"></i>
