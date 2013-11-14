@@ -26,7 +26,7 @@ class jomres_timezones
 			$this->default_timezone = $CONFIG->offset;
 			}
 		$this->users_timezone = $this->get_users_timezone();
-		date_default_timezone_set( $this->users_timezone );
+		//date_default_timezone_set( $this->users_timezone );
 		}
 
 	function check_timezone_change()
