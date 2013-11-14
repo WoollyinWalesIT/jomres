@@ -1,3 +1,26 @@
+Jomres 7.5.3
+
+Updated the dashboard, bootstrapped templates (Some J2.5 and all J3.x Joomla installations) have a new purty bootstrapped dashboard.
+Added a new feature that loads the My Properties list via ajax. This allows us to load data-heavy pages through an ajax interface, reducing memory load. This change is effectively a prototype for futher changes of it's ilk.
+
+Added a small change to set the component title in Joomla 3.1 & 3.2
+Removed the need for the property uid to be in the url when editing a property.
+Improved the access control class.
+Updated a condition to check for Joomla 3.2.
+Added a change that removes some unneeded scripts for J3.2.
+Updated the bootstrap editable library.
+Added a change to basic property details that stops unpublished property types from being listed.
+Added a change that uses gravity setting in tooltips where possible.
+Discovered that the J3.x series of installation files weren't moving the updated copy of jomres.php to /components/com_jomres so upgrading users were unable to take advantage of new Jomres/Joomla features.
+Removed some tooltip date calls from dashboard calendar as the cms specific date function (I'm looking at you here Joomla) somehow breaks the old-style dashboard.
+Further Joomla 3.2 specific changes.
+Moved tariff editing dropdown in Property config into it's own tab. Makes it easier to switch it on/off programatically.
+Added a new trigger to the save hotel settings page which allows plugins to do some post-save parsing, and even forbid changing of settings altogether.
+Added a few improvements to the media centre layout.
+Temporarily disabled Jomres' timezone functionality. Joomla is now stable with it's tz handling so Jomres functionality should no longer be required.
+Obsoleted the Manager's first run script, as it's superceeded by the new page tour functionality.
+
+
 Jomres 7.5.2
 
 Added Joomla 3.2 specific changes to Jomres.
