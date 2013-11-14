@@ -4,8 +4,43 @@ if ('undefined' != typeof(jomresJquery.fn.dataTableExt )) {
 	jomresJquery.extend(jomresJquery.fn.dataTableExt.oStdClasses, {
 		"sWrapper": "dataTables_wrapper form-inline"
 	});
-}
-;
+};
+
+/* Filtering delay */
+if ('undefined' != typeof(jomresJquery.fn.dataTableExt )) {
+	jomresJquery.fn.dataTableExt.oApi.fnSetFilteringDelay = function ( oSettings, iDelay ) {
+		var _that = this;
+	 
+		if ( iDelay === undefined ) {
+			iDelay = 750;
+		}
+		  
+		this.each( function ( i ) {
+			jomresJquery.fn.dataTableExt.iApiIndex = i;
+			var
+				$this = this,
+				oTimerId = null,
+				sPreviousSearch = null,
+				anControl = jomresJquery( 'input', _that.fnSettings().aanFeatures.f );
+			  
+				anControl.unbind( 'keyup' ).bind( 'keyup', function() {
+				var $$this = $this;
+	  
+				if (sPreviousSearch === null || sPreviousSearch != anControl.val()) {
+					window.clearTimeout(oTimerId);
+					sPreviousSearch = anControl.val(); 
+					oTimerId = window.setTimeout(function() {
+						jomresJquery.fn.dataTableExt.iApiIndex = i;
+						_that.fnFilter( anControl.val() );
+					}, iDelay);
+				}
+			});
+			  
+			return this;
+		} );
+		return this;
+	};
+};
 
 /* API method to get paging information */
 if ('undefined' != typeof(jomresJquery.fn.dataTableExt )) {
@@ -98,5 +133,4 @@ if ('undefined' != typeof(jomresJquery.fn.dataTableExt )) {
 			}
 		}
 	});
-}
-;
+};

@@ -74,7 +74,7 @@ function make_datatable(div_id, pagetitle, livesite, ajaxurl) {
 				"print"
 			]
 		}
-	});
+	}).fnSetFilteringDelay();
 	jomresJquery.extend(jomresJquery.fn.dataTableExt.oStdClasses, {
 		"sSortAsc": "header headerSortDown",
 		"sSortDesc": "header headerSortUp",
