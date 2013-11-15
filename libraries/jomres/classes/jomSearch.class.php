@@ -149,20 +149,41 @@ class jomSearch
 		if ( in_array( "propertyname", $this->searchOptions ) )
 			{
 			$puids=array();
-			$basic_property_details          = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-
-			$all_published_properties = get_showtime('published_properties_in_system');
+			$all_published_properties=array();
+			$all_properties = array ();
+			$all_property_uids=false;
+			$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 			
+			$all_published_properties = get_showtime('published_properties_in_system');
+
 			if (!$all_published_properties)
 				{
-				$all_published_properties=array();
-				$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE `published`='1' ";
-				$result = doSelectSql( $query );
-				foreach ($result as $r)
+				$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+				if ($c->isCached('all_property_uids'))
+					$all_property_uids=$c->retrieve('all_property_uids');
+				
+				if ($all_property_uids)
 					{
-					$all_published_properties[]=$r->propertys_uid;
+					set_showtime( 'numberOfPropertiesInSystem', count($all_property_uids['all_propertys']) );
+					set_showtime( 'all_properties_in_system', $all_property_uids['all_propertys'] );
+					set_showtime( 'published_properties_in_system', $all_property_uids['all_published_propertys'] );
+					$all_published_properties=$all_property_uids['all_published_propertys'];
 					}
-				set_showtime('published_properties_in_system',$all_published_properties);
+				else
+					{
+					$query = "SELECT propertys_uid,published FROM #__jomres_propertys";
+					$result = doSelectSql( $query );
+					$numberOfPropertiesInSystem = count( $result );
+					foreach ($result as $r)
+						{
+						$all_properties[ ] = $r->propertys_uid;
+						if ( $r->published == "1" ) $all_published_properties[ ] = $r->propertys_uid;
+						}
+					set_showtime( 'numberOfPropertiesInSystem', $numberOfPropertiesInSystem );
+					set_showtime( 'all_properties_in_system', $all_properties );
+					set_showtime( 'published_properties_in_system', $all_published_properties );
+					$c->store('all_property_uids',array('all_propertys'=>$all_properties,'all_published_propertys'=>$all_published_properties));
+					}
 				}
 			
 			$basic_property_details->get_property_name_multi( $all_published_properties );
@@ -170,6 +191,7 @@ class jomSearch
 				{
 				$this->prep[ 'propertyname' ][ ] = array ( 'pn' => $basic_property_details->property_names[$puid], 'puid' => $puid );
 				}
+			asort($this->prep[ 'propertyname' ]);
 			}
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 		if ( in_array( "country", $this->searchOptions ) )
@@ -415,7 +437,7 @@ class jomSearch
 		$property_ors = $this->ors;
 		if ( !empty( $filter ) && $property_ors )
 			{
-			$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE property_country LIKE '$filter' $property_ors AND published='1' ORDER BY property_name";
+			$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE property_country LIKE '$filter' $property_ors AND published='1' ";
 			$this->resultBucket = doSelectSql( $query );
 			}
 		else
