@@ -5,30 +5,67 @@
 			var oTable = jomresJquery('#frontend_list_properties').dataTable({
 				"bJQueryUI": true,
 				"bStateSave": true,
-				"sPaginationType": "full_numbers"
-			});
+				"sPaginationType": "full_numbers",
+				"bProcessing": true,
+				"bServerSide": true,
+				"sAjaxSource": '{AJAX_URL}'
+			}).fnSetFilteringDelay();
 		});
+		/* Filtering delay */
+		if ('undefined' != typeof(jomresJquery.fn.dataTableExt )) {
+			jomresJquery.fn.dataTableExt.oApi.fnSetFilteringDelay = function ( oSettings, iDelay ) {
+				var _that = this;
+			 
+				if ( iDelay === undefined ) {
+					iDelay = 750;
+				}
+				  
+				this.each( function ( i ) {
+					jomresJquery.fn.dataTableExt.iApiIndex = i;
+					var
+						$this = this,
+						oTimerId = null,
+						sPreviousSearch = null,
+						anControl = jomresJquery( 'input', _that.fnSettings().aanFeatures.f );
+					  
+						anControl.unbind( 'keyup' ).bind( 'keyup', function() {
+						var $$this = $this;
+			  
+						if (sPreviousSearch === null || sPreviousSearch != anControl.val()) {
+							window.clearTimeout(oTimerId);
+							sPreviousSearch = anControl.val(); 
+							oTimerId = window.setTimeout(function() {
+								jomresJquery.fn.dataTableExt.iApiIndex = i;
+								_that.fnFilter( anControl.val() );
+							}, iDelay);
+						}
+					});
+					  
+					return this;
+				} );
+				return this;
+			};
+		};
 		//-->
 	</script>
 	<h2>{PAGETITLE}</h2>
 
 	<form action="index.php" method="post" name="adminForm">
-		<table width="100%" id="frontend_list_properties" border="0">
+		<table id="frontend_list_properties" width="100%" border="0" class="ui-widget-content ui-corner-all">
 			<thead>
-			<tr>
-				<th>{HPUBLISHLINK}</th>
-				<th>{HPROPERTYNAME}</th>
-				<th>{HPROPERTYADDRESS}</th>
-			</tr>
+				<tr>
+					<th>{COMMON_ACTION}</th>
+					<th>{HPROPERTYNAME}</th>
+					<th>{HPROPERTY_STREET}</th>
+					<th>{HPROPERTY_TOWN}</th>
+					<th>{HPROPERTY_REGION}</th>
+					<th>{HPROPERTY_COUNTRY}</th>
+					<th>{HPROPERTY_POSTCODE}</th>
+					<th>{HPROPERTY_TEL}</th>
+					<th>{HPROPERTY_EMAIL}</th>
+				</tr>
 			</thead>
 			<tbody>
-			<patTemplate:tmpl name="rows" unusedvars="nbsp">
-				<tr>
-					<td>{PUBLISHLINK}</td>
-					<td><a href="{SWITCHLINK}">{PROPERTYNAME}</a></td>
-					<td>{PROPERTYADDRESS}</td>
-				</tr>
-			</patTemplate:tmpl>
 			</tbody>
 		</table>
 		<input type="hidden" name="option" value="com_jomres"/>
