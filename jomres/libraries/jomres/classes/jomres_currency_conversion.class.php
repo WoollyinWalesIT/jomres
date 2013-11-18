@@ -19,14 +19,8 @@ class jomres_currency_conversion
 	{
 	function jomres_currency_conversion()
 		{
+		$jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance( 'jomres_currency_exchange_rates' );
 		$this->rates = get_showtime( 'temp_exchangerate_data' );
-		if ( is_null( $this->rates ) )
-			{
-			jr_import( 'jomres_currency_exchange_rates' );
-			$jomres_currency_exchange_rates = new jomres_currency_exchange_rates();
-			$jomres_currency_exchange_rates->update_exchange_rates();
-			$this->rates = get_showtime( 'temp_exchangerate_data' );
-			}
 		}
 
 	function this_code_can_be_converted( $target_code )
