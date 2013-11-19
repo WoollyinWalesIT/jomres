@@ -1,5 +1,13 @@
 Jomres 7.5.3
 
+Fixed an issue in jq ui frontend list properties.
+Some improvements to property name search/dropdown generation, also pnames are now sorted alphabetically
+Added the item property "telephone" to the header template.
+Modified the currency conversion functionality so that it updates less frequently.
+Fixed an issue where some users can't see the My Properties list properly.
+
+Jomres 7.5.3
+
 Updated the dashboard, bootstrapped templates (Some J2.5 and all J3.x Joomla installations) have a new purty bootstrapped dashboard.
 Added a new feature that loads the My Properties list via ajax. This allows us to load data-heavy pages through an ajax interface, reducing memory load. This change is effectively a prototype for futher changes of it's ilk.
 
