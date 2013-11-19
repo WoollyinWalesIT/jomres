@@ -26,8 +26,6 @@ class j06002listyourproperties
 
 			return;
 			}
-		
-		$ePointFilepath=get_showtime('ePointFilepath');
 
 		$output[ 'PAGETITLE' ]          = jr_gettext( "_JRPORTAL_CPANEL_LISTPROPERTIES", _JRPORTAL_CPANEL_LISTPROPERTIES, false );
 		$output[ 'HPROPERTYNAME' ]      = jr_gettext( "_JRPORTAL_PROPERTIES_PROPERTYNAME", _JRPORTAL_PROPERTIES_PROPERTYNAME );

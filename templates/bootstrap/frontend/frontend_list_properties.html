@@ -6,8 +6,13 @@
 		});
 	//-->
 </script>
-<h2 class="page-header">{PAGETITLE}</h2>
 
+<patTemplate:tmpl name="subs" unusedvars="strip" type="simpleCondition" requiredVars="subscription_status">
+<br />
+<p class="alert">{SUBSCRIPTION_STATUS}</p>
+</patTemplate:tmpl>
+
+<h2 class="page-header">{PAGETITLE}</h2>
 <form action="index.php" method="post" name="adminForm">
 	<table width="100%" id="frontend_list_properties" class="table table-striped">
 		<thead>

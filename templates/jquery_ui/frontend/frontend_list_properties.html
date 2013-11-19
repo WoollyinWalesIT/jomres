@@ -48,6 +48,12 @@
 		};
 		//-->
 	</script>
+	
+	<patTemplate:tmpl name="subs" unusedvars="strip" type="simpleCondition" requiredVars="subscription_status">
+	<br />
+	<p class="ui-state-highlight">{SUBSCRIPTION_STATUS}</p>
+	</patTemplate:tmpl>
+
 	<h2>{PAGETITLE}</h2>
 
 	<form action="index.php" method="post" name="adminForm">
