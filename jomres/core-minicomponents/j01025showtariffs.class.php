@@ -86,23 +86,8 @@ class j01025showtariffs
 			$date_elements         = explode( "/", $today );
 			$unixTodaysDate        = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
 			$counter               = 0;
-			$previous_tariff_title = '';
 			foreach ( $tariffsList as $tariff )
 				{
-				$tariffRoomClass = $tariff->roomclass_uid;
-				if ( $tariffRoomClass != "" )
-					{
-					if ( count( $current_property_details->room_types ) > 0 )
-						{
-						foreach ( $current_property_details->room_types as $type )
-							{
-							$roomClassAbbv     = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV' . (int) $tariffRoomClass, stripslashes( $type['abbv'] ), false, false );
-							$roomClassFullDesc = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC' . (int) $tariffRoomClass, stripslashes( $type['desc'] ), false, false );
-							}
-						}
-					}
-				else
-					$roomClassAbbv = "";
 				$validfrom     = $tariff->validfrom;
 				$validto       = $tariff->validto;
 				$date_elements = explode( "/", $validfrom );
@@ -114,28 +99,15 @@ class j01025showtariffs
 					{
 					$r = array ();
 
-					if ( $mrConfig[ 'tariffmode' ] == "2" || $mrConfig[ 'tariffmode' ] == "1" )
-						{
-						if ( $tariff->rate_title != $previous_tariff_title )
-							{
-							if ( !is_null( $tariff_tarifftypes_xref[ $tariff->rates_uid ] ) ) $r[ 'TITLE' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID' . $tariff_tarifftypes_xref[ $tariff->rates_uid ], stripslashes( $tariff->rate_title ) );
-							else
-							$r[ 'TITLE' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_TARIFF_TITLE' . $tariff->rates_uid, stripslashes( $tariff->rate_title ) );
-							$r[ 'DESC' ]              = jr_gettext( '_JOMRES_CUSTOMTEXT_TARIFFDESC' . $tariff->rates_uid, stripslashes( $tariff->rate_description ) );
-							$r[ 'ROOMCLASSABBV' ]     = $roomClassAbbv;
-							$r[ 'ROOMCLASSFULLDESC' ] = $roomClassFullDesc;
-							$r[ 'MINPEOPLE' ]         = $tariff->minpeople;
-							$r[ 'MAXPEOPLE' ]         = $tariff->maxpeople;
-							}
-						}
+					if ( !is_null( $tariff_tarifftypes_xref[ $tariff->rates_uid ] ) ) 
+						$r[ 'TITLE' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID' . $tariff_tarifftypes_xref[ $tariff->rates_uid ], stripslashes( $tariff->rate_title ) );
 					else
-						{
-						$r[ 'TITLE' ]         = jr_gettext( '_JOMRES_CUSTOMTEXT_TARIFF_TITLE' . $tariff->rates_uid, stripslashes( $tariff->rate_title ) );
-						$r[ 'DESC' ]          = jr_gettext( '_JOMRES_CUSTOMTEXT_TARIFFDESC' . $tariff->rates_uid, stripslashes( $tariff->rate_description ) );
-						$r[ 'ROOMCLASSABBV' ] = $roomClassAbbv;
-						$r[ 'MINPEOPLE' ]     = $tariff->minpeople;
-						$r[ 'MAXPEOPLE' ]     = $tariff->maxpeople;
-						}
+						$r[ 'TITLE' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_TARIFF_TITLE' . $tariff->rates_uid, stripslashes( $tariff->rate_title ) );
+					$r[ 'DESC' ]              = jr_gettext( '_JOMRES_CUSTOMTEXT_TARIFFDESC' . $tariff->rates_uid, stripslashes( $tariff->rate_description ) );
+					$r[ 'ROOMCLASSABBV' ]     = $current_property_details->room_types[$tariff->roomclass_uid]['abbv'];
+					$r[ 'ROOMCLASSFULLDESC' ] = $current_property_details->room_types[$tariff->roomclass_uid]['desc'];
+					$r[ 'MINPEOPLE' ]         = $tariff->minpeople;
+					$r[ 'MAXPEOPLE' ]         = $tariff->maxpeople;
 
 					$r[ 'VALIDFROM' ] = outputDate( $tariff->validfrom );
 					$r[ 'VALIDTO' ]   = outputDate( $tariff->validto );
@@ -143,20 +115,22 @@ class j01025showtariffs
 					$r[ 'MINDAYS' ] = $tariff->mindays;
 					$r[ 'MAXDAYS' ] = $tariff->maxdays;
 
-
-					if ( empty( $mrConfig[ 'ratemultiplier' ] ) ) $mrConfig[ 'ratemultiplier' ] = 1;
+					if ( empty( $mrConfig[ 'ratemultiplier' ] ) ) 
+						$mrConfig[ 'ratemultiplier' ] = 1;
 					else
-					$mrConfig[ 'ratemultiplier' ] += 0;
+						$mrConfig[ 'ratemultiplier' ] += 0;
 
-					if ( $mrConfig[ 'prices_inclusive' ] == 1 ) $price_inc_vat = $tariff->roomrateperday;
+					if ( $mrConfig[ 'prices_inclusive' ] == 1 ) 
+						$price_inc_vat = $tariff->roomrateperday;
 					else
-					$price_inc_vat = $current_property_details->get_gross_accommodation_price( $tariff->roomrateperday, $property_uid );
+						$price_inc_vat = $current_property_details->get_gross_accommodation_price( $tariff->roomrateperday, $property_uid );
 
 					$multiplier = 1;
 					if ( !isset( $mrConfig[ 'booking_form_daily_weekly_monthly' ] ) ) // This shouldn't be needed, as the setting is automatically pulled from jomres_config.php, but there's always one weird server...
-					$mrConfig[ 'booking_form_daily_weekly_monthly' ] = "D";
+						$mrConfig[ 'booking_form_daily_weekly_monthly' ] = "D";
+					
 					switch ( $mrConfig[ 'booking_form_daily_weekly_monthly' ] )
-					{
+						{
 						case "D":
 							$multiplier = 1;
 							break;
@@ -166,9 +140,9 @@ class j01025showtariffs
 						case "M":
 							$multiplier = 30;
 							break;
-					}
+						}
 					switch ( $mrConfig[ 'booking_form_daily_weekly_monthly' ] )
-					{
+						{
 						case "D":
 							if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $post_text = jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY );
 							else
@@ -184,13 +158,14 @@ class j01025showtariffs
 						case "M":
 							$post_text = jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY );
 							break;
-					}
+						}
 
 					if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 						{
-						if ( $tariff->ignore_pppn || $mrConfig[ 'perPersonPerNight' ] == "0" ) $r[ 'ROOMRATEPERDAY' ] = output_price( $price_inc_vat ) . " " . jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY );
+						if ( $tariff->ignore_pppn || $mrConfig[ 'perPersonPerNight' ] == "0" ) 
+							$r[ 'ROOMRATEPERDAY' ] = output_price( $price_inc_vat ) . " " . jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY );
 						else
-						$r[ 'ROOMRATEPERDAY' ] = output_price( $price_inc_vat ) . " " . jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY );
+							$r[ 'ROOMRATEPERDAY' ] = output_price( $price_inc_vat ) . " " . jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY );
 						}
 					else
 						{
@@ -203,7 +178,8 @@ class j01025showtariffs
 						$r[ 'ROOMRATEPERDAY' ] = output_price( $price_inc_vat ) . " " . jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK );
 						}
 
-					if ( $tariff->allow_we == "0" ) $r[ 'NOTWEEKENDS' ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_NOTWEEKEND', _JOMRES_FRONT_TARIFFS_NOTWEEKEND );
+					if ( $tariff->allow_we == "0" ) 
+						$r[ 'NOTWEEKENDS' ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_NOTWEEKEND', _JOMRES_FRONT_TARIFFS_NOTWEEKEND );
 					$theRate = number_format( ( $price_inc_vat ), 2, '.', '' );
 
 					if ( $mrConfig[ 'showGoogleCurrencyLink' ] == "1" )
@@ -222,8 +198,6 @@ class j01025showtariffs
 						$counter++;
 						$tariff_deets[ ] = $r;
 						}
-					$previous_tariff_title = $tariff->rate_title;
-					$previous_room_type    = $roomClassAbbv;
 					}
 				}
 			}
