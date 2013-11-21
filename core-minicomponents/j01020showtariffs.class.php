@@ -203,14 +203,6 @@ class j01020showtariffs
 						if ( $tariff->allow_we == "0" ) $output[ 'NOTWEEKENDS' ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_NOTWEEKEND', _JOMRES_FRONT_TARIFFS_NOTWEEKEND );
 
 						$theRate = number_format( ( $price_inc_vat ), 2, '.', '' );
-						if ( $mrConfig[ 'showGoogleCurrencyLink' ] == "1" )
-							{
-							$currency = $mrConfig[ 'property_currencycode' ];
-							if ( $jrConfig[ 'useGlobalCurrency' ] == "1" ) $currency = $jrConfig[ 'globalCurrencyCode' ];
-							$theLink                         = 'http://www.xe.com/pca/input.cgi?From=' . $currency . '&Amount=' . $theRate;
-							$theText                         = jr_gettext( '_JOMRES_CURRENCYCONVERSIONTEXT', _JOMRES_CURRENCYCONVERSIONTEXT );
-							$output[ 'GOOGLECURRENCYLINKS' ] = '<a href=' . $theLink . ' rel="nofollow" target="_blank">' . $theText . '</a><br />';
-							}
 						if ( $tariff->roomrateperday > 0 ) $tariff_deets[ ] = $output;
 						}
 					}
