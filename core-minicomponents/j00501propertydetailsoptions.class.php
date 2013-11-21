@@ -97,11 +97,6 @@ class j00501propertydetailsoptions
 				$configurationPanel->insertSetting();
 				}
 
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_SHOWGOOGLECURRENCYLINKS", _JOMRES_SHOWGOOGLECURRENCYLINKS, false ) );
-			$configurationPanel->setmiddle( $lists[ 'showGoogleCurrencyLink' ] );
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-
 			if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
 				{
 				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR", _JOMRES_COM_A_SHOWAVILABILITY_CALENDAR, false ) );
