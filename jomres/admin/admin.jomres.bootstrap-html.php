@@ -241,11 +241,11 @@ class HTML_jomres
 				<td>' . $lists[ 'minimalconfiguration' ] . '</td>
 				<td>' . jr_gettext( JOMRES_COM_A_MINIMALCONFIG_DESC, 'JOMRES_COM_A_MINIMALCONFIG_DESC', false ) . '</td>
 			</tr>
-			<tr>
+			<!--<tr>
 				 <td>' . jr_gettext( _JOMRES_COM_TIMEZONE_SWITCHER, '_JOMRES_COM_TIMEZONE_SWITCHER', false ) . '</td>
 				 <td>' . $lists[ 'use_timezone_switcher' ] . '</td>
 				 <td>&nbsp;</td>
-			</tr>
+			</tr>-->
 			' . $sslinput . '
 			<!--
 			<tr>
