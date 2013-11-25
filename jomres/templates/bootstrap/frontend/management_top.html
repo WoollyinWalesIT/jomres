@@ -17,22 +17,18 @@
 			padding-bottom: 60px;
 		}
 
-		.logo {
-			height: auto;
-			max-width: 143px;
-			width: 100%;
-		}
-
-		.container-logo {
-			text-align: center;
-		}
-
 		.management-header {
 			background-color: #184A7D;
 			background-image: -moz-linear-gradient(center top, #17568C, #1A3867);
 			background-repeat: repeat-x;
 			border-top: 1px solid #3882C1;
 			padding: 10px;
+		}
+		
+		.management-header h1{ line-height: 30px;}
+		
+		.management-header select, .management-header form {
+    		margin: 0;
 		}
 
 		.page-title {
@@ -43,8 +39,10 @@
 		}
 
 		.management-wrapper {
-			margin-top: 20px;
+			margin: 10px 25px;
 		}
+		
+		#jomres_alternate_menu_position .navbar .brand{padding:5px 0 0 25px;}
 	</style>
 
 	<div id="jomres_alternate_menu_position"></div>
@@ -52,13 +50,26 @@
 	<div class="management-header">
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<div class="span2 container-logo">
-					<a href="http://www.jomres.net" target="_blank" class="logo"><img src="{LOGO_RELATIVE_URL}"
-																					  alt="Jomres logo"/></a>
-				</div>
-				<div class="span10">
+				<div class="span8">
 					<h1 class="page-title" id="tour_target_property_name">{PROPERTYNAME}</h1>
 				</div>
+				<div class="span2" align="right">	
+					<patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
+					<div id="tour_target_lang_dropdown">{LANGDROPDOWN}</div>
+					</patTemplate:tmpl>
+				</div>
+				<div class="span2" align="right">
+					<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
+					<div id="tour_target_editing_mode_dropdown">{EDITING_MODE_DROPDOWN}</div>
+					</patTemplate:tmpl>
+				</div>
+				<!--<div class="span2" align="right">	
+					<patTemplate:tmpl name="timezone_dropdown" type="simpleCondition" requiredVars="timezoneblurb">
+					<div class="pull-right">{TIMEZONEBLURB}</div>
+
+					<div id="tour_target_timezone_dropdown" class="pull-right">{TIMEZONE_DROPDOWN}</div>
+					</patTemplate:tmpl>
+				</div>-->
 			</div>
 		</div>
 	</div>
@@ -69,21 +80,7 @@
 	{SANITY_CHECKS}
 	<div class="container-fluid management-wrapper">
 		<div class="row-fluid">
-			<div class="span2">
-				<h4 class="page-header" style="margin-top:20px;">Tools</h4>
-				<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
-					<p id="tour_target_editing_mode_dropdown">{EDITING_MODE_DROPDOWN}</p>
-				</patTemplate:tmpl>
-				<patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
-					<p id="tour_target_lang_dropdown">{LANGDROPDOWN}</p>
-				</patTemplate:tmpl>
-				<patTemplate:tmpl name="timezone_dropdown" type="simpleCondition" requiredVars="timezoneblurb">
-					<p>{TIMEZONEBLURB}</p>
-
-					<p id="tour_target_timezone_dropdown">{TIMEZONE_DROPDOWN}</p>
-				</patTemplate:tmpl>
-			</div>
-			<div class="span10">
+			<div class="span12">
 				<div id="jomres_content_area"> <!-- opens the jomres content area -->
 					<noscript>
 						<blockquote>
