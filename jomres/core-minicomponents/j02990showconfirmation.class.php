@@ -580,7 +580,10 @@ class j02990showconfirmation
 		else
 			{
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-			$tmpl->readTemplatesFromInput( 'bookings_showconfirmation.html' );
+			if ( get_showtime( 'include_room_booking_functionality' ) )
+				$tmpl->readTemplatesFromInput( 'bookings_showconfirmation.html' );
+			else
+				$tmpl->readTemplatesFromInput( 'bookings_showconfirmation_norooms.html' );
 			$tmpl->displayParsedTemplate();
 			}
 
