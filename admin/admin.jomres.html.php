@@ -232,11 +232,11 @@ class HTML_jomres
 				<td valign="middle">' . $lists[ 'minimalconfiguration' ] . '</td>
 				<td valign="middle">' . jr_gettext( JOMRES_COM_A_MINIMALCONFIG_DESC, 'JOMRES_COM_A_MINIMALCONFIG_DESC', false ) . '</td>
 			</tr>
-			<tr valign="middle" class="odd">
+			<!--<tr valign="middle" class="odd">
 				 <td valign="middle">' . jr_gettext( _JOMRES_COM_TIMEZONE_SWITCHER, '_JOMRES_COM_TIMEZONE_SWITCHER', false ) . '</td>
 				 <td valign="middle">' . $lists[ 'use_timezone_switcher' ] . '</td>
 				 <td valign="middle">&nbsp;</td>
-			</tr>
+			</tr>-->
 			' . $sslinput . '
 			<!--
 			<tr valign="middle" class="even">
