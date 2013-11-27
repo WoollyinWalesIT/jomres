@@ -1380,7 +1380,7 @@ jr_define( '_JOMRES_CALENDAR_NEXT', 'Suivant' );
 jr_define( '_JOMRES_CALENDAR_RTL', 'faux' );
 jr_define( '_JOMRES_ROOMALLOCATIONS_ROOM', 'Chambre ' );
 jr_define( '_JOMRES_ROOMALLOCATIONS_GUESTS', 'hôte(s). ' );
-jr_define( '_JOMRES_ROOMALLOCATIONS_INFORMATION', 'Voici comment nous avons associé vos hôtes aux chambres. Si vous aimeriez changer cette association, vous devrez contacter l\'hôtel après avoir complété la réservation. Ceci peut entraîner des frais extra.' );
+jr_define( '_JOMRES_ROOMALLOCATIONS_INFORMATION', 'Voici comment nous avons associé vos hôtes aux chambres. Si vous aimeriez changer cette association, vous devrez contacter l&#39;hôtel après avoir complété la réservation. Ceci peut entraîner des frais extra.' );
 jr_define( '_JOMRES_SANITY_CHECK_NOT_PUBLISHED', 'Remarquez que votre propriété n\'est pas publiée encore; seulement vous pouvez la voir, pas les visiteurs du site' );
 // 4.5.5
 jr_define( '_JOMRES_PROPERTYLIST_FILTERS_DEFAULT', 'Ordre par défaut de résultats de la recherche' );
