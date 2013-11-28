@@ -781,7 +781,7 @@ function admins_first_run( $manual_trigger = false )
 			}
 		if ( !$manual_trigger )
 			{
-			echo '<div  class="modal"  tabindex="-1" role="dialog" id="first_run" style="display:none;width:960px" title="Welcome to Jomres, Joomla\'s favourite hotel booking system">';
+			echo '<div  class="modal"  tabindex="-1" role="dialog" id="first_run" style="display:none" title="Welcome to Jomres, Joomla\'s favourite hotel booking system">';
 			if ( using_bootstrap() )
 				{
 				echo '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3>Getting Started with Jomres</h3></div>';
