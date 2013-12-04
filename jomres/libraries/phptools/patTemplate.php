@@ -804,7 +804,12 @@ class patTemplate
 	// Vince Added to add some commonly used elements to all templates
 	function add_common_jomres_strings()
 		{
-		$common_strings                    = array ();
+		$common_strings                    = get_showtime( 'common_template_strings' );
+		if (is_null($common_strings))
+			{
+			$common_strings                    = array ();
+			}
+		
 		$common_strings[ 'COMMON_NEXT' ]   = jr_gettext( 'COMMON_NEXT', COMMON_NEXT, false );
 		$common_strings[ 'COMMON_CANCEL' ] = jr_gettext( 'COMMON_CANCEL', COMMON_CANCEL, false );
 		$common_strings[ 'COMMON_SUBMIT' ] = jr_gettext( 'COMMON_SUBMIT', COMMON_SUBMIT, false );
