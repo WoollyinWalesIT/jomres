@@ -59,7 +59,7 @@ class j00002usermanagement
 			if ( $thisJRUser->userIsManager == true && $thisProperty > 0 )
 				{
 				$thisJRUser->set_currentproperty( $thisProperty );
-				jomresRedirect( jomresURL( $new_url ) );
+				//jomresRedirect( jomresURL( $new_url ) );
 				}
 			}
 		if ( $thisJRUser->currentproperty == 0 && $thisJRUser->userIsManager ) 
