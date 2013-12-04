@@ -58,6 +58,8 @@ class j00060toptemplate
 					$defaultProperty          = getDefaultProperty();
 					$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 					$output[ 'PROPERTYNAME' ] = $current_property_details->get_property_name( $defaultProperty );
+					$output[ '_JOMRES_ROBBED_PORTALUI_CURRENT_PROPERTY' ] = jr_gettext( '_JOMRES_ROBBED_PORTALUI_CURRENT_PROPERTY', _JOMRES_ROBBED_PORTALUI_CURRENT_PROPERTY );
+					
 					set_showtime( "menuitem_propertyname", $output[ 'PROPERTYNAME' ] );
 
 					jr_import( 'jomres_management_view' );
