@@ -173,6 +173,13 @@ class j03110guestconfirmationemail
 
 		$output[ 'LINK' ]           = JOMRES_SITEPAGE_URL_NOSEF . "&task=viewproperty&property_uid=" . $property_uid;
 		$output[ 'LINKTOPROPERTY' ] = "<a href=\"" . JOMRES_SITEPAGE_URL_NOSEF . "&task=viewproperty&property_uid=" . $property_uid . "\">" . jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE, false, false ) . "</a>";
+		
+		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' ); 
+		if ( !$thisJRUser->userIsManager && $thisJRUser->userIsRegistered )
+			{
+			$output[ 'LINKTOBOOKING' ] = "<a href=\"" . JOMRES_SITEPAGE_URL_NOSEF . "&task=muviewbooking&contract_uid=" . $componentArgs[ 'contract_uid' ] . "\">" . jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKING', _JOMCOMP_MYUSER_VIEWBOOKING, false, false ) . "</a>";
+			}
+		
 		if ( $mrConfig[ 'singleRoomProperty' ] != "1" )
 			{
 			$output[ 'HROOM' ] = jr_gettext( '_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM', _JOMRES_FRONT_MR_EMAIL_TEXT_ROOM, false, false );
