@@ -49,10 +49,7 @@ class j02202a_update_invoice
 			$result = doSelectSql( $query );
 			if ( count( $result ) == 1 )
 				{
-				foreach ( $result as $r )
-					{
-					$deposit_required = $r->deposit_required;
-					}
+				$deposit_received = jomresGetParam( $_POST, 'deposit_received', 0.00 );
 				$query      = "SELECT id FROM #__jomresportal_invoices WHERE contract_id = " . $contractUid;
 				$invoice_id = doSelectSql( $query, 1 );
 				jr_import( 'invoicehandler' );
@@ -60,7 +57,7 @@ class j02202a_update_invoice
 				$invoice_handler->id = $invoice_id;
 				$invoice_handler->getInvoice();
 				$line_items     = array ();
-				$line_item_data = array ( 'tax_code_id' => 0, 'name' => jr_gettext( '_JOMRES_MR_AUDIT_ENTEREDDEPOSIT', _JOMRES_MR_AUDIT_ENTEREDDEPOSIT, false, false ), 'description' => '', 'init_price' => "-" . number_format( $deposit_required, 2, '.', '' ), 'init_qty' => "1", 'init_discount' => "0", 'recur_price' => "0.00", 'recur_qty' => "0", 'recur_discount' => "0.00" );
+				$line_item_data = array ( 'tax_code_id' => 0, 'name' => jr_gettext( '_JOMRES_MR_AUDIT_ENTEREDDEPOSIT', _JOMRES_MR_AUDIT_ENTEREDDEPOSIT, false, false ), 'description' => '', 'init_price' => "-" . number_format( $deposit_received, 2, '.', '' ), 'init_qty' => "1", 'init_discount' => "0", 'recur_price' => "0.00", 'recur_qty' => "0", 'recur_discount' => "0.00" );
 				$invoice_handler->add_line_item( $line_item_data );
 				$invoice_handler->commitUpdateInvoice();
 				}

@@ -56,9 +56,13 @@ class j02200editdeposit
 			$output[ 'HCONTRACT_TOTAL' ]  = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL', _JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL );
 			$output[ 'HDEPOSITREQUIRED' ] = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', _JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED );
 			$output[ 'HDEPOSIT_REF' ]     = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF );
+			$output[ '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE' ]     = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE );
+			
+			
 			$output[ 'BOOKINGNUMBER' ]    = $tag;
 			$output[ 'CONTRACT_TOTAL' ]   = output_price( $contract_total );
 			$output[ 'DEPOSITREQUIRED' ]  = output_price( $depositRequired );
+			$output[ 'DEPOSITREQUIREDRAW' ]= $depositRequired;
 			$output[ 'CONTRACTUID' ]      = $contract_uid;
 
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
