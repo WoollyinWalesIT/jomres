@@ -23,6 +23,7 @@ class jomres_roomlocks
 		$lock_filename           = "room_lock_" . (int) $property_uid . ".php";
 		$this->sessionfile       = $this->session_directory . $lock_filename;
 		$this->clean_up_old_locks();
+		$this->get_all_rooms_already_in_cart();
 		}
 
 	// If the lock is an hour old, we'll remove the lock.
@@ -97,14 +98,26 @@ class jomres_roomlocks
 
 		$jomressession  = get_showtime( 'jomressession' );
 		$dateRangeArray = explode( ",", $date_range_string );
+		
+		
 		if ( count( $dateRangeArray ) > 0 )
 			{
+			
 			foreach ( $dateRangeArray as $date )
 				{
 				foreach ( $all_sessions as $sess )
 					{
-					//var_dump($dates_array[$sess][$date][$room_uid]);
-					if ( isset( $dates_array[ $sess ][ $date ][ $room_uid ] ) ) return true;
+					if ( isset( $dates_array[ $sess ][ $date ][ $room_uid ] ) ) 
+						{
+						return true;
+						}
+					}
+				foreach ( $this->rooms_already_in_cart as $cart_date_key=>$cart_date_rooms )
+					{
+					if ( $cart_date_key == $date && in_array ($room_uid,$cart_date_rooms) )
+						{
+						return true;
+						}
 					}
 				}
 			}
@@ -155,6 +168,33 @@ class jomres_roomlocks
 			$rtArray = explode( "^", $room_uid );
 
 			return $rtArray[ 0 ];
+			}
+		}
+		
+	function get_all_rooms_already_in_cart()
+		{
+		$tmpBookingHandler = jomres_getSingleton( 'jomres_temp_booking_handler' );
+		$jomressession = get_showtime( 'jomressession' );
+		$this->rooms_already_in_cart = array();
+		if ( count($tmpBookingHandler->cart_data)>0)
+			{
+			foreach ($tmpBookingHandler->cart_data as $cart)
+				{
+				$requestedRooms = $cart['requestedRoom'];
+				$roomBang = explode(",",$requestedRooms);
+				$rooms = array();
+				foreach ($roomBang as $r)
+					{
+					$rooms[] = $this->extract_room_uid($r);
+					}
+				
+				$dateRangeString = $cart['dateRangeString'];
+				$datesBang = explode(",",$dateRangeString);
+				foreach ($datesBang as $date)
+					{
+					$this->rooms_already_in_cart [$date] = $rooms;
+					}
+				}
 			}
 		}
 	}
