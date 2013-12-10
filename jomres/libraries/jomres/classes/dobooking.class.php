@@ -3864,12 +3864,20 @@ class dobooking
 					$this->setErrorLog( "extractLockedRooms :: Removing room: " . $roomUid . " As is locked." );
 					$roomIsFree = false;
 					}
-				if ( $roomIsFree ) $tmpArray[ ] = $roomUid;
+				if ( $roomIsFree ) 
+					{
+					$tmpArray[ ] = $roomUid;
+					}
 				}
-			if ( empty( $tmpArray ) ) $this->setErrorLog( "extractLockedRooms::No free rooms found in date range" );
+			if ( empty( $tmpArray ) )
+				{
+				$this->setErrorLog( "extractLockedRooms::No free rooms found in date range" );
+				}
 			}
 		else
-		$this->setErrorLog( "extractLockedRooms::Room uids array empty" );
+			{
+			$this->setErrorLog( "extractLockedRooms::Room uids array empty" );
+			}
 		$this->setErrorLog( "extractLockedRooms::Contents of the freeRoomsArray after looking for free rooms: " . serialize( $tmpArray ) );
 
 		return $tmpArray;
