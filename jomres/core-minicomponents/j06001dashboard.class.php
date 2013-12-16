@@ -82,25 +82,11 @@ class j06001dashboard
 		else
 			$output['FIRST_DAY_OF_WEEK']='1';
 
-		if ($mrConfig['singleRoomProperty'] == '1')
-			{
-			$rows=array("0"=>array("VIEW"=>"month","ACTIVE"=>"active","VIEW_NAME"=>$output['MONTH']),
-						"1"=>array("VIEW"=>"resourceDay","ACTIVE"=>"","VIEW_NAME"=>$output['DAY']));
-			$output['DEFAULTVIEW']='month';
-			if (!using_bootstrap())
-				$output['VIEWS']='month,resourceDay';
-			}
-		else
-			{
-			$rows=array("0"=>array("VIEW"=>"resourceDay","ACTIVE"=>"","VIEW_NAME"=>$output['DAY']),
-						"1"=>array("VIEW"=>"resourceWeek","ACTIVE"=>"","VIEW_NAME"=>$output['WEEK']),
-						"2"=>array("VIEW"=>"resourceNextWeeks","ACTIVE"=>"active","VIEW_NAME"=>$output['TWOWEEKS']),
-						"3"=>array("VIEW"=>"resourceMonth","ACTIVE"=>"","VIEW_NAME"=>$output['MONTH']));
-			$output['DEFAULTVIEW']='resourceNextWeeks';
-			if (!using_bootstrap())
-				$output['VIEWS']='resourceDay,resourceWeek,resourceNextWeeks,resourceMonth';
-			}
-		
+		$rows=array("0"=>array("VIEW"=>"resourceDay","ACTIVE"=>"","VIEW_NAME"=>$output['DAY']),
+					"1"=>array("VIEW"=>"resourceWeek","ACTIVE"=>"","VIEW_NAME"=>$output['WEEK']),
+					"2"=>array("VIEW"=>"resourceNextWeeks","ACTIVE"=>"active","VIEW_NAME"=>$output['TWOWEEKS']),
+					"3"=>array("VIEW"=>"resourceMonth","ACTIVE"=>"","VIEW_NAME"=>$output['MONTH']));
+
 		//guest modal form
 		$output[ 'HQUICK_BOOKING' ]		= jr_gettext( '_JOMRES_HQUICK_BOOKING', _JOMRES_HQUICK_BOOKING, false );
 		$output[ 'HSELECTED_ROOM' ]		= jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM', _JOMRES_COM_MR_EDITBOOKING_TAB_ROOM, false );
