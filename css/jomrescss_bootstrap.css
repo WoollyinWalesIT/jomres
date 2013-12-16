@@ -161,3 +161,7 @@ a.rescal:hover {
 fieldset.radio.btn-group {
 	padding-left: 0;
 }
+
+/* Custom labels */
+.label-purple {background-color: #e01fb9 !important;}
+.label-teal {background-color: #0fcef1 !important;}

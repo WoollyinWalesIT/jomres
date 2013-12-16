@@ -58,7 +58,7 @@ class jr_user
 			{
 			$this->userIsRegistered = true;
 
-			$query           = "SELECT * FROM #__jomres_managers WHERE userid = '" . (int) $this->id . "' LIMIT 1";
+			$query           = "SELECT manager_uid,userid,username,property_uid,access_level,currentproperty,pu,suspended,users_timezone FROM #__jomres_managers WHERE userid = '" . (int) $this->id . "' LIMIT 1";
 			$authorisedUsers = doSelectSql( $query );
 
 			if ( count( $authorisedUsers ) > 0 )

@@ -36,6 +36,7 @@ if ( !using_bootstrap() )
 else
 	{
 	jr_import( 'jomres_toolbar_bootstrap' );
+	jr_import( 'jomresItemToolbar' );
 
 	class jomres_toolbar extends jomres_toolbar_bootstrap
 		{

@@ -186,6 +186,12 @@ class j00004a_init_javascript_css_files
 
 		set_showtime( "TableTools.min.js", "TableTools.min.js" );
 		set_showtime( "TableTools.min.js.relpath", "jomres/javascript/" );
+		
+		set_showtime( "ColVis.min.js", "ColVis.min.js" );
+		set_showtime( "ColVis.min.js.relpath", "jomres/javascript/" );
+		
+		set_showtime( "ColVis.css", "ColVis.css" );
+		set_showtime( "ColVis.css.relpath", "jomres/css/" );
 
 		set_showtime( "jquery.easing.compatibility.js", "jquery.easing.compatibility.js" );
 		set_showtime( "jquery.easing.compatibility.js.relpath", "jomres/javascript/" );

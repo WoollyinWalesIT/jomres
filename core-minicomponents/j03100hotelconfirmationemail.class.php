@@ -56,6 +56,8 @@ class j03100hotelconfirmationemail
 		else
 		$email_when_done = $componentArgs[ 'email_when_done' ]; // Optional. We'll set email_when_done by default to true, otherwise we'll set it in the componentArgs variable. This allows us to call this script independantly which in turn allows us to view the email as it's contructed, rather than when sent.
 
+		if (!$componentArgs[ 'sendHotelEmail'])
+			return;
 
 		$clientIP      = $_SERVER[ 'REMOTE_ADDR' ];
 		$mrConfig      = getPropertySpecificSettings();

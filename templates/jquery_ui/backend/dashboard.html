@@ -1,0 +1,105 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style type="text/css">
+/*Overrides*/
+#calendar table.fc-border-separate {
+	table-layout:fixed;
+}
+td.fc-resourceName {
+    background: none repeat scroll 0 0 #ddd;
+    width: 200px;
+	text-align:center;
+}
+th.fc-resourceName {
+	background:none;
+	width: 200px;
+}
+.fc-resourceName .small {
+	font-size:11px;
+	padding: 0 5px;
+	font-weight:bold;
+}
+a.fc-event:hover {
+   text-decoration:none;
+}
+a.fc-event, .fc-event-draggable {
+    border: 0 none !important;
+}
+.fc-widget-header {
+	font-size:11px;
+	color:#999;
+	font-weight:normal;
+	font-style:italic;
+}
+.fc-weekend-column {
+	background:#f9f9f9;
+}
+</style>
+
+<script type='text/javascript'>
+jomresJquery(document).ready(function() {
+
+	var date = new Date();
+	var d = date.getDate();
+	var m = date.getMonth();
+	var y = date.getFullYear();
+	
+	var calendar = jomresJquery('#jomres_dashboard{PROPERTY_UID}').fullCalendar({
+		header: {
+			left: 'title',
+			center: '',
+			right: 'prev,today,next {VIEWS}'
+		},
+		theme: true,
+		defaultView: '{DEFAULTVIEW}',
+		numberOfWeeks: 2,
+		firstDay: '{FIRST_DAY_OF_WEEK}',
+		editable: false,
+		selectable: false,
+		selectHelper: false,
+		minTime:1,
+		maxTime:24,
+		slotMinutes: 60,
+		resources: '{AJAXURL_RESOURCES}',
+		events: '{AJAXURL_EVENTS}',
+		buttonText: {
+			prev: '&lt;&lt; {PREV}',
+			next: '{NEXT} &gt;&gt;',
+			today: '{TODAY}',
+			resourceDay: '{DAY}',
+			resourceWeek: '{WEEK}',
+			resourceNextWeeks: '{TWOWEEKS}',
+			resourceMonth: '{MONTH}'
+		},
+		titleFormat: {
+			resourceDay: 'dddd, MMM d, yyyy',
+			resourceWeek: "MMM d[ yyyy]{ '-'[ MMM] d yyyy}",
+			resourceNextWeeks: "MMM d[ yyyy]{ '-'[ MMM] d yyyy}",
+			resourceMonth: 'MMMM yyyy'
+		},
+		columnFormat: {
+			resourceMonth: 'ddd dd',
+			resourceWeek: 'ddd dd',
+			resourceNextWeeks: 'ddd dd'
+		},
+		/*resourceRender: function(resource, element, view) {
+			// this is triggered when the resource is rendered, just like eventRender
+		},
+		eventDrop: function( event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view ) {
+		},
+		eventResize: function( event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view ) {
+		},
+		eventClick: function ( event, jsEvent, view )  {
+		},
+		eventRender: function( event, element, view ) {
+		}
+		windowResize: function( view ) {
+			calendar.fullCalendar('option', 'height', jomresJquery(window).height() - 100);
+		}*/
+	});
+});
+
+
+</script>
+
+<div id="jomres_dashboard{PROPERTY_UID}"></div>
+</patTemplate:tmpl>

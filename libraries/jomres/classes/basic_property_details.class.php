@@ -306,6 +306,29 @@ class basic_property_details
 
 		return $gross;
 		}
+	
+	function get_nett_accommodation_price( $gross_amount, $property_uid = 0 )
+		{
+		$gross_amount = (float) $gross_amount;
+
+		if ( $property_uid != $this->property_uid )
+			{
+			$mrConfig               = getPropertySpecificSettings( $property_uid );
+			$taxrates               = taxrates_getalltaxrates();
+			$cfgcode                = $mrConfig[ 'accommodation_tax_code' ];
+			$rate                   = $taxrates[ $cfgcode ];
+			$accommodation_tax_rate = (float) $rate[ 'rate' ];
+			}
+		else
+			{
+			$accommodation_tax_rate = $this->accommodation_tax_rate;
+			}
+
+		$divisor = ( $accommodation_tax_rate / 100 ) + 1;
+		$nett = $gross_amount / $divisor ;
+
+		return $nett;
+		}
 
 
 	public function gather_data_multi( $property_uids = array (), $editable = false )

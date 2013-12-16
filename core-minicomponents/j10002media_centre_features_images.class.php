@@ -26,8 +26,13 @@ class j10002media_centre_features_images
 
 			return;
 			}
-		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN .  "&task=media_centre&upload_context=features_images", 'Picture.png', jr_gettext( '_JOMRES_MEDIA_CENTRE_TITLE', _JOMRES_MEDIA_CENTRE_TITLE, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE, false, false ) );
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
+			{
+			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN .  "&task=media_centre&upload_context=features_images", 'Picture.png', jr_gettext( '_JOMRES_MEDIA_CENTRE_TITLE', _JOMRES_MEDIA_CENTRE_TITLE, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE, false, false ) );
+			}
 		}
 
 	function touch_template_language()

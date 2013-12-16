@@ -14,6 +14,30 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function findDateRangeForDates( $d1, $d2 )
+	{
+	$days            = (int) findDaysForDates( $d1, $d2 );
+	$dateRangeArray  = array ();
+	$currentDay      = $d1;
+	$date_elements   = explode( "/", $currentDay );
+	$unixCurrentDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
+	for ( $i = 0, $n = $days; $i <= $n; $i++ )
+		{
+		$currentDay        = date( "Y/m/d", $unixCurrentDate );
+		$dateRangeArray[ ] = $currentDay;
+		$date_elements     = explode( "/", $currentDay );
+		$unixCurrentDate   = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ] + 1, $date_elements[ 0 ] );
+		}
+
+	return $dateRangeArray;
+	}
+
+function findDaysForDates( $d1, $d2 )
+	{
+	$diff = dateDiff( '', $d1, $d2 );
+
+	return $diff;
+	}
 
 function import_images_to_media_centre_directories()
 	{
@@ -1054,10 +1078,10 @@ function set_booking_number()
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 	$keeplooking       = true;
 	while ( $keeplooking ):
+		$cartnumber = mt_rand( 10000000, 99999999 );
 		$query  = "SELECT contract_uid FROM #__jomres_contracts WHERE tag like '" . $cartnumber . "' LIMIT 1";
 		$bklist = doSelectSql( $query );
 		if ( count( $bklist ) == 0 ) $keeplooking = false;
-		$cartnumber = mt_rand( 10000000, 99999999 );
 	endwhile;
 	$tmpBookingHandler->tmpbooking[ "booking_number" ] = $cartnumber;
 

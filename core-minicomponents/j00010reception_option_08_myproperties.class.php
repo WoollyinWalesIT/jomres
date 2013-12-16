@@ -21,7 +21,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * @package Jomres
 #
  */
-class j00010reception_option_02_preview
+class j00010reception_option_08_myproperties
 	{
 
 	/**
@@ -29,23 +29,31 @@ class j00010reception_option_02_preview
 	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	#
 	 */
-	function j00010reception_option_02_preview( $componentArgs )
+	function j00010reception_option_08_myproperties( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )
 			{
-			$this->template_touchable = false;
+			$this->template_touchable = true;
 
 			return;
 			}
-		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig   = $siteConfig->get();
-		if ( $jrConfig[ 'is_single_property_installation' ] == "0" ) $this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=preview", 'Preview.png', jr_gettext( '_JOMRES_FRONT_PREVIEW', _JOMRES_FRONT_PREVIEW, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME, false, false ) );
-		else
-		$this->cpanelButton = "";
+		$this->cpanelButton = jomres_mainmenu_option( jomresURL( JOMRES_SITEPAGE_URL . "&task=listyourproperties" ), 'listProperties.png', jr_gettext( '_JRPORTAL_CPANEL_LISTPROPERTIES', _JRPORTAL_CPANEL_LISTPROPERTIES, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES, false, false ), false, false );
 		}
 
+	function touch_template_language()
+		{
+		$output = array ();
+
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES );
+
+		foreach ( $output as $o )
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
 
 	// This must be included in every Event/Mini-component
 	function getRetVals()

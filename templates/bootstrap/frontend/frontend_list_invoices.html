@@ -1,66 +1,101 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<script language="JavaScript" type="text/javascript">
-		<!--
-		jomresJquery(document).ready(function () {
-			make_datatable('frontend_list_invoices', '{PAGETITLE}', '{LIVESITE}');
-		});
-		//-->
-	</script>
-	<div id="tour_target_table_tools"></div>
-	<h2 class="page-header">{PAGETITLE}</h2>
+<script language="javascript" type="text/javascript">
+	<!--
+	jomresJquery(document).ready(function () {
+		make_datatable('frontend_list_invoices', '{PAGETITLE}', '{LIVESITE}', '{AJAX_URL}');
+		column_ids = new Array(2,5,7,8,10,11,12);
+		dataTableSetHiddenColumns('frontend_list_invoices', column_ids);
+	});
+	//-->
+</script>
+<div id="tour_target_table_tools"></div>
+<h2 class="page-header">{PAGETITLE}</h2>
 
-	<div class="well">
-		<a href="{TASK_FILTER_ANY}" class="btn"><i class="icon-list-view"></i> {_JOMRES_FRONT_ROOMSMOKING_EITHER}</a>
-		<a href="{TASK_FILTER_UNPAID}" class="btn"><i class="icon-list-view"></i> {_JRPORTAL_INVOICES_STATUS_UNPAID}</a>
-		<a href="{TASK_FILTER_PAID}" class="btn"><i class="icon-list-view"></i> {_JRPORTAL_INVOICES_STATUS_PAID}</a>
-		<a href="{TASK_FILTER_CANCELLED}" class="btn"><i class="icon-list-view"></i>
-			{_JRPORTAL_INVOICES_STATUS_CANCELLED}</a>
-		<a href="{TASK_FILTER_PENDING}" class="btn"><i class="icon-list-view"></i>
-			{_JRPORTAL_INVOICES_STATUS_PENDING}</a>
-	</div>
-	<p>&nbsp;</p>
-	<table id="frontend_list_invoices" class="table table-striped" width="100%">
-		<thead>
+<div class="well">
+	<a href="#list_invoices_filters" role="button" data-toggle="modal" class="btn" onclick="jomresJquery('#ui-datepicker-div').appendTo('#list_invoices_filters');"><i class="icon-filter"></i> {HFILTER}</a>
+</div>
+
+<table id="frontend_list_invoices" class="table table-striped" width="100%">
+	<thead>
 		<tr>
-			<th>&nbsp;</th>
-			<th>ID</th>
-			<th>{HUSER}</th>
-			<th>{HSTATUS}</th>
-			<th class="hidden-phone hidden-tablet">Line Items</th>
-			<patTemplate:comment>
-				<th class="hidden-phone hidden-tablet">{HRAISED}</th>
-			</patTemplate:comment>
-			<th class="hidden-phone hidden-tablet">{HDUE}</th>
-			<patTemplate:comment>
-				<th class="hidden-phone hidden-tablet">{HPAID}</th>
-				<th>{HSUBSCRIPTION}</th>
-			</patTemplate:comment>
+			<th>{COMMON_EDIT}</th>
+			<th>Id</th>
+			<th>{HPROPERTY_NAME}</th>
+			<th>{HFIRSTNAME}</th>
+			<th>{HSURNAME}</th>
+			<th>Line Items</th>
+			<th>{HRAISED}</th>
+			<th>{HDUE}</th>
+			<th>{HPAID}</th>
+			<th>{HGRAND_TOTAL}</th>
 			<th>{HINITTOTAL}</th>
-			<th class="hidden-phone hidden-tablet">{HRECURTOTAL}</th>
-			<th></th>
+			<th>{HRECURTOTAL}</th>
+			<th>PayPal</th>
 		</tr>
-		</thead>
-		<tbody>
-		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="id">
-			<tr>
-				<td><a href="{EDIT_URL}" class="btn"><i class="icon-edit"></i> {EDIT_TEXT}</a></td>
-				<td>{ID}</td>
-				<td>{USER}</td>
-				<td>{STATUS}</td>
-				<td class="hidden-phone hidden-tablet">{ITEMS}</td>
-				<patTemplate:comment>
-					<td class="hidden-phone hidden-tablet">{RAISED}</td>
-				</patTemplate:comment>
-				<td class="hidden-phone hidden-tablet">{DUE}</td>
-				<patTemplate:comment>
-					<td class="hidden-phone hidden-tablet">{PAID}</td>
-					<td>{SUBSCRIPTION}</td>
-				</patTemplate:comment>
-				<td>{INITTOTAL}({CURRENCYCODE})</td>
-				<td class="hidden-phone hidden-tablet">{RECURTOTAL}({CURRENCYCODE})</td>
-				<td>{PAYNOW}</td>
-			</tr>
-		</patTemplate:tmpl>
-		</tbody>
-	</table>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+<h5>{HLEGEND}</h5>
+<span class="label label-warning">{HPENDING}</span>
+<span class="label label-success">{HPAID}</span>
+<span class="label label-important">{HUNPAID}</span>
+<span class="label label-inverse">{HCANCELLED}</span>
+
+<form action="{JOMRES_SITEPAGE_URL}&task=list_invoices&guest_id={GUEST_ID}" method="post" name="filterInvoices" class="form-horizontal">
+<div id="list_invoices_filters" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h3 id="myModalLabel">{HFILTER}</h3>
+	</div>
+	<div class="modal-body">
+		<div class="control-group">
+			<div class="control-label">
+				{HSTART}
+			</div>
+			<div class="controls">
+				{START}
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				{HEND}
+			</div>
+			<div class="controls">
+				{END}
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				{HINVOICE_TYPE}
+			</div>
+			<div class="controls">
+				{INVOICE_TYPE}
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				{HINVOICE_STATUS}
+			</div>
+			<div class="controls">
+				{INVOICE_STATUS}
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				{HSHOW_ALL}
+			</div>
+			<div class="controls">
+				{SHOW_ALL}
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a class="btn" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</a>
+		<input type="submit" value="{HFILTER}" class="btn btn-primary" />
+	</div>
+</div>
+<input type="hidden" name="task" value="list_invoices" />
+<input type="hidden" name="guest_id" value="{GUEST_ID}" />
+</form>
 </patTemplate:tmpl>

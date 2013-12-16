@@ -21,7 +21,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * @package Jomres
 #
  */
-class j00011manager_option_12_deleteproperty
+class j00011manager_option_15_preview
 	{
 
 	/**
@@ -29,7 +29,7 @@ class j00011manager_option_12_deleteproperty
 	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	#
 	 */
-	function j00011manager_option_12_deleteproperty( $componentArgs )
+	function j00011manager_option_15_preview( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -39,8 +39,11 @@ class j00011manager_option_12_deleteproperty
 
 			return;
 			}
-		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-		if ( $thisJRUser->superPropertyManager ) $this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=deleteProperty" , 'WasteBasket.png', jr_gettext( '_JOMRES_COM_MR_PROPERTY_DELETE', _JOMRES_COM_MR_PROPERTY_DELETE, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME, false, false ), false, true );
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+		if ( $jrConfig[ 'is_single_property_installation' ] == "0" ) $this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=preview", 'Preview.png', jr_gettext( '_JOMRES_FRONT_PREVIEW', _JOMRES_FRONT_PREVIEW, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES, false, false ) );
+		else
+		$this->cpanelButton = "";
 		}
 
 

@@ -45,18 +45,12 @@ class j02202savedeposit
 		$depositRef  = getEscaped( jomresGetParam( $_POST, 'depositRef', "" ) );
 		if ( $contractUid > 0 )
 			{
-			$deposit_received = jomresGetParam( $_POST, 'deposit_received', 0.00 );
 			$saveMessage      = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSITSAVEMESSAGE', _JOMRES_COM_MR_EB_PAYM_DEPOSITSAVEMESSAGE, false );
 			$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
 			$jomres_messaging->set_message( $saveMessage );
-			$query = "UPDATE #__jomres_contracts SET 
-			`deposit_paid`='1',
-			`deposit_ref`='".$depositRef."',
-			`deposit_required`='".$deposit_received."' 
-			WHERE contract_uid='" . (int) $contractUid . "' AND property_uid = '" . (int) $defaultProperty . "'";
-			
+			$query = "UPDATE #__jomres_contracts SET `deposit_paid`='1',`deposit_ref`='$depositRef' WHERE contract_uid='" . (int) $contractUid . "' AND property_uid = '" . (int) $defaultProperty . "'";
 			if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_ENTEREDDEPOSIT', _JOMRES_MR_AUDIT_ENTEREDDEPOSIT, false ) ) ) trigger_error( "Unable to update deposit entry, mysql db failure", E_USER_ERROR );
-			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=listNewBookings" ), $saveMessage );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=editBooking&contract_uid=".(int)$contractUid ), $saveMessage );
 			}
 		else
 		trigger_error( "Incorrect contract uid when saving deposit", E_USER_ERROR );

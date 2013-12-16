@@ -6,30 +6,57 @@
 				"bJQueryUI": true,
 				"bStateSave": true,
 				"sPaginationType": "full_numbers",
-				"sDom": '<"H"lTfr>t<"F"ip>',
-				"oTableTools": {
-					"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
-					"aButtons": [
-						"copy",
-						{
-							"sExtends": "csv",
-							"sCharSet": "utf8"
-						},
-						{
-							"sExtends": "xls",
-							"sCharSet": "utf16le"
-						},
-						{
-							"sExtends": "pdf",
-							"sCharSet": "utf8",
-							"sPdfOrientation": "landscape",
-							"sTitle": "{PAGETITLE}"
-						},
-						"print"
-					]
-				}
-			});
+				"bProcessing": true,
+				"bServerSide": true,
+				"sAjaxSource": '{AJAX_URL}'
+			}).fnSetFilteringDelay().dataTableSetHiddenColumns();
 		});
+		/* Filtering delay */
+		if ('undefined' != typeof(jomresJquery.fn.dataTableExt )) {
+			jomresJquery.fn.dataTableExt.oApi.fnSetFilteringDelay = function ( oSettings, iDelay ) {
+				var _that = this;
+			 
+				if ( iDelay === undefined ) {
+					iDelay = 750;
+				}
+				  
+				this.each( function ( i ) {
+					jomresJquery.fn.dataTableExt.iApiIndex = i;
+					var
+						$this = this,
+						oTimerId = null,
+						sPreviousSearch = null,
+						anControl = jomresJquery( 'input', _that.fnSettings().aanFeatures.f );
+					  
+						anControl.unbind( 'keyup' ).bind( 'keyup', function() {
+						var $$this = $this;
+			  
+						if (sPreviousSearch === null || sPreviousSearch != anControl.val()) {
+							window.clearTimeout(oTimerId);
+							sPreviousSearch = anControl.val(); 
+							oTimerId = window.setTimeout(function() {
+								jomresJquery.fn.dataTableExt.iApiIndex = i;
+								_that.fnFilter( anControl.val() );
+							}, iDelay);
+						}
+					});
+					  
+					return this;
+				} );
+				return this;
+			};
+		};
+		/* Hide columns*/
+		if ('undefined' != typeof(jomresJquery.fn.dataTableExt )) {
+			jomresJquery.fn.dataTableExt.oApi.dataTableSetHiddenColumns = function ()
+				{
+				var oTable = jomresJquery('#frontend_list_invoices').dataTable();
+				column_ids = new Array(2,5,7,8,10,11,12);
+				jomresJquery.each(column_ids, function(i) {
+					oTable.fnSetColumnVis( column_ids[i], false, false );
+					});
+				};
+		};
 		//-->
 	</script>
 	<h2>{PAGETITLE}</h2>
@@ -46,45 +73,22 @@
 	<table id="frontend_list_invoices" width="100%">
 		<thead>
 		<tr>
-			<th>&nbsp;</th>
-			<th>ID</th>
-			<th>{HUSER}</th>
-			<th>{HSTATUS}</th>
+			<th>{COMMON_EDIT}</th>
+			<th>Id</th>
+			<th>{HPROPERTY_NAME}</th>
+			<th>{HFIRSTNAME}</th>
+			<th>{HSURNAME}</th>
 			<th>Line Items</th>
-			<patTemplate:comment>
-				<th>{HRAISED}</th>
-			</patTemplate:comment>
+			<th>{HRAISED}</th>
 			<th>{HDUE}</th>
-			<patTemplate:comment>
-				<th>{HPAID}</th>
-				<th>{HSUBSCRIPTION}</th>
-			</patTemplate:comment>
+			<th>{HPAID}</th>
+			<th>{HGRAND_TOTAL}</th>
 			<th>{HINITTOTAL}</th>
 			<th>{HRECURTOTAL}</th>
-			<th></th>
+			<th>PayPal</th>
 		</tr>
 		</thead>
 		<tbody>
-		<patTemplate:tmpl name="rows" unusedvars="nbsp">
-			<tr>
-				<td>{EDITLINK}</td>
-				<td>{ID}</td>
-				<td>{USER}</td>
-				<td>{STATUS}</td>
-				<td>{ITEMS}</td>
-				<patTemplate:comment>
-					<td>{RAISED}</td>
-				</patTemplate:comment>
-				<td>{DUE}</td>
-				<patTemplate:comment>
-					<td>{PAID}</td>
-					<td>{SUBSCRIPTION}</td>
-				</patTemplate:comment>
-				<td>{INITTOTAL}({CURRENCYCODE})</td>
-				<td>{RECURTOTAL}({CURRENCYCODE})</td>
-				<td>{PAYNOW}</td>
-			</tr>
-		</patTemplate:tmpl>
 		</tbody>
 	</table>
 </patTemplate:tmpl>

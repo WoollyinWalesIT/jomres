@@ -198,6 +198,9 @@ class jomres_toolbar_normal
 
 		$array[ 'note' ]           = array ( 'image' => 'postnote', 'label' => 'Note' );
 		$array[ 'deleteproperty' ] = array ( 'image' => 'WasteBasket', 'label' => 'Delete' );
+		
+		$array[ 'bookGuestIn' ] = array ( 'image' => 'BookGuestIn', 'label' => jr_gettext( '_JOMRES_FRONT_MR_BOOKIN_TITLE', _JOMRES_FRONT_MR_BOOKIN_TITLE, false ) );
+		$array[ 'bookGuestOut' ] = array ( 'image' => 'BookGuestOut', 'label' => jr_gettext( '_JOMRES_FRONT_MR_BOOKOUT_TITLE', _JOMRES_FRONT_MR_BOOKOUT_TITLE, false ) );
 
 		return $array;
 		}

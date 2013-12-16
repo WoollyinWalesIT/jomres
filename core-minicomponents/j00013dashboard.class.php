@@ -13,9 +13,6 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-jr_import( 'jomres_dashboard' );
-
-
 class j00013dashboard
 	{
 	function j00013dashboard()
@@ -32,7 +29,7 @@ class j00013dashboard
 		$property_uid = $componentArgs[ 'property_uid' ];
 		if ( is_null( $property_uid ) ) $property_uid = getDefaultProperty();
 		
-		$MiniComponents->specificEvent( '06001', 'dashboard', array ( 'property_uid' => $property_uid, 'show_legend' => true, 'show_date_dropdown' => true ) );
+		$MiniComponents->specificEvent( '06001', 'dashboard', array ( 'property_uid' => $property_uid ) );
 		}
 
 

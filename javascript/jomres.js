@@ -1,7 +1,8 @@
 if ('undefined' != typeof(jQuery)) {
 	var jomresJquery = jQuery.noConflict();
-}
-;
+};
+
+jomresJquery.ajaxSetup({ cache: false });
 
 if (navigator.appName == 'Microsoft Internet Explorer') window.onerror = Block_Error;
 function Block_Error() {
@@ -31,27 +32,37 @@ function toggle_button_class(id) {
 		jomresJquery(id).addClass('active btn-success');
 }
 
-function make_datatable(div_id, pagetitle, livesite, ajaxurl) {
+function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 	bProcessing = false;
 	bServerSide = false;
 	if (ajaxurl) {
 		bProcessing = true;
 		bServerSide = true;
 		}
-	var oTable = jomresJquery('#' + div_id).dataTable({
+	if (typeof showTools === 'undefined')
+		showTableTools = true;
+	else
+		showTableTools = showTools;
+
+	if (showTableTools)
+		sDomm = "<'row-fluid'<'span4'l><'span4'TC><'span4'f>>rt<'row-fluid'<'span4'i><'span8'p>>";
+	else
+		sDomm = "<'row-fluid'<'span4'l><'span8'f>>rt<'row-fluid'<'span4'i><'span8'p>>";
+	var oTable = jomresJquery('#' + table_id).dataTable({
 		"bProcessing": bProcessing,
 		"bServerSide": bServerSide,
 		"sAjaxSource": ajaxurl,
 		"bJQueryUI": false,
 		"bStateSave": true,
+		"bAutoWidth": false,
 		"sPaginationType": "bootstrap",
-		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>>rt<'row-fluid'<'span5'i><'span7'p>>",
+		"sDom": sDomm,
 		"sWrapper": "dataTables_wrapper form-inline",
 		"fnStateSave": function (oSettings, oData) {
-			localStorage.setItem('DataTables', JSON.stringify(oData));
+			localStorage.setItem('DataTables' + table_id, JSON.stringify(oData));
 		},
 		"fnStateLoad": function (oSettings) {
-			return JSON.parse(localStorage.getItem('DataTables'));
+			return JSON.parse(localStorage.getItem('DataTables' + table_id));
 		},
 		"oTableTools": {
 			"sSwfPath": livesite + "/jomres/javascript/copy_cvs_xls_pdf.swf",
@@ -73,13 +84,31 @@ function make_datatable(div_id, pagetitle, livesite, ajaxurl) {
 				},
 				"print"
 			]
+		},
+		"oColVis": {
+			"aiExclude": [ 0 ],
+			"bRestore": false
 		}
 	}).fnSetFilteringDelay();
 	jomresJquery.extend(jomresJquery.fn.dataTableExt.oStdClasses, {
 		"sSortAsc": "header headerSortDown",
 		"sSortDesc": "header headerSortUp",
 		"sSortable": "header"
-	});
+		});
+}
+
+function dataTableSetHiddenColumns(table_id, column_ids)
+	{
+	var oTable = jomresJquery('#' + table_id).dataTable();
+	var toggleChanged = localStorage.getItem( 'toggleChanged_' + table_id);
+	if (!toggleChanged)
+		{
+		jomresJquery.each(column_ids, function(i) {
+			oTable.fnSetColumnVis( column_ids[i], false, false );
+			});
+		localStorage.setItem( 'toggleChanged_' + table_id, true);
+		ColVis.fnRebuild( oTable );
+		}
 }
 
 /* Credit : http://www.developersnippets.com/2009/05/20/evaluate-scripts-while-working-on-ajax-requests/ */
