@@ -88,7 +88,7 @@ class j10001control_panel
 					if ( $best_before_expired )
 						{
 						$output[ 'HIGHLIGHT' ] = ( using_bootstrap() ? "alert alert-error" : "ui-state-error" );
-						$output[ 'ALERT' ]     = jr_gettext( _JOMRES_VERSIONCHECK_VERSIONWARNING, '_JOMRES_VERSIONCHECK_VERSIONWARNING', false );
+						$output[ 'ALERT' ]     = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN . '&task=updates" >'. jr_gettext( _JOMRES_VERSIONCHECK_VERSIONWARNING, '_JOMRES_VERSIONCHECK_VERSIONWARNING', false ).'</a>';
 						$output[ 'EFFECT' ]    = "<script>jomresJquery(document).ready(function() { jomresJquery( \"#version_check_warning\" ).effect( 'highlight' ); });</script> ";
 						}
 					}
