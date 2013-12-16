@@ -5,6 +5,17 @@
 
 
 		function upgrade_core_plugins() {
+			jomresJquery.blockUI({ 
+			message: '<h3>Upgrading plugins, please wait, this may take a few minutes depending on internet speed.</h3><br/> The page will reload when the plugins have been updated, but it is important that you do not interrupt the process.',
+			css: { 
+				border: 'none', 
+				padding: '15px', 
+				backgroundColor: '#000', 
+				'-webkit-border-radius': '10px', 
+				'-moz-border-radius': '10px', 
+				opacity: .5, 
+				color: '#fff' 
+			} }); 
 			plugins = plugins_to_upgrade.split(",");
 			for (var i = 0, l = plugins.length; i < l; i++) {
 				plugin = plugins[i];
