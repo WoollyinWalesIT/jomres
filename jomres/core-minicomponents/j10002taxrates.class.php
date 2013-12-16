@@ -26,6 +26,7 @@ class j10002taxrates
 
 			return;
 			}
+
 		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
 		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=list_taxrates', 'Taxes.png', jr_gettext( "_JRPORTAL_TAXRATES_TITLE", _JRPORTAL_TAXRATES_TITLE, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES", _JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES, false, false ) );
 		}

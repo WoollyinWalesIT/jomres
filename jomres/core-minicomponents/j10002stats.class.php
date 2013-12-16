@@ -26,8 +26,13 @@ class j10002stats
 
 			return;
 			}
-		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=showstats', 'ChartBarTrend.png', jr_gettext( "_JRPORTAL_STATS_PATETITLE", _JRPORTAL_STATS_PATETITLE, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS, false, false ) );
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
+			{
+			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=showstats', 'ChartBarTrend.png', jr_gettext( "_JRPORTAL_STATS_PATETITLE", _JRPORTAL_STATS_PATETITLE, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS, false, false ) );
+			}
 		}
 
 	function touch_template_language()

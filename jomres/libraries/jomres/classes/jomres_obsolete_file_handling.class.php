@@ -776,6 +776,40 @@ class jomres_obsolete_file_handling
 		// 7.5.3
 		$this->add_obs_file( $this->dir_minicomponents . 'j00012manager_first_run.class.php' );
 		
+		// 8.0
+		$this->add_obs_file( $this->dir_classes . 'jomres_dashboard.class.php' );
+		
+		$this->add_obs_file( $this->dir_minicomponents . 'j00501avlcal.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00010reception_option_01_switch_property.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00010reception_option_02_preview.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00010reception_option_06_listnewbookings.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00010reception_option_06_listoldbookings.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_08_publish.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_09_myproperties.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_12_deleteproperty.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00013x_listyourproperties.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j02242listnewbookings.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06001listoldbookings.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06001switch_active_property.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06001ui_find_properties.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06002listyourproperties.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06002listyourproperties_ajax.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06002my_commission_invoices.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_14_mycommission_invoices.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06001list_property_invoices.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06001list_guests_invoices.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06005list_usersinvoices.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00010reception_option_03_myproperties.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06001bootstrap_dashboard_ajax.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06001bootstrap_dashboard.class.php' );
+		
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'ajax_switch_property.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'switch_property.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'bootstrap_dashboard.html' );
+		
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'ajax_switch_property.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'switch_property.html' );
+		
 		}
 
 	function add_obs_file( $path_and_file )

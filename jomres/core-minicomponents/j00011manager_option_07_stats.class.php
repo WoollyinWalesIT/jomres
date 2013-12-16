@@ -43,14 +43,14 @@ class j00011manager_option_07_stats
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) return;
 
-		$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=fe_stats", 'ChartBarTrend.png', jr_gettext( '_JRPORTAL_STATS_PATETITLE', _JRPORTAL_STATS_PATETITLE, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MISC", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MISC, false, false ) );
+		$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=fe_stats", 'ChartBarTrend.png', jr_gettext( '_JRPORTAL_STATS_PATETITLE', _JRPORTAL_STATS_PATETITLE, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_MANAGER_REPORTS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_MANAGER_REPORTS, false, false ) );
 		}
 
 	function touch_template_language()
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MISC", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MISC );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_MANAGER_REPORTS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_MANAGER_REPORTS );
 
 		foreach ( $output as $o )
 			{

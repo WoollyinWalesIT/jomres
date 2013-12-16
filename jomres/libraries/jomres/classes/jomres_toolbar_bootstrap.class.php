@@ -167,6 +167,8 @@ class jomres_toolbar_bootstrap
 		if ( strpos( $image, 'Symbol%20Refresh.png' ) ) $icon = 'icon-refresh';
 		if ( strpos( $image, 'CopyItem.png' ) ) $icon = 'icon-share';
 		if ( strpos( $image, 'ViewArchive.png' ) ) $icon = 'icon-archive';
+		if ( strpos( $image, 'BookGuestIn.png' ) ) $icon = 'icon-plus';
+		if ( strpos( $image, 'BookGuestOut.png' ) ) $icon = 'icon-minus';
 
 		//var_dump($image." ".$icon);
 
@@ -199,6 +201,11 @@ class jomres_toolbar_bootstrap
 		if ( strpos( $image, 'EditItem.png' ) )
 			{
 			$emphasis = 'btn-info';
+			$icon .= " icon-white ";
+			}
+		if ( strpos( $image, 'BookGuestOut.png' ) )
+			{
+			$emphasis = 'btn-success';
 			$icon .= " icon-white ";
 			}
 
@@ -243,6 +250,9 @@ class jomres_toolbar_bootstrap
 
 		$array[ 'note' ]           = array ( 'image' => 'postnote', 'label' => 'Note' );
 		$array[ 'deleteproperty' ] = array ( 'image' => 'WasteBasket', 'label' => 'Delete' );
+		
+		$array[ 'bookGuestIn' ] = array ( 'image' => 'BookGuestIn', 'label' => jr_gettext( '_JOMRES_FRONT_MR_BOOKIN_TITLE', _JOMRES_FRONT_MR_BOOKIN_TITLE, false ) );
+		$array[ 'bookGuestOut' ] = array ( 'image' => 'BookGuestOut', 'label' => jr_gettext( '_JOMRES_FRONT_MR_BOOKOUT_TITLE', _JOMRES_FRONT_MR_BOOKOUT_TITLE, false ) );
 
 		return $array;
 		}

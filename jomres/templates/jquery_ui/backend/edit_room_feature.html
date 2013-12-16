@@ -1,18 +1,16 @@
-<patTemplate:tmpl name="editroomfeature" unusedvars="strip">
-	<h2>{PAGETITLE}</h2>
-	<patTemplate:tmpl name="pageoutput" unusedvars="strip">
-		<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-			{JOMRESTOOLBAR}
-			<table class="ui-widget-content ui-corner-all" border="0" width="100%">
-				<tr>
-					<td width="30%">{HFEATUREDESCRIPTION}</td>
-					<td><input class="inputbox" type="text" name="feature_description" value="{FEATURE_DESCRIPTION}"
-							   size="40"/></td>
-				</tr>
-			</table>
-			<input type="hidden" name="no_html" value="1" />
-			<input type="hidden" name="roomFeatureUid" value="{ROOMFEATUREUID}">
-			<input type="hidden" name="task" value="saveRoomFeature"/>
-		</form>
-	</patTemplate:tmpl>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+	{JOMRESTOOLBAR}
+	<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+		<tr>
+			<td width="30%">{HFEATUREDESCRIPTION}</td>
+			<td><input class="inputbox" type="text" name="feature_description" value="{FEATURE_DESCRIPTION}"
+					   size="40"/></td>
+		</tr>
+	</table>
+	<input type="hidden" name="no_html" value="1" />
+	<input type="hidden" name="roomFeatureUid" value="{ROOMFEATUREUID}">
+	<input type="hidden" name="task" value="saveRoomFeature"/>
+</form>
 </patTemplate:tmpl>

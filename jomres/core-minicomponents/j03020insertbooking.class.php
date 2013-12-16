@@ -279,6 +279,10 @@ class j03020insertbooking
 					$room_total               = $tempBookingData->room_total;
 					$tax                      = $tempBookingData->tax;
 					$coupon_id                = $tempBookingData->coupon_id;
+					$booked_in				  = $tempBookingData->booked_in;
+					$sendGuestEmail			  = $tempBookingData->sendGuestEmail;
+					$sendHotelEmail			  = $tempBookingData->sendHotelEmail;
+					
 
 					$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 					if ( $thisJRUser->userIsRegistered ) // The user is already registered
@@ -388,7 +392,7 @@ class j03020insertbooking
 					'$arrivalDate','$departureDate','" . (int) $rates_uid . "',
 					'" . (int) $guests_uid . "','$rateRules','" . (string) $requestedRoom . "', '" . (float) $contract_total . "','$specialReqs',
 					'" . (int) $depositPaid . "','" . (float) $deposit_required . "',
-					'$dateRangeString','0','0',
+					'$dateRangeString','" . (int) $booked_in . "','0',
 					'" . (int) $property_uid . "','" . (float) $single_person_suppliment . "','$extras','" . (string) $extrasquantities . "','" . (float) $extrasValue . "','" . (float) $tax . "','$cartnumber','$datetime','" . (float) $room_total . "','" . (float) $discount . "','$ccode','" . $discount_details . "','" . $bookersUsername . "'," . (int) $coupon_id . ")";
 				$contract_uid = doInsertSql( $query, "" );
 
@@ -459,6 +463,8 @@ class j03020insertbooking
 				$componentArgs[ 'specialReqs' ]         = $specialReqs;
 				$componentArgs[ 'extras' ]              = $extras;
 				$componentArgs[ 'deposit_required' ]    = $deposit_required;
+				$componentArgs[ 'sendGuestEmail' ]   	= $sendGuestEmail;
+				$componentArgs[ 'sendHotelEmail' ]   	= $sendHotelEmail;
 
 				if ( $this->insertSuccessful )
 					{

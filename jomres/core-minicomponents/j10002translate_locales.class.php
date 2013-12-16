@@ -26,9 +26,13 @@ class j10002translate_locales
 
 			return;
 			}
-
-		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=translate_locales', 'EditText.png', jr_gettext( "_JOMRES_COM_TRANSLATE_COUNTRIESREGIONS", _JOMRES_COM_TRANSLATE_COUNTRIESREGIONS, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", _JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES, false, false ) );
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
+			{
+			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=translate_locales', 'EditText.png', jr_gettext( "_JOMRES_COM_TRANSLATE_COUNTRIESREGIONS", _JOMRES_COM_TRANSLATE_COUNTRIESREGIONS, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", _JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES, false, false ) );
+			}
 		}
 
 	// This must be included in every Event/Mini-component
