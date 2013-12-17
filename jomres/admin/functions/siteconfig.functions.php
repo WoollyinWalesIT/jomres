@@ -186,6 +186,15 @@ function showSiteConfig()
 	$production_development[ ]       = jomresHTML::makeOption( 'development', jr_gettext( _JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT, '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT', false ) );
 	$production_development_dropdown = jomresHTML::selectList( $production_development, 'cfg_development_production', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'development_production' ] );
 	
+	if (!isset($jrConfig[ 'navbar_location' ]))
+		$jrConfig[ 'navbar_location' ] = 'component_area'; 
+	$navbar_location          = array ();
+	$navbar_location[ ]       = jomresHTML::makeOption( 'component_area', jr_gettext( _JOMRES_BOOTSTRAP_LOCATION_DEFAULT, '_JOMRES_BOOTSTRAP_LOCATION_DEFAULT', false ) );
+	$navbar_location[ ]       = jomresHTML::makeOption( 'navbar-fixed-top', jr_gettext( _JOMRES_BOOTSTRAP_LOCATION_TOP, '_JOMRES_BOOTSTRAP_LOCATION_TOP', false ) );
+	$navbar_location[ ]       = jomresHTML::makeOption( 'navbar-fixed-bottom', jr_gettext( _JOMRES_BOOTSTRAP_LOCATION_BOTTOM, '_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', false ) );
+	$navbar_location_dropdown = jomresHTML::selectList( $navbar_location, 'cfg_navbar_location', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'navbar_location' ] );
+	
+	
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	$MiniComponents->triggerEvent( '01004', $componentArgs ); // optional
 	$property_list_layouts = get_showtime( 'property_list_layouts' );
@@ -271,7 +280,12 @@ function showSiteConfig()
 	$lists[ 'gmap_layer_traffic' ]   = jomresHTML::selectList( $yesno, 'cfg_gmap_layer_traffic', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_layer_traffic' ] );
 	$lists[ 'gmap_layer_bicycling' ] = jomresHTML::selectList( $yesno, 'cfg_gmap_layer_bicycling', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_layer_bicycling' ] );
 	$lists[ 'gmap_pois' ]            = jomresHTML::selectList( $yesno, 'cfg_gmap_pois', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_pois' ] );
-
+	
+	if (!isset($jrConfig[ 'navbar_inverse' ]))
+		$jrConfig[ 'navbar_inverse' ] = 0;
+	
+	$lists[ 'navbar_inverse' ]            = jomresHTML::selectList( $yesno, 'cfg_navbar_inverse', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'navbar_inverse' ] );
+	
 	if ( !isset( $jrConfig[ 'jquery18_2_switch' ] ) ) $jrConfig[ 'jquery18_2_switch' ] = 0; // By default the 19_2 switch will be set to No, so that jq 1.8 will be loaded.
 
 	$lists[ 'jquery18_2_switch' ] = jomresHTML::selectList( $yesno, 'cfg_jquery18_2_switch', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'jquery18_2_switch' ] );
@@ -309,7 +323,26 @@ function showSiteConfig()
 	$lists[ 'use_bootstrap_in_admin' ]    = jomresHTML::selectList( $yesno, 'cfg_use_bootstrap_in_admin', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_bootstrap_in_admin' ] );
 	$lists[ 'use_bootstrap_in_frontend' ] = jomresHTML::selectList( $yesno, 'cfg_use_bootstrap_in_frontend', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_bootstrap_in_frontend' ] );
 
-	HTML_jomres::showSiteConfig( $jrConfig, $lists, $jsInputFormatDropdownList, $licensekey, $jrtb, $langDropdown, $geosearchDropdownList, $currency_codes_dropdown, $jqueryUIthemesDropdownList, $sortArrayDropdown, $calendarStartDaysDropdownList, $language_context_dropdown, $guestnumbersearchDropdownList, $filtering_level_dropdown, $layouts, $mapWeatherTempGradDropdownList,$production_development_dropdown );
+	HTML_jomres::showSiteConfig( 
+		$jrConfig, 
+		$lists, 
+		$jsInputFormatDropdownList, 
+		$licensekey, 
+		$jrtb, 
+		$langDropdown, 
+		$geosearchDropdownList, 
+		$currency_codes_dropdown, 
+		$jqueryUIthemesDropdownList, 
+		$sortArrayDropdown, 
+		$calendarStartDaysDropdownList, 
+		$language_context_dropdown, 
+		$guestnumbersearchDropdownList, 
+		$filtering_level_dropdown, 
+		$layouts, 
+		$mapWeatherTempGradDropdownList,
+		$production_development_dropdown ,
+		$navbar_location_dropdown
+		);
 	}
 
 /**

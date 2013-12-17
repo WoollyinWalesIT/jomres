@@ -270,4 +270,5 @@ $jrConfig[ 'gmap_layer_temperature_grad' ] = "CELCIUS";
 
 $jrConfig[ 'development_production' ] = "production";
 $jrConfig[ 'useArrayCaching' ]        = "0";
-
+$jrConfig[ 'navbar_location' ]        = "component_area";
+$jrConfig[ 'navbar_inverse' ]         = 0;

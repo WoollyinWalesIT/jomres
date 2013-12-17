@@ -24,7 +24,7 @@ class HTML_jomres
 	 * Outputs the site configuration panel
 	#
 	 */
-	function showSiteConfig( $jrConfig, &$lists, $jsInputFormatDropdownList, $licensekey, $jrtb, $langDropdown, $geosearchDropdownList, $currency_codes_dropdown, $jqueryUIthemesDropdownList, $sortArrayDropdown, $calendarStartDaysDropdownList, $language_context_dropdown, $guestnumbersearchDropdownList, $filtering_level_dropdown, $layouts, $mapWeatherTempGradDropdownList,$production_development_dropdown )
+	function showSiteConfig( $jrConfig, &$lists, $jsInputFormatDropdownList, $licensekey, $jrtb, $langDropdown, $geosearchDropdownList, $currency_codes_dropdown, $jqueryUIthemesDropdownList, $sortArrayDropdown, $calendarStartDaysDropdownList, $language_context_dropdown, $guestnumbersearchDropdownList, $filtering_level_dropdown, $layouts, $mapWeatherTempGradDropdownList,$production_development_dropdown, $navbar_location_dropdown )
 		{
 		$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig     = $siteConfig->get();
@@ -1265,6 +1265,33 @@ class HTML_jomres
 				<tr>
 					<td>' . jr_gettext( RECAPTCHA_PRIVATE_KEY, 'RECAPTCHA_PRIVATE_KEY', false ) . '</td>
 					<td><input type="text" class="input-large" name="cfg_recaptcha_private_key" value="' . $jrConfig[ 'recaptcha_private_key' ] . '" /></td>
+					<td>&nbsp;</td>
+				</tr>
+				</tbody>
+				</table>' );
+			$contentPanel->insertContent();
+			$contentPanel->endPanel();
+			
+			
+			$contentPanel->startPanel( jr_gettext( _JOMRES_BOOTSTRAP_LOCATION_CONFIG_TAB, '_JOMRES_BOOTSTRAP_LOCATION_CONFIG_TAB', false ) );
+			$contentPanel->setcontent( '
+			<table class="table table-striped" width="100%">
+				<thead>
+				<tr>
+					<th width="20%">&nbsp;</th>
+					<th width="20%">' . jr_gettext( _JOMRES_COM_A_CURRENT_SETTINGS, '_JOMRES_COM_A_CURRENT_SETTINGS', false ) . '</th>
+					<th>' . jr_gettext( _JOMRES_COM_A_EXPLANATION, '_JOMRES_COM_A_EXPLANATION', false ) . '</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>' . jr_gettext( _JOMRES_BOOTSTRAP_LOCATION, '_JOMRES_BOOTSTRAP_LOCATION', false ) . '</td>
+					<td>' . $navbar_location_dropdown . '</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>' . jr_gettext( _JOMRES_BOOTSTRAP_LOCATION_INVERSE, '_JOMRES_BOOTSTRAP_LOCATION_INVERSE', false ) . '</td>
+					<td>' . $lists[ 'navbar_inverse' ] . '</td>
 					<td>&nbsp;</td>
 				</tr>
 				</tbody>
