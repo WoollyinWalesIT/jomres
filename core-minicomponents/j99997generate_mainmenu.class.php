@@ -182,6 +182,27 @@ class j99997generate_mainmenu
 				}
 			}
 		
+		if (!isset($jrConfig[ 'navbar_location' ]))
+			$jrConfig[ 'navbar_location' ] = 'component_area';
+		
+		$output['NAVBAR_LOCATION']= '';
+		if ($jrConfig[ 'navbar_location' ] != 'component_area')
+			{
+			$output['NAVBAR_LOCATION']= $jrConfig[ 'navbar_location' ];
+			}
+			
+		
+		if (!isset($jrConfig[ 'navbar_inverse' ]))
+			$jrConfig[ 'navbar_inverse' ] = 0;
+		
+		$output['NAVBAR_INVERSE']= '';
+		if ($jrConfig[ 'navbar_location' ] != 'component_area')
+			{
+			$output['NAVBAR_INVERSE']= 'navbar-inverse';
+			}
+		
+		$output['_JOMRES_BOOKING_NUMBER'] = jr_gettext("_JOMRES_BOOKING_NUMBER",_JOMRES_BOOKING_NUMBER,false);
+		
 		
 		$pageoutput[ ]                    = $output;
 		$tmpl                             = new patTemplate();

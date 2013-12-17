@@ -2369,3 +2369,11 @@ jr_define( "_JOMRES_BOOKING_CANCELLATION_WARNING", "This booking will be cancell
 jr_define( "_JOMRES_HOVERVIEW_CHECKINS", "Today checkins" );
 jr_define( "_JOMRES_HOVERVIEW_CHECKOUTS", "Today checkouts" );
 jr_define( "_JOMRES_HOVERVIEW_CURRENT_RESIDENTS", "Current residents" );
+
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION_CONFIG_TAB", "Navigation bar settings" );
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION", "Navigation bar location" );
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION_DEFAULT", "Default (content area)" );
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION_TOP", "Fixed to top" );
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION_BOTTOM", "Fixed to bottom" );
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION_INVERSE", "Inverted navbar (colour change)" );
+jr_define( "_JOMRES_BOOKING_NUMBER", "Booking number" );
