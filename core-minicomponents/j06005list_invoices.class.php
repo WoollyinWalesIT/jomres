@@ -56,6 +56,7 @@ class j06005list_invoices
 		$pageoutput = array ();
 
 		$output[ 'PAGETITLE' ]                    = jr_gettext( "_JRPORTAL_INVOICES_TITLE", _JRPORTAL_INVOICES_TITLE, false );
+		$output[ 'HBOOKINGNO' ]  				  = jr_gettext( '_JOMRES_BOOKING_NUMBER', _JOMRES_BOOKING_NUMBER, true, false );
 		$output[ 'HPROPERTY_NAME' ] 		      = jr_gettext( '_JRPORTAL_PROPERTIES_PROPERTYNAME', _JRPORTAL_PROPERTIES_PROPERTYNAME, true, false );
 		$output[ 'HFIRSTNAME' ]                   = jr_gettext( "_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME", _JOMRES_COM_MR_VIEWBOOKINGS_SURNAME, false );
 		$output[ 'HSURNAME' ]       	          = jr_gettext( "_JOMRES_FRONT_MR_DISPGUEST_SURNAME", _JOMRES_FRONT_MR_DISPGUEST_SURNAME, false );
@@ -75,7 +76,6 @@ class j06005list_invoices
 		$output[ 'HPAID' ] 						  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PAID', _JRPORTAL_INVOICES_STATUS_PAID, false );
 		$output[ 'HCANCELLED' ] 				  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_CANCELLED', _JRPORTAL_INVOICES_STATUS_CANCELLED, false );
 		$output[ 'HPENDING' ] 					  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PENDING', _JRPORTAL_INVOICES_STATUS_PENDING, false );
-		$output[ 'HSHOW_ALL' ]					  = jr_gettext( '_JOMRES_HSTATUS_SHOW_INVOICES_FOR', _JOMRES_HSTATUS_SHOW_INVOICES_FOR, false );
 
 
 		if ( !using_bootstrap() )
@@ -116,10 +116,14 @@ class j06005list_invoices
 		$options[] = jomresHTML::makeOption( '3', $output[ 'HPENDING' ] );
 		$output['INVOICE_STATUS'] = jomresHTML::selectList( $options, 'invoice_status','class="inputbox" size="1"', 'value', 'text', $invoice_status);
 		
-		$options = array();
-		$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_HSTATUS_CURRENT', _JOMRES_HSTATUS_CURRENT, false ) );
-		$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_STATUS_ALL_PROPERTIES', _JOMRES_STATUS_ALL_PROPERTIES, false ) );
-		$output['SHOW_ALL']=jomresHTML::selectList( $options, 'show_all','class="inputbox" size="1"', 'value', 'text', $show_all);
+		if ($thisJRUser->userIsManager || $thisJRUser->superPropertyManager)
+			{
+			$output[ 'HSHOW_ALL' ] = jr_gettext( '_JOMRES_HSTATUS_SHOW_INVOICES_FOR', _JOMRES_HSTATUS_SHOW_INVOICES_FOR, false );
+			$options = array();
+			$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_HSTATUS_CURRENT', _JOMRES_HSTATUS_CURRENT, false ) );
+			$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_STATUS_ALL_PROPERTIES', _JOMRES_STATUS_ALL_PROPERTIES, false ) );
+			$output['SHOW_ALL']=jomresHTML::selectList( $options, 'show_all','class="inputbox" size="1"', 'value', 'text', $show_all);
+			}
 		
 		$output['GUEST_ID'] = $guest_id;
 		

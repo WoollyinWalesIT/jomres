@@ -43,7 +43,7 @@ class j06005list_invoices_ajax
 		$rows = array ();
 		
 		//set the table coulmns, in the exact orcer in which they`re displayed in the table
-		$aColumns = array( 'a.id','a.id','a.property_uid','c.firstname','c.surname','b.name','a.raised_date','a.due_date','a.paid','b.init_total_inclusive','a.init_total','a.recur_total','a.status');
+		$aColumns = array( 'a.id','a.id','d.tag','a.property_uid','c.firstname','c.surname','b.name','a.raised_date','a.due_date','a.paid','b.init_total_inclusive','a.init_total','a.recur_total','a.status');
 		
 		/*
 		 * Paging
@@ -176,11 +176,14 @@ class j06005list_invoices_ajax
 					SUM( CASE WHEN b.init_total_inclusive < 0 THEN 0 ELSE b.init_total_inclusive END ) AS grand_total, 
 					c.firstname, 
 					c.surname,
-					d.guest_uid
+					d.guest_uid, 
+					d.tag 
 				FROM #__jomresportal_invoices a 
 					JOIN #__jomresportal_lineitems b ON a.id = b.inv_id 
 					LEFT JOIN #__jomres_contracts d ON a.id = d.invoice_uid 
-					LEFT JOIN #__jomres_guests c ON a.guest_id = c.guests_uid OR d.guest_uid = c.guests_uid OR ( a.cms_user_id != 0 AND a.cms_user_id = c.mos_userid ) "
+					LEFT JOIN #__jomres_guests c ON ( a.guest_id != 0 AND a.guest_id = c.guests_uid ) 
+													OR ( d.guest_uid != 0 AND d.guest_uid = c.guests_uid ) "
+													//OR ( a.cms_user_id != 0 AND a.cms_user_id = c.mos_userid ) "
 				. $clause 
 				. ' ' . $sWhere 
 				. " GROUP BY a.id " 
@@ -239,7 +242,7 @@ class j06005list_invoices_ajax
 					if ($thisJRUser->userIsManager || $thisJRUser->superPropertyManager)
 						{
 						$toolbar->addSecondaryItem( 'icon-cart', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=mark_booking_invoice_paid&id=' . $p->id . $thisProperty ), jr_gettext( '_JOMRES_INVOICE_MARKASPAID', _JOMRES_INVOICE_MARKASPAID, false ) );
-						$toolbar->addSecondaryItem( 'icon-list-view', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=viewBooking&contract_uid=' . $p->contract_id . $thisProperty ), jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKING', _JOMCOMP_MYUSER_VIEWBOOKING, false ) );
+						$toolbar->addSecondaryItem( 'icon-list-view', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editBooking&contract_uid=' . $p->contract_id . $thisProperty ), jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKING', _JOMCOMP_MYUSER_VIEWBOOKING, false ) );
 						}
 					if ($thisJRUser->userIsRegistered && !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager)
 						$toolbar->addSecondaryItem( 'icon-list-view', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=muviewbooking&contract_uid=' . $p->contract_id . $thisProperty ), jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKING', _JOMCOMP_MYUSER_VIEWBOOKING, false ) );
@@ -267,11 +270,16 @@ class j06005list_invoices_ajax
 						$label_class='label-warning';
 						break;
 					default:
-						$label_class='';
+						$label_class='label';
 						break;
 					}
 				$r[] = '<span class="label '.$label_class.'">'.$p->id.'</span>';
 				}
+			
+			if ($p->tag != '')
+				$r[] = $p->tag;
+			else
+				$r[] = '-';
 			
 			if ($p->property_uid != 0)
 				$r[] = jomres_decode(getPropertyName($p->property_uid));
@@ -297,8 +305,28 @@ class j06005list_invoices_ajax
 			$r[] = output_price($p->init_total);
 			$r[] = output_price($p->recur_total);
 			
-			if (((int)$p->is_commission == 1 || (int)$p->subscription == 1) && (int)$p->status == 3 && $paypal_settings[ 'email' ] != '')
+			//paypal stuff
+			if (((int)$p->is_commission == 1 || (int)$p->subscription == 1) && (int)$p->status == 3 && $paypal_settings[ 'email' ] != "")
 				$r[] = '<a href="' . JOMRES_SITEPAGE_URL . '&task=immediatepay&id=' . $p->id . '"><img src = "' . get_showtime( 'live_site' ) . '/jomres/images/btn_paynow_SM.gif" /></a>';
+			elseif ((int)$p->contract_id != 0 && (int)$p->status == 3 && !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager) 
+				{
+				if ( $paypal_settings[ 'override' ] == "1" && $paypal_settings[ 'email' ] != "")
+					$r[] = '<a href="' . JOMRES_SITEPAGE_URL . '&task=immediatepay&id=' . $p->id . '"><img src = "' . get_showtime( 'live_site' ) . '/jomres/images/btn_paynow_SM.gif" /></a>';
+				else
+					{
+					$paypalPropertySpecificSettings=array();
+					$query = "SELECT setting, value FROM #__jomres_pluginsettings WHERE prid = '".$p->property_uid."' AND plugin = 'paypal' ";
+					$settingsList = doSelectSql( $query );
+					foreach ($settingsList as $s)
+						{
+						$paypalPropertySpecificSettings[$s->setting] = $s->value;
+						}
+					if ( $paypalPropertySpecificSettings['active'] == '1' && $paypalPropertySpecificSettings['paypalemail'] != '' )
+						$r[] = '<a href="' . JOMRES_SITEPAGE_URL . '&task=immediatepay&id=' . $p->id . '"><img src = "' . get_showtime( 'live_site' ) . '/jomres/images/btn_paynow_SM.gif" /></a>';
+					else
+						$r[] = '';
+					}
+				}
 			else
 				$r[] = '';
 			
