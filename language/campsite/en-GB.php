@@ -2395,3 +2395,5 @@ jr_define( "_JOMRES_BOOTSTRAP_LOCATION_TOP", "Fixed to top" );
 jr_define( "_JOMRES_BOOTSTRAP_LOCATION_BOTTOM", "Fixed to bottom" );
 jr_define( "_JOMRES_BOOTSTRAP_LOCATION_INVERSE", "Inverted navbar (colour change)" );
 jr_define( "_JOMRES_BOOKING_NUMBER", "Booking number" );
+
+jr_define('_JOMRES_HSTATUS_SHOW_GUESTS_FOR' , "Show guests for" );
