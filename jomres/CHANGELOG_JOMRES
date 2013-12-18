@@ -1,3 +1,26 @@
+Jomres 8.0.-3
+
+Changed menu options around to bring them a little more in line with industry standard.
+Completely revamped the guests, property and invoice listings pages, you can see invoices for all properties or just the active one, filter by various options and configure the columns to suit your specific requirements. Virtually all tabulated data is loaded via ajax, improving page response times when dealing with large amounts of data.
+Improved the dashboard further, bookings are easily viewed as their indicators span multiple dates.
+Added links to top of the guest confirmation email which will take the guest to the property and to their booking.
+Added the ability to enter your own deposit amount on the enter deposit page of a booking.
+Added currently active property string to the top template.
+Removed the switch property feature, now properties can be switched from the list properties table.
+
+Removed some code that we added a year ago as many people do not use unique names for tariffs, consequentially their tariff list was becoming unordered.
+Modified the Bootstrapped Management view, remove left columns and moved some stuff around.
+Changed how the showconfirmation page works so that Jintour/norooms based bookings can have their own template.
+Disabled timezone functionality in Jomres as Joomla is capable of setting time zones for users. (Was relevant for older versions of Joomla, but not any more).
+Replaced a problem apostrophe with it's entity in the French lang files.
+Removed a width setting to allow the admin's first run popup to show better on smaller screens.
+Experimentally removing a redirect from the usermanagement script.
+Added the ability to create new Common strings that are available to all templates through a minicomponent.
+Improved the property list prices class to ensure that the lowest price found is correct. Thanks Rodrigo!
+Added a check to see if a room is already in the user's cart, if it is then the room lock isn't released.
+Changed alert regarding updates so that it is a link that goes direct to the updates page.
+
+
 Jomres 7.5.3
 
 Fixed an issue in jq ui frontend list properties.

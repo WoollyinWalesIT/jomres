@@ -55,7 +55,7 @@
 <span class="label label-teal">{TEXT_BOOKEDOUT}</span>
 <span class="label label-inverse">{TEXT_CANCELLED}</span>
 
-<form action="{JOMRES_SITEPAGE_URL}&task=listLiveBookings" method="post" name="filterBookings" class="form-horizontal">
+<form action="{JOMRES_SITEPAGE_URL}&task=list_bookings" method="post" name="filterBookings" class="form-horizontal">
 <div id="list_bookings_filters" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -116,6 +116,6 @@
 		<input type="submit" value="{HFILTER}" class="btn btn-primary" />
 	</div>
 </div>
-<input type="hidden" name="task" value="listLiveBookings" />
+<input type="hidden" name="task" value="list_bookings" />
 </form>
 </patTemplate:tmpl>

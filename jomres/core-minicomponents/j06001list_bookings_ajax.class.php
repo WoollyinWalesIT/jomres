@@ -14,9 +14,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j06001listlivebookings_ajax
+class j06001list_bookings_ajax
 	{
-	function j06001listlivebookings_ajax()
+	function j06001list_bookings_ajax()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -29,7 +29,6 @@ class j06001listlivebookings_ajax
 
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		$defaultProperty=getDefaultProperty();
-		$lang=get_showtime('lang');
 		
 		$startDate		= jomresGetParam($_GET,'startDate','');
 		$endDate		= jomresGetParam($_GET,'endDate','');
@@ -37,6 +36,7 @@ class j06001listlivebookings_ajax
 		$resident_status= (int)jomresGetParam($_GET,'resident_status','2');
 		$booking_status = (int)jomresGetParam($_GET,'booking_status','2');
 		$show_all		= (int)jomresGetParam($_GET,'show_all','0');
+		$tag			= (int)jomresGetParam($_GET,'tag','0');
 		
 		if (!using_bootstrap())
 			{
@@ -124,7 +124,7 @@ class j06001listlivebookings_ajax
 			$clause = "WHERE a.property_uid = '".(int)$defaultProperty."' AND a.tag IS NOT NULL ";
 		
 		//date interval filter
-		if ($startDate != '' && $endDate != '')
+		if ($startDate != '' && $endDate != '' && $tag == 0)
 			{
 			$clause .= "AND ( ( DATE_FORMAT(a.arrival, '%Y/%m/%d') BETWEEN DATE_FORMAT('" . $startDate . "', '%Y/%m/%d') AND DATE_FORMAT('" . $endDate . "', '%Y/%m/%d') ) ";
 			$clause .= "OR ( DATE_FORMAT(a.departure, '%Y/%m/%d') BETWEEN DATE_FORMAT('" . $startDate . "', '%Y/%m/%d') AND DATE_FORMAT('" . $endDate . "', '%Y/%m/%d') ) ) ";
@@ -151,7 +151,9 @@ class j06001listlivebookings_ajax
 			elseif ($booking_status == 1)
 				$clause .="AND a.cancelled = '1' ";
 			}
-			
+		
+		if ($tag != 0)
+			$clause .="AND a.tag LIKE '%".$tag."%' ";
 		
 		/*
 		 * Build and execute the query

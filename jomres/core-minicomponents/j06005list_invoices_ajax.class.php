@@ -39,6 +39,9 @@ class j06005list_invoices_ajax
 		$invoice_status	= (int)jomresGetParam($_GET,'invoice_status','4');
 		$guest_id		= (int)jomresGetParam($_GET,'guest_id','0');
 		$show_all		= (int)jomresGetParam($_GET,'show_all','0');
+		
+		if ( $guest_id != 0 )
+			$show_all = 1;
 
 		$rows = array ();
 		
@@ -99,15 +102,15 @@ class j06005list_invoices_ajax
 		 * Prefilter
 		 */
 		
-			if ($thisJRUser->userIsRegistered && !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager)
-				$clause = "WHERE ";
-			elseif ($thisJRUser->userIsManager)
-				{
-				if ($show_all == 1)
-					$clause = "WHERE a.property_uid IN ('0'," . implode( ',',$thisJRUser->authorisedProperties ) . ") AND ";
-				else
-					$clause = "WHERE ( a.property_uid = '0' OR a.property_uid = '".(int)$defaultProperty."' ) AND ";
-				}
+		if ($thisJRUser->userIsRegistered && !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager)
+			$clause = "WHERE ";
+		elseif ($thisJRUser->userIsManager)
+			{
+			if ($show_all == 1)
+				$clause = "WHERE a.property_uid IN ('0'," . implode( ',',$thisJRUser->authorisedProperties ) . ") AND ";
+			else
+				$clause = "WHERE ( a.property_uid = '0' OR a.property_uid = '".(int)$defaultProperty."' ) AND ";
+			}
 		
 		//date interval filter
 		if ($startDate != '' && $endDate != '')

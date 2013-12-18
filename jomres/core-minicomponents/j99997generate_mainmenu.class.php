@@ -202,6 +202,7 @@ class j99997generate_mainmenu
 			}
 		
 		$output['_JOMRES_BOOKING_NUMBER'] = jr_gettext("_JOMRES_BOOKING_NUMBER",_JOMRES_BOOKING_NUMBER,false);
+		$output['TAG_SEARCH_URL'] = jomresUrl(JOMRES_SITEPAGE_URL_NOSEF . '&task=list_bookings');
 		
 		
 		$pageoutput[ ]                    = $output;

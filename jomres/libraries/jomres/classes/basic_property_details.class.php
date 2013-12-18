@@ -550,7 +550,7 @@ class basic_property_details
 			}
 		else
 			{
-			$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
+			$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,ptype_xref FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
 			$propertyFeaturesList= doSelectSql($query);
 			if (count($propertyFeaturesList)>0)
 				{
@@ -559,6 +559,7 @@ class basic_property_details
 					$this->all_property_features[(int)$propertyFeature->hotel_features_uid]['abbv'] = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$propertyFeature->hotel_features_uid,	stripslashes($propertyFeature->hotel_feature_abbv),false,false);
 					$this->all_property_features[(int)$propertyFeature->hotel_features_uid]['desc'] = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$propertyFeature->hotel_features_uid,	stripslashes($propertyFeature->hotel_feature_full_desc),false,false);
 					$this->all_property_features[(int)$propertyFeature->hotel_features_uid]['image'] =$propertyFeature->image;
+					$this->all_property_features[(int)$propertyFeature->hotel_features_uid]['ptype_xref'] = $propertyFeature->ptype_xref; //serialized
 					}
 				}
 			$c->store('all_property_features_details',$this->all_property_features);

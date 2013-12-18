@@ -1022,6 +1022,7 @@ function prepFeatureSearch()
 		$r[ 'title' ]       = $searchAll;
 		$r[ 'description' ] = $searchAll;
 		$r[ 'image' ]       = '';
+		$r[ 'ptype_xref' ]	= '';
 		$result[ ]          = $r;
 	
 		foreach ( $propertyFeaturesList as $propertyFeatureId=>$feature )
@@ -1033,6 +1034,7 @@ function prepFeatureSearch()
 				$r[ 'title' ]       = $feature['abbv'];
 				$r[ 'description' ] = $feature['desc'];
 				$r[ 'image' ]       = $feature['image'];
+				$r[ 'ptype_xref' ]  = $feature['ptype_xref'];
 				$result[ ]          = $r;
 				}
 			}

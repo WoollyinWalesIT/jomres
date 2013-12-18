@@ -27,12 +27,19 @@ class j06001listguests_ajax
 			return;
 			}
 
+		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		$defaultProperty=getDefaultProperty();
+		
+		$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$basic_property_details->get_property_name_multi($thisJRUser->authorisedProperties);
+		
 		$historic = (int)jomresGetParam($_GET,'historic','2');
+		$show_all = (int)jomresGetParam($_GET,'show_all','0');
 
 		$rows = array ();
 		
 		//set the table coulmns, in the exact orcer in which they`re displayed in the table
-		$aColumns = array( 'a.guests_uid','a.guests_uid','a.firstname','a.surname','a.house','a.street','a.town','a.county','a.postcode','a.country','a.tel_landline','a.tel_mobile','a.email','a.vat_number','a.discount');
+		$aColumns = array( 'a.guests_uid','a.guests_uid','a.firstname','a.surname','a.house','a.street','a.town','a.county','a.postcode','a.country','a.tel_landline','a.tel_mobile','a.email','a.vat_number','a.discount','a.property_uid');
 		
 		/*
 		 * Paging
@@ -87,8 +94,10 @@ class j06001listguests_ajax
 		/*
 		 * Prefilter
 		 */
-		$property_uid=getDefaultProperty();
-		$clause = "WHERE a.property_uid = '".(int)$property_uid."' ";
+		if ($show_all == 1)
+			$clause = "WHERE a.property_uid IN (" . implode( ',',$thisJRUser->authorisedProperties ) . ") ";
+		else
+			$clause = "WHERE a.property_uid = '".$defaultProperty."' ";
 		
 		if ($historic == 0)
 			$clause .= "AND ( b.cancelled = '0' AND b.bookedout = '0' ) ";
@@ -98,7 +107,32 @@ class j06001listguests_ajax
 		/*
 		 * Build and execute the query
 		 */
-		$query = "SELECT SQL_CALC_FOUND_ROWS a.guests_uid, a.firstname, a.surname, a.house, a.street, a.town, a.county, a.country, a.postcode, a.tel_landline, a.tel_mobile, a.email, a.vat_number, a.discount, b.guest_uid, b.cancelled, b.bookedout FROM #__jomres_guests a LEFT JOIN #__jomres_contracts b ON a.guests_uid = b.guest_uid " . $clause . ' ' . $sWhere . " GROUP BY a.guests_uid " . $sOrder . ' ' . $sLimit;
+		$query = "SELECT SQL_CALC_FOUND_ROWS 
+						a.guests_uid, 
+						a.firstname, 
+						a.surname, 
+						a.house, 
+						a.street, 
+						a.town, 
+						a.county, 
+						a.country, 
+						a.postcode, 
+						a.tel_landline, 
+						a.tel_mobile, 
+						a.email, 
+						a.vat_number, 
+						a.discount,
+						a.property_uid,
+						b.guest_uid, 
+						b.cancelled,
+						b.bookedout 
+					FROM #__jomres_guests a 
+						LEFT JOIN #__jomres_contracts b ON a.guests_uid = b.guest_uid " 
+					. $clause 
+					. ' ' . $sWhere 
+					. " GROUP BY a.guests_uid " 
+					. $sOrder 
+					. ' ' . $sLimit;
 		$jomresGuestsList = doSelectSql( $query );
 		
 		/*
@@ -131,22 +165,26 @@ class j06001listguests_ajax
 			{
 			$r = array ();
 			
+			$thisProperty='';
+			if ($show_all == 1 && ((int)$g->property_uid != (int)$defaultProperty))
+				$thisProperty='&thisProperty='.$g->property_uid;
+
 			if (!using_bootstrap())
 				{
 				$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 				$jrtb   = $jrtbar->startTable();
-				$jrtb  .= $jrtbar->toolbarItem( 'edit', jomresURL( JOMRES_SITEPAGE_URL . '&task=editGuest&guestUid=' . $g->guests_uid ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
+				$jrtb  .= $jrtbar->toolbarItem( 'edit', jomresURL( JOMRES_SITEPAGE_URL . '&task=editGuest&guestUid=' . $g->guests_uid .$thisProperty ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
 				$jrtb  .= $jrtbar->toolbarItem( '', jomresURL( JOMRES_SITEPAGE_URL . '&task=list_invoices&guest_id=' . $g->guests_uid ), jr_gettext( '_JOMRES_MANAGER_SHOWINVOICES', _JOMRES_MANAGER_SHOWINVOICES, false ) );
-				$jrtb  .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . '&task=deleteGuest&guestUid=' . $g->guests_uid ), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
+				$jrtb  .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . '&task=deleteGuest&guestUid=' . $g->guests_uid . $thisProperty), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
 				$r[]    = $jrtb .= $jrtbar->endTable();
 				}
 			else
 				{
 				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 				$toolbar->newToolbar();
-				$toolbar->addItem( 'icon-edit', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editGuest&guestUid=' . $g->guests_uid ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
+				$toolbar->addItem( 'icon-edit', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editGuest&guestUid=' . $g->guests_uid . $thisProperty), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
 				$toolbar->addSecondaryItem( 'icon-list-view', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=list_invoices&guest_id=' . $g->guests_uid ), jr_gettext( '_JOMRES_MANAGER_SHOWINVOICES', _JOMRES_MANAGER_SHOWINVOICES, false ) );
-				$toolbar->addSecondaryItem( 'icon-trash', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=deleteGuest&guestUid=' . $g->guests_uid ), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
+				$toolbar->addSecondaryItem( 'icon-trash', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=deleteGuest&guestUid=' . $g->guests_uid . $thisProperty), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
 				$r[]=$toolbar->getToolbar();
 				}
 			
@@ -164,6 +202,7 @@ class j06001listguests_ajax
 			$r[] = $g->email;
 			$r[] = $g->vat_number;
 			$r[] = $g->discount.'%';
+			$r[] = $basic_property_details->property_names[$g->property_uid];
 			
 			$output['aaData'][]                = $r;
 			}

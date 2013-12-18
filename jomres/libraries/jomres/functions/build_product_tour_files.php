@@ -37,8 +37,8 @@ function build_product_tour_javascript_file()
 			$target_ids['tour_target_main_menu']					= 'bottom' ;
 			$target_ids['tour_target_property_name']				= 'left' ;
 			$target_ids['tour_target_timezone_dropdown']			= 'right' ;
-			$target_ids['tour_target_lang_dropdown']				= 'right' ;
-			$target_ids['tour_target_editing_mode_dropdown']		= 'right' ;
+			$target_ids['tour_target_lang_dropdown']				= 'left' ;
+			$target_ids['tour_target_editing_mode_dropdown']		= 'left' ;
 			$target_ids['tour_target_content']						= 'top' ;
 			$target_ids['tour_target_end']							= 'top' ;
 		break;
@@ -104,18 +104,8 @@ function build_product_tour_javascript_file()
 			$target_ids['tour_target_registration_2_policies']		= 'left' ;
 			$target_ids['tour_target_end']							= 'top' ;
 		break;
-		case "listLiveBookings":
+		case "list_bookings":
 			$target_ids['tour_target_listall_bookings']				= 'top' ;
-			$target_ids['tour_target_table_tools']					= 'top' ;
-			$target_ids['tour_target_end']							= 'top' ;
-		break;
-		case "listNewBookings":
-			$target_ids['tour_target_listnew_bookings']				= 'top' ;
-			$target_ids['tour_target_table_tools']					= 'top' ;
-			$target_ids['tour_target_end']							= 'top' ;
-		break;
-		case "listoldbookings":
-			$target_ids['tour_target_listold_bookings']				= 'top' ;
 			$target_ids['tour_target_table_tools']					= 'top' ;
 			$target_ids['tour_target_end']							= 'top' ;
 		break;
