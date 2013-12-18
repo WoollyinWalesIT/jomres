@@ -80,7 +80,7 @@ class j02162savecancellation
 					}
 				if ( !jomresMailer( $current_property_details->property_email, $current_property_details->property_name . ' - ' . $current_property_details->property_town, $guestData[ 'email' ], $saveMessage, $text, $mode = 1 ) ) error_logging( 'Failure in sending cancellation email to guest. Target address: ' . $hotelemail . ' Subject' . $subject );
 	
-				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=listLiveBookings" ), $saveMessage );
+				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=list_bookings" ), $saveMessage );
 				}
 			else
 				trigger_error( "Unable to save cancellation. " . $cancellationSuccessful, E_USER_ERROR );

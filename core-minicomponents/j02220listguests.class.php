@@ -42,6 +42,7 @@ class j02220listguests
 		
 		$historic=(int)jomresGetParam( $_POST, 'historic', '2');
 		$guest_id=(int)jomresGetParam( $_POST, 'guest_id', '0');
+		$show_all=(int)jomresGetParam( $_POST, 'show_all', '0');
 		
 		$output[ 'PAGETITLE' ]    = jr_gettext( '_JOMRES_HLIST_GUESTS', _JOMRES_HLIST_GUESTS, false );
 		$output[ 'HTOWN' ]        = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_TOWN', _JOMRES_COM_MR_DISPGUEST_TOWN );
@@ -60,6 +61,7 @@ class j02220listguests
 		$output[ 'HEMAIL' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL );
 		$output[ 'HVAT' ]     	  = jr_gettext( '_JOMRES_COM_YOURBUSINESS_VATNO', _JOMRES_COM_YOURBUSINESS_VATNO );
 		$output[ 'HPERSONAL_DISCOUNT' ] = jr_gettext( '_JOMRES_PERSONAL_DISCOUNT', _JOMRES_PERSONAL_DISCOUNT );
+		$output[ 'HPROPERTY_NAME' ] = jr_gettext( '_JRPORTAL_PROPERTIES_PROPERTYNAME', _JRPORTAL_PROPERTIES_PROPERTYNAME, false, false );
 
 		if (!using_bootstrap())
 			{
@@ -81,7 +83,8 @@ class j02220listguests
 		
 		//filters
 		$output['HFILTER'] = jr_gettext( '_JOMRES_HFILTER', _JOMRES_HFILTER, false );
-		$output['HGUEST_STATUS']= jr_gettext( '_JOMRES_HSTATUS_GUEST', _JOMRES_HSTATUS_GUEST, false );
+		$output['HGUEST_STATUS'] = jr_gettext( '_JOMRES_HSTATUS_GUEST', _JOMRES_HSTATUS_GUEST, false );
+		$output['HSHOW_ALL'] = jr_gettext( '_JOMRES_HSTATUS_SHOW_GUESTS_FOR', _JOMRES_HSTATUS_SHOW_GUESTS_FOR, false );
 		
 		$options = array ();
 		$options[] = jomresHTML::makeOption( '2', jr_gettext( '_JOMRES_STATUS_ANY', _JOMRES_STATUS_ANY, false ) );
@@ -89,7 +92,12 @@ class j02220listguests
 		$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_STATUS_GUEST_BOOKINGS_PAST', _JOMRES_STATUS_GUEST_BOOKINGS_PAST, false ) );
 		$output['GUEST_STATUS'] = jomresHTML::selectList( $options, 'historic','class="inputbox" size="1"', 'value', 'text', $historic);
 		
-		$output['AJAX_URL']=JOMRES_SITEPAGE_URL_AJAX."&task=listguests_ajax&historic=".$historic.'&guest_id='.$guest_id;
+		$options = array();
+		$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_HSTATUS_CURRENT', _JOMRES_HSTATUS_CURRENT, false ) );
+		$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_STATUS_ALL_PROPERTIES', _JOMRES_STATUS_ALL_PROPERTIES, false ) );
+		$output['SHOW_ALL']=jomresHTML::selectList( $options, 'show_all','class="inputbox" size="1"', 'value', 'text', $show_all);
+		
+		$output['AJAX_URL']=JOMRES_SITEPAGE_URL_AJAX."&task=listguests_ajax&historic=".$historic.'&guest_id='.$guest_id.'&show_all='.$show_all;
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();

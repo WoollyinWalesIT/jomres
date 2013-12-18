@@ -22,14 +22,14 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * @package Jomres
 #
  */
-class j02240listlivebookings
+class j06001list_bookings
 	{
 	/**
 	#
 	 * Constructor: Constructs and displays all bookings
 	#
 	 */
-	function j02240listlivebookings()
+	function j06001list_bookings()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -58,6 +58,7 @@ class j02240listlivebookings
 		$resident_status=(int)jomresGetParam( $_POST, 'resident_status', '2');
 		$booking_status=(int)jomresGetParam( $_POST, 'booking_status', '2');
 		$show_all=(int)jomresGetParam( $_POST, 'show_all', '0');
+		$tag=(int)jomresGetParam( $_POST, 'tag', '0');
 		
 		$pathToImages    = get_showtime( 'live_site' ) . "/jomres/images";
 		$img_pending     = $pathToImages . "/pending.gif";
@@ -114,17 +115,9 @@ class j02240listlivebookings
 		$output[ 'HSPECIAL_REQS' ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ', _JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ, false );
 		$output[ 'HTIMESTAMP' ] = jr_gettext( '_JOMRES_HDATE_OF_BOOKING', _JOMRES_HDATE_OF_BOOKING, false );
 		
-		if ( get_showtime( "task" ) == "listLiveBookings")
+		if ( get_showtime( "task" ) == "list_bookings")
 			{
 			$output[ 'TOUR_DIV_ID' ] = 'tour_target_listall_bookings';
-			}
-		elseif ( get_showtime( "task" ) == "listNewBookings")
-			{
-			$output[ 'TOUR_DIV_ID' ] = 'tour_target_listnew_bookings';
-			}
-		else
-			{
-			$output[ 'TOUR_DIV_ID' ] = 'tour_target_listold_bookings';
 			}
 
 		//buttons
@@ -171,7 +164,7 @@ class j02240listlivebookings
 		$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_STATUS_ALL_PROPERTIES', _JOMRES_STATUS_ALL_PROPERTIES, false ) );
 		$output['SHOW_ALL']=jomresHTML::selectList( $options, 'show_all','class="inputbox" size="1"', 'value', 'text', $show_all);
 		
-		$output['AJAX_URL']=JOMRES_SITEPAGE_URL_AJAX."&task=listlivebookings_ajax&startDate=".$startDate."&endDate=".$endDate."&deposit_status=".$deposit_status."&resident_status=".$resident_status."&booking_status=".$booking_status."&show_all=".$show_all;
+		$output['AJAX_URL']=JOMRES_SITEPAGE_URL_AJAX."&task=list_bookings_ajax&startDate=".$startDate."&endDate=".$endDate."&deposit_status=".$deposit_status."&resident_status=".$resident_status."&booking_status=".$booking_status."&show_all=".$show_all."&tag=".$tag;
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();

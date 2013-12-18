@@ -3858,17 +3858,9 @@ function showLiveBookings( $contractsList, $title, $arrivaldateDropdown )
 		$rows[ ] = $r;
 		}
 	
-	if ( get_showtime( "task" ) == "listLiveBookings")
+	if ( get_showtime( "task" ) == "list_bookings")
 		{
 		$output[ 'TOUR_DIV_ID' ] = 'tour_target_listall_bookings';
-		}
-	elseif ( get_showtime( "task" ) == "listNewBookings")
-		{
-		$output[ 'TOUR_DIV_ID' ] = 'tour_target_listnew_bookings';
-		}
-	else
-		{
-		$output[ 'TOUR_DIV_ID' ] = 'tour_target_listold_bookings';
 		}
 	
 	$pageoutput[ ] = $output;

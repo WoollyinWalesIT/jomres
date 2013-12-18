@@ -138,7 +138,7 @@ $jomressession = $tmpBookingHandler->getJomressession();
 set_showtime( 'jomressession', $jomressession );
 
 $popup   = intval( jomresGetParam( $_REQUEST, 'popup', 0 ) );
-$tag     = jomresGetParam( $_REQUEST, 'tag', "" );
+//$tag     = jomresGetParam( $_REQUEST, 'tag', "" );
 $no_html = (int) jomresGetParam( $_REQUEST, 'no_html', 0 );
 $plugin  = jomresGetParam( $_REQUEST, 'plugin', "" );
 $task    = jomresGetParam( $_REQUEST, 'task', "" );
@@ -154,7 +154,7 @@ if ( $no_html == 1 ) define ( "JOMRES_NOHTML", 1 );
 $propertyNamesArray = array ();
 
 
-if ( $tag != "" && get_showtime( 'task' ) != "editBooking" ) set_showtime( 'task', "tagSearch" );
+//if ( $tag != "" && get_showtime( 'task' ) != "editBooking" ) set_showtime( 'task', "tagSearch" );
 
 $jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
 
@@ -828,17 +828,17 @@ if ( get_showtime( 'numberOfPropertiesInSystem' ) > 0 )
 			userHasBeenLoggedOut();
 			break;
 		#########################################################################################
-		case 'listLiveBookings':
+		/*case 'listLiveBookings':
 			if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02240' ); //listLiveBookings();
 			else
 			userHasBeenLoggedOut();
-			break;
+			break;*/
 		#########################################################################################
-		case 'listNewBookings':
+		/*case 'listNewBookings':
 			if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02242' ); //listNewBookings();
 			else
 			userHasBeenLoggedOut();
-			break;
+			break;*/
 		#########################################################################################
 		case 'editDeposit':
 			if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02200' ); //editDeposit();

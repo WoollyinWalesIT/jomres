@@ -1,6 +1,9 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <style type="text/css">
 /*Overrides*/
+.fc-view {
+	overflow:inherit;
+}
 #calendar table.fc-border-separate {
 	table-layout:fixed;
 }
@@ -115,11 +118,11 @@ jomresJquery(document).ready(function() {
 			// this is triggered when the resource is rendered, just like eventRender
 		},
 		eventDrop: function( event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view ) {
-			jomresJquery(this).tooltip('hide');
+			jomresJquery(this).popover('hide');
 			revertFunc();
 		},
 		eventResize: function( event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view ) {
-			jomresJquery(this).tooltip('hide');
+			jomresJquery(this).popover('hide');
 			revertFunc();
 		},
 		eventClick: function ( event, jsEvent, view )  {
@@ -127,19 +130,20 @@ jomresJquery(document).ready(function() {
 		},
 		eventRender: function( event, element, view ) {
 			// this is triggered when the event is rendered
-			element.tooltip({
+			element.popover({
 				delay: { show: 500, hide: 100 },
 				placement: 'top',
 				html: true,
-				title: event.title + '<br/>' + event.description,
+				title: event.title,
+				content: event.description,
 				trigger: 'manual'
 			});
 		},
 		eventMouseover: function ( event, jsEvent, view )  {
-			jomresJquery(this).tooltip('show');
+			jomresJquery(this).popover('show');
 		},
 		eventMouseout: function ( event, jsEvent, view )  {
-			jomresJquery(this).tooltip('hide');
+			jomresJquery(this).popover('hide');
 		},
 		eventDropOutside: function( event, ev, ui ) {
 			if (confirm('{CANCELLATION_WARNING}')) 

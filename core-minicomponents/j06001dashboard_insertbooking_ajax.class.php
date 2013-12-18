@@ -54,11 +54,6 @@ class j06001dashboard_insertbooking_ajax
 		$contract_total			= (float)jomresGetParam($_GET,'contract_total','0');
 		$contract_total_nett	= $current_property_details->get_nett_accommodation_price($contract_total, $property_uid);
 		$tax					= $contract_total - $contract_total_nett;
-		
-		if( $deposit_paid == 2 )
-			$deposit_paid = 0;
-		if( $booked_in == 2 )
-			$booked_in = 0;
 
 		//Let`s check that we have a room_uid and the room can be booked, otherwise stop here
 		if ($room_uid == 0)

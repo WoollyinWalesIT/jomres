@@ -56,7 +56,7 @@ class j06001dashboard_events_ajax {
 		$img_stillhere   = "label label-purple";
 		$img_late        = "label label-important";
 		$img_bookedout   = "label label-teal";
-		$img_cancelled   = "label label-inverse";
+		$img_black		 = "label label-inverse";
 		
 		$from=jomresGetParam($_GET, 'start', '');
 		$to=jomresGetParam($_GET, 'end', '');
@@ -143,7 +143,7 @@ class j06001dashboard_events_ajax {
 				if ( $unixDeparture > $unixToday && $c->booked_in == "1" ) $imgToShow = $img_resident;
 				if ( $unixDeparture < $unixToday && $c->booked_in == "1" ) $imgToShow = $img_stillhere;
 				if ( $c->bookedout == "1" ) $imgToShow = $img_bookedout;
-				if ($c->rates_uid == '') $imgToShow = $img_cancelled;
+				if ($c->tag == '') $imgToShow = $img_black;
 				
 				//the guest is still here even if the departure date has passed, so let`s adjust the event size. If it overlaps with other booking, it will be clearly visible in the dashboard. Receptionists can then amend bookings.
 				if ($imgToShow == $img_stillhere)

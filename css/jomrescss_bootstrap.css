@@ -165,3 +165,9 @@ fieldset.radio.btn-group {
 /* Custom labels */
 .label-purple {background-color: #e01fb9 !important;}
 .label-teal {background-color: #0fcef1 !important;}
+
+/* Bootstrap modal scroll fix */
+.modal {position:absolute !important;}
+@media (max-width: 768px) {
+	.modal{top:1% !important;}
+}

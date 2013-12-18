@@ -112,7 +112,6 @@ class j06001dashboard
 		$output[ 'REGION' ]	    		= setupRegions('','',true);
 		
 		$options = array();
-		$options[] = jomresHTML::makeOption( '2', "" );
 		$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false ) );
 		$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false ) );
 		$output['DEPOSIT_PAID']=jomresHTML::selectList( $options, 'deposit_paid','class="inputbox span12" size="1"', 'value', 'text', '2');
