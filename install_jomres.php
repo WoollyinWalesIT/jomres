@@ -431,9 +431,31 @@ function doTableUpdates()
 	if ( !checkCratesTaxRateColExists() ) alterCratesTaxRateCol();
 
 	if ( !checkPTypeXrefColExists() ) alterPTypeXrefCol();
-	
+	if ( !checkContractsChannelManagerBookingColExists() ) alterContractsChannelManagerBookingCol();
 	
 	if ( _JOMRES_DETECTED_CMS == "joomla15" ) checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
+	}
+
+function alterContractsChannelManagerBookingCol()
+	{
+	if ( !AUTO_UPGRADE ) echo "Editing __jomres_contracts table adding channel_manager_booking column<br>";
+	$query = "ALTER TABLE `#__jomres_contracts` ADD `channel_manager_booking` BOOL NOT NULL DEFAULT '0' AFTER `invoice_uid` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_contracts channel_manager_booking</b><br>";
+		}
+	}
+
+function checkContractsChannelManagerBookingColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_contracts LIKE 'channel_manager_booking'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
 	}
 
 function checkPTypeXrefColExists()

@@ -187,6 +187,7 @@ class j02260editbooking
 			$tax                      = $booking->tax;
 			$bookedin                 = $booking->booked_in;
 			$variances                = $booking->rate_rules;
+			$channel_manager_booking  = $booking->channel_manager_booking;
 			}
 
 		$tariffsInfo          = array ();
@@ -276,8 +277,12 @@ class j02260editbooking
 							$image                    = '/jomres/images/jomresimages/' . $jrtbar->imageSize . '/BookGuestIn.png';
 							$jrtb .= $jrtbar->customToolbarItem( $targetTask, $link, $output[ 'HBOOKGUESTIN' ], $submitOnClick = false, $submitTask = "", $image );
 							add_menu_option( '&task=bookGuestIn&contract_uid=' . $booking_contract_uid, null, jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN', _JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
-							$jrtb .= $jrtbar->toolbarItem( 'cancelbooking', jomresURL( JOMRES_SITEPAGE_URL . "&task=cancelBooking&contract_uid=$booking_contract_uid" ), '' );
-							add_menu_option( '&task=cancelBooking&contract_uid=' . $booking_contract_uid, null, jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', _JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+							
+							if ($channel_manager_booking != "1")
+								{
+								$jrtb .= $jrtbar->toolbarItem( 'cancelbooking', jomresURL( JOMRES_SITEPAGE_URL . "&task=cancelBooking&contract_uid=$booking_contract_uid" ), '' );
+								add_menu_option( '&task=cancelBooking&contract_uid=' . $booking_contract_uid, null, jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', _JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+								}
 							}
 						else
 							{
