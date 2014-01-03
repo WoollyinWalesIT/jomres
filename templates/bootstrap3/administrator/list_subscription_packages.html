@@ -1,0 +1,43 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('list_subscription_packages', '{PAGETITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+	{JOMRESTOOLBAR}
+	<table id="list_subscription_packages" class="table table-striped" width="100%">
+		<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th class="hidden-phone">ID</th>
+			<th>{HNAME}</th>
+			<th class="hidden-phone">{HDESCRIPTION}</th>
+			<th class="hidden-phone">{HFREQUENCY}</th>
+			<th class="hidden-phone">{HTRIALPERIOD}</th>
+			<th class="hidden-phone">{HTRIALAMOUNT}</th>
+			<th class="hidden-phone">{HFULLAMOUNT}</th>
+			<!-- not supported yet so not offered <th class="hidden-phone">{HROOMSLIMIT}</th> -->
+			<th class="hidden-phone">{HPROPERTYLIMIT}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="id">
+			<tr>
+				<td>{EDITLINK}</td>
+				<td class="hidden-phone">{ID}</td>
+				<td>{NAME}</td>
+				<td class="hidden-phone">{DESCRIPTION}</td>
+				<td class="hidden-phone">{FREQUENCY}</td>
+				<td class="hidden-phone">{TRIALPERIOD}</td>
+				<td class="hidden-phone">{TRIALAMOUNT}</td>
+				<td class="hidden-phone">{FULLAMOUNT}</td>
+				<!-- not supported yet so not offered <td class="hidden-phone">{ROOMSLIMIT}</td> -->
+				<td class="hidden-phone">{PROPERTYLIMIT}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+</patTemplate:tmpl>

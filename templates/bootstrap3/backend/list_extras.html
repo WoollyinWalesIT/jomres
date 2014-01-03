@@ -1,0 +1,48 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('list_extras', '{PAGETITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+	<div id="tour_target_extras"></div><div id="tour_target_table_tools"></div>
+	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+		<div class="well">
+			{JOMRESTOOLBAR}
+		</div>
+		<table width="100%" id="list_extras" class="table tabble-striped">
+			<thead>
+			<tr>
+				<th>{HEDITLINK}</th>
+				<th>{HEXNAME}</th>
+				<th>{HEXDESC}</th>
+				<th>{HEXPRICE}</th>
+			</tr>
+			</thead>
+			<tbody>
+			<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="exname">
+				<tr>
+					<td>
+						<div class="btn-group">
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+								<i class="icon-edit"></i>
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+								<li><a tabindex="-1" href="{EDIT_URL}">{COMMON_EDIT}</a></li>
+								<li><a tabindex="-1" href="{PUBLISH_URL}">{PUBLISH_TEXT}</a></li>
+							</ul>
+						</div>
+					</td>
+					<td>{EXNAME}</td>
+					<td>{EXDESC}</td>
+					<td>{CURRENCY} {EXPRICE}</td>
+				</tr>
+			</patTemplate:tmpl>
+			</tbody>
+		</table>
+		<input type="hidden" name="task" value="newExtra"/>
+	</form>
+</patTemplate:tmpl>

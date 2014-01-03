@@ -1,0 +1,42 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">Submit your bug report</h2>
+
+	<form action="{SEND_URL}" method="post" name="adminForm" class="form-horizontal">
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="subject">{_JOMRES_DEBUGGING_SUBJECT}</label>
+
+				<div class="controls">
+					<input type="text" name="subject" value=""/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="fromname">{_JOMRES_DEBUGGING_FULLNAME}</label>
+
+				<div class="controls">
+					<input type="text" name="fromname" value=""/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="fromemail">{_JOMRES_DEBUGGING_YOUREMAIL}</label>
+
+				<div class="controls">
+					<input type="text" name="fromemail" value="{ADMINEMAIL}"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="contents">{_JOMRES_DEBUGGING_ISSUE}</label>
+
+				<div class="controls">
+					<textarea name="contents" class="input-xlarge" rows="15">{DEBUGINFO}</textarea>
+				</div>
+			</div>
+			<div class="form-actions">
+				<a href="{JOMRES_SITEPAGE_URL}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
+				<button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> {COMMON_SUBMIT}
+				</button>
+			</div>
+			<input type="hidden" name="task" value="sendbug"/>
+		</fieldset>
+	</form>
+</patTemplate:tmpl>

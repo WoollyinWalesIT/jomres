@@ -1,0 +1,62 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('admin_list_invoices', '{PAGETITLE}', '{LIVESITE}');
+		});
+		jomresJquery(function () {
+			var $toolbar_content = jomresJquery('#toolbar').html();
+			var $content = $toolbar_content + jomresJquery('#filter_invoices').html();
+			jomresJquery('#toolbar').html($content);
+			jomresJquery('#filter_invoices').empty();
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+	{JOMRESTOOLBAR}
+	<div id="filter_invoices">
+		<a href="{TASK_FILTER_ANY}" class="btn"><i class="icon-list-view"></i> {_JOMRES_FRONT_ROOMSMOKING_EITHER}</a>
+		<a href="{TASK_FILTER_UNPAID}" class="btn"><i class="icon-list-view"></i> {_JRPORTAL_INVOICES_STATUS_UNPAID}</a>
+		<a href="{TASK_FILTER_PAID}" class="btn"><i class="icon-list-view"></i> {_JRPORTAL_INVOICES_STATUS_PAID}</a>
+		<a href="{TASK_FILTER_CANCELLED}" class="btn"><i class="icon-list-view"></i>
+			{_JRPORTAL_INVOICES_STATUS_CANCELLED}</a>
+		<a href="{TASK_FILTER_PENDING}" class="btn"><i class="icon-list-view"></i>
+			{_JRPORTAL_INVOICES_STATUS_PENDING}</a>
+	</div>
+	<table id="admin_list_invoices" width="100%" class="table table-striped">
+		<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>ID</th>
+			<th>{HUSER}</th>
+			<th>{HSTATUS}</th>
+			<th class="hidden-phone">Line Items</th>
+			<th class="hidden-phone">{HRAISED}</th>
+			<th class="hidden-phone">{HDUE}</th>
+			<th class="hidden-phone">{HPAID}</th>
+			<th class="hidden-phone">{HSUBSCRIPTION}</th>
+			<th class="hidden-phone">{HINITTOTAL}</th>
+			<th class="hidden-phone">{HRECURTOTAL}</th>
+			<th class="hidden-phone">{HFREQ}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="id">
+			<tr>
+				<td><a href="{EDIT_URL}" class="btn"><i class="icon-edit"></i> {EDIT_TEXT}</a></td>
+				<td>{ID}</td>
+				<td>{USER}</td>
+				<td>{STATUS}</td>
+				<td class="hidden-phone">{ITEMS}</td>
+				<td class="hidden-phone">{RAISED}</td>
+				<td class="hidden-phone">{DUE}</td>
+				<td class="hidden-phone">{PAID}</td>
+				<td class="hidden-phone">{SUBSCRIPTION}</td>
+				<td class="hidden-phone">{INITTOTAL}({CURRENCYCODE})</td>
+				<td class="hidden-phone">{RECURTOTAL}({CURRENCYCODE})</td>
+				<td class="hidden-phone">{FREQ}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+</patTemplate:tmpl>

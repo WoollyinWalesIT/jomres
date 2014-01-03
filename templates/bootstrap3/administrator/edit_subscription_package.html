@@ -1,0 +1,97 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+		{JOMRESTOOLBAR}
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="name">ID</label>
+
+				<div class="controls">
+					{ID}
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="name">{HNAME}</label>
+
+				<div class="controls">
+					<input type="text" name="name" value="{NAME}" class="input-large"/>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="name">{HDESCRIPTION}</label>
+
+				<div class="controls">
+					<input type="text" name="description" value="{DESCRIPTION}" class="input-large"/>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="name">{HFREQUENCY}</label>
+
+				<div class="controls">
+					{FREQUENCYDROPDOWN}
+					<p class="help-block">
+						{FREQUENCY_DESC}
+					</p>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="name">{HTRIALPERIOD}</label>
+
+				<div class="controls">
+					{TRIALPERIODDROPDOWN}
+					<p class="help-block">
+						{TRIALPERIOD_DESC}<br/>{FREEBIENOTES}
+					</p>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="name">{HTRIALAMOUNT}</label>
+
+				<div class="controls">
+					<input type="text" name="trial_amount" value="{TRIALAMOUNT}" class="input-mini"/>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="name">{HFULLAMOUNT}</label>
+
+				<div class="controls">
+					<input type="text" name="full_amount" value="{FULLAMOUNT}" class="input-mini"/>
+				</div>
+			</div>
+
+			<!--not supported yet so not offered
+			<div class="control-group">
+			<label class="control-label" for="name">{HROOMSLIMIT}</label>
+				<div class="controls">
+					{ROOMSLIMIT}
+				</div>
+			</div>-->
+
+			<div class="control-group">
+				<label class="control-label" for="name">{HPROPERTYLIMIT}</label>
+
+				<div class="controls">
+					{PROPERTYLIMIT}
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="name">{HTAXCODE}</label>
+
+				<div class="controls">
+					{TAXCODEDROPDOWN}
+				</div>
+			</div>
+			<input type="hidden" name="id" value="{ID}"/>
+			<input type="hidden" name="option" value="com_jomres"/>
+			<input type="hidden" name="task" value="save_subscription_package"/>
+		</fieldset>
+	</form>
+</patTemplate:tmpl>

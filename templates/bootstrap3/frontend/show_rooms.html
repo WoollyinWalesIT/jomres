@@ -1,0 +1,32 @@
+<patTemplate:tmpl name="room_headers" unusedvars="strip">
+	<table class="table table-striped">
+		<thead>
+		<tr>
+			<th class="hidden-phone">{HEADER_IMAGEHEADER}</th>
+			<th># <!--{HEADER_ROOMNUMBER}--></th>
+			<th>{HEADER_ROOMTYPE}</th>
+			<th class="hidden-phone">{HEADER_MAXPEOPLE}</th>
+			<th class="hidden-phone">{HEADER_ROOMNAME}</th>
+			<!-- <th class="hidden-phone">{HEADER_ROOMFLOOR}</th> -->
+			<th class="hidden-phone">{HEADER_SMOKING}</th>
+			<th class="hidden-phone">{HEADER_DISABLEDACCESS}</th>
+			<th>{HEADER_AVLCALLINK}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="room_details" type="simpleCondition" requiredVars="roomtype">
+			<tr>
+				<td class="hidden-phone">{IMAGE}</td>
+				<td>{ROOMNUMBER}</td>
+				<td>{ROOMTYPE}</td>
+				<td class="hidden-phone">{MAXPEOPLE}</td>
+				<td class="hidden-phone">{ROOMNAME}</td>
+				<!-- <td class="hidden-phone">{ROOMFLOOR}</td> -->
+				<td class="hidden-phone">{SMOKING}</td>
+				<td class="hidden-phone">{DISABLEDACCESS}</td>
+				<td><a href="{AVLCALLINK}" class="btn"><i class="icon-calendar"></i> {AVLCALTITLE}</a></td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+</patTemplate:tmpl>

@@ -1,0 +1,25 @@
+<patTemplate:tmpl name="pageoutput">
+	<script type="text/javascript">
+		<!--
+		jomresJquery(window).load(function () {
+			jomresJquery('#galleria').galleria({
+				responsive: true,
+				width: '100%',
+				height: 0.75,
+				transition: "slide",
+				imageCrop: true,
+				lightbox: true,
+				autoplay: 5000,
+				preload: 0,
+				debug: false
+			});
+		});
+		//-->
+	</script>
+	<div id="galleria">
+		<patTemplate:tmpl name="rows">
+			<a href="{IMAGE}"><img src="{IMAGETHUMB}"/></a>
+		</patTemplate:tmpl>
+	</div>
+</patTemplate:tmpl>
+

@@ -1,0 +1,43 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('admin_list_bookings', '{_JRPORTAL_CPANEL_LISTBOOKINGS}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{_JRPORTAL_CPANEL_LISTBOOKINGS}</h2>
+	{JOMRESTOOLBAR}
+	<table id="admin_list_bookings" width="100%" class="table table-striped">
+		<thead>
+		<tr>
+			<th>{HPROPERTYID}</th>
+			<th class="hidden-phone">{HGUESTID}</th>
+			<th class="hidden-phone">{HINVOICEID}</th>
+			<th>{HBOOKINGTOTAL}</th>
+			<th class="hidden-phone">{HCONTRACTID}</th>
+			<th class="hidden-phone">{HCONTRACTNUMBER}</th>
+			<th>{HCURRENCYCODE}</th>
+			<th class="hidden-phone">{HCREATED}</th>
+			<th class="hidden-phone">{HARCHIVED}</th>
+			<th class="hidden-phone">{HARCHIVEDDATE}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="property_uid">
+			<tr>
+				<td>{PROPERTY_UID}</td>
+				<td class="hidden-phone">{GUEST_ID}</td>
+				<td class="hidden-phone">{INVOICE_ID}</td>
+				<td>{BOOKING_TOTAL}</td>
+				<td class="hidden-phone">{CONTRACT_ID}</td>
+				<td class="hidden-phone">{TAG}</td>
+				<td>{CURRENCY_CODE}</td>
+				<td class="hidden-phone">{CREATED}</td>
+				<td class="hidden-phone">{ARCHIVED}</td>
+				<td class="hidden-phone">{ARCHIVED_DATE}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+</patTemplate:tmpl>

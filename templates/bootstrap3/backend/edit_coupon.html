@@ -1,0 +1,72 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<p class="alert alert-info">{INFO}</p>
+
+	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="coupon_code">{HCOUPONCODE}</label>
+
+				<div class="controls">
+					<input class="inputbox" type="text" name="coupon_code" value="{COUPONCODE}"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="valid_from">{HVALIDFROM}</label>
+
+				<div class="controls">
+					{VALIDFROM}
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="valid_to">{HVALIDTO}</label>
+
+				<div class="controls">
+					{VALIDTO}
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="booking_valid_from">{_JRPORTAL_COUPONS_BOOKING_VALIDFROM}</label>
+
+				<div class="controls">
+					{BOOKING_VALIDFROM}
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="booking_valid_to">{_JRPORTAL_COUPONS_BOOKING_VALIDTO}</label>
+
+				<div class="controls">
+					{BOOKING_VALIDTO}
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="amount">{HAMOUNT}</label>
+
+				<div class="controls">
+					<input class="inputbox" type="text" name="amount" value="{AMOUNT}"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="is_percentage">{HISPERCENTAGE}</label>
+
+				<div class="controls">
+					{ISPERCENTAGE}
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="guest_uid">{_JRPORTAL_COUPONS_GUESTNAME}</label>
+
+				<div class="controls">
+					{GUEST_DROPDOWN}
+				</div>
+			</div>
+			<div class="form-actions">
+				{JOMRESTOOLBAR}
+			</div>
+		</fieldset>
+		<input type="hidden" name="coupon_id" value="{COUPON_ID}"/>
+		<input type="hidden" name="task" value="saveCoupon"/>
+		<input type="hidden" name="no_html" value="1"/>
+	</form>
+</patTemplate:tmpl>

@@ -1,0 +1,39 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('frontend_list_my_subscriptions', '{PAGETITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<p>{STATUSEXPL}</p>
+	{JOMRESTOOLBAR}
+	<table id="frontend_list_my_subscriptions" width="100%" class="table table-striped">
+		<thead>
+		<tr>
+			<th>{HNAME}</th>
+			<th>{HDESCRIPTION}</th>
+			<th>{HFREQUENCY}</th>
+			<th>{HTRIALPERIOD}</th>
+			<th>{HTRIALAMOUNT}</th>
+			<th>{HFULLAMOUNT}</th>
+			<th>{HSTATUS}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="name">
+			<tr>
+				<td>{NAME}</td>
+				<td>{DESCRIPTION}</td>
+				<td>{FREQUENCY}</td>
+				<td>{TRIALPERIOD}</td>
+				<td>{TRIALAMOUNT}</td>
+				<td>{FULLAMOUNT}</td>
+				<td>{STATUS}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+</patTemplate:tmpl>

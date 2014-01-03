@@ -1,0 +1,66 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<style type="text/css">
+		.slidingDiv {
+			margin-top: 5px;
+		}
+	</style>
+	<script type="text/javascript">
+		<!--
+		function setCookie(c_name, value, expiredays) {
+			var exdate = new Date();
+			exdate.setDate(exdate.getDate() + expiredays);
+			var c_value = escape(value) + ((expiredays == null) ? "" : "; expires=" + exdate.toUTCString() + "; path=/");
+			document.cookie = c_name + "=" + c_value;
+		}
+
+		function getCookie(c_name) {
+			if (document.cookie.length > 0) {
+				c_start = document.cookie.indexOf(c_name + "=");
+				if (c_start != -1) {
+					c_start = c_start + c_name.length + 1;
+					c_end = document.cookie.indexOf(";", c_start);
+					if (c_end == -1) c_end = document.cookie.length;
+					return unescape(document.cookie.substring(c_start, c_end));
+				}
+			}
+			return "";
+		}
+
+		function accept_cookies() {
+			setCookie('jomresCookiePermission', 'True', 730);
+			jomresJquery('.cookiePane').hide();
+			return "";
+		}
+
+		jomresJquery(document).ready(function () {
+			var theCookie = getCookie('jomresCookiePermission');
+			if (theCookie != "") {
+				jomresJquery('.cookiePane').hide();
+			}
+			else {
+				jomresJquery('.cookiePane').show();
+			}
+		});
+		-->
+	</script>
+
+	<div class="cookiePane">
+		<div class="alert alert-block">
+			<h4 class="alert-heading">{_JOMRES_COOKIEPOLICY_1}</h4>
+
+			<p>{_JOMRES_COOKIEPOLICY_2}</p>
+
+			<p><a href="javascript:void(0);" class="btn btn-warning" data-toggle="collapse" data-target=".slidingDiv">{_JOMRES_COOKIEPOLICY_3}</a>
+			</p>
+
+			<div class="slidingDiv collapse" style="overflow:hidden;">
+				<p>{_JOMRES_COOKIEPOLICY_4}</p>
+
+				<p>{_JOMRES_COOKIEPOLICY_5}</p>
+
+				<p><a href="javascript:void(0);" id="acceptCookies" class="btn btn-warning" onclick="accept_cookies();">{_JOMRES_COOKIEPOLICY_6}</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</patTemplate:tmpl>

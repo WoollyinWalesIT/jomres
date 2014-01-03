@@ -1,0 +1,30 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		function iFrameHeight() {
+			var h = 0;
+			if (!document.all) {
+				h = document.getElementById('blockrandom').contentDocument.height;
+				document.getElementById('blockrandom').style.height = h + 60 + 'px';
+			} else if (document.all) {
+				h = document.frames('blockrandom').document.body.scrollHeight;
+				document.all.blockrandom.style.height = h + 20 + 'px';
+			}
+		}
+	</script>
+
+	<div class="alert alert-success">{MESSAGE}</div>
+
+	<div class="contentpane">
+		<iframe id="blockrandom"
+				name="iframe"
+				src="http://license-server.jomres.net/index.php?wrapped=1&amp;wrapped=1"
+				width="50%"
+				height="1000"
+				scrolling="no"
+				frameborder="1"
+				class="wrapper">
+			This option will not work correctly. Unfortunately, your browser does not support inline frames.
+		</iframe>
+	</div>
+
+</patTemplate:tmpl>

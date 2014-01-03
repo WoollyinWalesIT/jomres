@@ -1,0 +1,55 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<p>{DESC}</p>
+
+	<form action="index.php?option=com_jomres" method="post" name="adminForm" class="form-horizontal">
+		<label></label>
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="firstname">{HFIRSTNAME}</label>
+
+				<div class="controls">
+					<input class="input-large" type="text" name="firstname" value="{FIRSTNAME}"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="firstname">{HSURNAME}</label>
+
+				<div class="controls">
+					<input class="input-large" type="text" name="surname" value="{SURNAME}"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="firstname">{HADDRESS}</label>
+
+				<div class="controls">
+					<input class="input-large" type="text" name="address" value="{ADDRESS}"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="firstname">{HCOUNTRY}</label>
+
+				<div class="controls">
+					{COUNTRYDROPDOWN}
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="firstname">{HPOSTCODE}</label>
+
+				<div class="controls">
+					<input class="input-large" type="text" name="postcode" value="{POSTCODE}"/>
+				</div>
+			</div>
+			<div class="form-actions">
+				<a href="{JOMRES_SITEPAGE_URL}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
+				<a href="javascript:document.adminForm.submit();" class="btn btn-primary">{COMMON_NEXT} <i
+						class="icon-arrow-right icon-white"></i></a>
+			</div>
+		</fieldset>
+		<input type="hidden" name="package_id" value="{PACKAGE_ID}"/>
+		<input type="hidden" name="option" value="com_jomres"/>
+		<input type="hidden" name="task" value="save_subscriber"/>
+		<input type="hidden" name="no_html" value="1"/>
+	</form>
+</patTemplate:tmpl>

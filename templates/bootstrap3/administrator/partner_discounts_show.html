@@ -1,0 +1,34 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<table class="table table-bordered table-striped" width="100%">
+		<thead>
+		<tr>
+			<th>{_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID}</th>
+			<th>{_JOMRES_SORTORDER_PROPERTYNAME}</th>
+			<th>{_JOMRES_COM_MR_LISTTARIFF_VALIDFROM}</th>
+			<th>{_JOMRES_COM_MR_LISTTARIFF_VALIDTO}</th>
+			<th>{_JOMRES_AJAXFORM_BILLING_DISCOUNT}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="property_id">
+			<tr>
+				<td>
+					{PROPERTY_ID}
+				</td>
+				<td>
+					{PROPERTY_NAME}
+				</td>
+				<td>
+					{VALID_FROM}
+				</td>
+				<td>
+					{VALID_TO}
+				</td>
+				<td>
+					{DISCOUNT} (%)
+				</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+</patTemplate:tmpl>

@@ -1,0 +1,46 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<p class="alert alert-info">{NOTES}</b></p>
+
+	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+		{JOMRESTOOLBAR}
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="name">{HCURRENCYCODE}</label>
+
+				<div class="controls">
+					<input type="text" name="currencycode" value="{CURRENCYCODE}" class="input-mini" maxlength="3"/>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="name">{HSANDBOX}</label>
+
+				<div class="controls">
+					{USESANDBOX}
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="name">{HEMAIL}</label>
+
+				<div class="controls">
+					<input type="text" name="email" value="{PAYPALEMAIL}" class="input-large"/>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="name">{HOVERRIDE}</label>
+
+				<div class="controls">
+					{OVERRIDE}
+					<p class="help-block">
+						{HOVERRIDE_DESC}
+					</p>
+				</div>
+			</div>
+			<input type="hidden" name="task" value="save_paypal_settings"/>
+		</fieldset>
+	</form>
+</patTemplate:tmpl>

@@ -1,0 +1,83 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	{JOMRES_POPUPURL_GLOBALVAR}
+
+	{HEADER}
+
+	<patTemplate:tmpl name="property_details" unusedvars="strip">
+		<div class="jomres_property_list_propertywrapper photoview pull-left" id="{UID}">
+			<div class="thumbnail {FEATURED_LISTINGS_CLASS}">
+				<div class="caption">
+					<h4 class="photoview-ptitle"><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a></h4>
+
+					<p>{STARS} {SUPERIOR}</p>
+
+					<p class="small photoview-paddress">{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</p>
+
+					<div class="hidden-phone">
+						<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/> {_JOMRES_COMPARE}
+					</div>
+				</div>
+				<div class="align-center photoview-image hidden-phone">
+					<a href="#module_{RANDOM_IDENTIFIER}_popup" class="hidden-phone thumbnail" data-toggle="modal"
+					   random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}"><img
+							src="{IMAGEMEDIUM}" alt="{PROPERTYNAME}" align="middle"/></a>
+				</div>
+				<div class="align-center photoview-image visible-phone">
+					<a href="{MOREINFORMATIONLINK}" class="thumbnail"><img src="{IMAGEMEDIUM}" align="middle"/></a>
+				</div>
+				<div class="caption">
+					<div class="well align-center">
+						&nbsp;{PRICE_PRE_TEXT}&nbsp;
+						<span class="big-price">{PRICE_PRICE}</span>
+						&nbsp;{PRICE_POST_TEXT}&nbsp;
+					</div>
+					<div class="hidden-phone">
+						<a class="btn" href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')">{SHORTLIST}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal hide" id="module_{RANDOM_IDENTIFIER}_popup">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h4>{PROPERTYNAME}</h4>
+			</div>
+			<div class="modal-body">
+				<div style="padding:20px">
+					<img src="{LIVESITE}/jomres/images/ajax_animation/broken_circle.gif" alt="ajax_animation_image"/>
+				</div>
+			</div>
+		</div>
+
+		<patTemplate:comment>
+			<div id="effect{UID}" class="quick-info ui-helper-hidden">
+				<div class="ui-widget-content ui-corner-all">
+					<div class="property-desc">{PROPERTYDESC}</div>
+					<div class="jomres_message property-desc">{LASTMINUTE}</div>
+					<div><strong>{_JOMRES_FRONT_ROOMTYPES}</strong></div>
+					<div>{ROOMTYPES}</div>
+					<div style="clear:both;"></div>
+					<div><strong>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES}</strong></div>
+					<div>{FEATURELIST}</div>
+					<div style="clear:both;"></div>
+					<div>&nbsp;</div>
+					<div><strong>{_JOMRES_REVIEWS}</strong></div>
+					<div><strong>{_JOMRES_REVIEWS_TOTAL_VOTES}</strong> {NUMBER_OF_REVIEWS}</div>
+					<div><strong>{_JOMRES_REVIEWS_AVERAGE_RATING}</strong>{AVERAGE_RATING}</div>
+					<a href="javascript:void(0);" onclick="toggle_review_div({UID},'{JS_SAFE_PROPERTYNAME}');">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
+
+					<div>&nbsp;</div>
+					<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
+				</div>
+			</div>
+			<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-helper-hidden"
+				 id="property_reviews{UID}">
+				{REVIEWS}
+			</div>
+		</patTemplate:comment>
+
+	</patTemplate:tmpl>
+	<div class="clearfix"></div>
+	<patTemplate:comment>{HEADER}</patTemplate:comment>
+</patTemplate:tmpl>

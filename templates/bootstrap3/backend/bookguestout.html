@@ -1,0 +1,77 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
+		<fieldset>
+			<div class="row-fluid">
+				<div class="span6">
+					{HSTAYNIGHTS}
+				</div>
+				<div class="span6">
+					{STAYNIGHTS}
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span6">
+					{HCONTRACTAGREED}
+				</div>
+				<div class="span6">
+					{CONTRACTAGREED}
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span6">
+					{HCOSTPERNIGHT}
+				</div>
+				<div class="span6">
+					{COSTPERNIGHT}
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span6">
+					{HSINGLEPERSON_COST}
+				</div>
+				<div class="span6">
+					{SINGLEPERSON_COST}
+				</div>
+			</div>
+			<patTemplate:tmpl name="output_extras" type="simpleCondition" requiredVars="desc">
+				<div class="row-fluid">
+					<div class="span6">
+						{DESC}
+					</div>
+					<div class="span6">
+						{VAL}
+					</div>
+				</div>
+			</patTemplate:tmpl>
+			<div class="row-fluid">
+				<div class="span6">
+					{HEXTRASERVICE_TOTAL}
+				</div>
+				<div class="span6">
+					{EXTRASERVICE_TOTAL}
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span6">
+					{HGRANDTOTAL}
+				</div>
+				<div class="span6">
+					{GRANDTOTAL}
+				</div>
+			</div>
+			<div class="form-actions">
+				<div class="">
+					<a href="{JOMRES_SITEPAGE_URL}&task=editBooking&contract_uid={CONTRACTUID}" class="btn"><i
+							class="icon-remove"></i> {COMMON_CANCEL}</a>
+					<button type="submit" class="btn btn-primary">{COMMON_SAVE} <i class="icon-ok icon-white"></i>
+					</button>
+				</div>
+			</div>
+			<input type="hidden" name="contractTotal" value="{GRANDTOTAL}"/>
+			<input type="hidden" name="contract_uid" value="{CONTRACTUID}"/>
+			<input type="hidden" name="task" value="saveBookout"/>
+		</fieldset>
+	</form>
+</patTemplate:tmpl>

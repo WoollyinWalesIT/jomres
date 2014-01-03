@@ -1,0 +1,61 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+	<script type="text/javascript">
+		<!--
+		function review_property(property_uid) {
+			//console.log(property_uid);
+			cmd = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=ajax_list_properties_awaiting_approval&property_uid=' + property_uid;
+			jomresJquery.get(cmd, function (data) {
+				populateDiv("property_preview", data)
+			});
+
+		}
+
+		function approve_property(property_uid) {
+			//console.log(property_uid);
+			cmd = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=ajax_list_properties_approve&property_uid=' + property_uid;
+			jomresJquery.get(cmd, function (data) {
+				jomresJquery('#tablerow_' + property_uid).remove();
+			});
+		}
+
+		//-->
+	</script>
+
+	<h2 class="page-header">Properties requiring approval</h2>
+
+	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+		{JOMRESTOOLBAR}
+		<div class="row-fluid">
+			<div class="span6">
+				<div class="row-striped">
+					<div class="row-fluid">
+						<div class="span4"><strong>{HPROPERTYNAME}</strong></div>
+						<div class="span4"><strong>{HPROPERTYADDRESS}</strong></div>
+						<div class="span4"></div>
+					</div>
+					<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="propertyname">
+						<div class="row-fluid" id="tablerow_{PROPERTY_UID}">
+							<div class="span3">{VIEWLINK}{PROPERTYNAME}</div>
+							<div class="span4">{PROPERTYADDRESS}</div>
+							<div class="span5 pull-right">
+								<input type="button" name="review" value="{_JOMRES_APPROVALS_REVIEW}"
+									   onClick="review_property({PROPERTY_UID});" class="btn btn-info"/>
+								<input type="button" name="review" value="{_JOMRES_APPROVALS_APPROVE}"
+									   onClick="approve_property({PROPERTY_UID});" class="btn btn-success"/>
+							</div>
+						</div>
+					</patTemplate:tmpl>
+				</div>
+			</div>
+			<div class="span6">
+				<div id="property_preview">
+
+				</div>
+			</div>
+		</div>
+		<input type="hidden" name="option" value="com_jomres"/>
+		<input type="hidden" name="task" value="editcrate"/>
+		<input type="hidden" name="boxchecked" value="0">
+	</form>
+</patTemplate:tmpl>

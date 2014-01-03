@@ -1,0 +1,60 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			var oTable = jomresJquery('#booking_data_archive').dataTable({
+				"bJQueryUI": false,
+				"bStateSave": true,
+				"sPaginationType": "bootstrap",
+				"sDom": "<'row-fluid'<'span4'l><'span4'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+				"sWrapper": "dataTables_wrapper form-inline",
+				"oTableTools": {
+					"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+					"aButtons": [
+						"copy",
+						{
+							"sExtends": "csv",
+							"sCharSet": "utf8"
+						},
+						{
+							"sExtends": "xls",
+							"sCharSet": "utf16le"
+						},
+						{
+							"sExtends": "pdf",
+							"sCharSet": "utf8",
+							"sPdfOrientation": "landscape",
+							"sTitle": "{PAGETITLE}"
+						},
+						"print"
+					]
+				}
+			});
+			jomresJquery.extend(jomresJquery.fn.dataTableExt.oStdClasses, {
+				"sSortAsc": "header headerSortDown",
+				"sSortDesc": "header headerSortUp",
+				"sSortable": "header"
+			});
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+	{JOMRESTOOLBAR}
+	<p>{INFO}</p>
+	<table id="booking_data_archive" class="table table-striped" width="100%">
+		<thead>
+		<tr>
+			<th>{_JOMRES_SORTORDER_PROPERTYNAME}</th>
+			<th>{_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="property_name">
+			<tr>
+				<td>{PROPERTY_NAME}</td>
+				<td>{DATE_TOOTIP}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+</patTemplate:tmpl>

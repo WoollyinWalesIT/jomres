@@ -1,0 +1,11 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="nav-header">
+		{CATEGORY}
+	</h2>
+	<ul class="j-links-group nav nav-list">
+	<patTemplate:tmpl name="rows" unusedvars="strip">
+		<li class="{ACTIVE} {DISABLED_CLASS}"><a href="{LINK}" {TARGET} ><img src="{IMAGE_PATH}" border="0" width="18" height="18"/> {MENU_NAME} {BADGES}</a>
+		</li>
+	</patTemplate:tmpl>
+	</ul>
+</patTemplate:tmpl>

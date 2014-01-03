@@ -1,0 +1,28 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		function get_properties(initial) {
+			jomresJquery.get('{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=listpropertys&nofollowtmpl=1&initial=' + initial,
+					function (data) {
+						populateDiv('found_properties', data);
+					}
+			);
+		}
+		jomresJquery(function () {
+			var $content = jomresJquery('#properties_initials').html();
+			jomresJquery('#toolbar').html($content);
+			jomresJquery('#properties_initials').empty();
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{_JRPORTAL_CPANEL_LISTCRATES}</h2>
+
+	<p>{_JOMRES_CRATES_CLICKINITIAL}</p>
+
+	<div id="properties_initials">
+		<patTemplate:tmpl name="rows" unusedvars="strip">
+			<a href="javascript:void(0);" class="btn" onclick="get_properties('{INITIAL}');">{INITIAL} ({COUNT})</a>
+		</patTemplate:tmpl>
+	</div>
+	<div id="found_properties"></div>
+</patTemplate:tmpl>

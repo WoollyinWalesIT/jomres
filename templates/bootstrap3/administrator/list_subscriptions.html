@@ -1,0 +1,49 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('list_subscriptions', '{PAGETITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+	{JOMRESTOOLBAR}
+	<table id="list_subscriptions" class="table table-striped" width="100%">
+		<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th class="hidden-phone">ID</th>
+			<th>{HCMS_USER_ID}</th>
+			<th class="hidden-phone">{HGATEWAY_SUBSCRIPTION_ID}</th>
+			<th>{HNAME}</th>
+			<th class="hidden-phone">{HDESCRIPTION}</th>
+			<th class="hidden-phone">{HFREQUENCY}</th>
+			<th class="hidden-phone">{HTRIAL_PERIOD}</th>
+			<th class="hidden-phone">{HTRIAL_AMOUNT}</th>
+			<th class="hidden-phone">{HFULL_AMOUNT}</th>
+			<th class="hidden-phone">{HPROPERTY_LIMIT}</th>
+			<th class="hidden-phone">{HSTATUS}</th>
+			<th class="hidden-phone">{HRAISED_DATE}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="id">
+			<tr>
+				<td>{DELETELINK}</td>
+				<td class="hidden-phone">{ID}</td>
+				<td>{CMS_USER_NAME}</td>
+				<td class="hidden-phone">{GATEWAY_SUBSCRIPTION_ID}</td>
+				<td>{NAME}</td>
+				<td class="hidden-phone">{DESCRIPTION}</td>
+				<td class="hidden-phone">{FREQUENCY}</td>
+				<td class="hidden-phone">{TRIAL_PERIOD}</td>
+				<td class="hidden-phone">{TRIAL_AMOUNT}</td>
+				<td class="hidden-phone">{FULL_AMOUNT}</td>
+				<td class="hidden-phone">{PROPERTY_LIMIT}</td>
+				<td class="hidden-phone">{STATUS}</td>
+				<td class="hidden-phone">{RAISED_DATE}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+</patTemplate:tmpl>

@@ -1,0 +1,20 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<form action="{VALIDATELINK}" method="post" name="adminForm" class="form-horizontal">
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="dueContract">{_JOMRES_FRONT_MR_BOOKIN_SELECTBUTTON}</label>
+
+				<div class="controls">
+					{DROPDOWNLIST}
+				</div>
+			</div>
+			<div class="form-actions">
+				{JOMRESTOOLBAR}
+			</div>
+			<input type="hidden" name="task" value="bookGuestIn"/>
+			<input type="hidden" name="no_html" value="1"/>
+		</fieldset>
+	</form>
+</patTemplate:tmpl>

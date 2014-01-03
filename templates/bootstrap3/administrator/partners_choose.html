@@ -1,0 +1,32 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{_JOMRES_PARTNERS_TITLE}</h2>
+
+	<p>{_JOMRES_PARTNER_CHOOSE_SEARCH_INSTRUCTIONS}</p>
+	<input id="username_input" class="input-large"/>
+
+	<p>&nbsp;</p>
+
+	<h3 class="page-header">{_JOMRES_PARTNER_CHOOSE_EXISTINGTITLE}</h3>
+
+	<p>{_JOMRES_PARTNER_CHOOSE_EXISTING_INSTRUCTIONS}</p>
+	<table width="100%" class="table table-striped">
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+			<tr>
+				<td>{LINK}&nbsp;&nbsp;{DELETELINK}</td>
+			</tr>
+		</patTemplate:tmpl>
+	</table>
+	<script type="text/javascript">
+		<!--
+		jomresJquery(function () {
+			jomresJquery("#username_input").autocomplete({
+				source: '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=partners_find',
+				minLength: 2,
+				select: function (event, ui) {
+					location.href = "{JOMRES_SITEPAGE_URL_ADMIN}&task=partner_show&name=" + ui.item.value;
+				}
+			});
+		});
+		//-->
+	</script>
+</patTemplate:tmpl>

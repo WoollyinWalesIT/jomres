@@ -78,6 +78,7 @@ class jomres_temp_booking_handler
 		$this->cart_data = array ();
 
 		$this->tmpsearch_data = array ( "jomsearch_availability" => "", "jomsearch_availability_departure" => "" );
+		$this->previous_searches = array ();
 
 		$this->tmplang       = array ( "jomreslang" => get_showtime( 'lang' ) );
 		$this->user_settings = array ( "editing_on" => false, "property_management_view" => false, "last_viewed_property_uid" => 0 );

@@ -1,0 +1,85 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<form enctype="multipart/form-data" action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm"
+		  class="form-horizontal">
+		<div class="row-fluid">
+			<div class="span6">
+				<input type='file' name='image0' id='image0'/>
+			</div>
+			<div class="span6">
+				<input type='file' name='image1' id='image1'/>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span6">
+				<input type='file' name='image2' id='image2'/>
+			</div>
+			<div class="span6">
+				<input type='file' name='image3' id='image3'/>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span6">
+				<input type='file' name='image4' id='image4'/>
+			</div>
+			<div class="span6">
+				<input type='file' name='image5' id='image5'/>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span6">
+				<input type='file' name='image6' id='image6'/>
+			</div>
+			<div class="span6">
+				<input type='file' name='image7' id='image7'/>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span6">
+				<input type='file' name='image8' id='image8'/>
+			</div>
+			<div class="span6">
+				<input type='file' name='image9' id='image9'/>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span6">
+				<input type='file' name='image10' id='image10'/>
+			</div>
+			<div class="span6">
+				<input type='file' name='image11' id='image11'/>
+			</div>
+		</div>
+		<div class="form-actions">
+			{JOMRESTOOLBAR}
+		</div>
+		<input type="hidden" name="task" value="batchUploadPropertyImages"/>
+	</form>
+
+	<h3 class="page-header">{IMAGESALREADYINDIR}</h3>
+
+	<form action="{JOMRES_SITEPAGE_URL_DELIMAGES}" method="post" name="imageList" class="form-horizontal">
+		<fieldset>
+			<div class="row-striped">
+				<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="imagename">
+					<div class="row-fluid">
+						<div class="span1">
+							{CHECKBOX}
+						</div>
+						<div class="hidden-phone span7">
+							<label for="cb{COUNT}"> {IMAGENAME}</label>
+						</div>
+						<div class="span4">
+							<img src="{IMAGEOUTPUT}" class="thumbnail"/>
+						</div>
+					</div>
+				</patTemplate:tmpl>
+			</div>
+			<div class="form-actions">
+				<input type="submit" value="{DELETEIMAGES}" class="btn btn-danger"/>
+			</div>
+		</fieldset>
+	</form>
+	</table>
+</patTemplate:tmpl>

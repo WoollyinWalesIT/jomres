@@ -1,0 +1,62 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script language="JavaScript" type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('list_coupons', '{PAGETITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+	<div id="tour_target_coupons"></div><div id="tour_target_table_tools"></div>
+	<p>{INFO}</p>
+
+	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+		<div class="well">
+			{JOMRESTOOLBAR}
+		</div>
+		<table id="list_coupons" width="100%" class="table tabble-striped">
+			<thead>
+			<tr>
+				<th>{HEDITLINK}</th>
+				<th>{HCOUPONCODE}</th>
+				<th>{HVALIDFROM}</th>
+				<th>{HVALIDTO}</th>
+				<th>{_JRPORTAL_COUPONS_BOOKING_VALIDFROM}</th>
+				<th>{_JRPORTAL_COUPONS_BOOKING_VALIDTO}</th>
+				<th>{HAMOUNT}</th>
+				<th>{HISPERCENTAGE}</th>
+				<th>{_JRPORTAL_COUPONS_GUESTNAME}</th>
+			</tr>
+			</thead>
+			<tbody>
+			<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="couponcode">
+				<tr>
+					<td>
+						<div class="btn-group">
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+								<i class="icon-edit"></i>
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+								<li><a tabindex="-1" href="{EDIT_URL}">{COMMON_EDIT}</a></li>
+								<li><a tabindex="-1" href="{PRINT_URL}"
+									   target="_blank">{JOMRES_COUPONS_PRINT_COUPONS}</a></li>
+
+							</ul>
+						</div>
+					</td>
+					<td>{COUPONCODE}</td>
+					<td>{VALIDFROM}</td>
+					<td>{VALIDTO}</td>
+					<td>{BOOKING_VALIDFROM}</td>
+					<td>{BOOKING_VALIDTO}</td>
+					<td>{AMOUNT}</td>
+					<td>{ISPERCENTAGE}</td>
+					<td>{GUEST_NAME}</td>
+				</tr>
+			</patTemplate:tmpl>
+			</tbody>
+		</table>
+		<input type="hidden" name="task" value="newExtra"/>
+	</form>
+</patTemplate:tmpl>

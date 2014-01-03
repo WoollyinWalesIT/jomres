@@ -1,0 +1,129 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	{CSS_STYLES}
+
+	<!--{PROPERTYIMAGE}-->
+	<p><strong>{BL_DEAR} {GUEST_FIRSTNAME} {GUEST_SURNAME},</strong></p>
+
+	<p>{BL_INTRO1} {PROP_NAME}{BL_INTRO2}</p>
+	{_JOMRES_PLEASE_PRINT}
+	<table width="100%" border="0">
+		<tr>
+			<td width="50%" valign="top">
+				<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+					<tr>
+						<td><strong>{GUEST_FIRSTNAME} {GUEST_SURNAME}</strong></td>
+					</tr>
+					<tr>
+						<td>{GUEST_HOUSE} {GUEST_STREET}</td>
+					</tr>
+					<tr>
+						<td>{GUEST_TOWN}</td>
+					</tr>
+					<tr>
+						<td>{GUEST_REGION}</td>
+					</tr>
+					<tr>
+						<td>{GUEST_POSTCODE}</td>
+					</tr>
+					<tr>
+						<td>{GUEST_COUNTRY}</td>
+					</tr>
+				</table>
+			</td>
+			<td width="50%" valign="top">
+				<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+					<tr>
+						<td><strong>{PROP_NAME}</strong></td>
+					</tr>
+					<tr>
+						<td>{PROP_STREET}</td>
+					</tr>
+					<tr>
+						<td>{PROP_TOWN}</td>
+					</tr>
+					<tr>
+						<td>{PROP_REGION}</td>
+					</tr>
+					<tr>
+						<td>{PROP_POSTCODE}</td>
+					</tr>
+					<tr>
+						<td>{PROP_COUNTRY}</td>
+					</tr>
+					<tr>
+						<td>{HTELEPHONE} {PROP_TEL}</td>
+					</tr>
+					<tr>
+						<td>{HFAX} {PROP_FAX}</td>
+					</tr>
+					<tr>
+						<td>{HEMAIL} {PROP_EMAIL}</td>
+					</tr>
+					<tr>
+						<td>{HWEBSITE} {PROP_URL}</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br/>
+	<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+		<tr>
+			<td colspan="2"><h3>{RESV_DETAILS}</h3></td>
+		</tr>
+		<tr>
+			<td>{HARRIVAL}</td>
+			<td>{ARRIVAL}</td>
+		</tr>
+		<tr>
+			<td>{HDEPARTURE}</td>
+			<td>{DEPARTURE}</td>
+		</tr>
+		<tr>
+			<td>{HROOMTYPE}</td>
+			<td>{ROOMTYPE}</td>
+		</tr>
+		<tr>
+			<td>{HNAME}</td>
+			<td>{ROOM_NAME}</td>
+		</tr>
+		<tr>
+			<td>{HNUMBER}</td>
+			<td>{ROOM_NUMBER}</td>
+		</tr>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+			<tr>
+				<td>{TITLE}</td>
+				<td>{QUANTITY}</td>
+			</tr>
+		</patTemplate:tmpl>
+		<tr>
+			<td>{HDEPOSITREQUIRED}</td>
+			<td>{DEPOSIT_REQUIRED}</td>
+		</tr>
+		<tr>
+			<td><strong>{HCONTRACT_TOTAL}</strong></td>
+			<td><strong>{CONTRACT_TOTAL}</strong></td>
+		</tr>
+	</table>
+	<p>{BL_LOOKFORWARD}{ARRIVAL} {BL_HAVEAPLEASANTSTAY}</p>
+
+	<h3>{HCHECKINTIMES}</h3>
+
+	<p>{CHECKINTIMES}</p>
+
+	<h3>{HPOLICIESDISCLAIMERS}</h3>
+
+	<p>{POLICIESDISCLAIMERS}</p>
+
+	<table width="100%" border="0">
+		<tr>
+			<td width="50%">{_JOMRES_OFFICE_USE_ONLY}</td>
+			<td>{_JOMRES_SCAN_FOR_DIRECTIONS}</td>
+		</tr>
+		<tr>
+			<td><img src="{OFFICE_QR_CODE_IMAGE}" width="100" height="100" alt="qrcode"/></td>
+			<td><img src="{DIRECTIONS_QR_CODE}" width="100" height="100" alt="qrcode"/></td>
+		</tr>
+	</table>
+</patTemplate:tmpl>

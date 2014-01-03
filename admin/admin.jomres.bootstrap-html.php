@@ -24,7 +24,27 @@ class HTML_jomres
 	 * Outputs the site configuration panel
 	#
 	 */
-	function showSiteConfig( $jrConfig, &$lists, $jsInputFormatDropdownList, $licensekey, $jrtb, $langDropdown, $geosearchDropdownList, $currency_codes_dropdown, $jqueryUIthemesDropdownList, $sortArrayDropdown, $calendarStartDaysDropdownList, $language_context_dropdown, $guestnumbersearchDropdownList, $filtering_level_dropdown, $layouts, $mapWeatherTempGradDropdownList,$production_development_dropdown, $navbar_location_dropdown )
+	function showSiteConfig( 
+		$jrConfig, 
+		&$lists, 
+		$jsInputFormatDropdownList, 
+		$licensekey, 
+		$jrtb, 
+		$langDropdown, 
+		$geosearchDropdownList, 
+		$currency_codes_dropdown, 
+		$jqueryUIthemesDropdownList, 
+		$sortArrayDropdown, 
+		$calendarStartDaysDropdownList, 
+		$language_context_dropdown, 
+		$guestnumbersearchDropdownList, 
+		$filtering_level_dropdown, 
+		$layouts, 
+		$mapWeatherTempGradDropdownList,
+		$production_development_dropdown, 
+		$navbar_location_dropdown,
+		$bootstrap_ver_dropdown
+		)
 		{
 		$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig     = $siteConfig->get();
@@ -128,6 +148,13 @@ class HTML_jomres
 			 <td>' . $lists[ 'use_bootstrap_in_frontend' ] . '</td>
 			 <td>' . jr_gettext( _JOMRES_BOOTSTRAPSWITCH_INFO, '_JOMRES_BOOTSTRAPSWITCH_INFO', false ) . '</td>
 		</tr>
+		<!--
+		<tr>
+			 <td>' . jr_gettext( _JOMRES_BOOTSTRAP_VERSION, '_JOMRES_BOOTSTRAP_VERSION', false ) . '</td>
+			 <td>' . $bootstrap_ver_dropdown . '</td>
+			 <td>' . jr_gettext( _JOMRES_BOOTSTRAP_VERSION_DESC, '_JOMRES_BOOTSTRAP_VERSION_DESC', false ) . '</td>
+		</tr>
+		-->
 		<tr>
 			 <td>' . jr_gettext( _JOMRES_BOOTSTRAPSWITCH_ADMINISTRATOR, '_JOMRES_BOOTSTRAPSWITCH_ADMINISTRATOR', false ) . '</td>
 			 <td>' . $lists[ 'use_bootstrap_in_admin' ] . '</td>

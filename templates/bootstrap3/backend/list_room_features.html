@@ -1,0 +1,36 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script language="JavaScript" type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('list_room_features', '{PAGETITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<table class="table table-striped" id="list_room_features" width="100%">
+		<thead>
+		<tr>
+			<th>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK}</th>
+			<th>{_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_INPUT}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="feature">
+			<tr>
+				<td>
+					<div class="btn-group">
+						<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+							<i class="icon-edit"></i>
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+							<li><a tabindex="-1" href="{EDIT_URL}">{COMMON_EDIT}</a></li>
+							<li><a tabindex="-1" href="{COPY_URL}">{COMMON_COPY}</a></li>
+						</ul>
+					</div>
+				</td>
+				<td>{FEATURE}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+</patTemplate:tmpl>

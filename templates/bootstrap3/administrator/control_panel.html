@@ -1,0 +1,77 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<div class="row-fluid">
+		<div class="span6">
+			<div class="well well-small">
+				<div class="module-title">
+					<h6>News</h6>
+				</div>
+				<div class="row-striped">
+					<patTemplate:tmpl name="news_rows" unusedvars="strip">
+						<div class="row-fluid {STATE}">
+							<div class="span12">
+								<h4 class="{STATUS}"><a data-original-title="{DATE}" href="#" rel="tooltip">{TITLE}</a>
+								</h4>
+
+								<p>{NEWS}</p>
+								<a href="{URL}" target="_blank">{URL_TEXT}</a>
+							</div>
+						</div>
+					</patTemplate:tmpl>
+				</div>
+			</div>
+		</div>
+		<div class="span6">
+			<patTemplate:tmpl name="beez_warning" type="simpleCondition" requiredVars="_jomres_beez_warning">
+				<div class="alert alert-error">{_JOMRES_BEEZ_WARNING}</div>
+			</patTemplate:tmpl>
+			<div class="well well-small">
+				<div class="module-title">
+					<h6>System status</h6>
+				</div>
+				<div class="row-striped">
+					<div>{PLUGIN_CHECK}</div>
+					<div>{MAX_INPUT_VARS_CHECK}</div>
+					<div class="{ACCESS_CONTROL_HIGHLIGHT}">{ACCESS_CONTROL_ALERT}</div>
+					<p><strong>{_JOMRES_VERSIONCHECK_THISJOMRESVERSION} {THIS_JOMRES_VERSION}</strong><br/>
+						<strong>{_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION} {LATEST_JOMRES_VERSION}</strong></p>
+
+					<div id="version_check_warning">
+						<div class="{HIGHLIGHT}">{ALERT}{EFFECT}</div>
+					</div>
+
+					<div id="cache_check_warning">
+						<div class="{CACHE_HIGHLIGHT}">{CACHE_WARNING}</div>
+					</div>
+					<p>{_JOMRES_PRODUCT_INFORMATION}<br/>{_JOMRES_PRODUCT_INFORMATION2}</p>
+
+					<p><strong>If you use Jomres, please post a rating and a review at the <a
+							href="http://extensions.joomla.org/extensions/vertical-markets/booking-a-reservations/booking/335"
+							target="_blank">Joomla! Extensions Directory</a>.</strong></p>
+				</div>
+			</div>
+			<div class="well well-small">
+				<div class="module-title">
+					<h6>Writability check</h6>
+				</div>
+				<div class="row-striped">
+					<p>If any of the above folders is not writable you may experience problems with running Jomres. It
+						is recommended that you resolve any problems before attempting to use Jomres further. Whilst it
+						is preferable that Jomres can write to the /jomres folders it is not vital (but it's better if
+						it can because you can then use the updates feature) but folders such as the sessions and temp
+						folders <i> have </i> to be writable for the system to work.</p>
+					{WRITABILITY_TESTS}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="well well-small">
+			<div class="span6"><img src="{LIVESITE}/jomres/images/User_Ninja.png" width="24" height="24" align="middle"
+									border="0"/><strong>Copyright:</strong> &copy; 2005 - 2013 Vince Wooll
+			</div>
+			<div class="span6" align="right">Thanks to Aladar Barthi (Piranha) for your continuing help in providing
+				support to Jomres users.
+			</div>
+		</div>
+	</div>
+</patTemplate:tmpl>

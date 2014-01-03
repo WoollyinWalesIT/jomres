@@ -1,0 +1,53 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+		{JOMRESTOOLBAR}
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="name">{HTITLE}</label>
+
+				<div class="controls">
+					<input class="input-large" type="text" name="title" value="{TITLE}"/>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="name">{HTYPE}</label>
+
+				<div class="controls">
+					{TYPE}
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="name">{HVALUE}</label>
+
+				<div class="controls">
+					<input class="input-large" type="text" name="value" value="{VALUE}"/>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="name">{HCURRENCYCODE}</label>
+
+				<div class="controls">
+					{CURRENCYCODE}
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="tax_rate">{HTAXCODE}</label>
+
+				<div class="controls">
+					{TAX_RATE_DROPDOWN}
+				</div>
+			</div>
+
+
+			<input type="hidden" name="no_html" value="1" />
+			<input type="hidden" name="id" value="{ID}"/>
+			<input type="hidden" name="option" value="com_jomres"/>
+			<input type="hidden" name="task" value="savecrate"/>
+		</fieldset>
+	</form>
+</patTemplate:tmpl>

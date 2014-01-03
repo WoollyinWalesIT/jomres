@@ -1,0 +1,117 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	{JOMRES_POPUPURL_GLOBALVAR}
+
+	{HEADER}
+
+	<patTemplate:tmpl name="property_details" unusedvars="strip">
+		<div class="jomres_property_list_propertywrapper" id="{UID}">
+			<div class="{FEATURED_LISTINGS_CLASS}">
+				<div class="row-fluid">
+					<div class="span9">
+						<h3><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a></h3>
+					</div>
+					<!--<div class="span3">
+						<div class="btn-group btn-toolbar pull-right hidden-phone">
+							<button class="btn">{COMMON_ACTION}</button>
+							<button class="btn dropdown-toggle" data-toggle="dropdown">
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')">{SHORTLIST}</a></li>
+								<li><input type="checkbox" name="compare" value="{UID}" autocomplete="off" /> {_JOMRES_COMPARE}</li>
+							</ul>
+						</div>
+					</div>-->
+					<div class="span3 hidden-phone">
+						<div class="jomres-compare" align="right">
+							<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/> {_JOMRES_COMPARE}
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span2">
+						<a href="#module_{RANDOM_IDENTIFIER}_popup" class="hidden-phone thumbnail" data-toggle="modal"
+						   random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}"><img
+								src="{IMAGETHUMB}" class="img-rounded" alt="{PROPERTYNAME}"/></a>
+						<a href="{MOREINFORMATIONLINK}" class="visible-phone thumbnail"><img src="{IMAGETHUMB}"
+																							 alt="{PROPERTYNAME}"/></a>
+					</div>
+					<div class="span7">
+						<p><span class="label">{PROPERTY_TYPE}</span> <span class="small">{STARS}</span> <em>{SUPERIOR}</em>
+						</p>
+	
+						<p class="small"><em>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</em></p>
+	
+						<p>{PROPERTYDESC}</p>
+	
+						<p class="jomres_message">{LASTMINUTE}</p>
+					</div>
+					<div class="span3">
+						<div class="well align-center">
+							{PRICE_PRE_TEXT}
+							<span class="big-price">{PRICE_PRICE}</span>
+							{PRICE_POST_TEXT}
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span2 hidden-phone"></div>
+					<div class="span10">
+						<p>
+							<a href="{LINK}" class="btn btn-primary">{BOOKTHIS_TEXT}</a>
+							<a href="{MOREINFORMATIONLINK}" class="btn btn-info">{MOREINFORMATION}</a>
+							<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')"
+							   class="btn hidden-phone">{SHORTLIST}</a>
+							<a href="javascript:void(0);" onclick="quick_info({UID});"
+							   class="btn hidden-phone hidden-tablet">{_JOMRES_QUICK_INFO}</a>
+						</p>
+					</div>
+				</div>
+				<div id="effect{UID}" class="hide row-fluid">
+					<div class="span2 well">
+						<div><strong>{_JOMRES_AGENT}</strong></div>
+						<div>{AGENT_LINK}</div>
+					</div>
+					<div class="span5 well">
+						<div><strong>{_JOMRES_FRONT_ROOMTYPES}</strong></div>
+						<div>{ROOMTYPES}</div>
+						<div style="clear:both;"></div>
+						<div><strong>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES}</strong></div>
+						<div>{FEATURELIST}</div>
+						<div style="clear:both;"></div>
+					</div>
+					<div class="span5 well">
+						<div><strong>{_JOMRES_REVIEWS}</strong></div>
+						<div>{_JOMRES_REVIEWS_TOTAL_VOTES} {NUMBER_OF_REVIEWS}</div>
+						<div>{_JOMRES_REVIEWS_AVERAGE_RATING}{AVERAGE_RATING}</div>
+						<a href="javascript:void(0);" onclick="toggle_review_div({UID},'{JS_SAFE_PROPERTYNAME}');"
+						   class="hidden-phone">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
+	
+						<div>&nbsp;</div>
+						<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
+					</div>
+				</div>
+				<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-helper-hidden"
+					 id="property_reviews{UID}" title="{PROPERTYNAME}">
+	
+					<img src="{LIVESITE}/jomres/images/ajax_animation/broken_circle.gif" alt="ajax_animation_image"/>
+				</div>
+			</div>
+			<hr/>
+		</div>
+
+		<div class="modal hide" id="module_{RANDOM_IDENTIFIER}_popup">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h4>{PROPERTYNAME}</h4>
+			</div>
+			<div class="modal-body">
+				<div style="padding:20px">
+					<img src="{LIVESITE}/jomres/images/ajax_animation/broken_circle.gif" alt="ajax_animation_image"/>
+				</div>
+			</div>
+		</div>
+	</patTemplate:tmpl>
+
+	<patTemplate:comment>{HEADER}</patTemplate:comment>
+</patTemplate:tmpl>
