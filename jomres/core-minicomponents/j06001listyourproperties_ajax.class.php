@@ -237,7 +237,7 @@ class j06001listyourproperties_ajax
 			if ($p->propertys_uid != $defaultProperty)
 				$r[] = jomres_decode($p->property_name);
 			else
-				$r[] = '<span class="label">'.jomres_decode($p->property_name).'</span>';
+				$r[] = '<span class="label label-info">'.jomres_decode($p->property_name).'</span>';
 				
 			$r[] = jomres_decode( $p->property_street );
 			$r[] = jomres_decode( $p->property_town );
