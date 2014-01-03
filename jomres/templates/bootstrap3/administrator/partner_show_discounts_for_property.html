@@ -1,0 +1,41 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<table class="table table-striped table-bordered" width="100%">
+		<thead>
+		<tr>
+			<th>{_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID}</th>
+			<th>{_JOMRES_SORTORDER_PROPERTYNAME}</th>
+			<th>{_JOMRES_COM_MR_LISTTARIFF_VALIDFROM}</th>
+			<th>{_JOMRES_COM_MR_LISTTARIFF_VALIDTO}</th>
+			<th>{_JOMRES_AJAXFORM_BILLING_DISCOUNT} (%)</th>
+			<th>&nbsp;</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+			<tr>
+				<td>
+					{PROPERTY_ID}
+				</td>
+				<td>
+					{PROPERTY_NAME}
+				</td>
+				<td>
+					{VALID_FROM}
+				</td>
+				<td>
+					{VALID_TO}
+				</td>
+				<td>
+					<input name="discount_{DISCOUNT_ID}" type="text" value="{DISCOUNT}" class="input-mini"/>
+				</td>
+				<td>
+					<a href="javascript:void(0);" onClick="save_discount_settings({DISCOUNT_ID},{PROPERTY_ID})"><img
+							src="{LIVESITE}/jomres/images/jomresimages/small/Save.png"/></a>&nbsp;
+					<a href="javascript:void(0);" onClick="delete_discount({DISCOUNT_ID},{PROPERTY_ID})"><img
+							src="{LIVESITE}/jomres/images/jomresimages/small/WasteBasket.png"/></a>
+				</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+</patTemplate:tmpl>

@@ -1,0 +1,59 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+		<table class="jradmin_innerwrapper">
+			<tr>
+				<td class="jomres_title">{PAGETITLE}</td>
+			</tr>
+			<tr>
+				<td>{JOMRESTOOLBAR}</td>
+			</tr>
+			<tr>
+				<td>
+					<table class="jradmin_table">
+						<tr>
+							<td class="jradmin_subheader_ca">{TASK_FILTER_ANY}</td>
+							<td class="jradmin_subheader_ca">{TASK_FILTER_UNPAID}</td>
+							<td class="jradmin_subheader_ca">{TASK_FILTER_PAID}</td>
+							<td class="jradmin_subheader_ca">{TASK_FILTER_CANCELLED}</td>
+							<td class="jradmin_subheader_ca">{TASK_FILTER_PENDING}</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table class="jradmin_table">
+						<tr>
+							<td class="jradmin_subheader_ca">&nbsp;</td>
+							<td class="jradmin_subheader_ca">ID</td>
+							<td class="jradmin_subheader_la">{HSTATUS}</td>
+							<td class="jradmin_subheader_la">{HRAISED}</td>
+							<td class="jradmin_subheader_la">{HDUE}</td>
+							<td class="jradmin_subheader_la">{HPAID}</td>
+							<td class="jradmin_subheader_la">{HSUBSCRIPTION}</td>
+							<td class="jradmin_subheader_la">{HINITTOTAL}</td>
+							<td class="jradmin_subheader_la">{HRECURTOTAL}</td>
+							<td class="jradmin_subheader_la">&nbsp;</td>
+						</tr>
+						<patTemplate:tmpl name="rows" unusedvars="nbsp">
+							<tr>
+								<td class="jradmin_rowtoolbar">{EDITLINK}</td>
+								<td class="jradmin_field_la">{ID}</td>
+								<td class="jradmin_field_la">{STATUS}</td>
+								<td class="jradmin_field_la">{RAISED}</td>
+								<td class="jradmin_field_la">{DUE}</td>
+								<td class="jradmin_field_la">{PAID}</td>
+								<td class="jradmin_field_la">{SUBSCRIPTION}</td>
+								<td class="jradmin_field_la">{CURRENCYCODE} {INITTOTAL}</td>
+								<td class="jradmin_field_la">{CURRENCYCODE} {RECURTOTAL}</td>
+								<td class="jradmin_field_la">{PAYNOW}</td>
+
+							</tr>
+						</patTemplate:tmpl>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<input type="hidden" name="task" value="edit_invoice"/>
+	</form>
+</patTemplate:tmpl>

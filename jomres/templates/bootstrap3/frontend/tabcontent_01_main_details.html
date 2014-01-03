@@ -1,0 +1,27 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<patTemplate:tmpl name="discount_output" type="simpleCondition" requiredVars="discount_output">
+		<div class="alert alert-info">{DISCOUNT_OUTPUT}</div>
+	</patTemplate:tmpl>
+	<div class="row-fluid">
+		<div class="span8 pull-left">
+			<p>{DESCRIPTION}</p>
+		</div>
+		<div class="span4 well pull-right">
+			<p>
+				<strong>{HRTYPES}</strong>
+			</p>
+			<patTemplate:tmpl name="roomtype_icons" type="simpleCondition" requiredVars="room_type">
+				<p style="text-transform:capitalize;">{ROOM_TYPE}</p>
+			</patTemplate:tmpl>
+			<div class="clearfix"></div>
+			<p>
+				<strong>{HFEATURES}</strong>
+			</p>
+			<patTemplate:tmpl name="feature_icons" type="simpleCondition" requiredVars="feature">
+				{FEATURE}
+			</patTemplate:tmpl>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</patTemplate:tmpl>

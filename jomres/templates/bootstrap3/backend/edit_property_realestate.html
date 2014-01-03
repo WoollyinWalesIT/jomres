@@ -1,0 +1,207 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<style>
+	.REmail {
+		border:solid 1px {INPUTBOXERRORBORDER};
+		background-color: {INPUTBOXERRORBACKGROUND};
+		}
+
+		span.required {
+			color: red;
+		}
+	</style>
+
+	<script language="javascript">
+		<!--
+		function OnChange(dropdown) {
+			var myindex = dropdown.selectedIndex
+			var baseURL = "{JOMRES_SITEPAGE_URL}&task=editProperty"
+			top.location.href = baseURL + "&propertyUid={PROPERTYUID}&selectedCountry=" + dropdown.options[myindex].value;
+			return true;
+		}
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+	<patTemplate:tmpl name="change_country_warning" type="simpleCondition" requiredVars="changecountrywarning"
+	<p class="alert alert-info">{CHANGECOUNTRYWARNING}</p>
+	</patTemplate:tmpl>
+<p>{DELETEWARNING}</p>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="xyz">{HCOUNTRY}</label>
+
+			<div class="controls">
+				{COUNTRIESDROPDOWN}
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="region">{HREGION}</label>
+
+			<div class="controls">
+				{REGIONDROPDOWN}
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="propertyType">{HPROPERTY_TYPE}</label>
+
+			<div class="controls">
+				{PROPERTY_TYPE_DROPDOWN}
+			</div>
+		</div>
+		<div class="control-group warning">
+			<label class="control-label" for="property_name">{HNAME}</label><div id="tour_target_registration_2_name_address"></div>
+
+			<div class="controls">
+				<input id="property_name" name="property_name" type="text" size="20" value="{PROPERTY_NAME}"/>
+			</div>
+		</div>
+		<div class="control-group warning">
+			<label class="control-label" for="property_street">{HSTREET}</label>
+
+			<div class="controls">
+				<input id="property_street" name="property_street" type="text" size="20" value="{PROPERTY_STREET}"/>
+			</div>
+		</div>
+		<div class="control-group warning">
+			<label class="control-label" for="property_town">{HTOWN}</label>
+
+			<div class="controls">
+				<input id="property_town" name="property_town" type="text" size="20" value="{PROPERTY_TOWN}"/>
+			</div>
+		</div>
+		<div class="control-group warning">
+			<label class="control-label" for="property_postcode">{HPOSTCODE}</label>
+
+			<div class="controls">
+				<input id="property_postcode" name="property_postcode" type="text" size="20"
+					   value="{PROPERTY_POSTCODE}"/>
+			</div>
+		</div>
+		<div class="control-group warning">
+			<label class="control-label" for="property_tel">{HTELEPHONE}</label>
+
+			<div class="controls">
+				<input id="property_tel" name="property_tel" type="text" size="20" value="{PROPERTY_TEL}"/>
+			</div>
+		</div>
+		<div class="control-group warning">
+			<label class="control-label" for="property_email">{HEMAIL}</label>
+
+			<div class="controls">
+				<input id="property_email" name="property_email" type="text" size="20" value="{PROPERTY_EMAIL}"/>
+			</div>
+		</div>
+		<div class="control-group warning">
+			<label class="control-label" for="property_email">{HPRICE}</label>
+
+			<div class="controls">
+				{CURRENCY}</span><input class="input-small" type="text" name="price" value="{PRICE}"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="lat">Lat: (nn.nnnn)</label>
+
+			<div class="controls">
+				<input id="lat" name="lat" type="text" size="20" value="{LAT}"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="long">Long: (nn.nnnn)</label>
+
+			<div class="controls">
+				<input id="lng" name="long" type="text" size="20" value="{LONG}"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="firstname">{LATLONG_DESC}</label><div id="tour_target_registration_2_latlong"></div>
+
+			<div class="controls">
+				{MAP}
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="pid">{HFEATURES}</label><div id="tour_target_registration_2_features"></div>
+
+			<div class="controls">
+				<patTemplate:tmpl name="globalPfeatures">
+					<div style="float:left;">
+						<label class="checkbox">
+							<input type="checkbox" name="pid[]" value="{PID}" style="float:left;" {ISCHECKED}> {FEATURE}
+						</label>
+					</div>
+				</patTemplate:tmpl>
+			</div>
+		</div>
+		<div class="control-group warning">
+			<label class="control-label" for="property_description">{HPROPDESCRIPTION}</label><div id="tour_target_registration_2_realestate_description"></div>
+
+			<div class="controls">
+				{PROPERTY_DESCRIPTION}
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="property_policies_disclaimers">{HPOLICIESDISCLAIMERS}</label>
+
+			<div class="controls">
+				{PROPERTY_POLICIES_DISCLAIMERS}
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="metatitle">{_JOMRES_METATITLE}</label>
+
+			<div class="controls">
+				<input class="inputbox" type="text" size="70" name="metatitle" value="{METATITLE}"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="metadescription">{_JOMRES_METADESCRIPTION}</label>
+
+			<div class="controls">
+				<input class="inputbox" type="text" size="70" name="metadescription" value="{METADESCRIPTION}"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="metakeywords">{_JOMRES_METAKEYWORDS}</label>
+
+			<div class="controls">
+				<input class="inputbox" type="text" size="70" name="metakeywords" value="{METAKEYWORDS}"/>
+			</div>
+		</div>
+		<div class="form-actions btn-toolbar">
+			{JOMRESTOOLBAR}
+		</div>
+	</fieldset>
+	<input type="hidden" name="property_uid" value="{PROPERTYUID}"/>
+	<input type="hidden" name="task" value="saveProperty"/>
+	<!--{TOOLBAR2}-->
+</form>
+<patTemplate:comment>
+<h3 class="page-header">{UPLOADIMAGE}</h3>
+<p class="alert alert-info">{SAVEBEFOREUPLOADWARNING}</p>
+<form enctype="multipart/form-data" action="{JOMRES_SITEPAGE_URL}&task=uploadPropertyImage" method="post"
+	  class="form-horizontal">
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="image">Image</label>
+
+			<div class="controls">
+				<input type='file' name='image'/>
+			</div>
+		</div>
+		<div class="form-actions">
+			<input name="upload_button" type="submit" value="{UPLOADIMAGE}" class="btn btn-primary"/>
+		</div>
+	</fieldset>
+</form>
+<patTemplate:tmpl name="delimg_rows" type="simpleCondition" requiredVars="deleteimage_link">
+	<div class="row-fluid">
+		<div class="span3">
+			<a href="{DELETEIMAGE_LINK}" class="btn btn-danger"><i class="icon-trash icon-white"></i> {DELETEIMAGE_TEXT}</a>
+		</div>
+		<div class="span9">
+			{IMAGE}
+		</div>
+	</div>
+</patTemplate:tmpl>
+</patTemplate:comment>
+</patTemplate:tmpl>

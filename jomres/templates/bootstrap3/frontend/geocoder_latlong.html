@@ -1,0 +1,49 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	init_map_{RANDOM_IDENTIFIER}();
+	});
+
+	{UPDATEMARKERPOSITION}
+
+
+function init_map_{RANDOM_IDENTIFIER}()
+	{
+	var latLng = new google.maps.LatLng({LAT}, {LONG});
+	var options_{RANDOM_IDENTIFIER} = {
+		center: latLng,
+		zoom: 12,
+		{DISABLE_UI}
+		mapTypeId: google.maps.MapTypeId.ROADMAP{SUPPRESS_POIS}
+		};
+	
+	var map = new google.maps.Map(document.getElementById("map_{RANDOM_IDENTIFIER}"),
+		options_{RANDOM_IDENTIFIER});
+	var marker = new google.maps.Marker({
+		position: latLng{DRAGABLE}
+		});
+	marker.setMap(map);
+	
+	{WEATHER_LAYER}
+	{PANORAMIO_LAYER}
+	{TRANSIT_LAYER}
+	{TRAFFIC_LAYER}
+	{BICYCLING_LAYER}
+	
+	{DRAG_LISTENER}
+
+	}
+	
+jomresJquery(document).ready(function() {
+	jomresJquery('body').on('shown','#mapTab', function (e) {
+		init_map_{RANDOM_IDENTIFIER}();
+		});
+	});
+//-->
+</script>
+	<div id="map_canvas">
+		<div id="map_{RANDOM_IDENTIFIER}" class="row-fluid form-horizontal" style="height:{MAP_HEIGHT}px;"></div>
+	</div>
+	<!-- do not set these sizes to 100% or anything with percentages in, the map will not show if you do. I wasted ages figuring that out. -->
+</patTemplate:tmpl>

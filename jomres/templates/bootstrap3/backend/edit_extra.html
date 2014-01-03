@@ -1,0 +1,139 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="name">{HEXNAME}</label>
+
+				<div class="controls">
+					<input class="inputbox" type="text" name="name" value="{EXNAME}"/>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="desc">{HEXDESC}</label>
+
+				<div class="controls">
+					<input class="inputbox" type="text" name="desc" value="{EXDESCRIPTION}"/>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="maxquantity">{HMAXQUANTITY}</label>
+
+				<div class="controls">
+					{MAXQUANTITYDROPDOWN}
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="price">{HEXPRICE}</label>
+
+				<div class="controls">
+					<input class="inputbox" type="number" name="price" value="{EXPRICE}"/>
+				</div>
+			</div>
+
+
+			<div class="control-group">
+				<label class="control-label" for="taxrate">{HTAXRATE}</label>
+
+				<div class="controls">
+					{TAXRATEDROPDOWN}
+				</div>
+			</div>
+
+
+			<div class="control-group">
+				<label class="control-label" for="auto_select">{HAUTO_SELECT}</label>
+
+				<div class="controls">
+					{AUTO_SELECT}
+				</div>
+			</div>
+		</fieldset>
+		<patTemplate:tmpl name="extra_models" type="simpleCondition" requiredVars="extramodel_force1">
+			<table class="table table-striped table-condensed">
+				<thead>
+				<tr>
+					<th>{_JOMRES_EXTRAS_MODELS_MODEL}</th>
+					<th>{_JOMRES_EXTRAS_MODELS_PARAMS}</th>
+					<th>{_JOMRES_EXTRAS_MODELS_FORCE}</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td><input type="radio" name="extramodel[]" value="1" {EXTRAMODEL_PERWEEK_CHECKED} >
+						{EXTRAMODEL_PERWEEK}
+					</td>
+					<td>&nbsp;</td>
+					<td>{EXTRAMODEL_FORCE1}</td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="extramodel[]" value="2" {EXTRAMODEL_PERDAYS_CHECKED}>
+						{EXTRAMODEL_PERDAYS}
+					</td>
+					<td>&nbsp;</td>
+					<td>{EXTRAMODEL_FORCE2}</td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="extramodel[]" value="3" {EXTRAMODEL_PERBOOKING_CHECKED}>
+						{EXTRAMODEL_PERBOOKING}
+					</td>
+					<td>&nbsp;</td>
+					<td>{EXTRAMODEL_FORCE3}</td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="extramodel[]" value="4" {EXTRAMODEL_PERPERSONPERBOOKING_CHECKED}>
+						{EXTRAMODEL_PERPERSONPERBOOKING}
+					</td>
+					<td>&nbsp;</td>
+					<td>{EXTRAMODEL_FORCE4}</td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="extramodel[]" value="5" {EXTRAMODEL_PERPERSONPERDAY_CHECKED}>
+						{EXTRAMODEL_PERPERSONPERDAY}
+					</td>
+					<td>&nbsp;</td>
+					<td>{EXTRAMODEL_FORCE5}</td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="extramodel[]" value="6" {EXTRAMODEL_PERPERSONPERWEEK_CHECKED}>
+						{EXTRAMODEL_PERPERSONPERWEEK}
+					</td>
+					<td>&nbsp;</td>
+					<td>{EXTRAMODEL_FORCE6}</td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="extramodel[]" value="7" {EXTRAMODEL_PERDAYSMINDAYS_CHECKED}>
+						{EXTRAMODEL_PERDAYSMINDAYS}
+					</td>
+					<td>{MINDAYSDROPDOWN}</td>
+					<td>{EXTRAMODEL_FORCE7}</td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="extramodel[]" value="8" {EXTRAMODEL_PERDAYSPERROOM_CHECKED}>
+						{EXTRAMODEL_PERDAYSPERROOM}
+					</td>
+					<td>&nbsp;</td>
+					<td>{EXTRAMODEL_FORCE8}</td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="extramodel[]" value="9"
+						{EXTRAMODEL_PERROOMPERBOOKING_CHECKED}>{EXTRAMODEL_PERROOMPERBOOKING}
+					</td>
+					<td>&nbsp;</td>
+					<td>{EXTRAMODEL_FORCE9}</td>
+				</tr>
+				</tbody>
+			</table>
+		</patTemplate:tmpl>
+		<div class="form-actions">
+			{JOMRESTOOLBAR}
+		</div>
+		<input type="hidden" name="uid" value="{EXTRAID}"/>
+		<input type="hidden" name="task" value="saveExtra"/>
+		<input type="hidden" name="no_html" value="1"/>
+	</form>
+</patTemplate:tmpl>

@@ -1,0 +1,209 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<!--<a href="{PRINT_LINK}" target="_blank"><img src="{PRINT_ICON}" width="25px" height="25px"/></a>-->
+<br/>
+<a name="{COMMON_HOME|urlencode}" class="text-info">{COMMON_HOME}</a>
+<br/>
+
+<div id="property_details">
+	<div class="rowfluid">
+		<div id="gallerywrapper" class="span7 well">{SLIDESHOW}</div>
+		<div class="span5">
+			<div class="big-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
+			<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+				<div class="btn-toolbar"><a href="{LINK}" class="btn btn-primary btn-large">{TEXT}</a></div>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="contactuslink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+				<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="slideshowlink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+				<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="tariffslink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+				<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+				<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div>
+			</patTemplate:tmpl>
+			<div style="clear:both;"></div>
+			<div>{INLINE_CALENDAR}</div>
+		</div>
+	</div>
+</div>
+<div class="clearfix"></div>
+<p>&nbsp;</p>
+
+
+<patTemplate:tmpl name="tabs_content">
+	<!-- Automatically ordered output -->
+
+	<div class="well">
+		<h2>{TAB_TITLE}</h2>
+		{TAB_CONTENT}
+	</div>
+</patTemplate:tmpl>
+
+<div class="clearfix"></div>
+<p>&nbsp;</p>
+
+
+<patTemplate:comment>
+
+	By default this template will show the data that's normally in a tab in it's own separate panels instead, that's
+	the section marked Automatically ordered.
+
+	You can, however choose to comment out the automatically ordered stuff and instead remove the comments
+	surrounding the stuff below. This is the most normally used output already structured to be used, along with a
+	bootstrap navbar that's fixed to the bottom of the page.
+
+	This output isn't enabled by default because it requires that you, the site integrator, are at least resonably
+	familiar with Jomres' templating system and understand that some stuff may need to be added manually or enabled
+	in site config before they can show.
+
+</patTemplate:comment>
+
+
+<patTemplate:comment>
+	<div class="navbar navbar-fixed-bottom">
+		<div class="btn-toolbar">
+			<div class="btn-group">
+				<a href="{COMMON_THIS_PAGE_URL}#{COMMON_HOME|urlencode}" class="btn btn-info">{COMMON_HOME}</a>
+				<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_01_MAIN_DETAILS_TABTITLE|urlencode}"
+				   class="btn btn-info">{TABCONTENT_01_MAIN_DETAILS_TABTITLE}</a>
+				<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_01_MORE_INFO_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_01_MORE_INFO_TABTITLE}</a>
+				<!-- <a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_02_BOOKINGFORM_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_02_BOOKINGFORM_TABTITLE}</a> -->
+				<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_02_MAP_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_02_MAP_TABTITLE}</a>
+				<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_03_CONTACT_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_03_CONTACT_TABTITLE}</a>
+				<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_03_REVIEWS_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_03_REVIEWS_TABTITLE}</a>
+				<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_05_TARIFFS_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_05_TARIFFS_TABTITLE}</a>
+				<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_04_ROOMSLIST_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_04_ROOMSLIST_TABTITLE}</a>
+				<!--<a href="{COMMON_THIS_PAGE_URL}#{XDISQUS_TABTITLE|urlencode}" class="btn btn-info">{XDISQUS_TABTITLE}</a>-->
+			</div>
+		</div>
+	</div>
+
+	<h2><a name="{TABCONTENT_01_MAIN_DETAILS_TABTITLE|urlencode}" class="text-info">{TABCONTENT_01_MAIN_DETAILS_TABTITLE}</a>
+	</h2>
+
+	<div class="well">
+
+		{TABCONTENT_01_MAIN_DETAILS_TAB_CONTENT}
+	</div>
+
+	<h2><a name="{TABCONTENT_01_MORE_INFO_TABTITLE|urlencode}">{TABCONTENT_01_MORE_INFO_TABTITLE}</a></h2>
+
+	<div class="well">
+		{TABCONTENT_01_MORE_INFO_TAB_CONTENT}
+	</div>
+
+	<patTemplate:comment>// Assumes that the option to show the booking form in the property details is set to Yes
+	</patTemplate:comment>
+	<h2><a name="{TABCONTENT_02_BOOKINGFORM_TABTITLE|urlencode}">{TABCONTENT_02_BOOKINGFORM_TABTITLE}</a></h2>
+
+	<div class="well">
+		{TABCONTENT_02_BOOKINGFORM_TAB_CONTENT}
+	</div>
+
+	<h2><a name="{TABCONTENT_02_MAP_TABTITLE|urlencode}">{TABCONTENT_02_MAP_TABTITLE}</a></h2>
+
+	<div class="well">
+
+		{TABCONTENT_02_MAP_TAB_CONTENT}
+	</div>
+
+	<patTemplate:comment>// Assumes that contact form in tabs plugin is installed</patTemplate:comment>
+	<h2><a name="{TABCONTENT_03_CONTACT_TABTITLE|urlencode}">{TABCONTENT_03_CONTACT_TABTITLE}</a></h2>
+
+	<div class="well">
+		{TABCONTENT_03_CONTACT_TAB_CONTENT}
+	</div>
+
+	<h2><a name="{TABCONTENT_03_REVIEWS_TABTITLE|urlencode}">{TABCONTENT_03_REVIEWS_TABTITLE}</a></h2>
+
+	<div class="well">
+
+		{TABCONTENT_03_REVIEWS_TAB_CONTENT}
+	</div>
+
+	<h2><a name="{TABCONTENT_05_TARIFFS_TABTITLE|urlencode}">{TABCONTENT_05_TARIFFS_TABTITLE}</a></h2>
+
+	<div class="well">
+		{TABCONTENT_05_TARIFFS_TAB_CONTENT}
+	</div>
+
+	<h2><a name="{TABCONTENT_04_ROOMSLIST_TABTITLE|urlencode}">{TABCONTENT_04_ROOMSLIST_TABTITLE}</a></h2>
+
+	<div class="well">
+		{TABCONTENT_04_ROOMSLIST_TAB_CONTENT}
+	</div>
+
+	<!--
+	<patTemplate:comment>// Assumes that Comments Tab Disqus plugin is installed</patTemplate:comment>
+	<h2><a name="{XDISQUS_TABTITLE|urlencode}">{XDISQUS_TABTITLE}</a></h2>
+	<div class="well">
+		{XDISQUS_TAB_CONTENT}
+	</div>
+	-->
+</patTemplate:comment>
+
+
+<patTemplate:comment>
+
+	More stuff that can be used on this page
+
+	{HFEATURES}
+	{HRTYPES}
+	{LIVE_SITE}
+	{HPROPERTYNAME}
+	{HSTREET}
+	{HTOWN}
+	{HREGION}
+	{HCOUNTRY}
+	{HPOSTCODE}
+	{HTELEPHONE}
+	{HFAX}
+	{HMAPPINGLINK}
+	{HDESCRIPTION}
+	{HCHECKINTIMES}
+	{HAREAACTIVITIES}
+	{HDRIVINGDIRECTIONS}
+	{HAIRPORTS}
+	{HOTHERTRANSPORT}
+	{HPOLICIESDISCLAIMERS}
+	{TITLE_PROPERTYDETAILS}
+	{TITLE_PROPERTYDETAILS_ANCHOR}
+	{TITLE_MOREINFO}
+	{TITLE_MOREINFO_ANCHOR}
+	{TITLE_AVAILABILITYCALENDAR}
+	{TITLE_ROOMSLIST}
+	{TITLE_SLIDESHOW}
+	{TITLE_MAP}
+	{TITLE_TARIFF}
+	{COM_A_BASICTEMPLATE_SHOWADDRESS}
+	{COM_A_BASICTEMPLATE_SHOWDETAILS}
+	{COM_A_BASICTEMPLATE_SHOWADDRESS_TITLE}
+	{COM_A_BASICTEMPLATE_SHOWDETAILS_TITLE}
+	{POSTCODE}
+	{TELEPHONE}
+	{FAX}
+	{STREET}
+	{TOWN}
+	{REGION}
+	{COUNTRY}
+	{DESCRIPTION}
+	{CHECKINTIMES}
+	{AREAACTIVITIES}
+	{DRIVINGDIRECTIONS}
+	{AIRPORTS}
+	{OTHERTRANSPORT}
+	{POLICIESDISCLAIMERS}
+	{PRINT_ICON}
+	{PRINT_LINK}
+	{SLIDESHOW}
+
+	{ARROW}
+	{INLINE_CALENDAR_ARROW_OPENINGDIV}
+	{INLINE_CALENDAR}
+	{INLINE_CALENDAR_ARROW_CLOSINGDIV}
+</patTemplate:comment>
+
+</patTemplate:tmpl>

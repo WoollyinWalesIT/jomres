@@ -1,0 +1,21 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<form action="{VALIDATELINK}" method="post" name="adminForm" class="form-horizontal">
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="dueDepart">{_JOMRES_FRONT_MR_BOOKIN_SELECTBUTTON}</label>
+
+				<div class="controls">
+					{DROPDOWNLIST}
+				</div>
+			</div>
+			<div class="form-actions">
+				<a href="{JOMRES_SITEPAGE_URL}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
+				<button type="submit" class="btn btn-primary" onclick="submitCountry();">{COMMON_NEXT} <i
+						class="icon-arrow-right icon-white"></i></button>
+			</div>
+			<input type="hidden" name="task" value="bookGuestOut"/>
+		</fieldset>
+	</form>
+</patTemplate:tmpl>

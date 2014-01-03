@@ -1,0 +1,139 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<div class="well">
+		<patTemplate:tmpl name="viewbooking_link" type="simpleCondition" requiredVars="viewbooking_text">
+			<a href="{VIEWBOOKING_LINK}" class="btn"><i class="icon-edit icon-white"></i> {VIEWBOOKING_TEXT}</a>
+		</patTemplate:tmpl>
+		<a href="{PRINTLINK}" class="btn" target="_blank"><i class="icon-print"></i> {PRINTTEXT}</a>
+		<patTemplate:tmpl name="markaspaid_link" type="simpleCondition" requiredVars="markaspaid_text">
+			<a href="{MARKASPAID_LINK}" class="btn"><i class="icon-ok"></i> {MARKASPAID_TEXT}</a>
+		</patTemplate:tmpl>
+	</div>
+	<h2 class="page-header">{HINVOICENO}: {ID}</h2>
+
+	<div class="row-fluid">
+		<div class="span6 well">
+			{BUSINESS_DETAILS_TEMPLATE}
+		</div>
+		<div class="span6 well">
+			{CLIENT_DETAILS_TEMPLATE}
+		</div>
+	</div>
+	<h3 class="page-header">{PAGETITLE}</h3>
+
+{ARRIVAL_DEPARTURE_SNIPPET}
+
+	<div class="row-fluid">
+		<div class="span4">
+			<strong>{_JOMRES_BOOKING_NUMBER}</strong>
+		</div>
+		<div class="span8">
+			{BOOKING_NUMBER}
+		</div>
+	</div>
+	<div class="rows">
+		<div class="span4">
+			<strong>{JOMRES_GRANDTOTAL_EX_TAX}</strong>
+		</div>
+		<div class="span8">
+			{GRAND_TOTAL_EX_TAX}
+		</div>
+	</div>
+	<div class="rows">
+		<div class="span4">
+			<strong>{JOMRES_GRANDTOTAL_TOTAL_TAX}</strong>
+		</div>
+		<div class="span8">
+			{GRAND_TOTAL_TAX}
+		</div>
+	</div>
+	<div class="rows">
+		<div class="span4">
+			<strong>{JOMRES_GRANDTOTAL_INC_TAX}</strong>
+		</div>
+		<div class="span8">
+			{GRAND_TOTAL_INC_TAX}
+		</div>
+	</div>
+	<div class="rows">
+		<div class="span12">
+
+		</div>
+	</div>
+	<table width="100%" class="table table-striped table-bordered table-condensed">
+		<thead>
+		<tr>
+			<th>{HSTATUS}</th>
+			<th>{HRAISED}</th>
+			<th>{HDUE}</th>
+			<th class="hidden-phone">{HSUBSCRIPTION}</th>
+			<th class="hidden-phone">{HCURRENCYCODE}</th>
+			<th>{HINITTOTAL}</th>
+			<patTemplate:tmpl name="hrecurtotal" type="simpleCondition" requiredVars="hrecurtotal">
+				<th>{HRECURTOTAL}</th>
+			</patTemplate:tmpl>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>{STATUS}</td>
+			<td>{RAISED}</td>
+			<td>{DUE}</td>
+			<td class="hidden-phone">{SUBSCRIPTION}</td>
+			<td class="hidden-phone">{CURRENCYCODE}</td>
+			<td>
+				<div id="init_grand_total">{OUTSTANDING_TOTAL}</div>
+			</td>
+
+			<patTemplate:tmpl name="recurtotal" type="simpleCondition" requiredVars="recurtotal">
+				<td>
+					<div id="recur_grand_total">{RECURTOTAL}</div>
+				</td>
+			</patTemplate:tmpl>
+		</tr>
+		</tbody>
+	</table>
+
+	<h3 class="page-header">{LIPAGETITLE}</h3>
+	<table width="100%" class="table table-striped table-bordered table-condensed">
+		<thead>
+		<tr>
+			<th>{HLI_NAME}</th>
+			<th class="hidden-phone">{HLI_INIT_PRICE}</th>
+			<th>{HLI_INIT_QTY}</th>
+			<th class="hidden-phone">{HLI_INIT_DISCOUNT}</th>
+			<th class="hidden-phone">{HLI_INIT_TOTAL}</th>
+			<th>{HLI_INIT_TOTAL_INCLUSIVE}</th>
+			<patTemplate:tmpl name="hli_recur_price" type="simpleCondition" requiredVars="hli_recur_price">
+				<th class="hidden-phone">{HLI_RECUR_PRICE}</th>
+				<th>{HLI_RECUR_QTY}</th>
+				<th class="hidden-phone">{HLI_RECUR_DISCOUNT}</th>
+				<th>{HLI_RECUR_TOTAL}</th>
+				<th class="hidden-phone">{HLI_TAX_DESCRIPTION}</th>
+			</patTemplate:tmpl>
+
+			<th>{HLI_TAX_RATE}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+			<tr>
+				<td>{LI_NAME}</td>
+				<td class="hidden-phone">{LI_INIT_PRICE}</td>
+				<td>{LI_INIT_QTY}</td>
+				<td class="hidden-phone">{LI_INIT_DISCOUNT}</td>
+				<td class="hidden-phone">{LI_INIT_TOTAL}</td>
+				<td>{LI_INIT_TOTAL_INCLUSIVE}</td>
+				{RECURRING_ROWS}
+				<td>{LI_TAX_RATE}%</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+	<patTemplate:tmpl name="immediate_pay" type="simpleCondition" requiredVars="IMMEDIATE">
+		<div class="alert align-center">
+			<p>{IMMEDIATE}</p>
+			<a href="{JOMRES_SITEPAGE_URL}&task=immediatepay&id={INV_ID}"><img
+					src="{LIVESITE}/jomres/images/btn_paynowCC_LG.gif"/></a>
+		</div>
+	</patTemplate:tmpl>
+</patTemplate:tmpl>

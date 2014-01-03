@@ -1,0 +1,54 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script language="JavaScript" type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('list_rooms', '{PAGETITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<table class="table table-striped" id="list_rooms" width="100%">
+		<thead>
+		<tr>
+			<th>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK}</th>
+			<th>{_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS}</th>
+			<th class="hidden-phone">{_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME}</th>
+			<th>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER}</th>
+			<th class="hidden-phone">{_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR}</th>
+			<th class="hidden-phone">{_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS}</th>
+			<th>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE}</th>
+			<th class="hidden-phone">{_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING}</th>
+			<th class="hidden-phone"></th>
+			<th class="hidden-phone"></th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="room_type">
+			<tr>
+				<td>
+					<div class="btn-group">
+						<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+							<i class="icon-edit"></i>
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+							<li><a tabindex="-1" href="{EDIT_URL}">{COMMON_EDIT}</a></li>
+							<li><a tabindex="-1" href="{COPY_URL}">{COMMON_COPY}</a></li>
+						</ul>
+					</div>
+				</td>
+				<td>{ROOM_TYPE}</td>
+				<td class="hidden-phone">{ROOM_NAME}</td>
+				<td>{ROOM_NUMBER}</td>
+				<td class="hidden-phone">{ROOM_FLOOR}</td>
+				<td class="hidden-phone">{DISABLED_ACCESS}</td>
+				<td>{MAX_PEOPLE}</td>
+				<td class="hidden-phone">{SMOKING}</td>
+				<td class="hidden-phone">
+					<small>{ROOM_FEATURES}</small>
+				</td>
+				<td class="hidden-phone"><img src="{ROOM_IMAGE}" class="thumbnail"/></td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+</patTemplate:tmpl>

@@ -1,0 +1,290 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style>
+	.REmail {
+		border:solid 1px {INPUTBOXERRORBORDER};
+		background-color: {INPUTBOXERRORBACKGROUND};
+		}
+
+	span.required {
+		color: red;
+	}
+</style>
+
+<script type="text/javascript">
+	<!--
+	function validatePropertyRegistration() {
+		valid = true;
+		missingfields = "";
+		document.regForm.property_name.className = "inputbox";
+		document.regForm.property_street.className = "inputbox";
+		document.regForm.property_town.className = "inputbox";
+		document.regForm.property_postcode.className = "inputbox";
+		document.regForm.property_tel.className = "inputbox";
+		document.regForm.property_email.className = "inputbox";
+		document.regForm.property_description.className = "inputbox";
+		if (document.regForm.property_name.value == "") {
+			document.regForm.property_name.className = "REmail";
+			valid = false;
+		}
+		if (document.regForm.property_street.value == "") {
+			document.regForm.property_street.className = "REmail";
+			valid = false;
+		}
+		if (document.regForm.property_town.value == "") {
+			document.regForm.property_town.className = "REmail";
+			valid = false;
+		}
+		if (document.regForm.property_postcode.value == "") {
+			document.regForm.property_postcode.className = "REmail";
+			valid = false;
+		}
+		if (document.regForm.property_tel.value == "") {
+			document.regForm.property_tel.className = "REmail";
+			valid = false;
+		}
+
+
+		var emailID = document.regForm.property_email
+		if ((emailID.value == null) || (emailID.value == "")) {
+			document.regForm.property_email.className = "REmail";
+			emailID.focus()
+			valid = false;
+		}
+		else {
+			if (echeck(emailID.value) == false) {
+				document.regForm.property_email.className = "REmail";
+				emailID.value = ""
+				emailID.focus()
+				valid = false;
+			}
+		}
+		if (valid) {
+			document.regForm.action = "{JOMRES_SITEPAGE_URL}&task=saveRegisterProp"
+			document.regForm.submit();
+		}
+		else {
+			alert("{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2_BUTTON}");
+		}
+	}
+	/**
+	 * DHTML email validation script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
+	 */
+	function echeck(str) {
+		var at = "@"
+		var dot = "."
+		var lat = str.indexOf(at)
+		var lstr = str.length
+		var ldot = str.indexOf(dot)
+		if (str.indexOf(at) == -1) {
+			alert("Invalid E-mail ID")
+			return false
+		}
+		if (str.indexOf(at) == -1 || str.indexOf(at) == 0 || str.indexOf(at) == lstr) {
+			alert("Invalid E-mail ID");
+			return false;
+		}
+		if (str.indexOf(dot) == -1 || str.indexOf(dot) == 0 || str.indexOf(dot) == lstr) {
+			alert("Invalid E-mail ID")
+			return false
+		}
+		if (str.indexOf(at, (lat + 1)) != -1) {
+			alert("Invalid E-mail ID")
+			return false
+		}
+		if (str.substring(lat - 1, lat) == dot || str.substring(lat + 1, lat + 2) == dot) {
+			alert("Invalid E-mail ID")
+			return false
+		}
+		if (str.indexOf(dot, (lat + 2)) == -1) {
+			alert("Invalid E-mail ID")
+			return false
+		}
+		if (str.indexOf(" ") != -1) {
+			alert("Invalid E-mail ID")
+			return false
+		}
+		return true
+	}
+
+	jomresJquery(document).ready(function () {
+		var select = '#mySelect';
+		jomresJquery(select).attr('selectedIndex', '-1');
+		jomresJquery(select).change(function () {
+			jomresJquery(select + ' option').each(function () {
+				jomresJquery('#' + this.value).hide();
+			});
+			jomresJquery(select + ' option:selected').each(function () {
+				jomresJquery('#' + this.value).show();
+			});
+		}).change();
+	});
+	//-->
+</script>
+<div id="tour_target_registration_2"></div>
+<h2 class="page-header">{_JOMRES_REGISTRATION_STEP_2_OF_2}</h2>
+
+<p>{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1} {JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2}</p>
+
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm" class="form-horizontal">
+	<fieldset>
+		<div class="control-group"><div id="tour_target_registration_2_mrpsrp"></div>
+			<label class="control-label" for="mrpsrp"><!--{ISTHISANMRP}-->MRP/SRP</label>
+
+			<div class="controls">
+				{ISTHISANMRP_DROPDOWN}<span class="add-on"></span>
+			</div>
+		</div>
+		<div class="control-group warning">
+			<label class="control-label" for="property_name">{HNAME}</label><div id="tour_target_registration_2_name_address"></div>
+
+			<div class="controls">
+				<input id="property_name" name="property_name" type="text" size="20" value="{PROPERTY_NAME}"/>
+			</div>
+		</div>
+		<div class="control-group warning">
+			<label class="control-label" for="property_street">{HSTREET}</label>
+
+			<div class="controls">
+				<input id="property_street" name="property_street" type="text" size="20" value="{PROPERTY_STREET}"/>
+			</div>
+		</div>
+		<div class="control-group warning">
+			<label class="control-label" for="property_town">{HTOWN}</label>
+
+			<div class="controls">
+				<input id="property_town" name="property_town" type="text" size="20" value="{PROPERTY_TOWN}"/>
+			</div>
+		</div>
+		<div class="control-group warning">
+			<label class="control-label" for="property_postcode">{HPOSTCODE}</label>
+
+			<div class="controls">
+				<input id="property_postcode" name="property_postcode" type="text" size="20"
+					   value="{PROPERTY_POSTCODE}"/>
+			</div>
+		</div>
+		<div class="control-group warning">
+			<label class="control-label" for="property_tel">{HTELEPHONE}</label>
+
+			<div class="controls">
+				<input id="property_tel" name="property_tel" type="text" size="20" value="{PROPERTY_TEL}"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="property_fax">{HFAX}</label>
+
+			<div class="controls">
+				<input id="property_fax" name="property_fax" type="text" value="{PROPERTY_FAX}"/>
+			</div>
+		</div>
+		<div class="control-group warning">
+			<label class="control-label" for="property_email">{HEMAIL}</label>
+
+			<div class="controls">
+				<input id="property_email" name="property_email" type="text" size="20" value="{PROPERTY_EMAIL}"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="stars">{HSTARS}</label><div id="tour_target_registration_2_stars"></div>
+
+			<div class="controls">
+				{STARSDROPDOWN}
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="lat">Lat: (nn.nnnn)</label>
+
+			<div class="controls">
+				<input id="lat" name="lat" type="text" size="20" value="{LAT}"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="long">Long: (nn.nnnn)</label>
+
+			<div class="controls">
+				<input id="lng" name="long" type="text" size="20" value="{LONG}"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="firstname">{LATLONG_DESC}</label><div id="tour_target_registration_2_latlong"></div>
+
+			<div class="controls">
+				{MAP}
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="pid">{HFEATURES}</label><div id="tour_target_registration_2_features"></div>
+
+			<div class="controls">
+				<patTemplate:tmpl name="globalPfeatures">
+					<div style="float:left;">
+						<label class="checkbox">
+							<input type="checkbox" name="pid[]" value="{PID}" style="float:left;"> {FEATURE}
+						</label>
+					</div>
+				</patTemplate:tmpl>
+			</div>
+		</div>
+		<div class="control-group warning">
+			<label class="control-label" for="property_description">{HPROPDESCRIPTION}</label><div id="tour_target_registration_2_description"></div>
+
+			<div class="controls">
+				{PROPERTY_DESCRIPTION}
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="property_checkin_times">{HCHECKINTIMES}</label>
+
+			<div class="controls">
+				{PROPERTY_CHECKIN_TIMES}
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="property_area_activities">{HAREAACTIVITIES}</label>
+
+			<div class="controls">
+				{PROPERTY_AREA_ACTIVITIES}
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="property_driving_directions">{HDRIVINGDIRECTIONS}</label>
+
+			<div class="controls">
+				{PROPERTY_DRIVING_DIRECTIONS}
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="property_airports">{HAIRPORTS}</label>
+
+			<div class="controls">
+				{PROPERTY_AIRPORTS}
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="property_othertransport">{HOTHERTRANSPORT}</label>
+
+			<div class="controls">
+				{PROPERTY_OTHERTRANSPORT}
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="property_policies_disclaimers">{HPOLICIESDISCLAIMERS}</label><div id="tour_target_registration_2_policies"></div>
+
+			<div class="controls">
+				{PROPERTY_POLICIES_DISCLAIMERS}
+			</div>
+		</div>
+		<div class="form-actions">
+			<div class="">
+				<a href="{JOMRES_SITEPAGE_URL}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
+				<button type="button" class="btn btn-primary" onclick="validatePropertyRegistration();">
+					{_JOMRES_REVIEWS_SUBMIT} <i class="icon-arrow-right icon-white"></i></button>
+			</div>
+		</div>
+		<input type="hidden" name="propertyType" value="{PROPERTYTYPE}"/>
+		<input type="hidden" name="property_region" value="{PROPERTY_REGION}"/>
+		<input type="hidden" name="property_country" value="{PROPERTY_COUNTRY}"/>
+		<input type="hidden" name="no_html" value="1"/>
+	</fieldset>
+</form>
+</patTemplate:tmpl>

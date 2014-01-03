@@ -1,0 +1,42 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('list_crates', '{PAGETITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+		{JOMRESTOOLBAR}
+		<table id="list_crates" class="table table-striped" width="100%">
+			<thead>
+			<tr>
+				<th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});"/>
+				</th>
+				<th>&nbsp;</th>
+				<th>{HTITLE}</th>
+				<th class="hidden-phone">{HTYPE}</th>
+				<th class="hidden-phone">{HVALUE}</th>
+				<th class="hidden-phone">{HCURRENCYCODE}</th>
+			</tr>
+			</thead>
+			<tbody>
+			<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="title">
+				<tr class="{STYLE}">
+					<td>{CHECKBOX}</td>
+					<td>{EDITLINK}</td>
+					<td>{TITLE}</td>
+					<td class="hidden-phone">{TYPE}</td>
+					<td class="hidden-phone">{VALUE}</td>
+					<td class="hidden-phone">{CURRENCYCODE}</td>
+				</tr>
+			</patTemplate:tmpl>
+			</tbody>
+		</table>
+		<input type="hidden" name="option" value="com_jomres"/>
+		<input type="hidden" name="task" value="editcrate"/>
+		<input type="hidden" name="boxchecked" value="0">
+	</form>
+</patTemplate:tmpl>

@@ -194,6 +194,14 @@ function showSiteConfig()
 	$navbar_location[ ]       = jomresHTML::makeOption( 'navbar-fixed-bottom', jr_gettext( _JOMRES_BOOTSTRAP_LOCATION_BOTTOM, '_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', false ) );
 	$navbar_location_dropdown = jomresHTML::selectList( $navbar_location, 'cfg_navbar_location', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'navbar_location' ] );
 	
+	if (!isset($jrConfig[ 'bootstrap_version' ]))
+		$jrConfig[ 'bootstrap_version' ] = "";
+			
+	$bootstrap_ver_opt        = array ();
+	$bootstrap_ver_opt[ ]       = jomresHTML::makeOption( '', "Bootstrap 2" );
+	$bootstrap_ver_opt[ ]       = jomresHTML::makeOption( '3', "Bootstrap 3" );
+	$bootstrap_ver_dropdown = jomresHTML::selectList( $bootstrap_ver_opt, 'cfg_bootstrap_version', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'bootstrap_version' ], false );
+	
 	
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	$MiniComponents->triggerEvent( '01004', $componentArgs ); // optional
@@ -341,7 +349,8 @@ function showSiteConfig()
 		$layouts, 
 		$mapWeatherTempGradDropdownList,
 		$production_development_dropdown ,
-		$navbar_location_dropdown
+		$navbar_location_dropdown,
+		$bootstrap_ver_dropdown
 		);
 	}
 

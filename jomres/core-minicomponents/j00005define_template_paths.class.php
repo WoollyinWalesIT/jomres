@@ -27,24 +27,46 @@ class j00005define_template_paths
 
 			return;
 			}
-
+		
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+		if (!isset($jrConfig[ 'bootstrap_version' ]))
+			$jrConfig[ 'bootstrap_version' ] = "";
+		
 		if ( !defined( 'JOMRES_TEMPLATEPATH_FRONTEND' ) )
 			{
-			if ( !using_bootstrap() ) define( 'JOMRES_TEMPLATEPATH_FRONTEND', JOMRESPATH_BASE . JRDS . "templates" . JRDS . "jquery_ui" . JRDS . "frontend" );
+			if ( !using_bootstrap() ) 
+				{
+				define( 'JOMRES_TEMPLATEPATH_FRONTEND', JOMRESPATH_BASE . JRDS . "templates" . JRDS . "jquery_ui" . JRDS . "frontend" );
+				}
 			else
-			define( 'JOMRES_TEMPLATEPATH_FRONTEND', JOMRESPATH_BASE . JRDS . "templates" . JRDS . "bootstrap" . JRDS . "frontend" );
+				{
+				define( 'JOMRES_TEMPLATEPATH_FRONTEND', JOMRESPATH_BASE . JRDS . "templates" . JRDS . "bootstrap".$jrConfig[ 'bootstrap_version' ] . JRDS . "frontend" );
+				}
 			}
+		
 		if ( !defined( 'JOMRES_TEMPLATEPATH_BACKEND' ) )
 			{
-			if ( !using_bootstrap() ) define( 'JOMRES_TEMPLATEPATH_BACKEND', JOMRESPATH_BASE . JRDS . "templates" . JRDS . "jquery_ui" . JRDS . "backend" );
+			if ( !using_bootstrap() ) 
+				{
+				define( 'JOMRES_TEMPLATEPATH_BACKEND', JOMRESPATH_BASE . JRDS . "templates" . JRDS . "jquery_ui" . JRDS . "backend" );
+				}
 			else
-			define( 'JOMRES_TEMPLATEPATH_BACKEND', JOMRESPATH_BASE . JRDS . "templates" . JRDS . "bootstrap" . JRDS . "backend" );
+				{
+				define( 'JOMRES_TEMPLATEPATH_BACKEND', JOMRESPATH_BASE . JRDS . "templates" . JRDS . "bootstrap".$jrConfig[ 'bootstrap_version' ] . JRDS . "backend" );
+				}
 			}
+		
 		if ( !defined( 'JOMRES_TEMPLATEPATH_ADMINISTRATOR' ) )
 			{
-			if ( !using_bootstrap() ) define( 'JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE . JRDS . "templates" . JRDS . "jquery_ui" . JRDS . "administrator" );
+			if ( !using_bootstrap() ) 
+				{
+				define( 'JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE . JRDS . "templates" . JRDS . "jquery_ui" . JRDS . "administrator" );
+				}
 			else
-			define( 'JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE . JRDS . "templates" . JRDS . "bootstrap" . JRDS . "administrator" );
+				{
+				define( 'JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE . JRDS . "templates" . JRDS . "bootstrap" . JRDS . "administrator" );
+				}
 			}
 		}
 

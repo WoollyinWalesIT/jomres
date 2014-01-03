@@ -1,0 +1,39 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+	<script language="JavaScript" type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('admin_list_ptypes', '{PAGETITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+		{JOMRESTOOLBAR}
+		<table id="admin_list_ptypes" class="table table-striped" width="100%">
+			<thead>
+			<tr>
+				<th width="1%"></th>
+				<th></th>
+				<th>ID</th>
+				<th>{HPTYPE}</th>
+				<th class="hidden-phone">{HPTYPE_DESC}</th>
+			</tr>
+			</thead>
+			<tbody>
+			<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="id">
+				<tr>
+					<td><input type="checkbox" id="cb{COUNTER}" name="idarray[]" value="{ID}" onClick="jomres_isChecked(this.checked);"></td>
+					<td><a href="{PUBLISHURL}"><img src="{PUBLISHIMAGE}" border="0" alt="image"/></a> <a href="{EDITURL}">{EDITICON}</a></td>
+					<td>{ID}</td>
+					<td>{PTYPE}</td>
+					<td class="hidden-phone">{PTYPEDESC}</td>
+				</tr>
+			</patTemplate:tmpl>
+			</tbody>
+		</table>
+		<input type="hidden" name="option" value="com_jomres"/>
+		<input type="hidden" name="task" value="save_ptype_order"/>
+		<input type="hidden" name="boxchecked" value="0">
+	</form>
+</patTemplate:tmpl>

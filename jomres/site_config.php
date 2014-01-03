@@ -272,3 +272,5 @@ $jrConfig[ 'development_production' ] = "production";
 $jrConfig[ 'useArrayCaching' ]        = "0";
 $jrConfig[ 'navbar_location' ]        = "component_area";
 $jrConfig[ 'navbar_inverse' ]         = 0;
+
+$jrConfig[ 'bootstrap_version' ]         = "";
