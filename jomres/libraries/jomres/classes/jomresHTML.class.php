@@ -68,7 +68,7 @@ class jomresHTML
 			$attribs = str_replace( 'class="inputbox"', "", $attribs );
 			$attribs = str_replace( 'class="input-medium"', "", $attribs );
 
-			$attribs .= ' class="input-medium" ';
+			$attribs .= ' class="input-medium form-control" ';
 
 			$output = '<select name="' . $name . '" id="' . $name . '" ' . $attribs . '>';
 			for ( $i = 0, $n = count( $arr ); $i < $n; $i++ )
