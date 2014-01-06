@@ -1,13 +1,13 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<div title="{PROPERTY_NAME}" class="clearfix">
-		<div class="row-fluid">
+		<div class="row">
 			<div class="well clearfix">
-				<div class="span6">
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 					<div title="{PROPERTY_NAME}_map">
 						{MAP}
 					</div>
 				</div>
-				<div class="span6">
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 					<div>{STARSIMAGES} {SUPERIOR}</div>
 					<p>
 						<strong>{_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS} </strong>{PROPERTY_STREET},
@@ -37,7 +37,6 @@
 		<!--<a href="{MOREINFORMATIONLINK}" class="thumbnail pull-left"><img src = "{PROPERTY_IMAGE_LARGE}" align="left"/></a>-->
 		<p>{PROPERTY_DESCRIPTION}</p>
 
-		<div class="clearfix"></div>
 		<p class="well">{PRICE_PRE_TEXT}{PRICE_PRICE}{PRICE_POST_TEXT}</p>
 
 		<p align="center"><a href="{MOREINFORMATIONLINK}" class="btn btn-primary btn-large">{MOREINFORMATION}</a></p>

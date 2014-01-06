@@ -1,7 +1,7 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<div class="page-header">
-		<div class="row-fluid">
-			<div class="span10">
+		<div class="row">
+			<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
 				<h1 id="tour_target_property_header">{PROPERTY_NAME}&nbsp;{STARS} {SUPERIOR}</h1>
 				<address>
 				<span itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
@@ -10,13 +10,13 @@
 					<span itemprop="region">{REGION}</span>, 
 					<span itemprop="postal-code">{POSTCODE}</span>, 
 					<span itemprop="country_name">{COUNTRY}</span><br/>
-					<span class="hidden-phone">
-						{HTELEPHONE}<span>{TELEPHONE}</span>,
+					<span class="hidden-xs">
+						<span class="glyphicon glyphicon-phone-alt"></span> {HTELEPHONE}<span>{TELEPHONE}</span>,
 						{HFAX}{FAX}
 					</span>
-					<span class="hidden-tablet hidden-desktop">
+					<span class="hidden-sm hidden-md hidden-lg">
 						<br/>
-						<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="icon-mobile"></i>
+						<a href="tel:{TELEPHONE}" class="btn btn-success"><span class="glyphicon glyphicon-phone-alt"></span> 
 							{JOMRES_TAPTOCALL} {TELEPHONE}</a>
 					</span>
 				</span>
@@ -29,8 +29,8 @@
 				<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">{FEATURE}</patTemplate:tmpl>
 				-->
 			</div>
-			<div class="span2">
-				<img src="{QR_CODE_MAP}" title="{_JOMRES_SCAN_FOR_DIRECTIONS}" align="qrcode"/>
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				<img src="{QR_CODE_MAP}" title="{_JOMRES_SCAN_FOR_DIRECTIONS}" align="qrcode" class="img-responsive"/>
 			</div>
 		</div>
 	</div>
