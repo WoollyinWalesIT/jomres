@@ -1,10 +1,10 @@
 <patTemplate:tmpl name="header_pageoutput" unusedvars="strip">
 	<div class="jomres-propertylist-toolbar well">
-		<div class="row-fluid">
-			<div class="span5">
+		<div class="row">
+			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
 				{ORDER_DROPDOWN}
 			</div>
-			<div class="span2 hidden-phone">
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 				<div class="btn-group">
 					<button class="btn">{COMMON_VIEW}</button>
 					<button class="btn dropdown-toggle" data-toggle="dropdown">
@@ -17,7 +17,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="span5 hidden-phone" align="right">
+			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" align="right">
 				<patTemplate:tmpl name="shortlist" type="simpleCondition" requiredVars="_jomres_viewshortlist">
 					<a href="{SHORTLISTLINK}" class="btn">{_JOMRES_VIEWSHORTLIST}</a>
 				</patTemplate:tmpl>

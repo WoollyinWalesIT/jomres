@@ -154,7 +154,12 @@ function bind_data_toggle() {
 				jomresJquery('#module_' + random_identifier + '_popup').html(loader);
 				e.preventDefault();
 				jomresJquery.get(module_pop_ajax_url + property_uid, function (data) {
-					result = '<div class="modal-header"><button type="button" class="close" data-dismiss="modal">x</button><h4>' + property_name + '</h4></div><div class="modal-body">' + data + '</div>';
+					if (jomres_template_version = "bootstrap3"){
+						result = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">x</button><h4>' + property_name + '</h4></div><div class="modal-body">' + data + '</div></div></div>';
+						}
+					else {
+						result = '<div class="modal-header"><button type="button" class="close" data-dismiss="modal">x</button><h4>' + property_name + '</h4></div><div class="modal-body">' + data + '</div>';
+						}
 					jomresJquery('#module_' + random_identifier + '_popup').html(result);
 					jomresJquery(".jomres_bt_tooltip_features").tipsy({html: true, fade: true, gravity: 'sw', delayOut: 100});
 				});
@@ -232,6 +237,7 @@ function quick_info(uid) {
 	var selectedEffect = "slide";
 	var options = {};
 	jomresJquery("#effect" + uid).toggle(selectedEffect, options, 500);
+	jomresJquery("#effect" + uid).removeClass('hide');
 	return false;
 };
 

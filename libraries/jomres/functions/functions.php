@@ -14,6 +14,26 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+
+function find_plugin_template_directory()
+	{
+	$template_dir = "jquery_ui";
+	if ( using_bootstrap())
+		{
+		$template_dir = "bootstrap";
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+		if (!isset($jrConfig[ 'bootstrap_version' ]))
+			$jrConfig[ 'bootstrap_version' ] = "";
+		
+		if ($jrConfig[ 'bootstrap_version' ] != "")
+			{
+			$template_dir = $template_dir.$jrConfig[ 'bootstrap_version' ];
+			}
+		}
+	return $template_dir;
+	}
+
 function findDateRangeForDates( $d1, $d2 )
 	{
 	$days            = (int) findDaysForDates( $d1, $d2 );
