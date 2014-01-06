@@ -36,6 +36,9 @@ class jomres_custom_template_handler
 			{
 			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 			$jrConfig   = $siteConfig->get();
+			if (!isset($jrConfig[ 'bootstrap_version' ]))
+				$jrConfig[ 'bootstrap_version' ] = "";
+			
 			if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" ) $this->using_bootstrap = true;
 			else
 				{
@@ -44,7 +47,7 @@ class jomres_custom_template_handler
 				$this->using_bootstrap = false;
 				}
 
-			if ( $this->using_bootstrap ) $this->default_template_files_folder = JOMRESPATH_BASE . JRDS . 'templates' . JRDS . 'bootstrap' . JRDS . 'frontend';
+			if ( $this->using_bootstrap ) $this->default_template_files_folder = JOMRESPATH_BASE . JRDS . 'templates' . JRDS . 'bootstrap'.$jrConfig[ 'bootstrap_version' ] . JRDS . 'frontend';
 			else
 			$this->default_template_files_folder = JOMRESPATH_BASE . JRDS . 'templates' . JRDS . 'jquery_ui' . JRDS . 'frontend';
 			}
