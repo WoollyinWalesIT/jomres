@@ -211,7 +211,7 @@ class jomres_language
 		else
 		$lang = $this->lang;
 
-		$dropdown = jomresHTML::selectList( $langfile_options, $input_name, 'class="inputbox" size="1" ' . $javascript . '', 'value', 'text', $lang );
+		$dropdown = jomresHTML::selectList( $langfile_options, $input_name, 'class="inputbox navbar-form" size="1" ' . $javascript . '', 'value', 'text', $lang );
 
 		$selecthtml = '';
 		if ( !$config_option ) $selecthtml = '<form action="" method="post" name="jomreslang">';
