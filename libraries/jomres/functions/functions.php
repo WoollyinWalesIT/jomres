@@ -2174,7 +2174,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 		foreach ( $attachments as $attachment )
 			{
 			switch ( $attachment[ 'type' ] ) // Use a switch as it allows us to expand this later if we wish
-			{
+				{
 				case 'image':
 					$image_arr = explode(JRDS,$attachment[ 'image_path' ]);
 					$image_name = $image_arr [ count($image_arr)-1 ] ;
@@ -2182,7 +2182,18 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 					$cid        = $attachment[ 'CID' ];
 					$mail->AddEmbeddedImage( $image_path, $cid, $image_name );
 					break;
-			}
+				case 'pdf':
+					$path = $attachment[ 'path' ];
+					$name = $attachment[ 'filename' ];
+					$mail->AddAttachment( $path, $name, 'base64', $type = 'application/pdf' );
+					break;
+				default:
+					$path = $attachment[ 'path' ];
+					$name = $attachment[ 'filename' ];
+					$type = $attachment['type'];
+					$mail->AddAttachment( $path, $name, 'base64', $type);
+					break;
+				}
 			}
 		}
 
