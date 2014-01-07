@@ -173,7 +173,6 @@ class j06001list_bookings_ajax
 						a.cancelled, 
 						a.invoice_uid,
 						a.property_uid,
-						a.channel_manager_booking,
 						b.firstname, 
 						b.surname, 
 						b.tel_landline, 
@@ -277,9 +276,8 @@ class j06001list_bookings_ajax
 						}
 					if ( $p->deposit_paid == 0 && $p->bookedout == 0 && $p->cancelled == 0)
 						$toolbar->addSecondaryItem( 'icon-cart', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editDeposit&contractUid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE, false ) );
-					if ( $p->booked_in == 0 && $p->channel_manager_booking != "1" )
+					if ( $p->booked_in == 0 )
 						$toolbar->addSecondaryItem( 'icon-cancel', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=cancelBooking&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', _JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING, false ) );
-					
 					}
 				elseif( $p->cancelled == 1 )
 					{
