@@ -2435,3 +2435,12 @@ jr_define( "_JOMRES_BOOTSTRAP_LOCATION_INVERSE", "Inverted navbar (colour change
 jr_define( "_JOMRES_BOOKING_NUMBER", "Booking number" );
 
 jr_define('_JOMRES_HSTATUS_SHOW_GUESTS_FOR' , "Show guests for" );
+
+jr_define('_JOMRES_BOOTSTRAP_VERSION' , "Bootstrap version" );
+jr_define('_JOMRES_BOOTSTRAP_VERSION_DESC' , "Currently only applies to the frontend. This option allows you to choose whether or not to use Jomres templates that are compatible with Bootstrap 2 or Bootstrap 3. Unless you are sure that your template works with Bootstrap 3 then we recommend you leave this set to Bootstrap 2." );
+
+jr_define('_JOMRES_HSTATUS_SHOW_GUESTS_FOR' , "Show guests for" );
+jr_define('_JOMRES_HFIXED_PERIODS' , "Fixed periods" );
+jr_define('_JOMRES_HDEPOSITS' , "Deposits" );
+jr_define('_JOMRES_HBOOKING_FORM' , "Booking form" );
+jr_define('_JOMRES_HREQUIRED_FIELDS' , "Required fields" );
