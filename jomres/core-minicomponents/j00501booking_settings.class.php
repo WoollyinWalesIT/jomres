@@ -101,7 +101,7 @@ class j00501booking_settings
 				// $configurationPanel->insertSetting();
 	
 				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_WHOLEDAY", _JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_WHOLEDAY, false ) );
-				$configurationPanel->setmiddle( '<input type="text" class="inputbox" name="cfg_mindaysbeforearrival" size="5" value="' . $mrConfig[ 'mindaysbeforearrival' ] . '" />' );
+				$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control" name="cfg_mindaysbeforearrival" size="5" value="' . $mrConfig[ 'mindaysbeforearrival' ] . '" />' );
 				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC_WHOLEDAY", _JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC_WHOLEDAY, false ) );
 				$configurationPanel->insertSetting();
 				}
@@ -114,18 +114,18 @@ class j00501booking_settings
 				$configurationPanel->insertSetting();
 	
 				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_MINIMUMINTERVAL", _JOMRES_COM_A_MINIMUMINTERVAL, false ) );
-				$configurationPanel->setmiddle( '<input type="text" class="inputbox" name="cfg_minimuminterval" size="5" value="' . $mrConfig[ 'minimuminterval' ] . '" />' );
+				$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control" name="cfg_minimuminterval" size="5" value="' . $mrConfig[ 'minimuminterval' ] . '" />' );
 				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_MINIMUMINTERVAL_DESC", _JOMRES_COM_A_MINIMUMINTERVAL_DESC, false ) );
 				$configurationPanel->insertSetting();
 	
 				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING", _JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING, false ) );
-				$configurationPanel->setmiddle( '<input type="text" class="inputbox" name="cfg_mindaysbeforearrival" size="5" value="' . $mrConfig[ 'mindaysbeforearrival' ] . '" />' );
+				$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control" name="cfg_mindaysbeforearrival" size="5" value="' . $mrConfig[ 'mindaysbeforearrival' ] . '" />' );
 				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC", _JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC, false ) );
 				$configurationPanel->insertSetting();
 				}
 	
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE", _JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE, false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="inputbox" name="cfg_defaultNumberOfFirstGuesttype" size="5" value="' . $mrConfig[ 'defaultNumberOfFirstGuesttype' ] . '" />' );
+			$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control" name="cfg_defaultNumberOfFirstGuesttype" size="5" value="' . $mrConfig[ 'defaultNumberOfFirstGuesttype' ] . '" />' );
 			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC", _JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC, false ) );
 			$configurationPanel->insertSetting();
 	
@@ -139,7 +139,7 @@ class j00501booking_settings
 				$configurationPanel->insertSetting();
 	
 				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS", _JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS, false ) );
-				$configurationPanel->setmiddle( '<input type="text" class="inputbox" size="5" name="cfg_advanceBookingsLimit" value="' . $mrConfig[ 'advanceBookingsLimit' ] . '">' );
+				$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control" size="5" name="cfg_advanceBookingsLimit" value="' . $mrConfig[ 'advanceBookingsLimit' ] . '">' );
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();
 				}
@@ -180,12 +180,12 @@ class j00501booking_settings
 				}
 	
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_FIXEDPERIOD", _JOMRES_COM_A_FIXEDPERIOD, false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="inputbox"  size="5" name="cfg_fixedPeriodBookingsNumberOfDays" value="' . $mrConfig[ 'fixedPeriodBookingsNumberOfDays' ] . '" />' );
+			$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control"  size="5" name="cfg_fixedPeriodBookingsNumberOfDays" value="' . $mrConfig[ 'fixedPeriodBookingsNumberOfDays' ] . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 	
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_FIXEDPERIOD_NUMBEROFPERIODS", _JOMRES_COM_A_FIXEDPERIOD_NUMBEROFPERIODS, false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="inputbox"  size="5" name="cfg_numberofFixedPeriods" value="' . $mrConfig[ 'numberofFixedPeriods' ] . '" />' );
+			$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control"  size="5" name="cfg_numberofFixedPeriods" value="' . $mrConfig[ 'numberofFixedPeriods' ] . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 	
@@ -195,7 +195,7 @@ class j00501booking_settings
 			$configurationPanel->insertSetting();
 	
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_FIXEDPERIOD_SHORTBREAK_DAYS", _JOMRES_COM_A_FIXEDPERIOD_SHORTBREAK_DAYS, false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="inputbox"  size="5" name="cfg_fixedPeriodBookingsShortNumberOfDays" value="' . $mrConfig[ 'fixedPeriodBookingsShortNumberOfDays' ] . '" />' );
+			$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control"  size="5" name="cfg_fixedPeriodBookingsShortNumberOfDays" value="' . $mrConfig[ 'fixedPeriodBookingsShortNumberOfDays' ] . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 	
@@ -269,7 +269,7 @@ class j00501booking_settings
 			$configurationPanel->insertSetting();
 
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_VALUE", _JOMRES_COM_A_DEPOSIT_VALUE, false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="inputbox"  size="5" name="cfg_depositValue" value="' . $mrConfig[ 'depositValue' ] . '" />' );
+			$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control"  size="5" name="cfg_depositValue" value="' . $mrConfig[ 'depositValue' ] . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 
@@ -281,7 +281,7 @@ class j00501booking_settings
 			$configurationPanel->insertSetting();
 
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS", _JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS, false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="inputbox"  size="5" name="cfg_variable_deposit_threashold" value="' . $mrConfig[ 'variable_deposit_threashold' ] . '" />' );
+			$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control"  size="5" name="cfg_variable_deposit_threashold" value="' . $mrConfig[ 'variable_deposit_threashold' ] . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 
