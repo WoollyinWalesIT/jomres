@@ -45,7 +45,6 @@ class j00501tariffs
 		$mrConfig           = getPropertySpecificSettings();
 
 		$lists                = $componentArgs[ 'lists' ];
-		$paymentAmounts       = $componentArgs[ 'paymentAmounts' ];
 		$tariffModelsDropdown = $componentArgs[ 'tariffModelsDropdown' ];
 
 		$this->outputConversionJavascript();
@@ -53,9 +52,21 @@ class j00501tariffs
 		$cformatdropdown = $currfmt->get_currency_format_dropdowninput();
 
 
-		if ( !isset( $mrConfig[ 'margin' ] ) || empty( $mrConfig[ 'margin' ] ) ) $mrConfig[ 'margin' ] = "0.00";
+		if ( !isset( $mrConfig[ 'margin' ] ) || empty( $mrConfig[ 'margin' ] ) ) 
+			$mrConfig[ 'margin' ] = "0.00";
 
 		$configurationPanel->startPanel( jr_gettext( "_JOMRES_COM_A_TARIFFS", _JOMRES_COM_A_TARIFFS, false ) );
+		
+		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && !get_showtime('is_jintour_property'))
+			{
+			if ( $mrConfig[ 'tariffmode' ] == "1" )
+				{
+				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFPRICESAREWEEKLY", _JOMRES_COM_A_TARIFFPRICESAREWEEKLY, false ) );
+				$configurationPanel->setmiddle( $lists[ 'tariffChargesStoredWeeklyYesNo' ] );
+				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC", _JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC, false ) );
+				$configurationPanel->insertSetting();
+				}
+			}
 
 		if ( $jrConfig[ 'useGlobalCurrency' ] != "1" )
 			{
@@ -81,10 +92,13 @@ class j00501tariffs
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();
 
-				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL", _JOMRES_COM_A_TARIFFS_MODEL, false ) );
-				$configurationPanel->setmiddle( $tariffModelsDropdown );
-				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL_DESC", _JOMRES_COM_A_TARIFFS_MODEL_DESC, false ) );
-				$configurationPanel->insertSetting();
+				if (!get_showtime('is_jintour_property'))
+					{
+					$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL", _JOMRES_COM_A_TARIFFS_MODEL, false ) );
+					$configurationPanel->setmiddle( $tariffModelsDropdown );
+					$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL_DESC", _JOMRES_COM_A_TARIFFS_MODEL_DESC, false ) );
+					$configurationPanel->insertSetting();
+					}
 				}
 
 			$configurationPanel->setleft( jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE", _JRPORTAL_INVOICES_LINEITEMS_TAX_RATE, false ) );
@@ -97,7 +111,6 @@ class j00501tariffs
 			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TAXINCLUSIVE_DESC", _JOMRES_COM_A_TAXINCLUSIVE_DESC, false ) );
 			$configurationPanel->insertSetting();
 			}
-
 
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
@@ -117,51 +130,6 @@ class j00501tariffs
 					$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TARIFFS_PER_DESC", _JOMRES_COM_A_TARIFFS_PER_DESC, false ) );
 					$configurationPanel->insertSetting();
 					}
-				}
-
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT", _JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT, false ) );
-			$configurationPanel->setmiddle( $lists[ 'chargeDepositYesNo' ] );
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST", _JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST, false ) );
-			$configurationPanel->setmiddle( $lists[ 'depositIsOneNight' ] );
-			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST_DESC", _JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST_DESC, false ) );
-			$configurationPanel->insertSetting();
-
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE", _JOMRES_COM_A_DEPOSIT_ISPERCENTAGE, false ) );
-			$configurationPanel->setmiddle( $lists[ 'depositIsPercentage' ] );
-			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC", _JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC, false ) );
-			$configurationPanel->insertSetting();
-
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_VALUE", _JOMRES_COM_A_DEPOSIT_VALUE, false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="inputbox"  size="5" name="cfg_depositValue" value="' . $mrConfig[ 'depositValue' ] . '" />' );
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE", _JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE, false ) );
-			$configurationPanel->setmiddle( $lists[ 'use_variable_deposits' ] );
-			if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC_WHOLEDAY", _JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC_WHOLEDAY, false ) );
-			else
-			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC", _JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC, false ) );
-			$configurationPanel->insertSetting();
-
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS", _JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS, false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="inputbox"  size="5" name="cfg_variable_deposit_threashold" value="' . $mrConfig[ 'variable_deposit_threashold' ] . '" />' );
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_CHARGING_CONFIG", _JOMRES_COM_CHARGING_CONFIG, false ) );
-			$configurationPanel->setmiddle( $paymentAmounts );
-			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_CHARGING_CONFIG_DESC", _JOMRES_COM_CHARGING_CONFIG_DESC, false ) );
-			$configurationPanel->insertSetting();
-
-			if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
-				{
-				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP", _JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP, false ) );
-				$configurationPanel->setmiddle( $lists[ 'roundupDepositYesNo' ] );
-				$configurationPanel->setright();
-				$configurationPanel->insertSetting();
 				}
 			}
 

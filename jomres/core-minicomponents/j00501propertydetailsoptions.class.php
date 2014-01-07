@@ -44,7 +44,17 @@ class j00501propertydetailsoptions
 		$jrConfig           = $siteConfig->get();
 		$mrConfig           = getPropertySpecificSettings();
 		$lists              = $componentArgs[ 'lists' ];
+		
+		if ( !isset( $mrConfig[ 'property_language' ] ) ) 
+			$mrConfig[ 'property_language' ] = "en-GB";
+		
 		$configurationPanel->startPanel( jr_gettext( "_JOMRES_PATHWAY_PROPERTYDETAILS", _JOMRES_PATHWAY_PROPERTYDETAILS, false ) );
+		
+		$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
+		$configurationPanel->setleft( jr_gettext( "_JOMRES_PROPERTY_LANG", _JOMRES_PROPERTY_LANG, false ) );
+		$configurationPanel->setmiddle( $jomreslang->get_languageselection_dropdown( true, $mrConfig[ 'property_language' ] ) );
+		$configurationPanel->setright( jr_gettext( "_JOMRES_PROPERTY_LANG_DESC", _JOMRES_PROPERTY_LANG_DESC, false ) );
+		$configurationPanel->insertSetting();
 
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
@@ -121,6 +131,15 @@ class j00501propertydetailsoptions
 
 				}
 			}
+		
+		if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
+			{
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_GALLERYLINK", _JOMRES_COM_A_GALLERYLINK, false ) );
+			$configurationPanel->setmiddle( '<input type="text" class="inputbox"  size="50" name="cfg_galleryLink" value="' . $mrConfig[ 'galleryLink' ] . '" />' );
+			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_GALLERYLINK_DESC", _JOMRES_COM_A_GALLERYLINK_DESC, false ) );
+			$configurationPanel->insertSetting();
+			}
+
 		$configurationPanel->endPanel();
 		}
 
