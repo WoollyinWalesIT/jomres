@@ -14,9 +14,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j03320business_settings
+class j06002save_business_settings
 	{
-	function j03320business_settings( $componentArgs )
+	function j06002save_business_settings( $componentArgs )
 		{
 
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
@@ -27,7 +27,7 @@ class j03320business_settings
 
 			return;
 			}
-		hotelSettings();
+		saveHotelSettings();
 		}
 
 	// This must be included in every Event/Mini-component

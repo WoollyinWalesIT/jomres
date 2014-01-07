@@ -14,7 +14,6 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-
 function find_plugin_template_directory()
 	{
 	$template_dir = "jquery_ui";
@@ -2969,7 +2968,7 @@ function hotelSettings()
 
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'saveHotelSettings' );
+			$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_business_settings' );
 			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "" ), '' );
 			$jrtb .= $jrtbar->endTable();
 			$output[ 'JOMRESTOOLBAR' ] = $jrtb;
@@ -2988,7 +2987,7 @@ function hotelSettings()
 
 			?>
 			<input type="hidden" name="no_html" value="1">
-			<input type="hidden" name="task" value="saveHotelSettings"/>
+			<input type="hidden" name="task" value="save_business_settings"/>
 			<input type="hidden" name="option" value="<?php echo $option; ?>"/>
 			<input type="hidden" name="cfg_version" value="<?php echo $mrConfig[ 'version' ]; ?>"/>
 			<input type="hidden" name="cfg_jomresdotnet" value="<?php echo $mrConfig[ 'jomresdotnet' ]; ?>"/>
@@ -3104,7 +3103,7 @@ function saveHotelSettings()
 		}
 	else
 		{
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=hotelSettings&property_uid=$property_uid" ), '' );
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=business_settings&property_uid=$property_uid" ), '' );
 		}
 	}
 

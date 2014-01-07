@@ -806,6 +806,14 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j02240listlivebookings.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j06001listlivebookings_ajax.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j00020tagsearch.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00501bookings1.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00501gallery.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00501odds.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00501required.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00501srps.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_03_propertyconfig.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j03320business_settings.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j03330save_business_settings.class.php' );
 		
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'ajax_switch_property.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'switch_property.html' );

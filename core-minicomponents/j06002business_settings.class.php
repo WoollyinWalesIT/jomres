@@ -9,28 +9,16 @@
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
+
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-/**
-#
- * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-#
- *
- * @package Jomres
-#
- */
-class j00011manager_option_03_propertyconfig
+class j06002business_settings
 	{
-
-	/**
-	#
-	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-	#
-	 */
-	function j00011manager_option_03_propertyconfig( $componentArgs )
+	function j06002business_settings( $componentArgs )
 		{
+
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )
@@ -39,14 +27,13 @@ class j00011manager_option_03_propertyconfig
 
 			return;
 			}
-		$this->cpanelButton = jomres_mainmenu_option( jomresURL( JOMRES_SITEPAGE_URL . '&task=hotelSettings' ), 'EditConfiguration.png', jr_gettext( '_JOMRES_COM_MR_GENERALCONFIGDESC', _JOMRES_COM_MR_GENERALCONFIGDESC, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS, false, false ) );
+		hotelSettings();
 		}
-
 
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return $this->cpanelButton;
+		return null;
 		}
 	}
 

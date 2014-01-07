@@ -551,7 +551,7 @@ if ( get_showtime( 'numberOfPropertiesInSystem' ) > 0 )
 			else
 			userHasBeenLoggedOut();
 			break;
-		#########################################################################################
+		/*#########################################################################################
 		case 'saveHotelSettings':
 			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '03330' );
 			else
@@ -562,7 +562,7 @@ if ( get_showtime( 'numberOfPropertiesInSystem' ) > 0 )
 			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '03320' );
 			else
 			userHasBeenLoggedOut();
-			break;
+			break;*/
 		#########################################################################################
 		case 'publishProperty':
 			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '03340' );
