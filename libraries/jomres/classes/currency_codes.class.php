@@ -57,8 +57,10 @@ class currency_codes
 		ksort( $this->codes );
 		foreach ( $this->codes as $k => $v )
 			{
-			if ( $conversion->this_code_can_be_converted( $k ) || ( $jrConfig[ 'useGlobalCurrency' ] == "0" && $jrConfig[ 'use_conversion_feature' ] == "0" ) ) $options[ ] = jomresHTML::makeOption( $k, $v );
-
+			if ( $conversion->this_code_can_be_converted( $k ) || ( $jrConfig[ 'useGlobalCurrency' ] == "0" && $jrConfig[ 'use_conversion_feature' ] == "0" ) ) 
+				{
+				$options[ ] = jomresHTML::makeOption( $k, $v );
+				}
 			}
 
 		return jomresHTML::selectList( $options, $this->input_name, 'class="inputbox" size="1"', 'value', 'text', $this->code );

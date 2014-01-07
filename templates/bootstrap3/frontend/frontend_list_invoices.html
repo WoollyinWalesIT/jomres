@@ -40,60 +40,44 @@
 <h5>{HLEGEND}</h5>
 <span class="label label-warning">{HPENDING}</span>
 <span class="label label-success">{HPAID}</span>
-<span class="label label-important">{HUNPAID}</span>
+<span class="label label-danger">{HUNPAID}</span>
 <span class="label label-inverse">{HCANCELLED}</span>
 
 <form action="{JOMRES_SITEPAGE_URL}&task=list_invoices&guest_id={GUEST_ID}" method="post" name="filterInvoices" class="form-horizontal">
-<div id="list_invoices_filters" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-		<h3 id="myModalLabel">{HFILTER}</h3>
-	</div>
-	<div class="modal-body">
-		<div class="control-group">
-			<div class="control-label">
-				{HSTART}
+<div id="list_invoices_filters" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+				<h3 id="myModalLabel">{HFILTER}</h3>
 			</div>
-			<div class="controls">
-				{START}
+			<div class="modal-body">
+				<div class="form-group">
+					<label class="control-label" for="startDate">{HSTART}</label>
+					{START}
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="endDate">{HEND}</label>
+					{END}
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="invoice_type">{HINVOICE_TYPE}</label>
+					{INVOICE_TYPE}
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="invoice_status">{HINVOICE_STATUS}</label>
+					{INVOICE_STATUS}
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="show_all">{HSHOW_ALL}</label>
+					{SHOW_ALL}
+				</div>
 			</div>
-		</div>
-		<div class="control-group">
-			<div class="control-label">
-				{HEND}
-			</div>
-			<div class="controls">
-				{END}
-			</div>
-		</div>
-		<div class="control-group">
-			<div class="control-label">
-				{HINVOICE_TYPE}
-			</div>
-			<div class="controls">
-				{INVOICE_TYPE}
-			</div>
-		</div>
-		<div class="control-group">
-			<div class="control-label">
-				{HINVOICE_STATUS}
-			</div>
-			<div class="controls">
-				{INVOICE_STATUS}
+			<div class="modal-footer">
+				<a class="btn" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</a>
+				<input type="submit" value="{HFILTER}" class="btn btn-primary" />
 			</div>
 		</div>
-		<div class="control-group">
-			<div class="control-label">
-				{HSHOW_ALL}
-			</div>
-			<div class="controls">
-				{SHOW_ALL}
-			</div>
-		</div>
-	</div>
-	<div class="modal-footer">
-		<a class="btn" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</a>
-		<input type="submit" value="{HFILTER}" class="btn btn-primary" />
 	</div>
 </div>
 <input type="hidden" name="task" value="list_invoices" />

@@ -28,9 +28,9 @@ class jomresItemToolbar
 		$title = str_replace( "&#39;", "\'", $title );
 
 		if ( $submitOnClick ) 
-			$item = '<a class="'.$buttonClass.'" href="javascript:jomres_submitbutton(\'' . $task . '\');" '.$otherParams.'><i class="'.$icon.'"></i> '.$title.'</a> ';
+			$item = '<a class="'.$buttonClass.' btn-sm" href="javascript:jomres_submitbutton(\'' . $task . '\');" '.$otherParams.'><i class="'.$icon.'"></i> '.$title.'</a> ';
 		else
-			$item = '<a class="'.$buttonClass.'" href="'.$link.'" '.$otherParams.'><i class="'.$icon.'"></i> '.$title.'</a> ';
+			$item = '<a class="'.$buttonClass.' btn-sm" href="'.$link.'" '.$otherParams.'><i class="'.$icon.'"></i> '.$title.'</a> ';
 		
 		$this->items[] = $item;
 
@@ -63,7 +63,10 @@ class jomresItemToolbar
 		
 		if (count($this->secondaryItems)>0)
 			{
-			$this->toolbar.='<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">'.jr_gettext( 'COMMON_MORE', COMMON_MORE, false ).' <span class="caret"></span></a><ul class="dropdown-menu">';
+			if (jomres_bootstrap_version() == "3")
+				$this->toolbar.='<a class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" href="#"> <span class="caret"></span></a><ul class="dropdown-menu">';
+			else
+				$this->toolbar.='<a class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" href="#">'.jr_gettext( 'COMMON_MORE', COMMON_MORE, false ).' <span class="caret"></span></a><ul class="dropdown-menu">';
 			foreach ($this->secondaryItems as $secondaryItem)
 				{
 				$this->toolbar.='<li>'.$secondaryItem.'</li>';

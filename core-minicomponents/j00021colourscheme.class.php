@@ -36,23 +36,33 @@ class j00021colourscheme
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
 			return;
 			}
-
+		
 		if ( !using_bootstrap() )
 			{
-			if ( file_exists( JOMRESPATH_BASE . JRDS . "temp" . JRDS . "jomrescss.css" ) ) jomres_cmsspecific_addheaddata( "css", 'jomres/temp/', "jomrescss.css" );
-			else
-			jomres_cmsspecific_addheaddata( "css", JOMRES_CSSRELPATH, "jomrescss.css" );
+			$css_file = "jomrescss.css";
 			}
 		else
 			{
-			if ( file_exists( JOMRESPATH_BASE . JRDS . "temp" . JRDS . "jomrescss_bootstrap.css" ) ) jomres_cmsspecific_addheaddata( "css", 'jomres/temp/', "jomrescss_bootstrap.css" );
+			if (jomres_bootstrap_version() == "bootstrap2")
+				{
+				$css_file = "jomrescss_bootstrap.css";
+				}
 			else
-			jomres_cmsspecific_addheaddata( "css", JOMRES_CSSRELPATH, "jomrescss_bootstrap.css" );
+				{
+				$css_file = "jomrescss_bootstrap3.css";
+				}
 			}
-
+			
+		if ( file_exists( JOMRESPATH_BASE . JRDS . "temp" . JRDS . $css_file ) ) 
+			{
+			jomres_cmsspecific_addheaddata( "css", 'jomres/temp/', $css_file );
+			}
+		else
+			{
+			jomres_cmsspecific_addheaddata( "css", JOMRES_CSSRELPATH, $css_file );
+			}
 		}
 
 	/**

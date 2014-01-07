@@ -42,7 +42,7 @@ class j00061bottomtemplate
 			<script>
 				(function($){
 					// Turn radios into btn-group
-					$(\'.radio.btn-group label\').addClass(\'btn\')
+					$(\'.radio.btn-group label\').addClass(\'btn btn-default\')
 					$(".btn-group label:not(.active)").click(function(){
 						var label = $(this);
 						var input = $(\'#\' + label.attr(\'for\'));

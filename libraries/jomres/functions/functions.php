@@ -14,6 +14,25 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function jomres_bootstrap_version()
+	{
+	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig   = $siteConfig->get();
+	if (!isset($jrConfig[ 'bootstrap_version' ]))
+		$jrConfig[ 'bootstrap_version' ] = "";
+	
+	if ($jrConfig[ 'bootstrap_version' ] == "")
+		{
+		$bootstrap_version = "bootstrap2";
+		}
+	else // Leaves us room to manouver in the future when newer versions are created
+		{
+		$bootstrap_version = $jrConfig[ 'bootstrap_version' ];
+		}
+		
+	return $bootstrap_version;
+	}
+
 function find_plugin_template_directory()
 	{
 	$template_dir = "jquery_ui";
@@ -27,7 +46,7 @@ function find_plugin_template_directory()
 		
 		if ($jrConfig[ 'bootstrap_version' ] != "")
 			{
-			$template_dir = $template_dir.$jrConfig[ 'bootstrap_version' ];
+			$template_dir = $template_dir.jomres_bootstrap_version();
 			}
 		}
 	return $template_dir;
@@ -2974,9 +2993,27 @@ function hotelSettings()
 			$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
 			echo '<div class="well">' . $output[ 'JOMRESTOOLBAR' ] . '</div>';
-
-			$configurationPanel = jomres_singleton_abstract::getInstance( 'jomres_configpanel' );
-
+			
+			if ( !using_bootstrap() )
+				{
+				$configurationPanel = jomres_singleton_abstract::getInstance( 'jomres_configpanel' );
+				}
+			else
+				{
+				$bs_version = jomres_bootstrap_version();
+				if ( $bs_version == "2")
+					{
+					$configurationPanel = jomres_singleton_abstract::getInstance( 'jomres_configpanel' );
+					}
+				elseif ($bs_version=="3")
+					{
+					$configurationPanel = jomres_singleton_abstract::getInstance( 'jomres_configpanel_bootstrap3' );
+					}
+				}
+			
+			
+			
+			
 			$componentArgs[ 'configurationPanel' ] = $configurationPanel;
 
 			$configurationPanel->startTabs();
@@ -3252,7 +3289,7 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 
 	});
 	</script>
-	<input type="text" ' . $size . ' name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" class="' . $input_class . '" />
+	<input type="text" ' . $size . ' name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" class="' . $input_class . ' form-control" />
 	';
 	$br = "";
 	if ( $fieldName == "departureDate" && $jrConfig[ 'use_cleardate_checkbox' ] == "1" ) $br = "<br/>";

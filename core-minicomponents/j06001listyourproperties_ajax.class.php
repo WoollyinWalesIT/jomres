@@ -208,7 +208,7 @@ class j06001listyourproperties_ajax
 					if ( $p->approved == 1 )
 						{
 						if ( !$p->published )
-							$toolbar->addItem( 'icon-cancel', 'btn', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty' . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', _JOMRES_COM_MR_VRCT_PUBLISH, false ) );
+							$toolbar->addItem( 'icon-cancel', 'btn btn-danger', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty' . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', _JOMRES_COM_MR_VRCT_PUBLISH, false ) );
 						else
 							$toolbar->addItem( 'icon-ok icon-white', 'btn btn-success', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty' . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_UNPUBLISH', _JOMRES_COM_MR_VRCT_UNPUBLISH, false ) );
 						}
