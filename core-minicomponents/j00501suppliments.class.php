@@ -57,7 +57,7 @@ class j00501suppliments
 			$configurationPanel->insertSetting();
 
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST", _JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST, false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="inputbox"  size="5" name="cfg_singlePersonSupplimentCost" value="' . $mrConfig[ 'singlePersonSupplimentCost' ] . '" />' );
+			$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control"  size="5" name="cfg_singlePersonSupplimentCost" value="' . $mrConfig[ 'singlePersonSupplimentCost' ] . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 

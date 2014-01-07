@@ -68,7 +68,7 @@ class j00501propertydetailsoptions
 			if ( $mrConfig[ 'showOnlyAvailabilityCalendar' ] == "1" )
 				{
 				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_MONTHSTOSHOW", _JOMRES_COM_MONTHSTOSHOW, false ) );
-				$configurationPanel->setmiddle( '<input type="text" class="inputbox" size="5" name="cfg_CalendarMonthsToShow" value="' . $mrConfig[ 'CalendarMonthsToShow' ] . '"/>' );
+				$configurationPanel->setmiddle( '<input type="number" class="inputbox" size="5" name="cfg_CalendarMonthsToShow" value="' . $mrConfig[ 'CalendarMonthsToShow' ] . '"/>' );
 				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_MONTHSTOSHOW_DESC", _JOMRES_COM_MONTHSTOSHOW_DESC, false ) );
 				$configurationPanel->insertSetting();
 
@@ -135,7 +135,7 @@ class j00501propertydetailsoptions
 		if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
 			{
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_GALLERYLINK", _JOMRES_COM_A_GALLERYLINK, false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="inputbox"  size="50" name="cfg_galleryLink" value="' . $mrConfig[ 'galleryLink' ] . '" />' );
+			$configurationPanel->setmiddle( '<input type="url" class="inputbox form-control"  size="50" name="cfg_galleryLink" value="' . $mrConfig[ 'galleryLink' ] . '" />' );
 			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_GALLERYLINK_DESC", _JOMRES_COM_A_GALLERYLINK_DESC, false ) );
 			$configurationPanel->insertSetting();
 			}
