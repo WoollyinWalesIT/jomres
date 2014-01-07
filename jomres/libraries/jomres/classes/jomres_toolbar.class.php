@@ -35,7 +35,16 @@ if ( !using_bootstrap() )
 	}
 else
 	{
-	jr_import( 'jomres_toolbar_bootstrap' );
+	$bs_version = jomres_bootstrap_version();
+	if ( $bs_version == "2")
+		{
+		jr_import( 'jomres_toolbar_bootstrap' );
+		}
+	elseif ($bs_version=="3")
+		{
+		jr_import( 'jomres_toolbar_bootstrap3' );
+		}
+
 	jr_import( 'jomresItemToolbar' );
 
 	class jomres_toolbar extends jomres_toolbar_bootstrap

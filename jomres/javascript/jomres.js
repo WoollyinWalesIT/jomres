@@ -45,9 +45,24 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 		showTableTools = showTools;
 
 	if (showTableTools)
-		sDomm = "<'row-fluid'<'span4'l><'span4'TC><'span4'f>>rt<'row-fluid'<'span4'i><'span8'p>>";
+		{
+		if (jomres_template_version = "bootstrap3"){
+			sDomm = "<'row'<'col-xs-4'l><'col-xs-4'TC><'col-xs-4'f>>rt<'row'<'col-xs-4'i><'col-xs-8'p>>";
+			}
+		else {
+			sDomm = "<'row-fluid'<'span4'l><'span4'TC><'span4'f>>rt<'row-fluid'<'span4'i><'span8'p>>";
+			}
+		}
 	else
-		sDomm = "<'row-fluid'<'span4'l><'span8'f>>rt<'row-fluid'<'span4'i><'span8'p>>";
+		{
+		if (jomres_template_version = "bootstrap3"){
+			sDomm = "<'row'<'col-xs-4'l><'col-xs-8'f>>rt<'row-fluid'<'col-xs-4'i><'col-xs-8'p>>";
+			}
+		else {
+			sDomm = "<'row-fluid'<'span4'l><'span8'f>>rt<'row-fluid'<'span4'i><'span8'p>>";
+			}
+		
+		}
 	var oTable = jomresJquery('#' + table_id).dataTable({
 		"bProcessing": bProcessing,
 		"bServerSide": bServerSide,

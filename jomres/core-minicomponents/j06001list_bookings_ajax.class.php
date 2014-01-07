@@ -50,12 +50,12 @@ class j06001list_bookings_ajax
 			}
 		else
 			{
-			$img_pending     = "label";
+			$img_pending     = "label label-default";
 			$img_arrivetoday = "label label-warning";
 			$img_resident    = "label label-success";
+			$img_late        = "label label-important label-danger";
 			$img_departtoday = "label label-info";
 			$img_stillhere   = "label label-purple";
-			$img_late        = "label label-important";
 			$img_bookedout   = "label label-teal";
 			$img_cancelled   = "label label-inverse";
 			}

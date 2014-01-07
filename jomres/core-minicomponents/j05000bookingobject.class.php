@@ -164,7 +164,7 @@ if ( !class_exists( 'booking' ) )
 
 			});
 			</script>
-			<input type="text" ' . $size . ' class="' . $input_class . '" name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" readonly="readonly" autocomplete="off" />
+			<input type="text" ' . $size . ' class="' . $input_class . ' form-control" name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" readonly="readonly" autocomplete="off" />
 			';
 
 			return $output;

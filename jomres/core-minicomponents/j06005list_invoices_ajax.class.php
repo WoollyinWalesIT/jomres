@@ -228,6 +228,25 @@ class j06005list_invoices_ajax
 			if ($show_all == 1 && ((int)$p->property_uid != (int)$defaultProperty))
 				$thisProperty='&thisProperty='.$p->property_uid;
 
+				switch ( $p->status )
+					{
+					case 0:
+						$label_class='label-important label-danger';
+						break;
+					case 1:
+						$label_class='label-success';
+						break;
+					case 2:
+						$label_class='label-inverse';
+						break;
+					case 3:
+						$label_class='label-warning';
+						break;
+					default:
+						$label_class='label-default';
+						break;
+					}
+			
 			if (!using_bootstrap())
 				{
 				$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
@@ -258,29 +277,13 @@ class j06005list_invoices_ajax
 				$r[] = $p->id;
 			else
 				{
-				switch ( $p->status )
-					{
-					case 0:
-						$label_class='label-important';
-						break;
-					case 1:
-						$label_class='label-success';
-						break;
-					case 2:
-						$label_class='label-inverse';
-						break;
-					case 3:
-						$label_class='label-warning';
-						break;
-					default:
-						$label_class='label';
-						break;
-					}
 				$r[] = '<span class="label '.$label_class.'">'.$p->id.'</span>';
 				}
 			
 			if ($p->tag != '')
+				{
 				$r[] = $p->tag;
+				}
 			else
 				$r[] = '-';
 			
@@ -304,7 +307,7 @@ class j06005list_invoices_ajax
 			$r[] = $p->raised_date;
 			$r[] = $p->due_date;
 			$r[] = $p->paid;
-			$r[] = output_price($p->grand_total);
+			$r[] = $r[] = '<span class="label '.$label_class.'">'.output_price($p->grand_total).'</span>';
 			$r[] = output_price($p->init_total);
 			$r[] = output_price($p->recur_total);
 			

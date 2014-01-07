@@ -122,7 +122,7 @@ function createCountriesDropdown( $selectedCountry, $input_name = "country", $in
 		$countryCodes[ $code ] = $country[ 'countryname' ];
 		}
 	asort( $countryCodes );
-	$countryDropdown = '<select id="' . $input_name . '" name="' . $input_name . '" ';
+	$countryDropdown = '<select id="' . $input_name . '" name="' . $input_name . '" class="form-control" ';
 	if ( $include_onchange ) 
 		$countryDropdown .= 'onchange="OnChange(this.form.' . $input_name . ')">';
 	else
