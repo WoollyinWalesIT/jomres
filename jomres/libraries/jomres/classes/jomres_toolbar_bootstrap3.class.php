@@ -32,13 +32,14 @@ class jomres_toolbar_bootstrap
 	 */
 	function jomres_toolbar_bootstrap()
 		{
-		$mrConfig                     = getPropertySpecificSettings();
-		$this->livesite               = get_showtime( 'live_site' );
-		$this->standardActivityImages = $this->getStandardActivityImagesArray();
-		$this->menubarImagesArray     = $this->getMenubarImagesArray();
-		$this->imageSize              = "small";
+		$mrConfig						= getPropertySpecificSettings();
+		$this->livesite					= get_showtime( 'live_site' );
+		$this->standardActivityImages	= $this->getStandardActivityImagesArray();
+		$this->menubarImagesArray		= $this->getMenubarImagesArray();
+		$this->imageSize				= "small";
 		if ( isset( $mrConfig[ 'editiconsize' ] ) ) $this->imageSize = $mrConfig[ 'editiconsize' ];
-		$this->imageExtension = 'png';
+		$this->imageExtension			= 'png';
+		$this->items					= array();
 		}
 
 	/**
@@ -89,27 +90,15 @@ class jomres_toolbar_bootstrap
 	 */
 	function toolbarItem( $targetTask, $link, $text = "", $submitOnClick = false, $submitTask = "" )
 		{
+		$separate = false;
+		if ($targetTask == "delete")
+			$separate = true ;
+			
 		if ( empty( $text ) ) $text = $this->standardActivityImages[ $targetTask ][ 'label' ];
 		$image  = '/jomres/images/jomresimages/' . $this->imageSize . '/' . $this->standardActivityImages[ $targetTask ][ 'image' ] . '.' . $this->imageExtension;
-		$output = $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask );
-
-		return $output;
+		$this->items[] = array( "cell" => $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask ) , "separate"=>$separate);
 		}
 
-	/**
-	#
-	 * Creates the receptionist and manager's menu bars
-	#
-	 */
-	function menubarItem( $targetTask, $link, $text )
-		{
-		$submitOnClick = false;
-		$submitTask    = "";
-		$image         = '/jomres/images/jomresimages/' . $this->imageSize . '/' . $this->menubarImagesArray[ $targetTask ] . '.' . $this->imageExtension;
-		$output        = $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask );
-
-		return $output;
-		}
 
 	/**
 	#
@@ -118,11 +107,7 @@ class jomres_toolbar_bootstrap
 	 */
 	function startTable()
 		{
-		$output = '';
-		$output .= '
-		<div id="jomres-toolbar" class="btn-group">';
-
-		return $output;
+		
 		}
 
 	/**
@@ -132,8 +117,21 @@ class jomres_toolbar_bootstrap
 	 */
 	function endTable()
 		{
-		$output = '</div>
-		';
+		$output = '
+		<div class="btn-group">';
+		foreach ($this->items as $item)
+			{
+			if ($item['separate']==false)
+				$output .= $item['cell'];
+			}
+		$output .='</div>
+';
+		foreach ($this->items as $item)
+			{
+			if ($item['separate']==true)
+				$output .= $item['cell'].'
+';
+			}
 
 		return $output;
 		}
@@ -143,7 +141,7 @@ class jomres_toolbar_bootstrap
 	 * The various toolbar item type methods refer to this to actually finish the construction of the cell
 	#
 	 */
-	function makeCell( $image, $targetTask, $link, $text, $submitOnClick = false, $submitTask = "" )
+	function makeCell( $image, $targetTask, $link, $text, $submitOnClick = false, $submitTask = "")
 		{
 		$image = urlencode( $image );
 		$image = str_replace( '+', '%20', $image );
