@@ -36,14 +36,14 @@
 </div>
 </patTemplate:tmpl>
 
-<div class="row-fluid">
-	<div class="span7">
+<div class="row">
+	<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
 		<div id="tour_target_mediacentre_resourcepicker"></div>
 		<p>{RESOURCE_TYPE_OPTIONS} <span id="resource_id_dropdown"><input type="hidden" id="resource_id" value="" /></span></p>
 		<div id="tour_target_mediacentre_existingimages"></div>
 		<div id="existing_images"></div>
 	</div>
-	<div class="span5">
+	<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
 		<div class="well well-small">
 			<div id="tour_target_mediacentre_uploadcontrols"></div>
 			<div id="tour_target_mediacentre_selectedimages"></div>
@@ -56,7 +56,7 @@
 				<!-- The file input field used as target for the file upload widget -->
 				<input id="fileupload" type="file" name="files[]" multiple>
 			</span>
-			<div class="btn" id="clearbutton">
+			<div class="btn btn-default" id="clearbutton">
 				<i class="icon-minus"></i>
 				{_JOMRES_MEDIA_CENTRE_CLEAR}
 			</div>

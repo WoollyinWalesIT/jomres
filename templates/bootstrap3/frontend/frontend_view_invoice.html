@@ -1,20 +1,20 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<div class="well">
 		<patTemplate:tmpl name="viewbooking_link" type="simpleCondition" requiredVars="viewbooking_text">
-			<a href="{VIEWBOOKING_LINK}" class="btn"><i class="icon-edit icon-white"></i> {VIEWBOOKING_TEXT}</a>
+			<a href="{VIEWBOOKING_LINK}" class="btn btn-default"><i class="icon-edit icon-white"></i> {VIEWBOOKING_TEXT}</a>
 		</patTemplate:tmpl>
-		<a href="{PRINTLINK}" class="btn" target="_blank"><i class="icon-print"></i> {PRINTTEXT}</a>
+		<a href="{PRINTLINK}" class="btn btn-default" target="_blank"><i class="icon-print"></i> {PRINTTEXT}</a>
 		<patTemplate:tmpl name="markaspaid_link" type="simpleCondition" requiredVars="markaspaid_text">
-			<a href="{MARKASPAID_LINK}" class="btn"><i class="icon-ok"></i> {MARKASPAID_TEXT}</a>
+			<a href="{MARKASPAID_LINK}" class="btn btn-default"><i class="icon-ok"></i> {MARKASPAID_TEXT}</a>
 		</patTemplate:tmpl>
 	</div>
 	<h2 class="page-header">{HINVOICENO}: {ID}</h2>
 
-	<div class="row-fluid">
-		<div class="span6 well">
+	<div class="row">
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 well">
 			{BUSINESS_DETAILS_TEMPLATE}
 		</div>
-		<div class="span6 well">
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 well">
 			{CLIENT_DETAILS_TEMPLATE}
 		</div>
 	</div>
@@ -22,40 +22,40 @@
 
 {ARRIVAL_DEPARTURE_SNIPPET}
 
-	<div class="row-fluid">
-		<div class="span4">
+	<div class="row">
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 			<strong>{_JOMRES_BOOKING_NUMBER}</strong>
 		</div>
-		<div class="span8">
+		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 			{BOOKING_NUMBER}
 		</div>
 	</div>
 	<div class="rows">
-		<div class="span4">
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 			<strong>{JOMRES_GRANDTOTAL_EX_TAX}</strong>
 		</div>
-		<div class="span8">
+		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 			{GRAND_TOTAL_EX_TAX}
 		</div>
 	</div>
 	<div class="rows">
-		<div class="span4">
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 			<strong>{JOMRES_GRANDTOTAL_TOTAL_TAX}</strong>
 		</div>
-		<div class="span8">
+		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 			{GRAND_TOTAL_TAX}
 		</div>
 	</div>
 	<div class="rows">
-		<div class="span4">
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 			<strong>{JOMRES_GRANDTOTAL_INC_TAX}</strong>
 		</div>
-		<div class="span8">
+		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 			{GRAND_TOTAL_INC_TAX}
 		</div>
 	</div>
 	<div class="rows">
-		<div class="span12">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 		</div>
 	</div>

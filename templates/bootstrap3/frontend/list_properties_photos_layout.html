@@ -8,47 +8,36 @@
 			<div class="thumbnail {FEATURED_LISTINGS_CLASS}">
 				<div class="caption">
 					<h4 class="photoview-ptitle"><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a></h4>
-
 					<p>{STARS} {SUPERIOR}</p>
-
 					<p class="small photoview-paddress">{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</p>
+					<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/> {_JOMRES_COMPARE}
 
-					<div class="hidden-phone">
-						<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/> {_JOMRES_COMPARE}
-					</div>
 				</div>
-				<div class="align-center photoview-image hidden-phone">
-					<a href="#module_{RANDOM_IDENTIFIER}_popup" class="hidden-phone thumbnail" data-toggle="modal"
-					   random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}"><img
-							src="{IMAGEMEDIUM}" alt="{PROPERTYNAME}" align="middle"/></a>
+				<div class="align-center photoview-image">
+					<a href="#module_{RANDOM_IDENTIFIER}_popup" class="thumbnail" data-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}">
+						<img src="{IMAGEMEDIUM}" alt="{PROPERTYNAME}" align="middle" class="img-rounded img-responsive"/>
+					</a>
 				</div>
+				<patTemplate:comment>
 				<div class="align-center photoview-image visible-phone">
 					<a href="{MOREINFORMATIONLINK}" class="thumbnail"><img src="{IMAGEMEDIUM}" align="middle"/></a>
 				</div>
+				</patTemplate:comment>
 				<div class="caption">
 					<div class="well align-center">
 						&nbsp;{PRICE_PRE_TEXT}&nbsp;
 						<span class="big-price">{PRICE_PRICE}</span>
 						&nbsp;{PRICE_POST_TEXT}&nbsp;
 					</div>
-					<div class="hidden-phone">
-						<a class="btn" href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')">{SHORTLIST}</a>
-					</div>
+					
+					<a class="btn btn-default" href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')">{SHORTLIST}</a>
+					
 				</div>
 			</div>
 		</div>
 
-		<div class="modal hide" id="module_{RANDOM_IDENTIFIER}_popup">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">x</button>
-				<h4>{PROPERTYNAME}</h4>
-			</div>
-			<div class="modal-body">
-				<div style="padding:20px">
-					<img src="{LIVESITE}/jomres/images/ajax_animation/broken_circle.gif" alt="ajax_animation_image"/>
-				</div>
-			</div>
-		</div>
+		<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup">
+		</div><!-- /.modal -->
 
 		<patTemplate:comment>
 			<div id="effect{UID}" class="quick-info ui-helper-hidden">

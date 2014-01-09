@@ -15,107 +15,71 @@
 	</script>
 	<h2 class="page-header">{PAGETITLE}</h2>
 
-	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
-		<fieldset>
-			<div class="control-group">
+	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+			<div class="form-group">
 				<label class="control-label" for="firstname">{HFIRSTNAME}</label>
-
-				<div class="controls">
-					<input id="firstname" name="firstname" type="text" value="{FIRSTNAME}" class="required "/>
-				</div>
+				<input id="firstname" name="firstname" type="text" value="{FIRSTNAME}" class="required form-control"/>
 			</div>
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="surname">{HSURNAME}</label>
-
-				<div class="controls">
-					<input id="surname" name="surname" type="text" value="{SURNAME}" class="required "/>
-				</div>
+				<input id="surname" name="surname" type="text" value="{SURNAME}" class="required form-control"/>
 			</div>
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="house">{HHOUSE}</label>
-
-				<div class="controls">
-					<input id="house" name="house" type="text" value="{HOUSE}" class="required "/>
-				</div>
+				<input id="house" name="house" type="text" value="{HOUSE}" class="required form-control"/>
 			</div>
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="street">{HSTREET}</label>
-
-				<div class="controls">
-					<input id="street" name="street" type="text" value="{STREET}" class="required "/>
-				</div>
+				<input id="street" name="street" type="text" value="{STREET}" class="required form-control"/>
 			</div>
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="town">{HTOWN}</label>
-
-				<div class="controls">
-					<input id="town" name="town" type="text" value="{TOWN}" class="required "/>
-				</div>
+				<input id="town" name="town" type="text" value="{TOWN}" class="required form-control"/>
 			</div>
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="postcode">{HPOSTCODE}</label>
-
-				<div class="controls">
-					<input id="postcode" name="postcode" type="text" value="{POSTCODE}" class="required "/>
-				</div>
+				<input id="postcode" name="postcode" type="text" value="{POSTCODE}" class="required form-control"/>
 			</div>
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="region">{HREGION}</label>
-
-				<div class="controls">
-					<div id="guest_region_div">{REGION}</div>
-				</div>
+				<div id="guest_region_div">{REGION}</div>
 			</div>
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="guest_country">{HCOUNTRY}</label>
-
-				<div class="controls">
-					{COUNTRY}
-				</div>
+				{COUNTRY}
 			</div>
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="landline">{HLANDLINE}</label>
-
-				<div class="controls">
-					<input id="landline" name="landline" type="text" value="{LANDLINE}" class="required "/>
-				</div>
+				<input id="landline" name="landline" type="tel" value="{LANDLINE}" class="required form-control"/>
 			</div>
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="mobile">{HMOBILE}</label>
-
-				<div class="controls">
-					<input id="mobile" name="mobile" type="text" value="{MOBILE}" class="required "/>
-				</div>
+				<input id="mobile" name="mobile" type="tel" value="{MOBILE}" class="required form-control"/>
 			</div>
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="email">{HEMAIL}</label>
-
-				<div class="controls">
-					<input id="email" name="email" type="text" value="{EMAIL}" class="required "/>
-				</div>
+				<input id="email" name="email" type="text" value="{EMAIL}" class="required form-control"/>
 			</div>
 			
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="vat_number">{_JOMRES_COM_YOURBUSINESS_VATNO}</label>
-				<div class="controls">
-					<input id="vat_number" name="vat_number" type="text" value="{VAT_NUMBER}"/>
-					<patTemplate:tmpl name="validation" type="simpleCondition" requiredVars="validation_class">
-					<span class="help-block">
-						<div class="alert {VALIDATION_CLASS}">
-							{VAT_NUMBER_VALIDATION_STATUS}
-						</div>
-					</span>
-					</patTemplate:tmpl>
-				</div>
+				<input id="vat_number" name="vat_number" type="text" value="{VAT_NUMBER}" class="form-control"/>
+				<patTemplate:tmpl name="validation" type="simpleCondition" requiredVars="validation_class">
+				<span class="help-block">
+					<div class="alert {VALIDATION_CLASS}">
+						{VAT_NUMBER_VALIDATION_STATUS}
+					</div>
+				</span>
+				</patTemplate:tmpl>
 			</div>
 			
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="discount">{HDISCOUNT}</label>
-
-				<div class="controls">
-					<div class="input-append">
-						{DISCOUNT}(%)
-					</div>
+				<div class="input-append">
+					{DISCOUNT}
+						<span class="help-block">
+						(%)
+						</span>
 				</div>
 			</div>
 			<div class="form-actions">
@@ -124,6 +88,5 @@
 			<input type="hidden" name="guestUid" value="{GUESTUID}"/>
 			<input type="hidden" name="task" value="saveGuest"/>
 			<input type="hidden" name="no_html" value="1"/>
-		</fieldset>
 	</form>
 </patTemplate:tmpl>

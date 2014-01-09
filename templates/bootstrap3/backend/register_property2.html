@@ -125,7 +125,7 @@
 
 <p>{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1} {JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2}</p>
 
-<form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm" class="form-horizontal" role="form">
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm" role="form">
 	<div class="form-group"><div id="tour_target_registration_2_mrpsrp"></div>
 		<label class="control-label" for="mrpsrp"><!--{ISTHISANMRP}-->MRP/SRP</label>
 		{ISTHISANMRP_DROPDOWN}<span class="add-on"></span>
@@ -148,15 +148,15 @@
 	</div>
 	<div class="form-group warning">
 		<label class="control-label" for="property_tel">{HTELEPHONE}</label>
-		<input id="property_tel" name="property_tel" type="text" size="20" value="{PROPERTY_TEL}" class="form-control"/>
+		<input id="property_tel" name="property_tel" type="tel" size="20" value="{PROPERTY_TEL}" class="form-control"/>
 	</div>
 	<div class="form-group">
 		<label class="control-label" for="property_fax">{HFAX}</label>
-		<input id="property_fax" name="property_fax" type="text" value="{PROPERTY_FAX}" class="form-control"/>
+		<input id="property_fax" name="property_fax" type="tel" value="{PROPERTY_FAX}" class="form-control"/>
 	</div>
 	<div class="form-group warning">
 		<label class="control-label" for="property_email">{HEMAIL}</label>
-		<input id="property_email" name="property_email" type="text" size="20" value="{PROPERTY_EMAIL}" class="form-control"/>
+		<input id="property_email" name="property_email" type="email" size="20" value="{PROPERTY_EMAIL}" class="form-control"/>
 	</div>
 	<div class="form-group">
 		<label class="control-label" for="stars">{HSTARS}</label><div id="tour_target_registration_2_stars"></div>
@@ -214,7 +214,7 @@
 	</div>
 	<div class="form-actions">
 		<div class="">
-			<a href="{JOMRES_SITEPAGE_URL}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
+			<a href="{JOMRES_SITEPAGE_URL}" class="btn btn-default"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
 			<button type="button" class="btn btn-primary" onclick="validatePropertyRegistration();">
 				{_JOMRES_REVIEWS_SUBMIT} <i class="icon-arrow-right icon-white"></i></button>
 		</div>
