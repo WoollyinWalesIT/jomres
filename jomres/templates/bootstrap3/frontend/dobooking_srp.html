@@ -165,7 +165,7 @@
 
 <div id="booking_form"
 {HIDDENSTYLE} title="{PROPERTYNAME}">
-<form action="javascript:dobooking_validate();" name="ajaxform" id="ajaxform" method="post" class="form-horizontal" role="form">
+<form action="javascript:dobooking_validate();" name="ajaxform" id="ajaxform" method="post"  role="form">
 <div id="messages">&nbsp;</div>
 <!--<p>{AJAXFORM_INSTRUCTIONS}</p>-->
 
@@ -174,13 +174,13 @@
 		<div class="form-group">
 			<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="override_room_total">{_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL}</label>
 			<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-				<input class="form-control ignore" type="number" name="override_room_total" id="override_room_total" value=""/>
+				<input class="form-control ignore" name="override_room_total" id="override_room_total" value="" type="number" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="override_deposit">{_JOMCOMP_AMEND_OVERRIDE_DEPOSIT}</label>
 			<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-				<input class="form-control ignore" type="number" name="override_deposit" id="override_deposit" value=""/>
+				<input class="form-control ignore" name="override_deposit" id="override_deposit" value="" type="number" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01" />
 			</div>
 		</div>
 		<div class="col-sm-offset-3 col-sm-9">

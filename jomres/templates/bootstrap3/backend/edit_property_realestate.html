@@ -25,7 +25,7 @@
 	<p class="alert alert-info">{CHANGECOUNTRYWARNING}</p>
 	</patTemplate:tmpl>
 <p>{DELETEWARNING}</p>
-<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal" role="form">
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" role="form">
 	<div class="form-group">
 		<label class="control-label" for="xyz">{HCOUNTRY}</label>
 		{COUNTRIESDROPDOWN}
@@ -56,19 +56,19 @@
 	</div>
 	<div class="form-group">
 		<label class="control-label" for="property_tel">{HTELEPHONE}</label>
-		<input id="property_tel" name="property_tel" type="text" size="20" value="{PROPERTY_TEL}" class="form-control"/>
+		<input id="property_tel" name="property_tel" type="tel" size="20" value="{PROPERTY_TEL}" class="form-control"/>
 	</div>
 	<div class="form-group">
 		<label class="control-label" for="property_fax">{HFAX}</label>
-		<input id="property_fax" name="property_fax" type="text" value="{PROPERTY_FAX}" class="form-control"/>
+		<input id="property_fax" name="property_fax" type="tel" value="{PROPERTY_FAX}" class="form-control"/>
 	</div>
 	<div class="form-group">
 		<label class="control-label" for="property_email">{HEMAIL}</label>
-		<input id="property_email" name="property_email" type="text" size="20" value="{PROPERTY_EMAIL}" class="form-control"/>
+		<input id="property_email" name="property_email" type="email" size="20" value="{PROPERTY_EMAIL}" class="form-control"/>
 	</div>
 	<div class="form-group">
 		<label class="control-label" for="property_email">{HPRICE}</label>
-		{CURRENCY}</span><input class="form-control" type="text" name="price" value="{PRICE}"/>
+		{CURRENCY}</span><input class="form-control" name="price" value="{PRICE}" type="number"/>
 	</div>
 	<div class="form-group">
 		<label class="control-label" for="lat">Lat: (nn.nnnn)</label>

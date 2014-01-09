@@ -3,28 +3,19 @@
 
 	<p>{INSTRUCTIONS}</p>
 
-	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
-		<div class="control-group">
+	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+		<div class="form-group">
 			<label class="control-label" for="start">{BBDATESTARTS}</label>
-
-			<div class="controls">
-				{BBSTARTJSBOX}
-			</div>
+			{BBSTARTJSBOX}
 		</div>
-		<div class="control-group">
+		<div class="form-group">
 			<label class="control-label" for="end">{BBDATEENDS}</label>
-
-			<div class="controls">
-				{BBENDSJSBOX}
-			</div>
+			{BBENDSJSBOX}
 		</div>
 		<patTemplate:tmpl name="reason_output" type="simpleCondition" requiredVars="reason">
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="bbReason">{REASON}</label>
-
-				<div class="controls">
-					<textarea class="input-xlarge" rows="2" name="bbReason"></textarea>
-				</div>
+				<textarea class="form-control" rows="2" name="bbReason"></textarea>
 			</div>
 		</patTemplate:tmpl>
 		<table width="100%" border="0" class="table table-bordered table-striped table-condensed">

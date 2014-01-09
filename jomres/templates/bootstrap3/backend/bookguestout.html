@@ -1,7 +1,7 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<h2 class="page-header">{PAGETITLE}</h2>
 
-	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
+	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" role="form">
 		<fieldset>
 			<div class="row">
 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -63,7 +63,7 @@
 			</div>
 			<div class="form-actions">
 				<div class="">
-					<a href="{JOMRES_SITEPAGE_URL}&task=editBooking&contract_uid={CONTRACTUID}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
+					<a href="{JOMRES_SITEPAGE_URL}&task=editBooking&contract_uid={CONTRACTUID}" class="btn btn-default"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
 					<button type="submit" class="btn btn-primary">{COMMON_SAVE} <i class="icon-ok icon-white"></i>
 					</button>
 				</div>

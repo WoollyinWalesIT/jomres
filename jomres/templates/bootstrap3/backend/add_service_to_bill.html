@@ -1,34 +1,23 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<h2 class="page-header">{PAGETITLE}</h2>
 
-	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
-		<fieldset>
-			<div class="control-group">
+	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+			<div class="form-group">
 				<label class="control-label" for="service_description">{HSERVICEDESCRIPTION}</label>
-
-				<div class="controls">
-					<input class="inputbox" type="text" name="service_description" value=""/>
-				</div>
+				<input class="form-control" type="text" name="service_description" value=""/>
 			</div>
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="service_value">{HSERVICEVALUE}</label>
-
-				<div class="controls">
-					<input class="inputbox" type="text" name="service_value" value=""/>
-				</div>
+				<input class="form-control"  name="service_value" value=""  type="number" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01" />
 			</div>
-			<div class="control-group">
+			<div class="form-group">
 				<label class="control-label" for="taxrate">{HTAXRATE}</label>
-
-				<div class="controls">
-					{TAXRATEDROPDOWN}
-				</div>
+				{TAXRATEDROPDOWN}
 			</div>
 			<div class="form-actions">
 				{JOMRESTOOLBAR}
 			</div>
-			<input type="hidden" name="contract_uid" value="{CONTRACTUID}"/>
-			<input type="hidden" name="task" value="addServiceToBill"/>
-		</fieldset>
+		<input type="hidden" name="contract_uid" value="{CONTRACTUID}"/>
+		<input type="hidden" name="task" value="addServiceToBill"/>
 	</form>
 </patTemplate:tmpl>

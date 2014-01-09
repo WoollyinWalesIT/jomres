@@ -3,7 +3,7 @@
 
 	<p class="alert alert-warning">{SUPPLIMENT_DESC}</p>
 
-	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal" role="form">
+	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" role="form">
 		<div class="form-group">
 			<label class="control-label" for="roomClasses">{HTYPE}</label>
 			{TYPEDROPDOWN}
@@ -34,7 +34,7 @@
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="singleperson_suppliment">{HSUPPLIMENT}</label>
-			<input type="text" name="singleperson_suppliment" value="{SUPPLIMENT}" class="form-control"/>
+			<input type="number" name="singleperson_suppliment" value="{SUPPLIMENT}" class="form-control"/>
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="features_list[]">{HFEATURES}</label>
