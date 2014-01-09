@@ -279,19 +279,23 @@
 </patTemplate:tmpl>
 <div class="row">
 	<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+		<div id="tour_target_booking_existing_guests"></div>
+		<div id="tour_target_booking_required"></div>
 		<div id="bookingform_address">
 			<h3 class="page-header">{AJAXFORM_ADDRESS}</h3>
-
-			<div class="btn-toolbar">
-				{GUESTDROPDOWN}
-			</div>
-			<fieldset>
+			
+				<div class="form-group">
+					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="existingCustomers"></label>
+					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+						{GUESTDROPDOWN}
+					</div>
+				</div>
+				
 				<div class="form-group {BOOTSTRAP_FIRSTNAME_WARNING}">
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="firstname">{HFIRSTNAME}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="text" name="firstname" id="firstname" value="{FIRSTNAME}" title="{HFIRSTNAME}"
-							   class="input-medium"/>
+						<input type="text" name="firstname" id="firstname" value="{FIRSTNAME}" title="{HFIRSTNAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_FIRSTNAME}"/>
 					</div>
 				</div>
 
@@ -299,8 +303,7 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="surname">{HSURNAME}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="text" name="surname" id="surname" value="{SURNAME}" title="{HSURNAME}"
-							   class="input-medium"/>
+						<input type="text" name="surname" id="surname" value="{SURNAME}" title="{HSURNAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_SURNAME}"/>
 					</div>
 				</div>
 
@@ -308,8 +311,7 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="house">{HHOUSENO}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="text" name="house" id="house" value="{HOUSENO}" title="{HHOUSENO}"
-							   class="input-medium"/>
+						<input type="text" name="house" id="house" value="{HOUSENO}" title="{HHOUSENO}" class="form-control" placeholder="{COMMON_PLACEHOLDER_HOUSENUMBER}"/>
 					</div>
 				</div>
 
@@ -317,8 +319,7 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="street">{HSTREET}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="text" name="street" id="street" value="{STREET}" title="{HSTREET}"
-							   class="input-medium"/>
+						<input type="text" name="street" id="street" value="{STREET}" title="{HSTREET}" class="form-control" placeholder="{COMMON_PLACEHOLDER_STREET}"/>
 					</div>
 				</div>
 
@@ -326,7 +327,7 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="town">{HTOWN}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="text" name="town" id="town" value="{TOWN}" title="{HTOWN}" class="input-medium"/>
+						<input type="text" name="town" id="town" value="{TOWN}" title="{HTOWN}" class="form-control" placeholder="{COMMON_PLACEHOLDER_TOWN}"/>
 					</div>
 				</div>
 				
@@ -334,11 +335,10 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="postcode">{HPOSTCODE}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="text" name="postcode" id="postcode" value="{POSTCODE}" title="{HPOSTCODE}"
-							   class="input-medium"/>
+						<input type="text" name="postcode" id="postcode" value="{POSTCODE}" title="{HPOSTCODE}" class="form-control" placeholder="{COMMON_PLACEHOLDER_POSTCODE}"/>
 					</div>
 				</div>
-				
+
 				<div class="form-group {BOOTSTRAP_COUNTRY_WARNING}">
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="country">{HCOUNTRY}</label>
 
@@ -359,8 +359,7 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="tel_landline">{HTEL}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="tel" name="tel_landline" id="tel_landline" value="{TEL}" title="{HTEL}"
-							   class="input-medium"/>
+						<input type="tel" name="tel_landline" id="tel_landline" value="{TEL}" title="{HTEL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_LANDLINE}"/>
 					</div>
 				</div>
 
@@ -368,8 +367,7 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="tel_mobile">{HMOBILE}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="tel" name="tel_mobile" id="tel_mobile" value="{MOBILE}" title="{HMOBILE}"
-							   class="input-medium"/>
+						<input type="tel" name="tel_mobile" id="tel_mobile" value="{MOBILE}" title="{HMOBILE}" class="form-control" placeholder="{COMMON_PLACEHOLDER_MOBILE}"/>
 					</div>
 				</div>
 
@@ -377,8 +375,7 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="eemail">{HEMAIL}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="email" name="eemail" id="eemail" value="{EMAIL}" title="{HEMAIL}"
-							   class="input-medium" {EMAIL_INPUT_DISABLED}/>
+						<input type="email" name="eemail" id="eemail" value="{EMAIL}" title="{HEMAIL}" class="form-control" {EMAIL_INPUT_DISABLED}/>
 					</div>
 				</div>
 
