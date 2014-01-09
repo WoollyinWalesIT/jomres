@@ -45,6 +45,10 @@ class jomres_obsolete_file_handling
 		$this->dir_templates_bootstrap_backend       = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'bootstrap' . JRDS . 'backend' . JRDS;
 		$this->dir_templates_bootstrap_administrator = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'bootstrap' . JRDS . 'administrator' . JRDS;
 
+		$this->dir_templates_bootstrap3_frontend      = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'bootstrap3' . JRDS . 'frontend' . JRDS;
+		$this->dir_templates_bootstrap3_backend       = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'bootstrap3' . JRDS . 'backend' . JRDS;
+		$this->dir_templates_bootstrap3_administrator = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'bootstrap3' . JRDS . 'administrator' . JRDS;
+		
 		$this->dir_images       = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'images' . JRDS;
 		$this->dir_images_large = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'images' . JRDS . 'jomresimages' . JRDS . 'large' . JRDS;
 		$this->dir_images_small = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'images' . JRDS . 'jomresimages' . JRDS . 'small' . JRDS;
@@ -822,6 +826,11 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'ajax_switch_property.html' );
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'switch_property.html' );
 		
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'edit_bug.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'edit_bug.html' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06002reportbug.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06002sendbug.class.php' );
+
 		}
 
 	function add_obs_file( $path_and_file )
