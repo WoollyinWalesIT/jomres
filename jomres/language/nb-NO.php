@@ -2428,3 +2428,14 @@ jr_define('_JOMRES_HFIXED_PERIODS' , "Fixed periods" );
 jr_define('_JOMRES_HDEPOSITS' , "Deposits" );
 jr_define('_JOMRES_HBOOKING_FORM' , "Booking form" );
 jr_define('_JOMRES_HREQUIRED_FIELDS' , "Required fields" );
+
+jr_define('COMMON_PLACEHOLDER_FIRSTNAME' , "Tom" );
+jr_define('COMMON_PLACEHOLDER_SURNAME' , "Smith" );
+jr_define('COMMON_PLACEHOLDER_HOUSENUMBER' , "110" );
+jr_define('COMMON_PLACEHOLDER_STREET' , "My Street" );
+jr_define('COMMON_PLACEHOLDER_TOWN' , "My Town" );
+jr_define('COMMON_PLACEHOLDER_LANDLINE' , "00000 000000" );
+jr_define('COMMON_PLACEHOLDER_MOBILE' , "00000 000000" );
+jr_define('COMMON_PLACEHOLDER_PROPERTYNAME' , "My Hotel" );
+jr_define('COMMON_PLACEHOLDER_POSTCODE' , "XXNN NNXX" );
+jr_define('COMMON_PLACEHOLDER_EMAIL' , "example@address.com" );

@@ -108,15 +108,15 @@
 	<form name="regForm" action="{JOMRES_SITEPAGE_URL_NOSEF}&task=contactowner" method="POST"  role="form">
 		<div class="form-group">
 			<label class="control-label" for="guest_name">{HNAME}</label>
-			<input type="text" name="guest_name" value="{GUEST_NAME}" class="form-control"/>
+			<input type="text" name="guest_name" value="{GUEST_NAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_FIRSTNAME} {COMMON_PLACEHOLDER_SURNAME}"/>
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="guest_email">{HEMAIL}</label>
-			<input type="email" name="guest_email" value="{GUEST_EMAIL}" type="email" class="form-control"/>
+			<input type="email" name="guest_email" value="{GUEST_EMAIL}" type="email" class="form-control" placeholder="{COMMON_PLACEHOLDER_EMAIL}"/>
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="enquiry">{HENQUIRY}</label>
-			<textarea class="form-control" rows="10" name="enquiry" placeholder="{ENQUIRY}"></textarea>
+			<textarea class="form-control" rows="10" name="enquiry" placeholder="{HENQUIRY}"></textarea>
 		</div>
 		<div class="form-group">
 			{CAPTCHA}

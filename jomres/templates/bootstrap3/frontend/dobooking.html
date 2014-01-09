@@ -206,13 +206,13 @@
 		<div class="form-group">
 			<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="coupon">{COUPON_BUTTON}</label>
 			<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-				<input class="form-control ignore" size="25" type="text" name="coupon" id="coupon" value="{COUPON_CODE}"/>
+				<input class="form-control ignore" size="25" type="text" name="coupon" id="coupon" value="{COUPON_CODE}" placeholder="{COUPON_BUTTON}"/>
 				<div class="jomres_message help-block">{COUPON_INSTRUCTIONS}</div>
 			</div>
 		</div>
 		<div class="col-sm-offset-3 col-sm-9">
 			<div class="form-actions">
-				<a class="btn btn-default" href="javascript:void(0);" onclick="getResponse('coupon',jomresJquery('#coupon').val())">{COUPON_BUTTON}</a>
+				<a class="btn btn-default" href="javascript:void(0);" onclick="getResponse('coupon',jomresJquery('#coupon').val())" >{COUPON_BUTTON}</a>
 			</div>
 		</div>
 	<div id="coupon_response" class="jomres_message"></div>
@@ -345,7 +345,7 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="firstname">{HFIRSTNAME}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="text" name="firstname" id="firstname" value="{FIRSTNAME}" title="{HFIRSTNAME}" class="form-control"/>
+						<input type="text" name="firstname" id="firstname" value="{FIRSTNAME}" title="{HFIRSTNAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_FIRSTNAME}"/>
 					</div>
 				</div>
 
@@ -353,7 +353,7 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="surname">{HSURNAME}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="text" name="surname" id="surname" value="{SURNAME}" title="{HSURNAME}" class="form-control"/>
+						<input type="text" name="surname" id="surname" value="{SURNAME}" title="{HSURNAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_SURNAME}"/>
 					</div>
 				</div>
 
@@ -361,7 +361,7 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="house">{HHOUSENO}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="text" name="house" id="house" value="{HOUSENO}" title="{HHOUSENO}" class="form-control"/>
+						<input type="text" name="house" id="house" value="{HOUSENO}" title="{HHOUSENO}" class="form-control" placeholder="{COMMON_PLACEHOLDER_HOUSENUMBER}"/>
 					</div>
 				</div>
 
@@ -369,7 +369,7 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="street">{HSTREET}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="text" name="street" id="street" value="{STREET}" title="{HSTREET}" class="form-control"/>
+						<input type="text" name="street" id="street" value="{STREET}" title="{HSTREET}" class="form-control" placeholder="{COMMON_PLACEHOLDER_STREET}"/>
 					</div>
 				</div>
 
@@ -377,7 +377,7 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="town">{HTOWN}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="text" name="town" id="town" value="{TOWN}" title="{HTOWN}" class="form-control"/>
+						<input type="text" name="town" id="town" value="{TOWN}" title="{HTOWN}" class="form-control" placeholder="{COMMON_PLACEHOLDER_TOWN}"/>
 					</div>
 				</div>
 				
@@ -385,7 +385,7 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="postcode">{HPOSTCODE}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="text" name="postcode" id="postcode" value="{POSTCODE}" title="{HPOSTCODE}" class="form-control"/>
+						<input type="text" name="postcode" id="postcode" value="{POSTCODE}" title="{HPOSTCODE}" class="form-control" placeholder="{COMMON_PLACEHOLDER_POSTCODE}"/>
 					</div>
 				</div>
 
@@ -409,7 +409,7 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="tel_landline">{HTEL}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="tel" name="tel_landline" id="tel_landline" value="{TEL}" title="{HTEL}" class="form-control"/>
+						<input type="tel" name="tel_landline" id="tel_landline" value="{TEL}" title="{HTEL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_LANDLINE}"/>
 					</div>
 				</div>
 
@@ -417,7 +417,7 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="tel_mobile">{HMOBILE}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="tel" name="tel_mobile" id="tel_mobile" value="{MOBILE}" title="{HMOBILE}" class="form-control"/>
+						<input type="tel" name="tel_mobile" id="tel_mobile" value="{MOBILE}" title="{HMOBILE}" class="form-control" placeholder="{COMMON_PLACEHOLDER_MOBILE}"/>
 					</div>
 				</div>
 
@@ -425,8 +425,7 @@
 					<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="eemail">{HEMAIL}</label>
 
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<input type="email" name="eemail" id="eemail" value="{EMAIL}" title="{HEMAIL}" class="form-control"
-						{EMAIL_INPUT_DISABLED}/>
+						<input type="email" name="eemail" id="eemail" value="{EMAIL}" title="{HEMAIL}" class="form-control" {EMAIL_INPUT_DISABLED}/>
 					</div>
 				</div>
 
@@ -435,7 +434,7 @@
 						<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label" for="{FIELDNAME}">{DESCRIPTION}</label>
 
 						<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-							<input type="text" name="{FIELDNAME}" id="{FIELDNAME}" value="{DEFAULT_VALUE}" class="form-control"/>
+							<input type="text" name="{FIELDNAME}" id="{FIELDNAME}" value="{DEFAULT_VALUE}" class="form-control" placeholder="{XXXXXXX}"/>
 						</div>
 					</div>
 				</patTemplate:tmpl>
