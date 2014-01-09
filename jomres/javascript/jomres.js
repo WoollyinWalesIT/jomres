@@ -46,7 +46,7 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 
 	if (showTableTools)
 		{
-		if (jomres_template_version = "bootstrap3"){
+		if (jomres_template_version == "bootstrap3"){
 			sDomm = "<'row'<'col-xs-4'l><'col-xs-4'TC><'col-xs-4'f>>rt<'row'<'col-xs-4'i><'col-xs-8'p>>";
 			}
 		else {
@@ -55,7 +55,7 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 		}
 	else
 		{
-		if (jomres_template_version = "bootstrap3"){
+		if (jomres_template_version == "bootstrap3"){
 			sDomm = "<'row'<'col-xs-4'l><'col-xs-8'f>>rt<'row-fluid'<'col-xs-4'i><'col-xs-8'p>>";
 			}
 		else {
