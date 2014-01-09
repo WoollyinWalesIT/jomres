@@ -141,13 +141,13 @@ class j04200editproperty
 					}
 				else
 					{
-					$output[ 'PROPERTY_DESCRIPTION' ]          = '<textarea class="inputbox" cols="70" rows="5" name="property_description">' . $property_description . '</textarea>';
-					$output[ 'PROPERTY_CHECKIN_TIMES' ]        = '<textarea class="inputbox" cols="70" rows="5" name="property_checkin_times">' . $property_checkintimes . '</textarea>';
-					$output[ 'PROPERTY_AREA_ACTIVITIES' ]      = '<textarea class="inputbox" cols="70" rows="5" name="property_area_activities">' . $property_areaactivities . '</textarea>';
-					$output[ 'PROPERTY_DRIVING_DIRECTIONS' ]   = '<textarea class="inputbox" cols="70" rows="5" name="property_driving_directions">' . $property_drivingdirections . '</textarea>';
-					$output[ 'PROPERTY_AIRPORTS' ]             = '<textarea class="inputbox" cols="70" rows="5" name="property_airports">' . $property_airports . '</textarea>';
-					$output[ 'PROPERTY_OTHERTRANSPORT' ]       = '<textarea class="inputbox" cols="70" rows="5" name="property_othertransport">' . $property_othertransport . '</textarea>';
-					$output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = '<textarea class="inputbox" cols="70" rows="5" name="property_policies_disclaimers">' . $property_policiesdisclaimers . '</textarea>';
+					$output[ 'PROPERTY_DESCRIPTION' ]          = '<textarea class="inputbox form-control" cols="70" rows="5" name="property_description">' . $property_description . '</textarea>';
+					$output[ 'PROPERTY_CHECKIN_TIMES' ]        = '<textarea class="inputbox form-control" cols="70" rows="5" name="property_checkin_times">' . $property_checkintimes . '</textarea>';
+					$output[ 'PROPERTY_AREA_ACTIVITIES' ]      = '<textarea class="inputbox form-control" cols="70" rows="5" name="property_area_activities">' . $property_areaactivities . '</textarea>';
+					$output[ 'PROPERTY_DRIVING_DIRECTIONS' ]   = '<textarea class="inputbox form-control" cols="70" rows="5" name="property_driving_directions">' . $property_drivingdirections . '</textarea>';
+					$output[ 'PROPERTY_AIRPORTS' ]             = '<textarea class="inputbox form-control" cols="70" rows="5" name="property_airports">' . $property_airports . '</textarea>';
+					$output[ 'PROPERTY_OTHERTRANSPORT' ]       = '<textarea class="inputbox form-control" cols="70" rows="5" name="property_othertransport">' . $property_othertransport . '</textarea>';
+					$output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = '<textarea class="inputbox form-control" cols="70" rows="5" name="property_policies_disclaimers">' . $property_policiesdisclaimers . '</textarea>';
 					}
 				$propertyFeatures = $property->property_features;
 
@@ -178,13 +178,13 @@ class j04200editproperty
 				}
 			else
 				{
-				$output[ 'PROPERTY_DESCRIPTION' ]          = '<textarea class="inputbox" cols="40" rows="3" name="property_description">' . $defaultText . '</textarea>';
-				$output[ 'PROPERTY_CHECKIN_TIMES' ]        = '<textarea class="inputbox" cols="40" rows="3" name="property_checkin_times">' . $defaultText . '</textarea>';
-				$output[ 'PROPERTY_AREA_ACTIVITIES' ]      = '<textarea class="inputbox" cols="40" rows="3" name="property_area_activities">' . $defaultText . '</textarea>';
-				$output[ 'PROPERTY_DRIVING_DIRECTIONS' ]   = '<textarea class="inputbox" cols="40" rows="3" name="property_driving_directions">' . $defaultText . '</textarea>';
-				$output[ 'PROPERTY_AIRPORTS' ]             = '<textarea class="inputbox" cols="40" rows="3" name="property_airports">' . $defaultText . '</textarea>';
-				$output[ 'PROPERTY_OTHERTRANSPORT' ]       = '<textarea class="inputbox" cols="40" rows="3" name="property_othertransport">' . $defaultText . '</textarea>';
-				$output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = '<textarea class="inputbox" cols="40" rows="3" name="property_policies_disclaimers">' . $defaultText . '</textarea>';
+				$output[ 'PROPERTY_DESCRIPTION' ]          = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_description">' . $defaultText . '</textarea>';
+				$output[ 'PROPERTY_CHECKIN_TIMES' ]        = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_checkin_times">' . $defaultText . '</textarea>';
+				$output[ 'PROPERTY_AREA_ACTIVITIES' ]      = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_area_activities">' . $defaultText . '</textarea>';
+				$output[ 'PROPERTY_DRIVING_DIRECTIONS' ]   = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_driving_directions">' . $defaultText . '</textarea>';
+				$output[ 'PROPERTY_AIRPORTS' ]             = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_airports">' . $defaultText . '</textarea>';
+				$output[ 'PROPERTY_OTHERTRANSPORT' ]       = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_othertransport">' . $defaultText . '</textarea>';
+				$output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_policies_disclaimers">' . $defaultText . '</textarea>';
 				}
 
 			$starsDropDownList = "<select class=\"inputbox\" name=\"stars\">";

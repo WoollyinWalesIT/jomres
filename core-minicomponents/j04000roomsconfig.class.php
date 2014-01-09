@@ -123,8 +123,10 @@ class j04000roomsconfig
 
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb   = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem( 'new', jomresURL( JOMRES_SITEPAGE_URL . "&task=editRoomFeature&amp;" ), '' );
+			
 			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&" ), '' );
+			$jrtb .= $jrtbar->toolbarItem( 'new', jomresURL( JOMRES_SITEPAGE_URL . "&task=editRoomFeature&amp;" ), '' );
+			
 			$jrtb .= $jrtbar->endTable();
 			$newRoomFeatureButton = $jrtb;
 
