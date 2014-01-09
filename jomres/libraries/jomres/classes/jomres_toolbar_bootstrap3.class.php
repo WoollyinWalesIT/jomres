@@ -132,7 +132,9 @@ class jomres_toolbar_bootstrap
 				$output .= $item['cell'].'
 ';
 			}
-
+		
+		$this->items	= array();
+		
 		return $output;
 		}
 
