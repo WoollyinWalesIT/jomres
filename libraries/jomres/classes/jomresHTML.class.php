@@ -110,7 +110,7 @@ class jomresHTML
 		{
 		$attribs = str_replace( ' class="inputbox" ', "", $attribs );
 		$attribs = str_replace( ' class="input-medium" ', "", $attribs );
-		$attribs .= ' class="input-small"';
+		$attribs .= ' class="input-small form-control"';
 
 		$arry = array ();
 		for ( $i = (int) $start; $i <= (int) $end; $i += (int) $increment )
