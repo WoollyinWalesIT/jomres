@@ -23,7 +23,7 @@ function jomres_bootstrap_version()
 	
 	if ($jrConfig[ 'bootstrap_version' ] == "")
 		{
-		$bootstrap_version = "bootstrap2";
+		$bootstrap_version = "2";
 		}
 	else // Leaves us room to manouver in the future when newer versions are created
 		{
