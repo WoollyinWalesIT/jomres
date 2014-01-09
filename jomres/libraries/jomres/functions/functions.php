@@ -2987,8 +2987,9 @@ function hotelSettings()
 
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_business_settings' );
+			
 			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "" ), '' );
+			$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_business_settings' );
 			$jrtb .= $jrtbar->endTable();
 			$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
@@ -5523,8 +5524,9 @@ function editCustomText()
 	if ( strlen( $theText ) == 0 ) $theText = stripslashes( constant( $theConstant ) );
 	$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 	$jrtb   = $jrtbar->startTable();
-	if ( $jrConfig[ 'allowHTMLeditor' ] != "2" && $jrConfig[ 'allowHTMLeditor' ] != "3" ) $jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'saveCustomText' );
 	$jrtb .= $jrtbar->toolbarItem( 'cancel', 'javascript:window.close();', '' );
+	if ( $jrConfig[ 'allowHTMLeditor' ] != "2" && $jrConfig[ 'allowHTMLeditor' ] != "3" ) 
+		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'saveCustomText' );
 	$jrtb .= $jrtbar->endTable();
 	$output[ 'JOMRESTOOLBAR' ]     = $jrtb;
 	$output[ 'MOSCONFIGLIVESITE' ] = get_showtime( 'live_site' );
