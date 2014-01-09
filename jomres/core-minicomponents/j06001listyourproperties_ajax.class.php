@@ -215,7 +215,7 @@ class j06001listyourproperties_ajax
 					else
 						{
 						if ( !$p->published )
-							$toolbar->addItem( 'icon-cancel', 'btn disabled', '', 'javascript:void(0);', '' );
+							$toolbar->addItem( 'icon-cancel', 'btn btn-default disabled', '', 'javascript:void(0);', '' );
 						else
 							$toolbar->addItem( 'icon-ok icon-white', 'btn btn-success disabled', '', 'javascript:void(0);', '' );
 						}

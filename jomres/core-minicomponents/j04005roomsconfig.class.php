@@ -123,8 +123,9 @@ class j04005roomsconfig
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_normalmode_tariffs' );
+		
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "" ), '' );
+		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_normalmode_tariffs' );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 

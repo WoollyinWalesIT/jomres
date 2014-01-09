@@ -87,8 +87,9 @@ class j02160cancelbooking
 
 				$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 				$jrtb   = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'saveCancellation' );
+				
 				$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=editBooking&contract_uid=" . $contract_uid ), '' );
+				$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'saveCancellation' );
 				$jrtb .= $jrtbar->endTable();
 				$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 

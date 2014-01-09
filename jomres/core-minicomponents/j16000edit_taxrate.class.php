@@ -47,8 +47,9 @@ class j16000edit_taxrate
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_taxrate' );
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=list_taxrates", '' );
+		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_taxrate' );
+		
 		if ( $id > 0 ) $jrtb .= $jrtbar->toolbarItem( 'delete', JOMRES_SITEPAGE_URL_ADMIN . "&task=delete_taxrate" . "&no_html=1&id=" . $id, '' );
 		else
 		echo jr_gettext( '_JRPORTAL_TAXRATES_CANNOTDELETE', _JRPORTAL_TAXRATES_CANNOTDELETE,false );

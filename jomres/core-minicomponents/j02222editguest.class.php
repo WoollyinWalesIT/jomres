@@ -125,8 +125,9 @@ class j02222editguest
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'saveGuest' );
+		
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=listguests" ), '' );
+		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'saveGuest' );
 		if ( $guestUid != 0 ) $jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=deleteGuest" . "&guestUid=$guestUid&no_html=1" ), '' );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;

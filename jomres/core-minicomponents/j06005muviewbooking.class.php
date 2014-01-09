@@ -254,7 +254,6 @@ class j06005muviewbooking
 			{
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb   = $jrtbar->startTable();
-			echo "<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>";
 			$jrtb .= $jrtbar->toolbarItem( 'cancelbooking', jomresURL( JOMRES_SITEPAGE_URL . "&task=cancelGuestBooking&contract_uid=$booking_contract_uid" ), '' );
 			$jrtb .= $jrtbar->endTable();
 			echo $jrtb;

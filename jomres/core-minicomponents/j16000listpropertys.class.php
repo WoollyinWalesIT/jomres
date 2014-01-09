@@ -111,8 +111,9 @@ class j16000listpropertys
 		$jrtb   = $jrtbar->startTable();
 		$image  = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/Save.png" );
 		$link   = JOMRES_SITEPAGE_URL_ADMIN;
-		$jrtb .= $jrtbar->customToolbarItem( 'saveCrates', $link, $text = "Save", $submitOnClick = true, $submitTask = "savecrates", $image );
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, jr_gettext( "_JRPORTAL_CANCEL", _JRPORTAL_CANCEL ) );
+		$jrtb .= $jrtbar->customToolbarItem( 'saveCrates', $link, $text = "Save", $submitOnClick = true, $submitTask = "savecrates", $image );
+		
 		$jrtb .= $jrtbar->spacer();
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;

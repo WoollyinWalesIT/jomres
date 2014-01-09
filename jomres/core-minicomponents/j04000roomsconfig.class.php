@@ -90,8 +90,9 @@ class j04000roomsconfig
 				{
 				$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 				$jrtb   = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem( 'new', jomresURL( JOMRES_SITEPAGE_URL . "&task=editProperty&amp;" ), '' );
+				
 				$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "" ), '' );
+				$jrtb .= $jrtbar->toolbarItem( 'new', jomresURL( JOMRES_SITEPAGE_URL . "&task=editProperty&amp;" ), '' );
 				$jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=deleteProperty" ), '' );
 				$jrtb .= $jrtbar->endTable();
 				$newPropertyButton = $jrtb;
@@ -101,8 +102,9 @@ class j04000roomsconfig
 				{
 				$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 				$jrtb   = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem( 'new', jomresURL( JOMRES_SITEPAGE_URL . "&task=editRoom&amp;" ), '' );
+				
 				$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&" ), '' );
+				$jrtb .= $jrtbar->toolbarItem( 'new', jomresURL( JOMRES_SITEPAGE_URL . "&task=editRoom&amp;" ), '' );
 				$jrtb .= $jrtbar->endTable();
 				$newRoomButton = $jrtb;
 				}
@@ -110,8 +112,9 @@ class j04000roomsconfig
 				{
 				$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 				$jrtb   = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem( 'new', jomresURL( JOMRES_SITEPAGE_URL . "&task=editRoom&amp;" ), '' );
+				
 				$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&" ), '' );
+				$jrtb .= $jrtbar->toolbarItem( 'new', jomresURL( JOMRES_SITEPAGE_URL . "&task=editRoom&amp;" ), '' );
 				$jrtb .= $jrtbar->endTable();
 				$newRoomButton = $jrtb;
 				}
@@ -132,8 +135,9 @@ class j04000roomsconfig
 				{
 				$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 				$jrtb   = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem( 'new', jomresURL( JOMRES_SITEPAGE_URL . "&task=editRoomClass" ), '' );
+				
 				$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL ), '' );
+				$jrtb .= $jrtbar->toolbarItem( 'new', jomresURL( JOMRES_SITEPAGE_URL . "&task=editRoomClass" ), '' );
 				$jrtb .= $jrtbar->endTable();
 				$newRoomClassButton = $jrtb;
 				}
