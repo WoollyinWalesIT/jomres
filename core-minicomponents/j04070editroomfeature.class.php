@@ -68,8 +68,9 @@ class j04070editroomfeature
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'saveRoomFeature' );
+		
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=propertyadmin" ), $cancelText );
+		$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'saveRoomFeature' );
 		if ( !$clone && $featureUid ) $jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=deleteRoomFeature" . "&roomFeatureUid=" . $featureUid . "" ), $deleteText );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;

@@ -77,10 +77,11 @@ class j16000listRfeatures
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
+		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, '' );
 		$image  = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/AddItem.png" );
 		$link   = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem( 'editRfeature', $link, jr_gettext( '_JOMRES_COM_MR_NEWTARIFF', _JOMRES_COM_MR_NEWTARIFF,false ), $submitOnClick = true, $submitTask = "editRfeature", $image );
-		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, '' );
+		
 		$jrtb .= $jrtbar->spacer();
 		$image = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/WasteBasket.png" );
 		$link  = JOMRES_SITEPAGE_URL_ADMIN;

@@ -174,8 +174,9 @@ class j04010editroom
 			$saveText   = jr_gettext( '_JOMRES_COM_MR_SAVE', _JOMRES_COM_MR_SAVE, false );
 			$jrtbar     = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb       = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'saveRoom' );
+			
 			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=propertyadmin" ), $cancelText );
+			$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'saveRoom' );
 			if ( $clone < 1 ) $jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=deleteRoom" . "&roomUid=" . $roomUid ), $deleteText );
 			$jrtb .= $jrtbar->endTable();
 			$output[ 'JOMRESTOOLBAR' ] = $jrtb;
@@ -216,8 +217,9 @@ class j04010editroom
 
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb   = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'saveRoom' );
+			
 			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=propertyadmin" ), $cancelText );
+			$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'saveRoom' );
 			$jrtb .= $jrtbar->endTable();
 
 			$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO', _JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO );

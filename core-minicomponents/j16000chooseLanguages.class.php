@@ -55,8 +55,9 @@ class j16000chooseLanguages
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_languageChoiceSelection' );
+		
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, '' );
+		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_languageChoiceSelection' );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 

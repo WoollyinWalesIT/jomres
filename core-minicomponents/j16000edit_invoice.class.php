@@ -162,8 +162,9 @@ class j16000edit_invoice
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_invoice' );
+		
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=list_invoices", '' );
+		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_invoice' );
 
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;

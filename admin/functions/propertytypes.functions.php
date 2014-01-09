@@ -82,8 +82,9 @@ function editPropertyType()
 	$jrtb   = $jrtbar->startTable();
 	$image  = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/Save.png" );
 	$link   = JOMRES_SITEPAGE_URL_ADMIN;
-	$jrtb .= $jrtbar->customToolbarItem( 'savePropertyType', $link, jr_gettext( "_JOMRES_COM_MR_SAVE", _JOMRES_COM_MR_SAVE, false ), $submitOnClick = true, $submitTask = "savePropertyType", $image );
+	
 	$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes", '' );
+	$jrtb .= $jrtbar->customToolbarItem( 'savePropertyType', $link, jr_gettext( "_JOMRES_COM_MR_SAVE", _JOMRES_COM_MR_SAVE, false ), $submitOnClick = true, $submitTask = "savePropertyType", $image );
 	$jrtb .= $jrtbar->endTable();
 
 	$output[ 'JOMRESTOOLBAR' ] = $jrtb;
