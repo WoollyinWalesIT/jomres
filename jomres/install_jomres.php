@@ -433,7 +433,32 @@ function doTableUpdates()
 	if ( !checkPTypeXrefColExists() ) alterPTypeXrefCol();
 	if ( !checkContractsChannelManagerBookingColExists() ) alterContractsChannelManagerBookingCol();
 	
+	if ( !checkManagerSimpleconfigColExists() ) alterManagerSimpleconfigCol();
+	
+	
 	if ( _JOMRES_DETECTED_CMS == "joomla15" ) checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
+	}
+
+function alterManagerSimpleconfigCol()
+	{
+	if ( !AUTO_UPGRADE ) echo "Editing __jomres_managers table adding simple_configuration column<br>";
+	$query = "ALTER TABLE `#__jomres_managers` ADD `simple_configuration` tinyint( 1 ) default 1 AFTER `suspended` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_managers simple_configuration</b><br>";
+		}
+	}
+
+function checkManagerSimpleconfigColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_managers LIKE 'simple_configuration'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
 	}
 
 function alterContractsChannelManagerBookingCol()
@@ -2869,6 +2894,7 @@ function createJomresTables()
 		`pu` INT( 1 ) DEFAULT '0',
 		`apikey` CHAR( 255 ) NULL DEFAULT NULL,
 		`suspended` tinyint( 1 ) default 0,
+		`simple_configuration` tinyint( 1 ) default 1,
 		`users_timezone` CHAR(100) DEFAULT 'Europe/Berlin',
 		PRIMARY KEY	(`manager_uid`)
 		) ";

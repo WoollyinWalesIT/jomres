@@ -58,7 +58,7 @@ class j00501propertydetailsoptions
 
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
-			if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
+			if ( !$thisJRUser->simple_configuration )
 				{
 				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SHOWONLYAVLCAL", _JOMRES_COM_A_SHOWONLYAVLCAL, false ) );
 				$configurationPanel->setmiddle( $lists[ 'showOnlyAvailabilityCalendar' ] );
@@ -79,7 +79,7 @@ class j00501propertydetailsoptions
 				}
 			}
 
-		if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
+		if ( !$thisJRUser->simple_configuration )
 			{
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE", _JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE, false ) );
 			$configurationPanel->setmiddle( $lists[ 'showSlideshowInline' ] );
@@ -94,7 +94,7 @@ class j00501propertydetailsoptions
 
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
-			if ( ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager ) && $mrConfig[ 'singleRoomProperty' ] != "1" )
+			if ( !$thisJRUser->simple_configuration && $mrConfig[ 'singleRoomProperty' ] != "1" )
 				{
 				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS", _JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS, false ) );
 				$configurationPanel->setmiddle( $lists[ 'roomslistinpropertydetails' ] );
@@ -107,7 +107,7 @@ class j00501propertydetailsoptions
 				$configurationPanel->insertSetting();
 				}
 
-			if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
+			if ( !$thisJRUser->simple_configuration )
 				{
 				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR", _JOMRES_COM_A_SHOWAVILABILITY_CALENDAR, false ) );
 				$configurationPanel->setmiddle( $lists[ 'showAvailabilityCalendar' ] );
@@ -132,7 +132,7 @@ class j00501propertydetailsoptions
 				}
 			}
 		
-		if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
+		if ( !$thisJRUser->simple_configuration )
 			{
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_GALLERYLINK", _JOMRES_COM_A_GALLERYLINK, false ) );
 			$configurationPanel->setmiddle( '<input type="url" class="inputbox form-control"  size="50" name="cfg_galleryLink" value="' . $mrConfig[ 'galleryLink' ] . '" />' );

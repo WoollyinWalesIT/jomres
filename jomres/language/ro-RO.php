@@ -656,7 +656,7 @@ jr_define( '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC', 'The minimum number of d
 jr_define( '_JOMRES_DTV', 'Date type variations' );
 jr_define( '_JOMRES_DTV_DOW', 'Zi a saptamanii' );
 jr_define( '_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE', 'Guest type default' );
-jr_define( '_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC', 'Default number of first the first Guest type. If you use guest types, then this is the default number that the first guest type in the booking form will be set to.' );
+jr_define( '_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC', 'Default number of  the first Guest type shown in the booking form.. If you use guest types, then this is the default number that the first guest type in the booking form will be set to.' );
 jr_define( '_JOMRES_COM_A_REGISTEREDUSERSONLYBOOK', 'Doar utilizatorii inregistrati pot face rezervari?' );
 jr_define( '_JOMRES_REGISTEREDUSERSONLYBOOK', 'Ne pare rau, trebuie sa fiti inregistrat pentru a face rezervari. Click aici pentru a va inregistra pe acest site. ' );
 jr_define( '_JOMRES_COM_AVLCAL_CURRENTBOOKINGFONT', 'Font colour for links to current bookings' );
@@ -2448,3 +2448,7 @@ jr_define('COMMON_PLACEHOLDER_MOBILE' , "00000 000000" );
 jr_define('COMMON_PLACEHOLDER_PROPERTYNAME' , "My Hotel" );
 jr_define('COMMON_PLACEHOLDER_POSTCODE' , "XXNN NNXX" );
 jr_define('COMMON_PLACEHOLDER_EMAIL' , "example@address.com" );
+
+jr_define('EXTENDED_CONFIGURATION' , "Extended Configuration" );
+jr_define('SIMPLE_CONFIGURATION' , "Simple Configuration" );
+ 

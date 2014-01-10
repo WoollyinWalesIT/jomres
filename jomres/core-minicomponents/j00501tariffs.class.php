@@ -85,7 +85,7 @@ class j00501tariffs
 
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
-			if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
+			if ( !$thisJRUser->simple_configuration )
 				{
 				$configurationPanel->setleft( jr_gettext( "_JOMRES_CURRENCYFORMAT", _JOMRES_CURRENCYFORMAT, false ) );
 				$configurationPanel->setmiddle( $cformatdropdown );
