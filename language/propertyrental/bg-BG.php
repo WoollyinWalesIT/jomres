@@ -2399,3 +2399,7 @@ jr_define('COMMON_PLACEHOLDER_MOBILE' , "00000 000000" );
 jr_define('COMMON_PLACEHOLDER_PROPERTYNAME' , "My Hotel" );
 jr_define('COMMON_PLACEHOLDER_POSTCODE' , "XXNN NNXX" );
 jr_define('COMMON_PLACEHOLDER_EMAIL' , "example@address.com" );
+
+jr_define('EXTENDED_CONFIGURATION' , "Extended Configuration" );
+jr_define('SIMPLE_CONFIGURATION' , "Simple Configuration" );
+ 

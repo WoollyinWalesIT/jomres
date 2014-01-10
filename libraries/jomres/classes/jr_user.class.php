@@ -50,7 +50,8 @@ class jr_user
 		$this->userIsRegistered             = false;
 		//$this->users_timezone					= "America/Lima";
 		$this->jomres_manager_id = 0;
-		$this->userIsSuspended   = false;
+		$this->userIsSuspended				= false;
+		$this->simple_configuration			= false;
 
 		$this->id = jomres_cmsspecific_getcurrentusers_id();
 
@@ -58,7 +59,7 @@ class jr_user
 			{
 			$this->userIsRegistered = true;
 
-			$query           = "SELECT manager_uid,userid,username,property_uid,access_level,currentproperty,pu,suspended,users_timezone FROM #__jomres_managers WHERE userid = '" . (int) $this->id . "' LIMIT 1";
+			$query           = "SELECT manager_uid,userid,username,property_uid,access_level,currentproperty,pu,suspended,users_timezone,simple_configuration FROM #__jomres_managers WHERE userid = '" . (int) $this->id . "' LIMIT 1";
 			$authorisedUsers = doSelectSql( $query );
 
 			if ( count( $authorisedUsers ) > 0 )
@@ -77,7 +78,9 @@ class jr_user
 						$this->users_timezone = $authUser->users_timezone;
 					if ( $authUser->suspended == "1" ) 
 						$this->userIsSuspended = true;
-
+					if ( $authUser->simple_configuration == "1" ) 
+						$this->simple_configuration = true;
+					
 					$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 
 					if ( $authUser->pu == "1" ) //this user is a super property manager and has access to all properties

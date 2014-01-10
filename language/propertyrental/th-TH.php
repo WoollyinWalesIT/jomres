@@ -634,7 +634,7 @@ jr_define( "_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC", "จำนวนต่�
 jr_define( "_JOMRES_DTV", "วันที่ชนิดต่าง ๆ" );
 jr_define( "_JOMRES_DTV_DOW", "วันของสัปดาห์" );
 jr_define( "_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE", "ประเภทบุคคลทั่วไป" );
-jr_define( "_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC", "Default number of first the first Guest type. If you use guest types, then this is the default number that the first guest type in the booking form will be set to." );
+jr_define( "_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC", "Default number of  the first Guest type shown in the booking form.. If you use guest types, then this is the default number that the first guest type in the booking form will be set to." );
 jr_define( "_JOMRES_COM_A_REGISTEREDUSERSONLYBOOK", "Registered users only can book online?" );
 jr_define( "_JOMRES_REGISTEREDUSERSONLYBOOK", "Sorry, you must be a registered user to book online. Click here to register on this site. " );
 jr_define( "_JOMRES_COM_AVLCAL_CURRENTBOOKINGFONT", "Font colour for links to current bookings" );
@@ -2287,3 +2287,7 @@ jr_define('COMMON_PLACEHOLDER_MOBILE' , "00000 000000" );
 jr_define('COMMON_PLACEHOLDER_PROPERTYNAME' , "My Hotel" );
 jr_define('COMMON_PLACEHOLDER_POSTCODE' , "XXNN NNXX" );
 jr_define('COMMON_PLACEHOLDER_EMAIL' , "example@address.com" );
+
+jr_define('EXTENDED_CONFIGURATION' , "Extended Configuration" );
+jr_define('SIMPLE_CONFIGURATION' , "Simple Configuration" );
+ 

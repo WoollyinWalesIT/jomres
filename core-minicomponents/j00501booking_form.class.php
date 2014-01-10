@@ -71,17 +71,20 @@ class j00501booking_form
 			$configurationPanel->insertSetting();
 			}
 		
-		$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT", _JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT, false ) );
-		$configurationPanel->setmiddle( $lists[ 'auto_detect_country_for_booking_form' ] );
-		$configurationPanel->setright( jr_gettext( "_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC", _JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC, false ) );
-		$configurationPanel->insertSetting();
+		if ( !$thisJRUser->simple_configuration )
+			{
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT", _JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT, false ) );
+			$configurationPanel->setmiddle( $lists[ 'auto_detect_country_for_booking_form' ] );
+			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC", _JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC, false ) );
+			$configurationPanel->insertSetting();
 
-		$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_CONFIGCOUNTRIES", _JOMRES_COM_CONFIGCOUNTRIES, false ) );
-		$configurationPanel->setmiddle( configCountries() );
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_CONFIGCOUNTRIES", _JOMRES_COM_CONFIGCOUNTRIES, false ) );
+			$configurationPanel->setmiddle( configCountries() );
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+			}
 
-		if (!get_showtime('is_jintour_property'))
+		if (!get_showtime('is_jintour_property') && !$thisJRUser->simple_configuration )
 			{
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_EXTRAS", _JOMRES_COM_A_EXTRAS, false ) );
 			$configurationPanel->setmiddle( $lists[ 'showExtras' ] );
@@ -89,7 +92,7 @@ class j00501booking_form
 			$configurationPanel->insertSetting();
 			}
 
-		if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
+		if ( !$thisJRUser->simple_configuration )
 			{
 			if ( $mrConfig[ 'singleRoomProperty' ] != "1" )
 				{
@@ -106,7 +109,7 @@ class j00501booking_form
 				}
 			}
 		
-		if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
+		if ( !$thisJRUser->simple_configuration )
 			{
 			if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 				{
@@ -124,7 +127,7 @@ class j00501booking_form
 				}
 			}
 
-		if ( ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager ) )
+		if ( !$thisJRUser->simple_configuration )
 			{
 			$configurationPanel->setleft( '<h3>'.jr_gettext( "_JOMRES_HREQUIRED_FIELDS", _JOMRES_HREQUIRED_FIELDS, false ).'</h3>' );
 			$configurationPanel->setmiddle();
@@ -160,13 +163,6 @@ class j00501booking_form
 			$configurationPanel->setmiddle( $lists[ 'bookingform_requiredfields_postcode' ] );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
-
-			/*
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION", _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION ) );
-			$configurationPanel->setmiddle( $lists[ 'bookingform_requiredfields_region' ] );
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			*/
 			
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY", _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY ) );
 			$configurationPanel->setmiddle( $lists[ 'bookingform_requiredfields_country' ] );

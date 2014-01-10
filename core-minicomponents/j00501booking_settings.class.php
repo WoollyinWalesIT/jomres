@@ -68,7 +68,7 @@ class j00501booking_settings
 			}
 		//	}
 		
-		if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
+		if ( !$thisJRUser->simple_configuration )
 			{
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_VISITORSCANBOOKONLINE", _JOMRES_COM_A_VISITORSCANBOOKONLINE, false ) );
 			$configurationPanel->setmiddle( $lists[ 'visitorscanbookonline' ] );
@@ -112,12 +112,15 @@ class j00501booking_settings
 				$configurationPanel->setmiddle( $booking_form_daily_weekly_monthly );
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();
-	
-				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_MINIMUMINTERVAL", _JOMRES_COM_A_MINIMUMINTERVAL, false ) );
-				$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control" name="cfg_minimuminterval" size="5" value="' . $mrConfig[ 'minimuminterval' ] . '" />' );
-				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_MINIMUMINTERVAL_DESC", _JOMRES_COM_A_MINIMUMINTERVAL_DESC, false ) );
-				$configurationPanel->insertSetting();
-	
+				
+				if ( !$thisJRUser->simple_configuration )
+					{
+					$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_MINIMUMINTERVAL", _JOMRES_COM_A_MINIMUMINTERVAL, false ) );
+					$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control" name="cfg_minimuminterval" size="5" value="' . $mrConfig[ 'minimuminterval' ] . '" />' );
+					$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_MINIMUMINTERVAL_DESC", _JOMRES_COM_A_MINIMUMINTERVAL_DESC, false ) );
+					$configurationPanel->insertSetting();
+					}
+				
 				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING", _JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING, false ) );
 				$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control" name="cfg_mindaysbeforearrival" size="5" value="' . $mrConfig[ 'mindaysbeforearrival' ] . '" />' );
 				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC", _JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC, false ) );
@@ -129,7 +132,7 @@ class j00501booking_settings
 			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC", _JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC, false ) );
 			$configurationPanel->insertSetting();
 	
-			if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
+			if ( !$thisJRUser->simple_configuration )
 				{
 				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO", _JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO, false ) );
 				$configurationPanel->setmiddle( $lists[ 'limitAdvanceBookingsYesNo' ] );
@@ -149,7 +152,7 @@ class j00501booking_settings
 			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_WEEKENDDAYS_DESC", _JOMRES_COM_WEEKENDDAYS_DESC, false ) );
 			$configurationPanel->insertSetting();
 			
-			if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
+			if ( !$thisJRUser->simple_configuration )
 				{
 				$threashold_dropdown = jomresHTML::integerSelectList( 0, 100, 1, 'cfg_cancellation_threashold', 'class="inputbox" size="1"', (int) $mrConfig[ 'cancellation_threashold' ] );
 	
@@ -224,7 +227,7 @@ class j00501booking_settings
 				$configurationPanel->insertSetting();
 				}
 	
-			if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
+			if ( !$thisJRUser->simple_configuration )
 				{
 				if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 					{
@@ -290,7 +293,7 @@ class j00501booking_settings
 			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_CHARGING_CONFIG_DESC", _JOMRES_COM_CHARGING_CONFIG_DESC, false ) );
 			$configurationPanel->insertSetting();
 
-			if ( $jrConfig[ 'minimalconfiguration' ] != "1" || $thisJRUser->superPropertyManager )
+			if ( !$thisJRUser->simple_configuration )
 				{
 				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP", _JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP, false ) );
 				$configurationPanel->setmiddle( $lists[ 'roundupDepositYesNo' ] );

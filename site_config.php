@@ -20,7 +20,7 @@ $jrConfig[ 'globalCurrencyCode' ]  = 'EUR';
 $jrConfig[ 'menusAsImages' ]       = '1';
 $jrConfig[ 'google_maps_api_key' ] = '';
 
-$jrConfig[ 'minimalconfiguration' ]            = '1';
+$jrConfig[ 'minimalconfiguration' ]            = '0';
 $jrConfig[ 'useSSLinBookingform' ]             = '0';
 $jrConfig[ 'editingModeAffectsAllProperties' ] = '0';
 $jrConfig[ 'allowHTMLeditor' ]                 = '0';
