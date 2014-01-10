@@ -768,7 +768,12 @@ function jomres_mainmenu_option( $link, $image = '', $text, $path = '/jomres/ima
 	$jrConfig       = $siteConfig->get();
 	$link           = jomresURL( $link );
 	$link           = jomresValidateUrl( $link );
-
+	
+	if ( $jrConfig[ 'development_production' ] == 'production' && $category == jr_gettext( "_JOMRES_SEARCH_BUTTON", _JOMRES_SEARCH_BUTTON, false, false ) )
+		{
+		return;
+		}
+	
 	if ( $image == '' ) $image = 'Prompt.png';
 
 	if ( !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'images' . JRDS . 'jomresimages' . JRDS . 'small' . JRDS . $image ) ) $path = get_showtime( 'eLiveSite' );
