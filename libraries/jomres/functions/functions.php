@@ -14,6 +14,21 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+
+
+function calc_rating_progressbar_colour($percentage)
+	{
+	if ( $percentage >= 60 )
+		$colour = 'progress-bar-success';
+	if ( $percentage < 60 && $percentage  >= 40 )
+		$colour = 'progress-bar-info';
+	if ( $percentage < 40 && $percentage>= 30 )
+		$colour = 'progress-bar-warning';
+	if ( $percentage < 30 )
+		$colour = 'progress-bar-danger';
+	return $colour;
+	}
+
 function jomres_bootstrap_version()
 	{
 	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
