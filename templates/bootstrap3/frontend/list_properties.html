@@ -43,15 +43,10 @@
 	
 						<p class="jomres_message">{LASTMINUTE}</p>
 					</div>
-					
 					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-						<div><strong>{_JOMRES_REVIEWS}</strong></div>
-						<blockquote class="example-right">
-						<div>{_JOMRES_REVIEWS_AVERAGE_RATING}{AVERAGE_RATING}</div>
-						<div>{_JOMRES_REVIEWS_TOTAL_VOTES} {NUMBER_OF_REVIEWS}</div>
-						<a href="javascript:void(0);" onclick="toggle_review_div({UID},'{JS_SAFE_PROPERTYNAME}');" class="hidden-xs">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
-						</blockquote>
+						{REVIEWS_SNIPPET}
 					</div>
+					
 					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 						<div class="well align-center">
 							{PRICE_PRE_TEXT}

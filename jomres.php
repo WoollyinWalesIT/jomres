@@ -993,6 +993,11 @@ if ( get_showtime( 'javascript_caching_enabled' ) )
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	$MiniComponents->triggerEvent( '99999', $componentArgs ); // Javascript and CSS caching
 	}
+	
+if ($_REQUEST['modal_wrap'] == "1")
+	{
+	echo simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND,'modal_wrap_end.html');
+	}
 
 // After updating jquery ui to 1.9.3 we started seeing a problem where the entire site would be reloaded into the jquery tabs.
 // http://stackoverflow.com/questions/13837304/jquery-ui-non-ajax-tab-loading-whole-website-into-itself
@@ -1017,6 +1022,8 @@ if ( defined( "JOMRES_RETURNDATA" ) )
 	}
 else
 ob_end_flush();
+
+
 // Script stops here
 
 

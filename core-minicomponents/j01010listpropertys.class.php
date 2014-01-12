@@ -283,6 +283,7 @@ class j01010listpropertys
 						{
 						$Reviews->property_uid                 = $propertys_uid;
 						$itemRating                            = $Reviews->showRating( $propertys_uid );
+						
 						$property_deets[ 'AVERAGE_RATING' ]    = number_format( $itemRating[ 'avg_rating' ], 1, '.', '' );
 						$property_deets[ 'NUMBER_OF_REVIEWS' ] = $itemRating[ 'counter' ];
 
@@ -292,7 +293,46 @@ class j01010listpropertys
 						$property_deets[ '_JOMRES_REVIEWS_CLICKTOSHOW' ]    = jr_gettext( '_JOMRES_REVIEWS_CLICKTOSHOW', _JOMRES_REVIEWS_CLICKTOSHOW, false, false );
 						$property_deets[ 'COLON' ]                          = " : ";
 						$property_deets[ 'HYPHEN' ]                         = " - ";
-						//$property_deets['REVIEWS']								= $MiniComponents->specificEvent('06000',"show_property_reviews");
+						
+						// Property review information needs to be in it's own array so that a patTemplate condition can be used to decide if reviews are shown or no.
+						// To allow BC with older templates we'll copy the review info from the old property deets array to a new property_reviews array.
+						if ( (int)$property_deets[ 'NUMBER_OF_REVIEWS' ] > 0 )
+							{
+							$property_reviews = array();
+							$property_reviews[0][ 'AVERAGE_RATING' ]					= $property_deets[ 'AVERAGE_RATING' ];
+							$property_reviews[0][ 'NUMBER_OF_REVIEWS' ]					= $property_deets[ 'NUMBER_OF_REVIEWS' ];
+							$property_reviews[0][ '_JOMRES_REVIEWS_AVERAGE_RATING' ]	= $property_deets[ '_JOMRES_REVIEWS_AVERAGE_RATING' ];
+							$property_reviews[0][ '_JOMRES_REVIEWS_TOTAL_VOTES' ]		= $property_deets[ '_JOMRES_REVIEWS_TOTAL_VOTES' ];
+							$property_reviews[0][ '_JOMRES_REVIEWS' ]					= $property_deets[ '_JOMRES_REVIEWS' ] ;
+							$property_reviews[0][ '_JOMRES_REVIEWS_CLICKTOSHOW' ]		= $property_deets[ '_JOMRES_REVIEWS_CLICKTOSHOW' ];
+							$property_reviews[0][ 'COLON' ]								= $property_deets[ 'COLON' ];
+							$property_reviews[0][ 'HYPHEN' ]							= $property_deets[ 'HYPHEN' ];
+							$property_reviews[0][ 'REVIEWS_RANDOM_IDENTIFIER' ]			= generateJomresRandomString( 10 );
+							$property_reviews[0][ 'UID' ]								= $propertys_uid;
+							
+							$property_reviews[0][ 'PROPERTY_NAME' ]						= urlencode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_name' ]);
+							
+							$property_reviews[0][ 'MODAL_BUTTON' ] = 
+								make_modal_button( 
+									$property_reviews[0][ '_JOMRES_REVIEWS_CLICKTOSHOW' ],  // Test of the button
+									'show_property_reviews',								// The task being called
+									'&property_uid='.$propertys_uid,						// Extra arguments being added to the url for that specific task
+									$property_reviews[0][ 'PROPERTY_NAME' ],				// The title of the modal
+									'btn-default'											// The colour of the button
+									);
+
+							
+							$tmpl          = new patTemplate();
+							$tmpl->addRows( 'property_reviews', $property_reviews );
+							$tmpl->setRoot( $layout_path_to_template );
+							$tmpl->readTemplatesFromInput( 'list_properties_reviews_snippet.html' );
+							$property_deets [ 'REVIEWS_SNIPPET' ] = $tmpl->getParsedTemplate();
+							}
+						else
+							{
+							$property_deets [ 'REVIEWS_SNIPPET' ] = jr_gettext( '_JOMRES_REVIEWS_NOREVIEWS', _JOMRES_REVIEWS_NOREVIEWS, false, false );
+							}
+						
 						}
 					else
 						{
@@ -305,6 +345,7 @@ class j01010listpropertys
 						$property_deets[ 'COLON' ]                          = '';
 						$property_deets[ 'HYPHEN' ]                         = '';
 						$property_deets[ 'REVIEWS' ]                        = '';
+						$property_deets [ 'REVIEWS_SNIPPET' ]               = '';
 						}
 
 					//$property_deets['AVAILABILITY_CALENDAR'] = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property->propertys_uid,'return_calendar'=>"1",'noshowlegend'=>1) );
@@ -529,6 +570,8 @@ class j01010listpropertys
 
 					$pageoutput[ ] = $output;
 					$tmpl          = new patTemplate();
+					$tmpl->addRows( 'property_reviews', $property_reviews );
+					$tmpl->addRows( 'property_reviews_none', $property_reviews_none );
 					$tmpl->addRows( 'pageoutput', $pageoutput );
 					$tmpl->addRows( 'property_details', $property_details );
 					$tmpl->setRoot( $layout_path_to_template );
