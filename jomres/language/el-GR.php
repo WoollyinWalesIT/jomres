@@ -1303,7 +1303,7 @@ jr_define( '_JOMRES_REVIEWS_CONS', 'Cons: ' );
 jr_define( '_JOMRES_REVIEWS_SUBMITTEDDATE', 'Submitted On: ' );
 jr_define( '_JOMRES_REVIEWS_ALREADYREVIEWED', 'You have already reviewed this property, you can\'t post another review about it.' );
 jr_define( '_JOMRES_REVIEWS_CANNOTREVIEW', 'Sorry, but you are not allowed to post reviews on this site.' );
-jr_define( '_JOMRES_REVIEWS_CLICKTOSHOW', 'Click to show reviews' );
+jr_define( '_JOMRES_REVIEWS_CLICKTOSHOW', 'Show reviews' );
 jr_define( '_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW', ' guests agree with this review. ' );
 jr_define( '_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW', ' guests do not agree with this review.' );
 jr_define( '_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW_SINGULAR', ' guest agrees with this review. ' );

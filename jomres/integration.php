@@ -181,6 +181,17 @@ $jomres_geolocation = jomres_singleton_abstract::getInstance( 'jomres_geolocatio
 $jomres_geolocation->auto_set_user_currency_code();
 
 $performance_monitor->set_point( "end integration run" );
+
+if (!isset($_REQUEST['modal_wrap']))
+	{
+	$_REQUEST['modal_wrap'] = 0;
+	}
+	
+
+if ($_REQUEST['modal_wrap'] == "1")
+	{
+	echo simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, 'modal_wrap_start.html' , urldecode(jomresGetParam( $_REQUEST, 'modal_title', "" )) );
+	}
 // Stops here
 
 

@@ -15,14 +15,56 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 
+// url is the remote url that will be called
+// text of the button.
+// task. The task of the called page
+// Extra. Any extra
+// Title. What the title of the modal will be set to.
+
+function make_modal_button( $text , $task, $extra = '' , $title , $button_colour = 'btn-default' )
+	{
+	$pageoutput = array();
+
+	$pageoutput[0][ 'RANDOM_IDENTIFIER' ]		= generateJomresRandomString( 10 );
+	$pageoutput[0][ 'TEXT' ]					= $text;
+	$pageoutput[0][ 'TASK' ]					= $task;
+	$pageoutput[0][ 'EXTRA' ]					= $extra;
+	$pageoutput[0][ 'MODAL_TITLE' ]				=  urlencode( $title );
+	$pageoutput[0][ 'BUTTON_COLOUR' ]			= $button_colour;
+
+	$tmpl          = new patTemplate();
+	$tmpl->setRoot( $path );
+	$tmpl->readTemplatesFromInput( "modal_button.html" );
+	$tmpl->addRows( 'pageoutput', $pageoutput );
+	return $tmpl->getParsedTemplate();
+	}
+
+
+// A quick way to ouput data that's stored in a Jomres template but doesn't require any conditions or rows.
+// Due to the way Bootstrap 3 demands that returned data be wrapped in <div class="modal-content"> <div class="modal-header"> </div></div> we need to create new output that wraps 
+// the content we wish to return. As we may want to add modal popups to other pages in the future we needed to add a new request variable "modal_wrap" which then allows us to
+// wrap the resulting output in these divs. As we don't want to change the code every time a new modal syntax appears it's preferable to add this modal wrap via a template file. The template file itself doesn't 
+// demand any special conditions, so we've created this quick template output function to allow us to quickly access a template file that contains some simple html.
+
+// One string allows us to pass just one variable to the template for inclusion in output (in case, for example, the modal needs a title)
+
+function simple_template_output($path = '' , $template = '' ,$one_string = '' )
+	{
+	$pageoutput = array(array ( "TITLE"=>$one_string));
+	$tmpl          = new patTemplate();
+	$tmpl->setRoot( $path );
+	$tmpl->readTemplatesFromInput( $template );
+	$tmpl->addRows( 'pageoutput', $pageoutput );
+	return $tmpl->getParsedTemplate();
+	}
 
 function calc_rating_progressbar_colour($percentage)
 	{
 	if ( $percentage >= 60 )
 		$colour = 'progress-bar-success';
-	if ( $percentage < 60 && $percentage  >= 40 )
+	if ( $percentage < 60 && $percentage  >= 50 )
 		$colour = 'progress-bar-info';
-	if ( $percentage < 40 && $percentage>= 30 )
+	if ( $percentage < 50 && $percentage>= 30 )
 		$colour = 'progress-bar-warning';
 	if ( $percentage < 30 )
 		$colour = 'progress-bar-danger';

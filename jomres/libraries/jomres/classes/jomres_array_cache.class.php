@@ -127,7 +127,7 @@ class jomres_array_cache {
 		else
 			$this->_cachedData = array($key => $storeData);
 		$cacheData = json_encode($this->_cachedData);
-		file_put_contents($this->getCacheDir(), $cacheData);
+		@file_put_contents($this->getCacheDir(), $cacheData);
 		unset($cacheData);
 		return $this;
 		}
