@@ -169,11 +169,29 @@ class j06000show_property_reviews
 						$r[ '_JOMRES_REVIEWS_RATING_6' ] = jr_gettext( '_JOMRES_REVIEWS_RATING_6', _JOMRES_REVIEWS_RATING_6, false, false );
 
 						$r[ 'rating_1' ] = $review_details[ $review[ 'rating_id' ] ][ 0 ] . '/10';
+						$r[ 'rating_1_percentage' ] = $review_details[ $review[ 'rating_id' ] ][ 0 ] * '10';
+						$r[ 'rating_1_progressbar_colour' ] = calc_rating_progressbar_colour($r[ 'rating_1_percentage' ]);
+						
 						$r[ 'rating_2' ] = $review_details[ $review[ 'rating_id' ] ][ 1 ] . '/10';
+						$r[ 'rating_2_percentage' ] = $review_details[ $review[ 'rating_id' ] ][ 1 ] * '10';
+						$r[ 'rating_2_progressbar_colour' ] = calc_rating_progressbar_colour($r[ 'rating_2_percentage' ]);
+						
 						$r[ 'rating_3' ] = $review_details[ $review[ 'rating_id' ] ][ 2 ] . '/10';
+						$r[ 'rating_3_percentage' ] = $review_details[ $review[ 'rating_id' ] ][ 2 ] * '10';
+						$r[ 'rating_3_progressbar_colour' ] = calc_rating_progressbar_colour($r[ 'rating_3_percentage' ]);
+						
 						$r[ 'rating_4' ] = $review_details[ $review[ 'rating_id' ] ][ 3 ] . '/10';
+						$r[ 'rating_4_percentage' ] = $review_details[ $review[ 'rating_id' ] ][ 3 ] * '10';
+						$r[ 'rating_4_progressbar_colour' ] = calc_rating_progressbar_colour($r[ 'rating_4_percentage' ]);
+						
 						$r[ 'rating_5' ] = $review_details[ $review[ 'rating_id' ] ][ 4 ] . '/10';
+						$r[ 'rating_5_percentage' ] = $review_details[ $review[ 'rating_id' ] ][ 4 ] * '10';
+						$r[ 'rating_5_progressbar_colour' ] = calc_rating_progressbar_colour($r[ 'rating_5_percentage' ]);
+						
 						$r[ 'rating_6' ] = $review_details[ $review[ 'rating_id' ] ][ 5 ] . '/10';
+						$r[ 'rating_6_percentage' ] = $review_details[ $review[ 'rating_id' ] ][ 5 ] * '10';
+						$r[ 'rating_6_progressbar_colour' ] = calc_rating_progressbar_colour($r[ 'rating_6_percentage' ]);
+						
 
 //						for ($i=1;$i<=10;$i++)
 //							{
@@ -274,6 +292,7 @@ class j06000show_property_reviews
 
 			}
 		}
+		
 
 	function touch_template_language()
 		{
