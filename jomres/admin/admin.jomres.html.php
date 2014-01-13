@@ -450,39 +450,6 @@ class HTML_jomres
 
 			if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 				{
-				$contentPanel->startPanel( jr_gettext( '_JOMRES_MOBILE_SETTINGS', _JOMRES_MOBILE_SETTINGS, false ) );
-				$contentPanel->setcontent( '
-			<table width="100%" class="jradmin_table" border="0">
-			<tr valign="middle" class="even">
-					<th width="20%" class="ui-state-default">&nbsp;</th>
-					<th width="20%" class="ui-state-default">' . jr_gettext( _JOMRES_COM_A_CURRENT_SETTINGS, '_JOMRES_COM_A_CURRENT_SETTINGS', false ) . '</th>
-					<th width="60%" class="ui-state-default">' . jr_gettext( _JOMRES_COM_A_EXPLANATION, '_JOMRES_COM_A_EXPLANATION', false ) . '</th>
-			</tr>
-			<tr valign="middle" class="odd">
-				<td valign="middle">' . jr_gettext( _JOMRES_MOBILE_REDIRECT, '_JOMRES_MOBILE_REDIRECT', false ) . '</td>
-				<td valign="middle">' . $lists[ 'mobile_redirect' ] . '</td>
-				<td valign="middle">' . jr_gettext( _JOMRES_MOBILE_REDIRECT_DESC, '_JOMRES_MOBILE_REDIRECT_DESC', false ) . '</td>
-			</tr>
-			<tr valign="middle" class="even">
-				<td valign="middle">' . jr_gettext( _JOMRES_SIMULATE_MOBILE, '_JOMRES_SIMULATE_MOBILE', false ) . '</td>
-				<td valign="middle">' . $lists[ 'mobile_simulation' ] . '</td>
-				<td valign="middle">' . jr_gettext( _JOMRES_SIMULATE_MOBILE_DESC, '_JOMRES_SIMULATE_MOBILE_DESC', false ) . '</td>
-			</tr>
-			<tr valign="middle" class="odd">
-				<td valign="middle">' . jr_gettext( _JOMRES_SIMULATE_MOBILE_RESTRICTION, '_JOMRES_SIMULATE_MOBILE_RESTRICTION', false ) . '</td>
-				<td valign="middle"><input type="text" class="inputbox" name="cfg_mobile_simulation_ip_restriction" value="' . $jrConfig[ 'mobile_simulation_ip_restriction' ] . '" /></td>
-				<td valign="middle">' . jr_gettext( _JOMRES_SIMULATE_MOBILE_RESTRICTION_DESC, '_JOMRES_SIMULATE_MOBILE_RESTRICTION_DESC', false ) . '</td>
-			</tr>
-			<tr valign="middle">
-				<th colspan="3">&nbsp;</th>
-			</tr>
-			</table>' );
-				$contentPanel->insertContent();
-				$contentPanel->endPanel();
-				}
-
-			if ( $jrConfig[ 'advanced_site_config' ] == 1 )
-				{
 				$contentPanel->startPanel( jr_gettext( '_JOMRES_PATHWAY_BOOKINGFORM', _JOMRES_PATHWAY_BOOKINGFORM, false ) );
 				$contentPanel->setcontent( '
 			<table width="100%" class="jradmin_table" border="0">
