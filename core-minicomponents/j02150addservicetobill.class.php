@@ -76,7 +76,7 @@ class j02150addservicetobill
 			{
 			$contract_uid        = jomresGetParam( $_POST, 'contract_uid', 0 );
 			$service_description = ucfirst( jomresGetParam( $_POST, 'service_description', '' ) );
-			$service_value       = jomresGetParam( $_POST, 'service_value', 0.00 );
+			$service_value       = convert_entered_price_into_safe_float (jomresGetParam( $_POST, 'service_value', '' ));
 			$taxrate             = jomresGetParam( $_POST, 'taxrate', 0 );
 			jr_import( 'jrportal_taxrate' );
 			$tax_rate_class     = new jrportal_taxrate();

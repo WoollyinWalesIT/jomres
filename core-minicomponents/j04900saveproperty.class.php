@@ -66,11 +66,10 @@ class j04900saveproperty
 		$metatitle         = jomresGetParam( $_POST, 'metatitle', "" );
 		$metadescription   = jomresGetParam( $_POST, 'metadescription', "" );
 		$metakeywords      = jomresGetParam( $_POST, 'metakeywords', "" );
-		$price             = jomresGetParam( $_POST, 'price', '' );
+		$price             = convert_entered_price_into_safe_float(jomresGetParam( $_POST, 'price', '' ));
 
 		$lat   = parseFloat( jomresGetParam( $_POST, 'lat', '' ) );
 		$long  = parseFloat( jomresGetParam( $_POST, 'long', '' ) );
-		$price = str_replace( ",", "", $price );
 
 		if ( $jrConfig[ 'allowHTMLeditor' ] == "0" )
 			{
