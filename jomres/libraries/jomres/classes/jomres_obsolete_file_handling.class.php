@@ -833,6 +833,11 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file( $this->dir_minicomponents . 'j00003mobile.class.php' );
 		
+		$files_old_bootstrap_dashboard = scandir_getfiles_recursive( $this->dir_libraries . 'bootstrap_dashboard'  );
+		foreach ( $files_old_bootstrap_dashboard as $file )
+			{
+			$this->add_obs_file( $file );
+			}
 		}
 
 	function add_obs_file( $path_and_file )
