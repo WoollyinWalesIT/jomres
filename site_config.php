@@ -235,14 +235,12 @@ $jrConfig[ 'useshoppingcart' ]     = "1";
 $jrConfig[ 'default_lat' ]  = "51.50068";
 $jrConfig[ 'default_long' ] = "-0.14317";
 
-$jrConfig[ 'mobile_redirect' ]      = "0";
 $jrConfig[ 'default_from_address' ] = "";
 
 $jrConfig[ 'css_caching_enabled' ]              = "0";
 $jrConfig[ 'use_cleardate_checkbox' ]           = "1";
 $jrConfig[ 'use_cookie_policy' ]                = "0";
-$jrConfig[ 'mobile_simulation' ]                = "0";
-$jrConfig[ 'mobile_simulation_ip_restriction' ] = "";
+
 $jrConfig[ 'safe_mode' ]                        = "0";
 $jrConfig[ 'use_jomres_own_editor' ]            = "1";
 $jrConfig[ 'room_lock_timeout' ]                = "3600";

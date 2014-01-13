@@ -461,44 +461,7 @@ class HTML_jomres
 				$contentPanel->insertContent();
 				$contentPanel->endPanel();
 				}
-
-			if ( $jrConfig[ 'advanced_site_config' ] == 1 )
-				{
-				$contentPanel->startPanel( jr_gettext( '_JOMRES_MOBILE_SETTINGS', _JOMRES_MOBILE_SETTINGS, false ) );
-				$contentPanel->setcontent( '
-			<table class="table table-striped" width="100%">
-			<thead>
-			<tr>
-					<th width="20%">&nbsp;</th>
-					<th width="20%">' . jr_gettext( _JOMRES_COM_A_CURRENT_SETTINGS, '_JOMRES_COM_A_CURRENT_SETTINGS', false ) . '</th>
-					<th>' . jr_gettext( _JOMRES_COM_A_EXPLANATION, '_JOMRES_COM_A_EXPLANATION', false ) . '</th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr>
-				<td>' . jr_gettext( _JOMRES_MOBILE_REDIRECT, '_JOMRES_MOBILE_REDIRECT', false ) . '</td>
-				<td>' . $lists[ 'mobile_redirect' ] . '</td>
-				<td>' . jr_gettext( _JOMRES_MOBILE_REDIRECT_DESC, '_JOMRES_MOBILE_REDIRECT_DESC', false ) . '</td>
-			</tr>
-			<tr>
-				<td>' . jr_gettext( _JOMRES_SIMULATE_MOBILE, '_JOMRES_SIMULATE_MOBILE', false ) . '</td>
-				<td>' . $lists[ 'mobile_simulation' ] . '</td>
-				<td>' . jr_gettext( _JOMRES_SIMULATE_MOBILE_DESC, '_JOMRES_SIMULATE_MOBILE_DESC', false ) . '</td>
-			</tr>
-			<tr>
-				<td>' . jr_gettext( _JOMRES_SIMULATE_MOBILE_RESTRICTION, '_JOMRES_SIMULATE_MOBILE_RESTRICTION', false ) . '</td>
-				<td><input type="text" class="input-large" name="cfg_mobile_simulation_ip_restriction" value="' . $jrConfig[ 'mobile_simulation_ip_restriction' ] . '" /></td>
-				<td>' . jr_gettext( _JOMRES_SIMULATE_MOBILE_RESTRICTION_DESC, '_JOMRES_SIMULATE_MOBILE_RESTRICTION_DESC', false ) . '</td>
-			</tr>
-			<tr>
-				<th colspan="3">&nbsp;</th>
-			</tr>
-			</tbody>
-			</table>' );
-				$contentPanel->insertContent();
-				$contentPanel->endPanel();
-				}
-
+			
 			if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 				{
 				$contentPanel->startPanel( jr_gettext( '_JOMRES_PATHWAY_BOOKINGFORM', _JOMRES_PATHWAY_BOOKINGFORM, false ) );
