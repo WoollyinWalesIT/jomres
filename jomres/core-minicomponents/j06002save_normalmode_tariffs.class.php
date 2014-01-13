@@ -67,7 +67,7 @@ class j06002save_normalmode_tariffs
 
 		if ( $mrConfig[ 'singleRoomProperty' ] == '1' ) ///////////////////////////////////////////////////////////////////////////////// SRP
 			{
-			$roomrateperday = floatval( jomresGetParam( $_POST, 'roomrateperday', "" ) );
+			$roomrateperday = convert_entered_price_into_safe_float( jomresGetParam( $_POST, 'roomrateperday', "" ) );
 			$roomtype       = intval( jomresGetParam( $_POST, 'roomtype', "" ) );
 			$max_people     = intval( jomresGetParam( $_POST, 'max_people', "" ) );
 			//var_dump($_POST);exit;

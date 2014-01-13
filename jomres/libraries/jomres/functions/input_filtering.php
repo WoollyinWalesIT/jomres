@@ -423,41 +423,25 @@ function jomres_parseRequest() // A simple request parser to check that mosConf.
 		}
 	}
 
-// Functions identified as probably no longer used by Jomres scripts, we'll keep them around for now, as the code may be useful in the future
-
-/* 
-function jomres_html_entity_decode_utf8($string)
+// Previously we just used floats, however Europeans commonly use commas as a decimal seperator so we'll use this function to convert entered prices to nnn.nn values
+function convert_entered_price_into_safe_float($value)
 	{
-	static $trans_tbl;
-	// replace numeric entities
-	$string = preg_replace('~&#x([0-9a-f]+);~ei', 'jomres_code2utf(hexdec("\\1"))', $string);
-	$string = preg_replace('~&#([0-9]+);~e', 'jomres_code2utf(\\1)', $string);
-
-	// replace literal entities
-	if (!isset($trans_tbl))
+	$result = 0.00;
+	if (strstr($value,","))
 		{
-		$trans_tbl = array();
-		foreach (get_html_translation_table(HTML_ENTITIES) as $val=>$key)
-			$trans_tbl[$key] = utf8_encode($val);
+		$value = str_replace(".","^",$value);
+		$value = str_replace(",",".",$value);
+		$value = str_replace("^","",$value);
+		$result = (float)$value;
 		}
-	return strtr($string, $trans_tbl);
-	} */
-
-
-/* function jomres_purify_string($string)
-	{
-	$dirty = (string) $string;
-	$dirty = jomres_purify_html($dirty,false);
-	$dirty=jomres_remove_HTML($dirty); // Strip out any html
-	$clean=filter_var($dirty,FILTER_SANITIZE_SPECIAL_CHARS); // Final check to ensure that anything left over has been sanitised.
-	} */
-
-/* function stripUnwanted($text)
-	{
-	$theLen=strlen();
-	if (!strncasecmp($result,$text,$theLen)) {
-		$text="";
+	else
+		{
+		$result = (float)$value;
 		}
-	return $text;
-	} */
+	
+	return $result;
+	}
+	
+	
+	
 ?>
