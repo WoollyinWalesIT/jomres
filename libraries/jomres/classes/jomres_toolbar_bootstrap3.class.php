@@ -78,8 +78,11 @@ class jomres_toolbar_bootstrap
 	 */
 	function customToolbarItem( $targetTask, $link, $text = "", $submitOnClick = false, $submitTask = "", $image )
 		{
-		$output = $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask );
-
+		$separate = false;
+		if ($targetTask == "delete")
+			$separate = true ;
+		
+		$this->items[] = array( "cell" => $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask ) , "separate"=>$separate);
 		return $output;
 		}
 
@@ -117,14 +120,34 @@ class jomres_toolbar_bootstrap
 	 */
 	function endTable()
 		{
+		$new_arr = array();
+		$first = null;
+		foreach ($this->items as $item)
+			{
+			if (strstr($item['cell'],"primary"))
+				{
+				$first = $item;
+				}
+			else
+				{
+				$new_arr[]=$item;
+				}
+			}
+		if (!is_null($first))
+			{
+			array_unshift ( $new_arr , $first );
+			}
+		
+		$this->items = $new_arr;
+		
 		$output = '
-		<div class="btn-group">';
+		';
 		foreach ($this->items as $item)
 			{
 			if ($item['separate']==false)
 				$output .= $item['cell'];
 			}
-		$output .='</div>
+		$output .='
 ';
 		foreach ($this->items as $item)
 			{

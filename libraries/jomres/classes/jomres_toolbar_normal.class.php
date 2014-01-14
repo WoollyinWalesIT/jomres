@@ -100,21 +100,6 @@ class jomres_toolbar_normal
 		return $output;
 		}
 
-	/**
-	#
-	 * Creates the receptionist and manager's menu bars
-	#
-	 */
-	function menubarItem( $targetTask, $link, $text )
-		{
-		$submitOnClick = false;
-		$submitTask    = "";
-		$image         = '/jomres/images/jomresimages/' . $this->imageSize . '/' . $this->menubarImagesArray[ $targetTask ] . '.' . $this->imageExtension;
-		//var_dump($this->menubarImagesArray);exit;
-		$output = $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask );
-
-		return $output;
-		}
 
 	/**
 	#
