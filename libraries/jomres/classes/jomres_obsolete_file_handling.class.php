@@ -851,6 +851,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j06002sendbug.class.php' );
 		
 		$this->add_obs_file( $this->dir_minicomponents . 'j00003mobile.class.php' );
+
+
 		
 		$files_old_bootstrap_dashboard = scandir_getfiles_recursive( $this->dir_libraries . 'bootstrap_dashboard'  ); 
 		foreach ( $files_old_bootstrap_dashboard as $file )
@@ -858,6 +860,9 @@ class jomres_obsolete_file_handling
 			$this->add_obs_file( $file );
 			}
 		
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'batchupload.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'batchupload.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'batchupload.html' );
 		}
 
 	function add_obs_file( $path_and_file )
