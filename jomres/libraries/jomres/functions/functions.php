@@ -3062,7 +3062,7 @@ function hotelSettings()
 			
 			$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-			echo '<div class="well">' . $output[ 'JOMRESTOOLBAR' ] .  $output[ 'JOMRESTOOLBAR_CONFIGURATION_LEVEL_BUTTONS' ] . '</div>';
+			echo '<div class="well clearfix"><div class="pull-left">' . $output[ 'JOMRESTOOLBAR' ] .'</div><div class="pull-right">'.  $output[ 'JOMRESTOOLBAR_CONFIGURATION_LEVEL_BUTTONS' ] . '</div></div>';
 			
 			if ( !using_bootstrap() )
 				{
