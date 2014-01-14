@@ -39,6 +39,7 @@ class jomres_toolbar_bootstrap
 		$this->imageSize              = "small";
 		if ( isset( $mrConfig[ 'editiconsize' ] ) ) $this->imageSize = $mrConfig[ 'editiconsize' ];
 		$this->imageExtension = 'png';
+		$this->items					= array();
 		}
 
 	/**
@@ -77,8 +78,11 @@ class jomres_toolbar_bootstrap
 	 */
 	function customToolbarItem( $targetTask, $link, $text = "", $submitOnClick = false, $submitTask = "", $image )
 		{
-		$output = $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask );
-
+		$separate = false;
+		if ($targetTask == "delete")
+			$separate = true ;
+		
+		$this->items[] = array( "cell" => $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask ) , "separate"=>$separate);
 		return $output;
 		}
 
@@ -89,26 +93,14 @@ class jomres_toolbar_bootstrap
 	 */
 	function toolbarItem( $targetTask, $link, $text = "", $submitOnClick = false, $submitTask = "" )
 		{
+		$separate = false;
+		if ($targetTask == "delete")
+			$separate = true ;
+			
+		
 		if ( empty( $text ) ) $text = $this->standardActivityImages[ $targetTask ][ 'label' ];
 		$image  = '/jomres/images/jomresimages/' . $this->imageSize . '/' . $this->standardActivityImages[ $targetTask ][ 'image' ] . '.' . $this->imageExtension;
-		$output = $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask );
-
-		return $output;
-		}
-
-	/**
-	#
-	 * Creates the receptionist and manager's menu bars
-	#
-	 */
-	function menubarItem( $targetTask, $link, $text )
-		{
-		$submitOnClick = false;
-		$submitTask    = "";
-		$image         = '/jomres/images/jomresimages/' . $this->imageSize . '/' . $this->menubarImagesArray[ $targetTask ] . '.' . $this->imageExtension;
-		$output        = $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask );
-
-		return $output;
+		$this->items[] = array( "cell" => $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask ) , "separate"=>$separate);
 		}
 
 	/**
@@ -132,9 +124,47 @@ class jomres_toolbar_bootstrap
 	 */
 	function endTable()
 		{
-		$output = '</div>
-		';
+		$new_arr = array();
+		$first = null;
+		foreach ($this->items as $item)
+			{
+			if (strstr($item['cell'],"primary"))
+				{
+				$first = $item;
+				}
+			else
+				{
+				$new_arr[]=$item;
+				}
+			}
+		
+		
+		if (!is_null($first))
+			{
+			array_unshift ( $new_arr , $first );
+			}
+		
+		
+		
+		$this->items = $new_arr;
+		
+		$output = '<div class="btn-group">';
+		foreach ($this->items as $item)
+			{
+			if ($item['separate']==false)
+				$output .= $item['cell'];
+			}
+		$output .='</div>';
+		
+		foreach ($this->items as $item)
+			{
+			if ($item['separate']==true)
+				$output .= $item['cell'];
+			}
 
+		$output .='</div>'; //  close jomres-toolbar
+		$this->items	= array();
+		
 		return $output;
 		}
 
