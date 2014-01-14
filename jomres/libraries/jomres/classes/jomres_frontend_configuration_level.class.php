@@ -22,8 +22,7 @@ class jomres_frontend_configuration_level
 		
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
-		$thisJRUser->superPropertyManager = false;
-	
+
 		if ( $jrConfig[ 'minimalconfiguration' ] == "1" && !$thisJRUser->superPropertyManager)
 			return;
 		
