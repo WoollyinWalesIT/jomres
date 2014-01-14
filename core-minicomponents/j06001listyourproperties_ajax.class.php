@@ -208,16 +208,16 @@ class j06001listyourproperties_ajax
 					if ( $p->approved == 1 )
 						{
 						if ( !$p->published )
-							$toolbar->addItem( 'icon-cancel', 'btn btn-danger', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty' . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', _JOMRES_COM_MR_VRCT_PUBLISH, false ) );
+							$toolbar->addItem( 'icon-cancel', 'btn btn-default', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty' . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', _JOMRES_COM_MR_VRCT_PUBLISH, false ) );
 						else
 							$toolbar->addItem( 'icon-ok icon-white', 'btn btn-success', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty' . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_UNPUBLISH', _JOMRES_COM_MR_VRCT_UNPUBLISH, false ) );
 						}
 					else
 						{
 						if ( !$p->published )
-							$toolbar->addItem( 'icon-cancel', 'btn btn-default disabled', '', 'javascript:void(0);', '' );
+							$toolbar->addItem( 'icon-cancel', 'btn btn-default disabled', '', 'javascript:void(0);', jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', _JOMRES_COM_MR_VRCT_PUBLISH, false ) );
 						else
-							$toolbar->addItem( 'icon-ok icon-white', 'btn btn-success disabled', '', 'javascript:void(0);', '' );
+							$toolbar->addItem( 'icon-ok icon-white', 'btn btn-success disabled', '', 'javascript:void(0);', jr_gettext( '_JOMRES_COM_MR_VRCT_UNPUBLISH', _JOMRES_COM_MR_VRCT_UNPUBLISH, false ) );
 						}
 					}
 				if ($p->propertys_uid != $defaultProperty)
@@ -237,7 +237,7 @@ class j06001listyourproperties_ajax
 			if ($p->propertys_uid != $defaultProperty)
 				$r[] = jomres_decode($p->property_name);
 			else
-				$r[] = '<span class="label label-info">'.jomres_decode($p->property_name).'</span>';
+				$r[] = '<span class="label label-blue">'.jomres_decode($p->property_name).'</span>';
 				
 			$r[] = jomres_decode( $p->property_street );
 			$r[] = jomres_decode( $p->property_town );

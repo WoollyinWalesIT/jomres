@@ -60,7 +60,7 @@ class jomresHTML
 
 	static function selectList( $arr, $name, $attribs, $key, $text, $default = null, $use_bootstrap_radios = true )
 		{
-		$not_for_these_dropdowns = array ( "jomreslang", "jomres_editing_mode", "user_timezone", "existingCustomers", "management_process", "all_guests", "force[]", "guestnumber", "country", "region", "town", "show_all", "deposit_paid", "booked_in" );
+		$not_for_these_dropdowns = array ( "jomreslang", "jomres_editing_mode", "user_timezone", "existingCustomers", "management_process", "all_guests", "force[]", "guestnumber", "country", "region", "town", "show_all", "deposit_paid", "booked_in", "fixedPeriod_periodsRequested" );
 		if ( !$use_bootstrap_radios ) $not_for_these_dropdowns[ ] = $name;
 
 		if ( !using_bootstrap() || count( $arr ) != 2 || in_array( $name, $not_for_these_dropdowns ) || get_showtime( 'task' ) == "handlereq" )

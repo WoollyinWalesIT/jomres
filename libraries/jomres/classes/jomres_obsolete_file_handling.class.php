@@ -822,9 +822,28 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'ajax_switch_property.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'switch_property.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'bootstrap_dashboard.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'edit_customertype.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'list_customertypes.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'edit_coupon.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'list_coupons.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'edit_extra.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'list_extras.html' );
+		
+		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'edit_customertype.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'list_customertypes.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'edit_coupon.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'list_coupons.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'edit_extra.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'list_extras.html' );
 		
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'ajax_switch_property.html' );
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'switch_property.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'edit_customertype.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'list_customertypes.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'edit_coupon.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'list_coupons.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'edit_extra.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'list_extras.html' );
 		
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'edit_bug.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'edit_bug.html' );
@@ -833,11 +852,12 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file( $this->dir_minicomponents . 'j00003mobile.class.php' );
 		
-		$files_old_bootstrap_dashboard = scandir_getfiles_recursive( $this->dir_libraries . 'bootstrap_dashboard'  );
+		$files_old_bootstrap_dashboard = scandir_getfiles_recursive( $this->dir_libraries . 'bootstrap_dashboard'  ); 
 		foreach ( $files_old_bootstrap_dashboard as $file )
 			{
 			$this->add_obs_file( $file );
 			}
+		
 		}
 
 	function add_obs_file( $path_and_file )
