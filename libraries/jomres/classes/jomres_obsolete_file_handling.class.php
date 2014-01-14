@@ -21,7 +21,7 @@ class jomres_obsolete_file_handling
 		$this->obs_files   = array ();
 		$this->nohtml      = jomresGetParam( $_REQUEST, 'no_html', 0 );
 		$this->warnconfirm = jomresGetParam( $_REQUEST, 'warnconfirm', 0 );
-		$this->warnmode    = true;
+		$this->warnmode    = false;
 		if ( $this->warnconfirm == 1 ) $this->warnmode = false;
 		$this->dir_root           = JOMRESCONFIG_ABSOLUTE_PATH . JRDS;
 		$this->dir_jomres         = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS;
@@ -863,6 +863,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'batchupload.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'batchupload.html' );
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'batchupload.html' );
+		
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'test_template.html' );
 		}
 
 	function add_obs_file( $path_and_file )
