@@ -231,19 +231,19 @@ class j06005list_invoices_ajax
 				switch ( $p->status )
 					{
 					case 0:
-						$label_class='label-important label-danger';
+						$label_class='label-red';
 						break;
 					case 1:
-						$label_class='label-success';
+						$label_class='label-green';
 						break;
 					case 2:
-						$label_class='label-inverse';
+						$label_class='label-black';
 						break;
 					case 3:
-						$label_class='label-warning';
+						$label_class='label-orange';
 						break;
 					default:
-						$label_class='label-default';
+						$label_class='label-grey';
 						break;
 					}
 			
@@ -307,7 +307,7 @@ class j06005list_invoices_ajax
 			$r[] = $p->raised_date;
 			$r[] = $p->due_date;
 			$r[] = $p->paid;
-			$r[] = $r[] = '<span class="label '.$label_class.'">'.output_price($p->grand_total).'</span>';
+			$r[] = output_price($p->grand_total);
 			$r[] = output_price($p->init_total);
 			$r[] = output_price($p->recur_total);
 			

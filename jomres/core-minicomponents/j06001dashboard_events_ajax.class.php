@@ -49,14 +49,14 @@ class j06001dashboard_events_ajax {
 		$guests=array();
 		$result=array();
 		
-		$img_pending     = "label";
-		$img_arrivetoday = "label label-warning";
-		$img_resident    = "label label-success";
-		$img_departtoday = "label label-info";
+		$img_pending     = "label label-grey";
+		$img_arrivetoday = "label label-orange";
+		$img_resident    = "label label-green";
+		$img_departtoday = "label label-blue";
 		$img_stillhere   = "label label-purple";
-		$img_late        = "label label-important";
+		$img_late        = "label label-red";
 		$img_bookedout   = "label label-teal";
-		$img_black		 = "label label-inverse";
+		$img_black		 = "label label-black";
 		
 		$from=jomresGetParam($_GET, 'start', '');
 		$to=jomresGetParam($_GET, 'end', '');

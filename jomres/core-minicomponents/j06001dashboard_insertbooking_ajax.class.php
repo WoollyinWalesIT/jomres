@@ -125,12 +125,12 @@ class j06001dashboard_insertbooking_ajax
 
 			$insertMessage="Booking saved successfully";
 			
-			$img_pending     = "label";
-			$img_arrivetoday = "label label-warning";
-			$img_resident    = "label label-success";
-			$img_departtoday = "label label-info";
+			$img_pending     = "label label-grey";
+			$img_arrivetoday = "label label-orange";
+			$img_resident    = "label label-green";
+			$img_departtoday = "label label-blue";
 			$img_stillhere   = "label label-purple";
-			$img_late        = "label label-important";
+			$img_late        = "label label-red";
 			
 			$today = date( "Y/m/d" );
 			$date_elements = explode( "/", $today );

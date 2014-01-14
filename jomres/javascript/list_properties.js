@@ -10,7 +10,7 @@ function toggle_review_div(uid, property_name) {
 			jomresJquery.get(live_site_ajax + "&task=show_property_reviews&property_uid=" + uid,
 				function (data) {
 					jomresJquery('#property_reviews' + uid).html(data);
-					jomresJquery('.star').rating();
+					//jomresJquery('.star').rating();
 				});
 		}
 	});

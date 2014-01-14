@@ -50,6 +50,7 @@ class j00004x_init_javascript_css_files
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		$management_view = jomresGetParam($_REQUEST, 'tmpl', false);
 
 		// Include all the various css & javascript files we need
 		if ( !AJAXCALL )
@@ -69,19 +70,14 @@ class j00004x_init_javascript_css_files
 				jomres_cmsspecific_addheaddata( "css", get_showtime( "jquery.ui.theme.relpath" ), get_showtime( "jquery.ui.theme" ), $skip = true );
 
 
-				if ( jomres_cmsspecific_areweinadminarea() )
+				if ( jomres_cmsspecific_areweinadminarea() || $jrConfig[ 'load_jquery' ] == "1" )
 					{
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.core.js.relpath" ), get_showtime( "jquery.core.js" ) ); // The order here is important, jquery must come before the ui
-					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.ui.js.relpath" ), get_showtime( "jquery.ui.js" ) );
 					}
-				elseif ( $jrConfig[ 'load_jquery' ] == "1" )
-					{
-					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.core.js.relpath" ), get_showtime( "jquery.core.js" ) );
-					}
-
+				
 				jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jomres.js.relpath" ), get_showtime( "jomres.js" ) ); // Needs to be directly after jquery call so that noconflict is set
-
-				if ( $jrConfig[ 'load_jquery_ui' ] == "1" )
+				
+				if ( jomres_cmsspecific_areweinadminarea() || $jrConfig[ 'load_jquery_ui' ] == "1" )
 					{
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.ui.js.relpath" ), get_showtime( "jquery.ui.js" ) );
 					}
