@@ -672,12 +672,6 @@ if ( get_showtime( 'numberOfPropertiesInSystem' ) > 0 )
 			userHasBeenLoggedOut();
 			break;
 		#########################################################################################
-		case 'deleteProperty':
-			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '04910' ); //
-			else
-			userHasBeenLoggedOut();
-			break;
-		#########################################################################################
 		case 'listBlackBookings':
 			if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02130' ); //listBlackBookings();
 			else
