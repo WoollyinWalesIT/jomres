@@ -2459,3 +2459,6 @@ jr_define('COMMON_PLACEHOLDER_EMAIL' , "example@address.com" );
 jr_define('EXTENDED_CONFIGURATION' , "Extended Configuration" );
 jr_define('SIMPLE_CONFIGURATION' , "Simple Configuration" );
  
+jr_define('_JOMRES_HRESOURCE_FEATURES' , "Resource features" );
+jr_define('_JOMRES_HRESOURCE_TYPE' , "Resource type" );
+ 
