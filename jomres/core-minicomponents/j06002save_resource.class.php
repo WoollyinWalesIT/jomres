@@ -22,14 +22,14 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * @package Jomres
 #
  */
-class j04020saveroom
+class j06002save_resource
 	{
 	/**
 	#
 	 * Collates the room/property configuration tabs
 	#
 	 */
-	function j04020saveroom( $componentArgs )
+	function j06002save_resource( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -66,7 +66,8 @@ class j04020saveroom
 				$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
 				$jomres_messaging->set_message( $saveMessage );
 				$query = "INSERT INTO #__jomres_rooms (`room_classes_uid`,`propertys_uid`,`room_features_uid`,`room_name`,`room_number`,`room_floor`,`room_disabled_access`,`max_people`,`smoking`,`singleperson_suppliment`)VALUES ('" . (int) $roomClasses . "'," . (int) $defaultProperty . ",'$featuresList','$room_name','$room_number','$room_floor','" . (int) $disabledAccess . "','" . (int) $max_people . "','" . (int) $smoking . "','" . $singleperson_suppliment . "')";
-				if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_ROOM', _JOMRES_MR_AUDIT_INSERT_ROOM, false ) ) ) returnToPropertyConfig( $saveMessage );
+				if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_ROOM', _JOMRES_MR_AUDIT_INSERT_ROOM, false ) ) )
+					jomresRedirect( JOMRES_SITEPAGE_URL . "&task=list_resources", "" );
 				trigger_error( "Sql error when saving new room", E_USER_ERROR );
 				}
 			else
@@ -75,7 +76,8 @@ class j04020saveroom
 				$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
 				$jomres_messaging->set_message( $saveMessage );
 				$query = "UPDATE #__jomres_rooms SET `room_classes_uid`='$roomClasses',`room_features_uid`='$featuresList',`room_name`='$room_name',`room_number`='$room_number',`room_floor`='$room_floor',`room_disabled_access`='" . (int) $disabledAccess . "',`max_people`='" . (int) $max_people . "',`smoking`='" . (int) $smoking . "',`singleperson_suppliment`='" . (float) $singleperson_suppliment . "' WHERE room_uid='" . (int) $roomUid . "' AND propertys_uid='" . (int) $defaultProperty . "'";
-				if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_ROOM', _JOMRES_MR_AUDIT_UPDATE_ROOM, false ) ) ) returnToPropertyConfig( $saveMessage );
+				if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_ROOM', _JOMRES_MR_AUDIT_UPDATE_ROOM, false ) ) ) 
+					jomresRedirect( JOMRES_SITEPAGE_URL . "&task=list_resources", "" );
 				trigger_error( "Sql error when updating room", E_USER_ERROR );
 				}
 			}
@@ -96,7 +98,7 @@ class j04020saveroom
 				$query = "UPDATE #__jomcomp_tarifftype_rate_xref SET `roomclass_uid`='$roomClass' WHERE `property_uid`=" . (int) $defaultProperty;
 				if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_TARIFF', _JOMRES_MR_AUDIT_UPDATE_TARIFF, false ) ) ) trigger_error( "Sql error when updating tariff type xref table", E_USER_ERROR );
 
-				returnToPropertyConfig( '' );
+				jomresRedirect( JOMRES_SITEPAGE_URL . "&task=list_resources", "" );
 
 				}
 			else

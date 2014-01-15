@@ -9,37 +9,48 @@
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
-
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j10002listRfeatures
+/**
+#
+ * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#
+ *
+ * @package Jomres
+#
+ */
+class j00011manager_option_01_resources
 	{
-	function j10002listRfeatures()
+
+	/**
+	#
+	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	#
+	 */
+	function j00011manager_option_01_resources( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )
 			{
-			$this->template_touchable = true;
-
+			$this->template_touchable = true; return;
+			}
+		$property_uid=getDefaultProperty();
+		$mrConfig=getPropertySpecificSettings($property_uid);
+		
+		if ($mrConfig['tariffmode']=='0')
 			return;
-			}
-		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig   = $siteConfig->get();
-		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
-			{
-			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=listRfeatures', 'roomTypes.png', jr_gettext( "_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES", _JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE, false, false ) );
-			}
+
+		$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=list_resources", 'roomTypes.png', jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS, false, false ) );
 		}
 
 	function touch_template_language()
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS );
 
 		foreach ( $output as $o )
 			{
@@ -54,3 +65,5 @@ class j10002listRfeatures
 		return $this->cpanelButton;
 		}
 	}
+
+?>

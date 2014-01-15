@@ -341,7 +341,7 @@ class j06002save_normalmode_tariffs
 					}
 				}
 			}
-		returnToPropertyConfig( "" );
+		jomresRedirect( JOMRES_SITEPAGE_URL . "&task=edit_tariffs_normal", "" );
 		}
 
 

@@ -1,0 +1,31 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="javascript" type="text/javascript">
+	<!--
+	jomresJquery(document).ready(function () {
+		make_datatable('list_rooms_srp', '{PAGETITLE}', '{LIVESITE}');
+	});
+	//-->
+</script>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<table class="table table-striped" id="list_rooms_srp" width="100%">
+	<thead>
+		<tr>
+			<th>{COMMON_EDIT}</th>
+			<th>{HROOM_TYPE}</th>
+			<th>{HROOM_MAXPEOPLE}</th>
+		</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="room_uid">
+		<tr>
+			<td>{BUTTONS}</td>
+			<td>{ROOM_TYPE}</td>
+			<td>{MAX_PEOPLE}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+
+</patTemplate:tmpl>

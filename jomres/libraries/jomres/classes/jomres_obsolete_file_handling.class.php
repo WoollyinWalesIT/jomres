@@ -18,10 +18,20 @@ class jomres_obsolete_file_handling
 	{
 	function jomres_obsolete_file_handling()
 		{
+		
 		$this->obs_files   = array ();
 		$this->nohtml      = jomresGetParam( $_REQUEST, 'no_html', 0 );
 		$this->warnconfirm = jomresGetParam( $_REQUEST, 'warnconfirm', 0 );
+		
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+
 		$this->warnmode    = false;
+		if ($jrConfig[ 'development_production' ] == "development")
+			{
+			$this->warnmode    = true;
+			}
+		
 		if ( $this->warnconfirm == 1 ) $this->warnmode = false;
 		$this->dir_root           = JOMRESCONFIG_ABSOLUTE_PATH . JRDS;
 		$this->dir_jomres         = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS;
@@ -818,6 +828,9 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_03_propertyconfig.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j03320business_settings.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j03330save_business_settings.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j04070editroomfeature.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j04080saveroomfeature.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j04090deleteroomfeature.class.php' );
 		
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'ajax_switch_property.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'switch_property.html' );
@@ -828,6 +841,12 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'list_coupons.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'edit_extra.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'list_extras.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'edit_room_feature.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'list_room_features.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'edit_room.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'list_rooms.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'edit_rfeature.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'list_rfeatures.html' );
 		
 		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'edit_customertype.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'list_customertypes.html' );
@@ -835,6 +854,12 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'list_coupons.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'edit_extra.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'list_extras.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'edit_room_feature.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'list_room_features.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'edit_room.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'list_rooms.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_administrator . 'edit_rfeature.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_administrator . 'list_rfeatures.html' );
 		
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'ajax_switch_property.html' );
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'switch_property.html' );
@@ -844,6 +869,12 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'list_coupons.html' );
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'edit_extra.html' );
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'list_extras.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'edit_room_feature.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'list_room_features.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'edit_room.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'list_rooms.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'edit_rfeature.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'list_rfeatures.html' );
 		
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'edit_bug.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'edit_bug.html' );
@@ -851,6 +882,16 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j06002sendbug.class.php' );
 		
 		$this->add_obs_file( $this->dir_minicomponents . 'j00003mobile.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j10002listRfeatures.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000deleteRfeature.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000editRfeature.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000listRfeatures.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j04010editroom.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j04020saveroom.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j04030deleteroom.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_02_propertyadmin.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j04000roomsconfig.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j04005roomsconfig.class.php' );
 
 
 		
