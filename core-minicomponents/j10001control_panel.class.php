@@ -115,9 +115,10 @@ class j10001control_panel
 			$output[ '_JOMRES_PRODUCT_INFORMATION2' ] = jr_gettext( _JOMRES_PRODUCT_INFORMATION2, '_JOMRES_PRODUCT_INFORMATION2', false );
 			}
 
+		// Changes to Jomres 7.5.4 jquery functionality mean that Joomla's caching should no longer cause problems.
 		$output[ 'CACHE_WARNING' ]   = "";
 		$output[ 'CACHE_HIGHLIGHT' ] = "";
-		if ( this_cms_is_joomla() )
+/* 		if ( this_cms_is_joomla() )
 			{
 			if ( _JOMRES_DETECTED_CMS == "joomla15" ) $query = "SELECT id FROM #__plugins WHERE `element`='cache' AND published = '1'";
 			else
@@ -129,7 +130,7 @@ class j10001control_panel
 				$output[ 'CACHE_WARNING' ]   = jr_gettext( _JOMRES_WARNING_SYSTEM_CACHE, '_JOMRES_WARNING_SYSTEM_CACHE', false );
 				$output[ 'CACHE_HIGHLIGHT' ] = ( using_bootstrap() ? "alert alert-error" : "ui-state-error" );
 				}
-			}
+			} */
 
 		$output[ 'ACCESS_CONTROL_HIGHLIGHT' ] = '';
 		$output[ 'ACCESS_CONTROL_ALERT' ]     = '';
