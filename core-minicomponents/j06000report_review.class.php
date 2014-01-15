@@ -43,7 +43,8 @@ class j06000report_review
 				$output[ '_JOMRES_REVIEWS_REPORT_REVIEW' ]            = jr_gettext( '_JOMRES_REVIEWS_REPORT_REVIEW', _JOMRES_REVIEWS_REPORT_REVIEW, false, false );
 				$output[ '_JOMRES_REVIEWS_SUBMIT' ]                   = jr_gettext( '_JOMRES_REVIEWS_SUBMIT', _JOMRES_REVIEWS_SUBMIT, false, false );
 				$output[ '_JOMRES_REVIEWS_REPORT_REVIEW_ERROR' ]      = jr_gettext( '_JOMRES_REVIEWS_REPORT_REVIEW_ERROR', _JOMRES_REVIEWS_REPORT_REVIEW_ERROR, false, false );
-
+				$output[ 'JOMRES_COM_A_MESSAGE' ]                     = jr_gettext( 'JOMRES_COM_A_MESSAGE', JOMRES_COM_A_MESSAGE, false, false );
+				
 				$output[ 'JOMRES_SITEPAGE_URL' ] = JOMRES_SITEPAGE_URL;
 
 				$output[ 'RATING_ID' ] = $rating_id;
