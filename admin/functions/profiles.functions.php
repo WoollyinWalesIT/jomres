@@ -39,7 +39,9 @@ function editProfile()
 	$output[ 'HSUPERPROP' ]           = jr_gettext( "_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER", _JOMRES_COM_USERIS_SUPERPROPERTYMANAGER, false );
 	$output[ 'HACCESSLEVEL' ]         = jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL", _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL, false );
 	$output[ '_JOMRES_EDIT_PROFILE' ] = jr_gettext( "_JOMRES_EDIT_PROFILE", _JOMRES_EDIT_PROFILE, false );
-
+	
+	
+	
 	$query                = "SELECT access_level,pu,apikey FROM #__jomres_managers WHERE userid = " . $userid . " LIMIT 1";
 	$managerDetails       = doSelectSql( $query );
 	$accessLevel          = 0;
@@ -77,6 +79,7 @@ function editProfile()
 
 	$query             = "SELECT propertys_uid,property_name FROM #__jomres_propertys ORDER BY property_name";
 	$propertyList      = doSelectSql( $query );
+	
 	$propertyIdArray   = array ();
 	$propertynameArray = array ();
 	foreach ( $propertyList as $property )
@@ -84,6 +87,9 @@ function editProfile()
 		$propertyIdArray[ $property->propertys_uid ]   = $property->propertys_uid;
 		$propertynameArray[ $property->propertys_uid ] = $property->property_name;
 		}
+
+	$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+	$basic_property_details->get_property_name_multi( $propertyIdArray );
 
 	$query         = "SELECT userid,username FROM #__jomres_managers";
 	$managerList   = doSelectSql( $query );
@@ -110,7 +116,7 @@ function editProfile()
 		$checked = "";
 		if ( in_array( $propertyIdArray[ $i ], $managersToPropertyArray ) ) $checked = "checked";
 		$r[ 'INPUT' ]        = '<input type="checkbox" id="cb' . count( $rows ) . '" name="chosenHotel[]" value="' . $propertyIdArray[ $i ] . '" ' . $checked . '>';
-		$r[ 'PROPERTYNAME' ] = $propertynameArray[ $i ];
+		$r[ 'PROPERTYNAME' ] = $basic_property_details->property_names[$i];
 		$r[ 'MANAGERS' ]     = $propertyManagers;
 		$rows[ ]             = $r;
 		}
