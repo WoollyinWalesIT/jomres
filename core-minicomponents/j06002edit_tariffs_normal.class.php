@@ -22,14 +22,14 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * @package Jomres
 #
  */
-class j04005roomsconfig
+class j06002edit_tariffs_normal
 	{
 	/**
 	#
 	 * Collates the room/property configuration tabs
 	#
 	 */
-	function j04005roomsconfig( $componentArgs )
+	function j06002edit_tariffs_normal( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -124,11 +124,12 @@ class j04005roomsconfig
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
 		
-		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "" ), '' );
+		//$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "" ), '' );
 		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_normalmode_tariffs' );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
+		$output[ 'PAGETITLE' ]         = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_TITLE', _JOMRES_COM_MR_LISTTARIFF_TITLE, false, false ) . " &amp; " . jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM, false, false );
 		$output[ 'HROOMCLASS' ]        = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', _JOMRES_COM_MR_EB_ROOM_CLASS_ABBV, false );
 		$output[ 'HNUMBEROFROOMS' ]    = jr_gettext( '_JOMRES_NUMBEROFROOMSAVAILABLE', _JOMRES_NUMBEROFROOMSAVAILABLE, false );
 		$output[ 'HROOMRATEPERDAY' ]   = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY, false );
@@ -178,7 +179,7 @@ class j04005roomsconfig
 			$tmpl->readTemplatesFromInput( 'list_normalmode_roomtariffs.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $rows );
-			$tariffRoomOutput = $tmpl->getParsedTemplate();
+			$tmpl->displayParsedTemplate();
 			}
 		else //////////////////////////////////////////////////////////////////////////////// SRPs
 			{
@@ -213,22 +214,8 @@ class j04005roomsconfig
 			$tmpl->readTemplatesFromInput( 'list_normalmode_roomtariffs_srp.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $rows );
-			$tariffRoomOutput = $tmpl->getParsedTemplate();
+			$tmpl->displayParsedTemplate();
 			}
-
-		$thisJRUser      = jomres_singleton_abstract::getInstance( 'jr_user' );
-		$defaultProperty = $thisJRUser->defaultproperty;
-		$currentProperty = getDefaultProperty();
-		echo '<h2 class="page-header">' . jr_gettext( '_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE', _JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE ) . "</h2>";
-		jr_import( 'jomres_content_tabs' );
-		$contentPanel = new jomres_content_tabs();
-		$contentPanel->startTabs();
-		$contentPanel->startPanel( jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM, false ) );
-		$contentPanel->setcontent( $tariffRoomOutput );
-		$contentPanel->insertContent();
-		$contentPanel->endPanel();
-
-		$contentPanel->endTabs();
 		}
 
 	function touch_template_language()

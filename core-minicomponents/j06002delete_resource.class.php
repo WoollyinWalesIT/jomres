@@ -23,14 +23,14 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * @package Jomres
 #
  */
-class j04030deleteroom
+class j06002delete_resource
 	{
 	/**
 	#
 	 * Deletes a room
 	#
 	 */
-	function j04030deleteroom( $componentArgs )
+	function j06002delete_resource( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -58,7 +58,7 @@ class j04030deleteroom
 				dropImage( $defaultProperty, "room", $roomUid );
 			$query = "DELETE FROM #__jomres_rooms WHERE room_uid = '" . (int) $roomUid . "' AND propertys_uid = '" . (int) $defaultProperty . "'";
 			if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_DELETE_ROOM', _JOMRES_MR_AUDIT_DELETE_ROOM, false ) ) ) 
-				returnToPropertyConfig( $saveMessage );
+				jomresRedirect( JOMRES_SITEPAGE_URL . "&task=list_resources", "" );
 			trigger_error( "Sql error when deleting room", E_USER_ERROR );
 			}
 		}

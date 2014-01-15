@@ -1,25 +1,28 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-		{JOMRESTOOLBAR}
-		<table border="0" width="100%" class="ui-widget-content ui-corner-all">
-			<tr>
-				<td width="30%">{HPROPERTYTYPE}</td>
-				<td>
-					<patTemplate:tmpl name="rows" unusedvars="strip">
-						{ROOM_CLASS_RADIO}<br/>
-					</patTemplate:tmpl>
-				</td>
-			</tr>
-			<tr>
-				<td>{RATETEXT}</td>
-				<td>{ROOMRATEPERDAY}</td>
-			</tr>
-			<tr>
-				<td>{HMAXPEOPLE_TARIFF}</td>
-				<td>{MAX_PEOPLE}</td>
-			</tr>
-		</table>
-		<input type="hidden" name="no_html" value="1" />
-		<input type="hidden" name="task" value="save_normalmode_tariffs"/>
-	</form>
+
+<h2>{PAGETITLE}</h2>
+
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+	{JOMRESTOOLBAR}
+	<table border="0" width="100%" class="ui-widget-content ui-corner-all">
+		<tr>
+			<td width="30%">{HPROPERTYTYPE}</td>
+			<td>
+				<patTemplate:tmpl name="rows" unusedvars="strip">
+					{ROOM_CLASS_RADIO}<br/>
+				</patTemplate:tmpl>
+			</td>
+		</tr>
+		<tr>
+			<td>{RATETEXT}</td>
+			<td>{ROOMRATEPERDAY}</td>
+		</tr>
+		<tr>
+			<td>{HMAXPEOPLE_TARIFF}</td>
+			<td>{MAX_PEOPLE}</td>
+		</tr>
+	</table>
+	<input type="hidden" name="no_html" value="1" />
+	<input type="hidden" name="task" value="save_normalmode_tariffs"/>
+</form>
 </patTemplate:tmpl>

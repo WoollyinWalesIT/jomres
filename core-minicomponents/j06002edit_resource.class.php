@@ -21,14 +21,14 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * @package Jomres
 #
  */
-class j04010editroom
+class j06002edit_resource
 	{
 	/**
 	#
 	 * Collates the room/property configuration tabs
 	#
 	 */
-	function j04010editroom( $componentArgs )
+	function j06002edit_resource( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -38,6 +38,7 @@ class j04010editroom
 
 			return;
 			}
+
 		$mrConfig        = getPropertySpecificSettings();
 		$siteConfig      = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig        = $siteConfig->get();
@@ -175,9 +176,10 @@ class j04010editroom
 			$jrtbar     = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb       = $jrtbar->startTable();
 			
-			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=propertyadmin" ), $cancelText );
-			$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'saveRoom' );
-			if ( $clone < 1 ) $jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=deleteRoom" . "&roomUid=" . $roomUid ), $deleteText );
+			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=list_resources" ), $cancelText );
+			$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'save_resource' );
+			//if ( $clone < 1 ) 
+				//$jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=delete_resource" . "&roomUid=" . $roomUid ), $deleteText );
 			$jrtb .= $jrtbar->endTable();
 			$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
@@ -186,7 +188,7 @@ class j04010editroom
 			$pageoutput[ ] = $output;
 			$tmpl          = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-			$tmpl->readTemplatesFromInput( 'edit_room.html' );
+			$tmpl->readTemplatesFromInput( 'edit_resource.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'delimg_rows', $delimg_rows );
 			$tmpl->displayParsedTemplate();
@@ -218,10 +220,11 @@ class j04010editroom
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb   = $jrtbar->startTable();
 			
-			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=propertyadmin" ), $cancelText );
-			$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'saveRoom' );
+			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=list_resources" ), $cancelText );
+			$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'save_resource' );
 			$jrtb .= $jrtbar->endTable();
 
+			$output[ 'PAGETITLE' ]   = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', _JOMRES_COM_MR_EB_ROOM_CLASS_ABBV );
 			$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO', _JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO );
 			$output[ '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE );
 			$output[ 'DROPDOWNLIST' ]                              = $dropDownList;
