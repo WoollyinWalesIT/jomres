@@ -551,18 +551,6 @@ if ( get_showtime( 'numberOfPropertiesInSystem' ) > 0 )
 			else
 			userHasBeenLoggedOut();
 			break;
-		/*#########################################################################################
-		case 'saveHotelSettings':
-			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '03330' );
-			else
-			userHasBeenLoggedOut();
-			break;
-		#########################################################################################
-		case 'hotelSettings':
-			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '03320' );
-			else
-			userHasBeenLoggedOut();
-			break;*/
 		#########################################################################################
 		case 'publishProperty':
 			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '03340' );
@@ -608,48 +596,6 @@ if ( get_showtime( 'numberOfPropertiesInSystem' ) > 0 )
 		#########################################################################################
 		case 'uploadRoomImage':
 			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '03410' );
-			else
-			userHasBeenLoggedOut();
-			break;
-		#########################################################################################
-		case 'propertyadmin':
-			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '04000' ); //
-			else
-			userHasBeenLoggedOut();
-			break;
-		#########################################################################################
-		case 'editRoom':
-			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '04010' ); //
-			else
-			userHasBeenLoggedOut();
-			break;
-		#########################################################################################
-		case 'saveRoom':
-			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '04020' ); //
-			else
-			userHasBeenLoggedOut();
-			break;
-		#########################################################################################
-		case 'deleteRoom':
-			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '04030' ); //
-			else
-			userHasBeenLoggedOut();
-			break;
-		#########################################################################################
-		case 'editRoomFeature':
-			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '04070' ); //
-			else
-			userHasBeenLoggedOut();
-			break;
-		#########################################################################################
-		case 'saveRoomFeature':
-			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '04080' ); //
-			else
-			userHasBeenLoggedOut();
-			break;
-		#########################################################################################
-		case 'deleteRoomFeature':
-			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '04090' ); //
 			else
 			userHasBeenLoggedOut();
 			break;
@@ -845,7 +791,7 @@ if ( get_showtime( 'numberOfPropertiesInSystem' ) > 0 )
 			else
 			userHasBeenLoggedOut();
 			break;
-		#########################################################################################
+		/*#########################################################################################
 		case 'editTariff':
 			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02212' ); //editTariff()
 			else
@@ -862,7 +808,7 @@ if ( get_showtime( 'numberOfPropertiesInSystem' ) > 0 )
 			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02216' ); //deleteTariff();
 			else
 			userHasBeenLoggedOut();
-			break;
+			break;*/
 		#########################################################################################
 		case 'tagSearch':
 			if ( $thisJRUser->userIsManager || $jrConfig[ 'full_access_control' ] == "1" )
