@@ -3204,14 +3204,7 @@ function saveHotelSettings()
 		$validation->save_subject($type = "property", array( "property_uid"=>$property_uid ) );
 		}
 	
-	if ( $tariffmodeChange && $mrConfig[ 'is_real_estate_listing' ] != 1 ) 
-		{
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=propertyadmin" ), '' );
-		}
-	else
-		{
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=business_settings&property_uid=$property_uid" ), '' );
-		}
+	jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=business_settings&property_uid=$property_uid" ), '' );
 	}
 
 function removeAllPropertyEnhanceTariffsXref( $property_uid )
@@ -4490,7 +4483,7 @@ function genericOr( $idArray, $fieldToSearch, $idArrayisInteger = true )
 function returnToPropertyConfig( $saveMessage = "" )
 	{
 	$mrConfig = getPropertySpecificSettings();
-	if ( $mrConfig[ 'errorCheckingShowSQL' ] == "0" ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=propertyadmin" ), $saveMessage );
+	if ( $mrConfig[ 'errorCheckingShowSQL' ] == "0" ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL ), $saveMessage );
 	}
 
 /**
