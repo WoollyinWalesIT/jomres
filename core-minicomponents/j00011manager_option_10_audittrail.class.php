@@ -39,6 +39,11 @@ class j00011manager_option_10_audittrail
 
 			return;
 			}
+		
+		// We believe that this feature is little used, so there's no point in maintaining it. Will set this script to simply "return" for now and gague the response from that before deciding whether or not to completely remove it.
+		return;
+		
+		
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
