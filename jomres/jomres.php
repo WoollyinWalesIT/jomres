@@ -678,11 +678,12 @@ if ( get_showtime( 'numberOfPropertiesInSystem' ) > 0 )
 			userHasBeenLoggedOut();
 			break;
 		#########################################################################################
-		case 'showAuditTrail':
-			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02250' ); //showAuditTrail();
-			else
-			userHasBeenLoggedOut();
-			break;
+		// We believe that this feature is little used, so there's no point in maintaining it. Will disable this for now and gague the response from that before deciding whether or not to completely remove it.
+		// case 'showAuditTrail':
+			// if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02250' ); //showAuditTrail();
+			// else
+			// userHasBeenLoggedOut();
+			// break;
 		#########################################################################################
 		case 'archiveAudit':
 			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02252' ); //archiveAudit();
