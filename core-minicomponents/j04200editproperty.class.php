@@ -323,7 +323,7 @@ class j04200editproperty
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=propertyadmin" ), '' );
+		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL ), '' );
 		if ( $jrConfig[ 'allowHTMLeditor' ] != "2" && $jrConfig[ 'allowHTMLeditor' ] != "3" ) 
 			$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'saveProperty' );
 		
