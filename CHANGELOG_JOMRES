@@ -1,12 +1,18 @@
-Jomres 8.0.-3
+Jomres 8.0.0
 
 Changed menu options around to bring them a little more in line with industry standard.
 Completely revamped the guests, property and invoice listings pages, you can see invoices for all properties or just the active one, filter by various options and configure the columns to suit your specific requirements. Virtually all tabulated data is loaded via ajax, improving page response times when dealing with large amounts of data.
+Tariffs, rooms and room types have been moved into their own pages, they're no longer all part of the same page.
 Improved the dashboard further, bookings are easily viewed as their indicators span multiple dates.
 Added links to top of the guest confirmation email which will take the guest to the property and to their booking.
 Added the ability to enter your own deposit amount on the enter deposit page of a booking.
 Added currently active property string to the top template.
 Removed the switch property feature, now properties can be switched from the list properties table.
+Updated the Jomres Main Menu, added options to Site Config so that managers can choose where the menu is located (default, top or bottom) and whether or not it's colour is inverted. Added a Search input to the menu to allow managers to easily search for bookings by their booking number. (Management view only).
+Added a variety of changes that allow us to have a Bootstrap 3 set of templates. BS3 is becoming more popular, more and more Joomla templates are appearing and later versions of Joomla will support BS3 so it'll be nice to pre-empt those changes beforehand.
+Re-organised property settings making their placement more logical for property managers.
+Changed how the Minimise configuration options in Site Config works. If this option is set to No then non-managers will see a new toolbar in Site Config that allows them to set whether they see Simple or Extended configuration options. Super Managers will see this all the time.
+
 
 Removed some code that we added a year ago as many people do not use unique names for tariffs, consequentially their tariff list was becoming unordered.
 Modified the Bootstrapped Management view, remove left columns and moved some stuff around.
@@ -19,9 +25,48 @@ Added the ability to create new Common strings that are available to all templat
 Improved the property list prices class to ensure that the lowest price found is correct. Thanks Rodrigo!
 Added a check to see if a room is already in the user's cart, if it is then the room lock isn't released.
 Changed alert regarding updates so that it is a link that goes direct to the updates page.
+Changed menu options around to bring them a little more in line with industry standard.
+Added page blocking when Upgrade All Plugins is clicking in Plugin Manager. Provides feedback to users ensuring that they do not attempt to use the page until the plugin upgrade process has been done (essential on systems with slower internet connections).
+Added HELP targets to the srp dobooking page.
+Updated language files so that help comments make sense for Jomres 8's new dashboard.
+Added support for listing guests for all manager`s properties.
+Dashboard tooltips changed to popovers to avoid conflicts with jquery ui tooltips.
+Tweaks to have ptype_xref in the features array, so we can use this when filtering by property type id in ajax search composite.
+Renamed the listlivebookings task to list_bookings and made it a j06001 minicomponent. Updated various files that use this old task name.
+Rewritten and simplified the tag search functionality.
+Added an experimental feature to prevent caching ajax reponses so that jomres can work with joomla caching enabled
+Added a channel manager option to mark certain bookings as channel manager bookings. If they are then the system will not allow channel manager bookings to be cancelled (they have to be cancelled via the original channel's UI, not Jomres).
+Modified Bulgarian Lev from BGL to BGN.
+Removed some special header settings that are no longer required.
+Added some changes that tweak how modals in work in new functionality.
+Added a pdf clause to php mailer for a third party plugin dev.
+Added navbar form css class to language selector dropdown.
+Added form-control css class to dropdown that aren't radio buttons.
+Added check for bootstrap version to custom template handler.
+Added new Jomres css file for BS3, config panel and toolbar classes. Edited many templates.
+Removed the old "report bug" function. It's served it's purpose and is rarely used nowadays.
+Further template updates. Added role where required, removed form-horizontal and updated input types in several places. (BS3)
+Added placeholder lang definitions and html to templates and supporting classes.
+Reworked the jomres_toolbar_bootstrap3.class.php class so that "delete" items are a separate item in the toolbar. Should help prevent fat finger mistakes.
+Modified the Jomres main menu so that the Search option is hidden if the site is in Production mode. It is intended for developers to see frontend options like Flipwall etc and not for use by the General users.
+Improved show property review page, converted rating numbers to progressbars. Added a new function calc_rating_progressbar_colour to functions.php
+Experimentally changed top.html to comment out the editing mode dropdown altogether. This should help us to see just how many people use the editing mode in the frontend. I suspect that the vast majority use the administrator features only.
+Modified list properties so that review information in list properties is shown through it's own template (BS3 only). This is because of how we render the list properties template.
+Tweaked "Click to show reviews" to say "Show reviews". 
+In BS3 modal popups need to be wrapped inside modal-dialog and modal-header so added new output in integration.php and jomres.php that'll call template files that will add that if $_REQUEST includes modal_wrap.
+Added a utility function that'll output a simple template (helps with the above change).
+Added a new utility function make_modal_button to help us easily create modal links that can be used to create popups for any Jomres page.
+Created a new function in input filtering that allows us to convert European entered price values into floats. (replaces , with .).
+Mobile device detection and redirection removed from Jomres' functionality. This was added while Joomla 2.5 was the current version, and before Bootstrap and it's mobile-centric functionality was added to Joomla so it's out of date and no longer has a place in the core system.
+Deleted the old batchupload.html template files.
+Removed 7.5.4 library of the older bootstrap 2 dashboard.
+Obsolete file removal changed so that if site is in Development mode then confirmation is required before file deletion.
+Created new administrator area media centre templates, because if a site uses BS3 in the frontend, the administrator area will need it's own BS2 versions of those files instead of BS3 versions (for now).
+Disabled the Audit Trail feature. We believe it's not used and therefore not worth maintaining. Disabling the feature will allow us to judge if this is the correct action.
+Tweaked save language choice script so that if no files are selected then the file normally created is removed.
 
 
-Jomres 7.5.3
+Jomres 7.5.4
 
 Fixed an issue in jq ui frontend list properties.
 Some improvements to property name search/dropdown generation, also pnames are now sorted alphabetically
