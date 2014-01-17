@@ -59,7 +59,9 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 				}
 			}
 		else
-		echo "No change";
+			{
+			unlink($temp_directory . "langDropdown.php");
+			}
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=chooseLanguages" ), "" );
 		}
 
