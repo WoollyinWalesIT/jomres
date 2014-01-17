@@ -224,6 +224,7 @@ class jomres_language
 	function define_langfile_to_languages_array()
 		{
 		$langs            = array ();
+		$langs[ 'ar-AR' ] = "Argentino";
 		$langs[ 'bg-BG' ] = "Bulgarian";
 		$langs[ 'en-GB' ] = "English";
 		$langs[ 'cs-CZ' ] = "Czech";
@@ -273,6 +274,7 @@ class jomres_language
 	function get_shortcode_to_longcode( $lang )
 		{
 		$langs         = array ();
+		$langs[ 'ar' ] = 'ar-AR';
 		$langs[ 'bg' ] = 'bg-BG';
 		$langs[ 'en' ] = 'en-GB';
 		$langs[ 'cs' ] = 'cs-CZ';
@@ -324,6 +326,7 @@ class jomres_language
 	function define_langfile_to_datepicker_files_array()
 		{
 		$langs            = array ();
+		$langs[ 'ar-AR' ] = "ar";
 		$langs[ 'bg-BG' ] = "bg";
 		$langs[ 'en-GB' ] = "en-GB";
 		$langs[ 'cs-CZ' ] = "cs";
