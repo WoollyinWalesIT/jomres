@@ -564,3 +564,12 @@ a.rescal:hover {
 .badge_orange {
 	background: #F89406;
 }
+/* Custom labels */
+.label-grey {background-color: #999999 !important;}
+.label-black {background-color: #333333 !important;}
+.label-orange {background-color: #F89406 !important;}
+.label-red {background-color: #B94A48 !important;}
+.label-green {background-color: #468847 !important;}
+.label-blue {background-color: #3A87AD !important;}
+.label-purple {background-color: #e01fb9 !important;}
+.label-teal {background-color: #0fcef1 !important;}
