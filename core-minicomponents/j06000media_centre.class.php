@@ -107,7 +107,15 @@ class j06000media_centre
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+			if (jomres_cmsspecific_areweinadminarea())
+				{
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+				}
+			else
+				{
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+				}
+
 			$tmpl->readTemplatesFromInput( 'media_centre_main.html');
 			$tmpl->addRows( 'pageoutput',$pageoutput);
 			$tmpl->addRows( 'notes',$notes);
