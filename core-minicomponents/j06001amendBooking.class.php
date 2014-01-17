@@ -64,7 +64,7 @@ class j06001amendBooking
 			$cancelText = jr_gettext( '_JOMRES_COM_A_CANCEL', _JOMRES_COM_A_CANCEL, false );
 			$jrtbar     = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb       = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=propertyadmin" ), $cancelText );
+			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL ), $cancelText );
 			$jrtb .= $jrtbar->endTable();
 			$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
