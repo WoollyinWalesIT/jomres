@@ -108,7 +108,15 @@ class j06000media_centre_resources_ajax_existing_images
 				
 				$pageoutput[]=$output;
 				$tmpl = new patTemplate();
-				$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+				
+				if (jomres_cmsspecific_areweinadminarea())
+					{
+					$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+					}
+				else
+					{
+					$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+					}
 				$tmpl->readTemplatesFromInput( 'media_centre_image_list.html');
 				$tmpl->addRows( 'pageoutput',$pageoutput);
 				$image_result .= $tmpl->getParsedTemplate();
@@ -116,7 +124,14 @@ class j06000media_centre_resources_ajax_existing_images
 
 			$pageoutput[]= array ( "IMAGES" => $image_result);
 			$tmpl = new patTemplate();
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+			if (jomres_cmsspecific_areweinadminarea())
+				{
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+				}
+			else
+				{
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+				}
 			$tmpl->readTemplatesFromInput( 'media_centre_image_list_wrapper.html');
 			$tmpl->addRows( 'pageoutput',$pageoutput);
 			$tmpl->displayParsedTemplate();
