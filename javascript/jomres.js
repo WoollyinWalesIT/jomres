@@ -35,7 +35,7 @@ function toggle_button_class(id) {
 function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 	bProcessing = false;
 	bServerSide = false;
-	if (ajaxurl) {
+	if (typeof ajaxurl !== 'undefined' && ajaxurl != '') {
 		bProcessing = true;
 		bServerSide = true;
 		}
