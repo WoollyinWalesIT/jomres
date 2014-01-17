@@ -434,9 +434,33 @@ function doTableUpdates()
 	if ( !checkContractsChannelManagerBookingColExists() ) alterContractsChannelManagerBookingCol();
 	
 	if ( !checkManagerSimpleconfigColExists() ) alterManagerSimpleconfigCol();
-	
+	if ( !checkTarifftypesDescriptionColExists() ) alterTarifftypesDescriptionCol();
 	
 	if ( _JOMRES_DETECTED_CMS == "joomla15" ) checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
+	}
+
+
+
+function alterTarifftypesDescriptionCol()
+	{
+	if ( !AUTO_UPGRADE ) echo "Editing __jomcomp_tarifftypes table adding description column<br>";
+	$query = "ALTER TABLE `#__jomcomp_tarifftypes` ADD `description` VARCHAR(3000) DEFAULT NULL AFTER `name` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomcomp_tarifftypes description</b><br>";
+		}
+	}
+
+function checkTarifftypesDescriptionColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomcomp_tarifftypes LIKE 'description'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
 	}
 
 function alterManagerSimpleconfigCol()
@@ -2476,6 +2500,7 @@ function createJomresTables()
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomcomp_tarifftypes` (
 		`id` INT NOT NULL AUTO_INCREMENT,
 		`name` char(255),
+		`description` VARCHAR(3000),
 		`property_uid` int not null,
 		PRIMARY KEY (`id`)
 		)";
@@ -3660,6 +3685,7 @@ function insertPortalTables()
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomcomp_tarifftypes` (
 		`id` INT NOT NULL AUTO_INCREMENT,
 		`name` char(255),
+		`description` VARCHAR(3000),
 		`property_uid` int,
 	PRIMARY KEY (`id`)
 	)";
