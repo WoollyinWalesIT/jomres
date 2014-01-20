@@ -1650,7 +1650,10 @@ class patTemplate
 					$file     = $trace[ 'file' ];
 					$bang     = explode( JRDS, $file );
 					$filename = $bang[ count( $bang ) - 1 ];
-					if ( $filename != 'patTemplate.php' && $filename != 'index.php' && $filename != 'application.php' && $filename != 'helper.php' && $filename != 'mcHandler.class.php' ) $files .= " " . $filename . "<br/>";
+					if ( $filename != 'patTemplate.php' && $filename != 'index.php' && $filename != 'application.php' && $filename != 'helper.php' && $filename != 'mcHandler.class.php' )
+						{
+						$files .= " " . $filename . " on line ".$trace['line']."<br/>";
+						}
 					}
 
 				return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, "Path to template is not set. <br/>Related to " . $this->_options[ 'root' ][ '__default' ] . " <br/>Backtrace of files <br/>" . $files );
