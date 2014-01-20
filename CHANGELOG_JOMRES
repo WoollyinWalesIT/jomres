@@ -1,4 +1,21 @@
-Jomres 8.0.0
+Jomres 8.0.-2
+
+Added a new feature so that managers can easily make multiple rooms of a given type.
+Added some missing templates to jq ui and bs2 template dirs. They're not needed (currently) but patTemplate throws a wobbly without them.
+Added show/hide column javascript for tabletools to jq ui templates.
+Removed format=raw, not all joomla template support this and it`s not really needed anymore
+Changed management view for the links to be SEF'd when switching from fullscreen to normal.
+Toolbar buttons are separated. Having them grouped together makes them a long unresponsive bar in certain pages.
+Changed the trigger point the property config uses to detect if Advanced/Micromanage plugin is installer so that Advanced and Micromanage modes are offered in the dropdown so that they can be chosen.
+Added a line number to patTemplate debug backtrace to help us to identify missing templates.
+Added code to remove some older directories that are empty. Will also be useful for deleting entire directories in future.
+Modified dashboard so that it's not run if on a Jintour property.
+Removed blockUI functionality from Jomres Plugin manager, doesn't trigger at the correct point (might be an issue with FF debugger and the trigger order) so will revert to a simple alert for now.
+Implemented some caching for plugin manager badges, Jomres version and News to reduce load on the plugin server.
+
+
+
+Jomres 8.0.-3
 
 Changed menu options around to bring them a little more in line with industry standard.
 Completely revamped the guests, property and invoice listings pages, you can see invoices for all properties or just the active one, filter by various options and configure the columns to suit your specific requirements. Virtually all tabulated data is loaded via ajax, improving page response times when dealing with large amounts of data.
