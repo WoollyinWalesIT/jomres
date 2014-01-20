@@ -2886,7 +2886,7 @@ function hotelSettings()
 	$tariffMode    = array ();
 	$tariffMode[ ] = jomresHTML::makeOption( '0', jr_gettext( "JOMRES_COM_A_TARIFFMODE_NORMAL", JOMRES_COM_A_TARIFFMODE_NORMAL, false ) );
 
-	if ( isset( $MiniComponents->registeredClasses[ '02213edittariff_micromanage' ] ) )
+	if ( isset( $MiniComponents->registeredClasses[ '06002edit_tariff_micromanage' ] ) )
 		{
 		$tariffMode[ ] = jomresHTML::makeOption( '2', jr_gettext( "JOMRES_COM_A_TARIFFMODE_TARIFFTYPES", JOMRES_COM_A_TARIFFMODE_TARIFFTYPES, false ) );
 		$tariffMode[ ] = jomresHTML::makeOption( '1', jr_gettext( "JOMRES_COM_A_TARIFFMODE_ADVANCED", JOMRES_COM_A_TARIFFMODE_ADVANCED, false ) );
