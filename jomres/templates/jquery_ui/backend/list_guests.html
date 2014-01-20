@@ -3,12 +3,17 @@
 	<!--
 	jomresJquery(document).ready(function () {
 		var oTable = jomresJquery('#list_guests').dataTable({
+			"sDom": '<"H"lCfr>t<"F"ip>',
 			"bJQueryUI": true,
 			"bStateSave": true,
 			"sPaginationType": "full_numbers",
 			"bProcessing": true,
 			"bServerSide": true,
-			"sAjaxSource": '{AJAX_URL}'
+			"sAjaxSource": '{AJAX_URL}',
+			"oColVis": {
+				"aiExclude": [ 0 ],
+				"bRestore": false
+			}
 		}).fnSetFilteringDelay().dataTableSetHiddenColumns();
 	});
 	/* Filtering delay */

@@ -24,21 +24,21 @@ class jomres_management_view
 		set_showtime( 'mobile_browser', $is_mobile );
 
 		$response = '';
+		$curPageUrl = $this->curPageUrl();
 
-		$pos = strpos( $_SERVER[ 'REQUEST_URI' ], "?" );
-		if ( $pos !== false ) $connector = "&amp;";
+		$pos = strpos( $curPageUrl, "?" );
+		if ( $pos !== false ) 
+			$connector = "&amp;";
 		else
-		$connector = "?";
+			$connector = "?";
 
 		if ( !$is_mobile )
 			{
 			if ( isset( $_REQUEST[ 'tmpl' ] ) ) 
-				$response = ' <a href="' . get_showtime( 'live_site' ) . '/index.php?' . $this->remove_querystring_var( "tmpl" ) . '">' . jr_gettext( "_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW", _JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW, false ) . '</a>';
+				$response = ' <a href="' . $this->remove_querystring_var( "tmpl" ) . '">' . jr_gettext( "_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW", _JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW, false ) . '</a>';
 			else
 				{
-				$request_uri = str_replace( "&amp;", "&", $_SERVER[ 'REQUEST_URI' ] );
-				$request_uri = str_replace( "&", "&amp;", $request_uri );
-				$response    = '<a href="' . get_showtime( 'liv_site' ) . $request_uri . $connector . 'tmpl=component" class="btn btn-primary">' . jr_gettext( "_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT", _JOMRES_COM_MANAGEMENTVIEW_MANAGMENT, false ) . '</a>';
+				$response    = '<a href="' . $curPageUrl . $connector . 'tmpl=component" class="btn btn-primary">' . jr_gettext( "_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT", _JOMRES_COM_MANAGEMENTVIEW_MANAGMENT, false ) . '</a>';
 				}
 			}
 
@@ -47,17 +47,53 @@ class jomres_management_view
 
 	function remove_querystring_var( $key )
 		{
-		foreach ( $_GET as $variable => $value )
-			{
-			if ( $variable != $key )
-				{
-				$url .= $variable . '=' . $value . '&amp;';
-				}
-			}
-		$url = rtrim( $url, '&amp;' );
+		$url = parse_url($this->curPageURL());
+		$query = $url["query"];
+		
+		parse_str($query, $parsed_query);
+		unset($parsed_query[$key]);
+		
+		$url["query"] = http_build_query($parsed_query);
+		
+		$new_url = $this->unparse_url($url);
 
-		return $url;
+		return $new_url;
 		}
+	
+	function curPageURL()
+		{
+		$pageURL = 'http';
+		if ($_SERVER["HTTPS"] == "on")
+			{
+			$pageURL .= "s";
+			}
+		$pageURL .= "://";
+		if ($_SERVER["SERVER_PORT"] != "80")
+			{
+			$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+			} 
+		else 
+			{
+			$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+			}
+		return $pageURL;
+		}
+	
+	function unparse_url($parsed_url) 
+		{
+		$scheme   = isset($parsed_url['scheme']) ? $parsed_url['scheme'] . '://' : '';
+		$host     = isset($parsed_url['host']) ? $parsed_url['host'] : '';
+		$port     = isset($parsed_url['port']) ? ':' . $parsed_url['port'] : '';
+		$user     = isset($parsed_url['user']) ? $parsed_url['user'] : '';
+		$pass     = isset($parsed_url['pass']) ? ':' . $parsed_url['pass']  : '';
+		$pass     = ($user || $pass) ? "$pass@" : '';
+		$path     = isset($parsed_url['path']) ? $parsed_url['path'] : '';
+		$query    = isset($parsed_url['query']) ? '?' . $parsed_url['query'] : '';
+		$fragment = isset($parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : '';
+		
+		return "$scheme$user$pass$host$port$path$query$fragment";
+		}
+
 	}
 
 ?>

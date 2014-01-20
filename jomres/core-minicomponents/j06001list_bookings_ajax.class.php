@@ -37,28 +37,15 @@ class j06001list_bookings_ajax
 		$booking_status = (int)jomresGetParam($_GET,'booking_status','2');
 		$show_all		= (int)jomresGetParam($_GET,'show_all','0');
 		$tag			= (int)jomresGetParam($_GET,'tag','0');
-		
-		if (!using_bootstrap())
-			{
-			$pathToImages    = get_showtime( 'live_site' ) . "/jomres/images";
-			$img_pending     = $pathToImages . "/pending.gif";
-			$img_arrivetoday = $pathToImages . "/arrivetoday.gif";
-			$img_resident    = $pathToImages . "/resident.gif";
-			$img_departtoday = $pathToImages . "/departtoday.gif";
-			$img_stillhere   = $pathToImages . "/stillhere.gif";
-			$img_late        = $pathToImages . "/late.gif";
-			}
-		else
-			{
-			$img_pending     = "label label-grey";
-			$img_arrivetoday = "label label-orange";
-			$img_resident    = "label label-green";
-			$img_late        = "label label-red";
-			$img_departtoday = "label label-blue";
-			$img_stillhere   = "label label-purple";
-			$img_bookedout   = "label label-teal";
-			$img_cancelled   = "label label-black";
-			}
+
+		$img_pending     = "label label-grey";
+		$img_arrivetoday = "label label-orange";
+		$img_resident    = "label label-green";
+		$img_late        = "label label-red";
+		$img_departtoday = "label label-blue";
+		$img_stillhere   = "label label-purple";
+		$img_bookedout   = "label label-teal";
+		$img_cancelled   = "label label-black";
 
 		$rows = array ();
 		
@@ -290,10 +277,7 @@ class j06001list_bookings_ajax
 			
 			$r[] = $p->contract_uid;
 			
-			if (!using_bootstrap())
-				$r[] = '<img src="'.$imgToShow.'" alt="status" />'.' '.$p->tag;
-			else
-				$r[] = '<label class="'.$imgToShow.'">'.$p->tag.'</label>';
+			$r[] = '<label class="'.$imgToShow.'">'.$p->tag.'</label>';
 			
 			$r[] = getPropertyName($p->property_uid);
 			$r[] = outputDate( $p->arrival );

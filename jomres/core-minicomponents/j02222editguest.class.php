@@ -132,7 +132,7 @@ class j02222editguest
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-		$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN', _JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN );
+		$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_EDITDETAILS', _JOMRES_COM_MR_DISPGUEST_EDITDETAILS );
 		$output[ 'GUESTUID' ]  = $guestUid;
 
 		$pageoutput[ ] = $output;

@@ -1,14 +1,19 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<script language="JavaScript" type="text/javascript">
+<script type="text/javascript">
 		<!--
 		jomresJquery(document).ready(function () {
 			var oTable = jomresJquery('#frontend_list_invoices').dataTable({
+				"sDom": '<"H"lCfr>t<"F"ip>',
 				"bJQueryUI": true,
 				"bStateSave": true,
 				"sPaginationType": "full_numbers",
 				"bProcessing": true,
 				"bServerSide": true,
-				"sAjaxSource": '{AJAX_URL}'
+				"sAjaxSource": '{AJAX_URL}',
+				"oColVis": {
+					"aiExclude": [ 0 ],
+					"bRestore": false
+				}
 			}).fnSetFilteringDelay().dataTableSetHiddenColumns();
 		});
 		/* Filtering delay */
@@ -59,18 +64,18 @@
 		};
 		//-->
 	</script>
-	<h2>{PAGETITLE}</h2>
-	<table class="ui-widget-content ui-corner-all" border="0" width="100%">
-		<tr align="center">
-			<td>{TASK_FILTER_ANY}</td>
-			<td>{TASK_FILTER_UNPAID}</td>
-			<td>{TASK_FILTER_PAID}</td>
-			<td>{TASK_FILTER_CANCELLED}</td>
-			<td>{TASK_FILTER_PENDING}</td>
-		</tr>
-	</table>
-	<br/>
-	<table id="frontend_list_invoices" class="table table-striped" width="100%">
+<h2>{PAGETITLE}</h2>
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<tr align="center">
+		<td>{TASK_FILTER_ANY}</td>
+		<td>{TASK_FILTER_UNPAID}</td>
+		<td>{TASK_FILTER_PAID}</td>
+		<td>{TASK_FILTER_CANCELLED}</td>
+		<td>{TASK_FILTER_PENDING}</td>
+	</tr>
+</table>
+<br/>
+<table id="frontend_list_invoices" class="table table-striped" width="100%">
 	<thead>
 		<tr>
 			<th>{COMMON_EDIT}</th>
@@ -92,4 +97,9 @@
 	<tbody>
 	</tbody>
 </table>
+<h5>{HLEGEND}</h5>
+<span class="label label-orange">{HPENDING}</span>
+<span class="label label-green">{HPAID}</span>
+<span class="label label-red">{HUNPAID}</span>
+<span class="label label-black">{HCANCELLED}</span>
 </patTemplate:tmpl>
