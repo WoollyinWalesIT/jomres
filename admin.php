@@ -186,17 +186,6 @@ if ( !AJAXCALL )
 		$output[ 'OBSOLETE_FILES_WARNINGS' ] = $obsolete_files->remove_obs_files();
 		}
 
-	if ( isset( $_REQUEST[ 'tmpl' ] ) )
-		{
-		$output[ 'VIEWURL' ]  = get_showtime( 'live_site' ) . '/' . JOMRES_ADMINISTRATORDIRECTORY . '/index.php?' . remove_querystring_var( "tmpl" );
-		$output[ 'VIEWTEXT' ] = jr_gettext( "_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW", _JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW, false );
-		}
-	else
-		{
-		$output[ 'VIEWURL' ]  = get_showtime( 'liv_site' ) . $_SERVER[ 'REQUEST_URI' ] . '&tmpl=component';
-		$output[ 'VIEWTEXT' ] = jr_gettext( "_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT", _JOMRES_COM_MANAGEMENTVIEW_MANAGMENT, false );
-		}
-
 	$output[ 'LANGDROPDOWN' ] = '';
 	//if (_JOMRES_DETECTED_CMS != "joomla25" && _JOMRES_DETECTED_CMS != "joomla30") // previously the switcher didn't work in J2.5/J3 so we disabled it from the output. 7.1.4 changes indicate that we've found a way around those problems, so we'll now enable it in those versions. We'll leave this line in-situ for now in case we need to step back from that and disable the lang dropdown in 2.5/3 in the future.
 	$output[ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
@@ -212,7 +201,7 @@ if ( !AJAXCALL )
 	$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 	$tmpl->readTemplatesFromInput( 'administrator_content_area_top.html' );
 	$tmpl->addRows( 'pageoutput', $pageoutput );
-	echo $tmpl->getParsedTemplate();
+	$tmpl->displayParsedTemplate();
 	}
 if ( isset( $_REQUEST[ 'statoption' ] ) )
 	{
@@ -296,7 +285,7 @@ if ( !AJAXCALL )
 	$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 	$tmpl->readTemplatesFromInput( 'administrator_content_area_bottom.html' );
 	$tmpl->addRows( 'pageoutput', $pageoutput );
-	echo $tmpl->getParsedTemplate();
+	$tmpl->displayParsedTemplate();
 	}
 
 
@@ -338,18 +327,4 @@ function removeBOM( $str = "" )
 	// $str=substr($str, 3);
 	// }
 	return $str;
-	}
-
-function remove_querystring_var( $key )
-	{
-	foreach ( $_GET as $variable => $value )
-		{
-		if ( $variable != $key )
-			{
-			$url .= $variable . '=' . $value . '&';
-			}
-		}
-	$url = rtrim( $url, '&' );
-
-	return $url;
 	}

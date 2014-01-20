@@ -65,6 +65,7 @@ class j06002list_resources
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb   = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem( 'new', jomresURL( JOMRES_SITEPAGE_URL . "&task=edit_resource" ), '' );
+			$jrtb .= $jrtbar->toolbarItem( 'new', jomresURL( JOMRES_SITEPAGE_URL . "&task=create_multiple_resources" ), jr_gettext('_JOMRES_MULTIPLE_RESOURCES_TITLE',_JOMRES_MULTIPLE_RESOURCES_TITLE,FALSE) );
 			$jrtb .= $jrtbar->endTable();
 			$output['JOMRESTOOLBAR'] = $jrtb;
 			}
@@ -123,9 +124,7 @@ class j06002list_resources
 			else
 				$smokingRoom = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
 
-			$r[ 'SMOKING' ] = '';
-			if ( $mrConfig[ 'showSmoking' ] == "1" ) 
-				$r[ 'SMOKING' ] = $smokingRoom;
+			$r[ 'SMOKING' ] = $smokingRoom;
 
 			$r[ 'ROOM_IMAGE' ] = $jomres_media_centre_images->images['rooms'][$room->room_uid][0]['small'];
 

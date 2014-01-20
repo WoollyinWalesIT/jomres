@@ -21,7 +21,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * @package Jomres
 #
  */
-class j00010reception_option_03_dobooking
+class j00010reception_option_06_newguest
 	{
 
 	/**
@@ -29,42 +29,22 @@ class j00010reception_option_03_dobooking
 	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	#
 	 */
-	function j00010reception_option_03_dobooking( $componentArgs )
+	function j00010reception_option_06_newguest( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )
 			{
-			$this->template_touchable = true;
+			$this->template_touchable = false;
 
 			return;
 			}
 		$property_uid = getDefaultProperty();
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) return;
-
-		$siteConfig                = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig                  = $siteConfig->get();
-		$output[ 'BOOKAROOMLINK' ] = JOMRES_SITEPAGE_URL . "&task=dobooking";
-		if ( $jrConfig[ 'useSSLinBookingform' ] == "1" ) $link = jomresURL( $output[ 'BOOKAROOMLINK' ], 1 );
-		else
-		$link = jomresURL( $output[ 'BOOKAROOMLINK' ] );
-
-		$this->cpanelButton = jomres_mainmenu_option( $link, 'NewBooking.png', jr_gettext( '_JOMRES_HNEW_BOOKING', _JOMRES_HNEW_BOOKING, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS, false, false ) );
+		$this->cpanelButton = jomres_mainmenu_option( jomresURL( JOMRES_SITEPAGE_URL . "&task=editGuest" ), 'guestEdit.png', jr_gettext( '_JOMRES_COM_MR_NEWGUEST', _JOMRES_COM_MR_NEWGUEST, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_GUESTS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_GUESTS, false, false ) );
 		}
 
-	function touch_template_language()
-		{
-		$output = array ();
-
-		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS );
-
-		foreach ( $output as $o )
-			{
-			echo $o;
-			echo "<br/>";
-			}
-		}
 
 	// This must be included in every Event/Mini-component
 	function getRetVals()

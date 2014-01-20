@@ -60,22 +60,8 @@ class j06001list_bookings
 		$show_all=(int)jomresGetParam( $_POST, 'show_all', '0');
 		$tag=(int)jomresGetParam( $_POST, 'tag', '0');
 		
-		$pathToImages    = get_showtime( 'live_site' ) . "/jomres/images";
-		$img_pending     = $pathToImages . "/pending.gif";
-		$img_arrivetoday = $pathToImages . "/arrivetoday.gif";
-		$img_resident    = $pathToImages . "/resident.gif";
-		$img_departtoday = $pathToImages . "/departtoday.gif";
-		$img_stillhere   = $pathToImages . "/stillhere.gif";
-		$img_late        = $pathToImages . "/late.gif";
-		
 		$output                      = array ();
 		$output[ 'PAGETITLE' ]       = jr_gettext( '_JOMRES_STATUS_BOOKINGS', _JOMRES_STATUS_BOOKINGS, false );
-		$output[ 'IMG_PENDING' ]     = $img_pending;
-		$output[ 'IMG_ARRIVETODAY' ] = $img_arrivetoday;
-		$output[ 'IMG_RESIDENT' ]    = $img_resident;
-		$output[ 'IMG_LATE' ]        = $img_late;
-		$output[ 'IMG_DEPARTTODAY' ] = $img_departtoday;
-		$output[ 'IMG_STILLHERE' ]   = $img_stillhere;
 	
 		$output[ 'TEXT_PENDING' ]     = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_PENDING', _JOMRES_COM_MR_VIEWBOOKINGS_PENDING );
 		$output[ 'TEXT_ARRIVETODAY' ] = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY );

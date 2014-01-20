@@ -273,12 +273,7 @@ class j06005list_invoices_ajax
 				$r[]=$toolbar->getToolbar();
 				}
 
-			if (!using_bootstrap())
-				$r[] = $p->id;
-			else
-				{
-				$r[] = '<span class="label '.$label_class.'">'.$p->id.'</span>';
-				}
+			$r[] = '<span class="label '.$label_class.'">'.$p->id.'</span>';
 			
 			if ($p->tag != '')
 				{

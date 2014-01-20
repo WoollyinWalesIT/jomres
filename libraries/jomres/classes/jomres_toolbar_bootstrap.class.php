@@ -76,13 +76,9 @@ class jomres_toolbar_bootstrap
 	 * Allows for custom toolbar items. Set $image to the full path from the root of livesite
 	#
 	 */
-	function customToolbarItem( $targetTask, $link, $text = "", $submitOnClick = false, $submitTask = "", $image )
+	function customToolbarItem( $targetTask, $link, $text = "", $submitOnClick = false, $submitTask = "", $image, $concat = false )
 		{
-		$separate = false;
-		if ($targetTask == "delete")
-			$separate = true ;
-		
-		$this->items[] = array( "cell" => $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask ) , "separate"=>$separate);
+		$this->items[] = array( "cell" => $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask ), "concat"=> $concat);
 		return $output;
 		}
 
@@ -91,16 +87,11 @@ class jomres_toolbar_bootstrap
 	 * Creates a cell with a standard toolbar item.
 	#
 	 */
-	function toolbarItem( $targetTask, $link, $text = "", $submitOnClick = false, $submitTask = "" )
+	function toolbarItem( $targetTask, $link, $text = "", $submitOnClick = false, $submitTask = "", $concat = false )
 		{
-		$separate = false;
-		if ($targetTask == "delete")
-			$separate = true ;
-			
-		
 		if ( empty( $text ) ) $text = $this->standardActivityImages[ $targetTask ][ 'label' ];
 		$image  = '/jomres/images/jomresimages/' . $this->imageSize . '/' . $this->standardActivityImages[ $targetTask ][ 'image' ] . '.' . $this->imageExtension;
-		$this->items[] = array( "cell" => $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask ) , "separate"=>$separate);
+		$this->items[] = array( "cell" => $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask ), "concat"=> $concat);
 		}
 
 	/**
@@ -125,12 +116,12 @@ class jomres_toolbar_bootstrap
 	function endTable()
 		{
 		$new_arr = array();
-		$first = null;
+		$first = array();
 		foreach ($this->items as $item)
 			{
 			if (strstr($item['cell'],"primary"))
 				{
-				$first = $item;
+				$first[] = $item;
 				}
 			else
 				{
@@ -139,26 +130,24 @@ class jomres_toolbar_bootstrap
 			}
 		
 		
-		if (!is_null($first))
+		if (count($first)>0)
 			{
-			array_unshift ( $new_arr , $first );
+			$this->items = array_merge($first, $new_arr);
 			}
-		
-		
-		
-		$this->items = $new_arr;
+		else
+			$this->items = $new_arr;
 		
 		$output = '<div class="btn-group">';
 		foreach ($this->items as $item)
 			{
-			if ($item['separate']==false)
+			if ($item['concat']==true)
 				$output .= $item['cell'];
 			}
 		$output .='</div>';
 		
 		foreach ($this->items as $item)
 			{
-			if ($item['separate']==true)
+			if ($item['concat']==false)
 				$output .= $item['cell'];
 			}
 

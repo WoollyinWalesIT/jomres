@@ -168,7 +168,7 @@ class j06002edit_resource
 				}
 
 			$output[ 'UPLOADIMAGE' ] = jr_gettext( '_JOMRES_UPLOAD_IMAGE', _JOMRES_UPLOAD_IMAGE, false );
-			$output[ 'PAGETITLE' ]   = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM );
+			$output[ 'PAGETITLE' ]   = jr_gettext( '_JOMRES_COM_MR_EB_HROOM_DETAILS', _JOMRES_COM_MR_EB_HROOM_DETAILS,false );
 
 			$cancelText = jr_gettext( '_JOMRES_COM_A_CANCEL', _JOMRES_COM_A_CANCEL, false );
 			$deleteText = jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', _JOMRES_COM_MR_ROOM_DELETE, false );

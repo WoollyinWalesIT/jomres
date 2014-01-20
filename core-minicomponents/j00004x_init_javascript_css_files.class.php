@@ -121,6 +121,8 @@ class j00004x_init_javascript_css_files
 					jomres_cmsspecific_addheaddata( "css", get_showtime( "tables_jui.css.relpath" ), get_showtime( "tables_jui.css" ) );
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.dataTables.min.js.relpath" ), get_showtime( "jquery.dataTables.min.js" ) );
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "TableTools.min.js.relpath" ), get_showtime( "TableTools.min.js" ) );
+					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "ColVis.min.js.relpath" ), get_showtime( "ColVis.min.js" ) );
+					jomres_cmsspecific_addheaddata( "css", get_showtime( "ColVis.css.relpath" ), get_showtime( "ColVis.css" ) );
 					}
 
 				if ( using_bootstrap() )
@@ -129,9 +131,6 @@ class j00004x_init_javascript_css_files
 						{
 						jomres_cmsspecific_addheaddata( "css", get_showtime( "DT_bootstrap.css.relpath" ), get_showtime( "DT_bootstrap.css" ) );
 						jomres_cmsspecific_addheaddata( "javascript", get_showtime( "DT_bootstrap.js.relpath" ), get_showtime( "DT_bootstrap.js" ) );
-						
-						jomres_cmsspecific_addheaddata( "javascript", get_showtime( "ColVis.min.js.relpath" ), get_showtime( "ColVis.min.js" ) );
-						jomres_cmsspecific_addheaddata( "css", get_showtime( "ColVis.css.relpath" ), get_showtime( "ColVis.css" ) );
 						}
 					}
 				else
