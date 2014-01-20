@@ -26,10 +26,44 @@ class j07020showplugins
 
 			return;
 			}
+
 		$this->retVals = array ();
 
 		$remote_plugins      = array ();
-		$remote_plugins_data = queryUpdateServer( "", "r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS . "&key=" . $key_validation->key_hash );
+
+		
+		if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "remote_plugins_data.php"))
+			{
+			$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "remote_plugins_data.php");
+			$seconds_timediff = time() - $last_modified;
+			if ( $seconds_timediff > 3600 ) 
+				{
+				unlink(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "remote_plugins_data.php" );
+				}
+			else
+				{
+				$remote_plugins_data = file_get_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "remote_plugins_data.php" );
+				}
+			}
+		
+		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "remote_plugins_data.php") )
+			{
+			$query_string = "http://plugins.jomres4.net/index.php?r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS;
+			$curl_handle = curl_init();
+			curl_setopt( $curl_handle, CURLOPT_URL, $query_string );
+			curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
+			curl_setopt( $curl_handle, CURLOPT_TIMEOUT, 8 );
+			curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 8 );
+			curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, 1 );
+			$remote_plugins_data = curl_exec( $curl_handle );
+			curl_close( $curl_handle );
+			if ($remote_plugins_data != "")
+				{
+				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "remote_plugins_data.php",$remote_plugins_data);
+				}
+			}
+		
+		//$remote_plugins_data = queryUpdateServer( "", "r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS . "&key=" . $key_validation->key_hash );
 
 		$rp_array = json_decode( $remote_plugins_data );
 		foreach ( $rp_array as $rp )

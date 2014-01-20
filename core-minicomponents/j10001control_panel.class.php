@@ -29,6 +29,11 @@ class j10001control_panel
 
 		if ( AJAXCALL ) return;
 
+
+		$siteConfig          = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig            = $siteConfig->get();
+		$this->timeout = (int) $jrConfig[ 'lifetime' ];
+		
 		$output      = array ();
 		$page_output = array ();
 
@@ -43,7 +48,21 @@ class j10001control_panel
 		$localFopen  = $configSets[ "PHP Core" ][ 'allow_url_fopen' ][ 0 ];
 		$masterFopen = $configSets[ "PHP Core" ][ 'allow_url_fopen' ][ 1 ];
 
-		if ( function_exists( "curl_init" ) )
+		if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "latest_version.php"))
+			{
+			$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "latest_version.php");
+			$seconds_timediff = time() - $last_modified;
+			if ( $seconds_timediff > 3600 ) 
+				{
+				unlink(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "latest_version.php" );
+				}
+			else
+				{
+				$buffer = file_get_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "latest_version.php" );
+				}
+			}
+		
+		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "latest_version.php") )
 			{
 			$curl_handle = curl_init();
 			curl_setopt( $curl_handle, CURLOPT_URL, "http://updates.jomres4.net/versions.php" );
@@ -53,55 +72,62 @@ class j10001control_panel
 			curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, 1 );
 			$buffer = curl_exec( $curl_handle );
 			curl_close( $curl_handle );
-			if ( empty( $buffer ) ) $output[ 'LATEST_JOMRES_VERSION' ] .= "Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ?<p>";
-			else
+			if ($buffer != "")
 				{
-				$latest_jomres_version = explode( ".", $buffer );
-				$this_jomres_version   = explode( ".", $mrConfig[ 'version' ] );
-
-				if ( !isset( $latest_jomres_version[ 2 ] ) ) $latest_jomres_version[ 2 ] = 0;
-				if ( !isset( $this_jomres_version[ 2 ] ) ) $this_jomres_version[ 2 ] = 0;
-
-				$latest_major_version = $latest_jomres_version[ 0 ];
-				$latest_minor_version = $latest_jomres_version[ 1 ];
-				$latest_revis_version = $latest_jomres_version[ 2 ];
-
-				$current_major_version = $this_jomres_version[ 0 ];
-				$current_minor_version = $this_jomres_version[ 1 ];
-				$current_revis_version = $this_jomres_version[ 2 ];
-
-				$best_before_expired   = false;
-				$output[ 'HIGHLIGHT' ] = "";
-				$output[ 'ALERT' ]     = "";
-				$output[ 'EFFECT' ]    = "";
-				if ( $latest_major_version >= 0 && $latest_minor_version >= 0 && $latest_revis_version >= 0 )
-					{
-					if ( $current_major_version < $latest_major_version
-					) $best_before_expired = true;
-
-					if ( $current_major_version <= $latest_major_version && $current_minor_version <= $latest_minor_version && $current_revis_version < $latest_revis_version
-					) $best_before_expired = true;
-
-					if ( $current_major_version <= $latest_major_version && $current_minor_version < $latest_minor_version
-					) $best_before_expired = true;
-
-					if ( $best_before_expired )
-						{
-						$output[ 'HIGHLIGHT' ] = ( using_bootstrap() ? "alert alert-error" : "ui-state-error" );
-						$output[ 'ALERT' ]     = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN . '&task=updates" >'. jr_gettext( _JOMRES_VERSIONCHECK_VERSIONWARNING, '_JOMRES_VERSIONCHECK_VERSIONWARNING', false ).'</a>';
-						$output[ 'EFFECT' ]    = "<script>jomresJquery(document).ready(function() { jomresJquery( \"#version_check_warning\" ).effect( 'highlight' ); });</script> ";
-						}
-					}
-				$output[ '_JOMRES_VERSIONCHECK_THISJOMRESVERSION' ]   = jr_gettext( _JOMRES_VERSIONCHECK_THISJOMRESVERSION, '_JOMRES_VERSIONCHECK_THISJOMRESVERSION', false );
-				$output[ '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION' ] = jr_gettext( _JOMRES_VERSIONCHECK_LATESTJOMRESVERSION, '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', false );
-
-
-				$output[ 'LATEST_JOMRES_VERSION' ] = (int) $latest_major_version . "." . (int) $latest_minor_version . "." . (int) $latest_revis_version;
-				$output[ 'THIS_JOMRES_VERSION' ]   = (int) $current_major_version . "." . (int) $current_minor_version . "." . (int) $current_revis_version;
-
-
+				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "latest_version.php",$buffer);
 				}
 			}
+		
+		if ( empty( $buffer ) ) 
+			{
+			$output[ 'LATEST_JOMRES_VERSION' ] .= "Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ?<p>";
+			}
+		else
+			{
+			$latest_jomres_version = explode( ".", $buffer );
+			$this_jomres_version   = explode( ".", $mrConfig[ 'version' ] );
+
+			if ( !isset( $latest_jomres_version[ 2 ] ) ) $latest_jomres_version[ 2 ] = 0;
+			if ( !isset( $this_jomres_version[ 2 ] ) ) $this_jomres_version[ 2 ] = 0;
+
+			$latest_major_version = $latest_jomres_version[ 0 ];
+			$latest_minor_version = $latest_jomres_version[ 1 ];
+			$latest_revis_version = $latest_jomres_version[ 2 ];
+
+			$current_major_version = $this_jomres_version[ 0 ];
+			$current_minor_version = $this_jomres_version[ 1 ];
+			$current_revis_version = $this_jomres_version[ 2 ];
+
+			$best_before_expired   = false;
+			$output[ 'HIGHLIGHT' ] = "";
+			$output[ 'ALERT' ]     = "";
+			$output[ 'EFFECT' ]    = "";
+			if ( $latest_major_version >= 0 && $latest_minor_version >= 0 && $latest_revis_version >= 0 )
+				{
+				if ( $current_major_version < $latest_major_version
+				) $best_before_expired = true;
+
+				if ( $current_major_version <= $latest_major_version && $current_minor_version <= $latest_minor_version && $current_revis_version < $latest_revis_version
+				) $best_before_expired = true;
+
+				if ( $current_major_version <= $latest_major_version && $current_minor_version < $latest_minor_version
+				) $best_before_expired = true;
+
+				if ( $best_before_expired )
+					{
+					$output[ 'HIGHLIGHT' ] = ( using_bootstrap() ? "alert alert-error" : "ui-state-error" );
+					$output[ 'ALERT' ]     = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN . '&task=updates" >'. jr_gettext( _JOMRES_VERSIONCHECK_VERSIONWARNING, '_JOMRES_VERSIONCHECK_VERSIONWARNING', false ).'</a>';
+					$output[ 'EFFECT' ]    = "<script>jomresJquery(document).ready(function() { jomresJquery( \"#version_check_warning\" ).effect( 'highlight' ); });</script> ";
+					}
+				}
+			$output[ '_JOMRES_VERSIONCHECK_THISJOMRESVERSION' ]   = jr_gettext( _JOMRES_VERSIONCHECK_THISJOMRESVERSION, '_JOMRES_VERSIONCHECK_THISJOMRESVERSION', false );
+			$output[ '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION' ] = jr_gettext( _JOMRES_VERSIONCHECK_LATESTJOMRESVERSION, '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', false );
+
+
+			$output[ 'LATEST_JOMRES_VERSION' ] = (int) $latest_major_version . "." . (int) $latest_minor_version . "." . (int) $latest_revis_version;
+			$output[ 'THIS_JOMRES_VERSION' ]   = (int) $current_major_version . "." . (int) $current_minor_version . "." . (int) $current_revis_version;
+			}
+
 
 		$output[ 'PLUGIN_CHECK' ] = plugin_check();
 
@@ -140,8 +166,22 @@ class j10001control_panel
 			$output[ 'ACCESS_CONTROL_HIGHLIGHT' ] = ( using_bootstrap() ? "alert alert-error" : "ui-state-error" );
 			$output[ 'ACCESS_CONTROL_ALERT' ]     = $access_control_check[ 'message' ];
 			}
-
-		if ( function_exists( "curl_init" ) )
+		
+		if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "news.php"))
+			{
+			$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "news.php");
+			$seconds_timediff = time() - $last_modified;
+			if ( $seconds_timediff > 3600 ) 
+				{
+				unlink(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "news.php" );
+				}
+			else
+				{
+				$buffer = file_get_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "news.php" );
+				}
+			}
+		
+		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "news.php") )
 			{
 			$curl_handle = curl_init();
 			curl_setopt( $curl_handle, CURLOPT_URL, "http://updates.jomres4.net/news.php" );
@@ -151,7 +191,13 @@ class j10001control_panel
 			curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, 1 );
 			$buffer = curl_exec( $curl_handle );
 			curl_close( $curl_handle );
+			if ($buffer != "")
+				{
+				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "news.php",$buffer);
+				}
 			}
+			
+			
 
 		if ( empty( $buffer ) ) $output[ 'LATEST_JOMRES_VERSION' ] .= "Sorry, could not get latest Jomres news, is there a firewall or slow internet connection preventing communication with http://updates.jomres4.net ?<p>";
 		else

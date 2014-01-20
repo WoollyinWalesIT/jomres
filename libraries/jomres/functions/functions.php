@@ -1984,6 +1984,7 @@ function queryUpdateServer( $script, $queryString, $serverType = "plugin" )
 		$curl_handle = curl_init();
 		curl_setopt( $curl_handle, CURLOPT_URL, $updateServer . "/" . $script . "?" . $queryString . "&jomresver=" . $current_version );
 		curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 2 );
+		//curl_setopt( $curl_handle, CURLOPT_TIMEOUT, 10 ); // If the plugin server/internet connection is slow and this is enabled an empty plugin list will be returned.
 		curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
 		curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, 1 );
 		$response = trim( curl_exec( $curl_handle ) );
