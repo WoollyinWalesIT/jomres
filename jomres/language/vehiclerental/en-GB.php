@@ -2454,4 +2454,12 @@ jr_define('SIMPLE_CONFIGURATION' , "Simple Configuration" );
  
 jr_define('_JOMRES_HRESOURCE_FEATURES' , "Resource features" );
 jr_define('_JOMRES_HRESOURCE_TYPE' , "Resource type" );
- 
+ jr_define('_JOMRES_HEDIT_GUEST_TYPE' , "Edit guest type" );
+jr_define('_JOMRES_HEDIT_COUPON' , "Edit coupon" );
+jr_define('_JOMRES_HEDIT_EXTRA' , "Edit extra" );
+jr_define('_JOMRES_MULTIPLE_RESOURCES_TITLE' , "Create multiple resources" );
+jr_define('_JOMRES_MULTIPLE_RESOURCES_GENERATE' , "Generate resources" );
+jr_define('_JOMRES_MULTIPLE_RESOURCES_HOWMANY' , "How many resources?" );
+jr_define('_JOMRES_MULTIPLE_RESOURCES_TYPE' , "Resources type" );
+jr_define('_JOMRES_MULTIPLE_RESOURCES_MAXGUESTS' , "Max guests per resource" );
+jr_define('_JOMRES_MULTIPLE_RESOURCES_DELETE' , "Delete all existing resources?" );
