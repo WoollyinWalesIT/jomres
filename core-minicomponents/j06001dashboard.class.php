@@ -31,7 +31,7 @@ class j06001dashboard
 		if ( !in_array( $property_uid, $thisJRUser->authorisedProperties ) ) return;
 		
 		$mrConfig = getPropertySpecificSettings( $property_uid );
-		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) return;
+		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 || get_showtime('is_jintour_property' ) ) return;
 		
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
