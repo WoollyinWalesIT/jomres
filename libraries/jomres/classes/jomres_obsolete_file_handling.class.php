@@ -19,7 +19,8 @@ class jomres_obsolete_file_handling
 	function jomres_obsolete_file_handling()
 		{
 		
-		$this->obs_files   = array ();
+		$this->obs_files         = array ();
+		$this->obs_directories   = array ();
 		$this->nohtml      = jomresGetParam( $_REQUEST, 'no_html', 0 );
 		$this->warnconfirm = jomresGetParam( $_REQUEST, 'warnconfirm', 0 );
 		
@@ -905,18 +906,66 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'batchupload.html' );
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'batchupload.html' );
 		
-		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'test_template.html' );
+		$this->add_obs_dir ( $this->dir_jomres . 'templates'  . JRDS . 'jomres' ) ;
+		$this->add_obs_dir ( $this->dir_jomres . 'libraries'  . JRDS . 'PHPMailer_v5.1' ) ;
+		$this->add_obs_dir ( $this->dir_jomres . 'javascript' . JRDS . 'codemirror' ) ;
+		$this->add_obs_dir ( $this->dir_jomres . 'javascript' . JRDS . 'jquerytabs' ) ;
+		$this->add_obs_dir ( $this->dir_jomres . 'javascript' . JRDS . 'bootstrap_dashboard' ) ;
+		$this->add_obs_dir ( $this->dir_jomres . 'templates'  . JRDS . 'jquery_ui' . JRDS . 'templates') ;
+		
 		}
 
 	function add_obs_file( $path_and_file )
 		{
-		$this->obs_files[ ] = $path_and_file;
+		if (file_exists($path_and_file))
+			$this->obs_files[ ] = $path_and_file;
 		}
-
+	
+	// Some directories aren't tidied up properly because we used scandir recursive to delete files. This will allow us to completely remove a directory and it's contents.
+	function add_obs_dir ( $dir)
+		{
+		if ( is_dir ($dir))
+			$this->obs_directories[] = $dir;
+		}
+	
 	function remove_obs_files()
 		{
 		$this->success                          = true;
 		$this->number_of_files_require_deletion = 0;
+		
+		$rows = array();
+		
+		foreach ( $this->obs_directories as $path )
+			{
+			$this->obsolete_file_message = '';
+			if ( !$this->remove_obs_dir( $path ) )
+				{
+				$pageoutput = array ();
+				$output     = array ();
+
+				$output[ 'MESSAGE' ] = $this->obsolete_file_message;
+				if ( ( $this->success && $this->warnmode ) )
+					{
+					$template = 'obsolete_files_warning.html';
+					}
+				elseif ( !$this->success && $this->warnmode )
+					{
+					$template = 'obsolete_files_delete_failure.html';
+					}
+				elseif ( $this->success && !$this->warnmode )
+					{
+					$template = 'obsolete_files_delete_success.html';
+					}
+				$this->number_of_files_require_deletion++;
+
+				$pageoutput[ ] = $output;
+				$tmpl          = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+				$tmpl->readTemplatesFromInput( $template );
+				$tmpl->addRows( 'pageoutput', $pageoutput );
+				$rows[ ] = array ( "WARNINGS" => $tmpl->getParsedTemplate() );
+				}
+			}
 
 		foreach ( $this->obs_files as $path_and_file )
 			{
@@ -941,7 +990,6 @@ class jomres_obsolete_file_handling
 					}
 				$this->number_of_files_require_deletion++;
 
-
 				$pageoutput[ ] = $output;
 				$tmpl          = new patTemplate();
 				$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
@@ -951,6 +999,7 @@ class jomres_obsolete_file_handling
 
 				}
 			}
+
 
 		if ( $this->number_of_files_require_deletion > 0 )
 			{
@@ -981,6 +1030,43 @@ class jomres_obsolete_file_handling
 			}
 		}
 
+	function remove_obs_dir( $path )
+		{
+		if ( is_dir( $path ) )
+			{
+			if ( $this->warnmode ) // we're going to pretend to delete the directory.
+				{
+				if ( is_writable( $path ) )
+					{
+					$this->obsolete_file_message = 'Directory Delete checking. Directory ' . $path . ' is writable and Jomres would expect to be able to delete it.';
+					$this->success               = true;
+					}
+				else
+					{
+					$this->obsolete_file_message = 'Directory Delete checking. Directory ' . $path . ' is not writable and Jomres would probably not be able to delete it.';
+					$this->success               = false;
+					}
+				}
+			else
+				{
+				emptyDir ($path);
+				if ( !@rmdir( $path ) )
+					{
+					$this->obsolete_file_message = 'Warning: Directory ' . $path . ' still exists in your system. Jomres has tried to delete it automatically but was unsuccessful. Please delete it.';
+					$this->success               = false;
+					}
+				else
+					{
+					$this->obsolete_file_message = 'Obsolete Directory ' . $path . ' was removed as it is no longer part of a production installation of Jomres.';
+					$this->success               = true;
+					}
+				}
+			return false;
+			}
+		else
+			return true;
+		}
+	
 	function remove_obs_file( $path_and_file )
 		{
 		if ( file_exists( $path_and_file ) )
