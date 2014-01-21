@@ -225,7 +225,8 @@ class j06001listyourproperties_ajax
 				if ($thisJRUser->userIsManager && $thisJRUser->accesslevel > 1)
 					{
 					$toolbar->addSecondaryItem( 'icon-edit', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editProperty' . '&thisProperty=' . $p->propertys_uid ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
-					$toolbar->addSecondaryItem( 'icon-eye', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=preview' . '&thisProperty=' . $p->propertys_uid ), jr_gettext( '_JOMRES_FRONT_PREVIEW', _JOMRES_FRONT_PREVIEW, false ) );
+					$url = jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $p->propertys_uid );
+					$toolbar->addSecondaryItem( 'icon-eye', '', '', $url, jr_gettext( '_JOMRES_FRONT_PREVIEW', _JOMRES_FRONT_PREVIEW, false ) );
 					if (count($thisJRUser->authorisedProperties) > 1)
 						$toolbar->addSecondaryItem( 'icon-trash', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=deleteProperty' . '&thisProperty=' . $p->propertys_uid ), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
 					}
