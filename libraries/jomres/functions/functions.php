@@ -4602,7 +4602,7 @@ function makePopupLink( $link, $text, $isLocalPage = true, $width = 550, $height
 	{
 	$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=no,menubar=yes,resizable=yes,width=' . $width . ',height=' . $height . ',directories=no,location=no';
 	$format = "";
-	if ( defined( '_JOMRES_NEWJOOMLA' ) ) $format = "&tmpl=component";
+	if ( defined( '_JOMRES_NEWJOOMLA' ) ) $format = get_showtime("tmplcomponent");
 
 	if ( $jrConfig[ 'useSSLinBookingform' ] == 1 && $_REQUEST[ 'task' ] == "editGuest" )
 		{

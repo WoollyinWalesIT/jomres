@@ -144,7 +144,7 @@ class j06005view_invoice
 
 		if ( $popup != 1 )
 			{
-			$output[ 'PRINTLINK' ] = JOMRES_SITEPAGE_URL . '&tmpl=component&popup=1&task=view_invoice&id=' . $id;
+			$output[ 'PRINTLINK' ] = JOMRES_SITEPAGE_URL . get_showtime("tmplcomponent").'&popup=1&task=view_invoice&id=' . $id;
 			$output[ 'PRINTTEXT' ] = jr_gettext( '_JOMRES_COM_INVOICE_PRINT', _JOMRES_COM_INVOICE_PRINT, false);
 			}
 
