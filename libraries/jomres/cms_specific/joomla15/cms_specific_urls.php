@@ -54,7 +54,7 @@ if ( !isset( $_GET[ 'tmpl' ] ) ) $_GET[ 'tmpl' ] = false;
 if ( ( $jrConfig[ 'isInIframe' ] == (bool) "1" || strstr( $scriptname, 'index2.php' ) || $_GET[ 'tmpl' ] == 'component' ) && !isset( $_REQUEST[ 'nofollowtmpl' ] ) )
 	{
 	$index = "index.php";
-	$tmpl  = "&tmpl=component";
+	$tmpl = get_showtime("tmplcomponent");
 	define( "JOMRES_WRAPPED", 1 );
 	}
 else
@@ -101,9 +101,9 @@ if ( isset( $_REQUEST[ 'topoff' ] ) )
 $lang = substr( get_showtime( 'lang' ), 0, 2 );
 
 define( "JOMRES_SITEPAGE_URL_NOSEF", get_showtime( 'live_site' ) . "/index.php?option=com_jomres&Itemid=" . $jomresItemid . "&lang=" . $lang );
-define( "JOMRES_SITEPAGE_URL_AJAX", get_showtime( 'live_site' ) . '/' . "index.php?option=com_jomres&tmpl=component&jrajax=1&no_html=1&Itemid=" . $jomresItemid . "&lang=" . $lang );
+define( "JOMRES_SITEPAGE_URL_AJAX", get_showtime( 'live_site' ) . '/' . "index.php?option=com_jomres".get_showtime("tmplcomponent")."&jrajax=1&no_html=1&Itemid=" . $jomresItemid . "&lang=" . $lang );
 define( "JOMRES_SITEPAGE_URL_ADMIN", get_showtime( 'live_site' ) . '/' . JOMRES_ADMINISTRATORDIRECTORY . "/index.php?option=com_jomres" . $tmpl );
-define( "JOMRES_SITEPAGE_URL_ADMIN_AJAX", get_showtime( 'live_site' ) . '/' . JOMRES_ADMINISTRATORDIRECTORY . "/index.php?option=com_jomres&tmpl=component&jrajax=1&format=raw&no_html=1" );
+define( "JOMRES_SITEPAGE_URL_ADMIN_AJAX", get_showtime( 'live_site' ) . '/' . JOMRES_ADMINISTRATORDIRECTORY . "/index.php?option=com_jomres".get_showtime("tmplcomponent")."&jrajax=1&format=raw&no_html=1" );
 
 if ( class_exists( 'JFactory' ) )
 	{
