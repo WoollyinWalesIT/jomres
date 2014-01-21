@@ -854,6 +854,9 @@ class patTemplate
 		$common_strings[ 'COMMON_SOURCE_SCRIPT' ] = $backtrace[ 1 ][ 'file' ];
 
 		$common_strings[ 'COMMON_THIS_PAGE_URL' ] = $this->curPageURL();
+		
+		$common_strings[ 'COMMON_TMPLCOMPONENT' ] = get_showtime("tmplcomponent");
+		
 
 		return $common_strings;
 		}
