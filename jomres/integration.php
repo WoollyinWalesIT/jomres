@@ -156,6 +156,8 @@ if ( $jomresConfig_lang == '' )
 	$jomresConfig_lang = 'en-GB';
 	}
 
+$showtime->tmplcomponent = "&tmpl=component";
+
 $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 $MiniComponents->triggerEvent( '00001' ); // Start
 
