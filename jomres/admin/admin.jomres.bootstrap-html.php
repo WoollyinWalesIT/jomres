@@ -148,13 +148,11 @@ class HTML_jomres
 			 <td>' . $lists[ 'use_bootstrap_in_frontend' ] . '</td>
 			 <td>' . jr_gettext( _JOMRES_BOOTSTRAPSWITCH_INFO, '_JOMRES_BOOTSTRAPSWITCH_INFO', false ) . '</td>
 		</tr>
-		<!--
 		<tr>
 			 <td>' . jr_gettext( _JOMRES_BOOTSTRAP_VERSION, '_JOMRES_BOOTSTRAP_VERSION', false ) . '</td>
 			 <td>' . $bootstrap_ver_dropdown . '</td>
 			 <td>' . jr_gettext( _JOMRES_BOOTSTRAP_VERSION_DESC, '_JOMRES_BOOTSTRAP_VERSION_DESC', false ) . '</td>
 		</tr>
-		-->
 		<tr>
 			 <td>' . jr_gettext( _JOMRES_BOOTSTRAPSWITCH_ADMINISTRATOR, '_JOMRES_BOOTSTRAPSWITCH_ADMINISTRATOR', false ) . '</td>
 			 <td>' . $lists[ 'use_bootstrap_in_admin' ] . '</td>
