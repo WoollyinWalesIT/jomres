@@ -1,48 +1,24 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<script type="text/javascript">
-		<!--
-		var plugins_to_upgrade = '{PLUGINS_TO_UPGRADE}';
+<script type="text/javascript">
+<!--
+var plugins_to_upgrade = '{PLUGINS_TO_UPGRADE}';
 
-		//for test
-		//var plugins_to_upgrade ='ajax_search,ajax_search_composite';
-
-
-		function blockUITrigger() {
-			jomresJquery.blockUI({ 
-			message: '<h3>Upgrading plugins, please wait, this may take a few minutes depending on internet speed.</h3><br/> The page will reload when the plugins have been updated, but it is important that you do not interrupt the process.',
-			css: { 
-				border: 'none', 
-				padding: '15px', 
-				backgroundColor: '#000', 
-				'-webkit-border-radius': '10px', 
-				'-moz-border-radius': '10px', 
-				opacity: .5, 
-				color: '#fff' 
-			} }); 
+function upgrade_core_plugins() {
+	alert ( "Upgrading plugins. Please do not interrupt the process, the page will refresh once all plugins have been updated");
+	plugins = plugins_to_upgrade.split(",");
+	for (var i = 0, l = plugins.length; i < l; i++) {
+		plugin = plugins[i];
+		if (plugin != '') {
+			jomresJquery.ajax({ url: '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=addplugin&plugin=' + plugin + '&autoupgrade=1', success: function (data) {
+					//console.log(data);
+					}, async: false
+				});
+			}
 		}
-			jomresJquery(document).ready(function() {  
-				jomresJquery('#upgrade_core_plugins').on("click",function() {	
-					plugins = plugins_to_upgrade.split(",");
-					if (plugins_to_upgrade.length)
-						blockUITrigger();
-					for (var i = 0, l = plugins.length; i < l; i++) {
-						plugin = plugins[i];
-						if (plugin != '') {
-							jomresJquery.ajax({ url: '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=addplugin&plugin=' + plugin + '&autoupgrade=1', success: function (data) {
-								//console.log(data);
-							}, async: false
-							});
-						}
-					}
-				 
-				 if (plugins_to_upgrade.length){	
-	 					jomresJquery.unblockUI();
-	 					window.location.reload();
-	 				}
-			});
-	});
-		//-->
-	</script>
+	window.location.reload();
+	}
+//-->
+</script>
 
 
 	<h2 class="page-header">{PAGETITLE}</h2>
@@ -125,7 +101,7 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="coreplugins">
 				<patTemplate:tmpl name="plugins_require_upgrade" type="simpleCondition" requiredVars="upgrade_text">
-					<a href="#" id="upgrade_core_plugins" class="btn btn-primary btn-large">{UPGRADE_TEXT}</a>
+					<a href="javascript:void(0);" onclick="upgrade_core_plugins()" class="btn btn-primary btn-large">{UPGRADE_TEXT}</a>
 				</patTemplate:tmpl>
 				<table width="100%" class="table">
 					<tr>
