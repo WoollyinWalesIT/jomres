@@ -83,7 +83,7 @@ class mcHandler
 
 		$eventClasses         = $this->registeredClasses;
 		$this->template_touch = true;
-		$output[ 'INFO' ]     = jr_gettext( '_JOMRES_ASAMODULE_REPORT_INFO', "This feature lists some minicomponents that could be called by the Jomres ASAModule Joomla module, or indeed directly through a menu option that was manually added. Additionally, you could call them via an iframe on a remote site. To include the output in an iframe you'd use the URL as provided here (manually modifying the property ids etc to suit your own requirements), but then if you click any links all subsequent pages will also be shown without headers, modules etc, so you'd be advised to add 'nofollowtmpl' to the url so that any subsequent links in that output do not also include 'tmpl=component'. To show all headers, simply use the link without 'tmpl=component' in the url.<br/>",false );
+		$output[ 'INFO' ]     = jr_gettext( '_JOMRES_ASAMODULE_REPORT_INFO', "This feature lists some minicomponents that could be called by the Jomres ASAModule Joomla module, or indeed directly through a menu option that was manually added. Additionally, you could call them via an iframe on a remote site. To include the output in an iframe you'd use the URL as provided here (manually modifying the property ids etc to suit your own requirements), but then if you click any links all subsequent pages will also be shown without headers, modules etc, so you'd be advised to add 'nofollowtmpl' to the url so that any subsequent links in that output do not also include '".get_showtime("tmplcomponent")."'. To show all headers, simply use the link without '".get_showtime("tmplcomponent")."' in the url.<br/>",false );
 
 		$rows = array ();
 
