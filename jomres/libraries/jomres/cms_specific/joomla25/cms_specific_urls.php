@@ -70,7 +70,7 @@ else
 	if ( ( $jrConfig[ 'isInIframe' ] == (bool) "1" || $_GET[ 'tmpl' ] == 'component' ) && !isset( $_REQUEST[ 'nofollowtmpl' ] ) )
 		{
 		$index = "index.php";
-		$tmpl  = "&tmpl=component";
+		$tmpl = get_showtime("tmplcomponent");
 		define( "JOMRES_WRAPPED", 1 );
 		}
 	else
