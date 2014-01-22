@@ -303,12 +303,12 @@ class j16000showplugins
 				}
 
 			$r[ 'INSTALL_LINK' ] = '';
-			$r[ 'INSTALL_TEXT' ] = '';
-			//if ( array_key_exists( $plugin_name, $current_licenses ) || $developer_user )
-			//	{
+			$r[ 'INSTALL_TEXT' ] = $installAction;
+			if ( array_key_exists( $plugin_name, $current_licenses ) || $developer_user )
+				{
 				$r[ 'INSTALL_LINK' ] = JOMRES_SITEPAGE_URL_ADMIN . '&task=addplugin&plugin=' . $n;
 				$r[ 'INSTALL_TEXT' ] = $installAction;
-			//	}
+				}
 
 			$r[ 'HPLUGINPRICE' ] = '';
 			if ( !$developer_user )
