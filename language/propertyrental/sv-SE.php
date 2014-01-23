@@ -2431,3 +2431,4 @@ jr_define('_JOMRES_MULTIPLE_RESOURCES_HOWMANY' , "How many resources?" );
 jr_define('_JOMRES_MULTIPLE_RESOURCES_TYPE' , "Resources type" );
 jr_define('_JOMRES_MULTIPLE_RESOURCES_MAXGUESTS' , "Max guests per resource" );
 jr_define('_JOMRES_MULTIPLE_RESOURCES_DELETE' , "Delete all existing resources?" );
+jr_define( '_JOMRES_COM_ADVANCED_SITE_CONFIG_WARNING', 'Please note, you are currently viewing the administrator area with Advanced Site Config set to No. If you want to see more options please set Site Configuration -> Misc -> Advanced Site Config to Yes.' );

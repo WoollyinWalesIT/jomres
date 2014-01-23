@@ -2272,3 +2272,5 @@ jr_define('_JOMRES_MULTIPLE_RESOURCES_HOWMANY',"Ile przedmiotów rezerwacji?");
 jr_define('_JOMRES_MULTIPLE_RESOURCES_TYPE',"Rodzaj przedmiotu rezerwacji");
 jr_define('_JOMRES_MULTIPLE_RESOURCES_MAXGUESTS',"Maksymalna liczba klientów dla przedmiotu rezerwacji");
 jr_define('_JOMRES_MULTIPLE_RESOURCES_DELETE',"Usunąć wszystkie istniejące przedmioty rezerwacji?");
+
+jr_define( '_JOMRES_COM_ADVANCED_SITE_CONFIG_WARNING', 'Please note, you are currently viewing the administrator area with Advanced Site Config set to No. If you want to see more options please set Site Configuration -> Misc -> Advanced Site Config to Yes.' );
