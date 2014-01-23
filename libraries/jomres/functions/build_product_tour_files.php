@@ -26,13 +26,19 @@ function build_product_tour_javascript_file()
 		}
 	
 	$file = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang").'-tour.js';
-	if (file_exists($file))
+/* 	if (file_exists($file))
 		{
 		return;
-		}
+		} */
 	$target_ids = array();
 	switch ( $task )
 		{
+		case "editGuest":
+			$target_ids['tour_target_edit_guest_top']				= 'top' ;
+			$target_ids['tour_target_edit_guest_vat']				= 'right' ;
+			$target_ids['tour_target_edit_guest_discount']			= 'right' ;
+			$target_ids['tour_target_end']							= 'top' ;
+		break;
 		case "dashboard":
 			$target_ids['tour_target_main_menu']					= 'bottom' ;
 			$target_ids['tour_target_property_name']				= 'left' ;
@@ -42,12 +48,7 @@ function build_product_tour_javascript_file()
 			$target_ids['tour_target_content']						= 'top' ;
 			$target_ids['tour_target_end']							= 'top' ;
 		break;
-		case "switch_active_property":
-			$target_ids['tour_target_switcher_active_property_initials'] = 'top' ;
-			$target_ids['found_properties'] 						= 'top' ;
-			$target_ids['tour_target_end']							= 'top' ;
-		break;
-		case "preview":
+		case "viewproperty":
 			$target_ids['tour_target_property_header']				= 'top' ;
 			$target_ids['gallerywrapper']							= 'top' ;
 			$target_ids['tour_target_property_details_buttons'] 	= 'top' ;
@@ -64,8 +65,9 @@ function build_product_tour_javascript_file()
 			$target_ids['jomres_auction_house_content_body']		= 'top' ;
 			$target_ids['tour_target_end']							= 'top' ;
 		break;
-		case "hotelSettings":
-			$target_ids['tab_Bookingrooms'] 						= 'top' ;
+		case "business_settings":
+			$target_ids['tab_Bookingform'] 							= 'top' ;
+			$target_ids['tab_Bookings'] 							= 'top' ;
 			$target_ids['tab_Yourbusinessdetails']					= 'top' ;
 			$target_ids['tab_Externallink']							= 'top' ;
 			$target_ids['tab_Gateways']								= 'top' ;
@@ -106,11 +108,6 @@ function build_product_tour_javascript_file()
 		break;
 		case "list_bookings":
 			$target_ids['tour_target_listall_bookings']				= 'top' ;
-			$target_ids['tour_target_table_tools']					= 'top' ;
-			$target_ids['tour_target_end']							= 'top' ;
-		break;
-		case "listguests":
-			$target_ids['tour_target_list_guests']					= 'top' ;
 			$target_ids['tour_target_table_tools']					= 'top' ;
 			$target_ids['tour_target_end']							= 'top' ;
 		break;
