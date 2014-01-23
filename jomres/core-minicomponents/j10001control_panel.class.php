@@ -36,7 +36,16 @@ class j10001control_panel
 		
 		$output      = array ();
 		$page_output = array ();
-
+		
+		
+		$output['ADVANCED_SITE_CONFIG_WARNING']='';
+		$output['ADVANCED_SITE_CONFIG_WARNING_HIGHLIGHT']='';
+		if ($jrConfig['advanced_site_config'] == "0")
+			{
+			$output['ADVANCED_SITE_CONFIG_WARNING']= jr_gettext( _JOMRES_COM_ADVANCED_SITE_CONFIG_WARNING, '_JOMRES_COM_ADVANCED_SITE_CONFIG_WARNING', false );
+			$output['ADVANCED_SITE_CONFIG_WARNING_HIGHLIGHT']=' class="alert alert-warning" ';
+			}
+		
 		$output[ 'LIVESITE' ]             = get_showtime( 'live_site' );
 		$output[ 'WRITABILITY_TESTS' ]    = control_panel_writability_tests();
 		$output[ 'MAX_INPUT_VARS_CHECK' ] = max_input_vars_test();
