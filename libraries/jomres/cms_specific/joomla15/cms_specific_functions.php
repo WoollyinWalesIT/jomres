@@ -418,3 +418,31 @@ function jomres_cmsspecific_currenturl()
 	{
 	return JURI::current();
 	}
+
+function jomres_cmsspecific_patchJoomlaTemplate($force = false)
+	{
+	$app = JFactory::getApplication();
+	$templateName = $app->getTemplate('template')->template;
+	$tmplcomponent = get_showtime("tmplcomponent");
+	$tmplcomponent_source = get_showtime("tmplcomponent_source");
+	
+	if (jomres_cmsspecific_areweinadminarea())
+		{
+		if ($force || !file_exists(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "templates" . JRDS . $templateName . JRDS . $tmplcomponent . '.php'))
+			{
+			if ( !copy( $tmplcomponent_source, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "templates" . JRDS . $templateName . JRDS . $tmplcomponent . '.php' ) ) 
+				echo '<p class="alert alert-error">Error, unable to copy ' . $tmplcomponent_source .' to ' . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . 'templates' . JRDS . $templateName . JRDS . $tmplcomponent . '.php automatically, please do this manually through FTP</p><br/>';
+			return true;
+			}
+		}
+	else
+		{
+		if ($force || !file_exists(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "templates" . JRDS . $templateName . JRDS . $tmplcomponent . '.php'))
+			{
+			if ( !copy( $tmplcomponent_source, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "templates" . JRDS . $templateName . JRDS . $tmplcomponent . '.php' ) ) 
+				echo '<p class="alert alert-error">Error, unable to copy ' . $tmplcomponent_source .' to ' . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'templates' . JRDS . $templateName . JRDS . $tmplcomponent . '.php automatically, please do this manually through FTP</p><br/>';
+			return true;
+			}
+		}
+	return false;
+	}

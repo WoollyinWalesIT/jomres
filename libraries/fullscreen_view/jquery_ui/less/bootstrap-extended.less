@@ -1,0 +1,208 @@
+/* Extending Bootstrap */
+/* Typography */
+.small {
+	font-size: 11px;
+}
+a:focus, .btn:focus {
+	outline: 0;
+}
+/*Headings*/
+h1, h2, h3, h4, h5, h6 {margin:0;}
+h1 { font-size: 30px; line-height: @baseLineHeight * 2.5; }
+h2 { font-size: 24px; line-height: @baseLineHeight * 2; }
+h3 { font-size: 18px; line-height: @baseLineHeight * 1.5; }
+h4 { font-size: 14px; }
+h5 { font-size: 12px; }
+h6 { font-size: 11px; color: @grayLight; text-transform: uppercase;}
+
+h1 small { font-size: 24px; }
+h2 small { font-size: 18px; }
+h3 small { font-size: 14px; }
+h4 small { font-size: 12px; }
+
+/* Max Width */
+iframe,
+svg {
+	max-width: 100%;
+	border: 0;
+}
+/* Nowrap */
+.nowrap {
+	white-space: nowrap;
+}
+/* Center */
+.center,
+.table td.center,
+.table th.center {
+	text-align: center;
+}
+
+/* Inline Thumbnails */
+.thumbnail.pull-left {
+	margin: 0 10px 10px 0;
+}
+.thumbnail.pull-right {
+	margin: 0 0 10px 10px;
+}
+
+/* Page Header */
+.page-header{
+	margin: 2px 0px 10px 0px;
+	padding-bottom: 5px;
+}
+/* Striped */
+.list-striped,
+.row-striped {
+	list-style: none;
+	line-height: 18px;
+	text-align: left;
+	vertical-align: middle;
+	border-top: 1px solid #dddddd;
+	margin-left: 0;
+}
+
+.list-striped li,
+.list-striped dd,
+.row-striped .row,
+.row-striped .row-fluid {
+	border-bottom: 1px solid #dddddd;
+	padding: 8px;
+}
+
+.list-striped li:nth-child(odd),
+.list-striped dd:nth-child(odd),
+.row-striped .row:nth-child(odd),
+.row-striped .row-fluid:nth-child(odd) {
+	background-color: #f9f9f9;
+}
+
+.list-striped li:hover,
+.list-striped dd:hover,
+.row-striped .row:hover,
+.row-striped .row-fluid:hover {
+	background-color: #f5f5f5;
+}
+
+.row-striped .row-fluid {
+	width: 97%; // lower than 100% since we have padding
+}
+.row-striped .row-fluid [class*="span"] {
+	min-height: 10px;
+}
+
+/* Alternating Rows */
+.row-even,.row-odd {
+	padding: 5px;
+	width: 99%;
+	border-bottom: 1px solid #DDD;
+}
+.row-odd {
+	background-color: #fff;
+}
+.row-even {
+	background-color: #f9f9f9;
+}
+.table {
+	.table-hover();
+}
+
+/*Modals*/
+.modal-header {
+	.ui-widget-header();
+}
+.modal-body {
+	.ui-widget-content();
+	max-height: 550px;
+}
+.modal {
+	top: 45%;
+	border:0 none;
+	.border-radius(4px);
+}
+/*Navbar*/
+#mainmenu {
+	margin-bottom:10px;
+	.navbar {
+		margin-bottom:0;
+		color: @white;
+		.brand {
+			color: @white;
+		}
+	}
+	.navbar .nav > li > a {
+		color:@white;
+		text-shadow:none;
+	}
+	.navbar .nav > li > a:hover, .navbar .nav > li > a:focus {
+		color:@grayLighter;
+		background:#EB3D3D;
+	}
+	.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
+		background: #cc0000;
+		color:@white;
+	}
+	.navbar-inner {
+		#gradient > .vertical(lighten(#cc0000, 30%), #cc0000);
+	}
+	.navbar .nav li.dropdown > .dropdown-toggle .caret {
+		border-top-color: @white;
+	  	border-bottom-color: @white;
+	}
+	.navbar .nav li.dropdown.open > .dropdown-toggle .caret,
+	.navbar .nav li.dropdown.active > .dropdown-toggle .caret,
+	.navbar .nav li.dropdown.open.active > .dropdown-toggle .caret {
+	  	border-top-color: @grayLighter;
+	  	border-bottom-color: @grayLighter;
+	}
+	.navbar .nav li.dropdown.open > .dropdown-toggle,
+	.navbar .nav li.dropdown.active > .dropdown-toggle,
+	.navbar .nav li.dropdown.open.active > .dropdown-toggle {
+	  	background-color: #cc0000;
+	  	color: @white;
+	}
+}
+@media (max-width: @navbarCollapseWidth) {
+	#mainmenu {
+		.nav-collapse .nav > li > a,
+	  	.nav-collapse .dropdown-menu a {
+			color: @white;
+	  	}
+	}
+}
+/*Tabs*/
+.tabbable, #tabbable {
+	.ui-widget-content();
+	.border-radius(4px);
+	.ui-tabs();
+}
+.tab-content {
+	padding:0 10px 10px;
+	overflow:visible;
+}
+.nav-tabs {
+	.ui-widget-header();
+	.border-radius(4px);
+}
+.nav-tabs > li {
+	top:1px;
+	position:relative;
+	margin-bottom: 0;
+}
+.nav-tabs > .active {
+	border-bottom:1px solid;
+}
+.nav-tabs > li > a {
+	.ui-state-default();
+}
+.nav-tabs > li > a:hover {
+	.ui-state-hover();
+}
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
+	.ui-state-active();
+	border-bottom:0 none;
+}
+/*Buttons*/
+.btn-group > .dropdown-toggle {
+    padding-left: 8px;
+    padding-right: 8px;
+}

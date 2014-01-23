@@ -51,10 +51,10 @@ $index = "index.php";
 $tmpl  = "";
 if ( !isset( $_GET[ 'tmpl' ] ) ) $_GET[ 'tmpl' ] = false;
 
-if ( ( $jrConfig[ 'isInIframe' ] == (bool) "1" || strstr( $scriptname, 'index2.php' ) || $_GET[ 'tmpl' ] == 'component' ) && !isset( $_REQUEST[ 'nofollowtmpl' ] ) )
+if ( ( $jrConfig[ 'isInIframe' ] == (bool) "1" || strstr( $scriptname, 'index2.php' ) || $_GET[ 'tmpl' ] == get_showtime("tmplcomponent") ) && !isset( $_REQUEST[ 'nofollowtmpl' ] ) )
 	{
 	$index = "index.php";
-	$tmpl = get_showtime("tmplcomponent");
+	$tmpl = '&tmpl=' . get_showtime("tmplcomponent");
 	define( "JOMRES_WRAPPED", 1 );
 	}
 else
@@ -99,11 +99,21 @@ if ( isset( $_REQUEST[ 'topoff' ] ) )
 	}
 
 $lang = substr( get_showtime( 'lang' ), 0, 2 );
+// For administrator area Jomres lang switching
+$lang_param = '';
+if ( isset( $_REQUEST[ 'jomreslang' ] ) )
+	{
+	$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
+	if ( array_key_exists( $_REQUEST[ 'jomreslang' ], $jomreslang->datepicker_crossref ) ) 
+		{
+		$lang_param .= "&jomreslang=" .  jomresGetParam( $_REQUEST , 'jomreslang' , '' );
+		}
+	}
 
 define( "JOMRES_SITEPAGE_URL_NOSEF", get_showtime( 'live_site' ) . "/index.php?option=com_jomres&Itemid=" . $jomresItemid . "&lang=" . $lang );
-define( "JOMRES_SITEPAGE_URL_AJAX", get_showtime( 'live_site' ) . '/' . "index.php?option=com_jomres".get_showtime("tmplcomponent")."&jrajax=1&no_html=1&Itemid=" . $jomresItemid . "&lang=" . $lang );
-define( "JOMRES_SITEPAGE_URL_ADMIN", get_showtime( 'live_site' ) . '/' . JOMRES_ADMINISTRATORDIRECTORY . "/index.php?option=com_jomres" . $tmpl );
-define( "JOMRES_SITEPAGE_URL_ADMIN_AJAX", get_showtime( 'live_site' ) . '/' . JOMRES_ADMINISTRATORDIRECTORY . "/index.php?option=com_jomres".get_showtime("tmplcomponent")."&jrajax=1&format=raw&no_html=1" );
+define( "JOMRES_SITEPAGE_URL_AJAX", get_showtime( 'live_site' ) . '/' . "index.php?option=com_jomres&jrajax=1&no_html=1&Itemid=" . $jomresItemid . $tmpl . "&lang=" . $lang );
+define( "JOMRES_SITEPAGE_URL_ADMIN", get_showtime( 'live_site' ) . '/' . JOMRES_ADMINISTRATORDIRECTORY . "/index.php?option=com_jomres" . $tmpl . $lang_param );
+define( "JOMRES_SITEPAGE_URL_ADMIN_AJAX", get_showtime( 'live_site' ) . '/' . JOMRES_ADMINISTRATORDIRECTORY . "/index.php?option=com_jomres&jrajax=1&no_html=1" . $tmpl . $lang_param );
 
 if ( class_exists( 'JFactory' ) )
 	{
@@ -113,10 +123,10 @@ if ( class_exists( 'JFactory' ) )
 		//if (get_showtime('sef') == "1") // If SEF is enabled we need to set the sitepage url to the full url, otherwise Jomres can't detect when we need to rewrite urls overwritng http:// with https//
 		//	define("JOMRES_SITEPAGE_URL", get_showtime('live_site')."/".$index."?option=com_jomres&Itemid=".$jomresItemid.$tmpl);
 		//else
-		define( "JOMRES_SITEPAGE_URL", $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl );
+		define( "JOMRES_SITEPAGE_URL", $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl . "&lang=" . $lang );
 		}
 	else
-	define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl );
+	define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl . "&lang=" . $lang );
 	}
 else
-define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl );
+define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres&Itemid=" . $jomresItemid . $tmpl . "&lang=" . $lang );

@@ -66,23 +66,14 @@ $index = "index.php";
 $tmpl  = "";
 if ( !isset( $_GET[ 'tmpl' ] ) ) $_GET[ 'tmpl' ] = false;
 
-if ( isset( $_GET[ 'format' ] ) )
+if ( ( $jrConfig[ 'isInIframe' ] == (bool) "1" || $_GET[ 'tmpl' ] == get_showtime("tmplcomponent") ) && !isset( $_REQUEST[ 'nofollowtmpl' ] ) )
 	{
-	if ( $_GET[ 'format' ] == "raw" ) define( "JOMRES_WRAPPED", 1 );
-	else
-	define( "JOMRES_WRAPPED", 0 );
+	$index = "index.php";
+	$tmpl = '&tmpl=' . get_showtime("tmplcomponent");
+	define( "JOMRES_WRAPPED", 1 );
 	}
 else
-	{
-	if ( ( $jrConfig[ 'isInIframe' ] == (bool) "1" || $_GET[ 'tmpl' ] == 'component' ) && !isset( $_REQUEST[ 'nofollowtmpl' ] ) )
-		{
-		$index = "index.php";
-		$tmpl = get_showtime("tmplcomponent");
-		define( "JOMRES_WRAPPED", 1 );
-		}
-	else
 	define( "JOMRES_WRAPPED", 0 );
-	}
 
 
 if ( isset( $_REQUEST[ 'is_wrapped' ] ) )
@@ -119,13 +110,15 @@ if ( isset( $_REQUEST[ 'topoff' ] ) )
 	}
 
 $lang = substr( get_showtime( 'lang' ), 0, 2 );
-
 // For administrator area Jomres lang switching
 $lang_param = '';
 if ( isset( $_REQUEST[ 'jomreslang' ] ) )
 	{
 	$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
-	if ( array_key_exists( $_REQUEST[ 'jomreslang' ], $jomreslang->datepicker_crossref ) ) $lang_param .= "&jomreslang=" .  jomresGetParam( $_REQUEST , 'jomreslang' , '' );
+	if ( array_key_exists( $_REQUEST[ 'jomreslang' ], $jomreslang->datepicker_crossref ) ) 
+		{
+		$lang_param .= "&jomreslang=" .  jomresGetParam( $_REQUEST , 'jomreslang' , '' );
+		}
 	}
 
 define( "JOMRES_SITEPAGE_URL_NOSEF", get_showtime( 'live_site' ) . "/index.php?option=com_jomres&Itemid=" . $jomresItemid . "&lang=" . $lang . $tmpl );

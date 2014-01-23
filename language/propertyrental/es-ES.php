@@ -1055,7 +1055,7 @@ jr_define( '_JOMRES_COM_A_CRON_DESC', 'Pseudocron información del trabajo. La f
 jr_define( '_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Instalado minicomponents cron. Para ejecutar una tarea de cron individual utilice los enlaces que se especifican a continuación. Tenga en cuenta que el cron jobs no produce ningún resultado por lo que no verá ninguna información en la página. En cambio, se refiere a las anotaciones de trabajo referidas a continuación.' );
 global $jomresConfig_secret;
 jr_define( '_JOMRES_COM_A_CRON_METHOD', 'Método' );
-jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', "Si usted no tiene acceso a cron jobs, active este minicomponente, de lo contrario cree una tarea programada y dígale que se ejecute<br /> <i>curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs".get_showtime("tmplcomponent")."&no_html=1&secret=" . $jomresConfig_secret . "> /dev/null</i> " );
+jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', "Si usted no tiene acceso a cron jobs, active este minicomponente, de lo contrario cree una tarea programada y dígale que se ejecute<br /> <i>curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . $jomresConfig_secret . "> /dev/null</i> " );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING', 'Mostrar el registro en el navegador' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING_DESC', 'Sólo funciona si el método se establece en minicomponente.' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGINGENABLED', 'Registro habilitado' );
