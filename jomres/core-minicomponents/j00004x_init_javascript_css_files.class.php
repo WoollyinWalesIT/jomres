@@ -61,23 +61,24 @@ class j00004x_init_javascript_css_files
 
 				if ( !isset( $jrConfig[ 'load_jquery_ui_css' ] ) ) $jrConfig[ 'load_jquery_ui_css' ] = "1";
 
-				if ( $jrConfig[ 'load_jquery_ui' ] == "1" )
+				if ( $jrConfig[ 'load_jquery_ui' ] == "1" && !$management_view)
 					{
-					if ( $jrConfig[ 'load_jquery_ui_css' ] == "1" ) jomres_cmsspecific_addheaddata( "css", get_showtime( "jquery.ui.theme.relpath" ), get_showtime( "jquery.ui.theme" ), $skip = true );
+					if ( $jrConfig[ 'load_jquery_ui_css' ] == "1" ) 
+						jomres_cmsspecific_addheaddata( "css", get_showtime( "jquery.ui.theme.relpath" ), get_showtime( "jquery.ui.theme" ), $skip = true );
 					}
 
 				if ( jomres_cmsspecific_areweinadminarea() ) // Regardless of the frontend setting, if we're in the admin area, we'll need the jquery UI
-				jomres_cmsspecific_addheaddata( "css", get_showtime( "jquery.ui.theme.relpath" ), get_showtime( "jquery.ui.theme" ), $skip = true );
+					jomres_cmsspecific_addheaddata( "css", get_showtime( "jquery.ui.theme.relpath" ), get_showtime( "jquery.ui.theme" ), $skip = true );
 
 
-				if ( jomres_cmsspecific_areweinadminarea() || $jrConfig[ 'load_jquery' ] == "1" )
+				if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery' ] == "1" && !$management_view ) )
 					{
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.core.js.relpath" ), get_showtime( "jquery.core.js" ) ); // The order here is important, jquery must come before the ui
 					}
 				
 				jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jomres.js.relpath" ), get_showtime( "jomres.js" ) ); // Needs to be directly after jquery call so that noconflict is set
 				
-				if ( jomres_cmsspecific_areweinadminarea() || $jrConfig[ 'load_jquery_ui' ] == "1" )
+				if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery_ui' ] == "1" && !$management_view ) )
 					{
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.ui.js.relpath" ), get_showtime( "jquery.ui.js" ) );
 					}
@@ -180,7 +181,7 @@ class j00004x_init_javascript_css_files
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.fileupload-validate.js.relpath" ), get_showtime( "tmpl.min.js" ) );
 					}
 				
-				 if (using_bootstrap())
+				 if (using_bootstrap() && $thisJRUser->userIsManager )
 					{
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "bootstrap-tour.js.relpath" ), get_showtime( "bootstrap-tour.js" ) );
 					//jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.cookie.js.relpath" ), get_showtime( "jquery.cookie.js" ) );
