@@ -277,7 +277,7 @@ class j06001list_bookings_ajax
 			
 			$r[] = $p->contract_uid;
 			
-			$r[] = '<label class="'.$imgToShow.'">'.$p->tag.'</label>';
+			$r[] = '<span class="'.$imgToShow.'">'.$p->tag.'</span>';
 			
 			$r[] = getPropertyName($p->property_uid);
 			$r[] = outputDate( $p->arrival );
