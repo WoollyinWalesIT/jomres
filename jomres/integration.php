@@ -159,7 +159,8 @@ if ( $jomresConfig_lang == '' )
 //fullscreen view setup
 $showtime->tmplcomponent = "jomres";
 $showtime->tmplcomponent_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'fullscreen_view' . JRDS . "jomres.php";
-jomres_cmsspecific_patchJoomlaTemplate(); //copy the management_view.php renamed to jomres.php to the joomla template dir to help with fullscreen mode
+if ( !strstr( $scriptname, 'install_jomres.php' ) )
+	jomres_cmsspecific_patchJoomlaTemplate(); //copy the management_view.php renamed to jomres.php to the joomla template dir to help with fullscreen mode
 
 $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 $MiniComponents->triggerEvent( '00001' ); // Start
