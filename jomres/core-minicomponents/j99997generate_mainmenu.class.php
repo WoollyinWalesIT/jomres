@@ -32,7 +32,7 @@ class j99997generate_mainmenu
 
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
-
+		
 		$buttons  = $componentArgs[ 'jomres_mainmenu_buttons_categorised' ];
 		$button_o = array ();
 
@@ -138,6 +138,7 @@ class j99997generate_mainmenu
 		$output     = array ();
 		$pageoutput = array ();
 
+
 		$output[ 'PROPERTYNAME' ]                      = get_showtime( "menuitem_propertyname" );
 		$output[ 'MENUITEM_TIMEZONE_DROPDOWN' ]        = get_showtime( "menuitem_timezone_dropdown" );
 		$output[ 'MENUITEM_TIMEZONEBLURB' ]            = get_showtime( "menuitem_timezoneblurb" );
@@ -151,6 +152,15 @@ class j99997generate_mainmenu
 		$output[ '_JOMRES_MENU_HIDE' ]    = jr_gettext( "_JOMRES_MENU_HIDE", _JOMRES_MENU_HIDE, false );
 		
 		$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
+		
+		$output['PROPERTY_SELECTOR_DROPDOWN']        ='';
+		
+		if ($thisJRUser->userIsManager)
+			{
+			jr_import("jomres_property_selector_dropdown");
+			$jomres_property_selector_dropdown           = new jomres_property_selector_dropdown();
+			$output['PROPERTY_SELECTOR_DROPDOWN']        = $jomres_property_selector_dropdown->get_dropdown();
+			}
 		
 		if (get_showtime("task") == "")
 			{
