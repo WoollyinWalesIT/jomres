@@ -240,15 +240,18 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 			{
 			$mrConfig[ 'auto_detect_country_for_booking_form' ] = "1";
 			}
+		if ($guest['REGION'] == '')
+			{
+			if ( $mrConfig[ 'auto_detect_country_for_booking_form' ] == "1" ) 
+				{
+				$bkg->setGuest_country( $tmpBookingHandler->user_settings[ 'geolocated_country' ] );
+				}
+			else
+				{
+				$bkg->setGuest_country( $mrConfig[ 'defaultcountry' ] );
+				}
+			}
 		
-		if ( $mrConfig[ 'auto_detect_country_for_booking_form' ] == "1" ) 
-			{
-			$bkg->setGuest_country( $tmpBookingHandler->user_settings[ 'geolocated_country' ] );
-			}
-		else
-			{
-			$bkg->setGuest_country( $mrConfig[ 'defaultcountry' ] );
-			}
 		$output[ 'REGION_DROPDOWN' ]  = setupRegions( $bkg->country, $bkg->region );
 		if ( $thisdate && isset( $_REQUEST[ 'arrivalDate' ] ) )
 			{
