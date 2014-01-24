@@ -171,7 +171,7 @@ function jomres_cmsspecific_getTextEditor( $name, $content, $hiddenField, $width
 	else
 		{
 		$editor =& JFactory::getEditor();
-		$ret    = $editor->display( $name, $content, $width, $height, $col, $row );
+		$ret    = $editor->display( $name, $content, $width, $height, $col, $row , false );
 		}
 
 	return $ret;
