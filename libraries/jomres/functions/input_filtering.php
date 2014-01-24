@@ -223,6 +223,8 @@ function jomresGetParam( $request, $element, $def = null, $mask = '' ) // variab
 				else
 					{
 					$clean = str_replace( "'", "&#180;", $dirty );
+					if (strstr($clean,"&#39;;") || strstr($clean,"&#34;;")|| strstr($clean,"Jzs=")|| strstr($clean,"Ijs=") || strstr($clean,"&quot;;") ) // '; "; '; (base64) "; (base64)
+						throw new Exception ("Error, illegal use of Javascript");
 					}
 				}
 			else
@@ -233,7 +235,7 @@ function jomresGetParam( $request, $element, $def = null, $mask = '' ) // variab
 				}
 			
 			break;
-	}
+		}
 
 	return $clean;
 	}
