@@ -1,3 +1,17 @@
+Jomres 8.0.-1
+
+Added new functionality to allow us to implement our own tmpl=jomres layout to Joomla templates. Jomres Fullscreen view is the best interface for managing properties however many Joomla templates do not always support the Joomla functionality required to do this properly. As a result we've implemented new functionality that will allow us to use our own code to ensure that the layout is of the high quality you've come to expect from Jomres.
+Jomres' Polish lang files updated to 8.0.-2 lang strings. Many thanks Patryk.
+Enabled the Bootstrap 2/3 switch in site config.
+Changed the url that the Preview menu option points to.
+Implemented blockUI in plugin manager to provide feedback that plugins are being updated and you should not interrupt the page. Thank you Rod, you lovely man.
+Modified plugin manager so that disabled links inadvertently clicked will not attempt to install a plugin that user has not rights to install. It will just end in a fatal error if they do because the plugin is never returned.
+Changed a condition to ensure that the correct version of Jomres' css file is called if Bootstrap 3 enabled.
+Updated help topics for those pages we feel needed an update.
+Improved input filtering. Whilst javascript cannot be entered in a meaningful way to cause XSS problems, we've added a check for "; and '; anyway to further confound attempts.
+Fixed an issue where if a guest is already registered but not booked before their region would default to the wrong region.
+Modified 3.2 cms_specific_functions.php so that editor readmore etc buttons are not shown.
+
 Jomres 8.0.-2
 
 Added a new feature so that managers can easily make multiple rooms of a given type.
