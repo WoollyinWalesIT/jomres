@@ -35,6 +35,22 @@ function init_map_{RANDOM_IDENTIFIER}()
 
 	}
 	
+function build_address()
+	{
+	var property_name = document.getElementById('property_name').value;
+	var property_street = document.getElementById('property_street').value;
+	var property_town = document.getElementById('property_town').value;
+	var region = jomresJquery("#region :selected").text();
+	var country = jomresJquery("#country :selected").text();
+	var postcode = document.getElementById('property_postcode').value;
+	
+	var address = "";
+	//if ( property_name != 'undefined' && property_street != 'undefined' && property_town != 'undefined' && region != 'undefined' && country != 'undefined' && postcode != 'undefined' ) {
+		address = property_name + "," +property_street + "," +property_town + "," +region + "," +country + "," +postcode ;
+	//	}
+	return address;
+	}
+
 jomresJquery(document).ready(function() {
 	jomresJquery('body').on('shown','#mapTab', function (e) {
 		init_map_{RANDOM_IDENTIFIER}();

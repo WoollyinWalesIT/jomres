@@ -1,6 +1,11 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
 <!--
+var geocoder;
+var map;
+var latLng;
+
+
 jomresJquery(document).ready(function() {
 	init_map_{RANDOM_IDENTIFIER}();
 	});
@@ -10,7 +15,8 @@ jomresJquery(document).ready(function() {
 
 function init_map_{RANDOM_IDENTIFIER}()
 	{
-	var latLng = new google.maps.LatLng({LAT}, {LONG});
+	geocoder = new google.maps.Geocoder();
+	latLng = new google.maps.LatLng({LAT}, {LONG});
 	var options_{RANDOM_IDENTIFIER} = {
 		center: latLng,
 		zoom: 12,
@@ -18,7 +24,7 @@ function init_map_{RANDOM_IDENTIFIER}()
 		mapTypeId: google.maps.MapTypeId.ROADMAP{SUPPRESS_POIS}
 		};
 	
-	var map = new google.maps.Map(document.getElementById("map_{RANDOM_IDENTIFIER}"),
+	map = new google.maps.Map(document.getElementById("map_{RANDOM_IDENTIFIER}"),
 		options_{RANDOM_IDENTIFIER});
 	var marker = new google.maps.Marker({
 		position: latLng{DRAGABLE}
@@ -31,10 +37,35 @@ function init_map_{RANDOM_IDENTIFIER}()
 	{TRAFFIC_LAYER}
 	{BICYCLING_LAYER}
 	
+	
 	{DRAG_LISTENER}
-
 	}
 	
+function build_address()
+	{
+	var property_name = document.getElementById('property_name').value;
+	var property_street = document.getElementById('property_street').value;
+	var property_town = document.getElementById('property_town').value;
+	var region = jomresJquery("#region :selected").text();
+	var country = jomresJquery("#country :selected").text();
+	var postcode = document.getElementById('property_postcode').value;
+	
+	var address = "";
+	//if ( property_name != 'undefined' && property_street != 'undefined' && property_town != 'undefined' && region != 'undefined' && country != 'undefined' && postcode != 'undefined' ) {
+		address = property_name + "," +property_street + "," +property_town + "," +region + "," +country + "," +postcode ;
+	//	}
+	return address;
+	}
+	
+function codeAddress(address) {
+    geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({ map: map, position: results[0].geometry.location{DRAGABLE}});
+        }
+    });
+}
+
 jomresJquery(document).ready(function() {
 	jomresJquery('body').on('shown','#mapTab', function (e) {
 		init_map_{RANDOM_IDENTIFIER}();

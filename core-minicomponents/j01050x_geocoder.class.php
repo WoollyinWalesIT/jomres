@@ -152,7 +152,28 @@ class j01050x_geocoder
 			{
 			$output[ 'DRAGABLE' ]      = ',
 		draggable: true,';
-			$output[ 'DRAG_LISTENER' ] = 'updateMarkerPosition(latLng);
+			$output[ 'DRAG_LISTENER' ] = '
+	
+		google.maps.event.addDomListener(property_postcode, \'change\', function() {
+			var address = build_address();
+			if (address != "") {
+				codeAddress(address);
+				}
+			});
+		google.maps.event.addDomListener(property_street, \'change\', function() {
+			var address = build_address();
+			if (address != "") {
+				codeAddress(address);
+				}
+			});
+		google.maps.event.addDomListener(property_town, \'change\', function() {
+			var address = build_address();
+			if (address != "") {
+				codeAddress(address);
+				}
+			});
+			
+			updateMarkerPosition(latLng);
 			google.maps.event.addListener(marker, \'drag\', function() {
 			updateMarkerPosition(marker.getPosition());
 			});
