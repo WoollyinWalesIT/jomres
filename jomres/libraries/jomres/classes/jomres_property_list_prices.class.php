@@ -214,6 +214,12 @@ class jomres_property_list_prices
 									}
 								$pre_text = jr_gettext( '_JOMRES_TARIFFSFROM', _JOMRES_TARIFFSFROM, false, false );
 								}
+							else
+								{
+								$pre_text  = '';
+								$price     = jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', _JOMRES_PRICE_ON_APPLICATION, "", true, false );
+								$post_text = '';
+								}
 							}
 						else
 							{
