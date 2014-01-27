@@ -158,7 +158,7 @@ class jomres_property_list_prices
 							$multiplier = 30;
 							break;
 						}
-					
+
 					if ( count( $tariffList ) > 0 )
 						{
 						foreach ( $tariffList as $t )
@@ -171,6 +171,7 @@ class jomres_property_list_prices
 
 						if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 							{
+							
 							if ( isset( $pricesFromArray[ $property_uid ] ) )
 								{
 								if ( $mrConfig[ 'prices_inclusive' ] == "0" ) 
@@ -230,9 +231,18 @@ class jomres_property_list_prices
 						}
 					else
 						{
-						$pre_text  = jr_gettext( '_JOMRES_COM_MR_EXTRA_PRICE', _JOMRES_COM_MR_EXTRA_PRICE, "", true, false );
-						$price     = output_price( $basic_property_details->real_estate_property_price );
-						$post_text = '';
+						if ($basic_property_details->real_estate_property_price == 0)
+							{
+							$pre_text  = '';
+							$price     = jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', _JOMRES_PRICE_ON_APPLICATION, "", true, false );
+							$post_text = '';
+							}
+						else
+							{
+							$pre_text  = jr_gettext( '_JOMRES_COM_MR_EXTRA_PRICE', _JOMRES_COM_MR_EXTRA_PRICE, "", true, false );
+							$price     = output_price( $basic_property_details->real_estate_property_price );
+							$post_text = '';
+							}
 						}
 					$this->lowest_prices[$property_uid]=array ( "PRE_TEXT" => $pre_text, "PRICE" => $price, "POST_TEXT" => $post_text );
 					}
