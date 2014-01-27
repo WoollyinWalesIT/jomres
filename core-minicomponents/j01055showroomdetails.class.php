@@ -78,12 +78,20 @@ class j01055showroomdetails
 			$headersList[ 'HEADER_ROOMTYPE' ]                     = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE, false );
 			$headersList[ 'HEADER_SMOKING' ]                      = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', _JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING, false );
 			$headersList[ 'HEADER_ROOMNAME' ]                     = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME, false );
-			if ( $all && !isset( $_REQUEST[ 'tmpl' ] ) ) $headersList[ 'HEADER_AVLCALLINK' ] = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY, false );
+			if ( $all && !isset( $_REQUEST[ 'tmpl' ] ) )
+				{
+				$headersList[ 'HEADER_AVLCALLINK' ] = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY, false );
+				}
 			else
-			$headersList[ 'HEADER_AVLCALLINK' ] = "";
-			$headersList[ 'HEADER_ROOMFLOOR' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR, false );
-			$headersList[ 'HEADER_DISABLEDACCESS' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS', _JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS, false );
-			$headersList[ 'HEADER_MAXPEOPLE' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE, false );
+				{
+				$headersList[ 'HEADER_AVLCALLINK' ] = "";
+				}
+			$headersList[ 'HEADER_ROOMFLOOR' ]               = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR, false );
+			$headersList[ 'HEADER_DISABLEDACCESS' ]          = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS', _JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS, false );
+			$headersList[ 'HEADER_MAXPEOPLE' ]               = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE, false );
+			$headersList[ '_JOMRES_HRESOURCE_FEATURES' ]     = jr_gettext( '_JOMRES_HRESOURCE_FEATURES', _JOMRES_HRESOURCE_FEATURES, false );
+			
+			
 
 			foreach ( $roomList as $room )
 				{
