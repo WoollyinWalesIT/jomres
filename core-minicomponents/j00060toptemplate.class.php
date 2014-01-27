@@ -109,6 +109,16 @@ class j00060toptemplate
 		$lang_dropdown[ ][ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
 		set_showtime( "menuitem_langdropdown", $lang_dropdown[ 0 ][ 'LANGDROPDOWN' ] );
 
+		$output['PROPERTY_SELECTOR_DROPDOWN']        ='';
+		
+		if ($thisJRUser->userIsManager)
+			{
+			jr_import("jomres_property_selector_dropdown");
+			$jomres_property_selector_dropdown           = new jomres_property_selector_dropdown();
+			$output['PROPERTY_SELECTOR_DROPDOWN']        = $jomres_property_selector_dropdown->get_dropdown();
+			set_showtime('property_selector_dropdown',$output['PROPERTY_SELECTOR_DROPDOWN']);
+			}
+		
 		$messaging = array ();
 		$sticky_messaging = array ();
 		if ( $jrConfig[ 'useJomresMessaging' ] == '1' )
