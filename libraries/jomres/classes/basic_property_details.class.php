@@ -198,6 +198,8 @@ class basic_property_details
 			$this->property_town         = $this->multi_query_result[ $this->property_uid ][ 'property_town' ];
 			$this->property_postcode     = $this->multi_query_result[ $this->property_uid ][ 'property_postcode' ];
 			$this->property_region       = $this->multi_query_result[ $this->property_uid ][ 'property_region' ];
+			$this->property_region_id    = $this->multi_query_result[ $this->property_uid ][ 'property_region_id' ];
+			
 			$this->property_country      = $this->multi_query_result[ $this->property_uid ][ 'property_country' ];
 			$this->property_country_code = $this->multi_query_result[ $this->property_uid ][ 'property_country_code' ];
 
@@ -374,8 +376,9 @@ class basic_property_details
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_postcode' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE', $data->property_postcode, $editable, false );
 				if ( is_numeric( $data->property_region ) )
 					{
-					$jomres_regions                                                        = jomres_singleton_abstract::getInstance( 'jomres_regions' );
-					$this->multi_query_result[ $data->propertys_uid ][ 'property_region' ] = jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $data->property_region, $jomres_regions->regions[ $data->property_region ][ 'regionname' ], $editable, false );
+					$jomres_regions                                                           = jomres_singleton_abstract::getInstance( 'jomres_regions' );
+					$this->multi_query_result[ $data->propertys_uid ][ 'property_region' ]    = jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $data->property_region, $jomres_regions->regions[ $data->property_region ][ 'regionname' ], $editable, false );
+					$this->multi_query_result[ $data->propertys_uid ][ 'property_region_id' ] = $data->property_region;
 					}
 				else
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_region' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_REGION', $data->property_region, $editable, false );
