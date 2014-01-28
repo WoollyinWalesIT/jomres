@@ -41,6 +41,9 @@ class j06002edit_tariffs_normal
 		$mrConfig        = getPropertySpecificSettings();
 		$output          = array ();
 		$defaultProperty = getDefaultProperty();
+		
+		if ($mrConfig['tariffmode']!='0' || $mrConfig[ 'is_real_estate_listing' ] == '1' || get_showtime('is_jintour_property'))
+			return;
 
 		$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$basic_property_details->gather_data( $defaultProperty );

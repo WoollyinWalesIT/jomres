@@ -32,11 +32,9 @@ class j00100amendBooking
 			}
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 
-		$userIsManager = checkUserIsManager();
-
 		if ( !$thisJRUser->userIsManager ) return;
 
-		if ( $userIsManager && in_array( intval( $_REQUEST[ 'selectedProperty' ] ), $thisJRUser->authorisedProperties ) )
+		if ( in_array( intval( $_REQUEST[ 'selectedProperty' ] ), $thisJRUser->authorisedProperties ) )
 			{
 			$selectedProperty = jomresGetParam( $_REQUEST, "selectedProperty", 0 );
 			if ( $selectedProperty > 0 && $thisJRUser->currentproperty != $selectedProperty )

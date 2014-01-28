@@ -1,3 +1,15 @@
+Jomres 8.0.0
+
+Added functionality to listen to changes to street/town/postcode in edit property pages so that the map marker will be moved when updating the address.
+
+By popular demand, the Active property switcher has been re-added to the menubar. If in management view, then you can use the property selector dropdown in the main menu to quickly change your active property, but be aware if you have a lot of properties this will slow your page rendering down.
+Fixed a minor issue where Resource Features was hard coded into the show room details template.
+Improved the property list. If a property no longer has tariffs valid for "today" then POA is shown in the Price area of the property list.
+Changed the editing mode dropdown form class.
+Tweaked layout in management_top.html
+Modified the new property list selector so that it's put into the showtime var, therefore it's available to both the menu and top templates.
+Tweaked the property list so that the region search url uses the region id, not the region name.
+
 Jomres 8.0.-1
 
 Added new functionality to allow us to implement our own tmpl=jomres layout to Joomla templates. Jomres Fullscreen view is the best interface for managing properties however many Joomla templates do not always support the Joomla functionality required to do this properly. As a result we've implemented new functionality that will allow us to use our own code to ensure that the layout is of the high quality you've come to expect from Jomres.

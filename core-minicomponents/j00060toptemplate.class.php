@@ -47,6 +47,7 @@ class j00060toptemplate
 		$output[ 'EDITING_MODE_DROPDOWN' ] = '';
 		$output[ 'TIMEZONE_DROPDOWN' ] = '';
 		$output[ 'TIMEZONEBLURB' ]     = '';
+		$output[ 'PROPERTY_SELECTOR_DROPDOWN' ] ='';
 					
 		$editing_mode = jomres_singleton_abstract::getInstance( 'jomres_editing_mode' );
 		$result = $editing_mode->make_editing_mode_dropdown();
@@ -60,9 +61,6 @@ class j00060toptemplate
 			{
 			if ( $thisJRUser->userIsManager )
 				{
-				$defaultProperty          = getDefaultProperty();
-				$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-				$output[ 'PROPERTYNAME' ] = $current_property_details->get_property_name( $defaultProperty );
 				$output[ 'HACTIVE_PROPERTY' ] = jr_gettext( '_JOMRES_HSTATUS_CURRENT', _JOMRES_HSTATUS_CURRENT ).": ";
 				
 				set_showtime( "menuitem_propertyname", $output[ 'PROPERTYNAME' ] );
@@ -108,15 +106,23 @@ class j00060toptemplate
 		
 		$lang_dropdown[ ][ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
 		set_showtime( "menuitem_langdropdown", $lang_dropdown[ 0 ][ 'LANGDROPDOWN' ] );
-
-		$output['PROPERTY_SELECTOR_DROPDOWN']        ='';
 		
 		if ($thisJRUser->userIsManager)
 			{
-			jr_import("jomres_property_selector_dropdown");
-			$jomres_property_selector_dropdown           = new jomres_property_selector_dropdown();
-			$output['PROPERTY_SELECTOR_DROPDOWN']        = $jomres_property_selector_dropdown->get_dropdown();
-			set_showtime('property_selector_dropdown',$output['PROPERTY_SELECTOR_DROPDOWN']);
+			if (!get_showtime('heavyweight_system') && $management_view && using_bootstrap())
+				{
+				jr_import("jomres_property_selector_dropdown");
+				$jomres_property_selector_dropdown           = new jomres_property_selector_dropdown();
+				$output['PROPERTY_SELECTOR_DROPDOWN']        = $jomres_property_selector_dropdown->get_dropdown();
+				set_showtime('property_selector_dropdown',$output['PROPERTY_SELECTOR_DROPDOWN']);
+				}
+			else
+				{
+				$defaultProperty          = getDefaultProperty();
+				$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+				$current_property_details->gather_data($defaultProperty);
+				$output[ 'PROPERTYNAME' ] = $current_property_details->property_name;
+				}
 			}
 		
 		$messaging = array ();
