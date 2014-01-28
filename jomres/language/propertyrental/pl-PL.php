@@ -8,7 +8,7 @@
 * @copyright	2005-2013 Vince Wooll
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly. 
 * @Polska adaptacja Patryk Doering - http://www.rekinet.pl - kontakt@rekinet.pl
-* @Aktualizacja wersji językowej z 20-01-2014r.
+* @Aktualizacja wersji językowej z 26-01-2014r.
 **/
 
 ##################################################################
@@ -1077,7 +1077,7 @@ jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN','Ręczne uruchamianie zadań crona k
 jr_define('_JOMRES_COM_A_CRON_METHOD','Metoda');
 jr_define('_JOMRES_COM_A_CRON_METHOD_DESC',"Jeśli nie masz dostępu do crona, ustaw funkcję uruchamiania cyklicznych zadań wbudowanych w Jomres. W przeciwnym razie ustaw uruchamianie zadań przez Twojego crona na serwerze.
 	<br />
-	<i>curl -s ".JOMRES_SITEPAGE_URL_NOHTML."&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i>");
+	<i>curl -s ".JOMRES_SITEPAGE_URL_NOHTML."&task=cronjobs&tmpl=component&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i>");
 
 jr_define('_JOMRES_COM_A_CRON_LOGGING','Wyświetlanie logowania w przeglądarce');
 jr_define('_JOMRES_COM_A_CRON_LOGGING_DESC','Działa tylko jeśli metoda jest ustawiona na System Jomres.');
@@ -2272,21 +2272,14 @@ jr_define('_JOMRES_MULTIPLE_RESOURCES_HOWMANY',"Ile przedmiotów rezerwacji?");
 jr_define('_JOMRES_MULTIPLE_RESOURCES_TYPE',"Rodzaj przedmiotu rezerwacji");
 jr_define('_JOMRES_MULTIPLE_RESOURCES_MAXGUESTS',"Maksymalna liczba klientów dla przedmiotu rezerwacji");
 jr_define('_JOMRES_MULTIPLE_RESOURCES_DELETE',"Usunąć wszystkie istniejące przedmioty rezerwacji?");
-
-jr_define( '_JOMRES_COM_ADVANCED_SITE_CONFIG_WARNING', 'Please note, you are currently viewing the administrator area with Advanced Site Config set to No. If you want to see more options please set Site Configuration -> Misc -> Advanced Site Config to Yes.' );
-
-jr_define('TOUR_ID_TAB_BOOKINGFORM_TITLE' , "Booking configuration." );
-jr_define('TOUR_ID_TAB_BOOKINGFORM_CONTENT' , "On this tab you can configure the look and feel of the booking form." );
-
-jr_define('TOUR_ID_TAB_BOOKINGS_TITLE' , "Bookings." );
-jr_define('TOUR_ID_TAB_BOOKINGS_CONTENT' , "This tab allows you to modify how bookings are treated, plus various other settings." );
-
-jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_TOP_TITLE' , "Edit Guest." );
-jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_TOP_CONTENT' , "Here you can edit a guest's address details. Please note that any changes you make here will only be reflected in this record. If the guest has made bookings on other properties, these changes will not appear on those other properties." );
-
-jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_VAT_TITLE' , "VAT." );
-jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_VAT_CONTENT' , "If a VAT number is entered here then it will be shown on the guest's invoice." );
-
-jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_TITLE' , "Discount." );
-jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_CONTENT' , "You can choose to give this guest an automatic discount which will be applied whenever they make a booking." );
-
+jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_WARNING','Uwaga, aktualnie przeglądasz obszar zaawansowany administratora. Jeśli chcesz zobaczyć więcej opcji ustaw opcję w konfiguracji witryny -> inne -> zaawansowane na Tak.');
+jr_define('TOUR_ID_TAB_BOOKINGFORM_TITLE',"Konfiguracja rezerwacji.");
+jr_define('TOUR_ID_TAB_BOOKINGFORM_CONTENT',"Na tej karcie można skonfigurować wygląd formularza rezerwacji.");
+jr_define('TOUR_ID_TAB_BOOKINGS_TITLE',"Rezerwacje.");
+jr_define('TOUR_ID_TAB_BOOKINGS_CONTENT',"Zakładka ta pozwala na ustawienia rezerwacji.");
+jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_TOP_TITLE',"Edycja klientów.");
+jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_TOP_CONTENT',"Tutaj możesz edytować dane klientów. Należy pamiętać, że zmiany dokonane tutaj będą widoczne tylko w tym rekordzie. Jeśli klient dokonał rezerwacji na inne dane, zmiany wprowadzone w tym miejscu nie zmodyfikują danych jakie klient podał na etapie składania rezerwacji.");
+jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_VAT_TITLE',"VAT.");
+jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_VAT_CONTENT',"Jeśli wprowadzisz tutaj numer VAT to pojawi się on na fakturze klienta.");
+jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_TITLE',"Rabat.");
+jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_CONTENT',"Możesz zdefiniować automatyczny rabat dla przyszłych rezerwacji klienta.");
