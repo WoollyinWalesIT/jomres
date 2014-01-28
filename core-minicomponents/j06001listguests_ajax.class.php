@@ -85,7 +85,7 @@ class j06001listguests_ajax
 			$sWhere = "AND (";
 			for ( $i=0 ; $i<count($aColumns) ; $i++ )
 				{
-				$sWhere .= "".$aColumns[$i]." LIKE '%".mysql_real_escape_string( $_GET['sSearch'] )."%' OR ";
+				$sWhere .= "".$aColumns[$i]." LIKE '%".jomresGetParam( $_GET, 'sSearch', '' )."%' OR ";
 				}
 			$sWhere = substr_replace( $sWhere, "", -3 );
 			$sWhere .= ')';

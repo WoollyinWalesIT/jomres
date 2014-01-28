@@ -84,9 +84,9 @@ class j06001listyourproperties_ajax
 			$sWhere = "AND (";
 			for ( $i=0 ; $i<count($aColumns) ; $i++ )
 				{
-				$sWhere .= "`".$aColumns[$i]."` LIKE '%".mysql_real_escape_string( $_GET['sSearch'] )."%' OR ";
+				$sWhere .= "`".$aColumns[$i]."` LIKE '%".jomresGetParam( $_GET, 'sSearch', '' )."%' OR ";
 				}
-			$sWhere .= "`customtext` LIKE '%".mysql_real_escape_string( $_GET['sSearch'] )."%' ";
+			$sWhere .= "`customtext` LIKE '%".jomresGetParam( $_GET, 'sSearch', '' )."%' ";
 			$sWhere .= ')';
 			}
 		
