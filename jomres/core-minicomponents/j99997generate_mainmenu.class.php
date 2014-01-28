@@ -153,8 +153,6 @@ class j99997generate_mainmenu
 		
 		$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
 		
-		$output['PROPERTY_SELECTOR_DROPDOWN']        = get_showtime('property_selector_dropdown');
-		
 		if (get_showtime("task") == "")
 			{
 			$task = "dashboard";
