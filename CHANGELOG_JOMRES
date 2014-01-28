@@ -9,6 +9,11 @@ Changed the editing mode dropdown form class.
 Tweaked layout in management_top.html
 Modified the new property list selector so that it's put into the showtime var, therefore it's available to both the menu and top templates.
 Tweaked the property list so that the region search url uses the region id, not the region name.
+Changed where the property dropdown switch will show.
+Added some security hardening.
+Added Bootstrap 3 js and css for use in the Management view for when BS3 is switched on in Site Config.
+Changed how ajax lists parse data as some hosts were unable to use the older functionality.
+
 
 Jomres 8.0.-1
 
