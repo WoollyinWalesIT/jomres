@@ -162,7 +162,13 @@ class j00004x_init_javascript_css_files
 					var jomres_template_version = "' . find_plugin_template_directory() . '";
 					';
 					
-					file_put_contents( get_showtime( "misc_url_defs.js.abspath" ) . get_showtime( "misc_url_defs.js" ), $livesite_ajax . $compare_url . $module_popup_str . $template_version);
+					$dataTables_sInfo = '
+					var dataTables_sInfo = "' .  jr_gettext( 'DATATABLES_SINFO', DATATABLES_SINFO, false ) . '";
+					';
+					
+					
+					
+					file_put_contents( get_showtime( "misc_url_defs.js.abspath" ) . get_showtime( "misc_url_defs.js" ), $livesite_ajax . $compare_url . $module_popup_str . $template_version .$dataTables_sInfo);
 					}
 				jomres_cmsspecific_addheaddata( "javascript", get_showtime( "misc_url_defs.js.relpath" ), get_showtime( "misc_url_defs.js" ) );
 				//add_gmaps_source();

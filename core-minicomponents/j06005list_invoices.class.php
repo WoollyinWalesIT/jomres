@@ -76,6 +76,8 @@ class j06005list_invoices
 		$output[ 'HPAID' ] 						  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PAID', _JRPORTAL_INVOICES_STATUS_PAID, false );
 		$output[ 'HCANCELLED' ] 				  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_CANCELLED', _JRPORTAL_INVOICES_STATUS_CANCELLED, false );
 		$output[ 'HPENDING' ] 					  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PENDING', _JRPORTAL_INVOICES_STATUS_PENDING, false );
+		$output[ '_JRPORTAL_INVOICES_LINEITEMS' ] = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS', _JRPORTAL_INVOICES_LINEITEMS, false );
+		
 
 
 		if ( !using_bootstrap() )

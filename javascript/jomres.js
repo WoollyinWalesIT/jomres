@@ -73,6 +73,9 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 		"sPaginationType": "bootstrap",
 		"sDom": sDomm,
 		"sWrapper": "dataTables_wrapper form-inline",
+		"oLanguage": {
+			"sInfo": dataTables_sInfo
+			},
 		"fnStateSave": function (oSettings, oData) {
 			localStorage.setItem('DataTables' + table_id, JSON.stringify(oData));
 		},
