@@ -153,7 +153,7 @@ class j01010listpropertys
 				$arrival_clause = '';
 				if ( isset( $_REQUEST[ 'arrivalDate' ] ) ) 
 					{
-					$arrival_clause = "&arrivalDate=" . $_REQUEST[ 'arrivalDate' ]; // There's no need for these elements to be sanitised, as we're just redirecting again to a new url, these items will be sanitised at that point.
+					$arrival_clause = "&arrivalDate=" . $_REQUEST[ 'arrivalDate' ]."&departureDate=".$_REQUEST[ 'departureDate' ]; // There's no need for these elements to be sanitised, as we're just redirecting again to a new url, these items will be sanitised at that point.
 					}
 				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $propertys_uids[ 0 ] . $arrival_clause ), "" );
 				}

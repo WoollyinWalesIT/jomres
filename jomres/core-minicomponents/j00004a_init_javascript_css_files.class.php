@@ -204,7 +204,10 @@ class j00004a_init_javascript_css_files
 			$ls  = $IDN->decode( $ls );
 			}
 		
-		set_showtime( "misc_url_defs.js", $ls . "_" . get_showtime( 'lang' ) . "_misc_url_defs.js" ); // We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
+		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$current_property_details->gather_data( get_showtime('property_uid') );
+
+		set_showtime( "misc_url_defs.js", $ls . "_" . get_showtime( 'lang' ) ."_". $current_property_details->property_type."_". "_misc_url_defs.js" ); // We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
 		set_showtime( "misc_url_defs.js.abspath", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS );
 		set_showtime( "misc_url_defs.js.relpath", "jomres/temp/" );
 

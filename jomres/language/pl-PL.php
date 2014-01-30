@@ -2283,3 +2283,5 @@ jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_VAT_TITLE',"VAT.");
 jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_VAT_CONTENT',"Jeśli wprowadzisz tutaj numer VAT to pojawi się on na fakturze klienta.");
 jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_TITLE',"Rabat.");
 jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_CONTENT',"Możesz zdefiniować automatyczny rabat dla przyszłych rezerwacji klienta.");
+
+jr_define('DATATABLES_SINFO' , "Showing _START_ to _END_ of _TOTAL_ entries" );
