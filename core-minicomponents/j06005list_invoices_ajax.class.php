@@ -269,7 +269,7 @@ class j06005list_invoices_ajax
 					if ($thisJRUser->userIsRegistered && !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager)
 						$toolbar->addSecondaryItem( 'icon-list-view', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=muviewbooking&contract_uid=' . $p->contract_id . $thisProperty ), jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKING', _JOMCOMP_MYUSER_VIEWBOOKING, false ) );
 					}
-				$toolbar->addSecondaryItem( 'icon-print', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=view_invoice&popup=1&id=' . $p->id . $thisProperty ), jr_gettext( 'COMMON_PRINT', COMMON_PRINT, false ) );
+				$toolbar->addSecondaryItem( 'icon-print', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=view_invoice&popup=1&id=' . $p->id . $thisProperty . '&tmpl='.get_showtime("tmplcomponent")), jr_gettext( 'COMMON_PRINT', COMMON_PRINT, false ) );
 				$r[]=$toolbar->getToolbar();
 				}
 
