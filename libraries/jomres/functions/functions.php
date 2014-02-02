@@ -4719,7 +4719,7 @@ function getMonthName( $monthNo )
 	{
 	$monthNo = intval( $monthNo );
 
-	return constant( jr_gettext( '_JRPORTAL_MONTHS_LONG_' . $monthNo, '_JRPORTAL_MONTHS_LONG_' . $monthNo ) );
+	return jr_gettext( '_JRPORTAL_MONTHS_LONG_' . $monthNo, '_JRPORTAL_MONTHS_LONG_' . $monthNo );
 	}
 
 function makeImageValid( $imageName = "" )
