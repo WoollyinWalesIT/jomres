@@ -30,8 +30,10 @@ class custom_text
 
 	public function reset_current_lang( $lang )
 		{
-		$this->lang = $lang;
-		//$this->xcustom_text();
+		$this->lang							= $lang;
+		$this->global_custom_text			= array();
+		$this->all_properties_custom_text	= array();
+
 		$this->get_custom_text_for_all_properties();
 		}
 

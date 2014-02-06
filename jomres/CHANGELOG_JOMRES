@@ -1,3 +1,8 @@
+Jomres 8.0.1
+
+Reset a couple of arrays on request of a 3PD to ensure his own functionality works as anticipated.
+
+
 Jomres 8.0.0
 
 Added functionality to listen to changes to street/town/postcode in edit property pages so that the map marker will be moved when updating the address.
