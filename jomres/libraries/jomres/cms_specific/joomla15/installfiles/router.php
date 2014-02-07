@@ -120,7 +120,7 @@ function JomresBuildRoute( &$query )
 		if ( isset( $route_query[ 'region' ] ) )
 			{
 			$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION, false ) );
-			$segments[ ] = jomres_cmsspecific_stringURLSafe( $route_query[ 'region' ] );
+			$segments[ ] = jomres_cmsspecific_stringURLSafe( find_region_name($route_query[ 'region' ]) );
 			unset( $route_query[ 'region' ] );
 			}
 		if ( isset( $route_query[ 'country' ] ) )
