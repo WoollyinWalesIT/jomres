@@ -437,7 +437,7 @@ class jomSearch
 		$property_ors = $this->ors;
 		if ( !empty( $filter ) && $property_ors )
 			{
-			$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE property_country LIKE '$filter' $property_ors AND published='1' ";
+			$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND property_country LIKE '$filter' $property_ors ";
 			$this->resultBucket = doSelectSql( $query );
 			}
 		else
@@ -466,7 +466,7 @@ class jomSearch
 
 				$this->filter[ 'region' ] = str_replace( "-", "%", $this->filter[ 'region' ] );
 				}
-			$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE property_region LIKE '" . $this->filter[ 'region' ] . " $property_ors AND published='1' ";
+			$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND property_region LIKE '" . $this->filter[ 'region' ] . " $property_ors ";
 			$this->resultBucket = doSelectSql( $query );
 			}
 		else
@@ -491,7 +491,7 @@ class jomSearch
 				$filter = jomres_cmsspecific_stringURLSafe( $filter );
 				$filter = str_replace( "-", "%", $filter );
 				}
-			$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE property_town LIKE '$filter' $property_ors AND published='1' ";
+			$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND property_town LIKE '$filter' $property_ors ";
 			$this->resultBucket = doSelectSql( $query );
 			}
 		else
@@ -533,8 +533,8 @@ class jomSearch
 				}
 			$where = '(' . implode( ( $phrase == 'all' ? ') AND (' : ') OR (' ), $wheres ) . ')';
 			$query = "SELECT propertys_uid FROM #__jomres_propertys ";
-			$query .= " WHERE ( $where ) ";
-			$query .= " $property_ors AND published = '1' ";
+			$query .= " WHERE published = '1' AND ( $where ) ";
+			$query .= " $property_ors ";
 			$set1 = doSelectSql( $query );
 
 			$query  = '';
@@ -557,7 +557,7 @@ class jomSearch
 				}
 			$where = '(' . implode( ( $phrase == 'all' ? ') AND (' : ') OR (' ), $wheres ) . ')';
 			$query = "SELECT a.property_uid FROM #__jomres_custom_text a, #__jomres_propertys b ";
-			$query .= " WHERE ( $where ) AND ( a.property_uid = b.propertys_uid AND b.published = '1' )";
+			$query .= " WHERE published = '1' AND ( $where ) AND ( a.property_uid = b.propertys_uid )";
 			$set2 = doSelectSql( $query );
 
 			$result = array ();
@@ -614,7 +614,7 @@ class jomSearch
 					}
 				$st = substr( $st, 0, -28 );
 				}
-			$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE property_features LIKE $st  $property_ors AND published = '1'";
+			$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND property_features LIKE $st  $property_ors ";
 			$this->resultBucket = doSelectSql( $query );
 			}
 		$this->sortResult();
@@ -650,7 +650,7 @@ class jomSearch
 		$property_ors = $this->ors;
 		if ( !empty( $filter ) && $property_ors )
 			{
-			$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE ptype_id LIKE '$filter'  $property_ors AND published = '1'";
+			$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND ptype_id LIKE '$filter'  $property_ors ";
 			$this->resultBucket = doSelectSql( $query );
 			}
 //		var_dump($this->resultBucket);exit;
