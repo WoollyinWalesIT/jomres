@@ -1,6 +1,15 @@
 Jomres 8.0.1
 
+Fixed a wee bug in the Property List dropdown where if there are only two properties the bally Radio button javascript tries to furtle with them, causing an error.
+Modified list invoices More dropdowns so that link to print also uses . '&tmpl='.get_showtime("tmplcomponent") so that Jomres modules aren't also included.
+Resolved an issue where "Showing x of y entries" was not translatable.
+Corrected a function to ensure that the month names are displayed in the stats page.
+Moved the language dropdown outside of the div row declaration as it was causing smaller screens to render incorrectly in the administrator area.
 Reset a couple of arrays on request of a 3PD to ensure his own functionality works as anticipated.
+Modified jomSearch so that unpublished properties are filtered out at an earlier point.
+Modified the router. In the previous version we improved searching by Region by using region ids and not region names. This change adapts to that improvement by ensuring that SEF urls still show region names.
+Fixed a typo for xs columns in BS3 templates.
+
 
 
 Jomres 8.0.0
