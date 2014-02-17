@@ -6,11 +6,11 @@ var map;
 var latLng;
 
 
-jomresJquery(document).ready(function() {
+jomresJquery(window).load(function(){
 	init_map_{RANDOM_IDENTIFIER}();
 	});
 
-	{UPDATEMARKERPOSITION}
+{UPDATEMARKERPOSITION}
 
 
 function init_map_{RANDOM_IDENTIFIER}()
@@ -62,6 +62,12 @@ function codeAddress(address) {
         if (status == google.maps.GeocoderStatus.OK) {
             map.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({ map: map, position: results[0].geometry.location{DRAGABLE}});
+			google.maps.event.addListener(marker, 'drag', function() {
+			updateMarkerPosition(marker.getPosition());
+			});
+			google.maps.event.addListener(marker, 'dragend', function() {
+			map.setCenter(marker.getPosition());
+			});
         }
     });
 }

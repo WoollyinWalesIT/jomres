@@ -153,20 +153,25 @@ class j01050x_geocoder
 			$output[ 'DRAGABLE' ]      = ',
 		draggable: true,';
 			$output[ 'DRAG_LISTENER' ] = '
-	
-		google.maps.event.addDomListener(property_postcode, \'change\', function() {
+		
+		var postcodeInput = document.getElementById(\'property_postcode\');
+		var townInput = document.getElementById(\'property_street\');
+		var streetInput = document.getElementById(\'property_town\');
+
+		
+		google.maps.event.addDomListener(postcodeInput, \'change\', function() {
 			var address = build_address();
 			if (address != "") {
 				codeAddress(address);
 				}
 			});
-		google.maps.event.addDomListener(property_street, \'change\', function() {
+		google.maps.event.addDomListener(townInput, \'change\', function() {
 			var address = build_address();
 			if (address != "") {
 				codeAddress(address);
 				}
 			});
-		google.maps.event.addDomListener(property_town, \'change\', function() {
+		google.maps.event.addDomListener(streetInput, \'change\', function() {
 			var address = build_address();
 			if (address != "") {
 				codeAddress(address);
