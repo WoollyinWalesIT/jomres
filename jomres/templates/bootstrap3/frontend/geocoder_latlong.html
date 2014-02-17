@@ -1,16 +1,22 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
 <!--
-jomresJquery(document).ready(function() {
+var geocoder;
+var map;
+var latLng;
+
+
+jomresJquery(window).load(function(){
 	init_map_{RANDOM_IDENTIFIER}();
 	});
 
-	{UPDATEMARKERPOSITION}
+{UPDATEMARKERPOSITION}
 
 
 function init_map_{RANDOM_IDENTIFIER}()
 	{
-	var latLng = new google.maps.LatLng({LAT}, {LONG});
+	geocoder = new google.maps.Geocoder();
+	latLng = new google.maps.LatLng({LAT}, {LONG});
 	var options_{RANDOM_IDENTIFIER} = {
 		center: latLng,
 		zoom: 12,
@@ -18,7 +24,7 @@ function init_map_{RANDOM_IDENTIFIER}()
 		mapTypeId: google.maps.MapTypeId.ROADMAP{SUPPRESS_POIS}
 		};
 	
-	var map = new google.maps.Map(document.getElementById("map_{RANDOM_IDENTIFIER}"),
+	map = new google.maps.Map(document.getElementById("map_{RANDOM_IDENTIFIER}"),
 		options_{RANDOM_IDENTIFIER});
 	var marker = new google.maps.Marker({
 		position: latLng{DRAGABLE}
@@ -31,8 +37,8 @@ function init_map_{RANDOM_IDENTIFIER}()
 	{TRAFFIC_LAYER}
 	{BICYCLING_LAYER}
 	
+	
 	{DRAG_LISTENER}
-
 	}
 	
 function build_address()
@@ -50,6 +56,21 @@ function build_address()
 	//	}
 	return address;
 	}
+	
+function codeAddress(address) {
+    geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({ map: map, position: results[0].geometry.location{DRAGABLE}});
+			google.maps.event.addListener(marker, 'drag', function() {
+			updateMarkerPosition(marker.getPosition());
+			});
+			google.maps.event.addListener(marker, 'dragend', function() {
+			map.setCenter(marker.getPosition());
+			});
+        }
+    });
+}
 
 jomresJquery(document).ready(function() {
 	jomresJquery('body').on('shown','#mapTab', function (e) {
