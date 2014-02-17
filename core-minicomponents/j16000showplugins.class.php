@@ -354,7 +354,7 @@ class j16000showplugins
 			$r[ 'MANUAL_CLASS' ] = '';
 			if ( isset( $rp[ 'manual_link' ] ) && $rp[ 'manual_link' ] != '' )
 				{
-				$r[ 'MANUAL_LINK' ]  = 'http://manual.jomres.net/' . $rp[ 'manual_link' ] . '.html';
+				$r[ 'MANUAL_LINK' ]  = $rp[ 'manual_link' ];
 				$r[ 'MANUAL_TEXT' ]  = 'Manual';
 				$r[ 'MANUAL_CLASS' ] = 'btn';
 				}
