@@ -34,6 +34,7 @@ class j06001listyourproperties_ajax
 		
 		$published = (int)jomresGetParam($_GET,'published','2');
 		$approved = (int)jomresGetParam($_GET,'approved','2');
+		$ptype_id = (int)jomresGetParam($_GET,'ptype','0');
 		
 		$rows = array ();
 		
@@ -106,6 +107,10 @@ class j06001listyourproperties_ajax
 			$clause .= "AND a.approved = '1' ";
 		elseif ($approved == 0)
 			$clause .= "AND a.approved = '0' ";
+		
+		//property type
+		if ($ptype_id > 0)
+			$clause .= "AND a.ptype_id = '".$ptype_id."' ";
 
 		/*
 		 * Build and execute the query
@@ -121,7 +126,7 @@ class j06001listyourproperties_ajax
 						a.property_fax, 
 						a.property_email, 
 						a.stars, 
-						a.superior, 
+						a.superior,
 						a.lat, 
 						a.long, 
 						a.published, 

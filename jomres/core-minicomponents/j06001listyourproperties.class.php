@@ -33,6 +33,7 @@ class j06001listyourproperties
 		
 		$published=(int)jomresGetParam( $_POST, 'published', '2');
 		$approved=(int)jomresGetParam( $_POST, 'approved', '2');
+		$ptype_id=(int)jomresGetParam( $_POST, 'ptype', '0');
 
 		$output=array();
 		$subsoutput=array();
@@ -83,6 +84,7 @@ class j06001listyourproperties
 		//filters output
 		$output['HFILTER']= jr_gettext( '_JOMRES_HFILTER', _JOMRES_HFILTER, false );
 		$output['HPUBLISHED_STATUS']= jr_gettext( '_JOMRES_HSTATUS_PUBLISHING', _JOMRES_HSTATUS_PUBLISHING, false );
+		$output['HPTYPE']= jr_gettext( '_JOMRES_FRONT_PTYPE', _JOMRES_FRONT_PTYPE, false );
 		
 		$options = array();
 		$options[] = jomresHTML::makeOption( '2', jr_gettext( '_JOMRES_STATUS_ANY', _JOMRES_STATUS_ANY, false ) );
@@ -96,7 +98,20 @@ class j06001listyourproperties
 		$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false ) );
 		$output['APPROVED_STATUS']=jomresHTML::selectList( $options, 'approved','class="inputbox" size="1"', 'value', 'text', $approved);
 		
-		$output['AJAX_URL']=JOMRES_SITEPAGE_URL_AJAX."&task=listyourproperties_ajax&published=".$published."&approved=".$approved;
+		//property type filter
+		$options = array();
+		$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_STATUS_ANY', _JOMRES_STATUS_ANY, false ) );
+		
+		$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
+		
+		foreach($current_property_details->all_property_type_titles as $k=>$v)
+			{
+			$options[] = jomresHTML::makeOption( $k, $v );
+			}
+
+		$output['PTYPE']=jomresHTML::selectList( $options, 'ptype','class="inputbox" size="1"', 'value', 'text', $ptype_id);
+		
+		$output['AJAX_URL']=JOMRES_SITEPAGE_URL_AJAX."&task=listyourproperties_ajax&published=".$published."&approved=".$approved."&ptype=".$ptype_id;
 
 		$pageoutput[ ] = $output;
 		$subsoutput[ ] = $subs;
