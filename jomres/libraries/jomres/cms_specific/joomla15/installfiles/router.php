@@ -19,7 +19,6 @@ function JomresBuildRoute( &$query )
 	if ( !defined( '_JOMRES_INITCHECK' ) ) define( '_JOMRES_INITCHECK', 1 );
 	global $thisJRUser;
 	require_once( JPATH_BASE . DS . 'jomres' . DS . 'integration.php' );
-
 	$jrConfig = getSiteSettings();
 	$segments = array ();
 
@@ -144,11 +143,12 @@ function JomresBuildRoute( &$query )
 
 function JomresParseRoute( $segments )
 	{
-	$vars = array ();
-	global $thisJRUser;
 	if ( !defined( '_JOMRES_INITCHECK' ) ) define( '_JOMRES_INITCHECK', 1 );
+	global $thisJRUser;
 	require_once( 'jomres/integration.php' );
+	$vars = array ();
 	$jrConfig = getSiteSettings();
+	
 	switch ( $segments[ 0 ] )
 	{
 		case 'viewproperty':
