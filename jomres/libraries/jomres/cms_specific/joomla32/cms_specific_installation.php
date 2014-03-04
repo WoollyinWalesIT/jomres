@@ -21,7 +21,6 @@ if ( !is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jom
 		{
 		echo "<h1>Error, unable to make folder " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . " automatically therefore cannot copy the Joomla component files. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 		$folderChecksPassed = false;
-
 		}
 	}
 
@@ -36,12 +35,13 @@ if ( !is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'administrator' . JRDS . "comp
 
 if ( $folderChecksPassed )
 	{
-	if ( !is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" ) )
+	if ( !is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS ) )
 		{
 		mkdir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS );
 		mkdir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS );
 		mkdir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS );
 		}
+
 
 	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "index.html", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "index.html" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "index.html to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "index.html
 			automatically, please do this manually through FTP</h1><br/>";

@@ -1816,7 +1816,7 @@ function alterInvoicesPropertyuidCol()
 
 function installCronjobs()
 	{
-	if ( !AUTO_UPGRADE ) echo "Installing cron jobs<br/>";
+	//if ( !AUTO_UPGRADE ) echo "Installing cron jobs<br/>";
 	jr_import( 'jomres_cron' );
 	$cron = new jomres_cron();
 	$cron->addJob( "optimise", "D", "" );
