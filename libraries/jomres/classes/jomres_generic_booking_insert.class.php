@@ -70,10 +70,10 @@ class jomres_generic_booking_insert
 			{
 			throw new Exception(" Error contract_total is not valid");
 			}
-		if ( $this->booking_details['tax'] == 0.00 )
-			{
-			throw new Exception(" Error tax is not valid");
-			}
+		//if ( $this->booking_details['tax'] == 0.00 )
+//			{
+//			throw new Exception(" Error tax is not valid");
+//			}
 		if ( $this->booking_details['room_total'] == 0.00 )
 			{
 			throw new Exception(" Error room_total is not valid");
