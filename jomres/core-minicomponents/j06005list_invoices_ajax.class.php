@@ -180,7 +180,8 @@ class j06005list_invoices_ajax
 					c.firstname, 
 					c.surname,
 					d.guest_uid, 
-					d.tag 
+					d.tag,
+					d.approved
 				FROM #__jomresportal_invoices a 
 					JOIN #__jomresportal_lineitems b ON a.id = b.inv_id 
 					LEFT JOIN #__jomres_contracts d ON a.id = d.invoice_uid 
@@ -309,7 +310,7 @@ class j06005list_invoices_ajax
 			//paypal stuff
 			if (((int)$p->is_commission == 1 || (int)$p->subscription == 1) && (int)$p->status == 3 && $paypal_settings[ 'email' ] != "")
 				$r[] = '<a href="' . JOMRES_SITEPAGE_URL . '&task=immediatepay&id=' . $p->id . '"><img src = "' . get_showtime( 'live_site' ) . '/jomres/images/btn_paynow_SM.gif" /></a>';
-			elseif ((int)$p->contract_id != 0 && (int)$p->status == 3 && !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager) 
+			elseif ((int)$p->contract_id != 0 && (int)$p->status == 3 && !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager && $p->approved == 1) 
 				{
 				if ( $paypal_settings[ 'override' ] == "1" && $paypal_settings[ 'email' ] != "")
 					$r[] = '<a href="' . JOMRES_SITEPAGE_URL . '&task=immediatepay&id=' . $p->id . '"><img src = "' . get_showtime( 'live_site' ) . '/jomres/images/btn_paynow_SM.gif" /></a>';

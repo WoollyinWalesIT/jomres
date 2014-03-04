@@ -79,6 +79,7 @@ class jomres_generic_booking_cancel
 		$this->contract_uid = 0;		// (int) ***** Required *****
 		$this->reason = "";				// (string)
 		$this->note = "";				// (string)
+		$this->approved = 1;			// (int)
 		
 		return true;
 		}
@@ -99,7 +100,8 @@ class jomres_generic_booking_cancel
 		$query = "UPDATE #__jomres_contracts 
 					SET `cancelled`='1', 
 						`cancelled_timestamp` = '" . date( 'Y-m-d H:i:s' ) . "', 
-						`cancelled_reason` = '" . $this->reason . "'
+						`cancelled_reason` = '" . $this->reason . "',
+						`approved` = '".$this->approved."' 
 					WHERE contract_uid = '" . (int) $this->contract_uid . "'
 					AND property_uid = '" . (int) $this->property_uid . "' 
 					";

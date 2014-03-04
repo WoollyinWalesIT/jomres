@@ -188,6 +188,7 @@ class j02260editbooking
 			$bookedin                 = $booking->booked_in;
 			$variances                = $booking->rate_rules;
 			$channel_manager_booking  = $booking->channel_manager_booking;
+			$approved				  = $booking->approved;
 			}
 
 		$tariffsInfo          = array ();
@@ -256,6 +257,27 @@ class j02260editbooking
 			$jrtb   = $jrtbar->startTable();
 			if ( !$popup )
 				{
+				//booking approvals
+				if ((int)$bookingData[ 0 ]->approved == 0 && isset($MiniComponents->registeredClasses['00005booking_inquiries']) )
+					{
+					$output[ 'HAPPROVEBOOKING' ] = jr_gettext( '_JOMRES_BOOKING_APPROVE_INQUIRY', _JOMRES_BOOKING_APPROVE_INQUIRY, $editable = false, $isLink = true );
+					$link                      = JOMRES_SITEPAGE_URL . '&task=booking_approval&contractUid=' . $booking_contract_uid;
+					$targetTask                = 'booking_approval';
+					$image                     = '/jomres/images/jomresimages/' . $jrtbar->imageSize . '/Tick.png';
+					
+					$jrtb .= $jrtbar->customToolbarItem( $targetTask, $link, $output[ 'HAPPROVEBOOKING' ], $submitOnClick = false, $submitTask = "", $image );
+					add_menu_option( '&task=booking_approval&contractUid=' . $booking_contract_uid, null, $output[ 'HAPPROVEBOOKING' ], null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+					
+					$output[ 'HREJECTBOOKING' ] = jr_gettext( '_JOMRES_BOOKING_REJECT_INQUIRY', _JOMRES_BOOKING_REJECT_INQUIRY, $editable = false, $isLink = true );
+					$link                      = JOMRES_SITEPAGE_URL . '&task=booking_rejection&contractUid=' . $booking_contract_uid;
+					$targetTask                = 'booking_rejection';
+					$image                     = '/jomres/images/jomresimages/' . $jrtbar->imageSize . '/Cancel.png';
+					
+					$jrtb .= $jrtbar->customToolbarItem( $targetTask, $link, $output[ 'HREJECTBOOKING' ], $submitOnClick = false, $submitTask = "", $image );
+					add_menu_option( '&task=booking_rejection&contractUid=' . $booking_contract_uid, null, $output[ 'HREJECTBOOKING' ], null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+					}
+				
+				//amend booking
 				$output[ 'HAMENDBOOKING' ] = jr_gettext( '_JOMRES_CONFIRMATION_AMEND', _JOMRES_CONFIRMATION_AMEND, $editable = false, $isLink = true );
 				$link                      = JOMRES_SITEPAGE_URL . '&task=amendBooking&no_html=1&contractUid=' . $booking_contract_uid;
 				$targetTask                = 'amendBooking';

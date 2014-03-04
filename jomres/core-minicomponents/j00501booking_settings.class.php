@@ -79,6 +79,14 @@ class j00501booking_settings
 			$configurationPanel->setmiddle( $lists[ 'registeredUsersOnlyCanBook' ] );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
+			
+			if (isset($MiniComponents->registeredClasses['00005booking_inquiries']))
+				{
+				$configurationPanel->setleft( jr_gettext( "_JOMRES_BOOKING_INQUIRY_SETTING_TITLE", _JOMRES_BOOKING_INQUIRY_SETTING_TITLE, false )  );
+				$configurationPanel->setmiddle( $lists[ 'requireApproval' ] );
+				$configurationPanel->setright( jr_gettext( "_JOMRES_BOOKING_INQUIRY_SETTING_DESC", _JOMRES_BOOKING_INQUIRY_SETTING_DESC, false ) );
+				$configurationPanel->insertSetting();
+				}
 			}
 
 		if (!get_showtime('is_jintour_property'))

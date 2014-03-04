@@ -1325,7 +1325,7 @@ function jomres_validate_gateway_plugin()
 	$mrConfig          = getPropertySpecificSettings();
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 	$property_uid      = get_showtime( 'property_uid' );
-	if ( $mrConfig[ 'useOnlinepayment' ] == "1" || $paypal_settings->paypalConfigOptions[ 'override' ] == "1" )
+	if ( ($mrConfig[ 'useOnlinepayment' ] == "1" || $paypal_settings->paypalConfigOptions[ 'override' ] == "1") && (int)$mrConfig['requireApproval'] == 0 )
 		{
 		if ( $paypal_settings->paypalConfigOptions[ 'override' ] == "1" ) return "paypal";
 
@@ -3013,6 +3013,8 @@ function hotelSettings()
 	$lists[ 'prices_inclusive' ]  = jomresHTML::selectList( $yesno, 'cfg_prices_inclusive', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'prices_inclusive' ] );
 	$lists[ 'wholeday_booking' ]  = jomresHTML::selectList( $yesno, 'cfg_wholeday_booking', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'wholeday_booking' ] );
 	$lists[ 'depositIsOneNight' ] = jomresHTML::selectList( $yesno, 'cfg_depositIsOneNight', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'depositIsOneNight' ] );
+	
+	$lists[ 'requireApproval' ] = jomresHTML::selectList( $yesno, 'cfg_requireApproval', 'class="inputbox" size="1"', 'value', 'text', (int)$mrConfig[ 'requireApproval' ] );
 
 	if ( !isset( $mrConfig[ 'auto_detect_country_for_booking_form' ] ) ) $mrConfig[ 'auto_detect_country_for_booking_form' ] = "1";
 
@@ -3841,21 +3843,21 @@ function listGateways()
  */
 function getPropertyTypeDropdown( $propertyType = "", $all = false, $empty_ok = false )
 	{
+	$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
+	$ptypeOptions = array ();
+	
+	if ( $all ) 
+		$ptypeOptions[ ] = jomresHTML::makeOption( 0, jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false ) );
+	
+	if ( $empty_ok ) 
+		$ptypeOptions[ ] = jomresHTML::makeOption( 0, ' ' );
 
-	$query     = "SELECT id, ptype FROM #__jomres_ptypes WHERE published = '1' ORDER BY `order` ASC";
-	$ptypeList = doSelectSql( $query );
-	if ( count( $ptypeList ) > 0 )
+	foreach($current_property_details->all_property_type_titles as $k=>$v)
 		{
-		$ptypeOptions = array ();
-		if ( $all ) $ptypeOptions[ ] = jomresHTML::makeOption( 0, jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false ) );
-		if ( $empty_ok ) $ptypeOptions[ ] = jomresHTML::makeOption( 0, ' ' );
-
-		foreach ( $ptypeList as $ptype )
-			{
-			$ptypeOptions[ ] = jomresHTML::makeOption( $ptype->id, stripslashes( jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPES' . $ptype->id, $ptype->ptype, false, false ) ) );
-			}
-		$ptypeDropDownList = jomresHTML::selectList( $ptypeOptions, 'propertyType', 'class="inputbox" size="1"', 'value', 'text', $propertyType );
+		$ptypeOptions[] = jomresHTML::makeOption( $k, $v );
 		}
+
+	$ptypeDropDownList = jomresHTML::selectList( $ptypeOptions, 'propertyType', 'class="inputbox" size="1"', 'value', 'text', $propertyType );
 
 	return $ptypeDropDownList;
 	}

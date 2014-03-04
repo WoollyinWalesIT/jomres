@@ -87,7 +87,7 @@ class j06005view_invoice
 						}
 					}
 
-				$query    = "SELECT guest_uid,arrival,departure FROM #__jomres_contracts WHERE contract_uid = " . (int) $invoice->contract_id . " LIMIT 1";
+				$query    = "SELECT guest_uid,arrival,departure, approved FROM #__jomres_contracts WHERE contract_uid = " . (int) $invoice->contract_id . " LIMIT 1";
 				$contract = doSelectSql( $query, 2 );
 				$guestUid = $contract['guest_uid'];
 				
@@ -241,7 +241,7 @@ class j06005view_invoice
 			{
 			if ( !$thisJRUser->userIsManager )
 				{
-				if ( ( isset( $settingArray[ 'active' ] ) && $settingArray[ 'active' ] == "1" ) || ( $invoice->subscription == 1 && $paypal_settings[ 'email' ] != "" && $invoice->status != "1" ) )
+				if ( ( isset( $settingArray[ 'active' ] ) && $settingArray[ 'active' ] == "1" && $contract['approved'] == 1 ) || ( $invoice->subscription == 1 && $paypal_settings[ 'email' ] != "" && $invoice->status != "1" ) )
 					{
 					$ip                          = array ();
 					$immediate_pay               = array ();

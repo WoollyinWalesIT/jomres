@@ -429,18 +429,41 @@ function doTableUpdates()
 	if ( !checkTaxRulesTableExists() ) createTaxRulesTable();
 	if ( !checkInvoicesVATFlagColExists() ) alterInvoicesVATFlagCol();
 	if ( !checkCratesTaxRateColExists() ) alterCratesTaxRateCol();
-
 	if ( !checkPTypeXrefColExists() ) alterPTypeXrefCol();
 	if ( !checkContractsChannelManagerBookingColExists() ) alterContractsChannelManagerBookingCol();
-	
 	if ( !checkManagerSimpleconfigColExists() ) alterManagerSimpleconfigCol();
 	if ( !checkTarifftypesDescriptionColExists() ) alterTarifftypesDescriptionCol();
+	if ( !checkContractsApprovedColExists() ) alterContractsApproved();
 	
 	if ( _JOMRES_DETECTED_CMS == "joomla15" ) checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
 
 
+
+function alterContractsApproved()
+	{
+	if ( !AUTO_UPGRADE ) echo "Editing __jomres_contracts table adding approved column<br>";
+	$query = "ALTER TABLE `#__jomres_contracts` ADD `approved` TINYINT( 1 ) DEFAULT 1 NOT NULL AFTER `channel_manager_booking` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_contracts approved</b><br>";
+		}
+	}
+
+function checkContractsApprovedColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_contracts LIKE 'approved'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
+
+	
 function alterTarifftypesDescriptionCol()
 	{
 	if ( !AUTO_UPGRADE ) echo "Editing __jomcomp_tarifftypes table adding description column<br>";
@@ -2760,6 +2783,8 @@ function createJomresTables()
 		`bookedout` BOOL NOT NULL DEFAULT '0',
 		`bookedout_timestamp` DATETIME,
 		`invoice_uid` int(11),
+		`channel_manager_booking` BOOL NOT NULL DEFAULT '0',
+		`approved` TINYINT( 1 ) DEFAULT 1 NOT NULL,
 		PRIMARY KEY(`contract_uid`)
 		) ";
 	if ( !doInsertSql( $query ) )
