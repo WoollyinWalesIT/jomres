@@ -2486,3 +2486,13 @@ jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_CONTENT' , "You can choose to
 
 
 jr_define('DATATABLES_SINFO' , "Showing _START_ to _END_ of _TOTAL_ entries" );
+
+jr_define('_JOMRES_BOOKING_INQUIRY_HAPPROVAL',"Approval");
+jr_define('_JOMRES_BOOKING_REJECT_INQUIRY',"Reject booking inquiry");
+jr_define('_JOMRES_BOOKING_APPROVE_INQUIRY',"Approve booking inquiry");
+jr_define('_JOMRES_STATUS_APPROVED',"Approved");
+jr_define('_JOMRES_STATUS_REJECTED',"Rejected");
+jr_define('_JOMRES_STATUS_INQUIRY',"Inquiry");
+
+jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_TITLE',"Bookings require approval or availability confirmation?");
+jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_DESC', "If set to yes, when a booking is made, it will not show up on the availability calendars (and other guests can still book those days and resource) until the property manager accepts/confirms availability for the booking. Once confirmed, booking is inserted as provisional (if doesn`t override other bookings; other guests can`t book the same dates anymore) and an email is sent to the customer to make the payment.");

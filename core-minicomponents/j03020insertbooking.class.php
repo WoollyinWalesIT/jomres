@@ -45,6 +45,9 @@ class j03020insertbooking
 		//global $jomresProccessingBookingObject;
 		$mrConfig          = getPropertySpecificSettings();
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		
 		$depositPaid       = $componentArgs[ 'depositPaid' ];
 		if ( isset( $componentArgs[ 'usejomressessionasCartid' ] ) ) $usejomressessionasCartid = $componentArgs[ 'usejomressessionasCartid' ];
 		else
@@ -76,7 +79,7 @@ class j03020insertbooking
 				$amend_contractuid = $tmpBookingHandler->getBookingFieldVal( "amend_contractuid" );
 				}
 			else
-			$amend_contract = 0;
+				$amend_contract = 0;
 
 			if ( $amend_contract && $amend_contractuid != 0 && $userIsManager )
 				{
@@ -181,7 +184,8 @@ class j03020insertbooking
 					`room_total`				= '$room_total',
 					`discount`					= '$discount',
 					`currency_code` 			= '$ccode',
-					`discount_details` 			= '$discount_details'
+					`discount_details` 			= '$discount_details',
+					`approved`		 			= '1'
 					WHERE contract_uid = '$amend_contractuid'";
 
 				if ( !doInsertSql( $query, "", false ) )
@@ -256,6 +260,16 @@ class j03020insertbooking
 				$guests_uid = insertGuestDeets( get_showtime( 'jomressession' ) );
 
 				$cartnumber = get_booking_number();
+				
+				if ((int)$mrConfig['requireApproval'] == 1 )
+					{
+					if ($thisJRUser->userIsManager)
+						$approved = 1;
+					else
+						$approved = 0;
+					}
+				else
+					$approved = 1;
 
 				gateway_log( "j03020insertbooking :: Setting cart number. " . $cartnumber . " for " . get_showtime( 'jomressession' ) );
 
@@ -282,9 +296,7 @@ class j03020insertbooking
 					$booked_in				  = $tempBookingData->booked_in;
 					$sendGuestEmail			  = $tempBookingData->sendGuestEmail;
 					$sendHotelEmail			  = $tempBookingData->sendHotelEmail;
-					
 
-					$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 					if ( $thisJRUser->userIsRegistered ) // The user is already registered
 						{
 						$user            = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( $thisJRUser->id );
@@ -387,13 +399,13 @@ class j03020insertbooking
 					`guest_uid`,`rate_rules`,`rooms_tariffs`,`contract_total`,`special_reqs`,
 					`deposit_paid`,`deposit_required`,
 					`date_range_string`,`booked_in`,`booked_out`,
-					`property_uid`,`single_person_suppliment`,`extras`,`extrasquantities`,`extrasvalue`,`tax`,`tag`,`timestamp`,`room_total`,`discount`,`currency_code`,`discount_details`,`username`,`coupon_id`)
+					`property_uid`,`single_person_suppliment`,`extras`,`extrasquantities`,`extrasvalue`,`tax`,`tag`,`timestamp`,`room_total`,`discount`,`currency_code`,`discount_details`,`username`,`coupon_id`,`approved`)
 					VALUES (
 					'$arrivalDate','$departureDate','" . (int) $rates_uid . "',
 					'" . (int) $guests_uid . "','$rateRules','" . (string) $requestedRoom . "', '" . (float) $contract_total . "','$specialReqs',
 					'" . (int) $depositPaid . "','" . (float) $deposit_required . "',
 					'$dateRangeString','" . (int) $booked_in . "','0',
-					'" . (int) $property_uid . "','" . (float) $single_person_suppliment . "','$extras','" . (string) $extrasquantities . "','" . (float) $extrasValue . "','" . (float) $tax . "','$cartnumber','$datetime','" . (float) $room_total . "','" . (float) $discount . "','$ccode','" . $discount_details . "','" . $bookersUsername . "'," . (int) $coupon_id . ")";
+					'" . (int) $property_uid . "','" . (float) $single_person_suppliment . "','$extras','" . (string) $extrasquantities . "','" . (float) $extrasValue . "','" . (float) $tax . "','$cartnumber','$datetime','" . (float) $room_total . "','" . (float) $discount . "','$ccode','" . $discount_details . "','" . $bookersUsername . "'," . (int) $coupon_id . "," . $approved . ") ";
 				$contract_uid = doInsertSql( $query, "" );
 
 				if ( $mrConfig[ 'singleRoomProperty' ] == 1 ) $newtext = $tmpBookingHandler->getBookingFieldVal( "lastminutediscount" );
@@ -411,34 +423,37 @@ class j03020insertbooking
 
 				if ( get_showtime( 'include_room_booking_functionality' ) )
 					{
-					$rates_uids     = array ();
-					$dateRangeArray = explode( ",", $dateRangeString );
-					for ( $i = 0, $n = count( $dateRangeArray ); $i < $n; $i++ )
+					if ( (int)$mrConfig['requireApproval'] == 0 || ( (int)$mrConfig['requireApproval'] == 1 && $thisJRUser->userIsManager ) )
 						{
-						$roomBookedDate = $dateRangeArray[ $i ];
-						if ( $userIsManager )
+						$rates_uids     = array ();
+						$dateRangeArray = explode( ",", $dateRangeString );
+						for ( $i = 0, $n = count( $dateRangeArray ); $i < $n; $i++ )
 							{
-							$internetBooking  = 0;
-							$receptionBooking = 1;
-							}
-						else
-							{
-							$internetBooking  = 1;
-							$receptionBooking = 0;
-							}
-						$selected = explode( ",", $requestedRoom );
-						foreach ( $selected as $roomsRequested )
-							{
-							$rm            = explode( "^", $roomsRequested );
-							$rmuid         = $rm[ 0 ];
-							$rates_uids[ ] = $rm[ 1 ];
-							$query         = "INSERT INTO #__jomres_room_bookings (`room_uid`,`date`,`contract_uid`,`internet_booking`,`reception_booking`,`property_uid`) VALUES ('" . (int) $rmuid . "','$roomBookedDate','" . (int) $contract_uid . "','" . (int) $internetBooking . "','" . (int) $receptionBooking . "','" . (int) $property_uid . "')";
-							if ( !doInsertSql( $query, "" ) )
+							$roomBookedDate = $dateRangeArray[ $i ];
+							if ( $userIsManager )
 								{
-								trigger_error( "Failed to insert booking when inserting to contracts table ", E_USER_ERROR );
-								$this->insertSuccessful = false;
+								$internetBooking  = 0;
+								$receptionBooking = 1;
 								}
-							jomres_audit( get_showtime( 'jomressession' ), "Booked room " . $cartnumber );
+							else
+								{
+								$internetBooking  = 1;
+								$receptionBooking = 0;
+								}
+							$selected = explode( ",", $requestedRoom );
+							foreach ( $selected as $roomsRequested )
+								{
+								$rm            = explode( "^", $roomsRequested );
+								$rmuid         = $rm[ 0 ];
+								$rates_uids[ ] = $rm[ 1 ];
+								$query         = "INSERT INTO #__jomres_room_bookings (`room_uid`,`date`,`contract_uid`,`internet_booking`,`reception_booking`,`property_uid`) VALUES ('" . (int) $rmuid . "','$roomBookedDate','" . (int) $contract_uid . "','" . (int) $internetBooking . "','" . (int) $receptionBooking . "','" . (int) $property_uid . "')";
+								if ( !doInsertSql( $query, "" ) )
+									{
+									trigger_error( "Failed to insert booking when inserting to room bookings table ", E_USER_ERROR );
+									$this->insertSuccessful = false;
+									}
+								jomres_audit( get_showtime( 'jomressession' ), "Booked room " . $cartnumber );
+								}
 							}
 						}
 
@@ -502,7 +517,38 @@ class j03020insertbooking
 				$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . $note . "','$dt','" . (int) $property_uid . "')";
 				doInsertSql( $query, "" );
 				}
+			
+			//add rooms booked notes for guest bookings that require approvals
+			if ((int)$mrConfig['requireApproval'] == 1 && !$thisJRUser->userIsManager )
+				{
+				$requestedRoom = $tempBookingData->requestedRoom;
+				$selected = explode( ",", $requestedRoom );
+				$rmuids=array();
+				foreach ( $selected as $roomsRequested )
+					{
+					$rm = explode( "^", $roomsRequested );
+					$rmuids[] = $rm[ 0 ];
+					}
+				$query = "SELECT room_uid, room_classes_uid, room_number, room_name FROM #__jomres_rooms WHERE room_uid IN (".implode(',',$rmuids).") ";
+				$result = doSelectSql($query);
+				
+				$roomNote=jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM, false ).' ';
+				foreach ($result as $r)
+					{
+					if ($r->room_number != '')
+						$roomNote .= $r->room_number.' - ';
+					if ($r->room_name != '')
+						$roomNote .= jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE' . $r->room_uid, stripslashes( $r->room_name ), false ).' - ';
+					
+					$roomNote .= $current_property_details->all_room_types[ (int) $r->room_classes_uid ]['room_class_abbv'];
+					$roomNote .= ', ';
+					}
+				
+				$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . $roomNote . "','$dt','" . (int) $property_uid . "')";
+				doInsertSql( $query, "" );
+				}
 
+			//insert custom fields notes
 			jr_import( 'jomres_custom_field_handler' );
 			$custom_fields   = new jomres_custom_field_handler();
 			
