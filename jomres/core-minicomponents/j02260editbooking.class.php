@@ -52,7 +52,7 @@ class j02260editbooking
 			$contract_uid    = $booking->contract_uid;
 			$bookersUsername = $booking->username;
 			}
-		$query              = "SELECT * FROM #__jomres_extraServices WHERE contract_uid = '" . (int) $contract_uid . "'";
+		$query              = "SELECT * FROM #__jomres_extraservices WHERE contract_uid = '" . (int) $contract_uid . "'";
 		$extraBillingData   = doSelectSql( $query );
 		$query              = "SELECT * FROM #__jomres_guests WHERE guests_uid = '" . (int) $guest_uid . "'";
 		$guestData          = doSelectSql( $query );

@@ -86,8 +86,8 @@ class j02150addservicetobill
 
 			if ( $contract_uid && $service_description && $service_value != 0 )
 				{
-				$query = "INSERT INTO #__jomres_extraServices (`service_description`,`service_value`,`contract_uid`,`tax_rate_val`,`tax_code`) VALUES ('$service_description','" . (float) $service_value . "','" . (int) $contract_uid . "'," . $tax_value . "," . $taxrate . ")";
-				if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_ADDSERVICE', _JOMRES_MR_AUDIT_ADDSERVICE, false ) ) ) trigger_error( "Unable to insert into extraServices table, mysql db failure", E_USER_ERROR );
+				$query = "INSERT INTO #__jomres_extraservices (`service_description`,`service_value`,`contract_uid`,`tax_rate_val`,`tax_code`) VALUES ('$service_description','" . (float) $service_value . "','" . (int) $contract_uid . "'," . $tax_value . "," . $taxrate . ")";
+				if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_ADDSERVICE', _JOMRES_MR_AUDIT_ADDSERVICE, false ) ) ) trigger_error( "Unable to insert into extraservices table, mysql db failure", E_USER_ERROR );
 				else
 					{
 

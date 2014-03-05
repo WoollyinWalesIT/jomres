@@ -190,7 +190,7 @@ class j03025insertbooking_invoice
 			$query      = "SELECT id FROM #__jomresportal_invoices WHERE contract_id = " . $amend_contractuid;
 			$invoice_id = (int) doSelectSql( $query, 1 );
 
-			$query          = "SELECT service_description,service_value,tax_code FROM  #__jomres_extraServices WHERE contract_uid = " . $amend_contractuid . "";
+			$query          = "SELECT service_description,service_value,tax_code FROM  #__jomres_extraservices WHERE contract_uid = " . $amend_contractuid . "";
 			$extra_services = doSelectSql( $query );
 			if ( count( $extra_services ) > 0 )
 				{
