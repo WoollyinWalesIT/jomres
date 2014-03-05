@@ -32,6 +32,8 @@ class jomres_management_view
 		else
 			$connector = "?";
 
+
+		
 		if ( !$is_mobile )
 			{
 			if ( isset( $_REQUEST[ 'tmpl' ] ) ) 
@@ -76,6 +78,13 @@ class jomres_management_view
 			{
 			$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
 			}
+		
+		// We will replace completebk with dashboard here because otherwise clicking the Management view button when on the completebk task will result in duplicate bookings being created.
+		if ( get_showtime ("task") == "completebk")
+			{
+			str_replace( "task=completebk" ,"task=dashboard" , $pageURL );
+			}
+
 		return $pageURL;
 		}
 	
