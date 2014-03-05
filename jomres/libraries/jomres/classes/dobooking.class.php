@@ -1050,8 +1050,20 @@ class dobooking
 					$extra_deets[ 'INPUTBOX' ] = '<input id="extras_' . $ex->uid . '" type="checkbox" checked disabled=" " name="extras[' . $ex->uid . ']" value="' . $ex->uid . '" />';
 					}
 				$extra_deets[ 'FIELDNAME' ] = 'extras[' . $ex->uid . ']';
-				if ( $ex->maxquantity > 1 ) $extra_deets[ 'INPUTBOX' ] = $extra_deets[ 'INPUTBOX' ] . "&nbsp;&nbsp;" . jomresHTML::integerSelectList( 01, $ex->maxquantity, 1, "quantity" . $ex->uid, 'size="1" class="input-mini"  autocomplete="off" disabled=" " onchange="getResponse_extrasquantity(\'extrasquantity\',this.value,' . $ex->uid . ');"', $extraDefaultQuantity, "%02d", $use_bootstrap_radios = false );
-
+				
+				$extra_quantity_dropdown_disabled = ' disabled=" " ';
+				if ( $this->extraAlreadySelected( $ex->uid ) )
+					{
+					$extra_quantity_dropdown_disabled = ' ';
+					}
+				
+				if ( $ex->maxquantity > 1 )
+					{
+					$extra_deets[ 'INPUTBOX' ] = 
+						$extra_deets[ 'INPUTBOX' ] . "&nbsp;&nbsp;" . 
+						jomresHTML::integerSelectList( 01, $ex->maxquantity, 1, "quantity" . $ex->uid, 'size="1" class="input-mini"  autocomplete="off" '.$extra_quantity_dropdown_disabled.' onchange="getResponse_extrasquantity(\'extrasquantity\',this.value,' . $ex->uid . ');"', $extraDefaultQuantity, "%02d", $use_bootstrap_radios = false );
+					}
+				
 				$extra_deets[ 'AJAXFORM_EXTRAS' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS', _JOMRES_AJAXFORM_EXTRAS ) );
 				$extra_deets[ 'AJAXFORM_EXTRAS_DESC' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_DESC', _JOMRES_AJAXFORM_EXTRAS_DESC, false ) );
 				$extra_deets[ 'EXTRAS_TOTAL' ]         = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_TOTAL', _JOMRES_AJAXFORM_EXTRAS_TOTAL ) );
