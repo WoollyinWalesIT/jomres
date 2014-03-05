@@ -376,6 +376,10 @@ function updateImages()
 
 function doTableUpdates()
 	{
+	
+	// Might not need this, commented out for now
+	//if ( !checkExtraServicesTableNeedsRenaming() ) renameExtraServicesTable();
+	
 	if ( !checkInvoicesPropertyuidColExists() ) alterInvoicesPropertyuidCol();
 	if ( !checkInvoicesContractuidColExists() ) alterInvoicesContractuidCol();
 	createClickatellMessagesTable();
@@ -438,8 +442,26 @@ function doTableUpdates()
 	if ( _JOMRES_DETECTED_CMS == "joomla15" ) checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
+// Might not need this. Commented out for now.
+	
+/* function renameExtraServicesTable()
+	{
+	$query  = "RENAME TABLE `#__jomres_extraServices` TO `#__jomres_extraservices`'";
+	$result = doSelectSql( $query );
+	}
 
+function checkExtraServicesTableNeedsRenaming()
+	{
+	$query  = "SHOW TABLES LIKE '#__jomres_extraServices.'";
+	$result = doSelectSql( $query );
+	
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
 
+	return false;
+	} */
 
 function alterContractsApproved()
 	{
@@ -923,7 +945,7 @@ function checkCountriesTableExists()
 
 function checkExtraServicesTaxtax_codeColExists()
 	{
-	$query  = "SHOW COLUMNS FROM #__jomres_extraServices LIKE 'tax_code'";
+	$query  = "SHOW COLUMNS FROM #__jomres_extraservices LIKE 'tax_code'";
 	$result = doSelectSql( $query );
 	if ( count( $result ) > 0 )
 		{
@@ -935,11 +957,11 @@ function checkExtraServicesTaxtax_codeColExists()
 
 function alterExtraServicesTaxtax_codeCol()
 	{
-	if ( !AUTO_UPGRADE ) echo "Editing __jomres_extraServices table adding tax_code column<br>";
-	$query = "ALTER TABLE `#__jomres_extraServices` ADD `tax_code` CHAR (10) DEFAULT '0' ";
+	if ( !AUTO_UPGRADE ) echo "Editing __jomres_extraservices table adding tax_code column<br>";
+	$query = "ALTER TABLE `#__jomres_extraservices` ADD `tax_code` CHAR (10) DEFAULT '0' ";
 	if ( !doInsertSql( $query, '' ) )
 		{
-		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_extraServices tax_code</b><br>";
+		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_extraservices tax_code</b><br>";
 		}
 	}
 
@@ -1102,7 +1124,7 @@ function alterCouponsBookingValidCols()
 
 function checkExtraServicesTaxColExists()
 	{
-	$query  = "SHOW COLUMNS FROM #__jomres_extraServices  LIKE 'tax_rate_val'";
+	$query  = "SHOW COLUMNS FROM #__jomres_extraservices  LIKE 'tax_rate_val'";
 	$result = doSelectSql( $query );
 	if ( count( $result ) > 0 )
 		{
@@ -1114,11 +1136,11 @@ function checkExtraServicesTaxColExists()
 
 function alterExtraServicesTaxCol()
 	{
-	if ( !AUTO_UPGRADE ) echo "Editing __jomres_extraServices table adding tax_rate_val column<br>";
-	$query = "ALTER TABLE `#__jomres_extraServices` ADD `tax_rate_val` CHAR (10) DEFAULT '0' ";
+	if ( !AUTO_UPGRADE ) echo "Editing __jomres_extraservices table adding tax_rate_val column<br>";
+	$query = "ALTER TABLE `#__jomres_extraservices` ADD `tax_rate_val` CHAR (10) DEFAULT '0' ";
 	if ( !doInsertSql( $query, '' ) )
 		{
-		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_extraServices tax_rate_val</b><br>";
+		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_extraservices tax_rate_val</b><br>";
 		}
 	}
 
@@ -1126,8 +1148,8 @@ function alterExtraServicesTaxCol()
 // An odd one, this. It seems that some upgrades haven't got this table, so we'll add it if needed
 function createExtraServicesTable()
 	{
-	if ( !AUTO_UPGRADE ) echo "Creating __jomres_extraServices table<br>";
-	$query  = "CREATE TABLE IF NOT EXISTS `#__jomres_extraServices` (
+	if ( !AUTO_UPGRADE ) echo "Creating __jomres_extraservices table<br>";
+	$query  = "CREATE TABLE IF NOT EXISTS `#__jomres_extraservices` (
 		`extraservice_uid` int(11) auto_increment,
 		`service_description` VARCHAR(255),
 		`service_value` VARCHAR(255),
@@ -1140,7 +1162,7 @@ function createExtraServicesTable()
 	$result = doInsertSql( $query, "" );
 	if ( !$result )
 		{
-		if ( !AUTO_UPGRADE ) echo "<b>Error creating table table __jomres_extraServices </b><br>";
+		if ( !AUTO_UPGRADE ) echo "<b>Error creating table table __jomres_extraservices </b><br>";
 		}
 	}
 
@@ -1153,7 +1175,7 @@ function checkExtraServicesTableExists()
 	$string      = "Tables_in_" . $jomresConfig_db;
 	foreach ( $result as $r )
 		{
-		if ( strstr( $r->$string, '_jomres_extraServices' ) || strstr( $r->$string, '_jomres_extraservices' ) ) return true;
+		if ( strstr( $r->$string, '_jomres_extraservices' ) || strstr( $r->$string, '_jomres_extraservices' ) ) return true;
 		}
 
 	return false;
@@ -2723,7 +2745,7 @@ function createJomresTables()
 		if ( !AUTO_UPGRADE ) echo "Failed to run query: " . $query . "<br/>";
 		}
 
-	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_extraServices` (
+	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_extraservices` (
 		`extraservice_uid` int(11) auto_increment,
 		`service_description` VARCHAR(255),
 		`service_value` VARCHAR(255),
@@ -3187,7 +3209,7 @@ function insertSampleData()
 	$result = doInsertSql( "delete FROM `#__jomres_room_images`", "" );
 
 
-	$result = doInsertSql( "delete FROM `#__jomres_extraServices`", "" );
+	$result = doInsertSql( "delete FROM `#__jomres_extraservices`", "" );
 
 
 	$result = doInsertSql( "delete FROM `#__jomres_contracts`", "" );

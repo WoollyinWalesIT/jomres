@@ -79,7 +79,7 @@ class j06005muviewbooking
 					$property_uid = $booking->property_uid;
 					}
 				$mrConfig           = getPropertySpecificSettings( $property_uid );
-				$query              = "SELECT * FROM #__jomres_extraServices WHERE contract_uid = '" . (int) $contract_uid . "'";
+				$query              = "SELECT * FROM #__jomres_extraservices WHERE contract_uid = '" . (int) $contract_uid . "'";
 				$extraBillingData   = doSelectSql( $query );
 				$query              = "SELECT * FROM #__jomres_guests WHERE guests_uid = '" . (int) $guest_uid . "'";
 				$guestData          = doSelectSql( $query );
