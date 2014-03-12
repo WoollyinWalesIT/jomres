@@ -124,9 +124,10 @@ class j99997generate_mainmenu
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			if ( !$management_view )
 				{
-				if ( $jrConfig[ 'alternate_mainmenu' ] == "0" ) $tmpl->readTemplatesFromInput( 'mainmenu_options.html' );
+				if ( $jrConfig[ 'alternate_mainmenu' ] == "0" && !using_bootstrap() ) 
+					$tmpl->readTemplatesFromInput( 'mainmenu_options.html' );
 				else
-				$tmpl->readTemplatesFromInput( 'mainmenu_options_alternate.html' );
+					$tmpl->readTemplatesFromInput( 'mainmenu_options_alternate.html' );
 				}
 			else
 			$tmpl->readTemplatesFromInput( 'management_mainmenu_options.html' );
@@ -209,11 +210,12 @@ class j99997generate_mainmenu
 		$pageoutput[ ]                    = $output;
 		$tmpl                             = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		if ( !$management_view )
+		if ( !$management_view  && !using_bootstrap() )
 			{
-			if ( $jrConfig[ 'alternate_mainmenu' ] == "0" ) $tmpl->readTemplatesFromInput( 'mainmenu_wrapper.html' );
+			if ( $jrConfig[ 'alternate_mainmenu' ] == "0" ) 
+				$tmpl->readTemplatesFromInput( 'mainmenu_wrapper.html' );
 			else
-			$tmpl->readTemplatesFromInput( 'mainmenu_wrapper_alternate.html' );
+				$tmpl->readTemplatesFromInput( 'mainmenu_wrapper_alternate.html' );
 			}
 		else
 		$tmpl->readTemplatesFromInput( 'management_menu_wrapper.html' );

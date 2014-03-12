@@ -2133,7 +2133,7 @@ function showCompletedText()
 	if ( !AUTO_UPGRADE ) echo '<br><h3>Please remember, to configure your property you need to log into the frontend as the administrator user, you cannot configure propertys via the administrator area.</h3><br>';
 	if ( !AUTO_UPGRADE ) echo '<script>
 		setTimeout(function() {
-		window.location.href = "' . $administrator_url . '";
+		window.location.href = "' . JOMRES_SITEPAGE_URL_ADMIN . '";
 		}, 5000);
 </script>';
 

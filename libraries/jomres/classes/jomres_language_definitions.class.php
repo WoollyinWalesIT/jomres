@@ -53,7 +53,9 @@ class jomres_language_definitions
 				require( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $this->ptype ) . JRDS . $this->lang . '.php' );
 				}
 			else //in case there is no language_context set and the property type specific language dir was manually deleted
+				{
 				require( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' );
+				}
 			}
 
 		if ( isset( $this->definitions[ $this->ptype ][ $constant ] ) ) 
