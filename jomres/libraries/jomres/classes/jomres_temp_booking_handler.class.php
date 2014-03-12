@@ -114,41 +114,13 @@ class jomres_temp_booking_handler
 		{
 		$secret = get_showtime( 'secret' );
 
-		if ( strlen( $jomressession ) > 0 ) $this->part = $jomressession;
+		if ( strlen( $jomressession ) > 0 ) 
+			{
+			$this->part = $jomressession;
+			}
 		else
 			{
-			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-			$jrConfig   = $siteConfig->get();
-			$expire     = time() + $jrConfig[ 'lifetime' ];
-
-			$session_id = jomres_cmsspecific_getsessionid();
-
-			// Here we're going to get the session ID as well as the Jomres session. If the session_id isn't set, and/or the session COOKIE session id doesn't match, we'll reset $_COOKIE['jomressession'];
-			$sh1_session_id = sha1( $secret . $session_id );
-
-
-			if ( isset( $_COOKIE[ 'jomressession_id' ] ) )
-				{
-				if ( $_COOKIE[ 'jomressession_id' ] != $sh1_session_id ) 
-					{
-					$_COOKIE[ 'jomressession' ] = null;
-					}
-				}
-			else
-				{
-				$_COOKIE[ 'jomressession' ] = null;
-				}
-			
-			if ( !isset( $_COOKIE[ 'jomressession' ] ) || is_null( $_COOKIE[ 'jomressession' ] ) )
-				{
-				$this->part = generateJomresRandomString();
-				$result     = setcookie( 'jomressession', $this->part, $expire, "/" );
-				$result     = setcookie( 'jomressession_id', $sh1_session_id, $expire, "/" );
-				}
-			else
-				{
-				$this->part = $_COOKIE[ 'jomressession' ];
-				}
+			$this->part = jomres_cmsspecific_getsessionid();
 			}
 
 		$this->jomressession = $this->part;

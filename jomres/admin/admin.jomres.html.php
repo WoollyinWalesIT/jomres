@@ -143,6 +143,11 @@ class HTML_jomres
 			 <td>' . $lists[ 'use_bootstrap_in_frontend' ] . '</td>
 			 <td>' . jr_gettext( _JOMRES_BOOTSTRAPSWITCH_INFO, '_JOMRES_BOOTSTRAPSWITCH_INFO', false ) . '</td>
 		</tr>
+		<tr valign="middle" class="odd">
+			 <td>' . jr_gettext( _JOMRES_BOOTSTRAP_VERSION, '_JOMRES_BOOTSTRAP_VERSION', false ) . '</td>
+			 <td>' . $bootstrap_ver_dropdown . '</td>
+			 <td>' . jr_gettext( _JOMRES_BOOTSTRAP_VERSION_DESC, '_JOMRES_BOOTSTRAP_VERSION_DESC', false ) . '</td>
+		</tr>
 		' );
 
 			if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32")

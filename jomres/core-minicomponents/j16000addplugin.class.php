@@ -379,9 +379,9 @@ class j16000addplugin
 					}
 				touch( $remote_pluginsDirPath . $pluginName . JRDS . "index.html" );
 
-				if ( $plugin_class->data[ 'type' ] == "mambot" || $plugin_class->data[ 'type' ] == "module" )
+				if ( $plugin_class->data[ 'type' ] == "mambot" || $plugin_class->data[ 'type' ] == "module" || $plugin_class->data[ 'type' ] == "widget" )
 					{
-					if ( _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32")
+					if ( _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "wordpress3")
 						{
 						if ( !$autoupgrade )
 							{
@@ -389,17 +389,24 @@ class j16000addplugin
 							$discovery_required            = true;
 							}
 						else
-						$this->retVals = array ( "success" => true, "discovery_required" => true );
+							{
+							$this->retVals = array ( "success" => true, "discovery_required" => true );
+							}
 						}
 					else
 						{
 						if ( !$autoupgrade )
 							{
 							$plugin_installed_successfully = true;
-							if ( !isset( $discovery_required ) ) $discovery_required = false;
+							if ( !isset( $discovery_required ) ) 
+								{
+								$discovery_required = false;
+								}
 							}
 						else
-						$this->retVals = array ( "success" => true, "discovery_required" => false );
+							{
+							$this->retVals = array ( "success" => true, "discovery_required" => false );
+							}
 						}
 					}
 				else
@@ -407,7 +414,10 @@ class j16000addplugin
 					if ( !$autoupgrade )
 						{
 						$plugin_installed_successfully = true;
-						if ( !isset( $discovery_required ) ) $discovery_required = false;
+						if ( !isset( $discovery_required ) ) 
+							{
+							$discovery_required = false;
+							}
 						}
 					else
 					$this->retVals = array ( "success" => true, "discovery_required" => false );
@@ -426,8 +436,17 @@ class j16000addplugin
 				$success = array ();
 				if ( $discovery_required )
 					{
-					$output[ 'NEXT_STEP' ] = get_showtime( "live_site" ) . "/" . JOMRES_ADMINISTRATORDIRECTORY . "/index.php?option=com_installer&view=discover";
-					$success[ ]            = array ( "MESSAGE" => "Successfully installed the " . $pluginName . " plugin. The next button will take you to the Extension Discovery page where you can finish the plugin's installation." );
+					if ( $plugin_class->data[ 'type' ] == "widget" ) // It's a wordpress widget
+						{
+						$output[ 'NEXT_STEP' ] = get_showtime( "live_site" ) . "/" . JOMRES_ADMINISTRATORDIRECTORY . "/plugins.php";
+						$success[ ]            = array ( "MESSAGE" => "Successfully installed the " . $pluginName . " plugin. The next button will take you to the Wordpress plugins page where you can activate the plugin." );
+						}
+					else
+						{
+						$output[ 'NEXT_STEP' ] = get_showtime( "live_site" ) . "/" . JOMRES_ADMINISTRATORDIRECTORY . "/index.php?option=com_installer&view=discover";
+						$success[ ]            = array ( "MESSAGE" => "Successfully installed the " . $pluginName . " plugin. The next button will take you to the Extension Discovery page where you can finish the plugin's installation." );
+						}
+
 					}
 				else
 					{

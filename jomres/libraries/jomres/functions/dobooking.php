@@ -385,25 +385,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$freeRoomsArray           = $bkg->checkPeopleNumbers( $freeRoomsArray );
 	$freeRoomsArray           = $bkg->checkSmokingOption( $freeRoomsArray );
 	$roomAndTariffArray       = $bkg->getTariffsForRoomUids( $freeRoomsArray );
-	// if (isset($remus) && !empty($remus) )
-	// {
-	// for ($i=0;$i<count($roomAndTariffArray);$i++)
-	// {
-	// $rmandtariff=$roomAndTariffArray[$i];
-	// if ($rmandtariff[0]==$remus)
-	// {
-	// $tariff=$rmandtariff[1];
-	// break;
-	// }
-	// }
-	// $bkg->updateSelectedRoom($remus."^".$tariff);
-	// $freeRoomsArray=$bkg->getAllRoomUidsForProperty();
-	// $freeRoomsArray=$bkg->removeRoomuidsAlreadyInThisBooking($freeRoomsArray);
-	// $freeRoomsArray=$bkg->findFreeRoomsInDateRange($freeRoomsArray);
-	// $freeRoomsArray=$bkg->checkPeopleNumbers($freeRoomsArray);
-	// $freeRoomsArray=$bkg->checkSmokingOption($freeRoomsArray);
-	// $roomAndTariffArray=$bkg->getTariffsForRoomUids($freeRoomsArray);
-	// }
+
 	if ( $mrConfig[ 'singleRoomProperty' ] == "0" )
 		{
 		if ( $mrConfig[ 'booking_form_rooms_list_style' ] == "1" )
@@ -425,7 +407,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		}
 	else
 	$rm = $bkg->generateRoomsList( $roomAndTariffArray );
-	//$rm=$bkg->generateRoomsList($roomAndTariffArray);
+
 	if ( get_showtime( 'include_room_booking_functionality' ) )
 		{
 		$output[ 'AVAILABLEROOMS' ] = $rm;

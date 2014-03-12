@@ -905,7 +905,7 @@ function admins_first_run( $manual_trigger = false )
 			}
 		if ( !$manual_trigger )
 			{
-			echo '<div  class="modal"  tabindex="-1" role="dialog" id="first_run" style="display:none" title="Welcome to Jomres, Joomla\'s favourite hotel booking system">';
+			echo '<div  class="modal" tabindex="-1" role="dialog" id="first_run" style="display:none" title="Welcome to Jomres, Joomla\'s favourite hotel booking system">';
 			if ( using_bootstrap() )
 				{
 				echo '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3>Getting Started with Jomres</h3></div>';
@@ -1002,7 +1002,7 @@ function admins_first_run( $manual_trigger = false )
 	// }
 	}
 
-function query_shop( $request = '' )
+/* function query_shop( $request = '' )
 	{
 	if ( $request == "" )
 		{
@@ -1022,7 +1022,7 @@ function query_shop( $request = '' )
 
 		return json_decode( $response );
 		}
-	}
+	} */
 
 // Adapted from http://uk.php.net/manual/en/function.time.php#89415
 function nicetime( $date )
@@ -1709,7 +1709,28 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 	{
 
 	switch ( $plugin_type )
-	{
+		{
+		case 'widget': // Wordpress widgets
+			$widget_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JRDS . "jomres" . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS;
+			$widget_target = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "wp-content" . JRDS . "plugins" . JRDS . $plugin_name;
+			if ( !test_and_make_directory( $widget_target ) )
+				{
+				error_logging( "Error, unable to write to " . $widget_target . " Please ensure that the parent path is writable by the web server " );
+				return false;
+				}
+
+			$widget_move_result     = dirmv( $widget_source, $widget_target, true, $funcloc = "/" );
+			
+			if ( $widget_move_result[ 'success' ] ) 
+				{
+				return true;
+				}
+			else
+				{
+				return false;
+				}
+			
+		break;
 		case 'module':
 			$module_full_name = "mod_" . $plugin_name;
 			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JRDS . "jomres" . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . 'plugin_info.php' ) )
@@ -1792,7 +1813,9 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 				return false;
 				}
 			else
-			return false;
+				{
+				return false;
+				}
 			break;
 		case 'mambot':
 			//$mambot_full_name=$plugin_name;
@@ -1824,7 +1847,6 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 			if ( !test_and_make_directory( $mambot_target ) )
 				{
 				error_logging( "Error, unable to write to " . $mambot_target . " Please ensure that the parent path is writable by the web server " );
-
 				return false;
 				}
 
@@ -1847,7 +1869,6 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 				$result = doInsertSql( $query, "" );
 				}
 
-			//echo "Moving contents of ".$mambot_xml_source." to ".$mambot_target."<br/>";
 			$mambot_xml_move_result = dirmv( $mambot_xml_source, $mambot_target, true, $funcloc = "/" );
 			$mambot_move_result     = dirmv( $mambot_source, $mambot_target, true, "/" );
 
@@ -1861,14 +1882,11 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 				}
 			else
 				{
-				//echo "failed";
 				return false;
 				}
 
 			break;
-	}
-
-
+		}
 	}
 
 function test_and_make_directory( $dir )
