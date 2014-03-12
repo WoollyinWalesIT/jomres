@@ -214,23 +214,23 @@ function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $ski
 // set our meta data
 function jomres_cmsspecific_setmetadata( $meta, $data )
 	{
-/* 	$data     = jomres_decode( $data );
-	$document =& JFactory::getDocument();
+ 	$data     = jomres_decode( $data );
+	//$document =& JFactory::getDocument();
 	switch ( $meta )
 		{
 		case "title":
-			$document->setTitle( $data );
+			wp_title( $data );
 			break;
 		case "description":
-			$document->setDescription( $data );
+			//$document->setDescription( $data );
 			break;
 		case "keywords":
-			$document->setMetaData( 'keywords', $data );
+			//$document->setMetaData( 'keywords', $data );
 			break;
 		default:
-			$document->setMetaData( $meta, $data );
+			//$document->setMetaData( $meta, $data );
 			break;
-		} */
+		}
 	}
 
 // As per the function name

@@ -303,7 +303,8 @@ function control_panel_writability_tests()
 	{
 	$test_output                 = '';
 	$foldersToTestForWritability = array ();
-	if ( _JOMRES_DETECTED_CMS != "jomressa" ) $foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'modules' . JRDS;
+	if ( this_cms_is_joomla() )
+		$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'modules' . JRDS;
 	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS;
 	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'sessions' . JRDS;
 	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS;
