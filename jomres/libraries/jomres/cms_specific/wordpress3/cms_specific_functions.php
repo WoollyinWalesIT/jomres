@@ -29,17 +29,18 @@ function jomres_cmsspecific_output_date( $date, $format = false )
 
 function jomres_cmsspecific_getregistrationlink()
 	{
-	return jomresURL( get_showtime( 'live_site' ) . "/index.php?option=com_users&view=registration" );
+	return jomresURL( get_showtime( 'live_site' ) . "/wp-login.php?action=register" );
 	}
 
 function jomres_cmsspecific_getlogout_task()
 	{
-	return 'index.php?option=com_users&view=login';
+	
+	return 'wp-login.php?action=logout';
 	}
 
 function jomres_cmsspecific_getlogin_task()
 	{
-	return 'index.php?option=com_users&view=login';
+	return 'wp-login.php?action=login';
 	}
 
 function jomres_cmsspecific_areweinadminarea()
