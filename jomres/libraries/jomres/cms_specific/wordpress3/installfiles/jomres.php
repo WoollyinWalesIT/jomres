@@ -32,11 +32,46 @@ function register_my_custom_menu_page(){
 }
 
 function jomres_wp_init_session()
-{
-  session_start();
-}
+	{
+	if ( isset( $_COOKIE['jomres_wp_session_cookie'] ) ) 
+		{
+		$session_id = $_COOKIE['jomres_wp_session_cookie'];
+		} 
+	else 
+		{
+		$session_id = jomres_wp_generate_random_string();
+		setcookie ('jomres_wp_session_cookie', $session_id, time()+60*60);
+		}
+	}
 
-add_action('init', 'jomres_wp_init_session', 1);
+function jomres_wp_generate_random_string($length = 50)
+	{
+	$str = "";
+	// define possible characters
+	//$possible = "0123456789bcdfghjkmnpqrstvwxyz";
+	$possible = "abcdfghijklmnopqrstuvwxyzABCDFGHIJKLMNOPQRSTUVWXYZ";
+	// set up a counter
+	$i = 0;
+	// add random characters to $str until $length is reached
+	while ( $i < $length )
+		{
+		// pick a random character from the possible ones
+		$char = substr( $possible, mt_rand( 0, strlen( $possible ) - 1 ), 1 );
+		$str .= $char;
+		$i++;
+		}
+
+	return $str;
+	}
+	
+function jomres_wp_end_session() 
+	{
+	session_destroy ();
+	}
+
+add_action('init', 			'jomres_wp_init_session', 1);
+add_action('wp_logout',		'jomres_wp_end_session');
+add_action('wp_login',		'jomres_wp_end_session');
 
 
 // Shortcode [jomres]
@@ -46,14 +81,8 @@ function frontend_trigger_jomres( $atts ){
 }
 add_shortcode( 'jomres', 'frontend_trigger_jomres' );
 
-/* 
-function jr_wp_start($input) {
-	$path = plugin_dir_path( __FILE__ );
-	require_once($path . "admin.php");
-	
-}
- */
-//add_filter('the_content', 'jr_wp_start');
+// Disable the admin toolbar, if we are using jq ui then the menu at the top is the only position that works on a default WP installation.
+add_filter( 'show_admin_bar', '__return_false' );
 
 
 

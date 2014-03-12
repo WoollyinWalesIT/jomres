@@ -5,7 +5,6 @@
 define( '_JOMRES_INITCHECK', 1 );
 define( '_JOMRES_INITCHECK_ADMIN', 1 );
 
-
 if (isset($_REQUEST['jr_wp_source']))
 	{
 	if ($_GET['jr_wp_source'] == "admin")
