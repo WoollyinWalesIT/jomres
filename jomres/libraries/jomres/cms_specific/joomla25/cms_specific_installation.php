@@ -133,6 +133,12 @@ if ( $component_id )
 else
 echo "Unable to create main Jomres admin menu option<br>";
 
+// Don't need to run this again if the table's already populated
+$query = "SELECT userid FROM #__jomres_managers LIMIT 2";
+$existing_users = doSelectSql ( $query );
+if ( count ( $existing_users ) > 0 )
+	return;
+
 $query         = "SELECT user_id FROM #__user_usergroup_map WHERE group_id = 8 LIMIT 1";
 $admin_user_id = (int) doSelectSql( $query, 1 );
 
