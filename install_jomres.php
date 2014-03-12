@@ -573,11 +573,11 @@ function alterPTypeXrefCol()
 		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_hotel_features ptype_xref</b><br>";
 		}
 	
-	global $jomresConfig_db;
+	
 	$tablesFound = false;
 	$query       = "SHOW TABLES";
 	$result      = doSelectSql( $query, $mode = false );
-	$string      = "Tables_in_" . $jomresConfig_db;
+	$string      = "Tables_in_" . get_showtime("db");
 	foreach ( $result as $r )
 		{
 		if ( strstr( $r->$string, 'jomres_custom_property_fields_fields' ) ) 
@@ -670,11 +670,11 @@ function createTaxRulesTable()
 
 function checkTaxRulesTableExists()
 	{
-	global $jomresConfig_db;
+	
 	$tablesFound = false;
 	$query       = "SHOW TABLES";
 	$result      = doSelectSql( $query, $mode = false );
-	$string      = "Tables_in_" . $jomresConfig_db;
+	$string      = "Tables_in_" . get_showtime("db");
 	foreach ( $result as $r )
 		{
 		if ( strstr( $r->$string, '_jomres_tax_rules' ) ) return true;
@@ -930,11 +930,11 @@ function createCountriesTable()
 
 function checkCountriesTableExists()
 	{
-	global $jomresConfig_db;
+	
 	$tablesFound = false;
 	$query       = "SHOW TABLES";
 	$result      = doSelectSql( $query, $mode = false );
-	$string      = "Tables_in_" . $jomresConfig_db;
+	$string      = "Tables_in_" . get_showtime("db");
 	foreach ( $result as $r )
 		{
 		if ( strstr( $r->$string, '_jomres_countries' ) || strstr( $r->$string, '_jomres_regions' ) ) return true;
@@ -1005,11 +1005,11 @@ function createAccessControlTable()
 
 function checkAccessControlTableExists()
 	{
-	global $jomresConfig_db;
+	
 	$tablesFound = false;
 	$query       = "SHOW TABLES";
 	$result      = doSelectSql( $query, $mode = false );
-	$string      = "Tables_in_" . $jomresConfig_db;
+	$string      = "Tables_in_" . get_showtime("db");
 	foreach ( $result as $r )
 		{
 		if ( strstr( $r->$string, '_jomres_access_control' ) ) return true;
@@ -1168,11 +1168,11 @@ function createExtraServicesTable()
 
 function checkExtraServicesTableExists()
 	{
-	global $jomresConfig_db;
+	
 	$tablesFound = false;
 	$query       = "SHOW TABLES";
 	$result      = doSelectSql( $query, $mode = false );
-	$string      = "Tables_in_" . $jomresConfig_db;
+	$string      = "Tables_in_" . get_showtime("db");
 	foreach ( $result as $r )
 		{
 		if ( strstr( $r->$string, '_jomres_extraservices' ) || strstr( $r->$string, '_jomres_extraservices' ) ) return true;
@@ -1244,11 +1244,11 @@ function createGuestProfileTable()
 
 function checkGuestProfileTableExists()
 	{
-	global $jomresConfig_db;
+	
 	$tablesFound = false;
 	$query       = "SHOW TABLES";
 	$result      = doSelectSql( $query, $mode = false );
-	$string      = "Tables_in_" . $jomresConfig_db;
+	$string      = "Tables_in_" . get_showtime("db");
 	foreach ( $result as $r )
 		{
 		if ( strstr( $r->$string, '_jomres_guest_profile' ) ) return true;
@@ -1333,11 +1333,11 @@ function createPartnerTables()
 
 function checkPartnerTablesExist()
 	{
-	global $jomresConfig_db;
+	
 	$tablesFound = false;
 	$query       = "SHOW TABLES";
 	$result      = doSelectSql( $query, $mode = false );
-	$string      = "Tables_in_" . $jomresConfig_db;
+	$string      = "Tables_in_" . get_showtime("db");
 	foreach ( $result as $r )
 		{
 		if ( strstr( $r->$string, '_jomres_partners' ) ) return true;
@@ -1386,11 +1386,11 @@ function createRoomtypePropertytypeXrefTable()
 
 function checkRoomtypePropertytypeXrefTableExists()
 	{
-	global $jomresConfig_db;
+	
 	$tablesFound = false;
 	$query       = "SHOW TABLES";
 	$result      = doSelectSql( $query, $mode = false );
-	$string      = "Tables_in_" . $jomresConfig_db;
+	$string      = "Tables_in_" . get_showtime("db");
 	foreach ( $result as $r )
 		{
 		if ( strstr( $r->$string, '_jomres_roomtypes_propertytypes_xref' ) ) return true;
@@ -1416,11 +1416,11 @@ function createBookingdataArchiveTable()
 
 function checkBookingdataArchiveTableExists()
 	{
-	global $jomresConfig_db;
+	
 	$tablesFound = false;
 	$query       = "SHOW TABLES";
 	$result      = doSelectSql( $query, $mode = false );
-	$string      = "Tables_in_" . $jomresConfig_db;
+	$string      = "Tables_in_" . get_showtime("db");
 	foreach ( $result as $r )
 		{
 		if ( strstr( $r->$string, '_jomres_booking_data_archive' ) ) return true;
@@ -1448,11 +1448,11 @@ function createReviewDetailTable()
 
 function checkReviewDetailTableExists()
 	{
-	global $jomresConfig_db;
+	
 	$tablesFound = false;
 	$query       = "SHOW TABLES";
 	$result      = doSelectSql( $query, $mode = false );
-	$string      = "Tables_in_" . $jomresConfig_db;
+	$string      = "Tables_in_" . get_showtime("db");
 	foreach ( $result as $r )
 		{
 		if ( strstr( $r->$string, '_jomres_reviews_ratings_detail' ) ) return true;
@@ -1514,11 +1514,11 @@ function createReviewsTables()
 
 function checkReviewsTablesExist()
 	{
-	global $jomresConfig_db;
+	
 	$tablesFound = false;
 	$query       = "SHOW TABLES";
 	$result      = doSelectSql( $query, $mode = false );
-	$string      = "Tables_in_" . $jomresConfig_db;
+	$string      = "Tables_in_" . get_showtime("db");
 	foreach ( $result as $r )
 		{
 		if ( strstr( $r->$string, '_jomres_reviews_ratings' ) ) return true;
@@ -1711,11 +1711,11 @@ function createSubscriptionsTables()
 
 function checkSubscriptionsTablesExist()
 	{
-	global $jomresConfig_db;
+	
 	$tablesFound = false;
 	$query       = "SHOW TABLES";
 	$result      = doSelectSql( $query, $mode = false );
-	$string      = "Tables_in_" . $jomresConfig_db;
+	$string      = "Tables_in_" . get_showtime("db");
 	foreach ( $result as $r )
 		{
 		if ( strstr( $r->$string, '__jomresportal_subscribers' ) ) return true;
@@ -1848,15 +1848,12 @@ function installCronjobs()
 
 function trashTables()
 	{
-	global $jomresConfig_db;
 	$tablesFound = false;
 	$query       = "SHOW TABLES";
 	$result      = doSelectSql( $query, $mode = false );
-	$string      = "Tables_in_" . $jomresConfig_db;
+	$string      = "Tables_in_" . get_showtime("db");
 	foreach ( $result as $r )
 		{
-		//if (!AUTO_UPGRADE) echo  $string;
-		//if (!AUTO_UPGRADE) echo  $r->$string."<br>";
 		if ( strstr( $r->$string, 'jomres_' ) || strstr( $r->$string, 'jomcomp_' ) || strstr( $r->$string, 'jomresportal_' ) )
 			{
 			$query = "DROP TABLE IF EXISTS " . $r->$string;
@@ -1866,7 +1863,7 @@ function trashTables()
 				if ( !AUTO_UPGRADE ) echo "<b>Error, unable to drop table " . $r->$string . "</b><br>";
 				}
 			}
-		//	return true;
+
 		}
 	$query = "DELETE FROM #__extensions WHERE `name` = 'com_jomres'";
 	doInsertSql( $query, '' );

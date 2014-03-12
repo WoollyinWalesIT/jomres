@@ -53,6 +53,10 @@ class j06000logout
 				$app->redirect( JRoute::_( 'index.php?option=com_users&view=login', false ) );
 				}
 			}
+		else
+			{
+			jomresRedirect ( get_showtime( 'live_site' ) ."/". jomres_cmsspecific_getlogout_task() );
+			}
 		}
 
 	// This must be included in every Event/Mini-component
