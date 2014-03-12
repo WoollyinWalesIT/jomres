@@ -45,3 +45,42 @@ if ( $folderChecksPassed )
 			automatically, please do this manually through FTP</h1><br/>";
 		}
 	}
+
+// Don't need to run this again if the table's already populated
+$query = "SELECT userid FROM #__jomres_managers LIMIT 2";
+$existing_users = doSelectSql ( $query );
+if ( count ( $existing_users ) > 0 )
+	return;
+
+
+$query  = "SELECT id,user_login FROM #__users";
+$user_ids = doSelectSql( $query);
+
+if (count($user_ids)>0)
+	{
+// 
+	$super_admin_ids = array();
+	foreach ($user_ids as $user)
+		{
+		echo $user->ID."<Br>";
+		if ( is_super_admin( $user->id ) )
+			{
+			$super_admin_ids[] =  array("username" => $user->user_login, "id"=> $user->id );
+			}
+		}
+
+
+	if ( count($super_admin_ids)>0)
+		{
+		foreach ($super_admin_ids as $admin_user)
+			{
+			echo "Making <i>" . $admin_user[ 'username' ] . "</i> a super property manager<br>";
+			$query  = "INSERT INTO #__jomres_managers
+			(`userid`,`username`,`property_uid`,`access_level`,`currentproperty`,`pu`)
+			VALUES
+			(".$admin_user[ 'id' ].",'" . $admin_user[ 'username' ] . "','0','2','1','1')";
+			$result = doInsertSql( $query, "" );
+			}
+		}
+		
+	}

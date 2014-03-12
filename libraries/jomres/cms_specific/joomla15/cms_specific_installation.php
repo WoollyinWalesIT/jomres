@@ -119,6 +119,12 @@ if ( $result )
 else
 echo "Unable to create main Jomres admin menu option<br>";
 
+// Don't need to run this again if the table's already populated
+$query = "SELECT userid FROM #__jomres_managers LIMIT 2";
+$existing_users = doSelectSql ( $query );
+if ( count ( $existing_users ) > 0 )
+	return;
+
 echo "Making <i>admin</i> a super property manager<br>";
 $query  = "INSERT INTO #__jomres_managers
 (`userid`,`username`,`property_uid`,`access_level`,`currentproperty`,`pu`)

@@ -236,13 +236,13 @@ function jomres_cmsspecific_setmetadata( $meta, $data )
 function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( $id )
 	{
 	$user     = array ();
-	$query    = "SELECT id,name,username,email FROM #__users WHERE id=" . (int) $id;
+	$query    = "SELECT id,user_nicename,user_login,user_email FROM #__users WHERE id=" . (int) $id;
 	$userList = doSelectSql( $query );
 	if ( count( $userList ) > 0 )
 		{
 		foreach ( $userList as $u )
 			{
-			$user[ $id ] = array ( "id" => $u->id, "name" => $u->name, "username" => $u->username, "email" => $u->email );
+			$user[ $id ] = array ( "id" => $u->id, "name" => $u->user_nicename, "username" => $u->user_login, "email" => $u->user_email );
 			}
 		}
 
@@ -253,13 +253,13 @@ function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( $id )
 function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username( $username )
 	{
 	$user     = array ();
-	$query    = "SELECT id,username FROM #__users WHERE username='" . (string) $username . "'";
+	$query    = "SELECT id,user_login FROM #__users WHERE user_login='" . (string) $username . "'";
 	$userList = doSelectSql( $query );
 	if ( count( $userList ) > 0 )
 		{
 		foreach ( $userList as $u )
 			{
-			$user[ $id ] = array ( "id" => $u->id, "username" => $u->username, "email" => $u->username );
+			$user[ $id ] = array ( "id" => $u->id, "username" => $u->user_login, "email" => $u->user_email );
 			}
 		}
 
@@ -270,13 +270,13 @@ function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username( $user
 function jomres_cmsspecific_getCMS_users_admin_userdetails_by_id( $id )
 	{
 	$user     = array ();
-	$query    = "SELECT id,username,email FROM #__users WHERE id=" . (int) $id;
+	$query    = "SELECT id,user_login,user_email FROM #__users WHERE id=" . (int) $id;
 	$userList = doSelectSql( $query );
 	if ( count( $userList ) > 0 )
 		{
 		foreach ( $userList as $u )
 			{
-			$user[ $id ] = array ( "id" => $u->id, "username" => $u->username, "email" => $u->email );
+			$user[ $id ] = array ( "id" => $u->id, "username" => $u->user_login, "email" => $u->user_email );
 			}
 		}
 
@@ -287,13 +287,13 @@ function jomres_cmsspecific_getCMS_users_admin_userdetails_by_id( $id )
 function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids( $id )
 	{
 	$users    = array ();
-	$query    = "SELECT id,username,email FROM #__users WHERE `sendEmail`=1";
+	$query    = "SELECT id,user_login,user_email FROM #__users WHERE `sendEmail`=1";
 	$userList = doSelectSql( $query );
 	if ( count( $userList ) > 0 )
 		{
 		foreach ( $userList as $u )
 			{
-			$users[ $u->id ] = array ( "id" => $u->id, "username" => $u->username, "email" => $u->email );
+			$users[ $u->id ] = array ( "id" => $u->id, "username" => $u->user_login, "email" => $u->user_email );
 			}
 		}
 
