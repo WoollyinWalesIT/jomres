@@ -2124,8 +2124,11 @@ function showCompletedText()
 	array_shift( $_URI );
 	$_URI = array_slice( $_URI, 0, count( $_URI ) - 2 );
 	array_unshift( $_URI, $_SERVER[ 'SERVER_NAME' ] );
-
-	$administrator_url = "http://" . implode( "/", $_URI ) . "/administrator/index.php?option=com_jomres";
+	
+	if ( this_cms_is_joomla() )
+		$administrator_url = "http://" . implode( "/", $_URI ) . "/administrator/index.php?option=com_jomres";
+	else
+		$administrator_url = JOMRES_SITEPAGE_URL_ADMIN;
 
 	if ( !AUTO_UPGRADE ) echo '<br>Thank you for installing Jomres. You may now go to your CMS\'s administrator area and configure Jomres<br>';
 	if ( !AUTO_UPGRADE ) echo '<br>Please remember to delete the file <i>install_jomres.php</i> from your jomres folder<br>';
@@ -2133,7 +2136,7 @@ function showCompletedText()
 	if ( !AUTO_UPGRADE ) echo '<br><h3>Please remember, to configure your property you need to log into the frontend as the administrator user, you cannot configure propertys via the administrator area.</h3><br>';
 	if ( !AUTO_UPGRADE ) echo '<script>
 		setTimeout(function() {
-		window.location.href = "' . JOMRES_SITEPAGE_URL_ADMIN . '";
+		window.location.href = "' . $administrator_url . '";
 		}, 5000);
 </script>';
 
