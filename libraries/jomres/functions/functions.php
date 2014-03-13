@@ -5688,7 +5688,22 @@ function updateCustomText( $theConstant, $theValue, $audit = true, $property_uid
 	$testStr  = trim( strip_tags_except( $theValue ) );
 	$crsEtc   = array ( "\t", "\n", "\r" );
 	$testStr  = str_replace( $crsEtc, "", $testStr );
-	if ( strlen( $testStr ) == 0 && $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION" && $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES" && $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES" && $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS" && $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS" && $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT" && $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS" ) return false;
+	if ( 
+		strlen( $testStr ) == 0 && 
+		$theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION" && 
+		$theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES" && 
+		$theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES" && 
+		$theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS" && 
+		$theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS" && 
+		$theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT" && 
+		$theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS" &&
+		$theConstant != "_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE" &&
+		$theConstant != "_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION" &&
+		$theConstant != "_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS"
+		)
+			{
+			return false;
+			}
 	if ( !isset( $property_uid ) )
 		{
 		if ( $jrConfig[ 'editingModeAffectsAllProperties' ] == "1" && $thisJRUser->superPropertyManager == true ) 
