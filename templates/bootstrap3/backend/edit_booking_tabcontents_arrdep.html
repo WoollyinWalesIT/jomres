@@ -1,22 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<div class="row">
 		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-			<strong>{_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL}</strong>
-		</div>
-		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
-			{GUEST_FIRSTNAME}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-			<strong>{_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL}</strong>
-		</div>
-		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
-			{GUEST_SURNAME}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
 			<strong>{ARRIVALTEXT}</strong>
 		</div>
 		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
@@ -33,10 +17,26 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-			<strong>{_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL}</strong>
+			<strong>{HNIGHTS}</strong>
 		</div>
 		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
-			<a href="{EMAIL_LINK}">{EMAIL_ADDRESS}</a>
+			{NUM_NIGHTS}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+			<strong>{_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL}</strong>
+		</div>
+		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+			{BOOKINGTYPE}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+			<strong>{_JOMRES_COM_MR_ASSIGNUSER_USERNAME}</strong>
+		</div>
+		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+			{BOOKERSUSERNAME}
 		</div>
 	</div>
 	<div class="row">

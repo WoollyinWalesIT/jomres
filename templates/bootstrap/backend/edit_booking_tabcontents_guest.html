@@ -1,6 +1,22 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<div class="row-fluid">
 		<div class="span5">
+			<strong>{_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL}</strong>
+		</div>
+		<div class="span7">
+			{GUEST_FIRSTNAME}
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span5">
+			<strong>{_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL}</strong>
+		</div>
+		<div class="span7">
+			{GUEST_SURNAME}
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span5">
 			<strong>{_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL}</strong>
 		</div>
 		<div class="span7">
@@ -69,6 +85,14 @@
 		</div>
 		<div class="span7">
 			{GUEST_VAT_NUMBER}
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span5">
+			<strong>{_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL}</strong>
+		</div>
+		<div class="span7">
+			<a href="{EMAIL_LINK}">{EMAIL_ADDRESS}</a>
 		</div>
 	</div>
 </patTemplate:tmpl>
