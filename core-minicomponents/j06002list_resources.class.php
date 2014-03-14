@@ -47,9 +47,6 @@ class j06002list_resources
 			
 		$query = "SELECT room_features_uid,feature_description,property_uid FROM #__jomres_room_features WHERE property_uid = '" . (int) $defaultProperty . "' OR property_uid = '0' ORDER BY feature_description ";
 		$roomFeaturesList = doSelectSql( $query );
-		
-		$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid FROM #__jomres_room_classes  WHERE property_uid = '" . (int) $defaultProperty . "' ORDER BY room_class_abbv ";
-		$roomsClassList = doSelectSql( $query );
 
 		$output['JOMRESTOOLBAR'] = "";
 		if ( $mrConfig[ 'singleRoomProperty' ] == '1' && count( $roomsList ) < 1 )
