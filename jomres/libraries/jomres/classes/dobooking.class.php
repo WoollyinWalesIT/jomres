@@ -5113,6 +5113,7 @@ class dobooking
 
 		if ( count( $tarifftypeids ) > 0 ) // Micromanage mode tariffs
 			{
+			$this->build_tariff_to_date_map();
 			foreach ( $tarifftypeids as $t )
 				{
 				$dates            = $this->micromanage_tarifftype_to_date_map[ $t->tarifftype_id ];
