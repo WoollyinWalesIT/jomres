@@ -915,6 +915,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_11_debugging.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j02265viewbookingnotes.class.php' );
 		
+		$this->add_obs_file( $this->dir_javascript . 'bootstrap-tour.js' );
+		
 		}
 
 	function add_obs_file( $path_and_file )

@@ -242,8 +242,12 @@ class j00004a_init_javascript_css_files
 			
 		if (using_bootstrap())
 			{
-			set_showtime( "bootstrap-tour.js", "bootstrap-tour.js" );
+			if ( $_GET[ 'tmpl' ] == get_showtime("tmplcomponent") )
+				set_showtime( "bootstrap-tour.js", "bootstrap-tour-standalone.min.js" );
+			else
+				set_showtime( "bootstrap-tour.js", "bootstrap-tour.min.js" );
 			set_showtime( "bootstrap-tour.js.relpath", "jomres/javascript/" );
+			
 			//set_showtime( "jquery.cookie.js", "jquery.cookie.js" );
 			//set_showtime( "jquery.cookie.js.relpath", "jomres/javascript/" );
 			}
