@@ -166,13 +166,24 @@ class j99997generate_mainmenu
 		
 		if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32")
 			{
+			
+			
 			if ($thisJRUser->userIsManager || $task == 'registerProp_step1' || $task == 'registerProp_step2' )
 				{
+				$fullscreen = false;
+				$fullscreen_view = "_windowed";
+				
+				if ( $_GET[ 'tmpl' ] == get_showtime("tmplcomponent") )
+					{
+					$fullscreen = true;
+					$fullscreen_view = "_fullscreen";
+					}
+
 				require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'build_product_tour_files.php' );
 				build_product_tour_javascript_file();
-				 if (file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang")."-tour.js") )
+				 if (file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang").$fullscreen_view."-tour.js") )
 					{
-					jomres_cmsspecific_addheaddata( "javascript", "jomres/temp/product_tours/", $task.'_' . get_showtime("lang")."-tour.js" );
+					jomres_cmsspecific_addheaddata( "javascript", "jomres/temp/product_tours/", $task.'_' . get_showtime("lang").$fullscreen_view."-tour.js" );
 					$help [0] [ 'PRODUCT_TOUR_PAGE_INFORMATION' ]      = jr_gettext( 'PRODUCT_TOUR_PAGE_INFORMATION', PRODUCT_TOUR_PAGE_INFORMATION, false, false );
 					}
 				$output['TOUR_LABELS'] = "

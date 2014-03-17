@@ -25,11 +25,24 @@ function build_product_tour_javascript_file()
 		$task = get_showtime("task");
 		}
 	
-	$file = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang").'-tour.js';
-/* 	if (file_exists($file))
+	$fullscreen = false;
+	$fullscreen_view = "_windowed";
+	
+	if ( $_GET[ 'tmpl' ] == get_showtime("tmplcomponent") )
+		{
+		$fullscreen = true;
+		$fullscreen_view = "_fullscreen";
+		}
+	
+	$file = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang").$fullscreen_view.'-tour.js';
+
+	if (file_exists($file))
 		{
 		return;
-		} */
+		}
+	
+
+	
 	$target_ids = array();
 	switch ( $task )
 		{
@@ -41,7 +54,12 @@ function build_product_tour_javascript_file()
 		break;
 		case "dashboard":
 			$target_ids['tour_target_main_menu']					= 'bottom' ;
-			$target_ids['tour_target_property_name']				= 'left' ;
+			
+			if (!$fullscreen)
+				$target_ids['tour_target_property_name']				= 'left' ;
+			else
+				$target_ids['tour_target_property_name']				= 'right' ;
+			
 			$target_ids['tour_target_timezone_dropdown']			= 'right' ;
 			$target_ids['tour_target_lang_dropdown']				= 'left' ;
 			$target_ids['tour_target_editing_mode_dropdown']		= 'left' ;
@@ -188,13 +206,16 @@ function build_product_tour_javascript_file()
 
 function build_tour( $target_ids = array() , $task )
 	{
-	if (count ($target_ids) == 0 )
+	$total = count($target_ids);
+	if ($total == 0 )
 		{
 		return;
 		}
 	
 	$rows = array();
-
+	
+	$counter=0;
+	
 	foreach ($target_ids as $key=>$val )
 		{
 		$r = array();
@@ -203,7 +224,13 @@ function build_tour( $target_ids = array() , $task )
 		$r['POSITION']     = $val;
 		$r['TITLE']        = jr_gettext ( "TOUR_ID_".strtoupper($key)."_TITLE" , '' , false );
 		$r['DESCRIPTION']  = jr_gettext ( "TOUR_ID_".strtoupper($key)."_CONTENT" , '' , false );
-			
+		
+		$counter ++;
+		
+		$r['COMMA'] = ",";
+		if ($counter == $total)
+			$r['COMMA'] = '';
+		
 		$rows[] = $r;
 		}
 
@@ -220,7 +247,17 @@ function build_tour( $target_ids = array() , $task )
 		{
 		mkdir (JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS);
 		}
-	$file = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang").'-tour.js';
+	
+	$fullscreen = false;
+	$fullscreen_view = "_windowed";
+
+	if ( $_GET[ 'tmpl' ] == get_showtime("tmplcomponent") )
+		{
+		$fullscreen = true;
+		$fullscreen_view = "_fullscreen";
+		}
+		
+	$file = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang").$fullscreen_view.'-tour.js';
 	file_put_contents( $file , $result );
 	}
 
