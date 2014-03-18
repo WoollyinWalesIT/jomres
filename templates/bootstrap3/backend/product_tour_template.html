@@ -24,7 +24,7 @@ jomresJquery(function() {
 	}{COMMA}
 </patTemplate:tmpl>
     ]
-  }).init().start();
+  });
 
   
   jomresJquery(document).on("click", "#product_tour_start", function(e) {
@@ -38,6 +38,7 @@ jomresJquery(function() {
 });
 
 jomresJquery('#product_tour_start').click(function(e){
+	tour.init();
     tour.start();
 
     // it's also good practice to preventDefault on the click event
