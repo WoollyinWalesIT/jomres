@@ -439,8 +439,29 @@ function doTableUpdates()
 	if ( !checkTarifftypesDescriptionColExists() ) alterTarifftypesDescriptionCol();
 	if ( !checkContractsApprovedColExists() ) alterContractsApproved();
 	
+	checkLineitemsInitqtyColFloat();
+	
+	
 	if ( _JOMRES_DETECTED_CMS == "joomla15" ) checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
+
+
+function checkLineitemsInitqtyColFloat()
+	{
+	$query  = "DESCRIBE #__jomresportal_lineitems";
+	$result = doSelectSql( $query );
+	foreach ($result as $field )
+		{
+		if ( $field->Field == 'init_qty' &&  $field->Type =='int(11)' )
+			{
+			$query = 'ALTER TABLE #__jomresportal_lineitems MODIFY init_qty FLOAT';
+			$result = doInsertSql($query);
+			$query = 'ALTER TABLE #__jomresportal_orphan_lineitems MODIFY init_qty FLOAT NOT NULL default \'0.00\'';
+			$result = doInsertSql($query);
+			}
+		}
+	}
+	
 
 // Might not need this. Commented out for now.
 	
@@ -2364,7 +2385,7 @@ function createJomresTables()
 		`name` varchar(255) ,
 		`description` varchar(255) ,
 		`init_price` float default '0',
-		`init_qty` int(11) default '0',
+		`init_qty` float  NOT NULL default '0.00',
 		`init_discount` float default '0',
 		`recur_price` float default '0',
 		`recur_qty` int(11) default '0',
@@ -2380,7 +2401,7 @@ function createJomresTables()
 		`name` varchar(20),
 		`description` varchar(255),
 		`init_price` float NOT NULL default '0',
-		`init_qty` int(11) NOT NULL default '0',
+		`init_qty` float  NOT NULL default '0.00',
 		`init_discount` float NOT NULL default '0',
 		`init_total` float NOT NULL default '0',
 		`init_total_inclusive` float NOT NULL default '0',
@@ -4259,7 +4280,7 @@ function addNewTables()
 		`name` varchar(20),
 		`description` varchar(255),
 		`init_price` float NOT NULL default '0',
-		`init_qty` int(11) NOT NULL default '0',
+		`init_qty` float  NOT NULL default '0.00',
 		`init_discount` float NOT NULL default '0',
 		`recur_price` float NOT NULL default '0',
 		`recur_qty` int(11) NOT NULL default '0',
@@ -4278,7 +4299,7 @@ function addNewTables()
 		`name` varchar(20),
 		`description` varchar(255),
 		`init_price` float NOT NULL default '0',
-		`init_qty` int(11) NOT NULL default '0',
+		`init_qty` float  NOT NULL default '0.00',
 		`init_discount` float NOT NULL default '0',
 		`init_total` float NOT NULL default '0',
 		`recur_price` float NOT NULL default '0',

@@ -230,8 +230,14 @@ class invoicehandler extends jrportal_invoice
 
 			$line_item->inv_id = $this->id;
 
-			$i_total                         = ( (float) $line_item->init_price * (int) $line_item->init_qty ) - (float) $line_item->init_discount;
+			//$i_total                         = ( (float) $line_item->init_price * (int) $line_item->init_qty ) - (float) $line_item->init_discount;
+			$i_total = ( (float) $line_item->init_price * (float) $line_item->init_qty ) - (float) $line_item->init_discount;
+			$i_total = number_format( $i_total, 2, '.', '' ); 
+			
+			
 			$line_item->init_total           = $i_total;
+			
+
 			if ($this->vat_will_be_charged)
 				{
 				$init_toal_tax                   = number_format( $i_total / 100 * $line_item->tax_rate, 2, '.', '' );

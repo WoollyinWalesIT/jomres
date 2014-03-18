@@ -22,7 +22,7 @@ class jrportal_lineitem
 		$this->name                 = '';
 		$this->description          = '';
 		$this->init_price           = 0.00;
-		$this->init_qty             = 0;
+		$this->init_qty             = 0.00;
 		$this->init_discount        = 0.00;
 		$this->init_total           = 0.00;
 		$this->init_total_inclusive = 0.00;
@@ -126,7 +126,7 @@ class jrportal_lineitem
 				'" . (string) $this->name . "',
 				'" . (string) $this->description . "',
 				" . (float) $this->init_price . ",
-				" . (int) $this->init_qty . ",
+				" . (float) $this->init_qty . ",
 				" . (float) $this->init_discount . ",
 				" . (float) $this->init_total . ",
 				" . (float) $this->init_total_inclusive . ",
@@ -167,7 +167,7 @@ class jrportal_lineitem
 				`name` 					= '" . (string) $this->name . "',
 				`description` 			= '" . (string) $this->description . "',
 				`init_price` 			= " . (float) $this->init_price . ",
-				`init_qty` 				= " . (int) $this->init_qty . ",
+				`init_qty` 				= " . (float) $this->init_qty . ",
 				`init_discount` 		= " . (float) $this->init_discount . ",
 				`init_total` 			= " . (float) $this->init_total . ",
 				`init_total_inclusive`	= " . (float) $this->init_total_inclusive . ",
