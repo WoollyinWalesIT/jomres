@@ -25,6 +25,9 @@ function jomres_wp_admin()
 // Now we set that function up to execute when the admin_notices action is called
 add_action( 'admin_notices', 'jomres_wp_front' ); */
 
+
+
+
 add_action( 'admin_menu', 'register_my_custom_menu_page' );
 
 function register_my_custom_menu_page(){
@@ -96,3 +99,19 @@ add_action( 'wp_ajax_nopriv_'.$_REQUEST['action'], 'jomres_wp_ajax' );
 add_action( 'wp_ajax_'.$_REQUEST['action'], 'jomres_wp_ajax' );
 add_action( 'wp_ajax_nopriv_'.$_REQUEST['page'], 'jomres_wp_ajax' );
 add_action( 'wp_ajax_'.$_REQUEST['page'], 'jomres_wp_ajax' );
+
+// If popup is in $_REQUEST we'll disable all widgets, but leave the keys intact so that you don't get the "please activate a widget" message
+add_filter( 'sidebars_widgets', 'disable_all_widgets' );
+
+function disable_all_widgets( $sidebars_widgets ) 
+	{
+
+	if ( $_REQUEST['popup'] == "1" )
+		{
+		foreach (	$sidebars_widgets as $key=>$widget)
+			{
+			$sidebars_widgets[$key] =array( false );
+			}
+		}
+	return $sidebars_widgets;
+	}
