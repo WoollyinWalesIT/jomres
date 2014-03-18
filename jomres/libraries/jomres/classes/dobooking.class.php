@@ -6013,7 +6013,8 @@ class dobooking
 				}
 			}
 		//$this->extrasvalueplustax=$extrasTotalPlusTax;
-		$this->extrasvalue = $extrasTotal;
+		//$this->extrasvalue = $extrasTotal;
+		$this->extrasvalue = number_format( $extrasTotal, 2, '.', '' );
 		}
 
 	/**
