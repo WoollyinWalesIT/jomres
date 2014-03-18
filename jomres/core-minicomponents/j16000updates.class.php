@@ -153,6 +153,7 @@ class j16000updates
 					echo "UPGRADE LOG<br/>";
 					foreach ( $this->movedFileLog as $record ) echo $record;
 					}
+				unlink($newfilename);
 				jomresRedirect( get_showtime( 'live_site' ) . "/jomres/install_jomres.php", '' );
 				}
 			else
