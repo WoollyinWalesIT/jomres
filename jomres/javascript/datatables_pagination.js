@@ -1,3 +1,5 @@
+/* For datatables bootstrap implementation */
+
 /* Default class modification */
 
 if ('undefined' != typeof(jomresJquery.fn.dataTableExt )) {
