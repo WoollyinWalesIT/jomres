@@ -916,6 +916,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j02265viewbookingnotes.class.php' );
 		
 		$this->add_obs_file( $this->dir_javascript . 'bootstrap-tour.js' );
+		$this->add_obs_file( $this->dir_javascript . 'datatables_bootstrap_paging.js' );
+		$this->add_obs_file( $this->dir_javascript . 'DT_bootstrap.js' );
 		
 		}
 

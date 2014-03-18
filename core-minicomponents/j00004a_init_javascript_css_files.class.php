@@ -71,7 +71,7 @@ class j00004a_init_javascript_css_files
 			set_showtime( "DT_bootstrap.css", "DT_bootstrap.css" );
 			set_showtime( "DT_bootstrap.css.relpath", "jomres/css/" );
 
-			set_showtime( "DT_bootstrap.js", "DT_bootstrap.js" );
+			set_showtime( "DT_bootstrap.js", "datatables_pagination.js" );
 			set_showtime( "DT_bootstrap.js.relpath", "jomres/javascript/" );
 
 			set_showtime( "tables_jui.css", "" );
