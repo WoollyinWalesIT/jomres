@@ -109,7 +109,8 @@ if ( isset( $_REQUEST[ 'topoff' ] ) )
 		}
 	}
 
-$lang = substr( get_showtime( 'lang' ), 0, 2 );
+	$lang='';
+/* $lang = substr( get_showtime( 'lang' ), 0, 2 );
 // For administrator area Jomres lang switching
 $lang_param = '';
 if ( isset( $_REQUEST[ 'jomreslang' ] ) )
@@ -119,12 +120,12 @@ if ( isset( $_REQUEST[ 'jomreslang' ] ) )
 		{
 		$lang_param .= "&jomreslang=" .  jomresGetParam( $_REQUEST , 'jomreslang' , '' );
 		}
-	}
+	} */
 
-define( "JOMRES_SITEPAGE_URL_NOSEF", get_option( 'siteurl' ) . '/' . "index.php?page=jomres/admin.php&lang=" . $lang . $tmpl . "&jr_wp_source=frontend");
-define( "JOMRES_SITEPAGE_URL_AJAX",get_option( 'siteurl' ) . '/' . "/wp-content/plugins/jomres/ajax.php?action=jomres/admin.php&no_html=1&jrajax=1&lang=" . $lang . $tmpl . "&jr_wp_source=frontend");
-define( "JOMRES_SITEPAGE_URL_ADMIN", get_option( 'siteurl' ) . "/wp-admin/admin.php?page=jomres/admin.php" . $tmpl . $lang_param . "&jr_wp_source=admin" );
-define( "JOMRES_SITEPAGE_URL_ADMIN_AJAX", get_option( 'siteurl' ) . "/wp-admin/admin-ajax.php?action=jomres/admin.php&no_html=1&jrajax=1" . $lang_param . $tmpl . "&jr_wp_source=admin");
+define( "JOMRES_SITEPAGE_URL_NOSEF", get_option( 'siteurl' ) . '/' . "index.php?page=jomres/admin.php" . $tmpl . "&jr_wp_source=frontend");
+define( "JOMRES_SITEPAGE_URL_AJAX",get_option( 'siteurl' ) . '/' . "/wp-content/plugins/jomres/ajax.php?action=jomres/admin.php&no_html=1&jrajax=1&" . $tmpl . "&jr_wp_source=frontend");
+define( "JOMRES_SITEPAGE_URL_ADMIN", get_option( 'siteurl' ) . "/wp-admin/admin.php?page=jomres/admin.php" . $tmpl . "&jr_wp_source=admin" );
+define( "JOMRES_SITEPAGE_URL_ADMIN_AJAX", get_option( 'siteurl' ) . "/wp-admin/admin-ajax.php?action=jomres/admin.php&no_html=1&jrajax=1" . $tmpl . "&jr_wp_source=admin");
 
-define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres" . $tmpl . "&lang=" . $lang );
+define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres" . $tmpl );
 
