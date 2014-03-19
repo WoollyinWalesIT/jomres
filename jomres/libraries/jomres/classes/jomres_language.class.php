@@ -63,7 +63,11 @@ class jomres_language
 						}
 					else
 						{
-						if ( isset( $_COOKIE[ 'jfcookie' ] ) && file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_joomfish" . JRDS . "joomfish.php" ) && !$administrator_area )
+						if ( this_cms_is_wordpress() )
+							{
+							$jomresConfig_lang = get_showtime("lang");
+							}
+						elseif ( isset( $_COOKIE[ 'jfcookie' ] ) && file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_joomfish" . JRDS . "joomfish.php" ) && !$administrator_area )
 							{
 							if ( $testing ) echo 'Used $_COOKIE[\'jfcookie\'] to switch langs<br>';
 							$jomresConfig_lang = (string) RemoveXSS( $_COOKIE[ 'jfcookie' ][ 'lang' ] );

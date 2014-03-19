@@ -39,18 +39,13 @@ class j06002switcheditingmode
 
 			return;
 			}
-
-		//$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-		//var_dump($tmpBookingHandler->user_settings['editing_on']);
-
 		$editing_mode = jomres_singleton_abstract::getInstance( 'jomres_editing_mode' );
 		$switchmode   = (int) jomresGetParam( $_REQUEST, 'switchmode', 0 );
-		if ( $switchmode == 1 ) $editing_mode->switch_mode_on();
+		if ( $switchmode == 1 ) 
+			$editing_mode->switch_mode_on();
 		else
-		$editing_mode->switch_mode_off();
+			$editing_mode->switch_mode_off();
 
-
-		//var_dump($tmpBookingHandler->user_settings['editing_on']);
 		}
 
 	/**
