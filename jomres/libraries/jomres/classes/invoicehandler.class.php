@@ -170,7 +170,7 @@ class invoicehandler extends jrportal_invoice
 		$line_item->recur_qty      = $line_item_data[ 'recur_qty' ];
 		$line_item->recur_discount = $line_item_data[ 'recur_discount' ];
 
-		$i_total                         = ( (float) $line_item->init_price * (int) $line_item->init_qty ) - (float) $line_item->init_discount;
+		$i_total                         = ( (float) $line_item->init_price * (float) $line_item->init_qty ) - (float) $line_item->init_discount;
 		$r_total                = ( (float) $line_item->recur_price * (int) $line_item->recur_qty ) - (float) $line_item->recur_discount;
 		
 		$line_item->init_total           = $i_total;
