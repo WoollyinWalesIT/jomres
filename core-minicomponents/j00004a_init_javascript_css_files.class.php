@@ -151,18 +151,23 @@ class j00004a_init_javascript_css_files
 
 		if ( !using_bootstrap() )
 			{
+
 			set_showtime( "x-editable.js", "jqueryui-editable.min.js" );
 			set_showtime( "x-editable.js.relpath", "jomres/javascript/x-editable/jqueryui-editable/js/" );
 
+			
 			set_showtime( "x-editable.css", "jqueryui-editable.css" );
 			set_showtime( "x-editable.css.relpath", "jomres/javascript/x-editable/jqueryui-editable/css/" );
 			}
 		else
 			{
-			set_showtime( "x-editable.js", "bootstrap-editable.min.js" );
+			$tail = "";
+			if (jomres_bootstrap_version() == "3")
+				$tail = "_bs3";
+			set_showtime( "x-editable.js", "bootstrap-editable".$tail.".min.js" );
 			set_showtime( "x-editable.js.relpath", "jomres/javascript/x-editable/bootstrap-editable/js/" );
 
-			set_showtime( "x-editable.css", "bootstrap-editable.css" );
+			set_showtime( "x-editable.css", "bootstrap-editable".$tail.".css" );
 			set_showtime( "x-editable.css.relpath", "jomres/javascript/x-editable/bootstrap-editable/css/" );
 			}
 
