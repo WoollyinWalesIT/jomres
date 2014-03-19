@@ -92,7 +92,7 @@ class j16000showplugins
 			}
 		else
 			{
-			$request  = "request=get_license_numbers&username=" . $jrConfig[ 'license_server_username' ] . "&password=" . $jrConfig[ 'license_server_password' ];
+/* 			$request  = "request=get_license_numbers&username=" . $jrConfig[ 'license_server_username' ] . "&password=" . $jrConfig[ 'license_server_password' ];
 			$response = query_shop( $request );
 			if ( $response->success )
 				{
@@ -102,7 +102,7 @@ class j16000showplugins
 					$current_licenses[ $license->name ] = $license->license_key;
 					}
 
-				}
+				} */
 			}
 
 		$remote_plugins_data = queryUpdateServer( "", "r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS . "&key=" . $key_validation->key_hash );
