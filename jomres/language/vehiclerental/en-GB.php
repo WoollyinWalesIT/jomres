@@ -293,7 +293,7 @@ jr_define( '_JOMRES_COM_MR_PROPERTY_DELETE', 'Delete business' );
 jr_define( '_JOMRES_COM_MR_PROPERTY_DELETED', 'Business deleted' );
 jr_define( '_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS', 'You do not have rights to delete this business.' );
 jr_define( '_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE', 'Fullsize image width' );
-jr_define( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', 'Click for a map' );
+jr_define( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', 'Map' );
 jr_define( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION', 'Business description' );
 jr_define( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES', 'Check in times' );
 jr_define( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES', 'Area activities' );
