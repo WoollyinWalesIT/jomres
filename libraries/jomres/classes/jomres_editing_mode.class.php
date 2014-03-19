@@ -54,7 +54,6 @@ class jomres_editing_mode
 			$tmpBookingHandler->user_settings[ 'editing_on' ] = true;
 			}
 		$this->editing = $tmpBookingHandler->user_settings[ 'editing_on' ];
-		$tmpBookingHandler->close_jomres_session();
 		}
 
 	function switch_mode_on()
@@ -62,7 +61,6 @@ class jomres_editing_mode
 		if ( !$this->editing_allowed ) return false;
 		$tmpBookingHandler                                = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		$tmpBookingHandler->user_settings[ 'editing_on' ] = true;
-		$tmpBookingHandler->close_jomres_session();
 		}
 
 	function switch_mode_off()
@@ -70,7 +68,6 @@ class jomres_editing_mode
 		if ( !$this->editing_allowed ) return false;
 		$tmpBookingHandler                                = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		$tmpBookingHandler->user_settings[ 'editing_on' ] = false;
-		$tmpBookingHandler->close_jomres_session();
 		}
 
 	function make_editing_mode_dropdown()
