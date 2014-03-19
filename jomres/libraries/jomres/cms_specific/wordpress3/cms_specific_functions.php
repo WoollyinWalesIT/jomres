@@ -22,8 +22,7 @@ function jomres_cmsspecific_getsessionid()
 // Date is sent in format YYYY/mm/dd, e.g. 2013/
 function jomres_cmsspecific_output_date( $date, $format = false )
 	{
-	$format = the_time(get_option('date_format'));
-	$result = the_date( $format, null, null, false );
+	$result = the_date( get_option('date_format'), null, null, false );
 	return $result;
 	}
 
