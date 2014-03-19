@@ -439,12 +439,63 @@ function doTableUpdates()
 	if ( !checkTarifftypesDescriptionColExists() ) alterTarifftypesDescriptionCol();
 	if ( !checkContractsApprovedColExists() ) alterContractsApproved();
 	
+	
 	checkLineitemsInitqtyColFloat();
 	
+	if ( !checkContractsBookingdataarchiveColExists() ) alterContractsBookingdataarchiveCol();
+	if ( !checkBookingdataarchiveContractidColExists() ) alterBookingdataarchiveContractid();
 	
 	if ( _JOMRES_DETECTED_CMS == "joomla15" ) checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
+function alterBookingdataarchiveContractid()
+	{
+	if ( !AUTO_UPGRADE ) echo "Editing __jomres_booking_data_archive table adding contract_uid column<br>";
+	$query = "ALTER TABLE `#__jomres_booking_data_archive` ADD `contract_uid` INT DEFAULT 0 NOT NULL AFTER `date` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_booking_data_archive contract_uid</b><br>";
+		}
+	}
+
+function checkBookingdataarchiveContractidColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_booking_data_archive LIKE 'contract_uid'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
+
+function alterContractsBookingdataarchiveCol()
+	{
+	if ( !AUTO_UPGRADE ) echo "Editing __jomres_contracts table adding booking_data_archive_id column<br>";
+	$query = "ALTER TABLE `#__jomres_contracts` ADD `booking_data_archive_id` INT DEFAULT '0' NOT NULL AFTER `approved` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_contracts booking_data_archive_id</b><br>";
+		}
+	$query = "ALTER TABLE `#__jomres_contracts` ADD `secret_key` CHAR(100) AFTER `booking_data_archive_id` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_contracts secret_key</b><br>";
+		}
+	}
+
+function checkContractsBookingdataarchiveColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_contracts LIKE 'booking_data_archive_id'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
 
 function checkLineitemsInitqtyColFloat()
 	{
@@ -1427,6 +1478,7 @@ function createBookingdataArchiveTable()
 	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`data` text,
 	`date` datetime default NULL ,
+	`contract_uid` INT  DEFAULT 0 NOT NULL ,
 	PRIMARY KEY ( `id` )
 	)";
 	if ( !doInsertSql( $query, '' ) )
@@ -2828,6 +2880,8 @@ function createJomresTables()
 		`invoice_uid` int(11),
 		`channel_manager_booking` BOOL NOT NULL DEFAULT '0',
 		`approved` TINYINT( 1 ) DEFAULT 1 NOT NULL,
+		`booking_data_archive_id` INT DEFAULT '0' NOT NULL,
+		`secret_key` CHAR(100),
 		PRIMARY KEY(`contract_uid`)
 		) ";
 	if ( !doInsertSql( $query ) )
@@ -2856,7 +2910,6 @@ function createJomresTables()
 		`dayofweek` INT( 1 ) DEFAULT '7' NOT NULL,
 		`minrooms_alreadyselected` INT( 3 ) DEFAULT '0' NOT NULL,
 		`maxrooms_alreadyselected` INT( 3 ) DEFAULT '100' NOT NULL,
-		
 		`property_uid` VARCHAR(11),
 		PRIMARY KEY(`rates_uid`)
 		) ";
@@ -3152,6 +3205,7 @@ function createJomresTables()
 	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`data` text,
 	`date` datetime default NULL ,
+	`contract_uid` INT DEFAULT 0 NOT NULL ,
 	PRIMARY KEY ( `id` )
 	)";
 	if ( !doInsertSql( $query ) )

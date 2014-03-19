@@ -76,6 +76,8 @@ class basic_contract_details
 						a.invoice_uid,
 						a.channel_manager_booking,
 						a.approved,
+						a.booking_data_archive_id,
+						a.secret_key,
 						b.firstname,
 						b.surname,
 						b.house,
@@ -136,6 +138,8 @@ class basic_contract_details
 			$this->contract['contractdeets']['invoice_uid'] = $contract->invoice_uid;
 			$this->contract['contractdeets']['channel_manager_booking'] = $contract->channel_manager_booking;
 			$this->contract['contractdeets']['approved'] = $contract->approved;
+			$this->contract['contractdeets']['secret_key'] = $contract->secret_key;
+			$this->contract['contractdeets']['booking_data_archive_id'] = $contract->booking_data_archive_id;
 			
 			//guest details
 			$this->contract['guestdeets']['firstname'] = $contract->firstname;
