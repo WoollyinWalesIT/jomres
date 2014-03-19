@@ -14,6 +14,15 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function this_cms_is_wordpress()
+	{
+	if ( _JOMRES_DETECTED_CMS != "wordpress3" )
+		{
+		return false;
+		}
+	
+	return true;
+	}
 
 // url is the remote url that will be called
 // text of the button.

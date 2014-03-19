@@ -2197,12 +2197,31 @@ function showCompletedText()
 	
 	if ( this_cms_is_joomla() )
 		$administrator_url = "http://" . implode( "/", $_URI ) . "/administrator/index.php?option=com_jomres";
+	elseif (this_cms_is_wordpress())
+		{
+		if ( ACTION == "Upgrade")
+			{
+			$administrator_url = JOMRES_SITEPAGE_URL_ADMIN;
+			}
+		else
+			{
+			$administrator_url = "http://" . implode( "/", $_URI ) ."/wp-admin/plugins.php";
+			}
+		}
 	else
+		{
 		$administrator_url = JOMRES_SITEPAGE_URL_ADMIN;
+		}
 
+	
 	if ( !AUTO_UPGRADE ) echo '<br>Thank you for installing Jomres. You may now go to your CMS\'s administrator area and configure Jomres<br>';
-	if ( !AUTO_UPGRADE ) echo '<br>Please remember to delete the file <i>install_jomres.php</i> from your jomres folder<br>';
-	if ( !AUTO_UPGRADE ) echo '<br>If you wish you can go straight to your Jomres install and start editing your property. To enable the property manager functionality log in as "admin" (for Joomla users) or "administrator" (for Standalone users) and go to your site profiles and assign a frontend user as a property manager.<br>';
+	//if ( !AUTO_UPGRADE ) echo '<br>Please remember to delete the file <i>install_jomres.php</i> from your jomres folder<br>'; // Commented out as the obsolete file handler will do this for us
+	if ( !AUTO_UPGRADE ) echo '<br>If you wish you can go straight to your Jomres install and start editing your property. To enable the property manager functionality log in as your site administrator and go to your site profiles and assign a frontend user as a property manager.<br>';
+	if (this_cms_is_wordpress() && ACTION != "Upgrade")
+		{
+		if ( !AUTO_UPGRADE ) echo '<br>You must remember to Activate Jomres in the Wordpress plugin manager before you can use it.<br>'; 
+		}
+	
 	if ( !AUTO_UPGRADE ) echo '<br><h3>Please remember, to configure your property you need to log into the frontend as the administrator user, you cannot configure propertys via the administrator area.</h3><br>';
 	if ( !AUTO_UPGRADE ) echo '<script>
 		setTimeout(function() {
