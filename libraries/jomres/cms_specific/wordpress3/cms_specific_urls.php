@@ -109,23 +109,15 @@ if ( isset( $_REQUEST[ 'topoff' ] ) )
 		}
 	}
 
-	$lang='';
-/* $lang = substr( get_showtime( 'lang' ), 0, 2 );
-// For administrator area Jomres lang switching
-$lang_param = '';
-if ( isset( $_REQUEST[ 'jomreslang' ] ) )
-	{
-	$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
-	if ( array_key_exists( $_REQUEST[ 'jomreslang' ], $jomreslang->datepicker_crossref ) ) 
-		{
-		$lang_param .= "&jomreslang=" .  jomresGetParam( $_REQUEST , 'jomreslang' , '' );
-		}
-	} */
+$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
+$lang_param = "&lng=" .  $jomreslang->datepicker_crossref[ get_showtime("lang")];
 
-define( "JOMRES_SITEPAGE_URL_NOSEF", get_option( 'siteurl' ) . '/' . "index.php?page=jomres/admin.php" . $tmpl . "&jr_wp_source=frontend");
-define( "JOMRES_SITEPAGE_URL_AJAX",get_option( 'siteurl' ) . '/' . "/wp-content/plugins/jomres/ajax.php?action=jomres/admin.php&no_html=1&jrajax=1&" . $tmpl . "&jr_wp_source=frontend");
-define( "JOMRES_SITEPAGE_URL_ADMIN", get_option( 'siteurl' ) . "/wp-admin/admin.php?page=jomres/admin.php" . $tmpl . "&jr_wp_source=admin" );
-define( "JOMRES_SITEPAGE_URL_ADMIN_AJAX", get_option( 'siteurl' ) . "/wp-admin/admin-ajax.php?action=jomres/admin.php&no_html=1&jrajax=1" . $tmpl . "&jr_wp_source=admin");
 
-define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres" . $tmpl );
+
+define( "JOMRES_SITEPAGE_URL_NOSEF", get_option( 'siteurl' ) . '/' . "index.php?page=jomres/admin.php" . $tmpl . $lang_param. "&jr_wp_source=frontend");
+define( "JOMRES_SITEPAGE_URL_AJAX",get_option( 'siteurl' ) . '/' . "/wp-content/plugins/jomres/ajax.php?action=jomres/admin.php&no_html=1&jrajax=1&" . $tmpl . $lang_param ."&jr_wp_source=frontend");
+define( "JOMRES_SITEPAGE_URL_ADMIN", get_option( 'siteurl' ) . "/wp-admin/admin.php?page=jomres/admin.php" . $tmpl . $lang_param . "&jr_wp_source=admin" );
+define( "JOMRES_SITEPAGE_URL_ADMIN_AJAX", get_option( 'siteurl' ) . "/wp-admin/admin-ajax.php?action=jomres/admin.php&no_html=1&jrajax=1" . $tmpl . $lang_param . "&jr_wp_source=admin");
+
+define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres" . $tmpl . $lang_param);
 
