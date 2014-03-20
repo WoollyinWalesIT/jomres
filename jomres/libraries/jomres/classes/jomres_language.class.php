@@ -32,18 +32,17 @@ class jomres_language
 		$administrator_area     = jomres_cmsspecific_areweinadminarea();
 
 		$testing = false;
-		//var_dump($_REQUEST);exit;
 
 		if ( isset( $_POST[ 'jomreslang' ] ) )
 			{
-			if ( $testing ) echo 'Used $_POST[\'jomreslang\'] to switch langs<br>';
+			if ( $testing && !AJAXCALL ) echo 'Used $_POST[\'jomreslang\'] to switch langs<br>';
 			$jomresConfig_lang = (string) RemoveXSS( jomresGetParam( $_POST, 'jomreslang', "" ) );
 			}
 		else
 			{
 			if ( isset( $_GET[ 'jomreslang' ] ) )
 				{
-				if ( $testing ) echo 'Used $_GET[\'jomreslang\'] to switch langs<br>';
+				if ( $testing && !AJAXCALL ) echo 'Used $_GET[\'jomreslang\'] to switch langs<br>';
 				$jomresConfig_lang = (string) RemoveXSS( jomresGetParam( $_GET, 'jomreslang', "" ) );
 				}
 			else
@@ -51,37 +50,41 @@ class jomres_language
 				if ( _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" )
 					{
 					$lang = JFactory::getLanguage();
-					if ( $testing ) echo 'Used $lang->getTag() to switch langs<br>';
+					if ( $testing && !AJAXCALL ) echo 'Used $lang->getTag() to switch langs<br>';
 					$jomresConfig_lang = (string) $lang->getTag();
 					}
 				else
 					{
-					if ( isset( $_GET[ 'lang' ] ) )
+					if ( isset( $_GET[ 'lang' ] ) || isset( $_GET[ 'lng' ] ) )
 						{
-						if ( $testing ) echo 'Used $_GET[\'lang\'] to switch langs<br>';
-						$jomresConfig_lang = (string) RemoveXSS( jomresGetParam( $_GET, 'lang', "" ) );
+						if ( $testing && !AJAXCALL ) echo 'Used $_GET[\'lang\'] to switch langs<br>';
+						if ( isset( $_GET[ 'lng' ] ) )
+							$jomresConfig_lang = (string) RemoveXSS( jomresGetParam( $_GET, 'lng', "" ) );
+						else
+							$jomresConfig_lang = (string) RemoveXSS( jomresGetParam( $_GET, 'lang', "" ) );
 						}
 					else
 						{
-						if ( this_cms_is_wordpress() )
+						if ( this_cms_is_wordpress() && !isset($_GET[ 'lang' ]) )
 							{
-							$jomresConfig_lang = get_showtime("lang");
+							if ( $testing && !AJAXCALL ) echo 'Used wordpress switch to change language.<br>';
+							$jomresConfig_lang = $tmpBookingHandler->tmplang[ 'jomreslang' ];
 							}
 						elseif ( isset( $_COOKIE[ 'jfcookie' ] ) && file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_joomfish" . JRDS . "joomfish.php" ) && !$administrator_area )
 							{
-							if ( $testing ) echo 'Used $_COOKIE[\'jfcookie\'] to switch langs<br>';
+							if ( $testing && !AJAXCALL ) echo 'Used $_COOKIE[\'jfcookie\'] to switch langs<br>';
 							$jomresConfig_lang = (string) RemoveXSS( $_COOKIE[ 'jfcookie' ][ 'lang' ] );
 							}
 						else
 							{
 							if ( isset( $tmpBookingHandler->tmplang[ 'jomreslang' ] ) )
 								{
-								if ( $testing ) echo 'Used $tmpBookingHandler->tmplang[\'jomreslang\'] to switch langs<br>';
+								if ( $testing && !AJAXCALL ) echo 'Used $tmpBookingHandler->tmplang[\'jomreslang\'] to switch langs<br>';
 								$jomresConfig_lang = (string) RemoveXSS( $tmpBookingHandler->tmplang[ 'jomreslang' ] );
 								}
 							elseif ( strlen( $jomresConfig_lang ) == 0 )
 								{
-								if ( $testing ) echo 'Used $jrConfig[\'siteLang\'] to switch langs<br>';
+								if ( $testing && !AJAXCALL ) echo 'Used $jrConfig[\'siteLang\'] to switch langs<br>';
 								$jomresConfig_lang = substr( $jrConfig[ 'siteLang' ], 0, strlen( $jrConfig[ 'siteLang' ] ) - 4 );
 								}
 							}
@@ -95,11 +98,10 @@ class jomres_language
 		if ( !array_key_exists( $jomresConfig_lang, $langfile_crossref ) ) $jomresConfig_lang = $this->get_shortcode_to_longcode( $jomresConfig_lang );
 
 		$tmpBookingHandler->tmplang[ 'jomreslang' ] = $jomresConfig_lang;
-		$tmpBookingHandler->close_jomres_session();
 
 		jomres_cmsspecific_setlanguage( $jomresConfig_lang );
 		$this->lang = $jomresConfig_lang;
-		if ( $testing ) echo 'Lang is finally set to ' . $jomresConfig_lang . "<br>";
+		system_log( 'Lang is finally set to ' . $jomresConfig_lang  . " for task ".$_REQUEST['task']);
 		set_showtime( 'lang', $jomresConfig_lang );
 		}
 
