@@ -55,13 +55,10 @@ class jomres_language
 					}
 				else
 					{
-					if ( isset( $_GET[ 'lang' ] ) || isset( $_GET[ 'lng' ] ) )
+					if ( isset( $_GET[ 'lang' ] ) )
 						{
 						if ( $testing && !AJAXCALL ) echo 'Used $_GET[\'lang\'] to switch langs<br>';
-						if ( isset( $_GET[ 'lng' ] ) )
-							$jomresConfig_lang = (string) RemoveXSS( jomresGetParam( $_GET, 'lng', "" ) );
-						else
-							$jomresConfig_lang = (string) RemoveXSS( jomresGetParam( $_GET, 'lang', "" ) );
+						$jomresConfig_lang = (string) RemoveXSS( jomresGetParam( $_GET, 'lang', "" ) );
 						}
 					else
 						{
