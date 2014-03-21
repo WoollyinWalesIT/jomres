@@ -116,10 +116,10 @@ if ($_GET['lang'] != "" )
 	}
 
 
-define( "JOMRES_SITEPAGE_URL_NOSEF", get_option( 'siteurl' ) . '/' . "index.php?option=com_jomres&page=jomres/admin.php" . $tmpl . $lang_param. "&jr_wp_source=frontend");
-define( "JOMRES_SITEPAGE_URL_AJAX",get_option( 'siteurl' ) . '/' . "/wp-content/plugins/jomres/ajax.php?option=com_jomres&action=jomres/admin.php&no_html=1&jrajax=1&" . $tmpl . $lang_param ."&jr_wp_source=frontend");
-define( "JOMRES_SITEPAGE_URL_ADMIN", get_option( 'siteurl' ) . "/wp-admin/admin.php?option=com_jomres&page=jomres/admin.php" . $tmpl . $lang_param . "&jr_wp_source=admin" );
-define( "JOMRES_SITEPAGE_URL_ADMIN_AJAX", get_option( 'siteurl' ) . "/wp-admin/admin-ajax.php?option=com_jomres&action=jomres/admin.php&no_html=1&jrajax=1" . $tmpl . $lang_param . "&jr_wp_source=admin");
+define( "JOMRES_SITEPAGE_URL_NOSEF", get_showtime( 'live_site' ) . '/' . "index.php?page=jomres/admin.php" . $tmpl . $lang_param. "&jr_wp_source=frontend");
+define( "JOMRES_SITEPAGE_URL_AJAX",get_showtime( 'live_site' ) . '/' . "/wp-content/plugins/jomres/ajax.php?action=jomres/admin.php&no_html=1&jrajax=1&" . $tmpl . $lang_param ."&jr_wp_source=frontend");
+define( "JOMRES_SITEPAGE_URL_ADMIN", get_showtime( 'live_site' ) . "/wp-admin/admin.php?page=jomres/admin.php" . $tmpl . $lang_param . "&jr_wp_source=admin" );
+define( "JOMRES_SITEPAGE_URL_ADMIN_AJAX", get_showtime( 'live_site' ) . "/wp-admin/admin-ajax.php?action=jomres/admin.php&no_html=1&jrajax=1" . $tmpl . $lang_param . "&jr_wp_source=admin");
 
-define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres&" . $tmpl . $lang_param);
+define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?" . $tmpl . $lang_param);
 
