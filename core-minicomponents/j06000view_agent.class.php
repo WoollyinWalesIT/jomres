@@ -86,6 +86,13 @@ class j06000view_agent
 				$output[ 'STREET' ]    = $data->street;
 				$output[ 'TOWN' ]      = $data->town;
 				$output[ 'REGION' ]    = $data->county;
+				if ( is_numeric( $data->county ) )
+					{
+					$jomres_regions = jomres_singleton_abstract::getInstance( 'jomres_regions' );
+					$output[ 'REGION' ] = jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $data->county, $jomres_regions->regions[ $data->county ][ 'regionname' ], false, false );
+					}
+				else
+					$output[ 'REGION' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_REGION' . $data->county, $data->county, false, false );
 				$output[ 'COUNTRY' ]   = getSimpleCountry( $data->country );
 				$output[ 'POSTCODE' ]  = $data->postcode;
 				$output[ 'LANDLINE' ]  = $data->tel_landline;
