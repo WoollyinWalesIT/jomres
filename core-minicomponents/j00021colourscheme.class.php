@@ -41,7 +41,10 @@ class j00021colourscheme
 		
 		if ( !using_bootstrap() )
 			{
-			$css_file = "jomrescss.css";
+			if (!this_cms_is_wordpress())
+				$css_file = "jomrescss.css";
+			else
+				$css_file = "jomrescss_wordpress.css";
 			}
 		else
 			{
