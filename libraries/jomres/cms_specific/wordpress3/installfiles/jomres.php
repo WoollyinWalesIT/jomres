@@ -12,20 +12,15 @@ Version: 8
 Author URI: http://www.jomres.net/
 */
 
-/* function jomres_wp_front()
-	{
-	
-	}
-
-function jomres_wp_admin()
-	{
-	
-	}
-
-// Now we set that function up to execute when the admin_notices action is called
-add_action( 'admin_notices', 'jomres_wp_front' ); */
 
 
+function asamodule_search_results($content) {
+
+	$content = '<div id="asamodule_search_results">'.$content.'</div>';
+
+    return $content;    
+}
+add_filter('the_content', 'asamodule_search_results');
 
 
 add_action( 'admin_menu', 'register_my_custom_menu_page' );
@@ -51,7 +46,6 @@ function jomres_wp_generate_random_string($length = 50)
 	{
 	$str = "";
 	// define possible characters
-	//$possible = "0123456789bcdfghjkmnpqrstvwxyz";
 	$possible = "abcdfghijklmnopqrstuvwxyzABCDFGHIJKLMNOPQRSTUVWXYZ";
 	// set up a counter
 	$i = 0;
