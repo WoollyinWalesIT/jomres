@@ -2762,52 +2762,23 @@ function jomresRedirect( $url, $msg = '' )
 	$b       = new browser_detect();
 	$browser = $b->getBrowser();
 
-	if ( $browser == "Internet Explorer" ) echo '<script>document.location.href=\'' . $url . '\';</script>';
+	if ( $browser == "Internet Explorer" ) 
+		{
+		echo '<script>document.location.href=\'' . $url . '\';</script>';
+		}
 	elseif ( $browser == "Safari" || $browser == "Chrome" ) // Webkit
 		{
 		echo '<meta http-equiv="refresh" content="0; url=' . $url . '"
 			/>';
 		}
 	else
-	header( 'Location: ' . $url, true );
+		{
+		if (this_cms_is_wordpress() )
+			echo '<script>document.location.href=\'' . $url . '\';</script>';
+		else
+			header( 'Location: ' . $url, true );
+		}
 	exit;
-
-
-	// $url=str_replace("&amp;","&",$url);
-	// echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery-1.5.1.min.js"></script>';
-	// echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jomres.js "></script>';
-	// echo "<script>document.location.href='$url';</script>\n";
-	// exit();
-
-	// $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-	// $jrConfig=$siteConfig->get();
-
-
-	// The above lines will cause an error in IE8 (IE9, FF4, Chrome and Safari on iMac don't) because at this point Joomla will not have inserted jquery's js files into the head of the document.
-	// Throughout the system, if jomresRedirect is called, then it knows that after the redirect is done the script will 'exit', therefore there's no need to bubble back up the tree so it's POSSIBLE that if we don't
-	// exit, then something might get inadvertently run that shouldn't be.
-	// This creates an annoying, IE8 only problem, as described above. The solution is to add <script type="text/javascript"> if (navigator.appName == \'Microsoft Internet Explorer\') window.onerror=Block_Error;function Block_Error(){return true;}</script>
-	// to integration.php, which is run by everything that uses Jomres' framework.
-	// An alternative solution is to use the code below, however that's potentially problematic, because as already mentioned without the bubbling back up through the system, something MIGHT get done that shouldn't be done.
-
-
-	// jr_import('browser_detect');
-	// $b = new browser_detect();
-	// $browser = $b->getBrowser();
-	// $output['VAR']="";
-// /* 	If no_html isn't set, then Jomres will have already output some stuff, including some 'document ready' stuff from jquery. Real browsers deal with this fine, however
-	// Internet explorer throws a wobbly, whining that 'Object expected'. Instead then, we'll render the entire page but then redirect as soon as the page is loaded if the browser's IE. */
-	// if ($browser=="Internet Explorer" && !isset($_REQUEST['no_html']) )
-	// {
-	// echo "<script>jomresJquery(document).ready(function() {";
-	// echo "document.location.href='$url';";
-	// echo "});</script>\n";
-	// }
-	// else
-	// {
-	// echo "<script>document.location.href='$url';</script>\n";
-	// exit();
-	// }
 	}
 
 
