@@ -402,9 +402,10 @@ function jomres_cmsspecific_parseByBots( $str )
 	return $output; */
 	}
 
-function jomres_cmsspecific_stringURLSafe( $str )
+function jomres_cmsspecific_stringURLSafe( $str ) // Used for making SEF urls for Joomla's router. Don't yet have equivallent code for WP
 	{
-	$scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
+	return $str;
+/* 	$scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 	if ( !strstr( $scriptname, 'install_jomres.php' ) )
 		{
 		$config = JFactory::getConfig();
@@ -415,7 +416,7 @@ function jomres_cmsspecific_stringURLSafe( $str )
 		return $str;
 		}
 	else
-	return null;
+	return null; */
 	}
 
 function jomres_cmsspecific_addcustomtag( $data )
