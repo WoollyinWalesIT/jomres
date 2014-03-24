@@ -320,12 +320,19 @@ class HTML_jomres
 				<td>' . jr_gettext( _JOMRES_COM_JOMRESEMAILCHECK, '_JOMRES_COM_JOMRESEMAILCHECK', false ) . '</td>
 				<td>' . $lists[ 'useJomresEmailCheck' ] . '</td>
 				<td>' . jr_gettext( _JOMRES_COM_JOMRESEMAILCHECK_DESC, '_JOMRES_COM_JOMRESEMAILCHECK_DESC', false ) . '</td>
-			</tr> -->
-			<tr>
-				<td>' . jr_gettext( _JOMRES_COM_JRCONFIG_ISWRAPPED, '_JOMRES_COM_JRCONFIG_ISWRAPPED', false ) . '</td>
-				<td>' . $lists[ 'isInIframe' ] . '</td>
-				<td>' . jr_gettext( _JOMRES_COM_JRCONFIG_ISWRAPPED_DESC, '_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC', false ) . '</td>
-			</tr>
+			</tr> -->' );
+			if (!this_cms_is_wordpress())
+				{
+				$contentPanel->setcontent(
+				'
+				<tr>
+					<td>' . jr_gettext( _JOMRES_COM_JRCONFIG_ISWRAPPED, '_JOMRES_COM_JRCONFIG_ISWRAPPED', false ) . '</td>
+					<td>' . $lists[ 'isInIframe' ] . '</td>
+					<td>' . jr_gettext( _JOMRES_COM_JRCONFIG_ISWRAPPED_DESC, '_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC', false ) . '</td>
+				</tr>'
+					);
+					}
+			$contentPanel->setcontent('
 			<!--<tr>
 				 <td>' . jr_gettext( _JOMRES_ACCESS_CONTROL_CONFIG_TITLE, '_JOMRES_ACCESS_CONTROL_CONFIG_TITLE', false ) . '</td>
 				 <td>' . $lists[ 'full_access_control' ] . '</td>
