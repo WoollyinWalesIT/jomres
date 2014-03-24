@@ -214,11 +214,10 @@ function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $ski
 function jomres_cmsspecific_setmetadata( $meta, $data )
 	{
  	$data     = jomres_decode( $data );
-	//$document =& JFactory::getDocument();
 	switch ( $meta )
 		{
 		case "title":
-			wp_title( $data );
+			// echo '<title>'.$data.'</title>';   // Doesn't work
 			break;
 		case "description":
 			//$document->setDescription( $data );
