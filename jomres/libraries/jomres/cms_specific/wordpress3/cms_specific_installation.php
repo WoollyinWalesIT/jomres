@@ -33,9 +33,9 @@ if ( $folderChecksPassed )
 			automatically, please do this manually through FTP</h1><br/>";
 		}
 
-	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "admin.php", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "wp-content" . JRDS . "plugins" . JRDS . "jomres" . JRDS ."admin.php" ) ) 
+	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "trigger.php", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "wp-content" . JRDS . "plugins" . JRDS . "jomres" . JRDS ."trigger.php" ) ) 
 		{
-		echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "admin.php to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "wp-content" . JRDS . "plugins" . JRDS . "jomres" . JRDS ."admin.php
+		echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "trigger.php to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "wp-content" . JRDS . "plugins" . JRDS . "jomres" . JRDS ."trigger.php
 			automatically, please do this manually through FTP</h1><br/>";
 		}
 

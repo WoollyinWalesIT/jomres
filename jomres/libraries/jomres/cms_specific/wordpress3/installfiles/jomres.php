@@ -26,7 +26,7 @@ add_filter('the_content', 'asamodule_search_results');
 add_action( 'admin_menu', 'register_my_custom_menu_page' );
 
 function register_my_custom_menu_page(){
-    add_menu_page( 'Jomres admin', 'Jomres', 'manage_options', 'jomres/admin.php', '', '', 6 );
+    add_menu_page( 'Jomres admin', 'Jomres', 'manage_options', 'jomres/trigger.php', '', '', 6 );
 }
 
 function jomres_wp_init_session()
@@ -74,7 +74,7 @@ add_action('wp_login',		'jomres_wp_end_session');
 // Shortcode [jomres]
 function frontend_trigger_jomres( $atts ){
 	$path = plugin_dir_path( __FILE__ );
-	require_once($path . "admin.php");
+	require_once($path . "trigger.php");
 }
 add_shortcode( 'jomres', 'frontend_trigger_jomres' );
 
@@ -85,7 +85,7 @@ add_filter( 'show_admin_bar', '__return_false' );
 
 function jomres_wp_ajax()
 	{
-	require_once(plugin_dir_path( __FILE__ ) . "admin.php");
+	require_once(plugin_dir_path( __FILE__ ) . "trigger.php");
 	die();  // Required for a proper Wordpress AJAX result
 	}
 
