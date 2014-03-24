@@ -63,7 +63,7 @@ function jomres_wp_generate_random_string($length = 50)
 	
 function jomres_wp_end_session() 
 	{
-	session_destroy ();
+	setcookie ('jomres_wp_session_cookie', '', time()+60*60);
 	}
 
 add_action('init', 			'jomres_wp_init_session', 1);

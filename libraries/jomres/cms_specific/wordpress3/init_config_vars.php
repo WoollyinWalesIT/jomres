@@ -24,10 +24,9 @@ else
 
 
 
-if (!strstr($scriptname,'install_jomres.php'))
-	{
-	$jomresConfig_live_site=get_option( 'siteurl' );
-	}
+
+$jomresConfig_live_site=get_option( 'siteurl' );
+
 
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 if (!strstr($scriptname,'install_jomres.php'))
