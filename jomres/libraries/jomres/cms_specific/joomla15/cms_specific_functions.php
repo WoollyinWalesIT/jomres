@@ -14,6 +14,11 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
+	{
+	return array ('application.php' , 'mcHandler.class.php' , 'site.php' , 'cms.php' , 'helper.php');
+	}
+
 function jomres_cmsspecific_getsessionid()
 	{
 	return $_SESSION[ 'sessionid' ];
