@@ -188,10 +188,10 @@ class jomres_temp_booking_handler
 				{
 				foreach ( $docs as $f )
 					{
-					$last_modified    = filemtime( $this->session_directory . "/" . $f );
+					$last_modified    = filemtime( $this->session_directory .JRDS . $f );
 					$seconds_timediff = time() - $last_modified;
 					//echo $seconds_timediff;
-					if ( $seconds_timediff > $this->timeout ) unlink( $this->session_directory . "/" . $f );
+					if ( $seconds_timediff > $this->timeout ) unlink( $this->session_directory . JRDS . $f );
 					}
 				}
 			}
