@@ -14,6 +14,80 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+
+function output_fatal_error($e)
+	{
+	$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig          = $siteConfig->get();
+	
+	$cms_files_we_are_not_interested_in = jomres_cmsspecific_error_logging_cms_files_to_not_backtrace();
+	$rows = array();
+	$backtrace = debug_backtrace();
+
+	foreach ( $backtrace as $trace )
+		{
+		$r = array();
+		$file     = $trace[ 'file' ];
+		$bang     = explode( JRDS, $file );
+		$filename = $bang[ count( $bang ) - 1 ];
+		if ( $filename != 'patTemplate.php' && $filename != 'index.php' &&  !in_array( $filename,$cms_files_we_are_not_interested_in) )
+			{
+			$r['FILES'] = " " . $filename . " on line ".$trace['line']."<br/>";
+			$rows[]=$r;
+			}
+		}
+
+	$output = array(
+		"MESSAGE" => $e->getMessage(),
+		"FILE"  => $e->getFile(),
+		"LINE"  => $e->getLine(),
+		"TRACE"  => $e->getTraceAsString(),
+		'_JOMRES_ERROR_DEBUGGING_MESSAGE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_MESSAGE", _JOMRES_ERROR_DEBUGGING_MESSAGE, false ) ,
+		'_JOMRES_ERROR_DEBUGGING_FILE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_FILE", _JOMRES_ERROR_DEBUGGING_FILE, false ) ,
+		'_JOMRES_ERROR_DEBUGGING_LINE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_LINE", _JOMRES_ERROR_DEBUGGING_LINE, false ) ,
+		'_JOMRES_ERROR_DEBUGGING_TRACE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_TRACE", _JOMRES_ERROR_DEBUGGING_TRACE, false ) ,
+		 ); 
+		
+	$pageoutput[] = $output;
+	$tmpl          = new patTemplate();
+	$tmpl->setRoot( $path );
+	$tmpl->readTemplatesFromInput( "error_developer.html" );
+	$tmpl->addRows( 'rows', $rows );
+	$tmpl->addRows( 'pageoutput', $pageoutput );
+	$error_html = $tmpl->getParsedTemplate();
+
+	$log_path = JOMRES_SYSTEMLOG_PATH . "error_logs";
+	
+	if ( !is_dir( $log_path ) )
+		{
+		mkdir ( $log_path );
+		}
+	
+	$filename = generateJomresRandomString( 30 ).".html";
+	
+	file_put_contents (  $log_path . JRDS . $filename , $error_html );
+
+	if ($jrConfig['development_production'] == 'development')
+		{
+		echo $error_html;
+		}
+	else
+		{
+		$pageoutput = array(array ( "_JOMRES_ERROR"=>jr_gettext("_JOMRES_ERROR", _JOMRES_ERROR, false ) , "_JOMRES_ERROR_MESSAGE"=>jr_gettext("_JOMRES_ERROR_MESSAGE", _JOMRES_ERROR_MESSAGE, false ) ));
+		$tmpl          = new patTemplate();
+		$tmpl->setRoot( $path );
+		$tmpl->readTemplatesFromInput( "error_production.html" );
+		$tmpl->addRows( 'pageoutput', $pageoutput );
+		echo $tmpl->getParsedTemplate();
+		}
+	
+	$url = '<a href = "'.JOMRES_SITEPAGE_URL_NOSEF.'&task=show_logfile&logfile='.$filename.'"> Logfile </a>' .
+	$error_html
+	;
+	
+	sendAdminEmail( "Error logged ".$output['MESSAGE'], $url);
+	}
+
 function this_cms_is_wordpress()
 	{
 	if ( _JOMRES_DETECTED_CMS != "wordpress3" )
@@ -2758,7 +2832,7 @@ function jomresRedirect( $url, $msg = '' )
 
 	$url = str_replace( "&amp;", "&", $url );
 
-	jr_import( 'browser_detect' );
+/* 	jr_import( 'browser_detect' );
 	$b       = new browser_detect();
 	$browser = $b->getBrowser();
 
@@ -2777,7 +2851,8 @@ function jomresRedirect( $url, $msg = '' )
 			echo '<script>document.location.href=\'' . $url . '\';</script>';
 		else
 			header( 'Location: ' . $url, true );
-		}
+		} */
+
 	exit;
 	}
 
