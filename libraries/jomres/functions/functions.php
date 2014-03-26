@@ -536,12 +536,7 @@ function find_region_name( $region_id )
 	return $region_id;
 
 	$jomres_regions = jomres_singleton_abstract::getInstance( 'jomres_regions' );
-	foreach ( $jomres_regions->regions as $r )
-		{
-		if ( $r[ 'id' ] == $region_id ) return $r[ 'regionname' ];
-		}
-
-	return null;
+	return $jomres_regions->regions[$region_id]['regionname'];
 	}
 
 function find_region_id( $region )
