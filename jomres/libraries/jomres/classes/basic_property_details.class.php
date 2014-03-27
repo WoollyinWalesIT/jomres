@@ -181,9 +181,7 @@ class basic_property_details
 		
 		if ( $this->property_uid === 0 )
 			{
-			echo "Fatal Error, property uid not set, exiting <br/>";
-			//echo_backtrace();
-			exit;
+			throw new Exception("Property uid not set", 2);
 			}
 		
 		$customTextObj      = jomres_singleton_abstract::getInstance( 'custom_text' );
