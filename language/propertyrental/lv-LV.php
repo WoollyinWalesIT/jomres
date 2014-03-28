@@ -186,14 +186,14 @@ jr_define( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', 'Fiks.tālruņa num
 jr_define( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', 'Mob.tālruņa numurs' );
 jr_define( '_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', 'Pēc šāda pieprasījuma nav pieejami numuri' );
 jr_define( '_JOMRES_FRONT_MR_BOOKINGMADE', '<center>Paldies par Jūsu rezervāciju. Ceram, ka Jūsu atpūta būs lieliska.<br><br> <b>Lūdzu atcerieties, ka šī rezervācija tiks apstiprināta ar apstiprināšanas e-pastu no mums. Ja Jūs nesaņemat apstiprinājuma e-pastu, lūdzu sazinieties ar mums.</center>' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE', 'Rezervācija veikta naktsmītnē: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM', 'Rezervētais numurs: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL', 'Ierašanās: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE', 'Izbraukšana: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', 'Vārds: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_LANDLINE', 'Fiksētā tālruņa nr.: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_MOBILE', 'Mob.tālruņa nr.: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL', 'Līguma summa ir: ' );
+
+
+
+
+
+
+
+
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_TITLE', 'Viesis ieradies ' );
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_SELECTBUTTON', 'Izvēlieties viesi ' );
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN', 'Viesis izmitināts ' );
@@ -217,26 +217,26 @@ jr_define( '_JOMRES_COM_A_TARIFFS_PER_DESC', 'Izvēlieties Jā, ja cena jāaprē
 jr_define( '_JOMRES_COM_A_UPLOADS_FILESIZE', 'Failu izmērs' );
 jr_define( '_JOMRES_COM_A_UPLOADS_FILESIZE_DESC', 'Max. faila izmērs KB' );
 jr_define( '_JOMRES_FRONT_MR_BOOKED', 'Resources booked' );
-jr_define( '_JOMRES_COM_CONFIRMATION_TITLE', 'Apstiprinājuma vēstule' );
-jr_define( '_JOMRES_COM_CONFIRMATION_DEAR', 'ļ.cien. ' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RATE_RULES', 'Tarifs: par numuru par nakti. ' );
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', 'Rezervācijas dati' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1', 'Paldies par Jūsu veikto rezervāciju' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO2', '. Zemāk ir Jūsu rezervācijas kopsavilkums. Pārbaudiet vai visi dati ir pareizi. Ja ir kādas neprecizitātes, lūdzu sazinieties ar mums.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_CHECKIN', 'Numurs tiek rezervēts Jūsu norādītajos datumos. Ierašanās laiks ir pēc 14.00' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_LOOKFORWARD', 'Gaidīsim Jūs viesos ' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_HAVEAPLEASANTSTAY', 'Ceram, ka Jums būs patīkama atpūta.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINTINTRO', 'Pievēršiet uzmanību sekojošiem noteikumiem!' );
+
+
+
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_BINDINGCONTRACT', 'Rezervācija ir juridiski saistošs līgums, tāpēc, ja kāda iemesla dēļ Jūs atceļat vai saīsināt Jūsu rezervāciju, tad Jums vēl joprojām ir jāmaksā summa pilnā apmērā.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_NOALLOWANCE', 'No allowance can be made for meals not taken or for resources not occupied for the full period of the booking. With this in mind we strongly recommend that you use a holiday insurance facility.' );
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_CANCELLATIONCHARGES_INTRO', '<i>Rezervācijas atcelšanas maksas</i> Ja Jūs atceļat savu rezervāciju, anulācija jāapstiprina rakstveidā. Atcelšanas maksas ir šādas:' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_30DAYSPLUS', '30 days or more' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_DEPOSITONLY', ' Deposit only.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_1530DAYS', '15 to 30 days' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_50PERCENT', ' 50% of total contract.' );
+
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_ARRIVALDATETO14DAYS', 'Arrival date to 14 days' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_100_PERCENT', ' 100% of total contract.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_VAT', 'Cenas ar PVN.' );
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_PRINT', 'Drukāt apstiprinājuma vēstuli' );
 jr_define( '_JOMRES_COM_INVOICE_TITLE', 'Rēķina izdruka' );
 jr_define( '_JOMRES_COM_INVOICE_STAYNIGHTS', 'Diennakšu skaits: ' );
@@ -347,12 +347,12 @@ jr_define( '_JOMRES_FRONT_DELETEGUEST', 'dzēst viesi' );
 jr_define( '_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', 'viesis izdzēsts' );
 jr_define( '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', 'nevar dzēst šo viesi, jo viņam ir citas rezervācijas' );
 jr_define( '_JOMRES_COM_INVOICE_ACTUALROOMCOST', 'numura cena: ' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_HELLO', 'Labdien!' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS', 'Paldies par Jūsu veikto rezervāciju' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_SUMMARY', 'Rezervācijas informācija:' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_ANYQUESTIONS', 'Ja Jums ir kādi jautājumi attiecībā uz šo rezervāciju vai kādu papildus pakalpojumu, lūdzu kontaktējieties ar mums.' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_TELEPHONE', 'Mūsu tālruņa numurs ir' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_EMAIL', 'Mūsu e-pasta adrese:' );
+
+
+
+
+
+
 jr_define( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', 'Smēķēšana' );
 jr_define( '_JOMRES_FRONT_ROOMSMOKING_EITHER', "Jebkurš" );
 jr_define( '_JOMRES_COM_CALENDAROUTPUT', 'Kalendāra formāts' );
@@ -2464,4 +2464,22 @@ jr_define('_JOMRES_ERROR_DEBUGGING_MESSAGE',"Message");
 jr_define('_JOMRES_ERROR_DEBUGGING_FILE',"File");
 jr_define('_JOMRES_ERROR_DEBUGGING_LINE',"Line");
 jr_define('_JOMRES_ERROR_DEBUGGING_TRACE',"Trace");
+
+
+jr_define('_JOMRES_EMAIL_TEMPLATES_TITLE',"Email templates");
+jr_define('_JOMRES_EMAIL_TEMPLATES_EDIT',"Edit email template");
+jr_define('_JOMRES_EMAIL_TEMPLATES_SUBJECT',"Email subject");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Email text");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Email type");
+jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Email name");
+jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Email description");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Instructions");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Site Admin New Booking Email");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Email sent to the site admin when a new booking is made, if the global Paypal gateway is enabled");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Hotel New Booking Email");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC',"Email sent to property owner when a new booking is made");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILNAME',"Guest New Booking Email");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILDESC',"Email sent to guest when a new booking is made");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME',"Guest Confirmation Letter");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC',"Printable letter or email that can be sent manually by the property owner to confirm a booking");
 

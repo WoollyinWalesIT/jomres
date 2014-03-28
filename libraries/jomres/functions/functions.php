@@ -2827,7 +2827,7 @@ function jomresRedirect( $url, $msg = '' )
 
 	$url = str_replace( "&amp;", "&", $url );
 
-/* 	jr_import( 'browser_detect' );
+ 	jr_import( 'browser_detect' );
 	$b       = new browser_detect();
 	$browser = $b->getBrowser();
 
@@ -2846,7 +2846,7 @@ function jomresRedirect( $url, $msg = '' )
 			echo '<script>document.location.href=\'' . $url . '\';</script>';
 		else
 			header( 'Location: ' . $url, true );
-		} */
+		} 
 
 	exit;
 	}

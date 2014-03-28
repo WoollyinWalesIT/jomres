@@ -191,14 +191,14 @@ jr_define( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', 'Vonalas telefonsz�
 jr_define( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', 'Mobil telefonszám' );
 jr_define( '_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', 'Nincs a megadott paramétereknek megfelelő szabadon lévő szobatípus' );
 jr_define( '_JOMRES_FRONT_MR_BOOKINGMADE', '<center>Köszönjük, hogy igénybe vette szállásfoglalási szolgáltatásunkat.<br><br> <b>Kérjük, vegye figyelembe, hogy ez csak egy előzetes foglalás, és csak akkor válik érvényessé, ha megkapta tőlünk a visszaigazoló levelet.</center>' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE', 'A következő szállás foglalása: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM', 'A következő szoba foglalása: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL', 'Érkezés: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE', 'Távozás: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', 'Név: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_LANDLINE', 'Vonalas telefon: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_MOBILE', 'Mobiltelefon: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL', 'A szerződés értéke: ' );
+
+
+
+
+
+
+
+
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_TITLE', 'Előzetes foglalás ' );
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_SELECTBUTTON', 'Vendég kiválaszása ' );
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN', 'Bejövő foglalás ' );
@@ -223,26 +223,26 @@ jr_define( '_JOMRES_COM_A_TARIFFS_PER_DESC', 'Válassza az Igen-t, ha /fő/nap d
 jr_define( '_JOMRES_COM_A_UPLOADS_FILESIZE', 'Fájlméret' );
 jr_define( '_JOMRES_COM_A_UPLOADS_FILESIZE_DESC', 'A kép maximális mérete KB-ban' );
 jr_define( '_JOMRES_FRONT_MR_BOOKED', 'Foglalt' );
-jr_define( '_JOMRES_COM_CONFIRMATION_TITLE', 'Visszaigazoló levél' );
-jr_define( '_JOMRES_COM_CONFIRMATION_DEAR', 'Kedves ' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RATE_RULES', 'Szállásdíj /nap - /szoba' );
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', 'A szállásfoglalás részletei' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1', 'Köszönjük, hogy a ' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO2', ' rendszerén keresztül foglalt. Alább olvashatja a szállásfoglalása összefoglalóját. Kérjük, ellenőrizze le, hogy az Ön rendelkezésünkre bocsátott adatai helyesek, hogy szükség esetén fel tudjuk venni Önnel a kapcsolatot.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_CHECKIN', 'Az Ön részére megérkezéséig fent lesz tartva a szoba, amely du. 2 óra után foglalható el.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_LOOKFORWARD', 'Mi örömmel várjuk, hogy üdvözölhessük Ön(öke)t szálláshelyünkön ' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_HAVEAPLEASANTSTAY', 'Reméljük, hogy jól érzi majd magát nálunk.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINTINTRO', 'Most fel kell hívjuk a figyelmét egy kis nyomtatásra.' );
+
+
+
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_BINDINGCONTRACT', 'Felhívjuk a figyelmét, hogy a szállásfoglalás egy törvényes szerződés, tehát ha bármi oknál fogva vissza kellene mondania vagy lerövidítenie a foglalást, ezért a szállásfoglalási szabályzatban meghatározottak szerinti kötbért köteles kifizetni.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_NOALLOWANCE', 'A lefoglalt, de el nem foglalt, fogadott szolgáltatások, szálláshelyre engedményt nem tudunk elfogadni a szállásfoglalás teljes idejére. Ezért erősen javallott az utasbiztosítási kedvezmények igénybevétele.' );
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_CANCELLATIONCHARGES_INTRO', '<i>Szállásfoglalás visszamondása vagy megrövidítése</i> Ha le akarja mondani a szállásfoglalást, akkor azt kérjük írásban tegye meg (e-mailen, postai levélben vagy faxon). A szálláslemondásnak a következő költségei vannak:' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_30DAYSPLUS', '30 nap vagy több' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_DEPOSITONLY', ' Csak előleg.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_1530DAYS', '15-től 30 napig' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_50PERCENT', ' a szerződés értékének az 50%.' );
+
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_ARRIVALDATETO14DAYS', 'Az érkezés előtt 14 nap' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_100_PERCENT', ' a teljes szerződés 100%-a.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_VAT', 'Áraink tartalmazzák az áfát. ' );
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_PRINT', 'Visszaigazoló levél kinyomtatása' );
 jr_define( '_JOMRES_COM_INVOICE_TITLE', 'Számla nyomtatása' );
 jr_define( '_JOMRES_COM_INVOICE_STAYNIGHTS', 'Vendégéjszakák száma: ' );
@@ -353,12 +353,12 @@ jr_define( '_JOMRES_FRONT_DELETEGUEST', 'Vendég törlése' );
 jr_define( '_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', 'Vendég törölve' );
 jr_define( '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', 'Nem lehet a vendéget törölni, ha érvényben lévő foglalásuk van. Törölje a vendég foglalását és próbálja meg újra.' );
 jr_define( '_JOMRES_COM_INVOICE_ACTUALROOMCOST', 'A szoba jelenlegi ára: ' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_HELLO', 'Üdvözöljük' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS', 'Köszönjük, hogy foglalt a' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_SUMMARY', 'A szállásfoglalásának összegzése:' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_ANYQUESTIONS', 'Bármilyen bármilyen kérdése merülne fel a szállásfoglalással vagy a szolgáltatásainkkal kapcsolatosan, kérjük bizalommal forduljon hozzánk.' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_TELEPHONE', 'A mi telefonszámunk' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_EMAIL', 'Felveheti velünk a kapcsolatot a következő e-mailcímen is' );
+
+
+
+
+
+
 jr_define( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', 'Dohányzó' );
 jr_define( '_JOMRES_FRONT_ROOMSMOKING_EITHER', "Bármilyen" );
 jr_define( '_JOMRES_COM_CALENDAROUTPUT', 'Naptár kimeneti formátuma' );
@@ -2488,4 +2488,22 @@ jr_define('_JOMRES_ERROR_DEBUGGING_MESSAGE',"Message");
 jr_define('_JOMRES_ERROR_DEBUGGING_FILE',"File");
 jr_define('_JOMRES_ERROR_DEBUGGING_LINE',"Line");
 jr_define('_JOMRES_ERROR_DEBUGGING_TRACE',"Trace");
+
+
+jr_define('_JOMRES_EMAIL_TEMPLATES_TITLE',"Email templates");
+jr_define('_JOMRES_EMAIL_TEMPLATES_EDIT',"Edit email template");
+jr_define('_JOMRES_EMAIL_TEMPLATES_SUBJECT',"Email subject");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Email text");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Email type");
+jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Email name");
+jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Email description");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Instructions");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Site Admin New Booking Email");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Email sent to the site admin when a new booking is made, if the global Paypal gateway is enabled");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Hotel New Booking Email");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC',"Email sent to property owner when a new booking is made");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILNAME',"Guest New Booking Email");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILDESC',"Email sent to guest when a new booking is made");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME',"Guest Confirmation Letter");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC',"Printable letter or email that can be sent manually by the property owner to confirm a booking");
 

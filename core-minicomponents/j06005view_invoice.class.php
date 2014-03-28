@@ -95,11 +95,11 @@ class j06005view_invoice
 				$snip = array();
 				$snippet=array();
 				
-				$snip[ 'HARRIVAL' ]   = jr_gettext( '_JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL', _JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL, false, false );
+				$snip[ 'HARRIVAL' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL, false, false );
 				$snip[ 'ARRIVAL' ]    = outputDate( $contract['arrival'] );
 				if ( $mrConfig[ 'showdepartureinput' ] == "1" )
 					{
-					$snip[ 'HDEPARTURE' ] = jr_gettext( '_JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE', _JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE, false, false );
+					$snip[ 'HDEPARTURE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE, false, false );
 					$snip[ 'DEPARTURE' ]  = outputDate( $contract['departure'] );
 					}
 				

@@ -48,7 +48,7 @@ class j02260editbooking
 		$current_property_details->gather_data($defaultProperty);
 		
 		$current_contract_details = jomres_singleton_abstract::getInstance( 'basic_contract_details' );
-		$current_contract_details->gather_data($contract_uid);
+		$current_contract_details->gather_data($contract_uid, $defaultProperty);
 
 		$popup          = get_showtime( 'popup' );
 		$thisJRUser      = jomres_singleton_abstract::getInstance( 'jr_user' );
@@ -61,23 +61,23 @@ class j02260editbooking
 			if ( !$popup )
 				{
 				//booking approvals
-				if ((int)$current_contract_details->contract['contractdeets']['approved'] == 0 && isset($MiniComponents->registeredClasses['00005booking_inquiries']) )
+				if ((int)$current_contract_details->contract[$contract_uid]['contractdeets']['approved'] == 0 && isset($MiniComponents->registeredClasses['00005booking_enquiries']) )
 					{
 					$output[ 'HAPPROVEBOOKING' ] = jr_gettext( '_JOMRES_BOOKING_APPROVE_INQUIRY', _JOMRES_BOOKING_APPROVE_INQUIRY, $editable = false, $isLink = true );
-					$link = JOMRES_SITEPAGE_URL . '&task=booking_approval&contractUid=' . $contract_uid;
+					$link = JOMRES_SITEPAGE_URL . '&task=approve_enquiry&contractUid=' . $contract_uid;
 					$targetTask = 'booking_approval';
 					$image = '/jomres/images/jomresimages/' . $jrtbar->imageSize . '/Tick.png';
 					
 					$jrtb .= $jrtbar->customToolbarItem( $targetTask, $link, $output[ 'HAPPROVEBOOKING' ], $submitOnClick = false, $submitTask = "", $image );
-					add_menu_option( '&task=booking_approval&contractUid=' . $contract_uid, null, $output[ 'HAPPROVEBOOKING' ], null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+					//add_menu_option( '&task=booking_approval&contractUid=' . $contract_uid, null, $output[ 'HAPPROVEBOOKING' ], null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
 					
 					$output[ 'HREJECTBOOKING' ] = jr_gettext( '_JOMRES_BOOKING_REJECT_INQUIRY', _JOMRES_BOOKING_REJECT_INQUIRY, $editable = false, $isLink = true );
-					$link = JOMRES_SITEPAGE_URL . '&task=booking_rejection&contractUid=' . $contract_uid;
+					$link = JOMRES_SITEPAGE_URL . '&task=reject_enquiry&contractUid=' . $contract_uid;
 					$targetTask = 'booking_rejection';
 					$image = '/jomres/images/jomresimages/' . $jrtbar->imageSize . '/Cancel.png';
 					
 					$jrtb .= $jrtbar->customToolbarItem( $targetTask, $link, $output[ 'HREJECTBOOKING' ], $submitOnClick = false, $submitTask = "", $image );
-					add_menu_option( '&task=booking_rejection&contractUid=' . $contract_uid, null, $output[ 'HREJECTBOOKING' ], null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+					//add_menu_option( '&task=booking_rejection&contractUid=' . $contract_uid, null, $output[ 'HREJECTBOOKING' ], null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
 					}
 				
 				//amend booking
@@ -86,17 +86,17 @@ class j02260editbooking
 				$targetTask = 'amendBooking';
 				$image = '/jomres/images/jomresimages/' . $jrtbar->imageSize . '/HotelReservationEdit.png';
 				
-				if ( (int)$current_contract_details->contract['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract['contractdeets']['cancelled'] != 1 )
+				if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 )
 					{
 					$jrtb .= $jrtbar->customToolbarItem( $targetTask, $link, $output[ 'HAMENDBOOKING' ], $submitOnClick = false, $submitTask = "", $image );
-					add_menu_option( '&task=amendBooking&no_html=1&contractUid=' . $contract_uid, null, $output[ 'HAMENDBOOKING' ], null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+					//add_menu_option( '&task=amendBooking&no_html=1&contractUid=' . $contract_uid, null, $output[ 'HAMENDBOOKING' ], null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
 					}
 				
 				if ( get_showtime( 'include_room_booking_functionality' ) )
 					{
-					if ( (int)$current_contract_details->contract['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract['contractdeets']['cancelled'] != 1 && (int)$current_contract_details->contract['contractdeets']['approved'] == 1 )
+					if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['approved'] == 1 )
 						{
-						if ( (int)$current_contract_details->contract['contractdeets']['booked_in'] == 0 )
+						if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['booked_in'] == 0 )
 							{
 							$output[ 'HBOOKGUESTIN' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN', _JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN, $editable = false, $isLink = true );
 							$link = JOMRES_SITEPAGE_URL . '&task=bookGuestIn&contract_uid=' . $contract_uid;
@@ -104,12 +104,12 @@ class j02260editbooking
 							$image = '/jomres/images/jomresimages/' . $jrtbar->imageSize . '/BookGuestIn.png';
 							
 							$jrtb .= $jrtbar->customToolbarItem( $targetTask, $link, $output[ 'HBOOKGUESTIN' ], $submitOnClick = false, $submitTask = "", $image );
-							add_menu_option( '&task=bookGuestIn&contract_uid=' . $contract_uid, null, jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN', _JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+							//add_menu_option( '&task=bookGuestIn&contract_uid=' . $contract_uid, null, jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN', _JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
 							
-							if ((int)$current_contract_details->contract['contractdeets']['channel_manager_booking'] != 1)
+							if ((int)$current_contract_details->contract[$contract_uid]['contractdeets']['channel_manager_booking'] != 1)
 								{
 								$jrtb .= $jrtbar->toolbarItem( 'cancelbooking', jomresURL( JOMRES_SITEPAGE_URL . "&task=cancelBooking&contract_uid=".$contract_uid ), '' );
-								add_menu_option( '&task=cancelBooking&contract_uid=' . $contract_uid, null, jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', _JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+								//add_menu_option( '&task=cancelBooking&contract_uid=' . $contract_uid, null, jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', _JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
 								}
 							}
 						else
@@ -120,58 +120,58 @@ class j02260editbooking
 							$image = '/jomres/images/jomresimages/' . $jrtbar->imageSize . '/BookGuestOut.png';
 							
 							$jrtb .= $jrtbar->customToolbarItem( $targetTask, $link, $output[ 'HBOOKGUESTOUT' ], $submitOnClick = false, $submitTask = "", $image );
-							add_menu_option( '&task=bookGuestOut&dueDepart=' . $contract_uid, null, jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN', _JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+							//add_menu_option( '&task=bookGuestOut&dueDepart=' . $contract_uid, null, jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN', _JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
 							}
 						}
 					}
 
-				if ( (int)$current_contract_details->contract['contractdeets']['booking_deposit_paid'] != 1 && (int)$current_contract_details->contract['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract['contractdeets']['cancelled'] != 1 )
+				if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['booking_deposit_paid'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 )
 					{
 					$jrtb .= $jrtbar->toolbarItem( 'enterdeposit', jomresURL( JOMRES_SITEPAGE_URL . "&task=editDeposit&contractUid=".$contract_uid ), '' );
-					add_menu_option( "&task=editDeposit&contractUid=".$contract_uid, null, jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+					//add_menu_option( "&task=editDeposit&contractUid=".$contract_uid, null, jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
 					}
 				
 				$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=yes,menubar=yes,resizable=yes,width=710,height=500,directories=no,location=no';
-				$link   = JOMRES_SITEPAGE_URL . '&task=confirmationForm&popup=1&tmpl='.get_showtime("tmplcomponent").'&contract_uid=' . $contract_uid;
+				$link   = JOMRES_SITEPAGE_URL . '&task=confirmation_letter&popup=1&tmpl='.get_showtime("tmplcomponent").'&contract_uid=' . $contract_uid;
 				
-				if ( (int)$current_contract_details->contract['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract['contractdeets']['cancelled'] != 1 )
+				if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 )
 					{
 					$jrtb .= $jrtbar->toolbarItem( 'addservice', jomresURL( JOMRES_SITEPAGE_URL . "&task=addServiceToBill&contract_uid=".$contract_uid ), jr_gettext( '_JOMRES_COM_ADDSERVICE_TITLE', _JOMRES_COM_ADDSERVICE_TITLE, $editable = false, $isLink = false ) );
-					add_menu_option( "&task=addServiceToBill&contract_uid=".$contract_uid, null, jr_gettext( '_JOMRES_COM_ADDSERVICE_TITLE', _JOMRES_COM_ADDSERVICE_TITLE, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+					//add_menu_option( "&task=addServiceToBill&contract_uid=".$contract_uid, null, jr_gettext( '_JOMRES_COM_ADDSERVICE_TITLE', _JOMRES_COM_ADDSERVICE_TITLE, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
 					}
 				
-				if ( (int)$current_contract_details->contract['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract['contractdeets']['cancelled'] != 1 )
+				if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 )
 					{
 					$jrtb .= $jrtbar->toolbarItem( 'printer', 'javascript:void window.open(\'' . $link . '\', \'win2\', \'' . $status . '\');', jr_gettext( '_JOMRES_COM_CONFIRMATION_PRINT', _JOMRES_COM_CONFIRMATION_PRINT, $editable = false, $isLink = false ) );
-					add_menu_option( 'javascript:void window.open(\'' . $link . '\', \'win2\', \'' . $status . '\');', null, jr_gettext( '_JOMRES_COM_CONFIRMATION_PRINT', _JOMRES_COM_CONFIRMATION_PRINT, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+					//add_menu_option( 'javascript:void window.open(\'' . $link . '\', \'win2\', \'' . $status . '\');', null, jr_gettext( '_JOMRES_COM_CONFIRMATION_PRINT', _JOMRES_COM_CONFIRMATION_PRINT, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
 					}
 				
-				$link = JOMRES_SITEPAGE_URL . '&task=confirmationForm&no_html=1&contract_uid=' . $contract_uid . '&sendemail=1';
-				if ( (int)$current_contract_details->contract['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract['contractdeets']['cancelled'] != 1 )
+				$link = JOMRES_SITEPAGE_URL . '&task=confirmation_letter&no_html=1&contract_uid=' . $contract_uid . '&sendemail=1';
+				if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 )
 					{
 					$jrtb .= $jrtbar->toolbarItem( 'emailsend', 'javascript:void window.open(\'' . $link . '\', \'win2\', \'' . $status . '\');', jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL, $editable = false, $isLink = false ) );
-					add_menu_option( 'javascript:void window.open(\'' . $link . '\', \'win2\', \'' . $status . '\');', null, jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+					//add_menu_option( 'javascript:void window.open(\'' . $link . '\', \'win2\', \'' . $status . '\');', null, jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
 					}
 
-				if ( (int)$current_contract_details->contract['contractdeets']['invoice_uid'] > 0 )
+				if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['invoice_uid'] > 0 )
 					{
 					$output[ 'SHOWINVOICE' ] = jr_gettext( '_JOMRES_MANAGER_SHOWINVOICE', _JOMRES_MANAGER_SHOWINVOICE, $editable = false, $isLink = true );
-					$link = JOMRES_SITEPAGE_URL . '&task=view_invoice&id=' . (int)$current_contract_details->contract['contractdeets']['invoice_uid'];
+					$link = JOMRES_SITEPAGE_URL . '&task=view_invoice&id=' . (int)$current_contract_details->contract[$contract_uid]['contractdeets']['invoice_uid'];
 					$targetTask = 'view_invoice';
 					$image = '/jomres/images/jomresimages/' . $jrtbar->imageSize . '/Invoice.png';
 					
 					$jrtb .= $jrtbar->customToolbarItem( $targetTask, $link, $output[ 'SHOWINVOICE' ], $submitOnClick = false, $submitTask = "", $image );
-					add_menu_option( '&task=view_invoice&id=' . (int)$current_contract_details->contract['contractdeets']['invoice_uid'], null, $output[ 'SHOWINVOICE' ], null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+					//add_menu_option( '&task=view_invoice&id=' . (int)$current_contract_details->contract[$contract_uid]['contractdeets']['invoice_uid'], null, $output[ 'SHOWINVOICE' ], null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
 					}
 
 				$notesLink = JOMRES_SITEPAGE_URL . '&task=addnote&contract_uid=' . $contract_uid;
 				$jrtb .= $jrtbar->toolbarItem( 'note', $notesLink, jr_gettext( '_JOMCOMP_BOOKINGNOTES_ADD', _JOMCOMP_BOOKINGNOTES_ADD, $editable = false, $isLink = false ) );
-				add_menu_option( $notesLink, null, jr_gettext( '_JOMCOMP_BOOKINGNOTES_ADD', _JOMCOMP_BOOKINGNOTES_ADD, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+				//add_menu_option( $notesLink, null, jr_gettext( '_JOMCOMP_BOOKINGNOTES_ADD', _JOMCOMP_BOOKINGNOTES_ADD, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
 				}
 			else
 				{
 				$jrtb .= $jrtbar->toolbarItem( 'cancelbooking', jomresURL( JOMRES_SITEPAGE_URL_AJAX . "&task=cancelBooking&popup=1&contract_uid=".$contract_uid ), '' );
-				add_menu_option( "&task=cancelBooking&popup=1&contract_uid=".$contract_uid, null, jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', _JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+				//add_menu_option( "&task=cancelBooking&popup=1&contract_uid=".$contract_uid, null, jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', _JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
 				}
 			$jrtb .= $jrtbar->endTable();
 
@@ -179,9 +179,9 @@ class j02260editbooking
 			$pageoutput = array ();
 
 			$output[ '_JOMRES_BOOKING_NUMBER' ] = jr_gettext( '_JOMRES_BOOKING_NUMBER', _JOMRES_BOOKING_NUMBER, $editable = true, $isLink = false );
-			$output[ 'BOOKING_NUMBER' ]         = $current_contract_details->contract['contractdeets']['tag'];
-			$output[ 'GUEST_FIRSTNAME' ]        = $current_contract_details->contract['guestdeets']['firstname'];
-			$output[ 'GUEST_SURNAME' ]          = $current_contract_details->contract['guestdeets']['surname'];
+			$output[ 'BOOKING_NUMBER' ]         = $current_contract_details->contract[$contract_uid]['contractdeets']['tag'];
+			$output[ 'GUEST_FIRSTNAME' ]        = $current_contract_details->contract[$contract_uid]['guestdeets']['firstname'];
+			$output[ 'GUEST_SURNAME' ]          = $current_contract_details->contract[$contract_uid]['guestdeets']['surname'];
 			$output[ 'TOOLBAR' ]                = $jrtb;
 
 			$pageoutput[ ] = $output;
@@ -208,20 +208,20 @@ class j02260editbooking
 			}
 
 		$output[ 'ARRIVALTEXT' ]     = $arrivalText;
-		$output[ 'BOOKING_ARRIVAL' ] = outputDate( $current_contract_details->contract['contractdeets']['arrival'] );
+		$output[ 'BOOKING_ARRIVAL' ] = outputDate( $current_contract_details->contract[$contract_uid]['contractdeets']['arrival'] );
 
 		$output[ 'DEPARTURETEXT' ]     = $departureText;
-		$output[ 'BOOKING_DEPARTURE' ] = outputDate( $current_contract_details->contract['contractdeets']['departure'] );
+		$output[ 'BOOKING_DEPARTURE' ] = outputDate( $current_contract_details->contract[$contract_uid]['contractdeets']['departure'] );
 		
 		$nights = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY, false, false ) : jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS, false, false );
 		
 		if ( get_showtime( 'include_room_booking_functionality' ) ) // Jintour property bookings will probably not want to show this information, so we won't add it
 			{
 			$output[ 'HNIGHTS' ] = $nights;
-			$output[ 'NUM_NIGHTS' ] = count( explode( ",", $current_contract_details->contract['contractdeets']['date_range_string'] ) );
+			$output[ 'NUM_NIGHTS' ] = count( explode( ",", $current_contract_details->contract[$contract_uid]['contractdeets']['date_range_string'] ) );
 			}
 		
-		foreach ($current_contract_details->contract['roomdeets'] as $rd)
+		foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd)
 			{
 			$roomBooking_black_booking = $rd['black_booking'];
 			$roomBooking_reception_booking = $rd['reception_booking'];
@@ -237,10 +237,10 @@ class j02260editbooking
 		$output[ '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL' ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL', _JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL );
 		$output[ 'BOOKINGTYPE' ] = $bookingType;
 		$output[ '_JOMRES_COM_MR_ASSIGNUSER_USERNAME' ] = jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_USERNAME', _JOMRES_COM_MR_ASSIGNUSER_USERNAME );
-		$output[ 'BOOKERSUSERNAME' ] = $current_contract_details->contract['contractdeets']['username'];
+		$output[ 'BOOKERSUSERNAME' ] = $current_contract_details->contract[$contract_uid]['contractdeets']['username'];
 
 		$output[ '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ' ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ', _JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ );
-		$output[ 'SPECIALREQS' ] = jomres_decode($current_contract_details->contract['contractdeets']['special_reqs']);
+		$output[ 'SPECIALREQS' ] = jomres_decode($current_contract_details->contract[$contract_uid]['contractdeets']['special_reqs']);
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
@@ -253,53 +253,68 @@ class j02260editbooking
 		$output     = array ();
 		$pageoutput = array ();
 		
+		if ( get_showtime( 'include_room_booking_functionality' ) )
+			{
+			$output[ '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES' ] = jr_gettext( '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', _JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES );
+			
+			$guest_type_rows = array ();
+			foreach ( $current_contract_details->contract[$contract_uid]['guesttype'] as $type )
+				{
+				$r = array ();
+				$r[ 'GUEST_TYPE_TITLE' ] = $type[ 'title' ];
+				$r[ 'GUEST_TYPE_QTY' ] = $type[ 'qty' ];
+				$guest_type_rows[ ] = $r;
+				}
+			}
+		
 		$output[ '_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL' ] 	  = jr_gettext( '_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL', _JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL );
-		$output[ 'GUEST_FIRSTNAME' ]                         	  = $current_contract_details->contract['guestdeets']['firstname'];
+		$output[ 'GUEST_FIRSTNAME' ]                         	  = $current_contract_details->contract[$contract_uid]['guestdeets']['firstname'];
 		$output[ '_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL' ] 		  = jr_gettext( '_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL', _JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL );
-		$output[ 'GUEST_SURNAME' ]                        		  = $current_contract_details->contract['guestdeets']['surname'];
+		$output[ 'GUEST_SURNAME' ]                        		  = $current_contract_details->contract[$contract_uid]['guestdeets']['surname'];
 		$output[ '_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL' ]    = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL );
-		$output[ 'GUEST_HOUSE' ]                                  = $current_contract_details->contract['guestdeets']['house'];
+		$output[ 'GUEST_HOUSE' ]                                  = $current_contract_details->contract[$contract_uid]['guestdeets']['house'];
 		$output[ '_JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL' ]   = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL );
-		$output[ 'GUEST_STREET' ]                                 = $current_contract_details->contract['guestdeets']['street'];
+		$output[ 'GUEST_STREET' ]                                 = $current_contract_details->contract[$contract_uid]['guestdeets']['street'];
 		$output[ '_JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL' ]     = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL );
-		$output[ 'GUEST_TOWN' ]                                   = $current_contract_details->contract['guestdeets']['town'];
+		$output[ 'GUEST_TOWN' ]                                   = $current_contract_details->contract[$contract_uid]['guestdeets']['town'];
 		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION' ]   = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION );
-		$output[ 'GUEST_REGION' ]                                 = $current_contract_details->contract['guestdeets']['county'];
+		$output[ 'GUEST_REGION' ]                                 = $current_contract_details->contract[$contract_uid]['guestdeets']['county'];
 		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' ]  = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY );
-		$output[ 'GUEST_COUNTRY' ]                                = $current_contract_details->contract['guestdeets']['country'];
+		$output[ 'GUEST_COUNTRY' ]                                = $current_contract_details->contract[$contract_uid]['guestdeets']['country'];
 		$output[ '_JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL' ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL );
-		$output[ 'GUEST_POSTCODE' ]                               = $current_contract_details->contract['guestdeets']['postcode'];
+		$output[ 'GUEST_POSTCODE' ]                               = $current_contract_details->contract[$contract_uid]['guestdeets']['postcode'];
 		$output[ '_JOMRES_COM_MR_EB_GUEST_JOMRES_LANDLINE_EXPL' ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_LANDLINE_EXPL );
-		$output[ 'GUEST_TEL_LANDLINE' ]                           = $current_contract_details->contract['guestdeets']['tel_landline'];
+		$output[ 'GUEST_TEL_LANDLINE' ]                           = $current_contract_details->contract[$contract_uid]['guestdeets']['tel_landline'];
 		$output[ '_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL' ]   = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL );
-		$output[ 'GUEST_TEL_MOBILE' ]                             = $current_contract_details->contract['guestdeets']['tel_mobile'];
+		$output[ 'GUEST_TEL_MOBILE' ]                             = $current_contract_details->contract[$contract_uid]['guestdeets']['tel_mobile'];
 		$output[ 'HGUEST_VAT_NUMBER' ]							  = jr_gettext( '_JOMRES_COM_YOURBUSINESS_VATNO', _JOMRES_COM_YOURBUSINESS_VATNO );
-		$output[ 'GUEST_VAT_NUMBER' ]                             = $current_contract_details->contract['guestdeets']['vat_number'];
+		$output[ 'GUEST_VAT_NUMBER' ]                             = $current_contract_details->contract[$contract_uid]['guestdeets']['vat_number'];
 		$output[ '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL' ] 	  = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL );
 		
 		$output[ 'EMAIL_LINK' ] = 'mailto:' 
-								. $current_contract_details->contract['guestdeets']['email'] 
+								. $current_contract_details->contract[$contract_uid]['guestdeets']['email'] 
 								. '?subject=' . jr_gettext( '_JOMRES_BOOKING_NUMBER', _JOMRES_BOOKING_NUMBER, false ) 
 								. ' ' 
-								. $current_contract_details->contract['contractdeets']['tag'] 
+								. $current_contract_details->contract[$contract_uid]['contractdeets']['tag'] 
 								. ' @ ' 
 								. $current_property_details->property_name 
 								. '&body=' . jr_gettext( '_JOMRES_COM_CONFIRMATION_DEAR', _JOMRES_COM_CONFIRMATION_DEAR, false ) 
-								. ucfirst( $current_contract_details->contract['guestdeets']['firstname'] ) 
+								. ucfirst( $current_contract_details->contract[$contract_uid]['guestdeets']['firstname'] ) 
 								. ' ' 
-								. ucfirst( $current_contract_details->contract['guestdeets']['surname'] ) 
+								. ucfirst( $current_contract_details->contract[$contract_uid]['guestdeets']['surname'] ) 
 								. ' RE ' 
 								. jr_gettext( '_JOMRES_BOOKING_NUMBER', _JOMRES_BOOKING_NUMBER, false ) 
 								. ' ' 
-								. $current_contract_details->contract['contractdeets']['tag'];
+								. $current_contract_details->contract[$contract_uid]['contractdeets']['tag'];
 
-		$output[ 'EMAIL_ADDRESS' ] = $current_contract_details->contract['guestdeets']['email'];
+		$output[ 'EMAIL_ADDRESS' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['email'];
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
 		$tmpl->readTemplatesFromInput( 'edit_booking_tabcontents_guest.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->addRows( 'guest_type_rows', $guest_type_rows );
 		$guest_template = $tmpl->getParsedTemplate();
 
 		//rooms tab
@@ -311,7 +326,7 @@ class j02260editbooking
 		if ( is_null( $rooms_tab_replacement ) )
 			{
 			$rows = array ();
-			foreach ($current_contract_details->contract['roomdeets'] as $rd)
+			foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd)
 				{
 				$r = array ();
 				if ( (int)$rd[ 'room_disabled_access' ] == 1 ) 
@@ -360,22 +375,10 @@ class j02260editbooking
 		$output     = array ();
 		$pageoutput = array ();
 
-		if ( get_showtime( 'include_room_booking_functionality' ) )
-			{
-			$guest_type_rows = array ();
-			foreach ( $current_contract_details->contract['guesttype'] as $type )
-				{
-				$r = array ();
-				$r[ 'GUEST_TYPE_TITLE' ] = $type[ 'title' ];
-				$r[ 'GUEST_TYPE_QTY' ] = $type[ 'qty' ];
-				$guest_type_rows[ ] = $r;
-				}
-			}
-
 		$extras_rows = array ();
 		$taxrates = taxrates_getalltaxrates();
 
-		foreach ( $current_contract_details->contract['extradeets'] as $extra )
+		foreach ( $current_contract_details->contract[$contract_uid]['extradeets'] as $extra )
 			{
 			$r = array ();
 			$quantity = $extra['qty'];
@@ -403,9 +406,9 @@ class j02260editbooking
 
 		$other_services_rows = array ();
 		$otherServiceTotal   = 0.00;
-		if ( count( $current_contract_details->contract['extraservice'] ) > 0 )
+		if ( count( $current_contract_details->contract[$contract_uid]['extraservice'] ) > 0 )
 			{
-			foreach ( $current_contract_details->contract['extraservice'] as $e )
+			foreach ( $current_contract_details->contract[$contract_uid]['extraservice'] as $e )
 				{
 				$xs_tax = ( $e['service_value'] / 100 ) * (float) $e['tax_rate_val'];
 				$otherServiceTotal = $otherServiceTotal + ( $e['service_value'] + $xs_tax );
@@ -417,23 +420,23 @@ class j02260editbooking
 				}
 			}
 
-		if ( (int)$current_contract_details->contract['contractdeets']['invoice_uid'] > 0 )
+		if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['invoice_uid'] > 0 )
 			{
 			jr_import( "invoicehandler" );
 			$invoice = new invoicehandler();
-			$invoice->id = $current_contract_details->contract['contractdeets']['invoice_uid'];
+			$invoice->id = $current_contract_details->contract[$contract_uid]['contractdeets']['invoice_uid'];
 			$invoice->getInvoice();
 			$remaindertopay = $invoice->get_line_items_balance();
 			}
 		else
 			{
-			if ( (int)$current_contract_details->contract['contractdeets']['deposit_paid'] == 1 ) 
-				$remaindertopay = ( $otherServiceTotal + $current_contract_details->contract['contractdeets']['contract_total'] ) - $current_contract_details->contract['contractdeets']['deposit_required'];
+			if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['deposit_paid'] == 1 ) 
+				$remaindertopay = ( $otherServiceTotal + $current_contract_details->contract[$contract_uid]['contractdeets']['contract_total'] ) - $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_required'];
 			else
-				$remaindertopay = $otherServiceTotal + $current_contract_details->contract['contractdeets']['contract_total'];
+				$remaindertopay = $otherServiceTotal + $current_contract_details->contract[$contract_uid]['contractdeets']['contract_total'];
 			}
 		
-		if ( (int)$current_contract_details->contract['contractdeets']['deposit_paid'] == 1 ) 
+		if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['deposit_paid'] == 1 ) 
 			$depositPaid = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES );
 		else
 			$depositPaid = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO );
@@ -441,29 +444,28 @@ class j02260editbooking
 		$output[ '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID' ]    = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID );
 		$output[ 'DEPOSITPAID' ]                            = $depositPaid;
 		$output[ '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED' ] = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', _JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED );
-		$output[ 'BOOKING_DEPOSIT_REQUIRED' ]               = output_price( $current_contract_details->contract['contractdeets']['deposit_required'] );
+		$output[ 'BOOKING_DEPOSIT_REQUIRED' ]               = output_price( $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_required'] );
 		$output[ '_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL' ]  = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL', _JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL );
-		$output[ 'BOOKING_CONTRACT_TOTAL' ]                 = output_price( $current_contract_details->contract['contractdeets']['contract_total'] );
+		$output[ 'BOOKING_CONTRACT_TOTAL' ]                 = output_price( $current_contract_details->contract[$contract_uid]['contractdeets']['contract_total'] );
 
 		$output[ '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF' ] = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF );
-		$output[ 'BOOKING_DEPOSIT_REF' ]                = $current_contract_details->contract['contractdeets']['deposit_ref'];
+		$output[ 'BOOKING_DEPOSIT_REF' ]                = $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_ref'];
 
 		if ( get_showtime( 'include_room_booking_functionality' ) ) // Jintour property bookings will probably not want to show this information, so we won't add it
 			{
 			$output[ '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON' ] = jr_gettext( '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON', _JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON );
-			$output[ 'SINGLE_PERSON_SUPPLIMENT' ]               = output_price( $current_contract_details->contract['contractdeets']['single_person_suppliment'] );
-			$output[ '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES' ] = jr_gettext( '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', _JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES );
+			$output[ 'SINGLE_PERSON_SUPPLIMENT' ]               = output_price( $current_contract_details->contract[$contract_uid]['contractdeets']['single_person_suppliment'] );
 			}
 
 		$output[ '_JOMRES_COM_FRONT_ROOMTAX' ] = jr_gettext( '_JOMRES_COM_FRONT_ROOMTAX', _JOMRES_COM_FRONT_ROOMTAX );
-		$output[ 'TAX' ]                       = output_price( $current_contract_details->contract['contractdeets']['tax'] );
+		$output[ 'TAX' ]                       = output_price( $current_contract_details->contract[$contract_uid]['contractdeets']['tax'] );
 
 		$output[ '_JOMRES_COM_MR_EXTRA_TITLE' ]                 = jr_gettext( '_JOMRES_COM_MR_EXTRA_TITLE', _JOMRES_COM_MR_EXTRA_TITLE );
 		$output[ '_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE' ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE', _JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE );
-		$output[ 'EXTRASOPTIONSVALUE' ]                         = output_price( $current_contract_details->contract['contractdeets']['extrasvalue'] );
+		$output[ 'EXTRASOPTIONSVALUE' ]                         = output_price( $current_contract_details->contract[$contract_uid]['contractdeets']['extrasvalue'] );
 		$output[ '_JOMRES_COM_ADDSERVICE_BOOKINGDESC' ]         = jr_gettext( '_JOMRES_COM_ADDSERVICE_BOOKINGDESC', _JOMRES_COM_ADDSERVICE_BOOKINGDESC );
 		$output[ '_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL' ]      = jr_gettext( '_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL', _JOMRES_COM_INVOICE_LETTER_GRANDTOTAL );
-		$output[ 'GRAND_TOTAL' ]                                = output_price( $otherServiceTotal + $current_contract_details->contract['contractdeets']['contract_total'] );
+		$output[ 'GRAND_TOTAL' ]                                = output_price( $otherServiceTotal + $current_contract_details->contract[$contract_uid]['contractdeets']['contract_total'] );
 		$output[ '_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY' ]  = jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY', _JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY );
 		$output[ 'REMAINDER_TO_PAY' ]                           = output_price( $remaindertopay );
 
@@ -473,7 +475,6 @@ class j02260editbooking
 		$tmpl->readTemplatesFromInput( 'edit_booking_tabcontents_payment.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'extras_rows', $extras_rows );
-		$tmpl->addRows( 'guest_type_rows', $guest_type_rows );
 		$tmpl->addRows( 'other_services_rows', $other_services_rows );
 		$payment_template = $tmpl->getParsedTemplate();
 
@@ -482,7 +483,7 @@ class j02260editbooking
 		$pageoutput = array ();
 		$note_rows = array();
 
-		foreach ( $current_contract_details->contract['notedeets'] as $n )
+		foreach ( $current_contract_details->contract[$contract_uid]['notedeets'] as $n )
 			{
 			$r=array();
 			$r[ 'NOTE' ]       = $n['note'];

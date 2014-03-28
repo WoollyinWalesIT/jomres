@@ -80,7 +80,7 @@ class j00501booking_settings
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			if (!get_showtime('is_jintour_property') && isset($MiniComponents->registeredClasses['00005booking_inquiries']))
+			if (!get_showtime('is_jintour_property') && isset($MiniComponents->registeredClasses['00005booking_enquiries']))
 				{
 				$configurationPanel->setleft( jr_gettext( "_JOMRES_BOOKING_INQUIRY_SETTING_TITLE", _JOMRES_BOOKING_INQUIRY_SETTING_TITLE, false )  );
 				$configurationPanel->setmiddle( $lists[ 'requireApproval' ] );

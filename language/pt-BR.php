@@ -194,14 +194,14 @@ jr_define( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', 'DDD+Telefone' );
 jr_define( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', 'DDD+Celular' );
 jr_define( '_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', 'ATENÇĂO: Nem todos os quartos atendem a sua solicitaçăo. Por Favor verifique novamente' );
 jr_define( '_JOMRES_FRONT_MR_BOOKINGMADE', '<center>Obrigado por utilizar o nosso sistema. Esperamos que aproveite sua estadia.<br><br> <b>Por favor note esta é APENAS uma SOLICITAÇĂO DE RESERVA, e que SOMENTE ESTARÁ CONFIMADA quando vocę receber nosso email de confirmaçăo.<BR>Após receber o email, efetue o pagamento para que sua RESERVA se transforme em BLOQUEIO.<BR>Obrigado.</center>' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE', 'Reserva feita para: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM', 'Reserva feita para o quarto: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL', 'Check-in: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE', 'Check-out: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', 'Nome: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_LANDLINE', 'DDD+Telefone: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_MOBILE', 'DDD+Celular: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL', 'O valor Total é de: ' );
+
+
+
+
+
+
+
+
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_TITLE', 'Check-in' );
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_SELECTBUTTON', 'Selecione o Hóspede ' );
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN', 'Hóspede com reserva em ' );
@@ -226,26 +226,26 @@ jr_define( '_JOMRES_COM_A_TARIFFS_PER_DESC', 'Selecione SIM se vocę prefere cob
 jr_define( '_JOMRES_COM_A_UPLOADS_FILESIZE', 'Tamanho do Arquivo' );
 jr_define( '_JOMRES_COM_A_UPLOADS_FILESIZE_DESC', 'Tamanho Máx. do arquivo de imagem em kilobyte' );
 jr_define( '_JOMRES_FRONT_MR_BOOKED', 'Reservado' );
-jr_define( '_JOMRES_COM_CONFIRMATION_TITLE', 'Mensagem de COFIRMAÇĂO' );
-jr_define( '_JOMRES_COM_CONFIRMATION_DEAR', 'Olá ' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RATE_RULES', 'Custo por-noite-por quarto ' );
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', 'Detalhes da reserva' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1', 'Obrigado por utilizar o site ' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO2', '. Abaixo segue um resumo dos detalhes da sua reserva. Por favor verifique se estăo corretos, e caso contrário entre em contato conosco.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_CHECKIN', 'O quarto estará diponível até a sua chegada, e o Check-in é a partir das 14:00h.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_LOOKFORWARD', 'Estamos aguardando a sua chegada aqui ' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_HAVEAPLEASANTSTAY', 'Desejamos uma boa estadia.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINTINTRO', 'Gostaríamos de sua atençăo ŕ um pequeno detalhe.' );
+
+
+
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_BINDINGCONTRACT', 'Estamos lembrando que sua reserva é um contrato com obrigaçőes legais, entăo se por qualquer razăo vocę precisar CANCELAR ou DIMINUIR o período da sua reserva, ainda assim vocę é responsável pelo pagamento do total.' ); //###########Check the laws
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_NOALLOWANCE', 'No allowance can be made for meals not taken or for quartos not occupied for o full poriod do o boking. With thé in mind nós strongly recommfim that vocę use a holiday insurance facility.' ); //#############Check the laws
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_CANCELLATIONCHARGES_INTRO', '<i>Custos do Cancelamentos</i> TODO CANCELAMENTO deverá ser confirmado POR ESCRITO. Os custos para cancelamento săo:' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_30DAYSPLUS', '30 dias ou mais' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_DEPOSITONLY', ' Somente Depósito.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_1530DAYS', 'de 15 ŕ 30 dias' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_50PERCENT', ' 50% do total contrato.' );
+
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_ARRIVALDATETO14DAYS', 'Data do Check-in prox 14 dias' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_100_PERCENT', ' 100% do total do contrato.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_VAT', 'VAT@ 17.5% é incluido em todas as tarifas. Qualquer aumento ou alteraçăo será cobrada.' );
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_PRINT', 'Imprimir a confirmaçăo' );
 jr_define( '_JOMRES_COM_INVOICE_TITLE', 'Impressăo da Solicitaçăo' );
 jr_define( '_JOMRES_COM_INVOICE_STAYNIGHTS', 'Número do noites: ' );
@@ -362,12 +362,12 @@ jr_define( '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', 'Impossível deletar
 //===============================================================================Apresentaçăo do Calendário
 jr_define( '_JOMRES_COM_INVOICE_ACTUALROOMCOST', 'tarifa atual da UH: ' );
 //=================================================================================CRM = email para os usuários
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_HELLO', 'Olá' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS', 'Obrigado por fazer sua reserva conosco' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_SUMMARY', 'A seguir o resumo de sua Reserva:' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_ANYQUESTIONS', 'Qualquer dúvida quanto a reserva ou serviço, por favor entre em contato conosco.' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_TELEPHONE', 'Nosso telefone é' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_EMAIL', 'Ou mande um email para' );
+
+
+
+
+
+
 //=============================================================================Fumantes + Datas no Calendário
 jr_define( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', 'Fumante' );
 jr_define( '_JOMRES_FRONT_ROOMSMOKING_EITHER', 'Indiferente' );
@@ -2507,4 +2507,22 @@ jr_define('_JOMRES_ERROR_DEBUGGING_MESSAGE',"Message");
 jr_define('_JOMRES_ERROR_DEBUGGING_FILE',"File");
 jr_define('_JOMRES_ERROR_DEBUGGING_LINE',"Line");
 jr_define('_JOMRES_ERROR_DEBUGGING_TRACE',"Trace");
+
+
+jr_define('_JOMRES_EMAIL_TEMPLATES_TITLE',"Email templates");
+jr_define('_JOMRES_EMAIL_TEMPLATES_EDIT',"Edit email template");
+jr_define('_JOMRES_EMAIL_TEMPLATES_SUBJECT',"Email subject");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Email text");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Email type");
+jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Email name");
+jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Email description");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Instructions");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Site Admin New Booking Email");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Email sent to the site admin when a new booking is made, if the global Paypal gateway is enabled");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Hotel New Booking Email");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC',"Email sent to property owner when a new booking is made");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILNAME',"Guest New Booking Email");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILDESC',"Email sent to guest when a new booking is made");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME',"Guest Confirmation Letter");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC',"Printable letter or email that can be sent manually by the property owner to confirm a booking");
 
