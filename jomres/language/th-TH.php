@@ -177,14 +177,14 @@ jr_define( "_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL", "หมายเล
 jr_define( "_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL", "หมายเลขมือถือ" );
 jr_define( "_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE", "มีไม่มีประเภทว่างตามที่เลือก" );
 jr_define( "_JOMRES_FRONT_MR_BOOKINGMADE", "<center>Thank you for making your booking with us and we hope that you enjoy your stay.<br><br> <b>Please note that this is only a preliminary booking, and will not be confirmed until you receive your confirmation letter from us.</center>" );
-jr_define( "_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE", "จองตามประเภทธุรกิจ" );
-jr_define( "_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM", "สำรองห้องพักตามประเภท:" );
-jr_define( "_JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL", "มาถึง:" );
-jr_define( "_JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE", "ออกเดินทาง:" );
-jr_define( "_JOMRES_FRONT_MR_EMAIL_TEXT_NAME", "ชื่อ:" );
-jr_define( "_JOMRES_FRONT_MR_EMAIL_TEXT_LANDLINE", "เบอร์โทรศัพท์พื้นฐาน:" );
-jr_define( "_JOMRES_FRONT_MR_EMAIL_TEXT_MOBILE", "เบอร์โทรศัพท์มือถือ" );
-jr_define( "_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL", "มูลค่าของสัญญา:" );
+
+
+
+
+
+
+
+
 jr_define( "_JOMRES_FRONT_MR_BOOKIN_TITLE", "รายชื่อแขกจอง" );
 jr_define( "_JOMRES_FRONT_MR_BOOKIN_SELECTBUTTON", "เลือกดูแขก" );
 jr_define( "_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN", "แขกที่เข้าจอง" );
@@ -208,26 +208,26 @@ jr_define( "_JOMRES_COM_A_TARIFFS_PER_DESC", "เลือกใช่หาก�
 jr_define( "_JOMRES_COM_A_UPLOADS_FILESIZE", "ขนาดไฟล์" );
 jr_define( "_JOMRES_COM_A_UPLOADS_FILESIZE_DESC", "ขนาดส่งได้สูงสุดกิโลไบต์" );
 jr_define( "_JOMRES_FRONT_MR_BOOKED", "ประเภทที่ถูกจองแล้ว" );
-jr_define( "_JOMRES_COM_CONFIRMATION_TITLE", "จดหมายยืนยัน" );
-jr_define( "_JOMRES_COM_CONFIRMATION_DEAR", "เรียน" );
-jr_define( "_JOMRES_COM_CONFIRMATION_RATE_RULES", "ราคาต่อคืน - ต่อประเภท" );
+
+
+
 jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS", "รายละเอียดการจอง" );
-jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1", "ขอบคุณสำหรับการจอง" );
-jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO2", "ข้างล่างนี้คือสรุปของรายละเอียดการจองของคุณ กรุณาตรวจสอบว่า เรามีรายละเอียดของคุณถูกต้องทั้งหมดแล้ว รบกวนติดต่อเราหากมีข้อผิดพลาด" );
-jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_CHECKIN", "ทางเราจะจองไว้ให้ถึง 2.00 pm." );
-jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_LOOKFORWARD", "ทางเราหวังว่าจะได้เจอคุณเร็วๆนี้" );
-jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_HAVEAPLEASANTSTAY", "ทางเราหวังว่าคุณจะได้รับความสะดวกสบายเมื่อจองกับเรา" );
-jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINTINTRO", "กรุณาดูข้อมูลสำคัญเพิ่มเติมอยู่ด้านล่าง" );
+
+
+
+
+
+
 jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_BINDINGCONTRACT", "You are reminded that a booking is a legally binding contract, so if for any reason you have to cancel or shorten your booking then you are still liable to pay the full amount." );
-jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_NOALLOWANCE", "No allowance can be made for meals not taken or for resources not occupied for the full period of the booking. With this in mind we strongly recommend that you use a holiday insurance facility." );
+
 jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_CANCELLATIONCHARGES_INTRO", "<i>Cancellation and curtailment charges</i> If you cancel your holiday the cancellation must be confirmed in writing. Cancellation charges are as follows:" );
-jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_30DAYSPLUS", "30 วันหรือมากกว่า" );
-jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_DEPOSITONLY", "มัดจำเท่านั้น" );
-jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_1530DAYS", "15 ถึง 30 วัน" );
-jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_50PERCENT", "50% ของจำนวนทั้งหมด" );
+
+
+
+
 jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_ARRIVALDATETO14DAYS", "ถึงก่อน 14 วัน" );
-jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_100_PERCENT", "100% ของจำนวนทั้งหมด" );
-jr_define( "_JOMRES_COM_CONFIRMATION_RESERVATION_VAT", "VAT@ 17.5% is included in all tariffs. Any increase or alterations will be charged." );
+
+
 jr_define( "_JOMRES_COM_CONFIRMATION_PRINT", "พิมพ์จดหมายยืนยัน" );
 jr_define( "_JOMRES_COM_INVOICE_TITLE", "พิมพ์ใบแจ้งชำระ" );
 jr_define( "_JOMRES_COM_INVOICE_STAYNIGHTS", "จำนวนคืน:" );
@@ -338,12 +338,12 @@ jr_define( "_JOMRES_FRONT_DELETEGUEST", "ลบ แขก" );
 jr_define( "_JOMRES_FRONT_DELETEGUEST_GUESTDELETED", "แขกที่ถูกลบ" );
 jr_define( "_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST", "ไม่สามารถลบแขกนี้เนื่องจากจองเป็นการจองประเภทอื่น" );
 jr_define( "_JOMRES_COM_INVOICE_ACTUALROOMCOST", "ราคาของประเภทการจองที่แท้จริง:" );
-jr_define( "_JOMRES_FRONT_GUEST_EMAIL_TEXT_HELLO", "สวัสดี" );
-jr_define( "_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS", "ขอบคุณสำหรับการจองของคุณด้วย" );
-jr_define( "_JOMRES_FRONT_GUEST_EMAIL_TEXT_SUMMARY", "สรุปการจองที่ต่อไปนี้:" );
-jr_define( "_JOMRES_FRONT_GUEST_EMAIL_TEXT_ANYQUESTIONS", "ถ้าคุณมีคำถามใด ๆ เกี่ยวกับการจองนี้หรือบริการอื่น ๆ แล้วโปรดอย่าลังเลติดต่อเรา" );
-jr_define( "_JOMRES_FRONT_GUEST_EMAIL_TEXT_TELEPHONE", "หมายเลขโทรศัพท์ของเราคือ" );
-jr_define( "_JOMRES_FRONT_GUEST_EMAIL_TEXT_EMAIL", "อีกวิธีหนึ่งคือ คุณสามารถติดต่อเรา โดยอีเมล์ที่" );
+
+
+
+
+
+
 jr_define( "_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING", "การสูบบุหรี่" );
 jr_define( "_JOMRES_FRONT_ROOMSMOKING_EITHER", "ใด ๆ" );
 jr_define( "_JOMRES_COM_CALENDAROUTPUT", "Calendar output format" );
@@ -2339,4 +2339,22 @@ jr_define('_JOMRES_ERROR_DEBUGGING_MESSAGE',"Message");
 jr_define('_JOMRES_ERROR_DEBUGGING_FILE',"File");
 jr_define('_JOMRES_ERROR_DEBUGGING_LINE',"Line");
 jr_define('_JOMRES_ERROR_DEBUGGING_TRACE',"Trace");
+
+
+jr_define('_JOMRES_EMAIL_TEMPLATES_TITLE',"Email templates");
+jr_define('_JOMRES_EMAIL_TEMPLATES_EDIT',"Edit email template");
+jr_define('_JOMRES_EMAIL_TEMPLATES_SUBJECT',"Email subject");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Email text");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Email type");
+jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Email name");
+jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Email description");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Instructions");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Site Admin New Booking Email");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Email sent to the site admin when a new booking is made, if the global Paypal gateway is enabled");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Hotel New Booking Email");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC',"Email sent to property owner when a new booking is made");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILNAME',"Guest New Booking Email");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILDESC',"Email sent to guest when a new booking is made");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME',"Guest Confirmation Letter");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC',"Printable letter or email that can be sent manually by the property owner to confirm a booking");
 

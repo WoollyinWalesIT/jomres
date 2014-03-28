@@ -402,7 +402,7 @@ function saveSiteConfig()
 	
 	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 	$c->eraseAll();
-	
+
 	jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=showSiteConfig", "Configuration saved" );
 	}
 

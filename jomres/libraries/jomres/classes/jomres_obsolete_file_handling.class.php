@@ -914,12 +914,29 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_11_debugging.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j02265viewbookingnotes.class.php' );
+		
 		$this->add_obs_file( $this->dir_javascript . 'bootstrap-tour.js' );
 		$this->add_obs_file( $this->dir_javascript . 'datatables_bootstrap_paging.js' );
 		$this->add_obs_file( $this->dir_javascript . 'DT_bootstrap.js' );
-		$this->add_obs_file( $this->dir_libraries . 'class.JavaScriptPacker.php' );
-		$this->add_obs_file( $this->dir_minicomponents . 'j99999pack_javascript.class.php' );
 		
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'guest_conf_email.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'hotel_conf_email.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'confirmation_letter.html' );
+		
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'guest_conf_email.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'hotel_conf_email.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'confirmation_letter.html' );
+		
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'guest_conf_email.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'hotel_conf_email.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'confirmation_letter.html' );
+		
+		$this->add_obs_file( $this->dir_minicomponents . 'j03110guestconfirmationemail.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j03100hotelconfirmationemail.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j03100adminconfirmationemail.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j02190confirmationform.class.php' );
+		
+		$this->add_obs_file( $this->dir_classes . 'jomres_cache.class.php' );
 		
 		}
 

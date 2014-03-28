@@ -191,14 +191,14 @@ jr_define( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', '地址' );
 jr_define( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', '手机' );
 jr_define( '_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', '<font color="red" face="arial" size="4">没有房间满足这个特定需求</font>' );
 jr_define( '_JOMRES_FRONT_MR_BOOKINGMADE', '<center>谢谢您的预订,我们希望您在本店旅居愉快.<br><br> <b>请注意这只是预订的第一步,当您收到我们的确认函件以后该预订方可成为正式预订.</center>' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE', '预订寓所: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM', '预订房间: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL', '入住: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE', '离店: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', '名称: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_LANDLINE', '地址: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_MOBILE', '手机: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL', '服务价格: ' );
+
+
+
+
+
+
+
+
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_TITLE', '预订入住的旅客 ' );
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_SELECTBUTTON', '选择旅客 ' );
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN', '旅客已入住 ' );
@@ -223,26 +223,26 @@ jr_define( '_JOMRES_COM_A_TARIFFS_PER_DESC', '如果您想按照每人每晚收�
 jr_define( '_JOMRES_COM_A_UPLOADS_FILESIZE', '文件大小' );
 jr_define( '_JOMRES_COM_A_UPLOADS_FILESIZE_DESC', '最大图片尺寸 in Kb' );
 jr_define( '_JOMRES_FRONT_MR_BOOKED', '已订' );
-jr_define( '_JOMRES_COM_CONFIRMATION_TITLE', '确认信函' );
-jr_define( '_JOMRES_COM_CONFIRMATION_DEAR', '尊敬的 ' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RATE_RULES', '收费为每晚 - 每房间 ' );
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', '预订资料' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1', '谢谢您使用预订功能 在' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO2', '. 下面是您的预订资料. 请确认是否属实,如果发现有误请及时联系我们.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_CHECKIN', '在您抵达以前您的房间将被保留, 入住时间为下午 2 点以后.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_LOOKFORWARD', '我们期盼和您见面于 ' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_HAVEAPLEASANTSTAY', '我们希望您在我们这里旅居愉快.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINTINTRO', '当前我们希望您能关注下面内容.' );
+
+
+
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_BINDINGCONTRACT', '您确认该预订将成为正式的法律合同, 如果您有任何取消预订或者缩短旅居时间的行为发生,您仍然将按照该合同支付全额旅居费用.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_NOALLOWANCE', '旅居期间本店不提供免费餐饮服务. 因此我们建议您使用我们的厨房设施.' );
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_CANCELLATIONCHARGES_INTRO', '<i>有关取消预订和缩短旅居天数的收费</i> 如果您想取消预订,您必须提供书面文本申请. 关于取消预订服务的收费如下:' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_30DAYSPLUS', '30 天或更多' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_DEPOSITONLY', ' 只收取订金.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_1530DAYS', '15 至 30 天' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_50PERCENT', ' 50%的总服务报价.' );
+
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_ARRIVALDATETO14DAYS', '至抵达日14天之内' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_100_PERCENT', ' 100%的总服务报价.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_VAT', '17.5% 增值税已经包含在所有价格里面. 任何新增或者调整将被重新计费.' );
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_PRINT', '打印确认信函' );
 jr_define( '_JOMRES_COM_INVOICE_TITLE', '打印发票' );
 jr_define( '_JOMRES_COM_INVOICE_STAYNIGHTS', '夜晚数:' );
@@ -353,12 +353,12 @@ jr_define( '_JOMRES_FRONT_DELETEGUEST', '删除旅客' );
 jr_define( '_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', '客户已删除' );
 jr_define( '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', '无法删除此旅客,因为他们已经预订那些开放的房间了. 先行取消预订然后重新尝试.' );
 jr_define( '_JOMRES_COM_INVOICE_ACTUALROOMCOST', '实际房间费用:' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_HELLO', '您好' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS', '谢谢您的预订与' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_SUMMARY', '预订简述如下:' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_ANYQUESTIONS', '如果您对此预订和其他服务有问题, 请即时联系我们.' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_TELEPHONE', '我们的电话是' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_EMAIL', '或者您可以电邮至' );
+
+
+
+
+
+
 jr_define( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', '吸烟' );
 jr_define( '_JOMRES_FRONT_ROOMSMOKING_EITHER', "无所谓" );
 jr_define( '_JOMRES_COM_CALENDAROUTPUT', '日期输出格式' );
@@ -2494,4 +2494,22 @@ jr_define('_JOMRES_ERROR_DEBUGGING_MESSAGE',"Message");
 jr_define('_JOMRES_ERROR_DEBUGGING_FILE',"File");
 jr_define('_JOMRES_ERROR_DEBUGGING_LINE',"Line");
 jr_define('_JOMRES_ERROR_DEBUGGING_TRACE',"Trace");
+
+
+jr_define('_JOMRES_EMAIL_TEMPLATES_TITLE',"Email templates");
+jr_define('_JOMRES_EMAIL_TEMPLATES_EDIT',"Edit email template");
+jr_define('_JOMRES_EMAIL_TEMPLATES_SUBJECT',"Email subject");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Email text");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Email type");
+jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Email name");
+jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Email description");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Instructions");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Site Admin New Booking Email");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Email sent to the site admin when a new booking is made, if the global Paypal gateway is enabled");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Hotel New Booking Email");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC',"Email sent to property owner when a new booking is made");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILNAME',"Guest New Booking Email");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILDESC',"Email sent to guest when a new booking is made");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME',"Guest Confirmation Letter");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC',"Printable letter or email that can be sent manually by the property owner to confirm a booking");
 

@@ -191,14 +191,14 @@ jr_define( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', 'Tlf. nummer' );
 jr_define( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', 'Mobil nummer' );
 jr_define( '_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', 'Det finnes ingen rom som tillfredstiller de ønskene du har spesifisert' );
 jr_define( '_JOMRES_FRONT_MR_BOOKINGMADE', '<center>Tusen takk for at du bestiller hos oss og vi håper du får glede av oppholdet.<br><br> <b>Vi gjør oppmerksom på at bestillingen ikke er endelig før du har mottatt bekreftelse fra oss.</center>' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE', 'Bestillingen er gjort for hotell/motell/rom: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM', 'Bestillingen er gjort for rom: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL', 'Annkomst: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE', 'Avreise: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', 'Navn: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_LANDLINE', 'Tlf: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_MOBILE', 'Mobil: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL', 'Kontrakten pålyder: ' );
+
+
+
+
+
+
+
+
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_TITLE', 'Registrer inn gjest ' );
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_SELECTBUTTON', 'Velg gjest ' );
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN', 'Gjest er registrert ' );
@@ -223,26 +223,26 @@ jr_define( '_JOMRES_COM_A_TARIFFS_PER_DESC', 'Velg Ja om du ønsker å belaste p
 jr_define( '_JOMRES_COM_A_UPLOADS_FILESIZE', 'Fil størrelse' );
 jr_define( '_JOMRES_COM_A_UPLOADS_FILESIZE_DESC', 'Maks. Bilde filstørrelse i Kilobyte' );
 jr_define( '_JOMRES_FRONT_MR_BOOKED', 'Bestilt' );
-jr_define( '_JOMRES_COM_CONFIRMATION_TITLE', 'Bekreftelses brev' );
-jr_define( '_JOMRES_COM_CONFIRMATION_DEAR', 'Kjære ' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RATE_RULES', 'Pris pr natt - pr rom ' );
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', 'Bestillings detaljer' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1', 'Tusen takk for deres bestilling på' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO2', '. Her er en oppsummering av bestillingen. Vær vennlig å kontroller at alt er korekt, om du finner feil så vennligst kontakt oss omgående.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_CHECKIN', 'Ditt rom er reservert til din annkomst, og du kan sjekke inn etter 12.00.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_LOOKFORWARD', 'Vi ser frem til å ønske deg velkommen på' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_HAVEAPLEASANTSTAY', 'Vi håper at du får et hyggelig opphold.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINTINTRO', 'Nå vil vi henvise deg til det med liten skrift.' );
+
+
+
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_BINDINGCONTRACT', 'Vi minner deg på at en bestilling er en bindende kontrakt, slik at dersom du av en eller annen grunn avbestiller eller forkorter din bestilling så vil du likevel være ansvarlig for å betale hele beløpet.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_NOALLOWANCE', 'Det gis ingen kompensasjon for uspiste måltider eller rom som ikke anvendes hele perioden det er bestilt for. Med tanke på dette anbefaler vi deg på det sterkeste å anskaffe en reiseforsikring.' );
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_CANCELLATIONCHARGES_INTRO', '<i>Avbestillings avgifter</i> Om du avbestiller må du gjøre det skriftlig. Avbestillingsgebyrer er som følger:' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_30DAYSPLUS', '30 dager eller mer' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_DEPOSITONLY', ' Kun forskudd.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_1530DAYS', '15 til 30 dager' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_50PERCENT', ' 50% av den totale kontrakt.' );
+
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_ARRIVALDATETO14DAYS', 'Ankomst dato til 14 dager før' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_100_PERCENT', ' 100% av total kontrakt.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_VAT', 'VAT@ 17.5% er inkludert i alle priser. Eventuell økning vil bli belastet.' );
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_PRINT', 'Skriv ut bekreftelsen' );
 jr_define( '_JOMRES_COM_INVOICE_TITLE', 'Utskrift av faktura' );
 jr_define( '_JOMRES_COM_INVOICE_STAYNIGHTS', 'Antall netter: ' );
@@ -355,12 +355,12 @@ jr_define( '_JOMRES_FRONT_DELETEGUEST', 'Slett gjest' );
 jr_define( '_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', 'Gjest er slettet' );
 jr_define( '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', 'Kan ikke slette denne gjesten fordi de har åpne bestillinger. Sltt bestillingene & prøv igjen.' );
 jr_define( '_JOMRES_COM_INVOICE_ACTUALROOMCOST', 'Reell rom pris: ' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_HELLO', 'Hei' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS', 'Tusen takk for at du foretar din bestilling hos oss' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_SUMMARY', 'Her er en oppsummering av din bestilling:' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_ANYQUESTIONS', 'Om du har noen spørsmål i forbindelse med bestillingen eller noen av våre andre tjenester, så må du ikke nøle med å ta kontakt med oss.' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_TELEPHONE', 'Vårt tlf nummer er' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_EMAIL', 'Alternativt kan du kontakte oss med e-post til' );
+
+
+
+
+
+
 jr_define( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', 'Røking' );
 jr_define( '_JOMRES_FRONT_ROOMSMOKING_EITHER', 'Spiller ingen rolle' );
 jr_define( '_JOMRES_COM_CALENDAROUTPUT', 'Kalender format' );
@@ -2491,4 +2491,22 @@ jr_define('_JOMRES_ERROR_DEBUGGING_MESSAGE',"Message");
 jr_define('_JOMRES_ERROR_DEBUGGING_FILE',"File");
 jr_define('_JOMRES_ERROR_DEBUGGING_LINE',"Line");
 jr_define('_JOMRES_ERROR_DEBUGGING_TRACE',"Trace");
+
+
+jr_define('_JOMRES_EMAIL_TEMPLATES_TITLE',"Email templates");
+jr_define('_JOMRES_EMAIL_TEMPLATES_EDIT',"Edit email template");
+jr_define('_JOMRES_EMAIL_TEMPLATES_SUBJECT',"Email subject");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Email text");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Email type");
+jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Email name");
+jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Email description");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Instructions");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Site Admin New Booking Email");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Email sent to the site admin when a new booking is made, if the global Paypal gateway is enabled");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Hotel New Booking Email");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC',"Email sent to property owner when a new booking is made");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILNAME',"Guest New Booking Email");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILDESC',"Email sent to guest when a new booking is made");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME',"Guest Confirmation Letter");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC',"Printable letter or email that can be sent manually by the property owner to confirm a booking");
 

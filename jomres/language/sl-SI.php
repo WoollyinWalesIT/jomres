@@ -191,14 +191,14 @@ jr_define( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', 'Telefon' );
 jr_define( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', 'Mobilni telefon' );
 jr_define( '_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', 'Ni sob, ki bi ustrezale zahtevanim pogojem' );
 jr_define( '_JOMRES_FRONT_MR_BOOKINGMADE', '<center>Zahvaljujemo se vam za rezervacijo in upamo, da bo vaše bivanje prijetno.<br><br> <b>Upoštevajte, da je rezervacija le predhodna in bo potrjena šele s pisnim potrdilom, ki ga prejmete od nas.</center>' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE', 'Rezervacija ustvarjena za objekt: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM', 'Rezervacija ustvarjena za sobo: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL', 'Prihod: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE', 'Odhod: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', 'Ime: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_LANDLINE', 'Telefon: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_MOBILE', 'Mobilni telefon: ' );
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL', 'Skupna vrednost bivanja je: ' );
+
+
+
+
+
+
+
+
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_TITLE', 'Prijava gosta ' );
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_SELECTBUTTON', 'Izbira gosta ' );
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN', 'Gost prijavljen ' );
@@ -223,26 +223,26 @@ jr_define( '_JOMRES_COM_A_TARIFFS_PER_DESC', 'Izberite Da, če želite polog obr
 jr_define( '_JOMRES_COM_A_UPLOADS_FILESIZE', 'Velikost datoteke' );
 jr_define( '_JOMRES_COM_A_UPLOADS_FILESIZE_DESC', 'Največja velikost slike v kilobajtih' );
 jr_define( '_JOMRES_FRONT_MR_BOOKED', 'Rezervirano' );
-jr_define( '_JOMRES_COM_CONFIRMATION_TITLE', 'Potrditveno pismo' );
-jr_define( '_JOMRES_COM_CONFIRMATION_DEAR', 'Spoštovani ' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RATE_RULES', 'Cena na noč - na sobo ' );
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', 'Podrobnosti rezervacije' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1', 'Hvala za rezervacijo pri' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO2', '. Spodaj je povzetek podrobnosti rezervacije. Prosimo, preverite, ali so vaši podatki pravilni in nam sporočite morebitne napake.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_CHECKIN', 'Sobo vam bomo prihranili do vašega prihoda, prijava pa je ob 14h.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_LOOKFORWARD', 'Veselimo se že, da vas bomo pričakali v ' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_HAVEAPLEASANTSTAY', 'Upamo, da bo vaše bivanje prijetno.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINTINTRO', 'Opozoriti vam moramo na drobni tisk.' );
+
+
+
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_BINDINGCONTRACT', 'Upoštevajte, da je rezervacija pravno zavezujoča pogodba, zato ste obvezani, da kljub morebitni odpovedi ali preklicu plačate poln znesek.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_NOALLOWANCE', 'V obdobju rezervacije ne veljajo povračila za obroke in nočitve, ki jih ne izkoristite. Zaradi tega vam priporočamo, da uporabite možnost zavarovanja počitnic.' );
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_CANCELLATIONCHARGES_INTRO', '<i>Stroški preklica ali skrajšanja</i> Če prekličete dopust, mora biti preklic v pisni obliki. Stroški preklica so naslednji:' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_30DAYSPLUS', '30 dni ali več' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_DEPOSITONLY', ' Le polog.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_1530DAYS', '15 do 30 dni' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_50PERCENT', ' 50% celotne vrednosti.' );
+
+
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_ARRIVALDATETO14DAYS', 'Dan prihoda do 14 dni' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_100_PERCENT', ' 100% celotne vrednosti.' );
-jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_VAT', 'DDV@ 20% je vključen v vseh tarifah. Kakršno koli zvišanje ali sprememba bo obračunano.' );
+
+
 jr_define( '_JOMRES_COM_CONFIRMATION_PRINT', 'Natisni potrditveno pismo' );
 jr_define( '_JOMRES_COM_INVOICE_TITLE', 'Izpis računa' );
 jr_define( '_JOMRES_COM_INVOICE_STAYNIGHTS', 'Število nočitev: ' );
@@ -353,12 +353,12 @@ jr_define( '_JOMRES_FRONT_DELETEGUEST', 'Izbriši gosta' );
 jr_define( '_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', 'Gost izbrisan' );
 jr_define( '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', 'Gosta ni mogoče izbrisati, ker ima odprte rezervacije. Prekličite rezervacije in poskusite znova.' );
 jr_define( '_JOMRES_COM_INVOICE_ACTUALROOMCOST', 'Dejanska cena sobe: ' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_HELLO', 'Pozdravljeni!' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS', 'Hvala za rezervacijo pri' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_SUMMARY', 'Sledi povzetek rezervacije:' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_ANYQUESTIONS', 'Če imate glede rezervacije ali drugih storitev kakršna koli vprašanja, se brez oklevanja obrnite na nas.' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_TELEPHONE', 'Naša telefonska številka je' );
-jr_define( '_JOMRES_FRONT_GUEST_EMAIL_TEXT_EMAIL', 'Uporabite lahko tudi naš poštni naslov:' );
+
+
+
+
+
+
 jr_define( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', 'Kadilci' );
 jr_define( '_JOMRES_FRONT_ROOMSMOKING_EITHER', "Katera koli izbira" );
 jr_define( '_JOMRES_COM_CALENDAROUTPUT', 'Izstopna oblika koledarja' );
@@ -2493,4 +2493,22 @@ jr_define('_JOMRES_ERROR_DEBUGGING_MESSAGE',"Message");
 jr_define('_JOMRES_ERROR_DEBUGGING_FILE',"File");
 jr_define('_JOMRES_ERROR_DEBUGGING_LINE',"Line");
 jr_define('_JOMRES_ERROR_DEBUGGING_TRACE',"Trace");
+
+
+jr_define('_JOMRES_EMAIL_TEMPLATES_TITLE',"Email templates");
+jr_define('_JOMRES_EMAIL_TEMPLATES_EDIT',"Edit email template");
+jr_define('_JOMRES_EMAIL_TEMPLATES_SUBJECT',"Email subject");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Email text");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Email type");
+jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Email name");
+jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Email description");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Instructions");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Site Admin New Booking Email");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Email sent to the site admin when a new booking is made, if the global Paypal gateway is enabled");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Hotel New Booking Email");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC',"Email sent to property owner when a new booking is made");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILNAME',"Guest New Booking Email");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILDESC',"Email sent to guest when a new booking is made");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME',"Guest Confirmation Letter");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC',"Printable letter or email that can be sent manually by the property owner to confirm a booking");
 

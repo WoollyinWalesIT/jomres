@@ -45,13 +45,14 @@ class j03020insertbooking
 		//global $jomresProccessingBookingObject;
 		$mrConfig          = getPropertySpecificSettings();
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		
 		$depositPaid       = $componentArgs[ 'depositPaid' ];
-		if ( isset( $componentArgs[ 'usejomressessionasCartid' ] ) ) $usejomressessionasCartid = $componentArgs[ 'usejomressessionasCartid' ];
+		if ( isset( $componentArgs[ 'usejomressessionasCartid' ] ) ) 
+			$usejomressessionasCartid = $componentArgs[ 'usejomressessionasCartid' ];
 		else
-		$usejomressessionasCartid = false;
+			$usejomressessionasCartid = false;
 		$usejomressessionasCartid       = false;
 		$userIsManager                  = checkUserIsManager();
 		$jomresProccessingBookingObject = getCurrentBookingData( get_showtime( 'jomressession' ) );
@@ -394,24 +395,29 @@ class j03020insertbooking
 					}
 				$datetime     = date( "Y-m-d H-i-s" );
 				$ccode        = $mrConfig[ 'currencyCode' ];
+				
+				jr_import("jomres_contract_secret_key");
+				$jomres_contract_secret_key = new jomres_contract_secret_key();
+				$secret_key = $jomres_contract_secret_key->generate_secret_key();
+				
+				$query = "SELECT id FROM #__jomres_booking_data_archive WHERE tag = '".$cartnumber."'";
+				$booking_data_archive_id = doSelectSql($query,1);
+				
 				$query        = "INSERT INTO #__jomres_contracts (
 					`arrival`,`departure`,`rates_uid`,
 					`guest_uid`,`rate_rules`,`rooms_tariffs`,`contract_total`,`special_reqs`,
 					`deposit_paid`,`deposit_required`,
 					`date_range_string`,`booked_in`,`booked_out`,
-					`property_uid`,`single_person_suppliment`,`extras`,`extrasquantities`,`extrasvalue`,`tax`,`tag`,`timestamp`,`room_total`,`discount`,`currency_code`,`discount_details`,`username`,`coupon_id`,`approved`)
+					`property_uid`,`single_person_suppliment`,`extras`,`extrasquantities`,`extrasvalue`,`tax`,`tag`,`timestamp`,`room_total`,`discount`,`currency_code`,`discount_details`,`username`,`coupon_id`,`approved`,`booking_data_archive_id`,`secret_key`)
 					VALUES (
 					'$arrivalDate','$departureDate','" . (int) $rates_uid . "',
 					'" . (int) $guests_uid . "','$rateRules','" . (string) $requestedRoom . "', '" . (float) $contract_total . "','$specialReqs',
 					'" . (int) $depositPaid . "','" . (float) $deposit_required . "',
 					'$dateRangeString','" . (int) $booked_in . "','0',
-					'" . (int) $property_uid . "','" . (float) $single_person_suppliment . "','$extras','" . (string) $extrasquantities . "','" . (float) $extrasValue . "','" . (float) $tax . "','$cartnumber','$datetime','" . (float) $room_total . "','" . (float) $discount . "','$ccode','" . $discount_details . "','" . $bookersUsername . "'," . (int) $coupon_id . "," . $approved . ") ";
+					'" . (int) $property_uid . "','" . (float) $single_person_suppliment . "','$extras','" . (string) $extrasquantities . "','" . (float) $extrasValue . "','" . (float) $tax . "','$cartnumber','$datetime','" . (float) $room_total . "','" . (float) $discount . "','$ccode','" . $discount_details . "','" . $bookersUsername . "'," . (int) $coupon_id . "," . $approved . " , '".$booking_data_archive_id ."' '".$secret_key."') ";
 				$contract_uid = doInsertSql( $query, "" );
 				
-				jr_import("jomres_contract_secret_key");
-				$jomres_contract_secret_key = new jomres_contract_secret_key();
-				$secret_key = $jomres_contract_secret_key->generate_secret_key();
-				$jomres_contract_secret_key->save_secret_key( $secret_key , $contract_uid );
+				
 				
 				
 				if ( $mrConfig[ 'singleRoomProperty' ] == 1 ) $newtext = $tmpBookingHandler->getBookingFieldVal( "lastminutediscount" );
@@ -557,9 +563,9 @@ class j03020insertbooking
 			//insert custom fields notes
 			jr_import( 'jomres_custom_field_handler' );
 			$custom_fields   = new jomres_custom_field_handler();
-			
-			$query = "SELECT ptype_id FROM #__jomres_propertys WHERE propertys_uid = '" . (int) $property_uid . "'";
-			$ptype_id = (int)doSelectSql( $query,1 );
+
+			$current_property_details->gather_data($property_uid);
+			$ptype_id = $current_property_details->ptype_id;
 			
 			$allCustomFields = $custom_fields->getAllCustomFieldsByPtypeId($ptype_id);
 			if ( count( $allCustomFields ) > 0 )

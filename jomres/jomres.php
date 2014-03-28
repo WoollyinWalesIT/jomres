@@ -706,11 +706,12 @@ try
 				userHasBeenLoggedOut();
 				break;
 			#########################################################################################
-			case 'confirmationForm':
+			// 28/03/2014 removed due to new 
+/* 			case 'confirmationForm':
 				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02190' ); //confirmationForm();
 				else
 				userHasBeenLoggedOut();
-				break;
+				break; */
 			#########################################################################################
 			case 'saveCancellation':
 				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02162' ); //saveCancellation();
