@@ -265,12 +265,19 @@ class j03020insertbooking
 				if ((int)$mrConfig['requireApproval'] == 1 )
 					{
 					if ($thisJRUser->userIsManager)
+						{
 						$approved = 1;
+						}
 					else
+						{
+						$approval_approved = $tmpBookingHandler->getBookingFieldVal( "approval_approved" );
 						$approved = 0;
+						}
 					}
 				else
+					{
 					$approved = 1;
+					}
 
 				gateway_log( "j03020insertbooking :: Setting cart number. " . $cartnumber . " for " . get_showtime( 'jomressession' ) );
 
@@ -341,27 +348,32 @@ class j03020insertbooking
 							$discount_details .= serialize( $d );
 							}
 						}
-					// Now to double check that the rooms haven't been booked while this person was paying
-					$dateRangeArray = explode( ",", $dateRangeString );
-					if ( get_showtime( 'include_room_booking_functionality' ) )
+						
+					
+					if ( !$approval_approved )
 						{
-						for ( $i = 0, $n = count( $dateRangeArray ); $i < $n; $i++ )
+						// Now to double check that the rooms haven't been booked while this person was paying
+						$dateRangeArray = explode( ",", $dateRangeString );
+						if ( get_showtime( 'include_room_booking_functionality' ) )
 							{
-							$roomBookedDate = $dateRangeArray[ $i ];
-							$selected       = explode( ",", $requestedRoom );
-							foreach ( $selected as $roomsRequested )
+							for ( $i = 0, $n = count( $dateRangeArray ); $i < $n; $i++ )
 								{
-								$rm            = explode( "^", $roomsRequested );
-								$rmuid         = $rm[ 0 ];
-								$rates_uids[ ] = $rm[ 1 ];
-								$query         = "SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE `room_uid` = '" . (int) $rmuid . "' AND `date` = '" . $roomBookedDate . "'";
-								$result        = doSelectSql( $query );
-								if ( count( $result ) > 0 )
+								$roomBookedDate = $dateRangeArray[ $i ];
+								$selected       = explode( ",", $requestedRoom );
+								foreach ( $selected as $roomsRequested )
 									{
-									trigger_error( "Failed to insert booking looks like the room has been double booked ", E_USER_ERROR );
-									$this->insertSuccessful = false;
+									$rm            = explode( "^", $roomsRequested );
+									$rmuid         = $rm[ 0 ];
+									$rates_uids[ ] = $rm[ 1 ];
+									$query         = "SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE `room_uid` = '" . (int) $rmuid . "' AND `date` = '" . $roomBookedDate . "'";
+									$result        = doSelectSql( $query );
+									if ( count( $result ) > 0 )
+										{
+										trigger_error( "Failed to insert booking looks like the room has been double booked ", E_USER_ERROR );
+										$this->insertSuccessful = false;
 
-									return false;
+										return false;
+										}
 									}
 								}
 							}
@@ -403,76 +415,86 @@ class j03020insertbooking
 				$query = "SELECT id FROM #__jomres_booking_data_archive WHERE tag = '".$cartnumber."'";
 				$booking_data_archive_id = doSelectSql($query,1);
 				
-				$query        = "INSERT INTO #__jomres_contracts (
-					`arrival`,`departure`,`rates_uid`,
-					`guest_uid`,`rate_rules`,`rooms_tariffs`,`contract_total`,`special_reqs`,
-					`deposit_paid`,`deposit_required`,
-					`date_range_string`,`booked_in`,`booked_out`,
-					`property_uid`,`single_person_suppliment`,`extras`,`extrasquantities`,`extrasvalue`,`tax`,`tag`,`timestamp`,`room_total`,`discount`,`currency_code`,`discount_details`,`username`,`coupon_id`,`approved`,`booking_data_archive_id`,`secret_key`)
-					VALUES (
-					'$arrivalDate','$departureDate','" . (int) $rates_uid . "',
-					'" . (int) $guests_uid . "','$rateRules','" . (string) $requestedRoom . "', '" . (float) $contract_total . "','$specialReqs',
-					'" . (int) $depositPaid . "','" . (float) $deposit_required . "',
-					'$dateRangeString','" . (int) $booked_in . "','0',
-					'" . (int) $property_uid . "','" . (float) $single_person_suppliment . "','$extras','" . (string) $extrasquantities . "','" . (float) $extrasValue . "','" . (float) $tax . "','$cartnumber','$datetime','" . (float) $room_total . "','" . (float) $discount . "','$ccode','" . $discount_details . "','" . $bookersUsername . "'," . (int) $coupon_id . "," . $approved . " , '".$booking_data_archive_id ."' , '".$secret_key."') ";
-				$contract_uid = doInsertSql( $query, "" );
-				
-				$query = "UPDATE #__jomres_booking_data_archive SET contract_uid = ".$contract_uid." WHERE id = ".$booking_data_archive_id;
-				doInsertSql( $query, "" );
-				
-				if ( $mrConfig[ 'singleRoomProperty' ] == 1 ) $newtext = $tmpBookingHandler->getBookingFieldVal( "lastminutediscount" );
-				else
-				$newtext = $tmpBookingHandler->getBookingFieldVal( "wisepricediscount" );
-				$dt    = date( "Y-m-d H-i-s" );
-				$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . RemoveXSS( $newtext ) . "','$dt','" . (int) $property_uid . "')";
-				doInsertSql( $query, "" );
-
-				if ( empty( $contract_uid ) )
+				if (!$approval_approved)
 					{
-					trigger_error( "Failed to insert booking when inserting to contracts table ", E_USER_ERROR );
-					$this->insertSuccessful = false;
-					}
+					$query        = "INSERT INTO #__jomres_contracts (
+						`arrival`,`departure`,`rates_uid`,
+						`guest_uid`,`rate_rules`,`rooms_tariffs`,`contract_total`,`special_reqs`,
+						`deposit_paid`,`deposit_required`,
+						`date_range_string`,`booked_in`,`booked_out`,
+						`property_uid`,`single_person_suppliment`,`extras`,`extrasquantities`,`extrasvalue`,`tax`,`tag`,`timestamp`,`room_total`,`discount`,`currency_code`,`discount_details`,`username`,`coupon_id`,`approved`,`booking_data_archive_id`,`secret_key`)
+						VALUES (
+						'$arrivalDate','$departureDate','" . (int) $rates_uid . "',
+						'" . (int) $guests_uid . "','$rateRules','" . (string) $requestedRoom . "', '" . (float) $contract_total . "','$specialReqs',
+						'" . (int) $depositPaid . "','" . (float) $deposit_required . "',
+						'$dateRangeString','" . (int) $booked_in . "','0',
+						'" . (int) $property_uid . "','" . (float) $single_person_suppliment . "','$extras','" . (string) $extrasquantities . "','" . (float) $extrasValue . "','" . (float) $tax . "','$cartnumber','$datetime','" . (float) $room_total . "','" . (float) $discount . "','$ccode','" . $discount_details . "','" . $bookersUsername . "'," . (int) $coupon_id . "," . $approved . " , '".$booking_data_archive_id ."' , '".$secret_key."') ";
+					$contract_uid = doInsertSql( $query, "" );
+					
+					$query = "UPDATE #__jomres_booking_data_archive SET contract_uid = ".$contract_uid." WHERE id = ".$booking_data_archive_id;
+					doInsertSql( $query, "" );
+					
+					if ( $mrConfig[ 'singleRoomProperty' ] == 1 ) 
+						$newtext = $tmpBookingHandler->getBookingFieldVal( "lastminutediscount" );
+					else
+						$newtext = $tmpBookingHandler->getBookingFieldVal( "wisepricediscount" );
+					
+					$dt    = date( "Y-m-d H-i-s" );
+					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . RemoveXSS( $newtext ) . "','$dt','" . (int) $property_uid . "')";
+					doInsertSql( $query, "" );
 
-				if ( get_showtime( 'include_room_booking_functionality' ) )
-					{
-					if ( (int)$mrConfig['requireApproval'] == 0 || ( (int)$mrConfig['requireApproval'] == 1 && $thisJRUser->userIsManager ) )
+					if ( empty( $contract_uid ) )
 						{
-						$rates_uids     = array ();
-						$dateRangeArray = explode( ",", $dateRangeString );
-						for ( $i = 0, $n = count( $dateRangeArray ); $i < $n; $i++ )
-							{
-							$roomBookedDate = $dateRangeArray[ $i ];
-							if ( $userIsManager )
-								{
-								$internetBooking  = 0;
-								$receptionBooking = 1;
-								}
-							else
-								{
-								$internetBooking  = 1;
-								$receptionBooking = 0;
-								}
-							$selected = explode( ",", $requestedRoom );
-							foreach ( $selected as $roomsRequested )
-								{
-								$rm            = explode( "^", $roomsRequested );
-								$rmuid         = $rm[ 0 ];
-								$rates_uids[ ] = $rm[ 1 ];
-								$query         = "INSERT INTO #__jomres_room_bookings (`room_uid`,`date`,`contract_uid`,`internet_booking`,`reception_booking`,`property_uid`) VALUES ('" . (int) $rmuid . "','$roomBookedDate','" . (int) $contract_uid . "','" . (int) $internetBooking . "','" . (int) $receptionBooking . "','" . (int) $property_uid . "')";
-								if ( !doInsertSql( $query, "" ) )
-									{
-									trigger_error( "Failed to insert booking when inserting to room bookings table ", E_USER_ERROR );
-									$this->insertSuccessful = false;
-									}
-								jomres_audit( get_showtime( 'jomressession' ), "Booked room " . $cartnumber );
-								}
-							}
+						trigger_error( "Failed to insert booking when inserting to contracts table ", E_USER_ERROR );
+						$this->insertSuccessful = false;
 						}
 
-					if ( count( $rates_uids ) > 1 ) $rates_uids = array_unique( $rates_uids );
-					jomres_audit( $cartnumber, jr_gettext( '_JOMRES_MR_AUDIT_BOOKED_ROOM', _JOMRES_MR_AUDIT_BOOKED_ROOM, false ) );
-					}
+					if ( get_showtime( 'include_room_booking_functionality' ) )
+						{
+						if ( (int)$mrConfig['requireApproval'] == 0 || ( (int)$mrConfig['requireApproval'] == 1 && $thisJRUser->userIsManager ) || $approval_approved )
+							{
+							$rates_uids     = array ();
+							$dateRangeArray = explode( ",", $dateRangeString );
+							for ( $i = 0, $n = count( $dateRangeArray ); $i < $n; $i++ )
+								{
+								$roomBookedDate = $dateRangeArray[ $i ];
+								if ( $userIsManager )
+									{
+									$internetBooking  = 0;
+									$receptionBooking = 1;
+									}
+								else
+									{
+									$internetBooking  = 1;
+									$receptionBooking = 0;
+									}
+								$selected = explode( ",", $requestedRoom );
+								foreach ( $selected as $roomsRequested )
+									{
+									$rm            = explode( "^", $roomsRequested );
+									$rmuid         = $rm[ 0 ];
+									$rates_uids[ ] = $rm[ 1 ];
+									$query         = "INSERT INTO #__jomres_room_bookings (`room_uid`,`date`,`contract_uid`,`internet_booking`,`reception_booking`,`property_uid`) VALUES ('" . (int) $rmuid . "','$roomBookedDate','" . (int) $contract_uid . "','" . (int) $internetBooking . "','" . (int) $receptionBooking . "','" . (int) $property_uid . "')";
+									if ( !doInsertSql( $query, "" ) )
+										{
+										trigger_error( "Failed to insert booking when inserting to room bookings table ", E_USER_ERROR );
+										$this->insertSuccessful = false;
+										}
+									jomres_audit( get_showtime( 'jomressession' ), "Booked room " . $cartnumber );
+									}
+								}
+							}
 
+						if ( count( $rates_uids ) > 1 ) $rates_uids = array_unique( $rates_uids );
+						jomres_audit( $cartnumber, jr_gettext( '_JOMRES_MR_AUDIT_BOOKED_ROOM', _JOMRES_MR_AUDIT_BOOKED_ROOM, false ) );
+						}
+					}
+				else
+					{
+					$contract_uid = $tmpBookingHandler->getBookingFieldVal( "approval_contract_uid" );
+					$this->insertSuccessful = true;
+					}
+				
 				$componentArgs                          = array ();
 				$componentArgs[ 'cartnumber' ]          = $cartnumber;
 				$componentArgs[ 'tempBookingDataList' ] = $tempBookingDataList;

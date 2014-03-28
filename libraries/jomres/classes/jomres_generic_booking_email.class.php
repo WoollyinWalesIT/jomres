@@ -61,7 +61,7 @@ class jomres_generic_booking_email
 		
 		$current_contract_details = jomres_singleton_abstract::getInstance( 'basic_contract_details' );
 		$current_contract_details->gather_data($contract_uid, $property_uid);
-		
+
 		//selected rooms/resources and tariff details
 		$this->data[$contract_uid]['ROOMS'] = '';
 		foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd)
@@ -158,6 +158,8 @@ class jomres_generic_booking_email
 		$this->data[$contract_uid]['PROPERTY_NAME'] = $current_property_details->property_name;
 		$this->data[$contract_uid]['PROPERTY_TEL'] = $current_property_details->property_tel;
 		$this->data[$contract_uid]['PROPERTY_EMAIL'] = $current_property_details->property_email;
+		
+		$this->data[$contract_uid]['PAYMENT_LINK'] = JOMRES_SITEPAGE_URL_NOSEF."&task=confirmbooking&sk=".$current_contract_details->contract[$contract_uid]['contractdeets']['secret_key'];
 		
 		$this->data[$contract_uid]['BOOKING_NUMBER'] = $current_contract_details->contract[$contract_uid]['contractdeets']['tag'];
 		$this->data[$contract_uid]['ARRIVAL'] = outputDate( $current_contract_details->contract[$contract_uid]['contractdeets']['arrival'] );

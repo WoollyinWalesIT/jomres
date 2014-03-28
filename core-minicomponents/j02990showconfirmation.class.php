@@ -45,25 +45,57 @@ class j02990showconfirmation
 		$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
 		$mrConfig          = getPropertySpecificSettings();
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+		
+		$approval_approved = false;
+		if (isset($_REQUEST['sk']))
+			{
+			$secret_key = jomresGetParam( $_REQUEST, 'sk', '' );
+			jr_import('jomres_contract_secret_key');
+			$jomres_contract_secret_key = new jomres_contract_secret_key();
+			
+			if ( $jomres_contract_secret_key->validate_secret_key($secret_key) )
+				{
+				$contract_uid = $jomres_contract_secret_key->get_contract_id_for_secret_key($secret_key);
+				$query = "SELECT data FROM #__jomres_booking_data_archive WHERE contract_uid = ".$contract_uid;
+				$data = unserialize(doSelectSql( $query , 1 ));
+				$tmpBookingHandler->tmpbooking		= $data['tmpbooking'];
+				$tmpBookingHandler->tmpguest		= $data['tmpguest'];
+
+				$approval_approved = true;
+				$tmpBookingHandler->tmpbooking['approval_approved']=$approval_approved;
+				$tmpBookingHandler->tmpbooking['approval_contract_uid']=$contract_uid;
+				}
+			else
+				{
+				throw new Exception("Could not validate secret key ".$secret_key);
+				}
+			}
 		$amend_contract    = $tmpBookingHandler->getBookingFieldVal( "amend_contract" );
 
 		$booking_parts = array ();
-		if ( !isset( $tmpBookingHandler->tmpbooking[ "confirmationSeen" ] ) ) $tmpBookingHandler->addNewBookingField( "confirmationSeen" );
+		if ( !isset( $tmpBookingHandler->tmpbooking[ "confirmationSeen" ] ) ) 
+			{
+			$tmpBookingHandler->addNewBookingField( "confirmationSeen" );
+			}
 		$tmpBookingHandler->updateBookingField( "confirmationSeen", true );
 
 		$tmpBookingHandler->saveBookingData();
-
-		$tmpBookingHandler->updateGuestField( 'firstname', jomresGetParam( $_POST, 'firstname', '' ) );
-		$tmpBookingHandler->updateGuestField( 'surname', jomresGetParam( $_POST, 'surname', '' ) );
-		$tmpBookingHandler->updateGuestField( 'house', jomresGetParam( $_POST, 'house', '' ) );
-		$tmpBookingHandler->updateGuestField( 'street', jomresGetParam( $_POST, 'street', '' ) );
-		$tmpBookingHandler->updateGuestField( 'town', jomresGetParam( $_POST, 'town', '' ) );
-		$tmpBookingHandler->updateGuestField( 'region', jomresGetParam( $_POST, 'region', '' ) );
-		$tmpBookingHandler->updateGuestField( 'country', jomresGetParam( $_POST, 'country', '' ) );
-		$tmpBookingHandler->updateGuestField( 'postcode', jomresGetParam( $_POST, 'postcode', '' ) );
-		$tmpBookingHandler->updateGuestField( 'tel_mobile', jomresGetParam( $_POST, 'tel_mobile', '' ) );
-		$tmpBookingHandler->updateGuestField( 'tel_landline', jomresGetParam( $_POST, 'tel_landline', '' ) );
-		if ( !$thisJRUser->userIsRegistered ) $tmpBookingHandler->updateGuestField( 'email', jomresGetParam( $_POST, 'eemail', '' ) );
+		
+		if ( !isset($_REQUEST['sk']))
+			{
+			$tmpBookingHandler->updateGuestField( 'firstname', jomresGetParam( $_POST, 'firstname', '' ) );
+			$tmpBookingHandler->updateGuestField( 'surname', jomresGetParam( $_POST, 'surname', '' ) );
+			$tmpBookingHandler->updateGuestField( 'house', jomresGetParam( $_POST, 'house', '' ) );
+			$tmpBookingHandler->updateGuestField( 'street', jomresGetParam( $_POST, 'street', '' ) );
+			$tmpBookingHandler->updateGuestField( 'town', jomresGetParam( $_POST, 'town', '' ) );
+			$tmpBookingHandler->updateGuestField( 'region', jomresGetParam( $_POST, 'region', '' ) );
+			$tmpBookingHandler->updateGuestField( 'country', jomresGetParam( $_POST, 'country', '' ) );
+			$tmpBookingHandler->updateGuestField( 'postcode', jomresGetParam( $_POST, 'postcode', '' ) );
+			$tmpBookingHandler->updateGuestField( 'tel_mobile', jomresGetParam( $_POST, 'tel_mobile', '' ) );
+			$tmpBookingHandler->updateGuestField( 'tel_landline', jomresGetParam( $_POST, 'tel_landline', '' ) );
+			if ( !$thisJRUser->userIsRegistered ) 
+				$tmpBookingHandler->updateGuestField( 'email', jomresGetParam( $_POST, 'eemail', '' ) );
+			}
 
 		$currfmt = jomres_singleton_abstract::getInstance( 'jomres_currency_format' );
 
@@ -458,7 +490,7 @@ class j02990showconfirmation
 		$booking_parts[ 'ALERT' ]        = jr_gettext( '_JOMRES_CONFIRMATION_ALERT', _JOMRES_CONFIRMATION_ALERT, false );
 
 
-		if ((int)$mrConfig['requireApproval'] == 0)
+		if ((int)$mrConfig['requireApproval'] == 0 || $approval_approved == true )
 			{
 			if ( $paypal_settings->paypalConfigOptions[ 'override' ] != "1" )
 				{
