@@ -1371,10 +1371,21 @@ function detect_property_uid()
 			}
 		}
 
-	if ( ( get_showtime( 'task' ) == "handlereq" || get_showtime( 'task' ) == "confirmbooking" || get_showtime( 'task' ) == "completebk" || get_showtime( 'task' ) == "processpayment" ) && !$thisJRUser->userIsManager )
+	if ( get_showtime( 'task' ) == "confirmbooking" )
+		{
+		$secret_key = jomresGetParam( $_REQUEST, 'sk', '' );
+		
+		$query  = "SELECT `property_uid` FROM #__jomres_contracts WHERE `secret_key` = '" . $secret_key . "' LIMIT 1";
+		$property_uid = doSelectSql( $query , 1 );
+		if ( !$property_uid ) 
+			{
+			$property_uid = (int) $tmpBookingHandler->getBookingFieldVal( "property_uid" );
+			}
+		}
+
+	if ( ( get_showtime( 'task' ) == "handlereq" || get_showtime( 'task' ) == "completebk" || get_showtime( 'task' ) == "processpayment" ) && !$thisJRUser->userIsManager )
 		{
 		$property_uid = (int) $tmpBookingHandler->getBookingFieldVal( "property_uid" );
-		//gateway_log("Setting property uid to ".$property_uid);
 		}
 
 	// Payment specific stuff.
