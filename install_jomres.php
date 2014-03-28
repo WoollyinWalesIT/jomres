@@ -456,6 +456,11 @@ function alterBookingdataarchiveContractid()
 		{
 		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_booking_data_archive contract_uid</b><br>";
 		}
+	$query = "ALTER TABLE `#__jomres_booking_data_archive` ADD `tag` varchar(255) NOT NULL AFTER `contract_uid` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_booking_data_archive tag</b><br>";
+		}
 	}
 
 function checkBookingdataarchiveContractidColExists()
@@ -1479,6 +1484,7 @@ function createBookingdataArchiveTable()
 	`data` text,
 	`date` datetime default NULL ,
 	`contract_uid` INT  DEFAULT 0 NOT NULL ,
+	`tag` varchar(255) NOT NULL ,
 	PRIMARY KEY ( `id` )
 	)";
 	if ( !doInsertSql( $query, '' ) )
@@ -3225,6 +3231,7 @@ function createJomresTables()
 	`data` text,
 	`date` datetime default NULL ,
 	`contract_uid` INT DEFAULT 0 NOT NULL ,
+	`tag` varchar(255) NOT NULL,
 	PRIMARY KEY ( `id` )
 	)";
 	if ( !doInsertSql( $query ) )

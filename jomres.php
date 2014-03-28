@@ -33,6 +33,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 	
 try
 	{
+	
 	set_showtime( 'heavyweight_system', false );
 
 	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
@@ -429,11 +430,11 @@ try
 				break;
 			#########################################################################################
 			case 'processpayment':
-				set_booking_number();
+				$tag = set_booking_number();
 				$plugin = jomres_validate_gateway_plugin();
 
 				$data  = array ( 'tmpbooking' => $tmpBookingHandler->tmpbooking, 'tmpguest' => $tmpBookingHandler->tmpguest );
-				$query = "INSERT INTO #__jomres_booking_data_archive SET `data`='" . serialize( $data ) . "',`date`='" . date( 'Y-m-d H:i:s' ) . "'";
+				$query = "INSERT INTO #__jomres_booking_data_archive SET `data`='" . serialize( $data ) . "',`date`='" . date( 'Y-m-d H:i:s' ) . "', `tag` = '".$tag."'";
 				doInsertSql( $query, '' );
 
 				$bookingdata = gettempBookingdata();
