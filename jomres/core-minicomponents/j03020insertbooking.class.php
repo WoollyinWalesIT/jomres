@@ -407,7 +407,13 @@ class j03020insertbooking
 					'$dateRangeString','" . (int) $booked_in . "','0',
 					'" . (int) $property_uid . "','" . (float) $single_person_suppliment . "','$extras','" . (string) $extrasquantities . "','" . (float) $extrasValue . "','" . (float) $tax . "','$cartnumber','$datetime','" . (float) $room_total . "','" . (float) $discount . "','$ccode','" . $discount_details . "','" . $bookersUsername . "'," . (int) $coupon_id . "," . $approved . ") ";
 				$contract_uid = doInsertSql( $query, "" );
-
+				
+				jr_import("jomres_contract_secret_key");
+				$jomres_contract_secret_key = new jomres_contract_secret_key();
+				$secret_key = $jomres_contract_secret_key->generate_secret_key();
+				$jomres_contract_secret_key->save_secret_key( $secret_key , $contract_uid );
+				
+				
 				if ( $mrConfig[ 'singleRoomProperty' ] == 1 ) $newtext = $tmpBookingHandler->getBookingFieldVal( "lastminutediscount" );
 				else
 				$newtext = $tmpBookingHandler->getBookingFieldVal( "wisepricediscount" );
