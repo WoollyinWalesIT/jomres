@@ -245,7 +245,7 @@ class j06001list_bookings_ajax
 				//TODO add check for mrConfig setting - no need to, if requireApprovals is disabled, it will insert bookings with approved = 1 (default)
 				if ( $p->approved == 0 && isset($MiniComponents->registeredClasses['00005booking_enquiries']))
 					{
-					$jrtb .= $jrtbar->toolbarItem( 'publish', jomresURL( JOMRES_SITEPAGE_URL . '&task=approve_enquiry' . '&contract_uid=' . $p->contract_uid  . $thisProperty ), jr_gettext( '_JOMRES_BOOKING_APPROVE_INQUIRY', _JOMRES_BOOKING_APPROVE_INQUIRY, false ) );
+					$jrtb .= $jrtbar->toolbarItem( 'publish', jomresURL( JOMRES_SITEPAGE_URL . '&task=approve_enquiry&nofollowtmpl=1' . '&contract_uid=' . $p->contract_uid  . $thisProperty ), jr_gettext( '_JOMRES_BOOKING_APPROVE_INQUIRY', _JOMRES_BOOKING_APPROVE_INQUIRY, false ) );
 					$jrtb .= $jrtbar->toolbarItem( 'unpublish', jomresURL( JOMRES_SITEPAGE_URL . '&task=reject_enquiry' . '&contract_uid=' . $p->contract_uid  . $thisProperty ), jr_gettext( '_JOMRES_BOOKING_REJECT_INQUIRY', _JOMRES_BOOKING_REJECT_INQUIRY, false ) );
 					}
 				$r[]     = $jrtb .= $jrtbar->endTable();
