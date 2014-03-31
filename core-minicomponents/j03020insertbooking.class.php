@@ -270,7 +270,7 @@ class j03020insertbooking
 						}
 					else
 						{
-						$approval_approved = $tmpBookingHandler->getBookingFieldVal( "approval_approved" );
+						$secret_key_payment = $tmpBookingHandler->getBookingFieldVal( "secret_key_payment" );
 						$approved = 0;
 						}
 					}
@@ -350,7 +350,7 @@ class j03020insertbooking
 						}
 						
 					
-					if ( !$approval_approved )
+					if ( !$secret_key_payment )
 						{
 						// Now to double check that the rooms haven't been booked while this person was paying
 						$dateRangeArray = explode( ",", $dateRangeString );
@@ -415,7 +415,7 @@ class j03020insertbooking
 				$query = "SELECT id FROM #__jomres_booking_data_archive WHERE tag = '".$cartnumber."'";
 				$booking_data_archive_id = doSelectSql($query,1);
 				
-				if (!$approval_approved)
+				if (!$secret_key_payment)
 					{
 					$query        = "INSERT INTO #__jomres_contracts (
 						`arrival`,`departure`,`rates_uid`,
@@ -451,7 +451,7 @@ class j03020insertbooking
 
 					if ( get_showtime( 'include_room_booking_functionality' ) )
 						{
-						if ( (int)$mrConfig['requireApproval'] == 0 || ( (int)$mrConfig['requireApproval'] == 1 && $thisJRUser->userIsManager ) || $approval_approved )
+						if ( (int)$mrConfig['requireApproval'] == 0 || ( (int)$mrConfig['requireApproval'] == 1 && $thisJRUser->userIsManager ) || $secret_key_payment )
 							{
 							$rates_uids     = array ();
 							$dateRangeArray = explode( ",", $dateRangeString );

@@ -159,7 +159,7 @@ class jomres_generic_booking_email
 		$this->data[$contract_uid]['PROPERTY_TEL'] = $current_property_details->property_tel;
 		$this->data[$contract_uid]['PROPERTY_EMAIL'] = $current_property_details->property_email;
 		
-		$this->data[$contract_uid]['PAYMENT_LINK'] = JOMRES_SITEPAGE_URL_NOSEF."&task=confirmbooking&sk=".$current_contract_details->contract[$contract_uid]['contractdeets']['secret_key'];
+		$this->data[$contract_uid]['PAYMENT_LINK'] = JOMRES_SITEPAGE_URL_NOSEF."&task=confirmbooking&selectedProperty=".$property_uid."&sk=".$current_contract_details->contract[$contract_uid]['contractdeets']['secret_key'];
 		
 		$this->data[$contract_uid]['BOOKING_NUMBER'] = $current_contract_details->contract[$contract_uid]['contractdeets']['tag'];
 		$this->data[$contract_uid]['ARRIVAL'] = outputDate( $current_contract_details->contract[$contract_uid]['contractdeets']['arrival'] );
