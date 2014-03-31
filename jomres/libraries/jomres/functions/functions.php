@@ -1371,18 +1371,6 @@ function detect_property_uid()
 			}
 		}
 
-	if ( get_showtime( 'task' ) == "confirmbooking" )
-		{
-		$secret_key = jomresGetParam( $_REQUEST, 'sk', '' );
-		
-		$query  = "SELECT `property_uid` FROM #__jomres_contracts WHERE `secret_key` = '" . $secret_key . "' LIMIT 1";
-		$property_uid = doSelectSql( $query , 1 );
-		if ( !$property_uid ) 
-			{
-			$property_uid = (int) $tmpBookingHandler->getBookingFieldVal( "property_uid" );
-			}
-		}
-
 	if ( ( get_showtime( 'task' ) == "handlereq" || get_showtime( 'task' ) == "completebk" || get_showtime( 'task' ) == "processpayment" ) && !$thisJRUser->userIsManager )
 		{
 		$property_uid = (int) $tmpBookingHandler->getBookingFieldVal( "property_uid" );
@@ -1414,7 +1402,7 @@ function jomres_validate_gateway_plugin()
 	$mrConfig          = getPropertySpecificSettings();
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 	$property_uid      = get_showtime( 'property_uid' );
-	if ( ($mrConfig[ 'useOnlinepayment' ] == "1" || $paypal_settings->paypalConfigOptions[ 'override' ] == "1") && (int)$mrConfig['requireApproval'] == 0 )
+	if ( ($mrConfig[ 'useOnlinepayment' ] == "1" || $paypal_settings->paypalConfigOptions[ 'override' ] == "1") && ((int)$mrConfig['requireApproval'] == 0 || $tmpBookingHandler->tmpbooking['secret_key_payment'] ))
 		{
 		if ( $paypal_settings->paypalConfigOptions[ 'override' ] == "1" ) return "paypal";
 
@@ -4658,6 +4646,7 @@ function propertyClicked( $p_uid )
 		{
 		setcookie( $cookiename, '1', time() + 60 * 60 * 24 * 30 );
 		$query = "INSERT INTO #__jomres_pcounter (count,p_uid) VALUES ('1', '".(int)$p_uid."') ON DUPLICATE KEY UPDATE count = count+1 ";
+
 		if ( !doInsertSql( $query, "" ) )
 			{
 			echo "Mysql went byebyes";

@@ -46,7 +46,7 @@ class j02990showconfirmation
 		$mrConfig          = getPropertySpecificSettings();
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		
-		$approval_approved = false;
+		$secret_key_payment = false;
 		if (isset($_REQUEST['sk']))
 			{
 			$secret_key = jomresGetParam( $_REQUEST, 'sk', '' );
@@ -58,11 +58,12 @@ class j02990showconfirmation
 				$contract_uid = $jomres_contract_secret_key->get_contract_id_for_secret_key($secret_key);
 				$query = "SELECT data FROM #__jomres_booking_data_archive WHERE contract_uid = ".$contract_uid;
 				$data = unserialize(doSelectSql( $query , 1 ));
+				
 				$tmpBookingHandler->tmpbooking		= $data['tmpbooking'];
 				$tmpBookingHandler->tmpguest		= $data['tmpguest'];
 
-				$approval_approved = true;
-				$tmpBookingHandler->tmpbooking['approval_approved']=$approval_approved;
+				$secret_key_payment = true;
+				$tmpBookingHandler->tmpbooking['secret_key_payment']=$secret_key_payment;
 				$tmpBookingHandler->tmpbooking['approval_contract_uid']=$contract_uid;
 				}
 			else
@@ -110,8 +111,6 @@ class j02990showconfirmation
 		
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$current_property_details->gather_data($property_uid);
-		
-		$mrConfig     = getPropertySpecificSettings( $property_uid );
 
 		if ( $amend_contract )
 			{
@@ -122,7 +121,8 @@ class j02990showconfirmation
 
 		property_header( $property_uid );
 
-		if ( !$bookingDeets[ 'ok_to_book' ] ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
+		if ( !$bookingDeets[ 'ok_to_book' ] ) 
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
 
 		$this->accommodation_tax_rate = 0.0;
 		if ( isset( $mrConfig[ 'accommodation_tax_code' ] ) && (int) $mrConfig[ 'accommodation_tax_code' ] > 0 )
@@ -142,7 +142,7 @@ class j02990showconfirmation
 		$allCustomFields = $custom_fields->getAllCustomFieldsByPtypeId($ptype_id);
 	
 		$customFields    = array ();
-		if ( count( $allCustomFields ) > 0 )
+		if ( count( $allCustomFields ) > 0 && $mrConfig['requireApproval'] == 0)
 			{
 
 			foreach ( $allCustomFields as $f )
@@ -490,7 +490,7 @@ class j02990showconfirmation
 		$booking_parts[ 'ALERT' ]        = jr_gettext( '_JOMRES_CONFIRMATION_ALERT', _JOMRES_CONFIRMATION_ALERT, false );
 
 
-		if ((int)$mrConfig['requireApproval'] == 0 || $approval_approved == true )
+		if ((int)$mrConfig['requireApproval'] == 0 || $secret_key_payment )
 			{
 			if ( $paypal_settings->paypalConfigOptions[ 'override' ] != "1" )
 				{

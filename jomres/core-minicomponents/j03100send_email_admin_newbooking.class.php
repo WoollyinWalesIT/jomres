@@ -29,9 +29,11 @@ class j03100send_email_admin_newbooking
 		
 		$mrConfig = getPropertySpecificSettings();
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 
 		$property_uid = $componentArgs[ 'property_uid' ];
 		$contract_uid = $componentArgs[ 'contract_uid' ];
+		$secret_key_payment = $tmpBookingHandler->getBookingFieldVal( "secret_key_payment" );
 		
 		if ( !isset( $componentArgs[ 'email_when_done' ] ) ) 
 			$email_when_done = true;
@@ -41,7 +43,7 @@ class j03100send_email_admin_newbooking
 		if (!$componentArgs[ 'sendHotelEmail'])
 			return;
 
-		if ((int)$mrConfig['requireApproval'] == 1 && !$thisJRUser->userIsManager )
+		if ((int)$mrConfig['requireApproval'] == 1 && !$thisJRUser->userIsManager && !$secret_key_payment)
 			return;
 
 		$paypal_settings = jomres_singleton_abstract::getInstance( 'jrportal_paypal_settings' );
