@@ -4657,14 +4657,7 @@ function propertyClicked( $p_uid )
 	if ( !$alreadyClicked )
 		{
 		setcookie( $cookiename, '1', time() + 60 * 60 * 24 * 30 );
-		$query     = "SELECT p_uid FROM #__jomres_pcounter WHERE `p_uid` = '" . (int) $p_uid . "' LIMIT 1 ";
-		$clickList = doSelectSql( $query );
-		if ( count( $clickList ) > 0 ) $query = "UPDATE #__jomres_pcounter SET count=count+1 WHERE p_uid = '" . (int) $p_uid . "'";
-		else
-			{
-			$query = "INSERT INTO #__jomres_pcounter SET `count`='1',`p_uid`='" . (int) $p_uid . "'";
-			}
-
+		$query = "INSERT INTO #__jomres_pcounter (count,p_uid) VALUES ('1', '".(int)$p_uid."') ON DUPLICATE KEY UPDATE count = count+1 ";
 		if ( !doInsertSql( $query, "" ) )
 			{
 			echo "Mysql went byebyes";
