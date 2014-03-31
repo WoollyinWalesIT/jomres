@@ -52,6 +52,56 @@ class j02260editbooking
 
 		$popup          = get_showtime( 'popup' );
 		$thisJRUser      = jomres_singleton_abstract::getInstance( 'jr_user' );
+		
+		//check if the booking can be approved or not
+		$can_be_approved = true;
+		if ((int)$current_contract_details->contract[$contract_uid]['contractdeets']['approved'] == 0)
+			{	
+			$rooms_tariffs = $current_contract_details->contract[$contract_uid]['contractdeets']['rooms_tariffs'];
+			$date_range_string = $current_contract_details->contract[$contract_uid]['contractdeets']['date_range_string'];
+			$dateRangeArray = explode( ",", $date_range_string );
+			$n = count( $dateRangeArray );
+			
+			$query = "SELECT room_uid, `date` FROM #__jomres_room_bookings WHERE ";
+			for ( $i = 0, $n; $i < $n; $i++ )
+				{
+				$roomBookedDate = $dateRangeArray[ $i ];
+				$selected       = explode( ",", $rooms_tariffs );
+				foreach ( $selected as $roomsRequested )
+					{
+					$rm = explode( "^", $roomsRequested );
+					$rmuid = $rm[ 0 ];
+					
+					$query .= "(`room_uid` = '" . (int) $rmuid . "' AND `date` = '" . $roomBookedDate . "') OR ";
+					}
+				}
+			
+			$query = substr_replace( $query, "", -4 );
+			$result = doSelectSql( $query );
+			
+			$approval_msg = array();
+			
+			if ( count( $result ) > 0 )
+				{
+				$can_be_approved = false;
+				
+				if (using_bootstrap())
+					$approval_msg['CLASS'] = "alert alert-error";
+				else
+					$approval_msg['CLASS'] = "ui-state-error";
+				
+				$approval_msg['MESSAGE'] = jr_gettext('_JOMRES_CANT_BE_APPROVED', _JOMRES_CANT_BE_APPROVED, false);
+				}
+			else
+				{
+				if (using_bootstrap())
+					$approval_msg['CLASS'] = "alert alert-success";
+				else
+					$approval_msg['CLASS'] = "ui-state-default";
+				
+				$approval_msg['MESSAGE'] = jr_gettext('_JOMRES_CAN_BE_APPROVED', _JOMRES_CAN_BE_APPROVED, false);
+				}
+			}
 
 		//toolbar
 		if ( $thisJRUser->userIsManager )
@@ -63,13 +113,16 @@ class j02260editbooking
 				//booking approvals
 				if ((int)$current_contract_details->contract[$contract_uid]['contractdeets']['approved'] == 0 && isset($MiniComponents->registeredClasses['00005booking_enquiries']) )
 					{
-					$output[ 'HAPPROVEBOOKING' ] = jr_gettext( '_JOMRES_BOOKING_APPROVE_INQUIRY', _JOMRES_BOOKING_APPROVE_INQUIRY, $editable = false, $isLink = true );
-					$link = JOMRES_SITEPAGE_URL . '&task=approve_enquiry&contractUid=' . $contract_uid;
-					$targetTask = 'booking_approval';
-					$image = '/jomres/images/jomresimages/' . $jrtbar->imageSize . '/Tick.png';
-					
-					$jrtb .= $jrtbar->customToolbarItem( $targetTask, $link, $output[ 'HAPPROVEBOOKING' ], $submitOnClick = false, $submitTask = "", $image );
-					//add_menu_option( '&task=booking_approval&contractUid=' . $contract_uid, null, $output[ 'HAPPROVEBOOKING' ], null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+					if ($can_be_approved)
+						{
+						$output[ 'HAPPROVEBOOKING' ] = jr_gettext( '_JOMRES_BOOKING_APPROVE_INQUIRY', _JOMRES_BOOKING_APPROVE_INQUIRY, $editable = false, $isLink = true );
+						$link = JOMRES_SITEPAGE_URL . '&task=approve_enquiry&contractUid=' . $contract_uid;
+						$targetTask = 'booking_approval';
+						$image = '/jomres/images/jomresimages/' . $jrtbar->imageSize . '/Tick.png';
+						
+						$jrtb .= $jrtbar->customToolbarItem( $targetTask, $link, $output[ 'HAPPROVEBOOKING' ], $submitOnClick = false, $submitTask = "", $image );
+						//add_menu_option( '&task=booking_approval&contractUid=' . $contract_uid, null, $output[ 'HAPPROVEBOOKING' ], null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+						}
 					
 					$output[ 'HREJECTBOOKING' ] = jr_gettext( '_JOMRES_BOOKING_REJECT_INQUIRY', _JOMRES_BOOKING_REJECT_INQUIRY, $editable = false, $isLink = true );
 					$link = JOMRES_SITEPAGE_URL . '&task=reject_enquiry&contractUid=' . $contract_uid;
@@ -184,11 +237,13 @@ class j02260editbooking
 			$output[ 'GUEST_SURNAME' ]          = $current_contract_details->contract[$contract_uid]['guestdeets']['surname'];
 			$output[ 'TOOLBAR' ]                = $jrtb;
 
-			$pageoutput[ ] = $output;
-			$tmpl          = new patTemplate();
+			$pageoutput[] = $output;
+			$approval_message[] = $approval_msg;
+			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
 			$tmpl->readTemplatesFromInput( 'edit_booking_header.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
+			$tmpl->addRows( 'approval_message', $approval_message );
 			echo $tmpl->getParsedTemplate();
 			}
 
