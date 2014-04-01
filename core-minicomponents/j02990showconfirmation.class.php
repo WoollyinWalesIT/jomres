@@ -55,16 +55,21 @@ class j02990showconfirmation
 			
 			if ( $jomres_contract_secret_key->validate_secret_key($secret_key) )
 				{
-				$contract_uid = $jomres_contract_secret_key->get_contract_id_for_secret_key($secret_key);
-				$query = "SELECT data FROM #__jomres_booking_data_archive WHERE contract_uid = ".$contract_uid;
-				$data = unserialize(doSelectSql( $query , 1 ));
-				
-				$tmpBookingHandler->tmpbooking		= $data['tmpbooking'];
-				$tmpBookingHandler->tmpguest		= $data['tmpguest'];
-
-				$secret_key_payment = true;
-				$tmpBookingHandler->tmpbooking['secret_key_payment']=$secret_key_payment;
-				$tmpBookingHandler->tmpbooking['approval_contract_uid']=$contract_uid;
+				if (!$jomres_contract_secret_key->check_secret_key_used($secret_key))
+					{
+					$contract_uid = $jomres_contract_secret_key->get_contract_id_for_secret_key($secret_key);
+					$query = "SELECT data FROM #__jomres_booking_data_archive WHERE contract_uid = ".$contract_uid;
+					$data = unserialize(doSelectSql( $query , 1 ));
+					
+					$tmpBookingHandler->tmpbooking		= $data['tmpbooking'];
+					$tmpBookingHandler->tmpguest		= $data['tmpguest'];
+	
+					$secret_key_payment = true;
+					$tmpBookingHandler->tmpbooking['secret_key_payment']=$secret_key_payment;
+					$tmpBookingHandler->tmpbooking['approval_contract_uid']=$contract_uid;
+					}
+				else
+					jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL), '' );
 				}
 			else
 				{

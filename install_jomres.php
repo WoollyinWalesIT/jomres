@@ -488,8 +488,15 @@ function alterContractsBookingdataarchiveCol()
 		{
 		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_contracts secret_key</b><br>";
 		}
+	$query = "ALTER TABLE `#__jomres_contracts` ADD `secret_key_used` TINYINT DEFAULT 0 NOT NULL AFTER `secret_key` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		if ( !AUTO_UPGRADE ) echo "<b>Error, unable to add __jomres_contracts secret_key_used</b><br>";
+		}
 	}
 
+	
+	
 function checkContractsBookingdataarchiveColExists()
 	{
 	$query  = "SHOW COLUMNS FROM #__jomres_contracts LIKE 'booking_data_archive_id'";
