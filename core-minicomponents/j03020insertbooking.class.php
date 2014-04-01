@@ -31,6 +31,7 @@ class j03020insertbooking
 	 */
 	var $insertSuccessful = true;
 	var $insertBookingEventValues = array ();
+	var $secret_key_payment = false;
 
 	function j03020insertbooking( $componentArgs )
 		{
