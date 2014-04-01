@@ -1,3 +1,67 @@
+Jomres 8.1.-3
+
+New Feature : Added a new Booking Approval feature that allows managers to screen bookings before they're approved and the booking is inserted into the system.
+New Feature : Added new email template editing feature for managers.
+New Feature : Added support for Wordpress, to allow Jomres to work inside wordpress.
+New Feature : Implemented new functionality that will make error logging and tracking more visible and viewable. Some errors will trigger, among other things, errors being emailed to admin users.
+New Feature : Added ability to filter by property type in the list properties table.
+
+Change : Changed how the manual link is exported to the template in the Plugin Manager.
+Change : Added a condition to check that if the user's changing the View of the property list, if so we'll reuse the previous search results.
+Change : Code tidyup in router files to remove some duplicates.
+Change : Small tweak to management view to update copyright and improve css.
+Change : Tweaked the generic booking insert class to allow tax rates of 0.
+Change : Changed the upgrade script to use the installer, as the installation code is valid during upgrades too and it saves having duplicate code.
+Change : Added check to the installer to see if the manager's table is already populated. If it is, we will not add default data (again).
+Change : Added some new translations to the German language file. Thanks Alexander.
+Change : Updated some Getting Started text with who's links were broken by the manual update.
+Change : Added a check to pathway script to not run if the CMS is not Joomla.
+Change : Modified how the installer redirects to the administrator area after upgrade.
+Change : Modified the installer to use get_showtime( "db" ) as this is the proper way to find the database.
+Change : Tweaked custom text save function to allow meta data to be saved as blank.
+Change : Rewrote the Reservation details page to use a new basic_contract_details class.
+Change : Reworked the help popover system to use a new "official" version of the bootstrap product tour javascript system. 
+Change : Modified updater to ensure jomres.zip is deleted after files are extracted from it.
+Change : Added a pull-left to composite property details bs3 to ensure that all button layouts are the same. ( BS3 template )
+Change : Changed line item initial quantity from int to float at request of third party dev.
+Change : Obsoleted the old javascript packer class and minicomp.
+Change : Added new contract uid column to the booking data archive.
+Change : Added new secret key and booking data archive id to contracts table. 
+Change : Added code to basic contract details class to use the new columns in the contracts table.
+Change : Changed the default Production/Development setting to Development, bally thing keeps deleting my installer during dev :D
+Change : Editing mode dropdown in BS3 renabled after it's hiatus.
+Change : Added Bootstrap 3 versions of x-editable to js library.
+Change : Replaced "Click for a map" with "Map" in several language files.
+Change : Replaced a / with JRDS in temp booking handler. No errors have been reported, but it's nice to do things properly.
+Change : Improved how the find region name function works.
+Change : Removed an obsolete reference to JOMRES_MOBILE, a definition that's no longer used.
+Change : Changed how an error is triggered in basic property details.
+
+Fix : Fixed a typo in admin's edit invoice, thanks Rod.
+Fix : Changed how listeners and drag and drop is done in geocoder code, as IE doesn't play nicely.
+Fix : Tweaked show profiles, added trims to prevent usernames with spaces on the end from causing problems.
+Fix : IE was playing silly bu^H^Hboys and wouldn't load without using (window).load, however if we use that then the map will not run in module popups, so we need to change the loading trigger depending on the "task".
+Fix : Fixed a small bug where if the booker returns to the booking form using the "amend booking" button on the confirmation page, the quantity dropdown of extras was still disabled. Now it's enabled.
+Fix : Modified management view to change the url a user gets directed to if they're on the completebk task. If they switch views from normal to full-screen when on that task then duplicate bookings are created, so we've modified the class so that if we're on that page the next page we're directed to is the dashboard.
+Fix : Renamed extraServices table to extraservices.
+Fix : CSS fix for popovers in fullscreen http://www.jomres.net/jomres-forum/Bugs/22196-product-tour-popups-and-help-definitions-bug
+Fix : Tweaked the booking engine so that an edge case that resulted in prices for each room in the booking form rooms list not always showing the price is resolved.
+Fix : Made a small change to the BS3 top template to remove a div that no longer has a place due to the management view trigger being moved.
+Fix : Modified the Jomres "tmpl" script so that users who name their installations *jomres* don't have problems with jquery being loaded twice in fullscreen/management view. Thanks for the bug report Rod.
+Fix : Tweaked the agent view to output the region correctly.
+
+Wordpress : Added a new function to determine if we're running Wordpress.
+Wordpress : Modified the logout minicomp so that it has a clause for non-Joomla CMSs.
+Wordpress : Updated the wordpress cms specific functions to provide login/out urls.
+Wordpress : Fixed an issue in control panel where modules dir doesn't exist in WP and shouldn't be included in the writability test.
+Wordpress : Added a new jomres wp css file for compatability with Wordpress.
+Wordpress : Implemented a different feature for redirection because Wordpress outputs html before Jomres has done it's thing so header() will not work.
+Wordpress : Commented out the body of a cms specific function which is used primarily for making url safe strings for url routing.
+Wordpress : Disabled this "is wrapped" switch if the cms is WP, it's only appropriate to Joomla installations.
+Wordpress : Renamed the WP admin.php to trigger.php to prevent confusion.
+Wordpress : Added Main menu dashboard link to WP Admin for Wordpress super property managers.
+
+
 Jomres 8.0.1
 
 Fixed a wee bug in the Property List dropdown where if there are only two properties the bally Radio button javascript tries to furtle with them, causing an error.
