@@ -65,7 +65,6 @@ class j02990showconfirmation
 					$tmpBookingHandler->tmpguest		= $data['tmpguest'];
 	
 					$secret_key_payment = true;
-					$tmpBookingHandler->tmpbooking['secret_key_payment']=$secret_key_payment;
 					$tmpBookingHandler->tmpbooking['approval_contract_uid']=$contract_uid;
 					}
 				else
@@ -76,6 +75,9 @@ class j02990showconfirmation
 				throw new Exception("Could not validate secret key ".$secret_key);
 				}
 			}
+		
+		$tmpBookingHandler->tmpbooking['secret_key_payment']=$secret_key_payment;
+
 		$amend_contract    = $tmpBookingHandler->getBookingFieldVal( "amend_contract" );
 
 		$booking_parts = array ();
@@ -147,7 +149,7 @@ class j02990showconfirmation
 		$allCustomFields = $custom_fields->getAllCustomFieldsByPtypeId($ptype_id);
 	
 		$customFields    = array ();
-		if ( count( $allCustomFields ) > 0 && $mrConfig['requireApproval'] == 0)
+		if ( count( $allCustomFields ) > 0 )
 			{
 
 			foreach ( $allCustomFields as $f )
