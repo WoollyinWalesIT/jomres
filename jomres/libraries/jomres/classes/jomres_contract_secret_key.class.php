@@ -92,7 +92,15 @@ class jomres_contract_secret_key
 		return true;
 		}
 	
-	
+	public function check_secret_key_used($secret_key)
+		{
+		$query  = "SELECT `secret_key_used` FROM #__jomres_contracts WHERE `secret_key` = '" . $secret_key . "' LIMIT 1";
+		$secret_key_used = doSelectSql( $query , 1 );
+		if ((bool)$secret_key_used)
+			return true;
+		else
+			return false;
+		}
 	
 	
 	}

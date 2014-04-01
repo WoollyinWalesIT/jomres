@@ -45,6 +45,7 @@ class j03025insertbooking_invoice
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		$this->results     = array ();
 		$contract_uid      = $componentArgs[ 'contract_uid' ];
+		$secret_key_payment= $componentArgs[ 'secret_key_payment' ];
 
 		if ( isset( $tmpBookingHandler->tmpbooking[ "amend_contract" ] ) )
 			{
@@ -217,21 +218,44 @@ class j03025insertbooking_invoice
 			$invoice_data[ 'guest_id' ]     = $guest_id;
 			$invoice_data[ 'subscription' ] = false;
 
-			if ( $jrConfig[ 'useGlobalCurrency' ] == "1" ) $invoice_data[ 'currencycode' ] = $jrConfig[ 'globalCurrencyCode' ];
+			if ( $jrConfig[ 'useGlobalCurrency' ] == "1" ) 
+				$invoice_data[ 'currencycode' ] = $jrConfig[ 'globalCurrencyCode' ];
 			else
-			$invoice_data[ 'currencycode' ] = $mrConfig[ 'property_currencycode' ];
+				$invoice_data[ 'currencycode' ] = $mrConfig[ 'property_currencycode' ];
 
 			$invoice_handler               = new invoicehandler();
 			$invoice_handler->contract_id  = $contract_uid;
 			$invoice_handler->property_uid = $property_uid;
-			$invoice_handler->create_new_invoice( $invoice_data, $line_items );
+			
+			if (!$secret_key_payment)
+				{
+				$invoice_handler->create_new_invoice( $invoice_data, $line_items );
+				
+				$query = "UPDATE #__jomres_contracts SET invoice_uid = " . $invoice_handler->id . " WHERE contract_uid = " . $contract_uid;
+				doInsertSql( $query, "" );
+				set_showtime( "inserted_booking_invoice_id", $invoice_handler->id );
+				}
+			else
+				{
+				$line_items = array();
+				
+				if ( $depositPaid )
+					{
+					$line_item_data = array ( 'tax_code_id' => 0, 'name' => jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', _JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED, false, false ), 'description' => '', 'init_price' => "-" . $deposit_required, 'init_qty' => "1", 'init_discount' => "0", 'recur_price' => "0.00", 'recur_qty' => "0", 'recur_discount' => "0.00" );
+					$line_items[ ]  = $line_item_data;
+					}
+				$query      = "SELECT id FROM #__jomresportal_invoices WHERE contract_id = " . $contract_uid;
+				$invoice_data[ 'id' ] = (int) doSelectSql( $query, 1 );
+
+				$invoice_handler->update_invoice( $invoice_data, $line_items );
+				}
 
 			$tmp_init_total = number_format( (float) $invoice_handler->init_total, 2, '.', '' );
-			if ( $mrConfig[ 'depAmount' ] == 0 ) $invoice_handler->mark_invoice_pending();
-			elseif ( $depositpaidsuccessfully && $tmp_init_total == 0.00 ) $invoice_handler->mark_invoice_paid();
-			$query = "UPDATE #__jomres_contracts SET invoice_uid = " . $invoice_handler->id . " WHERE contract_uid = " . $contract_uid;
-			doInsertSql( $query, "" );
-			set_showtime( "inserted_booking_invoice_id", $invoice_handler->id );
+			if ( $mrConfig[ 'depAmount' ] == 0 ) 
+				$invoice_handler->mark_invoice_pending();
+			elseif ( $depositpaidsuccessfully && $tmp_init_total == 0.00 ) 
+				$invoice_handler->mark_invoice_paid();
+			
 			$this->results = array ( "invoice_id" => $invoice_handler->id );
 			}
 

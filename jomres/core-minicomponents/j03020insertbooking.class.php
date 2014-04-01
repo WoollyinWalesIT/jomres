@@ -405,6 +405,7 @@ class j03020insertbooking
 						}
 					$mrConfig = getPropertySpecificSettings( $property_uid );
 					}
+
 				$datetime     = date( "Y-m-d H-i-s" );
 				$ccode        = $mrConfig[ 'currencyCode' ];
 				
@@ -491,7 +492,21 @@ class j03020insertbooking
 					}
 				else
 					{
-					$contract_uid = $tmpBookingHandler->getBookingFieldVal( "approval_contract_uid" );
+					$contract_uid = (int)$tmpBookingHandler->getBookingFieldVal( "approval_contract_uid" );
+					
+					if ((int)$depositPaid == 1)
+						{
+						$deposit_paid_clause = ", deposit_paid = '1'";
+						}
+					
+					//mark the secret key as used
+					$query = "UPDATE #__jomres_contracts SET secret_key_used = '1' $deposit_paid_clause WHERE contract_uid = '".$contract_uid."' ";
+					doInsertSql( $query, "" );
+					
+					//add a booking note that the booking enquiry has been approved
+					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . "Secret key payment made" . "','".date( "Y-m-d H-i-s" )."','" . (int) $property_uid . "')";
+					doInsertSql( $query, "" );
+					
 					$this->insertSuccessful = true;
 					}
 				
@@ -514,6 +529,10 @@ class j03020insertbooking
 				$componentArgs[ 'deposit_required' ]    = $deposit_required;
 				$componentArgs[ 'sendGuestEmail' ]   	= $sendGuestEmail;
 				$componentArgs[ 'sendHotelEmail' ]   	= $sendHotelEmail;
+				if ($secret_key_payment)
+					$componentArgs[ 'secret_key_payment' ]  = true;
+				else
+					$componentArgs[ 'secret_key_payment' ]  = false;
 
 				if ( $this->insertSuccessful )
 					{
@@ -539,21 +558,25 @@ class j03020insertbooking
 				$this->insertBookingEventValues[ 'insertSuccessful' ] = $this->insertSuccessful;
 				gateway_log( "j03020insertbooking insertBookingEventValues :: " . serialize( $this->insertBookingEventValues ) );
 
-				if ( $this->insertSuccessful ) gateway_log( "j03020insertbooking :: Booking insert Successful " );
+				if ( $this->insertSuccessful ) 
+					gateway_log( "j03020insertbooking :: Booking insert Successful " );
 				else
-				gateway_log( "j03020insertbooking :: Booking insert failed " );
+					gateway_log( "j03020insertbooking :: Booking insert failed " );
 				}
 
-			$bookingNotes = $tempBookingData->booking_notes;
-			foreach ( $bookingNotes as $k => $v )
+			if (!$secret_key_payment)
 				{
-				$note  = " " . $k . " " . $v . "<br/>";
-				$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . $note . "','$dt','" . (int) $property_uid . "')";
-				doInsertSql( $query, "" );
+				$bookingNotes = $tempBookingData->booking_notes;
+				foreach ( $bookingNotes as $k => $v )
+					{
+					$note  = " " . $k . " " . $v . "<br/>";
+					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . $note . "','$dt','" . (int) $property_uid . "')";
+					doInsertSql( $query, "" );
+					}
 				}
 			
 			//add rooms booked notes for guest bookings that require approvals
-			if ((int)$mrConfig['requireApproval'] == 1 && !$thisJRUser->userIsManager )
+			if ((int)$mrConfig['requireApproval'] == 1 && !$thisJRUser->userIsManager && !$secret_key_payment)
 				{
 				$requestedRoom = $tempBookingData->requestedRoom;
 				$selected = explode( ",", $requestedRoom );
@@ -583,23 +606,26 @@ class j03020insertbooking
 				}
 
 			//insert custom fields notes
-			jr_import( 'jomres_custom_field_handler' );
-			$custom_fields   = new jomres_custom_field_handler();
-
-			$current_property_details->gather_data($property_uid);
-			$ptype_id = $current_property_details->ptype_id;
-			
-			$allCustomFields = $custom_fields->getAllCustomFieldsByPtypeId($ptype_id);
-			if ( count( $allCustomFields ) > 0 )
+			if (!$secret_key_payment)
 				{
-				$note = "";
-				foreach ( $allCustomFields as $f )
+				jr_import( 'jomres_custom_field_handler' );
+				$custom_fields   = new jomres_custom_field_handler();
+	
+				$current_property_details->gather_data($property_uid);
+				$ptype_id = $current_property_details->ptype_id;
+				
+				$allCustomFields = $custom_fields->getAllCustomFieldsByPtypeId($ptype_id);
+				if ( count( $allCustomFields ) > 0 )
 					{
-					$formfieldname = $f[ 'fieldname' ] . "_" . $f[ 'uid' ];
-					$note .= $f[ 'description' ] . " " . $tmpBookingHandler->tmpbooking[ $formfieldname ] . "<br/>";
+					$note = "";
+					foreach ( $allCustomFields as $f )
+						{
+						$formfieldname = $f[ 'fieldname' ] . "_" . $f[ 'uid' ];
+						$note .= $f[ 'description' ] . " " . $tmpBookingHandler->tmpbooking[ $formfieldname ] . "<br/>";
+						}
+					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . $note . "','$dt','" . (int) $property_uid . "')";
+					doInsertSql( $query, "" );
 					}
-				$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . $note . "','$dt','" . (int) $property_uid . "')";
-				doInsertSql( $query, "" );
 				}
 			}
 		}
