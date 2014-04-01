@@ -233,22 +233,25 @@ class j03025insertbooking_invoice
 				
 				$query = "UPDATE #__jomres_contracts SET invoice_uid = " . $invoice_handler->id . " WHERE contract_uid = " . $contract_uid;
 				doInsertSql( $query, "" );
-				set_showtime( "inserted_booking_invoice_id", $invoice_handler->id );
 				}
 			else
 				{
-				$line_items = array();
+				$deposit_paid_line_item_data = array ( 'tax_code_id' => 0, 'name' => jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', _JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED, false, false ), 'description' => '', 'init_price' => "-" . $deposit_required, 'init_qty' => "1", 'init_discount' => "0", 'recur_price' => "0.00", 'recur_qty' => "0", 'recur_discount' => "0.00" );
+
+				$query      = "SELECT id FROM #__jomresportal_invoices WHERE contract_id = " . $contract_uid;
+				$invoice_id = (int) doSelectSql( $query, 1 );
+
+				$invoice_handler->id = $invoice_id;
 				
 				if ( $depositPaid )
 					{
-					$line_item_data = array ( 'tax_code_id' => 0, 'name' => jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', _JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED, false, false ), 'description' => '', 'init_price' => "-" . $deposit_required, 'init_qty' => "1", 'init_discount' => "0", 'recur_price' => "0.00", 'recur_qty' => "0", 'recur_discount' => "0.00" );
-					$line_items[ ]  = $line_item_data;
+					$invoice_handler->getInvoice();
+					$invoice_handler->add_line_item( $deposit_paid_line_item_data );
+					$invoice_handler->commitUpdateInvoice();
 					}
-				$query      = "SELECT id FROM #__jomresportal_invoices WHERE contract_id = " . $contract_uid;
-				$invoice_data[ 'id' ] = (int) doSelectSql( $query, 1 );
-
-				$invoice_handler->update_invoice( $invoice_data, $line_items );
 				}
+			
+			set_showtime( "inserted_booking_invoice_id", $invoice_handler->id );
 
 			$tmp_init_total = number_format( (float) $invoice_handler->init_total, 2, '.', '' );
 			if ( $mrConfig[ 'depAmount' ] == 0 ) 
