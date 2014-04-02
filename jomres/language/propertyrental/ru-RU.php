@@ -740,7 +740,7 @@ jr_define( '_JOMRES_SORTORDER_PROPERTYREGION', 'Property Region' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYTOWN', 'Property Town' );
 jr_define( '_JOMRES_SORTORDER_STARS', 'Stars' );
 jr_define( '_JOMRES_PATHWAY_PROPERTYLIST', 'Property list' );
-jr_define( '_JOMRES_PATHWAY_PROPERTYDETAILS', 'Property details - ' );
+jr_define( '_JOMRES_PATHWAY_PROPERTYDETAILS', 'Property details ' );
 jr_define( '_JOMRES_PATHWAY_BOOKINGFORM', 'Booking form' );
 jr_define( '_JOMRES_BOOKINGFORM_UPDATEADDRESSBUTTON', 'Update your address details' );
 jr_define( '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY', 'Re-checking room availability<br/>(Room selection will be reset)' );
