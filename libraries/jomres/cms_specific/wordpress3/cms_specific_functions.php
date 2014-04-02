@@ -141,24 +141,12 @@ function jomres_cmsspecific_getRegistrationURL()
 
 function jomres_cmsspecific_getTextEditor( $name, $content, $hiddenField, $width, $height, $col, $row )
 	{
-	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-	$jrConfig   = $siteConfig->get();
+	ob_start();  // The wp_editor function will output the editor immediately. We don't want that to happen so...we'll buffer the function's response and dump it into a variable for return.
+	wp_editor( $content, $name );
+	$contents = ob_get_contents();
+	ob_end_clean();
 
-	//  More trouble than it is worth atm, if somebody enters something that creates a javascript error the editor crashes and burns
-	$jrConfig[ 'use_jomres_own_editor' ] = "0";
-
-	if ( $jrConfig[ 'use_jomres_own_editor' ] == "1" )
-		{
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		$ret            = $MiniComponents->specificEvent( '06005', 'editor', array ( "name" => $name, "content" => $content, "height" => $height ) );
-		}
-	else
-		{
-		$editor =& JFactory::getEditor();
-		$ret    = $editor->display( $name, $content, $width, $height, $col, $row , false );
-		}
-
-	return $ret;
+	return $contents;
 	}
 
 // This is called by the jomres_language class. If the jomres language chooser dropdown is used, then this function is called so that we can set the current cms's language too.
