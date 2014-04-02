@@ -181,6 +181,7 @@ class j06005list_invoices_ajax
 					c.surname,
 					d.guest_uid, 
 					d.tag,
+					d.currency_code,
 					d.approved
 				FROM #__jomresportal_invoices a 
 					JOIN #__jomresportal_lineitems b ON a.id = b.inv_id 
@@ -303,9 +304,9 @@ class j06005list_invoices_ajax
 			$r[] = $p->raised_date;
 			$r[] = $p->due_date;
 			$r[] = $p->paid;
-			$r[] = output_price($p->grand_total);
-			$r[] = output_price($p->init_total);
-			$r[] = output_price($p->recur_total);
+			$r[] = output_price($p->grand_total,$p->currency_code);
+			$r[] = output_price($p->init_total,$p->currency_code);
+			$r[] = output_price($p->recur_total,$p->currency_code);
 			
 			//paypal stuff
 			if (((int)$p->is_commission == 1 || (int)$p->subscription == 1) && (int)$p->status == 3 && $paypal_settings[ 'email' ] != "")

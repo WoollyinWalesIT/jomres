@@ -150,7 +150,8 @@ class j06001list_bookings_ajax
 						a.arrival, 
 						a.departure, 
 						a.contract_total, 
-						a.tag, 
+						a.tag,
+						a.currency_code,
 						a.booked_in, 
 						a.bookedout, 
 						a.deposit_required, 
@@ -304,8 +305,8 @@ class j06001list_bookings_ajax
 			$r[] = jomres_decode( $p->tel_landline );
 			$r[] = jomres_decode( $p->tel_mobile );
 			$r[] = jomres_decode( $p->email );
-			$r[] = output_price( $p->contract_total );
-			$r[] = output_price( $p->deposit_required );
+			$r[] = output_price( $p->contract_total,$p->currency_code );
+			$r[] = output_price( $p->deposit_required,$p->currency_code );
 			
 			if ((int)$p->deposit_paid == 1)
 				$r[] = jr_gettext( '_JOMRES_STATUS_PAID', _JOMRES_STATUS_PAID, false );

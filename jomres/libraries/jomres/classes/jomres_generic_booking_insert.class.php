@@ -78,6 +78,10 @@ class jomres_generic_booking_insert
 			{
 			throw new Exception(" Error room_total is not valid");
 			}
+		if ( $this->booking_details['currency_code'] == "" )
+			{
+			throw new Exception(" Error currency_code is not set");
+			}
 		if ( $this->booking_details['arrivalDate'] == "" )
 			{
 			throw new Exception(" Error arrivalDate is not valid");
@@ -122,6 +126,7 @@ class jomres_generic_booking_insert
 			"ok_to_book"				=> false,				// Do not set, this class will set this flag once it's performed it's pre-insertion checks ***** Required *****
 			"total_in_party"			=> 0,					// int(2)
 			"room_total"				=> 0.00,				// float(150) NET PRICE!!!! (price without tax) ***** Required *****
+			"currency_code"				=> "",					// string (EUR) ***** Required *****
 			"coupon_id"					=> "",					// "1"
 			"coupon_code"				=> "",					// "rDRkpUSKBbqFTCU"
 			"coupon_details"			=> array(),				// array(5) { ["amount"]=>string(2) "20" ["is_percentage"]=>string(1) "1" ["coupon_id"]=> string(1) "1" ["booking_valid_from"]=> string(10) "2013-06-20" ["booking_valid_to"]=> string(10) "2014-06-01" }
