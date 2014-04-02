@@ -54,6 +54,11 @@ class j06001dashboard_insertbooking_ajax
 		$contract_total			= (float)jomresGetParam($_GET,'contract_total','0');
 		$contract_total_nett	= $current_property_details->get_nett_accommodation_price($contract_total, $property_uid);
 		$tax					= $contract_total - $contract_total_nett;
+		
+		if ($jrConfig['useGlobalCurrency'] == 1)
+			$currency_code = $jrConfig['globalCurrencyCode'];
+		else
+			$currency_code = $mrConfig['property_currencycode'];
 
 		//Let`s check that we have a room_uid and the room can be booked, otherwise stop here
 		if ($room_uid == 0)
@@ -83,6 +88,7 @@ class j06001dashboard_insertbooking_ajax
 		$bkg->booking_details['tax'] 						= $tax;
 		$bkg->booking_details['deposit_required'] 			= (float)jomresGetParam($_GET,'deposit_required','0');
 		$bkg->booking_details['room_total'] 				= $contract_total_nett; //has to be without tax
+		$bkg->booking_details['currency_code'] 				= $currency_code;
 		$bkg->booking_details['depositpaidsuccessfully'] 	= (bool)$deposit_paid;
 		$bkg->booking_details['property_currencycode']		= jomresGetParam($_GET,'currencyCode','GBP');
 		$bkg->booking_details['booking_number']				= $booking_number;
