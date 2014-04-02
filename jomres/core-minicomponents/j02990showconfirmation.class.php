@@ -149,7 +149,7 @@ class j02990showconfirmation
 		$allCustomFields = $custom_fields->getAllCustomFieldsByPtypeId($ptype_id);
 	
 		$customFields    = array ();
-		if ( count( $allCustomFields ) > 0 )
+		if ( count( $allCustomFields ) > 0 && !$secret_key_payment)
 			{
 
 			foreach ( $allCustomFields as $f )
