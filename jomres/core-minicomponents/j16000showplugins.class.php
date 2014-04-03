@@ -36,8 +36,8 @@ class j16000showplugins
 			}
 		$registry = new minicomponent_registry( true );
 		$registry->regenerate_registry();
-		jomres_cmsspecific_addheaddata( "javascript", 'jomres/javascript/', "shop.js", false );
-		jomres_cmsspecific_addheaddata( "javascript", 'jomres/javascript/', "jquery.blockUI.js", false );
+		jomres_cmsspecific_addheaddata( "javascript", 'jomres/javascript/', "shop.js" );
+		jomres_cmsspecific_addheaddata( "javascript", 'jomres/javascript/', "jquery.blockUI.js" );
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
