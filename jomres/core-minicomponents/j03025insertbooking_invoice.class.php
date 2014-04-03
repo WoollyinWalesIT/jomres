@@ -132,7 +132,7 @@ class j03025insertbooking_invoice
 				foreach ( $extrasList as $theExtras )
 					{
 
-					$quantity_multiplier = (int) $extrasvalues_items[ (int) $extraUid ][ 'quantity_multiplier' ];
+					$quantity_multiplier = (float) $extrasvalues_items[ (int) $extraUid ][ 'quantity_multiplier' ];
 					$quant               = $extrasquantities[ $extraUid ];
 					$quantities          = $quantity_multiplier * $quant;
 					$extra_price         = $theExtras->price;
