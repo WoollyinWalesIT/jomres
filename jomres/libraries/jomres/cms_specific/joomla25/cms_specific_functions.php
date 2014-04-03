@@ -213,7 +213,11 @@ function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $inc
 	$includeVersion ? $version = "?v=".$jrConfig['update_time'] : $version = '';
 	
 	if (strpos($path,'http') === false)
+		{
 		$js = JURI::base( true ).'/'.$path.$filename.$version;
+		if (jomres_cmsspecific_areweinadminarea())
+			$js = str_replace('/administrator/','/',$js);
+		}
 	else
 		$js = $path.$filename.$version;
 
