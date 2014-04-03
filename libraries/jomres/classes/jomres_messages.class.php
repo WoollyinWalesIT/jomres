@@ -26,7 +26,7 @@ class jomres_messages
 			{
 			define('GROWL_JS_CSS_ADDED',1);
 			jomres_cmsspecific_addheaddata( "javascript", 'jomres/javascript/', "jquery.jgrowl.js" );
-			jomres_cmsspecific_addheaddata( "css", 'jomres/css/', 'jquery.jgrowl.css', true );
+			jomres_cmsspecific_addheaddata( "css", 'jomres/css/', 'jquery.jgrowl.css' );
 			}
 		}
 

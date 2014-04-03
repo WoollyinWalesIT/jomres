@@ -64,11 +64,11 @@ class j00004x_init_javascript_css_files
 				if ( $jrConfig[ 'load_jquery_ui' ] == "1" && !$management_view)
 					{
 					if ( $jrConfig[ 'load_jquery_ui_css' ] == "1" ) 
-						jomres_cmsspecific_addheaddata( "css", get_showtime( "jquery.ui.theme.relpath" ), get_showtime( "jquery.ui.theme" ), $skip = true );
+						jomres_cmsspecific_addheaddata( "css", get_showtime( "jquery.ui.theme.relpath" ), get_showtime( "jquery.ui.theme" ) );
 					}
 
 				if ( jomres_cmsspecific_areweinadminarea() ) // Regardless of the frontend setting, if we're in the admin area, we'll need the jquery UI
-					jomres_cmsspecific_addheaddata( "css", get_showtime( "jquery.ui.theme.relpath" ), get_showtime( "jquery.ui.theme" ), $skip = true );
+					jomres_cmsspecific_addheaddata( "css", get_showtime( "jquery.ui.theme.relpath" ), get_showtime( "jquery.ui.theme" ) );
 
 
 				if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery' ] == "1" && !$management_view ) )
@@ -83,7 +83,7 @@ class j00004x_init_javascript_css_files
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.ui.js.relpath" ), get_showtime( "jquery.ui.js" ) );
 					}
 
-				jomres_cmsspecific_addheaddata( "javascript", get_showtime( "datepicker_localisation_file.relpath" ), get_showtime( "datepicker_localisation_file" ), true );
+				jomres_cmsspecific_addheaddata( "javascript", get_showtime( "datepicker_localisation_file.relpath" ), get_showtime( "datepicker_localisation_file" ) );
 
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.cookee.js.relpath"),get_showtime("jquery.cookee.js"));
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.cookee.for_tabs.js.relpath"),get_showtime("jquery.cookee.for_tabs.js"));

@@ -200,26 +200,33 @@ function jomres_cmsspecific_getcurrentusers_id()
 	return $id;
 	}
 
-function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $skip = false )
+function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $includeVersion = true )
 	{
 	if ( $filename == "" ) return;
+	
+	$doc = JFactory::getDocument();
 
 	JHtml::_( 'bootstrap.framework' );
 	
 	$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig     = $siteConfig->get();
+	
+	$includeVersion ? $version = "?v=".$jrConfig['update_time'] : $version = '';
+	
+	if (strpos($path,'http') === false)
+		$js = JURI::base( true ).'/'.$path.$filename.$version;
+	else
+		$js = $path.$filename.$version;
 
 	switch ( $type )
 		{
 		case "javascript":
-			JHTML::script( $path . $filename, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
-			// $doc = JFactory::getDocument();
-			// $doc->addScript(get_showtime('live_site')."/".$path.$filename);
+			//JHTML::script( $path . $filename, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
+			$doc->addScript($js);
 			break;
 		case "css":
-			JHTML::stylesheet( $path . $filename, array (), false, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
-			// $doc = JFactory::getDocument();
-			// $doc->addStyleSheet(get_showtime('live_site')."/".$path.$filename);
+			//JHTML::stylesheet( $path . $filename, array (), false, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
+			$doc->addStyleSheet($path.$filename.$version);
 			break;
 		default:
 

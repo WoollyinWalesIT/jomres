@@ -180,7 +180,7 @@ class j01010listpropertys
 				if ( JOMRES_NOHTML != 1 && get_showtime( 'task' ) != "ajax_search_filter" )
 					{
 					$output[ 'JOMRES_SITEPAGE_URL_AJAX' ] = "<script type=\"text/javascript\"> var live_site_ajax = '" . JOMRES_SITEPAGE_URL_AJAX . "'; </script>";
-					jomres_cmsspecific_addheaddata( "javascript", 'jomres/javascript/', "list_properties.js", '', true );
+					jomres_cmsspecific_addheaddata( "javascript", 'jomres/javascript/', "list_properties.js" );
 					}
 
 				//we don`t even need the next line, because jomSearch always sets at least some random $propertys_uids
