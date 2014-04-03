@@ -207,122 +207,22 @@ function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $ski
 
 	$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig     = $siteConfig->get();
-	$use_js_cache = false;
-	if ( $jrConfig[ 'javascript_caching_enabled' ] == "1" ) $use_js_cache = true;
-
-	// Feature is currently disabled
-	$use_js_cache = false;
-
-	set_showtime( 'javascript_caching_enabled', $use_js_cache );
-
-	$use_css_cache = false;
-	if ( $jrConfig[ 'css_caching_enabled' ] == "1" ) $use_css_cache = true;
-
-	// Feature is currently disabled
-	$use_css_cache = false;
-
-	set_showtime( 'css_caching_enabled', $use_css_cache );
 
 	switch ( $type )
-	{
+		{
 		case "javascript":
-			if ( $use_js_cache && !jomres_cmsspecific_areweinadminarea() && !$skip )
-				{
-				$rarely_changing_scripts    = array ();
-				$rarely_changing_scripts[ ] = 'jquery-1.7.1.min.js';
-				$rarely_changing_scripts[ ] = "jquery-ui-1.8.16.custom.min.js";
-				$rarely_changing_scripts[ ] = "jomres.js";
-				$rarely_changing_scripts[ ] = "jquery.cookee.js";
-				$rarely_changing_scripts[ ] = "jquery.cookee.for_tabs.js";
-				$rarely_changing_scripts[ ] = "heartbeat.js";
-				$rarely_changing_scripts[ ] = "jquery.bt.js";
-				$rarely_changing_scripts[ ] = "jquery.hoverIntent.js";
-				$rarely_changing_scripts[ ] = "jquery.rating.js";
-				$rarely_changing_scripts[ ] = "jquery.validate.js";
-				$rarely_changing_scripts[ ] = "jquery.jeditable.js";
-				$rarely_changing_scripts[ ] = "jquery.jgrowl.css";
-				$rarely_changing_scripts[ ] = "jquery.jgrowl.js";
-				$rarely_changing_scripts[ ] = "excanvas.js";
-				$rarely_changing_scripts[ ] = "jquery.chainedSelects.js";
-				$rarely_changing_scripts[ ] = "jquery.ui.potato.menu.js";
-				$rarely_changing_scripts[ ] = "TableTools_JUI.css";
-				$rarely_changing_scripts[ ] = "jquery.dataTables.min.js";
-				$rarely_changing_scripts[ ] = "TableTools.min.js";
-
-				$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-				$identifier        = md5( get_showtime( "secret" ) . $tmpBookingHandler->jomressession );
-				set_showtime( 'js_cache_identifier', $identifier );
-
-				$showtime_cache     = 'js_cache_1';
-				$cached_js_filename = $identifier . "_javascript_cache_1.js";
-				$cached_js_file_abs = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "javascript_css_cache" . JRDS;
-				set_showtime( 'js_cache_path', $cached_js_file_abs );
-
-				if ( !in_array( $filename, $rarely_changing_scripts ) )
-					{
-					$showtime_cache     = 'js_cache_2';
-					$cached_js_filename = $identifier . "_javascript_cache_2.js";
-					}
-
-				$jomres_js_cache = get_showtime( $showtime_cache );
-				if ( !is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "javascript_css_cache" ) ) mkdir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "javascript_css_cache" );
-				$original_javascript = file_get_contents( $path . $filename );
-				$jomres_js_cache .= "
-				" . $original_javascript;
-				set_showtime( $showtime_cache, $jomres_js_cache );
-
-				if ( !file_exists( $cached_js_file_abs . $cached_js_filename ) )
-					{
-					$fp = fopen( $cached_js_file_abs . $cached_js_filename, 'w' );
-					fwrite( $fp, '' );
-					fclose( $fp );
-					}
-				}
-			else
-				{
-				JHTML::script( $filename, $path, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
-				// $doc = JFactory::getDocument();
-				// $doc->addScript(get_showtime('live_site')."/".$path.$filename);
-				}
+			JHTML::script( $filename, $path, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
+			// $doc = JFactory::getDocument();
+			// $doc->addScript(get_showtime('live_site')."/".$path.$filename);
 			break;
 		case "css":
-			if ( $use_css_cache && !jomres_cmsspecific_areweinadminarea() && !$skip )
-				{
-				$jomres_css_cache  = get_showtime( 'css_cache' );
-				$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-				if ( !is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "javascript_css_cache" ) ) mkdir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "javascript_css_cache" );
-				$original_css = file_get_contents( $path . $filename );
-				$jomres_css_cache .= "
-				" . $original_css;
-				set_showtime( 'css_cache', $jomres_css_cache );
-				if ( !defined( 'CSS_CACHE_FILE_INSERTED' ) )
-					{
-					$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-					$identifier        = md5( get_showtime( "secret" ) . $tmpBookingHandler->jomressession );
-					set_showtime( 'css_cache_identifier', $identifier );
-					$cached_css_filename = $identifier . "_css_cache.css";
-
-					$cached_css_file_abs = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "javascript_css_cache" . JRDS;
-					set_showtime( 'css_cache_path', $cached_css_file_abs );
-					set_showtime( 'css_cache_filename', $cached_css_filename );
-					$fp = fopen( $cached_css_file_abs . $cached_css_filename, 'w' );
-					fwrite( $fp, '' );
-					fclose( $fp );
-					define( 'CSS_CACHE_FILE_INSERTED', 1 );
-					}
-				}
-			else
-				{
-				JHTML::stylesheet( $path . $filename, array (), false, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
-				// $doc = JFactory::getDocument();
-				// $doc->addStyleSheet(get_showtime('live_site')."/".$path.$filename);
-				}
-
+			JHTML::stylesheet( $path . $filename, array (), false, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
+			// $doc = JFactory::getDocument();
+			// $doc->addStyleSheet(get_showtime('live_site')."/".$path.$filename);
 			break;
 		default:
-
 			break;
-	}
+		}
 	}
 
 
