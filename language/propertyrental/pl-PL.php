@@ -8,7 +8,7 @@
 * @copyright	2005-2013 Vince Wooll
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly. 
 * @Polska adaptacja Patryk Doering - http://www.rekinet.pl - kontakt@rekinet.pl
-* @Aktualizacja wersji językowej z 26-01-2014r.
+* @Aktualizacja wersji językowej z 02-03-2014r.
 **/
 
 ##################################################################
@@ -121,7 +121,7 @@ jr_define('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER','Nr');
 jr_define('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR','Piętro');
 jr_define('_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS','Dla niepełnosprawnych');
 jr_define('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE','Maks klientów');
-jr_define('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES','Charakterystyka');
+jr_define('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES','Charakterystyczne cechy');
 jr_define('_JOMRES_COM_MR_VRCT_ROOM_SAVE_INSERT','Przedmiot rezerwacji został dodany.');
 jr_define('_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT','Edycja');
 jr_define('_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_LINK','Cechy ofert');
@@ -178,7 +178,7 @@ jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN','Zameldowanie klienta');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT','Wymeldowanie klienta');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS','Lista rezerwacji');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_LISTNEWBOOKINGS','Nowe rezerwacje');
-jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_HOME','Zarządzanie');
+jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_HOME','Pulpit rezerwacji');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN','Zestawienia klientów');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_PROPERTYADMIN','Edycja ofert');
 jr_define('_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY','Sprawdź dostępność');
@@ -655,8 +655,8 @@ jr_define('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING','Dni do początku rezerwacji');
 jr_define('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC','Minimalna ilość dni, jaka musi pozostać między datą dokonywania razerwacji a datą realizacji przedmiotowej rezerwacji.');
 jr_define('_JOMRES_DTV','Warianty typu daty');
 jr_define('_JOMRES_DTV_DOW','Dzień tygodnia');
-jr_define('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE','Domyślny rodzaj klientów');
-jr_define('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC','Domyślny rodzaj klientów (o ile używasz rozróżnienia ich rodzajów), nadawany pierwszemu klientowi w formularzu rezerwacji.');
+jr_define('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE','Domyślna ilość klientów');
+jr_define('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC','Domyślna ilość klientów (o ile używasz rozróżnienia ich rodzajów), widoczna w formularzu rezerwacji.');
 jr_define('_JOMRES_COM_A_REGISTEREDUSERSONLYBOOK','Rezerwacje on-line tylko dla zarejestrowanych użytkowników');
 jr_define('_JOMRES_REGISTEREDUSERSONLYBOOK','Musisz być zarejestrowanym i zalogowanym użytkownikiem, aby móc rezerwować on-line. Kliknij tutaj, aby się zarejestrować lub zalogować.');
 jr_define('_JOMRES_COM_AVLCAL_CURRENTBOOKINGFONT','Kolor odsyłaczy do aktualnych rezerwacji');
@@ -928,11 +928,11 @@ jr_define('_JOMRES_FRONT_MR_MENU_CAPTCHA_BUTTONTEXT','Wyślij');
 jr_define('_JOMRES_FRONT_MR_MENU_CAPTCHA_REFRESHBUTTONTEXT','nowy obrazek');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_ENQUIRY','Zapytanie');
 jr_define('_JOMRES_BOOKINGFORM_LOOKRIGHT','Dodaj do zamówienia wybrane przedmioty rezerwacji.');
-jr_define('_JOMRES_COM_MR_EB_ROOM_MINROOMS','Przedmioty rezerwacji min już wybrane');
-jr_define('_JOMRES_COM_MR_EB_ROOM_MINROOMS_DESC','Minimalna liczba przedmiotów rezerwacji już wybranych w rezerwacji przed cena/przedmiot rezerwacji typu combo może być oferowany. Pozwala to mieć zniżki gdy więcej niż przedmiotów rezerwacji X są');
-jr_define('_JOMRES_COM_MR_EB_ROOM_MAXROOMS','Przedmioty rezerwacji max już wybrane');
-jr_define('_JOMRES_COM_MR_EB_ROOM_MAXROOMS_DESC','Maksymalna liczba przedmiotów rezerwacji już wybranych w rezerwacji przed cena/przedmiot rezerwacji combo nie są już oferowane. Umożliwia zaprzestanie oferowania tego typu przedmiotu rezerwacji/ceny.');
-jr_define('_JOMRES_COM_SPS_EDITROOM_DESC',' !!! Należy pamiętać, że pojedyncze osobowej ustalonej tutaj nie będzie używany, jeśli pojedyncze Suppliments Person są ustawione na Tak w ogólnej konfiguracji. Ustawienia tutaj są alternatywą dla zryczałtowanych pojedynczych Suppliements osobą, nie dodatek do mieszkania Stopa SPS.');
+jr_define('_JOMRES_COM_MR_EB_ROOM_MINROOMS','Minimalna ilość wybranych zasobów');
+jr_define('_JOMRES_COM_MR_EB_ROOM_MINROOMS_DESC','Minimalna liczba przedmiotów rezerwacji już wybranych w rezerwacji, dla których kombinacje cenowe przedmiotów rezerwacji są dostępne w ofercie. Pozwala to stosować zniżki, gdy więcej niż X przedmiotów rezerwacji zostało już wybranych.');
+jr_define('_JOMRES_COM_MR_EB_ROOM_MAXROOMS','Maksymalna ilość wybranych zasobów');
+jr_define('_JOMRES_COM_MR_EB_ROOM_MAXROOMS_DESC','Maksymalna liczba przedmiotów rezerwacji już wybranych w rezerwacji, dla których kombinacje cenowe przedmiotów rezerwacji nie są już dostępne w ofercie. Pozwala to na zatrzymanie dostępności przedmiotów rezerwacji w określonej taryfie cenowej, gdy X przedmiotów rezerwacji została już wybrana.');
+jr_define('_JOMRES_COM_SPS_EDITROOM_DESC','Należy pamiętać, że dopłata do przedmiotu rezerwacji dla jednej osoby nie zostanie zastosowana jeśli konfiguracja systemu została skonfigurowana dla obsługi jednego przedmiotu rezerwacji.');
 jr_define('_JOMRES_AVLCAL_NOBOOKINGS',"Dostępny");
 jr_define('_JOMRES_AVLCAL_QUARTER',"Ruszyła rezerwacja");
 jr_define('_JOMRES_AVLCAL_HALF',"Połowa już zarezerwowana");
@@ -2284,44 +2284,37 @@ jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_VAT_CONTENT',"Jeśli wprowadzisz tutaj
 jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_TITLE',"Rabat.");
 jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_CONTENT',"Możesz zdefiniować automatyczny rabat dla przyszłych rezerwacji klienta.");
 
-jr_define('DATATABLES_SINFO' , "Showing _START_ to _END_ of _TOTAL_ entries" );
+jr_define('DATATABLES_SINFO',"Pokazane _START_ do _END_ z _TOTAL_ Pozycji");
 
-jr_define('_JOMRES_BOOKING_INQUIRY_HAPPROVAL',"Approval");
-jr_define('_JOMRES_BOOKING_REJECT_INQUIRY',"Reject booking inquiry");
-jr_define('_JOMRES_BOOKING_APPROVE_INQUIRY',"Approve booking inquiry");
-jr_define('_JOMRES_STATUS_APPROVED',"Approved");
-jr_define('_JOMRES_STATUS_REJECTED',"Rejected");
-jr_define('_JOMRES_STATUS_INQUIRY',"Inquiry");
-
-jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_TITLE',"Bookings require approval or availability confirmation?");
-jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_DESC', "If set to yes, when a booking is made, it will not show up on the availability calendars (and other guests can still book those days and resource) until the property manager accepts/confirms availability for the booking. Once confirmed, booking is inserted as provisional (if doesn`t override other bookings; other guests can`t book the same dates anymore) and an email is sent to the customer to make the payment.");
-
-jr_define('_JOMRES_ERROR',"Error");
-jr_define('_JOMRES_ERROR_MESSAGE',"Sorry! An error occured while trying to process this function. It has been reported for you and we will look into it.");
-
-jr_define('_JOMRES_ERROR_DEBUGGING_MESSAGE',"Message");
-jr_define('_JOMRES_ERROR_DEBUGGING_FILE',"File");
-jr_define('_JOMRES_ERROR_DEBUGGING_LINE',"Line");
-jr_define('_JOMRES_ERROR_DEBUGGING_TRACE',"Trace");
-
-
-jr_define('_JOMRES_EMAIL_TEMPLATES_TITLE',"Email templates");
-jr_define('_JOMRES_EMAIL_TEMPLATES_EDIT',"Edit email template");
-jr_define('_JOMRES_EMAIL_TEMPLATES_SUBJECT',"Email subject");
-jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Email text");
-jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Email type");
-jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Email name");
-jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Email description");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Instructions");
-jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Site Admin New Booking Email");
-jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Email sent to the site admin when a new booking is made, if the global Paypal gateway is enabled");
-jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Hotel New Booking Email");
-jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC',"Email sent to property owner when a new booking is made");
-jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILNAME',"Guest New Booking Email");
-jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILDESC',"Email sent to guest when a new booking is made");
-jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME',"Guest Confirmation Letter");
-jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC',"Printable letter or email that can be sent manually by the property owner to confirm a booking");
-
-
-jr_define('_JOMRES_CAN_BE_APPROVED',"This booking can be approved. All selected resources are available for the selected dates.");
-jr_define('_JOMRES_CANT_BE_APPROVED',"This booking can`t be approved because some of the resources are already booked for the selected dates. You`ll need to amend the booking first.");
+jr_define('_JOMRES_BOOKING_INQUIRY_HAPPROVAL',"Zatwierdzenie");
+jr_define('_JOMRES_BOOKING_REJECT_INQUIRY',"Odrzucenie zapytania o rezerwację");
+jr_define('_JOMRES_BOOKING_APPROVE_INQUIRY',"Zatwierdzenie zapytania o rezerwację");
+jr_define('_JOMRES_STATUS_APPROVED',"Zatwierdzone");
+jr_define('_JOMRES_STATUS_REJECTED',"Odrzucone");
+jr_define('_JOMRES_STATUS_INQUIRY',"Zapytanie");
+jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_TITLE',"Rezerwacje wymagają zatwierdzenia lub potwierdzenia dostępności?");
+jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_DESC',"Ustawienie tej opcji na Tak spowoduje konieczność ręcznego potwierdzania dostępności i zatwierdzania rezerwacji. Po złożeniu rezerwacji przez klienta nie pojawi się ona w kalendarzu dostępności do czasu jej potwierdzenia. inne osoby cały czas mogą rezerwować ten termin. Po przyjęciu rezerwacji przez obsługę odpowiednia informacja pokarze się w kalendarzu dostępności i zablokowana zostanie możliwość rezerwacji tego terminu. Do klienta zostanie wysłany e-mail z odpowiednimi informacjami.");
+jr_define('_JOMRES_ERROR',"Błąd");
+jr_define('_JOMRES_ERROR_MESSAGE',"Przepraszamy! Wystąpił błąd podczas próby przetworzenia tej operacji. Informacje o błędzie zostały zapisane i przesłane do analizy przez obsługę techniczną.");
+jr_define('_JOMRES_ERROR_DEBUGGING_MESSAGE',"Wiadomość");
+jr_define('_JOMRES_ERROR_DEBUGGING_FILE',"Plik");
+jr_define('_JOMRES_ERROR_DEBUGGING_LINE',"Linia");
+jr_define('_JOMRES_ERROR_DEBUGGING_TRACE',"Ślad");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TITLE',"Szablony e-mail");
+jr_define('_JOMRES_EMAIL_TEMPLATES_EDIT',"Edycja szablonu e-mail");
+jr_define('_JOMRES_EMAIL_TEMPLATES_SUBJECT',"Temat wiadomości");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Treść wiadomości");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Rodzaj");
+jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Nazwa");
+jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Opis");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Instrukcje");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Administrator - Nowa rezerwacja");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"E-mail wysyłany do administratora witryny po dokonaniu przez klienta nowej rezerwacji, jeśli włączona jest bramka PayPal.");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Sprzedawca - Nowa rezerwacja");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC',"E-mail wysyłany do sprzedawcy po dokonaniu przez klienta nowej rezerwacji.");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILNAME',"Klient - Nowa rezerwacja");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILDESC',"E-mail wysyłany do klienta po dokonaniu przez niego rezerwacji.");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME',"Klient - Potwierdzenie rezerwacji");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC',"Wiadomość (e-mail lub wydruk) wysyłana ręcznie przez sprzedawcę do klienta z potwierdzeniem rezerwacji.");
+jr_define('_JOMRES_CAN_BE_APPROVED',"Ta rezerwacja może zostać zatwierdzona. Wszystkie wybrane zasoby są dostępne w wybranych terminach.");
+jr_define('_JOMRES_CANT_BE_APPROVED',"Ta rezerwacja nie może zostać zatwierdzona, gdyż wybrane zasoby są już zarezerwowane. Konieczna jest edycja rezerwacji i wybranie dostępnych zasobów dla wybranych terminów.");
