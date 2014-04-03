@@ -254,6 +254,7 @@ if ( $folderChecksPassed && $functionChecksPassed && ACTION != "Migration" )
 		}
 	}
 
+updateSiteSettings ( "update_time" , time() );
 if ( !AUTO_UPGRADE ) showfooter();
 if ( AUTO_UPGRADE ) echo "1";
 
@@ -373,6 +374,9 @@ function updateImages()
 
 		}
 	}
+
+	
+
 
 function doTableUpdates()
 	{
@@ -5525,4 +5529,18 @@ function Piwik_getUrlTrackGoal( $idSite, $idGoal, $revenue = false )
 	return $tracker->getUrlTrackGoal( $idGoal, $revenue );
 	}
 
+function updateSiteSettings ( $k , $v )
+	{
+	$query  = "SELECT id FROM #__jomres_site_settings WHERE akey = '" . $k . "'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) == 0 ) 
+		{
+		$query = "INSERT INTO #__jomres_site_settings (akey,value) VALUES ('" . $k . "','" . $v . "')";
+		}
+	else
+		{
+		$query = "UPDATE #__jomres_site_settings SET `value`='" . $v . "' WHERE akey = '" . $k . "'";
+		}
+	doInsertSql( $query, "" );
+	}
 ?>
