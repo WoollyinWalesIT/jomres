@@ -291,6 +291,10 @@ function showSiteConfig()
 	$lists[ 'gmap_layer_bicycling' ] = jomresHTML::selectList( $yesno, 'cfg_gmap_layer_bicycling', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_layer_bicycling' ] );
 	$lists[ 'gmap_pois' ]            = jomresHTML::selectList( $yesno, 'cfg_gmap_pois', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_pois' ] );
 	
+	if (!isset($jrConfig['show_powered_by']))
+		$jrConfig['show_powered_by']="0";
+	$lists[ 'show_powered_by' ]            = jomresHTML::selectList( $yesno, 'cfg_show_powered_by', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_powered_by' ] );
+	
 	if (!isset($jrConfig[ 'navbar_inverse' ]))
 		$jrConfig[ 'navbar_inverse' ] = 0;
 	

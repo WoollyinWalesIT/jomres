@@ -2318,3 +2318,6 @@ jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME',"Klient - Potwierdzenie r
 jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC',"Wiadomość (e-mail lub wydruk) wysyłana ręcznie przez sprzedawcę do klienta z potwierdzeniem rezerwacji.");
 jr_define('_JOMRES_CAN_BE_APPROVED',"Ta rezerwacja może zostać zatwierdzona. Wszystkie wybrane zasoby są dostępne w wybranych terminach.");
 jr_define('_JOMRES_CANT_BE_APPROVED',"Ta rezerwacja nie może zostać zatwierdzona, gdyż wybrane zasoby są już zarezerwowane. Konieczna jest edycja rezerwacji i wybranie dostępnych zasobów dla wybranych terminów.");
+
+jr_define('_JOMRES_SHOW_POWEREDBY',"Show the Powered by Jomres link in the Jomres footer.");
+

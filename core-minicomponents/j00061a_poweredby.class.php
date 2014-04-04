@@ -28,11 +28,19 @@ class j00061a_poweredby
 			return;
 			}
 		if ( AJAXCALL ) return;
+		$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig     = $siteConfig->get();
+		
+		if (!isset($jrConfig['show_powered_by']))
+			$jrConfig['show_powered_by']="0";
 
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		$tmpl->readTemplatesFromInput( 'poweredby.html' );
-		$tmpl->displayParsedTemplate();
+		if ($jrConfig[ 'show_powered_by' ] =="1")
+			{
+			$tmpl = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			$tmpl->readTemplatesFromInput( 'poweredby.html' );
+			$tmpl->displayParsedTemplate();
+			}
 		}
 
 	/**
