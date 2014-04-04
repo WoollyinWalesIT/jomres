@@ -358,16 +358,11 @@ class HTML_jomres
 				<td>' . $lists[ 'load_jquery_ui' ] . '</td>
 				<td>' . jr_gettext( _JOMRES_CONFIG_JQUERY_UI_DESC, '_JOMRES_CONFIG_JQUERY_UI_DESC', false ) . '</td>
 			</tr>
-			<!--<tr>
-				<td>' . jr_gettext( _JOMRES_JAVASCRIPT_CACHING_TITLE, '_JOMRES_JAVASCRIPT_CACHING_TITLE', false ) . '</td>
-				<td>' . $lists[ 'javascript_caching_enabled' ] . '</td>
-				<td>' . jr_gettext( _JOMRES_JAVASCRIPT_CACHING_DESC, '_JOMRES_JAVASCRIPT_CACHING_DESC', false ) . '</td>
-			</tr>
 			<tr>
-				<td>' . jr_gettext( _JOMRES_CSS_CACHING_TITLE, '_JOMRES_CSS_CACHING_TITLE', false ) . '</td>
-				<td>' . $lists[ 'css_caching_enabled' ] . '</td>
-				<td>' . jr_gettext( _JOMRES_CSS_CACHING_DESC, '_JOMRES_CSS_CACHING_DESC', false ) . '</td>
-			</tr>-->
+				<td>' . jr_gettext( _JOMRES_SHOW_POWEREDBY, '_JOMRES_SHOW_POWEREDBY', false ) . '</td>
+				<td>' . $lists[ 'show_powered_by' ] . '</td>
+				<td></td>
+			</tr>
 			' );
 			$contentPanel->setcontent( '
 		</tbody>

@@ -272,3 +272,5 @@ $jrConfig[ 'navbar_location' ]        = "component_area";
 $jrConfig[ 'navbar_inverse' ]         = 0;
 
 $jrConfig[ 'bootstrap_version' ]         = "";
+
+$jrConfig[ 'show_powered_by' ]         = "0";
