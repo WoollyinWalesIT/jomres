@@ -147,17 +147,21 @@ class j02260editbooking
 				
 				if ( get_showtime( 'include_room_booking_functionality' ) )
 					{
+					$today = date("Y/m/d");
 					if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['approved'] == 1 )
 						{
 						if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['booked_in'] == 0 )
 							{
-							$output[ 'HBOOKGUESTIN' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN', _JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN, $editable = false, $isLink = true );
-							$link = JOMRES_SITEPAGE_URL . '&task=bookGuestIn&contract_uid=' . $contract_uid;
-							$targetTask = 'bookGuestIn';
-							$image = '/jomres/images/jomresimages/' . $jrtbar->imageSize . '/BookGuestIn.png';
-							
-							$jrtb .= $jrtbar->customToolbarItem( $targetTask, $link, $output[ 'HBOOKGUESTIN' ], $submitOnClick = false, $submitTask = "", $image );
-							//add_menu_option( '&task=bookGuestIn&contract_uid=' . $contract_uid, null, jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN', _JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+							if ($today >= $current_contract_details->contract[$contract_uid]['contractdeets']['arrival'] )
+								{
+								$output[ 'HBOOKGUESTIN' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN', _JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN, $editable = false, $isLink = true );
+								$link = JOMRES_SITEPAGE_URL . '&task=checkin&contract_uid=' . $contract_uid;
+								$targetTask = 'bookGuestIn';
+								$image = '/jomres/images/jomresimages/' . $jrtbar->imageSize . '/BookGuestIn.png';
+								
+								$jrtb .= $jrtbar->customToolbarItem( $targetTask, $link, $output[ 'HBOOKGUESTIN' ], $submitOnClick = false, $submitTask = "", $image );
+								//add_menu_option( '&task=bookGuestIn&contract_uid=' . $contract_uid, null, jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN', _JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+								}
 							
 							if ((int)$current_contract_details->contract[$contract_uid]['contractdeets']['channel_manager_booking'] != 1)
 								{
@@ -168,7 +172,7 @@ class j02260editbooking
 						else
 							{
 							$output[ 'HBOOKGUESTOUT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT', _JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT, $editable = false, $isLink = true );
-							$link = JOMRES_SITEPAGE_URL . '&task=bookGuestOut&dueDepart=' . $contract_uid;
+							$link = JOMRES_SITEPAGE_URL . '&task=checkout&contract_uid=' . $contract_uid;
 							$targetTask = 'bookGuestOut';
 							$image = '/jomres/images/jomresimages/' . $jrtbar->imageSize . '/BookGuestOut.png';
 							

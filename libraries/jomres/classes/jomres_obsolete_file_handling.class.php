@@ -935,6 +935,20 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j03100hotelconfirmationemail.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j03100adminconfirmationemail.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j02190confirmationform.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00010reception_option_07_bookaguestin.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00010reception_option_08_bookaguestout.class.php' );
+		
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'bookguestin.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'bookguestout.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'get_guests_depart_today.html' );
+		
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'bookguestin.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'bookguestout.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'get_guests_depart_today.html' );
+		
+		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'bookguestin.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'bookguestout.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'get_guests_depart_today.html' );
 		
 		$this->add_obs_file( $this->dir_classes . 'jomres_cache.class.php' );
 		

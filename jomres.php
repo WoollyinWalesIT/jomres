@@ -725,7 +725,7 @@ try
 				userHasBeenLoggedOut();
 				break;
 			#########################################################################################
-			case 'bookGuestIn':
+			/*case 'bookGuestIn':
 				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02170' ); //bookGuestIn();
 				else
 				userHasBeenLoggedOut();
@@ -741,7 +741,7 @@ try
 				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02182' ); //saveBookout();
 				else
 				userHasBeenLoggedOut();
-				break;
+				break;*/
 			#########################################################################################
 			case 'editBooking':
 				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02260' ); //editBooking();
