@@ -2307,7 +2307,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Treść wiadomości");
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Rodzaj");
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Nazwa");
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Opis");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Instrukcje");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Please see this page for help customizing the emails and a list of the available output: <a href=\"http://manual.jomres.net/email_templates.html\" target=\"_blank\">Email Templates Help</a>");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Administrator - Nowa rezerwacja");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"E-mail wysyłany do administratora witryny po dokonaniu przez klienta nowej rezerwacji, jeśli włączona jest bramka PayPal.");
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Sprzedawca - Nowa rezerwacja");
