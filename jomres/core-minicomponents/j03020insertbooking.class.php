@@ -49,6 +49,9 @@ class j03020insertbooking
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+		
 		$depositPaid       = $componentArgs[ 'depositPaid' ];
 		if ( isset( $componentArgs[ 'usejomressessionasCartid' ] ) ) 
 			$usejomressessionasCartid = $componentArgs[ 'usejomressessionasCartid' ];
@@ -60,6 +63,13 @@ class j03020insertbooking
 		$guestDetails                   = $jomresProccessingBookingObject->guestDetails;
 		$tempBookingDataList            = $jomresProccessingBookingObject->tempBookingDataList;
 		gateway_log( "j03020insertbooking :: Attempting to insert booking jsid: " . get_showtime( 'jomressession' ) );
+		
+		if ($jrConfig['useGlobalCurrency'] == 1)
+			$ccode = $jrConfig['globalCurrencyCode'];
+		else
+			$ccode = $mrConfig['property_currencycode'];
+
+		$datetime = date( "Y-m-d H-i-s" );
 
 		if ( count( $guestDetails ) == 0 )
 			{
@@ -164,8 +174,6 @@ class j03020insertbooking
 					$mrConfig = getPropertySpecificSettings( $property_uid );
 					}
 
-				$datetime = date( "Y-m-d H-i-s" );
-				$ccode    = $mrConfig[ 'currencyCode' ];
 				$query    = "UPDATE #__jomres_contracts SET
 					`arrival` 					= '$arrivalDate',
 					`departure`					= '$departureDate',
@@ -406,9 +414,6 @@ class j03020insertbooking
 						}
 					$mrConfig = getPropertySpecificSettings( $property_uid );
 					}
-
-				$datetime     = date( "Y-m-d H-i-s" );
-				$ccode        = $mrConfig[ 'currencyCode' ];
 				
 				jr_import("jomres_contract_secret_key");
 				$jomres_contract_secret_key = new jomres_contract_secret_key();
