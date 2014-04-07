@@ -239,9 +239,12 @@ class j06001list_bookings_ajax
 				if ( $p->cancelled == 0 )
 					{
 					if ( $p->booked_in == 0 )
-						$jrtb .= $jrtbar->toolbarItem( 'bookGuestIn', jomresURL( JOMRES_SITEPAGE_URL . '&task=bookGuestIn' . '&contract_uid=' . $p->contract_uid  . $thisProperty ), jr_gettext( '_JOMRES_FRONT_MR_BOOKIN_TITLE', _JOMRES_FRONT_MR_BOOKIN_TITLE, false ) );
+						{
+						if ($today >= $p->arrival)
+							$jrtb .= $jrtbar->toolbarItem( 'bookGuestIn', jomresURL( JOMRES_SITEPAGE_URL . '&task=checkin' . '&contract_uid=' . $p->contract_uid  . $thisProperty ), jr_gettext( '_JOMRES_FRONT_MR_BOOKIN_TITLE', _JOMRES_FRONT_MR_BOOKIN_TITLE, false ) );
+						}
 					elseif( $p->bookedout == 0 )
-						$jrtb .= $jrtbar->toolbarItem( 'bookGuestOut', jomresURL( JOMRES_SITEPAGE_URL . '&task=bookGuestOut' . '&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_FRONT_MR_BOOKOUT_TITLE', _JOMRES_FRONT_MR_BOOKOUT_TITLE, false ) );
+						$jrtb .= $jrtbar->toolbarItem( 'bookGuestOut', jomresURL( JOMRES_SITEPAGE_URL . '&task=checkout' . '&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_FRONT_MR_BOOKOUT_TITLE', _JOMRES_FRONT_MR_BOOKOUT_TITLE, false ) );
 					}
 				//TODO add check for mrConfig setting - no need to, if requireApprovals is disabled, it will insert bookings with approved = 1 (default)
 				if ( $p->approved == 0 && isset($MiniComponents->registeredClasses['00005booking_enquiries']))
@@ -260,13 +263,13 @@ class j06001list_bookings_ajax
 					{
 					if ( $p->booked_in == 0 )
 						{
-						if ( $p->approved == 1 )
-							$toolbar->addItem( 'icon-plus', 'btn btn-default ', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=bookGuestIn&contract_uid=' . $p->contract_uid . $thisProperty), jr_gettext( '_JOMRES_ACTION_CHECKIN', _JOMRES_ACTION_CHECKIN, false ) );
+						if ( $p->approved == 1 && $today >= $p->arrival )
+							$toolbar->addItem( 'icon-plus', 'btn btn-default ', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=checkin&contract_uid=' . $p->contract_uid . $thisProperty), jr_gettext( '_JOMRES_ACTION_CHECKIN', _JOMRES_ACTION_CHECKIN, false ) );
 						else
 							$toolbar->addItem( 'icon-plus', 'btn btn-default disabled', '', 'javascript:void();', jr_gettext( '_JOMRES_ACTION_CHECKIN', _JOMRES_ACTION_CHECKIN, false ) );
 						}
 					elseif( $p->bookedout == 0 )
-						$toolbar->addItem( 'icon-minus', 'btn btn-success', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=bookGuestOut&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_ACTION_CHECKOUT', _JOMRES_ACTION_CHECKOUT, false ) );
+						$toolbar->addItem( 'icon-minus', 'btn btn-success', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=checkout&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_ACTION_CHECKOUT', _JOMRES_ACTION_CHECKOUT, false ) );
 					elseif( $p->bookedout == 1 )
 						$toolbar->addItem( 'icon-ok', 'btn  btn-default disabled', '', 'javascript:void();', jr_gettext( '_JOMRES_STATUS_CHECKEDOUT', _JOMRES_STATUS_CHECKEDOUT, false ) );
 					if( $p->bookedout == 0 )
