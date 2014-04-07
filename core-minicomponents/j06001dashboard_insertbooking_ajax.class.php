@@ -34,6 +34,9 @@ class j06001dashboard_insertbooking_ajax
 		$current_property_details->gather_data($property_uid);
 		
 		$mrConfig = getPropertySpecificSettings( $property_uid );
+		
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
 
 		// Let`s handle some passed variables first
 		$room_uid				= (int)jomresGetParam($_GET,'room_uid','0');
@@ -55,7 +58,7 @@ class j06001dashboard_insertbooking_ajax
 		$contract_total_nett	= $current_property_details->get_nett_accommodation_price($contract_total, $property_uid);
 		$tax					= $contract_total - $contract_total_nett;
 		
-		if ($jrConfig['useGlobalCurrency'] == 1)
+		if ($jrConfig['useGlobalCurrency'] == "1")
 			$currency_code = $jrConfig['globalCurrencyCode'];
 		else
 			$currency_code = $mrConfig['property_currencycode'];
