@@ -236,7 +236,7 @@ class j06001list_bookings_ajax
 				$jrtbar    = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 				$jrtb      = $jrtbar->startTable();
 				$jrtb .= $jrtbar->toolbarItem( 'edit', jomresURL( JOMRES_SITEPAGE_URL . '&task=editBooking' . '&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
-				if ( $p->cancelled == 0 )
+				if ( $p->cancelled == 0 && isset($MiniComponents->registeredClasses['06001checkin']) )
 					{
 					if ( $p->booked_in == 0 )
 						{
@@ -261,17 +261,21 @@ class j06001list_bookings_ajax
 				$toolbar->addSecondaryItem( 'icon-screen', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editBooking&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', _JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS, false ) );
 				if ( $p->cancelled == 0 )
 					{
-					if ( $p->booked_in == 0 )
+					if ( $p->booked_in == 0 && isset($MiniComponents->registeredClasses['06001checkin']) )
 						{
 						if ( $p->approved == 1 && $today >= $p->arrival )
 							$toolbar->addItem( 'icon-plus', 'btn btn-default ', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=checkin&contract_uid=' . $p->contract_uid . $thisProperty), jr_gettext( '_JOMRES_ACTION_CHECKIN', _JOMRES_ACTION_CHECKIN, false ) );
 						else
 							$toolbar->addItem( 'icon-plus', 'btn btn-default disabled', '', 'javascript:void();', jr_gettext( '_JOMRES_ACTION_CHECKIN', _JOMRES_ACTION_CHECKIN, false ) );
 						}
-					elseif( $p->bookedout == 0 )
+					elseif( $p->bookedout == 0 && isset($MiniComponents->registeredClasses['06001checkin']) )
 						$toolbar->addItem( 'icon-minus', 'btn btn-success', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=checkout&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_ACTION_CHECKOUT', _JOMRES_ACTION_CHECKOUT, false ) );
 					elseif( $p->bookedout == 1 )
 						$toolbar->addItem( 'icon-ok', 'btn  btn-default disabled', '', 'javascript:void();', jr_gettext( '_JOMRES_STATUS_CHECKEDOUT', _JOMRES_STATUS_CHECKEDOUT, false ) );
+					else
+						{
+						$toolbar->addItem( 'icon-plus', 'btn btn-default ', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editBooking&contract_uid=' . $p->contract_uid . $thisProperty), jr_gettext( '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', _JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS, false ) );
+						}
 					if( $p->bookedout == 0 )
 						{
 						if ( $p->approved == 0 && isset($MiniComponents->registeredClasses['00005booking_enquiries']) )
