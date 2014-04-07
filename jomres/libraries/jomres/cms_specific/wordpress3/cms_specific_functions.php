@@ -179,8 +179,16 @@ function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $ski
 				}
 			else
 				{
-				echo '<script type="text/javascript" src="'.$path . $filename.'"></script>
-				';
+				if ( strpos ( $path, "googleapis") )
+					{
+					wp_register_script('googleapis', ($path . $filename), false, '1.7.2'); 
+					wp_enqueue_script('googleapis');
+   					}
+				else
+					{
+					echo '<script type="text/javascript" src="'.$path . $filename.'"></script>
+					';
+					}
 				}
 			
 			break;
