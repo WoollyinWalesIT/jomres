@@ -5,29 +5,36 @@
 define( '_JOMRES_INITCHECK', 1 );
 define( '_JOMRES_INITCHECK_ADMIN', 1 );
 
-if (isset($_REQUEST['jr_wp_source']))
+if (!jomres_check_if_jomres_installed())
 	{
-	if ($_GET['jr_wp_source'] == "admin")
-		{
-		jr_wp_trigger_admin();
-		}
-	else
-		{
-		jr_wp_trigger_frontend();
-		}
+	output_jomres_not_installed_message();
 	}
+
 else
 	{
-	if (strpos($_SERVER['HTTP_REFERER'] ,"wp-admin") > 0 )
+	if (isset($_REQUEST['jr_wp_source']))
 		{
-		jr_wp_trigger_admin();
+		if ($_GET['jr_wp_source'] == "admin")
+			{
+			jr_wp_trigger_admin();
+			}
+		else
+			{
+			jr_wp_trigger_frontend();
+			}
 		}
 	else
 		{
-		jr_wp_trigger_frontend();
+		if (strpos($_SERVER['HTTP_REFERER'] ,"wp-admin") > 0 )
+			{
+			jr_wp_trigger_admin();
+			}
+		else
+			{
+			jr_wp_trigger_frontend();
+			}
 		}
 	}
-	
 	
 function jr_wp_trigger_frontend()
 	{
@@ -37,7 +44,7 @@ function jr_wp_trigger_frontend()
 		die();
 		}
 	}
-	
+
 function jr_wp_trigger_admin()
 	{
 	global $current_user;
@@ -54,5 +61,19 @@ function jr_wp_trigger_admin()
 		}
 	}
 
+function jomres_check_if_jomres_installed()
+	{
+	$jomres_installed = false;
+	if ( file_exists( dirname( __FILE__ ) . '/../../../jomres/jomres.php' ) )
+		{
+		$jomres_installed = true;
+		}
 
+	return $jomres_installed;
+	}
+
+function output_jomres_not_installed_message()
+	{
+	echo '<br/><br/>Sorry, it doesn\'t look like Jomres Core is installed yet, currently only this bridging plugin is installed. Please visit the <a href="http://www.jomres.net/download" target="_blank">Jomres.net download page</a> to download the web installer that will download Jomres Core to your Wordpress installation.';
+	}
 

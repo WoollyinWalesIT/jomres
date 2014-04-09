@@ -165,52 +165,40 @@ function jomres_cmsspecific_getcurrentusers_id()
 	return $id;
 	}
 
-function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $skip = false )
+function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $includeVersion = true )
 	{
 	if ( $filename == "" ) return;
+	
+	$wp_jomres = wp_jomres::getInstance();
+	
+	$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig     = $siteConfig->get();
+	
+	$includeVersion ? $version = $jrConfig['update_time'] : $version = '';
+
+	if (strpos($path,'http') === false)
+		{
+		$js = get_showtime('live_site').'/'.$path.$filename;
+		}
+	else
+		$js = $path.$filename;
 
 	switch ( $type )
 		{
 		case "javascript":
-			if ( jomres_cmsspecific_areweinadminarea() )
-				{
-				echo '<script type="text/javascript" src="'.get_showtime( 'live_site' ).'/'.$path . $filename.'"></script>
-				';
-				}
+			if ($filename == get_showtime("jquery.core.js") )
+				$wp_jomres->add_head_script('jquery', $js, $version);
 			else
-				{
-				if ( strpos ( $path, "googleapis") )
-					{
-					wp_register_script('googleapis', ($path . $filename), false, '1.7.2'); 
-					wp_enqueue_script('googleapis');
-   					}
-				else
-					{
-					echo '<script type="text/javascript" src="'.$path . $filename.'"></script>
-					';
-					}
-				}
-			
+				$wp_jomres->add_head_script($filename, $js, $version);
 			break;
 		case "css":
-			if ( jomres_cmsspecific_areweinadminarea() )
-				{
-				echo '<link rel="stylesheet" type="text/css" href="'.get_showtime( 'live_site' ).'/'.$path . $filename.'">
-				';
-				}
-			else
-				{
-				echo '<link rel="stylesheet" type="text/css" href="'.$path . $filename.'">
-				';
-				}
-			
+			$wp_jomres->add_head_style($filename, '/'.$path.$filename, $version);
 			break;
 		default:
 
 			break;
 		}
 	}
-
 
 // set our meta data
 function jomres_cmsspecific_setmetadata( $meta, $data )
