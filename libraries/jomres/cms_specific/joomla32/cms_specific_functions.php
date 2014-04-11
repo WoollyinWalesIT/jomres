@@ -215,22 +215,22 @@ function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $inc
 
 	if (strpos($path,'http') === false)
 		{
-		$js = JURI::base( true ).'/'.$path.$filename.$version;
+		$data = JURI::base( true ).'/'.$path.$filename.$version;
 		if (jomres_cmsspecific_areweinadminarea())
-			$js = str_replace('/administrator/','/',$js);
+			$data = str_replace('/administrator/','/',$data);
 		}
 	else
-		$js = $path.$filename.$version;
+		$data = $path.$filename.$version;
 
 	switch ( $type )
 		{
 		case "javascript":
 			//JHTML::script( $path . $filename, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
-			$doc->addScript($js);
+			$doc->addScript($data);
 			break;
 		case "css":
 			//JHTML::stylesheet( $path . $filename, array (), false, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
-			$doc->addStyleSheet($js);
+			$doc->addStyleSheet($data);
 			break;
 		default:
 

@@ -34,10 +34,13 @@ class jomres_temp_booking_handler
 	
 	function __construct()
 		{
+		if (defined('AUTO_UPGRADE'))
+			return false;
+
 		$siteConfig          = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig            = $siteConfig->get();
 		$this->task          = get_showtime( 'task' );
-		$this->jomressession = '';
+		$this->jomressession = jomres_cmsspecific_getsessionid();
 
 		$this->sessionfile	 = '';
 		$this->timeout = (int) $jrConfig[ 'lifetime' ];
@@ -85,7 +88,7 @@ class jomres_temp_booking_handler
 
 		$this->customFieldValues = array ();
 
-		$this->initBookingSession();
+		$this->initBookingSession($this->jomressession);
 		}
 	
 	public static function getInstance()
@@ -124,10 +127,16 @@ class jomres_temp_booking_handler
 
 	function initBookingSession( $jomressession )
 		{
-		if ( strlen( $jomressession ) > 0 ) 
+		if ( isset( $_REQUEST[ 'jsid' ] ) ) // jsid is passed by gateway services sending response codes
+			{
+			$this->part = jomresGetParam( $_REQUEST, 'jsid', "" );
+			}
+		elseif ( strlen( $jomressession ) > 0 ) 
 			$this->part = $jomressession;
 		else
+			{
 			$this->part = jomres_cmsspecific_getsessionid();
+			}
 	
 		$this->jomressession = $this->part;
 
