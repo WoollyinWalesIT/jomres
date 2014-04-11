@@ -67,18 +67,12 @@ class j00030search
 			}
 		else
 			{
-			//$customTextObj = new custom_text();
-			//global $jomressession;
 			$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-			//$tmpBookingHandler = new jomres_temp_booking_handler();
 			$tmpBookingHandler->initBookingSession( get_showtime( 'jomressession' ) );
-			$jomressession     = $tmpBookingHandler->getJomressession();
 			$showSearchOptions = true;
 			$jomreslang        = jomres_singleton_abstract::getInstance( 'jomres_language' );
-			//$jomreslang= new jomres_language();
 			$jomreslang->get_language( 'xx' );
 			$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
-			//$customTextObj = new custom_text();
 			}
 
 		init_javascript();

@@ -30,19 +30,19 @@ class jomres_temp_booking_handler
 	 * Constructor. Sets the default variables
 	#
 	 */
-	function jomres_temp_booking_handler()
+	private static $configInstance;
+	
+	function __construct()
 		{
-		if ( defined( 'JOMRES_SESSONSTARTED' ) ) return;
-		define( 'JOMRES_SESSONSTARTED', 1 );
-
 		$siteConfig          = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig            = $siteConfig->get();
 		$this->task          = get_showtime( 'task' );
-		$this->jomressession = get_showtime( 'jomressession' );
+		$this->jomressession = '';
 
+		$this->sessionfile	 = '';
 		$this->timeout = (int) $jrConfig[ 'lifetime' ];
-
 		$this->session_directory = JOMRESPATH_BASE . JRDS . "sessions" . JRDS;
+		
 		if ( !is_dir( $this->session_directory ) )
 			{
 			if ( !@mkdir( $this->session_directory ) )
@@ -84,6 +84,18 @@ class jomres_temp_booking_handler
 		$this->user_settings = array ( "editing_on" => false, "property_management_view" => false, "last_viewed_property_uid" => 0 );
 
 		$this->customFieldValues = array ();
+
+		$this->initBookingSession();
+		}
+	
+	public static function getInstance()
+		{
+		if ( !self::$configInstance )
+			{
+			self::$configInstance = new jomres_temp_booking_handler();
+			}
+
+		return self::$configInstance;
 		}
 
 	function initCustomFields( $allCustomFields )
@@ -112,20 +124,14 @@ class jomres_temp_booking_handler
 
 	function initBookingSession( $jomressession )
 		{
-		$secret = get_showtime( 'secret' );
-
 		if ( strlen( $jomressession ) > 0 ) 
-			{
 			$this->part = $jomressession;
-			}
 		else
-			{
 			$this->part = jomres_cmsspecific_getsessionid();
-			}
-
+	
 		$this->jomressession = $this->part;
 
-		$hash              = sha1( $secret . $this->part );
+		$hash = sha1( $this->part );
 		$this->sessionfile = $this->session_directory . $hash . ".txt";
 
 		jr_import( 'jomres_custom_field_handler' );
@@ -139,7 +145,6 @@ class jomres_temp_booking_handler
 
 	function session_jomres_start()
 		{
-
 		if ( file_exists( $this->sessionfile ) )
 			{
 			$data                 = file_get_contents( $this->sessionfile );
@@ -286,5 +291,3 @@ class jomres_temp_booking_handler
 		}
 
 	}
-
-?>

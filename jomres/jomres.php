@@ -97,7 +97,7 @@ try
 
 	if ( !isset( $jrConfig[ 'full_access_control' ] ) ) $jrConfig[ 'full_access_control' ] = "0";
 
-	if ( isset( $_REQUEST[ 'tmpl' ] ) && $_REQUEST[ 'tmpl' ] == "component" )
+	if ( isset( $_REQUEST[ 'tmpl' ] ) && $_REQUEST[ 'tmpl' ] == get_showtime("tmplcomponent") )
 		{
 		jomres_cmsspecific_setmetadata( "robots", "noindex,nofollow" );
 		}
@@ -127,13 +127,13 @@ try
 
 	request_log( $loggingRequest );
 
-	set_showtime( 'jomressession', "" );
+	$jomressession = '';
 
 	if ( isset( $_REQUEST[ 'jsid' ] ) ) // jsid is passed by gateway services sending response codes
 		{
 		$jomressession = jomresGetParam( $_REQUEST, 'jsid', "" );
 		}
-
+	
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 	$tmpBookingHandler->initBookingSession( $jomressession );
 
