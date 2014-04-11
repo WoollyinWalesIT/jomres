@@ -51,6 +51,7 @@ class j01009a_filterproperties
 			$sortid = $jrConfig[ 'search_order_default' ];
 			}
 		$tmpBookingHandler->user_settings[ 'jomsearch_sortby' ] = $sortid;
+		$tmpBookingHandler->close_jomres_session();
 
 		switch ( $sortid )
 		{
