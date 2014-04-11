@@ -57,7 +57,7 @@ class j00060toptemplate
 		
 		set_showtime( "menuitem_editing_mode_dropdown", $editing_dropdown[ 0 ][ 'EDITING_MODE_DROPDOWN' ] );
 			
-		if ( _JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" )
+		if ( this_cms_is_joomla() || this_cms_is_wordpress() )
 			{
 			if ( $thisJRUser->userIsManager )
 				{

@@ -88,6 +88,42 @@ class jr_user
 						$this->superPropertyManager = true;
 
 						$this->authorisedProperties=get_showtime('all_properties_in_system');
+						
+						if (!$this->authorisedProperties)
+							{
+							set_showtime( 'heavyweight_system', false );
+
+							$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+							$all_property_uids=$c->retrieve('all_property_uids');
+						
+							if ($all_property_uids)
+								{
+								set_showtime( 'numberOfPropertiesInSystem', count($all_property_uids['all_propertys']) );
+								set_showtime( 'all_properties_in_system', $all_property_uids['all_propertys'] );
+								set_showtime( 'published_properties_in_system', $all_property_uids['all_published_propertys'] );
+								$this->authorisedProperties = $all_property_uids['all_propertys'];
+								}
+							else
+								{
+								$query = "SELECT propertys_uid,published FROM #__jomres_propertys";
+								$countproperties = doSelectSql( $query );
+								$numberOfPropertiesInSystem = count( $countproperties );
+								if ( $numberOfPropertiesInSystem > 200 ) set_showtime( 'heavyweight_system', true );
+								set_showtime( 'numberOfPropertiesInSystem', $numberOfPropertiesInSystem );
+								$this->authorisedProperties = array ();
+								$all_published_propertys = array ();
+								foreach ( $countproperties as $p )
+									{
+									$this->authorisedProperties[] = $p->propertys_uid;
+									if ( $p->published == "1" ) $all_published_propertys[] = $p->propertys_uid;
+									}
+								set_showtime( 'all_properties_in_system', $this->authorisedProperties );
+								set_showtime( 'published_properties_in_system', $all_published_propertys );
+								
+								$c->store('all_property_uids',array('all_propertys'=>$this->authorisedProperties,'all_published_propertys'=>$all_published_propertys));
+								}
+							}
+						
 						if ( count( $this->authorisedProperties ) > 0 )
 							{
 							$basic_property_details->get_property_name_multi( $this->authorisedProperties );
