@@ -169,6 +169,7 @@ $jomres_access_control = jomres_singleton_abstract::getInstance( 'jomres_access_
 
 if ( !defined( 'JOMRES_CSSRELPATH' ) ) define( 'JOMRES_CSSRELPATH', 'jomres/css/' );
 
+
 require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_urls.php" );
 
 set_error_handler( 'errorHandler' );
@@ -183,8 +184,12 @@ if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )
 // In case somebody removes the above lines, we still need to set this define otherwise folks will not be able to create new properties
 if ( !defined( 'JOMRES_SINGLEPROPERTY' ) ) define( 'JOMRES_SINGLEPROPERTY', false );
 
-$jomres_geolocation = jomres_singleton_abstract::getInstance( 'jomres_geolocation' );
-$jomres_geolocation->auto_set_user_currency_code();
+
+if ( !strstr( $scriptname, 'install_jomres.php' ) )
+	{
+	$jomres_geolocation = jomres_singleton_abstract::getInstance( 'jomres_geolocation' );
+	$jomres_geolocation->auto_set_user_currency_code();
+	}
 
 $performance_monitor->set_point( "end integration run" );
 
