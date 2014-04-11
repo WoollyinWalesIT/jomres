@@ -48,6 +48,7 @@ class j07020showplugins
 		
 		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "remote_plugins_data.php") )
 			{
+			
 			$query_string = "http://plugins.jomres4.net/index.php?r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS;
 			$curl_handle = curl_init();
 			curl_setopt( $curl_handle, CURLOPT_URL, $query_string );
@@ -56,14 +57,19 @@ class j07020showplugins
 			curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 8 );
 			curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, 1 );
 			$remote_plugins_data = curl_exec( $curl_handle );
-			curl_close( $curl_handle );
+			curl_close( $curl_handle ); 
+			
+			
+			// Uncomment this to show all updates, including beta plugins.
+			//$remote_plugins_data = queryUpdateServer( "", "r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS  );
+			
 			if ($remote_plugins_data != "")
 				{
 				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "remote_plugins_data.php",$remote_plugins_data);
 				}
 			}
 		
-		//$remote_plugins_data = queryUpdateServer( "", "r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS . "&key=" . $key_validation->key_hash );
+		
 
 		$rp_array = json_decode( $remote_plugins_data );
 		foreach ( $rp_array as $rp )
@@ -116,10 +122,14 @@ class j07020showplugins
 				$local_version  = $ip[ 'version' ];
 				$remote_version = $remote_plugins[ $pluginname ][ 'version' ];
 
-				if ( $remote_version > $local_version ) $count++;
+				if ( $remote_version > $local_version ) 
+					$count++;
 				//$local_version=$installed_plugins[$plugin_name]['version'];
 				}
-			if ( $count > 0 ) $this->retVals = array ( "red" => $count );
+			if ( $count > 0 ) 
+				{
+				$this->retVals = array ( "red" => $count );
+				}
 			}
 
 
