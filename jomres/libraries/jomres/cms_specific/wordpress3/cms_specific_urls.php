@@ -78,22 +78,31 @@ if ( isset( $_REQUEST[ 'topoff' ] ) )
 		}
 	}
 
-if ($_GET['lang'] != "" )
+//site lang
+$lang = jomresGetParam($_GET, 'lang', '');
+if ($lang != '' )
 	{
-	$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
-	$lang_param = "&lang=" .  $jomreslang->datepicker_crossref[ get_showtime("lang")];
+	$lang = "&lang=".substr( $lang, 0, 2 );
 	}
 
-if (!AJAXCALL)
-	$page_id = jomresGetParam($_REQUEST, 'page_id', '0');
-else
-	$page_id = jomresGetParam($_GET, 'page_id', '0');	
+// For administrator area Jomres lang switching
+$lang_param = '';
+if ( isset( $_REQUEST[ 'jomreslang' ] ) )
+	{
+	$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
+	if ( array_key_exists( $_REQUEST[ 'jomreslang' ], $jomreslang->datepicker_crossref ) ) 
+		{
+		$lang_param .= "&jomreslang=" .  jomresGetParam( $_REQUEST , 'jomreslang' , '' );
+		}
+	}
+
+$page_id = jomresGetParam($_GET, 'page_id', '0');	
 
 
-define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/?option=com_jomres&page_id=" . $page_id . $tmpl . $lang_param);
-define( "JOMRES_SITEPAGE_URL_NOSEF", get_showtime( 'live_site' ) . "/index.php?option=com_jomres&page_id=" . $page_id . $tmpl . $lang_param );
-define( "JOMRES_SITEPAGE_URL_AJAX",get_showtime( 'live_site' ) . '/' . "/wp-content/plugins/jomres/ajax.php?action=jomres/trigger.php&no_html=1&jrajax=1&jr_wp_source=frontend&option=com_jomres&page_id=" . $page_id . $tmpl . $lang_param);
+define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/?option=com_jomres&page_id=" . $page_id . $tmpl . $lang);
+define( "JOMRES_SITEPAGE_URL_NOSEF", get_showtime( 'live_site' ) . "/index.php?option=com_jomres&page_id=" . $page_id . $tmpl . $lang );
+define( "JOMRES_SITEPAGE_URL_AJAX",get_showtime( 'live_site' ) . "/wp-content/plugins/jomres/ajax.php?action=jomres/trigger.php&no_html=1&jrajax=1&jr_wp_source=frontend&option=com_jomres&page_id=" . $page_id . $tmpl . $lang);
 
-define( "JOMRES_SITEPAGE_URL_ADMIN", get_showtime( 'live_site' ) . "/wp-admin/admin.php?page=jomres/jomres.php&jr_wp_source=admin&option=com_jomres" . $tmpl . $lang_param );
-define( "JOMRES_SITEPAGE_URL_ADMIN_AJAX", get_showtime( 'live_site' ) . "/wp-admin/admin-ajax.php?action=jomres/trigger.php&no_html=1&jrajax=1&jr_wp_source=admin&option=com_jomres" . $tmpl . $lang_param);
+define( "JOMRES_SITEPAGE_URL_ADMIN", get_showtime( 'live_site' ) . "/wp-admin/admin.php?page=jomres/jomres.php&jr_wp_source=admin&option=com_jomres" . $tmpl . $lang . $lang_param );
+define( "JOMRES_SITEPAGE_URL_ADMIN_AJAX", get_showtime( 'live_site' ) . "/wp-admin/admin-ajax.php?action=jomres/trigger.php&no_html=1&jrajax=1&jr_wp_source=admin&option=com_jomres" . $tmpl . $lang . $lang_param);
 
