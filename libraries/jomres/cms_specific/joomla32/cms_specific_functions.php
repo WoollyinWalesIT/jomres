@@ -230,7 +230,7 @@ function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $inc
 			break;
 		case "css":
 			//JHTML::stylesheet( $path . $filename, array (), false, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
-			$doc->addStyleSheet($path.$filename.$version);
+			$doc->addStyleSheet($js);
 			break;
 		default:
 
