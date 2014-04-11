@@ -22,7 +22,7 @@ function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 	
 function jomres_cmsspecific_getsessionid()
 	{
-	return $_COOKIE['jomres_wp_session_cookie'];
+	return $_SESSION['jomres_wp_session']['id'];
 	}
 
 // Date is sent in format YYYY/mm/dd, e.g. 2013/
@@ -187,12 +187,12 @@ function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $inc
 		{
 		case "javascript":
 			if ($filename == get_showtime("jquery.core.js") )
-				$wp_jomres->add_head_script('jquery', $js, $version);
+				$wp_jomres->js[] = array('jquery', $js, $version);
 			else
-				$wp_jomres->add_head_script($filename, $js, $version);
+				$wp_jomres->js[] = array($filename, $js, $version);
 			break;
 		case "css":
-			$wp_jomres->add_head_style($filename, '/'.$path.$filename, $version);
+			$wp_jomres->css[] = array($filename, '/'.$path.$filename, $version);
 			break;
 		default:
 
@@ -203,11 +203,14 @@ function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $inc
 // set our meta data
 function jomres_cmsspecific_setmetadata( $meta, $data )
 	{
- 	$data     = jomres_decode( $data );
+ 	$data = jomres_decode( $data );
+	
+	$wp_jomres = wp_jomres::getInstance();
+	
 	switch ( $meta )
 		{
 		case "title":
-			// echo '<title>'.$data.'</title>';   // Doesn't work
+			$wp_jomres->metatitle = $data;
 			break;
 		case "description":
 			//$document->setDescription( $data );
