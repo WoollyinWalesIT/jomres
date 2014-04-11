@@ -5421,7 +5421,10 @@ function showTop()
 		$current1=' class="current"';
 	?>
 	<div>
-		<h1><img src="images/jrhouse.png" class="img-rounded" /> Jomres install/upgrade</h1>
+		<img src="http://www.jomres.net/templates/js_optimus/images/style1/logo.png" class="img-rounded"/>
+	</div>
+	<div class="jumbotron">
+		<h2>Installation/upgrade stage</h2>
 	</div>
 	<div class="well">
 		<div class="visible-desktop steps">
@@ -5498,15 +5501,22 @@ function showCompletedText()
 
 	
 	output_message ( 'Thank you for installing Jomres. You may now go to your CMS\'s administrator area and configure Jomres' , "success");
-	//output_message ( '<br>Please remember to delete the file <i>install_jomres.php</i> from your jomres folder<br>'; // Commented out as the obsolete file handler will do this for us
-	output_message ( '<br>If you wish you can go straight to your Jomres install and start editing your property. To enable the property manager functionality log in as your site <a href="'.$administrator_url.'" >administrator</a>, go to your site profiles and assign a frontend user as a property manager.',"success");
+	
+	if (ACTION != "Upgrade")
+		{
+		output_message ( '<br>If you wish you can go straight to your Jomres install and start editing your property. To enable the property manager functionality log in as your site <a href="'.$administrator_url.'" >administrator</a>, go to your site profiles and assign a frontend user as a property manager.',"success");
+		}
+	
 	if (this_cms_is_wordpress() && ACTION != "Upgrade")
 		{
 		output_message ( 'You must remember to Activate Jomres in the Wordpress plugin manager before you can use it.',"warning"); 
 		}
 	
-	output_message ( 'Please remember, to configure your property you need to log into the frontend as the administrator user, you cannot configure propertys via the administrator area.', "warning");
-
+	if (ACTION != "Upgrade")
+		{
+		output_message ( 'Please remember, to configure your property you need to log into the frontend as the administrator user, you cannot configure propertys via the administrator area.', "warning");
+		}
+		
 	if ( ERRORS_SHOWN_NO_REDIRECT != 1 )
 		{
 		output_message ( '<script>
