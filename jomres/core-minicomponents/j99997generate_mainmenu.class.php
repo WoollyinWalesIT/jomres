@@ -164,7 +164,7 @@ class j99997generate_mainmenu
 			}		
 		
 		
-		if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "joomla33")
+		if ( using_bootstrap() )
 			{
 			
 			
@@ -183,6 +183,8 @@ class j99997generate_mainmenu
 				build_product_tour_javascript_file();
 				 if (file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang").$fullscreen_view."-tour.js") )
 					{
+					
+					
 					jomres_cmsspecific_addheaddata( "javascript", "jomres/temp/product_tours/", $task.'_' . get_showtime("lang").$fullscreen_view."-tour.js" );
 					$help [0] [ 'PRODUCT_TOUR_PAGE_INFORMATION' ]      = jr_gettext( 'PRODUCT_TOUR_PAGE_INFORMATION', PRODUCT_TOUR_PAGE_INFORMATION, false, false );
 					}
