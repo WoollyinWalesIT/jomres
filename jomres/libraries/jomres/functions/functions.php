@@ -1807,11 +1807,18 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 				error_logging( "Error, unable to write to " . $widget_target . " Please ensure that the parent path is writable by the web server " );
 				return false;
 				}
-
+			
+			$plugin_info_file = $widget_source . "plugin_info.php";
+			$plugin_info_file_temp = JOMRES_SYSTEMLOG_PATH . "plugin_info.php";
+			copy ($plugin_info_file , $plugin_info_file_temp);
+			
+			
 			$widget_move_result     = dirmv( $widget_source, $widget_target, true, $funcloc = "/" );
 			
 			if ( $widget_move_result[ 'success' ] ) 
 				{
+				copy ($plugin_info_file_temp , $plugin_info_file);
+				unlink ($plugin_info_file_temp);
 				return true;
 				}
 			else
