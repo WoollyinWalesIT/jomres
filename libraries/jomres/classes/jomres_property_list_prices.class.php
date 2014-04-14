@@ -175,9 +175,15 @@ class jomres_property_list_prices
 							if ( isset( $pricesFromArray[ $property_uid ] ) )
 								{
 								if ( $mrConfig[ 'prices_inclusive' ] == "0" ) 
+									{
+									$raw_price = $basic_property_details->get_gross_accommodation_price( $pricesFromArray[ $property_uid ], $property_uid ) * $multiplier;
 									$price = output_price( $basic_property_details->get_gross_accommodation_price( $pricesFromArray[ $property_uid ], $property_uid ) * $multiplier, "", true, true );
+									}
 								else
+									{
+									$raw_price =  $pricesFromArray[ $property_uid ] * $multiplier;
 									$price = output_price( $pricesFromArray[ $property_uid ] * $multiplier, "", true, true );
+									}
 				
 								if ( $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == "1" && $mrConfig[ 'tariffmode' ] == "1" ) 
 									$post_text = "&nbsp;" . jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK );
@@ -244,7 +250,11 @@ class jomres_property_list_prices
 							$post_text = '';
 							}
 						}
-					$this->lowest_prices[$property_uid]=array ( "PRE_TEXT" => $pre_text, "PRICE" => $price, "POST_TEXT" => $post_text );
+					if ( $price == jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', _JOMRES_PRICE_ON_APPLICATION, "", true, false ) )
+						{
+						$raw_price = -1;
+						}
+					$this->lowest_prices[$property_uid]=array ( "PRE_TEXT" => $pre_text, "PRICE" => $price, "POST_TEXT" => $post_text , "RAW_PRICE" => $raw_price);
 					}
 				}
 			}

@@ -2321,3 +2321,5 @@ jr_define('_JOMRES_CANT_BE_APPROVED',"Ta rezerwacja nie może zostać zatwierdzo
 
 jr_define('_JOMRES_SHOW_POWEREDBY',"Show the Powered by Jomres link in the Jomres footer.");
 
+
+jr_define('GUEST_BUDGET',"Budget");

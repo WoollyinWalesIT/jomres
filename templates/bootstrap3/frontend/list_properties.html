@@ -5,91 +5,81 @@
 
 	<patTemplate:tmpl name="property_details" unusedvars="strip">
 		<div class="jomres_property_list_propertywrapper" id="{UID}">
-			<div class="{FEATURED_LISTINGS_CLASS}">
-				<div class="row">
-					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-						<h3><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a></h3>
-					</div>
-					<!--<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-						<div class="btn-group btn-toolbar pull-right hidden-phone">
-							<button class="btn btn-default">{COMMON_ACTION}</button>
-							<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu">
-								<li><a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')">{SHORTLIST}</a></li>
-								<li><input type="checkbox" name="compare" value="{UID}" autocomplete="off" /> {_JOMRES_COMPARE}</li>
-							</ul>
-						</div>
-					</div>-->
-					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-						<div class="jomres-compare hidden-xs " align="right">
-							<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/> {_JOMRES_COMPARE}</div>
-					</div>
+			<div class=" panel {BUDGET_BORDER_CLASS} ">
+				<div class="panel-heading">
+					<h3 class="panel-title"><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a></h3>
 				</div>
-				<div class="row">
-					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-						<a href="#module_{RANDOM_IDENTIFIER}_popup" class="thumbnail" data-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}">
-							<img src="{IMAGETHUMB}" class="img-rounded img-responsive" alt="{PROPERTYNAME}"/>
-						</a>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-						<p><span class="label label-default">{PROPERTY_TYPE}</span> <span class="small">{STARS}</span> <em>{SUPERIOR}</em>
-						</p>
-	
-						<p class="small"><em>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</em></p>
-	
-						<p>{PROPERTYDESC}</p>
-	
-						<p class="jomres_message">{LASTMINUTE}</p>
-					</div>
-					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-						{REVIEWS_SNIPPET}
-					</div>
-					
-					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-						<div class="well align-center">
-							{PRICE_PRE_TEXT}
-							<span class="big-price hidden-xs">{PRICE_PRICE}</span>
-							<span class="hidden-sm hidden-md hidden-lg">{PRICE_PRICE}</span>
-							<div class="hidden-xs">{PRICE_POST_TEXT}</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+							<a href="#module_{RANDOM_IDENTIFIER}_popup" class="thumbnail" data-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}">
+								<img src="{IMAGETHUMB}" class="img-rounded img-responsive" alt="{PROPERTYNAME}"/>
+							</a>
+						</div>
+						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+							<p><span class="label label-default">{PROPERTY_TYPE}</span> <span class="small">{STARS}</span> <em>{SUPERIOR}</em>
+							</p>
+		
+							<p class="small"><em>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</em></p>
+		
+							<p>{PROPERTYDESC}</p>
+		
+							<p class="jomres_message">{LASTMINUTE}</p>
+						</div>
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							{REVIEWS_SNIPPET}
+						</div>
+						
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							<div class="well align-center">
+								{PRICE_PRE_TEXT}
+								<span class="big-price hidden-xs">{PRICE_PRICE}</span>
+								<span class="hidden-sm hidden-md hidden-lg">{PRICE_PRICE}</span>
+								<div class="hidden-xs">{PRICE_POST_TEXT}</div>
+							</div>
+							<div class="jomres-compare hidden-xs " align="right">
+								<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/> {_JOMRES_COMPARE}
+							</div>
+							
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 hidden-phone"></div>
-					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-						<div class="btn-group">
-							<a href="{LINK}" class="btn btn-primary">{BOOKTHIS_TEXT}</a>
-							<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="btn  btn-default hidden-xs">{SHORTLIST}</a>
-							<a href="javascript:void(0);" onclick="quick_info({UID});" class="btn btn-default hidden-xs">{_JOMRES_QUICK_INFO}</a>
-							<a href="{MOREINFORMATIONLINK}" class="btn btn-info">{MOREINFORMATION}</a>
+
+					<div id="effect{UID}" class="hide row">
+						<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 ">
+							<div><strong>{_JOMRES_AGENT}</strong></div>
+							<div>{AGENT_LINK}</div>
+						</div>
+						<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 ">
+							<div><strong>{_JOMRES_FRONT_ROOMTYPES}</strong></div>
+							<div>{ROOMTYPES}</div>
+							<div style="clear:both;"></div>
+							<div><strong>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES}</strong></div>
+							<div>{FEATURELIST}</div>
+							<div style="clear:both;"></div>
+						</div>
+						<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 ">
+							<div>&nbsp;</div>
+							<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
 						</div>
 					</div>
-				</div>
-				<div id="effect{UID}" class="hide row">
-					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 well">
-						<div><strong>{_JOMRES_AGENT}</strong></div>
-						<div>{AGENT_LINK}</div>
-					</div>
-					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 well">
-						<div><strong>{_JOMRES_FRONT_ROOMTYPES}</strong></div>
-						<div>{ROOMTYPES}</div>
-						<div style="clear:both;"></div>
-						<div><strong>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES}</strong></div>
-						<div>{FEATURELIST}</div>
-						<div style="clear:both;"></div>
-					</div>
-					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 well">
-						<div>&nbsp;</div>
-						<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
+					<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-helper-hidden" id="property_reviews{UID}" title="{PROPERTYNAME}">
+							<img src="{LIVESITE}/jomres/images/ajax_animation/broken_circle.gif" alt="ajax_animation_image"/>
 					</div>
 				</div>
-				<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-helper-hidden" id="property_reviews{UID}" title="{PROPERTYNAME}">
-						<img src="{LIVESITE}/jomres/images/ajax_animation/broken_circle.gif" alt="ajax_animation_image"/>
-				</div>
+					<div class="panel-footer">
+						<div class="row">
+							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 hidden-phone"></div>
+							<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+								<div class="btn-group">
+									<a href="{LINK}" class="btn btn-primary">{BOOKTHIS_TEXT}</a>
+									<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="btn  btn-default hidden-xs">{SHORTLIST}</a>
+									<a href="javascript:void(0);" onclick="quick_info({UID});" class="btn btn-default hidden-xs">{_JOMRES_QUICK_INFO}</a>
+									<a href="{MOREINFORMATIONLINK}" class="btn btn-info">{MOREINFORMATION}</a>
+								</div>
+							</div>
+						</div>
+					</div>
 			</div>
-			<hr/>
 		</div>
 
 		<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup">

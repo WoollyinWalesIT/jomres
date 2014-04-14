@@ -205,7 +205,19 @@ class j01010listpropertys
 					$current_property_details->gather_data_multi( $propertysToShow );
 					
 					$jomres_property_list_prices = jomres_singleton_abstract::getInstance( 'jomres_property_list_prices' );
-					$jomres_property_list_prices->gather_lowest_prices_multi($propertysToShow);
+					$jomres_property_list_prices->gather_lowest_prices_multi($propertys_uids);
+					
+					foreach ($jomres_property_list_prices->lowest_prices as $low)
+						{
+						$lp[] = $low['RAW_PRICE'];
+						}
+					$lp = array_unique ($lp);
+					natsort($lp);
+					jr_import('jomres_user_budget');
+					$budget = new jomres_user_budget();
+					
+					$budget_output = array();
+					$budget_output[0]['BUDGET_DROPDOWN'] = $budget-> get_budget_dropdown($lp);
 					
 					$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 					$jomres_media_centre_images->get_images_multi($propertysToShow, array('property'));
@@ -236,6 +248,7 @@ class j01010listpropertys
 						}
 					}
 				}
+			
 			$templateCounter = 1;
 
 			if ( !isset( $_REQUEST[ 'arrivalDate' ] ) )
@@ -254,7 +267,10 @@ class j01010listpropertys
 			$featured_properties = get_showtime( "featured_properties" );
 			if ( count( $featured_properties ) > 0 ) // only store the featured properties if their count is > 0. That's because featured properties are only set in non-ajax calls. If it's an ajax called, we don't want to set the featured properties to null
 				$tmpBookingHandler->tmpsearch_data[ 'featured_properties' ] = $featured_properties;
-
+			
+			$guest_budget = $budget->get_budget();
+			
+			
 			if ( count( $propertysToShow ) > 0 )
 				{
 				$property_details = array ();
@@ -407,7 +423,41 @@ class j01010listpropertys
 					$property_deets[ 'PRICE_PRE_TEXT' ]  = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRE_TEXT' ];
 					$property_deets[ 'PRICE_PRICE' ]     = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE' ];
 					$property_deets[ 'PRICE_POST_TEXT' ] = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'POST_TEXT' ];
-
+					
+					if (jomres_bootstrap_version() == "3")
+						$property_deets[ 'BUDGET_BORDER_CLASS' ] = 'panel-primary';
+					else
+						$property_deets[ 'BUDGET_BORDER_CLASS' ] = '';
+					if ($guest_budget > 0)
+						{
+						if ($guest_budget >= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] &&  $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > 0 )
+							{
+							if (jomres_bootstrap_version() == "3")
+								$property_deets[ 'BUDGET_BORDER_CLASS' ] = "panel-success";
+							else
+								$property_deets[ 'BUDGET_BORDER_CLASS' ] = "alert alert-success";
+							}
+						/*
+						else
+							{
+							if ( $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > ($guest_budget*2)) 
+								{
+								if (jomres_bootstrap_version() == "3")
+									$property_deets[ 'BUDGET_BORDER_CLASS' ] = "panel-warning";
+								else
+									$property_deets[ 'BUDGET_BORDER_CLASS' ] = "alert alert-warning";
+								}
+							}
+						*/
+						if ( $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > ($guest_budget*3)) 
+							{
+							if (jomres_bootstrap_version() == "3")
+								$property_deets[ 'BUDGET_BORDER_CLASS' ] = "panel-danger";
+							else
+								$property_deets[ 'BUDGET_BORDER_CLASS' ] = "alert alert-danger";
+							}
+						}
+					
 					if ( array_key_exists( $propertys_uid, $lastBookedArray ) )
 						{
 						$property_deets[ 'LASTBOOKED' ]        = jr_gettext( '_JOMRES_DATEPERIOD_LATESTBOOKING', _JOMRES_DATEPERIOD_LATESTBOOKING ) . " " . $lastBookedArray[ $propertys_uid ];
@@ -568,6 +618,8 @@ class j01010listpropertys
 						$tmpl->addRows( 'layout_rows', $layout_rows );
 						$tmpl->addRows( 'compare', $compare );
 						$tmpl->addRows( 'shortlist', $shortlist );
+
+						$tmpl->addRows( 'budget_output', $budget_output );
 						$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 						$tmpl->readTemplatesFromInput( "list_properties_header.html" );
 						$output[ 'HEADER' ] = $tmpl->getParsedTemplate();

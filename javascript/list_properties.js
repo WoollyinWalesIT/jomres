@@ -27,6 +27,12 @@ function shortlist(property_uid) {
 	});
 }
 
+function set_budget(budget_price) {
+	jomresJquery.get(live_site_ajax + "&task=ajax_budget&budget_figure="+budget_price, function (data) {
+		location.reload();
+	});
+}
+
 var killScroll = false; // IMPORTANT
 var last_scrolled_id = 0;
 function lastAddedLiveFunc() {
