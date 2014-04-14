@@ -39,7 +39,7 @@ class jomres_custom_template_handler
 			if (!isset($jrConfig[ 'bootstrap_version' ]))
 				$jrConfig[ 'bootstrap_version' ] = "";
 			
-			if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" ) $this->using_bootstrap = true;
+			if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33") $this->using_bootstrap = true;
 			else
 				{
 				if ( $jrConfig[ 'use_bootstrap_in_frontend' ] == "1" ) $this->using_bootstrap = true;

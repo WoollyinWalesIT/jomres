@@ -78,6 +78,10 @@ if ( isset( $_REQUEST[ 'jomreslang' ] ) )
 $MiniComponents->triggerEvent( '00003' );
 
 $tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+$tmpBookingHandler->initBookingSession();
+
+$jomressession = $tmpBookingHandler->getJomressession();
+set_showtime( 'jomressession', $jomressession );
 
 $showSearchOptions = true;
 

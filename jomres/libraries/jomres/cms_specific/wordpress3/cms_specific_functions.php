@@ -22,7 +22,21 @@ function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 	
 function jomres_cmsspecific_getsessionid()
 	{
-	return $_SESSION['jomres_wp_session']['id'];
+	if( !isset($_SESSION) )
+		session_start();
+	
+	if ( isset( $_SESSION['jomres_wp_session']['id'] ) && $_SESSION['jomres_wp_session']['id'] != '') 
+		{
+		$session_id = $_SESSION['jomres_wp_session']['id'];
+		} 
+	else 
+		{
+		$session_id = generateJomresRandomString();
+		$_SESSION['jomres_wp_session'] = array();
+		$_SESSION['jomres_wp_session']['id'] = $session_id;
+		}
+
+	return $session_id;
 	}
 
 // Date is sent in format YYYY/mm/dd, e.g. 2013/

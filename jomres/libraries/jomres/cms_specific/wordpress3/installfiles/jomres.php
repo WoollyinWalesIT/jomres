@@ -41,8 +41,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 		function _init()
 			{
 			add_action( 'admin_menu', array($this,'register_my_custom_menu_page') );
-			
-			add_action('init', array($this,'jomres_wp_init_session'), 1);
+
 			add_action('wp', array($this,'frontend_trigger_jomres'), 1);
 				
 			if ($_GET['page'] == "jomres/jomres.php" )
@@ -108,41 +107,6 @@ if ( ! class_exists( 'wp_jomres' ) )
 			{
 			add_menu_page( 'Jomres admin', 'Jomres', 'manage_options', 'jomres/jomres.php', '', '', 6 );
 			}
-
-		function jomres_wp_init_session()
-			{
-			session_start();
-			
-			if ( isset( $_SESSION['jomres_wp_session']['id'] ) && $_SESSION['jomres_wp_session']['id'] != '' ) 
-				{
-				$session_id = $_SESSION['jomres_wp_session']['id'];
-				} 
-			else 
-				{
-				$session_id = $this->jomres_wp_generate_random_string();
-				$_SESSION['jomres_wp_session'] = array();
-				$_SESSION['jomres_wp_session']['id'] = $session_id;
-				}
-			}
-		
-		function jomres_wp_generate_random_string($length = 50)
-			{
-			$str = "";
-			// define possible characters
-			$possible = "abcdfghijklmnopqrstuvwxyzABCDFGHIJKLMNOPQRSTUVWXYZ";
-			// set up a counter
-			$i = 0;
-			// add random characters to $str until $length is reached
-			while ( $i < $length )
-				{
-				// pick a random character from the possible ones
-				$char = substr( $possible, mt_rand( 0, strlen( $possible ) - 1 ), 1 );
-				$str .= $char;
-				$i++;
-				}
-		
-			return $str;
-			}
 		
 		// Shortcode [jomres]
 		function frontend_trigger_jomres($content)
@@ -190,7 +154,6 @@ if ( ! class_exists( 'wp_jomres' ) )
 		function jomres_wp_end_session() 
 			{
 			$_SESSION['jomres_wp_session'] = array();
-			$this->jomres_wp_init_session();
 			}
 	
 		function disable_all_widgets( $sidebars_widgets ) 

@@ -128,6 +128,7 @@ try
 	request_log( $loggingRequest );
 
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+	$tmpBookingHandler->initBookingSession();
 
 	$jomressession = $tmpBookingHandler->getJomressession();
 	set_showtime( 'jomressession', $jomressession );
