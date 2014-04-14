@@ -39,6 +39,7 @@ class j00016composite_property_details
 
 			return;
 			}
+
 		$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig     = $siteConfig->get();
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
@@ -97,8 +98,12 @@ class j00016composite_property_details
 			$output[ 'INLINE_CALENDAR_ARROW_CLOSINGDIV' ] = '';
 			}
 
-		//$output['MAP'] = $MiniComponents->miniComponentData['01050']['x_geocoder'];
+		$jomres_property_list_prices = jomres_singleton_abstract::getInstance( 'jomres_property_list_prices' );
+		$jomres_property_list_prices->gather_lowest_prices_multi(array($property_uid));
 
+		$output['PRICE_PRE_TEXT']	=$jomres_property_list_prices->lowest_prices[$property_uid]['PRE_TEXT'];
+		$output['PRICE_PRICE']		=$jomres_property_list_prices->lowest_prices[$property_uid]['PRICE'];
+		$output['PRICE_POST_TEXT']	=$jomres_property_list_prices->lowest_prices[$property_uid]['POST_TEXT'];
 
 		$tmpl = new patTemplate();
 
