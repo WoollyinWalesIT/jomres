@@ -9,13 +9,6 @@ defined('_JOMRES_INITCHECK') or die;
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
 	
 	<?php
-	//unregister all wp scripts and styles
-	/*foreach ($this->_scripts as $k=>$v)
-		{
-		if (strpos($k, '/jomres/') === false && strpos($k,'googleapis') === false)
-			unset($this->_scripts[$k]);
-		}*/
-	
 	//find the jomres template set to be used
 	if ( !using_bootstrap() )
 		{
@@ -34,20 +27,27 @@ defined('_JOMRES_INITCHECK') or die;
 		else
 			$view = "bootstrap";
 		}
-	?>
-	<script src="jomres/javascript/jquery-1.8.2.min.js"></script>
-	<script src="jomres/javascript/jquery-ui-1.9.2.custom.min.js"></script>
-	<?php if ($view == "bootstrap") : ?>
-	<script src="jomres/libraries/fullscreen_view/bootstrap/js/bootstrap.min.js"></script>
-	<?php elseif ($view == "bootstrap3") : ?>
-	<script src="jomres/libraries/fullscreen_view/bootstrap3/dist/js/bootstrap.min.js"></script>
-	<?php endif; ?>
-	<script type="text/javascript">
-	  jQuery.noConflict();
-	</script>
-	<?php
+
 	wp_deregister_script( 'jquery' );
 	wp_deregister_script( 'bootstrap' );
+	//wp_deregister_style();
+	
+	wp_register_script('jquery', '/jomres/javascript/jquery-1.8.2.min.js' );
+	wp_enqueue_script('jquery');
+	
+	wp_register_script('jquery-ui-1.9.2.custom.min.js', '/jomres/javascript/jquery-ui-1.9.2.custom.min.js', 'jquery' );
+	wp_enqueue_script('jquery-ui-1.9.2.custom.min.js');
+	
+	if ($view == "bootstrap")
+		{
+		wp_register_script('bootstrap.min.js', '/jomres/libraries/fullscreen_view/bootstrap/js/bootstrap.min.js', 'jquery' );
+		wp_enqueue_script('bootstrap.min.js');
+		}
+	elseif ($view == "bootstrap3")
+		{
+		wp_register_script('bootstrap.min.js', '/jomres/libraries/fullscreen_view/bootstrap3/dist/js/bootstrap.min.js', 'jquery' );
+		wp_enqueue_script('bootstrap.min.js');
+		}
 	
 	wp_head();
 	?>
