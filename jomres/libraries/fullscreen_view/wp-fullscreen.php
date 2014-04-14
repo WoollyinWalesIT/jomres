@@ -46,10 +46,8 @@ defined('_JOMRES_INITCHECK') or die;
 	  jQuery.noConflict();
 	</script>
 	<?php
-	global $wp_scripts;
-	
-	$wp_scripts->registered = array();
-	$wp_scripts->queue = array();
+	wp_deregister_script( 'jquery' );
+	wp_deregister_script( 'bootstrap' );
 	
 	wp_head();
 	?>
