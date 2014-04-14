@@ -4,7 +4,7 @@
 	{HEADER}
 
 	<patTemplate:tmpl name="property_details" unusedvars="strip">
-		<div class="jomres_property_list_propertywrapper" id="{UID}">
+		<div class="jomres_property_list_propertywrapper" id="{UID}" >
 			<div class="{FEATURED_LISTINGS_CLASS}">
 				<div class="row-fluid">
 					<div class="span9">
@@ -45,7 +45,7 @@
 						<p class="jomres_message">{LASTMINUTE}</p>
 					</div>
 					<div class="span3">
-						<div class="well align-center">
+						<div class="well align-center {BUDGET_BORDER_CLASS}">
 							{PRICE_PRE_TEXT}
 							<span class="big-price">{PRICE_PRICE}</span>
 							{PRICE_POST_TEXT}
