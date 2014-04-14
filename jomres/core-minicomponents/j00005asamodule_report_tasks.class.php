@@ -62,6 +62,7 @@ class j00005asamodule_report_tasks
 
 		$asamodule_plugin_information[ 'j06000show_property_reviews' ] = array ( "asamodule_task" => "show_property_reviews", "asamodule_info" => "A direct link to the hotel reviews list.", "asamodule_example_link" => JOMRES_SITEPAGE_URL_NOSEF . "&tmpl=" . get_showtime("tmplcomponent") .'&topoff=1&task=show_property_reviews&property_uid=' . $property_uid, "asamodule_manual_link" => '' );
 
+		$asamodule_plugin_information[ 'j06000ui_availability_calendar' ] = array ( "asamodule_task" => "ui_availability_calendar", "asamodule_info" => "A direct link to the hotel mini calendar.", "asamodule_example_link" => JOMRES_SITEPAGE_URL_NOSEF . "&tmpl=" . get_showtime("tmplcomponent") .'&topoff=1&task=ui_availability_calendar&property_uid=' . $property_uid, "asamodule_manual_link" => '' );
 		set_showtime( 'asamodule_plugin_information', $asamodule_plugin_information );
 		}
 
