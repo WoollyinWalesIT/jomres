@@ -38,7 +38,7 @@ else
 	
 function jr_wp_trigger_frontend()
 	{
-	require_once( dirname( __FILE__ ) . '/../../../jomres/jomres.php' );
+	require_once( ABSPATH . 'jomres/jomres.php' );
 	if ( (int)$_REQUEST['jrajax'] == 1 ) // If it's an ajax called, we need to die when Jomres has done it's stuff
 		{
 		die();
@@ -53,7 +53,7 @@ function jr_wp_trigger_admin()
 	$role = trim($user_role);
 	if ($role == "administrator")
 		{
-		require_once( dirname( __FILE__ ) . '/../../../jomres/admin.php' );
+		require_once( ABSPATH . 'jomres/admin.php' );
 		}
 	if ( (int)$_REQUEST['jrajax'] == 1 ) // If it's an ajax called, we need to die when Jomres has done it's stuff
 		{
@@ -64,7 +64,7 @@ function jr_wp_trigger_admin()
 function jomres_check_if_jomres_installed()
 	{
 	$jomres_installed = false;
-	if ( file_exists( dirname( __FILE__ ) . '/../../../jomres/jomres.php' ) )
+	if ( file_exists( ABSPATH . 'jomres/jomres.php' ) )
 		{
 		$jomres_installed = true;
 		}
