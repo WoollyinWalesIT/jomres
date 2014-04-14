@@ -213,7 +213,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 		function jomres_fullscreen_view($template)
 			{
 			if( isset( $_GET['tmpl']) && $_GET['tmpl'] == 'jomres' )
-				$template = plugin_dir_path( __FILE__ ) . '/../../../jomres/libraries/fullscreen_view/wp-fullscreen.php';
+				$template = ABSPATH . 'jomres/libraries/fullscreen_view/wp-fullscreen.php';
 
 			return $template;
 			}
