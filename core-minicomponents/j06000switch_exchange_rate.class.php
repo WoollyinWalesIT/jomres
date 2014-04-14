@@ -46,7 +46,6 @@ class j06000switch_exchange_rate
 		jr_import( 'jomres_currency_conversion' );
 		$conversion = new jomres_currency_conversion();
 		if ( !$conversion->check_currency_code_valid( $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] ) ) $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = "GBP";
-		$tmpBookingHandler->close_jomres_session();
 		}
 
 	/**

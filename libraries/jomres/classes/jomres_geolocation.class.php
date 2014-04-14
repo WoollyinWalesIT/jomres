@@ -70,7 +70,6 @@ class jomres_geolocation
 			}
 		else
 		$tmpBookingHandler->user_settings[ 'geolocated_country' ] = $this->detected_country;
-		$tmpBookingHandler->close_jomres_session();
 		}
 
 	public function auto_set_user_currency_code()
@@ -85,7 +84,6 @@ class jomres_geolocation
 		if ( $conversion->this_code_can_be_converted( $currency_code ) ) $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = $currency_code;
 		else
 		$tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = "EUR";
-		$tmpBookingHandler->close_jomres_session();
 		}
 	}
 

@@ -30,7 +30,7 @@ class jomres_temp_booking_handler
 	 * Constructor. Sets the default variables
 	#
 	 */
-	private static $configInstance;
+	private static $configInstance = false;
 	
 	function __construct()
 		{
@@ -40,7 +40,8 @@ class jomres_temp_booking_handler
 		$siteConfig          = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig            = $siteConfig->get();
 		$this->task          = get_showtime( 'task' );
-		$this->jomressession = jomres_cmsspecific_getsessionid();
+		
+		$this->jomressession = '';
 
 		$this->sessionfile	 = '';
 		$this->timeout = (int) $jrConfig[ 'lifetime' ];
@@ -87,8 +88,6 @@ class jomres_temp_booking_handler
 		$this->user_settings = array ( "editing_on" => false, "property_management_view" => false, "last_viewed_property_uid" => 0 );
 
 		$this->customFieldValues = array ();
-
-		$this->initBookingSession($this->jomressession);
 		}
 	
 	public static function getInstance()
@@ -125,30 +124,33 @@ class jomres_temp_booking_handler
 			}
 		}
 
-	function initBookingSession( $jomressession )
+	function initBookingSession( $jomressession = '')
 		{
 		if ( isset( $_REQUEST[ 'jsid' ] ) ) // jsid is passed by gateway services sending response codes
 			{
 			$this->part = jomresGetParam( $_REQUEST, 'jsid', "" );
 			}
-		elseif ( strlen( $jomressession ) > 0 ) 
+		elseif ( strlen( $jomressession ) > 0 )
 			$this->part = $jomressession;
 		else
 			{
 			$this->part = jomres_cmsspecific_getsessionid();
 			}
+		
+		if ( strlen( $this->part ) > 0 )
+			{
+			$this->jomressession = $this->part;
 	
-		$this->jomressession = $this->part;
-
-		$hash = sha1( $this->part );
-		$this->sessionfile = $this->session_directory . $hash . ".txt";
-
-		jr_import( 'jomres_custom_field_handler' );
-		$custom_fields   = new jomres_custom_field_handler();
-		$allCustomFields = $custom_fields->getAllCustomFields();
-		$this->initCustomFields( $allCustomFields );
-
-		$this->session_jomres_start();
+			$hash = sha1( $this->part );
+			$this->sessionfile = $this->session_directory . $hash . ".txt";
+	
+			jr_import( 'jomres_custom_field_handler' );
+			$custom_fields   = new jomres_custom_field_handler();
+			$allCustomFields = $custom_fields->getAllCustomFields();
+			$this->initCustomFields( $allCustomFields );
+	
+			$this->session_jomres_start();
+			}
 		}
 
 
@@ -179,7 +181,7 @@ class jomres_temp_booking_handler
 	function close_jomres_session()
 		{
 		$data = array ( 'tmpbooking' => $this->tmpbooking, 'cart_data' => $this->cart_data, 'tmpguest' => $this->tmpguest, 'tmpsearch_data' => $this->tmpsearch_data, 'tmplang' => $this->tmplang, 'user_settings' => $this->user_settings );
-		if ( isset( $this->sessionfile ) ) // In certain circumstances the session file might not have been created (typically administrator area functionality)
+		if ( $this->sessionfile != '' ) // In certain circumstances the session file might not have been created (typically administrator area functionality)
 		file_put_contents( $this->sessionfile, serialize( $data ) );
 		}
 

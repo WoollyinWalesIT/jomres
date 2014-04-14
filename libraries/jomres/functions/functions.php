@@ -1869,7 +1869,7 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 					VALUES
 					('" . $plugin_name . "','','','0','position-0','0','0000-00-00 00:00:00','0','mod_" . $plugin_name . "','0','1','" . $params . "')";
 					}
-				elseif ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" )
+				elseif ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33")
 					{
 					$query = "INSERT INTO #__modules
 					(
@@ -5606,7 +5606,16 @@ function scandir_getfiles_recursive( $directory, $recursive = true, $listDirs = 
 
 function this_cms_is_joomla()
 	{
-	if ( ( _JOMRES_DETECTED_CMS != "joomla15" && _JOMRES_DETECTED_CMS != "joomla16" && _JOMRES_DETECTED_CMS != "joomla17" && _JOMRES_DETECTED_CMS != "joomla25" && _JOMRES_DETECTED_CMS != "joomla30" && _JOMRES_DETECTED_CMS != "joomla31" && _JOMRES_DETECTED_CMS != "joomla32" ) ) return false;
+	if ( 
+		_JOMRES_DETECTED_CMS != "joomla15" && 
+		_JOMRES_DETECTED_CMS != "joomla16" && 
+		_JOMRES_DETECTED_CMS != "joomla17" && 
+		_JOMRES_DETECTED_CMS != "joomla25" && 
+		_JOMRES_DETECTED_CMS != "joomla30" && 
+		_JOMRES_DETECTED_CMS != "joomla31" && 
+		_JOMRES_DETECTED_CMS != "joomla32"  && 
+		_JOMRES_DETECTED_CMS != "joomla33"
+		) return false;
 
 	return true;
 	}
