@@ -205,19 +205,27 @@ class j01010listpropertys
 					$current_property_details->gather_data_multi( $propertysToShow );
 					
 					$jomres_property_list_prices = jomres_singleton_abstract::getInstance( 'jomres_property_list_prices' );
-					$jomres_property_list_prices->gather_lowest_prices_multi($propertys_uids);
+					
+					$limited_property_uids = $propertys_uids;
+					$jomres_property_list_prices->gather_lowest_prices_multi($limited_property_uids);
+					
 					
 					foreach ($jomres_property_list_prices->lowest_prices as $low)
 						{
-						$lp[] = $low['RAW_PRICE'];
+						$rounded = ceil($low['RAW_PRICE'] / 10) * 10;
+						if ($rounded > 0)
+							$lp[] = $rounded;
 						}
 					$lp = array_unique ($lp);
+
 					natsort($lp);
 					jr_import('jomres_user_budget');
 					$budget = new jomres_user_budget();
 					
 					$budget_output = array();
 					$budget_output[0]['BUDGET_DROPDOWN'] = $budget-> get_budget_dropdown($lp);
+					
+					$jomres_property_list_prices->gather_lowest_prices_multi($propertysToShow);
 					
 					$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 					$jomres_media_centre_images->get_images_multi($propertysToShow, array('property'));
@@ -449,13 +457,13 @@ class j01010listpropertys
 								}
 							}
 						*/
-						if ( $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > ($guest_budget*3)) 
+						/* if ( $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > ($guest_budget*3)) 
 							{
 							if (jomres_bootstrap_version() == "3")
 								$property_deets[ 'BUDGET_BORDER_CLASS' ] = "panel-danger";
 							else
 								$property_deets[ 'BUDGET_BORDER_CLASS' ] = "alert alert-danger";
-							}
+							} */
 						}
 					
 					if ( array_key_exists( $propertys_uid, $lastBookedArray ) )
