@@ -171,3 +171,8 @@ fieldset.radio.btn-group {
 .label-blue {background-color: #3A87AD !important;}
 .label-purple {background-color: #e01fb9 !important;}
 .label-teal {background-color: #0fcef1 !important;}
+
+.property-list-overbudget-properties {
+	opacity: .6;
+}
+	
