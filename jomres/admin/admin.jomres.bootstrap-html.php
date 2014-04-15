@@ -165,7 +165,17 @@ class HTML_jomres
 		</tr>
 		' );
 
-
+		if ( $jrConfig[ 'advanced_site_config' ] == 1 ) 
+			{
+			$contentPanel->setcontent( '
+			<tr>
+				<td>' . jr_gettext( GUEST_BUDGET_FEATURE_SWITCH, 'GUEST_BUDGET_FEATURE_SWITCH', false ) . '</td>
+				<td>' . $lists[ 'use_budget_feature' ] . '</td>
+				<td>' . jr_gettext( GUEST_BUDGET_FEATURE_SWITCH_DESC, 'GUEST_BUDGET_FEATURE_SWITCH_DESC', false ) . '</td>
+			</tr>
+			' );
+			}
+			
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 ) 
 			{
 			$contentPanel->setcontent( '

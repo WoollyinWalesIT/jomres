@@ -295,6 +295,9 @@ function showSiteConfig()
 		$jrConfig['show_powered_by']="0";
 	$lists[ 'show_powered_by' ]            = jomresHTML::selectList( $yesno, 'cfg_show_powered_by', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_powered_by' ] );
 	
+	$lists[ 'use_budget_feature' ]                  = jomresHTML::selectList( $yesno, 'cfg_use_budget_feature', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_budget_feature' ] );
+	
+	
 	if (!isset($jrConfig[ 'navbar_inverse' ]))
 		$jrConfig[ 'navbar_inverse' ] = 0;
 	
