@@ -6,8 +6,8 @@
 			</div>
 			<div class="span1 hidden-phone">
 				<div class="btn-group">
-					<button class="btn">{COMMON_VIEW}</button>
-					<button class="btn dropdown-toggle" data-toggle="dropdown">
+					<button class="btn btn-small">{COMMON_VIEW}</button>
+					<button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
 						<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu">
@@ -18,16 +18,14 @@
 				</div>
 			</div>
 			<div class="span7 hidden-phone" align="right">
-
-				
 				<patTemplate:tmpl name="budget_output" type="simpleCondition" requiredVars="budget_dropdown">
 					{BUDGET_DROPDOWN}
 				</patTemplate:tmpl>
 				<patTemplate:tmpl name="shortlist" type="simpleCondition" requiredVars="_jomres_viewshortlist">
-					<a href="{SHORTLISTLINK}" class="btn">{_JOMRES_VIEWSHORTLIST}</a>
+					<a href="{SHORTLISTLINK}" class="btn btn-small">{_JOMRES_VIEWSHORTLIST}</a>
 				</patTemplate:tmpl>
 				<patTemplate:tmpl name="compare" type="simpleCondition" requiredVars="_jomres_compare">
-					{COMPARELINK}<a href="javascript:void(0);" onclick="return trigger_comparison(this);" class="btn">{_JOMRES_COMPARE}</a>
+					{COMPARELINK}<a href="javascript:void(0);" onclick="return trigger_comparison(this);" class="btn btn-small">{_JOMRES_COMPARE}</a>
 
 					<form action=""><input type="hidden" id="comparison_ids" name="ids" value=""/></form>
 					</li>

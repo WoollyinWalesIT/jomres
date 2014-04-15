@@ -432,37 +432,28 @@ class j01010listpropertys
 					$property_deets[ 'PRICE_PRICE' ]     = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE' ];
 					$property_deets[ 'PRICE_POST_TEXT' ] = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'POST_TEXT' ];
 					
-					if (jomres_bootstrap_version() == "3")
-						$property_deets[ 'BUDGET_BORDER_CLASS' ] = 'panel-primary';
-					else
-						$property_deets[ 'BUDGET_BORDER_CLASS' ] = '';
+					if ($property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ])
+						$property_deets[ 'BUDGET_BORDER_CLASS' ] = 'panel-info';
+
 					if ($guest_budget > 0)
 						{
-						if ($guest_budget >= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] &&  $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > 0 )
+						if (
+							$guest_budget >= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] &&  
+							$jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > 0 &&
+							$property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ]
+							)
 							{
-							if (jomres_bootstrap_version() == "3")
-								$property_deets[ 'BUDGET_BORDER_CLASS' ] = "panel-success";
-							else
-								$property_deets[ 'BUDGET_BORDER_CLASS' ] = "alert alert-success";
+							$property_deets[ 'BUDGET_BORDER_CLASS' ] = "panel-success";
 							}
-						/*
-						else
+						elseif ($property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ])
 							{
-							if ( $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > ($guest_budget*2)) 
-								{
-								if (jomres_bootstrap_version() == "3")
-									$property_deets[ 'BUDGET_BORDER_CLASS' ] = "panel-warning";
-								else
-									$property_deets[ 'BUDGET_BORDER_CLASS' ] = "alert alert-warning";
-								}
+							$property_deets[ 'BUDGET_BORDER_CLASS' ] .= ' property-list-overbudget-properties';
 							}
-						*/
-						/* if ( $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > ($guest_budget*3)) 
+							
+						// Don't know if I want to use this yet. Jomres 8.1
+						/*  if ( $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > ($guest_budget*3)) 
 							{
-							if (jomres_bootstrap_version() == "3")
-								$property_deets[ 'BUDGET_BORDER_CLASS' ] = "panel-danger";
-							else
-								$property_deets[ 'BUDGET_BORDER_CLASS' ] = "alert alert-danger";
+							$property_deets[ 'BUDGET_BORDER_CLASS' ] = "panel-danger property-list-overbudget-properties";
 							} */
 						}
 					
