@@ -274,3 +274,6 @@ $jrConfig[ 'navbar_inverse' ]         = 0;
 $jrConfig[ 'bootstrap_version' ]         = "";
 
 $jrConfig[ 'show_powered_by' ]         = "0";
+
+$jrConfig['use_budget_feature']        = "1";
+

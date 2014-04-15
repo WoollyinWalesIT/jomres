@@ -207,24 +207,6 @@ class j01010listpropertys
 					$jomres_property_list_prices = jomres_singleton_abstract::getInstance( 'jomres_property_list_prices' );
 					
 					$limited_property_uids = $propertys_uids;
-					$jomres_property_list_prices->gather_lowest_prices_multi($limited_property_uids);
-					
-					
-					foreach ($jomres_property_list_prices->lowest_prices as $low)
-						{
-						$rounded = ceil($low['RAW_PRICE'] / 10) * 10;
-						if ($rounded > 0)
-							$lp[] = $rounded;
-						}
-					$lp = array_unique ($lp);
-
-					natsort($lp);
-					jr_import('jomres_user_budget');
-					$budget = new jomres_user_budget();
-					
-					$budget_output = array();
-					$budget_output[0]['BUDGET_DROPDOWN'] = $budget-> get_budget_dropdown($lp);
-					
 					$jomres_property_list_prices->gather_lowest_prices_multi($propertysToShow);
 					
 					$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
@@ -234,7 +216,22 @@ class j01010listpropertys
 					// For historical reasons some tables in Jomres use propertys_uid and some use property_uid (note the 's') so g_pids is for those tables that use propertys_uid, while g_pid is for those without
 					$g_pids = genericOr( $propertysToShow, 'propertys_uid' );
 					$g_pid  = genericOr( $propertysToShow, 'property_uid' );
-
+					
+					if ( using_bootstrap())
+						{
+						jr_import('jomres_user_budget');
+						$budget = new jomres_user_budget();
+						
+						if (!isset($jrConfig['use_budget_feature']))
+							$jrConfig['use_budget_feature'] = "1";
+						
+						if ($jrConfig['use_budget_feature'] == "1")
+							{
+							$budget_output = array();
+							$budget_output[0]['BUDGET_DROPDOWN'] = $budget-> get_budget_dropdown();
+							}
+						}
+					
 					// Last booked
 					$lastBookedArray = array ();
 					$query           = "SELECT property_uid, max(timestamp) as ts FROM #__jomres_contracts WHERE " . $g_pid . " AND `timestamp` IS NOT NULL GROUP BY property_uid ";
@@ -411,6 +408,7 @@ class j01010listpropertys
 					if ( count( $propertyFeaturesArray ) > 0 )
 						{
 						$featureList = "";
+						$shortFeatureList = "";
 						$counter     = 0;
 						foreach ( $propertyFeaturesArray as $f )
 							{
@@ -422,20 +420,24 @@ class j01010listpropertys
 								$hotel_feature_full_desc=$current_property_details->all_property_features[ $f ]['desc'];
 								$feature_image=$current_property_details->all_property_features[ $f ]['image'];
 								$featureList .= jomres_makeTooltip( $hotel_feature_abbv, $hotel_feature_abbv, $hotel_feature_full_desc, $feature_image, "", "property_feature", array () );
+								if ($counter < 4)
+									$shortFeatureList .= jomres_makeTooltip( $hotel_feature_abbv, $hotel_feature_abbv, $hotel_feature_full_desc, $feature_image, "", "property_feature", array () );
 								$counter++;
 								}
 							}
 						$property_deets[ 'FEATURELIST' ] = $featureList;
+						$property_deets[ 'SHORTFEATURELIST' ] = $shortFeatureList;
 						}
 
 					$property_deets[ 'PRICE_PRE_TEXT' ]  = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRE_TEXT' ];
 					$property_deets[ 'PRICE_PRICE' ]     = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE' ];
 					$property_deets[ 'PRICE_POST_TEXT' ] = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'POST_TEXT' ];
 					
+					
 					if ($property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ])
 						$property_deets[ 'BUDGET_BORDER_CLASS' ] = 'panel-info';
 
-					if ($guest_budget > 0)
+					if ($guest_budget > 0 && $jrConfig['use_budget_feature'] == "1" && using_bootstrap() )
 						{
 						if (
 							$guest_budget >= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] &&  
@@ -460,7 +462,10 @@ class j01010listpropertys
 					if ( array_key_exists( $propertys_uid, $lastBookedArray ) )
 						{
 						$property_deets[ 'LASTBOOKED' ]        = jr_gettext( '_JOMRES_DATEPERIOD_LATESTBOOKING', _JOMRES_DATEPERIOD_LATESTBOOKING ) . " " . $lastBookedArray[ $propertys_uid ];
-						$property_deets[ 'LASTBOOKING_STYLE' ] = 'ui-state-highlight ui-corner-all';
+						if ( !using_bootstrap() )
+							$property_deets[ 'LASTBOOKING_STYLE' ] = 'ui-state-highlight ui-corner-all';
+						else
+							$property_deets[ 'LASTBOOKING_STYLE' ] = 'alert alert-warning';
 						}
 
 					$property_deets[ 'COUNTER' ] = $templateCounter;

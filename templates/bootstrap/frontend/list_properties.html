@@ -13,7 +13,7 @@
 						</div>
 						<div class="span2">
 							<div class="jomres-compare" align="right">
-								<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/> {_JOMRES_COMPARE}
+								<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/> <i class="icon-question-sign" rel="tooltip" title="{_JOMRES_COMPARE}" > </i>
 							</div>
 						</div>
 					</div>
@@ -24,9 +24,12 @@
 							<a href="#module_{RANDOM_IDENTIFIER}_popup" class="hidden-phone thumbnail" data-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}"><img src="{IMAGETHUMB}" class="img-rounded" alt="{PROPERTYNAME}"/></a>
 							<a href="{MOREINFORMATIONLINK}" class="visible-phone thumbnail"><img src="{IMAGETHUMB}"
 																								 alt="{PROPERTYNAME}"/></a>
+							<p>{SHORTFEATURELIST}</p>
 						</div>
 						<div class="span7">
-							<p><span class="label">{PROPERTY_TYPE}</span> <span class="small">{STARS}</span> <em>{SUPERIOR}</em>
+							<p>
+								<!--<span class="label">{PROPERTY_TYPE}</span> <span class="small">{STARS}</span> <em>{SUPERIOR}</em>-->
+								<a href="{PROPERTY_TYPE_SEARCH_URL}" class="btn btn-mini btn-default">{PROPERTY_TYPE}</a> <span class="small">{STARS}</span> <em>{SUPERIOR}</em>
 							</p>
 		
 							<p class="small"><em>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</em></p>

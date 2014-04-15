@@ -161,6 +161,17 @@ class HTML_jomres
 			' );
 				}
 
+		if ( $jrConfig[ 'advanced_site_config' ] == 1 ) 
+			{
+			$contentPanel->setcontent( '
+			<tr valign="middle" class="even">
+				<td valign="middle">' . jr_gettext( GUEST_BUDGET_FEATURE_SWITCH, 'GUEST_BUDGET_FEATURE_SWITCH', false ) . '</td>
+				<td valign="middle">' . $lists[ 'use_budget_feature' ] . '</td>
+				<td valign="middle">' . jr_gettext( GUEST_BUDGET_FEATURE_SWITCH_DESC, 'GUEST_BUDGET_FEATURE_SWITCH_DESC', false ) . '</td>
+			</tr>
+			' );
+			}
+			
 			$contentPanel->setcontent( '
 		<tr valign="middle" class="even">
 			<td valign="middle">' . jr_gettext( _JOMRES_COOKIEPOLICY_TITLE, '_JOMRES_COOKIEPOLICY_TITLE', false ) . '</td>

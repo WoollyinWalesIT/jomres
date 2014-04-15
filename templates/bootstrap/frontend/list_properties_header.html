@@ -1,6 +1,6 @@
 <patTemplate:tmpl name="header_pageoutput" unusedvars="strip">
 	<div class="jomres-propertylist-toolbar well">
-		<div class="row-fluid">
+		<div class="row-fluid btn-toolbar">
 			<div class="span4">
 				{ORDER_DROPDOWN}
 			</div>
@@ -22,13 +22,11 @@
 					{BUDGET_DROPDOWN}
 				</patTemplate:tmpl>
 				<patTemplate:tmpl name="shortlist" type="simpleCondition" requiredVars="_jomres_viewshortlist">
-					<a href="{SHORTLISTLINK}" class="btn btn-small">{_JOMRES_VIEWSHORTLIST}</a>
+						<a href="{SHORTLISTLINK}" class="btn btn-small">{_JOMRES_VIEWSHORTLIST}</a>
 				</patTemplate:tmpl>
 				<patTemplate:tmpl name="compare" type="simpleCondition" requiredVars="_jomres_compare">
 					{COMPARELINK}<a href="javascript:void(0);" onclick="return trigger_comparison(this);" class="btn btn-small">{_JOMRES_COMPARE}</a>
-
 					<form action=""><input type="hidden" id="comparison_ids" name="ids" value=""/></form>
-					</li>
 				</patTemplate:tmpl>
 			</div>
 		</div>
