@@ -63,6 +63,13 @@ class jomres_user_budget
 		
 		$ranges = range(min($prices), max($prices), 50);
 		
+		// This can be called via either the "search" task, or more complicatedly through ajax search. If it is, instead of having a simple js function to call we need to call a different one, using the form name variable. Incidently, this is the same onclick function that's used to return to search results. If we didn't do this, clicking on the dropdown after doing an ajax search would reload the current page, e.g. "viewproperty" or somesuch.
+		$onclick=false;
+		if (isset($_REQUEST['ajax_search_form_name']))
+			{
+			$onclick = true;
+			}
+
 		$rows = array ();
 		if ( ( JOMRES_NOHTML != 1 || get_showtime( 'task' ) == "ajax_search_filter" ) )
 			{
@@ -81,6 +88,15 @@ class jomres_user_budget
 					$r              = array ();
 					$r[ 'TITLE' ]   = output_price($range);
 					$r[ 'FIGURE' ]    = $range;
+					if ( !isset($_REQUEST['ajax_search_form_name']) )
+						{
+						$r[ 'ONCLICK' ]    = 'onclick="set_budget('.$range.', true , \'\')"';
+						}
+					else
+						{
+						$formname = jomresGetParam( $_REQUEST, 'ajax_search_form_name', "" );
+						$r[ 'ONCLICK' ]    = 'onclick="set_budget('.$range.' , false , \''.$formname.'\'); "';
+						}
 					$rows[ ] = $r;
 					}
 				}

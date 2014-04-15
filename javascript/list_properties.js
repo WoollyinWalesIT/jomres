@@ -27,9 +27,12 @@ function shortlist(property_uid) {
 	});
 }
 
-function set_budget(budget_price) {
+function set_budget(budget_price , reload , formname ) {
 	jomresJquery.get(live_site_ajax + "&task=ajax_budget&budget_figure="+budget_price, function (data) {
-		location.reload();
+		if (reload)
+			location.reload();
+		else
+			submit_search(formname);
 	});
 }
 
