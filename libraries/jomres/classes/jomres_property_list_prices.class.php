@@ -97,6 +97,7 @@ class jomres_property_list_prices
 						$this->lowest_prices[$property_uid]['PRE_TEXT'] = $plugin_price[ 'PRE_TEXT' ];
 						$this->lowest_prices[$property_uid]['PRICE'] = $plugin_price[ 'PRICE' ];
 						$this->lowest_prices[$property_uid]['POST_TEXT'] = $plugin_price[ 'POST_TEXT' ];
+						$this->lowest_prices[$property_uid]['RAW_PRICE'] = preg_replace('/([^0-9\\.])/i', '', $plugin_price[ 'PRICE' ]);
 						}
 					}
 				else
