@@ -62,6 +62,7 @@ defined('_JOMRES_INITCHECK') or die;
 	<?php endif; ?>
 </head>
 <body class="contentpane">
-	<?php echo the_content(); ?>
+	<?php the_content(); ?>
+	<?php wp_footer(); // js scripts are inserted using this function ?>
 </body>
 </html>
