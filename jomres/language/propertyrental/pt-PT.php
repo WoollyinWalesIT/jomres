@@ -2503,4 +2503,7 @@ jr_define('_JOMRES_SHOW_POWEREDBY',"Show the Powered by Jomres link in the Jomre
 
 jr_define('GUEST_BUDGET',"Budget");
 jr_define('GUEST_BUDGET_FEATURE_SWITCH',"Use Budget feature?");
-jr_define('GUEST_BUDGET_FEATURE_SWITCH_DESC',"Bootstrapped sites only! The Budget feature is a feature of the property list that a guest can use to highlight for them properties who's price per night is under a certain figure. The feature has some limitations in that it might not be appropriate for some sites that use many different currencies. Note, if you're using this and the Featured Listings plugin, we recommend that you set the Featured Listings wrapping claas to 'panel-primary' to get the best out of this feature.");
+jr_define('GUEST_BUDGET_FEATURE_SWITCH_DESC',"Bootstrapped sites only! The Budget feature is a feature of the property list that a guest can use to highlight for them properties who's price per night is under a certain figure. The feature has some limitations in that it might not be appropriate for some sites that use many different currencies. Note, if you're using this and the Featured Listings plugin, your featured listing wrapping class is automatically changed to 'panel-primary' when the property list is shown.");
+
+jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', 'Name: ' );
+
