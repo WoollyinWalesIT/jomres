@@ -69,14 +69,14 @@ class j01010listpropertys
 				$all_layouts[ ] = $key;
 				$r              = array ();
 				$r[ 'TITLE' ]   = $layouts[ "title" ];
-				$r[ 'LINK' ]    = jomresURL( JOMRES_SITEPAGE_URL . "&amp;task=listProperties&amp;layout=" . $key );
+				$r[ 'LINK' ]    = jomresURL( JOMRES_SITEPAGE_URL . "&amp;task=listProperties&amp;propertylist_layout=" . $key );
 				$layout_rows[ ] = $r;
 				}
 			}
 
-		if ( isset( $_REQUEST[ 'layout' ] ) && in_array( $_REQUEST[ 'layout' ], $all_layouts ) )
+		if ( isset( $_REQUEST[ 'propertylist_layout' ] ) && in_array( $_REQUEST[ 'propertylist_layout' ], $all_layouts ) )
 			{
-			$tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ] = jomresGetParam( $_REQUEST, 'layout', "" );
+			$tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ] = jomresGetParam( $_REQUEST, 'propertylist_layout', "" );
 			}
 		$layout = $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ];
 
@@ -121,7 +121,7 @@ class j01010listpropertys
 			$propertys_uids = $tmpArray;
 			}
 
-		if (isset($_REQUEST['layout']) )
+		if (isset($_REQUEST['propertylist_layout']) )
 			{
 			$propertys_uids = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
 			}
@@ -163,6 +163,22 @@ class j01010listpropertys
 				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $propertys_uids[ 0 ] . $arrival_clause ), "" );
 				}
 
+			if ( using_bootstrap())
+				{
+				jr_import('jomres_user_budget');
+				$budget = new jomres_user_budget();
+						
+				if (!isset($jrConfig['use_budget_feature']))
+					$jrConfig['use_budget_feature'] = "1";
+						
+				if ($jrConfig['use_budget_feature'] == "1")
+					{
+					$budget_output = array();
+					$budget_output[0]['BUDGET_DROPDOWN'] = $budget-> get_budget_dropdown();
+					}
+				}
+			
+			
 			if ( count( $propertys_uids ) > 0 )
 				{
 				$header_output = array ();
@@ -217,21 +233,6 @@ class j01010listpropertys
 					$g_pids = genericOr( $propertysToShow, 'propertys_uid' );
 					$g_pid  = genericOr( $propertysToShow, 'property_uid' );
 					
-					if ( using_bootstrap())
-						{
-						jr_import('jomres_user_budget');
-						$budget = new jomres_user_budget();
-						
-						if (!isset($jrConfig['use_budget_feature']))
-							$jrConfig['use_budget_feature'] = "1";
-						
-						if ($jrConfig['use_budget_feature'] == "1")
-							{
-							$budget_output = array();
-							$budget_output[0]['BUDGET_DROPDOWN'] = $budget-> get_budget_dropdown();
-							}
-						}
-					
 					// Last booked
 					$lastBookedArray = array ();
 					$query           = "SELECT property_uid, max(timestamp) as ts FROM #__jomres_contracts WHERE " . $g_pid . " AND `timestamp` IS NOT NULL GROUP BY property_uid ";
@@ -273,9 +274,33 @@ class j01010listpropertys
 			if ( count( $featured_properties ) > 0 ) // only store the featured properties if their count is > 0. That's because featured properties are only set in non-ajax calls. If it's an ajax called, we don't want to set the featured properties to null
 				$tmpBookingHandler->tmpsearch_data[ 'featured_properties' ] = $featured_properties;
 			
-			$guest_budget = $budget->get_budget();
+			if ($jrConfig['use_budget_feature'] == "1" && using_bootstrap() )
+				{
+				$guest_budget = $budget->get_budget();
+				}
 			
-			
+					if ($guest_budget > 0 && $jrConfig['use_budget_feature'] == "1" && using_bootstrap() )
+						{
+						if (
+							$guest_budget >= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] &&  
+							$jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > 0 &&
+							$property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ]
+							)
+							{
+							$property_deets[ 'BUDGET_BORDER_CLASS' ] = "panel-success";
+							}
+						elseif ($property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ])
+							{
+							$property_deets[ 'BUDGET_BORDER_CLASS' ] .= ' property-list-overbudget-properties';
+							}
+							
+						// Don't know if I want to use this yet. Jomres 8.1
+						/*  if ( $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > ($guest_budget*3)) 
+							{
+							$property_deets[ 'BUDGET_BORDER_CLASS' ] = "panel-danger property-list-overbudget-properties";
+							} */
+						}
+						
 			if ( count( $propertysToShow ) > 0 )
 				{
 				$property_details = array ();
@@ -437,27 +462,7 @@ class j01010listpropertys
 					if ($property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ])
 						$property_deets[ 'BUDGET_BORDER_CLASS' ] = 'panel-info';
 
-					if ($guest_budget > 0 && $jrConfig['use_budget_feature'] == "1" && using_bootstrap() )
-						{
-						if (
-							$guest_budget >= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] &&  
-							$jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > 0 &&
-							$property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ]
-							)
-							{
-							$property_deets[ 'BUDGET_BORDER_CLASS' ] = "panel-success";
-							}
-						elseif ($property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ])
-							{
-							$property_deets[ 'BUDGET_BORDER_CLASS' ] .= ' property-list-overbudget-properties';
-							}
-							
-						// Don't know if I want to use this yet. Jomres 8.1
-						/*  if ( $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > ($guest_budget*3)) 
-							{
-							$property_deets[ 'BUDGET_BORDER_CLASS' ] = "panel-danger property-list-overbudget-properties";
-							} */
-						}
+
 					
 					if ( array_key_exists( $propertys_uid, $lastBookedArray ) )
 						{
