@@ -1,3 +1,51 @@
+
+Jomres 8.1.-2
+
+New Feature : Added a new "budget" option to property list toolbar, which allows users to see at a glance which properties are within their budget.
+
+Change : Simplified the book/check in/out feature, Booking in/out is done through the list bookings page now.
+Change : Added a check for secret key so that required custom fields are stored correctly.
+Change : Modified the generic booking insert class to ensure that it uses currency codes, otherwise bookings later on will not show correctly.
+Change : Added a way to update site settings with last update time, for use later by, among other things, javascript versioning.
+Change : Added functionality to give javascript files a version (based on the update time). This means that when a site's updated browsers will be triggered to download the javascript files again. This prevents changes in js files from causing a site to appear to not function if that js file has different functionality.
+Change : Updated the Polish lang files. Thanks Patryk.
+Change : Changed an int to a float for a 3PD.
+Change : Added the option to switch off the Powered by Jomres link via site config, and by default this is set to No.
+Change : Tweaked new functionality so that if book in/out plugin not installed then the check in/out options aren't offered in the bookings list.
+Change : Email template editing instructions updated.
+Change : Installer improved. Given a makeover and added functionality to rename a table if possible, or warn and give directions if not possible.
+Change : Obsoleted the old Joomla 3.0 and 3.1 specific functionality as they're no longer supported. 
+Change : Added Joomla 3.3 CMS specific files and functionality.
+Change : Added UI availability calendar to the asamodule report page.
+Change : Added lowest prices to property details page.
+Change : Changed property list header buttons to small.
+Change : Added Bootstrap 3 panels to Bootstrap 2 and modified property list template to use.
+Change : Added a new css class .property-list-overbudget-properties so that if the budget dropdown is used and a property is over-budget we make it slightly opaque to emphasise those properties that are under budget. Feature properties are not affected by these changes, they use the panel-primary class to stand out.
+Change : Re-added _JOMRES_FRONT_MR_EMAIL_TEXT_NAME that was inadvertently removed when adding the email editing feature.
+Change : Updated budget site config description to note that the featured listings wrapping class that highlights featured listings is changed when the budget feature is enabled.
+
+
+Fix : Removed a stray hyphen from the phrase "Property details".
+Fix : Corrected "rows" to "row" in BS3 skin.
+Fix : Added code to ensure that the property's currency code is entered into the contracts table during the booking phase. Without this change, if a property changes it's currency code then the prices in the bookings list are incorrect.
+Fix : Modified menu generator to show HELP when bootstrap is enabled, even if the CMS is not Joomla 3+
+
+Joomla : Removed redundant javascript caching code from J2.5/J3 cms specific functionality.
+Joomla : Obsoleted the old Joomla 3.0 and 3.1 specific functionality as they're no longer supported. 
+Joomla : Modified cms specific functionality that includes css to ensure that css is correctly included in the administrator area.
+
+Wordpress : Solved a problem where page id wsan't set in ajax urls, so links from javascript urls didn't work.
+Wordpress : Changed how the editor is called in WP so that managers can use html editors.
+Wordpress : Changed how date is returned from the cms specific function that formats dates.
+Wordpress : Improved the WP plugins and how they're used to allow things like .js and .css files to be integrated into the head properly.
+Wordpress : Refactored functionality to improve functionality in WP. Session handling/CMS specific functionality/Javascript file inclusion/Editing mode.
+Wordpress : Further changes so that when we store some user settings we also save them in the session files. Not really needed in Joomla, but important in Wordpress.
+Wordpress : Updated Admin's first run instructions to adapt to being installed in Wordpress.
+Wordpress : Changed how ajax is called via the frontend.
+Wordpress : Changed the widget installer so that plugin_info is put back into the core plugin folder it originated in so that we can see if a widget is installed.
+Wordpress : Fixed an issue where WP wysiwyg editor wouldn't be shown in fullscreen view.
+
+
 Jomres 8.1.-3
 
 New Feature : Added a new Booking Approval feature that allows managers to screen bookings before they're approved and the booking is inserted into the system.
