@@ -42,12 +42,27 @@ class jomres_sanity_check
 		return $this->warnings;
 		}
 
-	function construct_warning( $message )
+	function construct_warning( $message_array )
 		{
+		$message = $message_array['MESSAGE'];
 		$warning = "";
 		$warning .= jr_gettext( '_JOMRES_WARNINGS_DANGERWILLROBINSON', _JOMRES_WARNINGS_DANGERWILLROBINSON, false );
-		$warning .= $message . "<br/>";
-
+		$warning .= $message ;
+		if (isset($message_array['LINK']))
+			{
+			$pageoutput	= array();
+			$output		= array();
+			
+			$output['LINK']			= $message_array['LINK'];
+			$output['BUTTON_TEXT']	= $message_array['BUTTON_TEXT'];
+			
+			$pageoutput[ ] = $output;
+			$tmpl          = new patTemplate();
+			$tmpl->addRows( 'pageoutput', $pageoutput );
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+			$tmpl->readTemplatesFromInput( 'sanity_checks_button.html' );
+			$warning .= $tmpl->getParsedTemplate();
+			}
 		return $warning;
 		}
 
@@ -59,7 +74,7 @@ class jomres_sanity_check
 			{
 			$message = jr_gettext( '_JOMRES_APPROVALS_NOT_APPROVED_YET', _JOMRES_APPROVALS_NOT_APPROVED_YET, false );
 
-			return $this->construct_warning( $message );
+			return $this->construct_warning( array( "MESSAGE" => $message ) );
 			}
 		}
 
@@ -71,7 +86,7 @@ class jomres_sanity_check
 			{
 			$message = jr_gettext( '_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED', _JOMRES_SUSPENSIONS_MANAGER_SUSPENDED, false );
 
-			return $this->construct_warning( $message );
+			return $this->construct_warning( array( "MESSAGE" => $message ) );
 			}
 		}
 
@@ -85,8 +100,10 @@ class jomres_sanity_check
 			if ( (int) $this->mrConfig[ 'perPersonPerNight' ] == 1 && count( $result ) == 0 )
 				{
 				$message = jr_gettext( '_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', _JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES, false );
+				$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=listCustomerTypes');
+				$button_text = jr_gettext( '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', _JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES, false );
 
-				return $this->construct_warning( $message );
+				return $this->construct_warning( array( "MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $button_text ) );
 				}
 			}
 
@@ -104,8 +121,27 @@ class jomres_sanity_check
 			if ( count( $result ) == 0 )
 				{
 				$message = jr_gettext( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', _JOMRES_WARNINGS_TARIFFS_NOTARIFFS, false );
+				
+				$property_uid=getDefaultProperty();
+				$mrConfig=getPropertySpecificSettings($property_uid);
 
-				return $this->construct_warning( $message );
+				if ($mrConfig['tariffmode']=='0')
+					{
+					$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_tariffs_normal');
+					$button_text = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_TITLE', _JOMRES_COM_MR_LISTTARIFF_TITLE, false, false ) . " &amp; " . jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM, false, false );
+					}
+				elseif ($mrConfig['tariffmode']=='1')
+					{
+					$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=list_tariffs_advanced');
+					$button_text = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_TITLE', _JOMRES_COM_MR_LISTTARIFF_TITLE, false );
+					}
+				else
+					{
+					$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=list_tariffs_micromanage');
+					$button_text = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_TITLE', _JOMRES_COM_MR_LISTTARIFF_TITLE, false );
+					}
+
+				return $this->construct_warning( array( "MESSAGE" => $message  , "LINK" => $link , "BUTTON_TEXT" => $button_text) );
 				}
 			}
 
@@ -121,9 +157,7 @@ class jomres_sanity_check
 			{
 			$message = jr_gettext( '_JOMRES_WARNINGS_GLOBALEDITINGMODE', _JOMRES_WARNINGS_GLOBALEDITINGMODE, false );
 
-			return $this->construct_warning( $message );
-
-
+			return $this->construct_warning( array( "MESSAGE" => $message ) );
 			}
 		}
 
@@ -134,8 +168,10 @@ class jomres_sanity_check
 		if ( isset( $published ) && $published != "1" && $thisJRUser->userIsManager )
 			{
 			$message = jr_gettext( '_JOMRES_SANITY_CHECK_NOT_PUBLISHED', _JOMRES_SANITY_CHECK_NOT_PUBLISHED, false );
+			$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty&property_uid=' . get_showtime('property_uid'));
+			$button_text = jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', _JOMRES_COM_MR_VRCT_PUBLISH, false );
 
-			return $this->construct_warning( $message );
+			return $this->construct_warning( array( "MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $button_text ) );
 			}
 		}
 	}
