@@ -195,6 +195,7 @@ class j06000ui_availability_calendar
 				jomresJquery( "#' . $random_identifier . '" ).datepicker({
 					"dateFormat" : "yy/mm/dd",
 					"minDate": 0,
+					firstDay: '. ($jrConfig[ 'calendarstartofweekday' ] -1) .',
 					beforeShowDay: highlightDays_' . $random_identifier . ',
 					onSelect: function(){
 						var selected = jomresJquery( this ).val() ;
