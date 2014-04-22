@@ -42,7 +42,7 @@ class jomres_user_budget
 		if ($tmpBookingHandler->user_settings[ 'budget' ] > 0)
 			{
 			if ($with_currency)
-				return output_price((int) $tmpBookingHandler->user_settings[ 'budget' ]);
+				return output_price((int) $tmpBookingHandler->user_settings[ 'budget' ] , "" , false );
 			else
 				return (int) $tmpBookingHandler->user_settings[ 'budget' ];
 			}
@@ -95,7 +95,7 @@ class jomres_user_budget
 				if ( $range > 0)
 					{
 					$r              = array ();
-					$r[ 'TITLE' ]   = output_price($range);
+					$r[ 'TITLE' ]   = output_price($range , "" , false );
 					$r[ 'FIGURE' ]    = $range;
 					if ( !isset($_REQUEST['ajax_search_form_name']) )
 						{
