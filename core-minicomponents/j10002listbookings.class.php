@@ -31,7 +31,7 @@ class j10002listbookings
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=listbookings', 'ListBookings.png', jr_gettext( "_JRPORTAL_CPANEL_LISTBOOKINGS", _JRPORTAL_CPANEL_LISTBOOKINGS, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_BOOKINGS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_BOOKINGS, false, false ) );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=listbookings', 'ListBookings.png', jr_gettext( "_JRPORTAL_CPANEL_LISTBOOKINGS", _JRPORTAL_CPANEL_LISTBOOKINGS, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_BOOKINGS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_BOOKINGS, false, false ) );
 			}
 		}
 

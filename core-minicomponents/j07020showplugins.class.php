@@ -32,21 +32,21 @@ class j07020showplugins
 		$remote_plugins      = array ();
 
 		
-		if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "remote_plugins_data.php"))
+		if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "remote_plugins_data.php"))
 			{
-			$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "remote_plugins_data.php");
+			$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "remote_plugins_data.php");
 			$seconds_timediff = time() - $last_modified;
 			if ( $seconds_timediff > 3600 ) 
 				{
-				unlink(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "remote_plugins_data.php" );
+				unlink(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "remote_plugins_data.php" );
 				}
 			else
 				{
-				$remote_plugins_data = file_get_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "remote_plugins_data.php" );
+				$remote_plugins_data = file_get_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "remote_plugins_data.php" );
 				}
 			}
 		
-		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "remote_plugins_data.php") )
+		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "remote_plugins_data.php") )
 			{
 			
 			$query_string = "http://plugins.jomres4.net/index.php?r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS;
@@ -65,7 +65,7 @@ class j07020showplugins
 			
 			if ($remote_plugins_data != "")
 				{
-				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "remote_plugins_data.php",$remote_plugins_data);
+				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "remote_plugins_data.php",$remote_plugins_data);
 				}
 			}
 		
@@ -78,7 +78,7 @@ class j07020showplugins
 			}
 
 		$installed_plugins = array ();
-		$jrcPath           = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'core-plugins' . JRDS;
+		$jrcPath           = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
 		$files             = scandir( $jrcPath );
 		$d                 = @dir( $jrcPath );
 		if ( $d )

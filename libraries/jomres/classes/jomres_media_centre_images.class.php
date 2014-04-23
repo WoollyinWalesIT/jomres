@@ -157,9 +157,9 @@ class jomres_media_centre_images
 		$property_uids = $temp_array;
 		unset ( $temp_array );
 		
-		$this->multi_query_images [ 'noimage-large' ] = get_showtime( 'live_site' ) . "/jomres/images/noimage.gif";
-		$this->multi_query_images [ 'noimage-medium' ] = get_showtime( 'live_site' ) . "/jomres/images/noimage.gif";
-		$this->multi_query_images [ 'noimage-small' ] = get_showtime( 'live_site' ) . "/jomres/images/noimage_small.gif";
+		$this->multi_query_images [ 'noimage-large' ] = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/noimage.gif";
+		$this->multi_query_images [ 'noimage-medium' ] = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/noimage.gif";
+		$this->multi_query_images [ 'noimage-small' ] = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/noimage_small.gif";
 		
 		if ( count( $property_uids ) > 0 )
 			{

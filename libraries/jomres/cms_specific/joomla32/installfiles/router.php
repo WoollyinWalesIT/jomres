@@ -19,7 +19,7 @@ function JomresBuildRoute( &$query )
 	
 	if ( !defined( '_JOMRES_INITCHECK' ) ) define( '_JOMRES_INITCHECK', 1 );
 	global $thisJRUser;
-	require_once( JPATH_BASE . DIRECTORY_SEPARATOR . 'jomres' . DIRECTORY_SEPARATOR . 'integration.php' );
+	require_once( JPATH_BASE . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'integration.php' );
 	$jrConfig = getSiteSettings();
 	$segments = array ();
 
@@ -141,7 +141,7 @@ function JomresParseRoute( $segments )
 	{
 	if ( !defined( '_JOMRES_INITCHECK' ) ) define( '_JOMRES_INITCHECK', 1 );
 	global $thisJRUser;
-	require_once( JPATH_BASE . DIRECTORY_SEPARATOR . 'jomres' . DIRECTORY_SEPARATOR . 'integration.php' );
+	require_once( JPATH_BASE . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'integration.php' );
 	$vars = array ();
 	$jrConfig = getSiteSettings();
 	
@@ -153,7 +153,7 @@ function JomresParseRoute( $segments )
 			$vars[ 'property_uid' ] = $segments[ 2 ];
 			break;
 		case "dobooking":
-			require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . 'dobooking.class.php' );
+			require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . 'dobooking.class.php' );
 			$vars[ 'task' ] = "dobooking";
 			if ( !$thisJRUser->userIsManager ) $vars[ 'selectedProperty' ] = $segments[ 2 ];
 			break;

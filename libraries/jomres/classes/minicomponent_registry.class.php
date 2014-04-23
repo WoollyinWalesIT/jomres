@@ -35,12 +35,12 @@ class minicomponent_registry
 			$this->nonOverridableEventClasses = array ();
 			$this->error_detected             = false;
 			$this->unWantedFolderContents     = array ( '.', '..', 'cvs', '.svn', 'registry.php' );
-			$this->remote_plugin_directory    = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS;
+			$this->remote_plugin_directory    = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS;
 			if ( !is_dir( $this->remote_plugin_directory ) )
 				{
 				mkdir( $this->remote_plugin_directory );
 				}
-			$this->registry_file        = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "registry.php";
+			$this->registry_file        = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "registry.php";
 			$this->now                  = time();
 			$this->force_reload_allowed = $force_reload_allowed;
 			$this->original_filesize    = @filesize( $this->registry_file ); // @to prevent notices when the file doesn't exist at all
@@ -52,8 +52,8 @@ class minicomponent_registry
 			jr_import( 'jomres_mc_registry' );
 			$registry                       = new jomres_mc_registry();
 			$lastGenerated                  = $registry->mcRegistry_now;
-			$this->registeredClasses        = unserialize( $registry->mcRegistry_registry_serialized );
-			$this->miniComponentDirectories = unserialize( $registry->miniComponentDirectories );
+			$this->registeredClasses        = json_decode( $registry->mcRegistry_registry_serialized );
+			$this->miniComponentDirectories = json_decode( $registry->miniComponentDirectories );
 			unset( $registry );
 
 			$this->new_filesize = filesize( $this->registry_file );
@@ -117,9 +117,9 @@ class minicomponent_registry
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 		";
-		$registered_classes             = serialize( $this->registeredClasses );
+		$registered_classes             = json_encode( $this->registeredClasses );
 		$this->miniComponentDirectories = array_unique( $this->miniComponentDirectories );
-		$directories                    = serialize( $this->miniComponentDirectories );
+		$directories                    = json_encode( $this->miniComponentDirectories );
 		$class_structure_start          = "
 class jomres_mc_registry
 	{
@@ -192,7 +192,7 @@ class jomres_mc_registry
 	// Reads in class files from the components table and inserts them into the registeredClasses array
 	function getMiniComponentRemoteClasses()
 		{
-		$jrePath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS;
+		$jrePath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS;
 		$d       = @dir( $jrePath );
 		$docs    = array ();
 		if ( $d )
@@ -218,7 +218,7 @@ class jomres_mc_registry
 						while ( false !== ( $entry = $dr->read() ) )
 							{
 							$filename = $entry;
-							$this->registerComponentFile( $listdir, $filename, "remotecomponent" );
+							$this->registerComponentFile( $listdir, $filename, 'remotecomponent' );
 							}
 						$dr->close();
 						}
@@ -230,14 +230,14 @@ class jomres_mc_registry
 
 	function getMiniComponentCMSSpecificClasses()
 		{
-		$jrePath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'cms_specific' . JRDS . _JOMRES_DETECTED_CMS . JRDS;
+		$jrePath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'cms_specific' . JRDS . _JOMRES_DETECTED_CMS . JRDS;
 		$d       = @dir( $jrePath );
 		if ( $d )
 			{
 			while ( false !== ( $entry = $d->read() ) )
 				{
 				$filename = $entry;
-				$this->registerComponentFile( $jrePath, $filename, "cms_specific_component" );
+				$this->registerComponentFile( $jrePath, $filename, 'cms_specific_component' );
 				}
 			$d->close();
 			}
@@ -246,14 +246,14 @@ class jomres_mc_registry
 	// Reads in class files from the events folder and inserts them into the registeredClasses array
 	function getMiniComponentCoreClasses()
 		{
-		$listdir = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "core-minicomponents" . JRDS;
+		$listdir = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-minicomponents' . JRDS;
 		$d       = @dir( $listdir );
 		if ( $d )
 			{
 			while ( false !== ( $entry = $d->read() ) )
 				{
 				$filename = $entry;
-				$this->registerComponentFile( $listdir, $filename, "core" );
+				$this->registerComponentFile( $listdir, $filename, 'core' );
 				}
 			$d->close();
 			}
@@ -261,7 +261,7 @@ class jomres_mc_registry
 
 	function getMiniCorePluginsClasses()
 		{
-		$jrePath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "core-plugins" . JRDS;
+		$jrePath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
 		$d       = @dir( $jrePath );
 		$docs    = array ();
 		if ( $d )
@@ -287,7 +287,7 @@ class jomres_mc_registry
 						while ( false !== ( $entry = $dr->read() ) )
 							{
 							$filename = $entry;
-							$this->registerComponentFile( $listdir, $filename, "core-plugin" );
+							$this->registerComponentFile( $listdir, $filename, 'core-plugin' );
 							}
 						$dr->close();
 						}
@@ -297,9 +297,9 @@ class jomres_mc_registry
 		}
 
 
-	function registerComponentFile( $filePath, $filename, $eventType = "component" )
+	function registerComponentFile( $filePath, $filename, $eventType = 'component' )
 		{
-		$strippedName = str_replace( ".", "", $filename );
+		$strippedName = str_replace( '.', '', $filename );
 		$strippedName = substr( $strippedName, 0, -8 );
 
 		$classfileEventPoint = substr( $strippedName, 1, 5 );

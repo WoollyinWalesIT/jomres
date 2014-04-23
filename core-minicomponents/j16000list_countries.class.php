@@ -26,7 +26,7 @@ class j16000list_countries
 
 			return;
 			}
-		$editIcon   = '<img src="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/EditItem.png" alt="editicon"/>';
+		$editIcon   = '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" alt="editicon"/>';
 		$rows       = array ();
 		$output     = array ();
 		$pageoutput = array ();

@@ -49,7 +49,7 @@ class jomres_toolbar_bootstrap
 	 */
 	function spacer( $width = 40 )
 		{
-		$image  = $this->livesite . '/jomres/images/blank.png';
+		$image  = $this->livesite . '/'.JOMRES_ROOT_DIRECTORY.'/images/blank.png';
 		$link   = "";
 		$submit = "";
 		$output = '
@@ -90,7 +90,7 @@ class jomres_toolbar_bootstrap
 	function toolbarItem( $targetTask, $link, $text = "", $submitOnClick = false, $submitTask = "", $concat = false )
 		{
 		if ( empty( $text ) ) $text = $this->standardActivityImages[ $targetTask ][ 'label' ];
-		$image  = '/jomres/images/jomresimages/' . $this->imageSize . '/' . $this->standardActivityImages[ $targetTask ][ 'image' ] . '.' . $this->imageExtension;
+		$image  = '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/' . $this->imageSize . '/' . $this->standardActivityImages[ $targetTask ][ 'image' ] . '.' . $this->imageExtension;
 		$this->items[] = array( "cell" => $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask ) , "concat"=>$concat);
 		}
 

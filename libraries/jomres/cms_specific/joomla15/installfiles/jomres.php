@@ -10,26 +10,12 @@
  **/
 
 
-if ( !defined( 'JPATH_BASE' ) )
-	{
-	defined( '_VALID_MOS' ) or die( 'Direct Access to this location is not allowed.' );
-	}
-else
-	{
-	if ( file_exists( JPATH_BASE . '/includes/defines.php' ) )
-		{
-		defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );
-		//$mosConfig_absolute_path=JPATH_ROOT	;
-		//$jomresConfig_absolute_path 	= JPATH_ROOT;
-		}
-	else
-		{
-		defined( '_VALID_MOS' ) or die( 'Direct Access to this location is not allowed.' );
-		}
-	}
+defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );
 
 define( '_JOMRES_INITCHECK', 1 );
 
-require_once( dirname( __FILE__ ) . '/../../jomres/jomres.php' );
+define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" );
+
+require_once(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/jomres.php');
 
 ?>

@@ -35,13 +35,13 @@ class j16000updates
 			return;
 			}
 		$this->updateServer     = "http://updates.jomres4.net";
-		$this->updateFolder     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "updates";
+		$this->updateFolder     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "updates";
 		$this->overwriteAllowed = true;
 		$this->movedFileLog     = array ();
 		$this->debugging        = false;
 		$this->test_download    = false;
 
-		$configfile = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "jomres_config.php"; // This is just to pull in the Jomres version from mrConfig
+		$configfile = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "jomres_config.php"; // This is just to pull in the Jomres version from mrConfig
 		include( $configfile );
 		$thisVersion = $mrConfig[ 'version' ];
 		echo "<br /><br /><br /><center><h2>This Jomres version: $thisVersion</h2></center><br />";
@@ -132,7 +132,7 @@ class j16000updates
 
 				return;
 				}
-			require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "libraries" . JRDS . "dUnzip2.inc.php" );
+			require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "dUnzip2.inc.php" );
 
 			$zip = new dUnzip2( $newfilename );
 			// Activate debug
@@ -142,11 +142,11 @@ class j16000updates
 			if ( mkdir( $this->updateFolder . JRDS . "unpacked" ) )
 				{
 				$zip->unZipAll( $this->updateFolder . JRDS . "unpacked" );
-				if ( !$this->test_download ) $this->dirmv( $this->updateFolder . JRDS . "unpacked" . JRDS, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS, $this->overwriteAllowed, $funcloc = "/" );
+				if ( !$this->test_download ) $this->dirmv( $this->updateFolder . JRDS . "unpacked" . JRDS, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS, $this->overwriteAllowed, $funcloc = "/" );
 
-				if ( function_exists( 'jomres_singleton_abstract::getInstance' ) ) echo "Completed upgrade. Please ensure that you visit <a href=\"" . get_showtime( 'live_site' ) . "/jomres/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
+				if ( function_exists( 'jomres_singleton_abstract::getInstance' ) ) echo "Completed upgrade. Please ensure that you visit <a href=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
 				else
-				echo "Completed upgrade. Please ensure that you visit <a href=\"" . $jomresConfig_live_site . "/jomres/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
+				echo "Completed upgrade. Please ensure that you visit <a href=\"" . $jomresConfig_live_site . "/".JOMRES_ROOT_DIRECTORY."/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
 				if ( $this->debugging )
 					{
 					echo "<br/><br/><br/><br/><br/><br/>";
@@ -154,7 +154,7 @@ class j16000updates
 					foreach ( $this->movedFileLog as $record ) echo $record;
 					}
 				unlink($newfilename);
-				jomresRedirect( get_showtime( 'live_site' ) . "/jomres/install_jomres.php", '' );
+				jomresRedirect( get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/install_jomres.php", '' );
 				}
 			else
 			echo "Error creating unpack folder";
@@ -170,7 +170,7 @@ class j16000updates
 	function checkJomresDirectories()
 		{
 		$this->directoryScanResults = array ();
-		$jomresFrontDir             = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres";
+		$jomresFrontDir             = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY;
 		$files_array                = $this->recur_dir( $jomresFrontDir );
 		if ( count( $this->directoryScanResults ) > 0 )
 			{

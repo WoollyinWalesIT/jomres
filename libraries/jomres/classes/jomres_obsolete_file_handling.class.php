@@ -34,39 +34,39 @@ class jomres_obsolete_file_handling
 			}
 		
 		if ( $this->warnconfirm == 1 ) $this->warnmode = false;
-		$this->dir_root           = JOMRESCONFIG_ABSOLUTE_PATH . JRDS;
-		$this->dir_jomres         = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS;
-		$this->dir_minicomponents = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'core-minicomponents' . JRDS;
-		$this->dir_classes        = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS;
-		$this->dir_functions      = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS;
-		$this->dir_libraries      = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS;
+		$this->dir_root									= JOMRESCONFIG_ABSOLUTE_PATH . JRDS;
+		$this->dir_jomres								= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS;
+		$this->dir_minicomponents						= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-minicomponents' . JRDS;
+		$this->dir_classes								= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS;
+		$this->dir_functions							= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS;
+		$this->dir_libraries							= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS;
 
-		$this->dir_css        = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'css' . JRDS;
-		$this->dir_javascript = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'javascript' . JRDS;
+		$this->dir_css									= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'css' . JRDS;
+		$this->dir_javascript 							= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'javascript' . JRDS;
 
-		$this->dir_templates_frontend      = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'jomres' . JRDS . 'frontend' . JRDS;
-		$this->dir_templates_backend       = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'jomres' . JRDS . 'backend' . JRDS;
-		$this->dir_templates_administrator = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'jomres' . JRDS . 'administrator' . JRDS;
+		$this->dir_templates_frontend					= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'jomres' . JRDS . 'frontend' . JRDS;
+		$this->dir_templates_backend					= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'jomres' . JRDS . 'backend' . JRDS;
+		$this->dir_templates_administrator				= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'jomres' . JRDS . 'administrator' . JRDS;
 
-		$this->dir_templates_jqueryui_frontend      = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'jquery_ui' . JRDS . 'frontend' . JRDS;
-		$this->dir_templates_jqueryui_backend       = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'jquery_ui' . JRDS . 'backend' . JRDS;
-		$this->dir_templates_jqueryui_administrator = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'jquery_ui' . JRDS . 'administrator' . JRDS;
+		$this->dir_templates_jqueryui_frontend			= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'jquery_ui' . JRDS . 'frontend' . JRDS;
+		$this->dir_templates_jqueryui_backend			= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'jquery_ui' . JRDS . 'backend' . JRDS;
+		$this->dir_templates_jqueryui_administrator		= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'jquery_ui' . JRDS . 'administrator' . JRDS;
 
-		$this->dir_templates_bootstrap_frontend      = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'bootstrap' . JRDS . 'frontend' . JRDS;
-		$this->dir_templates_bootstrap_backend       = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'bootstrap' . JRDS . 'backend' . JRDS;
-		$this->dir_templates_bootstrap_administrator = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'bootstrap' . JRDS . 'administrator' . JRDS;
+		$this->dir_templates_bootstrap_frontend			= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'bootstrap' . JRDS . 'frontend' . JRDS;
+		$this->dir_templates_bootstrap_backend			= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'bootstrap' . JRDS . 'backend' . JRDS;
+		$this->dir_templates_bootstrap_administrator	= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'bootstrap' . JRDS . 'administrator' . JRDS;
 
-		$this->dir_templates_bootstrap3_frontend      = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'bootstrap3' . JRDS . 'frontend' . JRDS;
-		$this->dir_templates_bootstrap3_backend       = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'bootstrap3' . JRDS . 'backend' . JRDS;
-		$this->dir_templates_bootstrap3_administrator = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'bootstrap3' . JRDS . 'administrator' . JRDS;
+		$this->dir_templates_bootstrap3_frontend		= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'bootstrap3' . JRDS . 'frontend' . JRDS;
+		$this->dir_templates_bootstrap3_backend			= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'bootstrap3' . JRDS . 'backend' . JRDS;
+		$this->dir_templates_bootstrap3_administrator	= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'bootstrap3' . JRDS . 'administrator' . JRDS;
 		
-		$this->dir_images       = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'images' . JRDS;
-		$this->dir_images_large = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'images' . JRDS . 'jomresimages' . JRDS . 'large' . JRDS;
-		$this->dir_images_small = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'images' . JRDS . 'jomresimages' . JRDS . 'small' . JRDS;
+		$this->dir_images       = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'images' . JRDS;
+		$this->dir_images_large = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'images' . JRDS . 'jomresimages' . JRDS . 'large' . JRDS;
+		$this->dir_images_small = JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY . JRDS . 'images' . JRDS . 'jomresimages' . JRDS . 'small' . JRDS;
 
 		$this->dir_components_administrator = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ADMINISTRATORDIRECTORY . JRDS . 'components' . JRDS . 'com_jomres' . JRDS;
 		$this->dir_components               = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'components' . JRDS . 'com_jomres' . JRDS;
-		$this->dir_core_plugins             = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'core-plugins' . JRDS;
+		$this->dir_core_plugins             = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
 		}
 
 	function ready_to_go()
@@ -506,13 +506,13 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_javascript . 'jquery.selectCombo1.2.6.js' );
 		$this->add_obs_file( $this->dir_javascript . 'jquery.jgrowl.js.1.2.0' );
 
-		$this->add_obs_file( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'cms_specific_functions.php' );
-		$this->add_obs_file( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'cms_specific_installation.php' );
-		$this->add_obs_file( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'cms_specific_pre_installation.php' );
-		$this->add_obs_file( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'cms_specific_upgrade.php' );
-		$this->add_obs_file( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'cms_specific_urls.php' );
-		$this->add_obs_file( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'index.html' );
-		$this->add_obs_file( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'init_config_vars.php' );
+		$this->add_obs_file( $this->dir_libraries . JOMRES_ROOT_DIRECTORY . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'cms_specific_functions.php' );
+		$this->add_obs_file( $this->dir_libraries . JOMRES_ROOT_DIRECTORY . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'cms_specific_installation.php' );
+		$this->add_obs_file( $this->dir_libraries . JOMRES_ROOT_DIRECTORY . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'cms_specific_pre_installation.php' );
+		$this->add_obs_file( $this->dir_libraries . JOMRES_ROOT_DIRECTORY . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'cms_specific_upgrade.php' );
+		$this->add_obs_file( $this->dir_libraries . JOMRES_ROOT_DIRECTORY . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'cms_specific_urls.php' );
+		$this->add_obs_file( $this->dir_libraries . JOMRES_ROOT_DIRECTORY . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'index.html' );
+		$this->add_obs_file( $this->dir_libraries . JOMRES_ROOT_DIRECTORY . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'init_config_vars.php' );
 
 		$this->add_obs_file( $this->dir_templates_administrator . 'jomres_cpanel.php' );
 		$this->add_obs_file( $this->dir_javascript . 'tablepaginator.js' );
@@ -693,7 +693,7 @@ class jomres_obsolete_file_handling
 			}
 
 		// Old 'jomres' templates directory renamed to 'jqueryui', will help to reduce confusion, so files in the /jomres/templates/jomres will need to be deleted
-		$files_old_jomres_templates = scandir_getfiles_recursive( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'templates' . JRDS . 'jomres' );
+		$files_old_jomres_templates = scandir_getfiles_recursive( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'jomres' );
 		foreach ( $files_old_jomres_templates as $file )
 			{
 			$this->add_obs_file( $file );

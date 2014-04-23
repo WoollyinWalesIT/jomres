@@ -235,7 +235,7 @@ class jomres_cron
 				$livesite = get_showtime( 'live_site' );
 				if ( preg_match( '/[^\x20-\x7f]/', $livesite ) )
 					{
-					require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'idna_converter' . JRDS . 'idna_convert.class.php' );
+					require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'idna_converter' . JRDS . 'idna_convert.class.php' );
 					$IDN      = new jomres_idna_convert();
 					$encoded  = $IDN->encode( $livesite );
 					$new      = str_replace( $livesite, $encoded, JOMRES_SITEPAGE_URL_AJAX );

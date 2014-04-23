@@ -26,7 +26,7 @@ class j16000listPfeatures
 
 			return;
 			}
-		$editIcon             = '<img src="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/EditItem.png" border="0" />';
+		$editIcon             = '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" />';
 		$query                = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid,ptype_xref FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
 		$propertyFeaturesList = doSelectSql( $query );
 		$rows                 = array ();
@@ -76,7 +76,7 @@ class j16000listPfeatures
 
 			$r[ 'PROPERTY_TYPES' ] = $selected_ptype_rows;
 
-			$r[ 'IMAGE' ] = get_showtime( 'live_site' ) . '/' . $propertyFeature->image;
+			$r[ 'IMAGE' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$propertyFeature->image;
 			$rows[ ]      = $r;
 			}
 		$output[ 'COUNTER' ]            = count( $rows );
@@ -85,11 +85,11 @@ class j16000listPfeatures
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, '' );
-		$image  = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/AddItem.png" );
+		$image  = $jrtbar->makeImageValid( "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/AddItem.png" );
 		$link   = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem( 'editPfeature', $link, jr_gettext( '_JOMRES_COM_MR_NEWTARIFF', _JOMRES_COM_MR_NEWTARIFF,false ), $submitOnClick = true, $submitTask = "editPfeature", $image );
 		$jrtb .= $jrtbar->spacer();
-		$image = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/WasteBasket.png" );
+		$image = $jrtbar->makeImageValid( "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/WasteBasket.png" );
 		$link  = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem( 'deletePfeature', $link, jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', _JOMRES_COM_MR_ROOM_DELETE,false), $submitOnClick = true, $submitTask = "deletePfeature", $image );
 		$jrtb .= $jrtbar->endTable();

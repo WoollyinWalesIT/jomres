@@ -261,7 +261,8 @@ class basic_property_details
 				{
 				$this->features[$f]['abbv'] = $this->all_property_features[$f]['abbv'];
 				$this->features[$f]['desc'] = $this->all_property_features[$f]['desc'];
-				$this->features[$f]['image'] =$this->all_property_features[$f]['image'];;
+				$image = str_replace("/jomres/", '/JOMRES_ROOT_DIRECTORY/' , $this->all_property_features[$f]['image']);
+				$this->features[$f]['image'] =$image;
 				}
 			}
 

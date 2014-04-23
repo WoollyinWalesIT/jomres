@@ -44,7 +44,7 @@ class j99997generate_mainmenu
 		foreach ( $buttons as $category => $buts )
 			{
 			$categories[ $category ] = $category;
-			$output[ 'CAT_IMAGE' ]   = get_showtime( 'live_site' ) . '/jomres/images/down.png';
+			$output[ 'CAT_IMAGE' ]   = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/down.png';
 			if ( isset( $jomres_mainmenu_category_images[ $category ] ) )
 				{
 				$output[ 'CAT_IMAGE' ] = $jomres_mainmenu_category_images[ $category ];
@@ -179,9 +179,9 @@ class j99997generate_mainmenu
 					$fullscreen_view = "_fullscreen";
 					}
 
-				require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'build_product_tour_files.php' );
+				require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'functions' . JRDS . 'build_product_tour_files.php' );
 				build_product_tour_javascript_file();
-				 if (file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang").$fullscreen_view."-tour.js") )
+				 if (file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang").$fullscreen_view."-tour.js") )
 					{
 					
 					

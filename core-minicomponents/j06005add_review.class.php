@@ -36,9 +36,9 @@ class j06005add_review
 			$property_uid = (int) $_GET[ 'property_uid' ];
 			}
 
-		jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/jomres/javascript/', "jquery.validate.js" );
-		jomres_cmsspecific_addheaddata( "javascript", 'jomres/javascript/', "jquery.rating.js" );
-		jomres_cmsspecific_addheaddata( "css", 'jomres/css/', 'jquery.rating.css' );
+		jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.validate.js" );
+		jomres_cmsspecific_addheaddata( "javascript", ''.JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.rating.js" );
+		jomres_cmsspecific_addheaddata( "css", ''.JOMRES_ROOT_DIRECTORY.'/css/', 'jquery.rating.css' );
 
 
 		//property_header($property_uid);

@@ -257,7 +257,7 @@ class j06001listyourproperties_ajax
 			$stars='';
 			for ( $i = 1; $i <= (int)$p->stars; $i++ )
 				{
-				$stars .= '<img src="' . get_showtime( 'live_site' ) . '/jomres/images/star.png" border="0" alt="star" />';
+				$stars .= '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/star.png" border="0" alt="star" />';
 				}
 			$r[] = $stars;
 			

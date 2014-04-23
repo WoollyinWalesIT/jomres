@@ -99,10 +99,10 @@ class j06000show_property_reviews
 
 			$output[ 'AJAXURL' ] = JOMRES_SITEPAGE_URL_AJAX;
 
-			$thumb_up        = get_showtime( 'live_site' ) . "/jomres/images/thumb_up.png";
-			$thumb_down      = get_showtime( 'live_site' ) . "/jomres/images/thumb_down.png";
-			$star            = get_showtime( 'live_site' ) . "/jomres/images/star.png";
-			$add_review_icon = get_showtime( 'live_site' ) . "/jomres/images/add_review.png";
+			$thumb_up        = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/thumb_up.png";
+			$thumb_down      = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/thumb_down.png";
+			$star            = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/star.png";
+			$add_review_icon = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/add_review.png";
 
 
 			if ( $this_user_can_review_this_property )

@@ -37,7 +37,7 @@ class j06005report_review
 
 			if ( $rating_id > 0 )
 				{
-				jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/jomres/javascript/', "jquery.validate.min.js" );
+				jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.validate.min.js" );
 
 				$output[ '_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL' ] = jr_gettext( '_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL', _JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL, false, false );
 				$output[ '_JOMRES_REVIEWS_REPORT_REVIEW' ]            = jr_gettext( '_JOMRES_REVIEWS_REPORT_REVIEW', _JOMRES_REVIEWS_REPORT_REVIEW, false, false );

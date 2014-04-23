@@ -70,7 +70,7 @@ class j02220listguests
 			$text   = jr_gettext( '_JOMRES_COM_MR_NEWGUEST', _JOMRES_COM_MR_NEWGUEST, false, true );
 			$link   = JOMRES_SITEPAGE_URL . '&task=editGuest';
 			$targetTask = 'editGuest';
-			$image  = '/jomres/images/jomresimages/' . $jrtbar->imageSize . '/guestAdd.png';
+			$image  = '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/' . $jrtbar->imageSize . '/guestAdd.png';
 			$jrtb  .= $jrtbar->customToolbarItem( $targetTask, $link, $text, $submitOnClick = false, $submitTask = "", $image );
 			$jrtb  .= $jrtbar->endTable();
 			$output[ 'JOMRESTOOLBAR' ] = $jrtb;

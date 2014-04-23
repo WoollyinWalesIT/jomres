@@ -43,7 +43,7 @@ class j06005list_subscription_packages
 				if ( $task != "list_subscription_packages" ) echo jr_gettext( '_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7', _JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7, false );
 				}
 			}
-		$subscribeIcon = '<IMG SRC="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
+		$subscribeIcon = '<IMG SRC="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
 		$packages      = subscriptions_packages_getallpackages();
 		$output        = array ();
 		$pageoutput    = array ();

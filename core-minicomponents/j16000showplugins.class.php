@@ -45,11 +45,11 @@ class j16000showplugins
 			return;
 			}
 
-		include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'jomres_config.php' );
+		include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'jomres_config.php' );
 		$this_jomres_version = explode( ".", $mrConfig[ 'version' ] );
 
 		$installed_plugins   = array ();
-		$jrePath             = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS;
+		$jrePath             = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS;
 		$third_party_plugins = array ();
 		if ( !is_dir( $jrePath ) )
 			{
@@ -61,7 +61,7 @@ class j16000showplugins
 				}
 			}
 
-		$jrcPath             = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'core-plugins' . JRDS;
+		$jrcPath             = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
 		$third_party_plugins = array ();
 		if ( !is_dir( $jrcPath ) )
 			{

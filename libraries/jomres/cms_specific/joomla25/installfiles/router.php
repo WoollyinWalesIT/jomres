@@ -142,7 +142,7 @@ function JomresParseRoute( $segments )
 			$vars[ 'property_uid' ] = $segments[ 2 ];
 			break;
 		case "dobooking":
-			require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . 'dobooking.class.php' );
+			require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . 'dobooking.class.php' );
 			$vars[ 'task' ] = "dobooking";
 			if ( !$thisJRUser->userIsManager ) $vars[ 'selectedProperty' ] = $segments[ 2 ];
 			break;

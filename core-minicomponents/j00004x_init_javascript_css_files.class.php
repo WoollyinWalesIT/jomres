@@ -163,9 +163,11 @@ class j00004x_init_javascript_css_files
 					var dataTables_sInfo = "' .  jr_gettext( 'DATATABLES_SINFO', DATATABLES_SINFO, false ) . '";
 					';
 					
+					$JOMRES_ROOT_DIRECTORY = '
+					var JOMRES_ROOT_DIRECTORY = "' .  JOMRES_ROOT_DIRECTORY . '";
+					';
 					
-					
-					file_put_contents( get_showtime( "misc_url_defs.js.abspath" ) . get_showtime( "misc_url_defs.js" ), $livesite_ajax . $compare_url . $module_popup_str . $template_version .$dataTables_sInfo);
+					file_put_contents( get_showtime( "misc_url_defs.js.abspath" ) . get_showtime( "misc_url_defs.js" ), $livesite_ajax . $compare_url . $module_popup_str . $template_version .$dataTables_sInfo.$JOMRES_ROOT_DIRECTORY);
 					}
 				jomres_cmsspecific_addheaddata( "javascript", get_showtime( "misc_url_defs.js.relpath" ), get_showtime( "misc_url_defs.js" ) );
 				//add_gmaps_source();

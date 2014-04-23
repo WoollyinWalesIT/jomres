@@ -1018,7 +1018,7 @@ class dobooking
 				$extra_deets[ 'DESCRIPTION' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRADESC' . $ex->uid, htmlspecialchars( trim( stripslashes( $ex->desc ) ), ENT_QUOTES ) ) );
 
 				$descriptionForOverlib = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRADESC' . $ex->uid, htmlspecialchars( trim( stripslashes( $ex->desc ) ), ENT_QUOTES ), false, true );
-				//$extra_deets['OVERLIB_DESCRIPTION']='<a href="javascript:void(0);" onmouseover="return overlib(\''.$extra_deets['PERNIGHT'].' '.$descriptionForOverlib.'\', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img alt="" border="0" src="'.get_showtime('live_site').'/jomres/images/info.png" />';
+				//$extra_deets['OVERLIB_DESCRIPTION']='<a href="javascript:void(0);" onmouseover="return overlib(\''.$extra_deets['PERNIGHT'].' '.$descriptionForOverlib.'\', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img alt="" border="0" src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/info.png" />';
 				$extra_deets[ 'OVERLIB_DESCRIPTION' ] = $descriptionForOverlib;
 
 				$checked = "";

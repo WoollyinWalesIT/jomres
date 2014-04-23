@@ -86,7 +86,7 @@ class jomres_array_cache {
 				}
 			}
 		else
-			$this->setCachePath(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."cache".JRDS);
+			$this->setCachePath(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS."cache".JRDS);
 		$this->lang=$this->get_cache_lang();
 		$this->_loadCache();
 		//$this->eraseExpired();

@@ -31,7 +31,7 @@ class j10002listGlobalroomTypes
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=listGlobalroomTypes', 'roomTypes.png', jr_gettext( "_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK", _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE, false, false ) );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=listGlobalroomTypes', 'roomTypes.png', jr_gettext( "_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK", _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE, false, false ) );
 			}
 		}
 

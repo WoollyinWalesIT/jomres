@@ -30,7 +30,8 @@ class j16000savePfeature
 		$hotel_feature_abbv      = jomresGetParam( $_POST, 'feature_abbv', "" );
 		$hotel_feature_full_desc = jomresGetParam( $_POST, 'feature_description', "" );
 		$ptype_ids		         = jomresGetParam( $_POST, 'ptype_ids', array() );
-		$image = jomresGetParam( $_POST, 'image', "" );
+		$image                   = jomresGetParam( $_POST, 'image', "" );
+
 		
 		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 		$c->eraseAll();

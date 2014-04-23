@@ -310,11 +310,11 @@ class j06005list_invoices_ajax
 			
 			//paypal stuff
 			if (((int)$p->is_commission == 1 || (int)$p->subscription == 1) && (int)$p->status == 3 && $paypal_settings[ 'email' ] != "")
-				$r[] = '<a href="' . JOMRES_SITEPAGE_URL . '&task=immediatepay&id=' . $p->id . '"><img src = "' . get_showtime( 'live_site' ) . '/jomres/images/btn_paynow_SM.gif" /></a>';
+				$r[] = '<a href="' . JOMRES_SITEPAGE_URL . '&task=immediatepay&id=' . $p->id . '"><img src = "' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/btn_paynow_SM.gif" /></a>';
 			elseif ((int)$p->contract_id != 0 && (int)$p->status == 3 && !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager && $p->approved == 1) 
 				{
 				if ( $paypal_settings[ 'override' ] == "1" && $paypal_settings[ 'email' ] != "")
-					$r[] = '<a href="' . JOMRES_SITEPAGE_URL . '&task=immediatepay&id=' . $p->id . '"><img src = "' . get_showtime( 'live_site' ) . '/jomres/images/btn_paynow_SM.gif" /></a>';
+					$r[] = '<a href="' . JOMRES_SITEPAGE_URL . '&task=immediatepay&id=' . $p->id . '"><img src = "' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/btn_paynow_SM.gif" /></a>';
 				else
 					{
 					$paypalPropertySpecificSettings=array();
@@ -325,7 +325,7 @@ class j06005list_invoices_ajax
 						$paypalPropertySpecificSettings[$s->setting] = $s->value;
 						}
 					if ( $paypalPropertySpecificSettings['active'] == '1' && $paypalPropertySpecificSettings['paypalemail'] != '' )
-						$r[] = '<a href="' . JOMRES_SITEPAGE_URL . '&task=immediatepay&id=' . $p->id . '"><img src = "' . get_showtime( 'live_site' ) . '/jomres/images/btn_paynow_SM.gif" /></a>';
+						$r[] = '<a href="' . JOMRES_SITEPAGE_URL . '&task=immediatepay&id=' . $p->id . '"><img src = "' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/btn_paynow_SM.gif" /></a>';
 					else
 						$r[] = '';
 					}

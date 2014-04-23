@@ -108,8 +108,8 @@ try
 
 	if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )
 		{
-		define( 'JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'uploadedimages' . JRDS );
-		define( 'JOMRES_IMAGELOCATION_RELPATH', get_showtime( 'live_site' ) . '/jomres/uploadedimages/' );
+		define( 'JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS );
+		define( 'JOMRES_IMAGELOCATION_RELPATH', get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/' );
 		}
 
 	if ( $_REQUEST[ 'no_html' ] != "1" )

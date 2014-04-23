@@ -123,7 +123,7 @@ function editProfile()
 
 	$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 	$jrtb   = $jrtbar->startTable();
-	$image  = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/Save.png" );
+	$image  = $jrtbar->makeImageValid( "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/Save.png" );
 	$link   = get_showtime( 'live_site' ) . "/" . JOMRES_ADMINISTRATORDIRECTORY . "/index.php?option=com_jomres";
 	
 	$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose", '' );

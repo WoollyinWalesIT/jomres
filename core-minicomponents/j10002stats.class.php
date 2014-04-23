@@ -31,7 +31,7 @@ class j10002stats
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=showstats', 'ChartBarTrend.png', jr_gettext( "_JRPORTAL_STATS_PATETITLE", _JRPORTAL_STATS_PATETITLE, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS, false, false ) );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=showstats', 'ChartBarTrend.png', jr_gettext( "_JRPORTAL_STATS_PATETITLE", _JRPORTAL_STATS_PATETITLE, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS, false, false ) );
 			}
 		}
 

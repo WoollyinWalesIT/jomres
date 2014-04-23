@@ -31,7 +31,7 @@ class j10002commission_invoices
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=list_commission_invoices', 'Invoice.png', jr_gettext( "_JRPORTAL_INVOICES_COMMISSION_TITLE", _JRPORTAL_INVOICES_COMMISSION_TITLE, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION", _JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION, false, false ), false, true );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=list_commission_invoices', 'Invoice.png', jr_gettext( "_JRPORTAL_INVOICES_COMMISSION_TITLE", _JRPORTAL_INVOICES_COMMISSION_TITLE, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION", _JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION, false, false ), false, true );
 			}
 		}
 

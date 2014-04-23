@@ -88,8 +88,8 @@ $showSearchOptions = true;
 
 if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )
 	{
-	define( 'JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'uploadedimages' . JRDS );
-	define( 'JOMRES_IMAGELOCATION_RELPATH', get_showtime( 'live_site' ) . '/jomres/uploadedimages/' );
+	define( 'JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS );
+	define( 'JOMRES_IMAGELOCATION_RELPATH', get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/' );
 	}
 $task = jomresGetParam( $_REQUEST, 'task', "" );
 $task = str_replace( "&#60;x&#62;", "", $task );
@@ -106,16 +106,16 @@ if ( $task == "" )
 		}
 	}
 
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'jomresxml.functions.php' );
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'siteconfig.functions.php' );
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'propertyfeatures.functions.php' );
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'roomtypes.functions.php' );
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'propertytypes.functions.php' );
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'profiles.functions.php' );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'jomresxml.functions.php' );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'siteconfig.functions.php' );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'propertyfeatures.functions.php' );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'roomtypes.functions.php' );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'propertytypes.functions.php' );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'profiles.functions.php' );
 
-if ( !using_bootstrap() ) require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS . 'admin.jomres.html.php' );
+if ( !using_bootstrap() ) require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'admin.jomres.html.php' );
 else
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS . 'admin.jomres.bootstrap-html.php' );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'admin.jomres.bootstrap-html.php' );
 
 $nohtml = jomresGetParam( $_REQUEST, 'no_html', 0 );
 
@@ -129,16 +129,16 @@ if ( !AJAXCALL )
 	{
 	// And a couple that are only used in the admin area
 	init_javascript();
-	jomres_cmsspecific_addheaddata( "javascript", 'jomres/javascript/', 'graphs.js' );
-	//jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','jrportal.js');
+	jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', 'graphs.js' );
+	//jomres_cmsspecific_addheaddata("javascript",JOMRES_ROOT_DIRECTORY.'/javascript/','jrportal.js');
 
 	// Dates back to Jomres v4. Could be removed, but we'll leave it in for those users upgrading from v4, as v4 spanned two years
-	if ( is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'plugins' ) )
+	if ( is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'plugins' ) )
 		{
-		emptyDir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'plugins' );
-		rmdir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'plugins' );
-		if ( is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'plugins' ) ) echo '<font color="red" face="arial" size="1">Warning: directory ' . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'plugins still exists. Please delete it.</font><br/>';
-		emptyDir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'cache' . JRDS );
+		emptyDir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'plugins' );
+		rmdir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'plugins' );
+		if ( is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'plugins' ) ) echo '<font color="red" face="arial" size="1">Warning: directory ' . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'plugins still exists. Please delete it.</font><br/>';
+		emptyDir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'cache' . JRDS );
 		}
 
 	$pageoutput = array ();
@@ -180,7 +180,7 @@ if ( !AJAXCALL )
 
 	if ($jrConfig[ 'development_production' ] != "development")
 		{
-		$obsolete_files->add_obs_file( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'install_jomres.php' );
+		$obsolete_files->add_obs_file( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'install_jomres.php' );
 		}
 
 	if ( $obsolete_files->ready_to_go() )

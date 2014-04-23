@@ -112,11 +112,11 @@ class j06005editor
 				};
 			</script>
 			";
-			jomres_cmsspecific_addheaddata( "css", get_showtime( 'live_site' ) . '/jomres/libraries/editor/', "jquery.wysiwyg.css" );
-			jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/jomres/libraries/editor/', "jquery.wysiwyg.js" );
-			jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/jomres/libraries/editor/', "wysiwyg.link.js" );
-			jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/jomres/libraries/editor/', "wysiwyg.table.js" );
-			jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/jomres/libraries/editor/', "wysiwyg.i18n.js" );
+			jomres_cmsspecific_addheaddata( "css", get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/libraries/editor/', "jquery.wysiwyg.css" );
+			jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/libraries/editor/', "jquery.wysiwyg.js" );
+			jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/libraries/editor/', "wysiwyg.link.js" );
+			jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/libraries/editor/', "wysiwyg.table.js" );
+			jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/libraries/editor/', "wysiwyg.i18n.js" );
 			switch ( get_showtime( "lang" ) )
 			{
 				case "cs-CZ":
@@ -170,7 +170,7 @@ class j06005editor
 				default :
 					$langfile = 'lang.en.js';
 			}
-			jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/jomres/libraries/editor/i18n/', $langfile );
+			jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/libraries/editor/i18n/', $langfile );
 			define( "REDACTED", 1 );
 			}
 

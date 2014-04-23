@@ -28,7 +28,7 @@ if ( !defined( 'TEMPLATES_FRONTEND' ) )
 	{
 	define( "TEMPLATES_ADMIN", _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "templates" . JRDS . "admin" . JRDS );
 	define( "TEMPLATES_FRONTEND", _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "templates" . JRDS . "frontend" . JRDS );
-	define( "TEMPLATES_CSS_REL_PATH", get_showtime( 'live_site' ) . "/jomres/libraries/jomres/cms_specific/jomressa/templates/css/" );
+	define( "TEMPLATES_CSS_REL_PATH", get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/libraries/".JOMRES_ROOT_DIRECTORY."/cms_specific/jomressa/templates/css/" );
 	}
 
 $JSAuser           = jomressa_getSingleton( 'jomressa_access_user' );

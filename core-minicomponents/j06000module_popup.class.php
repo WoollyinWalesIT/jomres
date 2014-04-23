@@ -38,9 +38,9 @@ class j06000module_popup
 			set_showtime( 'property_uid', $property_uid );
 			$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 
-			//$property_image = get_showtime( 'live_site' ) . "/jomres/images/jrhouse.png";
-			//if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_uid . "_property_" . $property_uid . ".jpg" ) ) 
-				//$property_image = get_showtime( 'live_site' ) . "/jomres/uploadedimages/" . $property_uid . "_property_" . $property_uid . ".jpg";
+			//$property_image = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/jrhouse.png";
+			//if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "uploadedimages" . JRDS . $property_uid . "_property_" . $property_uid . ".jpg" ) ) 
+				//$property_image = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/uploadedimages/" . $property_uid . "_property_" . $property_uid . ".jpg";
 
 			$output                = array ();
 
@@ -58,12 +58,12 @@ class j06000module_popup
 			$output[ 'STARSIMAGES' ]              = '';
 			for ( $i = 1; $i <= $current_property_details->stars; $i++ )
 				{
-				$output[ 'STARSIMAGES' ] .= "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/star.png\" alt=\"star\" border=\"0\" />";
+				$output[ 'STARSIMAGES' ] .= "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/star.png\" alt=\"star\" border=\"0\" />";
 				}
 			
 			$output[ 'SUPERIOR' ] = '';
 			if ( $current_property_details->superior == 1 ) 
-				$output[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/superior.png\" alt=\"superior\" border=\"0\" />";
+				$output[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/superior.png\" alt=\"superior\" border=\"0\" />";
 
 			$output[ 'PROPERTY_NAME' ]				   = $current_property_details->property_name;
 			$output[ 'PROPERTY_STREET' ]               = $current_property_details->property_street;

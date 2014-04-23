@@ -34,7 +34,7 @@ function build_product_tour_javascript_file()
 		$fullscreen_view = "_fullscreen";
 		}
 	
-	$file = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang").$fullscreen_view.'-tour.js';
+	$file = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang").$fullscreen_view.'-tour.js';
 
 	if (file_exists($file))
 		{
@@ -243,9 +243,9 @@ function build_tour( $target_ids = array() , $task )
 
 	$result = $tmpl->getParsedTemplate();
 	
-	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS))
+	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'product_tours' . JRDS))
 		{
-		mkdir (JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS);
+		mkdir (JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'product_tours' . JRDS);
 		}
 	
 	$fullscreen = false;
@@ -257,7 +257,7 @@ function build_tour( $target_ids = array() , $task )
 		$fullscreen_view = "_fullscreen";
 		}
 		
-	$file = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang").$fullscreen_view.'-tour.js';
+	$file = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang").$fullscreen_view.'-tour.js';
 	file_put_contents( $file , $result );
 	}
 

@@ -13,12 +13,13 @@ defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );
 
 define('_JOMRES_INITCHECK', 1 );
 
+define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" );
+
 if (isset($_REQUEST ['layout']))
 	{
 	$_REQUEST ['task'] = "search";
 	$_REQUEST ['calledByModule'] = "mod_jomsearch_m0";
-	
-	
+
 	switch ( $_REQUEST ['layout'] )
 		{
 		case 'countries':
@@ -38,6 +39,4 @@ if (isset($_REQUEST ['layout']))
 		}
 	}
 
-require_once(dirname(__FILE__).'/../../jomres/jomres.php');
-
-?>
+require_once(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/jomres.php');

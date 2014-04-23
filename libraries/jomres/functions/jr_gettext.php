@@ -124,7 +124,7 @@ function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false 
 			if ( $isLink )
 				{
 				// $link = JOMRES_SITEPAGE_URL.'&task=editCustomText&lng='.get_showtime('lang').'&theConstant='.$theConstant."&property_uid=".$property_uid;
-				// $editingLink="<a class=\"jomrestexteditable\" $title href=\"$link\" target=\"_blank\" ><img src=\"".get_showtime('live_site')."/jomres/images/jricon.png\" width=\"10\" height=\"10\" border=\"0\"></a>";
+				// $editingLink="<a class=\"jomrestexteditable\" $title href=\"$link\" target=\"_blank\" ><img src=\"".get_showtime('live_site')."/".JOMRES_ROOT_DIRECTORY."/images/jricon.png\" width=\"10\" height=\"10\" border=\"0\"></a>";
 				// $theText=$editingLink.$theText;
 				}
 			else
