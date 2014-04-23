@@ -38,6 +38,8 @@ if (isset($_REQUEST ['layout']))
 		}
 	}
 
-require_once(dirname(__FILE__).'/../../jomres/jomres.php');
+define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" );
+	
+require_once(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/jomres.php');
 
 ?>
