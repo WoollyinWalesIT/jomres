@@ -9,8 +9,6 @@
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
-define ( 'JOMRES_ROOT_DIRECTORY' , "jomres_moved" );
-
 if ( isset( $_REQUEST[ 'autoupgrade' ] ) ) 
 	define( 'AUTO_UPGRADE', true );
 else
@@ -20,6 +18,7 @@ else
 	showheader();
 	showTop();
 	}
+
 
 
 $functionChecksPassed = true;
@@ -38,8 +37,14 @@ if ( $version < 5.3 )
 
 define( '_JOMRES_INITCHECK', 1 );
 define( '_JEXEC', 1 );
+
 ini_set( "display_errors", 1 );
 ini_set( 'error_reporting', E_ALL );
+
+if ( jomres_create_location_file() )
+	{
+	include_location_file();
+	}
 
 if ( !defined( 'JRDS' ) )
 	{
@@ -5341,6 +5346,83 @@ function updateSiteSettings ( $k , $v )
 	}
 
 	
+function include_location_file()
+	{
+	require_once ('../jomres_root.php');
+	}
+	
+function jomres_create_location_file()
+	{
+	$result = jomres_find_jomres('../');
+	foreach ($result as $key=>$val)
+		{
+		if ($key === "detect_cms.php")
+			{
+			$dir = basename($val);
+			$location ='
+<?php
+defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
+if (!defined(\'JOMRES_ROOT_DIRECTORY\'))
+	{
+	define ( \'JOMRES_ROOT_DIRECTORY\' , "'.$dir.'" ) ;
+	}
+';
+			if ( !file_put_contents ( '../jomres_root.php' , $location ) )
+				{
+				output_message ("Error, unable to create jomres_root.php in your CMS's root directory. Please create it manually with the following contents : <br/> ".nl2br (htmlentities($location)) , "danger" );
+				return false;
+				}
+			else
+				{
+				return true;
+				}
+			}
+		}
+	return false;
+	}
+
+function jomres_find_jomres( $directory, $recursive = true, $listDirs = false, $listFiles = true, $exclude = '' )
+	{
+	$arrayItems    = array ();
+	$skipByExclude = false;
+	$handle        = @opendir( $directory );
+	if ( $handle )
+		{
+		while ( false !== ( $file = readdir( $handle ) ) )
+			{
+			preg_match( "/(^(([\.]){1,2})$|(\.(svn|git|md))|(Thumbs\.db|\.DS_STORE))$/iu", $file, $skip );
+			if ( $exclude )
+				{
+				preg_match( $exclude, $file, $skipByExclude );
+				}
+			if ( !$skip && !$skipByExclude )
+				{
+				if ( is_dir( $directory . DIRECTORY_SEPARATOR . $file ) )
+					{
+					if ( $recursive )
+						{
+						$arrayItems = array_merge( $arrayItems, jomres_find_jomres( $directory . DIRECTORY_SEPARATOR . $file, $recursive, $listDirs, $listFiles, $exclude ) );
+						}
+					if ( $listDirs )
+						{
+						$arrayItems[$file] = $directory . DIRECTORY_SEPARATOR;
+						}
+					}
+				else
+					{
+					if ( $listFiles )
+						{
+						$arrayItems[$file] = $directory . DIRECTORY_SEPARATOR;
+						}
+					}
+				}
+			}
+		closedir( $handle );
+		}
+
+	return $arrayItems;
+	}
+		
 	
 
 function output_message($message , $class_style = "info" )

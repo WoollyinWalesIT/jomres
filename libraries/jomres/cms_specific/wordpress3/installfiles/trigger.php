@@ -2,7 +2,8 @@
 
 
 
-define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" );
+require_once (dirname(__FILE__).'/../../jomres_root.php');
+
 define( '_JOMRES_INITCHECK', 1 );
 define( '_JOMRES_INITCHECK_ADMIN', 1 );
 
@@ -13,11 +14,6 @@ if (!jomres_check_if_jomres_installed())
 
 else
 	{
-	// Now to try to find Jomres path off the root of the cms.
-	define ( 'JOMRES_DETECTED_ROOT' , ABSPATH ) ;
-	define ( 'JOMRES_DIESTRING' , "" );
-
-	require("find_jomres.php");
 	require_once(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/jomres.php');
 			
 	if (isset($_REQUEST['jr_wp_source']))
