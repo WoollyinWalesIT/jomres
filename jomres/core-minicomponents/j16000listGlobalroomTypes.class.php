@@ -26,7 +26,7 @@ class j16000listGlobalroomTypes
 
 			return;
 			}
-		$editIcon     = '<IMG SRC="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/EditItem.png" border="0">';
+		$editIcon     = '<IMG SRC="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0">';
 		$query        = "SELECT room_classes_uid, room_class_abbv, room_class_full_desc,image FROM #__jomres_room_classes  WHERE property_uid = '0' ORDER BY room_class_abbv";
 		$roomtypeList = doSelectSql( $query );
 
@@ -76,7 +76,7 @@ class j16000listGlobalroomTypes
 			$r[ 'LINKTEXTCLONE' ]  = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=editGlobalroomTypes&$rmTypeUid=' . $roomtype->room_classes_uid . '&clone=1">' . $cloneIcon . '</a>';
 			$r[ 'RTTITLE' ]        = $roomtype->room_class_abbv;
 			$r[ 'RTDESCRIPTION' ]  = $roomtype->room_class_full_desc;
-			$r[ 'IMAGE' ]          = get_showtime( 'live_site' ) . "/" . $roomtype->image;
+			$r[ 'IMAGE' ]          = get_showtime( 'live_site' ) . "/" . JOMRES_ROOT_DIRECTORY . "/uploadedimages/rmtypes/" . $roomtype->image;
 			$r[ 'PROPERTY_TYPES' ] = $selected_ptype_rows;
 			$rows[ ]               = $r;
 			}
@@ -86,10 +86,10 @@ class j16000listGlobalroomTypes
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, '' );
-		$image  = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/AddItem.png" );
+		$image  = $jrtbar->makeImageValid( "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/AddItem.png" );
 		$link   = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem( 'editGlobalroomTypes', $link, jr_gettext( '_JOMRES_COM_MR_NEWTARIFF', _JOMRES_COM_MR_NEWTARIFF,false ), $submitOnClick = true, $submitTask = "editGlobalroomTypes", $image );
-		$image = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/WasteBasket.png" );
+		$image = $jrtbar->makeImageValid( "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/WasteBasket.png" );
 		$link  = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem( 'deleteGlobalroomTypes', $link, jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', _JOMRES_COM_MR_ROOM_DELETE,false ), $submitOnClick = true, $submitTask = "deleteGlobalroomTypes", $image );
 		$jrtb .= $jrtbar->endTable();

@@ -25,7 +25,7 @@ class j16000list_usersinvoices
 
 			return;
 			}
-		$editIcon = '<img src="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/EditItem.png" alt="editicon"/>';
+		$editIcon = '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" alt="editicon"/>';
 		jr_import( 'invoicehandler' );
 		$status = jomresGetParam( $_REQUEST, 'status', "" );
 		$id     = (int) jomresGetParam( $_REQUEST, 'id', 0 );

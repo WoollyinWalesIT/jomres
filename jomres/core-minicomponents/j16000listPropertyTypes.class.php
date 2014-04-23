@@ -26,7 +26,7 @@ class j16000listPropertyTypes
 
 			return;
 			}
-		$editIcon                              = '<IMG SRC="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/EditItem.png" border="0">';
+		$editIcon                              = '<IMG SRC="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0">';
 		$ptypeData                             = array ();
 		$output                                = array ();
 		$output[ 'PAGETITLE' ]                 = jr_gettext( '_JOMRES_COM_PTYPES_LIST_TITLE', _JOMRES_COM_PTYPES_LIST_TITLE,false );
@@ -47,9 +47,9 @@ class j16000listPropertyTypes
 			$ptypeData[ 'ptype' ]      = $ptype->ptype;
 			$ptypeData[ 'ptype_desc' ] = $ptype->ptype_desc;
 			$published                 = $ptype->published;
-			if ( $published ) $ptypeData[ 'published' ] = get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/Tick.png';
+			if ( $published ) $ptypeData[ 'published' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Tick.png';
 			else
-			$ptypeData[ 'published' ] = get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/Cancel.png';
+			$ptypeData[ 'published' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Cancel.png';
 
 
 			$r                = array ();
@@ -70,10 +70,10 @@ class j16000listPropertyTypes
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, '' );
-		$image  = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/AddItem.png" );
+		$image  = $jrtbar->makeImageValid( "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/AddItem.png" );
 		$link   = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem( 'editPropertyType', $link, jr_gettext( '_JOMRES_COM_MR_NEWTARIFF', _JOMRES_COM_MR_NEWTARIFF,false ), $submitOnClick = true, $submitTask = "editPropertyType", $image );
-		$image = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/WasteBasket.png" );
+		$image = $jrtbar->makeImageValid( "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/WasteBasket.png" );
 		$link  = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem( 'deletePropertyType', $link, jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', _JOMRES_COM_MR_ROOM_DELETE,false ), $submitOnClick = true, $submitTask = "deletePropertyType", $image );
 		$jrtb .= $jrtbar->endTable();

@@ -28,7 +28,7 @@ class j06002fe_stats
 			}
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		if ( !$thisJRUser->userIsManager ) return;
-		echo '<script language="javascript" type="text/javascript" src="' . get_showtime( 'live_site' ) . '/jomres/javascript/graphs.js"></script>';
+		echo '<script language="javascript" type="text/javascript" src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/javascript/graphs.js"></script>';
 		$defaultProperty = getDefaultProperty();
 		$MiniComponents->specificEvent( '16000', 'viewproperty', array ( 'id' => $defaultProperty ) );
 		}

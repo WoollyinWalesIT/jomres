@@ -208,14 +208,14 @@ class j06000contactowner
 		$jrConfig      = $siteConfig->get();
 		$this->timeout = $jrConfig[ 'lifetime' ];
 		// $this->timeout = 60; // For testing
-		$d    = @dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS );
+		$d    = @dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS );
 		$docs = array ();
 		if ( $d )
 			{
 			while ( false !== ( $entry = $d->read() ) )
 				{
 				$filename = $entry;
-				if ( is_file( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . $filename ) && substr( $entry, 0, 1 ) != '.' && strtolower( $entry ) !== 'cvs' )
+				if ( is_file( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $filename ) && substr( $entry, 0, 1 ) != '.' && strtolower( $entry ) !== 'cvs' )
 					{
 					$docs[ ] = $filename;
 					}
@@ -228,10 +228,10 @@ class j06000contactowner
 					{
 					if ( substr( $f, 5, 9 ) == '.jpg' )
 						{
-						$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "/" . $f );
+						$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "/" . $f );
 						$seconds_timediff = time() - $last_modified;
 						//echo $seconds_timediff;
-						if ( $seconds_timediff > $this->timeout ) unlink( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "/" . $f );
+						if ( $seconds_timediff > $this->timeout ) unlink( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "/" . $f );
 						}
 					}
 				}

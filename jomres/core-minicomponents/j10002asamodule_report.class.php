@@ -32,7 +32,7 @@ class j10002asamodule_report
 		if ($jrConfig[ 'advanced_site_config' ] == "1")
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=asamodule_report', 'EditText.png', jr_gettext( "_JOMRES_CUSTOMCODE_ASAMODULE", _JOMRES_CUSTOMCODE_ASAMODULE, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS, false, false ) );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=asamodule_report', 'EditText.png', jr_gettext( "_JOMRES_CUSTOMCODE_ASAMODULE", _JOMRES_CUSTOMCODE_ASAMODULE, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS, false, false ) );
 			}
 		}
 

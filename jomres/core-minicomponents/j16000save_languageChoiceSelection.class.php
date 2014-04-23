@@ -32,7 +32,7 @@ class j16000save_languageChoiceSelection
 		$jomreslang     = jomres_singleton_abstract::getInstance( 'jomres_language' );
 		$languagesArray = $jomreslang->define_langfile_to_languages_array();
 
-		$temp_directory = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS;
+		$temp_directory = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS;
 		$safety_string  = "<?php
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );

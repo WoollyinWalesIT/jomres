@@ -48,7 +48,7 @@ class jomres_toolbar_normal
 	 */
 	function spacer( $width = 40 )
 		{
-		$image  = $this->livesite . '/jomres/images/blank.png';
+		$image  = $this->livesite . '/'.JOMRES_ROOT_DIRECTORY.'/images/blank.png';
 		$link   = "";
 		$submit = "";
 		$output = '
@@ -94,7 +94,7 @@ class jomres_toolbar_normal
 	function toolbarItem( $targetTask, $link, $text = "", $submitOnClick = false, $submitTask = "" )
 		{
 		if ( empty( $text ) ) $text = $this->standardActivityImages[ $targetTask ][ 'label' ];
-		$image  = '/jomres/images/jomresimages/' . $this->imageSize . '/' . $this->standardActivityImages[ $targetTask ][ 'image' ] . '.' . $this->imageExtension;
+		$image  = '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/' . $this->imageSize . '/' . $this->standardActivityImages[ $targetTask ][ 'image' ] . '.' . $this->imageExtension;
 		$output = $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask );
 
 		return $output;

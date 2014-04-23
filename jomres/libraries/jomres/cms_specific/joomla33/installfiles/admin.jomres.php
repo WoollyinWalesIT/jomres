@@ -9,26 +9,13 @@
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
-
-if ( !defined( 'JPATH_BASE' ) )
-	{
-	defined( '_VALID_MOS' ) or die( 'Direct Access to this location is not allowed.' );
-	}
-else
-	{
-	if ( file_exists( JPATH_BASE . '/includes/defines.php' ) )
-		{
-		defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );
-		}
-	else
-		{
-		defined( '_VALID_MOS' ) or die( 'Direct Access to this location is not allowed.' );
-		}
-	}
+defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );
 
 define( '_JOMRES_INITCHECK', 1 );
 define( '_JOMRES_INITCHECK_ADMIN', 1 );
 
+define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" );
+
 JToolBarHelper::title( 'Jomres', 'home.png' );
 
-require_once( dirname( __FILE__ ) . '/../../../jomres/admin.php' );
+require_once( dirname( __FILE__ ) . '/../../../'.JOMRES_ROOT_DIRECTORY.'/admin.php' );

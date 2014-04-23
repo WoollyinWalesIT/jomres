@@ -47,19 +47,19 @@ if ( !defined( 'JOMRESPATH_BASE' ) )
 	define( 'JOMRESPATH_BASE', $dir_path );
 	}
 
-$jomresConfig_absolute_path = substr( JOMRESPATH_BASE, 0, strlen( JOMRESPATH_BASE ) - 7 );
+$jomresConfig_absolute_path = substr( JOMRESPATH_BASE, 0, strlen( JOMRESPATH_BASE ) - strlen(JOMRES_ROOT_DIRECTORY) );
 define( 'JOMRESCONFIG_ABSOLUTE_PATH', $jomresConfig_absolute_path );
 
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'database.php' );
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'input_filtering.php' );
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'functions.php' );
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'multibye_functions.php' );
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'jr_gettext.php' );
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . 'jomres_singleton_abstract.class.php' );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'database.php' );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'input_filtering.php' );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'functions.php' );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'multibye_functions.php' );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'jr_gettext.php' );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . 'jomres_singleton_abstract.class.php' );
 
 if (!function_exists('json_encode')) 
 	{
-	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'json' . JRDS . 'JSON.php' );
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'json' . JRDS . 'JSON.php' );
 
 	function json_encode($arg)
 		{
@@ -89,32 +89,32 @@ $performance_monitor = jomres_singleton_abstract::getInstance( 'jomres_performan
 $performance_monitor->set_point( "pre-inclusions" );
 $scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "site_config.php" );
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "detect_cms.php" );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "site_config.php" );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "detect_cms.php" );
 require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "init_config_vars.php" );
 
-define( 'JOMRES_SYSTEMLOG_PATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . 'temp' . JRDS );
+define( 'JOMRES_SYSTEMLOG_PATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS );
 
 $jomresConfig_dbtype = 'mysql';
 
-if ( !function_exists( 'adodb_date_test_date' ) ) require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'adodb' . JRDS . 'adodb-time.inc.php' );
+if ( !function_exists( 'adodb_date_test_date' ) ) require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'adodb' . JRDS . 'adodb-time.inc.php' );
 
 if ( !class_exists( 'patTemplate' ) ) require_once( 'libraries' . JRDS . 'phptools' . JRDS . 'patTemplate.php' );
 if ( !class_exists( 'patErrorManager' ) ) require_once( 'libraries' . JRDS . 'phptools' . JRDS . 'patErrorManager.php' );
 
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'PHPMailer_v5.2.6' . JRDS . 'class.phpmailer.php' );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'PHPMailer_v5.2.6' . JRDS . 'class.phpmailer.php' );
 
 //require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomSearch.class.php');
 
-if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS . 'code_changes' . JRDS . 'countries.php' ) ) require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS . 'code_changes' . JRDS . 'countries.php' );
+if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'code_changes' . JRDS . 'countries.php' ) ) require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'code_changes' . JRDS . 'countries.php' );
 else
 	{
-	if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . 'countries.php' ) ) require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . 'countries.php' );
+	if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . 'countries.php' ) ) require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . 'countries.php' );
 	else
-	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'countries.php' );
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'countries.php' );
 	}
 
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'imagehandling.php' );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'imagehandling.php' );
 require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_functions.php" );
 
 $performance_monitor->set_point( "post-inclusions" );
@@ -158,7 +158,7 @@ if ( $jomresConfig_lang == '' )
 
 //fullscreen view setup
 $showtime->tmplcomponent = "jomres";
-$showtime->tmplcomponent_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'fullscreen_view' . JRDS . "jomres.php";
+$showtime->tmplcomponent_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'fullscreen_view' . JRDS . "jomres.php";
 if ( !strstr( $scriptname, 'install_jomres.php' ) )
 	jomres_cmsspecific_patchJoomlaTemplate(); //copy the management_view.php renamed to jomres.php to the joomla template dir to help with fullscreen mode
 
@@ -167,7 +167,7 @@ $MiniComponents->triggerEvent( '00001' ); // Start
 
 $jomres_access_control = jomres_singleton_abstract::getInstance( 'jomres_access_control' );
 
-if ( !defined( 'JOMRES_CSSRELPATH' ) ) define( 'JOMRES_CSSRELPATH', 'jomres/css/' );
+if ( !defined( 'JOMRES_CSSRELPATH' ) ) define( 'JOMRES_CSSRELPATH', JOMRES_ROOT_DIRECTORY.'/css/' );
 
 
 require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_urls.php" );
@@ -177,8 +177,8 @@ jomres_parseRequest();
 
 if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )
 	{
-	define( 'JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'uploadedimages' . JRDS );
-	define( 'JOMRES_IMAGELOCATION_RELPATH', get_showtime( 'live_site' ) . '/jomres/uploadedimages/' );
+	define( 'JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS );
+	define( 'JOMRES_IMAGELOCATION_RELPATH', get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/' );
 	}
 
 // In case somebody removes the above lines, we still need to set this define otherwise folks will not be able to create new properties

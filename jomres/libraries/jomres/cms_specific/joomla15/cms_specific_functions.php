@@ -203,11 +203,11 @@ function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $ful
 				$jomres_js_cache = get_showtime( 'js_cache' );
 
 				$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-				if ( !is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "javascript_cache" ) ) mkdir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "javascript_cache" );
+				if ( !is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "javascript_cache" ) ) mkdir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "javascript_cache" );
 
 				$cached_js_filename      = "javascript_cache.js";
-				$cached_js_file_livesite = get_showtime( 'live_site' ) . '/jomres/temp/javascript_cache/';
-				$cached_js_file_abs      = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "javascript_cache" . JRDS;
+				$cached_js_file_livesite = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/temp/javascript_cache/';
+				$cached_js_file_abs      = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "javascript_cache" . JRDS;
 
 				$original_javascript = file_get_contents( $path . $filename );
 				//$original_javascript = removeBOM($original_javascript);

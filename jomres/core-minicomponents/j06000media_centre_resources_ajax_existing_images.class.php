@@ -72,7 +72,7 @@ class j06000media_centre_resources_ajax_existing_images
 				$image_name = $image_name_array[count($image_name_array)-1];
 				
 				$base_path = JOMRES_IMAGELOCATION_ABSPATH;
-				$image_small_path=str_replace(get_showtime('live_site').'/jomres/uploadedimages/','',$image['small']);
+				$image_small_path=str_replace(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/','',$image['small']);
 
 				$output = array();
 				$pageoutput = array();
@@ -137,7 +137,7 @@ class j06000media_centre_resources_ajax_existing_images
 			$tmpl->displayParsedTemplate();
 			}
 		else
-			echo ' <img src="'.get_showtime( 'live_site' ) . "/jomres/images/noimage.gif".'" />';
+			echo ' <img src="'.get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/noimage.gif".'" />';
 		}
 
 	/**

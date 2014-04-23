@@ -60,7 +60,7 @@ class j00021colourscheme
 			
 		if ( file_exists( JOMRESPATH_BASE . JRDS . "temp" . JRDS . $css_file ) ) 
 			{
-			jomres_cmsspecific_addheaddata( "css", 'jomres/temp/', $css_file );
+			jomres_cmsspecific_addheaddata( "css", JOMRES_ROOT_DIRECTORY.'/temp/', $css_file );
 			}
 		else
 			{

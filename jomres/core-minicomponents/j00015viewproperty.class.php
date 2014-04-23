@@ -78,18 +78,18 @@ class j00015viewproperty
 			$property_deets = $MiniComponents->triggerEvent( '00040', array ( 'property_uid' => $property_uid ) );
 
 			$stars     = $current_property_details->stars;
-				$starslink = "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" alt=\"blank\" />";
+				$starslink = "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" alt=\"blank\" />";
 				if ( $stars != "0" )
 					{
 					$starslink = "";
 					for ( $i = 1; $i <= $stars; $i++ )
 						{
-						$starslink .= "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/star.png\" border=\"0\" alt=\"star\" />";
+						$starslink .= "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/star.png\" border=\"0\" alt=\"star\" />";
 						}
 					$starslink .= "";
 					}
 
-				if ( $current_property_details->superior == 1 ) $output[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/superior.png\" alt=\"superior\" border=\"0\" />";
+				if ( $current_property_details->superior == 1 ) $output[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/superior.png\" alt=\"superior\" border=\"0\" />";
 
 			$features = $current_property_details->features;
 			if ( count( $features ) > 0 )
@@ -286,7 +286,7 @@ class j00015viewproperty
 			if ( empty( $property[ 'POLICIESDISCLAIMERS' ] ) ) $property[ 'HPOLICIESDISCLAIMERS' ] = "";
 
 			if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) $property[ 'REAL_ESTATE_PROPERTY_PRICE' ] = output_price( $current_property_details->real_estate_property_price );
-			$property[ 'PRINT_ICON' ] = get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/Printer.png';
+			$property[ 'PRINT_ICON' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Printer.png';
 			$property[ 'PRINT_LINK' ] = jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&jr_printable&popup=1&tmpl=".get_showtime("tmplcomponent")."&property_uid=" . $property_uid );
 
 			$property_deets[ ] = $property;

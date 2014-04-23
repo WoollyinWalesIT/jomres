@@ -67,7 +67,7 @@ class jomres_tooltips
 				$pageoutput = array ();
 
 				$output[ 'TITLE' ]  = $hover_content;
-				$output[ 'IMAGE' ]  = '/jomres/images/SymbolInformation.png';
+				$output[ 'IMAGE' ]  = '/'.JOMRES_ROOT_DIRECTORY.'/images/SymbolInformation.png';
 				$output[ 'WIDTH' ]  = $width;
 				$output[ 'HEIGHT' ] = $height;
 				$output[ 'BORDER' ] = $border;

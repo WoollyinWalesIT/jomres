@@ -94,7 +94,7 @@ class j00030search
 
 		$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 
-		$infoIcon   = "/jomres/images/information.png";
+		$infoIcon   = "/".JOMRES_ROOT_DIRECTORY."/images/information.png";
 		$output     = array ();
 		$pageoutput = array ();
 		$showButton = false;

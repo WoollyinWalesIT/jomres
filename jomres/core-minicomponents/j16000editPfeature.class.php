@@ -73,8 +73,8 @@ class j16000editPfeature
 				}
 			}
 
-		$map  = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS;
-		$mrp  = get_showtime( 'live_site' ) . '/jomres/uploadedimages/pfeatures/';
+		$map  = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS;
+		$mrp  = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/';
 		$d    = @dir( $map );
 		$docs = array ();
 		$rows = array ();
@@ -87,9 +87,11 @@ class j16000editPfeature
 					{
 					$docs                = array ();
 					$docs[ 'ISCHECKED' ] = "";
-					$docs[ 'IMAGEPATH' ] = 'jomres/uploadedimages/pfeatures/' . $filename;
+					$docs[ 'IMAGEPATH' ] = $filename;
 					$docs[ 'IMAGE' ]     = $mrp . $filename;
-					if ( isset( $image ) && $docs[ 'IMAGEPATH' ] == $image ) $docs[ 'ISCHECKED' ] = "checked";
+
+					if ( isset( $image ) && $filename == $image ) 
+						$docs[ 'ISCHECKED' ] = "checked";
 					$rows[ ] = $docs;
 					}
 				}
@@ -112,7 +114,7 @@ class j16000editPfeature
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
-		$image  = $jrtbar->makeImageValid( "/jomres/images/jomresimages/small/Save.png" );
+		$image  = $jrtbar->makeImageValid( "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/Save.png" );
 		$link   = JOMRES_SITEPAGE_URL_ADMIN;
 		
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeatures", '' );

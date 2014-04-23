@@ -61,7 +61,7 @@ class j06005edit_my_account
 		$output[ 'MOBILE' ]    = '';
 		$output[ 'EMAIL' ]     = $user_details[ $thisJRUser->id ][ 'email' ];
 
-		$output[ 'IMAGE' ] = get_showtime( 'live_site' ) . "/jomres/images/noimage.gif";
+		$output[ 'IMAGE' ] = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/noimage.gif";
 
 		if ( $thisJRUser->id > 0 )
 			{

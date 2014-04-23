@@ -274,24 +274,24 @@ function import_images_to_media_centre_directories()
 					}
 			
 			// Let's start with the property image
-			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . ".jpg" ) )
+			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . ".jpg" ) )
 				{
 				rename (
-					JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . ".jpg",
+					JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . ".jpg",
 					$base_path . "property" . JRDS . "0". JRDS . $property_id . "_property_" . $property_id . ".jpg"
 					);
 				}
-			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . "_thumbnail.jpg" ) )
+			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . "_thumbnail.jpg" ) )
 				{
 				rename (
-					JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . "_thumbnail.jpg",
+					JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . "_thumbnail.jpg",
 					$base_path . "property" . JRDS . "0". JRDS . "thumbnail" . JRDS . $property_id . "_property_" . $property_id . ".jpg"
 					);
 				}
-			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . "_thumbnail_med.jpg" ) )
+			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . "_thumbnail_med.jpg" ) )
 				{
 				rename (
-					JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . "_thumbnail_med.jpg",
+					JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "uploadedimages" . JRDS . $property_id . "_property_" . $property_id . "_thumbnail_med.jpg",
 					$base_path . "property" . JRDS . JRDS . "0". JRDS . "medium" . JRDS . $property_id . "_property_" . $property_id . ".jpg"
 					);
 				}
@@ -341,7 +341,7 @@ function import_images_to_media_centre_directories()
 				}
 			
 			// Finally we'll look for room images
-			$room_images = scandir_getfiles( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS );
+			$room_images = scandir_getfiles( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "uploadedimages" . JRDS );
 			if (count($room_images)>0)
 				{
 				$pattern = $property_id . "_room";
@@ -373,15 +373,15 @@ function import_images_to_media_centre_directories()
 								}
 					
 							rename (
-								JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $image_name.".jpg",
+								JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "uploadedimages" . JRDS . $image_name.".jpg",
 								$base_path . "rooms" . JRDS . $resource_id. JRDS . $image_name . ".jpg"
 								);
 							rename (
-								JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $image_name."_thumbnail.jpg",
+								JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "uploadedimages" . JRDS . $image_name."_thumbnail.jpg",
 								$base_path . "rooms" . JRDS . $resource_id. JRDS . "thumbnail" . JRDS .$image_name . ".jpg"
 								);
 							rename (
-								JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $image_name."_thumbnail_med.jpg",
+								JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "uploadedimages" . JRDS . $image_name."_thumbnail_med.jpg",
 								$base_path . "rooms" . JRDS . $resource_id. JRDS . "medium" . JRDS . $image_name . ".jpg"
 								);
 							}
@@ -487,9 +487,9 @@ function jomres_make_qr_code( $string = "", $format = "text" )
 		}
 	if ( $string == "" ) return false;
 	$filename = md5( $string );
-	if ( !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'qr_code_' . $filename . '.png' ) ) QRcode::png( $string, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'qr_code_' . $filename . '.png', 'L', 4, 2 );
+	if ( !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'qr_code_' . $filename . '.png' ) ) QRcode::png( $string, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'qr_code_' . $filename . '.png', 'L', 4, 2 );
 
-	return array ( "relative_path" => get_showtime( 'live_site' ) . "/jomres/temp/" . 'qr_code_' . $filename . '.png', "absolute_path" => JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS . 'qr_code_' . $filename . '.png' );
+	return array ( "relative_path" => get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/temp/" . 'qr_code_' . $filename . '.png', "absolute_path" => JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'qr_code_' . $filename . '.png' );
 	}
 
 
@@ -609,7 +609,7 @@ function make_agent_link( $property_id = 0 )
 
 	$manager_id = $property_manager_xref[ $property_id ];
 
-	$output[ 'IMAGE' ] = get_showtime( 'live_site' ) . "/jomres/images/noimage.gif";
+	$output[ 'IMAGE' ] = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/noimage.gif";
 	if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . 'userimages' . JRDS . "userimage_" . (int) $manager_id . "_thumbnail.jpg" ) ) $output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH . 'userimages/userimage_' . (int) $manager_id . '_thumbnail.jpg';
 
 	$output[ 'URL' ] = jomresURL( JOMRES_SITEPAGE_URL . "&task=view_agent&id=" . $manager_id );
@@ -886,7 +886,7 @@ function get_property_price_for_display_in_lists( $property_uid )
 function add_menu_option( $task_and_args, $image, $title, $path = null, $category, $external = false, $disabled = false )
 	{
 	$jomres_mainmenu_category_images                            = get_showtime( 'jomres_mainmenu_category_images' );
-	$jomres_mainmenu_category_images[ strtolower( $category ) ] = get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/process.png';
+	$jomres_mainmenu_category_images[ strtolower( $category ) ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/process.png';
 	set_showtime( 'jomres_mainmenu_category_images', $jomres_mainmenu_category_images );
 	$option                                             = jomres_mainmenu_option( $task_and_args, "process.png", $title, $path, $category, $external, $disabled );
 	$jomres_mainmenu_thirdparty_options                 = get_showtime( 'jomres_mainmenu_thirdparty_options' );
@@ -896,7 +896,7 @@ function add_menu_option( $task_and_args, $image, $title, $path = null, $categor
 
 
 // Builds the button link information that's later passed to the menu generator
-function jomres_mainmenu_option( $link, $image = '', $text, $path = '/jomres/images/jomresimages/small/', $category = null, $external = false, $disabled = false )
+function jomres_mainmenu_option( $link, $image = '', $text, $path = "/JOMRES_ROOT_DIRECTORY/images/jomresimages/small/", $category = null, $external = false, $disabled = false )
 	{
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	$siteConfig     = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
@@ -911,9 +911,9 @@ function jomres_mainmenu_option( $link, $image = '', $text, $path = '/jomres/ima
 	
 	if ( $image == '' ) $image = 'Prompt.png';
 
-	if ( !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'images' . JRDS . 'jomresimages' . JRDS . 'small' . JRDS . $image ) ) $path = get_showtime( 'eLiveSite' );
+	if ( !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'images' . JRDS . 'jomresimages' . JRDS . 'small' . JRDS . $image ) ) $path = get_showtime( 'eLiveSite' );
 	else
-	$path = get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/';
+	$path = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/';
 
 	if ( !isset( $category ) ) $category = 'misc';
 
@@ -1233,12 +1233,12 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 			$property_data[ 'STARSIMAGES' ]         = '';
 			for ( $i = 1; $i <= $property_data[ 'stars' ]; $i++ )
 				{
-				$property_data[ 'STARSIMAGES' ] .= "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/star.png\" alt=\"star\" border=\"0\" />";
+				$property_data[ 'STARSIMAGES' ] .= "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/star.png\" alt=\"star\" border=\"0\" />";
 				}
 			
 			$property_data[ 'SUPERIOR' ] = '';
 			if ( $property_data[ 'superior' ] == 1 ) 
-				$property_data[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/superior.png\" alt=\"superior\" border=\"0\" />";
+				$property_data[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/superior.png\" alt=\"superior\" border=\"0\" />";
 
 			$pageoutput = array ( $property_data );
 			$tmpl       = new patTemplate();
@@ -1631,9 +1631,9 @@ function jr_import( $class )
 	$plugin_directories = false;
 	if ( !class_exists( $class ) )
 		{
-		if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . $class . ".class.php" ) )
+		if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . $class . ".class.php" ) )
 			{
-			$result = require( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . $class . ".class.php" );
+			$result = require( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . $class . ".class.php" );
 			}
 		else
 			{
@@ -1645,9 +1645,9 @@ function jr_import( $class )
 				}
 			else
 				{
-				if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . $class . ".class.php" ) )
+				if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . $class . ".class.php" ) )
 					{
-					$result = require( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . $class . ".class.php" );
+					$result = require( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . $class . ".class.php" );
 					}
 				else
 					{
@@ -1665,7 +1665,7 @@ function jr_import( $class )
 						}
 					else
 						{
-						trigger_error( "Error, class file " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . $class . ".class.php" . " doesn't exist" );
+						trigger_error( "Error, class file " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . $class . ".class.php" . " doesn't exist" );
 						}
 					}
 				}
@@ -1680,8 +1680,8 @@ function search_core_and_remote_dirs_for_classfiles()
 		{
 		$core_plugins_directories  = array ();
 		$remote_plugin_directories = array ();
-		$core_plugins_directory    = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'core-plugins' . JRDS;
-		$remote_plugin_directory   = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS;
+		$core_plugins_directory    = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
+		$remote_plugin_directory   = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS;
 
 		if ( is_dir( $core_plugins_directory ) )
 			{
@@ -1800,7 +1800,7 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 	switch ( $plugin_type )
 		{
 		case 'widget': // Wordpress widgets
-			$widget_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JRDS . "jomres" . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS;
+			$widget_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS;
 			$widget_target = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "wp-content" . JRDS . "plugins" . JRDS . $plugin_name;
 			if ( !test_and_make_directory( $widget_target ) )
 				{
@@ -1829,15 +1829,15 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 		break;
 		case 'module':
 			$module_full_name = "mod_" . $plugin_name;
-			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JRDS . "jomres" . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . 'plugin_info.php' ) )
+			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . 'plugin_info.php' ) )
 				{
-				$module_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JRDS . "jomres" . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_module_folder . JRDS;
-				$module_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . "xml" . JRDS . "1.5";
+				$module_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_module_folder . JRDS;
+				$module_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . "xml" . JRDS . "1.5";
 				}
 			else
 				{
-				$module_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JRDS . "jomres" . JRDS . "remote_plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_module_folder . JRDS;
-				$module_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "remote_plugins" . JRDS . $plugin_name . JRDS . "xml" . JRDS . "1.5";
+				$module_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "remote_plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_module_folder . JRDS;
+				$module_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "remote_plugins" . JRDS . $plugin_name . JRDS . "xml" . JRDS . "1.5";
 				}
 
 			$module_target = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "modules" . JRDS . $module_full_name;
@@ -1916,23 +1916,23 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 		case 'mambot':
 			//$mambot_full_name=$plugin_name;
 
-			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . 'plugin_info.php' ) )
+			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . 'plugin_info.php' ) )
 				{
 				if ( _JOMRES_DETECTED_CMS == "joomla15" )
 					{
-					$mambot_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . "b" . JRDS;
-					$mambot_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . "xml" . JRDS . "1.5" . JRDS;
+					$mambot_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . "b" . JRDS;
+					$mambot_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . "xml" . JRDS . "1.5" . JRDS;
 					}
 				else
 					{
-					$mambot_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_mambot_folder . JRDS;
-					$mambot_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "core-plugins" . JRDS . $plugin_name;
+					$mambot_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_mambot_folder . JRDS;
+					$mambot_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name;
 					}
 				}
 			else
 				{
-				$mambot_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JRDS . "jomres" . JRDS . "remote_plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_mambot_folder . JRDS;
-				$mambot_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "remote_plugins" . JRDS . $plugin_name;
+				$mambot_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "remote_plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_mambot_folder . JRDS;
+				$mambot_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "remote_plugins" . JRDS . $plugin_name;
 				}
 
 
@@ -1970,7 +1970,7 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 
 			if ( $mambot_xml_move_result[ 'success' ] && $mambot_move_result[ 'success' ] )
 				{
-				copy( $mambot_target . JRDS . "plugin_info.php", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . 'plugin_info.php' );
+				copy( $mambot_target . JRDS . "plugin_info.php", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . 'plugin_info.php' );
 				unlink( $mambot_target . JRDS . "plugin_info.php" );
 				@unlink( $mambot_target . JRDS . "plugin_install.php" );
 
@@ -2081,7 +2081,7 @@ Does what it says on the tin
 */
 function queryUpdateServer( $script, $queryString, $serverType = "plugin" )
 	{
-	include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'jomres_config.php' );
+	include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'jomres_config.php' );
 	$current_version = $mrConfig[ 'version' ];
 
 	if ( $serverType == "plugin" ) $updateServer = "http://plugins.jomres4.net";
@@ -2260,7 +2260,7 @@ function mailer_get_css()
 	$jquery_ui_css_file = $themePath . JRDS . $filename;
 
 
-	$css_file = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "css" . JRDS . "email.css";
+	$css_file = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "css" . JRDS . "email.css";
 
 	return "<style> " . file_get_contents( $css_file ) . file_get_contents( $jquery_ui_css_file ) . "</style>";
 	}
@@ -3319,13 +3319,13 @@ function removeAllPropertyTariffs( $property_uid )
  */
 function userHasBeenLoggedOut()
 	{
-	echo '<center><img src="' . get_showtime( 'live_site' ) . '/jomres/images/Restricted.png" align="middle" border="0" />';
-	echo '<img src="' . get_showtime( 'live_site' ) . '/jomres/images/Secured.png" align="middle" border="0" />';
-	echo '<img src="' . get_showtime( 'live_site' ) . '/jomres/images/Restricted.png" align="middle" border="0" /></center><br />';
+	echo '<center><img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/Restricted.png" align="middle" border="0" />';
+	echo '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/Secured.png" align="middle" border="0" />';
+	echo '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/Restricted.png" align="middle" border="0" /></center><br />';
 	echo '<h2>' . jr_gettext( '_JOMRES_JR_NOTLOGGEDIN', _JOMRES_JR_NOTLOGGEDIN ) . '</h2>';
-	echo '<center><img src="' . get_showtime( 'live_site' ) . '/jomres/images/Restricted.png" align="middle" border="0" />';
-	echo '<img src="' . get_showtime( 'live_site' ) . '/jomres/images/Secured.png" align="middle" border="0" />';
-	echo '<img src="' . get_showtime( 'live_site' ) . '/jomres/images/Restricted.png" align="middle" border="0" /></center><br />';
+	echo '<center><img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/Restricted.png" align="middle" border="0" />';
+	echo '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/Secured.png" align="middle" border="0" />';
+	echo '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/Restricted.png" align="middle" border="0" /></center><br />';
 
 
 	//global $my;
@@ -3411,9 +3411,9 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 	$output .= 'maxDate: "+5Y",
 			';
 
-	if ( $jrConfig[ 'useSSLinBookingform' ] == "0" ) $output .= 'buttonImage: \'' . get_showtime( 'live_site' ) . '/jomres/images/calendar.png\',';
+	if ( $jrConfig[ 'useSSLinBookingform' ] == "0" ) $output .= 'buttonImage: \'' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/calendar.png\',';
 	else
-	$output .= 'buttonImage: \'jomres/images/calendar.png\',';
+	$output .= 'buttonImage: \''.JOMRES_ROOT_DIRECTORY.'/images/calendar.png\',';
 
 	$output .= '
 			buttonImageOnly: true,
@@ -3896,7 +3896,7 @@ function savePlugin( $plugin )
  */
 function listGateways()
 	{
-	$listdir = JOMRESCONFIG_ABSOLUTE_PATH . "/administrator/jomres/plugins/gateways/";
+	$listdir = JOMRESCONFIG_ABSOLUTE_PATH . "/administrator/".JOMRES_ROOT_DIRECTORY."/plugins/gateways/";
 	$d       = @dir( $listdir );
 	$folders = array ();
 	if ( $d )
@@ -3987,7 +3987,7 @@ function showLiveBookings( $contractsList, $title, $arrivaldateDropdown )
 	$mrConfig        = getPropertySpecificSettings();
 	if ( $defaultProperty == "0" ) $defaultProperty = "%";
 	$today           = date( "Y/m/d" );
-	$pathToImages    = get_showtime( 'live_site' ) . "/jomres/images";
+	$pathToImages    = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images";
 	$img_pending     = $pathToImages . "/pending.gif";
 	$img_arrivetoday = $pathToImages . "/arrivetoday.gif";
 	$img_resident    = $pathToImages . "/resident.gif";
@@ -4265,13 +4265,13 @@ function getImageForProperty( $imageType, $property_uid, $itemUid )
 	switch ( $imageType )
 	{
 		case 'property':
-			$default_image = get_showtime( 'live_site' ) . "/jomres/images/jrlogo.png";
+			$default_image = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/jrlogo.png";
 			if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . $property_uid . "_property_" . $itemUid . ".jpg" ) ) $fileLocation = JOMRES_IMAGELOCATION_RELPATH . $property_uid . "_property_" . $property_uid . ".jpg";
 			else
 			$fileLocation = $default_image;
 			break;
 		case 'room':
-			$default_image = get_showtime( 'live_site' ) . "/jomres/images/noimage.gif";
+			$default_image = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/noimage.gif";
 			if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . $property_uid . "_room_" . $itemUid . ".jpg" ) ) $fileLocation = JOMRES_IMAGELOCATION_RELPATH . $property_uid . "_room_" . $itemUid . ".jpg";
 			else
 			$fileLocation = $default_image;
@@ -6242,70 +6242,6 @@ function showArrivaldateJS($dformat,$javascriptFunctionName,$randomID)
 		}
 		</script>
 	<?php
-	}
- */
-
-
-/**
-#
- * Queries the slideshow folder for slideshows then creates a dropdown list to be used in the configuration panels
-#
- */
-/* function listSlideshows()
-	{
-
-	$listdir=JOMRESCONFIG_ABSOLUTE_PATH."/jomres/plugins/slideshows/";
-	// get list of templates
-	$d = @dir($listdir);
-	if($d)
-		{
-		$folders = array();
-		//$docs = array();
-		while (FALSE !== ($entry = $d->read()))
-			{
-			$template_folder = $entry;
-			if(is_dir($listdir.'/'.$template_folder) && substr($entry,0,1) != '.' && strtolower($entry) !== 'cvs')
-				{
-				$folders[] =jomresHTML::makeOption( $template_folder, $template_folder );
-				}
-			}
-		$d->close();
-		}
-
-	return $folders;
-	} */
-
-
-/**
-#
- * depreciated
-#
- */
-/* function saveKey ( $mykey )
-	{
-
-	$defaultProperty=getDefaultProperty();
-	//Add code to check if config file is writeable.
-	if (isset($mykey) && !empty($mykey) )
-		{
-		$keyFile = JOMRESCONFIG_ABSOLUTE_PATH.'/administrator/jomres/tmp/'.$defaultProperty.'_key.php';
-		@chmod ($keyFile, 0700);
-		if (is_file($keyFile) && !is_writable($keyFile))
-				{
-				jomresRedirect(JOMRES_SITEPAGE_URL."", "FATAL ERROR: Key File Not writeable" );
-				}
-			$txt = "<?php if (defined('JPATH_BASE'))";
-			$txt .= "	defined( '_JEXEC' ) or die( '' );\n";
-			$txt .= "else";
-			$txt .= "	defined( '_VALID_MOS' ) or die( '' );\n";
-			$txt.='$mykey="'.$mykey.'";?>';
-
-		if ($fp = fopen( $keyFile, "w"))
-			{
-			fputs($fp, $txt, strlen($txt));
-			fclose ($fp);
-			}
-		}
 	}
  */
 

@@ -29,16 +29,16 @@ class j16000managers_choose
 		$rows       = array ();
 		$pageoutput = array ();
 
-		$tickIcon      = '<IMG SRC="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/Tick.png" border="0">';
-		$crossIcon     = '<IMG SRC="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/Cancel.png" border="0">';
-		$editIcon      = '<IMG SRC="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/EditItem.png" border="0">';
-		$suspendedIcon = '<IMG SRC="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/user_suspended.png" border="0">';
-		$activeIcon    = '<IMG SRC="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/user_active.png" border="0">';
+		$tickIcon      = '<IMG SRC="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Tick.png" border="0">';
+		$crossIcon     = '<IMG SRC="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Cancel.png" border="0">';
+		$editIcon      = '<IMG SRC="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0">';
+		$suspendedIcon = '<IMG SRC="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/user_suspended.png" border="0">';
+		$activeIcon    = '<IMG SRC="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/user_active.png" border="0">';
 
-		$img_guest                = get_showtime( 'live_site' ) . "/jomres/images/Tourists.png";
-		$img_reception            = get_showtime( 'live_site' ) . "/jomres/images/Services.png";
-		$img_manager              = get_showtime( 'live_site' ) . "/jomres/images/User_Agent_Male.png";
-		$img_superpropertymanager = get_showtime( 'live_site' ) . "/jomres/images/User_Ninja.png";
+		$img_guest                = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/Tourists.png";
+		$img_reception            = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/Services.png";
+		$img_manager              = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/User_Agent_Male.png";
+		$img_superpropertymanager = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/User_Ninja.png";
 		$output[ 'KEY' ]          = '
 		<img src = "' . $img_reception . '"  style="border:none;">' . jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION', _JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION,false ) . '
 		<img src = "' . $img_manager . '"  style="border:none;">' . jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN', _JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN,false ) . '
@@ -67,7 +67,7 @@ class j16000managers_choose
 		$output[ 'HGRANTLINK' ]          = jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER', _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER,false );
 		$output[ 'HACCESSLEVEL' ]        = jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL', _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL,false );
 		$output[ 'HUSERNAME' ]           = jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_USERNAME', _JOMRES_COM_MR_ASSIGNUSER_USERNAME,false );
-		$output[ 'HNUMBEROFPROPERTIES' ] = '<img src="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/propertyTypes.png">';
+		$output[ 'HNUMBEROFPROPERTIES' ] = '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/propertyTypes.png">';
 		$output[ 'HSUSPENSION' ]         = jr_gettext( '_JOMRES_SUSPENSIONS_TITLE', _JOMRES_SUSPENSIONS_TITLE,false );
 
 		$all_users = jomres_cmsspecific_getCMSUsers();

@@ -54,8 +54,8 @@ class j06000compare
 
 		if ( count( $property_uids ) > 0 )
 			{
-			$tick  = get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/Tick.png';
-			$cross = get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/Cancel.png';
+			$tick  = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Tick.png';
+			$cross = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Cancel.png';
 
 			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 			$current_property_details->gather_data_multi( $property_uids );
@@ -84,7 +84,7 @@ class j06000compare
 				$property_types[ $p->id ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPES' . (int) $p->id, $p->ptype, false, false );
 				}
 
-			$no_image_image = get_showtime( 'live_site' ) . "/jomres/images/noimage.gif";
+			$no_image_image = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/noimage.gif";
 
 			// We need to find out which features are used by all properties found in the search results
 			$all_used_features = array ();
@@ -113,8 +113,8 @@ class j06000compare
 				$r[ 'PRICE_PRICE' ]     = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE' ];
 				$r[ 'PRICE_POST_TEXT' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'POST_TEXT' ];
 
-				$property_image = get_showtime( 'live_site' ) . "/jomres/images/noimage.gif";
-				if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "uploadedimages" . JRDS . $property_uid . "_property_" . $property_uid . ".jpg" ) ) $property_image = get_showtime( 'live_site' ) . "/jomres/uploadedimages/" . $property_uid . "_property_" . $property_uid . ".jpg";
+				$property_image = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/noimage.gif";
+				if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "uploadedimages" . JRDS . $property_uid . "_property_" . $property_uid . ".jpg" ) ) $property_image = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/uploadedimages/" . $property_uid . "_property_" . $property_uid . ".jpg";
 
 				$jomres_media_centre_images->get_images($property_uid, array('property'));
 				$r[ 'IMAGETHUMB' ] = $jomres_media_centre_images->images ['property'][0][0]['small'];
@@ -148,7 +148,7 @@ class j06000compare
 				$r[ 'STARSIMAGES' ] = '';
 				for ( $i = 1; $i <= $property[ 'stars' ]; $i++ )
 					{
-					$r[ 'STARSIMAGES' ] .= "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/star.png\" alt=\"star\" border=\"0\" />";
+					$r[ 'STARSIMAGES' ] .= "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/star.png\" alt=\"star\" border=\"0\" />";
 					}
 
 				$r[ 'LIVE_SITE' ]           = get_showtime( 'live_site' );

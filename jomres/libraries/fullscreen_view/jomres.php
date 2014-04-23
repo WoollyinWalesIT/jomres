@@ -10,7 +10,7 @@ defined('_JEXEC') or die;
 	<?php
 	foreach ($this->_scripts as $k=>$v)
 		{
-		if (strpos($k, '/jomres/') === false && strpos($k,'googleapis') === false)
+		if (strpos($k, '/'.JOMRES_ROOT_DIRECTORY.'/') === false && strpos($k,'googleapis') === false)
 			unset($this->_scripts[$k]);
 		}
 	if ( !using_bootstrap() )

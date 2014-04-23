@@ -137,9 +137,9 @@ if ( !class_exists( 'booking' ) )
 
 			$output .= 'maxDate: "+5Y",';
 
-			if ( $this->jrConfig[ 'useSSLinBookingform' ] == "0" ) $output .= 'buttonImage: \'' . get_showtime( 'live_site' ) . '/jomres/images/calendar.png\',';
+			if ( $this->jrConfig[ 'useSSLinBookingform' ] == "0" ) $output .= 'buttonImage: \'' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/calendar.png\',';
 			else
-			$output .= 'buttonImage: \'jomres/images/calendar.png\',';
+			$output .= 'buttonImage: \''.JOMRES_ROOT_DIRECTORY.'/images/calendar.png\',';
 			$output .= '
 					autoSize:true,
 					buttonImageOnly: true,

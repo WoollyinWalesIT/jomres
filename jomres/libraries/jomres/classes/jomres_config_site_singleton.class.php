@@ -73,7 +73,7 @@ class jomres_config_site_singleton
 	private function init()
 		{
 		//$mrConfig=getPropertySpecificSettings(0);
-		require( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'site_config.php' );
+		require( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'site_config.php' );
 		$tempConfigArr = $jrConfig;
 		$jrConfig      = array ();
 		$query         = "SELECT akey,value FROM #__jomres_site_settings";

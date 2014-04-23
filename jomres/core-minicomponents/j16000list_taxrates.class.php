@@ -26,7 +26,7 @@ class j16000list_taxrates
 
 			return;
 			}
-		$editIcon   = '<IMG SRC="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
+		$editIcon   = '<IMG SRC="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
 		$rates      = taxrates_getalltaxrates();
 		$output     = array ();
 		$pageoutput = array ();

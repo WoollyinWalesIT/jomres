@@ -270,7 +270,7 @@ class j06005save_subscriber
 		$this->add_field( 'zip', $subscriber->postcode );
 
 		
-		//echo '<script type="text/javascript" src="' . get_showtime( 'live_site' ) . '/jomres/javascript/jquery-1.5.2.min.js"></script>';
+		//echo '<script type="text/javascript" src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/javascript/jquery-1.5.2.min.js"></script>';
 		//echo '<script type="text/javascript">jQuery.noConflict();</script>';
 		?>
 			<script type="text/javascript">

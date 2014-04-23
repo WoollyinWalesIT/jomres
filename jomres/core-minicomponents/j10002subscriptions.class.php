@@ -33,7 +33,7 @@ class j10002subscriptions
 
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=list_subscriptions', 'ViewDatabase.png', jr_gettext( "_JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE", _JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE, false, false ), "/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_ACCOUNTING", _JOMRES_CUSTOMCODE_MENUCATEGORIES_ACCOUNTING, false, false ) );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=list_subscriptions', 'ViewDatabase.png', jr_gettext( "_JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE", _JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_ACCOUNTING", _JOMRES_CUSTOMCODE_MENUCATEGORIES_ACCOUNTING, false, false ) );
 			}
 		}
 

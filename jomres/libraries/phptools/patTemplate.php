@@ -810,6 +810,9 @@ class patTemplate
 			$common_strings                    = array ();
 			}
 		
+		
+		$common_strings[ 'JOMRES_ROOT_DIRECTORY' ]   = JOMRES_ROOT_DIRECTORY;
+		
 		$common_strings[ 'COMMON_NEXT' ]   = jr_gettext( 'COMMON_NEXT', COMMON_NEXT, false );
 		$common_strings[ 'COMMON_CANCEL' ] = jr_gettext( 'COMMON_CANCEL', COMMON_CANCEL, false );
 		$common_strings[ 'COMMON_SUBMIT' ] = jr_gettext( 'COMMON_SUBMIT', COMMON_SUBMIT, false );

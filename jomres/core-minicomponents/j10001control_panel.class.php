@@ -57,21 +57,21 @@ class j10001control_panel
 		$localFopen  = $configSets[ "PHP Core" ][ 'allow_url_fopen' ][ 0 ];
 		$masterFopen = $configSets[ "PHP Core" ][ 'allow_url_fopen' ][ 1 ];
 
-		if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "latest_version.php"))
+		if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "latest_version.php"))
 			{
-			$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "latest_version.php");
+			$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "latest_version.php");
 			$seconds_timediff = time() - $last_modified;
 			if ( $seconds_timediff > 3600 ) 
 				{
-				unlink(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "latest_version.php" );
+				unlink(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "latest_version.php" );
 				}
 			else
 				{
-				$buffer = file_get_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "latest_version.php" );
+				$buffer = file_get_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "latest_version.php" );
 				}
 			}
 		
-		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "latest_version.php") )
+		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "latest_version.php") )
 			{
 			$curl_handle = curl_init();
 			curl_setopt( $curl_handle, CURLOPT_URL, "http://updates.jomres4.net/versions.php" );
@@ -83,7 +83,7 @@ class j10001control_panel
 			curl_close( $curl_handle );
 			if ($buffer != "")
 				{
-				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "latest_version.php",$buffer);
+				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "latest_version.php",$buffer);
 				}
 			}
 		
@@ -176,21 +176,21 @@ class j10001control_panel
 			$output[ 'ACCESS_CONTROL_ALERT' ]     = $access_control_check[ 'message' ];
 			}
 		
-		if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "news.php"))
+		if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "news.php"))
 			{
-			$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "news.php");
+			$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "news.php");
 			$seconds_timediff = time() - $last_modified;
 			if ( $seconds_timediff > 3600 ) 
 				{
-				unlink(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "news.php" );
+				unlink(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "news.php" );
 				}
 			else
 				{
-				$buffer = file_get_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "news.php" );
+				$buffer = file_get_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "news.php" );
 				}
 			}
 		
-		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "news.php") )
+		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "news.php") )
 			{
 			$curl_handle = curl_init();
 			curl_setopt( $curl_handle, CURLOPT_URL, "http://updates.jomres4.net/news.php" );
@@ -202,7 +202,7 @@ class j10001control_panel
 			curl_close( $curl_handle );
 			if ($buffer != "")
 				{
-				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS . "news.php",$buffer);
+				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "news.php",$buffer);
 				}
 			}
 			
@@ -305,18 +305,18 @@ function control_panel_writability_tests()
 	$foldersToTestForWritability = array ();
 	if ( this_cms_is_joomla() )
 		$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'modules' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'sessions' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'temp' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'updates' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'core-plugins' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'admin' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'uploadedimages' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'cache' . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'sessions' . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'updates' . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'cache' . JRDS;
 
-	$writabilityCheckPassImage = get_showtime( 'live_site' ) . "/jomres/images/writability_check_passed.png";
-	$writabilityCheckFailImage = get_showtime( 'live_site' ) . "/jomres/images/writability_check_failed.png";
+	$writabilityCheckPassImage = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/writability_check_passed.png";
+	$writabilityCheckFailImage = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/writability_check_failed.png";
 
 	foreach ( $foldersToTestForWritability as $folder )
 		{

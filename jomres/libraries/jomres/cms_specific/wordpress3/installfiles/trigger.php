@@ -2,6 +2,7 @@
 
 
 
+define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" );
 define( '_JOMRES_INITCHECK', 1 );
 define( '_JOMRES_INITCHECK_ADMIN', 1 );
 
@@ -12,6 +13,13 @@ if (!jomres_check_if_jomres_installed())
 
 else
 	{
+	// Now to try to find Jomres path off the root of the cms.
+	define ( 'JOMRES_DETECTED_ROOT' , ABSPATH ) ;
+	define ( 'JOMRES_DIESTRING' , "" );
+
+	require("find_jomres.php");
+	require_once(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/jomres.php');
+			
 	if (isset($_REQUEST['jr_wp_source']))
 		{
 		if ($_GET['jr_wp_source'] == "admin")
@@ -38,7 +46,7 @@ else
 	
 function jr_wp_trigger_frontend()
 	{
-	require_once( ABSPATH . 'jomres/jomres.php' );
+	require_once( ABSPATH . JOMRES_ROOT_DIRECTORY.'/jomres.php' );
 	if ( (int)$_REQUEST['jrajax'] == 1 ) // If it's an ajax called, we need to die when Jomres has done it's stuff
 		{
 		die();
@@ -53,7 +61,7 @@ function jr_wp_trigger_admin()
 	$role = trim($user_role);
 	if ($role == "administrator")
 		{
-		require_once( ABSPATH . 'jomres/admin.php' );
+		require_once( ABSPATH . JOMRES_ROOT_DIRECTORY.'/admin.php' );
 		}
 	if ( (int)$_REQUEST['jrajax'] == 1 ) // If it's an ajax called, we need to die when Jomres has done it's stuff
 		{
@@ -64,7 +72,7 @@ function jr_wp_trigger_admin()
 function jomres_check_if_jomres_installed()
 	{
 	$jomres_installed = false;
-	if ( file_exists( ABSPATH . 'jomres/jomres.php' ) )
+	if ( file_exists( ABSPATH . JOMRES_ROOT_DIRECTORY.'/jomres.php' ) )
 		{
 		$jomres_installed = true;
 		}

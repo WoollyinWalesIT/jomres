@@ -25,8 +25,8 @@ class jomres_messages
 		if (!defined('GROWL_JS_CSS_ADDED'))
 			{
 			define('GROWL_JS_CSS_ADDED',1);
-			jomres_cmsspecific_addheaddata( "javascript", 'jomres/javascript/', "jquery.jgrowl.js" );
-			jomres_cmsspecific_addheaddata( "css", 'jomres/css/', 'jquery.jgrowl.css' );
+			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.jgrowl.js" );
+			jomres_cmsspecific_addheaddata( "css", JOMRES_ROOT_DIRECTORY.'/css/', 'jquery.jgrowl.css' );
 			}
 		}
 

@@ -58,24 +58,24 @@ class j00004a_init_javascript_css_files
 
 		if ( isset( $themeArr[ 2 ] ) ) $themePath = $themeArr[ 2 ] . "/";
 		else
-		$themePath = 'jomres/css/jquery_ui_themes/' . $subdir . '/';
+		$themePath = JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/' . $subdir . '/';
 
 		set_showtime( "jquery.ui.theme", $filename );
 		set_showtime( "jquery.ui.theme.relpath", $themePath );
 
 		set_showtime( "tables_jui.css", "tables_jui.css" );
-		set_showtime( "tables_jui.css.relpath", "jomres/css/" );
+		set_showtime( "tables_jui.css.relpath", JOMRES_ROOT_DIRECTORY."/css/" );
 
 		if ( using_bootstrap() )
 			{
 			set_showtime( "DT_bootstrap.css", "DT_bootstrap.css" );
-			set_showtime( "DT_bootstrap.css.relpath", "jomres/css/" );
+			set_showtime( "DT_bootstrap.css.relpath", JOMRES_ROOT_DIRECTORY."/css/" );
 
 			set_showtime( "DT_bootstrap.js", "datatables_pagination.js" );
-			set_showtime( "DT_bootstrap.js.relpath", "jomres/javascript/" );
+			set_showtime( "DT_bootstrap.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
 			set_showtime( "tables_jui.css", "" );
-			set_showtime( "tables_jui.css.relpath", "jomres/css/" );
+			set_showtime( "tables_jui.css.relpath", JOMRES_ROOT_DIRECTORY."/css/" );
 			}
 
 		$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
@@ -96,68 +96,68 @@ class j00004a_init_javascript_css_files
 				{
 				set_showtime( "jquery.core.js", 'jquery-1.8.2.min.js' );
 				}
-			set_showtime( "jquery.core.js.relpath", 'jomres/javascript/' );
+			set_showtime( "jquery.core.js.relpath", JOMRES_ROOT_DIRECTORY.'/javascript/' );
 			}
 
 		set_showtime( "jquery.ui.js", "jquery-ui-1.9.2.custom.min.js" );
-		set_showtime( "jquery.ui.js.relpath", 'jomres/javascript/' );
+		set_showtime( "jquery.ui.js.relpath", JOMRES_ROOT_DIRECTORY.'/javascript/' );
 
 		if ( !using_bootstrap() )
 			{
 			set_showtime( "jquery.ui.potato.menu.css", "jquery.ui.potato.menu.css" );
-			set_showtime( "jquery.ui.potato.menu.css.relpath", "jomres/css/" );
+			set_showtime( "jquery.ui.potato.menu.css.relpath", JOMRES_ROOT_DIRECTORY."/css/" );
 
 			set_showtime( "jquery.cookee.for_tabs.js", "jquery.cookee.for_tabs.js" );
-			set_showtime( "jquery.cookee.for_tabs.js.relpath", "jomres/javascript/" );
+			set_showtime( "jquery.cookee.for_tabs.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 			}
 
 		set_showtime( "jomres.js", "jomres.js" );
-		set_showtime( "jomres.js.relpath", "jomres/javascript/" );
+		set_showtime( "jomres.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
 		set_showtime( "datepicker_localisation_file", $datepicker_localisation_file );
-		set_showtime( "datepicker_localisation_file.relpath", "jomres/javascript/jquery-ui-cal-localisation/" );
+		set_showtime( "datepicker_localisation_file.relpath", JOMRES_ROOT_DIRECTORY."/javascript/jquery-ui-cal-localisation/" );
 
 		set_showtime( "jquery.cookee.js", "jquery.cookee.js" );
-		set_showtime( "jquery.cookee.js.relpath", "jomres/javascript/" );
+		set_showtime( "jquery.cookee.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
 		set_showtime( "heartbeat.js", "heartbeat.js" );
-		set_showtime( "heartbeat.js.relpath", "jomres/javascript/" );
+		set_showtime( "heartbeat.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
 		set_showtime( "jquery.bt.js", "jquery.bt.js" );
-		set_showtime( "jquery.bt.js.relpath", "jomres/javascript/" );
+		set_showtime( "jquery.bt.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
 		set_showtime( "jquery.hoverIntent.js", "jquery.hoverIntent.js" );
-		set_showtime( "jquery.hoverIntent.js.relpath", "jomres/javascript/" );
+		set_showtime( "jquery.hoverIntent.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
 		set_showtime( "jquery.validate.js", "jquery.validate.js" );
-		set_showtime( "jquery.validate.js.relpath", "jomres/javascript/" );
+		set_showtime( "jquery.validate.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
 
 		set_showtime( "jquery.tipsy.js", "jquery.tipsy.js" );
-		set_showtime( "jquery.tipsy.js.relpath", "jomres/javascript/" );
+		set_showtime( "jquery.tipsy.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
 		set_showtime( "tipsy.css", "tipsy.css" );
-		set_showtime( "tipsy.css.relpath", "jomres/css/" );
+		set_showtime( "tipsy.css.relpath", JOMRES_ROOT_DIRECTORY."/css/" );
 
 		// Bootstrap toggle buttons
 		if ( using_bootstrap() )
 			{
 			set_showtime( "jquery.toggle.buttons.js", "jquery.toggle.buttons.js" );
-			set_showtime( "bootstrap-toggle-buttons.js.relpath", "jomres/javascript/bootstrap-toggle-buttons/js/" );
+			set_showtime( "bootstrap-toggle-buttons.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/bootstrap-toggle-buttons/js/" );
 
 			set_showtime( "jquery.toggle.buttons.css", "jquery.toggle.buttons.css" );
-			set_showtime( "jquery.toggle.buttons.css.relpath", "jomres/javascript/bootstrap-toggle-buttons/css/" );
+			set_showtime( "jquery.toggle.buttons.css.relpath", JOMRES_ROOT_DIRECTORY."/javascript/bootstrap-toggle-buttons/css/" );
 			}
 
 		if ( !using_bootstrap() )
 			{
 
 			set_showtime( "x-editable.js", "jqueryui-editable.min.js" );
-			set_showtime( "x-editable.js.relpath", "jomres/javascript/x-editable/jqueryui-editable/js/" );
+			set_showtime( "x-editable.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/x-editable/jqueryui-editable/js/" );
 
 			
 			set_showtime( "x-editable.css", "jqueryui-editable.css" );
-			set_showtime( "x-editable.css.relpath", "jomres/javascript/x-editable/jqueryui-editable/css/" );
+			set_showtime( "x-editable.css.relpath", JOMRES_ROOT_DIRECTORY."/javascript/x-editable/jqueryui-editable/css/" );
 			}
 		else
 			{
@@ -165,46 +165,46 @@ class j00004a_init_javascript_css_files
 			if (jomres_bootstrap_version() == "3")
 				$tail = "_bs3";
 			set_showtime( "x-editable.js", "bootstrap-editable".$tail.".min.js" );
-			set_showtime( "x-editable.js.relpath", "jomres/javascript/x-editable/bootstrap-editable/js/" );
+			set_showtime( "x-editable.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/x-editable/bootstrap-editable/js/" );
 
 			set_showtime( "x-editable.css", "bootstrap-editable".$tail.".css" );
-			set_showtime( "x-editable.css.relpath", "jomres/javascript/x-editable/bootstrap-editable/css/" );
+			set_showtime( "x-editable.css.relpath", JOMRES_ROOT_DIRECTORY."/javascript/x-editable/bootstrap-editable/css/" );
 			}
 
 		set_showtime( "jquery.jeditable.js", "jquery.jeditable.js" );
-		set_showtime( "jquery.jeditable.js.relpath", "jomres/javascript/" );
+		set_showtime( "jquery.jeditable.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
 		set_showtime( "excanvas.js", "excanvas.js" );
-		set_showtime( "excanvas.js.relpath", "jomres/javascript/" );
+		set_showtime( "excanvas.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
 		set_showtime( "jquery.chainedSelects.js", "jquery.chainedSelects.js" );
-		set_showtime( "jquery.chainedSelects.js.relpath", "jomres/javascript/" );
+		set_showtime( "jquery.chainedSelects.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
 		set_showtime( "jquery.ui.potato.menu.js", "jquery.ui.potato.menu.js" );
-		set_showtime( "jquery.ui.potato.menu.js.relpath", "jomres/javascript/" );
+		set_showtime( "jquery.ui.potato.menu.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
 		set_showtime( "TableTools_JUI.css", "TableTools_JUI.css" );
-		set_showtime( "TableTools_JUI.css.relpath", "jomres/css/" );
+		set_showtime( "TableTools_JUI.css.relpath", JOMRES_ROOT_DIRECTORY."/css/" );
 
 		set_showtime( "jquery.dataTables.min.js", "jquery.dataTables.min.js" );
-		set_showtime( "jquery.dataTables.min.js.relpath", "jomres/javascript/" );
+		set_showtime( "jquery.dataTables.min.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
 		set_showtime( "TableTools.min.js", "TableTools.min.js" );
-		set_showtime( "TableTools.min.js.relpath", "jomres/javascript/" );
+		set_showtime( "TableTools.min.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 		
 		set_showtime( "ColVis.min.js", "ColVis.min.js" );
-		set_showtime( "ColVis.min.js.relpath", "jomres/javascript/" );
+		set_showtime( "ColVis.min.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 		
 		set_showtime( "ColVis.css", "ColVis.css" );
-		set_showtime( "ColVis.css.relpath", "jomres/css/" );
+		set_showtime( "ColVis.css.relpath", JOMRES_ROOT_DIRECTORY."/css/" );
 
 		set_showtime( "jquery.easing.compatibility.js", "jquery.easing.compatibility.js" );
-		set_showtime( "jquery.easing.compatibility.js.relpath", "jomres/javascript/" );
+		set_showtime( "jquery.easing.compatibility.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
 		$ls = jomresGetDomain();
 		if ( stristr( $ls, ".xn--", $ls ) && !jomres_cmsspecific_areweinadminarea() ) // We check to see if we're in the admin area because our one and only client with an umlat in the domain name has found that the redirect function doesn't work in the administrator area if the domain's been converted.
 			{
-			require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'idna_converter' . JRDS . 'idna_convert.class.php' );
+			require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'idna_converter' . JRDS . 'idna_convert.class.php' );
 			$IDN = new jomres_idna_convert();
 			$ls  = $IDN->decode( $ls );
 			}
@@ -213,36 +213,36 @@ class j00004a_init_javascript_css_files
 		$current_property_details->gather_data( get_showtime('property_uid') );
 
 		set_showtime( "misc_url_defs.js", $ls . "_" . get_showtime( 'lang' ) ."_". $current_property_details->property_type."_". "_misc_url_defs.js" ); // We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
-		set_showtime( "misc_url_defs.js.abspath", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "jomres" . JRDS . "temp" . JRDS );
-		set_showtime( "misc_url_defs.js.relpath", "jomres/temp/" );
+		set_showtime( "misc_url_defs.js.abspath", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS );
+		set_showtime( "misc_url_defs.js.relpath", JOMRES_ROOT_DIRECTORY."/temp/" );
 
 		set_showtime( "jomres_consolidated_files.js", "jomres_consolidated_files.js" );
-		set_showtime( "jomres_consolidated_files.js.relpath", "jomres/javascript/" );
+		set_showtime( "jomres_consolidated_files.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
 		set_showtime( "jomres_consolidated_files_min.js", "jomres_consolidated_files_min.js" );
-		set_showtime( "jomres_consolidated_files_min.js.relpath", "jomres/javascript/" );
+		set_showtime( "jomres_consolidated_files_min.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 		
 		if (get_showtime ( "task" ) == "media_centre")
 			{
 			set_showtime( "jquery.fileupload-ui.css", "jquery.fileupload-ui.css" );
-			set_showtime( "jquery.fileupload-ui.css.relpath",  "jomres/css/" );
+			set_showtime( "jquery.fileupload-ui.css.relpath",  JOMRES_ROOT_DIRECTORY."/css/" );
 
 			set_showtime( "load-image.min.js",                     "load-image.min.js" );
-			set_showtime( "load-image.min.js.relpath",             "jomres/javascript/media_centre/" );
+			set_showtime( "load-image.min.js.relpath",             JOMRES_ROOT_DIRECTORY."/javascript/media_centre/" );
 			set_showtime( "canvas-to-blob.min.js",                 "canvas-to-blob.min.js" );
-			set_showtime( "canvas-to-blob.min.js.relpath",         "jomres/javascript/media_centre/" );
+			set_showtime( "canvas-to-blob.min.js.relpath",         JOMRES_ROOT_DIRECTORY."/javascript/media_centre/" );
 			set_showtime( "jquery.iframe-transport.js",            "jquery.iframe-transport.js" );
-			set_showtime( "jquery.iframe-transport.js.relpath",    "jomres/javascript/media_centre/" );
+			set_showtime( "jquery.iframe-transport.js.relpath",    JOMRES_ROOT_DIRECTORY."/javascript/media_centre/" );
 			set_showtime( "jquery.fileupload.js",                  "jquery.fileupload.js" );
-			set_showtime( "jquery.fileupload.js.relpath",          "jomres/javascript/media_centre/" );
+			set_showtime( "jquery.fileupload.js.relpath",          JOMRES_ROOT_DIRECTORY."/javascript/media_centre/" );
 			set_showtime( "jquery.fileupload-process.js",          "jquery.fileupload-process.js" );
-			set_showtime( "jquery.fileupload-process.js.relpath",  "jomres/javascript/media_centre/" );
+			set_showtime( "jquery.fileupload-process.js.relpath",  JOMRES_ROOT_DIRECTORY."/javascript/media_centre/" );
 			set_showtime( "jquery.fileupload-image.js",            "jquery.fileupload-image.js" );
-			set_showtime( "jquery.fileupload-image.js.relpath",    "jomres/javascript/media_centre/" );
+			set_showtime( "jquery.fileupload-image.js.relpath",    JOMRES_ROOT_DIRECTORY."/javascript/media_centre/" );
 			set_showtime( "jquery.fileupload-validate.js",         "jquery.fileupload-validate.js" );
-			set_showtime( "jquery.fileupload-validate.js.relpath", "jomres/javascript/media_centre/" );
+			set_showtime( "jquery.fileupload-validate.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/media_centre/" );
 			set_showtime( "tmpl.min.js",							"tmpl.min.js" );
-			set_showtime( "tmpl.min.js.relpath", 					"jomres/javascript/media_centre/" );
+			set_showtime( "tmpl.min.js.relpath", 					JOMRES_ROOT_DIRECTORY."/javascript/media_centre/" );
 			}
 			
 		if (using_bootstrap())
@@ -251,10 +251,7 @@ class j00004a_init_javascript_css_files
 				set_showtime( "bootstrap-tour.js", "bootstrap-tour-standalone.min.js" );
 			else
 				set_showtime( "bootstrap-tour.js", "bootstrap-tour.min.js" );
-			set_showtime( "bootstrap-tour.js.relpath", "jomres/javascript/" );
-			
-			//set_showtime( "jquery.cookie.js", "jquery.cookie.js" );
-			//set_showtime( "jquery.cookie.js.relpath", "jomres/javascript/" );
+			set_showtime( "bootstrap-tour.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 			}
 		}
 

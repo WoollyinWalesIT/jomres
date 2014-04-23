@@ -26,16 +26,16 @@ class jomres_singleton_abstract
 		{
 		if ( !isset( self::$_instances[ $class ] ) )
 			{
-			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . $class . ".class.php" ) )
+			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . $class . ".class.php" ) )
 				{
-				$result                     = require( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . $class . ".class.php" );
+				$result                     = require( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . $class . ".class.php" );
 				self::$_instances[ $class ] = new $class( $arg1 );
 				}
 			else
 				{
 				$classfilefound = false;
 
-				$jrePath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'remote_plugins' . JRDS;
+				$jrePath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS;
 				$d       = @dir( $jrePath );
 				$docs    = array ();
 				if ( $d )
@@ -67,7 +67,7 @@ class jomres_singleton_abstract
 
 				if ( !$classfilefound )
 					{
-					$jrePath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'core-plugins' . JRDS;
+					$jrePath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
 					$d       = @dir( $jrePath );
 					$docs    = array ();
 					if ( $d )
@@ -98,16 +98,16 @@ class jomres_singleton_abstract
 						}
 					}
 
-				if ( !$classfilefound && file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . $class . ".class.php" ) )
+				if ( !$classfilefound && file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . $class . ".class.php" ) )
 					{
-					$result                     = require( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . $class . ".class.php" );
+					$result                     = require( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . $class . ".class.php" );
 					self::$_instances[ $class ] = new $class( $arg1 );
 					$classfilefound             = true;
 					}
 
 				if ( !$classfilefound )
 					{
-					echo "Class file " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'jomres' . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . $class . ".class.php" . " doesn't exist";
+					echo "Class file " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . $class . ".class.php" . " doesn't exist";
 					exit;
 					}
 				}

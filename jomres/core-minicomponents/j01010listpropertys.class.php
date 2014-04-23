@@ -151,7 +151,7 @@ class j01010listpropertys
 			if ( is_null( $layout_template ) ) 
 				$layout_template = "list_properties.html";
 
-			jomres_cmsspecific_addheaddata( "javascript", 'jomres/javascript/', "jquery.livequery.js" );
+			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js" );
 
 			if ( $jrConfig[ 'is_single_property_installation' ] == "1" )
 				{
@@ -196,7 +196,7 @@ class j01010listpropertys
 				if ( JOMRES_NOHTML != 1 && get_showtime( 'task' ) != "ajax_search_filter" )
 					{
 					$output[ 'JOMRES_SITEPAGE_URL_AJAX' ] = "<script type=\"text/javascript\"> var live_site_ajax = '" . JOMRES_SITEPAGE_URL_AJAX . "'; </script>";
-					jomres_cmsspecific_addheaddata( "javascript", 'jomres/javascript/', "list_properties.js" );
+					jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "list_properties.js" );
 					}
 
 				//we don`t even need the next line, because jomSearch always sets at least some random $propertys_uids
@@ -412,20 +412,20 @@ class j01010listpropertys
 
 					//$property_deets['AVAILABILITY_CALENDAR'] = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property->propertys_uid,'return_calendar'=>"1",'noshowlegend'=>1) );
 					
-					$starslink = "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/blank.png\" alt=\"star\" border=\"0\" height=\"1\" hspace=\"10\" vspace=\"1\" />";
+					$starslink = "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/blank.png\" alt=\"star\" border=\"0\" height=\"1\" hspace=\"10\" vspace=\"1\" />";
 					if ( $stars != "0" )
 						{
 						$starslink = "";
 						for ( $i = 1; $i <= $stars; $i++ )
 							{
-							$starslink .= "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/star.png\" alt=\"star\" border=\"0\" />";
+							$starslink .= "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/star.png\" alt=\"star\" border=\"0\" />";
 							}
 						$starslink .= "";
 						}
 
 					$property_deets[ 'SUPERIOR' ] = '';
 					if ( $current_property_details->multi_query_result[ $propertys_uid ]['superior'] == 1 ) 
-						$property_deets[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/jomres/images/superior.png\" alt=\"superior\" border=\"0\" />";
+						$property_deets[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/superior.png\" alt=\"superior\" border=\"0\" />";
 
 					$rtRows = "";
 					if ( count($current_property_details->multi_query_result[ $propertys_uid ][ 'room_types' ]) > 0 )
@@ -433,7 +433,7 @@ class j01010listpropertys
 						$rTypes=$current_property_details->multi_query_result[ $propertys_uid ][ 'room_types' ];
 						foreach ( $rTypes as $rtd )
 							{
-							$rtRows .= jomres_makeTooltip( $rtd['abbv'], $rtd['abbv'], $rtd['desc'], $rtd['image'], "", "room_type", array () );
+							$rtRows .= jomres_makeTooltip( $rtd['abbv'], $rtd['abbv'], $rtd['desc'],  JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$rtd['image'], "", "room_type", array () );
 							}
 						}
 
@@ -454,7 +454,7 @@ class j01010listpropertys
 									$br = "<br />";
 								$hotel_feature_abbv=$current_property_details->all_property_features[ $f ]['abbv'];
 								$hotel_feature_full_desc=$current_property_details->all_property_features[ $f ]['desc'];
-								$feature_image=$current_property_details->all_property_features[ $f ]['image'];
+								$feature_image= JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$current_property_details->all_property_features[ $f ]['image'];
 								$featureList .= jomres_makeTooltip( $hotel_feature_abbv, $hotel_feature_abbv, $hotel_feature_full_desc, $feature_image, "", "property_feature", array () );
 								if ($counter < 4)
 									$shortFeatureList .= jomres_makeTooltip( $hotel_feature_abbv, $hotel_feature_abbv, $hotel_feature_full_desc, $feature_image, "", "property_feature", array () );

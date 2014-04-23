@@ -541,12 +541,11 @@ jr_define('_JOMRES_COM_A_TARIFFS_SHOWTARIFFSLINK','Pokaż odsyłacz do cennika')
 jr_define('_JOMRES_COM_A_POPUPSALLOWED','Zezwól na wyskakujące okna');
 jr_define('_JOMRES_COM_A_POPUPSALLOWED_DESC','Jeżeli Nie, to odsyłacz który otwiera nowe okno będzie otwierany w ramach strony.');
 jr_define('_JOMRES_FRONT_IMAGEUPLOADS','Transfer zdjęć');
-jr_define('_JOMRES_FRONT_IMAGEUPLOADS_INFO','Formularz ten umożliwia przesłanie zdjęć oferty na serwer. Pamiętaj, że każde zdjęcie z tą samą nazwą zostanie zastąpione nowym. Zwróć także uwagę, że ten formularz nie umożliwia transferu na serwer zdjęć konkretnego przedmiotu rezerwacji lub loga oferty. Można tego dokonać z sekcji administracyjnej ofert.');
 jr_define('_JOMRES_A_TABS_MISC','Różne');
 jr_define('_JOMRES_A','Konfiguracja systemu');
 jr_define('_JOMRES_A_GLOBALPFEATURES','Używaj globalnych cech ofert');
 jr_define('_JOMRES_A_GLOBALPFEATURES_DESC','Ustaw Tak, jeżeli chcesz wymusić używanie we wszystkich ofertach tylko cech zdefiniowanych przez administratora serwisu.');
-jr_define('_JOMRES_A_GLOBALPFEATURES_INFO','Aby powiązać cechę z ikoną, należy najpierw przetransferować na serwer pliki ikon do katalogu /images/stories/jomres/pfeatures/ .');
+jr_define( '_JOMRES_A_GLOBALPFEATURES_INFO', 'To assign an image to this feature you first need to upload your business feature images to the /'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/ folder. ' );
 jr_define('_JOMRES_A_ICON','Ikona');
 jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION','Wybierz wtyczkę wyszukiwania, której chcesz używać.');
 jr_define('_JOMRES_FRONT_NORESULTS','<b>Twoje wyszukiwanie nie dało żadnych rezultatów. Zmień kryteria i spróbuj ponownie.</b>');
@@ -974,7 +973,6 @@ jr_define('_JOMRES_COM_SEF_SEARCH_URL_PTYPE','Struktura URL Szukaj - Rodzaj ofer
 jr_define('_JOMRES_COM_SEF_SEARCH_URL_PTYPE_DESC','Dodaje rodzaj oferty do URL wyniku szukania.');
 jr_define('_JOMRES_COM_SEF_DEFAULT_PTYPE','Struktura URL Szukaj - Domyślny rodzaj oferty');
 jr_define('_JOMRES_COM_SEF_DEFAULT_PTYPE_DESC','Używany w URL, jeśli poszukiwanie jest dla wszystkich rodzajów ofert.');
-jr_define('_JOMRES_COM_SEF_NOTINSTALLED','Komponent she404sef nie jest zainstalowany. Czy masz przekopiowane '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'cms_specific'.JRDS.'joomla15'.JRDS.'other_component_files'.JRDS.'sh404sef'.JRDS.'com_jomres.php do '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_sh404sef'.JRDS.'sef_ext. Po zainstalowaniu sh404sef i/lub skopiowaniu pliku, będzie można skonfigurować adresy URL SEF tutaj.');
 jr_define('_JOMRES_COM_A_CALENDARLANGUAGE_AUTO','Autodetekcja języka kalendarzy');
 jr_define('_JOMRES_COM_A_CALENDARLANGUAGE_AUTO_DESC','Włącz automatyczne wykrywanie języka dla kalendarzy. Jeśli nie zostanie rozpoznany automatycznie wtedy powróci do języka skonfigurowanego poniżej.');
 jr_define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERWEEK','Per tydzień');
@@ -1881,11 +1879,11 @@ jr_define('_JOMRES_LASTEDITED_WARNING_72','Jomres korzysta z własnych szablonó
 	<br /><br />
 	Edytując szablon masz możliwość dokonania zmian specyficznych dla wszystkich typów ofert lub określonego typu oferty czy modułu. Np. szablon graficzny modułu wyświetlającego losowe oferty to basic_module_output.html . W rezultacie można tworzyć różne warianty układu graficznego.
 	<br /><br />
-	Jeśli szablon nie został jeszcze zmodyfikowany, to możesz na jego podstawie stworzyć nowy. W tym celu wybierz opcję "Nowy". Na kolejnej stronie będzie można edytować ten szablon. Bazowy układ szablonu graficznego jest pobierany z katalogu na Twoim serwerze /jomres/templates/xxx/frontend Po kliknięciu w przycisk "Zapisz", zostanie on zapisany w bazie danych i z niej pobierany. Dzięki temu możesz mieć gwarancję, że wprowadzone modyfikację nie zostaną nadpisane przy okazji aktualizacji systemu.
+	Jeśli szablon nie został jeszcze zmodyfikowany, to możesz na jego podstawie stworzyć nowy. W tym celu wybierz opcję "Nowy". Na kolejnej stronie będzie można edytować ten szablon. Bazowy układ szablonu graficznego jest pobierany z katalogu na Twoim serwerze /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend Po kliknięciu w przycisk "Zapisz", zostanie on zapisany w bazie danych i z niej pobierany. Dzięki temu możesz mieć gwarancję, że wprowadzone modyfikację nie zostaną nadpisane przy okazji aktualizacji systemu.
 	<br /><br />
-	Po dostosowaniu szablonu otrzymasz więcej opcji. Można utworzyć nową kopię oryginalnego szablonu, można skopiować zmiany do nowego szablonu, przypisać go do wybranego typu oferty etc. Usuwając swój szablon wykorzystywany na powrót będzie szablon domyślny zapisany w katalogu /jomres/templates/xxx/frontend .
+	Po dostosowaniu szablonu otrzymasz więcej opcji. Można utworzyć nową kopię oryginalnego szablonu, można skopiować zmiany do nowego szablonu, przypisać go do wybranego typu oferty etc. Usuwając swój szablon wykorzystywany na powrót będzie szablon domyślny zapisany w katalogu /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend .
 	<br /><br />
-	System Jomres stale ewoluuje i szablony podstawowe są często aktualizowane/modyfikowane. Jeśli korzystasz z funkcji edycji szablonów będziesz musiał po aktualizacji systemu zweryfikować swoje szablony porównując je z plikami bazowymi szablonów zapisanymi w /jomres/templates/xxx/frontend . Jeśli plik szablonu w tym katalogu będzie nowszy niż ten zapisany w bazie danych otrzymasz odpowiedni komunikat. Chcąc mieć pewność, że korzystasz z wszystkich nowych funkcji i ulepszeń systemu po aktualizacji systemu przeprowadź porównanie plików szablonu pod względem zawartości w nich wszystkich funkcjonalności.');
+	System Jomres stale ewoluuje i szablony podstawowe są często aktualizowane/modyfikowane. Jeśli korzystasz z funkcji edycji szablonów będziesz musiał po aktualizacji systemu zweryfikować swoje szablony porównując je z plikami bazowymi szablonów zapisanymi w /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend . Jeśli plik szablonu w tym katalogu będzie nowszy niż ten zapisany w bazie danych otrzymasz odpowiedni komunikat. Chcąc mieć pewność, że korzystasz z wszystkich nowych funkcji i ulepszeń systemu po aktualizacji systemu przeprowadź porównanie plików szablonu pod względem zawartości w nich wszystkich funkcjonalności.');
 
 jr_define("_JOMRES_STAYFORAMINIMUMOF","Minimum");
 jr_define("_JOMRES_NIGHTSFOR"," nocy ");

@@ -26,7 +26,7 @@ class j16000list_regions
 
 			return;
 			}
-		$editIcon = '<img src="' . get_showtime( 'live_site' ) . '/jomres/images/jomresimages/small/EditItem.png" alt="editicon"/>';
+		$editIcon = '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" alt="editicon"/>';
 		$rows     = array ();
 
 		$output[ '_JOMRES_EDIT_REGION_TITLE' ]        = jr_gettext( "_JOMRES_EDIT_REGION_TITLE", _JOMRES_EDIT_REGION_TITLE, false );
