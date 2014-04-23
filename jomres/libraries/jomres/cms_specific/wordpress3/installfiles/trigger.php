@@ -1,20 +1,19 @@
 <?php
 
-
-
-require_once (dirname(__FILE__).'/../../jomres_root.php');
-
 define( '_JOMRES_INITCHECK', 1 );
 define( '_JOMRES_INITCHECK_ADMIN', 1 );
+
+require_once (dirname(__FILE__).'/../../../jomres_root.php');
+
+
 
 if (!jomres_check_if_jomres_installed())
 	{
 	output_jomres_not_installed_message();
 	}
-
 else
 	{
-	require_once(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/jomres.php');
+	require_once(dirname(__FILE__).'/../../../'.JOMRES_ROOT_DIRECTORY.'/jomres.php');
 			
 	if (isset($_REQUEST['jr_wp_source']))
 		{
