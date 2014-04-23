@@ -26,7 +26,7 @@ class j16000addplugin
 
 			return;
 			}
-		include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'jomres_config.php' );
+		include( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'jomres_config.php' );
 		$this_jomres_version = explode( ".", $mrConfig[ 'version' ] );
 		$debugging           = false;
 		define ( "JOMRES_INSTALLER", 1 );
@@ -68,9 +68,9 @@ class j16000addplugin
 			$pluginName  = $blowdedUp[ 0 ];
 			}
 
-		if ( $thirdparty ) $remote_pluginsDirPath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS;
+		if ( $thirdparty ) $remote_pluginsDirPath = JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS;
 		else
-		$remote_pluginsDirPath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
+		$remote_pluginsDirPath = JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
 
 		if ( strlen( $pluginName ) == 0 && !$thirdparty )
 			{
@@ -93,21 +93,21 @@ class j16000addplugin
 
 		if ( strlen( $pluginName ) > 0 )
 			{
-			if ( is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . $pluginName ) )
+			if ( is_dir( JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . $pluginName ) )
 				{
-				emptyDir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . $pluginName );
+				emptyDir( JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . $pluginName );
 				$progress_messages[ ] = array ( "MESSAGE" => "Removing " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . $pluginName . "" );
-				@rmdir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . $pluginName );
+				@rmdir( JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . $pluginName );
 				}
-			if ( is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS . $pluginName ) )
+			if ( is_dir( JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS . $pluginName ) )
 				{
-				emptyDir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS . $pluginName );
+				emptyDir( JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS . $pluginName );
 				$progress_messages[ ] = array ( "MESSAGE" => "Removing " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS . $pluginName . "" );
-				@rmdir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS . $pluginName );
+				@rmdir( JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS . $pluginName );
 				}
 			}
 
-		$updateDirPath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'updates' . JRDS . $pluginName . JRDS;
+		$updateDirPath = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'updates' . JRDS . $pluginName . JRDS;
 
 
 		if ( is_dir( $updateDirPath . "unpacked" ) )
@@ -197,6 +197,7 @@ class j16000addplugin
 
 				$progress_messages[ ] = array ( "MESSAGE" => "Attempting download of " . $pluginName . "" );
 				$newfilename          = $updateDirPath . $pluginName . ".vnw";
+
 				$p                    = '';
 				if ( isset( $_REQUEST[ 'plugin' ] ) ) $p = "&plugin=" . $pluginName;
 
@@ -356,7 +357,7 @@ class j16000addplugin
 
 			$plugin_installed_successfully = false;
 
-			$result = dirmv( $updateDirPath . "unpacked", $remote_pluginsDirPath . $pluginName, true, $funcloc = "/" );
+			$result = dirmv( $updateDirPath . "unpacked", $remote_pluginsDirPath . $pluginName, true, $funcloc = JRDS );
 			if ( $result[ 'success' ] )
 				{
 				//echo $remote_pluginsDirPath.$pluginName.JRDS."plugin_install.php";exit;

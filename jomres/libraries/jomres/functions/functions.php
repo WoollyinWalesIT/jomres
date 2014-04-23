@@ -2140,9 +2140,9 @@ function dircopy( $source, $dest, $overwrite = true, $funcloc = null )
 					{
 					if ( !@copy( $path, $path2 ) )
 						{
-						echo 'File (' . $path . ') could not be copied, likely a permissions problem.';
+						$message = 'File ' . $path . ' could not be moved to '.$path2.', likely a permissions problem.';
 
-						return array ( "success" => false, "errormsg" => 'File (' . $path . ') could not be copied, likely a permissions problem.' );
+						return array ( "success" => false, "errormsg" => $message );
 						}
 					}
 				elseif ( is_dir( $path ) )
@@ -2166,7 +2166,7 @@ function dircopy( $source, $dest, $overwrite = true, $funcloc = null )
 
 // http://www.php.net/manual/en/function.rename.php#61152
 // Moves the contents of source dir to destination dir
-function dirmv( $source, $dest, $overwrite = true, $funcloc = null )
+function dirmv( $source, $dest, $overwrite = true, $funcloc = JRDS )
 	{
 	global $movedFileLog;
 	$debugging    = false;
@@ -2197,9 +2197,15 @@ function dirmv( $source, $dest, $overwrite = true, $funcloc = null )
 						{
 						if ( !@rename( $path, $path2 ) )
 							{
-							echo 'File (' . $path . ') could not be moved, likely a permissions problem.';
-
-							return array ( "success" => false, "errormsg" => 'File (' . $path . ') could not be moved, likely a permissions problem.' );
+							if (copy ($oldfile,$newfile)) 
+								{
+								unlink($oldfile);
+								}
+							else
+								{
+								echo 'File (' . $path . ') could not be moved to  '.$path2.', likely a permissions problem.';
+								return array ( "success" => false, "errormsg" => 'File (' . $path . ') could not be moved, likely a permissions problem.' );
+								}
 							}
 						}
 					else if ( $overwrite )

@@ -12,6 +12,9 @@
 defined( '_JEXEC' ) or die( '' );
 jimport( 'joomla.filter.output' );
 
+define( '_JOMRES_INITCHECK', 1 );
+require_once (dirname(__FILE__).'/../../jomres_root.php');
+
 function JomresBuildRoute( &$query )
 	{
 	static $items;

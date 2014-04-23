@@ -15,8 +15,8 @@ defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );
 define( '_JOMRES_INITCHECK', 1 );
 define( '_JOMRES_INITCHECK_ADMIN', 1 );
 
+	
 JToolBarHelper::title( 'Jomres', 'home.png' );
 
-define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" );
-
+require_once (dirname(__FILE__).'/../../../jomres_root.php');
 require_once( dirname( __FILE__ ) . '/../../../'.JOMRES_ROOT_DIRECTORY.'/admin.php' );
