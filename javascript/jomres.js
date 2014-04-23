@@ -83,7 +83,7 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 			return JSON.parse(localStorage.getItem('DataTables' + table_id));
 		},
 		"oTableTools": {
-			"sSwfPath": livesite + "/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"sSwfPath": livesite + "/"+JOMRES_ROOT_DIRECTORY+"/javascript/copy_cvs_xls_pdf.swf",
 			"aButtons": [
 				"copy",
 				{
