@@ -1,6 +1,8 @@
 <?php
 
-define( '_JOMRES_INITCHECK', 1 );
+if (!defined('_JOMRES_INITCHECK'))
+	define('_JOMRES_INITCHECK', 1 );
+
 define( '_JOMRES_INITCHECK_ADMIN', 1 );
 
 require_once (dirname(__FILE__).'/../../../jomres_root.php');
