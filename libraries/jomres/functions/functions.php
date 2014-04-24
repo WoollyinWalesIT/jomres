@@ -2261,7 +2261,7 @@ function mailer_get_css()
 	$filename = $themeArr[ 1 ];
 	if ( isset( $themeArr[ 2 ] ) ) $themePath = $themeArr[ 2 ] . "/";
 	else
-	$themePath = 'jomres/css/jquery_ui_themes/' . $subdir . '/';
+	$themePath = JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/' . $subdir . '/';
 
 	$jquery_ui_css_file = $themePath . JRDS . $filename;
 

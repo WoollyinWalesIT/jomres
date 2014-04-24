@@ -493,7 +493,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		}
 
 	$output[ 'TOTALS_PANEL_BG_PATH' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/';
-	if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS . 'totals_panel_bg.jpg' ) ) $output[ 'TOTALS_PANEL_BG_PATH' ] = 'jomres/uploadedimages/';
+	if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS . 'totals_panel_bg.jpg' ) ) $output[ 'TOTALS_PANEL_BG_PATH' ] = JOMRES_ROOT_DIRECTORY.'/uploadedimages/';
 
 	$output[ 'PROPERTYNAME' ] = $current_property_details->property_name;
 

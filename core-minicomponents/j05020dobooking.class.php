@@ -39,7 +39,7 @@ class j05020dobooking
 			return;
 			}
 
-		require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'functions' . JRDS . 'dobooking.php' );
+		require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'dobooking.php' );
 
 		$property_uid = get_showtime( 'property_uid' );
 		$mrConfig     = getPropertySpecificSettings();

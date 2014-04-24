@@ -5,33 +5,39 @@
 
 	<patTemplate:tmpl name="property_details" unusedvars="strip">
 		<div class="jomres_property_list_propertywrapper photoview pull-left" id="{UID}">
-			<div class="thumbnail {FEATURED_LISTINGS_CLASS}">
-				<div class="caption">
+			<div class="panel {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
+				<div class="panel-heading">
 					<h4 class="photoview-ptitle"><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a></h4>
-					<p>{STARS} {SUPERIOR}</p>
-					<p class="small photoview-paddress">{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</p>
-					<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/> {_JOMRES_COMPARE}
-
 				</div>
-				<div class="align-center photoview-image">
-					<a href="#module_{RANDOM_IDENTIFIER}_popup" class="thumbnail" data-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}">
-						<img src="{IMAGEMEDIUM}" alt="{PROPERTYNAME}" align="middle" class="img-rounded img-responsive"/>
-					</a>
-				</div>
-				<patTemplate:comment>
-				<div class="align-center photoview-image visible-phone">
-					<a href="{MOREINFORMATIONLINK}" class="thumbnail"><img src="{IMAGEMEDIUM}" align="middle"/></a>
-				</div>
-				</patTemplate:comment>
-				<div class="caption">
-					<div class="well align-center">
-						&nbsp;{PRICE_PRE_TEXT}&nbsp;
-						<span class="big-price">{PRICE_PRICE}</span>
-						&nbsp;{PRICE_POST_TEXT}&nbsp;
+				<div class="panel-body">
+					<div class="caption">
+						<p>{STARS} {SUPERIOR}</p>
+						<p class="small photoview-paddress">{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</p>
+						<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/> {_JOMRES_COMPARE}
 					</div>
-					
-					<a class="btn btn-default" href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')">{SHORTLIST}</a>
-					
+
+					<div class="align-center photoview-image">
+						<a href="#module_{RANDOM_IDENTIFIER}_popup" class="thumbnail" data-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}">
+							<img src="{IMAGEMEDIUM}" alt="{PROPERTYNAME}" align="middle" class="img-rounded img-responsive"/>
+						</a>
+					</div>
+					<patTemplate:comment>
+					<div class="align-center photoview-image visible-phone">
+						<a href="{MOREINFORMATIONLINK}" class="thumbnail"><img src="{IMAGEMEDIUM}" align="middle"/></a>
+					</div>
+					</patTemplate:comment>
+					<div class="caption">
+						<div class="well align-center">
+							&nbsp;{PRICE_PRE_TEXT}&nbsp;
+							<span class="big-price">{PRICE_PRICE}</span>
+							&nbsp;{PRICE_POST_TEXT}&nbsp;
+						</div>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<div class="hidden-xs hidden-sm">
+						<a class="btn btn-default" href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')">{SHORTLIST}</a>
+					</div>
 				</div>
 			</div>
 		</div>

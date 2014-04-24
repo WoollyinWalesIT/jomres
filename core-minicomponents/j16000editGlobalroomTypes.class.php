@@ -94,7 +94,7 @@ class j16000editGlobalroomTypes
 					{
 					$docs                = array ();
 					$docs[ 'ISCHECKED' ] = "";
-					$docs[ 'IMAGEPATH' ] = 'jomres/uploadedimages/rmtypes/' . $filename;
+					$docs[ 'IMAGEPATH' ] = JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/' . $filename;
 					$docs[ 'IMAGE' ]     = JOMRES_IMAGELOCATION_RELPATH . 'rmtypes/' . $filename;
 					if ( isset( $image ) && $docs[ 'IMAGEPATH' ] == $image ) $docs[ 'ISCHECKED' ] = "checked";
 					$rows[ ] = $docs;

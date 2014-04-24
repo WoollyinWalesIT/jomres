@@ -39,7 +39,7 @@ class j05010handlereq
 			return;
 			}
 
-		include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'functions' . JRDS . 'handlereq.php' );
+		include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'handlereq.php' );
 		}
 
 	/**
