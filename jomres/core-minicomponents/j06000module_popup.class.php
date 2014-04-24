@@ -121,7 +121,7 @@ class j06000module_popup
 						{
 						$roomtype_abbv         = $current_property_details->all_room_types[ $type ][ 'room_class_abbv' ];
 						$roomtype_desc         = $current_property_details->all_room_types[ $type ][ 'room_class_full_desc' ];
-						$rtRows[ 'ROOM_TYPE' ] = jomres_makeTooltip( $roomtype_abbv, $roomtype_abbv, $roomtype_desc, $current_property_details->all_room_types[ $type ][ 'image' ], "", "room_type", array () );
+						$rtRows[ 'ROOM_TYPE' ] = jomres_makeTooltip( $roomtype_abbv, $roomtype_abbv, $roomtype_desc, JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$current_property_details->all_room_types[ $type ][ 'image' ], "", "room_type", array () );
 						$roomtypes[ ]          = $rtRows;
 						}
 					}
@@ -133,7 +133,7 @@ class j06000module_popup
 				{
 				foreach ( $features as $f )
 					{
-					$propertyFeatureDescriptionsArray[ 'FEATURE' ] = jomres_makeTooltip( $f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], $f[ 'image' ], "", "property_feature", array () );
+					$propertyFeatureDescriptionsArray[ 'FEATURE' ] = jomres_makeTooltip( $f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$f[ 'image' ], "", "property_feature", array () );
 					$featureList[ ]                                = $propertyFeatureDescriptionsArray;
 					}
 				$output[ 'HFEATURES' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES );
