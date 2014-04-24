@@ -96,7 +96,7 @@ class j00015viewproperty
 				{
 				foreach ( $features as $f )
 					{
-					$propertyFeatureDescriptionsArray[ 'FEATURE' ] = jomres_makeTooltip( $f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], $f[ 'image' ], "", "property_feature", array () );
+					$propertyFeatureDescriptionsArray[ 'FEATURE' ] = jomres_makeTooltip( $f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$f[ 'image' ], "", "property_feature", array () );
 					$featureList[ ]                                = $propertyFeatureDescriptionsArray;
 					}
 				$property[ 'HFEATURES' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES );
@@ -115,7 +115,7 @@ class j00015viewproperty
 					foreach ( $current_property_details->room_types as $type )
 						{
 						$rtRows                = array ();
-						$rtRows[ 'ROOM_TYPE' ] = jomres_makeTooltip( $type['abbv'], $type['abbv'], $type['desc'], $type['image'], "", "room_type", array () );
+						$rtRows[ 'ROOM_TYPE' ] = jomres_makeTooltip( $type['abbv'], $type['abbv'], $type['desc'], JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$type['image'], "", "room_type", array () );
 						$roomtypes[ ]          = $rtRows;
 						}
 					}
