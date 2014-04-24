@@ -179,13 +179,13 @@ class j99997generate_mainmenu
 					$fullscreen_view = "_fullscreen";
 					}
 
-				require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'functions' . JRDS . 'build_product_tour_files.php' );
+				require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'build_product_tour_files.php' );
 				build_product_tour_javascript_file();
 				 if (file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'product_tours' . JRDS . $task.'_' . get_showtime("lang").$fullscreen_view."-tour.js") )
 					{
 					
 					
-					jomres_cmsspecific_addheaddata( "javascript", "jomres/temp/product_tours/", $task.'_' . get_showtime("lang").$fullscreen_view."-tour.js" );
+					jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY."/temp/product_tours/", $task.'_' . get_showtime("lang").$fullscreen_view."-tour.js" );
 					$help [0] [ 'PRODUCT_TOUR_PAGE_INFORMATION' ]      = jr_gettext( 'PRODUCT_TOUR_PAGE_INFORMATION', PRODUCT_TOUR_PAGE_INFORMATION, false, false );
 					}
 				$output['TOUR_LABELS'] = "

@@ -52,13 +52,13 @@ defined('_JOMRES_INITCHECK') or die;
 	wp_head();
 	?>
 	<?php if ($view == "bootstrap") : ?>
-	<link rel="stylesheet" href="jomres/libraries/fullscreen_view/bootstrap/css/fullscreen.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap/css/fullscreen.css" type="text/css" />
 	<?php elseif ($view == "bootstrap3") : ?>
-	<link rel="stylesheet" href="jomres/css/jquery_ui_themes/jomres/jquery-ui.css" type="text/css" />
-	<link rel="stylesheet" href="jomres/libraries/fullscreen_view/bootstrap3/dist/css/bootstrap.min.css" type="text/css" />
-	<link rel="stylesheet" href="jomres/libraries/fullscreen_view/bootstrap3/dist/css/bootstrap-theme.min.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/jquery_ui_themes/jomres/jquery-ui.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap3/dist/css/bootstrap.min.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap3/dist/css/bootstrap-theme.min.css" type="text/css" />
 	<?php elseif ($view == "jquery_ui") : ?>
-	<link rel="stylesheet" href="jomres/css/jquery_ui_themes/jomres/jquery-ui.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/jquery_ui_themes/jomres/jquery-ui.css" type="text/css" />
 	<?php endif; ?>
 </head>
 <body class="contentpane">

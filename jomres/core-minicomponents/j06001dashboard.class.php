@@ -39,9 +39,9 @@ class j06001dashboard
 		$output=array();
 		$pageoutput=array();
 
-		jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/fullcalendar/',"fullcalendar.js");
-		jomres_cmsspecific_addheaddata("css",'jomres/javascript/fullcalendar/','fullcalendar.css');
-		//jomres_cmsspecific_addheaddata("css",'jomres/javascript/fullcalendar/','fullcalendar.print.css');
+		jomres_cmsspecific_addheaddata("javascript",JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/',"fullcalendar.js");
+		jomres_cmsspecific_addheaddata("css",JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/','fullcalendar.css');
+		//jomres_cmsspecific_addheaddata("css",JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/','fullcalendar.print.css');
 
 		$output['PAGETITLE'] = jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', _JOMRES_FRONT_MR_MENU_ADMIN_HOME, false );
 		

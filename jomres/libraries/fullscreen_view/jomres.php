@@ -31,25 +31,25 @@ defined('_JEXEC') or die;
 			$view = "bootstrap";
 		}
 	?>
-	<script src="jomres/javascript/jquery-1.8.2.min.js"></script>
-	<script src="jomres/javascript/jquery-ui-1.9.2.custom.min.js"></script>
+	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/javascript/jquery-1.8.2.min.js"></script>
+	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/javascript/jquery-ui-1.9.2.custom.min.js"></script>
 	<?php if ($view == "bootstrap") : ?>
-	<script src="jomres/libraries/fullscreen_view/bootstrap/js/bootstrap.min.js"></script>
+	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap/js/bootstrap.min.js"></script>
 	<?php elseif ($view == "bootstrap3") : ?>
-	<script src="jomres/libraries/fullscreen_view/bootstrap3/dist/js/bootstrap.min.js"></script>
+	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap3/dist/js/bootstrap.min.js"></script>
 	<?php endif; ?>
 	<script type="text/javascript">
 	  jQuery.noConflict();
 	</script>
 	<jdoc:include type="head" />
 	<?php if ($view == "bootstrap") : ?>
-	<link rel="stylesheet" href="jomres/libraries/fullscreen_view/bootstrap/css/fullscreen.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap/css/fullscreen.css" type="text/css" />
 	<?php elseif ($view == "bootstrap3") : ?>
-	<link rel="stylesheet" href="jomres/css/jquery_ui_themes/jomres/jquery-ui.css" type="text/css" />
-	<link rel="stylesheet" href="jomres/libraries/fullscreen_view/bootstrap3/dist/css/bootstrap.min.css" type="text/css" />
-	<link rel="stylesheet" href="jomres/libraries/fullscreen_view/bootstrap3/dist/css/bootstrap-theme.min.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/jquery_ui_themes/jomres/jquery-ui.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap3/dist/css/bootstrap.min.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap3/dist/css/bootstrap-theme.min.css" type="text/css" />
 	<?php elseif ($view == "jquery_ui") : ?>
-	<link rel="stylesheet" href="jomres/css/jquery_ui_themes/jomres/jquery-ui.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/jquery_ui_themes/jomres/jquery-ui.css" type="text/css" />
 	<?php endif; ?>
 </head>
 <body class="contentpane">

@@ -44,7 +44,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 
 			add_action('wp', array($this,'frontend_trigger_jomres'), 1);
 				
-			if ($_GET['page'] == "jomres/jomres.php" )
+			if ($_GET['page'] == JOMRES_ROOT_DIRECTORY."/jomres.php" )
 				{
 				add_action('init', array($this,'admin_trigger_jomres'), 1);
 				}
@@ -61,7 +61,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 			//wp_deregister_script( 'jquery' );
 			add_action('wp_enqueue_scripts', array($this,'add_jomres_js_css'));
 		
-			if ($_GET['page'] == "jomres/jomres.php" )
+			if ($_GET['page'] == JOMRES_ROOT_DIRECTORY."/jomres.php" )
 				{
 				add_action('admin_enqueue_scripts', array($this,'add_jomres_js_css'));
 				}
@@ -105,7 +105,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 		
 		function register_my_custom_menu_page()
 			{
-			add_menu_page( 'Jomres admin', 'Jomres', 'manage_options', 'jomres/jomres.php', '', '', 6 );
+			add_menu_page( 'Jomres admin', 'Jomres', 'manage_options', JOMRES_ROOT_DIRECTORY.'/jomres.php', '', '', 6 );
 			}
 		
 		// Shortcode [jomres]
@@ -137,7 +137,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 			//check if we are on the jomres admin page
 			if ($this->contents == '')
 				{
-				if ($_GET['page'] == "jomres/jomres.php" )
+				if ($_GET['page'] == JOMRES_ROOT_DIRECTORY."/jomres.php" )
 					{
 					ob_start();
 					$path = plugin_dir_path( __FILE__ );
@@ -213,7 +213,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 		function jomres_fullscreen_view($template)
 			{
 			if( isset( $_GET['tmpl']) && $_GET['tmpl'] == 'jomres' )
-				$template = ABSPATH . 'jomres/libraries/fullscreen_view/wp-fullscreen.php';
+				$template = ABSPATH . JOMRES_ROOT_DIRECTORY. '/libraries/fullscreen_view/wp-fullscreen.php';
 
 			return $template;
 			}
@@ -229,5 +229,5 @@ if ( ! class_exists( 'wp_jomres' ) )
 
 $wp_jomres = wp_jomres::getInstance();
 
-if ($_GET['page'] == "jomres/jomres.php" )
+if ($_GET['page'] == JOMRES_ROOT_DIRECTORY."/jomres.php" )
 	echo $wp_jomres->contents;

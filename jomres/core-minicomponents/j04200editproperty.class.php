@@ -216,7 +216,7 @@ class j04200editproperty
 					//$r['FEATURE']=makeFeatureImages($propertyFeature->image,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$retString=TRUE);
 					$feature_abbv   = jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_ABBV' . (int) $propertyFeature->hotel_features_uid, stripslashes( $propertyFeature->hotel_feature_abbv ), false, false );
 					$feature_desc   = jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_DESC' . (int) $propertyFeature->hotel_features_uid, stripslashes( $propertyFeature->hotel_feature_full_desc ), false, false );
-					$r[ 'FEATURE' ] = jomres_makeTooltip( $feature_abbv, $feature_abbv, $feature_desc, $propertyFeature->image, "", "property_feature", array () );
+					$r[ 'FEATURE' ] = jomres_makeTooltip( $feature_abbv, $feature_abbv, $feature_desc, JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$propertyFeature->image, "", "property_feature", array () );
 					$r[ 'BR' ]      = "";
 					if ( $counter == 8 )
 						{
@@ -237,7 +237,7 @@ class j04200editproperty
 					//$r['FEATURE']=makeFeatureImages($propertyFeature->image,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$retString=TRUE);
 					$feature_abbv   = jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_ABBV' . (int) $propertyFeature->hotel_features_uid, stripslashes( $propertyFeature->hotel_feature_abbv ), false, false );
 					$feature_desc   = jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_DESC' . (int) $propertyFeature->hotel_features_uid, stripslashes( $propertyFeature->hotel_feature_full_desc ), false, false );
-					$r[ 'FEATURE' ] = jomres_makeTooltip( $feature_abbv, $feature_abbv, $feature_desc, $propertyFeature->image, "", "property_feature", array () );
+					$r[ 'FEATURE' ] = jomres_makeTooltip( $feature_abbv, $feature_abbv, $feature_desc, JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$propertyFeature->image, "", "property_feature", array () );
 					$r[ 'BR' ]      = "";
 					if ( $counter == 8 )
 						{
