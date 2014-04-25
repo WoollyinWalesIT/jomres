@@ -164,18 +164,7 @@ class HTML_jomres
 			<td>' . jr_gettext( _JOMRES_PROPERTYDETAILS_INTABS_DESC, '_JOMRES_PROPERTYDETAILS_INTABS_DESC', false ) . '</td>
 		</tr>
 		' );
-
-		if ( $jrConfig[ 'advanced_site_config' ] == 1 ) 
-			{
-			$contentPanel->setcontent( '
-			<tr>
-				<td>' . jr_gettext( GUEST_BUDGET_FEATURE_SWITCH, 'GUEST_BUDGET_FEATURE_SWITCH', false ) . '</td>
-				<td>' . $lists[ 'use_budget_feature' ] . '</td>
-				<td>' . jr_gettext( GUEST_BUDGET_FEATURE_SWITCH_DESC, 'GUEST_BUDGET_FEATURE_SWITCH_DESC', false ) . '</td>
-			</tr>
-			' );
-			}
-			
+		
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 ) 
 			{
 			$contentPanel->setcontent( '
@@ -914,8 +903,16 @@ class HTML_jomres
 				<td><input type="text" class="input-large" name="cfg_property_list_limit" value="' . $jrConfig[ 'property_list_limit' ] . '" /></td>
 				<td>' . jr_gettext( _JOMRES_COM_A_LISTLIMIT_DESC, '_JOMRES_COM_A_LISTLIMIT_DESC', false ) . '</td>
 			</tr>
+			<tr>
+				<td>' . jr_gettext( GUEST_BUDGET_FEATURE_SWITCH, 'GUEST_BUDGET_FEATURE_SWITCH', false ) . '</td>
+				<td>' . $lists[ 'use_budget_feature' ] . '</td>
+				<td>' . jr_gettext( GUEST_BUDGET_FEATURE_SWITCH_DESC, 'GUEST_BUDGET_FEATURE_SWITCH_DESC', false ) . '</td>
+			</tr>
 			</tbody>
 			</table>' );
+			
+
+
 				$contentPanel->insertContent();
 				$contentPanel->endPanel();
 				}
