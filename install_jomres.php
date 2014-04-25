@@ -5359,8 +5359,7 @@ function jomres_create_location_file()
 		if ($key === "detect_cms.php")
 			{
 			$dir = basename($val);
-			$location ='
-<?php
+			$location ='<?php
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 if (!defined(\'JOMRES_ROOT_DIRECTORY\'))
 	{
