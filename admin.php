@@ -13,7 +13,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 defined( '_JOMRES_INITCHECK_ADMIN' ) or die( 'Admin Access to this file is not allowed.' );
 
-ob_start( "removeBOM" );
+ob_start( "removeBOMadmin" );
 @ini_set( "memory_limit", "128M" );
 @ini_set( "max_execution_time", "480" );
 
@@ -319,7 +319,7 @@ else
 ob_end_flush();
 
 // Jomres 4.7.8 strips BOM from all areas of the output, not just the beginning.
-function removeBOM( $str = "" )
+function removeBOMadmin( $str = "" )
 	{
 	$bom = pack( "CCC", 0xef, 0xbb, 0xbf );
 	$str = str_replace( $bom, "", $str );

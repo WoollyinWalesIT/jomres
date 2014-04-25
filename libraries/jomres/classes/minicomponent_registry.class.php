@@ -35,12 +35,12 @@ class minicomponent_registry
 			$this->nonOverridableEventClasses = array ();
 			$this->error_detected             = false;
 			$this->unWantedFolderContents     = array ( '.', '..', 'cvs', '.svn', 'registry.php' );
-			$this->remote_plugin_directory    = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS;
+			$this->remote_plugin_directory    = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS;
 			if ( !is_dir( $this->remote_plugin_directory ) )
 				{
 				mkdir( $this->remote_plugin_directory );
 				}
-			$this->registry_file        = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "registry.php";
+			$this->registry_file        = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "registry.php";
 			$this->now                  = time();
 			$this->force_reload_allowed = $force_reload_allowed;
 			$this->original_filesize    = @filesize( $this->registry_file ); // @to prevent notices when the file doesn't exist at all
