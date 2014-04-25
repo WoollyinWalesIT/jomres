@@ -211,7 +211,7 @@ class j99997generate_mainmenu
 			$jrConfig[ 'navbar_inverse' ] = 0;
 		
 		$output['NAVBAR_INVERSE']= '';
-		if ($jrConfig[ 'navbar_location' ] != 'component_area')
+		if ($jrConfig[ 'navbar_inverse' ] != 0)
 			{
 			$output['NAVBAR_INVERSE']= 'navbar-inverse';
 			}
