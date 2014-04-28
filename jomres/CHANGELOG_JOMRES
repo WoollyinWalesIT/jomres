@@ -1,3 +1,19 @@
+Jomres 8.1.0
+
+Change : Added buttons to sanity checks to take the user to the appropriate link to fix the problem.
+Change : Modified the ui availability calendar to use an existing option and set the first day of week to Sunday or Monday.
+Change : Modified userbudget so that converted price isn't shown in property list header dropdown.
+Change : Added changes that support Jomres working in a directory other than "jomres". 
+Change : Changed a check to ensure jquery isn't included in Joomla 3.3.
+Change : Moved Budget switch to Search tab in site config.
+Change : Removed short property feature list from property list page.
+
+Fix : Fixed an issue where navbar is always inversed when not in component area.
+Fix : Fixed Fawlty Tower's default property features on installation.
+Fix : Fixed an issue where panel-info wasn't being applied if featured properties plugin is not installed.
+Fix : Added a couple of tweaks for modal popups in BS3, ensures that the modal appears above the background and fixes the position of the thumbnail in the modal popup.
+
+
 
 Jomres 8.1.-2
 
