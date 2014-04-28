@@ -444,7 +444,6 @@ class j01010listpropertys
 					if ( count( $propertyFeaturesArray ) > 0 )
 						{
 						$featureList = "";
-						$shortFeatureList = "";
 						$counter     = 0;
 						foreach ( $propertyFeaturesArray as $f )
 							{
@@ -456,13 +455,10 @@ class j01010listpropertys
 								$hotel_feature_full_desc=$current_property_details->all_property_features[ $f ]['desc'];
 								$feature_image= JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$current_property_details->all_property_features[ $f ]['image'];
 								$featureList .= jomres_makeTooltip( $hotel_feature_abbv, $hotel_feature_abbv, $hotel_feature_full_desc, $feature_image, "", "property_feature", array () );
-								if ($counter < 4)
-									$shortFeatureList .= jomres_makeTooltip( $hotel_feature_abbv, $hotel_feature_abbv, $hotel_feature_full_desc, $feature_image, "", "property_feature", array () );
 								$counter++;
 								}
 							}
 						$property_deets[ 'FEATURELIST' ] = $featureList;
-						$property_deets[ 'SHORTFEATURELIST' ] = $shortFeatureList;
 						}
 
 					$property_deets[ 'PRICE_PRE_TEXT' ]  = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRE_TEXT' ];
