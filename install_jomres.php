@@ -3366,7 +3366,7 @@ function insertSampleData()
 			 )
 			VALUES
 			( '1', 'Fawlty Towers', 'Asheldon Rd', 'Torquay',
-			'Devon','GB', 'TQ1 2QS', '01000 123456', '01000 654321', '$jomresConfig_mailfrom', ',1,2,',
+			'Devon','GB', 'TQ1 2QS', '01000 123456', '01000 654321', '$jomresConfig_mailfrom', '3,4,5',
 			'http://www.map24.com',
 			'My property description',
 			'Any time from 2pm onwards',
