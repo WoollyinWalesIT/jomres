@@ -274,7 +274,7 @@ class jomSearch
 				{
 				foreach ( $result as $feature )
 					{
-					if ( !empty( $feature[ 'title' ] ) ) $this->prep[ 'features' ][ ] = array ( 'id' => $feature[ 'id' ], 'image' => $feature[ 'image' ], 'title' => $feature[ 'title' ], 'description' => $feature[ 'description' ] );
+					if ( !empty( $feature[ 'title' ] ) ) $this->prep[ 'features' ][ ] = array ( 'id' => $feature[ 'id' ], 'image' => JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$feature[ 'image' ], 'title' => $feature[ 'title' ], 'description' => $feature[ 'description' ] );
 					}
 				}
 			}
@@ -287,7 +287,7 @@ class jomSearch
 				{
 				foreach ( $result as $rtype )
 					{
-					if ( !empty( $rtype[ 'id' ] ) && !empty( $rtype[ 'title' ] ) ) $this->prep[ 'rtypes' ][ ] = array ( 'id' => $rtype[ 'id' ], 'image' => $rtype[ 'image' ], 'title' => $rtype[ 'title' ], 'description' => $rtype[ 'description' ] );
+					if ( !empty( $rtype[ 'id' ] ) && !empty( $rtype[ 'title' ] ) ) $this->prep[ 'rtypes' ][ ] = array ( 'id' => $rtype[ 'id' ], 'image' => JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$rtype[ 'image' ], 'title' => $rtype[ 'title' ], 'description' => $rtype[ 'description' ] );
 					}
 				}
 			}
