@@ -316,9 +316,9 @@ class j01010listpropertys
 						$property_deets[ 'FEATURED_LISTINGS_CLASS' ] = 'panel-primary';
 						}
 						
-					if ($property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ])
+					if ( ($property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ]) || !isset($jrConfig[ 'featured_listings_emphasis' ]) )
 						$property_deets[ 'BUDGET_BORDER_CLASS' ] = 'panel-info';
-					
+
 					if ($guest_budget > 0 && $jrConfig['use_budget_feature'] == "1" && using_bootstrap() )
 						{
 						if (
