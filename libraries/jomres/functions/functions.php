@@ -1898,6 +1898,10 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 					}
 				$result = doInsertSql( $query, "" );
 				}
+			else // Plugin has already been installed
+				{
+				$result = true;
+				}
 
 			if ( $result )
 				{
