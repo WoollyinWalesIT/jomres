@@ -3479,16 +3479,7 @@ function insertSampleData()
 	$result = doInsertSql( "INSERT INTO `#__jomres_rooms` ( `room_uid` , `room_classes_uid` , `propertys_uid` , `room_features_uid` , `room_name` , `room_number` , `room_floor` , `room_disabled_access` , `max_people`,`smoking` )VALUES ('2', '3', '1', '1,2', 'The hole', '21', '2', '0', '4','0')", "" );
 
 
-	$result = doInsertSql( "INSERT INTO `#__jomres_rates` ( `rates_uid` , `rate_description` , `validfrom` , `validto` , `roomrateperday` , `mindays` , `maxdays` , `minpeople` , `maxpeople`,`roomclass_uid`,`ignore_pppn`,`allow_ph`,`allow_we`,`property_uid` )VALUES ('1', 'Low season 2004', '2004/10/01', '2005/04/30', '25', '1', '1000', '1', '4','3','0','1','1','1')", "" );
-
-
-	$result = doInsertSql( "INSERT INTO `#__jomres_rates` ( `rates_uid` , `rate_description` , `validfrom` , `validto` , `roomrateperday` , `mindays` , `maxdays` , `minpeople` , `maxpeople`,`roomclass_uid`,`ignore_pppn`,`allow_ph`,`allow_we`,`property_uid` )VALUES ('2', 'High season 2005', '2005/05/01', '2005/09/31', '100', '1', '1000', '1', '4','3','0','1','1','1')", "" );
-
-
-	$result = doInsertSql( "INSERT INTO `#__jomres_rates` ( `rates_uid` , `rate_description` , `validfrom` , `validto` , `roomrateperday` , `mindays` , `maxdays` , `minpeople` , `maxpeople`,`roomclass_uid`,`ignore_pppn`,`allow_ph`,`allow_we`,`property_uid` )VALUES ('3', 'Low season 2005', '2005/10/01', '2006/04/30', '30', '1', '1000', '1', '4','3','0','1','1','1')", "" );
-
-
-	$result = doInsertSql( "INSERT INTO `#__jomres_rates` ( `rates_uid` , `rate_description` , `validfrom` , `validto` , `roomrateperday` , `mindays` , `maxdays` , `minpeople` , `maxpeople`,`roomclass_uid`,`ignore_pppn`,`allow_ph`,`allow_we`,`property_uid` )VALUES ('4', 'High season 2006', '2006/05/01', '2009/09/31', '110', '1', '1000', '1', '4','3','0','1','1','1')", "" );
+	$result = doInsertSql( "INSERT INTO `#__jomres_rates` ( `rates_uid` , `rate_description` , `validfrom` , `validto` , `roomrateperday` , `mindays` , `maxdays` , `minpeople` , `maxpeople`,`roomclass_uid`,`ignore_pppn`,`allow_ph`,`allow_we`,`property_uid` )VALUES ('5', 'Double rooms', '2014/04/28', '2024/04/28', '110', '1', '1000', '1', '4','3','0','1','1','1')", "" );
 
 
 	$result = doInsertSql( "INSERT INTO `#__jomres_guests` ( `guests_uid` , `contracts_contract_uid` , `mos_userid` , `firstname` , `surname` , `house` , `street` , `town` , `county`,`postcode` , `tel_landline` , `tel_mobile` , `tel_fax` , `preferences` , `car_regno` , `ccard_no` , `ccard_issued` , `ccard_expiry` , `ccard_iss_no` , `ccard_name`,`property_uid`,`email` )VALUES ('1', '0', NULL , 'Major', 'Gowen', 'Watery Fowls', 'a Street', 'a Region','a Town','XXNN NXX', '01000 123456', '01777 123456', '01000 654321','A newspaper with uptodate cricket scores', '', '' , '', '','','','1','example@example.com')", "" );
@@ -3504,6 +3495,37 @@ function insertSampleData()
 
 	$query = "INSERT INTO `#__jomresportal_taxrates` (`id`, `code`, `description`, `rate`) VALUES (1, '01', 'VAT', 17.5)";
 	doInsertSql( $query, "" );
+	
+	// 
+	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'  );
+	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' );
+	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' . JRDS . '0' );
+	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' . JRDS . '0' . JRDS . 'medium' );
+	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' . JRDS . '0' . JRDS . 'thumbnail' );
+	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' );
+	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '1' );
+	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '1' . JRDS . 'medium' );
+	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '1' . JRDS . 'thumbnail' );
+	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '2' );
+	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '2' . JRDS . 'medium' );
+	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '2' . JRDS . 'thumbnail' );
+	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'slideshow' );
+	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'slideshow' . JRDS . '0' );
+	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'slideshow' . JRDS . '0' . JRDS . 'medium' );
+	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'slideshow' . JRDS . '0' . JRDS . 'thumbnail' );
+	
+	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'jrhouse.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' . JRDS . '0' . JRDS . 'jrhouse.png' );
+	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'jrhouse.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' . JRDS . '0' . JRDS . 'medium' . JRDS . 'jrhouse.png' );
+	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'jrhouse.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' . JRDS . '0' . JRDS . 'medium' . JRDS . 'jrhouse.png' );
+	
+	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'jrhouse.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '1' . JRDS . 'jrhouse.png' );
+	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'jrhouse.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '1' . JRDS . 'medium' . JRDS . 'jrhouse.png' );
+	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'jrhouse.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '1' . JRDS . 'medium' . JRDS . 'jrhouse.png' );
+	
+	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'jrhouse.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '2' . JRDS . 'jrhouse.png' );
+	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'jrhouse.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '2' . JRDS . 'medium' . JRDS . 'jrhouse.png' );
+	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'jrhouse.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '2' . JRDS . 'medium' . JRDS . 'jrhouse.png' );
+	
 	}
 
 
