@@ -1,3 +1,7 @@
+Jomres 8.1.1
+
+Fix : Fixed an issue where registry paths were being saved incorrectly, causing errors and blank pages when trying to run Jomres.
+
 Jomres 8.1.0
 
 Change : Added buttons to sanity checks to take the user to the appropriate link to fix the problem.
