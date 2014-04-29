@@ -8,7 +8,7 @@
 * @copyright	2005-2013 Vince Wooll
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly. 
 * @Polska adaptacja Patryk Doering - http://www.rekinet.pl - kontakt@rekinet.pl
-* @Aktualizacja wersji językowej z 02-03-2014r.
+* @Aktualizacja wersji językowej z 22-04-2014r.
 **/
 
 ##################################################################
@@ -2316,13 +2316,8 @@ jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME',"Klient - Potwierdzenie r
 jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC',"Wiadomość (e-mail lub wydruk) wysyłana ręcznie przez sprzedawcę do klienta z potwierdzeniem rezerwacji.");
 jr_define('_JOMRES_CAN_BE_APPROVED',"Ta rezerwacja może zostać zatwierdzona. Wszystkie wybrane zasoby są dostępne w wybranych terminach.");
 jr_define('_JOMRES_CANT_BE_APPROVED',"Ta rezerwacja nie może zostać zatwierdzona, gdyż wybrane zasoby są już zarezerwowane. Konieczna jest edycja rezerwacji i wybranie dostępnych zasobów dla wybranych terminów.");
-
-jr_define('_JOMRES_SHOW_POWEREDBY',"Show the Powered by Jomres link in the Jomres footer.");
-
-
-jr_define('GUEST_BUDGET',"Budget");
-jr_define('GUEST_BUDGET_FEATURE_SWITCH',"Use Budget feature?");
-jr_define('GUEST_BUDGET_FEATURE_SWITCH_DESC',"Bootstrapped sites only! The Budget feature is a feature of the property list that a guest can use to highlight for them properties who's price per night is under a certain figure. The feature has some limitations in that it might not be appropriate for some sites that use many different currencies. Note, if you're using this and the Featured Listings plugin, your featured listing wrapping class is automatically changed to 'panel-primary' when the property list is shown.");
-
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', 'Name: ' );
-
+jr_define('_JOMRES_SHOW_POWEREDBY',"Pokaż link Powered by Jomres w stopce Jomres.");
+jr_define('GUEST_BUDGET',"Budżet");
+jr_define('GUEST_BUDGET_FEATURE_SWITCH',"Użyć funkcji Budżet?");
+jr_define('GUEST_BUDGET_FEATURE_SWITCH_DESC',"Tylko dla Bootstrap na stronie! Opcja ta umożliwia klientom określenie ich budżetu jaki mogą przeznaczyć na daną rezerwację. Funkcja ma pewne ograniczenia i może się nie sprawdzić w serwisach z wieloma walutami. Dodatkowo jeśli używany jest plugin Featured Listings to jego klasa zostanie automatycznie podmieniona na 'panel-primary' z chwilą wyświetlania listy ofert.");
+jr_define('_JOMRES_FRONT_MR_EMAIL_TEXT_NAME','Nazwa: ');
