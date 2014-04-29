@@ -102,7 +102,7 @@ class mcHandler
 				$event     = new stdClass;
 				$ePoint    = $eClass[ 'eventPoint' ];
 				$eName     = $eClass[ 'eventName' ];
-				$eLiveSite = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' ), $eClass[ 'filepath' ] );
+				$eLiveSite = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' )."/", $eClass[ 'filepath' ] );
 				$eLiveSite = str_replace( JRDS, "/", $eLiveSite );
 				set_showtime( 'eLiveSite', $eLiveSite );
 				$event = 'j' . $ePoint . $eName;
@@ -170,7 +170,7 @@ class mcHandler
 				$event     = new stdClass;
 				$ePoint    = $eClass[ 'eventPoint' ];
 				$eName     = $eClass[ 'eventName' ];
-				$eLiveSite = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' ), $eClass[ 'filepath' ] );
+				$eLiveSite = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' )."/", $eClass[ 'filepath' ] );
 				$eLiveSite = str_replace( JRDS, "/", $eLiveSite );
 				set_showtime( 'eLiveSite', $eLiveSite );
 				$event = 'j' . $ePoint . $eName;
@@ -222,7 +222,7 @@ class mcHandler
 							$event              = new stdClass;
 							$ePoint             = $eClass[ 'eventPoint' ];
 							$eName              = $eClass[ 'eventName' ];
-							$eLiveSite          = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' ), $ePointFilepath );
+							$eLiveSite          = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' )."/", $ePointFilepath );
 							$eLiveSite          = str_replace( JRDS, "/", $eLiveSite );
 							set_showtime( 'eLiveSite', $eLiveSite );
 							$event = 'j' . $ePoint . $eName;
@@ -279,7 +279,7 @@ class mcHandler
 							$event              = new stdClass;
 							$ePoint             = $eClass[ 'eventPoint' ];
 							$eName              = $eClass[ 'eventName' ];
-							$eLiveSite          = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' ), $ePointFilepath );
+							$eLiveSite          = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' )."/", $ePointFilepath );
 							$eLiveSite          = str_replace( JRDS, "/", $eLiveSite );
 							set_showtime( 'eLiveSite', $eLiveSite );
 							$event = 'j' . $ePoint . $eName;
