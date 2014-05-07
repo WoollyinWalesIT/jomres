@@ -1,3 +1,14 @@
+Jomres 8.1.2
+
+Updated Polish lang files, thanks Patryk
+German language file updated.
+Improved a path problem caused by the latest fix.
+Fixed a missing image problem on Jquery ui bookingform.
+Added ids to town, street and posted in edit and register property templates to aid geocoder listener.
+Corrected a path for editing room types, image path was incorrect after new 8.1 path changes.
+Updated the wp plugin files to fix a bug with new paths.
+
+
 Jomres 8.1.1
 
 Fix : Fixed an issue where registry paths were being saved incorrectly, causing errors and blank pages when trying to run Jomres.
