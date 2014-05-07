@@ -40,11 +40,6 @@ if ( ! class_exists( 'wp_jomres' ) )
 		
 		function _init()
 			{
-			if (!defined('_JOMRES_INITCHECK'))
-				define( '_JOMRES_INITCHECK', 1 );
-
-			require_once (dirname(__FILE__).'/../../../jomres_root.php');
-			
 			add_action( 'admin_menu', array($this,'register_my_custom_menu_page') );
 
 			add_action('wp', array($this,'frontend_trigger_jomres'), 1);
@@ -179,16 +174,8 @@ if ( ! class_exists( 'wp_jomres' ) )
 				{
 				foreach ($this->js as $js)
 					{
-					if (strpos($js['1'], "bootstrap-editable"))
-						{
-						wp_register_script($js['0'], $js['1'], array('bootstrap'), $js['2']);
-						wp_enqueue_script($js['0']);
-						}
-					else
-						{
-						wp_register_script($js['0'], $js['1'], array('jquery'), $js['2']);
-						wp_enqueue_script($js['0']);
-						}
+					wp_register_script($js['0'], $js['1'], array(), $js['2']);
+					wp_enqueue_script($js['0']);
 					}
 				}
 			
@@ -226,7 +213,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 		function jomres_fullscreen_view($template)
 			{
 			if( isset( $_GET['tmpl']) && $_GET['tmpl'] == 'jomres' )
-				$template = ABSPATH . JOMRES_ROOT_DIRECTORY. '/libraries/fullscreen_view/wp-fullscreen.php';
+				$template = ABSPATH . 'jomres/libraries/fullscreen_view/wp-fullscreen.php';
 
 			return $template;
 			}
