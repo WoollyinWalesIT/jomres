@@ -83,9 +83,11 @@ class jomres_config_property_singleton
 			if ( isset( $this->all_property_settings[ (int) $property_uid ] ) )
 				{
 				$property_config = $this->all_property_settings[ (int) $property_uid ];
-				if ( is_null( $property_config ) ) $property_config = array ();
+				if ( is_null( $property_config ) ) 
+					$property_config = array ();
 				}
-			else $property_config = array ();
+			else 
+				$property_config = array ();
 
 			$temp_config = array_merge( $temp_config, $property_config );
 			if ( $jrConfig[ 'useGlobalCurrency' ] == "1" )
