@@ -3,7 +3,7 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 7
+ * @version Jomres 8
  * @package Jomres
  * @copyright    2005-2013 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -127,7 +127,7 @@ if ( !defined( '_JOMRES_DETECTED_CMS' ) )
 	}
 
 
-if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'jomres_standalone_config.php' ) )
+/* if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'jomres_standalone_config.php' ) )
 	{
 	define( "_JOMRES_DETECTED_CMS", "jomressa" );
 	define( "_JOMRES_DETECTED_CMS_SPECIFIC_FILES", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "jomres" . JRDS . "cms_specific" . JRDS . _JOMRES_DETECTED_CMS . JRDS );
@@ -140,7 +140,7 @@ if ( !defined( '_JOMRES_DETECTED_CMS' ) )
 		define( "_JOMRES_DETECTED_CMS", "jomressa" );
 		define( "_JOMRES_DETECTED_CMS_SPECIFIC_FILES", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "jomres" . JRDS . "cms_specific" . JRDS . _JOMRES_DETECTED_CMS . JRDS );
 		}
-	}
+	} */
 
 
 if ( !defined( '_JOMRES_DETECTED_CMS' ) ) define( "_JOMRES_DETECTED_CMS", "unknown" );
