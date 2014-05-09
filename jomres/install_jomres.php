@@ -485,7 +485,7 @@ function checkExtraServicesTableNeedsRenaming()
 	$case_sensitivity = doSelectSql( $query, 1 );
 	if ( $case_sensitivity == 0)
 		{
-		output_message ( 'Warning, Jomres attempted to check for the existance of the jomres_extraServices table, however your lower_case_table_names setting in mySql is set to 0 (zero) so we cannot test for this table name as mySql will return the table name as jomres_extraservices, even if it\'s stored as jomres_extraServices.<br/> Please check your table names (using a tool such as phpMyAdmin) and if the table is named xxxx_jomres_extraServices rename it manually to xxx_jomres_extraservices.  If you have already done this in the past you can ignore this warning.' , "danger" );
+		output_message ( 'Warning, Jomres attempted to check for the existance of the jomres_extraServices table, however your lower_case_table_names setting in mySql is set to 0 (zero) so we cannot test for this table name as mySql will return the table name as jomres_extraservices, even if it\'s stored as jomres_extraServices.<br/> Please check your table names (using a tool such as phpMyAdmin) and if the table is named xxxx_jomres_extraServices rename it manually to xxx_jomres_extraservices.  If you have already done this in the past you can ignore this warning.' , "warning" );
 		return false;
 		}
 		
