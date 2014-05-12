@@ -41,7 +41,7 @@ class j06001confirmation_letter
 			return;
 			}
 		
-		$email_type = 'email_guest_newbooking';
+		$email_type = 'email_guest_confirmationletter';
 
 		$property_uid	 = getDefaultProperty();
 		$mrConfig        = getPropertySpecificSettings();
