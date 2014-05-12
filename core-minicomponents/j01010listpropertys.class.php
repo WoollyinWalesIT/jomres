@@ -163,19 +163,16 @@ class j01010listpropertys
 				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $propertys_uids[ 0 ] . $arrival_clause ), "" );
 				}
 
-			if ( using_bootstrap())
+			if (!isset($jrConfig['use_budget_feature']))
+				$jrConfig['use_budget_feature'] = "1";
+				
+			if ( using_bootstrap() && $jrConfig['use_budget_feature'] == "1")
 				{
 				jr_import('jomres_user_budget');
 				$budget = new jomres_user_budget();
-						
-				if (!isset($jrConfig['use_budget_feature']))
-					$jrConfig['use_budget_feature'] = "1";
-						
-				if ($jrConfig['use_budget_feature'] == "1")
-					{
-					$budget_output = array();
-					$budget_output[0]['BUDGET_DROPDOWN'] = $budget-> get_budget_dropdown();
-					}
+
+				$budget_output = array();
+				$budget_output[0]['BUDGET_DROPDOWN'] = $budget-> get_budget_dropdown();
 				}
 			
 			
