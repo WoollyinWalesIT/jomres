@@ -1,3 +1,9 @@
+Jomres 8.1.4
+
+Change : Added an is_child flag to the customer types table.
+Change : Tweaked list properties to not build the budget class if the feature isn't used. Minor performance improvement.
+Fix : Confirmation letter script was sending wrong email template.
+
 Jomres 8.1.3
 
 Fix : Improved how installation on wordpress is detected.
