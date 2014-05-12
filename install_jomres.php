@@ -417,7 +417,7 @@ function doTableUpdates()
 	if ( !checkManagerSimpleconfigColExists() ) alterManagerSimpleconfigCol();
 	if ( !checkTarifftypesDescriptionColExists() ) alterTarifftypesDescriptionCol();
 	if ( !checkContractsApprovedColExists() ) alterContractsApproved();
-	
+	if ( !checkCustomertypesIsChildColExists() ) alterCustomertypesIsChildCol();
 	
 	checkLineitemsInitqtyColFloat();
 	
@@ -426,6 +426,32 @@ function doTableUpdates()
 	
 	if ( _JOMRES_DETECTED_CMS == "joomla15" ) checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
+
+	
+
+
+function checkCustomertypesIsChildColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_customertypes LIKE 'is_child'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+	return false;
+	}
+
+	
+function alterCustomertypesIsChildCol()
+	{
+	output_message ( "Editing __jomres_customertypes table adding is_child column");
+	$query = "ALTER TABLE `#__jomres_customertypes` ADD `is_child` BOOL NULL DEFAULT '0' AFTER `order` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_customertypes is_child", "danger" );
+		}
+	}
+
 
 // In Jomres 8.1 we're offering the ability to use a different path to the Jomres root directory due to requirements of the wordpress repository. As a result, we need to change the paths to the property feature and room type images.
 
@@ -2640,6 +2666,7 @@ function createJomresTables()
 		`published` TINYINT NOT NULL DEFAULT '1',
 		`property_uid` VARCHAR(11),
 		`order` INT( 11 ) NOT NULL DEFAULT '0',
+		`is_child` BOOL NULL DEFAULT '0',
 		PRIMARY KEY(id)
 		) ";
 	if ( !doInsertSql( $query ) )
