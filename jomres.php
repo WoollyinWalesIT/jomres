@@ -871,22 +871,29 @@ try
 			default:
 				if ( $jrConfig[ 'full_access_control' ] == "1" )
 					{
-					if ( $MiniComponents->eventSpecificlyExistsCheck( '06000', get_showtime( 'task' ) ) ) $MiniComponents->specificEvent( '06000', get_showtime( 'task' ) );
-					elseif ( $MiniComponents->eventSpecificlyExistsCheck( '06001', get_showtime( 'task' ) ) ) $MiniComponents->specificEvent( '06001', get_showtime( 'task' ) );
-					elseif ( $MiniComponents->eventSpecificlyExistsCheck( '06002', get_showtime( 'task' ) ) ) $MiniComponents->specificEvent( '06002', get_showtime( 'task' ) );
-					elseif ( $MiniComponents->eventSpecificlyExistsCheck( '06005', get_showtime( 'task' ) ) ) $MiniComponents->specificEvent( '06005', get_showtime( 'task' ) );
-					else no_task_set();
+					if ( $MiniComponents->eventSpecificlyExistsCheck( '06000', get_showtime( 'task' ) ) ) 
+						$MiniComponents->specificEvent( '06000', get_showtime( 'task' ) );
+					elseif ( $MiniComponents->eventSpecificlyExistsCheck( '06001', get_showtime( 'task' ) ) ) 
+						$MiniComponents->specificEvent( '06001', get_showtime( 'task' ) );
+					elseif ( $MiniComponents->eventSpecificlyExistsCheck( '06002', get_showtime( 'task' ) ) ) 
+						$MiniComponents->specificEvent( '06002', get_showtime( 'task' ) );
+					elseif ( $MiniComponents->eventSpecificlyExistsCheck( '06005', get_showtime( 'task' ) ) ) 
+						$MiniComponents->specificEvent( '06005', get_showtime( 'task' ) );
+					else 
+						no_task_set();
 					}
 				else
 					{
-					if ( $MiniComponents->eventSpecificlyExistsCheck( '06000', get_showtime( 'task' ) ) ) $MiniComponents->specificEvent( '06000', get_showtime( 'task' ) ); // Custom task
+					if ( $MiniComponents->eventSpecificlyExistsCheck( '06000', get_showtime( 'task' ) ) ) 
+						$MiniComponents->specificEvent( '06000', get_showtime( 'task' ) ); // Custom task
 					else if ( $MiniComponents->eventSpecificlyExistsCheck( '06001', get_showtime( 'task' ) ) && $thisJRUser->userIsManager ) // Receptionist and manager tasks
-					$MiniComponents->specificEvent( '06001', get_showtime( 'task' ) ); // Custom task
+						$MiniComponents->specificEvent( '06001', get_showtime( 'task' ) ); // Custom task
 					elseif ( $MiniComponents->eventSpecificlyExistsCheck( '06002', get_showtime( 'task' ) ) && $thisJRUser->userIsManager && $accessLevel == 2 ) // Manager only tasks
-					$MiniComponents->specificEvent( '06002', get_showtime( 'task' ) ); // Custom task
+						$MiniComponents->specificEvent( '06002', get_showtime( 'task' ) ); // Custom task
 					else if ( $MiniComponents->eventSpecificlyExistsCheck( '06005', get_showtime( 'task' ) ) && $thisJRUser->userIsRegistered ) // Registered only user tasks
-					$MiniComponents->specificEvent( '06005', get_showtime( 'task' ) ); // Custom task
-					else no_task_set();
+						$MiniComponents->specificEvent( '06005', get_showtime( 'task' ) ); // Custom task
+					else 
+						no_task_set();
 					}
 				break;
 		}
@@ -901,12 +908,15 @@ try
 		}
 	else
 		{
-		if ( $MiniComponents->eventSpecificlyExistsCheck( '06000', get_showtime( 'task' ) ) ) $MiniComponents->specificEvent( '06000', get_showtime( 'task' ) );
+		if ( $MiniComponents->eventSpecificlyExistsCheck( '06000', get_showtime( 'task' ) ) ) 
+			$MiniComponents->specificEvent( '06000', get_showtime( 'task' ) );
 		else
-		echo "Error, no properties installed. Before you can use Jomres you need to have at least 1 property installed, this is achieved by running <a href=\"" . get_showtime( 'live_site' ) . "/install_jomres.php\"></a>install_jomres.php.";
+			echo "Error, no properties installed. Before you can use Jomres you need to have at least 1 property installed, this is achieved by running <a href=\"" . get_showtime( 'live_site' ) . "/install_jomres.php\"></a>install_jomres.php.";
 		}
 
 
+	$MiniComponents->triggerEvent( '99994' );
+	
 	$performance_monitor->set_point( "pre-menu generation" );
 	if ( !defined( 'JOMRES_NOHTML' ) && !isset( $_REQUEST[ 'popup' ] ) ) // Generate the main menu
 		{
@@ -959,7 +969,7 @@ try
 		ob_end_clean();
 		}
 	else
-	ob_end_flush();
+		ob_end_flush();
 	}
 catch (Exception $e) 
 	{
