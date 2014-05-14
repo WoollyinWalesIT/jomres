@@ -68,7 +68,7 @@ class j06001dashboard_insertbooking_ajax
 			{
 			$insertMessage="Error: Room uid not set. Exitting.";
 			echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
-			exit;
+			return;
 			}
 
 		$gor = genericOr($dates_array,'date',false);
@@ -78,7 +78,7 @@ class j06001dashboard_insertbooking_ajax
 			{
 			$insertMessage="Error: Room already booked. Exitting.";
 			echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
-			exit;
+			return;
 			}
 		
 		//OK, let`s move on and set the new booking details
@@ -181,13 +181,13 @@ class j06001dashboard_insertbooking_ajax
 			//clean the buffer from any other output (other echos, for example if emails sending failed) and echo just the json
 			ob_clean();
 			echo json_encode($new_contract);
-			exit;
+			return;
 			}
 		else
 			{
 			$insertMessage = $insertSuccessful;
 			echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
-			exit;
+			return;
 			}
 		}
 
