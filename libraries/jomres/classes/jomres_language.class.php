@@ -98,7 +98,7 @@ class jomres_language
 
 		jomres_cmsspecific_setlanguage( $jomresConfig_lang );
 		$this->lang = $jomresConfig_lang;
-		system_log( 'Lang is finally set to ' . $jomresConfig_lang  . " for task ".$_REQUEST['task']);
+		//system_log( 'Lang is finally set to ' . $jomresConfig_lang  . " for task ".$_REQUEST['task']);
 		set_showtime( 'lang', $jomresConfig_lang );
 		}
 
