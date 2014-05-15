@@ -96,7 +96,9 @@ if ( isset( $_REQUEST[ 'jomreslang' ] ) )
 		}
 	}
 
-$page_id = jomresGetParam($_GET, 'page_id', '0');	
+$page_id = get_the_ID();
+if ($page_id == 0)
+	$page_id = jomresGetParam($_GET, 'page_id', '0');	
 
 
 define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/?option=com_jomres&page_id=" . $page_id . $tmpl . $lang);
