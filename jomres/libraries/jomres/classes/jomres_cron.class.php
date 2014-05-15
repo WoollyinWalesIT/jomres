@@ -63,6 +63,10 @@ class jomres_cron
 							$nextDue = $job->last_ran + 60 + $threashold;
 							if ( $this->now > $nextDue ) $jobDue = true;
 							break;
+						case "QH": // Every 15 mins
+							$nextDue = $job->last_ran + 900 + $threashold;
+							if ( $this->now > $nextDue ) $jobDue = true;
+							break;
 						case "H": // Every hour
 							$nextDue = $job->last_ran + 3600 + $threashold;
 							if ( $this->now > $nextDue ) $jobDue = true;
@@ -141,6 +145,14 @@ class jomres_cron
 				{
 					case "M": // Every minute
 						$nextDue = $job[ 'last_ran' ] + 60;
+						if ( $this->now > $nextDue )
+							{
+							$jobDue           = true;
+							$this->dueJobs[ ] = $job;
+							}
+						break;
+					case "QH": // Every 15 mins
+						$nextDue = $job[ 'last_ran' ] + 900;
 						if ( $this->now > $nextDue )
 							{
 							$jobDue           = true;
