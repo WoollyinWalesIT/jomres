@@ -186,7 +186,12 @@ class j00004x_init_javascript_css_files
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.fileupload-validate.js.relpath" ), get_showtime( "tmpl.min.js" ) );
 					}
 				
-				 if (using_bootstrap() && $thisJRUser->userIsManager )
+				 if ( 
+					using_bootstrap() && 
+					( $thisJRUser->userIsManager ) ||
+					( $thisJRUser->userIsRegistered && get_showtime("task") == 'registerProp_step1' ) ||
+					( $thisJRUser->userIsRegistered && get_showtime("task") == 'registerProp_step2' )
+					)
 					{
 					jomres_cmsspecific_addheaddata( "javascript", get_showtime( "bootstrap-tour.js.relpath" ), get_showtime( "bootstrap-tour.js" ) );
 
