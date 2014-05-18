@@ -119,6 +119,8 @@ class j06001dashboard_insertbooking_ajax
 		if ($insertSuccessful === true)
 			{
 			$contract_uid = (string)$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ]['contract_uid'];
+			set_showtime("new_booking_number",$booking_number);
+			set_showtime("new_booking_id",$contract_uid);
 			$booking_number = (string)$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ]['cartnumber'];
 			
 			$url=jomresUrl(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$contract_uid);
