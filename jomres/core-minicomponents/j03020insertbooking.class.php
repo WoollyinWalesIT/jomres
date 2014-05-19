@@ -87,11 +87,16 @@ class j03020insertbooking
 			{
 			if ( isset( $tmpBookingHandler->tmpbooking[ "amend_contract" ] ) )
 				{
+				set_showtime ("booking_amended",true);
+				set_showtime ("amended_contractuid",$tmpBookingHandler->getBookingFieldVal( "amend_contractuid" ));
 				$amend_contract    = $tmpBookingHandler->getBookingFieldVal( "amend_contract" );
 				$amend_contractuid = $tmpBookingHandler->getBookingFieldVal( "amend_contractuid" );
 				}
 			else
+				{
+				set_showtime ("booking_amended",false);
 				$amend_contract = 0;
+				}
 
 			if ( $amend_contract && $amend_contractuid != 0 && $userIsManager )
 				{
