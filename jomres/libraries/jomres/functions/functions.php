@@ -2852,7 +2852,9 @@ function writexml( $logfile, $rootelement, $entry, $newlines )
 function jomresRedirect( $url, $msg = '' )
 	{
 	// msg depreciated now as we're using growl for feedback after redirect, however we'll leave it in-situ in case we want it back again sometime in the future.
-
+	$MiniComponents =jomres_getSingleton('mcHandler');
+	$MiniComponents->triggerEvent( '99994' );
+	
 	$url = str_replace( "&amp;", "&", $url );
 
  	jr_import( 'browser_detect' );
@@ -2875,7 +2877,9 @@ function jomresRedirect( $url, $msg = '' )
 		else
 			header( 'Location: ' . $url, true );
 		} 
+	
 
+	
 	exit;
 	}
 
