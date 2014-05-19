@@ -27,9 +27,13 @@ class j07110media_centre_upload_context_features_images
 			}
 		
 		// We will check to see if this user can upload feature images. If we're not in the administrator area, this script shouldn't be being run
-		if (!jomres_cmsspecific_areweinadminarea())
+		
+		if (this_cms_is_joomla()) // Can't be specific about the cms area when in WP because WP's sessions are the same, for both frontend and backend.
 			{
-			return null;
+			if (!jomres_cmsspecific_areweinadminarea())
+				{
+				return null;
+				}
 			}
 		
 		
@@ -49,7 +53,7 @@ class j07110media_centre_upload_context_features_images
 		$arr [ 'upload_context_title']            = jr_gettext( '_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES', _JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES );
 		
 		
-		$this->ret_vals ['features_images']  = $arr;
+		$this->ret_vals [$upload_context]  = $arr;
 		
 		}
 

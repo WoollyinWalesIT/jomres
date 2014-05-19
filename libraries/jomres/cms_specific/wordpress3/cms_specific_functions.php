@@ -64,7 +64,9 @@ function jomres_cmsspecific_getlogin_task()
 
 function jomres_cmsspecific_areweinadminarea()
 	{
-	if ( strpos($_SERVER['SCRIPT_NAME'],"ajax.php") )
+	if ( strpos($_SERVER['SCRIPT_NAME'],"wp-admin") ) 
+		return true;
+	elseif ( strpos($_SERVER['SCRIPT_NAME'],"ajax.php") )
 		return false;
 	else
 		return is_admin();

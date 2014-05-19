@@ -44,9 +44,10 @@ class j07100media_centre_uploader_contexts
 				}
 			}
 		$upload_context = jomresGetParam( $_REQUEST, 'upload_context', 'properties' );
-		if ( $plugin_upload_contexts[ $upload_context ] == null)
+		
+		if ( !isset( $plugin_upload_contexts[ $upload_context ] ) )
 			{
-			die ( "Something is seriously wrong" );
+			throw new Exception("Somethig is wrong, plugin_upload_contexts[ upload_context ] isn't set.");
 			}
 		else
 			{
