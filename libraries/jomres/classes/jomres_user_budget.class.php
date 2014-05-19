@@ -32,7 +32,7 @@ class jomres_user_budget
 		{
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		$tmpBookingHandler->user_settings[ 'budget' ] = (int)$budget;
-		$tmpBookingHandler->close_jomres_session();
+		//$tmpBookingHandler->close_jomres_session();
 		
 		}
 		
