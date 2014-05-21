@@ -182,7 +182,7 @@ class j03020insertbooking
 				$query    = "UPDATE #__jomres_contracts SET
 					`arrival` 					= '$arrivalDate',
 					`departure`					= '$departureDate',
-					`rates_uid`					= '$rates_uid',
+					`rates_uid`					= '".(int)$rates_uid."',
 					`guest_uid`					= '$guests_uid',
 					`rate_rules`				= '$rateRules',
 					`rooms_tariffs`				= '$requestedRoom',
