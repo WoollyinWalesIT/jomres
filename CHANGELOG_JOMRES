@@ -1,3 +1,18 @@
+Jomres 8.1.5
+
+Change : Added a new 99994 trigger point at the end of jomres.php's run. 
+Change : Added new 99994 trigger to jomresRedirect function to ensure that 99994 actions are performed both when Jomres finishes running jomres.php, and when calls are redirected to another task.
+Change : Changed ajax insert booking so that it doens't exit at the end of it's run, instead it returns.
+Change : Disabled a system/misc logging event as it's not needed.
+Change : Added a quarter hourly cron job option to the cron class.
+Change : Added contract uid and booking number to showtime after quickbooking.
+Change : Removed an unnecessary call to close session.
+Change : Added several flags to showtime for booking insertion, to store references to amended contract uids.
+Fix : Fixed an issue where the Product Tour (inline help feature) caused a javascript error on Reg Prop 2.
+Wordpress : Tweaked the WP cms specific urls functionality to enable Jomres to work on WP sites that have permalinks enabled. This doesn't provide pretty urls, but it does fix an issue where Jomres wouldn't work on sites with permalinks switched on.
+Wordpress : Improved how WP specific functionality detects if we're in admin area or not. Fixes an issue where admin media centre doesn't know where it is and results in a "something seriously wrong" message.
+
+
 Jomres 8.1.4
 
 Change : Added an is_child flag to the customer types table.
