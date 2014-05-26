@@ -504,7 +504,6 @@ class j02990showconfirmation
 				if ( !$userIsManager && $mrConfig[ 'useOnlinepayment' ] != "0" )
 					{
 					$gatewaylist  = array ();
-					$gatewaydir   = get_showtime( 'live_site' ) . "/administrator/".JOMRES_ROOT_DIRECTORY."/plugins/gateways/";
 					$query        = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = '" . (int) $property_uid . "' AND setting = 'active' AND value = '1'";
 					$gatewayDeets = doSelectSql( $query );
 					if ( count( $gatewayDeets ) > 0 )
@@ -530,7 +529,8 @@ class j02990showconfirmation
 									$tmpgatewaydir  = $result;
 									}
 								$gw[ 'GWINPUT' ] = '<input type="radio" name="plugin" value="' . $gateway->plugin . '" class="inputbox" ' . $checked . ' />' . $gw[ 'GWNAME' ];
-								$gatewaydir      = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' ), $tmpgatewaydir );
+								$gatewaydir      = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' ).'/', $tmpgatewaydir );
+								$gatewaydir      = str_replace( '\\', '/', $gatewaydir );
 								$gw[ 'GWIMAGE' ] = '<img src="' . $gatewaydir . 'j00510' . $gateway->plugin . '.gif" border="0">';
 								$gateways[ ]     = $gw;
 								$counter++;
