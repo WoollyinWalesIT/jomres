@@ -3,9 +3,9 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 7
+ * @version Jomres 8
  * @package Jomres
- * @copyright    2005-2013 Vince Wooll
+ * @copyright	2005-2014 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
@@ -17,6 +17,14 @@ define( '_COMPONENT_JOMRES_INTEGRATIONCALLED', '1' );
 
 global $jomresPath, $license_key, $jomresConfig_absolute_path, $MiniComponents;
 global $mrConfig, $jrConfig, $jomres_systemLog_path;
+
+if (!defined('JOMRES_ROOT_DIRECTORY'))
+	{
+	echo "Error, JOMRES_ROOT_DIRECTORY is not defined and Jomres will not run<br/>";
+	$backtrace = debug_backtrace();
+	echo "It looks like <strong>".$backtrace[1][ 'file' ]."</strong> is the culprit. It should be calling jomres_root.php and it isn't. ";
+	exit;
+	}
 
 if ( !defined( 'JOMRESPATH_BASE' ) )
 	{
