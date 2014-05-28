@@ -246,8 +246,8 @@ $jrConfig[ 'use_jomres_own_editor' ]            = "1";
 $jrConfig[ 'room_lock_timeout' ]                = "3600";
 
 $jrConfig[ 'input_filtering' ]            = "strong";
-$jrConfig[ 'html_purifier_allowed_tags' ] = "p,b,strong,a[href],i";
-$jrConfig[ 'inputs_allowing_html' ]       = "property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers";
+$jrConfig[ 'html_purifier_allowed_tags' ] = "p[class],b,strong,a[href],i,em,img[src],ul,li,h1[class],table[width],table[border],tr,td,th,br";
+$jrConfig[ 'inputs_allowing_html' ]       = "property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers email_text";
 
 $jrConfig[ 'property_details_in_tabs' ]     = "1";
 $jrConfig[ 'property_list_layout_default' ] = "list";
