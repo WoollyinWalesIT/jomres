@@ -3,9 +3,9 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 8
+ * @version Jomres 7
  * @package Jomres
- * @copyright	2005-2014 Vince Wooll
+ * @copyright    2005-2013 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
@@ -204,6 +204,7 @@ class j06005muviewbooking
 			$tax                       = $booking->tax;
 			$bookedin                  = $booking->booked_in;
 			$variances                 = $booking->rate_rules;
+			$booking_cancelled	       = $booking->cancelled;
 			}
 
 		$guesttypeOutput = array ();
@@ -257,6 +258,16 @@ class j06005muviewbooking
 			$jrtb .= $jrtbar->toolbarItem( 'cancelbooking', jomresURL( JOMRES_SITEPAGE_URL . "&task=cancelGuestBooking&contract_uid=$booking_contract_uid" ), '' );
 			$jrtb .= $jrtbar->endTable();
 			echo $jrtb;
+			}
+		
+		if ((int)$booking_cancelled == 1)
+			{
+			if (using_bootstrap())
+				$class = "alert alert-error";
+			else
+				$class = "ui-state-error";
+			
+			echo '<div class="'.$class.'">'.jr_gettext('_JOMRES_STATUS_CANCELLED', _JOMRES_STATUS_CANCELLED, false).'</div>';
 			}
 
 		echo "<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>";

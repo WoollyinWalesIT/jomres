@@ -3,9 +3,9 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 8
+ * @version Jomres 7
  * @package Jomres
- * @copyright	2005-2014 Vince Wooll
+ * @copyright    2005-2013 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
@@ -101,6 +101,17 @@ class j02260editbooking
 				
 				$approval_msg['MESSAGE'] = jr_gettext('_JOMRES_CAN_BE_APPROVED', _JOMRES_CAN_BE_APPROVED, false);
 				}
+			}
+		
+		//display a message if the booking is cancelled
+		if ((int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] == 1)
+			{
+			if (using_bootstrap())
+				$approval_msg['CLASS'] = "alert alert-error";
+			else
+				$approval_msg['CLASS'] = "ui-state-error";
+					
+			$approval_msg['MESSAGE'] = jr_gettext('_JOMRES_STATUS_CANCELLED', _JOMRES_STATUS_CANCELLED, false);
 			}
 
 		//toolbar
