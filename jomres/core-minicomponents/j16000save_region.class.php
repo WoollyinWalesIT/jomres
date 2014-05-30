@@ -43,7 +43,7 @@ class j16000save_region
 		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 		$c->eraseAll();
 
-		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=edit_region&id=" . $id, '' );
+		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_regions", '' );
 		}
 
 	// This must be included in every Event/Mini-component
