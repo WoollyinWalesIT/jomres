@@ -251,7 +251,7 @@ class j06005muviewbooking
 		else
 		$depositPaid = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO );
 
-		if ( !$bookedin && dateDiff( $interval, date( "Y/m/d" ), $booking_arrival ) > (int) $mrConfig[ 'cancellation_threashold' ] )
+		if ( !$bookedin && dateDiff( $interval, date( "Y/m/d" ), $booking_arrival ) > (int) $mrConfig[ 'cancellation_threashold' ] && (int)$booking_cancelled == 0)
 			{
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb   = $jrtbar->startTable();
