@@ -113,7 +113,21 @@ class j16000showplugins
 			$price_known = true;
 			if ( !isset( $rp->price ) ) $price_known = false;
 
-			$remote_plugins[ trim( jomres_sanitise_string( @$rp->name ) ) ] = array ( "name" => trim( jomres_sanitise_string( @$rp->name ) ), "version" => (float) @$rp->version, "lastupdate" => jomres_sanitise_string( @$rp->lastupdate ), "description" => jomres_sanitise_string( @$rp->description ), "type" => jomres_sanitise_string( @$rp->type ), "min_jomres_ver" => jomres_sanitise_string( @$rp->min_jomres_ver ), "price" => @$rp->price, "manual_link" => jomres_sanitise_string( @$rp->manual_link ), "change_log" => jomres_sanitise_string( @$rp->change_log ), "highlight" => jomres_sanitise_string( @$rp->highlight ), "image" => jomres_sanitise_string( @$rp->image ), "demo_url" => addslashes( @$rp->demo_url ), );
+			$remote_plugins[trim( jomres_sanitise_string( @$rp->name ) ) ] = array ( 
+					"name" => trim( jomres_sanitise_string( @$rp->name ) ), 
+					"version" => (float) @$rp->version, 
+					"lastupdate" => jomres_sanitise_string( @$rp->lastupdate ), 
+					"description" => jomres_sanitise_string( @$rp->description ), 
+					"type" => jomres_sanitise_string( @$rp->type ), 
+					"min_jomres_ver" => jomres_sanitise_string( @$rp->min_jomres_ver ), 
+					"price" => @$rp->price, 
+					"manual_link" => jomres_sanitise_string( @$rp->manual_link ), 
+					"change_log" => jomres_sanitise_string( @$rp->change_log ), 
+					"highlight" => jomres_sanitise_string( @$rp->highlight ), 
+					"image" => jomres_sanitise_string( @$rp->image ), 
+					"demo_url" => addslashes( @$rp->demo_url ),
+					"retired" => (bool) @$rp->retired  
+				);
 			}
 
 		$d = @dir( $jrePath );
@@ -266,9 +280,10 @@ class j16000showplugins
 				{
 				$button_disabled_text = " ui-state-disabled ";
 				}
-			
-			
 			}
+		
+		$retired_plugins = array();
+		
 		foreach ( $remote_plugins as $rp )
 			{
 			$r = array ();
@@ -289,7 +304,7 @@ class j16000showplugins
 				{
 				$uninstallAction       = $uninstall_text;
 				$installAction         = $reinstall_text;
-				$row_class             = 'ui-state-highlight';
+				$row_class             = 'ui-state-success';
 				$action                = "Reinstall";
 				$uninstall             = "<a href=\"" . $uninstallLink . "\">" . $uninstallText . "</a>";
 				$r[ 'UNINSTALL_LINK' ] = $uninstallLink;
@@ -298,7 +313,12 @@ class j16000showplugins
 					{
 					$plugins_needing_upgrading[ ] = $plugin_name;
 					$installAction                = $upgrade_text;
+					$row_class                    = 'ui-state-highlight';
+					}
+				if (  $rp[ 'retired' ]  )
+					{
 					$row_class                    = 'ui-state-error';
+					$retired_plugins[]            = $plugin_name;
 					}
 				}
 
@@ -323,9 +343,17 @@ class j16000showplugins
 				{
 				$r[ 'UNINSTALL_LINK' ] = JOMRES_SITEPAGE_URL_ADMIN . '&task=removeplugin&no_html=1&plugin=' . $n;
 				$r[ 'UNINSTALL_TEXT' ] = $uninstallAction;
-				if ( using_bootstrap() ) $r[ 'UNINSTALL' ] = '<a href="' . $r[ 'UNINSTALL_LINK' ] . '" class="btn btn-danger" >' . $r[ 'UNINSTALL_TEXT' ] . '</a>';
+				if ( using_bootstrap() ) 
+					{
+					if ( !$rp[ 'retired' ] )
+						$r[ 'UNINSTALL' ] = '<a href="' . $r[ 'UNINSTALL_LINK' ] . '" class="btn btn-danger" >' . $r[ 'UNINSTALL_TEXT' ] . '</a>';
+					else
+						$r[ 'UNINSTALL' ] = '<a href="' . $r[ 'UNINSTALL_LINK' ] . '" class="btn btn-success" >' . $r[ 'UNINSTALL_TEXT' ] . '</a>';
+					}
 				else
-				$r[ 'UNINSTALL' ] = '<a href="' . $r[ 'UNINSTALL_LINK' ] . '" class="fg-button ui-state-default ui-corner-all">' . $r[ 'UNINSTALL_TEXT' ] . '</a>';
+					{
+					$r[ 'UNINSTALL' ] = '<a href="' . $r[ 'UNINSTALL_LINK' ] . '" class="fg-button ui-state-default ui-corner-all">' . $r[ 'UNINSTALL_TEXT' ] . '</a>';
+					}
 				}
 
 			$local_version = $installed_plugins[ $plugin_name ][ 'version' ];
@@ -442,6 +470,8 @@ class j16000showplugins
 					}
 			//	}
 
+			if ($rp[ 'retired' ])
+				$r[ 'INSTALL' ] = '';
 
 			$r[ 'PRICE' ] = $rp[ 'price' ];
 			if ( !array_key_exists( $rp[ 'name' ], $installed_plugins ) && !array_key_exists( $rp[ 'name' ], $current_licenses ) )
@@ -482,14 +512,17 @@ class j16000showplugins
 				{
 				switch ( $row_class )
 				{
-					case 'ui-state-highlight':
+					case 'ui-state-success':
 						$row_class = 'alert alert-success';
 						break;
-					case 'ui-state-error':
-						$row_class = 'alert alert-error';
+					case 'ui-state-highlight':
+						$row_class = 'alert alert-warning';
 						break;
 					case 'freeplugin':
 						$row_class = 'alert alert-info';
+						break;
+					case 'ui-state-error':
+						$row_class = 'alert alert-danger';
 						break;
 					default :
 						$row_class = '';
@@ -504,7 +537,22 @@ class j16000showplugins
 			$jomresdotnet_plugins[ ] = $r;
 			}
 
+		// We'll move retired plugins to the top of the list
 
+		if (count($retired_plugins)>0)
+			{
+			$count = count($jomresdotnet_plugins);
+			for ($i=0;$i<$count;$i++)
+				{
+				if ( in_array( $jomresdotnet_plugins[$i]['PLUGIN_NAME'] , $retired_plugins ) )
+					{
+					$move = $jomresdotnet_plugins[$i];
+					unset($jomresdotnet_plugins[$i]);
+					array_unshift($jomresdotnet_plugins , $move );
+					}
+				}
+		//	var_dump($jomresdotnet_plugins);exit;
+			}
 		$output[ 'PLUGINS_TO_UPGRADE' ] = implode( ",", $plugins_needing_upgrading );
 
 		if ( $this->key_valid ) $plugins_require_upgrade[ ][ 'upgrade_text' ] = 'Upgrade all Core plugins';
