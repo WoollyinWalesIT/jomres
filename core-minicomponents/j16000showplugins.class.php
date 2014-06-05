@@ -533,8 +533,11 @@ class j16000showplugins
 			$r[ 'ROWCLASS' ] = $row_class;
 
 			$r[ 'STYLE' ] = $style;
-
-			$jomresdotnet_plugins[ ] = $r;
+			
+			if (  $rp[ 'retired' ] && array_key_exists( $rp[ 'name' ], $installed_plugins ) )
+				$jomresdotnet_plugins[ ] = $r;
+			elseif( !$rp[ 'retired' ] )
+				$jomresdotnet_plugins[ ] = $r;
 			}
 
 		// We'll move retired plugins to the top of the list
