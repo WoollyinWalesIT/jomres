@@ -3,9 +3,9 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 8
+ * @version Jomres 7
  * @package Jomres
- * @copyright	2005-2014 Vince Wooll
+ * @copyright    2005-2013 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
@@ -68,6 +68,8 @@ class j06001confirmation_letter
 								$booking_email_details->parsed_email['attachments'] )
 				) 
 				error_logging( 'Failure in sending confirmation letter to guest. Target address: ' . $booking_email_details->data[$contract_uid]['EMAIL'] . ' Subject ' . $booking_email_details->parsed_email['subject'].$booking_email_details->parsed_email['text'] );
+			else
+				echo jr_gettext('_JOMRES_CONFIRMATION_EMAIL_SENT', _JOMRES_CONFIRMATION_EMAIL_SENT, false);
 			}
 		else
 			echo $booking_email_details->parsed_email['text'];

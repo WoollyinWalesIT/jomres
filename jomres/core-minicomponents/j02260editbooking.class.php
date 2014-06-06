@@ -214,7 +214,7 @@ class j02260editbooking
 					//add_menu_option( 'javascript:void window.open(\'' . $link . '\', \'win2\', \'' . $status . '\');', null, jr_gettext( '_JOMRES_COM_CONFIRMATION_PRINT', _JOMRES_COM_CONFIRMATION_PRINT, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
 					}
 				
-				$link = JOMRES_SITEPAGE_URL . '&task=confirmation_letter&no_html=1&contract_uid=' . $contract_uid . '&sendemail=1';
+				$link = JOMRES_SITEPAGE_URL . '&task=confirmation_letter&no_html=1&popup=1&tmpl='.get_showtime('tmplcomponent').'&contract_uid=' . $contract_uid . '&sendemail=1';
 				if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 )
 					{
 					$jrtb .= $jrtbar->toolbarItem( 'emailsend', 'javascript:void window.open(\'' . $link . '\', \'win2\', \'' . $status . '\');', jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL, $editable = false, $isLink = false ) );
