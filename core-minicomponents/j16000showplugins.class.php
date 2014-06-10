@@ -339,7 +339,7 @@ class j16000showplugins
 			$r[ 'UNINSTALL_LINK' ] = '';
 			$r[ 'UNINSTALL_TEXT' ] = '';
 			$r[ 'UNINSTALL' ]      = '';
-			if ( !in_array( $rp[ 'type' ], $externalPluginTypes ) && array_key_exists( $rp[ 'name' ], $installed_plugins ) )
+			if ( array_key_exists( $rp[ 'name' ], $installed_plugins ) )
 				{
 				$r[ 'UNINSTALL_LINK' ] = JOMRES_SITEPAGE_URL_ADMIN . '&task=removeplugin&no_html=1&plugin=' . $n;
 				$r[ 'UNINSTALL_TEXT' ] = $uninstallAction;
