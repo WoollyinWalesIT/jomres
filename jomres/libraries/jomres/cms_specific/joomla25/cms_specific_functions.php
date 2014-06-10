@@ -313,12 +313,22 @@ function jomres_cmsspecific_getCMS_users_admin_userdetails_by_id( $id )
 // As per the function name
 function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids( $id )
 	{
-	$users    = array ();
-	$query    = "SELECT id,username,email FROM #__users WHERE `sendEmail`=1";
-	$userList = doSelectSql( $query );
-	if ( count( $userList ) > 0 )
+	$db = JFactory::getDbo();
+	$query = $db->getQuery(true);
+	$query
+		->select($db->quoteName(array('a.id','a.username','a.email')))
+		->from($db->quoteName('#__users', 'a'))
+		->join('LEFT', $db->quoteName('#__user_usergroup_map', 'b') . ' ON (' . $db->quoteName('a.id') . ' = ' . $db->quoteName('b.user_id') . ')')
+		->where($db->quoteName('b.group_id') . '=8');
+	// Number 8 represent ID of a "group_id" from "_user_usergroup_map" table
+	$db->setQuery($query);
+	// load results from query
+	$ids= $db->loadObjectList();
+	
+	$users = array();
+	if ( count( $ids ) > 0 )
 		{
-		foreach ( $userList as $u )
+		foreach ( $ids as $u )
 			{
 			$users[ $u->id ] = array ( "id" => $u->id, "username" => $u->username, "email" => $u->email );
 			}
