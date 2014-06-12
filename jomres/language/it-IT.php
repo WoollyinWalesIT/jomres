@@ -14,7 +14,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 jr_define( "_JOMRES_COM_MR_QUICKRESDESC", "Prenotazione rapida" );
 jr_define( "_JOMRES_COM_MR_SHOWPROFILES", "Mostra profili" );
 jr_define( "_JOMRES_COM_MR_QUICK______DESC", "Spazi lasciati vuoti intenzionalmente" );
-jr_define( "_JOMRES_COM_MR_GENERALCONFIGDESC", "Configurazione generale Pericolo!" );
+jr_define( "_JOMRES_COM_MR_GENERALCONFIGDESC", "Configurazione generale" );
 jr_define( "_JOMRES_COM_MR_BACK", "Indietro" );
 jr_define( "_JOMRES_COM_MR_YES", "Si" );
 jr_define( "_JOMRES_COM_MR_NO", "No" );
@@ -32,7 +32,7 @@ jr_define( "_JOMRES_COM_MR_ASSIGNUSER_TITLE", "Assegna privilegi d' amministrato
 jr_define( "_JOMRES_COM_MR_ASSIGNUSER_ID", "ID" );
 jr_define( "_JOMRES_COM_MR_ASSIGNUSER_NAME", "Nome" );
 jr_define( "_JOMRES_COM_MR_ASSIGNUSER_USERNAME", "Nome utente" );
-jr_define( "_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER", "Autorizzato attualmente" );
+jr_define( "_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER", "Autorizzato" );
 jr_define( "_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDDEFAULTHOTEL", "struttura predefinita" );
 jr_define( "_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS", "Cambia" );
 jr_define( "_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL", "Livello di accesso" );
@@ -61,7 +61,7 @@ jr_define( "_JOMRES_COM_MR_EB_GUEST_JOMRES_LANDLINE_EXPL", "Numero di telefono" 
 jr_define( "_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL", "Numero cellulare" );
 jr_define( "_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL", "E-Mail" );
 jr_define( "_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN", "Non è possibile anullare questa prenotazione perchè l'ospite è arrivato" );
-jr_define( "_JOMRES_COM_MR_EB_GUEST_CANCELLATION_NODEPOSIT", "Deposito non pagato" );
+jr_define( "_JOMRES_COM_MR_EB_GUEST_CANCELLATION_NODEPOSIT", "Cauzione non pagata" );
 jr_define( "_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON", "Conferma l'annullamento" );
 jr_define( "_JOMRES_COM_MR_EB_GUEST_CANCELLED", "Prenotazione annullata" );
 jr_define( "_JOMRES_COM_MR_EB_GUEST_DAYSTOARRIVAL", "N° Giorni all'arrivo" );
@@ -76,20 +76,20 @@ jr_define( "_JOMRES_COM_MR_EB_ROOM_DISABLED", "Accesso per disabili" );
 jr_define( "_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE", " Massimo occupanti consentito" );
 jr_define( "_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV", "Tipo di camera" );
 jr_define( "_JOMRES_COM_MR_EB_ROOM_CLASS_DESC", "Descrizione tipo camera" );
-jr_define( "_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST", "Elenco delle caratteristiche della camera" );
+jr_define( "_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST", "Elenco dei servizi in camera" );
 jr_define( "_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID", "Acconto pagato" );
-jr_define( "_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE", "Immetti acconto" );
+jr_define( "_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE", "Inserire acconto" );
 jr_define( "_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL", "Totale da pagare" );
-jr_define( "_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF", "Rif. deposito" );
+jr_define( "_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF", "Rif. cauzione" );
 jr_define( "_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER", "Numero prenotazione" );
 jr_define( "_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED", "Acconto" );
 jr_define( "_JOMRES_COM_MR_EB_PAYM_DEPOSITSAVEMESSAGE", "Acconto salvato" );
 // Modificare lingua
-jr_define( "_JOMRES_COM_MR_QUICKRES_STEP2_TITLE", "Camere disponibile" );
+jr_define( "_JOMRES_COM_MR_QUICKRES_STEP2_TITLE", "Camere disponibili" );
 jr_define( "_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME", "struttura" );
 jr_define( "_JOMRES_COM_MR_QUICKRES_STEP2_ROOMTYPE", "Tipo d camera" );
 //Mostrare form  ospite
-jr_define( "_JOMRES_COM_MR_DISPGUEST_EDITDETAILS", "Modificare i dati dell' ospite" );
+jr_define( "_JOMRES_COM_MR_DISPGUEST_EDITDETAILS", "Modifica i dati dell' ospite" );
 jr_define( "_JOMRES_COM_MR_DISPGUEST_FIRSTNAME", "Nome" );
 jr_define( "_JOMRES_COM_MR_DISPGUEST_SURNAME", "Cognome" );
 jr_define( "_JOMRES_COM_MR_DISPGUEST_HOUSE", "Via" );
@@ -111,10 +111,10 @@ jr_define( "_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE", "Totale" );
 // Scheda camere
 jr_define( "_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE", "Camere e struttura" );
 jr_define( "_JOMRES_COM_MR_VRCT_TAB_ROOM", "Camere" );
-jr_define( "_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES", "Caratteristiche della camera" );
+jr_define( "_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES", "Servizi in camera" );
 jr_define( "_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES", "Tipo di camera" );
 jr_define( "_JOMRES_COM_MR_VRCT_TAB_PROPERTYS", "Struttura" );
-jr_define( "_JOMRES_COM_MR_VRCT_TAB_PROPERTYFEATURES", "Caratteristiche della struttura" );
+jr_define( "_JOMRES_COM_MR_VRCT_TAB_PROPERTYFEATURES", "Servizi inclusi" );
 jr_define( "_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK", "Camera" );
 jr_define( "_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE", "Tipo" );
 jr_define( "_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME", "Nome" );
@@ -122,13 +122,13 @@ jr_define( "_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER", "Numero" );
 jr_define( "_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR", "Piano" );
 jr_define( "_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS", "Accesso per disabili" );
 jr_define( "_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE", "Massimo occupanti consetito" );
-jr_define( "_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES", "Caratteristiche" );
+jr_define( "_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES", "Servizi" );
 jr_define( "_JOMRES_COM_MR_VRCT_ROOM_SAVE_INSERT", "Camera aggiunta" );
 jr_define( "_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT", "Modifica elemento:" );
-jr_define( "_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_LINK", "Caratteristiche della camera" );
+jr_define( "_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_LINK", "Servizi in camera" );
 jr_define( "_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_INPUT", "Descrizione della caratteristica" );
-jr_define( "_JOMRES_COM_MR_VRCT_ROOMFEATURES_SAVE_INSERT", "Caratteristica della camera aggiunta" );
-jr_define( "_JOMRES_COM_MR_VRCT_ROOMFEATURES_SAVE_UPDATE", "Caratteristica della camera aggiornata" );
+jr_define( "_JOMRES_COM_MR_VRCT_ROOMFEATURES_SAVE_INSERT", "Servizio aggiunto" );
+jr_define( "_JOMRES_COM_MR_VRCT_ROOMFEATURES_SAVE_UPDATE", "Servizio aggiornato" );
 jr_define( "_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK", "Tipo di camera" );
 jr_define( "_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV", "Abbreviazione tipo di camera" );
 jr_define( "_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_DESC", "Descrizione tipo di camera" );
@@ -145,14 +145,14 @@ jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE", "Telefono" );
 jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX", "Fax" );
 jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL", "E-Mail" );
 jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE", "Sito Web" );
-jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES", "Caratteristiche" );
+jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES", "Servizi" );
 jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_INSERT", "struttura aggiunta" );
 jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_UPDATE", "struttura aggiornata" );
-jr_define( "_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK", "Caratteristiche della struttura" );
-jr_define( "_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV", "Abbreviazione della caratteristiche della struttura" );
-jr_define( "_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC", "Descrizione della caratteristiche della struttura" );
-jr_define( "_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT", "Caratteristica della struttura aggiunta" );
-jr_define( "_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE", "Caratteristica della struttura aggiornata" );
+jr_define( "_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK", "Servizi inclusi" );
+jr_define( "_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV", "Abbreviazione dei servizi inclusi" );
+jr_define( "_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC", "Descrizione dei servizi offerti dalla struttura" );
+jr_define( "_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT", "Servizio aggiunto" );
+jr_define( "_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE", "Servizio aggiornato" );
 jr_define( "_JOMRES_COM_MR_LISTTARIFF_TITLE", "Tariffe" );
 jr_define( "_JOMRES_COM_MR_LISTTARIFF_RATETITLE", "Nome tariffa" );
 jr_define( "_JOMRES_COM_MR_LISTTARIFF_RATEDESCRIPTION", "Descrizione" );
@@ -267,16 +267,16 @@ jr_define( "_JOMRES_FILE_ERROR_EMPTY", "Per favore seleziona un file prima di ca
 jr_define( "_JOMRES_FILE_ERROR_NAME", "La stringa può solamente contenere caratteri alfanumerici e non spazi, per favore." );
 jr_define( "_JOMRES_FILE_ERROR_SIZE", "La dimensione del file eccede il massimo che consentito." );
 jr_define( "_JOMRES_FILE_NOT_UPLOADED", "File NON caricato." );
-jr_define( "_JOMRES_FILE_UPDATED", "Il suo file è stato caricato." );
+jr_define( "_JOMRES_FILE_UPDATED", "Il tuo file è stato caricato." );
 jr_define( "_JOMRES_COM_A_JSCALENDAR", "Calendario JS" );
-jr_define( "_JOMRES_COM_A_CALENDARLANGUAGE", "Lingua del file di calendario JS" );
+jr_define( "_JOMRES_COM_A_CALENDARLANGUAGE", "Lingua del calendario JS" );
 jr_define( "_JOMRES_COM_A_CALENDARLANGUAGE_DESC", "Scegliare la lingua del file utilizzata nel calendario Javascript. Si prega notare che è possibile che alcuni calendari contengano bugs, Vedi //sourceforge.net/per maggiori informazioni." );
 jr_define( "_JOMRES_COM_A_CALENDARCSS", "File CSS di calendario JS" );
 jr_define( "_JOMRES_COM_A_CALENDARCSS_DESC", "Scegli il file CSS che deve essere utilizzato nel calendario Javascript." );
 jr_define( "_JOMRES_COM_A_ODDS", "Quotazioni." );
 jr_define( '_JOMRES_COM_A_ERRORCHECKING', 'Elenca chiamate al minicomponente ' );
 jr_define( '_JOMRES_COM_A_ERRORCHECKING_DESC', 'Seleziona SI per vedere in fondo alla pagina il log dei minicomponenti chiamati al termine della esecuzione di Jomres. Disabilita anche la funzione interna di reindirizzamento. Funzione utile ad individuare quali minicomponenti stanno eseguendo determinati servizi.' );
-jr_define( "_JOMRES_FILE_DELETE", "Elimina quest' immagine" );
+jr_define( "_JOMRES_FILE_DELETE", "Elimina questa foto" );
 jr_define( "_JOMRES_FILE_DELETED", "File eliminato" );
 jr_define( "_JOMRES_COM_MR_ROOM_DELETE", "Elimina" );
 jr_define( "_JOMRES_COM_MR_ROOM_UNABLETODELETE", "Non è possibile eliminare questo pulsante, ci sono prenotazioni." );
@@ -293,25 +293,25 @@ jr_define( "_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_TARIFFS", "Non è possibile 
 jr_define( "_JOMRES_COM_MR_ROOMCLASS_DELETED", "Tipo di camera eliminato" );
 jr_define( "_JOMRES_COM_MR_PROPERTY_DELETE", "struttura eliminata" );
 jr_define( "_JOMRES_COM_MR_PROPERTY_DELETED", "struttura eliminata" );
-jr_define( "_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS", "Tu non hai sufficienti diritti per eliminare questa struttura." );
+jr_define( "_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS", "Non puoi eliminare questa struttura." );
 jr_define( "_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE", "Larghezza dell'immagine a grandezza naturale" );
-jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK", "Fai clic per un mappa" );
-jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION", "Descrizione della struttura" );
-jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES", "Ora di registrazione" );
+jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK", "Vedi Mappa" );
+jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION", "Descrizione" );
+jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES", "Orario di check-in" );
 jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES", "Attività della zona" );
-jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS", "Come si arriva" );
+jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS", "Come aarivare" );
 jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS", "Aeroporti" );
 jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT", "Altri mezzi transporti" );
 jr_define( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS", "Politica e clausola esonerativa" );
 jr_define( "_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS", "Indirizzo" );
-jr_define( "_JOMRES_COM_A_VISITORSCANBOOKONLINE", "Permettere prenotazione in linea" );
+jr_define( "_JOMRES_COM_A_VISITORSCANBOOKONLINE", "Permettere prenotazione diretta" );
 jr_define( "_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC", "Imposta SI per permettere le prenotazioni on-line." );
 jr_define( "_JOMRES_COM_A_FIXEDPERIODBOOKINGS", "Prenotazioni  per un periodo fisso." );
 jr_define( "_JOMRES_COM_A_FIXEDPERIODBOOKINGS_DESC", 'Se imposti SI, la prenotazione sarà per un periodo fisso. Se imposti NO, controlla di non aver impostato in SI  "Giorno di arrivo predefinito" (a meno che si voglia forzare gli arrivi in un giorno predefinito) in altro modo non sarà posibile ottenere link multipli del calendario disponibilit&agrave;.' );
 jr_define( "_JOMRES_COM_A_FIXEDPERIOD", "Periodo di prenotazione: " );
 jr_define( "_JOMRES_COM_A_BOOKING", "Camere prenotazione" );
 jr_define( "_JOMRES_COM_A_FIXEDPERIOD_NUMBEROFPERIODS", "Periodo massimo, Esempio 3x7 periodo di prenotazione = 21 giorni" );
-jr_define( "_JOMRES_COM_A_SINGLEROOMPROPERTY", "Struttura di una sola camera" );
+jr_define( "_JOMRES_COM_A_SINGLEROOMPROPERTY", "Struttura con una sola camera" );
 jr_define( "_JOMRES_COM_A_SINGLEROOMPROPERTY_DESC", "Es. Un'appartamento per vacanze. In questo caso, assicurarti di avere una sola camera registrata in ciascuna struttura." );
 jr_define( "_JOMRES_FRONT_MR_REVIEWBOOKING", "Vedi prenotazione" );
 jr_define( "_JOMRES_COM_MR_CONFIRMBOOKING", "Conferma prenotazione" );
@@ -354,7 +354,7 @@ jr_define( "_JOMRES_FRONT_BLACKBOOKING_NEW", "Nuova camera indisponiblie" );
 jr_define( "_JOMRES_FRONT_DELETEGUEST", "Check-out  ospite" );
 jr_define( "_JOMRES_FRONT_DELETEGUEST_GUESTDELETED", "Ospite eliminato" );
 jr_define( "_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST", "Non è possibile eliminare questo ospite perchè ha delle prenotazioni aperte. " );
-jr_define( "_JOMRES_COM_INVOICE_ACTUALROOMCOST", "Costo della camera: " );
+jr_define( "_JOMRES_COM_INVOICE_ACTUALROOMCOST", "Prezzo della camera: " );
 
 
 
@@ -364,9 +364,9 @@ jr_define( "_JOMRES_COM_INVOICE_ACTUALROOMCOST", "Costo della camera: " );
 jr_define( "_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING", "Fumatori" );
 jr_define( "_JOMRES_FRONT_ROOMSMOKING_EITHER", "indifferente" );
 jr_define( "_JOMRES_COM_CALENDAROUTPUT", "Formato del calendario" );
-jr_define( "_JOMRES_COM_CALENDAROUTPUT_DESC", "Questo permette al utenti cambiare il formato delle date in Jomres" );
+jr_define( "_JOMRES_COM_CALENDAROUTPUT_DESC", "Questo permette agli utenti di cambiare il formato delle date" );
 jr_define( "_JOMRES_COM_CALENDARINPUT", "Formatto di immissione date nel calendario" );
-jr_define( "_JOMRES_COM_CALENDARINPUT_DESC", "Questo permette al utenti cambiare il formato di immissione delle date in  Jomres." );
+jr_define( "_JOMRES_COM_CALENDARINPUT_DESC", "Questo permette al utenti cambiare il formato di immissione delle date." );
 jr_define( "_JOMRES_COM_A_FIXEDPERIODBOOKINGSSHORT", "Le prenotazioni per un periodo fisso permettono brevi pause" );
 jr_define( "_JOMRES_COM_A_FIXEDPERIOD_SHORTBREAK_DAYS", "Durata della pausa" );
 jr_define( "_JOMRES_COM_MR_VRCT_PUBLISHED", "Pubblicato" );
@@ -380,8 +380,8 @@ jr_define( "_JOMRES_MR_AUDIT_LISTING_VIEWSQL", "Visualizza dati" );
 jr_define( "_JOMRES_MR_AUDIT_LISTING_FILTER_DATE", "Filtro  data" );
 jr_define( "_JOMRES_MR_AUDIT_LISTING_FILTER_USERNAME", "Filtro nome utenti" );
 jr_define( "_JOMRES_MR_AUDIT_LISTING_FILTER_OPERATION", "Filtro operazione" );
-jr_define( "_JOMRES_COM_MR_VIEWBOOKINGS_STATUS", "Status" );
-jr_define( "_JOMRES_COM_MR_VIEWBOOKINGS_PENDING", "Arrivo in sospeso" );
+jr_define( "_JOMRES_COM_MR_VIEWBOOKINGS_STATUS", "Stato" );
+jr_define( "_JOMRES_COM_MR_VIEWBOOKINGS_PENDING", "Arrivi in sospeso" );
 jr_define( "_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY", "Arrivi di oggi" );
 jr_define( "_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT", "In casa" );
 jr_define( "_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY", "Partenze di oggi" );
@@ -422,17 +422,17 @@ jr_define( "_JOMRES_MR_AUDIT_DELETE_EXTRA", "Elimina un extra" );
 jr_define( "_JOMRES_MR_AUDIT_PUBLISH_EXTRA", "Extra pubblicato." );
 jr_define( "_JOMRES_MR_AUDIT_BLACKBOOKING", "Immetti una prenotazione nera ." );
 jr_define( "_JOMRES_MR_AUDIT_BLACKBOOKING_DELETE", "Elimina prenotazione nera ." );
-jr_define( "_JOMRES_COM_MR_EXTRA_TITLE", "Extras" );
+jr_define( "_JOMRES_COM_MR_EXTRA_TITLE", "Extra" );
 jr_define( "_JOMRES_COM_MR_EXTRA_DESC", "Descrizione" );
 jr_define( "_JOMRES_COM_MR_EXTRA_NAME", "Nome" );
 jr_define( "_JOMRES_COM_MR_EXTRA_PRICE", "Costo" );
 jr_define( "_JOMRES_COM_MR_EXTRA_SAVE_UPDATED", "Extra aggiornato" );
 jr_define( "_JOMRES_COM_MR_EXTRA_LINKTEXT", "Modificare l'elemento" );
 jr_define( "_JOMRES_COM_MR_EXTRA_DELETED", "Extra eliminato" );
-jr_define( "_JOMRES_FRONT_MR_MENU_ADMIN_EXTRAS", "Extras" );
+jr_define( "_JOMRES_FRONT_MR_MENU_ADMIN_EXTRAS", "Extra" );
 jr_define( "_JOMRES_COM_A_EXTRAS", "Mostrare extras al momento della prenotazione" );
 jr_define( "_JOMRES_COM_A_EXTRAS_DESC", "Imposta in SI per mostrare gli extra che vuoi offrire ai tuoi ospiti" );
-jr_define( "_JOMRES_FRONT_MR_BOOKING_EXTRAS_HELP", "Extras facoltativi." );
+jr_define( "_JOMRES_FRONT_MR_BOOKING_EXTRAS_HELP", "Extra facoltativi." );
 jr_define( "_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_BBSTARTS", "Data di inizio e di fine dell' indisponibilità" );
 jr_define( "_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_BBSERVICERESUMES", "Motivazione" );
 jr_define( "_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS", "Camere Indisponibili" );
@@ -450,8 +450,8 @@ jr_define( "_JOMRES_COM_A_SMOKING_OPTION", "Opzione fumatori predefinita" );
 jr_define( "_JOMRES_COM_A_CURRENCYSYMBOL", "Simbolo di valuta" );
 jr_define( "_JOMRES_COM_A_CURRENCYSYMBOL_DESC", 'Es. , si prega notare che si devono utilizzare i codici degli enti HTML per il simbolo richiesto. Per vedere un elenco di questi visitare <a href="http://www.w3schools.com/tags/ref_entities.asp">w3schools</a>' );
 jr_define( "_JOMRES_COM_A_CURRENCYCODE", "Codice di valuta" );
-jr_define( "_JOMRES_COM_A_CURRENCYCODE_DESC", 'Es. EUR. Questo è necessario se si utilizza  Paypal. Per vedere un elenco di questi codici per favore visitare <a href="http://www.xe.com/iso4217.htm">XE.com</a>"' );
-jr_define( "_JOMRES_COM_A_CLICKFORMOREINFORMATION", "Informazioni" );
+jr_define( "_JOMRES_COM_A_CURRENCYCODE_DESC", 'Es. EUR. Questo è necessario se si utilizza  Paypal. Per vedere un elenco di questi codici visita <a href="http://www.xe.com/iso4217.htm">XE.com</a>"' );
+jr_define( "_JOMRES_COM_A_CLICKFORMOREINFORMATION", "Dettagli" );
 jr_define( "_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO", "Limitare prenotazione avanzata" );
 jr_define( "_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC", "Imposta in  SI se vuoi limitare le prenotazioni anticipate (utilizza il campo di seguito per impostare  i giorni)." );
 jr_define( "_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS", "Giorni di prenotazione avanzata limitati a:" );
@@ -467,11 +467,11 @@ jr_define( "_JOMRES_MR_AUDIT_ARCHIVE", "Archiviare tutte le registrazioni" );
 jr_define( "_JOMRES_MR_AUDIT_ARCHIVED_MESSAGE", " Registrazione archiviate" );
 jr_define( "_JOMRES_MR_AUDIT_ARCHIVED_AUDIT", "Audit registri verificati" );
 jr_define( "_JOMRES_FRONT_TARIFFS", "Le nostre tariffe" );
-jr_define( "_JOMRES_FRONT_TARIFFS_TITLE", "Nome della tariffa" );
+jr_define( "_JOMRES_FRONT_TARIFFS_TITLE", "Tariffa" );
 jr_define( "_JOMRES_FRONT_TARIFFS_DESC", "Descrizione della tariffa" );
 jr_define( "_JOMRES_FRONT_TARIFFS_ROOMTYPE", "Tipo di camera" );
-jr_define( "_JOMRES_FRONT_TARIFFS_STARTS", "Valido da" );
-jr_define( "_JOMRES_FRONT_TARIFFS_ENDS", "Valido fino" );
+jr_define( "_JOMRES_FRONT_TARIFFS_STARTS", "Valida da" );
+jr_define( "_JOMRES_FRONT_TARIFFS_ENDS", "Valida fino" );
 jr_define( "_JOMRES_FRONT_TARIFFS_PPPN", "Per persona a notte" );
 jr_define( "_JOMRES_FRONT_TARIFFS_PN", "a notte" );
 jr_define( "_JOMRES_FRONT_TARIFFS_NOTWEEKEND", "Non includere fine settimana" );
@@ -533,7 +533,7 @@ jr_define( '_JOMRES_COM_A_SLIDESHOWS_NOIMAGES', '<br />Ci dispiace, nessuna imma
 jr_define( '_JOMRES_COM_A_TARIFFS_SHOWTARIFFSLINK', 'Mostra link alle tariffe' );
 jr_define( '_JOMRES_COM_A_POPUPSALLOWED', 'Popups permessi' );
 jr_define( '_JOMRES_COM_A_POPUPSALLOWED_DESC', 'Se impostato su NO i link che normalmente sarebbero stati aperti in una finestra popup verranno aperti in linea. SPERIMENTALE! ' );
-jr_define( '_JOMRES_FRONT_IMAGEUPLOADS', 'Carica  Immagine' );
+jr_define( '_JOMRES_FRONT_IMAGEUPLOADS', 'Carica foto' );
 jr_define( '_JOMRES_A_TABS_MISC', 'Misc' );
 jr_define( '_JOMRES_A', 'Configurazione Sito' );
 jr_define( '_JOMRES_A_GLOBALPFEATURES', 'Usa le impostazioni di struttura globali' );
@@ -543,14 +543,14 @@ jr_define( '_JOMRES_A_ICON', 'Icona' );
 jr_define( '_JOMRES_A_GLOBAL_SEARCHOPTION', 'Seleziona il plugin di ricerca che vuoi usare.' );
 jr_define( '_JOMRES_FRONT_NORESULTS', '<b>La tua ricerca non ha fornito risultati. Ti preghiamo di modificarne i parametri e provare ancora.</b>' );
 jr_define( '_JOMRES_AREYOUSURE', 'Confermi' );
-jr_define( '_JOMRES_FRONT_MR_MENU_BOOKAROOM', 'Conferma la prenotazione ora!' );
-jr_define( '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', 'Conferma la prenotazione ora!' );
+jr_define( '_JOMRES_FRONT_MR_MENU_BOOKAROOM', 'Prenota Subito!' );
+jr_define( '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', 'Prenota Subito!' );
 jr_define( '_JOMRES_COM_MR_DISPGUEST_CCV', 'Numero di sicurezza' );
 //v1.4c
-jr_define( '_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE', 'Mostrare tariffe in linea' );
+jr_define( '_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE', 'Mostra tariffe in linea' );
 jr_define( '_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS', 'Mostra Indirizzo' );
 jr_define( '_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS', 'Mostra informazioni sulla struttura ricettiva' );
-jr_define( '_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS', 'Mostra la disponibilità di camere' );
+jr_define( '_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS', 'Mostra disponibilità delle camere' );
 jr_define( '_JOMRES_COM_A_BASICTEMPLATE_SHOWTARIFFS', 'Tariffe' );
 jr_define( '_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS_TITLE', 'Mostra le informazioni relative all indirizzo sotto questo link' );
 jr_define( '_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS_TITLE', 'Mostra i dettagli della struttura sotto questo link' );
@@ -573,16 +573,16 @@ jr_define( '_JOMRES_COM_PROPERTYLISTDESC', 'Limite descrizione' );
 jr_define( '_JOMRES_COM_PROPERTYLISTDESC_DESC', "Limita il numero di caratteri delle descrizioni-struttura mostrate nell'elenco strutture ." );
 // v1.4g
 jr_define( '_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF', 'Tariffe Flat' );
-jr_define( '_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES', 'Medie' );
-jr_define( '_JOMRES_COM_A_TARIFFS_MODEL', 'Seleziona il modello di tariffa che vuoi utilizzare' );
-jr_define( '_JOMRES_COM_A_TARIFFS_MODEL_DESC', "Hai due scelte di calcolo delle tariffe. La prima, il metodo 'tariffa flat' ti permette di offrire varie tariffe al cliente ed il prezzo per il pernottamento non vari per tutto il periodo prenotato. Utile se vuoi offrire varie tariffe per la stessa data, ad esempio trattamento bed and breakfast, mezza pensione o pensione completa. Scegli la tariffa 'media' se vuoi regolare le tue tariffe in base alla data scelta. Il sistema trovera tutte le tariffe per ciascun giorno di prenotazione, facendo la media tariffaria del periodo" );
+jr_define( '_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES', 'Media' );
+jr_define( '_JOMRES_COM_A_TARIFFS_MODEL', 'Seleziona il tipo di tariffa che vuoi utilizzare' );
+jr_define( '_JOMRES_COM_A_TARIFFS_MODEL_DESC', "Hai due tipi di tariffe da utilizzare. La prima, il metodo 'tariffa flat' ti permette di offrire tariffe basate sul tipo di trattamento, ad esempio trattamento bed and breakfast, mezza pensione o pensione completa. Scegli la tariffa 'media' se vuoi regolare le tue tariffe in base al periodo della prenotazione, ad esempio, bassa stagione, media o alta. Il sistema trovera tutte le tariffe per ciascun giorno di prenotazione, facendo la media tariffaria del periodo" );
 jr_define( '_JOMRES_COM_A_DATEFORMATSTYLE', 'Used date() formato data utilizzato?' );
 jr_define( '_JOMRES_COM_A_DATEFORMATSTYLE_DESC', 'Seleziona SI se vuoi formattare le date secondo la funzione php date() (Vedi <a href="http://www.php.net/manual/en/function.date.php">Qui</a>). Seleziona NO per usare la formattazione strftime() (Vedi <a href="http://www.php.net/manual/en/function.strftime.php">Qui</a> eg. %b %d %Y ' );
-jr_define( '_JOMRES_COM_MR_VRCT_PUBLISH', 'Clicca per pubblicare' );
-jr_define( '_JOMRES_COM_MR_VRCT_UNPUBLISH', 'Clicca per sospendere' );
-jr_define( '_JOMRES_A_GLOBALROOMTYPES', 'Utilizza tipo stanza globale' );
-jr_define( '_JOMRES_A_GLOBALROOMTYPES_DESC', 'Impostare su SI se vogliamo forzare le struttura ad utilizzare solo i tipi stanza predefiniti dal webmaster.' );
-jr_define( '_JOMRES_A_GLOBALROOMTYPES_INFO', 'Per assegnare una immagine a questo tipo stanza dobbiamo prima caricare una immagine nella cartella /images/stories/jomres/rmtypes/. ' );
+jr_define( '_JOMRES_COM_MR_VRCT_PUBLISH', 'Pubblica' );
+jr_define( '_JOMRES_COM_MR_VRCT_UNPUBLISH', 'Sospendi' );
+jr_define( '_JOMRES_A_GLOBALROOMTYPES', 'Utilizza tipo camera globale' );
+jr_define( '_JOMRES_A_GLOBALROOMTYPES_DESC', 'Impostare su SI se vogliamo forzare le struttura ad utilizzare solo i tipi camera predefiniti dal webmaster.' );
+jr_define( '_JOMRES_A_GLOBALROOMTYPES_INFO', 'Per assegnare una foto a questo tipo di camera devi prima caricare una immagine nella cartella /images/stories/jomres/rmtypes/. ' );
 jr_define( '_JOMRES_COM_INPUTERROR_BACKGROUND', 'Errore inserimento colore di sfondo' );
 jr_define( '_JOMRES_COM_CONFIGCOUNTRIES', 'Form predefinita per nazione' );
 jr_define( '_JOMRES_JAVASCRIPT_', 'Elementi evidenziati in rosso sono richiesti.' );
@@ -597,29 +597,29 @@ jr_define( '_JOMRES_REGISTRATION_CREATEDPROPERTY', 'Crea struttura: ' );
 jr_define( '_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER', 'Per utente: ' );
 // v1.4i
 jr_define( '_JOMRES_COM_MONTHS_STARTOFYEAR', 'Mostra calendario dall&acute;inizio dell&acute;anno?' );
-jr_define( '_JOMRES_COM_MONTHS_STARTOFYEAR_DESC', 'Il calendario mostra dall&acute;iznio dell&acute;anno corrente.' );
-jr_define( '_JOMRES_NUMBEROFROOMSAVAILABLE', 'Numero di stanze disponibili' );
+jr_define( '_JOMRES_COM_MONTHS_STARTOFYEAR_DESC', 'Il calendario mostra dall&acute;inizio dell&acute;anno corrente.' );
+jr_define( '_JOMRES_NUMBEROFROOMSAVAILABLE', 'Numero di camere disponibili' );
 jr_define( '_JOMRES_BACKTOPROPERTYDETAILSLINK', 'Indietro ai dettagli struttura' );
-jr_define( '_JOMRES_FRONT_ROOMTYPES', 'Tipo stanza' );
+jr_define( '_JOMRES_FRONT_ROOMTYPES', 'Tipo di camera' );
 jr_define( '_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT', 'Limite di ricerca casuale' );
 jr_define( '_JOMRES_SHOWGOOGLECURRENCYLINKS', 'Mostra collegamento convertitore valute di google nella lista tariffe?' );
 jr_define( '_JOMRES_CURRENCYCONVERSIONTEXT', 'Converti costo in :' );
 jr_define( '_JOMRES_COM_ALLOWHTMLEDITOR', 'Permetti le modifiche utilizzando un editor HTML?' );
 // v2
-jr_define( '_JOMRES_AJAXFORM_INSTRUCTIONS', 'Usare questo modulo per fare le vostre prenotazioni. Portare il cursore del mouse sopra l&acute;immagine "i" per maggiori informazioni circa la colonna. Modificare i dati della vostra prenotazione come data di arrivo e partenza e numero di persone, poi selezionare la stanza richiesta dalla lista delle stanze. Cliccare qualsiasi stanza disponibile per aggiungerla alla prenotazione. Fatto questo, potrete aggiungere servizi extra  che potrebbero richiedere il vostro indirizzo. Quando la modulo avr&agrave; abbastanza dati informativi troverete il pulsante per inviare la vostra prenotazione e confermare.' );
+jr_define( '_JOMRES_AJAXFORM_INSTRUCTIONS', 'Usare questo modulo per fare le vostre prenotazioni. Portare il cursore del mouse sopra l&acute;immagine "i" per maggiori informazioni circa la colonna. Modificare i dati della vostra prenotazione come data di arrivo e partenza e numero di persone, poi selezionare la camera desiderata dalla lista. Cliccare qualsiasi camera disponibile per aggiungerla alla prenotazione. Fatto questo, potrete aggiungere servizi extra  che potrebbero richiedere il vostro indirizzo. Quando il modulo avr&agrave; abbastanza informazioni troverai il pulsante per inviare la tua prenotazione e confermare.' );
 jr_define( '_JOMRES_AJAXFORM_INSTRUCTIONS_SRP', 'Usare questa modulo per fare le vostre prenotazioni. Portare il cursore del mouse sopra l&acute;immagine "i" per maggiori informazioni circa la colonna. Modificare i dati della vostra prenotazione come data di arrivo e partenza e numero di persone. Fatto questo, potrete aggiungere servizi extra  che potrebbero richiedere il vostro indirizzo. Quando la modulo avr&agrave; abbastanza dati informativi troverete il pulsante per inviare la vostra prenotazione.' );
 jr_define( '_JOMRES_AJAXFORM_PARTICULARS', 'Dati prenotazione' );
-jr_define( '_JOMRES_AJAXFORM_PARTICULARS_DESC', 'Selezionare i dettagli della vostra prenotazione' );
+jr_define( '_JOMRES_AJAXFORM_PARTICULARS_DESC', 'Seleziona i dettagli della prenotazione' );
 jr_define( '_JOMRES_AJAXFORM_AVAILABLE', 'Disponibilit&agrave; ' );
-jr_define( '_JOMRES_AJAXFORM_AVAILABLE_DESC', 'Seleziona la stanza che hai richiesto' );
+jr_define( '_JOMRES_AJAXFORM_AVAILABLE_DESC', 'Seleziona la camera desiderata' );
 jr_define( '_JOMRES_AJAXFORM_AVAILABLE_DESC_SRP', 'Vedi qui se la struttura &egrave; disponibile al momento.' );
-jr_define( '_JOMRES_AJAXFORM_EXTRAS', 'Extra opzionali' );
-jr_define( '_JOMRES_AJAXFORM_EXTRAS_DESC', 'Seleziona qualsiasi extra opzionale che volete includere nella prenotazione' );
+jr_define( '_JOMRES_AJAXFORM_EXTRAS', 'Servizi Extra opzionali' );
+jr_define( '_JOMRES_AJAXFORM_EXTRAS_DESC', 'Seleziona un servizio aggiuntivo che volete includere nella prenotazione' );
 jr_define( '_JOMRES_COM_PERDAY', 'Per notte' );
-jr_define( '_JOMRES_AJAXFORM_ADDRESS', 'Il vostro indirizzo' );
+jr_define( '_JOMRES_AJAXFORM_ADDRESS', 'Il tuo indirizzo' );
 jr_define( '_JOMRES_AJAXFORM_ADDRESS_DESC', 'Inserire i vostri dettagli. Nota che tutti i campi sono richiesti eccetto il numero di cellulare' );
-jr_define( '_JOMRES_AJAXFORM_AVAILABLEROOMS', 'Stanze disponibili' );
-jr_define( '_JOMRES_AJAXFORM_SELECTEDROOMS', 'Stanze selezionate' );
+jr_define( '_JOMRES_AJAXFORM_AVAILABLEROOMS', 'Camere disponibili' );
+jr_define( '_JOMRES_AJAXFORM_SELECTEDROOMS', 'Camere selezionate' );
 jr_define( '_JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE', '<br>La data possibile di arrivo pi&ugrave; vicina &egrave;: ' );
 jr_define( '_JOMRES_AJAXFORM_BILLING_ROOM', 'Per notte:' );
 jr_define( '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', 'Totale:' );
@@ -628,9 +628,9 @@ jr_define( '_JOMRES_AJAXFORM_BILLING_TAX', 'Tasse:' );
 jr_define( '_JOMRES_AJAXFORM_BILLING_DISCOUNT', 'Sconto:' );
 jr_define( '_JOMRES_AJAXFORM_BILLING_TOTAL', 'Totale generale:' );
 jr_define( '_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', 'Ospiti' );
-jr_define( '_JOMRES_AJAXFORM_CLICKHERECAPTION', 'Clicca adesso per aggiungere la stanza dalla tua selezione' );
-jr_define( '_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE', 'Clicca adesso per rimuovere la stanza dalla tua selezione' );
-jr_define( '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', 'Tipi ospite' );
+jr_define( '_JOMRES_AJAXFORM_CLICKHERECAPTION', 'Aggiungi la camera selezionata' );
+jr_define( '_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE', 'Seleziona per rimuovere la camera' );
+jr_define( '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', 'Tipi di ospite' );
 jr_define( '_JOMRES_VARIANCES_TYPE', 'Tipo' );
 jr_define( '_JOMRES_VARIANCES_TYPE_TT', 'Il genere di cliente, es Bambini  5-10 anni, o Studenti ' );
 jr_define( '_JOMRES_VARIANCES_NOTES', 'Note' );
@@ -650,13 +650,13 @@ jr_define( '_JOMRES_MR_AUDIT_INSERT_CUSTOMERTYPE', 'Crea tipo cliente' );
 jr_define( '_JOMRES_MR_AUDIT_UPDATE_CUSTOMERTYPE', 'Aggiorna tipo cliente' );
 jr_define( '_JOMRES_COM_MR_CUSTOMERTYPE_UPDATED', 'Aggiorna tipo cliente' );
 jr_define( '_JOMRES_COM_A_SHOWROOMSLISTLINK', 'Mostra collegamento alla lista delle stanze nella pagina dettagli struttura?' );
-jr_define( '_JOMRES_COM_A_SHOWONLYAVLCAL', 'Mostra <b>solo</b> calendario disponibilit&agreve;/Lista stanza?' );
+jr_define( '_JOMRES_COM_A_SHOWONLYAVLCAL', 'Mostra <b>solo</b> calendario disponibilit&agrave; /Lista camera?' );
 jr_define( '_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', 'Impostare su SI per disabilitare intestazione e dettagli, in questo modo vedremo solo le liste e il calendario nella sezione strutture.  (es appartamenti, cottage ecc).' );
 jr_define( '_JOMRES_COM_A_MINIMUMINTERVAL', 'Arr-Part intervallo minimo' );
-jr_define( '_JOMRES_COM_A_MINIMUMINTERVAL_DESC', 'Il minimo intervallo nella prenotazione tra la data di partenza e di arrivo.' );
-jr_define( '_JOMRES_COM_A_BOOKINGFORM_SHOWROOMNO', 'Form prenotazione lista stanze mostra il numero stanza' );
-jr_define( '_JOMRES_COM_A_BOOKINGFORM_SHOWROOMNAME', 'Form prenotazione lista stanze mostra il nome stanza' );
-jr_define( '_JOMRES_COM_A_BOOKINGFORM_SHOWTARIFFTITLE', 'Form prenotazione lista stanze mostra il titolo tariffa' );
+jr_define( '_JOMRES_COM_A_MINIMUMINTERVAL_DESC', 'Il minimo di giorni che deve intercorrere tra la data di partenza e di arrivo in fase di prenotazione.' );
+jr_define( '_JOMRES_COM_A_BOOKINGFORM_SHOWROOMNO', 'Form prenotazione lista camere mostra il numero della camera' );
+jr_define( '_JOMRES_COM_A_BOOKINGFORM_SHOWROOMNAME', 'Form prenotazione lista camere mostra il nome della camera' );
+jr_define( '_JOMRES_COM_A_BOOKINGFORM_SHOWTARIFFTITLE', 'Form prenotazione lista camere mostra il nome della tariffa' );
 jr_define( '_JOMRES_ORDER', 'Ordine' );
 jr_define( '_JOMRES_REQUIREDFIELDS', 'Richiesto' );
 jr_define( '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING', 'Giorni prima dell&acute;arrivo' );
@@ -672,8 +672,8 @@ jr_define( '_JOMRES_COM_AVLCAL_WEEKENDBORDER', 'Bordo settimana' );
 jr_define( '_JOMRES_COM_AVLCAL_BOOKING_KEY', 'Stanza prenotata' );
 jr_define( '_JOMRES_COM_AVLCAL_BLACK_KEY', 'Prenotazione fasulla' );
 jr_define( '_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP', 'Deposito pi&ugrave; vicino?' );
-jr_define( '_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT', 'Carica depositi?' );
-jr_define( '_JOMRES_COM_A_TARIFFPRICESAREWEEKLY', 'Tariffa caricata come settimanale?' );
+jr_define( '_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT', 'Richiedi una cauzione?' );
+jr_define( '_JOMRES_COM_A_TARIFFPRICESAREWEEKLY', 'La tariffa è settimanale?' );
 jr_define( '_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC', 'Abbiamo questa opzione per storicizzare la tariffa caricata per ogni giorno  o valori settimanali. Se storicizziamo queste settimanalmente, bobbiamo impostare la opzione su SI.' );
 jr_define( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', 'Costo per settimana' );
 jr_define( '_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING', 'Date di arrivo fisse ricorrenti: ' );
@@ -703,8 +703,8 @@ jr_define( '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE', 'Cellulare richi
 jr_define( '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL', 'Indirizzo Email richiesto' );
 jr_define( '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_INVALID', 'Indirizzo Email non valido' );
 jr_define( '_JOMRES_BOOKINGFORM_MONITORING_CANNOT_VALIDATE_EMAIL', 'Impossibile validare dominio email' );
-jr_define( '_JOMRES_SRP_WEHAVEVACANCIES', 'Abbiamo stanze libere!' );
-jr_define( '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', 'Nessuna stanza selezionata finora' );
+jr_define( '_JOMRES_SRP_WEHAVEVACANCIES', 'Abbiamo camere libere!' );
+jr_define( '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', 'Non hai ancora selezionato una camera' );
 jr_define( '_JOMRES_BOOKING_NUMBER', 'Prenotazione no.' );
 jr_define( '_JOMRES_COM_INPUTOKTOBOOK_BACKGROUND', 'Si al colore di sfondo nel messaggio' );
 jr_define( '_JOMRES_COM_DUMPTEMPLATEDATA', 'Dump vars del template?' );
@@ -712,16 +712,16 @@ jr_define( '_JOMRES_COM_DUMPTEMPLATEDATA_DESC', 'Impostare questo per abilitare 
 jr_define( '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE', 'Figure a percentuale' );
 jr_define( '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE_DESC', 'Impostare questo su SI se la singola persona ha un calcolo a figuara a percentuale. Oppure viene applicato il sistema flat rate.' );
 //v2rc2
-jr_define( '_JOMRES_COM_LIMITROOMSLIST', 'Stanze disponibili/limite tariffa' );
+jr_define( '_JOMRES_COM_LIMITROOMSLIST', 'Camere disponibili/limite tariffa' );
 jr_define( '_JOMRES_COM_LIMITROOMSLIST_DESC', 'Usa questo campo inserimento per inserire il numero di stanze disponibili e le tariffe che mostreremo nel modulo di prenotazione. Impostando su zero nessun limite viene praticato. ' );
-jr_define( '_JOMRES_SRP_WEHAVENOVACANCIES', 'Nessuna stanza libera al momento!' );
+jr_define( '_JOMRES_SRP_WEHAVENOVACANCIES', 'Non abbiamo camere disponibili al momento!' );
 // Translate from here
 // Introduced in v2.5
 // v2.6
 jr_define( '_JOMRES_BOOKITNOW', 'Prenota ora: ' );
-jr_define( '_JOMRES_COM_JRCONFIG_GLOBALEDITING', 'Global editing mode?' );
-jr_define( '_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', 'Fai attenzione con questa funzione. Se impostata su SI, editing mode agira sul testo personalizzato per TUTTE le strutture nel sistema per la caratteristica che stai modificando.' );
-jr_define( '_JOMRES_COM_JRCONFIG_GLOBALCURRENCY', 'Global currency symbol' );
+jr_define( '_JOMRES_COM_JRCONFIG_GLOBALEDITING', 'Modalità di modifica globale?' );
+jr_define( '_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', 'Fai attenzione. Se impostata su SI, editing mode agisce sul testo personalizzato per TUTTE le strutture nel sistema per la caratteristica che stai modificando.' );
+jr_define( '_JOMRES_COM_JRCONFIG_GLOBALCURRENCY', 'Simbolo globale di valuta' );
 jr_define( '_JOMRES_COM_JRCONFIG_ISWRAPPED', 'Componente wrapped' );
 jr_define( '_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC', 'Seleziona SI se il componente risulta wrapped, in questo modo le aree moduli e header non saranno visibili' );
 jr_define( '_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER', 'Super Property Manager' );
@@ -732,12 +732,12 @@ jr_define( '_JOMRES_EDITPROPERTY_SELECTCOUNTRY', 'Seleziona la tua nazione prima
 jr_define( '_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD', 'Salva i cambiamenti alla struttura prima di caricare le immagini' );
 jr_define( '_JOMRES_TARIFFSFROM', 'Prezzi da - ' );
 jr_define( '_JOMRES_SEARCH_ALL', 'tutte' );
-jr_define( '_JOMRES_SEARCH_GEO_COUNTRYSEARCH', 'Cerca nella Nazione' );
-jr_define( '_JOMRES_SEARCH_GEO_REGIONSEARCH', 'Cerca nella Regione' );
-jr_define( '_JOMRES_SEARCH_GEO_TOWNSEARCH', 'Cerca nel comune' );
-jr_define( '_JOMRES_SEARCH_FEATURE_INFO', 'Cerca caratteristiche.' );
+jr_define( '_JOMRES_SEARCH_GEO_COUNTRYSEARCH', 'Cerca per Nazione' );
+jr_define( '_JOMRES_SEARCH_GEO_REGIONSEARCH', 'Cerca per Regione' );
+jr_define( '_JOMRES_SEARCH_GEO_TOWNSEARCH', 'Cerca per comune' );
+jr_define( '_JOMRES_SEARCH_FEATURE_INFO', 'Cerca per servizi.' );
 jr_define( '_JOMRES_SEARCH_BUTTON', 'Cerca' );
-jr_define( '_JOMRES_SEARCH_DESCRIPTION_INFO', 'Inserisci la parola nel box e clicca.' );
+jr_define( '_JOMRES_SEARCH_DESCRIPTION_INFO', 'Inserisci la parola nel box e invia.' );
 jr_define( '_JOMRES_SEARCH_DESCRIPTION_LABEL', 'Cerca parola(e): ' );
 jr_define( '_JOMRES_SEARCH_AVL_INFO', 'Inserisci le date di arrivo e partenza e clicca il pulsante per trovare tutte le strutture disponibili per i giorni selezionati.' );
 jr_define( '_JOMRES_SEARCH_PTYPES', 'Elenca tutte le strutture in base al tipo.' );
@@ -758,10 +758,10 @@ jr_define( '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION', 'Attendi
 jr_define( '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS', 'Attendi. Modifica indirizzo selezionato' );
 jr_define( '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR', 'Uno o  pi&ugrave; dati indirizzo sono incorretti.' );
 jr_define( '_JOMRES_COM_A_JOMRES_FILE_UPLOADS', 'File uploads' );
-jr_define( '_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO', 'Usa global currency?' );
+jr_define( '_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO', 'Usa valuta generale?' );
 jr_define( '_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC', 'Seleziona SI per utilizzare la stessa moneta su TUTTE le strutture (e.g. & # 8 3 6 4 ;)' );
 jr_define( '_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE', 'Immagine Camera' );
-jr_define( '_JOMRES_CURRENCYFORMAT', 'Formato moneta' );
+jr_define( '_JOMRES_CURRENCYFORMAT', 'Formato valuta' );
 jr_define( '_JOMRES_MANAGEROPTIONSASIMAGES', 'Mostra opzioni Managers\'s come immagini' );
 jr_define( 'JOMRES_COM_A_SEARCHOPTIONSTAB', 'Opzioni di ricerca' );
 jr_define( 'JOMRES_COM_A_AVAILABLELOGS', 'Logs disponibili' );
@@ -771,7 +771,7 @@ jr_define( 'JOMRES_COM_A_MESSAGE', 'Messaggio' );
 jr_define( 'JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normale' );
 jr_define( 'JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Avanzato' );
 jr_define( 'JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Microgestione' );
-jr_define( 'JOMRES_COM_A_TARIFFMODE', 'Tariffe Configuration Mode' );
+jr_define( 'JOMRES_COM_A_TARIFFMODE', 'Configurazione tariffe' );
 jr_define( 'JOMRES_COM_A_TARIFFMODE_DESC', "<b>Attenzione: Cambiare spesso il metodo di gestione tariffe potrebbe causare una perdita di dati. Vedi la nota sotto a riguardo</b>.
 <br/><br/>
 Sono disponibili tre opzioni di configurazione delle tariffe.<br/>
@@ -796,7 +796,7 @@ MicroGestione -> Normale. Tutte le corrispondenze tra le tariffe vengono rimosse
 jr_define( '_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Mostra la lista delle camere nella scheda della struttura?' );
 jr_define( 'JOMRES_PROPERTYTYPE', 'Tipo struttura' );
 jr_define( 'JOMRES_COM_A_SRPONLY', 'Solo SRP' );
-jr_define( 'JOMRES_MAXPEOPLEINROOM', 'Max persone per camera' );
+jr_define( 'JOMRES_MAXPEOPLEINROOM', 'Capienza camera' );
 jr_define( 'JOMRES_MAXPEOPLEINBOOKING', 'Max persone in prenotazione' );
 jr_define( '_JOMCOMP_BOOKINGNOTES_ADD', 'Aggiungi nota' );
 jr_define( '_JOMCOMP_BOOKINGNOTES_EDIT', 'Modifica nota' );
@@ -810,7 +810,7 @@ jr_define( '_JOMCOMP_MYUSER_LISTBOOKINGS', 'Elenca prenotazioni' );
 jr_define( '_JOMCOMP_MYUSER_MYBOOKINGS', 'Le mie prenotazioni' );
 jr_define( '_JOMCOMP_MYUSER_VIEWBOOKING', 'Vedi prenotazioni' );
 jr_define( '_JOMCOMP_MYUSER_VIEWFAVOURITES', 'Vedi preferiti' );
-jr_define( '_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE', 'Non hai ancora aggiunto nessuna struttura preferita!' );
+jr_define( '_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE', 'Non hai ancora aggiunto nessuna struttura ai preferiti!' );
 jr_define( '_JOMCOMP_MYUSER_ADDTOFAVOURITES', 'Aggiungi ai preferiti' );
 jr_define( '_JOMCOMP_MYUSER_PROPERTYTYPE', 'Tipo struttura' );
 jr_define( '_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES', 'Strutture vicine' );
@@ -1242,7 +1242,7 @@ jr_define( '_JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE', "Sottoscrizioni attive
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_GATEWAYSUBSCRIPTIONID', "Gateway subscription id" );
 jr_define( '_JRPORTAL_NEWUSER_SUBJECT', "Grazie per la tua prenotazione - Seguono dettagli nuovo utente" );
 jr_define( '_JOMRES_LATLONG_DESC', "Use your mouse to move around the map, and drag the pointer to the location of your property to set the latitude and longitude." );
-jr_define( '_JOMRES_CONTROLPANEL', 'Pannello di controllo' );
+jr_define( '_JOMRES_CONTROLPANEL', 'Pannello amministrazione' );
 jr_define( '_JOMRES_COM_FAUXHEADERS', 'Inserire Jomres javascript headers nel tag body HTML?' );
 jr_define( '_JOMRES_COM_FAUXHEADERS_DESC', 'Seleziona SI se stai avendo conflitti tra mootools e Jquery utilizzato da joomres. Questo obblighera Jomres ad inserire le chiamate Javascript nel corpo della pagina invece che nella HEAD area, che anche se non &egrave; HTML valido, sembra risolvere i problemi con jquery e mootools in conflitto tra loro.' );
 // Jomres v4.2
@@ -1257,15 +1257,15 @@ jr_define( '_JRPORTAL_SUBSCRIPTIONS_STATUS_EXPL', " Stato <b>0:</b> Pagamento in
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS', "Il mio Account" );
 jr_define( '_JOMRES_COM_YOURBUSINESS', 'I tuoi dettagli commerciali' );
 jr_define( '_JOMRES_COM_YOURBUSINESS_NAME', 'Nome azienda' );
-jr_define( '_JOMRES_COM_YOURBUSINESS_VATNO', 'numero VAT' );
-jr_define( '_JOMRES_COM_YOURBUSINESSADDRESS', 'Numero costruzione' );
+jr_define( '_JOMRES_COM_YOURBUSINESS_VATNO', 'Partita Iva' );
+jr_define( '_JOMRES_COM_YOURBUSINESSADDRESS', 'Indirizzo' );
 jr_define( '_JOMRES_COM_A_TAX_WARNING2', '<font color=red>NOTA: Le seguenti aliquote sono valide per utilizzo nel mercato americano. Se vuoi usare una aliquota flat (es VAT) per le tue strutture, scegli una aliquota tra le opzioni mostrate sopra.</FONT>' );
 jr_define( '_JOMRES_INVOICE_NUMBER', 'Ordine N. ' );
 jr_define( '_JOMRES_FRONT_BLACKBOOKING_DESC_SRP', 'Seleziona le date che vuoi riservare, o inibire al sistema causa lavori di manutenzione, chiusura, motivi personali. Quando avrai selezionato le date appropriate, clicca sul pulsante "applica" per controllare nuovamente la disponibilita. <br/> 
 <br/> 
 Se la struttura ha gia prenotazioni per le date selezionate, non sara possibile selezionare le stesse date fino a quando queste prenotazioni non verranno cancellate o gli ospiti risulteranno in partenza.' );
-jr_define( '_JOMRES_FRONT_BLACKBOOKING_SRP_CANNOTBLACKBOOK', 'Non puoi riservare la struttura per le date selezionate.' );
-jr_define( '_JOMRES_FRONT_BLACKBOOKING_SRP_CANBLACKBOOK', 'Puoi riservare la struttura per le date selezionate.' );
+jr_define( '_JOMRES_FRONT_BLACKBOOKING_SRP_CANNOTBLACKBOOK', 'Non puoi prenotare la struttura per le date selezionate.' );
+jr_define( '_JOMRES_FRONT_BLACKBOOKING_SRP_CANBLACKBOOK', 'Puoi prenotare la struttura per le date selezionate.' );
 jr_define( '_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', 'La tua struttura &egrave; configurata su di un pagamento a persona per notte ma non hai creato o pubblicato nessun tipo ospite, ti preghiamo di creare &egrave; pubblicare uno o piu tipi ospite. ' );
 jr_define( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', 'Non hai ancora nessuna tariffa configurata, non &egrave; possibile ricevere nessuna prenotazione per la tua struttura.' );
 jr_define( '_JOMRES_EDITINGMODE_ON', 'Modifiche on' );
@@ -1438,8 +1438,8 @@ jr_define( 'JOMRES_COM_A_MINIMALCONFIG_DESC', 'Seleziona SI per ridurre il numer
 
 jr_define( '_JOMRES_AJAXFORM_EXTRAS_SELECT', 'Seleziona un opzione per la tua prenotazione' );
 jr_define( '_JOMRES_COM_ALLOWHTMLEDITOR_DESC', 'Cambia su HTML editor nella pagina di configurazione della struttura. Inoltre, Se selezioni NO, tutto l&acute;HTML eccetto p e br &egrave; estrapolato da tutto il testo inserito e visualizzato.' );
-jr_define( '_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT', "Visualizzazione Gestione struttura" );
-jr_define( '_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW', "Visualizzazione anteprima del sito" );
+jr_define( '_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT', "Gestione struttura" );
+jr_define( '_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW', "Anteprima struttura" );
 jr_define( '_JOMRES_COM_TIMEZONE_SWITCHER', "Visualizzare il selettore di Timezone nella toolbar del gestore struttura?" );
 
 jr_define( '_JOMRES_PARTNER_DISCOUNT', "Sconto Partner " );
@@ -1515,8 +1515,8 @@ jr_define( '_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Set this option to Yes if y
 
 jr_define( '_JOMRES_CONFIG_JQUERY_UI', "Load Jomres jQuery UI library?" );
 
-jr_define( '_JOMRES_SORTORDER_PRICE_DESC', 'Price (highest first)' );
-jr_define( '_JOMRES_SORTORDER_PRICE_ASC', 'Price (lowest first)' );
+jr_define( '_JOMRES_SORTORDER_PRICE_DESC', 'Prezzo (più costosi)' );
+jr_define( '_JOMRES_SORTORDER_PRICE_ASC', 'Price (meno costosi)' );
 
 // 4.7.6
 
@@ -1526,34 +1526,34 @@ jr_define( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', 'a settimana' );
 jr_define( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', 'al mese' );
 jr_define( '_JOMRES_BOOKINGFORM_PERPERSON', 'a persona' );
 
-jr_define( '_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS', 'week(s) at ' );
-jr_define( '_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS', 'month(s) at ' );
+jr_define( '_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS', 'settimana(e) a ' );
+jr_define( '_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS', 'mese(i) a ' );
 
 // 4.7.7
 
 jr_define( '_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS', 'How should the search option for people numbers work?' );
 jr_define( '_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS_DESC', 'Affects all search modules. When using the guest number search feature, should the search feature look for properties who\'s tariffs will support guest numbers up and equal the number chosen, exactly equal the number chosen, or the number chosen and greater? ' );
-jr_define( '_JOMRES_PAYPAL_REDIRECTMESSAGE', 'Please wait, your order is being processed and you will be redirected to the Paypal website.' );
-jr_define( '_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED', 'If you are not automatically redirected to Paypal within 5 seconds...' );
-jr_define( '_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE', 'Click Here' );
+jr_define( '_JOMRES_PAYPAL_REDIRECTMESSAGE', 'Attendere prego, la tua prenotazione è in fase di elaborazione e sarai reindirizzato sul sito di Paypal per effettuare il pagamento.' );
+jr_define( '_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED', 'Se non visualizzi la pagina Paypal entro 5 secondi...' );
+jr_define( '_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE', 'Clicca qui' );
 // 4.7.8
 
-jr_define( '_JRPORTAL_COUPONS_BOOKING_VALIDFROM', "Booking valid from" );
-jr_define( '_JRPORTAL_COUPONS_BOOKING_VALIDTO', "Booking valid to" );
-jr_define( '_JRPORTAL_COUPONS_GUESTNAME', "Guest name" );
+jr_define( '_JRPORTAL_COUPONS_BOOKING_VALIDFROM', "Prenotazione valida da" );
+jr_define( '_JRPORTAL_COUPONS_BOOKING_VALIDTO', "Prenotazione valida fino a" );
+jr_define( '_JRPORTAL_COUPONS_GUESTNAME', "Nome ospite" );
 jr_define( '_JRPORTAL_COUPONS_DESC_478', "Discount codes can be generated and passed onto guests as an incentive to make bookings.<br/>
 Valid from and to dates refer to the dates that a booking can be made on, whereas the Booking valid from/to dates refer to the dates that the booking must cover for the coupon to be valid. If a booking falls outside of that period then normal rates will apply to the days outside of that period.<br/>
 If you want the booking to be available to one specific guest, choose that guest's name in the dropdown to limit the coupon to that guest only." );
 jr_define( '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', "With your coupon, this booking has been discounted from " );
-jr_define( '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', " to " );
+jr_define( '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', " a " );
 
 jr_define( '_JOMRES_CONFIG_JQUERY_UI_DESC', "Set this to No to disable loading of both the Jquery UI javascript and CSS files." );
 jr_define( '_JOMRES_CONFIG_JQUERY_UI_CSS', "Load Jomres jQuery UI CSS library?" );
 jr_define( '_JOMRES_CONFIG_JQUERY_UI_CSS_DESC', "Set this to No to disable only the jquery UI CSS file." );
 
 //v5.1 
-jr_define( '_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX', "Total inc tax" );
-jr_define( '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', 'Unpublished property' );
+jr_define( '_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX', "Totale tasse incl." );
+jr_define( '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', 'Struttura non pubblicata' );
 
 // v5.2
 jr_define( '_JOMRES_CONVERSION_TITLE', "Use conversion functionaity" );
@@ -1575,14 +1575,14 @@ jr_define( '_JOMRES_BOOKINGORM_MODALPOPUP', 'Show the booking form in a modal po
 jr_define( '_JOMRES_BOOKINGORM_MODALPOPUP_DESC', 'If the option to show the booking form in the property details is set to No, then when the booking form page is opened Jomres can show the booking form in a modal popup. This allows you to include much more information in the booking form without overwhelming the customer by having too many elements on the screen (as they\'re hidden behind the popup)' );
 jr_define( '_JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION', 'Totals panel location' );
 jr_define( '_JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION_DESC', 'In the booking form the totals panel needs different settings depending on the template. For example, on the Jomres Joomla template a setting of 712 works well, however on Milkyway a setting of circa 1500 is more suitablem, particularly if you do not have the modal popup feature enabled. It\'s likely that you\'ll need to experiment with different settings to find something that works well in your chosen template. ' );
-jr_define( '_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Alloggio tasse escluse' );
-jr_define( '_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Alloggio tasse incluse' );
-jr_define( '_JOMRES_AJAXFORM_BILLING_TAX_ACCOM', 'Tassa di alloggio:' );
+jr_define( '_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Soggiorno tasse escluse' );
+jr_define( '_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Soggiorno tasse incluse' );
+jr_define( '_JOMRES_AJAXFORM_BILLING_TAX_ACCOM', 'Tassa di soggiorno:' );
 jr_define( '_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM', 'Open the booking form' );
 
-jr_define( '_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS', 'Back to property details' );
-jr_define( '_JOMRES_COM_MR_EXTRA_AUTO_SELECT', 'Automatically Selected?' );
-jr_define( '_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE', 'Resto da pagare' );
+jr_define( '_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS', 'Torna ai dettagli' );
+jr_define( '_JOMRES_COM_MR_EXTRA_AUTO_SELECT', 'Seleziona automaticamente?' );
+jr_define( '_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE', 'Saldo da pagare' );
 
 jr_define( '_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER', 'Filter resources based on their features.' );
 
@@ -1599,23 +1599,23 @@ jr_define( '_JOMRES_DATEPERIOD_S', ' ' );
 jr_define( '_JOMRES_DATEPERIOD_AGO', 'fa' );
 jr_define( '_JOMRES_DATEPERIOD_FROMNOW', 'da ora' );
 
-jr_define( '_JOMRES_WHOLEDAY_TITLE', 'Bookings are for whole days?' );
+jr_define( '_JOMRES_WHOLEDAY_TITLE', 'Prenotazioni per notti?' );
 jr_define( '_JOMRES_WHOLEDAY_DESC', 'By default the system bookings resources out by the night, so a booking from the first of January ' . date( "Y", strtotime( "next year" ) ) . ' to the 2nd of January ' . date( "Y", strtotime( "next year" ) ) . ' covers just one night. If you set this option to Yes, however, then the booking will cover entire days instead, so a booking on those days would cover both days and the customer would be billed for two days.' );
-jr_define( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', 'Per day' );
-jr_define( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', 'Per person per day' );
-jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY', 'Pickup' );
-jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY', 'Return' );
-jr_define( '_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS_WHOLEDAY', "days(s) at" );
-jr_define( '_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID_WHOLEDAY', 'Return date incorrect' );
+jr_define( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', 'Per notte' );
+jr_define( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', 'Per persona per notte' );
+jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY', 'Arrivo' );
+jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY', 'Partenza' );
+jr_define( '_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS_WHOLEDAY', "giorno(i) a" );
+jr_define( '_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID_WHOLEDAY', 'Data di partenza errata' );
 jr_define( '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1_WHOLEDAY', 'The booking is too short. There needs to be at least this many days between the pickup and return dates:' );
-jr_define( '_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY', 'Pickup/Return minimum interval' );
+jr_define( '_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY', 'Intervallo minimo tra arrivo e partenza' );
 jr_define( '_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY', 'The mimimum interval in the booking form between the pickup and the drop off dates. An interval of 1 means that the pickup and return dates can be set to the same day, however this is still dependant on the minimum interval that\'s automatically calculated by the booking engine, as it checks tariffs that are valid for the booking period.' );
 jr_define( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WHOLEDAY', 'Price summary and estimates should be priced as per day/per week/per month?' );
-jr_define( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY_WHOLEDAY', 'Per day' );
-jr_define( '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_WHOLEDAY', 'Days before the pickup date' );
+jr_define( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY_WHOLEDAY', 'Per notte' );
+jr_define( '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_WHOLEDAY', 'Giorni prima della partenza' );
 jr_define( '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC_WHOLEDAY', 'The minimum number of days that must elapse, from "today", before the pickup date.' );
 jr_define( '_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC_WHOLEDAY', 'Set this to yes if you want to limit advance bookings (use the next field to set the limit in terms of days). If you do set this to yes then if the user tries to book more than n days in advance then their pickup date will be restored to today\'s date' );
-jr_define( '_JOMRES_COM_A_SHOWDEPARTUREINPUT_WHOLEDAY', 'Show return date input?' );
+jr_define( '_JOMRES_COM_A_SHOWDEPARTUREINPUT_WHOLEDAY', 'Mostra data di partenza?' );
 jr_define( '_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC_WHOLEDAY', "Set this to No if you don't want to show the return date input box. Only use this if you know what you're doing, as the return date in bookings will always be set to the day after the pickup date." );
 
 jr_define( '_JOMRES_COM_A_FIXEDPERIODBOOKINGS_DESC_WHOLEDAY', 'If you set this to Yes, then bookings will be taken for a fixed period. If this is set to No, then ensure that "defined pickup day" isn\'t set to Yes (unless you specifically want to force people to pickup on a certain day of the week) otherwise you will not get many links in the availability calendar.' );
@@ -1624,7 +1624,7 @@ jr_define( '_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO_DESC_WHOLEDAY', 'Only for site
 jr_define( '_JOMRES_COM_MR_FIXEDARRIVALDATE_DAY_WHOLEDAY', 'Fixed pickup day' );
 jr_define( '_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING_WHOLEDAY', 'Fixed pickup dates recurr: ' );
 jr_define( '_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING_DESC_WHOLEDAY', 'When fixed pickup dates are selected, the number of dates that can be shown in the dates dropdown list. Note that the list of dates will not include any dates if a booking is not possible due to prior bookings, and that the list will actually be twice as long as your selected number because it will have a similar number of historic dates (where available).' );
-jr_define( '_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', 'Per person, per day' );
+jr_define( '_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', 'Per persona, per notte' );
 jr_define( '_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', 'Select Yes if you want to charge per-person-per-day. If no, then costs will be calculated on a per-resource-per-day basis' );
 jr_define( '_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC_WHOLEDAY', 'Variable deposits allow you to define if you\'d like to charge the full amount if the booking\'s pickup date is within N days from "today". Set this option to Yes to enable the feature, and enter the number of days below, so for example if the pickup day is within 60 days, then the deposit amount charged will be the full amount, otherwise the amount will be based on the deposit options configured above.' );
 jr_define( '_JOMCOMP_WISEPRICE_TITLE_DESC_FULL_WHOLEDAY', 'Most businesses will recalculate resource prices based on the number of resources of a required type that are available on a given date. This allows them to offer discounts on a resource/business type that isn\'t busy during a given period with the aim of attracting business that might otherwise be missed.<br/>Enabling and configuring this plugin allows you to offer adjustable pricing based on the number of resources of a selected type are available in the business on a given day.<br/> The days threshold defines the number of days that the pickup date must be within before resource prices are adjusted by this feature, then the percentages options allow you to configure the percentage of resources that can be available before a given discount is applied. Note however, if multiple resources are booked then the current level of discount will be applied to all resources and will not reduce as more resources are selected.' );
@@ -1635,18 +1635,18 @@ jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY', 'Picked up' );
 jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY', 'Returns today' );
 jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY', 'Return overdue' );
 jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY', 'Has not picked up' );
-jr_define( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', 'Days' );
+jr_define( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', 'Giorni' );
 jr_define( '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN_WHOLEDAY', 'Mark a booking picked up.' );
 jr_define( '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT_WHOLEDAY', 'Mark a booking returned.' );
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_TITLE_WHOLEDAY', 'Mark a booking picked up' );
 jr_define( '_JOMRES_FRONT_MR_BOOKOUT_TITLE_WHOLEDAY', 'Mark a booking returned' );
-jr_define( '_JOMRES_COM_INVOICE_COSTPERNIGHT_WHOLEDAY', 'Cost per day: ' );
-jr_define( '_JOMRES_COM_INVOICE_STAYNIGHTS_WHOLEDAY', 'Number of days: ' );
+jr_define( '_JOMRES_COM_INVOICE_COSTPERNIGHT_WHOLEDAY', 'Prezzo per giorno: ' );
+jr_define( '_JOMRES_COM_INVOICE_STAYNIGHTS_WHOLEDAY', 'Numero di giorni: ' );
 
-jr_define( '_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', 'Override Accommodation Total' );
-jr_define( '_JOMCOMP_AMEND_OVERRIDE_SAVE', 'Save override' );
+jr_define( '_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', 'Sovrascrivi totale pernottamento' );
+jr_define( '_JOMCOMP_AMEND_OVERRIDE_SAVE', 'Salva modifica' );
 
-jr_define( '_JOMRES_BOOKINGFORMWIDTH', 'Booking form width in px' );
+jr_define( '_JOMRES_BOOKINGFORMWIDTH', 'Larghezza in pixel form di prenotazione' );
 jr_define( '_JOMRES_BOOKINGORM_SLIDERENABLED', 'Allow the totals panel to slide down the booking form?' );
 jr_define( '_JOMRES_BOOKINGORM_SLIDERENABLED_DESC', 'The totals panel will slide down the booking form as the user scrolls down. You can enable/disable this feature with this switch. Note, if the user visits via a mobile device\'s browser then sliding is automatically disabled.' );
 
@@ -1654,17 +1654,17 @@ jr_define( '_JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS', 'Email new us
 jr_define( '_JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS_DESC', 'If the Create New User option is set to Yes, you can set this option to No to ensure that they are not emailed their login details once the user has been created. This might be useful if you are automatically adding new users to a mailing list, for example, and do not want users to actually log in.' );
 jr_define( '_JOMRES_BOOKINGORM_TAX_OUTPUT', 'Show tax output in the booking form totals summary?' );
 jr_define( '_JOMRES_BOOKINGORM_TAX_OUTPUT_DESC', 'Prevent the booking form from showing the tax price fields in the totals summary by setting this option to No.' );
-jr_define( '_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD', 'Cancellation Threashold' );
+jr_define( '_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD', 'Politica di cancellazione' );
 jr_define( '_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD_DESC', 'Logged in, registered guests can cancel their own bookings. Here you can set the threashold, in days, where the booking cannot be cancelled after a certain number of days before the arrival date.' );
 
-jr_define( '_JOMRES_EDIT_PROFILE', 'Edit Profile' );
+jr_define( '_JOMRES_EDIT_PROFILE', 'Modifica profilo' );
 jr_define( '_JOMRES_PROPERTY_TYPE_ASSIGNMENT', 'Property type relationship' );
-jr_define( '_JOMRES_IMAGE', 'Image' );
+jr_define( '_JOMRES_IMAGE', 'Foto' );
 jr_define( '_JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT', 'Business types that can show this feature' );
 jr_define( '_JOMRES_CRATES_CLICKINITIAL', 'Click on a letter to show all businesses with that first character. Once you have a list of properties you can assign commission rates to those properties, or click on their "edit" icon to view the business\'s statistics.' );
-jr_define( '_JRPORTAL_TAX_RATE_EDIT', "Edit Tax rate" );
+jr_define( '_JRPORTAL_TAX_RATE_EDIT', "Modifica regole imposte" );
 
-jr_define( '_JOMRES_COM_CUSTOMFIELDS_TITLE_EDIT', "Edit Custom field" );
+jr_define( '_JOMRES_COM_CUSTOMFIELDS_TITLE_EDIT', "Modifica campi personalizzati" );
 
 jr_define( '_JOMRES_LICENSESERVER_PASSWORD', "License server password" );
 jr_define( '_JOMRES_LICENSESERVER_USERNAME', "License server username" );
@@ -1677,19 +1677,19 @@ jr_define( '_JOMRES_VERSIONCHECK_VERSIONWARNING', "Alert : There is a new versio
 jr_define( '_JOMRES_PRODUCT_INFORMATION', 'Welcome to Jomres, we hope you enjoy using Joomla\'s favourite booking system. If you would like to purchase a Jomres Solo, Silver or Jomres Gold license, <a href="http://www.jomres.net/prices" target="_blank"> please visit our site</a> for information on how you can upgrade.' );
 jr_define( '_JOMRES_PRODUCT_INFORMATION2', 'This system is ideal for any scenario, be it a simple booking form for a single property, right up to a site that has multiple users, in multiple languages, with multiple properties. Please see the "Help" section to the left, including the "Getting Started" page which will guide you through your first steps.' );
 
-jr_define( '_JOMRES_ROBBED_PORTALUI_CURRENT_PROPERTY', "Active property" );
-jr_define( '_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY', "Change your active property" );
+jr_define( '_JOMRES_ROBBED_PORTALUI_CURRENT_PROPERTY', "Strutture attive" );
+jr_define( '_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY', "Modifica struttura attiva" );
 jr_define( '_JOMRES_ROBBED_PORTALUI_CLICKINITIAL', "Click a character to reveal all properties that start with that character. Once revealed, click on that property's name to change it to your active property." );
 
-jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE', "Alternate SMTP Settings" );
+jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE', "Server SMTP alternativo" );
 jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_DESC', "Set this option to Yes to use these Alternate SMTP settings. An increasing number of web hosts appear to be blocking PHP mail functionality, so you can choose to over-ride the mail settings that Jomres adopts from your host CMS (typically Joomla) and use settings of your own choice here." );
-jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_HOST', "Alternate Host" );
+jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_HOST', "Host alternativo" );
 jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_HOST_DESC', "Change this to your smtp mail server" );
-jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_PORT', "Alternate Port" );
+jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_PORT', "Porta alternativa" );
 jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_PORT_DESC', "Change this to your smtp port" );
-jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL', "Alternate Protocol" );
+jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL', "Protocollo alternativo" );
 jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL_DESC', "Depending on your smtp server settings, you need to leave this blank, or enter 'ssl' or 'tls'. Ask your SMTP provider if you don`t know." );
-jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_AUTH', "Use authentication" );
+jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_AUTH', "Usa autenticazione" );
 jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_AUTH_DESC', "If your SMTP server requires clients to login, set this to Yes. The Username and Password will then be used." );
 jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME', "Alternate Username" );
 jr_define( '_JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME_DESC', "" );
@@ -1700,9 +1700,9 @@ jr_define( '_JOMRES_WARNING_SYSTEM_CACHE', "Warning : We have detected that your
 
 jr_define( '_JOMRES_QUICK_INFO', "Quick Info" );
 
-jr_define( '_JOMRES_MENU_SHOW', "Show" );
-jr_define( '_JOMRES_MENU_HIDE', "Hide" );
-jr_define( '_JOMRES_MENU_SHOW_TITLE', "Use the alternate menu layout?" );
+jr_define( '_JOMRES_MENU_SHOW', "Mostra" );
+jr_define( '_JOMRES_MENU_HIDE', "Nascondi" );
+jr_define( '_JOMRES_MENU_SHOW_TITLE', "Usa menu alternativo?" );
 jr_define( '_JOMRES_MENU_SHOW_DESC', "Set this to Yes to use the Alternate menu option in the frontend. When set to No the Jomres Main Menu shows as an accordion on the left of the page, with a button to enlarge the menu. When set to Yes, the Alternate Main Menu is used, which results in a menubar across the top of the page. Both menus will slide with the user, and the Accordion menu is considered to be the better menu, however if you find that it's not appropriate for you, you're free to choose the alternate. If neither of these menus suit you, then you will need to modify mainmenu_wrapper.html and mainmenu_options.html to suit your specific set of requirements." );
 
 
@@ -1733,9 +1733,9 @@ jr_define( '_JOMRES_SHOWPROFILES_USERSWITHACCESS', "Users with admin rights to t
 jr_define( '_JOMRES_ADMIN_LISTALLUSERSINVOICES', "List all user's invoices" );
 
 
-jr_define( '_JOMRES_DEBUGGING_SUBJECT', 'Subject' );
-jr_define( '_JOMRES_DEBUGGING_FULLNAME', 'Your full name' );
-jr_define( '_JOMRES_DEBUGGING_YOUREMAIL', 'Your email address' );
+jr_define( '_JOMRES_DEBUGGING_SUBJECT', 'Oggetto' );
+jr_define( '_JOMRES_DEBUGGING_FULLNAME', 'Nome e Cognome' );
+jr_define( '_JOMRES_DEBUGGING_YOUREMAIL', 'Email' );
 jr_define( '_JOMRES_DEBUGGING_ISSUE', 'Please describe your issue' );
 jr_define( '_JOMRES_EXTRAS_MODELS_MODEL', 'Model' );
 jr_define( '_JOMRES_EXTRAS_MODELS_PARAMS', 'Parameters' );
@@ -1743,8 +1743,8 @@ jr_define( '_JOMRES_EXTRAS_MODELS_FORCE', 'Force' );
 jr_define( '_JOMRES_METATITLE', 'Meta title' );
 jr_define( '_JOMRES_METADESCRIPTION', 'Meta description' );
 jr_define( '_JOMRES_FOUNDPROPERTIES', "Properties found" );
-jr_define( '_JOMRES_REGISTRATION_STEP_1_OF_2', "Add your property : Step 1 of 2" );
-jr_define( '_JOMRES_REGISTRATION_STEP_2_OF_2', "Add your property : Step 2 of 2" );
+jr_define( '_JOMRES_REGISTRATION_STEP_1_OF_2', "Inserisci la tua struttura : Step 1 di 2" );
+jr_define( '_JOMRES_REGISTRATION_STEP_2_OF_2', "Inserisci la tua struttura : Step 2 di 2" );
 
 jr_define( '_JOMRES_MYPROPERTIES', 'My businesses' );
 
@@ -1752,10 +1752,10 @@ jr_define( '_JOMRES_MYPROPERTIES', 'My businesses' );
 jr_define( '_JOMRES_CART_TITLE', 'My proposed bookings' );
 jr_define( '_JOMRES_CART_INFO', 'Note, these bookings have not been saved yet. If you log out or your session expires they will be lost. Remember to confirm your bookings!' );
 jr_define( '_JOMRES_CART_CONFIRM_BOOKINGS', 'Confirm booking(s)' );
-jr_define( '_JOMRES_CART_OR', ' or ' );
-jr_define( '_JOMRES_CART_SAVEFORLATER', 'Save for later' );
+jr_define( '_JOMRES_CART_OR', ' o ' );
+jr_define( '_JOMRES_CART_SAVEFORLATER', 'Salva e conferma dopo' );
 jr_define( '_JOMRES_CART_NOBOOKINGS_SAVED', 'You don\'t have any bookings saved yet.' );
-jr_define( '_JOMRES_CART_VIEWCART', 'View cart' );
+jr_define( '_JOMRES_CART_VIEWCART', 'Vedi carrello' );
 
 jr_define( '_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR', 'Language file subdirectory' );
 
@@ -1777,16 +1777,16 @@ jr_define( '_JOMRES_CSS_CACHING_DESC', "" );
 
 jr_define( '_JOMRES_JSCALENDAR_USECLEARCHECKBOX', "Search calendars show the clear dates checkbox?" );
 
-jr_define( '_JOMRES_PROPERTYLIST_LAYOUT_LIST', "List view" );
-jr_define( '_JOMRES_PROPERTYLIST_LAYOUT_TILE', "Photo view" );
+jr_define( '_JOMRES_PROPERTYLIST_LAYOUT_LIST', "Lista" );
+jr_define( '_JOMRES_PROPERTYLIST_LAYOUT_TILE', "Foto" );
 
-jr_define( '_JOMRES_COMPARE', "Compare" );
-jr_define( '_JOMRES_REMOVE', "Remove" );
-jr_define( '_JOMRES_RETURN_TO_RESULTS', "Return to search results" );
+jr_define( '_JOMRES_COMPARE', "Compara" );
+jr_define( '_JOMRES_REMOVE', "Rimuovi" );
+jr_define( '_JOMRES_RETURN_TO_RESULTS', "Torna ai risultati di ricerca" );
 
-jr_define( '_JOMRES_ADDTOSHORTLIST', "Add to shortlist" );
-jr_define( '_JOMRES_REMOVEFROMSHORTLIST', "Remove from shortlist" );
-jr_define( '_JOMRES_VIEWSHORTLIST', "View your shortlist" );
+jr_define( '_JOMRES_ADDTOSHORTLIST', "Aggiungi alla tua lista" );
+jr_define( '_JOMRES_REMOVEFROMSHORTLIST', "Rimuovi dalla tua lista" );
+jr_define( '_JOMRES_VIEWSHORTLIST', "Vedi la tua lista" );
 
 jr_define( '_JOMRES_COOKIEPOLICY_TITLE', "Cookie Policy" );
 jr_define( '_JOMRES_COOKIEPOLICY_DESC', "EU Legislation requires that all websites that use cookies request permission from site visitors to store cookies.
@@ -1796,46 +1796,46 @@ If enabled Jomres will show an 'opt-in' link where users can choose to have the 
 <br/>
 Set this option to Yes to enact this policy." );
 
-jr_define( '_JOMRES_COOKIEPOLICY_1', "Important: Cookie Policy" );
+jr_define( '_JOMRES_COOKIEPOLICY_1', "Importante: Cookie Policy" );
 jr_define( '_JOMRES_COOKIEPOLICY_2', "We use cookies to help keep our site relevant and easy to use." );
-jr_define( '_JOMRES_COOKIEPOLICY_3', "Read more..." );
+jr_define( '_JOMRES_COOKIEPOLICY_3', "Altro..." );
 jr_define( '_JOMRES_COOKIEPOLICY_4', "EU legislation requires that all websites clearly specify if cookies are being used and their purpose." );
 jr_define( '_JOMRES_COOKIEPOLICY_5', "The search and booking engine of this site needs to be able to remember the options you have chosen to work at it's best. To do this it needs to store information which is associated with a small file called a \"cookie\" which uniquely identifies your browser, and for us to do that, you must agree that we can. If you do not accept this cookie policy then you will be severely limited in what you can do on this site." );
-jr_define( '_JOMRES_COOKIEPOLICY_6', "Yes, I accept the use of cookies in this way." );
+jr_define( '_JOMRES_COOKIEPOLICY_6', "Si, accetto l'utilizzo dei cookie." );
 
-jr_define( '_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST', 'Deposit required is cost of the first night?' );
+jr_define( '_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST', 'La cauzione è pari al costo di una notte?' );
 jr_define( '_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST_DESC', 'Prices are calculated on a per night basis. Do you want the deposit to be one night\'s charge? If so, you can ignore the following options.' );
 
-jr_define( '_JOMRES_NOTHINGINSHORTLIST', "You haven't added any items to your shortlist." );
+jr_define( '_JOMRES_NOTHINGINSHORTLIST', "Nessuna struttura presente nella tua lista." );
 
-jr_define( '_JOMRES_MOBILE_SETTINGS', "Mobile device settings" );
-jr_define( '_JOMRES_SIMULATE_MOBILE', "Simulate mobile mode" );
+jr_define( '_JOMRES_MOBILE_SETTINGS', "Impostazioni dispositivi mobile" );
+jr_define( '_JOMRES_SIMULATE_MOBILE', "Simula dispositivo mobile" );
 jr_define( '_JOMRES_SIMULATE_MOBILE_DESC', "Set this to yes to force Jomres to always switch to mobile view. Useful if you're developing templates that are for mobile devices. NOTE : You will need a mobile template plugin installed." );
-jr_define( '_JOMRES_SIMULATE_MOBILE_RESTRICTION', "Simulation IP" );
+jr_define( '_JOMRES_SIMULATE_MOBILE_RESTRICTION', "Simulazione IP" );
 jr_define( '_JOMRES_SIMULATE_MOBILE_RESTRICTION_DESC', "You can configure the simulation setting to only come into force if the user's IP = xxx.xxx.xxx.xxx, so for example if you're developing on localhost, you would set the IP number to 127.0.0.1." );
 
-jr_define( '_JOMRES_SAFEMODE', "Enable safe mode?" );
-jr_define( '_JOMRES_SAFEMODE_DESC', "Set this to Yes to trigger safe mode. This will disable all plugins so that Jomres will only use it's core functionality." );
+jr_define( '_JOMRES_SAFEMODE', "Abilita safe mode?" );
+jr_define( '_JOMRES_SAFEMODE_DESC', "La modalità safe mode, disabilta tutti i plugin lasciando funzionare solo il componente Jomres." );
 
 jr_define( '_JOMRES_PRICE_ON_APPLICATION', "POA" );
 
-jr_define( '_JOMRES_USE_JOMRESEDITOR', "Use Jomres' WYSIWYG editor? (recommended)" );
+jr_define( '_JOMRES_USE_JOMRESEDITOR', "Vuoi utilizzare l'editor di testo WYSIWYG? (raccomandato)" );
 jr_define( '_JOMRES_USE_JOMRESEDITOR_DESC', "If you've enabled the WYSIWYG editor, you can choose to use the html editor(s) available for your CMS, or the one supplied with Jomres. This one is optimised for use by Property Managers and it is recommended that you choose to use it." );
 
-jr_define( 'COMMON_NEXT', "Next" );
-jr_define( 'COMMON_CANCEL', "Cancel" );
-jr_define( 'COMMON_SUBMIT', "Submit" );
-jr_define( 'COMMON_SAVE', "Save" );
-jr_define( 'COMMON_DELETE', "Delete" );
-jr_define( 'COMMON_RETURN', "Return" );
-jr_define( 'COMMON_CLOSE', "Close" );
-jr_define( 'COMMON_BACK', "Back" );
+jr_define( 'COMMON_NEXT', "Successivo" );
+jr_define( 'COMMON_CANCEL', "Annulla" );
+jr_define( 'COMMON_SUBMIT', "Invia" );
+jr_define( 'COMMON_SAVE', "Salva" );
+jr_define( 'COMMON_DELETE', "Elimina" );
+jr_define( 'COMMON_RETURN', "Indietro" );
+jr_define( 'COMMON_CLOSE', "Chiudi" );
+jr_define( 'COMMON_BACK', "Indietro" );
 
 jr_define( 'COMMON_HOME', "Home" );
 
-jr_define( 'COMMON_NEW', "New" );
+jr_define( 'COMMON_NEW', "Nuovo" );
 
-jr_define( 'COMMON_SEND', "Send" );
+jr_define( 'COMMON_SEND', "Invia" );
 
 jr_define( 'RECAPTCHA_TITLE', "reCaptcha" );
 jr_define( 'RECAPTCHA_INFO', "Captcha is used to ensure that the client using web forms is a human being, and is used to prevent Property Managers from being \"spammed\" by robots on the internet. To use the Contact Us form in Jomres you will need to register at <a href=\"http://www.google.com/recaptcha\" target=\"_blank\">the Google reCaptcha</a> home page and set your domain to receive your public and private keys. When you have received those keys, please enter them below. The reCapcha service is a free service provided by Google." );
@@ -1850,13 +1850,13 @@ jr_define( '_JOMRES_BOOKINGFORM_LOCK_DESC', "To prevent the danger of guests dou
 jr_define( '_JOMRES_BOOTSTRAPSWITCH', "Enable Jomres' Bootstrap templates and functionality?" );
 jr_define( '_JOMRES_BOOTSTRAPSWITCH_DESC', "If you are running a bootstrap enabled template in the frontend of this site set this option to Yes." );
 
-jr_define( 'COMMON_ACTION', "Action" );
-jr_define( 'COMMON_VIEW', "View" );
+jr_define( 'COMMON_ACTION', "Azione" );
+jr_define( 'COMMON_VIEW', "Vedi" );
 
-jr_define( 'BACKTOTOP', "Back to top" );
+jr_define( 'BACKTOTOP', "Torna su" );
 
-jr_define( '_JOMRES_INPUTFILTERING_LEVEL_WEAK', "Weak" );
-jr_define( '_JOMRES_INPUTFILTERING_LEVEL_STRONG', "Strong" );
+jr_define( '_JOMRES_INPUTFILTERING_LEVEL_WEAK', "Debole" );
+jr_define( '_JOMRES_INPUTFILTERING_LEVEL_STRONG', "Sicura" );
 
 jr_define( '_JOMRES_INPUTFILTERING', "Input filtering" );
 jr_define( '_JOMRES_INPUTFILTERING_LEVEL_TITLE', "Input filtering level" );
@@ -1867,13 +1867,13 @@ jr_define( '_JOMRES_INPUTFILTERING_INPUTS_TITLE', "Allowed inputs" );
 jr_define( '_JOMRES_INPUTFILTERING_INPUTS_DESC', "You can define which form inputs will allow html by editing this option, any input added to this list will be parsed through HTML Purifier instead of having all html stripped. Default is : 'property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers'. Add more inputs by adding their from names, separated by a space." );
 
 
-jr_define( '_JOMRES_PROPERTYDETAILS_INTABS_TITLE', "Property details in tabs?" );
+jr_define( '_JOMRES_PROPERTYDETAILS_INTABS_TITLE', "Dettagli struttura in tab?" );
 jr_define( '_JOMRES_PROPERTYDETAILS_INTABS_DESC', "Set this option to show property details in tabs. Set it to no to show them without tabs." );
 
 jr_define( 'COMMON_PRINT', "Stampa" );
 
-jr_define( 'COMMON_EDIT', "Edit" );
-jr_define( 'COMMON_COPY', "Copy" );
+jr_define( 'COMMON_EDIT', "Modifica" );
+jr_define( 'COMMON_COPY', "Copia" );
 
 
 jr_define( '_JOMRES_BOOTSTRAPSWITCH_INFO', "Joomla 3 includes Twitter's Bootstrap framework by default, and Jomres has templates and functionality that will use these templates. By default, if you're running Jomres on Joomla 3 these switches are set to Yes but you can set them to No if so desired (not recommended). If you're running a version of Joomla lower than Joomla 3 you can still opt to use the Jomres Bootstrap templates and functionality, however by default these options are set to No." );
@@ -1888,47 +1888,47 @@ jr_define( '_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT', "Auto-detect guest's countr
 jr_define( '_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC', "The system will try to automatically detect the guest's country, if they haven't booked before. You can set this option to No, and define the country you'd prefer to appear in the booking form, in the next option." );
 
 jr_define( "_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES", "About Jomres" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", "help" );
+jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", "aiuto" );
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN", "1 main" );
-jr_define( "_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED", "Getting started" );
+jr_define( "_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED", "Inizio" );
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE", "system maintenance" );
-jr_define( "_JOMRES_CUSTOMCODE_ACCESSCONTROL", "Access Control" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS", "developer tools" );
+jr_define( "_JOMRES_CUSTOMCODE_ACCESSCONTROL", "Gestione permessi" );
+jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS", "strumenti sviluppo" );
 jr_define( "_JOMRES_CUSTOMCODE_ASAMODULE", "ASAModule" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", "languages" );
+jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", "lingue" );
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION", "income generation" );
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_ACCOUNTING", "accounting" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_BOOKINGS", "bookings" );
+jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_BOOKINGS", "prenotazioni" );
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE", "site structure" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT", "user management" );
-jr_define( "_JOMRES_CUSTOMCODE_MANUAL", "Manual (online)" );
-jr_define( "_JOMRES_CUSTOMCODE_MYACCOUNTONLINE", "My Account (online)" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_CRONJOBS", "scheduled tasks" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL", "portal functionality" );
+jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT", "gestione utenti" );
+jr_define( "_JOMRES_CUSTOMCODE_MANUAL", "Manuale (online)" );
+jr_define( "_JOMRES_CUSTOMCODE_MYACCOUNTONLINE", "Il mio account (online)" );
+jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_CRONJOBS", "funzioni programmate" );
+jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL", "funzionalità portale" );
 jr_define( "_JOMRES_CUSTOMCODE_PLUGINMANAGER", "Plugin manager" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION", "integration" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS", "reports/statistics" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES", "taxes" );
+jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION", "integrazione" );
+jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS", "reports/statistiche" );
+jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES", "tasse" );
 jr_define( "_JOMRES_CUSTOMCODE_SUPPORT_TICKETS", "Tickets (online)" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", "help" );
-jr_define( "_JOMRES_CUSTOMCODE_UPGRADES", "Upgrades" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS", "payment methods" );
+jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", "aiuto" );
+jr_define( "_JOMRES_CUSTOMCODE_UPGRADES", "Aggiornamenti" );
+jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS", "metodo di pagamento" );
 
-jr_define( "_JOMRES_TARIFFTYPES_MISCSETTINGS_DEFAULT", "Tariff default" );
-jr_define( "_JOMRES_TARIFFTYPES_MISCSETTINGS_DEFAULT_DESC", "This only applies to new tariffs" );
-jr_define( "_JOMRES_TARIFFTYPES_MISCSETTINGS_YEARSTOSHOW", "Years to show" );
+jr_define( "_JOMRES_TARIFFTYPES_MISCSETTINGS_DEFAULT", "Tariffe default" );
+jr_define( "_JOMRES_TARIFFTYPES_MISCSETTINGS_DEFAULT_DESC", "Applicabile solo alle nuove tariffe" );
+jr_define( "_JOMRES_TARIFFTYPES_MISCSETTINGS_YEARSTOSHOW", "Anni da mostrare" );
 jr_define( "_JOMRES_TARIFFTYPES_MISCSETTINGS_YEARSTOSHOW_DESC", "Defines the number of years to show when editing a tariff type" );
 
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING", "invoices" );
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT", "account details" );
+jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING", "fatture" );
+jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT", "dettagli account" );
 jr_define( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', "Login" );
 jr_define( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT', "Logout" );
-jr_define( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', "search" );
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME", "dashboard" );
+jr_define( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', "cerca" );
+jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME", "pannello amministrazione" );
 jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOK", "reserve" );
 jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PMS", "management" );
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING", "invoices" );
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", "settings" );
+jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING", "fatture" );
+jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", "impostazioni" );
 jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MISC", "misc" );
 jr_define( "_JOMRES_PROPERTYCONFIG_SRPS", "SRPs" );
 
@@ -1964,28 +1964,28 @@ Once a template has been customised you have more options. You can create a New 
 <br/>
 Jomres is constantly evolving and core templates are often updated/modified. If you use the Template Editing feature these updated templates will not overwrite your customisations, however this may also mean that your customisations may not use new features in those core templates. As we have no way of analysing your customisations you may or may not benefit from those changes. The Template Editing feature will look at the last modified dates of the files in the /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend directory and if it detects that a template file\'s last modified date is newer than the template you have stored in the database then Jomres will warn you of that fact. It doesn\'t necessarily mean that you need to update your template customisation however, that\'s up to you to decide if you need to do that' ); // Updated template editing information to correspond with changes to 7.2.0 and it's template editing changes related to property type templates
 
-jr_define( "_JOMRES_STAYFORAMINIMUMOF", "Stay for a minimum of" );
-jr_define( "_JOMRES_NIGHTSFOR", " nights for " );
+jr_define( "_JOMRES_STAYFORAMINIMUMOF", "Soggiorni minimi di" );
+jr_define( "_JOMRES_NIGHTSFOR", " ntti per " );
 
 
 jr_define( "_JOMRES_PROPERTYLIST_IMAGESASGIFS", "Property list images, show the property image as a gif if slideshow images are available." );
 jr_define( "_JOMRES_PROPERTYLIST_IMAGESASGIFS_FEATURED_ONLY", "Show as GIFs only if the property is a featured property." );
 
-jr_define( "_JOMRES_AGENT", "Agent" );
-jr_define( "_JOMRES_AGENT_DETAILS", "Agent details" );
+jr_define( "_JOMRES_AGENT", "Gestore" );
+jr_define( "_JOMRES_AGENT_DETAILS", "Dettagli gestore" );
 jr_define( "_JOMRES_AGENT_LISTINGS", "Agent's listings" );
 
-jr_define( "_JOMRES_PROPERTY_LANG", "Property language" );
-jr_define( "_JOMRES_PROPERTY_LANG_DESC", "The default language of this property." );
+jr_define( "_JOMRES_PROPERTY_LANG", "Lingua struttura" );
+jr_define( "_JOMRES_PROPERTY_LANG_DESC", "La lingua predefinita della struttura." );
 
 
-jr_define( "_JOMRES_APPROVALS_CONFIG_TITLE", "Automatically approve new properties" );
+jr_define( "_JOMRES_APPROVALS_CONFIG_TITLE", "Approva automaticamente le nuove strutture" );
 jr_define( "_JOMRES_APPROVALS_CONFIG_DESC", "If you set this option to No then you will need to manually approve new properties. Until a property has been approved it cannot be published by a Manager/Super property manager." );
 jr_define( "_JOMRES_APPROVALS_MENU_NAME", "Approvals" );
-jr_define( "_JOMRES_APPROVALS_PROPERTIES_AWAITING_APPROVAL", "Properties awaiting approval" );
+jr_define( "_JOMRES_APPROVALS_PROPERTIES_AWAITING_APPROVAL", "Strutture in attesa di approvazione" );
 jr_define( "_JOMRES_APPROVALS_PROPERTIES_NO_AWAITING_APPROVAL", "No properties are awaiting approval" );
-jr_define( "_JOMRES_APPROVALS_APPROVE", "Approve property" );
-jr_define( "_JOMRES_APPROVALS_REVIEW", "Review property" );
+jr_define( "_JOMRES_APPROVALS_APPROVE", "Approva struttura" );
+jr_define( "_JOMRES_APPROVALS_REVIEW", "Recensioni struttura" );
 jr_define( "_JOMRES_APPROVALS_NOT_APPROVED_YET", "This property has not been approved yet. Once it has been approved you will be able to publish it." );
 jr_define( "_JOMRES_APPROVALS_CANNOT_PUBLISH", "Sorry, you cannot publish this property as it has not been approved yet." );
 jr_define( "_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT", "A new property requires approval" );
@@ -2000,14 +2000,14 @@ jr_define( "_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT", "Guest booked out." );
 
 jr_define( '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', 'Sorry, that email address is already in use. If this is your email address, please ensure you have logged in before attempting to book.' );
 
-jr_define( "JOMRES_TAPTOCALL", "Tap to call" );
+jr_define( "JOMRES_TAPTOCALL", "Tap e chiama" );
 
 jr_define( "JOMRES_NEWREVIEW_SUBJECT", "New review for " );
 jr_define( "JOMRES_NEWREVIEW_MESSAGE", "A new review has been left for " );
 jr_define( "JOMRES_NEWREPORT_SUBJECT", "New Report" );
 jr_define( "JOMRES_NEWREPORT_MESSAGE", "A review has been reported for " );
 
-jr_define( "JOMRES_NON_REGISTERED_USER", "Non registered user" );
+jr_define( "JOMRES_NON_REGISTERED_USER", "Utente non registrato" );
 
 jr_define( "JOMRES_JQUERY18_2", "Use Jquery 2.x?" );
 jr_define( "JOMRES_JQUERY18_2_DESC", "Jquery 2.x is faster than previous implementations of jQuery, however it lacks certain things like $.browser and support for IE6/7/8 and older Firefox and Safari browsers. If you're seeing javascript errors on your page, or if your template/other plugins (like slideshows) use older versions of jQuery then you should set this option to No. " );
@@ -2025,27 +2025,27 @@ jr_define( "JOMRES_RECAPTCHA_PLAY_AGAIN", "Replay the audio track " );
 jr_define( "JOMRES_RECAPTCHA_CANT_HEAR_THIS", "Download the track in MP3 format" );
 jr_define( "JOMRES_RECAPTCHA_VISUAL_CHALLENGE", "Visual mode" );
 jr_define( "JOMRES_RECAPTCHA_AUDIO_CHALLENGE", "Audio mode" );
-jr_define( "JOMRES_RECAPTCHA_REFRESH_BTN", "Refresh" );
-jr_define( "JOMRES_RECAPTCHA_HELP_BTN", "Help" );
+jr_define( "JOMRES_RECAPTCHA_REFRESH_BTN", "Aggiorna" );
+jr_define( "JOMRES_RECAPTCHA_HELP_BTN", "Aiuto" );
 jr_define( "JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN", "Sorry, that was incorrect. Please try again." );
 
 
-jr_define( "JOMRES_GOOGLE_MAPS", "Google map options" );
+jr_define( "JOMRES_GOOGLE_MAPS", "Google map" );
 jr_define( "JOMRES_GOOGLE_MAPS_INFO", "These layer options are mainly specific to maps in property lists and the property details page. If enabled, only the Weather layer will be shown in the extended maps plugin as including too many options on a larger map makes it extremely slow." );
-jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER", "Use weather layer?" );
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER", "Mostra meteo?" );
 jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER_GRAD", "Fahrenheit or Celcius? " );
 jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS", "Celcius" );
 jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT", "Fahrenheit" );
 
-jr_define( "JOMRES_GOOGLE_MAP_OPTION_PANORAMIO", "Use Panoramio layer?" );
-jr_define( "JOMRES_GOOGLE_MAP_OPTION_TRANSIT", "Use transit layer?" );
-jr_define( "JOMRES_GOOGLE_MAP_OPTION_TRAFFIC", "Use traffic layer?" );
-jr_define( "JOMRES_GOOGLE_MAP_OPTION_BICYCLING", "Use bicycling layer?" );
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_PANORAMIO", "Mostra Panoramio?" );
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_TRANSIT", "Mostra tratte?" );
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_TRAFFIC", "Mostra traffico?" );
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_BICYCLING", "Mostra perorso in bici?" );
 
-jr_define( "JOMRES_GOOGLE_MAPS_POIS", "Enable Gmap Points of Interest (including possibly your competitors)?" );
+jr_define( "JOMRES_GOOGLE_MAPS_POIS", "Abilita punti d'interesse (potrebbe includere i tuoi concorrenti)?" );
 
 
-jr_define( "_JOMRES_METAKEYWORDS", "Meta Keywords" );
+jr_define( "_JOMRES_METAKEYWORDS", "Parole chiavi" );
 
 jr_define( "_JOMRES_PLEASE_PRINT", "Please print this email and present it on your arrival." );
 jr_define( "_JOMRES_OFFICE_USE_ONLY", "Office use only" );
@@ -2059,31 +2059,31 @@ jr_define( "_JOMRES_VIES_VATCHECK_INCORRECT_SYNTAX", "The VAT number you entered
 jr_define( "_JOMRES_VIES_VATCHECK_INCORRECT_COULDNOTVALIDATE", "Invalid VAT Number. Please check the validity of your VAT Number with the Europa VAT Number validation webservice (VIES)" );
 jr_define( "_JOMRES_VIES_VATCHECK_INCORRECT_VALIDATED", "Congratulations. We were able to validate your VAT number." );
 jr_define( "_JOMRES_VIES_VATCHECK_INCORRECT_NUMBERNOTENTERED", "VAT number wasn't entered." );
-jr_define( "_JOMRES_TAX_RULES_LIST", "List tax rules" );
-jr_define( "_JOMRES_TAX_RULE", "Tax rule" );
+jr_define( "_JOMRES_TAX_RULES_LIST", "Lista regole tasse" );
+jr_define( "_JOMRES_TAX_RULE", "Regole tasse" );
 jr_define( "_JOMRES_TAX_RULE_INFO", "Tax rules are used to establish different tax rules for different regions. These tax rules affect the person making the booking, if they are registered, logged in and have edited their account using the \"edit my account\" page. The purpose of these rules is to accommodate bookers in those areas who are VAT exempt, you may find that you do not need to create many rules, if any at all." );
-jr_define( "_JOMRES_TAX_RATES_IMPORT", "Import tax rates" );
+jr_define( "_JOMRES_TAX_RATES_IMPORT", "Importa regole tasse" );
 jr_define( "_JOMRES_TAX_RATES_IMPORT_INFO", "We can import tax rates for the EU for you, if you wish. Note, if you use this feature then all of your existing Tax Rates will be removed." );
-jr_define( "_JRPORTAL_TAX_RULE_EDIT", "Edit tax rule" );
-jr_define( "_JOMRES_VAT_PROPERTY_NUMBER", "The VAT number for this property." );
+jr_define( "_JRPORTAL_TAX_RULE_EDIT", "Modifica regole tasse" );
+jr_define( "_JOMRES_VAT_PROPERTY_NUMBER", "Partita Iva struttura." );
 jr_define( "_JOMRES_VAT_PROPERTY_NUMBER_DESC", "Please enter the VAT number for this property." );
-jr_define( "_JOMRES_VAT_PROPERTY_VAT_NUMBER_VALIDATED", "VAT number validated." );
-jr_define( "_JOMRES_VAT_PROPERTY_VAT_NUMBER_NOT_VALIDATED", "VAT number not validated." );
+jr_define( "_JOMRES_VAT_PROPERTY_VAT_NUMBER_VALIDATED", "Partita Iva valida." );
+jr_define( "_JOMRES_VAT_PROPERTY_VAT_NUMBER_NOT_VALIDATED", "Partita Iva non valida." );
 jr_define( "_JOMRES_COM_YOURBUSINESS_INSTRUCTIONS", "Business details entered here will be used on commission and subscriptions invoices." );
 
 jr_define( '_JRPORTAL_INVOICES_SUBSCRIPTION_PROFILE_ERROR_EXPL', "You don't seem to have filled in your account details yet. To list your property on the site, we need you to complete your account details before we can go further." );
 
 
-jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT", "Production or Development?" );
+jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT", "Produzione o sviluppo?" );
 jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC", "If you set this option to Development we will enable error reporting, otherwise when set to Production that will be switched off. If this is a live server we recommend that you set this option to \"production\"." );
-jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION", "Production" );
-jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT", "Development" );
+jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION", "Produzione" );
+jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT", "Sviluppo" );
 
 //v7.3.3
 jr_define( '_JOMRES_COM_MR_EB_HROOM_DETAILS', 'Resource details' );
-jr_define( '_JOMRES_COM_MR_EB_HTARIFF_DETAILS', 'Tariff details' );
-jr_define( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', 'Only' );
-jr_define( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'left!' );
+jr_define( '_JOMRES_COM_MR_EB_HTARIFF_DETAILS', 'Dettagli tariffe' );
+jr_define( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', 'Solo' );
+jr_define( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'rimasta!' );
 jr_define( '_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'Resource feature' );
 jr_define( '_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'Unable to remove this resource feature, it is assigned to a resource. Remove the feature from this resource and retry.' );
 
@@ -2091,44 +2091,44 @@ jr_define( '_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'Unable to remove th
 $siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 $jrConfig   = $siteConfig->get();
 
-jr_define('_JOMRES_MEDIA_CENTRE_TITLE',"Media Centre");
+jr_define('_JOMRES_MEDIA_CENTRE_TITLE',"Gestione Foto");
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY',"Property image upload service");
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD',"Add images");
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD',"Aggiungi foto");
 
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM',"Room images");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY',"Property main image");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW',"Slideshow images");
-jr_define('_JOMRES_MEDIA_CENTRE_CLEAR',"Clear list");
-jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP',"Drag & Drop files here");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM',"Foto camere");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY',"Foto principale struttura");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW',"Foto slideshow");
+jr_define('_JOMRES_MEDIA_CENTRE_CLEAR',"Elimina lista");
+jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP',"Trascina qui le tue foto");
 
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS',"Choose the resource you want to upload images for. If you can upload images for individual resources (e.g. rooms) you will be given a second dropdown to choose the specific resource. ");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS',"The maximum file size for uploads is ". jomres_formatBytes($jrConfig[ 'fileSize' ]) . ". Only JPG and PNG images are allowed.");
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE',"If you upload multiple images as the \"Main property image\" only the first of those images will be used.");
 
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW',"View your image");
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE',"Delete image");
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD',"Upload image");
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW',"Vedi foto");
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE',"Elimina foto");
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD',"Carica foto");
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES',"Feature and Room type images");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOMTYPE_IMAGES',"Room types images");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY_FEATURES',"Property feature images");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOMTYPE_IMAGES',"Icona tipo di camera");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY_FEATURES',"Foto principale struttura");
 
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL',"Upload all files");
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL',"Carica tutto");
 
 $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 
-jr_define('END_TOUR' , "Close" );
+jr_define('END_TOUR' , "Chiudi" );
 
-jr_define('TOUR_ID_TOUR_TARGET_MAIN_MENU_TITLE' , "Welcome to your Property" );
-jr_define('TOUR_ID_TOUR_TARGET_MAIN_MENU_CONTENT' , "Welcome to your Dashboard. This is your Main Menu. To view your property as your guests will see it, click on Properties, then Preview." );
+jr_define('TOUR_ID_TOUR_TARGET_MAIN_MENU_TITLE' , "Benvenuto nella tua scheda" );
+jr_define('TOUR_ID_TOUR_TARGET_MAIN_MENU_CONTENT' , "Benvenuto nel tuo pannello di controllo. This is your Main Menu. To view your property as your guests will see it, click on Properties, then Preview." );
 
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_NAME_TITLE' , "This is your property name" );
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_NAME_TITLE' , "Il nome della tua struttura" );
 jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_NAME_CONTENT' , "Whenever you are logged in as a property manager, you will always have an Active property, the name of which you can see here. This is the property you are working on. Please remember that you can only work on one property at a time, you can't have two tabs open in your browser and work on two different properties simultaneously." );
 
 jr_define('TOUR_ID_TOUR_TARGET_TIMEZONE_DROPDOWN_TITLE' , "This is the timezone dropdown selector." );
 jr_define('TOUR_ID_TOUR_TARGET_TIMEZONE_DROPDOWN_CONTENT' , "This is useful if you are in a different timezone to your server. It helps to keep your midnight and the server's midnight in sync." );
 
-jr_define('TOUR_ID_TOUR_TARGET_LANG_DROPDOWN_TITLE' , "This is the language selector." );
+jr_define('TOUR_ID_TOUR_TARGET_LANG_DROPDOWN_TITLE' , "Selettore della lingua." );
 jr_define('TOUR_ID_TOUR_TARGET_LANG_DROPDOWN_CONTENT' , "You can change your current language by using this selector. This is useful if you want your property description to be available in several languages. You can go to the Property Details page and enter the description in language A, then use this selector to change to language B. Now, if you go to the Property Details setting page you can enter your description in language B." );
 
 jr_define('TOUR_ID_TOUR_TARGET_EDITING_MODE_DROPDOWN_TITLE' , "This is the Editing Mode selector." );
@@ -2167,7 +2167,7 @@ jr_define('TOUR_ID_MAPTAB_CONTENT' , "Under this tab your guests can see your pr
 jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_MOREINFO_TITLE' , "More Information tab." );
 jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_MOREINFO_CONTENT' , "Under Settings -> Property details you can enter information about your property that might be of interest to your guests, like Check in times, Area activities, Driving directions, Airports, Other transport & Policies & disclaimers. Once entered, that information can be seen under this tab." );
 
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_BOOKING_FORM_TITLE' , "Booking Form." );
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_BOOKING_FORM_TITLE' , "Form di prenotazione." );
 jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_BOOKING_FORM_CONTENT' , "Your guests can either go to a separate page, or they can use the booking form in this tab." );
 
 jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_MAIN_DETAILS_TITLE' , "Main Property Details." );
@@ -2191,13 +2191,13 @@ jr_define('TOUR_ID_TAB_BOOKINGROOMS_CONTENT' , "On this tab you can configure pa
 jr_define('TOUR_ID_TAB_YOURBUSINESSDETAILS_TITLE' , "Your Business details." );
 jr_define('TOUR_ID_TAB_YOURBUSINESSDETAILS_CONTENT' , "Here you enter your business's address and VAT number if you have it. These details will be shown on the invoices your guests will see, and any invoices generated by the site for you." );
 
-jr_define('TOUR_ID_TAB_EXTERNALLINK_TITLE' , "External links." );
+jr_define('TOUR_ID_TAB_EXTERNALLINK_TITLE' , "Link esterni." );
 jr_define('TOUR_ID_TAB_EXTERNALLINK_CONTENT' , "You can add a link to another site here." );
 
 jr_define('TOUR_ID_TAB_GATEWAYS_TITLE' , "Gateways." );
 jr_define('TOUR_ID_TAB_GATEWAYS_CONTENT' , "Gateways are the term used to describe payment services. If you have an account with one of the gateway services shown in this tab you can enter your account details in this tab to take payments online." );
 
-jr_define('TOUR_ID_TAB_MISC_TITLE' , "Miscellaneous ." );
+jr_define('TOUR_ID_TAB_MISC_TITLE' , "Miscellanea ." );
 jr_define('TOUR_ID_TAB_MISC_CONTENT' , "This tab is for settings that don't fit into any other tab." );
 
 jr_define('TOUR_ID_TAB_PROPERTYDETAILS_TITLE' , "Property details page settings." );
@@ -2212,10 +2212,10 @@ jr_define('TOUR_ID_TAB_SRPS_CONTENT' , "This tab offers settings that are often 
 jr_define('TOUR_ID_TAB_SUPPLEMENTS_TITLE' , "Single Person Supplements." );
 jr_define('TOUR_ID_TAB_SUPPLEMENTS_CONTENT' , "Single person supplements are charges that are added to a booking if a room that can cater for two only holds on individual." );
 
-jr_define('TOUR_ID_TAB_TARIFFSCURRENCY_TITLE' , "Tariffs" );
+jr_define('TOUR_ID_TAB_TARIFFSCURRENCY_TITLE' , "Tariffe" );
 jr_define('TOUR_ID_TAB_TARIFFSCURRENCY_CONTENT' , "On this page you can configure how tariffs and deposits are calculated." );
 
-jr_define('TOUR_ID_TAB_TOURISTTAX_TITLE' , "Tourist Tax." );
+jr_define('TOUR_ID_TAB_TOURISTTAX_TITLE' , "Tassa di soggiorno." );
 jr_define('TOUR_ID_TAB_TOURISTTAX_CONTENT' , "If your country or city charges tourist taxes, you can configure them here." );
 
 jr_define('TOUR_ID_TAB_MICROMANAGE_TITLE' , "Micromanage settings." );
@@ -2224,7 +2224,7 @@ jr_define('TOUR_ID_TAB_MICROMANAGE_CONTENT' , "Micromange tariff editing mode sp
 jr_define('TOUR_ID_TAB_WISEPRICE_TITLE' , "Wise Price settings." );
 jr_define('TOUR_ID_TAB_WISEPRICE_CONTENT' , "This tab allows you to enable and configure your room prices dynamically, giving you the ability to offer discounted room prices if occupancy when the booking is made is low." );
 
-jr_define('TOUR_ID_TOUR_TARGET_FRONTEND_LIST_PROPERTIES_TITLE' , "Your properties." );
+jr_define('TOUR_ID_TOUR_TARGET_FRONTEND_LIST_PROPERTIES_TITLE' , "Le tue strutture." );
 jr_define('TOUR_ID_TOUR_TARGET_FRONTEND_LIST_PROPERTIES_CONTENT' , "This page shows you a list of the properties you are authorised to manage. On the left you can easily see if they're published or not. The property name is also a link, if you click on that link you will immediately switch your active property to that property. " );
 
 jr_define('TOUR_ID_TOUR_TARGET_TABLE_TOOLS_TITLE' , "The table." ); 
@@ -2262,13 +2262,13 @@ jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_MRPSRP_CONTENT' , "Configuration o
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_NAME_ADDRESS_TITLE' , "Property name & address." );
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_NAME_ADDRESS_CONTENT' , "Please enter the property name and address in the following fields." );
 
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_STARS_TITLE' , "Number of stars." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_STARS_TITLE' , "Numero di stelle." );
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_STARS_CONTENT' , "If your property has been awarded a number of stars based on a recognised standard, select the number from the dropdown. Some countries have rating by a single public standard — Belgium, Denmark, Greece, Italy, Malta, Netherlands, Portugal, Spain and Hungary have laws defining the hotel rating. In Germany, Austria and Switzerland, the rating is defined by the respective hotel industry association using a five-star system — the German classifications are Tourist (*), Standard (**), Comfort (***), First Class (****) and Luxury (*****), with the mark Superior to flag extras beyond the minimum defined in the standard." );
 
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_LATLONG_TITLE' , "Mapping location." );
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_LATLONG_CONTENT' , "On your property details page you will see a map. You configure your property's location here using either the latitude and longitude inputs or by dragging and dropping the marker in the map itself." );
 
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_FEATURES_TITLE' , "Property features." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_FEATURES_TITLE' , "Servizi struttura." );
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_FEATURES_CONTENT' , "Select the features that are applicable to your property. These features are used in the site's search functionality, so it's important that these accurately reflect your property." );
 
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_DESCRIPTION_TITLE' , "Information about your property." );
@@ -2278,16 +2278,16 @@ jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_DESCRIPTION_CONTENT' , "You have a
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_POLICIES_TITLE' , "Policies and Disclaimers." );
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_POLICIES_CONTENT' , "This is where you should put your properties policies, such as cancellation charges etc. When the guest goes through the booking form, before they can complete the booking they are forced to accept your terms and have the option to click a link which will show the property's terms. When they click that link, the information entered into this input is shown in a small window." );
 
-jr_define('TOUR_ID_TOUR_TARGET_LISTALL_BOOKINGS_TITLE' , "List all bookings." );
+jr_define('TOUR_ID_TOUR_TARGET_LISTALL_BOOKINGS_TITLE' , "Tutte le prenotazioni." );
 jr_define('TOUR_ID_TOUR_TARGET_LISTALL_BOOKINGS_CONTENT' , "On this page you will see all bookings, regardless of whether or not a deposit has been paid. Click the Edit icon to the left of the booking to view the booking details page." );
 
-jr_define('TOUR_ID_TOUR_TARGET_LISTNEW_BOOKINGS_TITLE' , "List new bookings." );
+jr_define('TOUR_ID_TOUR_TARGET_LISTNEW_BOOKINGS_TITLE' , "Nuove prenotazioni." );
 jr_define('TOUR_ID_TOUR_TARGET_LISTNEW_BOOKINGS_CONTENT' , "This page shows a list of all new bookings, that is, booking where a deposit hasn't yet been paid for the booking. Click the Edit icon to the left of the booking to view the booking details page." );
 
-jr_define('TOUR_ID_TOUR_TARGET_LISTOLD_BOOKINGS_TITLE' , "List old bookings." );
+jr_define('TOUR_ID_TOUR_TARGET_LISTOLD_BOOKINGS_TITLE' , "Vecchie prenotazioni." );
 jr_define('TOUR_ID_TOUR_TARGET_LISTOLD_BOOKINGS_CONTENT' , "This page lists all historic bookings, that is, bookings that have either been cancelled or the guest has been booked out. Click the Edit icon to the left of the booking to see that booking's information." );
 
-jr_define('TOUR_ID_TOUR_TARGET_LIST_GUESTS_TITLE' , "List guests." );
+jr_define('TOUR_ID_TOUR_TARGET_LIST_GUESTS_TITLE' , "Lista ospiti." );
 jr_define('TOUR_ID_TOUR_TARGET_LIST_GUESTS_CONTENT' , "The page allows you to list all guests for your currently active property. By default only guests who are or will be guests are listed, however you can choose historic guests from a dropdown to include guests who have been booked out or have cancelled their bookings as well as current guests." );
 
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_OVERRIDES_TITLE' , "Overrides." );
@@ -2296,7 +2296,7 @@ jr_define('TOUR_ID_TOUR_TARGET_BOOKING_OVERRIDES_CONTENT' , "The overrides here 
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_COUPONS_TITLE' , "Coupons." );
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_COUPONS_CONTENT' , "If you have created some coupon codes for this property, this input will be available and guests can enter the coupon codes here to get discounts on the value of their room booking." );
 
-jr_define('TOUR_ID_TOUR_TARGET_BOOKING_PARTICULARS_TITLE' , "Particulars." );
+jr_define('TOUR_ID_TOUR_TARGET_BOOKING_PARTICULARS_TITLE' , "Particolari." );
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_PARTICULARS_CONTENT' , "Changing any of these options will cause the rooms list to change, because the list is re-evaluated based on the length of the booking and other variables. If you have created some guest types, then the booker will be able to change the number of guests for the booking here too." );
 
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_ROOM_FEATURES_TITLE' , "Room features filter." );
@@ -2305,12 +2305,12 @@ jr_define('TOUR_ID_TOUR_TARGET_BOOKING_ROOM_FEATURES_CONTENT' , "If you have con
 
 if (isset( $MiniComponents->registeredClasses['00001jintour_start']))
 	{
-	jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_TITLE' , "Optional extras." );
+	jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_TITLE' , "Servizi extra." );
 	jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_CONTENT' , "You can create two types of optional extras which will show here. The first type is a basic optional extra, which can be created according to several different models, e.g. Per Night, Per Person, Per Person Per Night etc. These are useful for when you want guests to add extras to the booking, but these items aren't finite resources. So, for example you could add Bunch of Flowers on Arrival, or Airport Transfer. The other type of extra is configured from the Tour/Activity Profiles Management menu option under Settings, and is used to create items with finite resources. Typically this is used for things like local tours to museums and other sites. In short, any kind of resource where there's only a few spaces available on a given date." );
 	}
 else
 	{
-	jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_TITLE' , "Optional extras." );
+	jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_TITLE' , "Servizi extra." );
 	jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_CONTENT' , "You can create optional extras which will show here. They can be created according to several different models, e.g. Per Night, Per Person, Per Person Per Night etc. These are useful for when you want guests to add extras to the booking, but these items aren't finite resources. So, for example you could add Bunch of Flowers on Arrival, or Airport Transfer." );
 	}
 	
@@ -2318,7 +2318,7 @@ else
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXISTING_GUESTS_TITLE' , "Existing guests." );
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXISTING_GUESTS_CONTENT' , "If you already have some guests entered you can choose them by selecting their name in a dropdown that appears here. This saves you having to add their details time and again. If you regularly make bookings on behalf of the same guests, you should always use this dropdown to select them otherwise you'll end up creating multiple guests with the same names if you enter their details manually every time." );
 
-jr_define('TOUR_ID_TOUR_TARGET_BOOKING_REQUIRED_TITLE' , "Guest details." );
+jr_define('TOUR_ID_TOUR_TARGET_BOOKING_REQUIRED_TITLE' , "Dettagli ospite." );
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_REQUIRED_CONTENT' , "If you'd like to change which fields you require to be filled by a guest, you can go to the Settings -> Property Configuration -> Required tab." );
 
 jr_define('TOUR_ID_TOUR_TARGET_LIST_BLACKBOOKINGS_TITLE' , "Black bookings." );
@@ -2333,28 +2333,28 @@ jr_define('TOUR_ID_TOUR_TARGET_LISTTARIFFS_NORMAL_MRP_CONTENT' , "This is the si
 jr_define('TOUR_ID_TOUR_TARGET_LISTTARIFFS_NORMAL_SRP_TITLE' , "Normal mode tariffs." );
 jr_define('TOUR_ID_TOUR_TARGET_LISTTARIFFS_NORMAL_SRP_CONTENT' , "This is the simplest way you can enter room prices. Choose your property type, enter the price and the maximum number of people in a booking and click Save. The prices then will be set for the next ten years. If you'd like more control over the prices, then please change your tariff editing mode to Advanced or Micromanage." );
 
-jr_define('TOUR_ID_TOUR_TARGET_ROOMSANDTARIFFS_MRP_TITLE' , "Rooms and Tariffs." );
+jr_define('TOUR_ID_TOUR_TARGET_ROOMSANDTARIFFS_MRP_TITLE' , "Camere e tariffe." );
 jr_define('TOUR_ID_TOUR_TARGET_ROOMSANDTARIFFS_MRP_CONTENT' , "On this page you can edit Rooms, Tariffs and Room Features. There are three tabs which allow you to edit the individual items. Before you start editing rooms or tariffs, you will need to understand that there is a relationship between Rooms, Room Types and Tariffs. In the booking form, when you see a room type dropdown or a click button to select a room, what's happening is that you are actually selecting a combination of room and tariff. This approach allows you to create different tariffs for the same room/room types, so for example you can create one tariff for Bed and Breakfast, and a second tariff for Bed, Breakfast + evening meal. Rooms can have individual room features. If your rooms list is set to Classic, then your guests can use the Room Features to filter rooms in the booking form to find a room with a particular set of characteristics that they want." );
 
-jr_define('TOUR_ID_TOUR_TARGET_ROOMSANDTARIFFS_SRP_TITLE' , "Rooms and Tariffs." );
+jr_define('TOUR_ID_TOUR_TARGET_ROOMSANDTARIFFS_SRP_TITLE' , "Camere e tariffe." );
 jr_define('TOUR_ID_TOUR_TARGET_ROOMSANDTARIFFS_SRP_CONTENT' , "On this page you can edit your property type and your tariffs." );
 
-jr_define('TOUR_ID_TOUR_TARGET_GUEST_TYPES_TITLE' , "Guest types." );
+jr_define('TOUR_ID_TOUR_TARGET_GUEST_TYPES_TITLE' , "Tipo di ospite." );
 jr_define('TOUR_ID_TOUR_TARGET_GUEST_TYPES_CONTENT' , "Guest types are an important part of your settings if you plan to charge per person per night, or simply because you need to know how many people you will be accommodating. You can create any guest type you like, for example Adults, Teenagers and Children. Guest types can be configured to cost more or less than the base rate (the rate you enter into the tariffs page) by either a flat rate, or a percentage. That way you can configure different prices for different types of guests. If you're not charging Per Person Per Night, then you can leave the settings to their defaults when you create the guest type." );
 
 jr_define('TOUR_ID_TOUR_TARGET_COUPONS_TITLE' , "Coupons." );
 jr_define('TOUR_ID_TOUR_TARGET_COUPONS_CONTENT' , "Coupon codes are a useful method of building repeat business, or to pull in new custom. When you create a new coupon code, the system will automatically generate a random code for you, but you don't need to use that if you want, you can create your own code. When you create the coupon code, you can either assign it to a guest, or not. Codes that are not assigned to specific guests can be used by anybody, so those codes should be used on marketing materials. You can also define the dates between when the code should be used, and the dates that the booking must be on for the code to take effect. Once a coupon code has been created you will have the option to view a printable list of coupon codes, making it easy to hand codes out to guests or potential guests. They can then scan the QR code on the printout into their mobile phone/tablet PC. The code will take them direct to the booking form with the discount code already applied." );
 
-jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_TITLE' , "Optional extras." );
+jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_TITLE' , "Servizi extra." );
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_CONTENT' , "Optional extras are extra items that can be added to a booking. These are items that not constrained by limited availability, so there's no resource management associated with them. When you create an optional extra you are able to choose a variety of settings, for example the maximum number of them that can be added to a booking, and whether or not the extra should be Forced. By this, we mean if it's automatically selected in the booking form, and the guest cannot unselect it. This is useful for mandatory payments like towels or a cleaning fee. Additionally, you will need to choose a Model, which means how payments will be calculated for the extra. If you want a single charge to be applied (for example, for a bottle of champagne to be available on arrival) then you would set the model to Per Booking. If, however you wanted to charge for something for each day, then you would choose the Per Day option." );
 
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_TITLE' , "Media Centre." );
+jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_TITLE' , "Fotogallery." );
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_CONTENT' , "The Media Centre allows you to easily upload images of your property. By default you can upload a main property image (in fact, you can upload more, but only the first in the list will be used), an unlimited number of images to be shown in the slideshow, and an unlimited number of images for each room." . jr_gettext("_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS",_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS,false) );
 
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_TITLE' , "Resource picker." );
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_CONTENT' , "This is the resource picker. It allows you to choose what sort of resource you're uploading images for (e.g. Slideshow images or rooms) and if it's a room, then after you choose Rooms you'll be given the option to select which room you want to upload images for in another dropdown, next to it. This allows you to upload multiple images for each individual room, if you wish. Note, room image uploading only applies to properties like Hotels, B&Bs etc. Villas and Apartments will not have this option." );
 
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_EXISTINGIMAGES_TITLE' , "Existing images." );
+jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_EXISTINGIMAGES_TITLE' , "Foto caricate." );
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_EXISTINGIMAGES_CONTENT' , "This column shows the images that have already been uploaded. You can choose then to either view the image, or delete it. Every time you change the resource time this column is updated to show the images for that particular resource." );
 
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_UPLOADCONTROLS_TITLE' , "Upload controls." );
@@ -2363,76 +2363,76 @@ jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_UPLOADCONTROLS_CONTENT' , "You have s
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_SELECTEDIMAGES_TITLE' , "Selected images." );
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_SELECTEDIMAGES_CONTENT' , "This column shows the images that are ready for upload, or that you've uploaded since you visited this page. " );
 
-jr_define('TOUR_ID_TOUR_TARGET_END_TITLE' , "Finished!" );
+jr_define('TOUR_ID_TOUR_TARGET_END_TITLE' , "Finito!" );
 jr_define('TOUR_ID_TOUR_TARGET_END_CONTENT' , "That's the end of this page's help information. If you have any futher questions, please do not hesitate to contact us. " );
 
-jr_define('PRODUCT_TOUR_PAGE_INFORMATION' , "HELP" );
+jr_define('PRODUCT_TOUR_PAGE_INFORMATION' , "AIUTO" );
 
 //8.0
-jr_define('COMMON_PREV' , "Prev" );
-jr_define('COMMON_MORE' , "More" );
-jr_define('_JOMRES_DASHBOARD_TODAY' , "Today" );
-jr_define('_JOMRES_DASHBOARD_YEAR' , "Year" );
-jr_define('_JOMRES_DASHBOARD_MONTH' , "Month" );
-jr_define('_JOMRES_DASHBOARD_WEEK' , "Week" );
-jr_define('_JOMRES_DASHBOARD_DAY' , "Day" );
-jr_define('_JOMRES_HLEGEND' , "Legend" );
-jr_define('_JOMRES_HFILTER' , "Filter" );
-jr_define('_JOMRES_HFROM' , "From" );
-jr_define('_JOMRES_HTO' , "To" );
-jr_define('_JOMRES_HNEW_BOOKING' , "New booking" );
-jr_define('_JOMRES_HSTATUS_DEPOSIT' , "Deposit status" );
-jr_define('_JOMRES_HSTATUS_GUEST' , "Guest status" );
-jr_define('_JOMRES_HSTATUS_BOOKING' , "Booking status" );
-jr_define('_JOMRES_HSTATUS_PUBLISHING' , "Publishing status" );
-jr_define('_JOMRES_HSTATUS_INVOICE' , "Invoice status" );
-jr_define('_JOMRES_HSTATUS_INVOICE_TYPE' , "Invoice type" );
-jr_define('_JOMRES_HSTATUS_APPROVED' , "Approved" );
-jr_define('_JOMRES_HSTATUS_CURRENT' , "Current business" );
+jr_define('COMMON_PREV' , "Prec" );
+jr_define('COMMON_MORE' , "Altro" );
+jr_define('_JOMRES_DASHBOARD_TODAY' , "Oggi" );
+jr_define('_JOMRES_DASHBOARD_YEAR' , "Anno" );
+jr_define('_JOMRES_DASHBOARD_MONTH' , "Mese" );
+jr_define('_JOMRES_DASHBOARD_WEEK' , "Settimana" );
+jr_define('_JOMRES_DASHBOARD_DAY' , "Giorno" );
+jr_define('_JOMRES_HLEGEND' , "Legenda" );
+jr_define('_JOMRES_HFILTER' , "Filtra" );
+jr_define('_JOMRES_HFROM' , "Da" );
+jr_define('_JOMRES_HTO' , "A" );
+jr_define('_JOMRES_HNEW_BOOKING' , "Nuova prenotazione" );
+jr_define('_JOMRES_HSTATUS_DEPOSIT' , "Cauzione" );
+jr_define('_JOMRES_HSTATUS_GUEST' , "Ospite" );
+jr_define('_JOMRES_HSTATUS_BOOKING' , "Pronotazione" );
+jr_define('_JOMRES_HSTATUS_PUBLISHING' , "Pubblicazione" );
+jr_define('_JOMRES_HSTATUS_INVOICE' , "Fattura" );
+jr_define('_JOMRES_HSTATUS_INVOICE_TYPE' , "Stato fattura" );
+jr_define('_JOMRES_HSTATUS_APPROVED' , "Approvato" );
+jr_define('_JOMRES_HSTATUS_CURRENT' , "Struttura" );
 jr_define('_JOMRES_HSTATUS_SHOW_BOOKINGS_FOR' , "Show bookings for" );
 jr_define('_JOMRES_HSTATUS_SHOW_INVOICES_FOR' , "Show invoices for" );
-jr_define('_JOMRES_STATUS_ANY' , "Any" );
-jr_define('_JOMRES_STATUS_PAID' , "Paid" );
-jr_define('_JOMRES_STATUS_NOTPAID' , "Not paid" );
+jr_define('_JOMRES_STATUS_ANY' , "Qualsiasi" );
+jr_define('_JOMRES_STATUS_PAID' , "Pagato" );
+jr_define('_JOMRES_STATUS_NOTPAID' , "Da pagare" );
 jr_define('_JOMRES_STATUS_CHECKEDOUT' , "Checked out" );
-jr_define('_JOMRES_STATUS_ACTIVE' , "Active" );
-jr_define('_JOMRES_STATUS_CANCELLED' , "Cancelled" );
-jr_define('_JOMRES_STATUS_PUBLISHED' , "Published" );
-jr_define('_JOMRES_STATUS_NOT_PUBLISHED' , "Not published" );
+jr_define('_JOMRES_STATUS_ACTIVE' , "Attivo" );
+jr_define('_JOMRES_STATUS_CANCELLED' , "Cancellate" );
+jr_define('_JOMRES_STATUS_PUBLISHED' , "Pubblicato" );
+jr_define('_JOMRES_STATUS_NOT_PUBLISHED' , "Sospese" );
 jr_define('_JOMRES_STATUS_PROVISIONAL' , "Provisional booking" );
 jr_define('_JOMRES_STATUS_CONFIRMED' , "Confirmed booking" );
 jr_define('_JOMRES_STATUS_GUEST_BOOKINGS_ACTIVE' , "Guests with active bookings" );
 jr_define('_JOMRES_STATUS_GUEST_BOOKINGS_PAST' , "Guests with past bookings" );
-jr_define('_JOMRES_STATUS_BOOKINGS' , "Bookings" );
+jr_define('_JOMRES_STATUS_BOOKINGS' , "Prenotazioni" );
 jr_define('_JOMRES_STATUS_SUBSCRIPTIONS' , "Subscriptions" );
-jr_define('_JOMRES_STATUS_COMMISSIONS' , "Commissions" );
-jr_define('_JOMRES_STATUS_ALL_PROPERTIES' , "All my businesses" );
+jr_define('_JOMRES_STATUS_COMMISSIONS' , "Commissioni" );
+jr_define('_JOMRES_STATUS_ALL_PROPERTIES' , "Tutte le mie strutture" );
 jr_define('_JOMRES_ACTION_SET_CURRENT' , "Set as current" );
 jr_define('_JOMRES_ACTION_CHECKIN' , "Check in" );
 jr_define('_JOMRES_ACTION_CHECKOUT' , "Check out" );
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS", "bookings" );
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES", "properties" );
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_GUESTS", "guests" );
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_MANAGER_REPORTS", "reports" );
-jr_define( "_JOMRES_HLIST_GUESTS", "Guests" );
-jr_define( "_JOMRES_HLIST_GUESTS_MENU", "List guests" );
-jr_define( "_JOMRES_HLIST_INVOICES_MENU", "List invoices" );
+jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS", "prenotazioni" );
+jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES", "strutture" );
+jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_GUESTS", "ospiti" );
+jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_MANAGER_REPORTS", "statistiche" );
+jr_define( "_JOMRES_HLIST_GUESTS", "Ospiti" );
+jr_define( "_JOMRES_HLIST_GUESTS_MENU", "Oospiti" );
+jr_define( "_JOMRES_HLIST_INVOICES_MENU", "Fatture" );
 jr_define( "_JOMRES_HLIST_PROPERTIES", "Businesses" );
-jr_define( "_JOMRES_HQUICK_BOOKING", "Quick booking" );
-jr_define( "_JOMRES_HDATE_OF_BOOKING", "Date of booking" );
-jr_define( "_JOMRES_HTWO_WEEKS", "Two weeks" );
+jr_define( "_JOMRES_HQUICK_BOOKING", "Prenotazioni rapide" );
+jr_define( "_JOMRES_HDATE_OF_BOOKING", "Data di prenotazione" );
+jr_define( "_JOMRES_HTWO_WEEKS", "Due settimane" );
 jr_define( "_JOMRES_BOOKING_CANCELLATION_WARNING", "This booking will be cancelled. Press OK to cancel the booking." );
 jr_define( "_JOMRES_HOVERVIEW_CHECKINS", "Today checkins" );
 jr_define( "_JOMRES_HOVERVIEW_CHECKOUTS", "Today checkouts" );
 jr_define( "_JOMRES_HOVERVIEW_CURRENT_RESIDENTS", "Current residents" );
 
-jr_define( "_JOMRES_BOOTSTRAP_LOCATION_CONFIG_TAB", "Navigation bar settings" );
-jr_define( "_JOMRES_BOOTSTRAP_LOCATION", "Navigation bar location" );
-jr_define( "_JOMRES_BOOTSTRAP_LOCATION_DEFAULT", "Default (content area)" );
-jr_define( "_JOMRES_BOOTSTRAP_LOCATION_TOP", "Fixed to top" );
-jr_define( "_JOMRES_BOOTSTRAP_LOCATION_BOTTOM", "Fixed to bottom" );
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION_CONFIG_TAB", "Impostazioni menu" );
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION", "Posizionamento del menu" );
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION_DEFAULT", "Default (corpo pagina)" );
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION_TOP", "Fisso al top" );
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION_BOTTOM", "Fisso in basso" );
 jr_define( "_JOMRES_BOOTSTRAP_LOCATION_INVERSE", "Inverted navbar (colour change)" );
-jr_define( "_JOMRES_BOOKING_NUMBER", "Booking number" );
+jr_define( "_JOMRES_BOOKING_NUMBER", "Numero prenotazione" );
 
 jr_define('_JOMRES_HSTATUS_SHOW_GUESTS_FOR' , "Show guests for" );
 
@@ -2440,10 +2440,10 @@ jr_define('_JOMRES_BOOTSTRAP_VERSION' , "Bootstrap version" );
 jr_define('_JOMRES_BOOTSTRAP_VERSION_DESC' , "Currently only applies to the frontend. This option allows you to choose whether or not to use Jomres templates that are compatible with Bootstrap 2 or Bootstrap 3. Unless you are sure that your template works with Bootstrap 3 then we recommend you leave this set to Bootstrap 2." );
 
 jr_define('_JOMRES_HSTATUS_SHOW_GUESTS_FOR' , "Show guests for" );
-jr_define('_JOMRES_HFIXED_PERIODS' , "Fixed periods" );
-jr_define('_JOMRES_HDEPOSITS' , "Deposits" );
-jr_define('_JOMRES_HBOOKING_FORM' , "Booking form" );
-jr_define('_JOMRES_HREQUIRED_FIELDS' , "Required fields" );
+jr_define('_JOMRES_HFIXED_PERIODS' , "Periodi fissi" );
+jr_define('_JOMRES_HDEPOSITS' , "Cauzioni" );
+jr_define('_JOMRES_HBOOKING_FORM' , "Form di prenotazione" );
+jr_define('_JOMRES_HREQUIRED_FIELDS' , "Campi obbligatori" );
 
 jr_define('COMMON_PLACEHOLDER_FIRSTNAME' , "Tom" );
 jr_define('COMMON_PLACEHOLDER_SURNAME' , "Smith" );
@@ -2456,8 +2456,8 @@ jr_define('COMMON_PLACEHOLDER_PROPERTYNAME' , "My Hotel" );
 jr_define('COMMON_PLACEHOLDER_POSTCODE' , "XXNN NNXX" );
 jr_define('COMMON_PLACEHOLDER_EMAIL' , "example@address.com" );
 
-jr_define('EXTENDED_CONFIGURATION' , "Extended Configuration" );
-jr_define('SIMPLE_CONFIGURATION' , "Simple Configuration" );
+jr_define('EXTENDED_CONFIGURATION' , "Configurazione avanzata" );
+jr_define('SIMPLE_CONFIGURATION' , "Configurazione semplice" );
  
 jr_define('_JOMRES_HRESOURCE_FEATURES' , "Resource features" );
 jr_define('_JOMRES_HRESOURCE_TYPE' , "Resource type" );
@@ -2475,16 +2475,16 @@ jr_define( '_JOMRES_COM_ADVANCED_SITE_CONFIG_WARNING', 'Please note, you are cur
 jr_define('TOUR_ID_TAB_BOOKINGFORM_TITLE' , "Booking configuration." );
 jr_define('TOUR_ID_TAB_BOOKINGFORM_CONTENT' , "On this tab you can configure the look and feel of the booking form." );
 
-jr_define('TOUR_ID_TAB_BOOKINGS_TITLE' , "Bookings." );
+jr_define('TOUR_ID_TAB_BOOKINGS_TITLE' , "Prenotazioni." );
 jr_define('TOUR_ID_TAB_BOOKINGS_CONTENT' , "This tab allows you to modify how bookings are treated, plus various other settings." );
 
 jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_TOP_TITLE' , "Edit Guest." );
 jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_TOP_CONTENT' , "Here you can edit a guest's address details. Please note that any changes you make here will only be reflected in this record. If the guest has made bookings on other properties, these changes will not appear on those other properties." );
 
-jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_VAT_TITLE' , "VAT." );
+jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_VAT_TITLE' , "IVA." );
 jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_VAT_CONTENT' , "If a VAT number is entered here then it will be shown on the guest's invoice." );
 
-jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_TITLE' , "Discount." );
+jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_TITLE' , "Sconto." );
 jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_CONTENT' , "You can choose to give this guest an automatic discount which will be applied whenever they make a booking." );
 
 
@@ -2500,10 +2500,10 @@ jr_define('_JOMRES_STATUS_INQUIRY',"Inquiry");
 jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_TITLE',"Bookings require approval or availability confirmation?");
 jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_DESC', "If set to yes, when a booking is made, it will not show up on the availability calendars (and other guests can still book those days and resource) until the property manager accepts/confirms availability for the booking. Once confirmed, booking is inserted as provisional (if doesn`t override other bookings; other guests can`t book the same dates anymore) and an email is sent to the customer to make the payment.");
 
-jr_define('_JOMRES_ERROR',"Error");
+jr_define('_JOMRES_ERROR',"Errore");
 jr_define('_JOMRES_ERROR_MESSAGE',"Sorry! An error occured while trying to process this function. It has been reported for you and we will look into it.");
 
-jr_define('_JOMRES_ERROR_DEBUGGING_MESSAGE',"Message");
+jr_define('_JOMRES_ERROR_DEBUGGING_MESSAGE',"Messaggio");
 jr_define('_JOMRES_ERROR_DEBUGGING_FILE',"File");
 jr_define('_JOMRES_ERROR_DEBUGGING_LINE',"Line");
 jr_define('_JOMRES_ERROR_DEBUGGING_TRACE',"Trace");
@@ -2530,12 +2530,12 @@ jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC',"Printable letter or emai
 jr_define('_JOMRES_CAN_BE_APPROVED',"This booking can be approved. All selected resources are available for the selected dates.");
 jr_define('_JOMRES_CANT_BE_APPROVED',"This booking can`t be approved because some of the resources are already booked for the selected dates. You`ll need to amend the booking first.");
 
-jr_define('_JOMRES_SHOW_POWEREDBY',"Show the Powered by Jomres link in the Jomres footer.");
+jr_define('_JOMRES_SHOW_POWEREDBY',"Mostra lin a Jomres nel footer.");
 
 
 jr_define('GUEST_BUDGET',"Budget");
 jr_define('GUEST_BUDGET_FEATURE_SWITCH',"Use Budget feature?");
 jr_define('GUEST_BUDGET_FEATURE_SWITCH_DESC',"Bootstrapped sites only! The Budget feature is a feature of the property list that a guest can use to highlight for them properties who's price per night is under a certain figure. The feature has some limitations in that it might not be appropriate for some sites that use many different currencies. Note, if you're using this and the Featured Listings plugin, your featured listing wrapping class is automatically changed to 'panel-primary' when the property list is shown.");
 
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', 'Name: ' );
+jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', 'Nome: ' );
 
