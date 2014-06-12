@@ -2860,6 +2860,7 @@ function createJomresTables()
 		`approved` TINYINT( 1 ) DEFAULT 1 NOT NULL,
 		`booking_data_archive_id` INT DEFAULT '0' NOT NULL,
 		`secret_key` CHAR(100),
+		`secret_key_used` TINYINT DEFAULT 0 NOT NULL,
 		PRIMARY KEY(`contract_uid`)
 		) ";
 	if ( !doInsertSql( $query ) )
