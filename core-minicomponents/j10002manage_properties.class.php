@@ -27,7 +27,7 @@ class j10002manage_properties
 		global $htmlFuncs; // We'll leave this one instance of this variable as global here because some older plugins will need it, and as this plugin's the first to be run in administrator, this should fix it
 		$htmlFuncs = jomres_singleton_abstract::getInstance( 'html_functions' );
 
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL ."&task=dashboard", 'listProperties.png', jr_gettext( "TOUR_ID_TOUR_TARGET_FRONTEND_LIST_PROPERTIES_TITLE", TOUR_ID_TOUR_TARGET_FRONTEND_LIST_PROPERTIES_TITLE, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN, false, false ) , true  );
+		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_NOSEF ."&task=dashboard", 'listProperties.png', jr_gettext( "TOUR_ID_TOUR_TARGET_FRONTEND_LIST_PROPERTIES_TITLE", TOUR_ID_TOUR_TARGET_FRONTEND_LIST_PROPERTIES_TITLE, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN, false, false ) , true  );
 		}
 
 
