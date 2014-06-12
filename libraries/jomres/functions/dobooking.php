@@ -465,7 +465,11 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 			$fielddata[ 'DESCRIPTION' ] = jr_gettext( 'JOMRES_CUSTOMTEXT' . $f[ 'uid' ], $f[ 'description' ] );
 
 			$fielddata[ 'REQUIRED' ] = "&nbsp;";
-			if ( $f[ 'required' ] == "1" ) $fielddata[ 'REQUIRED' ] = '<font color="red">' . $icon . '</font>';
+			if ( $f[ 'required' ] == "1" )
+				{
+				$fielddata[ 'WARNING' ] = ' warning';
+				$fielddata[ 'REQUIRED' ] = '<font style="color:#ff0000;">*</font>';
+				}
 			$fielddata[ 'SIZE' ] = 12;
 			if ( strlen( $f[ 'default_value' ] ) > 12 ) $fielddata[ 'SIZE' ] = strlen( $f[ 'default_value' ] );
 			$customFields[ ] = $fielddata;
@@ -473,7 +477,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		$output[ 'CUSTOMFIELD_JAVASCRIPT' ] = generateCustomFieldsJavascript( $customFields );
 		}
 	else
-	$output[ 'CUSTOMFIELD_JAVASCRIPT' ] = "<script type=\"text/javascript\">function checkCustomFields(){return true}</script>";
+	$output[ 'CUSTOMFIELD_JAVASCRIPT' ] = "";
 
 	$booked_dates           = $bkg->get_fullybooked_dates();
 	$booked_dates_output    = "var bookedDays = []";
@@ -690,40 +694,22 @@ function generateCustomFieldsJavascript( $customFields )
 
 	if ( !$someRequired )
 		{
-		$js .= "<script>";
-		$js .= 'function checkCustomFields()
-			{
-			return true;
-			}';
-		$js .= "</script>";
+		$js = "";
 		}
 	else
 		{
-		$js = "<script>";
-		$js .= 'function checkCustomFields()
-			{
-			var pass			= true;
-			';
+		$js=", ";
 		foreach ( $customFields as $c )
 			{
 			if ( $c[ 'REQUIRED' ] != "&nbsp;" )
 				{
-				$js .= '				var ' . $c[ 'FIELDNAME' ] . ' 		=jQuery.trim(jQuery(\'#' . $c[ 'FIELDNAME' ] . '\').val());
-								setInputFillToOkColour(\'#' . $c[ 'FIELDNAME' ] . '\');
-								if (' . $c[ 'FIELDNAME' ] . '.length == 0 )
-									{
-									setInputFillToErrorColour("#' . $c[ 'FIELDNAME' ] . '");
-									pass = false;
-									}
-				';
+				$js.= $c[ 'FIELDNAME' ].": {
+						minlength: 1,
+						required : true
+					},";
 				}
 			}
-
-		$js .= '
-						return pass;
-						}
-						</script>
-						';
+		rtrim($js, ",");
 		}
 
 	return $js;

@@ -890,9 +890,6 @@ function checkaddressfields() {
 		setInputFillToErrorColour("#eemail");
 		pass = false;
 	}
-
-	if (pass)
-		pass = checkCustomFields();
 	if (!pass) {
 		jomresJquery('div.recheckaddress').show();
 		return false;
