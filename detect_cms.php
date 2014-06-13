@@ -22,6 +22,7 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php') )
 
 if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'libraries' . JRDS . 'cms' . JRDS . 'version' . JRDS . 'version.php' ) )
 	{
+	define("JPATH_PLATFORM",1); // Joomla 3.3.1 uses this instead of JEXEC.
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'libraries' . JRDS . 'cms' . JRDS . 'version' . JRDS . 'version.php' );
 	$jversion = new JVersion();
 	if ( $jversion->RELEASE == '2.5' )
@@ -29,7 +30,6 @@ if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'libraries' . JRDS . 'cms'
 		define( "_JOMRES_DETECTED_CMS", "joomla25" );
 		define( "_JOMRES_DETECTED_CMS_SPECIFIC_FILES", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "jomres" . JRDS . "cms_specific" . JRDS . _JOMRES_DETECTED_CMS . JRDS );
 		}
-	// Added in anticipation of Joomla 3, may need updating
 	if ( $jversion->RELEASE == '3.0' )
 		{
 		define( "_JOMRES_DETECTED_CMS", "joomla30" );
