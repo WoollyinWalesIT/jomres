@@ -1,3 +1,28 @@
+Jomres 8.1.6
+
+Change : Added ability to flag plugins as retired, to advise managers to uninstall older plugins that will not work with current versions of Jomres.
+Change : integration.php updated with a small routine to try to determine which file has failed to call jomres_root.php, if JOMRES_ROOT_DIRECTORY isn't set.
+Change : Added email_text to allowed fields for input filtering, and improved the allowed tags list to be a little more lenient.
+Change : Changed property header to use the large property image in accordance with the advice here https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content  This is an image associated with your media. We suggest that you use an image of at least 1200x630 pixels.
+Change : Modified save country and save region scripts to redirect back to the associated lists on save.
+Change : Added notes to the top of the guest's view booking page to indicate if a booking has been cancelled.
+Change : Hide the cancel button when a booking has been cancelled, from the user's view of the booking.
+Change : Broke several functions out of functions.php so that they can be overridden in plugins.
+Change : Tweaked the confirmation letter popup to display better.
+Change : Added a message to say that the confirmation email has been sent.
+Change : Added a button to the administrator control panel that links direct to the front page of the site. Should make it clearer to new users how to go about managing properties.
+Change : Updated detect_cms.php to adjust to Joomla's new upgrade strategy, information relating to the problem is provided and an error is thrown.
+Change : Updated the Italian language file, many thanks Pierangela.
+Change : Added a definition for JPATH_PLATFORM as the Joomla version file uses that instead of _JEXEC when checking to see if the file can be called.
+
+Fix : Fixed a broken path to gateway directory to ensure that the gateway logo is shown correctly.
+Fix : Solved a missing property type image problem in query ui booking form classic room list.
+Fix : Fixed a bug where wrong users were getting emailed php errors.
+Fix : Updated how Jomres handle's custom fields in the booking form so that required fields are properly highlighted again.
+Fix : Modified the installer, added `secret_key_used` column to create contracts table.
+
+
+
 Jomres 8.1.5
 
 Change : Added a new 99994 trigger point at the end of jomres.php's run. 
