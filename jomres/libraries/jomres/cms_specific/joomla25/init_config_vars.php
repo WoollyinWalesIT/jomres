@@ -62,7 +62,7 @@ if ( !strstr( $scriptname, 'install_jomres.php' ) )
 		}
 	}
 
-if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443)
+if ( ( !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ) || $_SERVER['SERVER_PORT'] == 443)
 	$jomresConfig_live_site = str_replace( "http://", "https://", $jomresConfig_live_site );
 
 $jomresConfig_live_site = str_replace( "/administrator/", "", $jomresConfig_live_site );
