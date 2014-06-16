@@ -166,7 +166,9 @@ class basic_contract_details
 				}
 			else
 				$this->contract[$contract_uid]['guestdeets']['county'] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_REGION' . $contract->county, $contract->county, false, false );
-			$this->contract[$contract_uid]['guestdeets']['country'] = $contract->country;
+			$this->contract[$contract_uid]['guestdeets']['country'] = getSimpleCountry($contract->country);
+			$this->contract[$contract_uid]['guestdeets']['country_code'] = $contract->country;
+			
 			$this->contract[$contract_uid]['guestdeets']['postcode'] = $contract->postcode;
 			$this->contract[$contract_uid]['guestdeets']['tel_landline'] = $contract->tel_landline;
 			$this->contract[$contract_uid]['guestdeets']['tel_mobile'] = $contract->tel_mobile;
