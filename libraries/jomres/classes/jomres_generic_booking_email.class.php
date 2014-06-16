@@ -38,13 +38,11 @@ class jomres_generic_booking_email
 		{
 		if ($contract_uid == 0 )
 			{
-			echo "Error: Contract uid not set.";
-			exit;
+			throw new Exception( "Error: Contract uid not set.");
 			}
 		if ($property_uid == 0 )
 			{
-			echo "Error: Property uid not set.";
-			exit;
+			throw new Exception( "Error: Property uid not set.");
 			}
 		
 		if ( array_key_exists( $contract_uid, $this->data ) )

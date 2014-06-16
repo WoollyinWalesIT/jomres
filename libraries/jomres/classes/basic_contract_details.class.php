@@ -37,13 +37,11 @@ class basic_contract_details
 		{
 		if ($contract_uid == 0 )
 			{
-			echo "Error: Contract uid not set.";
-			exit;
+			throw new Exception( "Error: Contract uid not set.");
 			}
 		if ($defaultProperty == 0 )
 			{
-			echo "Error: Property uid not set.";
-			exit;
+			throw new Exception( "Error: Property uid not set.");
 			}
 		
 		if ( array_key_exists( $contract_uid, $this->contract ) )
