@@ -22,7 +22,8 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php') )
 
 if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'libraries' . JRDS . 'cms' . JRDS . 'version' . JRDS . 'version.php' ) )
 	{
-	define("JPATH_PLATFORM",1); // Joomla 3.3.1 uses this instead of JEXEC.
+	if (!defined("JPATH_PLATFORM"))
+		define("JPATH_PLATFORM",1); // Joomla 3.3.1 uses this instead of JEXEC.
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'libraries' . JRDS . 'cms' . JRDS . 'version' . JRDS . 'version.php' );
 	$jversion = new JVersion();
 	if ( $jversion->RELEASE == '2.5' )
