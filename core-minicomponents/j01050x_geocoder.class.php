@@ -155,21 +155,18 @@ class j01050x_geocoder
 		google.maps.event.addDomListener(postcodeInput, \'change\', function() {
 			var address = build_address();
 			if (address != "") {
-				marker.setMap(null);
 				codeAddress(address);
 				}
 			});
 		google.maps.event.addDomListener(townInput, \'change\', function() {
 			var address = build_address();
 			if (address != "") {
-				marker.setMap(null);
 				codeAddress(address);
 				}
 			});
 		google.maps.event.addDomListener(streetInput, \'change\', function() {
 			var address = build_address();
 			if (address != "") {
-				marker.setMap(null);
 				codeAddress(address);
 				}
 			});
