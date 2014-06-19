@@ -1669,14 +1669,55 @@ class dobooking
 		{
 		$mrConfig = $this->mrConfig;
 		$cust     = array ();
-		$query    = "SELECT `id`,`type`,`maximum` FROM `#__jomres_customertypes` where property_uid = '$selectedProperty' AND published = '1' ORDER BY `order`";
+		$query    = "SELECT `id`,`type`,`maximum` , `is_child` FROM `#__jomres_customertypes` where property_uid = '$selectedProperty' AND published = '1' ORDER BY `order`";
 		$exList   = doSelectSql( $query );
+		
+		if ( isset($_REQUEST['numadult']) || isset($_REQUEST['numchild']) )
+			{
+			foreach ( $exList as $ct )
+				{
+				if ( $ct->is_child == "0")
+					{
+					if ( is_null($adult_customer_type) )
+						{
+						$adult_customer_type = $ct->id;
+						$number =  (int)$_REQUEST['numadult'];
+						if ( (int) $ct->maximum > $number)
+							$this->setGuestVariantDetails( $adult_customer_type, $number );
+						else
+							$this->setGuestVariantDetails( $adult_customer_type, (int) $ct->maximum );
+						}
+					else
+						{
+						$this->setGuestVariantDetails( $ct->id, 0 );
+						}
+					}
+				else // is child is true
+					{
+					if ( is_null($child_customer_type) )
+						{
+						$child_customer_type = $ct->id;
+						$number =  (int)$_REQUEST['numchild'];
+						if ( (int) $ct->maximum > $number)
+							$this->setGuestVariantDetails( $child_customer_type, $number );
+						else
+							$this->setGuestVariantDetails( $child_customer_type, (int) $ct->maximum );
+						}
+					else
+						{
+						$this->setGuestVariantDetails( $ct->id, 0 );
+						}
+					}
+				}
+			}
+
 		foreach ( $exList as $ct )
 			{
 			$customerTypes           = array ();
 			$customerTypes[ 'ID' ]   = $ct->id;
 			$customerTypes[ 'TEXT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_GUESTTYPE' . $ct->id, htmlspecialchars( trim( stripslashes( $ct->type ) ), ENT_QUOTES ) ) );
 			$current                 = $this->getGuestVariantDetails( $ct->id );
+
 			if ( $current != false )
 				{
 				$defNo = $current[ 'quantity' ];
