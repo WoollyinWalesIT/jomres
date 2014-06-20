@@ -57,7 +57,17 @@ class j06000view_agent
 				$property_uids[ ] = $property_id;
 				}
 			}
+		
+		$gOr = genericOr($property_uids , "propertys_uid");
+		$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE approved = 1 AND ".$gOr;
+		$result = doSelectSql($query);
 
+		$property_uids = array ();
+		foreach ( $result as $property)
+			{
+			$property_uids[ ] = $property->propertys_uid ;
+			}
+		
 		$output[ 'HFIRSTNAME' ]             = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME', _JOMRES_COM_MR_DISPGUEST_FIRSTNAME );
 		$output[ 'HSURNAME' ]               = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_SURNAME', _JOMRES_COM_MR_DISPGUEST_SURNAME );
 		$output[ 'HHOUSE' ]                 = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_HOUSE', _JOMRES_COM_MR_DISPGUEST_HOUSE );
