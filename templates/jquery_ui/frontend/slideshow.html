@@ -1,24 +1,25 @@
 <patTemplate:tmpl name="pageoutput">
-	<script type="text/javascript">
-		<!--
-		jomresJquery(window).load(function () {
-			jomresJquery('#gallery').galleria({
-				width: 450,
-				height: 300,
-				transition: "slide",
-				thumbCrop: "height",
-				lightbox: true,
-				autoplay: 5000,
-				preload: 0,
-				debug: false
-			});
+<div id="gallery">
+	<patTemplate:tmpl name="rows">
+		<a href="{IMAGE}"><img src="{IMAGETHUMB}"/></a>
+	</patTemplate:tmpl>
+</div>
+
+<script type="text/javascript">
+	<!--
+	jomresJquery(window).load(function () {
+		jomresJquery('#gallery').galleria({
+			width: 450,
+			height: 300,
+			transition: "slide",
+			thumbCrop: "height",
+			lightbox: true,
+			autoplay: 5000,
+			preload: 0,
+			debug: false
 		});
-		//-->
-	</script>
-	<div id="gallery">
-		<patTemplate:tmpl name="rows">
-			<a href="{IMAGE}"><img src="{IMAGETHUMB}"/></a>
-		</patTemplate:tmpl>
-	</div>
+	});
+	//-->
+</script>
 </patTemplate:tmpl>
 
