@@ -48,7 +48,7 @@ class j16000view_property_reviews
 
 		$all_users = jomres_cmsspecific_getCMSUsers();
 
-		$unpublish_icon = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/tick.png";
+		$unpublish_icon = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/Tick.png";
 		$publish_icon   = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/Cancel.png";
 		$delete_icon    = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/WasteBasket.png";
 
