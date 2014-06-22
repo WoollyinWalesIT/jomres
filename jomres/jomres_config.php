@@ -170,3 +170,6 @@ $mrConfig[ 'property_language' ] = "en-GB";
 $mrConfig[ 'property_vat_number' ] = "";
 $mrConfig[ 'property_vat_number_validated' ] = "0";
 $mrConfig[ 'vat_number_validation_response' ] = "";
+
+$mrConfig[ 'requireApproval' ] = "0";
+
