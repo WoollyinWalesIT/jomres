@@ -140,7 +140,12 @@ class j06000module_popup
 				}
 			else
 			$output[ 'HFEATURES' ] = "";
-
+			
+			$MiniComponents->specificEvent( '06000', 'remoteavailability',array("property_uid"=> $property_uid , "return_calendar" => true ) );
+			$output[ 'CALENDAR' ] = $MiniComponents->miniComponentData[ '06000' ][ 'remoteavailability' ];
+			
+			//$output[ 'CALENDAR' ]);exit;
+			
 			$componentArgs = array ( 'property_uid' => $property_uid, "width" => '200', "height" => '214' );
 			$MiniComponents->specificEvent( '01050', 'x_geocoder', $componentArgs );
 			$output[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
