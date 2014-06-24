@@ -211,8 +211,12 @@ class j00004a_init_javascript_css_files
 		
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$current_property_details->gather_data( get_showtime('property_uid') );
-
-		set_showtime( "misc_url_defs.js", $ls . "_" . get_showtime( 'lang' ) ."_". $current_property_details->property_type."_". "_misc_url_defs.js" ); // We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
+		
+		if ( ( !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ) || $_SERVER['SERVER_PORT'] == 443)// We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
+			set_showtime( "misc_url_defs.js", $ls . "_ssl_" . get_showtime( 'lang' ) ."_". $current_property_details->property_type."_". "_misc_url_defs.js" ); 
+		else
+			set_showtime( "misc_url_defs.js", $ls . "_" . get_showtime( 'lang' ) ."_". $current_property_details->property_type."_". "_misc_url_defs.js" ); 
+			
 		set_showtime( "misc_url_defs.js.abspath", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS );
 		set_showtime( "misc_url_defs.js.relpath", JOMRES_ROOT_DIRECTORY."/temp/" );
 
