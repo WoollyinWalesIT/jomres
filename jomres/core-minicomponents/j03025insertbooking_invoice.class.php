@@ -234,7 +234,7 @@ class j03025insertbooking_invoice
 				$query = "UPDATE #__jomres_contracts SET invoice_uid = " . $invoice_handler->id . " WHERE contract_uid = " . $contract_uid;
 				doInsertSql( $query, "" );
 				}
-			else
+			elseif ( $depositPaid )
 				{
 				$deposit_paid_line_item_data = array ( 'tax_code_id' => 0, 'name' => jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', _JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED, false, false ), 'description' => '', 'init_price' => "-" . $deposit_required, 'init_qty' => "1", 'init_discount' => "0", 'recur_price' => "0.00", 'recur_qty' => "0", 'recur_discount' => "0.00" );
 
@@ -243,12 +243,9 @@ class j03025insertbooking_invoice
 
 				$invoice_handler->id = $invoice_id;
 				
-				if ( $depositPaid )
-					{
-					$invoice_handler->getInvoice();
-					$invoice_handler->add_line_item( $deposit_paid_line_item_data );
-					$invoice_handler->commitUpdateInvoice();
-					}
+				$invoice_handler->getInvoice();
+				$invoice_handler->add_line_item( $deposit_paid_line_item_data );
+				$invoice_handler->commitUpdateInvoice();
 				}
 			
 			set_showtime( "inserted_booking_invoice_id", $invoice_handler->id );
