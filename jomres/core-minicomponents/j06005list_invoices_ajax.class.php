@@ -170,7 +170,8 @@ class j06005list_invoices_ajax
 					a.due_date, 
 					a.paid, 
 					a.init_total, 
-					a.recur_total, 
+					a.recur_total,
+					a.currencycode,
 					a.contract_id, 
 					a.subscription,
 					a.property_uid,
@@ -304,9 +305,9 @@ class j06005list_invoices_ajax
 			$r[] = $p->raised_date;
 			$r[] = $p->due_date;
 			$r[] = $p->paid;
-			$r[] = output_price($p->grand_total,$p->currency_code);
-			$r[] = output_price($p->init_total,$p->currency_code);
-			$r[] = output_price($p->recur_total,$p->currency_code);
+			$r[] = output_price($p->grand_total,$p->currencycode);
+			$r[] = output_price($p->init_total,$p->currencycode);
+			$r[] = output_price($p->recur_total,$p->currencycode);
 			
 			//paypal stuff
 			if (((int)$p->is_commission == 1 || (int)$p->subscription == 1) && (int)$p->status == 3 && $paypal_settings[ 'email' ] != "")
