@@ -179,11 +179,13 @@ class jomres_property_list_prices
 									{
 									$raw_price = $basic_property_details->get_gross_accommodation_price( $pricesFromArray[ $property_uid ], $property_uid ) * $multiplier;
 									$price = output_price( $basic_property_details->get_gross_accommodation_price( $pricesFromArray[ $property_uid ], $property_uid ) * $multiplier, "", true, true );
+									$price_no_conversion = output_price( $basic_property_details->get_gross_accommodation_price( $pricesFromArray[ $property_uid ], $property_uid ) * $multiplier, "", false, true );
 									}
 								else
 									{
 									$raw_price =  $pricesFromArray[ $property_uid ] * $multiplier;
 									$price = output_price( $pricesFromArray[ $property_uid ] * $multiplier, "", true, true );
+									$price_no_conversion = output_price( $pricesFromArray[ $property_uid ] * $multiplier, "", false, true );
 									}
 				
 								if ( $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == "1" && $mrConfig[ 'tariffmode' ] == "1" ) 
@@ -233,6 +235,7 @@ class jomres_property_list_prices
 							{
 							$pre_text  = jr_gettext( '_JOMRES_COM_MR_EXTRA_PRICE', _JOMRES_COM_MR_EXTRA_PRICE );
 							$price     = output_price( $basic_property_details->real_estate_property_price, "", true, false );
+							$price_no_conversion = output_price( $basic_property_details->real_estate_property_price, "", false, true );
 							$post_text = '';
 							}
 						}
@@ -248,6 +251,7 @@ class jomres_property_list_prices
 							{
 							$pre_text  = jr_gettext( '_JOMRES_COM_MR_EXTRA_PRICE', _JOMRES_COM_MR_EXTRA_PRICE, "", true, false );
 							$price     = output_price( $basic_property_details->real_estate_property_price );
+							$price_no_conversion = output_price( $basic_property_details->real_estate_property_price, "", false, true );
 							$post_text = '';
 							}
 						}
@@ -255,7 +259,7 @@ class jomres_property_list_prices
 						{
 						$raw_price = -1;
 						}
-					$this->lowest_prices[$property_uid]=array ( "PRE_TEXT" => $pre_text, "PRICE" => $price, "POST_TEXT" => $post_text , "RAW_PRICE" => $raw_price);
+					$this->lowest_prices[$property_uid]=array ( "PRE_TEXT" => $pre_text, "PRICE" => $price, "POST_TEXT" => $post_text , "RAW_PRICE" => $raw_price , "PRICE_NOCONVERSION" => $price_no_conversion);
 					}
 				}
 			}
