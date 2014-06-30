@@ -40,9 +40,10 @@ class j00011manager_option_01_resources
 		$property_uid=getDefaultProperty();
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		
-		if ($mrConfig['tariffmode']=='0')
-			return;
-
+		if ($mrConfig['tariffmode']=='0') return;
+		
+		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 || get_showtime('is_jintour_property' ) ) return;
+		
 		$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=list_resources", 'roomTypes.png', jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS, false, false ) );
 		}
 
