@@ -14,6 +14,28 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+// Newer function for finding dates
+function get_periods( $start, $end, $interval = null )
+	{
+	$bang = explode("/",$start);
+	$start = $bang[1]."/".$bang[0]."/".$bang[2];
+	$bang = explode("/",$end);
+	$end = $bang[1]."/".$bang[0]."/".$bang[2];
+	
+	$start = new DateTime( $start );
+	$end   = new DateTime( $end );
+	if ( is_null( $interval ) ) $interval = new DateInterval( 'P1D' );
+
+	$period = new DatePeriod( $start, $interval, $end );
+	$dates  = array ();
+	foreach ( $period as $date )
+		{
+		$d        = $date->format( 'Y/m/d' );
+		$dates[ ] = $d;
+		}
+
+	return $dates;
+	}
 
 function output_fatal_error($e)
 	{
