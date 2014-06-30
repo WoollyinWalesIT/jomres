@@ -1,202 +1,201 @@
-Jomres 8.1.6
+<h3>Jomres 8.1.6 13/06/2014</h3>
 
-Change : Added ability to flag plugins as retired, to advise managers to uninstall older plugins that will not work with current versions of Jomres.
-Change : integration.php updated with a small routine to try to determine which file has failed to call jomres_root.php, if JOMRES_ROOT_DIRECTORY isn't set.
-Change : Added email_text to allowed fields for input filtering, and improved the allowed tags list to be a little more lenient.
-Change : Changed property header to use the large property image in accordance with the advice here https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content  This is an image associated with your media. We suggest that you use an image of at least 1200x630 pixels.
-Change : Modified save country and save region scripts to redirect back to the associated lists on save.
-Change : Added notes to the top of the guest's view booking page to indicate if a booking has been cancelled.
-Change : Hide the cancel button when a booking has been cancelled, from the user's view of the booking.
-Change : Broke several functions out of functions.php so that they can be overridden in plugins.
-Change : Tweaked the confirmation letter popup to display better.
-Change : Added a message to say that the confirmation email has been sent.
-Change : Added a button to the administrator control panel that links direct to the front page of the site. Should make it clearer to new users how to go about managing properties.
-Change : Updated detect_cms.php to adjust to Joomla's new upgrade strategy, information relating to the problem is provided and an error is thrown.
-Change : Updated the Italian language file, many thanks Pierangela.
-Change : Added a definition for JPATH_PLATFORM as the Joomla version file uses that instead of _JEXEC when checking to see if the file can be called.
+<span class="label label-success">Feature</span> Added ability to flag plugins as retired, to advise managers to uninstall older plugins that will not work with current versions of Jomres.
 
-Fix : Fixed a broken path to gateway directory to ensure that the gateway logo is shown correctly.
-Fix : Solved a missing property type image problem in query ui booking form classic room list.
-Fix : Fixed a bug where wrong users were getting emailed php errors.
-Fix : Updated how Jomres handle's custom fields in the booking form so that required fields are properly highlighted again.
-Fix : Modified the installer, added `secret_key_used` column to create contracts table.
+<span class="label label-warning">Change</span> integration.php updated with a small routine to try to determine which file has failed to call jomres_root.php, if JOMRES_ROOT_DIRECTORY isn't set.
+<span class="label label-warning">Change</span> Added email_text to allowed fields for input filtering, and improved the allowed tags list to be a little more lenient.
+<span class="label label-warning">Change</span> Changed property header to use the large property image in accordance with the advice here https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content  This is an image associated with your media. We suggest that you use an image of at least 1200x630 pixels.
+<span class="label label-warning">Change</span> Modified save country and save region scripts to redirect back to the associated lists on save.
+<span class="label label-warning">Change</span> Added notes to the top of the guest's view booking page to indicate if a booking has been cancelled.
+<span class="label label-warning">Change</span> Hide the cancel button when a booking has been cancelled, from the user's view of the booking.
+<span class="label label-warning">Change</span> Broke several functions out of functions.php so that they can be overridden in plugins.
+<span class="label label-warning">Change</span> Tweaked the confirmation letter popup to display better.
+<span class="label label-warning">Change</span> Added a message to say that the confirmation email has been sent.
+<span class="label label-warning">Change</span> Added a button to the administrator control panel that links direct to the front page of the site. Should make it clearer to new users how to go about managing properties.
+<span class="label label-warning">Change</span> Updated detect_cms.php to adjust to Joomla's new upgrade strategy, information relating to the problem is provided and an error is thrown.
+<span class="label label-warning">Change</span> Updated the Italian language file, many thanks Pierangela.
+<span class="label label-warning">Change</span> Added a definition for JPATH_PLATFORM as the Joomla version file uses that instead of _JEXEC when checking to see if the file can be called.
 
+<span class="label label-important">Fix</span> Fixed a broken path to gateway directory to ensure that the gateway logo is shown correctly.
+<span class="label label-important">Fix</span> Solved a missing property type image problem in query ui booking form classic room list.
+<span class="label label-important">Fix</span> Fixed a bug where wrong users were getting emailed php errors.
+<span class="label label-important">Fix</span> Updated how Jomres handle's custom fields in the booking form so that required fields are properly highlighted again.
+<span class="label label-important">Fix</span> Modified the installer, added `secret_key_used` column to create contracts table.
 
+<h3>Jomres 8.1.5 23/05/2014</h3>
 
-Jomres 8.1.5
+<span class="label label-warning">Change</span> Added a new 99994 trigger point at the end of jomres.php's run. 
+<span class="label label-warning">Change</span> Added new 99994 trigger to jomresRedirect function to ensure that 99994 actions are performed both when Jomres finishes running jomres.php, and when calls are redirected to another task.
+<span class="label label-warning">Change</span> Changed ajax insert booking so that it doens't exit at the end of it's run, instead it returns.
+<span class="label label-warning">Change</span> Disabled a system/misc logging event as it's not needed.
+<span class="label label-warning">Change</span> Added a quarter hourly cron job option to the cron class.
+<span class="label label-warning">Change</span> Added contract uid and booking number to showtime after quickbooking.
+<span class="label label-warning">Change</span> Removed an unnecessary call to close session.
+<span class="label label-warning">Change</span> Added several flags to showtime for booking insertion, to store references to amended contract uids.
 
-Change : Added a new 99994 trigger point at the end of jomres.php's run. 
-Change : Added new 99994 trigger to jomresRedirect function to ensure that 99994 actions are performed both when Jomres finishes running jomres.php, and when calls are redirected to another task.
-Change : Changed ajax insert booking so that it doens't exit at the end of it's run, instead it returns.
-Change : Disabled a system/misc logging event as it's not needed.
-Change : Added a quarter hourly cron job option to the cron class.
-Change : Added contract uid and booking number to showtime after quickbooking.
-Change : Removed an unnecessary call to close session.
-Change : Added several flags to showtime for booking insertion, to store references to amended contract uids.
-Fix : Fixed an issue where the Product Tour (inline help feature) caused a javascript error on Reg Prop 2.
-Wordpress : Tweaked the WP cms specific urls functionality to enable Jomres to work on WP sites that have permalinks enabled. This doesn't provide pretty urls, but it does fix an issue where Jomres wouldn't work on sites with permalinks switched on.
-Wordpress : Improved how WP specific functionality detects if we're in admin area or not. Fixes an issue where admin media centre doesn't know where it is and results in a "something seriously wrong" message.
+<span class="label label-important">Fix</span> Fixed an issue where the Product Tour (inline help feature) caused a javascript error on Reg Prop 2.
 
+<span class="label label-info">Wordpress</span> Tweaked the WP cms specific urls functionality to enable Jomres to work on WP sites that have permalinks enabled. This doesn't provide pretty urls, but it does fix an issue where Jomres wouldn't work on sites with permalinks switched on.
+<span class="label label-info">Wordpress</span> Improved how WP specific functionality detects if we're in admin area or not. Fixes an issue where admin media centre doesn't know where it is and results in a "something seriously wrong" message.
 
-Jomres 8.1.4
+<h3>Jomres 8.1.4 12/05/2014</h3>
 
-Change : Added an is_child flag to the customer types table.
-Change : Tweaked list properties to not build the budget class if the feature isn't used. Minor performance improvement.
-Fix : Confirmation letter script was sending wrong email template.
+<span class="label label-success">Feature</span>  Added an is_child flag to the customer types table.
 
-Jomres 8.1.3
+<span class="label label-warning">Change</span> Tweaked list properties to not build the budget class if the feature isn't used. Minor performance improvement.
 
-Fix : Improved how installation on wordpress is detected.
-Change : Disabled asamodule report from showing on WP, due to how urls are generated the report doesn't make sense on WP installations.
-Change : Changed the extraservices warning from a danger to a warning level report in the installer.
-Change : Disabled/removed some old functionality that was designed for Jomres Standalone and is no longer applicable.
+<span class="label label-important">Fix</span> Confirmation letter script was sending wrong email template.
 
+<h3>Jomres 8.1.3 09/05/2014</h3>
 
-Jomres 8.1.2
+<span class="label label-warning">Change</span> Disabled asamodule report from showing on WP, due to how urls are generated the report doesn't make sense on WP installations.
+<span class="label label-warning">Change</span> Changed the extraservices warning from a danger to a warning level report in the installer.
+<span class="label label-warning">Change</span> Disabled/removed some old functionality that was designed for Jomres Standalone and is no longer applicable.
 
-Change : Updated Polish lang files, thanks Patryk
-Change : German language file updated.
-Change : Improved a path problem caused by the latest fix.
-Change : Added ids to town, street and posted in edit and register property templates to aid geocoder listener.
+<span class="label label-info">Wordpress</span> Improved how installation on wordpress is detected.
 
-Fix : Fixed a missing image problem on Jquery ui bookingform.
-Fix : Corrected a path for editing room types, image path was incorrect after new 8.1 path changes.
-Fix : Updated the wp plugin files to fix a bug with new paths.
+<h3>Jomres 8.1.2 07/05/2014</h3>
 
+<span class="label label-warning">Change</span> Updated Polish lang files, thanks Patryk
+<span class="label label-warning">Change</span> German language file updated.
+<span class="label label-warning">Change</span> Improved a path problem caused by the latest fix.
+<span class="label label-warning">Change</span> Added ids to town, street and posted in edit and register property templates to aid geocoder listener.
 
-Jomres 8.1.1
+<span class="label label-important">Fix</span> Fixed a missing image problem on Jquery ui bookingform.
+<span class="label label-important">Fix</span> Corrected a path for editing room types, image path was incorrect after new 8.1 path changes.
+<span class="label label-important">Fix</span> Updated the wp plugin files to fix a bug with new paths.
 
-Fix : Fixed an issue where registry paths were being saved incorrectly, causing errors and blank pages when trying to run Jomres.
+<h3>Jomres 8.1.1 29/04/2014</h3>
 
-Jomres 8.1.0
+<span class="label label-important">Fix</span> Fixed an issue where registry paths were being saved incorrectly, causing errors and blank pages when trying to run Jomres.
 
-Change : Added buttons to sanity checks to take the user to the appropriate link to fix the problem.
-Change : Modified the ui availability calendar to use an existing option and set the first day of week to Sunday or Monday.
-Change : Modified userbudget so that converted price isn't shown in property list header dropdown.
-Change : Added changes that support Jomres working in a directory other than "jomres". 
-Change : Changed a check to ensure jquery isn't included in Joomla 3.3.
-Change : Moved Budget switch to Search tab in site config.
-Change : Removed short property feature list from property list page.
+<h3>Jomres 8.1.0 28/04/2014</h3>
 
-Fix : Fixed an issue where navbar is always inversed when not in component area.
-Fix : Fixed Fawlty Tower's default property features on installation.
-Fix : Fixed an issue where panel-info wasn't being applied if featured properties plugin is not installed.
-Fix : Added a couple of tweaks for modal popups in BS3, ensures that the modal appears above the background and fixes the position of the thumbnail in the modal popup.
+<span class="label label-success">Feature</span> Added buttons to sanity checks to take the user to the appropriate link to fix the problem.
 
+<span class="label label-warning">Change</span> Modified the ui availability calendar to use an existing option and set the first day of week to Sunday or Monday.
+<span class="label label-warning">Change</span> Modified userbudget so that converted price isn't shown in property list header dropdown.
+<span class="label label-warning">Change</span> Added changes that support Jomres working in a directory other than "jomres". 
+<span class="label label-warning">Change</span> Changed a check to ensure jquery isn't included in Joomla 3.3.
+<span class="label label-warning">Change</span> Moved Budget switch to Search tab in site config.
+<span class="label label-warning">Change</span> Removed short property feature list from property list page.
 
+<span class="label label-important">Fix</span> Fixed an issue where navbar is always inversed when not in component area.
+<span class="label label-important">Fix</span> Fixed Fawlty Tower's default property features on installation.
+<span class="label label-important">Fix</span> Fixed an issue where panel-info wasn't being applied if featured properties plugin is not installed.
+<span class="label label-important">Fix</span> Added a couple of tweaks for modal popups in BS3, ensures that the modal appears above the background and fixes the position of the thumbnail in the modal popup.
 
-Jomres 8.1.-2
+<h3>Jomres 8.1.-2 16/04/2014</h3>
 
-New Feature : Added a new "budget" option to property list toolbar, which allows users to see at a glance which properties are within their budget.
+<span class="label label-success">Feature</span> Added a new "budget" option to property list toolbar, which allows users to see at a glance which properties are within their budget.
+<span class="label label-success">Feature</span>  Added functionality to give javascript files a version (based on the update time). This means that when a site's updated browsers will be triggered to download the javascript files again. This prevents changes in js files from causing a site to appear to not function if that js file has different functionality.
+<span class="label label-success">Feature</span> Added the option to switch off the Powered by Jomres link via site config, and by default this is set to No.
+<span class="label label-success">Feature</span> Added lowest prices to property details page.
+<span class="label label-success">Feature</span> Added Bootstrap 3 panels to Bootstrap 2 and modified property list template to use.
+<span class="label label-success">Feature</span> Added a new css class .property-list-overbudget-properties so that if the budget dropdown is used and a property is over-budget we make it slightly opaque to emphasise those properties that are under budget. Feature properties are not affected by these changes, they use the panel-primary class to stand out.
 
-Change : Simplified the book/check in/out feature, Booking in/out is done through the list bookings page now.
-Change : Added a check for secret key so that required custom fields are stored correctly.
-Change : Modified the generic booking insert class to ensure that it uses currency codes, otherwise bookings later on will not show correctly.
-Change : Added a way to update site settings with last update time, for use later by, among other things, javascript versioning.
-Change : Added functionality to give javascript files a version (based on the update time). This means that when a site's updated browsers will be triggered to download the javascript files again. This prevents changes in js files from causing a site to appear to not function if that js file has different functionality.
-Change : Updated the Polish lang files. Thanks Patryk.
-Change : Changed an int to a float for a 3PD.
-Change : Added the option to switch off the Powered by Jomres link via site config, and by default this is set to No.
-Change : Tweaked new functionality so that if book in/out plugin not installed then the check in/out options aren't offered in the bookings list.
-Change : Email template editing instructions updated.
-Change : Installer improved. Given a makeover and added functionality to rename a table if possible, or warn and give directions if not possible.
-Change : Obsoleted the old Joomla 3.0 and 3.1 specific functionality as they're no longer supported. 
-Change : Added Joomla 3.3 CMS specific files and functionality.
-Change : Added UI availability calendar to the asamodule report page.
-Change : Added lowest prices to property details page.
-Change : Changed property list header buttons to small.
-Change : Added Bootstrap 3 panels to Bootstrap 2 and modified property list template to use.
-Change : Added a new css class .property-list-overbudget-properties so that if the budget dropdown is used and a property is over-budget we make it slightly opaque to emphasise those properties that are under budget. Feature properties are not affected by these changes, they use the panel-primary class to stand out.
-Change : Re-added _JOMRES_FRONT_MR_EMAIL_TEXT_NAME that was inadvertently removed when adding the email editing feature.
-Change : Updated budget site config description to note that the featured listings wrapping class that highlights featured listings is changed when the budget feature is enabled.
+<span class="label label-warning">Change</span> Simplified the book/check in/out feature, Booking in/out is done through the list bookings page now.
+<span class="label label-warning">Change</span> Added a check for secret key so that required custom fields are stored correctly.
+<span class="label label-warning">Change</span> Modified the generic booking insert class to ensure that it uses currency codes, otherwise bookings later on will not show correctly.
+<span class="label label-warning">Change</span> Added a way to update site settings with last update time, for use later by, among other things, javascript versioning.
+<span class="label label-warning">Change</span> Updated the Polish lang files. Thanks Patryk.
+<span class="label label-warning">Change</span> Changed an int to a float for a 3PD.
+<span class="label label-warning">Change</span> Tweaked new functionality so that if book in/out plugin not installed then the check in/out options aren't offered in the bookings list.
+<span class="label label-warning">Change</span> Email template editing instructions updated.
+<span class="label label-warning">Change</span> Installer improved. Given a makeover and added functionality to rename a table if possible, or warn and give directions if not possible.
+<span class="label label-warning">Change</span> Obsoleted the old Joomla 3.0 and 3.1 specific functionality as they're no longer supported. 
+<span class="label label-warning">Change</span> Added UI availability calendar to the asamodule report page.
+<span class="label label-warning">Change</span> Changed property list header buttons to small.
+<span class="label label-warning">Change</span> Re-added _JOMRES_FRONT_MR_EMAIL_TEXT_NAME that was inadvertently removed when adding the email editing feature.
+<span class="label label-warning">Change</span> Updated budget site config description to note that the featured listings wrapping class that highlights featured listings is changed when the budget feature is enabled.
 
+<span class="label label-important">Fix</span> Removed a stray hyphen from the phrase "Property details".
+<span class="label label-important">Fix</span> Corrected "rows" to "row" in BS3 skin.
+<span class="label label-important">Fix</span> Added code to ensure that the property's currency code is entered into the contracts table during the booking phase. Without this change, if a property changes it's currency code then the prices in the bookings list are incorrect.
+<span class="label label-important">Fix</span> Modified menu generator to show HELP when bootstrap is enabled, even if the CMS is not Joomla 3+
 
-Fix : Removed a stray hyphen from the phrase "Property details".
-Fix : Corrected "rows" to "row" in BS3 skin.
-Fix : Added code to ensure that the property's currency code is entered into the contracts table during the booking phase. Without this change, if a property changes it's currency code then the prices in the bookings list are incorrect.
-Fix : Modified menu generator to show HELP when bootstrap is enabled, even if the CMS is not Joomla 3+
+<span class="label label-info">Joomla</span> Added Joomla 3.3 CMS specific files and functionality.
+<span class="label label-info">Joomla</span> Removed redundant javascript caching code from J2.5/J3 cms specific functionality.
+<span class="label label-info">Joomla</span> Obsoleted the old Joomla 3.0 and 3.1 specific functionality as they're no longer supported. 
+<span class="label label-info">Joomla</span> Modified cms specific functionality that includes css to ensure that css is correctly included in the administrator area.
 
-Joomla : Removed redundant javascript caching code from J2.5/J3 cms specific functionality.
-Joomla : Obsoleted the old Joomla 3.0 and 3.1 specific functionality as they're no longer supported. 
-Joomla : Modified cms specific functionality that includes css to ensure that css is correctly included in the administrator area.
-
-Wordpress : Solved a problem where page id wsan't set in ajax urls, so links from javascript urls didn't work.
-Wordpress : Changed how the editor is called in WP so that managers can use html editors.
-Wordpress : Changed how date is returned from the cms specific function that formats dates.
-Wordpress : Improved the WP plugins and how they're used to allow things like .js and .css files to be integrated into the head properly.
-Wordpress : Refactored functionality to improve functionality in WP. Session handling/CMS specific functionality/Javascript file inclusion/Editing mode.
-Wordpress : Further changes so that when we store some user settings we also save them in the session files. Not really needed in Joomla, but important in Wordpress.
-Wordpress : Updated Admin's first run instructions to adapt to being installed in Wordpress.
-Wordpress : Changed how ajax is called via the frontend.
-Wordpress : Changed the widget installer so that plugin_info is put back into the core plugin folder it originated in so that we can see if a widget is installed.
-Wordpress : Fixed an issue where WP wysiwyg editor wouldn't be shown in fullscreen view.
-
-
-Jomres 8.1.-3
-
-New Feature : Added a new Booking Approval feature that allows managers to screen bookings before they're approved and the booking is inserted into the system.
-New Feature : Added new email template editing feature for managers.
-New Feature : Added support for Wordpress, to allow Jomres to work inside wordpress.
-New Feature : Implemented new functionality that will make error logging and tracking more visible and viewable. Some errors will trigger, among other things, errors being emailed to admin users.
-New Feature : Added ability to filter by property type in the list properties table.
-
-Change : Changed how the manual link is exported to the template in the Plugin Manager.
-Change : Added a condition to check that if the user's changing the View of the property list, if so we'll reuse the previous search results.
-Change : Code tidyup in router files to remove some duplicates.
-Change : Small tweak to management view to update copyright and improve css.
-Change : Tweaked the generic booking insert class to allow tax rates of 0.
-Change : Changed the upgrade script to use the installer, as the installation code is valid during upgrades too and it saves having duplicate code.
-Change : Added check to the installer to see if the manager's table is already populated. If it is, we will not add default data (again).
-Change : Added some new translations to the German language file. Thanks Alexander.
-Change : Updated some Getting Started text with who's links were broken by the manual update.
-Change : Added a check to pathway script to not run if the CMS is not Joomla.
-Change : Modified how the installer redirects to the administrator area after upgrade.
-Change : Modified the installer to use get_showtime( "db" ) as this is the proper way to find the database.
-Change : Tweaked custom text save function to allow meta data to be saved as blank.
-Change : Rewrote the Reservation details page to use a new basic_contract_details class.
-Change : Reworked the help popover system to use a new "official" version of the bootstrap product tour javascript system. 
-Change : Modified updater to ensure jomres.zip is deleted after files are extracted from it.
-Change : Added a pull-left to composite property details bs3 to ensure that all button layouts are the same. ( BS3 template )
-Change : Changed line item initial quantity from int to float at request of third party dev.
-Change : Obsoleted the old javascript packer class and minicomp.
-Change : Added new contract uid column to the booking data archive.
-Change : Added new secret key and booking data archive id to contracts table. 
-Change : Added code to basic contract details class to use the new columns in the contracts table.
-Change : Changed the default Production/Development setting to Development, bally thing keeps deleting my installer during dev :D
-Change : Editing mode dropdown in BS3 renabled after it's hiatus.
-Change : Added Bootstrap 3 versions of x-editable to js library.
-Change : Replaced "Click for a map" with "Map" in several language files.
-Change : Replaced a / with JRDS in temp booking handler. No errors have been reported, but it's nice to do things properly.
-Change : Improved how the find region name function works.
-Change : Removed an obsolete reference to JOMRES_MOBILE, a definition that's no longer used.
-Change : Changed how an error is triggered in basic property details.
-
-Fix : Fixed a typo in admin's edit invoice, thanks Rod.
-Fix : Changed how listeners and drag and drop is done in geocoder code, as IE doesn't play nicely.
-Fix : Tweaked show profiles, added trims to prevent usernames with spaces on the end from causing problems.
-Fix : IE was playing silly bu^H^Hboys and wouldn't load without using (window).load, however if we use that then the map will not run in module popups, so we need to change the loading trigger depending on the "task".
-Fix : Fixed a small bug where if the booker returns to the booking form using the "amend booking" button on the confirmation page, the quantity dropdown of extras was still disabled. Now it's enabled.
-Fix : Modified management view to change the url a user gets directed to if they're on the completebk task. If they switch views from normal to full-screen when on that task then duplicate bookings are created, so we've modified the class so that if we're on that page the next page we're directed to is the dashboard.
-Fix : Renamed extraServices table to extraservices.
-Fix : CSS fix for popovers in fullscreen http://www.jomres.net/jomres-forum/Bugs/22196-product-tour-popups-and-help-definitions-bug
-Fix : Tweaked the booking engine so that an edge case that resulted in prices for each room in the booking form rooms list not always showing the price is resolved.
-Fix : Made a small change to the BS3 top template to remove a div that no longer has a place due to the management view trigger being moved.
-Fix : Modified the Jomres "tmpl" script so that users who name their installations *jomres* don't have problems with jquery being loaded twice in fullscreen/management view. Thanks for the bug report Rod.
-Fix : Tweaked the agent view to output the region correctly.
-
-Wordpress : Added a new function to determine if we're running Wordpress.
-Wordpress : Modified the logout minicomp so that it has a clause for non-Joomla CMSs.
-Wordpress : Updated the wordpress cms specific functions to provide login/out urls.
-Wordpress : Fixed an issue in control panel where modules dir doesn't exist in WP and shouldn't be included in the writability test.
-Wordpress : Added a new jomres wp css file for compatability with Wordpress.
-Wordpress : Implemented a different feature for redirection because Wordpress outputs html before Jomres has done it's thing so header() will not work.
-Wordpress : Commented out the body of a cms specific function which is used primarily for making url safe strings for url routing.
-Wordpress : Disabled this "is wrapped" switch if the cms is WP, it's only appropriate to Joomla installations.
-Wordpress : Renamed the WP admin.php to trigger.php to prevent confusion.
-Wordpress : Added Main menu dashboard link to WP Admin for Wordpress super property managers.
+<span class="label label-info">Wordpress</span> Solved a problem where page id wsan't set in ajax urls, so links from javascript urls didn't work.
+<span class="label label-info">Wordpress</span> Changed how the editor is called in WP so that managers can use html editors.
+<span class="label label-info">Wordpress</span> Changed how date is returned from the cms specific function that formats dates.
+<span class="label label-info">Wordpress</span> Improved the WP plugins and how they're used to allow things like .js and .css files to be integrated into the head properly.
+<span class="label label-info">Wordpress</span> Refactored functionality to improve functionality in WP. Session handling/CMS specific functionality/Javascript file inclusion/Editing mode.
+<span class="label label-info">Wordpress</span> Further changes so that when we store some user settings we also save them in the session files. Not really needed in Joomla, but important in Wordpress.
+<span class="label label-info">Wordpress</span> Updated Admin's first run instructions to adapt to being installed in Wordpress.
+<span class="label label-info">Wordpress</span> Changed how ajax is called via the frontend.
+<span class="label label-info">Wordpress</span> Changed the widget installer so that plugin_info is put back into the core plugin folder it originated in so that we can see if a widget is installed.
+<span class="label label-info">Wordpress</span> Fixed an issue where WP wysiwyg editor wouldn't be shown in fullscreen view.
 
 
-Jomres 8.0.1
+<h3>Jomres 8.1.-3 01/04/2014</h3>
+
+<span class="label label-success">Feature</span> Added a new Booking Approval feature that allows managers to screen bookings before they're approved and the booking is inserted into the system.
+<span class="label label-success">Feature</span> Added new email template editing feature for managers.
+<span class="label label-success">Feature</span> Added support for Wordpress, to allow Jomres to work inside wordpress.
+<span class="label label-success">Feature</span> Implemented new functionality that will make error logging and tracking more visible and viewable. Some errors will trigger, among other things, errors being emailed to admin users.
+<span class="label label-success">Feature</span> Added ability to filter by property type in the list properties table.
+
+<span class="label label-warning">Change</span> Changed how the manual link is exported to the template in the Plugin Manager.
+<span class="label label-warning">Change</span> Added a condition to check that if the user's changing the View of the property list, if so we'll reuse the previous search results.
+<span class="label label-warning">Change</span> Code tidyup in router files to remove some duplicates.
+<span class="label label-warning">Change</span> Small tweak to management view to update copyright and improve css.
+<span class="label label-warning">Change</span> Tweaked the generic booking insert class to allow tax rates of 0.
+<span class="label label-warning">Change</span> Changed the upgrade script to use the installer, as the installation code is valid during upgrades too and it saves having duplicate code.
+<span class="label label-warning">Change</span> Added check to the installer to see if the manager's table is already populated. If it is, we will not add default data (again).
+<span class="label label-warning">Change</span> Added some new translations to the German language file. Thanks Alexander.
+<span class="label label-warning">Change</span> Updated some Getting Started text with who's links were broken by the manual update.
+<span class="label label-warning">Change</span> Added a check to pathway script to not run if the CMS is not Joomla.
+<span class="label label-warning">Change</span> Modified how the installer redirects to the administrator area after upgrade.
+<span class="label label-warning">Change</span> Modified the installer to use get_showtime( "db" ) as this is the proper way to find the database.
+<span class="label label-warning">Change</span> Tweaked custom text save function to allow meta data to be saved as blank.
+<span class="label label-warning">Change</span> Rewrote the Reservation details page to use a new basic_contract_details class.
+<span class="label label-warning">Change</span> Reworked the help popover system to use a new "official" version of the bootstrap product tour javascript system. 
+<span class="label label-warning">Change</span> Modified updater to ensure jomres.zip is deleted after files are extracted from it.
+<span class="label label-warning">Change</span> Added a pull-left to composite property details bs3 to ensure that all button layouts are the same. ( BS3 template )
+<span class="label label-warning">Change</span> Changed line item initial quantity from int to float at request of third party dev.
+<span class="label label-warning">Change</span> Obsoleted the old javascript packer class and minicomp.
+<span class="label label-warning">Change</span> Added new contract uid column to the booking data archive.
+<span class="label label-warning">Change</span> Added new secret key and booking data archive id to contracts table. 
+<span class="label label-warning">Change</span> Added code to basic contract details class to use the new columns in the contracts table.
+<span class="label label-warning">Change</span> Changed the default Production/Development setting to Development, bally thing keeps deleting my installer during dev :D
+<span class="label label-warning">Change</span> Editing mode dropdown in BS3 renabled after it's hiatus.
+<span class="label label-warning">Change</span> Added Bootstrap 3 versions of x-editable to js library.
+<span class="label label-warning">Change</span> Replaced "Click for a map" with "Map" in several language files.
+<span class="label label-warning">Change</span> Replaced a / with JRDS in temp booking handler. No errors have been reported, but it's nice to do things properly.
+<span class="label label-warning">Change</span> Improved how the find region name function works.
+<span class="label label-warning">Change</span> Removed an obsolete reference to JOMRES_MOBILE, a definition that's no longer used.
+<span class="label label-warning">Change</span> Changed how an error is triggered in basic property details.
+
+<span class="label label-important">Fix</span> Fixed a typo in admin's edit invoice, thanks Rod.
+<span class="label label-important">Fix</span> Changed how listeners and drag and drop is done in geocoder code, as IE doesn't play nicely.
+<span class="label label-important">Fix</span> Tweaked show profiles, added trims to prevent usernames with spaces on the end from causing problems.
+<span class="label label-important">Fix</span> IE was playing silly bu^H^Hboys and wouldn't load without using (window).load, however if we use that then the map will not run in module popups, so we need to change the loading trigger depending on the "task".
+<span class="label label-important">Fix</span> Fixed a small bug where if the booker returns to the booking form using the "amend booking" button on the confirmation page, the quantity dropdown of extras was still disabled. Now it's enabled.
+<span class="label label-important">Fix</span> Modified management view to change the url a user gets directed to if they're on the completebk task. If they switch views from normal to full-screen when on that task then duplicate bookings are created, so we've modified the class so that if we're on that page the next page we're directed to is the dashboard.
+<span class="label label-important">Fix</span> Renamed extraServices table to extraservices.
+<span class="label label-important">Fix</span> CSS fix for popovers in fullscreen http://www.jomres.net/jomres-forum/Bugs/22196-product-tour-popups-and-help-definitions-bug
+<span class="label label-important">Fix</span> Tweaked the booking engine so that an edge case that resulted in prices for each room in the booking form rooms list not always showing the price is resolved.
+<span class="label label-important">Fix</span> Made a small change to the BS3 top template to remove a div that no longer has a place due to the management view trigger being moved.
+<span class="label label-important">Fix</span> Modified the Jomres "tmpl" script so that users who name their installations *jomres* don't have problems with jquery being loaded twice in fullscreen/management view. Thanks for the bug report Rod.
+<span class="label label-important">Fix</span> Tweaked the agent view to output the region correctly.
+
+<span class="label label-info">Wordpress</span> Added a new function to determine if we're running Wordpress.
+<span class="label label-info">Wordpress</span> Modified the logout minicomp so that it has a clause for non-Joomla CMSs.
+<span class="label label-info">Wordpress</span> Updated the wordpress cms specific functions to provide login/out urls.
+<span class="label label-info">Wordpress</span> Fixed an issue in control panel where modules dir doesn't exist in WP and shouldn't be included in the writability test.
+<span class="label label-info">Wordpress</span> Added a new jomres wp css file for compatability with Wordpress.
+<span class="label label-info">Wordpress</span> Implemented a different feature for redirection because Wordpress outputs html before Jomres has done it's thing so header() will not work.
+<span class="label label-info">Wordpress</span> Commented out the body of a cms specific function which is used primarily for making url safe strings for url routing.
+<span class="label label-info">Wordpress</span> Disabled this "is wrapped" switch if the cms is WP, it's only appropriate to Joomla installations.
+<span class="label label-info">Wordpress</span> Renamed the WP admin.php to trigger.php to prevent confusion.
+<span class="label label-info">Wordpress</span> Added Main menu dashboard link to WP Admin for Wordpress super property managers.
+
+
+<h3>Jomres 8.0.1 07/02/2014</h3>
 
 Fixed a wee bug in the Property List dropdown where if there are only two properties the bally Radio button javascript tries to furtle with them, causing an error.
 Modified list invoices More dropdowns so that link to print also uses . '&tmpl='.get_showtime("tmplcomponent") so that Jomres modules aren't also included.
@@ -210,7 +209,7 @@ Fixed a typo for xs columns in BS3 templates.
 
 
 
-Jomres 8.0.0
+<h3>Jomres 8.0.0 28/01/2014</h3>
 
 Added functionality to listen to changes to street/town/postcode in edit property pages so that the map marker will be moved when updating the address.
 
@@ -227,7 +226,7 @@ Added Bootstrap 3 js and css for use in the Management view for when BS3 is swit
 Changed how ajax lists parse data as some hosts were unable to use the older functionality.
 
 
-Jomres 8.0.-1
+<h3>Jomres 8.0.-1 24/01/2014</h3>
 
 Added new functionality to allow us to implement our own tmpl=jomres layout to Joomla templates. Jomres Fullscreen view is the best interface for managing properties however many Joomla templates do not always support the Joomla functionality required to do this properly. As a result we've implemented new functionality that will allow us to use our own code to ensure that the layout is of the high quality you've come to expect from Jomres.
 Jomres' Polish lang files updated to 8.0.-2 lang strings. Many thanks Patryk.
@@ -241,7 +240,7 @@ Improved input filtering. Whilst javascript cannot be entered in a meaningful wa
 Fixed an issue where if a guest is already registered but not booked before their region would default to the wrong region.
 Modified 3.2 cms_specific_functions.php so that editor readmore etc buttons are not shown.
 
-Jomres 8.0.-2
+<h3>Jomres 8.0.-2 20/01/2014</h3>
 
 Added a new feature so that managers can easily make multiple rooms of a given type.
 Added some missing templates to jq ui and bs2 template dirs. They're not needed (currently) but patTemplate throws a wobbly without them.
@@ -256,9 +255,7 @@ Modified dashboard so that it's not run if on a Jintour property.
 Removed blockUI functionality from Jomres Plugin manager, doesn't trigger at the correct point (might be an issue with FF debugger and the trigger order) so will revert to a simple alert for now.
 Implemented some caching for plugin manager badges, Jomres version and News to reduce load on the plugin server.
 
-
-
-Jomres 8.0.-3
+<h3>Jomres 8.0.-3 17/01/2014</h3>
 
 Changed menu options around to bring them a little more in line with industry standard.
 Completely revamped the guests, property and invoice listings pages, you can see invoices for all properties or just the active one, filter by various options and configure the columns to suit your specific requirements. Virtually all tabulated data is loaded via ajax, improving page response times when dealing with large amounts of data.
@@ -326,7 +323,7 @@ Disabled the Audit Trail feature. We believe it's not used and therefore not wor
 Tweaked save language choice script so that if no files are selected then the file normally created is removed.
 
 
-Jomres 7.5.4
+<h3>Jomres 7.5.4 19/11/2013</h3>
 
 Fixed an issue in jq ui frontend list properties.
 Some improvements to property name search/dropdown generation, also pnames are now sorted alphabetically
@@ -334,7 +331,7 @@ Added the item property "telephone" to the header template.
 Modified the currency conversion functionality so that it updates less frequently.
 Fixed an issue where some users can't see the My Properties list properly.
 
-Jomres 7.5.3
+<h3>Jomres 7.5.3 14/11/2013</h3>
 
 Updated the dashboard, bootstrapped templates (Some J2.5 and all J3.x Joomla installations) have a new purty bootstrapped dashboard.
 Added a new feature that loads the My Properties list via ajax. This allows us to load data-heavy pages through an ajax interface, reducing memory load. This change is effectively a prototype for futher changes of it's ilk.
@@ -357,7 +354,7 @@ Temporarily disabled Jomres' timezone functionality. Joomla is now stable with i
 Obsoleted the Manager's first run script, as it's superceeded by the new page tour functionality.
 
 
-Jomres 7.5.2
+<h3>Jomres 7.5.2 07/11/2013</h3>
 
 Added Joomla 3.2 specific changes to Jomres.
 Added new functionality to allow easy inclusion of searches for countries, regions, towns and property types as joomla menu items.
@@ -365,7 +362,7 @@ Updated both Polish and Catalan language files.
 Tweaked how a misc url definitions file is generated.
 
 
-Jomres 7.5.1
+<h3>Jomres 7.5.1 19/10/2013</h3>
 
 Modified the mailer exception class to check and see if the class already exists and to not include it if it does.
 Modified the basic module output to standardise the images available to the template.
@@ -378,7 +375,7 @@ Fixed an issue where if captcha was enabled, then messages couldn't be sent.
 Modified the installer, changed a column type for new installations to prevent error messages in the installer.
 
 
-Jomres 7.5
+<h3>Jomres 7.5.0 07/10/2013</h3>
 
 Added a new feature that offers integrated help on many of the top level pages in the frontend of Jomres. As this more suitable for property managers we will be retiring the old Manual plugin as that had too much information which wasn't relevant to property managers.
 
@@ -395,7 +392,7 @@ Combined two dynamically generated files into one.
 Added new language translations to Polish lang file. Many thanks Patryk.
 
 
-Jomres 7.4.0
+<h3>Jomres 7.4.0 23/09/2013</h3>
 
 Added a new feature called array cache, which significantly speeds up Jomres performance.
 Added the new Jomres Media Centre, which improves the image uploading process. This is available to the frontend for uploading images to properties, and in the backend for uploading room type and property feature images.
@@ -428,7 +425,7 @@ Improved how the immediate pay plugin shows the paypal icon/link.
 Removed the hr from the tooltip popups. (Bootstrap)
 
 
-Jomres 7.3.2
+<h3>Jomres 7.3.2 12/08/2013</h3>
 
 Modified user booking page to ensure that correct prices are shown.
 Fixed a counting error in the view invoice script, ensuring that the Amount Already Paid var is set correctly. Thanks Marinhio.
@@ -437,7 +434,7 @@ Resolved an issue where no bookings could be taken.
 Removed contents of $_SERVER magic var from the session file. 
 
 
-Jomres 7.3.1
+<h3>Jomres 7.3.1 06/08/2013</h3>
 
 Modified the jomres_decode function (the output filter) as it was allowing users to inject javascript into certain pages.
 Modified the input filtering script. Ensured that the default value that's passed to the jomresGetParam function is used to set the type of variable that's passed, this is used later on to decide how we'll filter the entered value.
@@ -475,7 +472,7 @@ Modified booking insert stage so that if the user isn't an existing guest then t
 
 
 
-Jomres 7.3.0
+<h3>Jomres 7.3.0 19/07/2013</h3>
 
 Added new functionality that allows Jomres to communicate with the VIES webservice and validate VAT numbers saved when a user enters their account details. (Euro properties only)
 
@@ -535,11 +532,11 @@ Added a check to the manager's first run script to ensure that only super proper
 
 
 
-Jomres 7.2.19
+<h3>Jomres 7.2.19 11/06/2013</h3>
 
 Reversed the previous change that prevents double clicking as it does not work on Chrome. Special release for this as it's a fairly major issue.
 
-Jomres 7.2.18
+<h3>Jomres 7.2.18 11/06/2013</h3>
 
 Added a new site configuration tab that allows you to enable/disable Google map layers. The choices are Weather/Traffic/Transit/Bicycle & Panoramio. You can also use the same tab to enable/disable the default POIs.
 Modified Jomres to add an S after the property header and property list stars, to indicate Superior properties. Added code to make this distinction when editing the property details page.
@@ -581,7 +578,7 @@ Improved the backend list invoices script to show guest names, even if the booke
 Improved the growl javascript popup, fixed an issue where the css gradient for jq ui wasn't showing properly, giving a two tone look to the popup if it takes up more than a couple of lines.
 
 
-Jomres 7.2.17
+<h3>Jomres 7.2.17 14/05/2013</h3>
 
 Added a new switch to allow users to swap between jq 1.8 and jq 2.x
 Updated jgrowl and jquery rating javascript libraries. On at least one customer the older libs are triggering js errors due to $.browser not being available in jquery 1.9 and greater, and we're using jq 2.0.
@@ -589,7 +586,7 @@ Updated jgrowl and jquery rating javascript libraries. On at least one customer 
 Added <meta property="og:image" content="{IMAGETHUMB}" /> to property header templates.
 Updated the Montenegro regions.
 
-Jomres 7.2.16
+<h3>Jomres 7.2.16 13/05/2013</h3>
 
 Updated jQuery library to jQuery 2 as it's faster. Downside of this is that older versions of IE (6/7/8) and v old versions of Firefox etc are no longer supported. We will watch the tickets to see if we need to add jQ 1.9 and an administrator area switch that'll allow those older browsers to work.
 Modified save review and save report so that admin emails are sent when a review or report is entered. 
@@ -612,7 +609,7 @@ Added old Jomres SA files to the obsolete files list. Nothing's been done to thi
 Improved how the booker's username is added to the database when a booking is created.
 
 
-Jomres 7.2.15
+<h3>Jomres 7.2.15 20/04/2013</h3>
 
 Fixed the breadcrumb repeating problem. Thanks Raphael Vilela.
 Changed the name of the administrator menu used in installation into the administrator area.
@@ -632,12 +629,12 @@ Tweaked output so that booking form summary "number of days/weeks" etc is update
 Tweaked a method so that pricing output figuring is done by an already existing method.
 
 
-Jomres 7.2.14
+<h3>Jomres 7.2.14 28/03/2013</h3>
 
 Fixed a bug introduced in the last version that was introduced by some new functionality that helps us deal with IDNs.
 Tweaked the position of a patTemplate tag in the plugin manager.
 
-Jomres 7.2.13
+<h3>Jomres 7.2.13 27/03/2013</h3>
 
 Added Joomla 3.1 specific changes. Jomres now works on Joomla 3.1 (beta1, as that's what's available right now).
 Added a new button to allow upgrading of all Core plugins on one button click.
@@ -659,7 +656,7 @@ French lang files updated, many thanks Vincent.
 Added Arabic language file to Jomres core.
 
 
-Jomres 7.2.12
+<h3>Jomres 7.2.12 07/03/2013</h3>
 
 Fixed an incorrect file path in the obsolete file handler.
 Fixed filters in show invoices scripts.
@@ -684,8 +681,7 @@ New functionality to render safe urls has broken searching for All regions/towns
 Jquery ui badges mis-behave when using gradient backgrounds, so we've removed the gradients.
 Tweaked a javascript void in the cookies.html template so that it doesn't report an error.
 
-
-Jomres 7.2.11
+<h3>Jomres 7.2.11 21/02/2013</h3>
 
 Added new functionality to disallow re-use of email addresses if the system is configured to create new users when bookings are made.
 
@@ -700,8 +696,7 @@ Modified show tariffs 01025 script. Allows us to differentiate between Normal an
 Fixed the path to the large image in the module popup script.
 Tweaked the get_property_price_for_display_in_lists function so that it also checks the temp booking details variable for an arrival date. Ensures that prices shown in properties loaded by live scrolling feature show the correct price based on the date of the previous search.
 
-
-Jomres 7.2.10
+<h3>Jomres 7.2.10 12/02/2013</h3>
 
 Added queries and html to templates to ensure that the property's fax number is captured in the edit property pages.
 Modified the booking engine to ensure prices are output in the price estimate according to the day/week/month settings.
@@ -729,10 +724,7 @@ Changed the template array index for the submission url to SUBMITURL
 Changed the confirmation email to the hotel to set the From name to be the guest's name, not the hotel's.
 Added some changes to allow Jintour to insert a tab into the edit booking page, for both managers views, and guest's views.
 
-
-
-
-Jomres 7.2.9
+<h3>Jomres 7.2.9 22/01/2013</h3>
 
 Modified a previously removed switch. Put it back in, but changed how it works. Previously we'd removed the "Enable currency conversion" option, because for the shopping cart to work the conversion functionality ALWAYS has to be enabled. Some people didn't like this as they only wanted prices output in one currency, nnn.nn instead of nnn.nn (nnn.nn). To get around this user conflict we've re-added the switch, but changed what it effects. Instead of using it to switch off the conversion functionality internally, we'll leave the functionality enabled, instead we're simply using it to tell the "output_price" function to not output the price in the nnn.nn (nnn.nn) format.
 Added some code to ensure that tooltips show correctly in module popups in bootstrap.
@@ -747,8 +739,7 @@ Tweaked a path to a loading gif.
 Tweaked a few urls in the Jomres code to ensure they're parsed through jomresURL function.
 Updated the Spanish language files, many thanks David.
 
-
-Jomres 7.2.8
+<h3>Jomres 7.2.8 08/01/2013</h3>
 
 Set the default tariff model to Average.
 Tweaked flat rate pricing to ensure that the correct tariff uid is selected internally if the property uses Flat rates but micromanage tariff editing.
@@ -764,13 +755,11 @@ Changed the tooltip class as the older beauty tips no longer work in Jq ui 1.9.x
 Moved tooltip trigger code into jomres.js
 Improved layout of list templates, and tweaked the show reviews page so that google will render the microformat data.
 
-
-Jomres 7.2.7
+<h3>Jomres 7.2.7 03/01/2013</h3>
 
 Updated jquery ui javascript and css libraries to 1.9.2 as that's required by the new edit in place functionality.
 
-
-Jomres 7.2.6
+<h3>Jomres 7.2.6 02/01/2013</h3>
 
 Modified booking engine so that the duplicate tariff id check is only done for micromanage tariffs, so that Advanced tariffs, duplicates are returned to the booking form.
 Tweaked the price calculation so that the estimate is only performed on micromanaged tariffs in average mode. 
@@ -802,13 +791,11 @@ Added CURL agent to CURL calls.
 Modified the search button so that it will use a bootstrapped button when bootstrap enabled. (Search modules).
 Updated copyright information.
 
-
-Jomres 7.2.5
+<h3>Jomres 7.2.5 07/12/2012</h3>
 
 Modified the new badge generation script, stop it from showing on the add plugin page as that script already uses plugin info scripts and an error will be generated and the plugin will not install.
 
-
-Jomres 7.2.4
+<h3>Jomres 7.2.4 06/12/2012</h3>
 
 Added a new feature that property managers can use to manually approve newly created properties. Until a property has been approved a manager/super manager cannot publish/unpublish a property.
 Added new functionality to add badges to administrator menu, and three new scripts to generate items requiring attention badge numbers.
@@ -845,9 +832,7 @@ Modified showplugins to use include_once instead of include, as new functionalit
 Modified the mailer to change email body's to html so that urls can be linked properly, but only if the email doesn't already content http-equiv code.
 Added a change to geocoder to limit the number of decimals used to define the property's location. Without this some properties generate long strings which are too long for the lat/long columns in #__jomres_propertys
 
-
-
-Jomres 7.2.3
+<h3>Jomres 7.2.3 20/11/2012</h3>
 
 Added a new feature where property list images are shown as gifs if configuration set to show them, and there are slideshow images. There is also an option to only show featured properties as gifs.
 Modified edit my account functionality to allow uploading of images for users.
@@ -860,19 +845,19 @@ Modified property list so that if property description is shorter than the descr
 Tweaked a module popup js function to ensure it only triggers if the property uid is set.
 
 
-Jomres 7.2.2
+<h3>Jomres 7.2.2 13/11/2012</h3>
 
 Added functionality to the database handler that'll allow us to cope with 1and1's socket settings.
 Added functionality to allow editing of css files through the template editing feature. Was disabled in the last version due to new template editing functionality, but has now been reworked.
 
-Jomres 7.2.1
+<h3>Jomres 7.2.1 07/11/2012</h3>
 
 Removed a private class definition that was causing errors.
 Tweaked the dashboard minicomponent to ensure that the date dropdown is shown if we're actually running the dashboard task.
 Fixed an issue where Advanced tariff editing mode tariffs are showing that the min interval needs to be 1000 days.
 Tweaked the currency format class so that the integer only price shows correctly on all server configurations.
 
-Jomres 7.2
+<h3>Jomres 7.2.0 30/10/2012</h3>
 
 Modified the booking engine to make use of greater flexability offered by upcoming changes to the advanced/micromanage plugin when configuring minimum day settings. The new micromanage functionality allows you to set minimum days for individual days, in the same way that you set individual day's prices.
 Added functionality that allows us to have Property Type specific templates.
@@ -897,7 +882,7 @@ Modified the Weak input filtering process slightly, apostrophes are changed to R
 Added an mb_ucwords and jr_ucwords pair of functions.
 Modified the administrator area generate control panel script to us jr_ucwords.
 
-Jomres 7.1.4
+<h3>Jomres 7.1.4 16/10/2012</h3>
 
 Added a new feature so that site managers can configure the default property list view through the site config - search options tab.
 Adding some experimental changes that'll allow us to switch languages in the administrator area.
@@ -914,26 +899,24 @@ Fixed a typo that was preventing the save to cart text from showing in the booki
 Removed header declaration from handlereq.php as it's no longer required.
 Updated Polish lang files, many thanks for that Patryk
 
-
-Jomres 7.1.3
+<h3>Jomres 7.1.3 10/10/2012</h3>
 
 Fixed a bug in the region import script which meant that the regions table was being populated with duplicate regions when install_jomres.php was run.
 Fixed a small issue where SRP property type selection showed a definition instead of a string when tariff editing mode was advanced/micromanage.
 
-
-Jomres 7.1.2
+<h3>Jomres 7.1.2 10/10/2012</h3>
 
 Added JOOMLA30 to the list of CMSs that allow us to use JFactory::getLanguage to detect the current language.
 Changed the point that we trigger jomres_language to detect the current language in the administrator area.
 Broke translation functionality into two new pages, translate locales and translate lang file strings. Added a new feature to check whether the user's a super property manager before attempting to use the translation features, and added the language dropdown to the three translation pages.
 Discovered that new language file translation feature doesn't like the < symbol in language file definitions. Forced to modify those definitions to remove the <.
 
-Jomres 7.1.1
+<h3>Jomres 7.1.1 09/10/2012</h3>
 
 Added more strings to be parsed through the jr_gettext function.
 Fixed another bootstrap bug where changelog and warning popups weren't showing.
 
-Jomres 7.1.0
+<h3>Jomres 7.1.0 05/10/2012</h3>
 
 Fundamentally changed how language strings are used in Jomres. We no longer use "define"d strings, instead strings are added through a new Jomres function jr_define. This allows us much more flexibility in how languages are used within the system. 
 Added new countries and region functionality, allows users to add/edit/remove countries and regions without editing the countries.php file, as old countries/regions are now imported into the db.
@@ -969,7 +952,7 @@ Added j00501editingmode.class.php to the obsolete file list.
 Added a space between subject and hotel name in contact owner page.
 
 
-Jomres 7.0.2
+<h3>Jomres 7.0.2 11/09/2012</h3>
 
 Added a couple of small changes to ensure that Jomres will install on Joomla 3, Beta 1.
 Added img src to default html purifier options.
@@ -992,7 +975,7 @@ Added some changes to use the geo_located country instead of the old mrConfig co
 Fixed some edit guest inputs that were incorrectly labelled. (Bootstrap)
 
 
-Jomres 7.0.1
+<h3>Jomres 7.0.1 06/09/2012</h3>
 
 Added a new feature where plugins which are required by other plugins are installed automagically.
 Removed some depreciated "split"s and replaced with explode. Other changes to resolve JCE's strict error level settings causing problems.
@@ -1010,7 +993,7 @@ Added functionality to provide output in the event of an error finding paths in 
 
 
 
-Jomres 7.0.0
+<h3>Jomres 7.0.0 31/08/2012</h3>
 
 Changed the REQUEST element checked before outputting hotel details to property_uid from id.
 Added some more bootstrap specific labels to the my commission invoices script.
@@ -1029,7 +1012,7 @@ Temporarily disabled management view in J3 until at least Joomla 3's formal rele
 Added site config switches to decide if we should use bootstrap or not.
 
 
-Jomres 7.-1.0
+<h3>Jomres 7.-1.0 29/08/2012</h3>
 
 Disabled the Jomres text editor in J2.5 More trouble than it is worth atm, if somebody enters something that creates a javascript error the editor crashes and burns
 Added slideshow to pathway
@@ -1168,12 +1151,12 @@ Added a toggle button state js function
 Fixed editing mode not switching.
 
 
-Jomres 6.6.7
+<h3>Jomres 6.6.7 28/06/2012</h3>
 
 Fixed an issue where users could not choose managers in Show Profiles.
 
 
-Jomres 6.6.6.
+<h3>Jomres 6.6.6 27/06/2012</h3>
 
 Contact owner captcha replaced with reCaptcha (remember to set the public and private keys in Site Config)
 Added a new feature to lock rooms in the booking form. To prevent the danger of rooms being double booked when they're added to a shopping cart a room lock will prevent a room from being added to another user's booking form (rather, from being shown in the available rooms list) if the dates of their booking coincide with the dates of another user's booking being made at the same time.
@@ -1252,9 +1235,7 @@ Whilst the fix changed that, unbenownst to us the payment gateways now could not
 
 The fix involves removing that user id so that gateways can pass payment information back and bookings can be inserted, and adding a new logout task to the Jomres toolbar. When this is used the user is one-click logged out of Joomla, and their temporary data is destroyed.
 
-
-
-Jomres 6.6.5
+<h3>Jomres 6.6.5 10/05/2012</h3>
 
 Tweaked the booking engine to only output discount information if the "task" is set to "handlereq". This allows us to use the booking class outside of just the booking form. Add the ability to completely suppress any output that the booking engine would normally generate (and cleaned up a couple of superfluous lines).
 Added a check to see if the booking class exists before trying to create it.
@@ -1267,7 +1248,7 @@ Permanently disabled caching feature, it creates more problems than it solves.
 Changed the live scrolling number of properties from 1 to 3.
 Fixed a bug where intermittently stars wouldn't show in the dashboard calendar to indicate an arrival.
 
-Jomres 6.6.4
+<h3>Jomres 6.6.4 04/05/2012</h3>
 
 Slideshow image handling modified. Images are now copied to uploadedimages/N/joomla/large,medium,small on upload. Existing images are also copied to those directories when install_jomres.php is run. This facilitates the possibility of using Joomla gallery/slideshow mambots.
 Added code to set defaults for mrConfig 'booking_form_daily_weekly_monthly' if it hasn't already been set elsewhere.
@@ -1283,9 +1264,9 @@ Allowed super property managers to see their commission invoices in the frontend
 Fixed an issue where the minimum days before arrival option wasn't being used in the booking form, due to a change in the last version.
 Modified how maps are generated in list properties, enabled the ability for layout plugins to set map sizes and if the map should be shown at all.
 Timezone setting tweaks.
-Fix : Address and Tel in module popup are translatable.
+<span class="label label-important">Fix</span> Address and Tel in module popup are translatable.
 Rewrote currency conversion functionality to be more robust.
-Fix : paypal button is shown on the commission invoices list.
+<span class="label label-important">Fix</span> paypal button is shown on the commission invoices list.
 Changed how javascript/css is implemented, files are now added through a minicomponent.
 Made a change to ensure that add_gmaps_source(); is used regardless of other map settings in list properties. Without this, the module popup map will not show.
 Moved template path definitions. Paths are now defined in a 00004 minicomponent, allowing us to use 00003 minicomps to set our own paths.
@@ -1295,7 +1276,7 @@ Changed how the mobile detection minicomp works. Doesn't return if the Jomres ja
 Added a check for the existence of the exchange rate temporary file.
 
 
-Jomres 6.6.3
+<h3>Jomres 6.6.3 25/04/2012</h3>
 
 Added a new trigger 00004 which allows us to set up JavaScript and css files via a minicomp. This makes it possible to programatically replace, among other things, the jquery core, ui and ui themes via a plugin.
 Improved Jomres' mobile device detection, added a simulation option and a new define _JOMRES_MOBILE which mobile sensitive plugins would be expected to use.
@@ -1308,15 +1289,14 @@ Modified templates to stop register property step two from checking data has bee
 Modified the get_property_price_for_display_in_lists function to use per day/night/week/month texts in property lists, modules etc.
 Added some "true" options to redirects to see if this resolves an obscure 500 somebody on fastCGI is seeing.
 
-Jomres 6.6.2
+<h3>Jomres 6.6.2 16/04/2012</h3>
 
 Modified jomresRedirect function, replaced &amp; with & when redirecting, otherwise the correct url isn't used.
 Removed some commenting that prevents javascript in the body being ignored by validators, as it causes the DOM to not see the globally scoped compare_url var.
 Added a new javascript function that allows us to parse js returned by ajax functionality to find and trigger any javascript in the returned data.
 Credit : http://www.developersnippets.com/2009/05/20/evaluate-scripts-while-working-on-ajax-requests/
 
-
-Jomres 6.6.1
+<h3>Jomres 6.6.1 10/04/2012</h3>
 
 Set review popup width/height to 800/500 respectively (swapped from 500/800)
 Modified list properties default layout to show images as thumbs, not the medium images.
@@ -1343,7 +1323,7 @@ Added lat/long instructions to edit property page.
 Added functionality that allows description searches to also search the custom text table.
 
 
-Jomres 6.6.0
+<h3>Jomres 6.6.0 22/03/2012</h3>
 
 Added a new feature to the property list where people perusing properties can add chosen properties to a "shortlist". This is a temporary list, but unlike the "favourites" list users do not need to be logged in to add properties to that list. When their session has ended, the shortlist is lost.
 Also added a cookie warning feature, for those who want to abide by new EU cookie legislation. The legislation is badly written, and I personally wouldn't use this feature but the option is there for you. If you enable the feature and somebody doesn't agree to Jomres using cookies to make the system work, then users are limited to the property list and property details pages.
@@ -1353,22 +1333,18 @@ A variety of performance enhancements designed to reduce the number of queries p
 Modified property list script so that it takes into account if the ajax search feature has been used and the headers will still show.
 
 
-Jomres 6.5.3
+<h3>Jomres 6.5.3 16/03/2012</h3>
 
 Fixed a major bug where auto increment ids weren't being passed back correctly from the database class.
 Minor change of a path to an image for consistency's sake.
 
-Jomres 6.5.2
+<h3>Jomres 6.5.1/2 15/03/2012</h3>
 
 A quick template tweak to the admin area control panel
 A variety of changes to remove a depreciated mysql function call that I missed on the last run through, that affects php 5.3 and greater.
-
-
-Jomres 6.5.1
-
 Fixed an issue experienced by mysql users. mysqli users were unaffected.
 
-Jomres 6.5
+<h3>Jomres 6.5 14/03/2012</h3>
 
 Adding a new feature to allow users to compare properties.
 Added a new news feed to the Jomres administrator area, to advise users of updates to the system, new plugins etc.
@@ -1380,7 +1356,7 @@ Removed a check that is now defunct, which was stopping the full daily/weekly pr
 Removed some unneeded slashes that escape double quotes.
 Removed a spurious semicolon.
 
-Jomres 6.4.1
+<h3>Jomres 6.4.1 07/03/2012</h3>
 
 Fixed an issue where the marker wasn't dragable in 6.4
 Removed some un-needed brs
@@ -1405,7 +1381,7 @@ Datatables and tabletools javascript libraries upgraded.
 Rewrote some booking form javascript to integrate the property uid check into the main ajax query that's sent on particular change. Halves the number of ajax queries sent.
 Modified booking engine so that "per week" prices are output in the pricing summary.
 
-Jomres 6.4
+<h3>Jomres 6.4 01/03/2012</h3>
 
 Added a new feature that allows us to have different "layouts" in the list property page. By default Jomres offers the standard property list plus a photos layout, plus a new plugin that's like the standard property list but with a google map. Different layouts can be disabled by using the Access Control feature in it's standard configuration and using it to disable j01004 scripts.
 
@@ -1416,7 +1392,7 @@ Fixed issue of a duplicated define for smtp password in site config.
 Added some fallback images if the image thumbnails aren't found in list properties.
 Improved the new availability calendar so that no matter what date format is set by site admin, the correct arrival date is set in the booking form.
 
-Jomres 6.3.3
+<h3>Jomres 6.3.3 22/02/2012</h3>
 
 Made further changes to map functionality in Jomres. Rewrote the drag/drop system to use v3 of Gmaps API, much simpler and cleaner. Changes have been added to the x_geocoder minicomponent, meaning that these changes are all self-contained in one script and template now, easier to make changes across the board.
 Removed an un-needed call to a .css and .js file from the alternate main menu wrapper.
@@ -1428,8 +1404,7 @@ Small modification to how days are output at the top of the price summary for SR
 Fixed some broken urls for logging in/out in cms_specific_functions.php in Jomres SA.
 Added a couple of new url defines to Jomres SA.
 
-
-Jomres 6.3.2
+<h3>Jomres 6.3.2 20/02/2012</h3>
 
 Removed a depreciated split function call
 Implemented a variety of changes to prevent depreciation warnings.
@@ -1454,7 +1429,7 @@ Upgraded Jomres google mapping, implemented some new functionality to improve ma
 Removed email from basic module output.
 Added an option to set a custom "from" email address.
 
-Jomres 6.3.1
+<h3>Jomres 6.3.1 26/01/2012</h3>
 
 Modified built in mambot/plg installation functionality to work with J2.5. Allows installation of new jomres_ajax_search_contentwrapper joomla plugin that removes the need to modify templates to run the ajax asamodule plugin.
 Modified the jomres language class. The Joomla 2.5 language filter will set GET 'lang', which will override the new jomres language switcher bot that allows users to switch their joomla language with the jomres language switcher. Changing the order that input data is queried to find the current language allows us to skip Joomla's functionality whilst still making the option available to non-joomla installations.
@@ -1466,8 +1441,7 @@ Added some default output for reviews when they're disabled.
 Added a change to allow site managers set a default startpoint for the Gmap, if one isn't already set.
 Bugfix for getting all commisson invoices function.
 
-
-Jomres 6.3.0
+<h3>Jomres 6.3.0 18/01/2012</h3>
 
 Implemented new functionality that colours the new booking form calendar according to availability, making the old MRP/SRP calendars redundant. Output from those calendars has been disabled via the viewproperty script but they haven't been removed as other functionality will use them. Disabled calling of older calendars in viewproperty script.
 Layout improvements to the property list, makes the price from a lot bigger, moved a couple of things around. The "prices from", "price" and "per day/night/person" text has been broken up so that the different elements can be individually styled.
@@ -1476,8 +1450,7 @@ Changed (almost) all references to index2.php to index.php. Some people were, fo
 Modified search to set meta name to country name, not country code.
 Fixed issue where accordion sidebar was creating javascript errors. Turns out that the new cookie lib used for remembering chosen tabs doesn't play nicely with the cookie stuff used with the accordion, so we've needed to include two cookie libraries, not one.
 
-
-Jomres 6.2.0
+<h3>Jomres 6.2.0 13/01/2012</h3>
 
 New cart functionality, completemented by new plugins to support this which are added via jomres_asamodule.
 Added a jquery inline calendar to composite property details, with an overlaying arrow. Easily removed by editing the composite property details template if you don't want to see them.
@@ -1499,8 +1472,7 @@ Layout improvements for module output.
 Tweaked viewproperty to ensure that it doesn't show the rooms list when on an SRP.
 Changed Contact Hotel to Contact agent in "car" language file.
 
-
-Jomres 6.1.0
+<h3>Jomres 6.1.0 04/01/2012</h3>
 
 Added Joomla 2.5 specific files and changes required to work on J2.5. That was painless!
 
@@ -1511,7 +1483,7 @@ Changed how arrays passed into scripts are sanitized.
 Changed link in show plugins shop popup to go to new jomres.net registration url.
 Added an auto upgrade option to install_jomres.php. This is intended to be used by a yet to be developed plugin that will allow silent and automatic upgrades.
 
-Jomres 6.0.2
+<h3>Jomres 6.0.2 21/12/2011</h3>
 
 Fixed an issue where optional extras quantities weren't being displayed in the booking form (they were still being calculated) due to upgrading to jquery 1.6.4.
 Small change to the functionality that builds the popover image title.
@@ -1523,7 +1495,7 @@ Added a flag that specifically disables the menu through the url. Flag is called
 A few changes to the gateway handler to ensure that callbacks are validated properly by paypal.
 Added an alternative method of listing all manager's properties.
 
-Jomres 6.0.1
+<h3>Jomres 6.0.1 08/12/2011</h3>
 
 Changed wording of site preview and management views to Normal and Fullscreen.
 Added a remote url link to list properties property_details array.
@@ -1553,7 +1525,7 @@ Modified edit profile so that checkbox toggles all profile check boxes.
 Added some functionality to deal with substr issues when dealing with cryllic.
 
 
-Jomres 6.0.0
+<h3>Jomres 6.0.0 11/11/2011</h3>
 
 
 tweak for list properties, we've ensured that booking buttons etc are hidden until after the button js is applied to them.
@@ -1567,8 +1539,7 @@ Added a cms specific function for finding registration urls.
 Added "Found properties" output to switch active property class for output in the template.
 Modified defaults, set "jomres" ui theme and Alternative menu to be the default
 
-
-Jomres 6.-1.1
+<h3>Jomres 6.-1.1 07/11/2011</h3>
 
 jquery inclusion options moved into advanced control panel.
 Moved javaascript cache setting into advanced control panel.
@@ -1591,9 +1562,7 @@ fixed save plugin function to ensure it uses the correct template file.
 Modified jomres_make_image_popup to strip all non-alphanumeric characters from the title.
 Added property name as title to list properties reviews modal popup.
 
-
-
-Jomres 6.-1.0
+<h3>Jomres 6.-1.0 03/11/2011</h3>
 
 Added an exception for the frontend menus for when the dashboard hasn't been set.
 Renamed Developer and Perpetual to Silver and Gold respectively in the Manager's first run function.
@@ -1605,8 +1574,7 @@ The real-estate composite property details has been ditched, we're now using the
 Applying our last set of major changes, the templates are generally ready now, subject to any tweaking required before v6's final release.
 
 
-
-Jomres 6.-2.0
+<h3>Jomres 6.-2.0 01/11/2011</h3>
 
 Fixed some confused language strings.
 Undid some hardened php changes, suhosin be damned. Those changes will affect current users of Jomres much more than it will the probably fewer people running suhosin, it's unfair to ask them to edit jomres.php and admin.php every time they want to upgrade.
@@ -1631,7 +1599,7 @@ menus modified to ensure that dashboard categories are moved to the beginning of
 Template fix for cron to ensure settings save, and css tweak.
 
 
-Jomres 6.-3.0
+<h3>Jomres 6.-3.0 28/10/2011</h3>
 
 Frontend structure completely rewritten to use a jquery based menu instead of our older toolbars.
 Virtually all templates viewable by property managers have been updated to provide a consistent theme throughout Jomres, and mission critical templates such as List Properties and Property Details have been hugely improved to provide a more pleasing layout.
@@ -1715,7 +1683,7 @@ fixed list old bookings script to show correct page title.
 Corrected a call to room_class_full_desc in basic property details.
 Changed the exchange rates again, looks like we need to adopt the "no null headers" code as yahoo's data is being sent inconsistently.
 
-Jomres 5.6
+<h3>Jomres 5.6 07/10/2011</h3>
 
 Control panel completely reworked so that options are now in an accordion menu on the left, with the page's content to the right.
 Implemented a new live scrolling feature for the property list.
@@ -1735,11 +1703,11 @@ Jomres 5.5.6.4
 
 Reverted to the older J1.7 router.php
 
-Jomres 5.5.6.3
+<h3>Jomres 5.5.6.3 03/10/2011</h3>
 
 Fixed a bug I introduced earlier today when sorting out paths to images in the booking form.
 
-Jomres 5.5.6.2
+<h3>Jomres 5.5.6.2 03/10/2011</h3>
 
 Exchange rate download class rewritten to perform fewer web queries.
 Added a printable option to property details, if the flag jr_printable is set then the composite_property_details_printable.html template is used in place of the normal template.
@@ -1749,11 +1717,11 @@ Added support for free plugins to the plugin manager.
 Commented out some override stuff that's incomplete and untested.
 
 
-Jomres 5.5.6.1
+<h3>Jomres 5.5.6.1 29/09/2011</h3>
 
 Fixed a bug in the detect cms script.
 
-Jomres 5.5.6
+<h3>Jomres 5.5.6 29/09/2011</h3>
 
 Added new functionality that will help new users find information about Jomres when they first start using the system.
 Added an About Jomres page to the control panel.
@@ -1778,11 +1746,11 @@ Modified list properties function to use the _JOMRES_MR_AUDIT_LISTING_FILTER_DAT
 Changed the order that detect_cms.php finds Joomla's version files. In the previous version 1.6 was checked for before 1.7, however if users use the Joomla upgrade tool the Joomla 1.6 version file is left in-situ (not really good, as you should tidy up as you go, but anyway) so we've swapped the order that the two are checked for, which should mean that Jomres will pick up the correct Joomla version file now.
 
 
-Jomres 5.5.5
+<h3>Jomres 5.5.5 19/09/2011</h3>
 
 Added new Jomres Plugin Shop to the plugin manager.
 
-Jomres 5.5.4
+<h3>Jomres 5.5.4 15/09/2011</h3>
 
 Disabled filtering that inserts <x> to sanitise data. We're already using PHP's intput filtering to prevent sql injection, and the <x> functionality creates more problems than it solves so for now it is disabled.
 The old sort by order functionality has stopped working, so we've implemented a new, simpler method of triggering the page reload.
@@ -1791,8 +1759,7 @@ Modified save invoice so that depending on if the invoice is a standard invoice 
 A small change that adds the content of the tabs back into the $output array of composite property details.
 Fixed a faulty config option for the slider setting.
 
-
-Jomres 5.5.3
+<h3>Jomres 5.5.3 13/09/2011</h3>
 
 
 Added a new option to define the booking form's width through the site config area.
@@ -1818,8 +1785,7 @@ Modified how J1.5 version of router.php finds property names.
 Modified dobooking, disabled feature that automatically switches off the departure date if the "property" is a no-rooms property, because Jintour has an option now to enable/disable this input.
 Some changes to allow us to translate meta title and descriptions.
 
-
-Jomres 5.5.2
+<h3>Jomres 5.5.2 05/09/2011</h3>
 
 Added a new feature to allow rooms to be filtered according to their room features, in the booking form.
 Added functionality and lang definitions to find the last date the property last had a booking made against it.
@@ -1838,13 +1804,12 @@ Undid a change made in the previous version that scuppered editors in edit prope
 Fixed a bug where wiseprice discount was being set to 0 in list properties.
 Tweaked j1.7's itemid finding query to resolve issues that some people have been getting.
 
-
-Jomres 5.5.1
+<h3>Jomres 5.5.1 24/08/2011</h3>
 
 Fixed an issue where J1.7 couldn't install as the jfactory isn't available during installation
 Disabled the sh404sef panel in j1.7
 
-Jomres 5.5
+<h3>Jomres 5.5 23/08/2011</h3>
 
 Added a feature where an optional extra can be set to be automatically selected in the booking form.
 Modified gmaps buttons to use new style ui.
@@ -1871,12 +1836,12 @@ Added changes to the old Jomres sh404sef plugin as contributed by Joseph.
 Slightly larger panel image uploaded.
 
 
-Jomres 5.4.1
+<h3>Jomres 5.4.1 12/08/2011</h3>
 
 Added z-index to the totals panel slider.
 Removed span class from the output_price function as it was creating issues when saving bookings.
 
-Jomres 5.4
+<h3>Jomres 5.4 11/08/2011</h3>
 
 The booking form has been rebuilt with a view to UI improvements.
 Added a new sliding panel that scrolls with the user through the booking form, containing the totals, including new output of the room totals inc and excl tax.
@@ -1912,8 +1877,7 @@ Optimised the taxrates_getalltaxrates function to only perform the query once by
 Optimised the property type name finding functionality of list properties.
 Optimised the custom field handler to make fewer queries.
 
-
-Jomres 5.3
+<h3>Jomres 5.3 25/07/2011</h3>
 
 
 Added Joomla 1.7 compatability to Jomres.
@@ -1923,8 +1887,7 @@ Added a change to the chained select javascript to exclude mootools keys that ar
 Deleted the old wordpress files, I'm never going to finish the job, might as well bin it.
 Removed offsetParent: \'body\', from the tooltip javascript in jomres_tooltips.class.php. Doesn't seem to impact jomres on j1.5, but in j1.7 it causes the tooltip to display incorrectly, presumably due to something in j1.7's default css.
 
-
-Jomres 5.2.1
+<h3>Jomres 5.2.1 19/07/2011</h3>
 
 Added a feature that by default filters out non-active guests from the guest list. A dropdown allows the manager to view all guests if required.
 Changed name of id in selectCombo's town dropdown as it was preventing the booking form from validating.
@@ -1937,7 +1900,7 @@ Resized the ajax activity div to make it look better in IE (losing the scroll ba
 Modified how guest price variations are taken into account. If the variance is not a percentage then we'll determine the nett value of the variance before adjusting the rate per night.
 Modified the new searchCombo to include the 'all' option.
 
-Jomres 5.2stable 
+<h3>Jomres 5.2stable 14/07/2011</h3>
 
 Small change to allow bookings with shorter periods in fixed period bookings.
 Modified the register property 2 template to include lat/long details. Will need the appropriate register property version to work.
@@ -1947,7 +1910,7 @@ Tweaked the output_price function to optionally disable conversion output (might
 Modified the frontend invoice template to make it fit better on the page.
 Fixed a bug introduced in v5 where third party plug-in modules could no longer be installed. Removed a reference to old "component installer" code that's never been used (since at least v3-ish).
 
-Jomres 5.2rc1
+<h3>Jomres 5.2rc1 11/07/2011</h3>
 
 Small modification to the output_price function to ensure that if the foreign currency code isn't set, to not attempt a conversion.
 As our new jomresJquery code has broken the old, ugly jquery combo plugin, we've replaced that old functionality with a newer, nicer jquery combo plugin.
@@ -1961,7 +1924,7 @@ Added a cron job for triggering exchange rate updating.
 Moved the call to the chain select jquery plugin from j00030search.class.php into the init_javascript function in funtions.php.
 Removed an obsolete javascript file.
 
-Jomres 5.2beta2
+<h3>Jomres 5.2beta2 07/07/2011</h3>
 
 Significant changes to all Jomres code to try to resolve javascript conflict issues with modules, templates and plugins that also use jQuery. Whilst strictly speaking this isn't a bug in Jomres (rather, it's people not being aware that different plugins all using the same type of library will cause a conflict), this change should, nevertheless (hopefully) overcome those problems. Initial tests are very encouraging. 
 Found and fixed an issue where the optimisation cronjob wasn't triggering correctly.
@@ -1970,7 +1933,7 @@ Added a check for error code 6 in the image uploading class to indicate that a t
 Exchange rate conversion selector removed from top.html, instead it is now available as a plugin that can be included by asamodule.
 
 
-Jomres 5.2beta1
+<h3>Jomres 5.2beta1 05/07/2011</h3>
 
 A large number of changes to add fully automatic exchange rate downloading (daily) and conversion features that will allow us to convert prices on the fly for all properties who are using a currency code that can be converted. As the download is done daily, the first time the page is visited after this code is added may take a while to resolve as your Jomres installation needs to talk to the remote exchange rate server. After that's done however the data is stored locally and is retrieved very quickly.
 
@@ -1981,7 +1944,7 @@ Fixed a bug where per person per night optional extras weren't displaying correc
 Removed excanvas.js from obsolete file handling class. Not sure why it's marked as obsolete. It's not.
 Added an updated version of de-DE.php, many thanks Alexander. 
 
-Jomres 5.1
+<h3>Jomres 5.1 28/06/2011</h3>
 
 A good deal of changes to the Javascript file handling. Jomres now uses a lot of javascript files, which raises the issue of network speed as the user needs to d/l a number of files to use the site. We would like to implement some kind of javascript compression facility within the system so that we can reduce this number of files. 
 Firstly, to do that we've needed to ditch the minified/compressed files we're currently offering. Because of the way different compression technologies work, you cannot successfully combine all of the different compressed/minified files into one file as for some reason this doesn't work, so the first thing we needed to do replace our files with the fullsize versions of the same files. This is good, because it makes it easier for site designers to modify those javascript files to suit their own requirements, however it's bad because the combined javascript file is > 1/2mb in size. Currently, all of the different methods we've tried to compress this file in size haven't worked. 
@@ -2024,7 +1987,7 @@ Modified the confirmation letter script to use medium thumbnails where available
 Updated French and Portuguese language files, many thanks Mario!
 Added an updated version of es-ES.php to the core code, many thanks Juan Antonio.
 
-Jomres 5stable
+<h3>Jomres 5stable 20/05/2011</h3>
 
 Minor tweak to installer to stop it reporting that it's creating the extra services table if it already exists.
 Tweaked queries that pull tariff and room booking information from db when setting up the booking object.
@@ -2035,7 +1998,7 @@ Modified the updater to no longer check the license key.
 Removed old creditcard storage mechanism.
 Modified dobooking to remove some html and added that missing html to the dobooking templates.
 
-Jomres 5beta1
+<h3>Jomres 5beta1 18/05/2011</h3>
 
 Removed a lot of files which have now been added as plugins, removed some remaining 'form' plugin files and created a new core-plugins folder.
 Modified installer to put core Jomres plugins into the core-plugins directory, instead of remote_plugins.
@@ -2052,7 +2015,7 @@ Modified list properties to not show paging if called via ajax, and filter prope
 Modified plugin manager to highlight main system plugins.
 Modified property list dashboard element to not show anything if the user's a receptionist.
 
-Jomres 4.7.8
+<h3>Jomres 4.7.8stable 11/05/2011</h3>
 
 New number images contributed for use in the booking form, kindly donated by Eleanor. Thanks very much! Booking form templates improved to use them better.
 Small change to jomres.js so that fading out feature only kicks in if the room booking functionality is used by the property (ie, so that the address/extras stuff isn't faded out for a jintour property.
@@ -2060,7 +2023,7 @@ Fixed issue reported by Duxiana in new coupon functionality, guest dropdown list
 Corrected the installer, one of the 'add column' parts for the new coupon functionality didn't have it's corresponding insertion code.
 Added a check for property uid = 0 in coupon functionality giving us the ability to have system-wide coupons in the future.
 
-Jomres 4.7.8beta1
+<h3>Jomres 4.7.8beta1 05/05/2011</h3>
 
 Added functionality so that coupons can only be valid for certain dates, as well as only used within certain periods, and a coupon can be assigned only to a specific guest.
 Some users are having problems because they've edited files for Jomres and forgetting (or not knowing) that the files should be saved "without BOM" (byte order mark). These changes will allow us to attempt to remove the BOM from all areas of the output that's returned by the server to the client browser, hopefully thereby fixing issues some folks have had with the Show Profiles feature.
@@ -2113,8 +2076,7 @@ Added an option to the generate date input function that allows us to tell the f
 
 
 
->>>>>>> .r1408
-Jomres 4.7.7 06/04/2011
+<h3>Jomres 4.7.7 06/04/2011</h3>
 
 A small change to prevent properties with 0 tariffs from showing the prices.
 minor template changes, mainly, to prevent the toolbar from rendering when saving something.
@@ -2131,12 +2093,9 @@ Added language definitions to paypal redirect script and Edit Labels area.
 Added a couple of contributions from Marco regarding translation of custom field names in the hotel and guest emails.
 Modified edit profile so that check all selector selects all checkboxes.
 
-Jomres 4.7.6.1 30/03/2011
+<h3>Jomres 4.7.6 29/03/2011</h3>
 
 Updated language files with new definitions (forgot to add them to the 4.7.6 release. Silly moi).
-
-Jomres 4.7.6 29/03/2011
-
 Added new feature to output prices and periods so that they can be customised to be by night/week/month.
 modified the booking forms a little to fade out panels until a room has been selected (mrp) or a valid tariff found (srp).
 Some markup fixes.
@@ -2151,8 +2110,7 @@ Improved archive audit trail functionality to only archive 1000 records at a tim
 Improved layout of config panels in frontend.
 A variety of UI tweaks to improve page consistency for property managers.
 
-
-Jomres 4.7.5 15/03/2011
+<h3>Jomres 4.7.5 15/03/2011</h3>
 
 Fixed a bug where `tax_rate_val` wasn't added on first install therefore adding new service charges to existing bills wouldn't work unless the installer'd been used to upgrade the db.
 A small change to fix the type of commission rate in the administrator area view property page.
@@ -2174,7 +2132,7 @@ Modified the booking engine to show a 3 month picker in the arrival date, and to
 Modified amend booking functionality to force the rooms list to switch back to the 'classic' room selection style if we're amending a booking.
 Added feature to automatically create an index.html in the remote_plugins dir once a plugin is added.
 
-Jomres 4.7.4 24/02/2011
+<h3>Jomres 4.7.4 24/02/2011</h3>
 
 Change to normal editing mode, separates non-srp or srp only room types from room type list.
 Some changes to resolve couple of issues where sanitised apostrophes are not decoded for before they're output.
@@ -2193,18 +2151,14 @@ Fixed a bug where currency formats weren't being found correctly in list propert
 added some code to allow the property selection feature to redirect calls even when there are ' in the property's name.
 Added a hidden option to put buttons for room selections back into the booking form.
 
-
-
-
-Jomres 4.7.3 07/02/2011
+<h3>Jomres 4.7.3 07/02/2011</h3>
 
 Added simplified site config settings option.
 Found a bug in new code that deals with property configuration. If this is a new installation, and the property's config as not been changed, then a property's default mrConfig will be NULL. This is not desirable when the default config and property config arrays are merged (sets the property's mrConfig to NULL) so new code has been added that converts the property's temp config to an array if NULL, and then the merging goes ahead ok.
 Renamed our example guest to somebody a little more in keeping with the Fawlty Towers ethos.
 Added more icons for different room/resource types, added code to installer to create new resource types on first installation. Updated vehicle and yacht brokerage lang files.
 
-
-Jomres 4.7.2 02/02/2011
+<h3>Jomres 4.7.2 02/02/2011</h3>
 
 Fixed a bug in a new function that prevented the booking form from showing.
 
@@ -2212,8 +2166,7 @@ Added the ability for the site administrator to choose a site's language context
 Added a new propertyrental subfolder to languages dir, all existing language files copied to dir to maintain the existing property relevant text. English lang files in /jomres/languages will be edited to be more relevant to units/objects/businesses, instead of simply related to hotels.
 Renamed a language directory sub directory name in property types in installer.
 
-
-Jomres 4.7.1 02/02/2011
+<h3>Jomres 4.7.1 2/2/2011</h3>
 
 Modified show reviews to html entity decode to allow ' to show properly.
 Modified minicomponent handling and database class to log which minicomponents are making db queries.
@@ -2238,8 +2191,7 @@ Modified php mailer to no longer echo errors on error.
 2 new functions that return all super property managers, and all suspended managers.
 New ROI tab added to Site Configuration area. Enable subscription and commission handling moved to this tab, along with comission settings features.
 
-
-Jomres 4.7.0 11/1/2011
+<h3>Jomres 4.7.0 11/1/2011</h3>
 
 Various changes to enable Joomla 1.6 installation.
 Found and fixed a security issue where a manager of property A can modify the user details of a user on property B (where the manager has no rights to edit that user's details).
@@ -2252,9 +2204,7 @@ Small change to ensure that if micromanage is used, then the showtariffsasweekly
 Found an errant jquery uiblock call in jomres.js. Removed.
 Modified get property name function to use newer singleton functionality.
 
-
-
-Jomres 4.6.1 6/1/2011
+<h3>Jomres 4.6.1.0 stable 6/1/2011</h3>
 
 Added a clause to remove <x> from page titles (it remains in the page source).
 Modified new functionality so that if a property doesn't use rooms in the booking form, to simply set the departuredate to the next day (dependant on the minimum interval) internally.
@@ -2290,15 +2240,14 @@ removed ui error css from booking engine by applying the error_class through js 
 Modified admin notes to remove redundant thumbnail setting, and advise the size of thumbnails. Added note to max upload input to show php's max file upload limit.
 Modified list properties display reviews functionality to open in a dialog popup.
 
-
-Jomres 4.6.0.1 15/12/2010
+<h3>Jomres 4.6.0.1 stable 15/12/2010</h3>
 
 Modified Jomres to ensure that a room booking isn't created when a property is a jintour property
 Modified micromanage output, removed min and max rooms already selected output if the property is an SRP
 Improved booking engine by passing the departure date along with the arrival date via ajax when the arrival date is changed.
 
 
-Jomres 4.6.0 stable 13/12/2010
+<h3>Jomres 4.6.0 stable 13/12/2010</h3>
 
 Some additional changes to improve new functionality that allows us to set some dates in a micromanage tariff to zero. This new code filters tariffs out if the tariff is zero within certain dates. Gives us dynamic minimum intervals.
 
@@ -2321,8 +2270,7 @@ Fixed showconfirmation to ensure that extra names are translated.
 Added the old backend addproperty script to the obsolete file handling list.
 Replaced overzealous filtering in editinplace with simpler sanitization to discern the name of the constant being edited.
 
-
-Jomres 4.6beta1 23/11/2010
+<h3>Jomres 4.6.0beta1 24/11/2010</h3>
 
 Modified how dates date range array is calculated in blackbooking functionality, certain timezones were not crossing over correctly 5th November.
 Added booking number to confirmation letter. 
@@ -2384,10 +2332,7 @@ added a switch that outputs prices for real estate properties in the property li
 Added an experimental change to the booking form, we pause for two seconds to collate data before it's passed to the confirmation page. This seems to resolve isolated incidents where the guest details aren't always captured at booking time.
 Added a check to the dashboard. If $_REQUEST requestedMonth is set, then don't use the cache.
 
-
-
-
-Jomres 4.5.8 24/9/2010
+<h3>Jomres 4.5.8 28/9/2010</h3>
 
 Added a new view of the Jomres content area which allows the property manager to view just Jomres. This is both a faster interface (you're not running any of the Joomla modules) and allows more flexibility when branding the interface.
 Added functionality to allow us to translate country and region names via touch templates.
@@ -2425,7 +2370,7 @@ Modified search functionality to add the "All" option to the feature search drop
 Modification to booking engine so that when in micromanage, we can filter out tariffs that are set to 0, allowing us to layer tariffs over each other, offering different minimum intervals.
 
 
-Jomres 4.5.7 19/8/2010
+<h3>Jomres 4.5.7 19/8/2010</h3>
 
 Further changes to Jomres to support non-room based bookings. These changes are required to support the Jintour plugin.
 
@@ -2435,8 +2380,7 @@ Added a missing var definition to the srp booking form.
 Added new functionality to allow plugins to insert their own property management process information into regprop step 1.
 Fixed missing define from language file re minimised config options desc.
 
-
-Jomres 4.5.6 16/8/2010
+<h3>Jomres 4.5.6 16/8/2010</h3>
 
 Added check to booking engine to see if jomres messaging is enabled.
 Small modification to handle req to ensure that the guest allocation is reset to blank once the guest number have changed.
@@ -2455,7 +2399,7 @@ Updated romanian currency code in currency code class file.
 Added the beginning of new functionality that'll allow bookings to go through minus room bookings.
 Hardened Jomres files against unauthorised access.
 
-Jomres 4.5.5 30/7/2010
+<h3>Jomres 4.5.5 30/7/2010</h3>
 
 Note that there are changes to both dobooking.html and dobooking_srp.html, please ensure that your version (if you've modified it) incorporates the new changes otherwise your booking form will not work.
 
