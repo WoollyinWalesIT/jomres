@@ -112,6 +112,12 @@ class jomres_generic_booking_email
 		
 		//invoice printout
 		$invoice_id = $MiniComponents->miniComponentData[ '03025' ][ 'insertbooking_invoice' ][ 'invoice_id' ];
+		
+		if ((int)$invoice_id == 0)
+			{
+			$invoice_id = $current_contract_details->contract[$contract_uid]['contractdeets']['invoice_uid'];
+			}
+
 		if ( (int) $invoice_id > 0 )
 			{
 			$invoice_template = $MiniComponents->specificEvent( '06005', 'view_invoice', array ( 'internal_call' => true, 'invoice_id' => $invoice_id ) );
