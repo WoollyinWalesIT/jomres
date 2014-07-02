@@ -48,6 +48,13 @@ class j01010listpropertys
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+		
+		$stayDays = 1;
+		if ( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '' && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] != '')
+			{
+			$range = get_periods ( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] , $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] );
+			$stayDays = count($range);
+			}
 		$customTextObj     = jomres_singleton_abstract::getInstance( 'custom_text' );
 
 		if ( is_null( $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ] ) ) 
@@ -458,10 +465,33 @@ class j01010listpropertys
 						$property_deets[ 'FEATURELIST' ] = $featureList;
 						}
 
-					$property_deets[ 'PRICE_PRE_TEXT' ]  = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRE_TEXT' ];
-					$property_deets[ 'PRICE_PRICE' ]     = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE' ];
-					$property_deets[ 'PRICE_POST_TEXT' ] = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'POST_TEXT' ];
+					$property_deets[ 'PRICE_PRE_TEXT' ]		= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRE_TEXT' ];
+					$property_deets[ 'PRICE_PRICE' ]		= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE' ];
+					$property_deets[ 'PRICE_POST_TEXT' ]	= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'POST_TEXT' ];
+					$property_deets[ 'PRICE_NOCONVERSION' ]	= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE_NOCONVERSION' ];
 					
+					if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && !get_showtime('is_jintour_property' ) )
+						{
+						if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0)
+							$property_deets[ 'PRICE_CUMULATIVE' ]	= output_price($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] * $stayDays,"",false);
+						else
+							$property_deets[ 'PRICE_CUMULATIVE' ]	=$property_deets[ 'PRICE_PRICE' ];
+						
+						if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0)
+							{
+							if ( $mrConfig[ 'wholeday_booking' ] == "1" )
+								$property_deets[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY , false );
+							else
+								$property_deets[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS , false );
+
+							$property_deets[ 'STAY_DAYS' ]	= $stayDays;
+							}
+						else
+							{
+							$property_deets[ 'NIGHTS_TEXT' ] = '';
+							$property_deets[ 'STAY_DAYS' ]	= '';
+							}
+						}
 					
 					if ( array_key_exists( $propertys_uid, $lastBookedArray ) )
 						{
