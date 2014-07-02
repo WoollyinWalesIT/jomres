@@ -213,6 +213,7 @@ class j10001control_panel
 			{
 			$news_rows = array ();
 			$news      = json_decode( $buffer );
+			$counter = 0;
 			foreach ( $news as $row )
 				{
 				if ( using_bootstrap() )
@@ -220,22 +221,29 @@ class j10001control_panel
 					$state     = '';
 					$old_state = filter_var( $row->state, FILTER_SANITIZE_SPECIAL_CHARS );
 					switch ( $old_state )
-					{
+						{
 						case "ui-state-error":
 							$state = "alert alert-error";
+							$panel = "panel-danger";
 							break;
 						case "ui-state-highlight":
 							$state = "alert alert-warning";
+							$panel = "panel-warning";
 							break;
 						case "ui-state-default":
 						default:
 							//$state = "alert alert-info";
+							if ($counter ==0)
+								$panel = "panel-primary";
+							else
+								$panel = "panel-default";
 							break;
-					}
+						}
+					$counter++;
 					}
 				else
 				$state = filter_var( $row->state, FILTER_SANITIZE_SPECIAL_CHARS );
-				$news_rows[ ] = array ( "DATE" => filter_var( $row->date, FILTER_SANITIZE_SPECIAL_CHARS ), "NEWS" => filter_var( $row->news, FILTER_SANITIZE_SPECIAL_CHARS ), "STATE" => $state, "TITLE" => filter_var( $row->title, FILTER_SANITIZE_SPECIAL_CHARS ), "URL" => filter_var( $row->url, FILTER_SANITIZE_URL ), "URL_TEXT" => filter_var( $row->url_text, FILTER_SANITIZE_SPECIAL_CHARS ) ); // Filter var added here so that in the unlikely event that the updates server is compromised, no naughty data is downloaded from the updates server to be executed on this server/user's browser.
+				$news_rows[ ] = array ( "DATE" => filter_var( $row->date, FILTER_SANITIZE_SPECIAL_CHARS ), "NEWS" => filter_var( $row->news, FILTER_SANITIZE_SPECIAL_CHARS ), "STATE" => $state, "TITLE" => filter_var( $row->title, FILTER_SANITIZE_SPECIAL_CHARS ), "URL" => filter_var( $row->url, FILTER_SANITIZE_URL ), "URL_TEXT" => filter_var( $row->url_text, FILTER_SANITIZE_SPECIAL_CHARS ) , "PANEL" => $panel ); // Filter var added here so that in the unlikely event that the updates server is compromised, no naughty data is downloaded from the updates server to be executed on this server/user's browser.
 				}
 			}
 
