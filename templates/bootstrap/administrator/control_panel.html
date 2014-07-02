@@ -1,17 +1,17 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<div class="row-fluid">
 		<div class="span6">
-			<div class="well well-small">
+			<div class="">
 				<div class="module-title">
-					<h6>News</h6>
+					<h4>News</h4>
 				</div>
-				<div class="row-striped">
+				<div class="">
 					<patTemplate:tmpl name="news_rows" unusedvars="strip">
-						<div class="row-fluid {STATE}">
-							<div class="span12">
-								<h4 class="{STATUS}"><a data-original-title="{DATE}" href="#" rel="tooltip">{TITLE}</a>
-								</h4>
-
+						<div class="{PANEL} panel">
+							 <div class="panel-heading">
+								<p>{TITLE}</p>
+							</div>
+							<div class="panel-body">
 								<p>{NEWS}</p>
 								<a href="{URL}" target="_blank">{URL_TEXT}</a>
 							</div>
