@@ -24,8 +24,16 @@
 			</tr>
 			<tr>
 				<td valign="top" align="center">
-					<div class="property-image"><a href="javascript: module_popup('{RANDOM_IDENTIFIER}',{UID});"><img
-							src="{IMAGETHUMB}" alt="property_image"/></a></div>
+					<div class="property-image property-pic-wrapper">
+						<a href="javascript: module_popup('{RANDOM_IDENTIFIER}',{UID});"><img src="{IMAGETHUMB}" alt="property_image"/></a>
+						<div class="price-tag">
+							<small>
+								{PRICE_CUMULATIVE}
+								<br/>
+								<div style="font-size:75%">{STAY_DAYS} {NIGHTS_TEXT}</div>
+							</small>
+						</div>
+					</div>
 				</td>
 				<td valign="middle" align="left" width="100%">
 					<div class="property-title"><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a>&nbsp;{STARS} {SUPERIOR}</div>

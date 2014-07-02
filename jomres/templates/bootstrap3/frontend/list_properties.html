@@ -20,9 +20,16 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 property-pic-wrapper">
 							<a href="#module_{RANDOM_IDENTIFIER}_popup" class="thumbnail" data-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}">
-								<img src="{IMAGETHUMB}" class="img-rounded img-responsive" alt="{PROPERTYNAME}"/>
+								<img src="{IMAGEMEDIUM}" class="img-rounded img-responsive" alt="{PROPERTYNAME}"/>
+								<div class="price-tag">
+									<small>
+										{PRICE_CUMULATIVE}
+										<br/>
+										<div style="font-size:75%">{STAY_DAYS} {NIGHTS_TEXT}</div>
+									</small>
+								</div>
 							</a>
 						</div>
 						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
