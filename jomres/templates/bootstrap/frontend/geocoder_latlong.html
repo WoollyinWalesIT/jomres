@@ -69,12 +69,15 @@ function codeAddress(address) {
 			var map = new google.maps.Map(document.getElementById("map_{RANDOM_IDENTIFIER}"),options_{RANDOM_IDENTIFIER});
 			
             var marker = new google.maps.Marker({ map: map, position: results[0].geometry.location{DRAGABLE}});
+			
 			google.maps.event.addListener(marker, 'drag', function() {
 			updateMarkerPosition(marker.getPosition());
 			});
 			google.maps.event.addListener(marker, 'dragend', function() {
 			map.setCenter(marker.getPosition());
 			});
+			
+			updateMarkerPosition(marker.getPosition());
         }
     });
 }
