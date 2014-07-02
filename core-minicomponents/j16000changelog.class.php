@@ -25,7 +25,7 @@ class j16000changelog
 
 			return;
 			}
-		$changelog = nl2br(file_get_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'CHANGELOG_JOMRES' ));
+		$changelog = nl2br(file_get_contents('http://updates.jomres4.net/CHANGELOG_JOMRES' ));
 		echo $changelog;
 		
 		}
