@@ -50,11 +50,23 @@ class j01010listpropertys
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		
 		$stayDays = 1;
+
 		if ( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '' && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] != '')
 			{
 			$range = get_periods ( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] , $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] );
 			$stayDays = count($range);
 			}
+		elseif ( $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] != '' && $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] )
+			{
+			$bang = explode("/",$tmpBookingHandler->tmpsearch_data['jomsearch_availability']);
+			$start = $bang[2]."/".$bang[1]."/".$bang[0];
+			$bang = explode("/",$tmpBookingHandler->tmpsearch_data['jomsearch_availability_departure']);
+			$end = $bang[2]."/".$bang[1]."/".$bang[0];
+	
+			$range = get_periods ( $start, $end);
+			$stayDays = count($range);
+			}
+		
 		$customTextObj     = jomres_singleton_abstract::getInstance( 'custom_text' );
 
 		if ( is_null( $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ] ) ) 
@@ -489,23 +501,45 @@ class j01010listpropertys
 					if ( 
 						$mrConfig[ 'is_real_estate_listing' ] == 0 && 
 						!$plugin_will_provide_lowest_price && 
-						$jomres_property_list_prices->lowest_prices[$propertys_uid]['PRICE'] != jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', _JOMRES_PRICE_ON_APPLICATION, "", true, false ) 
+						$jomres_property_list_prices->lowest_prices[$propertys_uid]['PRICE'] != jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', _JOMRES_PRICE_ON_APPLICATION, "", true, false ) && 
+						$jrConfig[ 'show_cumulative_price_overlay' ] =="1"
 						)
 						{
 						$os = array();
-
+						$overlay_snippet = array();
+						
 						if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0)
-							$os[ 'PRICE_CUMULATIVE' ]	= output_price($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] * $stayDays,"",false);
+							{
+							
+							switch ( $mrConfig[ 'booking_form_daily_weekly_monthly' ] )
+								{
+								case "D":
+									$os[ 'PRICE_CUMULATIVE' ]	= output_price($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] * $stayDays,"",false);
+									break;
+								case "W":
+									$os[ 'PRICE_CUMULATIVE' ]	= output_price( ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] / 7) * $stayDays,"",false);
+									break;
+								case "M":
+									$os[ 'PRICE_CUMULATIVE' ]	= output_price( ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] / 30 ) * $stayDays,"",false);
+									break;
+								}
+							}
 						else
 							$os[ 'PRICE_CUMULATIVE' ]	=$property_deets[ 'PRICE_PRICE' ];
 						
+						$os['FOR'] =  jr_gettext( '_JOMRES_FOR', _JOMRES_FOR , false );
 						if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0 )
 							{
 							if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 								$os[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY , false );
 							else
-								$os[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS , false );
-
+								{
+								if ($stayDays ==1)
+									$os[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_PRICINGOUTPUT_NIGHT', _JOMRES_PRICINGOUTPUT_NIGHT , false );
+								else
+									$os[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_PRICINGOUTPUT_NIGHTS', _JOMRES_PRICINGOUTPUT_NIGHTS , false );
+								}
+								
 							$os[ 'STAY_DAYS' ]	= $stayDays;
 							}
 						else

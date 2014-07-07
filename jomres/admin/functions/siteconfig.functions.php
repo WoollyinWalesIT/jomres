@@ -337,9 +337,10 @@ function showSiteConfig()
 			}
 		}
 
-	$lists[ 'use_bootstrap_in_admin' ]    = jomresHTML::selectList( $yesno, 'cfg_use_bootstrap_in_admin', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_bootstrap_in_admin' ] );
-	$lists[ 'use_bootstrap_in_frontend' ] = jomresHTML::selectList( $yesno, 'cfg_use_bootstrap_in_frontend', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_bootstrap_in_frontend' ] );
-
+	$lists[ 'use_bootstrap_in_admin' ]         = jomresHTML::selectList( $yesno, 'cfg_use_bootstrap_in_admin', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_bootstrap_in_admin' ] );
+	$lists[ 'use_bootstrap_in_frontend' ]      = jomresHTML::selectList( $yesno, 'cfg_use_bootstrap_in_frontend', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_bootstrap_in_frontend' ] );
+	$lists[ 'show_cumulative_price_overlay' ]  = jomresHTML::selectList( $yesno, 'cfg_show_cumulative_price_overlay', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_cumulative_price_overlay' ] );
+	
 	HTML_jomres::showSiteConfig( 
 		$jrConfig, 
 		$lists, 

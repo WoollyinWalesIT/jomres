@@ -2321,3 +2321,9 @@ jr_define('GUEST_BUDGET',"Budżet");
 jr_define('GUEST_BUDGET_FEATURE_SWITCH',"Użyć funkcji Budżet?");
 jr_define('GUEST_BUDGET_FEATURE_SWITCH_DESC',"Tylko dla Bootstrap na stronie! Opcja ta umożliwia klientom określenie ich budżetu jaki mogą przeznaczyć na daną rezerwację. Funkcja ma pewne ograniczenia i może się nie sprawdzić w serwisach z wieloma walutami. Dodatkowo jeśli używany jest plugin Featured Listings to jego klasa zostanie automatycznie podmieniona na 'panel-primary' z chwilą wyświetlania listy ofert.");
 jr_define('_JOMRES_FRONT_MR_EMAIL_TEXT_NAME','Nazwa: ');
+
+jr_define( '_JOMRES_FOR', 'For' );
+jr_define( '_JOMRES_PRICINGOUTPUT_NIGHT', 'night' );
+jr_define( '_JOMRES_PRICINGOUTPUT_NIGHTS', 'nights' );
+jr_define( '_JOMRES_CONFIG_SHOW_OVERLAY', 'Show price overlay' );
+jr_define( '_JOMRES_CONFIG_SHOW_OVERLAY_DESC', 'In the property list it is possible to show a cumulative price over the property image, use this setting to switch that display off. The cumulative price is calculated from the dates entered in the ajax search composite plugin.' );

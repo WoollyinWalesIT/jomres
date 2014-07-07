@@ -908,6 +908,11 @@ class HTML_jomres
 				<td>' . $lists[ 'use_budget_feature' ] . '</td>
 				<td>' . jr_gettext( GUEST_BUDGET_FEATURE_SWITCH_DESC, 'GUEST_BUDGET_FEATURE_SWITCH_DESC', false ) . '</td>
 			</tr>
+			<tr>
+				<td>' . jr_gettext( _JOMRES_CONFIG_SHOW_OVERLAY, '_JOMRES_CONFIG_SHOW_OVERLAY', false ) . '</td>
+				<td>' . $lists[ 'show_cumulative_price_overlay' ] . '</td>
+				<td>' . jr_gettext( _JOMRES_CONFIG_SHOW_OVERLAY_DESC, '_JOMRES_CONFIG_SHOW_OVERLAY_DESC', false ) . '</td>
+			</tr>
 			</tbody>
 			</table>' );
 			
