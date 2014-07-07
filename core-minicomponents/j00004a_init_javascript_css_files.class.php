@@ -111,7 +111,7 @@ class j00004a_init_javascript_css_files
 			set_showtime( "jquery.cookee.for_tabs.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 			}
 
-		set_showtime( "jomres.js", "jomres.js" );
+		set_showtime( "jomres.js", "jomres.min.js" );
 		set_showtime( "jomres.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
 		set_showtime( "datepicker_localisation_file", $datepicker_localisation_file );
@@ -186,11 +186,11 @@ class j00004a_init_javascript_css_files
 		set_showtime( "TableTools_JUI.css", "TableTools_JUI.css" );
 		set_showtime( "TableTools_JUI.css.relpath", JOMRES_ROOT_DIRECTORY."/css/" );
 
-		set_showtime( "jquery.dataTables.min.js", "jquery.dataTables.min.js" );
-		set_showtime( "jquery.dataTables.min.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
+		//set_showtime( "jquery.dataTables.min.js", "jquery.dataTables.min.js" ); // Consolidated
+		//set_showtime( "jquery.dataTables.min.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 
-		set_showtime( "TableTools.min.js", "TableTools.min.js" );
-		set_showtime( "TableTools.min.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
+		//set_showtime( "TableTools.min.js", "TableTools.min.js" ); // Consolidated
+		//set_showtime( "TableTools.min.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
 		
 		set_showtime( "ColVis.min.js", "ColVis.min.js" );
 		set_showtime( "ColVis.min.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
