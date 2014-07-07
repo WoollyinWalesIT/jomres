@@ -470,28 +470,58 @@ class j01010listpropertys
 					$property_deets[ 'PRICE_POST_TEXT' ]	= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'POST_TEXT' ];
 					$property_deets[ 'PRICE_NOCONVERSION' ]	= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE_NOCONVERSION' ];
 					
-					if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && !get_showtime('is_jintour_property' ) )
-						{
-						if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0)
-							$property_deets[ 'PRICE_CUMULATIVE' ]	= output_price($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] * $stayDays,"",false);
-						else
-							$property_deets[ 'PRICE_CUMULATIVE' ]	=$property_deets[ 'PRICE_PRICE' ];
+					$plugin_will_provide_lowest_price = false;
+						$MiniComponents->triggerEvent( '07015', array ( 'property_uid' => $propertys_uid ) ); // Optional
+						$mcOutput = $MiniComponents->getAllEventPointsData( '07015' );
+						if ( count( $mcOutput ) > 0 )
+							{
+							foreach ( $mcOutput as $val )
+								{
+								if ( $val == true )
+									{
+									$plugin_will_provide_lowest_price = true;
+									}
+								}
+							}
 						
+					
+					$property_deets [ 'OVERLAY_SNIPPET' ] ='';
+					if ( 
+						$mrConfig[ 'is_real_estate_listing' ] == 0 && 
+						!$plugin_will_provide_lowest_price && 
+						$jomres_property_list_prices->lowest_prices[$propertys_uid]['PRICE'] != jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', _JOMRES_PRICE_ON_APPLICATION, "", true, false ) 
+						)
+						{
+						$os = array();
+
 						if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0)
+							$os[ 'PRICE_CUMULATIVE' ]	= output_price($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] * $stayDays,"",false);
+						else
+							$os[ 'PRICE_CUMULATIVE' ]	=$property_deets[ 'PRICE_PRICE' ];
+						
+						if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0 )
 							{
 							if ( $mrConfig[ 'wholeday_booking' ] == "1" )
-								$property_deets[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY , false );
+								$os[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY , false );
 							else
-								$property_deets[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS , false );
+								$os[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS , false );
 
-							$property_deets[ 'STAY_DAYS' ]	= $stayDays;
+							$os[ 'STAY_DAYS' ]	= $stayDays;
 							}
 						else
 							{
-							$property_deets[ 'NIGHTS_TEXT' ] = '';
-							$property_deets[ 'STAY_DAYS' ]	= '';
+							$os[ 'NIGHTS_TEXT' ] = '';
+							$os[ 'STAY_DAYS' ]	= '';
 							}
+						
+						$overlay_snippet[]=$os;
+						$tmpl          = new patTemplate();
+						$tmpl->addRows( 'overlay_snippet', $overlay_snippet );
+						$tmpl->setRoot( $layout_path_to_template );
+						$tmpl->readTemplatesFromInput( 'list_properties_overlay_snippet.html' );
+						$property_deets [ 'OVERLAY_SNIPPET' ] = $tmpl->getParsedTemplate();
 						}
+					
 					
 					if ( array_key_exists( $propertys_uid, $lastBookedArray ) )
 						{
