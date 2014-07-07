@@ -94,7 +94,7 @@ class j00004x_init_javascript_css_files
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.chainedSelects.js.relpath"),get_showtime("jquery.chainedSelects.js"));
 
 				// Tipsy tooltips were added to Jomres 7.2.8 because beautytips don't work in jquery 1.9.2
-				jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.tipsy.js.relpath" ), get_showtime( "jquery.tipsy.js" ) );
+				//jomres_cmsspecific_addheaddata( "javascript", get_showtime( "jquery.tipsy.js.relpath" ), get_showtime( "jquery.tipsy.js" ) ); // Added to consolidated javascript files
 				jomres_cmsspecific_addheaddata( "css", get_showtime( "tipsy.css.relpath" ), get_showtime( "tipsy.css" ) );
 
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.easing.compatibility.js.relpath"),get_showtime("jquery.easing.compatibility.js"));

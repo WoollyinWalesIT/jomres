@@ -170,7 +170,7 @@ class j01010listpropertys
 			if ( is_null( $layout_template ) ) 
 				$layout_template = "list_properties.html";
 
-			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js" );
+			//jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js" );  // Added to consolidated files
 
 			if ( $jrConfig[ 'is_single_property_installation' ] == "1" )
 				{
