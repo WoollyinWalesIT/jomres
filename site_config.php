@@ -271,9 +271,7 @@ $jrConfig[ 'useArrayCaching' ]        = "0";
 $jrConfig[ 'navbar_location' ]        = "component_area";
 $jrConfig[ 'navbar_inverse' ]         = 0;
 
-$jrConfig[ 'bootstrap_version' ]         = "";
-
-$jrConfig[ 'show_powered_by' ]         = "0";
-
-$jrConfig['use_budget_feature']        = "1";
-
+$jrConfig[ 'bootstrap_version' ]				= "";
+$jrConfig[ 'show_powered_by' ]					= "0";
+$jrConfig['use_budget_feature']					= "1";
+$jrConfig['show_cumulative_price_overlay']		= "1";

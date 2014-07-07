@@ -2526,3 +2526,9 @@ jr_define('GUEST_BUDGET_FEATURE_SWITCH_DESC',"Bootstrapped sites only! The Budge
 
 jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', 'Name: ' );
 
+
+jr_define( '_JOMRES_FOR', 'For' );
+jr_define( '_JOMRES_PRICINGOUTPUT_NIGHT', 'night' );
+jr_define( '_JOMRES_PRICINGOUTPUT_NIGHTS', 'nights' );
+jr_define( '_JOMRES_CONFIG_SHOW_OVERLAY', 'Show price overlay' );
+jr_define( '_JOMRES_CONFIG_SHOW_OVERLAY_DESC', 'In the property list it is possible to show a cumulative price over the property image, use this setting to switch that display off. The cumulative price is calculated from the dates entered in the ajax search composite plugin.' );

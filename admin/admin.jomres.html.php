@@ -913,7 +913,11 @@ class HTML_jomres
 				<td valign="middle">' . $lists[ 'use_budget_feature' ] . '</td>
 				<td valign="middle">' . jr_gettext( GUEST_BUDGET_FEATURE_SWITCH_DESC, 'GUEST_BUDGET_FEATURE_SWITCH_DESC', false ) . '</td>
 			</tr>
-
+			<tr valign="middle" class="even">
+				<td valign="middle">' . jr_gettext( _JOMRES_CONFIG_SHOW_OVERLAY, '_JOMRES_CONFIG_SHOW_OVERLAY', false ) . '</td>
+				<td valign="middle">' . $lists[ 'show_cumulative_price_overlay' ] . '</td>
+				<td valign="middle">' . jr_gettext( _JOMRES_CONFIG_SHOW_OVERLAY_DESC, '_JOMRES_CONFIG_SHOW_OVERLAY_DESC', false ) . '</td>
+			</tr>
 			<tr valign="middle">
 				<th colspan="3">&nbsp;</th>
 			</tr>
