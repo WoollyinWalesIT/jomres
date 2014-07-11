@@ -36,15 +36,31 @@ class j00004a_init_javascript_css_files
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )
 			{
-			$this->template_touchable = false;
-
-			return;
+			$this->template_touchable = false; return;
 			}
-		if ( defined( "JOMRES_JSCALLED" ) ) return;
+		
+		if ( !defined( "JOMRES_JSCALLED" ) )
+			define ( 'JOMRES_JSCALLED', 1 );
+		else
+			return;
+
+		if ( AJAXCALL )
+			return;
+		
+		if ( defined( JOMRES_NOHTML ) )
+			return;
+		
+		
+		if ( !isset( $jrConfig[ 'load_jquery_ui' ] ) ) $jrConfig[ 'load_jquery_ui' ] = "1";
+		if ( !isset( $jrConfig[ 'load_jquery_ui_css' ] ) ) $jrConfig[ 'load_jquery_ui_css' ] = "1";
+		
+		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		$management_view = jomresGetParam( $_REQUEST, 'tmpl', false );
 
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
-		if ( !isset( $jrConfig[ 'jquery_ui_theme_detected' ] ) ) $jrConfig[ 'jquery_ui_theme_detected' ] = "jomres^jquery-ui.css";
+		if ( !isset( $jrConfig[ 'jquery_ui_theme_detected' ] ) ) 
+			$jrConfig[ 'jquery_ui_theme_detected' ] = "jomres^jquery-ui.css";
 
 		$themeArr = explode( "^", $jrConfig[ 'jquery_ui_theme_detected' ] );
 		$subdir   = $themeArr[ 0 ];
@@ -56,151 +72,161 @@ class j00004a_init_javascript_css_files
 			$filename = "jquery-ui.css";
 			}
 
-		if ( isset( $themeArr[ 2 ] ) ) $themePath = $themeArr[ 2 ] . "/";
+		if ( isset( $themeArr[ 2 ] ) ) 
+			$themePath = $themeArr[ 2 ] . "/";
 		else
-		$themePath = JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/' . $subdir . '/';
+			$themePath = JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/' . $subdir . '/';
+		
+		$MiniComponents->triggerEvent( '00021', $componentArgs ); // Get the colour scheme
 
-		set_showtime( "jquery.ui.theme", $filename );
-		set_showtime( "jquery.ui.theme.relpath", $themePath );
+		$css_files = array();
+		$javascript_files = array();
 
-		set_showtime( "tables_jui.css", "tables_jui.css" );
-		set_showtime( "tables_jui.css.relpath", JOMRES_ROOT_DIRECTORY."/css/" );
-
-		if ( using_bootstrap() )
+		if ( $jrConfig[ 'load_jquery_ui' ] == "1" && !$management_view)
 			{
-			set_showtime( "DT_bootstrap.css", "DT_bootstrap.css" );
-			set_showtime( "DT_bootstrap.css.relpath", JOMRES_ROOT_DIRECTORY."/css/" );
-
-			set_showtime( "DT_bootstrap.js", "datatables_pagination.js" );
-			set_showtime( "DT_bootstrap.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
-
-			set_showtime( "tables_jui.css", "" );
-			set_showtime( "tables_jui.css.relpath", JOMRES_ROOT_DIRECTORY."/css/" );
+			if ( $jrConfig[ 'load_jquery_ui_css' ] == "1" ) 
+				$css_files[]= array( $themePath, $filename);
 			}
-
-		$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
-		define( "JOMRESDATEPICKERLANG", $jomreslang->datepicker_crossref[ $jomreslang->lang ] );
-		$datepicker_localisation_file = 'jquery.ui.datepicker-' . JOMRESDATEPICKERLANG . '.js';
-
-		$management_view = jomresGetParam( $_REQUEST, 'tmpl', false );
+		
+		if ( jomres_cmsspecific_areweinadminarea() ) // Regardless of the frontend setting, if we're in the admin area, we'll need the jquery UI
+			$css_files[]= array( $themePath, $filename);
 
 		if ( _JOMRES_DETECTED_CMS != "joomla30" && _JOMRES_DETECTED_CMS != "joomla31" && _JOMRES_DETECTED_CMS != "joomla32" && _JOMRES_DETECTED_CMS != "joomla33")
 			{
-			if ( !isset( $jrConfig[ 'jquery18_2_switch' ] ) ) $jrConfig[ 'jquery18_2_switch' ] = 0; // By default the 19_2 switch will be set to No, so that jq 1.8 will be loaded.
-
+			if ( !isset( $jrConfig[ 'jquery18_2_switch' ] ) )
+				{
+				$jrConfig[ 'jquery18_2_switch' ] = 0; // By default the 19_2 switch will be set to No, so that jq 1.8 will be loaded.
+				}
+			
+			
 			if ( $jrConfig[ 'jquery18_2_switch' ] == "1" ) 
 				{
-				set_showtime( "jquery.core.js", 'jquery-2.0.3.min.js' );
+				if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery' ] == "1" && !$management_view ) )
+					{
+					$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/", 'jquery-2.0.3.js');
+					}
 				}
 			else
 				{
-				set_showtime( "jquery.core.js", 'jquery-1.8.2.min.js' );
+				if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery' ] == "1" && !$management_view ) )
+					{
+					$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery-1.8.2.js');
+					}
 				}
-			set_showtime( "jquery.core.js.relpath", JOMRES_ROOT_DIRECTORY.'/javascript/' );
 			}
-
-		set_showtime( "jquery.ui.js", "jquery-ui-1.9.2.custom.min.js" );
-		set_showtime( "jquery.ui.js.relpath", JOMRES_ROOT_DIRECTORY.'/javascript/' );
+		if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery_ui' ] == "1" && !$management_view ) )
+			{
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery-ui-1.9.2.custom.js");
+			}
+		
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jomres.js");
+		
+		$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
+		define( "JOMRESDATEPICKERLANG", $jomreslang->datepicker_crossref[ $jomreslang->lang ] );
+		$datepicker_localisation_file = 'jquery.ui.datepicker-' . JOMRESDATEPICKERLANG . '.js';
+		
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/jquery-ui-cal-localisation/", $datepicker_localisation_file);
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.cookee.js");
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "heartbeat.js");
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/',  "jquery.hoverIntent.js");
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.validate.js");
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.tipsy.js");
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.jlabel-1.3.js");
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.rating.js");
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.validate.js");
+		$css_files[]= array( JOMRES_ROOT_DIRECTORY."/css/","jquery.rating.css");
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "list_properties.js");
+		
+		$css_files[]= array( JOMRES_ROOT_DIRECTORY."/css/","jquery.jgrowl.css");
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.jgrowl.js");
+		
+		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/","tipsy.css");
 
 		if ( !using_bootstrap() )
 			{
-			set_showtime( "jquery.ui.potato.menu.css", "jquery.ui.potato.menu.css" );
-			set_showtime( "jquery.ui.potato.menu.css.relpath", JOMRES_ROOT_DIRECTORY."/css/" );
-
-			set_showtime( "jquery.cookee.for_tabs.js", "jquery.cookee.for_tabs.js" );
-			set_showtime( "jquery.cookee.for_tabs.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
+			if ( $thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea() )
+				{
+				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/x-editable/jqueryui-editable/js/", "jqueryui-editable.js");
+				$css_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/x-editable/jqueryui-editable/css/","jqueryui-editable.css");
+				}
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.bt.js");
 			}
 
-		set_showtime( "jomres.js", "jomres.min.js" );
-		set_showtime( "jomres.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
-
-		set_showtime( "datepicker_localisation_file", $datepicker_localisation_file );
-		set_showtime( "datepicker_localisation_file.relpath", JOMRES_ROOT_DIRECTORY."/javascript/jquery-ui-cal-localisation/" );
-
-		set_showtime( "jquery.cookee.js", "jquery.cookee.js" );
-		set_showtime( "jquery.cookee.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
-
-		set_showtime( "heartbeat.js", "heartbeat.js" );
-		set_showtime( "heartbeat.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
-
-		set_showtime( "jquery.bt.js", "jquery.bt.js" );
-		set_showtime( "jquery.bt.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
-
-		set_showtime( "jquery.hoverIntent.js", "jquery.hoverIntent.js" );
-		set_showtime( "jquery.hoverIntent.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
-
-		set_showtime( "jquery.validate.js", "jquery.validate.js" );
-		set_showtime( "jquery.validate.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
-
-
-		set_showtime( "jquery.tipsy.js", "jquery.tipsy.js" );
-		set_showtime( "jquery.tipsy.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
-
-		set_showtime( "tipsy.css", "tipsy.css" );
-		set_showtime( "tipsy.css.relpath", JOMRES_ROOT_DIRECTORY."/css/" );
-
-		// Bootstrap toggle buttons
-		if ( using_bootstrap() )
+		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "TableTools_JUI.css");
+		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "ColVis.css");
+		
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.jeditable.js");
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "excanvas.js");
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.chainedSelects.js");
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js");
+		
+		if ( $thisJRUser->userIsRegistered )
 			{
-			set_showtime( "jquery.toggle.buttons.js", "jquery.toggle.buttons.js" );
-			set_showtime( "bootstrap-toggle-buttons.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/bootstrap-toggle-buttons/js/" );
+			if ( $thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea() )
+				{
+				$tail = "";
+				if (jomres_bootstrap_version() == "3")
+					$tail = "_bs3";
+				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/x-editable/bootstrap-editable/js/","bootstrap-editable".$tail.".min.js");
+				$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/javascript/x-editable/bootstrap-editable/css/", "bootstrap-editable".$tail.".css");
+				
+				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.dataTables.js");
+				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "TableTools.min.js");
+				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "ColVis.min.js");
+				if ( using_bootstrap() )
+					{
+					$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "DT_bootstrap.css");
+					$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/", "datatables_pagination.js");
+					}
+				}
 
-			set_showtime( "jquery.toggle.buttons.css", "jquery.toggle.buttons.css" );
-			set_showtime( "jquery.toggle.buttons.css.relpath", JOMRES_ROOT_DIRECTORY."/javascript/bootstrap-toggle-buttons/css/" );
+			if ( !using_bootstrap() )
+				{
+				$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "tables_jui.css");
+				}
 			}
-
-		if ( !using_bootstrap() )
-			{
-
-			set_showtime( "x-editable.js", "jqueryui-editable.min.js" );
-			set_showtime( "x-editable.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/x-editable/jqueryui-editable/js/" );
-
 			
-			set_showtime( "x-editable.css", "jqueryui-editable.css" );
-			set_showtime( "x-editable.css.relpath", JOMRES_ROOT_DIRECTORY."/javascript/x-editable/jqueryui-editable/css/" );
-			}
-		else
+		// $javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.easing.compatibility.js"); Is this needed?
+			
+		if ( !using_bootstrap() )
 			{
-			$tail = "";
-			if (jomres_bootstrap_version() == "3")
-				$tail = "_bs3";
-			set_showtime( "x-editable.js", "bootstrap-editable".$tail.".min.js" );
-			set_showtime( "x-editable.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/x-editable/bootstrap-editable/js/" );
-
-			set_showtime( "x-editable.css", "bootstrap-editable".$tail.".css" );
-			set_showtime( "x-editable.css.relpath", JOMRES_ROOT_DIRECTORY."/javascript/x-editable/bootstrap-editable/css/" );
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.ui.potato.menu.js");
+			$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "jquery.ui.potato.menu.css");
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.cookee.for_tabs.js");
 			}
 
-		set_showtime( "jquery.jeditable.js", "jquery.jeditable.js" );
-		set_showtime( "jquery.jeditable.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
-
-		set_showtime( "excanvas.js", "excanvas.js" );
-		set_showtime( "excanvas.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
-
-		set_showtime( "jquery.chainedSelects.js", "jquery.chainedSelects.js" );
-		set_showtime( "jquery.chainedSelects.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
-
-		set_showtime( "jquery.ui.potato.menu.js", "jquery.ui.potato.menu.js" );
-		set_showtime( "jquery.ui.potato.menu.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
-
-		set_showtime( "TableTools_JUI.css", "TableTools_JUI.css" );
-		set_showtime( "TableTools_JUI.css.relpath", JOMRES_ROOT_DIRECTORY."/css/" );
-
-		//set_showtime( "jquery.dataTables.min.js", "jquery.dataTables.min.js" ); // Consolidated
-		//set_showtime( "jquery.dataTables.min.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
-
-		//set_showtime( "TableTools.min.js", "TableTools.min.js" ); // Consolidated
-		//set_showtime( "TableTools.min.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
+		if (get_showtime ( "task" ) == "media_centre")
+			{
+			$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/",  "jquery.fileupload-ui.css");
+			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "load-image.min.js");
+			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "canvas-to-blob.min.js");
+			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "jquery.iframe-transport.js");
+			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "jquery.fileupload.js");
+			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/",  "jquery.fileupload-process.js");
+			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "jquery.fileupload-image.js");
+			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "jquery.fileupload-validate.js");
+			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "tmpl.min.js");
+			}
+			
+			
+		 if ( 
+			using_bootstrap() && 
+			!jomres_cmsspecific_areweinadminarea() &&
+			( $thisJRUser->userIsManager ) ||
+			( $thisJRUser->userIsRegistered && get_showtime("task") == 'registerProp_step1' ) ||
+			( $thisJRUser->userIsRegistered && get_showtime("task") == 'registerProp_step2' )
+			)
+			{
+			if ( $_GET[ 'tmpl' ] == get_showtime("tmplcomponent") )
+				{
+				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/',"bootstrap-tour-standalone.js");
+				}
+			else
+				{
+				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "bootstrap-tour.js");
+				}
+			}
 		
-		set_showtime( "ColVis.min.js", "ColVis.min.js" );
-		set_showtime( "ColVis.min.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
-		
-		set_showtime( "ColVis.css", "ColVis.css" );
-		set_showtime( "ColVis.css.relpath", JOMRES_ROOT_DIRECTORY."/css/" );
-
-		set_showtime( "jquery.easing.compatibility.js", "jquery.easing.compatibility.js" );
-		set_showtime( "jquery.easing.compatibility.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
-
 		$ls = jomresGetDomain();
 		if ( stristr( $ls, ".xn--", $ls ) && !jomres_cmsspecific_areweinadminarea() ) // We check to see if we're in the admin area because our one and only client with an umlat in the domain name has found that the redirect function doesn't work in the administrator area if the domain's been converted.
 			{
@@ -212,51 +238,37 @@ class j00004a_init_javascript_css_files
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$current_property_details->gather_data( get_showtime('property_uid') );
 		
-		if ( ( !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ) || $_SERVER['SERVER_PORT'] == 443)// We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
-			set_showtime( "misc_url_defs.js", $ls . "_ssl_" . get_showtime( 'lang' ) ."_". $current_property_details->property_type."_". "_misc_url_defs.js" ); 
-		else
-			set_showtime( "misc_url_defs.js", $ls . "_" . get_showtime( 'lang' ) ."_". $current_property_details->property_type."_". "_misc_url_defs.js" ); 
-			
-		set_showtime( "misc_url_defs.js.abspath", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS );
-		set_showtime( "misc_url_defs.js.relpath", JOMRES_ROOT_DIRECTORY."/temp/" );
-
-		set_showtime( "jomres_consolidated_files.js", "jomres_consolidated_files.js" );
-		set_showtime( "jomres_consolidated_files.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
-
-		set_showtime( "jomres_consolidated_files_min.js", "jomres_consolidated_files_min.js" );
-		set_showtime( "jomres_consolidated_files_min.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
+		$misc_url_defs = '
+			var live_site_ajax = "'.JOMRES_SITEPAGE_URL_AJAX.'";
+			var compare_url = "'.jomresURL( JOMRES_SITEPAGE_URL . "&task=compare" ).'";
+			var path_to_jomres_dir = "'.get_showtime( 'live_site' ).'";
+			var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX . '&task=module_popup&nofollowtmpl=1&id=";
+			var jomres_template_version = "'.find_plugin_template_directory().'";
+			var dataTables_sInfo = "'. jr_gettext( 'DATATABLES_SINFO', DATATABLES_SINFO, false ).'";
+			var JOMRES_ROOT_DIRECTORY = "' .  JOMRES_ROOT_DIRECTORY.'";
+			';
 		
-		if (get_showtime ( "task" ) == "media_centre")
+		if ( ( !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ) || $_SERVER['SERVER_PORT'] == 443)// We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
 			{
-			set_showtime( "jquery.fileupload-ui.css", "jquery.fileupload-ui.css" );
-			set_showtime( "jquery.fileupload-ui.css.relpath",  JOMRES_ROOT_DIRECTORY."/css/" );
-
-			set_showtime( "load-image.min.js",                     "load-image.min.js" );
-			set_showtime( "load-image.min.js.relpath",             JOMRES_ROOT_DIRECTORY."/javascript/media_centre/" );
-			set_showtime( "canvas-to-blob.min.js",                 "canvas-to-blob.min.js" );
-			set_showtime( "canvas-to-blob.min.js.relpath",         JOMRES_ROOT_DIRECTORY."/javascript/media_centre/" );
-			set_showtime( "jquery.iframe-transport.js",            "jquery.iframe-transport.js" );
-			set_showtime( "jquery.iframe-transport.js.relpath",    JOMRES_ROOT_DIRECTORY."/javascript/media_centre/" );
-			set_showtime( "jquery.fileupload.js",                  "jquery.fileupload.js" );
-			set_showtime( "jquery.fileupload.js.relpath",          JOMRES_ROOT_DIRECTORY."/javascript/media_centre/" );
-			set_showtime( "jquery.fileupload-process.js",          "jquery.fileupload-process.js" );
-			set_showtime( "jquery.fileupload-process.js.relpath",  JOMRES_ROOT_DIRECTORY."/javascript/media_centre/" );
-			set_showtime( "jquery.fileupload-image.js",            "jquery.fileupload-image.js" );
-			set_showtime( "jquery.fileupload-image.js.relpath",    JOMRES_ROOT_DIRECTORY."/javascript/media_centre/" );
-			set_showtime( "jquery.fileupload-validate.js",         "jquery.fileupload-validate.js" );
-			set_showtime( "jquery.fileupload-validate.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/media_centre/" );
-			set_showtime( "tmpl.min.js",							"tmpl.min.js" );
-			set_showtime( "tmpl.min.js.relpath", 					JOMRES_ROOT_DIRECTORY."/javascript/media_centre/" );
+			$temp_file =  $ls . "_ssl_" . get_showtime( 'lang' ) ."_". $current_property_details->property_type."_". "_misc_url_defs.js";
 			}
-			
-		if (using_bootstrap())
+		else
 			{
-			if ( $_GET[ 'tmpl' ] == get_showtime("tmplcomponent") )
-				set_showtime( "bootstrap-tour.js", "bootstrap-tour-standalone.min.js" );
-			else
-				set_showtime( "bootstrap-tour.js", "bootstrap-tour.min.js" );
-			set_showtime( "bootstrap-tour.js.relpath", JOMRES_ROOT_DIRECTORY."/javascript/" );
+			$temp_file =  $ls . "_" . get_showtime( 'lang' ) ."_". $current_property_details->property_type."_". "_misc_url_defs.js";
 			}
+		
+		if (!file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $temp_file ))
+			file_put_contents(  JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $temp_file , $misc_url_defs );
+		
+		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/temp/" ,$temp_file );
+		
+		jr_import('jomres_javascript_cache');
+		$jomres_javascript_cache = new jomres_javascript_cache();
+		$jomres_javascript_cache->cache_javascript($javascript_files);
+		
+		jr_import('jomres_css_cache');
+		$jomres_css_cache = new jomres_css_cache();
+		$jomres_css_cache->cache_css($css_files);
 		}
 
 	/**
@@ -271,6 +283,34 @@ class j00004a_init_javascript_css_files
 		{
 		return null;
 		}
+		
+	function delete_old_md5s($folder) 
+		{
+		$olddate=time()-3600;
+		$dircontent = scandir($folder);
+		foreach($dircontent as $filename) 
+			{
+			if (strlen($filename)==32 && filemtime($folder.$filename) && filemtime($folder.$filename)<$olddate) 
+				unlink($folder.$filename);
+			}
+		}
+
+	function md5_of_dir($folder) 
+		{
+		$dircontent = scandir($folder);
+		$ret='';
+		foreach($dircontent as $filename) 
+			{
+			if ($filename != '.' && $filename != '..') 
+				{
+				if (filemtime($folder.$filename) === false) 
+					return false;
+			  $ret.=date("YmdHis", filemtime($folder.$filename)).$filename;
+				}
+			}
+		return md5($ret);
+		}
 	}
+
 
 ?>
