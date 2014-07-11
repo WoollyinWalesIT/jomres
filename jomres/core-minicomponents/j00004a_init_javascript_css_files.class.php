@@ -85,11 +85,17 @@ class j00004a_init_javascript_css_files
 		if ( $jrConfig[ 'load_jquery_ui' ] == "1" && !$management_view)
 			{
 			if ( $jrConfig[ 'load_jquery_ui_css' ] == "1" ) 
-				$css_files[]= array( $themePath, $filename);
+				{
+				jomres_cmsspecific_addheaddata( "css", $themePath, $filename ); // Not minified due to how it's background images are stored
+				//$css_files[]= array( $themePath, $filename);
+				}
 			}
 		
 		if ( jomres_cmsspecific_areweinadminarea() ) // Regardless of the frontend setting, if we're in the admin area, we'll need the jquery UI
-			$css_files[]= array( $themePath, $filename);
+			{
+			jomres_cmsspecific_addheaddata( "css", $themePath, $filename );
+			//$css_files[]= array( $themePath, $filename);
+			}
 
 		if ( _JOMRES_DETECTED_CMS != "joomla30" && _JOMRES_DETECTED_CMS != "joomla31" && _JOMRES_DETECTED_CMS != "joomla32" && _JOMRES_DETECTED_CMS != "joomla33")
 			{
@@ -158,7 +164,7 @@ class j00004a_init_javascript_css_files
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.jeditable.js");
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "excanvas.js");
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.chainedSelects.js");
-		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js");
+		//$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js");
 		
 		if ( $thisJRUser->userIsRegistered )
 			{
@@ -172,12 +178,13 @@ class j00004a_init_javascript_css_files
 				
 				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.dataTables.js");
 				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "TableTools.min.js");
-				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "ColVis.min.js");
+				
 				if ( using_bootstrap() )
 					{
 					$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "DT_bootstrap.css");
 					$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/", "datatables_pagination.js");
 					}
+				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "ColVis.min.js");
 				}
 
 			if ( !using_bootstrap() )
@@ -195,14 +202,15 @@ class j00004a_init_javascript_css_files
 			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.cookee.for_tabs.js");
 			}
 
-		if (get_showtime ( "task" ) == "media_centre")
+
+		if (get_showtime ( "task" ) == "media_centre" || $_REQUEST["task"] == "media_centre" )
 			{
 			$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/",  "jquery.fileupload-ui.css");
 			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "load-image.min.js");
 			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "canvas-to-blob.min.js");
 			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "jquery.iframe-transport.js");
 			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "jquery.fileupload.js");
-			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/",  "jquery.fileupload-process.js");
+			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "jquery.fileupload-process.js");
 			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "jquery.fileupload-image.js");
 			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "jquery.fileupload-validate.js");
 			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "tmpl.min.js");

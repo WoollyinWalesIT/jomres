@@ -38,8 +38,8 @@ class jomres_javascript_cache
 				"excanvas.js",
 				"jquery.chainedSelects.js",
 				"jquery.easing.compatibility.js",
-				"jquery.livequery.js", 
-				//"jquery.tipsy.js",
+				//"jquery.livequery.js", 
+				"jquery.tipsy.js",
 				"jquery.jlabel-1.3.js",
 				"jquery.rating.js",
 				"jquery.validate.js",
@@ -50,24 +50,31 @@ class jomres_javascript_cache
 				"jquery.jgrowl.js",
 				"bootstrap-tour.js"
 				);
-			if (! jomres_cmsspecific_areweinadminarea() )
+/* 			if (! jomres_cmsspecific_areweinadminarea() )
 				{
 				 $this->consolidation_array ["table_tools"] = array (
 					"jquery.dataTables.js",
 					"TableTools.min.js",
 					"datatables_pagination.js",
-					"ColVis.min.js",
+					"ColVis.min.js"
 					);
-				}
+				} */
+/* 		 $this->consolidation_array ["media_centre"] = array (
+				"load-image.min.js",
+				"canvas-to-blob.min.js",
+				"jquery.iframe-transport.js",
+				"jquery.fileupload.js",
+				"jquery.fileupload-process.js",
+				"jquery.fileupload-image.js",
+				"jquery.fileupload-validate.js",
+				"tmpl.min.js"
+				);  */
+			
 			}
 		$this->temp_dir_abs	=  JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'javascript' . JRDS ;
 		$this->cons_dir_abs	=  JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'javascript_consolidated' . JRDS ;
 		$this->temp_dir_rel	=  JOMRES_ROOT_DIRECTORY . '/temp/javascript/';
 		$this->cons_dir_rel	=  JOMRES_ROOT_DIRECTORY . '/temp/javascript_consolidated/';
-		
-/* 		$this->remove_all_temp_files();
-		exit;
-		 */
 		 
 		if ( !is_dir( $this->temp_dir_abs ) )
 			{
@@ -124,7 +131,7 @@ class jomres_javascript_cache
 				if (in_array($file[1],$val))
 					$subdir = $this->make_consolidation_dir($key);
 				}
-			
+
 			$path_file = $this->temp_dir_abs. $subdir . JRDS . $hash.$file[1];
 			if ( $subdir ==  'no_consolidation')
 				$this->individual_files_to_serve[]= $hash.$file[1];
@@ -240,11 +247,11 @@ class jomres_javascript_cache
 
 	function make_consolidation_dir($dir)
 		{
-		if ( !is_dir( $this->temp_dir_abs . JRDS . $dir ) )
+		if ( !is_dir( $this->temp_dir_abs .  $dir ) )
 			{
-			if ( !@mkdir( $this->temp_dir_abs . JRDS . $dir ) )
+			if ( !mkdir( $this->temp_dir_abs . $dir ) )
 				{
-				throw new Exception( "Error, unable to make consolidation directory " .  $this->temp_dir_abs . JRDS . $dir  . ". Please create the directory manually and ensure that it's writable by the web server" );
+				throw new Exception( "Error, unable to make consolidation directory " .  $this->temp_dir_abs .  $dir  . ". Please create the directory manually and ensure that it's writable by the web server" );
 				}
 			}
 		return $dir;

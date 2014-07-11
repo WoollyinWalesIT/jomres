@@ -36,7 +36,7 @@ class jomres_css_cache
 				//"jqueryui-editable.css",
 				"TableTools_JUI.css",
 				"ColVis.css",
-				"jquery-ui.css",
+				//"jquery-ui.css",
 				"DT_bootstrap.css",
 				//"bootstrap-editable.css"
 				);
@@ -98,7 +98,7 @@ class jomres_css_cache
 			
 			if (!file_exists( $path_file ))
 				{
-				$contents = $this->replace_image_paths($contents);
+				$contents = $this->replace_image_paths($contents , $file );
 				if ($jrConfig['development_production'] != 'development' || $this->force_consolidation_and_compression )
 					{
 					require_once (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'CssMin' . JRDS . 'cssmin.php') ;
@@ -149,7 +149,7 @@ class jomres_css_cache
 			}
 		}
 	
-	function replace_image_paths($contents)
+	function replace_image_paths($contents , $file )
 		{
 		$unwrapped_imgs = array();
 		$re = '/url\(\s*[\'"]?(\S*\.(?:jpe?g|gif|png))[\'"]?\s*\)[^;}]*?no-repeat/i';
@@ -164,7 +164,13 @@ class jomres_css_cache
 		if (count($unwrapped_imgs)>0)
 			{
 			foreach ($unwrapped_imgs as $image)
+				{
+				if (strpos ("454545_256x240"  , $image ) )
+					{
+					var_dump($file);exit;
+					}
 				$contents = str_replace( $image , get_showtime('live_site')."/".$file[0].$image , $contents);
+				}
 			}
 		if (count($wrapped_imgs)>0)
 			{
