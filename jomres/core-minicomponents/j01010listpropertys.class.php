@@ -170,7 +170,7 @@ class j01010listpropertys
 			if ( is_null( $layout_template ) ) 
 				$layout_template = "list_properties.html";
 
-			//jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js" );  // Added to consolidated files
+			//jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js" );
 
 			if ( $jrConfig[ 'is_single_property_installation' ] == "1" )
 				{
@@ -212,7 +212,7 @@ class j01010listpropertys
 				if ( JOMRES_NOHTML != 1 && get_showtime( 'task' ) != "ajax_search_filter" )
 					{
 					$output[ 'JOMRES_SITEPAGE_URL_AJAX' ] = "<script type=\"text/javascript\"> var live_site_ajax = '" . JOMRES_SITEPAGE_URL_AJAX . "'; </script>";
-					jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "list_properties.js" );
+					//jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "list_properties.js" );
 					}
 
 				//we don`t even need the next line, because jomSearch always sets at least some random $propertys_uids

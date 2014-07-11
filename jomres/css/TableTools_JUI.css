@@ -115,7 +115,7 @@ div.DTTT_collection {
 }
 
 div.DTTT_collection_background {
-	background: url(../images/background.png) repeat top left;
+	background: url('../images/background.png') repeat top left;
 	z-index: 2001;
 }
 

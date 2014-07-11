@@ -32,10 +32,10 @@ defined('_JOMRES_INITCHECK') or die;
 	wp_deregister_script( 'bootstrap' );
 	//wp_deregister_style();
 	
-	wp_register_script('jquery', '/'.JOMRES_ROOT_DIRECTORY.'/javascript/jquery-1.8.2.min.js' );
+	wp_register_script('jquery', '/'.JOMRES_ROOT_DIRECTORY.'/javascript/jquery-1.8.2.js' );
 	wp_enqueue_script('jquery');
 	
-	wp_register_script('jquery-ui-1.9.2.custom.min.js', '/'.JOMRES_ROOT_DIRECTORY.'/javascript/jquery-ui-1.9.2.custom.min.js', 'jquery' );
+	wp_register_script('jquery-ui-1.9.2.custom.min.js', '/'.JOMRES_ROOT_DIRECTORY.'/javascript/jquery-ui-1.9.2.custom.js', 'jquery' );
 	wp_enqueue_script('jquery-ui-1.9.2.custom.min.js');
 	
 	if ($view == "bootstrap")

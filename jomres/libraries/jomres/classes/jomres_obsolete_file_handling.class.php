@@ -915,7 +915,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_11_debugging.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j02265viewbookingnotes.class.php' );
 		
-		$this->add_obs_file( $this->dir_javascript . 'bootstrap-tour.js' );
+		//$this->add_obs_file( $this->dir_javascript . 'bootstrap-tour.js' ); // Re-introduced in Jomres 8.1.8
 		$this->add_obs_file( $this->dir_javascript . 'datatables_bootstrap_paging.js' );
 		$this->add_obs_file( $this->dir_javascript . 'DT_bootstrap.js' );
 		
@@ -955,6 +955,21 @@ class jomres_obsolete_file_handling
 		$this->add_obs_dir( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'joomla30' );
 		$this->add_obs_dir( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'joomla31' );
 		
+		$this->add_obs_file( $this->dir_javascript . 'bootstrap-tour.min.js' );
+		$this->add_obs_file( $this->dir_javascript . 'bootstrap-tour-standalone.min.js' );
+		$this->add_obs_file( $this->dir_javascript . 'ColVis.js' );
+		$this->add_obs_file( $this->dir_javascript . 'jomres.min.js' );
+		$this->add_obs_file( $this->dir_javascript . 'jomres_consolidated_files.js' );
+		$this->add_obs_file( $this->dir_javascript . 'jomres_consolidated_files_min.js' );
+		$this->add_obs_file( $this->dir_javascript . 'jquery.cookie.js' );
+		$this->add_obs_file( $this->dir_javascript . 'jquery.dataTables.min.js' );
+		$this->add_obs_file( $this->dir_javascript . 'jquery-1.8.2.min.js' );
+		$this->add_obs_file( $this->dir_javascript . 'jquery-2.0.3.min.js' );
+		$this->add_obs_file( $this->dir_javascript . 'jquery-ui-1.9.2.custom.min.js' );
+		$this->add_obs_file( $this->dir_javascript . 'xxxxxxxxxxx' );
+		$this->add_obs_file( $this->dir_javascript . 'xxxxxxxxxxx' );
+		
+		$this->add_obs_file( $this->dir_minicomponents . 'j00004x_init_javascript_css_files.class.php' );
 		}
 
 	function add_obs_file( $path_and_file )
