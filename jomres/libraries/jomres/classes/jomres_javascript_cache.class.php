@@ -39,7 +39,7 @@ class jomres_javascript_cache
 				"jquery.chainedSelects.js",
 				"jquery.easing.compatibility.js",
 				//"jquery.livequery.js", 
-				"jquery.tipsy.js",
+				//"jquery.tipsy.js",
 				"jquery.jlabel-1.3.js",
 				"jquery.rating.js",
 				"jquery.validate.js",
