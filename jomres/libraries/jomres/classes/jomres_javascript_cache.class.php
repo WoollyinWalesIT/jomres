@@ -120,9 +120,6 @@ class jomres_javascript_cache
 				$file = $showtime->$fn;
 				}
 			
-			$contents = file_get_contents( get_showtime("live_site")."/".$file[0].$file[1] );
-			if (!$contents || $contents =="")
-				throw new Exception( "Error, tried to read " . get_showtime("live_site")."/".$file[0].$file[1] . " but no data found in file." );
 			$hash = date("YmdHis", filemtime($file[0].$file[1]));  // Get the md5 has of the last file modification time. We will check to see if tempdir/javascript/abcdefg_javascript.js exists, if it does then this file has already been minified. If it doesn't, we'll minify it
 			
 			$subdir = 'no_consolidation';
@@ -136,9 +133,13 @@ class jomres_javascript_cache
 			if ( $subdir ==  'no_consolidation')
 				$this->individual_files_to_serve[]= $hash.$file[1];
 			
-			if (!$already_minified)
+			if (!file_exists( $path_file ))
 				{
-				if (!file_exists( $path_file ))
+				$contents = file_get_contents( get_showtime("live_site")."/".$file[0].$file[1] );
+				if (!$contents || $contents =="")
+					throw new Exception( "Error, tried to read " . get_showtime("live_site")."/".$file[0].$file[1] . " but no data found in file." );
+
+				if (!$already_minified)
 					{
 					if ($jrConfig['development_production'] != 'development' || $this->force_consolidation_and_compression )
 						{
@@ -152,16 +153,16 @@ class jomres_javascript_cache
 
 					if ( $minifiedCode== "")
 						throw new Exception( "Tried to minify contents of  " .  get_showtime("live_site")."/".$file[0].$file[1] . " but nothing was returned by the script. Original content : ".$contents );
-					
+						
 					if (!$this->create_file($this->temp_dir_abs. $subdir , $hash.$file[1] , $file[1] , $minifiedCode ))
 						throw new Exception( "Error, Attempted to make " . $this->temp_dir_abs. $subdir.$hash.$file[1] . " but failed." );
 					}
-				}
-			else
-				{
-				$minifiedCode = $contents;
-				if (!$this->create_file($this->temp_dir_abs. $subdir , $hash.$file[1] , $file[1] , $minifiedCode ))
-					throw new Exception( "Error, Attempted to make " . $this->temp_dir_abs. $subdir.$hash.$file[1] . " but failed." );
+				else
+					{
+					$minifiedCode = $contents;
+					if (!$this->create_file($this->temp_dir_abs. $subdir , $hash.$file[1] , $file[1] , $minifiedCode ))
+						throw new Exception( "Error, Attempted to make " . $this->temp_dir_abs. $subdir.$hash.$file[1] . " but failed." );
+					}
 				}
 			}
 		
@@ -178,7 +179,7 @@ class jomres_javascript_cache
 				$md5_of_dir = $this->md5_of_dir($key);
 				if (!file_exists( $this->cons_dir_abs.$md5_of_dir."_".$key.".js" ))
 					{
-					$files = scandir_getfiles_recursive($this->temp_dir_abs.$key);
+					$files = scandir_getfiles($this->temp_dir_abs.$key);
 					if ( count ( $files ) > 0  )
 						{
 						$contents = '';
@@ -212,7 +213,7 @@ class jomres_javascript_cache
 		// Going to tidy up files with similar names, as these will be out of date compared to this new file
 		if ($contents != "")
 			{
-			$files = scandir_getfiles_recursive($path);
+			$files = scandir_getfiles($path);
 			if (count($files)>0)
 				{
 				foreach ( $files as $file )
