@@ -72,7 +72,7 @@ class jomres_javascript_cache
 			
 			}
 		$this->temp_dir_abs	=  JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'javascript' . JRDS ;
-		$this->cons_dir_abs	=  JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'javascript_consolidated' . JRDS ;
+		$this->cons_dir_abs	=  JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'javascript_consolidated' . JRDS ;
 		$this->temp_dir_rel	=  JOMRES_ROOT_DIRECTORY . '/temp/javascript/';
 		$this->cons_dir_rel	=  JOMRES_ROOT_DIRECTORY . '/temp/javascript_consolidated/';
 		 
@@ -109,10 +109,6 @@ class jomres_javascript_cache
 
 		foreach ( $javascript_files as $file )
 			{
-			$already_minified = false;
-			if ( strpos ( $file[1] , ".min." ) )
-				$already_minified = true;
-			
 			// So, to override, you would do something like set_showtime ( "jsfile_I_want_to_override" , array ( 0 => "pathtofile" , 1 = "jsfile_I_want_to_override"));
 			$fn = $file[1];
 			if (isset($showtime->$fn))
@@ -120,8 +116,11 @@ class jomres_javascript_cache
 				$file = $showtime->$fn;
 				}
 			
-			$hash = date("YmdHis", filemtime($file[0].$file[1]));  // Get the md5 has of the last file modification time. We will check to see if tempdir/javascript/abcdefg_javascript.js exists, if it does then this file has already been minified. If it doesn't, we'll minify it
+			$already_minified = false;
+			if ( strpos ( $file[1] , ".min." ) )
+				$already_minified = true;
 			
+			$hash = md5(date("YmdHis", filemtime( JOMRESCONFIG_ABSOLUTE_PATH . $file[0].$file[1] )));  // Get the md5 has of the last file modification time. We will check to see if tempdir/javascript/abcdefg_javascript.js exists, if it does then this file has already been minified. If it doesn't, we'll minify it
 			$subdir = 'no_consolidation';
 			foreach ($this->consolidation_array as $key=>$val)
 				{
@@ -132,6 +131,8 @@ class jomres_javascript_cache
 			$path_file = $this->temp_dir_abs. $subdir . JRDS . $hash.$file[1];
 			if ( $subdir ==  'no_consolidation')
 				$this->individual_files_to_serve[]= $hash.$file[1];
+			
+			
 			
 			if (!file_exists( $path_file ))
 				{
@@ -174,22 +175,24 @@ class jomres_javascript_cache
 		foreach ($this->consolidation_array as $key=>$val)
 			{
 			
-			if ($key != 'no_consolidation' )
+			if ($key != 'no_consolidation' && $key != '' )
 				{
 				$md5_of_dir = $this->md5_of_dir($key);
+
 				if (!file_exists( $this->cons_dir_abs.$md5_of_dir."_".$key.".js" ))
 					{
+					
 					$files = scandir_getfiles($this->temp_dir_abs.$key);
 					if ( count ( $files ) > 0  )
 						{
 						$contents = '';
 						foreach ( $files as $file)
 							{
-							$js = file_get_contents ( $file );
+							$js = file_get_contents ( $this->temp_dir_abs.$key.JRDS.$file );
+
 							if ($js == '')
 								{
-								
-								throw new Exception( "Error, Attempted to make " .  $this->cons_dir_abs.$md5_of_dir.".js"  . " consolidation script but source javascript file produced no results. The last file to be included was ".$file );
+								throw new Exception( "Error, Attempted to make " .   $this->cons_dir_abs.$md5_of_dir."_".$key.".js"  . " consolidation script but source javascript file produced no results. The last file to be included was ".$this->temp_dir_abs.$key.$file );
 								}
 							else
 								$contents .= $js;
@@ -234,13 +237,14 @@ class jomres_javascript_cache
 		
 	function md5_of_dir($dir) 
 		{
-		$dircontent = scandir( $this->temp_dir_abs . JRDS . $dir);
+		$dircontent = scandir_getfiles( $this->temp_dir_abs  . $dir. JRDS);
 		$ret='';
 		foreach($dircontent as $filename) 
 			{
 			if ($filename != '.' && $filename != '..') 
 				{
-				$ret.=date("YmdHis", filemtime( $this->temp_dir_abs . JRDS . $dir.$filename)).$filename;
+				//echo  $this->temp_dir_abs  . $dir. JRDS.$filename."<br>";
+				$ret.=date("YmdHis", filemtime( $this->temp_dir_abs  . $dir. JRDS.$filename)).$filename;
 				}
 			}
 		return md5($ret);
