@@ -171,7 +171,7 @@ if ( !strstr( $scriptname, 'install_jomres.php' ) )
 	jomres_cmsspecific_patchJoomlaTemplate(); //copy the management_view.php renamed to jomres.php to the joomla template dir to help with fullscreen mode
 
 // Need to comment this out circa October 2014, or build a comparison function to see if this file needs updating due to filemtime being different.
-if ( this_cms_is_joomla() )
+if ( this_cms_is_joomla() && !strstr( $scriptname, 'install_jomres.php' )  )
 	{
 	jomres_cmsspecific_patchJoomlaTemplate(true);
 	}
