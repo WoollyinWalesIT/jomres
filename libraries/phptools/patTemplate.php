@@ -2654,7 +2654,7 @@ class patTemplate
 
 		$filename = implode ( " ",$files);
 	
-		if ($jrConfig['dumpTemplate'] == "1" && !in_array('mainmenu_options_alternate.html',$files) && !in_array( $filename , $patTemplate_files_already_shown) )
+		if ($jrConfig['dumpTemplate'] == "1" && !in_array('mainmenu_options_alternate.html',$files) && !in_array( $filename , $patTemplate_files_already_shown) && !jomres_cmsspecific_areweinadminarea() )
 			{
 			$no = rand ( 1 , 4 );
 			switch ($no)
