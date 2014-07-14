@@ -61,8 +61,6 @@ class j06000terms
 			$tmpl->addRows( 'property_deets', $property_deets );
 			$tmpl->readTemplatesFromInput( 'terms.html' );
 			$tmpl->displayParsedTemplate();
-
-			if ( $mrConfig[ 'dumpTemplate' ] == "1" && isset( $tmpl ) ) $tmpl->dump();
 			}
 		}
 

@@ -229,7 +229,6 @@ class j01055showroomdetails
 				{
 				showAvailability( $room_uid, "", $propertys_uid, 6, $room_avl_enquiry = true );
 				}
-			if ( $mrConfig[ 'dumpTemplate' ] == "1" ) $tmpl->dump();
 			}
 		}
 

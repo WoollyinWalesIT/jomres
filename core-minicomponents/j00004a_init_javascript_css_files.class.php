@@ -169,6 +169,7 @@ class j00004a_init_javascript_css_files
 				$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/javascript/x-editable/bootstrap-editable/css/", "bootstrap-editable".$tail.".css");
 				}
 			}
+			
 		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "TableTools_JUI.css");
 		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "ColVis.css");
 		

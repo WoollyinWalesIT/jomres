@@ -292,7 +292,6 @@ class j06000show_property_reviews
 				}
 			if ( $show_now ) echo $this->retVals;
 
-
 			}
 		}
 		

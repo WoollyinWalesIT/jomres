@@ -163,9 +163,6 @@ class j00016composite_property_details
 			}
 
 		$tmpl->displayParsedTemplate();
-
-		if ( $jrConfig[ 'dumpTemplate' ] == "1" && isset( $tmpl ) ) 
-			$tmpl->dump();
 		}
 
 	/**
