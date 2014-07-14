@@ -79,10 +79,6 @@ class jomres_css_cache
 
 		foreach ( $css_files as $file )
 			{
-			$contents = file_get_contents( get_showtime("live_site")."/".$file[0].$file[1] );
-
-			if (!$contents || $contents =="")
-				throw new Exception( "Error, tried to read " . get_showtime("live_site")."/".$file[0].$file[1] . " but no data found in file." );
 			$hash = date("YmdHis", filemtime($file[0].$file[1]));  // Get the md5 has of the last file modification time. We will check to see if tempdir/css/abcdefg_css.css exists, if it does then this file has already been minified. If it doesn't, we'll minify it
 			
 			$subdir = 'no_consolidation';
@@ -98,6 +94,10 @@ class jomres_css_cache
 			
 			if (!file_exists( $path_file ))
 				{
+				$contents = file_get_contents( get_showtime("live_site")."/".$file[0].$file[1] );
+				if (!$contents || $contents =="")
+					throw new Exception( "Error, tried to read " . get_showtime("live_site")."/".$file[0].$file[1] . " but no data found in file." );
+				
 				$contents = $this->replace_image_paths($contents , $file );
 				if ($jrConfig['development_production'] != 'development' || $this->force_consolidation_and_compression )
 					{
@@ -125,7 +125,7 @@ class jomres_css_cache
 				$md5_of_dir = $this->md5_of_dir($key);
 				if (!file_exists( $this->cons_dir_abs.$md5_of_dir."_".$key.".css" ))
 					{
-					$files = scandir_getfiles_recursive($this->temp_dir_abs.$key);
+					$files = scandir_getfiles($this->temp_dir_abs.$key);
 					if ( count ( $files ) > 0  )
 						{
 						$contents = '';
@@ -165,10 +165,6 @@ class jomres_css_cache
 			{
 			foreach ($unwrapped_imgs as $image)
 				{
-				if (strpos ("454545_256x240"  , $image ) )
-					{
-					var_dump($file);exit;
-					}
 				$contents = str_replace( $image , get_showtime('live_site')."/".$file[0].$image , $contents);
 				}
 			}
@@ -186,7 +182,7 @@ class jomres_css_cache
 		// Going to tidy up files with similar names, as these will be out of date compared to this new file
 		if ($contents != "")
 			{
-			$files = scandir_getfiles_recursive($path);
+			$files = scandir_getfiles($path);
 			if (count($files)>0)
 				{
 				foreach ( $files as $file )
