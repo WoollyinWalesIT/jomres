@@ -239,7 +239,6 @@ class j01020showtariffs
 				else
 				$this->retVals = $tmpl->getParsedTemplate();
 				}
-			if ( $jrConfig[ 'dumpTemplate' ] == "1" ) $tmpl->dump();
 			}
 		}
 

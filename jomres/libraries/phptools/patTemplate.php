@@ -1163,6 +1163,10 @@ class patTemplate
 	 */
 	function readTemplatesFromInput( $input, $reader = 'Jomres', $options = null, $parseInto = null )
 		{
+		if (!in_array($input,$this->current_template_files))
+			$this->current_template_files[] = $input;
+		
+		//echo $input."<br>";
 		if ( (string) $input === '' )
 			{
 			return patErrorManager::raiseError( PATTEMPLATE_ERROR_NO_INPUT, 'No input to read has been passed.' );
@@ -1383,8 +1387,9 @@ class patTemplate
 					$this->_templates[ $name ][ 'loaded' ] = true;
 					}
 				}
+				
+			
 			}
-
 		return true;
 		}
 
@@ -2591,10 +2596,19 @@ class patTemplate
 	 */
 	function getParsedTemplate( $name = null, $applyFilters = false )
 		{
+/* 		$current_template_files = '';
+		if ( count ($this->current_template_files) > 0)
+			{
+			foreach ($this->current_template_files as $file)
+				{
+				$current_template_files .= $file;
+				}
+			} */
 		if ( is_null( $name ) )
 			{
 			$name = $this->_root;
 			}
+		$files = array_unique($this->current_template_files);
 
 		$name   = strtolower( $name );
 		$result = $this->parseTemplate( $name );
@@ -2606,21 +2620,91 @@ class patTemplate
 
 		if ( $applyFilters === false )
 			{
-			return $this->_templates[ $name ][ 'result' ];
+			return $this->output_template_name_details( $this->_templates[ $name ][ 'result' ], $files );
 			}
 
-		$result = $this->_templates[ $name ][ 'result' ];
-
+		$result = $this->_templates[ $name ][ 'result' ] ;
+		
 		$cnt = count( $this->_outputFilters );
 		for ( $i = 0; $i < $cnt; $i++ )
 			{
 			$result = $this->_outputFilters[ $i ]->apply( $result );
 			}
+
+		$result = $this->output_template_name_details( $result , $files );
+
 		if ( isset( $this->json_output ) ) return json_encode( $this->json_output );
 		else
 		return $result;
 		}
 
+	/**
+	* Vince added to provide funky output
+	**/
+	
+	function output_template_name_details( $output , $files )
+		{
+		global $patTemplate_files_already_shown;
+
+		if (!isset($patTemplate_files_already_shown))
+			$patTemplate_files_already_shown = array();
+		
+		$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig     = $siteConfig->get();
+
+		$filename = implode ( " ",$files);
+	
+		if ($jrConfig['dumpTemplate'] == "1" && !in_array('mainmenu_options_alternate.html',$files) && !in_array( $filename , $patTemplate_files_already_shown) )
+			{
+			$no = rand ( 1 , 4 );
+			switch ($no)
+				{
+				case 1:
+					$alert = 'info';
+					break;
+				case 2:
+					$alert = 'warning';
+					break;
+			case 3:
+					$alert = 'success';
+					break;
+				case 4:
+					$alert = 'danger';
+					break;
+				}
+			$file_output = $this->_options[ 'root' ]['__default'].JRDS.$filename;
+			
+			foreach ( $this->_vars as $key=>$val)
+				{
+				if (count($val['rows'])>0)
+					{
+ 					$variables = '';
+					foreach ( $val['rows'][0] as $tag=>$text)
+						{
+						//if (strpos($tag,"COMMON_") === FALSE)
+						//	{
+							$text = str_replace ( array ( "," , "#" , "\"" , "'") , " " , 	$text);
+							$text = str_replace( "<", "&#60;", $text );
+							$text = str_replace( ">" ,"&#62;", $text );
+							$variables .= "<strong>".$tag."</strong> ";
+						//	}
+						} 
+					}
+				
+				}
+			$id = generateJomresRandomString( 10 );
+			$result = '<div class="alert alert-'.$alert.' "><a class="jomres_bt_tooltip_features" onclick="return false;" href="#" original-title=" <h4> '.$filename.' </h4> '.$variables.' "><strong>'.$file_output.'</strong></a>'.$output.'</div>';
+			$patTemplate_files_already_shown[] = $filename;
+			}
+		else
+			{
+			$result = $output;
+			}
+		
+		return $result;
+		}
+	
+	
 	/**
 	 * displays a parsed Template
 	 *

@@ -213,8 +213,6 @@ class j01025showtariffs
 		if ( $output_now ) $tmpl->displayParsedTemplate();
 		else
 		$this->retVals = $tmpl->getParsedTemplate();
-
-		if ( $mrConfig[ 'dumpTemplate' ] == "1" && $jrConfig[ 'composite_property_details' ] != "1" ) $tmpl->dump();
 		}
 
 	function touch_template_language()

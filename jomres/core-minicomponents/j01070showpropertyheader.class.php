@@ -183,9 +183,6 @@ class j01070showpropertyheader
 			$tmpl->addRows( 'roomtypes', $roomtypes );
 			$tmpl->readTemplatesFromInput( 'property_header.html' );
 			$tmpl->displayParsedTemplate();
-
-			if ( $jrConfig[ 'dumpTemplate' ] == "1" ) 
-				$tmpl->dump();
 			}
 		}
 

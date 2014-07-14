@@ -679,8 +679,6 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		$booking_form = $tmpl->getParsedTemplate();
 		define( "BOOKING_FORM_FOR_PROPERTY_DETAILS", $booking_form );
 		}
-
-	if ( $jrConfig[ 'dumpTemplate' ] == "1" ) $tmpl->dump();
 	}
 
 

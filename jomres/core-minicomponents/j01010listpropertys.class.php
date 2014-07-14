@@ -737,7 +737,6 @@ class j01010listpropertys
 					$tmpl->readTemplatesFromInput( $layout_template );
 					$tmpl->displayParsedTemplate();
 
-					if ( $jrConfig[ 'dumpTemplate' ] == "1" ) $tmpl->dump();
 					}
 				else
 					{
