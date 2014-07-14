@@ -79,7 +79,7 @@ class jomres_css_cache
 
 		foreach ( $css_files as $file )
 			{
-			$hash = date("YmdHis", filemtime($file[0].$file[1]));  // Get the md5 has of the last file modification time. We will check to see if tempdir/css/abcdefg_css.css exists, if it does then this file has already been minified. If it doesn't, we'll minify it
+			$hash = md5(date("YmdHis", filemtime( JOMRESCONFIG_ABSOLUTE_PATH . $file[0].$file[1] )));  // Get the md5 has of the last file modification time. We will check to see if tempdir/css/abcdefg_css.css exists, if it does then this file has already been minified. If it doesn't, we'll minify it
 			
 			$subdir = 'no_consolidation';
 			foreach ($this->consolidation_array as $key=>$val)
@@ -132,7 +132,7 @@ class jomres_css_cache
 						
 						foreach ( $files as $file)
 							{
-							$contents .= file_get_contents ( $file );
+							$contents .= file_get_contents ( $this->temp_dir_abs.$key.JRDS.$file );
 							}
 						if ($contents == '')
 							{
