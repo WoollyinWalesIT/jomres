@@ -949,11 +949,11 @@ class HTML_jomres
 				<td valign="middle">' . $lists[ 'errorChecking' ] . '</td>
 				<td valign="middle">' . jr_gettext( _JOMRES_COM_A_ERRORCHECKING_DESC, '_JOMRES_COM_A_ERRORCHECKING_DESC', false ) . '</td>
 			</tr>
-			<tr valign="middle" class="even">
+			<!--<tr valign="middle" class="even">
 				<td valign="middle">' . jr_gettext( _JOMRES_COM_DUMPTEMPLATEDATA, '_JOMRES_COM_DUMPTEMPLATEDATA', false ) . '</td>
 				<td valign="middle">' . $lists[ 'dumpTemplate' ] . '</td>
 				<td valign="middle">' . jr_gettext( _JOMRES_COM_DUMPTEMPLATEDATA_DESC, '_JOMRES_COM_DUMPTEMPLATEDATA_DESC', false ) . '</td>
-			</tr>
+			</tr>-->
 			<tr valign="middle">
 				<th colspan="3">&nbsp;</th>
 			</tr>
