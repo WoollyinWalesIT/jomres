@@ -114,7 +114,10 @@ class j02990showconfirmation
 
 		$bookingDeets = gettempBookingdata();
 		$tag          = $bookingDeets[ 'tag' ];
-		$property_uid = $bookingDeets[ 'property_uid' ];
+		$property_uid = (int)$bookingDeets[ 'property_uid' ];
+		
+		if ( $property_uid == 0 ) 
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=search" ), '' );
 		
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$current_property_details->gather_data($property_uid);
