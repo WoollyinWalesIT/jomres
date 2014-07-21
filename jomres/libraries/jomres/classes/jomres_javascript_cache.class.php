@@ -48,7 +48,7 @@ class jomres_javascript_cache
 				"jquery.jeditable.js",
 				"bootstrap-editable.min.js",
 				"jquery.jgrowl.js",
-				"bootstrap-tour.js"
+				//"bootstrap-tour.js"
 				);
 /* 			if (! jomres_cmsspecific_areweinadminarea() )
 				{
@@ -71,11 +71,23 @@ class jomres_javascript_cache
 				);  */
 			
 			}
+
+			
 		$this->temp_dir_abs	=  JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'javascript' . JRDS ;
 		$this->cons_dir_abs	=  JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'javascript_consolidated' . JRDS ;
 		$this->temp_dir_rel	=  JOMRES_ROOT_DIRECTORY . '/temp/javascript/';
 		$this->cons_dir_rel	=  JOMRES_ROOT_DIRECTORY . '/temp/javascript_consolidated/';
 		 
+			
+		if ($_REQUEST['task'] == 'rebuildregistry' || isset($_REQUEST['force_js_rebuild']) )
+			{
+			$this->remove_all_temp_files();
+				
+			jr_import('jomres_css_cache');
+			$jomres_css_cache = new jomres_css_cache();
+			$jomres_css_cache->remove_all_temp_files();
+			}
+
 		if ( !is_dir( $this->temp_dir_abs ) )
 			{
 			if ( !@mkdir( $this->temp_dir_abs ) )
