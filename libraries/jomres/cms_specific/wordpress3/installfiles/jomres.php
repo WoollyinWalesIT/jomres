@@ -176,6 +176,8 @@ if ( ! class_exists( 'wp_jomres' ) )
 					{
 					if (strpos($js['1'], 'bootstrap-editable'))
 						wp_register_script($js['0'], $js['1'], array("bootstrap"), $js['2']);
+					elseif (strpos($js['1'], 'bootstrap-tour'))
+						wp_register_script($js['0'], $js['1'], array("bootstrap"), $js['2']);
 					else
 						wp_register_script($js['0'], $js['1'], array("jquery"), $js['2']);
 					wp_enqueue_script($js['0']);
