@@ -202,7 +202,7 @@ function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $inc
 	switch ( $type )
 		{
 		case "javascript":
-			if ($filename == get_showtime("jquery.core.js") )
+			if ( strpos($filename, 'jquery-1.8.2.js') || strpos($filename, 'jquery-2.0.3.js') )
 				$wp_jomres->js[] = array('jquery', $js, $version);
 			else
 				$wp_jomres->js[] = array($filename, $js, $version);
