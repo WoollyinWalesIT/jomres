@@ -26,18 +26,16 @@ class j16000rebuildregistry
 
 			return;
 			}
+			
+		if ( this_cms_is_joomla() && !strstr( $scriptname, 'install_jomres.php' )  )
+			{
+			jomres_cmsspecific_patchJoomlaTemplate(true);
+			}
+
 		jr_import( 'minicomponent_registry' );
 		$registry = new minicomponent_registry( true );
 		$registry->regenerate_registry();
 
-		jr_import('jomres_javascript_cache');
-		$jomres_javascript_cache = new jomres_javascript_cache();
-		$jomres_javascript_cache->remove_all_temp_files();
-			
-		jr_import('jomres_css_cache');
-		$jomres_css_cache = new jomres_css_cache();
-		$jomres_css_cache->remove_all_temp_files();
-	
 		if ( !using_bootstrap() )
 			{
 			if ( $registry->error_detected ) echo jr_gettext( '_JOMRES_REGISTRYREBUILD_FAILURE', _JOMRES_REGISTRYREBUILD_FAILURE,false );
