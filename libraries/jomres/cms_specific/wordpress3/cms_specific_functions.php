@@ -184,8 +184,10 @@ function jomres_cmsspecific_getcurrentusers_id()
 function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $includeVersion = true )
 	{
 	if ( $filename == "" ) return;
-	
+	if (!class_exists("wp_jomres"))
+		return;
 	$wp_jomres = wp_jomres::getInstance();
+
 	
 	$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig     = $siteConfig->get();
