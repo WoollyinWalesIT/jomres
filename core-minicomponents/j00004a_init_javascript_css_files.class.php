@@ -148,28 +148,7 @@ class j00004a_init_javascript_css_files
 		
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.tipsy.js");
 		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/","tipsy.css");
-
-		if ( !using_bootstrap() )
-			{
-			if ( $thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea() )
-				{
-				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/x-editable/jqueryui-editable/js/", "jqueryui-editable.js");
-				$css_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/x-editable/jqueryui-editable/css/","jqueryui-editable.css");
-				}
-			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.bt.js");
-			}
-		else
-			{
-			if ( $thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea() )
-				{
-				$tail = "";
-				if (jomres_bootstrap_version() == "3")
-					$tail = "_bs3";
-				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/x-editable/bootstrap-editable/js/","bootstrap-editable".$tail.".min.js");
-				$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/javascript/x-editable/bootstrap-editable/css/", "bootstrap-editable".$tail.".css");
-				}
-			}
-			
+		
 		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "TableTools_JUI.css");
 		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "ColVis.css");
 		
@@ -208,7 +187,29 @@ class j00004a_init_javascript_css_files
 			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.cookee.for_tabs.js");
 			}
 
-
+		
+		
+		if ( !using_bootstrap() )
+			{
+			if ( $thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea() )
+				{
+				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/x-editable/jqueryui-editable/js/", "jqueryui-editable.js");
+				$css_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/x-editable/jqueryui-editable/css/","jqueryui-editable.css");
+				}
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.bt.js");
+			}
+		else
+			{
+			if ( $thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea() )
+				{
+				$tail = "";
+				if (jomres_bootstrap_version() == "3")
+					$tail = "_bs3";
+				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/x-editable/bootstrap-editable/js/","bootstrap-editable".$tail.".min.js");
+				$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/javascript/x-editable/bootstrap-editable/css/", "bootstrap-editable".$tail.".css");
+				}
+			}
+		
 		if (get_showtime ( "task" ) == "media_centre" || $_REQUEST["task"] == "media_centre" )
 			{
 			$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/",  "jquery.fileupload-ui.css");
