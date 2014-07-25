@@ -45,8 +45,8 @@ class jomres_javascript_cache
 				"jquery.validate.js",
 				"jquery.ui.potato.menu.js",
 				"list_properties.js",
-				"jquery.jeditable.js",
-				"bootstrap-editable.min.js",
+				//"jquery.jeditable.js",
+				//"bootstrap-editable.min.js",
 				"jquery.jgrowl.js",
 				//"bootstrap-tour.js"
 				);
