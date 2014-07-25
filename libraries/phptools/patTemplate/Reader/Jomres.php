@@ -22,49 +22,96 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 
 	function readTemplates( $templatename )
 		{
-		$custom_paths = get_showtime( 'custom_paths' );
-		if ( array_key_exists( $templatename, $custom_paths ) )
+		$override_template = false;
+		if ( !isset( $_REQUEST[ 'nocustomtemplate' ] ) )
+			$override_template = $this->get_joomla_template_override( $templatename);
+		
+		if ( !$override_template )
 			{
-			$default_root = $custom_paths[ $templatename ];
-			$content      = file_get_contents( $default_root . JRDS . $templatename );
-			}
-		else
-			{
-			$default_root     = $this->_options[ 'root' ][ '__default' ];
-			$custom_templates = jomres_singleton_abstract::getInstance( 'jomres_custom_template_handler' );
-			if ( $templatename != "srch.html" && $templatename != "index.html" )
+			$custom_paths = get_showtime( 'custom_paths' );
+			if ( array_key_exists( $templatename, $custom_paths ) )
 				{
-				$property_uid = (int) get_showtime( 'property_uid' );
-				//echo $templatename." - ".$property_uid."<br/>";
-				if ( $property_uid > 0 )
+				$default_root = $custom_paths[ $templatename ];
+				$content      = file_get_contents( $default_root . JRDS . $templatename );
+				}
+			else
+				{
+				$default_root     = $this->_options[ 'root' ][ '__default' ];
+				$custom_templates = jomres_singleton_abstract::getInstance( 'jomres_custom_template_handler' );
+				if ( $templatename != "srch.html" && $templatename != "index.html" )
 					{
-					$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-					//$current_property_details->property_uid = $property_uid;
-					$current_property_details->gather_data( $property_uid );
-					$property_type = $current_property_details->ptype_id;
-					}
-				else
-					{
-					$property_type = 0;
-					}
-				if ( file_exists( $custom_templates->default_template_files_folder . JRDS . $templatename ) && !isset( $_REQUEST[ 'nocustomtemplate' ] ) ) // One security flag to ensure that the template's valid, and one to allow us to disable customised templates via the url if desired.
-					{
-					$content = $custom_templates->getTemplateData( $templatename, $property_type );
+					$property_uid = (int) get_showtime( 'property_uid' );
+					//echo $templatename." - ".$property_uid."<br/>";
+					if ( $property_uid > 0 )
+						{
+						$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+						//$current_property_details->property_uid = $property_uid;
+						$current_property_details->gather_data( $property_uid );
+						$property_type = $current_property_details->ptype_id;
+						}
+					else
+						{
+						$property_type = 0;
+						}
+					if ( file_exists( $custom_templates->default_template_files_folder . JRDS . $templatename ) && !isset( $_REQUEST[ 'nocustomtemplate' ] ) ) // One security flag to ensure that the template's valid, and one to allow us to disable customised templates via the url if desired.
+						{
+						$content = $custom_templates->getTemplateData( $templatename, $property_type );
+						}
+					else
+						{
+						$content = file_get_contents( $default_root . JRDS . $templatename );
+						}
 					}
 				else
 					{
 					$content = file_get_contents( $default_root . JRDS . $templatename );
 					}
 				}
-			else
-				{
-				$content = file_get_contents( $default_root . JRDS . $templatename );
-				}
+			}
+		else
+			{
+			$content = $override_template;
 			}
 		$templates = $this->parseString( $content );
 
 		return $templates;
 		}
+		
+	function get_joomla_template_override($jomres_template_name)
+		{
+		if (this_cms_is_joomla())
+			{
+			$app = JFactory::getApplication();
+			$joomla_templateName = $app->getTemplate('template')->template;
+			if (jomres_cmsspecific_areweinadminarea())
+				{
+				$override_path = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ADMINISTRATORDIRECTORY . JRDS . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'com_jomres';
+				}
+			else
+				{
+				$override_path = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'com_jomres';
+				}
+			
+			if (is_dir($override_path))
+				{
+				if (is_file( $override_path . JRDS . $jomres_template_name ) )
+					{
+					return file_get_contents( $override_path . JRDS . $jomres_template_name );
+					}
+				else
+					{
+					return false;
+					}
+				}
+			else
+				{
+				return false;
+				}
+			}
+			
+		return false;
+		}
+	
 	}
 
 ?>
