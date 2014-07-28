@@ -353,6 +353,16 @@ class HTML_jomres
 				<td valign="middle">' . $lists[ 'show_powered_by' ] . '</td>
 				<td valign="middle"></td>
 			</tr>
+			<tr valign="middle" class="odd">
+				<td valign="middle">' . jr_gettext( _JOMRES_JAVASCRIPT_CACHING_TITLE, '_JOMRES_JAVASCRIPT_CACHING_TITLE', false ) . '</td>
+				<td valign="middle">' . $lists[ 'javascript_caching_enabled' ] . '</td>
+				<td valign="middle"></td>
+			</tr>
+			<tr valign="middle" class="even">
+				<td valign="middle">' . jr_gettext( _JOMRES_CSS_CACHING_TITLE, '_JOMRES_CSS_CACHING_TITLE', false ) . '</td>
+				<td valign="middle">' . $lists[ 'css_caching_enabled' ] . '</td>
+				<td valign="middle"></td>
+			</tr>
 			' );
 			$contentPanel->setcontent( '
 		<tr valign="middle">
