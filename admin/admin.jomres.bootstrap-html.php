@@ -362,6 +362,16 @@ class HTML_jomres
 				<td>' . $lists[ 'show_powered_by' ] . '</td>
 				<td></td>
 			</tr>
+			<tr>
+				<td>' . jr_gettext( _JOMRES_JAVASCRIPT_CACHING_TITLE, '_JOMRES_JAVASCRIPT_CACHING_TITLE', false ) . '</td>
+				<td>' . $lists[ 'javascript_caching_enabled' ] . '</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>' . jr_gettext( _JOMRES_CSS_CACHING_TITLE, '_JOMRES_CSS_CACHING_TITLE', false ) . '</td>
+				<td>' . $lists[ 'css_caching_enabled' ] . '</td>
+				<td></td>
+			</tr>
 			' );
 			$contentPanel->setcontent( '
 		</tbody>
