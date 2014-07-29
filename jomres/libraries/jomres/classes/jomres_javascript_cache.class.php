@@ -23,7 +23,7 @@ class jomres_javascript_cache
 		$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig          = $siteConfig->get();
 		
-		$this->force_consolidation_and_compression = false;
+		$this->force_consolidation_and_compression = true;
 		
 		// If a found javascript file isn't in this array then this class will not attempt to consolidate it
 		if ($jrConfig['development_production'] != 'development' || $this->force_consolidation_and_compression)
