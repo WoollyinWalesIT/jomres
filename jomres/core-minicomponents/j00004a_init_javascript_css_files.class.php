@@ -255,7 +255,7 @@ class j00004a_init_javascript_css_files
 		
 		$misc_url_defs = '
 			var live_site_ajax = "'.JOMRES_SITEPAGE_URL_AJAX.'";
-			var compare_url = "'.jomresURL( JOMRES_SITEPAGE_URL . "&task=compare" ).'";
+			var compare_url = "'.JOMRES_SITEPAGE_URL_NOSEF . "&task=compare" .'";
 			var path_to_jomres_dir = "'.get_showtime( 'live_site' ).'";
 			var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX . '&task=module_popup&nofollowtmpl=1&id=";
 			var jomres_template_version = "'.find_plugin_template_directory().'";
