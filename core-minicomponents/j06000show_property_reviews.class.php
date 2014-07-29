@@ -264,7 +264,18 @@ class j06000show_property_reviews
 					$r[ 'THUMB_DOWN' ] = '<a href ="javascript:void(0);" title="' . $r[ '_JOMRES_REVIEWS_IDISAGREE' ] . '"  onClick="confirm_review(' . $review[ 'rating_id' ] . ',0);" class="btn"><img src="' . $thumb_down . '" width="14" height="14"/> ' . $r[ 'NUMBER_DISAGREE' ] . '</a>';
 					//}
 
+
 					$r[ 'RATING_DATE' ] = $review[ 'rating_date' ];
+					
+					// Rating Schema
+					
+					$r[ 'RATING_DATE_META' ] = date("Y-m-d",strtotime($review[ 'rating_date' ]));
+					$r[ 'RATING_SCHEMA_WORSTRATING' ] = min($review_details[ $review[ 'rating_id' ] ]);
+					$r[ 'RATING_SCHEMA_BESTRATING' ] = max($review_details[ $review[ 'rating_id' ] ]);
+					$sum =  array_sum($review_details[ $review[ 'rating_id' ] ]);
+					$count = count($review_details[ $review[ 'rating_id' ] ]);
+					$r[ 'RATING_SCHEMA_RATINGVALUE' ] = $sum/$count;
+					
 					$rows[ ]            = $r;
 					}
 
