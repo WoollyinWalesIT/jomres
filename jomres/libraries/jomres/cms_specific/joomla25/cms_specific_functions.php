@@ -467,6 +467,15 @@ function jomres_cmsspecific_patchJoomlaTemplate($force = false)
 				echo '<p class="alert alert-error">Error, unable to copy ' . $tmplcomponent_source .' to ' . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . 'templates' . JRDS . $templateName . JRDS . $tmplcomponent . '.php automatically, please do this manually through FTP</p><br/>';
 			return true;
 			}
+		elseif (file_exists(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "templates" . JRDS . $templateName . JRDS . $tmplcomponent . '.php'))
+			{
+			if (filemtime($tmplcomponent_source) > filemtime(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "templates" . JRDS . $templateName . JRDS . $tmplcomponent . '.php'))
+				{
+				if ( !copy( $tmplcomponent_source, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "templates" . JRDS . $templateName . JRDS . $tmplcomponent . '.php' ) ) 
+					echo '<p class="alert alert-error">Error, unable to copy ' . $tmplcomponent_source .' to ' . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . 'templates' . JRDS . $templateName . JRDS . $tmplcomponent . '.php automatically, please do this manually through FTP</p><br/>';
+				return true;
+				}
+			}
 		}
 	else
 		{
@@ -475,6 +484,15 @@ function jomres_cmsspecific_patchJoomlaTemplate($force = false)
 			if ( !copy( $tmplcomponent_source, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "templates" . JRDS . $templateName . JRDS . $tmplcomponent . '.php' ) ) 
 				echo '<p class="alert alert-error">Error, unable to copy ' . $tmplcomponent_source .' to ' . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'templates' . JRDS . $templateName . JRDS . $tmplcomponent . '.php automatically, please do this manually through FTP</p><br/>';
 			return true;
+			}
+		elseif (file_exists(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "templates" . JRDS . $templateName . JRDS . $tmplcomponent . '.php'))
+			{
+			if (filemtime($tmplcomponent_source) > filemtime(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "templates" . JRDS . $templateName . JRDS . $tmplcomponent . '.php'))
+				{
+				if ( !copy( $tmplcomponent_source, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "templates" . JRDS . $templateName . JRDS . $tmplcomponent . '.php' ) ) 
+					echo '<p class="alert alert-error">Error, unable to copy ' . $tmplcomponent_source .' to ' . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'templates' . JRDS . $templateName . JRDS . $tmplcomponent . '.php automatically, please do this manually through FTP</p><br/>';
+				return true;
+				}
 			}
 		}
 	return false;
