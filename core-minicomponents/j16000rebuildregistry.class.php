@@ -26,11 +26,6 @@ class j16000rebuildregistry
 
 			return;
 			}
-			
-		if ( this_cms_is_joomla() && !strstr( $scriptname, 'install_jomres.php' )  )
-			{
-			jomres_cmsspecific_patchJoomlaTemplate(true);
-			}
 
 		jr_import( 'minicomponent_registry' );
 		$registry = new minicomponent_registry( true );
