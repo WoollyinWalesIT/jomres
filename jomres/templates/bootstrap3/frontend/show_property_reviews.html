@@ -56,14 +56,19 @@
 	</div>
 
 	<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="review_title">
+	<div itemprop="review" itemscope itemtype="http://schema.org/Review">
 		<div class="page-header">
 			<div class="row">
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"><h3>{REVIEW_TITLE}</h3></div>
+				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" itemprop="name" ><h3>{REVIEW_TITLE}</h3></div>
 				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" align="right">{RATING_STARS}</div>
 			</div>
-			<div class="small">{_JOMRES_REVIEWS_DATE} {RATING_DATE} {_JOMRES_REVIEWS_REVIEWED_BY}{USERNAME}</div>
+			<meta itemprop="datePublished" content="{RATING_DATE_META}">
+			<div class="small">{_JOMRES_REVIEWS_DATE} {RATING_DATE} {_JOMRES_REVIEWS_REVIEWED_BY}<span itemprop="author">{USERNAME}</span></div>
 		</div>
-		<div class="row">
+		<div class="row"  itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+			<meta itemprop="bestRating" content = "{RATING_SCHEMA_BESTRATING}">
+			<meta itemprop="worstRating"  content = "{RATING_SCHEMA_WORSTRATING}">
+			<meta itemprop="ratingValue" content = "{RATING_SCHEMA_RATINGVALUE}">
 			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 well">
 				<div class="row">
 					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">{_JOMRES_REVIEWS_RATING_1}</div>
@@ -119,7 +124,7 @@
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 				<small><cite title="{USERNAME}">{_JOMRES_REVIEWS_REVIEWBODY_SAID}</cite></small>
 				<blockquote>
-					<p>
+					<p itemprop="description">
 						{REVIEW_DESCRIPTION}
 					</p>
 				</blockquote>
@@ -147,6 +152,7 @@
 		<p>&nbsp;</p>
 		<!--<div>{NUMBER_AGREE} {_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW}&nbsp;</div>
 		<div>{NUMBER_DISAGREE} {_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW}&nbsp;</div>-->
+	</div>
 	</patTemplate:tmpl>
 	<div>{_JOMRES_REVIEWS_ADD_REVIEW}</div>
 </patTemplate:tmpl>
