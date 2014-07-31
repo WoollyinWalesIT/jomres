@@ -48,7 +48,7 @@ class j00021colourscheme
 			}
 		else
 			{
-			if (jomres_bootstrap_version() == "2")
+			if (jomres_bootstrap_version() == "2" || jomres_cmsspecific_areweinadminarea() )
 				{
 				$css_file = "jomrescss_bootstrap.css";
 				}
