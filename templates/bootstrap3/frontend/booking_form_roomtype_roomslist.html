@@ -1,28 +1,28 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <div class="muted hidden-phone">
 	<div class="row">
-		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">{HROOM_TYPE_TEXT}</div>
-		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{HGUESTPER_ROOM}</div>
-		<!--<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{HGUESTPER_BOOKING}</div>-->
-		<!--<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{HTARIFF_NAME_TEXT}</div>-->
-		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{HRATE_TEXT}</div>
-		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" align="right">{HNUMBEROFROOMS}</div>
+		<div class="col-md-4">{HROOM_TYPE_TEXT}</div>
+		<div class="col-md-3">{HGUESTPER_ROOM}</div>
+		<!--<div class="col-md-3">{HGUESTPER_BOOKING}</div>-->
+		<!--<div class="col-md-3">{HTARIFF_NAME_TEXT}</div>-->
+		<div class="col-md-3">{HRATE_TEXT}</div>
+		<div class="col-md-2" align="right">{HNUMBEROFROOMS}</div>
 	</div>
 </div>
 <patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="room_type_text">
 <div class="well well-small">
 	<div class="row hidden-phone">
-		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+		<div class="col-md-4">
 			<h4>{ROOM_TYPE_TEXT}</h4>
 			<p>
 				{TARIFF_NAME_TEXT}<br />
 				<span class="label label-warning">{NUMBER_OF_ROOMS_PRE} {NUMBER_OF_ROOMS} {NUMBER_OF_ROOMS_POST}</span>
 			</p>
 		</div>
-		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><p>{GUESTPER_ROOM}</p></div>
-		<!--<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{HGUESTPER_BOOKING}</div>-->
-		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><p class="big-price">{RATE_TEXT}</p></div>
-		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" align="right"><p>{NUMBEROFROOMS}</p></div>
+		<div class="col-md-3"><p>{GUESTPER_ROOM}</p></div>
+		<!--<div class="col-md-3">{HGUESTPER_BOOKING}</div>-->
+		<div class="col-md-3"><p class="big-price">{RATE_TEXT}</p></div>
+		<div class="col-md-2" align="right"><p>{NUMBEROFROOMS}</p></div>
 	</div>
 	<div class="hidden-desktop hidden-tablet">
 		<p>{NUMBEROFROOMS} {ROOM_TYPE_TEXT} - {RATE_TEXT}</p>
