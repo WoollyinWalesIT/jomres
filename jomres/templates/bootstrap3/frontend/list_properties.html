@@ -8,10 +8,10 @@
 			<div class="panel {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
 				<div class="panel-heading">
 					<div class="row">
-						<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+						<div class="col-md-10">
 							<h3 class="panel-title"><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a></h3> 
 						</div>
-						<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						<div class="col-md-2">
 							<div class="jomres-compare hidden-xs " align="right">
 								<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/>  <i class="glyphicon glyphicon-question-sign" rel="tooltip" title="{_JOMRES_COMPARE}" > </i>
 							</div>
@@ -20,13 +20,13 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 property-pic-wrapper">
+						<div class="col-md-2 property-pic-wrapper">
 							<a href="#module_{RANDOM_IDENTIFIER}_popup" class="thumbnail" data-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}">
 								<img src="{IMAGEMEDIUM}" class="img-rounded img-responsive" alt="{PROPERTYNAME}"/>
 								{OVERLAY_SNIPPET}
 							</a>
 						</div>
-						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="col-md-4">
 							<p><span class="label label-default">{PROPERTY_TYPE}</span> <span class="small">{STARS}</span> <em>{SUPERIOR}</em>
 							</p>
 		
@@ -36,11 +36,11 @@
 		
 							<p class="jomres_message">{LASTMINUTE}</p>
 						</div>
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+						<div class="col-md-3">
 							{REVIEWS_SNIPPET}
 						</div>
 						
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+						<div class="col-md-3">
 							<div class="well align-center">
 								{PRICE_PRE_TEXT}
 								<span class="big-price hidden-xs">{PRICE_PRICE}</span>
@@ -53,11 +53,11 @@
 					</div>
 
 					<div id="effect{UID}" class="hide row">
-						<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 ">
+						<div class="col-md-2 ">
 							<div><strong>{_JOMRES_AGENT}</strong></div>
 							<div>{AGENT_LINK}</div>
 						</div>
-						<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 ">
+						<div class="col-md-5 ">
 							<div><strong>{_JOMRES_FRONT_ROOMTYPES}</strong></div>
 							<div>{ROOMTYPES}</div>
 							<div style="clear:both;"></div>
@@ -65,7 +65,7 @@
 							<div>{FEATURELIST}</div>
 							<div style="clear:both;"></div>
 						</div>
-						<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 ">
+						<div class="col-md-5 ">
 							<div>&nbsp;</div>
 							<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
 						</div>
@@ -76,8 +76,8 @@
 				</div>
 					<div class="panel-footer">
 						<div class="row">
-							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 hidden-phone"></div>
-							<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+							<div class="col-md-2 hidden-phone"></div>
+							<div class="col-md-10">
 								<div class="btn-group">
 									<a href="{LINK}" class="btn btn-primary">{BOOKTHIS_TEXT}</a>
 									<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="btn  btn-default hidden-xs">{SHORTLIST}</a>

@@ -1,19 +1,19 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <div class="muted">
 	<div class="row">
-		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"> </div>
-		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">{HRESOURCE}</div>
-		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{HRATEPERNIGHT}</div>
-		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{HBOOKNOW}</div>
+		<div class="col-md-2"> </div>
+		<div class="col-md-4">{HRESOURCE}</div>
+		<div class="col-md-3">{HRATEPERNIGHT}</div>
+		<div class="col-md-3">{HBOOKNOW}</div>
 	</div>
 </div>
 <patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="roomtype">
 <div class="well well-small">
 	<div class="row">
-		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+		<div class="col-md-2">
 			<a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal" class="thumbnail"><img src="{ROOM_IMAGE}" alt="room image" class="img-responsive" /></a>
 		</div>
-		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+		<div class="col-md-4">
 			<h4 class=""><a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal">{ROOMTYPE}</a></h4>
 			<p>
 				{HEADER_MAXPEOPLE}: {MAXPEOPLE_INROOM}<br />
@@ -22,10 +22,10 @@
 				<a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal" class="hidden-phone hidden-tablet">{HMOREINFO}...</a>
 			</p>
 		</div>
-		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+		<div class="col-md-3">
 			<p><span class="big-price">{FORMATTED_PRICE}</span></p>
 		</div>
-		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" align="right">
+		<div class="col-md-3" align="right">
 			<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn {BUTTON_CLASS}" title="{CAPTION}"><i class="{ICON} icon-white"></i> {CAPTION}</a></div>
 		</div>
 	</div>
@@ -40,10 +40,10 @@
 			</div>
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+					<div class="col-md-5">
 						<div class="thumbnail"><img src="{ROOM_IMAGE_MEDIUM}" alt="room image" class="img-responsive"/></div>
 					</div>
-					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+					<div class="col-md-7">
 						<h4 class="page-header">{HROOM_DETAILS}</h4>
 						<p>
 							<!--<img src="{ROOM_TYPE_IMAGE}" alt="room type image"/><br />-->
@@ -59,12 +59,12 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" align="center">
+					<div class="col-md-5" align="center">
 						<div class="well">
 							<p>{HRATEPERNIGHT}<span class="big-price">{FORMATTED_PRICE}</span></p>
 						</div>
 					</div>
-					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+					<div class="col-md-7">
 						<h4 class="page-header">{HTARIFF_DETAILS}</h4>
 						<p>
 							{HTITLE}: {TITLE}<br />
