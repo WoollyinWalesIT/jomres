@@ -1,3 +1,31 @@
+<h3>Jomres 8.1.8 31/07/2014</h3>
+
+<span class="label label-success">Feature</span> Refactored javascript and css file handling. Older method was growing to become clumsy, new process automatically creates consolidation scripts (where as many .js files as is practical are presented as one file) and .js and .css files are automatically minified. All new .js and .css files can be supplied un-minified, if the file is ever modifed the served, minified and/or consolidated version of that file is automatically updated.
+<span class="label label-success">Feature</span> Updated dump template vars functionality (Site Configuration -> Debugging). Instead of using older patTemplate dump function we now output the name of the individual template and on hover the variables available to the template are shown. It's not pretty, but it makes it very easy for site integrators to identify Jomres template files that they may wish to modify.
+
+<span class="label label-warning">Change</span> Improved price overlay, added ability to switch it on and off, changed the output a little to use new strings and calculations based on how prices are stored.
+<span class="label label-warning">Change</span> Improved new functionality related to finding the number of days in the property list search results.
+<span class="label label-warning">Change</span> Added a trap to capture what looks like Bots attempting to access the booking form. As the bots can't use the booking engine they're going to the confirmation page without the property uid being set, so we'll redirect these back to the default Jomres page.
+<span class="label label-warning">Change</span> Added changes so that custom fields are viewable in show confirmation.
+<span class="label label-warning">Change</span> Reworked how the fullpage jomres.php file copying is performed so that it's only done when needed.
+
+<span class="label label-important label-danger">Fix</span> Changed how some urls are using in the booking form as they're better "built" and less likely to cause odd redirection behaviour on certain systems.
+<span class="label label-important label-danger">Fix</span> Fixed a z-index issue in the dashboard calendar.
+<span class="label label-important label-danger">Fix</span> Fixed a broken link to the ajax animation when live scrolling.
+
+<span class="label label-info">Wordpress</span> Wordpress : Changed how javascript is queued in wp
+<span class="label label-info">Wordpress</span> Changed how WP registers the bootstrap tour script so that it doesn't cause .js errors.
+<span class="label label-info">Wordpress</span> Fixed a path in management view to the logo
+<span class="label label-info">Wordpress</span> Added a check for the wp_jomres class in a function to prevent it from being run if we're outside a Jomres page.
+<span class="label label-info">Wordpress</span> Updated the getting started notes to be a bit more relevant to WP users.
+
+<span class="label label-info">Joomla</span> Modified the template reader script to allow Joomla overrides-esque functionality. 
+<pre>	Put templates from /jomres/templates/xxxx/frontend and /jomres/templates/xxxx/backend into /templates/templatename/html/com_jomres or /jomres/templates/xxx/admin into /administrator/templates/templatename/html/com_jomres to override the core Jomres templates.</pre>
+<pre>	Existing template editing functionality is retained, however a file placed into a com_jomres directory will override a customisation created using the template editing feature. If there is no file in com_jomres then existing customisations will still be used.</pre>
+<pre>	Advantage : People who're familiar with Joomla template overrides can use their favourite functionality still, however</pre>
+<pre>	Disadvantage : you cannot have different templates for different property types.</pre>
+
+
 <h3>Jomres 8.1.7 13/06/2014</h3>
 
 <span class="label label-success">Feature</span> Added the calendar to the module popup contents.
