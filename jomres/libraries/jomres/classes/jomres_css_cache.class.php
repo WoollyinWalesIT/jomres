@@ -94,9 +94,9 @@ class jomres_css_cache
 			
 			if (!file_exists( $path_file ))
 				{
-				$contents = file_get_contents( get_showtime("live_site")."/".$file[0].$file[1] );
+				$contents = file_get_contents( JOMRESCONFIG_ABSOLUTE_PATH .  $file[0].$file[1] );
 				if (!$contents || $contents =="")
-					throw new Exception( "Error, tried to read " . get_showtime("live_site")."/".$file[0].$file[1] . " but no data found in file." );
+					throw new Exception( "Error, tried to read " . JOMRESCONFIG_ABSOLUTE_PATH .  $file[0].$file[1] . " but no data found in file." );
 				
 				$contents = $this->replace_image_paths($contents , $file );
 				if ($jrConfig['development_production'] != 'development' || $this->force_consolidation_and_compression )
