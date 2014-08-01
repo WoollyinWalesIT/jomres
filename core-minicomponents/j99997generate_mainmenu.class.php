@@ -59,11 +59,8 @@ class j99997generate_mainmenu
 				foreach ( $bits as $bobs )
 					{
 					$bob = explode( "=", $bobs );
-					if ( $bob[ 0 ] == "task" )
-						{
-						$old_task = '&attempted_task=' . $bob[ 1 ];
-						$id = $bob[ 1 ];
-						}
+					$old_task = '&attempted_task=' . $bob[ 1 ];
+					$id = $bob[ 1 ];
 					}
 
 				$r               = $val;
