@@ -20,10 +20,10 @@
 <span class="label label-info">Wordpress</span> Updated the getting started notes to be a bit more relevant to WP users.
 
 <span class="label label-info">Joomla</span> Modified the template reader script to allow Joomla overrides-esque functionality. 
-<pre>	Put templates from /jomres/templates/xxxx/frontend and /jomres/templates/xxxx/backend into /templates/templatename/html/com_jomres or /jomres/templates/xxx/admin into /administrator/templates/templatename/html/com_jomres to override the core Jomres templates.</pre>
-<pre>	Existing template editing functionality is retained, however a file placed into a com_jomres directory will override a customisation created using the template editing feature. If there is no file in com_jomres then existing customisations will still be used.</pre>
-<pre>	Advantage : People who're familiar with Joomla template overrides can use their favourite functionality still, however</pre>
-<pre>	Disadvantage : you cannot have different templates for different property types.</pre>
+Put templates from /jomres/templates/xxxx/frontend and /jomres/templates/xxxx/backend into /templates/templatename/html/com_jomres or /jomres/templates/xxx/admin into /administrator/templates/templatename/html/com_jomres to override the core Jomres templates.
+Existing template editing functionality is retained, however a file placed into a com_jomres directory will override a customisation created using the template editing feature. If there is no file in com_jomres then existing customisations will still be used.
+Advantage : People who're familiar with Joomla template overrides can use their favourite functionality still, however
+Disadvantage : you cannot have different templates for different property types.
 
 
 <h3>Jomres 8.1.7 13/06/2014</h3>
