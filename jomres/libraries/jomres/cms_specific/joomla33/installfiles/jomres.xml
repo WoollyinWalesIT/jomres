@@ -7,7 +7,7 @@
     <license>GNU General Public License version 2; see gpl.txt</license>
     <authorEmail>sales@jomres.net</authorEmail>
     <authorUrl>www.jomres.net</authorUrl>
-    <version>7</version>
+    <version>8</version>
     <description>Jomres</description>
 
     <files folder="site">
