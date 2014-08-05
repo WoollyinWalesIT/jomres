@@ -763,7 +763,7 @@ class patTemplate
 	function addRows( $template, $rows, $prefix = '' )
 		{
 		$common = $this->add_common_jomres_strings();
-		if ( count( $rows > 0 ) )
+		if ( count($rows) > 0 )
 			{
 			$new_rows = array ();
 			foreach ( $rows as $row )
