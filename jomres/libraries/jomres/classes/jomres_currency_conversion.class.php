@@ -44,7 +44,7 @@ class jomres_currency_conversion
 		return $foreign_sum;
 		}
 
-	function get_exchange_rate_dropdown( $base = '' )
+	function get_exchange_rate_dropdown( $base = '' , $bootstrap_template = false )
 		{
 		if ( $base == '' ) $base = 'GBP';
 		if ( !$this->check_currency_code_valid( $base ) ) $base = 'GBP';
@@ -52,16 +52,33 @@ class jomres_currency_conversion
 		jr_import( 'currency_codes' );
 		$currency_code_class = new currency_codes();
 		$fmts                = array ();
+		$rows = array();
 		foreach ( $this->rates[ "GBP" ] as $currency_code => $rate )
 			{
 			if ( $this->check_currency_code_valid( $currency_code ) )
 				{
 				$text    = $currency_code_class->codes[ $currency_code ];
 				$fmts[ ] = jomresHTML::makeOption( $currency_code, $text );
+				$rows[$currency_code]= array("CURRENCY_CODE"=>$currency_code , "TEXT" =>$text );
 				}
 			}
+
 		$javascript = 'onChange="switch_exchange_rate(\'' . JOMRES_SITEPAGE_URL_AJAX . '\',this.value);"';
-		$dropdown   = jomresHTML::selectList( $fmts, 'user_current_currency_code', 'class="inputbox" size="1" ' . $javascript, 'value', 'text', $base );
+		if ($bootstrap_template && using_bootstrap() )
+			{
+			$output = array();
+			$pageoutput = array();
+			$output['FIRST'] = $rows[$base]["TEXT"];
+			$pageoutput[]=$output;
+			$tmpl = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			$tmpl->readTemplatesFromInput( 'currency_dropdown.html' );
+			$tmpl->addRows( 'pageoutput', $pageoutput );
+			$tmpl->addRows( 'rows', $rows );
+			$dropdown = $tmpl->getParsedTemplate();
+			}
+		else
+			$dropdown   = jomresHTML::selectList( $fmts, 'user_current_currency_code', 'class="inputbox" size="1" ' . $javascript, 'value', 'text', $base );
 
 		return $dropdown;
 		}
