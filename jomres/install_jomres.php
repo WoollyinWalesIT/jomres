@@ -3393,7 +3393,7 @@ function insertSampleData()
 			`ptype_id`
 			 )
 			VALUES
-			( '1', 'Fawlty Towers', 'Asheldon Rd', 'Torquay',
+			( '1', 'Hotel Valle', 'Asheldon Rd', 'Torquay',
 			'Devon','GB', 'TQ1 2QS', '01000 123456', '01000 654321', '$jomresConfig_mailfrom', '3,4,5',
 			'http://www.map24.com',
 			'My property description',
