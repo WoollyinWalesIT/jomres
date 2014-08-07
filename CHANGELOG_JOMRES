@@ -1,3 +1,19 @@
+<h3>Jomres 8.1.9 07/08/2014</h3>
+
+<span class="label label-success">Feature</span> Added Japanese language file. Many thanks Jeff.
+
+<span class="label label-warning">Change</span> Improved icons in the BS3 media centre templates.
+<span class="label label-warning">Change</span> Updated a version number in an xml file.
+<span class="label label-warning">Change</span> Minor tweak to control panel to add the Date to the news output.
+<span class="label label-warning">Change</span> Updated Jomres' images to the new logo.
+<span class="label label-warning">Change</span> Added an option to use templates to build the currency conversion selector rather than plain old dropdowns, which allows us to add the dropdown to bootstrap toolbars.
+<span class="label label-warning">Change</span> Changed the name of the default property created on Jomres installation.
+
+<span class="label label-important label-danger">Fix</span> Fixed a misplaced bracket in patTemplate class. Thanks Maritn.
+<span class="label label-important label-danger">Fix</span> Changed how files are read into the js and css cache classes.
+<span class="label label-important label-danger">Fix</span> Tweaked how a disabled task's name is determined.
+
+
 <h3>Jomres 8.1.8 31/07/2014</h3>
 
 <span class="label label-success">Feature</span> Refactored javascript and css file handling. Older method was growing to become clumsy, new process automatically creates consolidation scripts (where as many .js files as is practical are presented as one file) and .js and .css files are automatically minified. All new .js and .css files can be supplied un-minified, if the file is ever modifed the served, minified and/or consolidated version of that file is automatically updated.
