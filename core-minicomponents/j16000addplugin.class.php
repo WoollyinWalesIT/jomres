@@ -149,41 +149,57 @@ class j16000addplugin
 
 		if ( $thirdparty )
 			{
-			$error = false;
 
-			$formElement = $_FILES[ 'pluginfile' ];
-			$blowdedUp   = explode( ".", $formElement[ 'name' ] );
-			$pluginName  = $blowdedUp[ 0 ];
-
-			if ( $formElement[ 'name' ] != "" )
+			if ( (int)$_FILES['pluginfile']['error'] == 0 )
 				{
-				if ( strstr( $formElement[ 'name' ], "-" ) )
-					{
-					$pos            = strpos( $formElement[ 'name' ], "-" );
-					$temp_file_name = substr( $formElement[ 'name' ], $pos + 1 );
-					$newfilename    = $updateDirPath . $temp_file_name;
-					$pos            = strpos( $temp_file_name, ".zip" );
-					$pluginName     = substr( $temp_file_name, 0, $pos );
-					}
-				else
-				$newfilename = $updateDirPath . $formElement[ 'name' ] . "";
+				$error = false;
 
-				if ( is_uploaded_file( $formElement[ 'tmp_name' ] ) )
+				$formElement = $_FILES[ 'pluginfile' ];
+				$blowdedUp   = explode( ".", $formElement[ 'name' ] );
+				$pluginName  = $blowdedUp[ 0 ];
+
+				if ( $formElement[ 'name' ] != "" )
 					{
-					$plugin_tmp = $formElement[ 'tmp_name' ];
-					if ( !copy( $plugin_tmp, $newfilename ) )
+					if ( strstr( $formElement[ 'name' ], "-" ) )
 						{
-						$error     = true;
-						$errorDesc = "<b>move_uploaded_file failed</b>";
+						$pos            = strpos( $formElement[ 'name' ], "-" );
+						$temp_file_name = substr( $formElement[ 'name' ], $pos + 1 );
+						$newfilename    = $updateDirPath . $temp_file_name;
+						$pos            = strpos( $temp_file_name, ".zip" );
+						$pluginName     = substr( $temp_file_name, 0, $pos );
+						}
+					else
+					$newfilename = $updateDirPath . $formElement[ 'name' ] . "";
+
+					if ( is_uploaded_file( $formElement[ 'tmp_name' ] ) )
+						{
+						$plugin_tmp = $formElement[ 'tmp_name' ];
+						if ( !copy( $plugin_tmp, $newfilename ) )
+							{
+							$error     = true;
+							$errorDesc = "<b>move_uploaded_file failed</b>";
+							}
 						}
 					}
+				if ( $error )
+					{
+					$error_messsage[ "ERROR" ] = $errorDesc;
+					if ( $autoupgrade ) return false;
+					}
 				}
-			if ( $error )
+			else
 				{
-				$error_messsage[ "ERROR" ] = $errorDesc;
-				if ( $autoupgrade ) return false;
+				$error_codes = array(
+					0=>"There is no error, the file uploaded with success",
+					1=>"The uploaded file exceeds the upload_max_filesize directive in php.ini",
+					2=>"The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form",
+					3=>"The uploaded file was only partially uploaded",
+					4=>"No file was uploaded",
+					6=>"Missing a temporary folder"
+					);
+				
+				throw new Exception( $error_codes [ $_FILES['pluginfile']['error'] ] );
 				}
-
 			}
 		else
 			{
