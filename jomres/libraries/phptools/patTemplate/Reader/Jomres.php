@@ -92,6 +92,18 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 				$override_path = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'com_jomres';
 				}
 			
+			if ($jomres_template_name =="srch.html")
+				{
+				if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m1' . JRDS . 'srch.html') )
+					$override_path = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m1';
+				if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m2' . JRDS . 'srch.html') )
+					$override_path = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m2';
+				if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m3' . JRDS . 'srch.html') )
+					$override_path = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m3';
+				if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m4' . JRDS . 'srch.html') )
+					$override_path = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m4';
+				}
+			
 			if (is_dir($override_path))
 				{
 				if (is_file( $override_path . JRDS . $jomres_template_name ) )
