@@ -203,7 +203,7 @@ class j00004a_init_javascript_css_files
 			if ( $thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea() )
 				{
 				$tail = "";
-				if (jomres_bootstrap_version() == "3")
+				if (jomres_bootstrap_version() == "3" && !jomres_cmsspecific_areweinadminarea() )
 					$tail = "_bs3";
 				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/x-editable/bootstrap-editable/js/","bootstrap-editable".$tail.".min.js");
 				$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/javascript/x-editable/bootstrap-editable/css/", "bootstrap-editable".$tail.".css");
