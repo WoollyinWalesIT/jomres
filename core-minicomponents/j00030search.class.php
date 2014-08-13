@@ -741,11 +741,12 @@ class j00030search
 						if($p[ 'pn' ] == $sch->filter[ 'propertyname' ] )
 							{
 							$links[] = htmlspecialchars( JOMRES_SITEPAGE_URL . '&task=viewproperty&property_uid=' . $p[ 'puid' ] );
-							break;
 							}
 						}
 					if (count($links) == 1)
 						jomresRedirect( jomresURL( $links[0] ), $saveMessage );
+					else
+						$sch->jomSearch_propertyname();
 					}
 
 				if ( !empty( $sch->filter[ 'country' ] ) ) $sch->jomSearch_country();

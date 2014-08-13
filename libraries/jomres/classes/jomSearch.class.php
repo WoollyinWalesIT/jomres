@@ -584,12 +584,57 @@ class jomSearch
 				}
 
 			$this->resultBucket = $result;
-			//var_dump($this->resultBucket);exit;
 			}
 		else
 		$this->resultBucket = array ();
 		$this->sortResult();
 		}
+
+	function jomSearch_propertyname()
+		{
+		$filter = $this->filter[ 'propertyname' ];
+		$this->makeOrs();
+		$property_ors = $this->ors;
+		$lang=get_showtime('lang');
+		if ( !empty( $filter ) && $property_ors )
+			{
+			$keywords = getEscaped( $filter );
+			$query = "SELECT propertys_uid FROM #__jomres_propertys ";
+			$query .= " WHERE published = '1' AND property_name LIKE '%$keywords%' ";
+			$set1 = doSelectSql( $query );
+			$query = "SELECT a.property_uid FROM #__jomres_custom_text a, #__jomres_propertys b ";
+			$query .= " WHERE published = '1' AND property_name LIKE '%$keywords%' AND a.language = $lang AND ( a.property_uid = b.propertys_uid )";
+			$set2 = doSelectSql( $query );
+
+			$result = array ();
+
+			if ( $set1 )
+				{
+				foreach ( $set1 as $val )
+					{
+					$obj                = new stdClass();
+					$v                  = $val->propertys_uid;
+					$obj->propertys_uid = $v;
+					$result[ ]          = $obj;
+					}
+				}
+			if ( $set2 )
+				{
+				foreach ( $set2 as $val )
+					{
+					$obj                = new stdClass();
+					$v                  = $val->property_uid;
+					$obj->propertys_uid = $v;
+					$result[ ]          = $obj;
+					}
+				}
+
+			$this->resultBucket = $result;
+			}
+		else
+		$this->resultBucket = array ();
+		$this->sortResult();
+		}		
 
 	/**
 	#
