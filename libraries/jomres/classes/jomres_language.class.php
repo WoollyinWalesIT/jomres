@@ -362,7 +362,7 @@ class jomres_language
 		$langs[ 'sv-SE' ] = "sv";
 		$langs[ 'ar-AA' ] = "ar";
 		$langs[ 'ca-ES' ] = "ca";
-		$langs[ 'ja-JP' ] = "jp";
+		$langs[ 'ja-JP' ] = "ja";
 
 		$language_plugins = get_showtime( 'language_plugins' );
 		if ( count( $language_plugins ) > 0 )
