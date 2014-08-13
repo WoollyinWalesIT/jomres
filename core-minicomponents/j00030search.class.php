@@ -355,13 +355,10 @@ class j00030search
 					<br />';
 				$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_REGION' ] = '
 						<!-- state combobox is chained by country combobox-->
-						<select name="region" id="rregion" style="display:none"></select>
-					<br />';
+						<select name="region" id="rregion" style="display:none"></select><br />';
 				$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_TOWN' ]   = '
 						<!-- city combobox is chained by state combobox-->
-						<select name="town" id="ttown" style="display:none"></select>
-					</select>
-					<br />';
+						<select name="town" id="ttown" style="display:none"></select><br />';
 				$showButton                                     = true;
 				}
 			}
