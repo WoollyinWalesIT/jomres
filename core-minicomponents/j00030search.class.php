@@ -351,14 +351,9 @@ class j00030search
 					if ( trim( jomres_decode( $country[ 'countryname' ] ) ) != "" ) $countryArray[ ] = jomresHTML::makeOption( $country[ 'countrycode' ], jomres_decode( $country[ 'countryname' ] ) );
 					}
 
-				$output[ 'SELECTCOMBO_COUNTRY' ]                = jomresHTML::selectList( $countryArray, 'country', 'size="1" id="search_country" class="inputbox"', 'value', 'text', $selectOption ) . '
-					<br />';
-				$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_REGION' ] = '
-						<!-- state combobox is chained by country combobox-->
-						<select name="region" id="rregion" style="display:none"></select><br />';
-				$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_TOWN' ]   = '
-						<!-- city combobox is chained by state combobox-->
-						<select name="town" id="ttown" style="display:none"></select><br />';
+				$output[ 'SELECTCOMBO_COUNTRY' ]                = jomresHTML::selectList( $countryArray, 'country', 'size="1" id="search_country" class="inputbox"', 'value', 'text', $selectOption ) . '<br />';
+				$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_REGION' ] = '<!-- state combobox is chained by country combobox--><select name="region" id="rregion" style="display:none"></select><br />';
+				$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_TOWN' ]   = '<!-- city combobox is chained by state combobox--><select name="town" id="ttown" style="display:none"></select><br />';
 				$showButton                                     = true;
 				}
 			}
@@ -740,8 +735,17 @@ class j00030search
 				{
 				if ( in_array( "propertyname", $searchOptions ) && !empty( $sch->filter[ 'propertyname' ] ) )
 					{
-					$l = htmlspecialchars( JOMRES_SITEPAGE_URL . '&task=viewproperty&property_uid=' . $sch->filter[ 'propertyname' ] );
-					jomresRedirect( jomresURL( $l ), $saveMessage );
+					$links = array();
+					foreach ( $sch->prep[ 'propertyname' ] as $p )
+						{
+						if($p[ 'pn' ] == $sch->filter[ 'propertyname' ] )
+							{
+							$links[] = htmlspecialchars( JOMRES_SITEPAGE_URL . '&task=viewproperty&property_uid=' . $p[ 'puid' ] );
+							break;
+							}
+						}
+					if (count($links) == 1)
+						jomresRedirect( jomresURL( $links[0] ), $saveMessage );
 					}
 
 				if ( !empty( $sch->filter[ 'country' ] ) ) $sch->jomSearch_country();
