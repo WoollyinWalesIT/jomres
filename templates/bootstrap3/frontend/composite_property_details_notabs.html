@@ -4,74 +4,119 @@
 <a name="{COMMON_HOME|urlencode}" class="text-info">{COMMON_HOME}</a>
 <br/>
 
-	<div id="property_details">
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 alert alert-success">
-				<h4>
-					{PRICE_PRE_TEXT}
-					{PRICE_PRICE}
-					{PRICE_POST_TEXT}
-				</h4>
-			</div>
-			<div class="span5">
-			</div>
-		</div>
-		<div class="row">
-			<div id="gallerywrapper" class="col-xs-12 col-sm-12 col-md-7 col-lg-7 well">{SLIDESHOW}</div>
-			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5" id="tour_target_property_details_buttons">
-				<div class="big-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
-				<div class="btn-group-vertical">
-					<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-						<a href="{LINK}" class="btn btn-primary property_details_buttons btn-lg"><i class="icon-calendar pull-left"></i> {TEXT}</a>
-					</patTemplate:tmpl>
-					<patTemplate:tmpl name="contactuslink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-						<a href="{LINK}" class="btn btn-primary property_details_buttons btn-lg"><i class="icon-mail pull-left"></i> {TEXT}</a>
-					</patTemplate:tmpl>
-					<patTemplate:tmpl name="slideshowlink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-						<a href="{LINK}" class="btn btn-default property_details_buttons"><i class="icon-pictures pull-left"></i> {TEXT}</a>
-					</patTemplate:tmpl>
-					<patTemplate:tmpl name="tariffslink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-						<a href="{LINK}" class="btn btn-default property_details_buttons"><i class="icon-grid-view pull-left "></i> {TEXT}</a>
-					</patTemplate:tmpl>
-					<patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-						<a href="{LINK}" class="btn btn-default property_details_buttons"><i class="icon-key pull-left"></i> {TEXT}</a>
-					</patTemplate:tmpl>
-					<a href="{PRINT_LINK}" target="_blank" class="btn btn-default property_details_buttons"><i class="icon-printer  pull-left"></i> {COMMON_PRINT}</a>
+<div id="property_details">
+	<div class="row">
+		<div class="col-md-9">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 alert alert-success">
+					<h4>
+						{PRICE_PRE_TEXT}
+						{PRICE_PRICE}
+						{PRICE_POST_TEXT}
+					</h4>
 				</div>
-				<div style="clear:both;"></div>
-				<div id="tour_target_inline_calendar">{INLINE_CALENDAR}</div>
 			</div>
+			<div class="row">
+				<div class="col-md-12" id="tour_target_property_details_buttons">
+					<div class="big-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
+					<div class="btn-group">
+						<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+							<a href="{LINK}" class="btn btn-primary "><i class="icon-calendar pull-left"></i> {TEXT}</a>
+						</patTemplate:tmpl>
+						<patTemplate:tmpl name="contactuslink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+							<a href="{LINK}" class="btn btn-primary "><i class="icon-mail pull-left"></i> {TEXT}</a>
+						</patTemplate:tmpl>
+						<patTemplate:tmpl name="slideshowlink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+							<a href="{LINK}" class="btn btn-default "><i class="icon-pictures pull-left"></i> {TEXT}</a>
+						</patTemplate:tmpl>
+						<patTemplate:tmpl name="tariffslink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+							<a href="{LINK}" class="btn btn-default "><i class="icon-grid-view pull-left "></i> {TEXT}</a>
+						</patTemplate:tmpl>
+						<patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+							<a href="{LINK}" class="btn btn-default "><i class="icon-key pull-left"></i> {TEXT}</a>
+						</patTemplate:tmpl>
+						<a href="{PRINT_LINK}" target="_blank" class="btn btn-default "><i class="icon-printer  pull-left"></i> {COMMON_PRINT}</a>
+					</div>
+					<div style="clear:both;"></div>
+				</div>
+			</div>
+
+		</div>
+		<div class="col-md-2">
+			<div id="tour_target_inline_calendar">{INLINE_CALENDAR}</div>
 		</div>
 	</div>
+			<div class="row">
+				<div id="gallerywrapper" class="col-md-12">
+					{SLIDESHOW}
+				</div>
+			</div>
+</div>
 <div class="clearfix"></div>
-<p>&nbsp;</p>
 
 
-<patTemplate:tmpl name="tabs_content">
-	<!-- Automatically ordered output -->
-
-	<div class="well">
-		<h2>{TAB_TITLE}</h2>
-		{TAB_CONTENT}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"><h2>{TABCONTENT_01_MAIN_DETAILS_TITLE}</h2></h3>
 	</div>
-</patTemplate:tmpl>
+	<div class="panel-body">
+		{TABCONTENT_01_MAIN_DETAILS_CONTENT}
 
-<div class="clearfix"></div>
-<p>&nbsp;</p>
+		
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"><h2>{TABCONTENT_01_MORE_INFO_TITLE}</h2></h3>
+	</div>
+	<div class="panel-body">
+		{TABCONTENT_01_MORE_INFO_CONTENT}
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"><h2>{TABCONTENT_02_MAP_TITLE}</h2></h3>
+	</div>
+	<div class="panel-body">
+		{TABCONTENT_02_MAP_CONTENT}
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"><h2>{TABCONTENT_03_REVIEWS_TITLE}</h2></h3>
+	</div>
+	<div class="panel-body">
+		{TABCONTENT_03_REVIEWS_CONTENT}
+	</div>
+</div>
+
+<h2>{TABCONTENT_02_BOOKINGFORM_TITLE}</h2>
+{TABCONTENT_02_BOOKINGFORM_CONTENT}
+
+	<div class="tabbable">
+		<ul class="nav nav-tabs">
+			<patTemplate:tmpl name="tabs_titles">
+				<li class="{ACTIVE}"><a href="#{TAB_ANCHOR}" data-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a></li>
+			</patTemplate:tmpl>
+		</ul>
+		<div class="tab-content">
+			<patTemplate:tmpl name="tabs_content">
+				<div class="tab-pane {ACTIVE}" id="{TAB_ANCHOR}">
+					{TAB_CONTENT}
+				</div>
+			</patTemplate:tmpl>
+		</div>
+	</div>
+
+
 
 
 <patTemplate:comment>
 
-	By default this template will show the data that's normally in a tab in it's own separate panels instead, that's
-	the section marked Automatically ordered.
-
-	You can, however choose to comment out the automatically ordered stuff and instead remove the comments
-	surrounding the stuff below. This is the most normally used output already structured to be used, along with a
-	bootstrap navbar that's fixed to the bottom of the page.
-
-	This output isn't enabled by default because it requires that you, the site integrator, are at least resonably
-	familiar with Jomres' templating system and understand that some stuff may need to be added manually or enabled
-	in site config before they can show.
+	See below for more output that potentially can be used in this page
 
 </patTemplate:comment>
 
