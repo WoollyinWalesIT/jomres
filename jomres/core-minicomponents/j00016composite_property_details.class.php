@@ -107,7 +107,21 @@ class j00016composite_property_details
 
 		$tmpl = new patTemplate();
 
-
+		if ( !isset( $jrConfig[ 'property_details_in_tabs' ] ) ) 
+			$jrConfig[ 'property_details_in_tabs' ] = "1";
+		
+		if ( $jrConfig[ 'property_details_in_tabs' ] == "0" )
+			{
+			$standalone_elements = array (
+				'TABCONTENT_01_MAIN_DETAILS',
+				'TABCONTENT_01_MORE_INFO',
+				'TABCONTENT_02_BOOKINGFORM',
+				'TABCONTENT_02_MAP',
+				'TABCONTENT_03_REVIEWS'
+				);
+			
+			}
+		
 		if ( count( $MiniComponents->miniComponentData[ '00035' ] ) > 0 )
 			{
 			$tab_titles   = array ();
@@ -115,28 +129,40 @@ class j00016composite_property_details
 			$tab_active   = false;
 			foreach ( $MiniComponents->miniComponentData[ '00035' ] as $key => $tabs )
 				{
-				if ( $tabs[ 'TAB_ANCHOR' ] != "" && $tabs[ 'TAB_TITLE' ] != "" && $tabs[ 'TAB_CONTENT' ] != "" )
+				if (!in_array( strtoupper($key) , $standalone_elements ) )
 					{
-					if ( !$tab_active )
+					if ( $tabs[ 'TAB_ANCHOR' ] != "" && $tabs[ 'TAB_TITLE' ] != "" && $tabs[ 'TAB_CONTENT' ] != "" )
 						{
-						$tab_class  = "active";
-						$tab_active = true;
+						if ( !$tab_active )
+							{
+							$tab_class  = "active";
+							$tab_active = true;
+							}
+						else
+						$tab_class = "";
+						$content                                       = $tabs[ 'TAB_CONTENT' ];
+						$title                                         = $tabs[ 'TAB_TITLE' ];
+						$tab_id                                        = $tabs[ 'TAB_ID' ];
+						$tab_titles[ ]                                 = array ( "TAB_ANCHOR" => $tabs[ 'TAB_ANCHOR' ], "TAB_TITLE" => $title, "ACTIVE" => $tab_class, "TAB_ID" => $tab_id );
+						$tab_contents[ ]                               = array ( "TAB_CONTENT" => $content, "TAB_TITLE" => $title, "TAB_ANCHOR" => $tabs[ 'TAB_ANCHOR' ], "ACTIVE" => $tab_class );
+						$output[ strtoupper( $key . "_tabtitle" ) ]    = $title;
+						$output[ strtoupper( $key . "_tab_content" ) ] = $content;
 						}
-					else
-					$tab_class = "";
-					$content                                       = $tabs[ 'TAB_CONTENT' ];
-					$title                                         = $tabs[ 'TAB_TITLE' ];
-					$tab_id                                        = $tabs[ 'TAB_ID' ];
-					$tab_titles[ ]                                 = array ( "TAB_ANCHOR" => $tabs[ 'TAB_ANCHOR' ], "TAB_TITLE" => $title, "ACTIVE" => $tab_class, "TAB_ID" => $tab_id );
-					$tab_contents[ ]                               = array ( "TAB_CONTENT" => $content, "TAB_TITLE" => $title, "TAB_ANCHOR" => $tabs[ 'TAB_ANCHOR' ], "ACTIVE" => $tab_class );
-					$output[ strtoupper( $key . "_tabtitle" ) ]    = $title;
-					$output[ strtoupper( $key . "_tab_content" ) ] = $content;
+					}
+				else
+					{
+					$output [ strtoupper( $key )."_CONTENT" ] = $tabs[ 'TAB_CONTENT' ];
+					$output [ strtoupper( $key )."_TITLE" ] = $tabs[ 'TAB_TITLE' ];
+					$output [ strtoupper( $key )."_ANCHOR" ] = $tabs[ 'TAB_ANCHOR' ];
 					}
 				}
 			$tmpl->addRows( 'tabs_titles', $tab_titles );
 			$tmpl->addRows( 'tabs_content', $tab_contents );
 			}
 
+		//var_dump( $output );exit;
+		
+		
 		$pageoutput[ ] = $output;
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'bookinglink', $bookinglink );
@@ -153,8 +179,7 @@ class j00016composite_property_details
 			$tmpl->readTemplatesFromInput( 'composite_property_details_printable.html' );
 		else
 			{
-			if ( !isset( $jrConfig[ 'property_details_in_tabs' ] ) ) 
-				$jrConfig[ 'property_details_in_tabs' ] = "1";
+
 
 			if ( $jrConfig[ 'property_details_in_tabs' ] == "1" ) 
 				$tmpl->readTemplatesFromInput( 'composite_property_details.html' );
