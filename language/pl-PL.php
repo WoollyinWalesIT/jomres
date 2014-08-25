@@ -1,5 +1,4 @@
 <?php
-
 /**
 * Core file
 * @author Vince Wooll <sales@jomres.net>
@@ -8,7 +7,7 @@
 * @copyright	2005-2013 Vince Wooll
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly. 
 * @Polska adaptacja Patryk Doering - http://www.rekinet.pl - kontakt@rekinet.pl
-* @Aktualizacja wersji językowej z 22-04-2014r.
+* @Aktualizacja wersji językowej z 23-08-2014r.
 **/
 
 ##################################################################
@@ -79,14 +78,14 @@ jr_define('_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE','Maks klientów');
 jr_define('_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV','Przedmiot rezerwacji');
 jr_define('_JOMRES_COM_MR_EB_ROOM_CLASS_DESC','Opis przedmiotu rezerwacji');
 jr_define('_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST','Lista cech ofert');
-jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID','Wpłacona przedpłata');
-jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE','Wpisz wysokość przedpłaty');
-jr_define('_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL','Wartość rezerwacji');
-jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF','Uwagi do przedpłaty');
+jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID','Wpłacony zadatek');
+jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE','Wpisz wysokość zadatku');
+jr_define('_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL','Koszt rezerwacji');
+jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF','Uwagi do zadatku');
 jr_define('_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER','Nr rezerwacji');
-jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED','Wysokość przedpłaty');
-jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSITSAVEMESSAGE','Przedpłata została zapisana.');
-jr_define('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE','Dostępność');
+jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED','Wysokość zadatku');
+jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSITSAVEMESSAGE','Zadatek został zapisany.');
+jr_define('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE','Zasoby');
 jr_define('_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME','Oferta');
 jr_define('_JOMRES_COM_MR_QUICKRES_STEP2_ROOMTYPE','Przedmiot rezerwacji');
 jr_define('_JOMRES_COM_MR_DISPGUEST_EDITDETAILS','Edycja');
@@ -181,7 +180,7 @@ jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_LISTNEWBOOKINGS','Nowe rezerwacje');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_HOME','Pulpit rezerwacji');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN','Zestawienia klientów');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_PROPERTYADMIN','Edycja ofert');
-jr_define('_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY','Sprawdź dostępność');
+jr_define('_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY','Przejdź do kolejnego kroku');
 jr_define('_JOMRES_FRONT_MR_SUBMITBUTTON_CONFIRMYOURDETAILS','Zatwierdź dane');
 jr_define('_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME','Imię');
 jr_define('_JOMRES_FRONT_MR_DISPGUEST_SURNAME','Nazwisko');
@@ -192,7 +191,7 @@ jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL','Kod pocztowy');
 jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL','Telefon stacjonarny');
 jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL','Telefon komórkowy');
 jr_define('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE','Niestety obecna oferta nie spełnia wymaganych kryteriów.');
-jr_define('_JOMRES_FRONT_MR_BOOKINGMADE','<h4>Dziękujemy. Rezerwacja została przyjęta.</h4><br />Wkrótce skontaktujemy się w celu ustalenia sposobu płatności.<br /><br /><small>Prosimy wziąść pod uwagę, że ta rezerwacja jest tymczasowa i dopiero po otrzymaniu potwierdzenia transakcji lub dokonania wpłaty w systemie płatności elektronicznych będzie wiążąca dla obu stron. Wszystkie informacje zostały przesłane na podany w formularzu adres e-mail.</small>');
+jr_define('_JOMRES_FRONT_MR_BOOKINGMADE','<h3>Dziękujemy. Rezerwacja została przyjęta.</h3><br />Wkrótce skontaktujemy się w celu ustalenia sposobu płatności.<br /><br /><small>Prosimy wziąść pod uwagę, że ta rezerwacja jest tymczasowa i dopiero po otrzymaniu potwierdzenia transakcji lub dokonania wpłaty w systemie płatności elektronicznych będzie wiążąca dla obu stron. Wszystkie informacje zostały przesłane na podany w formularzu adres e-mail.</small><br />');
 jr_define('_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE','Rezerwacja internetowa:');
 jr_define('_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM','Rezerwacja dla:');
 jr_define('_JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL','Rezerwacja od:');
@@ -216,9 +215,9 @@ jr_define('_JOMRES_COM_A_EXPLANATION','Objaśnienie');
 jr_define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON','Dopłata do przedmiotu rezerwacji dla jednej osoby');
 jr_define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_DESC','Zaznacz Tak, jeżeli ma być pobierana dopłata.');
 jr_define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST','Wysokość dopłaty:');
-jr_define('_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE','Przedpłata obliczana procentowo');
-jr_define('_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC','Jeżeli Nie, to będzie naliczana w sposób ryczałtowy.');
-jr_define('_JOMRES_COM_A_DEPOSIT_VALUE','Wysokość przedpłaty');
+jr_define('_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE','Zadatek obliczany procentowo');
+jr_define('_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC','Jeżeli Nie, to będzie obliczany w sposób ryczałtowy.');
+jr_define('_JOMRES_COM_A_DEPOSIT_VALUE','Wysokość zadatku');
 jr_define('_JOMRES_COM_A_TARIFFS_PER','Za osobę za dobę');
 jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC','Jeżeli Nie, cena będzie obliczana za przedmiot rezerwacji za dobę.');
 jr_define('_JOMRES_COM_A_UPLOADS_FILESIZE','Wielkość pliku');
@@ -238,7 +237,7 @@ jr_define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_BINDINGCONTRACT','Zwr
 jr_define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_NOALLOWANCE','Za nieskorzystanie z oferty nie może zostać wypłacony zwrot. Z tego powodu sugerujemy zawarcie specjalnego ubezpieczenia. Oferuje je większość biur podróży, agentów ubezpieczeniowych, są również dostępne w ofertach banków.');
 jr_define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_CANCELLATIONCHARGES_INTRO','Warunki zmiany lub anulowania rezerwacji. W wypadku anulowania rezerwacji, musi być ona dokonana w formie pisemnej. Poniżej znajduje się zestawienie związanych z tym kosztów:');
 jr_define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_30DAYSPLUS','Wcześniej niż 30 dni przed zarezerwowanym terminem');
-jr_define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_DEPOSITONLY','Tylko już dokonane przedpłaty.');
+jr_define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_DEPOSITONLY','Tylko wpłacone zadatki.');
 jr_define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_1530DAYS','15 do 30 dni przed zarezerwowanym terminem');
 jr_define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_50PERCENT','50% łącznej wartości rezerwacji.');
 jr_define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_ARRIVALDATETO14DAYS','Od 14 dnia przed zarezerwowanym terminem');
@@ -411,7 +410,7 @@ jr_define('_JOMRES_MR_AUDIT_DELETE_TARIFF','Cennik został usunięty.');
 jr_define('_JOMRES_MR_AUDIT_ADDSERVICE','Cena opcji dodatkowej została dodana.');
 jr_define('_JOMRES_MR_AUDIT_BOOKEDGUESTIN','Klient został zameldowany.');
 jr_define('_JOMRES_MR_AUDIT_BOOKEDGUESTOUT','Klientzostał wymeldowany.');
-jr_define('_JOMRES_MR_AUDIT_ENTEREDDEPOSIT','Dodaj przedpłatę');
+jr_define('_JOMRES_MR_AUDIT_ENTEREDDEPOSIT','Dodaj zadatek');
 jr_define('_JOMRES_MR_AUDIT_INSERT_GUEST','Klient został dodany.');
 jr_define('_JOMRES_MR_AUDIT_UPDATE_GUEST','Klient został zaktualizowany.');
 jr_define('_JOMRES_MR_AUDIT_DELETE_GUEST','Klient został usunięty.');
@@ -496,9 +495,9 @@ jr_define('_JOMRES_COM_PTYPES_UNABLETO_DELETE','Anulowanie rodzaju ofert jest ni
 jr_define('_JOMRES_COM_PTYPES_DELETED','Rodzaj oferty został anulowany.');
 jr_define('_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY','Pozostaje do zapłaty');
 jr_define('_JOMRES_EXTRAS_NOEXTRAS','Brak dodatkowych płatnych usług.');
-jr_define('_JOMRES_COM_CHARGING_DEPOSIT','Przedpłata');
+jr_define('_JOMRES_COM_CHARGING_DEPOSIT','Zadatek');
 jr_define('_JOMRES_COM_CHARGING_FULLAMT','Pełna kwota');
-jr_define('_JOMRES_COM_CHARGING_CONFIG','Kwota pobrana w czasie rezerwacji');
+jr_define('_JOMRES_COM_CHARGING_CONFIG','Kwota pobrana w trakcie rezerwacji');
 jr_define('_JOMRES_COM_CHARGING_CONFIG_DESC','Określ sposób pobierania płatności w czasie rezerwacji.');
 jr_define('_JOMRES_COM_MONTHSTOSHOW','Ilość miesięcy');
 jr_define('_JOMRES_COM_MONTHSTOSHOW_DESC','Ilość miesięcy pokazywanych w kalendarzu.');
@@ -616,8 +615,8 @@ jr_define('_JOMRES_AJAXFORM_BILLING_ROOM','Za noc:');
 jr_define('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL','Razem:');
 jr_define('_JOMRES_AJAXFORM_BILLING_EXTRAS','Opcje dodatkowe:');
 jr_define('_JOMRES_AJAXFORM_BILLING_TAX','Podatek:');
-jr_define('_JOMRES_AJAXFORM_BILLING_DISCOUNT','Zniżka:');
-jr_define('_JOMRES_AJAXFORM_BILLING_TOTAL','Koszt całkowity:');
+jr_define('_JOMRES_AJAXFORM_BILLING_DISCOUNT','Rabat:');
+jr_define('_JOMRES_AJAXFORM_BILLING_TOTAL','Razem:');
 jr_define('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY','Klientów');
 jr_define('_JOMRES_AJAXFORM_CLICKHERECAPTION','Dodaj do rezerwacji');
 jr_define('_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE','Usuń z rezerwacji');
@@ -662,8 +661,8 @@ jr_define('_JOMRES_COM_AVLCAL_CURRENTBOOKINGFONT','Kolor odsyłaczy do aktualnyc
 jr_define('_JOMRES_COM_AVLCAL_WEEKENDBORDER','Ramki tygodni');
 jr_define('_JOMRES_COM_AVLCAL_BOOKING_KEY','Przedmiot rezerwacji zarezerwowany');
 jr_define('_JOMRES_COM_AVLCAL_BLACK_KEY','Wyłączenie');
-jr_define('_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP','Zaokrąglaj przedpłaty do pełnych kwot');
-jr_define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT','Przedpłata jest wymagana');
+jr_define('_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP','Zaokrąglaj zadatki do pełnych kwot');
+jr_define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT','Zadatek jest wymagany');
 jr_define('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY','Zapisz cennik jako opłaty tygodniowe');
 jr_define('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC','Masz możliwość zapisania cennika jako opłaty dzienne lub tygodniowe. Jeżeli chcesz zapisać cennik tygodniowy ustaw na Tak.');
 jr_define('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK','Cena za tydzień');
@@ -821,10 +820,10 @@ jr_define('JOMRES_COM_A_MINIMALCONFIG','Minimum opcji konfiguracyjnych');
 jr_define('_JOMCOMP_AMEND','Zmień rezerwacje - Wybór oferty');
 jr_define('_JOMCOMP_AMEND_SELECTPROPERTY','Wybór nowej oferty');
 jr_define('_JOMCOMP_AMEND_HEADER','Pierwotne zamówienie:');
-jr_define('_JOMCOMP_AMEND_DEPOSITPAID','Kałcja wpłacona');
-jr_define('_JOMCOMP_AMEND_DEPOSITDUE','Kałcja nie wpłacona');
+jr_define('_JOMCOMP_AMEND_DEPOSITPAID','Wpłacony zadatek');
+jr_define('_JOMCOMP_AMEND_DEPOSITDUE','Nie wpłacony zadatek');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL','Zastąp całkowicie');
-jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT','Kwota depozytu');
+jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT','Kwota zadatku');
 jr_define('_JRPORTAL_CANCEL','Anuluj');
 jr_define('_JRPORTAL_CPANEL','Mój kokpit');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE','Domyślna wysokość prowizji');
@@ -1075,7 +1074,7 @@ jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN','Ręczne uruchamianie zadań crona k
 jr_define('_JOMRES_COM_A_CRON_METHOD','Metoda');
 jr_define('_JOMRES_COM_A_CRON_METHOD_DESC',"Jeśli nie masz dostępu do crona, ustaw funkcję uruchamiania cyklicznych zadań wbudowanych w Jomres. W przeciwnym razie ustaw uruchamianie zadań przez Twojego crona na serwerze.
 	<br />
-	<i>curl -s ".JOMRES_SITEPAGE_URL_NOHTML."&task=cronjobs&tmpl=component&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i>");
+	<i>curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . $jomresConfig_secret . "> /dev/null</i>");
 
 jr_define('_JOMRES_COM_A_CRON_LOGGING','Wyświetlanie logowania w przeglądarce');
 jr_define('_JOMRES_COM_A_CRON_LOGGING_DESC','Działa tylko jeśli metoda jest ustawiona na System Jomres.');
@@ -1569,13 +1568,13 @@ jr_define('_JOMRES_BOOKINGORM_MODALPOPUP','Pokaż formularz rezerwacji w oknie p
 jr_define('_JOMRES_BOOKINGORM_MODALPOPUP_DESC','Jeśli opcja pokazywania formularza rezerwacji w szczegółach ofert jest ustawiona na Nie, wówczas, gdy strona otwiera się formularz rezerwacji może zostać pokazany w oknie popup.');
 jr_define('_JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION','Wynosi lokalizację panelu');
 jr_define('_JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION_DESC','W formularzu rezerwacji panel sumy potrzebuje różnych ustawień w zależności od szablonu. Na przykład w szablonie Joomla Jomres ustawienie 712 działa dobrze, jednak na Drogi Mlecznej ustawienie ok. 1500 jest bardziej właściwe, zwłaszcza jeśli nie masz okna popup funkcja jest włączona. Prawdopodobnie, że będziesz musiał eksperymentować z różnymi ustawieniami, aby znaleźć coś, co działa dobrze w wybranym szablonie.');
-jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX','VAT - Rezerwacja');
-jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX','Rezerwacja cena za osobę dorosłą');
+jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX','Kwota netto');
+jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX','Kwota brutto');
 jr_define('_JOMRES_AJAXFORM_BILLING_TAX_ACCOM','VAT - Przedmiot rezerwacji');
 jr_define('_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM','Otwórz formularz rezerwacji');
 jr_define('_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS','Wróć do szczegółów oferty');
 jr_define('_JOMRES_COM_MR_EXTRA_AUTO_SELECT','Automatycznie wybrany?');
-jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE','Po przedpłacie');
+jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE','Pozostała kwota');
 jr_define('_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER','Filtrowanie zasobów na podstawie ich cech.');
 jr_define('_JOMRES_DATEPERIOD_LATESTBOOKING','Ostatnia rezerwacja');
 jr_define('_JOMRES_DATEPERIOD_SECOND','sekunda');
@@ -2115,13 +2114,13 @@ jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_POLICIES_CONTENT',"To jest miejsce
 jr_define('TOUR_ID_TOUR_TARGET_LISTALL_BOOKINGS_TITLE',"Lista wszystkich rezerwacji.");
 jr_define('TOUR_ID_TOUR_TARGET_LISTALL_BOOKINGS_CONTENT',"Na tej stronie nasz dostęp do wszystkich rezerwacji jakie zostały złożone w Twojej ofercie i bez znaczenia czy zostały opłacone czy też nie. Kliknij na ikonkę edycji rezerwacji by uzyskać dostęp do jej wszystkich szczegółów. Otrzymasz również możliwość dodatkowych operacji na edytowanej rezerwacji.");
 jr_define('TOUR_ID_TOUR_TARGET_LISTNEW_BOOKINGS_TITLE',"Lista nowych rezerwacji.");
-jr_define('TOUR_ID_TOUR_TARGET_LISTNEW_BOOKINGS_CONTENT',"Na tej stronie nasz dostęp do wszystkich rezerwacji, które nie zostały jeszcze opłacone w całości lub w formie przedpłaty. Kliknij na ikonkę edycji rezerwacji by uzyskać dostęp do jej wszystkich szczegółów. Otrzymasz również możliwość dodatkowych operacji na edytowanej rezerwacji.");
+jr_define('TOUR_ID_TOUR_TARGET_LISTNEW_BOOKINGS_CONTENT',"Na tej stronie nasz dostęp do wszystkich rezerwacji, które nie zostały jeszcze opłacone w całości lub nie został wpłacony zadatek. Kliknij na ikonkę edycji rezerwacji by uzyskać dostęp do jej wszystkich szczegółów. Otrzymasz również możliwość dodatkowych operacji na edytowanej rezerwacji.");
 jr_define('TOUR_ID_TOUR_TARGET_LISTOLD_BOOKINGS_TITLE',"Lista starszych rezerwacji.");
 jr_define('TOUR_ID_TOUR_TARGET_LISTOLD_BOOKINGS_CONTENT',"Na tej stronie nasz dostęp do wszystkich starszych, minionych już rezerwacji, bez znaczenia czy zostały one zrealizowane czy anulowane. Kliknij na ikonkę edycji rezerwacji by uzyskać dostęp do jej wszystkich szczegółów. Otrzymasz również możliwość dodatkowych operacji na edytowanej rezerwacji.");
 jr_define('TOUR_ID_TOUR_TARGET_LIST_GUESTS_TITLE',"Lista klientów.");
 jr_define('TOUR_ID_TOUR_TARGET_LIST_GUESTS_CONTENT',"Strona pozwala na zobaczenie zestawienia wszystkich klientów aktywnej obecnie oferty. Domyślnie widoczni są klienci korzystający lub mający skorzystać z oferty. Dostępne są jednak dodatkowe możliwości, które pozwalają np. na przeglądanie listy klientów, którzy w przeszłości korzystali z oferty.");
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_OVERRIDES_TITLE',"Zastąpienie cen.");
-jr_define('TOUR_ID_TOUR_TARGET_BOOKING_OVERRIDES_CONTENT',"Te opcje dostępne są tylko dla osób zarządzających ofertą i nie są one widoczne dla klientów. Pozwalają na zmianę ceny za przedmiot rezerwacji jaka ma zostać uiszczona przez klienta (dodatkowe usługi nie są uwzględniane) oraz na wprowadzenie wysokości wymaganej przedpłaty.");
+jr_define('TOUR_ID_TOUR_TARGET_BOOKING_OVERRIDES_CONTENT',"Te opcje dostępne są tylko dla osób zarządzających ofertą i nie są one widoczne dla klientów. Pozwalają na zmianę ceny za przedmiot rezerwacji jaka ma zostać uiszczona przez klienta (dodatkowe usługi nie są uwzględniane) oraz na wprowadzenie wysokości wymaganego zadatku.");
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_COUPONS_TITLE',"Kody rabatowe.");
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_COUPONS_CONTENT',"Jeśli utworzone zostały kody rabatowe dla tej oferty to dostępne będzie pole edycyjne umożliwiające wprowadzenie kodu, który pozwoli klientowi na obniżenie ceny końcowej za przedmiot rezerwacji.");
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_PARTICULARS_TITLE',"Szczegóły rezerwacji.");
@@ -2262,10 +2261,10 @@ jr_define('SIMPLE_CONFIGURATION',"Prosta konfiguracja");
 jr_define('_JOMRES_HRESOURCE_FEATURES',"Cechy przedmiotu rezerwacji");
 jr_define('_JOMRES_HRESOURCE_TYPE',"Przedmiot rezerwacji");
  jr_define('_JOMRES_HEDIT_GUEST_TYPE',"Edycja rodzaju klienta");
-jr_define('_JOMRES_HEDIT_COUPON',"Edycja kuponu");
-jr_define('_JOMRES_HEDIT_EXTRA',"Edycja dodatkowa");
+jr_define('_JOMRES_HEDIT_COUPON',"Edycja kuponu promocyjnego");
+jr_define('_JOMRES_HEDIT_EXTRA',"Edycja opcji dodatkowej");
 jr_define('_JOMRES_MULTIPLE_RESOURCES_TITLE',"Tworzenie wielu przedmiotów rezerwacji");
-jr_define('_JOMRES_MULTIPLE_RESOURCES_GENERATE',"Generowanie przedmiotów rezerwacji");
+jr_define('_JOMRES_MULTIPLE_RESOURCES_GENERATE',"Generuj przedmioty rezerwacji");
 jr_define('_JOMRES_MULTIPLE_RESOURCES_HOWMANY',"Ile przedmiotów rezerwacji?");
 jr_define('_JOMRES_MULTIPLE_RESOURCES_TYPE',"Rodzaj przedmiotu rezerwacji");
 jr_define('_JOMRES_MULTIPLE_RESOURCES_MAXGUESTS',"Maksymalna liczba klientów dla przedmiotu rezerwacji");
@@ -2282,7 +2281,7 @@ jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_VAT_CONTENT',"Jeśli wprowadzisz tutaj
 jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_TITLE',"Rabat.");
 jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_CONTENT',"Możesz zdefiniować automatyczny rabat dla przyszłych rezerwacji klienta.");
 
-jr_define('DATATABLES_SINFO',"Pokazane _START_ do _END_ z _TOTAL_ Pozycji");
+jr_define('DATATABLES_SINFO',"Wyświetlono pozycje od _START_ do _END_ z _TOTAL_ Dostępnych");
 
 jr_define('_JOMRES_BOOKING_INQUIRY_HAPPROVAL',"Zatwierdzenie");
 jr_define('_JOMRES_BOOKING_REJECT_INQUIRY',"Odrzucenie zapytania o rezerwację");
@@ -2290,7 +2289,7 @@ jr_define('_JOMRES_BOOKING_APPROVE_INQUIRY',"Zatwierdzenie zapytania o rezerwacj
 jr_define('_JOMRES_STATUS_APPROVED',"Zatwierdzone");
 jr_define('_JOMRES_STATUS_REJECTED',"Odrzucone");
 jr_define('_JOMRES_STATUS_INQUIRY',"Zapytanie");
-jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_TITLE',"Rezerwacje wymagają zatwierdzenia lub potwierdzenia dostępności?");
+jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_TITLE',"Rezerwacje wymagają potwierdzenia dostępności?");
 jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_DESC',"Ustawienie tej opcji na Tak spowoduje konieczność ręcznego potwierdzania dostępności i zatwierdzania rezerwacji. Po złożeniu rezerwacji przez klienta nie pojawi się ona w kalendarzu dostępności do czasu jej potwierdzenia. inne osoby cały czas mogą rezerwować ten termin. Po przyjęciu rezerwacji przez obsługę odpowiednia informacja pokarze się w kalendarzu dostępności i zablokowana zostanie możliwość rezerwacji tego terminu. Do klienta zostanie wysłany e-mail z odpowiednimi informacjami.");
 jr_define('_JOMRES_ERROR',"Błąd");
 jr_define('_JOMRES_ERROR_MESSAGE',"Przepraszamy! Wystąpił błąd podczas próby przetworzenia tej operacji. Informacje o błędzie zostały zapisane i przesłane do analizy przez obsługę techniczną.");
@@ -2300,20 +2299,20 @@ jr_define('_JOMRES_ERROR_DEBUGGING_LINE',"Linia");
 jr_define('_JOMRES_ERROR_DEBUGGING_TRACE',"Ślad");
 jr_define('_JOMRES_EMAIL_TEMPLATES_TITLE',"Szablony e-mail");
 jr_define('_JOMRES_EMAIL_TEMPLATES_EDIT',"Edycja szablonu e-mail");
-jr_define('_JOMRES_EMAIL_TEMPLATES_SUBJECT',"Temat wiadomości");
-jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Treść wiadomości");
+jr_define('_JOMRES_EMAIL_TEMPLATES_SUBJECT',"Temat e-mail");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Treść e-mail");
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Rodzaj");
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Nazwa");
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Opis");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Please see this page for help customizing the emails and a list of the available output: <a href=\"http://manual.jomres.net/email_templates.html\" target=\"_blank\">Email Templates Help</a>");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Na tej stronie możesz zmienić treść oraz szablon tej wiadomości e-mail.");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Administrator - Nowa rezerwacja");
-jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"E-mail wysyłany do administratora witryny po dokonaniu przez klienta nowej rezerwacji, jeśli włączona jest bramka PayPal.");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Wiadomość e-mail wysyłana do administratora witryny po dokonaniu przez klienta nowej rezerwacji, jeśli włączona jest bramka PayPal.");
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Sprzedawca - Nowa rezerwacja");
-jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC',"E-mail wysyłany do sprzedawcy po dokonaniu przez klienta nowej rezerwacji.");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC',"Wiadomość e-mail wysyłana do sprzedawcy po dokonaniu przez klienta nowej rezerwacji.");
 jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILNAME',"Klient - Nowa rezerwacja");
-jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILDESC',"E-mail wysyłany do klienta po dokonaniu przez niego rezerwacji.");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILDESC',"Wiadomość e-mail wysyłana do klienta z informacjami odnośnie rezerwacji po dokonaniu przez niego rezerwacji.");
 jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME',"Klient - Potwierdzenie rezerwacji");
-jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC',"Wiadomość (e-mail lub wydruk) wysyłana ręcznie przez sprzedawcę do klienta z potwierdzeniem rezerwacji.");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC',"Wiadomość e-mail wysyłana ręcznie przez sprzedawcę do klienta z potwierdzeniem złożonej przez niego rezerwacji.");
 jr_define('_JOMRES_CAN_BE_APPROVED',"Ta rezerwacja może zostać zatwierdzona. Wszystkie wybrane zasoby są dostępne w wybranych terminach.");
 jr_define('_JOMRES_CANT_BE_APPROVED',"Ta rezerwacja nie może zostać zatwierdzona, gdyż wybrane zasoby są już zarezerwowane. Konieczna jest edycja rezerwacji i wybranie dostępnych zasobów dla wybranych terminów.");
 jr_define('_JOMRES_SHOW_POWEREDBY',"Pokaż link Powered by Jomres w stopce Jomres.");
@@ -2321,9 +2320,8 @@ jr_define('GUEST_BUDGET',"Budżet");
 jr_define('GUEST_BUDGET_FEATURE_SWITCH',"Użyć funkcji Budżet?");
 jr_define('GUEST_BUDGET_FEATURE_SWITCH_DESC',"Tylko dla Bootstrap na stronie! Opcja ta umożliwia klientom określenie ich budżetu jaki mogą przeznaczyć na daną rezerwację. Funkcja ma pewne ograniczenia i może się nie sprawdzić w serwisach z wieloma walutami. Dodatkowo jeśli używany jest plugin Featured Listings to jego klasa zostanie automatycznie podmieniona na 'panel-primary' z chwilą wyświetlania listy ofert.");
 jr_define('_JOMRES_FRONT_MR_EMAIL_TEXT_NAME','Nazwa: ');
-
-jr_define( '_JOMRES_FOR', 'For' );
-jr_define( '_JOMRES_PRICINGOUTPUT_NIGHT', 'night' );
-jr_define( '_JOMRES_PRICINGOUTPUT_NIGHTS', 'nights' );
-jr_define( '_JOMRES_CONFIG_SHOW_OVERLAY', 'Show price overlay' );
-jr_define( '_JOMRES_CONFIG_SHOW_OVERLAY_DESC', 'In the property list it is possible to show a cumulative price over the property image, use this setting to switch that display off. The cumulative price is calculated from the dates entered in the ajax search composite plugin.' );
+jr_define('_JOMRES_FOR','Dla');
+jr_define('_JOMRES_PRICINGOUTPUT_NIGHT','noc');
+jr_define('_JOMRES_PRICINGOUTPUT_NIGHTS','nocy');
+jr_define('_JOMRES_CONFIG_SHOW_OVERLAY','Pokaż ceny łączne');
+jr_define('_JOMRES_CONFIG_SHOW_OVERLAY_DESC','Na liście ofert możliwe jest pokazanie łącznej ceny dla oferty. Należy użyć tego ustawienia, aby włączyć tą funkcję. Cena łączna jest obliczana na podstawie zakresu wybranych przez klienta dat.');
