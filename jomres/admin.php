@@ -95,7 +95,7 @@ $task = jomresGetParam( $_REQUEST, 'task', "" );
 $task = str_replace( "&#60;x&#62;", "", $task );
 set_showtime( 'task', $task );
 
-if ( $task == "" )
+if ( $task == "" || $task == "showSiteConfig" )
 	{
 	// We're going to silently delete any .js files in the temp dir. This is a basic cleanup, if a server's moved from A to B or an upgrade changes something then we'll delete .js files that might cause problems if they're wrong. Any .js files that don't exist are automatically recreated so this will ensure that the js remains fresh.
 
