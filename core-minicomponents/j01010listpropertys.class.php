@@ -110,16 +110,16 @@ class j01010listpropertys
 		$propertys_uids = $componentArgs[ 'propertys_uid' ];
 		
 		$live_scrolling_enabled = get_showtime("live_scrolling_enabled");
-		
+
 		if ( !isset( $componentArgs[ 'live_scrolling_enabled' ] ) && is_null($live_scrolling_enabled) ) 
 			{
-			$live_scrolling_enabled = true;
+			$live_scrolling_enabled = (bool)$jrConfig['live_scrolling_enabled'];
 			}
 		else
 			{
 			$live_scrolling_enabled = (bool) $componentArgs[ 'live_scrolling_enabled' ];
 			}
-
+		
 		if ( $propertys_uids == "" ) $propertys_uids = array ();
 
 		if ( !@session_start() )
@@ -178,7 +178,8 @@ class j01010listpropertys
 			if ( is_null( $layout_template ) ) 
 				$layout_template = "list_properties.html";
 
-			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js" );
+			if ($live_scrolling_enabled)
+				jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js" );
 
 			if ( $jrConfig[ 'is_single_property_installation' ] == "1" )
 				{
@@ -223,20 +224,31 @@ class j01010listpropertys
 					//jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "list_properties.js" );
 					}
 
-				//we don`t even need the next line, because jomSearch always sets at least some random $propertys_uids
-				//$all_published_properties=get_showtime('published_properties_in_system');
-
 				if ( $live_scrolling_enabled ) 
 					$limit = (int) $jrConfig[ 'property_list_limit' ];
 				else
 					$limit = count( $propertys_uids );
-
+				
 				$i=0;
 				foreach ($propertys_uids as $puid)
 					{
 					if ($i<$limit)
 						$propertysToShow[]=$puid;
 					$i++;
+					}
+
+				$show_paging = false;
+				if ( !$live_scrolling_enabled || ( AJAXCALL && $jrConfig['live_scrolling_enabled'] == "0" ) )
+					$show_paging = true;
+				
+				$output['PAGING'] = '';
+				if ( $show_paging )
+					{
+
+					$pagination_result = $this->generate_paging( $propertys_uids , (int)$jrConfig[ 'property_list_limit' ] );
+					$output['PAGING'] = $pagination_result['PAGINATION'];
+					$current_page = $pagination_result['current_page'];
+					$propertysToShow = array_slice ( $propertysToShow , ($current_page-1) * (int)$jrConfig[ 'property_list_limit' ] , (int)$jrConfig[ 'property_list_limit' ] );
 					}
 
 				if ( count( $propertysToShow ) > 0 )
@@ -324,7 +336,7 @@ class j01010listpropertys
 
 					$featureList  = array ();
 					$ptown        = stripslashes( $current_property_details->multi_query_result[ $propertys_uid ]['property_town'] );
-					$stars        = $current_property_details->multi_query_result[ $propertys_uid ]['stars'];
+					$xxxxxx       = $current_property_details->multi_query_result[ $propertys_uid ]['stars'];
 					$propertyDesc = strip_tags( jomres_decode( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', $current_property_details->multi_query_result[ $propertys_uid ]['property_description'], false, false ) ) );
 
 					if ( in_array( $propertys_uid, $tmpBookingHandler->tmpsearch_data[ 'featured_properties' ] ) )
@@ -437,7 +449,7 @@ class j01010listpropertys
 					//$property_deets['AVAILABILITY_CALENDAR'] = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property->propertys_uid,'return_calendar'=>"1",'noshowlegend'=>1) );
 					
 					$starslink = "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/blank.png\" alt=\"star\" border=\"0\" height=\"1\" hspace=\"10\" vspace=\"1\" />";
-					if ( $stars != "0" )
+					if ( $xxxxxx!= "0" )
 						{
 						$starslink = "";
 						for ( $i = 1; $i <= $stars; $i++ )
@@ -735,6 +747,9 @@ class j01010listpropertys
 						$output[ 'HEADER' ] = $tmpl->getParsedTemplate();
 						}
 
+					if ( $show_paging )
+						echo $output['PAGING'];
+					
 					$pageoutput[ ] = $output;
 					$tmpl          = new patTemplate();
 					$tmpl->addRows( 'property_reviews', $property_reviews );
@@ -744,7 +759,10 @@ class j01010listpropertys
 					$tmpl->setRoot( $layout_path_to_template );
 					$tmpl->readTemplatesFromInput( $layout_template );
 					$tmpl->displayParsedTemplate();
-
+					
+					if ( $show_paging )
+						echo $output['PAGING'];
+					
 					}
 				else
 					{
@@ -816,6 +834,141 @@ class j01010listpropertys
 			}
 		}
 
+	
+	function generate_paging( $propertys_uids , $limit )
+		{
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+
+		$selections = '';
+		foreach ( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections'] as $key=>$val)
+			{
+			switch ($key )
+				{
+				case 'stars': 
+					foreach ($val as $v)
+						$selections .= "&stars[]=".$v;
+					break;
+				case 'pricerange_value_from': 
+					$selections .= "&pricerange_value_from=".$val;
+					break;
+				case 'pricerange_value_to': 
+					$selections .= "&pricerange_value_to=".$val;
+					break;
+				case 'feature_uids': 
+					foreach ($val as $v)
+						$selections .= "&feature_uids[]=".$v;
+					break;
+				case 'countries': 
+					foreach ($val as $v)
+						$selections .= "&countries[]=".$v;
+					break;
+				case 'regions': 
+					foreach ($val as $v)
+						$selections .= "&regions[]=".$v;
+					break;
+				case 'towns': 
+					foreach ($val as $v)
+						$selections .= "&towns[]=".$v;
+					break;
+				case 'room_type_uids': 
+					foreach ($val as $v)
+						$selections .= "&room_type_uids[]=".$v;
+					break;
+				case 'property_type_uids': 
+					foreach ($val as $v)
+						$selections .= "&property_type_uids[]=".$v;
+					break;
+				case 'guestnumbers': 
+					foreach ($val as $v)
+						$selections .= "&guestnumbers[]=".$v;
+					break;
+				case 'arrivalDate': 
+					$selections .= "&arrivalDate=".$val;
+					break;
+				case 'departureDate': 
+					$selections .= "&departureDate=".$val;
+					break;
+				}
+			}
+
+		$number_of_pages = ceil(count($propertys_uids) / $limit);
+		
+		if(!isset($_GET['page']))
+			{
+			$current_page = 0;
+			}
+		else
+			{
+			$current_page = (int)$_GET['page'];
+			}
+
+		if($current_page < 1)
+			{
+			$current_page = 1;
+			}
+		else if($current_page > $number_of_pages)
+			{
+			$current_page = $number_of_pages;
+			}
+		
+		$rows = array();
+		foreach(range(1, $number_of_pages) as $page)
+			{
+			$r=array();
+			if ($page == $current_page)
+				{
+				$r['CLASS'] = "disabled";
+				}
+			else
+				{
+				$r['CLASS'] = "active";
+				}
+			
+			$r['PAGE'] = $page;
+			$r['LINK'] = jomresURL(JOMRES_SITEPAGE_URL . "&task=search&page=" . $page . $selections );
+			$rows[]=$r;
+			}
+		
+		$pageoutput = array();
+		$output = array();
+		
+		$output['FORWARD_CLASS'] = "active";
+		$output['BACKWARD_CLASS'] = "active";
+		
+		if ( $current_page < $number_of_pages )
+			{
+			$next = $current_page+1;
+			$output['FORWARD_LINK'] =  jomresURL(JOMRES_SITEPAGE_URL . "&task=search&page=" . $next . $selections);
+			}
+		else
+			{
+			$output['BACKWARD_CLASS'] = "disabled";
+			$output['FORWARD_LINK'] =  jomresURL(JOMRES_SITEPAGE_URL . "&task=search&page=" . $current_page . $selections);
+			}
+
+		if ( $current_page > 1 )
+			{
+			$prev =  $current_page-1;
+			$output['BACKWARD_LINK'] =  jomresURL(JOMRES_SITEPAGE_URL . "&task=search&page=" . $prev . $selections);
+			}
+		else
+			{
+			$output['FORWARD_CLASS'] = "disabled";
+			$output['BACKWARD_LINK'] =  jomresURL(JOMRES_SITEPAGE_URL . "&task=search&page=" . $current_page . $selections);
+			}
+
+		$pageoutput[]=$output;
+		$tmpl                 = new patTemplate();
+		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->addRows( 'rows', $rows );
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		$tmpl->readTemplatesFromInput( "list_properties_pagination.html" );
+		$pagination = $tmpl->getParsedTemplate();
+
+		return array ("PAGINATION" => $pagination , "current_page" => $current_page );
+		
+		}
+	
 	/**
 	#
 	 * Must be included in every mini-component

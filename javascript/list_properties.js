@@ -39,11 +39,12 @@ function set_budget(budget_price , reload , formname ) {
 var killScroll = false; // IMPORTANT
 var last_scrolled_id = 0;
 function lastAddedLiveFunc() {
-	id = jomresJquery(".jomres_property_list_propertywrapper:last").attr("id");
-	if (id != last_scrolled_id) {
-		var animation = '<div id="animation"><img src="' + path_to_jomres_dir + '/'+JOMRES_ROOT_DIRECTORY + '/images/ajax_animation/broken_circle.gif" /></div>';
-		jomresJquery(".jomres_property_list_propertywrapper:last").after(animation);
-		jomresJquery.get(live_site_ajax + "&task=ajax_list_properties&nofollowtmpl&lastID=" + id,
+	if (live_scrolling_enabled) {
+		id = jomresJquery(".jomres_property_list_propertywrapper:last").attr("id");
+		if (id != last_scrolled_id) {
+			var animation = '<div id="animation"><img src="' + path_to_jomres_dir + '/'+JOMRES_ROOT_DIRECTORY + '/images/ajax_animation/broken_circle.gif" /></div>';
+			jomresJquery(".jomres_property_list_propertywrapper:last").after(animation);
+			jomresJquery.get(live_site_ajax + "&task=ajax_list_properties&nofollowtmpl&lastID=" + id,
 			function (data) {
 				jomresJquery("#animation").remove();
 				if (data != "") {
@@ -58,6 +59,7 @@ function lastAddedLiveFunc() {
 				jomresJquery(".jomres_bt_tooltip_features").tipsy({html: true, fade: true, gravity: 'sw', delayOut: 100});
 				//console.log(last_scrolled_id);
 			});
+		}
 	}
 };
 

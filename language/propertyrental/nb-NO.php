@@ -2529,3 +2529,5 @@ jr_define( '_JOMRES_PRICINGOUTPUT_NIGHT', 'night' );
 jr_define( '_JOMRES_PRICINGOUTPUT_NIGHTS', 'nights' );
 jr_define( '_JOMRES_CONFIG_SHOW_OVERLAY', 'Show price overlay' );
 jr_define( '_JOMRES_CONFIG_SHOW_OVERLAY_DESC', 'In the property list it is possible to show a cumulative price over the property image, use this setting to switch that display off. The cumulative price is calculated from the dates entered in the ajax search composite plugin.' );
+
+jr_define( '_JOMRES_LIVE_SCROLLING', 'Use Live Scrolling/Infinate Scrolling in property list?' );

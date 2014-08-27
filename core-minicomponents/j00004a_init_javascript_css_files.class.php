@@ -155,7 +155,12 @@ class j00004a_init_javascript_css_files
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.jeditable.js");
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "excanvas.js");
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.chainedSelects.js");
-		//$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js");
+		
+		if (!isset($jrConfig['live_scrolling_enabled']))
+			$jrConfig['live_scrolling_enabled'] = "1";
+		
+		if ($jrConfig['live_scrolling_enabled'] == "1")
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js");
 		
 		if ( $thisJRUser->userIsRegistered )
 			{
@@ -253,6 +258,10 @@ class j00004a_init_javascript_css_files
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$current_property_details->gather_data( get_showtime('property_uid') );
 		
+		$live_scrolling_enabled = "true";
+		if ( $jrConfig['live_scrolling_enabled'] == "0")
+			$live_scrolling_enabled = "false";
+		
 		$misc_url_defs = '
 			var live_site_ajax = "'.JOMRES_SITEPAGE_URL_AJAX.'";
 			var compare_url = "'.JOMRES_SITEPAGE_URL_NOSEF . "&task=compare" .'";
@@ -260,7 +269,9 @@ class j00004a_init_javascript_css_files
 			var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX . '&task=module_popup&nofollowtmpl=1&id=";
 			var jomres_template_version = "'.find_plugin_template_directory().'";
 			var dataTables_sInfo = "'. jr_gettext( 'DATATABLES_SINFO', DATATABLES_SINFO, false ).'";
-			var JOMRES_ROOT_DIRECTORY = "' .  JOMRES_ROOT_DIRECTORY.'";
+			var JOMRES_ROOT_DIRECTORY = "' . JOMRES_ROOT_DIRECTORY.'";
+			var live_scrolling_enabled = ' . $live_scrolling_enabled.';
+			
 			';
 		
 		if ( ( !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ) || $_SERVER['SERVER_PORT'] == 443)// We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
