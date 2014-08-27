@@ -2458,3 +2458,5 @@ jr_define('GUEST_BUDGET_FEATURE_SWITCH_DESC',"注：Bootstrapを利用するサ�
 
 jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', '名前：' );
 
+
+jr_define( '_JOMRES_LIVE_SCROLLING', 'Use Live Scrolling/Infinate Scrolling in property list?' );

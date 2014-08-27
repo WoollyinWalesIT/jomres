@@ -2325,3 +2325,5 @@ jr_define('_JOMRES_PRICINGOUTPUT_NIGHT','noc');
 jr_define('_JOMRES_PRICINGOUTPUT_NIGHTS','nocy');
 jr_define('_JOMRES_CONFIG_SHOW_OVERLAY','Pokaż ceny łączne');
 jr_define('_JOMRES_CONFIG_SHOW_OVERLAY_DESC','Na liście ofert możliwe jest pokazanie łącznej ceny dla oferty. Należy użyć tego ustawienia, aby włączyć tą funkcję. Cena łączna jest obliczana na podstawie zakresu wybranych przez klienta dat.');
+
+jr_define( '_JOMRES_LIVE_SCROLLING', 'Use Live Scrolling/Infinate Scrolling in property list?' );

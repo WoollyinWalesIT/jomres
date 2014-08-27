@@ -899,6 +899,12 @@ class HTML_jomres
 			</tr>
 			
 			<tr>
+				<td>' . jr_gettext( _JOMRES_LIVE_SCROLLING, '_JOMRES_LIVE_SCROLLING', false ) . '</td>
+				<td>' . $lists[ 'live_scrolling_enabled' ] . '</td>
+				<td></td>
+			</tr>
+			
+			<tr>
 				<td>' . jr_gettext( _JOMRES_COM_PROPERTYLISTDESC, '_JOMRES_COM_PROPERTYLISTDESC', false ) . '</td>
 				<td><input type="text" class="input-large" name="cfg_propertyListDescriptionLimit" value="' . $jrConfig[ 'propertyListDescriptionLimit' ] . '" /></td>
 				<td>' . jr_gettext( _JOMRES_COM_PROPERTYLISTDESC_DESC, '_JOMRES_COM_PROPERTYLISTDESC_DESC', false ) . '</td>
@@ -908,6 +914,7 @@ class HTML_jomres
 				<td><input type="text" class="input-large" name="cfg_randomsearchlimit" value="' . $jrConfig[ 'randomsearchlimit' ] . '" /></td>
 				<td>' . jr_gettext( _JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC, '_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC', false ) . '</td>
 			</tr>
+
 			<tr>
 				<td>' . jr_gettext( _JOMRES_COM_A_LISTLIMIT, '_JOMRES_COM_A_LISTLIMIT', false ) . '</td>
 				<td><input type="text" class="input-large" name="cfg_property_list_limit" value="' . $jrConfig[ 'property_list_limit' ] . '" /></td>

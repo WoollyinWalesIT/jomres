@@ -341,6 +341,12 @@ function showSiteConfig()
 	$lists[ 'use_bootstrap_in_frontend' ]      = jomresHTML::selectList( $yesno, 'cfg_use_bootstrap_in_frontend', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_bootstrap_in_frontend' ] );
 	$lists[ 'show_cumulative_price_overlay' ]  = jomresHTML::selectList( $yesno, 'cfg_show_cumulative_price_overlay', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_cumulative_price_overlay' ] );
 	
+	if (!isset($jrConfig['live_scrolling_enabled']))
+		$jrConfig['live_scrolling_enabled'] = "1";
+	
+	$lists[ 'live_scrolling_enabled' ]         = jomresHTML::selectList( $yesno, 'cfg_live_scrolling_enabled', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'live_scrolling_enabled' ] );
+	
+	
 	HTML_jomres::showSiteConfig( 
 		$jrConfig, 
 		$lists, 

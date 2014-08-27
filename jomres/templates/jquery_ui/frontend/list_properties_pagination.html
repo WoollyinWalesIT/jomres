@@ -1,0 +1,18 @@
+<patTemplate:tmpl name="pageoutput">
+<div class="pagination">
+	<ul>
+		<li>
+			<a href="{BACKWARD_LINK}" class="{FORWARD_CLASS}">&laquo;</a>
+		</li>
+		<patTemplate:tmpl name="rows" >
+		<li>
+			<a href="{LINK}" class="{CLASS}">{PAGE}</a>
+		</li>
+		</patTemplate:tmpl>
+		<li>
+			<a href="{FORWARD_LINK}" class="{BACKWARD_CLASS}">&raquo;</a>
+		</li>
+	</ul>
+</div>
+
+</patTemplate:tmpl>
