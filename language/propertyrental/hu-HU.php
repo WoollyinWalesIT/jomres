@@ -725,7 +725,7 @@ jr_define( '_JOMRES_SEARCH_GEO_REGIONSEARCH', 'Keresés megye szerint' );
 jr_define( '_JOMRES_SEARCH_GEO_TOWNSEARCH', 'Keresés város szerint' );
 jr_define( '_JOMRES_SEARCH_FEATURE_INFO', 'Keresés tulajdonság szerint' );
 jr_define( '_JOMRES_SEARCH_BUTTON', 'Keresés' );
-jr_define( '_JOMRES_SEARCH_DESCRIPTION_INFO', 'Enter a search word into the box and press the button.' );
+jr_define( '_JOMRES_SEARCH_DESCRIPTION_INFO', 'Search term' );
 jr_define( '_JOMRES_SEARCH_DESCRIPTION_LABEL', 'Szavak keresése: ' );
 jr_define( '_JOMRES_SEARCH_AVL_INFO', 'Kérjük adja meg a tervezett érkezési és indulási idejét és nyomja meg a keresés gombot, hogy ezen időtartamon elérhető szálláshelyeket találjon.' );
 jr_define( '_JOMRES_SEARCH_PTYPES', 'Összes szállás listázása  szállástípus szerint' );
