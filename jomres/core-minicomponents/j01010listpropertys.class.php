@@ -732,6 +732,9 @@ class j01010listpropertys
 
 				if ( !$data_only )
 					{
+					if ( $show_paging )
+						echo $output['PAGING'];
+					
 					if ( !AJAXCALL || get_showtime( 'task' ) == "ajax_search_filter" )
 						{
 						$header_pageoutput[ ] = $header_output;
@@ -746,9 +749,6 @@ class j01010listpropertys
 						$tmpl->readTemplatesFromInput( "list_properties_header.html" );
 						$output[ 'HEADER' ] = $tmpl->getParsedTemplate();
 						}
-
-					if ( $show_paging )
-						echo $output['PAGING'];
 					
 					$pageoutput[ ] = $output;
 					$tmpl          = new patTemplate();
