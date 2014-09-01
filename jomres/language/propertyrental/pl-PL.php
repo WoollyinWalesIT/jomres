@@ -2,12 +2,12 @@
 /**
 * Core file
 * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 8
+* @version Jomres 8
 * @package Jomres
 * @copyright	2005-2013 Vince Wooll
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly. 
 * @Polska adaptacja Patryk Doering - http://www.rekinet.pl - kontakt@rekinet.pl
-* @Aktualizacja wersji językowej z 23-08-2014r.
+* @Aktualizacja wersji językowej z 01-09-2014r.
 **/
 
 ##################################################################
@@ -2325,5 +2325,4 @@ jr_define('_JOMRES_PRICINGOUTPUT_NIGHT','noc');
 jr_define('_JOMRES_PRICINGOUTPUT_NIGHTS','nocy');
 jr_define('_JOMRES_CONFIG_SHOW_OVERLAY','Pokaż ceny łączne');
 jr_define('_JOMRES_CONFIG_SHOW_OVERLAY_DESC','Na liście ofert możliwe jest pokazanie łącznej ceny dla oferty. Należy użyć tego ustawienia, aby włączyć tą funkcję. Cena łączna jest obliczana na podstawie zakresu wybranych przez klienta dat.');
-
-jr_define( '_JOMRES_LIVE_SCROLLING', 'Use Live Scrolling/Infinate Scrolling in property list?' );
+jr_define('_JOMRES_LIVE_SCROLLING','Użyć systemu przewijania wyników wyszukiwania na listach zamiast paginacji?');
