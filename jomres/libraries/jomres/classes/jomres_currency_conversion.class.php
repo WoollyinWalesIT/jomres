@@ -44,7 +44,7 @@ class jomres_currency_conversion
 		return $foreign_sum;
 		}
 
-	function get_exchange_rate_dropdown( $base = '' , $bootstrap_template = false )
+	function get_exchange_rate_dropdown( $base = '' , $alternate_template = false )
 		{
 		if ( $base == '' ) $base = 'GBP';
 		if ( !$this->check_currency_code_valid( $base ) ) $base = 'GBP';
@@ -59,12 +59,18 @@ class jomres_currency_conversion
 				{
 				$text    = $currency_code_class->codes[ $currency_code ];
 				$fmts[ ] = jomresHTML::makeOption( $currency_code, $text );
-				$rows[$currency_code]= array("CURRENCY_CODE"=>$currency_code , "TEXT" =>$text );
+				
+				if ($currency_code == $base)
+					$selected = 'selected="selected"';
+				else
+					$selected = ''; 
+				
+				$rows[$currency_code]= array("CURRENCY_CODE"=>$currency_code , "TEXT" =>$text, "SELECTED"=>$selected );
 				}
 			}
 
 		$javascript = 'onChange="switch_exchange_rate(\'' . JOMRES_SITEPAGE_URL_AJAX . '\',this.value);"';
-		if ($bootstrap_template && using_bootstrap() )
+		if ($alternate_template && using_bootstrap() )
 			{
 			$output = array();
 			$pageoutput = array();
