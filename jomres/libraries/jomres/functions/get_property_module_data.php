@@ -29,6 +29,7 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 		}
 
 	$return_data = array ();
+	$animationDelay = 0;
 
 	$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 	$current_property_details->gather_data_multi( $property_uid_array );
@@ -86,6 +87,10 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 			$property_data[ 'SUPERIOR' ] = '';
 			if ( $property_data[ 'superior' ] == 1 ) 
 				$property_data[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/superior.png\" alt=\"superior\" border=\"0\" />";
+			
+			//animations
+			$property_data[ 'ANIMATION_DELAY' ] = $animationDelay;
+			$animationDelay = $animationDelay + 300;
 
 			$pageoutput = array ( $property_data );
 			$tmpl       = new patTemplate();
