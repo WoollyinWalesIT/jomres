@@ -1,3 +1,33 @@
+<h3>Jomres 8.1.10 01/09/2014</h3>
+
+<span class="label label-success">Feature</span> Added new functionality to allow site managers to choose whether or not to show the property list paginated, or to use the older Infinite Scrolling feature.
+
+<span class="label label-warning">Change</span> Modified the image uploader to automatically crop images.
+<span class="label label-warning">Change</span> Added modules srch.html templates to files that can be overridden via the Joomla method.
+<span class="label label-warning">Change</span> Added a change to ensure that the correct version of editable's css file is called if we're in the administrator area.
+<span class="label label-warning">Change</span> Tweaked a path to the dobooking script. (tab contents related)
+<span class="label label-warning">Change</span> Added error codes to track obscure upload issues if they exist. (Plugin manager)
+<span class="label label-warning">Change</span> Modified the Japanese date pickers file reference.
+<span class="label label-warning">Change</span> Removed a stray </select> from the search generation code.
+<span class="label label-warning">Change</span> Added quick info output text to property module data script.
+<span class="label label-warning">Change</span> Removed some stray spaces from code that was upsetting adaptations of the JavaScript drop downs.
+<span class="label label-warning">Change</span> Added a tweak to how property name searching is done so if only one property of a given name exists then the user's directed straight to that property instead of being shown the property list.
+<span class="label label-warning">Change</span> Implemented new code for searching by property name, thanks for the contribution Rod.
+<span class="label label-warning">Change</span> Added two new triggers for publishing properties ( 02273 for after a property has been successfully published and 02274 for when it has been unpublished ), at the request of a third party developer.
+<span class="label label-warning">Change</span> Modified the Bootstrap 3 flat template to allow us to select which elements do not appear in tabs.
+<span class="label label-warning">Change</span> Polish lang file updated, many thanks Patryk.
+<span class="label label-warning">Change</span> Tweaked how list bookings is shown in ajax loaded tables for JQ UI
+<span class="label label-warning">Change</span> Tweaked admin script to ensure temp .js files are deleted for refresh whenever on main control panel or Site Config pages.
+<span class="label label-warning">Change</span> Modified "search by" language strings to make them more compact.
+<span class="label label-warning">Change</span> Tweaked a condition relating to how budget is shown in the property list.
+<span class="label label-warning">Change</span> Added some small changes to currency conversion class to relating to alternate templates.
+<span class="label label-warning">Change</span> Added animation delay variable to get_property_module_data.php
+<span class="label label-warning">Change</span> Updated the Star image.
+<span class="label label-warning">Change</span> Changed search feature to adapt to the search order formula chosen in site config.
+<span class="label label-warning">Change</span> Modified layout of module popup for bootstrap3.
+<span class="label label-warning">Change</span> Tweaked how chained combo boxes are built.
+
+
 <h3>Jomres 8.1.9 07/08/2014</h3>
 
 <span class="label label-success">Feature</span> Added Japanese language file. Many thanks Jeff.
