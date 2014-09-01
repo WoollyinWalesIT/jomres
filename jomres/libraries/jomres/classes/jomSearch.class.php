@@ -1018,13 +1018,29 @@ function prepGeographicSearch()
 function prepGuestnumberSearch()
 	{
 	$result   = array ();
-	$query    = "SELECT DISTINCT maxpeople FROM #__jomres_rates ORDER by maxpeople ASC";
-	$rateList = doSelectSql( $query );
-	foreach ( $rateList as $rate )
+	
+	$siteConfig      = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig        = $siteConfig->get();
+	
+	if ( $jrConfig[ 'guestnumbersearch' ] == "equal")
 		{
-		$result[ ] = $rate->maxpeople;
+		$query    = "SELECT DISTINCT maxpeople FROM #__jomres_rates ORDER by maxpeople ASC";
+		$rateList = doSelectSql( $query );
+		foreach ( $rateList as $rate )
+			{
+			$result[ ] = $rate->maxpeople;
+			}
 		}
-
+	else
+		{
+		$query    = "SELECT MAX(maxpeople) FROM #__jomres_rates LIMIT 1";
+		$maxpeople = (int)doSelectSql( $query,1 );
+		
+		for ( $i=1; $i<=$maxpeople; $i++ )
+			{
+			$result[ ] = $i;
+			}
+		}
 	return $result;
 	}
 
