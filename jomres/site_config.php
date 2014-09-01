@@ -206,7 +206,7 @@ $jrConfig[ 'booking_form_lnks_as_buttons' ] = "1";
 
 $jrConfig[ 'load_jquery_ui' ] = "1";
 
-$jrConfig[ 'guestnumbersearch' ] = "equal";
+$jrConfig[ 'guestnumbersearch' ] = "lessthan";
 
 $jrConfig[ 'load_jquery_ui_css' ]         = "1";
 $jrConfig[ 'use_conversion_feature' ]     = "1";
