@@ -118,7 +118,8 @@ class j00030search
 		$unwanted = array ( "%", "'", "\"" );
 		if ( !empty( $_REQUEST[ 'propertyname' ] ) )
 			{
-			if ( $_REQUEST[ 'propertyname' ] == $searchAll ) $sch->filter[ 'propertyname' ] = "%";
+			if ( $_REQUEST[ 'propertyname' ] == $searchAll ) 
+				$sch->filter[ 'propertyname' ] = "%";
 			else
 				{
 				$sch->filter[ 'propertyname' ] = jomresGetParam( $_REQUEST, 'propertyname', "" );
@@ -129,7 +130,8 @@ class j00030search
 
 		if ( !empty( $_REQUEST[ 'country' ] ) )
 			{
-			if ( $_REQUEST[ 'country' ] == $searchAll ) $sch->filter[ 'country' ] = "%";
+			if ( $_REQUEST[ 'country' ] == $searchAll ) 
+				$sch->filter[ 'country' ] = "%";
 			else
 				{
 				$sch->filter[ 'country' ] = jomresGetParam( $_REQUEST, 'country', "" );
@@ -140,7 +142,8 @@ class j00030search
 
 		if ( !empty( $_REQUEST[ 'region' ] ) )
 			{
-			if ( $_REQUEST[ 'region' ] == $searchAll ) $sch->filter[ 'region' ] = "%";
+			if ( $_REQUEST[ 'region' ] == $searchAll ) 
+				$sch->filter[ 'region' ] = "%";
 			else
 				{
 				$sch->filter[ 'region' ] = jomresGetParam( $_REQUEST, 'region', "" );
@@ -152,7 +155,8 @@ class j00030search
 
 		if ( !empty( $_REQUEST[ 'town' ] ) )
 			{
-			if ( $_REQUEST[ 'town' ] == $searchAll ) $sch->filter[ 'town' ] = "%";
+			if ( $_REQUEST[ 'town' ] == $searchAll ) 
+				$sch->filter[ 'town' ] = "%";
 			else
 				{
 				$sch->filter[ 'town' ] = jomresGetParam( $_REQUEST, 'town', "" );
@@ -172,7 +176,8 @@ class j00030search
 
 		if ( !empty( $_REQUEST[ 'feature_uids' ] ) )
 			{
-			if ( $_REQUEST[ 'feature_uids' ] == $searchAll ) $sch->filter[ 'feature_uids' ] = "%";
+			if ( $_REQUEST[ 'feature_uids' ] == $searchAll ) 
+				$sch->filter[ 'feature_uids' ] = "%";
 			else
 				{
 				$sch->filter[ 'feature_uids' ] = jomresGetParam( $_REQUEST, 'feature_uids', array () );
@@ -181,7 +186,8 @@ class j00030search
 
 		if ( !empty( $_REQUEST[ 'room_type' ] ) )
 			{
-			if ( $_REQUEST[ 'room_type' ] == $searchAll ) $sch->filter[ 'room_type' ] = "%";
+			if ( $_REQUEST[ 'room_type' ] == $searchAll ) 
+				$sch->filter[ 'room_type' ] = "%";
 			else
 				{
 				$sch->filter[ 'room_type' ] = (int) jomresGetParam( $_REQUEST, 'room_type', 0 );
@@ -190,7 +196,8 @@ class j00030search
 
 		if ( !empty( $_REQUEST[ 'ptype' ] ) )
 			{
-			if ( $_REQUEST[ 'ptype' ] == $searchAll ) $sch->filter[ 'ptype' ] = "%";
+			if ( $_REQUEST[ 'ptype' ] == $searchAll ) 
+				$sch->filter[ 'ptype' ] = "%";
 			else
 				{
 				$sch->filter[ 'ptype' ] = (int) jomresGetParam( $_REQUEST, 'ptype', "" );
@@ -199,7 +206,8 @@ class j00030search
 		//	$_REQUEST['priceranges']="0-50";
 		if ( !empty( $_REQUEST[ 'priceranges' ] ) )
 			{
-			if ( $_REQUEST[ 'priceranges' ] == $searchAll ) $sch->filter[ 'priceranges' ] = "%";
+			if ( $_REQUEST[ 'priceranges' ] == $searchAll ) 
+				$sch->filter[ 'priceranges' ] = "%";
 			else
 				{
 				$ranges                       = jomresGetParam( $_REQUEST, 'priceranges', "" );
@@ -210,7 +218,8 @@ class j00030search
 
 		if ( !empty( $_REQUEST[ 'guestnumber' ] ) )
 			{
-			if ( $_REQUEST[ 'guestnumber' ] == $searchAll ) $sch->filter[ 'guestnumber' ] = "%";
+			if ( $_REQUEST[ 'guestnumber' ] == $searchAll ) 
+				$sch->filter[ 'guestnumber' ] = "%";
 			else
 				{
 				$sch->filter[ 'guestnumber' ] = (int) jomresGetParam( $_REQUEST, 'guestnumber', "" );
@@ -219,7 +228,8 @@ class j00030search
 
 		if ( !empty( $_REQUEST[ 'stars' ] ) )
 			{
-			if ( $_REQUEST[ 'stars' ] == $searchAll ) $sch->filter[ 'stars' ] = "%";
+			if ( $_REQUEST[ 'stars' ] == $searchAll ) 
+				$sch->filter[ 'stars' ] = "%";
 			else
 				{
 				$sch->filter[ 'stars' ] = (int) jomresGetParam( $_REQUEST, 'stars', "" );
@@ -407,9 +417,11 @@ class j00030search
 			$countryArray = array ();
 			if ( count( $sch->prep[ 'country' ] ) > 0 )
 				{
-				if ( empty( $sch->filter[ 'country' ] ) ) $selectOption = $sch->prep[ 'country' ][ 0 ][ 'countrycode' ];
+				if ( empty( $sch->filter[ 'country' ] ) ) 
+					$selectOption = $sch->prep[ 'country' ][ 0 ][ 'countrycode' ];
 				else
-				$selectOption = $sch->filter[ 'country' ];
+					$selectOption = $sch->filter[ 'country' ];
+				
 				if ( $searchOutput[ 'country' ] == "dropdown" )
 					{
 					foreach ( $sch->prep[ 'country' ] as $country )
@@ -443,9 +455,11 @@ class j00030search
 			$regionArray = array ();
 			if ( count( $sch->prep[ 'region' ] ) > 0 )
 				{
-				if ( empty( $sch->filter[ 'region' ] ) ) $selectOption = $sch->prep[ 'region' ][ 0 ][ 'region' ];
+				if ( empty( $sch->filter[ 'region' ] ) ) 
+					$selectOption = $sch->prep[ 'region' ][ 0 ][ 'region' ];
 				else
-				$selectOption = $sch->filter[ 'region' ];
+					$selectOption = $sch->filter[ 'region' ];
+				
 				if ( $searchOutput[ 'region' ] == "dropdown" )
 					{
 					foreach ( $sch->prep[ 'region' ] as $region )
@@ -486,9 +500,10 @@ class j00030search
 			$ta = $sch->prep[ 'town' ];
 			if ( count( $sch->prep[ 'town' ] ) > 0 )
 				{
-				if ( empty( $sch->filter[ 'town' ] ) ) $selectOption = $ta[ 0 ][ 'town' ];
+				if ( empty( $sch->filter[ 'town' ] ) ) 
+					$selectOption = $ta[ 0 ][ 'town' ];
 				else
-				$selectOption = $sch->filter[ 'town' ];
+					$selectOption = $sch->filter[ 'town' ];
 				if ( $searchOutput[ 'town' ] == "dropdown" )
 					{
 					foreach ( $ta as $town )
@@ -532,9 +547,10 @@ class j00030search
 			$featureArray = array ();
 			if ( count( $sch->prep[ 'features' ] ) > 0 )
 				{
-				if ( empty( $sch->filter[ 'feature_uids' ] ) ) $selectOption = $sch->prep[ 'features' ][ 0 ];
+				if ( empty( $sch->filter[ 'feature_uids' ] ) ) 
+					$selectOption = $sch->prep[ 'features' ][ 0 ];
 				else
-				$selectOption = $sch->filter[ 'feature_uids' ][ 0 ];
+					$selectOption = $sch->filter[ 'feature_uids' ][ 0 ];
 				if ( $searchOutput[ 'feature_uids' ] == "dropdown" )
 					{
 					foreach ( $sch->prep[ 'features' ] as $feature )
@@ -582,9 +598,10 @@ class j00030search
 			if ( count( $sch->prep[ 'rtypes' ] ) > 0 )
 				{
 				$r = "";
-				if ( empty( $sch->filter[ 'room_type' ] ) ) $selectOption = $sch->prep[ 'rtypes' ][ 0 ][ 'id' ];
+				if ( empty( $sch->filter[ 'room_type' ] ) ) 
+					$selectOption = $sch->prep[ 'rtypes' ][ 0 ][ 'id' ];
 				else
-				$selectOption = $sch->filter[ 'room_type' ];
+					$selectOption = $sch->filter[ 'room_type' ];
 				if ( $searchOutput[ 'room_type' ] == "dropdown" )
 					{
 					foreach ( $sch->prep[ 'rtypes' ] as $rtype )
@@ -618,9 +635,10 @@ class j00030search
 			$ptypeArray = array ();
 			if ( count( $sch->prep[ 'ptypes' ] ) > 0 )
 				{
-				if ( empty( $sch->filter[ 'ptype' ] ) ) $selectOption = $sch->prep[ 'ptypes' ][ 0 ][ 'id' ];
+				if ( empty( $sch->filter[ 'ptype' ] ) ) 
+					$selectOption = $sch->prep[ 'ptypes' ][ 0 ][ 'id' ];
 				else
-				$selectOption = $sch->filter[ 'ptype' ];
+					$selectOption = $sch->filter[ 'ptype' ];
 				if ( $searchOutput[ 'ptype' ] == "dropdown" )
 					{
 					foreach ( $sch->prep[ 'ptypes' ] as $ptype )
@@ -657,9 +675,10 @@ class j00030search
 			$rangeArray = array ();
 			if ( count( $sch->prep[ 'priceranges' ] ) > 0 )
 				{
-				if ( empty( $sch->filter[ 'priceranges' ] ) ) $selectOption = $sch->prep[ 'priceranges' ][ 0 ];
+				if ( empty( $sch->filter[ 'priceranges' ] ) )
+					$selectOption = $sch->prep[ 'priceranges' ][ 0 ];
 				else
-				$selectOption = $sch->filter[ 'priceranges' ][ 'raw' ];
+					$selectOption = $sch->filter[ 'priceranges' ][ 'raw' ];
 				foreach ( $sch->prep[ 'priceranges' ] as $priceranges )
 					{
 					$rangeArray[ ] = jomresHTML::makeOption( $priceranges, $priceranges );
@@ -683,9 +702,10 @@ class j00030search
 			$guestnumberArray = array ();
 			if ( count( $sch->prep[ 'guestnumber' ] ) > 0 )
 				{
-				if ( empty( $sch->filter[ 'guestnumber' ] ) ) $selectOption = $sch->prep[ 'guestnumber' ][ 0 ][ 'id' ];
+				if ( empty( $sch->filter[ 'guestnumber' ] ) ) 
+					$selectOption = $sch->prep[ 'guestnumber' ][ 0 ][ 'id' ];
 				else
-				$selectOption = $sch->filter[ 'guestnumber' ];
+					$selectOption = $sch->filter[ 'guestnumber' ];
 				foreach ( $sch->prep[ 'guestnumber' ] as $guestnumber )
 					{
 					$guestnumberArray[ ] = jomresHTML::makeOption( $guestnumber[ 'id' ], $guestnumber[ 'guestnumber' ] );
@@ -703,9 +723,10 @@ class j00030search
 			$starsArray = array ();
 			if ( count( $sch->prep[ 'stars' ] ) > 0 )
 				{
-				if ( empty( $sch->filter[ 'stars' ] ) ) $selectOption = $sch->prep[ 'stars' ][ 0 ][ 'id' ];
+				if ( empty( $sch->filter[ 'stars' ] ) ) 
+					$selectOption = $sch->prep[ 'stars' ][ 0 ][ 'id' ];
 				else
-				$selectOption = $sch->filter[ 'stars' ];
+					$selectOption = $sch->filter[ 'stars' ];
 
 				foreach ( $sch->prep[ 'stars' ] as $stars )
 					{

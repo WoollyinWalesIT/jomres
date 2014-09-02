@@ -244,7 +244,6 @@ class j01010listpropertys
 				$output['PAGING'] = '';
 				if ( $show_paging )
 					{
-
 					$pagination_result = $this->generate_paging( $propertys_uids , (int)$jrConfig[ 'property_list_limit' ] );
 					$output['PAGING'] = $pagination_result['PAGINATION'];
 					$current_page = $pagination_result['current_page'];
@@ -732,9 +731,6 @@ class j01010listpropertys
 
 				if ( !$data_only )
 					{
-					if ( $show_paging )
-						echo $output['PAGING'];
-					
 					if ( !AJAXCALL || get_showtime( 'task' ) == "ajax_search_filter" )
 						{
 						$header_pageoutput[ ] = $header_output;
@@ -759,10 +755,6 @@ class j01010listpropertys
 					$tmpl->setRoot( $layout_path_to_template );
 					$tmpl->readTemplatesFromInput( $layout_template );
 					$tmpl->displayParsedTemplate();
-					
-					if ( $show_paging )
-						echo $output['PAGING'];
-					
 					}
 				else
 					{
