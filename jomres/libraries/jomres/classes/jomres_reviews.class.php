@@ -339,7 +339,7 @@ class jomres_reviews
 			}
 
 		$rating_details = array ();
-		$sql            = "SELECT rating_id, detail_rating FROM #__jomres_reviews_ratings_detail WHERE `item_id` = '" . (int) $this->property_uid . "'  ORDER BY rating_id";
+		$sql            = "SELECT rating_id, detail_rating FROM #__jomres_reviews_ratings_detail WHERE `item_id` = '" . (int) $this->property_uid . "'  ";
 		$rs             = doSelectSql( $sql );
 		foreach ( $rs as $r )
 			{
