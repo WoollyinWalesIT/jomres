@@ -76,19 +76,29 @@ class j06000ui_availability_calendar
 			{
 			foreach ( $bookings as $booking )
 				{
-				if ( isset( $booking_dates[ $booking->date ] ) ) $booking_dates[ $booking->date ]++;
+				if ( isset( $booking_dates[ $booking->date ] ) )
+					{
+					$booking_dates[ $booking->date ]++;
+					}
 				else
-				$booking_dates[ $booking->date ] = 1;
+					{
+					$booking_dates[ $booking->date ] = 1;
+					}
+				
 				}
 
 			foreach ( $booking_dates as $date => $count )
 				{
-				// This might need to be checked later, let's get the infrastructure in place first.
-				if ( $count >= $this->rooms_full ) $full_dates[ ] = $date;
-				if ( $count <= $this->rooms_full - 1 && $count >= $this->rooms_threequarter ) $threequarter_dates[ ] = $date;
-				if ( $count < $this->rooms_threequarter && $count >= $this->rooms_half ) $half_dates[ ] = $date;
-				if ( $count < $this->rooms_half && $count >= $this->rooms_empty + 1 ) $quarter_dates[ ] = $date;
-				if ( $count == $this->rooms_empty ) $empty_dates[ ] = $date;
+				if ( $count >= $this->rooms_full ) 
+					$full_dates[ ] = $date;
+				if ( $count <= $this->rooms_full - 1 && $count >= $this->rooms_threequarter ) 
+					$threequarter_dates[ ] = $date;
+				if ( $count < $this->rooms_threequarter && $count >= $this->rooms_half ) 
+					$half_dates[ ] = $date;
+				if ( $count < $this->rooms_half && $count >= $this->rooms_empty + 1 ) 
+					$quarter_dates[ ] = $date;
+				if ( $count == $this->rooms_empty ) 
+					$empty_dates[ ] = $date;
 				}
 			}
 
