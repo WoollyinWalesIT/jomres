@@ -451,7 +451,7 @@ class j01010listpropertys
 					if ( $xxxxxx!= "0" )
 						{
 						$starslink = "";
-						for ( $i = 1; $i <= $stars; $i++ )
+						for ( $i = 1; $i <= $current_property_details->multi_query_result[ $propertys_uid ]['stars']; $i++ )
 							{
 							$starslink .= "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/star.png\" alt=\"star\" border=\"0\" />";
 							}
