@@ -2460,3 +2460,18 @@ jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', '名前：' );
 
 
 jr_define( '_JOMRES_LIVE_SCROLLING', 'Use Live Scrolling/Infinate Scrolling in property list?' );
+
+jr_define( "_JOMRES_ONLINE_PARTNERS", "Partners" );
+
+jr_define( '_JRPORTAL_MONTHS_SHORT_0', 'Jan' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_1', 'Feb' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_2', 'Mar' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_3', 'Apr' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_4', 'May' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_5', 'Jun' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_6', 'Jul' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_7', 'Aug' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );

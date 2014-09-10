@@ -2326,3 +2326,18 @@ jr_define('_JOMRES_PRICINGOUTPUT_NIGHTS','nocy');
 jr_define('_JOMRES_CONFIG_SHOW_OVERLAY','Pokaż ceny łączne');
 jr_define('_JOMRES_CONFIG_SHOW_OVERLAY_DESC','Na liście ofert możliwe jest pokazanie łącznej ceny dla oferty. Należy użyć tego ustawienia, aby włączyć tą funkcję. Cena łączna jest obliczana na podstawie zakresu wybranych przez klienta dat.');
 jr_define('_JOMRES_LIVE_SCROLLING','Użyć systemu przewijania wyników wyszukiwania na listach zamiast paginacji?');
+
+jr_define( "_JOMRES_ONLINE_PARTNERS", "Partners" );
+
+jr_define( '_JRPORTAL_MONTHS_SHORT_0', 'Jan' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_1', 'Feb' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_2', 'Mar' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_3', 'Apr' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_4', 'May' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_5', 'Jun' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_6', 'Jul' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_7', 'Aug' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
+jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
