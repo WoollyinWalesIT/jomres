@@ -935,13 +935,8 @@ try
 		foreach ( $MiniComponents->log as $log ) echo "Log :" . $log . "<br>";
 		}
 
-
-	if ( get_showtime( 'javascript_caching_enabled' ) )
-		{
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		$MiniComponents->triggerEvent( '99999', $componentArgs ); // Javascript and CSS caching
-		}
-		
+	$MiniComponents->triggerEvent( '99999', $componentArgs ); // Optional end run scripts
+	
 	if ($_REQUEST['modal_wrap'] == "1")
 		{
 		echo simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND,'modal_wrap_end.html');

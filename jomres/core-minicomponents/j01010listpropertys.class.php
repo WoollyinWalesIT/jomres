@@ -241,6 +241,9 @@ class j01010listpropertys
 				if ( !$live_scrolling_enabled || ( AJAXCALL && $jrConfig['live_scrolling_enabled'] == "0" ) )
 					$show_paging = true;
 				
+				if (  get_showtime( 'disable_paging' ) == true)
+					$show_paging = false;
+				
 				$output['PAGING'] = '';
 				if ( $show_paging )
 					{
@@ -640,11 +643,18 @@ class j01010listpropertys
 					if ( strlen( $propertyDesc ) > (int) $jrConfig[ 'propertyListDescriptionLimit' ] ) $property_deets[ 'PROPERTYDESC' ] = jr_substr( $propertyDesc, 0, $jrConfig[ 'propertyListDescriptionLimit' ] ) . "...";
 					else
 					$property_deets[ 'PROPERTYDESC' ] = $propertyDesc;
+					
+					$property_deets[ 'IMAGELARGE' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
+					$property_deets[ 'IMAGEMEDIUM' ] = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
+					$property_deets[ 'IMAGETHUMB' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
 
 					$jomres_media_centre_images->get_images($propertys_uid, array('property'));
-					$property_deets[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images['property'][0][0]['large'];
-					$property_deets[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['property'][0][0]['medium'];
-					$property_deets[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images['property'][0][0]['small'];
+					if ($jomres_media_centre_images->images['property'][0][0]['large'] != "")
+						{
+						$property_deets[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images['property'][0][0]['large'];
+						$property_deets[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['property'][0][0]['medium'];
+						$property_deets[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images['property'][0][0]['small'];
+						}
 					
 					$property_deets[ '_JOMRES_QUICK_INFO' ] = jr_gettext( '_JOMRES_QUICK_INFO', _JOMRES_QUICK_INFO, false, false );
 					$property_deets[ 'REMOTE_URL' ]         = $mrConfig[ 'galleryLink' ];
