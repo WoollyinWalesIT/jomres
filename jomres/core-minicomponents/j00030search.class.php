@@ -387,7 +387,7 @@ class j00030search
 					{
 					foreach ( $sch->prep[ 'propertyname' ] as $property )
 						{
-						$propertyname[ ] = jomresHTML::makeOption( $property[ 'puid' ], jomres_decode( $property[ 'pn' ] ) );
+						$propertyname[ ] = jomresHTML::makeOption(jomres_decode( $property[ 'pn' ] ), jomres_decode( $property[ 'pn' ] ) );
 						}
 					$output[ 'propertyname' ] = jomresHTML::selectList( $propertyname, 'propertyname', 'size="1" ', 'value', 'text', $selectOption );
 					$showButton               = true;
