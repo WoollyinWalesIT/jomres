@@ -162,20 +162,17 @@ class j00004a_init_javascript_css_files
 		if ($jrConfig['live_scrolling_enabled'] == "1")
 			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js");
 		
-		if ( $thisJRUser->userIsRegistered )
+		if ( $thisJRUser->userIsRegistered || jomres_cmsspecific_areweinadminarea() )
 			{
-			if ( $thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea() )
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.dataTables.js");
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "TableTools.min.js");
+			
+			if ( using_bootstrap() )
 				{
-				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.dataTables.js");
-				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "TableTools.min.js");
-				
-				if ( using_bootstrap() )
-					{
-					$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "DT_bootstrap.css");
-					$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/", "datatables_pagination.js");
-					}
-				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "ColVis.min.js");
+				$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "DT_bootstrap.css");
+				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/", "datatables_pagination.js");
 				}
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "ColVis.min.js");
 
 			if ( !using_bootstrap() )
 				{
