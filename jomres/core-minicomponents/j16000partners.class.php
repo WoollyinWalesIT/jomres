@@ -49,6 +49,14 @@ class j16000partners
 			"link"=>"http://www.jomres-plugins.com"
 			);
 		
+		$partners ['jadera_plugins'] = array (
+			"name"=>"Jadera Plugins", 
+			"intro"=>"An enthusiastic user of Jomres, Marhinio's a popular user on the forums and is always looking for ways to maximise his investment in Jomres.",
+			"plugin_list_url"=>"http://dev.jadera.eu/jadera.eu.php",
+			"image"=>"jadera.eu.png",
+			"link"=>"http://dev.jadera.eu/"
+			);
+		
 /* 		$partners ['odys'] = array (
 			"name"=>"ODYS", 
 			"intro"=>"Sidebar is another of our longtime users and ad hoc plugin developers.",
