@@ -51,7 +51,7 @@ class j16000partners
 		
 		$partners ['jadera_plugins'] = array (
 			"name"=>"Jadera Plugins", 
-			"intro"=>"An enthusiastic user of Jomres, Marhinio's a popular user on the forums and is always looking for ways to maximise his investment in Jomres.",
+			"intro"=>"An enthusiastic user of Jomres, Marinhio's a popular user on the forums and is always looking for ways to maximise his investment in Jomres.",
 			"plugin_list_url"=>"http://dev.jadera.eu/jadera.eu.php",
 			"image"=>"jadera.eu.png",
 			"link"=>"http://dev.jadera.eu/"
