@@ -2504,3 +2504,23 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+jr_define('DATATABLES_SEMPTYTABLE'		, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SINFO'			, "Показване на резултати от _START_ до _END_ от общо _TOTAL_" );
+jr_define('DATATABLES_SINFOEMPTY'		, "Показване на резултати от 0 до 0 от общо 0" );
+jr_define('DATATABLES_SINFOFILTERED'	, "(филтрирани от общо _MAX_ резултата)" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, "," );
+jr_define('DATATABLES_SLENGTHMENU'		, "Показване на _MENU_ резултата" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SPROCESSING'		, "Обработка на резултатите..." );
+jr_define('DATATABLES_SSEARCH'			, "Търсене във всички колони:" );
+jr_define('DATATABLES_SZERORECORDS'		, "Няма намерени резултати" );
+jr_define('DATATABLES_SFIRST'			, "Първа" );
+jr_define('DATATABLES_SLAST'			, "Последна" );
+jr_define('DATATABLES_SNEXT'			, "Следваща" );
+jr_define('DATATABLES_SPREVIOUS'		, "Предишна" );
+jr_define('DATATABLES_SSORTASCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SSORTDESCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );
+

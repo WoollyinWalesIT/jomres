@@ -2549,3 +2549,23 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+jr_define('DATATABLES_SEMPTYTABLE'		, "Nie sú k dispozícii žiadne dáta" );
+jr_define('DATATABLES_SINFO'			, "Záznamy _START_ až _END_ z celkom _TOTAL_" );
+jr_define('DATATABLES_SINFOEMPTY'		, "Záznamy 0 až 0 z celkom 0 " );
+jr_define('DATATABLES_SINFOFILTERED'	, "(vyfiltrované spomedzi _MAX_ záznamov)" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, "," );
+jr_define('DATATABLES_SLENGTHMENU'		, "Zobraz _MENU_ záznamov" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "Načítavam..." );
+jr_define('DATATABLES_SPROCESSING'		, "Spracúvam..." );
+jr_define('DATATABLES_SSEARCH'			, "Hľadať:" );
+jr_define('DATATABLES_SZERORECORDS'		, "Nenašli sa žiadne vyhovujúce záznamy" );
+jr_define('DATATABLES_SFIRST'			, "Prvá" );
+jr_define('DATATABLES_SLAST'			, "Posledná" );
+jr_define('DATATABLES_SNEXT'			, "Nasledujúca" );
+jr_define('DATATABLES_SPREVIOUS'		, "Predchádzajúca" );
+jr_define('DATATABLES_SSORTASCENDING'	, ": aktivujte na zoradenie stĺpca vzostupne" );
+jr_define('DATATABLES_SSORTDESCENDING'	, ": aktivujte na zoradenie stĺpca zostupne" );
+
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );

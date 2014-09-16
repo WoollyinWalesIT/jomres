@@ -2562,3 +2562,23 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+jr_define('DATATABLES_SEMPTYTABLE'		, "Nessun dato presente nella tabella" );
+jr_define('DATATABLES_SINFO'			, "Vista da _START_ a _END_ di _TOTAL_ elementi" );
+jr_define('DATATABLES_SINFOEMPTY'		, "Vista da 0 a 0 di 0 elementi" );
+jr_define('DATATABLES_SINFOFILTERED'	, "(filtrati da _MAX_ elementi totali)" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, "," );
+jr_define('DATATABLES_SLENGTHMENU'		, "Visualizza _MENU_ elementi" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "Caricamento..." );
+jr_define('DATATABLES_SPROCESSING'		, "Elaborazione..." );
+jr_define('DATATABLES_SSEARCH'			, "Cerca:" );
+jr_define('DATATABLES_SZERORECORDS'		, "La ricerca non ha portato alcun risultato." );
+jr_define('DATATABLES_SFIRST'			, "Inizio" );
+jr_define('DATATABLES_SLAST'			, "Fine" );
+jr_define('DATATABLES_SNEXT'			, "Successivo" );
+jr_define('DATATABLES_SPREVIOUS'		, "Precedente" );
+jr_define('DATATABLES_SSORTASCENDING'	, ": attiva per ordinare la colonna in ordine crescente" );
+jr_define('DATATABLES_SSORTDESCENDING'	, ": attiva per ordinare la colonna in ordine decrescente" );
+
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );

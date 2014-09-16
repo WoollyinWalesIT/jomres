@@ -2561,3 +2561,23 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+jr_define('DATATABLES_SEMPTYTABLE'		, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SINFO'			, "_START_ עד _END_ מתוך _TOTAL_ רשומות" );
+jr_define('DATATABLES_SINFOEMPTY'		, "0 עד 0 מתוך 0 רשומות" );
+jr_define('DATATABLES_SINFOFILTERED'	, "(מסונן מסך _MAX_  רשומות)" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, "," );
+jr_define('DATATABLES_SLENGTHMENU'		, "הצג _MENU_ פריטים" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SPROCESSING'		, "מעבד..." );
+jr_define('DATATABLES_SSEARCH'			, "חפש:" );
+jr_define('DATATABLES_SZERORECORDS'		, "לא נמצאו רשומות מתאימות" );
+jr_define('DATATABLES_SFIRST'			, "ראשון" );
+jr_define('DATATABLES_SLAST'			, "אחרון" );
+jr_define('DATATABLES_SNEXT'			, "הבא" );
+jr_define('DATATABLES_SPREVIOUS'		, "קודם" );
+jr_define('DATATABLES_SSORTASCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SSORTDESCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );

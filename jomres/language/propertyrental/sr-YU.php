@@ -2556,3 +2556,24 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+jr_define('DATATABLES_SEMPTYTABLE'		, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SINFO'			, "Prikaz _START_ do _END_ od ukupno _TOTAL_ elemenata" );
+jr_define('DATATABLES_SINFOEMPTY'		, "Prikaz 0 do 0 od ukupno 0 elemenata" );
+jr_define('DATATABLES_SINFOFILTERED'	, "(filtrirano od ukupno _MAX_ elemenata)" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SLENGTHMENU'		, "Prikaži _MENU_ elemenata" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SPROCESSING'		, "Procesiranje u toku..." );
+jr_define('DATATABLES_SSEARCH'			, "Pretraga:" );
+jr_define('DATATABLES_SZERORECORDS'		, "Nije pronađen nijedan rezultat" );
+jr_define('DATATABLES_SFIRST'			, "Početna" );
+jr_define('DATATABLES_SLAST'			, "Poslednja" );
+jr_define('DATATABLES_SNEXT'			, "Sledeća" );
+jr_define('DATATABLES_SPREVIOUS'		, "Prethodna" );
+jr_define('DATATABLES_SSORTASCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SSORTDESCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );
+

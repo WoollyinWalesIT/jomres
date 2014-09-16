@@ -265,12 +265,32 @@ class j00004a_init_javascript_css_files
 			var path_to_jomres_dir = "'.get_showtime( 'live_site' ).'";
 			var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX . '&task=module_popup&nofollowtmpl=1&id=";
 			var jomres_template_version = "'.find_plugin_template_directory().'";
-			var dataTables_sInfo = "'. jr_gettext( 'DATATABLES_SINFO', DATATABLES_SINFO, false ).'";
+			
 			var JOMRES_ROOT_DIRECTORY = "' . JOMRES_ROOT_DIRECTORY.'";
 			var live_scrolling_enabled = ' . $live_scrolling_enabled.';
 			
+			var dataTables_sEmptyTable		= "'. jr_gettext( 'DATATABLES_SEMPTYTABLE', DATATABLES_SEMPTYTABLE, false ).'";
+			var dataTables_sInfo			= "'. jr_gettext( 'DATATABLES_SINFO', DATATABLES_SINFO, false ).'";
+			var dataTables_sInfoEmpty		= "'. jr_gettext( 'DATATABLES_SINFOEMPTY', DATATABLES_SINFOEMPTY, false ).'";
+			var dataTables_sInfoFiltered	= "'. jr_gettext( 'DATATABLES_SINFOFILTERED', DATATABLES_SINFOFILTERED, false ).'";
+			var dataTables_sInfoPostFix		= "'. jr_gettext( 'DATATABLES_SINFOPOSTFIX', DATATABLES_SINFOPOSTFIX, false ).'";
+			var dataTables_sInfoThousands	= "'. jr_gettext( 'DATATABLES_SINFOTHOUSANDS', DATATABLES_SINFOTHOUSANDS, false ).'";
+			var dataTables_sLengthMenu		= "'. jr_gettext( 'DATATABLES_SLENGTHMENU', DATATABLES_SLENGTHMENU, false ).'";
+			var dataTables_sLoadingRecords	= "'. jr_gettext( 'DATATABLES_SLOADINGRECORDS', DATATABLES_SLOADINGRECORDS, false ).'";
+			var dataTables_sProcessing		= "'. jr_gettext( 'DATATABLES_SPROCESSING', DATATABLES_SPROCESSING, false ).'";
+			var dataTables_sSearch			= "'. jr_gettext( 'DATATABLES_SSEARCH', DATATABLES_SSEARCH, false ).'";
+			var dataTables_sZeroRecords		= "'. jr_gettext( 'DATATABLES_SZERORECORDS', DATATABLES_SZERORECORDS, false ).'";
+			var dataTables_sFirst			= "'. jr_gettext( 'DATATABLES_SFIRST', DATATABLES_SFIRST, false ).'";
+			var dataTables_sLast			= "'. jr_gettext( 'DATATABLES_SLAST', DATATABLES_SLAST, false ).'";
+			var dataTables_sNext			= "'. jr_gettext( 'DATATABLES_SNEXT', DATATABLES_SNEXT, false ).'";
+			var dataTables_sPrevious		= "'. jr_gettext( 'DATATABLES_SPREVIOUS', DATATABLES_SPREVIOUS, false ).'";
+			var dataTables_sSortAscending	= "'. jr_gettext( 'DATATABLES_SSORTASCENDING', DATATABLES_SSORTASCENDING, false ).'";
+			var dataTables_sSortDescending	= "'. jr_gettext( 'DATATABLES_SSORTDESCENDING', DATATABLES_SSORTDESCENDING, false ).'";
+			var dataTables_showhide			= "'. jr_gettext( 'DATATABLES_SHOWHIDE', DATATABLES_SHOWHIDE, false ).'";
+			
+			
 			';
-		
+
 		if ( ( !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ) || $_SERVER['SERVER_PORT'] == 443)// We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
 			{
 			$temp_file =  $ls . "_ssl_" . get_showtime( 'lang' ) ."_". $current_property_details->property_type."_". "_misc_url_defs.js";

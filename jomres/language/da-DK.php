@@ -2549,3 +2549,25 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+
+jr_define('DATATABLES_SEMPTYTABLE'		, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SINFO'			, "Viser _START_ til _END_ af _TOTAL_ linjer" );
+jr_define('DATATABLES_SINFOEMPTY'		, "Viser 0 til 0 af 0 linjer" );
+jr_define('DATATABLES_SINFOFILTERED'	, "(filtreret fra _MAX_ linjer)" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, "." );
+jr_define('DATATABLES_SLENGTHMENU'		, "Vis _MENU_ linjer" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SPROCESSING'		, "Henter..." );
+jr_define('DATATABLES_SSEARCH'			, "S&oslash;g:" );
+jr_define('DATATABLES_SZERORECORDS'		, "Ingen linjer matcher s&oslash;gningen" );
+jr_define('DATATABLES_SFIRST'			, "F&oslash;rste" );
+jr_define('DATATABLES_SLAST'			, "Sidste" );
+jr_define('DATATABLES_SNEXT'			, "N&aelig;ste" );
+jr_define('DATATABLES_SPREVIOUS'		, "Forrige" );
+jr_define('DATATABLES_SSORTASCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SSORTDESCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+
+
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );

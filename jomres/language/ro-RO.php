@@ -2553,3 +2553,24 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+jr_define('DATATABLES_SEMPTYTABLE'		, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SINFO'			, "Afisate de la _START_ la _END_ din _TOTAL_ inregistrari" );
+jr_define('DATATABLES_SINFOEMPTY'		, "Afisate de la 0 la 0 din 0 inregistrari" );
+jr_define('DATATABLES_SINFOFILTERED'	, "(filtrate dintr-un total de _MAX_ inregistrari)" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, "," );
+jr_define('DATATABLES_SLENGTHMENU'		, "Afiseaza _MENU_ inregistrari pe pagina" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SPROCESSING'		, "Proceseaza..." );
+jr_define('DATATABLES_SSEARCH'			, "Cauta:" );
+jr_define('DATATABLES_SZERORECORDS'		, "Nu am gasit nimic - ne pare rau" );
+jr_define('DATATABLES_SFIRST'			, "Prima" );
+jr_define('DATATABLES_SLAST'			, "Ultima" );
+jr_define('DATATABLES_SNEXT'			, "Urmatoarea" );
+jr_define('DATATABLES_SPREVIOUS'		, "Precedenta" );
+jr_define('DATATABLES_SSORTASCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SSORTDESCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+
+
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );

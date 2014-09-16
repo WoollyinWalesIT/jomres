@@ -2558,3 +2558,23 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+jr_define('DATATABLES_SEMPTYTABLE'		, "Geen resultaten aanwezig in de tabel" );
+jr_define('DATATABLES_SINFO'			, "_START_ tot _END_ van _TOTAL_ resultaten" );
+jr_define('DATATABLES_SINFOEMPTY'		, "Geen resultaten om weer te geven" );
+jr_define('DATATABLES_SINFOFILTERED'	, " (gefilterd uit _MAX_ resultaten)" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, "." );
+jr_define('DATATABLES_SLENGTHMENU'		, "_MENU_ resultaten weergeven" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "Een moment geduld aub - bezig met laden..." );
+jr_define('DATATABLES_SPROCESSING'		, "Bezig..." );
+jr_define('DATATABLES_SSEARCH'			, "Zoeken:" );
+jr_define('DATATABLES_SZERORECORDS'		, "Geen resultaten gevonden" );
+jr_define('DATATABLES_SFIRST'			, "Eerste" );
+jr_define('DATATABLES_SLAST'			, "Laatste" );
+jr_define('DATATABLES_SNEXT'			, "Volgende" );
+jr_define('DATATABLES_SPREVIOUS'		, "Vorige" );
+jr_define('DATATABLES_SSORTASCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SSORTDESCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );

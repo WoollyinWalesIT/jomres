@@ -2475,3 +2475,24 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+jr_define('DATATABLES_SEMPTYTABLE'		, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SINFO'			, " _TOTAL_ 件中 _START_ から _END_ まで表示" );
+jr_define('DATATABLES_SINFOEMPTY'		, " 0 件中 0 から 0 まで表示" );
+jr_define('DATATABLES_SINFOFILTERED'	, "（全 _MAX_ 件より抽出）" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, "," );
+jr_define('DATATABLES_SLENGTHMENU'		, "_MENU_ 件表示" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SPROCESSING'		, "処理中..." );
+jr_define('DATATABLES_SSEARCH'			, "検索:" );
+jr_define('DATATABLES_SZERORECORDS'		, "データはありません。" );
+jr_define('DATATABLES_SFIRST'			, "先頭" );
+jr_define('DATATABLES_SLAST'			, "最終" );
+jr_define('DATATABLES_SNEXT'			, "次" );
+jr_define('DATATABLES_SPREVIOUS'		, "前" );
+jr_define('DATATABLES_SSORTASCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SSORTDESCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+
+
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );
