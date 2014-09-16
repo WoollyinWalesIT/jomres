@@ -2547,3 +2547,24 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+jr_define('DATATABLES_SEMPTYTABLE'		, "表中数据为空" );
+jr_define('DATATABLES_SINFO'			, "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项" );
+jr_define('DATATABLES_SINFOEMPTY'		, "显示第 0 至 0 项结果，共 0 项" );
+jr_define('DATATABLES_SINFOFILTERED'	, "(由 _MAX_ 项结果过滤)" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, "," );
+jr_define('DATATABLES_SLENGTHMENU'		, "显示 _MENU_ 项结果" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "载入中..." );
+jr_define('DATATABLES_SPROCESSING'		, "处理中..." );
+jr_define('DATATABLES_SSEARCH'			, "搜索:" );
+jr_define('DATATABLES_SZERORECORDS'		, "没有匹配结果" );
+jr_define('DATATABLES_SFIRST'			, "首页" );
+jr_define('DATATABLES_SLAST'			, "末页" );
+jr_define('DATATABLES_SNEXT'			, "下页" );
+jr_define('DATATABLES_SPREVIOUS'		, "上页" );
+jr_define('DATATABLES_SSORTASCENDING'	, ": 以升序排列此列" );
+jr_define('DATATABLES_SSORTDESCENDING'	, ": 以降序排列此列" );
+
+
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );

@@ -2521,3 +2521,23 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+jr_define('DATATABLES_SEMPTYTABLE'		, "Tabellen innehåller ingen data" );
+jr_define('DATATABLES_SINFO'			, "Visar _START_ till _END_ av totalt _TOTAL_ rader" );
+jr_define('DATATABLES_SINFOEMPTY'		, "Visar 0 till 0 av totalt 0 rader" );
+jr_define('DATATABLES_SINFOFILTERED'	, "(filtrerade från totalt _MAX_ rader)" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, " " );
+jr_define('DATATABLES_SLENGTHMENU'		, "Visa _MENU_ rader" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "Laddar..." );
+jr_define('DATATABLES_SPROCESSING'		, "Bearbetar..." );
+jr_define('DATATABLES_SSEARCH'			, "Sök:" );
+jr_define('DATATABLES_SZERORECORDS'		, "Hittade inga matchande resultat" );
+jr_define('DATATABLES_SFIRST'			, "Första" );
+jr_define('DATATABLES_SLAST'			, "Sista" );
+jr_define('DATATABLES_SNEXT'			, "Nästa" );
+jr_define('DATATABLES_SPREVIOUS'		, "Föregående" );
+jr_define('DATATABLES_SSORTASCENDING'	, ": aktivera för att sortera kolumnen i stigande ordning" );
+jr_define('DATATABLES_SSORTDESCENDING'	, ": aktivera för att sortera kolumnen i fallande ordning" );
+
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );

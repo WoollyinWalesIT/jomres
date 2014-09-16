@@ -2541,3 +2541,23 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+jr_define('DATATABLES_SEMPTYTABLE'		, "Nincs rendelkezésre álló adat" );
+jr_define('DATATABLES_SINFO'			, "Találatok: _START_ - _END_ Összesen: _TOTAL_" );
+jr_define('DATATABLES_SINFOEMPTY'		, "Nulla találat" );
+jr_define('DATATABLES_SINFOFILTERED'	, "(_MAX_ összes rekord közül szűrve)" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, " " );
+jr_define('DATATABLES_SLENGTHMENU'		, "_MENU_ találat oldalanként" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "Betöltés..." );
+jr_define('DATATABLES_SPROCESSING'		, "Feldolgozás..." );
+jr_define('DATATABLES_SSEARCH'			, "Keresés:" );
+jr_define('DATATABLES_SZERORECORDS'		, "Nincs a keresésnek megfelelő találat" );
+jr_define('DATATABLES_SFIRST'			, "Első" );
+jr_define('DATATABLES_SLAST'			, "Utolsó" );
+jr_define('DATATABLES_SNEXT'			, "Következő" );
+jr_define('DATATABLES_SPREVIOUS'		, "Előző" );
+jr_define('DATATABLES_SSORTASCENDING'	, ": aktiválja a növekvő rendezéshez" );
+jr_define('DATATABLES_SSORTDESCENDING'	, ": aktiválja a csökkenő rendezéshez" );
+
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );

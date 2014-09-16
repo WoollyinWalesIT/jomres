@@ -74,7 +74,27 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 		"sDom": sDomm,
 		"sWrapper": "dataTables_wrapper form-inline",
 		"oLanguage": {
-			"sInfo": dataTables_sInfo
+				"sEmptyTable":     dataTables_sEmptyTable,
+				"sInfo":           dataTables_sInfo,
+				"sInfoEmpty":      dataTables_sInfoEmpty,
+				"sInfoFiltered":   dataTables_sInfoFiltered,
+				"sInfoPostFix":    dataTables_sInfoPostFix,
+				"sInfoThousands":  dataTables_sInfoThousands,
+				"sLengthMenu":     dataTables_sLengthMenu,
+				"sLoadingRecords": dataTables_sLoadingRecords,
+				"sProcessing":     dataTables_sProcessing,
+				"sSearch":         dataTables_sSearch,
+				"sZeroRecords":    dataTables_sZeroRecords,
+				"oPaginate": {
+					"sFirst":    dataTables_sFirst,
+					"sLast":     dataTables_sLast,
+					"sNext":     dataTables_sNext,
+					"sPrevious": dataTables_sPrevious
+				},
+				"oAria": {
+					"sSortAscending":  dataTables_sSortAscending,
+					"sSortDescending": dataTables_sSortDescending
+				}
 			},
 		"fnStateSave": function (oSettings, oData) {
 			localStorage.setItem('DataTables' + table_id, JSON.stringify(oData));
@@ -105,7 +125,8 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 		},
 		"oColVis": {
 			"aiExclude": [ 0 ],
-			"bRestore": false
+			"bRestore": false,
+			"buttonText" : dataTables_showhide
 		}
 	}).fnSetFilteringDelay();
 	jomresJquery.extend(jomresJquery.fn.dataTableExt.oStdClasses, {

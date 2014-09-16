@@ -2393,3 +2393,23 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+jr_define('DATATABLES_SEMPTYTABLE'		, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SINFO'			, "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว" );
+jr_define('DATATABLES_SINFOEMPTY'		, "แสดง 0 ถึง 0 จาก 0 แถว" );
+jr_define('DATATABLES_SINFOFILTERED'	, "(กรองข้อมูล _MAX_ ทุกแถว)" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, "," );
+jr_define('DATATABLES_SLENGTHMENU'		, "แสดง_MENU_ แถว" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SPROCESSING'		, "กำลังดำเนินการ..." );
+jr_define('DATATABLES_SSEARCH'			, "ค้นหา:" );
+jr_define('DATATABLES_SZERORECORDS'		, "ไม่พบข้อมูล" );
+jr_define('DATATABLES_SFIRST'			, "เิริ่มต้น" );
+jr_define('DATATABLES_SLAST'			, "สุดท้าย" );
+jr_define('DATATABLES_SNEXT'			, "ถัดไป" );
+jr_define('DATATABLES_SPREVIOUS'		, "ก่อนหน้า" );
+jr_define('DATATABLES_SSORTASCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SSORTDESCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );

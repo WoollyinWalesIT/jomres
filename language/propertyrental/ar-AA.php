@@ -2406,3 +2406,23 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+jr_define('DATATABLES_SEMPTYTABLE'		, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SINFO'			, "إظهار _START_ إلى _END_ من أصل _TOTAL_ مُدخل" );
+jr_define('DATATABLES_SINFOEMPTY'		, "يعرض 0 إلى 0 من أصل 0 سجلّ" );
+jr_define('DATATABLES_SINFOFILTERED'	, "(منتقاة من مجموع _MAX_ مُدخل)" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, "," );
+jr_define('DATATABLES_SLENGTHMENU'		, "أظهر مُدخلات _MENU_" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SPROCESSING'		, "جاري التحميل..." );
+jr_define('DATATABLES_SSEARCH'			, "ابحث:" );
+jr_define('DATATABLES_SZERORECORDS'		, "لم يُعثر على أية سجلات" );
+jr_define('DATATABLES_SFIRST'			, "الأول" );
+jr_define('DATATABLES_SLAST'			, "الأخير" );
+jr_define('DATATABLES_SNEXT'			, "التالي" );
+jr_define('DATATABLES_SPREVIOUS'		, "السابق" );
+jr_define('DATATABLES_SSORTASCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SSORTDESCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );

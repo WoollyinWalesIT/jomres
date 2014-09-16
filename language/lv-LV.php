@@ -2517,3 +2517,23 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+jr_define('DATATABLES_SEMPTYTABLE'		, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SINFO'			, "Parādīti _START_. līdz _END_. no _TOTAL_ ierakstiem" );
+jr_define('DATATABLES_SINFOEMPTY'		, "Nav ierakstu" );
+jr_define('DATATABLES_SINFOFILTERED'	, "(atlasīts no pavisam _MAX_ ierakstiem)" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SLENGTHMENU'		, "Rādīt _MENU_ ierakstus" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SPROCESSING'		, "Uzgaidiet..." );
+jr_define('DATATABLES_SSEARCH'			, "Meklēt:" );
+jr_define('DATATABLES_SZERORECORDS'		, "Nav atrasti vaicājumam atbilstoši ieraksti" );
+jr_define('DATATABLES_SFIRST'			, "Pirmā" );
+jr_define('DATATABLES_SLAST'			, "Pēdējā" );
+jr_define('DATATABLES_SNEXT'			, "Nākošā" );
+jr_define('DATATABLES_SPREVIOUS'		, "Iepriekšējā" );
+jr_define('DATATABLES_SSORTASCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SSORTDESCENDING'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );

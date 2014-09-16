@@ -2550,3 +2550,24 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+jr_define('DATATABLES_SEMPTYTABLE'		, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SINFO'			, "Записи с _START_ до _END_ из _TOTAL_ записей" );
+jr_define('DATATABLES_SINFOEMPTY'		, "Записи с 0 до 0 из 0 записей" );
+jr_define('DATATABLES_SINFOFILTERED'	, "(отфильтровано из _MAX_ записей)" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SLENGTHMENU'		, "Показать _MENU_ записей" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+jr_define('DATATABLES_SPROCESSING'		, "Подождите..." );
+jr_define('DATATABLES_SSEARCH'			, "Поиск:" );
+jr_define('DATATABLES_SZERORECORDS'		, "Записи отсутствуют." );
+jr_define('DATATABLES_SFIRST'			, "Первая" );
+jr_define('DATATABLES_SLAST'			, "Последняя" );
+jr_define('DATATABLES_SNEXT'			, "Следующая" );
+jr_define('DATATABLES_SPREVIOUS'		, "Предыдущая" );
+jr_define('DATATABLES_SSORTASCENDING'	, ": активировать для сортировки столбца по возрастанию" );
+jr_define('DATATABLES_SSORTDESCENDING'	, ": активировать для сортировки столбцов по убыванию" );
+
+
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );
