@@ -44,19 +44,6 @@
 <p>&nbsp;</p>
 
 
-<patTemplate:tmpl name="tabs_content">
-	<!-- Automatically ordered output -->
-
-	<div class="well">
-		<h2>{TAB_TITLE}</h2>
-		{TAB_CONTENT}
-	</div>
-</patTemplate:tmpl>
-
-<div class="clearfix"></div>
-<p>&nbsp;</p>
-
-
 <patTemplate:comment>
 
 	By default this template will show the data that's normally in a tab in it's own separate panels instead, that's
@@ -73,24 +60,6 @@
 </patTemplate:comment>
 
 
-<patTemplate:comment>
-	<div class="navbar navbar-fixed-bottom">
-		<div class="btn-toolbar">
-			<div class="btn-group">
-				<a href="{COMMON_THIS_PAGE_URL}#{COMMON_HOME|urlencode}" class="btn btn-info">{COMMON_HOME}</a>
-				<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_01_MAIN_DETAILS_TABTITLE|urlencode}"
-				   class="btn btn-info">{TABCONTENT_01_MAIN_DETAILS_TABTITLE}</a>
-				<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_01_MORE_INFO_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_01_MORE_INFO_TABTITLE}</a>
-				<!-- <a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_02_BOOKINGFORM_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_02_BOOKINGFORM_TABTITLE}</a> -->
-				<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_02_MAP_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_02_MAP_TABTITLE}</a>
-				<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_03_CONTACT_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_03_CONTACT_TABTITLE}</a>
-				<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_03_REVIEWS_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_03_REVIEWS_TABTITLE}</a>
-				<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_05_TARIFFS_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_05_TARIFFS_TABTITLE}</a>
-				<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_04_ROOMSLIST_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_04_ROOMSLIST_TABTITLE}</a>
-				<!--<a href="{COMMON_THIS_PAGE_URL}#{XDISQUS_TABTITLE|urlencode}" class="btn btn-info">{XDISQUS_TABTITLE}</a>-->
-			</div>
-		</div>
-	</div>
 
 	<h2><a name="{TABCONTENT_01_MAIN_DETAILS_TABTITLE|urlencode}" class="text-info">{TABCONTENT_01_MAIN_DETAILS_TABTITLE}</a>
 	</h2>
@@ -108,12 +77,7 @@
 
 	<patTemplate:comment>// Assumes that the option to show the booking form in the property details is set to Yes
 	</patTemplate:comment>
-	<h2><a name="{TABCONTENT_02_BOOKINGFORM_TABTITLE|urlencode}">{TABCONTENT_02_BOOKINGFORM_TABTITLE}</a></h2>
-
-	<div class="well">
-		{TABCONTENT_02_BOOKINGFORM_TAB_CONTENT}
-	</div>
-
+	
 	<h2><a name="{TABCONTENT_02_MAP_TABTITLE|urlencode}">{TABCONTENT_02_MAP_TABTITLE}</a></h2>
 
 	<div class="well">
@@ -154,7 +118,23 @@
 		{XDISQUS_TAB_CONTENT}
 	</div>
 	-->
-</patTemplate:comment>
+<h2>{TABCONTENT_02_BOOKINGFORM_TITLE}</h2>
+{TABCONTENT_02_BOOKINGFORM_CONTENT}
+
+	<div class="tabbable">
+		<ul class="nav nav-tabs">
+			<patTemplate:tmpl name="tabs_titles">
+				<li class="{ACTIVE}"><a href="#{TAB_ANCHOR}" data-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a></li>
+			</patTemplate:tmpl>
+		</ul>
+		<div class="tab-content">
+			<patTemplate:tmpl name="tabs_content">
+				<div class="tab-pane {ACTIVE}" id="{TAB_ANCHOR}">
+					{TAB_CONTENT}
+				</div>
+			</patTemplate:tmpl>
+		</div>
+	</div>
 
 
 <patTemplate:comment>
