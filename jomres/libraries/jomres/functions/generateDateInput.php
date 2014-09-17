@@ -27,19 +27,8 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 	$output   = "";
 	// If this date picker is "arrivalDate" then we need to create a departure date input name too, then set it in showtime. With that we'll be able to tell this set of functionality what the id of the
 	// departureDate is so that it can set it's date when this one changes
-	if ( $fieldName != "departureDate" )
+	if ( $fieldName == "arrivalDate" || $fieldName == "asc_arrivalDate" )
 		{
-		// It seems that some servers don't correctly report microtime, so we'll disable this section of code and instead use Jomres' random string generator to create our form field's lablel.
-		// list($usec,$sec)=explode(" ",microtime());
-		// mt_srand($sec * $usec);
-		// $possible='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefhijklmnopqrstuvwxyz';
-		// for ($i=0; $i<10; $i++)
-		// {
-		// $key=mt_rand(0, strlen($possible)-1);
-		// $uniqueID.=$possible[$key];
-		// }
-		// set_showtime('departure_date_unique_id',$uniqueID."_XXX") ;
-
 		$uniqueID = generateJomresRandomString( 15 );
 		set_showtime( 'departure_date_unique_id', $uniqueID . "_XXX" );
 		}
@@ -109,7 +98,7 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 	else
 	$output .= 'firstDay: 1,';
 	$output .= '	showButtonPanel: true';
-	if ( $fieldName == "arrivalDate" )
+	if ( $fieldName == "arrivalDate" || $fieldName == "asc_arrivalDate"  )
 		{
 		$output .= ',onSelect: function(selectedDate) {
 				var nextDayDate = jomresJquery("#' . $uniqueID . '").datepicker(\'getDate\', \'+1d\');
@@ -126,7 +115,8 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 	<input type="text" ' . $size . ' name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" class="' . $input_class . ' form-control" />
 	';
 	$br = "";
-	if ( $fieldName == "departureDate" && $jrConfig[ 'use_cleardate_checkbox' ] == "1" ) $br = "<br/>";
+	if ( $fieldName == "departureDate" && $jrConfig[ 'use_cleardate_checkbox' ] == "1" ) 
+		$br = "<br/>";
 
 	$pageoutput[ ] = array ( "INPUT" => $output, "CHECKBOX" => $clear_checkbox_js, "BR" => $br );
 	$tmpl          = new patTemplate();
