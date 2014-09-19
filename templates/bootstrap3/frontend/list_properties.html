@@ -31,7 +31,6 @@
 					<div class="col-md-2 property-pic-wrapper">
 						<a href="#module_{RANDOM_IDENTIFIER}_popup" class="thumbnail" data-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}">
 							<img src="{IMAGEMEDIUM}" class="img-rounded img-responsive" alt="{PROPERTYNAME}"/>
-							{OVERLAY_SNIPPET}
 						</a>
 					</div>
 					<div class="col-md-4">
@@ -51,9 +50,10 @@
 					<div class="col-md-3">
 						<div class="well align-center">
 							{PRICE_PRE_TEXT}
-							<span class="big-price hidden-xs">{PRICE_PRICE}</span>
-							<span class="hidden-sm hidden-md hidden-lg">{PRICE_PRICE}</span>
-							<div class="hidden-xs">{PRICE_POST_TEXT}</div>
+							<span class="big-price">{PRICE_PRICE}</span>
+							{PRICE_POST_TEXT}
+							<span class="big-price">{PRICE_CUMULATIVE}</span>
+							{FOR} {STAY_DAYS} {NIGHTS_TEXT}
 						</div>
 						
 						

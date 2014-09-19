@@ -969,6 +969,11 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_javascript . 'xxxxxxxxxxx' );
 		$this->add_obs_file( $this->dir_javascript . 'xxxxxxxxxxx' );
 		
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'list_properties_overlay_snippet.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'list_properties_overlay_snippet.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'list_properties_overlay_snippet.html' );
+		
+		
 		$this->add_obs_file( $this->dir_minicomponents . 'j00004x_init_javascript_css_files.class.php' );
 		}
 
