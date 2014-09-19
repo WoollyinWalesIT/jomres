@@ -2569,3 +2569,6 @@ jr_define('DATATABLES_SSORTASCENDING'	, ": aktivujte na zoradenie stĺpca vzostu
 jr_define('DATATABLES_SSORTDESCENDING'	, ": aktivujte na zoradenie stĺpca zostupne" );
 
 jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );
+
+jr_define( '_BOOKING_ONREQUEST', 'Booking on request' );
+jr_define( '_BOOKING_INSTANT', 'Instant booking' );

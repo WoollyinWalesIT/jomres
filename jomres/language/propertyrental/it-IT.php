@@ -2582,3 +2582,6 @@ jr_define('DATATABLES_SSORTASCENDING'	, ": attiva per ordinare la colonna in ord
 jr_define('DATATABLES_SSORTDESCENDING'	, ": attiva per ordinare la colonna in ordine decrescente" );
 
 jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );
+
+jr_define( '_BOOKING_ONREQUEST', 'Booking on request' );
+jr_define( '_BOOKING_INSTANT', 'Instant booking' );

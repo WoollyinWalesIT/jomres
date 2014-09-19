@@ -2522,3 +2522,6 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_8', 'Sep' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_9', 'Oct' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_10', 'Nov' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
+
+jr_define( '_BOOKING_ONREQUEST', 'Booking on request' );
+jr_define( '_BOOKING_INSTANT', 'Instant booking' );

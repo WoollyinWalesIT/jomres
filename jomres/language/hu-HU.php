@@ -2561,3 +2561,6 @@ jr_define('DATATABLES_SSORTASCENDING'	, ": aktiválja a növekvő rendezéshez" 
 jr_define('DATATABLES_SSORTDESCENDING'	, ": aktiválja a csökkenő rendezéshez" );
 
 jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );
+
+jr_define( '_BOOKING_ONREQUEST', 'Booking on request' );
+jr_define( '_BOOKING_INSTANT', 'Instant booking' );

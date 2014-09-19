@@ -2567,3 +2567,6 @@ jr_define('DATATABLES_SSORTASCENDING'	, ": vključite za naraščujoči sort" );
 jr_define('DATATABLES_SSORTDESCENDING'	, ": vključite za padajoči sort" );
 
 jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );
+
+jr_define( '_BOOKING_ONREQUEST', 'Booking on request' );
+jr_define( '_BOOKING_INSTANT', 'Instant booking' );
