@@ -288,6 +288,19 @@ class j00015viewproperty
 			if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) $property[ 'REAL_ESTATE_PROPERTY_PRICE' ] = output_price( $current_property_details->real_estate_property_price );
 			$property[ 'PRINT_ICON' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Printer.png';
 			$property[ 'PRINT_LINK' ] = jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&jr_printable&popup=1&tmpl=".get_showtime("tmplcomponent")."&property_uid=" . $property_uid );
+			
+			if ( $jrConfig[ 'use_reviews' ] == "1" )
+				{
+				jr_import( 'jomres_reviews' );
+				$Reviews = new jomres_reviews();
+				$Reviews->property_uid = $property_uid;
+				$itemRating = $Reviews->showRating( $property_uid );
+				
+				$property[ 'AVERAGE_RATING' ]    = number_format( $itemRating[ 'avg_rating' ], 1, '.', '' );
+				$property[ 'NUMBER_OF_REVIEWS' ] = $itemRating[ 'counter' ];
+				$property[ '_JOMRES_REVIEWS_AVERAGE_RATING' ] = jr_gettext( '_JOMRES_REVIEWS_AVERAGE_RATING', _JOMRES_REVIEWS_AVERAGE_RATING, false, false );
+				$property[ '_JOMRES_REVIEWS_TOTAL_VOTES' ]    = jr_gettext( '_JOMRES_REVIEWS_TOTAL_VOTES', _JOMRES_REVIEWS_TOTAL_VOTES, false, false );
+				}
 
 			$property_deets[ ] = $property;
 
