@@ -31,7 +31,6 @@
 					<div class="span3 property-pic-wrapper ">
 						<a href="#module_{RANDOM_IDENTIFIER}_popup" class="hidden-phone " data-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}">
 							<img src="{IMAGEMEDIUM}" class="img-rounded" alt="{PROPERTYNAME}"/>
-							{OVERLAY_SNIPPET}
 						</a>
 						<a href="{MOREINFORMATIONLINK}" class="visible-phone thumbnail"><img src="{IMAGETHUMB}" alt="{PROPERTYNAME}"/></a>
 					</div>
@@ -52,6 +51,8 @@
 							{PRICE_PRE_TEXT}
 							<span class="big-price">{PRICE_PRICE}</span>
 							{PRICE_POST_TEXT}
+							<span class="big-price">{PRICE_CUMULATIVE}</span>
+							{FOR} {STAY_DAYS} {NIGHTS_TEXT}
 						</div>
 					</div>
 				</div>

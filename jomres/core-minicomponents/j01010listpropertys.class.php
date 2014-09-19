@@ -241,9 +241,6 @@ class j01010listpropertys
 				if ( !$live_scrolling_enabled || ( AJAXCALL && $jrConfig['live_scrolling_enabled'] == "0" ) )
 					$show_paging = true;
 				
-				if (  get_showtime( 'disable_paging' ) == true)
-					$show_paging = false;
-				
 				$output['PAGING'] = '';
 				if ( $show_paging )
 					{
@@ -338,7 +335,7 @@ class j01010listpropertys
 
 					$featureList  = array ();
 					$ptown        = stripslashes( $current_property_details->multi_query_result[ $propertys_uid ]['property_town'] );
-					$xxxxxx       = $current_property_details->multi_query_result[ $propertys_uid ]['stars'];
+					$property_stars = $current_property_details->multi_query_result[ $propertys_uid ]['stars'];
 					$propertyDesc = strip_tags( jomres_decode( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', $current_property_details->multi_query_result[ $propertys_uid ]['property_description'], false, false ) ) );
 
 					if ( in_array( $propertys_uid, $tmpBookingHandler->tmpsearch_data[ 'featured_properties' ] ) )
@@ -355,7 +352,7 @@ class j01010listpropertys
 						}
 						
 					if ( ($property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ]) || !isset($jrConfig[ 'featured_listings_emphasis' ]) )
-						$property_deets[ 'BUDGET_BORDER_CLASS' ] = 'panel-info';
+						$property_deets[ 'BUDGET_BORDER_CLASS' ] = 'panel-default';
 
 					if ($guest_budget > 0 && $jrConfig['use_budget_feature'] == "1" && using_bootstrap() )
 						{
@@ -451,10 +448,10 @@ class j01010listpropertys
 					//$property_deets['AVAILABILITY_CALENDAR'] = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property->propertys_uid,'return_calendar'=>"1",'noshowlegend'=>1) );
 					
 					$starslink = "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/blank.png\" alt=\"star\" border=\"0\" height=\"1\" hspace=\"10\" vspace=\"1\" />";
-					if ( $xxxxxx!= "0" )
+					if ( $property_stars!= "0" )
 						{
 						$starslink = "";
-						for ( $i = 1; $i <= $current_property_details->multi_query_result[ $propertys_uid ]['stars']; $i++ )
+						for ( $i = 1; $i <= $property_stars; $i++ )
 							{
 							$starslink .= "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/star.png\" alt=\"star\" border=\"0\" />";
 							}
@@ -466,16 +463,19 @@ class j01010listpropertys
 						$property_deets[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/superior.png\" alt=\"superior\" border=\"0\" />";
 
 					$rtRows = "";
+					$rtRowsLabels = "";
 					if ( count($current_property_details->multi_query_result[ $propertys_uid ][ 'room_types' ]) > 0 )
 						{
 						$rTypes=$current_property_details->multi_query_result[ $propertys_uid ][ 'room_types' ];
 						foreach ( $rTypes as $rtd )
 							{
 							$rtRows .= jomres_makeTooltip( $rtd['abbv'], $rtd['abbv'], $rtd['desc'],  JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$rtd['image'], "", "room_type", array () );
+							$rtRowsLabels .= '<span class="label label-info">'.trim($rtd['abbv']).'</span> ';
 							}
 						}
 
 					$property_deets[ 'ROOMTYPES' ] = $rtRows;
+					$property_deets[ 'ROOMTYPES_LABELS' ] = $rtRowsLabels;
 					
 					$propertyFeaturesArray = explode( ",", ( $current_property_details->multi_query_result[ $propertys_uid ]['property_features'] ) );
 
@@ -504,80 +504,63 @@ class j01010listpropertys
 					$property_deets[ 'PRICE_POST_TEXT' ]	= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'POST_TEXT' ];
 					$property_deets[ 'PRICE_NOCONVERSION' ]	= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE_NOCONVERSION' ];
 					
+					//total price
 					$plugin_will_provide_lowest_price = false;
-						$MiniComponents->triggerEvent( '07015', array ( 'property_uid' => $propertys_uid ) ); // Optional
-						$mcOutput = $MiniComponents->getAllEventPointsData( '07015' );
-						if ( count( $mcOutput ) > 0 )
+					$MiniComponents->triggerEvent( '07015', array ( 'property_uid' => $propertys_uid ) ); // Optional
+					$mcOutput = $MiniComponents->getAllEventPointsData( '07015' );
+					if ( count( $mcOutput ) > 0 )
+						{
+						foreach ( $mcOutput as $val )
 							{
-							foreach ( $mcOutput as $val )
+							if ( $val == true )
 								{
-								if ( $val == true )
-									{
-									$plugin_will_provide_lowest_price = true;
-									}
+								$plugin_will_provide_lowest_price = true;
 								}
 							}
-						
-					
-					$property_deets [ 'OVERLAY_SNIPPET' ] ='';
-					if ( 
-						$mrConfig[ 'is_real_estate_listing' ] == 0 && 
-						!$plugin_will_provide_lowest_price && 
-						$jomres_property_list_prices->lowest_prices[$propertys_uid]['PRICE'] != jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', _JOMRES_PRICE_ON_APPLICATION, "", true, false ) && 
-						$jrConfig[ 'show_cumulative_price_overlay' ] =="1"
-						)
+						}
+
+					if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && !$plugin_will_provide_lowest_price && $jomres_property_list_prices->lowest_prices[$propertys_uid]['PRICE'] != jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', _JOMRES_PRICE_ON_APPLICATION, "", true, false ) && $stayDays > 1)
 						{
-						$os = array();
-						$overlay_snippet = array();
-						
 						if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0)
 							{
-							
 							switch ( $mrConfig[ 'booking_form_daily_weekly_monthly' ] )
 								{
 								case "D":
-									$os[ 'PRICE_CUMULATIVE' ]	= output_price($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] * $stayDays,"",false);
+									$property_deets[ 'PRICE_CUMULATIVE' ]	= output_price($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] * $stayDays,"",false);
 									break;
 								case "W":
-									$os[ 'PRICE_CUMULATIVE' ]	= output_price( ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] / 7) * $stayDays,"",false);
+									$property_deets[ 'PRICE_CUMULATIVE' ]	= output_price( ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] / 7) * $stayDays,"",false);
 									break;
 								case "M":
-									$os[ 'PRICE_CUMULATIVE' ]	= output_price( ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] / 30 ) * $stayDays,"",false);
+									$property_deets[ 'PRICE_CUMULATIVE' ]	= output_price( ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] / 30 ) * $stayDays,"",false);
 									break;
 								}
 							}
 						else
-							$os[ 'PRICE_CUMULATIVE' ]	=$property_deets[ 'PRICE_PRICE' ];
+							$property_deets[ 'PRICE_CUMULATIVE' ]	=$property_deets[ 'PRICE_PRICE' ];
 						
-						$os['FOR'] =  jr_gettext( '_JOMRES_FOR', _JOMRES_FOR , false );
+						$property_deets['FOR'] =  jr_gettext( '_JOMRES_FOR', _JOMRES_FOR , false );
 						if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0 )
 							{
 							if ( $mrConfig[ 'wholeday_booking' ] == "1" )
-								$os[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY , false );
+								$property_deets[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY , false );
 							else
 								{
 								if ($stayDays ==1)
-									$os[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_PRICINGOUTPUT_NIGHT', _JOMRES_PRICINGOUTPUT_NIGHT , false );
+									$property_deets[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_PRICINGOUTPUT_NIGHT', _JOMRES_PRICINGOUTPUT_NIGHT , false );
 								else
-									$os[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_PRICINGOUTPUT_NIGHTS', _JOMRES_PRICINGOUTPUT_NIGHTS , false );
+									$property_deets[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_PRICINGOUTPUT_NIGHTS', _JOMRES_PRICINGOUTPUT_NIGHTS , false );
 								}
 								
-							$os[ 'STAY_DAYS' ]	= $stayDays;
+							$property_deets[ 'STAY_DAYS' ]	= $stayDays;
 							}
 						else
 							{
-							$os[ 'NIGHTS_TEXT' ] = '';
-							$os[ 'STAY_DAYS' ]	= '';
+							$property_deets[ 'NIGHTS_TEXT' ] = '';
+							$property_deets[ 'STAY_DAYS' ]	= '';
 							}
-						
-						$overlay_snippet[]=$os;
-						$tmpl          = new patTemplate();
-						$tmpl->addRows( 'overlay_snippet', $overlay_snippet );
-						$tmpl->setRoot( $layout_path_to_template );
-						$tmpl->readTemplatesFromInput( 'list_properties_overlay_snippet.html' );
-						$property_deets [ 'OVERLAY_SNIPPET' ] = $tmpl->getParsedTemplate();
 						}
-					
+					//end total price
 					
 					if ( array_key_exists( $propertys_uid, $lastBookedArray ) )
 						{
@@ -643,18 +626,11 @@ class j01010listpropertys
 					if ( strlen( $propertyDesc ) > (int) $jrConfig[ 'propertyListDescriptionLimit' ] ) $property_deets[ 'PROPERTYDESC' ] = jr_substr( $propertyDesc, 0, $jrConfig[ 'propertyListDescriptionLimit' ] ) . "...";
 					else
 					$property_deets[ 'PROPERTYDESC' ] = $propertyDesc;
-					
-					$property_deets[ 'IMAGELARGE' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
-					$property_deets[ 'IMAGEMEDIUM' ] = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
-					$property_deets[ 'IMAGETHUMB' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
 
 					$jomres_media_centre_images->get_images($propertys_uid, array('property'));
-					if ($jomres_media_centre_images->images['property'][0][0]['large'] != "")
-						{
-						$property_deets[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images['property'][0][0]['large'];
-						$property_deets[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['property'][0][0]['medium'];
-						$property_deets[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images['property'][0][0]['small'];
-						}
+					$property_deets[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images['property'][0][0]['large'];
+					$property_deets[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['property'][0][0]['medium'];
+					$property_deets[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images['property'][0][0]['small'];
 					
 					$property_deets[ '_JOMRES_QUICK_INFO' ] = jr_gettext( '_JOMRES_QUICK_INFO', _JOMRES_QUICK_INFO, false, false );
 					$property_deets[ 'REMOTE_URL' ]         = $mrConfig[ 'galleryLink' ];
@@ -719,6 +695,22 @@ class j01010listpropertys
 						}
 
 					$property_deets[ 'STARS' ] = $starslink;
+					
+					$property_deets[ 'REQUIRE_APPROVAL' ] = '';
+					$property_deets[ 'REQUIRE_APPROVAL_CLASS' ] = '';
+					if ($mrConfig[ 'is_real_estate_listing' ] == 0)
+						{
+						if ( $mrConfig[ 'requireApproval' ] == "1" )
+							{
+							$property_deets[ 'REQUIRE_APPROVAL' ] = jr_gettext( '_BOOKING_ONREQUEST', _BOOKING_ONREQUEST , false );
+							$property_deets[ 'REQUIRE_APPROVAL_CLASS' ] = 'booking-onrequest';
+							}
+						else
+							{
+							$property_deets[ 'REQUIRE_APPROVAL' ] = jr_gettext( '_BOOKING_INSTANT', _BOOKING_INSTANT , false );
+							$property_deets[ 'REQUIRE_APPROVAL_CLASS' ] = 'booking-instant';
+							}
+						}
 
 					$MiniComponents->triggerEvent( '01011', array ( 'property_uid' => $propertys_uid ) ); // Optional
 					$mcOutput = $MiniComponents->getAllEventPointsData( '01011' );
