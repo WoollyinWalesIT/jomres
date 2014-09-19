@@ -2616,3 +2616,6 @@ jr_define('DATATABLES_SSORTDESCENDING'	, ": aktivieren, um Spalte absteigend zu 
 
 
 jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );
+
+jr_define( '_BOOKING_ONREQUEST', 'Booking on request' );
+jr_define( '_BOOKING_INSTANT', 'Instant booking' );
