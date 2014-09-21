@@ -11,7 +11,7 @@
 </div>
 <patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="room_type_text">
 <div class="well well-small">
-	<div class="row hidden-phone">
+	<div class="row hidden-xs">
 		<div class="col-md-4">
 			<h4>{ROOM_TYPE_TEXT}</h4>
 			<p>
@@ -24,7 +24,7 @@
 		<div class="col-md-3"><p class="big-price">{RATE_TEXT}</p></div>
 		<div class="col-md-2" align="right"><p>{NUMBEROFROOMS}</p></div>
 	</div>
-	<div class="hidden-desktop hidden-tablet">
+	<div class="hidden-lg hidden-md hidden-sm">
 		<p>{NUMBEROFROOMS} {ROOM_TYPE_TEXT} - {RATE_TEXT}</p>
 	</div>
 </div>
