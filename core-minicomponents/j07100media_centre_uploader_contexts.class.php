@@ -31,6 +31,12 @@ class j07100media_centre_uploader_contexts
 		// This script will set the "context" for the media centre uploader
 		// For example, frontend image uploading for properties context means that we decide if resource ids for the resource will be part of the pattern, the resource type gathering is done on trigger 3379, resource id gathering is done by 3381 and post processing is done by 3382 and that uploading allows files of type XXXX. We will also set the root of uploaded images, e.g. JOMRES_IMAGELOCATION_ABSPATH . $property_id . JRDS
 		
+		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		if (!$thisJRUser->userIsManager)
+			{
+			return;
+			}
+		
 		// Here we will give other plugins the opportunity to register their own upload contexts
 		$MiniComponents->triggerEvent( '07110' );
 		$contexts = $MiniComponents->miniComponentData['07110'];
