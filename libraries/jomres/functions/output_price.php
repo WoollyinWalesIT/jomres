@@ -69,7 +69,11 @@ function output_price( $value, $currencycode = "", $do_conversion = true, $zeroO
 
 		$price = $currfmt->get_formatted( $price );
 		$price = $symbols[ 'pre' ] . $price . $symbols[ 'post' ];
-		$price = "" . $converted_output_price . " <span>(" . $price . ")</span> ";
+		
+		if ( using_bootstrap())
+			$price = "<a href='#' data-toggle='tooltip' title='(" . $price . ")'>" . $converted_output_price . "</a>";
+		else
+			$price = "" . $converted_output_price . " <span>(" . $price . ")</span> ";
 		}
 	else
 		{
