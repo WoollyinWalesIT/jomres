@@ -24,8 +24,8 @@ jr_define( '_JOMRES_COM_MR_NEWGUEST', 'New guest' );
 jr_define( '_JOMRES_COM_MR_SAVE', 'Save' );
 // View bookings
 jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME', 'Name' );
-jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', 'Arrival' );
-jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', 'Departure' );
+jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', 'Check-in' );
+jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', 'Check-out' );
 jr_define( '_JOMRES_COM_MR_ASSIGNUSER_TITLE', 'Assign user admin functions' );
 jr_define( '_JOMRES_COM_MR_ASSIGNUSER_ID', 'ID' );
 jr_define( '_JOMRES_COM_MR_ASSIGNUSER_NAME', 'Name' );
