@@ -152,6 +152,8 @@ class j00004a_init_javascript_css_files
 		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "TableTools_JUI.css");
 		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "ColVis.css");
 		
+		//$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "font-awesome.min.css");
+		
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.jeditable.js");
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "excanvas.js");
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.chainedSelects.js");
