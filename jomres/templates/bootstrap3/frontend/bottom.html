@@ -3,6 +3,13 @@
 	</div> <!-- closes the jomres_content_area div -->
 	<div id="tour_target_end"></div>
 
+	<script>
+		jomresJquery(function () { jomresJquery("[data-toggle='tooltip']").tooltip(); });
+		jomresJquery('body').tooltip({
+			selector: '[data-toggle="tooltip"]'
+		});
+	</script>
+
 	<script type="text/javascript">
 		<!--
 		/* Switches the cursor to the waiting cursor whenever jquery's ajax functionality kicks in. Nice way to give the user some feedback that something's happening in a non-intrusive way */
