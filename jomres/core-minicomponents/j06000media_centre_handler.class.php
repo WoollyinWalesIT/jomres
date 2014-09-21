@@ -40,6 +40,12 @@ class j06000media_centre_handler
 			return;
 			}
 
+		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		if (!$thisJRUser->userIsManager)
+			{
+			return;
+			}
+		
 		// Let's the appropriate upload context details
 		$MiniComponents->triggerEvent( '07100' );
 		$upload_context = get_showtime ( "upload_context");
