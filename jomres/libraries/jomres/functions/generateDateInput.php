@@ -82,9 +82,16 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 	$output .= 'maxDate: "+5Y",
 			';
 
-	if ( $jrConfig[ 'useSSLinBookingform' ] == "0" ) $output .= 'buttonImage: \'' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/calendar.png\',';
+	if ( (using_bootstrap() && jomres_bootstrap_version() == "2") || !using_bootstrap() )
+		{
+		$output .= 'buttonImage: \''.JOMRES_ROOT_DIRECTORY.'/images/calendar.png\',';
+		$bs3_icon = '';
+		}
 	else
-	$output .= 'buttonImage: \''.JOMRES_ROOT_DIRECTORY.'/images/calendar.png\',';
+		{
+		$output .= 'buttonText: "",';
+		$bs3_icon = '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>';
+		}
 
 	$output .= '
 			buttonImageOnly: true,
@@ -112,12 +119,14 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 
 	});
 	</script>
-	<input type="text" ' . $size . ' name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" class="' . $input_class . ' form-control" />
+	<input type="text" ' . $size . ' name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" class="' . $input_class . ' form-control input-group" />'.$bs3_icon.'
 	';
 	$br = "";
 	if ( $fieldName == "departureDate" && $jrConfig[ 'use_cleardate_checkbox' ] == "1" ) 
 		$br = "<br/>";
 
+	set_showtime("current_clear_checkbox" , $clear_checkbox_js );
+	
 	$pageoutput[ ] = array ( "INPUT" => $output, "CHECKBOX" => $clear_checkbox_js, "BR" => $br );
 	$tmpl          = new patTemplate();
 	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );

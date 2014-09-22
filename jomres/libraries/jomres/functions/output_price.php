@@ -71,7 +71,7 @@ function output_price( $value, $currencycode = "", $do_conversion = true, $zeroO
 		$price = $symbols[ 'pre' ] . $price . $symbols[ 'post' ];
 		
 		if ( using_bootstrap())
-			$price = "<a href='#' data-toggle='tooltip' title='(" . $price . ")'>" . $converted_output_price . "</a>";
+			$price =  $converted_output_price. " <a href='javascript:void(0);' data-toggle='tooltip' title='(" . $price . ")'><span class='glyphicon glyphicon-credit-card' </span></a> ";
 		else
 			$price = "" . $converted_output_price . " <span>(" . $price . ")</span> ";
 		}

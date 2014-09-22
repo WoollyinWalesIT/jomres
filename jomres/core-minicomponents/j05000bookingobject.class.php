@@ -89,7 +89,8 @@ if ( !class_exists( 'booking' ) )
 				$uniqueID = get_showtime( 'departure_date_unique_id' );
 				}
 
-			if ( $dateValue == "" ) $dateValue = date( "Y/m/d" );
+			if ( $dateValue == "" ) 
+				$dateValue = date( "Y/m/d" );
 			$dateValue = JSCalmakeInputDates( $dateValue, $siteConfig );
 
 			$dateFormat = $this->cfg_cal_input;
@@ -118,7 +119,7 @@ if ( !class_exists( 'booking' ) )
 				$onchange .= ' ajaxADate(this.value,\'' . $this->cfg_cal_input . '\'); getResponse_particulars(\'arrivalDate\',this.value,\'' . $uniqueID . '\'); ';
 				}
 			else
-			$onchange .= ' getResponse_particulars(\'departureDate\',this.value); ';
+				$onchange .= ' getResponse_particulars(\'departureDate\',this.value); ';
 
 			$size        = " size=\"10\" ";
 			$input_class = "";
@@ -133,38 +134,51 @@ if ( !class_exists( 'booking' ) )
 			jomresJquery(function() {
 				jomresJquery("#' . $uniqueID . '").datepicker( {
 					dateFormat: "' . $dateFormat . '",';
-			if ( !$amend_contract ) $output .= 'minDate: 0, ';
+			if ( !$amend_contract ) 
+				$output .= 'minDate: 0, ';
 
 			$output .= 'maxDate: "+5Y",';
 
-			if ( $this->jrConfig[ 'useSSLinBookingform' ] == "0" ) $output .= 'buttonImage: \'' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/calendar.png\',';
+			if ( (using_bootstrap() && jomres_bootstrap_version() == "2") || !using_bootstrap() )
+				{
+				$output .= 'buttonImage: \''.JOMRES_ROOT_DIRECTORY.'/images/calendar.png\',';
+				$bs3_icon = '';
+				}
 			else
-			$output .= 'buttonImage: \''.JOMRES_ROOT_DIRECTORY.'/images/calendar.png\',';
+				{
+				$output .= 'buttonText: "",';
+				$bs3_icon = '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>';
+				
+				}
 			$output .= '
 					autoSize:true,
 					buttonImageOnly: true,
 					showOn: "both",
 					changeMonth: true,
 					changeYear: true,';
-			if ( $fieldName == "arrivalDate" && !using_bootstrap() ) $output .= 'numberOfMonths: 3,';
+			if ( $fieldName == "arrivalDate" && !using_bootstrap() ) 
+				$output .= 'numberOfMonths: 3,';
 			else
-			$output .= 'numberOfMonths: 1,';
+				$output .= 'numberOfMonths: 1,';
+				
 			$output .= 'showOtherMonths: true,
 					selectOtherMonths: true,
 					showButtonPanel: true,';
-			if ( $this->jrConfig[ 'calendarstartofweekday' ] == "1" ) $output .= 'firstDay: 0,';
+			if ( $this->jrConfig[ 'calendarstartofweekday' ] == "1" ) 
+				$output .= 'firstDay: 0,';
 			else
 			$output .= 'firstDay: 1,';
 			$output .= 'onSelect: function() {
 							' . $onchange . '
 						}';
-			if ( $fieldName == "arrivalDate" ) $output .= ',beforeShowDay: isAvailable';
+			if ( $fieldName == "arrivalDate" ) 
+				$output .= ',beforeShowDay: isAvailable';
 
 			$output .= '} );
 
 			});
 			</script>
-			<input type="text" ' . $size . ' class="' . $input_class . ' form-control" name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" readonly="readonly" autocomplete="off" />
+			<input type="text" ' . $size . ' class="' . $input_class . ' form-control input-group" name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" readonly="readonly" autocomplete="off" />'.$bs3_icon.'
 			';
 
 			return $output;

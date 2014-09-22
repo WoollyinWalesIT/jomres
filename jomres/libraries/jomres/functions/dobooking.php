@@ -406,7 +406,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 			}
 		}
 	else
-	$rm = $bkg->generateRoomsList( $roomAndTariffArray );
+		$rm = $bkg->generateRoomsList( $roomAndTariffArray );
 
 	if ( get_showtime( 'include_room_booking_functionality' ) )
 		{

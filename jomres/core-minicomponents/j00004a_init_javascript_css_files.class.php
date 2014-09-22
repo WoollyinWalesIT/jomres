@@ -152,7 +152,11 @@ class j00004a_init_javascript_css_files
 		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "TableTools_JUI.css");
 		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "ColVis.css");
 		
-		//$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "font-awesome.min.css");
+		if (!isset( $jrConfig[ 'load_font_awesome' ]))
+			$jrConfig[ 'load_font_awesome' ] = "0";
+		
+		if ( $jrConfig[ 'load_font_awesome' ] == "1")
+			$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "font-awesome.min.css");
 		
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.jeditable.js");
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "excanvas.js");

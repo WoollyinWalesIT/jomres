@@ -372,6 +372,11 @@ class HTML_jomres
 				<td>' . $lists[ 'css_caching_enabled' ] . '</td>
 				<td></td>
 			</tr>
+			<tr>
+				<td>' . jr_gettext( _JOMRES_COM_FONTAWESOME, '_JOMRES_CSS_CACHING_TITLE', false ) . '</td>
+				<td>' . $lists[ 'load_font_awesome' ] . '</td>
+				<td>'.jr_gettext( _JOMRES_COM_FONTAWESOME_DESC, '_JOMRES_COM_FONTAWESOME_DESC', false ).'</td>
+			</tr>
 			' );
 			$contentPanel->setcontent( '
 		</tbody>
