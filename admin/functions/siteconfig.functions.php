@@ -346,6 +346,10 @@ function showSiteConfig()
 	
 	$lists[ 'live_scrolling_enabled' ]         = jomresHTML::selectList( $yesno, 'cfg_live_scrolling_enabled', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'live_scrolling_enabled' ] );
 	
+	if (!isset( $jrConfig[ 'load_font_awesome' ]))
+		$jrConfig[ 'load_font_awesome' ] = "0";
+	$lists[ 'load_font_awesome' ]              = jomresHTML::selectList( $yesno, 'cfg_load_font_awesome', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'load_font_awesome' ] );
+	
 	
 	HTML_jomres::showSiteConfig( 
 		$jrConfig, 

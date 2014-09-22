@@ -1,5 +1,5 @@
 <patTemplate:tmpl name="search">
-	<form action="{JOMRES_SITEPAGE_URL}" method="get" name="{FORMNAME}">
+	<form action="{JOMRES_SITEPAGE_URL}" method="get" name="{FORMNAME}" role="form">
 		<input type="hidden" name="option" value="com_jomres"/>
 		{PROPERTYNAME}
 		{JOMRES_SEARCH_DESCRIPTION_INFO}
@@ -42,20 +42,19 @@
 			<tr>
 				<td>
 					<table>
-						<tr>
-							<td>
-								{HARRIVALDATE}
-							</td>
-							<td>
-								{ARRIVALDATE}
-							</td>
-							<td>
-								{HDEPARTUREDATE}
-							</td>
-							<td>
-								{DEPARTUREDATE}
-							</td>
-						</tr>
+						<div class="form-inline">
+							<div class="form-group">
+								<label class="control-label" for="arrivalDate">{HARRIVALDATE}</label>
+								<div class="input-group">{ARRIVALDATE}</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="departureDate">{HDEPARTUREDATE}</label>
+								<div class="input-group">{DEPARTUREDATE}</div>
+							</div>
+							<div class="form-group">
+								{CLEARDATES_CHECKBOX}
+							</div>
+						</div>
 						<tr>
 							<td colspan="4" class="small">
 								{JOMRES_SEARCH_AVL_INFO}

@@ -2516,3 +2516,6 @@ jr_define( '_JRPORTAL_MONTHS_SHORT_11', 'Dec' );
 
 jr_define( '_BOOKING_ONREQUEST', 'Booking on request' );
 jr_define( '_BOOKING_INSTANT', 'Instant booking' );
+
+jr_define( '_JOMRES_COM_FONTAWESOME', 'Include Font Awesome icon set?' );
+jr_define( '_JOMRES_COM_FONTAWESOME_DESC', 'Set this to Yes if your template does not include Font Awesome.' );
