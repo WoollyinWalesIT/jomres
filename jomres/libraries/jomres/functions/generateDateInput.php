@@ -90,7 +90,7 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 	else
 		{
 		$output .= 'buttonText: "",';
-		$bs3_icon = '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>';
+		$bs3_icon = '<span class="input-group-addon"><span class="fa fa-calendar"></span></span>';
 		}
 
 	$output .= '

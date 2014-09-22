@@ -147,7 +147,7 @@ if ( !class_exists( 'booking' ) )
 			else
 				{
 				$output .= 'buttonText: "",';
-				$bs3_icon = '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>';
+				$bs3_icon = '<span class="input-group-addon"><span class="fa fa-calendar"></span></span>';
 				
 				}
 			$output .= '
@@ -178,7 +178,7 @@ if ( !class_exists( 'booking' ) )
 
 			});
 			</script>
-			<input type="text" ' . $size . ' class="' . $input_class . ' form-control input-group" name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" readonly="readonly" autocomplete="off" />'.$bs3_icon.'
+			<input type="text" ' . $size . ' class="' . $input_class . ' form-control input-group" name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" autocomplete="off" />'.$bs3_icon.'
 			';
 
 			return $output;
