@@ -322,6 +322,7 @@ class j01010listpropertys
 				{
 				$property_details = array ();
 				$MiniComponents->triggerEvent( '01011', array ( 'property_uids' => $propertysToShow ) ); // Discount finding script uses this trigger. We'll send it an array of property uids to reduce the number of queries it performs.
+				$MiniComponents->triggerEvent( '01012', array ( 'property_uids' => $propertysToShow ) );
 				foreach ( $propertysToShow as $propertys_uid )
 					{
 					$property_deets = array ();
