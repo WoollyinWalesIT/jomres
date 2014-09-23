@@ -1,3 +1,39 @@
+
+<span class="label label-warning">Change</span> Modified the dashboard to use language strings from Jomres lang files instead of strings coded into the javascript file to define month and day names.
+<span class="label label-warning">Change</span> Modified system to provide language strings for table tools (flash buttons cannot yet be translated).
+<span class="label label-warning">Change</span> Added new administrator area feature to show our Jomres Partners and their plugins.
+<span class="label label-warning">Change</span> Modified generateDateInput.php so that it will also recognise asc_arrivalDate to setup javascript that'll change the departure date automatic changes too. This (in a roundabout sort of way) allows us to use ajax search composite on pages that include the booking form. Previously having ASC on pages with the booking form, the booking engine could erroneously pull the arrival date from ajax search composite's form, potentially screwing with the booking engine's dates. We got around that previously by not showing ASC on pages that showed the booking form. Now, we don't need to do that.
+<span class="label label-warning">Change</span> Improved the BS2 flat property details template to add more output.
+<span class="label label-warning">Change</span> Polish lang file updated, thanks Patryk.
+<span class="label label-warning">Change</span> Added a new minicomponent designed to aggregate code from elsewhere so that ajax search can "inherit" search selections from the simple search modules.
+<span class="label label-warning">Change</span> Modified paging feature so that PAGING is added to list properties templates, rather than being echoed by 1010listproperties.
+<span class="label label-warning">Change</span> Modified Jomres so that optional 99999 triggers are always run if available.
+<span class="label label-warning">Change</span> Modified list properties so that imagethumb etc have blank images if no property images are available.
+<span class="label label-warning">Change</span> Changed how the property name dropdown is built to account for a recent tweak in property name/description searching.
+<span class="label label-warning">Change</span> Restored a commented out setting in property config referring to minimum intervals.
+<span class="label label-warning">Change</span> Removed a class from the language dropdown that's no longer required.
+<span class="label label-warning">Change</span> Added new strings to lang files relevant to Instant v Deferred booking tags in property list.
+<span class="label label-warning">Change</span> Removed overlay snippet code that was added last version, it has been put back into the list properties due to other changes added because of changes being made to the demo.
+<span class="label label-warning">Change</span> Added reviews information for use in property details page, not just tabs.
+<span class="label label-warning">Change</span> Hardened media centre scripts against spambot intrusion.
+<span class="label label-warning">Change</span> Modified the booking form slightly so that the address details slide up/down when sufficient booking details are known, rather than simply fading in/out. This means that the initial booking form area on in flat property details template takes up less space.
+<span class="label label-warning">Change</span> Removed some un-needed template files.
+<span class="label label-warning">Change</span> Replaced some BS2 hidden classes with their corresponding BS3 classes in room type list.
+<span class="label label-warning">Change</span> Added code to allow automatic triggering of bootstrap tooltips on page load and binding to dynamic events.
+<span class="label label-warning">Change</span> Modified output price function so that if using bootstrap then original price (price in brackets) is now shown in a tooltip.
+<span class="label label-warning">Change</span> Changed Arrival and Departure strings to Check-in and Check-out in english language files.
+<span class="label label-warning">Change</span> Added Font Awesome as an optional css library. Many BS2 Joomla templates exclude glyph icons, or name the icons differently, meaning we can't always rely on a template to provide the required icons, so we'll add our own. Switchable because all BS3 joomla templates so far seem to include FA icon sets by default.
+<span class="label label-warning">Change</span> Modified the Booking Engine and Search functionality so that calendars now use calendar icons instead of the old calendar image. Makes styling much easier and looks neater.
+<span class="label label-warning">Change</span> The clear dates checkbox can now be added to a search template via {CLEARDATES_CHECKBOX} (and associated checkbox can be removed from the js_calendar_input.html template. This helps with styling.
+<span class="label label-warning">Change</span> Output price has been changed to use an icon instead of a link on the price to allow users to see the converted price.
+<span class="label label-warning">Change</span> Added a new optional trigger to listProperties.
+
+<span class="label label-important label-danger">Fix</span> Fixed BS3 edit property template to ensure previously selected features are checked.
+<span class="label label-important label-danger">Fix</span> Fixed an issue where review results could be incorrectly attributed.
+<span class="label label-important label-danger">Fix</span> Fixed a bug that prevented stars from showing in property list.
+<span class="label label-important label-danger">Fix</span> Fixed a bug where un-published properties could show in the agent's page.
+
+
 <h3>Jomres 8.1.10 01/09/2014</h3>
 
 <span class="label label-success">Feature</span> Added new functionality to allow site managers to choose whether or not to show the property list paginated, or to use the older Infinite Scrolling feature.
