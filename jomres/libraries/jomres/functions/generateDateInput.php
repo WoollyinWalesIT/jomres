@@ -52,7 +52,7 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 
 	$clear_checkbox_js = '&nbsp;';
 
-	if ( $fieldName == "departureDate" && $jrConfig[ 'use_cleardate_checkbox' ] == "1" )
+	if ( ( $fieldName == "departureDate" || $fieldName == "asc_departureDate" ) && $jrConfig[ 'use_cleardate_checkbox' ] == "1" )
 		{
 		$arr_date_unique_id = str_replace( "_XXX", "", $uniqueID );
 		$clear              = jr_gettext( '_JOMRES_CLEARDATES', _JOMRES_CLEARDATES );
