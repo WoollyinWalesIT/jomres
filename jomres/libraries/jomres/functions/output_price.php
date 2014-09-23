@@ -71,7 +71,18 @@ function output_price( $value, $currencycode = "", $do_conversion = true, $zeroO
 		$price = $symbols[ 'pre' ] . $price . $symbols[ 'post' ];
 		
 		if ( using_bootstrap())
-			$price =  $converted_output_price. " <a href='javascript:void(0);' data-toggle='tooltip' title='(" . $price . ")'><span class='glyphicon glyphicon-credit-card' </span></a> ";
+			{
+			$output = array();
+			$pageoutput = array();
+			$output['converted_output_price']= $converted_output_price;
+			$output['price']= $price;
+			$pageoutput[ ] = $output;
+			$tmpl          = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			$tmpl->readTemplatesFromInput( 'output_price.html' );
+			$tmpl->addRows( 'pageoutput', $pageoutput );
+			$price = $tmpl->getParsedTemplate();
+			}
 		else
 			$price = "" . $converted_output_price . " <span>(" . $price . ")</span> ";
 		}
