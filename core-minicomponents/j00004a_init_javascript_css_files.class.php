@@ -155,7 +155,7 @@ class j00004a_init_javascript_css_files
 		if (!isset( $jrConfig[ 'load_font_awesome' ]))
 			$jrConfig[ 'load_font_awesome' ] = "0";
 		
-		if ( $jrConfig[ 'load_font_awesome' ] == "1")
+		if ( $jrConfig[ 'load_font_awesome' ] == "1" || jomres_cmsspecific_areweinadminarea() )
 			$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "font-awesome.min.css");
 		
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.jeditable.js");
