@@ -5512,7 +5512,7 @@ function includeCDN()
 		<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 			<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 			<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 			<title>Jomres installation/upgrade</title>
 			<style>
