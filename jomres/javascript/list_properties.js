@@ -43,13 +43,15 @@ function lastAddedLiveFunc() {
 		id = jomresJquery(".jomres_property_list_propertywrapper:last").attr("id");
 		if (id != last_scrolled_id) {
 			var animation = '<div id="animation"><img src="' + path_to_jomres_dir + '/'+JOMRES_ROOT_DIRECTORY + '/images/ajax_animation/broken_circle.gif" /></div>';
-			jomresJquery(".jomres_property_list_propertywrapper:last").after(animation);
+			jomresJquery("#livescrolling_results").append(animation);
 			jomresJquery.get(live_site_ajax + "&task=ajax_list_properties&nofollowtmpl&lastID=" + id,
 			function (data) {
+				var result = data.split("^");
 				jomresJquery("#animation").remove();
-				if (data != "") {
-					jomresJquery(".jomres_property_list_propertywrapper:last").after(data);
+				if (result[0] != "") {
+					jomresJquery("#livescrolling_results").replaceWith(result[0]);
 					bind_data_toggle();
+					eval(result[1]);
 				}
 
 				killScroll = false; // IMPORTANT - Make function available again.
