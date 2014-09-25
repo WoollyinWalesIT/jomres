@@ -31,7 +31,19 @@ class j06000ajax_shortlist
 			{
 			$shortlist_items[ ]                                     = $property_uid;
 			$tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ] = $shortlist_items;
-			echo jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', _JOMRES_REMOVEFROMSHORTLIST, false, false );
+
+			$output = array();
+			$pageoutput = array();
+			$output['TEXT']= jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', _JOMRES_REMOVEFROMSHORTLIST, false, false );
+			$pageoutput[ ] = $output;
+			$tmpl          = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			$tmpl->readTemplatesFromInput( 'shortlilst_added.html' );
+			$tmpl->addRows( 'pageoutput', $pageoutput );
+			$result = $tmpl->getParsedTemplate();
+			
+			echo $result;
+			
 			}
 		else
 			{
@@ -44,7 +56,18 @@ class j06000ajax_shortlist
 					}
 				}
 			$tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ] = $shortlist_items;
-			echo jr_gettext( '_JOMRES_ADDTOSHORTLIST', _JOMRES_ADDTOSHORTLIST, false, false );
+			
+			$output = array();
+			$pageoutput = array();
+			$output['TEXT']= jr_gettext( '_JOMRES_ADDTOSHORTLIST', _JOMRES_ADDTOSHORTLIST, false, false );
+			$pageoutput[ ] = $output;
+			$tmpl          = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			$tmpl->readTemplatesFromInput( 'shortlist_removed.html' );
+			$tmpl->addRows( 'pageoutput', $pageoutput );
+			$result = $tmpl->getParsedTemplate();
+			
+			echo $result;
 			}
 		}
 
