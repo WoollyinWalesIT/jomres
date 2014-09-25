@@ -92,17 +92,16 @@ class j16000showplugins
 			}
 		else
 			{
-/* 			$request  = "request=get_license_numbers&username=" . $jrConfig[ 'license_server_username' ] . "&password=" . $jrConfig[ 'license_server_password' ];
+			$request  = "request=get_license_numbers&username=" . $jrConfig[ 'license_server_username' ] . "&password=" . $jrConfig[ 'license_server_password' ];
 			$response = query_shop( $request );
+
 			if ( $response->success )
 				{
 				foreach ( $response->licenses as $license )
 					{
-
 					$current_licenses[ $license->name ] = $license->license_key;
 					}
-
-				} */
+				}
 			}
 
 		$remote_plugins_data = queryUpdateServer( "", "r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS . "&key=" . $key_validation->key_hash );
@@ -129,7 +128,7 @@ class j16000showplugins
 					"retired" => (bool) @$rp->retired  
 				);
 			}
-
+//var_dump($remote_plugins);exit;
 		$d = @dir( $jrePath );
 		if ( $d )
 			{
@@ -198,7 +197,7 @@ class j16000showplugins
 		$output[ 'PAGETITLE' ] = 'Jomres Plugin Manager';
 
 		$bronze_users = array ();
-		if ( !$developer_user && $jrConfig[ 'license_server_username' ] == "" )
+		if ( !$developer_user )
 			{
 			if ( $jrConfig[ 'license_server_username' ] == "" ) // With the required vars setting in the template, if we don't make these at least spaces the appropriate cart section will not show.
 				{
@@ -284,6 +283,12 @@ class j16000showplugins
 		
 		$retired_plugins = array();
 		
+		$output[ 'HPLUGINPRICE' ] = '';
+		if ( !$developer_user )
+			{
+			$output[ 'HPLUGINPRICE' ] = "Plugin price<br/>(Click to add to your cart)";
+			}
+				
 		foreach ( $remote_plugins as $rp )
 			{
 			$r = array ();
@@ -328,12 +333,6 @@ class j16000showplugins
 				{
 				$r[ 'INSTALL_LINK' ] = JOMRES_SITEPAGE_URL_ADMIN . '&task=addplugin&plugin=' . $n;
 				$r[ 'INSTALL_TEXT' ] = $installAction;
-				}
-
-			$r[ 'HPLUGINPRICE' ] = '';
-			if ( !$developer_user )
-				{
-				$r[ 'HPLUGINPRICE' ] = "Plugin price<br/>(Click to add to your cart)";
 				}
 
 			$r[ 'UNINSTALL_LINK' ] = '';
@@ -455,20 +454,20 @@ class j16000showplugins
 			else
 			$condition = 0;
 
-			if ( $condition == 1 ) $r[ 'LATERVERSION' ] = "";
+			if ( $condition == 1 ) 
+				$r[ 'LATERVERSION' ] = "";
 
-			// The following condition is no longer needed, as we no longer sell plugins individually, but we'll keep it in place in case that policy changes.
-			//if ( $condition == 1 && ( array_key_exists( $rp[ 'name' ], $current_licenses ) || $developer_user ) )
-			//	{
+			if ( $condition == 1 && ( array_key_exists( $rp[ 'name' ], $current_licenses ) || $developer_user ) )
+				{
 				if ( using_bootstrap() ) 
 					{
-					$r[ 'INSTALL' ] = '<a href="' . $r[ 'INSTALL_LINK' ] . '" class="btn btn-primary" '.$button_disabled_text.' >' . $r[ 'INSTALL_TEXT' ] . '</a>';
+					$r[ 'INSTALL' ] = '<a href="' . $r[ 'INSTALL_LINK' ] . '" class="btn btn-primary"  >' . $r[ 'INSTALL_TEXT' ] . '</a>';
 					}
 				else
 					{
-					$r[ 'INSTALL' ] = '<a href="' . $r[ 'INSTALL_LINK' ] . '" class="fg-button ui-state-default ui-corner-all '.$button_disabled_text.'"   >' . $r[ 'INSTALL_TEXT' ] . '</a>';
+					$r[ 'INSTALL' ] = '<a href="' . $r[ 'INSTALL_LINK' ] . '" class="fg-button ui-state-default ui-corner-all "   >' . $r[ 'INSTALL_TEXT' ] . '</a>';
 					}
-			//	}
+				}
 
 			if ($rp[ 'retired' ])
 				$r[ 'INSTALL' ] = '';
@@ -492,20 +491,23 @@ class j16000showplugins
 				}
 			else
 				{
-				if ( $price_known )
-					{
+				//if ( (float) $r[ 'PRICE' ] > 0 )
+				//	{
 					if ( using_bootstrap() )
 						{
 						$btn_emphasis = "btn-success";
-						if ( $r[ 'PRICE' ] == 0 ) $btn_emphasis = "btn-inverse";
+						if ( $r[ 'PRICE' ] == 0 ) 
+							$btn_emphasis = "btn-info";
 
 						$r[ 'ADD_TO_CART_BUTTON' ] = '<button id="' . $r[ 'PLUGIN_NAME' ] . '" class="btn ' . $btn_emphasis . '" onClick="addToCart(\'' . $r[ 'PLUGIN_NAME' ] . '\',\'' . $r[ 'PRICE' ] . '\');">&pound;' . number_format( $r[ 'PRICE' ], 2 ) . '</button>';
 						}
 					else
-					$r[ 'ADD_TO_CART_BUTTON' ] = '<button id="' . $r[ 'PLUGIN_NAME' ] . '" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\'' . $r[ 'PLUGIN_NAME' ] . '\',\'' . $r[ 'PRICE' ] . '\');" >&pound;' . number_format( $r[ 'PRICE' ], 2 ) . '</button>';
-					}
-				else
-				$r[ 'ADD_TO_CART_BUTTON' ] = 'Price unknown, unable to query remote server.';
+						{
+						$r[ 'ADD_TO_CART_BUTTON' ] = '<button id="' . $r[ 'PLUGIN_NAME' ] . '" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\'' . $r[ 'PLUGIN_NAME' ] . '\',\'' . $r[ 'PRICE' ] . '\');" >&pound;' . number_format( $r[ 'PRICE' ], 2 ) . '</button>';
+						}
+				//	}
+				//else
+				//	$r[ 'ADD_TO_CART_BUTTON' ] = 'Price unknown, unable to query remote server.';
 				}
 
 			if ( using_bootstrap() )
@@ -554,12 +556,11 @@ class j16000showplugins
 					array_unshift($jomresdotnet_plugins , $move );
 					}
 				}
-		//	var_dump($jomresdotnet_plugins);exit;
 			}
+		
 		$output[ 'PLUGINS_TO_UPGRADE' ] = implode( ",", $plugins_needing_upgrading );
 
 		if ( $this->key_valid ) $plugins_require_upgrade[ ][ 'upgrade_text' ] = 'Upgrade all Core plugins';
-
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();

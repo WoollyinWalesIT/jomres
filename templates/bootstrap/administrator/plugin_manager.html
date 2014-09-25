@@ -54,45 +54,44 @@
 
 	<div class="row-fluid">
 		<div class="span9">
-
-			<patTemplate:tmpl name="bronze_users" type="simpleCondition" requiredVars="license_server_username">
-				<!--
-				<div class="btn btn-primary btn-toolbar" onClick="showCart()"><i class="icon-cart icon-white"></i> Show cart</div>
-				<div class="alert alert-info">Prices do not include VAT. If you are liable to pay VAT this will show on your invoice once you have placed your order.</div>
-				<div id="cart_wrapper" class="hide">
-					<h3 class="page-header"><img src = "{LIVE_SITE}/{JOMRES_ROOT_DIRECTORY}/images/cart_red_transparent.png"/>Your shopping cart</h3>
-					<p><strong>Total &pound;<span id="total"></span></strong></p>
-			<div class="btn-toolbar"><button id="purchase" class="btn btn-primary" onClick="purchase();">Order plugin(s)</button></div>
-			<div class="row-striped">
-				<form id="cart">
-				</form>
+		<patTemplate:tmpl name="bronze_users" type="simpleCondition" requiredVars="license_server_username">
+			<!--
+			<button class="btn btn-primary" onClick="showCart()"><i class="fa fa-shopping-cart"></i> Show cart</button>
+			<div class="alert alert-info">Prices do not include VAT. If you are liable to pay VAT this will show on your invoice once you have placed your order.</div>
+			<div id="cart_wrapper" class="hide">
+				<h3 class="page-header"><img src = "{LIVE_SITE}/{JOMRES_ROOT_DIRECTORY}/images/cart_red_transparent.png"/>Your shopping cart</h3>
+				<p><strong>Total &pound;<span id="total"></span></strong></p>
+				<button id="purchase" class="btn btn-primary" onClick="purchase();"><i class="fa fa-thumbs-up"></i> Order plugin(s)</button>
+					<div class="row-striped">
+						<form id="cart">
+						</form>
+					</div>
+					<p class="alert alert-warning">Note, if you have a Jomres  Silver or Gold license number, please make sure you've entered it in the <i>Site Configuration -> Misc tab -> Support key</i> field, otherwise you will not be able to download plugins that you are entitled to.</p>
 			</div>
-			<p class="alert alert-warning">Note, if you have a Jomres  Silver or Gold license number, please make sure you've entered it in the <i>Site Configuration -> Misc tab -> Support key</i> field, otherwise you will not be able to download plugins that you are entitled to.</p>
-		</div>
-		<div id="hidden_inputs"  class="hide"></div>
-		<div id="username_input" class="hide">
-			<fieldset>
-			<p class="small">Before you can purchase plugins, you need a Username and Password, which you can get by registering for free at <a href="http://www.jomres.net/my-account/register" target="_blank">Jomres.net</a>.<br/> If you already have a username and password please enter them here. When you've done that, click the Purchase Plugins! button.</p>
-				<label for="name">Username</label>
-				<input id="name" name="name" type="text" placeholder="Your username" value="{LICENSE_SERVER_USERNAME}" required autofocus>
-				<label for="password">Password</label>
-				<input id="password" name="password" type="password" placeholder="Your password" value="{LICENSE_SERVER_PASSWORD}" required>
-			</fieldset>
-			<p class="small">Once you have paid your invoice, Jomres will automatically offer you an installation link next to your purchased plugin(s), click that link to install the plugin(s).</p><br />
-			<p class="small">Note that purchase of a plugin download does not entitle you to support for Jomres. If you require support we would encourage you to purchase a Jomres Developer or Jomres Perpetual license.</p><br />
-			<div class="form-actions"><button class="btn btn-primary" id="purchase_button" onClick="sumbint();">Purchase plugins!</button></div>
-		</div>
-		-->
-			</patTemplate:tmpl>
+			<div id="hidden_inputs"  class="hide"></div>
+			<div id="username_input" class="hide">
+				<fieldset>
+				<p class="small">Before you can purchase plugins, you need a Username and Password, which you can get by registering for free at <a href="http://www.jomres.net/my-account/register" target="_blank">Jomres.net</a>.<br/> If you already have a username and password please enter them here. When you've done that, click the Purchase Plugins! button.</p>
+					<label for="name">Username</label>
+					<input id="name" name="name" type="text" placeholder="Your username" value="{LICENSE_SERVER_USERNAME}" required autofocus>
+					<label for="password">Password</label>
+					<input id="password" name="password" type="password" placeholder="Your password" value="{LICENSE_SERVER_PASSWORD}" required>
+				</fieldset>
+				<p class="small">Once you have paid your invoice, Jomres will automatically offer you an installation link next to your purchased plugin(s), click that link to install the plugin(s).</p><br />
+				<p class="small">Note that purchase of a plugin download does not entitle you to support for Jomres. If you require support we would encourage you to purchase a Jomres Developer or Jomres Perpetual license.</p><br />
+				<div class="form-actions"><button class="btn btn-primary" id="purchase_button" onClick="sumbint();">Purchase plugins!</button></div>
+			</div>
+			-->
+		</patTemplate:tmpl>
 
-			<patTemplate:tmpl name="developer_users" type="simpleCondition" requiredVars="dummy">
-				<p class="alert alert-warning">Please do not install all plugins with the hope that they will come in
-					useful later. They are not all mutually exclusive, I.E. one plug may interfere with another, so it
-					is recommended that you only install a plugin when you\'ve identified a requirement that the
-					individual plugin fulfills. <br/>Bold items in the core plugins list are generally essential when
-					building a portal, and if you have upgraded from v4 you should consider installing those plugins to
-					continue working as before.</p>
-			</patTemplate:tmpl>
+		<patTemplate:tmpl name="developer_users" type="simpleCondition" requiredVars="dummy">
+			<p class="alert alert-warning">Please do not install all plugins with the hope that they will come in
+				useful later. They are not all mutually exclusive, I.E. one plug may interfere with another, so it
+				is recommended that you only install a plugin when you\'ve identified a requirement that the
+				individual plugin fulfills. <br/>Bold items in the core plugins list are generally essential when
+				building a portal, and if you have upgraded from v4 you should consider installing those plugins to
+				continue working as before.</p>
+		</patTemplate:tmpl>
 		</div>
 		<div class="span3">
 			<h3 class="page-header">Legend</h3>
@@ -106,9 +105,9 @@
 				<tr class="alert alert-danger">
 					<td align="center">Plugin retired, uninstall it</td>
 				</tr>
-				<!--<tr class="alert alert-info">
+				<tr class="alert alert-info">
 					<td align="center">Free plugin</td>
-				</tr>-->
+				</tr>
 				<!--<tr class="alert">
 					<td align="center">Third party plugin</td>
 				</tr>-->
@@ -143,7 +142,7 @@
 						<th>Warnings</th>
 						<th>Add/reinstall/upgrade plugin</th>
 						<th>Remove plugin</th>
-						<!--<th>{HPLUGINPRICE}</th>-->
+						<!-- <th>{HPLUGINPRICE}</th> -->
 					</tr>
 					<patTemplate:tmpl name="jomresdotnet_plugins" unusedvars="strip">
 						<tr>
@@ -167,7 +166,7 @@
 							<td>{HIGHLIGHT}</td>
 							<td>{INSTALL} {LATERVERSION}</td>
 							<td>{UNINSTALL}</td>
-							<!--<td>{ADD_TO_CART_BUTTON}</td>-->
+							<!-- <td>{ADD_TO_CART_BUTTON}</td> -->
 						</tr>
 					</patTemplate:tmpl>
 				</table>
