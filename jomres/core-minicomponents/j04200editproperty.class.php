@@ -270,7 +270,7 @@ class j04200editproperty
 
 		if ( $output[ 'LAT' ] == "" ) // Let's ask Auntie Google what the lat long should be.
 			{
-			$url = "//maps.googleapis.com/maps/api/geocode/json?address=" . urlencode( $output[ 'PROPERTY_NAME' ] ) . "," . urlencode( $output[ 'PROPERTY_STREET' ] ) . "," . urlencode( $output[ 'PROPERTY_TOWN' ] ) . "," . urlencode( $propertyRegion ) . "," . urlencode( $selectedCountry ) . "&sensor=false";
+			$url = "https://maps-api-ssl.google.com/maps/api/geocode/json?address=" . urlencode( $output[ 'PROPERTY_NAME' ] ) . "," . urlencode( $output[ 'PROPERTY_STREET' ] ) . "," . urlencode( $output[ 'PROPERTY_TOWN' ] ) . "," . urlencode( $propertyRegion ) . "," . urlencode( $selectedCountry ) . "&sensor=false";
 			//$url = urlencode($url);
 			//echo $url;exit;
 			$curl_handle = curl_init();

@@ -762,7 +762,7 @@ function add_gmaps_source( $sensor = 0 )
 
 		if ( $libraries != '' ) $libraries = '&libraries=' . $libraries;
 
-		jomres_cmsspecific_addheaddata('javascript' , '//maps.googleapis.com/maps/api/js?sensor=' . $s . '&language=' . $shortcode . $libraries , '&key=' . $jrConfig[ 'google_maps_api_key' ], $includeVersion = false );
+		jomres_cmsspecific_addheaddata('javascript' , 'https://maps-api-ssl.google.com/maps/api/js?sensor=' . $s . '&language=' . $shortcode . $libraries , '&key=' . $jrConfig[ 'google_maps_api_key' ], $includeVersion = false );
 		}
 	}
 
@@ -977,14 +977,16 @@ function admins_first_run( $manual_trigger = false )
 	// }
 	}
 
-/* function query_shop( $request = '' )
+ function query_shop( $request = '' )
 	{
 	if ( $request == "" )
 		{
 		echo "Request not set";
 		exit;
 		}
-	if ( !function_exists( "curl_init" ) ) return "Error, CURL not enabled on this server.";
+	
+	if ( !function_exists( "curl_init" ) ) 
+		return "Error, CURL not enabled on this server.";
 	else
 		{
 		$curl_handle = curl_init();
@@ -997,7 +999,7 @@ function admins_first_run( $manual_trigger = false )
 
 		return json_decode( $response );
 		}
-	} */
+	}
 
 // Adapted from http://uk.php.net/manual/en/function.time.php#89415
 function nicetime( $date )
