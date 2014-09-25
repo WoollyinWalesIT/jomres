@@ -531,13 +531,13 @@ class j01010listpropertys
 							switch ( $mrConfig[ 'booking_form_daily_weekly_monthly' ] )
 								{
 								case "D":
-									$property_deets[ 'PRICE_CUMULATIVE' ]	= output_price($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] * $stayDays,"",false);
+									$property_deets[ 'PRICE_CUMULATIVE' ]	= output_price($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] * $stayDays,"");
 									break;
 								case "W":
-									$property_deets[ 'PRICE_CUMULATIVE' ]	= output_price( ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] / 7) * $stayDays,"",false);
+									$property_deets[ 'PRICE_CUMULATIVE' ]	= output_price( ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] / 7) * $stayDays,"");
 									break;
 								case "M":
-									$property_deets[ 'PRICE_CUMULATIVE' ]	= output_price( ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] / 30 ) * $stayDays,"",false);
+									$property_deets[ 'PRICE_CUMULATIVE' ]	= output_price( ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] / 30 ) * $stayDays,"");
 									break;
 								}
 							}
