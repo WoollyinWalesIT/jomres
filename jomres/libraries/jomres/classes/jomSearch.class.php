@@ -841,7 +841,10 @@ class jomSearch
 
 		if ( $arrivalDate != "" && $departureDate != "" )
 			{
-			$stayDays        = dateDiff( "d", $arrivalDate, $departureDate );
+			if ($arrivalDate == $departureDate)
+				$stayDays = 1;
+			else
+				$stayDays = dateDiff( "d", $arrivalDate, $departureDate );
 			$dateRangeArray  = array ();
 			$date_elements   = explode( "/", $arrivalDate );
 			$unixCurrentDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
