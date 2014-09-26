@@ -1,48 +1,45 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<div title="{PROPERTY_NAME}" class="clearfix">
-		<div class="row">
-			<div class="well clearfix">
-				<div class="col-md-6">
-					<div title="{PROPERTY_NAME}_map">
-						{MAP}
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div>{STARSIMAGES} {SUPERIOR}</div>
-					<p>
-						<strong>{_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS} </strong>{PROPERTY_STREET},
-						{PROPERTY_TOWN}, {PROPERTY_POSTCODE}, {PROPERTY_REGION}, {PROPERTY_COUNTRY} <br/><strong>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE} </strong>{PROPERTY_TEL}
-					</p>
-					<strong>{HRTYPES}</strong>
-
-					<div style="clear:both;">
-						<patTemplate:tmpl name="room_types" type="simpleCondition" requiredVars="room_type">
-							{ROOM_TYPE}
-						</patTemplate:tmpl>
-					</div>
-					<div class="clearfix"></div>
-					<strong>{HFEATURES}</strong>
-
-					<div style="clear:both;">
-						<patTemplate:tmpl name="property_features" type="simpleCondition" requiredVars="feature">
-							{FEATURE}
-						</patTemplate:tmpl>
-					</div>
-				</div>
-			</div>
+<div class="row">
+	<div class="col-md-6">
+		<div title="{PROPERTY_NAME}_map">
+			{MAP}
 		</div>
-
-		<div class="col-md-5 pull-left">
-			<!--<a href="{MOREINFORMATIONLINK}" class="thumbnail pull-left"><img src = "{PROPERTY_IMAGE_SMALL}" align="left"/></a>-->
-			<a href="{MOREINFORMATIONLINK}"><img src="{IMAGEMEDIUM}" class="thumbnail"/></a>
-			<!--<a href="{MOREINFORMATIONLINK}" class="thumbnail pull-left"><img src = "{PROPERTY_IMAGE_LARGE}" align="left"/></a>-->
-		</div>
-		
-		<p>{PROPERTY_DESCRIPTION}</p>
-		<div class="clearfix"></div>
-		<p class="well">{PRICE_PRE_TEXT}{PRICE_PRICE}{PRICE_POST_TEXT}</p>
-
-		<p align="center"><a href="{MOREINFORMATIONLINK}" class="btn btn-primary btn-large">{MOREINFORMATION}</a></p>
-		<!--<p align="center">{CALENDAR}</p>-->
 	</div>
+	<div class="col-md-6">
+		<div>{STARSIMAGES} {SUPERIOR}</div>
+		<p>
+			<strong>{_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS} </strong>{PROPERTY_STREET},
+			{PROPERTY_TOWN}, {PROPERTY_POSTCODE}, {PROPERTY_REGION}, {PROPERTY_COUNTRY} <br/><strong>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE} </strong>{PROPERTY_TEL}
+		</p>
+		<strong>{HRTYPES}</strong>
+
+		<div style="clear:both;">
+			<patTemplate:tmpl name="room_types" type="simpleCondition" requiredVars="room_type">
+				{ROOM_TYPE}
+			</patTemplate:tmpl>
+		</div>
+		<div class="clearfix"></div>
+		<strong>{HFEATURES}</strong>
+
+		<div style="clear:both;">
+			<patTemplate:tmpl name="property_features" type="simpleCondition" requiredVars="feature">
+				{FEATURE}
+			</patTemplate:tmpl>
+		</div>
+	</div>
+</div>
+
+<div class="col-md-6">
+	<!--<a href="{MOREINFORMATIONLINK}"><img src = "{PROPERTY_IMAGE_SMALL}"/></a>-->
+	<a href="{MOREINFORMATIONLINK}"><img src="{IMAGEMEDIUM}" class="img-responsive" alt="{PROPERTY_NAME}"/></a>
+	<!--<a href="{MOREINFORMATIONLINK}"><img src = "{PROPERTY_IMAGE_LARGE}" /></a>-->
+</div>
+	
+<p>{PROPERTY_DESCRIPTION}</p>
+<div class="clearfix"></div>
+<p class="well">{PRICE_PRE_TEXT}{PRICE_PRICE}{PRICE_POST_TEXT}</p>
+
+<p align="center"><a href="{MOREINFORMATIONLINK}" class="btn btn-primary btn-large">{MOREINFORMATION}</a></p>
+<!--<p align="center">{CALENDAR}</p>-->
+	
 </patTemplate:tmpl>
