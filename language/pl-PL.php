@@ -4700,3 +4700,5 @@ jr_define('_BOOKING_ONREQUEST','Zapytanie o rezerwację');
 jr_define('_BOOKING_INSTANT','Natychmiastowa rezerwacja');
 jr_define('_JOMRES_COM_FONTAWESOME','Wczytać czcionki i zestaw ikon?');
 jr_define('_JOMRES_COM_FONTAWESOME_DESC','Ustaw na Tak, jeśli szablon nie zawiera czcionek i ikon.');
+
+jr_define( '_BOOKING_CALCQUOTE', 'Request booking' );

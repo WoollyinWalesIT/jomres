@@ -227,11 +227,12 @@ class j00015viewproperty
 				$url = jomresURL( $url );
 
 				$link[ 'LINK' ] = $url;
-				$link[ 'TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKAROOM', _JOMRES_FRONT_MR_MENU_BOOKAROOM, false, false );
-				if ( $mrConfig[ 'singleRoomProperty' ] == '1' )
-					{
+
+				if ( $mrConfig[ 'requireApproval' ] == "1" )
+					$link[ 'TEXT' ] = jr_gettext( '_BOOKING_CALCQUOTE', _BOOKING_CALCQUOTE, false, false );
+				else
 					$link[ 'TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKAROOM', _JOMRES_FRONT_MR_MENU_BOOKAROOM, false, false );
-					}
+									
 
 				$bookinglink[ ] = $link;
 				}
