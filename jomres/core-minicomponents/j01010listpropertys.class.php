@@ -584,10 +584,20 @@ class j01010listpropertys
 							{
 							$url                      = jomresURL( JOMRES_SITEPAGE_URL . "&task=" . $dobooking_task . "&amp;selectedProperty=" . $propertys_uid );
 							$property_deets[ 'LINK' ] = $url;
-							if ( $mrConfig[ 'singleRoomProperty' ] == "1" ) $property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', _JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY, false, false );
+							if ( $mrConfig[ 'singleRoomProperty' ] == "1" )
+								{
+								if ( $mrConfig[ 'requireApproval' ] == "1" )
+									$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_BOOKING_CALCQUOTE', _BOOKING_CALCQUOTE, false, false );
+								else
+									$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', _JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY, false, false );
+								}
 							else
-							$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKAROOM', _JOMRES_FRONT_MR_MENU_BOOKAROOM, false, false );
-
+								{
+								if ( $mrConfig[ 'requireApproval' ] == "1" )
+									$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_BOOKING_CALCQUOTE', _BOOKING_CALCQUOTE, false, false );
+								else
+									$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKAROOM', _JOMRES_FRONT_MR_MENU_BOOKAROOM, false, false );
+								}
 							if ( $dobooking_task != "dobooking" ) $property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', _JOMRES_FRONT_MR_MENU_CONTACTHOTEL, false, false );
 							}
 						else
