@@ -70,6 +70,8 @@ function output_fatal_error($e)
 		'_JOMRES_ERROR_DEBUGGING_TRACE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_TRACE", _JOMRES_ERROR_DEBUGGING_TRACE, false ) ,
 		 ); 
 		
+	$output['DATETIME'] = date ( "Y-m-d H:i:s" );
+	
 	$pageoutput[] = $output;
 	$tmpl          = new patTemplate();
 	$tmpl->setRoot( $path );
