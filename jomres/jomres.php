@@ -425,11 +425,16 @@ try
 			case 'processpayment':
 				$tag = set_booking_number();
 				$plugin = jomres_validate_gateway_plugin();
-
-				$data  = array ( 'tmpbooking' => $tmpBookingHandler->tmpbooking, 'tmpguest' => $tmpBookingHandler->tmpguest );
-				$query = "INSERT INTO #__jomres_booking_data_archive SET `data`='" . serialize( $data ) . "',`date`='" . date( 'Y-m-d H:i:s' ) . "', `tag` = '".$tag."'";
-				doInsertSql( $query, '' );
-
+				
+				$query = "SELECT id FROM #__jomres_booking_data_archive WHERE `tag` = '".$tag."'";
+				$result = doSelectSql($query);
+				if (count($result)==0)
+					{
+					$data  = array ( 'tmpbooking' => $tmpBookingHandler->tmpbooking, 'tmpguest' => $tmpBookingHandler->tmpguest );
+					$query = "INSERT INTO #__jomres_booking_data_archive SET `data`='" . serialize( $data ) . "',`date`='" . date( 'Y-m-d H:i:s' ) . "', `tag` = '".$tag."'";
+					doInsertSql( $query, '' );
+					}
+				
 				$bookingdata = gettempBookingdata();
 				$MiniComponents->triggerEvent( '00599', array ( 'bookingdata' => $bookingdata ) ); // Optional
 
