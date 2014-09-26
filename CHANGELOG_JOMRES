@@ -1,4 +1,28 @@
 
+<h3>Jomres 8.1.12 26/09/2014</h3>
+
+<span class="label label-warning">Change</span> Improved media centre icons
+<span class="label label-warning">Change</span> Tweaked urls to gmaps to ensure that https is used.
+<span class="label label-warning">Change</span> Added font awesome to administrator area.
+<span class="label label-warning">Change</span> Modified how live scrolling feature appends results to existing div.
+<span class="label label-warning">Change</span> Added code to support calculated total price conversion in property list.
+<span class="label label-warning">Change</span> Modified how the shortlist feature works, ajax output is now sent via templates. This allows us to override the response with something like FA icons.
+<span class="label label-warning">Change</span> Modified layout of output price template slightly.
+<span class="label label-warning">Change</span> Tweaked css to make over budget properties opacity more pronounced.
+<span class="label label-warning">Change</span> Updated Polish lang files, thanks Patryk.
+<span class="label label-warning">Change</span> Added a new lang string to differentiate properties in list properties and property details that have deferred bookings.
+<span class="label label-warning">Change</span> Tweaked bottom slightly to change the tooltip binding.
+<span class="label label-warning">Change</span> Updated module popup contents to improve layout in BS3.
+<span class="label label-warning">Change</span> Added date/time to the error report.
+<span class="label label-warning">Change</span> Changed location of qr codes 
+<span class="label label-warning">Change</span> Improved searching so that if arrival and departure dates are the same then the min interval is set to 1. This is for users of "by day" functionality as opposed to "by night".
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue where carriage returns in output_price.html causes javascript errors in the booking form.
+<span class="label label-important label-danger">Fix</span> Fixed a faulty path to the calendar icon for non-BS3 installations.
+<span class="label label-important label-danger">Fix</span> Resolved an issue where duplicate records could be created in the booking data archive.
+
+<h3>Jomres 8.1.11 23/09/2014</h3>
+
 <span class="label label-warning">Change</span> Modified the dashboard to use language strings from Jomres lang files instead of strings coded into the javascript file to define month and day names.
 <span class="label label-warning">Change</span> Modified system to provide language strings for table tools (flash buttons cannot yet be translated).
 <span class="label label-warning">Change</span> Added new administrator area feature to show our Jomres Partners and their plugins.
