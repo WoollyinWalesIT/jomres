@@ -141,7 +141,7 @@ if ( !class_exists( 'booking' ) )
 
 			if ( (using_bootstrap() && jomres_bootstrap_version() == "2") || !using_bootstrap() )
 				{
-				$output .= 'buttonImage: \''.JOMRES_ROOT_DIRECTORY.'/images/calendar.png\',';
+				$output .= 'buttonImage: \'' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/calendar.png\',';
 				$bs3_icon = '';
 				}
 			else
