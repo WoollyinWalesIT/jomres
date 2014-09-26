@@ -509,11 +509,17 @@ function jomres_make_qr_code( $string = "", $format = "text" )
 		{
 		$qr = new jomres_qr_code();
 		}
-	if ( $string == "" ) return false;
+	$dir = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'qr_codes';
+	test_and_make_directory( $dir );
+	
+	if ( $string == "" ) 
+		return false;
+	
 	$filename = md5( $string );
-	if ( !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'qr_code_' . $filename . '.png' ) ) QRcode::png( $string, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'qr_code_' . $filename . '.png', 'L', 4, 2 );
+	if ( !file_exists( $dir . JRDS . 'qr_code_' . $filename . '.png' ) ) 
+		QRcode::png( $string, $dir . JRDS . 'qr_code_' . $filename . '.png', 'L', 4, 2 );
 
-	return array ( "relative_path" => get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/temp/" . 'qr_code_' . $filename . '.png', "absolute_path" => JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'qr_code_' . $filename . '.png' );
+	return array ( "relative_path" => get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/temp/qr_codes/" . 'qr_code_' . $filename . '.png', "absolute_path" => JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'qr_code_' . $filename . '.png' );
 	}
 
 
