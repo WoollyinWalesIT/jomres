@@ -27,17 +27,20 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 	$output   = "";
 	// If this date picker is "arrivalDate" then we need to create a departure date input name too, then set it in showtime. With that we'll be able to tell this set of functionality what the id of the
 	// departureDate is so that it can set it's date when this one changes
+	
+	$uniqueID = generateJomresRandomString( 15 );
+	
 	if ( $fieldName == "arrivalDate" || $fieldName == "asc_arrivalDate" )
 		{
-		$uniqueID = generateJomresRandomString( 15 );
 		set_showtime( 'departure_date_unique_id', $uniqueID . "_XXX" );
 		}
-	else
+	elseif ( $fieldName == "departureDate" || $fieldName == "asc_departureDate" )
 		{
 		$uniqueID = get_showtime( 'departure_date_unique_id' );
 		}
 
-	if ( $dateValue == "" ) $dateValue = date( "Y/m/d" );
+	if ( $dateValue == "" ) 
+		$dateValue = date( "Y/m/d" );
 	$dateValue = JSCalmakeInputDates( $dateValue, $siteConfig );
 
 	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
@@ -75,16 +78,16 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 			dateFormat: "' . $dateFormat . '", ';
 
 	if ( $historic ) // Can we show older dates? By default no
-	$output .= 'minDate: "-5Y", ';
+		$output .= 'minDate: "-5Y", ';
 	else
-	$output .= 'minDate: 0, ';
+		$output .= 'minDate: 0, ';
 
 	$output .= 'maxDate: "+5Y",
-			';
+		';
 
 	if ( (using_bootstrap() && jomres_bootstrap_version() == "2") || !using_bootstrap() )
 		{
-		$output .= 'buttonImage: \''.JOMRES_ROOT_DIRECTORY.'/images/calendar.png\',';
+		$output .= 'buttonImage: \'' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/calendar.png\',';
 		$bs3_icon = '';
 		}
 	else
@@ -101,9 +104,11 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 			numberOfMonths: 1,
 			showOtherMonths: true,
 			selectOtherMonths: true,';
-	if ( $jrConfig[ 'calendarstartofweekday' ] == "1" ) $output .= 'firstDay: 0,';
+	if ( $jrConfig[ 'calendarstartofweekday' ] == "1" ) 
+		$output .= 'firstDay: 0,';
 	else
-	$output .= 'firstDay: 1,';
+		$output .= 'firstDay: 1,';
+	
 	$output .= '	showButtonPanel: true';
 	if ( $fieldName == "arrivalDate" || $fieldName == "asc_arrivalDate"  )
 		{
