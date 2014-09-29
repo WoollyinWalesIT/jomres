@@ -28,7 +28,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="row-fluid">
-					<div class="span3 property-pic-wrapper ">
+					<div class="span3">
 						<a href="#module_{RANDOM_IDENTIFIER}_popup" class="hidden-phone " data-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}">
 							<img src="{IMAGEMEDIUM}" class="img-rounded" alt="{PROPERTYNAME}"/>
 						</a>
@@ -68,6 +68,8 @@
 						<div><strong>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES}</strong></div>
 						<div>{FEATURELIST}</div>
 						<div style="clear:both;"></div>
+						{CUSTOM_PROPERTY_FIELDS_DATA_SNIPPET}
+						<div class="clearfix"></div>
 					</div>
 					<div class="span5 well">
 						<div><strong>{_JOMRES_REVIEWS}</strong></div>
