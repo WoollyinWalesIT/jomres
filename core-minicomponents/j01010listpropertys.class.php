@@ -659,10 +659,31 @@ class j01010listpropertys
 					$property_deets[ 'RANDOM_IDENTIFIER' ]  = generateJomresRandomString( 10 );
 					$property_deets[ '_JOMRES_COMPARE' ]    = jr_gettext( '_JOMRES_COMPARE', _JOMRES_COMPARE, false, false );
 
-					if ( !in_array( $propertys_uid, $shortlist_items ) ) 
-						$property_deets[ 'SHORTLIST' ] = jr_gettext( '_JOMRES_ADDTOSHORTLIST', _JOMRES_ADDTOSHORTLIST, false, false );
+					if ( !in_array( $propertys_uid, $shortlist_items ) )
+						{
+						$shortlist_output = array();
+						$shortlist_pageoutput = array();
+						$shortlist_output['TEXT']= jr_gettext( '_JOMRES_ADDTOSHORTLIST', _JOMRES_ADDTOSHORTLIST, false, false );
+						$shortlist_pageoutput[ ] = $shortlist_output;
+						$tmpl          = new patTemplate();
+						$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+						$tmpl->readTemplatesFromInput( 'shortlist_removed.html' );
+						$tmpl->addRows( 'pageoutput', $shortlist_pageoutput );
+						$property_deets[ 'SHORTLIST' ] = $tmpl->getParsedTemplate();
+						}
 					else
-						$property_deets[ 'SHORTLIST' ] = jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', _JOMRES_REMOVEFROMSHORTLIST, false, false );
+						{
+
+						$shortlist_output = array();
+						$shortlist_pageoutput = array();
+						$shortlist_output['TEXT']= jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', _JOMRES_REMOVEFROMSHORTLIST, false, false );
+						$shortlist_pageoutput[ ] = $shortlist_output;
+						$tmpl          = new patTemplate();
+						$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+						$tmpl->readTemplatesFromInput( 'shortlilst_added.html' );
+						$tmpl->addRows( 'pageoutput', $shortlist_pageoutput );
+						$property_deets[ 'SHORTLIST' ] = $tmpl->getParsedTemplate();
+						}
 
 					add_gmaps_source(); // Needs to be included, regardless of the settings below because the module popup will not work without it.
 					
