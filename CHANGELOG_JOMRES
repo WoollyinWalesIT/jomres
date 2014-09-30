@@ -1,4 +1,11 @@
 
+<h3>Jomres 8.1.13 30/09/2014</h3>
+
+<span class="label label-warning">Change</span> Added shortlist templates to list properties.
+<span class="label label-warning">Change</span> Added custom properties fields snippet to list_properties.html
+
+<span class="label label-important label-danger">Fix</span> Modified the generatedateinput function as it was creating several issues on non-search based forms that required dates to be entered.
+
 <h3>Jomres 8.1.12 26/09/2014</h3>
 
 <span class="label label-warning">Change</span> Improved media centre icons
