@@ -110,6 +110,15 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$tmpBookingHandler->tmpbooking[ "total_discount" ] = "";
 	//$tmpBookingHandler->saveBookingData();
 	$amend_contract                                         = $tmpBookingHandler->getBookingFieldVal( "amend_contract" );
+	
+	if ( $amend_contract )
+		{
+		if (!can_modify_this_booking( (int) $_REQUEST[ 'contractuid' ] ) )
+			{
+			return;
+			}
+		}
+	
 	$tmpBookingHandler->tmpbooking[ "override_room_total" ] = null;
 	$tmpBookingHandler->tmpbooking[ "override_deposit" ]    = null;
 

@@ -14,6 +14,28 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+
+function can_modify_this_booking($contract_uid)
+	{
+	$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
+	
+	if (!$thisJRUser->userIsManager)
+		throw new Exception("Non-manager user ".serialize($thisJRUser)." attempted to modify a booking with the contract uid of ".(int)$contract_property_uid);
+	
+	$query = "SELECT `property_uid` FROM #__jomres_contracts WHERE `contract_uid` = ".(int)$contract_uid." LIMIT 1";
+	$contract_property_uid = doSelectSql($query,1);
+
+	if ( (int)$contract_property_uid == 0)
+		throw new Exception("Manager user ".serialize($thisJRUser)." attempted to modify a booking with the contract uid of ".(int)$contract_property_uid.". This contract uid does not exist.");
+
+	if (  in_array( $contract_property_uid , $thisJRUser->authorisedProperties ) )
+		return true;
+	else
+		throw new Exception("Manager user ".serialize($thisJRUser)." attempted to modify a booking with the contract uid of ".(int)$contract_property_uid.". Manager is not authorised to modify this contract.");
+
+	throw new Exception("Manager user ".serialize($thisJRUser)." attempted to modify a booking with the contract uid of ".(int)$contract_property_uid.". Could not confirm that the manager was authorised to modify the booking.");
+	}
+
 // Newer function for finding dates
 function get_periods( $start, $end, $interval = null )
 	{
