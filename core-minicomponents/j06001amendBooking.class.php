@@ -36,6 +36,12 @@ class j06001amendBooking
 
 		$defaultProperty = getDefaultProperty();
 		$contract_uid    = intval( jomresGetParam( $_REQUEST, 'contractUid', 0 ) );
+		
+		if (!can_modify_this_booking( (int) $contract_uid ) )
+			{
+			return;
+			}
+		
 		if ( $contract_uid > 0 )
 			{
 			$tmpArray = array ();

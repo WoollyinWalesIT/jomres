@@ -1,3 +1,6 @@
+<h3>Jomres 8.1.14 01/10/2014</h3>
+
+<span class="label label-important label-danger">Fix</span> Fixed a bug where a manager could modify bookings that they aren't authorised to modify. Medium level security bug.
 
 <h3>Jomres 8.1.13 30/09/2014</h3>
 
