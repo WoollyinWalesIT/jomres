@@ -274,7 +274,7 @@ class basic_contract_details
 		
 		foreach ($guesttype_titles as $g)
 			{
-			$guesttypeNames[$g->id]=$g->type;
+			$guesttypeNames[$g->id]=jr_gettext('_JOMRES_CUSTOMTEXT_GUESTTYPE'.$g->id, stripslashes($g->type), false);
 			}
 		
 		foreach ( $varianceArray as $v )
