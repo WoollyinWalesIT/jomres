@@ -59,6 +59,26 @@ function get_periods( $start, $end, $interval = null )
 	return $dates;
 	}
 
+// Function to get the client IP address
+function jomres_get_client_ip() {
+    $ipaddress = '';
+    if ($_SERVER['HTTP_CLIENT_IP'])
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if($_SERVER['REMOTE_ADDR'])
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else if($_SERVER['HTTP_X_FORWARDED_FOR'])
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if($_SERVER['HTTP_X_FORWARDED'])
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if($_SERVER['HTTP_FORWARDED_FOR'])
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if($_SERVER['HTTP_FORWARDED'])
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else
+        $ipaddress = 'UNKNOWN';
+    return filter_var( $ipaddress , FILTER_SANITIZE_STRING ) ;
+}
+
 function output_fatal_error($e)
 	{
 	$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
@@ -91,7 +111,9 @@ function output_fatal_error($e)
 		'_JOMRES_ERROR_DEBUGGING_LINE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_LINE", _JOMRES_ERROR_DEBUGGING_LINE, false ) ,
 		'_JOMRES_ERROR_DEBUGGING_TRACE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_TRACE", _JOMRES_ERROR_DEBUGGING_TRACE, false ) ,
 		 ); 
-		
+	
+	$output['IP_NUMBER'] = jomres_get_client_ip();
+	
 	$output['DATETIME'] = date ( "Y-m-d H:i:s" );
 	
 	$pageoutput[] = $output;
