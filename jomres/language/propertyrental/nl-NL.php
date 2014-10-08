@@ -2588,3 +2588,5 @@ jr_define( '_JOMRES_COM_FONTAWESOME', 'Include Font Awesome icon set?' );
 jr_define( '_JOMRES_COM_FONTAWESOME_DESC', 'Set this to Yes if your template does not include Font Awesome.' );
 
 jr_define( '_BOOKING_CALCQUOTE', 'Request booking' );
+
+jr_define('_JOMRES_COM_CONFIRMATION_DEAR', 'Dear ');
