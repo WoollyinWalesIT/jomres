@@ -2500,3 +2500,4 @@ jr_define( '_JOMRES_COM_FONTAWESOME_DESC', 'Set this to Yes if your template doe
 
 jr_define( '_BOOKING_CALCQUOTE', 'Request booking' );
 
+jr_define('_JOMRES_COM_CONFIRMATION_DEAR', 'Dear ');
