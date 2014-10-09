@@ -85,6 +85,7 @@ class minicomponent_registry
 			{
 			$this->getMiniCorePluginsClasses();
 			$this->getMiniComponentRemoteClasses();
+			$this->getMiniComponentJoomlaTemplateClasses();
 			// $this->getMiniComponentComponentClasses(); // Was added for BC, these minicomponents should no longer be used (since circa v3 of Jomres) so this line will be disabled
 			}
 
@@ -149,6 +150,53 @@ class jomres_mc_registry
 			}
 		}
 
+	// If this is Joomla we'll also scan the Joomla template's html/com_jomres dir for minicomponents. 
+	function getMiniComponentJoomlaTemplateClasses()
+		{
+		if ( !this_cms_is_joomla())
+			return;
+		$db = JFactory::getDBO();
+		$query = "SELECT template FROM #__template_styles WHERE client_id = 0 AND home = 1";
+		$db->setQuery($query);
+		$templateName = $db->loadResult();
+
+		$jrePath = JOMRESCONFIG_ABSOLUTE_PATH . 'templates' . JRDS . $templateName . JRDS . 'html' . JRDS . 'com_jomres' . JRDS ;
+
+		$d       = @dir( $jrePath );
+		$docs    = array ();
+		if ( $d )
+			{
+			while ( false !== ( $entry = $d->read() ) )
+				{
+				$filename = $entry;
+				if ( substr( $entry, 0, 1 ) != '.' )
+					{
+					$docs[ ] = $entry;
+					}
+				}
+
+			$d->close();
+			if ( count( $docs ) > 0 )
+				{
+				sort( $docs );
+				foreach ( $docs as $doc )
+					{
+					$listdir = $jrePath . $doc . JRDS;
+					$dr      = @dir( $listdir );
+					if ( $dr )
+						{
+						while ( false !== ( $entry = $dr->read() ) )
+							{
+							$filename = $entry;
+							$this->registerComponentFile( $listdir, $filename, 'joomlatemplate' );
+							}
+						$dr->close();
+						}
+					}
+				}
+			}
+		}
+	
 	// Reads in class files from the components table and inserts them into the registeredClasses array
 	function getMiniComponentRemoteClasses()
 		{
@@ -272,12 +320,16 @@ class jomres_mc_registry
 			{
 			if ( is_file( $filePath . $filename ) && !in_array( strtolower( $filename ), $this->unWantedFolderContents ) && ( $epi > 0 && $epi < 100000 ) && ( strtolower( $extension ) == 'php' ) )
 				{
-				if ( $eventType != "core" && in_array( $classfileEventPoint . $classfileEventName, $this->nonOverridableEventClasses ) ) return;
+				if ( $eventType != "core" && in_array( $classfileEventPoint . $classfileEventName, $this->nonOverridableEventClasses ) ) 
+					return;
 				else
 					{
 					if ( array_key_exists( $classfileEventPoint . $classfileEventName, $this->registeredClasses ) )
 						{
-						if ( ( $this->registeredClasses[ $classfileEventPoint . $classfileEventName ][ 'eventtype' ] == 'component' || $this->registeredClasses[ $classfileEventPoint . $classfileEventName ][ 'eventtype' ] == 'remotecomponent' ) || $this->registeredClasses[ $classfileEventPoint . $classfileEventName ][ 'eventtype' ] == 'cms_specific_component' )
+						if ( ( 
+							$this->registeredClasses[ $classfileEventPoint . $classfileEventName ][ 'eventtype' ] == 'component' || 
+							$this->registeredClasses[ $classfileEventPoint . $classfileEventName ][ 'eventtype' ] == 'remotecomponent' ) || 
+							$this->registeredClasses[ $classfileEventPoint . $classfileEventName ][ 'eventtype' ] == 'cms_specific_component' )
 							{
 							$text = "";
 							$text .= '<font color="red" face="arial" size="1">Warning: Event override collision. You have two or more mini-components attempting to perform the same override function. System behaviour may be unpredictable' . "</font><br>";
