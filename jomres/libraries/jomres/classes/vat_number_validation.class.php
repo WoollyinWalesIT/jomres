@@ -229,7 +229,7 @@ class vat_number_validation
 				return true;
 				}
 			}
-		$this->validation_messages = array ( 'result' => false, 'message' => jr_gettext( '_JOMRES_VIES_VATCHECK_INCORRECT_NUMBERNOTENTERED', _JOMRES_VIES_VATCHECK_INCORRECT_NUMBERNOTENTERED, false ), 'clean_vat_no' => '' );
+		$this->validation_messages = array ( 'result' => false, 'message' => '', 'clean_vat_no' => '' );
 		$this->vat_number_validated = "0";
 		return false;
 		}

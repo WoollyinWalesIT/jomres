@@ -54,7 +54,7 @@ class j06005save_my_account
 		$mobile     = (string) jomresGetParam( $_REQUEST, 'mobile', "" );
 		$fax        = (string) jomresGetParam( $_REQUEST, 'fax', "" );
 		$email      = (string) jomresGetParam( $_REQUEST, 'email', "" );
-		$vat_number = filter_var( $_REQUEST[ 'vat_number' ], FILTER_SANITIZE_STRING );
+		$vat_number = trim(filter_var( $_REQUEST[ 'vat_number' ], FILTER_SANITIZE_STRING ));
 
 		$query               = "SELECT vat_number,vat_number_validated FROM #__jomres_guest_profile WHERE cms_user_id = " . (int) $thisJRUser->id . " LIMIT 1 ";
 		$vat_data = doSelectSql( $query, 2 );
@@ -85,7 +85,7 @@ class j06005save_my_account
 			}
 
 
-		if ( $original_vat_number != $vat_number )
+		if ( $original_vat_number != $vat_number || $vat_number == "")
 			{
 			jr_import( 'vat_number_validation' );
 			$validation = new vat_number_validation();
