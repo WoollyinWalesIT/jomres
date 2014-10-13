@@ -5403,76 +5403,29 @@ function include_location_file()
 	
 function jomres_create_location_file()
 	{
-	$result = jomres_find_jomres('../');
-	foreach ($result as $key=>$val)
-		{
-		if ($key === "detect_cms.php")
-			{
-			$dir = basename($val);
-			$location ='<?php
+	$path =  dirname(__FILE__);
+	$dir = basename($path);
+
+	$dir = basename($dir);
+	
+	$location ='<?php
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 if (!defined(\'JOMRES_ROOT_DIRECTORY\'))
 	{
 	define ( \'JOMRES_ROOT_DIRECTORY\' , "'.$dir.'" ) ;
 	}
 ';
-			if ( !file_put_contents ( '../jomres_root.php' , $location ) )
-				{
-				output_message ("Error, unable to create jomres_root.php in your CMS's root directory. Please create it manually with the following contents : <br/> ".nl2br (htmlentities($location)) , "danger" );
-				return false;
-				}
-			else
-				{
-				return true;
-				}
-			}
-		}
-	return false;
-	}
-
-function jomres_find_jomres( $directory, $recursive = true, $listDirs = false, $listFiles = true, $exclude = '' )
-	{
-	$arrayItems    = array ();
-	$skipByExclude = false;
-	$handle        = @opendir( $directory );
-	if ( $handle )
+	if ( !file_put_contents ( '../jomres_root.php' , $location ) )
 		{
-		while ( false !== ( $file = readdir( $handle ) ) )
-			{
-			preg_match( "/(^(([\.]){1,2})$|(\.(svn|git|md))|(Thumbs\.db|\.DS_STORE))$/iu", $file, $skip );
-			if ( $exclude )
-				{
-				preg_match( $exclude, $file, $skipByExclude );
-				}
-			if ( !$skip && !$skipByExclude )
-				{
-				if ( is_dir( $directory . DIRECTORY_SEPARATOR . $file ) )
-					{
-					if ( $recursive )
-						{
-						$arrayItems = array_merge( $arrayItems, jomres_find_jomres( $directory . DIRECTORY_SEPARATOR . $file, $recursive, $listDirs, $listFiles, $exclude ) );
-						}
-					if ( $listDirs )
-						{
-						$arrayItems[$file] = $directory . DIRECTORY_SEPARATOR;
-						}
-					}
-				else
-					{
-					if ( $listFiles )
-						{
-						$arrayItems[$file] = $directory . DIRECTORY_SEPARATOR;
-						}
-					}
-				}
-			}
-		closedir( $handle );
+		output_message ("Error, unable to create jomres_root.php in your CMS's root directory. Please create it manually with the following contents : <br/> ".nl2br (htmlentities($location)) , "danger" );
+		return false;
 		}
-
-	return $arrayItems;
+	else
+		{
+		return true;
+		}
 	}
-		
-	
+
 
 function output_message($message , $class_style = "info" )
 	{
