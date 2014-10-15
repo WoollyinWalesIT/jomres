@@ -5053,6 +5053,13 @@ class dobooking
 		$roomRow[ 'DISABLEDACCESS' ]   = $disabledAccess;
 		$roomRow[ 'MAXPEOPLE_INROOM' ] = $this->sanitiseOutput( $room[ 'max_people' ] );
 		$roomRow[ 'FEATURES' ]         = $roomFeatureDescriptions;
+		
+		if (using_bootstrap() && jomres_bootstrap_version() == "3")
+			{
+			$endrun_javascript_for_eval_by_handlereq = get_showtime('endrun_javascript_for_eval_by_handlereq');
+			$endrun_javascript_for_eval_by_handlereq[$roomUid] = ';jomresJquery(document).ready(function(){if (jomresJquery(\'body > #roomdetails'.$roomUid.'\').length < 1){jomresJquery(\'#roomdetails'.$roomUid.'\').appendTo("body");}else{jomresJquery(\'body > #roomdetails'.$roomUid.'\').replaceWith(jomresJquery(\'#roomdetails'.$roomUid.'\'));}});';
+			set_showtime('endrun_javascript_for_eval_by_handlereq',$endrun_javascript_for_eval_by_handlereq);
+			}
 
 		return $roomRow;
 		}

@@ -25,11 +25,22 @@ class j99999handlereq_javascript
 
 			return;
 			}
-
-		if (AJAXCALL)
+		
+		$mrConfig = getPropertySpecificSettings();
+		
+		if (AJAXCALL && get_showtime("task")=="handlereq" && $mrConfig[ 'booking_form_rooms_list_style' ] == "1" )
 			{
-			echo ';jomresJquery(document).ready(function(){jomresJquery(\'.roomdetails_modal\').appendTo("body");});';
+			$endrun_javascript_for_eval_by_handlereq = get_showtime('endrun_javascript_for_eval_by_handlereq');
 			
+			if (count($endrun_javascript_for_eval_by_handlereq)>0)
+				{
+				foreach ($endrun_javascript_for_eval_by_handlereq as $js)
+					{
+					$javascript .= $js;
+					}
+				echo $javascript;
+				
+				}
 			}
 		}
 
