@@ -76,7 +76,8 @@ class minicomponent_registry
 		{
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
-		if ( !isset( $jrConfig[ 'safe_mode' ] ) ) $jrConfig[ 'safe_mode' ] = "0";
+		if ( !isset( $jrConfig[ 'safe_mode' ] ) ) 
+			$jrConfig[ 'safe_mode' ] = "0";
 
 		$this->registeredClasses = array ();
 		$this->getMiniComponentCoreClasses();
@@ -85,7 +86,10 @@ class minicomponent_registry
 			{
 			$this->getMiniCorePluginsClasses();
 			$this->getMiniComponentRemoteClasses();
-			$this->getMiniComponentJoomlaTemplateClasses();
+		
+			$scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
+			if ( !strstr( $scriptname, 'install_jomres.php' ) )
+				$this->getMiniComponentJoomlaTemplateClasses();
 			// $this->getMiniComponentComponentClasses(); // Was added for BC, these minicomponents should no longer be used (since circa v3 of Jomres) so this line will be disabled
 			}
 
