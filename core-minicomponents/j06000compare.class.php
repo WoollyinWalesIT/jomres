@@ -133,7 +133,7 @@ class j06000compare
 								if ( !using_bootstrap() ) 
 									$fs[ ] = array ( "IMAGE" => '<div class="ui-icon ui-icon-check" style="height:20px;"></div>', "CLASS" => $class );
 								else
-									$fs[ ] = array ( "IMAGE" => '<i class="fa fa-check"></i></div>' );
+									$fs[ ] = array ( "IMAGE" => '<i class="fa fa-check"></i>' );
 								}
 							else
 							$fs[ ] = array ( "IMAGE" => '' );
