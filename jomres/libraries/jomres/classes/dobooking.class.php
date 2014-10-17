@@ -6867,7 +6867,7 @@ class dobooking
 				$this->echo_populate_div( '; populateDiv("discount","' . $disc_txt . '")' );
 				$tmpBookingHandler->updateBookingField( "lastminutediscount", $disc_txt );
 				$tmpBookingHandler->updateBookingField( "booking_discounted", true );
-				$discountsForTmpdata[ ] = array ( "type" => "SRP", "roomtypeabbr" => "N/A", "discountfrom" => output_price( $original_total ), "discountto" => output_price( $this->room_total ) );
+				$discountsForTmpdata[ ] = array ( "type" => "SRP", "roomtypeabbr" => "N/A", "discountfrom" => $original_total, "discountto" => $this->room_total );
 				}
 			else
 				{
