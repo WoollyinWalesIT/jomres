@@ -424,10 +424,33 @@ function doTableUpdates()
 	if ( !checkContractsBookingdataarchiveColExists() ) alterContractsBookingdataarchiveCol();
 	if ( !checkBookingdataarchiveContractidColExists() ) alterBookingdataarchiveContractid();
 	
-	if ( _JOMRES_DETECTED_CMS == "joomla15" ) checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
+	if ( !checkContractsLangColExists() ) alterContractsLang();
+	
+	if ( _JOMRES_DETECTED_CMS == "joomla15" ) 
+		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
-	
+function alterContractsLang()
+	{
+	output_message ( "Editing __jomres_contracts table adding booking_language column");
+	$query = "ALTER TABLE `#__jomres_contracts` ADD `booking_language` CHAR(5) NOT NULL DEFAULT 'en-GB' AFTER `secret_key_used` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_contracts booking_language", "danger" );
+		}
+	}
+
+function checkContractsLangColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_contracts LIKE 'booking_language'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
 
 
 function checkCustomertypesIsChildColExists()
@@ -2861,6 +2884,7 @@ function createJomresTables()
 		`booking_data_archive_id` INT DEFAULT '0' NOT NULL,
 		`secret_key` CHAR(100),
 		`secret_key_used` TINYINT DEFAULT 0 NOT NULL,
+		`booking_language` CHAR( 5 ) DEFAULT 'en-GB' NOT NULL,
 		PRIMARY KEY(`contract_uid`)
 		) ";
 	if ( !doInsertSql( $query ) )

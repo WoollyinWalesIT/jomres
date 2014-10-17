@@ -115,6 +115,7 @@ class j02260editbooking
 			}
 
 		//toolbar
+		$lang = substr( $current_contract_details->contract[$contract_uid]['contractdeets']['booking_language'], 0, 2 );
 		if ( $thisJRUser->userIsManager )
 			{
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
@@ -200,7 +201,7 @@ class j02260editbooking
 					}
 				
 				$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=yes,menubar=yes,resizable=yes,width=710,height=500,directories=no,location=no';
-				$link   = JOMRES_SITEPAGE_URL . '&task=confirmation_letter&popup=1&tmpl='.get_showtime("tmplcomponent").'&contract_uid=' . $contract_uid;
+				$link   = JOMRES_SITEPAGE_URL . '&task=confirmation_letter&popup=1&tmpl='.get_showtime("tmplcomponent").'&contract_uid=' . $contract_uid .'&lang='.$lang;
 				
 				if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 )
 					{
@@ -214,7 +215,7 @@ class j02260editbooking
 					//add_menu_option( 'javascript:void window.open(\'' . $link . '\', \'win2\', \'' . $status . '\');', null, jr_gettext( '_JOMRES_COM_CONFIRMATION_PRINT', _JOMRES_COM_CONFIRMATION_PRINT, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
 					}
 				
-				$link = JOMRES_SITEPAGE_URL . '&task=confirmation_letter&no_html=1&popup=1&tmpl='.get_showtime('tmplcomponent').'&contract_uid=' . $contract_uid . '&sendemail=1';
+				$link = JOMRES_SITEPAGE_URL . '&task=confirmation_letter&no_html=1&popup=1&tmpl='.get_showtime('tmplcomponent').'&contract_uid=' . $contract_uid . '&sendemail=1&lang='.$lang;
 				if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 )
 					{
 					$jrtb .= $jrtbar->toolbarItem( 'emailsend', 'javascript:void window.open(\'' . $link . '\', \'win2\', \'' . $status . '\');', jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL, $editable = false, $isLink = false ) );
