@@ -88,6 +88,7 @@ class basic_contract_details
 						a.approved,
 						a.booking_data_archive_id,
 						a.secret_key,
+						a.booking_language,
 						b.firstname,
 						b.surname,
 						b.house,
@@ -111,45 +112,46 @@ class basic_contract_details
 		foreach ($contractData as $contract)
 			{
 			//contract details
-			$this->contract[$contract_uid]['contractdeets']['contract_uid'] = $contract->contract_uid;
-			$this->contract[$contract_uid]['contractdeets']['arrival'] = $contract->arrival;
-			$this->contract[$contract_uid]['contractdeets']['departure'] = $contract->departure;
-			$this->contract[$contract_uid]['contractdeets']['guest_uid'] = $contract->guest_uid;
-			$this->contract[$contract_uid]['contractdeets']['rate_rules'] = $contract->rate_rules;
-			$this->contract[$contract_uid]['contractdeets']['rooms_tariffs'] = $contract->rooms_tariffs;
-			$this->contract[$contract_uid]['contractdeets']['deposit_paid'] = $contract->deposit_paid;
-			$this->contract[$contract_uid]['contractdeets']['contract_total'] = $contract->contract_total;
-			$this->contract[$contract_uid]['contractdeets']['deposit_ref'] = $contract->deposit_ref;
-			$this->contract[$contract_uid]['contractdeets']['payment_ref'] = $contract->payment_ref;
-			$this->contract[$contract_uid]['contractdeets']['special_reqs'] = $contract->special_reqs;
-			$this->contract[$contract_uid]['contractdeets']['deposit_required'] = $contract->deposit_required;
-			$this->contract[$contract_uid]['contractdeets']['date_range_string'] = $contract->date_range_string;
-			$this->contract[$contract_uid]['contractdeets']['booked_in'] = $contract->booked_in;
-			$this->contract[$contract_uid]['contractdeets']['true_arrival'] = $contract->true_arrival;
-			$this->contract[$contract_uid]['contractdeets']['single_person_suppliment'] = $contract->single_person_suppliment;
-			$this->contract[$contract_uid]['contractdeets']['smoking'] = $contract->smoking;
-			$this->contract[$contract_uid]['contractdeets']['extras'] = $contract->extras;
-			$this->contract[$contract_uid]['contractdeets']['extrasquantities'] = unserialize($contract->extrasquantities);
-			$this->contract[$contract_uid]['contractdeets']['extrasvalue'] = $contract->extrasvalue;
-			$this->contract[$contract_uid]['contractdeets']['tax'] = $contract->tax;
-			$this->contract[$contract_uid]['contractdeets']['tag'] = $contract->tag;
-			$this->contract[$contract_uid]['contractdeets']['timestamp'] = $contract->timestamp;
-			$this->contract[$contract_uid]['contractdeets']['room_total'] = $contract->room_total;
-			$this->contract[$contract_uid]['contractdeets']['discount'] = $contract->discount;
-			$this->contract[$contract_uid]['contractdeets']['currency_code'] = $contract->currency_code;
-			$this->contract[$contract_uid]['contractdeets']['cancelled'] = $contract->cancelled;
-			$this->contract[$contract_uid]['contractdeets']['cancelled_timestamp'] = $contract->cancelled_timestamp;
-			$this->contract[$contract_uid]['contractdeets']['cancelled_reason'] = $contract->cancelled_reason;
-			$this->contract[$contract_uid]['contractdeets']['discount_details'] = $contract->discount_details;
-			$this->contract[$contract_uid]['contractdeets']['username'] = $contract->username;
-			$this->contract[$contract_uid]['contractdeets']['coupon_id'] = $contract->coupon_id;
-			$this->contract[$contract_uid]['contractdeets']['bookedout'] = $contract->bookedout;
-			$this->contract[$contract_uid]['contractdeets']['bookedout_timestamp'] = $contract->bookedout_timestamp;
-			$this->contract[$contract_uid]['contractdeets']['invoice_uid'] = $contract->invoice_uid;
-			$this->contract[$contract_uid]['contractdeets']['channel_manager_booking'] = $contract->channel_manager_booking;
-			$this->contract[$contract_uid]['contractdeets']['approved'] = $contract->approved;
-			$this->contract[$contract_uid]['contractdeets']['secret_key'] = $contract->secret_key;
-			$this->contract[$contract_uid]['contractdeets']['booking_data_archive_id'] = $contract->booking_data_archive_id;
+			$this->contract[$contract_uid]['contractdeets']['contract_uid']					= $contract->contract_uid;
+			$this->contract[$contract_uid]['contractdeets']['arrival']						= $contract->arrival;
+			$this->contract[$contract_uid]['contractdeets']['departure']					= $contract->departure;
+			$this->contract[$contract_uid]['contractdeets']['guest_uid']					= $contract->guest_uid;
+			$this->contract[$contract_uid]['contractdeets']['rate_rules']					= $contract->rate_rules;
+			$this->contract[$contract_uid]['contractdeets']['rooms_tariffs']				= $contract->rooms_tariffs;
+			$this->contract[$contract_uid]['contractdeets']['deposit_paid']					= $contract->deposit_paid;
+			$this->contract[$contract_uid]['contractdeets']['contract_total']				= $contract->contract_total;
+			$this->contract[$contract_uid]['contractdeets']['deposit_ref']					= $contract->deposit_ref;
+			$this->contract[$contract_uid]['contractdeets']['payment_ref']					= $contract->payment_ref;
+			$this->contract[$contract_uid]['contractdeets']['special_reqs']					= $contract->special_reqs;
+			$this->contract[$contract_uid]['contractdeets']['deposit_required']				= $contract->deposit_required;
+			$this->contract[$contract_uid]['contractdeets']['date_range_string']			= $contract->date_range_string;
+			$this->contract[$contract_uid]['contractdeets']['booked_in']					= $contract->booked_in;
+			$this->contract[$contract_uid]['contractdeets']['true_arrival']					= $contract->true_arrival;
+			$this->contract[$contract_uid]['contractdeets']['single_person_suppliment']		= $contract->single_person_suppliment;
+			$this->contract[$contract_uid]['contractdeets']['smoking']						= $contract->smoking;
+			$this->contract[$contract_uid]['contractdeets']['extras']						= $contract->extras;
+			$this->contract[$contract_uid]['contractdeets']['extrasquantities']				= unserialize($contract->extrasquantities);
+			$this->contract[$contract_uid]['contractdeets']['extrasvalue']					= $contract->extrasvalue;
+			$this->contract[$contract_uid]['contractdeets']['tax']							= $contract->tax;
+			$this->contract[$contract_uid]['contractdeets']['tag']							= $contract->tag;
+			$this->contract[$contract_uid]['contractdeets']['timestamp']					= $contract->timestamp;
+			$this->contract[$contract_uid]['contractdeets']['room_total']					= $contract->room_total;
+			$this->contract[$contract_uid]['contractdeets']['discount']						= $contract->discount;
+			$this->contract[$contract_uid]['contractdeets']['currency_code']				= $contract->currency_code;
+			$this->contract[$contract_uid]['contractdeets']['cancelled']					= $contract->cancelled;
+			$this->contract[$contract_uid]['contractdeets']['cancelled_timestamp']			= $contract->cancelled_timestamp;
+			$this->contract[$contract_uid]['contractdeets']['cancelled_reason']				= $contract->cancelled_reason;
+			$this->contract[$contract_uid]['contractdeets']['discount_details']				= $contract->discount_details;
+			$this->contract[$contract_uid]['contractdeets']['username']						= $contract->username;
+			$this->contract[$contract_uid]['contractdeets']['coupon_id']					= $contract->coupon_id;
+			$this->contract[$contract_uid]['contractdeets']['bookedout']					= $contract->bookedout;
+			$this->contract[$contract_uid]['contractdeets']['bookedout_timestamp']			= $contract->bookedout_timestamp;
+			$this->contract[$contract_uid]['contractdeets']['invoice_uid']					= $contract->invoice_uid;
+			$this->contract[$contract_uid]['contractdeets']['channel_manager_booking']		= $contract->channel_manager_booking;
+			$this->contract[$contract_uid]['contractdeets']['approved']						= $contract->approved;
+			$this->contract[$contract_uid]['contractdeets']['secret_key']					= $contract->secret_key;
+			$this->contract[$contract_uid]['contractdeets']['booking_language']				= $contract->booking_language;
+			$this->contract[$contract_uid]['contractdeets']['booking_data_archive_id']		= $contract->booking_data_archive_id;
 			
 			//guest details
 			$this->contract[$contract_uid]['guestdeets']['firstname'] = $contract->firstname;
