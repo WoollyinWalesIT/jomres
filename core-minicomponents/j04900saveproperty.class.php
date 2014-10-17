@@ -296,7 +296,7 @@ class j04900saveproperty
 			updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION", $metadescription, true );
 			updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS", $metakeywords, true );
 
-			jomresRedirect( JOMRES_SITEPAGE_URL . "&task=editProperty&propertyUid=" . $propertyUid );
+			jomresRedirect( jomresUrl(JOMRES_SITEPAGE_URL . "&task=editProperty&propertyUid=" . $propertyUid) );
 			}
 
 		}
