@@ -31,7 +31,7 @@ class j16000showplugins
 			$items    = "&items=" . jomresGetParam( $_REQUEST, 'items', '' );
 			$username = "&username=" . jomresGetParam( $_REQUEST, 'username', '' );
 			$password = "&password=" . jomresGetParam( $_REQUEST, 'password', '' );
-			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . '&task=purchase_plugins' . $username . $password . $items, "" );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=purchase_plugins' . $username . $password . $items ), "" );
 			exit;
 			}
 		$registry = new minicomponent_registry( true );

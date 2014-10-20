@@ -53,7 +53,7 @@ class j06001amendBooking
 				$tmpArray[ ]        = $obj;
 				}
 			$propertysList = $tmpArray;
-			if ( count( $propertysList == 1 ) ) jomresRedirect( JOMRES_SITEPAGE_URL . "&task=dobooking&amend=1&contractuid=" . $contract_uid . "&selectedProperty=" . $defaultProperty );
+			if ( count( $propertysList == 1 ) ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&amend=1&contractuid=" . $contract_uid . "&selectedProperty=" . $defaultProperty ) );
 			$counter = 0;
 			foreach ( $propertysList as $property )
 				{

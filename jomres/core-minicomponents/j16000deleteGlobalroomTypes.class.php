@@ -53,7 +53,7 @@ class j16000deleteGlobalroomTypes
 				doInsertSql( $query, '' );
 				$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 				$c->eraseAll();
-				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listGlobalroomTypes", $saveMessage );
+				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listGlobalroomTypes" ), $saveMessage );
 				}
 			}
 		}

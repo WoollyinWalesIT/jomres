@@ -58,7 +58,7 @@ class j06002delete_resource
 				dropImage( $defaultProperty, "room", $roomUid );
 			$query = "DELETE FROM #__jomres_rooms WHERE room_uid = '" . (int) $roomUid . "' AND propertys_uid = '" . (int) $defaultProperty . "'";
 			if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_DELETE_ROOM', _JOMRES_MR_AUDIT_DELETE_ROOM, false ) ) ) 
-				jomresRedirect( JOMRES_SITEPAGE_URL . "&task=list_resources", "" );
+				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=list_resources" ), "" );
 			trigger_error( "Sql error when deleting room", E_USER_ERROR );
 			}
 		}

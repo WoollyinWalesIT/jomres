@@ -154,7 +154,7 @@ class j16000updates
 					foreach ( $this->movedFileLog as $record ) echo $record;
 					}
 				unlink($newfilename);
-				jomresRedirect( get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/install_jomres.php", '' );
+				jomresRedirect( jomresURL( get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/install_jomres.php" ), '' );
 				}
 			else
 			echo "Error creating unpack folder";

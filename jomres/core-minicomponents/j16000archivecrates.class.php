@@ -32,7 +32,7 @@ class j16000archivecrates
 		if ( count( $idArray ) > 0 )
 			{
 			$crateFunctions->batchArchive( $idArray );
-			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listcrates", '' );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL_ADMIN . "&task=listcrates" ), '' );
 			}
 		}
 

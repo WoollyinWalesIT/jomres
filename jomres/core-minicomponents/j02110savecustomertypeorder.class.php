@@ -50,7 +50,7 @@ class j02110savecustomertypeorder
 		//$jomres_messaging = new jomres_messages();
 		$jomres_messaging->set_message( jr_gettext( '_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE', _JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE, false ) );
 
-		jomresRedirect( JOMRES_SITEPAGE_URL . "&task=listCustomerTypes", "" );
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=listCustomerTypes" ), "" );
 		}
 
 	/**

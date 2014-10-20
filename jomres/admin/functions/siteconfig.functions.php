@@ -429,7 +429,7 @@ function saveSiteConfig()
 	$jomres_css_cache = new jomres_css_cache();
 	$jomres_css_cache->remove_all_temp_files();
 	
-	jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=showSiteConfig", "Configuration saved" );
+	jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=showSiteConfig" ), "Configuration saved" );
 	}
 
 function getJomresLanguagesDropdown()

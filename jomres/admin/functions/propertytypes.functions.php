@@ -41,7 +41,7 @@ function publishPropertyType()
 	if ( $published ) $query = "UPDATE #__jomres_ptypes SET `published`='0' WHERE id = '$id'";
 	else
 	$query = "UPDATE #__jomres_ptypes SET `published`='1' WHERE id = '$id'";
-	if ( doInsertSql( $query, false ) ) jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes", jr_gettext( "_JOMRES_COM_PTYPES_SAVED", _JOMRES_COM_PTYPES_SAVED, false ) );
+	if ( doInsertSql( $query, false ) ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes" ), jr_gettext( "_JOMRES_COM_PTYPES_SAVED", _JOMRES_COM_PTYPES_SAVED, false ) );
 	}
 
 /**
@@ -122,7 +122,7 @@ function savePropertyType()
 	$query = "INSERT INTO #__jomres_ptypes (`ptype`,`ptype_desc`) VALUES ('$ptype','$ptype_desc')";
 
 	if ( !doInsertSql( $query, false ) ) echo "Nope";
-	jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes", jr_gettext( "_JOMRES_COM_PTYPES_SAVED", _JOMRES_COM_PTYPES_SAVED, false ) );
+	jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes" ), jr_gettext( "_JOMRES_COM_PTYPES_SAVED", _JOMRES_COM_PTYPES_SAVED, false ) );
 	}
 
 /**
@@ -156,6 +156,6 @@ function deletePropertyType()
 	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 	$c->eraseAll();
 	
-	if ( $success ) jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes", jr_gettext( "_JOMRES_COM_PTYPES_DELETED", _JOMRES_COM_PTYPES_DELETED, false ) );
+	if ( $success ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes" ), jr_gettext( "_JOMRES_COM_PTYPES_DELETED", _JOMRES_COM_PTYPES_DELETED, false ) );
 	}
 

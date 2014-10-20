@@ -32,7 +32,7 @@ class j16000purchase_plugins
 		$password = jomresGetParam( $_REQUEST, 'password', '' );
 		if ( $username == "" || $password == "" )
 			{
-			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . '&task=showplugins', "Error, you didn't enter your jomres.net username or password" );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=showplugins' ), "Error, you didn't enter your jomres.net username or password" );
 			exit;
 			}
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );

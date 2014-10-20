@@ -50,7 +50,7 @@ class j02112publishcustomertype
 		if ( $published ) $query = "UPDATE #__jomres_customertypes SET `published`='0' WHERE id = '" . (int) $id . "' AND property_uid = '" . (int) $defaultProperty . "'";
 		else
 		$query = "UPDATE #__jomres_customertypes SET `published`='1' WHERE id = '" . (int) $id . "' AND property_uid = '" . (int) $defaultProperty . "'";
-		if ( doInsertSql( $query, '' ) ) jomresRedirect( JOMRES_SITEPAGE_URL . "&task=listCustomerTypes", "" );
+		if ( doInsertSql( $query, '' ) ) jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL . "&task=listCustomerTypes" ), "" );
 		else
 		trigger_error( "Unable to publish customer type, mysql db failure", E_USER_ERROR );
 		}

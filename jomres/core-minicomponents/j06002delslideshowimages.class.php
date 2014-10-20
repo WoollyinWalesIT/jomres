@@ -106,7 +106,7 @@ class j06002delslideshowimages
 
 		if ( $success )
 			{
-			jomresRedirect( JOMRES_SITEPAGE_URL . "&task=bUploadForm" );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=bUploadForm" ) );
 			}
 		}
 

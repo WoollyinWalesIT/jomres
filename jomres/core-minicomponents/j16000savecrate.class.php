@@ -48,7 +48,7 @@ class j16000savecrate
 		else
 		$crateObj->commitNewCrate();
 		
-		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listcrates", '' );
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listcrates" ), '' );
 		}
 
 	// This must be included in every Event/Mini-component
