@@ -55,7 +55,7 @@ class j06000logout
 			}
 		else
 			{
-			jomresRedirect ( get_showtime( 'live_site' ) ."/". jomres_cmsspecific_getlogout_task() );
+			jomresRedirect ( jomresURL( get_showtime( 'live_site' ) ."/". jomres_cmsspecific_getlogout_task() ) );
 			}
 		}
 

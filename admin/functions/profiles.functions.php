@@ -184,9 +184,9 @@ function saveProfile()
 			$query        = "UPDATE #__jomres_managers SET `currentproperty`='".(int)$property_uid."' WHERE userid = '" . $userid . "'";
 			if ( !doInsertSql( $query, false ) ) 
 				trigger_error( "Unable to set current property, mysql db failure", E_USER_ERROR );
-			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose", jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose" ), jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
 			}
-		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose", jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose" ), jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
 		}
 
 
@@ -247,11 +247,11 @@ function grantMosUser()
 		
 		if ( $grantAct == "y" ) 
 			{
-			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=editProfile&id=" . (int) $userid, jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL_ADMIN . "&task=editProfile&id=" . (int) $userid ), jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
 			}
 		else
 			{
-			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose", jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose" ), jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
 			}
 		}
 	else

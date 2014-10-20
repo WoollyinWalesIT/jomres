@@ -34,12 +34,12 @@ class j16000saveRfeature
 		if ( empty( $roomFeatureUid ) )
 			{
 			$query = "INSERT INTO #__jomres_room_features (`feature_description`,`property_uid`,`ptype_xref` )VALUES ('$feature_description','0','" . serialize($ptype_ids) . "')";
-			if ( doInsertSql( $query, '' ) ) jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listRfeatures", "" );
+			if ( doInsertSql( $query, '' ) ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listRfeatures" ), "" );
 			}
 		else
 			{
 			$query = "UPDATE #__jomres_room_features SET `feature_description`='$feature_description',`ptype_xref`='" . serialize($ptype_ids) . "' WHERE room_features_uid='" . (int) $roomFeatureUid . "' AND property_uid = '0'";
-			if ( doInsertSql( $query, '' ) ) jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listRfeatures", "" );
+			if ( doInsertSql( $query, '' ) ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listRfeatures" ), "" );
 			}
 		}
 

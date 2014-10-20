@@ -47,7 +47,7 @@ class j16000delete_tax_rule
 			$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 			$c->eraseAll();
 			
-			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_tax_rules", $saveMessage );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_tax_rules" ), $saveMessage );
 			}
 		else
 			{

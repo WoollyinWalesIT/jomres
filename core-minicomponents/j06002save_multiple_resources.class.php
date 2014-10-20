@@ -95,7 +95,7 @@ class j06002save_multiple_resources
 			
 			if ( !doInsertSql( $query, "" ) ) trigger_error( "Sql error when generating multiple resources ", E_USER_ERROR );
 
-			jomresRedirect( JOMRES_SITEPAGE_URL . "&task=list_resources", "" );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=list_resources" ), "" );
 			}
 		else
 			trigger_error( "Room class uid not set", E_USER_ERROR );

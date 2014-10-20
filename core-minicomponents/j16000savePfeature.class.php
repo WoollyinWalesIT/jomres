@@ -39,12 +39,12 @@ class j16000savePfeature
 		if ( empty( $propertyFeatureUid ) )
 			{
 			$query = "INSERT INTO #__jomres_hotel_features (`hotel_feature_abbv`,`hotel_feature_full_desc`,`image`,`property_uid`,`ptype_xref` )VALUES ('$hotel_feature_abbv','$hotel_feature_full_desc','$image','0','" . serialize($ptype_ids) . "')";
-			if ( doInsertSql( $query, '' ) ) jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeatures", jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT, false ) );
+			if ( doInsertSql( $query, '' ) ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeatures" ), jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT, false ) );
 			}
 		else
 			{
 			$query = "UPDATE #__jomres_hotel_features SET `image`='$image',`hotel_feature_abbv`='$hotel_feature_abbv',`hotel_feature_full_desc`='$hotel_feature_full_desc',`ptype_xref`='" . serialize($ptype_ids) . "' WHERE hotel_features_uid='" . (int) $propertyFeatureUid . "' AND property_uid = '0'";
-			if ( doInsertSql( $query, '' ) ) jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeatures", jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE, false ) );
+			if ( doInsertSql( $query, '' ) ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeatures"), jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE, false ) );
 			}
 		}
 

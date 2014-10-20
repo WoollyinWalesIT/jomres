@@ -2476,7 +2476,7 @@ function recordError( $errno, $errstr, $errfile, $errline, $errcontext )
 		}
 	session_unset();
 	session_destroy();
-	jomresRedirect( JOMRES_SITEPAGE_URL . "&task=error", "FATAL ERROR" );
+	jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=error" ), "FATAL ERROR" );
 	}
 
 /**
