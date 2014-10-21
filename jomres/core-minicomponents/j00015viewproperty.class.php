@@ -314,7 +314,10 @@ class j00015viewproperty
 			$this->retVals[ 'gallerylink' ]    = $gallerylink;
 			$this->retVals[ 'roomslistlink' ]  = $roomslistlink;
 			$this->retVals[ 'mappinglink' ]    = $mappinglink;
-			$this->retVals[ 'contactuslink' ]  = $contactuslink;
+			
+			if ( $mrConfig[ 'visitorscanbookonline' ] == "1" )
+				$this->retVals[ 'contactuslink' ]  = $contactuslink;
+			
 			$this->retVals[ 'property_deets' ] = $property_deets;
 
 			if ( $mrConfig[ 'showSlideshowInline' ] == "1" )
