@@ -113,7 +113,7 @@ class jomres_sanity_check
 	function checks_tariffs_exist()
 		{
 		if ( !get_showtime( 'include_room_booking_functionality' ) ) return "";
-		$ignore_on_tasks = array ( 'propertyadmin', 'editTariff', 'saveTariff' );
+		$ignore_on_tasks = array ( 'propertyadmin', 'editTariff', 'saveTariff','edit_tariff_micromanage', 'list_tariffs_micromanage', 'list_tariffs_advanced', 'edit_tariff_advanced' );
 		if ( !in_array( get_showtime( 'task' ), $ignore_on_tasks ) )
 			{
 			$query  = "SELECT `rates_uid` FROM `#__jomres_rates` where property_uid = " . (int) $this->property_uid . "";
