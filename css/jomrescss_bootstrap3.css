@@ -31,9 +31,6 @@
 	color: #ff0000;
 }
 
-input[class^="jomres_te_"] {
-	width: 25px !important;
-}
 
 .dataTable th {
 	color: #0088CC;
