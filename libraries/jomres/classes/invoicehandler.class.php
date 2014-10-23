@@ -18,6 +18,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // 0 unpaid
 // 1 paid
 // 2 cancelled
+// 3 pending
 
 jr_import( 'jrportal_invoice' );
 
