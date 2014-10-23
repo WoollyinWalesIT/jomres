@@ -82,16 +82,19 @@ class j00501tariffs
 			$configurationPanel->insertSetting();
 
 			}
+		
+		if ( !$thisJRUser->simple_configuration )
+			{
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_CURRENCYFORMAT", _JOMRES_CURRENCYFORMAT, false ) );
+			$configurationPanel->setmiddle( $cformatdropdown );
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+			}
 
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
 			if ( !$thisJRUser->simple_configuration )
 				{
-				$configurationPanel->setleft( jr_gettext( "_JOMRES_CURRENCYFORMAT", _JOMRES_CURRENCYFORMAT, false ) );
-				$configurationPanel->setmiddle( $cformatdropdown );
-				$configurationPanel->setright();
-				$configurationPanel->insertSetting();
-
 				if (!get_showtime('is_jintour_property'))
 					{
 					$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL", _JOMRES_COM_A_TARIFFS_MODEL, false ) );
