@@ -27,7 +27,7 @@ class j10002partners
 			return;
 			}
 		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . "&task=partners", 'Help.png', jr_gettext( "_JOMRES_ONLINE_PARTNERS", _JOMRES_ONLINE_PARTNERS, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", _JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP, false, false ), $external = false );
+		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . "&task=partners", 'Help.png', "Our Partners", "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN, false, false ), $external = false );
 		}
 
 	// This must be included in every Event/Mini-component
