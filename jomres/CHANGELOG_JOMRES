@@ -1,11 +1,34 @@
+<h3>Jomres 8.1.16 23/10/2014</h3>
+
+<span class="label label-success">Feature</span> Added a new column booking_language to contracts table so that confirmation emails can be sent to the guest in their own language.
+
+<span class="label label-warning">Change</span> Removed some unnecessary directory scanning that was in place to discover the location of Jomres. As this file is now created in the installer, the scanning is no longer necessary.
+<span class="label label-warning">Change</span> Added new functionality that supports javascript required by the booking form classic rooms list modals.
+<span class="label label-warning">Change</span> Removed some depreciated functions that have been commented out for some time.
+<span class="label label-warning">Change</span> Compare properties script updated to use font-awesome icons.
+<span class="label label-warning">Change</span> Tweaked module popup contents template to cope with oversize images.
+<span class="label label-warning">Change</span> Modified how the booking engine saves last minute discount text as new javascript was causing mysql errors.
+<span class="label label-warning">Change</span> Modified Add Service to Bill functionality so that freebies can be added to the bill.
+<span class="label label-warning">Change</span> Modified how urls are stored in the register property template.
+<span class="label label-warning">Change</span> Updated bootstrap 3 edit property pages so that features are laid out correctly.
+<span class="label label-warning">Change</span> Removed a definition from the Jomres BS3 supplementary file.
+<span class="label label-warning">Change</span> Added a couple of tasks to the sanity check class to prevent the no tariffs warning from showing on the edit and list tariffs pages.
+<span class="label label-warning">Change</span> Updated a variety of redirects to ensure the redirected url uses jomresURL appropriately.
+<span class="label label-warning">Change</span> Removed form-control css class from dropdown generation class.
+<span class="label label-warning">Change</span> Modified how save property script redirects to resolve intermittent issues.
+
+<span class="label label-important label-danger">Fix</span> Updated a variety of redirects to ensure the redirected url uses jomresURL appropriately.
+<span class="label label-important label-danger">Fix</span> Fixed an issue where gmaps wouldn't show in fullscreen view.
+<span class="label label-important label-danger">Fix</span> Resolved an issue where slideshow div loads images before showing gallery.
+<span class="label label-important label-danger">Fix</span> Added a flag that prevents the contact us link from showing twice on a page intermittently.
+
 
 <h3>Jomres 8.1.15 09/10/2014</h3>
 
-Added IP numbers to error logs.
-Added translation of guest types to basic_contract_details class.
-Re-added a salutation that was inadvertently removed, to language files.
-Added new functionality so that Jomres can discover minicomponents in /templates/jr_leohtian/html/com_jomres/subdir which allows us to deliver templates with Jomres customisations which are specific only to that template.
-
+<span class="label label-success">Feature</span> Added new functionality so that Jomres can discover minicomponents in /templates/jr_leohtian/html/com_jomres/subdir which allows us to deliver templates with Jomres customisations which are specific only to that template.
+<span class="label label-warning">Change</span> Added IP numbers to error logs.
+<span class="label label-warning">Change</span> Added translation of guest types to basic_contract_details class.
+<span class="label label-important label-danger">Fix</span> Re-added a salutation that was inadvertently removed, to language files.
 
 <h3>Jomres 8.1.14 01/10/2014</h3>
 
