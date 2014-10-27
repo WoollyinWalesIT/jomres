@@ -72,10 +72,10 @@ if ('undefined' != typeof(jomresJquery.fn.dataTableExt )) {
 				};
 
 				jomresJquery(nPaging).addClass('pagination').append(
-					'<ul>' +
+					'<ul class="pagination">' +
 						'<li class="prev disabled"><a href="#">&larr; ' + oLang.sPrevious + '</a></li>' +
 						'<li class="next disabled"><a href="#">' + oLang.sNext + ' &rarr; </a></li>' +
-						'</ul>'
+					'</ul>'
 				);
 				var els = jomresJquery('a', nPaging);
 				jomresJquery(els[0]).bind('click.DT', { action: "previous" }, fnClickHandler);
