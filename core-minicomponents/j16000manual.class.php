@@ -40,9 +40,9 @@ class j16000manual
 
 		echo '
 			<h2 class="page-header">Jomres Manual</h2>
-			<p>The Jomres Manual</p>
 			<div class="' . $class . '" style="width:100%;">
 			<div style="' . $style . '">
+			<div class="alert alert-info">Congratulations, you\'ve found the manual! You\'re the kind of user who appreciates the time and effort it\'s taken to write the documentation and by way of thanks we\'d like to offer you this 5% discount code you can use on your next Jomres purchase. Just use the code <strong>DocLover</strong> when at the Jomres checkout page.</div>
 			<iframe src="http://manual.jomres.net" width="100%" height="1000" id="tickets" marginheight="0" frameborder="0">You need to enable frames in your browser to view this content.</iframe> 
 			</div></div>
 			';
