@@ -161,6 +161,10 @@ class j06005list_invoices_ajax
 		/*
 		 * Build and execute the query
 		 */
+		
+		$query = "SET SQL_BIG_SELECTS=1";
+		doSelectSql($query);
+		
 		$query = "SELECT SQL_CALC_FOUND_ROWS 
 					a.id, 
 					a.cms_user_id, 

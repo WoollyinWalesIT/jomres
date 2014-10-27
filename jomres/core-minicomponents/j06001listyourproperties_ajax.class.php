@@ -115,6 +115,10 @@ class j06001listyourproperties_ajax
 		/*
 		 * Build and execute the query
 		 */
+
+		$query = "SET SQL_BIG_SELECTS=1";
+		doSelectSql($query);
+		
 		$query = "SELECT SQL_CALC_FOUND_ROWS 
 						a.propertys_uid, 
 						a.property_street, 
