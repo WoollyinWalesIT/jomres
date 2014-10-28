@@ -439,9 +439,12 @@ class j03020insertbooking
 						'" . (int) $property_uid . "','" . (float) $single_person_suppliment . "','$extras','" . (string) $extrasquantities . "','" . (float) $extrasValue . "','" . (float) $tax . "','$cartnumber','$datetime','" . (float) $room_total . "','" . (float) $discount . "','$ccode','" . $discount_details . "','" . $bookersUsername . "'," . (int) $coupon_id . "," . $approved . " , '".$booking_data_archive_id ."' , '".$secret_key."' , '".get_showtime('lang')."') ";
 					$contract_uid = doInsertSql( $query, "" );
 					
-					$query = "UPDATE #__jomres_booking_data_archive SET contract_uid = ".$contract_uid." WHERE id = ".$booking_data_archive_id;
-					doInsertSql( $query, "" );
-					
+					if ( $booking_data_archive_id > 0 ) // Quick bookings will log a mysql error, but quick bookings don't use the booking data archive.
+						{
+						$query = "UPDATE #__jomres_booking_data_archive SET contract_uid = ".$contract_uid." WHERE id = ".$booking_data_archive_id;
+						doInsertSql( $query, "" );
+						}
+						
 					if ( $mrConfig[ 'singleRoomProperty' ] == 1 ) 
 						$newtext = $tmpBookingHandler->getBookingFieldVal( "lastminutediscount" );
 					else
