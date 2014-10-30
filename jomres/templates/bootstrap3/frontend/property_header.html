@@ -1,9 +1,10 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<div class="page-header">
-		<div class="row">
-			<div class="col-md-10">
-				<h1 id="tour_target_property_header">{PROPERTY_NAME}&nbsp;{STARS} {SUPERIOR}</h1>
-				<address>
+<div class="property-header">
+	<div class="row">
+		<div class="col-md-12">
+			<img src="{QR_CODE_MAP}" title="{_JOMRES_SCAN_FOR_DIRECTIONS}" alt="qrcode" width="75" class="pull-right"/>
+			<h1 id="tour_target_property_header">{PROPERTY_NAME} <span>{STARS} {SUPERIOR}</span></h1>	
+			<address>
 				<span itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
 					<span itemprop="street-address">{STREET}</span>,
 					<span itemprop="locality">{TOWN}</span>, 
@@ -11,27 +12,25 @@
 					<span itemprop="postal-code">{POSTCODE}</span>, 
 					<span itemprop="country_name">{COUNTRY}</span><br/>
 					<span class="hidden-xs">
-						<span class="glyphicon glyphicon-phone-alt"></span> {HTELEPHONE}<span>{TELEPHONE}</span>,
+						{HTELEPHONE}<span>{TELEPHONE}</span>,
 						{HFAX}{FAX}
 					</span>
-					<span class="hidden-sm hidden-md hidden-lg">
+					<span class="visible-xs">
 						<br/>
-						<a href="tel:{TELEPHONE}" class="btn btn-success"><span class="glyphicon glyphicon-phone-alt"></span> 
+						<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="fa fa-phone"></i> 
 							{JOMRES_TAPTOCALL} {TELEPHONE}</a>
 					</span>
 				</span>
-
-					<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
-				</address>
-				<!--
-				<img src="{IMAGETHUMB}"/>
-				<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">{ROOM_TYPE}</patTemplate:tmpl>
-				<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">{FEATURE}</patTemplate:tmpl>
-				-->
-			</div>
-			<div class="col-md-2">
-				<img src="{QR_CODE_MAP}" title="{_JOMRES_SCAN_FOR_DIRECTIONS}" align="qrcode" class="img-responsive"/>
-			</div>
+				<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
+			</address>
 		</div>
 	</div>
+</div>
+
+<patTemplate:comment>
+<img src="{IMAGETHUMB}"/>
+<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">{ROOM_TYPE}</patTemplate:tmpl>
+<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">{FEATURE}</patTemplate:tmpl>
+</patTemplate:comment>
+
 </patTemplate:tmpl>
