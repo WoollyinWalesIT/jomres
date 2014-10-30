@@ -1,74 +1,82 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<!--<a href="{PRINT_LINK}" target="_blank"><img src="{PRINT_ICON}" width="25px" height="25px"/></a>-->
-<br/>
-<a name="{COMMON_HOME|urlencode}" class="text-info">{COMMON_HOME}</a>
-<br/>
-
 <div id="property_details">
-	<div class="row">
-		<div class="col-md-9">
-			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 alert alert-success">
-					<h4>
-						{PRICE_PRE_TEXT}
-						{PRICE_PRICE}
-						{PRICE_POST_TEXT}
-					</h4>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12" id="tour_target_property_details_buttons">
-					<div class="big-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
-					<div class="btn-group">
-						<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-							<a href="{LINK}" class="btn btn-primary "><i class="icon-calendar pull-left"></i> {TEXT}</a>
-						</patTemplate:tmpl>
-						<patTemplate:tmpl name="contactuslink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-							<a href="{LINK}" class="btn btn-primary "><i class="icon-mail pull-left"></i> {TEXT}</a>
-						</patTemplate:tmpl>
-						<patTemplate:tmpl name="slideshowlink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-							<a href="{LINK}" class="btn btn-default "><i class="icon-pictures pull-left"></i> {TEXT}</a>
-						</patTemplate:tmpl>
-						<patTemplate:tmpl name="tariffslink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-							<a href="{LINK}" class="btn btn-default "><i class="icon-grid-view pull-left "></i> {TEXT}</a>
-						</patTemplate:tmpl>
-						<patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-							<a href="{LINK}" class="btn btn-default "><i class="icon-key pull-left"></i> {TEXT}</a>
-						</patTemplate:tmpl>
-						<a href="{PRINT_LINK}" target="_blank" class="btn btn-default "><i class="icon-printer  pull-left"></i> {COMMON_PRINT}</a>
-					</div>
-					<div style="clear:both;"></div>
-				</div>
-			</div>
-
+	<!--<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 alert alert-success">
+			<h4>
+				{PRICE_PRE_TEXT}
+				{PRICE_PRICE}
+				{PRICE_POST_TEXT}
+			</h4>
 		</div>
-		<div class="col-md-2">
-			<div id="tour_target_inline_calendar">{INLINE_CALENDAR}</div>
+		<div class="span5">
+		</div>
+	</div>-->
+	<div class="row">
+		<div id="gallerywrapper" class="col-xs-12 col-sm-12 col-md-7 col-lg-8">
+			<div class="well">{SLIDESHOW}</div>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4" id="tour_target_property_details_buttons">
+			<div class="buttonswrapper well">
+				<div class="pdetails-reviews">
+					<div class="row">
+						<div class="col-xs-6" align="center">
+							{_JOMRES_REVIEWS_AVERAGE_RATING}<span class="reviews-big">{AVERAGE_RATING}</span>
+						</div>
+						<div class="col-xs-6" align="center">
+							{_JOMRES_REVIEWS_TOTAL_VOTES}<span class="reviews-big">{NUMBER_OF_REVIEWS}</span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="pdetails-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
+				
+				<div id="tour_target_inline_calendar" class="pdetails-availability-inline" align="center">{INLINE_CALENDAR}</div>
+				
+				<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+					<a href="{LINK}" class="btn btn-success btn-lg btn-block"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
+				</patTemplate:tmpl>
+				
+				<patTemplate:tmpl name="slideshowlink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+					<a href="{LINK}" class="btn btn-default btn-block">{TEXT}</a>
+				</patTemplate:tmpl>
+				<patTemplate:tmpl name="tariffslink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+					<a href="{LINK}" class="btn btn-default btn-block">{TEXT}</a>
+				</patTemplate:tmpl>
+				<patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+					<a href="{LINK}" class="btn btn-default btn-block">{TEXT}</a>
+				</patTemplate:tmpl>
+				
+				<div class="pdetails-icons">
+					<div class="row">
+						<patTemplate:tmpl name="contactuslink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+						<div class="col-xs-6" align="center">
+							<a href="{LINK}" class="pdetails-btn-icon" title="{TEXT}"><i class="fa fa-envelope"></i></a>
+						</div>
+						</patTemplate:tmpl>
+						<div class="col-xs-6" align="center">
+							<a href="{PRINT_LINK}" target="_blank" class="pdetails-btn-icon" title="{COMMON_PRINT}"><i class="fa fa-print"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-			<div class="row">
-				<div id="gallerywrapper" class="col-md-12">
-					{SLIDESHOW}
-				</div>
-			</div>
 </div>
 <div class="clearfix"></div>
-
+<p>&nbsp;</p>
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><h2>{TABCONTENT_01_MAIN_DETAILS_TITLE}</h2></h3>
+		<h2 class="panel-title">{TABCONTENT_01_MAIN_DETAILS_TITLE}</h2>
 	</div>
 	<div class="panel-body">
 		{TABCONTENT_01_MAIN_DETAILS_CONTENT}
-
-		
 	</div>
 </div>
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><h2>{TABCONTENT_01_MORE_INFO_TITLE}</h2></h3>
+		<h2 class="panel-title">{TABCONTENT_01_MORE_INFO_TITLE}</h2>
 	</div>
 	<div class="panel-body">
 		{TABCONTENT_01_MORE_INFO_CONTENT}
@@ -77,7 +85,7 @@
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><h2>{TABCONTENT_02_MAP_TITLE}</h2></h3>
+		<h2 class="panel-title">{TABCONTENT_02_MAP_TITLE}</h2>
 	</div>
 	<div class="panel-body">
 		{TABCONTENT_02_MAP_CONTENT}
@@ -86,7 +94,7 @@
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><h2>{TABCONTENT_03_REVIEWS_TITLE}</h2></h3>
+		<h2 class="panel-title">{TABCONTENT_03_REVIEWS_TITLE}</h2>
 	</div>
 	<div class="panel-body">
 		{TABCONTENT_03_REVIEWS_CONTENT}
@@ -96,20 +104,20 @@
 <h2>{TABCONTENT_02_BOOKINGFORM_TITLE}</h2>
 {TABCONTENT_02_BOOKINGFORM_CONTENT}
 
-	<div class="tabbable">
-		<ul class="nav nav-tabs">
-			<patTemplate:tmpl name="tabs_titles">
-				<li class="{ACTIVE}"><a href="#{TAB_ANCHOR}" data-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a></li>
-			</patTemplate:tmpl>
-		</ul>
-		<div class="tab-content">
-			<patTemplate:tmpl name="tabs_content">
-				<div class="tab-pane {ACTIVE}" id="{TAB_ANCHOR}">
-					{TAB_CONTENT}
-				</div>
-			</patTemplate:tmpl>
-		</div>
+<div class="tabbable">
+	<ul class="nav nav-tabs">
+		<patTemplate:tmpl name="tabs_titles">
+			<li class="{ACTIVE}"><a href="#{TAB_ANCHOR}" data-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a></li>
+		</patTemplate:tmpl>
+	</ul>
+	<div class="tab-content">
+		<patTemplate:tmpl name="tabs_content">
+			<div class="tab-pane {ACTIVE}" id="{TAB_ANCHOR}">
+				{TAB_CONTENT}
+			</div>
+		</patTemplate:tmpl>
 	</div>
+</div>
 
 
 

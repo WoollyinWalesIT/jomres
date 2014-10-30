@@ -162,289 +162,320 @@
 </script>
 
 {OPENBOOKINGOFRM_BUTTON} {BUTTON_BACK_TO_PROPERTY_DETAILS}
-
-<div id="booking_form"
-{HIDDENSTYLE} title="{PROPERTYNAME}">
-<form action="javascript:dobooking_validate();" name="ajaxform" id="ajaxform" method="post"  role="form">
-<div id="messages">&nbsp;</div>
-<!--<p>{AJAXFORM_INSTRUCTIONS}</p>-->
-
-<patTemplate:tmpl name="manager_pricing" type="simpleCondition" requiredVars="_jomcomp_amend_override_accommodation_total">
+<div id="booking_form" {HIDDENSTYLE}>
+	<form action="javascript:dobooking_validate();" name="ajaxform" id="ajaxform" method="post" role="form">
+	<div id="messages">&nbsp;</div>
+	<!--<p>{AJAXFORM_INSTRUCTIONS}</p>-->
+	
+	<patTemplate:tmpl name="manager_pricing" type="simpleCondition" requiredVars="_jomcomp_amend_override_accommodation_total">
 	<div id="tour_target_booking_overrides"></div>
-		<div class="form-group">
-			<label class="control-label" for="override_room_total">{_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL}</label>
-			<input class="form-control ignore" name="override_room_total" id="override_room_total" value="" type="number" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01"/>
-		</div>
-		<div class="form-group">
-			<label class="control-label" for="override_deposit">{_JOMCOMP_AMEND_OVERRIDE_DEPOSIT}</label>
-			<input class="form-control ignore" name="override_deposit" id="override_deposit" value="" type="number" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01"/>
-		</div>
-		<div class="col-sm-offset-3 col-sm-9">
-			<div class="form-actions">
-				<a href="javascript:void(0);" onclick="getResponse_override('override',jomresJquery('#override_room_total').val()+'^'+jomresJquery('#override_deposit').val())" class="btn btn-default">{_JOMCOMP_AMEND_OVERRIDE_SAVE}</a>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label class="control-label" for="override_room_total">{_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL}</label>
+					<input class="form-control ignore" name="override_room_total" id="override_room_total" value="" type="number" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01"/>
+				</div>
 			</div>
-		</div>
-	<div class="row">
-		<div class="col-md-12">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label class="control-label" for="override_deposit">{_JOMCOMP_AMEND_OVERRIDE_DEPOSIT}</label>
+					<input class="form-control ignore" name="override_deposit" id="override_deposit" value="" type="number" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01"/>
+				</div>
+			</div>
 			<div id="override_response" class="jomres_message"></div>
 		</div>
+		<div class="panel-footer">
+			<a href="javascript:void(0);" onclick="getResponse_override('override',jomresJquery('#override_room_total').val()+'^'+jomresJquery('#override_deposit').val())" class="btn btn-default">{_JOMCOMP_AMEND_OVERRIDE_SAVE}</a>
+		</div>
 	</div>
-</patTemplate:tmpl>
+	</patTemplate:tmpl>
 
-<patTemplate:tmpl name="coupons" type="simpleCondition" requiredVars="coupon_title">
-	<h3 class="page-header">{COUPON_TITLE}</h3>
+	<patTemplate:tmpl name="coupons" type="simpleCondition" requiredVars="coupon_title">
 	<div id="tour_target_booking_coupons"></div>
-		<div class="form-group">
-			<label class="control-label" for="coupon">{COUPON_BUTTON}</label>
-			<input class="input-medium ignore" size="25" type="text" name="coupon" id="coupon" value="{COUPON_CODE}"/>
-			<div class="jomres_message help-block">{COUPON_INSTRUCTIONS}</div>
-		</div>
-		<div class="col-sm-offset-3 col-sm-9">
-			<div class="form-actions">
-				<a class="btn btn-default" href="javascript:void(0);" onclick="getResponse('coupon',jomresJquery('#coupon').val())">{COUPON_BUTTON}</a>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="panel-title">
+				{COUPON_TITLE}
 			</div>
 		</div>
-	<div id="coupon_response" class="jomres_message"></div>
-</patTemplate:tmpl>
-
-<div id="arrivalcontainer">
-	<h3 class="page-header">{AJAXFORM_PARTICULARS}</h3>
-	<div id="tour_target_booking_particulars"></div>
-	<p>{AJAXFORM_PARTICULARS_DESC}</p>
-	<fieldset>
-		<div class="form-group">
-			<label class="control-label" for="arrivalDate">{HARRIVALDATE}</label>
-			{ARRIVALDATE}
-		</div>
-		<div class="form-group">
-			<label class="control-label" for="departureDate">{HDEPARTUREDATE}</label>
-			{DEPARTUREDATE}
-		</div>
-		<patTemplate:tmpl name="guesttypes">
+		<div class="panel-body">
 			<div class="form-group">
-				<label class="control-label" for="{FIELDNAME}">{TEXT}</label>
-				{DROPDOWN}
+				<label class="control-label" for="coupon">{COUPON_TITLE}</label>
+				<input class="form-control ignore" size="25" type="text" name="coupon" id="coupon" value="{COUPON_CODE}" placeholder="{COUPON_TITLE}"/>
+				<div class="jomres_message help-block">{COUPON_INSTRUCTIONS}</div>
 			</div>
-		</patTemplate:tmpl>
-		<patTemplate:tmpl name="smoking" type="simpleCondition" requiredVars="hsmokingtitle">
-			<div class="form-group">
-				<label class="control-label" for="smoking">{HSMOKINGTITLE}</label>
-				{SMOKING}
-			</div>
-		</patTemplate:tmpl>
-	</fieldset>
-</div>
+			<div id="coupon_response" class="jomres_message"></div>
+		</div>
+		<div class="panel-footer">
+			<a class="btn btn-default" href="javascript:void(0);" onclick="getResponse('coupon',jomresJquery('#coupon').val())" >{COUPON_BUTTON}</a>
+		</div>
+	</div>
+	</patTemplate:tmpl>
 
-<patTemplate:tmpl name="extrasrow" type="simpleCondition" requiredVars="extras_header">
-	<div id="extrascontainer">
-		<h3 class="page-header">{EXTRAS_HEADER}</h3>
-		<div id="tour_target_booking_extras"></div>
-		<patTemplate:tmpl name="third_party_extras" type="simpleCondition" requiredVars="third_party_extra">
-			{THIRD_PARTY_EXTRA}
-		</patTemplate:tmpl>
-		<patTemplate:tmpl name="extras" type="simpleCondition" requiredVars="ajaxform_extras">
-			<div class="row">
+	<div id="arrivalcontainer">
+		<div id="tour_target_booking_particulars"></div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">{AJAXFORM_PARTICULARS}</div>
+			</div>
+			<div class="panel-body">
+				<p>{AJAXFORM_PARTICULARS_DESC}</p>
+		
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label" for="arrivalDate">{HARRIVALDATE}</label>
+						<div class="input-group">{ARRIVALDATE}</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label" for="departureDate">{HDEPARTUREDATE}</label>
+						<div class="input-group">{DEPARTUREDATE}</div>
+					</div>
+				</div>
+				<patTemplate:tmpl name="guesttypes">
 				<div class="col-md-2">
-					{INPUTBOX}
-				</div>
-				<div class="col-md-5">
-					{NAME}
-				</div>
-				<div class="col-md-5">
-					{PRICE} {MODELTEXT}
-				</div>
-			</div>
-		</patTemplate:tmpl>
-	</div>
-</patTemplate:tmpl>
-
-<div class="row">
-	<div class="col-md-7">
-		<div id="tour_target_booking_existing_guests"></div>
-		<div id="tour_target_booking_required"></div>
-		<div id="bookingform_address">
-			<h3 class="page-header">{AJAXFORM_ADDRESS}</h3>
-			
-				<div class="form-group">
-					<label class="control-label" for="existingCustomers"></label>
-					{GUESTDROPDOWN}
-				</div>
-				
-				<div class="form-group {BOOTSTRAP_FIRSTNAME_WARNING}">
-					<label class="control-label" for="firstname">{HFIRSTNAME}</label>
-					<input type="text" name="firstname" id="firstname" value="{FIRSTNAME}" title="{HFIRSTNAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_FIRSTNAME}"/>
-				</div>
-
-				<div class="form-group {BOOTSTRAP_SURNAME_WARNING}">
-					<label class="control-label" for="surname">{HSURNAME}</label>
-					<input type="text" name="surname" id="surname" value="{SURNAME}" title="{HSURNAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_SURNAME}"/>
-				</div>
-
-				<div class="form-group  {BOOTSTRAP_HOUSENO_WARNING}">
-					<label class="control-label" for="house">{HHOUSENO}</label>
-					<input type="text" name="house" id="house" value="{HOUSENO}" title="{HHOUSENO}" class="form-control" placeholder="{COMMON_PLACEHOLDER_HOUSENUMBER}"/>
-				</div>
-
-				<div class="form-group {BOOTSTRAP_STREET_WARNING}">
-					<label class="control-label" for="street">{HSTREET}</label>
-					<input type="text" name="street" id="street" value="{STREET}" title="{HSTREET}" class="form-control" placeholder="{COMMON_PLACEHOLDER_STREET}"/>
-				</div>
-
-				<div class="form-group {BOOTSTRAP_TOWN_WARNING}">
-					<label class="control-label" for="town">{HTOWN}</label>
-					<input type="text" name="town" id="town" value="{TOWN}" title="{HTOWN}" class="form-control" placeholder="{COMMON_PLACEHOLDER_TOWN}"/>
-				</div>
-				
-				<div class="form-group {BOOTSTRAP_POSTCODE_WARNING}">
-					<label class="control-label" for="postcode">{HPOSTCODE}</label>
-					<input type="text" name="postcode" id="postcode" value="{POSTCODE}" title="{HPOSTCODE}" class="form-control" placeholder="{COMMON_PLACEHOLDER_POSTCODE}"/>
-				</div>
-
-				<div class="form-group {BOOTSTRAP_COUNTRY_WARNING}">
-					<label class="control-label" for="country">{HCOUNTRY}</label>
-					{COUNTRY}
-				</div>
-
-				<div class="form-group {BOOTSTRAP_REGION_WARNING}">
-					<label class="control-label" for="region">{HREGION}</label>
-					<div id="guest_region_div">{REGION_DROPDOWN}</div>
-				</div>
-
-				<div class="form-group {BOOTSTRAP_LANDLINE_WARNING}">
-					<label class="control-label" for="tel_landline">{HTEL}</label>
-					<input type="tel" name="tel_landline" id="tel_landline" value="{TEL}" title="{HTEL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_LANDLINE}"/>
-					</div>
-
-				<div class="form-group {BOOTSTRAP_CELLMOBILE_WARNING}">
-					<label class="control-label" for="tel_mobile">{HMOBILE}</label>
-					<input type="tel" name="tel_mobile" id="tel_mobile" value="{MOBILE}" title="{HMOBILE}" class="form-control" placeholder="{COMMON_PLACEHOLDER_MOBILE}"/>
-				</div>
-
-				<div class="form-group {BOOTSTRAP_EMAIL_WARNING}">
-					<label class="control-label" for="eemail">{HEMAIL}</label>
-					<input type="email" name="eemail" id="eemail" value="{EMAIL}" title="{HEMAIL}" class="form-control" {EMAIL_INPUT_DISABLED}/>
-				</div>
-
-			<patTemplate:tmpl name="customfields" type="simpleCondition" requiredVars="fieldname">
-				<div class="form-group {WARNING}">
-					<label class="control-label" for="{FIELDNAME}">{DESCRIPTION}</label>
-					<input type="text" name="{FIELDNAME}" id="{FIELDNAME}" value="{DEFAULT_VALUE}" class="input-medium"/>
-				</div>
-			</patTemplate:tmpl>
-	</div>
-</div>
-<div class="col-md-5">
-	<div id="totalsWrapper">
-		<div id="totals">
-			<h3 class="page-header">{PRICE_SUMMARY}</h3>
-
-			<div class="well">
-				<p><span id="staydays"></span> {STAYDAYS} <span id="roompernight"></span> {ACCOMMODATION_PERROOM}</p>
-				<p><span id="totalinparty"></span> {BILLING_TOTALINPARTY}</p>
-				<p><span id="discount" class="jomres_message"></span></p>
-
-				<div class="row">
-					<div class="col-md-9">
-						{ROOM_TOTAL_EX_TAX}
-					</div>
-					<div class="col-md-3">
-						<span id="room_total_ex_tax"></span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-9">
-						{ROOM_TOTAL_INC_TAX}
-					</div>
-					<div class="col-md-3">
-						<span id="room_total_inc_tax"></span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-9">
-						{ROOM_TOTAL_ACCOM_TAX}
-					</div>
-					<div class="col-md-3">
-						<span id="taxtotal"></span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-9">
-						{EXTRAS_TOTAL}
-					</div>
-					<div class="col-md-3">
-						<span id="extrastotal_totals_panel"></span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-9">
-						{EXTRAS_TAX}
-					</div>
-					<div class="col-md-3">
-						<span id="extra_tax"></span>
-					</div>
-				</div>
-				<patTemplate:tmpl name="coupons_totals" type="simpleCondition" requiredVars="coupon_discount_value">
-				<div class="row">
-					<div class="col-md-9">
-						{COUPON_DISCOUNT_VALUE}
-					</div>
-					<div class="col-md-3">
-						<span id="coupon_discount_value"></span>
+					<div class="form-group">
+						<label class="control-label" for="{FIELDNAME}">{TEXT}</label>
+						{DROPDOWN}
 					</div>
 				</div>
 				</patTemplate:tmpl>
-				<div class="row">
-					<div class="col-md-9">
-						{SINGLE_PERSON_SUPPLIMENT}
-					</div>
-					<div class="col-md-3">
-						<span id="single_suppliment"></span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-9">
-						{PERSONAL_DISCOUNT}
-					</div>
-					<div class="col-md-3">
-						<span id="personal_discount"></span>
+				<patTemplate:tmpl name="smoking" type="simpleCondition" requiredVars="hsmokingtitle">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label class="control-label" for="smoking">{HSMOKINGTITLE}</label>
+						{SMOKING}
 					</div>
 				</div>
+				</patTemplate:tmpl>
+			</div>
+		</div>
+	</div>
+
+	<div id="tour_target_booking_extras"></div>
+	<patTemplate:tmpl name="extrasrow" type="simpleCondition" requiredVars="extras_header">
+	<div id="extrascontainer">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">{EXTRAS_HEADER}</div>
+			</div>
+			<div class="panel-body">
+				<patTemplate:tmpl name="third_party_extras" type="simpleCondition" requiredVars="third_party_extra">
+					{THIRD_PARTY_EXTRA}
+				</patTemplate:tmpl>
+				<patTemplate:tmpl name="extras" type="simpleCondition" requiredVars="ajaxform_extras">
 				<div class="row">
-					<div class="col-md-9">
-						<strong>{BILLING_TOTAL}</strong>
+					<div class="col-md-2">
+						{INPUTBOX}
 					</div>
-					<div class="col-md-3">
-						<strong><span id="grandtotal"></span></strong>
+					<div class="col-md-5">
+						{NAME}
+					</div>
+					<div class="col-md-5">
+						{PRICE} {MODELTEXT}
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-9">
-						{DEPOSIT}
-					</div>
-					<div class="col-md-3">
-						<span id="deposit"></span>
-					</div>
+				</patTemplate:tmpl>
+			</div>
+		</div>
+	</div>
+	</patTemplate:tmpl>
+
+	<div class="row" id="bookingform_address">
+		<div class="col-md-7">
+			<div id="tour_target_booking_existing_guests"></div>
+			<div id="tour_target_booking_required"></div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="panel-title">{AJAXFORM_ADDRESS}</div>
 				</div>
-				<div class="row">
-					<div class="col-md-9">
-						{_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE}
+				<div class="panel-body">
+					<div class="form-group">
+						<label class="control-label" for="existingCustomers"></label>
+						{GUESTDROPDOWN}
 					</div>
-					<div class="col-md-3">
-						<span id="balance"></span>
+	
+					<div class="form-group {BOOTSTRAP_FIRSTNAME_WARNING}">
+						<label class="control-label" for="firstname">{HFIRSTNAME}</label>
+						<input type="text" name="firstname" id="firstname" value="{FIRSTNAME}" title="{HFIRSTNAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_FIRSTNAME}"/>
+					</div>
+	
+					<div class="form-group {BOOTSTRAP_SURNAME_WARNING}">
+						<label class="control-label" for="surname">{HSURNAME}</label>
+						<input type="text" name="surname" id="surname" value="{SURNAME}" title="{HSURNAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_SURNAME}"/>
+					</div>
+	
+					<div class="form-group  {BOOTSTRAP_HOUSENO_WARNING}">
+						<label class="control-label" for="house">{HHOUSENO}</label>
+						<input type="text" name="house" id="house" value="{HOUSENO}" title="{HHOUSENO}" class="form-control" placeholder="{COMMON_PLACEHOLDER_HOUSENUMBER}"/>
+					</div>
+	
+					<div class="form-group {BOOTSTRAP_STREET_WARNING}">
+						<label class="control-label" for="street">{HSTREET}</label>
+						<input type="text" name="street" id="street" value="{STREET}" title="{HSTREET}" class="form-control" placeholder="{COMMON_PLACEHOLDER_STREET}"/>
+					</div>
+	
+					<div class="form-group {BOOTSTRAP_TOWN_WARNING}">
+						<label class="control-label" for="town">{HTOWN}</label>
+						<input type="text" name="town" id="town" value="{TOWN}" title="{HTOWN}" class="form-control" placeholder="{COMMON_PLACEHOLDER_TOWN}"/>
+					</div>
+					
+					<div class="form-group {BOOTSTRAP_POSTCODE_WARNING}">
+						<label class="control-label" for="postcode">{HPOSTCODE}</label>
+						<input type="text" name="postcode" id="postcode" value="{POSTCODE}" title="{HPOSTCODE}" class="form-control" placeholder="{COMMON_PLACEHOLDER_POSTCODE}"/>
+					</div>
+	
+					<div class="form-group {BOOTSTRAP_COUNTRY_WARNING}">
+						<label class="control-label" for="country">{HCOUNTRY}</label>
+						{COUNTRY}
+					</div>
+	
+					<div class="form-group {BOOTSTRAP_REGION_WARNING}">
+						<label class="control-label" for="region">{HREGION}</label>
+						<div id="guest_region_div">{REGION_DROPDOWN}</div>
+					</div>
+	
+					<div class="form-group {BOOTSTRAP_LANDLINE_WARNING}">
+						<label class="control-label" for="tel_landline">{HTEL}</label>
+						<input type="tel" name="tel_landline" id="tel_landline" value="{TEL}" title="{HTEL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_LANDLINE}"/>
+					</div>
+	
+					<div class="form-group {BOOTSTRAP_CELLMOBILE_WARNING}">
+						<label class="control-label" for="tel_mobile">{HMOBILE}</label>
+						<input type="tel" name="tel_mobile" id="tel_mobile" value="{MOBILE}" title="{HMOBILE}" class="form-control" placeholder="{COMMON_PLACEHOLDER_MOBILE}"/>
+					</div>
+	
+					<div class="form-group {BOOTSTRAP_EMAIL_WARNING}">
+						<label class="control-label" for="eemail">{HEMAIL}</label>
+						<input type="email" name="eemail" id="eemail" value="{EMAIL}" title="{HEMAIL}" class="form-control" {EMAIL_INPUT_DISABLED}/>
+					</div>
+	
+					<patTemplate:tmpl name="customfields" type="simpleCondition" requiredVars="fieldname">
+					<div class="form-group {WARNING}">
+						<label class="control-label" for="{FIELDNAME}">{DESCRIPTION}</label>
+						<input type="text" name="{FIELDNAME}" id="{FIELDNAME}" value="{DEFAULT_VALUE}" class="form-control" placeholder="{XXXXXXX}"/>
+					</div>
+					</patTemplate:tmpl>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-5" id="totalsWrapper">
+			<div id="totals">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="panel-title">{PRICE_SUMMARY}</div>
+					</div>
+					<div class="panel-body">
+						<p><span id="staydays"></span> {STAYDAYS} <span id="roompernight"></span> {ACCOMMODATION_PERROOM}</p>
+						<p><span id="totalinparty"></span> {BILLING_TOTALINPARTY}</p>
+						<p><span id="discount" class="jomres_message"></span></p>
+		
+						<div class="row">
+							<div class="col-xs-9">
+								{ROOM_TOTAL_EX_TAX}
+							</div>
+							<div class="col-xs-3">
+								<span id="room_total_ex_tax"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{ROOM_TOTAL_INC_TAX}
+							</div>
+							<div class="col-xs-3">
+								<span id="room_total_inc_tax"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{ROOM_TOTAL_ACCOM_TAX}
+							</div>
+							<div class="col-xs-3">
+								<span id="taxtotal"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{EXTRAS_TOTAL}
+							</div>
+							<div class="col-xs-3">
+								<span id="extrastotal_totals_panel"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{EXTRAS_TAX}
+							</div>
+							<div class="col-xs-3">
+								<span id="extra_tax"></span>
+							</div>
+						</div>
+						<patTemplate:tmpl name="coupons_totals" type="simpleCondition" requiredVars="coupon_discount_value">
+						<div class="row">
+							<div class="col-xs-9">
+								{COUPON_DISCOUNT_VALUE}
+							</div>
+							<div class="col-xs-3">
+								<span id="coupon_discount_value"></span>
+							</div>
+						</div>
+						</patTemplate:tmpl>
+						<div class="row">
+							<div class="col-xs-9">
+								{SINGLE_PERSON_SUPPLIMENT}
+							</div>
+							<div class="col-xs-3">
+								<span id="single_suppliment"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{PERSONAL_DISCOUNT}
+							</div>
+							<div class="col-xs-3">
+								<span id="personal_discount"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								<strong>{BILLING_TOTAL}</strong>
+							</div>
+							<div class="col-xs-3">
+								<strong><span id="grandtotal"></span></strong>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{DEPOSIT}
+							</div>
+							<div class="col-xs-3">
+								<span id="deposit"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE}
+							</div>
+							<div class="col-xs-3">
+								<span id="balance"></span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-</div>
 
-<div class="form-actions" id="bookingform_footer">
-	<div id="submitbutton">
-		<input type="submit" name="confirmbooking" value="{SUBMIT}" class="btn btn-large btn-primary"/>
+	<div class="form-actions" id="bookingform_footer">
+		<div id="submitbutton">
+			<div class="col-md-4 col-md-push-4">
+				<input type="submit" name="confirmbooking" value="{SUBMIT}" class="btn btn-lg btn-block btn-success"/>
+			</div>
+		</div>
 	</div>
-</div>
-<!--<div>{AJAXFORM_INSTRUCTIONS}</div>-->
 <input type="hidden" id="booking_form_property_uid" name="property_uid" value="{PROPERTYUID}">
 </form>
 </div>

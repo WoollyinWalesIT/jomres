@@ -1,9 +1,9 @@
 /* Jomres CSS */
 .big-price {
 	font-weight: bold;
-	font-size: 130%;
+	font-size: 16px;
 	display: block;
-	line-height: 120%;
+	line-height: 20px;
 }
 
 .align-center {
@@ -19,10 +19,6 @@
 	padding: 0;
 }
 
-.property_details_buttons {
-	min-width: 219px !important;
-}
-
 #jomres_content_area {
 	padding-bottom: 20px;
 }
@@ -30,7 +26,6 @@
 .jomres_message {
 	color: #ff0000;
 }
-
 
 .dataTable th {
 	color: #0088CC;
@@ -44,62 +39,40 @@
 	padding: 10px;
 }
 
-.jomres-propertylist-toolbar form {
+.jomres-propertylist-toolbar form, h1#tour_target_property_header {
 	margin: 0;
 }
 
-.photoview-ptitle, .photoview-paddress {
-	width: 100%;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+.photoview-image, .plist-image {
+	width:100%;
 }
 
-@media (max-width: 768px) {
-	.photoview {
-		width: 100%;
-	}
-
-	.photoview-image img {
-		max-height: 130px;
-	}
+.photoview-compare input[type="checkbox"], .photoview-compare.checkbox, .plist-compare input[type="checkbox"], .plist-compare.checkbox {
+	margin:0;
 }
 
-@media (min-width: 768px) and (max-width: 979px) {
-	.photoview {
-		width: 31.3%;
-		margin-right: 10px;
-	}
-
-	.photoview-image img {
-		height: 86px;
-	}
-}
-
-@media (min-width: 980px) and (max-width: 1199px) {
-	.photoview {
-		width: 31.8%;
-		margin-right: 10px;
-	}
-
-	.photoview-image img {
-		height: 110px;
-	}
-}
-
-@media (min-width: 1200px) {
-	.photoview {
-		width: 31.9%;
-		margin-right: 10px;
-	}
-
-	.photoview-image img {
-		height: 130px;
-	}
-}
+.jomres-plist-details-col {display:none;}
 
 #toolbar .btn-primary {
 	width: 148px;
+}
+
+.buttonswrapper .btn, .pdetails-availability-inline, .pdetails-icons, .pdetails-reviews {
+	margin-bottom:10px;
+}
+
+.reviews-big {
+	font-size:30px;
+	font-weight:bold;
+	display:block;
+}
+
+.pdetails-icons {
+	border-top:1px solid #ccc;
+}
+.pdetails-btn-icon {
+	font-size:36px;
+	text-shadow:1px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Availability Calendar */
