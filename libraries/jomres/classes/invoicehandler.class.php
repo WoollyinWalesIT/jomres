@@ -178,6 +178,7 @@ class invoicehandler extends jrportal_invoice
 		if ($this->vat_will_be_charged)
 			{
 			$init_toal_tax                   = number_format( $i_total / 100 * $line_item->tax_rate, 2, '.', '' );
+			//$init_toal_tax                   = substr(number_format($i_total / 100 * $line_item->tax_rate, 3, '.', ''), 0, -1); // possible solution to rounding issues, awaiting testing
 			$recur_toal_tax         = number_format( ( $r_total / 100 ) * $line_item->tax_rate, 2, '.', '' );
 			}
 		else
@@ -242,6 +243,7 @@ class invoicehandler extends jrportal_invoice
 			if ($this->vat_will_be_charged)
 				{
 				$init_toal_tax                   = number_format( $i_total / 100 * $line_item->tax_rate, 2, '.', '' );
+				//$init_toal_tax                   = substr(number_format($i_total / 100 * $line_item->tax_rate, 3, '.', ''), 0, -1);  // possible solution to rounding issues, awaiting testing
 				}
 			else
 				{
