@@ -32,7 +32,7 @@ $jrConfig[ 'errorChecking' ]                   = '0';
 $jrConfig[ 'dumpTemplate' ]                    = '0';
 $jrConfig[ 'jscalendarLangfile' ]              = 'calendar-en.js';
 $jrConfig[ 'jscalendarCSSfile' ]               = 'calendar-blue.css';
-$jrConfig[ 'maxwidth' ]                        = '500';
+$jrConfig[ 'maxwidth' ]                        = '900';
 $jrConfig[ 'fileSize' ]                        = '2000';
 $jrConfig[ 'slideshow' ]                       = 'tooltips';
 $jrConfig[ 'propertyListDescriptionLimit' ]    = '200';
@@ -189,11 +189,11 @@ $jrConfig[ 'use_timezone_switcher' ]    = "0";
 
 $jrConfig[ 'load_jquery' ] = "1";
 
-$jrConfig[ 'thumbnail_property_list_max_width' ]  = "125";
-$jrConfig[ 'thumbnail_property_list_max_height' ] = "125";
+$jrConfig[ 'thumbnail_property_list_max_width' ]  = "250";
+$jrConfig[ 'thumbnail_property_list_max_height' ] = "140";
 
-$jrConfig[ 'thumbnail_property_header_max_width' ]  = "200";
-$jrConfig[ 'thumbnail_property_header_max_height' ] = "200";
+$jrConfig[ 'thumbnail_property_header_max_width' ]  = "400";
+$jrConfig[ 'thumbnail_property_header_max_height' ] = "225";
 
 $jrConfig[ 'use_commission' ]                               = "1";
 $jrConfig[ 'manager_bookings_trigger_commission' ]          = "0";
