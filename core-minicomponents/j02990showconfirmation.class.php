@@ -531,7 +531,7 @@ class j02990showconfirmation
 									$gw[ 'GWNAME' ] = $gateway->plugin;
 									$tmpgatewaydir  = $result;
 									}
-								$gw[ 'GWINPUT' ] = '<input type="radio" name="plugin" value="' . $gateway->plugin . '" class="inputbox" ' . $checked . ' />' . $gw[ 'GWNAME' ];
+								$gw[ 'GWINPUT' ] = '<input type="radio" name="plugin" value="' . $gateway->plugin . '" ' . $checked . ' /> ' . $gw[ 'GWNAME' ];
 								$gatewaydir      = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' ).'/', $tmpgatewaydir );
 								$gatewaydir      = str_replace( '\\', '/', $gatewaydir );
 								$gw[ 'GWIMAGE' ] = '<img src="' . $gatewaydir . 'j00510' . $gateway->plugin . '.gif" border="0">';

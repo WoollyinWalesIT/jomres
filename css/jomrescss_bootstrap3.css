@@ -43,7 +43,7 @@
 	margin: 0;
 }
 
-.photoview-image, .plist-image {
+.photoview-image, .plist-image, .ngm-image {
 	width:100%;
 }
 
