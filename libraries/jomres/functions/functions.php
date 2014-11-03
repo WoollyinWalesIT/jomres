@@ -100,8 +100,12 @@ function output_fatal_error($e)
 			$rows[]=$r;
 			}
 		}
+	
+	$link =  "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	$cleaned_link = jomres_sanitise_string($link);
 
 	$output = array(
+		"URL" => $cleaned_link,
 		"MESSAGE" => $e->getMessage(),
 		"FILE"  => $e->getFile(),
 		"LINE"  => $e->getLine(),
