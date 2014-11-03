@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 
 // Intended as a utility function used by Jomres modules to display information about a property in modules
-function get_property_module_data( $property_uid_array, $alt_template_path = '', $alt_template_name = '' )
+function get_property_module_data( $property_uid_array, $alt_template_path = '', $alt_template_name = '', $vertical = false )
 	{
 	// for testing
 	//$property_uid_array = array(1,12,43,14);
@@ -105,7 +105,12 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 			if ( $alt_template_name != '' ) 
 				$tmpl->readTemplatesFromInput( $alt_template_name );
 			else
-				$tmpl->readTemplatesFromInput( 'basic_module_output.html' );
+				{
+				if (using_bootstrap() && jomres_bootstrap_version() == "3" && $vertical)
+					$tmpl->readTemplatesFromInput( 'basic_module_output_vertical.html' );
+				else
+					$tmpl->readTemplatesFromInput( 'basic_module_output.html' );
+				}
 			$res[ $property_uid ][ 'template' ] = $tmpl->getParsedTemplate();
 			$res[ $property_uid ][ 'data' ]     = $property_data;
 			}

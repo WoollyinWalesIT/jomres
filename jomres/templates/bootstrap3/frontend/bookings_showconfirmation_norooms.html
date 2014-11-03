@@ -20,182 +20,217 @@
 	function editbooking() {
 		document.bookingForm.action = "{BOOKINGFORMURL}";
 	}
+	function agreeAlert() {
+		if (document.bookingForm.agreecheck.checked) {
+			jomresJquery('#agreealert').removeClass('alert-warning').addClass('alert-success');
+			jomresJquery('#send').removeAttr('disabled');
+		} else {
+			jomresJquery('#agreealert').removeClass('alert-success').addClass('alert-warning');
+			jomresJquery('#send').attr('disabled', 'disabled');
+		}
+	}
 	//-->
 </script>
-<p>{HEADER}</p>
+
+<div class="alert alert-info">{HEADER}</div>
 
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="bookingForm"  role="form" onsubmit="send.disabled = true; return true;">
 <div class="row">
-	<div class="col-md-6 well">
-		<h3 class="page-header">{AJAXFORM_PARTICULARS}</h3>
-
-		<div class="row">
-			<div class="col-md-6">
-				<strong>{HARRIVAL}</strong>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2 class="panel-title">{AJAXFORM_PARTICULARS}</h2>
 			</div>
-			<div class="col-md-6">
-				{ARRIVAL}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<strong>{HDEPARTURE}</strong>
-			</div>
-			<div class="col-md-6">
-				{DEPARTURE}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<strong>{HDAYSSTAYING}</strong>
-			</div>
-			<div class="col-md-6">
-				{DAYSSTAYING}
-			</div>
-		</div>
-		<patTemplate:tmpl name="customfields" type="simpleCondition" requiredVars="description">
-			<div class="row">
-				<div class="col-md-6">
-					{DESCRIPTION}
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-6">
+						<strong>{HARRIVAL}</strong>
+					</div>
+					<div class="col-md-6">
+						{ARRIVAL}
+					</div>
 				</div>
-				<div class="col-md-6 align-right">
-					{VALUE}
+				<div class="row">
+					<div class="col-md-6">
+						<strong>{HDEPARTURE}</strong>
+					</div>
+					<div class="col-md-6">
+						{DEPARTURE}
+					</div>
 				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<strong>{HDAYSSTAYING}</strong>
+					</div>
+					<div class="col-md-6">
+						{DAYSSTAYING}
+					</div>
+				</div>
+				<patTemplate:tmpl name="customfields" type="simpleCondition" requiredVars="description">
+					<div class="row">
+						<div class="col-md-6">
+							{DESCRIPTION}
+						</div>
+						<div class="col-md-6 align-right">
+							{VALUE}
+						</div>
+					</div>
+				</patTemplate:tmpl>
 			</div>
-		</patTemplate:tmpl>
+		</div>
 	</div>
-	<div class="col-md-6 well">
-		<h3 class="page-header">{AJAXFORM_ADDRESS}</h3>
-
-		<div class="row">
-			<div class="col-md-12">
-				<strong>{FIRSTNAME} {SURNAME}</strong>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2 class="panel-title">{AJAXFORM_ADDRESS}</h2>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				{HOUSENO} {STREET}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				{TOWN}, {COUNTY}, {POSTCODE}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				{COUNTRY}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				{HTEL}: {LANDLINE}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				{HMOBILE}: {MOBILE}
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-12">
+						<strong>{FIRSTNAME} {SURNAME}</strong>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						{HOUSENO} {STREET}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						{TOWN}, {COUNTY}, {POSTCODE}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						{COUNTRY}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						{HTEL}: {LANDLINE}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						{HMOBILE}: {MOBILE}
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<!--{ALLOCATION}-->
-<div class="well">
-	<h3 class="page-header">{PRICE_SUMMARY}</h3>
 
-	<div class="row">
-		<div class="col-md-12">
-			{DISCOUNT}
-		</div>
+<!--{ALLOCATION}-->
+<div class="row">
+	<div class="col-md-12" align="center">
+		<p>{AMENDTEXT}</p>
+		<input id="amend" type="submit" value="{AMEND}" class="btn btn-default" onclick="editbooking();"/>
+		<p>&nbsp;</p>
 	</div>
-	<patTemplate:tmpl name="booking_extratext" type="simpleCondition" requiredVars="ajaxform_extras">
-		<patTemplate:tmpl name="booking_extras" type="simpleCondition" requiredVars="name">
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h2 class="panel-title">{PRICE_SUMMARY}</h2>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-12">
+				{DISCOUNT}
+			</div>
+		</div>
+		<patTemplate:tmpl name="booking_extratext" type="simpleCondition" requiredVars="ajaxform_extras">
+			<patTemplate:tmpl name="booking_extras" type="simpleCondition" requiredVars="name">
+				<div class="row">
+					<div class="col-md-6">
+						{NAME}
+					</div>
+					<div class="col-md-6 align-right">
+						{PRICE}
+					</div>
+				</div>
+			</patTemplate:tmpl>
 			<div class="row">
 				<div class="col-md-6">
-					{NAME}
+					{HEXTRASTOTAL}
 				</div>
 				<div class="col-md-6 align-right">
-					{PRICE}
+					{EXTRASTOTAL}
 				</div>
 			</div>
 		</patTemplate:tmpl>
 		<div class="row">
 			<div class="col-md-6">
-				{HEXTRASTOTAL}
+				{HCOUPON_DISCOUNTVALUE}
 			</div>
 			<div class="col-md-6 align-right">
-				{EXTRASTOTAL}
+				{COUPON_DISCOUNT_VALUE}
 			</div>
 		</div>
-	</patTemplate:tmpl>
-	<div class="row">
-		<div class="col-md-6">
-			{HCOUPON_DISCOUNTVALUE}
+		<div class="row">
+			<div class="col-md-6">
+				{HTAX}
+			</div>
+			<div class="col-md-6 align-right">
+				{TAX}
+			</div>
 		</div>
-		<div class="col-md-6 align-right">
-			{COUPON_DISCOUNT_VALUE}
+		<div class="row">
+			<div class="col-md-6">
+				<strong>{HGRANDTOTAL}</strong>
+			</div>
+			<div class="col-md-6 align-right">
+				<strong>{TOTAL}</strong>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			{HTAX}
-		</div>
-		<div class="col-md-6 align-right">
-			{TAX}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<strong>{HGRANDTOTAL}</strong>
-		</div>
-		<div class="col-md-6 align-right">
-			<strong>{TOTAL}</strong>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			{HDEPOSIT}
-		</div>
-		<div class="col-md-6 align-right">
-			{DEPOSIT}
+		<div class="row">
+			<div class="col-md-6">
+				{HDEPOSIT}
+			</div>
+			<div class="col-md-6 align-right">
+				{DEPOSIT}
+			</div>
 		</div>
 	</div>
 </div>
-<div class="well">
-	<h3 class="page-header">{BOOKINGSPECIALREQ}</h3>
 
-	<p>{SPECIALS} {DISCLAIMER}</p>
-	<textarea class="form-control" name="specialReqs" rows="2">{SPECIALREQS}</textarea>
-</div>
-<patTemplate:tmpl name="gateways">
-	<div class="row">
-		<div class="col-md-3">
-			{GWINPUT}
-		</div>
-		<div class="col-md-9">
-			{GWIMAGE}
-		</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h2 class="panel-title">{BOOKINGSPECIALREQ}</h2>
 	</div>
-</patTemplate:tmpl>
-<div class="row">
-	<div class="col-md-9">
-		{AMENDTEXT}
-	</div>
-	<div class="col-md-3">
-		<input id="amend" type="submit" value="{AMEND}" class="btn btn-info" onclick="editbooking();"/>
+	<div class="panel-body">
+		<p>{SPECIALS} {DISCLAIMER}</p>
+		<textarea class="col-md-12" name="specialReqs" rows="2">{SPECIALREQS}</textarea>
 	</div>
 </div>
-<p>&nbsp;</p>
 
-<div class="">
-	<input name="agreecheck" type="checkbox"/>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h2 class="panel-title">{GATEWAYCHOICEINTRO}</h2>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<patTemplate:tmpl name="gateways">
+			<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3" align="center">
+				<label>{GWINPUT}</label>
+				<div>{GWIMAGE}</div>
+			</div>
+			</patTemplate:tmpl>
+		</div>
+	</div>
+</div>
+
+<div id="agreealert" class="alert alert-warning">
+	<input name="agreecheck" type="checkbox" onchange="agreeAlert();"/>
 	<span> {TERMSPRETEXT}&nbsp;{TERMS}</span>
 </div>
 <div class="form-actions">
-	<input type="submit" id="send" name="send" value="{THEBUTTON}" class="btn btn-primary" onclick="return confirmation_validate(false);"/>
-	<patTemplate:tmpl name="cartoutput" type="simpleCondition" requiredVars="_jomres_saveforlater"> {_JOMRES_CART_OR}
-		<input type="submit" id="cart" name="cart" value="{_JOMRES_SAVEFORLATER}" class="btn btn-info" onclick="return confirmation_validate(true);"/>
-	</patTemplate:tmpl>
+	<div class="col-md-4 col-md-push-4" align="center">
+		<input type="submit" id="send" name="send" value="{THEBUTTON}" class="btn btn-success btn-lg btn-block" onclick="return confirmation_validate(false);"/>
+		<patTemplate:tmpl name="cartoutput" type="simpleCondition" requiredVars="_jomres_saveforlater"> {_JOMRES_CART_OR}
+			<input class="btn btn-default btn-lg btn-block" type="submit" id="cart" name="cart" value="{_JOMRES_SAVEFORLATER}" onclick="return confirmation_validate(true);"/>
+		</patTemplate:tmpl>
+	</div>
 </div>
 </form>
 </patTemplate:tmpl>
