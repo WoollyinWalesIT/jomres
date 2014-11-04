@@ -1,16 +1,16 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<script language="JavaScript" type="text/javascript">
-		<!--
-		jomresJquery(document).ready(function () {
-			make_datatable('list_bookings', '{PAGETITLE}', '{LIVESITE}');
-		});
-		//-->
-	</script>
-	<h2 class="page-header">{TITLE}</h2>
-	<table width="100%" id="list_bookings" class="table table-striped">
-		<thead>
+<script language="JavaScript" type="text/javascript">
+	<!--
+	jomresJquery(document).ready(function () {
+		make_datatable('list_bookings', '{PAGETITLE}', '{LIVESITE}');
+	});
+	//-->
+</script>
+<h2 class="page-header">{TITLE}</h2>
+<table width="100%" id="list_bookings" class="table table-striped">
+	<thead>
 		<tr>
-			<th class="hidden-phone">&nbsp;</th>
+			<th>&nbsp;</th>
 			<th>{HPNAME}</th>
 			<th>{HARRIVAL}</th>
 			<th>{HDEPARTURE}</th>
@@ -18,19 +18,19 @@
 			<th>{HTOTAL}</th>
 			<th>&nbsp;</th>
 		</tr>
-		</thead>
-		<tbody>
-		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="propertyname">
-			<tr>
-				<td class="hidden-phone">{IMAGE}</td>
-				<td><strong><a href="{PROPERTYDETAILSLINK}">{PROPERTYNAME}</a></strong></td>
-				<td>{ARRIVAL}</td>
-				<td>{DEPARTURE}</td>
-				<td>{EXTRASVALUE}</td>
-				<td>{CONTRACT_TOTAL}</td>
-				<td><a href="{VIEWLINK}" class="btn btn-default">{VIEWLINK_TEXT}</a></td>
-			</tr>
-		</patTemplate:tmpl>
-		</tbody>
-	</table>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="propertyname">
+		<tr>
+			<td>{IMAGE}</td>
+			<td><strong><a href="{PROPERTYDETAILSLINK}">{PROPERTYNAME}</a></strong></td>
+			<td>{ARRIVAL}</td>
+			<td>{DEPARTURE}</td>
+			<td>{EXTRASVALUE}</td>
+			<td>{CONTRACT_TOTAL}</td>
+			<td><a href="{VIEWLINK}" class="btn btn-default">{VIEWLINK_TEXT}</a></td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
 </patTemplate:tmpl>

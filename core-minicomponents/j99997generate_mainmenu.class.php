@@ -207,7 +207,7 @@ class j99997generate_mainmenu
 		if (!isset($jrConfig[ 'navbar_inverse' ]))
 			$jrConfig[ 'navbar_inverse' ] = 0;
 		
-		$output['NAVBAR_INVERSE']= '';
+		$output['NAVBAR_INVERSE']= 'navbar-default';
 		if ($jrConfig[ 'navbar_inverse' ] != 0)
 			{
 			$output['NAVBAR_INVERSE']= 'navbar-inverse';
