@@ -5,10 +5,10 @@ function changeCurrency($newCurrency) {
 	}
 </script>
 <div class="btn-group">
-	<button data-toggle="dropdown" type="button" class="btn btn-default btn-xs dropdown-toggle js-activated"> {FIRST}<span class="caret"></span> </button>
-	<ul class="dropdown-menu">
+	<button data-toggle="dropdown" type="button" class="btn btn-default btn-xs dropdown-toggle js-activated">{FIRST} <span class="caret"></span></button>
+	<ul class="dropdown-menu" role="menu">
 		<patTemplate:tmpl name="rows">
-		<li> <a href="#" onclick='changeCurrency("{CURRENCY_CODE}");'  >{TEXT}</a> </li>
+		<li><a href="#" onclick='changeCurrency("{CURRENCY_CODE}");'>{TEXT}</a></li>
 		</patTemplate:tmpl>
 	</ul>
 </div>

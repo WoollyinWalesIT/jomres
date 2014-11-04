@@ -12,7 +12,7 @@
 <h2 class="page-header">{PAGETITLE}</h2>
 
 <div class="well">
-	<a href="#list_invoices_filters" role="button" data-toggle="modal" class="btn btn-default" onclick="jomresJquery('#ui-datepicker-div').appendTo('#list_invoices_filters');"><i class="icon-filter"></i> {HFILTER}</a>
+	<a href="#list_invoices_filters" role="button" data-toggle="modal" class="btn btn-default" onclick="jomresJquery('#ui-datepicker-div').appendTo('#list_invoices_filters');"><i class="fa fa-filter"></i> {HFILTER}</a>
 </div>
 
 <table id="frontend_list_invoices" class="table table-striped" width="100%">
@@ -43,13 +43,13 @@
 <span class="label label-red">{HUNPAID}</span>
 <span class="label label-black">{HCANCELLED}</span>
 
-<form action="{JOMRES_SITEPAGE_URL}&task=list_invoices&guest_id={GUEST_ID}" method="post" name="filterInvoices"  role="form">
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}&task=list_invoices&guest_id={GUEST_ID}" method="post" name="filterInvoices" role="form">
 <div id="list_invoices_filters" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h3 id="myModalLabel">{HFILTER}</h3>
+				<h4 id="myModalLabel">{HFILTER}</h4>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
