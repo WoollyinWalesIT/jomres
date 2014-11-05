@@ -262,45 +262,45 @@ class j06001list_bookings_ajax
 				{
 				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 				$toolbar->newToolbar();
-				$toolbar->addSecondaryItem( 'icon-screen', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editBooking&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', _JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS, false ) );
+				$toolbar->addSecondaryItem( 'fa fa-pencil-square-o', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editBooking&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', _JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS, false ) );
 				if ( $p->cancelled == 0 )
 					{
 					if ( $p->booked_in == 0 && isset($MiniComponents->registeredClasses['06001checkin']) )
 						{
 						if ( $p->approved == 1 && $today >= $p->arrival )
-							$toolbar->addItem( 'icon-plus', 'btn btn-default ', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=checkin&contract_uid=' . $p->contract_uid . $thisProperty), jr_gettext( '_JOMRES_ACTION_CHECKIN', _JOMRES_ACTION_CHECKIN, false ) );
+							$toolbar->addItem( 'fa fa-sign-in', 'btn btn-default ', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=checkin&contract_uid=' . $p->contract_uid . $thisProperty), jr_gettext( '_JOMRES_ACTION_CHECKIN', _JOMRES_ACTION_CHECKIN, false ) );
 						else
-							$toolbar->addItem( 'icon-plus', 'btn btn-default disabled', '', 'javascript:void();', jr_gettext( '_JOMRES_ACTION_CHECKIN', _JOMRES_ACTION_CHECKIN, false ) );
+							$toolbar->addItem( 'fa fa-sign-in', 'btn btn-default disabled', '', 'javascript:void();', jr_gettext( '_JOMRES_ACTION_CHECKIN', _JOMRES_ACTION_CHECKIN, false ) );
 						}
 					elseif( $p->bookedout == 0 && isset($MiniComponents->registeredClasses['06001checkin']) )
-						$toolbar->addItem( 'icon-minus', 'btn btn-success', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=checkout&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_ACTION_CHECKOUT', _JOMRES_ACTION_CHECKOUT, false ) );
+						$toolbar->addItem( 'fa fa-sign-out', 'btn btn-success', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=checkout&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_ACTION_CHECKOUT', _JOMRES_ACTION_CHECKOUT, false ) );
 					elseif( $p->bookedout == 1 )
-						$toolbar->addItem( 'icon-ok', 'btn  btn-default disabled', '', 'javascript:void();', jr_gettext( '_JOMRES_STATUS_CHECKEDOUT', _JOMRES_STATUS_CHECKEDOUT, false ) );
+						$toolbar->addItem( 'fa fa-check', 'btn  btn-default disabled', '', 'javascript:void();', jr_gettext( '_JOMRES_STATUS_CHECKEDOUT', _JOMRES_STATUS_CHECKEDOUT, false ) );
 					else
 						{
-						$toolbar->addItem( 'icon-plus', 'btn btn-default ', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editBooking&contract_uid=' . $p->contract_uid . $thisProperty), jr_gettext( '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', _JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS, false ) );
+						$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-default ', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editBooking&contract_uid=' . $p->contract_uid . $thisProperty), jr_gettext( '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', _JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS, false ) );
 						}
 					if( $p->bookedout == 0 )
 						{
 						if ( $p->approved == 0 && isset($MiniComponents->registeredClasses['00005booking_enquiries']) )
 							{
-							$toolbar->addSecondaryItem( 'icon-ok', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=approve_enquiry&contractUid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_BOOKING_APPROVE_INQUIRY', _JOMRES_BOOKING_APPROVE_INQUIRY, false ) );
-							$toolbar->addSecondaryItem( 'icon-cancel', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=reject_enquiry&contractUid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_BOOKING_REJECT_INQUIRY', _JOMRES_BOOKING_REJECT_INQUIRY, false ) );
+							$toolbar->addSecondaryItem( 'fa fa-check', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=approve_enquiry&contractUid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_BOOKING_APPROVE_INQUIRY', _JOMRES_BOOKING_APPROVE_INQUIRY, false ) );
+							$toolbar->addSecondaryItem( 'fa fa-times', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=reject_enquiry&contractUid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_BOOKING_REJECT_INQUIRY', _JOMRES_BOOKING_REJECT_INQUIRY, false ) );
 							}
-						$toolbar->addSecondaryItem( 'icon-edit', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=amendBooking&contractUid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_CONFIRMATION_AMEND', _JOMRES_CONFIRMATION_AMEND, false ) );
-						$toolbar->addSecondaryItem( 'icon-cart', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=addServiceToBill&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_COM_ADDSERVICE_TITLE', _JOMRES_COM_ADDSERVICE_TITLE, false ) );
+						$toolbar->addSecondaryItem( 'fa fa-pencil-square-o', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=amendBooking&contractUid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_CONFIRMATION_AMEND', _JOMRES_CONFIRMATION_AMEND, false ) );
+						$toolbar->addSecondaryItem( 'fa fa-usd', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=addServiceToBill&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_COM_ADDSERVICE_TITLE', _JOMRES_COM_ADDSERVICE_TITLE, false ) );
 						}
 					if ( $p->deposit_paid == 0 && $p->bookedout == 0 && $p->cancelled == 0)
-						$toolbar->addSecondaryItem( 'icon-cart', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editDeposit&contractUid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE, false ) );
+						$toolbar->addSecondaryItem( 'fa fa-usd', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editDeposit&contractUid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE, false ) );
 					if ( $p->booked_in == 0 )
-						$toolbar->addSecondaryItem( 'icon-cancel', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=cancelBooking&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', _JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING, false ) );
+						$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=cancelBooking&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', _JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING, false ) );
 					}
 				elseif( $p->cancelled == 1 )
 					{
-					$toolbar->addItem( 'icon-cancel', 'btn disabled', '', 'javascript:void();', jr_gettext( '_JOMRES_STATUS_CANCELLED', _JOMRES_STATUS_CANCELLED, false ) );
+					$toolbar->addItem( 'fa fa-times', 'btn disabled', '', 'javascript:void();', jr_gettext( '_JOMRES_STATUS_CANCELLED', _JOMRES_STATUS_CANCELLED, false ) );
 					}
-				$toolbar->addSecondaryItem( 'icon-list-view', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=view_invoice&id=' . $p->invoice_uid . $thisProperty ), jr_gettext( '_JOMRES_MANAGER_SHOWINVOICE', _JOMRES_MANAGER_SHOWINVOICE, false ) );
-				$toolbar->addSecondaryItem( 'icon-edit', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=addnote&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMCOMP_BOOKINGNOTES_ADD', _JOMCOMP_BOOKINGNOTES_ADD, false ) );
+				$toolbar->addSecondaryItem( 'fa fa-file-text', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=view_invoice&id=' . $p->invoice_uid . $thisProperty ), jr_gettext( '_JOMRES_MANAGER_SHOWINVOICE', _JOMRES_MANAGER_SHOWINVOICE, false ) );
+				$toolbar->addSecondaryItem( 'fa fa-pencil-square-o', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=addnote&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMCOMP_BOOKINGNOTES_ADD', _JOMCOMP_BOOKINGNOTES_ADD, false ) );
 				$r[]=$toolbar->getToolbar();
 				}
 			

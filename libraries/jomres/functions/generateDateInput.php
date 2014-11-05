@@ -93,7 +93,7 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 	else
 		{
 		$output .= 'buttonText: "",';
-		$bs3_icon = '<span class="input-group-addon"><span class="fa fa-calendar"></span></span>';
+		$bs3_icon = '<span class="input-group-addon"><i class="fa fa-calendar"></i></span>';
 		}
 
 	$output .= '
@@ -124,8 +124,9 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 
 	});
 	</script>
-	<input type="text" ' . $size . ' name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" class="' . $input_class . ' form-control input-group" />'.$bs3_icon.'
-	';
+	<div class="input-group">
+		<input type="text" ' . $size . ' name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" class="' . $input_class . ' form-control" />'.$bs3_icon.'
+	</div>';
 	$br = "";
 	if ( $fieldName == "departureDate" && $jrConfig[ 'use_cleardate_checkbox' ] == "1" ) 
 		$br = "<br/>";

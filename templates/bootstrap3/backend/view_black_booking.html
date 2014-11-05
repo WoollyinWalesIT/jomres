@@ -1,49 +1,43 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<h2 class="page-header">{PAGETITLE}</h2>
 
-	<div class="row">
-		<div class="col-md-6">
-			<strong>{BBDATE}</strong>
-		</div>
-		<div class="col-md-6">
-			{BBSTART}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<strong>{BBDATEENDS}</strong>
-		</div>
-		<div class="col-md-6">
-			{BBENDS}
-		</div>
-	</div>
-	<div class="form-actions">
-		<a href="{JOMRES_SITEPAGE_URL}&task=listBlackBookings" class="btn btn-default"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
-		<a href="{JOMRES_SITEPAGE_URL}&task=deleteBlackBooking&contract_uid={CONTRACTID}" class="btn btn-danger"><i class="icon-trash"></i> {COMMON_DELETE}</a>
-	</div>
-	<h3 class="page-header">{INFO}</h3>
+<h2 class="page-header">{PAGETITLE}</h2>
 
-	<div class="row-striped">
-		<div class="row">
-			<div class="col-md-6">
-				<strong>{ROOM_NUMBER}</strong>
-			</div>
-			<div class="col-md-6">
-				<strong>{ROOM_NAME}</strong>
-			</div>
-		</div>
-		<patTemplate:tmpl name="bookingsrows" unusedvars="strip">
-			<div class="row">
-				<div class="col-md-6">
-					{ROOMNO}
-				</div>
-				<div class="col-md-6">
-					{ROOMNAME}
-				</div>
-			</div>
-		</patTemplate:tmpl>
-	</div>
-	<p>&nbsp;</p>
+<div class="well">
+	<a href="{JOMRES_SITEPAGE_URL}&task=listBlackBookings" class="btn btn-default"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
+	<a href="{JOMRES_SITEPAGE_URL}&task=deleteBlackBooking&contract_uid={CONTRACTID}" class="btn btn-danger"><i class="fa fa-trash-o"></i> {COMMON_DELETE}</a>
+</div>
 
-	<p class="alert alert-info">{REASON}</p>
+<div class="row">
+	<div class="col-md-6">
+		<strong>{BBDATE}</strong>
+	</div>
+	<div class="col-md-6">
+		{BBSTART}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<strong>{BBDATEENDS}</strong>
+	</div>
+	<div class="col-md-6">
+		{BBENDS}
+	</div>
+</div>
+<p>&nbsp;</p>
+<h3 class="page-header">{INFO}</h3>
+
+<table width="100%" class="table table-striped table-condensed table-bordered">
+	<tr>
+		<th>{ROOM_NUMBER}</th>
+		<th>{ROOM_NAME}</th>
+	</tr>
+	<patTemplate:tmpl name="bookingsrows" unusedvars="strip">
+	<tr>
+		<td>{ROOMNO}</td>
+		<td>{ROOMNAME}</td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+<p>&nbsp;</p>
+<p class="alert alert-info">{REASON}</p>
 </patTemplate:tmpl>
