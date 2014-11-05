@@ -186,9 +186,9 @@ class j06001listguests_ajax
 				{
 				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 				$toolbar->newToolbar();
-				$toolbar->addItem( 'icon-edit', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editGuest&guestUid=' . $g->guests_uid . $thisProperty), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
-				$toolbar->addSecondaryItem( 'icon-list-view', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=list_invoices&guest_id=' . $g->guests_uid ), jr_gettext( '_JOMRES_MANAGER_SHOWINVOICES', _JOMRES_MANAGER_SHOWINVOICES, false ) );
-				$toolbar->addSecondaryItem( 'icon-trash', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=deleteGuest&guestUid=' . $g->guests_uid . $thisProperty), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
+				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editGuest&guestUid=' . $g->guests_uid . $thisProperty), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
+				$toolbar->addSecondaryItem( 'fa fa-file-text', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=list_invoices&guest_id=' . $g->guests_uid ), jr_gettext( '_JOMRES_MANAGER_SHOWINVOICES', _JOMRES_MANAGER_SHOWINVOICES, false ) );
+				$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=deleteGuest&guestUid=' . $g->guests_uid . $thisProperty), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
 				$r[]=$toolbar->getToolbar();
 				}
 			

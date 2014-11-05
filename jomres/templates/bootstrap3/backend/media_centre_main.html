@@ -31,9 +31,9 @@
 <div id="tour_target_mediacentre_introduction"></div>
 
 <patTemplate:tmpl name="notes" unusedvars="strip" type="simpleCondition" requiredVars="note">
-<div class="alert">
+<p class="alert alert-warning">
 	{NOTE}
-</div>
+</p>
 </patTemplate:tmpl>
 
 <div class="row">
@@ -48,16 +48,16 @@
 			<div id="tour_target_mediacentre_uploadcontrols"></div>
 			<div id="tour_target_mediacentre_selectedimages"></div>
 
-			<div class="page-header"><h3>Upload form</h3></div>
+			<div class="page-header"><h4>Upload form</h4></div>
 			<!-- The fileinput-button span is used to style the file input field as button -->
 			<span class="btn btn-success fileinput-button">
-				<i class="glyphicon glyphicon-plus"></i>
+				<i class="fa fa-plus"></i>
 				<span>{_JOMRES_MEDIA_CENTRE_BUTTON_ADD}</span>
 				<!-- The file input field used as target for the file upload widget -->
 				<input id="fileupload" type="file" name="files[]" multiple>
 			</span>
 			<div class="btn btn-default" id="clearbutton">
-				<i class="glyphicon glyphicon-minus"></i>
+				<i class="fa fa-minus"></i>
 				{_JOMRES_MEDIA_CENTRE_CLEAR}
 			</div>
 			<span class="btn btn-primary" id="upload_all">

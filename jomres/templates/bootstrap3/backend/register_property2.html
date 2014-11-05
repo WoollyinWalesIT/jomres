@@ -120,102 +120,141 @@
 	});
 	//-->
 </script>
+
 <div id="tour_target_registration_2"></div>
 <h2 class="page-header">{_JOMRES_REGISTRATION_STEP_2_OF_2}</h2>
-
 <p>{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1} {JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2}</p>
 
-<form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm" role="form">
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm" class="form-horizontal" role="form">
 	<div class="form-group"><div id="tour_target_registration_2_mrpsrp"></div>
-		<label class="control-label" for="mrpsrp"><!--{ISTHISANMRP}-->MRP/SRP</label>
-		{ISTHISANMRP_DROPDOWN}<span class="add-on"></span>
+		<label class="col-md-2 control-label" for="mrpsrp"><!--{ISTHISANMRP}-->MRP/SRP</label>
+		<div class="col-md-10">
+			{ISTHISANMRP_DROPDOWN}
+		</div>
 	</div>
 	<div class="form-group warning">
-		<label class="control-label" for="property_name">{HNAME}</label><div id="tour_target_registration_2_name_address"></div>
-		<input id="property_name" name="property_name" type="text" size="20" value="{PROPERTY_NAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_PROPERTYNAME}"/>
+		<label class="col-md-2 control-label" for="property_name">{HNAME}</label><div id="tour_target_registration_2_name_address"></div>
+		<div class="col-md-10">
+			<input id="property_name" name="property_name" type="text" value="{PROPERTY_NAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_PROPERTYNAME}"/>
+		</div>
 	</div>
 	<div class="form-group warning">
-		<label class="control-label" for="property_street">{HSTREET}</label>
-		<input id="property_street" name="property_street" type="text" size="20" value="{PROPERTY_STREET}" class="form-control" placeholder="{COMMON_PLACEHOLDER_STREET}"/>
+		<label class="col-md-2 control-label" for="property_street">{HSTREET}</label>
+		<div class="col-md-10">
+			<input id="property_street" name="property_street" type="text" value="{PROPERTY_STREET}" class="form-control" placeholder="{COMMON_PLACEHOLDER_STREET}"/>
+		</div>
 	</div>
 	<div class="form-group warning">
-		<label class="control-label" for="property_town">{HTOWN}</label>
-		<input id="property_town" name="property_town" type="text" size="20" value="{PROPERTY_TOWN}" class="form-control" placeholder="{COMMON_PLACEHOLDER_TOWN}"/>
+		<label class="col-md-2 control-label" for="property_town">{HTOWN}</label>
+		<div class="col-md-10">
+			<input id="property_town" name="property_town" type="text" value="{PROPERTY_TOWN}" class="form-control" placeholder="{COMMON_PLACEHOLDER_TOWN}"/>
+		</div>
 	</div>
 	<div class="form-group warning">
-		<label class="control-label" for="property_postcode">{HPOSTCODE}</label>
-		<input id="property_postcode" name="property_postcode" type="text" size="20" value="{PROPERTY_POSTCODE}" class="form-control" placeholder="{COMMON_PLACEHOLDER_POSTCODE}"/>
+		<label class="col-md-2 control-label" for="property_postcode">{HPOSTCODE}</label>
+		<div class="col-md-10">
+			<input id="property_postcode" name="property_postcode" type="text" value="{PROPERTY_POSTCODE}" class="form-control" placeholder="{COMMON_PLACEHOLDER_POSTCODE}"/>
+		</div>
 	</div>
 	<div class="form-group warning">
-		<label class="control-label" for="property_tel">{HTELEPHONE}</label>
-		<input id="property_tel" name="property_tel" type="tel" size="20" value="{PROPERTY_TEL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_LANDLINE}"/>
+		<label class="col-md-2 control-label" for="property_tel">{HTELEPHONE}</label>
+		<div class="col-md-10">
+			<input id="property_tel" name="property_tel" type="tel" value="{PROPERTY_TEL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_LANDLINE}"/>
+		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label" for="property_fax">{HFAX}</label>
-		<input id="property_fax" name="property_fax" type="tel" value="{PROPERTY_FAX}" class="form-control" placeholder="{HFAX}"/>
+		<label class="col-md-2 control-label" for="property_fax">{HFAX}</label>
+		<div class="col-md-10">
+			<input id="property_fax" name="property_fax" type="tel" value="{PROPERTY_FAX}" class="form-control" placeholder="{HFAX}"/>
+		</div>
 	</div>
 	<div class="form-group warning">
-		<label class="control-label" for="property_email">{HEMAIL}</label>
-		<input id="property_email" name="property_email" type="email" size="20" value="{PROPERTY_EMAIL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_EMAIL}"/>
+		<label class="col-md-2 control-label" for="property_email">{HEMAIL}</label>
+		<div class="col-md-10">
+			<input id="property_email" name="property_email" type="email" value="{PROPERTY_EMAIL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_EMAIL}"/>
+		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label" for="stars">{HSTARS}</label><div id="tour_target_registration_2_stars"></div>
-		{STARSDROPDOWN}
+		<label class="col-md-2 control-label" for="stars">{HSTARS}</label><div id="tour_target_registration_2_stars"></div>
+		<div class="col-md-10">
+			{STARSDROPDOWN}
+		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label" for="lat">Lat: (nn.nnnn)</label>
-		<input id="lat" name="lat" type="text" size="20" value="{LAT}" class="form-control" placeholder="00.0000"/>
+		<label class="col-md-2 control-label" for="lat">Lat: (nn.nnnn)</label>
+		<div class="col-md-10">
+			<input id="lat" name="lat" type="text" value="{LAT}" class="form-control" placeholder="00.0000"/>
+		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label" for="long">Long: (nn.nnnn)</label>
-		<input id="lng" name="long" type="text" size="20" value="{LONG}" class="form-control" placeholder="00.0000"/>
+		<label class="col-md-2 control-label" for="long">Long: (nn.nnnn)</label>
+		<div class="col-md-10">
+			<input id="lng" name="long" type="text" value="{LONG}" class="form-control" placeholder="00.0000"/>
+		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label" for="firstname">{LATLONG_DESC}</label><div id="tour_target_registration_2_latlong"></div>
-		{MAP}
+		<label class="col-md-2 control-label" for="firstname">{LATLONG_DESC}</label><div id="tour_target_registration_2_latlong"></div>
+		<div class="col-md-10">
+			{MAP}
+		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label" for="pid">{HFEATURES}</label><div id="tour_target_registration_2_features"></div>
-		<patTemplate:tmpl name="globalPfeatures">
+		<label class="col-md-2 control-label" for="pid">{HFEATURES}</label><div id="tour_target_registration_2_features"></div>
+		<div class="col-md-10">
+			<patTemplate:tmpl name="globalPfeatures">
 			<div style="float:left;">
 				<input type="checkbox" name="pid[]" value="{PID}" style="float:left;"> {FEATURE}
 			</div>
-	</patTemplate:tmpl>
+			</patTemplate:tmpl>
+		</div>
 	</div>
 	<div class="clearfix"></div>
 	<div class="form-group warning">
-		<label class="control-label" for="property_description">{HPROPDESCRIPTION}</label><div id="tour_target_registration_2_description"></div>
-		{PROPERTY_DESCRIPTION}
+		<label class="col-md-2 control-label" for="property_description">{HPROPDESCRIPTION}</label><div id="tour_target_registration_2_description"></div>
+		<div class="col-md-10">
+			{PROPERTY_DESCRIPTION}
+		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label" for="property_checkin_times">{HCHECKINTIMES}</label>
-		{PROPERTY_CHECKIN_TIMES}
+		<label class="col-md-2 control-label" for="property_checkin_times">{HCHECKINTIMES}</label>
+		<div class="col-md-10">
+			{PROPERTY_CHECKIN_TIMES}
+		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label" for="property_area_activities">{HAREAACTIVITIES}</label>
-		{PROPERTY_AREA_ACTIVITIES}
+		<label class="col-md-2 control-label" for="property_area_activities">{HAREAACTIVITIES}</label>
+		<div class="col-md-10">
+			{PROPERTY_AREA_ACTIVITIES}
+		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label" for="property_driving_directions">{HDRIVINGDIRECTIONS}</label>
-		{PROPERTY_DRIVING_DIRECTIONS}
+		<label class="col-md-2 control-label" for="property_driving_directions">{HDRIVINGDIRECTIONS}</label>
+		<div class="col-md-10">
+			{PROPERTY_DRIVING_DIRECTIONS}
+		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label" for="property_airports">{HAIRPORTS}</label>
-		{PROPERTY_AIRPORTS}
+		<label class="col-md-2 control-label" for="property_airports">{HAIRPORTS}</label>
+		<div class="col-md-10">
+			{PROPERTY_AIRPORTS}
+		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label" for="property_othertransport">{HOTHERTRANSPORT}</label>
-		{PROPERTY_OTHERTRANSPORT}
+		<label class="col-md-2 control-label" for="property_othertransport">{HOTHERTRANSPORT}</label>
+		<div class="col-md-10">
+			{PROPERTY_OTHERTRANSPORT}
+		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label" for="property_policies_disclaimers">{HPOLICIESDISCLAIMERS}</label><div id="tour_target_registration_2_policies"></div>
-		{PROPERTY_POLICIES_DISCLAIMERS}
+		<label class="col-md-2 control-label" for="property_policies_disclaimers">{HPOLICIESDISCLAIMERS}</label><div id="tour_target_registration_2_policies"></div>
+		<div class="col-md-10">
+			{PROPERTY_POLICIES_DISCLAIMERS}
+		</div>
 	</div>
 	<div class="form-actions">
-		<div class="">
-			<a href="{JOMRES_SITEPAGE_URL}" class="btn btn-default"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
-			<button type="button" class="btn btn-primary" onclick="validatePropertyRegistration();">
-				{_JOMRES_REVIEWS_SUBMIT} <i class="icon-arrow-right icon-white"></i></button>
+		<div class="col-md-10 col-md-offset-2">
+			<button type="button" class="btn btn-primary" onclick="validatePropertyRegistration();"><i class="fa fa-check"></i> {_JOMRES_REVIEWS_SUBMIT}</button>
+			<a href="{JOMRES_SITEPAGE_URL}" class="btn btn-default"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
 		</div>
 	</div>
 	<input type="hidden" name="propertyType" value="{PROPERTYTYPE}"/>

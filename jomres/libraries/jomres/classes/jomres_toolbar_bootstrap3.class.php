@@ -172,18 +172,18 @@ class jomres_toolbar_bootstrap
 		// This class is a modification of an older class. We're not going to rewrite every script that calls the buttons, there're too many, instead we'll modify this class to look at what is passed.
 
 		$icon = '';
-		if ( strpos( $image, 'EditItem.png' ) ) $icon = 'icon-edit';
-		if ( strpos( $image, 'Tick.png' ) ) $icon = 'icon-ok';
-		if ( strpos( $image, 'AddItem.png' ) ) $icon = 'icon-plus';
-		if ( strpos( $image, 'guestAdd.png' ) ) $icon = 'icon-plus';
-		if ( strpos( $image, 'Cancel.png' ) ) $icon = 'icon-cancel';
-		if ( strpos( $image, 'Save.png' ) ) $icon = 'icon-apply';
-		if ( strpos( $image, 'WasteBasket.png' ) ) $icon = 'icon-trash';
-		if ( strpos( $image, 'Symbol%20Refresh.png' ) ) $icon = 'icon-refresh';
-		if ( strpos( $image, 'CopyItem.png' ) ) $icon = 'icon-share';
-		if ( strpos( $image, 'ViewArchive.png' ) ) $icon = 'icon-archive';
-		if ( strpos( $image, 'BookGuestIn.png' ) ) $icon = 'icon-plus';
-		if ( strpos( $image, 'BookGuestOut.png' ) ) $icon = 'icon-minus';
+		if ( strpos( $image, 'EditItem.png' ) ) $icon = 'fa-pencil-square-o';
+		if ( strpos( $image, 'Tick.png' ) ) $icon = 'fa-check';
+		if ( strpos( $image, 'AddItem.png' ) ) $icon = 'fa-plus';
+		if ( strpos( $image, 'guestAdd.png' ) ) $icon = 'fa-plus';
+		if ( strpos( $image, 'Cancel.png' ) ) $icon = 'fa-times';
+		if ( strpos( $image, 'Save.png' ) ) $icon = 'fa-check';
+		if ( strpos( $image, 'WasteBasket.png' ) ) $icon = 'fa-trash-o';
+		if ( strpos( $image, 'Symbol%20Refresh.png' ) ) $icon = 'fa-refresh';
+		if ( strpos( $image, 'CopyItem.png' ) ) $icon = 'fa-files-o';
+		if ( strpos( $image, 'ViewArchive.png' ) ) $icon = 'fa-archive';
+		if ( strpos( $image, 'BookGuestIn.png' ) ) $icon = 'fa-sign-in';
+		if ( strpos( $image, 'BookGuestOut.png' ) ) $icon = 'fa-sign-out';
 
 		//var_dump($image." ".$icon);
 
@@ -191,46 +191,46 @@ class jomres_toolbar_bootstrap
 		if ( strpos( $image, 'Tick.png' ) )
 			{
 			$emphasis = 'btn-success';
-			$icon .= " icon-white";
+			//$icon .= " icon-white";
 			}
 		if ( strpos( $image, 'guestAdd.png' ) )
 			{
 			$emphasis = 'btn-primary';
-			$icon .= " icon-white ";
+			//$icon .= " icon-white ";
 			}
 		if ( strpos( $image, 'AddItem.png' ) )
 			{
 			$emphasis = 'btn-primary';
-			$icon .= " icon-white ";
+			//$icon .= " icon-white ";
 			}
 		if ( strpos( $image, 'Save.png' ) )
 			{
 			$emphasis = 'btn-primary';
-			$icon .= " icon-white ";
+			//$icon .= " icon-white ";
 			}
 		if ( strpos( $image, 'WasteBasket.png' ) )
 			{
 			$emphasis = 'btn-danger';
-			$icon .= " icon-white ";
+			//$icon .= " icon-white ";
 			}
 		if ( strpos( $image, 'EditItem.png' ) )
 			{
 			$emphasis = 'btn-info';
-			$icon .= " icon-white ";
+			//$icon .= " icon-white ";
 			}
 		if ( strpos( $image, 'BookGuestOut.png' ) )
 			{
 			$emphasis = 'btn-success';
-			$icon .= " icon-white ";
+			//$icon .= " icon-white ";
 			}
 
 		if ( $submitOnClick ) 
 			{
-			$submit = '<a class="btn btn-md ' . $emphasis . '" href="javascript:jomres_submitbutton(\'' . $submitTask . '\');"><i class="' . $icon . '"></i> ' . $text . '</a> ';
+			$submit = '<a class="btn btn-md ' . $emphasis . '" href="javascript:jomres_submitbutton(\'' . $submitTask . '\');"><i class="fa ' . $icon . '"></i> ' . $text . '</a> ';
 			}
 		else
 			{
-			$submit = '<a href="' . $link . '" class="btn btn-md ' . $emphasis . '"><i class="' . $icon . '"></i> ' . $text . '</a> ';
+			$submit = '<a href="' . $link . '" class="btn btn-md ' . $emphasis . '"><i class="fa ' . $icon . '"></i> ' . $text . '</a> ';
 			}
 		$output = $submit;
 
