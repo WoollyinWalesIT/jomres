@@ -217,20 +217,21 @@ function jomresGetParam( $request, $element, $def = null, $mask = '' ) // variab
 				if ( $jrConfig[ 'input_filtering' ] != "weak" )
 					{
 					$clean = jomres_purify_html( $dirty );
-					if (strstr($clean,"&#39;;") || strstr($clean,"&#34;;")|| strstr($clean,"Jzs=")|| strstr($clean,"Ijs=") || strstr($clean,"&quot;;") ) // '; "; '; (base64) "; (base64)
+					
+					if (strstr($clean,"&#39;;") || strstr($clean,"&#34;;")|| strstr($clean,"Jzs=")|| strstr($clean,"Ijs=") || strstr($clean,"&quot;;")  || strstr($clean,"EMBED SRC") ) // '; "; '; (base64) "; (base64)
 						throw new Exception ("Error, illegal use of Javascript");
 					}
 				else
 					{
 					$clean = str_replace( "'", "&#180;", $dirty );
-					if (strstr($clean,"&#39;;") || strstr($clean,"&#34;;")|| strstr($clean,"Jzs=")|| strstr($clean,"Ijs=") || strstr($clean,"&quot;;") ) // '; "; '; (base64) "; (base64)
+					if (strstr($clean,"&#39;;") || strstr($clean,"&#34;;")|| strstr($clean,"Jzs=")|| strstr($clean,"Ijs=") || strstr($clean,"&quot;;")  || strstr($clean,"EMBED SRC") ) // '; "; '; (base64) "; (base64)
 						throw new Exception ("Error, illegal use of Javascript");
 					}
 				}
 			else
 				{
 				$clean = jomres_sanitise_string( $dirty , $element );
-				if (strstr($clean,"&#39;;") || strstr($clean,"&#34;;")|| strstr($clean,"Jzs=")|| strstr($clean,"Ijs=") || strstr($clean,"&quot;;") ) // '; "; '; (base64) "; (base64)
+				if (strstr($clean,"&#39;;") || strstr($clean,"&#34;;")|| strstr($clean,"Jzs=")|| strstr($clean,"Ijs=") || strstr($clean,"&quot;;")   || strstr($clean,"EMBED SRC") ) // '; "; '; (base64) "; (base64)
 					throw new Exception ("Error, illegal use of Javascript");
 				}
 			
