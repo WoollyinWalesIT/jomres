@@ -975,6 +975,9 @@ class jomres_obsolete_file_handling
 		
 		
 		$this->add_obs_file( $this->dir_minicomponents . 'j00004x_init_javascript_css_files.class.php' );
+		
+		$this->add_obs_file( $this->dir_minicomponents . 'j99999pack_javascript.class.php' );
+		
 		}
 
 	function add_obs_file( $path_and_file )
