@@ -149,7 +149,7 @@ class j03020insertbooking
 						$discount_details = "";
 						foreach ( $discount as $d )
 							{
-							$discount_details .= serialize( $d );
+							$discount_details .= strip_tags(serialize( $d ));
 							}
 						}
 
@@ -359,10 +359,9 @@ class j03020insertbooking
 						$discount_details = "";
 						foreach ( $discount as $d )
 							{
-							$discount_details .= serialize( $d );
+							$discount_details .= strip_tags(serialize( $d ));
 							}
 						}
-						
 					
 					if ( !$secret_key_payment )
 						{
@@ -451,7 +450,7 @@ class j03020insertbooking
 						$newtext = $tmpBookingHandler->getBookingFieldVal( "wisepricediscount" );
 					
 					$dt    = date( "Y-m-d H-i-s" );
-					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . RemoveXSS( $newtext ) . "','$dt','" . (int) $property_uid . "')";
+					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . RemoveXSS( strip_tags($newtext) ) . "','$dt','" . (int) $property_uid . "')";
 					doInsertSql( $query, "" );
 
 					if ( empty( $contract_uid ) )

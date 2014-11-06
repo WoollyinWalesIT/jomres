@@ -431,7 +431,7 @@ try
 				if (count($result)==0)
 					{
 					$data  = array ( 'tmpbooking' => $tmpBookingHandler->tmpbooking, 'tmpguest' => $tmpBookingHandler->tmpguest );
-					$query = "INSERT INTO #__jomres_booking_data_archive SET `data`='" . serialize( $data ) . "',`date`='" . date( 'Y-m-d H:i:s' ) . "', `tag` = '".$tag."'";
+					$query = "INSERT INTO #__jomres_booking_data_archive SET `data`='" . strip_tags(serialize( $data )) . "',`date`='" . date( 'Y-m-d H:i:s' ) . "', `tag` = '".$tag."'";
 					doInsertSql( $query, '' );
 					}
 				
@@ -929,6 +929,8 @@ try
 		}
 
 	$performance_monitor->set_point( "post-menu generation" );
+	
+	$MiniComponents->triggerEvent( '99999', $componentArgs ); // Optional end run scripts
 
 	$tmpBookingHandler->close_jomres_session();
 
@@ -939,8 +941,6 @@ try
 		{
 		foreach ( $MiniComponents->log as $log ) echo "Log :" . $log . "<br>";
 		}
-
-	$MiniComponents->triggerEvent( '99999', $componentArgs ); // Optional end run scripts
 	
 	if ($_REQUEST['modal_wrap'] == "1")
 		{
