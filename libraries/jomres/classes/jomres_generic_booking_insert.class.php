@@ -108,6 +108,11 @@ class jomres_generic_booking_insert
 	
 	private function init()
 		{
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+		$tmpBookingHandler->resetTempBookingData();
+		$tmpBookingHandler->resetTempGuestData();
+		$tmpBookingHandler->resetCreditCardDetails();
+		
 		$this->booking_details = array(
 			"property_uid"				=> 0,					// 1 ***** Required *****
 			"requestedRoom"				=> '',					// "48^1522,49^1522" A HAT separated list of rooms combined with tariffs ***** Required *****
