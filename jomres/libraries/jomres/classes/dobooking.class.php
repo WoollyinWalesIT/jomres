@@ -6533,7 +6533,7 @@ class dobooking
 					//$discountedRate=$d['discountedRate'];
 					$discountOutput .= ' ' . $roomtype_abbr . jr_gettext( '_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', _JOMCOMP_WISEPRICE_HASBEENDISCOUNTED, false ) . output_price( $roomrate_foroutput ) . jr_gettext( '_JOMCOMP_WISEPRICE_TO', _JOMCOMP_WISEPRICE_TO, false ) . output_price( $discountedate_foroutput ) . ' <br/>';
 					$tmpBookingHandler->updateBookingField( "wisepricediscount", $discountOutput );
-					$discountsForTmpdata[ ] = array ( "type" => "MRP", "roomtypeabbr" => $roomtype_abbr, "discountfrom" => output_price( $roomrate ), "discountto" => output_price( $d[ 'discountedRate' ] ) );
+					$discountsForTmpdata[ ] = array ( "type" => "MRP", "roomtypeabbr" => $roomtype_abbr, "discountfrom" =>  $roomrate, "discountto" => $d[ 'discountedRate' ] );
 					$tmpBookingHandler->saveBookingData();
 					}
 				else
