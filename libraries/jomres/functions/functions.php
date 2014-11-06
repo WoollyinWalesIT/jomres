@@ -474,56 +474,6 @@ function jomres_formatBytes($bytes, $precision = 2)
     $pow = min($pow, count($units) - 1); 
     return round($bytes, $precision) . ' ' . $units[$pow]; 
 	} 
-	
-/*
-An output filter.
-*/
-
-function jomres_decode( $string )
-	{
-	$string = str_replace( "&#34;", '&ldquo;', $string );
-	$string = str_replace( "&#38;", "&", $string );
-	$string = str_replace( "&#39;", "&#96;", $string );
-	$string = str_replace( "&#60;x&#62;", "", $string ); // Older versions of Jomres used to add <x> to strings to make them safe. We don't need that any more, however if we don't add this line then some older installations may show <x> in, for example, the property details.
-	$string = str_replace( "&#60;", "<", $string );
-	$string = str_replace( "&#62;", ">", $string );
-	$string = str_replace( "&lt;", "<", $string );
-	$string = str_replace( "&gt;", ">", $string );
-
-	$string = str_replace( "\xe2\x80\xa8", '', $string ); // Strip out some naughty little ascii line seperators that are absolute devils to remove if you're not looking for them. They'll break your javascript.
-	return $string;
-	}
-
-
-/* 
-The above function should suffice for most circumstances, however we may find later that some users will want more freedom to enter data that shows up in output, later on. If that's the case we'll swap the above function to this one.
-*/
-
-/*
-function jomres_decode( $string )
-	{
-	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-	$jrConfig   = $siteConfig->get();
-	if ( $jrConfig[ 'input_filtering' ] == "weak" )
-		{
-		$string = html_entity_decode( $string, ENT_QUOTES );
-		}
-	else
-		{
-		$string = str_replace( "&#34;", '&ldquo;', $string );
-		$string = str_replace( "&#38;", "&", $string );
-		$string = str_replace( "&#39;", "&#96;", $string );
-		$string = str_replace( "&#60;x&#62;", "", $string ); // Older versions of Jomres used to add <x> to strings to make them safe. We don't need that any more, however if we don't add this line then some older installations may show <x> in, for example, the property details.
-		$string = str_replace( "&#60;", "<", $string );
-		$string = str_replace( "&#62;", ">", $string );
-		$string = str_replace( "&lt;", "<", $string );
-		$string = str_replace( "&gt;", ">", $string );
-		}
-
-	$string = str_replace( "\xe2\x80\xa8", '', $string ); // Strip out some naughty little ascii line seperators that are absolute devils to remove if you're not looking for them. They'll break your javascript.
-	return $string;
-	}
-*/
 
 
 function echo_backtrace()
