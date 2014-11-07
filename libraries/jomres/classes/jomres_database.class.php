@@ -80,6 +80,11 @@ class jomres_database
 		else
 		$this->error = mysql_error();
 		$this->db_prefix = get_showtime( 'dbprefix' );
+		
+		// PDO
+		// Disabled for now
+		//$this->PDOdb = new PDO("mysql:host=".get_showtime( 'host' ).";dbname=".get_showtime( 'db' ), get_showtime( 'user' ), get_showtime( 'password' ));
+		
 		}
 
 	function query()
