@@ -42,7 +42,8 @@ class jomSearch
 		$this->filter      = array ( 'propertyname' => "", 'country' => "", 'region' => "", 'town' => "", 'description' => "", 'feature_uids' => "", 'arrival' => "", 'departure' => "", 'ptype' => "", 'room_type' => "" );
 		$this->makeFormName();
 
-		if ( !isset( $calledByModule ) || empty( $calledByModule ) ) $calledByModule = jomresGetParam( $_REQUEST, 'calledByModule', "" );
+		if ( !isset( $calledByModule ) || empty( $calledByModule ) ) 
+			$calledByModule = jomresGetParam( $_REQUEST, 'calledByModule', "" );
 
 		if ( strlen( $calledByModule ) > 0 )
 			{
@@ -50,7 +51,10 @@ class jomSearch
 			$this->calledByModule = $calledByModule;
 
 			$this->templateFilePath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'modules' . JRDS . $calledByModule . JRDS . $calledByModule;
-			$this->templateFile     = "srch.html";
+			if ( file_exists($this->templateFilePath.JRDS."srch.html") )
+				$this->templateFile     = "srch.html";
+			else
+				$this->templateFile     = $calledByModule.".html";
 
 			if ( $calledByModule == "mod_jomsearch_m0" && $jrConfig[ 'integratedSearch_enable' ] == '1' )
 				{

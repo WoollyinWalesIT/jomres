@@ -92,15 +92,20 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 				$override_path = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'com_jomres';
 				}
 			
-			if ($jomres_template_name =="srch.html")
+			if (
+				$jomres_template_name =="mod_jomsearch_m1.html" || 
+				$jomres_template_name =="mod_jomsearch_m2.html" || 
+				$jomres_template_name =="mod_jomsearch_m3.html" || 
+				$jomres_template_name =="mod_jomsearch_m4.html" 
+				)
 				{
-				if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m1' . JRDS . 'srch.html') )
+				if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m1' . JRDS . 'mod_jomsearch_m1.html') )
 					$override_path = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m1';
-				if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m2' . JRDS . 'srch.html') )
+				if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m2' . JRDS . 'mod_jomsearch_m2.html') )
 					$override_path = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m2';
-				if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m3' . JRDS . 'srch.html') )
+				if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m3' . JRDS . 'mod_jomsearch_m3.html') )
 					$override_path = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m3';
-				if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m4' . JRDS . 'srch.html') )
+				if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m4' . JRDS . 'mod_jomsearch_m4.html') )
 					$override_path = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'mod_jomsearch_m4';
 				}
 			
