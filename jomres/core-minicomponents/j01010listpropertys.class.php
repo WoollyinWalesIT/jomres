@@ -324,6 +324,9 @@ class j01010listpropertys
 				$MiniComponents->triggerEvent( '01011', array ( 'property_uids' => $propertysToShow ) ); // Discount finding script uses this trigger. We'll send it an array of property uids to reduce the number of queries it performs.
 				$MiniComponents->triggerEvent( '01012', array ( 'property_uids' => $propertysToShow ) );
 				
+				$jomres_property_payment_methods = jomres_singleton_abstract::getInstance( 'jomres_property_payment_methods' );
+				$jomres_property_payment_methods->get_gateways_multi( $propertysToShow );
+
 				foreach ( $propertysToShow as $propertys_uid )
 					{
 					$property_deets = array ();
@@ -331,10 +334,26 @@ class j01010listpropertys
 					set_showtime( 'property_type', $current_property_details->multi_query_result[ $propertys_uid ]['property_type'] );
 
 					$customTextObj->get_custom_text_for_property( $propertys_uid );
+					
+					
 
+					
 					$property_deets = $MiniComponents->triggerEvent( '00042', array ( 'property_uid' => $propertys_uid ) );
 					$mrConfig       = getPropertySpecificSettings( $propertys_uid );
 
+					$property_deets['GATEWAYS'] = '';
+					$payment_methods = $jomres_property_payment_methods->get_property_gateways($propertys_uid);
+					
+					if (count($payment_methods)>0)
+						{
+						$tmpl          = new patTemplate();
+						$tmpl->addRows( 'pageoutput', $payment_methods );
+						
+						$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND );
+						$tmpl->readTemplatesFromInput( "list_properties_gateways_snippet.html" );
+						$property_deets['GATEWAYS'] = $tmpl->getParsedTemplate();
+						}
+					
 					$dobooking_task = "dobooking";
 					if ( $mrConfig[ 'registeredUsersOnlyCanBook' ] == "1" && $thisJRUser->id == 0 ) $dobooking_task = "contactowner";
 
