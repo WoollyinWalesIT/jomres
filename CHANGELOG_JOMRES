@@ -1,3 +1,24 @@
+<h3>Jomres 8.1.17 11/11/2014</h3>
+
+<span class="label label-warning">Change</span> Updated bootstrap 3 edit property pages so that features are laid out correctly.
+<span class="label label-warning">Change</span> Added a note to invoice handler
+<span class="label label-warning">Change</span> Updated the table tools ajax scripts to cope with large queries.
+<span class="label label-warning">Change</span> Tweaked dobooking insertion script to ignore quick booking bookings as the booking data archive doesn't exist for them.
+<span class="label label-warning">Change</span> Updated Core Bootstrap 3 frontend templates. They look a lot like the demo template layout now. Converted icons to use Font Awesome icons.
+<span class="label label-warning">Change</span> Updated site configuration default image sizes to correspond with BS3 template layout changes. Existing installations won't be affected, just new installations.
+<span class="label label-warning">Change</span> Added a vertical template to basic module output.
+<span class="label label-warning">Change</span> Updated the error logging to include the url that was called.
+<span class="label label-warning">Change</span> Added embed to input filtering.
+<span class="label label-warning">Change</span> Hardened output filtering to defend against cross site scripting vectors.
+<span class="label label-warning">Change</span> Generic booking insert script updated to ensure temporary data is reset after insertion.
+<span class="label label-warning">Change</span> Added a call to jomres_database for later use.
+<span class="label label-warning">Change</span> Added some tweaks to support having different template files in Joomla templates (overrides). Involves jomsearch_mN modules srch.html templates being renamed to the module's name.
+<span class="label label-warning">Change</span> Modified show property header script so that we're not over-purifying the og description.
+<span class="label label-warning">Change</span> Added a class that collects gateway information for display in property list.
+<span class="label label-warning">Change</span> Removed a no-longer needed css class from jomresHTML.class.php
+
+<span class="label label-important label-danger">Fix</span> Fixed an intermittent issue where bookings might not get inserted to the booking data archive due to html tags.
+
 <h3>Jomres 8.1.16 23/10/2014</h3>
 
 <span class="label label-success">Feature</span> Added a new column booking_language to contracts table so that confirmation emails can be sent to the guest in their own language.
