@@ -51,10 +51,7 @@ class jomSearch
 			$this->calledByModule = $calledByModule;
 
 			$this->templateFilePath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'modules' . JRDS . $calledByModule . JRDS . $calledByModule;
-			if ( file_exists($this->templateFilePath.JRDS."srch.html") )
-				$this->templateFile     = "srch.html";
-			else
-				$this->templateFile     = $calledByModule.".html";
+			$this->templateFile     = $calledByModule.".html";
 
 			if ( $calledByModule == "mod_jomsearch_m0" && $jrConfig[ 'integratedSearch_enable' ] == '1' )
 				{
