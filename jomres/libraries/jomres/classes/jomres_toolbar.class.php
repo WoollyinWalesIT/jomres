@@ -36,7 +36,7 @@ if ( !using_bootstrap() )
 else
 	{
 	$bs_version = jomres_bootstrap_version();
-	if ( $bs_version == "2")
+	if ( $bs_version == "2" || jomres_cmsspecific_areweinadminarea() )
 		{
 		jr_import( 'jomres_toolbar_bootstrap' );
 		}
