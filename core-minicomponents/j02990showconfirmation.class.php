@@ -554,7 +554,14 @@ class j02990showconfirmation
 		$booking_parts[ 'JOMRES_SITEPAGE_URL' ]   = JOMRES_SITEPAGE_URL;
 		$booking_parts[ 'PROCESSURL' ]            = jomresURL( JOMRES_SITEPAGE_URL . "&task=processpayment" );
 		$booking_parts[ 'PROCESSURL_SAVETOCART' ] = jomresURL( JOMRES_SITEPAGE_URL . "&task=save_booking_to_cart" );
-		$booking_parts[ 'BOOKINGFORMURL' ]        = jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] );
+		
+		if ($amend_contract)
+			{
+			$amend_contractuid              = $tmpBookingHandler->getBookingFieldVal( "amend_contractuid" );
+			$booking_parts[ 'BOOKINGFORMURL' ]        =jomresURL(JOMRES_SITEPAGE_URL . '&task=amendBooking&no_html=1&contractUid=' . $amend_contractuid);
+			}
+		else
+			$booking_parts[ 'BOOKINGFORMURL' ]        = jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ].$amend_str );
 
 		if ( isset( $MiniComponents->registeredClasses[ '06000show_cart' ] ) )
 			{
