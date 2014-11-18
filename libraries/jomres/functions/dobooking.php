@@ -113,9 +113,18 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	
 	if ( $amend_contract )
 		{
-		if (!can_modify_this_booking( (int) $_REQUEST[ 'contractuid' ] ) )
+		if ((int) $_REQUEST[ 'contractuid' ] > 0)
 			{
-			return;
+			if (!can_modify_this_booking( (int) $_REQUEST[ 'contractuid' ] ) )
+				{
+				return;
+				}
+			}
+		else
+			{
+			$tmpBookingHandler->resetTempBookingData();
+			$tmpBookingHandler->resetTempGuestData();
+			$tmpBookingHandler->resetCreditCardDetails();
 			}
 		}
 	
