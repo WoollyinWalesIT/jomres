@@ -15,79 +15,58 @@
 		padding-bottom: 60px;
 	}
 
-	.management-header {
-		background-color: #184A7D;
-		background-image: -moz-linear-gradient(center top, #17568C, #1A3867);
-		background-repeat: repeat-x;
-		border-top: 1px solid #3882C1;
-		padding: 10px;
-	}
-	
-	.management-header h1{ line-height: 30px;}
-
 	.page-title {
 		color: white;
 		font-size: 20px;
 		font-weight: normal;
 		text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
 	}
-
-	.management-wrapper {
-		margin: 10px;
-	}
-	
-	#jomres_alternate_menu_position .navbar .brand{padding:5px 0 0 25px;}
-	.management-header select {margin:0;}
-	#jomres_alternate_menu_position{min-height:40px;}
 </style>
 
 <div id="jomres_alternate_menu_position"></div>
 <!-- available if required by a plugin -->
-<div class="management-header">
-	<div class="row">
-		<div class="col-md-8">
-			<h1 class="page-title" id="tour_target_property_name">{HACTIVE_PROPERTY}{PROPERTYNAME}{PROPERTY_SELECTOR_DROPDOWN}</h1>
-		</div>
-		<div class="col-md-2" align="right">	
-			<patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
-			<div id="tour_target_lang_dropdown">{LANGDROPDOWN}</div>
-			</patTemplate:tmpl>
-		</div>
-		<div class="col-md-2" align="right">
-			<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
-			<div id="tour_target_editing_mode_dropdown">{EDITING_MODE_DROPDOWN}</div>
-			</patTemplate:tmpl>
-		</div>
+<div class="management-header clearfix">
+	<div class="col-md-8">
+		<h1 class="page-title" id="tour_target_property_name">{HACTIVE_PROPERTY}{PROPERTYNAME}<span>{PROPERTY_SELECTOR_DROPDOWN}</span></h1>
+	</div>
+	<div class="col-md-2" align="right">	
+		<patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
+		<div id="tour_target_lang_dropdown">{LANGDROPDOWN}</div>
+		</patTemplate:tmpl>
+	</div>
+	<div class="col-md-2 visible-md visible-lg" align="right">
+		<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
+		<div id="tour_target_editing_mode_dropdown">{EDITING_MODE_DROPDOWN}</div>
+		</patTemplate:tmpl>
 	</div>
 </div>
-<div id="jomres_status" class="navbar navbar-fixed-bottom hidden-phone">
+<div id="jomres_status" class="navbar-fixed-bottom hidden-xs">
 	<p class="pull-right">Copyright: &copy; 2005 - 2014 Vince Wooll</p>
 	<i class="icon-share-alt"></i> {MANAGEMENT_VIEW_DROPDOWN}
 </div>
 {SANITY_CHECKS}
-<div class="management-wrapper">
-	<div class="row">
-		<div class="col-md-12">
-			<div id="jomres_content_area"> <!-- opens the jomres content area -->
-				<noscript>
-					<blockquote>
-						<p><font size="3" color="#FF0000"><b>You do not have JavaScript enabled.</b></font><br/>
-							<font size="2" color="#000080">The functionality of this site requires the use of
-								JavaScript so please enable before continuing. For assistance in enabling
-								JavaScript, please contact the webmaster.</font></p>
-					</blockquote>
-				</noscript>
-				<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
-					<!-- <a href="javascript:void(0);" onclick="jomresJquery.jGrowl('{MESSAGE}',{sticky: true});">Message</a> -->
-					<script type="text/javascript">
-						jomresJquery.jGrowl("{MESSAGE}", { life: 10000 });
-					</script>
-				</patTemplate:tmpl>
-				<patTemplate:tmpl name="sticky_messages" type="simpleCondition" requiredVars="message">
-					<!-- <a href="javascript:void(0);" onclick="jomresJquery.jGrowl('{MESSAGE}',{sticky: true});">Message</a> -->
-					<script type="text/javascript">
-						jomresJquery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });
-					</script>
-				</patTemplate:tmpl>
-				<div id="tour_target_content"></div>
+<div class="management-wrapper clearfix">
+	<div class="col-md-12">
+		<div id="jomres_content_area"> <!-- opens the jomres content area -->
+			<noscript>
+				<blockquote>
+					<p><font size="3" color="#FF0000"><b>You do not have JavaScript enabled.</b></font><br/>
+						<font size="2" color="#000080">The functionality of this site requires the use of
+							JavaScript so please enable before continuing. For assistance in enabling
+							JavaScript, please contact the webmaster.</font></p>
+				</blockquote>
+			</noscript>
+			<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
+				<!-- <a href="javascript:void(0);" onclick="jomresJquery.jGrowl('{MESSAGE}',{sticky: true});">Message</a> -->
+				<script type="text/javascript">
+					jomresJquery.jGrowl("{MESSAGE}", { life: 10000 });
+				</script>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="sticky_messages" type="simpleCondition" requiredVars="message">
+				<!-- <a href="javascript:void(0);" onclick="jomresJquery.jGrowl('{MESSAGE}',{sticky: true});">Message</a> -->
+				<script type="text/javascript">
+					jomresJquery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });
+				</script>
+			</patTemplate:tmpl>
+			<div id="tour_target_content"></div>
 </patTemplate:tmpl>

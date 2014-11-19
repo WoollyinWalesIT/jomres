@@ -36,7 +36,7 @@ defined('_JEXEC') or die;
 	<?php if ($view == "bootstrap") : ?>
 	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap/js/bootstrap.min.js"></script>
 	<?php elseif ($view == "bootstrap3") : ?>
-	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap3/dist/js/bootstrap.min.js"></script>
+	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap3/js/bootstrap.min.js"></script>
 	<?php endif; ?>
 	<script type="text/javascript">
 	  jQuery.noConflict();
@@ -46,8 +46,7 @@ defined('_JEXEC') or die;
 	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap/css/fullscreen.css" type="text/css" />
 	<?php elseif ($view == "bootstrap3") : ?>
 	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/jquery_ui_themes/jomres/jquery-ui.css" type="text/css" />
-	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap3/dist/css/bootstrap.min.css" type="text/css" />
-	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap3/dist/css/bootstrap-theme.min.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap3/css/fullscreen.css" type="text/css" />
 	<?php elseif ($view == "jquery_ui") : ?>
 	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/jquery_ui_themes/jomres/jquery-ui.css" type="text/css" />
 	<?php endif; ?>
