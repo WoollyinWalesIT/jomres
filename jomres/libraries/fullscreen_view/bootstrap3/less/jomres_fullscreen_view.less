@@ -1,13 +1,13 @@
 // Import Bootstrap
 @import "bootstrap.less";
+@import "theme.less";
 
 // Bootstrap Overrides
 h1, h2, h3, h4, h5, h6 {margin:0;}
 h1 { font-size: 30px; line-height: 18px * 2.5; }
 h2 { font-size: 24px; line-height: 18px * 2; }
 h3 { font-size: 18px; line-height: 18px * 1.5; }
-h4 { font-size: 14px; }
-h5 { font-size: 12px; }
+h5 { font-size: 12px;}
 h6 { font-size: 11px; text-transform: uppercase;}
 
 
@@ -18,7 +18,7 @@ body {
 }
 
 .page-header{
-	margin: 2px 0px 10px 0px;
+	margin: 5px 0px 10px 0px;
 	padding-bottom: 5px;
 }
 
@@ -27,26 +27,65 @@ body {
 }
 
 .btn {
-	padding:4px 10px;
 	font-size:13px;
 }
 
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
 	padding:6px;
-}	
+}
+
+.form-actions {
+    background-color: #eeeeee;
+    border-radius: 0;
+    margin: 18px 0;
+    padding: 18px;
+}
+
+.form-actions:before, .form-actions:after {
+    content: " ";
+    display: table;
+}
+
+.form-actions:after {
+    clear: both;
+}
+
+.alert {
+	padding:10px;
+}
+
+.button, input, optgroup, select, textarea {
+	color:#333;
+}
 
 //Jomres specific
 #jomres_alternate_menu_position{
-	min-height:50px;
+	min-height:40px;
 	
 	.navbar {
 		margin-bottom:0;
-		 background-color: #fafafa;
-    background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
-    background-repeat: repeat-x;
+		background-color: #fafafa;
+    	background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
+    	background-repeat: repeat-x;
+		min-height:40px;
 		
 		.navbar-brand {
-			padding:8px 15px;
+			padding:5px 15px;
+			height:40px;
+			
+			img {
+				width:24px;
+			}
+		}
+		
+		.navbar-nav > li > a {
+			padding-top:10px;
+			padding-bottom:10px;
+		}
+		
+		.navbar-form {
+			margin-top:3px;
+			margin-bottom:3px;
 		}
 	}
 	
