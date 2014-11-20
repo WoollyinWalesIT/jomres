@@ -115,10 +115,16 @@ class jomres_property_list_prices
 					{
 					$searchDate = JSCalConvertInputDates( jomresGetParam( $_REQUEST, 'arrivalDate', "" ) );
 					}
-				elseif ( isset ( $tmpBookingHandler->tmpsearch_data ) && trim( $tmpBookingHandler->tmpsearch_data ) != '' )
+				elseif ( count( $tmpBookingHandler->tmpsearch_data ) > 0 )
 					{
-					$searchDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
+					if (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) && trim($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != ''))
+						{
+						$searchDate = JSCalConvertInputDates($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'],$siteCal=true);
+						}
+					else
+						$searchDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
 					}
+				
 				
 				$gor = genericOr( $property_uids, 'property_uid' );
 				
