@@ -44,9 +44,11 @@ defined('_JEXEC') or die;
 	<jdoc:include type="head" />
 	<?php if ($view == "bootstrap") : ?>
 	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap/css/fullscreen.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/font-awesome.min.css" type="text/css" />
 	<?php elseif ($view == "bootstrap3") : ?>
 	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/jquery_ui_themes/jomres/jquery-ui.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap3/css/fullscreen.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/font-awesome.min.css" type="text/css" />
 	<?php elseif ($view == "jquery_ui") : ?>
 	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/jquery_ui_themes/jomres/jquery-ui.css" type="text/css" />
 	<?php endif; ?>
