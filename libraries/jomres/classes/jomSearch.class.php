@@ -859,17 +859,10 @@ class jomSearch
 				//echo $currentDay;
 				$unixCurrentDate = $unixCurrentDate + $secondsInDay;
 				}
-			$st = "";
-			foreach ( $dateRangeArray as $eachdate )
-				{
-				$st .= "`date` = '" . $eachdate . "' OR ";
-				}
-			$st                           = substr( $st, 0, -3 );
 			$propertiesWithFreeRoomsArray = array ();
 
 			$all_property_rooms = array ();
-			$property_ors       = genericOr( end( $this->propertys_uid ), "propertys_uid" );
-			$query              = "SELECT propertys_uid,room_uid,room_classes_uid FROM #__jomres_rooms WHERE " . $property_ors;
+			$query              = "SELECT propertys_uid,room_uid,room_classes_uid FROM #__jomres_rooms WHERE propertys_uid IN (" . implode(',',end( $this->propertys_uid )) .") ";
 			$roomsLists         = doSelectSql( $query );
 			if ( count( $roomsLists ) > 0 )
 				{
@@ -880,8 +873,7 @@ class jomSearch
 				}
 
 			$all_property_bookings = array ();
-			$property_ors          = genericOr( end( $this->propertys_uid ), "property_uid" );
-			$query                 = "SELECT property_uid,room_uid,`date` FROM #__jomres_room_bookings WHERE " . $property_ors . " AND (" . $st . ")";
+			$query                 = "SELECT property_uid,room_uid,`date` FROM #__jomres_room_bookings WHERE property_uid IN (" . implode(',',end( $this->propertys_uid )) .") AND `date` IN ('".implode('\',\'',$dateRangeArray)."') ";
 			$datesList             = doSelectSql( $query );
 			if ( count( $datesList ) > 0 )
 				{

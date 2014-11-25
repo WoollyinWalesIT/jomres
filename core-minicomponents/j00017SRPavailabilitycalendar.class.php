@@ -302,9 +302,8 @@ class j00017SRPavailabilitycalendar
 			$i++;
 			$currdate = mktime( 0, 0, 0, date( "m", $startdate ), date( "d", $startdate ) + $i, date( "Y", $startdate ) );
 			}
-		$gor = genericOr( $sqlDates, 'date', false );
 
-		$query    = "SELECT contract_uid,black_booking,date FROM #__jomres_room_bookings WHERE room_uid = '" . (int) $roomUid . "' AND " . $gor;
+		$query    = "SELECT contract_uid,black_booking,`date` FROM #__jomres_room_bookings WHERE room_uid = '" . (int) $roomUid . "' AND `date` IN ('" . implode('\',\'',$sqlDates) ."') ";
 		$roomList = doSelectSql( $query );
 		foreach ( $roomList as $cont )
 			{

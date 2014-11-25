@@ -266,14 +266,9 @@ class j01010listpropertys
 					$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 					$jomres_media_centre_images->get_images_multi($propertysToShow, array('property'));
 					
-					// Now we'll grab all of the room type/classes information for these properties. The will cut the number of queries performed by this room listing script considerably.
-					// For historical reasons some tables in Jomres use propertys_uid and some use property_uid (note the 's') so g_pids is for those tables that use propertys_uid, while g_pid is for those without
-					$g_pids = genericOr( $propertysToShow, 'propertys_uid' );
-					$g_pid  = genericOr( $propertysToShow, 'property_uid' );
-					
 					// Last booked
 					$lastBookedArray = array ();
-					$query           = "SELECT property_uid, max(timestamp) as ts FROM #__jomres_contracts WHERE " . $g_pid . " AND `timestamp` IS NOT NULL GROUP BY property_uid ";
+					$query           = "SELECT property_uid, max(timestamp) as ts FROM #__jomres_contracts WHERE property_uid IN (" . implode(',',$propertysToShow) . ") AND `timestamp` IS NOT NULL GROUP BY property_uid ";
 					$result          = doSelectSql( $query );
 					if ( count( $result ) > 0 )
 						{

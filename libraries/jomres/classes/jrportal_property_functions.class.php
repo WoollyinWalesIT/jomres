@@ -75,8 +75,7 @@ class jrportal_property_functions // Functions supplied as a class so that they 
 	function getPropertyDetails( $idArray )
 		{
 		$retResult = array ();
-		$clause    = "WHERE ";
-		$clause .= genericOr( $idArray, 'propertys_uid' );
+		$clause = "WHERE propertys_uid IN (" . implode(',',$idArray) .")";
 		$query  = "SELECT propertys_uid,property_name,property_street,property_town,property_region,property_country,property_postcode,published,apikey
 		FROM #__jomres_propertys " . $clause . " LIMIT " . count( $idArray );
 		$result = doSelectSql( $query );
@@ -109,7 +108,7 @@ class jrportal_property_functions // Functions supplied as a class so that they 
 	function getNumberOfRoomsInProperty( $idArray )
 		{
 		$retResult = array ();
-		$clause    = "WHERE " . genericOr( $idArray, 'propertys_uid' );
+		$clause    = "WHERE propertys_uid IN (" . implode(',',$idArray) .") ";
 		$query     = "SELECT room_uid,propertys_uid FROM #__jomres_rooms " . $clause;
 		$result    = doSelectSql( $query );
 		if ( count( $result ) > 0 )
@@ -134,7 +133,7 @@ class jrportal_property_functions // Functions supplied as a class so that they 
 	function makePropertyDropdownForManagerId( $idArray )
 		{
 		$options = array ();
-		$clause  = "WHERE " . genericOr( $idArray, 'manager_id' );
+		$clause  = "WHERE manager_id IN (" . implode(',',$idArray) .") ";
 		$query   = "SELECT property_uid FROM #__jomres_managers_propertys_xref  " . $clause;
 		$result  = doSelectSql( $query );
 		if ( count( $result ) > 0 )

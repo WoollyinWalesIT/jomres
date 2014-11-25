@@ -85,8 +85,7 @@ class j06000cron_invoice
 
 		if ( count( $processed_items ) > 0 )
 			{
-			$clause = genericOr( $processed_items, 'id' );
-			$query  = "DELETE FROM #__jomresportal_orphan_lineitems WHERE " . $clause;
+			$query  = "DELETE FROM #__jomresportal_orphan_lineitems WHERE id IN (".implode(',',$processed_items).") ";
 			$result = doInsertSql( $query, "" );
 			}
 

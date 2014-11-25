@@ -63,8 +63,8 @@ class jrportal_crate_functions // Functions supplied as a class so that they can
 
 	function getCratesByIdArray( $idArray )
 		{
-		$clause       = genericOr( $idArray, 'id' );
-		$this->crates = $this->getCrates( "WHERE " . $clause );
+		$clause = "WHERE id IN (" . implode(',',$idArray) .")";
+		$this->crates = $this->getCrates( $clause );
 
 		return $this->crates;
 		}
@@ -97,9 +97,8 @@ class jrportal_crate_functions // Functions supplied as a class so that they can
 
 	function batchArchive( $idArray )
 		{
-		$g_ids = genericOr( $idArray, 'id' );
 		$d     = date( "Y-m-d H-i-s" );
-		$query = "UPDATE #__jomresportal_c_rates SET `archived`='1',`archived_date`='$d' WHERE " . $g_ids;
+		$query = "UPDATE #__jomresportal_c_rates SET `archived`='1',`archived_date`='$d' WHERE id IN (" . implode(',',$idArray) .") ";
 
 		return doInsertSql( $query, '' );
 		}

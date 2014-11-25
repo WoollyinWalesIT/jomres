@@ -206,9 +206,8 @@ class jomres_cron
 		{
 		if (count($jobIds)>0)
 			{
-			$gor=genericOr($jobIds, 'id');
 			if ( $this->verboselog ) $this->debug[ ] = "Locking " . count($jobIds) . " jobs";
-			$query = "UPDATE #__jomcomp_cron SET `locked`='1' WHERE $gor ";
+			$query = "UPDATE #__jomcomp_cron SET `locked`='1' WHERE id IN (".implode(',',$jobIds).") ";
 			if ( !doInsertSql( $query, "" ) )
 				{
 				$this->debug[ ] = "Failed to lock jobs ";
@@ -222,9 +221,8 @@ class jomres_cron
 		{
 		if (count($jobIds)>0)
 			{
-			$gor=genericOr($jobIds, 'id');
 			if ( $this->verboselog ) $this->debug[ ] = "Unlocking " . count($jobIds) . " jobs";
-			$query = "UPDATE #__jomcomp_cron SET `locked`='0' WHERE $gor ";
+			$query = "UPDATE #__jomcomp_cron SET `locked`='0' WHERE id IN (".implode(',',$jobIds).") ";
 			if ( !doInsertSql( $query, "" ) )
 				{
 				$this->debug[ ] = "Failed to unlock jobs ";

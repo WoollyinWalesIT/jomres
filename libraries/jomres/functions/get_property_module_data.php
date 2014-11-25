@@ -40,10 +40,6 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 	$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 	$jomres_media_centre_images->get_images_multi($property_uid_array, array('property'));
 
-	// Same as list properties
-	$g_pids = genericOr( $property_uid_array, 'propertys_uid' );
-	$g_pid  = genericOr( $property_uid_array, 'property_uid' );
-
 	$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 	foreach ( $property_uid_array as $property_uid )
 		{

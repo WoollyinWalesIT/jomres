@@ -55,7 +55,6 @@ class j06002edit_tariffs_normal
 				{
 				if ( array_key_exists( $key, $basic_property_details->classAbbvs ) ) $room_classes_array[ ] = $key;
 				}
-			$genericOrClasses = genericOr( $room_classes_array, "room_classes_uid" );
 			}
 
 		$propertyRowInfo = "";
@@ -63,7 +62,7 @@ class j06002edit_tariffs_normal
 		$query     = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $defaultProperty . "' ORDER BY room_number ";
 		$roomsList = doSelectSql( $query );
 
-		$query          = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid,srp_only FROM #__jomres_room_classes  WHERE property_uid = '0' AND " . $genericOrClasses . " ORDER BY room_class_abbv ";
+		$query          = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid,srp_only FROM #__jomres_room_classes  WHERE property_uid = '0' AND room_classes_uid IN (".implode(',',$room_classes_array).") ORDER BY room_class_abbv ";
 		$roomsClassList = doSelectSql( $query );
 		
 		//this is not used

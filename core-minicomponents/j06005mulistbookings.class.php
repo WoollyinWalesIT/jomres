@@ -50,8 +50,7 @@ class j06005mulistbookings
 					}
 				}
 
-				$gOr       = genericOr( $allGuestUids, "guest_uid" );
-				$query     = "SELECT * FROM #__jomres_contracts WHERE " . $gOr . " AND cancelled = 0 ORDER BY tag";
+				$query     = "SELECT * FROM #__jomres_contracts WHERE guest_uid IN (".implode(',',$allGuestUids).") AND cancelled = 0 ORDER BY tag";
 				$contracts = doSelectSql( $query );
 				//if ( count( $contracts ) > 0 ) //we`ll just display an empty table if there are no bookings.
 					//{

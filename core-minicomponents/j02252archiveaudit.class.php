@@ -55,10 +55,9 @@ class j02252archiveaudit
 			}
 		$query  = substr( $query, 0, strlen( $query ) - 1 );
 		$result = doInsertSql( $query, '' );
-		$gor    = genericOr( $uidArray, 'uid' );
 		foreach ( $uidArray as $uid )
 			{
-			$query = "DELETE FROM #__jomres_audit WHERE " . $gor;
+			$query = "DELETE FROM #__jomres_audit WHERE uid IN (".implode(',',$uidArray).") ";
 			if ( !doInsertSql( $query, "" ) ) trigger_error( "Archive audit, unable to delete archived logs", E_USER_ERROR );
 
 			}
