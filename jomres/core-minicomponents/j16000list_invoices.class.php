@@ -63,10 +63,8 @@ class j16000list_invoices
 			$guest_ids[ $id ] = $id;
 			}
 
-		$guest_clause = genericOr( $guest_ids, 'guests_uid' );
-
 		$guests    = array ();
-		$query     = "SELECT guests_uid,firstname,surname,mos_userid  FROM #__jomres_guests  WHERE " . $guest_clause;
+		$query     = "SELECT guests_uid,firstname,surname,mos_userid  FROM #__jomres_guests WHERE guests_uid IN (".implode(',',$guest_ids).") ";
 		$guestList = doSelectSql( $query );
 		if ( count( $guestList ) > 0 )
 			{

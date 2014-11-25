@@ -298,9 +298,8 @@ class  j00018MRPavailabilitycalendar
 			$i++;
 			$currdate = mktime( 0, 0, 0, date( "m", $startdate ), date( "d", $startdate ) + $i, date( "Y", $startdate ) );
 			}
-		$gor = genericOr( $sqlDates, 'date', false );
 
-		$query    = "SELECT contract_uid,black_booking,`date` FROM #__jomres_room_bookings WHERE property_uid = '" . (int) $property_uid . "' AND " . $gor;
+		$query    = "SELECT contract_uid,black_booking,`date` FROM #__jomres_room_bookings WHERE property_uid = '" . (int) $property_uid . "' AND `date` IN ('" . implode('\',\'',$sqlDates) ."') ";
 		$roomList = doSelectSql( $query );
 
 		foreach ( $roomList as $cont )

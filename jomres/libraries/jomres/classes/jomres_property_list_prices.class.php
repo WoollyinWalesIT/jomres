@@ -125,14 +125,11 @@ class jomres_property_list_prices
 						$searchDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
 					}
 				
-				
-				$gor = genericOr( $property_uids, 'property_uid' );
-				
 				$clause="";
 				if (!$lowest_ever)
 					$clause="AND DATE_FORMAT('" . $searchDate . "', '%Y/%m/%d') BETWEEN DATE_FORMAT(`validfrom`, '%Y/%m/%d') AND DATE_FORMAT(`validto`, '%Y/%m/%d')";
 	
-				$query = "SELECT property_uid, roomrateperday FROM #__jomres_rates WHERE $gor AND roomrateperday > '0' $clause ";
+				$query = "SELECT property_uid, roomrateperday FROM #__jomres_rates WHERE property_uid IN (" . implode(',',$property_uids) .") AND roomrateperday > '0' $clause ";
 				$tariffList = doSelectSql( $query );
 				
 				foreach ($property_uids_to_query as $property_uid)

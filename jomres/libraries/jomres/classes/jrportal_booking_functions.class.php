@@ -33,9 +33,9 @@ class jrportal_booking_functions // Functions supplied as a class so that they c
 
 	function getBookingsByBookingIdArray( $idArray )
 		{
-		$clause = genericOr( $idArray, 'id' );
+		$clause = "WHERE id IN (" . implode(',',$idArray) .")";
 
-		return $this->getBookings( "WHERE " . $clause );
+		return $this->getBookings( $clause );
 		}
 
 	function getBookingsBetweenDates( $startDate, $endDate, $reqarchived = true )
@@ -98,9 +98,8 @@ class jrportal_booking_functions // Functions supplied as a class so that they c
 	// expects to be passed an array of
 	function batchArchive( $idArray, &$tr )
 		{
-		$g_ids = genericOr( $idArray, 'id' );
 		$d     = date( "Y-m-d H-i-s" );
-		$query = "UPDATE #__jomresportal_bookings SET `archived`='1',`archived_date`='$d' WHERE " . $g_ids;
+		$query = "UPDATE #__jomresportal_bookings SET `archived`='1',`archived_date`='$d' WHERE id IN (" . implode(',',$idArray) .") ";
 
 		return doInsertSql( $query, '' );
 		}

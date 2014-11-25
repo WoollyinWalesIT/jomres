@@ -104,10 +104,8 @@ class j06001dashboard_events_ajax {
 				$guest_uids[]=$contract->guest_uid;
 				}
 			if ( count( $guest_uids ) > 0 )
-				{
-				$g_ids= genericOr( $guest_uids, 'guests_uid' );
-			
-				$query = "SELECT guests_uid,firstname,surname FROM #__jomres_guests WHERE $g_ids ";
+				{			
+				$query = "SELECT guests_uid,firstname,surname FROM #__jomres_guests WHERE guests_uid IN (".implode(',',$guest_uids).") ";
 				$guestsList = doSelectSql( $query );
 
 				foreach ( $guestsList as $g )

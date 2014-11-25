@@ -133,10 +133,8 @@ class basic_property_details
 				}
 			$property_uids = $temp_array;
 			unset ( $temp_array );
-
-			$gor = genericOr( $property_uids, 'propertys_uid' );
 	
-			$query          = "SELECT property_name,propertys_uid FROM #__jomres_propertys WHERE " . $gor;
+			$query          = "SELECT property_name,propertys_uid FROM #__jomres_propertys WHERE propertys_uid IN (" . implode(',',$property_uids) .") ";
 			$property_names = doSelectSql( $query );
 			if ( !get_showtime( 'heavyweight_system' ) )
 				{
@@ -352,10 +350,8 @@ class basic_property_details
 
 		if ( count( $property_uids ) > 0 )
 			{
-			$gor = genericOr( $property_uids, 'propertys_uid' );
-
 			$query = "SELECT `propertys_uid`,`property_name`,`property_street`,`property_town`,`property_postcode`,`property_region`,`property_country`,`property_tel`,`property_fax`,`property_email`,`published`,`ptype_id`,
-`stars`,`superior`,`lat`,`long`,`metatitle`,`metadescription`,`metakeywords`,`property_features`,`property_mappinglink`,`property_key`,`property_description`,`property_checkin_times`,`property_area_activities`,`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`apikey`,`approved` FROM #__jomres_propertys WHERE " . $gor;
+`stars`,`superior`,`lat`,`long`,`metatitle`,`metadescription`,`metakeywords`,`property_features`,`property_mappinglink`,`property_key`,`property_description`,`property_checkin_times`,`property_area_activities`,`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`apikey`,`approved` FROM #__jomres_propertys WHERE propertys_uid IN (" . implode(',',$property_uids) .") ";
 
 			$propertyData = doSelectSql( $query );
 
@@ -420,8 +416,7 @@ class basic_property_details
 				}
 
 			$temp_rooms = array ();
-			$gor        = genericOr( $property_uids, 'propertys_uid' );
-			$query      = "SELECT `room_uid`,`room_classes_uid`,`propertys_uid` FROM #__jomres_rooms WHERE " . $gor;
+			$query      = "SELECT `room_uid`,`room_classes_uid`,`propertys_uid` FROM #__jomres_rooms WHERE propertys_uid IN (" . implode(',',$property_uids) .") ";
 			$rooms      = doSelectSql( $query );
 			foreach ( $rooms as $room )
 				{
@@ -434,9 +429,8 @@ class basic_property_details
 			// This array is only used by the showRoomDetails task. It's pointless constantly running this query when it's not used anywhere else.
 			if ( get_showtime( 'task' ) == "showRoomDetails" )
 				{
-				$gor                 = genericOr( $property_uids, 'property_uid' );
 				$this->room_features = array ();
-				$query               = "SELECT room_features_uid,feature_description,property_uid FROM #__jomres_room_features WHERE " . $gor;
+				$query               = "SELECT room_features_uid,feature_description,property_uid FROM #__jomres_room_features WHERE property_uid IN (" . implode(',',$property_uids) .") ";
 				$roomFeatures        = doSelectSql( $query );
 				if ( count( $roomFeatures ) > 0 )
 					{

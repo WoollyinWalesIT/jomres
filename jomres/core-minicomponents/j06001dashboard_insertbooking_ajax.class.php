@@ -71,8 +71,7 @@ class j06001dashboard_insertbooking_ajax
 			return;
 			}
 
-		$gor = genericOr($dates_array,'date',false);
-		$query="SELECT contract_uid FROM #__jomres_room_bookings WHERE `property_uid` = '".$property_uid."' AND `room_uid`='".$room_uid."' AND  ".$gor."";
+		$query="SELECT contract_uid FROM #__jomres_room_bookings WHERE `property_uid` = '".$property_uid."' AND `room_uid`='".$room_uid."' AND `date` IN ('" . implode('\',\'',$dates_array) ."')";
 		$bookingsList = doSelectSql($query);
 		if (count($bookingsList)>0)
 			{

@@ -55,10 +55,8 @@ class jomres_property_payment_methods
 		unset ( $temp_array );
 			
 		if (count($property_uids) > 0)
-			{
-			$gor = genericOr( $property_uids, 'prid' );
-			
-			$query        = "SELECT id,prid,plugin FROM #__jomres_pluginsettings WHERE setting = 'active' AND value = '1' AND " . $gor;
+			{			
+			$query        = "SELECT id,prid,plugin FROM #__jomres_pluginsettings WHERE setting = 'active' AND value = '1' AND prid IN (" . implode(',',$property_uids) .") ";
 			$propertyData = doSelectSql( $query );
 			foreach ( $propertyData as $data )
 				{

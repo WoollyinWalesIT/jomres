@@ -3624,8 +3624,7 @@ function showLiveBookings( $contractsList, $title, $arrivaldateDropdown )
 		$contract_ids[ ] = $c->contract_uid;
 		}
 
-	$gor          = genericOr( $contract_ids, 'contract_uid' );
-	$query        = "SELECT * FROM #__jomres_contracts WHERE property_uid = '" . (int) $defaultProperty . "' AND " . $gor;
+	$query        = "SELECT * FROM #__jomres_contracts WHERE property_uid = '" . (int) $defaultProperty . "' AND contract_uid IN (" . implode(',',$contract_ids) .") ";
 	$booking_data = doSelectSql( $query );
 
 	$output                      = array ();
@@ -4471,8 +4470,7 @@ function invoices_getalllineitems_forinvoice_ids( $ids = array () )
 	$lineitems = array ();
 	if ( count( $ids ) == 0 ) return $lineitems;
 
-	$gor    = genericOr( $ids, 'inv_id' );
-	$query  = "SELECT * FROM #__jomresportal_lineitems WHERE " . $gor;
+	$query  = "SELECT * FROM #__jomresportal_lineitems WHERE inv_id IN (" . implode(',',$ids) .") ";
 	$result = doSelectSql( $query );
 	if ( count( $result ) > 0 )
 		{
@@ -4607,7 +4605,7 @@ function invoices_getinvoicesfor_manager_allproperties( $status = 0, $property_u
 	$clause   = "";
 	if ( isset( $status ) ) $clause = " AND `status` = " . (int) $status . " ";
 	$clause .= " ORDER BY raised_date DESC";
-	$query  = "SELECT * FROM #__jomresportal_invoices WHERE " . genericOr( $property_uids, "property_uid" ) . " " . $clause;
+	$query  = "SELECT * FROM #__jomresportal_invoices WHERE property_uid IN (" . implode(',',$property_uids) .")" . $clause;
 	$result = doSelectSql( $query );
 	if ( count( $result ) > 0 )
 		{
@@ -4839,8 +4837,7 @@ function subscribers_getManagersPublishedProperties( $cms_user_id )
 		}
 	else
 	return array ();
-	$clause = "WHERE ";
-	$clause .= genericOr( $mp, 'propertys_uid' ) . " AND published = 1";
+	$clause = "WHERE propertys_uid IN (" . implode(',',$mp) .") AND published = 1";
 	$query              = "SELECT propertys_uid FROM #__jomres_propertys " . $clause . " LIMIT " . count( $mp );
 	$jomresPropertyList = doSelectSql( $query );
 	if ( count( $jomresPropertyList ) > 0 )
