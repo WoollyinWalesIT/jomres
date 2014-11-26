@@ -116,7 +116,7 @@ class j00004a_init_javascript_css_files
 				{
 				if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery' ] == "1" && !$management_view ) )
 					{
-					$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery-1.8.2.js');
+					$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery-1.11.1.js');
 					}
 				}
 			}
@@ -149,8 +149,8 @@ class j00004a_init_javascript_css_files
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.tipsy.js");
 		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/","tipsy.css");
 		
-		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "TableTools_JUI.css");
-		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "ColVis.css");
+		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "dataTables.tableTools.css");
+		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "dataTables.colVis.css");
 		
 		if (!isset( $jrConfig[ 'load_font_awesome' ]))
 			$jrConfig[ 'load_font_awesome' ] = "0";
@@ -171,18 +171,18 @@ class j00004a_init_javascript_css_files
 		if ( $thisJRUser->userIsRegistered || jomres_cmsspecific_areweinadminarea() )
 			{
 			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.dataTables.js");
-			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "TableTools.min.js");
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "dataTables.tableTools.js");
 			
 			if ( using_bootstrap() )
 				{
 				$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "DT_bootstrap.css");
 				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/", "datatables_pagination.js");
 				}
-			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "ColVis.min.js");
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "dataTables.colVis.js");
 
 			if ( !using_bootstrap() )
 				{
-				$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "tables_jui.css");
+				$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "jquery.dataTables_themeroller.css");
 				}
 			}
 			
