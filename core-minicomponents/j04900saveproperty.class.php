@@ -70,6 +70,8 @@ class j04900saveproperty
 
 		$lat   = parseFloat( jomresGetParam( $_POST, 'lat', '' ) );
 		$long  = parseFloat( jomresGetParam( $_POST, 'long', '' ) );
+		
+		$property_site_id				= jomresGetParam( $_POST, 'property_site_id', '' );
 
 		if ( $jrConfig[ 'allowHTMLeditor' ] == "0" )
 			{
@@ -162,14 +164,14 @@ class j04900saveproperty
 					`property_region`,`property_country`,`property_postcode`,`property_tel`,`property_fax`,
 					`property_email`,`property_features`,
 					`property_description`,`property_checkin_times`,`property_area_activities`,
-					`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,property_key,ptype_id,apikey,`lat`,`long`,`metatitle`,`metadescription`,`metakeywords`)
+					`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,property_key,ptype_id,apikey,`lat`,`long`,`metatitle`,`metadescription`,`metakeywords`,`property_site_id`)
 					VALUES
 					('$property_name','$property_street',
 					'$property_town','$property_region','$property_country','$property_postcode','$property_tel',
 					'$property_fax','$property_email','$featuresList',
 					'$property_description','$property_checkin_times','$property_area_activities',
 					'$property_driving_directions','$property_airports','$property_othertransport',
-					'$property_policies_disclaimers','" . (float) $price . "','" . (int) $property_type . "','$apikey','" . $lat . "','" . $long . "','" . $metatitle . "','" . $metadescription . "','" . $metakeywords . "'
+					'$property_policies_disclaimers','" . (float) $price . "','" . (int) $property_type . "','$apikey','" . $lat . "','" . $long . "','" . $metatitle . "','" . $metadescription . "','" . $metakeywords . "', '".$property_site_id."'
 					)";
 			$newPropId = doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_PROPERTY', _JOMRES_MR_AUDIT_INSERT_PROPERTY, false ) );
 
@@ -275,7 +277,8 @@ class j04900saveproperty
 				`stars`='" . (int) $property_stars . "',
 				`superior`='" . (int) $property_superior . "',
 				" . $apiclause . "
-				`ptype_id`='" . (int) $property_type . "'
+				`ptype_id`='" . (int) $property_type . "',
+				`property_site_id`='".$property_site_id."'
 				WHERE propertys_uid='" . (int) $propertyUid . "'";
 			doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_PROPERTY', _JOMRES_MR_AUDIT_UPDATE_PROPERTY, false ) );
 

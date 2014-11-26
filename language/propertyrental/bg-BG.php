@@ -2534,3 +2534,6 @@ jr_define( '_JOMRES_COM_FONTAWESOME_DESC', 'Set this to Yes if your template doe
 jr_define( '_BOOKING_CALCQUOTE', 'Request booking' );
 
 jr_define('_JOMRES_COM_CONFIRMATION_DEAR', 'Dear ');
+
+jr_define('_JOMRES_MULTISITES_SELECT_A_SITE', 'Select a site');
+jr_define('_JOMRES_MULTISITES_MULTISITES_LABEL', 'Site id');

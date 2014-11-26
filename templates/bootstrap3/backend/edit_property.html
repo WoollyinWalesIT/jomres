@@ -189,6 +189,14 @@
 			<input type="text" name="metakeywords" value="{METAKEYWORDS}" class="form-control" placeholder="{_JOMRES_METAKEYWORDS}"/>
 		</div>
 	</div>
+	<patTemplate:tmpl name="multi" type="simpleCondition" requiredVars="multisites_select">
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="property_site_id">{LABEL}</label>
+		<div class="col-md-10">
+			{MULTISITES_SELECT}
+		</div>
+	</div>
+	</patTemplate:tmpl>
 	<div class="form-actions">
 		<div class="col-md-10 col-md-offset-2">
 			{JOMRESTOOLBAR}
