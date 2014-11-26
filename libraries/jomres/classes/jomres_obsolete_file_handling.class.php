@@ -42,7 +42,7 @@ class jomres_obsolete_file_handling
 		$this->dir_libraries							= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS;
 
 		$this->dir_css									= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'css' . JRDS;
-		$this->dir_javascript 							= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'javascript' . JRDS;
+		$this->dir_javascript							= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'javascript' . JRDS;
 
 		$this->dir_templates_frontend					= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'jomres' . JRDS . 'frontend' . JRDS;
 		$this->dir_templates_backend					= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'jomres' . JRDS . 'backend' . JRDS;
@@ -979,6 +979,10 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j99999pack_javascript.class.php' );
 		
 		$this->add_obs_dir( $this->dir_libraries . 'fullscreen_view' . JRDS . 'bootstrap3' . JRDS . 'dist' );
+		
+		$this->add_obs_file( $this->dir_javascript . JRDS . 'slideshow_themes' . JRDS . 'classic' . JRDS . 'galleria-1.2.5.min.js' );
+		$this->add_obs_file( $this->dir_javascript . JRDS . 'slideshow_themes' . JRDS . 'classic' . JRDS . 'galleria-1.2.7.min.js' );
+		$this->add_obs_file( $this->dir_javascript . JRDS . 'slideshow_themes' . JRDS . 'classic' . JRDS . 'galleria-1.2.9.min.js' );
 		
 		}
 
