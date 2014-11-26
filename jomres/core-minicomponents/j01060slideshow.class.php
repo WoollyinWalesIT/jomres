@@ -63,7 +63,7 @@ class j01060slideshow
 				$rows[ ]           = $r;
 				}
 
-			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/slideshow_themes/classic/', "galleria-1.2.9.min.js" );
+			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/slideshow_themes/classic/', "galleria-1.4.2.min.js" );
 			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/slideshow_themes/classic/', "galleria.classic.min.js" );
 			jomres_cmsspecific_addheaddata( "css", JOMRES_ROOT_DIRECTORY.'/javascript/slideshow_themes/classic/', 'galleria.classic.css' );
 
