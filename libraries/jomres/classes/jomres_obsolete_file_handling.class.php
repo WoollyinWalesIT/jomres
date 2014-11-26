@@ -42,7 +42,7 @@ class jomres_obsolete_file_handling
 		$this->dir_libraries							= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS;
 
 		$this->dir_css									= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'css' . JRDS;
-		$this->dir_javascript							= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'javascript' . JRDS;
+		$this->dir_javascript 							= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'javascript' . JRDS;
 
 		$this->dir_templates_frontend					= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'jomres' . JRDS . 'frontend' . JRDS;
 		$this->dir_templates_backend					= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'jomres' . JRDS . 'backend' . JRDS;
@@ -966,8 +966,6 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_javascript . 'jquery-1.8.2.min.js' );
 		$this->add_obs_file( $this->dir_javascript . 'jquery-2.0.3.min.js' );
 		$this->add_obs_file( $this->dir_javascript . 'jquery-ui-1.9.2.custom.min.js' );
-		$this->add_obs_file( $this->dir_javascript . 'xxxxxxxxxxx' );
-		$this->add_obs_file( $this->dir_javascript . 'xxxxxxxxxxx' );
 		
 		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'list_properties_overlay_snippet.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'list_properties_overlay_snippet.html' );
@@ -980,9 +978,14 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_dir( $this->dir_libraries . 'fullscreen_view' . JRDS . 'bootstrap3' . JRDS . 'dist' );
 		
-		$this->add_obs_file( $this->dir_javascript . JRDS . 'slideshow_themes' . JRDS . 'classic' . JRDS . 'galleria-1.2.5.min.js' );
-		$this->add_obs_file( $this->dir_javascript . JRDS . 'slideshow_themes' . JRDS . 'classic' . JRDS . 'galleria-1.2.7.min.js' );
-		$this->add_obs_file( $this->dir_javascript . JRDS . 'slideshow_themes' . JRDS . 'classic' . JRDS . 'galleria-1.2.9.min.js' );
+		$this->add_obs_file( $this->dir_javascript . 'TableTools.js' );
+		$this->add_obs_file( $this->dir_javascript . 'TableTools.min.js' );
+		$this->add_obs_file( $this->dir_javascript . 'jquery-1.8.2.js' );
+		$this->add_obs_file( $this->dir_javascript . 'ColVis.min.js' );
+		
+		$this->add_obs_file( $this->dir_css . 'tables_jui.css' );
+		$this->add_obs_file( $this->dir_css . 'TableTools_JUI.css' );
+		$this->add_obs_file( $this->dir_css . 'ColVis.css' );
 		
 		}
 
