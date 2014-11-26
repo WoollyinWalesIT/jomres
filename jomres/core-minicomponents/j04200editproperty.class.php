@@ -62,7 +62,7 @@ class j04200editproperty
 			property_tel ,property_fax,property_email,property_features,property_key,
 			property_description,property_checkin_times,
 			property_area_activities,property_driving_directions,property_airports,
-			property_othertransport,property_policies_disclaimers,stars,superior,ptype_id,`lat`,`long`,`metatitle`,`metadescription`,`metakeywords`
+			property_othertransport,property_policies_disclaimers,stars,superior,ptype_id,`lat`,`long`,`metatitle`,`metadescription`,`metakeywords`,`property_site_id`
 			FROM #__jomres_propertys WHERE  propertys_uid  = '" . (int) $propertyUid . "' LIMIT 1";
 			$propertyList = doSelectSql( $query );
 			foreach ( $propertyList as $property )
@@ -153,10 +153,11 @@ class j04200editproperty
 
 				if ( empty( $selectedCountry ) ) $selectedCountry = $property->property_country;
 
-				if ( is_numeric( $property->property_region ) ) $propertyRegion = jr_gettext( '_JOMRES_CUSTOMTEXT_REGIONNAMES_' . $selectedCountry . "_" . $property->property_region, $property->property_region, false, false );
+				if ( is_numeric( $property->property_region ) ) 
+					$propertyRegion = jr_gettext( '_JOMRES_CUSTOMTEXT_REGIONNAMES_' . $selectedCountry . "_" . $property->property_region, $property->property_region, false, false );
 				else
-				$propertyRegion = $property->property_region;
-
+					$propertyRegion = $property->property_region;
+				$property_site_id =  $property->property_site_id;
 				}
 			}
 		else // Probably superfluous
@@ -288,6 +289,22 @@ class j04200editproperty
 				}
 			}
 
+		$multi=array();
+		if(file_exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_multisites'.DS.'helpers'.DS.'utils.php'))
+			{
+			include_once( JPATH_ADMINISTRATOR.DS.'components'.DS.'com_multisites'.DS.'helpers'.DS.'utils.php');
+			if ( class_exists( 'MultisitesHelperUtils') && method_exists( 'MultisitesHelperUtils', 'getComboSiteIDs')) 
+				{
+				$comboSiteIDs = MultisitesHelperUtils::getComboSiteIDs( $property_site_id, 'property_site_id', jr_gettext( '_JOMRES_MULTISITES_SELECT_A_SITE', _JOMRES_MULTISITES_SELECT_A_SITE, false, false ));
+				if( !empty( $comboSiteIDs))
+					{
+					$multisites['LABEL'] = jr_gettext("_JOMRES_MULTISITES_MULTISITES_LABEL" , _JOMRES_MULTISITES_MULTISITES_LABEL);
+					$multisites['MULTISITES_SELECT'] = $comboSiteIDs;
+					$multi = array($multisites);
+					}
+				}
+			}
+		
 		$output[ 'APIKEY' ]     = $jrConfig[ 'google_maps_api_key' ];
 		$output[ 'HCOUNTRY' ]   = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY );
 		$output[ 'HREGION' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION );
@@ -358,7 +375,8 @@ class j04200editproperty
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'delimg_rows', $delimg_rows );
 		$tmpl->addRows( 'change_country_warning', $change_country_warning );
-
+		$tmpl->addRows('multi',$multi);
+		
 		if ( $jrConfig[ 'useGlobalPFeatures' ] == "1" ) $tmpl->addRows( 'globalPfeatures', $globalPfeatures );
 		$tmpl->displayParsedTemplate();
 		}

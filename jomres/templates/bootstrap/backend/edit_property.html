@@ -216,6 +216,14 @@
 				<input class="inputbox" type="text" size="70" name="metakeywords" value="{METAKEYWORDS}"/>
 			</div>
 		</div>
+		<patTemplate:tmpl name="multi" type="simpleCondition" requiredVars="multisites_select">
+		<div class="control-group">
+			<label class="control-label" for="property_site_id">{LABEL}</label>
+			<div class="controls">
+			{MULTISITES_SELECT}
+			</div>
+		</div>
+		</patTemplate:tmpl>
 		<div class="form-actions">
 			{JOMRESTOOLBAR}
 		</div>

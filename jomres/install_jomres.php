@@ -428,6 +428,31 @@ function doTableUpdates()
 	
 	if ( _JOMRES_DETECTED_CMS == "joomla15" ) 
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
+		
+	if ( !checkPropertysSiteIdColExists() ) alterPropertysSiteIdCol();
+	}
+
+function alterPropertysSiteIdCol()
+	{
+	output_message ( "Editing __jomres_propertys table adding property_site_id column");
+	$query = "ALTER TABLE `#__jomres_propertys` ADD `property_site_id` varchar(255) NULL AFTER `approved` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_propertys property_site_id", "danger" );
+		}
+	}
+
+function checkPropertysSiteIdColExists()
+	{
+	$guestsTimestampInstalled = true;
+	$query                    = "SHOW COLUMNS FROM #__jomres_propertys LIKE 'property_site_id'";
+	$result                   = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
 	}
 
 function alterContractsLang()
@@ -3085,6 +3110,7 @@ function createJomresTables()
 		`metakeywords` TEXT NULL,
 		`timestamp` DATETIME,
 		`approved`  BOOL NOT NULL DEFAULT '1',
+		`property_site_id` VARCHAR( 255 ) NULL,
 		PRIMARY KEY(`propertys_uid`)
 		) ";
 	if ( !doInsertSql( $query ) )
