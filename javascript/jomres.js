@@ -47,19 +47,19 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 	if (showTableTools)
 		{
 		if (jomres_template_version == "bootstrap3"){
-			sDomm = "<'row'<'col-xs-4'l><'col-xs-4'TC><'col-xs-4'f>>rt<'row'<'col-xs-4'i><'col-xs-8'p>>";
+			sDomm = "<'row'<'col-xs-4'lr><'col-xs-4'TC><'col-xs-4'f>>t<'row'<'col-xs-4'i><'col-xs-8'p>>";
 			}
 		else {
-			sDomm = "<'row-fluid'<'span4'l><'span4'TC><'span4'f>>rt<'row-fluid'<'span4'i><'span8'p>>";
+			sDomm = "<'row-fluid'<'span4'lr><'span4'TC><'span4'f>>t<'row-fluid'<'span4'i><'span8'p>>";
 			}
 		}
 	else
 		{
 		if (jomres_template_version == "bootstrap3"){
-			sDomm = "<'row'<'col-xs-4'l><'col-xs-8'f>>rt<'row-fluid'<'col-xs-4'i><'col-xs-8'p>>";
+			sDomm = "<'row'<'col-xs-4'lr><'col-xs-8'f>>t<'row-fluid'<'col-xs-4'i><'col-xs-8'p>>";
 			}
 		else {
-			sDomm = "<'row-fluid'<'span4'l><'span8'f>>rt<'row-fluid'<'span4'i><'span8'p>>";
+			sDomm = "<'row-fluid'<'span4'lr><'span8'f>>t<'row-fluid'<'span4'i><'span8'p>>";
 			}
 		
 		}
@@ -146,7 +146,7 @@ function dataTableSetHiddenColumns(table_id, column_ids)
 			oTable.fnSetColumnVis( column_ids[i], false, false );
 			});
 		localStorage.setItem( 'toggleChanged_' + table_id, true);
-		ColVis.fnRebuild( oTable );
+		jomresJquery.fn.dataTable.ColVis.fnRebuild( oTable );
 		}
 }
 

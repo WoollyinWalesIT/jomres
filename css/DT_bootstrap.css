@@ -21,7 +21,8 @@ div.dataTables_paginate {
 }
 
 div.dataTables_processing {
-	color:#F00;
+    color: #f00;
+	width:100px;
 }
 
 table.table {
