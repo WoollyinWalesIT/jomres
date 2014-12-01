@@ -44,6 +44,9 @@ class jomres_property_payment_methods
 		{
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		
+		if (!is_array($property_uids) && (int)$property_uids > 0 )
+			$property_uids = array($property_uids);
+		
 		// First we need to extract those uids that are not already in the $this->multi_query_result var, this (may) reduce the number of properties we need to query
 		$temp_array = array ();
 		foreach ( $property_uids as $id )
@@ -56,8 +59,9 @@ class jomres_property_payment_methods
 			
 		if (count($property_uids) > 0)
 			{			
-			$query        = "SELECT id,prid,plugin FROM #__jomres_pluginsettings WHERE setting = 'active' AND value = '1' AND prid IN (" . implode(',',$property_uids) .") ";
+			$query = "SELECT id,prid,plugin FROM #__jomres_pluginsettings WHERE setting = 'active' AND value = '1' AND prid IN (" . implode(',',$property_uids) .") ";
 			$propertyData = doSelectSql( $query );
+
 			foreach ( $propertyData as $data )
 				{
 				$result = $MiniComponents->specificEvent( '03108', $data->plugin, null );
@@ -65,20 +69,32 @@ class jomres_property_payment_methods
 				$gatewaydir      = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' ).'/', $tmpgatewaydir );
 				$gatewaydir      = str_replace( '\\', '/', $gatewaydir );
 
-				$this->multi_query_result[ $data->prid ][] = array ("gateway" => $data->plugin, "gateway_name" => $result[ 'gatewayname' ], "gateway_image"=>$gatewaydir . 'j00510' . $data->plugin . '.gif');
+				$this->multi_query_result[ $data->prid ]["gateway"] = $data->plugin;
+				$this->multi_query_result[ $data->prid ]["gateway_name"] = $result[ 'gatewayname' ];
+				$this->multi_query_result[ $data->prid ]["gateway_image"] = $gatewaydir . 'j00510' . $data->plugin . '.gif';
 				}
-				
+			
+			//some properties don`t have gateways enabled, so we`ll set $this->multi_query_result to '' for them, otherwise the mysql query will be executed again
+			foreach ($property_uids as $uid)
+				{
+				if (!in_array($uid, $this->multi_query_result))
+					{
+					$this->multi_query_result[ $uid ]["gateway"] = '';
+					$this->multi_query_result[ $uid ]["gateway_name"] = '';
+					$this->multi_query_result[ $uid ]["gateway_image"] = '';	
+					}
+				}
 			}
 		}
 	
-	function get_property_gateways( $property_uid)
+	function get_property_gateways($property_uid)
 		{
-		$this->get_gateways_multi(array($property_uid));
-		if ( isset($this->multi_query_result[ $property_uid ]) )
+		if ( !isset($this->multi_query_result[ $property_uid ]) )
 			{
-			return $this->multi_query_result[ $property_uid ];
+			$this->get_gateways_multi($property_uid);
 			}
+		
+		return $this->multi_query_result[ $property_uid ];	
 		}
 	}
 
-?>
