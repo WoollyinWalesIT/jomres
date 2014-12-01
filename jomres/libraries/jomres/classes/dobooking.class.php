@@ -5094,6 +5094,7 @@ class dobooking
 			$query             = "SELECT tarifftype_id FROM #__jomcomp_tarifftype_rate_xref WHERE tariff_id = " . (int) $tariffUid;
 			$tarifftypeid      = doSelectSql( $query, 1 );
 			$output[ 'TITLE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID' . $tarifftypeid, stripslashes( $tariff[ 'rate_title' ] ), false, false ) );
+			$output[ 'DESC' ]  = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_TARIFFDESC' . $tarifftypeid, stripslashes( $tariff[ 'rate_description' ] ), false, false ) );
 			}
 		else
 			{
