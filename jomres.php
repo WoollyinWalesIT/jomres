@@ -430,8 +430,10 @@ try
 				$result = doSelectSql($query);
 				if (count($result)==0)
 					{
-					$data  = array ( 'tmpbooking' => $tmpBookingHandler->tmpbooking, 'tmpguest' => $tmpBookingHandler->tmpguest );
-					$query = "INSERT INTO #__jomres_booking_data_archive SET `data`='" . strip_tags(serialize( $data )) . "',`date`='" . date( 'Y-m-d H:i:s' ) . "', `tag` = '".$tag."'";
+					$tmpbooking = array_map("strip_tags", $tmpBookingHandler->tmpbooking);
+					$tmpguest = array_map("strip_tags", $tmpBookingHandler->tmpguest);
+					$data  = array ( 'tmpbooking' => $tmpbooking, 'tmpguest' => $tmpguest );
+					$query = "INSERT INTO #__jomres_booking_data_archive SET `data`='" . serialize( $data ) . "',`date`='" . date( 'Y-m-d H:i:s' ) . "', `tag` = '".$tag."'";
 					doInsertSql( $query, '' );
 					}
 				
