@@ -85,6 +85,8 @@ class jomres_property_payment_methods
 					}
 				}
 			}
+		
+		return $this->multi_query_result;
 		}
 	
 	function get_property_gateways($property_uid)
