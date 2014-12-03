@@ -110,7 +110,7 @@ class j00016composite_property_details
 		if ( !isset( $jrConfig[ 'property_details_in_tabs' ] ) ) 
 			$jrConfig[ 'property_details_in_tabs' ] = "1";
 		
-		if ( $jrConfig[ 'property_details_in_tabs' ] == "0" )
+		if ( $jrConfig[ 'property_details_in_tabs' ] == "0" && !isset( $_REQUEST[ 'jr_printable' ]) )
 			{
 			$standalone_elements = array (
 				'TABCONTENT_01_MAIN_DETAILS',
