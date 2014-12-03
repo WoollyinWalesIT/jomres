@@ -142,14 +142,14 @@ class j03020insertbooking
 					else
 					$extrasquantities = "";
 
-
-					$discount = $tempBookingData->discounts;
 					if ( count( $discount ) > 0 )
 						{
+						$discount = array_map("strip_tags", $discount);
 						$discount_details = "";
+						
 						foreach ( $discount as $d )
 							{
-							$discount_details .= strip_tags(serialize( $d ));
+							$discount_details .= serialize( $d );
 							}
 						}
 
@@ -357,9 +357,11 @@ class j03020insertbooking
 					if ( count( $discount ) > 0 )
 						{
 						$discount_details = "";
+						$discount = array_map("strip_tags", $discount);
+						
 						foreach ( $discount as $d )
 							{
-							$discount_details .= strip_tags(serialize( $d ));
+							$discount_details .= serialize( $d );
 							}
 						}
 					
@@ -445,12 +447,12 @@ class j03020insertbooking
 						}
 						
 					if ( $mrConfig[ 'singleRoomProperty' ] == 1 ) 
-						$newtext = $tmpBookingHandler->getBookingFieldVal( "lastminutediscount" );
+						$newtext = strip_tags($tmpBookingHandler->getBookingFieldVal( "lastminutediscount" ));
 					else
-						$newtext = $tmpBookingHandler->getBookingFieldVal( "wisepricediscount" );
+						$newtext = strip_tags($tmpBookingHandler->getBookingFieldVal( "wisepricediscount" ));
 					
 					$dt    = date( "Y-m-d H-i-s" );
-					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . RemoveXSS( strip_tags($newtext) ) . "','$dt','" . (int) $property_uid . "')";
+					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . RemoveXSS( $newtext ) . "','$dt','" . (int) $property_uid . "')";
 					doInsertSql( $query, "" );
 
 					if ( empty( $contract_uid ) )
@@ -578,7 +580,7 @@ class j03020insertbooking
 				$bookingNotes = $tempBookingData->booking_notes;
 				foreach ( $bookingNotes as $k => $v )
 					{
-					$note  = " " . $k . " " . $v . "<br/>";
+					$note  = " " . strip_tags($k) . " " . strip_tags($v) . "<br/>";
 					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . $note . "','$dt','" . (int) $property_uid . "')";
 					doInsertSql( $query, "" );
 					}
