@@ -17,7 +17,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 function can_modify_this_booking($contract_uid)
 	{
-	$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
+	$thisJRUser		= jomres_singleton_abstract::getInstance( 'jr_user' );
 	
 	if (!$thisJRUser->userIsManager)
 		throw new Exception("Non-manager user ".serialize($thisJRUser)." attempted to modify a booking with the contract uid of ".(int)$contract_property_uid);
@@ -52,7 +52,7 @@ function get_periods( $start, $end, $interval = null )
 	$dates  = array ();
 	foreach ( $period as $date )
 		{
-		$d        = $date->format( 'Y/m/d' );
+		$d		= $date->format( 'Y/m/d' );
 		$dates[ ] = $d;
 		}
 
@@ -61,28 +61,28 @@ function get_periods( $start, $end, $interval = null )
 
 // Function to get the client IP address
 function jomres_get_client_ip() {
-    $ipaddress = '';
-    if ($_SERVER['HTTP_CLIENT_IP'])
-        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-    else if($_SERVER['REMOTE_ADDR'])
-        $ipaddress = $_SERVER['REMOTE_ADDR'];
-    else if($_SERVER['HTTP_X_FORWARDED_FOR'])
-        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    else if($_SERVER['HTTP_X_FORWARDED'])
-        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-    else if($_SERVER['HTTP_FORWARDED_FOR'])
-        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-    else if($_SERVER['HTTP_FORWARDED'])
-        $ipaddress = $_SERVER['HTTP_FORWARDED'];
-    else
-        $ipaddress = 'UNKNOWN';
-    return filter_var( $ipaddress , FILTER_SANITIZE_STRING ) ;
+	$ipaddress = '';
+	if ($_SERVER['HTTP_CLIENT_IP'])
+		$ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+	else if($_SERVER['REMOTE_ADDR'])
+		$ipaddress = $_SERVER['REMOTE_ADDR'];
+	else if($_SERVER['HTTP_X_FORWARDED_FOR'])
+		$ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	else if($_SERVER['HTTP_X_FORWARDED'])
+		$ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+	else if($_SERVER['HTTP_FORWARDED_FOR'])
+		$ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+	else if($_SERVER['HTTP_FORWARDED'])
+		$ipaddress = $_SERVER['HTTP_FORWARDED'];
+	else
+		$ipaddress = 'UNKNOWN';
+	return filter_var( $ipaddress , FILTER_SANITIZE_STRING ) ;
 }
 
 function output_fatal_error($e)
 	{
-	$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-	$jrConfig          = $siteConfig->get();
+	$siteConfig		= jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig		  = $siteConfig->get();
 	
 	$cms_files_we_are_not_interested_in = jomres_cmsspecific_error_logging_cms_files_to_not_backtrace();
 	$rows = array();
@@ -91,8 +91,8 @@ function output_fatal_error($e)
 	foreach ( $backtrace as $trace )
 		{
 		$r = array();
-		$file     = $trace[ 'file' ];
-		$bang     = explode( JRDS, $file );
+		$file	 = $trace[ 'file' ];
+		$bang	 = explode( JRDS, $file );
 		$filename = $bang[ count( $bang ) - 1 ];
 		if ( $filename != 'patTemplate.php' && $filename != 'index.php' &&  !in_array( $filename,$cms_files_we_are_not_interested_in) )
 			{
@@ -101,7 +101,8 @@ function output_fatal_error($e)
 			}
 		}
 	
-	$link =  "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	$link = getCurrentUrl();
+	//$link =  "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	$cleaned_link = jomres_sanitise_string($link);
 
 	$output = array(
@@ -121,7 +122,7 @@ function output_fatal_error($e)
 	$output['DATETIME'] = date ( "Y-m-d H:i:s" );
 	
 	$pageoutput[] = $output;
-	$tmpl          = new patTemplate();
+	$tmpl		  = new patTemplate();
 	$tmpl->setRoot( $path );
 	$tmpl->readTemplatesFromInput( "error_developer.html" );
 	$tmpl->addRows( 'rows', $rows );
@@ -146,7 +147,7 @@ function output_fatal_error($e)
 	else
 		{
 		$pageoutput = array(array ( "_JOMRES_ERROR"=>jr_gettext("_JOMRES_ERROR", _JOMRES_ERROR, false ) , "_JOMRES_ERROR_MESSAGE"=>jr_gettext("_JOMRES_ERROR_MESSAGE", _JOMRES_ERROR_MESSAGE, false ) ));
-		$tmpl          = new patTemplate();
+		$tmpl		  = new patTemplate();
 		$tmpl->setRoot( $path );
 		$tmpl->readTemplatesFromInput( "error_production.html" );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
@@ -159,6 +160,19 @@ function output_fatal_error($e)
 	
 	sendAdminEmail( "Error logged ".$output['MESSAGE'], $url);
 	}
+
+function getCurrentUrl($full = true) 
+	{
+	if (isset($_SERVER['REQUEST_URI'])) 
+		{
+		$parse = parse_url(
+			(isset($_SERVER['HTTPS']) && strcasecmp($_SERVER['HTTPS'], 'off') ? 'https://' : 'http://') .
+			(isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : (isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '')) . (($full) ? $_SERVER['REQUEST_URI'] : null)
+		);
+		$parse['port'] = $_SERVER["SERVER_PORT"]; // Setup protocol for sure (80 is default)
+		return http_build_url('', $parse);
+	}
+}
 
 function this_cms_is_wordpress()
 	{
@@ -187,7 +201,7 @@ function make_modal_button( $text , $task, $extra = '' , $title , $button_colour
 	$pageoutput[0][ 'MODAL_TITLE' ]				=  urlencode( $title );
 	$pageoutput[0][ 'BUTTON_COLOUR' ]			= $button_colour;
 
-	$tmpl          = new patTemplate();
+	$tmpl		  = new patTemplate();
 	$tmpl->setRoot( $path );
 	$tmpl->readTemplatesFromInput( "modal_button.html" );
 	$tmpl->addRows( 'pageoutput', $pageoutput );
@@ -206,7 +220,7 @@ function make_modal_button( $text , $task, $extra = '' , $title , $button_colour
 function simple_template_output($path = '' , $template = '' ,$one_string = '' )
 	{
 	$pageoutput = array(array ( "TITLE"=>$one_string));
-	$tmpl          = new patTemplate();
+	$tmpl		  = new patTemplate();
 	$tmpl->setRoot( $path );
 	$tmpl->readTemplatesFromInput( $template );
 	$tmpl->addRows( 'pageoutput', $pageoutput );
@@ -266,16 +280,16 @@ function find_plugin_template_directory()
 
 function findDateRangeForDates( $d1, $d2 )
 	{
-	$days            = (int) findDaysForDates( $d1, $d2 );
+	$days			= (int) findDaysForDates( $d1, $d2 );
 	$dateRangeArray  = array ();
-	$currentDay      = $d1;
+	$currentDay	  = $d1;
 	$date_elements   = explode( "/", $currentDay );
 	$unixCurrentDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
 	for ( $i = 0, $n = $days; $i <= $n; $i++ )
 		{
-		$currentDay        = date( "Y/m/d", $unixCurrentDate );
+		$currentDay		= date( "Y/m/d", $unixCurrentDate );
 		$dateRangeArray[ ] = $currentDay;
-		$date_elements     = explode( "/", $currentDay );
+		$date_elements	 = explode( "/", $currentDay );
 		$unixCurrentDate   = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ] + 1, $date_elements[ 0 ] );
 		}
 
@@ -292,9 +306,9 @@ function findDaysForDates( $d1, $d2 )
 function import_images_to_media_centre_directories()
 	{
 	// We are going to move any property images, slideshow images and room images into the new media centre's resource directories.
-	$query                 = "SELECT propertys_uid,published FROM #__jomres_propertys";
-	$properties            = doSelectSql( $query );
-	$all_propertys         = array();
+	$query				 = "SELECT propertys_uid,published FROM #__jomres_propertys";
+	$properties			= doSelectSql( $query );
+	$all_propertys		 = array();
 	foreach ( $properties as $p )
 		{
 		$all_propertys[ ] = $p->propertys_uid;
@@ -467,24 +481,24 @@ function import_images_to_media_centre_directories()
 	
 function jomres_formatBytes($bytes, $precision = 2) 
 	{
-    $units = array('B', 'KB', 'MB', 'GB', 'TB'); 
+	$units = array('B', 'KB', 'MB', 'GB', 'TB'); 
 
-    $bytes = max($bytes, 0); 
-    $pow = floor(($bytes ? log($bytes) : 0) / log(1024)); 
-    $pow = min($pow, count($units) - 1); 
-    return round($bytes, $precision) . ' ' . $units[$pow]; 
+	$bytes = max($bytes, 0); 
+	$pow = floor(($bytes ? log($bytes) : 0) / log(1024)); 
+	$pow = min($pow, count($units) - 1); 
+	return round($bytes, $precision) . ' ' . $units[$pow]; 
 	} 
 
 
 function echo_backtrace()
 	{
-	$trace     = debug_backtrace();
+	$trace	 = debug_backtrace();
 	foreach ($trace as $t)
 		{
 		$file_arr = explode( JRDS, $t[ 'file' ] );
-		$file     = $file_arr[ count( $file_arr ) - 1 ];
+		$file	 = $file_arr[ count( $file_arr ) - 1 ];
 		if ($file == "helper.php") break;
-		$line     = $t[ 'line' ];
+		$line	 = $t[ 'line' ];
 		echo "Line : ".$line." for file ".$file." </br>";
 		}
 	}
@@ -529,7 +543,7 @@ function genericLike( $idArray, $fieldToSearch, $idArrayisInteger = true )
 		$newArr[ ] = $id;
 		}
 	$idArray = $newArr;
-	$txt     = " ( `" . $fieldToSearch . "` LIKE ";
+	$txt	 = " ( `" . $fieldToSearch . "` LIKE ";
 	for ( $i = 0, $n = count( $idArray ); $i < $n; $i++ )
 		{
 		if ( $idArrayisInteger ) $id = (int) $idArray[ $i ];
@@ -632,7 +646,7 @@ function make_agent_link( $property_id = 0 )
 
 	if ( $property_id == 0 ) return '';
 
-	$output     = array ();
+	$output	 = array ();
 	$pageoutput = array ();
 
 	$manager_id = $property_manager_xref[ $property_id ];
@@ -643,7 +657,7 @@ function make_agent_link( $property_id = 0 )
 	$output[ 'URL' ] = jomresURL( JOMRES_SITEPAGE_URL . "&task=view_agent&id=" . $manager_id );
 
 	$pageoutput[ ] = $output;
-	$tmpl          = new patTemplate();
+	$tmpl		  = new patTemplate();
 	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 	$tmpl->addRows( 'pageoutput', $pageoutput );
 	$tmpl->readTemplatesFromInput( 'agent_link.html' );
@@ -702,12 +716,12 @@ function using_bootstrap()
 		{
 		if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "joomla33")
 			{
-			$jrConfig[ 'use_bootstrap_in_admin' ]    = "1";
+			$jrConfig[ 'use_bootstrap_in_admin' ]	= "1";
 			$jrConfig[ 'use_bootstrap_in_frontend' ] = "1";
 			}
 		else
 			{
-			$jrConfig[ 'use_bootstrap_in_admin' ]    = "0";
+			$jrConfig[ 'use_bootstrap_in_admin' ]	= "0";
 			$jrConfig[ 'use_bootstrap_in_frontend' ] = "0";
 			}
 		}
@@ -747,9 +761,9 @@ function add_gmaps_source( $sensor = 0 )
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		$site_lang  = get_showtime( 'lang' );
-		$lang       = explode( '-', $site_lang );
+		$lang	   = explode( '-', $site_lang );
 		$shortcode  = $lang[ 0 ];
-		$s          = "false";
+		$s		  = "false";
 		if ( $sensor == 1 ) $s = "true";
 
 		$libraries = '';
@@ -776,11 +790,11 @@ function add_gmaps_source( $sensor = 0 )
 // Used by components to dynamically add elements to the new Jomres mainmenu. Process.png is a neat way to indicate that this menu option's dynamically added
 function add_menu_option( $task_and_args, $image, $title, $path = null, $category, $external = false, $disabled = false )
 	{
-	$jomres_mainmenu_category_images                            = get_showtime( 'jomres_mainmenu_category_images' );
+	$jomres_mainmenu_category_images							= get_showtime( 'jomres_mainmenu_category_images' );
 	$jomres_mainmenu_category_images[ strtolower( $category ) ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/process.png';
 	set_showtime( 'jomres_mainmenu_category_images', $jomres_mainmenu_category_images );
-	$option                                             = jomres_mainmenu_option( $task_and_args, "process.png", $title, $path, $category, $external, $disabled );
-	$jomres_mainmenu_thirdparty_options                 = get_showtime( 'jomres_mainmenu_thirdparty_options' );
+	$option											 = jomres_mainmenu_option( $task_and_args, "process.png", $title, $path, $category, $external, $disabled );
+	$jomres_mainmenu_thirdparty_options				 = get_showtime( 'jomres_mainmenu_thirdparty_options' );
 	$jomres_mainmenu_thirdparty_options[ ][ 'OPTIONS' ] = $option;
 	set_showtime( 'jomres_mainmenu_thirdparty_options', $jomres_mainmenu_thirdparty_options );
 	}
@@ -790,10 +804,10 @@ function add_menu_option( $task_and_args, $image, $title, $path = null, $categor
 function jomres_mainmenu_option( $link, $image = '', $text, $path = "/JOMRES_ROOT_DIRECTORY/images/jomresimages/small/", $category = null, $external = false, $disabled = false )
 	{
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-	$siteConfig     = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-	$jrConfig       = $siteConfig->get();
-	$link           = jomresURL( $link );
-	$link           = jomresValidateUrl( $link );
+	$siteConfig	 = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig	   = $siteConfig->get();
+	$link		   = jomresURL( $link );
+	$link		   = jomresValidateUrl( $link );
 	
 	if ( $jrConfig[ 'development_production' ] == 'production' && $category == jr_gettext( "_JOMRES_SEARCH_BUTTON", _JOMRES_SEARCH_BUTTON, false, false ) )
 		{
@@ -821,8 +835,8 @@ function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = ""
 	$height = "";
 	if ( $thumbnail == "" )
 		{
-		$width     = "width='45px'";
-		$height    = "height='45px'";
+		$width	 = "width='45px'";
+		$height	= "height='45px'";
 		$thumbnail = $image;
 		}
 
@@ -835,13 +849,13 @@ function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = ""
 		curl_setopt( $ch, CURLOPT_URL, $image_rel_path . $image );
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
 		curl_setopt( $ch, CURLOPT_USERAGENT, 'Jomres' );
-		$data        = curl_exec( $ch );
-		$resource    = imagecreatefromstring( $data );
+		$data		= curl_exec( $ch );
+		$resource	= imagecreatefromstring( $data );
 		$modal_width = imagesx( $resource ) + 30;
 		if ( $modal_width == 30 || !$modal_width ) // Yet another security setting stopping PHP from doing it's job, let's fall back to the maxwidth config setting.
 			{
 			$siteConfig  = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-			$jrConfig    = $siteConfig->get();
+			$jrConfig	= $siteConfig->get();
 			$max_width   = $jrConfig[ 'maxwidth' ];
 			$modal_width = $max_width + 30;
 			}
@@ -849,11 +863,11 @@ function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = ""
 	else
 	$modal_width = $sizes[ 0 ] + 30;
 
-	$title           = str_replace( "'", "", $title );
+	$title		   = str_replace( "'", "", $title );
 	$close_dialog_js = 'jomresJquery(".ui-widget-overlay").live("click", function() {jomresJquery("#' . $id . '").dialog("close");});';
-	$onClick         = "onClick='jomresJquery( \"#" . $id . "\" ).dialog({dialogClass:\"\",width:" . $modal_width . ",modal:true,title:\"" . $title . "\"});" . $close_dialog_js . "'";
-	$link            = '<a href="javascript:void(0);" ' . $onClick . ' ><img src="' . $thumbnail_rel_path . $thumbnail . '" ' . $width . ' ' . $height . ' alt="' . $title . '" ></a>';
-	$image_div       = '<div id="' . $id . '" style="display:none;"><img src="' . $image_rel_path . $image . '"></div>';
+	$onClick		 = "onClick='jomresJquery( \"#" . $id . "\" ).dialog({dialogClass:\"\",width:" . $modal_width . ",modal:true,title:\"" . $title . "\"});" . $close_dialog_js . "'";
+	$link			= '<a href="javascript:void(0);" ' . $onClick . ' ><img src="' . $thumbnail_rel_path . $thumbnail . '" ' . $width . ' ' . $height . ' alt="' . $title . '" ></a>';
+	$image_div	   = '<div id="' . $id . '" style="display:none;"><img src="' . $image_rel_path . $image . '"></div>';
 
 	return $image_div . $link;
 	}
@@ -1017,7 +1031,7 @@ function nicetime( $date )
 	$periods = array ( jr_gettext( '_JOMRES_DATEPERIOD_SECOND', _JOMRES_DATEPERIOD_SECOND, false, false ), jr_gettext( '_JOMRES_DATEPERIOD_MINUTE', _JOMRES_DATEPERIOD_MINUTE, false, false ), jr_gettext( '_JOMRES_DATEPERIOD_HOUR', _JOMRES_DATEPERIOD_HOUR, false, false ), jr_gettext( '_JOMRES_DATEPERIOD_DAY', _JOMRES_DATEPERIOD_DAY, false, false ), jr_gettext( '_JOMRES_DATEPERIOD_WEEK', _JOMRES_DATEPERIOD_WEEK, false, false ), jr_gettext( '_JOMRES_DATEPERIOD_MONTH', _JOMRES_DATEPERIOD_MONTH, false, false ), jr_gettext( '_JOMRES_DATEPERIOD_YEAR', _JOMRES_DATEPERIOD_YEAR, false, false ), jr_gettext( '_JOMRES_DATEPERIOD_DECADE', _JOMRES_DATEPERIOD_DECADE, false, false ) );
 	$lengths = array ( "60", "60", "24", "7", "4.35", "12", "10" );
 
-	$now       = time();
+	$now	   = time();
 	$unix_date = strtotime( $date );
 	// check validity of date
 	if ( empty( $unix_date ) )
@@ -1029,12 +1043,12 @@ function nicetime( $date )
 	if ( $now > $unix_date )
 		{
 		$difference = $now - $unix_date;
-		$tense      = jr_gettext( '_JOMRES_DATEPERIOD_AGO', _JOMRES_DATEPERIOD_AGO, false, false );
+		$tense	  = jr_gettext( '_JOMRES_DATEPERIOD_AGO', _JOMRES_DATEPERIOD_AGO, false, false );
 		}
 	else
 		{
 		$difference = $unix_date - $now;
-		$tense      = jr_gettext( '_JOMRES_DATEPERIOD_FROMNOW', _JOMRES_DATEPERIOD_FROMNOW, false, false );
+		$tense	  = jr_gettext( '_JOMRES_DATEPERIOD_FROMNOW', _JOMRES_DATEPERIOD_FROMNOW, false, false );
 		}
 
 	for ( $j = 0; $difference >= $lengths[ $j ] && $j < count( $lengths ) - 1; $j++ )
@@ -1056,7 +1070,7 @@ function nicetime( $date )
 function get_remote_ip_number()
 	{
 	$dirty_ip = $_SERVER[ 'REMOTE_ADDR' ];
-	$bang     = explode( ".", $dirty_ip );
+	$bang	 = explode( ".", $dirty_ip );
 	if ( count( $bang ) != 4 ) return "0.0.0.0";
 
 	return (int) $bang[ 0 ] . "." . (int) $bang[ 1 ] . "." . (int) $bang[ 2 ] . "." . (int) $bang[ 3 ];
@@ -1069,7 +1083,7 @@ function set_booking_number()
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 	if (!isset($tmpBookingHandler->tmpbooking[ "booking_number" ]) || trim($tmpBookingHandler->tmpbooking[ "booking_number" ]) == "" || $tmpBookingHandler->tmpbooking[ "booking_number" ] ==0 )
 		{
-		$keeplooking       = true;
+		$keeplooking	   = true;
 		while ( $keeplooking ):
 			$cartnumber = mt_rand( 10000000, 99999999 );
 			$query  = "SELECT contract_uid FROM #__jomres_contracts WHERE tag like '" . $cartnumber . "' LIMIT 1";
@@ -1093,20 +1107,20 @@ function get_booking_number()
 function get_all_super_property_managers()
 	{
 	$super_property_managers = array ();
-	$query                   = "SELECT * FROM #__jomres_managers WHERE pu = 1";
-	$result                  = doSelectSql( $query );
+	$query				   = "SELECT * FROM #__jomres_managers WHERE pu = 1";
+	$result				  = doSelectSql( $query );
 	if ( count( $result ) > 0 )
 		{
 		foreach ( $result as $r )
 			{
-			$super_property_managers[ $r->userid ][ 'manager_uid' ]     = $r->manager_uid;
-			$super_property_managers[ $r->userid ][ 'userid' ]          = $r->userid;
-			$super_property_managers[ $r->userid ][ 'username' ]        = $r->username;
-			$super_property_managers[ $r->userid ][ 'access_level' ]    = $r->access_level;
+			$super_property_managers[ $r->userid ][ 'manager_uid' ]	 = $r->manager_uid;
+			$super_property_managers[ $r->userid ][ 'userid' ]		  = $r->userid;
+			$super_property_managers[ $r->userid ][ 'username' ]		= $r->username;
+			$super_property_managers[ $r->userid ][ 'access_level' ]	= $r->access_level;
 			$super_property_managers[ $r->userid ][ 'currentproperty' ] = $r->currentproperty;
-			$super_property_managers[ $r->userid ][ 'pu' ]              = $r->pu;
-			$super_property_managers[ $r->userid ][ 'apikey' ]          = $r->apikey;
-			$super_property_managers[ $r->userid ][ 'suspended' ]       = $r->suspended;
+			$super_property_managers[ $r->userid ][ 'pu' ]			  = $r->pu;
+			$super_property_managers[ $r->userid ][ 'apikey' ]		  = $r->apikey;
+			$super_property_managers[ $r->userid ][ 'suspended' ]	   = $r->suspended;
 			$super_property_managers[ $r->userid ][ 'users_timezone' ]  = $r->users_timezone;
 			}
 		}
@@ -1117,20 +1131,20 @@ function get_all_super_property_managers()
 function get_all_suspended_managers()
 	{
 	$suspended_managers = array ();
-	$query              = "SELECT * FROM #__jomres_managers WHERE suspended = 1";
-	$result             = doSelectSql( $query );
+	$query			  = "SELECT * FROM #__jomres_managers WHERE suspended = 1";
+	$result			 = doSelectSql( $query );
 	if ( count( $result ) > 0 )
 		{
 		foreach ( $result as $r )
 			{
-			$suspended_managers[ $r->userid ][ 'manager_uid' ]     = $r->manager_uid;
-			$suspended_managers[ $r->userid ][ 'userid' ]          = $r->userid;
-			$suspended_managers[ $r->userid ][ 'username' ]        = $r->username;
-			$suspended_managers[ $r->userid ][ 'access_level' ]    = $r->access_level;
+			$suspended_managers[ $r->userid ][ 'manager_uid' ]	 = $r->manager_uid;
+			$suspended_managers[ $r->userid ][ 'userid' ]		  = $r->userid;
+			$suspended_managers[ $r->userid ][ 'username' ]		= $r->username;
+			$suspended_managers[ $r->userid ][ 'access_level' ]	= $r->access_level;
 			$suspended_managers[ $r->userid ][ 'currentproperty' ] = $r->currentproperty;
-			$suspended_managers[ $r->userid ][ 'pu' ]              = $r->pu;
-			$suspended_managers[ $r->userid ][ 'apikey' ]          = $r->apikey;
-			$suspended_managers[ $r->userid ][ 'suspended' ]       = $r->suspended;
+			$suspended_managers[ $r->userid ][ 'pu' ]			  = $r->pu;
+			$suspended_managers[ $r->userid ][ 'apikey' ]		  = $r->apikey;
+			$suspended_managers[ $r->userid ][ 'suspended' ]	   = $r->suspended;
 			$suspended_managers[ $r->userid ][ 'users_timezone' ]  = $r->users_timezone;
 			}
 		}
@@ -1142,7 +1156,7 @@ function get_all_suspended_managers()
 function detect_property_uid()
 	{
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-	$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
+	$thisJRUser		= jomres_singleton_abstract::getInstance( 'jr_user' );
 	if ( isset( $_REQUEST[ 'selectedProperty' ] ) ) $property_uid = intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
 	else
 	$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
@@ -1177,7 +1191,7 @@ function detect_property_uid()
 	if ( get_showtime( 'task' ) == "showRoomDetails" )
 		{
 		$roomUid  = jomresGetParam( $_REQUEST, 'roomUid', 0 );
-		$query    = "SELECT propertys_uid FROM #__jomres_rooms WHERE  room_uid  = '" . (int) $roomUid . "'";
+		$query	= "SELECT propertys_uid FROM #__jomres_rooms WHERE  room_uid  = '" . (int) $roomUid . "'";
 		$roomList = doSelectSql( $query );
 		if ( count( $roomList ) > 0 )
 			{
@@ -1216,9 +1230,9 @@ function jomres_validate_gateway_plugin()
 
 	$paypal_settings = jomres_singleton_abstract::getInstance( 'jrportal_paypal_settings' );
 	$paypal_settings->get_paypal_settings();
-	$mrConfig          = getPropertySpecificSettings();
+	$mrConfig		  = getPropertySpecificSettings();
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-	$property_uid      = get_showtime( 'property_uid' );
+	$property_uid	  = get_showtime( 'property_uid' );
 	if ( ($mrConfig[ 'useOnlinepayment' ] == "1" || $paypal_settings->paypalConfigOptions[ 'override' ] == "1") && ((int)$mrConfig['requireApproval'] == 0 || $tmpBookingHandler->tmpbooking['secret_key_payment'] ))
 		{
 		if ( $paypal_settings->paypalConfigOptions[ 'override' ] == "1" ) return "paypal";
@@ -1235,10 +1249,10 @@ function jomres_validate_gateway_plugin()
 			}
 		else
 			{
-			$plugin                                     = jomresGetParam( $_REQUEST, 'plugin', "" );
+			$plugin									 = jomresGetParam( $_REQUEST, 'plugin', "" );
 			$tmpBookingHandler->tmpbooking[ "gateway" ] = $plugin;
 			}
-		$query        = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = " . (int) $property_uid . " AND `plugin` = '" . (string) $plugin . "' AND setting = 'active' AND value = '1'";
+		$query		= "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = " . (int) $property_uid . " AND `plugin` = '" . (string) $plugin . "' AND setting = 'active' AND value = '1'";
 		$gatewayDeets = doSelectSql( $query );
 		if ( count( $gatewayDeets ) != 1 )
 			{
@@ -1313,7 +1327,7 @@ function get_plugin_settings( $plugin, $prop_id = 0 )
 		if ( $prop_id == 0 )
 			{
 			$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-			$property_uid      = (int) $tmpBookingHandler->getBookingPropertyId();
+			$property_uid	  = (int) $tmpBookingHandler->getBookingPropertyId();
 			}
 		else
 		$property_uid = (int) $prop_id;
@@ -1323,7 +1337,7 @@ function get_plugin_settings( $plugin, $prop_id = 0 )
 		{
 		return false;
 		}
-	$query        = "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '" . (int) $property_uid . "' AND plugin = '" . $plugin . "' ";
+	$query		= "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '" . (int) $property_uid . "' AND plugin = '" . $plugin . "' ";
 	$settingsList = doSelectSql( $query );
 	foreach ( $settingsList as $set )
 		{
@@ -1337,12 +1351,12 @@ function get_plugin_settings( $plugin, $prop_id = 0 )
 
 		if ( $paypal_settings->paypalConfigOptions[ 'override' ] == "1" )
 			{
-			$settingArray[ 'usesandbox' ]      = $paypal_settings->paypalConfigOptions[ 'usesandbox' ];
-			$settingArray[ 'currencycode' ]    = $paypal_settings->paypalConfigOptions[ 'currencycode' ];
-			$settingArray[ 'paypalemail' ]     = $paypal_settings->paypalConfigOptions[ 'email' ];
-			$settingArray[ 'pendingok' ]       = "0";
+			$settingArray[ 'usesandbox' ]	  = $paypal_settings->paypalConfigOptions[ 'usesandbox' ];
+			$settingArray[ 'currencycode' ]	= $paypal_settings->paypalConfigOptions[ 'currencycode' ];
+			$settingArray[ 'paypalemail' ]	 = $paypal_settings->paypalConfigOptions[ 'email' ];
+			$settingArray[ 'pendingok' ]	   = "0";
 			$settingArray[ 'receiveIPNemail' ] = "1";
-			$settingArray[ 'active' ]          = "1";
+			$settingArray[ 'active' ]		  = "1";
 			}
 		}
 
@@ -1353,7 +1367,7 @@ function jr_import( $class )
 	{
 	if ( class_exists( 'j00001start' ) ) // Wont init properly if we call this any time sooner than when j00001start has been set up
 		{
-		$MiniComponents     = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		$MiniComponents	 = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		$plugin_directories = $MiniComponents->miniComponentDirectories;
 		}
 	else
@@ -1409,7 +1423,7 @@ function search_core_and_remote_dirs_for_classfiles()
 		{
 		$core_plugins_directories  = array ();
 		$remote_plugin_directories = array ();
-		$core_plugins_directory    = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
+		$core_plugins_directory	= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
 		$remote_plugin_directory   = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS;
 
 		if ( is_dir( $core_plugins_directory ) )
@@ -1487,28 +1501,28 @@ function getIntegratedSearchModuleVals()
 	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig   = $siteConfig->get();
 
-	$vals                    = array ();
-	$vals[ 'useCols' ]       = $jrConfig[ 'integratedSearch_useCols' ];
+	$vals					= array ();
+	$vals[ 'useCols' ]	   = $jrConfig[ 'integratedSearch_useCols' ];
 	$vals[ 'featurecols' ]   = $jrConfig[ 'integratedSearch_featurecols' ];
 	$vals[ 'geosearchtype' ] = $jrConfig[ 'integratedSearch_geosearchtype' ];
 	$vals[ 'propertyname' ]  = $jrConfig[ 'integratedSearch_propertyname' ];
-	$vals[ 'ptype' ]         = $jrConfig[ 'integratedSearch_ptype' ];
-	$vals[ 'room_type' ]     = $jrConfig[ 'integratedSearch_room_type' ];
+	$vals[ 'ptype' ]		 = $jrConfig[ 'integratedSearch_ptype' ];
+	$vals[ 'room_type' ]	 = $jrConfig[ 'integratedSearch_room_type' ];
 
-	$vals[ 'description' ]           = $jrConfig[ 'integratedSearch_description' ];
-	$vals[ 'availability' ]          = $jrConfig[ 'integratedSearch_availability' ];
-	$vals[ 'geosearch_dropdown' ]    = $jrConfig[ 'integratedSearch_geosearchtype_dropdown' ];
+	$vals[ 'description' ]		   = $jrConfig[ 'integratedSearch_description' ];
+	$vals[ 'availability' ]		  = $jrConfig[ 'integratedSearch_availability' ];
+	$vals[ 'geosearch_dropdown' ]	= $jrConfig[ 'integratedSearch_geosearchtype_dropdown' ];
 	$vals[ 'propertyname_dropdown' ] = $jrConfig[ 'integratedSearch_propertyname_dropdown' ];
-	$vals[ 'ptype_dropdown' ]        = $jrConfig[ 'integratedSearch_ptype_dropdown' ];
-	$vals[ 'room_type_dropdown' ]    = $jrConfig[ 'integratedSearch_room_type_dropdown' ];
-	$vals[ 'features' ]              = $jrConfig[ 'integratedSearch_features' ];
-	$vals[ 'features_dropdown' ]     = $jrConfig[ 'integratedSearch_features_dropdown' ];
-	$vals[ 'priceranges' ]           = $jrConfig[ 'integratedSearch_priceranges' ];
+	$vals[ 'ptype_dropdown' ]		= $jrConfig[ 'integratedSearch_ptype_dropdown' ];
+	$vals[ 'room_type_dropdown' ]	= $jrConfig[ 'integratedSearch_room_type_dropdown' ];
+	$vals[ 'features' ]			  = $jrConfig[ 'integratedSearch_features' ];
+	$vals[ 'features_dropdown' ]	 = $jrConfig[ 'integratedSearch_features_dropdown' ];
+	$vals[ 'priceranges' ]		   = $jrConfig[ 'integratedSearch_priceranges' ];
 	$vals[ 'pricerange_increments' ] = $jrConfig[ 'integratedSearch_pricerange_increments' ];
-	$vals[ 'selectcombo' ]           = $jrConfig[ 'integratedSearch_selectcombo' ];
+	$vals[ 'selectcombo' ]		   = $jrConfig[ 'integratedSearch_selectcombo' ];
 
 	$vals[ 'guestnumber' ] = $jrConfig[ 'integratedSearch_guestnumber' ];
-	$vals[ 'stars' ]       = $jrConfig[ 'integratedSearch_stars' ];
+	$vals[ 'stars' ]	   = $jrConfig[ 'integratedSearch_stars' ];
 
 	return $vals;
 	}
@@ -1517,7 +1531,7 @@ function getIntegratedSearchModuleVals()
 function getThisMonthName( $monthNumber, $editable = true )
 	{
 	$monthNumber   = intval( $monthNumber - 1 );
-	$mName         = jr_gettext( '_JRPORTAL_MONTHS_LONG_' . $monthNumber, '_JRPORTAL_MONTHS_LONG_' . $monthNumber );
+	$mName		 = jr_gettext( '_JRPORTAL_MONTHS_LONG_' . $monthNumber, '_JRPORTAL_MONTHS_LONG_' . $monthNumber );
 	$thisMonthName = jr_gettext( '_JOMRES_CUSTOMTEXT_' . $monthNumber, $mName, $editable );
 
 	return $thisMonthName;
@@ -1529,7 +1543,7 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 	switch ( $plugin_type )
 		{
 		case 'widget': // Wordpress widgets
-			$widget_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS;
+			$widget_source	 = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS;
 			$widget_target = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "wp-content" . JRDS . "plugins" . JRDS . $plugin_name;
 			if ( !test_and_make_directory( $widget_target ) )
 				{
@@ -1542,7 +1556,7 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 			copy ($plugin_info_file , $plugin_info_file_temp);
 			
 			
-			$widget_move_result     = dirmv( $widget_source, $widget_target, true, $funcloc = "/" );
+			$widget_move_result	 = dirmv( $widget_source, $widget_target, true, $funcloc = "/" );
 			
 			if ( $widget_move_result[ 'success' ] ) 
 				{
@@ -1560,12 +1574,12 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 			$module_full_name = "mod_" . $plugin_name;
 			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . 'plugin_info.php' ) )
 				{
-				$module_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_module_folder . JRDS;
+				$module_source	 = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_module_folder . JRDS;
 				$module_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . "xml" . JRDS . "1.5";
 				}
 			else
 				{
-				$module_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "remote_plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_module_folder . JRDS;
+				$module_source	 = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "remote_plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_module_folder . JRDS;
 				$module_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "remote_plugins" . JRDS . $plugin_name . JRDS . "xml" . JRDS . "1.5";
 				}
 
@@ -1636,7 +1650,7 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 				{
 				//echo "Moving contents of ".$module_xml_source." to ".$module_target."<br/>";
 				$module_xml_move_result = dirmv( $module_xml_source, $module_target, true, $funcloc = "/" );
-				$module_move_result     = dirmv( $module_source, $module_target, true, $funcloc = "/" );
+				$module_move_result	 = dirmv( $module_source, $module_target, true, $funcloc = "/" );
 				if ( $module_move_result[ 'success' ] && $module_xml_move_result[ 'success' ] ) return true;
 				else
 				return false;
@@ -1653,18 +1667,18 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 				{
 				if ( _JOMRES_DETECTED_CMS == "joomla15" )
 					{
-					$mambot_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . "b" . JRDS;
+					$mambot_source	 = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . "b" . JRDS;
 					$mambot_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . "xml" . JRDS . "1.5" . JRDS;
 					}
 				else
 					{
-					$mambot_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_mambot_folder . JRDS;
+					$mambot_source	 = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_mambot_folder . JRDS;
 					$mambot_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name;
 					}
 				}
 			else
 				{
-				$mambot_source     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "remote_plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_mambot_folder . JRDS;
+				$mambot_source	 = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "remote_plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_mambot_folder . JRDS;
 				$mambot_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "remote_plugins" . JRDS . $plugin_name;
 				}
 
@@ -1699,7 +1713,7 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 				}
 
 			$mambot_xml_move_result = dirmv( $mambot_xml_source, $mambot_target, true, $funcloc = "/" );
-			$mambot_move_result     = dirmv( $mambot_source, $mambot_target, true, "/" );
+			$mambot_move_result	 = dirmv( $mambot_source, $mambot_target, true, "/" );
 
 			if ( $mambot_xml_move_result[ 'success' ] && $mambot_move_result[ 'success' ] )
 				{
@@ -1847,7 +1861,7 @@ function queryUpdateServer( $script, $queryString, $serverType = "plugin" )
 function dircopy( $source, $dest, $overwrite = true, $funcloc = null )
 	{
 	global $copiedFileLog;
-	$debugging     = true;
+	$debugging	 = true;
 	$copiedFileLog = array ();
 	//$success=true;
 	/*
@@ -1902,7 +1916,7 @@ function dircopy( $source, $dest, $overwrite = true, $funcloc = null )
 function dirmv( $source, $dest, $overwrite = true, $funcloc = JRDS )
 	{
 	global $movedFileLog;
-	$debugging    = false;
+	$debugging	= false;
 	$movedFileLog = array ();
 	//$success=true;
 	/*
@@ -2016,9 +2030,9 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 	$jomresConfig_smtpuser = get_showtime( 'smtpuser' );
 	$jomresConfig_smtpport = get_showtime( 'smtpport' );
 	$jomresConfig_mailer   = get_showtime( 'mailer' );
-	$jomresConfig_debug    = true;
-	$siteConfig            = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-	$jrConfig              = $siteConfig->get();
+	$jomresConfig_debug	= true;
+	$siteConfig			= jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig			  = $siteConfig->get();
 
 	$emails = array ();
 	if ( isset( $jrConfig[ 'useJomresEmailCheck' ] ) && $jrConfig[ 'useJomresEmailCheck' ] == "1" )
@@ -2072,7 +2086,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 			}
 		}
 
-	$mail            = new jomresPHPMailer();
+	$mail			= new jomresPHPMailer();
 	$mail->SMTPDebug = get_showtime( 'error_reporting' );
 	if ( $mode == 1 ) $mail->IsHTML( true );
 	$mail->Mailer = $jomresConfig_mailer;
@@ -2105,15 +2119,15 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 	$mail->CharSet  = 'UTF-8';
 	$mail->FromName = $jomresConfig_sitename;
 	$mail->Subject  = $subject;
-	$mail->Port     = $jomresConfig_smtpport;
+	$mail->Port	 = $jomresConfig_smtpport;
 
 	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig   = $siteConfig->get();
 	if ( $jrConfig[ 'alternate_smtp_use_settings' ] == "1" )
 		{
-		$mail->Mailer     = 'smtp';
-		$mail->Host       = trim( $jrConfig[ 'alternate_smtp_host' ] );
-		$mail->Port       = trim( $jrConfig[ 'alternate_smtp_port' ] );
+		$mail->Mailer	 = 'smtp';
+		$mail->Host	   = trim( $jrConfig[ 'alternate_smtp_host' ] );
+		$mail->Port	   = trim( $jrConfig[ 'alternate_smtp_port' ] );
 		$mail->SMTPSecure = trim( $jrConfig[ 'alternate_smtp_protocol' ] );
 		$mail->SMTPAuth   = trim( $jrConfig[ 'alternate_smtp_authentication' ] );
 		$mail->Username   = trim( $jrConfig[ 'alternate_smtp_username' ] );
@@ -2133,7 +2147,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 					$image_arr = explode(JRDS,$attachment[ 'image_path' ]);
 					$image_name = $image_arr [ count($image_arr)-1 ] ;
 					$image_path = $attachment[ 'image_path' ];
-					$cid        = $attachment[ 'CID' ];
+					$cid		= $attachment[ 'CID' ];
 					$mail->AddEmbeddedImage( $image_path, $cid, $image_name );
 					break;
 				case 'pdf':
@@ -2176,7 +2190,7 @@ function addBookingNote( $contract_uid, $property_uid, $message )
 	{
 	if ( $contract_uid > 0 && $property_uid > 0 && strlen( $message ) > 0 )
 		{
-		$dt     = date( "Y-m-d H-i-s" );
+		$dt	 = date( "Y-m-d H-i-s" );
 		$query  = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . RemoveXSS( $message ) . "','$dt','" . (int) $property_uid . "')";
 		$result = doInsertSql( $query, "" );
 
@@ -2193,7 +2207,7 @@ function addBookingNote( $contract_uid, $property_uid, $message )
  */
 function getGuestDetailsForContract( $contract_uid )
 	{
-	$query       = "SELECT rate_rules FROM #__jomres_contracts WHERE contract_uid = " . (int) $contract_uid . " LIMIT 1";
+	$query	   = "SELECT rate_rules FROM #__jomres_contracts WHERE contract_uid = " . (int) $contract_uid . " LIMIT 1";
 	$bookingData = doSelectSql( $query );
 
 	if ( count( $bookingData ) > 0 )
@@ -2211,9 +2225,9 @@ function getGuestDetailsForContract( $contract_uid )
 					$vq = $vDeets[ 2 ];
 					$vv = $vDeets[ 3 ];
 
-					$query              = "SELECT `type` FROM #__jomres_customertypes where id = '" . (int) $vu . "' LIMIT 1 ";
-					$vtitle             = doSelectSql( $query, 1 );
-					$vtitle             = jr_gettext( '_JOMRES_CUSTOMTEXT_GUESTTYPE' . (int) $vu, $vtitle, false, false );
+					$query			  = "SELECT `type` FROM #__jomres_customertypes where id = '" . (int) $vu . "' LIMIT 1 ";
+					$vtitle			 = doSelectSql( $query, 1 );
+					$vtitle			 = jr_gettext( '_JOMRES_CUSTOMTEXT_GUESTTYPE' . (int) $vu, $vtitle, false, false );
 					$guesttypeOutput[ ] = array ( 'title' => $vtitle, 'qty' => $vq, 'value' => $vv );
 					}
 				}
@@ -2238,24 +2252,24 @@ function getCurrentBookingData( $jomressession = "" )
 	// Whilst this is a new function to construct data from session variables, we'll need to do a bunch of jiggery pokery with the nice simple data pulled from the sess vars so that the data is in a format that's understood by other functions that previously received data that had been pulled from the database
 	//global $tmpBookingHandler;
 	$tmpBookingHandler   = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-	$obj                 = new stdClass;
+	$obj				 = new stdClass;
 	$tempBookingDataList = array ();
-	$userDeets           = $tmpBookingHandler->getGuestData();
+	$userDeets		   = $tmpBookingHandler->getGuestData();
 	foreach ( $userDeets as $key => $val )
 		{
 		$guestDetails->$key = $val;
 		}
-	$bobj         = new stdClass;
+	$bobj		 = new stdClass;
 	$bookingDeets = $tmpBookingHandler->getBookingData();
 	foreach ( $bookingDeets as $key => $val )
 		{
 		$bobj->$key = $val;
 		}
 	$tempBookingDataList[ 0 ] = $bobj;
-	$obj->guestDetails        = $guestDetails;
+	$obj->guestDetails		= $guestDetails;
 	$obj->tempBookingDataList = $tempBookingDataList;
-	$arr                      = array ();
-	$ob                       = $tempBookingDataList;
+	$arr					  = array ();
+	$ob					   = $tempBookingDataList;
 	if ( count( $ob ) > 0 )
 		{
 		foreach ( $ob as $k => $v )
@@ -2277,7 +2291,7 @@ function getCurrentBookingData( $jomressession = "" )
 function gettempBookingdata()
 	{
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-	$bookingDeets      = $tmpBookingHandler->getBookingData();
+	$bookingDeets	  = $tmpBookingHandler->getBookingData();
 
 	return $bookingDeets;
 	}
@@ -2305,8 +2319,8 @@ function addPropertyUidToUsersProperties( $property_uid )
 function addPropertyUidToManagersProperties( $manager_id, $property_uid )
 	{
 	$managersPropertys = array ();
-	$query             = "SELECT property_uid FROM #__jomres_managers_propertys_xref WHERE manager_id = '" . (int) $manager_id . "'";
-	$result            = doSelectSql( $query );
+	$query			 = "SELECT property_uid FROM #__jomres_managers_propertys_xref WHERE manager_id = '" . (int) $manager_id . "'";
+	$result			= doSelectSql( $query );
 	foreach ( $result as $r )
 		{
 		$managersPropertys[ ] = $r->property_uid;
@@ -2326,9 +2340,9 @@ function addPropertyUidToManagersProperties( $manager_id, $property_uid )
  */
 function updateManagerIdToPropertyXrefTable( $manager_id, $property_uidArray, $setCurrentPropertyToFirst = true )
 	{
-	$query                  = "SELECT property_uid FROM #__jomres_managers_propertys_xref  WHERE manager_id = '" . (int) $manager_id . "'";
+	$query				  = "SELECT property_uid FROM #__jomres_managers_propertys_xref  WHERE manager_id = '" . (int) $manager_id . "'";
 	$managersToPropertyList = doSelectSql( $query );
-	$currentProperties      = array ();
+	$currentProperties	  = array ();
 	if ( count( $managersToPropertyList ) > 0 )
 		{
 		foreach ( $managersToPropertyList as $x )
@@ -2365,9 +2379,9 @@ function updateManagerIdToPropertyXrefTable( $manager_id, $property_uidArray, $s
 		}
 	if ( $setCurrentPropertyToFirst )
 		{
-		$query                  = "SELECT property_uid FROM #__jomres_managers_propertys_xref  WHERE manager_id = '" . (int) $manager_id . "'";
+		$query				  = "SELECT property_uid FROM #__jomres_managers_propertys_xref  WHERE manager_id = '" . (int) $manager_id . "'";
 		$managersToPropertyList = doSelectSql( $query );
-		$currentProperties      = array ();
+		$currentProperties	  = array ();
 		foreach ( $managersToPropertyList as $x )
 			{
 			$currentProperties[ ] = $x->property_uid;
@@ -2459,7 +2473,7 @@ function request_log( $loggingRequest )
 	if ( LOGGINGREQUEST )
 		{
 		$logfile = JOMRES_SYSTEMLOG_PATH . 'jomres_request_log.xml';
-		$log     = "";
+		$log	 = "";
 		if ( count( $_REQUEST ) > 0 )
 			{
 			$log .= "<![CDATA[";
@@ -2484,7 +2498,7 @@ function system_log( $message )
 	if ( LOGGINGSYSTEM )
 		{
 		$logfile = JOMRES_SYSTEMLOG_PATH . 'jomres_system_log.xml';
-		$log     = "<![CDATA[\n" . $message . "]]>";
+		$log	 = "<![CDATA[\n" . $message . "]]>";
 		writexml( $logfile, "systemlog", "systemlogentry", $log );
 		}
 	}
@@ -2500,7 +2514,7 @@ function jrportalquery_log( $message )
 	if ( LOGGINGPORTAL )
 		{
 		$logfile = JOMRES_SYSTEMLOG_PATH . 'jrportalquery_log.xml';
-		$log     = "<![CDATA[" . $message . "]]>";
+		$log	 = "<![CDATA[" . $message . "]]>";
 		writexml( $logfile, "jrportalquerylog", "jrportalquerylogentry", $log );
 		}
 	}
@@ -2515,7 +2529,7 @@ function gateway_log( $message )
 	if ( LOGGINGGATEWAY )
 		{
 		$logfile = JOMRES_SYSTEMLOG_PATH . 'jomres_gateway_log.xml';
-		$log     = "<![CDATA[" . $message . "]]>";
+		$log	 = "<![CDATA[" . $message . "]]>";
 		writexml( $logfile, "gatewaylog", "gatewaylogentry", $log );
 		}
 	}
@@ -2532,16 +2546,16 @@ function writexml( $logfile, $rootelement, $entry, $newlines )
 
 	//if ($_REQUEST['option'] == "com_jomres")
 	//	{
-	$host             = gethostbyaddr( $_SERVER[ 'REMOTE_ADDR' ] );
-	$dt               = date( "Y-m-d H:i:s (T)" );
+	$host			 = gethostbyaddr( $_SERVER[ 'REMOTE_ADDR' ] );
+	$dt			   = date( "Y-m-d H:i:s (T)" );
 	$rootElementStart = "<" . $rootelement . ">\n";
-	$entryStart       = "\t<" . $entry . ">\n";
-	$datetime         = "\t\t<datetime>" . $dt . "</datetime>\n";
-	$session          = "\t\t<jomressession>" . get_showtime( 'jomressession' ) . "</jomressession>\n";
-	$taskEntry        = "\t\t<task>" . $task . "</task>\n";
-	$request          = "\t\t<requesturi><![CDATA[" . $task . " " . $ipstuff = getEscaped( $_SERVER[ 'REMOTE_ADDR' ] ) . " " . $host . "]]></requesturi>\n";
-	$message          = "\t\t\t<message>" . $newlines . "</message>\n";
-	$entryEnd         = "\t</" . $entry . ">\n";
+	$entryStart	   = "\t<" . $entry . ">\n";
+	$datetime		 = "\t\t<datetime>" . $dt . "</datetime>\n";
+	$session		  = "\t\t<jomressession>" . get_showtime( 'jomressession' ) . "</jomressession>\n";
+	$taskEntry		= "\t\t<task>" . $task . "</task>\n";
+	$request		  = "\t\t<requesturi><![CDATA[" . $task . " " . $ipstuff = getEscaped( $_SERVER[ 'REMOTE_ADDR' ] ) . " " . $host . "]]></requesturi>\n";
+	$message		  = "\t\t\t<message>" . $newlines . "</message>\n";
+	$entryEnd		 = "\t</" . $entry . ">\n";
 	$rootElementEnd   = "</" . $rootelement . ">\n";
 
 	if ( file_exists( $logfile ) ) $fp = fopen( $logfile, 'r+' );
@@ -2550,8 +2564,8 @@ function writexml( $logfile, $rootelement, $entry, $newlines )
 	$lines = file( $logfile );
 	if ( is_array( $lines ) && count( $lines ) > 0 )
 		{
-		$l        = array_shift( $lines ); // Remove the first element
-		$l        = array_pop( $lines ); // Remove the last element
+		$l		= array_shift( $lines ); // Remove the first element
+		$l		= array_pop( $lines ); // Remove the last element
 		$oldlines = implode( "", $lines );
 		}
 	else
@@ -2587,7 +2601,7 @@ function jomresRedirect( $url, $msg = '' )
 	$url = str_replace( "&amp;", "&", $url );
 
  	jr_import( 'browser_detect' );
-	$b       = new browser_detect();
+	$b	   = new browser_detect();
 	$browser = $b->getBrowser();
 
 	if ( $browser == "Internet Explorer" ) 
@@ -2644,10 +2658,10 @@ function hotelSettings()
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 
 	$property_uid = (int) getDefaultProperty();
-	$mrConfig     = getPropertySpecificSettings( $property_uid );
-	$option       = "com_jomres";
+	$mrConfig	 = getPropertySpecificSettings( $property_uid );
+	$option	   = "com_jomres";
 
-	$componentArgs               = array ();
+	$componentArgs			   = array ();
 	$componentArgs[ 'mrConfig' ] = $mrConfig;
 	$MiniComponents->triggerEvent( '0500', $componentArgs ); // Generate configuration options. Optional
 	$gatewayNames = listGateways();
@@ -2656,23 +2670,23 @@ function hotelSettings()
 	$lists = array ();
 
 	// make a standard yes/no list
-	$yesno    = array ();
+	$yesno	= array ();
 	$yesno[ ] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false ) );
 	$yesno[ ] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false ) );
 
-	$smokingOptions    = array ();
+	$smokingOptions	= array ();
 	$smokingOptions[ ] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false ) );
 	$smokingOptions[ ] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false ) );
 	$smokingOptions[ ] = jomresHTML::makeOption( '2', jr_gettext( '_JOMRES_FRONT_ROOMSMOKING_EITHER', _JOMRES_FRONT_ROOMSMOKING_EITHER, false ) );
 
 	if ( $mrConfig[ 'newTariffModels' ] != "1" && $mrConfig[ 'newTariffModels' ] != "2" ) // backward compatablity for pre-2.5 users who haven't yet visited General Configuration and clicked Save
 	$mrConfig[ 'newTariffModels' ] = "2";
-	$tariffModels         = array ();
-	$tariffModels[ ]      = jomresHTML::makeOption( 1, jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF", _JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF, false ) );
-	$tariffModels[ ]      = jomresHTML::makeOption( 2, jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES", _JOMRES_COM_A_TARIFFS_MODEL_AVERAGES, false ) );
+	$tariffModels		 = array ();
+	$tariffModels[ ]	  = jomresHTML::makeOption( 1, jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF", _JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF, false ) );
+	$tariffModels[ ]	  = jomresHTML::makeOption( 2, jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES", _JOMRES_COM_A_TARIFFS_MODEL_AVERAGES, false ) );
 	$tariffModelsDropdown = jomresHTML::selectList( $tariffModels, 'cfg_newTariffModels', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'newTariffModels' ] );
 
-	$weekDays    = array ();
+	$weekDays	= array ();
 	$weekDays[ ] = jomresHTML::makeOption( 1, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_MONDAY", _JOMRES_COM_MR_WEEKDAYS_MONDAY, false ) );
 	$weekDays[ ] = jomresHTML::makeOption( 2, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_TUESDAY", _JOMRES_COM_MR_WEEKDAYS_TUESDAY, false ) );
 	$weekDays[ ] = jomresHTML::makeOption( 3, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY", _JOMRES_COM_MR_WEEKDAYS_WEDNESDAY, false ) );
@@ -2681,7 +2695,7 @@ function hotelSettings()
 	$weekDays[ ] = jomresHTML::makeOption( 6, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", _JOMRES_COM_MR_WEEKDAYS_SATURDAY, false ) );
 	$weekDays[ ] = jomresHTML::makeOption( 0, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SUNDAY", _JOMRES_COM_MR_WEEKDAYS_SUNDAY, false ) );
 
-	$weekendDays    = array ();
+	$weekendDays	= array ();
 	$weekendDays[ ] = jomresHTML::makeOption( "5", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_FRIDAY", _JOMRES_COM_MR_WEEKDAYS_FRIDAY, false ) );
 	$weekendDays[ ] = jomresHTML::makeOption( "6", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", _JOMRES_COM_MR_WEEKDAYS_SATURDAY, false ) );
 	$weekendDays[ ] = jomresHTML::makeOption( "0", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SUNDAY", _JOMRES_COM_MR_WEEKDAYS_SUNDAY, false ) );
@@ -2692,7 +2706,7 @@ function hotelSettings()
 	$weekendDays[ ] = jomresHTML::makeOption( "5,6,0", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_FRIDAY", _JOMRES_COM_MR_WEEKDAYS_FRIDAY, false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", _JOMRES_COM_MR_WEEKDAYS_SATURDAY, false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SUNDAY", _JOMRES_COM_MR_WEEKDAYS_SUNDAY, false ) );
 	$weekendDays[ ] = jomresHTML::makeOption( "6,0", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", _JOMRES_COM_MR_WEEKDAYS_SATURDAY, false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SUNDAY", _JOMRES_COM_MR_WEEKDAYS_SUNDAY, false ) );
 
-	$jsInputDateFormats    = array ();
+	$jsInputDateFormats	= array ();
 	$jsInputDateFormats[ ] = jomresHTML::makeOption( "%d/%m/%Y", "01/02/2006 - 1st February 2006" );
 	$jsInputDateFormats[ ] = jomresHTML::makeOption( "%Y/%m/%d", "2006/02/01" );
 	$jsInputDateFormats[ ] = jomresHTML::makeOption( "%m/%d/%Y", "02/01/2006" );
@@ -2704,16 +2718,16 @@ function hotelSettings()
 
 	//$slideshowDropdownList= jomresHTML::selectList($slideshowNames, 'cfg_slideshow', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['slideshow']);
 	$smokingOptionDropdownList = jomresHTML::selectList( $smokingOptions, 'cfg_defaultSmokingOption', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'defaultSmokingOption' ] );
-	$weekdayDropdown           = jomresHTML::selectList( $weekDays, 'cfg_fixedArrivalDay', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'fixedArrivalDay' ] );
-	$weekenddayDropdown        = jomresHTML::selectList( $weekendDays, 'cfg_weekenddays', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'weekenddays' ] );
+	$weekdayDropdown		   = jomresHTML::selectList( $weekDays, 'cfg_fixedArrivalDay', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'fixedArrivalDay' ] );
+	$weekenddayDropdown		= jomresHTML::selectList( $weekendDays, 'cfg_weekenddays', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'weekenddays' ] );
 
-	$depAmounts     = array ();
+	$depAmounts	 = array ();
 	$depAmounts[ ]  = jomresHTML::makeOption( '0', jr_gettext( "_JOMRES_COM_CHARGING_DEPOSIT", _JOMRES_COM_CHARGING_DEPOSIT, false ) );
 	$depAmounts[ ]  = jomresHTML::makeOption( '1', jr_gettext( "_JOMRES_COM_CHARGING_FULLAMT", _JOMRES_COM_CHARGING_FULLAMT, false ) );
 	$paymentAmounts = jomresHTML::selectList( $depAmounts, 'cfg_depAmount', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'depAmount' ] );
 
 	if ( !isset( $mrConfig[ 'tariffmode' ] ) ) $mrConfig[ 'tariffmode' ] = 1;
-	$tariffMode    = array ();
+	$tariffMode	= array ();
 	$tariffMode[ ] = jomresHTML::makeOption( '0', jr_gettext( "JOMRES_COM_A_TARIFFMODE_NORMAL", JOMRES_COM_A_TARIFFMODE_NORMAL, false ) );
 
 	if ( isset( $MiniComponents->registeredClasses[ '06002edit_tariff_micromanage' ] ) )
@@ -2723,15 +2737,15 @@ function hotelSettings()
 		}
 	$tariffModeDD = jomresHTML::selectList( $tariffMode, 'cfg_tariffmode', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'tariffmode' ] );
 
-	$iconsizes    = array ();
+	$iconsizes	= array ();
 	$iconsizes[ ] = jomresHTML::makeOption( 'small', 'small' );
 	$iconsizes[ ] = jomresHTML::makeOption( 'large', 'large' );
 	$editIconSize = jomresHTML::selectList( $iconsizes, 'cfg_editiconsize', 'size="1" class="inputbox"', 'value', 'text', $mrConfig[ 'editiconsize' ] );
 
 	if ( !isset( $mrConfig[ 'booking_form_rooms_list_style' ] ) ) $mrConfig[ 'booking_form_rooms_list_style' ] = "1";
-	$booking_form_rooms_list       = array ();
-	$booking_form_rooms_list[ ]    = jomresHTML::makeOption( '1', jr_gettext( "_JOMRES_ROOMMSLIST_STYLE_CLASSIC", _JOMRES_ROOMMSLIST_STYLE_CLASSIC, false ) );
-	$booking_form_rooms_list[ ]    = jomresHTML::makeOption( '2', jr_gettext( "_JOMRES_ROOMMSLIST_STYLE_ROOMTYPES", _JOMRES_ROOMMSLIST_STYLE_ROOMTYPES, false ) );
+	$booking_form_rooms_list	   = array ();
+	$booking_form_rooms_list[ ]	= jomresHTML::makeOption( '1', jr_gettext( "_JOMRES_ROOMMSLIST_STYLE_CLASSIC", _JOMRES_ROOMMSLIST_STYLE_CLASSIC, false ) );
+	$booking_form_rooms_list[ ]	= jomresHTML::makeOption( '2', jr_gettext( "_JOMRES_ROOMMSLIST_STYLE_ROOMTYPES", _JOMRES_ROOMMSLIST_STYLE_ROOMTYPES, false ) );
 	$booking_form_rooms_list_style = jomresHTML::selectList( $booking_form_rooms_list, 'cfg_booking_form_rooms_list_style', 'size="1" class="inputbox"', 'value', 'text', $mrConfig[ 'booking_form_rooms_list_style' ] );
 
 	$fixedArrivalDatesRecurring = jomresHTML::integerSelectList( 01, 208, 1, 'cfg_fixedArrivalDatesRecurring', 'size="1" class="inputbox"', $mrConfig[ 'fixedArrivalDatesRecurring' ], "%02d" );
@@ -2741,98 +2755,98 @@ function hotelSettings()
 	if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $pricingOutput[ ] = jomresHTML::makeOption( 'D', jr_gettext( "_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY_WHOLEDAY", _JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY_WHOLEDAY, false ) );
 	else
 	$pricingOutput[ ] = jomresHTML::makeOption( 'D', jr_gettext( "_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY", _JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY, false ) );
-	$pricingOutput[ ]                  = jomresHTML::makeOption( 'W', jr_gettext( "_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY", _JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY, false ) );
-	$pricingOutput[ ]                  = jomresHTML::makeOption( 'M', jr_gettext( "_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY", _JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY, false ) );
+	$pricingOutput[ ]				  = jomresHTML::makeOption( 'W', jr_gettext( "_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY", _JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY, false ) );
+	$pricingOutput[ ]				  = jomresHTML::makeOption( 'M', jr_gettext( "_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY", _JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY, false ) );
 	$booking_form_daily_weekly_monthly = jomresHTML::selectList( $pricingOutput, 'cfg_booking_form_daily_weekly_monthly', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'booking_form_daily_weekly_monthly' ] );
 
 	//$lists['tariffmodel']= jomresHTML::selectList( $tariffmodels, 'cfg_tariffmodel', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['tariffmodel'] );
 
-	$lists[ 'showRoomTypeImageInBookingForm' ]    = jomresHTML::selectList( $yesno, 'cfg_showRoomTypeImageInBookingForm', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showRoomTypeImageInBookingForm' ] );
+	$lists[ 'showRoomTypeImageInBookingForm' ]	= jomresHTML::selectList( $yesno, 'cfg_showRoomTypeImageInBookingForm', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showRoomTypeImageInBookingForm' ] );
 	$lists[ 'showRoomImageInBookingFormOverlib' ] = jomresHTML::selectList( $yesno, 'cfg_showRoomImageInBookingFormOverlib', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showRoomImageInBookingFormOverlib' ] );
-	$lists[ 'singlePersonSuppliment' ]            = jomresHTML::selectList( $yesno, 'cfg_singlePersonSuppliment', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'singlePersonSuppliment' ] );
-	$lists[ 'perPersonPerNight' ]                 = jomresHTML::selectList( $yesno, 'cfg_perPersonPerNight', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'perPersonPerNight' ] );
-	$lists[ 'depositIsPercentage' ]               = jomresHTML::selectList( $yesno, 'cfg_depositIsPercentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'depositIsPercentage' ] );
-	$lists[ 'errorCheckingShowSQL' ]              = jomresHTML::selectList( $yesno, 'cfg_errorCheckingShowSQL', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'errorCheckingShowSQL' ] );
-	$lists[ 'errorCheckingShowSQLvardump' ]       = jomresHTML::selectList( $yesno, 'cfg_errorCheckingShowSQLvardump', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'errorCheckingShowSQLvardump' ] );
-	$lists[ 'errorChecking' ]                     = jomresHTML::selectList( $yesno, 'cfg_errorChecking', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'errorChecking' ] );
-	$lists[ 'visitorscanbookonline' ]             = jomresHTML::selectList( $yesno, 'cfg_visitorscanbookonline', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'visitorscanbookonline' ] );
-	$lists[ 'fixedPeriodBookings' ]               = jomresHTML::selectList( $yesno, 'cfg_fixedPeriodBookings', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'fixedPeriodBookings' ] );
-	$lists[ 'singleRoomProperty' ]                = jomresHTML::selectList( $yesno, 'cfg_singleRoomProperty', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'singleRoomProperty' ] );
-	$lists[ 'fixedArrivalDateYesNo' ]             = jomresHTML::selectList( $yesno, 'cfg_fixedArrivalDateYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'fixedArrivalDateYesNo' ] );
-	$lists[ 'showAvailabilityCalendar' ]          = jomresHTML::selectList( $yesno, 'cfg_showAvailabilityCalendar', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showAvailabilityCalendar' ] );
-	$lists[ 'showAdminTapeview' ]                 = jomresHTML::selectList( $yesno, 'cfg_showAdminTapeview', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showAdminTapeview' ] );
-	$lists[ 'fixedPeriodBookingsShortYesNo' ]     = jomresHTML::selectList( $yesno, 'cfg_fixedPeriodBookingsShortYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'fixedPeriodBookingsShortYesNo' ] );
-	$lists[ 'showExtras' ]                        = jomresHTML::selectList( $yesno, 'cfg_showExtras', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showExtras' ] );
-	$lists[ 'showSmoking' ]                       = jomresHTML::selectList( $yesno, 'cfg_showSmoking', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showSmoking' ] );
-	$lists[ 'limitAdvanceBookingsYesNo' ]         = jomresHTML::selectList( $yesno, 'cfg_limitAdvanceBookingsYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'limitAdvanceBookingsYesNo' ] );
-	$lists[ 'roomTaxYesNo' ]                      = jomresHTML::selectList( $yesno, 'cfg_roomTaxYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'roomTaxYesNo' ] );
-	$lists[ 'euroTaxYesNo' ]                      = jomresHTML::selectList( $yesno, 'cfg_euroTaxYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'euroTaxYesNo' ] );
-	$lists[ 'editingOn' ]                         = jomresHTML::selectList( $yesno, 'cfg_editingOn', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'editingOn' ] );
+	$lists[ 'singlePersonSuppliment' ]			= jomresHTML::selectList( $yesno, 'cfg_singlePersonSuppliment', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'singlePersonSuppliment' ] );
+	$lists[ 'perPersonPerNight' ]				 = jomresHTML::selectList( $yesno, 'cfg_perPersonPerNight', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'perPersonPerNight' ] );
+	$lists[ 'depositIsPercentage' ]			   = jomresHTML::selectList( $yesno, 'cfg_depositIsPercentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'depositIsPercentage' ] );
+	$lists[ 'errorCheckingShowSQL' ]			  = jomresHTML::selectList( $yesno, 'cfg_errorCheckingShowSQL', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'errorCheckingShowSQL' ] );
+	$lists[ 'errorCheckingShowSQLvardump' ]	   = jomresHTML::selectList( $yesno, 'cfg_errorCheckingShowSQLvardump', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'errorCheckingShowSQLvardump' ] );
+	$lists[ 'errorChecking' ]					 = jomresHTML::selectList( $yesno, 'cfg_errorChecking', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'errorChecking' ] );
+	$lists[ 'visitorscanbookonline' ]			 = jomresHTML::selectList( $yesno, 'cfg_visitorscanbookonline', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'visitorscanbookonline' ] );
+	$lists[ 'fixedPeriodBookings' ]			   = jomresHTML::selectList( $yesno, 'cfg_fixedPeriodBookings', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'fixedPeriodBookings' ] );
+	$lists[ 'singleRoomProperty' ]				= jomresHTML::selectList( $yesno, 'cfg_singleRoomProperty', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'singleRoomProperty' ] );
+	$lists[ 'fixedArrivalDateYesNo' ]			 = jomresHTML::selectList( $yesno, 'cfg_fixedArrivalDateYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'fixedArrivalDateYesNo' ] );
+	$lists[ 'showAvailabilityCalendar' ]		  = jomresHTML::selectList( $yesno, 'cfg_showAvailabilityCalendar', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showAvailabilityCalendar' ] );
+	$lists[ 'showAdminTapeview' ]				 = jomresHTML::selectList( $yesno, 'cfg_showAdminTapeview', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showAdminTapeview' ] );
+	$lists[ 'fixedPeriodBookingsShortYesNo' ]	 = jomresHTML::selectList( $yesno, 'cfg_fixedPeriodBookingsShortYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'fixedPeriodBookingsShortYesNo' ] );
+	$lists[ 'showExtras' ]						= jomresHTML::selectList( $yesno, 'cfg_showExtras', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showExtras' ] );
+	$lists[ 'showSmoking' ]					   = jomresHTML::selectList( $yesno, 'cfg_showSmoking', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showSmoking' ] );
+	$lists[ 'limitAdvanceBookingsYesNo' ]		 = jomresHTML::selectList( $yesno, 'cfg_limitAdvanceBookingsYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'limitAdvanceBookingsYesNo' ] );
+	$lists[ 'roomTaxYesNo' ]					  = jomresHTML::selectList( $yesno, 'cfg_roomTaxYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'roomTaxYesNo' ] );
+	$lists[ 'euroTaxYesNo' ]					  = jomresHTML::selectList( $yesno, 'cfg_euroTaxYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'euroTaxYesNo' ] );
+	$lists[ 'editingOn' ]						 = jomresHTML::selectList( $yesno, 'cfg_editingOn', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'editingOn' ] );
 	//$lists['popupsAllowed'] = jomresHTML::selectList( $yesno, 'cfg_popupsAllowed', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['popupsAllowed'] );
-	$lists[ 'showSlideshowLink' ]              = jomresHTML::selectList( $yesno, 'cfg_showSlideshowLink', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showSlideshowLink' ] );
-	$lists[ 'showSlideshowInline' ]            = jomresHTML::selectList( $yesno, 'cfg_showSlideshowInline', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showSlideshowInline' ] );
-	$lists[ 'showTariffsInline' ]              = jomresHTML::selectList( $yesno, 'cfg_showTariffsInline', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showTariffsInline' ] );
-	$lists[ 'showTariffsLink' ]                = jomresHTML::selectList( $yesno, 'cfg_showTariffsLink', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showTariffsLink' ] );
-	$lists[ 'useOnlinepayment' ]               = jomresHTML::selectList( $yesno, 'cfg_useOnlinepayment', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'useOnlinepayment' ] );
-	$lists[ 'showdepartureinput' ]             = jomresHTML::selectList( $yesno, 'cfg_showdepartureinput', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showdepartureinput' ] );
-	$lists[ 'dateFormatStyle' ]                = jomresHTML::selectList( $yesno, 'cfg_dateFormatStyle', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'dateFormatStyle' ] );
-	$lists[ 'calstartfrombeginningofyear' ]    = jomresHTML::selectList( $yesno, 'cfg_calstartfrombeginningofyear', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'calstartfrombeginningofyear' ] );
-	$lists[ 'showGoogleCurrencyLink' ]         = jomresHTML::selectList( $yesno, 'cfg_showGoogleCurrencyLink', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showGoogleCurrencyLink' ] );
-	$lists[ 'showRoomsInPropertyDetails' ]     = jomresHTML::selectList( $yesno, 'cfg_showRoomsInPropertyDetails', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showRoomsInPropertyDetails' ] );
-	$lists[ 'showRoomsListingLink' ]           = jomresHTML::selectList( $yesno, 'cfg_showRoomsListingLink', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showRoomsListingLink' ] );
+	$lists[ 'showSlideshowLink' ]			  = jomresHTML::selectList( $yesno, 'cfg_showSlideshowLink', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showSlideshowLink' ] );
+	$lists[ 'showSlideshowInline' ]			= jomresHTML::selectList( $yesno, 'cfg_showSlideshowInline', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showSlideshowInline' ] );
+	$lists[ 'showTariffsInline' ]			  = jomresHTML::selectList( $yesno, 'cfg_showTariffsInline', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showTariffsInline' ] );
+	$lists[ 'showTariffsLink' ]				= jomresHTML::selectList( $yesno, 'cfg_showTariffsLink', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showTariffsLink' ] );
+	$lists[ 'useOnlinepayment' ]			   = jomresHTML::selectList( $yesno, 'cfg_useOnlinepayment', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'useOnlinepayment' ] );
+	$lists[ 'showdepartureinput' ]			 = jomresHTML::selectList( $yesno, 'cfg_showdepartureinput', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showdepartureinput' ] );
+	$lists[ 'dateFormatStyle' ]				= jomresHTML::selectList( $yesno, 'cfg_dateFormatStyle', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'dateFormatStyle' ] );
+	$lists[ 'calstartfrombeginningofyear' ]	= jomresHTML::selectList( $yesno, 'cfg_calstartfrombeginningofyear', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'calstartfrombeginningofyear' ] );
+	$lists[ 'showGoogleCurrencyLink' ]		 = jomresHTML::selectList( $yesno, 'cfg_showGoogleCurrencyLink', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showGoogleCurrencyLink' ] );
+	$lists[ 'showRoomsInPropertyDetails' ]	 = jomresHTML::selectList( $yesno, 'cfg_showRoomsInPropertyDetails', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showRoomsInPropertyDetails' ] );
+	$lists[ 'showRoomsListingLink' ]		   = jomresHTML::selectList( $yesno, 'cfg_showRoomsListingLink', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showRoomsListingLink' ] );
 	$lists[ 'showOnlyAvailabilityCalendar' ]   = jomresHTML::selectList( $yesno, 'cfg_showOnlyAvailabilityCalendar', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showOnlyAvailabilityCalendar' ] );
-	$lists[ 'registeredUsersOnlyCanBook' ]     = jomresHTML::selectList( $yesno, 'cfg_registeredUsersOnlyCanBook', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'registeredUsersOnlyCanBook' ] );
-	$lists[ 'roundupDepositYesNo' ]            = jomresHTML::selectList( $yesno, 'cfg_roundupDepositYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'roundupDepositYesNo' ] );
-	$lists[ 'chargeDepositYesNo' ]             = jomresHTML::selectList( $yesno, 'cfg_chargeDepositYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'chargeDepositYesNo' ] );
+	$lists[ 'registeredUsersOnlyCanBook' ]	 = jomresHTML::selectList( $yesno, 'cfg_registeredUsersOnlyCanBook', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'registeredUsersOnlyCanBook' ] );
+	$lists[ 'roundupDepositYesNo' ]			= jomresHTML::selectList( $yesno, 'cfg_roundupDepositYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'roundupDepositYesNo' ] );
+	$lists[ 'chargeDepositYesNo' ]			 = jomresHTML::selectList( $yesno, 'cfg_chargeDepositYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'chargeDepositYesNo' ] );
 	$lists[ 'tariffChargesStoredWeeklyYesNo' ] = jomresHTML::selectList( $yesno, 'cfg_tariffChargesStoredWeeklyYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] );
-	$lists[ 'roomslistinpropertydetails' ]     = jomresHTML::selectList( $yesno, 'cfg_roomslistinpropertydetails', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'roomslistinpropertydetails' ] );
-	$lists[ 'verbosetariffinfo' ]              = jomresHTML::selectList( $yesno, 'cfg_verbosetariffinfo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'verbosetariffinfo' ] );
+	$lists[ 'roomslistinpropertydetails' ]	 = jomresHTML::selectList( $yesno, 'cfg_roomslistinpropertydetails', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'roomslistinpropertydetails' ] );
+	$lists[ 'verbosetariffinfo' ]			  = jomresHTML::selectList( $yesno, 'cfg_verbosetariffinfo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'verbosetariffinfo' ] );
 
 
-	$lists[ 'bookingform_overlib_tariff_title_show' ]    = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_tariff_title_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_title_show' ] );
-	$lists[ 'bookingform_overlib_tariff_desc_show' ]     = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_tariff_desc_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_desc_show' ] );
-	$lists[ 'bookingform_overlib_tariff_rate_show' ]     = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_tariff_rate_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_rate_show' ] );
+	$lists[ 'bookingform_overlib_tariff_title_show' ]	= jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_tariff_title_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_title_show' ] );
+	$lists[ 'bookingform_overlib_tariff_desc_show' ]	 = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_tariff_desc_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_desc_show' ] );
+	$lists[ 'bookingform_overlib_tariff_rate_show' ]	 = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_tariff_rate_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_rate_show' ] );
 	$lists[ 'bookingform_overlib_tariff_starts_show' ]   = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_tariff_starts_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_starts_show' ] );
-	$lists[ 'bookingform_overlib_tariff_ends_show' ]     = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_tariff_ends_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_ends_show' ] );
+	$lists[ 'bookingform_overlib_tariff_ends_show' ]	 = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_tariff_ends_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_ends_show' ] );
 	$lists[ 'bookingform_overlib_tariff_mindays_show' ]  = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_tariff_mindays_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_mindays_show' ] );
 	$lists[ 'bookingform_overlib_tariff_maxdays_show' ]  = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_tariff_maxdays_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_maxdays_show' ] );
 	$lists[ 'bookingform_overlib_tariff_minpeeps_show' ] = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_tariff_minpeeps_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_minpeeps_show' ] );
 	$lists[ 'bookingform_overlib_tariff_maxpeeps_show' ] = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_tariff_maxpeeps_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_tariff_maxpeeps_show' ] );
 
-	$lists[ 'bookingform_overlib_room_number_show' ]         = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_number_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_number_show' ] );
-	$lists[ 'bookingform_overlib_room_name_show' ]           = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_name_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_name_show' ] );
-	$lists[ 'bookingform_overlib_room_type_show' ]           = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_type_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_type_show' ] );
-	$lists[ 'bookingform_overlib_room_smoking_show' ]        = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_smoking_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_smoking_show' ] );
+	$lists[ 'bookingform_overlib_room_number_show' ]		 = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_number_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_number_show' ] );
+	$lists[ 'bookingform_overlib_room_name_show' ]		   = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_name_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_name_show' ] );
+	$lists[ 'bookingform_overlib_room_type_show' ]		   = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_type_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_type_show' ] );
+	$lists[ 'bookingform_overlib_room_smoking_show' ]		= jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_smoking_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_smoking_show' ] );
 	$lists[ 'bookingform_overlib_room_disabledaccess_show' ] = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_disabledaccess_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_disabledaccess_show' ] );
-	$lists[ 'bookingform_overlib_room_floor_show' ]          = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_floor_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_floor_show' ] );
-	$lists[ 'bookingform_overlib_room_maxpeople_show' ]      = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_maxpeople_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_maxpeople_show' ] );
-	$lists[ 'bookingform_overlib_room_features_show' ]       = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_features_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_features_show' ] );
+	$lists[ 'bookingform_overlib_room_floor_show' ]		  = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_floor_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_floor_show' ] );
+	$lists[ 'bookingform_overlib_room_maxpeople_show' ]	  = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_maxpeople_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_maxpeople_show' ] );
+	$lists[ 'bookingform_overlib_room_features_show' ]	   = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_features_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_features_show' ] );
 
-	$lists[ 'bookingform_roomlist_showroomno' ]      = jomresHTML::selectList( $yesno, 'cfg_bookingform_roomlist_showroomno', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showroomno' ] );
-	$lists[ 'bookingform_roomlist_showroomname' ]    = jomresHTML::selectList( $yesno, 'cfg_bookingform_roomlist_showroomname', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showroomname' ] );
+	$lists[ 'bookingform_roomlist_showroomno' ]	  = jomresHTML::selectList( $yesno, 'cfg_bookingform_roomlist_showroomno', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showroomno' ] );
+	$lists[ 'bookingform_roomlist_showroomname' ]	= jomresHTML::selectList( $yesno, 'cfg_bookingform_roomlist_showroomname', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showroomname' ] );
 	$lists[ 'bookingform_roomlist_showtarifftitle' ] = jomresHTML::selectList( $yesno, 'cfg_bookingform_roomlist_showtarifftitle', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showtarifftitle' ] );
-	$lists[ 'supplimentChargeIsPercentage' ]         = jomresHTML::selectList( $yesno, 'cfg_supplimentChargeIsPercentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'supplimentChargeIsPercentage' ] );
-	$lists[ 'dumpTemplate' ]                         = jomresHTML::selectList( $yesno, 'cfg_dumpTemplate', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'dumpTemplate' ] );
+	$lists[ 'supplimentChargeIsPercentage' ]		 = jomresHTML::selectList( $yesno, 'cfg_supplimentChargeIsPercentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'supplimentChargeIsPercentage' ] );
+	$lists[ 'dumpTemplate' ]						 = jomresHTML::selectList( $yesno, 'cfg_dumpTemplate', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'dumpTemplate' ] );
 
-	$lists[ 'bookingform_requiredfields_name' ]     = jomresHTML::selectList( $yesno, 'cfg_bookingform_requiredfields_name', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_name' ] );
+	$lists[ 'bookingform_requiredfields_name' ]	 = jomresHTML::selectList( $yesno, 'cfg_bookingform_requiredfields_name', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_name' ] );
 	$lists[ 'bookingform_requiredfields_surname' ]  = jomresHTML::selectList( $yesno, 'cfg_bookingform_requiredfields_surname', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_surname' ] );
 	$lists[ 'bookingform_requiredfields_houseno' ]  = jomresHTML::selectList( $yesno, 'cfg_bookingform_requiredfields_houseno', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_houseno' ] );
 	$lists[ 'bookingform_requiredfields_street' ]   = jomresHTML::selectList( $yesno, 'cfg_bookingform_requiredfields_street', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_street' ] );
-	$lists[ 'bookingform_requiredfields_town' ]     = jomresHTML::selectList( $yesno, 'cfg_bookingform_requiredfields_town', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_town' ] );
+	$lists[ 'bookingform_requiredfields_town' ]	 = jomresHTML::selectList( $yesno, 'cfg_bookingform_requiredfields_town', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_town' ] );
 	$lists[ 'bookingform_requiredfields_postcode' ] = jomresHTML::selectList( $yesno, 'cfg_bookingform_requiredfields_postcode', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_postcode' ] );
 	$lists[ 'bookingform_requiredfields_region' ]   = jomresHTML::selectList( $yesno, 'cfg_bookingform_requiredfields_region', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_region' ] );
 	$lists[ 'bookingform_requiredfields_country' ]  = jomresHTML::selectList( $yesno, 'cfg_bookingform_requiredfields_country', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_country' ] );
-	$lists[ 'bookingform_requiredfields_tel' ]      = jomresHTML::selectList( $yesno, 'cfg_bookingform_requiredfields_tel', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_tel' ] );
+	$lists[ 'bookingform_requiredfields_tel' ]	  = jomresHTML::selectList( $yesno, 'cfg_bookingform_requiredfields_tel', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_tel' ] );
 	$lists[ 'bookingform_requiredfields_mobile' ]   = jomresHTML::selectList( $yesno, 'cfg_bookingform_requiredfields_mobile', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_mobile' ] );
-	$lists[ 'bookingform_requiredfields_email' ]    = jomresHTML::selectList( $yesno, 'cfg_bookingform_requiredfields_email', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_email' ] );
+	$lists[ 'bookingform_requiredfields_email' ]	= jomresHTML::selectList( $yesno, 'cfg_bookingform_requiredfields_email', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_email' ] );
 
-	$lists[ 'dtv_dow_monday_is_percentage' ]    = jomresHTML::selectList( $yesno, 'cfg_dtv_dow_monday_is_percentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'dtv_dow_monday_is_percentage' ] );
+	$lists[ 'dtv_dow_monday_is_percentage' ]	= jomresHTML::selectList( $yesno, 'cfg_dtv_dow_monday_is_percentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'dtv_dow_monday_is_percentage' ] );
 	$lists[ 'dtv_dow_tuesday_is_percentage' ]   = jomresHTML::selectList( $yesno, 'cfg_dtv_dow_tuesday_is_percentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'dtv_dow_tuesday_is_percentage' ] );
 	$lists[ 'dtv_dow_wednesday_is_percentage' ] = jomresHTML::selectList( $yesno, 'cfg_dtv_dow_wednesday_is_percentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'dtv_dow_wednesday_is_percentage' ] );
 	$lists[ 'dtv_dow_thursday_is_percentage' ]  = jomresHTML::selectList( $yesno, 'cfg_dtv_dow_thursday_is_percentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'dtv_dow_thursday_is_percentage' ] );
-	$lists[ 'dtv_dow_friday_is_percentage' ]    = jomresHTML::selectList( $yesno, 'cfg_dtv_dow_friday_is_percentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'dtv_dow_friday_is_percentage' ] );
+	$lists[ 'dtv_dow_friday_is_percentage' ]	= jomresHTML::selectList( $yesno, 'cfg_dtv_dow_friday_is_percentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'dtv_dow_friday_is_percentage' ] );
 	$lists[ 'dtv_dow_saturday_is_percentage' ]  = jomresHTML::selectList( $yesno, 'cfg_dtv_dow_saturday_is_percentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'dtv_dow_saturday_is_percentage' ] );
-	$lists[ 'dtv_dow_sunday_is_percentage' ]    = jomresHTML::selectList( $yesno, 'cfg_dtv_dow_sunday_is_percentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'dtv_dow_sunday_is_percentage' ] );
+	$lists[ 'dtv_dow_sunday_is_percentage' ]	= jomresHTML::selectList( $yesno, 'cfg_dtv_dow_sunday_is_percentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'dtv_dow_sunday_is_percentage' ] );
 
 	$lists[ 'bookingform_roomlist_showdisabled' ]  = jomresHTML::selectList( $yesno, 'cfg_bookingform_roomlist_showdisabled', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showdisabled' ] );
 	$lists[ 'bookingform_roomlist_showmaxpeople' ] = jomresHTML::selectList( $yesno, 'cfg_bookingform_roomlist_showmaxpeople', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showmaxpeople' ] );
@@ -2850,23 +2864,23 @@ function hotelSettings()
 	$lists[ 'auto_detect_country_for_booking_form' ] = jomresHTML::selectList( $yesno, 'cfg_auto_detect_country_for_booking_form', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'auto_detect_country_for_booking_form' ] );
 
 
-	$componentArgs                                = array ();
-	$componentArgs[ 'mrConfig' ]                  = $mrConfig;
-	$componentArgs[ 'lists' ]                     = $lists;
-	$componentArgs[ 'weekdayDropdown' ]           = $weekdayDropdown;
+	$componentArgs								= array ();
+	$componentArgs[ 'mrConfig' ]				  = $mrConfig;
+	$componentArgs[ 'lists' ]					 = $lists;
+	$componentArgs[ 'weekdayDropdown' ]		   = $weekdayDropdown;
 	$componentArgs[ 'jsInputFormatDropdownList' ] = $jsInputFormatDropdownList;
 	$componentArgs[ 'smokingOptionDropdownList' ] = $smokingOptionDropdownList;
-	$componentArgs[ 'weekenddayDropdown' ]        = $weekenddayDropdown;
+	$componentArgs[ 'weekenddayDropdown' ]		= $weekenddayDropdown;
 	//$componentArgs['templateNamesDropdownList']=$templateNamesDropdownList;
-	$componentArgs[ 'paymentAmounts' ]                    = $paymentAmounts;
-	$componentArgs[ 'gatewayNames' ]                      = $gatewayNames;
-	$componentArgs[ 'editIconSize' ]                      = $editIconSize;
-	$componentArgs[ 'fixedArrivalDatesRecurring' ]        = $fixedArrivalDatesRecurring;
-	$componentArgs[ 'tariffModelsDropdown' ]              = $tariffModelsDropdown;
-	$componentArgs[ 'jomresConfig_live_site' ]            = get_showtime( 'live_site' );
-	$componentArgs[ 'tariffModeDD' ]                      = $tariffModeDD;
-	$componentArgs[ 'Itemid' ]                            = $Itemid;
-	$componentArgs[ 'booking_form_rooms_list_style' ]     = $booking_form_rooms_list_style;
+	$componentArgs[ 'paymentAmounts' ]					= $paymentAmounts;
+	$componentArgs[ 'gatewayNames' ]					  = $gatewayNames;
+	$componentArgs[ 'editIconSize' ]					  = $editIconSize;
+	$componentArgs[ 'fixedArrivalDatesRecurring' ]		= $fixedArrivalDatesRecurring;
+	$componentArgs[ 'tariffModelsDropdown' ]			  = $tariffModelsDropdown;
+	$componentArgs[ 'jomresConfig_live_site' ]			= get_showtime( 'live_site' );
+	$componentArgs[ 'tariffModeDD' ]					  = $tariffModeDD;
+	$componentArgs[ 'Itemid' ]							= $Itemid;
+	$componentArgs[ 'booking_form_rooms_list_style' ]	 = $booking_form_rooms_list_style;
 	$componentArgs[ 'booking_form_daily_weekly_monthly' ] = $booking_form_daily_weekly_monthly;
 
 
@@ -2955,7 +2969,7 @@ function saveHotelSettings()
 	$MiniComponents->triggerEvent( '00502', array() ); // This trigger allows plugins to check saves, for example to prevent future changes to a setting once it's been made.
 	
 	$property_uid = (int) getDefaultProperty();
-	$mrConfig     = getPropertySpecificSettings( $property_uid );
+	$mrConfig	 = getPropertySpecificSettings( $property_uid );
 
 	//$updateText="";
 	$tariffmodeChange = false;
@@ -2990,9 +3004,9 @@ function saveHotelSettings()
 		{
 		if ( strpos( $k, 'cfg_' ) === 0 && $k != "cfg_jomres_licensekey" )
 			{
-			$v     = jomresGetParam( $_POST, $k, "" );
+			$v	 = jomresGetParam( $_POST, $k, "" );
 			$dirty = (string) $k;
-			$k     = addslashes( $dirty );
+			$k	 = addslashes( $dirty );
 			if ( !get_magic_quotes_gpc() )
 				{
 				$v = filter_var( $v, FILTER_SANITIZE_SPECIAL_CHARS );
@@ -3084,8 +3098,8 @@ function userHasBeenLoggedOut()
  */
 function insertInternetBooking( $jomressession = "", $depositPaid = false, $confirmationPageRequired = true, $customTextForConfirmationForm = "", $usejomressessionasCartid = false )
 	{
-	$jomressession     = get_showtime( 'jomressession' );
-	$MiniComponents    = jomres_singleton_abstract::getInstance( 'mcHandler' );
+	$jomressession	 = get_showtime( 'jomressession' );
+	$MiniComponents	= jomres_singleton_abstract::getInstance( 'mcHandler' );
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 
 	gateway_log( "insertInternetBooking: Attempting to insert booking jsid: " . get_showtime( 'jomressession' ) );
@@ -3097,8 +3111,8 @@ function insertInternetBooking( $jomressession = "", $depositPaid = false, $conf
 			{
 			$tmpBookingHandler->tmpbooking = $cart_data;
 			$tmpBookingHandler->tmpguest   = $cart_data[ 'tmpguest' ];
-			$componentArgs                 = array ( 'jomressession' => get_showtime( 'jomressession' ), 'depositPaid' => $depositPaid, 'usejomressessionasCartid' => $usejomressessionasCartid );
-			$result                        = $MiniComponents->triggerEvent( '03020', $componentArgs ); // Trigger the insert booking mini-comp
+			$componentArgs				 = array ( 'jomressession' => get_showtime( 'jomressession' ), 'depositPaid' => $depositPaid, 'usejomressessionasCartid' => $usejomressessionasCartid );
+			$result						= $MiniComponents->triggerEvent( '03020', $componentArgs ); // Trigger the insert booking mini-comp
 			gateway_log( "insertInternetBooking: " . serialize( $MiniComponents->miniComponentData[ '03020' ] ) );
 			if ( !$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'insertSuccessful' ] ) $insert_failed = true;
 			$tmpBookingHandler->resetTempBookingData();
@@ -3133,7 +3147,7 @@ function insertInternetBooking( $jomressession = "", $depositPaid = false, $conf
 		{
 		$userIsManager = checkUserIsManager();
 		$componentArgs = array ( 'jomressession' => get_showtime( 'jomressession' ), 'depositPaid' => $depositPaid, 'usejomressessionasCartid' => $usejomressessionasCartid );
-		$result        = $MiniComponents->triggerEvent( '03020', $componentArgs ); // Trigger the insert booking mini-comp
+		$result		= $MiniComponents->triggerEvent( '03020', $componentArgs ); // Trigger the insert booking mini-comp
 		gateway_log( "insertInternetBooking: " . serialize( $MiniComponents->miniComponentData[ '03020' ] ) );
 		if ( $MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'insertSuccessful' ] )
 			{
@@ -3179,26 +3193,26 @@ function insertInternetBooking( $jomressession = "", $depositPaid = false, $conf
  */
 function insertGuestDeets( $jomressession )
 	{
-	$thisJRUser          = jomres_singleton_abstract::getInstance( 'jr_user' );
+	$thisJRUser		  = jomres_singleton_abstract::getInstance( 'jr_user' );
 	$tmpBookingHandler   = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-	$userIsManager       = checkUserIsManager();
+	$userIsManager	   = checkUserIsManager();
 
 	$xCustomers = $tmpBookingHandler->getGuestData();
 
 	$guests_uid   = (int) $xCustomers[ 'guests_uid' ];
 	$mos_userid   = (int) $xCustomers[ 'mos_userid' ];
 	$existing_id  = (int) $xCustomers[ 'existing_id' ];
-	$email        = $xCustomers[ 'email' ];
-	$firstname    = $xCustomers[ 'firstname' ];
-	$surname      = $xCustomers[ 'surname' ];
-	$house        = $xCustomers[ 'house' ];
-	$street       = $xCustomers[ 'street' ];
-	$town         = $xCustomers[ 'town' ];
-	$region       = $xCustomers[ 'region' ];
-	$country      = $xCustomers[ 'country' ];
-	$postcode     = $xCustomers[ 'postcode' ];
-	$landline     = $xCustomers[ 'tel_landline' ];
-	$mobile       = $xCustomers[ 'tel_mobile' ];
+	$email		= $xCustomers[ 'email' ];
+	$firstname	= $xCustomers[ 'firstname' ];
+	$surname	  = $xCustomers[ 'surname' ];
+	$house		= $xCustomers[ 'house' ];
+	$street	   = $xCustomers[ 'street' ];
+	$town		 = $xCustomers[ 'town' ];
+	$region	   = $xCustomers[ 'region' ];
+	$country	  = $xCustomers[ 'country' ];
+	$postcode	 = $xCustomers[ 'postcode' ];
+	$landline	 = $xCustomers[ 'tel_landline' ];
+	$mobile	   = $xCustomers[ 'tel_mobile' ];
 	$property_uid = (int) $tmpBookingHandler->getBookingPropertyId( $tmpBookingHandler );
 	$defaultProperty = $property_uid;
 	
@@ -3206,17 +3220,17 @@ function insertGuestDeets( $jomressession )
 		{
 		if ( !$userIsManager && $thisJRUser->id > 0 )
 			{
-			$mos_userid      = $thisJRUser->id;
+			$mos_userid	  = $thisJRUser->id;
 			}
 		else if ( !$userIsManager && $thisJRUser->id == 0 )
 			{
-			$mos_userid      = 0;
+			$mos_userid	  = 0;
 			}
 		}
 
 	if ( $mos_userid > 0 )
 		{
-		$query         = "SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '" . (int) $mos_userid . "' AND `property_uid`= $property_uid LIMIT 1";
+		$query		 = "SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '" . (int) $mos_userid . "' AND `property_uid`= $property_uid LIMIT 1";
 		$xistingGuests = doSelectSql( $query );
 		if ( count( $xistingGuests ) > 0 )
 			{
@@ -3263,7 +3277,7 @@ function insertGuestDeets( $jomressession )
 	// First, we'll look at this user's id. If it's the same as mos_userid above, then the user making the booking is a guest.
 	if ( ( $thisJRUser->id == $mos_userid && $thisJRUser->id > 0 ) || ( $mos_userid > 0 && isset($_REQUEST['jsid']) ) ) // Either it's the guest making the booking, or it's a gateway call and the user's a registered user. Either way, we can update the profile table.
 		{
-		$query     = "SELECT id FROM #__jomres_guest_profile WHERE cms_user_id = '" . (int) $mos_userid . "' LIMIT 1";
+		$query	 = "SELECT id FROM #__jomres_guest_profile WHERE cms_user_id = '" . (int) $mos_userid . "' LIMIT 1";
 		$guestData = doSelectSql( $query, 2 );
 		if ( !$guestData ) // The guest doesn't have information in the profile table yet.
 			{
@@ -3299,9 +3313,9 @@ function outputDate( $thedate )
 		}
 	else
 		{
-		$mrConfig      = getPropertySpecificSettings();
+		$mrConfig	  = getPropertySpecificSettings();
 		$date_elements = explode( "/", $thedate );
-		$unixDate      = adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
+		$unixDate	  = adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
 		if ( $mrConfig[ 'dateFormatStyle' ] == "1" ) $formattedDate = date( $mrConfig[ 'cal_output' ], $unixDate );
 		else
 		$formattedDate = strftime( $mrConfig[ 'cal_output' ], $unixDate );
@@ -3324,7 +3338,7 @@ function JSCalmakeInputDates( $inputDate, $siteCal = false )
 	// Lets make the calendar dates for display in the js calendar. will receive a Y/m/d formatted string &	output it in the desired format
 	// m d y. Probably unneccesary, but we'll do it anyway, to be on the safe side.
 	$date_elements = explode( "/", $inputDate );
-	$unixDate      = adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
+	$unixDate	  = adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
 
 	$dateFormat = $jrConfig[ 'cal_input' ];
 	switch ( $dateFormat )
@@ -3376,31 +3390,31 @@ function JSCalConvertInputDates( $inputDate, $siteCal = false )
 	{
 		case "%d/%m/%Y":
 			$date_elements = explode( "/", $inputDate );
-			$unixDate      = @adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ] );
+			$unixDate	  = @adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ] );
 			break;
 		case "%Y/%m/%d":
 			$date_elements = explode( "/", $inputDate );
-			$unixDate      = adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
+			$unixDate	  = adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
 			break;
 		case "%m/%d/%Y":
 			$date_elements = explode( "/", $inputDate );
-			$unixDate      = adodb_mktime( 0, 0, 0, $date_elements[ 0 ], $date_elements[ 1 ], $date_elements[ 2 ] );
+			$unixDate	  = adodb_mktime( 0, 0, 0, $date_elements[ 0 ], $date_elements[ 1 ], $date_elements[ 2 ] );
 			break;
 		case "%d-%m-%Y":
 			$date_elements = explode( "-", $inputDate );
-			$unixDate      = adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ] );
+			$unixDate	  = adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ] );
 			break;
 		case "%Y-%m-%d":
 			$date_elements = explode( "-", $inputDate );
-			$unixDate      = adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
+			$unixDate	  = adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
 			break;
 		case "%m-%d-%Y":
 			$date_elements = explode( "-", $inputDate );
-			$unixDate      = adodb_mktime( 0, 0, 0, $date_elements[ 0 ], $date_elements[ 1 ], $date_elements[ 2 ] );
+			$unixDate	  = adodb_mktime( 0, 0, 0, $date_elements[ 0 ], $date_elements[ 1 ], $date_elements[ 2 ] );
 			break;
 		case "%d.%m.%Y":
 			$date_elements = explode( ".", $inputDate );
-			$unixDate      = adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ] );
+			$unixDate	  = adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ] );
 			break;
 		default:
 			echo "Error in date format. Cannot continue.";
@@ -3440,7 +3454,7 @@ function importSettings( $property_uid, $source_property_uid = 0 )
 		}
 	else // We have created a new property and are inserting their default settings into the db by pulling the default settings from the 0 property uid list
 		{
-		$query        = "SELECT akey,value FROM #__jomres_settings WHERE property_uid = " . $source_property_uid . " AND akey = '" . $k . "'";
+		$query		= "SELECT akey,value FROM #__jomres_settings WHERE property_uid = " . $source_property_uid . " AND akey = '" . $k . "'";
 		$settingsList = doSelectSql( $query );
 		foreach ( $settingsList as $set )
 			{
@@ -3454,7 +3468,7 @@ function importSettings( $property_uid, $source_property_uid = 0 )
 // Companion to the importSettings function above
 function insertSetting( $property_uid, $k, $v )
 	{
-	$query        = "SELECT value FROM #__jomres_settings WHERE property_uid = '" . (int) $property_uid . "' AND akey = '" . $k . "'";
+	$query		= "SELECT value FROM #__jomres_settings WHERE property_uid = '" . (int) $property_uid . "' AND akey = '" . $k . "'";
 	$settingsList = doSelectSql( $query );
 	if ( count( $settingsList ) == 0 ) $query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('" . (int) $property_uid . "','" . $k . "','" . $v . "')";
 	else
@@ -3479,12 +3493,12 @@ function savePlugin( $plugin )
 	foreach ( $_POST as $k => $v )
 		{
 		$dirty = (string) $k;
-		$k     = RemoveXSS( $dirty );
+		$k	 = RemoveXSS( $dirty );
 		if ( $k != 'task' && $k != 'plugin' ) $values[ $k ] = jomresGetParam( $_POST, $k, "" );
 		}
 	foreach ( $values as $k => $v )
 		{
-		$query       = "SELECT id FROM #__jomres_pluginsettings WHERE prid = '" . (int) $defaultProperty . "' AND plugin = '$plugin' AND setting = '$k'";
+		$query	   = "SELECT id FROM #__jomres_pluginsettings WHERE prid = '" . (int) $defaultProperty . "' AND plugin = '$plugin' AND setting = '$k'";
 		$settingList = doSelectSql( $query );
 		if ( count( $settingList ) > 0 )
 			{
@@ -3519,7 +3533,7 @@ function savePlugin( $plugin )
 function listGateways()
 	{
 	$listdir = JOMRESCONFIG_ABSOLUTE_PATH . "/administrator/".JOMRES_ROOT_DIRECTORY."/plugins/gateways/";
-	$d       = @dir( $listdir );
+	$d	   = @dir( $listdir );
 	$folders = array ();
 	if ( $d )
 		{
@@ -3577,7 +3591,7 @@ function getPropertyTypeDropdown( $propertyType = "", $all = false, $empty_ok = 
  */
 function filterForm( $selectname, $value, $format, $task = "" )
 	{
-	$task       = get_showtime( 'task' );
+	$task	   = get_showtime( 'task' );
 	$selecthtml = "\n<form action=\"\" method=\"get\" name=\"jomresFilter" . $selectname . "\"><span class=\"inputbox_wrapper\"><select class=\"inputbox\" name=\"$selectname\" onchange=\"window.open(this.options[this.selectedIndex].value,'_top')\">";
 	$selecthtml .= "\n<option value=\"" . jomresURL( JOMRES_SITEPAGE_URL . "&task=" . $task ) . "\"></option>";
 	$selecthtml .= "\n<option value=\"" . jomresURL( JOMRES_SITEPAGE_URL . "&task=" . $task ) . "\">" . jr_gettext( '_JOMRES_COM_A_RESET', _JOMRES_COM_A_RESET, false ) . "</option>";
@@ -3606,16 +3620,16 @@ function filterForm( $selectname, $value, $format, $task = "" )
 function showLiveBookings( $contractsList, $title, $arrivaldateDropdown )
 	{
 	$defaultProperty = getDefaultProperty();
-	$mrConfig        = getPropertySpecificSettings();
+	$mrConfig		= getPropertySpecificSettings();
 	if ( $defaultProperty == "0" ) $defaultProperty = "%";
-	$today           = date( "Y/m/d" );
-	$pathToImages    = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images";
-	$img_pending     = $pathToImages . "/pending.gif";
+	$today		   = date( "Y/m/d" );
+	$pathToImages	= get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images";
+	$img_pending	 = $pathToImages . "/pending.gif";
 	$img_arrivetoday = $pathToImages . "/arrivetoday.gif";
-	$img_resident    = $pathToImages . "/resident.gif";
+	$img_resident	= $pathToImages . "/resident.gif";
 	$img_departtoday = $pathToImages . "/departtoday.gif";
 	$img_stillhere   = $pathToImages . "/stillhere.gif";
-	$img_late        = $pathToImages . "/late.gif";
+	$img_late		= $pathToImages . "/late.gif";
 
 	$contract_ids = array ();
 
@@ -3624,29 +3638,29 @@ function showLiveBookings( $contractsList, $title, $arrivaldateDropdown )
 		$contract_ids[ ] = $c->contract_uid;
 		}
 
-	$query        = "SELECT * FROM #__jomres_contracts WHERE property_uid = '" . (int) $defaultProperty . "' AND contract_uid IN (" . implode(',',$contract_ids) .") ";
+	$query		= "SELECT * FROM #__jomres_contracts WHERE property_uid = '" . (int) $defaultProperty . "' AND contract_uid IN (" . implode(',',$contract_ids) .") ";
 	$booking_data = doSelectSql( $query );
 
-	$output                      = array ();
-	$output[ 'PAGETITLE' ]       = $title;
-	$output[ 'IMG_PENDING' ]     = $img_pending;
+	$output					  = array ();
+	$output[ 'PAGETITLE' ]	   = $title;
+	$output[ 'IMG_PENDING' ]	 = $img_pending;
 	$output[ 'IMG_ARRIVETODAY' ] = $img_arrivetoday;
-	$output[ 'IMG_RESIDENT' ]    = $img_resident;
-	$output[ 'IMG_LATE' ]        = $img_late;
+	$output[ 'IMG_RESIDENT' ]	= $img_resident;
+	$output[ 'IMG_LATE' ]		= $img_late;
 	$output[ 'IMG_DEPARTTODAY' ] = $img_departtoday;
 	$output[ 'IMG_STILLHERE' ]   = $img_stillhere;
 
-	$output[ 'TEXT_PENDING' ]     = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_PENDING', _JOMRES_COM_MR_VIEWBOOKINGS_PENDING );
+	$output[ 'TEXT_PENDING' ]	 = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_PENDING', _JOMRES_COM_MR_VIEWBOOKINGS_PENDING );
 	$output[ 'TEXT_ARRIVETODAY' ] = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY );
-	$output[ 'TEXT_RESIDENT' ]    = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT', _JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT );
-	$output[ 'TEXT_LATE' ]        = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_LATE', _JOMRES_COM_MR_VIEWBOOKINGS_LATE );
+	$output[ 'TEXT_RESIDENT' ]	= $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT', _JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT );
+	$output[ 'TEXT_LATE' ]		= $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_LATE', _JOMRES_COM_MR_VIEWBOOKINGS_LATE );
 	$output[ 'TEXT_DEPARTTODAY' ] = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY );
 	$output[ 'TEXT_STILLHERE' ]   = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE', _JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE );
 
 	$output[ '_JOMRES_COM_MR_VIEWBOOKINGS_STATUS' ]  = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_STATUS', _JOMRES_COM_MR_VIEWBOOKINGS_STATUS );
 	$output[ '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME', _JOMRES_COM_MR_VIEWBOOKINGS_SURNAME );
-	$output[ '_JOMRES_COM_MR_EDITBOOKINGTITLE' ]     = jr_gettext( '_JOMRES_COM_MR_EDITBOOKINGTITLE', _JOMRES_COM_MR_EDITBOOKINGTITLE );
-	$output[ '_JOMRES_BOOKING_NUMBER' ]              = jr_gettext( '_JOMRES_BOOKING_NUMBER', _JOMRES_BOOKING_NUMBER, true, false );
+	$output[ '_JOMRES_COM_MR_EDITBOOKINGTITLE' ]	 = jr_gettext( '_JOMRES_COM_MR_EDITBOOKINGTITLE', _JOMRES_COM_MR_EDITBOOKINGTITLE );
+	$output[ '_JOMRES_BOOKING_NUMBER' ]			  = jr_gettext( '_JOMRES_BOOKING_NUMBER', _JOMRES_BOOKING_NUMBER, true, false );
 	if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 		{
 		$output[ 'ARRIVAL' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY );
@@ -3663,15 +3677,15 @@ function showLiveBookings( $contractsList, $title, $arrivaldateDropdown )
 	$rows = array ();
 	for ( $i = 0, $n = count( $contractsList ); $i < $n; $i++ )
 		{
-		$r         = array ();
+		$r		 = array ();
 		$imgToShow = $img_pending;
-		$row       = $contractsList[ $i ];
+		$row	   = $contractsList[ $i ];
 		$arrival   = $row->arrival;
 		$departure = $row->departure;
 		$bookedIn  = $row->booked_in;
 
 		$date_elements = explode( "/", $today );
-		$unixToday     = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
+		$unixToday	 = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
 		$date_elements = explode( "/", $arrival );
 		$unixArrival   = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
 		$date_elements = explode( "/", $departure );
@@ -3684,7 +3698,7 @@ function showLiveBookings( $contractsList, $title, $arrivaldateDropdown )
 
 		$r[ 'STATE_IMAGE' ] = $imgToShow;
 		$r[ 'EDIT_LINK' ]   = '<a href="' . jomresURL( JOMRES_SITEPAGE_URL . "&task=editBooking&contract_uid=" . ( $row->contract_uid ) ) . '" class="btn btn-info"><i class="icon-edit icon-white"></i> ' . jr_gettext( '_JOMRES_COM_MR_EDITBOOKINGTITLE', _JOMRES_COM_MR_EDITBOOKINGTITLE, false ) . '</a>';
-		$r[ 'EDIT_URL' ]    = jomresURL( JOMRES_SITEPAGE_URL . "&task=editBooking&contract_uid=" . ( $row->contract_uid ) );
+		$r[ 'EDIT_URL' ]	= jomresURL( JOMRES_SITEPAGE_URL . "&task=editBooking&contract_uid=" . ( $row->contract_uid ) );
 		$r[ 'EDIT_TEXT' ]   = jr_gettext( '_JOMRES_COM_MR_EDITBOOKINGTITLE', _JOMRES_COM_MR_EDITBOOKINGTITLE, false );
 
 		$r[ 'FIRSTNAME' ] = $row->firstname;
@@ -3727,27 +3741,27 @@ function getPropertyAddressForPrint( $propertyUid )
 	$current_property_details->gather_data($propertyUid);
 
 	$obj = new stdClass; // For use by queries that used to call mysql for this information, we'll just dress the data up as it used to come out of a query
-	$obj->property_name     = $current_property_details->property_name;
+	$obj->property_name	 = $current_property_details->property_name;
 	$obj->property_street   = $current_property_details->property_street;
-	$obj->property_town     = $current_property_details->property_town;
+	$obj->property_town	 = $current_property_details->property_town;
 	$obj->property_postcode = $current_property_details->property_postcode;
 	$obj->property_region   = $current_property_details->property_region;
 	$obj->property_country  = $current_property_details->property_country;
-	$obj->property_tel      = $current_property_details->property_tel;
+	$obj->property_tel	  = $current_property_details->property_tel;
 	$obj->property_features = $current_property_details->property_features;
 
-	$obj->property_description          = $current_property_details->property_description;
-	$obj->property_checkin_times        = $current_property_details->property_checkin_times;
-	$obj->property_area_activities      = $current_property_details->property_area_activities;
+	$obj->property_description		  = $current_property_details->property_description;
+	$obj->property_checkin_times		= $current_property_details->property_checkin_times;
+	$obj->property_area_activities	  = $current_property_details->property_area_activities;
 	$obj->property_driving_directions   = $current_property_details->property_driving_directions;
-	$obj->property_airports             = $current_property_details->property_airports;
-	$obj->property_othertransport       = $current_property_details->property_othertransport;
+	$obj->property_airports			 = $current_property_details->property_airports;
+	$obj->property_othertransport	   = $current_property_details->property_othertransport;
 	$obj->property_policies_disclaimers = $current_property_details->property_policies_disclaimers;
 
 	$obj->property_email = $current_property_details->property_email;
-	$obj->published      = (int) $current_property_details->published;
-	$obj->ptype_id       = (int) $current_property_details->ptype_id;
-	$obj->stars          = (int) $current_property_details->stars;
+	$obj->published	  = (int) $current_property_details->published;
+	$obj->ptype_id	   = (int) $current_property_details->ptype_id;
+	$obj->stars		  = (int) $current_property_details->stars;
 	$obj->propertys_uid  = (int) $propertyUid;
 
 	$indexedPropertyDetails = array ( "property_name" => $current_property_details->property_name, 
@@ -3803,19 +3817,19 @@ function getPropertyAddressForPrint( $propertyUid )
  */
 function getGuestForPrint( $guestUid )
 	{
-	$query     = "SELECT firstname,surname,house,street,town,postcode,county,country,email FROM #__jomres_guests WHERE guests_uid = '" . (int) $guestUid . "'";
+	$query	 = "SELECT firstname,surname,house,street,town,postcode,county,country,email FROM #__jomres_guests WHERE guests_uid = '" . (int) $guestUid . "'";
 	$guestData = doSelectSql( $query );
 	foreach ( $guestData as $data )
 		{
 		$firstname = $data->firstname;
 		$surname   = $data->surname;
-		$house     = $data->house;
-		$street    = $data->street;
-		$town      = $data->town;
+		$house	 = $data->house;
+		$street	= $data->street;
+		$town	  = $data->town;
 		$postcode  = $data->postcode;
-		$region    = $data->county;
+		$region	= $data->county;
 		$country   = $data->country;
-		$email     = $data->email;
+		$email	 = $data->email;
 		}
 	$guestAddress = array ( $firstname, $surname, $house, $street, $town, $postcode, $region, $country, $email );
 
@@ -3872,9 +3886,9 @@ function dateDiff( $interval, $first_date, $second_date )
 	{
 	$first_date_ex  = explode( "/", $first_date );
 	$second_date_ex = explode( "/", $second_date );
-	$fd             = gregoriantojd( $first_date_ex[ 1 ], $first_date_ex[ 2 ], $first_date_ex[ 0 ] );
-	$sd             = gregoriantojd( $second_date_ex[ 1 ], $second_date_ex[ 2 ], $second_date_ex[ 0 ] );
-	$days           = $sd - $fd;
+	$fd			 = gregoriantojd( $first_date_ex[ 1 ], $first_date_ex[ 2 ], $first_date_ex[ 0 ] );
+	$sd			 = gregoriantojd( $second_date_ex[ 1 ], $second_date_ex[ 2 ], $second_date_ex[ 0 ] );
+	$days		   = $sd - $fd;
 
 	return $days;
 	}
@@ -3907,7 +3921,7 @@ function getImageForProperty( $imageType, $property_uid, $itemUid )
 function getThumbnailForImage( $imagefullrelpath, $medium = false )
 	{
 	$filedata   = explode( "/", $imagefullrelpath );
-	$count      = count( $filedata );
+	$count	  = count( $filedata );
 	$image_name = $filedata[ $count - 1 ];
 	$filename   = explode( ".", $image_name );
 
@@ -3917,8 +3931,8 @@ function getThumbnailForImage( $imagefullrelpath, $medium = false )
 	$thumbnail_image_name = $filename . "_thumbnail_med.jpg";
 
 	// Now we need to recombine the image path again. We already know parts of it.
-	$path                    = str_replace( JOMRES_IMAGELOCATION_RELPATH, "", $imagefullrelpath );
-	$pathdata                = explode( "/", $path );
+	$path					= str_replace( JOMRES_IMAGELOCATION_RELPATH, "", $imagefullrelpath );
+	$pathdata				= explode( "/", $path );
 	$thumbnail_image_abspath = JOMRES_IMAGELOCATION_ABSPATH;
 	$thumbnail_image_relpath = JOMRES_IMAGELOCATION_RELPATH;
 	if ( count( $pathdata ) > 1 )
@@ -4170,7 +4184,7 @@ function genericOr( $idArray, $fieldToSearch, $idArrayisInteger = true )
 		$newArr[ ] = $id;
 		}
 	$idArray = $newArr;
-	$txt     = " ( `" . $fieldToSearch . "`=";
+	$txt	 = " ( `" . $fieldToSearch . "`=";
 	for ( $i = 0, $n = count( $idArray ); $i < $n; $i++ )
 		{
 		if ( $idArrayisInteger ) $id = (int) $idArray[ $i ];
@@ -4239,30 +4253,30 @@ function makeFeatureImages( $image, $title, $description, $retString = false, $a
 	$mrConfig   = getPropertySpecificSettings();
 	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 	if ( !empty( $altLivesite ) ) set_showtime( 'live_site', $altLivesite );
-	$title        = addslashes( $title );
+	$title		= addslashes( $title );
 	$description  = addslashes( $description );
 	$defaultImage = "images/blank.png";
 	if ( !isset( $image ) || empty( $image ) ) $image = $defaultImage;
 	if ( !isset( $title ) || empty( $title ) ) $title = "Empty";
 	if ( !isset( $description ) || empty( $description ) ) $description = "";
-	$title       = htmlentities( $title );
+	$title	   = htmlentities( $title );
 	$description = htmlentities( $description );
 
-	$captionpopup    = "";
+	$captionpopup	= "";
 	$descriptonpopup = "";
 
-	$title       = jr_gettext( '_JOMRES_CUSTOMTEXT_FEATUREBLURB_CAPTION' . strtoupper( $image ), stripslashes( $title ), false, false );
+	$title	   = jr_gettext( '_JOMRES_CUSTOMTEXT_FEATUREBLURB_CAPTION' . strtoupper( $image ), stripslashes( $title ), false, false );
 	$description = jr_gettext( '_JOMRES_CUSTOMTEXT_FEATUREBLURB_DESCRIPTION' . strtoupper( $image ), stripslashes( $description ), false, false );
 
-	$title       = str_replace( "&#39;", "\&#39;", $title );
-	$title       = str_replace( "'", "\'", $title );
+	$title	   = str_replace( "&#39;", "\&#39;", $title );
+	$title	   = str_replace( "'", "\'", $title );
 	$description = str_replace( "&#39;", "\&#39;", $description );
 	$description = str_replace( "'", "\'", $description );
 
 	if ( $retString ) $r = '<img src="' . get_showtime( 'live_site' ) . '/' . $image . '" alt="" border="0" onmouseover="return overlib(\'' . $description . '\', CAPTION, \'' . $title . '\', BELOW, RIGHT);" onmouseout="return nd();" />';
 	else
 		{
-		$r     = array ();
+		$r	 = array ();
 		$space = "";
 		if ( $captionpopup != "" ) $space = "<br>";
 		$r[ 'FEATURE' ] = $space . '<img src="' . get_showtime( 'live_site' ) . '/' . $image . '" alt="" border="0" onmouseover="return overlib(\'' . $description . '\', CAPTION, \'' . $title . '\', BELOW, RIGHT);" onmouseout="return nd();" />' . $captionpopup . ' ' . $descriptonpopup;
@@ -4280,7 +4294,7 @@ function makeFeatureImages( $image, $title, $description, $retString = false, $a
 function propertyClicked( $p_uid )
 	{
 	//$sessionCookieName	= md5( 'site'.get_showtime('live_site'));
-	$cookiename     = "jomresp$p_uid";
+	$cookiename	 = "jomresp$p_uid";
 	$alreadyClicked = jomresGetParam( $_COOKIE, $cookiename, '0' );
 	if ( !$alreadyClicked )
 		{
@@ -4327,7 +4341,7 @@ function makePopupLink( $link, $text, $isLocalPage = true, $width = 550, $height
  */
 function showSingleRoomPropAvl( $property_uid )
 	{
-	$query    = "SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $property_uid . "' LIMIT 1";
+	$query	= "SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $property_uid . "' LIMIT 1";
 	$roomList = doSelectSql( $query );
 	foreach ( $roomList as $room )
 		{
@@ -4344,12 +4358,12 @@ function showSingleRoomPropAvl( $property_uid )
  */
 function showAvailability( $roomUid, $requestedDate = "", $property_uid, $showFullYear = 12, $room_avl_enquiry = false )
 	{
-	$MiniComponents                      = jomres_singleton_abstract::getInstance( 'mcHandler' );
-	$componentArgs                       = array ();
-	$componentArgs[ 'roomUid' ]          = $roomUid;
-	$componentArgs[ 'requestedDate' ]    = $requestedDate;
-	$componentArgs[ 'property_uid' ]     = $property_uid;
-	$componentArgs[ 'showFullYear' ]     = $showFullYear;
+	$MiniComponents					  = jomres_singleton_abstract::getInstance( 'mcHandler' );
+	$componentArgs					   = array ();
+	$componentArgs[ 'roomUid' ]		  = $roomUid;
+	$componentArgs[ 'requestedDate' ]	= $requestedDate;
+	$componentArgs[ 'property_uid' ]	 = $property_uid;
+	$componentArgs[ 'showFullYear' ]	 = $showFullYear;
 	$componentArgs[ 'room_avl_enquiry' ] = $room_avl_enquiry;
 	$MiniComponents->triggerEvent( '0017', $componentArgs ); // Availability calendar
 	}
@@ -4386,7 +4400,7 @@ function sendAdminEmail( $subject, $message, $send_post = false )
 		}
 	if ( is_object( $message ) )
 		{
-		$m       = print_r( $message );
+		$m	   = print_r( $message );
 		$message = $m;
 		}
 
@@ -4437,28 +4451,28 @@ function makeImageValid( $imageName = "" )
 function invoices_getalllineitems_forinvoice( $id )
 	{
 	$lineitems = array ();
-	$query     = "SELECT * FROM #__jomresportal_lineitems WHERE `inv_id`=" . (int) $id;
-	$result    = doSelectSql( $query );
+	$query	 = "SELECT * FROM #__jomresportal_lineitems WHERE `inv_id`=" . (int) $id;
+	$result	= doSelectSql( $query );
 	if ( count( $result ) > 0 )
 		{
 		foreach ( $result as $r )
 			{
-			$lineitems[ $r->id ][ 'id' ]                   = $r->id;
-			$lineitems[ $r->id ][ 'name' ]                 = $r->name;
-			$lineitems[ $r->id ][ 'description' ]          = $r->description;
-			$lineitems[ $r->id ][ 'init_price' ]           = $r->init_price;
-			$lineitems[ $r->id ][ 'init_qty' ]             = $r->init_qty;
-			$lineitems[ $r->id ][ 'init_discount' ]        = $r->init_discount;
-			$lineitems[ $r->id ][ 'init_total' ]           = $r->init_total;
+			$lineitems[ $r->id ][ 'id' ]				   = $r->id;
+			$lineitems[ $r->id ][ 'name' ]				 = $r->name;
+			$lineitems[ $r->id ][ 'description' ]		  = $r->description;
+			$lineitems[ $r->id ][ 'init_price' ]		   = $r->init_price;
+			$lineitems[ $r->id ][ 'init_qty' ]			 = $r->init_qty;
+			$lineitems[ $r->id ][ 'init_discount' ]		= $r->init_discount;
+			$lineitems[ $r->id ][ 'init_total' ]		   = $r->init_total;
 			$lineitems[ $r->id ][ 'init_total_inclusive' ] = $r->init_total_inclusive;
-			$lineitems[ $r->id ][ 'recur_price' ]          = $r->recur_price;
-			$lineitems[ $r->id ][ 'recur_qty' ]            = $r->recur_qty;
-			$lineitems[ $r->id ][ 'recur_discount' ]       = $r->recur_discount;
-			$lineitems[ $r->id ][ 'recur_total' ]          = $r->recur_total;
-			$lineitems[ $r->id ][ 'tax_code' ]             = $r->tax_code;
-			$lineitems[ $r->id ][ 'tax_description' ]      = $r->tax_description;
-			$lineitems[ $r->id ][ 'tax_rate' ]             = $r->tax_rate;
-			$lineitems[ $r->id ][ 'inv_id' ]               = $r->inv_id;
+			$lineitems[ $r->id ][ 'recur_price' ]		  = $r->recur_price;
+			$lineitems[ $r->id ][ 'recur_qty' ]			= $r->recur_qty;
+			$lineitems[ $r->id ][ 'recur_discount' ]	   = $r->recur_discount;
+			$lineitems[ $r->id ][ 'recur_total' ]		  = $r->recur_total;
+			$lineitems[ $r->id ][ 'tax_code' ]			 = $r->tax_code;
+			$lineitems[ $r->id ][ 'tax_description' ]	  = $r->tax_description;
+			$lineitems[ $r->id ][ 'tax_rate' ]			 = $r->tax_rate;
+			$lineitems[ $r->id ][ 'inv_id' ]			   = $r->inv_id;
 			}
 		}
 
@@ -4476,21 +4490,21 @@ function invoices_getalllineitems_forinvoice_ids( $ids = array () )
 		{
 		foreach ( $result as $r )
 			{
-			$lineitems[ $r->inv_id ][ $r->id ][ 'id' ]              = $r->id;
-			$lineitems[ $r->inv_id ][ $r->id ][ 'name' ]            = $r->name;
-			$lineitems[ $r->inv_id ][ $r->id ][ 'description' ]     = $r->description;
-			$lineitems[ $r->inv_id ][ $r->id ][ 'init_price' ]      = $r->init_price;
-			$lineitems[ $r->inv_id ][ $r->id ][ 'init_qty' ]        = $r->init_qty;
+			$lineitems[ $r->inv_id ][ $r->id ][ 'id' ]			  = $r->id;
+			$lineitems[ $r->inv_id ][ $r->id ][ 'name' ]			= $r->name;
+			$lineitems[ $r->inv_id ][ $r->id ][ 'description' ]	 = $r->description;
+			$lineitems[ $r->inv_id ][ $r->id ][ 'init_price' ]	  = $r->init_price;
+			$lineitems[ $r->inv_id ][ $r->id ][ 'init_qty' ]		= $r->init_qty;
 			$lineitems[ $r->inv_id ][ $r->id ][ 'init_discount' ]   = $r->init_discount;
-			$lineitems[ $r->inv_id ][ $r->id ][ 'init_total' ]      = $r->init_total;
-			$lineitems[ $r->inv_id ][ $r->id ][ 'recur_price' ]     = $r->recur_price;
-			$lineitems[ $r->inv_id ][ $r->id ][ 'recur_qty' ]       = $r->recur_qty;
+			$lineitems[ $r->inv_id ][ $r->id ][ 'init_total' ]	  = $r->init_total;
+			$lineitems[ $r->inv_id ][ $r->id ][ 'recur_price' ]	 = $r->recur_price;
+			$lineitems[ $r->inv_id ][ $r->id ][ 'recur_qty' ]	   = $r->recur_qty;
 			$lineitems[ $r->inv_id ][ $r->id ][ 'recur_discount' ]  = $r->recur_discount;
-			$lineitems[ $r->inv_id ][ $r->id ][ 'recur_total' ]     = $r->recur_total;
-			$lineitems[ $r->inv_id ][ $r->id ][ 'tax_code' ]        = $r->tax_code;
+			$lineitems[ $r->inv_id ][ $r->id ][ 'recur_total' ]	 = $r->recur_total;
+			$lineitems[ $r->inv_id ][ $r->id ][ 'tax_code' ]		= $r->tax_code;
 			$lineitems[ $r->inv_id ][ $r->id ][ 'tax_description' ] = $r->tax_description;
-			$lineitems[ $r->inv_id ][ $r->id ][ 'tax_rate' ]        = $r->tax_rate;
-			$lineitems[ $r->inv_id ][ $r->id ][ 'inv_id' ]          = $r->inv_id;
+			$lineitems[ $r->inv_id ][ $r->id ][ 'tax_rate' ]		= $r->tax_rate;
+			$lineitems[ $r->inv_id ][ $r->id ][ 'inv_id' ]		  = $r->inv_id;
 			}
 		}
 
@@ -4512,18 +4526,18 @@ function invoices_getallcommissioninvoices( $dec, $status = null )
 		{
 		foreach ( $result as $r )
 			{
-			$invoices[ $r->id ][ 'id' ]               = $r->id;
-			$invoices[ $r->id ][ 'cms_user_id' ]      = $r->cms_user_id;
-			$invoices[ $r->id ][ 'status' ]           = $r->status;
-			$invoices[ $r->id ][ 'raised_date' ]      = $r->raised_date;
-			$invoices[ $r->id ][ 'due_date' ]         = $r->due_date;
-			$invoices[ $r->id ][ 'paid' ]             = $r->paid;
-			$invoices[ $r->id ][ 'subscription' ]     = $r->subscription;
-			$invoices[ $r->id ][ 'init_total' ]       = $r->init_total;
-			$invoices[ $r->id ][ 'recur_total' ]      = $r->recur_total;
+			$invoices[ $r->id ][ 'id' ]			   = $r->id;
+			$invoices[ $r->id ][ 'cms_user_id' ]	  = $r->cms_user_id;
+			$invoices[ $r->id ][ 'status' ]		   = $r->status;
+			$invoices[ $r->id ][ 'raised_date' ]	  = $r->raised_date;
+			$invoices[ $r->id ][ 'due_date' ]		 = $r->due_date;
+			$invoices[ $r->id ][ 'paid' ]			 = $r->paid;
+			$invoices[ $r->id ][ 'subscription' ]	 = $r->subscription;
+			$invoices[ $r->id ][ 'init_total' ]	   = $r->init_total;
+			$invoices[ $r->id ][ 'recur_total' ]	  = $r->recur_total;
 			$invoices[ $r->id ][ 'recur_frequency' ]  = $r->recur_frequency;
 			$invoices[ $r->id ][ 'recur_dayofmonth' ] = $r->recur_dayofmonth;
-			$invoices[ $r->id ][ 'currencycode' ]     = $r->currencycode;
+			$invoices[ $r->id ][ 'currencycode' ]	 = $r->currencycode;
 			$invoices[ $r->id ][ 'vat_will_be_charged' ] = $r->vat_will_be_charged;
 			}
 		}
@@ -4545,21 +4559,21 @@ function invoices_getallinvoices( $dec, $status = null )
 		{
 		foreach ( $result as $r )
 			{
-			$invoices[ $r->id ][ 'id' ]               = $r->id;
-			$invoices[ $r->id ][ 'cms_user_id' ]      = $r->cms_user_id;
-			$invoices[ $r->id ][ 'guest_id' ]         = $r->guest_id;
-			$invoices[ $r->id ][ 'status' ]           = $r->status;
-			$invoices[ $r->id ][ 'raised_date' ]      = $r->raised_date;
-			$invoices[ $r->id ][ 'due_date' ]         = $r->due_date;
-			$invoices[ $r->id ][ 'paid' ]             = $r->paid;
-			$invoices[ $r->id ][ 'subscription' ]     = $r->subscription;
-			$invoices[ $r->id ][ 'init_total' ]       = $r->init_total;
-			$invoices[ $r->id ][ 'recur_total' ]      = $r->recur_total;
+			$invoices[ $r->id ][ 'id' ]			   = $r->id;
+			$invoices[ $r->id ][ 'cms_user_id' ]	  = $r->cms_user_id;
+			$invoices[ $r->id ][ 'guest_id' ]		 = $r->guest_id;
+			$invoices[ $r->id ][ 'status' ]		   = $r->status;
+			$invoices[ $r->id ][ 'raised_date' ]	  = $r->raised_date;
+			$invoices[ $r->id ][ 'due_date' ]		 = $r->due_date;
+			$invoices[ $r->id ][ 'paid' ]			 = $r->paid;
+			$invoices[ $r->id ][ 'subscription' ]	 = $r->subscription;
+			$invoices[ $r->id ][ 'init_total' ]	   = $r->init_total;
+			$invoices[ $r->id ][ 'recur_total' ]	  = $r->recur_total;
 			$invoices[ $r->id ][ 'recur_frequency' ]  = $r->recur_frequency;
 			$invoices[ $r->id ][ 'recur_dayofmonth' ] = $r->recur_dayofmonth;
-			$invoices[ $r->id ][ 'currencycode' ]     = $r->currencycode;
-			$invoices[ $r->id ][ 'property_uid' ]     = $r->property_uid;
-			$invoices[ $r->id ][ 'is_commission' ]    = $r->is_commission;
+			$invoices[ $r->id ][ 'currencycode' ]	 = $r->currencycode;
+			$invoices[ $r->id ][ 'property_uid' ]	 = $r->property_uid;
+			$invoices[ $r->id ][ 'is_commission' ]	= $r->is_commission;
 			$invoices[ $r->id ][ 'vat_will_be_charged' ] = $r->vat_will_be_charged;
 			}
 		}
@@ -4578,20 +4592,20 @@ function invoices_getinvoicefor_contract_id( $contract_id = 0 )
 		{
 		foreach ( $result as $r )
 			{
-			$invoice[ 'id' ]               = $r->id;
-			$invoice[ 'cms_user_id' ]      = $r->cms_user_id;
-			$invoice[ 'status' ]           = $r->status;
-			$invoice[ 'raised_date' ]      = $r->raised_date;
-			$invoice[ 'due_date' ]         = $r->due_date;
-			$invoice[ 'paid' ]             = $r->paid;
-			$invoice[ 'subscription' ]     = $r->subscription;
-			$invoice[ 'init_total' ]       = $r->init_total;
-			$invoice[ 'recur_total' ]      = $r->recur_total;
+			$invoice[ 'id' ]			   = $r->id;
+			$invoice[ 'cms_user_id' ]	  = $r->cms_user_id;
+			$invoice[ 'status' ]		   = $r->status;
+			$invoice[ 'raised_date' ]	  = $r->raised_date;
+			$invoice[ 'due_date' ]		 = $r->due_date;
+			$invoice[ 'paid' ]			 = $r->paid;
+			$invoice[ 'subscription' ]	 = $r->subscription;
+			$invoice[ 'init_total' ]	   = $r->init_total;
+			$invoice[ 'recur_total' ]	  = $r->recur_total;
 			$invoice[ 'recur_frequency' ]  = $r->recur_frequency;
 			$invoice[ 'recur_dayofmonth' ] = $r->recur_dayofmonth;
-			$invoice[ 'currencycode' ]     = $r->currencycode;
-			$invoice[ 'property_uid' ]     = $r->property_uid;
-			$invoice[ 'is_commission' ]    = $r->is_commission;
+			$invoice[ 'currencycode' ]	 = $r->currencycode;
+			$invoice[ 'property_uid' ]	 = $r->property_uid;
+			$invoice[ 'is_commission' ]	= $r->is_commission;
 			$invoice[ $r->id ][ 'vat_will_be_charged' ] = $r->vat_will_be_charged;
 			}
 		}
@@ -4611,20 +4625,20 @@ function invoices_getinvoicesfor_manager_allproperties( $status = 0, $property_u
 		{
 		foreach ( $result as $r )
 			{
-			$invoices[ $r->id ][ 'id' ]               = $r->id;
-			$invoices[ $r->id ][ 'cms_user_id' ]      = $r->cms_user_id;
-			$invoices[ $r->id ][ 'status' ]           = $r->status;
-			$invoices[ $r->id ][ 'raised_date' ]      = $r->raised_date;
-			$invoices[ $r->id ][ 'due_date' ]         = $r->due_date;
-			$invoices[ $r->id ][ 'paid' ]             = $r->paid;
-			$invoices[ $r->id ][ 'subscription' ]     = $r->subscription;
-			$invoices[ $r->id ][ 'init_total' ]       = $r->init_total;
-			$invoices[ $r->id ][ 'recur_total' ]      = $r->recur_total;
+			$invoices[ $r->id ][ 'id' ]			   = $r->id;
+			$invoices[ $r->id ][ 'cms_user_id' ]	  = $r->cms_user_id;
+			$invoices[ $r->id ][ 'status' ]		   = $r->status;
+			$invoices[ $r->id ][ 'raised_date' ]	  = $r->raised_date;
+			$invoices[ $r->id ][ 'due_date' ]		 = $r->due_date;
+			$invoices[ $r->id ][ 'paid' ]			 = $r->paid;
+			$invoices[ $r->id ][ 'subscription' ]	 = $r->subscription;
+			$invoices[ $r->id ][ 'init_total' ]	   = $r->init_total;
+			$invoices[ $r->id ][ 'recur_total' ]	  = $r->recur_total;
 			$invoices[ $r->id ][ 'recur_frequency' ]  = $r->recur_frequency;
 			$invoices[ $r->id ][ 'recur_dayofmonth' ] = $r->recur_dayofmonth;
-			$invoices[ $r->id ][ 'currencycode' ]     = $r->currencycode;
-			$invoices[ $r->id ][ 'property_uid' ]     = $r->property_uid;
-			$invoices[ $r->id ][ 'is_commission' ]    = $r->is_commission;
+			$invoices[ $r->id ][ 'currencycode' ]	 = $r->currencycode;
+			$invoices[ $r->id ][ 'property_uid' ]	 = $r->property_uid;
+			$invoices[ $r->id ][ 'is_commission' ]	= $r->is_commission;
 			$invoices[ $r->id ][ 'vat_will_be_charged' ] = $r->vat_will_be_charged;
 			}
 		}
@@ -4646,20 +4660,20 @@ function invoices_getinvoicesfor_juser( $juser = 0, $status = null )
 		{
 		foreach ( $result as $r )
 			{
-			$invoices[ $r->id ][ 'id' ]               = $r->id;
-			$invoices[ $r->id ][ 'cms_user_id' ]      = $r->cms_user_id;
-			$invoices[ $r->id ][ 'status' ]           = $r->status;
-			$invoices[ $r->id ][ 'raised_date' ]      = $r->raised_date;
-			$invoices[ $r->id ][ 'due_date' ]         = $r->due_date;
-			$invoices[ $r->id ][ 'paid' ]             = $r->paid;
-			$invoices[ $r->id ][ 'subscription' ]     = $r->subscription;
-			$invoices[ $r->id ][ 'init_total' ]       = $r->init_total;
-			$invoices[ $r->id ][ 'recur_total' ]      = $r->recur_total;
+			$invoices[ $r->id ][ 'id' ]			   = $r->id;
+			$invoices[ $r->id ][ 'cms_user_id' ]	  = $r->cms_user_id;
+			$invoices[ $r->id ][ 'status' ]		   = $r->status;
+			$invoices[ $r->id ][ 'raised_date' ]	  = $r->raised_date;
+			$invoices[ $r->id ][ 'due_date' ]		 = $r->due_date;
+			$invoices[ $r->id ][ 'paid' ]			 = $r->paid;
+			$invoices[ $r->id ][ 'subscription' ]	 = $r->subscription;
+			$invoices[ $r->id ][ 'init_total' ]	   = $r->init_total;
+			$invoices[ $r->id ][ 'recur_total' ]	  = $r->recur_total;
 			$invoices[ $r->id ][ 'recur_frequency' ]  = $r->recur_frequency;
 			$invoices[ $r->id ][ 'recur_dayofmonth' ] = $r->recur_dayofmonth;
-			$invoices[ $r->id ][ 'currencycode' ]     = $r->currencycode;
-			$invoices[ $r->id ][ 'property_uid' ]     = $r->property_uid;
-			$invoices[ $r->id ][ 'is_commission' ]    = $r->is_commission;
+			$invoices[ $r->id ][ 'currencycode' ]	 = $r->currencycode;
+			$invoices[ $r->id ][ 'property_uid' ]	 = $r->property_uid;
+			$invoices[ $r->id ][ 'is_commission' ]	= $r->is_commission;
 			$invoices[ $r->id ][ 'vat_will_be_charged' ] = $r->vat_will_be_charged;
 			}
 		}
@@ -4680,20 +4694,20 @@ function invoices_getinvoicesfor_jomresuserid_byproperty_uid( $mos_id = 0, $stat
 		{
 		foreach ( $result as $r )
 			{
-			$invoices[ $r->id ][ 'id' ]               = $r->id;
-			$invoices[ $r->id ][ 'cms_user_id' ]      = $r->cms_user_id;
-			$invoices[ $r->id ][ 'status' ]           = $r->status;
-			$invoices[ $r->id ][ 'raised_date' ]      = $r->raised_date;
-			$invoices[ $r->id ][ 'due_date' ]         = $r->due_date;
-			$invoices[ $r->id ][ 'paid' ]             = $r->paid;
-			$invoices[ $r->id ][ 'subscription' ]     = $r->subscription;
-			$invoices[ $r->id ][ 'init_total' ]       = $r->init_total;
-			$invoices[ $r->id ][ 'recur_total' ]      = $r->recur_total;
+			$invoices[ $r->id ][ 'id' ]			   = $r->id;
+			$invoices[ $r->id ][ 'cms_user_id' ]	  = $r->cms_user_id;
+			$invoices[ $r->id ][ 'status' ]		   = $r->status;
+			$invoices[ $r->id ][ 'raised_date' ]	  = $r->raised_date;
+			$invoices[ $r->id ][ 'due_date' ]		 = $r->due_date;
+			$invoices[ $r->id ][ 'paid' ]			 = $r->paid;
+			$invoices[ $r->id ][ 'subscription' ]	 = $r->subscription;
+			$invoices[ $r->id ][ 'init_total' ]	   = $r->init_total;
+			$invoices[ $r->id ][ 'recur_total' ]	  = $r->recur_total;
 			$invoices[ $r->id ][ 'recur_frequency' ]  = $r->recur_frequency;
 			$invoices[ $r->id ][ 'recur_dayofmonth' ] = $r->recur_dayofmonth;
-			$invoices[ $r->id ][ 'currencycode' ]     = $r->currencycode;
-			$invoices[ $r->id ][ 'property_uid' ]     = $r->property_uid;
-			$invoices[ $r->id ][ 'is_commission' ]    = $r->is_commission;
+			$invoices[ $r->id ][ 'currencycode' ]	 = $r->currencycode;
+			$invoices[ $r->id ][ 'property_uid' ]	 = $r->property_uid;
+			$invoices[ $r->id ][ 'is_commission' ]	= $r->is_commission;
 			$invoices[ $r->id ][ 'vat_will_be_charged' ] = $r->vat_will_be_charged;
 			}
 		}
@@ -4714,20 +4728,20 @@ function invoices_getinvoicesfor_juser_byproperty_uid( $juser = 0, $status = nul
 		{
 		foreach ( $result as $r )
 			{
-			$invoices[ $r->id ][ 'id' ]               = $r->id;
-			$invoices[ $r->id ][ 'cms_user_id' ]      = $r->cms_user_id;
-			$invoices[ $r->id ][ 'status' ]           = $r->status;
-			$invoices[ $r->id ][ 'raised_date' ]      = $r->raised_date;
-			$invoices[ $r->id ][ 'due_date' ]         = $r->due_date;
-			$invoices[ $r->id ][ 'paid' ]             = $r->paid;
-			$invoices[ $r->id ][ 'subscription' ]     = $r->subscription;
-			$invoices[ $r->id ][ 'init_total' ]       = $r->init_total;
-			$invoices[ $r->id ][ 'recur_total' ]      = $r->recur_total;
+			$invoices[ $r->id ][ 'id' ]			   = $r->id;
+			$invoices[ $r->id ][ 'cms_user_id' ]	  = $r->cms_user_id;
+			$invoices[ $r->id ][ 'status' ]		   = $r->status;
+			$invoices[ $r->id ][ 'raised_date' ]	  = $r->raised_date;
+			$invoices[ $r->id ][ 'due_date' ]		 = $r->due_date;
+			$invoices[ $r->id ][ 'paid' ]			 = $r->paid;
+			$invoices[ $r->id ][ 'subscription' ]	 = $r->subscription;
+			$invoices[ $r->id ][ 'init_total' ]	   = $r->init_total;
+			$invoices[ $r->id ][ 'recur_total' ]	  = $r->recur_total;
 			$invoices[ $r->id ][ 'recur_frequency' ]  = $r->recur_frequency;
 			$invoices[ $r->id ][ 'recur_dayofmonth' ] = $r->recur_dayofmonth;
-			$invoices[ $r->id ][ 'currencycode' ]     = $r->currencycode;
-			$invoices[ $r->id ][ 'property_uid' ]     = $r->property_uid;
-			$invoices[ $r->id ][ 'is_commission' ]    = $r->is_commission;
+			$invoices[ $r->id ][ 'currencycode' ]	 = $r->currencycode;
+			$invoices[ $r->id ][ 'property_uid' ]	 = $r->property_uid;
+			$invoices[ $r->id ][ 'is_commission' ]	= $r->is_commission;
 			$invoices[ $r->id ][ 'vat_will_be_charged' ] = $r->vat_will_be_charged;
 			}
 		}
@@ -4749,21 +4763,21 @@ function invoices_getinvoicesfor_property_byproperty_uid( $status = null, $prope
 		{
 		foreach ( $result as $r )
 			{
-			$invoices[ $r->id ][ 'id' ]               = $r->id;
-			$invoices[ $r->id ][ 'cms_user_id' ]      = $r->cms_user_id;
-			$invoices[ $r->id ][ 'status' ]           = $r->status;
-			$invoices[ $r->id ][ 'raised_date' ]      = $r->raised_date;
-			$invoices[ $r->id ][ 'due_date' ]         = $r->due_date;
-			$invoices[ $r->id ][ 'paid' ]             = $r->paid;
-			$invoices[ $r->id ][ 'subscription' ]     = $r->subscription;
-			$invoices[ $r->id ][ 'init_total' ]       = $r->init_total;
-			$invoices[ $r->id ][ 'recur_total' ]      = $r->recur_total;
+			$invoices[ $r->id ][ 'id' ]			   = $r->id;
+			$invoices[ $r->id ][ 'cms_user_id' ]	  = $r->cms_user_id;
+			$invoices[ $r->id ][ 'status' ]		   = $r->status;
+			$invoices[ $r->id ][ 'raised_date' ]	  = $r->raised_date;
+			$invoices[ $r->id ][ 'due_date' ]		 = $r->due_date;
+			$invoices[ $r->id ][ 'paid' ]			 = $r->paid;
+			$invoices[ $r->id ][ 'subscription' ]	 = $r->subscription;
+			$invoices[ $r->id ][ 'init_total' ]	   = $r->init_total;
+			$invoices[ $r->id ][ 'recur_total' ]	  = $r->recur_total;
 			$invoices[ $r->id ][ 'recur_frequency' ]  = $r->recur_frequency;
 			$invoices[ $r->id ][ 'recur_dayofmonth' ] = $r->recur_dayofmonth;
-			$invoices[ $r->id ][ 'currencycode' ]     = $r->currencycode;
-			$invoices[ $r->id ][ 'contract_id' ]      = $r->contract_id;
-			$invoices[ $r->id ][ 'property_uid' ]     = $r->property_uid;
-			$invoices[ $r->id ][ 'is_commission' ]    = $r->is_commission;
+			$invoices[ $r->id ][ 'currencycode' ]	 = $r->currencycode;
+			$invoices[ $r->id ][ 'contract_id' ]	  = $r->contract_id;
+			$invoices[ $r->id ][ 'property_uid' ]	 = $r->property_uid;
+			$invoices[ $r->id ][ 'is_commission' ]	= $r->is_commission;
 			$invoices[ $r->id ][ 'vat_will_be_charged' ] = $r->vat_will_be_charged;
 
 			}
@@ -4778,7 +4792,7 @@ function invoices_makeInvoiceStatusDropdown( $selected = '0' )
 	{
 	$statusOptions  = array ();
 	$statusDropdown = "";
-	$statuses       = array ();
+	$statuses	   = array ();
 	$statuses[ 0 ]  = jr_gettext( "_JRPORTAL_INVOICES_STATUS_UNPAID", _JRPORTAL_INVOICES_STATUS_UNPAID );
 	$statuses[ 1 ]  = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PAID", _JRPORTAL_INVOICES_STATUS_PAID );
 	$statuses[ 2 ]  = jr_gettext( "_JRPORTAL_INVOICES_STATUS_CANCELLED", _JRPORTAL_INVOICES_STATUS_CANCELLED );
@@ -4824,9 +4838,9 @@ function subscribers_unpublishNproperties( $numberOfPropertiesToUnpublish, $cms_
 
 function subscribers_getManagersPublishedProperties( $cms_user_id )
 	{
-	$query                = "SELECT property_uid FROM #__jomres_managers_propertys_xref WHERE `manager_id` = '" . (int) $cms_user_id . "'";
+	$query				= "SELECT property_uid FROM #__jomres_managers_propertys_xref WHERE `manager_id` = '" . (int) $cms_user_id . "'";
 	$managersProperties   = doSelectSql( $query );
-	$mp                   = array ();
+	$mp				   = array ();
 	$published_properties = array ();
 	if ( count( $managersProperties ) > 0 )
 		{
@@ -4838,7 +4852,7 @@ function subscribers_getManagersPublishedProperties( $cms_user_id )
 	else
 	return array ();
 	$clause = "WHERE propertys_uid IN (" . implode(',',$mp) .") AND published = 1";
-	$query              = "SELECT propertys_uid FROM #__jomres_propertys " . $clause . " LIMIT " . count( $mp );
+	$query			  = "SELECT propertys_uid FROM #__jomres_propertys " . $clause . " LIMIT " . count( $mp );
 	$jomresPropertyList = doSelectSql( $query );
 	if ( count( $jomresPropertyList ) > 0 )
 		{
@@ -4875,7 +4889,7 @@ function subscribers_getAvailablePropertySlots( $id = 0 )
 		{
 		foreach ( $result as $r )
 			{
-			$c                 = $r->property_limit;
+			$c				 = $r->property_limit;
 			$allowedProperties = $allowedProperties + $c;
 			}
 		}
@@ -4887,7 +4901,7 @@ function subscribers_getCurrentPropertiesNumbers( $id = 0 )
 	{
 	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 	if ( $id == 0 ) $id = $thisJRUser->id;
-	$query              = "SELECT COUNT(`manager_id`)  FROM #__jomres_managers_propertys_xref WHERE manager_id ='" . (int) $id . "'";
+	$query			  = "SELECT COUNT(`manager_id`)  FROM #__jomres_managers_propertys_xref WHERE manager_id ='" . (int) $id . "'";
 	$existingProperties = doSelectSql( $query, 1 );
 
 	if ( $existingProperties ) return $existingProperties;
@@ -4898,7 +4912,7 @@ function subscribers_getCurrentPropertiesNumbers( $id = 0 )
 function subscribers_getCurrentSubscriptionsForJosId( $id = 0 )
 	{
 	$users_subscriptions = array ();
-	$thisJRUser          = jomres_singleton_abstract::getInstance( 'jr_user' );
+	$thisJRUser		  = jomres_singleton_abstract::getInstance( 'jr_user' );
 	if ( $id == 0 ) $id = $thisJRUser->id;
 	$query  = "SELECT * FROM #__jomresportal_subscriptions WHERE cms_user_id =" . (int) $id;
 	$result = doSelectSql( $query );
@@ -4906,20 +4920,20 @@ function subscribers_getCurrentSubscriptionsForJosId( $id = 0 )
 		{
 		foreach ( $result as $r )
 			{
-			$users_subscriptions[ $r->id ][ 'id' ]                      = (int) $r->id;
-			$users_subscriptions[ $r->id ][ 'cms_user_id' ]             = (int) $r->cms_user_id;
+			$users_subscriptions[ $r->id ][ 'id' ]					  = (int) $r->id;
+			$users_subscriptions[ $r->id ][ 'cms_user_id' ]			 = (int) $r->cms_user_id;
 			$users_subscriptions[ $r->id ][ 'gateway_subscription_id' ] = (string) $r->gateway_subscription_id;
-			$users_subscriptions[ $r->id ][ 'package_id' ]              = (string) $r->package_id;
-			$users_subscriptions[ $r->id ][ 'name' ]                    = (string) $r->name;
-			$users_subscriptions[ $r->id ][ 'description' ]             = (string) $r->description;
-			$users_subscriptions[ $r->id ][ 'frequency' ]               = (string) $r->frequency;
-			$users_subscriptions[ $r->id ][ 'trial_period' ]            = (string) $r->trial_period;
-			$users_subscriptions[ $r->id ][ 'trial_amount' ]            = (string) $r->trial_amount;
-			$users_subscriptions[ $r->id ][ 'full_amount' ]             = (string) $r->full_amount;
-			$users_subscriptions[ $r->id ][ 'rooms_limit' ]             = (string) $r->rooms_limit;
-			$users_subscriptions[ $r->id ][ 'property_limit' ]          = (string) $r->property_limit;
-			$users_subscriptions[ $r->id ][ 'status' ]                  = (string) $r->status;
-			$users_subscriptions[ $r->id ][ 'raised_date' ]             = (string) $r->raised_date;
+			$users_subscriptions[ $r->id ][ 'package_id' ]			  = (string) $r->package_id;
+			$users_subscriptions[ $r->id ][ 'name' ]					= (string) $r->name;
+			$users_subscriptions[ $r->id ][ 'description' ]			 = (string) $r->description;
+			$users_subscriptions[ $r->id ][ 'frequency' ]			   = (string) $r->frequency;
+			$users_subscriptions[ $r->id ][ 'trial_period' ]			= (string) $r->trial_period;
+			$users_subscriptions[ $r->id ][ 'trial_amount' ]			= (string) $r->trial_amount;
+			$users_subscriptions[ $r->id ][ 'full_amount' ]			 = (string) $r->full_amount;
+			$users_subscriptions[ $r->id ][ 'rooms_limit' ]			 = (string) $r->rooms_limit;
+			$users_subscriptions[ $r->id ][ 'property_limit' ]		  = (string) $r->property_limit;
+			$users_subscriptions[ $r->id ][ 'status' ]				  = (string) $r->status;
+			$users_subscriptions[ $r->id ][ 'raised_date' ]			 = (string) $r->raised_date;
 			}
 		}
 
@@ -4939,13 +4953,13 @@ function subscribers_getSubscriberDetailsForJosId( $id )
 			{
 			foreach ( $result as $r )
 				{
-				$user[ 'id' ]          = (int) $r->id;
+				$user[ 'id' ]		  = (int) $r->id;
 				$user[ 'cms_user_id' ] = (int) $r->cms_user_id;
 				$user[ 'firstname' ]   = (string) $r->firstname;
-				$user[ 'surname' ]     = (string) $r->surname;
-				$user[ 'address' ]     = (string) $r->address;
-				$user[ 'country' ]     = (string) $r->country;
-				$user[ 'postcode' ]    = (string) $r->postcode;
+				$user[ 'surname' ]	 = (string) $r->surname;
+				$user[ 'address' ]	 = (string) $r->address;
+				$user[ 'country' ]	 = (string) $r->country;
+				$user[ 'postcode' ]	= (string) $r->postcode;
 				}
 
 			return $user;
@@ -4972,24 +4986,24 @@ function subscriptions_check_for_freebie_package( $all_packages = array () )
 function subscriptions_packages_getallpackages()
 	{
 	$packages = array ();
-	$query    = "SELECT * FROM #__jomresportal_subscriptions_packages";
+	$query	= "SELECT * FROM #__jomresportal_subscriptions_packages";
 	$result   = doSelectSql( $query );
 
 	if ( count( $result ) > 0 )
 		{
 		foreach ( $result as $r )
 			{
-			$packages[ $r->id ][ 'id' ]             = $r->id;
-			$packages[ $r->id ][ 'name' ]           = $r->name;
-			$packages[ $r->id ][ 'description' ]    = $r->description;
-			$packages[ $r->id ][ 'published' ]      = $r->published;
-			$packages[ $r->id ][ 'frequency' ]      = $r->frequency;
+			$packages[ $r->id ][ 'id' ]			 = $r->id;
+			$packages[ $r->id ][ 'name' ]		   = $r->name;
+			$packages[ $r->id ][ 'description' ]	= $r->description;
+			$packages[ $r->id ][ 'published' ]	  = $r->published;
+			$packages[ $r->id ][ 'frequency' ]	  = $r->frequency;
 			$packages[ $r->id ][ 'trial_period' ]   = $r->trial_period;
 			$packages[ $r->id ][ 'trial_amount' ]   = $r->trial_amount;
-			$packages[ $r->id ][ 'full_amount' ]    = $r->full_amount;
-			$packages[ $r->id ][ 'rooms_limit' ]    = $r->rooms_limit;
+			$packages[ $r->id ][ 'full_amount' ]	= $r->full_amount;
+			$packages[ $r->id ][ 'rooms_limit' ]	= $r->rooms_limit;
 			$packages[ $r->id ][ 'property_limit' ] = $r->property_limit;
-			$packages[ $r->id ][ 'tax_code_id' ]    = $r->tax_code_id;
+			$packages[ $r->id ][ 'tax_code_id' ]	= $r->tax_code_id;
 			}
 		}
 
@@ -5000,7 +5014,7 @@ function subscriptions_packages_makefrequencyDropdown( $selected = '1' )
 	{
 	$frequencyOptions  = array ();
 	$frequencyDropdown = "";
-	$frequencies       = array ( "M" => "M", "Q" => "Q", "B" => "B", "A" => "A" );
+	$frequencies	   = array ( "M" => "M", "Q" => "Q", "B" => "B", "A" => "A" );
 	if ( count( $frequencies > 0 ) )
 		{
 		foreach ( $frequencies as $k => $v )
@@ -5017,7 +5031,7 @@ function subscriptions_packages_maketrialperiodDropdown( $selected = '0' )
 	{
 	$periodOptions  = array ();
 	$periodDropdown = "";
-	$periods        = array ( "0" => "", "1" => "1", "2" => "2", "3" => "3" );
+	$periods		= array ( "0" => "", "1" => "1", "2" => "2", "3" => "3" );
 	if ( count( $periods > 0 ) )
 		{
 		foreach ( $periods as $k => $v )
@@ -5066,10 +5080,10 @@ function taxrates_getalltaxrates()
 				{
 				foreach ( $result as $r )
 					{
-					$rates[ $r->id ][ 'id' ]          = $r->id;
-					$rates[ $r->id ][ 'code' ]        = $r->code;
+					$rates[ $r->id ][ 'id' ]		  = $r->id;
+					$rates[ $r->id ][ 'code' ]		= $r->code;
 					$rates[ $r->id ][ 'description' ] = $r->description;
-					$rates[ $r->id ][ 'rate' ]        = $r->rate;
+					$rates[ $r->id ][ 'rate' ]		= $r->rate;
 					}
 				}
 			$c->store('all_tax_rates',$rates);
@@ -5186,9 +5200,9 @@ function scandir_getfiles( $path, $extension = false )
 			else
 				{
 				$filename = strtolower( $file );
-				$exts     = explode( ".", $filename );
-				$n        = count( $exts ) - 1;
-				$exts     = $exts[ $n ];
+				$exts	 = explode( ".", $filename );
+				$n		= count( $exts ) - 1;
+				$exts	 = $exts[ $n ];
 				if ( $exts == $extension ) $data[ ] = $file;
 				}
 			}
@@ -5200,9 +5214,9 @@ function scandir_getfiles( $path, $extension = false )
 // Credit : http://www.php.net/manual/en/function.scandir.php#109140
 function scandir_getfiles_recursive( $directory, $recursive = true, $listDirs = false, $listFiles = true, $exclude = '' )
 	{
-	$arrayItems    = array ();
+	$arrayItems	= array ();
 	$skipByExclude = false;
-	$handle        = opendir( $directory );
+	$handle		= opendir( $directory );
 	if ( $handle )
 		{
 		while ( false !== ( $file = readdir( $handle ) ) )
@@ -5222,7 +5236,7 @@ function scandir_getfiles_recursive( $directory, $recursive = true, $listDirs = 
 						}
 					if ( $listDirs )
 						{
-						$file          = $directory . DIRECTORY_SEPARATOR . $file;
+						$file		  = $directory . DIRECTORY_SEPARATOR . $file;
 						$arrayItems[ ] = $file;
 						}
 					}
@@ -5230,7 +5244,7 @@ function scandir_getfiles_recursive( $directory, $recursive = true, $listDirs = 
 					{
 					if ( $listFiles )
 						{
-						$file          = $directory . DIRECTORY_SEPARATOR . $file;
+						$file		  = $directory . DIRECTORY_SEPARATOR . $file;
 						$arrayItems[ ] = $file;
 						}
 					}
@@ -5268,14 +5282,14 @@ function this_cms_is_joomla()
 
 function editCustomText()
 	{
-	$siteConfig     = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-	$jrConfig       = $siteConfig->get();
-	$theConstant    = jomresGetParam( $_REQUEST, 'theConstant', '' );
-	$defaultText    = jomresGetParam( $_REQUEST, 'defaultText', '', _MOS_ALLOWHTML );
+	$siteConfig	 = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig	   = $siteConfig->get();
+	$theConstant	= jomresGetParam( $_REQUEST, 'theConstant', '' );
+	$defaultText	= jomresGetParam( $_REQUEST, 'defaultText', '', _MOS_ALLOWHTML );
 	$property_uid   = (int) getDefaultProperty();
-	$query          = "SELECT customtext FROM #__jomres_custom_text WHERE constant = '$theConstant' and property_uid = '0' AND language = '" . get_showtime( 'lang' ) . "'";
+	$query		  = "SELECT customtext FROM #__jomres_custom_text WHERE constant = '$theConstant' and property_uid = '0' AND language = '" . get_showtime( 'lang' ) . "'";
 	$customTextList = doSelectSql( $query );
-	$theText        = false;
+	$theText		= false;
 	if ( count( $customTextList ) )
 		{
 		foreach ( $customTextList as $text )
@@ -5283,7 +5297,7 @@ function editCustomText()
 			$theText = stripslashes( $text->customtext );
 			}
 		}
-	$query    = "SELECT customtext FROM #__jomres_custom_text WHERE constant = '$theConstant' and property_uid = '" . (int) $property_uid . "' AND language = '" . get_showtime( 'lang' ) . "'";
+	$query	= "SELECT customtext FROM #__jomres_custom_text WHERE constant = '$theConstant' and property_uid = '" . (int) $property_uid . "' AND language = '" . get_showtime( 'lang' ) . "'";
 	$textList = doSelectSql( $query );
 	if ( count( $textList ) == 1 )
 		{
@@ -5301,21 +5315,21 @@ function editCustomText()
 	if ( $jrConfig[ 'allowHTMLeditor' ] != "2" && $jrConfig[ 'allowHTMLeditor' ] != "3" ) 
 		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'saveCustomText' );
 	$jrtb .= $jrtbar->endTable();
-	$output[ 'JOMRESTOOLBAR' ]     = $jrtb;
+	$output[ 'JOMRESTOOLBAR' ]	 = $jrtb;
 	$output[ 'MOSCONFIGLIVESITE' ] = get_showtime( 'live_site' );
-	$output[ 'HCURRENTTEXT' ]      = jr_gettext( "_JOMRES_COM_A_EDITING_CURRENTTEXT", _JOMRES_COM_A_EDITING_CURRENTTEXT );
-	$output[ 'HNEWTEXT' ]          = jr_gettext( "_JOMRES_COM_A_EDITING_NEWTEXT", _JOMRES_COM_A_EDITING_NEWTEXT );
-	$output[ 'PROPERTYUID' ]       = $property_uid;
-	$output[ 'THECONSTANT' ]       = $theConstant;
-	$output[ 'CURRENTTEXT' ]       = $theText;
+	$output[ 'HCURRENTTEXT' ]	  = jr_gettext( "_JOMRES_COM_A_EDITING_CURRENTTEXT", _JOMRES_COM_A_EDITING_CURRENTTEXT );
+	$output[ 'HNEWTEXT' ]		  = jr_gettext( "_JOMRES_COM_A_EDITING_NEWTEXT", _JOMRES_COM_A_EDITING_NEWTEXT );
+	$output[ 'PROPERTYUID' ]	   = $property_uid;
+	$output[ 'THECONSTANT' ]	   = $theConstant;
+	$output[ 'CURRENTTEXT' ]	   = $theText;
 	if ( $jrConfig[ 'allowHTMLeditor' ] == "1" || $jrConfig[ 'allowHTMLeditor' ] == "2" || $jrConfig[ 'allowHTMLeditor' ] == "3" )
 		{
 		if ( $jrConfig[ 'allowHTMLeditor' ] == "1" )
 			{
 			$width  = "450";
 			$height = "250";
-			$col    = "20";
-			$row    = "10";
+			$col	= "20";
+			$row	= "10";
 			$tmpTxt = editorAreaText( 'newtext', stripslashes( $theText ), 'newtext', $width, $height, $col, $row );
 			}
 		if ( $jrConfig[ 'allowHTMLeditor' ] == "2" || $jrConfig[ 'allowHTMLeditor' ] == "3" )
@@ -5328,7 +5342,7 @@ function editCustomText()
 		$tmpTxt = '<textarea class="inputbox" cols="40" rows="6" name="newtext">' . $theText . '</textarea>';
 		}
 
-	$output[ 'NEWTEXT' ]     = $tmpTxt;
+	$output[ 'NEWTEXT' ]	 = $tmpTxt;
 
 	$pageoutput[ ] = $output;
 
@@ -5402,7 +5416,7 @@ function updateCustomText( $theConstant, $theValue, $audit = true, $property_uid
 			$property_uid = (int) getDefaultProperty();
 		}
 	//$theValue=htmlentities($theValue);
-	$query    = "SELECT customtext FROM #__jomres_custom_text WHERE constant = '" . $theConstant . "' and property_uid = '" . (int) $property_uid . "' AND language = '" . get_showtime( 'lang' ) . "'";
+	$query	= "SELECT customtext FROM #__jomres_custom_text WHERE constant = '" . $theConstant . "' and property_uid = '" . (int) $property_uid . "' AND language = '" . get_showtime( 'lang' ) . "'";
 	$textList = doSelectSql( $query );
 	if ( strlen( $theValue ) == 0 )
 		{
@@ -5434,7 +5448,7 @@ function updateCustomText( $theConstant, $theValue, $audit = true, $property_uid
 function jomresGetDomain()
 	{
 	$thisSvrName = $_SERVER[ 'SERVER_NAME' ];
-	$dmn         = str_replace( "http://", "", $thisSvrName );
+	$dmn		 = str_replace( "http://", "", $thisSvrName );
 
 	//$domain=str_replace("www.","",$dmn);
 	//echo "<H2>Found domain".$domain."</H2>";
@@ -5447,10 +5461,10 @@ function parseConfiguration()
 	phpinfo( INFO_CONFIGURATION );
 	$s = ob_get_contents();
 	ob_end_clean();
-	$s        = strip_tags( $s, '<h2><th><td>' );
-	$s        = preg_replace( '/<th[^>]*>([^<]+)<\/th>/', "<info>\\1</info>", $s );
-	$s        = preg_replace( '/<td[^>]*>([^<]+)<\/td>/', "<info>\\1</info>", $s );
-	$vTmp     = preg_split( '/(<h2>[^<]+<\/h2>)/', $s, -1, PREG_SPLIT_DELIM_CAPTURE );
+	$s		= strip_tags( $s, '<h2><th><td>' );
+	$s		= preg_replace( '/<th[^>]*>([^<]+)<\/th>/', "<info>\\1</info>", $s );
+	$s		= preg_replace( '/<td[^>]*>([^<]+)<\/td>/', "<info>\\1</info>", $s );
+	$vTmp	 = preg_split( '/(<h2>[^<]+<\/h2>)/', $s, -1, PREG_SPLIT_DELIM_CAPTURE );
 	$vModules = array ();
 	for ( $i = 1; $i < count( $vTmp ); $i++ )
 		{
@@ -5481,7 +5495,7 @@ function parseConfiguration()
 
 function createNewAPIKey()
 	{
-	$apikey      = generateJomresRandomString();
+	$apikey	  = generateJomresRandomString();
 	$keeplooking = true;
 	while ( $keeplooking ):
 		$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE apikey = '" . $apikey . "' LIMIT 1";
@@ -5559,7 +5573,7 @@ if ( !function_exists( 'gregoriantojd' ) )
  */
 function checkUserIsManager()
 	{
-	$thisJRUser    = jomres_singleton_abstract::getInstance( 'jr_user' );
+	$thisJRUser	= jomres_singleton_abstract::getInstance( 'jr_user' );
 	$userIsManager = $thisJRUser->userIsManager;
 
 	return $userIsManager;
@@ -5567,7 +5581,7 @@ function checkUserIsManager()
 
 function getDefaultProperty()
 	{
-	$thisJRUser      = jomres_singleton_abstract::getInstance( 'jr_user' );
+	$thisJRUser	  = jomres_singleton_abstract::getInstance( 'jr_user' );
 	$defaultProperty = $thisJRUser->currentproperty;
 
 	return (int) $defaultProperty;
@@ -5604,7 +5618,7 @@ class dummy_params_class
 function getbookingguestdata()
 	{
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-	$userDeets         = $tmpBookingHandler->getGuestData();
+	$userDeets		 = $tmpBookingHandler->getGuestData();
 
 	return $userDeets;
 	}
