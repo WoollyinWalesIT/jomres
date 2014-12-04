@@ -1,3 +1,32 @@
+<span class="label label-success">Feature</span> Added Multisite support to Jomres, first iteration that supports property sharing.
+
+<span class="label label-warning">Change</span> Updated galleria slideshow plugin to 1.4.2
+<span class="label label-warning">Change</span> Updated Polish lang file, thanks Patryk.
+<span class="label label-warning">Change</span> Updated datatables version.
+
+
+<span class="label label-warning">Change</span> Small tweak to jomres toolbar to ensure that we use the correct version of bootstrap in the admin area.
+<span class="label label-warning">Change</span> Improved how we tidy up temp booking data when amending bookings to prevent intermittent error logs of contract ids not set.
+<span class="label label-warning">Change</span> Tweaked list properties to ensure search results from ajax are loaded correctly when changing pages.
+<span class="label label-warning">Change</span> Fullscreeen view, BS3, updated.
+<span class="label label-warning">Change</span> Modified how property list prices are figured out RE arrival date in ajax search
+<span class="label label-warning">Change</span> Modified a variety of files so that we use IN in sql queries instead of OR, as it's demonstrated to be up to 3 times faster.
+<span class="label label-warning">Change</span> Added a clause to property_list prices class to check that certain fields are populated before setting the arrival date.
+<span class="label label-warning">Change</span> Added tariff description for micormanaged tariffs to classic rooms list.
+<span class="label label-warning">Change</span> Modified payment methods class to ensure results are cached in memory.
+<span class="label label-warning">Change</span> Updated BS2 composite_property_details_notabs.html
+<span class="label label-warning">Change</span> Changed how we figure the current url is determined by the error logging function.
+<span class="label label-warning">Change</span> Modified payment methods class to ensure results are cached in memory.
+<span class="label label-warning">Change</span> Updated how temp booking data is stored.
+<span class="label label-warning">Change</span> Modified a url to ensure that the jr_printable flag is set to 1 where appropriate.
+<span class="label label-warning">Change</span> Updated composite property details script so that appropriate data is passed to the template if printable is enabled.
+
+<span class="label label-important label-danger">Fix</span> Modified booking confirmation page so that modifications of amended bookings are redirected through the amendBooking task first, to ensure that previously booked rooms appear in the room selection list second time around.
+<span class="label label-important label-danger">Fix</span> Modified new functionality to correctly determine the path to a template file.
+<span class="label label-important label-danger">Fix</span> BS3 solved a problem when filtering ajax tables.
+
+
+
 <h3>Jomres 8.1.17 11/11/2014</h3>
 
 <span class="label label-warning">Change</span> Updated bootstrap 3 edit property pages so that features are laid out correctly.
