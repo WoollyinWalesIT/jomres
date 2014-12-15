@@ -894,12 +894,6 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j04000roomsconfig.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j04005roomsconfig.class.php' );
 		
-		$files_old_bootstrap_dashboard = scandir_getfiles_recursive( $this->dir_libraries . 'bootstrap_dashboard'  ); 
-		foreach ( $files_old_bootstrap_dashboard as $file )
-			{
-			$this->add_obs_file( $file );
-			}
-		
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'batchupload.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'batchupload.html' );
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'batchupload.html' );
@@ -909,6 +903,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_dir ( $this->dir_jomres . 'javascript' . JRDS . 'codemirror' ) ;
 		$this->add_obs_dir ( $this->dir_jomres . 'javascript' . JRDS . 'jquerytabs' ) ;
 		$this->add_obs_dir ( $this->dir_jomres . 'javascript' . JRDS . 'bootstrap_dashboard' ) ;
+		$this->add_obs_dir ( $this->dir_jomres . 'libraries' . JRDS . 'bootstrap_dashboard' ) ;
 		$this->add_obs_dir ( $this->dir_jomres . 'templates'  . JRDS . 'jquery_ui' . JRDS . 'templates') ;
 		
 		
