@@ -30,6 +30,10 @@ class j16000import_eu_tax_rates
 		jr_import("jrportal_taxrate");
 		$tax_rates_class = new jrportal_taxrate();
 		$result = $tax_rates_class->deleteAllTaxRates();
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$c->eraseAll();
+		
 		if ($result)
 			{
 			// http://en.wikipedia.org/wiki/European_Union_value_added_tax#EU_VAT_area
