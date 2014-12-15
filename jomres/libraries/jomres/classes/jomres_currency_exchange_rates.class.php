@@ -193,29 +193,6 @@ class jomres_currency_exchange_rates
 		}
 	}
 
-// if(is_null($header))
-// $header = explode($delimiter, $csvLine[0]);
-// else
-// {
-// $items = explode($delimiter, $csvLine[0]);
-// if ($items[0] == "G")
-// {
-// $items = explode($delimiter, $csvLine);
-// $currencycode = substr($items[0],3,3);
-// $data[][$currencycode] = $items[4];
-// }
-// else
-// {
-// $count = count($items);
-// for($n = 0, $m = $count; $n < $m; $n++)
-// {
-// $prepareData[$header[$n]] = $items[$n];
-// }
-// $data[] = $prepareData;
-// }
-
-// }
-
 if ( !function_exists( 'str_getcsv' ) )
 	{
 	function str_getcsv( $input, $delimiter = ',', $enclosure = '"', $escape = null, $eol = null )
