@@ -56,10 +56,10 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 	else
 		{
 		if (jomres_template_version == "bootstrap3"){
-			sDomm = "<'row'<'col-xs-4'lr><'col-xs-8'f>>t<'row-fluid'<'col-xs-4'i><'col-xs-8'p>>";
+			sDomm = "<'row'<'col-xs-4'l><'col-xs-2'r><'col-xs-6'f>>t<'row'<'col-xs-4'i><'col-xs-8'p>>";
 			}
 		else {
-			sDomm = "<'row-fluid'<'span4'lr><'span8'f>>t<'row-fluid'<'span4'i><'span8'p>>";
+			sDomm = "<'row-fluid'<'span4'r><'span2'r><'span6'f>>t<'row-fluid'<'span4'i><'span8'p>>";
 			}
 		
 		}
