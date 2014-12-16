@@ -69,29 +69,29 @@ class jomres_property_payment_methods
 				$gatewaydir      = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' ).'/', $tmpgatewaydir );
 				$gatewaydir      = str_replace( '\\', '/', $gatewaydir );
 
-				$this->multi_query_result[ $data->prid ]["gateway"] = $data->plugin;
-				$this->multi_query_result[ $data->prid ]["gateway_name"] = $result[ 'gatewayname' ];
-				$this->multi_query_result[ $data->prid ]["gateway_image"] = $gatewaydir . 'j00510' . $data->plugin . '.gif';
+				$this->multi_query_result[ $data->prid ][$data->plugin]["gateway"] = $data->plugin;
+				$this->multi_query_result[ $data->prid ][$data->plugin]["gateway_name"] = $result[ 'gatewayname' ];
+				$this->multi_query_result[ $data->prid ][$data->plugin]["gateway_image"] = $gatewaydir . 'j00510' . $data->plugin . '.gif';
 				}
 			
 			//some properties don`t have gateways enabled, so we`ll set $this->multi_query_result to '' for them, otherwise the mysql query will be executed again
 			foreach ($property_uids as $uid)
 				{
-				if (!in_array($uid, $this->multi_query_result))
+				$arrayKeys = array_keys($this->multi_query_result);
+				
+				if (!in_array($uid, $arrayKeys))
 					{
-					$this->multi_query_result[ $uid ]["gateway"] = '';
-					$this->multi_query_result[ $uid ]["gateway_name"] = '';
-					$this->multi_query_result[ $uid ]["gateway_image"] = '';	
+					$this->multi_query_result[ $uid ][$data->plugin]["gateway"] = '';
+					$this->multi_query_result[ $uid ][$data->plugin]["gateway_name"] = '';
+					$this->multi_query_result[ $uid ][$data->plugin]["gateway_image"] = '';	
 					}
 				}
 			}
-		
-		return $this->multi_query_result;
 		}
 	
 	function get_property_gateways($property_uid)
 		{
-		if ( !isset($this->multi_query_result[ $property_uid ]) )
+		if ( count($this->multi_query_result[ $property_uid ] < 1) )
 			{
 			$this->get_gateways_multi($property_uid);
 			}
