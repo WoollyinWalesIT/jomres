@@ -178,8 +178,8 @@ class j01010listpropertys
 			if ( is_null( $layout_template ) ) 
 				$layout_template = "list_properties.html";
 
-			if ($live_scrolling_enabled)
-				jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js" );
+			//if ($live_scrolling_enabled)
+				//jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js" );
 
 			if ( $jrConfig[ 'is_single_property_installation' ] == "1" )
 				{
