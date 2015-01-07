@@ -860,6 +860,8 @@ class patTemplate
 		
 		$common_strings[ 'COMMON_TMPLCOMPONENT' ] = get_showtime("tmplcomponent");
 		
+		$common_strings[ 'COMMON_LANG' ] = get_showtime("lang");
+		
 
 		return $common_strings;
 		}
