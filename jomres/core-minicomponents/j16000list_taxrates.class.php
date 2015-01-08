@@ -28,6 +28,7 @@ class j16000list_taxrates
 			}
 		$editIcon   = '<IMG SRC="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
 		$rates      = taxrates_getalltaxrates();
+
 		$output     = array ();
 		$pageoutput = array ();
 		$rows       = array ();
@@ -36,6 +37,7 @@ class j16000list_taxrates
 		$output[ 'HCODE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_CODE', _JRPORTAL_TAXRATES_CODE,false );
 		$output[ 'HDESCRIPTION' ] = jr_gettext( '_JRPORTAL_TAXRATES_DESCRIPTION', _JRPORTAL_TAXRATES_DESCRIPTION,false );
 		$output[ 'HRATE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_RATE', _JRPORTAL_TAXRATES_RATE,false );
+		$output[ '_JOMRES_IS_EU_COUNTRY' ]        = jr_gettext( '_JOMRES_IS_EU_COUNTRY', _JOMRES_IS_EU_COUNTRY,false );
 		
 		$output[ '_JOMRES_TAX_RATES_IMPORT' ]        = jr_gettext( '_JOMRES_TAX_RATES_IMPORT', _JOMRES_TAX_RATES_IMPORT,false );
 		$output[ '_JOMRES_TAX_RATES_IMPORT_INFO' ]   = jr_gettext( '_JOMRES_TAX_RATES_IMPORT_INFO', _JOMRES_TAX_RATES_IMPORT_INFO,false );
@@ -48,6 +50,11 @@ class j16000list_taxrates
 			$r[ 'CODE' ]        = $rate[ 'code' ];
 			$r[ 'DESCRIPTION' ] = $rate[ 'description' ];
 			$r[ 'RATE' ]        = $rate[ 'rate' ];
+
+			$r['IS_EU_COUNTRY'] =  jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO,false );
+			if ($rate[ 'is_eu_country' ] == "1")
+				$r['IS_EU_COUNTRY'] =  jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES,false );
+			
 			$r[ 'EDITLINK' ]    = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_taxrate&id=' . $rate[ 'id' ] . '">' . $editIcon . '</a>';
 			$rows[ ]            = $r;
 			}

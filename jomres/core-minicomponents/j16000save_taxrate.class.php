@@ -30,6 +30,7 @@ class j16000save_taxrate
 		$code        = jomresGetParam( $_POST, 'code', "" );
 		$description = jomresGetParam( $_POST, 'description', "" );
 		$rate_val    = jomresGetParam( $_POST, 'rate', 0.00 );
+		$is_eu_country    = jomresGetParam( $_POST, 'is_eu_country', false );
 
 		jr_import( 'jrportal_taxrate' );
 		$rate = new jrportal_taxrate();
@@ -40,6 +41,7 @@ class j16000save_taxrate
 		$rate->code        = $code;
 		$rate->description = $description;
 		$rate->rate        = $rate_val;
+		$rate->is_eu_country = $is_eu_country;
 
 		if ( $id > 0 ) $rate->commitUpdateTaxRate();
 		else

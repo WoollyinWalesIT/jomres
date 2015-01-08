@@ -42,22 +42,22 @@ class j16000import_eu_tax_rates
 			$new_tax_rates[] = array( "rate"=>20, "code"=>'MwSt.', "description"=>"Mehrwertsteuer (Austria)" );
 			$new_tax_rates[] = array( "rate"=>21, "code"=>'BTW', "description"=>"Belasting over de toegevoegde waarde (Belgium)" );
 			$new_tax_rates[] = array( "rate"=>20, "code"=>'ДДС', "description"=>"Данък върху добавената стойност  (Bulgaria)" );
-			$new_tax_rates[] = array( "rate"=>18, "code"=>'ΦΠΑ', "description"=>"Φόρος Προστιθέμενης Αξίας (Cyprus)" );
+			$new_tax_rates[] = array( "rate"=>25, "code"=>'PDV', "description"=>"Porez na dodanu vrijednost (Croatia)" );
+			$new_tax_rates[] = array( "rate"=>19, "code"=>'ΦΠΑ', "description"=>"Φόρος Προστιθέμενης Αξίας (Cyprus)" );
 			$new_tax_rates[] = array( "rate"=>21, "code"=>'DPH', "description"=>"Daň z přidané hodnoty (Czech Republic)" );
-			$new_tax_rates[] = array( "rate"=>25, "code"=>'PDV', "description"=>"(Croatia)" );
 			$new_tax_rates[] = array( "rate"=>25, "code"=>'moms', "description"=>"Meromsætningsafgift (Denmark)" );
 			$new_tax_rates[] = array( "rate"=>20, "code"=>'km', "description"=>"käibemaks (Estonia)" );
 			$new_tax_rates[] = array( "rate"=>24, "code"=>'ALV', "description"=>"Arvonlisävero (Finland)" );
 			$new_tax_rates[] = array( "rate"=>0, "code"=>'ALV', "description"=>"Arvonlisävero (Finland Åland)" );
-			$new_tax_rates[] = array( "rate"=>19.6, "code"=>'TVA', "description"=>"Taxe sur la valeur ajoutée (France)" );
+			$new_tax_rates[] = array( "rate"=>20, "code"=>'TVA', "description"=>"Taxe sur la valeur ajoutée (France)" );
 			$new_tax_rates[] = array( "rate"=>19, "code"=>'MwSt.', "description"=>"Mehrwertsteuer (Germany)" );
 			$new_tax_rates[] = array( "rate"=>23, "code"=>'ΦΠΑ', "description"=>"Φόρος Προστιθέμενης Αξίας (Greece)" );
 			$new_tax_rates[] = array( "rate"=>27, "code"=>'ÁFA', "description"=>"általános forgalmi adó (Hungary)" );
 			$new_tax_rates[] = array( "rate"=>23, "code"=>'VAT', "description"=>"Value Added Tax (Ireland)" );
-			$new_tax_rates[] = array( "rate"=>21, "code"=>'IVA', "description"=>"Imposta sul Valore Aggiunto (Italy)" );
+			$new_tax_rates[] = array( "rate"=>22, "code"=>'IVA', "description"=>"Imposta sul Valore Aggiunto (Italy)" );
 			$new_tax_rates[] = array( "rate"=>21, "code"=>'PVN', "description"=>"Pievienotās vērtības nodoklis (Latvia)" );
 			$new_tax_rates[] = array( "rate"=>21, "code"=>'PVM', "description"=>"Pridėtinės vertės mokestis (Lithuania)" );
-			$new_tax_rates[] = array( "rate"=>15, "code"=>'TVA', "description"=>"Taxe sur la Valeur Ajoutée (Luxembourg)" );
+			$new_tax_rates[] = array( "rate"=>17, "code"=>'TVA', "description"=>"Taxe sur la Valeur Ajoutée (Luxembourg)" );
 			$new_tax_rates[] = array( "rate"=>18, "code"=>'VAT', "description"=>"Taxxa fuq il-Valur Miżjud (Malta)" );
 			$new_tax_rates[] = array( "rate"=>21, "code"=>'BTW', "description"=>"Belasting toegevoegde waarde (Netherlands)" );
 			$new_tax_rates[] = array( "rate"=>23, "code"=>'PTU', "description"=>"Podatek od towarów i usług (Poland)" );
@@ -66,7 +66,7 @@ class j16000import_eu_tax_rates
 			$new_tax_rates[] = array( "rate"=>23, "code"=>'IV', "description"=>"A Imposto sobre o Valor Acrescentado (Azores)" );
 			$new_tax_rates[] = array( "rate"=>24, "code"=>'TVA', "description"=>"Taxa pe valoarea adăugată (Romania)" );
 			$new_tax_rates[] = array( "rate"=>20, "code"=>'DPH', "description"=>"Daň z pridanej hodnoty (Slovakia)" );
-			$new_tax_rates[] = array( "rate"=>20, "code"=>'DDV', "description"=>"Davek na dodano vrednost (Slovenia)" );
+			$new_tax_rates[] = array( "rate"=>22, "code"=>'DDV', "description"=>"Davek na dodano vrednost (Slovenia)" );
 			$new_tax_rates[] = array( "rate"=>21, "code"=>'IVA', "description"=>"Impuesto sobre el valor añadido (Spain)" );
 			$new_tax_rates[] = array( "rate"=>7, "code"=>'IGIC', "description"=>"Impuesto General Indirecto Canario (Canary Islands)" );
 			$new_tax_rates[] = array( "rate"=>25, "code"=>'Moms', "description"=>"Mervärdesskatt (Sweden)" );
@@ -76,9 +76,10 @@ class j16000import_eu_tax_rates
 			foreach ($new_tax_rates as $rate)
 				{
 				$tax_rates_class = new jrportal_taxrate();
-				$tax_rates_class->code = $rate['code'];
-				$tax_rates_class->rate = $rate['rate'];
-				$tax_rates_class->description = $rate['description'];
+				$tax_rates_class->code				= $rate['code'];
+				$tax_rates_class->rate				= $rate['rate'];
+				$tax_rates_class->description		= $rate['description'];
+				$tax_rates_class->is_eu_country		= '1';
 				$tax_rates_class->commitTaxRate();
 				}
 			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_taxrates"), "" );

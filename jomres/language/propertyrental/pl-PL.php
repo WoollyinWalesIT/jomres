@@ -2356,3 +2356,5 @@ jr_define('_JOMRES_COM_FONTAWESOME_DESC','Ustaw na Tak, jeśli szablon nie zawie
 jr_define('_BOOKING_CALCQUOTE','Zapytanie o rezerwację');
 jr_define('_JOMRES_MULTISITES_SELECT_A_SITE','Wybierz stronę');
 jr_define('_JOMRES_MULTISITES_MULTISITES_LABEL','Id strony');
+
+jr_define('_JOMRES_IS_EU_COUNTRY', 'EU Country?');
