@@ -2582,3 +2582,5 @@ jr_define('_JOMRES_COM_CONFIRMATION_DEAR', 'Dear ');
 
 jr_define('_JOMRES_MULTISITES_SELECT_A_SITE', 'Select a site');
 jr_define('_JOMRES_MULTISITES_MULTISITES_LABEL', 'Site id');
+
+jr_define('_JOMRES_IS_EU_COUNTRY', 'EU Country?');

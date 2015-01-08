@@ -5074,7 +5074,7 @@ function taxrates_getalltaxrates()
 			}
 		else
 			{
-			$query  = "SELECT id,code,description,rate FROM #__jomresportal_taxrates";
+			$query  = "SELECT id,code,description,rate,is_eu_country FROM #__jomresportal_taxrates";
 			$result = doSelectSql( $query );
 			if ( count( $result ) > 0 )
 				{
@@ -5084,6 +5084,7 @@ function taxrates_getalltaxrates()
 					$rates[ $r->id ][ 'code' ]		= $r->code;
 					$rates[ $r->id ][ 'description' ] = $r->description;
 					$rates[ $r->id ][ 'rate' ]		= $r->rate;
+					$rates[ $r->id ][ 'is_eu_country' ]= $r->is_eu_country;
 					}
 				}
 			$c->store('all_tax_rates',$rates);

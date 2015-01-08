@@ -22,6 +22,7 @@ class jrportal_taxrate
 		$this->code        = '';
 		$this->description = '';
 		$this->rate        = 0.00;
+		$this->is_eu_country = '0';
 		$this->error       = null;
 		}
 
@@ -31,7 +32,7 @@ class jrportal_taxrate
 		if ( $this->id > 0 )
 			{
 			$query = "SELECT
-				`id`,`code`,`description`,`rate`
+				`id`,`code`,`description`,`rate`,`is_eu_country`
 				FROM #__jomresportal_taxrates WHERE `id`=" . (int) $this->id . " LIMIT 1";
 
 			$result = doSelectSql( $query );
@@ -43,6 +44,8 @@ class jrportal_taxrate
 					$this->code        = $r->code;
 					$this->description = $r->description;
 					$this->rate        = $r->rate;
+					$this->is_eu_country = $r->is_eu_country;
+					
 					}
 
 				return true;
@@ -79,13 +82,15 @@ class jrportal_taxrate
 				(
 				`code`,
 				`description`,
-				`rate`
+				`rate`,
+				`is_eu_country`
 				)
 				VALUES
 				(
 				'" . (string) $this->code . "',
 				'" . (string) $this->description . "',
-				'" . (float) $this->rate . "'
+				'" . (float) $this->rate . "',
+				'" . (float) $this->is_eu_country . "'
 				)";
 			$result = doInsertSql( $query, "" );
 			if ( $result )
@@ -111,8 +116,8 @@ class jrportal_taxrate
 			$query  = "UPDATE #__jomresportal_taxrates SET
 				`code` 					= '$this->code',
 				`description` 			= '$this->description',
-				`rate` 					= '$this->rate'
-
+				`rate` 					= '$this->rate',
+				`is_eu_country`			= '$this->is_eu_country'
 				WHERE `id`=" . (int) $this->id;
 			$result = doInsertSql( $query, "" );
 			if ( $result ) return true;

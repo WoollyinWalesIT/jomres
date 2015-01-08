@@ -430,6 +430,31 @@ function doTableUpdates()
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 		
 	if ( !checkPropertysSiteIdColExists() ) alterPropertysSiteIdCol();
+	if ( !checkTaxratesEUColExists() ) alterTaxratesEUCol();
+	}
+
+
+function alterTaxratesEUCol()
+	{
+	output_message ( "Editing __jomresportal_taxrates table adding is_eu_country column");
+	$query = "ALTER TABLE `#__jomresportal_taxrates` ADD `is_eu_country` BOOL NOT NULL DEFAULT '0' AFTER `rate` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomresportal_taxrates is_eu_country", "danger" );
+		}
+	}
+
+function checkTaxratesEUColExists()
+	{
+	$guestsTimestampInstalled = true;
+	$query                    = "SHOW COLUMNS FROM #__jomresportal_taxrates LIKE 'is_eu_country'";
+	$result                   = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
 	}
 
 function alterPropertysSiteIdCol()
@@ -2522,6 +2547,7 @@ function createJomresTables()
 		`code` char(20),
 		`description` varchar(255),
 		`rate` float NOT NULL default '0',
+		`is_eu_country` BOOL NOT NULL DEFAULT '0',
 		PRIMARY KEY  (`id`)
 	)";
 	doInsertSql( $query, "" );
