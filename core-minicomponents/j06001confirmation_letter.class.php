@@ -36,7 +36,7 @@ class j06001confirmation_letter
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )
 			{
-			$this->template_touchable = true;
+			$this->template_touchable = false;
 
 			return;
 			}
