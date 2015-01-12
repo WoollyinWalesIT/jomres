@@ -287,12 +287,12 @@ class vat_number_validation
 
 	function get_euro_countries()
 		{
-		return array ( "AT" => "Austria", "BE" => "Belgium", "CY" => "Cyprus", "CZ" => "Czech R.ublic", "DK" => "Denmark", "EE" => "Estonia", "FI" => "Finland", "FR" => "France", "DE" => "Germany", "GR" => "Greece", "HU" => "Hungary", "IE" => "Ireland", "IT" => "Italy", "LV" => "Latvia", "LT" => "Lithuania", "LU" => "Luxembourg", "MT" => "Malta", "NL" => "Netherlands", "PL" => "Poland", "PT" => "Portugal", "SK" => "Slovakia", "SI" => "Slovenia", "ES" => "Spain", "SE" => "Sweden", "GB" => "United Kingdom", "RO" => "Romania", "BG" => "Bulgaria", "HR" => "Croatia" );
+		return array ( "AT" => "Austria", "BE" => "Belgium", "HR" => "Croatia", "CY" => "Cyprus", "CZ" => "Czech R.ublic", "DK" => "Denmark", "EE" => "Estonia", "FI" => "Finland", "FR" => "France", "DE" => "Germany", "GR" => "Greece", "HU" => "Hungary", "IE" => "Ireland", "IT" => "Italy", "LV" => "Latvia", "LT" => "Lithuania", "LU" => "Luxembourg", "MT" => "Malta", "NL" => "Netherlands", "PL" => "Poland", "PT" => "Portugal", "SK" => "Slovakia", "SI" => "Slovenia", "ES" => "Spain", "SE" => "Sweden", "GB" => "United Kingdom", "RO" => "Romania", "BG" => "Bulgaria", "HR" => "Croatia" );
 		}
 	
 	function get_euro_country_xref() // Greece use different codes, in our database they're GR, but for VAT numbers they're using EL, so we'll need a cross reference in case a new joiner creates the same situation in the future
 		{
-		return array ( "AT" => "AT", "BE" => "BE", "CY" => "CY", "CZ" => "CZ", "DK" => "DK", "EE" => "EE", "FI" => "FE", "FR" => "FR", "DE" => "DE", "GR" => "EL", "HU" => "HU", "IE" => "IE", "IT" => "IT", "LV" => "LV", "LT" => "LT", "LU" => "LU", "MT" => "MT", "NL" => "NL", "PL" => "PL", "PT" => "PT", "SK" => "SK", "SI" => "SI", "ES" => "ES", "SE" => "SE", "GB" => "GB", "RO" => "RO", "BG" => "BG", "HR" => "HR" );
+		return array ( "AT" => "AT", "BE" => "BE", "HR" => "HR", "CY" => "CY", "CZ" => "CZ", "DK" => "DK", "EE" => "EE", "FI" => "FE", "FR" => "FR", "DE" => "DE", "GR" => "EL", "HU" => "HU", "IE" => "IE", "IT" => "IT", "LV" => "LV", "LT" => "LT", "LU" => "LU", "MT" => "MT", "NL" => "NL", "PL" => "PL", "PT" => "PT", "SK" => "SK", "SI" => "SI", "ES" => "ES", "SE" => "SE", "GB" => "GB", "RO" => "RO", "BG" => "BG", "HR" => "HR" );
 		}
 	}
 
