@@ -982,6 +982,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_css . 'TableTools_JUI.css' );
 		$this->add_obs_file( $this->dir_css . 'ColVis.css' );
 		
+		$this->add_obs_file( $this->dir_minicomponents . 'j03020insertbooking_amendinvoice.class.php' );
 		}
 
 	function add_obs_file( $path_and_file )
