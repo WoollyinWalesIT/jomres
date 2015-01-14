@@ -1669,6 +1669,8 @@ class dobooking
 		$query    = "SELECT `id`,`type`,`maximum` , `is_child` FROM `#__jomres_customertypes` where property_uid = '$selectedProperty' AND published = '1' ORDER BY `order`";
 		$exList   = doSelectSql( $query );
 		
+		$tmpBookingHandler = jomres_getSingleton( 'jomres_temp_booking_handler' );
+		
 		if ( isset($_REQUEST['numadult']) || isset($_REQUEST['numchild']) )
 			{
 			foreach ( $exList as $ct )
@@ -1717,15 +1719,21 @@ class dobooking
 
 			if ( $current != false )
 				{
-				$defNo = $current[ 'quantity' ];
-				$this->setGuestVariantDetails( $ct->id, $current[ 'quantity' ] );
-				$this->total_in_party = $this->total_in_party + $current[ 'quantity' ];
+				if ( $ct->maximum >= (int) $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0] && (int) $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0] > 0 )
+					$defNo = (int) $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0] ;
+				else
+					$defNo = $current[ 'quantity' ];
+				
+				
+				$this->setGuestVariantDetails( $ct->id, $defNo );
+				$this->total_in_party = $this->total_in_party + $defNo;
 				}
 			else
 				{
-				if ( count( $cust ) == 0 ) $defNo = $mrConfig[ 'defaultNumberOfFirstGuesttype' ];
+				if ( count( $cust ) == 0 ) 
+					$defNo = $mrConfig[ 'defaultNumberOfFirstGuesttype' ];
 				else
-				$defNo = 0;
+					$defNo = 0;
 				}
 			$default_start = 1;
 			if ( count( $exList ) > 1 ) $default_start = 0;
