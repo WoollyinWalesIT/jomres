@@ -141,8 +141,12 @@ class j06000module_popup
 			else
 			$output[ 'HFEATURES' ] = "";
 			
+			//calendar
+			$this_task = get_showtime("task");
+			set_showtime("task", "remoteavailability");
 			$MiniComponents->specificEvent( '06000', 'remoteavailability',array("property_uid"=> $property_uid , "return_calendar" => true ) );
 			$output[ 'CALENDAR' ] = $MiniComponents->miniComponentData[ '06000' ][ 'remoteavailability' ];
+			set_showtime("task", $this_task);
 			
 			//$output[ 'CALENDAR' ]);exit;
 			
