@@ -3658,6 +3658,48 @@ function createExtraIndexs()
 		{
 		output_message (  "Failed to run query: " . $query , "danger" );
 		}
+	
+	$query = "ALTER TABLE `#__jomresportal_invoices` ADD INDEX property_uid ( property_uid ) ";
+	if ( !doInsertSql( $query ) )
+		{
+		output_message (  "Failed to run query: " . $query , "danger" );
+		}
+	
+	$query = "ALTER TABLE `#__jomresportal_lineitems` ADD INDEX inv_id ( inv_id ) ";
+	if ( !doInsertSql( $query ) )
+		{
+		output_message (  "Failed to run query: " . $query , "danger" );
+		}
+	
+	$query = "ALTER TABLE `#__jomres_booking_data_archive` ADD INDEX contract_uid ( contract_uid ) ";
+	if ( !doInsertSql( $query ) )
+		{
+		output_message (  "Failed to run query: " . $query , "danger" );
+		}
+	
+	$query = "ALTER TABLE `#__jomcomp_notes` ADD INDEX property_uid ( property_uid ) ";
+	if ( !doInsertSql( $query ) )
+		{
+		output_message (  "Failed to run query: " . $query , "danger" );
+		}
+	
+	$query = "ALTER TABLE `#__jomcomp_notes` ADD INDEX contract_uid ( contract_uid ) ";
+	if ( !doInsertSql( $query ) )
+		{
+		output_message (  "Failed to run query: " . $query , "danger" );
+		}
+	
+	$query = "ALTER TABLE `#__jomres_pluginsettings` ADD INDEX prid ( prid ) ";
+	if ( !doInsertSql( $query ) )
+		{
+		output_message (  "Failed to run query: " . $query , "danger" );
+		}
+	
+	$query = "ALTER TABLE `#__jomres_regions` ADD INDEX `countrycode` ( `countrycode` ) ";
+	if ( !doInsertSql( $query ) )
+		{
+		output_message (  "Failed to run query: " . $query , "danger" );
+		}
 
 	$query = "ALTER TABLE `#__jomres_extras` ADD INDEX ( `property_uid` ) ";
 	if ( !doInsertSql( $query ) )
