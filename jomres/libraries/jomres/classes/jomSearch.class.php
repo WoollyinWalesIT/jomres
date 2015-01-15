@@ -936,12 +936,12 @@ class jomSearch
 		$property_uids = end( $this->propertys_uid );
 		if ( !empty( $property_uids ) )
 			{
-			$st = " AND (";
+			$st = " AND $column IN (";
 			foreach ( $property_uids as $property )
 				{
-				$st .= $column . " = '" . (int) $property . "' OR ";
+				$st .= "'".(int) $property . "', ";
 				}
-			$st        = substr( $st, 0, -3 );
+			$st        = substr( $st, 0, -2 );
 			$this->ors = $st . ") ";
 			}
 		else
