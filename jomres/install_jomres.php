@@ -270,6 +270,11 @@ if ( $folderChecksPassed && $functionChecksPassed && ACTION != "Migration" )
 		}
 	}
 
+if ( checkIfNewIndexRequired() )
+	createExtraIndexs();
+else
+	echo "not adding indexes";
+	
 updateSiteSettings ( "update_time" , time() );
 if ( !AUTO_UPGRADE ) showfooter();
 if ( AUTO_UPGRADE ) echo "1";
@@ -3639,7 +3644,8 @@ function checkIfNewIndexRequired()
 	$query        = "SHOW CREATE TABLE #__jomres_custom_text";
 	$result       = doSelectSql( $query, 2 );
 	$str          = $result[ "Create Table" ];
-	if ( stristr( $str, $searchString ) ) return false;
+	if ( stristr( $str, $searchString ) ) 
+		return false;
 
 	return true;
 	}
@@ -3647,7 +3653,7 @@ function checkIfNewIndexRequired()
 function createExtraIndexs()
 	{
 	output_message ( "Altering tables, creating new indexs");
-	$query = "ALTER TABLE `#__jomres_custom_text` ADD INDEX ( `property_uid` ) ";
+	$query = "ALTER TABLE `#__jomres_custom_text` ADD INDEX property_uid ( property_uid ) ";
 	if ( !doInsertSql( $query ) )
 		{
 		output_message (  "Failed to run query: " . $query , "danger" );
