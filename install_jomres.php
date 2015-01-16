@@ -270,10 +270,10 @@ if ( $folderChecksPassed && $functionChecksPassed && ACTION != "Migration" )
 		}
 	}
 
-if ( checkIfNewIndexRequired() )
+//if ( checkIfNewIndexRequired() )
 	createExtraIndexs();
-else
-	echo "not adding indexes";
+//else
+	//echo "not adding indexes";
 	
 updateSiteSettings ( "update_time" , time() );
 if ( !AUTO_UPGRADE ) showfooter();
@@ -3652,155 +3652,292 @@ function checkIfNewIndexRequired()
 
 function createExtraIndexs()
 	{
-	output_message ( "Altering tables, creating new indexs");
-	$query = "ALTER TABLE `#__jomres_custom_text` ADD INDEX property_uid ( property_uid ) ";
-	if ( !doInsertSql( $query ) )
+	output_message ( "Altering tables, creating new indexes if necessary");
+	
+	$query = "SHOW INDEX FROM `#__jomres_guest_profile` WHERE Key_name = 'cms_user_id' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_guest_profile` ADD INDEX cms_user_id ( cms_user_id ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 	
-	$query = "ALTER TABLE `#__jomresportal_invoices` ADD INDEX property_uid ( property_uid ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_custom_text` WHERE Key_name = 'property_uid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_custom_text` ADD INDEX property_uid ( property_uid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 	
-	$query = "ALTER TABLE `#__jomresportal_lineitems` ADD INDEX inv_id ( inv_id ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomresportal_invoices` WHERE Key_name = 'property_uid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomresportal_invoices` ADD INDEX property_uid ( property_uid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 	
-	$query = "ALTER TABLE `#__jomres_booking_data_archive` ADD INDEX contract_uid ( contract_uid ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomresportal_lineitems` WHERE Key_name = 'inv_id' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomresportal_lineitems` ADD INDEX inv_id ( inv_id ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 	
-	$query = "ALTER TABLE `#__jomcomp_notes` ADD INDEX property_uid ( property_uid ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_booking_data_archive` WHERE Key_name = 'contract_uid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_booking_data_archive` ADD INDEX contract_uid ( contract_uid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 	
-	$query = "ALTER TABLE `#__jomcomp_notes` ADD INDEX contract_uid ( contract_uid ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomcomp_notes` WHERE Key_name = 'property_uid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomcomp_notes` ADD INDEX property_uid ( property_uid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 	
-	$query = "ALTER TABLE `#__jomres_pluginsettings` ADD INDEX prid ( prid ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomcomp_notes` WHERE Key_name = 'contract_uid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomcomp_notes` ADD INDEX contract_uid ( contract_uid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 	
-	$query = "ALTER TABLE `#__jomres_regions` ADD INDEX `countrycode` ( `countrycode` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_pluginsettings` WHERE Key_name = 'prid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_pluginsettings` ADD INDEX prid ( prid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
+		}
+	
+	$query = "SHOW INDEX FROM `#__jomres_regions` WHERE Key_name = 'countrycode' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
+		{
+		$query = "ALTER TABLE `#__jomres_regions` ADD INDEX `countrycode` ( `countrycode` ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_extras` ADD INDEX ( `property_uid` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_extras` WHERE Key_name = 'property_uid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_extras` ADD INDEX property_uid ( property_uid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_guests` ADD INDEX ( `mos_userid` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_guests` WHERE Key_name = 'mos_userid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_guests` ADD INDEX mos_userid ( mos_userid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_guests` ADD INDEX ( `property_uid` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_guests` WHERE Key_name = 'property_uid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_guests` ADD INDEX property_uid ( property_uid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_pcounter` ADD INDEX ( `p_uid` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_pcounter` WHERE Key_name = 'p_uid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_pcounter` ADD INDEX p_uid ( p_uid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_propertys` ADD INDEX ( `property_town` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_propertys` WHERE Key_name = 'property_town' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_propertys` ADD INDEX `property_town` ( `property_town` ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_propertys` ADD INDEX ( `property_region` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_propertys` WHERE Key_name = 'property_region' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_propertys` ADD INDEX `property_region` ( `property_region` ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_propertys` ADD INDEX ( `property_country` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_propertys` WHERE Key_name = 'property_country' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_propertys` ADD INDEX `property_country` ( `property_country` ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_propertys` ADD INDEX ( `published` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_propertys` WHERE Key_name = 'published' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_propertys` ADD INDEX published ( published ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_propertys` ADD INDEX ( `ptype_id` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_propertys` WHERE Key_name = 'ptype_id' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_propertys` ADD INDEX ptype_id ( ptype_id ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_rates` ADD INDEX ( `roomclass_uid` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_rates` WHERE Key_name = 'roomclass_uid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_rates` ADD INDEX roomclass_uid ( roomclass_uid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_rates` ADD INDEX ( `property_uid` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_rates` WHERE Key_name = 'property_uid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_rates` ADD INDEX property_uid ( property_uid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_rooms` ADD INDEX ( `room_classes_uid` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_rooms` WHERE Key_name = 'room_classes_uid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_rooms` ADD INDEX room_classes_uid ( room_classes_uid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_rooms` ADD INDEX ( `propertys_uid` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_rooms` WHERE Key_name = 'propertys_uid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_rooms` ADD INDEX propertys_uid ( propertys_uid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_room_bookings` ADD INDEX ( `room_uid` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_room_bookings` WHERE Key_name = 'room_uid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_room_bookings` ADD INDEX room_uid ( room_uid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_room_bookings` ADD INDEX ( `date` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_room_bookings` WHERE Key_name = 'date' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_room_bookings` ADD INDEX `date` ( `date` ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_room_bookings` ADD INDEX ( `property_uid` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_room_bookings` WHERE Key_name = 'property_uid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_room_bookings` ADD INDEX property_uid ( property_uid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 
-	$query = "ALTER TABLE `#__jomres_settings` ADD INDEX ( `property_uid` ) ";
-	if ( !doInsertSql( $query ) )
+	$query = "SHOW INDEX FROM `#__jomres_settings` WHERE Key_name = 'property_uid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
 		{
-		output_message (  "Failed to run query: " . $query , "danger" );
+		$query = "ALTER TABLE `#__jomres_settings` ADD INDEX property_uid ( property_uid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
 		}
 	}
 
