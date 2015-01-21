@@ -3676,6 +3676,17 @@ function createExtraIndexs()
 			}
 		}
 	
+	$query = "SHOW INDEX FROM `#__jomres_custom_text` WHERE Key_name = 'language' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
+		{
+		$query = "ALTER TABLE `#__jomres_custom_text` ADD INDEX `language` ( `language` ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
+		}
+	
 	$query = "SHOW INDEX FROM `#__jomresportal_invoices` WHERE Key_name = 'property_uid' ";
 	$indexExists = doSelectSql( $query );
 	if (count($indexExists) < 1)
