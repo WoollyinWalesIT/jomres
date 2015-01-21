@@ -282,9 +282,9 @@ class j04900saveproperty
 				WHERE propertys_uid='" . (int) $propertyUid . "'";
 			doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_PROPERTY', _JOMRES_MR_AUDIT_UPDATE_PROPERTY, false ) );
 
+			updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_NAME", $property_name, true );
 			updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_STREET", $property_street, true );
 			updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_TOWN", $property_town, true );
-			updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE", $property_postcode, true );
 
 			updateCustomText( "_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION", $property_description, true );
 			updateCustomText( "_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES", $property_checkin_times, true );
@@ -293,7 +293,6 @@ class j04900saveproperty
 			updateCustomText( "_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS", $property_airports, true );
 			updateCustomText( "_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT", $property_othertransport, true );
 			updateCustomText( "_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS", $property_policies_disclaimers, true );
-			updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_NAME", $property_name, true );
 
 			updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE", $metatitle, true );
 			updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION", $metadescription, true );
