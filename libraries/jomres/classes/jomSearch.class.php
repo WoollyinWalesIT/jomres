@@ -239,7 +239,20 @@ class jomSearch
 		if ( in_array( "town", $this->searchOptions ) )
 			{
 			//$result=prepGeographicSearch();
-			$query          = "SELECT DISTINCT property_region,property_country,property_town FROM #__jomres_propertys WHERE published = '1' ORDER BY property_town ASC";
+			$query          = "SELECT DISTINCT (CASE WHEN (a.propertys_uid = b.property_uid 
+															AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' 
+															AND b.language = '".get_showtime('lang')."') 
+														THEN b.customtext 
+														ELSE a.property_town 
+													END) AS property_town,
+										a.property_region,
+										a.property_country 
+									FROM #__jomres_propertys a
+									LEFT JOIN #__jomres_custom_text b ON (a.propertys_uid = b.property_uid 
+																			AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' 
+																			AND b.language = '".get_showtime('lang')."')
+									WHERE a.published = '1' 
+									ORDER BY property_town ASC ";
 			$activeTownList = doSelectSql( $query );
 			$tmpTownArray   = array ();
 
@@ -492,7 +505,15 @@ class jomSearch
 				$filter = jomres_cmsspecific_stringURLSafe( $filter );
 				$filter = str_replace( "-", "%", $filter );
 				}
-			$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND property_town LIKE '$filter' $property_ors ";
+			$query              = "SELECT DISTINCT a.propertys_uid AS propertys_uid 
+										FROM #__jomres_propertys a, #__jomres_custom_text b 
+										WHERE a.published = '1' 
+											AND ( (a.property_town LIKE '$filter' ) 
+												   OR (a.propertys_uid = b.property_uid 
+													   AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' 
+													   AND b.language = '".get_showtime('lang')."' 
+													   AND b.customtext LIKE '$filter' ) 
+												   ) $property_ors ";
 			$this->resultBucket = doSelectSql( $query );
 			}
 		else
@@ -699,7 +720,7 @@ class jomSearch
 			$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND ptype_id LIKE '$filter'  $property_ors ";
 			$this->resultBucket = doSelectSql( $query );
 			}
-//		var_dump($this->resultBucket);exit;
+		//var_dump($this->resultBucket);exit;
 		$this->sortResult();
 		}
 
@@ -981,8 +1002,24 @@ function prepGeographicSearch()
 	
 	if (!$allPropertyLocations)
 		{
+		$lang=get_showtime('lang');
+		
 		$allCountries         = countryCodesArray();
-		$query                = "SELECT DISTINCT property_town,property_region,property_country,property_postcode FROM #__jomres_propertys WHERE published = '1' ORDER BY property_country,property_region,property_town desc ";
+		$query                = "SELECT DISTINCT (CASE WHEN (a.propertys_uid = b.property_uid 
+															AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' 
+															AND b.language = '".$lang."') 
+														THEN b.customtext 
+														ELSE a.property_town 
+													END) AS property_town,
+										a.property_region,
+										a.property_country,
+										a.property_postcode 
+									FROM #__jomres_propertys a
+									LEFT JOIN #__jomres_custom_text b ON (a.propertys_uid = b.property_uid 
+																			AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' 
+																			AND b.language = '".$lang."')
+									WHERE a.published = '1' 
+									ORDER BY a.property_country,a.property_region,property_town DESC ";
 		$propertyLocations    = doSelectSql( $query );
 		$allPropertyLocations = array ();
 		foreach ( $propertyLocations as $location )

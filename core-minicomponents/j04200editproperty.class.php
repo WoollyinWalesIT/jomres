@@ -87,8 +87,8 @@ class j04200editproperty
 				$output[ 'HSUPERIOR' ]         = jr_gettext( 'JOMRES_SUPERIOR', JOMRES_SUPERIOR );
 
 				//$output['PROPERTY_NAME']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', getEscaped($property->property_name),false,false);
-				$output[ 'PROPERTY_STREET' ]   = $property->property_street;
-				$output[ 'PROPERTY_TOWN' ]     = $property->property_town;
+				$output[ 'PROPERTY_STREET' ]   = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_STREET', $property->property_street, false);
+				$output[ 'PROPERTY_TOWN' ]     = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN', $property->property_town, false);
 				$output[ 'PROPERTY_POSTCODE' ] = $property->property_postcode;
 				$output[ 'PROPERTY_TEL' ]      = $property->property_tel;
 				$output[ 'PROPERTY_FAX' ]      = $property->property_fax;

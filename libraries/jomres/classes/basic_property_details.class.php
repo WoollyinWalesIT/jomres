@@ -368,7 +368,7 @@ class basic_property_details
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_name' ]     = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false );
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_street' ]   = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_STREET', $data->property_street, $editable, false );
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_town' ]     = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN', $data->property_town, $editable, false );
-				$this->multi_query_result[ $data->propertys_uid ][ 'property_postcode' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE', $data->property_postcode, $editable, false );
+				$this->multi_query_result[ $data->propertys_uid ][ 'property_postcode' ] = $data->property_postcode;
 				if ( is_numeric( $data->property_region ) )
 					{
 					$jomres_regions                                                           = jomres_singleton_abstract::getInstance( 'jomres_regions' );
