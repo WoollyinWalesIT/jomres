@@ -3060,10 +3060,12 @@ class dobooking
 	function getExistingCustomerData( $id )
 		{
 		$bookerClass = $this->getBookerClass();
+		$thisJRUser = jomres_getSingleton( 'jr_user' );
+		
 		$this->setErrorLog( "getExistingCustomerData::Booker class: " . $bookerClass );
 		if ( $bookerClass == "100" )
 			{
-			$query  = "SELECT guests_uid,mos_userid,firstname,surname,house,street,town,county ,country,postcode,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE guests_uid = '$id' AND property_uid = '$this->property_uid' limit 1";
+			$query  = "SELECT guests_uid,mos_userid,firstname,surname,house,street,town,county ,country,postcode,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE guests_uid = '$id' AND property_uid IN (".implode(',',$thisJRUser->authorisedProperties).") LIMIT 1";
 			$result = doSelectSql( $query, 2 );
 			if ( count( $result ) > 0 )
 				{
@@ -3359,7 +3361,8 @@ class dobooking
 	function AJgetGuestDropdown()
 		{
 		$dropDownList      = "";
-		$query             = "SELECT guests_uid,surname, firstname, house, street,town,county FROM #__jomres_guests WHERE property_uid = '$this->property_uid' ORDER BY surname";
+		$thisJRUser = jomres_getSingleton( 'jr_user' );
+		$query             = "SELECT guests_uid,surname, firstname, house, street,town,county FROM #__jomres_guests WHERE property_uid IN (".implode(',',$thisJRUser->authorisedProperties).") ORDER BY surname";
 		$existingCustomers = doSelectSql( $query );
 		$ec                = array ();
 		if ( count( $existingCustomers ) > 0 )
