@@ -283,11 +283,11 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 				$arrivalDate = $defaultArrivalDate;
 				}
 			}
-		else if ( $thisdate )
+		else
 			{
-			$arrivalDate = $thisdate;
 			$bkg->setArrivalDate( $arrivalDate );
 			}
+
 		if ( !$bkg->checkArrivalDate( $arrivalDate ) )
 			{
 			$arrivalDate = $defaultArrivalDate;

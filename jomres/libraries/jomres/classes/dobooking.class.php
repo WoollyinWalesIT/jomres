@@ -2008,31 +2008,23 @@ class dobooking
 	function nextDatePropertyHasRoomFree( $arrivalDate )
 		{
 		// Lets check that at least one room is available on this date. If it's not, we'll offer the next date that a room is available
-		if ( empty( $arrivalDate ) ) $arrivalDate = $this->today;
-		// How far into the future should we look? 5 years is 1825 days, so we'll set a counter. If the counter is reached, then arrival date is set to today.
-		$maxNumDays = 1824;
+		if ( empty( $arrivalDate ) ) 
+			$arrivalDate = $this->today;
 
-		$date_elements = explode( "/", $arrivalDate );
-		if ( !checkdate( $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] ) ) $date_elements = explode( "/", $this->today );
-		$freeDate           = false;
-		$inc                = 0;
 		$totalNumberOfRooms = count( $this->allPropertyRoomUids );
-		if ( count( $totalNumberOfRooms ) > 0 )
+		$current = strtotime($arrivalDate);
+		$last = strtotime($arrivalDate . " 5 years ");
+
+		while( $current <= $last ) 
 			{
-			while ( !$freeDate )
+			$d =  date("Y/m/d", $current);
+			if ( count($this->allBookings[ $d ]) < $totalNumberOfRooms )
 				{
-				$cycleDate = date( "Y/m/d", mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ] + $inc, $date_elements[ 0 ] ) );
-				foreach ( $this->allBookings as $key => $val )
-					{
-					if ( ( $key == $cycleDate && count( $val ) < $totalNumberOfRooms ) || $key > $cycleDate )
-						{
-						$arrivalDate = $cycleDate;
-						$freeDate    = true;
-						}
-					}
-				$inc++;
-				if ( $inc == $maxNumDays ) break;
+				$arrivalDate = $d;
+				break;
 				}
+
+			$current = strtotime("+1 day", $current);
 			}
 
 		return $arrivalDate;
