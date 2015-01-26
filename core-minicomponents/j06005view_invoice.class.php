@@ -111,7 +111,7 @@ class j06005view_invoice
 				$output['ARRIVAL_DEPARTURE_SNIPPET']= $tmpl->getParsedTemplate();
 					
 				
-				$query     = "SELECT guests_uid FROM #__jomres_guests WHERE guests_uid = '" . (int) $guestUid . "'  AND property_uid = '" . (int) $invoice->property_uid . "' LIMIT 1";
+				$query     = "SELECT guests_uid FROM #__jomres_guests WHERE guests_uid = '" . (int) $guestUid . "'  AND property_uid IN (" . implode(',',$thisJRUser->authorisedProperties) . ") LIMIT 1";
 				$guest_uid = doSelectSql( $query, 1 );
 
 				$output[ 'CLIENT_DETAILS_TEMPLATE' ]   = $MiniComponents->specificEvent( '06005', 'show_guest_details', array ( 'guest_uid' => $guest_uid ) );
