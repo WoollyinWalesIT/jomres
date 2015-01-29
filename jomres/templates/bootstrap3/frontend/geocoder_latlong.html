@@ -82,7 +82,7 @@ function codeAddress(address) {
 }
 
 jomresJquery(document).ready(function() {
-	jomresJquery('body').on('shown','#mapTab', function (e) {
+	jomresJquery('body').on('shown.bs.tab','#mapTab', function (e) {
 		init_map_{RANDOM_IDENTIFIER}();
 		});
 	});
