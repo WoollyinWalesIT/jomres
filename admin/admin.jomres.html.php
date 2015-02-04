@@ -264,23 +264,6 @@ class HTML_jomres
 				 <td valign="middle">&nbsp;</td>
 			</tr>-->
 			' . $sslinput . '
-			<!--
-			<tr valign="middle" class="even">
-				<td valign="middle">' . jr_gettext( _JOMRES_COM_CACHING, '_JOMRES_COM_CACHING', false ) . '</td>
-				<td valign="middle">' . $lists[ 'useCaching' ] . '</td>
-				<td valign="middle">' . jr_gettext( _JOMRES_COM_CACHING_DESC, '_JOMRES_COM_CACHING_DESC', false ) . '</td>
-			</tr>
-			-->
-			<tr valign="middle" class="even">
-				<td valign="middle">' . jr_gettext( _JOMRES_COM_CACHING, '_JOMRES_COM_CACHING', false ) . '</td>
-				<td valign="middle">' . $lists[ 'useArrayCaching' ] . '</td>
-				<td valign="middle">' . jr_gettext( _JOMRES_COM_CACHING_DESC, '_JOMRES_COM_CACHING_DESC', false ) . '</td>
-			</tr>
-			<tr valign="middle" class="odd">
-				<td valign="middle">' . jr_gettext( _JRPORTAL_CONFIG_DEFAULT_CRATE, '_JRPORTAL_CONFIG_DEFAULT_CRATE', false ) . '</td>
-				<td valign="middle">' . $lists[ 'defaultCrate' ] . '</td>
-				<td valign="middle">' . jr_gettext( _JRPORTAL_CONFIG_DEFAULT_CRATE_DESC, '_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', false ) . '</td>
-			</tr>
 			<tr valign="middle" class="even">
 				<td valign="middle">' . jr_gettext( _JOMRES_COM_JRCONFIG_GLOBALEDITING, '_JOMRES_COM_JRCONFIG_GLOBALEDITING', false ) . '</td>
 				<td valign="middle">' . $lists[ 'editingModeAffectsAllProperties' ] . '</td>
@@ -349,25 +332,14 @@ class HTML_jomres
 				<td valign="middle">' . jr_gettext( _JOMRES_CONFIG_JQUERY_UI_DESC, '_JOMRES_CONFIG_JQUERY_UI_DESC', false ) . '</td>
 			</tr>
 			<tr valign="middle" class="even">
-				<td valign="middle">' . jr_gettext( _JOMRES_SHOW_POWEREDBY, '_JOMRES_SHOW_POWEREDBY', false ) . '</td>
-				<td valign="middle">' . $lists[ 'show_powered_by' ] . '</td>
-				<td valign="middle"></td>
-			</tr>
-			<tr valign="middle" class="odd">
-				<td valign="middle">' . jr_gettext( _JOMRES_JAVASCRIPT_CACHING_TITLE, '_JOMRES_JAVASCRIPT_CACHING_TITLE', false ) . '</td>
-				<td valign="middle">' . $lists[ 'javascript_caching_enabled' ] . '</td>
-				<td valign="middle"></td>
-			</tr>
-			<tr valign="middle" class="even">
-				<td valign="middle">' . jr_gettext( _JOMRES_CSS_CACHING_TITLE, '_JOMRES_CSS_CACHING_TITLE', false ) . '</td>
-				<td valign="middle">' . $lists[ 'css_caching_enabled' ] . '</td>
-				<td valign="middle"></td>
-			</tr>
-			
-			<tr valign="middle" class="odd">
 				<td valign="middle">' . jr_gettext( _JOMRES_COM_FONTAWESOME, '_JOMRES_COM_FONTAWESOME', false ) . '</td>
 				<td valign="middle">' . $lists[ 'load_font_awesome' ] . '</td>
 				<td valign="middle">'.jr_gettext( _JOMRES_COM_FONTAWESOME_DESC, '_JOMRES_COM_FONTAWESOME_DESC', false ).'</td>
+			</tr>
+			<tr valign="middle" class="even">
+				<td valign="middle">' . jr_gettext( _JOMRES_SHOW_POWEREDBY, '_JOMRES_SHOW_POWEREDBY', false ) . '</td>
+				<td valign="middle">' . $lists[ 'show_powered_by' ] . '</td>
+				<td valign="middle"></td>
 			</tr>
 			' );
 			$contentPanel->setcontent( '
@@ -553,6 +525,11 @@ class HTML_jomres
 				 <td valign="middle">' . jr_gettext( _JRPORTAL_INVOICES_COMMISSION_USE, '_JRPORTAL_INVOICES_COMMISSION_USE', false ) . '</td>
 				 <td valign="middle">' . $lists[ 'use_commission' ] . '</td>
 				 <td valign="middle">' . jr_gettext( _JRPORTAL_INVOICES_COMMISSION_USE_DESC, '_JRPORTAL_INVOICES_COMMISSION_USE_DESC', false ) . '</td>
+			</tr>
+			<tr valign="middle" class="odd">
+				<td valign="middle">' . jr_gettext( _JRPORTAL_CONFIG_DEFAULT_CRATE, '_JRPORTAL_CONFIG_DEFAULT_CRATE', false ) . '</td>
+				<td valign="middle">' . $lists[ 'defaultCrate' ] . '</td>
+				<td valign="middle">' . jr_gettext( _JRPORTAL_CONFIG_DEFAULT_CRATE_DESC, '_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', false ) . '</td>
 			</tr>
 			<tr valign="middle" class="odd">
 				 <td valign="middle">' . jr_gettext( _JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS, '_JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS', false ) . '</td>
@@ -1287,6 +1264,41 @@ class HTML_jomres
 			$contentPanel->insertContent();
 			$contentPanel->endPanel();
 
+			$contentPanel->startPanel( jr_gettext( _JOMRES_WORD_CACHING, '_JOMRES_WORD_CACHING', false ) );
+			$contentPanel->setcontent( '
+			<table width="100%" class="jradmin_table" border="0">
+				<tr valign="middle">
+					<td valign="top" colspan="3"><p>' . jr_gettext( RECAPTCHA_INFO, 'RECAPTCHA_INFO', false ) . '</p></td>
+				</tr>
+				<tr valign="middle">
+					<th width="20%" class="ui-state-default">&nbsp;</th>
+					<th width="20%" class="ui-state-default">' . jr_gettext( _JOMRES_COM_A_CURRENT_SETTINGS, '_JOMRES_COM_A_CURRENT_SETTINGS', false ) . '</th>
+					<th width="60%" class="ui-state-default">' . jr_gettext( _JOMRES_COM_A_EXPLANATION, '_JOMRES_COM_A_EXPLANATION', false ) . '</th>
+				</tr>
+			
+			<tr valign="middle" class="odd">
+				<td valign="middle">' . jr_gettext( _JOMRES_JAVASCRIPT_CACHING_TITLE, '_JOMRES_JAVASCRIPT_CACHING_TITLE', false ) . '</td>
+				<td valign="middle">' . $lists[ 'javascript_caching_enabled' ] . '</td>
+				<td valign="middle"></td>
+			</tr>
+			<tr valign="middle" class="even">
+				<td valign="middle">' . jr_gettext( _JOMRES_CSS_CACHING_TITLE, '_JOMRES_CSS_CACHING_TITLE', false ) . '</td>
+				<td valign="middle">' . $lists[ 'css_caching_enabled' ] . '</td>
+				<td valign="middle"></td>
+			</tr>
+			<tr valign="middle" class="odd">
+				<td valign="middle">' . jr_gettext( _JOMRES_COM_CACHING, '_JOMRES_COM_CACHING', false ) . '</td>
+				<td valign="middle">' . $lists[ 'useArrayCaching' ] . '</td>
+				<td valign="middle">' . jr_gettext( _JOMRES_COM_CACHING_DESC, '_JOMRES_COM_CACHING_DESC', false ) . '</td>
+			</tr>
+			
+				<tr valign="middle">
+					<th colspan="3">&nbsp;</th>
+				</tr>
+				</table>' );
+			$contentPanel->insertContent();
+			$contentPanel->endPanel();
+			
 			$contentPanel->endTabs();
 			?>
 
