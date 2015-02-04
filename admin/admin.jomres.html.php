@@ -1291,6 +1291,11 @@ class HTML_jomres
 				<td valign="middle">' . $lists[ 'useArrayCaching' ] . '</td>
 				<td valign="middle">' . jr_gettext( _JOMRES_COM_CACHING_DESC, '_JOMRES_COM_CACHING_DESC', false ) . '</td>
 			</tr>
+			<tr valign="middle" class="odd">
+				<td valign="middle">' . jr_gettext( _JOMRES_WORD_PATTEMPLATE_CACHING, '_JOMRES_WORD_PATTEMPLATE_CACHING', false ) . '</td>
+				<td valign="middle">' . $lists[ 'pattemplate_caching_enabled' ] . '</td>
+				<td valign="middle"></td>
+			</tr>
 			
 				<tr valign="middle">
 					<th colspan="3">&nbsp;</th>

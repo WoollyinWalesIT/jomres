@@ -100,6 +100,9 @@ class minicomponent_registry
 			echo "<script>alert('Reloading current page as minicomponents registry has changed');</script>";
 			echo "<script>window.location.reload()</script>";
 			}
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$c->eraseAll();
 		}
 
 	function save_registry_file()
