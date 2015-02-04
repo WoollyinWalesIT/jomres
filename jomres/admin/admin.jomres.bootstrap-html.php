@@ -1323,6 +1323,11 @@ class HTML_jomres
 					<td>' . $lists[ 'css_caching_enabled' ] . '</td>
 					<td></td>
 				</tr>
+				<tr>
+					<td>' . jr_gettext( _JOMRES_WORD_PATTEMPLATE_CACHING, '_JOMRES_WORD_PATTEMPLATE_CACHING', false ) . '</td>
+					<td>' . $lists[ 'pattemplate_caching_enabled' ] . '</td>
+					<td></td>
+				</tr>
 			
 				</tbody>
 				</table>' );

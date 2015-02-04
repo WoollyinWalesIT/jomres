@@ -2587,3 +2587,6 @@ jr_define('_JOMRES_IS_EU_COUNTRY', 'EU Country?');
 
 jr_define('_JOMRES_WORD_CACHING', 'Caching');
 
+
+jr_define('_JOMRES_WORD_PATTEMPLATE_CACHING', 'Use patTemplates Caching?');
+
