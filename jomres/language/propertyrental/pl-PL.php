@@ -2358,3 +2358,6 @@ jr_define('_JOMRES_MULTISITES_SELECT_A_SITE','Wybierz stronę');
 jr_define('_JOMRES_MULTISITES_MULTISITES_LABEL','Id strony');
 
 jr_define('_JOMRES_IS_EU_COUNTRY', 'EU Country?');
+
+jr_define('_JOMRES_WORD_CACHING', 'Caching');
+
