@@ -62,10 +62,10 @@ class jomres_generic_booking_insert
 			{
 			throw new Exception(" Error requestedRoom is not valid");
 			}
-		if ( $this->booking_details['deposit_required'] == 0.00 )
-			{
-			throw new Exception(" Error deposit_required is not valid");
-			}
+		//if ( $this->booking_details['deposit_required'] == 0.00 )
+//			{
+//			throw new Exception(" Error deposit_required is not valid");
+//			}
 		if ( $this->booking_details['contract_total'] == 0.00 )
 			{
 			throw new Exception(" Error contract_total is not valid");
@@ -119,7 +119,7 @@ class jomres_generic_booking_insert
 			"dateRangeString"			=> "",					// Comma seperated list of all dates in booking
 			"guests_uid"				=> "",					// If is empty or zero then a new guest will be created from the guest details array
 			"single_person_suppliment"	=> 0.00,				// float(10)
-			"deposit_required"			=> 0.00,				// float(220)  ***** Required *****
+			"deposit_required"			=> 0.00,				// float(220)
 			"contract_total"			=> 0.00,				// float(400) ***** Required *****
 			/* "extrasvalue"				=> 0.00,				// float(40)
 			"extrasvalues_items"		=> array(),				// "a:1:{i:1;a:1:{s:19:"quantity_multiplier";i:1;}}"
