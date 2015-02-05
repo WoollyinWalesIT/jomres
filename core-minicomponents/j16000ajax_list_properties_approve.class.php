@@ -43,7 +43,7 @@ class j16000ajax_list_properties_approve
 
 		$link = jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=viewproperty&property_uid=" . $property_uid );
 
-		if ( !jomresMailer( $jomresConfig_mailfrom, $jomresConfig_fromname, $current_property_details->property_email, jr_gettext( _JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT ), jr_gettext( _JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT ) . $link ) ) error_logging( 'Failure in sending confirmation email to hotel. Target address: ' . $current_property_details->property_email . ' Subject' . jr_gettext( _JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT ) );
+		if ( !jomresMailer( $jomresConfig_mailfrom, $jomresConfig_fromname, $current_property_details->property_email, jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT',_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT,false ), jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT',_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT,false ) . $link, $mode = 1 ) ) error_logging( 'Failure in sending confirmation email to hotel. Target address: ' . $current_property_details->property_email . ' Subject ' . jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT',_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT,false ) );
 		}
 
 
