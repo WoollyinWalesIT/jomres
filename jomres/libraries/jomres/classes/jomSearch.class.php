@@ -1069,6 +1069,9 @@ function prepGuestnumberSearch()
 		$query    = "SELECT MAX(maxpeople) FROM #__jomres_rates LIMIT 1";
 		$maxpeople = (int)doSelectSql( $query,1 );
 		
+		if ($maxpeople > 100)
+			$maxpeople = 100;
+
 		for ( $i=1; $i<=$maxpeople; $i++ )
 			{
 			$result[ ] = $i;
