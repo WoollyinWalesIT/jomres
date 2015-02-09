@@ -880,8 +880,19 @@ try
 					{
 					if ( $MiniComponents->eventSpecificlyExistsCheck( '06000', get_showtime( 'task' ) ) ) 
 						$MiniComponents->specificEvent( '06000', get_showtime( 'task' ) );
-					elseif ( $MiniComponents->eventSpecificlyExistsCheck( '06001', get_showtime( 'task' ) ) ) 
-						$MiniComponents->specificEvent( '06001', get_showtime( 'task' ) );
+					elseif ( $MiniComponents->eventSpecificlyExistsCheck( '06001', get_showtime( 'task' ) ) )
+						{
+						if ( get_showtime( 'task' ) == "dashboard")
+							{
+							$MiniComponents->triggerEvent( '00013' ); // Show dashboard
+							$MiniComponents->specificEvent( '06001', get_showtime( 'task' ) );
+							$MiniComponents->triggerEvent( '00014' ); // Optional Post dashboard
+							}
+						else
+							{
+							$MiniComponents->specificEvent( '06001', get_showtime( 'task' ) );
+							}
+						}
 					elseif ( $MiniComponents->eventSpecificlyExistsCheck( '06002', get_showtime( 'task' ) ) ) 
 						$MiniComponents->specificEvent( '06002', get_showtime( 'task' ) );
 					elseif ( $MiniComponents->eventSpecificlyExistsCheck( '06005', get_showtime( 'task' ) ) ) 
@@ -894,7 +905,18 @@ try
 					if ( $MiniComponents->eventSpecificlyExistsCheck( '06000', get_showtime( 'task' ) ) ) 
 						$MiniComponents->specificEvent( '06000', get_showtime( 'task' ) ); // Custom task
 					else if ( $MiniComponents->eventSpecificlyExistsCheck( '06001', get_showtime( 'task' ) ) && $thisJRUser->userIsManager ) // Receptionist and manager tasks
-						$MiniComponents->specificEvent( '06001', get_showtime( 'task' ) ); // Custom task
+						{
+						if ( get_showtime( 'task' ) == "dashboard")
+							{
+							$MiniComponents->triggerEvent( '00013' ); // Show dashboard
+							$MiniComponents->specificEvent( '06001', get_showtime( 'task' ) );
+							$MiniComponents->triggerEvent( '00014' ); // Optional Post dashboard
+							}
+						else
+							{
+							$MiniComponents->specificEvent( '06001', get_showtime( 'task' ) );
+							}
+						}
 					elseif ( $MiniComponents->eventSpecificlyExistsCheck( '06002', get_showtime( 'task' ) ) && $thisJRUser->userIsManager && $accessLevel == 2 ) // Manager only tasks
 						$MiniComponents->specificEvent( '06002', get_showtime( 'task' ) ); // Custom task
 					else if ( $MiniComponents->eventSpecificlyExistsCheck( '06005', get_showtime( 'task' ) ) && $thisJRUser->userIsRegistered ) // Registered only user tasks
@@ -996,6 +1018,8 @@ function no_task_set()
 		if ( $thisJRUser->userIsManager )
 			{
 			$MiniComponents->triggerEvent( '00013' ); // Show dashboard
+			$MiniComponents->specificEvent( '06001', "dashboard" );
+			$MiniComponents->triggerEvent( '00014' ); // Optional Post dashboard
 			}
 		elseif ( get_showtime( 'numberOfPropertiesInSystem' ) == 1 && $jrConfig[ 'is_single_property_installation' ] == "0" )
 			{
