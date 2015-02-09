@@ -436,6 +436,31 @@ function doTableUpdates()
 		
 	if ( !checkPropertysSiteIdColExists() ) alterPropertysSiteIdCol();
 	if ( !checkTaxratesEUColExists() ) alterTaxratesEUCol();
+	
+	if ( !checkManagerLastactiveColExists() ) alterManagerLastactiveCol();
+	
+	}
+
+function alterManagerLastactiveCol()
+	{
+	output_message ( "Editing __jomres_managers table adding last_active column");
+	$query = "ALTER TABLE `#__jomres_managers` ADD `last_active` datetime default NULL AFTER `users_timezone` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_managers last_active", "danger" );
+		}
+	}
+
+function checkManagerLastactiveColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_managers LIKE 'last_active'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
 	}
 
 

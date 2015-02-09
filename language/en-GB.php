@@ -2511,3 +2511,9 @@ jr_define('_JOMRES_WORD_CACHING', 'Caching');
 
 jr_define('_JOMRES_WORD_PATTEMPLATE_CACHING', 'Use patTemplates Caching?');
 
+jr_define('_JOMRES_SINCE_LAST_ONLINE_SINCE', 'Since you were online ');
+jr_define('_JOMRES_SINCE_LAST_ONLINE_PRETEXT_SINGULAR', 'There has been ');
+jr_define('_JOMRES_SINCE_LAST_ONLINE_PRETEXT_PLURAL', 'There have been ');
+jr_define('_JOMRES_SINCE_LAST_ONLINE_POSTTEXT_SINGULAR', ' booking for ');
+jr_define('_JOMRES_SINCE_LAST_ONLINE_POSTTEXT_PLURAL', ' bookings for ');
+
