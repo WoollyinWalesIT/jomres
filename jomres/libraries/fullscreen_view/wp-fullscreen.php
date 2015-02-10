@@ -35,6 +35,9 @@ defined('_JOMRES_INITCHECK') or die;
 	wp_register_script('jquery', '/'.JOMRES_ROOT_DIRECTORY.'/javascript/jquery-1.8.2.js' );
 	wp_enqueue_script('jquery');
 	
+	wp_register_script('jquery', '/'.JOMRES_ROOT_DIRECTORY.'/javascript/jquery-migrate.js' );
+	wp_enqueue_script('jquery');
+	
 	wp_register_script('jquery-ui-1.9.2.custom.min.js', '/'.JOMRES_ROOT_DIRECTORY.'/javascript/jquery-ui-1.9.2.custom.js', 'jquery' );
 	wp_enqueue_script('jquery-ui-1.9.2.custom.min.js');
 	
@@ -48,7 +51,7 @@ defined('_JOMRES_INITCHECK') or die;
 		wp_register_script('bootstrap.min.js', '/'.JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/bootstrap3/dist/js/bootstrap.min.js', 'jquery' );
 		wp_enqueue_script('bootstrap.min.js');
 		}
-	
+
 	wp_head();
 	?>
 	<?php if ($view == "bootstrap") : ?>

@@ -32,6 +32,7 @@ defined('_JEXEC') or die;
 		}
 	?>
 	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/javascript/jquery-1.11.1.js"></script>
+	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/javascript/jquery-migrate.js"></script>
 	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/javascript/jquery-ui-1.9.2.custom.js"></script>
 	<?php if ($view == "bootstrap") : ?>
 	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap/js/bootstrap.min.js"></script>
@@ -40,6 +41,7 @@ defined('_JEXEC') or die;
 	<?php endif; ?>
 	<script type="text/javascript">
 	  jQuery.noConflict();
+	  var addon_animations_enable = false;
 	</script>
 	<jdoc:include type="head" />
 	<?php if ($view == "bootstrap") : ?>
