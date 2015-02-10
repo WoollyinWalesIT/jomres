@@ -171,7 +171,7 @@ if ( !class_exists( 'booking' ) )
 			$output .= 'onSelect: function() {
 							' . $onchange . '
 						}';
-			//if ( $fieldName == "arrivalDate" ) 
+			if ( $fieldName == "arrivalDate" ) 
 				$output .= ',beforeShowDay: isAvailable';
 
 			$output .= '} );
