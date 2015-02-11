@@ -73,6 +73,7 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 		"sPaginationType": "bootstrap",
 		"sDom": sDomm,
 		"sWrapper": "dataTables_wrapper form-inline",
+		"order": [[ 0, "desc" ]],
 		"oLanguage": {
 				"sEmptyTable":     dataTables_sEmptyTable,
 				"sInfo":           dataTables_sInfo,
@@ -238,7 +239,7 @@ function module_popup(random_identifier, property_uid) {
 		}
 	}); // init without showing
 	/* closes the dialog when you click elsewhere on the page. Modal in the dialog options must be set to True*/
-	jomresJquery('.ui-widget-overlay').live("click", function () {
+	jomresJquery('.ui-widget-overlay').on("click", function () {
 		//Close the dialog
 		jomresJquery('#module_' + random_identifier + '_popup').dialog("close");
 	});
