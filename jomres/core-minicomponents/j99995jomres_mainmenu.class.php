@@ -72,11 +72,24 @@ class j99995jomres_mainmenu
 					{
 					foreach ( $mcOutput as $key => $val )
 						{
-						$r              = array ();
-						$r[ "OPTIONS" ] = $val;
-						$rows[ ]        = $r;
+						if (isset($val['MULTIDIM']) )
+							{
+							foreach ($val['MULTIDIM'] as $v)
+								{
+								$r              = array ();
+								$r[ "OPTIONS" ] = $v;
+								$rows[ ]        = $r;
+								}
+							}
+						else
+							{
+							$r              = array ();
+							$r[ "OPTIONS" ] = $val;
+							$rows[ ]        = $r;
+							}
 						}
 					}
+
 				set_showtime( 'jomres_mainmenu_manager_options', $rows );
 				}
 			}
