@@ -147,7 +147,21 @@ class j01055showroomdetails
 					}
 
 				$roomRow[ 'IMAGE' ] = jomres_make_image_popup( $room_name, $jomres_media_centre_images->images['rooms'][$room_uid][0]['large'], "", array (), $jomres_media_centre_images->images['rooms'][$room_uid][0]['small'] );
+				
+				$roomRow[ 'RANDOM_IDENTIFIER' ]  = generateJomresRandomString( 10 );
+				
+				$roomRow[ 'IMAGELARGE' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
+				$roomRow[ 'IMAGEMEDIUM' ] = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
+				$roomRow[ 'IMAGETHUMB' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
 
+				if ($jomres_media_centre_images->images['rooms'][$room_uid][0]['large'] != "")
+					{
+					$roomRow[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images['rooms'][$room_uid][0]['large'];
+					$roomRow[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['rooms'][$room_uid][0]['medium'];
+					$roomRow[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images['rooms'][$room_uid][0]['small'];
+					}
+				
+				
 				$roomRow[ 'ROOMNUMBER' ] = $room_number;
 				$roomRow[ 'ROOMTYPE' ]   = $classAbbv;
 				$roomRow[ 'SMOKING' ]    = $smoking;

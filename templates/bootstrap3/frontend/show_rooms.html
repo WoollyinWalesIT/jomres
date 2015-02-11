@@ -16,7 +16,12 @@
 		<tbody>
 		<patTemplate:tmpl name="room_details" type="simpleCondition" requiredVars="roomtype">
 			<tr>
-				<td class="hidden-phone">{IMAGE}</td>
+				<td>
+					<a href="#" 
+						data-toggle="modal"
+						data-target="#modal_{RANDOM_IDENTIFIER}"><img src="{IMAGETHUMB}" class="img-responsive plist-image" alt="{ROOMNUMBER}" />
+					</a>
+				</td>
 				<td>{ROOMNUMBER}</td>
 				<td>{ROOMTYPE}</td>
 				<td class="hidden-phone">{MAXPEOPLE}</td>
@@ -26,6 +31,21 @@
 				<td class="hidden-phone">{DISABLEDACCESS}</td>
 				<td><a href="{AVLCALLINK}" class="btn btn-default"><i class="icon-calendar"></i> {AVLCALTITLE}</a></td>
 			</tr>
+
+			<div class="modal fade" id="modal_{RANDOM_IDENTIFIER}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+						<h4 class="modal-title" id="myModalLabel">{ROOMNAME} {ROOMNUMBER}</h4>
+						</div>
+						<div class="modal-body">
+							<img src="{IMAGELARGE}" class="img-responsive plist-image" alt="{ROOMNUMBER}" />
+						</div>
+				</div>
+			  </div>
+			</div>
+	
 		</patTemplate:tmpl>
 		</tbody>
 	</table>
