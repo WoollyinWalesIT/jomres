@@ -49,6 +49,9 @@ class j02260editbooking
 		
 		$current_contract_details = jomres_singleton_abstract::getInstance( 'basic_contract_details' );
 		$current_contract_details->gather_data($contract_uid, $defaultProperty);
+		
+		if (!array_key_exists($contract_uid, $current_contract_details->contract))
+			return;
 
 		$popup          = get_showtime( 'popup' );
 		$thisJRUser      = jomres_singleton_abstract::getInstance( 'jr_user' );

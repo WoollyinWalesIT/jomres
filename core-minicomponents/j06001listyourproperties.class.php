@@ -71,6 +71,7 @@ class j06001listyourproperties
 		$output[ 'HPROPERTY_LONG' ] 	= 'Long';
 		$output[ 'HAPPROVED' ] 			= jr_gettext( "_JOMRES_HSTATUS_APPROVED", _JOMRES_HSTATUS_APPROVED );
 		$output[ 'HACTIVE' ] 			= jr_gettext( "_JOMRES_HSTATUS_CURRENT", _JOMRES_HSTATUS_CURRENT );
+		$output[ 'HLASTCHANGED' ] 		= jr_gettext( '_JOMRES_HLASTCHANGED', _JOMRES_HLASTCHANGED, false );
 		$output[ 'HLEGEND' ] 			= jr_gettext( "_JOMRES_HLEGEND", _JOMRES_HLEGEND );
 		
 		if ($thisJRUser->accesslevel == 2)

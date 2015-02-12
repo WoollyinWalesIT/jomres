@@ -50,7 +50,7 @@ class j06001list_bookings_ajax
 		$rows = array ();
 		
 		//set the table coulmns, in the exact orcer in which they`re displayed in the table
-		$aColumns = array( 'a.contract_uid', 'a.contract_uid','a.tag','a.property_uid','a.arrival','a.departure','b.firstname','b.surname','b.tel_landline','b.tel_mobile','b.email','a.contract_total','a.deposit_required','a.deposit_paid','a.special_reqs','a.invoice_uid','a.timestamp','a.approved');
+		$aColumns = array( 'a.contract_uid', 'a.contract_uid','a.tag','a.property_uid','a.arrival','a.departure','b.firstname','b.surname','b.tel_landline','b.tel_mobile','b.email','a.contract_total','a.deposit_required','a.deposit_paid','a.special_reqs','a.invoice_uid','a.timestamp','a.last_changed','a.approved');
 		
 		/*
 		 * Paging
@@ -166,6 +166,7 @@ class j06001list_bookings_ajax
 						a.invoice_uid,
 						a.property_uid,
 						a.approved,
+						a.last_changed,
 						b.firstname, 
 						b.surname, 
 						b.tel_landline, 
@@ -327,6 +328,7 @@ class j06001list_bookings_ajax
 			$r[] = jomres_decode( $p->special_reqs );
 			$r[] = $p->invoice_uid;
 			$r[] = $p->timestamp;
+			$r[] = $p->last_changed;
 			
 			if ((int)$p->approved == 1)
 				$r[] = '<span class="label label-green">'.jr_gettext( '_JOMRES_STATUS_APPROVED', _JOMRES_STATUS_APPROVED, false ).'</span>';

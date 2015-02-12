@@ -2496,3 +2496,4 @@ jr_define('_JOMRES_WORD_CACHING', 'Caching');
 
 jr_define('_JOMRES_WORD_PATTEMPLATE_CACHING', 'Use patTemplates Caching?');
 
+jr_define( '_JOMRES_HLASTCHANGED', 'Last changed' );
