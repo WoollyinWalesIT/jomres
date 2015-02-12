@@ -157,7 +157,11 @@ class j06000contactowner
 			}
 		else
 			{
-			if ( $use_recaptcha ) $output[ 'CAPTCHA' ] = recaptcha_get_html( $jrConfig[ 'recaptcha_public_key' ] );
+			$use_ssl = false;
+			if (isset($_SERVER['HTTPS']) )
+				$use_ssl = true;
+			
+			if ( $use_recaptcha ) $output[ 'CAPTCHA' ] = recaptcha_get_html( $jrConfig[ 'recaptcha_public_key' ] , null , $use_ssl );
 			}
 
 		$pageoutput[ ] = $output;
