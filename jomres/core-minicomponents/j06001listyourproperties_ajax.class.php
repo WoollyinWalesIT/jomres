@@ -39,7 +39,7 @@ class j06001listyourproperties_ajax
 		$rows = array ();
 		
 		//set the table coulmns, in the exact order in which they`re displayed in the table
-		$aColumns = array( 'published','propertys_uid','property_name','property_street','property_town','property_region','property_postcode','property_country','property_tel','property_fax','property_email','stars','superior','lat','long','approved');
+		$aColumns = array( 'published','propertys_uid','property_name','property_street','property_town','property_region','property_postcode','property_country','property_tel','property_fax','property_email','stars','superior','lat','long','approved','last_changed');
 		
 		/*
 		 * Paging
@@ -134,7 +134,8 @@ class j06001listyourproperties_ajax
 						a.lat, 
 						a.long, 
 						a.published, 
-						a.approved, 
+						a.approved,
+						a.last_changed,
 						(CASE WHEN (a.propertys_uid = b.property_uid 
 									AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_NAME' 
 									AND b.language = '".$lang."') 
@@ -277,6 +278,8 @@ class j06001listyourproperties_ajax
 				$r[] = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
 			else
 				$r[] = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
+			
+			$r[] = $p->last_changed;
 			
 			$output['aaData'][]                = $r;
 			}

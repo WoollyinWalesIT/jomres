@@ -109,6 +109,9 @@ class basic_contract_details
 					WHERE a.contract_uid = '" . (int) $contract_uid . "' AND a.property_uid = '" . (int) $defaultProperty . "' ";
 		$contractData = doSelectSql( $query );
 		
+		if ( count($contractData) < 1 )
+			return false;
+		
 		foreach ($contractData as $contract)
 			{
 			//contract details
