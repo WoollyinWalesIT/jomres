@@ -14,6 +14,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries'.JRDS.'http_build_url.php');
 
 function can_modify_this_booking($contract_uid)
 	{
