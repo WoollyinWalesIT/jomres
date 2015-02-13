@@ -1992,7 +1992,6 @@ class dobooking
 		$date_elements         = explode( "/", $arrivalDate );
 		$this->unixArrivalDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ] + $this->cfg_mindaysbeforearrival, $date_elements[ 0 ] );
 		$arrivalDate           = date( "Y/m/d", $this->unixArrivalDate );
-		$arrivalDate           = $this->nextDatePropertyHasRoomFree( $arrivalDate );
 
 		$this->setArrivalDate( $arrivalDate );
 		$this->setErrorLog( "initArrivalDate::Initialising Arrival date to " . $arrivalDate );

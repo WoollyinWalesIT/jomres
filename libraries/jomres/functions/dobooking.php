@@ -252,8 +252,6 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		}
 	else
 		{
-		$arrivalDate = $defaultArrivalDate = $bkg->initArrivalDate();
-
 		if ( !isset( $mrConfig[ 'auto_detect_country_for_booking_form' ] ) ) 
 			{
 			$mrConfig[ 'auto_detect_country_for_booking_form' ] = "1";
@@ -271,28 +269,34 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 			}
 		
 		$output[ 'REGION_DROPDOWN' ]  = setupRegions( $bkg->country, $bkg->region );
-		if ( $thisdate && isset( $_REQUEST[ 'arrivalDate' ] ) )
+		
+		//dates
+		$arrivalDate = $bkg->initArrivalDate();
+
+		if ( $thisdate )
 			{
 			if ( $bkg->checkArrivalDate( $thisdate ) )
 				{
-				$bkg->setArrivalDate( $thisdate );
-				$arrivalDate = $thisdate;
+				$arrivalDate = $bkg->nextDatePropertyHasRoomFree( $thisdate );
+				$bkg->setArrivalDate( $arrivalDate );
 				}
 			else
 				{
-				$arrivalDate = $defaultArrivalDate;
+				$arrivalDate = $bkg->nextDatePropertyHasRoomFree( $thisdate );
+				$bkg->setArrivalDate( $arrivalDate );
 				}
 			}
 		else
 			{
-			$bkg->setArrivalDate( $arrivalDate );
+			if ( $bkg->checkArrivalDate( $arrivalDate ) )
+				{
+				$arrivalDate = $bkg->nextDatePropertyHasRoomFree( $arrivalDate );
+				$bkg->setArrivalDate( $arrivalDate );
+				}
+			else
+				$bkg->setArrivalDate( $arrivalDate );
 			}
-
-		if ( !$bkg->checkArrivalDate( $arrivalDate ) )
-			{
-			$arrivalDate = $defaultArrivalDate;
-			$bkg->setArrivalDate( $arrivalDate );
-			}
+		
 		$defaultdepartureDate = $bkg->initDepartureDate();
 		if ( !isset( $_REQUEST[ 'arrivalDate' ] ) )
 			{
