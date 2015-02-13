@@ -1203,29 +1203,43 @@ function prepAvailabilitySearch()
 	$unixTodaysDate    = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
 	$gmtTomorrowsDate  = date( "Y/m/d", $unixTomorrowsDate );
 
-	if ( !isset( $_REQUEST[ 'arrivalDate' ] ) )
+	if ( isset( $_REQUEST[ 'arrivalDate' ] ) )
 		{
-		//if (!isset($_COOKIE['jomsearch_availability']))
-		if ( $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == "" )
+		$arrivalDate = jomresGetParam( $_REQUEST, 'arrivalDate', "" );
+		
+		if ( isset( $_REQUEST[ 'pdetails_cal' ]) )
 			{
-			$arrivalDate   = JSCalmakeInputDates( date( "Y/m/d", $unixTodaysDate ), $siteCal = true );
-			$departureDate = JSCalmakeInputDates( date( "Y/m/d", $unixTomorrowsDate ), $siteCal = true );
-			$arrivalDate   = JSCalConvertInputDates( $arrivalDate, $siteCal = true );
-			$departureDate = JSCalConvertInputDates( $departureDate, $siteCal = true );
+			$arrivalDate = JSCalmakeInputDates($arrivalDate);
 			}
-		else
+		
+		$arrivalDate   = JSCalConvertInputDates( $arrivalDate, $siteCal = true );
+		$date_elements     = explode( "/", $arrivalDate );
+		$unixTomorrowsDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ] + 1, $date_elements[ 0 ] );
+		
+		if ( isset( $_REQUEST[ 'departureDate' ]) )
 			{
-			//echo jomresGetParam( $_COOKIE,'jomsearch_availability', '' );exit;
-			//$arrivalDate	=jomresGetParam( $_COOKIE,'jomsearch_availability', '' );
-			//$departureDate	=jomresGetParam( $_COOKIE,'jomsearch_availability_departure', '' );
-			$arrivalDate   = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
-			$departureDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ];
+			$departureDate = JSCalConvertInputDates( jomresGetParam( $_REQUEST, 'departureDate', "" ), $siteCal = true );
+			}
+		else 
+			{
+			$departureDate = JSCalmakeInputDates( date( "Y/m/d", $unixTomorrowsDate ), $siteCal = true );
+			$departureDate = JSCalConvertInputDates( $departureDate, $siteCal = true );
 			}
 		}
 	else
 		{
-		$arrivalDate   = JSCalConvertInputDates( jomresGetParam( $_REQUEST, 'arrivalDate', "" ), $siteCal = true );
-		$departureDate = JSCalConvertInputDates( jomresGetParam( $_REQUEST, 'departureDate', "" ), $siteCal = true );
+		if ( isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) && $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] != "" )
+			{
+			$arrivalDate   = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
+			$departureDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ];
+			}
+		else
+			{
+			$arrivalDate = JSCalmakeInputDates( date( "Y/m/d", $unixTodaysDate ), $siteCal = true );
+			$arrivalDate = JSCalConvertInputDates( $arrivalDate, $siteCal = true );
+			$departureDate = JSCalmakeInputDates( date( "Y/m/d", $unixTomorrowsDate ), $siteCal = true );
+			$departureDate = JSCalConvertInputDates( $departureDate, $siteCal = true );
+			}
 		}
 
 	// Assuming the arrival date was passed from $_REQUEST
@@ -1239,8 +1253,6 @@ function prepAvailabilitySearch()
 
 
 	$result = array ( 'arrival' => $arrivalDate, 'departure' => $departureDate );
-	//SetCookie("jomsearch_availability", $arrivalDate, time()+60*60,"/");
-	//SetCookie("jomsearch_availability_departure", $departureDate, time()+60*60,"/");
 
 	$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]           = $arrivalDate;
 	$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = $departureDate;
