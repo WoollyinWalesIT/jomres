@@ -715,7 +715,7 @@ function using_bootstrap()
 
 	if ( !isset( $jrConfig[ 'use_bootstrap_in_frontend' ] ) )
 		{
-		if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "joomla33")
+		if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34")
 			{
 			$jrConfig[ 'use_bootstrap_in_admin' ]	= "1";
 			$jrConfig[ 'use_bootstrap_in_frontend' ] = "1";
@@ -1632,7 +1632,7 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 					VALUES
 					('" . $plugin_name . "','','','0','position-0','0','0000-00-00 00:00:00','0','mod_" . $plugin_name . "','0','1','" . $params . "')";
 					}
-				elseif ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33")
+				elseif ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34")
 					{
 					$query = "INSERT INTO #__modules
 					(

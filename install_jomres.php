@@ -183,7 +183,7 @@ if ( !is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS .
 	}
 
 // Have to do this automatically otherwise Jomres will never run when upgrading from v2.5 to v3.x of joomla
-if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33")
+if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34")
 	{
 	$result = true;
 	if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ADMINISTRATORDIRECTORY . JRDS . 'components' . JRDS . 'com_jomres' . JRDS . 'admin.jomres.php' ) )
@@ -266,15 +266,11 @@ if ( $folderChecksPassed && $functionChecksPassed && ACTION != "Migration" )
 			updateMrConfig();
 			updatePluginSettings();
 			installCronjobs();
+			createExtraIndexs();
 			}
 		}
 	}
 
-//if ( checkIfNewIndexRequired() )
-	createExtraIndexs();
-//else
-	//echo "not adding indexes";
-	
 updateSiteSettings ( "update_time" , time() );
 if ( !AUTO_UPGRADE ) showfooter();
 if ( AUTO_UPGRADE ) echo "1";

@@ -751,7 +751,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . JRDS . 'confirmation_letter.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . JRDS . 'confirmation_letter.html' );
 
-		if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33") $this->add_obs_file( $this->dir_components_administrator . 'admin.jomres.php' );
+		if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34") $this->add_obs_file( $this->dir_components_administrator . 'admin.jomres.php' );
 
 		$files_old_jomressa = scandir_getfiles_recursive( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'jomressa' );
 		foreach ( $files_old_jomressa as $file )
