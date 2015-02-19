@@ -2995,6 +2995,7 @@ function createJomresTables()
 		`secret_key` CHAR(100),
 		`secret_key_used` TINYINT DEFAULT 0 NOT NULL,
 		`booking_language` CHAR( 5 ) DEFAULT 'en-GB' NOT NULL,
+		`last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		PRIMARY KEY(`contract_uid`)
 		) ";
 	if ( !doInsertSql( $query ) )
@@ -3155,6 +3156,7 @@ function createJomresTables()
 		`suspended` tinyint( 1 ) default 0,
 		`simple_configuration` tinyint( 1 ) default 1,
 		`users_timezone` CHAR(100) DEFAULT 'Europe/Berlin',
+		`last_active` datetime default NULL,
 		PRIMARY KEY	(`manager_uid`)
 		) ";
 	if ( !doInsertSql( $query ) )
@@ -3196,6 +3198,7 @@ function createJomresTables()
 		`timestamp` DATETIME,
 		`approved`  BOOL NOT NULL DEFAULT '1',
 		`property_site_id` VARCHAR( 255 ) NULL,
+		`last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		PRIMARY KEY(`propertys_uid`)
 		) ";
 	if ( !doInsertSql( $query ) )
