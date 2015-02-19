@@ -326,7 +326,7 @@ function showSiteConfig()
 
 	if ( !isset( $jrConfig[ 'use_bootstrap_in_frontend' ] ) )
 		{
-		if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "joomla33")
+		if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" )
 			{
 			$jrConfig[ 'use_bootstrap_in_admin' ]    = "1";
 			$jrConfig[ 'use_bootstrap_in_frontend' ] = "1";

@@ -51,6 +51,11 @@ if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'libraries' . JRDS . 'cms'
 		define( "_JOMRES_DETECTED_CMS", "joomla33" );
 		define( "_JOMRES_DETECTED_CMS_SPECIFIC_FILES", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "jomres" . JRDS . "cms_specific" . JRDS . _JOMRES_DETECTED_CMS . JRDS );
 		}
+	if ( $jversion->RELEASE == '3.4' )
+		{
+		define( "_JOMRES_DETECTED_CMS", "joomla34" );
+		define( "_JOMRES_DETECTED_CMS_SPECIFIC_FILES", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "jomres" . JRDS . "cms_specific" . JRDS . _JOMRES_DETECTED_CMS . JRDS );
+		}
 	}
 else
 	{
