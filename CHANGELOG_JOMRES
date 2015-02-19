@@ -1,3 +1,48 @@
+<h3>Jomres 8.1.19 19/02/2015</h3>
+
+<span class="label label-success">Feature</span> New feature in list bookings and list properties, can now sort by last changed state.
+<span class="label label-success">Feature</span> New functionality to support a new Latest bookings since last active plugin for property managers
+
+<span class="label label-warning">Change</span> Moved Polish zloty notation to end of currency instead of beginning.
+<span class="label label-warning">Change</span> Emptied cache before importing eu tax rates.
+<span class="label label-warning">Change</span> Updated table-tools calling function in jomres.js to use updated cols.
+<span class="label label-warning">Change</span> Updated Polish lang file, thanks Patryk.
+<span class="label label-warning">Change</span> Added font awesome switch to jq ui backend for wordpress uses.
+<span class="label label-warning">Change</span> Added language to common template vars with the intention that this will allow users to use conditionals in templates for different languages.
+<span class="label label-warning">Change</span> Added a new column "is eu country" flag to tax rates table. Added lang and code changes to allow us to flag a country as an eu country or not.
+<span class="label label-warning">Change</span> Added Croatia to EU countries.
+<span class="label label-warning">Change</span> Added j03020insertbooking_amendinvoice.class.php to obsolete files.
+<span class="label label-warning">Change</span> Modified booking engine to use Sleeps search results where possible when populating the required guest numbers field in the booking form.
+<span class="label label-warning">Change</span> Updated several tables with indexing.
+<span class="label label-warning">Change</span> Modified a query to use IN instead of OR in search queries for a performance improvement.
+<span class="label label-warning">Change</span> Modified how the QR code url is constructed to improve functionality in Mexican addresses.
+<span class="label label-warning">Change</span> Added functionality to facilitate searching by translated town name.
+<span class="label label-warning">Change</span> Added language index for custom text table.
+<span class="label label-warning">Change</span> Modified the booking engine so that the next date a room is free is selected if a date isn't passed via url.
+<span class="label label-warning">Change</span> Tweaked map template to show maps in BS3 templates more reliably.
+<span class="label label-warning">Change</span> Modified the generic booking insert class to accept 0 deposit.
+<span class="label label-warning">Change</span> Moved caching options into new tab
+<span class="label label-warning">Change</span> Move commission rate site config option to ROI tab.
+<span class="label label-warning">Change</span> Tweaked booking engine so that guests from all manager's properties are shown in the guest dropdown.
+<span class="label label-warning">Change</span> Added patTemplate caching feature.
+<span class="label label-warning">Change</span> Undid a change related to live scrolling.
+<span class="label label-warning">Change</span> Modified datatable call so that most recent additions are listed first by default.
+<span class="label label-warning">Change</span> Modified frontend show rooms list page to use bs modals instead of older jquery ui modals in BS templates.
+<span class="label label-warning">Change</span> Modified Jomres main menu generator to accept multi-dimensional arrays as values when building menus.
+<span class="label label-warning">Change</span> Modified recaptcha to ensure https used where relevant.
+<span class="label label-warning">Change</span> Updated Datatables javascript files.
+<span class="label label-warning">Change</span> Improved how dates are handled when passed to the booking form.
+<span class="label label-warning">Change</span> Added a library for http_build_url as some server's don't have pecl http.
+<span class="label label-warning">Change</span> Added Joomla 3.4 specific code.
+
+<span class="label label-important label-danger">Fix</span> Improved how images for gateways are found for display in list properties page.
+<span class="label label-important label-danger">Fix</span> Resolved an issue with double inclusion of a javascript file when caching enabled.
+<span class="label label-important label-danger">Fix</span> Tweaked the module popup class so that bookings are actually shown if the calendar code is enabled to be shown.
+<span class="label label-important label-danger">Fix</span> Fixed issue where buttons etc would be shown even for non-existant bookings.
+<span class="label label-important label-danger">Fix</span> Added a variety of changes to fix some javascript issues that intermittently appear.
+
+<h3>Jomres 8.1.18 04/12/2014</h3>
+
 <span class="label label-success">Feature</span> Added Multisite support to Jomres, first iteration that supports property sharing.
 
 <span class="label label-warning">Change</span> Updated galleria slideshow plugin to 1.4.2
