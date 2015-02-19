@@ -109,7 +109,7 @@ class j00004a_init_javascript_css_files
 				{
 				if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery' ] == "1" && !$management_view ) )
 					{
-					if (  _JOMRES_DETECTED_CMS != "joomla34" )
+					if ( _JOMRES_DETECTED_CMS != "joomla33" && _JOMRES_DETECTED_CMS != "joomla34" )
 						$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/", 'jquery-2.0.3.js');
 					}
 				}
@@ -117,7 +117,7 @@ class j00004a_init_javascript_css_files
 				{
 				if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery' ] == "1" && !$management_view ) )
 					{
-					if (  _JOMRES_DETECTED_CMS != "joomla34" )
+					if ( _JOMRES_DETECTED_CMS != "joomla33" && _JOMRES_DETECTED_CMS != "joomla34" )
 						$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery-1.11.1.js');
 					}
 				}
