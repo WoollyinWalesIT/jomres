@@ -102,7 +102,7 @@ class j06005cancelGuestBooking
 					$componentArgs                          = array ();
 					$componentArgs[ 'property_uid' ]        = $property_uid;
 					$componentArgs[ 'contract_uid' ]         = $contract_uid;
-				    $MiniComponents->triggerEvent( '03130', $componentArgs );				
+				    $MiniComponents->triggerEvent( '02163', $componentArgs );				
 			
 					echo $saveMessage;
 					}

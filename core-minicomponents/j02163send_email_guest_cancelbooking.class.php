@@ -13,9 +13,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j03130send_email_guest_cancelbooking
+class j02163send_email_guest_cancelbooking
 	{
-	function j03130send_email_guest_cancelbooking( $componentArgs )
+	function j02163send_email_guest_cancelbooking( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -34,7 +34,7 @@ class j03130send_email_guest_cancelbooking
 		if ( !isset( $componentArgs[ 'email_when_done' ] ) ) 
 			$email_when_done = true;
 		else
-			$email_when_done = $componentArgs[ 'email_when_done' ]; // Optional. We'll set email_when_done by default to true, otherwise we'll set it in the componentArgs variable. This allows us to call this script independently which in turn allows us to view the email as it's constructed, rather than when sent.
+			$email_when_done = $componentArgs[ 'email_when_done' ]; // Optional. We'll set email_when_done by default to true, otherwise we'll set it in the componentArgs variable. This allows us to call this script independantly which in turn allows us to view the email as it's contructed, rather than when sent.
 		
 		$booking_email_details = jomres_singleton_abstract::getInstance( 'jomres_generic_booking_email' );
 		$booking_email_details->gather_data($contract_uid, $property_uid);
