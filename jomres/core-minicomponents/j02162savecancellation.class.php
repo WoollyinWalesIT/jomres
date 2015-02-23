@@ -74,11 +74,10 @@ class j02162savecancellation
 				$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 				$current_property_details->gather_data( $defaultProperty );
 	
-				if ( $guestData[ 'email' ] != '' )
-					{
-					if ( !jomresMailer( $guestData[ 'email' ], $current_property_details->property_name . ' - ' . $current_property_details->property_town, $current_property_details->property_email, $saveMessage, $text, $mode = 1 ) ) error_logging( 'Failure in sending cancellation email to hotel. Target address: ' . $hotelemail . ' Subject' . $subject );
-					}
-				if ( !jomresMailer( $current_property_details->property_email, $current_property_details->property_name . ' - ' . $current_property_details->property_town, $guestData[ 'email' ], $saveMessage, $text, $mode = 1 ) ) error_logging( 'Failure in sending cancellation email to guest. Target address: ' . $hotelemail . ' Subject' . $subject );
+				$componentArgs                          = array ();
+				$componentArgs[ 'property_uid' ]        = $defaultProperty;
+				$componentArgs[ 'contract_uid' ]         = $contract_uid;
+				$MiniComponents->triggerEvent( '03130', $componentArgs );		
 	
 				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=list_bookings" ), $saveMessage );
 				}
