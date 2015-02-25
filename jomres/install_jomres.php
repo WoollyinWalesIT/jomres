@@ -434,24 +434,41 @@ function doTableUpdates()
 	if ( !checkTaxratesEUColExists() ) alterTaxratesEUCol();
 	if ( !checkManagerLastactiveColExists() ) alterManagerLastactiveCol();
 	if ( !checkContractsLastchangedColExists() ) alterContractsLastchangedCol();
+	if ( !checkPropertysLastchangedColExists() ) alterPropertysLastchangedCol();
 	
 	}
 
-function alterContractsLastchangedCol()
+function alterPropertysLastchangedCol()
 	{
-	output_message ( "Editing __jomres_contracts table adding last_changed column");
-	$query = "ALTER TABLE `#__jomres_contracts` ADD `last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `booking_language` ";
-	if ( !doInsertSql( $query, '' ) )
-		{
-		output_message ( "Error, unable to add __jomres_contracts last_changed", "danger" );
-		}
 	output_message ( "Editing __jomres_propertys table adding last_changed column");
-	$query = "ALTER TABLE `#__jomres_propertys` ADD `last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `property_site_id` ";
+	$query = "ALTER TABLE `#__jomres_propertys` ADD `last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
 	if ( !doInsertSql( $query, '' ) )
 		{
 		output_message ( "Error, unable to add __jomres_propertys last_changed", "danger" );
 		}
 		
+	}
+
+function checkPropertysLastchangedColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_propertys LIKE 'last_changed'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
+
+function alterContractsLastchangedCol()
+	{
+	output_message ( "Editing __jomres_contracts table adding last_changed column");
+	$query = "ALTER TABLE `#__jomres_contracts` ADD `last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_contracts last_changed", "danger" );
+		}
 	}
 
 function checkContractsLastchangedColExists()
