@@ -1,3 +1,14 @@
+
+<h3>Jomres 8.1.20 27/02/2015</h3>
+
+<span class="label label-success">Feature</span> Booking cancelled emails added to manager modifyable templates. Contributed by Rod at Jomres Plugins, many thanks mate.
+
+<span class="label label-warning">Change</span> After previous version's changes to improve date handling, now we make proper use of the mindaysbeforearrival setting.
+
+<span class="label label-important label-danger">Fix</span>  Removed title from Address inputs of booking form as the tooltips were making the form difficult to use.
+<span class="label label-important label-danger">Fix</span> Modified new column adding code to not use "after" to resolve issues that users were having after installing a third party plugin that adds it's own column.
+<span class="label label-important label-danger">Fix</span> Changed the process payment url to NOSEF as one particular implementation was causing incorrect redirects to gateways.
+
 <h3>Jomres 8.1.19 19/02/2015</h3>
 
 <span class="label label-success">Feature</span> New feature in list bookings and list properties, can now sort by last changed state.
