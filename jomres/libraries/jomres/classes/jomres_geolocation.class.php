@@ -81,9 +81,10 @@ class jomres_geolocation
 		$currency_code                   = $country_codes_to_currency_codes[ $this->detected_country ];
 		jr_import( 'jomres_currency_conversion' );
 		$conversion = new jomres_currency_conversion();
-		if ( $conversion->this_code_can_be_converted( $currency_code ) ) $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = $currency_code;
+		if ( $conversion->this_code_can_be_converted( $currency_code ) ) 
+			$tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = $currency_code;
 		else
-		$tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = "EUR";
+			$tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = "EUR";
 		}
 	}
 
