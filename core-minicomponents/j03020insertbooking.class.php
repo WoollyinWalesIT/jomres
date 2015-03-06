@@ -199,8 +199,7 @@ class j03020insertbooking
 					`room_total`				= '$room_total',
 					`discount`					= '$discount',
 					`currency_code` 			= '$ccode',
-					`discount_details` 			= '$discount_details',
-					`approved`		 			= '1'
+					`discount_details` 			= '$discount_details'
 					WHERE contract_uid = '$amend_contractuid'";
 
 				if ( !doInsertSql( $query, "", false ) )
