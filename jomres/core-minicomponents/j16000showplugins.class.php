@@ -128,7 +128,7 @@ class j16000showplugins
 					"retired" => (bool) @$rp->retired  
 				);
 			}
-//var_dump($remote_plugins);exit;
+
 		$d = @dir( $jrePath );
 		if ( $d )
 			{
@@ -255,7 +255,8 @@ class j16000showplugins
 
 		////////////////////////////////////////////////////// Remote plugins
 		$span = 12;
-		if ( $developer_user ) $span = 11;
+		if ( $developer_user ) 
+			$span = 11;
 		$output[ 'SPAN' ] = $span;
 
 		$install_text        = "Install";
@@ -295,10 +296,12 @@ class j16000showplugins
 
 			$type        = $rp[ 'type' ];
 			$plugin_name = $rp[ 'name' ];
-			if ( $developer_user ) $n = $rp[ 'name' ];
-			elseif ( array_key_exists( $plugin_name, $current_licenses ) ) $n = $plugin_name . "&plugin_key=" . $current_licenses[ $plugin_name ];
+			if ( $developer_user ) 
+				$n = $rp[ 'name' ];
+			elseif ( array_key_exists( $plugin_name, $current_licenses ) ) 
+				$n = $plugin_name . "&plugin_key=" . $current_licenses[ $plugin_name ];
 			else
-			$n = $rp[ 'name' ];
+				$n = $rp[ 'name' ];
 
 			$min_jomres_ver = explode( ".", $rp[ 'min_jomres_ver' ] );
 

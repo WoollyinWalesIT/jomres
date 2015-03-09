@@ -28,16 +28,18 @@ class j06000ui_availability_calendar
 		$jrConfig   = $siteConfig->get();
 
 		$show_legend = true;
-		if ( $componentArgs[ 'noshowlegend' ] == "1" || $_REQUEST[ 'noshowlegend' ] == "1" ) $show_legend = false;
+		if ( $componentArgs[ 'noshowlegend' ] == "1" || $_REQUEST[ 'noshowlegend' ] == "1" ) 
+			$show_legend = false;
 
 		$property_uid = get_showtime( 'property_uid' );
-		if ( isset( $_REQUEST[ 'property_uid' ] ) && $_REQUEST[ 'property_uid' ] != "0" ) $property_uid = (int) $_REQUEST[ 'property_uid' ];
+		if ( isset( $_REQUEST[ 'property_uid' ] ) && $_REQUEST[ 'property_uid' ] != "0" ) 
+			$property_uid = (int) $_REQUEST[ 'property_uid' ];
 
 		if ( get_showtime( 'is_jintour_property' ) )
 			{
 			$booked_dates           = $MiniComponents->specificEvent( '05060', 'jintour', array ( 'property_uid' => $property_uid, 'start' => true, 'end' => true ) );
 			$booking_array_elements = $booked_dates[ 'fully_booked_dates' ];
-			// We need to convert these to object, as this is an adaption of the following condition where the db is queried
+			// We need to convert these to object, as this is an adaptation of the following condition where the db is queried
 			$bookings = array ();
 			foreach ( $booking_array_elements as $elem )
 				{
