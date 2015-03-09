@@ -828,51 +828,6 @@ function jomres_mainmenu_option( $link, $image = '', $text, $path = "/JOMRES_ROO
 	return;
 	}
 
-function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = "", $arguments = array (), $thumbnail = "", $thumbnail_rel_path = "" )
-	{
-	if ( $image == "" ) return false;
-
-	$width  = "";
-	$height = "";
-	if ( $thumbnail == "" )
-		{
-		$width	 = "width='45px'";
-		$height	= "height='45px'";
-		$thumbnail = $image;
-		}
-
-	$id = generateJomresRandomString( 10 );
-
-	$sizes = getimagesize( $image_rel_path . $image );
-	if ( !$sizes ) // allow_url_fopen is disabled, therefore getimagesize will not work and $sizes will be "false".
-		{
-		$ch = curl_init();
-		curl_setopt( $ch, CURLOPT_URL, $image_rel_path . $image );
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-		curl_setopt( $ch, CURLOPT_USERAGENT, 'Jomres' );
-		$data		= curl_exec( $ch );
-		$resource	= imagecreatefromstring( $data );
-		$modal_width = imagesx( $resource ) + 30;
-		if ( $modal_width == 30 || !$modal_width ) // Yet another security setting stopping PHP from doing it's job, let's fall back to the maxwidth config setting.
-			{
-			$siteConfig  = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-			$jrConfig	= $siteConfig->get();
-			$max_width   = $jrConfig[ 'maxwidth' ];
-			$modal_width = $max_width + 30;
-			}
-		}
-	else
-	$modal_width = $sizes[ 0 ] + 30;
-
-	$title		   = str_replace( "'", "", $title );
-	$close_dialog_js = 'jomresJquery(".ui-widget-overlay").live("click", function() {jomresJquery("#' . $id . '").dialog("close");});';
-	$onClick		 = "onClick='jomresJquery( \"#" . $id . "\" ).dialog({dialogClass:\"\",width:" . $modal_width . ",modal:true,title:\"" . $title . "\"});" . $close_dialog_js . "'";
-	$link			= '<a href="javascript:void(0);" ' . $onClick . ' ><img src="' . $thumbnail_rel_path . $thumbnail . '" ' . $width . ' ' . $height . ' alt="' . $title . '" ></a>';
-	$image_div	   = '<div id="' . $id . '" style="display:none;"><img src="' . $image_rel_path . $image . '"></div>';
-
-	return $image_div . $link;
-	}
-
 
 function admins_first_run( $manual_trigger = false )
 	{
@@ -930,7 +885,7 @@ function admins_first_run( $manual_trigger = false )
 		<h3 class="page-header">First steps.</h3>
 		<p>Now that you\'ve seen some of the extra features on offer, you are ready to start setting up your site. To begin with, we\'d like you to ignore the "administrator" area of Jomres altogether for the time being, a new installation of Jomres includes sample data that you can play around with later, but for now you should experiment with configuring your default property.
 		<ol>
-			<li>When Jomres is installed, the first thing it does is configure your "admin" user to be a Super Property Manager. Super Managers are akin to a Root user in linux, with super powers unavailable to normal Property Managers. If your administrator user is a different user you might need to add them as a Super Property Manager via the <a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=managers_choose" target="_blank">Show Profiles</a> feature. View it now just to check that "admin" (or your chosen user\'s username) is listed and has a "ninja" icon under the Access Level column. If they haven\'t you will need to <a href="http://manual.jomres.net/show_profiles.html" target="_blank">add them</a> before you log into the frontend of your site.</li>
+			<li>When Jomres is installed, the first thing it does is configure your "admin" user to be a Super Property Manager. Super Managers are akin to a Root user in linux, with super powers unavailable to normal Property Managers. If your administrator user is a different user you might need to add them as a Super Property Manager via the <a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=managers_choose" target="_blank">Show Profiles</a> feature. View it now just to check that "admin" (or your chosen Joomla user\'s username) is listed and has a "ninja" icon under the Access Level column. If they haven\'t you will need to <a href="http://manual.jomres.net/show_profiles.html" target="_blank">add them</a> before you log into the frontend of your site.</li>
 			';
 			if ( this_cms_is_joomla())
 				{

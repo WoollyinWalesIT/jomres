@@ -19,7 +19,7 @@
 				<td>
 					<a href="#" 
 						data-toggle="modal"
-						data-target="#modal_{RANDOM_IDENTIFIER}"><img src="{IMAGETHUMB}" class="img-responsive plist-image" alt="{ROOMNUMBER}" />
+						data-target="#modal_{RANDOM_IDENTIFIER}"><img src="{IMAGETHUMB}" class="img-responsive" alt="{ROOMNUMBER}" />
 					</a>
 				</td>
 				<td>{ROOMNUMBER}</td>
@@ -45,6 +45,12 @@
 				</div>
 			  </div>
 			</div>
+		
+		<script>
+		   jomresJquery(document).ready(function(){
+			 jomresJquery('#modal_{RANDOM_IDENTIFIER}').appendTo("body");
+			});
+		</script>
 		</patTemplate:tmpl>
 		</tbody>
 	</table>
