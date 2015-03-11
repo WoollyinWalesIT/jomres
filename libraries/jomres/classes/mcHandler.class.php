@@ -27,11 +27,8 @@ class mcHandler
 		{
 		$this->registeredClasses = array ();
 		$scriptname              = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
-		if ( strstr( $scriptname, 'install_jomres.php' ) ) return;
-		// Following commented out functionality superceeded by Jomres minicomponent registry introduced in 3.2beta2
-		//$this->eventPoints = array();
-		//$this->nonOverridableEventClasses=array();
-		//$this->unWantedFolderContents=array('.','..','cvs','.svn');
+		if ( strstr( $scriptname, 'install_jomres.php' ) ) 
+			return;
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 
@@ -217,19 +214,20 @@ class mcHandler
 						if ( file_exists( $eClass[ 'filepath' ] . $filename ) )
 							{
 							include_once( $eClass[ 'filepath' ] . $filename );
-							if ( $this->logging_enbled ) $this->log[ ] = $eClass[ 'filepath' ] . $filename;
+							
+							if ( $this->logging_enbled ) 
+								$this->log[ ] = $eClass[ 'filepath' ] . $filename;
 							$this->currentEvent = $eClass[ 'filepath' ] . $filename;
-							$event              = new stdClass;
 							$ePoint             = $eClass[ 'eventPoint' ];
 							$eName              = $eClass[ 'eventName' ];
 							$eLiveSite          = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' )."/", $ePointFilepath );
 							$eLiveSite          = str_replace( JRDS, "/", $eLiveSite );
 							set_showtime( 'eLiveSite', $eLiveSite );
 							$event = 'j' . $ePoint . $eName;
+							//echo $event;exit;
 							if ( !class_exists( $event ) )
 								{
 								echo "Error, class " . $event . " does not exist. Most likely you've renamed a minicomponent file, but not the class in that file";
-
 								return;
 								}
 							set_showtime( 'current_minicomp', $event );
@@ -276,7 +274,6 @@ class mcHandler
 							include_once( $eClass[ 'filepath' ] . $filename );
 							if ( $this->logging_enbled ) $this->log[ ] = $eClass[ 'filepath' ] . $filename;
 							$this->currentEvent = $eClass[ 'filepath' ] . $filename;
-							$event              = new stdClass;
 							$ePoint             = $eClass[ 'eventPoint' ];
 							$eName              = $eClass[ 'eventName' ];
 							$eLiveSite          = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' )."/", $ePointFilepath );
