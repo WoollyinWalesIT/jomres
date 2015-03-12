@@ -159,10 +159,6 @@ class jomres_generic_booking_email
 			}
 		
 		//other output
-		$this->data[$contract_uid]['PROPERTY_NAME'] = $current_property_details->property_name;
-		$this->data[$contract_uid]['PROPERTY_TEL'] = $current_property_details->property_tel;
-		$this->data[$contract_uid]['PROPERTY_EMAIL'] = $current_property_details->property_email;
-		
 		$this->data[$contract_uid]['PAYMENT_LINK'] = JOMRES_SITEPAGE_URL_NOSEF."&task=confirmbooking&selectedProperty=".$property_uid."&sk=".$current_contract_details->contract[$contract_uid]['contractdeets']['secret_key']."&nofollowtmpl=nofollowtmpl";
 		
 		$this->data[$contract_uid]['BOOKING_NUMBER'] = $current_contract_details->contract[$contract_uid]['contractdeets']['tag'];
@@ -171,12 +167,21 @@ class jomres_generic_booking_email
 		$this->data[$contract_uid]['TOTAL'] = output_price( $current_contract_details->contract[$contract_uid]['contractdeets']['contract_total'] );
 		$this->data[$contract_uid]['DEPOSIT'] = output_price( $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_required'] );
 		$this->data[$contract_uid]['SPECIAL_REQUIREMENTS'] = jomres_decode($current_contract_details->contract[$contract_uid]['contractdeets']['special_reqs']);
-		
-		$this->data[$contract_uid]['POLICIES_AND_DISCLAIMERS'] = $current_property_details->property_policies_disclaimers;
-		
 		$this->data[$contract_uid]['ALLOCATION_NOTE'] = $tmpBookingHandler->tmpbooking[ "booking_notes" ][ "suppliment_note" ];
 		
 		$this->data[$contract_uid]['REMOTE_IP'] = $_SERVER['REMOTE_ADDR'];
+		
+		//property address and policies
+		$this->data[$contract_uid]['PROPERTY_NAME'] = $current_property_details->property_name;
+		$this->data[$contract_uid]['PROPERTY_STREET'] = $current_property_details->property_street;
+		$this->data[$contract_uid]['PROPERTY_TOWN'] = $current_property_details->property_town;
+		$this->data[$contract_uid]['PROPERTY_REGION'] = $current_property_details->property_region;
+		$this->data[$contract_uid]['PROPERTY_COUNTRY'] = $current_property_details->property_country;
+		$this->data[$contract_uid]['PROPERTY_POSTCODE'] = $current_property_details->property_postcode;
+		$this->data[$contract_uid]['PROPERTY_PHONE'] = $current_property_details->property_tel;
+		$this->data[$contract_uid]['PROPERTY_FAX'] = $current_property_details->property_fax;
+		$this->data[$contract_uid]['PROPERTY_EMAIL'] = $current_property_details->property_email;
+		$this->data[$contract_uid]['POLICIES_AND_DISCLAIMERS'] = $current_property_details->property_policies_disclaimers;
 		
 		return true;
 		}
