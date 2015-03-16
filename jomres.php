@@ -19,7 +19,9 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 	@ini_set( "memory_limit", "128M" );
 	@ini_set( "max_execution_time", "480" );
-
+	
+	// Added X-Clacks Overhead. If you're a fan of Sir Terry, leave it in. If you're not, take it out
+	header("X-Clacks-Overhead: GNU Terry Pratchett");
 
 	global $thisJRUser, $task, $jomresPathway;
 	global $property_uid, $Itemid, $jomressession;
