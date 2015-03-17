@@ -26,6 +26,11 @@ class j10002listbookings
 
 			return;
 			}
+			
+		// We expect to remove the administrator area's List Bookings page in the near future, so we are disabling it for now.
+		return;
+		
+			
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
