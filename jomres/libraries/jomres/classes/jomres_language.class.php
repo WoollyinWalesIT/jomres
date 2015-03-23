@@ -357,7 +357,7 @@ class jomres_language
 		$langs[ 'sk-SK' ] = "sk";
 		$langs[ 'sl-SI' ] = "sl";
 		$langs[ 'sr-YU' ] = "sr";
-		$langs[ 'zh-CN' ] = "";
+		$langs[ 'zh-CN' ] = "zh-CN";
 		$langs[ 'th-TH' ] = "th";
 		$langs[ 'sv-SE' ] = "sv";
 		$langs[ 'ar-AA' ] = "ar";
