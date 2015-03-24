@@ -985,10 +985,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j03020insertbooking_amendinvoice.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j00013dashboard.class.php' );
 
-		// The administrator BS3 template set was added in anticipation of Joomla adopting BS3 in the backend of J, however that hasn't happened so for now we will delete this directory's contents to ensure there isn't any confusion.
-		$this->add_obs_dir( $this->dir_templates_bootstrap3_administrator );
-		
-		
+		$this->add_obs_dir( $this->dir_libraries . 'PHPMailer_v5.2.6' );
 		}
 
 	function add_obs_file( $path_and_file )

@@ -2502,3 +2502,10 @@ jr_define('_JOMRES_HOTEL_CANCELBOOKING_EMAILNAME',"Hotel Booking Cancellation Em
 jr_define('_JOMRES_HOTEL_CANCELBOOKING_EMAILDESC',"Email sent to the property owner when a new booking is cancelled");
 jr_define('_JOMRES_GUEST_CANCELBOOKING_EMAILNAME',"Guest Booking Cancellation Email");
 jr_define('_JOMRES_GUEST_CANCELBOOKING_EMAILDESC',"Email sent to guest when a new booking is cancelled");
+
+jr_define('_JOMRES_TEST_EMAIL_SEND',"Send test email");
+jr_define('_JOMRES_TEST_EMAIL_SUBJECT',"Test email");
+jr_define('_JOMRES_TEST_EMAIL_CONTENT',"This is a test email from your booking system.");
+jr_define('_JOMRES_TEST_EMAIL_RESULT_SUCCESS',"Test email sent successfully");
+jr_define('_JOMRES_TEST_EMAIL_RESULT_FAILURE',"Test email was not sent");
+

@@ -1978,7 +1978,7 @@ function mailer_get_css()
 Allows us to work independantly of Joomla or Mambo's emailers
 */
 
-function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mode = 1, $attachments = array () )
+function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mode = 1, $attachments = array () , $debugging = false )
 	{
 	$jomresConfig_smtpauth = get_showtime( 'smtpauth' );
 	$jomresConfig_smtphost = get_showtime( 'smtphost' );
@@ -2041,96 +2041,110 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 				}
 			}
 		}
-
-	$mail			= new jomresPHPMailer();
-	$mail->SMTPDebug = get_showtime( 'error_reporting' );
-	if ( $mode == 1 ) $mail->IsHTML( true );
-	$mail->Mailer = $jomresConfig_mailer;
-
-	$body = preg_replace( "[\\\]", '', $body );
-
-
-	if ( $mode == 1 && !strstr( $body, '<meta http-equiv="Content-Type" content="text/html; utf-8" />' ) )
+	$mail			= new jomresPHPMailer(true);
+	try 
 		{
-		//$body = preg_replace( '@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>', $body );
-		}
-
-	if ( get_showtime( 'smtpauth' ) == "1" )
-		{
-		$mail->SMTPAuth = "1";
-		}
-	// Need to change this before release?
-	if ( get_showtime( 'mailer' ) == "smtp" )
-		{
-		$mail->IsSMTP(); // telling the class to use SMTP
-		$mail->Username = $jomresConfig_smtpuser;
-		$mail->Password = $jomresConfig_smtppass;
-		}
-
-
-	$mail->Host = $jomresConfig_smtphost;
-	if ( $jrConfig[ 'default_from_address' ] != "" ) $mail->From = $jrConfig[ 'default_from_address' ];
-	else
-	$mail->From = $from;
-	$mail->CharSet  = 'UTF-8';
-	$mail->FromName = $jomresConfig_sitename;
-	$mail->Subject  = $subject;
-	$mail->Port	 = $jomresConfig_smtpport;
-
-	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-	$jrConfig   = $siteConfig->get();
-	if ( $jrConfig[ 'alternate_smtp_use_settings' ] == "1" )
-		{
-		$mail->Mailer	 = 'smtp';
-		$mail->Host	   = trim( $jrConfig[ 'alternate_smtp_host' ] );
-		$mail->Port	   = trim( $jrConfig[ 'alternate_smtp_port' ] );
-		$mail->SMTPSecure = trim( $jrConfig[ 'alternate_smtp_protocol' ] );
-		$mail->SMTPAuth   = trim( $jrConfig[ 'alternate_smtp_authentication' ] );
-		$mail->Username   = trim( $jrConfig[ 'alternate_smtp_username' ] );
-		$mail->Password   = trim( $jrConfig[ 'alternate_smtp_password' ] );
-		}
-
-	//	$mail->AltBody		= "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
-
-
-	if ( count( $attachments ) > 0 )
-		{
-		foreach ( $attachments as $attachment )
+		
+		if (!$debugging)
+			$mail->SMTPDebug = get_showtime( 'error_reporting' );
+		else
 			{
-			switch ( $attachment[ 'type' ] ) // Use a switch as it allows us to expand this later if we wish
+			$mail->SMTPDebug = 4;
+			$mail->$Debugoutput = 'echo';
+			}
+		if ( $mode == 1 ) 
+			$mail->IsHTML( true );
+		$mail->Mailer = $jomresConfig_mailer;
+
+		$body = preg_replace( "[\\\]", '', $body );
+
+		if ( $mode == 1 && !strstr( $body, '<meta http-equiv="Content-Type" content="text/html; utf-8" />' ) )
+			{
+			//$body = preg_replace( '@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>', $body );
+			}
+
+		if ( get_showtime( 'smtpauth' ) == "1" )
+			{
+			$mail->SMTPAuth = "1";
+			}
+		// Need to change this before release?
+		if ( get_showtime( 'mailer' ) == "smtp" )
+			{
+			$mail->IsSMTP(); // telling the class to use SMTP
+			$mail->Username = $jomresConfig_smtpuser;
+			$mail->Password = $jomresConfig_smtppass;
+			}
+
+		$mail->Host = $jomresConfig_smtphost;
+		if ( $jrConfig[ 'default_from_address' ] != "" ) 
+			$mail->From = $jrConfig[ 'default_from_address' ];
+		else
+			$mail->From = $from;
+		
+		$mail->CharSet  = 'UTF-8';
+		$mail->FromName = $jomresConfig_sitename;
+		$mail->Subject  = $subject;
+		$mail->Port	 = $jomresConfig_smtpport;
+
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+		if ( $jrConfig[ 'alternate_smtp_use_settings' ] == "1" )
+			{
+			$mail->Mailer	 = 'smtp';
+			$mail->Host	   = trim( $jrConfig[ 'alternate_smtp_host' ] );
+			$mail->Port	   = trim( $jrConfig[ 'alternate_smtp_port' ] );
+			$mail->SMTPSecure = trim( $jrConfig[ 'alternate_smtp_protocol' ] );
+			$mail->SMTPAuth   = trim( $jrConfig[ 'alternate_smtp_authentication' ] );
+			$mail->Username   = trim( $jrConfig[ 'alternate_smtp_username' ] );
+			$mail->Password   = trim( $jrConfig[ 'alternate_smtp_password' ] );
+			}
+
+		//	$mail->AltBody		= "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+
+
+		if ( count( $attachments ) > 0 )
+			{
+			foreach ( $attachments as $attachment )
 				{
-				case 'image':
-					$image_arr = explode(JRDS,$attachment[ 'image_path' ]);
-					$image_name = $image_arr [ count($image_arr)-1 ] ;
-					$image_path = $attachment[ 'image_path' ];
-					$cid		= $attachment[ 'CID' ];
-					$mail->AddEmbeddedImage( $image_path, $cid, $image_name );
-					break;
-				case 'pdf':
-					$path = $attachment[ 'path' ];
-					$name = $attachment[ 'filename' ];
-					$mail->AddAttachment( $path, $name, 'base64', $type = 'application/pdf' );
-					break;
-				default:
-					$path = $attachment[ 'path' ];
-					$name = $attachment[ 'filename' ];
-					$type = $attachment['type'];
-					$mail->AddAttachment( $path, $name, 'base64', $type);
-					break;
+				switch ( $attachment[ 'type' ] ) // Use a switch as it allows us to expand this later if we wish
+					{
+					case 'image':
+						$image_arr = explode(JRDS,$attachment[ 'image_path' ]);
+						$image_name = $image_arr [ count($image_arr)-1 ] ;
+						$image_path = $attachment[ 'image_path' ];
+						$cid		= $attachment[ 'CID' ];
+						$mail->AddEmbeddedImage( $image_path, $cid, $image_name );
+						break;
+					case 'pdf':
+						$path = $attachment[ 'path' ];
+						$name = $attachment[ 'filename' ];
+						$mail->AddAttachment( $path, $name, 'base64', $type = 'application/pdf' );
+						break;
+					default:
+						$path = $attachment[ 'path' ];
+						$name = $attachment[ 'filename' ];
+						$type = $attachment['type'];
+						$mail->AddAttachment( $path, $name, 'base64', $type);
+						break;
+					}
 				}
 			}
+		
+		$mail->MsgHTML( $body );
+		foreach ( $emails as $to )
+			{
+			if ( strlen( $to ) > 0 ) $mail->AddAddress( $to );
+			}
+		$mail->Send();
 		}
-
-	$mail->MsgHTML( $body );
-	foreach ( $emails as $to )
+	catch (phpmailerException $e) 
 		{
-		if ( strlen( $to ) > 0 ) $mail->AddAddress( $to );
-		}
-
-	if ( !$mail->Send() )
+		echo $e->errorMessage(); //Pretty error messages from PHPMailer
+		return false;
+		} 
+	catch (Exception $e) 
 		{
-		error_logging( "Error sending mail. Error caught by mailer was : " . $mail->ErrorInfo, false );
-
+		echo $e->getMessage(); //Boring error messages from anything else!
 		return false;
 		}
 

@@ -47,11 +47,11 @@ class HTML_jomres
 		)
 		{
 		$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig     = $siteConfig->get();
+		$jrConfig	 = $siteConfig->get();
 		$contentPanel = jomres_singleton_abstract::getInstance( 'jomres_content_tabs' );
 		
 		$country_dropdown   = createSimpleCountriesDropdown( $jrConfig[ 'business_country' ] , "cfg_business_country" );
-		$region_dropdown    = setupRegions( $jrConfig[ 'business_country' ], $jrConfig[ 'business_region' ] , false, "cfg_business_region");
+		$region_dropdown	= setupRegions( $jrConfig[ 'business_country' ], $jrConfig[ 'business_region' ] , false, "cfg_business_region");
 
 		?>
 	<script language="JavaScript" type="text/javascript">
@@ -1007,7 +1007,68 @@ class HTML_jomres
 				<td>' . jr_gettext( _JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD_DESC, '_JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD_DESC', false ) . '</td>
 			</tr>
 			</tbody>
-			</table>' );
+			</table>
+			
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  '.jr_gettext( _JOMRES_TEST_EMAIL_SEND, '_JOMRES_TEST_EMAIL_SEND', false ).'
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title" id="myModalLabel">'.jr_gettext( _JOMRES_TEST_EMAIL_SEND, '_JOMRES_TEST_EMAIL_SEND', false ).'</h4>
+	  </div>
+	  <div class="modal-body">
+			<form name="test_email">
+			'.jr_gettext( _JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL, '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', false ).'</br>
+			<input type="text" class="input-large" id="test_email_address" value="'.jomresGetParam( $_REQUEST, 'test_email_address', "" ).'" />
+			</form>
+	  </div>
+	  <div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">'.jr_gettext( 'COMMON_CLOSE', COMMON_CLOSE, false ).'</button>
+		<button type="button" id="submit_test_email" class="btn btn-primary">'.jr_gettext( _JOMRES_TEST_EMAIL_SEND, '_JOMRES_TEST_EMAIL_SEND', false ).'</button>
+	  </div>
+	</div>
+  </div>
+</div>
+<script>
+jomresJquery(function() {
+	//twitter bootstrap script
+	jomresJquery("button#submit_test_email").click(function(){
+		var test_email_address = jomresJquery( "#test_email_address" ).val();
+		
+		var cfg_default_from_address			= jomresJquery( "input[name*=\'cfg_default_from_address\']" ).val();
+		var cfg_alternate_smtp_host				= jomresJquery( "input[name*=\'cfg_alternate_smtp_host\']" ).val();
+		var cfg_alternate_smtp_port				= jomresJquery( "input[name*=\'cfg_alternate_smtp_port\']" ).val();
+		var cfg_alternate_smtp_protocol			= jomresJquery( "input[name*=\'cfg_alternate_smtp_protocol\']" ).val();
+		var cfg_alternate_smtp_authentication	= jomresJquery(\'#cfg_alternate_smtp_authentication1_id\').hasClass("active");
+		var cfg_alternate_smtp_username			= jomresJquery( "input[name*=\'cfg_alternate_smtp_username\']" ).val();
+		var cfg_alternate_smtp_password			= jomresJquery( "input[name*=\'cfg_alternate_smtp_password\']" ).val();
+		
+		jomresJquery.ajax({
+			type: "POST",
+			url: "'.JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=ajax_send_test_email&test_email_address="+test_email_address+"&default_from_address="+cfg_default_from_address+"&alternate_smtp_host="+cfg_alternate_smtp_host+"&alternate_smtp_port="+cfg_alternate_smtp_port+"&alternate_smtp_protocol="+cfg_alternate_smtp_protocol+"&alternate_smtp_authentication="+cfg_alternate_smtp_authentication+"&alternate_smtp_username="+cfg_alternate_smtp_username+"&alternate_smtp_password="+cfg_alternate_smtp_password,
+			success: function(data) {
+				if(data.status == true){
+					alert("'.jr_gettext( _JOMRES_TEST_EMAIL_RESULT_SUCCESS, '_JOMRES_TEST_EMAIL_RESULT_SUCCESS', false ).'");
+				}else{
+					alert( "'.jr_gettext( _JOMRES_TEST_EMAIL_RESULT_FAILURE, '_JOMRES_TEST_EMAIL_RESULT_FAILURE', false ).' " + data.failure_message);
+				}
+				jomresJquery(\'#myModal\').modal(\'hide\');
+			},
+			
+		});
+		
+	});
+});
+</script>
+			
+			
+			' );
 			$contentPanel->insertContent();
 			$contentPanel->endPanel();
 
@@ -1338,11 +1399,11 @@ class HTML_jomres
 			?>
 
 			<input type="hidden" name="cfg_useGlobalPFeatures"
-			       value="<?php echo $jrConfig[ 'useGlobalPFeatures' ]; ?>"/>
+				   value="<?php echo $jrConfig[ 'useGlobalPFeatures' ]; ?>"/>
 			<input type="hidden" name="cfg_useGlobalRoomTypes"
-			       value="<?php echo $jrConfig[ 'useGlobalRoomTypes' ]; ?>"/>
+				   value="<?php echo $jrConfig[ 'useGlobalRoomTypes' ]; ?>"/>
 			<input type="hidden" name="cfg_dynamicMinIntervalRecalculation"
-			       value="<?php echo $jrConfig[ 'dynamicMinIntervalRecalculation' ]; ?>"/>
+				   value="<?php echo $jrConfig[ 'dynamicMinIntervalRecalculation' ]; ?>"/>
 			<input type="hidden" name="cfg_disableAudit" value="<?php echo $jrConfig[ 'disableAudit' ]; ?>"/>
 			<input type="hidden" name="cfg_allowedTags" value="<?php echo $jrConfig[ 'allowedTags' ]; ?>"/>
 			<input type="hidden" name="cfg_utfHTMLdecode" value="<?php echo $jrConfig[ 'utfHTMLdecode' ]; ?>"/>
