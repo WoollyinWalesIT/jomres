@@ -95,7 +95,7 @@ class jomresHTML
 				if ( $k == $default ) $checked = 'checked="checked" ';
 				$output .= '
 				<input type="radio" id="' . $name . $k . '" name="' . $name . '" ' . $checked . ' value="' . $k . '"/>
-				<label for="' . $name . $k . '">' . $txt . '</label>
+				<label for="' . $name . $k . '" id="'. $name . $k .'_id" >' . $txt . '</label>
 				';
 
 				}
