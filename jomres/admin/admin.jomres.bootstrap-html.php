@@ -1023,10 +1023,8 @@ class HTML_jomres
 		<h4 class="modal-title" id="myModalLabel">'.jr_gettext( _JOMRES_TEST_EMAIL_SEND, '_JOMRES_TEST_EMAIL_SEND', false ).'</h4>
 	  </div>
 	  <div class="modal-body">
-			<form name="test_email">
 			'.jr_gettext( _JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL, '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', false ).'</br>
 			<input type="text" class="input-large" id="test_email_address" value="'.jomresGetParam( $_REQUEST, 'test_email_address', "" ).'" />
-			</form>
 	  </div>
 	  <div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal">'.jr_gettext( 'COMMON_CLOSE', COMMON_CLOSE, false ).'</button>
