@@ -19,7 +19,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 	@ini_set( "memory_limit", "128M" );
 	@ini_set( "max_execution_time", "480" );
-	
+
 	// Added X-Clacks Overhead. If you're a fan of Sir Terry, leave it in. If you're not, take it out
 	header("X-Clacks-Overhead: GNU Terry Pratchett");
 
@@ -267,21 +267,17 @@ try
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$current_property_details->gather_data($property_uid);
 
-		$pdeets                    = getPropertyAddressForPrint( $property_uid );
-		$thisJomresPropertyDetails = $pdeets[ 3 ];
-		$published                 = $thisJomresPropertyDetails[ 'published' ];
+		$published = $current_property_details->published;
 		set_showtime( 'this_property_published', $published );
 		if ( get_showtime( 'task' ) == "viewproperty" )
 			{
 			set_showtime( 'last_viewed_property_uid', $property_uid ); // showtime's property_uid variable can change, for example in the property list the property uid will change while the system is viewing different properties and finding language strings for each. We'll set a specific variable here that can be reliably be used to take the user back to the last viewed property. Typically for cancel buttons, we can use the patTemplate common definition COMMON_LAST_VIEWED_PROPERTY_UID to allow cancel buttons to take us back to the last viewed property without having to specifically code for it in the script calling the template.
 			$tmpBookingHandler->user_settings[ 'last_viewed_property_uid' ] = $property_uid;
 			}
-		else
-			{
-			set_showtime( 'last_viewed_property_uid', $tmpBookingHandler->user_settings[ 'last_viewed_property_uid' ] );
-			}
 		$tmpBookingHandler->saveBookingData();
 		}
+	else
+		set_showtime( 'last_viewed_property_uid', (int)$tmpBookingHandler->user_settings[ 'last_viewed_property_uid' ] );
 
 	// Getting the language file
 	if ( !empty( $property_uid ) || isset( $_REQUEST[ 'propertyType' ] ) || isset( $_REQUEST[ 'ptype' ] ) )
