@@ -110,7 +110,11 @@ if ( !function_exists( 'adodb_date_test_date' ) ) require_once( JOMRESCONFIG_ABS
 if ( !class_exists( 'patTemplate' ) ) require_once( 'libraries' . JRDS . 'phptools' . JRDS . 'patTemplate.php' );
 if ( !class_exists( 'patErrorManager' ) ) require_once( 'libraries' . JRDS . 'phptools' . JRDS . 'patErrorManager.php' );
 
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'PHPMailer_v5.2.9' . JRDS . 'class.phpmailer.php' );
+
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'PHPMailer_v5.2.9' . JRDS . 'PHPMailerAutoload.php' );
+PHPMailerAutoload('phpmailer');
+PHPMailerAutoload('smtp');
+
 
 //require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomSearch.class.php');
 
