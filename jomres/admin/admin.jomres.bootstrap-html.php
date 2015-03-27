@@ -468,11 +468,12 @@ class HTML_jomres
 				<td>' . $lists[ 'show_booking_form_in_property_details' ] . '</td>
 				<td>' . jr_gettext( _JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC, '_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC', false ) . '</td>
 			</tr>
-			<tr>
+			<!-- Option removed from BS2 and BS3 as the modal form doesn\'t stack properly in BS modals, and the jq ui modal is not responsive.
+				<tr>
 				 <td>' . jr_gettext( _JOMRES_BOOKINGORM_MODALPOPUP, '_JOMRES_BOOKINGORM_MODALPOPUP', false ) . '</td>
 				 <td>' . $lists[ 'booking_form_modal_popup' ] . '</td>
 				 <td>' . jr_gettext( _JOMRES_BOOKINGORM_MODALPOPUP_DESC, '_JOMRES_BOOKINGORM_MODALPOPUP_DESC', false ) . '</td>
-			</tr>
+			</tr>-->
 			<tr>
 				<td>' . jr_gettext( _JOMRES_BOOKINGORM_TAX_OUTPUT, '_JOMRES_BOOKINGORM_TAX_OUTPUT', false ) . '</td>
 				<td>' . $lists[ 'show_tax_in_totals_summary' ] . '</td>
