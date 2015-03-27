@@ -527,23 +527,15 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 
 	$output[ 'BOOKEDDATES' ] = $booked_dates_output;
 	$output[ 'MODAL' ]       = ''; // Needs to be here. If not, a javascript error will occur when the booking form is shown in the property details page.
-	if ( get_showtime( 'task' ) == "dobooking" && $jrConfig[ 'booking_form_modal_popup' ] == "1" && !isset( $_REQUEST[ 'is_wrapped' ] ) && !isset( $_REQUEST[ 'tmpl' ] ) )
+	
+	if ( get_showtime( 'task' ) == "dobooking" && $jrConfig[ 'booking_form_modal_popup' ] == "1" && !isset( $_REQUEST[ 'is_wrapped' ] ) && !isset( $_REQUEST[ 'tmpl' ] ) && !using_bootstrap() )
 		{
 		$output[ 'MODAL' ]       = 'jomresJquery( "#booking_form" ).dialog({width:1000,modal:true});';
 		$output[ 'HIDDENSTYLE' ] = 'style="display:none;"';
-		if ( !using_bootstrap() )
-			{
-			$output[ 'OPENBOOKINGOFRM_BUTTON' ]          = '<a href="javascript:open_booking_form();" class="fg-button ui-state-default ui-corner-all">' . $output[ '_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM' ] . '</a>';
-			$output[ 'BUTTON_BACK_TO_PROPERTY_DETAILS' ] = '<a href="' . jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $selectedProperty ) . '" class="fg-button ui-state-default ui-corner-all">' . $output[ '_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS' ] . '</a>';
-			}
-		else
-			{
-			$output[ 'OPENBOOKINGOFRM_BUTTON' ]          = '<a href="javascript:open_booking_form();" class="btn btn-primary">' . $output[ '_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM' ] . '</a>';
-			$output[ 'BUTTON_BACK_TO_PROPERTY_DETAILS' ] = '<a href="' . jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $selectedProperty ) . '" class="btn">' . $output[ '_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS' ] . '</a>';
-			}
 
+		$output[ 'OPENBOOKINGOFRM_BUTTON' ]          = '<a href="javascript:open_booking_form();" class="fg-button ui-state-default ui-corner-all">' . $output[ '_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM' ] . '</a>';
+		$output[ 'BUTTON_BACK_TO_PROPERTY_DETAILS' ] = '<a href="' . jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $selectedProperty ) . '" class="fg-button ui-state-default ui-corner-all">' . $output[ '_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS' ] . '</a>';
 		}
-
 
 	$output[ 'PANELPOSITION' ]       = (int) $jrConfig[ 'booking_form_totalspanel_position' ];
 	$output[ 'BOOKINGFORMWIDTH' ]    = (int) $jrConfig[ 'booking_form_width' ];
