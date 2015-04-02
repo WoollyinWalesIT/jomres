@@ -22,13 +22,13 @@ class jomres_generic_booking_cancel
 		return true;
 		}
 	
-	public function cancel_booking()
+	public function cancel_booking($delete_booking_id=false)
 		{
 		$cancellationSuccessful = false;
 		try
 			{
 			$this->validate();
-			$cancellationSuccessful = $this->apply_cancellation();
+			$cancellationSuccessful = $this->apply_cancellation($delete_booking_id);
 			return $cancellationSuccessful;
 			}
 		catch(Exception $e)
@@ -48,13 +48,13 @@ class jomres_generic_booking_cancel
 			throw new Exception("Error property_uid is not valid");
 			}
 		
-		$query = "SELECT contract_uid, booked_in, bookedout, cancelled FROM #__jomres_contracts WHERE contract_uid = '" . (int)$this->contract_uid . "' ";
+		$query = "SELECT contract_uid, booked_in, bookedout, cancelled , tag FROM #__jomres_contracts WHERE contract_uid = '" . (int)$this->contract_uid . "' ";
 		$contractDetails = doSelectSql( $query );
 		foreach ($contractDetails as $d)
 			{
 			if ( $d->contract_uid == 0)
 				{
-				throw new Exception(" Error contract_uid ".$this->contract_uid." doesn`t exists in the database");
+				throw new Exception(" Error contract_uid ".$this->contract_uid." doesn`t exist in the database");
 				}
 			if ( $d->booked_in == 1)
 				{
@@ -69,7 +69,7 @@ class jomres_generic_booking_cancel
 				throw new Exception(" Error, booking is already cancelled");
 				}
 			}
-
+		$this->tag;
 		return true;
 		}
 	
@@ -84,7 +84,7 @@ class jomres_generic_booking_cancel
 		return true;
 		}
 	
-	private function apply_cancellation() 
+	private function apply_cancellation($delete_booking_id = false) 
 		{
 		//delete from room bookings table
 		$query 	= "DELETE FROM #__jomres_room_bookings 
@@ -97,14 +97,19 @@ class jomres_generic_booking_cancel
 			}
 		
 		//update contract details (set as cancelled)
+		$delete_clause = "";
+		if ( $delete_booking_id )
+			$delete_clause = "`tag` = 'Booking ".$this->tag." moved',"
 		$query = "UPDATE #__jomres_contracts 
 					SET `cancelled`='1', 
+						".$delete_clause ."
 						`cancelled_timestamp` = '" . date( 'Y-m-d H:i:s' ) . "', 
 						`cancelled_reason` = '" . $this->reason . "',
 						`approved` = '".$this->approved."' 
 					WHERE contract_uid = '" . (int) $this->contract_uid . "'
 					AND property_uid = '" . (int) $this->property_uid . "' 
 					";
+
 		if ( !doInsertSql( $query, "" ) )
 			{
 			throw new Exception("Unable to update cancellations data for contract" . (int) $this->contract_uid . ", mysql db failure.");
