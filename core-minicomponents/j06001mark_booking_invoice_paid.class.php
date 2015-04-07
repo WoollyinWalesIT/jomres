@@ -35,36 +35,37 @@ class j06001mark_booking_invoice_paid
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = true;
-
 			return;
 			}
+		
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-		if ( !$thisJRUser->userIsManager ) return;
+		if ( !$thisJRUser->userIsManager ) 
+			return;
 
-		$id = intval( jomresGetParam( $_REQUEST, 'id', 0 ) );
-
+		$invoice_id = intval( jomresGetParam( $_REQUEST, 'id', 0 ) );
+		
+		if ( $invoice_id == 0 ) 
+			return;
+			
 		$property_uid = getDefaultProperty();
-		$query        = "SELECT contract_id FROM #__jomresportal_invoices WHERE id = " . $id . " AND property_uid = " . (int) $property_uid; // Need to associate the invoice id and the property uid. If we don't, then it could be a commission type invoice, which is not associated with a property uid and we don't want managers marking them as paid.
-		$result       = doSelectSql( $query, 1 );
+		
+		$query = "SELECT contract_id FROM #__jomresportal_invoices WHERE id = " . $invoice_id . " AND property_uid = " . (int) $property_uid; // Need to associate the invoice id and the property uid. If we don't, then it could be a commission type invoice, which is not associated with a property uid and we don't want managers marking them as paid.
+		$result = doSelectSql( $query, 1 );
+		
 		if ( !$result )
 			{
 			trigger_error( "Unable to view invoice, cannot corrolate id with property uid.", E_USER_ERROR );
-
 			return;
 			}
 
-		if ( $id == 0 ) return;
+		jr_import( 'jrportal_invoice' );
+		$invoice = new jrportal_invoice();
+		$invoice->id = $invoice_id;
+		$invoice->getInvoice();
+		$invoice->mark_invoice_paid();
 
-		jr_import( 'invoicehandler' );
-		$invoice_handler     = new invoicehandler();
-		$invoice_handler->id = $id;
-
-		$invoice_handler->getInvoice();
-
-		$invoice_handler->mark_invoice_paid();
-
-		addBookingNote( $invoice_handler->contract_id, $property_uid, jr_gettext( '_JOMRES_INVOICE_MARKEDASPAID', _JOMRES_INVOICE_MARKEDASPAID, false, false ) );
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . '&task=view_invoice&id=' . $id ), "" );
+		addBookingNote( $invoice->contract_id, $property_uid, jr_gettext( '_JOMRES_INVOICE_MARKEDASPAID', _JOMRES_INVOICE_MARKEDASPAID, false, false ) );
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . '&task=view_invoice&id=' . $invoice_id ), "" );
 		}
 
 	function touch_template_language()
@@ -93,5 +94,3 @@ class j06001mark_booking_invoice_paid
 		return null;
 		}
 	}
-
-?>

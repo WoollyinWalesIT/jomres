@@ -2616,3 +2616,5 @@ jr_define('_JOMRES_TEST_EMAIL_CONTENT',"This is a test email from your booking s
 jr_define('_JOMRES_TEST_EMAIL_RESULT_SUCCESS',"Test email sent successfully");
 jr_define('_JOMRES_TEST_EMAIL_RESULT_FAILURE',"Test email was not sent");
 
+
+jr_define('_INVOICE_TRANSACTIONS',"Transactions");

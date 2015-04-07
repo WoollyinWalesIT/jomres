@@ -496,10 +496,9 @@ class j02260editbooking
 
 		if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['invoice_uid'] > 0 )
 			{
-			jr_import( "invoicehandler" );
-			$invoice = new invoicehandler();
+			jr_import( "jrportal_invoice" );
+			$invoice = new jrportal_invoice();
 			$invoice->id = $current_contract_details->contract[$contract_uid]['contractdeets']['invoice_uid'];
-			$invoice->getInvoice();
 			$remaindertopay = $invoice->get_line_items_balance();
 			}
 		else
@@ -509,6 +508,9 @@ class j02260editbooking
 			else
 				$remaindertopay = $otherServiceTotal + $current_contract_details->contract[$contract_uid]['contractdeets']['contract_total'];
 			}
+		
+		$output['HROOM_TOTAL'] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', _JOMRES_AJAXFORM_BILLING_ROOM_TOTAL );
+		$output['ROOM_TOTAL'] = output_price( $current_contract_details->contract[$contract_uid]['contractdeets']['room_total'] );
 		
 		if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['deposit_paid'] == 1 ) 
 			$depositPaid = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES );

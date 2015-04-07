@@ -188,6 +188,7 @@ class jomres_toolbar_bootstrap
 		if ( strpos( $image, 'ViewArchive.png' ) ) $icon = 'icon-archive';
 		if ( strpos( $image, 'BookGuestIn.png' ) ) $icon = 'icon-plus';
 		if ( strpos( $image, 'BookGuestOut.png' ) ) $icon = 'icon-minus';
+		if ( strpos( $image, 'Printer.png' ) ) $icon = 'icon-printer';
 
 		//var_dump($image." ".$icon);
 

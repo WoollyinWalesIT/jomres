@@ -46,7 +46,7 @@ class j06005list_invoices_ajax
 		$rows = array ();
 		
 		//set the table coulmns, in the exact orcer in which they`re displayed in the table
-		$aColumns = array( 'a.id','a.id','d.tag','a.property_uid','c.firstname','c.surname','b.name','a.raised_date','a.due_date','a.paid','b.init_total_inclusive','a.init_total','a.recur_total','a.status');
+		$aColumns = array( 'a.id','a.id','d.tag','a.property_uid','c.firstname','c.surname','b.name','a.raised_date','a.due_date','a.paid','b.init_total_inclusive','a.init_total','a.status');
 		
 		/*
 		 * Paging
@@ -174,7 +174,6 @@ class j06005list_invoices_ajax
 					a.due_date, 
 					a.paid, 
 					a.init_total, 
-					a.recur_total,
 					a.currencycode,
 					a.contract_id, 
 					a.subscription,
@@ -311,7 +310,6 @@ class j06005list_invoices_ajax
 			$r[] = $p->paid;
 			$r[] = output_price($p->grand_total,$p->currencycode);
 			$r[] = output_price($p->init_total,$p->currencycode);
-			$r[] = output_price($p->recur_total,$p->currencycode);
 			
 			//paypal stuff
 			if (((int)$p->is_commission == 1 || (int)$p->subscription == 1) && (int)$p->status == 3 && $paypal_settings[ 'email' ] != "")
@@ -345,6 +343,7 @@ class j06005list_invoices_ajax
 		 * Return the json encoded data to populate the table rows
 		 */
 		echo json_encode( $output );
+		exit;
 		}
 
 

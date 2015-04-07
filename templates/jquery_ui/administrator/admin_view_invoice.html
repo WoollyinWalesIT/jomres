@@ -1,21 +1,100 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<table width="100%" border="0" class="ui-widget-content ui-corner-all">
-	<tr>
-		<patTemplate:tmpl name="viewbooking_link" type="simpleCondition" requiredVars="viewbooking_text">
-			<td><a href="{VIEWBOOKING_LINK}" target="_blank">{VIEWBOOKING_TEXT}</a></td>
-		</patTemplate:tmpl>
-		<td><a href="{PRINTLINK}" target="_blank">{PRINTTEXT}</a></td>
-		<patTemplate:tmpl name="markaspaid_link" type="simpleCondition" requiredVars="markaspaid_text">
-			<td><a href="{MARKASPAID_LINK}" target="_blank">{MARKASPAID_TEXT}</a></td>
-		</patTemplate:tmpl>
-	</tr>
-</table>
-
+{JOMRESTOOLBAR}
 <h2>{HINVOICENO}: {ID}</h2>
 <table width="100%" border="0">
 	<tr>
-		<td width="50%" valign="top">{BUSINESS_DETAILS_TEMPLATE}</td>
-		<td valign="top">{CLIENT_DETAILS_TEMPLATE}</td>
+		<td width="50%" valign="top">
+			<table class="ui-widget-content ui-corner-all" width="100%" border="0">
+				<tr>
+					<td width="30%"><strong>{HBUSINESSNAME}</strong></td>
+					<td>{SITE_BUSINESS_NAME}</td>
+				</tr>
+				<tr>
+					<td><strong>{HHOUSENO}</strong></td>
+					<td>{SITE_BUSINESS_HOUSENO}</td>
+				</tr>
+				<tr>
+					<td><strong>{HSTREET}</strong></td>
+					<td>{SITE_BUSINESS_STREET}</td>
+				</tr>
+				<tr>
+					<td><strong>{HTOWN}</strong></td>
+					<td>{SITE_BUSINESS_TOWN}</td>
+				</tr>
+				<tr>
+					<td><strong>{HREGION}</strong></td>
+					<td>{SITE_BUSINESS_REGION}</td>
+				</tr>
+				<tr>
+					<td><strong>{HPOSTCODE}</strong></td>
+					<td>{SITE_BUSINESS_POSTCODE}</td>
+				</tr>
+				<tr>
+					<td><strong>{HCOUNTRY}</strong></td>
+					<td>{SITE_BUSINESS_COUNTRY}</td>
+				</tr>
+				<tr>
+					<td><strong>{HTELEPHONE}</strong></td>
+					<td>{SITE_BUSINESS_TELEPHONE}</td>
+				</tr>
+				<tr>
+					<td><strong>{HEMAIL}</strong></td>
+					<td>{SITE_BUSINESS_EMAIL}</td>
+				</tr>
+				<tr>
+					<td><strong>{HVATNO}</strong></b></th>
+					<td>{SITE_BUSINESS_VATNO}</th>
+				</tr>
+			</table>
+		</td>
+		<td valign="top">
+			<table class="ui-widget-content ui-corner-all" width="100%" border="0">
+				<tr>
+					<td width="30%"><strong>{HFIRSTNAME}</strong></td>
+					<td>{FIRSTNAME} {SURNAME}</td>
+				</tr>
+				<tr>
+					<td><strong>{HHOUSENO}</strong></td>
+					<td>{HOUSE}</td>
+				</tr>
+				<tr>
+					<td><strong>{HSTREET}</strong></td>
+					<td>{STREET}</td>
+				</tr>
+				<tr>
+					<td><strong>{HTOWN}</strong></td>
+					<td>{TOWN}</td>
+				</tr>
+				<tr>
+					<td><strong>{HREGION}</strong></td>
+					<td>{REGION}</td>
+				</tr>
+				<tr>
+					<td><strong>{HPOSTCODE}</strong></td>
+					<td>{POSTCODE}</td>
+				</tr>
+				<tr>
+					<td><strong>{HCOUNTRY}</strong></td>
+					<td>{COUNTRY}</td>
+				</tr>
+				<tr>
+					<td><strong>{HLANDLINE}</strong></td>
+					<td>{LANDLINE}</td>
+				</tr>
+				<tr>
+					<td><strong>{HMOBILE}</strong></td>
+					<td>{MOBILE}</td>
+				</tr>
+				<tr>
+					<td><strong>{HEMAIL}</strong></td>
+					<td>{EMAIL}</td>
+				</tr>
+				<tr>
+					<td><strong>{HVATNO}</strong></b></th>
+					<td>{VATNO}</th>
+				</tr>
+			</table>
+		</td>
 	</tr>
 </table>
 <br/>
@@ -23,11 +102,6 @@
 <h3>{PAGETITLE}</h3>
 
 <table class="ui-widget-content ui-corner-all" width="100%" border="0">
-	{ARRIVAL_DEPARTURE_SNIPPET}
-	<tr>
-		<th class="ui-state-default" width="30%">{_JOMRES_BOOKING_NUMBER}</th>
-		<td>{BOOKING_NUMBER}</td>
-	</tr>
 	<tr>
 		<th class="ui-state-default">{HSTATUS}</th>
 		<td>{STATUS}</td>
@@ -131,15 +205,4 @@
 		</tr>
 	</tbody>
 </table>
-<br />
-<patTemplate:tmpl name="immediate_pay" type="simpleCondition" requiredVars="IMMEDIATE">
-	<table width="100%" border="0">
-		<tr>
-			<td width="100%" align="center"><p>{IMMEDIATE}</p></td>
-		</tr>
-		<tr>
-			<td align="center"><a href="{JOMRES_SITEPAGE_URL}&task=immediatepay&id={INV_ID}"><img src="{LIVESITE}/{JOMRES_ROOT_DIRECTORY}/images/btn_paynowCC_LG.gif"/></a></td>
-		</tr>
-	</table>
-</patTemplate:tmpl>
 </patTemplate:tmpl>
