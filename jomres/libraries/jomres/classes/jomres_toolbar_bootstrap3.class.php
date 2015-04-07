@@ -184,6 +184,7 @@ class jomres_toolbar_bootstrap
 		if ( strpos( $image, 'ViewArchive.png' ) ) $icon = 'fa-archive';
 		if ( strpos( $image, 'BookGuestIn.png' ) ) $icon = 'fa-sign-in';
 		if ( strpos( $image, 'BookGuestOut.png' ) ) $icon = 'fa-sign-out';
+		if ( strpos( $image, 'Printer.png' ) ) $icon = 'fa-print';
 
 		//var_dump($image." ".$icon);
 

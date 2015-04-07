@@ -30,21 +30,18 @@ class j16000edit_invoice
 		$rows       = array ();
 
 		$id = intval( jomresGetParam( $_REQUEST, 'id', 0 ) );
-		jr_import( 'invoicehandler' );
-		$invoice = new invoicehandler();
+		
 		if ( $id > 0 )
 			{
-			$invoice->id = $id;
-			$invoice->getInvoice();
+			$invoice = jomres_singleton_abstract::getInstance( 'basic_invoice_details' );
+			$invoice->gatherData($id);
 			}
 
 		$output[ 'PAGETITLE' ]     = jr_gettext( "_JRPORTAL_INVOICES_TITLE", _JRPORTAL_INVOICES_TITLE,false );
-		$output[ 'LIVESITE' ]      = get_showtime( 'live_site' );
 		$output[ 'HUSER' ]         = jr_gettext( "_JRPORTAL_INVOICES_USER", _JRPORTAL_INVOICES_USER,false );
 		$output[ 'HSTATUS' ]       = jr_gettext( "_JRPORTAL_INVOICES_STATUS", _JRPORTAL_INVOICES_STATUS,false );
 		$output[ 'HRAISED' ]       = jr_gettext( "_JRPORTAL_INVOICES_RAISED", _JRPORTAL_INVOICES_RAISED,false );
 		$output[ 'HDUE' ]          = jr_gettext( "_JRPORTAL_INVOICES_DUE", _JRPORTAL_INVOICES_DUE,false );
-		$output[ 'HSUBSCRIPTION' ] = jr_gettext( "_JRPORTAL_INVOICES_SUBSCRIPTION", _JRPORTAL_INVOICES_SUBSCRIPTION,false );
 		$output[ 'HINITTOTAL' ]    = jr_gettext( "_JRPORTAL_INVOICES_INITTOTAL", _JRPORTAL_INVOICES_INITTOTAL,false );
 		$output[ 'HRECURTOTAL' ]   = jr_gettext( "_JRPORTAL_INVOICES_RECUR_TOTAL", _JRPORTAL_INVOICES_RECUR_TOTAL,false );
 		$output[ 'HFREQ' ]         = jr_gettext( "_JRPORTAL_INVOICES_RECUR_FREQUENCY", _JRPORTAL_INVOICES_RECUR_FREQUENCY,false );
@@ -70,33 +67,30 @@ class j16000edit_invoice
 		if ( $id > 0 )
 			{
 			$output[ 'ID' ] = $invoice->id;
-			if ( $invoice->status != 1 ) $output[ 'STATUS' ] = invoices_makeInvoiceStatusDropdown( $invoice->status );
+			
+			if ( $invoice->status != 1 ) 
+				$output[ 'STATUS' ] = invoices_makeInvoiceStatusDropdown( $invoice->status );
 			else
-			$output[ 'STATUS' ] = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PAID", _JRPORTAL_INVOICES_STATUS_PAID,false );
+				$output[ 'STATUS' ] = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PAID", _JRPORTAL_INVOICES_STATUS_PAID,false );
 
-			$output[ 'USER' ]                               = jr_gettext( "_JRPORTAL_INVOICES_USER", _JRPORTAL_INVOICES_USER,false );
+			$output[ 'USER' ] = jr_gettext( "_JRPORTAL_INVOICES_USER", _JRPORTAL_INVOICES_USER,false );
 			$output[ '_JOMRES_ADMIN_LISTALLUSERSINVOICES' ] = jr_gettext( "_JOMRES_ADMIN_LISTALLUSERSINVOICES", _JOMRES_ADMIN_LISTALLUSERSINVOICES,false );
 
 			jr_import( 'jrportal_user_functions' );
-			$user_obj                      = new jrportal_user_functions();
-			$user_deets                    = $user_obj->getJoomlaUserDetailsForJoomlaId( $invoice->cms_user_id );
+			$user_obj = new jrportal_user_functions();
+			$user_deets = $user_obj->getJoomlaUserDetailsForJoomlaId( $invoice->cms_user_id );
 			$output[ 'USERSINVOICESLINK' ] = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=list_usersinvoices&id=' . $invoice->cms_user_id . '">' . $user_deets[ 'name' ] . '</a>';
-			$output[ 'RAISED' ]            = $invoice->raised_date;
-			$output[ 'DUE' ]               = $invoice->due_date;
-			if ( $invoice->subscription == "1" ) $output[ 'SUBSCRIPTION' ] = jr_gettext( "_JOMRES_COM_MR_YES", _JOMRES_COM_MR_YES,false );
-			else
-			$output[ 'SUBSCRIPTION' ] = jr_gettext( "_JOMRES_COM_MR_NO", _JOMRES_COM_MR_NO,false );
-			$output[ 'INITTOTAL' ] = $invoice->init_total;
+			$output[ 'RAISED' ]         = $invoice->raised_date;
+			$output[ 'DUE' ]            = $invoice->due_date;
+			$output[ 'INITTOTAL' ]		= $invoice->init_total;
+			$output[ 'RECURTOTAL' ]   	= $invoice->recur_total;
+			$output[ 'FREQ' ]         	= $invoice->recur_frequency;
+			$output[ 'CURRENCYCODE' ] 	= $invoice->currencycode;
 
-			$output[ 'RECURTOTAL' ]   = $invoice->recur_total;
-			$output[ 'FREQ' ]         = $invoice->recur_frequency;
-			$output[ 'CURRENCYCODE' ] = $invoice->currencycode;
-
-			$lineitems = invoices_getalllineitems_forinvoice( $id );
 			$counter   = 0;
-			if ( count( $lineitems ) > 0 )
+			if ( count( $invoice->lineitems ) > 0 )
 				{
-				foreach ( $lineitems as $li )
+				foreach ( $invoice->lineitems as $li )
 					{
 					$r                              = array ();
 					$r[ 'ID' ]                      = $li[ 'id' ];
@@ -127,20 +121,18 @@ class j16000edit_invoice
 			$output[ 'ID' ] = $invoice->id;
 
 			$output[ 'STATUS' ] = invoices_makeInvoiceStatusDropdown( $invoice->status );
-			$output[ 'USER' ]   = jr_gettext( "_JRPORTAL_INVOICES_USER", _JRPORTAL_INVOICES_USER,false );
+			$output[ 'USER' ] = jr_gettext( "_JRPORTAL_INVOICES_USER", _JRPORTAL_INVOICES_USER,false );
+			
 			jr_import( 'jrportal_user_functions' );
-			$user_obj                      = new jrportal_user_functions();
-			$user_deets                    = $user_obj->getJoomlaUserDetailsForJoomlaId( $invoice->cms_user_id );
+			$user_obj = new jrportal_user_functions();
+			$user_deets = $user_obj->getJoomlaUserDetailsForJoomlaId( $invoice->cms_user_id );
 			$output[ 'USERSINVOICESLINK' ] = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=list_usersinvoices&id=' . $invoice->cms_user_id . '">' . $user_deets[ 'name' ] . '</a>';
-			$output[ 'RAISED' ]            = $invoice->raised_date;
-			$output[ 'DUE' ]               = $invoice->due_date;
-			if ( $invoice->subscription == "1" ) $output[ 'SUBSCRIPTION' ] = jr_gettext( "_JOMRES_COM_MR_YES", _JOMRES_COM_MR_YES,false );
-			else
-			$output[ 'SUBSCRIPTION' ] = jr_gettext( "_JOMRES_COM_MR_NO", _JOMRES_COM_MR_NO,false );
-			$output[ 'INITTOTAL' ]    = $invoice->init_total;
-			$output[ 'RECURTOTAL' ]   = $invoice->recur_total;
-			$output[ 'FREQ' ]         = $invoice->recur_frequency;
-			$output[ 'CURRENCYCODE' ] = $invoice->currencycode;
+			$output[ 'RAISED' ] 		= $invoice->raised_date;
+			$output[ 'DUE' ] 			= $invoice->due_date;
+			$output[ 'INITTOTAL' ]    	= $invoice->init_total;
+			$output[ 'RECURTOTAL' ]   	= $invoice->recur_total;
+			$output[ 'FREQ' ]         	= $invoice->recur_frequency;
+			$output[ 'CURRENCYCODE' ] 	= $invoice->currencycode;
 
 			$r[ 'ID' ]                      = $li[ 'id' ];
 			$r[ 'LI_NAME' ]                 = $li[ 'name' ];
@@ -162,22 +154,18 @@ class j16000edit_invoice
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
-		
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=list_invoices", '' );
 		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_invoice' );
-
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = JOMRES_SITEPAGE_URL_ADMIN;
-
 		$pageoutput[ ] = $output;
-		$tmpl          = new patTemplate();
+		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-
-		if ( $id > 0 ) $tmpl->readTemplatesFromInput( 'edit_invoice.html' );
+		if ( $id > 0 ) 
+			$tmpl->readTemplatesFromInput( 'edit_invoice.html' );
 		else
-		$tmpl->readTemplatesFromInput( 'new_invoice.html' );
+			$tmpl->readTemplatesFromInput( 'new_invoice.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'rows', $rows );
 		$tmpl->displayParsedTemplate();
@@ -189,5 +177,3 @@ class j16000edit_invoice
 		return null;
 		}
 	}
-
-?>

@@ -37,12 +37,16 @@ class j06005muviewbooking
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = true;
-
 			return;
 			}
+		
 		if ( $thisJRUser->userIsRegistered )
 			{
-			$contract_uid           = jomresGetParam( $_REQUEST, 'contract_uid', 0 );
+			$contract_uid = jomresGetParam( $_REQUEST, 'contract_uid', 0 );
+			
+			if ( $contract_uid == 0 ) 
+				return;
+			
 			$output[ 'HARRIVAL' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL, $editable = false, $isLink = false );
 			$output[ 'HDEPARTURE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE, $editable = false, $isLink = false );
 			$output[ 'HTOTAL' ]     = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTAL', _JOMRES_AJAXFORM_BILLING_TOTAL, $editable = false, $isLink = false );
@@ -52,8 +56,7 @@ class j06005muviewbooking
 			$output[ 'TITLE' ]      = jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKING', _JOMCOMP_MYUSER_VIEWBOOKING, $editable = false, $isLink = false );
 
 			$pageoutput = array ();
-			$output     = array ();
-			if ( $contract_uid == 0 ) return;
+			$output = array ();
 
 			$allGuestUids = array ();
 			$query        = "SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '" . (int) $thisJRUser->id . "' ";
@@ -114,8 +117,8 @@ class j06005muviewbooking
 							}
 						}
 					}
-				$query              = "SELECT * FROM #__jomres_room_classes WHERE room_classes_uid IN (".implode(',',$room_classes_uid).") ";
-				$rClass             = doSelectSql( $query );
+				$query = "SELECT * FROM #__jomres_room_classes WHERE room_classes_uid IN (".implode(',',$room_classes_uid).") ";
+				$rClass = doSelectSql( $query );
 				$this->editBooking_html( $contract_uid, $bookingData, $extraBillingData, $guestData, $roomBookingData, $roomInfo, $rClass, $rFeatures, $mrConfig );
 				}
 			}
@@ -533,12 +536,12 @@ class j06005muviewbooking
 			</tr>' );
 		$query       = "SELECT invoice_uid FROM #__jomres_contracts WHERE contract_uid = " . $booking_contract_uid . " LIMIT 1 ";
 		$invoice_uid = (int) doSelectSql( $query, 1 );
+		
 		if ( $invoice_uid > 0 )
 			{
-			jr_import( "invoicehandler" );
-			$invoice     = new invoicehandler();
+			jr_import( "jrportal_invoice" );
+			$invoice = new jrportal_invoice();
 			$invoice->id = $invoice_uid;
-			$invoice->getInvoice();
 			$remaindertopay = $invoice->get_line_items_balance();
 			}
 		else
@@ -547,6 +550,7 @@ class j06005muviewbooking
 			else
 			$remaindertopay = $otherServiceTotal + $booking_contract_total;
 			}
+		
 		$contentPanel->setcontent( '
 			<tr>
 				<td>' . jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY', _JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY ) . '</td>

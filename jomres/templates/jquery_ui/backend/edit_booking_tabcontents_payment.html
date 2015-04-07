@@ -1,24 +1,38 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<table width="100%" border="0">
 		<tr>
-			<td width="30%">{_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID}</td>
-			<td>{DEPOSITPAID}</td>
+			<td width="30%">{HROOM_TOTAL}</td>
+			<td>{ROOM_TOTAL}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON}</td>
+			<td>{SINGLE_PERSON_SUPPLIMENT}</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<hr/>
+			</td>
 		</tr>
 		<tr>
 			<td>{_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED}</td>
 			<td>{BOOKING_DEPOSIT_REQUIRED}</td>
 		</tr>
 		<tr>
-			<td>{_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL}</td>
-			<td>{BOOKING_CONTRACT_TOTAL}</td>
+			<td width="30%">{_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID}</td>
+			<td>{DEPOSITPAID}</td>
 		</tr>
 		<tr>
 			<td>{_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF}</td>
 			<td>{BOOKING_DEPOSIT_REF}</td>
 		</tr>
+		<!--<tr>
+			<td>{_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL}</td>
+			<td>{BOOKING_CONTRACT_TOTAL}</td>
+		</tr>-->
 		<tr>
-			<td>{_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON}</td>
-			<td>{SINGLE_PERSON_SUPPLIMENT}</td>
+			<td colspan="2">
+				<hr/>
+			</td>
 		</tr>
 		<tr>
 			<td>{_JOMRES_COM_FRONT_ROOMTAX}</td>
@@ -65,7 +79,7 @@
 		</tr>
 		<tr>
 			<td><strong>{_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL}</strong></td>
-			<td>{GRAND_TOTAL}</td>
+			<td><strong>{GRAND_TOTAL}</strong></td>
 		</tr>
 		<tr>
 			<td>{_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY}</td>

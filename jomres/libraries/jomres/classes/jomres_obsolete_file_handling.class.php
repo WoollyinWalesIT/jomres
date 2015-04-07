@@ -984,8 +984,20 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file( $this->dir_minicomponents . 'j03020insertbooking_amendinvoice.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j00013dashboard.class.php' );
+		
+		$this->add_obs_file( $this->dir_classes . 'invoicehandler.class.php' );
+		$this->add_obs_file( $this->dir_classes . 'jrportal_lineitem.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j10002listbookings.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000listbookings.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j10002commission_invoices.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000list_usersinvoices.class.php' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'invoice_recurring_row_snippet.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'invoice_recurring_row_snippet.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'invoice_recurring_row_snippet.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'invoice_arrival_snippet.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'invoice_arrival_snippet.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'invoice_arrival_snippet.html' );
 
-		$this->add_obs_dir( $this->dir_libraries . 'PHPMailer_v5.2.6' );
 		}
 
 	function add_obs_file( $path_and_file )

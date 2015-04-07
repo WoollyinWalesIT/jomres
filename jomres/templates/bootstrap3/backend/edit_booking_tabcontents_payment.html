@@ -1,34 +1,10 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <div class="row">
 	<div class="col-md-5">
-		<strong>{_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID}</strong>
+		<strong>{HROOM_TOTAL}</strong>
 	</div>
 	<div class="col-md-7">
-		{DEPOSITPAID}
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-5">
-		<strong>{_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED}</strong>
-	</div>
-	<div class="col-md-7">
-		{BOOKING_DEPOSIT_REQUIRED}
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-5">
-		<strong>{_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL}</strong>
-	</div>
-	<div class="col-md-7">
-		{BOOKING_CONTRACT_TOTAL}
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-5">
-		<strong>{_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF}</strong>
-	</div>
-	<div class="col-md-7">
-		{BOOKING_DEPOSIT_REF}
+		{ROOM_TOTAL}
 	</div>
 </div>
 <div class="row">
@@ -39,6 +15,32 @@
 		{SINGLE_PERSON_SUPPLIMENT}
 	</div>
 </div>
+<hr/>
+<div class="row">
+	<div class="col-md-5">
+		<strong>{_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED}</strong>
+	</div>
+	<div class="col-md-7">
+		{BOOKING_DEPOSIT_REQUIRED}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-5">
+		<strong>{_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID}</strong>
+	</div>
+	<div class="col-md-7">
+		{DEPOSITPAID}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-5">
+		<strong>{_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF}</strong>
+	</div>
+	<div class="col-md-7">
+		{BOOKING_DEPOSIT_REF}
+	</div>
+</div>
+<hr/>
 <div class="row">
 	<div class="col-md-5">
 		<strong>{_JOMRES_COM_FRONT_ROOMTAX}</strong>
@@ -47,6 +49,14 @@
 		{TAX}
 	</div>
 </div>
+<!--<div class="row">
+	<div class="col-md-5">
+		<strong>{_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL}</strong>
+	</div>
+	<div class="col-md-7">
+		{BOOKING_CONTRACT_TOTAL}
+	</div>
+</div>-->
 <hr/>
 <div class="row">
 	<div class="col-md-5">
@@ -99,7 +109,7 @@
 		<strong>{_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL}</strong>
 	</div>
 	<div class="col-md-7">
-		{GRAND_TOTAL}
+		<strong>{GRAND_TOTAL}</strong>
 	</div>
 </div>
 <div class="row">

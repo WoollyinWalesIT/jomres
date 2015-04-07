@@ -90,8 +90,8 @@ class jomres_gateway_handler
 							}
 						else
 							{
-							jr_import( 'invoicehandler' );
-							$invoice_handler     = new invoicehandler();
+							jr_import( 'jrportal_invoice' );
+							$invoice_handler     = new jrportal_invoice();
 							$invoice_handler->id = $pp_sent_invoice_id;
 							$invoice_handler->getInvoice();
 							switch ( $pp_sent_payment_status )

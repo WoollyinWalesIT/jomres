@@ -136,6 +136,7 @@ class j06005save_subscriber
 				$invoice_data                   = array ();
 				$invoice_data[ 'cms_user_id' ]  = $thisJRUser->id;
 				$invoice_data[ 'subscription' ] = true;
+				$invoice_data[ 'subscription_id' ] = $subscription->id;
 
 				$line_item_data = array ( 'tax_code_id' => $package->tax_code_id, 'name' => $package->name, 'description' => $package->description, 'init_price' => "0.00", 'init_qty' => "0", 'init_discount' => "0", 'recur_price' => number_format( $package->full_amount, 2 ), 'recur_qty' => "1", 'recur_discount' => "0.00" );
 				$line_items[ ]  = $line_item_data;
@@ -144,12 +145,14 @@ class j06005save_subscriber
 					$line_item_data = array ( 'tax_code_id' => $package->tax_code_id, 'name' => $package->name, 'description' => $package->description . " " . $package->property_limit . " " . jr_gettext( '_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES', _JOMCOMP_MYUSER_PUBLISHEDPROPERTIES, false ), 'init_price' => number_format( $subscription->trial_amount, 2 ), 'init_qty' => "1", 'init_discount' => "0", 'recur_price' => "0.00", 'recur_qty' => "1", 'recur_discount' => "0.00" );
 					$line_items[ ]  = $line_item_data;
 					}
-				jr_import( 'invoicehandler' );
-				$invoice_handler = new invoicehandler();
-				$invoice_handler->create_new_invoice( $invoice_data, $line_items );
-				$invoice_handler->subscription_id = $subscription->id;
-				$invoice_handler->mark_invoice_pending();
-				if ( !$subscribing_to_freebie ) $this->sendNewSubscription( $subscription, $subscriber, $invoice_handler->id, $invoice_handler->init_total, $invoice_handler->recur_total, $package->tax_code_id );
+				
+				jr_import( 'jrportal_invoice' );
+				$invoice = new jrportal_invoice();
+				$invoice->create_new_invoice( $invoice_data, $line_items );
+				$invoice->mark_invoice_pending();
+				
+				if ( !$subscribing_to_freebie ) 
+					$this->sendNewSubscription( $subscription, $subscriber, $invoice->id, $invoice->init_total, $invoice->recur_total, $package->tax_code_id );
 				else
 					{
 					// We need a dummy transaction it
@@ -167,7 +170,7 @@ class j06005save_subscriber
 					jr_import( 'jomres_gateway_handler' );
 					$transaction                                                 = new jomres_gateway_handler();
 					$internal_call_arguments                                     = array ();
-					$internal_call_arguments[ 'pp_sent_invoice_id' ]             = $invoice_handler->id;
+					$internal_call_arguments[ 'pp_sent_invoice_id' ]             = $invoice->id;
 					$internal_call_arguments[ 'pp_sent_receiver_email' ]         = $transaction->paypal_settings[ 'email' ];
 					$internal_call_arguments[ 'pp_sent_txn_id' ]                 = $dummy_txn_id;
 					$internal_call_arguments[ 'pp_sent_mc_gross' ]               = $subscription->trial_amount;

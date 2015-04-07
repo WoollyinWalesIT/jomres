@@ -435,6 +435,30 @@ function doTableUpdates()
 	if ( !checkManagerLastactiveColExists() ) alterManagerLastactiveCol();
 	if ( !checkContractsLastchangedColExists() ) alterContractsLastchangedCol();
 	if ( !checkPropertysLastchangedColExists() ) alterPropertysLastchangedCol();
+	if ( !checkLineitemsIspaymentColExists() ) alterLineitemsIspaymentCol();
+	}
+
+function checkLineitemsIspaymentColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomresportal_lineitems  LIKE 'is_payment'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+	return false;
+	}
+
+function alterLineitemsIspaymentCol()
+	{
+	output_message ( "Editing __jomresportal_lineitems table adding is_payment column");
+	$query = "ALTER TABLE `#__jomresportal_lineitems` ADD `is_payment`  TINYINT(1) DEFAULT 0 NOT NULL";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomresportal_lineitems is_payment", "danger" );
+		}
+	$query = 'ALTER TABLE #__jomresportal_lineitems MODIFY name varchar(255)';
+	$result = doInsertSql($query);
 	
 	}
 
@@ -2579,14 +2603,11 @@ function createJomresTables()
 		`init_discount` float NOT NULL default '0',
 		`init_total` float NOT NULL default '0',
 		`init_total_inclusive` float NOT NULL default '0',
-		`recur_price` float NOT NULL default '0',
-		`recur_qty` int(11) NOT NULL default '0',
-		`recur_discount` float NOT NULL default '0',
-		`recur_total` float NOT NULL default '0',
 		`tax_code` char(10),
 		`tax_description` char(200),
 		`tax_rate` float NOT NULL default '0',
 		`inv_id` int(11) NOT NULL COMMENT 'Invoice ID',
+		`is_payment`  TINYINT DEFAULT 0 NOT NULL,
 		PRIMARY KEY  (`id`)
 	)";
 	doInsertSql( $query, "" );
@@ -4597,6 +4618,7 @@ function addNewTables()
 		`tax_description` char(200),
 		`tax_rate` float NOT NULL default '0',
 		`inv_id` int(11) NOT NULL COMMENT 'Invoice ID',
+		`is_payment`  TINYINT DEFAULT 0 NOT NULL,
 		PRIMARY KEY  (`id`)
 	)";
 	if ( !doInsertSql( $query ) )

@@ -36,18 +36,15 @@ class j02150addservicetobill
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = true;
-
 			return;
 			}
 		$mrConfig    = getPropertySpecificSettings();
-		$saveMessage = _JOMRES_COM_ADDSERVICE_SAVEMESSAGE;
-
+		$saveMessage = jr_gettext( '_JOMRES_COM_ADDSERVICE_SAVEMESSAGE', _JOMRES_COM_ADDSERVICE_SAVEMESSAGE );
 		$contract_uid = jomresGetParam( $_REQUEST, 'contract_uid', 0 );
 
 		if ( !isset( $_POST[ 'service_description' ] ) )
 			{
 			$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_COM_ADDSERVICE_TITLE', _JOMRES_COM_ADDSERVICE_TITLE );
-
 			$output[ 'HSERVICEDESCRIPTION' ] = jr_gettext( '_JOMRES_COM_ADDSERVICE_DESCRIPTION', _JOMRES_COM_ADDSERVICE_DESCRIPTION );
 			$output[ 'HSERVICEVALUE' ]       = jr_gettext( '_JOMRES_COM_ADDSERVICE_VALUE', _JOMRES_COM_ADDSERVICE_VALUE );
 			$output[ 'HTAXRATE' ]            = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', _JRPORTAL_INVOICES_LINEITEMS_TAX_RATE );
@@ -55,13 +52,10 @@ class j02150addservicetobill
 			$output[ 'CONTRACTUID' ]     = $contract_uid;
 			$output[ 'TAXRATEDROPDOWN' ] = taxrates_makerateDropdown( array (), 1 );
 
-
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb   = $jrtbar->startTable();
-			
 			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=editBooking&contract_uid=$contract_uid" ), '' );
 			$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'addServiceToBill' );
-			
 			$jrtb .= $jrtbar->endTable();
 			$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
@@ -78,6 +72,7 @@ class j02150addservicetobill
 			$service_description = ucfirst( jomresGetParam( $_POST, 'service_description', '' ) );
 			$service_value       = convert_entered_price_into_safe_float (jomresGetParam( $_POST, 'service_value', '' ));
 			$taxrate             = jomresGetParam( $_POST, 'taxrate', 0 );
+			
 			jr_import( 'jrportal_taxrate' );
 			$tax_rate_class     = new jrportal_taxrate();
 			$tax_rate_class->id = $taxrate;
@@ -90,23 +85,29 @@ class j02150addservicetobill
 				if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_ADDSERVICE', _JOMRES_MR_AUDIT_ADDSERVICE, false ) ) ) trigger_error( "Unable to insert into extraservices table, mysql db failure", E_USER_ERROR );
 				else
 					{
+					jr_import( 'jrportal_invoice' );
+					$invoice = new jrportal_invoice();
+					$invoice->id = $invoice->get_invoice_id_by_contract_uid( $contract_uid );
 
-					$invoice        = invoices_getinvoicefor_contract_id( $contract_uid );
-					$line_items     = array ();
-					$line_item_data = array ( 'tax_code_id' => $taxrate, 'name' => $service_description, 'description' => '', 'init_price' => number_format( $service_value, 2, '.', '' ), 'init_qty' => "1", 'init_discount' => "0", 'recur_price' => "0.00", 'recur_qty' => "0", 'recur_discount' => "0.00" );
-					$line_items[ ]  = $line_item_data;
-					jr_import( 'invoicehandler' );
-					$invoice_handler     = new invoicehandler();
-					$invoice_handler->id = $invoice[ 'id' ];
-					if ( $invoice_handler->getInvoice() )
+					$line_item = array ( 'tax_code_id' => $taxrate, 
+											 'name' => $service_description, 
+											 'description' => '', 
+											 'init_price' => number_format( $service_value, 2, '.', '' ), 
+											 'init_qty' => "1", 
+											 'init_discount' => "0", 
+											 'recur_price' => "0.00", 
+											 'recur_qty' => "0", 
+											 'recur_discount' => "0.00" 
+											 );
+
+					if ( $invoice->getInvoice() )
 						{
-						$invoice_handler->add_line_item( $line_item_data );
-						$invoice_handler->commitUpdateInvoice();
+						$invoice->add_line_item( $line_item );
+						$invoice->commitUpdateInvoice();
 						}
 					else
 						{
 						echo "Error adding line item to invoice";
-
 						return;
 						}
 					jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=editBooking&contract_uid=$contract_uid" ), $saveMessage );
