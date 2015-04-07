@@ -978,7 +978,7 @@ function admins_first_run( $manual_trigger = false )
 	}
 
 // Adapted from http://uk.php.net/manual/en/function.time.php#89415
-function nicetime( $date )
+function jomres_nicetime( $date )
 	{
 	if ( empty( $date ) )
 		{

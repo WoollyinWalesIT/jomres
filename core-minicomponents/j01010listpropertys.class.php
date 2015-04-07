@@ -274,7 +274,7 @@ class j01010listpropertys
 						{
 						foreach ( $result as $r )
 							{
-							$date = nicetime( $r->ts );
+							$date = jomres_nicetime( $r->ts );
 							if ( $date != "" ) $lastBookedArray[ $r->property_uid ] = $date;
 							}
 						}
