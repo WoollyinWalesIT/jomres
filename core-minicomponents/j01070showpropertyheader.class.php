@@ -138,8 +138,8 @@ class j01070showpropertyheader
 			//Facebook meta data
 			jomres_cmsspecific_addcustomtag( '<meta property="og:url" content="' . jomres_cmsspecific_currenturl() . '" />' );
 			jomres_cmsspecific_addcustomtag( '<meta property="og:type" content="article" />' );
-			jomres_cmsspecific_addcustomtag( '<meta property="og:title" content="' . $current_property_details->property_name . '" />' );
-			jomres_cmsspecific_addcustomtag( '<meta property="og:description" content="' . jr_substr( strip_tags(  $current_property_details->property_description  ), 0, 200 ) . '...' . '" />' );
+			jomres_cmsspecific_addcustomtag( '<meta property="og:title" content="' . jomres_decode($current_property_details->property_name) . '" />' );
+			jomres_cmsspecific_addcustomtag( '<meta property="og:description" content="' . jomres_decode(jr_substr( strip_tags(  $current_property_details->property_description  ), 0, 200 )) . '...' . '" />' );
 			jomres_cmsspecific_addcustomtag( '<meta property="og:image" content="' . $output[ 'IMAGELARGE' ] . '" />' );
 
 

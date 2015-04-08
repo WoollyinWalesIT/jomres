@@ -442,7 +442,6 @@ function jomres_cmsspecific_stringURLSafe( $str )
 
 function jomres_cmsspecific_addcustomtag( $data )
 	{
-	$data     = jomres_decode( $data );
 	$document =& JFactory::getDocument();
 	$document->addCustomTag( $data );
 	}
