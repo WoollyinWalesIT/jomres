@@ -32,7 +32,7 @@ defined('_JOMRES_INITCHECK') or die;
 	wp_deregister_script( 'bootstrap' );
 	//wp_deregister_style();
 	
-	wp_register_script('jquery', '/'.JOMRES_ROOT_DIRECTORY.'/javascript/jquery-1.8.2.js' );
+	wp_register_script('jquery', '/'.JOMRES_ROOT_DIRECTORY.'/javascript/jquery-1.11.1.js' );
 	wp_enqueue_script('jquery');
 	
 	wp_register_script('jquery', '/'.JOMRES_ROOT_DIRECTORY.'/javascript/jquery-migrate.js' );
