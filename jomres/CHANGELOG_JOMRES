@@ -1,3 +1,38 @@
+<h3>Jomres 8.2.0 13/04/2015</h3>
+
+<span class="label label-success">Feature</span> Completely reworked the invoicing system to make it clearer what discounts etc have been added, balance payments are more obvious etc.
+<span class="label label-success">Feature</span> Added new functionality to show slideshow in the rooms list.
+<span class="label label-success">Feature</span> Added functionality to Email Settings tab in Site Config that allows you to test your email settings on the fly.
+<span class="label label-success">Feature</span> Added a nod to Sir Terry Pratchett.
+
+<span class="label label-warning">Change</span> Updated Polish lang file, thanks Patryk.
+<span class="label label-warning">Change</span> Removed one stray reference to Joomla from the getting started page, that shouldn't be there.
+<span class="label label-warning">Change</span> Changed how a "force consolidation" flag is used in css and js caching classes.
+<span class="label label-warning">Change</span> Modifed a template to ensure that administrator area templates are forced to use BS2 where applicable.
+<span class="label label-warning">Change</span> Improved J3.4 router.php
+<span class="label label-warning">Change</span> jr_gettext.php cleaned up, removing older comments and tidied up formatting.
+<span class="label label-warning">Change</span> Added property address details to generic booking email class.
+<span class="label label-warning">Change</span> The administrator BS3 template set was added in anticipation of Joomla adopting BS3 in the backend of J, however that hasn't happened so for now we will delete this directory's contents to ensure there isn't any confusion.
+<span class="label label-warning">Change</span> Administrator area's List Bookings view has been removed from the administrator menu.
+<span class="label label-warning">Change</span> Added Chinese language file mark for javascript calendar.
+<span class="label label-warning">Change</span> Depreciated phpmailer 5.2.6 in favour of 5.2.9
+<span class="label label-warning">Change</span> Renamed Alternate SMTP settings to Email settings.
+<span class="label label-warning">Change</span> Tweaked how the last viewed property uid is figured out.
+<span class="label label-warning">Change</span> Booking form in modal popup option removed from Bootstrap 2 & 3, the calendar doesn't stack properly within BS modals.
+<span class="label label-warning">Change</span> Updated the max input vars warning with a new url.
+<span class="label label-warning">Change</span> Added ability for generic booking cancel class to change a booking number. Beds24 bookings can be moved from property to property. To support that functionality we need to cancel the original booking so this change allows the beds24 plugin to change the original booking's booking number.
+<span class="label label-warning">Change</span> Renamed nicetime function to ensure that there isn't a conflict with Alpha User Points.
+<span class="label label-warning">Change</span> Changed when the cms specific functions file is included.
+
+
+<span class="label label-important label-danger">Fix</span> Tweaked how og: tags are created as they weren't working since a jomres_decode change.
+<span class="label label-important label-danger">Fix</span> Made a small tweak to the BS3 dashboard template to fix a label colour.
+<span class="label label-important label-danger">Fix</span> Fixed a jquery version included in WP fullsreen view.
+<span class="label label-important label-danger">Fix</span> Modified the J3.4 router, removing the xx-XX url that's now being added to urls. Doesn't affect functionality, this is for aesthetics only.
+<span class="label label-important label-danger">Fix</span> Added edit_tariffs_normal to sanity checks, prevents the tariffs warning from showing when on the edit_tariffs_normal page.
+<span class="label label-important label-danger">Fix</span> Fixed an issue where the modal could be behind the overlay in rooms list.
+<span class="label label-important label-danger">Fix</span> Changed BS3 sanity checks template css from error to danger.
+<span class="label label-important label-danger">Fix</span> Tweaked javascript script so that jquery is used in J2.5.
 
 <h3>Jomres 8.1.20 27/02/2015</h3>
 
