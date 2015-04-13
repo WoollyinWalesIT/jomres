@@ -43,10 +43,6 @@ class jomres_generic_booking_cancel
 			{
 			throw new Exception("Error contract_uid is not valid");
 			}
-		if ( $this->property_uid == 0 )
-			{
-			throw new Exception("Error property_uid is not valid");
-			}
 		
 		$query = "SELECT contract_uid, booked_in, bookedout, cancelled FROM #__jomres_contracts WHERE contract_uid = '" . (int)$this->contract_uid . "' ";
 		$contractDetails = doSelectSql( $query );
