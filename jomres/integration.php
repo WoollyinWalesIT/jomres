@@ -100,6 +100,7 @@ $scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "site_config.php" );
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "detect_cms.php" );
 require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "init_config_vars.php" );
+require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_functions.php" );
 
 define( 'JOMRES_SYSTEMLOG_PATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS );
 
@@ -118,16 +119,18 @@ PHPMailerAutoload('smtp');
 
 //require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomSearch.class.php');
 
-if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'code_changes' . JRDS . 'countries.php' ) ) require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'code_changes' . JRDS . 'countries.php' );
+if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'code_changes' . JRDS . 'countries.php' ) ) 
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'code_changes' . JRDS . 'countries.php' );
 else
 	{
-	if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . 'countries.php' ) ) require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . 'countries.php' );
+	if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . 'countries.php' ) ) 
+		require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . 'countries.php' );
 	else
-	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'countries.php' );
+		require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'countries.php' );
 	}
 
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'imagehandling.php' );
-require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_functions.php" );
+
 
 $performance_monitor->set_point( "post-inclusions" );
 
