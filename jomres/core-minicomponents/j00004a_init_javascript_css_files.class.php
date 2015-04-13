@@ -97,31 +97,30 @@ class j00004a_init_javascript_css_files
 			//$css_files[]= array( $themePath, $filename);
 			}
 
-		if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" )
+		
+		if ( !isset( $jrConfig[ 'jquery18_2_switch' ] ) )
 			{
-			if ( !isset( $jrConfig[ 'jquery18_2_switch' ] ) )
+			$jrConfig[ 'jquery18_2_switch' ] = 0; // By default the 19_2 switch will be set to No, so that jq 1.8 will be loaded.
+			}
+		
+		
+		if ( $jrConfig[ 'jquery18_2_switch' ] == "1" ) 
+			{
+			if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery' ] == "1" && !$management_view ) )
 				{
-				$jrConfig[ 'jquery18_2_switch' ] = 0; // By default the 19_2 switch will be set to No, so that jq 1.8 will be loaded.
-				}
-			
-			
-			if ( $jrConfig[ 'jquery18_2_switch' ] == "1" ) 
-				{
-				if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery' ] == "1" && !$management_view ) )
-					{
-					if ( _JOMRES_DETECTED_CMS != "joomla33" && _JOMRES_DETECTED_CMS != "joomla34" )
-						$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/", 'jquery-2.0.3.js');
-					}
-				}
-			else
-				{
-				if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery' ] == "1" && !$management_view ) )
-					{
-					if ( _JOMRES_DETECTED_CMS != "joomla33" && _JOMRES_DETECTED_CMS != "joomla34" )
-						$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery-1.11.1.js');
-					}
+				if ( _JOMRES_DETECTED_CMS != "joomla33" && _JOMRES_DETECTED_CMS != "joomla34" )
+					$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/", 'jquery-2.0.3.js');
 				}
 			}
+		else
+			{
+			if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery' ] == "1" && !$management_view ) )
+				{
+				if ( _JOMRES_DETECTED_CMS != "joomla33" && _JOMRES_DETECTED_CMS != "joomla34" )
+					$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery-1.11.1.js');
+				}
+			}
+			
 		if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery_ui' ] == "1" && !$management_view ) )
 			{
 			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery-ui-1.9.2.custom.js");
