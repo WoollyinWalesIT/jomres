@@ -52,20 +52,19 @@ class j02202a_update_invoice
 				{
 				$deposit_received = jomresGetParam( $_POST, 'deposit_received', 0.00 );
 				
+				$today = outputDate(date("Y/m/d"));
+				
 				jr_import( 'jrportal_invoice' );
 				$invoice = new jrportal_invoice();
 				$invoice->id = $invoice->get_invoice_id_by_contract_uid( $contractUid );
 				$invoice->getInvoice();
 
 				$line_items = array ( 'tax_code_id' => 0, 
-										 'name' => jr_gettext( '_JOMRES_MR_AUDIT_ENTEREDDEPOSIT', _JOMRES_MR_AUDIT_ENTEREDDEPOSIT, false, false ), 
+										 'name' => jr_gettext( '_JOMRES_MR_AUDIT_ENTEREDDEPOSIT', _JOMRES_MR_AUDIT_ENTEREDDEPOSIT, false, false ) . ' ( '.$today.' )', 
 										 'description' => '', 
 										 'init_price' => "-" . number_format( $deposit_received, 2, '.', '' ), 
 										 'init_qty' => 1, 
 										 'init_discount' => 0, 
-										 'recur_price' => 0.00, 
-										 'recur_qty' => 0, 
-										 'recur_discount' => 0.00,
 										 'is_payment' => 1 
 										 );
 				$invoice->add_line_item( $line_items );
