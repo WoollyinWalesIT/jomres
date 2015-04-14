@@ -61,6 +61,7 @@ class dobooking
 		$this->rate_pernight  = 0.00;
 		$this->rate_pernight_nodiscount  = 0.00;
 		$this->room_total_nodiscount = 0.00;
+		$this->discounts = array();
 		$this->total_in_party = 0;
 		$this->variancetypes  = array ();
 		$this->varianceuids   = array ();
@@ -194,6 +195,7 @@ class dobooking
 			$this->error                   = $bookingDeets[ 'error_log' ];
 			$this->room_total              = $bookingDeets[ 'room_total' ];
 			$this->room_total_nodiscount   = $bookingDeets[ 'room_total_nodiscount' ];
+			//$this->discounts			   = $bookingDeets[ 'discounts' ];
 			$this->total_in_party          = $bookingDeets[ 'total_in_party' ];
 			//if ($this->booker_class == "100")
 			//	$this->mininterval				= 1;
@@ -501,6 +503,7 @@ class dobooking
 		$tmpBookingHandler->tmpbooking[ "total_in_party" ]          = $this->total_in_party;
 		$tmpBookingHandler->tmpbooking[ "room_total" ]              = $this->room_total;
 		$tmpBookingHandler->tmpbooking[ "room_total_nodiscount" ]   = $this->room_total_nodiscount;
+		$tmpBookingHandler->tmpbooking[ "discounts" ]  				= $this->discounts;
 		$tmpBookingHandler->tmpbooking[ "timestamp" ]               = date( "Y-m-d H:i:s" );
 		$tmpBookingHandler->tmpbooking[ "mininterval" ]             = $this->mininterval;
 		$tmpBookingHandler->tmpbooking[ "coupon_id" ]               = $this->coupon_id;
@@ -5783,7 +5786,6 @@ class dobooking
 			}
 
 		$tmpBookingHandler = jomres_getSingleton( 'jomres_temp_booking_handler' );
-		$discountsForTmpdata = $tmpBookingHandler->getBookingFieldVal( "discounts" );
 
 		//Coupon discount
 		if ( $this->coupon_code != "" )
@@ -5833,8 +5835,7 @@ class dobooking
 					}
 				}
 
-			$discountsForTmpdata[] = array ( "type" => "Coupon", "roomtypeabbr" => "N/A", "discountfrom" => $old_room_total, "discountto" => $this->room_total );
-			$tmpBookingHandler->updateBookingField( "discounts", $discountsForTmpdata );
+			$this->discounts[] = array ( "type" => "Coupon", "roomtypeabbr" => "N/A", "discountfrom" => $old_room_total, "discountto" => $this->room_total );
 
 			$fb1      = jr_gettext( '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', _JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK, false, false );
 			$fb2      = jr_gettext( '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', _JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO, false, false );
@@ -5869,7 +5870,7 @@ class dobooking
 			$note = jr_gettext( '_JOMRES_PERSONAL_DISCOUNT', _JOMRES_PERSONAL_DISCOUNT, false, false ) . " " . output_price( $percentage_to_remove );
 			$this->addBookingNote( jr_gettext( '_JOMRES_PERSONAL_DISCOUNT', _JOMRES_PERSONAL_DISCOUNT, false ), $note );
 
-			$discountsForTmpdata[] = array ( "type" => "Personal", "roomtypeabbr" => "N/A", "discountfrom" => $old_room_total, "discountto" => $this->room_total );
+			$this->discounts[] = array ( "type" => "Personal", "roomtypeabbr" => "N/A", "discountfrom" => $old_room_total, "discountto" => $this->room_total );
 			}
 		else
 			$this->setErrorLog( "makeNightlyRoomCharges:: Guest does not benefit from any discount" );
@@ -5897,11 +5898,11 @@ class dobooking
 				$this->addBookingNote( jr_gettext( '_JOMRES_PARTNER_DISCOUNT', _JOMRES_PARTNER_DISCOUNT, false ), $note );
 				$this->setGuestPopupMessage( $note );
 				
-				$discountsForTmpdata[] = array ( "type" => "Partner", "roomtypeabbr" => "N/A", "discountfrom" => $old_room_total, "discountto" => $this->room_total );
+				$this->discounts[] = array ( "type" => "Partner", "roomtypeabbr" => "N/A", "discountfrom" => $old_room_total, "discountto" => $this->room_total );
 				}
 			}
 		
-		$tmpBookingHandler->updateBookingField( "discounts", $discountsForTmpdata );
+		$tmpBookingHandler->updateBookingField( "discounts", $this->discounts );
 
 		// Bypassing all the other calculations, if the price has been over-ridden, we'll just set the room total here instead.
 		if ( $thisJRUser->userIsManager && $this->override_room_total > 0 )
@@ -5915,7 +5916,8 @@ class dobooking
 				}
 			$this->room_total = $tmpRate;
 			$this->room_total_nodiscount = $tmpRate;
-			$tmpBookingHandler->updateBookingField( "discounts", array() );
+			$this->discounts = array();
+			$tmpBookingHandler->updateBookingField( "discounts", $this->discounts );
 			}
 
 		$tmpBookingHandler->saveBookingData();
@@ -6588,13 +6590,13 @@ class dobooking
 					//$discountedRate=$d['discountedRate'];
 					$discountOutput .= ' ' . $roomtype_abbr . jr_gettext( '_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', _JOMCOMP_WISEPRICE_HASBEENDISCOUNTED, false ) . output_price( $roomrate_foroutput ) . jr_gettext( '_JOMCOMP_WISEPRICE_TO', _JOMCOMP_WISEPRICE_TO, false ) . output_price( $discountedate_foroutput ) . ' <br/>';
 					$tmpBookingHandler->updateBookingField( "wisepricediscount", $discountOutput );
-					$discountsForTmpdata[ ] = array ( "type" => "MRP", "roomtypeabbr" => $roomtype_abbr, "discountfrom" =>  $roomrate, "discountto" => $d[ 'discountedRate' ] );
+					$this->discounts[ ] = array ( "type" => "MRP", "roomtypeabbr" => $roomtype_abbr, "discountfrom" =>  $roomrate, "discountto" => $d[ 'discountedRate' ] );
 					$tmpBookingHandler->saveBookingData();
 					}
 				else
 				$tmpBookingHandler->updateBookingField( "wisepricediscount", jr_gettext( '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', _JOMCOMP_WISEPRICE_NOTDISCOUNTED, false ) );
 				}
-			$tmpBookingHandler->updateBookingField( "discounts", $discountsForTmpdata );
+			$tmpBookingHandler->updateBookingField( "discounts", $this->discounts );
 			}
 		else
 			{
@@ -6930,8 +6932,6 @@ class dobooking
 		$tmpBookingHandler = jomres_getSingleton( 'jomres_temp_booking_handler' );
 		if ( $mrConfig[ 'lastminuteactive' ] == '1' )
 			{
-			$discountsForTmpdata = $tmpBookingHandler->getBookingFieldVal( "discounts" );
-			$tmpBookingHandler->updateBookingField( array () );
 			$datesTilBooking    = $this->findDateRangeForDates( $this->today, $this->arrivalDate );
 			$lastminutediscount = (int) $mrConfig[ 'lastminutediscount' ];
 			if ( count( $datesTilBooking ) <= (int) $mrConfig[ 'lastminutethreshold' ] )
@@ -6942,18 +6942,18 @@ class dobooking
 				$this->room_total     = $this->room_total - $discount;
 				$this->total_discount = $discount;
 				$this->setErrorLog( "<b>calcLastMinuteDiscount:: Room total modified to: " . $this->room_total . "</b>" );
-				$disc_txt = jr_gettext( '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', _JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1, false ) . ' ' . jr_gettext( '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2', _JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2, false ) . ': ' . output_price( $discount );
+				$disc_txt = jr_gettext( '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', _JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1, false ) . ' ' . jr_gettext( '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2', _JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2, false ) . ': ' .output_price( $discount );
 				$this->echo_populate_div( '; populateDiv("discount","' . $disc_txt . '")' );
 				$tmpBookingHandler->updateBookingField( "lastminutediscount", $disc_txt );
 				$tmpBookingHandler->updateBookingField( "booking_discounted", true );
-				$discountsForTmpdata[ ] = array ( "type" => "SRP", "roomtypeabbr" => "N/A", "discountfrom" => $original_total, "discountto" => $this->room_total );
+				$this->discounts[] = array ( "type" => "SRP", "roomtypeabbr" => "N/A", "discountfrom" => $original_total, "discountto" => $this->room_total );
 				}
 			else
 				{
 				$this->echo_populate_div( '; populateDiv("discount","&nbsp;")' );
 				$tmpBookingHandler->updateBookingField( "lastminutediscount", jr_gettext( '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', _JOMCOMP_WISEPRICE_NOTDISCOUNTED, false ) );
 				}
-			$tmpBookingHandler->updateBookingField( "discounts", $discountsForTmpdata );
+			$tmpBookingHandler->updateBookingField( "discounts", $this->discounts );
 			}
 		else
 			{

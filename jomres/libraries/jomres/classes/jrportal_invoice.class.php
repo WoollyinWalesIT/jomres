@@ -767,13 +767,15 @@ class jrportal_invoice
 		$this->status = 1;
 		$this->paid = date( 'Y-m-d H:i:s' );
 		
+		$today = outputDate(date("Y/m/d"));
+		
 		$balance = $this->get_line_items_balance();
 		
 		$line_items = array ();
 		if ( number_format( $balance, 2, '.', '' ) > 0.00 )
 			{
 			$line_item_data = array ( 'tax_code_id' => 0, 
-									 'name' => jr_gettext( '_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT', _JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT, false, false ), 
+									 'name' => jr_gettext( '_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT', _JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT,false,false).' ( '.$today.' )', 
 									 'description' => '', 
 									 'init_price' => "-" . number_format( $balance, 2, '.', '' ), 
 									 'init_qty' => 1, 
