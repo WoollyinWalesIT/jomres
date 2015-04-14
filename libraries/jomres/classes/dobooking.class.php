@@ -6850,8 +6850,6 @@ class dobooking
 					$r = $this->getDiscountedRoomrate( $basic_room_rate, $percentageBooked );
 					//$this->setPopupMessage("Discount rate ".$r);
 					$old_room_rate = $basic_room_rate;
-					
-					$total_nodiscount += $old_room_rate;
 
 					$isDiscounted = false;
 					if ( $r < $basic_room_rate )
@@ -6864,6 +6862,10 @@ class dobooking
 					$tmpBookingHandler->updateBookingField( "wiseprice_discount", $disc );
 					$tmpBookingHandler->saveBookingData();
 					}
+				else
+					{
+					$old_room_rate = $basic_room_rate;
+					}
 				$this->room_allocations[ $room_id ][ 'price_per_night' ] = $basic_room_rate;
 				$this->room_allocations[ $room_id ][ 'price_per_night_nodiscount' ] = $old_room_rate;
 				}
@@ -6872,19 +6874,18 @@ class dobooking
 		$total = 0.00;
 		$total_nodiscount = 0.00;
 		$total_number_of_guests = 0;
+		
 		foreach ( $this->room_allocations as $room )
 			{
 			if ( $this->cfg_perPersonPerNight == "0" )
 				{
-				$per_night = $room[ 'price_per_night' ];
-				$total += $per_night;
+				$total += $room[ 'price_per_night' ];
 				$total_nodiscount += $room[ 'price_per_night_nodiscount' ];
 				}
 			else
 				{
-				$per_night = $room[ 'price_per_night' ] * $room[ 'number_allocated' ];
 				$total_number_of_guests += $room[ 'number_allocated' ];
-				$total += $per_night;
+				$total += ($room[ 'price_per_night' ] * $room[ 'number_allocated' ]);
 				$total_nodiscount += ($room[ 'price_per_night_nodiscount' ] * $room[ 'number_allocated' ]);
 				}
 			}
