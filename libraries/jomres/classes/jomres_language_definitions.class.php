@@ -21,10 +21,15 @@ class jomres_language_definitions
 		{
 		$siteConfig             = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig               = $siteConfig->get();
-		$this->language_context = $jrConfig[ 'language_context' ];
+		
+		if ($jrConfig[ 'language_context' ] != '')
+			$this->ptype = $jrConfig[ 'language_context' ];
+		else
+			$this->ptype = 0;
+		
 		$this->default_lang     = get_showtime( 'lang' );
+		$this->default_ptype	= $this->ptype;
 		$this->definitions      = array ();
-		$this->ptype            = $jrConfig[ 'language_context' ];
 		$this->lang             = get_showtime( 'lang' );
 		}
 
@@ -35,7 +40,9 @@ class jomres_language_definitions
 
 	function set_property_type( $ptype )
 		{
-		if ( is_null( $ptype ) ) $ptype = $this->language_context;
+		if ( is_null( $ptype ) ) 
+			$ptype = $this->default_ptype;
+		
 		$this->ptype = $ptype;
 		}
 
@@ -61,15 +68,12 @@ class jomres_language_definitions
 		if ( isset( $this->definitions[ $this->ptype ][ $constant ] ) ) 
 			return $this->definitions[ $this->ptype ][ $constant ];
 		else
-			return $this->definitions[ $this->language_context ][ $constant ];
+			return $this->definitions[ $this->default_ptype ][ $constant ];
 		}
 
 	function reset_lang_and_property_type()
 		{
 		$this->lang  = $this->default_lang;
-		$this->ptype = $this->language_context;
+		$this->ptype = $this->default_ptype;
 		}
 	}
-
-
-?>
