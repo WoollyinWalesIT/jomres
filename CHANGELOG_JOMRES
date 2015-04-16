@@ -1,3 +1,14 @@
+<h3>Jomres 8.2.1 16/04/2015</h3>
+
+<span class="label label-warning">Change</span> Updated propertyrental english language files to refer to Property, not Business.
+<span class="label label-warning">Change</span> Updated English lang propertyrental language files to refer to Rooms instead of Resources.
+<span class="label label-warning">Change</span> Fontawesome updated to 4.3
+<span class="label label-warning">Change</span> Removed old invoice functions that are no longer in use.
+Tweaked how languages are stored internally to reduce incidence of blank array keys, which can hinder translation in Microsoft Translation feature.
+
+<span class="label label-important label-danger">Fix</span> Modified booking engine to ensure discounts array is reset correctly, and modified invoice insertion to tidy up dates in the Accommodation line item.
+<span class="label label-important label-danger">Fix</span> Tweaked a new change for invoices, so that invoices are correct when micromanage is enabled.
+
 <h3>Jomres 8.2.0 13/04/2015</h3>
 
 <span class="label label-success">Feature</span> Completely reworked the invoicing system to make it clearer what discounts etc have been added, balance payments are more obvious etc.
