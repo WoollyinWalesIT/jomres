@@ -32,15 +32,16 @@ class j16000export_definitions
 		$definitions      = array ();
 		$siteConfig       = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig         = $siteConfig->get();
-		$language_context = $jrConfig[ 'language_context' ];
+		
+		if ($jrConfig[ 'language_context' ] != '')
+			$language_context = $jrConfig[ 'language_context' ];
+		else
+			$language_context = 0;
 
 		$jomres_language_definitions = jomres_singleton_abstract::getInstance( 'jomres_language_definitions' );
 
-		$all_context_definitions = $jomres_language_definitions->definitions[ $language_context ];
-
-		foreach ( $all_context_definitions as $const => $def )
+		foreach ($jomres_language_definitions->definitions[ $language_context ] as $const => $def )
 			{
-
 			$definitions[ $const ] = jr_gettext( $const, $def, false );
 			}
 
