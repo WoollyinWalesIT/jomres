@@ -56,7 +56,8 @@ class jomres_database
 			}
 		$this->system_tables = array ();
 		$this->error         = null;
-		$this->result        = null;
+		$this->stmt			 = null;
+		$this->result		 = null;
 		$showtime            = jomres_singleton_abstract::getInstance( 'showtime' );
 		$this->dbtype        = get_showtime( 'dbtype' );
 		
@@ -93,8 +94,8 @@ class jomres_database
 					{
 					die('ERROR: ' . $e->getMessage());
 					}
-				$this->PDOdb->query( "SET CHARACTER SET utf8" );
-				$this->PDOdb->query( "SET NAMES utf8" );
+				$this->PDOdb->exec( "SET CHARACTER SET utf8" );
+				$this->PDOdb->exec( "SET NAMES utf8" );
 
 				$this->error = $this->PDOdb->errorInfo();
 				break;
@@ -117,16 +118,16 @@ class jomres_database
 				$this->result = mysql_query( $this->query );
 				break;
 			case "pdomysql" :
-				$this->result = $this->PDOdb->query( $this->query );
+				$this->result = $this->PDOdb->exec( $this->query );
 				break;
 			default:
 				break;
 			}
 		
-		if ( $this->result )
+		if ( $this->result !== false )
 			{
 			$this->last_id = false;
-			
+
 			switch($this->dbtype) 
 				{
 				case "mysqli" :
@@ -183,97 +184,58 @@ class jomres_database
 			return null;
 			}
 		
-		$array = array ();
+		$this->stmt = null;
+		$this->result = array();
 		
 		switch($this->dbtype) 
 			{
 			case "mysqli" :
-				$this->result = mysqli_query( $this->link, $this->query );
+				$this->stmt = mysqli_query( $this->link, $this->query );
 				break;
 			case "mysql" :
-				$this->result = mysql_query( $this->query );
+				$this->stmt = mysql_query( $this->query );
 				break;
 			case "pdomysql" :
-				$this->result = $this->PDOdb->query( $this->query );
+				$this->stmt = $this->PDOdb->query( $this->query, PDO::FETCH_OBJ);
 				break;
 			default:
 				break;
 			}
 		
-		if ( $this->result )
+		if ( $this->stmt )
 			{
 			switch($this->dbtype) 
 				{
 				case "mysqli" :
-					while ( $row = mysqli_fetch_object( $this->result ) )
+					while ( $row = mysqli_fetch_object( $this->stmt ) )
 						{
-						$array[ ] = $row;
+						$this->result[] = $row;
 						}
-					mysqli_free_result( $this->result );
+					mysqli_free_result( $this->stmt );
 					break;
 				case "mysql" :
-					while ( $row = mysql_fetch_object( $this->result ) )
+					while ( $row = mysql_fetch_object( $this->stmt ) )
 						{
-						$array[ ] = $row;
+						$this->result[] = $row;
 						}
-					mysql_free_result( $this->result );
+					mysql_free_result( $this->stmt );
 					break;
 				case "pdomysql" :
-					while($row = $this->result->fetch(PDO::FETCH_OBJ))
-						{
-						$array[ ] = $row;
-						}
-					$this->result->closeCursor();
+					$this->result = $this->stmt->fetchAll(PDO::FETCH_OBJ);
+					$this->stmt->closeCursor();
 					break;
 				default:
 					break;
 				}
 			}
 
-		return $array;
-		}
-
-	function loadResult()
-		{
-		if ( !( $this->result = $this->query() ) )
-			{
-			return null;
-			}
-		$retval = null;
-		
-		switch($this->dbtype) 
-			{
-			case "mysqli" :
-				if ( $row = mysqli_fetch_row( $this->result ) )
-					{
-					$retval = $row[ 0 ];
-					}
-				mysqli_free_result( $this->result );
-				break;
-			case "mysql" :
-				if ( $row = mysql_fetch_row( $this->result ) )
-					{
-					$retval = $row[ 0 ];
-					}
-				mysql_free_result( $this->result );
-				break;
-			case "pdomysql" :
-				while($row = $this->result->fetch(PDO::FETCH_ASSOC))
-					{
-					$retval = $row[ 0 ];
-					}
-				$this->result->closeCursor();
-				break;
-			default:
-				break;
-			}
-
-		return $retval;
+		return $this->result;
 		}
 
 	function unsetResult()
 		{
-		unset( $this->result );
+		$this->stmt = null;
+		$this->result = array();
 		}
 	}
 

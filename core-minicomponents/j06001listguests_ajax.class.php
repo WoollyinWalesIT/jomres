@@ -109,7 +109,7 @@ class j06001listguests_ajax
 		 */
 		
 		$query = "SET SQL_BIG_SELECTS=1";
-		doSelectSql($query);
+		doInsertSql($query);
 		
 		$query = "SELECT SQL_CALC_FOUND_ROWS 
 						a.guests_uid, 
