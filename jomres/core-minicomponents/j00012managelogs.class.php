@@ -55,21 +55,6 @@ class j00012managelogs
 					}
 				}
 			}
-			
-		$log_path = JOMRES_SYSTEMLOG_PATH . "error_logs";
-		$files = scandir_getfiles( $log_path );
-
-		if ( count( $files ) > 0 )
-			{
-			foreach ( $files as $f )
-				{
-				if ( time() - filemtime($log_path . JRDS . $f) >= 30*24*60*60) // 30 days
-					{
-					unlink( $log_path . "/" . $f );
-					}
-				}
-			}
-		
 		}
 
 	/**
