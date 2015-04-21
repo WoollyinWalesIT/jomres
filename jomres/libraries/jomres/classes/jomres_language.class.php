@@ -35,14 +35,16 @@ class jomres_language
 
 		if ( isset( $_POST[ 'jomreslang' ] ) )
 			{
-			if ( $testing && !AJAXCALL ) echo 'Used $_POST[\'jomreslang\'] to switch langs<br>';
+			if ( $testing && !AJAXCALL ) 
+				echo 'Used $_POST[\'jomreslang\'] to switch langs<br>';
 			$jomresConfig_lang = (string) RemoveXSS( jomresGetParam( $_POST, 'jomreslang', "" ) );
 			}
 		else
 			{
 			if ( isset( $_GET[ 'jomreslang' ] ) )
 				{
-				if ( $testing && !AJAXCALL ) echo 'Used $_GET[\'jomreslang\'] to switch langs<br>';
+				if ( $testing && !AJAXCALL ) 
+					echo 'Used $_GET[\'jomreslang\'] to switch langs<br>';
 				$jomresConfig_lang = (string) RemoveXSS( jomresGetParam( $_GET, 'jomreslang', "" ) );
 				}
 			else
@@ -50,38 +52,44 @@ class jomres_language
 				if ( _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34")
 					{
 					$lang = JFactory::getLanguage();
-					if ( $testing && !AJAXCALL ) echo 'Used $lang->getTag() to switch langs<br>';
+					if ( $testing && !AJAXCALL ) 
+						echo 'Used $lang->getTag() to switch langs<br>';
 					$jomresConfig_lang = (string) $lang->getTag();
 					}
 				else
 					{
 					if ( isset( $_GET[ 'lang' ] ) )
 						{
-						if ( $testing && !AJAXCALL ) echo 'Used $_GET[\'lang\'] to switch langs<br>';
+						if ( $testing && !AJAXCALL ) 
+							echo 'Used $_GET[\'lang\'] to switch langs<br>';
 						$jomresConfig_lang = (string) RemoveXSS( jomresGetParam( $_GET, 'lang', "" ) );
 						}
 					else
 						{
 						if ( this_cms_is_wordpress() && !isset($_GET[ 'lang' ]) )
 							{
-							if ( $testing && !AJAXCALL ) echo 'Used wordpress switch to change language.<br>';
+							if ( $testing && !AJAXCALL ) 
+								echo 'Used wordpress switch to change language.<br>';
 							$jomresConfig_lang = $tmpBookingHandler->tmplang[ 'jomreslang' ];
 							}
 						elseif ( isset( $_COOKIE[ 'jfcookie' ] ) && file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_joomfish" . JRDS . "joomfish.php" ) && !$administrator_area )
 							{
-							if ( $testing && !AJAXCALL ) echo 'Used $_COOKIE[\'jfcookie\'] to switch langs<br>';
+							if ( $testing && !AJAXCALL ) 
+								echo 'Used $_COOKIE[\'jfcookie\'] to switch langs<br>';
 							$jomresConfig_lang = (string) RemoveXSS( $_COOKIE[ 'jfcookie' ][ 'lang' ] );
 							}
 						else
 							{
 							if ( isset( $tmpBookingHandler->tmplang[ 'jomreslang' ] ) )
 								{
-								if ( $testing && !AJAXCALL ) echo 'Used $tmpBookingHandler->tmplang[\'jomreslang\'] to switch langs<br>';
+								if ( $testing && !AJAXCALL ) 
+									echo 'Used $tmpBookingHandler->tmplang[\'jomreslang\'] to switch langs<br>';
 								$jomresConfig_lang = (string) RemoveXSS( $tmpBookingHandler->tmplang[ 'jomreslang' ] );
 								}
 							elseif ( strlen( $jomresConfig_lang ) == 0 )
 								{
-								if ( $testing && !AJAXCALL ) echo 'Used $jrConfig[\'siteLang\'] to switch langs<br>';
+								if ( $testing && !AJAXCALL ) 
+									echo 'Used $jrConfig[\'siteLang\'] to switch langs<br>';
 								$jomresConfig_lang = substr( $jrConfig[ 'siteLang' ], 0, strlen( $jrConfig[ 'siteLang' ] ) - 4 );
 								}
 							}
@@ -92,7 +100,9 @@ class jomres_language
 
 		$langfile_crossref         = $this->define_langfile_to_languages_array();
 		$this->datepicker_crossref = $this->define_langfile_to_datepicker_files_array();
-		if ( !array_key_exists( $jomresConfig_lang, $langfile_crossref ) ) $jomresConfig_lang = $this->get_shortcode_to_longcode( $jomresConfig_lang );
+		
+		if ( !array_key_exists( $jomresConfig_lang, $langfile_crossref ) ) 
+			$jomresConfig_lang = $this->get_shortcode_to_longcode( $jomresConfig_lang );
 
 		$tmpBookingHandler->tmplang[ 'jomreslang' ] = $jomresConfig_lang;
 
@@ -104,31 +114,33 @@ class jomres_language
 
 	function get_language( $propertytype = "" )
 		{
-		$language_plugins               = get_showtime( 'language_plugins' );
+		$language_plugins = get_showtime( 'language_plugins' );
 		$language_plugins_langfile_path = $language_plugins[ $this->lang ][ $propertytype ][ 'path' ];
+		
 		if ( $propertytype != "" && file_exists( $language_plugins_langfile_path . $this->lang . "_" . $propertytype . '.php' ) )
 			{
-			require( $language_plugins_langfile_path . $this->lang . "_" . $propertytype . '.php' );
+			require_once( $language_plugins_langfile_path . $this->lang . "_" . $propertytype . '.php' );
 			}
 		else if ( $propertytype != "" && file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $propertytype ) . JRDS . $this->lang . '.php' ) )
 			{
-			require( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $propertytype ) . JRDS . $this->lang . '.php' );
+			require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $propertytype ) . JRDS . $this->lang . '.php' );
 			}
 		else
 			{
 			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-			$jrConfig   = $siteConfig->get();
-			if ( $jrConfig[ 'language_context' ] != "" && file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . $this->lang . '.php' ) ) require( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . $this->lang . '.php' );
-			elseif ( $jrConfig[ 'language_context' ] != "" && file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . $this->lang . '.php' ) ) require( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . 'en-GB.php' );
+			$jrConfig = $siteConfig->get();
+			
+			if ( $jrConfig[ 'language_context' ] != "" && file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . $this->lang . '.php' ) ) 
+				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . $this->lang . '.php' );
+			elseif ( $jrConfig[ 'language_context' ] != "" && file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . $this->lang . '.php' ) ) 
+				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . 'en-GB.php' );
 			elseif ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' ) )
-				{
-				require( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' );
-				}
+				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' );
 			else
 				{
 				if ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . 'en-GB.php' ) )
 					{
-					require( JOMRESPATH_BASE . JRDS . 'language' . JRDS . 'en-GB.php' );
+					require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . 'en-GB.php' );
 					} //else no language file available... don't include it either...
 				}
 			}
@@ -139,7 +151,7 @@ class jomres_language
 		$langfiles = array ();
 
 		$this->unWantedFolderContents = array ( '.', '..', 'cvs', '.svn', 'index.html' );
-		$d                            = @dir( JOMRESPATH_BASE . JRDS . 'language' . JRDS );
+		$d = @dir( JOMRESPATH_BASE . JRDS . 'language' . JRDS );
 		if ( $d )
 			{
 			while ( false !== ( $entry = $d->read() ) )
@@ -167,7 +179,10 @@ class jomres_language
 	function get_languageselection_dropdown( $config_option = false, $default_lang = "" )
 		{
 		$task = get_showtime( 'task' );
-		if ( $this->showLangDropdown != "1" && $task != "touch_templates" && !jomres_cmsspecific_areweinadminarea() ) return "";
+		
+		if ( $this->showLangDropdown != "1" && $task != "touch_templates" && !jomres_cmsspecific_areweinadminarea() ) 
+			return "";
+		
 		$langDropdownFile  = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "langDropdown.php";
 		$langfile_crossref = $this->define_langfile_to_languages_array();
 
@@ -210,16 +225,19 @@ class jomres_language
 			$input_name = 'cfg_property_language';
 			}
 
-		if ( $default_lang != '' && array_key_exists( $default_lang, $langfile_crossref ) ) $lang = $default_lang;
+		if ( $default_lang != '' && array_key_exists( $default_lang, $langfile_crossref ) ) 
+			$lang = $default_lang;
 		else
-		$lang = $this->lang;
+			$lang = $this->lang;
 
 		$dropdown = jomresHTML::selectList( $langfile_options, $input_name, 'class="inputbox" size="1" ' . $javascript . '', 'value', 'text', $lang );
 
 		$selecthtml = '';
-		if ( !$config_option ) $selecthtml = '<form action="" method="post" name="jomreslang">';
+		if ( !$config_option ) 
+			$selecthtml = '<form action="" method="post" name="jomreslang">';
 		$selecthtml .= $dropdown;
-		if ( !$config_option ) $selecthtml .= '</form>';
+		if ( !$config_option ) 
+			$selecthtml .= '</form>';
 
 		return $selecthtml;
 		}
@@ -325,7 +343,8 @@ class jomres_language
 				}
 			}
 
-		if ( array_key_exists( $lang, $langs ) ) return $langs[ $lang ];
+		if ( array_key_exists( $lang, $langs ) ) 
+			return $langs[ $lang ];
 
 		return "en-GB";
 		}
