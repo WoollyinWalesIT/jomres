@@ -17,11 +17,10 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 function doSelectSql( $query, $mode = false )
 	{
-	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	$jomres_db      = jomres_singleton_abstract::getInstance( 'jomres_database' );
 	$jomres_db->setQuery( "/*qc=on*//*qc_ttl=5*/".$query );
-	$result = $jomres_db->loadObjectList();
-	$num = count( $result );
+	$jomres_db->loadObjectList();
+	$num = count( $jomres_db->result );
 	
 	switch ( $mode )
 		{
@@ -29,7 +28,9 @@ function doSelectSql( $query, $mode = false )
 			// Mode 1. The calling function expects 1 row with 1 element in it. Returns a string
 			if ( $num == 1 )
 				{
-				foreach ( $result[ 0 ] as $r ) $result = $r;
+				foreach ( $jomres_db->result[0] as $r ) 
+					$result = $r;
+				return $result;
 				}
 			else
 				return false;
@@ -41,38 +42,30 @@ function doSelectSql( $query, $mode = false )
 				echo "Error, more than one result returned. One expected. Stop.";
 				exit;
 				}
-			$ob = $result[ 0 ];
-			if ( count( $ob ) == 0 )
+			if ( count( $jomres_db->result[0] ) == 0 )
 				{
 				return false;
 				}
 			else
 				{
-				foreach ( $ob as $k => $v )
+				foreach ( $jomres_db->result[0] as $k => $v )
 					{
-					$arr[ $k ] = $v;
+					$result[ $k ] = $v;
 					}
-				$result = $arr;
-				unset( $arr );
+				return $result;
 				}
 			break;
 		default:
+			return $jomres_db->result;
 			break;
 		}
-	
-	$jomres_db->unsetResult();
-	if ( $num > 0 ) 
-		return $result;
-	else
-		return array ();
 	}
 
 
-function doInsertSql( $query, $op, $ignoreErrors = false )
+function doInsertSql( $query, $op = "", $ignoreErrors = false )
 	{
 	$siteConfig     = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig       = $siteConfig->get();
-	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	// Called doInsertSql, the title is not quite correct as this function also handles updates and deletes
 	// We'll use the lack of text in $op as a way of indicating that we don't want this operation logged
 	// This way we can call the audit directly from the insert internet booking function
@@ -101,25 +94,7 @@ function doInsertSql( $query, $op, $ignoreErrors = false )
 		}
 	}
 
-function doSql( $query )
-	{
-	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-	$jrConfig   = $siteConfig->get();
-	$jomres_db  = jomres_singleton_abstract::getInstance( 'jomres_database' );
-	
-	if ( $jrConfig[ 'errorChecking' ] ) 
-		echo $query . "<br>";
-	
-	$jomres_db->setQuery( $query );
-	
-	if ( !$jomres_db->query() ) 
-		return false;
-	else
-		return true;
-	}
-
-
-function jomres_audit( $query, $op )
+function jomres_audit( $query, $op = "" )
 	{
 	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );

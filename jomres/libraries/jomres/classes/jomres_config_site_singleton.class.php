@@ -81,10 +81,10 @@ class jomres_config_site_singleton
 		// We need to bypass doSelectSql here because doSelectSql does $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton'); too, and that'll cause a fatal error.
 		$jomres_db = jomres_singleton_abstract::getInstance( 'jomres_database' );
 		$jomres_db->setQuery( $query );
-		$settingsList = $jomres_db->loadObjectList();
-		if ( count( $settingsList ) > 0 )
+		$jomres_db->loadObjectList();
+		if ( count( $jomres_db->result ) > 0 )
 			{
-			foreach ( $settingsList as $setting )
+			foreach ( $jomres_db->result as $setting )
 				{
 				$akey              = $setting->akey;
 				$value             = $setting->value;
@@ -93,7 +93,7 @@ class jomres_config_site_singleton
 			}
 
 		// Now we'll check to see if any new settings have been added to the jrConfig file. If they have they'll be added to the site settings table.
-		if ( count( $settingsList ) == 0 )
+		if ( count( $jomres_db->result ) == 0 )
 			{
 			$jomresConfig_dbprefix = get_showtime( 'dbprefix' );
 			$jomresConfig_db       = get_showtime( 'db' );

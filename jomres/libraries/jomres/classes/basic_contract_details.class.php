@@ -299,29 +299,36 @@ class basic_contract_details
 		$taxrates          = taxrates_getalltaxrates();
 		
 		$extraOptionsArray = explode( ",", $this->contract[$contract_uid]['contractdeets']['extras'] );
-		foreach ($extraOptionsArray as $k=>$v)
-			{
-			if ((int)$v == 0)
-				unset($extraOptionsArray[$k]);
-			}
 		
-		$query = "SELECT 
-						uid, 
-						name,
-						price,
-						tax_rate 
-					FROM #__jomres_extras 
-					WHERE property_uid = '" . (int) $defaultProperty . "' AND uid IN (" . implode(',',$extraOptionsArray) . ") 
-					ORDER BY name ";
-		$extrasList = doSelectSql( $query );
-		
-		foreach ($extrasList as $e)
+		if (count($extraOptionsArray) > 0)
 			{
-			$this->contract[$contract_uid]['extradeets'][$e->uid]['uid'] = $e->uid;
-			$this->contract[$contract_uid]['extradeets'][$e->uid]['name'] = $e->name;
-			$this->contract[$contract_uid]['extradeets'][$e->uid]['price'] = $e->price;
-			$this->contract[$contract_uid]['extradeets'][$e->uid]['tax_rate'] = $e->tax_rate;
-			$this->contract[$contract_uid]['extradeets'][$e->uid]['qty'] = $this->contract[$contract_uid]['contractdeets']['extrasquantities'][$e->uid];
+			foreach ($extraOptionsArray as $k=>$v)
+				{
+				if ((int)$v == 0)
+					unset($extraOptionsArray[$k]);
+				}
+			
+			if (count($extraOptionsArray) > 0)
+				{
+				$query = "SELECT 
+								uid, 
+								name,
+								price,
+								tax_rate 
+							FROM #__jomres_extras 
+							WHERE property_uid = '" . (int) $defaultProperty . "' AND uid IN (" . implode(',',$extraOptionsArray) . ") 
+							ORDER BY name ";
+				$extrasList = doSelectSql( $query );
+				
+				foreach ($extrasList as $e)
+					{
+					$this->contract[$contract_uid]['extradeets'][$e->uid]['uid'] = $e->uid;
+					$this->contract[$contract_uid]['extradeets'][$e->uid]['name'] = $e->name;
+					$this->contract[$contract_uid]['extradeets'][$e->uid]['price'] = $e->price;
+					$this->contract[$contract_uid]['extradeets'][$e->uid]['tax_rate'] = $e->tax_rate;
+					$this->contract[$contract_uid]['extradeets'][$e->uid]['qty'] = $this->contract[$contract_uid]['contractdeets']['extrasquantities'][$e->uid];
+					}
+				}
 			}
 
 		//booking notes
