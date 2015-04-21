@@ -2162,6 +2162,7 @@ function installCronjobs()
 	$cron->addJob( "optimise", "D", "" );
 	$cron->addJob( "invoice", "D", "" );
 	$cron->addJob( "exchangerates", "D", "" );
+	$cron->addJob( "error_logs_cleanup", "D", "" );
 	}
 
 function trashTables()
