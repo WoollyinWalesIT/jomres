@@ -247,18 +247,21 @@ class basic_contract_details
 			$tariffs[] = $rt[ 1 ];
 			}
 		
-		$query = "SELECT rates_uid,rate_title FROM #__jomres_rates WHERE rates_uid IN (" . implode(',',$tariffs) .") ";
-		$tariff_names = doSelectSql( $query );
-		
-		foreach ($tariff_names as $t)
+		if ( count($tariffs) > 0 )
 			{
-			$tariffNames[$t->rates_uid]=$t->rate_title;
-			}
-
-		foreach ( $room_and_tariff_info as $e )
-			{
-			$rt = explode( "^", $e );
-			$this->contract[$contract_uid]['roomdeets'][$rt[0]]['rate_title'] = jomres_decode($tariffNames[$rt[1]]);
+			$query = "SELECT rates_uid,rate_title FROM #__jomres_rates WHERE rates_uid IN (" . implode(',',$tariffs) .") ";
+			$tariff_names = doSelectSql( $query );
+			
+			foreach ($tariff_names as $t)
+				{
+				$tariffNames[$t->rates_uid]=$t->rate_title;
+				}
+	
+			foreach ( $room_and_tariff_info as $e )
+				{
+				$rt = explode( "^", $e );
+				$this->contract[$contract_uid]['roomdeets'][$rt[0]]['rate_title'] = jomres_decode($tariffNames[$rt[1]]);
+				}
 			}
 		
 		//guest types
@@ -274,23 +277,26 @@ class basic_contract_details
 				}
 			}
 		
-		$query = "SELECT `id`, `type` FROM #__jomres_customertypes WHERE id IN (" . implode(',',$guesttype_ids) . ") ";
-		$guesttype_titles = doSelectSql( $query );
-		
-		foreach ($guesttype_titles as $g)
+		if ( count($guesttype_ids) > 0 )
 			{
-			$guesttypeNames[$g->id]=jr_gettext('_JOMRES_CUSTOMTEXT_GUESTTYPE'.$g->id, stripslashes($g->type), false);
-			}
-		
-		foreach ( $varianceArray as $v )
-			{
-			$vDeets = explode( "_", $v );
-			if ( $vDeets[0] == "guesttype" )
+			$query = "SELECT `id`, `type` FROM #__jomres_customertypes WHERE id IN (" . implode(',',$guesttype_ids) . ") ";
+			$guesttype_titles = doSelectSql( $query );
+			
+			foreach ($guesttype_titles as $g)
 				{
-				$this->contract[$contract_uid]['guesttype'][$vDeets[1]]['id'] = $vDeets[1];
-				$this->contract[$contract_uid]['guesttype'][$vDeets[1]]['title'] = $guesttypeNames[$vDeets[1]];
-				$this->contract[$contract_uid]['guesttype'][$vDeets[1]]['qty'] = $vDeets[2];
-				$this->contract[$contract_uid]['guesttype'][$vDeets[1]]['value'] = $vDeets[3];
+				$guesttypeNames[$g->id]=jr_gettext('_JOMRES_CUSTOMTEXT_GUESTTYPE'.$g->id, stripslashes($g->type), false);
+				}
+			
+			foreach ( $varianceArray as $v )
+				{
+				$vDeets = explode( "_", $v );
+				if ( $vDeets[0] == "guesttype" )
+					{
+					$this->contract[$contract_uid]['guesttype'][$vDeets[1]]['id'] = $vDeets[1];
+					$this->contract[$contract_uid]['guesttype'][$vDeets[1]]['title'] = $guesttypeNames[$vDeets[1]];
+					$this->contract[$contract_uid]['guesttype'][$vDeets[1]]['qty'] = $vDeets[2];
+					$this->contract[$contract_uid]['guesttype'][$vDeets[1]]['value'] = $vDeets[3];
+					}
 				}
 			}
 		

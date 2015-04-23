@@ -118,7 +118,13 @@ class jomres_database
 				$this->result = mysql_query( $this->query );
 				break;
 			case "pdomysql" :
-				$this->result = $this->PDOdb->exec( $this->query );
+				try  {
+					$this->result = $this->PDOdb->exec( $this->query );
+					}
+				catch(PDOException $e) 
+					{
+					die('ERROR: ' . $this->query . ' ' . $e->getMessage());
+					}
 				break;
 			default:
 				break;
@@ -146,7 +152,10 @@ class jomres_database
 			if ( $last_id > 0 )
 				$this->last_id = $last_id;
 
-			return $this->result;
+			if ((int)$this->result == 0)
+				return true;
+			else
+				return $this->result;
 			}
 		else
 			{
@@ -196,7 +205,13 @@ class jomres_database
 				$this->stmt = mysql_query( $this->query );
 				break;
 			case "pdomysql" :
-				$this->stmt = $this->PDOdb->query( $this->query, PDO::FETCH_OBJ);
+				try {
+					$this->stmt = $this->PDOdb->query( $this->query, PDO::FETCH_OBJ);
+					}
+				catch(PDOException $e) 
+					{
+					die('ERROR: ' . $this->query . ' ' . $e->getMessage());
+					}
 				break;
 			default:
 				break;

@@ -90,6 +90,7 @@ class j06001dashboard_insertbooking_ajax
 		$bkg->booking_details['tax'] 						= $tax;
 		$bkg->booking_details['deposit_required'] 			= (float)jomresGetParam($_GET,'deposit_required','0');
 		$bkg->booking_details['room_total'] 				= $contract_total_nett; //has to be without tax
+		$bkg->booking_details['room_total_nodiscount']		= $contract_total_nett; //has to be without tax
 		$bkg->booking_details['currency_code'] 				= $currency_code;
 		$bkg->booking_details['depositpaidsuccessfully'] 	= (bool)$deposit_paid;
 		$bkg->booking_details['property_currencycode']		= jomresGetParam($_GET,'currencyCode','GBP');

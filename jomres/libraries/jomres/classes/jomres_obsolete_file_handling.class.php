@@ -997,6 +997,13 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'invoice_arrival_snippet.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'invoice_arrival_snippet.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'invoice_arrival_snippet.html' );
+		
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'mu_frontend_invoices.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'mu_frontend_list_invoices.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'mu_frontend_invoices.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'mu_frontend_list_invoices.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'mu_frontend_invoices.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'mu_frontend_list_invoices.html' );
 
 		}
 
