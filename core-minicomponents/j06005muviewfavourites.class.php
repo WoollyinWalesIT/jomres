@@ -73,7 +73,7 @@ class j06005muviewfavourites
 					$r[ 'TYPE' ] = $current_property_details->multi_query_result[ $f ][ 'property_type_title' ];
 					
 					$jomres_media_centre_images->get_images($f, array('property'));
-					$r[ 'IMAGE' ] = jomres_make_image_popup( $r[ 'PROPERTYNAME' ], $jomres_media_centre_images->images ['property'][0][0]['large'], "", array (), $jomres_media_centre_images->images ['property'][0][0]['small'] );
+					$r[ 'IMAGE' ] = $jomres_media_centre_images->images ['property'][0][0]['small'];
 
 					$r[ 'PROPERTYDETAILSLINK' ] = JOMRES_SITEPAGE_URL . '&task=viewproperty&property_uid=' . $f;
 					$r[ 'REMOVELINK' ]          = JOMRES_SITEPAGE_URL . '&task=muremovefavourite&no_html=1&property_uid=' . $f;

@@ -48,21 +48,26 @@ class j06005mulistbookings
 					{
 					$allGuestUids[ ] = $g->guests_uid;
 					}
-				}
 
-				$query     = "SELECT * FROM #__jomres_contracts WHERE guest_uid IN (".implode(',',$allGuestUids).") AND cancelled = 0 ORDER BY tag";
+				$query = "SELECT * FROM #__jomres_contracts WHERE guest_uid IN (".implode(',',$allGuestUids).") AND cancelled = 0 ORDER BY tag";
 				$contracts = doSelectSql( $query );
-				//if ( count( $contracts ) > 0 ) //we`ll just display an empty table if there are no bookings.
-					//{
-					$output[ 'HARRIVAL' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL, $editable = false, $isLink = false );
-					$output[ 'HDEPARTURE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE, $editable = false, $isLink = false );
-					$output[ 'HTOTAL' ]     = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTAL', _JOMRES_AJAXFORM_BILLING_TOTAL, $editable = false, $isLink = false );
-					$output[ 'HEXTRAS' ]    = jr_gettext( '_JOMRES_AJAXFORM_BILLING_EXTRAS', _JOMRES_AJAXFORM_BILLING_EXTRAS, $editable = false, $isLink = false );
-					$output[ 'HPNAME' ]     = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME', _JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME, $editable = false, $isLink = false );
+				}
+			else
+				$contracts = array();
+				
+			//if ( count( $contracts ) > 0 ) //we`ll just display an empty table if there are no bookings.
+				//{
+				$output[ 'HARRIVAL' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL, $editable = false, $isLink = false );
+				$output[ 'HDEPARTURE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE, $editable = false, $isLink = false );
+				$output[ 'HTOTAL' ]     = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTAL', _JOMRES_AJAXFORM_BILLING_TOTAL, $editable = false, $isLink = false );
+				$output[ 'HEXTRAS' ]    = jr_gettext( '_JOMRES_AJAXFORM_BILLING_EXTRAS', _JOMRES_AJAXFORM_BILLING_EXTRAS, $editable = false, $isLink = false );
+				$output[ 'HPNAME' ]     = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME', _JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME, $editable = false, $isLink = false );
 
-					$output[ 'HMOREINFO' ] = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION, $editable = false, $isLink = false );
-					$output[ 'TITLE' ]     = jr_gettext( '_JOMCOMP_MYUSER_MYBOOKINGS', _JOMCOMP_MYUSER_MYBOOKINGS, $editable = false, $isLink = false );
-					
+				$output[ 'HMOREINFO' ] = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION, $editable = false, $isLink = false );
+				$output[ 'TITLE' ]     = jr_gettext( '_JOMCOMP_MYUSER_MYBOOKINGS', _JOMCOMP_MYUSER_MYBOOKINGS, $editable = false, $isLink = false );
+				
+				if (count($contracts)>0)
+					{
 					$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 					$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 					
@@ -71,42 +76,42 @@ class j06005mulistbookings
 						{
 						$mrConfig = getPropertySpecificSettings( $c->property_uid );
 						$jomres_media_centre_images->get_images($c->property_uid, array('property'));
-
+	
 						$counter++;
 						if ( $counter % 2 ) $r[ 'STYLE' ] = "odd";
 						else
 						$r[ 'STYLE' ] = "even";
 						$currfmt  = jomres_singleton_abstract::getInstance( 'jomres_currency_format' );
 						$currency = $mrConfig[ 'currency' ];
-
+	
 						$basic_property_details->gather_data( $c->property_uid );
-
+	
 						$r[ 'PROPERTYNAME' ] = getPropertyName( $c->property_uid );
-
+	
 						$r[ 'ARRIVAL' ]             = outputDate( $c->arrival );
 						$r[ 'DEPARTURE' ]           = outputDate( $c->departure );
 						$r[ 'lastchanged' ]         = $c->timestamp;
 						$r[ 'EXTRASVALUE' ]         = output_price( $c->extrasvalue );
 						$r[ 'CONTRACT_TOTAL' ]      = output_price( $c->contract_total );
-						$r[ 'IMAGE' ]               = jomres_make_image_popup( $r[ 'PROPERTYNAME' ], $jomres_media_centre_images->images ['property'][0][0]['large'], "", array (), $jomres_media_centre_images->images ['property'][0][0]['small'] );
+						$r[ 'IMAGE' ]               = $jomres_media_centre_images->images ['property'][0][0]['small'];
 						$r[ 'VIEWLINK' ]            = JOMRES_SITEPAGE_URL . "&task=muviewbooking&contract_uid=" . $c->contract_uid;
 						$r[ 'VIEWLINK_TEXT' ]       = jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKING', _JOMCOMP_MYUSER_VIEWBOOKING, $editable = false, $isLink = true );
 						$r[ 'PROPERTYDETAILSLINK' ] = JOMRES_SITEPAGE_URL . '&task=viewproperty&property_uid=' . $c->property_uid;
 						$rows[ ]                    = $r;
 						}
-
-					$pageoutput[ ] = $output;
-					$tmpl          = new patTemplate();
-					$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-					$tmpl->addRows( 'pageoutput', $pageoutput );
-					$tmpl->addRows( 'rows', $rows );
-					$tmpl->readTemplatesFromInput( 'list_bookings.html' );
-					$tmpl->displayParsedTemplate();
 					}
-				//else
-					//{
-					//echo jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKINGS_NONE', _JOMCOMP_MYUSER_VIEWBOOKINGS_NONE, false, false );
-					//}
+
+				$pageoutput[ ] = $output;
+				$tmpl          = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->addRows( 'pageoutput', $pageoutput );
+				$tmpl->addRows( 'rows', $rows );
+				$tmpl->readTemplatesFromInput( 'list_bookings.html' );
+				$tmpl->displayParsedTemplate();
+				}
+			//else
+				//{
+				//echo jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKINGS_NONE', _JOMCOMP_MYUSER_VIEWBOOKINGS_NONE, false, false );
 				//}
 			//}
 		}

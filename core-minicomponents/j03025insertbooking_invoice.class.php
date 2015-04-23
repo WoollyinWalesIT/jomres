@@ -97,7 +97,7 @@ class j03025insertbooking_invoice
 			{
 			//Accommodation line item
 			
-			//Get the initial discount (wiseprice, lastminute, personal, partner, coupon diiscounts)
+			//Get the initial discount (wiseprice, lastminute, personal, partner, coupon discounts)
 			if ( count( $discounts ) > 0 )
 				{
 				$totalDiscountForRoom = 0.00;
@@ -113,7 +113,7 @@ class j03025insertbooking_invoice
 										'description' => '', 
 										'init_price' => $room_total_nodiscount, 
 										'init_qty' => 1, 
-										'init_discount' => -$totalDiscountForRoom 
+										'init_discount' => 0-$totalDiscountForRoom
 										);
 				}
 
@@ -123,9 +123,10 @@ class j03025insertbooking_invoice
 				$line_items[] = array ( 'tax_code_id' => 0, 
 									   'name' => jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', _JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED, false, false ), 
 									   'description' => '', 
-									   'init_price' => -$deposit_required, 
+									   'init_price' => 0-$deposit_required, 
 									   'init_qty' => 1, 
-									   'init_discount' => 0 
+									   'init_discount' => 0,
+									   'is_payment' => 1
 									   );
 				}
 
@@ -189,7 +190,7 @@ class j03025insertbooking_invoice
 										   'description' => '', 
 										   'init_price' => $extra_price, 
 										   'init_qty' => $quantities, 
-										   'init_discount' => "0"
+										   'init_discount' => 0
 										   );
 					}
 				}
@@ -309,7 +310,7 @@ class j03025insertbooking_invoice
 				$deposit_paid_line_item_data = array ( 'tax_code_id' => 0, 
 													  'name' => jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', _JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED, false, false ), 
 													  'description' => '', 
-													  'init_price' => -$deposit_required, 
+													  'init_price' => 0-$deposit_required, 
 													  'init_qty' => 1, 
 													  'init_discount' => 0
 													  );

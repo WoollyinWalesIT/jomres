@@ -78,6 +78,10 @@ class jomres_generic_booking_insert
 			{
 			throw new Exception(" Error room_total is not valid");
 			}
+		if ( $this->booking_details['room_total_nodiscount'] == 0.00 )
+			{
+			throw new Exception(" Error room_total_nodiscount is not valid");
+			}
 		if ( $this->booking_details['currency_code'] == "" )
 			{
 			throw new Exception(" Error currency_code is not set");
@@ -131,6 +135,7 @@ class jomres_generic_booking_insert
 			"ok_to_book"				=> false,				// Do not set, this class will set this flag once it's performed it's pre-insertion checks ***** Required *****
 			"total_in_party"			=> 0,					// int(2)
 			"room_total"				=> 0.00,				// float(150) NET PRICE!!!! (price without tax) ***** Required *****
+			"room_total_nodiscount"		=> 0.00,				// float(150) NET PRICE!!!! (price without tax) ***** Required *****
 			"currency_code"				=> "",					// string (EUR) ***** Required *****
 			"coupon_id"					=> "",					// "1"
 			"coupon_code"				=> "",					// "rDRkpUSKBbqFTCU"
@@ -181,6 +186,7 @@ class jomres_generic_booking_insert
 		$tmpBookingHandler->tmpbooking['ok_to_book']				= $this->booking_details['ok_to_book'];
 		$tmpBookingHandler->tmpbooking['total_in_party']			= $this->booking_details['total_in_party'];
 		$tmpBookingHandler->tmpbooking['room_total']				= $this->booking_details['room_total'];
+		$tmpBookingHandler->tmpbooking['room_total_nodiscount']		= $this->booking_details['room_total_nodiscount'];
 		$tmpBookingHandler->tmpbooking['coupon_id']					= $this->booking_details['coupon_id'];
 		$tmpBookingHandler->tmpbooking['coupon_code']				= $this->booking_details['coupon_code'];
 		$tmpBookingHandler->tmpbooking['coupon_details']			= $this->booking_details['coupon_details'];
