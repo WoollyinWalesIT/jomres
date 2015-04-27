@@ -240,28 +240,14 @@ try
 	$property_uid = detect_property_uid();
 
 	// Getting the property specific settings
-	if ( ( isset( $property_uid ) && !empty( $property_uid ) ) || ( isset( $selectedProperty ) && !empty( $selectedProperty ) ) || ( isset( $defaultProperty ) && $defaultProperty != "%" ) )
+	if ( (int)$property_uid > 0 )
 		{
-		//$mrConfig=getPropertySpecificSettings();
-		if ( !empty( $property_uid ) )
-			{
-			$a = 0;
-			}
-		else if ( !empty( $selectedProperty ) )
-			{
-			$property_uid = (int) $selectedProperty;
-			}
-		else
-			{
-			$property_uid = (int) $defaultProperty;
-			}
-
 		$mrConfig = getPropertySpecificSettings( $property_uid );
 		}
 
 	// Finish getting the property specific settings
 
-	if ( $property_uid > 0 )
+	if ( (int)$property_uid > 0 )
 		{
 		set_showtime( 'property_uid', $property_uid );
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
@@ -275,30 +261,17 @@ try
 			$tmpBookingHandler->user_settings[ 'last_viewed_property_uid' ] = $property_uid;
 			}
 		$tmpBookingHandler->saveBookingData();
+		
+		//property type to be used for property type specific language files
+		$propertytype = $current_property_details->property_type;
 		}
 	else
-		set_showtime( 'last_viewed_property_uid', (int)$tmpBookingHandler->user_settings[ 'last_viewed_property_uid' ] );
-
-	// Getting the language file
-	if ( !empty( $property_uid ) || isset( $_REQUEST[ 'propertyType' ] ) || isset( $_REQUEST[ 'ptype' ] ) )
 		{
-		if ( isset( $_REQUEST[ 'propertyType' ] ) )
-			$ptype_id = (int) $_REQUEST[ 'propertyType' ];
-		elseif ( isset( $_REQUEST[ 'ptype' ] ) ) 
-			$ptype_id = (int) jomresGetParam( $_REQUEST, 'ptype', 0 );
-		else
-			$ptype_id = $thisJomresPropertyDetails[ 'ptype_id' ];
-
-		if ( $ptype_id > 0 )
-			{
-			$propertytype = $current_property_details->property_type;
-			}
-		}
-	else
-		$propertytype = "";
+		set_showtime( 'last_viewed_property_uid', (int)$tmpBookingHandler->user_settings[ 'last_viewed_property_uid' ] );
+		$propertytype = '';
+		}	
 
 	//$performance_monitor->set_point("pre-lang file inclusion");
-
 
 	$jomreslang->get_language( $propertytype );
 	$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );

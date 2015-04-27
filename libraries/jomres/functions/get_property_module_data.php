@@ -25,7 +25,7 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 	if ( !defined( '_JOMRES_COM_MR_SHOWPROFILES' ) )
 		{
 		$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
-		$jomreslang->get_language( '' );
+		$jomreslang->get_language();
 		}
 
 	$return_data = array ();

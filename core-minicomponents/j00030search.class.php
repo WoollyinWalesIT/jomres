@@ -70,9 +70,8 @@ class j00030search
 			$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 			$tmpBookingHandler->initBookingSession();
 			$showSearchOptions = true;
-			$jomreslang        = jomres_singleton_abstract::getInstance( 'jomres_language' );
-			$jomreslang->get_language( 'xx' );
-			$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
+			$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
+			$jomreslang->get_language();
 			}
 
 		init_javascript();
