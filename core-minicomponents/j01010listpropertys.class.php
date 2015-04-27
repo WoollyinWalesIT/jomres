@@ -208,6 +208,18 @@ class j01010listpropertys
 				{
 				$header_output = array ();
 
+				$header_output[ 'HARRIVALDATE' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL, false );
+				$header_output[ 'HDEPARTUREDATE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE, false );
+				
+				$header_output[ 'ARRIVALDATE' ]   = generateDateInput( "arrivalDate",$tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] , "ad", true );
+				$header_output[ 'DEPARTUREDATE' ] = generateDateInput( "departureDate", $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'], false, true, false );
+				$header_output[ 'CLEARDATES_CHECKBOX' ] = get_showtime ( 'current_clear_checkbox' );
+				$header_output[ 'HSEARCH' ] = jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON );
+				if ( !using_bootstrap() ) 
+					$header_output[ 'THEBUTTON' ] = '<input type="submit" name="send" value="' . jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON, false ) . '" class="button" />';
+				else
+					$header_output[ 'THEBUTTON' ] = '<input type="submit" class="btn btn-primary" name="send" value="' . jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON, false ) . '" />';
+				
 				$header_output[ 'ORDER_DROPDOWN' ] = get_showtime( "order_dropdown" );
 				$header_output[ 'CLICKTOHIDE' ]    = jr_gettext( '_JOMRES_REVIEWS_CLICKTOHIDE', _JOMRES_REVIEWS_CLICKTOHIDE, false, false );
 				$header_output[ 'CLICKTOSHOW' ]    = jr_gettext( '_JOMRES_REVIEWS_CLICKTOSHOW', _JOMRES_REVIEWS_CLICKTOSHOW, false, false );
