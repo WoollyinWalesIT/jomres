@@ -246,7 +246,8 @@ class jr_user
 		if ( in_array( $currentProperty, $this->authorisedProperties ) )
 			{
 			$query = "UPDATE #__jomres_managers SET `currentproperty`='".(int)$currentProperty."' WHERE userid = '" . (int) $this->id . "'";
-			if ( !doInsertSql( $query, false ) ) trigger_error( "Unable to set current property, mysql db failure", E_USER_ERROR );
+			if ( !doInsertSql( $query, false ) ) 
+				trigger_error( "Unable to set current property, mysql db failure", E_USER_ERROR );
 			$this->currentproperty = $currentProperty;
 			}
 		}
