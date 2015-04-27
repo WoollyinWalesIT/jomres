@@ -240,8 +240,24 @@ try
 	$property_uid = detect_property_uid();
 
 	// Getting the property specific settings
-	if ( (int)$property_uid > 0 )
+	if ( 
+		( isset( $property_uid ) && !empty( $property_uid ) ) || 
+		( isset( $selectedProperty ) && !empty( $selectedProperty ) ) || 
+		( isset( $defaultProperty ) && $defaultProperty != "%" ) 
+		)
 		{
+		if ( !empty( $property_uid ) )
+			{
+			$a = 0;
+			}
+		else if ( !empty( $selectedProperty ) )
+			{
+			$property_uid = (int) $selectedProperty;
+			}
+		else
+			{
+			$property_uid = (int) $defaultProperty;
+			}
 		$mrConfig = getPropertySpecificSettings( $property_uid );
 		}
 
