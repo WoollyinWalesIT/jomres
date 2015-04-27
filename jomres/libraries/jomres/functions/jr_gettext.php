@@ -36,7 +36,7 @@ function jr_get_defined( $constant, $default = '' )
 		return $result;
 		}
 	else
-	return constant( $constant );
+		return constant( $constant );
 	}
 
 function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false )

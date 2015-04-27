@@ -1173,6 +1173,7 @@ function detect_property_uid()
 			$tmpBookingHandler->saveBookingData();
 			}
 		}
+		
 
 	// Finish finding the property uid
 	return $property_uid;

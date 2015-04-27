@@ -132,7 +132,7 @@ class jomres_language
 			
 			if ( $jrConfig[ 'language_context' ] != "" && file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . $this->lang . '.php' ) ) 
 				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . $this->lang . '.php' );
-			elseif ( $jrConfig[ 'language_context' ] != "" && file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . $this->lang . '.php' ) ) 
+			elseif ( $jrConfig[ 'language_context' ] != "" && file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . 'en-GB.php' ) ) 
 				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . 'en-GB.php' );
 			elseif ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' ) )
 				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' );

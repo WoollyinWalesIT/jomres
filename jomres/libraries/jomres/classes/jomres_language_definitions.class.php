@@ -38,11 +38,11 @@ class jomres_language_definitions
 		$this->lang = $lang;
 		}
 
-	function set_property_type( $ptype )
+	function set_property_type( $ptype = '' )
 		{
-		if ( is_null( $ptype ) ) 
+		if ( $ptype == '' ) 
 			$ptype = $this->default_ptype;
-		
+
 		$this->ptype = $ptype;
 		}
 
@@ -53,15 +53,15 @@ class jomres_language_definitions
 
 	function get_defined( $constant )
 		{
-		if ( !isset( $this->definitions[ $this->ptype ] ) )
+		if ( !array_key_exists( $this->ptype, $this->definitions ) )
 			{
 			if ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $this->ptype ) . JRDS . $this->lang . '.php' ) )
 				{
-				require( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $this->ptype ) . JRDS . $this->lang . '.php' );
+				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $this->ptype ) . JRDS . $this->lang . '.php' );
 				}
 			else //in case there is no language_context set and the property type specific language dir was manually deleted
 				{
-				require( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' );
+				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' );
 				}
 			}
 

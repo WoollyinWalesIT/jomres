@@ -181,9 +181,6 @@ class basic_property_details
 			{
 			throw new Exception("Property uid not set", 2);
 			}
-		
-		$customTextObj      = jomres_singleton_abstract::getInstance( 'custom_text' );
-		$customTextObj->get_custom_text_for_property( $this->property_uid );
 
 		$this->gather_data_multi(array($this->property_uid)); //if more properties are on the same page (for example if we have an NGM module published) and changes the property uid showtime, when the showtime is set back to this property uid, the query will be executed again, because this property uid is not in the multi_query_result. So we use gather_data_multi to get data for this property_uid, then reuse this data later from $this->multi_query_result if necessary.
 		
@@ -358,11 +355,12 @@ class basic_property_details
 			$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 			foreach ( $propertyData as $data )
 				{
-				
 				set_showtime( 'property_uid', $data->propertys_uid );
 				set_showtime( 'property_type', $this->all_property_types[ (int) $data->ptype_id ] );
-				$countryname = getSimpleCountry( $data->property_country );
+
 				$customTextObj->get_custom_text_for_property( $data->propertys_uid );
+				
+				$countryname = getSimpleCountry( $data->property_country );
 				
 				$this->multi_query_result[ $data->propertys_uid ][ 'propertys_uid' ]     = $data->propertys_uid;
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_name' ]     = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false );
