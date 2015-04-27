@@ -47,19 +47,9 @@ class j00002usermanagement
 		$thisProperty = trim( jomresGetParam( $_REQUEST, 'thisProperty', 0 ) );
 		if ( in_array( $thisProperty, $thisJRUser->authorisedProperties ) && $thisProperty != $thisJRUser->currentproperty )
 			{
-			$new_url = get_showtime( 'live_site' ) . '/index.php?';
-			foreach ( $_REQUEST as $key => $val ) // There's no need for these elements to be sanitised, as we're just redirecting again to a new url, these items will be sanitised at that point.
-				{
-				if ( $key != 'thisProperty' )
-					{
-					$new_url .= $key . '=' . $val . '&';
-					}
-				}
-
 			if ( $thisJRUser->userIsManager == true && $thisProperty > 0 )
 				{
 				$thisJRUser->set_currentproperty( $thisProperty );
-				//jomresRedirect( jomresURL( $new_url ) );
 				}
 			}
 		if ( $thisJRUser->currentproperty == 0 && $thisJRUser->userIsManager ) 
