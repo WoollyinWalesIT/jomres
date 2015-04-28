@@ -5910,7 +5910,7 @@ function showTop()
 		$current1=' class="current"';
 	?>
 	<div>
-		<img src="http://www.jomres.net/templates/js_optimus/images/style1/logo.png" class="img-rounded"/>
+		<img src="http://www.jomres.net/images/jomres.png" class="img-rounded"/>
 	</div>
 	<div class="jumbotron">
 		<h2>Installation/upgrade stage</h2>
