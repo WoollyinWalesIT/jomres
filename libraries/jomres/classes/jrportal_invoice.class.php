@@ -112,15 +112,13 @@ class jrportal_invoice
 		
 		$this->lineitem['id'] = 0;
 			
-		jr_import( "jrportal_taxrate" );
-		$taxrate = new jrportal_taxrate();
-		$taxrate->id = $line_item_data[ 'tax_code_id' ];
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 
-		if ( $taxrate->getTaxRate() )
+		if ( $jrportal_taxrate->gather_data($line_item_data[ 'tax_code_id' ]) )
 			{
-			$this->lineitem['tax_rate'] 		= (float) $taxrate->rate;
-			$this->lineitem['tax_code']       	= $taxrate->code;
-			$this->lineitem['tax_description'] 	= $taxrate->description;
+			$this->lineitem['tax_rate'] 		= (float) $jrportal_taxrate->rate;
+			$this->lineitem['tax_code']       	= $jrportal_taxrate->code;
+			$this->lineitem['tax_description'] 	= $jrportal_taxrate->description;
 			}
 		else
 			{
@@ -201,15 +199,13 @@ class jrportal_invoice
 			return false;
 			}
 
-		jr_import( "jrportal_taxrate" );
-		$taxrate = new jrportal_taxrate();
-		$taxrate->id = $line_item_data[ 'tax_code_id' ];
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 
-		if ( $taxrate->getTaxRate() )
+		if ( $jrportal_taxrate->gather_data($line_item_data[ 'tax_code_id' ]) )
 			{
-			$this->lineitem['tax_rate']        = (float) $taxrate->rate;
-			$this->lineitem['tax_code']        = $taxrate->code;
-			$this->lineitem['tax_description'] = $taxrate->description;
+			$this->lineitem['tax_rate']        = (float) $jrportal_taxrate->rate;
+			$this->lineitem['tax_code']        = $jrportal_taxrate->code;
+			$this->lineitem['tax_description'] = $jrportal_taxrate->description;
 			}
 		else
 			{

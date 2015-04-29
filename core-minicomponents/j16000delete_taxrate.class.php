@@ -40,15 +40,10 @@ class j16000delete_taxrate
 			}
 
 		$id = jomresGetParam( $_REQUEST, 'id', 0 );
-		if ( $id > 1 )
+		if ( $id > 0 )
 			{
-			jr_import( 'jrportal_taxrate' );
-			$rate = new jrportal_taxrate();
-			if ( $id > 0 )
-				{
-				$rate->id = $id;
-				}
-			$rate->deleteTaxRate();
+			$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
+			$jrportal_taxrate->deleteTaxRate($id);
 			
 			$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 			$c->eraseAll();

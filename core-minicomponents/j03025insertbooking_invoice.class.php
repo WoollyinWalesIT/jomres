@@ -159,7 +159,7 @@ class j03025insertbooking_invoice
 				}
 
 			//Extras and Extras taxes
-			$this->taxrates = taxrates_getalltaxrates();
+			$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 			$extrasArray = explode( ",", $extras );
 			foreach ( $extrasArray as $extraUid )
 				{
@@ -174,12 +174,9 @@ class j03025insertbooking_invoice
 					$extra_price         = $theExtras->price;
 					if ( $mrConfig[ 'prices_inclusive' ] == 1 )
 						{
-						jr_import( "jrportal_taxrate" );
-						$taxrate     = new jrportal_taxrate();
-						$taxrate->id = $theExtras->tax_rate;
-						if ( $taxrate->getTaxRate() )
+						if ( $jrportal_taxrate->gather_data($theExtras->tax_rate) )
 							{
-							$rate        = (float) $taxrate->rate;
+							$rate        = (float)$jrportal_taxrate->rate;
 							$divisor     = ( $rate / 100 ) + 1;
 							$nett_price  = $extra_price / $divisor;
 							$extra_price = $nett_price;

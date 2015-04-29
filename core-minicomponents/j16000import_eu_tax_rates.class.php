@@ -27,9 +27,8 @@ class j16000import_eu_tax_rates
 			return;
 			}
 		
-		jr_import("jrportal_taxrate");
-		$tax_rates_class = new jrportal_taxrate();
-		$result = $tax_rates_class->deleteAllTaxRates();
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
+		$result = $jrportal_taxrate->deleteAllTaxRates();
 		
 		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 		$c->eraseAll();
@@ -75,12 +74,12 @@ class j16000import_eu_tax_rates
 			
 			foreach ($new_tax_rates as $rate)
 				{
-				$tax_rates_class = new jrportal_taxrate();
-				$tax_rates_class->code				= $rate['code'];
-				$tax_rates_class->rate				= $rate['rate'];
-				$tax_rates_class->description		= $rate['description'];
-				$tax_rates_class->is_eu_country		= '1';
-				$tax_rates_class->commitTaxRate();
+				$jrportal_taxrate->tmp_taxrate['id']				= 0;
+				$jrportal_taxrate->tmp_taxrate['code']				= $rate['code'];
+				$jrportal_taxrate->tmp_taxrate['rate']				= $rate['rate'];
+				$jrportal_taxrate->tmp_taxrate['description']		= $rate['description'];
+				$jrportal_taxrate->tmp_taxrate['is_eu_country']		= '1';
+				$jrportal_taxrate->commitTaxRate();
 				}
 			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_taxrates"), "" );
 			}

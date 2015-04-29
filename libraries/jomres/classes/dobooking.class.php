@@ -376,10 +376,9 @@ class dobooking
 		$this->accommodation_tax_rate = 0.0;
 		if ( isset( $mrConfig[ 'accommodation_tax_code' ] ) && (int) $mrConfig[ 'accommodation_tax_code' ] > 0 )
 			{
-			$taxrates                     = taxrates_getalltaxrates();
-			$cfgcode                      = $mrConfig[ 'accommodation_tax_code' ];
-			$taxrate                      = $taxrates[ $cfgcode ];
-			$this->accommodation_tax_rate = (float) $taxrate[ 'rate' ];
+			$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
+			$cfgcode = $mrConfig[ 'accommodation_tax_code' ];
+			$this->accommodation_tax_rate = (float) $jrportal_taxrate->taxrates[ $cfgcode ][ 'rate' ];
 			}
 
 		// Let's get the room, tariff, room type (class) and room feature information for this property
@@ -666,7 +665,8 @@ class dobooking
 
 	function getAllTaxRates()
 		{
-		$this->taxrates = taxrates_getalltaxrates();
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
+		$this->taxrates = $jrportal_taxrate->taxrates;
 		$this->setErrorLog( "Init found tax rates " . serialize( $this->taxrates ) );
 		}
 
