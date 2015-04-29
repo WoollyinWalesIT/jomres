@@ -105,9 +105,13 @@ function output_fatal_error($e)
 	$link = getCurrentUrl();
 	//$link =  "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	$cleaned_link = jomres_sanitise_string($link);
-
+	$referrer = "Unknown referrer";
+	if ( isset($_SERVER['HTTP_REFERER']))
+		$referrer = jomres_sanitise_string($_SERVER['HTTP_REFERER']);
+	
 	$output = array(
 		"URL" => $cleaned_link,
+		"REFERRER" => $referrer,
 		"MESSAGE" => $e->getMessage(),
 		"FILE"  => $e->getFile(),
 		"LINE"  => $e->getLine(),
@@ -117,7 +121,7 @@ function output_fatal_error($e)
 		'_JOMRES_ERROR_DEBUGGING_LINE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_LINE", _JOMRES_ERROR_DEBUGGING_LINE, false ) ,
 		'_JOMRES_ERROR_DEBUGGING_TRACE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_TRACE", _JOMRES_ERROR_DEBUGGING_TRACE, false ) ,
 		 ); 
-	
+
 	$output['IP_NUMBER'] = jomres_get_client_ip();
 	
 	$output['DATETIME'] = date ( "Y-m-d H:i:s" );
