@@ -135,12 +135,13 @@ class j02990showconfirmation
 			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
 
 		$this->accommodation_tax_rate = 0.0;
+		
 		if ( isset( $mrConfig[ 'accommodation_tax_code' ] ) && (int) $mrConfig[ 'accommodation_tax_code' ] > 0 )
 			{
-			$taxrates                     = taxrates_getalltaxrates();
-			$cfgcode                      = $mrConfig[ 'accommodation_tax_code' ];
-			$taxrate                      = $taxrates[ $cfgcode ];
-			$this->accommodation_tax_rate = (float) $taxrate[ 'rate' ];
+			$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
+			$taxrate_id = (int)$mrConfig[ 'accommodation_tax_code' ];
+			$jrportal_taxrate->gather_data($taxrate_id);
+			$this->accommodation_tax_rate = $jrportal_taxrate->rate;
 			}
 		$accommodation_tax_output = "";
 		if ( $this->accommodation_tax_rate > 0 ) $accommodation_tax_output = " (" . $this->accommodation_tax_rate . "%)";
@@ -284,12 +285,13 @@ class j02990showconfirmation
 		if ( $mrConfig[ 'singleRoomProperty' ] != "1" ) $booking_parts[ 'ALLOCATION' ] = $bookingDeets[ 'booking_notes' ][ 'suppliment_note' ];
 
 		$room_total = $bookingDeets[ 'room_total' ];
-		$taxrates   = taxrates_getalltaxrates();
+		
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
+		
 		if ( isset( $mrConfig[ 'accommodation_tax_code' ] ) && (int) $mrConfig[ 'accommodation_tax_code' ] > 0 )
 			{
 			$cfgcode         = $mrConfig[ 'accommodation_tax_code' ];
-			$taxrate         = $taxrates[ $cfgcode ];
-			$rate            = (float) $taxrate[ 'rate' ];
+			$rate            = (float) $jrportal_taxrate->taxrates[ $cfgcode ][ 'rate' ];
 			$percentageToAdd = $room_total * ( $rate / 100 );
 			$room_total      = $room_total + $percentageToAdd;
 			}
@@ -361,7 +363,7 @@ class j02990showconfirmation
 
 					$price       = $calc;
 					$tax_rate_id = (int) $thisPrice[ 'tax_rate' ];
-					$rate        = (float) $taxrates[ $tax_rate_id ][ 'rate' ];
+					$rate        = (float) $jrportal_taxrate->taxrates[ $tax_rate_id ][ 'rate' ];
 					if ( $mrConfig[ 'prices_inclusive' ] == 1 )
 						{
 						$divisor    = ( $rate / 100 ) + 1;
@@ -396,7 +398,7 @@ class j02990showconfirmation
 					if ( (int) $tpextra[ 'tax_code_id' ] > 0 )
 						{
 						$tax_rate_id = $tpextra[ 'tax_code_id' ];
-						$rate        = (float) $taxrates[ $tax_rate_id ][ 'rate' ];
+						$rate        = (float) $jrportal_taxrate->taxrates[ $tax_rate_id ][ 'rate' ];
 						$thisTax     = ( $tmpTotal / 100 ) * $rate;
 						$tmpTotal    = $tmpTotal + $thisTax;
 						}

@@ -29,6 +29,7 @@ class j16000edit_tax_rule
 		$id = intval( jomresGetParam( $_REQUEST, 'id', 0 ) );
 		
 		$jomres_countries = jomres_singleton_abstract::getInstance( 'jomres_countries' );
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 		
 		$output[ 'PAGETITLE' ] = jr_gettext( '_JRPORTAL_TAX_RULE_EDIT', _JRPORTAL_TAX_RULE_EDIT,false );
 		$output[ '_JRPORTAL_TAXRATES_CODE' ] = jr_gettext( '_JRPORTAL_TAXRATES_CODE', _JRPORTAL_TAXRATES_CODE,false );
@@ -51,7 +52,7 @@ class j16000edit_tax_rule
 				}
 			$output[ 'REGION' ] = setupRegions($c[ 'countrycode' ],find_region_name( $tax_rule[ 'region_id' ]));
 			
-			$output[ 'TAX_RATE' ] = taxrates_makerateDropdown( array (), $tax_rule[ 'tax_rate_id' ], 'tax_rate' );
+			$output[ 'TAX_RATE' ] = $jrportal_taxrate->makeTaxratesDropdown( $tax_rule[ 'tax_rate_id' ], 'tax_rate' );
 			}
 		else
 			{
@@ -59,7 +60,7 @@ class j16000edit_tax_rule
 			$jrConfig         = $siteConfig->get();
 			$output[ 'COUNTRY' ] = createSimpleCountriesDropdown($jrConfig[ 'limit_property_country_country' ],"country",false);
 			$output[ 'REGION' ] = setupRegions($jrConfig[ 'limit_property_country_country' ]);
-			$output[ 'TAX_RATE' ] = taxrates_makerateDropdown( array (), 1, 'tax_rate' );
+			$output[ 'TAX_RATE' ] = $jrportal_taxrate->makeTaxratesDropdown( 1, 'tax_rate' );
 			}
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );

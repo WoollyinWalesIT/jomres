@@ -41,6 +41,8 @@ class j02150addservicetobill
 		$mrConfig    = getPropertySpecificSettings();
 		$saveMessage = jr_gettext( '_JOMRES_COM_ADDSERVICE_SAVEMESSAGE', _JOMRES_COM_ADDSERVICE_SAVEMESSAGE );
 		$contract_uid = jomresGetParam( $_REQUEST, 'contract_uid', 0 );
+		
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 
 		if ( !isset( $_POST[ 'service_description' ] ) )
 			{
@@ -50,7 +52,7 @@ class j02150addservicetobill
 			$output[ 'HTAXRATE' ]            = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', _JRPORTAL_INVOICES_LINEITEMS_TAX_RATE );
 			//$output['CURRENCY']=$mrConfig['currency'];
 			$output[ 'CONTRACTUID' ]     = $contract_uid;
-			$output[ 'TAXRATEDROPDOWN' ] = taxrates_makerateDropdown( array (), 1 );
+			$output[ 'TAXRATEDROPDOWN' ] = $jrportal_taxrate->makeTaxratesDropdown( 1 );
 
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb   = $jrtbar->startTable();
@@ -73,11 +75,9 @@ class j02150addservicetobill
 			$service_value       = convert_entered_price_into_safe_float (jomresGetParam( $_POST, 'service_value', '' ));
 			$taxrate             = jomresGetParam( $_POST, 'taxrate', 0 );
 			
-			jr_import( 'jrportal_taxrate' );
-			$tax_rate_class     = new jrportal_taxrate();
-			$tax_rate_class->id = $taxrate;
-			$tax_rate_class->getTaxRate();
-			$tax_value = $tax_rate_class->rate;
+			$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
+			$jrportal_taxrate->gather_data($taxrate);
+			$tax_value = (float)$jrportal_taxrate->rate;
 
 			if ( $contract_uid && $service_description)
 				{

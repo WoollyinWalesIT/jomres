@@ -302,8 +302,6 @@ class basic_contract_details
 		
 		//optional extras
 		$extras_rows       = array ();
-		$taxrates          = taxrates_getalltaxrates();
-		
 		$extraOptionsArray = explode( ",", $this->contract[$contract_uid]['contractdeets']['extras'] );
 		
 		if (count($extraOptionsArray) > 0)

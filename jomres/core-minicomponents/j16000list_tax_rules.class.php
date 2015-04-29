@@ -26,11 +26,14 @@ class j16000list_tax_rules
 
 			return;
 			}
-		$editIcon   = '<IMG SRC="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
-		$rates      = taxrates_getalltaxrates();
+		$editIcon   = '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" alt="editicon" />';
+		
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
+		
 		$output     = array ();
 		$pageoutput = array ();
 		$rows       = array ();
+		
 		$query = "SELECT `id`,`tax_rate_id`,`country_id`,`region_id` FROM #__jomres_tax_rules";
 		$all_tax_rules = doSelectSql($query);
 		
@@ -60,9 +63,9 @@ class j16000list_tax_rules
 				}
 			
 			$r[ 'REGION' ] = find_region_name( $rule->region_id);
-			$r[ 'CODE' ]        =$rates[$rate_id]['code'];
-			$r[ 'RATE' ]        =$rates[$rate_id]['rate'];
-			$r[ 'DESCRIPTION' ] = $rates[$rate_id]['description'];
+			$r[ 'CODE' ]        =$jrportal_taxrate->taxrates[$rate_id]['code'];
+			$r[ 'RATE' ]        =$jrportal_taxrate->taxrates[$rate_id]['rate'];
+			$r[ 'DESCRIPTION' ] = $jrportal_taxrate->taxrates[$rate_id]['description'];
 			
 			$r[ 'EDITLINK' ]    = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_tax_rule&id=' . $rule->id . '">' . $editIcon . '</a>';
 			$rows[ ]            = $r;
@@ -75,8 +78,6 @@ class j16000list_tax_rules
 		
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
-
-		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = JOMRES_SITEPAGE_URL_ADMIN;
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();

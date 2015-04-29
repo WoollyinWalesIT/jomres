@@ -450,7 +450,8 @@ class j02260editbooking
 		$pageoutput = array ();
 
 		$extras_rows = array ();
-		$taxrates = taxrates_getalltaxrates();
+		
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 
 		foreach ( $current_contract_details->contract[$contract_uid]['extradeets'] as $extra )
 			{
@@ -460,16 +461,17 @@ class j02260editbooking
 			if ( $mrConfig[ 'prices_inclusive' ] == "0" )
 				{
 				$tax_rate_id = (int) $extra['tax_rate'];
-				$rate = (float) $taxrates[ $tax_rate_id ][ 'rate' ];
-				$tax = ( $price / 100 ) * $rate;
+				$jrportal_taxrate->gather_data($tax_rate_id);
+				$taxrate = (float)$jrportal_taxrate->rate;
+				$tax = ( $price / 100 ) * $taxrate;
 				$inc_price = $price + $tax;
 				}
 			else
 				$inc_price = $price;
 
 			$extra_tax_output = "";
-			if ( $rate > 0 ) 
-				$extra_tax_output = $rate;
+			if ( $taxrate > 0 ) 
+				$extra_tax_output = $taxrate;
 
 			$r[ 'EXTRA_NAME' ]            = $extra['name'];
 			$r[ 'EXTRA_INCLUSIVE_PRICE' ] = output_price( $inc_price );

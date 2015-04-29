@@ -32,21 +32,18 @@ class j16000save_taxrate
 		$rate_val    = jomresGetParam( $_POST, 'rate', 0.00 );
 		$is_eu_country    = jomresGetParam( $_POST, 'is_eu_country', false );
 
-		jr_import( 'jrportal_taxrate' );
-		$rate = new jrportal_taxrate();
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
+		
+		$jrportal_taxrate->tmp_taxrate['id'] 			= $id;
+		$jrportal_taxrate->tmp_taxrate['code']        	= $code;
+		$jrportal_taxrate->tmp_taxrate['description'] 	= $description;
+		$jrportal_taxrate->tmp_taxrate['rate']        	= $rate_val;
+		$jrportal_taxrate->tmp_taxrate['is_eu_country'] = $is_eu_country;
+			
 		if ( $id > 0 )
-			{
-			$rate->id = $id;
-			}
-		$rate->code        = $code;
-		$rate->description = $description;
-		$rate->rate        = $rate_val;
-		$rate->is_eu_country = $is_eu_country;
-
-		if ( $id > 0 ) $rate->commitUpdateTaxRate();
+			$jrportal_taxrate->commitUpdateTaxRate();
 		else
-		$rate->commitTaxRate();
-		//echo $rate->error;
+			$jrportal_taxrate->commitTaxRate();
 		
 		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 		$c->eraseAll();

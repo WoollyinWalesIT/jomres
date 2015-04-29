@@ -206,10 +206,11 @@ class j06005save_subscriber
 		$transactionName = 'Paypal Subscription from ' . $jomresConfig_sitename;
 		if ( $this->paypal_settings[ 'usesandbox' ] == "1" ) $transactionName .= ' Test Service';
 
-
-		$taxrates = taxrates_getalltaxrates();
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
+		$jrportal_taxrate->gather_data($tax_code_id);
+		
 		$taxrate  = $taxrates[ $tax_code_id ];
-		$rate     = (float) $taxrate[ 'rate' ];
+		$rate     = (float)$jrportal_taxrate->rate;
 		$this->add_field( 'tax_rate', $rate );
 
 		$this->add_field( 'rm', '2' ); // Return method = POST

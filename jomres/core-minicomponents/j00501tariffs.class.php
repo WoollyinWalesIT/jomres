@@ -50,7 +50,8 @@ class j00501tariffs
 		$this->outputConversionJavascript();
 		$currfmt         = jomres_singleton_abstract::getInstance( 'jomres_currency_format' );
 		$cformatdropdown = $currfmt->get_currency_format_dropdowninput();
-
+		
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 
 		if ( !isset( $mrConfig[ 'margin' ] ) || empty( $mrConfig[ 'margin' ] ) ) 
 			$mrConfig[ 'margin' ] = "0.00";
@@ -105,7 +106,7 @@ class j00501tariffs
 				}
 
 			$configurationPanel->setleft( jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE", _JRPORTAL_INVOICES_LINEITEMS_TAX_RATE, false ) );
-			$configurationPanel->setmiddle( taxrates_makerateDropdown( array (), $mrConfig[ 'accommodation_tax_code' ], 'cfg_accommodation_tax_code' ) );
+			$configurationPanel->setmiddle( $jrportal_taxrate->makeTaxratesDropdown( $mrConfig[ 'accommodation_tax_code' ], 'cfg_accommodation_tax_code' ) );
 			$configurationPanel->setright( '' );
 			$configurationPanel->insertSetting();
 

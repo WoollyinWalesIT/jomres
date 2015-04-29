@@ -4689,65 +4689,6 @@ function subscriptions_packages_makeroomslimitDropdown( $selected = 0 )
 	return $rooms_limitDropdown;
 	}
 
-
-function taxrates_getalltaxrates()
-	{
-	$rates = get_showtime( 'all_tax_rates' );
-	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
-	$all_tax_rates=$c->retrieve('all_tax_rates');
-	
-	if ( is_null( $rates ) )
-		{
-		$rates  = array ();
-		if (true===is_array($all_tax_rates))
-			{
-			$rates=$all_tax_rates;
-			}
-		else
-			{
-			$query  = "SELECT id,code,description,rate,is_eu_country FROM #__jomresportal_taxrates";
-			$result = doSelectSql( $query );
-			if ( count( $result ) > 0 )
-				{
-				foreach ( $result as $r )
-					{
-					$rates[ $r->id ][ 'id' ]		  = $r->id;
-					$rates[ $r->id ][ 'code' ]		= $r->code;
-					$rates[ $r->id ][ 'description' ] = $r->description;
-					$rates[ $r->id ][ 'rate' ]		= $r->rate;
-					$rates[ $r->id ][ 'is_eu_country' ]= $r->is_eu_country;
-					}
-				}
-			$c->store('all_tax_rates',$rates);
-			}
-		set_showtime( 'all_tax_rates', $rates );
-		}
-
-	return $rates;
-	}
-
-function taxrates_makerateDropdown( $rates = array (), $selected = '0', $name = 'taxrate' )
-	{
-	$ratesOptions  = array ();
-	$ratesDropdown = "";
-
-	if ( count( $rates ) < 1 ) $rates = taxrates_getalltaxrates();
-
-	//$ratesOptions[]=jomresHTML::makeOption( 0, '' ); // This would allow a blank option, i.e. allow users to set no tax rate. As, nowadays, internally the booking system NEEDS to know the tax rate when calculating the final price, we can't allow users to select a blank option any more.
-
-	if ( count( $rates > 0 ) )
-		{
-		foreach ( $rates as $r )
-			{
-			$ratesOptions[ ] = jomresHTML::makeOption( $r[ 'id' ], $r[ 'code' ] . " " . $r[ 'description' ] );
-			}
-		$ratesDropdown = jomresHTML::selectList( $ratesOptions, $name, 'class="inputbox" size="1"', 'value', 'text', $selected );
-		}
-
-	return $ratesDropdown;
-	}
-
-
 function parseFloat( $ptString )
 	{
 	if ( strlen( $ptString ) == 0 )

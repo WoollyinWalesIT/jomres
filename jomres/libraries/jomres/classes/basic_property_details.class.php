@@ -283,14 +283,14 @@ class basic_property_details
 	function get_gross_accommodation_price( $nett_amount, $property_uid = 0 )
 		{
 		$nett_amount = (float) $nett_amount;
-
+		
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
+		
 		if ( $property_uid != $this->property_uid )
 			{
 			$mrConfig               = getPropertySpecificSettings( $property_uid );
-			$taxrates               = taxrates_getalltaxrates();
 			$cfgcode                = $mrConfig[ 'accommodation_tax_code' ];
-			$rate                   = $taxrates[ $cfgcode ];
-			$accommodation_tax_rate = (float) $rate[ 'rate' ];
+			$accommodation_tax_rate = (float)$jrportal_taxrate->taxrates[ $cfgcode ][ 'rate' ];
 			}
 		else
 			{
@@ -306,14 +306,14 @@ class basic_property_details
 	function get_nett_accommodation_price( $gross_amount, $property_uid = 0 )
 		{
 		$gross_amount = (float) $gross_amount;
+		
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 
 		if ( $property_uid != $this->property_uid )
 			{
 			$mrConfig               = getPropertySpecificSettings( $property_uid );
-			$taxrates               = taxrates_getalltaxrates();
 			$cfgcode                = $mrConfig[ 'accommodation_tax_code' ];
-			$rate                   = $taxrates[ $cfgcode ];
-			$accommodation_tax_rate = (float) $rate[ 'rate' ];
+			$accommodation_tax_rate = (float)$jrportal_taxrate->taxrates[ $cfgcode ][ 'rate' ];
 			}
 		else
 			{
@@ -343,7 +343,7 @@ class basic_property_details
 		$property_uids = $temp_array;
 		unset ( $temp_array );
 
-		$taxrates = taxrates_getalltaxrates();
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 
 		if ( count( $property_uids ) > 0 )
 			{
@@ -443,9 +443,7 @@ class basic_property_details
 				{
 				$mrConfig = getPropertySpecificSettings( $id );
 				$cfgcode  = $mrConfig[ 'accommodation_tax_code' ];
-				$rate     = $taxrates[ $cfgcode ];
-				//$this->accommodation_tax_rate=(float)$rate['rate'];
-				$this->multi_query_result[ $id ][ 'accommodation_tax_rate' ] = (float) $rate[ 'rate' ];
+				$this->multi_query_result[ $id ][ 'accommodation_tax_rate' ] = (float) $jrportal_taxrate->taxrates[ $cfgcode ][ 'rate' ];
 				}
 			}
 

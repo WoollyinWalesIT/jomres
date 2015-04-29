@@ -26,8 +26,9 @@ class j16000list_taxrates
 
 			return;
 			}
-		$editIcon   = '<IMG SRC="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
-		$rates      = taxrates_getalltaxrates();
+		$editIcon   = '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" alt="editicon" />';
+		
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 
 		$output     = array ();
 		$pageoutput = array ();
@@ -43,7 +44,7 @@ class j16000list_taxrates
 		$output[ '_JOMRES_TAX_RATES_IMPORT_INFO' ]   = jr_gettext( '_JOMRES_TAX_RATES_IMPORT_INFO', _JOMRES_TAX_RATES_IMPORT_INFO,false );
 		$output[ 'IMPORT_LINK'] = JOMRES_SITEPAGE_URL_ADMIN . "&task=import_eu_tax_rates";
 		
-		foreach ( $rates as $rate )
+		foreach ( $jrportal_taxrate->taxrates as $rate )
 			{
 			$r                  = array ();
 			$r[ 'ID' ]          = $rate[ 'id' ];
@@ -66,8 +67,6 @@ class j16000list_taxrates
 		
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
-
-		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = JOMRES_SITEPAGE_URL_ADMIN;
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();

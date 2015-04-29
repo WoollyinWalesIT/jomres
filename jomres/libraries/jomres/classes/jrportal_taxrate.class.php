@@ -16,67 +16,107 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jrportal_taxrate
 	{
-	function jrportal_taxrate()
+	private static $configInstance;
+	
+	public function __construct()
 		{
-		$this->id          = 0;
-		$this->code        = '';
-		$this->description = '';
-		$this->rate        = 0.00;
-		$this->is_eu_country = '0';
-		$this->error       = null;
+		$this->id			= 0;
+		$this->code			= '';
+		$this->description	= '';
+		$this->rate			= 0.00;
+		$this->is_eu_country= 0;
+		$this->error 		= null;
+		
+		$this->tmp_taxrate					= array();
+		$this->tmp_taxrate['id']			= 0;
+		$this->tmp_taxrate['code']			= '';
+		$this->tmp_taxrate['description']	= '';
+		$this->tmp_taxrate['rate']			= 0.00;
+		$this->tmp_taxrate['is_eu_country']	= 0;
+		
+		$this->taxrates = false;
+		
+		$this->getAllTaxRates();
 		}
 
-
-	function getTaxRate()
+	public static function getInstance()
 		{
-		if ( $this->id > 0 )
+		if ( !self::$configInstance )
 			{
-			$query = "SELECT
-				`id`,`code`,`description`,`rate`,`is_eu_country`
-				FROM #__jomresportal_taxrates WHERE `id`=" . (int) $this->id . " LIMIT 1";
+			self::$configInstance = new jrportal_taxrate();
+			}
 
+		return self::$configInstance;
+		}
+	
+	function getAllTaxRates()
+		{
+		if (true === is_array($this->taxrates))
+			return true;
+
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$this->taxrates = $c->retrieve('all_tax_rates');
+		
+		if (true === is_array($this->taxrates))
+			{
+			return true;
+			}
+		else
+			{
+			$this->taxrates = array();
+			
+			$query  = "SELECT `id`,`code`,`description`,`rate`,`is_eu_country` FROM #__jomresportal_taxrates";
 			$result = doSelectSql( $query );
-			if ( $result && count( $result ) == 1 )
+			
+			if ( count( $result ) > 0 )
 				{
 				foreach ( $result as $r )
 					{
-					$this->id          = $r->id;
-					$this->code        = $r->code;
-					$this->description = $r->description;
-					$this->rate        = $r->rate;
-					$this->is_eu_country = $r->is_eu_country;
-					
+					$this->taxrates[ $r->id ][ 'id' ]		  	= $r->id;
+					$this->taxrates[ $r->id ][ 'code' ]			= $r->code;
+					$this->taxrates[ $r->id ][ 'description' ] 	= $r->description;
+					$this->taxrates[ $r->id ][ 'rate' ]			= $r->rate;
+					$this->taxrates[ $r->id ][ 'is_eu_country' ]= $r->is_eu_country;
 					}
+				}
+			$c->store('all_tax_rates',$this->taxrates);
+			}
+	
+		return true;
+		}
 
+	function gather_data( $id = 0 )
+		{
+		if ( (int)$id > 0 )
+			{
+			if (array_key_exists($id, $this->taxrates))
+				{
+				$this->id			= $this->taxrates[$id]['id'];
+				$this->code			= $this->taxrates[$id]['code'];
+				$this->description	= $this->taxrates[$id]['description'];
+				$this->rate			= $this->taxrates[$id]['rate'];
+				$this->is_eu_country= $this->taxrates[$id]['is_eu_country'];
+				
 				return true;
 				}
 			else
 				{
-				if ( count( $result ) == 0 )
-					{
-					error_logging( "No Tax Rates were found with that id" );
-
-					return false;
-					}
-				if ( count( $result ) > 1 )
-					{
-					error_logging( "More than one Tax Rate rate was found with that id" );
-
-					return false;
-					}
+				error_logging( "No Tax Rates were found with id ".$id );
+	
+				return false;
 				}
 			}
 		else
 			{
-			//error_logging(  "ID of Tax Rate rate not available");
+			error_logging( "ID of Tax Rate rate is sett to 0");
+			
 			return false;
 			}
-
 		}
 
 	function commitTaxRate()
 		{
-		if ( $this->id < 1 )
+		if ( $this->tmp_taxrate['id'] < 1 )
 			{
 			$query  = "INSERT INTO #__jomresportal_taxrates
 				(
@@ -87,15 +127,16 @@ class jrportal_taxrate
 				)
 				VALUES
 				(
-				'" . (string) $this->code . "',
-				'" . (string) $this->description . "',
-				'" . (float) $this->rate . "',
-				'" . (float) $this->is_eu_country . "'
+				'". $this->tmp_taxrate['code'] . "',
+				'". $this->tmp_taxrate['description'] . "',
+				" . (float) $this->tmp_taxrate['rate'] . ",
+				" . (int) $this->tmp_taxrate['is_eu_country'] . "
 				)";
 			$result = doInsertSql( $query, "" );
+			
 			if ( $result )
 				{
-				$this->id = $result;
+				$this->tmp_taxrate['id'] = $result;
 				return true;
 				}
 			else
@@ -104,53 +145,58 @@ class jrportal_taxrate
 				return false;
 				}
 			}
-		error_logging( "ID of Tax Rate already available. Are you sure you are creating a new Commission rate?" );
+		error_logging( "ID of Tax Rate already available. Are you sure you are creating a new Tax rate?" );
 
 		return false;
 		}
 
 	function commitUpdateTaxRate()
 		{
-		if ( $this->id > 0 )
+		if ( $this->tmp_taxrate['id'] > 0 )
 			{
 			$query  = "UPDATE #__jomresportal_taxrates SET
-				`code` 					= '$this->code',
-				`description` 			= '$this->description',
-				`rate` 					= '$this->rate',
-				`is_eu_country`			= '$this->is_eu_country'
-				WHERE `id`=" . (int) $this->id;
+							`code` = '".$this->tmp_taxrate['code']."',
+							`description` = '".$this->tmp_taxrate['description']."',
+							`rate` = ".(float)$this->tmp_taxrate['rate'].",
+							`is_eu_country` = ".(int)$this->tmp_taxrate['is_eu_country']." 
+						WHERE `id` = " . (int)$this->tmp_taxrate['id'];
 			$result = doInsertSql( $query, "" );
-			if ( $result ) return true;
+			
+			if ( $result ) 
+				return true;
 			else
 				{
 				error_logging( "ID of Tax Rate could not be found after apparent successful insert" );
-
 				return false;
 				}
 			}
-		error_logging( "ID of Tax Rate not available" );
+		error_logging( "ID of Tax Rate to be updated is 0" );
 
 		return false;
 		}
 
-	function deleteTaxRate()
+	function deleteTaxRate( $id = 0 )
 		{
-		if ( $this->id > 0 )
+		if ( (int)$id > 0 )
 			{
-			$query  = "DELETE FROM #__jomresportal_taxrates WHERE `id` = " . (int) $this->id;
+			$query  = "DELETE FROM #__jomresportal_taxrates WHERE `id` = " . (int)$id;
 			$result = doInsertSql( $query, "" );
+			
 			if ( $result )
 				{
+				if (array_key_exists($id, $this->taxrates))
+					unset($this->taxrates[$id]);
+				
 				return true;
 				}
 			else
 				{
-				error_logging( "Could not delete tax rate." );
+				error_logging( "Could not delete tax rate with id ".$id );
 
 				return false;
 				}
 			}
-		error_logging( "ID of Tax Rate not available" );
+		error_logging( "ID ".$id." of Tax Rate not available" );
 
 		return false;
 		}
@@ -159,16 +205,39 @@ class jrportal_taxrate
 		{
 		$query = "TRUNCATE TABLE #__jomresportal_taxrates";
 		$result = doInsertSql( $query, "" );
+		
 		if ( $result )
 			{
+			$this->taxrates = array();
+			
 			return true;
 			}
 		else
 			{
 			error_logging( "Could not empty tax rates table." );
+			
 			return false;
 			}
 		}
-	}
+	
+	function makeTaxratesDropdown( $selected = '0', $name = 'taxrate' )
+		{
+		$ratesOptions  = array ();
+		$ratesDropdown = "";
+	
+		if ( count( $this->taxrates ) < 1 ) 
+			$this->getAllTaxRates();
 
-?>
+		if ( count( $this->taxrates > 0 ) )
+			{
+			foreach ( $this->taxrates as $r )
+				{
+				$ratesOptions[ ] = jomresHTML::makeOption( $r[ 'id' ], $r[ 'code' ] . " " . $r[ 'description' ] );
+				}
+			$ratesDropdown = jomresHTML::selectList( $ratesOptions, $name, 'class="inputbox" size="1"', 'value', 'text', $selected );
+			}
+	
+		return $ratesDropdown;
+		}
+
+	}
