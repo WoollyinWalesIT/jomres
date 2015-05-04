@@ -37,14 +37,9 @@ function can_modify_this_booking($contract_uid)
 	throw new Exception("Manager user ".serialize($thisJRUser)." attempted to modify a booking with the contract uid of ".(int)$contract_property_uid.". Could not confirm that the manager was authorised to modify the booking.");
 	}
 
-// Newer function for finding dates
+// Newer function for finding dates - dates must be passed in Y/m/d format
 function get_periods( $start, $end, $interval = null )
 	{
-	$bang = explode("/",$start);
-	$start = $bang[1]."/".$bang[0]."/".$bang[2];
-	$bang = explode("/",$end);
-	$end = $bang[1]."/".$bang[0]."/".$bang[2];
-	
 	$start = new DateTime( $start );
 	$end   = new DateTime( $end );
 	if ( is_null( $interval ) ) $interval = new DateInterval( 'P1D' );
@@ -105,13 +100,9 @@ function output_fatal_error($e)
 	$link = getCurrentUrl();
 	//$link =  "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	$cleaned_link = jomres_sanitise_string($link);
-	$referrer = "Unknown referrer";
-	if ( isset($_SERVER['HTTP_REFERER']))
-		$referrer = jomres_sanitise_string($_SERVER['HTTP_REFERER']);
-	
+
 	$output = array(
 		"URL" => $cleaned_link,
-		"REFERRER" => $referrer,
 		"MESSAGE" => $e->getMessage(),
 		"FILE"  => $e->getFile(),
 		"LINE"  => $e->getLine(),
@@ -121,7 +112,7 @@ function output_fatal_error($e)
 		'_JOMRES_ERROR_DEBUGGING_LINE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_LINE", _JOMRES_ERROR_DEBUGGING_LINE, false ) ,
 		'_JOMRES_ERROR_DEBUGGING_TRACE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_TRACE", _JOMRES_ERROR_DEBUGGING_TRACE, false ) ,
 		 ); 
-
+	
 	$output['IP_NUMBER'] = jomres_get_client_ip();
 	
 	$output['DATETIME'] = date ( "Y-m-d H:i:s" );

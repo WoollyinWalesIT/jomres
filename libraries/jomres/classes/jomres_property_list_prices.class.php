@@ -117,14 +117,13 @@ class jomres_property_list_prices
 					}
 				elseif ( count( $tmpBookingHandler->tmpsearch_data ) > 0 )
 					{
-					if (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) && trim($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != ''))
+					if (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) && trim($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ])!='')
+						{
+						$searchDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
+						}
+					elseif (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) && trim($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != ''))
 						{
 						$searchDate = JSCalConvertInputDates($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'],$siteCal=true);
-						}
-					else
-						{
-						if (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) && trim($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ])!='')
-							$searchDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
 						}
 					}
 				

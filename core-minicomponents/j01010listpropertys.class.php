@@ -51,27 +51,20 @@ class j01010listpropertys
 		
 		$stayDays = 1;
 
-		if ( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '' && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] != '')
+		if ( $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] != '' && $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] )
+			{
+			$start = $tmpBookingHandler->tmpsearch_data['jomsearch_availability'];
+			$end = $tmpBookingHandler->tmpsearch_data['jomsearch_availability_departure'];
+
+			$range = get_periods ( $start, $end);
+			$stayDays = count($range);
+			}
+		elseif ( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '' && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] != '')
 			{
 			$start = JSCalConvertInputDates( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] , $siteCal = true );
 			$end = JSCalConvertInputDates( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] , $siteCal = true );
 			
-			$bang = explode("/",$start);
-			$start = $bang[2]."/".$bang[1]."/".$bang[0];
-			$bang = explode("/",$end);
-			$end = $bang[2]."/".$bang[1]."/".$bang[0];
-			
 			$range = get_periods ( $start , $end );
-			$stayDays = count($range);
-			}
-		elseif ( $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] != '' && $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] )
-			{
-			$bang = explode("/",$tmpBookingHandler->tmpsearch_data['jomsearch_availability']);
-			$start = $bang[2]."/".$bang[1]."/".$bang[0];
-			$bang = explode("/",$tmpBookingHandler->tmpsearch_data['jomsearch_availability_departure']);
-			$end = $bang[2]."/".$bang[1]."/".$bang[0];
-	
-			$range = get_periods ( $start, $end);
 			$stayDays = count($range);
 			}
 		
