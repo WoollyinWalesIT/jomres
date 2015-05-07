@@ -103,13 +103,19 @@ class jomres_language
 		
 		if ( !array_key_exists( $jomresConfig_lang, $langfile_crossref ) ) 
 			$jomresConfig_lang = $this->get_shortcode_to_longcode( $jomresConfig_lang );
-
+		
 		$tmpBookingHandler->tmplang[ 'jomreslang' ] = $jomresConfig_lang;
 
 		jomres_cmsspecific_setlanguage( $jomresConfig_lang );
 		$this->lang = $jomresConfig_lang;
 		//system_log( 'Lang is finally set to ' . $jomresConfig_lang  . " for task ".$_REQUEST['task']);
+		
 		set_showtime( 'lang', $jomresConfig_lang );
+		
+		$this->shortcodes = $this->get_shortcodes();
+		$key = array_search($jomresConfig_lang,$this->shortcodes); 
+		set_showtime( 'lang_shortcode', $key );
+		
 		}
 
 	function get_language( $propertytype = "" )
@@ -296,6 +302,29 @@ class jomres_language
 
 	function get_shortcode_to_longcode( $lang )
 		{
+		$langs = $this->get_shortcodes();
+		
+		$language_plugins = get_showtime( 'language_plugins' );
+		if ( count( $language_plugins ) > 0 )
+			{
+			foreach ( $language_plugins as $code => $propertytype )
+				{
+				foreach ( $propertytype as $language_settings )
+					{
+					$shortcode           = $language_settings[ 'shortcode_to_longcode' ];
+					$langs[ $shortcode ] = $code;
+					}
+				}
+			}
+
+		if ( array_key_exists( $lang, $langs ) ) 
+			return $langs[ $lang ];
+
+		return "en-GB";
+		}
+	
+	function get_shortcodes()
+		{
 		$langs         = array ();
 		$langs[ 'ar' ] = 'ar-AR';
 		$langs[ 'bg' ] = 'bg-BG';
@@ -329,26 +358,9 @@ class jomres_language
 		$langs[ 'ca' ] = 'ca-ES';
 		$langs[ 'ja' ] = 'ja-JP';
 		$langs[ 'uk' ] = 'uk-UA';
-		
-		$language_plugins = get_showtime( 'language_plugins' );
-		if ( count( $language_plugins ) > 0 )
-			{
-			foreach ( $language_plugins as $code => $propertytype )
-				{
-				foreach ( $propertytype as $language_settings )
-					{
-					$shortcode           = $language_settings[ 'shortcode_to_longcode' ];
-					$langs[ $shortcode ] = $code;
-					}
-				}
-			}
-
-		if ( array_key_exists( $lang, $langs ) ) 
-			return $langs[ $lang ];
-
-		return "en-GB";
+		return $langs;
 		}
-
+	
 	function define_langfile_to_datepicker_files_array()
 		{
 		$langs            = array ();
