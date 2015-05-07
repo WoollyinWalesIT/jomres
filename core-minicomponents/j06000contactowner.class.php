@@ -44,22 +44,29 @@ class j06000contactowner
 		$jrConfig   = $siteConfig->get();
 
 		$use_recaptcha = false;
-		if ( $jrConfig[ 'recaptcha_public_key' ] != "" && $jrConfig[ 'recaptcha_private_key' ] != "" ) $use_recaptcha = true;
+		if ( $jrConfig[ 'recaptcha_public_key' ] != "" && $jrConfig[ 'recaptcha_private_key' ] != "" ) 
+			$use_recaptcha = true;
 
 		$mrConfig          = getPropertySpecificSettings();
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		$this->_remove_old_captcha_files(); // In time, this can be removed. Since going to reCaptcha there will no longer be a need for the old validation files, but for now (8/6/2012) we'll leave it in-situ so that we're cleaning up after ourselves.
 
-		if ( $use_recaptcha ) require_once( JOMRESPATH_BASE . '/libraries/recaptcha/recaptchalib.php' );
+		if ( $use_recaptcha ) 
+			require_once( JOMRESPATH_BASE . '/libraries/recaptcha/recaptchalib.php' );
 
-		if ( isset( $componentArgs[ 'property_uid' ] ) ) $property_uid = intval( $componentArgs[ 'property_uid' ] );
+		if ( isset( $componentArgs[ 'property_uid' ] ) ) 
+			$property_uid = intval( $componentArgs[ 'property_uid' ] );
 		else
 			{
 			$property_uid = intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
 			jomres_cmsspecific_setmetadata( "robots", "noindex,nofollow" );
 			}
-		if ( isset( $_POST[ 'property_uid' ] ) ) $property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
-		if ( $property_uid == 0 ) return;
+		
+		if ( isset( $_POST[ 'property_uid' ] ) ) 
+			$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
+		
+		if ( $property_uid == 0 ) 
+			return;
 
 		$thisJRUser                     = jomres_singleton_abstract::getInstance( 'jr_user' );
 		$all_properties_in_system       = get_showtime( 'all_properties_in_system' );
@@ -67,16 +74,14 @@ class j06000contactowner
 		if ( !in_array( $property_uid, $all_properties_in_system ) )
 			{
 			echo "Cannot message this property as it doesn't exist";
-
 			return;
 			}
+		
 		if ( !$thisJRUser->userIsManager && !in_array( $property_uid, $published_properties_in_system ) )
 			{
 			echo "Cannot message an unpublished property";
-
 			return;
 			}
-
 
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$current_property_details->gather_data( $property_uid );
@@ -89,10 +94,12 @@ class j06000contactowner
 		$output[ 'GUEST_NAME' ]   = jomresGetParam( $_REQUEST, 'guest_name', '' );
 		$output[ 'PROPERTY_UID' ] = $property_uid;
 
-		if ( isset( $_REQUEST[ 'guest_email' ] ) ) $output[ 'GUEST_EMAIL' ] = jomresGetParam( $_REQUEST, 'guest_email', '' );
-		else if ( isset( $tmpBookingHandler->tmpguest[ 'email' ] ) ) $output[ 'GUEST_EMAIL' ] = $tmpBookingHandler->tmpguest[ 'email' ];
+		if ( isset( $_REQUEST[ 'guest_email' ] ) ) 
+			$output[ 'GUEST_EMAIL' ] = jomresGetParam( $_REQUEST, 'guest_email', '' );
+		else if ( isset( $tmpBookingHandler->tmpguest[ 'email' ] ) ) 
+			$output[ 'GUEST_EMAIL' ] = $tmpBookingHandler->tmpguest[ 'email' ];
 		else
-		$output[ 'GUEST_EMAIL' ] = "";
+			$output[ 'GUEST_EMAIL' ] = "";
 
 		$output[ 'HEMAIL' ]   = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL );
 		$output[ 'HNAME' ]    = jr_gettext( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', _JOMRES_FRONT_MR_EMAIL_TEXT_NAME );
@@ -127,11 +134,11 @@ class j06000contactowner
 		else
 			{
 			$resp = new stdClass;
-			if ( $output[ 'SUBJECT' ] != "" && $output[ 'ENQUIRY' ] != "" && $output[ 'GUEST_NAME' ] != "" ) $resp->is_valid = true;
+			if ( $output[ 'SUBJECT' ] != "" && $output[ 'ENQUIRY' ] != "" && $output[ 'GUEST_NAME' ] != "" )
+				$resp->is_valid = true;
 			else
-			$resp->is_valid = false;
+				$resp->is_valid = false;
 			}
-
 
 		$oktosend = false;
 
@@ -144,11 +151,14 @@ class j06000contactowner
 			$output[ 'ENQUIRY' ] .= '<br />Email: ' . $output[ 'GUEST_EMAIL' ];
 
 			$target_email = $current_property_details->property_email;
-			if ( $jrConfig[ 'contact_owner_emails_to_alternative' ] == "1" ) $target_email = $jrConfig[ 'contact_owner_emails_to_alternative_email' ];
+			if ( $jrConfig[ 'contact_owner_emails_to_alternative' ] == "1" ) 
+				$target_email = $jrConfig[ 'contact_owner_emails_to_alternative_email' ];
 
-			if ( !jomresMailer( $output[ 'GUEST_EMAIL' ], $current_property_details->property_name, $target_email, $subject, $output[ 'ENQUIRY' ], $mode = 1 ) ) error_logging( 'Failure in sending enquiry email to hotel. Target address: ' . $target_email . ' Subject' . $subject );
+			if ( !jomresMailer( $output[ 'GUEST_EMAIL' ], $current_property_details->property_name, $target_email, $subject, $output[ 'ENQUIRY' ], $mode = 1 ) ) 
+				error_logging( 'Failure in sending enquiry email to hotel. Target address: ' . $target_email . ' Subject' . $subject );
 
-			if ( !jomresMailer( $target_email, $current_property_details->property_name, $output[ 'GUEST_EMAIL' ], $subject, $output[ 'ENQUIRY' ], $mode = 1 ) ) error_logging( 'Failure in sending enquiry email to guest. Target address: ' . $output[ 'GUEST_EMAIL' ] . ' Subject' . $subject );
+			if ( !jomresMailer( $target_email, $current_property_details->property_name, $output[ 'GUEST_EMAIL' ], $subject, $output[ 'ENQUIRY' ], $mode = 1 ) ) 
+				error_logging( 'Failure in sending enquiry email to guest. Target address: ' . $output[ 'GUEST_EMAIL' ] . ' Subject' . $subject );
 
 			$output[ 'BACKTOPROPERTY' ] = jr_gettext( '_JOMRES_BACKTOPROPERTYDETAILSLINK', _JOMRES_BACKTOPROPERTYDETAILSLINK );
 			$output[ 'PROPERTYUID' ]    = $property_uid;
@@ -161,29 +171,33 @@ class j06000contactowner
 			if (isset($_SERVER['HTTPS']) )
 				$use_ssl = true;
 			
-			if ( $use_recaptcha ) $output[ 'CAPTCHA' ] = recaptcha_get_html( $jrConfig[ 'recaptcha_public_key' ] , null , $use_ssl );
+			if ( $use_recaptcha ) 
+				$output[ 'CAPTCHA' ] = recaptcha_get_html( $jrConfig[ 'recaptcha_public_key' ] , null , $use_ssl );
 			}
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
 		if ( isset( $componentArgs[ 'custom_path_to_template' ] ) )
 			{
-			if ( file_exists( $componentArgs[ 'custom_path_to_template' ] . 'contact_owner.html' ) ) $tmpl->setRoot( $componentArgs[ 'custom_path_to_template' ] );
+			if ( file_exists( $componentArgs[ 'custom_path_to_template' ] . 'contact_owner.html' ) ) 
+				$tmpl->setRoot( $componentArgs[ 'custom_path_to_template' ] );
 			else
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			}
 		else
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		if ( $oktosend ) $tmpl->readTemplatesFromInput( 'contact_owner_sent.html' );
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		if ( $oktosend ) 
+			$tmpl->readTemplatesFromInput( 'contact_owner_sent.html' );
 		else
 			{
 			$tmpl->readTemplatesFromInput( 'contact_owner.html' );
 			}
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 
-		if ( isset( $componentArgs[ 'noshownow' ] ) ) $this->ret_vals = $tmpl->getParsedTemplate();
+		if ( isset( $componentArgs[ 'noshownow' ] ) ) 
+			$this->ret_vals = $tmpl->getParsedTemplate();
 		else
-		$tmpl->displayParsedTemplate();
+			$tmpl->displayParsedTemplate();
 		}
 
 	function touch_template_language()
