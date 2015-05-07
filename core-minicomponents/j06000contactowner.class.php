@@ -49,10 +49,24 @@ class j06000contactowner
 
 		$mrConfig          = getPropertySpecificSettings();
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-		$this->_remove_old_captcha_files(); // In time, this can be removed. Since going to reCaptcha there will no longer be a need for the old validation files, but for now (8/6/2012) we'll leave it in-situ so that we're cleaning up after ourselves.
 
+		$version = "V2";
+		
 		if ( $use_recaptcha ) 
-			require_once( JOMRESPATH_BASE . '/libraries/recaptcha/recaptchalib.php' );
+			{
+			if ($version == "V1")
+				require_once( JOMRESPATH_BASE . '/libraries/recaptcha/recaptchalib.php' );
+			elseif ($version == "V2")
+				{
+				// We're not going to use the autoloader here, let's load this stuff manually
+				require_once( JOMRESPATH_BASE . '/libraries/recaptcha/ReCaptcha.php' );
+				require_once( JOMRESPATH_BASE . '/libraries/recaptcha/RequestMethod.php' );
+				require_once( JOMRESPATH_BASE . '/libraries/recaptcha/RequestParameters.php' );
+				require_once( JOMRESPATH_BASE . '/libraries/recaptcha/Response.php' );
+				require_once( JOMRESPATH_BASE . '/libraries/recaptcha/RequestMethod/Post.php' );
+				$recaptcha = new \ReCaptcha\ReCaptcha( $jrConfig[ 'recaptcha_private_key' ] );
+				}
+			}
 
 		if ( isset( $componentArgs[ 'property_uid' ] ) ) 
 			$property_uid = intval( $componentArgs[ 'property_uid' ] );
@@ -121,9 +135,20 @@ class j06000contactowner
 
 		if ( $use_recaptcha )
 			{
-			if ( isset( $_POST[ "recaptcha_challenge_field" ] ) )
+			if ($version == "V1")
+				$challenge = trim($_POST[ "recaptcha_challenge_field" ]);
+			elseif ($version == "V2")
+				$challenge = trim($_POST[ "g-recaptcha-response" ]);
+
+			if ( $challenge != "" )
 				{
-				$resp = recaptcha_check_answer( $jrConfig[ 'recaptcha_private_key' ], $_SERVER[ "REMOTE_ADDR" ], jomresGetParam( $_POST, 'recaptcha_challenge_field', '' ), jomresGetParam( $_POST, 'recaptcha_response_field', '' ) );
+				if ($version == "V1")
+					$resp = recaptcha_check_answer( $jrConfig[ 'recaptcha_private_key' ], $_SERVER[ "REMOTE_ADDR" ], jomresGetParam( $_POST, 'recaptcha_challenge_field', '' ), jomresGetParam( $_POST, 'recaptcha_response_field', '' ) );
+				elseif ($version == "V2")
+					{
+					$resp = $recaptcha->verify( $_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+					$resp->is_valid = $resp->isSuccess();
+					}
 				}
 			else
 				{
@@ -172,7 +197,19 @@ class j06000contactowner
 				$use_ssl = true;
 			
 			if ( $use_recaptcha ) 
-				$output[ 'CAPTCHA' ] = recaptcha_get_html( $jrConfig[ 'recaptcha_public_key' ] , null , $use_ssl );
+				{
+				if ($version == "V1")
+					$output[ 'CAPTCHA' ] = recaptcha_get_html( $jrConfig[ 'recaptcha_public_key' ] , null , $use_ssl );
+				elseif ($version == "V2")
+					{
+					$output[ 'CAPTCHA' ] = '
+							<div class="g-recaptcha" data-sitekey="'.$jrConfig[ 'recaptcha_public_key' ].'"></div>
+							<script type="text/javascript"
+								src="https://www.google.com/recaptcha/api.js?hl='.get_showtime('lang_shortcode').'">
+							</script>
+						';
+					}
+				}
 			}
 
 		$pageoutput[ ] = $output;
@@ -216,43 +253,6 @@ class j06000contactowner
 			{
 			echo $o;
 			echo "<br/>";
-			}
-		}
-
-	// We'll remove old capcha images if they're older than X
-	function _remove_old_captcha_files()
-		{
-		$siteConfig    = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig      = $siteConfig->get();
-		$this->timeout = $jrConfig[ 'lifetime' ];
-		// $this->timeout = 60; // For testing
-		$d    = @dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS );
-		$docs = array ();
-		if ( $d )
-			{
-			while ( false !== ( $entry = $d->read() ) )
-				{
-				$filename = $entry;
-				if ( is_file( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $filename ) && substr( $entry, 0, 1 ) != '.' && strtolower( $entry ) !== 'cvs' )
-					{
-					$docs[ ] = $filename;
-					}
-				}
-
-			$d->close();
-			if ( count( $docs ) > 0 )
-				{
-				foreach ( $docs as $f )
-					{
-					if ( substr( $f, 5, 9 ) == '.jpg' )
-						{
-						$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "/" . $f );
-						$seconds_timediff = time() - $last_modified;
-						//echo $seconds_timediff;
-						if ( $seconds_timediff > $this->timeout ) unlink( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "/" . $f );
-						}
-					}
-				}
 			}
 		}
 
