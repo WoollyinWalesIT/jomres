@@ -549,11 +549,12 @@ class HTML_jomres
 				$contentPanel->endPanel();
 				}
 
-
 			$contentPanel->startPanel( jr_gettext( '_JOMRES_CURRENCYCONVERSION_TAB', _JOMRES_CURRENCYCONVERSION_TAB, false ) );
 			$contentPanel->setcontent( '
 			<table class="table table-striped" width="100%">
 			<thead>
+			
+			
 			<tr>
 					<th width="20%">&nbsp;</th>
 					<th width="20%">' . jr_gettext( _JOMRES_COM_A_CURRENT_SETTINGS, '_JOMRES_COM_A_CURRENT_SETTINGS', false ) . '</th>
@@ -561,6 +562,11 @@ class HTML_jomres
 			</tr>
 			</thead>
 			<tbody>
+			<tr>
+				<td>' . jr_gettext( _OPENEXCHANGE_API, '_OPENEXCHANGE_API', false ) . '</td>
+				<td><input type="text" class="input-large" name="cfg_openexchangerates_api_key" value="' . $jrConfig[ 'openexchangerates_api_key' ] . '" /></td>
+				<td>' . jr_gettext( _OPENEXCHANGE_API_DESC, '_OPENEXCHANGE_API_DESC', false ) . '</td>
+			</tr>
 			<tr>
 				<td>' . jr_gettext( _JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO, '_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO', false ) . '</td>
 				<td>' . $lists[ 'useGlobalCurrency' ] . '</td>

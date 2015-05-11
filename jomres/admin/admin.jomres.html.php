@@ -565,6 +565,11 @@ class HTML_jomres
 					<th width="20%" class="ui-state-default">' . jr_gettext( _JOMRES_COM_A_CURRENT_SETTINGS, '_JOMRES_COM_A_CURRENT_SETTINGS', false ) . '</th>
 					<th width="60%" class="ui-state-default">' . jr_gettext( _JOMRES_COM_A_EXPLANATION, '_JOMRES_COM_A_EXPLANATION', false ) . '</th>
 			</tr>
+			<tr valign="middle" class="even">
+				<td valign="middle">' . jr_gettext( _OPENEXCHANGE_API, '_OPENEXCHANGE_API', false ) . '</td>
+				<td valign="middle"><input type="text" class="inputbox" name="cfg_openexchangerates_api_key" value="' . $jrConfig[ 'openexchangerates_api_key' ] . '" /></td>
+				<td valign="middle">' . jr_gettext( _OPENEXCHANGE_API_DESC, '_OPENEXCHANGE_API_DESC', false ) . '</td>
+			</tr>
 			<tr valign="middle" class="odd">
 				<td valign="middle">' . jr_gettext( _JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO, '_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO', false ) . '</td>
 				<td valign="middle">' . $lists[ 'useGlobalCurrency' ] . '</td>
