@@ -24,20 +24,21 @@ class jomres_currency_exchange_rates
 		$this->feature_enabled = true;
 		$siteConfig            = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig              = $siteConfig->get();
-		// if ($jrConfig['use_conversion_feature'] != "1" )
-		// $this->feature_enabled = false;
+		$this->app_id = trim($jrConfig['openexchangerates_api_key']);
 
 		$this->exchange_rates = array ();
-		if ( $base == "" ) $this->base_code = "GBP";
+		if ( $base == "" ) 
+			$this->base_code = "GBP";
 		else
-		$this->base_code = $base;
+			$this->base_code = $base;
 		$this->exchange_rate_classfile = JOMRESPATH_BASE . JRDS . 'temp' . JRDS . 'exchangerates_' . $this->base_code . '.class.php';
 		$this->init();
 		}
 
 	function init()
 		{
-		if ( !$this->feature_enabled ) return;
+		if ( !$this->feature_enabled ) 
+			return;
 
 		$current_rates = $this->get_exchange_rates();
 
@@ -99,26 +100,27 @@ class jomres_currency_exchange_rates
 	function update_exchange_rates()
 		{
 		if ( !$this->feature_enabled ) return;
-
+		if ($this->app_id == "") return;
+		
 		$this->rates     = array ();
-		$currenciesArray = array ();
-		$currencyQuery   = "";
 		jr_import( 'currency_codes' );
 		$currency_code_class = new currency_codes();
 		$currency_codes      = $currency_code_class->codes;
 		ignore_user_abort( true ); // Should stop a user from visiting another page when we're getting the exchange rates. At some point, it might be wiser to encourage managers to set this as a cron job.
-		foreach ( $currency_codes as $code => $rubbish )
+		$json           = $this->get_openexchangerates_rates();
+
+		// We can safely assume that there's a GBP exchange rate (at least, for the forseeable future. If there isn't, then the world has probably been invaded by aliens and exchange rates in Jomres is the least of our problems. Rule Britannia and all that. )
+		$GBP_rate = $json->GBP;
+
+		foreach ( $currency_codes as $k=>$v )
 			{
-			$currencyQuery .= $this->base_code . $code . "=X,";
-			}
-		$currencyQuery = substr( $currencyQuery, 0, -1 );
-		$csv           = $this->csv_to_array( $this->get_exchange_rates_csv( $currencyQuery ), ',' );
-		foreach ( $csv as $k )
-			{
-			$base_code                          = $k[ "from" ];
-			$code                               = $k[ "to" ];
-			$rate                               = $k[ "rate" ];
-			$this->rates[ $base_code ][ $code ] = $rate;
+			if (isset($json->$k) && $k != "GBP" )
+				{
+				$base_code                          = $this->base_code;
+				$code                               = $k;
+				$rate                               = number_format((float)$json->$k/$GBP_rate, 4, '.', '') ; // Cross exchange rate calculation. As the base exchange rate in Jomres is GBP we have to convert the 3rd change rate to GBP before saving it. The Base rate of Open Exchange Rates is USD
+				$this->rates[ $base_code ][ $code ] = $rate;
+				}
 			}
 		ignore_user_abort( false );
 		}
@@ -153,7 +155,31 @@ class jomres_currency_exchange_rates
 			}';
 		file_put_contents( $this->exchange_rate_classfile, $string );
 		}
+	
+	// 
+	
+	
+	
+	function get_openexchangerates_rates()
+		{
+		$url = 'http://openexchangerates.org/api/latest.json?app_id='.$this->app_id;
+		if ( !$this->feature_enabled ) return;
 
+		$c   = curl_init( $url );
+		curl_setopt( $c, CURLOPT_HEADER, 0 );
+		curl_setopt( $c, CURLOPT_USERAGENT, 'Jomres' );
+		curl_setopt( $c, CURLOPT_RETURNTRANSFER, 1 );
+		curl_setopt( $c, CURLOPT_TIMEOUT, 2000 );
+		$json = curl_exec( $c );
+
+		curl_close( $c );
+		
+		$result = json_decode($json);
+		
+		return $result->rates;
+		
+		}
+	
 	function get_exchange_rates_csv( $currencyQuery )
 		{
 		if ( !$this->feature_enabled ) return;
