@@ -436,6 +436,21 @@ function doTableUpdates()
 	if ( !checkContractsLastchangedColExists() ) alterContractsLastchangedCol();
 	if ( !checkPropertysLastchangedColExists() ) alterPropertysLastchangedCol();
 	if ( !checkLineitemsIspaymentColExists() ) alterLineitemsIspaymentCol();
+	
+	drop_portal_bookings_table();
+	drop_portal_users_table();
+	}
+
+function drop_portal_bookings_table()
+	{
+	$query = "DROP TABLE IF EXISTS #__jomresportal_bookings";
+	doInsertSql( $query, '' );
+	}
+
+function drop_portal_users_table()
+	{
+	$query = "DROP TABLE IF EXISTS #__jomresportal_users";
+	doInsertSql( $query, '' );
 	}
 
 function checkLineitemsIspaymentColExists()
