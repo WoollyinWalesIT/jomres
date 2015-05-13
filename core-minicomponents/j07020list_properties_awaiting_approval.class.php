@@ -28,12 +28,11 @@ class j07020list_properties_awaiting_approval
 			}
 		$this->retVals = array ();
 
-		$query  = "SELECT COUNT(propertys_uid) AS cnt FROM #__jomres_propertys WHERE approved = '0' ";
+		$query  = "SELECT COUNT(`propertys_uid`) AS cnt FROM #__jomres_propertys WHERE `approved` = 0 ";
 		$result = doSelectSql( $query,1 );
 
-		if ( $result > 0 ) $this->retVals = array ( "red" => $result );
-
-
+		if ( (int)$result > 0 ) 
+			$this->retVals = array ( "red" => $result );
 		}
 
 

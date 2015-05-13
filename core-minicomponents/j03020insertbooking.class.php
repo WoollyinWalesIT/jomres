@@ -69,7 +69,7 @@ class j03020insertbooking
 		else
 			$ccode = $mrConfig['property_currencycode'];
 
-		$datetime = date( "Y-m-d H-i-s" );
+		$datetime = date( "Y-m-d H:i:s" );
 
 		if ( count( $guestDetails ) == 0 )
 			{
@@ -210,7 +210,7 @@ class j03020insertbooking
 					}
 
 				jomres_audit( get_showtime( 'jomressession' ), "Amend booking - contract updated " . $amend_contractuid );
-				$dt    = date( "Y-m-d H-i-s" );
+				$dt    = date( "Y-m-d H:i:s" );
 				$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . RemoveXSS( "Amend booking - contract updated " . $amend_contractuid ) . "','$dt','" . (int) $property_uid . "')";
 				doInsertSql( $query, "" );
 
@@ -451,7 +451,7 @@ class j03020insertbooking
 					else
 						$newtext = strip_tags($tmpBookingHandler->getBookingFieldVal( "wisepricediscount" ));
 					
-					$dt    = date( "Y-m-d H-i-s" );
+					$dt    = date( "Y-m-d H:i:s" );
 					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . RemoveXSS( $newtext ) . "','$dt','" . (int) $property_uid . "')";
 					doInsertSql( $query, "" );
 
@@ -515,7 +515,7 @@ class j03020insertbooking
 					doInsertSql( $query, "" );
 					
 					//add a booking note that the booking enquiry has been approved
-					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . "Secret key payment made" . "','".date( "Y-m-d H-i-s" )."','" . (int) $property_uid . "')";
+					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . "Secret key payment made" . "','".date( "Y-m-d H:i:s" )."','" . (int) $property_uid . "')";
 					doInsertSql( $query, "" );
 					
 					$this->insertSuccessful = true;
@@ -540,6 +540,8 @@ class j03020insertbooking
 				$componentArgs[ 'deposit_required' ]    = $deposit_required;
 				$componentArgs[ 'sendGuestEmail' ]   	= $sendGuestEmail;
 				$componentArgs[ 'sendHotelEmail' ]   	= $sendHotelEmail;
+				$componentArgs[ 'approved' ]		   	= $approved;
+				
 				if ($secret_key_payment)
 					$componentArgs[ 'secret_key_payment' ]  = true;
 				else

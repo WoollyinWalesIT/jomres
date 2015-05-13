@@ -64,20 +64,20 @@ class jomres_cron
 							if ( $this->now > $nextDue ) $jobDue = true;
 							break;
 						case "QH": // Every 15 mins
-							$nextDue = $job->last_ran + 900 + $threashold;
+							$nextDue = $job->last_ran + (60 * 15) + $threashold;
 							if ( $this->now > $nextDue ) $jobDue = true;
 							break;
 						case "H": // Every hour
-							$nextDue = $job->last_ran + 3600 + $threashold;
+							$nextDue = $job->last_ran + (60 * 60) + $threashold;
 							if ( $this->now > $nextDue ) $jobDue = true;
 							break;
 						case "D": // Every day
-							$nextDue = $job->last_ran + 43200 + $threashold;
+							$nextDue = $job->last_ran + (60 * 60 * 24) + $threashold;
 							if ( $this->now > $nextDue ) $jobDue = true;
 							break;
 						case "W": // Every week
 						default:
-							$nextDue = $job->last_ran + 302400 + $threashold;
+							$nextDue = $job->last_ran + (60 * 60 * 24 * 7) + $threashold;
 							if ( $this->now > $nextDue ) $jobDue = true;
 							break;
 					}
@@ -152,7 +152,7 @@ class jomres_cron
 							}
 						break;
 					case "QH": // Every 15 mins
-						$nextDue = $job[ 'last_ran' ] + 900;
+						$nextDue = $job[ 'last_ran' ] + (60 * 15);
 						if ( $this->now > $nextDue )
 							{
 							$jobDue           = true;
@@ -160,7 +160,7 @@ class jomres_cron
 							}
 						break;
 					case "H": // Every hour
-						$nextDue = $job[ 'last_ran' ] + 3600;
+						$nextDue = $job[ 'last_ran' ] + (60 * 60);
 						if ( $this->now > $nextDue )
 							{
 							$jobDue           = true;
@@ -168,7 +168,7 @@ class jomres_cron
 							}
 						break;
 					case "D": // Every day
-						$nextDue = $job[ 'last_ran' ] + 43200;
+						$nextDue = $job[ 'last_ran' ] + (60 * 60 * 24);
 						if ( $this->now > $nextDue )
 							{
 							$jobDue           = true;
@@ -177,7 +177,7 @@ class jomres_cron
 						break;
 					case "W": // Every week
 					default:
-						$nextDue = $job[ 'last_ran' ] + 302400;
+						$nextDue = $job[ 'last_ran' ] + (60 * 60 * 24 * 7);
 						if ( $this->now > $nextDue )
 							{
 							$jobDue           = true;
@@ -259,6 +259,7 @@ class jomres_cron
 					curl_setopt( $ch, CURLOPT_USERAGENT, 'Jomres' );
 					curl_setopt( $ch, CURLOPT_URL, $request );
 					curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, 'XGET' );
+					curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true);
 					curl_setopt( $ch, CURLOPT_PORT, 80 );
 					curl_setopt( $ch, CURLOPT_TIMEOUT, 1 );
 					curl_setopt( $ch, CURLOPT_HTTPHEADER, array ( 'Content-Type: text/html; charset=utf-8' ) );
@@ -432,5 +433,3 @@ class jomres_cron
 		}
 
 	}
-
-?>

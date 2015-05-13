@@ -1004,6 +1004,47 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'mu_frontend_list_invoices.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'mu_frontend_invoices.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'mu_frontend_list_invoices.html' );
+		
+		//v8.3
+		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'list_crates.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'edit_crate.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'list_crates.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'edit_crate.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_administrator . 'list_crates.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_administrator . 'edit_crate.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'list_properties_awaiting_approval.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'list_properties_awaiting_approval.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_administrator . 'list_properties_awaiting_approval.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'admin_list_propertys.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'admin_list_propertys.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_administrator . 'admin_list_propertys.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'property_initials.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'property_initials.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_administrator . 'property_initials.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'suspended.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'suspended.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'suspended.html' );
+		
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000savecrate.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000archivecrates.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j10002listcrates.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j10002listpropertys.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000viewproperty.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000saveregisterprop.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000ajax_list_properties_awaiting_approval.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000list_properties_awaiting_approval.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000listpropertys.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000list_properties_initials.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06002suspended.class.php' );
+		
+		$this->add_obs_file( $this->dir_classes . 'crateTypes.class.php' );
+		$this->add_obs_file( $this->dir_classes . 'jrportal_crate.class.php' );
+		$this->add_obs_file( $this->dir_classes . 'jrportal_crate_functions.class.php' );
+		$this->add_obs_file( $this->dir_classes . 'jomres_property_maker.class.php' );
+		$this->add_obs_file( $this->dir_classes . 'jrportal_property.class.php' );
+		$this->add_obs_file( $this->dir_classes . 'jrportal_booking.class.php' );
+		$this->add_obs_file( $this->dir_classes . 'jrportal_booking_functions.class.php' );
+		$this->add_obs_file( $this->dir_classes . 'jrportal_user.class.php' );
 
 		}
 

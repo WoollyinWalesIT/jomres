@@ -63,7 +63,7 @@ class jomres_sanity_check
 			$tmpl->readTemplatesFromInput( 'sanity_checks_button.html' );
 			$warning .= $tmpl->getParsedTemplate();
 			}
-		return $warning;
+		return '<p>'.$warning.'</p>';
 		}
 
 	function check_approved()

@@ -34,11 +34,7 @@ class j16000view_property_reviews
 
 		if ( is_null( $property_uid ) ) $property_uid = jomresGetParam( $_REQUEST, 'property_uid', 0 );
 
-		jr_import( 'jrportal_property_functions' );
-		$propertyFunctions = new jrportal_property_functions();
-
-		$propertyDetails           = $propertyFunctions->getPropertyDetails( array ( $property_uid ) );
-		$output[ 'PROPERTY_NAME' ] = stripslashes( $propertyDetails[ $property_uid ][ 'property_name' ] );
+		$output[ 'PROPERTY_NAME' ] = getPropertyName( $property_uid );
 
 		jr_import( 'jomres_reviews' );
 		$Reviews          = new jomres_reviews();

@@ -90,15 +90,12 @@ class j02150addservicetobill
 					$invoice->id = $invoice->get_invoice_id_by_contract_uid( $contract_uid );
 
 					$line_item = array ( 'tax_code_id' => $taxrate, 
-											 'name' => $service_description, 
-											 'description' => '', 
-											 'init_price' => number_format( $service_value, 2, '.', '' ), 
-											 'init_qty' => "1", 
-											 'init_discount' => "0", 
-											 'recur_price' => "0.00", 
-											 'recur_qty' => "0", 
-											 'recur_discount' => "0.00" 
-											 );
+										 'name' => $service_description, 
+										 'description' => '', 
+										 'init_price' => number_format( $service_value, 2, '.', '' ), 
+										 'init_qty' => 1, 
+										 'init_discount' => 0
+										 );
 
 					if ( $invoice->getInvoice() )
 						{
@@ -148,5 +145,3 @@ class j02150addservicetobill
 		return null;
 		}
 	}
-
-?>

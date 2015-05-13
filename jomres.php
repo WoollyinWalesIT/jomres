@@ -7,7 +7,6 @@
  * @package Jomres
  * @copyright	2005-2014 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
- 
  **/
 
 ##################################################################
@@ -235,7 +234,8 @@ try
 		jr_import( 'jomres_suspensions' );
 		$jomres_suspensions = new jomres_suspensions();
 		$jomres_suspensions->set_manager_id( $thisJRUser->userid );
-		if ( !$jomres_suspensions->suspended_manager_allowed_task( get_showtime( 'task' ) ) ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=suspended" ), "" );
+		if ( $jomres_suspensions->suspended_manager_denied_task( get_showtime( 'task' ) ) ) 
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dashboard" ), "" );
 		}
 
 	$property_uid = detect_property_uid();
