@@ -76,8 +76,12 @@ class j02162savecancellation
 	
 				$componentArgs                          = array ();
 				$componentArgs[ 'property_uid' ]        = $defaultProperty;
-				$componentArgs[ 'contract_uid' ]         = $contract_uid;
-				$MiniComponents->triggerEvent( '02163', $componentArgs );		
+				$componentArgs[ 'contract_uid' ]        = $contract_uid;
+				$componentArgs[ 'tag' ] 			    = $tag;
+				$MiniComponents->triggerEvent( '02163', $componentArgs );
+
+				if ( $MiniComponents->eventFileExistsCheck( '07011' ) )
+					$MiniComponents->triggerEvent( '07011', $componentArgs );
 	
 				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=list_bookings" ), $saveMessage );
 				}

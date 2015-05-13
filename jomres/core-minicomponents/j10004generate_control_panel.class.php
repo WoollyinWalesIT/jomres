@@ -43,16 +43,21 @@ class j10004generate_control_panel
 
 		$buttons  = $componentArgs[ 'control_panel_buttons_categorised' ];
 		$button_o = array ();
-
+		$i = 1;
+		
 		foreach ( $buttons as $category => $buts )
 			{
 			$rows = array ();
+			$output = array ();
+			
 			foreach ( $buts as $key => $val )
 				{
 				$r               = $val;
 				$r[ 'LIVESITE' ] = get_showtime( 'live_site' );
 				$r[ 'TARGET' ]   = '';
-				if ( $val[ 'external' ] ) $r[ 'TARGET' ] = ' target="_blank" ';
+				
+				if ( $val[ 'external' ] ) 
+					$r[ 'TARGET' ] = ' target="_blank" ';
 
 				$r[ 'disabled_class' ] = '';
 				if ( $r[ 'disabled' ] )
@@ -95,6 +100,7 @@ class j10004generate_control_panel
 					else
 						{
 						$r[ 'ACTIVE' ] = "active";
+						$output[ 'COLLAPSE_IN' ] = "in";
 						}
 					}
 				else
@@ -107,6 +113,8 @@ class j10004generate_control_panel
 
 			$pageoutput           = array ();
 			$output[ 'CATEGORY' ] = jr_ucwords( $category );
+			$output[ 'ID' ] = "cpanel-category-".$i;
+			
 			$pageoutput[ ]        = $output;
 			$tmpl                 = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
@@ -114,6 +122,8 @@ class j10004generate_control_panel
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $rows );
 			$button_o[ ][ 'DIV' ] = $tmpl->getParsedTemplate();
+			
+			$i++;
 			}
 
 		$tmpl = new patTemplate();
@@ -129,5 +139,3 @@ class j10004generate_control_panel
 		return $this->ret_vals;
 		}
 	}
-
-?>

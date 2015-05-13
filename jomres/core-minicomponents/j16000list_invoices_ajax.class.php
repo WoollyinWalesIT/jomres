@@ -234,7 +234,15 @@ class j16000list_invoices_ajax
 			else
 				$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices&cms_user_id='.$p->cms_user_id).'">'.$p->surname.'</a>';
 
-			$r[] = $p->line_items;
+			$translated_line_items = '';
+			$line_items = explode('<br>', $p->line_items);
+			foreach ($line_items as $item)
+				{
+				if ($item != '')
+					$translated_line_items .= jr_gettext($item,$item,false).'<br>';
+				}
+			$r[] = substr($translated_line_items,0,-4);
+			
 			$r[] = $p->raised_date;
 			$r[] = $p->due_date;
 			$r[] = $p->paid;

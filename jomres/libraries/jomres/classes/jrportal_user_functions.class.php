@@ -40,7 +40,7 @@ class jrportal_user_functions
 	// Supplied the Jomres manager's id, method will return their Joomla users id
 	function getManagerIdForJosId( $id )
 		{
-		$query  = "SELECT manager_uid FROM #__jomres_managers WHERE userid = '$id' LIMIT 1";
+		$query  = "SELECT manager_uid FROM #__jomres_managers WHERE userid = ".(int)$id." LIMIT 1";
 		$result = doSelectSql( $query );
 		if ( count( $result ) > 0 )
 			{
@@ -54,11 +54,14 @@ class jrportal_user_functions
 		}
 
 	// Will find all manager ids for a property id. Note, only returns managers who are not Super Property Managers
-	function getManagerIdsForProperty( $property_uid, $includingSuperManagers = false )
+	function getManagerIdsForProperty( $property_uid, $notIncludingSuperManagers = false )
 		{
 		$usersArray = array ();
-		$query      = "SELECT `id`,`manager_id` FROM #__jomres_managers_propertys_xref WHERE property_uid = '$property_uid'";
-		if ( $includingSuperManagers ) $query .= " AND pu = '0'";
+		$query      = "SELECT a.id, a.manager_id FROM #__jomres_managers_propertys_xref a, #__jomres_managers b WHERE a.property_uid = ".(int)$property_uid." ";
+		
+		if ( $notIncludingSuperManagers ) 
+			$query .= " AND ( a.manager_id = b.userid AND b.pu != 1 ) ";
+		
 		$result = doSelectSql( $query );
 		if ( count( $result ) > 0 )
 			{
@@ -101,5 +104,3 @@ class jrportal_user_functions
 		return jomresHTML::selectList( $options, "userid", 'class="inputbox" size="1"', 'value', 'text', $id );
 		}
 	}
-
-?>

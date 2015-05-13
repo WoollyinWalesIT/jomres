@@ -26,76 +26,12 @@ class j03200jrportal
 
 			return;
 			}
-		$mrConfig = getPropertySpecificSettings();
-		if ( $MiniComponents->eventFileExistsCheck( '07005' ) ) $propertys_uids = $MiniComponents->triggerEvent( '07005' ); // Optional minicomponent trigger, eg for system cleanups or other pre-booking activity
-
-		jr_import( 'jrportal_booking' );
-		$booking        = new jrportal_booking();
-		$cartnumber     = $componentArgs[ 'cartnumber' ];
-		$guests_uid     = $componentArgs[ 'guests_uid' ];
-		$property_uid   = $componentArgs[ 'property_uid' ];
-		$contract_total = $componentArgs[ 'contract_total' ];
-		$contract_uid   = $componentArgs[ 'contract_uid' ];
-		$currency_code  = $mrConfig[ 'currencyCode' ];
-
-		$booking->property_uid  = $property_uid;
-		$booking->guest_id      = $guests_uid;
-		$booking->affiliate_id  = '';
-		$booking->invoice_id    = get_showtime( "inserted_booking_invoice_id" );
-		$booking->booking_total = $contract_total;
-		$booking->contract_id   = $contract_uid;
-		$booking->tag           = $cartnumber;
-		$booking->currency_code = $currency_code;
-		$booking->created       = date( "Y-m-d H-i-s" );
-
-		$booking->commitNewBooking();
-
-		$super_managers = array();
-		$query         = "SELECT userid FROM #__jomres_managers WHERE `pu` = 1";
-		$superManagerList   = doSelectSql( $query );
-		if (count($superManagerList)>0)
-			{
-			foreach ($superManagerList as $m)
-				{
-				$super_managers[]=$m->userid;
-				}
-			}
 		
-		jr_import( 'jrportal_user_functions' );
-		$userFunctions = new jrportal_user_functions();
-		$usersArray    = $userFunctions->getManagerIdsForProperty( $property_uid );
-		$userObjsArray = array ();
-		if ( count( $usersArray ) > 0 && $booking->id > 0 )
-			{
-			foreach ( $usersArray as $u )
-				{
-				$jos_id     = $u[ 'manager_id' ];
-				if (!in_array($jos_id,$super_managers))
-					{
-					$userDeets  = $userFunctions->getJoomlaUserDetailsForJoomlaId( $jos_id );
-					$manager_id = $userFunctions->getManagerIdForJosId( $jos_id );
-					jr_import( 'jrportal_user' );
-					$user                    = new jrportal_user();
-					$user->manager_uid       = $manager_id;
-					$user->jos_id            = $jos_id;
-					$user->portal_booking_id = $booking->id;
-					$user->username          = $userDeets[ 'username' ];
-					$user->email             = $userDeets[ 'email' ];
-					$user->commitNewUser();
-						
-					$userObjsArray[ ] = $user;
-					}
-				}
-			}
+		if ( $MiniComponents->eventFileExistsCheck( '07005' ) ) 
+			$propertys_uids = $MiniComponents->triggerEvent( '07005' ); // Optional minicomponent trigger, eg for system cleanups or other pre-booking activity
 
 		if ( $MiniComponents->eventFileExistsCheck( '07010' ) )
-			{
-			jr_import( 'jrportal_property_functions' );
-			$property       = new jrportal_property_functions();
-			$propertyDeets  = $property->getPropertyDetails( array ( $property_uid ) );
-			$p              = $propertyDeets[ $property_uid ];
-			$propertys_uids = $MiniComponents->triggerEvent( '07010', array ( 'bookingObj' => $booking, 'userObjsArray' => $userObjsArray, 'property_name' => $p[ 'property_name' ] ) ); // Allows us to run post insertion functionality for importing into foreign systems
-			}
+			$MiniComponents->triggerEvent( '07010', $componentArgs ); // Allows us to run post insertion functionality for importing into foreign systems. Currently used for inserting commission line items
 		}
 
 	// This must be included in every Event/Mini-component
@@ -104,5 +40,3 @@ class j03200jrportal
 		return null;
 		}
 	}
-
-?>

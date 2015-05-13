@@ -52,6 +52,9 @@ class j06005view_invoice
 		
 		$invoice = jomres_singleton_abstract::getInstance( 'basic_invoice_details' );
 		$invoice->gatherData($invoice_id);
+		
+		if ($invoice->raised_date == '0000-00-00 00:00:00')
+			return;
 
 		//Some security checks TODO: Is this really necessary here?
 		if ( !$bypass_security_check )
@@ -238,7 +241,7 @@ class j06005view_invoice
 				{
 				$r                              = array ();
 				$r[ 'ID' ]                      = $li[ 'id' ];
-				$r[ 'LI_NAME' ]                 = $li[ 'name' ];
+				$r[ 'LI_NAME' ]                 = jr_gettext($li[ 'name' ], $li[ 'name' ], false);
 				$r[ 'LI_DESCRIPTION' ]          = $li[ 'description' ];
 				$r[ 'LI_INIT_PRICE' ]           = output_price( $li[ 'init_price' ], $invoice->currencycode, false, true );
 				$r[ 'LI_INIT_QTY' ]             = $li[ 'init_qty' ];

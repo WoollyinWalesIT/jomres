@@ -304,7 +304,15 @@ class j06005list_invoices_ajax
 				$r[] = $p->surname;
 				}
 
-			$r[] = $p->line_items;
+			$translated_line_items = '';
+			$line_items = explode('<br>', $p->line_items);
+			foreach ($line_items as $item)
+				{
+				if ($item != '')
+					$translated_line_items .= jr_gettext($item,$item,false).'<br>';
+				}
+			$r[] = substr($translated_line_items,0,-4);
+			
 			$r[] = $p->raised_date;
 			$r[] = $p->due_date;
 			$r[] = $p->paid;

@@ -70,12 +70,9 @@ class jrportal_invoice
 
 		$this->cms_user_id = (int) $invoice_data[ 'cms_user_id' ];
 		$this->guest_id    = (int) $invoice_data[ 'guest_id' ];
-
-		if ( isset( $invoice_data[ 'is_commission' ] ) ) 
-			$this->is_commission = (int) $invoice_data[ 'is_commission' ];
-
-		if ( isset( $invoice_data[ 'status' ] ) ) 
-			$this->status = (int) $invoice_data[ 'status' ];
+		
+		if ( isset( $invoice_data[ 'raised_date' ] ) ) 
+			$this->due_date = $invoice_data[ 'raised_date' ];
 		
 		if ( isset( $invoice_data[ 'due_date' ] ) ) 
 			$this->due_date = $invoice_data[ 'due_date' ];
@@ -85,9 +82,15 @@ class jrportal_invoice
 		
 		if ( isset( $invoice_data[ 'subscription' ] ) ) 
 			$this->subscription_id = (int) $invoice_data[ 'subscription_id' ];
+		
+		if ( isset( $invoice_data[ 'is_commission' ] ) ) 
+			$this->is_commission = (int) $invoice_data[ 'is_commission' ];
 
 		if ( isset( $invoice_data[ 'currencycode' ] ) ) 
 			$this->currencycode = $invoice_data[ 'currencycode' ];
+		
+		if ( isset( $invoice_data[ 'status' ] ) ) 
+			$this->status = (int) $invoice_data[ 'status' ];
 		
 		//insert the new invoice
 		$this->commitNewInvoice();
@@ -529,7 +532,7 @@ class jrportal_invoice
 						`contract_id` 		= ".(int)$this->contract_id.",
 						`property_uid` 		= ".(int)$this->property_uid.",
 						`is_commission`		= ".(int)$this->is_commission.",
-						`vat_will_be_charged` = ".(int)$this->vat_will_be_charged." 
+						`vat_will_be_charged` = ".(int)$this->vat_will_be_charged."
 					WHERE `id`= $this->id ";
 
 		return doInsertSql( $query, "" );
@@ -565,6 +568,20 @@ class jrportal_invoice
 					WHERE `id`=" . (int) $this->lineitem['id'];
 
 		return doInsertSql( $query, "" );
+		}
+	
+	//Delete a line item by id 
+	function deleteLineItemById( $line_item_id = 0 )
+		{
+		if ( (int)$line_item_id < 1 )
+			{
+			error_logging( "Line item id not set" );
+			return false;
+			}
+		
+		$query  = "DELETE FROM #__jomresportal_lineitems WHERE `id` = " . $line_item_id;
+
+		return doInsertSql( $query , "" );
 		}
 
 	//Get the invoice booking number by contract uid. TODO: Is this really needed here? We already have a _jomres_contracts query in j06005view_invoice.class.php.
@@ -716,7 +733,7 @@ class jrportal_invoice
 		else // It's not a booking for a hotel, instead it's a website -> property manager invoice of some description
 			{
 			$validation = new vat_number_validation();
-			$validation->get_subject("site", array( "property_uid"=>$this->property_uid ) );
+			$validation->get_subject("site");
 			}
 		$seller_business_country = $validation->country;
 
@@ -769,8 +786,8 @@ class jrportal_invoice
 		if ( number_format( $balance, 2, '.', '' ) > 0.00 )
 			{
 			$line_item_data = array ( 'tax_code_id' => 0, 
-									 'name' => jr_gettext( '_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT', _JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT,false,false).' ( '.$today.' )', 
-									 'description' => '', 
+									 'name' => '_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT', 
+									 'description' => '('.$today.')', 
 									 'init_price' => 0-number_format( $balance, 2, '.', '' ), 
 									 'init_qty' => 1, 
 									 'init_discount' => 0, 
@@ -808,6 +825,22 @@ class jrportal_invoice
 
 		$this->status = 2;
 
+		$this->commitUpdateInvoice();
+		}
+	
+	//Mark an invoice as issued
+	function mark_invoice_issued()
+		{
+		if ( (int) $this->id == 0 )
+			{
+			error_logging( "Invoice id not set" );
+			return false;
+			}
+
+		$this->raised_date      = date( 'Y-m-d H:i:s' );
+		$this->due_date         = $this->raised_date;
+		$this->paid = '0000-00-00 00:00:00';
+		
 		$this->commitUpdateInvoice();
 		}
 

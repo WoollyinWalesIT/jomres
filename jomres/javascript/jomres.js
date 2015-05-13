@@ -50,7 +50,7 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 			sDomm = "<'row'<'col-xs-4'lr><'col-xs-4'TC><'col-xs-4'f>>t<'row'<'col-xs-4'i><'col-xs-8'p>>";
 			}
 		else {
-			sDomm = "<'row-fluid'<'span4'lr><'span4'TC><'span4'f>>t<'row-fluid'<'span4'i><'span8'p>>";
+			sDomm = "<'row-fluid'<'span3'lr><'span5'TC><'span4'f>>t<'row-fluid'<'span4'i><'span8'p>>";
 			}
 		}
 	else

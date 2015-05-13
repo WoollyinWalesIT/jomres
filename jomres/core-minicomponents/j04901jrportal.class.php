@@ -32,12 +32,9 @@ class j04901jrportal
 		$defaultCrate = $jrConfig[ 'defaultCrate' ];
 		$property_uid = $componentArgs[ 'property_uid' ];
 
-		jr_import( 'jrportal_property' );
-		$property              = new jrportal_property();
-		$property->property_id = $property_uid;
-		$property->crate_id    = $defaultCrate;
-
-		$property->commitNewProperty();
+		jr_import('jrportal_commissions');
+		$jrportal_commissions = new jrportal_commissions();
+		$jrportal_commissions->assignDefaultCrate($property_uid, $defaultCrate);
 		}
 
 	// This must be included in every Event/Mini-component
@@ -46,5 +43,3 @@ class j04901jrportal
 		return null;
 		}
 	}
-
-?>

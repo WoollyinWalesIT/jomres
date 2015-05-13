@@ -84,11 +84,12 @@ function showSiteConfig()
 
 	if ( !isset( $jrConfig[ 'cssColourScheme' ] ) ) $jrConfig[ 'cssColourScheme' ] = "blue";
 
-	jr_import( 'jrportal_crate_functions' );
-	$crateFunctions = new jrportal_crate_functions();
-	$crateList      = $crateFunctions->getAllUnarchivedCrates();
+	jr_import('jrportal_commissions');
+	$jrportal_commissions = new jrportal_commissions();
+	$jrportal_commissions->getAllCrates();
+		
 	$crateOptions   = array ();
-	foreach ( $crateList as $c )
+	foreach ( $jrportal_commissions->crates as $c )
 		{
 		$crateOptions[ ] = jomresHTML::makeOption( $c[ 'id' ], $c[ 'title' ] );
 		}
