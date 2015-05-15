@@ -61,6 +61,9 @@ class jomres_database
 		$showtime            = jomres_singleton_abstract::getInstance( 'showtime' );
 		$this->dbtype        = get_showtime( 'dbtype' );
 		
+		if ((string)$this->dbtype == '')
+			$this->dbtype = 'mysqli';
+		
 		switch($this->dbtype) 
 			{
 			case "mysqli" :
