@@ -29,7 +29,7 @@ class j00030search
 	 * Takes information, decides if we have been called by a module or not. If called by a module uses the search object to decide what items the module wants to search upon and performs the search
 	#
 	 */
-	function j00030search( $componentArgs )
+	function __construct( $componentArgs )
 		{
 		global $jomresSearchFormname;
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

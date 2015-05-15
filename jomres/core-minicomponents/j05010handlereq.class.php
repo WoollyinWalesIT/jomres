@@ -28,7 +28,7 @@ class j05010handlereq
 	 * Constructor: Includes the handlereq.php file
 	#
 	 */
-	function j05010handlereq()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

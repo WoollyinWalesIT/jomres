@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_cart
 	{
-	function jomres_cart()
+	function __construct()
 		{
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		if ( !isset( $tmpBookingHandler->cart_data ) ) $tmpBookingHandler->cart_data = array ();

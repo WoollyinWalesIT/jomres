@@ -29,7 +29,7 @@ class j04900saveproperty
 	 * Collates the room/property configuration tabs
 	#
 	 */
-	function j04900saveproperty( $componentArgs )
+	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		if ( !function_exists( 'jomres_singleton_abstract::getInstance' ) )

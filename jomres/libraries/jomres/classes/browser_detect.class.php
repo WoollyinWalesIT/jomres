@@ -85,7 +85,7 @@ class browser_detect
 
 	const OPERATING_SYSTEM_UNKNOWN = 'unknown';
 
-	public function browser_detect( $useragent = "" )
+	public function __construct( $useragent = "" )
 		{
 		$this->reset();
 		if ( $useragent != "" )

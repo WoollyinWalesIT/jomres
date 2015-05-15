@@ -28,7 +28,7 @@ class j00012managelogs
 	 * remote availability
 	#
 	 */
-	function j00012managelogs()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

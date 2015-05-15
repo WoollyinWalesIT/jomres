@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_gateway_handler
 	{
-	function jomres_gateway_handler()
+	function __construct()
 		{
 		jr_import( 'jrportal_paypal_settings' );
 		$paypal_settings = new jrportal_paypal_settings();

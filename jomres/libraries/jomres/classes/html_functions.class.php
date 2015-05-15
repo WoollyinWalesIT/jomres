@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class html_functions
 	{
-	function html_functions()
+	function __construct()
 		{
 		}
 

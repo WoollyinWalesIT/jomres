@@ -17,7 +17,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_currency_conversion
 	{
-	function jomres_currency_conversion()
+	function __construct()
 		{
 		$jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance( 'jomres_currency_exchange_rates' );
 		$this->rates = get_showtime( 'temp_exchangerate_data' );

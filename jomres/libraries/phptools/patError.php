@@ -132,7 +132,7 @@ class patError
 	 * @param    string $info    Optional: The additional error information.
 	 * @see        __construct()
 	 */
-	function patError( $level, $code, $msg, $info = null )
+	function __construct( $level, $code, $msg, $info = null )
 		{
 		$this->__construct( $level, $code, $msg, $info );
 		}

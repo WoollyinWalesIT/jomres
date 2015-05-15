@@ -28,7 +28,7 @@ class j01055showroomdetails
 	 * Constructor: If this is a single room property it will show the availability calendar for the property, else if "all" it will list all rooms, else it will show the availability and details of just one room
 	#
 	 */
-	function j01055showroomdetails( $componentArgs )
+	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

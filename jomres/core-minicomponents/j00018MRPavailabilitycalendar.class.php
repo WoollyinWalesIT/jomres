@@ -24,12 +24,8 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 class  j00018MRPavailabilitycalendar
 	{
 
-	/**
-	#
-	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-	#
-	 */
-	function  j00018MRPavailabilitycalendar( $componentArgs = null )
+
+	function  __construct( $componentArgs = null )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -178,11 +174,7 @@ class  j00018MRPavailabilitycalendar
 		}
 
 	#
-	/**
-	#
-	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-	#
-	 */
+
 	function makecal( $stmonth, $styear, $roomUid, $property_uid )
 		{
 		// Adapted from source

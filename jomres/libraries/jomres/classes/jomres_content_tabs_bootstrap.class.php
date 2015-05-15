@@ -32,7 +32,7 @@ class jomres_content_tabs_bootstrap
 	#
 	 */
 
-	function jomres_content_tabs_bootstrap()
+	function __construct()
 		{
 		$this->panes        = array ();
 		$this->paneLink     = array ();

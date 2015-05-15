@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jrportal_sms_clickatell_settings
 	{
-	function jrportal_sms_clickatell_settings()
+	function __construct()
 		{
 		$this->sms_clickatellConfigOptions               = array ();
 		$this->sms_clickatellConfigOptions[ 'active' ]   = "";

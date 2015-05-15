@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_suspensions
 	{
-	function jomres_suspensions()
+	function __construct()
 		{
 		$this->manager_id 						= 0; // This is the userid in #__jomres_managers. It corresponds with the CMS user's id
 		$this->jomres_system_manager_id 		= 0; // This is the manager_uid in #__jomres_managers

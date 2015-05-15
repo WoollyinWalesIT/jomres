@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_obsolete_file_handling
 	{
-	function jomres_obsolete_file_handling()
+	function __construct()
 		{
 		
 		$this->obs_files         = array ();

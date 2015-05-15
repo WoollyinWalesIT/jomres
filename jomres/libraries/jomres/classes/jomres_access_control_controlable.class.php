@@ -17,7 +17,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_access_control_controlable
 	{
-	function jomres_access_control_controlable()
+	function __construct()
 		{
 		// Minicomponents that should never be forbidden from running
 		$this->uncontrollable_patterns = array ( "00001", "00002", "00005", "01009", "01010", "00021", "16010", "16020", "99995", "99996", "99997", "99999", "10001", "10002", "10002", "10003", "10004", "16000" );

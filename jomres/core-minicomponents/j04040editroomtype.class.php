@@ -29,7 +29,7 @@ class j04040editroomtype
 	 * Edit the room type - (Global rooms types off - else managed in backend)
 	#
 	 */
-	function j04040editroomtype( $componentArgs )
+	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

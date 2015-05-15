@@ -29,7 +29,7 @@ class j02260editbooking
 	 * Constructor: Constructs the javascript tab booking details page
 	#
 	 */
-	function j02260editbooking()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

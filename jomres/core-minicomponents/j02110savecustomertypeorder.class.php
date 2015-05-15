@@ -28,7 +28,7 @@ class j02110savecustomertypeorder
 	 * Constructor: Saves the order that customer types should be shown in
 	#
 	 */
-	function j02110savecustomertypeorder()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_check_support_key
 	{
-	function jomres_check_support_key( $task, $pk = "", $plugin = "" )
+	function __construct( $task, $pk = "", $plugin = "" )
 		{
 		$this->task      = $task;
 		$this->key_valid = false;

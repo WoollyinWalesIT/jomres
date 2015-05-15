@@ -28,7 +28,7 @@ class j06000no_search_results
 	 * Constructor: Executes the sql query to find property details of those property uids passed by a search, then displays those details in the list_propertys patTemplate file
 	#
 	 */
-	function j06000no_search_results()
+	function __construct()
 		{
 		$pageoutput[ ] = array ( "MESSAGE" => jr_gettext( '_JOMRES_FRONT_NORESULTS', _JOMRES_FRONT_NORESULTS, $editable = true, $islink = false ) );
 		$tmpl          = new patTemplate();

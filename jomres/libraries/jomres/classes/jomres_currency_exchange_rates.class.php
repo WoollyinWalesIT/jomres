@@ -18,7 +18,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_currency_exchange_rates
 	{
-	function jomres_currency_exchange_rates( $base = '', $update_now = false )
+	function __construct( $base = '', $update_now = false )
 		{
 		$this->update_now      = $update_now;
 		$this->feature_enabled = true;

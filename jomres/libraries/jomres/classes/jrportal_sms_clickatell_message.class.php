@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jrportal_sms_clickatell_message
 	{
-	function jrportal_sms_clickatell_message()
+	function __construct()
 		{
 		$this->id           = 0;
 		$this->username     = '';

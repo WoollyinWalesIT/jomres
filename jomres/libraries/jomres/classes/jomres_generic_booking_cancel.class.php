@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_generic_booking_cancel
 	{
-	public function jomres_generic_booking_cancel()
+	public function __construct()
 		{
 		$this->init();
 		return true;

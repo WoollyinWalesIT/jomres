@@ -29,7 +29,7 @@ class jomSearch
 	 * Constructs the search object
 	#
 	 */
-	function jomSearch( $calledByModule )
+	function __construct( $calledByModule )
 		{
 		//var_dump($searchOptions);
 		$searchAll       = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );

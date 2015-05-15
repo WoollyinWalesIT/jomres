@@ -22,7 +22,7 @@ class j00001functioncall_generateDateInput
 	 * Functioncall minicomponents allow us to override some functions without needing to modify functions.php itself
 	#
 	 */
-	function j00001functioncall_generateDateInput(  )
+	function __construct(  )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -31,7 +31,6 @@ class j00001functioncall_generateDateInput
 			$this->template_touchable = false;
 			return;
 			}
-		
 		require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'generateDateInput.php' );
 		
 		}

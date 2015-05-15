@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_sticky_messages
 	{
-	function jomres_sticky_messages()
+	function __construct()
 		{
 		$jomres_sticky_messages = array ();
 		if ( isset( $_COOKIE[ 'jomres_sticky_messages' ] ) ) $this->jomres_sticky_messages = $_COOKIE[ 'jomres_sticky_messages' ];

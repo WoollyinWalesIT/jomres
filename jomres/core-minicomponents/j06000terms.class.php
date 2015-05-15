@@ -28,7 +28,7 @@ class j06000terms
 	 * Constructor: Executes the sql query to find property details of those property uids passed by a search, then displays those details in the list_propertys patTemplate file
 	#
 	 */
-	function j06000terms()
+	function __construct()
 		{
 		$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 		$this->pop    = jomresGetParam( $_REQUEST, 'popup', 0 );

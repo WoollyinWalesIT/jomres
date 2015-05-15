@@ -29,7 +29,7 @@ class j02234canceleditcreditcard
 	 * Constructor: Closes the edit creditcard screen on click Cancel
 	#
 	 */
-	function j02234canceleditcreditcard()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

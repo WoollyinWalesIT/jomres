@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_roomlocks
 	{
-	function jomres_roomlocks()
+	function __construct()
 		{
 		$property_uid            = get_showtime( 'property_uid' );
 		$this->session_directory = JOMRESPATH_BASE . JRDS . "sessions" . JRDS;

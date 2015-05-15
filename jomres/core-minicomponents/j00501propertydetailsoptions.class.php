@@ -28,7 +28,7 @@ class j00501propertydetailsoptions
 	 * Constructor: Constructs and outputs miscelleneous options
 	#
 	 */
-	function j00501propertydetailsoptions( $componentArgs )
+	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

@@ -13,7 +13,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j06002edit_email {
-	function j06002edit_email()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_getSingleton('mcHandler');

@@ -28,7 +28,7 @@ class j00501tariff_editing_mode
 	 * Constructor: Constructs and displays input for configuring various tariff options
 	#
 	 */
-	function j00501tariff_editing_mode( $componentArgs )
+	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

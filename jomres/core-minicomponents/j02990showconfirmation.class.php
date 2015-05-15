@@ -29,7 +29,7 @@ class j02990showconfirmation
 	 * Constructor: Shows the confirmation form
 	#
 	 */
-	function j02990showconfirmation()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

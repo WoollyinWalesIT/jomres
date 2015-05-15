@@ -21,7 +21,7 @@ class jomres_tooltips
 	 * xxxx
 	#
 	 */
-	function jomres_tooltips()
+	function __construct()
 		{
 		$this->divs = array ();
 		}

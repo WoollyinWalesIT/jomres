@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jrportal_subscriptions
 	{
-	function jrportal_subscriptions()
+	function __construct()
 		{
 		$this->id                      = 0;
 		$this->cms_user_id             = 0;

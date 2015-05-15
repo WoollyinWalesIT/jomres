@@ -47,7 +47,7 @@ class dobooking
 	 * Constructor for the jomres_booking object, sets a bunch of variables, finds configuration settings & gets the current state of the booking from the tmpbooking table
 	#
 	 */
-	function dobooking()
+	function __construct()
 		{
 		$siteConfig = jomres_getSingleton( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();

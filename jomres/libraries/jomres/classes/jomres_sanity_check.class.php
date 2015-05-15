@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_sanity_check
 	{
-	function jomres_sanity_check( $autorun = true )
+	function __construct( $autorun = true )
 		{
 		if ( get_showtime( 'no_html', $no_html ) == 1 || get_showtime( 'popup', $popup ) == 1 ) return;
 		if ( $autorun )

@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jrportal_paypal_settings
 	{
-	function jrportal_paypal_settings()
+	function __construct()
 		{
 		$this->paypalConfigOptions                   = array ();
 		$this->paypalConfigOptions[ 'usesandbox' ]   = "1";
