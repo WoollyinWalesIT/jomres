@@ -5,7 +5,7 @@
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 8
  * @package Jomres
- * @copyright	2005-2014 Vince Wooll
+ * @copyright	2005-2015 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
@@ -13,22 +13,8 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-/**
-#
- * The search minicomponent
-#
- *
- * @package Jomres
-#
- */
 class j00030search
 	{
-
-	/**
-	#
-	 * Takes information, decides if we have been called by a module or not. If called by a module uses the search object to decide what items the module wants to search upon and performs the search
-	#
-	 */
 	function __construct( $componentArgs )
 		{
 		global $jomresSearchFormname;

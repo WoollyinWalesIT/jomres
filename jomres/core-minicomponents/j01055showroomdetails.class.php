@@ -5,7 +5,7 @@
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 8
  * @package Jomres
- * @copyright	2005-2014 Vince Wooll
+ * @copyright	2005-2015 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
@@ -13,21 +13,8 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-/**
-#
- * Shows room details/availability calendar in property details/popup depending on property configuration
-#
- *
- * @package Jomres
-#
- */
 class j01055showroomdetails
 	{
-	/**
-	#
-	 * Constructor: If this is a single room property it will show the availability calendar for the property, else if "all" it will list all rooms, else it will show the availability and details of just one room
-	#
-	 */
 	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return

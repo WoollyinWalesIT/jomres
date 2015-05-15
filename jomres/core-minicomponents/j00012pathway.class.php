@@ -5,7 +5,7 @@
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 8
  * @package Jomres
- * @copyright	2005-2014 Vince Wooll
+ * @copyright	2005-2015 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
@@ -13,34 +13,8 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-/**
-#
- *
-// To prevent the trailing string "Search" showing in your Joomla pathway, open /modules/mod_breadcrumbs/mod_breadcrumbs.php and add
-
-if ($_GET['option']=="com_jomres")
-$count=$count-1;
-
-after the line
-
-$count	= count($list);
-
-so it looks like :
-
-// Get the breadcrumbs
-$list	= modBreadCrumbsHelper::getList($params);
-$count	= count($list);
-if ($_GET['option']=="com_jomres")
-$count=$count-1;
-// Set the default separator
-#
- * @package Jomres
-#
- */
 class j00012pathway
 	{
-
-
 	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
