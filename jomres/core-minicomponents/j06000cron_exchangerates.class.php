@@ -25,7 +25,8 @@ class j06000cron_exchangerates
 			return;
 			}
 		$jomresConfig_secret = get_showtime( 'secret' );
-		$secret              = jomresGetParam( $_REQUEST, "secret", "" );
+		$secret              = base64_decode(jomresGetParam( $_REQUEST, "secret", "" ));
+		
 		if ( $secret == $jomresConfig_secret )
 			{
 			jr_import( 'jomres_currency_exchange_rates' );
@@ -39,5 +40,3 @@ class j06000cron_exchangerates
 		return null;
 		}
 	}
-
-?>

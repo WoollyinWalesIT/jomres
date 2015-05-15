@@ -18,7 +18,8 @@ class j06000cronjobs
 	function __construct()
 		{
 		$jomresConfig_secret = get_showtime( 'secret' );
-		$secret              = jomresGetParam( $_REQUEST, "secret", "" );
+		$secret              = base64_decode(jomresGetParam( $_REQUEST, "secret", "" ));
+		
 		if ( $secret == $jomresConfig_secret )
 			{
 			jr_import( 'jomres_cron' );
@@ -37,5 +38,3 @@ class j06000cronjobs
 		return array ( 'filepath' => $this->filepath, 'gatewayname' => $this->gatewayname );
 		}
 	}
-
-?>

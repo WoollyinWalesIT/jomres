@@ -239,7 +239,7 @@ class jomres_cron
 		$lockedJobs=array();
 		if ( function_exists( "curl_init" ) )
 			{
-			$jomresConfig_secret = get_showtime( 'secret' );
+			$jomresConfig_secret = base64_encode(get_showtime( 'secret' ));
 			if ( count( $this->dueJobs ) > 0 )
 				{
 				$livesite = get_showtime( 'live_site' );
@@ -253,7 +253,10 @@ class jomres_cron
 					}
 				foreach ( $this->dueJobs as $job )
 					{
-					$request = $livesite . "/index.php?option=com_jomres&tmpl=".get_showtime("tmplcomponent")."&jrajax=1&no_html=1&task=cron_" . $job[ 'job_name' ] . "&secret=" . $jomresConfig_secret;
+					if (this_cms_is_wordpress())
+						$request = $livesite . "/index.php?action=jomres/trigger.php&no_html=1&jrajax=1&jr_wp_source=frontend&option=com_jomres&tmpl=".get_showtime("tmplcomponent")."&task=cron_" . $job[ 'job_name' ] . "&secret=" . $jomresConfig_secret;
+					else
+						$request = $livesite . "/index.php?option=com_jomres&tmpl=".get_showtime("tmplcomponent")."&jrajax=1&no_html=1&task=cron_" . $job[ 'job_name' ] . "&secret=" . $jomresConfig_secret;
 					$ch      = curl_init();
 					curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 					curl_setopt( $ch, CURLOPT_USERAGENT, 'Jomres' );
