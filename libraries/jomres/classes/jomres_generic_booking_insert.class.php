@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_generic_booking_insert
 	{
-	public function jomres_generic_booking_insert()
+	public function __construct()
 		{
 		$this->init();
 		return true;

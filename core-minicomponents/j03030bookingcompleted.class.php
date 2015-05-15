@@ -29,7 +29,7 @@ class j03030bookingcompleted
 	 * Constructor: Constructs the booking completed page
 	#
 	 */
-	function j03030bookingcompleted( $componentArgs )
+	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

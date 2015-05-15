@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j03390upload_business_images
 	{
-	function j03390upload_business_images( $componentArgs )
+	function __construct( $componentArgs )
 		{
 
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return

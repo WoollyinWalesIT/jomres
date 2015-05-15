@@ -17,7 +17,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // Post property insert. Creates a property in the commission -> property xref table
 class j04901jrportal
 	{
-	function j04901jrportal( $componentArgs )
+	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jrportal_invoice
 	{
-	function jrportal_invoice()
+	function __construct()
 		{
 		$this->init_invoice();
 		$this->init_lineitem();

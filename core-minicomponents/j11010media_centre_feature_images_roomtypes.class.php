@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j11010media_centre_feature_images_roomtypes
 	{
-	function j11010media_centre_feature_images_roomtypes( $componentArgs )
+	function __construct( $componentArgs )
 		{
 
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return

@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j06002list_emails
 	{
-	function j06002list_emails()
+	function __construct()
 		{
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )

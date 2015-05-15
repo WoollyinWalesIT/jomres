@@ -30,7 +30,7 @@ class jomres_custom_template_handler
 	 * Constructor. Sets the required curency format
 	#
 	 */
-	function jomres_custom_template_handler( $specific_path = false )
+	function __construct( $specific_path = false )
 		{
 		if ( !$specific_path )
 			{

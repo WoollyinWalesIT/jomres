@@ -50,7 +50,7 @@ class images
 	var $jpgCompression = 90;
 	var $fileToBeDeletedAtEnd = "";
 
-	function images()
+	function __construct()
 		{
 		if ( !defined( "JOMRES_IMAGE_MAX_SIZE" ) || !defined( "JOMRES_IMAGE_UPLOAD_PATH" ) )
 			{

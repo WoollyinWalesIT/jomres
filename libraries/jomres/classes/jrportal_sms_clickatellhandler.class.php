@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jrportal_sms_clickatellhandler
 	{
-	function jrportal_sms_clickatellhandler( $property_uid )
+	function __construct( $property_uid )
 		{
 		//http://api.clickatell.com/http/sendmsg?api_id=xxxx&user=xxxx&password=xxxx&to=xxxx&text=xxxx
 		$this->clickatell_api_url = "http://api.clickatell.com/http/sendmsg?";

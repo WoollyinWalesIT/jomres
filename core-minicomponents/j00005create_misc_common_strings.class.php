@@ -17,7 +17,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j00005create_misc_common_strings
 	{
-	function j00005create_misc_common_strings()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

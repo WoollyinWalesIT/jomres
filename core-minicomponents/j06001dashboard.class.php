@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j06001dashboard
 	{
-	function j06001dashboard( $componentArgs )
+	function __construct( $componentArgs )
 		{
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )

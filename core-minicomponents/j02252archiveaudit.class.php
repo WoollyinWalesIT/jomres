@@ -29,7 +29,7 @@ class j02252archiveaudit
 	 * Constructor: Archives the audit data
 	#
 	 */
-	function j02252archiveaudit()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

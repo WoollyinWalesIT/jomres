@@ -17,7 +17,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 class jomres_regions
 	{
 
-	function jomres_regions()
+	function __construct()
 		{
 		$this->regions = array ();
 		$this->get_regions();

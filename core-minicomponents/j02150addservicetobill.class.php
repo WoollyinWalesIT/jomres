@@ -29,7 +29,7 @@ class j02150addservicetobill
 	 * Constructor: Add a service the the bill of a guest with a booking
 	#
 	 */
-	function j02150addservicetobill()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

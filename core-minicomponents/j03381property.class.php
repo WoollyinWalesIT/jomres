@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j03381property
 	{
-	function j03381property( $componentArgs )
+	function __construct( $componentArgs )
 		{
 
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return

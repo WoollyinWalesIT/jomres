@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowe
 
 class j16000managers_find
 	{
-	function j16000managers_find()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

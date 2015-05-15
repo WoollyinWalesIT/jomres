@@ -28,7 +28,7 @@ class j06005editor
 	 * Constructor: Executes the sql query to find property details of those property uids passed by a search, then displays those details in the list_propertys patTemplate file
 	#
 	 */
-	function j06005editor( $componentArgs )
+	function __construct( $componentArgs )
 		{
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )

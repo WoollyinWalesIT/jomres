@@ -17,7 +17,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j06001set_config_level
 	{
-	function j06001set_config_level()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

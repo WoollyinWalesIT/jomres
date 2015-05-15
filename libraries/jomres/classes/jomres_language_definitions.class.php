@@ -17,7 +17,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 class jomres_language_definitions
 	{
 
-	function jomres_language_definitions()
+	function __construct()
 		{
 		$siteConfig             = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig               = $siteConfig->get();

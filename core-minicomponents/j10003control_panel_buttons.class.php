@@ -25,12 +25,8 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 class j10003control_panel_buttons
 	{
 
-	/**
-	#
-	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-	#
-	 */
-	function j10003control_panel_buttons()
+
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

@@ -17,7 +17,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 class jomres_countries
 	{
 
-	function jomres_countries()
+	function __construct()
 		{
 		$this->countries = array ();
 		$this->get_countries();

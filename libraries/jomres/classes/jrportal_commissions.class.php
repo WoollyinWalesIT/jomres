@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jrportal_commissions // Functions supplied as a class so that they can be extended easily without rewriting  the functions
 	{
-	function jrportal_commissions()
+	function __construct()
 		{
 		$this->crates = array ();
 		

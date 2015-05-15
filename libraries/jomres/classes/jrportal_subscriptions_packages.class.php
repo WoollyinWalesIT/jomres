@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jrportal_subscriptions_packages
 	{
-	function jrportal_subscriptions_packages()
+	function __construct()
 		{
 		$this->id             = 0;
 		$this->name           = '';

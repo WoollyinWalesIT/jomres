@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j06000cronjobs
 	{
-	function j06000cronjobs()
+	function __construct()
 		{
 		$jomresConfig_secret = get_showtime( 'secret' );
 		$secret              = jomresGetParam( $_REQUEST, "secret", "" );

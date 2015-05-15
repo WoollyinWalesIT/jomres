@@ -21,7 +21,7 @@ class j06001handlereq_total
 	 * Constructor: Let's gather the data we want.
 	#
 	 */
-	function j06001handlereq_total()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

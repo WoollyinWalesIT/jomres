@@ -24,12 +24,8 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 class j00009user_option_02_addfavourite
 	{
 
-	/**
-	#
-	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-	#
-	 */
-	function j00009user_option_02_addfavourite( $componentArgs )
+
+	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

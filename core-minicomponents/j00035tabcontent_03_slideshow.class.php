@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j00035tabcontent_03_slideshow
 	{
-	function j00035tabcontent_03_slideshow( $componentArgs )
+	function __construct( $componentArgs )
 		{
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )

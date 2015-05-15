@@ -23,7 +23,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 class minicomponent_registry
 	{
 
-	function minicomponent_registry( $force_reload_allowed = false )
+	function __construct( $force_reload_allowed = false )
 		{
 		$scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 		if ( !strstr( $scriptname, 'install_jomres.php' ) )

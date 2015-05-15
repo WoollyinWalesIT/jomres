@@ -28,7 +28,7 @@ class j03025insertbooking_invoice
 	 * Inserts the booking. Receives the jomressession and a flag to indicated if the deposit has been paid
 	#
 	 */
-	function j03025insertbooking_invoice( $componentArgs )
+	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

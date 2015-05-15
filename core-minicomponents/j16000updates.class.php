@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j16000updates
 	{
-	function j16000updates()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		if ( function_exists( 'jomres_singleton_abstract::getInstance' ) ) $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

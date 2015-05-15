@@ -29,7 +29,7 @@ class j04060deleteroomtype
 	 * Deletes a room type (Global room types off - else managed in backend)
 	#
 	 */
-	function j04060deleteroomtype( $componentArgs )
+	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

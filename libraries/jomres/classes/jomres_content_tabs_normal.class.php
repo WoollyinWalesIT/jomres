@@ -31,7 +31,7 @@ class jomres_content_tabs_normal
 	 * Constructor.
 	#
 	 */
-	function jomres_content_tabs_normal()
+	function __construct()
 		{
 		$this->panes        = array ();
 		$this->paneLink     = array ();

@@ -25,7 +25,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  */
 class jomres_pathway
 	{
-	function jomres_pathway()
+	function __construct()
 		{
 		if ( _JOMRES_DETECTED_CMS == "joomla15" )
 			{

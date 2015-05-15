@@ -21,7 +21,7 @@ class jomres_user_budget
 	 * Constructor for the jomres_booking object, sets a bunch of variables, finds configuration settings & gets the current state of the booking from the tmpbooking table
 	#
 	 */
-	function jomres_user_budget()
+	function __construct()
 		{
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		if (!isset($tmpBookingHandler->user_settings[ 'budget' ]))

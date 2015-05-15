@@ -19,7 +19,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // Nice simple schedules used: M,H,D,W
 class jomres_cron
 	{
-	function jomres_cron( $displayLog = false )
+	function __construct( $displayLog = false )
 		{
 		$this->config = array ();
 		$this->getcronconfig();

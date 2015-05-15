@@ -28,7 +28,7 @@ class j06001mark_booking_invoice_paid
 	 * Constructor:
 	#
 	 */
-	function j06001mark_booking_invoice_paid()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

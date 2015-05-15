@@ -33,7 +33,7 @@ class j03020insertbooking
 	var $insertBookingEventValues = array ();
 	var $secret_key_payment = false;
 
-	function j03020insertbooking( $componentArgs )
+	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

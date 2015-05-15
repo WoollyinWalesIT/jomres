@@ -21,7 +21,7 @@ if ( !using_bootstrap() )
 
 	class jomres_toolbar extends jomres_toolbar_normal
 		{
-		function jomres_toolbar()
+		function __construct()
 			{
 			$mrConfig                     = getPropertySpecificSettings();
 			$this->livesite               = get_showtime( 'live_site' );
@@ -49,7 +49,7 @@ else
 
 	class jomres_toolbar extends jomres_toolbar_bootstrap
 		{
-		function jomres_toolbar()
+		function __construct()
 			{
 			$mrConfig                     = getPropertySpecificSettings();
 			$this->livesite               = get_showtime( 'live_site' );

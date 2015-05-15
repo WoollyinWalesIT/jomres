@@ -29,7 +29,7 @@ class j06001list_bookings
 	 * Constructor: Constructs and displays all bookings
 	#
 	 */
-	function j06001list_bookings()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

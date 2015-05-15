@@ -24,12 +24,8 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 class j00011manager_option_03_business_settings
 	{
 
-	/**
-	#
-	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-	#
-	 */
-	function j00011manager_option_03_business_settings( $componentArgs )
+
+	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

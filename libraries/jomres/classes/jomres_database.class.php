@@ -46,7 +46,7 @@ set_showtime( 'socket', $socket );
 
 class jomres_database
 	{
-	function jomres_database()
+	function __construct()
 		{
 		// Check if magic_quotes_runtime is active
 		if ( get_magic_quotes_runtime() )

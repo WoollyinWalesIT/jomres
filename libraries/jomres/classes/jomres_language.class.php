@@ -21,7 +21,7 @@ class jomres_language
 	 * Constructor for the jomres_booking object, sets a bunch of variables, finds configuration settings & gets the current state of the booking from the tmpbooking table
 	#
 	 */
-	function jomres_language()
+	function __construct()
 		{
 		global $jomresConfig_lang;
 		$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );

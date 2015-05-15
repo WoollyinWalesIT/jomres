@@ -28,7 +28,7 @@ class j06005cancelGuestBooking
 	 * Constructor: Constructs the javascript tab booking details page
 	#
 	 */
-	function j06005cancelGuestBooking()
+	function __construct()
 		{
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return

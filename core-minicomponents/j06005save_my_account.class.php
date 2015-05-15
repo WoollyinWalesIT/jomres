@@ -29,7 +29,7 @@ class j06005save_my_account
 	 * Constructor: Saves guest data edited by receptionist/manager
 	#
 	 */
-	function j06005save_my_account()
+	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

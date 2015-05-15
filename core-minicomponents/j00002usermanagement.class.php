@@ -29,7 +29,7 @@ class j00002usermanagement
 	 * Manages user access rights
 	#
 	 */
-	function j00002usermanagement( $componentArgs = null )
+	function __construct( $componentArgs = null )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

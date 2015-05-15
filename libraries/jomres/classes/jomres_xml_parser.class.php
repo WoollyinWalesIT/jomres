@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_xml_parser
 	{
-	function jomres_xml_parser( $xml )
+	function __construct( $xml )
 		{
 		$this->rawXML = $xml;
 		$this->parser = xml_parser_create();

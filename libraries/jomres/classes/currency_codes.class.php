@@ -17,7 +17,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class currency_codes
 	{
-	function currency_codes( $code = "", $global = false )
+	function __construct( $code = "", $global = false )
 		{
 		$this->code = '';
 		if ( $code != "" ) $this->code = trim( $code );

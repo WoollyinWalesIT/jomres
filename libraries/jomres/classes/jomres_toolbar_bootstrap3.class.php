@@ -30,7 +30,7 @@ class jomres_toolbar_bootstrap
 	 * Constructor. Generates the images based on hard coded arrays, and sets the livesite and icon sizes
 	#
 	 */
-	function jomres_toolbar_bootstrap()
+	function __construct()
 		{
 		$mrConfig						= getPropertySpecificSettings();
 		$this->livesite					= get_showtime( 'live_site' );

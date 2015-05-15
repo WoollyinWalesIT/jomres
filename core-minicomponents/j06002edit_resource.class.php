@@ -28,7 +28,7 @@ class j06002edit_resource
 	 * Collates the room/property configuration tabs
 	#
 	 */
-	function j06002edit_resource( $componentArgs )
+	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );

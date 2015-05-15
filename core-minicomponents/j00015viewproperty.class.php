@@ -23,12 +23,8 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  */
 class j00015viewproperty
 	{
-	/**
-	#
-	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-	#
-	 */
-	function j00015viewproperty( $componentArgs )
+
+	function __construct( $componentArgs )
 		{
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		$siteConfig     = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );

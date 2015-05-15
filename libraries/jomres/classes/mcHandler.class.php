@@ -23,7 +23,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 class mcHandler
 	{
 
-	function mcHandler()
+	function __construct()
 		{
 		$this->registeredClasses = array ();
 		$scriptname              = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
