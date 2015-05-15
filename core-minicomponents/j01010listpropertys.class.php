@@ -5,30 +5,16 @@
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 8
  * @package Jomres
- * @copyright	2005-2014 Vince Wooll
+ * @copyright	2005-2015 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
-
 
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-/**
-#
- * Lists the properties, according to property uids passed from a search function
-#
- *
- * @package Jomres
-#
- */
 class j01010listpropertys
 	{
-	/**
-	#
-	 * Constructor: Executes the sql query to find property details of those property uids passed by a search, then displays those details in the list_propertys patTemplate file
-	#
-	 */
 	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return

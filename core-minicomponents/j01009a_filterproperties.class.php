@@ -5,23 +5,14 @@
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 8
  * @package Jomres
- * @copyright	2005-2014 Vince Wooll
+ * @copyright	2005-2015 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
-
 
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-/**
-#
- * Passed the property uids to be listed, will re-order those property uids. Allows us to create plugins (for example for the portal) which can create featured properties
-#
- *
- * @package Jomres
-#
- */
 class j01009a_filterproperties
 	{
 	function __construct( $componentArgs )
