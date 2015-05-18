@@ -13,6 +13,8 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+jr_import( 'dobooking' );
+
 class j05000bookingobject
 	{
 	function __construct( $componentArgs )
