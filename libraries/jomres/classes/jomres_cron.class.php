@@ -94,7 +94,7 @@ class jomres_cron
 
 	function getcronconfig()
 		{
-		$query       = "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '0' AND plugin = 'jomcompcronjobs'";
+		$query       = "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = 0 AND plugin = 'jomcompcronjobs'";
 		$settingList = doSelectSql( $query );
 		foreach ( $settingList as $s )
 			{
@@ -207,7 +207,7 @@ class jomres_cron
 		if (count($jobIds)>0)
 			{
 			if ( $this->verboselog ) $this->debug[ ] = "Locking " . count($jobIds) . " jobs";
-			$query = "UPDATE #__jomcomp_cron SET `locked`='1' WHERE id IN (".implode(',',$jobIds).") ";
+			$query = "UPDATE #__jomcomp_cron SET `locked`= 1 WHERE `id` IN (".implode(',',$jobIds).") ";
 			if ( !doInsertSql( $query, "" ) )
 				{
 				$this->debug[ ] = "Failed to lock jobs ";
@@ -222,7 +222,7 @@ class jomres_cron
 		if (count($jobIds)>0)
 			{
 			if ( $this->verboselog ) $this->debug[ ] = "Unlocking " . count($jobIds) . " jobs";
-			$query = "UPDATE #__jomcomp_cron SET `locked`='0' WHERE id IN (".implode(',',$jobIds).") ";
+			$query = "UPDATE #__jomcomp_cron SET `locked`= 0 WHERE `id` IN (".implode(',',$jobIds).") ";
 			if ( !doInsertSql( $query, "" ) )
 				{
 				$this->debug[ ] = "Failed to unlock jobs ";
@@ -286,7 +286,7 @@ class jomres_cron
 			{
 			if ( $this->verboselog ) 
 				$this->debug[ ] = "Updating jobs last rans";
-			$query= "UPDATE #__jomcomp_cron SET last_ran = '" . $this->now . "' WHERE id IN (" . implode(",",$jobIds) . ")";
+			$query= "UPDATE #__jomcomp_cron SET `last_ran` = " . $this->now . " WHERE `id` IN (" . implode(",",$jobIds) . ")";
 			if ( !doInsertSql( $query, "" ) )
 				{
 				$this->debug[ ] = "Failed to update last ran times";
@@ -323,7 +323,7 @@ class jomres_cron
 		if ( !$this->jobExists( $jobName ) )
 			{
 			$lastRan = 0;
-			$query   = "INSERT INTO #__jomcomp_cron (`job`,`schedule`,`parameters`,`last_ran`) VALUES ('" . (string) $jobName . "','" . (string) $schedule . "','" . (string) $parameters . "','" . (int) $lastRan . "') ";
+			$query   = "INSERT INTO #__jomcomp_cron (`job`,`schedule`,`parameters`,`last_ran`) VALUES ('" . (string) $jobName . "','" . (string) $schedule . "','" . (string) $parameters . "', " . (int) $lastRan . " ) ";
 			if ( !doInsertSql( $query, "" ) )
 				{
 				$this->debug[ ] = "Failed to add " . (string) $jobName;

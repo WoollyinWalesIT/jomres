@@ -38,9 +38,9 @@ class j01055showroomdetails
 		$output = array();
 		
 		if ( !$all ) 
-			$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE room_uid = '" . (int) $roomUid . "'";
+			$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE room_uid = " . (int) $roomUid . " ";
 		else
-			$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $property_uid . "' ORDER BY room_number,room_name";
+			$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE propertys_uid = " . (int) $property_uid . " ORDER BY room_number,room_name";
 		$roomList = doSelectSql( $query );
 		
 		if ( count( $roomList ) > 0 )

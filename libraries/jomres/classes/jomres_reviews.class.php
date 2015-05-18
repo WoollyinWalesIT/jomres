@@ -67,13 +67,13 @@ class jomres_reviews
 
 		if ( $jrConfig[ 'only_guests_can_review' ] == "1" )
 			{
-			$sql        = "SELECT count(guests_uid) FROM #__jomres_guests WHERE property_uid = '" . (int) $this->property_uid . "' and mos_userid = '" . (int) $this->userid . "'";
+			$sql        = "SELECT count(guests_uid) FROM #__jomres_guests WHERE property_uid = " . (int) $this->property_uid . " and mos_userid = " . (int) $this->userid . " ";
 			$guestcount = (int) doSelectSql( $sql, 1 );
 			if ( $guestcount != 1 ) return false;
 			}
 
-		$sql     = "SELECT count(rating_id) as cnt1 FROM #__jomres_reviews_ratings WHERE item_id = '" . (int) $this->property_uid . "' and rating_ip = '" . $this->ip . "' ";
-		$sql     .= "UNION SELECT count(rating_id) as cnt2 FROM #__jomres_reviews_ratings WHERE item_id = '" . (int) $this->property_uid . "' and user_id = '" . (int) $this->userid . "'";
+		$sql     = "SELECT count(rating_id) as cnt1 FROM #__jomres_reviews_ratings WHERE item_id = " . (int) $this->property_uid . " and rating_ip = '" . $this->ip . "' ";
+		$sql     .= "UNION SELECT count(rating_id) as cnt2 FROM #__jomres_reviews_ratings WHERE item_id = " . (int) $this->property_uid . " and user_id = " . (int) $this->userid . " ";
 		$result = doSelectSql( $sql );
 		if ( count($result == 0)) return true;
 
@@ -234,7 +234,7 @@ class jomres_reviews
 
 	public function checkRatingUniqueIp()
 		{
-		$sql    = "SELECT count(*) FROM #__jomres_reviews_ratings WHERE item_id = '" . (int) $this->property_uid . "' and rating_ip = '" . $this->ip . "'";
+		$sql    = "SELECT count(*) FROM #__jomres_reviews_ratings WHERE item_id = " . (int) $this->property_uid . " and rating_ip = '" . $this->ip . "'";
 		$result = doSelectSql( $sql, 1 );
 
 		return $result;
@@ -242,7 +242,7 @@ class jomres_reviews
 
 	public function checkRatingUniqueUser()
 		{
-		$sql    = "SELECT count(*) as cnt FROM #__jomres_reviews_ratings WHERE item_id = '" . (int) $this->property_uid . "' and user_id = '" . (int) $this->userid . "'";
+		$sql    = "SELECT count(*) as cnt FROM #__jomres_reviews_ratings WHERE item_id = " . (int) $this->property_uid . " and user_id = " . (int) $this->userid . " ";
 		$result = doSelectSql( $sql, 1 );
 
 		return $result;
@@ -250,7 +250,7 @@ class jomres_reviews
 
 	public function checkConfirmUniqueIp( $rating_id )
 		{
-		$sql    = "SELECT count(*) as cnt FROM #__jomres_reviews_ratings_confirm WHERE item_id = '" . (int) $this->property_uid . "' and confirm_ip = '" . $this->ip . "' and rating_id = '" . (int) $rating_id . "'";
+		$sql    = "SELECT count(*) as cnt FROM #__jomres_reviews_ratings_confirm WHERE item_id = " . (int) $this->property_uid . " and confirm_ip = '" . $this->ip . "' and rating_id = '" . (int) $rating_id . "'";
 		$result = doSelectSql( $sql, 1 );
 
 		return $result;
@@ -258,7 +258,7 @@ class jomres_reviews
 
 	public function checkConfirmUniqueUser( $rating_id )
 		{
-		$sql    = "SELECT count(*) as cnt FROM #__jomres_reviews_ratings_confirm WHERE item_id = '" . (int) $this->property_uid . "' and confirm_user_id = '" . $this->userid . "' and rating_id = '" . (int) $rating_id . "'";
+		$sql    = "SELECT count(*) as cnt FROM #__jomres_reviews_ratings_confirm WHERE item_id = " . (int) $this->property_uid . " and confirm_user_id = " . $this->userid . " and rating_id = " . (int) $rating_id . " ";
 		$result = doSelectSql( $sql, 1 );
 
 		return $result;
@@ -298,7 +298,7 @@ class jomres_reviews
 		if ( !isset( $this->multi_query_result[ $item_id ] ) )
 			{
 			$arr    = array ();
-			$sql    = "SELECT item_id, AVG(rating) as avg_rating, COUNT(rating) as counter, SUM(rating) as sumrating FROM #__jomres_reviews_ratings WHERE item_id = '" . (int) $this->property_uid . "' AND published = 1 GROUP BY item_id";
+			$sql    = "SELECT item_id, AVG(rating) as avg_rating, COUNT(rating) as counter, SUM(rating) as sumrating FROM #__jomres_reviews_ratings WHERE item_id = " . (int) $this->property_uid . " AND published = 1 GROUP BY item_id";
 			$result = doSelectSql( $sql );
 			if ( count( $result ) > 0 )
 				{
@@ -330,7 +330,7 @@ class jomres_reviews
 		$confirm = array ();
 		$arr     = array ();
 
-		$sql = "SELECT item_id, rating_id, AVG(confirm) as avg_rating, COUNT(confirm) as counter, SUM(confirm) as total FROM #__jomres_reviews_ratings_confirm WHERE item_id = '" . (int) $this->property_uid . "' GROUP BY rating_id";
+		$sql = "SELECT item_id, rating_id, AVG(confirm) as avg_rating, COUNT(confirm) as counter, SUM(confirm) as total FROM #__jomres_reviews_ratings_confirm WHERE item_id = " . (int) $this->property_uid . " GROUP BY rating_id";
 		$rs  = doSelectSql( $sql );
 		foreach ( $rs as $r )
 			{
@@ -338,7 +338,7 @@ class jomres_reviews
 			}
 
 		$rating_details = array ();
-		$sql            = "SELECT rating_id, detail_rating FROM #__jomres_reviews_ratings_detail WHERE `item_id` = '" . (int) $this->property_uid . "'  ";
+		$sql            = "SELECT rating_id, detail_rating FROM #__jomres_reviews_ratings_detail WHERE `item_id` = " . (int) $this->property_uid . " ";
 		$rs             = doSelectSql( $sql );
 		foreach ( $rs as $r )
 			{
@@ -347,7 +347,7 @@ class jomres_reviews
 
 		if ( $max == "-1" )
 			{
-			$sql = "SELECT * FROM #__jomres_reviews_ratings WHERE item_id = '" . (int) $this->property_uid . "' AND published = 1 order by rating_date desc";
+			$sql = "SELECT * FROM #__jomres_reviews_ratings WHERE item_id = " . (int) $this->property_uid . " AND published = 1 order by rating_date desc";
 			$rs  = doSelectSql( $sql );
 
 			$return[ 'totalRows' ]  = count( $rs );
@@ -375,7 +375,7 @@ class jomres_reviews
 	public function showConfirm( $rating_id )
 		{
 		$arr    = array ( "agree" => 0, "disagree" => 0, "confirm_ips" => array () );
-		$sql    = "SELECT confirm,confirm_ip FROM #__jomres_reviews_ratings_confirm WHERE item_id = '" . (int) $this->property_uid . "' and rating_id = '" . (int) $rating_id . "' ";
+		$sql    = "SELECT confirm,confirm_ip FROM #__jomres_reviews_ratings_confirm WHERE item_id = " . (int) $this->property_uid . " and rating_id = " . (int) $rating_id . " ";
 		$result = doSelectSql( $sql );
 		foreach ( $result as $res )
 			{

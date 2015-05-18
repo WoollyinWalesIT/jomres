@@ -235,7 +235,7 @@ class basic_property_details
 		if ( !isset( $this->this_property_room_classes ) )
 			{
 			$this->this_property_room_classes = array ();
-			$query                            = "SELECT a.roomtype_id FROM #__jomres_roomtypes_propertytypes_xref a, #__jomres_room_classes b WHERE a.propertytype_id =" . (int) $this->ptype_id . " AND (a.roomtype_id = b.room_classes_uid AND b.srp_only = '" . $srp_only . "' )";
+			$query                            = "SELECT a.roomtype_id FROM #__jomres_roomtypes_propertytypes_xref a, #__jomres_room_classes b WHERE a.propertytype_id =" . (int) $this->ptype_id . " AND (a.roomtype_id = b.room_classes_uid AND b.srp_only = " . $srp_only . " )";
 			$roomtypes                        = doSelectSql( $query );
 			foreach ( $roomtypes as $roomClass )
 				{
@@ -267,7 +267,7 @@ class basic_property_details
 			if ( !isset( $this->room_features ) ) $this->room_features = array ();
 			if ( !isset( $this->room_features[ $this->property_uid ] ) )
 				{
-				$query        = "SELECT room_features_uid,feature_description FROM #__jomres_room_features WHERE property_uid = '" . $this->property_uid . "' OR property_uid = '0' ";
+				$query        = "SELECT room_features_uid,feature_description FROM #__jomres_room_features WHERE property_uid = " . $this->property_uid . " OR property_uid = 0 ";
 				$roomFeatures = doSelectSql( $query );
 				if ( count( $roomFeatures ) > 0 )
 					{
@@ -469,7 +469,7 @@ class basic_property_details
 			}
 		else
 			{
-			$query                = "SELECT `room_classes_uid`,`room_class_abbv`,`room_class_full_desc`,`image`,`srp_only` FROM #__jomres_room_classes WHERE property_uid =0 ";
+			$query                = "SELECT `room_classes_uid`,`room_class_abbv`,`room_class_full_desc`,`image`,`srp_only` FROM #__jomres_room_classes WHERE property_uid = 0 ";
 			$roomtypes            = doSelectSql( $query );
 			if ( count( $roomtypes ) > 0 )
 				{
@@ -515,7 +515,7 @@ class basic_property_details
 			}
 		else
 			{
-			$query                          = "SELECT id,ptype,ptype_desc FROM #__jomres_ptypes WHERE published = '1' ";
+			$query                          = "SELECT id,ptype,ptype_desc FROM #__jomres_ptypes WHERE published = 1 ";
 			$propertytypes                  = doSelectSql( $query );
 			if ( count( $propertytypes ) > 0 )
 				{
@@ -542,7 +542,7 @@ class basic_property_details
 			}
 		else
 			{
-			$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,ptype_xref FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
+			$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,ptype_xref FROM #__jomres_hotel_features WHERE property_uid = 0 ORDER BY hotel_feature_abbv ";
 			$propertyFeaturesList= doSelectSql($query);
 			if (count($propertyFeaturesList)>0)
 				{
