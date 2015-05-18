@@ -1037,7 +1037,7 @@ function set_booking_number()
 		$keeplooking	   = true;
 		while ( $keeplooking ):
 			$cartnumber = mt_rand( 10000000, 99999999 );
-			$query  = "SELECT contract_uid FROM #__jomres_contracts WHERE tag like '" . $cartnumber . "' LIMIT 1";
+			$query  = "SELECT contract_uid FROM #__jomres_contracts WHERE tag = '" . $cartnumber . "' LIMIT 1";
 			$bklist = doSelectSql( $query );
 			if ( count( $bklist ) == 0 ) $keeplooking = false;
 		endwhile;
@@ -1328,7 +1328,7 @@ function jr_import( $class )
 		{
 		if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . $class . ".class.php" ) )
 			{
-			$result = require( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . $class . ".class.php" );
+			$result = require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'custom_code' . JRDS . $class . ".class.php" );
 			}
 		else
 			{
@@ -1336,13 +1336,13 @@ function jr_import( $class )
 			$classes = get_showtime( 'plugin_classes_paths' );
 			if ( isset( $classes[ $class ] ) && file_exists( $classes[ $class ][ 'path' ] . $class . ".class.php" ) )
 				{
-				$result = require( $classes[ $class ][ 'path' ] . $class . ".class.php" );
+				$result = require_once( $classes[ $class ][ 'path' ] . $class . ".class.php" );
 				}
 			else
 				{
 				if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . $class . ".class.php" ) )
 					{
-					$result = require( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . $class . ".class.php" );
+					$result = require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . $class . ".class.php" );
 					}
 				else
 					{
@@ -1350,7 +1350,7 @@ function jr_import( $class )
 						{
 						foreach ( $plugin_directories as $directory )
 							{
-							if ( file_exists( $directory . $class . ".class.php" ) ) $result = require( $directory . $class . ".class.php" );
+							if ( file_exists( $directory . $class . ".class.php" ) ) $result = require_once( $directory . $class . ".class.php" );
 							}
 						if ( !class_exists( $class ) ) // We'll echo and exit here. Assuming that we're a developer we'll want to see on the page that the class doesn't exist, rather than have an error triggered. Addition of this also means that the following trigger_error will never kick in if any plugins are installed
 							{

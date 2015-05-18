@@ -56,7 +56,7 @@ class j01020showtariffs
 			$query        = "SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
 				`roomrateperday`,`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
 				`ignore_pppn`,`allow_ph`,`allow_we`
-				FROM #__jomres_rates WHERE property_uid = '" . (int) $property_uid . "' ORDER BY validfrom";
+				FROM #__jomres_rates WHERE property_uid = " . (int) $property_uid . " ORDER BY validfrom";
 			$tariffsList  = doSelectSql( $query );
 			$google_deets = array ();
 			$tariff_deets = array ();

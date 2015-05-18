@@ -50,13 +50,13 @@ class j06000ui_availability_calendar
 			}
 		else
 			{
-			$query                         = "SELECT COUNT(room_uid) FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $property_uid . "'";
+			$query                         = "SELECT COUNT(room_uid) FROM #__jomres_rooms WHERE propertys_uid = " . (int) $property_uid . " ";
 			$this->numberOfRoomsInProperty = (int) doSelectSql( $query,1 );
 
 			$mrConfig = getPropertySpecificSettings( $property_uid );
 
 			$firstDayOfTheCurrentMonth = date( "Y/m/d", strtotime( date( 'm' ) . '/01/' . date( 'Y' ) . ' 00:00:00' ) );
-			$query                     = "SELECT date FROM #__jomres_room_bookings WHERE property_uid = '" . (int) $property_uid . "' AND DATE_FORMAT(`date`, '%Y/%m/%d') >= DATE_FORMAT('" . $firstDayOfTheCurrentMonth . "', '%Y/%m/%d') ";
+			$query                     = "SELECT date FROM #__jomres_room_bookings WHERE property_uid = " . (int) $property_uid . " AND DATE_FORMAT(`date`, '%Y/%m/%d') >= DATE_FORMAT('" . $firstDayOfTheCurrentMonth . "', '%Y/%m/%d') ";
 			$bookings                  = doSelectSql( $query );
 			}
 
