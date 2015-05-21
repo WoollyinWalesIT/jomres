@@ -134,7 +134,7 @@ class patError
 	 */
 	function __construct( $level, $code, $msg, $info = null )
 		{
-		$this->__construct( $level, $code, $msg, $info );
+		$this->patError( $level, $code, $msg, $info );
 		}
 
 	/**
@@ -147,7 +147,7 @@ class patError
 	 * @param    string $info    Optional: The additional error information.
 	 * @todo        all calls to patErrorManager::raise* should not be included in backtrace
 	 */
-	function __construct( $level, $code, $msg, $info = null )
+	function patError( $level, $code, $msg, $info = null )
 		{
 		static $raise = array ( 'raise', 'raiseerror', 'raisewarning', 'raisenotice' );
 
