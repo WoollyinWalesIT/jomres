@@ -139,11 +139,7 @@ class j10001control_panel
 
 		$output[ 'PLUGIN_CHECK' ] = plugin_check();
 
-		$query                           = "SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
-		$licensekey                      = doSelectSql( $query, 1 );
-		$licensekey                      = '';
-		$output[ 'PRODUCT_INFORMATION' ] = '';
-		if ( trim( $licensekey ) == "" )
+		if ( trim( $jrConfig['licensekey'] ) == "" )
 			{
 			$output[ '_JOMRES_PRODUCT_INFORMATION' ]  = jr_gettext( _JOMRES_PRODUCT_INFORMATION, '_JOMRES_PRODUCT_INFORMATION', false );
 			$output[ '_JOMRES_PRODUCT_INFORMATION2' ] = jr_gettext( _JOMRES_PRODUCT_INFORMATION2, '_JOMRES_PRODUCT_INFORMATION2', false );

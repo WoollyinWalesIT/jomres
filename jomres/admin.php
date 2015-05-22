@@ -113,10 +113,6 @@ require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS .
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'propertytypes.functions.php' );
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'profiles.functions.php' );
 
-if ( !using_bootstrap() ) require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'admin.jomres.html.php' );
-else
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'admin.jomres.bootstrap-html.php' );
-
 $nohtml = jomresGetParam( $_REQUEST, 'no_html', 0 );
 
 
@@ -143,28 +139,6 @@ if ( !AJAXCALL )
 
 	$pageoutput = array ();
 	$output     = array ();
-
-	$output[ 'SUBSCRIPTION_WARNING' ] = '';
-	if ( $jrConfig[ 'useSubscriptions' ] == "1" )
-		{
-		$souput      = array ();
-		$spageoutput = array ();
-
-		$packages = subscriptions_packages_getallpackages();
-		if ( count( $packages ) == 0 )
-			{
-			$soutput[ 'SUBSCRIPTION_WARNING' ] = 'Warning: You have enabled subscription handling, but not yet created any subscription packages therefore only Super Property Managers will be able to create propertys on your server.';
-
-			$spageoutput[ ] = $soutput;
-			$tmpl           = new patTemplate();
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-			$tmpl->readTemplatesFromInput( 'subscription_warning.html' );
-			$tmpl->addRows( 'pageoutput', $pageoutput );
-			$output[ 'SUBSCRIPTION_WARNING' ] = $tmpl->getParsedTemplate();
-			}
-
-
-		}
 
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	$MiniComponents->triggerEvent( '10002' ); // 10002 scripts build the menu options
@@ -254,12 +228,6 @@ switch ( get_showtime( 'task' ) )
 		break;
 	case "grantMosUser":
 		grantMosUser( $option );
-		break;
-	case "showSiteConfig":
-		showSiteConfig();
-		break;
-	case "saveSiteConfig":
-		saveSiteConfig();
 		break;
 	case "publishPfeature":
 		publishPfeature();

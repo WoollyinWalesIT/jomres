@@ -19,7 +19,8 @@ else
 	showTop();
 	}
 
-
+// Useful for testing installer changes, uncomment to prevent redirection after run
+// define ( "ERRORS_SHOWN_NO_REDIRECT" , 1 );
 
 $functionChecksPassed = true;
 $folderChecksPassed = true;
@@ -271,7 +272,6 @@ if ( $folderChecksPassed && $functionChecksPassed && ACTION != "Migration" )
 		}
 	}
 
-updateSiteSettings ( "update_time" , time() );
 if ( !AUTO_UPGRADE ) showfooter();
 if ( AUTO_UPGRADE ) echo "1";
 
@@ -439,6 +439,58 @@ function doTableUpdates()
 	
 	drop_portal_bookings_table();
 	drop_portal_users_table();
+	
+	updateSiteSettings ( "update_time" , time() );
+	move_license_key_to_site_settings();
+	save_configuration_file();
+	}
+
+function move_license_key_to_site_settings()
+	{
+	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php'))
+		{
+		$query         = "SELECT value FROM #__jomres_settings WHERE property_uid = 0 AND akey = 'jomres_licensekey' LIMIT 1";
+		$license_key = doSelectSql($query,1);
+		if (trim($license_key) != "")
+			{
+			output_message ( "Moving license key from settings table to site settings", "info" );
+			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+			$siteConfig->insert_new_setting( "licensekey" , $license_key );
+			// now this query will remove the license key from jomres_settings
+			$query = "DELETE FROM #__jomres_settings WHERE property_uid = 0 AND akey = 'jomres_licensekey'";
+			doInsertSql( $query, '' );
+			}
+		}
+	}
+
+function save_configuration_file()
+	{
+	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php'))
+		{
+		output_message ( "Saving new configuration.php file which stores the site settings", "info" );
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$tmpConfig = $siteConfig->get();
+		
+		if (!file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php', 
+'<?php
+##################################################################
+defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
+##################################################################
+
+$jrConfig = ' . var_export($tmpConfig, true) . ';
+'))
+			{
+			output_message ( 'ERROR: '.JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php'.' can`t be saved. Please solve the permission problem and try again.', "danger" );
+			}
+		else
+			{
+			$query = "DROP TABLE IF EXISTS #__jomres_site_settings";
+			if (!doInsertSql( $query, '' ))
+				output_message ( "Error dropping the _jomres_site_settings table", "danger" );
+			else
+				output_message ( "Dropped the _jomres_site_settings table", "info" );
+			}
+		}
 	}
 
 function drop_portal_bookings_table()
@@ -5762,17 +5814,40 @@ function Piwik_getUrlTrackGoal( $idSite, $idGoal, $revenue = false )
 
 function updateSiteSettings ( $k , $v )
 	{
-	$query  = "SELECT id FROM #__jomres_site_settings WHERE akey = '" . $k . "'";
-	$result = doSelectSql( $query );
-	if ( count( $result ) == 0 ) 
+	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php'))
 		{
-		$query = "INSERT INTO #__jomres_site_settings (akey,value) VALUES ('" . $k . "','" . $v . "')";
+		$query  = "SELECT id FROM #__jomres_site_settings WHERE akey = '" . $k . "'";
+		$result = doSelectSql( $query );
+		if ( count( $result ) == 0 ) 
+			{
+			$query = "INSERT INTO #__jomres_site_settings (akey,value) VALUES ('" . $k . "','" . $v . "')";
+			}
+		else
+			{
+			$query = "UPDATE #__jomres_site_settings SET `value`='" . $v . "' WHERE akey = '" . $k . "'";
+			}
+		doInsertSql( $query, "" );
 		}
 	else
 		{
-		$query = "UPDATE #__jomres_site_settings SET `value`='" . $v . "' WHERE akey = '" . $k . "'";
+		output_message ( "Updating configuration.php ".$k." = ".$v, "info" );
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$tmpConfig = $siteConfig->get();
+		
+		$tmpConfig[$k] = (string)$v;
+		
+		if (!file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php', 
+'<?php
+##################################################################
+defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
+##################################################################
+
+$jrConfig = ' . var_export($tmpConfig, true) . ';
+'))
+			{
+			output_message ( 'ERROR: '.JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php'.' can`t be saved. Please solve the permission problem and try again.', "danger" );
+			}
 		}
-	doInsertSql( $query, "" );
 	}
 
 	

@@ -13,9 +13,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j10002showSiteConfig
+class j16000site_settings
 	{
-	function __construct()
+	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -25,14 +25,12 @@ class j10002showSiteConfig
 
 			return;
 			}
-		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=showSiteConfig', 'GlobalConfiguration.png', jr_gettext( "_JOMRES_A", _JOMRES_A, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN, false, false ) );
+		showSiteConfig();
 		}
-
 
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return $this->cpanelButton;
+		return null;
 		}
 	}

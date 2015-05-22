@@ -30,22 +30,18 @@ function showSiteConfig()
 	$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 	$jrtb   = $jrtbar->startTable();
 	$image  = $jrtbar->makeImageValid( "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/Save.png" );
-	$link   = JOMRES_SITEPAGE_URL_ADMIN;
-	
 	$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, '' );
-	$jrtb .= $jrtbar->customToolbarItem( 'saveSiteConfig', $link, jr_gettext( _JOMRES_COM_MR_SAVE, "_JOMRES_COM_MR_SAVE", false ), $submitOnClick = true, $submitTask = "saveSiteConfig", $image );
-	
+	$jrtb .= $jrtbar->customToolbarItem( 'saveSiteConfig', JOMRES_SITEPAGE_URL_ADMIN, jr_gettext( _JOMRES_COM_MR_SAVE, "_JOMRES_COM_MR_SAVE", false ), $submitOnClick = true, $submitTask = "save_site_settings", $image );
 	$jrtb .= $jrtbar->endTable();
 
-	if ( !isset( $jrConfig[ 'load_jquery_ui' ] ) ) $jrConfig[ 'load_jquery_ui' ] = "1";
+	if ( !isset( $jrConfig[ 'load_jquery_ui' ] ) ) 
+		$jrConfig[ 'load_jquery_ui' ] = "1";
 
 	$lists = array ();
 	// make a standard yes/no list
 	$yesno    = array ();
 	$yesno[ ] = jomresHTML::makeOption( '0', jr_gettext( _JOMRES_COM_MR_NO, '_JOMRES_COM_MR_NO', false ) );
 	$yesno[ ] = jomresHTML::makeOption( '1', jr_gettext( _JOMRES_COM_MR_YES, '_JOMRES_COM_MR_YES', false ) );
-
-	$langDropdown = getJomresLanguagesDropdown();
 
 	$editoryesno    = array ();
 	$editoryesno[ ] = jomresHTML::makeOption( '0', jr_gettext( _JOMRES_COM_MR_NO, '_JOMRES_COM_MR_NO', false ) );
@@ -58,10 +54,6 @@ function showSiteConfig()
 	$sortArray[ ]      = jomresHTML::makeOption( "4", jr_gettext( '_JOMRES_SORTORDER_PROPERTYTOWN', _JOMRES_SORTORDER_PROPERTYTOWN, false, false ) );
 	$sortArray[ ]      = jomresHTML::makeOption( "5", jr_gettext( '_JOMRES_SORTORDER_STARS', _JOMRES_SORTORDER_STARS, false, false ) );
 	$sortArrayDropdown = jomresHTML::selectList( $sortArray, 'cfg_search_order_default', 'id="sortby" size="1"', 'value', 'text', $jrConfig[ 'search_order_default' ] );
-
-
-	$query      = "SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
-	$licensekey = doSelectSql( $query, 1 );
 
 	$jsInputDateFormats[ ]     = jomresHTML::makeOption( "%d/%m/%Y", "01/02/2006 - 1st February 2006" );
 	$jsInputDateFormats[ ]     = jomresHTML::makeOption( "%Y/%m/%d", "2006/02/01" );
@@ -353,27 +345,55 @@ function showSiteConfig()
 	$lists[ 'load_font_awesome' ]              = jomresHTML::selectList( $yesno, 'cfg_load_font_awesome', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'load_font_awesome' ] );
 	
 	
-	HTML_jomres::showSiteConfig( 
-		$jrConfig, 
-		$lists, 
-		$jsInputFormatDropdownList, 
-		$licensekey, 
-		$jrtb, 
-		$langDropdown, 
-		$geosearchDropdownList, 
-		$currency_codes_dropdown, 
-		$jqueryUIthemesDropdownList, 
-		$sortArrayDropdown, 
-		$calendarStartDaysDropdownList, 
-		$language_context_dropdown, 
-		$guestnumbersearchDropdownList, 
-		$filtering_level_dropdown, 
-		$layouts, 
-		$mapWeatherTempGradDropdownList,
-		$production_development_dropdown ,
-		$navbar_location_dropdown,
-		$bootstrap_ver_dropdown
-		);
+	$componentArgs = array ();
+	$componentArgs[ 'lists' ]							= $lists;
+	$componentArgs[ 'jsInputFormatDropdownList' ]		= $jsInputFormatDropdownList;
+	$componentArgs[ 'jrtb' ]							= $jrtb;
+	$componentArgs[ 'geosearchDropdownList' ]			= $geosearchDropdownList;
+	$componentArgs[ 'currency_codes_dropdown' ]			= $currency_codes_dropdown;
+	$componentArgs[ 'jqueryUIthemesDropdownList' ]		= $jqueryUIthemesDropdownList;
+	$componentArgs[ 'sortArrayDropdown' ]				= $sortArrayDropdown;
+	$componentArgs[ 'calendarStartDaysDropdownList' ]	= $calendarStartDaysDropdownList;
+	$componentArgs[ 'language_context_dropdown' ]		= $language_context_dropdown;
+	$componentArgs[ 'guestnumbersearchDropdownList' ]	= $guestnumbersearchDropdownList;
+	$componentArgs[ 'filtering_level_dropdown' ]		= $filtering_level_dropdown;
+	$componentArgs[ 'layouts' ]							= $layouts;
+	$componentArgs[ 'mapWeatherTempGradDropdownList' ]	= $mapWeatherTempGradDropdownList;
+	$componentArgs[ 'production_development_dropdown' ]	= $production_development_dropdown;
+	$componentArgs[ 'navbar_location_dropdown' ]		= $navbar_location_dropdown;
+	$componentArgs[ 'bootstrap_ver_dropdown' ]			= $bootstrap_ver_dropdown;
+	
+	ob_start();
+	?>
+	<h2 class="page-header">Jomres <?php echo jr_gettext( _JOMRES_A, '_JOMRES_A', false ); ?></h2>
+	<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="post" name="adminForm">
+
+	<?php
+	echo $jrtb;
+	
+	$configurationPanel = jomres_singleton_abstract::getInstance( 'jomres_configpanel' );
+	
+	$componentArgs[ 'configurationPanel' ] = $configurationPanel;
+
+	$configurationPanel->startTabs();
+	
+	$MiniComponents->triggerEvent( '10501', $componentArgs ); // Generate configuration options tabs
+	
+	$configurationPanel->endTabs();
+	?>
+
+	<input type="hidden" name="cfg_useGlobalPFeatures" value="<?php echo $jrConfig[ 'useGlobalPFeatures' ]; ?>"/>
+	<input type="hidden" name="cfg_useGlobalRoomTypes" value="<?php echo $jrConfig[ 'useGlobalRoomTypes' ]; ?>"/>
+	<input type="hidden" name="cfg_dynamicMinIntervalRecalculation" value="<?php echo $jrConfig[ 'dynamicMinIntervalRecalculation' ]; ?>"/>
+	<input type="hidden" name="cfg_disableAudit" value="<?php echo $jrConfig[ 'disableAudit' ]; ?>"/>
+	<input type="hidden" name="cfg_allowedTags" value="<?php echo $jrConfig[ 'allowedTags' ]; ?>"/>
+	<input type="hidden" name="cfg_utfHTMLdecode" value="<?php echo $jrConfig[ 'utfHTMLdecode' ]; ?>"/>
+	<input type="hidden" name="no_html" value="1"/>
+	<input type="hidden" name="task" value="save_site_settings"/>
+	<input type="hidden" name="option" value="com_jomres"/>
+	</form>
+	<?php
+	ob_end_flush();
 	}
 
 /**
@@ -384,38 +404,46 @@ function showSiteConfig()
 function saveSiteConfig()
 	{
 	ignore_user_abort( true );
+	
+	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php'))
+		{
+		include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php' );
+		$tmpConfig = $jrConfig;
+		}
+	else
+		{
+		include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'site_config.php' );
+		$tmpConfig = $jrConfig;
+		}
+		
 	foreach ( $_POST as $k => $v )
 		{
-		if ( strpos( $k, 'cfg_' ) === 0 )
+		if (strpos($k, "cfg_") !== false)
 			{
-			if ( $k == "cfg_licensekey" )
-				{
-				$lkey         = trim( $v );
-				$query        = "SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
-				$settingsList = doSelectSql( $query );
-				if ( count( $settingsList ) == 0 ) $query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('0','jomres_licensekey','$lkey')";
-				else
-				$query = "UPDATE #__jomres_settings SET `value`='" . $lkey . "' WHERE property_uid = '0' and akey = 'jomres_licensekey'";
-				doInsertSql( $query, '' );
-				}
-			else
-				{
-				//echo "K: ".$k." & V: ".$v."<br>";
-				$v     = jomresGetParam( $_POST, $k, "" );
-				$dirty = (string) $k;
-				$k     = addslashes( $dirty );
-				$v     = filter_var( $v, FILTER_SANITIZE_SPECIAL_CHARS );
-
-				$query  = "SELECT id FROM #__jomres_site_settings WHERE akey = '" . substr( $k, 4 ) . "'";
-				$result = doSelectSql( $query );
-				if ( count( $result ) == 0 ) $query = "INSERT INTO #__jomres_site_settings (akey,value) VALUES ('" . substr( $k, 4 ) . "','" . $v . "')";
-				else
-				$query = "UPDATE #__jomres_site_settings SET `value`='" . $v . "' WHERE akey = '" . substr( $k, 4 ) . "'";
-				//echo $query."<br>";
-				doInsertSql( $query, "" );
-				}
+			$v     = jomresGetParam( $_POST, $k, "" );
+			$dirty = (string) $k;
+			$k     = substr( addslashes( $dirty ), 4);
+			$v     = filter_var( $v, FILTER_SANITIZE_SPECIAL_CHARS );
+			
+			$tmpConfig[ $k ] = $v;
 			}
 		}
+	
+	//save config to file
+	if (!file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php', 
+'<?php
+##################################################################
+defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
+##################################################################
+
+$jrConfig = ' . var_export($tmpConfig, true) . ';
+'))
+		{
+		trigger_error('ERROR: '.JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php'.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
+		exit;
+		}
+
+	//cleanup
 	jr_import( 'minicomponent_registry' );
 	$registry = new minicomponent_registry( false );
 	$registry->regenerate_registry();
@@ -431,41 +459,7 @@ function saveSiteConfig()
 	$jomres_css_cache = new jomres_css_cache();
 	$jomres_css_cache->remove_all_temp_files();
 	
-	jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=showSiteConfig" ), "Configuration saved" );
-	}
-
-function getJomresLanguagesDropdown()
-	{
-	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-	$jrConfig   = $siteConfig->get();
-	$langs      = array ();
-
-	$d    = @dir( JOMRESPATH_BASE . "/language" );
-	$docs = array ();
-	if ( $d )
-		{
-		while ( false !== ( $entry = $d->read() ) )
-			{
-			if ( substr( $entry, 0, 1 ) != '.' && !is_dir( JOMRESPATH_BASE . "/language/" . $entry ) )
-				{
-				$docs[ ] = $entry;
-				}
-			}
-		$d->close();
-		if ( count( $docs ) > 0 )
-			{
-			sort( $docs );
-			foreach ( $docs as $f )
-				{
-				$langs[ ] = jomresHTML::makeOption( $f, $f );
-				}
-			$langDropdown = jomresHTML::selectList( $langs, 'cfg_siteLang', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'siteLang' ] );
-
-			return $langDropdown;
-			}
-		}
-
-	return '';
+	jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=site_settings" ), "Configuration saved" );
 	}
 
 

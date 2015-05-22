@@ -35,15 +35,37 @@ class jomres_configpanel_bootstrap3 extends jomres_content_tabs
 	 */
 	function insertSetting()
 		{
+		$rowclass = "";
+		if ( !$this->counter ) 
+			$this->counter = 0;
+		
+		if ( $this->counter % 2 ) 
+			$rowclass = "row-even";
+		else
+			$rowclass = "row-odd";
+		
 		$this->panes[ ] = '
-			<div class="form-group">
-				<div class="control-label">' . $this->left . '</div>
-				' . $this->middle . '
-				<p class="help-block">' . $this->right . '</p>
+			<div class="col-md-12 ' . $rowclass . '">
+				<div class="col-md-3">' . $this->left . '</div>
+				<div class="col-md-4">' . $this->middle.'</div>
+				<div class="col-md-5">' . $this->right .'</div>
 			</div>
 			';
-
+		
+		$this->left   = "&nbsp;";
+		$this->middle = "&nbsp;";
+		$this->right  = "&nbsp;";
 		$this->counter++;
+		}
+	
+	/**
+	#
+	 * Inserts a description row
+	#
+	 */
+	function insertDescription( $description = "" , $class = "alert alert-info")
+		{
+		$this->panes[ ] = '<div class="'.$class.'">'.$description.'</div>';
 		}
 
 	/**

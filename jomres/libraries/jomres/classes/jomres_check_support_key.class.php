@@ -20,23 +20,27 @@ class jomres_check_support_key
 		{
 		$this->task      = $task;
 		$this->key_valid = false;
-		if ( isset( $_REQUEST[ 'support_key' ] ) && strlen( $_REQUEST[ 'support_key' ] ) > 0 ) $this->save_key( $task );
+		
+		if ( isset( $_REQUEST[ 'support_key' ] ) && strlen( $_REQUEST[ 'support_key' ] ) > 0 ) 
+			$this->save_key( $task );
+		
 		$this->check_license_key( $pk, $plugin );
 		}
 
 	function check_license_key( $pk, $plugin )
 		{
-		$query      = "SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
-		$licensekey = doSelectSql( $query, 1 );
-		// if (strlen(trim($licensekey))==0)
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig	= $siteConfig->get();
+		
+		// if (strlen(trim($jrConfig['licensekey']))==0)
 		// {
 		// $this->show_key_input();
 		// }
 
-		if ( $pk == "" )
+		if ( trim($pk) == "" )
 			{
-			$this->key_hash = $licensekey;
-			$str            = "key=" . $licensekey;
+			$this->key_hash = $jrConfig['licensekey'];
+			$str            = "key=" . $jrConfig['licensekey'];
 			}
 		else
 			{
@@ -46,38 +50,43 @@ class jomres_check_support_key
 
 		$license_checked = queryUpdateServer( "check_key.php", $str, "updates" );
 		$ret_result      = (int) $license_checked;
-		if ( $ret_result == 2 ) $this->key_valid = true;
+		
+		if ( $ret_result == 2 ) 
+			$this->key_valid = true;
 		}
 
 	function show_key_input()
 		{
 		?>
-			<center>
-				<form action="<?php echo $this->task; ?>" method="post">
-					<div class="jomresinstaller_panel">
-						Please enter your support number in the following field.<br/>
-						<input class="inputbox" type="text" name="support_key" value="" size="35"/>
-					</div>
-					<BUTTON NAME="combo" TYPE="submit" value="0"
-					<STRONG>Save support key</STRONG></BUTTON>
-				</form>
-			</center>
+		<center>
+			<form action="<?php echo $this->task; ?>" method="post">
+				<div class="jomresinstaller_panel">
+					Please enter your support number in the following field.<br/>
+					<input class="inputbox" type="text" name="support_key" value="" size="35"/>
+				</div>
+				<button name="combo" type="submit" value="0"><strong>Save support key</strong></button>
+			</form>
+		</center>
 		<?php
 		}
 
 	function save_key( $return_url )
 		{
-		$lkey         = trim( $_REQUEST[ 'support_key' ] );
-		$query        = "SELECT value FROM #__jomres_settings WHERE property_uid LIKE '0' AND akey LIKE 'jomres_licensekey'";
-		$settingsList = doSelectSql( $query );
-		if ( count( $settingsList ) == 0 ) $query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('0','jomres_licensekey','$lkey')";
-		else
-		$query = "UPDATE #__jomres_settings SET `value`='" . $lkey . "' WHERE property_uid = '0' and akey = 'jomres_licensekey'";
-		$result = doInsertSql( $query, '' );
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig	= $siteConfig->get();
+		
+		$jrConfig['licensekey'] = trim( $_REQUEST[ 'support_key' ] );
+		
+		file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php', 
+'<?php
+##################################################################
+defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
+##################################################################
 
-		return $result;
+$jrConfig = ' . var_export($jrConfig, true) . ';
+');
+
+		return true;
 		}
 
 	}
-
-?>

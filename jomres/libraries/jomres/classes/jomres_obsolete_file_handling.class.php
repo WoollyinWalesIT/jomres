@@ -67,6 +67,7 @@ class jomres_obsolete_file_handling
 		$this->dir_components_administrator = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ADMINISTRATORDIRECTORY . JRDS . 'components' . JRDS . 'com_jomres' . JRDS;
 		$this->dir_components               = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'components' . JRDS . 'com_jomres' . JRDS;
 		$this->dir_core_plugins             = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
+		$this->dir_admin             		= JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS;
 		}
 
 	function ready_to_go()
@@ -1045,6 +1046,10 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_classes . 'jrportal_booking.class.php' );
 		$this->add_obs_file( $this->dir_classes . 'jrportal_booking_functions.class.php' );
 		$this->add_obs_file( $this->dir_classes . 'jrportal_user.class.php' );
+		
+		$this->add_obs_file( $this->dir_admin . 'admin.jomres.bootstrap-html.php' );
+		$this->add_obs_file( $this->dir_admin . 'admin.jomres.html.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j10002showSiteConfig.class.php' );
 
 		}
 
