@@ -195,7 +195,7 @@ try
 						}
 					if ( $has_booked_before ) $tmpBookingHandler->updateGuestField( 'guests_uid', $guestData[ 'id' ] );
 
-					$tmpBookingHandler->updateGuestField( 'firstname', $guestData[ 'firstname' ] );
+$tmpBookingHandler->updateGuestField( 'firstname', $guestData[ 'firstname' ] );
 					$tmpBookingHandler->updateGuestField( 'surname', $guestData[ 'surname' ] );
 					$tmpBookingHandler->updateGuestField( 'house', $guestData[ 'house' ] );
 					$tmpBookingHandler->updateGuestField( 'street', $guestData[ 'street' ] );
@@ -327,7 +327,8 @@ try
 	set_showtime( 'include_room_booking_functionality', true );
 	$MiniComponents->triggerEvent( '00005' );
 	$MiniComponents->triggerEvent( '00006' );
-
+	$MiniComponents->triggerEvent( '00007' );
+	
 	$MiniComponents->triggerEvent( '00060', array ( 'tz' => $tz, 'jomreslang' => $jomreslang ) ); // Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
 
 	$componentArgs = array ();
