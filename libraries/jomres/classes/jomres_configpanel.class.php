@@ -68,6 +68,11 @@ class jomres_configpanel extends jomres_content_tabs
 		$this->right  = "&nbsp;";
 		$this->counter++;
 		}
+	
+	function insertDescription( $description = "" , $class = "alert alert-info")
+		{
+		$this->panes[ ] = '<div class="'.$class.'">'.$description.'</div>';
+		}
 
 	/**
 	#
