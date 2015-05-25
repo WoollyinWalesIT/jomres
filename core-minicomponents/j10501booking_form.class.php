@@ -41,10 +41,10 @@ class j10501booking_form
 			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC', _JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC, false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_BOOKINGORM_MODALPOPUP', _JOMRES_BOOKINGORM_MODALPOPUP, false ) );
+			/*$configurationPanel->setleft( jr_gettext( '_JOMRES_BOOKINGORM_MODALPOPUP', _JOMRES_BOOKINGORM_MODALPOPUP, false ) );
 			$configurationPanel->setmiddle( $lists['booking_form_modal_popup'] );
 			$configurationPanel->setright( jr_gettext( '_JOMRES_BOOKINGORM_MODALPOPUP_DESC', _JOMRES_BOOKINGORM_MODALPOPUP_DESC, false ) );
-			$configurationPanel->insertSetting();
+			$configurationPanel->insertSetting();*/
 			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_BOOKINGORM_TAX_OUTPUT', _JOMRES_BOOKINGORM_TAX_OUTPUT, false ) );
 			$configurationPanel->setmiddle( $lists['show_tax_in_totals_summary'] );
