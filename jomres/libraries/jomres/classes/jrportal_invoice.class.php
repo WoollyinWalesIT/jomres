@@ -80,7 +80,7 @@ class jrportal_invoice
 		if ( isset( $invoice_data[ 'subscription' ] ) ) 
 			$this->subscription = (int) $invoice_data[ 'subscription' ];
 		
-		if ( isset( $invoice_data[ 'subscription' ] ) ) 
+		if ( isset( $invoice_data[ 'subscription_id' ] ) ) 
 			$this->subscription_id = (int) $invoice_data[ 'subscription_id' ];
 		
 		if ( isset( $invoice_data[ 'is_commission' ] ) ) 
