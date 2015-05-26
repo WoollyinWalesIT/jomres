@@ -19,10 +19,8 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jrportal_payment_reference
 	{
-	function __construct( $gateway  , $invoice_id)
+	function __construct()
 		{
-		$this->gateway = filter_var(  $gateway , FILTER_SANITIZE_SPECIAL_CHARS ) ;
-		$this->invoice_id = (int) $invoice_id;
 		}
 	
 	function set_payment_refence()
@@ -41,8 +39,52 @@ class jrportal_payment_reference
 
 	function get_payment_details_for_reference ( $id )
 		{
+		$this->payment_reference = (int)$id;
 		$query = "SELECT `invoice_id` , `gateway` FROM #__jomres_invoice_payment_ref  WHERE id = ".(int)$id . " LIMIT 1";
-		$this->payment_reference = doSelectSql($query,2);
+		$payment_details = doSelectSql($query,2);
+		
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+
+		$prefix = "gateway_setting_".$payment_details['gateway']."_";
+		if (isset($jrConfig [ $prefix."active" ]))
+			{
+			if ($jrConfig [ $prefix."active" ] == "1")
+				{
+				$settings = array();
+				foreach ($jrConfig as $key=>$val)
+					{
+					if ( substr($key , 0 , strlen ( $prefix )  ) == $prefix )
+						{
+						$key =  substr($key , strlen ( $prefix ) , strlen ( $key )  ) ;
+						$settings [$key] = $val;
+						}
+					}
+				
+				$invoice = jomres_singleton_abstract::getInstance( 'basic_invoice_details' );
+				$invoice->gatherData($payment_details['invoice_id']);
+				
+				$invoice_data = array();
+				$invoice_data['invoice_number']		= $payment_details['invoice_id'];
+				$invoice_data['currencycode']		= $invoice->currencycode;
+				$invoice_data['balance']			= $invoice->balance;
+				
+				$this->gateway_settings = $settings;
+				$this->invoice_data = $invoice_data;
+				
+				$this->gateway = $payment_details['gateway'];
+				$this->invoice_id =$payment_details['invoice_id'];
+				
+				}
+			else
+				{
+				return false;
+				}
+			}
+		else
+			{
+			return false;
+			}
 		}
 	
 	function mark_payment_reference_paid()
