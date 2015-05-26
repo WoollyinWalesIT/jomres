@@ -53,7 +53,24 @@ class jomres_config_site_singleton
 		{
 		$this->config[ $setting ] = $value;
 		}
+	
+	public function save_config()
+		{
+		if (!file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php', 
+		'<?php
+		##################################################################
+		defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
+		##################################################################
 
+		$jrConfig = ' . var_export($this->config, true) . ';
+		'))
+				{
+				trigger_error('ERROR: '.JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php'.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
+				exit;
+				}
+		
+		}
+	
 	public function insert_new_setting( $k, $v )
 		{
 		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php'))
