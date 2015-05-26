@@ -73,7 +73,7 @@ define( 'JOMRESINSTALLPATH_BASE', $path );
 
 if ( !file_exists( 'integration.php' ) )
 	{
-	output_message ( "Error, cannot find the new Jomres integration script, you might not have downloaded Jomres v4 yet." , "danger");
+		output_message ( "Error, cannot find the new Jomres integration script, you might not have downloaded Jomres v4 yet." , "danger");
 	}
 
 require_once( 'integration.php' );
@@ -443,7 +443,43 @@ function doTableUpdates()
 	updateSiteSettings ( "update_time" , time() );
 	move_license_key_to_site_settings();
 	save_configuration_file();
+	
+	if ( !checkInvoicePaymentXrefTableExists() ) createInvoicePaymentXrefTable();
+	
 	}
+
+function createInvoicePaymentXrefTable()
+	{
+	output_message ( "Creating jomres_invoice_payment_ref table");
+	$query  = "CREATE TABLE IF NOT EXISTS `#__jomres_invoice_payment_ref` (
+		`id` int(11) auto_increment,
+		`invoice_id`  int(11),
+		`gateway` CHAR(255) NOT NULL DEFAULT '',
+		`paid` BOOL NOT NULL DEFAULT '0',
+		PRIMARY KEY	(`id`)
+		) ";
+	$result = doInsertSql( $query, "" );
+	if ( !$result )
+		{
+		output_message ( "Error creating table table __jomres_invoice_payment_ref ", "danger" );
+		}
+	}
+
+function checkInvoicePaymentXrefTableExists()
+	{
+	
+	$tablesFound = false;
+	$query       = "SHOW TABLES";
+	$result      = doSelectSql( $query, $mode = false );
+	$string      = "Tables_in_" . get_showtime("db");
+	foreach ( $result as $r )
+		{
+		if ( strstr( $r->$string, '_jomres_invoice_payment_ref' ) ) return true;
+		}
+
+	return false;
+	}
+
 
 function move_license_key_to_site_settings()
 	{
@@ -3468,6 +3504,18 @@ function createJomresTables()
 		output_message (  "Failed to run query: " . $query , "danger" );
 		}
 
+	$query  = "CREATE TABLE IF NOT EXISTS `#__jomres_invoice_payment_ref` (
+		`id` int(11) auto_increment,
+		`invoice_id`  int(11),
+		`gateway` CHAR(255) NOT NULL DEFAULT '',
+		`paid` BOOL NOT NULL DEFAULT '0',
+		PRIMARY KEY	(`id`)
+		) ";
+	if ( !doInsertSql( $query ) )
+		{
+		output_message (  "Failed to run query: " . $query , "danger" );
+		}
+	
 	if ( !checkCountriesTableExists() ) createCountriesTable();
 	}
 
