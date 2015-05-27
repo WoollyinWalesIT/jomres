@@ -4783,8 +4783,10 @@ class dobooking
 			$dropdown_output[ $tariff_id ][ 'room_type' ]          = $tariff_and_roomtypes[ 'room_type' ];
 			$dropdown_output[ $tariff_id ][ 'tariff_title' ]       = $tariff_and_roomtypes[ 'tariff_title' ];
 			$dropdown_output[ $tariff_id ][ 'room_price_inc_tax' ] = output_price( $tariff_and_roomtypes[ 'room_price_inc_tax' ] );
-			if ( $this->cfg_bookingform_roomlist_showmaxpeople == "1" ) ;
-			$dropdown_output[ $tariff_id ][ 'max_guests_per_room' ]    = $tariff_and_roomtypes[ 'max_guests_per_room' ];
+			
+			if ( $this->cfg_bookingform_roomlist_showmaxpeople == "1" )
+				$dropdown_output[ $tariff_id ][ 'max_guests_per_room' ]    = $tariff_and_roomtypes[ 'max_guests_per_room' ];
+			
 			$dropdown_output[ $tariff_id ][ 'max_guests_per_booking' ] = $tariff_and_roomtypes[ 'max_guests_per_booking' ];
 			$dropdown_output[ $tariff_id ][ 'number_of_rooms' ] = $number_of_rooms;
 			}
