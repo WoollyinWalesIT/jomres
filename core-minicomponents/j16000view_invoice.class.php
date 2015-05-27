@@ -58,7 +58,7 @@ class j16000view_invoice
 		$output[ 'SITE_BUSINESS_VATNO' ]        = $jrConfig[ 'business_vat_number' ];
 		
 		//manager/client business details
-		$query  = "SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email,vat_number FROM #__jomres_guest_profile WHERE cms_user_id = " . $invoice->cms_user_id . "";
+		$query  = "SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email,vat_number FROM #__jomres_guest_profile WHERE cms_user_id = " . (int)$invoice->cms_user_id . "";
 		$managerData = doSelectSql( $query );
 
 		if ( count( $managerData ) > 0 )

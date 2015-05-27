@@ -107,11 +107,7 @@ class jrportal_taxrate
 				}
 			}
 		else
-			{
-			error_logging( "ID of Tax Rate rate is sett to 0");
-			
 			return false;
-			}
 		}
 
 	function commitTaxRate()
