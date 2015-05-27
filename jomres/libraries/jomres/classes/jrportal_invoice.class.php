@@ -146,15 +146,15 @@ class jrportal_invoice
 
 		if ($this->vat_will_be_charged)
 			{
-			$init_toal_tax = number_format( $i_total / 100 * $this->lineitem['tax_rate'], 2, '.', '' );
-			//$init_toal_tax = substr(number_format($i_total / 100 * $this->lineitem['tax_rate'], 3, '.', ''), 0, -1);  // possible solution to rounding issues, awaiting testing
+			$init_total_tax = number_format( $i_total / 100 * $this->lineitem['tax_rate'], 2, '.', '' );
+			//$init_total_tax = substr(number_format($i_total / 100 * $this->lineitem['tax_rate'], 3, '.', ''), 0, -1);  // possible solution to rounding issues, awaiting testing
 			}
 		else
 			{
-			$init_toal_tax = 0;
+			$init_total_tax = 0;
 			}
 		
-		$this->lineitem['init_total_inclusive'] = $i_total + $init_toal_tax;
+		$this->lineitem['init_total_inclusive'] = $i_total + $init_total_tax;
 
 		$this->init_total = $this->init_total + $this->lineitem['init_total_inclusive'];
 		
@@ -183,7 +183,15 @@ class jrportal_invoice
 
 		if ( isset( $invoice_data[ 'due_date' ] ) ) 
 			$this->due_date = $invoice_data[ 'due_date' ];
+		
+		if ( isset( $invoice_data[ 'cms_user_id' ] ) ) 
+			$this->cms_user_id = (int) $invoice_data[ 'cms_user_id' ];
+		
+		if ( isset( $invoice_data[ 'currencycode' ] ) ) 
+			$this->currencycode = $invoice_data[ 'currencycode' ];
 
+		$this->init_total = 0.00;
+		
 		foreach ( $line_items as $item )
 			{
 			$this->add_line_item( $item );
@@ -230,15 +238,15 @@ class jrportal_invoice
 		
 		if ($this->vat_will_be_charged)
 			{
-			$init_toal_tax = number_format( $i_total / 100 * $this->lineitem['tax_rate'], 2, '.', '' );
-			//$init_toal_tax = substr(number_format($i_total / 100 * $this->lineitem['tax_rate'], 3, '.', ''), 0, -1); // possible solution to rounding issues, awaiting testing
+			$init_total_tax = number_format( $i_total / 100 * $this->lineitem['tax_rate'], 2, '.', '' );
+			//$init_total_tax = substr(number_format($i_total / 100 * $this->lineitem['tax_rate'], 3, '.', ''), 0, -1); // possible solution to rounding issues, awaiting testing
 			}
 		else
 			{
-			$init_toal_tax = 0;
+			$init_total_tax = 0;
 			}
 
-		$this->lineitem['init_total_inclusive'] = $i_total + $init_toal_tax;
+		$this->lineitem['init_total_inclusive'] = $i_total + $init_total_tax;
 		
 		$this->init_total = $this->init_total + $this->lineitem['init_total_inclusive'];
 
