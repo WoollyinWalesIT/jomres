@@ -27,6 +27,7 @@ class j06005edit_my_account
 			}
 
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 
@@ -46,66 +47,55 @@ class j06005edit_my_account
 		$output[ 'LANDLINE' ]  = '';
 		$output[ 'MOBILE' ]    = '';
 		$output[ 'EMAIL' ]     = $user_details[ $thisJRUser->id ][ 'email' ];
-
-		$output[ 'IMAGE' ] = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/noimage.gif";
+		$output[ 'IMAGE' ]	   = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/noimage.gif";
 
 		if ( $thisJRUser->id > 0 )
 			{
-			if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . 'userimages' . JRDS . "userimage_" . (int) $thisJRUser->id . ".jpg" ) ) $output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH . 'userimages/userimage_' . (int) $thisJRUser->id . '_thumbnail.jpg';
+			if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . 'userimages' . JRDS . "userimage_" . (int) $thisJRUser->id . ".jpg" ) ) 
+				$output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH . 'userimages/userimage_' . (int) $thisJRUser->id . '_thumbnail.jpg';
 
-			$query           = "SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email,vat_number,vat_number_validated,vat_number_validation_response FROM #__jomres_guest_profile WHERE cms_user_id = " . (int) $thisJRUser->id . " LIMIT 1";
-			$guestData       = doSelectSql( $query );
-			$numberOfReturns = count( $guestData );
-			if ( $numberOfReturns == 0 )
+			if ( $thisJRUser->profile_id > 0 )
 				{
-				$query           = "SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email,vat_number,vat_number_validated,vat_number_validation_response FROM #__jomres_guests WHERE mos_userid = " . (int) $thisJRUser->id;
-				$guestData       = doSelectSql( $query );
-				$numberOfReturns = count( $guestData );
-				}
+				$output[ 'FIRSTNAME' ]            = $thisJRUser->firstname;
+				$output[ 'SURNAME' ]              = $thisJRUser->surname;
+				$output[ 'HOUSE' ]                = $thisJRUser->house;
+				$output[ 'STREET' ]               = $thisJRUser->street;
+				$output[ 'TOWN' ]                 = $thisJRUser->town;
+				$output[ 'REGION' ]               = setupRegions( $thisJRUser->country, $thisJRUser->region );
+				$output[ 'COUNTRY' ]              = createSimpleCountriesDropdown( $thisJRUser->country );
+				$output[ 'POSTCODE' ]             = $thisJRUser->postcode;
+				$output[ 'LANDLINE' ]             = $thisJRUser->tel_landline;
+				$output[ 'MOBILE' ]               = $thisJRUser->tel_mobile;
+				$output[ 'FAX' ]                  = $thisJRUser->tel_fax;
+				$output[ 'EMAIL' ]                = $thisJRUser->email;
+					
+				jr_import( 'vat_number_validation' );
+				$validation = new vat_number_validation();
+				$validation->get_subject("buyer_registered_byprofile_id",array("profile_id"=>$thisJRUser->id));
 
-			if ( $numberOfReturns > 0 )
-				{
-				foreach ( $guestData as $data )
+				$output[ 'VAT_NUMBER' ]           = $validation->vat_number;
+				$output[ 'VAT_NUMBER_VALIDATED' ] = $validation->vat_number_validated;
+				
+				$validation_success = $validation->vat_number_validation_response;
+				
+				if ( strlen($validation_success) > 0 )
 					{
-					$output[ 'FIRSTNAME' ]            = $data->firstname;
-					$output[ 'SURNAME' ]              = $data->surname;
-					$output[ 'HOUSE' ]                = $data->house;
-					$output[ 'STREET' ]               = $data->street;
-					$output[ 'TOWN' ]                 = $data->town;
-					$output[ 'REGION' ]               = setupRegions( $data->country, $data->county );
-					$output[ 'COUNTRY' ]              = createSimpleCountriesDropdown( $data->country );
-					$output[ 'POSTCODE' ]             = $data->postcode;
-					$output[ 'LANDLINE' ]             = $data->tel_landline;
-					$output[ 'MOBILE' ]               = $data->tel_mobile;
-					$output[ 'FAX' ]                  = $data->tel_fax;
-					$output[ 'EMAIL' ]                = $data->email;
+					$vat_validation = array();
+					$vat_validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] =$validation_success;
 					
-					jr_import( 'vat_number_validation' );
-					$validation = new vat_number_validation();
-					$validation->get_subject("buyer_registered_byprofile_id",array("profile_id"=>$thisJRUser->id));
-
-					$output[ 'VAT_NUMBER' ]           = $validation->vat_number;
-					$output[ 'VAT_NUMBER_VALIDATED' ] = $validation->vat_number_validated;
-					
-					$validation_success    = $validation->vat_number_validation_response;
-					if (strlen($validation_success)>0)
+					if ($validation->vat_number_validated)
 						{
-						$vat_validation = array();
-						$vat_validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] =$validation_success;
-						if ($validation->vat_number_validated)
-							{
-							if (using_bootstrap())
-								$vat_validation[0][ 'VALIDATION_CLASS'] = 'alert-success';
-							else
-								$vat_validation[0][ 'VALIDATION_CLASS'] = 'ui-state-highlight';
-							}
+						if (using_bootstrap())
+							$vat_validation[0][ 'VALIDATION_CLASS'] = 'alert-success';
 						else
-							{
-							if (using_bootstrap())
-								$vat_validation[0][ 'VALIDATION_CLASS'] = 'alert-error';
-							else
-								$vat_validation[0][ 'VALIDATION_CLASS'] = 'ui-state-error ';
-							}
+							$vat_validation[0][ 'VALIDATION_CLASS'] = 'ui-state-highlight';
+						}
+					else
+						{
+						if (using_bootstrap())
+							$vat_validation[0][ 'VALIDATION_CLASS'] = 'alert-error';
+						else
+							$vat_validation[0][ 'VALIDATION_CLASS'] = 'ui-state-error ';
 						}
 					}
 				}
@@ -135,7 +125,6 @@ class j06005edit_my_account
 			$output[ 'HEMAIL' ]                         = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL, false );
 			$output[ '_JOMRES_COM_YOURBUSINESS_VATNO' ] = jr_gettext( '_JOMRES_COM_YOURBUSINESS_VATNO', _JOMRES_COM_YOURBUSINESS_VATNO, false );
 
-			$output[ 'JOMRES_SITEPAGE_URL' ]    = JOMRES_SITEPAGE_URL;
 			$output[ '_JOMRES_REVIEWS_SUBMIT' ] = jr_gettext( '_JOMRES_REVIEWS_SUBMIT', _JOMRES_REVIEWS_SUBMIT, false );
 			$output[ 'PAGETITLE' ]              = jr_gettext( '_JOMRES_MY_ACCOUNT_EDIT', _JOMRES_MY_ACCOUNT_EDIT, false, false );
 
@@ -199,5 +188,3 @@ class j06005edit_my_account
 		return null;
 		}
 	}
-
-?>
