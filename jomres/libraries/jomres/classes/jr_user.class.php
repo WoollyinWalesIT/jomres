@@ -49,18 +49,100 @@ class jr_user
 		$this->superPropertyManager         = false;
 		$this->superPropertyManagersAreGods = true; // Change this to false to prevent super property managers from having rights to ALL properties
 		$this->userIsRegistered             = false;
-		//$this->users_timezone					= "America/Lima";
+		//$this->users_timezone				= "America/Lima";
 		$this->jomres_manager_id = 0;
 		$this->userIsSuspended				= false;
 		$this->simple_configuration			= false;
+		
+		//user profile details
+		$this->profile_id					= 0;
+		$this->cms_user_id					= 0;
+		$this->firstname					= '';
+		$this->surname						= '';
+		$this->house						= '';
+		$this->street						= '';
+		$this->town							= '';
+		$this->region						= '';
+		$this->postcode						= '';
+		$this->country						= '';
+		$this->email						= '';
+		$this->tel_landline					= '';
+		$this->tel_mobile					= '';
+		$this->tel_fax						= '';
+		$this->vat_number					= '';
+		$this->vat_number_validated			= '';
+		$this->vat_number_validation_response= '';
+		
 
 		$this->id = jomres_cmsspecific_getcurrentusers_id();
 
 		if ( $this->id > 0 && $this->id != 0 && !is_null( $this->id ) )
 			{
 			$this->userIsRegistered = true;
+			
+			$query = "SELECT
+							`id`,
+							`cms_user_id`,
+							`firstname`,
+							`surname`,
+							`house`,
+							`street`,
+							`town`,
+							`county`,
+							`country`,
+							`postcode`,
+							`tel_landline`,
+							`tel_mobile`,
+							`tel_fax`,
+							`email`,
+							`vat_number`,
+							`vat_number_validated`,
+							`vat_number_validation_response` 
+						FROM #__jomres_guest_profile 
+						WHERE `cms_user_id` = " . (int) $this->id . " 
+						LIMIT 1 ";
+			$userProfile = doSelectSql($query);
+			
+			if ( count( $userProfile ) > 0 )
+				{
+				foreach ( $userProfile as $p )
+					{
+					//profile details
+					$this->profile_id 						= $p->id;
+					$this->cms_user_id 						= $p->cms_user_id;
+					$this->firstname 						= $p->firstname;
+					$this->surname 							= $p->surname;
+					$this->house 							= $p->house;
+					$this->street 							= $p->street;
+					$this->town 							= $p->town;
+					$this->region 							= $p->county;
+					$this->country 							= $p->country;
+					$this->postcode 						= $p->postcode;
+					$this->tel_landline 					= $p->tel_landline;
+					$this->tel_mobile 						= $p->tel_mobile;
+					$this->tel_fax 							= $p->tel_fax;
+					$this->email 							= $p->email;
+					$this->vat_number 						= $p->vat_number;
+					$this->vat_number_validated 			= $p->vat_number_validated;
+					$this->vat_number_validation_response 	= $p->vat_number_validation_response;
+					}
+				}
 
-			$query           = "SELECT manager_uid,userid,username,property_uid,access_level,currentproperty,pu,suspended,users_timezone,simple_configuration,last_active FROM #__jomres_managers WHERE userid = '" . (int) $this->id . "' LIMIT 1";
+			$query = "SELECT 
+							`manager_uid`,
+							`userid`,
+							`username`,
+							`property_uid`,
+							`access_level`,
+							`currentproperty`,
+							`pu`,
+							`suspended`,
+							`users_timezone`,
+							`simple_configuration`,
+							`last_active` 
+						FROM #__jomres_managers 
+						WHERE `userid` = " . (int) $this->id . " 
+						LIMIT 1 ";
 			$authorisedUsers = doSelectSql( $query );
 
 			if ( count( $authorisedUsers ) > 0 )
@@ -69,19 +151,23 @@ class jr_user
 
 				foreach ( $authorisedUsers as $authUser )
 					{
-					$this->userid          = $authUser->userid;
-					$this->username        = $authUser->username;
-					$this->accesslevel     = $authUser->access_level;
-					$this->defaultproperty = $authUser->currentproperty;
-					$this->currentproperty = $authUser->currentproperty;
-					$this->jomres_manager_id = $authUser->manager_uid;
+					$this->userid          					= $authUser->userid;
+					$this->username        					= $authUser->username;
+					$this->accesslevel    					= $authUser->access_level;
+					$this->defaultproperty 					= $authUser->currentproperty;
+					$this->currentproperty 					= $authUser->currentproperty;
+					$this->jomres_manager_id 				= $authUser->manager_uid;
+					
 					if ( isset( $authUser->users_timezone ) ) 
-						$this->users_timezone = $authUser->users_timezone;
+						$this->users_timezone 				= $authUser->users_timezone;
+					
 					if ( $authUser->suspended == "1" ) 
-						$this->userIsSuspended = true;
+						$this->userIsSuspended 				= true;
+					
 					if ( $authUser->simple_configuration == "1" ) 
-						$this->simple_configuration = true;
-					$this->last_active = $authUser->last_active;
+						$this->simple_configuration 		= true;
+					
+					$this->last_active 						= $authUser->last_active;
 					
 					$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 

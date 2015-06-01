@@ -3243,9 +3243,7 @@ function insertGuestDeets( $jomressession )
 	// First, we'll look at this user's id. If it's the same as mos_userid above, then the user making the booking is a guest.
 	if ( ( $thisJRUser->id == $mos_userid && $thisJRUser->id > 0 ) || ( $mos_userid > 0 && isset($_REQUEST['jsid']) ) ) // Either it's the guest making the booking, or it's a gateway call and the user's a registered user. Either way, we can update the profile table.
 		{
-		$query	 = "SELECT id FROM #__jomres_guest_profile WHERE cms_user_id = '" . (int) $mos_userid . "' LIMIT 1";
-		$guestData = doSelectSql( $query, 2 );
-		if ( !$guestData ) // The guest doesn't have information in the profile table yet.
+		if ( $thisJRUser->profile_id == 0 ) // The guest doesn't have information in the profile table yet.
 			{
 			$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`email`) VALUES ('" . (int) $mos_userid . "','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$email')";
 			doInsertSql( $query, '' );
