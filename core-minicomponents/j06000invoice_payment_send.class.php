@@ -26,7 +26,7 @@ class j06000invoice_payment_send
 			return;
 			}
 		
-		$invoice_number		= intval(  jomresGetParam( $_REQUEST, 'id', 0 ) );
+		$invoice_number		= intval(  jomresGetParam( $_REQUEST, 'invoice_id', 0 ) );
 		$gateway			= jomresGetParam( $_REQUEST, 'gateway', '' );
 		
 		if ($invoice_number == "" || $gateway == "")
