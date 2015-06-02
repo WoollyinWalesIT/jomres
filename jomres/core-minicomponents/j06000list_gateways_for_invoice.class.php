@@ -44,7 +44,7 @@ class j06000list_gateways_for_invoice
 			foreach ( $mcOutput as $gateway )
 				{
 				$r = $gateway;
-				$r['LINK'] = JOMRES_SITEPAGE_URL."&task=invoice_payment_send&gateway=".$gateway['name']."&id=".$this->invoice_id;
+				$r['LINK'] = JOMRES_SITEPAGE_URL."&task=invoice_payment_send&gateway=".$gateway['name']."&invoice_id=".$this->invoice_id;
 				$rows[]=$r;
 				}
 
