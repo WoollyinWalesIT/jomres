@@ -110,7 +110,7 @@ class j99997generate_mainmenu
 				$rows[ ] = $r;
 				}
 			
-			$output[ 'CATEGORY' ]  = ucwords( $category );
+			$output[ 'CATEGORY' ]  = mb_convert_case(ucwords( $category ), MB_CASE_TITLE);
 			$output[ 'ID_CATEGORY' ] = str_replace (" " , "_" , $category );
 			$output[ 'LIVE_SITE' ] = get_showtime( 'live_site' );
 			
