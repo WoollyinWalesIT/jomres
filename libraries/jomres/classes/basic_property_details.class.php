@@ -26,7 +26,6 @@ class basic_property_details
 		self::$internal_debugging          = false;
 		self::$property_data               = array ();
 		$this->multi_query_result          = array ();
-		$this->untranslated_property_names = array ();
 		$this->property_names = array();
 		$this->get_all_room_types();
 		$this->get_all_property_types();
@@ -107,13 +106,11 @@ class basic_property_details
 		
 		//check if property names are cached
 		$cached_property_names=$c->isCached('all_property_names_in_system');
-		$cached_property_names_untranslated=$c->isCached('all_property_names_in_system_untranslated');
 
 		//set property names from cache if available
 		if ( $cached_property_names )
 			{
 			$this->property_names=$c->retrieve('all_property_names_in_system');
-			$this->untranslated_property_names=$c->retrieve('all_property_names_in_system_untranslated');
 			
 			return $this->property_names;
 			}
@@ -129,38 +126,45 @@ class basic_property_details
 			$temp_array = array ();
 			foreach ( $property_uids as $id )
 				{
-				if ( !array_key_exists( $id, $this->multi_query_result ) ) $temp_array[ ] = $id;
+				if ( !array_key_exists( $id, $this->multi_query_result ) ) 
+					$temp_array[ ] = $id;
+				else
+					{
+					$this->property_names[ $id ]              = $this->multi_query_result[$id]['property_name'];
+					}
 				}
 			$property_uids = $temp_array;
 			unset ( $temp_array );
 	
-			$query          = "SELECT property_name,propertys_uid FROM #__jomres_propertys WHERE propertys_uid IN (" . implode(',',$property_uids) .") ";
-			$property_names = doSelectSql( $query );
-			if ( !get_showtime( 'heavyweight_system' ) )
+			if (count($property_uids) > 0)
 				{
-				foreach ( $property_names as $p )
+				$query          = "SELECT property_name,propertys_uid FROM #__jomres_propertys WHERE propertys_uid IN (" . implode(',',$property_uids) .") ";
+				$property_names = doSelectSql( $query );
+				if ( !get_showtime( 'heavyweight_system' ) )
 					{
-					// We need to set showtime here otherwise the jr_gettext function won't know which property's info we're looking for
-					set_showtime( 'property_uid', $p->propertys_uid );
-					$this->untranslated_property_names[ $p->propertys_uid ] = $p->property_name;
-					$property_name                                          = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $p->property_name, false, false );
-					$this->property_names[ $p->propertys_uid ]              = $property_name;
+					foreach ( $property_names as $p )
+						{
+						// We need to set showtime here otherwise the jr_gettext function won't know which property's info we're looking for
+						set_showtime( 'property_uid', $p->propertys_uid );
+						$this->property_names[ $p->propertys_uid ]              = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $p->property_name, false, false );
+						}
+					}
+				else
+					{
+					foreach ( $property_names as $p )
+						{
+						$this->property_names[ $p->propertys_uid ]              = $p->property_name;
+						}
 					}
 				}
-			else
-				{
-				foreach ( $property_names as $p )
-					{
-					$this->property_names[ $p->propertys_uid ]              = $p->property_name;
-					$this->untranslated_property_names[ $p->propertys_uid ] = $p->property_name;
-					}
-				}
+
 			if (count($diff)==0 && get_showtime('all_properties_in_system'))
 				{
 				$c->store('all_property_names_in_system',$this->property_names);
-				$c->store('all_property_names_in_system_untranslated',$this->untranslated_property_names);
 				}
+			
 			set_showtime( 'property_uid', $original_property_uid );
+			
 			$performance_monitor->set_point( "post-property name multi" );
 			}
 
@@ -410,7 +414,6 @@ class basic_property_details
 				$this->multi_query_result[ $data->propertys_uid ][ 'approved' ]                      = (bool) $data->approved;
 				
 				$this->property_names[$data->propertys_uid] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false );
-				$this->untranslated_property_names[$data->propertys_uid] = $data->property_name;
 				}
 
 			$temp_rooms = array ();
