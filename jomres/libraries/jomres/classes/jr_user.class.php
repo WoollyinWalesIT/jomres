@@ -225,16 +225,17 @@ class jr_user
 						{
 						$this->superPropertyManager = false;
 
-						$query = "SELECT property_uid FROM #__jomres_managers_propertys_xref  WHERE manager_id = '" . (int) $this->id . "'";
+						$query = "SELECT property_uid FROM #__jomres_managers_propertys_xref WHERE manager_id = " . (int) $this->id;
 						$managersToPropertyList = doSelectSql( $query );
-						if (count($managersToPropertyList)==0)
+
+						if (count($managersToPropertyList) > 0)
 							{
-							return;
+							foreach ( $managersToPropertyList as $x )
+								{
+								$this->authorisedProperties[] = $x->property_uid;
+								}
 							}
-						foreach ( $managersToPropertyList as $x )
-							{
-							$this->authorisedProperties[] = $x->property_uid;
-							}
+
 						if ( count( $this->authorisedProperties ) > 0 )
 							{
 							$basic_property_details->get_property_name_multi( $this->authorisedProperties );
@@ -243,7 +244,7 @@ class jr_user
 								$this->authorisedPropertyDetails[ $p ] = array ( 'property_name' => $basic_property_details->property_names[$p] );
 								}
 							}
-						else if ( !defined( '_JOMRES_INITCHECK_ADMIN' ) )
+						elseif ( !defined( '_JOMRES_INITCHECK_ADMIN' ) )
 							{
 							trigger_error( "This manager " . (int) $this->id . "  hasn't got any properties.", E_USER_ERROR );
 							}
