@@ -32,6 +32,9 @@ class j06000list_gateways_for_invoice
 		if ($this->invoice_id == 0)
 			return;
 		
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+		
 		$MiniComponents->triggerEvent( '10509', $componentArgs );
 		$mcOutput = $MiniComponents->getAllEventPointsData( '10509' );
 		if ( count( $mcOutput ) > 0 )
@@ -43,22 +46,37 @@ class j06000list_gateways_for_invoice
 			$rows= array();
 			foreach ( $mcOutput as $gateway )
 				{
-				$r = $gateway;
-				$r['LINK'] = JOMRES_SITEPAGE_URL."&task=invoice_payment_send&gateway=".$gateway['name']."&invoice_id=".$this->invoice_id;
-				$rows[]=$r;
+				$prefix = 'gateway_setting_'.$gateway['name'];
+				
+				if (!isset($jrConfig[ $prefix.'_active' ]))
+					$jrConfig[$prefix.'_active'] = "0";
+				
+				if ($jrConfig[$prefix.'_active'] == "1")
+					{
+					print_r($jrConfig);exit;
+				
+					$r = $gateway;
+					$r['LINK'] = JOMRES_SITEPAGE_URL."&task=invoice_payment_send&gateway=".$gateway['name']."&invoice_id=".$this->invoice_id;
+					$rows[]=$r;
+					}
 				}
-
-			$pageoutput[ ] = $output;
-			$tmpl          = new patTemplate();
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-			$tmpl->readTemplatesFromInput( 'list_gateways_for_invoice.html' );
-			$tmpl->addRows( 'pageoutput', $pageoutput );
-			$tmpl->addRows( 'rows', $rows );
-			$this->retVals = $tmpl->getParsedTemplate();
-			
-			if ( isset($_REQUEST['invoice_id']))
-				echo $this->retVals;
-
+			if ( count ( $rows) > 0 )
+				{
+				$pageoutput[ ] = $output;
+				$tmpl          = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->readTemplatesFromInput( 'list_gateways_for_invoice.html' );
+				$tmpl->addRows( 'pageoutput', $pageoutput );
+				$tmpl->addRows( 'rows', $rows );
+				$this->retVals = $tmpl->getParsedTemplate();
+				
+				if ( isset($_REQUEST['invoice_id']))
+					echo $this->retVals;
+				}
+			else
+				{
+				echo "<p class='alert alert-danger'>Error, no gateways have been configured by the site administrator</p>";
+				}
 			}
 			
 		
