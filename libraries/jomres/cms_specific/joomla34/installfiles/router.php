@@ -56,12 +56,12 @@ class JomresRouter extends JComponentRouterBase
 		$jrConfig = getSiteSettings();
 		$segments = array ();
 	
-		$menu =& JSite::getMenu();
+		$menu = JFactory::getApplication()->getMenu();
 		// Get the menu items for this component.
 		if ( !$items )
 			{
-			$component = & JComponentHelper::getComponent( 'com_jomres' );
-			$items     = $menu->getItems( 'componentid', $component->id );
+			$component = JComponentHelper::getComponent( 'com_jomres' );
+			$items     = $menu->getItems( 'component_id', $component->id );
 			}
 	
 		// if ($route_query['task'] == "dobooking" && isset($route_query['remus']) )
