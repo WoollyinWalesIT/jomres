@@ -603,11 +603,22 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		$roomfeaturesHeader    = array ();
 		$roomfeatures          = array ();
 		$roomfeaturesHeader[ ] = array ( "_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER" => $output[ '_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER' ] );
+		
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+		$jomres_media_centre_images->get_images($selectedProperty, array('room_features'));
+		
 		foreach ( $bkg->room_feature_checkboxes as $feature )
 			{
+			$featureUid = $feature['ID'];
 			$rf                  = array ();
 			$rf[ 'INPUTBOX' ]    = $feature[ 'INPUTBOX' ];
 			$rf[ 'DESCRIPTION' ] = $feature[ 'DESCRIPTION' ];
+			
+			$feature_image ='';
+			if (isset($jomres_media_centre_images->images['room_features'][ $featureUid][0]['small']))
+				$feature_image =  $jomres_media_centre_images->images['room_features'][ $featureUid][0]['small'];
+					
+			$rf[ 'IMAGE' ]       = $feature_image;
 			$roomfeatures[ ]     = $rf;
 			}
 		}

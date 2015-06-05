@@ -47,8 +47,8 @@ class j07110media_centre_upload_context_features_images
 		$arr [ 'upload_root_abs_path']            = JOMRES_IMAGELOCATION_ABSPATH ;
 		$arr [ 'upload_root_rel_path']            = JOMRES_IMAGELOCATION_RELPATH ;
 		$arr [ 'resource_subdirectories_used']    = false ;
-		$arr [ 'url_context']                     = '&upload_context=features_images' ;
-		$arr [ 'context']                         = 'features_images' ;
+		$arr [ 'url_context']                     = '&upload_context='.$upload_context ;
+		$arr [ 'context']                         = $upload_context ;
 		$arr [ 'upload_context_title']            = jr_gettext( '_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES', _JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES );
 		
 		
