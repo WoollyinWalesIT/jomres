@@ -163,55 +163,47 @@ try
 
 	if ( get_showtime( 'task' ) != "error" )
 		{
-		$thisJRUser      = $MiniComponents->triggerEvent( '00002' ); // Register user
-		$defaultProperty = (int) $thisJRUser->currentproperty;
-		//$thisJRUser->userIsManager=$thisJRUser->userIsManager;
-		$accessLevel   = $thisJRUser->accesslevel;
-		$usersProperty = $thisJRUser->defaultproperty;
+		$thisJRUser      	= $MiniComponents->triggerEvent( '00002' ); // Register user
+		$defaultProperty 	= (int) $thisJRUser->currentproperty;
+		$accessLevel   		= $thisJRUser->accesslevel;
+		$usersProperty 		= $thisJRUser->defaultproperty;
+		
 		if ( !$thisJRUser->userIsManager && $thisJRUser->userIsRegistered )
 			{
 			if (!isset($_REQUEST['jsid'])) // Don't want to reset mos userid if jsid is set. jsid is sent back by gateways and if we set mos id to the gateway's session, we'll never be able to  associate the booking with the guest
 				$tmpBookingHandler->updateGuestField( 'mos_userid', $thisJRUser->id );
+			
 			if ( get_showtime( 'task' ) != "handlereq" && get_showtime( 'task' ) != "completebk" && get_showtime( 'task' ) != "processpayment" && get_showtime( 'task' ) != "confirmbooking" )
 				{
-				$not_in_profile_table = false;
-				$has_booked_before    = false;
-				$query                = "SELECT id,firstname,surname,house,street,town,postcode,county,country,tel_landline,tel_mobile,email FROM #__jomres_guest_profile WHERE cms_user_id = '" . (int) $thisJRUser->id . "' LIMIT 1";
-				$guestData            = doSelectSql( $query, 2 );
-				if ( !$guestData )
+				if ( $thisJRUser->profile_id == 0 )
 					{
-					$not_in_profile_table = true;
-					$query                = "SELECT guests_uid,firstname,surname,house,street,town,postcode,county,country,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE mos_userid = '" . (int) $thisJRUser->id . "' LIMIT 1";
-					$guestData            = doSelectSql( $query, 2 );
-					if ( $guestData ) $has_booked_before = true;
-					}
-
-				if ( $guestData )
-					{
-					if ( $not_in_profile_table )
+					$query = "SELECT guests_uid,firstname,surname,house,street,town,postcode,county,country,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE mos_userid = '" . (int) $thisJRUser->id . "' LIMIT 1";
+					$guestData = doSelectSql( $query, 2 );
+					
+					if ( $guestData )
 						{
 						$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`email`) VALUES ('" . (int) $thisJRUser->id . "','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$email')";
 						doInsertSql( $query, '' );
+	
+						$tmpBookingHandler->updateGuestField( 'guests_uid', $guestData[ 'id' ] );
+						$tmpBookingHandler->updateGuestField( 'firstname', $guestData[ 'firstname' ] );
+						$tmpBookingHandler->updateGuestField( 'surname', $guestData[ 'surname' ] );
+						$tmpBookingHandler->updateGuestField( 'house', $guestData[ 'house' ] );
+						$tmpBookingHandler->updateGuestField( 'street', $guestData[ 'street' ] );
+						$tmpBookingHandler->updateGuestField( 'town', $guestData[ 'town' ] );
+						$tmpBookingHandler->updateGuestField( 'region', $guestData[ 'county' ] );
+						$tmpBookingHandler->updateGuestField( 'country', $guestData[ 'country' ] );
+						$tmpBookingHandler->updateGuestField( 'postcode', $guestData[ 'postcode' ] );
+						$tmpBookingHandler->updateGuestField( 'tel_landline', $guestData[ 'tel_landline' ] );
+						$tmpBookingHandler->updateGuestField( 'tel_mobile', $guestData[ 'tel_mobile' ] );
+						$tmpBookingHandler->updateGuestField( 'email', $guestData[ 'email' ] );
 						}
-					if ( $has_booked_before ) $tmpBookingHandler->updateGuestField( 'guests_uid', $guestData[ 'id' ] );
-
-$tmpBookingHandler->updateGuestField( 'firstname', $guestData[ 'firstname' ] );
-					$tmpBookingHandler->updateGuestField( 'surname', $guestData[ 'surname' ] );
-					$tmpBookingHandler->updateGuestField( 'house', $guestData[ 'house' ] );
-					$tmpBookingHandler->updateGuestField( 'street', $guestData[ 'street' ] );
-					$tmpBookingHandler->updateGuestField( 'town', $guestData[ 'town' ] );
-					$tmpBookingHandler->updateGuestField( 'region', $guestData[ 'county' ] );
-					$tmpBookingHandler->updateGuestField( 'country', $guestData[ 'country' ] );
-					$tmpBookingHandler->updateGuestField( 'postcode', $guestData[ 'postcode' ] );
-					$tmpBookingHandler->updateGuestField( 'tel_landline', $guestData[ 'tel_landline' ] );
-					$tmpBookingHandler->updateGuestField( 'tel_mobile', $guestData[ 'tel_mobile' ] );
-					$tmpBookingHandler->updateGuestField( 'email', $guestData[ 'email' ] );
-					}
-				else
-					{
-					$user_details = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( $thisJRUser->id );
-
-					$tmpBookingHandler->updateGuestField( 'email', $user_details[ $thisJRUser->id ][ 'email' ] );
+					else
+						{
+						$user_details = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( $thisJRUser->id );
+	
+						$tmpBookingHandler->updateGuestField( 'email', $user_details[ $thisJRUser->id ][ 'email' ] );
+						}
 					}
 				}
 			}
@@ -328,7 +320,7 @@ $tmpBookingHandler->updateGuestField( 'firstname', $guestData[ 'firstname' ] );
 	$MiniComponents->triggerEvent( '00005' );
 	$MiniComponents->triggerEvent( '00006' );
 	$MiniComponents->triggerEvent( '00007' );
-	
+
 	$MiniComponents->triggerEvent( '00060', array ( 'tz' => $tz, 'jomreslang' => $jomreslang ) ); // Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
 
 	$componentArgs = array ();
