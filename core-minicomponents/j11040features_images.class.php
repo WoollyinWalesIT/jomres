@@ -24,7 +24,6 @@ class j11040features_images
 			$this->template_touchable = false;
 			return;
 			}
-		
 		// Let's the appropriate upload context details
 		$MiniComponents->triggerEvent( '07100' );
 		$upload_context = get_showtime ( "upload_context");

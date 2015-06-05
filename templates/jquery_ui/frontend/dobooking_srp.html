@@ -286,7 +286,7 @@
 	<div id="extrascontainer">
 		<table width="100%" border="0" class="ui-widget-content ui-corner-all">
 			<tr>
-				<th colspan="5" class="ui-state-default">{EXTRAS_HEADER}</th>
+				<th colspan="6" class="ui-state-default">{EXTRAS_HEADER}</th>
 			</tr>
 			<patTemplate:tmpl name="third_party_extras" type="simpleCondition" requiredVars="third_party_extra">
 				<tr>{THIRD_PARTY_EXTRA}</tr>
@@ -296,7 +296,8 @@
 					<td>{INPUTBOX}</td>
 					<td colspan="2">{OVERLIB_DESCRIPTION}</td>
 					<td>{NAME}</td>
-					<td align="right">{PRICE}</td>
+					<td>{PRICE}</td>
+					<td align="right"><img src="{EXTRA_IMAGE}" class="thumbnail responsive" /></td>
 				</tr>
 			</patTemplate:tmpl>
 		</table>

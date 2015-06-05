@@ -587,12 +587,19 @@ class dobooking
 
 	function getAllRoomFeatureDetails()
 		{
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+		$jomres_media_centre_images->get_images($this->property_uid, array('room_features'));
+		
 		$query     = "SELECT room_features_uid,feature_description FROM #__jomres_room_features WHERE room_features_uid IN (".implode(',',$this->allFeatureIds).") ";
 		$roomFeats = doSelectSql( $query );
 		foreach ( $roomFeats as $c )
 			{
+			$feature_image = $jomres_media_centre_images->multi_query_images['noimage-small'];
+			if (isset($jomres_media_centre_images->images['room_features'][ $c->room_features_uid ][0]['small']))
+				$feature_image = $jomres_media_centre_images->images['room_features'][ $c->room_features_uid ][0]['small'];
+		
 			$fd                                               = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION' . $c->room_features_uid, $c->feature_description, false, false );
-			$this->allFeatureDetails[ $c->room_features_uid ] = array ( 'room_features_uid' => $c->room_features_uid, 'feature_description' => $fd );
+			$this->allFeatureDetails[ $c->room_features_uid ] = array ( 'room_features_uid' => $c->room_features_uid, 'feature_description' => $fd , 'image' => $feature_image);
 			}
 		}
 
@@ -949,6 +956,9 @@ class dobooking
 	 */
 	function makeExtras( $selectedProperty )
 		{
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+		$jomres_media_centre_images->get_images($this->property_uid, array('extras'));
+			
 		$mrConfig           = $this->mrConfig;
 		$extra_details      = array ();
 		$third_party_extras = array ();
@@ -1007,6 +1017,11 @@ class dobooking
 				$extra_deets[ 'NAME' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRANAME' . $ex->uid, htmlspecialchars( trim( stripslashes( $ex->name ) ), ENT_QUOTES ) ) );
 				$extra_deets[ 'MODELTEXT' ] = $tax_output . " ( " . $model_text . " )";
 				$extra_deets[ 'PRICE' ]     = output_price( $inc_price );
+				
+				$extra_deets[ 'EXTRA_IMAGE' ] = $jomres_media_centre_images->multi_query_images['noimage-small'];
+				if (isset($jomres_media_centre_images->images['extras'][$ex->uid][0]['small']))
+					$extra_deets[ 'EXTRA_IMAGE' ] = $jomres_media_centre_images->images['extras'][$ex->uid][0]['small'];
+				
 				if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 					{
 					if ( $ex->chargabledaily == "1" ) $extra_deets[ 'PERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY, false, true ) );
@@ -1402,6 +1417,7 @@ class dobooking
 			foreach ( $this->allRoomFeatures as $feature_id => $feature )
 				{
 				$arr                              = array ();
+				$arr[ 'ID' ]                      = $feature_id;
 				$arr[ 'INPUTBOX' ]                = '<input id="' . $feature_id . '" type="checkbox" name="room_features[' . $feature_id . ']" value="' . $feature_id . '" autocomplete="off"  onClick="getResponse_room_features(\'room_features\',this.value,' . $feature_id . ');" />';
 				$arr[ 'DESCRIPTION' ]             = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION' . (int) $feature_id, $feature );
 				$this->room_feature_checkboxes[ ] = $arr;
@@ -5028,14 +5044,18 @@ class dobooking
 		$roomFeatureUidsArray = explode( ",", $room_features_uid );
 		if ( $roomFeatureUidsArray )
 			{
+			$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+			$jomres_media_centre_images->get_images($this->property_uid, array('room_features'));
+		
 			$roomFeatureDescriptions = "";
 			foreach ( $roomFeatureUidsArray as $featureUid )
 				{
-				//$requestedFeature=$featureUid;
-				//$query="SELECT feature_description FROM #__jomres_room_features WHERE room_features_uid = '$featureUid'";
-				//$desc =doSelectSql($query,1);
+				$feature_image = '';
+				if (isset($jomres_media_centre_images->images['room_features'][ $featureUid][0]['small']))
+					$feature_image =  ' <img src="'.$jomres_media_centre_images->images['room_features'][ $featureUid][0]['small'].'" />';
+
 				$desc = $this->allFeatureDetails[ $featureUid ][ 'feature_description' ];
-				$roomFeatureDescriptions .= $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATUREDESC' . $featureUid, $desc, false, false ) ) . "<br/>";
+				$roomFeatureDescriptions .= $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATUREDESC' . $featureUid, $desc, false, false ) ) .$feature_image.'<br/>';
 				}
 			}
 

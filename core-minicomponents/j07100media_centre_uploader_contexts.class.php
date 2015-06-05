@@ -51,7 +51,7 @@ class j07100media_centre_uploader_contexts
 		
 		if ( !isset( $plugin_upload_contexts[ $upload_context ] ) )
 			{
-			throw new Exception("Somethig is wrong, plugin_upload_contexts[ upload_context ] isn't set.");
+			throw new Exception("Something is wrong, plugin_upload_contexts[ upload_context ] isn't set.");
 			}
 		else
 			{

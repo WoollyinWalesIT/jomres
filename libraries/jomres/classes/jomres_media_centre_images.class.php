@@ -138,6 +138,40 @@ class jomres_media_centre_images
 			$this->images ['slideshow']=$this->multi_query_images[$property_id]['slideshow'];
 			}
 
+		if (count($types)==0 || in_array('room_features',$types))
+			{
+			if (!isset( $this->multi_query_images[$property_id]['room_features']))
+				{
+				$this->get_images_multi( $property_id, array('room_features') );
+				}
+			$this->images ['room_features']=$this->multi_query_images[$property_id]['room_features'];
+			}
+		elseif (count($types)>0 && in_array('room_features',$types))
+			{
+			if (!isset( $this->multi_query_images[$property_id]['room_features']))
+				{
+				$this->get_images_multi( $property_id, array('room_features') );
+				}
+			$this->images ['room_features']=$this->multi_query_images[$property_id]['room_features'];
+			}
+		
+		if (count($types)==0 || in_array('extras',$types))
+			{
+			if (!isset( $this->multi_query_images[$property_id]['extras']))
+				{
+				$this->get_images_multi( $property_id, array('extras') );
+				}
+			$this->images ['extras']=$this->multi_query_images[$property_id]['extras'];
+			}
+		elseif (count($types)>0 && in_array('extras',$types))
+			{
+			if (!isset( $this->multi_query_images[$property_id]['extras']))
+				{
+				$this->get_images_multi( $property_id, array('extras') );
+				}
+			$this->images ['extras']=$this->multi_query_images[$property_id]['extras'];
+			}
+		
 		return $this->images;
 		}
 
