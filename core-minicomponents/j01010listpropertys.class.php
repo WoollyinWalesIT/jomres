@@ -47,7 +47,7 @@ class j01010listpropertys
 			}
 		elseif ( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '' && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] != '')
 			{
-			$start = JSCalConvertInputDates( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] , $siteCal = true );
+				$start = JSCalConvertInputDates( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] , $siteCal = true );
 			$end = JSCalConvertInputDates( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] , $siteCal = true );
 			
 			$range = get_periods ( $start , $end );
@@ -147,6 +147,22 @@ class j01010listpropertys
 		else
 			{
 			$shortlist_items = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
+			if ( $thisJRUser->userIsRegistered )
+				{
+				$query  = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE `my_id` = '" . (int) $thisJRUser->id . "'";
+				$propys = doSelectSql( $query );
+				if ( count( $propys ) > 0 )
+					{
+					foreach ($propys as $p)
+						{
+						if ( !in_array($p->property_uid , $shortlist_items))
+							{
+							$shortlist_items[]=(int)$p->property_uid;
+							}
+						}
+					$tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ] = $shortlist_items;
+					}
+				}
 			$layout_template = $property_list_layouts[ $layout ][ "layout" ];
 
 			if ( is_null( $property_list_layouts[ $layout ][ "path" ] ) ) 

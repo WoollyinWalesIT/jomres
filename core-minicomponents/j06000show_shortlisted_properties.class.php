@@ -24,9 +24,26 @@ class j06000show_shortlisted_properties
 
 			return;
 			}
+		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		$tmpBookingHandler       = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		$original_search_results = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
 		$shortlist_items         = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
+		
+		if ( $thisJRUser->userIsRegistered )
+			{
+			$query  = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE `my_id` = '" . (int) $thisJRUser->id . "'";
+			$propys = doSelectSql( $query );
+			if ( count( $propys ) > 0 )
+				{
+				foreach ($propys as $p)
+					{
+					if ( !in_array($p->property_uid , $shortlist_items))
+						{
+						$shortlist_items[]=(int)$p->property_uid;
+						}
+					}
+				}
+			}
 
 		if ( count( $shortlist_items ) > 0 )
 			{
