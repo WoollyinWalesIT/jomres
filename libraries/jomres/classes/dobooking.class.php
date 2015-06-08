@@ -5087,7 +5087,10 @@ class dobooking
 					$feature_image =  ' <img src="'.$jomres_media_centre_images->images['room_features'][ $featureUid][0]['small'].'" />';
 
 				$desc = $this->allFeatureDetails[ $featureUid ][ 'feature_description' ];
-				$roomFeatureDescriptions .= $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATUREDESC' . $featureUid, $desc, false, false ) ) .$feature_image.'<br/>';
+				if ($feature_image != $jomres_media_centre_images->multi_query_images['noimage-small'])
+					$roomFeatureDescriptions .= $feature_image;
+				else
+					$roomFeatureDescriptions .= $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATUREDESC' . $featureUid, $desc, false, false ) ).'<br/>';
 				}
 			}
 

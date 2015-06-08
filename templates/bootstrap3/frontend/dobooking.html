@@ -163,6 +163,10 @@
 				});
 			});
 		});
+		
+	jomresJquery(function () {
+		jomresJquery('[data-toggle="tooltip"]').tooltip()
+	})
 	//-->
 </script>
 
@@ -277,13 +281,12 @@
 			</patTemplate:tmpl>
 			
 			<patTemplate:tmpl name="roomfeaturesrow" type="simpleCondition" requiredVars="inputbox">
-			<div class="col-md-3">
+			<div class="col-md-1">
 				<div class="form-group">
-					<label class="control-label">{INPUTBOX}</label>
-					{DESCRIPTION}
 					
+					<label class="control-label"><p data-toggle="tooltip" data-placement="left" title="{DESCRIPTION}"><img src="{IMAGE}" class="thumbnail responsive" /></p>{INPUTBOX}</label>
 				</div>
-				<img src="{IMAGE}" class="thumbnail responsive" />
+				
 			</div>
 			</patTemplate:tmpl>
 			
