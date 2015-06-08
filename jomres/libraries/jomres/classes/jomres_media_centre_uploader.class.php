@@ -326,6 +326,7 @@ class UploadHandler
 
     protected function create_scaled_image($file_name, $version, $options) {
 		$this->original_file_name = $file_name; // We need to know the original filename, because later we might end up converting from png to jpg, so we'll need to str replace the original with the converted filename in the output response method.
+		$type = strtolower(substr(strrchr($file_name, '.'), 1));
         $file_path = $this->get_upload_path($file_name);
         if (!empty($version)) {
             $version_dir = $this->get_upload_path(null, $version);
@@ -353,7 +354,10 @@ class UploadHandler
         );
         if ($scale >= 1) {
             if ($file_path !== $new_file_path) {
-                return copy($file_path, $new_file_path);
+                copy($file_path, $new_file_path);
+				if ($type == "png")
+					$this->final_image_name = $this->convert_png_to_jpg($new_file_path);
+				return true;
             }
             return true;
         }
@@ -381,7 +385,7 @@ class UploadHandler
             $new_img = imagecreatetruecolor($max_width, $max_height);
        // }
 		
-		$type = strtolower(substr(strrchr($file_name, '.'), 1));
+		
 		
         switch ($type) {
             case 'jpg':
