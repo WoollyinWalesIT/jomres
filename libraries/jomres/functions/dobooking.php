@@ -373,7 +373,10 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 			$counter++;
 			}
 		}
-	if ( count( $guestTypes ) == 0 ) $output[ 'BILLING_TOTALINPARTY' ] = "";
+	if ( count( $guestTypes ) == 0 ) 
+		$output[ 'BILLING_TOTALINPARTY' ] = "";
+	
+	
 	$ex                 = $bkg->makeExtras( $selectedProperty );
 	$extra_details      = $ex[ 'core_extras' ];
 	$third_party_extras = $ex[ 'third_party_extras' ];
@@ -381,7 +384,6 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	if ( count( $extra_details ) > 0 || count( $third_party_extras ) > 0 )
 		{
 		$output[ 'EXTRAS_INFO' ] = '<img border="0" style="vertical-align:top;" src="' . get_showtime( 'live_site' ) . '/components/com_jomres/images/info.png" />';
-		//$output['EXTRAS_SPACES']		="";
 		$output[ 'AJAXFORM_EXTRAS' ]      = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS', _JOMRES_AJAXFORM_EXTRAS ) );
 		$output[ 'AJAXFORM_EXTRAS_DESC' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_DESC', _JOMRES_AJAXFORM_EXTRAS_DESC, false ) );
 		$output[ 'EXTRAS_TOTAL' ]         = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_TOTAL', _JOMRES_AJAXFORM_EXTRAS_TOTAL ) );
@@ -614,7 +616,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 			$rf[ 'INPUTBOX' ]    = $feature[ 'INPUTBOX' ];
 			$rf[ 'DESCRIPTION' ] = $feature[ 'DESCRIPTION' ];
 			
-			$feature_image ='';
+			$feature_image =$jomres_media_centre_images->multi_query_images['noimage-small'];
 			if (isset($jomres_media_centre_images->images['room_features'][ $featureUid][0]['small']))
 				$feature_image =  $jomres_media_centre_images->images['room_features'][ $featureUid][0]['small'];
 					
@@ -688,6 +690,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		}
 	if ( $mrConfig[ 'showExtras' ] == "1" )
 		{
+		$extra_details = array (array ( "EXTRAS_TEMPLATE" => $extra_details ) );
 		$tmpl->addRows( 'extras', $extra_details );
 		}
 	$componentArgs = array ( 'tmpl' => $tmpl );

@@ -964,11 +964,12 @@ class dobooking
 		$third_party_extras = array ();
 		if ( $mrConfig[ 'showExtras' ] == "1" )
 			{
-			$query  = "SELECT `uid`,`name`,`desc`,`maxquantity`,`price`,`auto_select`,`tax_rate`,`chargabledaily`,`property_uid`,`published` FROM `#__jomres_extras` where property_uid = '$selectedProperty' AND published = '1' ORDER BY name";
+			$query  = "SELECT `uid`,`name`,`desc`,`maxquantity`,`price`,`auto_select`,`tax_rate`,`chargabledaily`,`property_uid`,`published`,`validfrom`,`validto` FROM `#__jomres_extras` where property_uid = '$selectedProperty' AND published = '1' ORDER BY name";
 			$exList = doSelectSql( $query );
 			foreach ( $exList as $ex )
 				{
-
+				$show_extra = true;
+				
 				$price = $ex->price;
 				$rate  = (float) $this->taxrates[ $ex->tax_rate ][ 'rate' ];
 				if ( $mrConfig[ 'prices_inclusive' ] == 1 )
@@ -978,116 +979,141 @@ class dobooking
 					}
 				$tax       = ( $price / 100 ) * $rate;
 				$inc_price = $price + $tax;
-
-				$extra_deets[ 'UID' ] = $ex->uid;
-				$query                = "SELECT `force`,`model` FROM #__jomcomp_extrasmodels_models WHERE extra_id = '$ex->uid'";
-				$model                = doSelectSql( $query, 2 );
-				switch ( $model[ 'model' ] )
-				{
-					case '1': // Per week
-						$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERWEEK', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERWEEK ) );
-						break;
-					case '2': // per days
-						$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYS', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYS ) );
-						break;
-					case '3': // per booking
-						$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERBOOKING', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERBOOKING ) );
-						break;
-					case '4': // per person per booking
-						$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING ) );
-						break;
-					case '5': // per person per day
-						$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY ) );
-						break;
-					case '6': // per person per week
-						$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK ) );
-						break;
-					case '7': // per person per days min days
-						$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS ) );
-						break;
-					case '8': // per days per room
-						$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM ) );
-						break;
-					case '9': // per room
-						$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING ) );
-						break;
-				}
-				$tax_output = "";
-				if ( $rate > 0 ) $tax_output = " (" . $rate . "%)";
-				$extra_deets[ 'NAME' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRANAME' . $ex->uid, htmlspecialchars( trim( stripslashes( $ex->name ) ), ENT_QUOTES ) ) );
-				$extra_deets[ 'MODELTEXT' ] = $tax_output . " ( " . $model_text . " )";
-				$extra_deets[ 'PRICE' ]     = output_price( $inc_price );
 				
-				$extra_deets[ 'EXTRA_IMAGE' ] = $jomres_media_centre_images->multi_query_images['noimage-small'];
-				if (isset($jomres_media_centre_images->images['extras'][$ex->uid][0]['small']))
-					$extra_deets[ 'EXTRA_IMAGE' ] = $jomres_media_centre_images->images['extras'][$ex->uid][0]['small'];
+				$arrival_ts		= strtotime(str_replace("/","-",$this->arrivalDate));
+				$validfrom_ts	= strtotime($ex->validfrom);
+				$validto_ts		= strtotime($ex->validto);
 				
-				if ( $mrConfig[ 'wholeday_booking' ] == "1" )
+				if ( $ex->validfrom != "0000-00-00 00:00:00" && !is_null($ex->validfrom)) // takes into account older optional extras
 					{
-					if ( $ex->chargabledaily == "1" ) $extra_deets[ 'PERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY, false, true ) );
+					if ( ! (($arrival_ts >= $validfrom_ts) && ($arrival_ts <= $validto_ts)) )
+						{
+						$show_extra = false;
+						}
+					}
+				
+				// Todo, add checks for room types
+				
+				
+				
+				
+				if ( !$show_extra )
+					{
+					$this->removeExtra( $ex->uid );
+					}
+				else
+					{
+					$extra_deets[ 'UID' ] = $ex->uid;
+					$query                = "SELECT `force`,`model` FROM #__jomcomp_extrasmodels_models WHERE extra_id = '$ex->uid'";
+					$model                = doSelectSql( $query, 2 );
+					switch ( $model[ 'model' ] )
+						{
+						case '1': // Per week
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERWEEK', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERWEEK ) );
+							break;
+						case '2': // per days
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYS', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYS ) );
+							break;
+						case '3': // per booking
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERBOOKING', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERBOOKING ) );
+							break;
+						case '4': // per person per booking
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING ) );
+							break;
+						case '5': // per person per day
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY ) );
+							break;
+						case '6': // per person per week
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK ) );
+							break;
+						case '7': // per person per days min days
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS ) );
+							break;
+						case '8': // per days per room
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM ) );
+							break;
+						case '9': // per room
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING ) );
+							break;
+						}
+					$tax_output = "";
+					if ( $rate > 0 ) 
+						$tax_output = " (" . $rate . "%)";
+					$extra_deets[ 'NAME' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRANAME' . $ex->uid, htmlspecialchars( trim( stripslashes( $ex->name ) ), ENT_QUOTES ) ) );
+					$extra_deets[ 'MODELTEXT' ] = $tax_output . " ( " . $model_text . " )";
+					$extra_deets[ 'PRICE' ]     = output_price( $inc_price , "" , false );
+					
+					$extra_deets[ 'EXTRA_IMAGE' ] = $jomres_media_centre_images->multi_query_images['noimage-small'];
+					if (isset($jomres_media_centre_images->images['extras'][$ex->uid][0]['small']))
+						$extra_deets[ 'EXTRA_IMAGE' ] = $jomres_media_centre_images->images['extras'][$ex->uid][0]['small'];
+					
+					if ( $mrConfig[ 'wholeday_booking' ] == "1" )
+						{
+						if ( $ex->chargabledaily == "1" ) $extra_deets[ 'PERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY, false, true ) );
+						else
+						$extra_deets[ 'PERNIGHT' ] = "";
+						}
 					else
-					$extra_deets[ 'PERNIGHT' ] = "";
-					}
-				else
-					{
-					if ( $ex->chargabledaily == "1" ) $extra_deets[ 'PERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_PERDAY', _JOMRES_COM_PERDAY, false, true ) );
+						{
+						if ( $ex->chargabledaily == "1" ) 
+							$extra_deets[ 'PERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_PERDAY', _JOMRES_COM_PERDAY, false, true ) );
+						else
+							$extra_deets[ 'PERNIGHT' ] = "";
+						}
+					$extra_deets[ 'DESCRIPTION' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRADESC' . $ex->uid, htmlspecialchars( trim( stripslashes( $ex->desc ) ), ENT_QUOTES ) ) );
+
+					$descriptionForOverlib = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRADESC' . $ex->uid, htmlspecialchars( trim( stripslashes( $ex->desc ) ), ENT_QUOTES ), false, true );
+
+					$extra_deets[ 'OVERLIB_DESCRIPTION' ] = $descriptionForOverlib;
+
+					$checked = "";
+					if ( $this->extraAlreadySelected( $ex->uid ) || (int) $ex->auto_select == 1 )
+						{
+						$checked = " checked ";
+						$this->setExtras( $ex->uid );
+						$extraDefaultQuantity = $this->extrasquantities[ $ex->uid ];
+						}
 					else
-					$extra_deets[ 'PERNIGHT' ] = "";
-					}
-				$extra_deets[ 'DESCRIPTION' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRADESC' . $ex->uid, htmlspecialchars( trim( stripslashes( $ex->desc ) ), ENT_QUOTES ) ) );
+						$extraDefaultQuantity = 1;
+					$inputId = preg_replace( '/[^A-Za-z0-9_-]+/', "", $ex->name );
+					if ( strlen( $inputId ) == 0 ) 
+						$inputId = generateJomresRandomString( 10 );
+					$firstChar = $inputId[ 0 ]; // We'll add a simple test here to change the first char to X if the first character's actually a number, otherwise the getResponse_extras will not work.
+					if ( $firstChar == "0" || $firstChar == "1" || $firstChar == "2" || $firstChar == "3" || $firstChar == "4" || $firstChar == "5" || $firstChar == "6" || $firstChar == "7" || $firstChar == "8" || $firstChar == "9" ) 
+						$inputId = "X" . $inputId;
 
-				$descriptionForOverlib = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRADESC' . $ex->uid, htmlspecialchars( trim( stripslashes( $ex->desc ) ), ENT_QUOTES ), false, true );
-				//$extra_deets['OVERLIB_DESCRIPTION']='<a href="javascript:void(0);" onmouseover="return overlib(\''.$extra_deets['PERNIGHT'].' '.$descriptionForOverlib.'\', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img alt="" border="0" src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/info.png" />';
-				$extra_deets[ 'OVERLIB_DESCRIPTION' ] = $descriptionForOverlib;
+					$clickUnlock = "";
+					if ( $model[ 'force' ] != "1" )
+						{
+						$extra_deets[ 'INPUTBOX' ] = '<input id="extras_' . $ex->uid . '" type="checkbox" name="extras[' . $ex->uid . ']" value="' . $ex->uid . '" ' . $checked . ' autocomplete="off"  onClick="' . $clickUnlock . 'getResponse_extras(\'extras\',this.value,' . $ex->uid . ');" />';
+						}
+					else
+						{
+						$this->forcedExtras[ ] = $ex->uid;
+						$this->setExtras( $ex->uid );
+						$extra_deets[ 'INPUTBOX' ] = '<input id="extras_' . $ex->uid . '" type="checkbox" checked disabled=" " name="extras[' . $ex->uid . ']" value="' . $ex->uid . '" />';
+						}
+					$extra_deets[ 'FIELDNAME' ] = 'extras[' . $ex->uid . ']';
+					
+					$extra_quantity_dropdown_disabled = ' disabled=" " ';
+					if ( $this->extraAlreadySelected( $ex->uid ) )
+						{
+						$extra_quantity_dropdown_disabled = ' ';
+						}
+					
+					if ( $ex->maxquantity > 1 )
+						{
+						$extra_deets[ 'INPUTBOX' ] = 
+							$extra_deets[ 'INPUTBOX' ] . "&nbsp;&nbsp;" . 
+							jomresHTML::integerSelectList( 01, $ex->maxquantity, 1, "quantity" . $ex->uid, 'size="1" class="input-mini"  autocomplete="off" '.$extra_quantity_dropdown_disabled.' onchange="getResponse_extrasquantity(\'extrasquantity\',this.value,' . $ex->uid . ');"', $extraDefaultQuantity, "%02d", $use_bootstrap_radios = false );
+						}
+					
+					$extra_deets[ 'AJAXFORM_EXTRAS' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS', _JOMRES_AJAXFORM_EXTRAS ) );
+					$extra_deets[ 'AJAXFORM_EXTRAS_DESC' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_DESC', _JOMRES_AJAXFORM_EXTRAS_DESC, false ) );
+					$extra_deets[ 'EXTRAS_TOTAL' ]         = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_TOTAL', _JOMRES_AJAXFORM_EXTRAS_TOTAL ) );
 
-				$checked = "";
-				if ( $this->extraAlreadySelected( $ex->uid ) || (int) $ex->auto_select == 1 )
-					{
-					$checked = " checked ";
-					$this->setExtras( $ex->uid );
-					$extraDefaultQuantity = $this->extrasquantities[ $ex->uid ];
+					$extra_details[ ] = $extra_deets;
 					}
-				else
-				$extraDefaultQuantity = 1;
-				$inputId = preg_replace( '/[^A-Za-z0-9_-]+/', "", $ex->name );
-				if ( strlen( $inputId ) == 0 ) $inputId = generateJomresRandomString( 10 );
-				$firstChar = $inputId[ 0 ]; // We'll add a simple test here to change the first char to X if the first character's actually a number, otherwise the getResponse_extras will not work.
-				if ( $firstChar == "0" || $firstChar == "1" || $firstChar == "2" || $firstChar == "3" || $firstChar == "4" || $firstChar == "5" || $firstChar == "6" || $firstChar == "7" || $firstChar == "8" || $firstChar == "9" ) $inputId = "X" . $inputId;
-
-				$clickUnlock = "";
-				//  Doesn't  work.
-				//if ($ex->maxquantity > 1)
-				//	$clickUnlock='jomresJquery(\'#'."quantity".$ex->uid.'\').removeAttr(\'disabled\'); ';
-				if ( $model[ 'force' ] != "1" )
-					{
-					$extra_deets[ 'INPUTBOX' ] = '<input id="extras_' . $ex->uid . '" type="checkbox" name="extras[' . $ex->uid . ']" value="' . $ex->uid . '" ' . $checked . ' autocomplete="off"  onClick="' . $clickUnlock . 'getResponse_extras(\'extras\',this.value,' . $ex->uid . ');" />';
-					}
-				else
-					{
-					$this->forcedExtras[ ] = $ex->uid;
-					$this->setExtras( $ex->uid );
-					$extra_deets[ 'INPUTBOX' ] = '<input id="extras_' . $ex->uid . '" type="checkbox" checked disabled=" " name="extras[' . $ex->uid . ']" value="' . $ex->uid . '" />';
-					}
-				$extra_deets[ 'FIELDNAME' ] = 'extras[' . $ex->uid . ']';
-				
-				$extra_quantity_dropdown_disabled = ' disabled=" " ';
-				if ( $this->extraAlreadySelected( $ex->uid ) )
-					{
-					$extra_quantity_dropdown_disabled = ' ';
-					}
-				
-				if ( $ex->maxquantity > 1 )
-					{
-					$extra_deets[ 'INPUTBOX' ] = 
-						$extra_deets[ 'INPUTBOX' ] . "&nbsp;&nbsp;" . 
-						jomresHTML::integerSelectList( 01, $ex->maxquantity, 1, "quantity" . $ex->uid, 'size="1" class="input-mini"  autocomplete="off" '.$extra_quantity_dropdown_disabled.' onchange="getResponse_extrasquantity(\'extrasquantity\',this.value,' . $ex->uid . ');"', $extraDefaultQuantity, "%02d", $use_bootstrap_radios = false );
-					}
-				
-				$extra_deets[ 'AJAXFORM_EXTRAS' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS', _JOMRES_AJAXFORM_EXTRAS ) );
-				$extra_deets[ 'AJAXFORM_EXTRAS_DESC' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_DESC', _JOMRES_AJAXFORM_EXTRAS_DESC, false ) );
-				$extra_deets[ 'EXTRAS_TOTAL' ]         = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_TOTAL', _JOMRES_AJAXFORM_EXTRAS_TOTAL ) );
-
-				$extra_details[ ] = $extra_deets;
 				}
 			}
 		$MiniComponents = jomres_getSingleton( 'mcHandler' );
@@ -1105,11 +1131,17 @@ class dobooking
 					$tpe[ 'THIRD_PARTY_EXTRA' ] = $val;
 					$third_party_extras[ ]      = $tpe;
 					}
-
 				}
 			}
-
-		return array ( "core_extras" => $extra_details, "third_party_extras" => $third_party_extras );
+		
+		$pageoutput[]=$output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		$tmpl->addRows( 'extras',$extra_details);
+		$tmpl->readTemplatesFromInput( 'dobooking_extras.html' );
+		$extras_template = $tmpl->getParsedTemplate();
+		
+		return array ( "core_extras" => $extras_template, "third_party_extras" => $third_party_extras );
 		}
 
 	/**
@@ -5046,11 +5078,11 @@ class dobooking
 			{
 			$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 			$jomres_media_centre_images->get_images($this->property_uid, array('room_features'));
-		
+
 			$roomFeatureDescriptions = "";
 			foreach ( $roomFeatureUidsArray as $featureUid )
 				{
-				$feature_image = '';
+				$feature_image = $jomres_media_centre_images->multi_query_images['noimage-small'];
 				if (isset($jomres_media_centre_images->images['room_features'][ $featureUid][0]['small']))
 					$feature_image =  ' <img src="'.$jomres_media_centre_images->images['room_features'][ $featureUid][0]['small'].'" />';
 
