@@ -424,6 +424,11 @@ if ( $field != "heartbeat" && $field != "show_log" && $field != "email_usage_che
 
 			if ( $bkg->cfg_showExtras )
 				{
+				$ex                 = $bkg->makeExtras( $pid );
+				$extra_details      = $ex[ 'core_extras' ];
+
+				echo '; populateDiv("core_extras","' . $bkg->sanitise_for_eval($extra_details) . '");';
+
 				echo '; populateDiv("extrastotal","' . output_price( $bkg->getExtrasTotal() ) . '")';
 				echo '; populateDiv("extrastotal_totals_panel","' . output_price( $bkg->getExtrasTotal() ) . '")';
 				}
@@ -463,7 +468,8 @@ if ( $field != "heartbeat" && $field != "show_log" && $field != "email_usage_che
 
 			}
 		else
-		$bkg->setErrorLog( "handlereq:: Field " . $lastfield . " exempt from pricing rebuild" );
+			$bkg->setErrorLog( "handlereq:: Field " . $lastfield . " exempt from pricing rebuild" );
+
 		}
 	else
 	$bkg->setErrorLog( "handlereq:: bkg check of arrival or departure date failed" );

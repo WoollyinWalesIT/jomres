@@ -445,8 +445,41 @@ function doTableUpdates()
 	save_configuration_file();
 	
 	if ( !checkInvoicePaymentXrefTableExists() ) createInvoicePaymentXrefTable();
-	
+	if ( !checkExtrasValidfromColExists() ) alterExtrasValidfromCol();
 	}
+
+function alterExtrasValidfromCol()
+	{
+	output_message ( "Editing __jomres_extras table adding validfrom column");
+	$query = "ALTER TABLE `#__jomres_extras` ADD `validfrom` DATETIME DEFAULT NULL AFTER `property_uid`";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_extras validfrom", "danger" );
+		}
+	$query = "ALTER TABLE `#__jomres_extras` ADD `validto` DATETIME DEFAULT NULL AFTER `validfrom`";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_extras validto", "danger" );
+		}
+	$query = "ALTER TABLE `#__jomres_extras` ADD `room_classes_uid` INTEGER AFTER `validto`";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_extras room_classes_uid", "danger" );
+		}
+	}
+
+function checkExtrasValidfromColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_extras LIKE 'validfrom'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
+
 
 function createInvoicePaymentXrefTable()
 	{
@@ -3006,6 +3039,8 @@ function createJomresTables()
 		`chargabledaily` BOOL NULL DEFAULT '0',
 		`published` TINYINT DEFAULT '1',
 		`property_uid` VARCHAR(11),
+		`validfrom` DATETIME DEFAULT NULL,
+		`validto` DATETIME DEFAULT NULL,
 		PRIMARY KEY ( `uid` )
 		) ";
 	if ( !doInsertSql( $query ) )
