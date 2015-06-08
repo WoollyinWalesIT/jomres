@@ -26,6 +26,9 @@ class j06000ajax_shortlist
 			}
 		$property_uid      = (int) $_REQUEST[ 'property_uid' ];
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+		
+		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		
 		$shortlist_items   = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
 		if ( ( get_showtime( 'this_property_published' ) && !in_array( $property_uid, $shortlist_items ) ) )
 			{
@@ -43,9 +46,21 @@ class j06000ajax_shortlist
 			$result = $tmpl->getParsedTemplate();
 			
 			echo $result;
-			
+
+			if ( $thisJRUser->userIsRegistered )
+				{
+				$query  = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE property_uid = '" . (int) $property_uid . "' AND `my_id` = '" . (int) $thisJRUser->id . "'";
+				$propys = doSelectSql( $query );
+				
+				if ( count( $propys ) < 1 )
+					{
+					$query = "INSERT INTO #__jomcomp_mufavourites (`my_id`,`property_uid`) VALUES ('" . (int) $thisJRUser->id . "','" . (int) $property_uid . "')";
+					//echo $query;
+					doInsertSql( $query, '' );
+					}
+				}
 			}
-		else
+		else // Remove from shortlist
 			{
 			$count = count( $shortlist_items );
 			if ( $count > 0 )
@@ -68,6 +83,19 @@ class j06000ajax_shortlist
 			$result = $tmpl->getParsedTemplate();
 			
 			echo $result;
+			
+			if ( $thisJRUser->userIsRegistered )
+				{
+				$query  = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE property_uid = '" . (int) $property_uid . "' AND `my_id` = '" . (int) $thisJRUser->id . "'";
+				$propys = doSelectSql( $query );
+				if ( count( $propys ) == 1 )
+					{
+					$query = "DELETE FROM #__jomcomp_mufavourites WHERE `my_id`='" . (int) $thisJRUser->id . "' AND `property_uid`='" . (int) $property_uid . "'";
+					//echo $query;
+					doInsertSql( $query, '' );
+					}
+				}
+
 			}
 		}
 
