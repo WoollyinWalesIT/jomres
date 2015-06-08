@@ -612,14 +612,15 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		foreach ( $bkg->room_feature_checkboxes as $feature )
 			{
 			$featureUid = $feature['ID'];
-			$rf                  = array ();
-			$rf[ 'INPUTBOX' ]    = $feature[ 'INPUTBOX' ];
-			$rf[ 'DESCRIPTION' ] = $feature[ 'DESCRIPTION' ];
 			
 			$feature_image =$jomres_media_centre_images->multi_query_images['noimage-small'];
 			if (isset($jomres_media_centre_images->images['room_features'][ $featureUid][0]['small']))
 				$feature_image =  $jomres_media_centre_images->images['room_features'][ $featureUid][0]['small'];
-					
+			
+			$rf                  = array ();
+			$rf[ 'INPUTBOX' ]    = $feature[ 'INPUTBOX' ];
+			$rf[ 'DESCRIPTION' ] = $feature[ 'DESCRIPTION' ];
+			
 			$rf[ 'IMAGE' ]       = $feature_image;
 			$roomfeatures[ ]     = $rf;
 			}
