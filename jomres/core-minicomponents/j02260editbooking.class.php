@@ -237,9 +237,12 @@ class j02260editbooking
 			$pageoutput = array ();
 
 			$output[ '_JOMRES_BOOKING_NUMBER' ] = jr_gettext( '_JOMRES_BOOKING_NUMBER', _JOMRES_BOOKING_NUMBER, $editable = true, $isLink = false );
+			
 			$output[ 'BOOKING_NUMBER' ]         = $current_contract_details->contract[$contract_uid]['contractdeets']['tag'];
 			$output[ 'GUEST_FIRSTNAME' ]        = $current_contract_details->contract[$contract_uid]['guestdeets']['firstname'];
 			$output[ 'GUEST_SURNAME' ]          = $current_contract_details->contract[$contract_uid]['guestdeets']['surname'];
+			$output[ 'GUEST_IMAGE' ]            = $current_contract_details->contract[$contract_uid]['guestdeets']['image'];
+
 			$output[ 'TOOLBAR' ]                = $jrtb;
 
 			$pageoutput[] = $output;

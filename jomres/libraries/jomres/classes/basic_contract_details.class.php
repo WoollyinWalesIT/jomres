@@ -89,6 +89,7 @@ class basic_contract_details
 						a.booking_data_archive_id,
 						a.secret_key,
 						a.booking_language,
+						b.mos_userid,
 						b.firstname,
 						b.surname,
 						b.house,
@@ -157,6 +158,13 @@ class basic_contract_details
 			$this->contract[$contract_uid]['contractdeets']['booking_data_archive_id']		= $contract->booking_data_archive_id;
 			
 			//guest details
+			
+			$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+			$jomres_media_centre_images->get_images($defaultProperty, array('room_features'));
+			$this->contract[$contract_uid]['guestdeets']['image'] = $jomres_media_centre_images->multi_query_images['noimage-small'];
+			if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . 'userimages' . JRDS . "userimage_" . (int) $contract->mos_userid . ".jpg" ) ) 
+				$this->contract[$contract_uid]['guestdeets']['image'] = JOMRES_IMAGELOCATION_RELPATH . 'userimages/userimage_' . (int)  $contract->mos_userid . '_thumbnail.jpg';
+
 			$this->contract[$contract_uid]['guestdeets']['firstname'] = $contract->firstname;
 			$this->contract[$contract_uid]['guestdeets']['surname'] = $contract->surname;
 			$this->contract[$contract_uid]['guestdeets']['house'] = $contract->house;
