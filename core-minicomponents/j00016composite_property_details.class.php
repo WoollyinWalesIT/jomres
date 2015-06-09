@@ -63,7 +63,6 @@ class j00016composite_property_details
 
 		$output[ 'SLIDESHOW' ] = $MiniComponents->miniComponentData[ '01060' ][ 'slideshow' ][ 'slideshow' ];
 
-
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && $mrConfig[ 'visitorscanbookonline' ] == '1' && !isset( $_REQUEST[ 'jr_printable' ] ) && $mrConfig[ 'showAvailabilityCalendar' ] )
 			{
 			$random_identifier = generateJomresRandomString( 10 );
@@ -146,11 +145,18 @@ class j00016composite_property_details
 			$tmpl->addRows( 'tabs_content', $tab_contents );
 			}
 
-		//var_dump( $output );exit;
-		
-		
+		$extras=array();
+		$componentArgs = array ( 'property_uid' => $property_uid );
+		$extras[0][ 'EXTRAS_TEMPLATE' ] =  $MiniComponents->specificEvent( '06000', 'show_property_extras', $componentArgs );
+
+		if ($extras[0][ 'EXTRAS_TEMPLATE' ] != "")
+			{
+			$extras[0][ 'TOUR_ID_TOUR_TARGET_EXTRAS_TITLE' ] =  jr_gettext( 'TOUR_ID_TOUR_TARGET_EXTRAS_TITLE', TOUR_ID_TOUR_TARGET_EXTRAS_TITLE );
+			}
+
 		$pageoutput[ ] = $output;
 		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->addRows( 'extras', $extras );
 		$tmpl->addRows( 'bookinglink', $bookinglink );
 		$tmpl->addRows( 'slideshowlink', $slideshowlink );
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 ) $tmpl->addRows( 'tariffslink', $tariffslink );
