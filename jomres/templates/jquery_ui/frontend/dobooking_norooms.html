@@ -285,15 +285,11 @@
 			<patTemplate:tmpl name="third_party_extras" type="simpleCondition" requiredVars="third_party_extra">
 				<tr>{THIRD_PARTY_EXTRA}</tr>
 			</patTemplate:tmpl>
-			<patTemplate:tmpl name="extras" type="simpleCondition" requiredVars="ajaxform_extras">
-				<tr>
-					<td>{INPUTBOX}</td>
-					<td colspan="2">{OVERLIB_DESCRIPTION}</td>
-					<td>{NAME}</td>
-					<td>{PRICE}</td>
-					<td align="right"><img src="{EXTRA_IMAGE}" class="thumbnail responsive" /></td>
-				</tr>
-			</patTemplate:tmpl>
+				<div id="core_extras">
+				<patTemplate:tmpl name="extras">
+				{EXTRAS_TEMPLATE}
+				</patTemplate:tmpl>
+				</div>
 		</table>
 	</div>
 	<br/>

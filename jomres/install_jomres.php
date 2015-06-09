@@ -2399,10 +2399,8 @@ function copyImages()
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'air_conditioning.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'air_conditioning.png' );
 
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'airport_nearby.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'airport_nearby.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'allinc.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'allinc.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'baby_friendly.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'baby_friendly.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'xmas_partys.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'xmas_partys.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'world_heritage.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'world_heritage.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'wildlife.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'wildlife.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'wifi.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'wifi.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'whalewatching.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'whalewatching.png' );
@@ -2415,31 +2413,24 @@ function copyImages()
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'toilets.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'toilets.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'tennis.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'tennis.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'telephone.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'telephone.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'sunbed.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'sunbed.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'snorkelling.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'snorkelling.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'smokers_welcome.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'smokers_welcome.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'Skionsite.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'Skionsite.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'shuttle_service.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'shuttle_service.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'shower_only.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'shower_only.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'scuba.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'scuba.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'scenicviews.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'scenicviews.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'sailing.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'sailing.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'room_telephone.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'room_telephone.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'room_service.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'room_service.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'riding.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'riding.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'restraunt.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'restraunt.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'restraunt2.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'restraunt2.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'ranger.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'ranger.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'quietlocation.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'quietlocation.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'pool.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'pool.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'play_area.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'play_area.png' );
+
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'picnic_area.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'picnic_area.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'pets_welcome.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'pets_welcome.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'parking.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'parking.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'Ownermanaged.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'Ownermanaged.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'other_accommodation.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'other_accommodation.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'no_smoking.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'no_smoking.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'nationaltrust.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'nationaltrust.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'mountain_bike.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'mountain_bike.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'meeting_room.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'meeting_room.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'medicare.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'medicare.png' );
@@ -2456,7 +2447,6 @@ function copyImages()
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'historichouses.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'historichouses.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'hiking.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'hiking.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'helicopterpad.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'helicopterpad.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'haunted.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'haunted.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'hairdryer.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'hairdryer.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'hairdresser.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'hairdresser.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'gym.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'gym.png' );
@@ -2476,8 +2466,6 @@ function copyImages()
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'fees_pound.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'fees_pound.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'fees_euro.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'fees_euro.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'fees.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'fees.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'entrance_fees.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'entrance_fees.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'englishheritage.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'englishheritage.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'elevator.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'elevator.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'DVDVideo.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'DVDVideo.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'drinking_water.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'drinking_water.png' );
@@ -2487,16 +2475,13 @@ function copyImages()
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'disabled_facilities.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'disabled_facilities.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'disabled_access.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'disabled_access.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'cycle_paths.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'cycle_paths.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'croquet.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'croquet.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'conference_facilities.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'conference_facilities.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'concierge.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'concierge.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'cinema.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'cinema.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'CDplayer.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'CDplayer.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'casino.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'casino.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'caravan.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'caravan.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'car_rental.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'car_rental.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'canoeing.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'canoeing.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'camping_fees.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'camping_fees.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'camping_area.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'camping_area.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'campfire.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'campfire.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'board_walk.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'board_walk.png' );
@@ -3622,7 +3607,6 @@ function insertSampleData()
 	$result = doInsertSql( "INSERT INTO `#__jomres_hotel_features` (`hotel_features_uid`, `hotel_feature_abbv`, `hotel_feature_full_desc`, `image`, `property_uid`, `ptype_xref`) VALUES
 			(3, 'Airport', 'Close to the airport', 'airport_nearby.png', '0', 0),
 			(4, 'Minibar', 'Minibar in room', 'air_conditioning.png', '0', 1),
-			(5, 'All Inclusive', 'All inclusive rates available', 'allinc.png', '0', 0),
 			(6, 'Family Friendly', 'Children Welcome', 'baby_friendly.png', '0', 1),
 			(7, 'Balcony', 'Some rooms have balconies', 'balcony.png', '0', 1),
 			(8, 'Waiter', 'Waiter Service', 'bar.png', '0', 1),
@@ -3631,12 +3615,9 @@ function insertSampleData()
 			(11, 'Fireplace', 'Enjoy the ambiance of a natural fire', 'bbq_facilities.png', '0', 1),
 			(12, 'Beach', 'Close to the beach', 'beach.png', '0', 0),
 			(13, 'Birdwatching', 'Bird hide onsite or nearby', 'bird_hide.png', '0', 0),
-			(14, 'Boardwalk', 'Boardwalk on site', 'board_walk.png', '0', 4),
 			(15, 'Campfires', 'Campfires allowed', 'campfire.png', '0', 4),
-			(16, 'Tents', 'Tents for hire', 'camping_fees.png', '0', 4),
 			(17, 'Canoeing', 'Canoeing/Kayaking', 'canoeing.png', '0', 0),
 			(18, 'Caravans', 'Caravanning facilities', 'caravan.png', '0', 4),
-			(19, 'Car rental', 'Car rental can be arranged', 'car_rental.png', '0', 1),
 			(20, 'Casino', 'Casino on premesis', 'casino.png', '0', 1),
 			(21, 'Clubbing', 'Nightclub onsite or nearby', 'CDplayer.png', '0', 1),
 			(22, 'Safe', 'Safe available', 'hotel_safe.png', '0', 1),
@@ -3648,7 +3629,6 @@ function insertSampleData()
 			(28, 'Dogs welcome', 'Dog friendly ', 'dogs_permitted.png', '0', 0),
 			(29, 'DVD', 'Rooms have DVD players', 'DVDVideo.png', '0', 1),
 			(30, 'Elevator', 'Elevator', 'elevator.png', '0', 1),
-			(31, 'English Heritage', 'English Heritage sites nearby', 'englishheritage.png', '0', 0),
 			(32, '24hr service', '24hr Room service', '24hour.png', '0', 1),
 			(33, 'Bureau de change', 'Bureau de change available onsite', 'fees.png', '0', 1),
 			(34, 'Bureau de change', 'Bureau de change available onsite', 'fees_euro.png', '0', 1),
@@ -3660,7 +3640,6 @@ function insertSampleData()
 			(40, 'Gym', 'Gymnasium onsite', 'gym2.png', '0', 1),
 			(41, 'Hairdresser', 'Hairdresser onsite', 'hairdresser.png', '0', 1),
 			(42, 'Hairdryer', 'Hair dryer in every room', 'hairdryer.png', '0', 1),
-			(43, 'Haunted', 'Ghoulies and Ghosties in the rafters', 'haunted.png', '0', 0),
 			(44, 'Helipad', 'Helicopter pad', 'helicopterpad.png', '0', 1),
 			(45, 'Hiking', 'Popular hiking area', 'hiking.png', '0', 0),
 			(46, 'Information', 'Information services available onsite', 'info2.png', '0', 0),
@@ -3668,28 +3647,21 @@ function insertSampleData()
 			(48, 'Beverages', 'Beverages in all rooms', 'in_room_teacoffee.png', '0', 1),
 			(49, 'Iron', 'Iron in every room', 'iron.png', '0', 1),
 			(50, 'Jacuzzi', 'Jacuzzi onsite', 'jacuzzi.png', '0', 1),
-			(51, 'National Trust', 'National Trust', 'nationaltrust.png', '0', 0),
 			(52, 'No smoking', 'Smoke free establishment', 'no_smoking.png', '0', 0),
 			(53, 'Owner managed', 'Owner managed property', 'Ownermanaged.png', '0', 0),
 			(54, 'Parking', 'Parking available', 'parking.png', '0', 1),
 			(55, 'Pets welcome', 'Pet friendly', 'pets_welcome.png', '0', 0),
 			(56, 'Picnic area', 'Picnicers welcome', 'picnic_area.png', '0', 0),
-			(57, 'Play area', 'Children''s play area onsite', 'play_area.png', '0', 0),
 			(58, 'Pool', 'Swiming', 'pool.png', '0', 0),
-			(59, 'Quiet/Rural ', 'Property is in a quiet and/or rural location', 'quietlocation.png', '0', 0),
 			(60, 'Ranger', 'Ranger station here', 'ranger.png', '0', 0),
 			(61, 'Restaurant', 'Restraunt onsite', 'restraunt2.png', '0', 1),
-			(62, 'Pony Trekking', 'Pony trekking onsite or nearby', 'riding.png', '0', 0),
-			(63, 'Telephone', 'Telephone in every room', 'room_telephone.png', '0', 1),
 			(64, 'Water sports', 'Water sport facilities onsite or nearby', 'sailing.png', '0', 0),
 			(65, 'Scuba', 'Scuba diving arranged', 'scuba.png', '0', 0),
-			(66, 'Scenic views', 'Scenic views ', 'scenicviews.png', '0', 0),
 			(67, 'Showers', 'showers in every room', 'shower_only.png', '0', 1),
 			(68, 'Shuttle', 'Shuttle service to airport and nightclub district available', 'shuttle_service.png', '0', 1),
 			(69, 'Winter Sports', 'Winter Sports facilities available', 'Skionsite.png', '0', 1),
 			(70, 'Smoking', 'Smokers welcome', 'smokers_welcome.png', '0', 0),
 			(71, 'Snorkelling', 'Snorkelling suitable here', 'snorkelling.png', '0', 0),
-			(72, 'Sunbed', 'Sunbed onsite', 'sunbed.png', '0', 1),
 			(73, 'Tennis courts', 'Tennis court onsite or nearby', 'tennis.png', '0', 0),
 			(74, 'Television', 'Television in every room', 'tv_in_room.png', '0', 1),
 			(75, 'Weddings', 'Weddings catered for', 'weddings.png', '0', 1),

@@ -55,7 +55,6 @@ class j06000ajax_shortlist
 				if ( count( $propys ) < 1 )
 					{
 					$query = "INSERT INTO #__jomcomp_mufavourites (`my_id`,`property_uid`) VALUES ('" . (int) $thisJRUser->id . "','" . (int) $property_uid . "')";
-					//echo $query;
 					doInsertSql( $query, '' );
 					}
 				}
@@ -91,7 +90,6 @@ class j06000ajax_shortlist
 				if ( count( $propys ) == 1 )
 					{
 					$query = "DELETE FROM #__jomcomp_mufavourites WHERE `my_id`='" . (int) $thisJRUser->id . "' AND `property_uid`='" . (int) $property_uid . "'";
-					//echo $query;
 					doInsertSql( $query, '' );
 					}
 				}
