@@ -12,7 +12,7 @@
 
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 
-$jrConfig[ 'defaultCrate' ]        = 'default';
+$jrConfig[ 'defaultCrate' ]        = '1';
 $jrConfig[ 'property_list_limit' ] = '5';
 $jrConfig[ 'useGlobalCurrency' ]   = '0';
 $jrConfig[ 'globalCurrency' ]      = '€';
