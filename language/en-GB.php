@@ -2532,3 +2532,5 @@ jr_define('_OPENEXCHANGE_API_DESC','To convert prices between services you will 
 jr_define('_JOMRES_COMMISSION',"Commission");
 
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS',"If you upload multiple images for individual optional extras, only the first image will be used.");
+
+jr_define('_JOMRES_EXTRAS_TEMPLATE',"Here's a list of some of the great things you can purchase while making a booking at this property. ");
