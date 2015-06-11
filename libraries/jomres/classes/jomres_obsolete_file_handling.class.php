@@ -1025,6 +1025,30 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . 'suspended.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . 'suspended.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap3_backend . 'suspended.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'edit_subscription_package.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'edit_subscription_package.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_administrator . 'edit_subscription_package.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'list_subscription_packages.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'list_subscription_packages.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_administrator . 'list_subscription_packages.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'list_subscriptions.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'list_subscriptions.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_administrator . 'list_subscriptions.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'subscription_warning.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'subscription_warning.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_administrator . 'subscription_warning.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'frontend_list_my_subscriptions.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'frontend_list_my_subscriptions.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'frontend_list_my_subscriptions.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'frontend_list_subscription_packages.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'frontend_list_subscription_packages.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'frontend_list_subscription_packages.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'frontend_subscriber_register.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'frontend_subscriber_register.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'frontend_subscriber_register.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'subscription_error_incomplete_details.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'subscription_error_incomplete_details.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'subscription_error_incomplete_details.html' );
 		
 		$this->add_obs_file( $this->dir_minicomponents . 'j16000savecrate.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j16000archivecrates.class.php' );
@@ -1037,6 +1061,19 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j16000listpropertys.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j16000list_properties_initials.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j06002suspended.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06000cron_subscriptions.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_13_mysubscriptions.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06002list_my_subscriptions.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06002my_subscriptions.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06005list_subscription_packages.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j10002subscriptions.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j10002subscriptions_packages.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06005subscribe.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06005save_subscriber.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06000canc_subscribed.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06000subscribed.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00050subscriptions.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06002cannot_publish.class.php' );
 		
 		$this->add_obs_file( $this->dir_classes . 'crateTypes.class.php' );
 		$this->add_obs_file( $this->dir_classes . 'jrportal_crate.class.php' );
@@ -1046,6 +1083,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_classes . 'jrportal_booking.class.php' );
 		$this->add_obs_file( $this->dir_classes . 'jrportal_booking_functions.class.php' );
 		$this->add_obs_file( $this->dir_classes . 'jrportal_user.class.php' );
+		$this->add_obs_file( $this->dir_classes . 'jrportal_subscribers.class.php' );
+		$this->add_obs_file( $this->dir_classes . 'jrportal_subscriptions_packages.class.php' );
 		
 		$this->add_obs_file( $this->dir_admin . 'admin.jomres.bootstrap-html.php' );
 		$this->add_obs_file( $this->dir_admin . 'admin.jomres.html.php' );

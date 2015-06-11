@@ -43,6 +43,7 @@ class j06005save_my_account
 		$fax        = (string) jomresGetParam( $_REQUEST, 'fax', "" );
 		$email      = (string) jomresGetParam( $_REQUEST, 'email', "" );
 		$vat_number = trim(filter_var( $_REQUEST[ 'vat_number' ], FILTER_SANITIZE_STRING ));
+		$return_url = (string) jomresGetParam( $_REQUEST, 'return_url', "" );
 
 		$original_vat_number = $thisJRUser->vat_number;
 		$original_vat_number_validated = (int)$thisJRUser->vat_number_validated;
@@ -99,7 +100,13 @@ class j06005save_my_account
 				}
 			}
 		
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=edit_my_account" ) );
+		if ($return_url != "")
+			{
+			$return_url = base64_decode($return_url);
+			jomresRedirect( $return_url, "" );
+			}
+		else
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=edit_my_account" ), "" );
 		}
 
 	/**

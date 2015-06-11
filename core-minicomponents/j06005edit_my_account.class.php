@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j06005edit_my_account
 	{
-	function __construct()
+	function __construct($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -48,6 +48,11 @@ class j06005edit_my_account
 		$output[ 'MOBILE' ]    = '';
 		$output[ 'EMAIL' ]     = $user_details[ $thisJRUser->id ][ 'email' ];
 		$output[ 'IMAGE' ]	   = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/noimage.gif";
+		
+		if (isset($componentArgs['return_url']) && $componentArgs['return_url'] != '')
+			$output[ 'RETURN_URL' ] = $componentArgs['return_url'];
+		else
+			$output[ 'RETURN_URL' ] = '';
 
 		if ( $thisJRUser->id > 0 )
 			{

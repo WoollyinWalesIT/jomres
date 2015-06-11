@@ -41,9 +41,7 @@ width: auto;
 	<div class="clearfix"></div>
 	{SANITY_CHECKS}
 	<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
-		<script type="text/javascript"><!--
-		jomresJquery.jGrowl("{MESSAGE}", { life: 10000 });//-->
-		</script>
+		<div class="alert alert-warning">{MESSAGE}</div>
 	</patTemplate:tmpl>
 	<patTemplate:tmpl name="sticky_messages" type="simpleCondition" requiredVars="message">
 		<script type="text/javascript"><!--

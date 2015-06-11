@@ -103,6 +103,10 @@ class jomres_suspensions
 			{
 			$query = "UPDATE #__jomres_propertys SET `published`=0 WHERE propertys_uid IN (".implode(',',$this->manager_properties).") ";
 			$result = doInsertSql( $query, '' );
+			
+			//clear cache
+			$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+			$c->eraseAll();
 			}
 		}
 
@@ -118,24 +122,13 @@ class jomres_suspensions
 			
 			foreach ( $this->manager_properties as $property_uid )
 				{
-				if ( $jrConfig[ 'useSubscriptions' ] == "1" )
-					{
-					$allowedProperties = subscribers_getAvailablePropertySlots( $this->jomres_system_manager_id );
-					$existingPublishedProperties = subscribers_getManagersPublishedProperties( $this->jomres_system_manager_id );
-					
-					if ( $allowedProperties > count( $existingPublishedProperties ) )
-						{
-						$query = "UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = '" . (int) $property_uid . "'";
-						doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', _JOMRES_MR_AUDIT_PUBLISH_PROPERTY, false ) );
-						}
-					}
-				else
-					{
-					$query = "UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = '" . (int) $property_uid . "'";
-					doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', _JOMRES_MR_AUDIT_PUBLISH_PROPERTY, false ) );
-					}
-
+				$query = "UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = '" . (int) $property_uid . "'";
+				doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', _JOMRES_MR_AUDIT_PUBLISH_PROPERTY, false ) );
 				}
+			
+			//clear cache
+			$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+			$c->eraseAll();
 			}
 		}
 

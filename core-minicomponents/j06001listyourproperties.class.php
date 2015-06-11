@@ -39,19 +39,6 @@ class j06001listyourproperties
 		$rows=array();
 		$subs=array();
 		
-		if ( $jrConfig[ 'useSubscriptions' ] == "1" )
-			{
-			if ( !$thisJRUser->superPropertyManager && $thisJRUser->accesslevel == 2 )
-				{
-				$allowedProperties  = subscribers_getAvailablePropertySlots( $thisJRUser->id );
-				$existingProperties = subscribers_getManagersPublishedProperties( $thisJRUser->id );
-				$subs[ 'SUBSCRIPTION_STATUS' ]=jr_gettext( '_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES1', _JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES1, false ) . $allowedProperties . jr_gettext( '_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES2', _JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES2, false );
-				$subs[ 'SUBSCRIPTION_STATUS' ].=jr_gettext( '_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES4', _JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES4, false ) . count( $existingProperties ) . jr_gettext( '_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES5', _JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES5, false );
-				if ( $allowedProperties == $existingProperties ) 
-					$subs[ 'SUBSCRIPTION_STATUS' ].=jr_gettext( '_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES3', _JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES3, false );
-				}
-			}
-		
 		$output[ 'PAGETITLE' ]          = jr_gettext( "_JOMRES_HLIST_PROPERTIES", _JOMRES_HLIST_PROPERTIES, false );
 		$output[ 'HSTATUS' ] 			= jr_gettext( "_JRPORTAL_INVOICES_STATUS", _JRPORTAL_INVOICES_STATUS );
 		$output[ 'HPROPERTYUID' ]       = 'Uid';

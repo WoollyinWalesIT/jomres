@@ -64,32 +64,12 @@ class j02272publishprop
 					}
 				else
 					{
-					if ( $jrConfig[ 'useSubscriptions' ] == "1" )
+					$query = "UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = " . (int) $defaultProperty . " LIMIT 1";
+					if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', _JOMRES_MR_AUDIT_PUBLISH_PROPERTY, false ) ) )
 						{
-						$allowedProperties           = subscribers_getAvailablePropertySlots( $thisJRUser->id );
-						$existingPublishedProperties = subscribers_getManagersPublishedProperties( $thisJRUser->id );
-						if ( $allowedProperties > count( $existingPublishedProperties ) || ( $thisJRUser->superPropertyManager && $thisJRUser->superPropertyManagersAreGods ) )
-							{
-							$query = "UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = " . (int) $defaultProperty . " LIMIT 1";
-							if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', _JOMRES_MR_AUDIT_PUBLISH_PROPERTY, false ) ) )
-								{
-								$MiniComponents->triggerEvent( '02273' ); // Optional trigger after property published
-								$jomres_messaging->set_message( jr_gettext( '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', _JOMRES_MR_AUDIT_PUBLISH_PROPERTY, false ) );
-								jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=listyourproperties" ), "" );
-								}
-							}
-						else
-							echo jr_gettext( '_JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH', _JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH, false );
-						}
-					else
-						{
-						$query = "UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = " . (int) $defaultProperty . " LIMIT 1";
-						if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', _JOMRES_MR_AUDIT_PUBLISH_PROPERTY, false ) ) )
-							{
-							$MiniComponents->triggerEvent( '02273' ); // Optional trigger after property published
-							$jomres_messaging->set_message( jr_gettext( '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', _JOMRES_MR_AUDIT_PUBLISH_PROPERTY, false ) );
-							jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=listyourproperties" ), "" );
-							}
+						$MiniComponents->triggerEvent( '02273' ); // Optional trigger after property published
+						$jomres_messaging->set_message( jr_gettext( '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', _JOMRES_MR_AUDIT_PUBLISH_PROPERTY, false ) );
+						jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=listyourproperties" ), "" );
 						}
 					}
 				}
@@ -111,5 +91,3 @@ class j02272publishprop
 		return null;
 		}
 	}
-
-?>

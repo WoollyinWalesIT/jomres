@@ -821,6 +821,25 @@ class jrportal_invoice
 		
 		$this->commitUpdateInvoice();
 		}
+	
+	//Mark an invoice as unpaid
+	function mark_invoice_unpaid()
+		{
+		if ( (int) $this->id == 0 )
+			{
+			error_logging( "Invoice id not set" );
+			return false;
+			}
+		
+		//delete payment items from the line items table
+		$query  = "DELETE FROM #__jomresportal_lineitems WHERE `inv_id` = " . (int) $this->id . " AND `is_payment` = 1 ";
+		$result = doInsertSql( $query, "" );
+		
+		$this->status = 0;
+		$this->paid = '0000-00-00 00:00:00';
+		
+		$this->commitUpdateInvoice();
+		}
 
 	//Mark an invoice as cancelled
 	function mark_invoice_cancelled()

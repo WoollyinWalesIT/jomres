@@ -29,8 +29,6 @@ class j06005list_invoices_ajax
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		$defaultProperty=getDefaultProperty();
 		$mrConfig=getPropertySpecificSettings($defaultProperty);
-		$jrportal_paypal_settings = jomres_singleton_abstract::getInstance( 'jrportal_paypal_settings' );
-		$paypal_settings = $jrportal_paypal_settings->get_paypal_settings();
 
 		$startDate		= jomresGetParam($_GET,'startDate','');
 		$endDate		= jomresGetParam($_GET,'endDate','');
@@ -106,9 +104,9 @@ class j06005list_invoices_ajax
 		elseif ($thisJRUser->userIsManager)
 			{
 			if ($show_all == 1)
-				$clause = "WHERE a.property_uid IN ('0'," . implode( ',',$thisJRUser->authorisedProperties ) . ") AND ";
+				$clause = "WHERE a.property_uid IN (0," . implode( ',',$thisJRUser->authorisedProperties ) . ") AND ";
 			else
-				$clause = "WHERE ( a.property_uid = '0' OR a.property_uid = '".(int)$defaultProperty."' ) AND ";
+				$clause = "WHERE ( a.property_uid = 0 OR a.property_uid = ".(int)$defaultProperty." ) AND ";
 			}
 		
 		//date interval filter
@@ -121,41 +119,41 @@ class j06005list_invoices_ajax
 		switch ($invoice_type)
 			{
 			case 1:
-				$clause .= "AND ( a.contract_id != '0' AND a.subscription = '0' AND a.is_commission = '0' ) ";
+				$clause .= "AND ( a.contract_id != 0 AND a.subscription = 0 AND a.is_commission = 0 ) ";
 				break;
 			case 2:
 				if ($thisJRUser->userIsManager && $thisJRUser->accesslevel > 1)
-					$clause .= "AND ( a.is_commission = '1' AND a.cms_user_id = '".(int)$thisJRUser->id."' ) ";
+					$clause .= "AND ( a.is_commission = 1 AND a.cms_user_id = ".(int)$thisJRUser->id." ) ";
 				else
-					$clause .= "AND ( a.subscription = '0' AND a.is_commission = '0' ) ";
+					$clause .= "AND ( a.subscription = 0 AND a.is_commission = 0 ) ";
 				break;
 			case 3:
 				if ($thisJRUser->accesslevel != 1)
-					$clause .= "AND ( a.subscription = '1' AND a.cms_user_id = '".(int)$thisJRUser->id."' ) ";
+					$clause .= "AND ( a.subscription = 1 AND a.cms_user_id = ".(int)$thisJRUser->id." ) ";
 				else
-					$clause .= "AND ( a.subscription = '0' AND a.is_commission = '0' ) ";
+					$clause .= "AND ( a.subscription = 0 AND a.is_commission = 0 ) ";
 				break;
 			default:
 				if ($thisJRUser->userIsRegistered && !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager)
-					$clause .= "AND a.cms_user_id = '".(int)$thisJRUser->id."' ";
+					$clause .= "AND a.cms_user_id = ".(int)$thisJRUser->id." ";
 				if ($thisJRUser->accesslevel == 1)
-					$clause .= "AND ( a.subscription = '0' AND a.is_commission = '0' ) ";
+					$clause .= "AND ( a.subscription = 0 AND a.is_commission = 0 ) ";
 				else
-					$clause .= "AND ( a.subscription = '0' OR ( a.subscription = '1' AND a.cms_user_id = '".(int)$thisJRUser->id."' ) ) AND ( a.is_commission = '0' OR ( a.is_commission = '1' AND a.cms_user_id = '".(int)$thisJRUser->id."' ) ) ";
+					$clause .= "AND ( a.subscription = 0 OR ( a.subscription = 1 AND a.cms_user_id = ".(int)$thisJRUser->id." ) ) AND ( a.is_commission = 0 OR ( a.is_commission = 1 AND a.cms_user_id = ".(int)$thisJRUser->id." ) ) ";
 				break;
 			}
 		
 		//status
 		if ($invoice_status != 4)
-			$clause .="AND a.status = '".$invoice_status."' ";
+			$clause .="AND a.status = ".$invoice_status." ";
 			
 		//users invoices - not used
 		if ($thisJRUser->userIsRegistered && !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager)
-			$clause .= "AND a.cms_user_id = '".(int)$thisJRUser->id."' ";
+			$clause .= "AND a.cms_user_id = ".(int)$thisJRUser->id." ";
 		
 		//specific guest
 		if ($guest_id != 0)
-			$clause .="AND d.guest_uid = '".$guest_id."' ";
+			$clause .="AND d.guest_uid = ".$guest_id." ";
 		
 		/*
 		 * Build and execute the query
@@ -180,18 +178,18 @@ class j06005list_invoices_ajax
 					a.is_commission, 
 					GROUP_CONCAT(DISTINCT b.name SEPARATOR '<br>') AS line_items, 
 					SUM( CASE WHEN b.init_total_inclusive < 0 THEN 0 ELSE b.init_total_inclusive END ) AS grand_total, 
-					c.firstname, 
-					c.surname,
 					d.guest_uid, 
 					d.tag,
 					d.currency_code,
-					d.approved
+					d.approved,
+					CASE WHEN (a.subscription = 1 OR a.is_commission = 1) THEN e.firstname ELSE c.firstname END AS firstname, 
+					CASE WHEN (a.subscription = 1 OR a.is_commission = 1) THEN e.surname ELSE c.surname END AS surname  
 				FROM #__jomresportal_invoices a 
 					JOIN #__jomresportal_lineitems b ON a.id = b.inv_id 
 					LEFT JOIN #__jomres_contracts d ON a.id = d.invoice_uid 
-					LEFT JOIN #__jomres_guests c ON ( a.guest_id != 0 AND a.guest_id = c.guests_uid ) 
-													OR ( d.guest_uid != 0 AND d.guest_uid = c.guests_uid ) "
-													//OR ( a.cms_user_id != 0 AND a.cms_user_id = c.mos_userid ) "
+					LEFT JOIN #__jomres_guests c ON (( a.guest_id != 0 AND a.guest_id = c.guests_uid ) 
+													OR ( d.guest_uid != 0 AND d.guest_uid = c.guests_uid ))  
+					LEFT JOIN #__jomres_guest_profile e ON a.cms_user_id = e.cms_user_id "
 				. $clause 
 				. ' ' . $sWhere 
 				. " GROUP BY a.id " 
@@ -318,27 +316,13 @@ class j06005list_invoices_ajax
 			$r[] = output_price($p->grand_total,$p->currencycode);
 			$r[] = output_price($p->init_total,$p->currencycode);
 			
-			//paypal stuff
-			if (((int)$p->is_commission == 1 || (int)$p->subscription == 1) && (int)$p->status == 3 && $paypal_settings[ 'email' ] != "")
-				$r[] = '<a href="' . JOMRES_SITEPAGE_URL . '&task=immediatepay&id=' . $p->id . '"><img src = "' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/btn_paynow_SM.gif" /></a>';
-			elseif ((int)$p->contract_id != 0 && (int)$p->status == 3 && !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager && $p->approved == 1) 
+			//gateways stuff
+			if ( (int)$p->status == 3 )
 				{
-				if ( $paypal_settings[ 'override' ] == "1" && $paypal_settings[ 'email' ] != "")
-					$r[] = '<a href="' . JOMRES_SITEPAGE_URL . '&task=immediatepay&id=' . $p->id . '"><img src = "' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/btn_paynow_SM.gif" /></a>';
+				if (!using_bootstrap())
+					$r[] = '<a href="' . JOMRES_SITEPAGE_URL_NOSEF . '&task=list_gateways_for_invoice&invoice_id=' . $p->id . '">'.jr_gettext( '_JRPORTAL_INVOICES_PAYNOW', _JRPORTAL_INVOICES_PAYNOW, false ).'</a>';
 				else
-					{
-					$paypalPropertySpecificSettings=array();
-					$query = "SELECT setting, value FROM #__jomres_pluginsettings WHERE prid = '".$p->property_uid."' AND plugin = 'paypal' ";
-					$settingsList = doSelectSql( $query );
-					foreach ($settingsList as $s)
-						{
-						$paypalPropertySpecificSettings[$s->setting] = $s->value;
-						}
-					if ( $paypalPropertySpecificSettings['active'] == '1' && $paypalPropertySpecificSettings['paypalemail'] != '' )
-						$r[] = '<a href="' . JOMRES_SITEPAGE_URL . '&task=immediatepay&id=' . $p->id . '"><img src = "' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/btn_paynow_SM.gif" /></a>';
-					else
-						$r[] = '';
-					}
+					$r[] = '<a href="' . JOMRES_SITEPAGE_URL_NOSEF . '&task=list_gateways_for_invoice&invoice_id=' . $p->id . '" class="btn btn-success btn-sm"><i class="fa fa-credit-card"></i> '.jr_gettext( '_JRPORTAL_INVOICES_PAYNOW', _JRPORTAL_INVOICES_PAYNOW, false ).'</a>';
 				}
 			else
 				$r[] = '';

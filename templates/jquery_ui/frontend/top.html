@@ -33,9 +33,7 @@
 		<div style="clear:both;"></div>
 		{SANITY_CHECKS}
 		<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
-			<script type="text/javascript"><!--
-			jomresJquery.jGrowl("{MESSAGE}", { life: 10000 });//-->
-			</script>
+			<div class="ui-state-highlight">{MESSAGE}</div>
 		</patTemplate:tmpl>
 		<patTemplate:tmpl name="sticky_messages" type="simpleCondition" requiredVars="message">
 			<script type="text/javascript"><!--
