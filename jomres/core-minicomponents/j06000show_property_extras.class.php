@@ -22,7 +22,7 @@ class j06000show_property_extras
 
 		if (isset($componentArgs['property_uid']))
 			$property_uid = (int)$componentArgs['property_uid'];
-		elseif ( isset ( $_REQUEST ['property_uid'] ))
+		elseif ( isset ( $_REQUEST ['p_uid'] ))
 			$property_uid = (int)$_REQUEST ['p_uid'];
 		else return;
 
