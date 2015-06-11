@@ -195,7 +195,6 @@ class mcHandler
 	// Acutally calls the triggered event.
 	function triggerEvent( $eventPoint, $eventArgs = null )
 		{
-		$subscriptions_engine = jomres_singleton_abstract::getInstance( 'subscription_engine' );
 		$jomres_access_control = jomres_singleton_abstract::getInstance( 'jomres_access_control' );
 		global $ePointFilepath, $eLiveSite;
 		$retVal       = null;
@@ -225,20 +224,18 @@ class mcHandler
 							$eLiveSite          = str_replace( JRDS, "/", $eLiveSite );
 							set_showtime( 'eLiveSite', $eLiveSite );
 							$event = 'j' . $ePoint . $eName;
-							if ( $subscriptions_engine->check_minicomponent_can_be_run($event))
+
+							if ( !class_exists( $event ) )
 								{
-								if ( !class_exists( $event ) )
-									{
-									echo "Error, class " . $event . " does not exist. Most likely you've renamed a minicomponent file, but not the class in that file";
-									return;
-									}
-								set_showtime( 'current_minicomp', $event );
-								$e                                            = new $event( $eventArgs );
-								$retVal                                       = $e->getRetVals();
-								$this->miniComponentData[ $ePoint ][ $eName ] = $retVal;
-								set_showtime( 'current_minicomp', '' );
-								unset( $e );
+								echo "Error, class " . $event . " does not exist. Most likely you've renamed a minicomponent file, but not the class in that file";
+								return;
 								}
+							set_showtime( 'current_minicomp', $event );
+							$e                                            = new $event( $eventArgs );
+							$retVal                                       = $e->getRetVals();
+							$this->miniComponentData[ $ePoint ][ $eName ] = $retVal;
+							set_showtime( 'current_minicomp', '' );
+							unset( $e );
 							}
 						}
 					else
@@ -257,7 +254,6 @@ class mcHandler
 	function specificEvent( $eventPoint, $eventName, $eventArgs = null )
 		{
 		global $ePointFilepath, $eLiveSite;
-		$subscriptions_engine = jomres_singleton_abstract::getInstance( 'subscription_engine' );
 		$jomres_access_control = jomres_singleton_abstract::getInstance( 'jomres_access_control' );
 		$retVal                = null;
 		$eventClasses          = $this->registeredClasses;
@@ -284,15 +280,12 @@ class mcHandler
 							$eLiveSite          = str_replace( JRDS, "/", $eLiveSite );
 							set_showtime( 'eLiveSite', $eLiveSite );
 							$event = 'j' . $ePoint . $eName;
-							if ( $subscriptions_engine->check_minicomponent_can_be_run($event))
-								{
-								set_showtime( 'current_minicomp', $event );
-								$e                                            = new $event( $eventArgs );
-								$retVal                                       = $e->getRetVals();
-								$this->miniComponentData[ $ePoint ][ $eName ] = $retVal;
-								set_showtime( 'current_minicomp', '' );
-								unset( $e );
-								}
+							set_showtime( 'current_minicomp', $event );
+							$e                                            = new $event( $eventArgs );
+							$retVal                                       = $e->getRetVals();
+							$this->miniComponentData[ $ePoint ][ $eName ] = $retVal;
+							set_showtime( 'current_minicomp', '' );
+							unset( $e );
 							}
 						}
 					else

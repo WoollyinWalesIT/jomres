@@ -131,7 +131,7 @@ try
 
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 	$tmpBookingHandler->initBookingSession();
-
+	
 	$jomressession = $tmpBookingHandler->getJomressession();
 	set_showtime( 'jomressession', $jomressession );
 
@@ -201,7 +201,6 @@ try
 					else
 						{
 						$user_details = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( $thisJRUser->id );
-	
 						$tmpBookingHandler->updateGuestField( 'email', $user_details[ $thisJRUser->id ][ 'email' ] );
 						}
 					}
@@ -319,7 +318,6 @@ try
 	set_showtime( 'include_room_booking_functionality', true );
 	$MiniComponents->triggerEvent( '00005' );
 	$MiniComponents->triggerEvent( '00006' );
-	$MiniComponents->triggerEvent( '00007' );
 
 	$MiniComponents->triggerEvent( '00060', array ( 'tz' => $tz, 'jomreslang' => $jomreslang ) ); // Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
 
