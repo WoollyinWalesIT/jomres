@@ -370,14 +370,13 @@ function doTableUpdates()
 	if ( !checkSubscriptionsTablesExist() )
 		{
 		createSubscriptionsTables();
-		jr_import( 'jomres_cron' );
-		$cron = new jomres_cron( $displayLog );
-		$cron->addJob( "subscriptions", "D", "" );
 		}
 	alterPropertyLatLongToChar12();
 	if ( !checkExtrasTaxrateColExists() ) alterExtrasTaxrateCol();
+	
 	if ( !checkSubscribersSubscriptionPackageIdColExists() ) alterSubscribersSubscriptionPackageIdCol();
-
+	if ( !checkSubscriptionExpirationDateColExists() ) doV9subscriptionUpdates();
+	
 	if ( !checkPfeaturesPtypeidColExists() ) alterPfeaturesPtypeidCol();
 	if ( !checkContractsInvoiceColExists() ) alterContractsInvoice();
 	if ( !checkGuestsDiscountColExists() ) alterGuestsDiscountCol();
@@ -2037,7 +2036,7 @@ function alterPfeaturesPtypeidCol()
 	$query = "ALTER TABLE `#__jomres_hotel_features` ADD `ptype_id` INT( 11 ) DEFAULT '0' NOT NULL AFTER `property_uid` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
-		output_message ( "Error, unable to add __jomresportal_subscriptions ptype_id", "danger" );
+		output_message ( "Error, unable to add __jomres_hotel_features ptype_id", "danger" );
 		}
 	}
 
@@ -2070,6 +2069,115 @@ function alterSubscribersSubscriptionPackageIdCol()
 		output_message ( "Error, unable to add __jomresportal_subscriptions package_id", "danger" );
 		}
 	}
+	
+function doV9subscriptionUpdates()
+	{
+	output_message ( "Dropping __jomresportal_subscribers table ");
+	$query = "DROP TABLE IF EXISTS `#__jomresportal_subscribers` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to drop __jomresportal_subscribers table", "danger" );
+		}
+	
+	output_message ( "Editing __jomresportal_subscriptions table dropping gateway_subscription_id, name, description, frequency, trial_period, trial_amount, full_amount, rooms_limit, property_limit columns");
+	$query = "ALTER TABLE `#__jomresportal_subscriptions` DROP COLUMN `gateway_subscription_id`, DROP COLUMN `name`, DROP COLUMN `description`, DROP COLUMN `frequency`, DROP COLUMN `trial_period`, DROP COLUMN `trial_amount`, DROP COLUMN `full_amount`, DROP COLUMN `rooms_limit`, DROP COLUMN `property_limit` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to drop gateway_subscription_id, name, description, frequency, trial_period, trial_amount, full_amount, rooms_limit, property_limit columns from the __jomresportal_subscriptions table", "danger" );
+		}
+
+	output_message ( "Editing __jomresportal_subscriptions table adding expiration_date column");
+	$query = "ALTER TABLE `#__jomresportal_subscriptions` ADD `expiration_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `raised_date` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomresportal_subscriptions expiration_date column", "danger" );
+		}
+	
+	output_message ( "Editing __jomresportal_subscriptions table adding invoice_id column");
+	$query = "ALTER TABLE `#__jomresportal_subscriptions` ADD `invoice_id` INT(11) NOT NULL DEFAULT '0' AFTER `expiration_date` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomresportal_subscriptions invoice_id column", "danger" );
+		}
+	
+	output_message ( "Editing __jomresportal_subscriptions_packages table dropping trial_amount, trial_period, rooms_limit, property_limit columns");
+	$query = "ALTER TABLE `#__jomresportal_subscriptions_packages` DROP COLUMN `trial_amount`, DROP COLUMN `trial_period`, DROP COLUMN `rooms_limit`, DROP COLUMN `property_limit` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to drop trial_amount, trial_period, rooms_limit, property_limit columns from the __jomresportal_subscriptions_packages table", "danger" );
+		}
+	
+	output_message ( "Editing __jomresportal_subscriptions_packages table adding currencycode column");
+	$query = "ALTER TABLE `#__jomresportal_subscriptions_packages` ADD `currencycode` VARCHAR(11) NOT NULL DEFAULT 'GBP' AFTER `tax_code_id` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomresportal_subscriptions_packages currencycode column", "danger" );
+		}
+	
+	output_message ( "Editing __jomresportal_subscriptions_packages table adding renewal_price column");
+	$query = "ALTER TABLE `#__jomresportal_subscriptions_packages` ADD `renewal_price` FLOAT AFTER `currencycode` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomresportal_subscriptions_packages renewal_price column", "danger" );
+		}
+	
+	output_message ( "Editing __jomresportal_subscriptions_packages table adding params column");
+	$query = "ALTER TABLE `#__jomresportal_subscriptions_packages` ADD `params` TEXT AFTER `renewal_price` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomresportal_subscriptions_packages params column", "danger" );
+		}
+	
+	output_message ( "Changing frequency column in __jomresportal_subscriptions_packages table to int(5) default 365");
+	$query = "ALTER TABLE `#__jomresportal_subscriptions_packages` MODIFY `frequency` INT(5) NOT NULL DEFAULT '365' ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to change frequency column in __jomresportal_subscriptions_packages to int(5)", "danger" );
+		}
+	
+	output_message ( "Changing raised_date column in __jomresportal_subscriptions table to DATETIME NOT NULL DEFAULT 0000-00-00 00:00:00 ");
+	$query = "ALTER TABLE `#__jomresportal_subscriptions` MODIFY `raised_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to change raised_date column in __jomresportal_subscriptions to DATETIME NOT NULL DEFAULT 0000-00-00 00:00:00", "danger" );
+		}
+
+	output_message ( "Altering table __jomresportal_subscriptions, creating new expiration_date index if necessary");
+	$query = "SHOW INDEX FROM `#__jomresportal_subscriptions` WHERE Key_name = 'expiration_date' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
+		{
+		$query = "ALTER TABLE `#__jomresportal_subscriptions` ADD INDEX expiration_date ( expiration_date ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
+		}
+	
+	output_message ( "Altering table __jomresportal_subscriptions, creating new status index if necessary");
+	$query = "SHOW INDEX FROM `#__jomresportal_subscriptions` WHERE Key_name = 'status' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
+		{
+		$query = "ALTER TABLE `#__jomresportal_subscriptions` ADD INDEX status ( status ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
+		}
+	
+	output_message ( "Altering table __jomresportal_subscriptions, creating new cms_user_id index if necessary");
+	$query = "SHOW INDEX FROM `#__jomresportal_subscriptions` WHERE Key_name = 'cms_user_id' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
+		{
+		$query = "ALTER TABLE `#__jomresportal_subscriptions` ADD INDEX cms_user_id ( cms_user_id ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
+		}
+	}
 
 function checkSubscribersSubscriptionPackageIdColExists()
 	{
@@ -2083,6 +2191,17 @@ function checkSubscribersSubscriptionPackageIdColExists()
 	return false;
 	}
 
+function checkSubscriptionExpirationDateColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomresportal_subscriptions LIKE 'expiration_date'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
 
 function alterExtrasTaxrateCol()
 	{
@@ -2119,46 +2238,27 @@ function alterPropertyLatLongToChar12()
 function createSubscriptionsTables()
 	{
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscriptions_packages` (
-	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	`id` INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 	`name` VARCHAR( 100 ),
 	`description` VARCHAR( 255 ),
 	`published` BOOL NOT NULL DEFAULT '1',
-	`frequency` CHAR(1) DEFAULT 'M',
-	`trial_period` SMALLINT NOT NULL DEFAULT '0',
-	`trial_amount` FLOAT NOT NULL DEFAULT '0.00',
+	`frequency` int(5) DEFAULT '365',
 	`full_amount` FLOAT,
-	`rooms_limit` int(11) NOT NULL default '0',
-	`property_limit` int(11) NOT NULL default '0',
-	`tax_code_id` int(11) NOT NULL default '0'
+	`tax_code_id` int(11) NOT NULL default '0',
+	`currencycode` varchar(3) NOT NULL default 'GBP',
+	`renewal_price` FLOAT,
+	`params` TEXT
 	)";
 	doInsertSql( $query, "" );
 
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscriptions` (
-	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-	`cms_user_id` int(11) NOT NULL default '0',
-	`gateway_subscription_id` CHAR( 255 ),
+	`id` INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	`cms_user_id` int(11) NOT NULL DEFAULT '0',
 	`package_id` INT NULL DEFAULT '0',
-	`name` VARCHAR( 20 ),
-	`description` VARCHAR( 255 ),
-	`frequency` CHAR(1) DEFAULT 'M',
-	`trial_period` SMALLINT NOT NULL DEFAULT '0',
-	`trial_amount` FLOAT NOT NULL DEFAULT '0.00',
-	`full_amount` FLOAT,
-	`rooms_limit` int(11) NOT NULL default '0',
-	`property_limit` int(11) NOT NULL default '0',
 	`status` SMALLINT NOT NULL DEFAULT '0',
-	`raised_date` datetime
-	)";
-	doInsertSql( $query, "" );
-
-	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscribers` (
-	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-	`cms_user_id` int(11) NOT NULL default '0',
-	`firstname` VARCHAR( 255 ),
-	`surname` VARCHAR( 255 ),
-	`address` VARCHAR( 255 ),
-	`country` VARCHAR( 255 ),
-	`postcode` VARCHAR( 255 )
+	`raised_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	`expiration_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	`invoice_id` int(11) NOT NULL DEFAULT '0'
 	)";
 	doInsertSql( $query, "" );
 	}
@@ -2172,7 +2272,7 @@ function checkSubscriptionsTablesExist()
 	$string      = "Tables_in_" . get_showtime("db");
 	foreach ( $result as $r )
 		{
-		if ( strstr( $r->$string, '__jomresportal_subscribers' ) ) return true;
+		if ( strstr( $r->$string, '__jomresportal_subscriptions' ) ) return true;
 		}
 
 	return false;
@@ -3365,17 +3465,16 @@ function createJomresTables()
 		}
 
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscriptions_packages` (
-	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	`id` INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 	`name` VARCHAR( 100 ),
 	`description` VARCHAR( 255 ),
 	`published` BOOL NOT NULL DEFAULT '1',
-	`frequency` CHAR(1) DEFAULT 'M',
-	`trial_period` SMALLINT NOT NULL DEFAULT '0',
-	`trial_amount` FLOAT NOT NULL DEFAULT '0.00',
+	`frequency` int(5) DEFAULT '365',
 	`full_amount` FLOAT,
-	`rooms_limit` int(11) NOT NULL default '0',
-	`property_limit` int(11) NOT NULL default '0',
-	`tax_code_id` int(11) NOT NULL default '0'
+	`tax_code_id` int(11) NOT NULL default '0',
+	`currencycode` varchar(3) NOT NULL default 'GBP',
+	`renewal_price` FLOAT,
+	`params` TEXT
 	)";
 	if ( !doInsertSql( $query ) )
 		{
@@ -3384,33 +3483,12 @@ function createJomresTables()
 
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscriptions` (
 	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-	`cms_user_id` int(11) NOT NULL default '0',
-	`gateway_subscription_id` CHAR( 255 ),
+	`cms_user_id` int(11) NOT NULL DEFAULT '0',
 	`package_id` INT NULL DEFAULT '0',
-	`name` VARCHAR( 20 ),
-	`description` VARCHAR( 255 ),
-	`frequency` CHAR(1) DEFAULT 'M',
-	`trial_period` SMALLINT NOT NULL DEFAULT '0',
-	`trial_amount` FLOAT NOT NULL DEFAULT '0.00',
-	`full_amount` FLOAT,
-	`rooms_limit` int(11) NOT NULL default '0',
-	`property_limit` int(11) NOT NULL default '0',
 	`status` SMALLINT NOT NULL DEFAULT '0',
-	`raised_date` datetime
-	)";
-	if ( !doInsertSql( $query ) )
-		{
-		output_message (  "Failed to run query: " . $query , "danger" );
-		}
-
-	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscribers` (
-	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-	`cms_user_id` int(11) NOT NULL default '0',
-	`firstname` VARCHAR( 255 ),
-	`surname` VARCHAR( 255 ),
-	`address` VARCHAR( 255 ),
-	`country` VARCHAR( 255 ),
-	`postcode` VARCHAR( 255 ) 
+	`raised_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	`expiration_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	`invoice_id` int(11) NOT NULL DEFAULT '0'
 	)";
 	if ( !doInsertSql( $query ) )
 		{
