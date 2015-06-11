@@ -58,7 +58,7 @@ class j06002list_emails
 			else
 				{
 				$toolbar->newToolbar();
-				$toolbar->addItem( 'icon-edit', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL .'&task=edit_email&email_type='.$t['type'] ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
+				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL .'&task=edit_email&email_type='.$t['type'] ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
 				$r['EDITLINK']=$toolbar->getToolbar();
 				}
 
