@@ -26,7 +26,7 @@ class j06005muviewfavourites
 		$tmpBookingHandler       = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		$shortlist_items         = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
 
-		$query  = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE `my_id` = '" . (int) $thisJRUser->id . "'";
+		$query  = "SELECT `property_uid` FROM #__jomcomp_mufavourites WHERE `my_id` = " . (int) $thisJRUser->id . " ";
 		$propys = doSelectSql( $query );
 		if ( count( $propys ) > 0 )
 			{
@@ -42,7 +42,7 @@ class j06005muviewfavourites
 			$MiniComponents->triggerEvent( '01006', $componentArgs ); // optional
 			$MiniComponents->triggerEvent( '01007', $componentArgs ); // optional
 			$componentArgs[ 'propertys_uid' ] = $shortlist_items;
-			$componentArgs[ 'live_scrolling_enabled' ] = false;
+			$componentArgs[ 'live_scrolling_enabled' ] = true;
 			$MiniComponents->triggerEvent( '01010', $componentArgs ); // listPropertys
 			}
 		else
