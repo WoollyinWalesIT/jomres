@@ -236,7 +236,6 @@ function showSiteConfig()
 	$lists[ 'useArrayCaching' ]                     = jomresHTML::selectList( $yesno, 'cfg_useArrayCaching', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useArrayCaching' ] );
 	$lists[ 'showLangDropdown' ]                    = jomresHTML::selectList( $yesno, 'cfg_showLangDropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'showLangDropdown' ] );
 	$lists[ 'useJomresMessaging' ]                  = jomresHTML::selectList( $yesno, 'cfg_useJomresMessaging', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useJomresMessaging' ] );
-	$lists[ 'useSubscriptions' ]                    = jomresHTML::selectList( $yesno, 'cfg_useSubscriptions', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useSubscriptions' ] );
 	$lists[ 'useNewusers' ]                         = jomresHTML::selectList( $yesno, 'cfg_useNewusers', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useNewusers' ] );
 	$lists[ 'outputHeadersInline' ]                 = jomresHTML::selectList( $yesno, 'cfg_outputHeadersInline', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'outputHeadersInline' ] );
 	$lists[ 'contact_owner_emails_to_alternative' ] = jomresHTML::selectList( $yesno, 'cfg_contact_owner_emails_to_alternative', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'contact_owner_emails_to_alternative' ] );

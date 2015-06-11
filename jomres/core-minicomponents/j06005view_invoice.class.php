@@ -29,7 +29,6 @@ class j06005view_invoice
 		$popup         			= intval( jomresGetParam( $_REQUEST, 'popup', 0 ) );
 		$bypass_security_check 	= false;
 		$return_template       	= false;
-		$show_paypal_link      	= true;
 		$output        			= array();
 		$pageoutput    			= array();
 		$rows          			= array();
@@ -39,7 +38,6 @@ class j06005view_invoice
 			{
 			$bypass_security_check = true;
 			$invoice_id            = $componentArgs[ 'invoice_id' ];
-			$show_paypal_link      = $componentArgs[ 'show_paypal_link' ];
 			$return_template       = true;
 			$popup                 = 1;
 			}
@@ -58,7 +56,7 @@ class j06005view_invoice
 		//Some security checks TODO: Is this really necessary here?
 		if ( !$bypass_security_check )
 			{
-			if ( (int) $invoice->contract_id > 0 && $invoice->is_commission == 0 ) // It's a guest's invoice being viewed either by the guest or a property manager for the appropriate property
+			if ( (int) $invoice->contract_id > 0 ) // It's a booking invoice being viewed either by the guest or a property manager for the appropriate property
 				{
 				if ( $thisJRUser->userIsManager )
 					{
@@ -93,7 +91,7 @@ class j06005view_invoice
 			}
 		//end security checks. If everything is fine so far, let`s move forward.
 		
-		if ( (int) $invoice->contract_id > 0 && $invoice->is_commission == 0 ) // It's a guest's invoice being viewed either by the guest or a property manager for the appropriate property
+		if ( (int) $invoice->contract_id > 0 ) // It's a booking invoice being viewed either by the guest or a property manager for the appropriate property
 			{
 			$mrConfig = getPropertySpecificSettings($invoice->property_uid);
 			
@@ -117,15 +115,7 @@ class j06005view_invoice
 		else //this is a commission/subscription invoice
 			{
 			$output[ 'BUSINESS_DETAILS_TEMPLATE' ] = $MiniComponents->specificEvent( '06000', 'show_site_business', array () );
-
-			if ( count( $thisJRUser->authorisedProperties ) > 0 )
-				{
-				$output[ 'CLIENT_DETAILS_TEMPLATE' ] = $MiniComponents->specificEvent( '06000', 'show_hotel_details', array ( 'property_uid' => $invoice->property_uid ) );
-				}
-			else // It's a subscription invoice. The manager doesn't yet have any properties, we need to pull their information from the profiles table.
-				{
-				$output[ 'CLIENT_DETAILS_TEMPLATE' ] = $MiniComponents->specificEvent( '06005', 'show_manager_details', array ( 'manager_profile_id' => $invoice->cms_user_id ) );
-				}
+			$output[ 'CLIENT_DETAILS_TEMPLATE' ] = $MiniComponents->specificEvent( '06005', 'show_manager_details', array ( 'manager_profile_id' => $invoice->cms_user_id ) );
 			}
 
 		if ( $popup != 1 )
@@ -202,34 +192,20 @@ class j06005view_invoice
 		$output[ 'HLI_TAX_RATE' ]        	  = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', _JRPORTAL_INVOICES_LINEITEMS_TAX_RATE );
 		$output[ 'HLI_TAX_AMOUNT' ]        	  = jr_gettext( '_JOMRES_COM_FRONT_ROOMTAX', _JOMRES_COM_FRONT_ROOMTAX );
 
-		$jrportal_paypal_settings = jomres_singleton_abstract::getInstance( 'jrportal_paypal_settings' );
-		$paypal_settings = $jrportal_paypal_settings->get_paypal_settings();
-
-		$settingArray = get_plugin_settings( "paypal", $invoice->property_uid );
-
-		if ( $show_paypal_link ) //paypal gateway is enabled
+		if ( (int)$invoice->status == 3 )
 			{
-			if ( !$thisJRUser->userIsManager ) //booking invoice viewed by a guest
-				{
-				if ( ( isset( $settingArray[ 'active' ] ) && $settingArray[ 'active' ] == "1" && $contract['approved'] == 1 ) || ( $invoice->subscription == 1 && $paypal_settings[ 'email' ] != "" && $invoice->status != "1" ) )
-					{
-					$ip                          = array ();
-					$immediate_pay               = array ();
-					$ip[ 'IMMEDIATE' ]           = jr_gettext( '_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY', _JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY );
-					$ip[ 'INV_ID' ]              = $invoice->id;
-					$ip[ 'LIVESITE' ]            = get_showtime( 'live_site' ) . '/';
-					$ip[ 'JOMRES_SITEPAGE_URL' ] = JOMRES_SITEPAGE_URL_NOSEF;
-					$immediate_pay[ ]            = $ip;
-					}
-				}
-			elseif ( $invoice->is_commission ) //commission invoice viewed by a manager
-				{
+			if ( 
+				(!$thisJRUser->userIsManager && $invoice->is_commission == 0 && $invoice->subscription == 0 && $contract['approved'] == 1) || //booking invoice viewed by guest
+				($thisJRUser->userIsManager && ($invoice->is_commission == 1 || $invoice->subscription == 1)) //subscirption or commission invoice viewed by a manager
+				)
+				{ 
+				//TODO clean this up and display gateway images or something
 				$ip                          = array ();
 				$immediate_pay               = array ();
-				$ip[ 'IMMEDIATE' ]           = jr_gettext( '_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY', _JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY );
+				$ip[ 'IMMEDIATE' ]           = jr_gettext( '_JRPORTAL_INVOICES_PAYNOW_DESC', _JRPORTAL_INVOICES_PAYNOW_DESC );
+				$ip[ 'PAYNOW' ]           	 = jr_gettext( '_JRPORTAL_INVOICES_PAYNOW', _JRPORTAL_INVOICES_PAYNOW );
 				$ip[ 'INV_ID' ]              = $invoice->id;
 				$ip[ 'LIVESITE' ]            = get_showtime( 'live_site' ) . '/';
-				$ip[ 'JOMRES_SITEPAGE_URL' ] = JOMRES_SITEPAGE_URL_NOSEF;
 				$immediate_pay[ ]            = $ip;
 				}
 			}

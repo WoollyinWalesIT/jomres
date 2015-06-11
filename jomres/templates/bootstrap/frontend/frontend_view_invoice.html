@@ -117,9 +117,9 @@
 	</tbody>
 </table>
 <patTemplate:tmpl name="immediate_pay" type="simpleCondition" requiredVars="IMMEDIATE">
-	<div class="alert" align="center">
+	<div class="alert alert-warning" align="center">
 		<p>{IMMEDIATE}</p>
-		<a href="{JOMRES_SITEPAGE_URL}&task=immediatepay&id={INV_ID}"><img src="{LIVESITE}/{JOMRES_ROOT_DIRECTORY}/images/btn_paynowCC_LG.gif"/></a>
+		<p><a href="{JOMRES_SITEPAGE_URL_NOSEF}&task=list_gateways_for_invoice&invoice_id={INV_ID}" class="btn btn-success"><i class="fa fa-credit-card"></i> {PAYNOW}</a></p>
 	</div>
 </patTemplate:tmpl>
 </patTemplate:tmpl>

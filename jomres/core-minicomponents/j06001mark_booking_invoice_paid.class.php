@@ -39,7 +39,7 @@ class j06001mark_booking_invoice_paid
 		$query = "SELECT contract_id FROM #__jomresportal_invoices WHERE id = " . $invoice_id . " AND property_uid = " . (int) $property_uid; // Need to associate the invoice id and the property uid. If we don't, then it could be a commission type invoice, which is not associated with a property uid and we don't want managers marking them as paid.
 		$result = doSelectSql( $query, 1 );
 		
-		if ( !$result )
+		if ( !$result || (int)$result < 1 ) //invoice could be a subscription or commission one, so contract id must be > 0
 			{
 			trigger_error( "Unable to view invoice, cannot corrolate id with property uid.", E_USER_ERROR );
 			return;
