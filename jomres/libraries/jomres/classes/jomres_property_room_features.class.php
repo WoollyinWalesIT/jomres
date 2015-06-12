@@ -52,6 +52,7 @@ class jomres_property_room_features
 					"feature_image_medium" => $feature_image_medium,
 					"feature_image_large" => $feature_image_large
 					);
+
 				}
 			}
 		}
@@ -75,24 +76,57 @@ class jomres_property_room_features
 		{
 		if ( count ( $room_feature_uids ) == 0 )
 			return '';
+
 		$rows=array();
-		
+
 		foreach ( $room_feature_uids as $feature_uid )
 			{
-			$r = array();
-			$r['FEATURE_UID'] = $feature_uid;
-			$r['ROOM_FEATURES_DESCRIPTION']	= $this->room_features[$feature_uid]['room_features_description'];
-			$r['FEATURE_IMAGE_SMALL']		= $this->room_features[$feature_uid]['feature_image_small'];
-			$r['FEATURE_IMAGE_MEDIUM']		= $this->room_features[$feature_uid]['feature_image_medium'];
-			$r['FEATURE_IMAGE_LARGE']		= $this->room_features[$feature_uid]['feature_image_large'];
-			$rows[]=$r;
+			if ((int)$feature_uid>0)
+				{
+				$r = array();
+				$r['IMAGE'] = $this->get_room_feature_image($feature_uid);
+				$rows[]=$r;
+				}
 			}
-
-		$tmpl = new patTemplate();
-		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'rows', $rows );
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		$tmpl->readTemplatesFromInput( 'show_room_features.html' );
-		return $tmpl->getParsedTemplate();
+		
+		if ( count($rows)>0)
+			{
+			$tmpl = new patTemplate();
+			$tmpl->addRows( 'pageoutput', $pageoutput );
+			$tmpl->addRows( 'rows', $rows );
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			$tmpl->readTemplatesFromInput( 'show_room_features.html' );
+			return $tmpl->getParsedTemplate();
+			}
+		else
+			return '';
 		}
+		
+	public function get_room_feature_image($feature_uid)
+		{
+		if ( (int) $feature_uid == 0 )
+			return '';
+
+		$pageoutput=array();
+
+		$r = array();
+		$r['FEATURE_UID'] = $feature_uid;
+		$r['ROOM_FEATURES_DESCRIPTION']	= $this->room_features[$feature_uid]['room_features_description'];
+		$r['FEATURE_IMAGE_SMALL']		= $this->room_features[$feature_uid]['feature_image_small'];
+		$r['FEATURE_IMAGE_MEDIUM']		= $this->room_features[$feature_uid]['feature_image_medium'];
+		$r['FEATURE_IMAGE_LARGE']		= $this->room_features[$feature_uid]['feature_image_large'];
+		$pageoutput[]=$r;
+
+		if ( count($pageoutput)>0)
+			{
+			$tmpl = new patTemplate();
+			$tmpl->addRows( 'pageoutput', $pageoutput );
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			$tmpl->readTemplatesFromInput( 'show_room_feature.html' );
+			return $tmpl->getParsedTemplate();
+			}
+		else
+			return '';
+		}
+	
 	}
