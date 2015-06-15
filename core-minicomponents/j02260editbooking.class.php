@@ -241,7 +241,6 @@ class j02260editbooking
 			$output[ 'BOOKING_NUMBER' ]         = $current_contract_details->contract[$contract_uid]['contractdeets']['tag'];
 			$output[ 'GUEST_FIRSTNAME' ]        = $current_contract_details->contract[$contract_uid]['guestdeets']['firstname'];
 			$output[ 'GUEST_SURNAME' ]          = $current_contract_details->contract[$contract_uid]['guestdeets']['surname'];
-			$output[ 'GUEST_IMAGE' ]            = $current_contract_details->contract[$contract_uid]['guestdeets']['image'];
 
 			$output[ 'TOOLBAR' ]                = $jrtb;
 
@@ -371,6 +370,7 @@ class j02260editbooking
 								. $current_contract_details->contract[$contract_uid]['contractdeets']['tag'];
 
 		$output[ 'EMAIL_ADDRESS' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['email'];
+		$output[ 'GUEST_IMAGE' ]   = $current_contract_details->contract[$contract_uid]['guestdeets']['image'];
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
