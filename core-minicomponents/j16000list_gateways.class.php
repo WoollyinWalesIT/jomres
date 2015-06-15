@@ -40,6 +40,7 @@ class j16000list_gateways
 			{
 			$output[ '_JOMRES_COM_A_GATEWAY_ENABLED' ]	= jr_gettext( "_JOMRES_COM_A_GATEWAY_ENABLED", _JOMRES_COM_A_GATEWAY_ENABLED, false );
 			$output[ 'TOUR_ID_TAB_GATEWAYS_TITLE' ]		= jr_gettext( "TOUR_ID_TAB_GATEWAYS_TITLE", TOUR_ID_TAB_GATEWAYS_TITLE, false );
+			$output[ 'GATEWAYS_INSTRUCTIONS' ]			= jr_gettext( "GATEWAYS_INSTRUCTIONS", GATEWAYS_INSTRUCTIONS, false );
 			
 			
 			$rows = array();
