@@ -37,10 +37,25 @@ class jrportal_payment_reference
 			}
 		}
 
-	function get_payment_details_for_reference ( $id )
+	function get_invoice_details_for_reference ( $id )
 		{
 		$this->payment_reference = (int)$id;
-		$query = "SELECT `invoice_id` , `gateway` FROM #__jomres_invoice_payment_ref  WHERE id = ".(int)$id . " LIMIT 1";
+		$query = "SELECT `invoice_id` FROM #__jomres_invoice_payment_ref  WHERE id = ".(int)$id . " LIMIT 1";
+		$invoice_id = doSelectSql($query,1);
+		if ($invoice_id != false )
+			{
+			return $this->get_invoice_data($invoice_id);
+			}
+		else
+			{
+			return false;
+			}
+		}
+	
+	function get_invoice_data($invoice_id)
+		{
+		//var_dump($invoice_id);exit;
+		$query = "SELECT `id`,`invoice_id`,`gateway` FROM #__jomres_invoice_payment_ref  WHERE invoice_id = ".(int)$invoice_id . " LIMIT 1";
 		$payment_details = doSelectSql($query,2);
 		
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
@@ -49,6 +64,8 @@ class jrportal_payment_reference
 		$prefix = "gateway_setting_".$payment_details['gateway']."_";
 		if (isset($jrConfig [ $prefix."active" ]))
 			{
+			$this->payment_reference = (int)$id;
+
 			if ($jrConfig [ $prefix."active" ] == "1")
 				{
 				$settings = array();
@@ -62,12 +79,13 @@ class jrportal_payment_reference
 					}
 				
 				$invoice = jomres_singleton_abstract::getInstance( 'basic_invoice_details' );
-				$invoice->gatherData($payment_details['invoice_id']);
+				$invoice->gatherData($invoice_id);
 				
 				$invoice_data = array();
 				$invoice_data['invoice_number']		= $payment_details['invoice_id'];
 				$invoice_data['currencycode']		= $invoice->currencycode;
 				$invoice_data['balance']			= $invoice->balance;
+				$invoice_data['line_items']			= $invoice->lineitems;
 				
 				$this->gateway_settings = $settings;
 				$this->invoice_data = $invoice_data;
@@ -75,6 +93,7 @@ class jrportal_payment_reference
 				$this->gateway = $payment_details['gateway'];
 				$this->invoice_id =$payment_details['invoice_id'];
 				
+				return array ( 'gateway' => $this->gateway , 'invoice_data' => $invoice_data , 'gateway_settings' => $this->gateway_settings , 'invoice_id' => $this->invoice_id , 'payment_reference' =>$payment_details['id']  );
 				}
 			else
 				{

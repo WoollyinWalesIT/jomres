@@ -53,8 +53,6 @@ class j06000list_gateways_for_invoice
 				
 				if ($jrConfig[$prefix.'_active'] == "1")
 					{
-					print_r($jrConfig);exit;
-				
 					$r = $gateway;
 					$r['LINK'] = JOMRES_SITEPAGE_URL."&task=invoice_payment_send&gateway=".$gateway['name']."&invoice_id=".$this->invoice_id;
 					$rows[]=$r;

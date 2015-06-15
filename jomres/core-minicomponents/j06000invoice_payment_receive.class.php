@@ -30,12 +30,12 @@ class j06000invoice_payment_receive
 
 		jr_import("jrportal_payment_reference");
 		$jrportal_payment_reference = new jrportal_payment_reference();
-		$jrportal_payment_reference->get_payment_details_for_reference ($payment_reference);
+		$invoice_data = $jrportal_payment_reference->get_invoice_details_for_reference ($payment_reference);
 
 		$event = "10510".$jrportal_payment_reference->gateway;
 		$path_to_classfile = $MiniComponents->registeredClasses[$event]['filepath'];
 		require_once($path_to_classfile."invoice_payment_receive.class.php");
-		$invoice_payment_receive = new invoice_payment_receive();
+		$invoice_payment_receive = new invoice_payment_receive($invoice_data);
 		
 		if ($invoice_payment_receive->confirm_payment())
 			{
@@ -45,9 +45,22 @@ class j06000invoice_payment_receive
 			$invoice = new jrportal_invoice();
 			$invoice->id = $jrportal_payment_reference->invoice_id;
 			$invoice->getInvoice();
+
+			if ( $invoice->subscription == "1" )
+				{
+				jr_import( 'jrportal_subscriptions' );
+				$subscription = new jrportal_subscriptions();
+				$subscription->subscription['id'] = $invoice->subscription_id;
+				$subscription->getSubscription();
+				$subscription->subscription['status'] = 1;
+				$subscription->commitUpdateSubscription();
+				}
+			
 			$invoice->mark_invoice_paid();
 			}
+		jomresRedirect( JOMRES_SITEPAGE_URL_NOSEF.'&task=my_subscriptions' );
 		}
+	
 
 	// This must be included in every Event/Mini-component
 	function getRetVals()

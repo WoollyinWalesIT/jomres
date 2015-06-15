@@ -32,60 +32,29 @@ class j06000invoice_payment_send
 		if ($invoice_number == "" || $gateway == "")
 			return;
 		
-		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig   = $siteConfig->get();
+		jr_import("jrportal_payment_reference");
+		$jrportal_payment_reference       = new jrportal_payment_reference();
 		
-		$prefix = "gateway_setting_".$gateway."_";
-		if (isset($jrConfig [ $prefix."active" ]))
+		$jrportal_payment_reference->gateway = $gateway;
+		$jrportal_payment_reference->invoice_id = $invoice_number;
+		$jrportal_payment_reference->set_payment_refence($invoice_number);
+
+		$obj = $jrportal_payment_reference->get_invoice_data($invoice_number);
+
+		$event = "10510".$gateway;
+		$path_to_classfile = $MiniComponents->registeredClasses[$event]['filepath'];
+		require_once($path_to_classfile."invoice_payment_send.class.php");
+		
+		try
 			{
-			if ($jrConfig [ $prefix."active" ] == "1")
-				{
-				$settings = array();
-				foreach ($jrConfig as $key=>$val)
-					{
-					if ( substr($key , 0 , strlen ( $prefix )  ) == $prefix )
-						{
-						$key =  substr($key , strlen ( $prefix ) , strlen ( $key )  ) ;
-						$settings [$key] = $val;
-						}
-					}
-				
-				$invoice = jomres_singleton_abstract::getInstance( 'basic_invoice_details' );
-				$invoice->gatherData($invoice_number);
-				
-				$invoice_data = array();
-				$invoice_data['invoice_number']		= $invoice_number;
-				$invoice_data['currencycode']		= $invoice->currencycode;
-				$invoice_data['balance']			= $invoice->balance;
-				
-				jr_import("jrportal_payment_reference");
-				$obj       = new jrportal_payment_reference();
-				$obj->gateway_settings = $settings;
-				$obj->invoice_data = $invoice_data;
-				
-				$obj->gateway = $gateway;
-				$obj->invoice_id = $invoice_number;
-				$obj->set_payment_refence();
-				
-				$event = "10510".$gateway;
-				$path_to_classfile = $MiniComponents->registeredClasses[$event]['filepath'];
-				require_once($path_to_classfile."invoice_payment_send.class.php");
-				
-				try
-					{
-					$send = new invoice_payment_send($obj);
-					}
-				catch (Exception $e) 
-					{
-					output_fatal_error( $e );
-					}
-				}
+			$send = new invoice_payment_send($obj);
 			}
-		else
+		catch (Exception $e) 
 			{
-			// gateway not available
+			output_fatal_error( $e );
 			}
 		}
+
 
 	// This must be included in every Event/Mini-component
 	function getRetVals()
