@@ -2614,3 +2614,5 @@ jr_define('_JOMRES_EXTRAS_TEMPLATE',"Here's a list of some of the great things y
 
 jr_define( '_ASSIGN_COMMISSION_RATES', 'Assign commission rates' );
 
+
+jr_define( 'GATEWAYS_INSTRUCTIONS', 'On this page you can configure any installed gateways. These options allow you to take payments for any Commission or Subscription invoices, and they are not related in any way to property gateway settings.' );
