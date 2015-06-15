@@ -31,7 +31,8 @@ class j16000edit_gateway
 		$jrConfig   = $siteConfig->get();
 		
 		$output['GATEWAY'] = $this->plugin;
-		
+
+
 		if (!isset($jrConfig[ $this->prefix.'_active' ]))
 			$jrConfig[$this->prefix.'_active'] = "0";
 		
@@ -43,7 +44,7 @@ class j16000edit_gateway
 			"format" => "boolean"
 			) ;
 		$all_settings = array_merge ( $active, $settings['settings'] );
-		
+
 		$results = array();
 		foreach ($all_settings as $key=>$setting)
 			{
@@ -72,6 +73,8 @@ class j16000edit_gateway
 			$snippets[]['SNIPPET'] = $r;
 			}
 
+		$output['NOTES'] = $settings['notes'];
+		
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
 		
@@ -85,6 +88,7 @@ class j16000edit_gateway
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->readTemplatesFromInput( 'edit_gateway.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->addRows( 'notes', $notes );
 		$tmpl->addRows( 'snippets', $snippets );
 		$tmpl->displayParsedTemplate(); 
 		}
