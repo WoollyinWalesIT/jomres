@@ -112,7 +112,7 @@ $component_id = doInsertSql( $query, "" );
 if ( $component_id )
 	{
 	$query = "SELECT title FROM #__menu WHERE `link` = 'index.php?option=com_jomres' LIMIT 1";
-	$result = doSelectSql ( $query , 1 );
+	$result = doSelectSql ( $query );
 	if (count($result)<1)
 		{
 		$query   = "SELECT max(rgt) FROM #__menu";
