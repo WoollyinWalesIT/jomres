@@ -3834,7 +3834,7 @@ class dobooking
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $roomDeets );
-			$tmpl->readTemplatesFromInput( 'booking_form_classic_roomslist.html' );
+			$tmpl->readTemplatesFromInput( 'booking_form_classic_roomslist_selected.html' );
 			$template_output = $tmpl->getParsedTemplate();
 			$return_output .= $template_output;
 
