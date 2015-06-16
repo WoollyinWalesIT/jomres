@@ -24,9 +24,15 @@ class j01060slideshow
 			$this->template_touchable = false;
 			return;
 			}
-
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+		
 		$imagesArray=array();
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+		
+		if (!isset($componentArgs[ 'size' ]))
+			$componentArgs[ 'size' ] = "large";
+		
 		
 		if (!isset($componentArgs[ 'images' ]))
 			{
@@ -46,6 +52,8 @@ class j01060slideshow
 			}
 
 		$output = array ();
+		$output['MEDIUM_WIDTH']= floor( (int) $jrConfig[ 'thumbnail_property_header_max_width' ]);
+
 		$count = count( $imagesArray );
 
 		if ( $count > 0 )
@@ -54,7 +62,11 @@ class j01060slideshow
 				{
 				$r                 = array ();
 				$r[ 'IMAGETHUMB' ] = $imagesArray[ $i ][ 'small' ];
-				$r[ 'IMAGE' ]      = $imagesArray[ $i ][ 'large' ];
+				if ($componentArgs[ 'size' ] == "large")
+					$r[ 'IMAGE' ]      = $imagesArray[ $i ][ 'large' ];
+				else
+					$r[ 'IMAGE' ]      = $imagesArray[ $i ][ 'medium' ];
+				
 				$rows[ ]           = $r;
 				}
 
@@ -65,7 +77,10 @@ class j01060slideshow
 			$pageoutput[ ] = $output;
 			$tmpl          = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-			$tmpl->readTemplatesFromInput( 'slideshow.html' );
+			if ($componentArgs[ 'size' ] == "large")
+				$tmpl->readTemplatesFromInput( 'slideshow.html' );
+			else
+				$tmpl->readTemplatesFromInput( 'slideshow_medium.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $rows );
 			$output_now = (bool) jomresGetParam( $_REQUEST, 'op', false );
