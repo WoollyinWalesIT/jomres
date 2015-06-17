@@ -384,11 +384,18 @@ function jomres_cmsspecific_getSearchModuleParameters( $moduleName = "" )
 
 
 // Returns an indexed array of the CMS's users
-function jomres_cmsspecific_getCMSUsers()
+function jomres_cmsspecific_getCMSUsers( $cms_user_id = 0 )
 	{
-	$users    = array ();
-	$query    = "SELECT id,name,username,email FROM #__users";
+	$clause = '';
+	$users  = array ();
+	
+	if ( (int)$cms_user_id > 0 )
+		$clause = 'WHERE `id` = '.(int)$cms_user_id;
+		
+	
+	$query    = "SELECT `id`,`name`,`username`,`email` FROM #__users ".$clause;
 	$userList = doSelectSql( $query );
+	
 	if ( count( $userList ) > 0 )
 		{
 		foreach ( $userList as $u )
