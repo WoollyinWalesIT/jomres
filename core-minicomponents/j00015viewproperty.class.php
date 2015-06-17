@@ -236,7 +236,7 @@ class j00015viewproperty
 				if ( $mrConfig[ 'showRoomsListingLink' ] == "1" )
 					{
 					$link             = array ();
-					$link[ 'LINK' ]   = jomresURL( JOMRES_SITEPAGE_URL . "&task=showRoomsListing&property_uid=$property_uid" . $output_now );
+					$link[ 'LINK' ]   = jomresURL( JOMRES_SITEPAGE_URL . "&task=show_property_rooms&property_uid=$property_uid" );
 					$link[ 'TEXT' ]   = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', _JOMRES_COM_MR_QUICKRES_STEP2_TITLE, false, false );
 					$roomslistlink[ ] = $link;
 					}

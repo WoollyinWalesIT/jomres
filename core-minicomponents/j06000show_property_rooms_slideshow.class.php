@@ -41,7 +41,7 @@ class j06000show_property_rooms_slideshow
 			$jomres_media_centre_images->get_images($property_uid, array('rooms'));
 
 			$room_images = array();
-
+			$image_hashes = array();
 			foreach ( $roomList as $room )
 				{
 				$room_uid             = $room->room_uid;
@@ -49,12 +49,17 @@ class j06000show_property_rooms_slideshow
 					{
 					if ($image['large'] != $jomres_media_centre_images->multi_query_images['noimage-large'])
 						{
-						$room_images[]  =$image;
+						$hash = md5_file($image['large']);
+						if ( !in_array($hash, $image_hashes))
+							{
+							$room_images[]  =$image;
+							$image_hashes[] = $hash;
+							}
 						}
 					}
 				}
-
-			$result = $MiniComponents->specificEvent( '01060', 'slideshow' , array( "images" => $room_images , "size" => "medium" ) );
+			
+			$result = $MiniComponents->specificEvent( '01060', 'slideshow' , array( "images" => $room_images ) );
 			$output[ 'SLIDESHOW' ] = $result ['slideshow'];
 			
 			$pageoutput=array();

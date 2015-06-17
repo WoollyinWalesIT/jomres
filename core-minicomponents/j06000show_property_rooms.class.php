@@ -54,13 +54,18 @@ class j06000show_property_rooms
 			$output[ 'HEADER_DISABLEDACCESS' ]          = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS', _JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS, false );
 			$output[ 'HEADER_MAXPEOPLE' ]               = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE, false );
 			$output[ '_JOMRES_HRESOURCE_FEATURES' ]     = jr_gettext( '_JOMRES_HRESOURCE_FEATURES', _JOMRES_HRESOURCE_FEATURES, false );
-
+			
+			$output['ALLROOMSSLIDESHOW'] = $MiniComponents->specificEvent( '06000', 'show_property_rooms_slideshow' , array( "property_uid" => $property_uid , "size" => "large") );
+			
 			$rows = array();
 
 			foreach ( $roomList as $room )
 				{
 				$r              = array ();
-
+				foreach ($output as $key=>$val)
+					{
+					$r[$key] = $val;
+					}
 				$room_uid             = $room->room_uid;
 				$room_classes_uid     = $room->room_classes_uid;
 				$propertys_uid        = $room->propertys_uid;
@@ -92,7 +97,7 @@ class j06000show_property_rooms
 				$r[ 'ROOM_FEATURES' ] = $jomres_property_room_features->get_room_feature_template($roomFeatureUidsArray) ;
 
 				$r[ 'RANDOM_IDENTIFIER' ]  = generateJomresRandomString( 10 );
-
+				
 				$r[ 'IMAGELARGE' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
 				$r[ 'IMAGEMEDIUM' ] = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
 				$r[ 'IMAGETHUMB' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";

@@ -1,61 +1,29 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<table class="table table-striped">
-		<thead>
+{ALLROOMSSLIDESHOW}	
+	<table width="100%" border="0" class="ui-widget-content ui-corner-all">
 		<tr>
-			<th class="hidden-phone">{HEADER_IMAGEHEADER}</th>
-			<th># <!--{HEADER_ROOMNUMBER}--></th>
-			<th>{HEADER_ROOMTYPE}</th>
-			<th class="hidden-phone">{HEADER_MAXPEOPLE}</th>
-			<th class="hidden-phone">{HEADER_ROOMNAME}</th>
-			<!-- <th class="hidden-phone">{HEADER_ROOMFLOOR}</th> -->
-			<th class="hidden-phone">{HEADER_SMOKING}</th>
-			<th class="hidden-phone">{HEADER_DISABLEDACCESS}</th>
-			<th>{HEADER_AVLCALLINK}</th>
+			<th class="ui-state-default">{HEADER_IMAGEHEADER}</th>
+			<th class="ui-state-default">{HEADER_ROOMNUMBER}</th>
+			<th class="ui-state-default">{HEADER_ROOMTYPE}</th>
+			<th class="ui-state-default">{HEADER_MAXPEOPLE}</th>
+			<th class="ui-state-default">{HEADER_ROOMNAME}</th>
+			<th class="ui-state-default">{HEADER_ROOMFLOOR}</th>
+			<th class="ui-state-default">{HEADER_SMOKING}</th>
+			<th class="ui-state-default">{HEADER_DISABLEDACCESS}</th>
+			<th class="ui-state-default">{HEADER_AVLCALLINK}</th>
 		</tr>
-		</thead>
-		<tbody>
-		<patTemplate:tmpl name="rows">
-			<tr>
-				<td>
-					<a href="#" 
-						data-toggle="modal"
-						data-target="#modal_{RANDOM_IDENTIFIER}"><img src="{IMAGETHUMB}" class="img-responsive" alt="{ROOMNUMBER}" />
-					</a>
-				</td>
+		<patTemplate:tmpl name="room_details">
+			<tr class="{CLASS}">
+				<td><img src="{IMAGETHUMB}" alt="{ROOMNUMBER}"/></td>
 				<td>{ROOMNUMBER}</td>
 				<td>{ROOMTYPE}</td>
-				<td class="hidden-phone">{MAXPEOPLE}</td>
-				<td class="hidden-phone">{ROOMNAME}</td>
-				<!-- <td class="hidden-phone">{ROOMFLOOR}</td> -->
-				<td class="hidden-phone">{SMOKING}</td>
-				<td class="hidden-phone">{DISABLEDACCESS}</td>
-				<td><a href="{AVLCALLINK}" class="btn btn-default"><i class="icon-calendar"></i> {AVLCALTITLE}</a></td>
+				<td>{MAXPEOPLE}</td>
+				<td>{ROOMNAME}</td>
+				<td>{ROOMFLOOR}</td>
+				<td>{SMOKING}</td>
+				<td>{DISABLEDACCESS}</td>
+				<td><a href="{AVLCALLINK}" class="fg-button ui-state-default ui-corner-all">{AVLCALTITLE}</a></td>
 			</tr>
-			<tr>
-				<td colspan="8">
-				{ROOM_FEATURES}
-				</td>
-			</tr>
-			<div class="modal fade" id="modal_{RANDOM_IDENTIFIER}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-						<h4 class="modal-title" id="myModalLabel">{ROOMNAME} {ROOMNUMBER}</h4>
-						</div>
-						<div class="modal-body">
-							<img src="{IMAGELARGE}" class="img-responsive plist-image" alt="{ROOMNUMBER}" />
-						</div>
-						</div>
-			  </div>
-			</div>
-		
-		<script>
-		   jomresJquery(document).ready(function(){
-			 jomresJquery('#modal_{RANDOM_IDENTIFIER}').appendTo("body");
-			});
-		</script>
 		</patTemplate:tmpl>
-		</tbody>
 	</table>
 </patTemplate:tmpl>

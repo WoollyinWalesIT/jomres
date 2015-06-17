@@ -1,61 +1,61 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<table class="table table-striped">
-		<thead>
-		<tr>
-			<th class="hidden-phone">{HEADER_IMAGEHEADER}</th>
-			<th># <!--{HEADER_ROOMNUMBER}--></th>
-			<th>{HEADER_ROOMTYPE}</th>
-			<th class="hidden-phone">{HEADER_MAXPEOPLE}</th>
-			<th class="hidden-phone">{HEADER_ROOMNAME}</th>
-			<!-- <th class="hidden-phone">{HEADER_ROOMFLOOR}</th> -->
-			<th class="hidden-phone">{HEADER_SMOKING}</th>
-			<th class="hidden-phone">{HEADER_DISABLEDACCESS}</th>
-			<th>{HEADER_AVLCALLINK}</th>
-		</tr>
-		</thead>
-		<tbody>
+{ALLROOMSSLIDESHOW}	
+
 		<patTemplate:tmpl name="rows">
-			<tr>
-				<td>
-					<a href="#" 
-						data-toggle="modal"
-						data-target="#modal_{RANDOM_IDENTIFIER}"><img src="{IMAGETHUMB}" class="img-responsive" alt="{ROOMNUMBER}" />
-					</a>
-				</td>
-				<td>{ROOMNUMBER}</td>
-				<td>{ROOMTYPE}</td>
-				<td class="hidden-phone">{MAXPEOPLE}</td>
-				<td class="hidden-phone">{ROOMNAME}</td>
-				<!-- <td class="hidden-phone">{ROOMFLOOR}</td> -->
-				<td class="hidden-phone">{SMOKING}</td>
-				<td class="hidden-phone">{DISABLEDACCESS}</td>
-				<td><a href="{AVLCALLINK}" class="btn btn-default"><i class="icon-calendar"></i> {AVLCALTITLE}</a></td>
-			</tr>
-			<tr>
-				<td colspan="8">
-				{ROOM_FEATURES}
-				</td>
-			</tr>
-			<div class="modal fade" id="modal_{RANDOM_IDENTIFIER}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-						<h4 class="modal-title" id="myModalLabel">{ROOMNAME} {ROOMNUMBER}</h4>
-						</div>
-						<div class="modal-body">
-							<img src="{IMAGELARGE}" class="img-responsive plist-image" alt="{ROOMNUMBER}" />
-						</div>
-						</div>
-			  </div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">{ROOMNAME} {ROOMNUMBER}</div>
 			</div>
-		
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-4 hidden-phone">
+						<a href="#" 
+							data-toggle="modal"
+							data-target="#modal_{RANDOM_IDENTIFIER}"><img src="{IMAGETHUMB}" class="img-responsive" alt="{ROOMNUMBER}" />
+						</a>
+					</div>
+					<div class="col-xs-1">
+						<p class="text-muted">{HEADER_ROOMTYPE}</p> {ROOMTYPE}
+					</div>
+					<div class="col-xs-1 hidden-phone">
+						<p class="text-muted">{HEADER_MAXPEOPLE}</p> {MAXPEOPLE}
+					</div>
+					<div class="col-xs-1 hidden-phone">
+						<p class="text-muted">{HEADER_ROOMFLOOR}</p> {ROOMFLOOR}
+					</div>
+					<div class="col-xs-1 hidden-phone">
+						<p class="text-muted">{HEADER_SMOKING}</p> {SMOKING}
+					</div>
+					<div class="col-xs-1 hidden-phone">
+						<p class="text-muted">{HEADER_DISABLEDACCESS}</p> {DISABLEDACCESS}
+					</div>
+					<div class="col-xs-3 ">
+					<a href="{AVLCALLINK}" class="btn btn-default"><i class="icon-calendar"></i> {AVLCALTITLE}</a>
+					</div>
+				</div>
+			</div>
+				<div class="panel-footer">{ROOM_FEATURES}</div>
+		</div>
+
+		<div class="modal fade" id="modal_{RANDOM_IDENTIFIER}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+					<h4 class="modal-title" id="myModalLabel">{ROOMNAME} {ROOMNUMBER}</h4>
+					</div>
+					<div class="modal-body">
+						<img src="{IMAGELARGE}" class="img-responsive plist-image" alt="{ROOMNUMBER}" />
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<script>
 		   jomresJquery(document).ready(function(){
 			 jomresJquery('#modal_{RANDOM_IDENTIFIER}').appendTo("body");
 			});
 		</script>
 		</patTemplate:tmpl>
-		</tbody>
-	</table>
+
 </patTemplate:tmpl>
