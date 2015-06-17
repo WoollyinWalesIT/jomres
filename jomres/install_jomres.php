@@ -445,8 +445,31 @@ function doTableUpdates()
 	
 	if ( !checkInvoicePaymentXrefTableExists() ) createInvoicePaymentXrefTable();
 	if ( !checkExtrasValidfromColExists() ) alterExtrasValidfromCol();
+	if ( !checkExtrasIncludeinlistsColExists() ) alterExtrasIncludeinlistsCol();
 	}
 
+function alterExtrasIncludeinlistsCol()
+	{
+	output_message ( "Editing __jomres_extras table adding include_in_property_lists column");
+	$query = "ALTER TABLE `#__jomres_extras` ADD `include_in_property_lists` BOOL NOT NULL DEFAULT '1' AFTER `room_classes_uid`";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_extras include_in_property_lists", "danger" );
+		}
+	}
+
+function checkExtrasIncludeinlistsColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_extras LIKE 'include_in_property_lists'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+	return false;
+	}
+
+	
 function alterExtrasValidfromCol()
 	{
 	output_message ( "Editing __jomres_extras table adding validfrom column");

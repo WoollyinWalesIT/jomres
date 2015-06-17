@@ -38,15 +38,13 @@ class j06000show_property_extras
 
 			$extra_details = array();
 			
-			$query  = "SELECT `uid`,`name`,`desc`,`maxquantity`,`price`,`auto_select`,`tax_rate`,`chargabledaily`,`property_uid`,`published`,`validfrom`,`validto` FROM `#__jomres_extras` where property_uid = '".$property_uid."' AND published = '1' ORDER BY name";
+			$query  = "SELECT `uid`,`name`,`desc`,`maxquantity`,`price`,`auto_select`,`tax_rate`,`chargabledaily`,`property_uid`,`published`,`validfrom`,`validto` FROM `#__jomres_extras` where property_uid = '".$property_uid."' AND published = '1' AND include_in_property_lists = 1 ORDER BY name";
 			$exList = doSelectSql( $query );
 
 			if ( count($exList)>0)
 				{
 				foreach ( $exList as $ex )
 					{
-					
-					
 					$price = $ex->price;
 					$rate  = (float) $this->taxrates[ $ex->tax_rate ][ 'rate' ];
 					if ( $mrConfig[ 'prices_inclusive' ] == 1 )
