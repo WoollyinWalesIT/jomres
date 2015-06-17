@@ -108,7 +108,7 @@ class j00004a_init_javascript_css_files
 			
 		if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery_ui' ] == "1" && !$management_view ) )
 			{
-			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery-ui-1.9.2.custom.js");
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery-ui.js");
 			}
 		
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jomres.js");

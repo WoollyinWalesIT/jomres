@@ -355,10 +355,15 @@ function jomres_cmsspecific_getSearchModuleParameters( $moduleName = "" )
 
 
 // Returns an indexed array of the CMS's users
-function jomres_cmsspecific_getCMSUsers()
+function jomres_cmsspecific_getCMSUsers( $cms_user_id = 0 )
 	{
-	$users    = array ();
-	$query    = "SELECT id,user_nicename,user_login,user_email FROM #__users";
+	$clause = '';
+	$users  = array ();
+	
+	if ( (int)$cms_user_id > 0 )
+		$clause = 'WHERE `id` = '.(int)$cms_user_id;
+
+	$query    = "SELECT id,user_nicename,user_login,user_email FROM #__users ".$clause;
 	$userList = doSelectSql( $query );
 	if ( count( $userList ) > 0 )
 		{
@@ -369,19 +374,6 @@ function jomres_cmsspecific_getCMSUsers()
 		}
 
 	return $users;
-	
-/* 	$users    = array ();
-	$query    = "SELECT id,name,username,email FROM #__users";
-	$userList = doSelectSql( $query );
-	if ( count( $userList ) > 0 )
-		{
-		foreach ( $userList as $u )
-			{
-			$users[ $u->id ] = array ( "id" => $u->id, "username" => $u->username, "email" => $u->email );
-			}
-		}
-
-	return $users; */
 	}
 
 function jomres_cmsspecific_makeSEF_URL( $link )

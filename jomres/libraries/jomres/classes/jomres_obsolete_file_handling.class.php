@@ -1089,6 +1089,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_admin . 'admin.jomres.bootstrap-html.php' );
 		$this->add_obs_file( $this->dir_admin . 'admin.jomres.html.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j10002showSiteConfig.class.php' );
+		
+		$this->add_obs_file( $this->dir_javascript . 'jquery-ui-1.9.2.custom.js' );
 
 		}
 
