@@ -33,7 +33,7 @@ defined('_JEXEC') or die;
 	?>
 	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/javascript/jquery-1.11.1.js"></script>
 	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/javascript/jquery-migrate.js"></script>
-	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/javascript/jquery-ui-1.9.2.custom.js"></script>
+	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/javascript/jquery-ui.js"></script>
 	<?php if ($view == "bootstrap") : ?>
 	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap/js/bootstrap.min.js"></script>
 	<?php elseif ($view == "bootstrap3") : ?>

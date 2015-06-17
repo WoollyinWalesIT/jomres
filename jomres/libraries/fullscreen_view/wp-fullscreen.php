@@ -38,7 +38,7 @@ defined('_JOMRES_INITCHECK') or die;
 	wp_register_script('jquery', '/'.JOMRES_ROOT_DIRECTORY.'/javascript/jquery-migrate.js' );
 	wp_enqueue_script('jquery');
 	
-	wp_register_script('jquery-ui-1.9.2.custom.min.js', '/'.JOMRES_ROOT_DIRECTORY.'/javascript/jquery-ui-1.9.2.custom.js', 'jquery' );
+	wp_register_script('jquery-ui-1.9.2.custom.min.js', '/'.JOMRES_ROOT_DIRECTORY.'/javascript/jquery-ui.js', 'jquery' );
 	wp_enqueue_script('jquery-ui-1.9.2.custom.min.js');
 	
 	if ($view == "bootstrap")
