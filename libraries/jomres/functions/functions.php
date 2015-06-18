@@ -2583,14 +2583,11 @@ function jomresRedirect( $url, $msg = '' )
 		}
 	else
 		{
-		if (this_cms_is_wordpress() )
-			echo '<script>document.location.href=\'' . $url . '\';</script>';
-		else
+		//if (this_cms_is_wordpress() )
+			//echo '<script>document.location.href=\'' . $url . '\';</script>';
+		//else
 			header( 'Location: ' . $url, true );
 		} 
-	
-
-	
 	exit;
 	}
 
