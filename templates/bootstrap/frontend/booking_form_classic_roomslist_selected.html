@@ -7,6 +7,16 @@
 			<a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal" class="thumbnail hidden-phone hidden-tablet"><img src="{ROOM_IMAGE}" alt="room image"/></a>
 			<div class="thumbnail hidden-desktop"><img src="{ROOM_IMAGE}" alt="room image"/></div>
 		</div>
+		<div class="span4">
+			<h4 class="hidden-phone hidden-tablet"><a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal">{ROOMTYPE}</a></h4>
+			<h4 class="hidden-desktop">{ROOMTYPE}</h4>
+			<p>
+				{HEADER_MAXPEOPLE}: {MAXPEOPLE_INROOM}<br />
+				{HTITLE}: {TITLE}<br />
+				{HDESC}: {DESC}<br />
+				<a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal" class="hidden-phone hidden-tablet">{HMOREINFO}...</a>
+			</p>
+		</div>
 		<div class="span3">
 			<p><span class="big-price">{FORMATTED_PRICE}</span></p>
 		</div>

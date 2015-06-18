@@ -1,7 +1,7 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
 <patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="roomtype">
-<div class="well well-small" id="selected_rooms_toggle">
+<div class="well well-small">
 	<div class="row">
 		<div class="col-md-2">
 			<a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal" class="thumbnail"><img src="{ROOM_IMAGE}" alt="room image" class="img-responsive" /></a>
@@ -9,6 +9,9 @@
 		<div class="col-md-4">
 			<h4 class=""><a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal">{ROOMTYPE}</a></h4>
 			<p>
+				{HEADER_MAXPEOPLE}: {MAXPEOPLE_INROOM}<br />
+				{HTITLE}: {TITLE}<br />
+				{HDESC}: {DESC}<br />
 				<a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal" class="hidden-phone hidden-tablet">{HMOREINFO}...</a>
 			</p>
 		</div>
@@ -16,7 +19,12 @@
 			<p><span class="big-price">{FORMATTED_PRICE}</span></p>
 		</div>
 		<div class="col-md-3" align="right">
-			<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn {BUTTON_CLASS}"><i class="fa fa-times"></i>  </a></div>
+			<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn {BUTTON_CLASS}"><i class="fa fa-times"></i> </a></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			{FEATURES}
 		</div>
 	</div>
 </div>
