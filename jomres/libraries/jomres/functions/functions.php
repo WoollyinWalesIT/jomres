@@ -5191,3 +5191,93 @@ function getbookingguestdata()
 
 	return $userDeets;
 	}
+	
+function get_jomres_current_version()
+	{
+	include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'jomres_config.php' );
+	return $mrConfig[ 'version' ];
+	}
+
+function get_latest_jomres_version()
+	{
+	if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "latest_version.php"))
+		{
+		$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "latest_version.php");
+		$seconds_timediff = time() - $last_modified;
+		if ( $seconds_timediff > 3600 ) 
+			{
+			unlink(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "latest_version.php" );
+			}
+		else
+			{
+			$buffer = file_get_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "latest_version.php" );
+			}
+		}
+		
+	if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "latest_version.php") )
+		{
+		$curl_handle = curl_init();
+		curl_setopt( $curl_handle, CURLOPT_URL, "http://updates.jomres4.net/versions.php" );
+		curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
+		curl_setopt( $curl_handle, CURLOPT_TIMEOUT, 8 );
+		curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 2 );
+		curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, 1 );
+		$buffer = curl_exec( $curl_handle );
+		curl_close( $curl_handle );
+		if ($buffer != "")
+			{
+			$latest_jomres_version = explode( ".", $buffer );
+			$latest_major_version = $latest_jomres_version[ 0 ];
+			$latest_minor_version = $latest_jomres_version[ 1 ];
+			$latest_revis_version = $latest_jomres_version[ 2 ];
+			$buffer = (int) $latest_major_version . "." . (int) $latest_minor_version . "." . (int) $latest_revis_version;
+			file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "latest_version.php",$buffer);
+			}
+		}
+	
+	if ( empty( $buffer ) ) 
+		{
+		echo "Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ?<p>";
+		}
+	else
+		{
+		return $buffer;
+		}
+	}
+	
+// Returns true if this version is latest, otherwise returns false
+function check_jomres_version()
+	{
+	$this_version = get_jomres_current_version();
+	$latest_version = get_latest_jomres_version();
+		
+		
+	$latest_jomres_version = explode( ".", $latest_version );
+	$this_jomres_version   = explode( ".", $this_version );
+
+	if ( !isset( $latest_jomres_version[ 2 ] ) ) $latest_jomres_version[ 2 ] = 0;
+	if ( !isset( $this_jomres_version[ 2 ] ) ) $this_jomres_version[ 2 ] = 0;
+
+	$latest_major_version = $latest_jomres_version[ 0 ];
+	$latest_minor_version = $latest_jomres_version[ 1 ];
+	$latest_revis_version = $latest_jomres_version[ 2 ];
+
+	$current_major_version = $this_jomres_version[ 0 ];
+	$current_minor_version = $this_jomres_version[ 1 ];
+	$current_revis_version = $this_jomres_version[ 2 ];
+	
+	$current_version_is_uptodate = true;
+	
+	if ( $current_major_version < $latest_major_version
+		) $current_version_is_uptodate = false;
+
+	if ( $current_major_version <= $latest_major_version && $current_minor_version <= $latest_minor_version && $current_revis_version < $latest_revis_version
+		) $current_version_is_uptodate = false;
+
+	if ( $current_major_version <= $latest_major_version && $current_minor_version < $latest_minor_version
+		) $current_version_is_uptodate = false;
+	
+	return $current_version_is_uptodate;
+	
+	
+	}
