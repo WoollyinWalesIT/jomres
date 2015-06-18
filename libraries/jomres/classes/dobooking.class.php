@@ -4720,7 +4720,6 @@ class dobooking
 					}
 				if ( $this->cfg_singleRoomProperty == "0" )
 					{
-					// New for 6.6.6
 					// Now we can make our template's output
 
 					$pageoutput = array ();

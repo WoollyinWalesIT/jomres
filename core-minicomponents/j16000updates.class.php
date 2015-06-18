@@ -30,133 +30,182 @@ class j16000updates
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
 			return;
 			}
-		$this->updateServer     = "http://updates.jomres4.net";
-		$this->updateFolder     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "updates";
-		$this->overwriteAllowed = true;
-		$this->movedFileLog     = array ();
-		$this->debugging        = false;
-		$this->test_download    = false;
-
-		$configfile = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "jomres_config.php"; // This is just to pull in the Jomres version from mrConfig
-		include( $configfile );
-		$thisVersion = $mrConfig[ 'version' ];
-		echo "<br /><br /><br /><center><h2>This Jomres version: $thisVersion</h2></center><br />";
-
-		$this->ftp_user_name = 'userid';
-		$this->ftp_user_pass = 'password';
-		$this->ftp_server    = 'localhost';
-		$this->ftp_root      = JOMRESCONFIG_ABSOLUTE_PATH;
-		if ( !$this->checkUpdateDirectory() )
+		
+		$current_version_is_uptodate   = check_jomres_version();
+		$current_version_is_uptodate   = false;
+		if (!$current_version_is_uptodate && !isset($_REQUEST['reviewseen']) && !isset($_REQUEST['version']) )
 			{
-			echo "Can't create update folder $this->updateFolder";
-
-			return;
-			}
-		if ( !isset( $_REQUEST[ 'ftp_user_name' ] ) )
-			{
-			if ( !$this->checkJomresDirectories() )
+			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.blockUI.js" );
+			
+			$output = array();
+			
+			jr_import( 'jomres_check_support_key' );
+			$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=showplugins" );
+			$this->key_valid = $key_validation->key_valid;
+			
+			if ($this->key_valid)
 				{
-				$detect_os = strtoupper( $_SERVER[ "SERVER_SOFTWARE" ] ); // converted to uppercase
-				$pos       = strpos( $detect_os, "WIN32" );
-				$IIS       = strpos( $detect_os, "IIS" );
-				if ( $pos === false && $IIS === false )
+				$output['THANKS'] = "Thank you for being a loyal client.";
+				$output['UPGRADING'] = "It has been a pleasure to serve you with your Jomres system.";
+				}
+			else
+				{
+				$output['THANKS'] = "Thank you for upgrading Jomres.";
+				$output['UPGRADING'] = "You appear to be happy using the software that we\'ve worked long and hard on, that\'s great to see.";
+				}
+			
+			if ( this_cms_is_wordpress() )
+				$output['REVIEW_URL'] = "You can leave a review on the <br/><a href=\'https://wordpress.org/support/view/plugin-reviews/jomres\' target=\'_blank\'>Wordpress Plugins site</a><br>";
+			else
+				$output['REVIEW_URL'] = "You can leave a review on the <br/><a href=\'http://extensions.joomla.org/extensions/extension/vertical-markets/booking-a-reservations/jomres\' target=\'_blank\'>Joomla extension directory</a><br>";
+				
+			$output['RATIONAL'] = "Good reviews are crucial in helping users to decide whether or not to invest time in researching a product such as Jomres. We\'d appreciate it if you could take a few minutes out of your day to share your thoughts of the system for the benefit of others. Without reviews helping to drive business to our site we can\'t pay the bills. If you\'ve already left a review then we thank you and hope you\'ll wait a few moments for the page to reload.";
+			$output['REDIRECT1'] = "You will be able to continue the upgrade process in ";
+			$output['REDIRECT2'] = " seconds.";
+			
+			
+			$output['CONTINUE_URL'] = JOMRES_SITEPAGE_URL_ADMIN.'&task=updates&reviewseen=1';
+			
+			
+			$pageoutput[]=$output;
+			
+			$tmpl = new patTemplate();
+			$tmpl->addRows( 'pageoutput', $pageoutput );
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+			$tmpl->readTemplatesFromInput( 'review_request.html' );
+			$tmpl->displayParsedTemplate();
+			}
+			
+		else
+			{
+			$this->updateServer     = "http://updates.jomres4.net";
+			$this->updateFolder     = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "updates";
+			$this->overwriteAllowed = true;
+			$this->movedFileLog     = array ();
+			$this->debugging        = false;
+			$this->test_download    = false;
+
+			$configfile = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "jomres_config.php"; // This is just to pull in the Jomres version from mrConfig
+			include( $configfile );
+			$thisVersion = $mrConfig[ 'version' ];
+			echo "<br /><br /><br /><center><h2>This Jomres version: $thisVersion</h2></center><br />";
+
+			$this->ftp_user_name = 'userid';
+			$this->ftp_user_pass = 'password';
+			$this->ftp_server    = 'localhost';
+			$this->ftp_root      = JOMRESCONFIG_ABSOLUTE_PATH;
+			if ( !$this->checkUpdateDirectory() )
+				{
+				echo "Can't create update folder $this->updateFolder";
+
+				return;
+				}
+			if ( !isset( $_REQUEST[ 'ftp_user_name' ] ) )
+				{
+				if ( !$this->checkJomresDirectories() )
+					{
+					$detect_os = strtoupper( $_SERVER[ "SERVER_SOFTWARE" ] ); // converted to uppercase
+					$pos       = strpos( $detect_os, "WIN32" );
+					$IIS       = strpos( $detect_os, "IIS" );
+					if ( $pos === false && $IIS === false )
+						{
+						echo "Error, it's not possible to upgrade Jomres on this server as one or more files is not writable by php. It's likely that files were uploaded via ftp and are owned by the ftp user, not the web server's user. You are advised to change ownership of the files to the web server's user then try again.<br/>";
+						}
+					else
+						{
+						// We're on a win box
+						echo "Error, it's not possible to upgrade Jomres on this server as one or more files is not writable by php. <br/>";
+						}
+
+					foreach ( $this->directoryScanResults as $f )
+						{
+						echo $f . "<br />";
+						}
+
+					return;
+					}
+				}
+			else
+				{
+				$this->ftp_user_name = jomresGetParam( $_REQUEST, 'ftp_user_name', '' );
+				$this->ftp_user_pass = jomresGetParam( $_REQUEST, 'ftp_user_pass', '' );
+				$this->ftp_server    = jomresGetParam( $_REQUEST, 'ftp_server', '' );
+				$this->checkJomresDirectories();
+				if ( !$this->checkJomresDirectories() )
 					{
 					echo "Error, it's not possible to upgrade Jomres on this server as one or more files is not writable by php. It's likely that files were uploaded via ftp and are owned by the ftp user, not the web server's user. You are advised to change ownership of the files to the web server's user then try again.<br/>";
 					}
+				}
+			if ( !isset( $_REQUEST[ 'encoding' ] ) && !isset( $_REQUEST[ 'ftp_user_name' ] ) )
+				{
+				$this->getUpdateInfo();
+				}
+			else if ( !isset( $_REQUEST[ 'ftp_user_name' ] ) )
+				{
+				if ( function_exists( 'jomres_singleton_abstract::getInstance' ) ) 
+					$liveSite = "&live_site=" . urlencode( get_showtime( 'live_site' ) );
+				else
+					$liveSite = "&live_site=" . $jomresConfig_live_site;
+
+				$requiredEncoding = jomresGetParam( $_REQUEST, 'encoding', '' );
+				$requiredVersion  = jomresGetParam( $_REQUEST, 'version', '' );
+
+				$updateFile  = $this->updateServer . "/index.php?encoding=" . $requiredEncoding . "&version=" . $requiredVersion . $liveSite;
+				$newfilename = $this->updateFolder . "/jomres.zip";
+
+				$out = fopen( $newfilename, 'wb' );
+				if ( $out == false )
+					{
+					print "Couldn't create new file $newfilename. Possible file permission problem?<br/>";
+					exit;
+					}
+				$curl_handle = curl_init( $updateFile );
+				curl_setopt( $curl_handle, CURLOPT_FILE, $out );
+				curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
+				curl_setopt( $curl_handle, CURLOPT_HEADER, 0 );
+				curl_setopt( $curl_handle, CURLOPT_URL, $updateFile );
+				curl_exec( $curl_handle );
+				curl_close( $curl_handle );
+				fclose( $out );
+				curl_close( $curl_handle );
+				fclose( $out );
+
+				if ( file_exists( $newfilename ) && filesize( $newfilename ) > 0 ) echo "Got it<br />";
 				else
 					{
-					// We're on a win box
-					echo "Error, it's not possible to upgrade Jomres on this server as one or more files is not writable by php. <br/>";
-					}
+					echo "Something went wrong downloading the update files. Quitting";
 
-				foreach ( $this->directoryScanResults as $f )
+					return;
+					}
+				require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "dUnzip2.inc.php" );
+
+				$zip = new dUnzip2( $newfilename );
+				// Activate debug
+				$zip->debug = $this->debugging;
+				// Unzip all the contents of the zipped file to this folder
+				$zip->getList();
+				if ( mkdir( $this->updateFolder . JRDS . "unpacked" ) )
 					{
-					echo $f . "<br />";
+					$zip->unZipAll( $this->updateFolder . JRDS . "unpacked" );
+					if ( !$this->test_download ) $this->dirmv( $this->updateFolder . JRDS . "unpacked" . JRDS, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS, $this->overwriteAllowed, $funcloc = "/" );
+
+					if ( function_exists( 'jomres_singleton_abstract::getInstance' ) ) echo "Completed upgrade. Please ensure that you visit <a href=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
+					else
+					echo "Completed upgrade. Please ensure that you visit <a href=\"" . $jomresConfig_live_site . "/".JOMRES_ROOT_DIRECTORY."/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
+					if ( $this->debugging )
+						{
+						echo "<br/><br/><br/><br/><br/><br/>";
+						echo "UPGRADE LOG<br/>";
+						foreach ( $this->movedFileLog as $record ) echo $record;
+						}
+					unlink($newfilename);
+					jomresRedirect( jomresURL( get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/install_jomres.php" ), '' );
 					}
-
-				return;
-				}
-			}
-		else
-			{
-			$this->ftp_user_name = jomresGetParam( $_REQUEST, 'ftp_user_name', '' );
-			$this->ftp_user_pass = jomresGetParam( $_REQUEST, 'ftp_user_pass', '' );
-			$this->ftp_server    = jomresGetParam( $_REQUEST, 'ftp_server', '' );
-			$this->checkJomresDirectories();
-			if ( !$this->checkJomresDirectories() )
-				{
-				echo "Error, it's not possible to upgrade Jomres on this server as one or more files is not writable by php. It's likely that files were uploaded via ftp and are owned by the ftp user, not the web server's user. You are advised to change ownership of the files to the web server's user then try again.<br/>";
-				}
-			}
-		if ( !isset( $_REQUEST[ 'encoding' ] ) && !isset( $_REQUEST[ 'ftp_user_name' ] ) )
-			{
-			$this->getUpdateInfo();
-			}
-		else if ( !isset( $_REQUEST[ 'ftp_user_name' ] ) )
-			{
-			if ( function_exists( 'jomres_singleton_abstract::getInstance' ) ) $liveSite = "&live_site=" . urlencode( get_showtime( 'live_site' ) );
-			else
-			$liveSite = "&live_site=" . $jomresConfig_live_site;
-
-			$requiredEncoding = jomresGetParam( $_REQUEST, 'encoding', '' );
-			$requiredVersion  = jomresGetParam( $_REQUEST, 'version', '' );
-
-			$updateFile  = $this->updateServer . "/index.php?encoding=" . $requiredEncoding . "&version=" . $requiredVersion . $liveSite;
-			$newfilename = $this->updateFolder . "/jomres.zip";
-
-			$out = fopen( $newfilename, 'wb' );
-			if ( $out == false )
-				{
-				print "Couldn't create new file $newfilename. Possible file permission problem?<br/>";
-				exit;
-				}
-			$curl_handle = curl_init( $updateFile );
-			curl_setopt( $curl_handle, CURLOPT_FILE, $out );
-			curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
-			curl_setopt( $curl_handle, CURLOPT_HEADER, 0 );
-			curl_setopt( $curl_handle, CURLOPT_URL, $updateFile );
-			curl_exec( $curl_handle );
-			curl_close( $curl_handle );
-			fclose( $out );
-			curl_close( $curl_handle );
-			fclose( $out );
-
-			if ( file_exists( $newfilename ) && filesize( $newfilename ) > 0 ) echo "Got it<br />";
-			else
-				{
-				echo "Something went wrong downloading the update files. Quitting";
-
-				return;
-				}
-			require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "dUnzip2.inc.php" );
-
-			$zip = new dUnzip2( $newfilename );
-			// Activate debug
-			$zip->debug = $this->debugging;
-			// Unzip all the contents of the zipped file to this folder
-			$zip->getList();
-			if ( mkdir( $this->updateFolder . JRDS . "unpacked" ) )
-				{
-				$zip->unZipAll( $this->updateFolder . JRDS . "unpacked" );
-				if ( !$this->test_download ) $this->dirmv( $this->updateFolder . JRDS . "unpacked" . JRDS, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS, $this->overwriteAllowed, $funcloc = "/" );
-
-				if ( function_exists( 'jomres_singleton_abstract::getInstance' ) ) echo "Completed upgrade. Please ensure that you visit <a href=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
 				else
-				echo "Completed upgrade. Please ensure that you visit <a href=\"" . $jomresConfig_live_site . "/".JOMRES_ROOT_DIRECTORY."/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
-				if ( $this->debugging )
-					{
-					echo "<br/><br/><br/><br/><br/><br/>";
-					echo "UPGRADE LOG<br/>";
-					foreach ( $this->movedFileLog as $record ) echo $record;
-					}
-				unlink($newfilename);
-				jomresRedirect( jomresURL( get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/install_jomres.php" ), '' );
+				echo "Error creating unpack folder";
 				}
-			else
-			echo "Error creating unpack folder";
 			}
 		}
 
