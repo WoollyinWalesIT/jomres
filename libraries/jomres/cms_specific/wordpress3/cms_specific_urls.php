@@ -15,7 +15,8 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 $siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 $jrConfig   = $siteConfig->get();
 $scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
-if ( strstr( $scriptname, 'install_jomres.php' ) ) set_showtime( 'live_site', str_replace( "/jomres", "", get_showtime( 'live_site' ) ) );
+if ( strstr( $scriptname, 'install_jomres.php' ) ) 
+	set_showtime( 'live_site', str_replace( "/jomres/", "/", get_showtime( 'live_site' ) ) );
 
 $ssllink = str_replace( "https://", "http://", get_showtime( 'live_site' ) );
 define( 'JOMRES_ADMINISTRATORDIRECTORY', "wp-admin" );
