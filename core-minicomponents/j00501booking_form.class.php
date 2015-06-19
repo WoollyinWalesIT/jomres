@@ -49,16 +49,18 @@ class j00501booking_form
 			$configurationPanel->insertSetting();
 			}
 		
-		if ( $mrConfig[ 'singleRoomProperty' ] != "1" )
-			{
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_LIMITROOMSLIST", _JOMRES_COM_LIMITROOMSLIST, false ) );
-			$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control" size="5" name="cfg_returnRoomsLimit" value="' . $mrConfig[ 'returnRoomsLimit' ] . '">' );
-			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_LIMITROOMSLIST_DESC", _JOMRES_COM_LIMITROOMSLIST_DESC, false ) );
-			$configurationPanel->insertSetting();
-			}
+
 		
 		if ( !$thisJRUser->simple_configuration )
 			{
+			if ( $mrConfig[ 'singleRoomProperty' ] != "1" )
+				{
+				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_LIMITROOMSLIST", _JOMRES_COM_LIMITROOMSLIST, false ) );
+				$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control" size="5" name="cfg_returnRoomsLimit" value="' . $mrConfig[ 'returnRoomsLimit' ] . '">' );
+				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_LIMITROOMSLIST_DESC", _JOMRES_COM_LIMITROOMSLIST_DESC, false ) );
+				$configurationPanel->insertSetting();
+				}
+			
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT", _JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT, false ) );
 			$configurationPanel->setmiddle( $lists[ 'auto_detect_country_for_booking_form' ] );
 			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC", _JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC, false ) );
