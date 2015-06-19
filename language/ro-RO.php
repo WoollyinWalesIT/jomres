@@ -526,7 +526,7 @@ jr_define( '_JOMRES_JR_A_IMAGEHANDLING_BATCHUPLOAD', 'Batch property image uploa
 jr_define( '_JOMRES_JR_A_IMAGEHANDLING_IMAGESALREADYINDIR', 'Imagini care se afla deja in director' );
 jr_define( '_JOMRES_COM_A_SLIDESHOWS', 'Slideshows' );
 jr_define( '_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWLINK', 'Show link to slideshows?' );
-jr_define( '_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE', 'Show slideshow inline?' );
+jr_define( '_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE', 'Show slideshow on Property Details page?' );
 jr_define( '_JOMRES_COM_A_SLIDESHOW_THUMBSIZE', 'Slideshow thumbnail target height' );
 jr_define( '_JOMRES_FRONT_SLIDESHOW', 'Slideshow' );
 jr_define( '_JOMRES_COM_A_SLIDESHOWS_NOIMAGES', '<br />Ne pare rau, nu exista imagini disponibile pentru aceasta proprietate. Va rugam faceti upload la niste imagini daca doriti sa folositi aceasta opriune.' );
