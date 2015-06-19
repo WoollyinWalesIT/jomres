@@ -524,7 +524,7 @@ jr_define( '_JOMRES_JR_A_IMAGEHANDLING_BATCHUPLOAD', 'Batch business image uploa
 jr_define( '_JOMRES_JR_A_IMAGEHANDLING_IMAGESALREADYINDIR', 'Images already in directory' );
 jr_define( '_JOMRES_COM_A_SLIDESHOWS', 'Slideshows' );
 jr_define( '_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWLINK', 'Show link to slideshows?' );
-jr_define( '_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE', 'Show slideshow inline?' );
+jr_define( '_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE', 'Show slideshow on Property Details page?' );
 jr_define( '_JOMRES_COM_A_SLIDESHOW_THUMBSIZE', 'Slideshow thumbnail target height' );
 jr_define( '_JOMRES_FRONT_SLIDESHOW', 'Slideshow' );
 jr_define( '_JOMRES_COM_A_SLIDESHOWS_NOIMAGES', '<br />Sorry, no images available for this business. Please upload some images using the batch upload feature if you wish to use the slideshow feature.' );
