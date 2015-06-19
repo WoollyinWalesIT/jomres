@@ -1,19 +1,21 @@
 <patTemplate:tmpl name="pageoutput">
-	<p>{_JOMRES_EXTRAS_TEMPLATE}</p>
-	<patTemplate:tmpl name="extras">
-	<div class="row">
-		<div class="col-md-2">
-			{NAME}
-		</div>
-		<div class="col-md-2">
-			{PRICE} {MODELTEXT}
-		</div>
-		<div class="col-md-4">
-			{DESCRIPTION}
-		</div>
-		<div class="col-md-4">
-			<img src="{EXTRA_IMAGE}" class="thumbnail responsive"/>
-		</div>
+
+<p>{_JOMRES_EXTRAS_TEMPLATE}</p>
+<patTemplate:tmpl name="extras">
+<div class="row">
+	<div class="col-md-3">
+		<img src="{EXTRA_IMAGE}" class="thumbnail responsive"/>
 	</div>
-	</patTemplate:tmpl>
+	<div class="col-md-3">
+		<strong>{NAME}</strong>
+	</div>
+	<div class="col-md-3">
+		{PRICE} {MODELTEXT}
+	</div>
+	<div class="col-md-3">
+		{DESCRIPTION}
+	</div>
+</div>
+</patTemplate:tmpl>
+
 </patTemplate:tmpl>
