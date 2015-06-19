@@ -1,16 +1,16 @@
-				<patTemplate:tmpl name="extras" type="simpleCondition" requiredVars="ajaxform_extras">
-				<div class="row">
-					<div class="col-md-2">
-						{INPUTBOX}
-					</div>
-					<div class="col-md-2">
-						{NAME}
-					</div>
-					<div class="col-md-2">
-						{PRICE} {MODELTEXT}
-					</div>
-					<div class="col-md-6">
-						<img src="{EXTRA_IMAGE}" class="thumbnail responsive"/>
-					</div>
-				</div>
-				</patTemplate:tmpl>
+<patTemplate:tmpl name="extras" type="simpleCondition" requiredVars="ajaxform_extras">
+<div class="row">
+	<div class="col-md-2">
+		{INPUTBOX}
+	</div>
+	<div class="col-md-4">
+		{NAME}
+	</div>
+	<div class="col-md-4">
+		{PRICE} {MODELTEXT}
+	</div>
+	<div class="col-md-2">
+		<img src="{EXTRA_IMAGE}" class="thumbnail responsive" alt="{NAME}"/>
+	</div>
+</div>
+</patTemplate:tmpl>
