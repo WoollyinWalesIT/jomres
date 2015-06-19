@@ -35,13 +35,11 @@ class j00501propertydetailsoptions
 		if ( !isset( $mrConfig[ 'property_language' ] ) ) 
 			$mrConfig[ 'property_language' ] = "en-GB";
 		
+		if ( $thisJRUser->simple_configuration )
+			return;
+		
 		$configurationPanel->startPanel( jr_gettext( "_JOMRES_PATHWAY_PROPERTYDETAILS", _JOMRES_PATHWAY_PROPERTYDETAILS, false ) );
 		
-		$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
-		$configurationPanel->setleft( jr_gettext( "_JOMRES_PROPERTY_LANG", _JOMRES_PROPERTY_LANG, false ) );
-		$configurationPanel->setmiddle( $jomreslang->get_languageselection_dropdown( true, $mrConfig[ 'property_language' ] ) );
-		$configurationPanel->setright( jr_gettext( "_JOMRES_PROPERTY_LANG_DESC", _JOMRES_PROPERTY_LANG_DESC, false ) );
-		$configurationPanel->insertSetting();
 
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
@@ -134,7 +132,7 @@ class j00501propertydetailsoptions
 	#
 	 * Must be included in every mini-component
 	#
-	 * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
+	* Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
 	#
 	 */
 	// This must be included in every Event/Mini-component

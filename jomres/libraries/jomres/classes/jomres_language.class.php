@@ -186,8 +186,8 @@ class jomres_language
 		{
 		$task = get_showtime( 'task' );
 		
-		if ( $this->showLangDropdown != "1" && $task != "touch_templates" && !jomres_cmsspecific_areweinadminarea() ) 
-			return "";
+	//	if ( $this->showLangDropdown != "1" && $task != "touch_templates" && !jomres_cmsspecific_areweinadminarea() ) 
+	//		return "";
 		
 		$langDropdownFile  = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "langDropdown.php";
 		$langfile_crossref = $this->define_langfile_to_languages_array();

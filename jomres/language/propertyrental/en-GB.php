@@ -1220,7 +1220,7 @@ jr_define( '_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_STATUS_EXPL', " Status <b>0:</b> Pending payment <b>1:</b> Created <b>2:</b> Cancelled <b>3:</b> End of Term" );
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS', "My Account" );
 jr_define( '_JOMRES_COM_YOURBUSINESS', 'Your property details' );
-jr_define( '_JOMRES_COM_YOURBUSINESS_NAME', 'property name' );
+jr_define( '_JOMRES_COM_YOURBUSINESS_NAME', 'Company Name' );
 jr_define( '_JOMRES_COM_YOURBUSINESS_VATNO', 'VAT number' );
 jr_define( '_JOMRES_COM_YOURBUSINESSADDRESS', 'Building number' );
 jr_define( '_JOMRES_COM_A_TAX_WARNING2', '<font color=red>NOTE: The following tax rates are designed for use by the American market. If you want to use a flat rate tax (eg VAT) for your accommodation, please choose a tax rate from the option above.</FONT>' );
