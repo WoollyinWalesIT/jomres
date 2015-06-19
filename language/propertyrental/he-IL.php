@@ -1255,7 +1255,7 @@ jr_define( '_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID', "Sorry, but 
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE', "Sorry, you are already subscribed to a free package, you cannot subscribe to that package again." );
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_STATUS_EXPL', " Status <b>0:</b> Pending payment <b>1:</b> Created <b>2:</b> Cancelled <b>3:</b> End of Term" );
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS', "My Account" );
-jr_define( '_JOMRES_COM_YOURBUSINESS', 'Your business details' );
+jr_define( '_JOMRES_COM_YOURBUSINESS', 'Your company details' );
 jr_define( '_JOMRES_COM_YOURBUSINESS_NAME', 'business name' );
 jr_define( '_JOMRES_COM_YOURBUSINESS_VATNO', 'VAT number' );
 jr_define( '_JOMRES_COM_YOURBUSINESSADDRESS', 'Building number' );
