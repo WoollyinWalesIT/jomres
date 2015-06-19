@@ -39,12 +39,6 @@ class j00501businessdetails
 		
 		$configurationPanel->startPanel( jr_gettext( _JOMRES_COM_YOURBUSINESS, '_JOMRES_COM_YOURBUSINESS', false ) );
 		
-		$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
-		$configurationPanel->setleft( jr_gettext( "_JOMRES_PROPERTY_LANG", _JOMRES_PROPERTY_LANG, false ) );
-		$configurationPanel->setmiddle( $jomreslang->get_languageselection_dropdown( true, $mrConfig[ 'property_language' ] ) );
-		$configurationPanel->setright( jr_gettext( "_JOMRES_PROPERTY_LANG_DESC", _JOMRES_PROPERTY_LANG_DESC, false ) );
-		$configurationPanel->insertSetting();
-		
 		$configurationPanel->setleft( jr_gettext( _JOMRES_COM_YOURBUSINESS_NAME, '_JOMRES_COM_YOURBUSINESS_NAME', false ) );
 		$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control" size="50" name="cfg_property_business_name" value="'.$mrConfig['property_business_name'].'" />');
 		$configurationPanel->setright();
