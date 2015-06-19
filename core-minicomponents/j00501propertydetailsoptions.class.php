@@ -38,7 +38,7 @@ class j00501propertydetailsoptions
 		if ( $thisJRUser->simple_configuration )
 			return;
 		
-		$configurationPanel->startPanel( jr_gettext( "_JOMRES_PATHWAY_PROPERTYDETAILS", _JOMRES_PATHWAY_PROPERTYDETAILS, false ) );
+		$configurationPanel->startPanel( jr_gettext( "PROPERTY_DETAILS_PAGE_OPTIONS", PROPERTY_DETAILS_PAGE_OPTIONS, false ) );
 		
 
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
