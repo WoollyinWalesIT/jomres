@@ -2465,3 +2465,5 @@ jr_define( '_ASSIGN_COMMISSION_RATES', 'Assign commission rates' );
 jr_define( 'GATEWAYS_INSTRUCTIONS', 'On this page you can configure any installed gateways. These options allow you to take payments for any Commission or Subscription invoices, and they are not related in any way to property gateway settings.' );
 
 jr_define( 'EXTRAS_INCLUDE_IN_PROPERTYDETAILS', 'Show in property details page?' );
+
+jr_define( 'PROPERTY_DETAILS_PAGE_OPTIONS', 'Property Details page settings' );
