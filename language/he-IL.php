@@ -2639,3 +2639,6 @@ jr_define( 'GATEWAYS_INSTRUCTIONS', 'On this page you can configure any installe
 jr_define( 'EXTRAS_INCLUDE_IN_PROPERTYDETAILS', 'Show in property details page?' );
 
 jr_define( 'PROPERTY_DETAILS_PAGE_OPTIONS', 'Property Details page settings' );
+
+jr_define( '_JOMRES_HLIST_PROPERTIES_WARNING', 'Property management in Jomres is made only from the site frontend cpanel. On this page you`ll be able to list all properties in the system, so you can assign commission rates and approve/unapprove them (if these features are enabled). To create a new property, edit existing ones, manage bookings or any other property/bookings related tasks, you`ll have to login to the site frontend and go to the Jomres default page. There you`ll see the Jomres frontend cpanel.' );
+
