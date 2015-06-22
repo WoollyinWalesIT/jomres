@@ -47,8 +47,21 @@ class j16000list_countries
 			$r                  = array ();
 			$r[ 'COUNTRYNAME' ] = $country[ 'countryname' ];
 			$r[ 'COUNTRYCODE' ] = $country[ 'countrycode' ];
-			$r[ 'EDITLINK' ]    = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_country&id=' . $country[ 'id' ] . '">' . $editIcon . '</a>';
-			$r[ 'EDIT_URL' ]    = JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_country&id=' . $country[ 'id' ];
+			
+			if (!using_bootstrap())
+				{
+				$r[ 'EDITLINK' ]    = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_country&id=' . $country[ 'id' ] . '">' . $editIcon . '</a>';
+				}
+			else
+				{
+				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
+				$toolbar->newToolbar();
+				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_country&id=' . $country[ 'id' ] ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
+				$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=delete_country&id=' . $country[ 'id' ] ), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
+				
+				$r['EDITLINK'] = $toolbar->getToolbar();
+				}
+			
 			$rows[ ]            = $r;
 			}
 

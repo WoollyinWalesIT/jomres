@@ -71,12 +71,24 @@ class j16000listGlobalroomTypes
 				}
 
 			$r[ 'CHECKBOX' ]       = '<input type="checkbox" id="cb' . count( $rows ) . '" name="idarray[]" value="' . $roomtype->room_classes_uid . '" onClick="jomres_isChecked(this.checked);">';
-			$r[ 'LINKTEXT' ]       = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=editGlobalroomTypes&rmTypeUid=' . $roomtype->room_classes_uid . '">' . $editIcon . '</a>';
-			$r[ 'LINKTEXTCLONE' ]  = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=editGlobalroomTypes&$rmTypeUid=' . $roomtype->room_classes_uid . '&clone=1">' . $cloneIcon . '</a>';
 			$r[ 'RTTITLE' ]        = $roomtype->room_class_abbv;
 			$r[ 'RTDESCRIPTION' ]  = $roomtype->room_class_full_desc;
 			$r[ 'IMAGE' ]          = get_showtime( 'live_site' ) . "/" . JOMRES_ROOT_DIRECTORY . "/uploadedimages/rmtypes/" . $roomtype->image;
 			$r[ 'PROPERTY_TYPES' ] = $selected_ptype_rows;
+			
+			if (!using_bootstrap())
+				{
+				$r[ 'EDITLINK' ] = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=editGlobalroomTypes&rmTypeUid=' . $roomtype->room_classes_uid . '">' . $editIcon . '</a>';
+				}
+			else
+				{
+				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
+				$toolbar->newToolbar();
+				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=editGlobalroomTypes&rmTypeUid=' . $roomtype->room_classes_uid ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
+				
+				$r[ 'EDITLINK' ] = $toolbar->getToolbar();
+				}
+				
 			$rows[ ]               = $r;
 			}
 		$output[ 'COUNTER' ]            = count( $rows );
@@ -94,7 +106,6 @@ class j16000listGlobalroomTypes
 		$jrtb .= $jrtbar->endTable();
 
 		$output[ 'JOMRESTOOLBAR' ]             = $jrtb;
-		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = JOMRES_SITEPAGE_URL_ADMIN;
 
 		$pageoutput[ ] = $output;
 

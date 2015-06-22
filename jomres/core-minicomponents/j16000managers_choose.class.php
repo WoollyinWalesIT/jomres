@@ -63,7 +63,6 @@ class j16000managers_choose
 		$output[ 'SUSPENSIONS' ]                                       = jr_gettext( '_JOMRES_SUSPENSIONS_MANAGERLIST_INFO', _JOMRES_SUSPENSIONS_MANAGERLIST_INFO,false );
 		$output[ '_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED' ] = jr_gettext( '_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', _JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED,false );
 
-		$output[ 'HLINKTEXT' ]           = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT', _JOMRES_COM_MR_VRCT_ROOM_LINKTEXT,false );
 		$output[ 'HGRANTLINK' ]          = jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER', _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER,false );
 		$output[ 'HACCESSLEVEL' ]        = jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL', _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL,false );
 		$output[ 'HUSERNAME' ]           = jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_USERNAME', _JOMRES_COM_MR_ASSIGNUSER_USERNAME,false );
@@ -111,13 +110,28 @@ class j16000managers_choose
 
 				$r[ 'ACCESSLEVELIMAGE' ] = $accesslevel_img;
 				$r[ 'GRANTLINK' ]        = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=grantMosUser&no_html=1&userid=' . $cms_userid . '&grantAct=n">' . $tickIcon . '</a>';
-				if ( $access_level > 0 ) $r[ 'LINKTEXT' ] = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=editProfile&id=' . $cms_userid . '">' . $editIcon . '</a>';
+				
+				if ( $access_level > 0 )
+					{
+					if (!using_bootstrap())
+						$r[ 'LINKTEXT' ] = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=editProfile&id=' . $cms_userid . '">' . $editIcon . '</a>';
+					else
+						{
+						$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
+						$toolbar->newToolbar();
+						$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=editProfile&id=' . $cms_userid ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
+						$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=grantMosUser&userid=' . $cms_userid . '&grantAct=n' ), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
+						
+						$r['LINKTEXT'] = $toolbar->getToolbar();	
+						}
+					}
 				else
-				$r[ 'LINKTEXT' ] = "&nbsp;";
+					$r[ 'LINKTEXT' ] = "&nbsp;";
 
 				$r[ 'USERNAME' ]           = $all_users[ $cms_userid ][ "username" ];
 				$r[ 'NUMBEROFPROPERTIES' ] = $numberOfProperties;
 				$r[ 'LINK' ]               = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=manager_show&id=' . $cms_userid . '">' . $all_users[ $cms_userid ][ "username" ] . '</a><br/>';
+				
 				$rows[ ]                   = $r;
 				}
 			}

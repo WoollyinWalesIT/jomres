@@ -34,6 +34,7 @@ class j16000listproperties
 		$rows=array();
 		
 		$output[ 'PAGETITLE' ]          = jr_gettext( "_JOMRES_HLIST_PROPERTIES", _JOMRES_HLIST_PROPERTIES, false );
+		$output[ 'WARNING' ]          	= jr_gettext( "_JOMRES_HLIST_PROPERTIES_WARNING", _JOMRES_HLIST_PROPERTIES_WARNING, false );
 		$output[ 'HSTATUS' ] 			= jr_gettext( "_JRPORTAL_INVOICES_STATUS", _JRPORTAL_INVOICES_STATUS );
 		$output[ 'HPROPERTYUID' ]       = 'Uid';
 		$output[ 'HPROPERTYNAME' ]      = jr_gettext( "_JRPORTAL_PROPERTIES_PROPERTYNAME", _JRPORTAL_PROPERTIES_PROPERTYNAME );

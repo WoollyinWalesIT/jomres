@@ -46,25 +46,51 @@ class j16000listPropertyTypes
 			$ptypeData[ 'ptype' ]      = $ptype->ptype;
 			$ptypeData[ 'ptype_desc' ] = $ptype->ptype_desc;
 			$published                 = $ptype->published;
-			if ( $published ) $ptypeData[ 'published' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Tick.png';
+			
+			if ( $published ) 
+				$ptypeData[ 'published' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Tick.png';
 			else
-			$ptypeData[ 'published' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Cancel.png';
+				$ptypeData[ 'published' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Cancel.png';
 
 
 			$r                = array ();
 			$r[ 'COUNTER' ]   = $counter;
 			$r[ 'ID' ]        = $ptypeData[ 'id' ];
+			
 			$r[ 'EDITURL' ]   = JOMRES_SITEPAGE_URL_ADMIN . "&task=editPropertyType&id=" . $ptypeData[ 'id' ];
 			$r[ 'EDITICON' ]  = $editIcon;
+			
 			$r[ 'PTYPE' ]     = $ptypeData[ 'ptype' ];
 			$r[ 'PTYPEDESC' ] = $ptypeData[ 'ptype_desc' ];
 
 			$r[ 'PUBLISHURL' ]   = JOMRES_SITEPAGE_URL_ADMIN . "&task=publishPropertyType&id=" . $ptypeData[ 'id' ];
 			$r[ 'PUBLISHIMAGE' ] = $ptypeData[ 'published' ];
 			$r[ 'ORDER' ]        = $ptype->order;
+			
+			if (!using_bootstrap())
+				{
+				$r['EDITLINK'] = '';
+				}
+			else
+				{
+				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
+				$toolbar->newToolbar();
+				
+				if ((int)$published == 0)
+					$toolbar->addItem( 'fa fa-times', 'btn btn-default', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishPropertyType' . '&id=' . $ptypeData[ 'id' ] ), jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', _JOMRES_COM_MR_VRCT_PUBLISH, false ) );
+				else
+					$toolbar->addItem( 'fa fa-check', 'btn btn-success', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishPropertyType' . '&id=' . $ptypeData[ 'id' ] ), jr_gettext( '_JOMRES_COM_MR_VRCT_UNPUBLISH', _JOMRES_COM_MR_VRCT_UNPUBLISH, false ) );
+
+				$toolbar->addSecondaryItem( 'fa fa-pencil-square-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=editPropertyType&id=' . $ptypeData[ 'id' ] ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
+				
+				$r['EDITLINK'] = $toolbar->getToolbar();
+				}
 
 			$rows[ ] = $r;
 			}
+		
+		$output[ 'COUNTER' ]            = count( $rows );
+		$output[ 'TOTALINLISTPLUSONE' ] = count( $rows ) + 1;
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();

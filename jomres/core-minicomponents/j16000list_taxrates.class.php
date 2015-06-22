@@ -55,8 +55,21 @@ class j16000list_taxrates
 			if ($rate[ 'is_eu_country' ] == "1")
 				$r['IS_EU_COUNTRY'] =  jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES,false );
 			
-			$r[ 'EDITLINK' ]    = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_taxrate&id=' . $rate[ 'id' ] . '">' . $editIcon . '</a>';
-			$rows[ ]            = $r;
+			if (!using_bootstrap())
+				{
+				$r[ 'EDITLINK' ]    = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_taxrate&id=' . $rate[ 'id' ] . '">' . $editIcon . '</a>';
+				}
+			else
+				{
+				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
+				$toolbar->newToolbar();
+				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_taxrate&id=' . $rate[ 'id' ] ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
+				$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=delete_taxrate&id=' . $rate[ 'id' ] ), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
+				
+				$r['EDITLINK'] = $toolbar->getToolbar();
+				}
+
+			$rows[ ] = $r;
 			}
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
