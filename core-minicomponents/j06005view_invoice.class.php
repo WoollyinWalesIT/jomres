@@ -194,8 +194,11 @@ class j06005view_invoice
 
 		if ( (int)$invoice->status == 3 )
 			{
-			if ( 
+			/*if ( 
 				(!$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager && $invoice->contract_id > 0 && $invoice->is_commission == 0 && $invoice->subscription == 0 && $contract['approved'] == 1) || //booking invoice viewed by guest
+				($invoice->contract_id == 0 && ($invoice->is_commission == 1 || $invoice->subscription == 1)) //subscription or commission invoice viewed by a manager
+				)*/
+			if ( 
 				($invoice->contract_id == 0 && ($invoice->is_commission == 1 || $invoice->subscription == 1)) //subscription or commission invoice viewed by a manager
 				)
 				{ 
