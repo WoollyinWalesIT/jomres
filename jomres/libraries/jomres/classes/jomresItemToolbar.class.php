@@ -51,7 +51,7 @@ class jomresItemToolbar
 	
 	function getToolbar()
 		{
-		$this->toolbar='<div id="jomres-toolbar" class="btn-group">';
+		$this->toolbar='<div id="jomres-item-toolbar" class="btn-group">';
 		
 		if (count($this->items)>0)
 			{
