@@ -102,7 +102,8 @@ class j00060toptemplate
 		$output[ 'LIVESITE' ]       = get_showtime( 'live_site' );
 		$output[ 'DATEPICKERLANG' ] = JOMRESDATEPICKERLANG;
 		
-		$lang_dropdown[ ][ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
+		if ($jrConfig['showLangDropdown'] == "1" )
+			$lang_dropdown[ ][ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
 		set_showtime( "menuitem_langdropdown", $lang_dropdown[ 0 ][ 'LANGDROPDOWN' ] );
 		
 		if ($thisJRUser->userIsManager)
