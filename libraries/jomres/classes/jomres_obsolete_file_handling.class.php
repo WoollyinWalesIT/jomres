@@ -1091,6 +1091,19 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j10002showSiteConfig.class.php' );
 		
 		$this->add_obs_file( $this->dir_javascript . 'jquery-ui-1.9.2.custom.js' );
+		
+		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'partner_discounts_show.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'partner_discounts_show.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_administrator . 'partner_discounts_show.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'partner_show.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'partner_show.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_administrator . 'partner_show.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'partner_show_discounts_for_property.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'partner_show_discounts_for_property.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_administrator . 'partner_show_discounts_for_property.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'partners_choose.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'partners_choose.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_administrator . 'partners_choose.html' );
 
 		}
 
