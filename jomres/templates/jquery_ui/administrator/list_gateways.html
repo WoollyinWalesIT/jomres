@@ -1,23 +1,26 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<h2 class="page-header">{TOUR_ID_TAB_GATEWAYS_TITLE}</h2>
-	{JOMRESTOOLBAR}
-	<p class="alert alert-info">{GATEWAYS_INSTRUCTIONS}</p>
-	<table id="admin_list_regions" width="100%" class="table table-striped">
-		<thead>
+
+<h2>{TOUR_ID_TAB_GATEWAYS_TITLE}</h2>
+
+<p class="ui-state-default">{GATEWAYS_INSTRUCTIONS}</p>
+
+<table id="admin_list_regions" width="100%">
+	<thead>
+	<tr>
+		<th>{COMMON_EDIT}</th>
+		<th>{TOUR_ID_TAB_GATEWAYS_TITLE}</th>
+		<th>{_JOMRES_COM_A_GATEWAY_ENABLED}</th>
+	</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 		<tr>
-			<th></th>
-			<th>{TOUR_ID_TAB_GATEWAYS_TITLE}</th>
-			<th>{_JOMRES_COM_A_GATEWAY_ENABLED}</th>
+			<td>{EDITLINK}</td>
+			<td>{GATEWAY_NAME}</td>
+			<td>{ACTIVE}</td>
 		</tr>
-		</thead>
-		<tbody>
-		<patTemplate:tmpl name="rows" unusedvars="nbsp">
-			<tr>
-				<td><a href="{EDIT_URL}" class="btn"><i class="icon-edit"></i> {COMMON_EDIT}</a></td>
-				<td>{GATEWAY_NAME}</td>
-				<td>{ACTIVE}</td>
-			</tr>
-		</patTemplate:tmpl>
-		</tbody>
-	</table>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+
 </patTemplate:tmpl>

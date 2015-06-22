@@ -13,8 +13,8 @@
 		<table id="admin_list_ptypes" class="table table-striped" width="100%">
 			<thead>
 			<tr>
-				<th width="1%"></th>
-				<th></th>
+				<th>{COMMON_EDIT}</th>
+				<th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});"/> {COMMON_DELETE}</th>
 				<th>ID</th>
 				<th>{HPTYPE}</th>
 				<th class="hidden-phone">{HPTYPE_DESC}</th>
@@ -23,8 +23,8 @@
 			<tbody>
 			<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="id">
 				<tr>
+					<td>{EDITLINK}</td>
 					<td><input type="checkbox" id="cb{COUNTER}" name="idarray[]" value="{ID}" onClick="jomres_isChecked(this.checked);"></td>
-					<td><a href="{PUBLISHURL}"><img src="{PUBLISHIMAGE}" border="0" alt="image"/></a> <a href="{EDITURL}">{EDITICON}</a></td>
 					<td>{ID}</td>
 					<td>{PTYPE}</td>
 					<td class="hidden-phone">{PTYPEDESC}</td>
