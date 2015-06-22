@@ -13,24 +13,23 @@
 		<table id="list_pfeatures" width="100%" class="table table-striped">
 			<thead>
 			<tr>
-				<th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});"/>
-				</th>
-				<th>&nbsp;</th>
+				<th>{COMMON_EDIT}</th>
+				<th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});"/> {COMMON_DELETE}</th>
 				<th>{HPFEATURETITLE}</th>
 				<th class="hidden-phone">{HPFEATUREDESCRIPTION}</th>
-				<th class="hidden-phone">{HPROPERTY_TYPES}</th>
 				<th class="hidden-phone">{HJOMRES_A_ICON}</th>
+				<th class="hidden-phone">{HPROPERTY_TYPES}</th>
 			</tr>
 			</thead>
 			<tbody>
 			<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="pfeaturetitle">
 				<tr>
+					<td>{EDITLINK}</td>
 					<td>{CHECKBOX}</td>
-					<td>{LINKTEXT}</td>
 					<td>{PFEATURETITLE}</td>
 					<td class="hidden-phone">{PFEATUREDESCRIPTION}</td>
-					<td class="hidden-phone">{PROPERTY_TYPES}</td>
 					<td class="hidden-phone"><img src="{IMAGE}" width="25" height="25"/></td>
+					<td class="hidden-phone">{PROPERTY_TYPES}</td>
 				</tr>
 			</patTemplate:tmpl>
 			</tbody>

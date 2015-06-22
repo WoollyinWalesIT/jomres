@@ -16,6 +16,7 @@
 	<table id="list_reviews_properties" width="100%">
 		<thead>
 		<tr>
+			<th></th>
 			<th>{HPROPERTYNAME}</th>
 			<th>{_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED}</th>
 			<th>{_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL}</th>
@@ -25,8 +26,9 @@
 		<tbody>
 		<patTemplate:tmpl name="rows" unusedvars="strip">
 			<tr class="{STYLE}">
+				<td>{VIEWLINK}</td>
 				<td>
-					<div class='{ROW_CLASS}'>{VIEWLINK}{PROPERTYNAME}</div>
+					<div class='{ROW_CLASS}'>{PROPERTYNAME}</div>
 				</td>
 				<td>{NUMBERUNPUBLISHED}</td>
 				<td>{NUMBERTOTAL}</td>
