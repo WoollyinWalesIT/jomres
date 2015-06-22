@@ -39,9 +39,8 @@ class j16000list_gateways
 		if ( count ($gateway_plugins) > 0 )
 			{
 			$output[ '_JOMRES_COM_A_GATEWAY_ENABLED' ]	= jr_gettext( "_JOMRES_COM_A_GATEWAY_ENABLED", _JOMRES_COM_A_GATEWAY_ENABLED, false );
-			$output[ 'TOUR_ID_TAB_GATEWAYS_TITLE' ]		= jr_gettext( "TOUR_ID_TAB_GATEWAYS_TITLE", TOUR_ID_TAB_GATEWAYS_TITLE, false );
+			$output[ 'TOUR_ID_TAB_GATEWAYS_TITLE' ]		= jr_gettext( "_JOMRES_COM_A_GATEWAYLIST", _JOMRES_COM_A_GATEWAYLIST, false );
 			$output[ 'GATEWAYS_INSTRUCTIONS' ]			= jr_gettext( "GATEWAYS_INSTRUCTIONS", GATEWAYS_INSTRUCTIONS, false );
-			
 			
 			$rows = array();
 			
@@ -58,18 +57,24 @@ class j16000list_gateways
 				else
 					$r['ACTIVE']=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,false);
 				$r['GATEWAY_NAME'] = $gateway['friendlyname'];
-				$r['EDIT_URL'] =  JOMRES_SITEPAGE_URL_ADMIN."&task=edit_gateway&plugin=".$gateway['name'];
 				
-				$rows[ ]         = $r;
+				if (!using_bootstrap())
+					{
+					$editIcon = '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" alt="editicon" />';
+					
+					$r['EDITLINK']= '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL_ADMIN."&task=edit_gateway&plugin=".$gateway['name']).'">'.$editIcon.'</a>' ;
+					}
+				else
+					{
+					$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
+					$toolbar->newToolbar();
+					$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_gateway&plugin=' . $gateway['name'] ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
+					
+					$r['EDITLINK'] = $toolbar->getToolbar();
+					}
+				
+				$rows[ ] = $r;
 				}
-			
-			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
-			$jrtb   = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL_ADMIN ), '' );
-			$jrtb .= $jrtbar->toolbarItem( 'new', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=edit_gateway" ), '' );
-			
-			$jrtb .= $jrtbar->endTable();
-			$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
 			$pageoutput[ ] = $output;
 			$tmpl          = new patTemplate();
