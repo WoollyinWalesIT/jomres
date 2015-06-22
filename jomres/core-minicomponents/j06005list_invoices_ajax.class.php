@@ -319,8 +319,11 @@ class j06005list_invoices_ajax
 			//gateways stuff
 			if ( (int)$p->status == 3 )
 				{
-				if (
+				/*if (
 					( !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager && $p->contract_id > 0 ) || //booking invoice
+					( $p->contract_id == 0 && ($p->subscription > 0 || $p->is_commission > 0) ) //subscription/commission invoice
+					)*/
+				if (
 					( $p->contract_id == 0 && ($p->subscription > 0 || $p->is_commission > 0) ) //subscription/commission invoice
 					)
 					{
