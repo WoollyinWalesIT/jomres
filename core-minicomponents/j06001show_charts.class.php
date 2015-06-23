@@ -32,6 +32,7 @@ class j06001show_charts
 				$r['TITLE']			= $minicomponent_data['label'];
 				$r['CHART_PARAMS']	= "&task=show_chart&".$minicomponent_data['chart_params'];
 				$r['TITLE_CLASS']	= $minicomponent_data['title_class'];
+				$r['MORE_INFO']	= $minicomponent_data['more_info'];
 				$rows[] = $r;
 				}
 			}
