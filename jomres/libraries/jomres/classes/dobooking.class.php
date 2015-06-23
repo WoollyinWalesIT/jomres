@@ -213,6 +213,10 @@ class dobooking
 			$this->room_feature_filter   = unserialize( $bookingDeets[ 'room_feature_filter' ] );
 			$this->override_room_total   = (float) $bookingDeets[ 'override_room_total' ];
 			$this->override_deposit      = (float) $bookingDeets[ 'override_deposit' ];
+			if ( isset ($bookingDeets[ 'thirdparty_vars' ]))
+				{
+				$this->thirdparty_vars = $bookingDeets[ 'thirdparty_vars' ];
+				}
 			}
 
 		$dbdata = serialize( $bookingDeets );
@@ -519,6 +523,10 @@ class dobooking
 		$tmpBookingHandler->tmpbooking[ "property_currencycode" ]     = $this->property_currencycode;
 		$tmpBookingHandler->tmpbooking[ "email_address_can_be_used" ] = $this->email_address_can_be_used;
 
+		if ( isset ($this->thirdparty_vars))
+			{
+			$tmpBookingHandler->tmpbooking[ "thirdparty_vars" ] = $this->thirdparty_vars;
+			}
 
 		$tmpBookingHandler->saveBookingData();
 		}
