@@ -217,7 +217,8 @@ class dobooking
 				{
 				$this->thirdparty_vars = $bookingDeets[ 'thirdparty_vars' ];
 				}
-
+			}
+		
 		$dbdata = serialize( $bookingDeets );
 		$dbdata = str_replace( ";", " ", $dbdata );
 		$this->setErrorLog( "<font color='grey'>Constructor::Data pulled from Session variables  " . $dbdata . "</font>" );
@@ -522,6 +523,10 @@ class dobooking
 		$tmpBookingHandler->tmpbooking[ "property_currencycode" ]     = $this->property_currencycode;
 		$tmpBookingHandler->tmpbooking[ "email_address_can_be_used" ] = $this->email_address_can_be_used;
 
+		if ( isset ($this->thirdparty_vars))
+			{
+			$tmpBookingHandler->tmpbooking[ "thirdparty_vars" ] = $this->thirdparty_vars;
+			}
 
 		$tmpBookingHandler->saveBookingData();
 		}
