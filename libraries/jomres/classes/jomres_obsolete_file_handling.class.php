@@ -1119,7 +1119,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'show_room_features.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'show_room_features.html' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j01055showroomdetails.class.php' );
-		
+		$this->add_obs_file( $this->dir_minicomponents . 'j06000show_property_room_features.class.php' );
 		
 		}
 
