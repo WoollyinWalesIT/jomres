@@ -217,7 +217,6 @@ class dobooking
 				{
 				$this->thirdparty_vars = $bookingDeets[ 'thirdparty_vars' ];
 				}
-			}
 
 		$dbdata = serialize( $bookingDeets );
 		$dbdata = str_replace( ";", " ", $dbdata );
@@ -523,48 +522,33 @@ class dobooking
 		$tmpBookingHandler->tmpbooking[ "property_currencycode" ]     = $this->property_currencycode;
 		$tmpBookingHandler->tmpbooking[ "email_address_can_be_used" ] = $this->email_address_can_be_used;
 
-		if ( isset ($this->thirdparty_vars))
-			{
-			$tmpBookingHandler->tmpbooking[ "thirdparty_vars" ] = $this->thirdparty_vars;
-			}
 
 		$tmpBookingHandler->saveBookingData();
 		}
 
 	function getAllRoomsData()
 		{
+		$basic_room_details = jomres_singleton_abstract::getInstance( 'basic_room_details' );
+		$basic_room_details->get_all_rooms($this->property_uid);
+		
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
-		$images = $jomres_media_centre_images->get_images($this->property_uid, array('rooms')); // Gets the property images
+		$images = $jomres_media_centre_images->get_images($this->property_uid, array('rooms')); // Gets the rooms images
 		$room_images = $images [ 'rooms' ] ;
-		$tmpFeatures = "";
-		$query       = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking,singleperson_suppliment  FROM #__jomres_rooms WHERE  propertys_uid = '$this->property_uid'";
-		$rooms       = doSelectSql( $query );
-		foreach ( $rooms as $r )
-			{
-			$this->allPropertyRooms[ $r->room_uid ] = array ( 'room_uid' => $r->room_uid, 'room_classes_uid' => $r->room_classes_uid, 'propertys_uid' => $r->propertys_uid, 'room_features_uid' => $r->room_features_uid, 'room_name' => $r->room_name, 'room_number' => $r->room_number, 'room_floor' => $r->room_floor, 'room_disabled_access' => $r->room_disabled_access, 'max_people' => $r->max_people, 'smoking' => $r->smoking, 'singleperson_suppliment' => $r->singleperson_suppliment , "small_room_image" => $room_images [$r->room_uid] [0] ['small'], "medium_room_image" => $room_images [$r->room_uid] [0] ['medium']);
 
-			$this->allPropertyRoomUids[ ] = $r->room_uid;
-			if ( strlen( $r->room_features_uid ) > 0 )
-				{
-				if ( strlen( $tmpFeatures ) == 0 ) $tmpFeatures = $r->room_features_uid;
-				else
-				$tmpFeatures = $tmpFeatures . "," . $r->room_features_uid;
-				}
-			if ( !in_array( $r->room_classes_uid, $this->allRoomClassIds ) ) $this->allRoomClassIds[ ] = $r->room_classes_uid;
+		foreach ( $basic_room_details->rooms as $r )
+			{
+			$this->allPropertyRooms[ $r['room_uid'] ] = array ( 'room_uid' => $r['room_uid'], 'room_classes_uid' => $r['room_classes_uid'], 'propertys_uid' => $r['propertys_uid'], 'room_features_uid' => $r['room_features_uid'], 'room_name' => $r['room_name'], 'room_number' => $r['room_number'], 'room_floor' => $r['room_floor'], 'room_disabled_access' => $r['room_disabled_access'], 'max_people' => $r['max_people'], 'smoking' => $r['smoking'], 'singleperson_suppliment' => $r['singleperson_suppliment'] , "small_room_image" => $room_images [ $r['room_uid'] ] [0] ['small'], "medium_room_image" => $room_images [ $r['room_uid'] ] [0] ['medium']);
+
+			$this->allPropertyRoomUids[ ] = $r['room_uid'];
+			
+			if ( !in_array( $r['room_classes_uid'], $this->allRoomClassIds ) ) 
+				$this->allRoomClassIds[ ] = $r['room_classes_uid'];
 			}
 
-		$featuresArray = explode( ",", $tmpFeatures );
-		/*
-		if (count($featuresArray)>1)
-			$this->allFeatureIds=array_unique($featuresArray);
-		else
-			$this->allFeatureIds=$featuresArray;
-		*/
-
-		//if (count($featuresArray)>0)
-		//	{
-		foreach ( $featuresArray as $f ) $this->allFeatureIds[ ] = (int) $f;
-		//	}
+		if (count($basic_room_details->all_room_features) > 0)
+			{
+			$this->allFeatureIds = array_keys( $basic_room_details->all_room_features );
+			}
 		}
 
 	function getAllTariffsData()
@@ -598,19 +582,12 @@ class dobooking
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 		$jomres_media_centre_images->get_images($this->property_uid, array('room_features'));
 		
-		$jomres_property_room_features = jomres_singleton_abstract::getInstance( 'jomres_property_room_features' );
+		$basic_room_details = jomres_singleton_abstract::getInstance( 'basic_room_details' );
+		$basic_room_details->get_all_rooms($this->property_uid);
 		
-		$query     = "SELECT room_features_uid,feature_description FROM #__jomres_room_features WHERE room_features_uid IN (".implode(',',$this->allFeatureIds).") ";
-		$roomFeats = doSelectSql( $query );
-		foreach ( $roomFeats as $c )
+		foreach ($basic_room_details->all_room_features as $f)
 			{
-			$feature_image = $jomres_media_centre_images->multi_query_images['noimage-small'];
-			if (isset($jomres_media_centre_images->images['room_features'][ $c->room_features_uid ][0]['small']))
-				$feature_image = $jomres_media_centre_images->images['room_features'][ $c->room_features_uid ][0]['small'];
-		
-			$fd				= jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION' . $c->room_features_uid, $c->feature_description, false, false );
-			$image_template	= $jomres_property_room_features->get_room_feature_image($c->room_features_uid) ;
-			$this->allFeatureDetails[ $c->room_features_uid ] = array ( 'room_features_uid' => $c->room_features_uid, 'feature_description' => $fd , 'image' => $feature_image, 'image_template' => $image_template);
+			$this->allFeatureDetails[ $f['room_features_uid'] ] = array ( 'room_features_uid' => $f['room_features_uid'], 'feature_description' => $f['feature_description'] , 'image' => $f['image'], 'tooltip' => $tooltip);
 			}
 		}
 
@@ -629,15 +606,14 @@ class dobooking
 
 	function getAllRoomFeatures()
 		{
-		$query                 = "SELECT room_features_uid,feature_description FROM #__jomres_room_features WHERE room_features_uid IN (".implode(',',$this->allFeatureIds).") AND ( property_uid = '$this->property_uid' OR property_uid = '0' ) ";
-		$roomFeatures          = doSelectSql( $query );
-		$this->allRoomFeatures = array ();
-		if ( count( $roomFeatures ) > 0 )
+		$basic_room_details = jomres_singleton_abstract::getInstance( 'basic_room_details' );
+		$basic_room_details->get_all_rooms($this->property_uid);
+		
+		if (count($basic_room_details->all_room_features) > 0)
 			{
-			foreach ( $roomFeatures as $feature )
+			foreach ($basic_room_details->all_room_features as $f)
 				{
-				$feature_description                                  = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURES' . (int) $feature->room_features_uid, $feature->feature_description, false, false );
-				$this->allRoomFeatures[ $feature->room_features_uid ] = $feature_description;
+				$this->allRoomFeatures[ $f['room_features_uid'] ] = $f['feature_description'];
 				}
 			}
 		}
@@ -4964,6 +4940,12 @@ class dobooking
 	function makeRoomOverlibdata( $roomUid, $tariffUid, $roomTariffOutputId, $roomTariffOutputText, $removing = false )
 		{
 		$mrConfig = $this->mrConfig;
+		
+		$basic_room_details = jomres_singleton_abstract::getInstance( 'basic_room_details' );
+		$basic_room_details->get_all_rooms($this->property_uid);
+		
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+		$jomres_media_centre_images->get_images($this->property_uid, array('room_features'));
 
 		if ( $this->cfg_booking_form_rooms_list_style == "2" )
 			{
@@ -5063,8 +5045,9 @@ class dobooking
 	 */
 	function GetRoomDetails( $roomUid )
 		{
-		//$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking  FROM #__jomres_rooms WHERE  room_uid  = '$roomUid'";
-		//$room=doSelectSql($query,2);
+		$basic_room_details = jomres_singleton_abstract::getInstance( 'basic_room_details' );
+		$basic_room_details->get_all_rooms($this->property_uid);
+		
 		$room = $this->allPropertyRooms[ $roomUid ];
 
 		$room_classes_uid     = $room[ 'room_classes_uid' ];
@@ -5073,16 +5056,16 @@ class dobooking
 		$smoking              = $room[ 'smoking' ];
 		$classAbbv            = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION' . $room_classes_uid, $this->allRoomClasses[ $room_classes_uid ][ 'room_class_abbv' ], false, false ) );
 
-
-		$room_image         = getImageForProperty( "room", $this->property_uid, $roomUid );
-		$roomRow[ 'IMAGE' ] = jomres_makeTooltip( $room_image, "", $room_image, $room_image, "", "imageonly", $type_arguments = array ( "width" => 30, "height" => 30, "border" => 0 ) );
-
-		if ( $room_disabled_access == 1 ) $disabledAccess = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false, false ) );
+		if ( $room_disabled_access == 1 ) 
+			$disabledAccess = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false, false ) );
 		else
-		$disabledAccess = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false, false ) );
-		if ( $smoking == 1 ) $smoking = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false, false ) );
+			$disabledAccess = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false, false ) );
+		
+		if ( $smoking == 1 ) 
+			$smoking = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false, false ) );
 		else
-		$smoking = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false, false ) );
+			$smoking = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false, false ) );
+		
 		$roomFeatureUidsArray = explode( ",", $room_features_uid );
 		if ( $roomFeatureUidsArray )
 			{
@@ -5090,17 +5073,13 @@ class dobooking
 			$jomres_media_centre_images->get_images($this->property_uid, array('room_features'));
 
 			$roomFeatureDescriptions = "";
-			foreach ( $roomFeatureUidsArray as $featureUid )
+			foreach ($roomFeatureUidsArray as $f)
 				{
-				$feature_image = $this->allFeatureDetails[ $featureUid ] ['image_template'];
-
-				$desc = $this->allFeatureDetails[ $featureUid ][ 'feature_description' ];
-				if ($feature_image != '')
-					$roomFeatureDescriptions .= $feature_image;
-				else
-					$roomFeatureDescriptions .= $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATUREDESC' . $featureUid, $desc, false, false ) ).'<br/>';
+				$roomRow[ 'FEATURES' ] .= $basic_room_details->all_room_features[ $f ]['tooltip'];
 				}
 			}
+		else
+			$roomRow[ 'FEATURES' ] = '';
 
 		$roomRow[ 'HEADER_ROOMNUMBER' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER, false, false ) );
 		$roomRow[ 'HEADER_ROOMTYPE' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE, false, false ) );
@@ -5122,12 +5101,11 @@ class dobooking
 		$roomRow[ 'ROOMFLOOR' ]        = $this->sanitiseOutput( stripslashes( $room[ 'room_floor' ] ) );
 		$roomRow[ 'DISABLEDACCESS' ]   = $disabledAccess;
 		$roomRow[ 'MAXPEOPLE_INROOM' ] = $this->sanitiseOutput( $room[ 'max_people' ] );
-		$roomRow[ 'FEATURES' ]         = $roomFeatureDescriptions;
 		
 		if (using_bootstrap() && jomres_bootstrap_version() == "3")
 			{
 			$endrun_javascript_for_eval_by_handlereq = get_showtime('endrun_javascript_for_eval_by_handlereq');
-			$endrun_javascript_for_eval_by_handlereq[$roomUid] = ';jomresJquery(document).ready(function(){if (jomresJquery(\'body > #roomdetails'.$roomUid.'\').length < 1){jomresJquery(\'#roomdetails'.$roomUid.'\').appendTo("body");}else{jomresJquery(\'body > #roomdetails'.$roomUid.'\').replaceWith(jomresJquery(\'#roomdetails'.$roomUid.'\'));}});';
+			$endrun_javascript_for_eval_by_handlereq[$roomUid] = ';jomresJquery(document).ready(function(){if (jomresJquery(\'body > #roomdetails'.$roomUid.'\').length < 1){jomresJquery(\'#roomdetails'.$roomUid.'\').appendTo("body");}else{jomresJquery(\'body > #roomdetails'.$roomUid.'\').replaceWith(jomresJquery(\'#roomdetails'.$roomUid.'\'));};jomresJquery(\'.jomres_bt_tooltip_features\').tipsy({html: true, fade: true, gravity: \'sw\', delayOut: 100});});';
 			set_showtime('endrun_javascript_for_eval_by_handlereq',$endrun_javascript_for_eval_by_handlereq);
 			}
 

@@ -19,82 +19,88 @@ class j06000show_property_rooms
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch ){$this->template_touchable = true;return;}
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = true;
+			return;
+			}
 
 		if (isset($componentArgs[ 'property_uid' ]))
 			$property_uid = (int) $componentArgs[ 'property_uid' ];
 		elseif ( isset ( $_REQUEST['property_uid'] ))
 			$property_uid = (int) $_REQUEST['property_uid'];
-		else return;
+		else 
+			return;
+		
+		$output_now = true;
+		if (isset($componentArgs[ 'output_now' ]))
+			$output_now = (bool)$componentArgs[ 'output_now' ];
+		
+		if ($output_now)
+			property_header( $property_uid );
+		
+		if (isset($componentArgs[ 'slideshow' ]))
+			$display_slideshow = (bool)$componentArgs[ 'slideshow' ];
+		else
+			$display_slideshow = true;
 
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 		
-		$jomres_property_room_features = jomres_singleton_abstract::getInstance( 'jomres_property_room_features' );
+		//get all room details
+		$basic_room_details = jomres_singleton_abstract::getInstance( 'basic_room_details' );
+		$basic_room_details->get_all_rooms($property_uid);
 		
 		$output = array();
 
-		$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE propertys_uid = " . (int) $property_uid . " ORDER BY room_number,room_name";
-		$roomList = doSelectSql( $query );
-
-		if ( count( $roomList ) > 0 )
+		if ( count( $basic_room_details->rooms ) > 0 )
 			{
-			$current_property_details->gather_data($property_uid);
-			$jomres_media_centre_images->get_images($property_uid, array('rooms'));
-
-			$output[ 'HIMAGEHEADER' ]                        = "";
-			$output[ 'COM_A_BASICTEMPLATE_SHOWROOMS' ]       = jr_gettext( '_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS', _JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS, false );
-			$output[ 'COM_A_BASICTEMPLATE_SHOWROOMS_TITLE' ] = jr_gettext( '_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS_TITLE', _JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS_TITLE, false );
-			$output[ 'HEADER_ROOMNUMBER' ]                   = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER, false );
-			$output[ 'HEADER_ROOMTYPE' ]                     = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE, false );
-			$output[ 'HEADER_SMOKING' ]                      = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', _JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING, false );
-			$output[ 'HEADER_ROOMNAME' ]                     = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME, false );
-			$output[ 'HEADER_AVLCALLINK' ] = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY, false );
-			$output[ 'HEADER_ROOMFLOOR' ]               = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR, false );
-			$output[ 'HEADER_DISABLEDACCESS' ]          = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS', _JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS, false );
-			$output[ 'HEADER_MAXPEOPLE' ]               = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE, false );
-			$output[ '_JOMRES_HRESOURCE_FEATURES' ]     = jr_gettext( '_JOMRES_HRESOURCE_FEATURES', _JOMRES_HRESOURCE_FEATURES, false );
+			//get room and room feature images
+			$jomres_media_centre_images->get_images($property_uid, array('rooms','room_features'));
 			
-			$output['ALLROOMSSLIDESHOW'] = $MiniComponents->specificEvent( '06000', 'show_property_rooms_slideshow' , array( "property_uid" => $property_uid , "size" => "large") );
+			if ($display_slideshow)
+				$output['ALLROOMSSLIDESHOW'] = $MiniComponents->specificEvent( '06000', 'show_property_rooms_slideshow' , array( "property_uid" => $property_uid , "size" => "large") );
+			else
+				$output['ALLROOMSSLIDESHOW'] = '';
 			
 			$rows = array();
 
-			foreach ( $roomList as $room )
+			foreach ( $basic_room_details->rooms as $room )
 				{
-				$r              = array ();
-				foreach ($output as $key=>$val)
-					{
-					$r[$key] = $val;
-					}
-				$room_uid             = $room->room_uid;
-				$room_classes_uid     = $room->room_classes_uid;
-				$propertys_uid        = $room->propertys_uid;
-				$room_features_uid    = $room->room_features_uid;
-				$room_name            = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE' . $room_uid, stripslashes( $room->room_name ), false );
-				$room_number          = stripslashes( $room->room_number );
-				$room_floor           = stripslashes( $room->room_floor );
-				$room_disabled_access = $room->room_disabled_access;
-				$max_people           = $room->max_people;
-				$smoking              = $room->smoking;
+				$r = array ();
+				
+				$r[ 'HEADER_SMOKING' ]         = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', _JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING, false );
+				$r[ 'HEADER_ROOMFLOOR' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR, false );
+				$r[ 'HEADER_DISABLEDACCESS' ]  = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS',_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS,false);
+				$r[ 'HEADER_MAXPEOPLE' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE, false );
+				$r[ 'AVLCALTITLE' ] 		   = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY, false, false );
+								
+				$r[ 'ROOMNAME' ]      = $room['room_name'];
+				$r[ 'ROOMNUMBER' ]    = stripslashes( $room['room_number'] );
+				$r[ 'ROOMFLOOR' ]     = stripslashes( $room['room_floor'] );
+				$r[ 'MAXPEOPLE' ]     = $room['max_people'];
 
-				$result = $MiniComponents->specificEvent( '01060', 'slideshow' , array( "images" => $jomres_media_centre_images->images['rooms'][$room_uid] ) );
-				$r[ 'SLIDESHOW' ] = $result ['slideshow'];
+				$r[ 'ROOMTYPE' ] = $current_property_details->all_room_types[ $room['room_classes_uid'] ]['room_class_abbv'];
 
-				$classAbbv = $current_property_details->all_room_types[ (int) $room_classes_uid ]['room_class_abbv'];
-
-				if ( $room_disabled_access == 1 )
-					$disabledAccess = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
+				if ( $room['room_disabled_access'] == 1 )
+					$r[ 'DISABLEDACCESS' ] = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
 				else
-					$disabledAccess = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
-				if ( $smoking == 1 )
-					$smoking = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
+					$r[ 'DISABLEDACCESS' ] = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
+				
+				if ( $room['smoking'] == 1 )
+					$r[ 'SMOKING' ] = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
 				else
-					$smoking = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
+					$r[ 'SMOKING' ] = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
 
 				$roomFeatureDescriptionsArray = array ();
-				$roomFeatureUidsArray         = explode( ",", $room_features_uid );
-
-				$r[ 'ROOM_FEATURES' ] = $jomres_property_room_features->get_room_feature_template($roomFeatureUidsArray) ;
+				$roomFeatureUidsArray         = explode( ",", $room['room_features_uid'] );
+				
+				//room features
+				$r[ 'ROOM_FEATURES' ] = "";
+				foreach ($roomFeatureUidsArray as $f)
+					{
+					$r[ 'ROOM_FEATURES' ] .= $basic_room_details->all_room_features[ $f ]['tooltip'];
+					}
 
 				$r[ 'RANDOM_IDENTIFIER' ]  = generateJomresRandomString( 10 );
 				
@@ -102,41 +108,28 @@ class j06000show_property_rooms
 				$r[ 'IMAGEMEDIUM' ] = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
 				$r[ 'IMAGETHUMB' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
 
-				if ($jomres_media_centre_images->images['rooms'][$room_uid][0]['large'] != "")
+				if ($jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'] != "")
 					{
-					$r[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images['rooms'][$room_uid][0]['large'];
-					$r[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['rooms'][$room_uid][0]['medium'];
-					$r[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images['rooms'][$room_uid][0]['small'];
+					$r[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'];
+					$r[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['medium'];
+					$r[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['small'];
 					}
-
-				$r[ 'ROOMNUMBER' ] = $room_number;
-				$r[ 'ROOMTYPE' ]   = $classAbbv;
-				$r[ 'SMOKING' ]    = $smoking;
-				$r[ 'ROOMNAME' ]   = $room_name;
 				
-				$r[ 'AVLCALLINK' ]  = jomresURL( JOMRES_SITEPAGE_URL . "&task=showRoomDetails&roomUid=$room_uid");
-				$r[ 'AVLCALTITLE' ] = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY, false, false );
-
-				$r[ 'ROOMFLOOR' ]      = $room_floor;
-				$r[ 'DISABLEDACCESS' ] = $disabledAccess;
-				$r[ 'MAXPEOPLE' ]      = $max_people;
-				
-				$r[ 'HEADER_AVLCALLINK' ] = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY, false );
+				$r[ 'AVLCALLINK' ]  = jomresURL( JOMRES_SITEPAGE_URL . "&task=show_property_room&id=".$room['room_uid']);
 				
 				$rows[ ] = $r;
 				}
 
 			$pageoutput=array();
 			$pageoutput[]=$output;
-			
 			$tmpl = new patTemplate();
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $rows );
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-			$tmpl->readTemplatesFromInput( 'show_property_rooms.html' );
+			$tmpl->readTemplatesFromInput( 'show_rooms.html' );
 			$result = $tmpl->getParsedTemplate();
 			
-			if ( isset ( $_REQUEST['property_uid'] ))
+			if ( $output_now )
 				echo $result;
 			else
 				$this->retVals = $result;
@@ -166,18 +159,9 @@ class j06000show_property_rooms
 			}
 		}
 
-	/**
-	#
-	 * Must be included in every mini-component
-	#
-	 * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
-	#
-	 */
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
 		return $this->retVals;
 		}
 	}
-
-?>

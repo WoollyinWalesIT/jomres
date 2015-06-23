@@ -446,6 +446,28 @@ function doTableUpdates()
 	if ( !checkInvoicePaymentXrefTableExists() ) createInvoicePaymentXrefTable();
 	if ( !checkExtrasValidfromColExists() ) alterExtrasValidfromCol();
 	if ( !checkExtrasIncludeinlistsColExists() ) alterExtrasIncludeinlistsCol();
+	if ( !checkRfeaturesImageColExists() ) alterRfeaturesImageCol();
+	}
+
+function checkRfeaturesImageColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_room_features LIKE 'image'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+	return false;
+	}
+
+function alterRfeaturesImageCol()
+	{
+	output_message ( "Editing __jomres_room_features table adding image column");
+	$query = "ALTER TABLE `#__jomres_room_features` ADD `image` VARCHAR(255) NULL DEFAULT NULL AFTER `ptype_xref`";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_room_features image column", "danger" );
+		}
 	}
 
 function alterExtrasIncludeinlistsCol()

@@ -23,10 +23,11 @@ class basic_property_details
 
 	public function __construct()
 		{
-		self::$internal_debugging          = false;
-		self::$property_data               = array ();
-		$this->multi_query_result          = array ();
-		$this->property_names = array();
+		self::$internal_debugging   = false;
+		self::$property_data        = array ();
+		$this->multi_query_result   = array ();
+		$this->property_names 		= array();
+		
 		$this->get_all_room_types();
 		$this->get_all_property_types();
 		$this->get_all_property_features();
@@ -264,24 +265,6 @@ class basic_property_details
 				$this->features[$f]['image'] =$image;
 				}
 			}
-
-		// This array is only used by the showRoomDetails task. It's pointless constantly running this query when it's not used anywhere else.
-		if ( get_showtime( 'task' ) == "showRoomDetails" )
-			{
-			if ( !isset( $this->room_features ) ) $this->room_features = array ();
-			if ( !isset( $this->room_features[ $this->property_uid ] ) )
-				{
-				$query        = "SELECT room_features_uid,feature_description FROM #__jomres_room_features WHERE property_uid = " . $this->property_uid . " OR property_uid = 0 ";
-				$roomFeatures = doSelectSql( $query );
-				if ( count( $roomFeatures ) > 0 )
-					{
-					foreach ( $roomFeatures as $f )
-						{
-						$this->room_features[ $this->property_uid ][ (int) $f->room_features_uid ][ 'desc' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION' . (int) $f->room_features_uid, stripslashes( $f->feature_description ) );
-						}
-					}
-				}
-			}
 		}
 
 	function get_gross_accommodation_price( $nett_amount, $property_uid = 0 )
@@ -427,21 +410,6 @@ class basic_property_details
 				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'image' ] = $this->all_room_types[ $room->room_classes_uid ][ 'image' ];
 				}
 
-			// This array is only used by the showRoomDetails task. It's pointless constantly running this query when it's not used anywhere else.
-			if ( get_showtime( 'task' ) == "showRoomDetails" )
-				{
-				$this->room_features = array ();
-				$query               = "SELECT room_features_uid,feature_description,property_uid FROM #__jomres_room_features WHERE property_uid IN (" . implode(',',$property_uids) .") ";
-				$roomFeatures        = doSelectSql( $query );
-				if ( count( $roomFeatures ) > 0 )
-					{
-					foreach ( $roomFeatures as $f )
-						{
-						$this->multi_query_result[ $f->property_uid ][ 'room_features' ][ $f->room_features_uid ][ 'desc' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION' . (int) $f->room_features_uid, stripslashes( $f->feature_description ) );
-						}
-					}
-				}
-
 			foreach ( $property_uids as $id )
 				{
 				$mrConfig = getPropertySpecificSettings( $id );
@@ -559,8 +527,33 @@ class basic_property_details
 				}
 			$c->store('all_property_features_details',$this->all_property_features);
 			}
-		} 
+		}
+	
+	function get_all_resource_features($property_uid = 0, $including_global_room_features = false )
+		{
+		$this->all_room_features = array();
+		
+		$clause = " `property_uid` = " . (int)$property_uid;
+		
+		if ($including_global_room_features)
+			$clause .= " OR `property_uid` = 0 ";
+		
+		$query = "SELECT `room_features_uid`, `feature_description`, `property_uid`, `ptype_xref`, `image` FROM #__jomres_room_features WHERE ".$clause;
+		$roomFeatures = doSelectSql( $query );
+		if ( count( $roomFeatures ) > 0 )
+			{
+			foreach ( $roomFeatures as $f )
+				{
+				$this->all_room_features[ $f->room_features_uid ][ 'room_features_uid' ] = (int)$f->room_features_uid;
+				$this->all_room_features[ $f->room_features_uid ][ 'feature_description' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION' . (int) $f->room_features_uid, stripslashes( $f->feature_description ) );
+				$this->all_room_features[ $f->room_features_uid ][ 'image' ] = $f->image;
+				
+				if ($f->ptype_xref != '')
+					$this->all_room_features[ $f->room_features_uid ][ 'ptype_xref' ] = unserialize($f->ptype_xref);
+				else
+					$this->all_room_features[ $f->room_features_uid ][ 'ptype_xref' ] = array();
+				}
+			}
+		}
 
 	}
-
-?>

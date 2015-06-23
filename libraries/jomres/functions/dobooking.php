@@ -599,26 +599,22 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		$rooms_list_accommodation_panel_output[ ] = $rooms_list_accommodation_panel;
 		}
 
-	$jomres_property_room_features = jomres_singleton_abstract::getInstance( 'jomres_property_room_features' );
 	$bkg->initRoomFeatureFiltering();
 	if ( $bkg->room_feature_filtering_enabled )
 		{
+		$basic_room_details = jomres_singleton_abstract::getInstance( 'basic_room_details' );
+		$basic_room_details->get_all_rooms($selectedProperty);
 		
 		$roomfeaturesHeader    = array ();
 		$roomfeatures          = array ();
 		$roomfeaturesHeader[ ] = array ( "_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER" => $output[ '_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER' ] );
 		
-		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
-		$jomres_media_centre_images->get_images($selectedProperty, array('room_features'));
-		
 		foreach ( $bkg->room_feature_checkboxes as $feature )
 			{
-			$featureUid = $feature['ID'];
-			$feature_image =$jomres_property_room_features->get_room_feature_image($featureUid);
 			$rf                  = array ();
 			$rf[ 'INPUTBOX' ]    = $feature[ 'INPUTBOX' ];
 			$rf[ 'DESCRIPTION' ] = $feature[ 'DESCRIPTION' ];
-			$rf[ 'IMAGE' ]       = $feature_image;
+			$rf[ 'IMAGE' ]       = $basic_room_details->all_room_features[  $feature['ID'] ][ 'tooltip' ];
 			$roomfeatures[ ]     = $rf;
 			}
 		}

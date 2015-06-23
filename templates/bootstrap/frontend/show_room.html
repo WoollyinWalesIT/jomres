@@ -1,42 +1,16 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<div>&nbsp;</div>
+<h2 class="page-header">{ROOMTYPE} - {ROOMNAME} {ROOMNUMBER}</h2>
 <div class="row-fluid">
 	<div class="span6">
 		<div class="well">{SLIDESHOW}</div>
 	</div>
 	<div class="span6">
-		<table width="100%" border="0">
-			<tr>
-				<td width="40%" valign="top">
-					<patTemplate:tmpl name="room_headers">
-					<p><strong>{HEADER_ROOMNUMBER}</strong></p>
-					<p><strong>{HEADER_ROOMTYPE}</strong></p>
-					<p><strong>{HEADER_MAXPEOPLE}</strong></p>
-					<p><strong>{HEADER_ROOMNAME}</strong></p>
-					<p><strong>{HEADER_ROOMFLOOR}</strong></p>
-					<p><strong>{HEADER_SMOKING}</strong></p>
-					<p><strong>{HEADER_DISABLEDACCESS}</strong></p>
-					<p><strong>{_JOMRES_HRESOURCE_FEATURES}</strong></p>
-					</patTemplate:tmpl>
-				</td>
-				<td width="60%" valign="top">
-					<patTemplate:tmpl name="room_details">
-					<p>{ROOMNUMBER}</p>
-					<p>{ROOMTYPE}</p>
-					<p>{MAXPEOPLE}</p>
-					<p>{ROOMNAME}</p>
-					<p>{ROOMFLOOR}</p>
-					<p>{SMOKING}</p>
-					<p>{DISABLEDACCESS}</p>
-					</patTemplate:tmpl>
-					<p><ul>
-						<patTemplate:tmpl name="room_features">
-						<li>{ROOMFEATURE}</li>
-						</patTemplate:tmpl>
-					</ul></p>
-				</td>
-			</tr>
-		</table>
+		<p><strong>{HEADER_MAXPEOPLE}</strong> {MAXPEOPLE}</p>
+		<p><strong>{HEADER_ROOMFLOOR}</strong> {ROOMFLOOR}</p>
+		<p><strong>{HEADER_SMOKING}</strong> {SMOKING}</p>
+		<p><strong>{HEADER_DISABLEDACCESS}</strong> {DISABLEDACCESS}</p>
+		<p>&nbsp;</p>
+		<p>{ROOM_FEATURES}</p>
 	</div>
 </div>
 <div class="clearfix"></div>

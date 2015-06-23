@@ -452,20 +452,6 @@ try
 					}
 				break;
 			#########################################################################################
-			case 'showRoomsListing':
-				property_header( $property_uid );
-				$componentArgs = array ( 'all' => "all", 'property_uid' => $property_uid );
-				$MiniComponents->triggerEvent( '01055', $componentArgs );
-				$componentArgs = array ();
-				break;
-			#########################################################################################
-			case 'showRoomDetails':
-				property_header( $property_uid );
-				$componentArgs[ 'all' ] = false;
-				$MiniComponents->triggerEvent( '01055', $componentArgs ); //showRoomDetails();
-
-				break;
-			#########################################################################################
 			case 'slideshow':
 				$MiniComponents->triggerEvent( '01060' ); //
 				break;

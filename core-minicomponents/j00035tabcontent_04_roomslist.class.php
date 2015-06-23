@@ -28,13 +28,16 @@ class j00035tabcontent_04_roomslist
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
 
 		$output = $componentArgs[ 'currrent_output' ];
-		// j01055 Rooms list
+
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
 			if ( $mrConfig[ 'roomslistinpropertydetails' ] == "1" )
 				{
+				$componentArgs[ 'output_now' ] = false;
+				$componentArgs[ 'slideshow' ] = false;
+				
 				$anchor        = jomres_generate_tab_anchor( $output[ 'TITLE_ROOMSLIST' ] );
-				$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'TITLE_ROOMSLIST' ], "TAB_CONTENT" => $MiniComponents->miniComponentData[ '01055' ][ 'showroomdetails' ] , "TAB_ID" => 'tour_target_rooms_list' );
+				$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'TITLE_ROOMSLIST' ], "TAB_CONTENT" => $MiniComponents->specificEvent( '06000', 'show_property_rooms',$componentArgs) , "TAB_ID" => 'tour_target_rooms_list' );
 				$this->retVals = $tab;
 				}
 			}
