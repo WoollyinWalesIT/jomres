@@ -36,9 +36,11 @@ class j06001show_charts
 				$rows[] = $r;
 				}
 			}
-
+		
  		if (count($rows)==0)
 			return; 
+		
+		$output = array ( "PAGETITLE"=> jr_gettext( '_JRPORTAL_STATS_PATETITLE', _JRPORTAL_STATS_PATETITLE, false, false ) );
 		
  		$pageoutput[]=$output;
 		$tmpl = new patTemplate();

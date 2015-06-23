@@ -1,14 +1,20 @@
 <patTemplate:tmpl name="pageoutput">
-<div class="col-md-4">
+<h2>{PAGETITLE}</h2>
+	<table width="100%">
 	<patTemplate:tmpl name="rows">
-	<div class="panel panel-{TITLE_CLASS}" >
-		<div class="panel-heading">
-			<h2 class="panel-title"><a href = "{JOMRES_SITEPAGE_URL_NOSEF}{CHART_PARAMS}" target="_blank">{TITLE}</a></h2>
-		</div>
-		<div class="panel-body">
-			{CHART}
-		</div>
-	</div>
+	<tr>
+		<td>
+			<div style="clear:both;">
+				<h2><a href = "{JOMRES_SITEPAGE_URL_NOSEF}{CHART_PARAMS}" target="_blank">{TITLE}</a></h2>
+				<div>
+					{CHART}
+				</div>
+				<div>
+					{MORE_INFO}
+				</div>
+			</div>
+		</td>
+	</tr>
 	</patTemplate:tmpl>
-</div>
+</table>
 </patTemplate:tmpl>
