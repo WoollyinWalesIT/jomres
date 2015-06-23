@@ -2486,3 +2486,12 @@ jr_define( '_JOMRES_HLIST_PROPERTIES_WARNING', 'Property management in Jomres is
 
 jr_define( 'PROPERTY_STATS_SALES', 'Sales' );
 jr_define( 'PROPERTY_STATS_SALES_DESC', 'This is when bookings were taken' );
+
+jr_define( 'PROPERTY_STATS_BOOKINGS_DAYS', 'Bookings (days)' );
+jr_define( 'PROPERTY_STATS_BOOKINGS_DAYS_DESC', 'Booking dates start and number of days.' );
+
+jr_define( 'PROPERTY_STATS_ROOM_BOOKINGS_DAYS', 'Bookings (rooms x days)' );
+jr_define( 'PROPERTY_STATS_ROOM_BOOKINGS_DAYS_DESC', 'Number of rooms booked out in a certain month.' );
+
+jr_define( '_MEDIA_CENTRE_RESOURCE_FEATURES_ICONS', 'Room feature icons' );
+
