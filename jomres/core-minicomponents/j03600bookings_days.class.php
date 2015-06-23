@@ -13,7 +13,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j03600sales
+class j03600bookings_days
 	{
 	function __construct($componentArgs)
 		{
@@ -23,7 +23,7 @@ class j03600sales
 		$this->retVals = array();
 		
 		$defaultProperty=getDefaultProperty();
-		$query = "SELECT `raised_date`,`init_total` FROM #__jomresportal_invoices WHERE property_uid =".$defaultProperty;
+		$query = "SELECT `arrival`,`date_range_string` FROM #__jomres_contracts WHERE property_uid =".$defaultProperty;
 		$result = doSelectSql($query);
 
 		if (count($result) > 0 )
@@ -31,8 +31,8 @@ class j03600sales
 			$results = array ();
 			foreach ( $result as $res)
 				{
-				$date =  date("Y-m-d" , strtotime($res->raised_date) );
-				$results[$date] += $res->init_total;
+				$date =  date("Y-m-d" , strtotime($res->arrival) );
+				$results[$date] += count(explode("," , $res->date_range_string));
 				}
 
 			reset($results);
@@ -72,8 +72,8 @@ class j03600sales
 			$this->retVals['data'] = array_values($this->retVals['data']);
 			
 			$this->retVals['title_class']		= "default";
-			$this->retVals['label'] = jr_gettext("PROPERTY_STATS_SALES",PROPERTY_STATS_SALES,false,false);
-			$this->retVals['more_info'] = jr_gettext("PROPERTY_STATS_SALES_DESC",PROPERTY_STATS_SALES_DESC,false,false);
+			$this->retVals['label'] = jr_gettext("PROPERTY_STATS_BOOKINGS_DAYS",PROPERTY_STATS_BOOKINGS_DAYS,false,false);
+			$this->retVals['more_info'] = jr_gettext("PROPERTY_STATS_BOOKINGS_DAYS_DESC",PROPERTY_STATS_BOOKINGS_DAYS_DESC,false,false);
 			
 			$this->retVals['chart_params'] = http_build_query(array('chart_params' => $this->retVals));
 			
