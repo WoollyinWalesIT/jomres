@@ -1024,11 +1024,11 @@ class dobooking
 							break;
 						}
 						
-					
+					$rate  = (float) $this->taxrates[ $ex->tax_rate ][ 'rate' ];
 					if ( $model[ 'model' ] != "100" ) // Model 10 is commission, so it's a percentage.
 						{
 						$price = $ex->price;
-						$rate  = (float) $this->taxrates[ $ex->tax_rate ][ 'rate' ];
+						
 						if ( $mrConfig[ 'prices_inclusive' ] == 1 )
 							{
 							$divisor = ( $rate / 100 ) + 1;
