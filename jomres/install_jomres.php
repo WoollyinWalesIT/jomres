@@ -3430,6 +3430,7 @@ function createJomresTables()
 		`feature_description` TEXT NULL,
 		`property_uid` VARCHAR(11),
 		`ptype_xref` text NULL DEFAULT NULL,
+		`image` VARCHAR(255) NULL DEFAULT NULL, 
 		PRIMARY KEY(`room_features_uid`)
 		) ";
 	if ( !doInsertSql( $query ) )
