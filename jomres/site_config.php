@@ -218,7 +218,7 @@ $jrConfig[ 'booking_form_totalspanel_position' ]   = "455";
 $jrConfig[ 'booking_form_width' ]                  = "450";
 $jrConfig[ 'booking_form_totals_panel_as_slider' ] = "0";
 $jrConfig[ 'useNewusers_sendemail' ]               = "1";
-$jrConfig[ 'show_tax_in_totals_summary' ]          = "1";
+$jrConfig[ 'show_tax_in_totals_summary' ]          = "0";
 
 $jrConfig[ 'alternate_smtp_use_settings' ]   = "0";
 $jrConfig[ 'alternate_smtp_authentication' ] = "1";
