@@ -3174,6 +3174,7 @@ function createJomresTables()
 		`property_uid` VARCHAR(11),
 		`validfrom` DATETIME DEFAULT NULL,
 		`validto` DATETIME DEFAULT NULL,
+		`include_in_property_lists` BOOL NOT NULL DEFAULT '1',
 		PRIMARY KEY ( `uid` )
 		) ";
 	if ( !doInsertSql( $query ) )
