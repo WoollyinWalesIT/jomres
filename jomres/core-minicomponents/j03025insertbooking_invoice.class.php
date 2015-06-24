@@ -154,11 +154,22 @@ class j03025insertbooking_invoice
 				$extrasList = doSelectSql( $query );
 				foreach ( $extrasList as $theExtras )
 					{
+					$query                = "SELECT `model` FROM #__jomcomp_extrasmodels_models WHERE extra_id = '" . (int) $extraUid . "'";
+					$model                = doSelectSql( $query, 1 );
+					
+					if ($model != "10") // Model 10 is for commission
+						{
+						$quantity_multiplier = (float) $extrasvalues_items[ (int) $extraUid ][ 'quantity_multiplier' ];
+						$quant               = $extrasquantities[ $extraUid ];
+						$quantities          = $quantity_multiplier * $quant;
+						$extra_price         = $theExtras->price;
+						}
+					else
+						{
+						$quantities          = 1;
+						$extra_price         = ($room_total/100)*$theExtras->price;
+						}
 
-					$quantity_multiplier = (float) $extrasvalues_items[ (int) $extraUid ][ 'quantity_multiplier' ];
-					$quant               = $extrasquantities[ $extraUid ];
-					$quantities          = $quantity_multiplier * $quant;
-					$extra_price         = $theExtras->price;
 					if ( $mrConfig[ 'prices_inclusive' ] == 1 )
 						{
 						if ( $jrportal_taxrate->gather_data($theExtras->tax_rate) )
@@ -169,13 +180,14 @@ class j03025insertbooking_invoice
 							$extra_price = $nett_price;
 							}
 						}
+				
 					$line_items[] = array ( 'tax_code_id' => $theExtras->tax_rate, 
-										   'name' => '_JOMRES_CUSTOMTEXT_EXTRANAME'.(string)$extraUid, 
-										   'description' => '', 
-										   'init_price' => $extra_price, 
-										   'init_qty' => $quantities, 
-										   'init_discount' => 0
-										   );
+						'name' => jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRANAME'.(string)$extraUid,  $theExtras->name ) , 
+						'description' => '', 
+						'init_price' => $extra_price, 
+						'init_qty' => $quantities, 
+						'init_discount' => 0
+						);
 					}
 				}
 

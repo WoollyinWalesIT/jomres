@@ -958,25 +958,16 @@ class dobooking
 			{
 			$query  = "SELECT `uid`,`name`,`desc`,`maxquantity`,`price`,`auto_select`,`tax_rate`,`chargabledaily`,`property_uid`,`published`,`validfrom`,`validto` FROM `#__jomres_extras` where property_uid = '$selectedProperty' AND published = '1' ORDER BY name";
 			$exList = doSelectSql( $query );
+
 			foreach ( $exList as $ex )
 				{
 				$show_extra = true;
-				
-				$price = $ex->price;
-				$rate  = (float) $this->taxrates[ $ex->tax_rate ][ 'rate' ];
-				if ( $mrConfig[ 'prices_inclusive' ] == 1 )
-					{
-					$divisor = ( $rate / 100 ) + 1;
-					$price   = $price / $divisor;
-					}
-				$tax       = ( $price / 100 ) * $rate;
-				$inc_price = $price + $tax;
 				
 				$arrival_ts		= strtotime(str_replace("/","-",$this->arrivalDate));
 				$validfrom_ts	= strtotime($ex->validfrom);
 				$validto_ts		= strtotime($ex->validto);
 				
-				if ( $ex->validfrom != "0000-00-00 00:00:00" && !is_null($ex->validfrom)) // takes into account older optional extras
+				if ( $ex->validfrom != "0000-00-00 00:00:00" && !is_null($ex->validfrom) && $ex->validfrom != "1999-11-30 00:00:00") // takes into account older optional extras
 					{
 					if ( ! (($arrival_ts >= $validfrom_ts) && ($arrival_ts <= $validto_ts)) )
 						{
@@ -998,6 +989,7 @@ class dobooking
 					$extra_deets[ 'UID' ] = $ex->uid;
 					$query                = "SELECT `force`,`model` FROM #__jomcomp_extrasmodels_models WHERE extra_id = '$ex->uid'";
 					$model                = doSelectSql( $query, 2 );
+
 					switch ( $model[ 'model' ] )
 						{
 						case '1': // Per week
@@ -1027,13 +1019,40 @@ class dobooking
 						case '9': // per room
 							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING ) );
 							break;
+						case '10': // commission
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_COMMISSION', _JOMRES_COMMISSION ) );
+							break;
 						}
+						
+					
+					if ( $model[ 'model' ] != "10" ) // Model 10 is commission, so it's a percentage.
+						{
+						$price = $ex->price;
+						$rate  = (float) $this->taxrates[ $ex->tax_rate ][ 'rate' ];
+						if ( $mrConfig[ 'prices_inclusive' ] == 1 )
+							{
+							$divisor = ( $rate / 100 ) + 1;
+							$price   = $price / $divisor;
+							}
+						$tax       = ( $price / 100 ) * $rate;
+						$inc_price = $price + $tax;
+						}
+					else
+						{
+						$inc_price = ($this->room_total/100)*$ex->price;
+						$commission_rate = $ex->price;
+						}
+						
 					$tax_output = "";
 					if ( $rate > 0 ) 
 						$tax_output = " (" . $rate . "%)";
 					$extra_deets[ 'NAME' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRANAME' . $ex->uid, htmlspecialchars( trim( stripslashes( $ex->name ) ), ENT_QUOTES ) ) );
 					$extra_deets[ 'MODELTEXT' ] = $tax_output . " ( " . $model_text . " )";
-					$extra_deets[ 'PRICE' ]     = output_price( $inc_price , "" , false );
+					if ( $model[ 'model' ] != "10" )
+						$extra_deets[ 'PRICE' ]     = output_price( $inc_price , "" , false );
+					else
+						$extra_deets[ 'PRICE' ]     = output_price( $inc_price , "" , false )." (".$commission_rate."%)";
+					
 					
 					$extra_deets[ 'EXTRA_IMAGE' ] = $jomres_media_centre_images->multi_query_images['noimage-small'];
 					if (isset($jomres_media_centre_images->images['extras'][$ex->uid][0]['small']))
@@ -6084,10 +6103,17 @@ class dobooking
 							$calc                                                        = $thisPrice * $num_rooms;
 							$this->extrasvalues_items[ $extra ][ 'quantity_multiplier' ] = $num_rooms;
 							break;
+						case '10': // commission
+							$calc                                                        =  ($this->room_total/100)*$thisPrice;
+							$this->extrasvalues_items[ $extra ][ 'quantity_multiplier' ] = 1;
+							break;
+							
+							
 					}
 					$quantity = $this->extrasquantities[ $extra ];
 
 					$tmpTotal = $quantity * $calc;
+
 					//$this->setErrorLog("calcExtras: tax_rate_id: ".$tax_rate_id);
 					if ( (int) $tax_rate_id > 0 )
 						{
@@ -6101,7 +6127,7 @@ class dobooking
 							$tmpTotal   = $nett_price;
 							}
 						else
-						$thisTax = ( $tmpTotal / 100 ) * $rate;
+							$thisTax = ( $tmpTotal / 100 ) * $rate;
 
 						$this->extra_taxs[ ] = $thisTax;
 						$this->setErrorLog( "calcExtras: Adding : " . $thisTax . " to original value " . $tmpTotal );
@@ -7016,7 +7042,7 @@ class dobooking
 		{
 		$this->setErrorLog( "generateBilling:: Starting" );
 		$this->forcedExtras = array ();
-		$this->calcExtras();
+
 		$this->setErrorLog( "generateBilling:: Checking requested room count " );
 		if ( count( $this->requestedRoom ) > 0 || !get_showtime( 'include_room_booking_functionality' ) )
 			{
@@ -7035,7 +7061,9 @@ class dobooking
 						$this->setErrorLog( "generateBilling:: Starting calcLastMinuteDiscount" );
 						if ( $this->cfg_singleRoomProperty == 1 ) $this->calcLastMinuteDiscount();
 						$this->calcTax();
-
+						
+						$this->calcExtras();
+						
 						$this->setErrorLog( "generateBilling:: Starting calcTotals" );
 						$this->calcTotals();
 
