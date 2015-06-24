@@ -65,7 +65,7 @@ class jomres_database
 			$this->dbtype = 'mysqli';
 			
 		if (defined( 'AUTO_UPGRADE'))
-			$this->dbtype = 'mysql';
+			$this->dbtype = 'mysqli';
 		
 		switch($this->dbtype) 
 			{
