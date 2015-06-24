@@ -1,23 +1,21 @@
-<h3>Jomres 9.0.-3 11/06/2015</h3>
-
-<p class="alert alert-danger">Be aware that this is an Alpha version of Jomres 9, please do NOT install it onto a production server, it is for test purposes only.</p>
+<h3>Jomres 9.0.0 24/06/2015</h3>
 
 <span class="label label-success">Feature</span> Subscription package and Commission functionality has been completely overhauled, you can now offer a variety of subscription related packages and renewals, and various standard Jomres core features can be added to a subscription package.
 
-
 <span class="label label-success">Feature</span> Added PDO support to Jomres database functions and classes.
-<span class="label label-success">Feature</span> Updated the Contact Owner form to use ReCaptcha V2. 
+
 <span class="label label-success">Feature</span> Updated Jomres to use Open Exchange Rates as our exchange rate source. Note that you will need a ( free ) API key from Open Exchange Rates to perform currency conversion. Paid keys are only required for sites that make over 1000 queries a month, Jomres caching means that this query is only done once a day.
-<span class="label label-success">Feature</span> Added functionality to allow payment gateways to send and receive data to gateway services, and to mark invoices paid. Note, it will take some time for Gateway developers to catch up.
-<span class="label label-success">Feature</span> Modified the jr user class to contain profile information, and add profile information if it doesn't exist when creating a new user when making a booking.
+<span class="label label-success">Feature</span> Added functionality to allow payment gateways to send and receive data to gateway services, and to mark invoices paid. Note, it will take some time for Gateway developers to catch up. Currently this is for Commission and Subscription invoices only, may be extended to booking invoices later.
 <span class="label label-success">Feature</span> Added functionality to support uploading of room features and optional extras images and showing these in the booking form.
 <span class="label label-success">Feature</span> Added Guest image to booking display page, if the guest has uploaded an image.
 <span class="label label-success">Feature</span> Added a feature where a property manager can make an optional extra show only if the arrival date falls within two dates. Additional filtering based on room types may be added later.
+<span class="label label-success">Feature</span> Added a feature where a property manager can make an optional extra a commission percentage of the room price.
 <span class="label label-success">Feature</span> Room feature images added to classic rooms list layout in the booking form, and room feature checkboxes tweaked so that images are clickable. This favours using smaller room feature images/icons (BS3 only).
 <span class="label label-success">Feature</span> Modified the view shortlist and mu view favourites functionality. View favourites now used the property list template, rather than it's own template, to list properties. This allows us to re-use the shortlist array to show selected, shortlisted properties. Short listed properties are now added to favourites if the user's logged in. Unfortunately it's not possible to transfer items that were added to the shortlist before the user was logged in because the act of logging in creates a new session and the old session data is lost.
 <span class="label label-success">Feature</span> Room type and Property Feature Images updated with modern feel and associated templates modified to adapt (only affects new installations).
 <span class="label label-success">Feature</span> Added a new panel to the composite_property_details_notabs.html template which shows the Optional Extras which property offers in the booking form.
 <span class="label label-success">Feature</span> Added a new standalone script for viewing a property's rooms, added a new property room features singleton. 
+<span class="label label-success">Feature</span> Retired old stats functionality, and introduced new stats functionality that's responsive and easier to write for.
 
 <span class="label label-warning">Change</span> Added error log clean to a daily pseudocron job instead of running every time Jomres runs.
 <span class="label label-warning">Change</span> Replaced require with require_once in language class for performance improvements.
@@ -41,6 +39,8 @@
 <span class="label label-warning">Change</span> Added a List Gateways for Invoice ID minicomponent for use by other minicomponents.
 <span class="label label-warning">Change</span> Temporarily commentend out code that shows the Product Tour code that displays online help, it's not heavily used and the javascript doesn't play nicely with different flavours of jQuery on different CMSs. 
 <span class="label label-warning">Change</span> Updated Site Config's default commission rate to 1 instead of the older string value.
+<span class="label label-warning">Change</span> Modified the jr user class to contain profile information, and add profile information if it doesn't exist when creating a new user when making a booking.
+<span class="label label-warning">Change</span> Updated the Contact Owner form to use ReCaptcha V2. 
 
 <span class="label label-important label-danger">Fix</span> Tweaked a previous change so that published properties are not incorrectly marked as unpublished in the Sanity check.
 <span class="label label-important label-danger">Fix</span> Changed path to Jomres logo in installer.
