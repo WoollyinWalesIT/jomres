@@ -90,6 +90,9 @@ class j06000show_property_extras
 						case '9': // per room
 							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING );
 							break;
+						case '9': // per room
+							$model_text = jr_gettext( '_JOMRES_COMMISSION', _JOMRES_COMMISSION );
+							break;
 						}
 					$tax_output = "";
 					if ( $rate > 0 ) 
