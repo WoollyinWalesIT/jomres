@@ -140,7 +140,7 @@ $mrConfig[ 'bookingform_roomlist_showmaxpeople' ] = "1";
 
 $mrConfig[ 'accommodation_tax_code' ] = "1";
 
-$mrConfig[ 'use_variable_deposits' ]       = "1";
+$mrConfig[ 'use_variable_deposits' ]       = "0";
 $mrConfig[ 'variable_deposit_threashold' ] = "60";
 
 $mrConfig[ 'is_real_estate_listing' ] = "0";
