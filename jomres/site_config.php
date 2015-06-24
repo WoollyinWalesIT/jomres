@@ -195,7 +195,7 @@ $jrConfig[ 'thumbnail_property_list_max_height' ] = "140";
 $jrConfig[ 'thumbnail_property_header_max_width' ]  = "400";
 $jrConfig[ 'thumbnail_property_header_max_height' ] = "225";
 
-$jrConfig[ 'use_commission' ]                               = "1";
+$jrConfig[ 'use_commission' ]                               = "0";
 $jrConfig[ 'manager_bookings_trigger_commission' ]          = "0";
 $jrConfig[ 'commission_autosuspend_on_overdue' ]            = "0";
 $jrConfig[ 'commission_autosuspend_on_overdue_threashold' ] = "60";
@@ -249,7 +249,7 @@ $jrConfig[ 'input_filtering' ]            = "strong";
 $jrConfig[ 'html_purifier_allowed_tags' ] = "p[class],b,strong,a[href],i,em,img[src],ul,li,h1[class],table[width],table[border],tr,td,th,br";
 $jrConfig[ 'inputs_allowing_html' ]       = "property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers email_text";
 
-$jrConfig[ 'property_details_in_tabs' ]     = "1";
+$jrConfig[ 'property_details_in_tabs' ]     = "0";
 $jrConfig[ 'property_list_layout_default' ] = "list";
 
 $jrConfig[ 'automatically_approve_new_properties' ] = "1";
@@ -267,13 +267,12 @@ $jrConfig[ 'gmap_layer_bicycling' ]        = "0";
 $jrConfig[ 'gmap_layer_temperature_grad' ] = "CELCIUS";
 
 $jrConfig[ 'development_production' ] = "development";
-$jrConfig[ 'useArrayCaching' ]        = "0";
+$jrConfig[ 'useArrayCaching' ]        = "1";
 $jrConfig[ 'navbar_location' ]        = "component_area";
 $jrConfig[ 'navbar_inverse' ]         = 0;
 
 $jrConfig[ 'bootstrap_version' ]				= "";
 $jrConfig[ 'show_powered_by' ]					= "0";
 $jrConfig['use_budget_feature']					= "1";
-$jrConfig['show_cumulative_price_overlay']		= "1";
 $jrConfig['live_scrolling_enabled']				= "1";  // Live scrolling enabled by default for existing users 
 $jrConfig[ 'pattemplate_caching_enabled' ] = "0";
