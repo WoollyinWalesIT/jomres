@@ -439,14 +439,17 @@ function doTableUpdates()
 	drop_portal_bookings_table();
 	drop_portal_users_table();
 	
-	updateSiteSettings ( "update_time" , time() );
-	move_license_key_to_site_settings();
+	if (ACTION != "Install")
+		move_license_key_to_site_settings();
+
 	save_configuration_file();
 	
 	if ( !checkInvoicePaymentXrefTableExists() ) createInvoicePaymentXrefTable();
 	if ( !checkExtrasValidfromColExists() ) alterExtrasValidfromCol();
 	if ( !checkExtrasIncludeinlistsColExists() ) alterExtrasIncludeinlistsCol();
 	if ( !checkRfeaturesImageColExists() ) alterRfeaturesImageCol();
+	
+	updateSiteSettings ( "update_time" , time() );
 	}
 
 function checkRfeaturesImageColExists()
@@ -3660,6 +3663,9 @@ function createJomresTables()
 		}
 	
 	if ( !checkCountriesTableExists() ) createCountriesTable();
+	
+	//create the configuration file and drop _site_settings
+	save_configuration_file();
 	}
 
 function insertSampleData()
