@@ -345,7 +345,7 @@ class j02990showconfirmation
 							$calc       = $thisPrice[ 'price' ] * (int) $booking_parts[ 'NUMROOMS' ];
 							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING );
 							break;
-						case '10': // commission
+						case '100': // commission
 							$calc       = ($room_total/100)*$thisPrice[ 'price' ];
 							$model_text = jr_gettext( '_JOMRES_COMMISSION', _JOMRES_COMMISSION );
 							break;

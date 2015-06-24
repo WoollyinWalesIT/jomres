@@ -96,7 +96,7 @@ class j03025insertbooking_invoice
 			if ( get_showtime( 'include_room_booking_functionality' ) )
 				{
 				$line_items[] = array ( 'tax_code_id' => (int) $mrConfig[ 'accommodation_tax_code' ], 
-										'name' => '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', 
+										'name' => jr_gettext('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', _JOMRES_AJAXFORM_BILLING_ROOM_TOTAL , false, false ),
 										'description' => '('.outputDate($arrivalDate).' - '.outputDate($departureDate).')', 
 										'init_price' => $room_total_nodiscount, 
 										'init_qty' => 1, 
@@ -108,7 +108,7 @@ class j03025insertbooking_invoice
 			if ( $depositPaid )
 				{
 				$line_items[] = array ( 'tax_code_id' => 0, 
-									   'name' => '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', 
+									   'name' => jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', _JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED , false , false ),
 									   'description' => '', 
 									   'init_price' => 0-$deposit_required, 
 									   'init_qty' => 1, 
@@ -137,7 +137,7 @@ class j03025insertbooking_invoice
 			if ( $single_person_suppliment > 0 )
 				{
 				$line_items[] = array ( 'tax_code_id' => (int) $mrConfig[ 'accommodation_tax_code' ], 
-										'name' => '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST', 
+										'name' => jr_gettext ('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST', _JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST , false , false ),
 										'description' => '', 
 										'init_price' => $single_person_suppliment, 
 										'init_qty' => 1, 
@@ -157,7 +157,7 @@ class j03025insertbooking_invoice
 					$query                = "SELECT `model` FROM #__jomcomp_extrasmodels_models WHERE extra_id = '" . (int) $extraUid . "'";
 					$model                = doSelectSql( $query, 1 );
 					
-					if ($model != "10") // Model 10 is for commission
+					if ($model != "100") // Model 10 is for commission
 						{
 						$quantity_multiplier = (float) $extrasvalues_items[ (int) $extraUid ][ 'quantity_multiplier' ];
 						$quant               = $extrasquantities[ $extraUid ];
@@ -236,7 +236,7 @@ class j03025insertbooking_invoice
 		else //contract total is overridden by the manager
 			{
 			$line_items[] = array ( 'tax_code_id' => (int) $mrConfig[ 'accommodation_tax_code' ], 
-									'name' => '_JOMRES_AJAXFORM_BILLING_TOTAL', 
+									'name' => jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTAL', _JOMRES_AJAXFORM_BILLING_TOTAL , false , false ),
 									'description' => '', 
 									'init_price' => number_format( $new_contract_total, 2, '.', '' ), 
 									'init_qty' => 1, 
@@ -304,7 +304,7 @@ class j03025insertbooking_invoice
 				{
 				//Deposit line item
 				$deposit_paid_line_item_data = array ( 'tax_code_id' => 0, 
-													  'name' => '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', 
+													  'name' => jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', _JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED , false , false ), 
 													  'description' => '', 
 													  'init_price' => 0-$deposit_required, 
 													  'init_qty' => 1, 

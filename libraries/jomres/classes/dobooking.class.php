@@ -1019,13 +1019,13 @@ class dobooking
 						case '9': // per room
 							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING ) );
 							break;
-						case '10': // commission
+						case '100': // commission
 							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_COMMISSION', _JOMRES_COMMISSION ) );
 							break;
 						}
 						
 					
-					if ( $model[ 'model' ] != "10" ) // Model 10 is commission, so it's a percentage.
+					if ( $model[ 'model' ] != "100" ) // Model 10 is commission, so it's a percentage.
 						{
 						$price = $ex->price;
 						$rate  = (float) $this->taxrates[ $ex->tax_rate ][ 'rate' ];
@@ -1048,7 +1048,7 @@ class dobooking
 						$tax_output = " (" . $rate . "%)";
 					$extra_deets[ 'NAME' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRANAME' . $ex->uid, htmlspecialchars( trim( stripslashes( $ex->name ) ), ENT_QUOTES ) ) );
 					$extra_deets[ 'MODELTEXT' ] = $tax_output . " ( " . $model_text . " )";
-					if ( $model[ 'model' ] != "10" )
+					if ( $model[ 'model' ] != "100" )
 						$extra_deets[ 'PRICE' ]     = output_price( $inc_price , "" , false );
 					else
 						$extra_deets[ 'PRICE' ]     = output_price( $inc_price , "" , false )." (".$commission_rate."%)";
@@ -6103,7 +6103,7 @@ class dobooking
 							$calc                                                        = $thisPrice * $num_rooms;
 							$this->extrasvalues_items[ $extra ][ 'quantity_multiplier' ] = $num_rooms;
 							break;
-						case '10': // commission
+						case '100': // commission
 							$calc                                                        =  ($this->room_total/100)*$thisPrice;
 							$this->extrasvalues_items[ $extra ][ 'quantity_multiplier' ] = 1;
 							break;
@@ -6134,7 +6134,7 @@ class dobooking
 						$tmpTotal = $tmpTotal + $thisTax;
 						}
 					else
-					$this->setErrorLog( "calcExtras: Tax rate not set " );
+						$this->setErrorLog( "calcExtras: Tax rate not set " );
 
 					//$this->extrasvalues_items[$extra]=$tmpTotal;
 					$extrasTotal = $extrasTotal + $tmpTotal;
