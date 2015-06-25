@@ -242,11 +242,13 @@ function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $inc
 // set our meta data
 function jomres_cmsspecific_setmetadata( $meta, $data )
 	{
+	
 	$data     = jomres_decode( $data );
 	$document =& JFactory::getDocument();
 	switch ( $meta )
 	{
 		case "title":
+			$data = str_replace( "&#39;" , "'" , $data);
 			$document->setTitle( $data );
 			break;
 		case "description":
