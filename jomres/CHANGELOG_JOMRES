@@ -1,3 +1,19 @@
+<h3>Jomres 9.0.1 25/06/2015</h3>
+
+<span class="label label-warning">Change</span> Improved layout of new optional extras output, including adding as a tab.
+<span class="label label-warning">Change</span> Added a new method of saving settings.
+<span class="label label-warning">Change</span> Polish language file updated, many thanks Patryk.
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue where optional extras wouldn't show in the booking form.
+<span class="label label-important label-danger">Fix</span> Tweaked output of the property name so that apostrophes are returned to apostrophes in the breadcrumbs and meta title.
+<span class="label label-important label-danger">Fix</span> Fixed an issue where Featured Properties listing in admin area could trigger a fatal error.
+<span class="label label-important label-danger">Fix</span> Fixed an issue where the new Percentage based extras use the wrong tax rate.
+<span class="label label-important label-danger">Fix</span> Tweaked tab content to ensure rooms list isn't shown in an SRP
+
+
+
+
+
 <h3>Jomres 9.0.0 24/06/2015</h3>
 
 <span class="label label-success">Feature</span> Subscription package and Commission functionality has been completely overhauled, you can now offer a variety of subscription related packages and renewals, and various standard Jomres core features can be added to a subscription package.
