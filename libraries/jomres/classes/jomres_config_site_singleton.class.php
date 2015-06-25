@@ -108,6 +108,41 @@ $jrConfig = ' . var_export($jrConfig, true) . ';
 				}
 			}
 		}
+	
+	public function update_setting( $k, $v )
+		{
+		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php'))
+			{
+			include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php' );
+			
+			$jrConfig[ $k ] = $v;
+			
+			if (!file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php', 
+'<?php
+##################################################################
+defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
+##################################################################
+
+$jrConfig = ' . var_export($jrConfig, true) . ';
+'))
+				{
+				trigger_error('ERROR: '.JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php'.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
+				exit;
+				}
+			
+			$this->config[$k] = $v;
+			}
+		else
+			{
+			$jomres_db = jomres_singleton_abstract::getInstance( 'jomres_database' );
+			
+			$query = "UPDATE #__jomres_site_settings SET `value` = '".$v."' WHERE `akey` = '" . $k . "' ";
+			$jomres_db->setQuery( $query );
+			$jomres_db->query();
+			
+			$this->config[$k] = $v;
+			}
+		}
 
 	public function get_setting( $setting )
 		{
