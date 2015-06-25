@@ -31,7 +31,7 @@ class j00035tabcontent_04_roomslist
 
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
-			if ( $mrConfig[ 'roomslistinpropertydetails' ] == "1" )
+			if ( $mrConfig[ 'roomslistinpropertydetails' ] == "1" && $mrConfig[ 'singleRoomProperty' ] != "1" )
 				{
 				$componentArgs[ 'output_now' ] = false;
 				$componentArgs[ 'slideshow' ] = false;
