@@ -36,7 +36,7 @@ class j06000show_property_extras
 		else
 			$output_now = true;
 
-		$mrConfig = getPropertySpecificSettings( $this->property_uid );
+		$mrConfig = getPropertySpecificSettings( $property_uid );
 		
 		if ( $mrConfig[ 'showExtras' ] == "1" )
 			{
@@ -69,7 +69,7 @@ class j06000show_property_extras
 					
 					$extra_deets[ 'UID' ] = $ex->uid;
 					
-					$query                = "SELECT `force`,`model` FROM #__jomcomp_extrasmodels_models WHERE extra_id = '$ex->uid'";
+					$query                = "SELECT `force`,`model` FROM #__jomcomp_extrasmodels_models WHERE extra_id = ".$ex->uid;
 					$model                = doSelectSql( $query, 2 );
 					switch ( $model[ 'model' ] )
 						{
