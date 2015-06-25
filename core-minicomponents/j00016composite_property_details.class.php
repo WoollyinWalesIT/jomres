@@ -102,7 +102,8 @@ class j00016composite_property_details
 				'TABCONTENT_01_MORE_INFO',
 				'TABCONTENT_02_BOOKINGFORM',
 				'TABCONTENT_02_MAP',
-				'TABCONTENT_03_REVIEWS'
+				'TABCONTENT_03_REVIEWS',
+				'TABCONTENT_06_EXTRAS'
 				);
 			
 			}
@@ -145,18 +146,8 @@ class j00016composite_property_details
 			$tmpl->addRows( 'tabs_content', $tab_contents );
 			}
 
-		$extras=array();
-		$componentArgs = array ( 'property_uid' => $property_uid );
-		$extras[0][ 'EXTRAS_TEMPLATE' ] =  $MiniComponents->specificEvent( '06000', 'show_property_extras', $componentArgs );
-
-		if ($extras[0][ 'EXTRAS_TEMPLATE' ] != "")
-			{
-			$extras[0][ 'TOUR_ID_TOUR_TARGET_EXTRAS_TITLE' ] =  jr_gettext( 'TOUR_ID_TOUR_TARGET_EXTRAS_TITLE', TOUR_ID_TOUR_TARGET_EXTRAS_TITLE );
-			}
-
 		$pageoutput[ ] = $output;
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'extras', $extras );
 		$tmpl->addRows( 'bookinglink', $bookinglink );
 		$tmpl->addRows( 'slideshowlink', $slideshowlink );
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 ) $tmpl->addRows( 'tariffslink', $tariffslink );
@@ -192,5 +183,3 @@ class j00016composite_property_details
 		return null;
 		}
 	}
-
-?>

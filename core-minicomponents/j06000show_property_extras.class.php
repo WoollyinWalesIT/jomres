@@ -18,13 +18,23 @@ class j06000show_property_extras
 	function __construct($componentArgs)
 		{
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch ){$this->template_touchable = true;return;}
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = true;
+			return;
+			}
 
 		if (isset($componentArgs['property_uid']))
 			$property_uid = (int)$componentArgs['property_uid'];
-		elseif ( isset ( $_REQUEST ['p_uid'] ))
-			$property_uid = (int)$_REQUEST ['p_uid'];
-		else return;
+		elseif ( isset ( $_REQUEST ['property_uid'] ))
+			$property_uid = (int)$_REQUEST ['property_uid'];
+		else 
+			return;
+		
+		if (isset($componentArgs['output_now']))
+			$output_now = $componentArgs['output_now'];
+		else
+			$output_now = true;
 
 		$mrConfig = getPropertySpecificSettings( $this->property_uid );
 		
@@ -38,7 +48,7 @@ class j06000show_property_extras
 
 			$extra_details = array();
 			
-			$query  = "SELECT `uid`,`name`,`desc`,`maxquantity`,`price`,`auto_select`,`tax_rate`,`chargabledaily`,`property_uid`,`published`,`validfrom`,`validto` FROM `#__jomres_extras` where property_uid = '".$property_uid."' AND published = '1' AND include_in_property_lists = 1 ORDER BY name";
+			$query  = "SELECT `uid`,`name`,`desc`,`maxquantity`,`price`,`auto_select`,`tax_rate`,`chargabledaily`,`property_uid`,`published`,`validfrom`,`validto` FROM `#__jomres_extras` WHERE `property_uid` = ".$property_uid." AND `published` = 1 AND `include_in_property_lists` = 1 ORDER BY `name` ";
 			$exList = doSelectSql( $query );
 
 			if ( count($exList)>0)
@@ -135,7 +145,7 @@ class j06000show_property_extras
 				$tmpl->addRows( 'extras',$extra_details);
 				$tmpl->readTemplatesFromInput( 'show_property_extras.html' );
 				$extras_template = $tmpl->getParsedTemplate();
-				if ( isset ( $_REQUEST ['p_uid'] ))
+				if ( $output_now )
 					echo $extras_template;
 				else
 					$this->retVals = $extras_template;
