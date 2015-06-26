@@ -103,7 +103,8 @@ class j00016composite_property_details
 				'TABCONTENT_02_BOOKINGFORM',
 				'TABCONTENT_02_MAP',
 				'TABCONTENT_03_REVIEWS',
-				'TABCONTENT_06_EXTRAS'
+				'TABCONTENT_06_EXTRAS',
+				'TABCONTENT_04_WEATHER'
 				);
 			
 			}
@@ -162,8 +163,6 @@ class j00016composite_property_details
 			$tmpl->readTemplatesFromInput( 'composite_property_details_printable.html' );
 		else
 			{
-
-
 			if ( $jrConfig[ 'property_details_in_tabs' ] == "1" ) 
 				$tmpl->readTemplatesFromInput( 'composite_property_details.html' );
 			else

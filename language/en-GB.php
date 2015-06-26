@@ -2515,3 +2515,4 @@ jr_define( 'PROPERTY_STATS_ROOM_BOOKINGS_DAYS_DESC', 'Number of rooms booked out
 
 jr_define( '_MEDIA_CENTRE_RESOURCE_FEATURES_ICONS', 'Room feature icons' );
 
+jr_define( 'CURRENT_WEATHER', 'Weather' );
