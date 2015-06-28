@@ -32,8 +32,7 @@ class j01060slideshow
 		
 		if (!isset($componentArgs[ 'size' ]))
 			$componentArgs[ 'size' ] = "large";
-		
-		
+
 		if (!isset($componentArgs[ 'images' ]))
 			{
 			$property_uid          = $componentArgs[ 'property_uid' ];
@@ -52,7 +51,24 @@ class j01060slideshow
 			}
 
 		$output = array ();
-		$output['MEDIUM_WIDTH']= floor( (int) $jrConfig[ 'thumbnail_property_header_max_width' ]);
+
+		if ($componentArgs[ 'size' ] == "large")
+			{
+			$output['WIDTH'] = '';
+			}
+		elseif ($componentArgs[ 'size' ] == "medium")
+			{
+			$output['WIDTH'] = ',
+			width: '.floor( (int) $jrConfig[ 'thumbnail_property_header_max_width' ]);
+			}
+		else
+			{
+			$output['WIDTH'] = ',
+			width: '.floor( (int) $jrConfig[ 'thumbnail_property_list_max_width' ]);
+			}
+
+
+		$output['RANDOM_IDENTIFIER']  = generateJomresRandomString( 10 );
 
 		$count = count( $imagesArray );
 
@@ -62,25 +78,20 @@ class j01060slideshow
 				{
 				$r                 = array ();
 				$r[ 'IMAGETHUMB' ] = $imagesArray[ $i ][ 'small' ];
-				if ($componentArgs[ 'size' ] == "large")
-					$r[ 'IMAGE' ]      = $imagesArray[ $i ][ 'large' ];
-				else
-					$r[ 'IMAGE' ]      = $imagesArray[ $i ][ 'medium' ];
-				
+				$r[ 'IMAGE' ]      = $imagesArray[ $i ][ 'large' ];
 				$rows[ ]           = $r;
 				}
 
 			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/slideshow_themes/classic/', "galleria-1.4.2.min.js" );
 			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/slideshow_themes/classic/', "galleria.classic.min.js" );
 			jomres_cmsspecific_addheaddata( "css", JOMRES_ROOT_DIRECTORY.'/javascript/slideshow_themes/classic/', 'galleria.classic.css' );
-
+			
+			
+			
 			$pageoutput[ ] = $output;
 			$tmpl          = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-			if ($componentArgs[ 'size' ] == "large")
-				$tmpl->readTemplatesFromInput( 'slideshow.html' );
-			else
-				$tmpl->readTemplatesFromInput( 'slideshow_medium.html' );
+			$tmpl->readTemplatesFromInput( 'slideshow.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $rows );
 			$output_now = (bool) jomresGetParam( $_REQUEST, 'op', false );

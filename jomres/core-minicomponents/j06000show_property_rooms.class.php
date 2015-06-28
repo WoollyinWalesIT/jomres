@@ -57,7 +57,7 @@ class j06000show_property_rooms
 			{
 			//get room and room feature images
 			$jomres_media_centre_images->get_images($property_uid, array('rooms','room_features'));
-			
+
 			if ($display_slideshow)
 				$output['ALLROOMSSLIDESHOW'] = $MiniComponents->specificEvent( '06000', 'show_property_rooms_slideshow' , array( "property_uid" => $property_uid , "size" => "large") );
 			else
@@ -113,6 +113,15 @@ class j06000show_property_rooms
 					$r[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'];
 					$r[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['medium'];
 					$r[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['small'];
+					
+					$all_room_images = array();
+					foreach (  $jomres_media_centre_images->images['rooms'][$room['room_uid']] as $room )
+						{
+						
+						$all_room_images[]=$room;
+						}
+					$result = $MiniComponents->specificEvent( '01060', 'slideshow' , array( "images" => $all_room_images , "size" => "small" ) );
+					$r[ 'SLIDESHOW_SMALL' ]  = $result ['slideshow'];
 					}
 				
 				$r[ 'AVLCALLINK' ]  = jomresURL( JOMRES_SITEPAGE_URL . "&task=show_property_room&id=".$room['room_uid']);
