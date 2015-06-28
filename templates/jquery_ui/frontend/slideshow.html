@@ -1,5 +1,5 @@
 <patTemplate:tmpl name="pageoutput">
-<div id="gallery">
+<div id="gallery_{RANDOM_IDENTIFIER}">
 	<patTemplate:tmpl name="rows">
 		<a href="{IMAGE}"><img src="{IMAGETHUMB}"/></a>
 	</patTemplate:tmpl>
@@ -8,7 +8,7 @@
 <script type="text/javascript">
 	<!--
 	jomresJquery(document).ready(function () {
-		jomresJquery('#gallery').galleria({
+		jomresJquery('#gallery_{RANDOM_IDENTIFIER}').galleria({
 			width: 450,
 			height: 300,
 			transition: "slide",
@@ -16,7 +16,7 @@
 			lightbox: true,
 			autoplay: 5000,
 			preload: 0,
-			debug: false
+			debug: false{WIDTH}
 		});
 	});
 	//-->
