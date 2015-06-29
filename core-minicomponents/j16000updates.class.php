@@ -34,7 +34,7 @@ class j16000updates
 			}
 		
 		$current_version_is_uptodate   = check_jomres_version();
-		$current_version_is_uptodate   = false;
+
 		if (!$current_version_is_uptodate && !isset($_REQUEST['reviewseen']) && !isset($_REQUEST['version']) )
 			{
 			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.blockUI.js" );
