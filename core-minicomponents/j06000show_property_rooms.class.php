@@ -25,11 +25,17 @@ class j06000show_property_rooms
 			return;
 			}
 
-		if (isset($componentArgs[ 'property_uid' ]))
-			$property_uid = (int) $componentArgs[ 'property_uid' ];
-		elseif ( isset ( $_REQUEST['property_uid'] ))
-			$property_uid = (int) $_REQUEST['property_uid'];
-		else 
+		if ( isset($componentArgs[ 'property_uid' ]) )
+			$property_uid = $componentArgs[ 'property_uid' ];
+		else
+			{
+			if( isset($_REQUEST['property_uid']) )
+				$property_uid = (int)jomresGetParam( $_REQUEST, 'property_uid', 0 );
+			else
+				$property_uid = get_showtime('property_uid');
+			}
+		
+		if ( $property_uid == 0 ) 
 			return;
 		
 		$output_now = true;
@@ -114,14 +120,14 @@ class j06000show_property_rooms
 					$r[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['medium'];
 					$r[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['small'];
 					
-					$all_room_images = array();
+					/*$all_room_images = array();
 					foreach (  $jomres_media_centre_images->images['rooms'][$room['room_uid']] as $room )
 						{
 						
 						$all_room_images[]=$room;
 						}
 					$result = $MiniComponents->specificEvent( '01060', 'slideshow' , array( "images" => $all_room_images , "size" => "small" ) );
-					$r[ 'SLIDESHOW_SMALL' ]  = $result ['slideshow'];
+					$r[ 'SLIDESHOW' ]  = $result ['slideshow'];*/
 					}
 				
 				$r[ 'AVLCALLINK' ]  = jomresURL( JOMRES_SITEPAGE_URL . "&task=show_property_room&id=".$room['room_uid']);

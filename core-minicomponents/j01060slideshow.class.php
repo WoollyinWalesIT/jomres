@@ -35,13 +35,19 @@ class j01060slideshow
 
 		if (!isset($componentArgs[ 'images' ]))
 			{
-			$property_uid          = $componentArgs[ 'property_uid' ];
-			if ( !isset( $property_uid ) ) 
+			if ( isset($componentArgs[ 'property_uid' ]) )
+				$property_uid = $componentArgs[ 'property_uid' ];
+			else
 				{
-				$property_uid = (int)jomresGetParam( $_REQUEST, 'property_uid', 0 );
+				if( isset($_REQUEST['property_uid']) )
+					$property_uid = (int)jomresGetParam( $_REQUEST, 'property_uid', 0 );
+				else
+					$property_uid = get_showtime('property_uid');
 				}
+			
 			if ( $property_uid == 0 ) 
 				return;
+			
 			$jomres_media_centre_images->get_images($property_uid, array('slideshow'));
 			$imagesArray = $jomres_media_centre_images->images ['slideshow'] [0];
 			}
@@ -51,22 +57,23 @@ class j01060slideshow
 			}
 
 		$output = array ();
+		$rows = array();
+		$pageoutput = array();
 
-		if ($componentArgs[ 'size' ] == "large")
+		switch ( $componentArgs[ 'size' ] && !using_bootstrap() )
 			{
-			$output['WIDTH'] = '';
+			case "medium":
+				$output['WIDTH'] = ',width: '.floor( (int) $jrConfig[ 'thumbnail_property_header_max_width' ]);
+				break;
+			
+			case "small":
+				$output['WIDTH'] = ',width: '.floor( (int) $jrConfig[ 'thumbnail_property_list_max_width' ]);
+				break;
+			
+			default:
+				$output['WIDTH'] = '';
+				break;
 			}
-		elseif ($componentArgs[ 'size' ] == "medium")
-			{
-			$output['WIDTH'] = ',
-			width: '.floor( (int) $jrConfig[ 'thumbnail_property_header_max_width' ]);
-			}
-		else
-			{
-			$output['WIDTH'] = ',
-			width: '.floor( (int) $jrConfig[ 'thumbnail_property_list_max_width' ]);
-			}
-
 
 		$output['RANDOM_IDENTIFIER']  = generateJomresRandomString( 10 );
 
@@ -85,11 +92,10 @@ class j01060slideshow
 			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/slideshow_themes/classic/', "galleria-1.4.2.min.js" );
 			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/slideshow_themes/classic/', "galleria.classic.min.js" );
 			jomres_cmsspecific_addheaddata( "css", JOMRES_ROOT_DIRECTORY.'/javascript/slideshow_themes/classic/', 'galleria.classic.css' );
-			
-			
+
 			
 			$pageoutput[ ] = $output;
-			$tmpl          = new patTemplate();
+			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			$tmpl->readTemplatesFromInput( 'slideshow.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
@@ -121,5 +127,3 @@ class j01060slideshow
 		return $this->retVals;
 		}
 	}
-
-?>
