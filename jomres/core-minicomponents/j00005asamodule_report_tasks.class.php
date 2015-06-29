@@ -62,6 +62,47 @@ class j00005asamodule_report_tasks
 
 		$asamodule_plugin_information[ 'j06000ui_availability_calendar' ] = array ( "asamodule_task" => "ui_availability_calendar", "asamodule_info" => "A direct link to the hotel mini calendar.", "asamodule_example_link" => JOMRES_SITEPAGE_URL_NOSEF . "&tmpl=" . get_showtime("tmplcomponent") .'&topoff=1&task=ui_availability_calendar&property_uid=' . $property_uid, "asamodule_manual_link" => '' );
 		set_showtime( 'asamodule_plugin_information', $asamodule_plugin_information );
+		
+		$asamodule_plugin_information[ 'j06000show_property_extras' ] = array ( 
+			"asamodule_task" => "show_property_extras", 
+			"asamodule_info" => "A direct link to the hotel optional extras list.", 
+			"asamodule_example_link" => JOMRES_SITEPAGE_URL_NOSEF . "&tmpl=" . get_showtime("tmplcomponent") .'&topoff=1&task=show_property_extras&property_uid=' . $property_uid, 
+			"asamodule_manual_link" => '' 
+			);
+		set_showtime( 'asamodule_plugin_information', $asamodule_plugin_information );
+		
+		$asamodule_plugin_information[ 'j06000show_property_room' ] = array ( 
+			"asamodule_task" => "show_property_room", 
+			"asamodule_info" => "A direct link to a hotel's room, using the room uid.", 
+			"asamodule_example_link" => JOMRES_SITEPAGE_URL_NOSEF . "&tmpl=" . get_showtime("tmplcomponent") .'&topoff=1&task=show_property_room&id=2' , 
+			"asamodule_manual_link" => '' 
+			);
+		set_showtime( 'asamodule_plugin_information', $asamodule_plugin_information );
+			
+		$asamodule_plugin_information[ 'j06000show_property_rooms' ] = array ( 
+			"asamodule_task" => "show_property_rooms", 
+			"asamodule_info" => "A direct link to the hotel rooms list.", 
+			"asamodule_example_link" => JOMRES_SITEPAGE_URL_NOSEF . "&tmpl=" . get_showtime("tmplcomponent") .'&topoff=1&task=show_property_rooms&property_uid=' . $property_uid, 
+			"asamodule_manual_link" => '' 
+			);
+		set_showtime( 'asamodule_plugin_information', $asamodule_plugin_information );
+		
+		$asamodule_plugin_information[ 'j06000show_property_rooms_slideshow' ] = array ( 
+			"asamodule_task" => "show_property_rooms_slideshow", 
+			"asamodule_info" => "A direct link to the hotel rooms slideshow.", 
+			"asamodule_example_link" => JOMRES_SITEPAGE_URL_NOSEF . "&tmpl=" . get_showtime("tmplcomponent") .'&topoff=1&task=show_property_rooms_slideshow&property_uid=' . $property_uid, 
+			"asamodule_manual_link" => '' 
+			);
+		set_showtime( 'asamodule_plugin_information', $asamodule_plugin_information );
+		
+		$asamodule_plugin_information[ 'j06000show_property_weather' ] = array ( 
+			"asamodule_task" => "show_property_weather", 
+			"asamodule_info" => "A direct link to the hotel weather icon that is shown in the property details page.", 
+			"asamodule_example_link" => JOMRES_SITEPAGE_URL_NOSEF . "&tmpl=" . get_showtime("tmplcomponent") .'&topoff=1&task=show_property_weather&property_uid=' . $property_uid, 
+			"asamodule_manual_link" => '' 
+			);
+		set_showtime( 'asamodule_plugin_information', $asamodule_plugin_information );
+		
 		}
 
 	/**
