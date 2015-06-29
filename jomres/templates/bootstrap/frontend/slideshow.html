@@ -1,4 +1,4 @@
-<patTemplate:tmpl name="pageoutput">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <div id="galleria_{RANDOM_IDENTIFIER}">
 	<patTemplate:tmpl name="rows">
 		<a href="{IMAGE}"><img src="{IMAGETHUMB}"/></a>
@@ -17,7 +17,7 @@
 			lightbox: true,
 			autoplay: 5000,
 			preload: 0,
-			debug: false{WIDTH}
+			debug: false
 		});
 	});
 	//-->
