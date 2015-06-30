@@ -257,6 +257,7 @@ class j00004a_init_javascript_css_files
 			var path_to_jomres_dir = "'.get_showtime( 'live_site' ).'";
 			var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX . '&task=module_popup&nofollowtmpl=1&id=";
 			var jomres_template_version = "'.find_plugin_template_directory().'";
+			var property_reviews_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX . '&task=show_property_reviews&nofollowtmpl=1&property_uid=";
 			
 			var JOMRES_ROOT_DIRECTORY = "' . JOMRES_ROOT_DIRECTORY.'";
 			var live_scrolling_enabled = ' . $live_scrolling_enabled.';

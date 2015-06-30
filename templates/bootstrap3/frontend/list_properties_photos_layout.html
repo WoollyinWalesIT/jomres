@@ -65,24 +65,21 @@
 					<div><strong>{_JOMRES_REVIEWS}</strong></div>
 					<div><strong>{_JOMRES_REVIEWS_TOTAL_VOTES}</strong> {NUMBER_OF_REVIEWS}</div>
 					<div><strong>{_JOMRES_REVIEWS_AVERAGE_RATING}</strong>{AVERAGE_RATING}</div>
-					<a href="javascript:void(0);" onclick="toggle_review_div({UID},'{JS_SAFE_PROPERTYNAME}');">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
+					<a href="#property_reviews{UID}" ajax_task="show_property_reviews" data-toggle="modal" random_identifier="{UID}" property_name="{PROPERTYNAME}" property_uid="{UID}">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
 	
 					<div>&nbsp;</div>
 					<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
 				</div>
 			</div>
-			<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-helper-hidden"
-				 id="property_reviews{UID}">
-				{REVIEWS}
-			</div>
 		</patTemplate:comment>
 	
 	<script>
 	   jomresJquery(document).ready(function(){
-		 jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').appendTo("body");
+		 jomresJquery('#module_{RANDOM_IDENTIFIER}_popup', '#property_reviews{UID}').appendTo("body");
 		});
 	</script>
-	<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup"></div><!-- /.modal -->
+	<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup"></div><!-- /.modal info -->
+	<div class="modal fade" id="property_reviews{UID}"></div><!-- /.modal reviews -->
 	</patTemplate:tmpl>
 </div>
 
