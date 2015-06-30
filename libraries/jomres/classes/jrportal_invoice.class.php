@@ -794,7 +794,7 @@ class jrportal_invoice
 		if ( number_format( $balance, 2, '.', '' ) > 0.00 )
 			{
 			$line_item_data = array ( 'tax_code_id' => 0, 
-									 'name' => '_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT', 
+									 'name' => jr_gettext("_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT",_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT,false,false),
 									 'description' => '('.$today.')', 
 									 'init_price' => 0-number_format( $balance, 2, '.', '' ), 
 									 'init_qty' => 1, 
