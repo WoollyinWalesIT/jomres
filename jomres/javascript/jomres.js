@@ -188,19 +188,30 @@ function bind_data_toggle() {
 		jomresJquery('[data-toggle="modal"]').click(function (e) {
 			random_identifier = jomresJquery(this).attr('random_identifier');
 			property_uid = jomresJquery(this).attr('property_uid');
+			task = jomresJquery(this).attr('ajax_task');
 			if (property_uid != undefined) {
 				property_name = jomresJquery(this).attr('property_name');
 				loader = '';
-				jomresJquery('#module_' + random_identifier + '_popup').html(loader);
+				if (task == 'show_property_reviews')
+					jomresJquery('#module_' + random_identifier + '_popup').html(loader);
+				else
+					jomresJquery('#property_reviews' + random_identifier).html(loader);
 				e.preventDefault();
-				jomresJquery.get(module_pop_ajax_url + property_uid, function (data) {
+				if (task == 'show_property_reviews')
+					ajax_url = property_reviews_ajax_url;
+				else
+					ajax_url = module_pop_ajax_url;
+				jomresJquery.get(ajax_url + property_uid, function (data) {
 					if (jomres_template_version = "bootstrap3"){
-						result = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">x</button><h4>' + property_name + '</h4></div><div class="modal-body">' + data + '</div></div></div>';
+						result = '<div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">x</button><h4>' + property_name + '</h4></div><div class="modal-body">' + data + '</div></div></div>';
 						}
 					else {
 						result = '<div class="modal-header"><button type="button" class="close" data-dismiss="modal">x</button><h4>' + property_name + '</h4></div><div class="modal-body">' + data + '</div>';
 						}
-					jomresJquery('#module_' + random_identifier + '_popup').html(result);
+					if (task == 'show_property_reviews')
+						jomresJquery('#property_reviews' + random_identifier).html(result);
+					else
+						jomresJquery('#module_' + random_identifier + '_popup').html(result);
 					jomresJquery(".jomres_bt_tooltip_features").tipsy({html: true, fade: true, gravity: 'sw', delayOut: 100});
 				});
 			}
