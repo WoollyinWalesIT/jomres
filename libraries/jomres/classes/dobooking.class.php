@@ -953,7 +953,7 @@ class dobooking
 			
 		$mrConfig           = $this->mrConfig;
 		$extra_details      = array ();
-		$third_party_extras = array ();
+
 		if ( $mrConfig[ 'showExtras' ] == "1" )
 			{
 			$query  = "SELECT `uid`,`name`,`desc`,`maxquantity`,`price`,`auto_select`,`tax_rate`,`chargabledaily`,`property_uid`,`published`,`validfrom`,`validto` FROM `#__jomres_extras` where property_uid = '$selectedProperty' AND published = '1' ORDER BY name";
@@ -1127,6 +1127,21 @@ class dobooking
 					}
 				}
 			}
+		
+		$pageoutput[]=$output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		$tmpl->addRows( 'extras',$extra_details);
+		$tmpl->readTemplatesFromInput( 'dobooking_extras.html' );
+		$extras_template = $tmpl->getParsedTemplate();
+		
+		return array ( "core_extras" => $extras_template );
+		}
+	
+	function makeThirdPartyExtras( $selectedProperty )
+		{
+		$third_party_extras = array();
+		
 		$MiniComponents = jomres_getSingleton( 'mcHandler' );
 		if ( $MiniComponents->eventFileExistsCheck( '05030' ) )
 			{
@@ -1144,15 +1159,7 @@ class dobooking
 					}
 				}
 			}
-		
-		$pageoutput[]=$output;
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		$tmpl->addRows( 'extras',$extra_details);
-		$tmpl->readTemplatesFromInput( 'dobooking_extras.html' );
-		$extras_template = $tmpl->getParsedTemplate();
-		
-		return array ( "core_extras" => $extras_template, "third_party_extras" => $third_party_extras );
+		return array ( "third_party_extras" => $third_party_extras );
 		}
 
 	/**

@@ -379,7 +379,8 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	
 	$ex                 = $bkg->makeExtras( $selectedProperty );
 	$extra_details      = $ex[ 'core_extras' ];
-	$third_party_extras = $ex[ 'third_party_extras' ];
+	$exx				= $bkg->makeThirdPartyExtras( $selectedProperty );
+	$third_party_extras = $exx[ 'third_party_extras' ];
 
 	if ( count( $extra_details ) > 0 || count( $third_party_extras ) > 0 )
 		{

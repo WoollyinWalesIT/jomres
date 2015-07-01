@@ -208,67 +208,72 @@ class j02990showconfirmation
 		foreach ( $rooms as $r )
 			{
 			$rm       = explode( "^", $r );
-			$rmids[ ] = $rm[ 0 ];
+			if ($rm[ 0 ] != '')
+				$rmids[ ] = $rm[ 0 ];
 			}
 
-		$query         = "SELECT room_number,room_name,room_classes_uid FROM #__jomres_rooms WHERE room_uid IN (".implode(',',$rmids).") ORDER BY room_classes_uid";
-		$roomList      = doSelectSql( $query );
-		$roomNumber    = "";
-		$room_name     = "";
-		$prevroomclass = 0;
-
-		$room_info = array ();
-		foreach ( $roomList as $room )
+		if (count($rmids) > 0)
 			{
-			$roomtype = array ();
-			if ( $roomNumber == "" ) $roomNumber = $room->room_number;
-			else
-			$roomNumber .= ', ' . $room->room_number;
-			$room_name        = $room->room_name;
-			$room_classes_uid = $room->room_classes_uid;
-
-			$room_info[ ] = array ( "ROOM_NAME" => $room_name, "ROOM_NUMBER" => $room->room_number, "HROOM_NAME" => jr_gettext( "_JOMRES_COM_MR_EB_ROOM_NAME" ), "HROOM_NUMBER" => jr_gettext( "_JOMRES_COM_MR_EB_ROOM_NUMBER" ) );
-
-			if ( $room_classes_uid != $prevroomclass )
+			$query         = "SELECT room_number,room_name,room_classes_uid FROM #__jomres_rooms WHERE room_uid IN (".implode(',',$rmids).") ORDER BY room_classes_uid";
+			$roomList      = doSelectSql( $query );
+			$roomNumber    = "";
+			$room_name     = "";
+			$prevroomclass = 0;
+	
+			$room_info = array ();
+			foreach ( $roomList as $room )
 				{
-				if ( $prevroomclass != 0 )
-					{
-					//output previous room
-					$roomtype[ 'FULLDESC' ] = $roomadd . " x " . $fulldesc;
-					$booking_rooms[ ]       = $roomtype;
-					$prevroomclass          = $room_classes_uid;
-					}
+				$roomtype = array ();
+				if ( $roomNumber == "" ) $roomNumber = $room->room_number;
 				else
-				$prevroomclass = $room_classes_uid;
-
-				$roomadd   = 1;
-				$query     = "SELECT room_class_full_desc FROM #__jomres_room_classes WHERE property_uid = '" . (int) $property_uid . "' and room_classes_uid = '" . (int) $room_classes_uid . "' ";
-				$roomclass = doSelectSql( $query );
-
-				if ( count( $roomclass ) > 0 )
+				$roomNumber .= ', ' . $room->room_number;
+				$room_name        = $room->room_name;
+				$room_classes_uid = $room->room_classes_uid;
+	
+				$room_info[ ] = array ( "ROOM_NAME" => $room_name, "ROOM_NUMBER" => $room->room_number, "HROOM_NAME" => jr_gettext( "_JOMRES_COM_MR_EB_ROOM_NAME" ), "HROOM_NUMBER" => jr_gettext( "_JOMRES_COM_MR_EB_ROOM_NUMBER" ) );
+	
+				if ( $room_classes_uid != $prevroomclass )
 					{
-					foreach ( $roomclass as $class ) $fulldesc = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC' . (int) $room_classes_uid, stripslashes( $class->room_class_full_desc ), false, false );
-					}
-				else
-					{
-					$query     = "SELECT room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 and room_classes_uid = '$room_classes_uid'";
+					if ( $prevroomclass != 0 )
+						{
+						//output previous room
+						$roomtype[ 'FULLDESC' ] = $roomadd . " x " . $fulldesc;
+						$booking_rooms[ ]       = $roomtype;
+						$prevroomclass          = $room_classes_uid;
+						}
+					else
+					$prevroomclass = $room_classes_uid;
+	
+					$roomadd   = 1;
+					$query     = "SELECT room_class_full_desc FROM #__jomres_room_classes WHERE property_uid = '" . (int) $property_uid . "' and room_classes_uid = '" . (int) $room_classes_uid . "' ";
 					$roomclass = doSelectSql( $query );
+	
 					if ( count( $roomclass ) > 0 )
 						{
-						foreach ( $roomclass as $class ) $fulldesc = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV' . $room_classes_uid, stripslashes( $class->room_class_abbv ), false, false );
+						foreach ( $roomclass as $class ) $fulldesc = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC' . (int) $room_classes_uid, stripslashes( $class->room_class_full_desc ), false, false );
+						}
+					else
+						{
+						$query     = "SELECT room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 and room_classes_uid = '$room_classes_uid'";
+						$roomclass = doSelectSql( $query );
+						if ( count( $roomclass ) > 0 )
+							{
+							foreach ( $roomclass as $class ) $fulldesc = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV' . $room_classes_uid, stripslashes( $class->room_class_abbv ), false, false );
+							}
 						}
 					}
+				else
+					{
+					$roomadd++;
+					}
 				}
-			else
-				{
-				$roomadd++;
-				}
+	
+			$roomtype[ 'FULLDESC' ] = $roomadd . " x " . $fulldesc;
+			$booking_rooms[ ]       = $roomtype;
 			}
 
-		$roomtype[ 'FULLDESC' ] = $roomadd . " x " . $fulldesc;
-		$booking_rooms[ ]       = $roomtype;
-
-		if ( $mrConfig[ 'singleRoomProperty' ] != "1" ) $booking_parts[ 'ALLOCATION' ] = $bookingDeets[ 'booking_notes' ][ 'suppliment_note' ];
+		if ( $mrConfig[ 'singleRoomProperty' ] != "1" ) 
+			$booking_parts[ 'ALLOCATION' ] = $bookingDeets[ 'booking_notes' ][ 'suppliment_note' ];
 
 		$room_total = $bookingDeets[ 'room_total' ];
 		
