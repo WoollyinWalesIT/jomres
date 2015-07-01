@@ -323,17 +323,17 @@ class j06005list_invoices_ajax
 					( !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager && $p->contract_id > 0 ) || //booking invoice
 					( $p->contract_id == 0 && ($p->subscription > 0 || $p->is_commission > 0) ) //subscription/commission invoice
 					)*/
-				if (
-					( $p->contract_id == 0 && ($p->subscription > 0 || $p->is_commission > 0) ) //subscription/commission invoice
-					)
-					{
+			//	if (
+			//		( $p->contract_id == 0 && ($p->subscription > 0 || $p->is_commission > 0) ) //subscription/commission invoice
+			//		)
+			//		{
 					if (!using_bootstrap())
 						$r[] = '<a href="' . JOMRES_SITEPAGE_URL_NOSEF . '&task=list_gateways_for_invoice&invoice_id=' . $p->id . '">'.jr_gettext( '_JRPORTAL_INVOICES_PAYNOW', _JRPORTAL_INVOICES_PAYNOW, false ).'</a>';
 					else
 						$r[] = '<a href="' . JOMRES_SITEPAGE_URL_NOSEF . '&task=list_gateways_for_invoice&invoice_id=' . $p->id . '" class="btn btn-success btn-sm"><i class="fa fa-credit-card"></i> '.jr_gettext( '_JRPORTAL_INVOICES_PAYNOW', _JRPORTAL_INVOICES_PAYNOW, false ).'</a>';
-					}
-				else
-					$r[] = '';
+			//		}
+			//	else
+			//		$r[] = '';
 				}
 			else
 				$r[] = '';

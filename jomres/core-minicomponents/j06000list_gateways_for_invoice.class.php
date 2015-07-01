@@ -35,7 +35,7 @@ class j06000list_gateways_for_invoice
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		
-		$MiniComponents->triggerEvent( '10509', $componentArgs );
+		$MiniComponents->triggerEvent( '10509', array ( "invoice_id" => $this->invoice_id ) );
 		$mcOutput = $MiniComponents->getAllEventPointsData( '10509' );
 		if ( count( $mcOutput ) > 0 )
 			{
