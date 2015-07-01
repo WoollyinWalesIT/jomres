@@ -54,58 +54,78 @@ class jrportal_payment_reference
 	
 	function get_invoice_data($invoice_id)
 		{
-		//var_dump($invoice_id);exit;
+		$gateway_active = false;
 		$query = "SELECT `id`,`invoice_id`,`gateway` FROM #__jomres_invoice_payment_ref  WHERE invoice_id = ".(int)$invoice_id . " LIMIT 1";
 		$payment_details = doSelectSql($query,2);
 		
-		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig   = $siteConfig->get();
-
-		$prefix = "gateway_setting_".$payment_details['gateway']."_";
-		if (isset($jrConfig [ $prefix."active" ]))
+		
+		
+		$invoice = jomres_singleton_abstract::getInstance( 'basic_invoice_details' );
+		$invoice->gatherData($invoice_id);
+		$settings = array();
+		if ( $invoice->subscription || $invoice->subscription ) // We need to check that the site manager has created gateway settings
 			{
-			$this->payment_reference = (int)$id;
+			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+			$jrConfig   = $siteConfig->get();
 
-			if ($jrConfig [ $prefix."active" ] == "1")
+			$prefix = "gateway_setting_".$payment_details['gateway']."_";
+			if (isset($jrConfig [ $prefix."active" ]))
 				{
-				$settings = array();
-				foreach ($jrConfig as $key=>$val)
+				$this->payment_reference = (int)$id;
+
+				if ($jrConfig [ $prefix."active" ] == "1")
 					{
-					if ( substr($key , 0 , strlen ( $prefix )  ) == $prefix )
+					$gateway_active = true;
+					
+					foreach ($jrConfig as $key=>$val)
 						{
-						$key =  substr($key , strlen ( $prefix ) , strlen ( $key )  ) ;
-						$settings [$key] = $val;
+						if ( substr($key , 0 , strlen ( $prefix )  ) == $prefix )
+							{
+							$key =  substr($key , strlen ( $prefix ) , strlen ( $key )  ) ;
+							$settings [$key] = $val;
+							}
 						}
 					}
-				
-				$invoice = jomres_singleton_abstract::getInstance( 'basic_invoice_details' );
-				$invoice->gatherData($invoice_id);
-				
-				$invoice_data = array();
-				$invoice_data['invoice_number']		= $payment_details['invoice_id'];
-				$invoice_data['currencycode']		= $invoice->currencycode;
-				$invoice_data['balance']			= $invoice->balance;
-				$invoice_data['line_items']			= $invoice->lineitems;
-				
-				$this->gateway_settings = $settings;
-				$this->invoice_data = $invoice_data;
-				
-				$this->gateway = $payment_details['gateway'];
-				$this->invoice_id =$payment_details['invoice_id'];
-				
-				return array ( 'gateway' => $this->gateway , 'invoice_data' => $invoice_data , 'gateway_settings' => $this->gateway_settings , 'invoice_id' => $this->invoice_id , 'payment_reference' =>$payment_details['id']  );
 				}
-			else
+			}
+		else
+			{
+			$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '".(int)$invoice->property_uid."' AND plugin = '".$payment_details['gateway']."' ";
+			$settingsList=doSelectSql($query);
+			foreach ($settingsList as $set)
 				{
-				return false;
+				$settings[$set->setting]=$set->value;
 				}
+			if ( $settings['active'] == "1")
+				{
+				$gateway_active = true;
+				}
+			}
+
+			
+		if ( $gateway_active )
+			{
+			$invoice_data = array();
+			$invoice_data['invoice_number']		= $payment_details['invoice_id'];
+			$invoice_data['currencycode']		= $invoice->currencycode;
+			$invoice_data['balance']			= $invoice->balance;
+			$invoice_data['line_items']			= $invoice->lineitems;
+			
+			$this->gateway_settings = $settings;
+			$this->invoice_data = $invoice_data;
+			
+			$this->gateway = $payment_details['gateway'];
+			$this->invoice_id =$payment_details['invoice_id'];
+			
+			return array ( 'gateway' => $this->gateway , 'invoice_data' => $invoice_data , 'gateway_settings' => $this->gateway_settings , 'invoice_id' => $this->invoice_id , 'payment_reference' =>$payment_details['id']  );
 			}
 		else
 			{
 			return false;
 			}
 		}
-	
+
+
 	function mark_payment_reference_paid()
 		{
 		if (isset($this->payment_reference))
