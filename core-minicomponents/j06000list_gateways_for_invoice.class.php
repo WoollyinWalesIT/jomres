@@ -73,7 +73,7 @@ class j06000list_gateways_for_invoice
 				}
 			else
 				{
-				echo "<p class='alert alert-danger'>Error, no gateways have been configured by the site administrator</p>";
+				echo "<p class='alert alert-danger'>Error, no gateways have been configured.</p>";
 				}
 			}
 			
