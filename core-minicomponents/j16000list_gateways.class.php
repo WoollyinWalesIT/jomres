@@ -26,7 +26,7 @@ class j16000list_gateways
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		
-		$MiniComponents->triggerEvent( '10509', $componentArgs );
+		$MiniComponents->triggerEvent( '10509', array ( "show_anyway" => true) );
 		$mcOutput = $MiniComponents->getAllEventPointsData( '10509' );
 		if ( count( $mcOutput ) > 0 )
 			{
