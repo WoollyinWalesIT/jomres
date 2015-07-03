@@ -103,13 +103,15 @@ function jomres_cmsspecific_createNewUserOnBooking()
 			`username`,
 			`email`,
 			`password`,
-			`registerDate`
+			`registerDate`,
+			`params`
 			) VALUES (
 			'" . $name . "',
 			'" . $username . "',
 			'" . $guestDeets[ 'email' ] . "',
 			'" . $encryptedPassword . "',
-			'" . date( 'Y-m-d H:i:s' ) . "'
+			'" . date( 'Y-m-d H:i:s' ) . "',
+			'{}'
 			) ";
 		$id    = doInsertSql( $query );
 		if ( !$id )
