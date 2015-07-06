@@ -306,7 +306,6 @@ class dobooking
 		$this->cfg_euroTaxYesNo              = $mrConfig[ 'euroTaxYesNo' ];
 		$this->cfg_euroTaxPercentage         = $mrConfig[ 'euroTaxPercentage' ];
 		$this->cfg_depAmount                 = $mrConfig[ 'depAmount' ];
-		$this->cfg_useOnlinepayment          = $mrConfig[ 'useOnlinepayment' ];
 		$this->cfg_popupsAllowed             = $mrConfig[ 'popupsAllowed' ];
 		$this->cfg_showdepartureinput        = $mrConfig[ 'showdepartureinput' ];
 		$this->cfg_ratemultiplier            = $mrConfig[ 'ratemultiplier' ];

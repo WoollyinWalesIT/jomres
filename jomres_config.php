@@ -70,7 +70,6 @@ $mrConfig[ 'CalendarMonthsToShow' ]                 = "12";
 $mrConfig[ 'encKey' ]                               = "";
 $mrConfig[ 'editiconsize' ]                         = "small";
 $mrConfig[ 'showTariffsLink' ]                      = "1";
-$mrConfig[ 'useOnlinepayment' ]                     = "0";
 $mrConfig[ 'showdepartureinput' ]                   = "1";
 $mrConfig[ 'ratemultiplier' ]                       = "1";
 

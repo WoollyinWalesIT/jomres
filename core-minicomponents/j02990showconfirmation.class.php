@@ -500,7 +500,7 @@ class j02990showconfirmation
 			{
 			if ( $paypal_settings->paypalConfigOptions[ 'override' ] != "1" )
 				{
-				if ( !$userIsManager && $mrConfig[ 'useOnlinepayment' ] != "0" )
+				if ( !$userIsManager )
 					{
 					$gatewaylist  = array ();
 					$query        = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = '" . (int) $property_uid . "' AND setting = 'active' AND value = '1'";
