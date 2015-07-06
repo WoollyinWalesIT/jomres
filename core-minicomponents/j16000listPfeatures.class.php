@@ -26,7 +26,7 @@ class j16000listPfeatures
 			return;
 			}
 		$editIcon             = '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" />';
-		$query                = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid,ptype_xref FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
+		$query                = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid,ptype_xref,cat_id FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
 		$propertyFeaturesList = doSelectSql( $query );
 		$rows                 = array ();
 
@@ -41,6 +41,17 @@ class j16000listPfeatures
 				$all_ptypes[ $ptype->id ] = $ptype->ptype;
 				}
 			}
+		
+		$all_categories = array();
+		$query      = "SELECT id,title FROM #__jomres_hotel_features_categories";
+		$catList  = doSelectSql( $query );
+		if ( count( $catList ) > 0 )
+			{
+			foreach ( $catList as $cat )
+				{
+				$all_categories[ $cat->id ] = $cat->title;
+				}
+			}
 
 		$output[ 'INDEX' ]          = "index.php";
 		$output[ 'PAGETITLE' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK,false );
@@ -52,6 +63,7 @@ class j16000listPfeatures
 		$output[ 'HJOMRES_A_ICON' ]       = jr_gettext( '_JOMRES_A_ICON', _JOMRES_A_ICON,false );
 		$output[ 'HPROPERTY_TYPES' ] = jr_gettext( '_JOMRES_FRONT_PTYPE', _JOMRES_FRONT_PTYPE,false );
 		$output[ 'BACKLINK' ]             = '<a href="javascript:submitbutton(\'cpanel\')">' . jr_gettext( '_JOMRES_COM_MR_BACK', _JOMRES_COM_MR_BACK,false ) . '</a>';
+		$output[ 'HCATEGORY' ] = jr_gettext( '_JOMRES_HCATEGORY', _JOMRES_HCATEGORY,false );
 
 		foreach ( $propertyFeaturesList as $propertyFeature )
 			{
@@ -73,6 +85,10 @@ class j16000listPfeatures
 			$r[ 'PROPERTY_TYPES' ] = $selected_ptype_rows;
 			$r[ 'IMAGE' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$propertyFeature->image;
 			
+			if ((int)$propertyFeature->cat_id > 0)
+				$r[ 'CATEGORY' ] = $all_categories[$propertyFeature->cat_id];
+			else
+				$r[ 'CATEGORY' ] = '';
 			
 			if (!using_bootstrap())
 				{

@@ -1179,7 +1179,6 @@ function detect_property_uid()
 
 function jomres_validate_gateway_plugin()
 	{
-	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 	if ( $thisJRUser->userIsManager ) return "NA";
 
@@ -1188,7 +1187,7 @@ function jomres_validate_gateway_plugin()
 	$mrConfig		  = getPropertySpecificSettings();
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 	$property_uid	  = get_showtime( 'property_uid' );
-	if ( ( $paypal_settings->paypalConfigOptions[ 'override' ] == "1") && ((int)$mrConfig['requireApproval'] == 0 || $tmpBookingHandler->tmpbooking['secret_key_payment'] ))
+	if ( ($mrConfig[ 'useOnlinepayment' ] == "1" || $paypal_settings->paypalConfigOptions[ 'override' ] == "1") && ((int)$mrConfig['requireApproval'] == 0 || $tmpBookingHandler->tmpbooking['secret_key_payment'] ))
 		{
 		if ( $paypal_settings->paypalConfigOptions[ 'override' ] == "1" ) return "paypal";
 
@@ -2753,6 +2752,7 @@ function hotelSettings()
 	$lists[ 'showSlideshowInline' ]			= jomresHTML::selectList( $yesno, 'cfg_showSlideshowInline', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showSlideshowInline' ] );
 	$lists[ 'showTariffsInline' ]			  = jomresHTML::selectList( $yesno, 'cfg_showTariffsInline', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showTariffsInline' ] );
 	$lists[ 'showTariffsLink' ]				= jomresHTML::selectList( $yesno, 'cfg_showTariffsLink', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showTariffsLink' ] );
+	$lists[ 'useOnlinepayment' ]			   = jomresHTML::selectList( $yesno, 'cfg_useOnlinepayment', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'useOnlinepayment' ] );
 	$lists[ 'showdepartureinput' ]			 = jomresHTML::selectList( $yesno, 'cfg_showdepartureinput', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showdepartureinput' ] );
 	$lists[ 'dateFormatStyle' ]				= jomresHTML::selectList( $yesno, 'cfg_dateFormatStyle', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'dateFormatStyle' ] );
 	$lists[ 'calstartfrombeginningofyear' ]	= jomresHTML::selectList( $yesno, 'cfg_calstartfrombeginningofyear', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'calstartfrombeginningofyear' ] );
@@ -2827,6 +2827,8 @@ function hotelSettings()
 	if ( !isset( $mrConfig[ 'auto_detect_country_for_booking_form' ] ) ) $mrConfig[ 'auto_detect_country_for_booking_form' ] = "1";
 
 	$lists[ 'auto_detect_country_for_booking_form' ] = jomresHTML::selectList( $yesno, 'cfg_auto_detect_country_for_booking_form', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'auto_detect_country_for_booking_form' ] );
+
+	$lists[ 'showPfeaturesCategories' ] = jomresHTML::selectList( $yesno, 'cfg_showPfeaturesCategories', 'class="inputbox" size="1"', 'value', 'text', (int)$mrConfig[ 'showPfeaturesCategories' ] );
 
 
 	$componentArgs								= array ();

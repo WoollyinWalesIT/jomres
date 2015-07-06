@@ -32,9 +32,6 @@ class j00501propertydetailsoptions
 		$mrConfig           = getPropertySpecificSettings();
 		$lists              = $componentArgs[ 'lists' ];
 		
-		if ( !isset( $mrConfig[ 'property_language' ] ) ) 
-			$mrConfig[ 'property_language' ] = "en-GB";
-		
 		if ( $thisJRUser->simple_configuration )
 			return;
 		
@@ -122,6 +119,11 @@ class j00501propertydetailsoptions
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_GALLERYLINK", _JOMRES_COM_A_GALLERYLINK, false ) );
 			$configurationPanel->setmiddle( '<input type="url" class="inputbox form-control"  size="50" name="cfg_galleryLink" value="' . $mrConfig[ 'galleryLink' ] . '" />' );
 			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_GALLERYLINK_DESC", _JOMRES_COM_A_GALLERYLINK_DESC, false ) );
+			$configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES", _JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES, false ) );
+			$configurationPanel->setmiddle( $lists[ 'showPfeaturesCategories' ] );
+			$configurationPanel->setright( jr_gettext( "_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC", _JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC, false ) );
 			$configurationPanel->insertSetting();
 			}
 

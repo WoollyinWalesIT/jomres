@@ -30,7 +30,7 @@ class j16000editPfeature
 		//$ptypeid            = 0;
 		if ( $propertyFeatureUid > 0 )
 			{
-			$query        = "SELECT hotel_feature_abbv,hotel_feature_full_desc,image,property_uid,ptype_xref FROM #__jomres_hotel_features WHERE hotel_features_uid  = '" . (int) $propertyFeatureUid . "' AND property_uid = '0'";
+			$query        = "SELECT hotel_feature_abbv,hotel_feature_full_desc,image,property_uid,ptype_xref,cat_id FROM #__jomres_hotel_features WHERE hotel_features_uid  = '" . (int) $propertyFeatureUid . "' AND property_uid = '0'";
 			$pFeatureList = doSelectSql( $query );
 			foreach ( $pFeatureList as $pFeature )
 				{
@@ -41,6 +41,8 @@ class j16000editPfeature
 				else
 					$ptype_xref                      = $pFeature->ptype_xref;
 				$image                           = $pFeature->image;
+				
+				$cat_id = $pFeature->cat_id;
 				}
 			}
 		if ( $clone ) $propertyFeatureUid = 0;
@@ -70,6 +72,17 @@ class j16000editPfeature
 						$row[ 'checked' ] = " checked ";
 					}
 				$all_ptype_rows[ ] = $row;
+				}
+			}
+		
+		$all_categories = array();
+		$query      = "SELECT id,title FROM #__jomres_hotel_features_categories";
+		$catList  = doSelectSql( $query );
+		if ( count( $catList ) > 0 )
+			{
+			foreach ( $catList as $cat )
+				{
+				$all_categories[ $cat->id ] = $cat->title;
 				}
 			}
 
@@ -111,6 +124,15 @@ class j16000editPfeature
 		$output[ 'BACKLINK' ]                                 = '<a href="javascript:submitbutton(\'cpanel\')">' . jr_gettext( '_JOMRES_COM_MR_BACK', _JOMRES_COM_MR_BACK,false ) . '</a>';
 		$output[ '_JOMRES_PROPERTY_TYPE_ASSIGNMENT' ] = jr_gettext( '_JOMRES_PROPERTY_TYPE_ASSIGNMENT', _JOMRES_PROPERTY_TYPE_ASSIGNMENT,false );
 		$output[ 'HIMAGE' ] = jr_gettext( '_JOMRES_A_ICON', _JOMRES_A_ICON,false );
+
+		$options = array ();
+		$options[] = jomresHTML::makeOption( 0, '' );
+		foreach ($all_categories as $k=>$v)
+			{
+			$options[] = jomresHTML::makeOption( $k, $v );
+			}
+		$output[ 'CATEGORY' ] = jomresHTML::selectList( $options, 'cat_id', 'class="inputbox" size="1"', 'value', 'text', $cat_id );
+		$output[ 'HCATEGORY' ] = jr_gettext( '_JOMRES_HCATEGORY', _JOMRES_HCATEGORY );
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();

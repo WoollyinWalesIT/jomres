@@ -171,4 +171,5 @@ $mrConfig[ 'property_vat_number_validated' ] = "0";
 $mrConfig[ 'vat_number_validation_response' ] = "";
 
 $mrConfig[ 'requireApproval' ] = "0";
+$mrConfig[ 'showPfeaturesCategories' ] = "1";
 

@@ -239,7 +239,8 @@ if ( $folderChecksPassed && $functionChecksPassed && ACTION != "Migration" )
 
 				import_countries();
 				import_regions();
-
+				insert_pfeature_categories();
+				
 				require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_installation.php" );
 				showCompletedText();
 				}
@@ -448,8 +449,66 @@ function doTableUpdates()
 	if ( !checkExtrasValidfromColExists() ) alterExtrasValidfromCol();
 	if ( !checkExtrasIncludeinlistsColExists() ) alterExtrasIncludeinlistsCol();
 	if ( !checkRfeaturesImageColExists() ) alterRfeaturesImageCol();
+	if ( !checkPfeaturesCategoriesTableExists() ) createPfeaturesCategoriesTable();
+	if ( !checkPfeaturesCategoryColExists() ) alterPfeaturesCategoryCol();
 	
 	updateSiteSettings ( "update_time" , time() );
+	}
+
+function checkPfeaturesCategoriesTableExists()
+	{
+	
+	$tablesFound = false;
+	$query       = "SHOW TABLES";
+	$result      = doSelectSql( $query, $mode = false );
+	$string      = "Tables_in_" . get_showtime("db");
+	foreach ( $result as $r )
+		{
+		if ( strstr( $r->$string, '_jomres_hotel_features_categories' ) ) return true;
+		}
+
+	return false;
+	}
+
+function createPfeaturesCategoriesTable()
+	{
+	output_message ( "Creating jomres_hotel_features_categories table");
+	$query  = "CREATE TABLE IF NOT EXISTS `#__jomres_hotel_features_categories` (
+		`id` int(11) auto_increment,
+		`title`  varchar(255) NOT NULL DEFAULT 0,
+		PRIMARY KEY	(`id`)
+		) ";
+	$result = doInsertSql( $query, "" );
+	if ( !$result )
+		{
+		output_message ( "Error creating table table jomres_hotel_features_categories ", "danger" );
+		}
+	else
+		{
+		insert_pfeature_categories();
+		}
+	}
+
+function checkPfeaturesCategoryColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_hotel_features LIKE 'cat_id'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
+
+function alterPfeaturesCategoryCol()
+	{
+	output_message ( "Editing __jomres_hotel_features table adding cat_id column");
+	$query = "ALTER TABLE #__jomres_hotel_features ADD `cat_id` INT(11) NOT NULL DEFAULT 0 AFTER `ptype_xref` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_hotel_features cat_id", "danger" );
+		}
 	}
 
 function checkRfeaturesImageColExists()
@@ -3445,7 +3504,18 @@ function createJomresTables()
 		`image` text,
 		`property_uid` VARCHAR(11),
 		`ptype_xref` text NULL DEFAULT NULL,
+		`cat_id` varchar(244) NOT NULL DEFAULT 0,
 		PRIMARY KEY(`hotel_features_uid`)
+		) ";
+	if ( !doInsertSql( $query ) )
+		{
+		output_message (  "Failed to run query: " . $query , "danger" );
+		}
+	
+	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_hotel_features_categories` (
+		`id` int(11) NOT NULL auto_increment,
+		`title` VARCHAR(255) NULL,
+		PRIMARY KEY(`id`)
 		) ";
 	if ( !doInsertSql( $query ) )
 		{
@@ -6036,7 +6106,30 @@ $jrConfig = ' . var_export($tmpConfig, true) . ';
 		}
 	}
 
-	
+function insert_pfeature_categories()
+	{
+	$query = "INSERT INTO #__jomres_hotel_features_categories (id,title) VALUES (1, 'Activities')";
+	doInsertSql( $query, '' );
+	$query = "INSERT INTO #__jomres_hotel_features_categories (id,title) VALUES (2, 'Amenities')";
+	doInsertSql( $query, '' );
+	$query = "INSERT INTO #__jomres_hotel_features_categories (id,title) VALUES (3, 'Accessibility')";
+	doInsertSql( $query, '' );
+	$query = "INSERT INTO #__jomres_hotel_features_categories (id,title) VALUES (4, 'Views')";
+	doInsertSql( $query, '' );
+	$query = "INSERT INTO #__jomres_hotel_features_categories (id,title) VALUES (5, 'Living Area')";
+	doInsertSql( $query, '' );
+	$query = "INSERT INTO #__jomres_hotel_features_categories (id,title) VALUES (6, 'Media & Technology')";
+	doInsertSql( $query, '' );
+	$query = "INSERT INTO #__jomres_hotel_features_categories (id,title) VALUES (7, 'Food & Drink')";
+	doInsertSql( $query, '' );
+	$query = "INSERT INTO #__jomres_hotel_features_categories (id,title) VALUES (8, 'Parking')";
+	doInsertSql( $query, '' );
+	$query = "INSERT INTO #__jomres_hotel_features_categories (id,title) VALUES (9, 'Services')";
+	doInsertSql( $query, '' );
+	$query = "INSERT INTO #__jomres_hotel_features_categories (id,title) VALUES (10, 'Bathroom')";
+	doInsertSql( $query, '' );
+	}
+
 function include_location_file()
 	{
 	require_once ('../jomres_root.php');
