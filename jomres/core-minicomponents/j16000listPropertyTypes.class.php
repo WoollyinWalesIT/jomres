@@ -33,7 +33,6 @@ class j16000listPropertyTypes
 		$output[ 'HPTYPE_DESC' ]               = jr_gettext( '_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR', _JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR,false );
 		$output[ 'HPUBLISHED' ]                = jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISHED', _JOMRES_COM_MR_VRCT_PUBLISHED,false );
 		$output[ '_JOMRES_ORDER' ]             = jr_gettext( '_JOMRES_ORDER', _JOMRES_ORDER,false );
-		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = JOMRES_SITEPAGE_URL_ADMIN;
 
 		$query     = "SELECT `id`,`ptype`,`ptype_desc`,`published`,`order` FROM #__jomres_ptypes ORDER BY `order` ASC";
 		$ptypeList = doSelectSql( $query );
@@ -77,9 +76,9 @@ class j16000listPropertyTypes
 				$toolbar->newToolbar();
 				
 				if ((int)$published == 0)
-					$toolbar->addItem( 'fa fa-times', 'btn btn-default', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishPropertyType' . '&id=' . $ptypeData[ 'id' ] ), jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', _JOMRES_COM_MR_VRCT_PUBLISH, false ) );
+					$toolbar->addItem( 'fa fa-times', 'btn btn-default', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=publishPropertyType' . '&id=' . $ptypeData[ 'id' ] ), jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', _JOMRES_COM_MR_VRCT_PUBLISH, false ) );
 				else
-					$toolbar->addItem( 'fa fa-check', 'btn btn-success', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishPropertyType' . '&id=' . $ptypeData[ 'id' ] ), jr_gettext( '_JOMRES_COM_MR_VRCT_UNPUBLISH', _JOMRES_COM_MR_VRCT_UNPUBLISH, false ) );
+					$toolbar->addItem( 'fa fa-check', 'btn btn-success', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=publishPropertyType' . '&id=' . $ptypeData[ 'id' ] ), jr_gettext( '_JOMRES_COM_MR_VRCT_UNPUBLISH', _JOMRES_COM_MR_VRCT_UNPUBLISH, false ) );
 
 				$toolbar->addSecondaryItem( 'fa fa-pencil-square-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=editPropertyType&id=' . $ptypeData[ 'id' ] ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
 				

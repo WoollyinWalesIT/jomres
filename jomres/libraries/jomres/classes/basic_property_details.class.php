@@ -31,6 +31,7 @@ class basic_property_details
 		$this->get_all_room_types();
 		$this->get_all_property_types();
 		$this->get_all_property_features();
+		$this->get_all_property_features_categories();
 		}
 
 	public static function getInstance()
@@ -263,6 +264,7 @@ class basic_property_details
 				$this->features[$f]['desc'] = $this->all_property_features[$f]['desc'];
 				$image = str_replace("/jomres/", '/JOMRES_ROOT_DIRECTORY/' , $this->all_property_features[$f]['image']);
 				$this->features[$f]['image'] =$image;
+				$this->features[$f]['cat_id'] = $this->all_property_features[$f]['cat_id'];
 				}
 			}
 		}
@@ -513,7 +515,7 @@ class basic_property_details
 			}
 		else
 			{
-			$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,ptype_xref FROM #__jomres_hotel_features WHERE property_uid = 0 ORDER BY hotel_feature_abbv ";
+			$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,ptype_xref,cat_id FROM #__jomres_hotel_features WHERE property_uid = 0 ORDER BY hotel_feature_abbv ";
 			$propertyFeaturesList= doSelectSql($query);
 			if (count($propertyFeaturesList)>0)
 				{
@@ -523,6 +525,7 @@ class basic_property_details
 					$this->all_property_features[(int)$propertyFeature->hotel_features_uid]['desc'] = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$propertyFeature->hotel_features_uid,	stripslashes($propertyFeature->hotel_feature_full_desc),false,false);
 					$this->all_property_features[(int)$propertyFeature->hotel_features_uid]['image'] =$propertyFeature->image;
 					$this->all_property_features[(int)$propertyFeature->hotel_features_uid]['ptype_xref'] = $propertyFeature->ptype_xref; //serialized
+					$this->all_property_features[(int)$propertyFeature->hotel_features_uid]['cat_id'] = $propertyFeature->cat_id;
 					}
 				}
 			$c->store('all_property_features_details',$this->all_property_features);
@@ -553,6 +556,32 @@ class basic_property_details
 				else
 					$this->all_room_features[ $f->room_features_uid ][ 'ptype_xref' ] = array();
 				}
+			}
+		}
+	
+	function get_all_property_features_categories()
+		{
+		$this->all_property_features_categories = array();
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$all_property_features_categories = $c->retrieve('all_property_features_categories');
+		
+		if (true===is_array($all_property_features_categories))
+			{
+			$this->all_property_features_categories = $all_property_features_categories;
+			}
+		else
+			{
+			$query = "SELECT `id`,`title` FROM #__jomres_hotel_features_categories ORDER BY `title` ";
+			$result = doSelectSql($query);
+			
+			if (count($result)>0)
+				{
+				foreach($result as $r)
+					{
+					$this->all_property_features_categories[(int)$r->id] = jr_gettext('_JOMRES_PROPERTY_FEATURES_CATEGORY'.(int)$r->id, stripslashes($r->title),false,false);
+					}
+				}
+			$c->store('all_property_features_categories',$this->all_property_features_categories);
 			}
 		}
 

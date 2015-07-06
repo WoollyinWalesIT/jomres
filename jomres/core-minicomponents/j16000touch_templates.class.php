@@ -77,6 +77,21 @@ class j16000touch_templates
 			echo "<br/>";
 			}
 		echo "<hr/>";
+		
+		//property features categories
+		$query = "SELECT `id`,`title` FROM #__jomres_hotel_features_categories ORDER BY title ";
+		$result = doSelectSql( $query );
+		if ( count( $result ) > 0 )
+			{
+			echo jr_gettext( '_JOMRES_PROPERTYFEATURES_HCATEGORIES',_JOMRES_PROPERTYFEATURES_HCATEGORIES) . "<br/>";
+			foreach ( $result as $r )
+				{
+				echo jr_gettext('_JOMRES_PROPERTY_FEATURES_CATEGORY'.(int)$r->id, stripslashes($r->title));
+				echo "<br/>";
+				}
+			}
+		echo "<hr/>";
+
 		$MiniComponents->touch_templates();
 
 		}

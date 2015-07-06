@@ -32,7 +32,7 @@ class j00015viewproperty
 			}
 
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
-		$featureList  = array ();
+
 		if ( !isset( $property_uid ) || empty( $property_uid ) ) $property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 		$mrConfig = getPropertySpecificSettings( $property_uid );
 		if ( !isset( $jrConfig[ 'show_booking_form_in_property_details' ] ) ) $jrConfig[ 'show_booking_form_in_property_details' ] = "1";
@@ -78,19 +78,10 @@ class j00015viewproperty
 
 				if ( $current_property_details->superior == 1 ) $output[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/superior.png\" alt=\"superior\" border=\"0\" />";
 
-			$features = $current_property_details->features;
-			if ( count( $features ) > 0 )
-				{
-				foreach ( $features as $f )
-					{
-					$propertyFeatureDescriptionsArray[ 'FEATURE' ] = jomres_makeTooltip( $f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$f[ 'image' ], "", "property_feature", array () );
-					$featureList[ ]                                = $propertyFeatureDescriptionsArray;
-					}
-				$property[ 'HFEATURES' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES );
-				}
-			else
-			$property[ 'HFEATURES' ] = "";
+			//property features
+			$property['FEATURES'] = $MiniComponents->specificEvent( '06000', 'show_property_features',array('output_now'=>false, 'property_uid'=>$property_uid));
 			
+			//room type icons
 			$roomtypes    = array ();
 			$property[ 'HRTYPES' ] = "";
 			if ( !get_showtime( 'is_jintour_property' ) )
@@ -294,7 +285,6 @@ class j00015viewproperty
 			$property_deets[ ] = $property;
 
 			$this->retVals[ 'property_deets' ] = $property_deets;
-			$this->retVals[ 'featurelist' ]    = $featureList;
 			$this->retVals[ 'roomtypes' ]      = $roomtypes;
 			$this->retVals[ 'bookinglink' ]    = $bookinglink;
 			$this->retVals[ 'slideshowlink' ]  = $slideshowlink;
