@@ -233,6 +233,7 @@ class basic_property_details
 			$this->accommodation_tax_rate		 =$this->multi_query_result[ $this->property_uid ][ 'accommodation_tax_rate' ];
 			$this->room_types                    =$this->multi_query_result[ $this->property_uid ][ 'room_types' ];
 			$this->rooms                         =$this->multi_query_result[ $this->property_uid ][ 'rooms' ];
+			$this->rooms_by_type                 =$this->multi_query_result[ $this->property_uid ][ 'rooms_by_type' ];
 			}
 
 		$mrConfig = getPropertySpecificSettings( $this->property_uid );
@@ -410,6 +411,8 @@ class basic_property_details
 				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'abbv' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'room_class_abbv' ];
 				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'desc' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'room_class_full_desc' ];
 				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'image' ] = $this->all_room_types[ $room->room_classes_uid ][ 'image' ];
+				
+				$this->multi_query_result[ $room->propertys_uid ][ 'rooms_by_type' ][ $room->room_classes_uid ][] = $room->room_uid;
 				}
 
 			foreach ( $property_uids as $id )
