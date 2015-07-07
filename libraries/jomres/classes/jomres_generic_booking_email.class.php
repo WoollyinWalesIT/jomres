@@ -178,7 +178,7 @@ class jomres_generic_booking_email
 		$this->data[$contract_uid]['PROPERTY_REGION'] = $current_property_details->property_region;
 		$this->data[$contract_uid]['PROPERTY_COUNTRY'] = $current_property_details->property_country;
 		$this->data[$contract_uid]['PROPERTY_POSTCODE'] = $current_property_details->property_postcode;
-		$this->data[$contract_uid]['PROPERTY_PHONE'] = $current_property_details->property_tel;
+		$this->data[$contract_uid]['PROPERTY_TEL'] = $current_property_details->property_tel;
 		$this->data[$contract_uid]['PROPERTY_FAX'] = $current_property_details->property_fax;
 		$this->data[$contract_uid]['PROPERTY_EMAIL'] = $current_property_details->property_email;
 		$this->data[$contract_uid]['POLICIES_AND_DISCLAIMERS'] = $current_property_details->property_policies_disclaimers;
