@@ -3875,7 +3875,8 @@ function insertSampleData()
 
 	$result = doInsertSql( "INSERT INTO `#__jomres_propertys` (
 			`propertys_uid` ,`property_name` , `property_street` , `property_town` ,
-			`property_region`,`property_country`,`property_postcode` , `property_tel` , `property_fax` , `property_email` , `property_features`,
+			`property_region`,`property_country`,`property_postcode` , `property_tel` , `property_fax` , `property_email` ,
+			`lat`,`long`,`property_features`,
 			`property_mappinglink`,
 			`property_description`,
 			`property_checkin_times`,
@@ -3886,11 +3887,13 @@ function insertSampleData()
 			`property_policies_disclaimers`,
 			`published`,
 			`stars`,
+			`superior`,
 			`ptype_id`
 			 )
 			VALUES
 			( '1', 'Hotel Valle', 'Asheldon Rd', 'Torquay',
-			'Devon','GB', 'TQ1 2QS', '01000 123456', '01000 654321', '$jomresConfig_mailfrom', '3,4,5',
+			'Devon','GB', 'TQ1 2QS', '01000 123456', '01000 654321', '$jomresConfig_mailfrom', 
+			'51.5006800','-0.1431700','3,4,6,7,8,9,10,11,12',
 			'http://www.map24.com',
 			'My property description',
 			'Any time from 2pm onwards',
@@ -3899,7 +3902,7 @@ function insertSampleData()
 			'None for miles and miles and miles.',
 			'Local buses once a day, taxis and if you\'re lucky a donkey.',
 			'Requests for bed type and smoking preferences will be submitted to the hotel but are not guaranteed.',
-			'1','3','1'
+			'1','1','3','1'
 			)", "" );
 
 
