@@ -5,16 +5,22 @@
 	<div class="row">
 		<div class="col-md-8">
 			<p>{DESCRIPTION}</p>
+			<h4 class="page-header">{HRTYPES}</h4>
+			<div class="row">
+				<patTemplate:tmpl name="roomtype_icons" type="simpleCondition" requiredVars="room_type">
+					<div class="col-sm-3">
+						<div class="well" align="center">
+							<div class="pdetails-roomtype">{ROOM_TYPE}</div>
+							<div>{ROOM_TYPE_TEXT}</div>
+							<div class="reviews-big">{ROOM_TYPE_COUNTER}</div>
+						</div>
+					</div>
+				</patTemplate:tmpl>
+			</div>
+			<div class="clearfix"></div>
 		</div>
 		<div class="col-md-4">
 			<div class="well">
-				<p>
-					<strong>{HRTYPES}</strong>
-				</p>
-				<patTemplate:tmpl name="roomtype_icons" type="simpleCondition" requiredVars="room_type">
-					<p style="text-transform:capitalize;">{ROOM_TYPE}</p>
-				</patTemplate:tmpl>
-				<div class="clearfix"></div>
 				{FEATURES}
 				<div class="clearfix"></div>
 			</div>

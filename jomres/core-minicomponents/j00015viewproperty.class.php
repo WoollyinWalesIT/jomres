@@ -90,10 +90,13 @@ class j00015viewproperty
 				if ( count( $current_property_details->room_types ) > 0 )
 					{
 					$property[ 'HRTYPES' ] = jr_gettext( '_JOMRES_FRONT_ROOMTYPES', _JOMRES_FRONT_ROOMTYPES );
-					foreach ( $current_property_details->room_types as $type )
+					foreach ( $current_property_details->room_types as $k=>$v )
 						{
 						$rtRows                = array ();
-						$rtRows[ 'ROOM_TYPE' ] = jomres_makeTooltip( $type['abbv'], $type['abbv'], $type['desc'], JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$type['image'], "", "room_type", array () );
+						$rtRows[ 'ROOM_TYPE' ] = jomres_makeTooltip( $v['abbv'], $v['abbv'], $v['desc'], JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$v['image'], "", "room_type", array () );
+						$rtRows[ 'ROOM_TYPE_TEXT' ] = $v['abbv'];
+						$rtRows[ 'ROOM_TYPE_COUNTER' ] = count($current_property_details->rooms_by_type[$k]);
+						
 						$roomtypes[ ]          = $rtRows;
 						}
 					}

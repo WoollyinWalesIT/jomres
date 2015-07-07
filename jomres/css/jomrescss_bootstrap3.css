@@ -67,6 +67,12 @@
 	display:block;
 }
 
+.pdetails-roomtype .jomres_bt_tooltip_features {
+	float:none;
+	text-align:center;
+	display:block;
+}
+
 .pdetails-icons {
 	border-top:1px solid #ccc;
 }
