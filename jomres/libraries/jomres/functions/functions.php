@@ -1187,7 +1187,7 @@ function jomres_validate_gateway_plugin()
 	$mrConfig		  = getPropertySpecificSettings();
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 	$property_uid	  = get_showtime( 'property_uid' );
-	if ( ($mrConfig[ 'useOnlinepayment' ] == "1" || $paypal_settings->paypalConfigOptions[ 'override' ] == "1") && ((int)$mrConfig['requireApproval'] == 0 || $tmpBookingHandler->tmpbooking['secret_key_payment'] ))
+	if ( ( $paypal_settings->paypalConfigOptions[ 'override' ] == "1") && ((int)$mrConfig['requireApproval'] == 0 || $tmpBookingHandler->tmpbooking['secret_key_payment'] ))
 		{
 		if ( $paypal_settings->paypalConfigOptions[ 'override' ] == "1" ) return "paypal";
 
@@ -1284,7 +1284,7 @@ function get_plugin_settings( $plugin, $prop_id = 0 )
 			$property_uid	  = (int) $tmpBookingHandler->getBookingPropertyId();
 			}
 		else
-		$property_uid = (int) $prop_id;
+			$property_uid = (int) $prop_id;
 		}
 
 	if ( $property_uid == 0 )
@@ -1310,7 +1310,13 @@ function get_plugin_settings( $plugin, $prop_id = 0 )
 			$settingArray[ 'paypalemail' ]	 = $paypal_settings->paypalConfigOptions[ 'email' ];
 			$settingArray[ 'pendingok' ]	   = "0";
 			$settingArray[ 'receiveIPNemail' ] = "1";
-			$settingArray[ 'active' ]		  = "1";
+
+			$settingArray[ 'client_id' ]			= $paypal_settings->paypalConfigOptions[ 'client_id' ];
+			$settingArray[ 'secret' ]				= $paypal_settings->paypalConfigOptions[ 'secret' ];
+			$settingArray[ 'client_id_sandbox' ]	= $paypal_settings->paypalConfigOptions[ 'client_id_sandbox' ];
+			$settingArray[ 'secret_sandbox' ]		= $paypal_settings->paypalConfigOptions[ 'secret_sandbox' ];
+			$settingArray[ 'active' ]				= $paypal_settings->paypalConfigOptions[ 'active' ];
+			
 			}
 		}
 

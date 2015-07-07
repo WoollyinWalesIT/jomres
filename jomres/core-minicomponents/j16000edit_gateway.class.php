@@ -20,21 +20,23 @@ class j16000edit_gateway
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )
-			{
-			$this->template_touchable = false;
-
-			return;
-			}
-		$this->plugin = jomresGetParam( $_REQUEST, 'plugin', '' ) ;
-		$this->prefix = 'gateway_setting_'.$this->plugin;
-		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig   = $siteConfig->get();
+			{$this->template_touchable = false;return;}
 		
+		$this->plugin = jomresGetParam( $_REQUEST, 'plugin', '' ) ;
+		
+		//$settings = get_plugin_settings($this->plugin); // Can't use get_plugin_settings here as you'll disappear down the recursion rabbithole.
+		$current_settings = array();
+		$query		= "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = 0 AND plugin = '" . $this->plugin . "' ";
+		$settingsList = doSelectSql( $query );
+		foreach ( $settingsList as $set )
+			{
+			$current_settings[ $set->setting ] = $set->value;
+			} 
+
 		$output['GATEWAY'] = $this->plugin;
 
-
-		if (!isset($jrConfig[ $this->prefix.'_active' ]))
-			$jrConfig[$this->prefix.'_active'] = "0";
+		if (!isset($jrConfig['active' ]))
+			$jrConfig['active'] = "0";
 		
 		$settings = $MiniComponents->specificEvent( '10510', $this->plugin );
 		$active['active'] = array (
@@ -43,11 +45,15 @@ class j16000edit_gateway
 			"setting_description" => "",
 			"format" => "boolean"
 			) ;
+
 		$all_settings = array_merge ( $active, $settings['settings'] );
 
 		$results = array();
 		foreach ($all_settings as $key=>$setting)
 			{
+			if (isset($current_settings[$key]))
+				$setting['default'] = $current_settings[$key];
+			
 			switch ( $setting['format'] )
 				{
 				case 'boolean':
@@ -100,7 +106,7 @@ class j16000edit_gateway
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		
-		$index = $this->prefix.'_'.$key;
+		$index = $key;
 
 		$value = $setting['html'];
 		
@@ -125,7 +131,7 @@ class j16000edit_gateway
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		
-		$index =$this->prefix.'_'.$key;
+		$index =$key;
 
 		if (isset($jrConfig[$index]))
 			$value = $jrConfig[$index];
@@ -154,7 +160,7 @@ class j16000edit_gateway
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		
-		$index =$this->prefix.'_'.$key;
+		$index =$key;
 
 		if (isset($jrConfig[$index]))
 			$value = $jrConfig[$index];
@@ -182,7 +188,7 @@ class j16000edit_gateway
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		
-		$index =$this->prefix.'_'.$key;
+		$index =$key;
 
 		if (isset($jrConfig[$index]))
 			$value = $jrConfig[$index];
@@ -215,7 +221,7 @@ class j16000edit_gateway
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		
-		$index =$this->prefix.'_'.$key;
+		$index =$key;
 
 		if (isset($jrConfig[$index]))
 			$value = $jrConfig[$index];
