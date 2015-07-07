@@ -18,18 +18,23 @@ class jrportal_paypal_settings
 	{
 	function __construct()
 		{
-		$this->paypalConfigOptions                   = array ();
-		$this->paypalConfigOptions[ 'usesandbox' ]   = "1";
-		$this->paypalConfigOptions[ 'currencycode' ] = "EUR";
-		$this->paypalConfigOptions[ 'email' ]        = "";
-		$this->paypalConfigOptions[ 'override' ]     = "";
+		$this->paypalConfigOptions							= array ();
+		$this->paypalConfigOptions[ 'usesandbox' ]			= "1";
+		$this->paypalConfigOptions[ 'currencycode' ]		= "EUR";
+		$this->paypalConfigOptions[ 'email' ]				= "";
+		$this->paypalConfigOptions[ 'override' ]			= "";
+		
+		$this->paypalConfigOptions[ 'client_id' ]			= "";
+		$this->paypalConfigOptions[ 'secret' ]				= "";
+		$this->paypalConfigOptions[ 'client_id_sandbox' ]	= "";
+		$this->paypalConfigOptions[ 'secret_sandbox' ]		= "";
 		}
 
 
 	function get_paypal_settings()
 		{
 
-		$query       = "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = 0 AND plugin = 'backend_paypal_settings'";
+		$query       = "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = 0 AND plugin = 'paypal'";
 		$settingList = doSelectSql( $query );
 		foreach ( $settingList as $s )
 			{
