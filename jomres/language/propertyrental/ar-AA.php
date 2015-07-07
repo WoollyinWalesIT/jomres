@@ -1597,7 +1597,7 @@ jr_define( '_JOMRES_LICENSESERVER_USERNAME_DESC', "If you have a username and pa
 jr_define( '_JOMRES_VERSIONCHECK_THISJOMRESVERSION', "نسخة Jomres : " );
 jr_define( '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', "احدث نسخة من Jomres" );
 jr_define( '_JOMRES_VERSIONCHECK_VERSIONWARNING', "تنبية : يوجد نسخة حديثة من النظام وننصحك بترقيته في اقرب وقت " );
-jr_define( '_JOMRES_PRODUCT_INFORMATION', 'Welcome to Jomres, we hope you enjoy using Joomla\'s favourite booking system. If you would like to purchase a Jomres Solo, Silver or Jomres Gold license, <a href="http://www.jomres.net/prices" target="_blank"> please visit our site</a> for information on how you can upgrade.' );
+jr_define( '_JOMRES_PRODUCT_INFORMATION', 'Welcome to Jomres, we hope you enjoy using Joomla\'s favourite booking system. If you would like to purchase a Jomres Zero, Solo or Silver license, <a href="http://www.jomres.net/prices" target="_blank"> please visit our site</a> for information on how you can upgrade.' );
 jr_define( '_JOMRES_PRODUCT_INFORMATION2', 'This system is ideal for any scenario, be it a simple booking form for a single property, right up to a site that has multiple users, in multiple languages, with multiple properties. Please see the "Help" section to the left, including the "Getting Started" page which will guide you through your first steps.' );
 jr_define( '_JOMRES_ROBBED_PORTALUI_CURRENT_PROPERTY', "منشاءة فعالة" );
 jr_define( '_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY', "تغير المنشاءه النشطة" );
