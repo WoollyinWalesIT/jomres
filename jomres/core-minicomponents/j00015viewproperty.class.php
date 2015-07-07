@@ -95,7 +95,11 @@ class j00015viewproperty
 						$rtRows                = array ();
 						$rtRows[ 'ROOM_TYPE' ] = jomres_makeTooltip( $v['abbv'], $v['abbv'], $v['desc'], JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$v['image'], "", "room_type", array () );
 						$rtRows[ 'ROOM_TYPE_TEXT' ] = $v['abbv'];
-						$rtRows[ 'ROOM_TYPE_COUNTER' ] = count($current_property_details->rooms_by_type[$k]);
+						
+						if ((int)$mrConfig['singleRoomProperty'] == 0)
+							$rtRows[ 'ROOM_TYPE_COUNTER' ] = count($current_property_details->rooms_by_type[$k]);
+						else
+							$rtRows[ 'ROOM_TYPE_COUNTER' ] = '';
 						
 						$roomtypes[ ]          = $rtRows;
 						}
