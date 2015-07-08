@@ -2515,8 +2515,6 @@ jr_define( 'PROPERTY_STATS_ROOM_BOOKINGS_DAYS_DESC', 'Number of rooms booked out
 
 jr_define( '_MEDIA_CENTRE_RESOURCE_FEATURES_ICONS', 'Room feature icons' );
 
-jr_define( 'CURRENT_WEATHER', 'Weather' );
-
 jr_define( '_JOMRES_PROPERTYFEATURES_HCATEGORIES', 'Business Features Categories' );
 jr_define( '_JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT', 'Edit Business Feature Category' );
 jr_define( '_JOMRES_HCATEGORY', 'Category' );

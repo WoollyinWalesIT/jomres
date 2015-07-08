@@ -103,8 +103,7 @@ class j00016composite_property_details
 				'TABCONTENT_02_BOOKINGFORM',
 				'TABCONTENT_02_MAP',
 				'TABCONTENT_03_REVIEWS',
-				'TABCONTENT_06_EXTRAS',
-				'TABCONTENT_04_WEATHER'
+				'TABCONTENT_06_EXTRAS'
 				);
 			
 			}
