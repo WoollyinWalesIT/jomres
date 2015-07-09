@@ -1562,7 +1562,7 @@ class dobooking
 	function initCoupons()
 		{
 		$this->use_coupons = false;
-		$query             = "SELECT `coupon_id` FROM #__jomres_coupons WHERE property_uid = $this->property_uid";
+		$query             = "SELECT `coupon_id` FROM #__jomres_coupons WHERE (`property_uid` = ".(int)$this->property_uid." OR `property_uid` = 0) AND DATE_FORMAT(`valid_to`, '%Y/%m/%d') >= DATE_FORMAT(NOW(), '%Y/%m/%d') ";
 		$result            = doSelectSql( $query );
 		if ( count( $result ) > 0 )
 			{
