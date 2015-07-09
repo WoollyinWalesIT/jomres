@@ -40,7 +40,7 @@ class jomres_property_selector_dropdown
 			}
 		
 		//$javascript = 'onchange="window.location=\'' . $curPageUrl . '&thisProperty=' . '\' + this.value;"';
-		$javascript = 'onchange="window.location=\'' . JOMRES_SITEPAGE_URL . '&thisProperty=' . '\' + this.value;"';
+		$javascript = 'onchange="window.location=\'' . JOMRES_SITEPAGE_URL_NOSEF . '&thisProperty=' . '\' + this.value;"';
 
 		return jomresHTML::selectList( $options, 'switch_property', ' autocomplete="off" class="inputbox" size="1" ' . $javascript . '', 'value', 'text', $currentProperty ,false );
 		}
