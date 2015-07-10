@@ -1127,7 +1127,9 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file( $this->dir_minicomponents . 'j06000list_gateways_for_invoice.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j10002paypal.class.php' );
-		
+
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'paypal_settings.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'paypal_settings.html' );
 		}
 
 	function add_obs_file( $path_and_file )
