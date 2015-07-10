@@ -508,40 +508,29 @@ class j02990showconfirmation
 					if ( count( $gatewayDeets ) > 0 )
 						{
 						$gateways = array ();
-						if ( count( $gatewayDeets ) > 1 )
+						$booking_parts[ 'GATEWAYCHOICEINTRO' ] = jr_gettext( '_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', _JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE );
+						$counter                               = 1;
+						foreach ( $gatewayDeets as $gateway )
 							{
-							$booking_parts[ 'GATEWAYCHOICEINTRO' ] = jr_gettext( '_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', _JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE );
-							$counter                               = 1;
-							foreach ( $gatewayDeets as $gateway )
+							$checked = "";
+							if ( $counter == 1 ) $checked = "checked";
+							$result = $MiniComponents->specificEvent( '03108', $gateway->plugin, null );
+							if ( count( $result ) > 1 )
 								{
-								$checked = "";
-								if ( $counter == 1 ) $checked = "checked";
-								$result = $MiniComponents->specificEvent( '03108', $gateway->plugin, null );
-								if ( count( $result ) > 1 )
-									{
-									$gw[ 'GWNAME' ] = $result[ 'gatewayname' ];
-									$tmpgatewaydir  = $result[ 'filepath' ];
-									}
-								else
-									{
-									$gw[ 'GWNAME' ] = $gateway->plugin;
-									$tmpgatewaydir  = $result;
-									}
-								$gw[ 'GWINPUT' ] = '<input type="radio" name="plugin" value="' . $gateway->plugin . '" ' . $checked . ' /> ' . $gw[ 'GWNAME' ];
-								$gatewaydir      = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' ).'/', $tmpgatewaydir );
-								$gatewaydir      = str_replace( '\\', '/', $gatewaydir );
-								$gw[ 'GWIMAGE' ] = '<img src="' . $gatewaydir . 'j00510' . $gateway->plugin . '.gif" border="0">';
-								$gateways[ ]     = $gw;
-								$counter++;
+								$gw[ 'GWNAME' ] = $result[ 'gatewayname' ];
+								$tmpgatewaydir  = $result[ 'filepath' ];
 								}
-							}
-						else
-							{
-							foreach ( $gatewayDeets as $gateway )
+							else
 								{
-								$gw[ 'GWINPUT' ] = '<input type="hidden" name="plugin" value="' . $gateway->plugin . '">';
-								$gateways[ ]     = $gw;
+								$gw[ 'GWNAME' ] = $gateway->plugin;
+								$tmpgatewaydir  = $result;
 								}
+							$gw[ 'GWINPUT' ] = '<input type="radio" name="plugin" value="' . $gateway->plugin . '" ' . $checked . ' /> ' . $gw[ 'GWNAME' ];
+							$gatewaydir      = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' ).'/', $tmpgatewaydir );
+							$gatewaydir      = str_replace( '\\', '/', $gatewaydir );
+							$gw[ 'GWIMAGE' ] = '<img src="' . $gatewaydir . 'j00510' . $gateway->plugin . '.gif" border="0">';
+							$gateways[ ]     = $gw;
+							$counter++;
 							}
 						}
 					}
