@@ -13,7 +13,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j06000list_gateways_for_invoice
+class j06005list_gateways_for_invoice
 	{
 	function __construct($invoice_id = null )
 		{
