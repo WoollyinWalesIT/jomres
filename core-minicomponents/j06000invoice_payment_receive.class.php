@@ -58,7 +58,7 @@ class j06000invoice_payment_receive
 			
 			$invoice->mark_invoice_paid();
 			}
-		jomresRedirect( JOMRES_SITEPAGE_URL_NOSEF.'&task=my_subscriptions' );
+		jomresRedirect( JOMRES_SITEPAGE_URL_NOSEF.'&task=list_invoices' );
 		}
 	
 
