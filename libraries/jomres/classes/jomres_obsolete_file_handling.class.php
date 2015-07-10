@@ -1124,6 +1124,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'slideshow_medium.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'slideshow_medium.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'slideshow_medium.html' );
+		
+		$this->add_obs_file( $this->dir_minicomponents . 'j06000list_gateways_for_invoice.class.php' );
 		}
 
 	function add_obs_file( $path_and_file )
