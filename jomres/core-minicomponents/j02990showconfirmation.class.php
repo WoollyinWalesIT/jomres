@@ -495,12 +495,24 @@ class j02990showconfirmation
 		$booking_parts[ 'TERMSTEXT' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS, false );
 		$booking_parts[ 'ALERT' ]        = jr_gettext( '_JOMRES_CONFIRMATION_ALERT', _JOMRES_CONFIRMATION_ALERT, false );
 
-
+		$site_paypal_settings = get_plugin_settings("paypal",0);
+		
 		if ((int)$mrConfig['requireApproval'] == 0 || $secret_key_payment )
 			{
-			if ( $paypal_settings->paypalConfigOptions[ 'override' ] != "1" )
+			if ( !$userIsManager )
 				{
-				if ( !$userIsManager )
+				if ( $site_paypal_settings['override'] == "1")
+					{
+					$booking_parts[ 'GATEWAYCHOICEINTRO' ] = jr_gettext( '_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', _JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE );
+					$gateways = array ();
+					$gw = array();
+					$gw[ 'GWNAME' ] = "Paypal";
+					$gw[ 'GWINPUT' ] = '<input type="radio" name="plugin" value="paypal" checked /> Paypal ';
+					$gw[ 'GWIMAGE' ] = '<img src="' .get_showtime( 'live_site' ). '/jomres/core-plugins/core_gateway_paypal/j00510paypal.gif" border="0">';
+					$gatewayDeets = array (1); // Further down we'll check that $gatewayDeets is set to decide if we show the output
+					$gateways[ ]     = $gw;
+					}
+				else
 					{
 					$gatewaylist  = array ();
 					$query        = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = '" . (int) $property_uid . "' AND setting = 'active' AND value = '1'";
@@ -512,6 +524,7 @@ class j02990showconfirmation
 						$counter                               = 1;
 						foreach ( $gatewayDeets as $gateway )
 							{
+							$gw = array();
 							$checked = "";
 							if ( $counter == 1 ) $checked = "checked";
 							$result = $MiniComponents->specificEvent( '03108', $gateway->plugin, null );
@@ -551,7 +564,7 @@ class j02990showconfirmation
 		if ( isset( $MiniComponents->registeredClasses[ '06000show_cart' ] ) )
 			{
 
-			if ( ( $paypal_settings->paypalConfigOptions[ 'override' ] == "1" && $jrConfig[ 'useshoppingcart' ] == "1" ) || count( $gatewayDeets ) == 0 )
+			if ( ( $site_paypal_settings['override'] == "1" && $jrConfig[ 'useshoppingcart' ] == "1" ) || count( $gatewayDeets ) == 0 )
 				{
 
 				$booking_parts[ '_JOMRES_CART_OR' ]      = jr_gettext( '_JOMRES_CART_OR', _JOMRES_CART_OR );
@@ -603,6 +616,7 @@ class j02990showconfirmation
 		$tmpl->addRows( 'cartoutput', $cartoutput );
 		if ( isset( $gatewayDeets ) && count( $gatewayDeets ) > 0 )
 			{
+			
 			$tmpl->addRows( 'gateways', $gateways );
 			}
 		$componentArgs = array ( 'tmpl' => $tmpl );
