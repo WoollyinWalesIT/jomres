@@ -63,29 +63,17 @@ class jrportal_payment_reference
 		$invoice = jomres_singleton_abstract::getInstance( 'basic_invoice_details' );
 		$invoice->gatherData($invoice_id);
 		$settings = array();
-		if ( $invoice->subscription || $invoice->subscription ) // We need to check that the site manager has created gateway settings
+		if ( (int) $invoice->subscription_id > 0 || (int) $invoice->is_commission > 0 )
 			{
-			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-			$jrConfig   = $siteConfig->get();
-
-			$prefix = "gateway_setting_".$payment_details['gateway']."_";
-			if (isset($jrConfig [ $prefix."active" ]))
+			$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = 0 AND plugin = '".$payment_details['gateway']."' ";
+			$settingsList=doSelectSql($query);
+			foreach ($settingsList as $set)
 				{
-				$this->payment_reference = (int)$id;
-
-				if ($jrConfig [ $prefix."active" ] == "1")
-					{
-					$gateway_active = true;
-					
-					foreach ($jrConfig as $key=>$val)
-						{
-						if ( substr($key , 0 , strlen ( $prefix )  ) == $prefix )
-							{
-							$key =  substr($key , strlen ( $prefix ) , strlen ( $key )  ) ;
-							$settings [$key] = $val;
-							}
-						}
-					}
+				$settings[$set->setting]=$set->value;
+				}
+			if ( $settings['active'] == "1")
+				{
+				$gateway_active = true;
 				}
 			}
 		else

@@ -404,7 +404,7 @@ try
 			case 'processpayment':
 				$tag = set_booking_number();
 				$plugin = jomres_validate_gateway_plugin();
-				
+
 				$query = "SELECT id FROM #__jomres_booking_data_archive WHERE `tag` = '".$tag."'";
 				$result = doSelectSql($query);
 				if (count($result)==0)
@@ -420,7 +420,8 @@ try
 				$MiniComponents->triggerEvent( '00599', array ( 'bookingdata' => $bookingdata ) ); // Optional
 
 				// We'll let bookings of 0 value passed the gateway plugin handling as some users offer 100% discounts via coupons
-				if ( $bookingdata[ 'contract_total' ] == 0.00 ) $plugin = "NA";
+				if ( $bookingdata[ 'contract_total' ] == 0.00 ) 
+					$plugin = "NA";
 
 				$paypal_settings = jomres_singleton_abstract::getInstance( 'jrportal_paypal_settings' );
 				$paypal_settings->get_paypal_settings();
@@ -429,6 +430,7 @@ try
 					{
 					$query        = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = " . (int) $property_uid . " AND `plugin` = '" . (string) $plugin . "' AND setting = 'active' AND value = '1'";
 					$gatewayDeets = doSelectSql( $query );
+					
 					if ( count( $gatewayDeets ) > 0 || $paypal_settings->paypalConfigOptions[ 'override' ] == "1" )
 						{
 						if ( $paypal_settings->paypalConfigOptions[ 'override' ] == "1" ) $plugin = "paypal";
