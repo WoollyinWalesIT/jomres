@@ -261,6 +261,8 @@ class j03020insertbooking
 				$guests_uid = insertGuestDeets( get_showtime( 'jomressession' ) );
 
 				$cartnumber = get_booking_number();
+				if ($cartnumber == 0 && isset ($_REQUEST['booking_number'] ) )
+					$cartnumber = (int)$_REQUEST['booking_number'];
 				
 				if ((int)$mrConfig['requireApproval'] == 1 )
 					{
