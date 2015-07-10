@@ -23,7 +23,6 @@ class j03100send_email_admin_newbooking
 			{
 			$this->template_touchable = false; return;
 			}
-		
 		$email_type = 'email_admin_newbooking';
 		
 		$mrConfig = getPropertySpecificSettings();
@@ -45,11 +44,9 @@ class j03100send_email_admin_newbooking
 		if ((int)$mrConfig['requireApproval'] == 1 && !$thisJRUser->userIsManager && !$secret_key_payment)
 			return;
 
-		$paypal_settings = jomres_singleton_abstract::getInstance( 'jrportal_paypal_settings' );
-		$paypal_settings->get_paypal_settings();
-		$adminemail = $paypal_settings->paypalConfigOptions[ 'email' ];
+		$site_paypal_settings = get_plugin_settings("paypal",0);
 
-		if ( $paypal_settings->paypalConfigOptions[ 'override' ] != "1" ) // The property paypal settings aren't overridden, so we'll not bother sending this email
+		if ( $site_paypal_settings[ 'override' ] != "1" ) // The property paypal settings aren't overridden, so we'll not bother sending this email
 			return;
 
 		$booking_email_details = jomres_singleton_abstract::getInstance( 'jomres_generic_booking_email' );
@@ -60,7 +57,7 @@ class j03100send_email_admin_newbooking
 			{
 			if ( !jomresMailer( $booking_email_details->data[$contract_uid]['EMAIL'], 
 								$booking_email_details->data[$contract_uid]['FIRSTNAME'] . ' ' . $booking_email_details->data[$contract_uid]['SURNAME'], 
-								$adminemail,
+								$site_paypal_settings['paypalemail'],
 								$booking_email_details->parsed_email['subject'], 
 								$booking_email_details->parsed_email['text'],
 								$mode = 1,
