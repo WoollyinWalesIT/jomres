@@ -147,7 +147,7 @@ class jomres_user_budget
 			$tour_prices = array();
 			if ( function_exists("jintour_get_tours_for_arrdep_dates"))
 				{
-				$query = "SELECT DISTINCT `price_adults` FROM #__jomres_jintour_tours LIMIT 100";
+				$query = "SELECT DISTINCT (CASE WHEN `price_adults` > 0 THEN `price_adults` ELSE `price_kids` END) AS price FROM #__jomres_jintour_tours LIMIT 100";
 				$tour_prices = doSelectSql($query);
 				}
 			
@@ -164,7 +164,7 @@ class jomres_user_budget
 				{
 				foreach ($tour_prices as $price)
 					{
-					$results[]=$price->price_adults;
+					$results[]=$price->price;
 					}
 				}
 				
