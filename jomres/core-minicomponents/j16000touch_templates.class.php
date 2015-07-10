@@ -31,11 +31,13 @@ class j16000touch_templates
 		// echo $jomreslang->get_languageselection_dropdown();
 		// echo "<hr>";
 
-		$packages = subscriptions_packages_getallpackages();
-		if ( count( $packages ) > 0 )
+		$basic_subscription_package_details = jomres_singleton_abstract::getInstance( 'basic_subscription_package_details' );
+		
+		if ( count( $basic_subscription_package_details->allPackages ) > 0 )
 			{
 			echo jr_gettext( '_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE',_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE) . "<br/>";
-			foreach ( $packages as $package )
+			
+			foreach ( $basic_subscription_package_details->allPackages as $package )
 				{
 				$pack_name = jr_gettext( '_JOMRES_CUSTOMTEXT_SUBSCRIPTIONPACKAGES_NAME' . $package[ 'id' ], stripslashes( $package[ 'name' ] ) );
 				$pack_desc = jr_gettext( '_JOMRES_CUSTOMTEXT_SUBSCRIPTIONPACKAGES_DESC' . $package[ 'id' ], stripslashes( $package[ 'description' ] ) );
