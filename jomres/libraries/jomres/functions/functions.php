@@ -1180,16 +1180,19 @@ function detect_property_uid()
 function jomres_validate_gateway_plugin()
 	{
 	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-	if ( $thisJRUser->userIsManager ) return "NA";
+	if ( $thisJRUser->userIsManager ) 
+		return "NA";
+	
+	$property_uid	  = get_showtime( 'property_uid' );
+	$settings = get_plugin_settings("paypal",$property_uid);
 
-	$paypal_settings = jomres_singleton_abstract::getInstance( 'jrportal_paypal_settings' );
-	$paypal_settings->get_paypal_settings();
 	$mrConfig		  = getPropertySpecificSettings();
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-	$property_uid	  = get_showtime( 'property_uid' );
-	if ( ( $paypal_settings->paypalConfigOptions[ 'override' ] == "1") && ((int)$mrConfig['requireApproval'] == 0 || $tmpBookingHandler->tmpbooking['secret_key_payment'] ))
+	
+	if ( ((int)$mrConfig['requireApproval'] == 0 || $tmpBookingHandler->tmpbooking['secret_key_payment'] ) )
 		{
-		if ( $paypal_settings->paypalConfigOptions[ 'override' ] == "1" ) return "paypal";
+		if ( $settings[ 'override' ] == "1" ) 
+			return "paypal";
 
 		if ( !isset( $_REQUEST[ 'plugin' ] ) || $_REQUEST[ 'plugin' ] == "" )
 			{
@@ -1310,6 +1313,7 @@ function get_plugin_settings( $plugin, $prop_id = 0 )
 			$settingArray[ 'paypalemail' ]	 = $paypal_settings->paypalConfigOptions[ 'email' ];
 			$settingArray[ 'pendingok' ]	   = "0";
 			$settingArray[ 'receiveIPNemail' ] = "1";
+			$settingArray[ 'override' ]	 = $paypal_settings->paypalConfigOptions[ 'override' ];
 
 			$settingArray[ 'client_id' ]			= $paypal_settings->paypalConfigOptions[ 'client_id' ];
 			$settingArray[ 'secret' ]				= $paypal_settings->paypalConfigOptions[ 'secret' ];
@@ -4436,257 +4440,6 @@ function invoices_makeInvoiceStatusDropdown( $selected = '0' )
 	$statusDropdown = jomresHTML::selectList( $statusOptions, 'status', 'class="inputbox" size="1"', 'value', 'text', $selected );
 
 	return $statusDropdown;
-	}
-
-function subscribers_thisUserIsASubscriber( $id = 0 )
-	{
-	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-	if ( $id == 0 ) $id = $thisJRUser->id;
-	$query  = "SELECT id FROM #__jomresportal_subscriptions WHERE cms_user_id =" . (int) $id . "";
-	$result = doSelectSql( $query );
-	if ( count( $result ) > 0 ) return true;
-
-	return false;
-	}
-
-function subscribers_unpublishNproperties( $numberOfPropertiesToUnpublish, $cms_user_id )
-	{
-	if ( $numberOfPropertiesToUnpublish > 0 && $cms_user_id > 0 )
-		{
-		$published_properties = subscribers_getManagersPublishedProperties( $cms_user_id );
-		for ( $i = 0; $i < $numberOfPropertiesToUnpublish; $i++ )
-			{
-			$query  = "UPDATE #__jomres_propertys SET `published`='0' WHERE propertys_uid = " . $published_properties[ $i ] . "";
-			$result = doInsertSql( $query, "Unpublished by system" );
-			}
-
-		return true;
-		}
-	else
-	return false;
-	}
-
-
-function subscribers_getManagersPublishedProperties( $cms_user_id )
-	{
-	$query				= "SELECT property_uid FROM #__jomres_managers_propertys_xref WHERE `manager_id` = '" . (int) $cms_user_id . "'";
-	$managersProperties   = doSelectSql( $query );
-	$mp				   = array ();
-	$published_properties = array ();
-	if ( count( $managersProperties ) > 0 )
-		{
-		foreach ( $managersProperties as $p )
-			{
-			$mp[ ] = (int) $p->property_uid;
-			}
-		}
-	else
-	return array ();
-	$clause = "WHERE propertys_uid IN (" . implode(',',$mp) .") AND published = 1";
-	$query			  = "SELECT propertys_uid FROM #__jomres_propertys " . $clause . " LIMIT " . count( $mp );
-	$jomresPropertyList = doSelectSql( $query );
-	if ( count( $jomresPropertyList ) > 0 )
-		{
-		foreach ( $jomresPropertyList as $p )
-			{
-			$published_properties[ ] = (int) $p->propertys_uid;
-			}
-		}
-
-	return $published_properties;
-	}
-
-function subscribers_checkUserHasSubscriptionsToCreateNewProperty( $id = 0 )
-	{
-	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-	if ( $id == 0 ) $id = $thisJRUser->id;
-	$allowedProperties  = subscribers_getAvailablePropertySlots( $id );
-	$existingProperties = subscribers_getManagersPublishedProperties( $id );
-	if ( $allowedProperties > count( $existingProperties ) ) return true;
-	else
-	return false;
-	}
-
-function subscribers_getAvailablePropertySlots( $id = 0 )
-	{
-	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-	if ( $id == 0 ) $id = $thisJRUser->id;
-	$query = "SELECT property_limit FROM #__jomresportal_subscriptions WHERE cms_user_id ='" . (int) $id . "' AND `status` = 1";
-
-	$result = doSelectSql( $query );
-
-	$allowedProperties = 0;
-	if ( count( $result ) > 0 )
-		{
-		foreach ( $result as $r )
-			{
-			$c				 = $r->property_limit;
-			$allowedProperties = $allowedProperties + $c;
-			}
-		}
-
-	return $allowedProperties;
-	}
-
-function subscribers_getCurrentPropertiesNumbers( $id = 0 )
-	{
-	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-	if ( $id == 0 ) $id = $thisJRUser->id;
-	$query			  = "SELECT COUNT(`manager_id`)  FROM #__jomres_managers_propertys_xref WHERE manager_id ='" . (int) $id . "'";
-	$existingProperties = doSelectSql( $query, 1 );
-
-	if ( $existingProperties ) return $existingProperties;
-	else
-	return 0;
-	}
-
-function subscribers_getCurrentSubscriptionsForJosId( $id = 0 )
-	{
-	$users_subscriptions = array ();
-	$thisJRUser		  = jomres_singleton_abstract::getInstance( 'jr_user' );
-	if ( $id == 0 ) $id = $thisJRUser->id;
-	$query  = "SELECT * FROM #__jomresportal_subscriptions WHERE cms_user_id =" . (int) $id;
-	$result = doSelectSql( $query );
-	if ( count( $result ) > 0 )
-		{
-		foreach ( $result as $r )
-			{
-			$users_subscriptions[ $r->id ][ 'id' ]					  = (int) $r->id;
-			$users_subscriptions[ $r->id ][ 'cms_user_id' ]			 = (int) $r->cms_user_id;
-			$users_subscriptions[ $r->id ][ 'gateway_subscription_id' ] = (string) $r->gateway_subscription_id;
-			$users_subscriptions[ $r->id ][ 'package_id' ]			  = (string) $r->package_id;
-			$users_subscriptions[ $r->id ][ 'name' ]					= (string) $r->name;
-			$users_subscriptions[ $r->id ][ 'description' ]			 = (string) $r->description;
-			$users_subscriptions[ $r->id ][ 'frequency' ]			   = (string) $r->frequency;
-			$users_subscriptions[ $r->id ][ 'trial_period' ]			= (string) $r->trial_period;
-			$users_subscriptions[ $r->id ][ 'trial_amount' ]			= (string) $r->trial_amount;
-			$users_subscriptions[ $r->id ][ 'full_amount' ]			 = (string) $r->full_amount;
-			$users_subscriptions[ $r->id ][ 'rooms_limit' ]			 = (string) $r->rooms_limit;
-			$users_subscriptions[ $r->id ][ 'property_limit' ]		  = (string) $r->property_limit;
-			$users_subscriptions[ $r->id ][ 'status' ]				  = (string) $r->status;
-			$users_subscriptions[ $r->id ][ 'raised_date' ]			 = (string) $r->raised_date;
-			}
-		}
-
-	return $users_subscriptions;
-	}
-
-function subscribers_getSubscriberDetailsForJosId( $id )
-	{
-	$user = array ();
-	if ( $id > 0 )
-		{
-		$query  = "SELECT
-			`id`,`cms_user_id`,`firstname`,`surname`,`address`,`country`,`postcode`
-			FROM #__jomresportal_subscribers WHERE `cms_user_id`=" . (int) $id . " LIMIT 1";
-		$result = doSelectSql( $query );
-		if ( $result && count( $result ) == 1 )
-			{
-			foreach ( $result as $r )
-				{
-				$user[ 'id' ]		  = (int) $r->id;
-				$user[ 'cms_user_id' ] = (int) $r->cms_user_id;
-				$user[ 'firstname' ]   = (string) $r->firstname;
-				$user[ 'surname' ]	 = (string) $r->surname;
-				$user[ 'address' ]	 = (string) $r->address;
-				$user[ 'country' ]	 = (string) $r->country;
-				$user[ 'postcode' ]	= (string) $r->postcode;
-				}
-
-			return $user;
-			}
-		else
-		return false;
-		}
-	else
-	return false;
-	}
-
-function subscriptions_check_for_freebie_package( $all_packages = array () )
-	{
-	if ( count( $all_packages ) == 0 ) $all_packages = subscriptions_packages_getallpackages();
-	if ( count( $all_packages ) == 0 ) return false;
-	foreach ( $all_packages as $package )
-		{
-		if ( (float) $package[ 'trial_amount' ] == 0.00 && (float) $package[ 'full_amount' ] == 0.00 ) return $package[ 'id' ];
-		}
-
-	return false;
-	}
-
-function subscriptions_packages_getallpackages()
-	{
-	$packages = array ();
-	$query	= "SELECT * FROM #__jomresportal_subscriptions_packages";
-	$result   = doSelectSql( $query );
-
-	if ( count( $result ) > 0 )
-		{
-		foreach ( $result as $r )
-			{
-			$packages[ $r->id ][ 'id' ]			 = $r->id;
-			$packages[ $r->id ][ 'name' ]		   = $r->name;
-			$packages[ $r->id ][ 'description' ]	= $r->description;
-			$packages[ $r->id ][ 'published' ]	  = $r->published;
-			$packages[ $r->id ][ 'frequency' ]	  = $r->frequency;
-			$packages[ $r->id ][ 'trial_period' ]   = $r->trial_period;
-			$packages[ $r->id ][ 'trial_amount' ]   = $r->trial_amount;
-			$packages[ $r->id ][ 'full_amount' ]	= $r->full_amount;
-			$packages[ $r->id ][ 'rooms_limit' ]	= $r->rooms_limit;
-			$packages[ $r->id ][ 'property_limit' ] = $r->property_limit;
-			$packages[ $r->id ][ 'tax_code_id' ]	= $r->tax_code_id;
-			}
-		}
-
-	return $packages;
-	}
-
-function subscriptions_packages_makefrequencyDropdown( $selected = '1' )
-	{
-	$frequencyOptions  = array ();
-	$frequencyDropdown = "";
-	$frequencies	   = array ( "M" => "M", "Q" => "Q", "B" => "B", "A" => "A" );
-	if ( count( $frequencies > 0 ) )
-		{
-		foreach ( $frequencies as $k => $v )
-			{
-			$frequencyOptions[ ] = jomresHTML::makeOption( $k, $v );
-			}
-		$frequencyDropdown = jomresHTML::selectList( $frequencyOptions, 'frequency', 'class="inputbox" size="1"', 'value', 'text', $selected );
-		}
-
-	return $frequencyDropdown;
-	}
-
-function subscriptions_packages_maketrialperiodDropdown( $selected = '0' )
-	{
-	$periodOptions  = array ();
-	$periodDropdown = "";
-	$periods		= array ( "0" => "", "1" => "1", "2" => "2", "3" => "3" );
-	if ( count( $periods > 0 ) )
-		{
-		foreach ( $periods as $k => $v )
-			{
-			$periodOptions[ ] = jomresHTML::makeOption( $k, $v );
-			}
-		$periodDropdown = jomresHTML::selectList( $periodOptions, 'trial_period', 'class="inputbox" size="1"', 'value', 'text', $selected );
-		}
-
-	return $periodDropdown;
-	}
-
-function subscriptions_packages_makepropertylimitDropdown( $selected = 0 )
-	{
-	$property_limitDropdown = jomresHTML::integerSelectList( 1, 1000, 1, 'property_limit', 'size="1" class="inputbox"', $selected );
-
-	return $property_limitDropdown;
-	}
-
-function subscriptions_packages_makeroomslimitDropdown( $selected = 0 )
-	{
-	$rooms_limitDropdown = jomresHTML::integerSelectList( 1, 12, 1, 'rooms_limit', 'size="1" class="inputbox"', $selected );
-
-	return $rooms_limitDropdown;
 	}
 
 function parseFloat( $ptString )
