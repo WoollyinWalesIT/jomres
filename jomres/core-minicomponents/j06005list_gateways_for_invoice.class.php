@@ -62,11 +62,14 @@ class j06005list_gateways_for_invoice
 					{
 					$r = $gateway;
 					$r['LINK'] = JOMRES_SITEPAGE_URL."&task=invoice_payment_send&gateway=".$gateway['name']."&invoice_id=".$this->invoice_id;
+					$r['PAYNOW'] = jr_gettext('_JRPORTAL_INVOICES_PAYNOW',_JRPORTAL_INVOICES_PAYNOW,false);
 					$rows[]=$r;
 					}
 				}
 			if ( count ( $rows) > 0 )
 				{
+				$output['PAGETITLE'] = jr_gettext('_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE',_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE,false);
+				
 				$pageoutput[ ] = $output;
 				$tmpl          = new patTemplate();
 				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
