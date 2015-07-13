@@ -49,7 +49,7 @@ class j16000save_gateway
 				doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PLUGINS_INSERT', _JOMRES_MR_AUDIT_PLUGINS_INSERT, false ) );
 				}
 			}
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=edit_gateway&plugin=".$gateway ), '' );
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_gateways" ), '' );
 		
 		}
 
