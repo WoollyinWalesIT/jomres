@@ -23,9 +23,6 @@ class j16000list_gateways
 		
 		$gateway_plugins = array();
 		
-		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig   = $siteConfig->get();
-		
 		$MiniComponents->triggerEvent( '10509', array ( "show_anyway" => true) );
 		$mcOutput = $MiniComponents->getAllEventPointsData( '10509' );
 		if ( count( $mcOutput ) > 0 )
@@ -43,19 +40,17 @@ class j16000list_gateways
 			$output[ 'GATEWAYS_INSTRUCTIONS' ]			= jr_gettext( "GATEWAYS_INSTRUCTIONS", GATEWAYS_INSTRUCTIONS, false );
 			
 			$rows = array();
-			
+
 			foreach ( $gateway_plugins as $gateway )
 				{
 				$r = array();
+				$settings = get_plugin_settings("paypal",0);
 				
-				$active_index = 'gateway_setting_'.$gateway['name']."_active";
-				if (!isset($jrConfig[$active_index]))
-					$jrConfig[$active_index] = 0;
-					
-				if ($jrConfig[$active_index] =="1" )
+				if ($settings['active'] =="1" )
 					$r['ACTIVE']=jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,false);
 				else
 					$r['ACTIVE']=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,false);
+				
 				$r['GATEWAY_NAME'] = $gateway['friendlyname'];
 				
 				if (!using_bootstrap())
