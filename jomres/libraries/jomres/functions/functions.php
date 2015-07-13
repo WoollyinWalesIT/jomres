@@ -1298,7 +1298,7 @@ function get_plugin_settings( $plugin, $prop_id = 0 )
 	$settingsList = doSelectSql( $query );
 	foreach ( $settingsList as $set )
 		{
-		$settingArray[ $set->setting ] = $set->value;
+		$settingArray[ $set->setting ] = trim($set->value);
 		}
 
 	if ( $plugin == "paypal" )
@@ -1308,18 +1308,18 @@ function get_plugin_settings( $plugin, $prop_id = 0 )
 
 		if ( $paypal_settings->paypalConfigOptions[ 'override' ] == "1" )
 			{
-			$settingArray[ 'usesandbox' ]	  = $paypal_settings->paypalConfigOptions[ 'usesandbox' ];
-			$settingArray[ 'currencycode' ]	= $paypal_settings->paypalConfigOptions[ 'currencycode' ];
-			$settingArray[ 'paypalemail' ]	 = $paypal_settings->paypalConfigOptions[ 'email' ];
+			$settingArray[ 'usesandbox' ]	  = trim($paypal_settings->paypalConfigOptions[ 'usesandbox' ]);
+			$settingArray[ 'currencycode' ]	= trim($paypal_settings->paypalConfigOptions[ 'currencycode' ]);
+			$settingArray[ 'paypalemail' ]	 = trim($paypal_settings->paypalConfigOptions[ 'email' ]);
 			$settingArray[ 'pendingok' ]	   = "0";
 			$settingArray[ 'receiveIPNemail' ] = "1";
-			$settingArray[ 'override' ]	 = $paypal_settings->paypalConfigOptions[ 'override' ];
+			$settingArray[ 'override' ]	 = trim($paypal_settings->paypalConfigOptions[ 'override' ]);
 
-			$settingArray[ 'client_id' ]			= $paypal_settings->paypalConfigOptions[ 'client_id' ];
-			$settingArray[ 'secret' ]				= $paypal_settings->paypalConfigOptions[ 'secret' ];
-			$settingArray[ 'client_id_sandbox' ]	= $paypal_settings->paypalConfigOptions[ 'client_id_sandbox' ];
-			$settingArray[ 'secret_sandbox' ]		= $paypal_settings->paypalConfigOptions[ 'secret_sandbox' ];
-			$settingArray[ 'active' ]				= $paypal_settings->paypalConfigOptions[ 'active' ];
+			$settingArray[ 'client_id' ]			= trim($paypal_settings->paypalConfigOptions[ 'client_id' ]);
+			$settingArray[ 'secret' ]				= trim($paypal_settings->paypalConfigOptions[ 'secret' ]);
+			$settingArray[ 'client_id_sandbox' ]	= trim($paypal_settings->paypalConfigOptions[ 'client_id_sandbox' ]);
+			$settingArray[ 'secret_sandbox' ]		= trim($paypal_settings->paypalConfigOptions[ 'secret_sandbox' ]);
+			$settingArray[ 'active' ]				= trim($paypal_settings->paypalConfigOptions[ 'active' ]);
 			
 			}
 		}
