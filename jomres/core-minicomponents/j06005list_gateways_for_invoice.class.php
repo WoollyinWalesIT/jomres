@@ -24,6 +24,8 @@ class j06005list_gateways_for_invoice
 			return;
 			}
 		
+		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+
 		if (is_null($invoice_id))
 			$this->invoice_id		= intval(  jomresGetParam( $_REQUEST, 'invoice_id', 0 ) );
 		else
@@ -32,8 +34,16 @@ class j06005list_gateways_for_invoice
 		if ($this->invoice_id == 0)
 			return;
 		
-		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig   = $siteConfig->get();
+		$invoice = jomres_singleton_abstract::getInstance( 'basic_invoice_details' );
+		$invoice->gatherData($this->invoice_id);
+		
+		if (!$thisJRUser->superPropertyManager)
+			{
+			if ( $thisJRUser->id != $invoice->cms_user_id )
+				{
+				throw new Exception("User " .$thisJRUser->username. " is not authorised to view invoice id ".$this->invoice_id);
+				}
+			}
 		
 		$MiniComponents->triggerEvent( '10509', array ( "invoice_id" => $this->invoice_id ) );
 		$mcOutput = $MiniComponents->getAllEventPointsData( '10509' );
@@ -46,12 +56,9 @@ class j06005list_gateways_for_invoice
 			$rows= array();
 			foreach ( $mcOutput as $gateway )
 				{
-				$prefix = 'gateway_setting_'.$gateway['name'];
+				$settings = get_plugin_settings($gateway['name'],$invoice->property_uid);
 				
-				if (!isset($jrConfig[ $prefix.'_active' ]))
-					$jrConfig[$prefix.'_active'] = "0";
-				
-				if ($jrConfig[$prefix.'_active'] == "1")
+				if ($settings['active'] == "1")
 					{
 					$r = $gateway;
 					$r['LINK'] = JOMRES_SITEPAGE_URL."&task=invoice_payment_send&gateway=".$gateway['name']."&invoice_id=".$this->invoice_id;
@@ -71,10 +78,10 @@ class j06005list_gateways_for_invoice
 				if ( isset($_REQUEST['invoice_id']))
 					echo $this->retVals;
 				}
-			else
+/* 			else
 				{
 				echo "<p class='alert alert-danger'>Error, no gateways have been configured.</p>";
-				}
+				} */
 			}
 			
 		
