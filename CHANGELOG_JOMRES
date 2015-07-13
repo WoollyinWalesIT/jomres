@@ -1,3 +1,31 @@
+<h3>Jomres 9.1.0 13/07/2015</h3>
+
+<span class="label label-success">Feature</span> Updated gateway handling so that guests can pay booking invoices. Currently only supported by Paypal, other gateways will need to be brought up-to-date to use new functionality.
+<span class="label label-success">Feature</span> Added property feature categories. Property features can be referenced with Property Feature Categories in Administrator area, allowing us to nicely group property features in property details page.
+<span class="label label-success">Feature</span> Modified slideshow feature to show multiple slideshows on a page.
+<span class="label label-success">Feature</span> Modified show rooms list to show a small slideshow for each room's images.
+<span class="label label-success">Feature</span> Improved room type layout in property details page ( Bootstrap 3 only ).
+
+<span class="label label-warning">Change</span> Updated asamodule report to show a few more, recently added, links.
+<span class="label label-warning">Change</span> Forced shortlisted properties to use live scrolling as pagination will not work.
+<span class="label label-warning">Change</span> Updated Russian language file added to repository.
+<span class="label label-warning">Change</span> Modified functionality so that reviews link in property list now goes to a BS modal where appropriate, not an older Jquery UI modal.
+<span class="label label-warning">Change</span> Improved how room features are shown in the booking form.
+<span class="label label-warning">Change</span> Changed a word from Status to Edit in administrator area list properties page.
+<span class="label label-warning">Change</span> Removed the "Use online payment gateways" switch as it's not really required, we can count the number of active gateways to decide if we need to show gateway stuff.
+<span class="label label-warning">Change</span> Tweaked booking engine so that coupon output only appears if valid coupons for current dates.
+<span class="label label-warning">Change</span> Updated fontawesome's font files.
+<span class="label label-warning">Change</span> Updated jomres_user_budget class to take jintour kid's prices into account too.
+<span class="label label-warning">Change</span> Changed the invoice payment received script to redirect to list_invoices when completed.
+<span class="label label-warning">Change</span> Modified Show Confirmation to show the configured gateway even if there's only one gateway available.
+<span class="label label-warning">Change</span> Modified show confirmation so that it also shows the backend Paypal option if override is set to Yes.
+<span class="label label-warning">Change</span> Tweaked touch template script to work with subscription functionality.
+
+<span class="label label-important label-danger">Fix</span> Resolved an issue where Jintour bookings wouldn't work with new optional extras functionality.
+<span class="label label-important label-danger">Fix</span> Modified a Joomla 3.4 specific function. Parameters now need to be specified when creating new users.
+<span class="label label-important label-danger">Fix</span> Fixed an issue where the wrong index was used to find the property telephone number. Thanks Marhinio.
+<span class="label label-important label-danger">Fix</span> Fixed a bug where new user creation query would fail on PDO.
+
 <h3>Jomres 9.0.1 25/06/2015</h3>
 
 <span class="label label-warning">Change</span> Improved layout of new optional extras output, including adding as a tab.
