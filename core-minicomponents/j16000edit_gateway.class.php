@@ -35,8 +35,6 @@ class j16000edit_gateway
 
 		$output['GATEWAY'] = $this->plugin;
 
-		if (!isset($jrConfig['active' ]))
-			$jrConfig['active'] = "0";
 		
 		$settings = $MiniComponents->specificEvent( '10510', $this->plugin );
 		$active['active'] = array (
@@ -46,10 +44,10 @@ class j16000edit_gateway
 			"format" => "boolean"
 			) ;
 
-		$all_settings = array_merge ( $active, $settings['settings'] );
+		$this->all_settings = array_merge ( $active, $settings['settings'] );
 
 		$results = array();
-		foreach ($all_settings as $key=>$setting)
+		foreach ($this->all_settings as $key=>$setting)
 			{
 			if (isset($current_settings[$key]))
 				$setting['default'] = $current_settings[$key];
@@ -108,13 +106,11 @@ class j16000edit_gateway
 		
 		$index = $key;
 
-		$value = $setting['html'];
-		
 		$output = array();
 		$pageoutput = array();
 		
 		$output['INPUT_NAME'] = $index;
-		$output['HTML'] = $value;
+		$output['HTML'] =  $setting['html'];
 		$output['TITLE'] = $setting['setting_title'];
 		$output['DESCRIPTION'] = $setting['setting_description'];
 		
@@ -128,21 +124,13 @@ class j16000edit_gateway
 	
 	function get_snippet_area($key , $setting)
 		{
-		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig   = $siteConfig->get();
-		
 		$index =$key;
 
-		if (isset($jrConfig[$index]))
-			$value = $jrConfig[$index];
-		else
-			$value = $setting['default'];
-		
 		$output = array();
 		$pageoutput = array();
 		
 		$output['INPUT_NAME'] = $index;
-		$output['VALUE'] = $value;
+		$output['VALUE'] = $setting['default'];
 		$output['TITLE'] = $setting['setting_title'];
 		$output['DESCRIPTION'] = $setting['setting_description'];
 		
@@ -156,22 +144,13 @@ class j16000edit_gateway
 
 	function get_snippet_input($key , $setting)
 		{
-
-		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig   = $siteConfig->get();
-		
 		$index =$key;
 
-		if (isset($jrConfig[$index]))
-			$value = $jrConfig[$index];
-		else
-			$value = $setting['default'];
-		
 		$output = array();
 		$pageoutput = array();
 		
 		$output['INPUT_NAME'] = $index;
-		$output['VALUE'] = $value;
+		$output['VALUE'] = $setting['default'];
 		$output['TITLE'] = $setting['setting_title'];
 		$output['DESCRIPTION'] = $setting['setting_description'];
 		
@@ -185,17 +164,9 @@ class j16000edit_gateway
 	
 	function get_snippet_currencycode($key , $setting)
 		{
-		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig   = $siteConfig->get();
-		
 		$index =$key;
 
-		if (isset($jrConfig[$index]))
-			$value = $jrConfig[$index];
-		else
-			$value = $setting['default'];
-		
-		$c_codes = new currency_codes( $value );
+		$c_codes = new currency_codes($setting['default'] );
 		$c_codes->input_name = $index;
 		$dropdown = $c_codes->makeCodesDropdown();
 		
@@ -217,22 +188,13 @@ class j16000edit_gateway
 
 	function get_snippet_bool($key , $setting)
 		{
-		
-		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig   = $siteConfig->get();
-		
 		$index =$key;
 
-		if (isset($jrConfig[$index]))
-			$value = $jrConfig[$index];
-		else
-			$value = $setting['default'];
-	
 		$yesno = array();
 		$yesno[] = jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
 		$yesno[] = jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE) );
 		
-		$input = jomresHTML::selectList( $yesno, $index, 'class="inputbox" size="1"', 'value', 'text', $value );
+		$input = jomresHTML::selectList( $yesno, $index, 'class="inputbox" size="1"', 'value', 'text', $setting['default'] );
 		
 		$output = array();
 		$pageoutput = array();

@@ -97,7 +97,7 @@ class j06005view_invoice
 			
 			//get the contract details
 			//We won`t use the basic contract details here since it gets too much data for what we need
-			$query = "SELECT guest_uid, tag FROM #__jomres_contracts WHERE contract_uid = " . $invoice->contract_id . " AND property_uid = " . $invoice->property_uid;
+			$query = "SELECT guest_uid, tag, approved FROM #__jomres_contracts WHERE contract_uid = " . $invoice->contract_id . " AND property_uid = " . $invoice->property_uid;
 			$contractData = doSelectSql( $query,2 );
 			
 			if ( !$contractData )
@@ -195,8 +195,8 @@ class j06005view_invoice
 		if ( (int)$invoice->status == 3 )
 			{
 			if ( 
-				(!$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager && $invoice->contract_id > 0 && $invoice->is_commission == 0 && $invoice->subscription == 0 && $contract['approved'] == 1) || //booking invoice viewed by guest
-				($invoice->contract_id == 0 && ($invoice->is_commission == 1 || $invoice->subscription == 1)) //subscription or commission invoice viewed by a manager
+				(!$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager && $invoice->contract_id > 0 && $invoice->is_commission == 0 && $invoice->subscription == 0 && $contractData['approved'] == 1) || //booking invoice viewed by guest
+				($invoice->contract_id == 0 && ($invoice->is_commission > 0 || $invoice->subscription > 0)) //subscription or commission invoice viewed by a manager
 				)
 				{ 
 				//TODO clean this up and display gateway images or something
