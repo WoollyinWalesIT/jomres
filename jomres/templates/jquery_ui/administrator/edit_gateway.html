@@ -5,9 +5,11 @@
 	
 	<form action="{JOMRES_SITEPAGE_URL_ADMIN}&gateway={GATEWAY}" method="post" name="adminForm" class="form-horizontal">
 		{JOMRESTOOLBAR}
+		<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 		<patTemplate:tmpl name="snippets" unusedvars="strip">
 			{SNIPPET}
 		</patTemplate:tmpl>
+		</table>
 	<input type="hidden" name="task" value="save_gateway"/>
 	<input type="hidden" name="plugin" value="{GATEWAY}"/>
 	</form>
