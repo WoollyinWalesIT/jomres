@@ -37,7 +37,6 @@ class j06001dashboard_cancelbooking_ajax
 			{
 			$insertMessage="Error: Contract uid not set. Exitting.";
 			echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
-			exit;
 			}
 		
 		//OK, let`s move on and set the booking details
@@ -53,13 +52,11 @@ class j06001dashboard_cancelbooking_ajax
 			{
 			$insertMessage = "Booking cancelled.";
 			echo json_encode(array("insertStatus"=>1,"insertMessage"=>$insertMessage));
-			exit;
 			}
 		else
 			{
 			$insertMessage = $cancellationSuccessful;
 			echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
-			exit;
 			}
 		}
 
