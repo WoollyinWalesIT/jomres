@@ -253,12 +253,37 @@ jomresJquery(document).ready(function() {
 		reset_booking_modal();
 		});
 	
+	var d1 = jomresJquery.Deferred();
+	
 	jomresJquery(function(){
 		jomresJquery("#guest_country").change(function(){
 			var selectedValue = jomresJquery(this).find(":selected").val();
 			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
-			jomresJquery.get(live_site_ajax + clause, function (data) {
+			d1 = jomresJquery.get(live_site_ajax + clause, function (data) {
 				populateDiv("guest_region_div",data);
+				});
+			});
+		});
+	
+	jomresJquery(function(){
+		jomresJquery("#existingGuests").change(function(){
+			var selectedValue = jomresJquery(this).find(":selected").val();
+			clause = "&task=dashboard_get_guest_details_ajax&existing_id="+selectedValue;
+			jomresJquery.get(live_site_ajax + clause, function (data) {
+				var guestDeets = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);
+				jomresJquery('#existing_id').val(guestDeets.existing_id);
+				jomresJquery('#mos_userid').val(guestDeets.mos_userid);
+				jomresJquery('#firstname').val(guestDeets.firstname);
+				jomresJquery('#surname').val(guestDeets.surname);
+				jomresJquery('#house').val(guestDeets.house);
+				jomresJquery('#street').val(guestDeets.street);
+				jomresJquery('#guest_country').val(guestDeets.country).trigger('change');
+				jomresJquery.when(d1).done(function() {jomresJquery('#region').val(guestDeets.county)});
+				jomresJquery('#town').val(guestDeets.town);
+				jomresJquery('#postcode').val(guestDeets.postcode);
+				jomresJquery('#landline').val(guestDeets.tel_landline);
+				jomresJquery('#mobile').val(guestDeets.tel_mobile);
+				jomresJquery('#email').val(guestDeets.email);
 				});
 			});
 		});
@@ -331,6 +356,8 @@ function reset_booking_modal() {
 				<input type="hidden" id="end" name="end" value="" />
 				<input type="hidden" id="room_uid" name="room_uid" value="" />
 				<input type="hidden" id="allDay" name="allDay" value="" />
+				<input type="hidden" id="existing_id" name="existing_id" value="" />
+				<input type="hidden" id="mos_userid" name="mos_userid" value="" />
 				<div id="modalForm">
 					<div class="row">
 						<div class="col-md-6">
@@ -344,6 +371,16 @@ function reset_booking_modal() {
 								<h5>{HSELECTED_ROOM}</h5>
 								<p id="where"></p>
 							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="control-label" for="existingGuests">{HEXISTING_GUESTS_DROPDOWN}</label>
+								{EXISTING_GUESTS_DROPDOWN}
+							</div>
+						</div>
+						<div class="col-md-6">
 						</div>
 					</div>
 					<div class="row">

@@ -151,7 +151,7 @@ class jomres_generic_booking_insert
 			);
 		
 		$this->guest_details = array(
-			"guests_uid"				=> "",					// If not set a new guest will be created
+			"existing_id"				=> "",					// If not set a new guest will be created
 			"mos_userid"				=> "",					// The CMS user id. If MOS ID is set then that existing CMS user will be used.
 			"firstname"					=> "",					// "Maj`or" ***** Required *****
 			"surname"					=> "",					// "Gowen" ***** Required *****
@@ -206,7 +206,7 @@ class jomres_generic_booking_insert
 		{
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		
-		$tmpBookingHandler->tmpguest['guests_uid']		= $this->guest_details['guests_uid'];
+		$tmpBookingHandler->tmpguest['existing_id']		= $this->guest_details['existing_id'];
 		$tmpBookingHandler->tmpguest['mos_userid']		= $this->guest_details['mos_userid'];
 		$tmpBookingHandler->tmpguest['firstname']		= $this->guest_details['firstname'];
 		$tmpBookingHandler->tmpguest['surname']			= $this->guest_details['surname'];

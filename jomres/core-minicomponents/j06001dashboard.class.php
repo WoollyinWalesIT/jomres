@@ -173,6 +173,9 @@ class j06001dashboard
 			
 		$output['CURRENCY_CODE'] = $currencycode;
 		
+		//existing guests dropdown
+		$output['HEXISTING_GUESTS_DROPDOWN'] = jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', _JOMRES_COM_MR_EDITBOOKING_TAB_GUEST, false );
+		$output['EXISTING_GUESTS_DROPDOWN'] = $this->getExistingGuestsDropdown($property_uid);
 
 		$pageoutput[]=$output;
 		$roomsoutput[]=$r;
@@ -182,6 +185,38 @@ class j06001dashboard
 		$tmpl->addRows( 'rows',$rows);
 		$tmpl->readTemplatesFromInput( 'dashboard.html');
 		$tmpl->displayParsedTemplate();
+		}
+	
+	function getExistingGuestsDropdown($property_uid = 0)
+		{
+		if ($property_uid == 0)
+			return '';
+
+		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+
+		$dropDownList = "";
+		
+		$query = "SELECT 
+						`guests_uid`,
+						`surname`,
+						`firstname`  
+					FROM #__jomres_guests 
+					WHERE `property_uid` IN (" . implode( ',',$thisJRUser->authorisedProperties ) . ")  
+					ORDER BY surname";
+		$existingCustomers = doSelectSql( $query );
+		
+		$ec = array ();
+		if ( count( $existingCustomers ) > 0 )
+			{
+			$ec[] = jomresHTML::makeOption( '0', '&nbsp;' );
+			foreach ( $existingCustomers as $customer )
+				{
+				$ec[] = jomresHTML::makeOption( $customer->guests_uid, stripslashes( $customer->surname ) . " " . stripslashes( $customer->firstname ) );
+				}
+			$dropDownList = jomresHTML::selectList( $ec, 'existingGuests', ' size="1" class="input-medium"', 'value', 'text', '0' );
+			}
+
+		return $dropDownList;
 		}
 
 	// This must be included in every Event/Mini-component
