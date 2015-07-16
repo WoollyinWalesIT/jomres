@@ -86,6 +86,7 @@ class j06001dashboard_insertbooking_ajax
 		$bkg->booking_details['departureDate'] 				= $departureDate;
 		$bkg->booking_details['requestedRoom'] 				= $room_uid."^0"; //it needs to have the ^tariff_uid too
 		$bkg->booking_details['dateRangeString'] 			= implode(',',$dates_array);
+		$bkg->booking_details['guests_uid'] 				= (int)jomresGetParam($_GET,'existing_id',0);
 		$bkg->booking_details['contract_total'] 			= $contract_total;
 		$bkg->booking_details['tax'] 						= $tax;
 		$bkg->booking_details['deposit_required'] 			= (float)jomresGetParam($_GET,'deposit_required','0');
@@ -100,6 +101,8 @@ class j06001dashboard_insertbooking_ajax
 		$bkg->booking_details['sendHotelEmail'] 			= true;
 		
 		//Now let`s set the new guest details
+		$bkg->guest_details['existing_id']	 	= (int)jomresGetParam($_GET,'existing_id',0);
+		$bkg->guest_details['mos_userid']	 	= (int)jomresGetParam($_GET,'mos_userid',0);
 		$bkg->guest_details['firstname']	 	= $firstname;
 		$bkg->guest_details['surname']		 	= $surname;
 		$bkg->guest_details['house']		 	= jomresGetParam($_GET,'house','');
