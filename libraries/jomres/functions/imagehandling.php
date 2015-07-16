@@ -29,7 +29,32 @@ function gif_builder( $property_uid )
 	$thumbs_dir = JOMRES_IMAGELOCATION_ABSPATH . $property_uid . JRDS . 'slideshow' . JRDS . '0' . JRDS . 'thumbnail';
 	
 	$images     = scandir_getfiles( $thumbs_dir );
-
+	$non_image_files = array();
+	
+	foreach ( $images as $key=>$i )
+		{
+		$size = getimagesize($thumbs_dir . JRDS . $i);
+		if ( is_file($thumbs_dir . JRDS . $i) && $size !== false )
+			{
+			$arr[ ]       = file_get_contents( $thumbs_dir . JRDS . $i );
+			$durations[ ] = rand( 500, 700 );
+			}
+		else
+			{
+			$non_image_files[] = $key;
+			}
+		}
+			
+	if (count ( $non_image_files ) > 0 )
+		{
+		foreach ($non_image_files as $key)
+			{
+			unset( $images [ $key ] );
+			}
+		$images = array_values($images);
+		}
+	
+	
 	$result[ 'SMALL' ]  = '';
 	$result[ 'MEDIUM' ] = '';
 
