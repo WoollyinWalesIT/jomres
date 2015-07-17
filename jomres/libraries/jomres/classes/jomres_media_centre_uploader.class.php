@@ -778,7 +778,7 @@ class UploadHandler
             $index = null, $content_range = null) {
         $file = new stdClass();
         $file->name = $this->get_file_name($name, $type, $index, $content_range);
-		$file->name = preg_replace('/[^a-z0-9.]/i', '_',  $file->name);
+		$file->name = preg_replace('/[^a-z0-9.]/i', '-',  $file->name);
         $file->size = $this->fix_integer_overflow(intval($size));
         $file->type = $type;
         if ($this->validate($uploaded_file, $file, $error, $index)) {
