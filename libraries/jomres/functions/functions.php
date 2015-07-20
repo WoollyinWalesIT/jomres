@@ -1275,25 +1275,28 @@ function get_plugin_settings( $plugin, $prop_id = 0 )
 	$settingArray = array ();
 	$thisJRUser   = jomres_singleton_abstract::getInstance( 'jr_user' );
 
-	if ( $thisJRUser->userIsManager )
+	if ( jomres_cmsspecific_areweinadminarea() )
 		{
-		$property_uid = (int) getDefaultProperty();
+		$property_uid = 0;
 		}
 	else
 		{
-		if ( $prop_id == 0 )
+		if ( $thisJRUser->userIsManager )
 			{
-			$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-			$property_uid	  = (int) $tmpBookingHandler->getBookingPropertyId();
+			$property_uid = (int) getDefaultProperty();
 			}
 		else
-			$property_uid = (int) $prop_id;
+			{
+			if ( $prop_id == 0 )
+				{
+				$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+				$property_uid	  = (int) $tmpBookingHandler->getBookingPropertyId();
+				}
+			else
+				$property_uid = (int) $prop_id;
+			}
 		}
 
-	if ( $property_uid == 0 )
-		{
-		return false;
-		}
 	$query		= "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '" . (int) $property_uid . "' AND plugin = '" . $plugin . "' ";
 	$settingsList = doSelectSql( $query );
 	foreach ( $settingsList as $set )
