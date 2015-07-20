@@ -1,3 +1,13 @@
+<h3>Jomres 9.1.1 20/07/2015</h3>
+
+<span class="label label-success">Feature</span> Added guest detail dropdown to Quick booking modal popup on dashboard.
+
+<span class="label label-warning">Change</span> Tweaked image uploader to change non-alphanumeric characters to - instead of _
+<span class="label label-warning">Change</span> Changed how dashboard cancel booking ajax works. Removed some "exits" that were preventing other code from running later on.
+<span class="label label-warning">Change</span> Modified how the gif creation script works to remove non-image files from an array before they're used.
+
+<span class="label label-important label-danger">Fix</span> Improved get_plugin_settings to fix a bug where the wrong settings might get pulled from the plugins table.
+
 <h3>Jomres 9.1.0 13/07/2015</h3>
 
 <span class="label label-success">Feature</span> Updated gateway handling so that guests can pay booking invoices. Currently only supported by Paypal, other gateways will need to be brought up-to-date to use new functionality.
