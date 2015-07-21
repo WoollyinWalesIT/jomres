@@ -17,7 +17,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 	ob_start( "removeBOM" );
 
-	@ini_set( "memory_limit", "128M" );
+	//@ini_set( "memory_limit", "128M" );
 	@ini_set( "max_execution_time", "480" );
 
 	// Added X-Clacks Overhead. If you're a fan of Sir Terry, leave it in. If you're not, take it out
