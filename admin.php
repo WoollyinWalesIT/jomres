@@ -14,7 +14,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 defined( '_JOMRES_INITCHECK_ADMIN' ) or die( 'Admin Access to this file is not allowed.' );
 
 ob_start( "removeBOMadmin" );
-@ini_set( "memory_limit", "128M" );
+//@ini_set( "memory_limit", "128M" );
 @ini_set( "max_execution_time", "480" );
 
 require_once( dirname( __FILE__ ) . '/integration.php' );
