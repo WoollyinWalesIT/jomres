@@ -1193,12 +1193,18 @@ function jomres_validate_gateway_plugin()
 		{
 		if ( $settings[ 'override' ] == "1" ) 
 			return "paypal";
-
+		
+		$query		= "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = " . (int) $property_uid . " AND setting = 'active' AND value = '1'";
+		$all_gateways = doSelectSql( $query );
+		if ( count($all_gateways) == 0 )
+			return "NA";
+		
 		if ( !isset( $_REQUEST[ 'plugin' ] ) || $_REQUEST[ 'plugin' ] == "" )
 			{
 			gateway_log( "Error, gateway name not sent, probable hack attempt" );
-			trigger_error( "Error, gateway name not sent, probable hack attempt", E_USER_ERROR );
-			die();
+			//trigger_error( "Error, gateway name not sent, probable hack attempt", E_USER_ERROR );
+			throw ( "Error, gateway name not sent, probable hack attempt" ) ;
+			//die();
 			}
 		if ( !isset( $_REQUEST[ 'plugin' ] ) )
 			{
