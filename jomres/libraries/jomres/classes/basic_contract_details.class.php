@@ -251,8 +251,8 @@ class basic_contract_details
 			$rt = explode( "^", $e );
 			$tariffs[] = $rt[ 1 ];
 			}
-		
-		if ( count($tariffs) > 0 )
+
+		if ( count($tariffs) > 0 && $room_and_tariff_info != array ( 0 => "" ) )
 			{
 			$query = "SELECT rates_uid,rate_title FROM #__jomres_rates WHERE rates_uid IN (" . implode(',',$tariffs) .") ";
 			$tariff_names = doSelectSql( $query );
