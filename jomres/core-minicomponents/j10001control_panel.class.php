@@ -210,7 +210,7 @@ function max_input_vars_test()
 	if ( $max_vars < 1001 && isset( $MiniComponents->registeredClasses[ '00005advanced_micromanage_tariff_editing_modes' ] ) ) // The default is 1000 on most installations
 		{
 		$highlight = ( using_bootstrap() ? "alert" : "ui-state-highlight" );
-		$response  = "<div class='" . $highlight . "'>Please note, your max_input_vars setting seems to be set to 1000, which is the default setting. If you're using the Micromanage tariff editing mode and wish to save prices for more than a year in advance, we recommend that you change this setting to 3000 or more. <a href=\"https://tickets.jomres.net/index.php?/default_import/Knowledgebase/Article/View/115/15/too-many-variables\" target=\"_blank\">This page </a>has  more information.</div>";
+		$response  = "<div class='" . $highlight . "'>Please note, your max_input_vars setting seems to be set to 1000, which is the default setting. If you're using the Micromanage tariff editing mode and wish to save prices for more than a year in advance, we recommend that you change this setting to 3000 or more. <a href=\"https://tickets.jomres.net/index.php?/Knowledgebase/Article/View/115/15/too-many-variables" target=\"_blank\">This page </a>has  more information.</div>";
 		}
 
 	return $response;
