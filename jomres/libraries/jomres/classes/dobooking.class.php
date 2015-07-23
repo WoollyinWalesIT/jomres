@@ -6366,7 +6366,10 @@ class dobooking
 		$thisJRUser = jomres_getSingleton( 'jr_user' );
 		if ( $thisJRUser->userIsManager )
 			{
-			if ( isset( $this->override_deposit ) && $this->override_deposit > 0 ) $this->deposit_required = $this->override_deposit;
+			if ( isset( $this->override_deposit ) && $this->override_deposit <= $this->billing_grandtotal) 
+				{
+				$this->deposit_required = $this->override_deposit;
+				}
 			}
 		}
 
