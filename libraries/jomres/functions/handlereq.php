@@ -432,6 +432,8 @@ if ( $field != "heartbeat" && $field != "show_log" && $field != "email_usage_che
 					$extra_details      = $ex[ 'core_extras' ];
 
 					echo '; populateDiv("core_extras","' . $bkg->sanitise_for_eval($extra_details) . '");';
+					
+					$bkg->generateBilling();
 					}
 
 				echo '; populateDiv("extrastotal","' . output_price( $bkg->getExtrasTotal() ) . '")';
