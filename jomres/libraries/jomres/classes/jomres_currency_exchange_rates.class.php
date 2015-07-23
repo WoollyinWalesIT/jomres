@@ -112,6 +112,7 @@ class jomres_currency_exchange_rates
 		// We can safely assume that there's a GBP exchange rate (at least, for the forseeable future. If there isn't, then the world has probably been invaded by aliens and exchange rates in Jomres is the least of our problems. Rule Britannia and all that. )
 		$GBP_rate = $json->GBP;
 
+		
 		foreach ( $currency_codes as $k=>$v )
 			{
 			if (isset($json->$k) && $k != "GBP" )
@@ -132,6 +133,7 @@ class jomres_currency_exchange_rates
 		if ( count( $this->rates ) == 0 ) return false;
 		$lines = '$this->rates = array();
 		';
+		$this->rates[ "GBP" ][ "GBP" ] = 1;
 		foreach ( $this->rates[ $this->base_code ] as $foreign => $rate )
 			{
 			if ( (float) $rate > 0 )
