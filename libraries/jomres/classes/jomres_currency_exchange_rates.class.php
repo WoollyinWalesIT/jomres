@@ -133,7 +133,7 @@ class jomres_currency_exchange_rates
 		if ( count( $this->rates ) == 0 ) return false;
 		$lines = '$this->rates = array();
 		';
-		$this->rates[ "GBP" ][ "GBP" ] = 1;
+		$this->rates[ $this->base_code ][ $this->base_code ] = 1;
 		foreach ( $this->rates[ $this->base_code ] as $foreign => $rate )
 			{
 			if ( (float) $rate > 0 )
