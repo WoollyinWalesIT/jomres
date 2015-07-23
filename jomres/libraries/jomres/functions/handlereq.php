@@ -422,12 +422,17 @@ if ( $field != "heartbeat" && $field != "show_log" && $field != "email_usage_che
 				echo '; populateDiv("roomtotal","' . output_price( $room_total ) . '")';
 				}
 
-			if ( $bkg->cfg_showExtras )
+			if ( $bkg->cfg_showExtras)
 				{
-				$ex                 = $bkg->makeExtras( $pid );
-				$extra_details      = $ex[ 'core_extras' ];
+				//only rebuild extras if dates change
+				if ($field == "arrivalDate" || $field == "arrival_period" || $field == "departureDate" || $field == "departure_period")
+					{
+					$ex                 = $bkg->makeExtras( $pid );
+				
+					$extra_details      = $ex[ 'core_extras' ];
 
-				echo '; populateDiv("core_extras","' . $bkg->sanitise_for_eval($extra_details) . '");';
+					echo '; populateDiv("core_extras","' . $bkg->sanitise_for_eval($extra_details) . '");';
+					}
 
 				echo '; populateDiv("extrastotal","' . output_price( $bkg->getExtrasTotal() ) . '")';
 				echo '; populateDiv("extrastotal_totals_panel","' . output_price( $bkg->getExtrasTotal() ) . '")';
