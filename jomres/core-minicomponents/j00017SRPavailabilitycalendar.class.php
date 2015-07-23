@@ -75,11 +75,55 @@ class j00017SRPavailabilitycalendar
 			$this->retVals .= '
 			<center>
 			';
-			if ( using_bootstrap() ) $this->retVals .= '<div class="well" style="margin-bottom: 10px;">';
+			if ( using_bootstrap() ) 
+				$this->retVals .= '<div class="well" style="margin-bottom: 10px;">';
 			else
-			$this->retVals .= '<div class="ui-widget-content ui-corner-all" style="margin-bottom: 10px;">';
-			$this->retVals .= '<table width="100%">
-							<tr >';
+				$this->retVals .= '<div class="ui-widget-content ui-corner-all" style="margin-bottom: 10px;">';
+			$this->retVals .= "
+<script>
+
+jomresJquery(function(){
+    var arrJCrossOut = jomresJquery('.crossOut');
+    arrJCrossOut.each(function(i){
+        var jTemp      = jomresJquery(this),
+            nWidth   = jTemp.innerWidth(),
+            nHeight  = jTemp.innerHeight(),
+            nHyp      = Math.sqrt(nWidth*nWidth + nHeight*nHeight),
+            nAnglRad = Math.atan2(nHeight,nWidth),
+            nAnglSex = nAnglRad*360/(2*Math.PI), nCatOp, nCatAd, nHyp2
+            sDomTemp = '<b class=\"child\" ';
+            sDomTemp += 'style=\"width:'+nHyp+'px;';
+            sDomTemp += '-webkit-transform: rotate(-'+nAnglSex+'deg);';
+            sDomTemp += '-moz-transform: rotate(-'+nAnglSex+'deg);';
+            sDomTemp += '-ms-transform: rotate(-'+nAnglSex+'deg);';
+            sDomTemp += '-o-transform: rotate(-'+nAnglSex+'deg);';
+            sDomTemp += 'transform: rotate(-'+nAnglSex+'deg);';
+            sDomTemp += '-sand-transform: rotate(-'+nAnglSex+'deg);';
+            nHyp2     = (nHyp/2);
+            nCatOp      = Math.sin(nAnglRad)*nHyp2;
+            nCatAd      = Math.sqrt((nHyp2*nHyp2) - (nCatOp*nCatOp));
+            sDomTemp += 'margin-top: -'+nCatOp+'px;';
+            sDomTemp += 'margin-left: -'+(nHyp2-nCatAd)+'px;';
+            sDomTemp += '\"></b>';
+        
+        jTemp.append(sDomTemp);
+    });
+});
+
+</script>
+
+<style>
+
+.crossOut .child{
+    position:absolute; 
+    display:block;
+    height:1px; 
+    background:black;
+}
+
+</style>
+			<table width=\"100%\">
+							<tr >";
 			if ( using_bootstrap() ) $this->retVals .= '<td class="alert alert-info">';
 			else
 			$this->retVals .= '<td class="ui-widget-header ui-corner-all">';
@@ -287,6 +331,8 @@ class j00017SRPavailabilitycalendar
 
 		$query    = "SELECT contract_uid,black_booking,`date` FROM #__jomres_room_bookings WHERE room_uid = '" . (int) $roomUid . "' AND `date` IN ('" . implode('\',\'',$sqlDates) ."') ";
 		$roomList = doSelectSql( $query );
+		$booking_start_dates = array();
+		$booking_end_dates = array();
 		foreach ( $roomList as $cont )
 			{
 			$date          = $cont->date;
@@ -297,11 +343,14 @@ class j00017SRPavailabilitycalendar
 			if ( $black_booking != "1" )
 				{
 				$bgcolor      = $occupiedcolour;
-				$query        = "SELECT deposit_paid FROM #__jomres_contracts WHERE contract_uid = '" . (int) $contract_uid . "'";
+				$query        = "SELECT arrival,departure,deposit_paid FROM #__jomres_contracts WHERE contract_uid = '" . (int) $contract_uid . "'";
 				$contractList = doSelectSql( $query );
+
 				foreach ( $contractList as $contract )
 					{
 					$deposit_paid = $contract->deposit_paid;
+					$booking_start_dates[] = $contract->arrival;
+					$booking_end_dates[] = $contract->departure;
 					if ( !$deposit_paid ) $bgcolor = $provisionalcolour;
 					}
 				}
@@ -367,9 +416,17 @@ class j00017SRPavailabilitycalendar
 				//echo $startingmonth.' '.$currentMonth.' '.$endingmonth.'<br>';
 				if ( $currentMonth == $startingmonth && date( "m", $stdate ) > date( "m", $startdate ) ) $bgcolor = $outbgcolor;
 				if ( date( "m", $currdate ) == date( "m", $enddate ) ) $bgcolor = $outbgcolor;
-				if ( !$showOutMonthDates && $bgcolor == $outbgcolor ) $this->retVals .= "<td height=\"$height\" width=\"$width\" valign=\"middle\" ><font face=\"$face\" size=\"$size\" color=\"$fcolor\">";
+				
+				$class = '';
+				if ( in_array( date ( "Y/m/d" , $currdate ) , $booking_start_dates ) )
+					$class= 'class="crossOut';
+				
+				//
+				
+				if ( !$showOutMonthDates && $bgcolor == $outbgcolor )
+					$this->retVals .= "<td height=\"$height\" width=\"$width\" valign=\"middle\" ><font face=\"$face\" size=\"$size\" color=\"$fcolor\">";
 				else
-				$this->retVals .= "<td height=\"$height\" width=\"$width\" valign=\"middle\" bgcolor=\"$bgcolor\"><font face=\"$face\" size=\"$size\" color=\"$fcolor\">";
+					$this->retVals .= "<td ".$class." height=\"$height\" width=\"$width\" valign=\"middle\" bgcolor=\"$bgcolor\"><font face=\"$face\" size=\"$size\" color=\"$fcolor\">";
 
 				$task = get_showtime( 'task' );
 				if ( $task != "remoteavailability" && $jrConfig[ 'show_booking_form_in_property_details' ] == '1' ) $this->showlinks = false;
