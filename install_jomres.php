@@ -2925,7 +2925,7 @@ function createJomresTables()
 
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_lineitems` (
 		`id` int(11) NOT NULL auto_increment,
-		`name` varchar(20),
+		`name` varchar(255),
 		`description` varchar(255),
 		`init_price` float NOT NULL default '0',
 		`init_qty` float  NOT NULL default '0.00',
