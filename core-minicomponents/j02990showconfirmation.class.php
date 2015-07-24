@@ -501,9 +501,11 @@ class j02990showconfirmation
 			{
 			if ( !$userIsManager )
 				{
-				if ( $site_paypal_settings['override'] == "1")
+				$gateway_output = array();
+				$gwo = array();
+				
+				if ( $site_paypal_settings['override'] == "1" && count($MiniComponents->registeredClasses['00509paypal']) > 0 )
 					{
-					$booking_parts[ 'GATEWAYCHOICEINTRO' ] = jr_gettext( '_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', _JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE );
 					$gateways = array ();
 					$gw = array();
 					$gw[ 'GWNAME' ] = "Paypal";
@@ -520,14 +522,16 @@ class j02990showconfirmation
 					if ( count( $gatewayDeets ) > 0 )
 						{
 						$gateways = array ();
-						$booking_parts[ 'GATEWAYCHOICEINTRO' ] = jr_gettext( '_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', _JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE );
 						$counter                               = 1;
 						foreach ( $gatewayDeets as $gateway )
 							{
+							
+							
 							$gw = array();
 							$checked = "";
 							if ( $counter == 1 ) $checked = "checked";
 							$result = $MiniComponents->specificEvent( '03108', $gateway->plugin, null );
+							
 							if ( count( $result ) > 1 )
 								{
 								$gw[ 'GWNAME' ] = $result[ 'gatewayname' ];
@@ -542,13 +546,24 @@ class j02990showconfirmation
 							$gatewaydir      = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' ).'/', $tmpgatewaydir );
 							$gatewaydir      = str_replace( '\\', '/', $gatewaydir );
 							$gw[ 'GWIMAGE' ] = '<img src="' . $gatewaydir . 'j00510' . $gateway->plugin . '.gif" border="0">';
-							$gateways[ ]     = $gw;
+							
+							$gw_configuration_script = '00509'.$gw[ 'GWNAME' ];
+							if (count($MiniComponents->registeredClasses[$gw_configuration_script]) > 0) // Let's check that the site manager hasn't uninstalled the plugin. If count == 0, then they have, we don't want to attempt to show this gateway
+								{
+								$gateways[ ]     = $gw;
+								}
 							$counter++;
 							}
 						}
 					}
+				if ( count($gateways)>0)
+					{
+					$gwo[ 'GATEWAYCHOICEINTRO' ] = jr_gettext( '_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', _JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE );
+					$gateway_output[]=$gwo;
+					}
 				}
 			}
+
 		$booking_parts[ 'JOMRES_SITEPAGE_URL' ]   = JOMRES_SITEPAGE_URL;
 		$booking_parts[ 'PROCESSURL' ]            = jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=processpayment" );
 		$booking_parts[ 'PROCESSURL_SAVETOCART' ] = jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=save_booking_to_cart" );
@@ -616,7 +631,7 @@ class j02990showconfirmation
 		$tmpl->addRows( 'cartoutput', $cartoutput );
 		if ( isset( $gatewayDeets ) && count( $gatewayDeets ) > 0 )
 			{
-			
+			$tmpl->addRows( 'gateway_output', $gateway_output );
 			$tmpl->addRows( 'gateways', $gateways );
 			}
 		$componentArgs = array ( 'tmpl' => $tmpl );
