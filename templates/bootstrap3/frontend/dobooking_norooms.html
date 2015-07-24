@@ -166,52 +166,6 @@
 	<form action="javascript:dobooking_validate();" name="ajaxform" id="ajaxform" method="post" role="form">
 	<div id="messages">&nbsp;</div>
 	<!--<p>{AJAXFORM_INSTRUCTIONS}</p>-->
-	
-	<patTemplate:tmpl name="manager_pricing" type="simpleCondition" requiredVars="_jomcomp_amend_override_accommodation_total">
-	<div id="tour_target_booking_overrides"></div>
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label" for="override_room_total">{_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL}</label>
-					<input class="form-control ignore" name="override_room_total" id="override_room_total" value="" type="number" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01"/>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label" for="override_deposit">{_JOMCOMP_AMEND_OVERRIDE_DEPOSIT}</label>
-					<input class="form-control ignore" name="override_deposit" id="override_deposit" value="" type="number" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01"/>
-				</div>
-			</div>
-			<div id="override_response" class="jomres_message"></div>
-		</div>
-		<div class="panel-footer">
-			<a href="javascript:void(0);" onclick="getResponse_override('override',jomresJquery('#override_room_total').val()+'^'+jomresJquery('#override_deposit').val())" class="btn btn-default">{_JOMCOMP_AMEND_OVERRIDE_SAVE}</a>
-		</div>
-	</div>
-	</patTemplate:tmpl>
-
-	<patTemplate:tmpl name="coupons" type="simpleCondition" requiredVars="coupon_title">
-	<div id="tour_target_booking_coupons"></div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="panel-title">
-				{COUPON_TITLE}
-			</div>
-		</div>
-		<div class="panel-body">
-			<div class="form-group">
-				<label class="control-label" for="coupon">{COUPON_TITLE}</label>
-				<input class="form-control ignore" size="25" type="text" name="coupon" id="coupon" value="{COUPON_CODE}" placeholder="{COUPON_TITLE}"/>
-				<div class="jomres_message help-block">{COUPON_INSTRUCTIONS}</div>
-			</div>
-			<div id="coupon_response" class="jomres_message"></div>
-		</div>
-		<div class="panel-footer">
-			<a class="btn btn-default" href="javascript:void(0);" onclick="getResponse('coupon',jomresJquery('#coupon').val())" >{COUPON_BUTTON}</a>
-		</div>
-	</div>
-	</patTemplate:tmpl>
 
 	<div id="arrivalcontainer">
 		<div id="tour_target_booking_particulars"></div>
@@ -235,7 +189,7 @@
 					</div>
 				</div>
 				<patTemplate:tmpl name="guesttypes">
-				<div class="col-md-2">
+				<div class="col-md-3">
 					<div class="form-group">
 						<label class="control-label" for="{FIELDNAME}">{TEXT}</label>
 						{DROPDOWN}
@@ -413,6 +367,53 @@
 						</div>
 					</div>
 				</div>
+				
+				<patTemplate:tmpl name="coupons" type="simpleCondition" requiredVars="coupon_title">
+				<div id="tour_target_booking_coupons"></div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="panel-title">
+							{COUPON_TITLE}
+						</div>
+					</div>
+					<div class="panel-body">
+						<p>{COUPON_INSTRUCTIONS}</p>
+						<div class="form-group">
+							<!--<label class="control-label" for="coupon">{COUPON_TITLE}</label>-->
+							<input class="form-control ignore" size="25" type="text" name="coupon" id="coupon" value="{COUPON_CODE}" placeholder="{COUPON_TITLE}"/>
+							<div id="coupon_response" class="jomres_message help-block"></div>
+						</div>
+					</div>
+					<div class="panel-footer">
+						<a class="btn btn-default" href="javascript:void(0);" onclick="getResponse('coupon',jomresJquery('#coupon').val())" >{COUPON_BUTTON}</a>
+					</div>
+				</div>
+				</patTemplate:tmpl>
+				
+				<patTemplate:tmpl name="manager_pricing" type="simpleCondition" requiredVars="_jomcomp_amend_override_accommodation_total">
+				<div id="tour_target_booking_overrides"></div>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label class="control-label" for="override_room_total">{_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL}</label>
+								<input class="form-control ignore" name="override_room_total" id="override_room_total" value="" type="number" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01"/>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<label class="control-label" for="override_deposit">{_JOMCOMP_AMEND_OVERRIDE_DEPOSIT}</label>
+								<input class="form-control ignore" name="override_deposit" id="override_deposit" value="" type="number" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01"/>
+							</div>
+						</div>
+						<div id="override_response" class="jomres_message"></div>
+					</div>
+					<div class="panel-footer">
+						<a href="javascript:void(0);" onclick="getResponse_override('override',jomresJquery('#override_room_total').val()+'^'+jomresJquery('#override_deposit').val())" class="btn btn-default">{_JOMCOMP_AMEND_OVERRIDE_SAVE}</a>
+					</div>
+				</div>
+				</patTemplate:tmpl>
+				
 			</div>
 		</div>
 	</div>
