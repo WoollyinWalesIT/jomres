@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
 * Core file
 * @author Vince Wooll <sales@jomres.net>
@@ -7,7 +7,7 @@
 * @copyright	2005-2013 Vince Wooll
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
 * @Polska adaptacja Patryk Doering - http://www.rekinet.pl - kontakt@rekinet.pl
-* @Aktualizacja wersji językowej z 25-05-2015r.
+* @Aktualizacja wersji językowej z 20-07-2015r.
 **/
 
 ##################################################################
@@ -2370,39 +2370,29 @@ jr_define('_JOMRES_TEST_EMAIL_CONTENT',"To jest test e-mail z systemu rezerwacji
 jr_define('_JOMRES_TEST_EMAIL_RESULT_SUCCESS',"Testowa wiadomość e-mail wysłana pomyślnie");
 jr_define('_JOMRES_TEST_EMAIL_RESULT_FAILURE',"Testowa wiadomość e-mail nie została wysłana");
 jr_define('_INVOICE_TRANSACTIONS',"Transakcje");
-jr_define('_OPENEXCHANGE_API',"Open Exchange Rates API key");
-jr_define('_OPENEXCHANGE_API_DESC','To convert prices between services you will need an Open Exchange Rates API key. You MUST have an API key to display prices correctly in Jomres, however you can register for a free key at https://openexchangerates.org/signup/free (hourly updates, 1000 requests/month - no HTTPS, email support or advanced features). Jomres downloads exchange rates once a day so as long as you use the key on only a handful of sites, you\'re unlikely to exceed these limits. Previous to Jomres 8.3 we used an older, undocumented Yahoo feature however have discovered that using this feature is in contradiction of Yahoo\'s Terms and Conditions. As a result we have to assume that the feature may disappear at some point in the future, hence the change to using Open Exchange Rates.');
-
-jr_define('_JOMRES_COMMISSION',"Commission");
-
-jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS',"If you upload multiple images for individual optional extras, only the first image will be used.");
-
-jr_define('_JOMRES_COMMISSION',"Commission");
-jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS',"If you upload multiple images for individual optional extras, only the first image will be used.");
-jr_define( '_JRPORTAL_INVOICES_PAYNOW', "Pay now" );
-jr_define( '_JRPORTAL_INVOICES_PAYNOW_DESC', "This invoice in now due. Please click the button to select the payment method." );
-jr_define('_JOMRES_EXTRAS_TEMPLATE',"Here's a list of some of the great things you can purchase while making a booking at this property. ");
-
-jr_define( '_ASSIGN_COMMISSION_RATES', 'Assign commission rates' );
-
-
-jr_define( 'GATEWAYS_INSTRUCTIONS', 'On this page you can configure any installed gateways. These options allow you to take payments for any Commission or Subscription invoices. Frontend settings can only be overridden by Paypal, all other gateways will need to be configured via the Property Configuration -> Gateways tab, however if a gateway appears in this list then it should be capable of processing both Booking deposit payments and invoice payments.' );
-jr_define( 'EXTRAS_INCLUDE_IN_PROPERTYDETAILS', 'Show in property details page?' );
-
-jr_define( 'PROPERTY_DETAILS_PAGE_OPTIONS', 'Property Details page settings' );
-
-jr_define( '_JOMRES_HLIST_PROPERTIES_WARNING', 'Property management in Jomres is made only from the site frontend cpanel. On this page you`ll be able to list all properties in the system, so you can assign commission rates and approve/unapprove them (if these features are enabled). To create a new property, edit existing ones, manage bookings or any other property/bookings related tasks, you`ll have to login to the site frontend and go to the Jomres default page. There you`ll see the Jomres frontend cpanel.' );
-
-
-jr_define( 'PROPERTY_STATS_SALES', 'Sales' );
-jr_define( 'PROPERTY_STATS_SALES_DESC', 'This is when bookings were taken' );
-
-jr_define( 'PROPERTY_STATS_BOOKINGS_DAYS', 'Bookings (days)' );
-jr_define( 'PROPERTY_STATS_BOOKINGS_DAYS_DESC', 'Booking dates start and number of days.' );
-
-jr_define( 'PROPERTY_STATS_ROOM_BOOKINGS_DAYS', 'Bookings (rooms x days)' );
-jr_define( 'PROPERTY_STATS_ROOM_BOOKINGS_DAYS_DESC', 'Number of rooms booked out in a certain month.' );
-
-jr_define( '_MEDIA_CENTRE_RESOURCE_FEATURES_ICONS', 'Room feature icons' );
-
-jr_define( '_JOMRES_PROPERTYFEATURES_HCATEGORIES', 'Business Features Categories' );jr_define( '_JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT', 'Edit Business Feature Category' );jr_define( '_JOMRES_HCATEGORY', 'Category' );jr_define( '_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES', 'Show business features separated into categories?' );jr_define( '_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', 'Set this to YES to separate the property features into categories. This option affects only the property features displayed on the property details page. All other pages will display them without splitting them into categories.' );
+jr_define('_OPENEXCHANGE_API',"Klucz API dla wymiany walut");
+jr_define('_OPENEXCHANGE_API_DESC','Dla uruchomienia funkcjonalności przeliczania walut konieczny jest klucz API Open Exchange Rates. W celu skorzystania z tej funkcjonalności Jomres odwiedź stronę: https://openexchangerates.org/signup/free (aktualizacja walut co godzinę, 1000 żądań/miesiąc - brak wsparcia HTTPS, wsparcia e-mail lub zaawansowanych funkcji). System Jomres pobiera kursy raz dziennie więc tak długo, jak używasz klucza na tylko kilku stronach, nie przekroczysz tych limitów. Przed Jomres 8.3 wykorzystywany był system przeliczania walut oferowany przez Yahoo, jednak ograniczenia licencyjne usługi spowodowały iż koniecznym stało się przejście na inny system przeliczania walut.');
+jr_define('_JOMRES_COMMISSION',"Rozliczenie");
+jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS',"Jeśli prześlesz kilka zdjęć dla dowolnej opcji dodatkowej, to tylko pierwsze z tych zdjęć będzie używane.");
+jr_define('_JOMRES_COMMISSION',"Rozliczenie");
+jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS',"Jeśli prześlesz kilka zdjęć dla dowolnej opcji dodatkowej, to tylko pierwsze z tych zdjęć będzie używane.");
+jr_define('_JRPORTAL_INVOICES_PAYNOW',"Zapłać teraz");
+jr_define('_JRPORTAL_INVOICES_PAYNOW_DESC',"Ta faktura jest już wymagalna. Proszę kliknąć, aby wybrać sposób płatności.");
+jr_define('_JOMRES_EXTRAS_TEMPLATE',"Oto lista niektórych rzeczy, które można zakupić podczas dokonywania rezerwacji w tej ofercie.");
+jr_define('_ASSIGN_COMMISSION_RATES','Przypisanie stawek prowizji');
+jr_define('GATEWAYS_INSTRUCTIONS','Na tej stronie można skonfigurować dostępne w systemie bramki płatności. Te opcje umożliwiają płatności za faktury za rezerwacje i subskrypcje. Zakładka Ustawienia może być zastąpiona tylko przez ustawienia PayPal, wszystkie inne bramki będą musiały być skonfigurowane za pomocą właściwości dostępnych na karcie konfiguracji bram, jednak jeśli brama pojawia się na tej liście to oznacza, że jest zdolna do przetwarzania płatności w formie depozytów rezerwacji i płatności za faktury.');
+jr_define('EXTRAS_INCLUDE_IN_PROPERTYDETAILS','Pokazać na stronie szczegółów oferty?');
+jr_define('PROPERTY_DETAILS_PAGE_OPTIONS','Strona ustawień szczegółów oferty');
+jr_define('_JOMRES_HLIST_PROPERTIES_WARNING','Zarządzanie ofertami w Jomres dostępne jest z poziomu strony frontowej serwisu. W tym miejscu możesz zobaczyć wszystkie dostępne w systemie oferty i przypisać dla nich stawki prowizyjne i zatwierdzić je lub nie (jeśli ta funkcja została włączona). Jeśli chcesz utworzyć nową ofertę, edytować istniejące, zarządzać rezerwacjami lub innymi właściwościami systemu rezerwacji, musisz zalogować się na stronie frontowej i przejść na stronę domyślną Jomres.');
+jr_define('PROPERTY_STATS_SALES','Sprzedaż');
+jr_define('PROPERTY_STATS_SALES_DESC','Kiedy rezerwacje są przyjmowane');
+jr_define('PROPERTY_STATS_BOOKINGS_DAYS','Rezerwacje (dni)');
+jr_define('PROPERTY_STATS_BOOKINGS_DAYS_DESC','Data początku rezerwacji i ilość dni.');
+jr_define('PROPERTY_STATS_ROOM_BOOKINGS_DAYS','Rezerwacje (zasób x dni)');
+jr_define('PROPERTY_STATS_ROOM_BOOKINGS_DAYS_DESC','Liczba zasobów wyprzedanych w miesiącu.');
+jr_define('_MEDIA_CENTRE_RESOURCE_FEATURES_ICONS','Ikony cech zasobów');
+jr_define('_JOMRES_PROPERTYFEATURES_HCATEGORIES','Kategorie cech ofert');
+jr_define('_JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT','Edycja kategorii cechy oferty');
+jr_define('_JOMRES_HCATEGORY','Kategoria');
+jr_define('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES','Pokazać podział na kategorie cech ofert?');
+jr_define('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC','Ustaw Tak, aby podzielić cechy ofert na kategorie. Ta opcja dotyczy tylko cech ofert wyświetlanych na stronie szczegółów ofert. Wszystkie inne strony wyświetlają je bez dzielenia ich na kategorie.');
