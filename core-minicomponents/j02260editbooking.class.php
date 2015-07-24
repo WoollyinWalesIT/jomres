@@ -392,10 +392,6 @@ class j02260editbooking
 			foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd)
 				{
 				$r = array ();
-				if ( (int)$rd[ 'room_disabled_access' ] == 1 ) 
-					$disabledAccess = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES );
-				else
-					$disabledAccess = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO );
 
 				$type = $current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'];
 
@@ -409,8 +405,6 @@ class j02260editbooking
 				$r[ '_JOMRES_COM_MR_EB_ROOM_FLOOR' ]  = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_FLOOR', _JOMRES_COM_MR_EB_ROOM_FLOOR );
 				$r[ 'RINFO_ROOM_FLOOR' ]              = $rd[ 'room_floor' ];
 
-				$r[ '_JOMRES_COM_MR_EB_ROOM_DISABLED' ]  = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_DISABLED', _JOMRES_COM_MR_EB_ROOM_DISABLED );
-				$r[ 'DISABLEDACCESS' ]                   = $disabledAccess;
 				$r[ '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE' ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE', _JOMRES_COM_MR_EB_ROOM_MAXPEOPLE );
 				$r[ 'RINFO_MAX_PEOPLE' ]                 = $rd[ 'max_people' ];
 
