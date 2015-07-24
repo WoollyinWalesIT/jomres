@@ -130,7 +130,6 @@ class j00101amendBooking
 						$tmpBookingHandler->tmpbooking[ "single_person_suppliment" ] = "";
 						$tmpBookingHandler->tmpbooking[ "deposit_required" ]         = (float) $c->deposit_required;
 						$tmpBookingHandler->tmpbooking[ "contract_total" ]           = (float) $c->contract_total;
-						$tmpBookingHandler->tmpbooking[ "smoking" ]                  = "";
 						$tmpBookingHandler->tmpbooking[ "extrasvalue" ]              = "";
 						$tmpBookingHandler->tmpbooking[ "extras" ]                   = "";
 						$tmpBookingHandler->tmpbooking[ "total_discount" ]           = "";
@@ -167,7 +166,6 @@ class j00101amendBooking
 						$tmpBookingHandler->tmpbooking[ "single_person_suppliment" ] = (float) $c->single_person_suppliment;
 						$tmpBookingHandler->tmpbooking[ "deposit_required" ]         = (int) $c->deposit_required;
 						$tmpBookingHandler->tmpbooking[ "contract_total" ]           = (float) $c->contract_total;
-						$tmpBookingHandler->tmpbooking[ "smoking" ]                  = (int) $c->smoking;
 						$tmpBookingHandler->tmpbooking[ "extrasvalue" ]              = (float) $c->extrasvalue;
 						$tmpBookingHandler->tmpbooking[ "extras" ]                   = (string) $c->extras;
 						$tmpBookingHandler->tmpbooking[ "extrasquantities" ]         = unserialize( $c->extrasquantities );

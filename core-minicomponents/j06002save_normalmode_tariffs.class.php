@@ -35,8 +35,6 @@ class j06002save_normalmode_tariffs
 		$defaultProperty = getDefaultProperty();
 		// New Room defaults
 		$room_floor           = "N/A";
-		$room_disabled_access = 0;
-		$smoking              = 0;
 		// New tariff defaults
 		$rate_title       = "Tariff";
 		$rate_description = "";
@@ -69,9 +67,7 @@ class j06002save_normalmode_tariffs
 					`room_name`,
 					`room_number`,
 					`room_floor`,
-					`room_disabled_access`,
-					`max_people`,
-					`smoking`
+					`max_people`
 					)VALUES (
 					'" . (int) $roomtype . "',
 					 " . (int) $defaultProperty . ",
@@ -79,9 +75,7 @@ class j06002save_normalmode_tariffs
 					'',
 					'1',
 					'$room_floor',
-					'" . (int) $room_disabled_access . "',
-					'" . (int) $max_people . "',
-					'" . (int) $smoking . "'
+					'" . (int) $max_people . "'
 					)";
 				$result = doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_ROOM', _JOMRES_MR_AUDIT_INSERT_ROOM, false ) );
 				}
@@ -210,9 +204,7 @@ class j06002save_normalmode_tariffs
 							`room_name`,
 							`room_number`,
 							`room_floor`,
-							`room_disabled_access`,
-							`max_people`,
-							`smoking`
+							`max_people`
 							)VALUES (
 							'" . (int) $d[ 'roomtype_uid' ] . "',
 							 " . (int) $defaultProperty . ",
@@ -220,9 +212,7 @@ class j06002save_normalmode_tariffs
 							'',
 							'$nextRoomNumberStr',
 							'$room_floor',
-							'$room_disabled_access',
-							'" . (int) $d[ 'max_people' ] . "',
-							'$smoking'
+							'" . (int) $d[ 'max_people' ] . "'
 						)";
 						//var_dump($query);echo "<br>";
 						$result = doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_ROOM', _JOMRES_MR_AUDIT_INSERT_ROOM, false ) );

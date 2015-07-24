@@ -65,7 +65,6 @@ class basic_contract_details
 						a.booked_in,
 						a.true_arrival,
 						a.single_person_suppliment,
-						a.smoking,
 						a.extras,
 						a.extrasquantities,
 						a.extrasvalue,
@@ -132,7 +131,6 @@ class basic_contract_details
 			$this->contract[$contract_uid]['contractdeets']['booked_in']					= $contract->booked_in;
 			$this->contract[$contract_uid]['contractdeets']['true_arrival']					= $contract->true_arrival;
 			$this->contract[$contract_uid]['contractdeets']['single_person_suppliment']		= $contract->single_person_suppliment;
-			$this->contract[$contract_uid]['contractdeets']['smoking']						= $contract->smoking;
 			$this->contract[$contract_uid]['contractdeets']['extras']						= $contract->extras;
 			$this->contract[$contract_uid]['contractdeets']['extrasquantities']				= unserialize($contract->extrasquantities);
 			$this->contract[$contract_uid]['contractdeets']['extrasvalue']					= $contract->extrasvalue;
@@ -217,9 +215,7 @@ class basic_contract_details
 						b.room_name,
 						b.room_number,
 						b.room_floor,
-						b.room_disabled_access,
 						b.max_people,
-						b.smoking,
 						b.singleperson_suppliment
 					FROM #__jomres_room_bookings a 
 					LEFT JOIN #__jomres_rooms b ON a.room_uid = b.room_uid
@@ -236,9 +232,7 @@ class basic_contract_details
 			$this->contract[$contract_uid]['roomdeets'][$roomBooking->room_uid]['room_name'] = $roomBooking->room_name;
 			$this->contract[$contract_uid]['roomdeets'][$roomBooking->room_uid]['room_number'] = $roomBooking->room_number;
 			$this->contract[$contract_uid]['roomdeets'][$roomBooking->room_uid]['room_floor'] = $roomBooking->room_floor;
-			$this->contract[$contract_uid]['roomdeets'][$roomBooking->room_uid]['room_disabled_access'] = $roomBooking->room_disabled_access;
 			$this->contract[$contract_uid]['roomdeets'][$roomBooking->room_uid]['max_people'] = $roomBooking->max_people;
-			$this->contract[$contract_uid]['roomdeets'][$roomBooking->room_uid]['smoking'] = $roomBooking->smoking;
 			$this->contract[$contract_uid]['roomdeets'][$roomBooking->room_uid]['singleperson_suppliment'] = $roomBooking->singleperson_suppliment;
 			}
 		

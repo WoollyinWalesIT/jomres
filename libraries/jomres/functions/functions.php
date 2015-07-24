@@ -2694,11 +2694,6 @@ function hotelSettings()
 	$yesno[ ] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false ) );
 	$yesno[ ] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false ) );
 
-	$smokingOptions	= array ();
-	$smokingOptions[ ] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false ) );
-	$smokingOptions[ ] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false ) );
-	$smokingOptions[ ] = jomresHTML::makeOption( '2', jr_gettext( '_JOMRES_FRONT_ROOMSMOKING_EITHER', _JOMRES_FRONT_ROOMSMOKING_EITHER, false ) );
-
 	if ( $mrConfig[ 'newTariffModels' ] != "1" && $mrConfig[ 'newTariffModels' ] != "2" ) // backward compatablity for pre-2.5 users who haven't yet visited General Configuration and clicked Save
 	$mrConfig[ 'newTariffModels' ] = "2";
 	$tariffModels		 = array ();
@@ -2737,7 +2732,6 @@ function hotelSettings()
 	$jsInputFormatDropdownList = jomresHTML::selectList( $jsInputDateFormats, 'cfg_cal_input', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'cal_input' ] );
 
 	//$slideshowDropdownList= jomresHTML::selectList($slideshowNames, 'cfg_slideshow', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['slideshow']);
-	$smokingOptionDropdownList = jomresHTML::selectList( $smokingOptions, 'cfg_defaultSmokingOption', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'defaultSmokingOption' ] );
 	$weekdayDropdown		   = jomresHTML::selectList( $weekDays, 'cfg_fixedArrivalDay', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'fixedArrivalDay' ] );
 	$weekenddayDropdown		= jomresHTML::selectList( $weekendDays, 'cfg_weekenddays', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'weekenddays' ] );
 
@@ -2797,7 +2791,6 @@ function hotelSettings()
 	$lists[ 'showAdminTapeview' ]				 = jomresHTML::selectList( $yesno, 'cfg_showAdminTapeview', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showAdminTapeview' ] );
 	$lists[ 'fixedPeriodBookingsShortYesNo' ]	 = jomresHTML::selectList( $yesno, 'cfg_fixedPeriodBookingsShortYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'fixedPeriodBookingsShortYesNo' ] );
 	$lists[ 'showExtras' ]						= jomresHTML::selectList( $yesno, 'cfg_showExtras', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showExtras' ] );
-	$lists[ 'showSmoking' ]					   = jomresHTML::selectList( $yesno, 'cfg_showSmoking', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showSmoking' ] );
 	$lists[ 'limitAdvanceBookingsYesNo' ]		 = jomresHTML::selectList( $yesno, 'cfg_limitAdvanceBookingsYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'limitAdvanceBookingsYesNo' ] );
 	$lists[ 'roomTaxYesNo' ]					  = jomresHTML::selectList( $yesno, 'cfg_roomTaxYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'roomTaxYesNo' ] );
 	$lists[ 'euroTaxYesNo' ]					  = jomresHTML::selectList( $yesno, 'cfg_euroTaxYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'euroTaxYesNo' ] );
@@ -2836,7 +2829,6 @@ function hotelSettings()
 	$lists[ 'bookingform_overlib_room_number_show' ]		 = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_number_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_number_show' ] );
 	$lists[ 'bookingform_overlib_room_name_show' ]		   = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_name_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_name_show' ] );
 	$lists[ 'bookingform_overlib_room_type_show' ]		   = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_type_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_type_show' ] );
-	$lists[ 'bookingform_overlib_room_smoking_show' ]		= jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_smoking_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_smoking_show' ] );
 	$lists[ 'bookingform_overlib_room_disabledaccess_show' ] = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_disabledaccess_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_disabledaccess_show' ] );
 	$lists[ 'bookingform_overlib_room_floor_show' ]		  = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_floor_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_floor_show' ] );
 	$lists[ 'bookingform_overlib_room_maxpeople_show' ]	  = jomresHTML::selectList( $yesno, 'cfg_bookingform_overlib_room_maxpeople_show', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_overlib_room_maxpeople_show' ] );
@@ -2891,7 +2883,6 @@ function hotelSettings()
 	$componentArgs[ 'lists' ]					 = $lists;
 	$componentArgs[ 'weekdayDropdown' ]		   = $weekdayDropdown;
 	$componentArgs[ 'jsInputFormatDropdownList' ] = $jsInputFormatDropdownList;
-	$componentArgs[ 'smokingOptionDropdownList' ] = $smokingOptionDropdownList;
 	$componentArgs[ 'weekenddayDropdown' ]		= $weekenddayDropdown;
 	//$componentArgs['templateNamesDropdownList']=$templateNamesDropdownList;
 	$componentArgs[ 'paymentAmounts' ]					= $paymentAmounts;

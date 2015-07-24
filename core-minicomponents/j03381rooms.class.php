@@ -32,7 +32,7 @@ class j03381rooms
 		$dropdown = '';
 		$defaultProperty = getDefaultProperty();
 
-		$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $defaultProperty . "' ORDER BY room_number,room_name";
+		$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,max_people FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $defaultProperty . "' ORDER BY room_number,room_name";
 		$roomsList = doSelectSql ($query);
 		if (count ($roomsList) > 0 )
 			{

@@ -33,7 +33,6 @@ class j00501booking_settings
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) return;
 		$lists = $componentArgs[ 'lists' ];
 		//$tabs=$componentArgs['tabs'];
-		$smokingOptionDropdownList         = $componentArgs[ 'smokingOptionDropdownList' ];
 		$weekenddayDropdown                = $componentArgs[ 'weekenddayDropdown' ];
 		$booking_form_rooms_list_style     = $componentArgs[ 'booking_form_rooms_list_style' ];
 		$booking_form_daily_weekly_monthly = $componentArgs[ 'booking_form_daily_weekly_monthly' ];

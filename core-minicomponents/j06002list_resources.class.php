@@ -41,7 +41,7 @@ class j06002list_resources
 		
 		$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 			
-		$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $defaultProperty . "' ORDER BY propertys_uid,room_number ";
+		$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,max_people FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $defaultProperty . "' ORDER BY propertys_uid,room_number ";
 		$roomsList = doSelectSql( $query );
 			
 		$query = "SELECT room_features_uid,feature_description,property_uid FROM #__jomres_room_features WHERE property_uid = '" . (int) $defaultProperty . "' OR property_uid = '0' ORDER BY feature_description ";
@@ -106,21 +106,7 @@ class j06002list_resources
 			$r[ 'ROOM_NAME' ]   = stripslashes( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE' . $room->room_uid, stripslashes( $room->room_name ) ) );
 			$r[ 'ROOM_NUMBER' ] = $room->room_number;
 			$r[ 'ROOM_FLOOR' ]  = $room->room_floor;
-
-			if ( $room->room_disabled_access ) 
-				$disabledAccess = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
-			else
-				$disabledAccess = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
-			
-			$r[ 'DISABLED_ACCESS' ] = $disabledAccess;
-			$r[ 'MAX_PEOPLE' ]      = $room->max_people;
-
-			if ( $room->smoking ) 
-				$smokingRoom = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
-			else
-				$smokingRoom = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
-
-			$r[ 'SMOKING' ] = $smokingRoom;
+			$r[ 'MAX_PEOPLE' ]  = $room->max_people;
 
 			$r[ 'ROOM_IMAGE' ] = $jomres_media_centre_images->images['rooms'][$room->room_uid][0]['small'];
 
@@ -154,9 +140,7 @@ class j06002list_resources
 		$output[ 'HROOM_NAME' ]           = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME, false );
 		$output[ 'HROOM_NUMBER' ]         = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER, false );
 		$output[ 'HROOM_FLOOR' ]          = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR, false );
-		$output[ 'HROOM_DISABLEDACCESS' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS', _JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS, false );
 		$output[ 'HROOM_MAXPEOPLE' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE, false );
-		$output[ 'HROOM_ROOMSMOKING' ]    = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', _JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING, false );
 		$output[ 'HROOM_IMAGE' ]      	  = jr_gettext( '_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE', _JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE, false );
 		$output[ 'HROOM_FEATURES' ]       = jr_gettext( '_JOMRES_HRESOURCE_FEATURES', _JOMRES_HRESOURCE_FEATURES, false );
 		
@@ -199,9 +183,7 @@ class j06002list_resources
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS', _JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', _JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES', _JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', _JOMRES_COM_MR_VRCT_TAB_ROOMTYPES );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK );

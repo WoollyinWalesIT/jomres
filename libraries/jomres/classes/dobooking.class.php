@@ -173,7 +173,6 @@ class dobooking
 			$this->single_person_suppliment        = $bookingDeets[ 'single_person_suppliment' ];
 			$this->deposit_required                = $bookingDeets[ 'deposit_required' ];
 			$this->contract_total                  = $bookingDeets[ 'contract_total' ];
-			$this->smoking                         = $bookingDeets[ 'smoking' ];
 			$this->extrasvalue                     = $bookingDeets[ 'extrasvalue' ];
 			$this->extrasvalues_items              = unserialize( $bookingDeets[ 'extrasvalues_items' ] );
 			$this->third_party_extras              = unserialize( $bookingDeets[ 'third_party_extras' ] );
@@ -293,11 +292,9 @@ class dobooking
 		$this->cfg_cal_output                           = $mrConfig[ 'cal_output' ];
 		$this->cfg_cal_input                            = $jrConfig[ 'cal_input' ];
 		//$this->cfg_showExtras									= $mrConfig['showExtras'];
-		$this->cfg_defaultSmokingOption      = $mrConfig[ 'defaultSmokingOption' ];
 		$this->cfg_currency                  = $mrConfig[ 'currency' ];
 		$this->cfg_currencyCode              = $mrConfig[ 'currencyCode' ];
 		$this->cfg_templatePack              = "basic";
-		$this->cfg_showSmoking               = $mrConfig[ 'showSmoking' ];
 		$this->cfg_limitAdvanceBookingsYesNo = $mrConfig[ 'limitAdvanceBookingsYesNo' ];
 		$this->cfg_advanceBookingsLimit      = $mrConfig[ 'advanceBookingsLimit' ];
 		$this->cfg_roomTaxYesNo              = $mrConfig[ 'roomTaxYesNo' ];
@@ -372,8 +369,6 @@ class dobooking
 		if ( $amend_contract ) $mrConfig[ 'booking_form_rooms_list_style' ] = "1";
 
 		$this->cfg_booking_form_rooms_list_style = $mrConfig[ 'booking_form_rooms_list_style' ];
-
-		if ( is_null( $this->smoking ) || strlen( $this->smoking ) == 0 ) $this->smoking = $this->cfg_defaultSmokingOption;
 
 		$mrConfig                     = $this->mrConfig;
 		$this->accommodation_tax_rate = 0.0;
@@ -483,7 +478,6 @@ class dobooking
 		$tmpBookingHandler->tmpbooking[ "single_person_suppliment" ]        = $this->single_person_suppliment;
 		$tmpBookingHandler->tmpbooking[ "deposit_required" ]                = $this->deposit_required;
 		$tmpBookingHandler->tmpbooking[ "contract_total" ]                  = $this->contract_total;
-		$tmpBookingHandler->tmpbooking[ "smoking" ]                         = $this->smoking;
 		$tmpBookingHandler->tmpbooking[ "extrasvalue" ]                     = $this->extrasvalue;
 		$tmpBookingHandler->tmpbooking[ "extrasvalues_items" ]              = serialize( $this->extrasvalues_items );
 		$tmpBookingHandler->tmpbooking[ "extras" ]                          = $this->extras;
@@ -541,7 +535,7 @@ class dobooking
 
 		foreach ( $basic_room_details->rooms as $r )
 			{
-			$this->allPropertyRooms[ $r['room_uid'] ] = array ( 'room_uid' => $r['room_uid'], 'room_classes_uid' => $r['room_classes_uid'], 'propertys_uid' => $r['propertys_uid'], 'room_features_uid' => $r['room_features_uid'], 'room_name' => $r['room_name'], 'room_number' => $r['room_number'], 'room_floor' => $r['room_floor'], 'room_disabled_access' => $r['room_disabled_access'], 'max_people' => $r['max_people'], 'smoking' => $r['smoking'], 'singleperson_suppliment' => $r['singleperson_suppliment'] , "small_room_image" => $room_images [ $r['room_uid'] ] [0] ['small'], "medium_room_image" => $room_images [ $r['room_uid'] ] [0] ['medium']);
+			$this->allPropertyRooms[ $r['room_uid'] ] = array ( 'room_uid' => $r['room_uid'], 'room_classes_uid' => $r['room_classes_uid'], 'propertys_uid' => $r['propertys_uid'], 'room_features_uid' => $r['room_features_uid'], 'room_name' => $r['room_name'], 'room_number' => $r['room_number'], 'room_floor' => $r['room_floor'], 'max_people' => $r['max_people'], 'singleperson_suppliment' => $r['singleperson_suppliment'] , "small_room_image" => $room_images [ $r['room_uid'] ] [0] ['small'], "medium_room_image" => $room_images [ $r['room_uid'] ] [0] ['medium']);
 
 			$this->allPropertyRoomUids[ ] = $r['room_uid'];
 			
@@ -1189,9 +1183,7 @@ class dobooking
 			}
 		else
 		$output[ 'HDEPARTUREDATE' ] = "&nbsp;";
-		if ( $mrConfig[ 'showSmoking' ] == "1" ) $output[ 'HSMOKINGTITLE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', _JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING ) );
-		else
-		$output[ 'HSMOKINGTITLE' ] = "";
+		
 		$output[ 'BOOKINGHEADER' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_QUICKRESDESC', _JOMRES_COM_MR_QUICKRESDESC ) );
 		$output[ 'ADDRESSHEADER' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS', _JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS ) );
 		$output[ 'HEXTITLE' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_BOOKING_EXTRAS_HELP', _JOMRES_FRONT_MR_BOOKING_EXTRAS_HELP ) );
@@ -1971,73 +1963,6 @@ class dobooking
 		{
 		$this->additional_line_items[ $context ][ $id ] = array ( 'id' => $id, 'description' => $description, 'untaxed_grand_total' => (float) $total_value );
 		if ( $tax_code_id > 0 ) $this->additional_line_items[ $context ][ $id ][ 'tax_code_id' ] = $tax_code_id;
-		}
-
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//
-	//	Smoking
-	//
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	/**
-	#
-	 * Initialise the default smoking option depending on property configuration
-	#
-	 */
-	function initSmoking()
-		{
-		//$this->smoking=$this->cfg_defaultSmokingOption;
-		return $this->smoking;
-		}
-
-	/**
-	#
-	 * Return the currently selected smoking option
-	#
-	 */
-	function getSmoking()
-		{
-		return $this->smoking;
-		}
-
-	/**
-	#
-	 * Sets the smoking option to n
-	#
-	 */
-	function setSmoking( $smoking )
-		{
-		$this->smoking = $smoking;
-		}
-
-	/**
-	#
-	 * Check that the smoking option selected = 0/1/2
-	#
-	 */
-	function checkSmoking( $smoking )
-		{
-		if ( $smoking != "0" && $smoking != "1" && $smoking != "2" ) return false;
-
-		return true;
-		}
-
-	/**
-	#
-	 * Make the smoking dropdown
-	#
-	 */
-	function  makeSmokingOutput( $smoking )
-		{
-		$smokingOpts     = array ();
-		$smokingOpts[ ]  = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false ) );
-		$smokingOpts[ ]  = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false ) );
-		$smokingOpts[ ]  = jomresHTML::makeOption( '2', jr_gettext( '_JOMRES_FRONT_ROOMSMOKING_EITHER', _JOMRES_FRONT_ROOMSMOKING_EITHER, false ) );
-		$smokingDropdown = jomresHTML::selectList( $smokingOpts, 'smoking', 'size="1" class="input-medium" onchange="getResponse_particulars(\'smoking\',this.value);" ', 'value', 'text', $smoking );
-
-		return $smokingDropdown;
 		}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4008,56 +3933,6 @@ class dobooking
 
 	/**
 	#
-	 * Filters the free rooms array based on the smoking requirements
-	#
-	 */
-	// Returns rooms that match the required smoking option
-	function checkSmokingOption( $freeRoomsArray )
-		{
-		$smoking      = $this->getSmoking();
-		$newRoomArray = array ();
-		if ( $this->cfg_showSmoking == "1" )
-			{
-			$uidList = "";
-			if ( count( $freeRoomsArray ) > 0 )
-				{
-				if ( $smoking != "2" )
-					{
-					$query = "SELECT room_uid FROM #__jomres_rooms WHERE (";
-					foreach ( $freeRoomsArray as $roomUid )
-						{
-						$uidList .= "room_uid = '$roomUid' OR ";
-						}
-					$query .= substr( $uidList, 0, -3 );
-					$query .= ") AND smoking = '";
-					if ( $smoking == "0" ) $query .= "0'";
-					if ( $smoking == "1" ) $query .= "1'";
-					$roomList = doSelectSql( $query );
-					if ( count( $roomList ) > 0 )
-						{
-						foreach ( $roomList as $ruid )
-							{
-							$newRoomArray[ ] = $ruid->room_uid;
-							}
-						}
-					}
-				else
-				$newRoomArray = $freeRoomsArray;
-				}
-			else
-			$this->setErrorLog( "checkSmokingOption::Free rooms array empty when checking smoking option" );
-			}
-		else
-			{
-			$this->setErrorLog( "checkSmokingOption::Check smoking option is switched off " );
-			$newRoomArray = $freeRoomsArray;
-			}
-
-		return $newRoomArray;
-		} // end function checkSmoking
-
-	/**
-	#
 	 * Finds the total number of beds that are unbooked in this property at this time
 	#
 	 */
@@ -4067,7 +3942,6 @@ class dobooking
 		if ( count( $freeRoomsArray ) > 0 )
 			{
 			$query = "SELECT room_uid,max_people FROM #__jomres_rooms WHERE ";
-			if ( $this->smoking != "2" && $this->cfg_showSmoking == "1" ) $query .= " smoking = '$this->smoking' AND";
 			$query .= " (room_uid = ";
 			for ( $i = 0, $n = count( $freeRoomsArray ); $i < $n; $i++ )
 				{
@@ -5082,19 +4956,8 @@ class dobooking
 
 		$room_classes_uid     = $room[ 'room_classes_uid' ];
 		$room_features_uid    = $room[ 'room_features_uid' ];
-		$room_disabled_access = $room[ 'room_disabled_access' ];
-		$smoking              = $room[ 'smoking' ];
-		$classAbbv            = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION' . $room_classes_uid, $this->allRoomClasses[ $room_classes_uid ][ 'room_class_abbv' ], false, false ) );
-
-		if ( $room_disabled_access == 1 ) 
-			$disabledAccess = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false, false ) );
-		else
-			$disabledAccess = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false, false ) );
 		
-		if ( $smoking == 1 ) 
-			$smoking = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false, false ) );
-		else
-			$smoking = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false, false ) );
+		$classAbbv            = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION' . $room_classes_uid, $this->allRoomClasses[ $room_classes_uid ][ 'room_class_abbv' ], false, false ) );
 		
 		$roomFeatureUidsArray = explode( ",", $room_features_uid );
 		if ( $roomFeatureUidsArray )
@@ -5113,10 +4976,8 @@ class dobooking
 
 		$roomRow[ 'HEADER_ROOMNUMBER' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER, false, false ) );
 		$roomRow[ 'HEADER_ROOMTYPE' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE, false, false ) );
-		$roomRow[ 'HEADER_SMOKING' ]        = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', _JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING, false, false ) );
 		$roomRow[ 'HEADER_ROOMNAME' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME, false, false ) );
 		$roomRow[ 'HEADER_ROOMFLOOR' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR, false, false ) );
-		$roomRow[ 'HEADER_DISABLEDACCESS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS', _JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS, false, false ) );
 		$roomRow[ 'HEADER_MAXPEOPLE' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE, false, false ) );
 		$roomRow[ 'HEADER_FEATURES' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST', _JOMRES_COM_MR_EB_ROOM_FEATURES_LIST, false, false ) );
 		$roomRow[ 'HTITLE' ]   				= $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_TITLE', _JOMRES_FRONT_TARIFFS_TITLE, false, false ) );
@@ -5126,10 +4987,8 @@ class dobooking
 		$roomRow[ 'ROOMNUMBER' ] = $this->sanitiseOutput( stripslashes( $room[ 'room_number' ] ) );
 		$roomRow[ 'ROOMTYPE' ]   = $classAbbv;
 		//$roomRow['ROOMTYPEIMAGE']= $typeImage;
-		$roomRow[ 'SMOKING' ]          = $smoking;
 		$roomRow[ 'ROOMNAME' ]         = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE' . $roomUid, stripslashes( $room[ 'room_name' ] ), false, false ) );
 		$roomRow[ 'ROOMFLOOR' ]        = $this->sanitiseOutput( stripslashes( $room[ 'room_floor' ] ) );
-		$roomRow[ 'DISABLEDACCESS' ]   = $disabledAccess;
 		$roomRow[ 'MAXPEOPLE_INROOM' ] = $this->sanitiseOutput( $room[ 'max_people' ] );
 		
 		if (using_bootstrap() && jomres_bootstrap_version() == "3")
@@ -5345,10 +5204,8 @@ class dobooking
 
 		$roomRow[ 'HEADER_ROOMNUMBER' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER, false, false ) );
 		$roomRow[ 'HEADER_ROOMTYPE' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE, false, false ) );
-		$roomRow[ 'HEADER_SMOKING' ]        = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', _JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING, false, false ) );
 		$roomRow[ 'HEADER_ROOMNAME' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME, false, false ) );
 		$roomRow[ 'HEADER_ROOMFLOOR' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR, false, false ) );
-		$roomRow[ 'HEADER_DISABLEDACCESS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS', _JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS, false, false ) );
 		$roomRow[ 'HEADER_MAXPEOPLE' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE, false, false ) );
 		$roomRow[ 'HEADER_FEATURES' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST', _JOMRES_COM_MR_EB_ROOM_FEATURES_LIST, false, false ) );
 
@@ -5452,17 +5309,12 @@ class dobooking
 				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_SRP_WEHAVENOVACANCIES', _JOMRES_SRP_WEHAVENOVACANCIES, false, false ) ) );
 				}
 
-			if ( $this->number_of_free_rooms == 0 && ( $this->currentField == "arrivalDate" || $this->currentField == "departureDate" || $this->currentField == "guesttype" || $this->currentField == "smoking" ) )
+			if ( $this->number_of_free_rooms == 0 && ( $this->currentField == "arrivalDate" || $this->currentField == "departureDate" || $this->currentField == "guesttype") )
 				{
 				$this->resetPricingOutput = true;
 				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_SRP_WEHAVENOVACANCIES', _JOMRES_SRP_WEHAVENOVACANCIES, false, false ) ) );
 				}
 
-			if ( !$this->checkSmoking( $this->smoking ) )
-				{
-				$this->resetPricingOutput = true;
-				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_SMOKING_INVALID', _JOMRES_BOOKINGFORM_MONITORING_SMOKING_INVALID, false, false ) ) );
-				}
 			if ( !$this->checkArrivalDate( $this->arrivalDate ) )
 				{
 				$this->resetPricingOutput = true;

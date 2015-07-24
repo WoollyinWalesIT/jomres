@@ -2,7 +2,6 @@
 	<table valign="top" border="0" width="100%">
 		<patTemplate:comment>
 			Also possibly available to the template :
-			{HEADER_SMOKING} e.g. 'Smoking'
 			{HEADER_ROOMFLOOR} e.g. 'Floor'
 			{HEADER_FEATURES} e.g. 'Resource features list'
 			{HDESC} e.g. 'Tariff description'
@@ -22,7 +21,6 @@
 			<th>{HEADER_ROOMTYPE}</th>
 			<th>{HTITLE}</th>
 			<th>{HRATEPERNIGHT}</th>
-			<th>{HEADER_DISABLEDACCESS}</th>
 			<th>{HMAXPEEPS}</th>
 		</tr>
 		</thead>
@@ -61,10 +59,6 @@
 				</td>
 				<td>
 					<a href="javascript:void(0);"
-					   onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{DISABLEDACCESS}</a>
-				</td>
-				<td>
-					<a href="javascript:void(0);"
 					   onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{MAXPEOPLE_INROOM}</a>
 				</td>
 			</tr>
@@ -77,7 +71,6 @@
 				'MINPEOPLE' e.g. '1'
 				'RATEPERNIGHT' e.g. '100'
 				'TARIFF_ROOMTYPE' e.g. '3'
-				'SMOKING e.g. 'Yes'
 				'ROOMFLOOR e.g. '1'
 				'MAXPEOPLE e.g. '10'
 				'FEATURES e.g. 'Tea & Coffee Making facilities<br/>'

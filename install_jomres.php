@@ -451,8 +451,54 @@ function doTableUpdates()
 	if ( !checkRfeaturesImageColExists() ) alterRfeaturesImageCol();
 	if ( !checkPfeaturesCategoriesTableExists() ) createPfeaturesCategoriesTable();
 	if ( !checkPfeaturesCategoryColExists() ) alterPfeaturesCategoryCol();
+	if ( checkRoomSmokingColExists() ) alterRoomsSmokingCol();
+	if ( checkContractsSmokingColExists() ) alterContractsSmokingCol();
 	
 	updateSiteSettings ( "update_time" , time() );
+	}
+
+function checkRoomSmokingColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_rooms LIKE 'smoking'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
+
+function alterRoomsSmokingCol()
+	{
+	output_message ( "Editing __jomres_rooms table dropping smoking, room_disabled_access columns");
+	$query = "ALTER TABLE #__jomres_rooms DROP COLUMN `smoking`, DROP COLUMN `room_disabled_access` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to drop __jomres_rooms smoking, room_disabled_access columns", "danger" );
+		}
+	}
+
+function checkContractsSmokingColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_contracts LIKE 'smoking'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
+
+function alterContractsSmokingCol()
+	{
+	output_message ( "Editing __jomres_contracts table dropping smoking column");
+	$query = "ALTER TABLE #__jomres_contracts DROP COLUMN `smoking` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to drop __jomres_contracts smoking column", "danger" );
+		}
 	}
 
 function checkPfeaturesCategoriesTableExists()
@@ -3336,7 +3382,6 @@ function createJomresTables()
 		`cot_required` TINYINT DEFAULT '0' NOT NULL,
 		`single_person_suppliment` VARCHAR( 11 ) DEFAULT '0',
 		`multi_room_booking` TINYINT DEFAULT '0' NOT NULL,
-		`smoking` TINYINT DEFAULT '0' NOT NULL,
 		`extras` TEXT NULL,
 		`extrasquantities` VARCHAR( 255 ),
 		`extrasvalue` DOUBLE,
@@ -3473,9 +3518,7 @@ function createJomresTables()
 		`room_name` TEXT NULL,
 		`room_number` VARCHAR(255) NULL,
 		`room_floor` VARCHAR(10) NULL,
-		`room_disabled_access` BOOL NULL,
 		`max_people` INTEGER NULL,
-		`smoking` BOOL NULL,
 		`singleperson_suppliment` DOUBLE DEFAULT '0',
 		PRIMARY KEY(`room_uid`)
 		) ";
@@ -4003,7 +4046,7 @@ function insertSampleData()
 	$result = doInsertSql( "INSERT INTO `#__jomres_rooms` ( `room_uid` , `room_classes_uid` , `propertys_uid` , `room_features_uid` , `room_name` , `room_number` , `room_floor` , `room_disabled_access` , `max_people`,`smoking` )VALUES ('1', '3', '1', '1,2', 'The Pitt', '11', '1', '0', '2','1')", "" );
 
 
-	$result = doInsertSql( "INSERT INTO `#__jomres_rooms` ( `room_uid` , `room_classes_uid` , `propertys_uid` , `room_features_uid` , `room_name` , `room_number` , `room_floor` , `room_disabled_access` , `max_people`,`smoking` )VALUES ('2', '3', '1', '1,2', 'The hole', '21', '2', '0', '4','0')", "" );
+	$result = doInsertSql( "INSERT INTO `#__jomres_rooms` ( `room_uid` , `room_classes_uid` , `propertys_uid` , `room_features_uid` , `room_name` , `room_number` , `room_floor` , `max_people` )VALUES ('2', '3', '1', '1,2', 'The hole', '21', '2', '4')", "" );
 
 
 	$result = doInsertSql( "INSERT INTO `#__jomres_rates` ( `rates_uid` , `rate_description` , `validfrom` , `validto` , `roomrateperday` , `mindays` , `maxdays` , `minpeople` , `maxpeople`,`roomclass_uid`,`ignore_pppn`,`allow_ph`,`allow_we`,`property_uid` )VALUES ('5', 'Double rooms', '2014/04/28', '2024/04/28', '110', '1', '1000', '1', '4','3','0','1','1','1')", "" );

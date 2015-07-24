@@ -32,9 +32,7 @@ class j06002save_resource
 			{
 			$roomUid                 = intval( jomresGetParam( $_POST, 'roomUid', 0 ) );
 			$roomClasses             = intval( jomresGetParam( $_POST, 'roomClasses', 0 ) );
-			$disabledAccess          = intval( jomresGetParam( $_POST, 'disabledAccess', 0 ) );
 			$max_people              = intval( jomresGetParam( $_POST, 'max_people', 0 ) );
-			$smoking                 = intval( jomresGetParam( $_POST, 'smoking', 0 ) );
 			$room_name               = getEscaped( jomresGetParam( $_POST, 'room_name', "" ) );
 			$room_number             = getEscaped( jomresGetParam( $_POST, 'room_number', "" ) );
 			$room_floor              = getEscaped( jomresGetParam( $_POST, 'room_floor', "" ) );
@@ -51,7 +49,7 @@ class j06002save_resource
 				$saveMessage      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_SAVE_INSERT', _JOMRES_COM_MR_VRCT_ROOM_SAVE_INSERT, false );
 				$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
 				$jomres_messaging->set_message( $saveMessage );
-				$query = "INSERT INTO #__jomres_rooms (`room_classes_uid`,`propertys_uid`,`room_features_uid`,`room_name`,`room_number`,`room_floor`,`room_disabled_access`,`max_people`,`smoking`,`singleperson_suppliment`)VALUES ('" . (int) $roomClasses . "'," . (int) $defaultProperty . ",'$featuresList','$room_name','$room_number','$room_floor','" . (int) $disabledAccess . "','" . (int) $max_people . "','" . (int) $smoking . "','" . $singleperson_suppliment . "')";
+				$query = "INSERT INTO #__jomres_rooms (`room_classes_uid`,`propertys_uid`,`room_features_uid`,`room_name`,`room_number`,`room_floor`,`max_people`,`singleperson_suppliment`)VALUES ('" . (int) $roomClasses . "'," . (int) $defaultProperty . ",'$featuresList','$room_name','$room_number','$room_floor','" . (int) $max_people . "','" . $singleperson_suppliment . "')";
 				if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_ROOM', _JOMRES_MR_AUDIT_INSERT_ROOM, false ) ) )
 					jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=list_resources" ), "" );
 				trigger_error( "Sql error when saving new room", E_USER_ERROR );
@@ -61,7 +59,7 @@ class j06002save_resource
 				//$saveMessage=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_SAVE_UPDATE',_JOMRES_COM_MR_VRCT_ROOM_SAVE_UPDATE,FALSE);
 				$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
 				$jomres_messaging->set_message( $saveMessage );
-				$query = "UPDATE #__jomres_rooms SET `room_classes_uid`='$roomClasses',`room_features_uid`='$featuresList',`room_name`='$room_name',`room_number`='$room_number',`room_floor`='$room_floor',`room_disabled_access`='" . (int) $disabledAccess . "',`max_people`='" . (int) $max_people . "',`smoking`='" . (int) $smoking . "',`singleperson_suppliment`='" . (float) $singleperson_suppliment . "' WHERE room_uid='" . (int) $roomUid . "' AND propertys_uid='" . (int) $defaultProperty . "'";
+				$query = "UPDATE #__jomres_rooms SET `room_classes_uid`='$roomClasses',`room_features_uid`='$featuresList',`room_name`='$room_name',`room_number`='$room_number',`room_floor`='$room_floor',`max_people`='" . (int) $max_people . "',`singleperson_suppliment`='" . (float) $singleperson_suppliment . "' WHERE room_uid='" . (int) $roomUid . "' AND propertys_uid='" . (int) $defaultProperty . "'";
 				if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_ROOM', _JOMRES_MR_AUDIT_UPDATE_ROOM, false ) ) ) 
 					jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=list_resources" ), "" );
 				trigger_error( "Sql error when updating room", E_USER_ERROR );
