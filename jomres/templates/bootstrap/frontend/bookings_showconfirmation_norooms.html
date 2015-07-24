@@ -167,6 +167,9 @@
 	<p>{SPECIALS} {DISCLAIMER}</p>
 	<textarea class="input-xlarge " name="specialReqs" rows="2">{SPECIALREQS}</textarea>
 </div>
+
+<patTemplate:tmpl name="gateway_output" type="simpleCondition" requiredVars="gatewaychoiceintro">
+<h3 class="page-header">{GATEWAYCHOICEINTRO}</h3>
 <patTemplate:tmpl name="gateways">
 	<div class="row-fluid">
 		<div class="span3">
@@ -177,6 +180,8 @@
 		</div>
 	</div>
 </patTemplate:tmpl>
+</patTemplate:tmpl>
+
 <div class="row-fluid">
 	<div class="span9">
 		{AMENDTEXT}

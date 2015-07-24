@@ -1177,8 +1177,10 @@ function detect_property_uid()
 
 	}
 
+// Return "NA" if no gateway is configured for this property. The calling script will process payment without attempting to call a gateway (IE simply enter the booking)
 function jomres_validate_gateway_plugin()
 	{
+	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 	if ( $thisJRUser->userIsManager ) 
 		return "NA";
@@ -1198,13 +1200,39 @@ function jomres_validate_gateway_plugin()
 		$all_gateways = doSelectSql( $query );
 		if ( count($all_gateways) == 0 )
 			return "NA";
-		
+
 		if ( !isset( $_REQUEST[ 'plugin' ] ) || $_REQUEST[ 'plugin' ] == "" )
 			{
-			gateway_log( "Error, gateway name not sent, probable hack attempt" );
-			//trigger_error( "Error, gateway name not sent, probable hack attempt", E_USER_ERROR );
-			throw ( "Error, gateway name not sent, probable hack attempt" ) ;
-			//die();
+			$query		= "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = " . (int) $property_uid . " AND setting = 'active' AND value = '1'";
+			$configured_gateways = doSelectSql( $query );
+			$number_of_configured_gateways = count($configured_gateways);
+			if ( $number_of_configured_gateways == 0)  // No gateways are configured for this property, 
+				{
+				return "NA";
+				}
+			
+			$installed_gateways = array();
+			foreach ( $configured_gateways as $gateway )
+				{
+				$gateway_config_file = "00509".$gateway->plugin;
+				if (count($MiniComponents->registeredClasses[$gateway_config_file]) > 0 )
+					{
+					$installed_gateways[] = $gateway->plugin;
+					}
+				}
+
+			if ( count($installed_gateways) > 0 ) // Gateways are installed. There's at least one configured gateway for this property, but it's not in $_REQUEST, so this is likely an attempt to bypass the gateway scripts
+				{
+				gateway_log( "Error, gateway name not sent, probable hack attempt" );
+				trigger_error( "Error, gateway name not sent, probable hack attempt", E_USER_ERROR );
+				die();
+				}
+			else
+				{
+				return "NA";
+				}
+			
+			
 			}
 		if ( !isset( $_REQUEST[ 'plugin' ] ) )
 			{
@@ -1278,6 +1306,14 @@ function set_showtime( $setting, $value )
 
 function get_plugin_settings( $plugin, $prop_id = 0 )
 	{
+	// This function is exclusively for gateway plugins
+	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+	$gw_configuration_script = '00509'.$gw[ 'GWNAME' ];
+	if (count($MiniComponents->registeredClasses[$gw_configuration_script]) == 0) // Let's check to see that the gateway hasn't been uninstalled. It's possible that the settings exist, but the gateway code itself doesn't.
+		{
+		return false; // Can't "throw" an error here, any failure needs to be handled by the calling function/method
+		}
+
 	$settingArray = array ();
 	$thisJRUser   = jomres_singleton_abstract::getInstance( 'jr_user' );
 
