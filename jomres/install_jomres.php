@@ -4043,7 +4043,7 @@ function insertSampleData()
 	//$result=doInsertSql("INSERT INTO `#__jomres_room_classes` ( `room_classes_uid` , `room_class_abbv` , `room_class_full_desc`,`property_uid`,`image` )VALUES ('3', 'D/B', 'Double Bed','0','/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/double.png'), ('4', 'T/B', 'Twin Beds','0','/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/twin.png')","");
 
 
-	$result = doInsertSql( "INSERT INTO `#__jomres_rooms` ( `room_uid` , `room_classes_uid` , `propertys_uid` , `room_features_uid` , `room_name` , `room_number` , `room_floor` , `room_disabled_access` , `max_people`,`smoking` )VALUES ('1', '3', '1', '1,2', 'The Pitt', '11', '1', '0', '2','1')", "" );
+	$result = doInsertSql( "INSERT INTO `#__jomres_rooms` ( `room_uid` , `room_classes_uid` , `propertys_uid` , `room_features_uid` , `room_name` , `room_number` , `room_floor` , `max_people` )VALUES ('1', '3', '1', '1,2', 'The Pitt', '11', '1', '2')", "" );
 
 
 	$result = doInsertSql( "INSERT INTO `#__jomres_rooms` ( `room_uid` , `room_classes_uid` , `propertys_uid` , `room_features_uid` , `room_name` , `room_number` , `room_floor` , `max_people` )VALUES ('2', '3', '1', '1,2', 'The hole', '21', '2', '4')", "" );

@@ -204,10 +204,9 @@ class j06005cancelGuestBooking
 			$rInfo_name                 = $rInfo->room_name;
 			$rInfo_number               = $rInfo->room_number;
 			$rInfo_room_floor           = $rInfo->room_floor;
-			$rInfo_room_disabled_access = $rInfo->room_disabled_access;
 			$rInfo_max_people           = $rInfo->max_people;
 			$rInfo_type                 = $rInfo->room_classes_uid;
-			$rmInfo[ ]                  = array ( "rInfo_name" => $rInfo_name, "rInfo_number" => $rInfo_number, "rInfo_room_floor" => $rInfo_room_floor, "rInfo_room_disabled_access" => $rInfo_room_disabled_access, "rInfo_max_people" => $rInfo_max_people, "rInfo_type" => $rInfo_type );
+			$rmInfo[ ]                  = array ( "rInfo_name" => $rInfo_name, "rInfo_number" => $rInfo_number, "rInfo_room_floor" => $rInfo_room_floor, "rInfo_max_people" => $rInfo_max_people, "rInfo_type" => $rInfo_type );
 			}
 		foreach ( $roomClass as $rClass )
 			{
@@ -314,9 +313,6 @@ class j06005cancelGuestBooking
 			</tr>' );
 		foreach ( $rmInfo as $ri )
 			{
-			if ( $ri[ 'rInfo_room_disabled_access' ] == "1" ) $disabledAccess = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES );
-			else
-			$disabledAccess = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO );
 			$contentPanel->setcontent( '
 			<tr>
 				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_NAME', _JOMRES_COM_MR_EB_ROOM_NAME ) . '</td>
@@ -329,10 +325,6 @@ class j06005cancelGuestBooking
 			<tr>
 				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_FLOOR', _JOMRES_COM_MR_EB_ROOM_FLOOR ) . '</td>
 				<td>' . $ri[ 'rInfo_room_floor' ] . '</td>
-			</tr>
-			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_DISABLED', _JOMRES_COM_MR_EB_ROOM_DISABLED ) . '</td>
-				<td>' . $disabledAccess . '</td>
 			</tr>
 			<tr>
 				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE', _JOMRES_COM_MR_EB_ROOM_MAXPEOPLE ) . '</td>
