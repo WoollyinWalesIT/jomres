@@ -113,7 +113,7 @@ class j06001dashboard_events_ajax {
 				else
 					$end=date("Y-m-d", strtotime($c->departure) )."T10:00:00";
 				
-				$url=JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$c->contract_uid;
+				$url=JOMRES_SITEPAGE_URL_NOSEF.'&task=editBooking&contract_uid='.$c->contract_uid;
 				
 				$date_elements = explode( "/", $today );
 				$unixToday     = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
