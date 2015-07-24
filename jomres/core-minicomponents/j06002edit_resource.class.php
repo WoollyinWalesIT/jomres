@@ -43,14 +43,12 @@ class j06002edit_resource
 			$room_name            = "";
 			$room_number          = "";
 			$room_floor           = "";
-			$room_disabled_access = "1";
 			$room_classes_uid     = false;
 			$max_people           = "10";
-			$smoking              = "0";
 			if ( $roomUid )
 				{
 
-				$query    = "SELECT room_classes_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking,singleperson_suppliment FROM #__jomres_rooms WHERE  room_uid  = '" . (int) $roomUid . "' AND propertys_uid = '" . (int) $defaultProperty . "'";
+				$query    = "SELECT room_classes_uid,room_features_uid,room_name,room_number,room_floor,max_people,singleperson_suppliment FROM #__jomres_rooms WHERE  room_uid  = '" . (int) $roomUid . "' AND propertys_uid = '" . (int) $defaultProperty . "'";
 				$roomList = doSelectSql( $query );
 				foreach ( $roomList as $room )
 					{
@@ -59,9 +57,7 @@ class j06002edit_resource
 					$room_name               = stripslashes( $room->room_name );
 					$room_number             = stripslashes( $room->room_number );
 					$room_floor              = stripslashes( $room->room_floor );
-					$room_disabled_access    = $room->room_disabled_access;
 					$max_people              = $room->max_people;
-					$smoking                 = $room->smoking;
 					$singleperson_suppliment = $room->singleperson_suppliment;
 
 					}
@@ -77,12 +73,6 @@ class j06002edit_resource
 				$classOptions[ ] = jomresHTML::makeOption( $key, $roomClass[ 'abbv' ] );
 				}
 			$classDropDownList      = jomresHTML::selectList( $classOptions, 'roomClasses', 'class="inputbox" size="1"', 'value', 'text', $room_classes_uid );
-			$disabledOptions[ ]     = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false ) );
-			$disabledOptions[ ]     = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false ) );
-			$disabledAccessDropdown = jomresHTML::selectList( $disabledOptions, 'disabledAccess', 'class="inputbox" size="1"', 'value', 'text', $room_disabled_access );
-			$smokingOptions[ ]      = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false ) );
-			$smokingOptions[ ]      = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false ) );
-			$smokingDropdown        = jomresHTML::selectList( $smokingOptions, 'smoking', 'class="inputbox" size="1"', 'value', 'text', $smoking );
 			
 			$ptype_id = $basic_property_details->ptype_id;
 
@@ -121,9 +111,7 @@ class j06002edit_resource
 			$output[ 'ROOMNAME' ]     = $room_name;
 			$output[ 'ROOMNUMBER' ]   = $room_number;
 			$output[ 'ROOMFLOOR' ]    = $room_floor;
-			$output[ 'DISABLED' ]     = $disabledAccessDropdown;
 			$output[ 'MAXPEOPLE' ]    = $max_people;
-			$output[ 'SMOKING' ]      = $smokingDropdown;
 			$output[ 'FEATURES' ]     = $featureListTxt;
 			$output[ 'SUPPLIMENT' ]   = $singleperson_suppliment;
 
@@ -131,9 +119,7 @@ class j06002edit_resource
 			$output[ 'HNAME' ]           = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME );
 			$output[ 'HNUMBER' ]         = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER );
 			$output[ 'HFLOOR' ]          = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR );
-			$output[ 'HDISABLED' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS', _JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS );
 			$output[ 'HMAXPEOPLE' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE );
-			$output[ 'HSMOKING' ]        = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', _JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING );
 			$output[ 'HFEATURES' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES );
 			$output[ 'HSUPPLIMENT' ]     = jr_gettext( '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON', _JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON );
 			$output[ 'SUPPLIMENT_DESC' ] = jr_gettext( '_JOMRES_COM_SPS_EDITROOM_DESC', _JOMRES_COM_SPS_EDITROOM_DESC );
@@ -241,9 +227,7 @@ class j06002edit_resource
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS', _JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', _JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES );

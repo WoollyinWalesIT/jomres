@@ -63,9 +63,7 @@ class j06002save_multiple_resources
 										`room_name`,
 										`room_number`,
 										`room_floor`,
-										`room_disabled_access`,
-										`max_people`,
-										`smoking`
+										`max_people`
 										)
 									VALUES ";
 			
@@ -83,9 +81,7 @@ class j06002save_multiple_resources
 						'',
 						'" . $nextRoomNumberStr . "',
 						'',
-						'0',
-						'" . $maxGuests . "',
-						'0'
+						'" . $maxGuests . "'
 						),";
 				$nextRoomNumber++;
 				}

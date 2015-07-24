@@ -75,9 +75,7 @@ class j06000show_property_rooms
 				{
 				$r = array ();
 				
-				$r[ 'HEADER_SMOKING' ]         = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', _JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING, false );
 				$r[ 'HEADER_ROOMFLOOR' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR, false );
-				$r[ 'HEADER_DISABLEDACCESS' ]  = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS',_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS,false);
 				$r[ 'HEADER_MAXPEOPLE' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE, false );
 				$r[ 'AVLCALTITLE' ] 		   = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY, false, false );
 								
@@ -87,16 +85,6 @@ class j06000show_property_rooms
 				$r[ 'MAXPEOPLE' ]     = $room['max_people'];
 
 				$r[ 'ROOMTYPE' ] = $current_property_details->all_room_types[ $room['room_classes_uid'] ]['room_class_abbv'];
-
-				if ( $room['room_disabled_access'] == 1 )
-					$r[ 'DISABLEDACCESS' ] = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
-				else
-					$r[ 'DISABLEDACCESS' ] = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
-				
-				if ( $room['smoking'] == 1 )
-					$r[ 'SMOKING' ] = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
-				else
-					$r[ 'SMOKING' ] = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
 
 				$roomFeatureDescriptionsArray = array ();
 				$roomFeatureUidsArray         = explode( ",", $room['room_features_uid'] );
@@ -160,11 +148,9 @@ class j06000show_property_rooms
 		$output[ ] = jr_gettext( '_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS_TITLE', _JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS_TITLE );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', _JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME );
 		$output[ ] = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS', _JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE );
 
 		foreach ( $output as $o )

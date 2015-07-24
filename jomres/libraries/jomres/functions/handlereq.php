@@ -224,13 +224,6 @@ switch ( $field )
 			}
 		$bkg->resetRequestedRoom();
 		break;
-	case "smoking":
-		$ajrq = "ajrq:::smoking";
-		$bkg->setOkToBook( false );
-		$value = $bkg->sanitiseInput( "int", $value );
-		$bkg->setSmoking( $value );
-		$bkg->resetRequestedRoom();
-		break;
 	case "extras":
 		$ajrq = "ajrq:::extras";
 		$bkg->setOkToBook( false );
@@ -569,7 +562,6 @@ function bookingformlistRooms( $isSingleRoomProperty, &$bkg )
 		if ( count( $freeRoomsArray ) > 0 ) // This must be before the rest of these functions
 		$freeRoomsArray = $bkg->checkPeopleNumbers( $freeRoomsArray );
 		$bkg->setErrorLog( "handlereq-bookingformlistRooms:: Number of free rooms " . count( $freeRoomsArray ) );
-		if ( count( $freeRoomsArray ) > 0 ) $freeRoomsArray = $bkg->checkSmokingOption( $freeRoomsArray );
 		if ( count( $freeRoomsArray ) > 0 ) $freeRoomsArray = $bkg->checkRoomFeatureOption( $freeRoomsArray );
 
 

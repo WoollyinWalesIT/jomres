@@ -342,17 +342,6 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$output[ 'ARRIVALDATE' ]   = $bkg->makeArrivalDateOutput( $arrivalDate );
 	$output[ 'DEPARTUREDATE' ] = $bkg->makeDepartureDateOutput( $departureDate );
 
-	$smokingOpts = array ();
-	if ( $mrConfig[ 'showSmoking' ] == "1" )
-		{
-		$smoking                           = $bkg->initSmoking();
-		$smokingOptions                    = array ();
-		$smokingOptions[ 'HSMOKINGTITLE' ] = $output[ 'HSMOKINGTITLE' ];
-		$smokingOptions[ 'SMOKING' ]       = $bkg->makeSmokingOutput( $smoking );
-		$smokingOpts[ ]                    = $smokingOptions;
-		}
-
-
 	$counter = 0;
 	if ( !$amend_contract )
 		{
@@ -410,7 +399,6 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$freeRoomsArray           = $bkg->removeRoomuidsAlreadyInThisBooking( $freeRoomsArray );
 	$freeRoomsArray           = $bkg->findFreeRoomsInDateRange( $freeRoomsArray );
 	$freeRoomsArray           = $bkg->checkPeopleNumbers( $freeRoomsArray );
-	$freeRoomsArray           = $bkg->checkSmokingOption( $freeRoomsArray );
 	$roomAndTariffArray       = $bkg->getTariffsForRoomUids( $freeRoomsArray );
 
 	if ( $mrConfig[ 'singleRoomProperty' ] == "0" )
@@ -659,7 +647,6 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$tmpl->addRows( 'rooms_list_accommodation_panel_output', $rooms_list_accommodation_panel_output );
 	$tmpl->addRows( 'coupons', $coupons );
 	$tmpl->addRows( 'coupons_totals', $coupons_totals );
-	$tmpl->addRows( 'smoking', $smokingOpts );
 	$tmpl->addRows( 'customfields', $customFields );
 	$tmpl->addRows( 'pageoutput', $pageoutput );
 	$tmpl->addRows( 'guesttypes', $guestTypes );

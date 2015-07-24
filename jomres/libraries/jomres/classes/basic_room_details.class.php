@@ -63,9 +63,7 @@ class basic_room_details
 						`room_name`,
 						`room_number`,
 						`room_floor`,
-						`room_disabled_access`,
 						`max_people`,
-						`smoking`,
 						`singleperson_suppliment`
 					FROM #__jomres_rooms 
 					WHERE `propertys_uid` = " . (int) $property_uid . " 
@@ -87,9 +85,7 @@ class basic_room_details
 			$this->rooms[$r->room_uid]['room_name']        			= jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE' . $r->room_uid, stripslashes( $r->room_name ), false );
 			$this->rooms[$r->room_uid]['room_number']	        	= stripslashes($r->room_number);
 			$this->rooms[$r->room_uid]['room_floor']     			= stripslashes($r->room_floor);
-			$this->rooms[$r->room_uid]['room_disabled_access']  	= (int)$r->room_disabled_access;
 			$this->rooms[$r->room_uid]['max_people']		   		= (int)$r->max_people;
-			$this->rooms[$r->room_uid]['smoking']  					= (int)$r->smoking;
 			$this->rooms[$r->room_uid]['singleperson_suppliment'] 	= (float)$r->singleperson_suppliment;
 			
 			if ($this->rooms[$r->room_uid]['room_features_uid'] != '')
@@ -133,9 +129,7 @@ class basic_room_details
 						`room_name`,
 						`room_number`,
 						`room_floor`,
-						`room_disabled_access`,
 						`max_people`,
-						`smoking`,
 						`singleperson_suppliment`
 					FROM #__jomres_rooms 
 					WHERE `room_uid` = " . (int) $room_uid . " 
@@ -155,9 +149,7 @@ class basic_room_details
 			$this->room['room_name']        		= jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE' . $r->room_uid, stripslashes( $r->room_name ), false );
 			$this->room['room_number']	        	= stripslashes($r->room_number);
 			$this->room['room_floor']     			= stripslashes($r->room_floor);
-			$this->room['room_disabled_access'] 	= (int)$r->room_disabled_access;
 			$this->room['max_people']		   		= (int)$r->max_people;
-			$this->room['smoking']  				= (int)$r->smoking;
 			$this->room['singleperson_suppliment'] 	= (float)$r->singleperson_suppliment;
 			
 			$this->property_uid = $this->room['propertys_uid'];

@@ -33,7 +33,6 @@ class j00501booking_form
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) return;
 		$lists = $componentArgs[ 'lists' ];
 		//$tabs=$componentArgs['tabs'];
-		$smokingOptionDropdownList         = $componentArgs[ 'smokingOptionDropdownList' ];
 		$weekenddayDropdown                = $componentArgs[ 'weekenddayDropdown' ];
 		$booking_form_rooms_list_style     = $componentArgs[ 'booking_form_rooms_list_style' ];
 		$booking_form_daily_weekly_monthly = $componentArgs[ 'booking_form_daily_weekly_monthly' ];
@@ -78,23 +77,6 @@ class j00501booking_form
 			$configurationPanel->setmiddle( $lists[ 'showExtras' ] );
 			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_EXTRAS_DESC", _JOMRES_COM_A_EXTRAS_DESC, false ) );
 			$configurationPanel->insertSetting();
-			}
-
-		if ( !$thisJRUser->simple_configuration )
-			{
-			if ( $mrConfig[ 'singleRoomProperty' ] != "1" )
-				{
-				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SMOKING", _JOMRES_COM_A_SMOKING, false ) );
-				$configurationPanel->setmiddle( $lists[ 'showSmoking' ] );
-				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_SMOKING_DESC", _JOMRES_COM_A_SMOKING_DESC, false ) );
-				$configurationPanel->insertSetting();
-
-
-				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SMOKING_OPTION", _JOMRES_COM_A_SMOKING_OPTION, false ) );
-				$configurationPanel->setmiddle( $smokingOptionDropdownList );
-				$configurationPanel->setright();
-				$configurationPanel->insertSetting();
-				}
 			}
 		
 		if ( !$thisJRUser->simple_configuration )
