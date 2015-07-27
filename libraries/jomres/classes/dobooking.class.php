@@ -5156,7 +5156,8 @@ class dobooking
 			$rpn = $rpn / 7;
 			}
 
-		$rpn = $this->get_rate_per_night_converted_to_output_period( $rpn );
+		// Removed in 9.1.2 ( July 2015 )
+		//$rpn = $this->get_rate_per_night_converted_to_output_period( $rpn );
 
 		return $rpn;
 		}
