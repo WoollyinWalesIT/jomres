@@ -5019,15 +5019,29 @@ class dobooking
 		$output[ 'HMAXDAYS' ]  = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXDAYS', _JOMRES_FRONT_TARIFFS_MAXDAYS, false, false ) );
 		$output[ 'HMINPEEPS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MINPEEPS', _JOMRES_FRONT_TARIFFS_MINPEEPS, false, false ) );
 		$output[ 'HMAXPEEPS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXPEEPS', _JOMRES_FRONT_TARIFFS_MAXPEEPS, false, false ) );
-		if ( $this->cfg_tariffChargesStoredWeeklyYesNo != "1" )
+		
+		switch ( $this->cfg_booking_form_daily_weekly_monthly )
 			{
-			if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY, false, false ) );
-			else
-			$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY, false, false ) );
+			case "D":
+				if ( $mrConfig[ 'wholeday_booking' ] == "1" ) 
+					$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY, false, false ) );
+				else
+					{
+					if ( $tariff[ 'ignore_pppn' ] || $this->cfg_perPersonPerNight == "0" ) 
+						$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', _JOMRES_FRONT_TARIFFS_PN, false, false ) );
+					else
+						$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', _JOMRES_FRONT_TARIFFS_PPPN, false, false ) );
+					}
+				break;
+			case "W":
+				$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK, false, false ) );
+				break;
+			case "M":
+				$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY, false, false ) );
+				break;
 			}
-		else
-		$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK, false, false ) );		
-		$output[ 'HROOM_DETAILS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_HROOM_DETAILS', _JOMRES_COM_MR_EB_HROOM_DETAILS, false, false ) );		
+			
+		$output[ 'HROOM_DETAILS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_HROOM_DETAILS', _JOMRES_COM_MR_EB_HROOM_DETAILS, false, false ) );
 		$output[ 'HTARIFF_DETAILS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_HTARIFF_DETAILS', _JOMRES_COM_MR_EB_HTARIFF_DETAILS, false, false ) );
 		
 		if ( $this->cfg_tariffmode == "2" )
@@ -5058,15 +5072,17 @@ class dobooking
 
 		if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 			{
-			if ( $tariff[ 'ignore_pppn' ] || $this->cfg_perPersonPerNight == "0" ) $output[ 'ROOMRATEPERDAY' ] = output_price( ( $this->cfg_ratemultiplier * $tariff[ 'roomrateperday' ] ) ) . " " . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY, false, false ) );
+			if ( $tariff[ 'ignore_pppn' ] || $this->cfg_perPersonPerNight == "0" ) 
+				$output[ 'ROOMRATEPERDAY' ] = output_price( ( $this->cfg_ratemultiplier * $tariff[ 'roomrateperday' ] ) ) . " " . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY, false, false ) );
 			else
-			$output[ 'ROOMRATEPERDAY' ] = output_price( ( $this->cfg_ratemultiplier * $tariff[ 'roomrateperday' ] ) ) . " " . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY, false, false ) );
+				$output[ 'ROOMRATEPERDAY' ] = output_price( ( $this->cfg_ratemultiplier * $tariff[ 'roomrateperday' ] ) ) . " " . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY, false, false ) );
 			}
 		else
 			{
-			if ( $tariff[ 'ignore_pppn' ] || $this->cfg_perPersonPerNight == "0" ) $output[ 'ROOMRATEPERDAY' ] = output_price( ( $this->cfg_ratemultiplier * $tariff[ 'roomrateperday' ] ) ) . " " . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', _JOMRES_FRONT_TARIFFS_PN, false, false ) );
+			if ( $tariff[ 'ignore_pppn' ] || $this->cfg_perPersonPerNight == "0" ) 
+				$output[ 'ROOMRATEPERDAY' ] = output_price( ( $this->cfg_ratemultiplier * $tariff[ 'roomrateperday' ] ) ) . " " . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', _JOMRES_FRONT_TARIFFS_PN, false, false ) );
 			else
-			$output[ 'ROOMRATEPERDAY' ] = output_price( ( $this->cfg_ratemultiplier * $tariff[ 'roomrateperday' ] ) ) . " " . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', _JOMRES_FRONT_TARIFFS_PPPN, false, false ) );
+					$output[ 'ROOMRATEPERDAY' ] = output_price( ( $this->cfg_ratemultiplier * $tariff[ 'roomrateperday' ] ) ) . " " . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', _JOMRES_FRONT_TARIFFS_PPPN, false, false ) );
 			}
 
 
