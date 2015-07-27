@@ -547,7 +547,7 @@ class j02990showconfirmation
 							$gatewaydir      = str_replace( '\\', '/', $gatewaydir );
 							$gw[ 'GWIMAGE' ] = '<img src="' . $gatewaydir . 'j00510' . $gateway->plugin . '.gif" border="0">';
 							
-							$gw_configuration_script = '00509'.$gw[ 'GWNAME' ];
+							$gw_configuration_script = '00509'.$gateway->plugin;
 							if (count($MiniComponents->registeredClasses[$gw_configuration_script]) > 0) // Let's check that the site manager hasn't uninstalled the plugin. If count == 0, then they have, we don't want to attempt to show this gateway
 								{
 								$gateways[ ]     = $gw;
