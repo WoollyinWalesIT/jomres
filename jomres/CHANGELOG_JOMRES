@@ -1,3 +1,28 @@
+<h3>Jomres 9.1.2 28/07/2015</h3>
+
+<span class="label label-warning">Change</span> Added code to add a diagonal line to the old SRP availability calendar to denote cross-over days.
+<span class="label label-warning">Change</span> Tweaked BS3 booking form, moved Coupon and Price override panels to beside the guest input area.
+<span class="label label-warning">Change</span> Improved Agent image and gateway icon output in property list BS3.
+<span class="label label-warning">Change</span> Improved Classic rooms list output, adding per night, per week etc notification next to price.
+<span class="label label-warning">Change</span> Removed ini set of memory as we would prefer this to be set via php.ini etc.
+<span class="label label-warning">Change</span> Tweaked patTemplate reader to ensure that sites with > 4 Jomsearch mN modules can also override their template files.
+<span class="label label-warning">Change</span> Modified booking engine so that option extras are only reloaded via ajax when the dates in the booking have changed.
+<span class="label label-warning">Change</span> Improved how the ajax url is generated to be used in the dashboard.
+<span class="label label-warning">Change</span> Changed the booking engine to ensure that optional extra prices are re-calculated at a different point.
+<span class="label label-warning">Change</span> Changed booking engine to override deposit to 0, and make sure that the deposit overridden isn't greater than the grand total.
+<span class="label label-warning">Change</span> Updated show confirmation pages to not show gateway output if no gateways configured.
+<span class="label label-warning">Change</span> Updated Polish language file. Many thanks Patryk.
+<span class="label label-warning">Change</span> Removed smoking and disabled access functionality from room details. With the full implementation of Room Features these features are now no longer required.
+
+<span class="label label-important label-danger">Fix</span> Fixed an erroneous "hack attempt" error that Jomres would report on Jintour properties.
+<span class="label label-important label-danger">Fix</span> Fixed a PDO error reported when submitting a booking and tariffs don't exist for jintour properties.
+<span class="label label-important label-danger">Fix</span> Found an errant space broke a bold tag in the spanish language file.
+<span class="label label-important label-danger">Fix</span> Fixed a link to Max Input Vars link that broke when we updatd the ticket system.
+<span class="label label-important label-danger">Fix</span> Tweaked new functionality that wasn't adding GBP to currency codes dropdown.
+<span class="label label-important label-danger">Fix</span> Extended length of line item name column to 255 to account for new functionality generating longer names now.
+<span class="label label-important label-danger">Fix</span> Found and fixed cause of "Hack attempt" messages appearing in error.
+<span class="label label-important label-danger">Fix</span> Temporarily commented out a call that was multiplying prices twice, resulting in Per week prices in the booking form that were multiplied 7x7.
+
 <h3>Jomres 9.1.1 20/07/2015</h3>
 
 <span class="label label-success">Feature</span> Added guest detail dropdown to Quick booking modal popup on dashboard.
