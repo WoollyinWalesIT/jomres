@@ -32,9 +32,10 @@ class  j00018MRPavailabilitycalendar
 		$this->retVals = "";
 		$this->pop     = jomresGetParam( $_REQUEST, 'popup', 0 );
 		if ( $this->pop == 1 ) property_header( $property_uid );
-		if ( isset( $componentArgs[ 'showlinks' ] ) ) $this->showlinks = $componentArgs[ 'showlinks' ];
+		if ( isset( $componentArgs[ 'showlinks' ] ) ) 
+			$this->showlinks = $componentArgs[ 'showlinks' ];
 		else
-		$this->showlinks = true;
+			$this->showlinks = true;
 		$roomUid       = $componentArgs[ 'roomUid' ];
 		$requestedDate = $componentArgs[ 'requestedDate' ];
 		$property_uid  = (int) $componentArgs[ 'property_uid' ];
