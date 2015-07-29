@@ -273,9 +273,15 @@ class j06001list_bookings_ajax
 							$toolbar->addItem( 'fa fa-sign-in', 'btn btn-default disabled', '', 'javascript:void();', jr_gettext( '_JOMRES_ACTION_CHECKIN', _JOMRES_ACTION_CHECKIN, false ) );
 						}
 					elseif( $p->bookedout == 0 && isset($MiniComponents->registeredClasses['06001checkin']) )
+						{
 						$toolbar->addItem( 'fa fa-sign-out', 'btn btn-success', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=checkout&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_ACTION_CHECKOUT', _JOMRES_ACTION_CHECKOUT, false ) );
+						$toolbar->addSecondaryItem( 'fa fa-undo', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=undo_checkin&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_ACTION_UNDO_CHECKIN', _JOMRES_ACTION_UNDO_CHECKIN, false ) );
+						}
 					elseif( $p->bookedout == 1 )
+						{
 						$toolbar->addItem( 'fa fa-check', 'btn  btn-default disabled', '', 'javascript:void();', jr_gettext( '_JOMRES_STATUS_CHECKEDOUT', _JOMRES_STATUS_CHECKEDOUT, false ) );
+						$toolbar->addSecondaryItem( 'fa fa-undo', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=undo_checkout&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_ACTION_UNDO_CHECKOUT', _JOMRES_ACTION_UNDO_CHECKOUT, false ) );
+						}
 					else
 						{
 						$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-default ', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editBooking&contract_uid=' . $p->contract_uid . $thisProperty), jr_gettext( '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', _JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS, false ) );
