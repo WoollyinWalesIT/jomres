@@ -210,8 +210,8 @@ class dobooking
 			$this->booking_notes         = $bookingDeets[ 'booking_notes' ];
 			$this->additional_line_items = unserialize( $bookingDeets[ 'additional_line_items' ] );
 			$this->room_feature_filter   = unserialize( $bookingDeets[ 'room_feature_filter' ] );
-			$this->override_room_total   = (float) $bookingDeets[ 'override_room_total' ];
-			$this->override_deposit      = (float) $bookingDeets[ 'override_deposit' ];
+			$this->override_room_total   = $bookingDeets[ 'override_room_total' ];
+			$this->override_deposit      = $bookingDeets[ 'override_deposit' ];
 			if ( isset ($bookingDeets[ 'thirdparty_vars' ]))
 				{
 				$this->thirdparty_vars = $bookingDeets[ 'thirdparty_vars' ];
@@ -5847,7 +5847,7 @@ class dobooking
 		$tmpBookingHandler->updateBookingField( "discounts", $this->discounts );
 
 		// Bypassing all the other calculations, if the price has been over-ridden, we'll just set the room total here instead.
-		if ( $thisJRUser->userIsManager && $this->override_room_total > 0 )
+		if ( $thisJRUser->userIsManager && (float)$this->override_room_total > 0 )
 			{
 			$mrConfig = $this->mrConfig;
 			$tmpRate  = $this->override_room_total;
@@ -6235,7 +6235,7 @@ class dobooking
 		$thisJRUser = jomres_getSingleton( 'jr_user' );
 		if ( $thisJRUser->userIsManager )
 			{
-			if ( isset( $this->override_deposit ) && $this->override_deposit <= $this->billing_grandtotal) 
+			if ( isset($this->override_deposit) && $this->override_deposit <= $this->billing_grandtotal) 
 				{
 				$this->deposit_required = $this->override_deposit;
 				}
