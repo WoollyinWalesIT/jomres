@@ -2520,3 +2520,6 @@ jr_define( '_JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT', 'Edit Business Feature 
 jr_define( '_JOMRES_HCATEGORY', 'Category' );
 jr_define( '_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES', 'Show business features separated into categories?' );
 jr_define( '_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', 'Set this to YES to separate the property features into categories. This option affects only the property features displayed on the property details page. All other pages will display them without splitting them into categories.' );
+
+jr_define( '_JOMRES_ACTION_UNDO_CHECKIN', 'Undo checkin' );
+jr_define( '_JOMRES_ACTION_UNDO_CHECKOUT', 'Undo checkout' );
