@@ -49,6 +49,7 @@ class j03025insertbooking_invoice
 		$guest_id                 	= $componentArgs[ 'guests_uid' ];
 		$arrivalDate			 	= $tmpBookingHandler->getBookingFieldVal( "arrivalDate" );
 		$departureDate			 	= $tmpBookingHandler->getBookingFieldVal( "departureDate" );
+		$stayDays 					= $tmpBookingHandler->getBookingFieldVal( "stayDays" );
 		$single_person_suppliment 	= $tmpBookingHandler->getBookingFieldVal( "single_person_suppliment" );
 		$deposit_required         	= $tmpBookingHandler->getBookingFieldVal( "deposit_required" );
 		$extras                   	= $tmpBookingHandler->getBookingFieldVal( "extras" );
@@ -85,12 +86,19 @@ class j03025insertbooking_invoice
 			//Accommodation line item
 			
 			//Get the initial discount (wiseprice, lastminute, personal, partner, coupon discounts)
+			$discount_amount = 0.00;
+			$totalDiscountForRoom = 0.00;
+			
 			if ( count( $discounts ) > 0 )
 				{
-				$totalDiscountForRoom = 0.00;
 				foreach ( $discounts as $d )
 					{
-					$totalDiscountForRoom += ((float) $d[ 'discountfrom' ] - (float) $d[ 'discountto' ]);
+					$discount_amount = (float) $d[ 'discountfrom' ] - (float) $d[ 'discountto' ];
+					
+					if ($d['type'] == "MRP") //wiseprice
+						$discount_amount = $discount_amount * $stayDays;
+					
+					$totalDiscountForRoom += $discount_amount;
 					}
 				}
 			if ( get_showtime( 'include_room_booking_functionality' ) )
