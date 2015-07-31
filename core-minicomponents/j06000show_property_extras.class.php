@@ -107,7 +107,7 @@ class j06000show_property_extras
 					$tax_output = "";
 					if ( $rate > 0 ) 
 						$tax_output = " (" . $rate . "%)";
-					$extra_deets[ 'NAME' ]      = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRANAME' . $ex->uid, htmlspecialchars( trim( stripslashes( $ex->name ) ), ENT_QUOTES ) );
+					$extra_deets[ 'NAME' ]      = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRANAME' . $ex->uid, jomres_decode( $ex->name ) );
 					$extra_deets[ 'MODELTEXT' ] = $tax_output . " ( " . $model_text . " )";
 					$extra_deets[ 'PRICE' ]     = output_price( $inc_price , "" , false );
 					
@@ -128,7 +128,7 @@ class j06000show_property_extras
 						else
 							$extra_deets[ 'PERNIGHT' ] = "";
 						}
-					$extra_deets[ 'DESCRIPTION' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRADESC' . $ex->uid, htmlspecialchars( trim( stripslashes( $ex->desc ) ), ENT_QUOTES ) );
+					$extra_deets[ 'DESCRIPTION' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRADESC' . $ex->uid, jomres_decode( $ex->desc ) );
 
 					$extra_details[ ] = $extra_deets;
 					
