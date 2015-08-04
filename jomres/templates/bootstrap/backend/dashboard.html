@@ -197,6 +197,9 @@ jomresJquery(document).ready(function() {
 	var view = jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar('getView');
 	jomresJquery('.jomres-dashboard h2 span').html(': ' + view.title);
 	
+	/* Set a timeout to refresh events every minute */
+	setInterval(function(){jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar( 'refetchEvents' )}, 60000);
+	
 	/* Modal submit */
 	//jomresJquery("#blackBookingModal").modal('hide');
 	jomresJquery("#blackBookingForm").submit(function(e) {
