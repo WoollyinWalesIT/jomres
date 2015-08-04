@@ -58,10 +58,12 @@ class jrportal_payment_reference
 		$query = "SELECT `id`,`invoice_id`,`gateway` FROM #__jomres_invoice_payment_ref  WHERE invoice_id = ".(int)$invoice_id . " LIMIT 1";
 		$payment_details = doSelectSql($query,2);
 		
-		
-		
 		$invoice = jomres_singleton_abstract::getInstance( 'basic_invoice_details' );
 		$invoice->gatherData($invoice_id);
+		
+		$query  = "SELECT tag FROM #__jomres_contracts WHERE contract_uid = " . (int) $invoice->contract_id;
+		$booking_number = trim( doSelectSql( $query, 1 ));
+		
 		$settings = array();
 		if ( (int) $invoice->subscription_id > 0 || (int) $invoice->is_commission > 0 )
 			{
@@ -90,6 +92,27 @@ class jrportal_payment_reference
 				}
 			}
 
+		if ( $payment_details['gateway'] == "paypal" )
+			{
+			$paypal_settings = jomres_singleton_abstract::getInstance( 'jrportal_paypal_settings' );
+			$paypal_settings->get_paypal_settings();
+			if ( $paypal_settings->paypalConfigOptions[ 'override' ] == "1" )
+				{
+				$settings[ 'usesandbox' ]	  = trim($paypal_settings->paypalConfigOptions[ 'usesandbox' ]);
+				$settings[ 'currencycode' ]	= trim($paypal_settings->paypalConfigOptions[ 'currencycode' ]);
+				$settings[ 'paypalemail' ]	 = trim($paypal_settings->paypalConfigOptions[ 'email' ]);
+				$settings[ 'pendingok' ]	   = "0";
+				$settings[ 'receiveIPNemail' ] = "1";
+				$settings[ 'override' ]	 = trim($paypal_settings->paypalConfigOptions[ 'override' ]);
+
+				$settings[ 'client_id' ]			= trim($paypal_settings->paypalConfigOptions[ 'client_id' ]);
+				$settings[ 'secret' ]				= trim($paypal_settings->paypalConfigOptions[ 'secret' ]);
+				$settings[ 'client_id_sandbox' ]	= trim($paypal_settings->paypalConfigOptions[ 'client_id_sandbox' ]);
+				$settings[ 'secret_sandbox' ]		= trim($paypal_settings->paypalConfigOptions[ 'secret_sandbox' ]);
+				$settings[ 'active' ]				= trim($paypal_settings->paypalConfigOptions[ 'active' ]);
+				}
+			}
+
 			
 		if ( $gateway_active )
 			{
@@ -98,6 +121,7 @@ class jrportal_payment_reference
 			$invoice_data['currencycode']		= $invoice->currencycode;
 			$invoice_data['balance']			= $invoice->balance;
 			$invoice_data['line_items']			= $invoice->lineitems;
+			$invoice_data['booking_number']			= $booking_number;
 			
 			$this->gateway_settings = $settings;
 			$this->invoice_data = $invoice_data;
