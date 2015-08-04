@@ -41,37 +41,12 @@ class j10501google_maps
 		$configurationPanel->setmiddle( $lists[ 'gmap_pois' ] );
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
-
-		$configurationPanel->setleft( jr_gettext( JOMRES_GOOGLE_MAP_OPTION_WEATHER, 'JOMRES_GOOGLE_MAP_OPTION_WEATHER', false ) );
-		$configurationPanel->setmiddle( $lists[ 'gmap_layer_weather' ] );
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
-		
-		$configurationPanel->setleft( jr_gettext( JOMRES_GOOGLE_MAP_OPTION_WEATHER, 'JOMRES_GOOGLE_MAP_OPTION_WEATHER', false ) );
-		$configurationPanel->setmiddle( $mapWeatherTempGradDropdownList );
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
-		
-		$configurationPanel->setleft( jr_gettext( JOMRES_GOOGLE_MAP_OPTION_PANORAMIO, 'JOMRES_GOOGLE_MAP_OPTION_PANORAMIO', false ) );
-		$configurationPanel->setmiddle( $lists[ 'gmap_layer_panoramio' ] );
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
 		
 		$configurationPanel->setleft( jr_gettext( JOMRES_GOOGLE_MAP_OPTION_TRANSIT, 'JOMRES_GOOGLE_MAP_OPTION_TRANSIT', false ) );
 		$configurationPanel->setmiddle( $lists[ 'gmap_layer_transit' ] );
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
-		
-		$configurationPanel->setleft( jr_gettext( JOMRES_GOOGLE_MAP_OPTION_TRAFFIC, 'JOMRES_GOOGLE_MAP_OPTION_TRAFFIC', false ) );
-		$configurationPanel->setmiddle( $lists[ 'gmap_layer_traffic' ] );
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
-		
-		$configurationPanel->setleft( jr_gettext( JOMRES_GOOGLE_MAP_OPTION_BICYCLING, 'JOMRES_GOOGLE_MAP_OPTION_BICYCLING', false ) );
-		$configurationPanel->setmiddle( $lists[ 'gmap_layer_bicycling' ] );
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
-		
+
 		$configurationPanel->endPanel();
 		}
 
