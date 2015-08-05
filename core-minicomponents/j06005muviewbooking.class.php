@@ -84,27 +84,28 @@ class j06005muviewbooking
 					{
 					$room_uid = array_unique( $room_uid );
 					sort( $room_uid );
-					}
-				$query      = "SELECT * FROM #__jomres_rooms WHERE room_uid IN (".implode(',',$room_uid).") ";
-				$roomInfo   = doSelectSql( $query );
-				$rFeatures  = "";
-				foreach ( $roomInfo as $room )
-					{
-					$room_classes_uid[ ] = $room->room_classes_uid;
-					$room_features_uids  = $room->room_features_uid;
-					if ( !empty( $room->room_features_uid ) )
+					
+					$query      = "SELECT * FROM #__jomres_rooms WHERE room_uid IN (".implode(',',$room_uid).") ";
+					$roomInfo   = doSelectSql( $query );
+					$rFeatures  = "";
+					foreach ( $roomInfo as $room )
 						{
-						$featuresArray = explode( ",", $room->room_features_uid );
-						if ( count( $featuresArray ) > 0 )
+						$room_classes_uid[ ] = $room->room_classes_uid;
+						$room_features_uids  = $room->room_features_uid;
+						if ( !empty( $room->room_features_uid ) )
 							{
-							$query                = "SELECT * FROM #__jomres_room_features WHERE room_features_uid IN (".implode(',',$featuresArray).") ";
-							$rFeatures            = doSelectSql( $query );
-							$numberOfRoomFeatures = count( $rFeatures );
+							$featuresArray = explode( ",", $room->room_features_uid );
+							if ( count( $featuresArray ) > 0 )
+								{
+								$query                = "SELECT * FROM #__jomres_room_features WHERE room_features_uid IN (".implode(',',$featuresArray).") ";
+								$rFeatures            = doSelectSql( $query );
+								$numberOfRoomFeatures = count( $rFeatures );
+								}
 							}
 						}
+					$query = "SELECT * FROM #__jomres_room_classes WHERE room_classes_uid IN (".implode(',',$room_classes_uid).") ";
+					$rClass = doSelectSql( $query );
 					}
-				$query = "SELECT * FROM #__jomres_room_classes WHERE room_classes_uid IN (".implode(',',$room_classes_uid).") ";
-				$rClass = doSelectSql( $query );
 				$this->editBooking_html( $contract_uid, $bookingData, $extraBillingData, $guestData, $roomBookingData, $roomInfo, $rClass, $rFeatures, $mrConfig );
 				}
 			}
