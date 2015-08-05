@@ -2601,3 +2601,5 @@ jr_define( '_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', 'Set this to YES to
 
 jr_define( '_JOMRES_ACTION_UNDO_CHECKIN', 'Undo checkin' );
 jr_define( '_JOMRES_ACTION_UNDO_CHECKOUT', 'Undo checkout' );
+
+jr_define( '_JOMRES_STATUS_UNISSUED', 'Unissued' );

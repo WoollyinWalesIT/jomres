@@ -2396,4 +2396,4 @@ jr_define('_JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT','Edycja kategorii cechy o
 jr_define('_JOMRES_HCATEGORY','Kategoria');
 jr_define('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES','Pokazać podział na kategorie cech ofert?');
 jr_define('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC','Ustaw Tak, aby podzielić cechy ofert na kategorie. Ta opcja dotyczy tylko cech ofert wyświetlanych na stronie szczegółów ofert. Wszystkie inne strony wyświetlają je bez dzielenia ich na kategorie.');
-jr_define( '_JOMRES_ACTION_UNDO_CHECKIN', 'Undo checkin' );jr_define( '_JOMRES_ACTION_UNDO_CHECKOUT', 'Undo checkout' );
+jr_define( '_JOMRES_ACTION_UNDO_CHECKIN', 'Undo checkin' );jr_define( '_JOMRES_ACTION_UNDO_CHECKOUT', 'Undo checkout' );jr_define( '_JOMRES_STATUS_UNISSUED', 'Unissued' );
