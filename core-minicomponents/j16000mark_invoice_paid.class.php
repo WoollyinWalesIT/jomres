@@ -35,6 +35,9 @@ class j16000mark_invoice_paid
 		$invoice->id = $invoice_id;
 		$invoice->getInvoice();
 		
+		if ($invoice->raised_date == '0000-00-00 00:00:00')
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_invoice&id=' . $invoice_id ), "You can`t mark an unissued invoice as paid." );
+		
 		if ( $invoice->subscription )
 			{
 			jr_import( 'jrportal_subscriptions' );
