@@ -659,7 +659,7 @@ class dobooking
 		{
 		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 		$this->taxrates = $jrportal_taxrate->taxrates;
-		$this->setErrorLog( "Init found tax rates " . serialize( $this->taxrates ) );
+		//$this->setErrorLog( "Init found tax rates " . serialize( $this->taxrates ) );
 		}
 
 	function sanitise_for_eval( $string )
@@ -1400,7 +1400,7 @@ class dobooking
 	function getVariant( $type = "", $id = "" )
 		{
 		if ( empty( $type ) || empty( $id ) ) return false;
-		for ( $i = 0; $i < count( $this->variancetypes ); $i++ )
+		for ( $i = 1; $i <= count( $this->variancetypes ); $i++ )
 			{
 			if ( $this->variancetypes[ $i ] == $type && $this->varianceuids[ $i ] == $id )
 				{
