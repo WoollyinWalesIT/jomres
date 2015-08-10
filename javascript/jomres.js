@@ -345,32 +345,6 @@ function insertParam(sourceUrl, parameterName, parameterValue, replaceDuplicates
 	return urlParts[0] + newQueryString;
 };
 
-/*
- Interesting proof of concept, but not ready for showtime
- function switch_editing_mode(url,val)
- {
- var original_url = window.location.href;
- jomresJquery('div.jomres_content_area').block({
- message: '<img src="jomres/images/31.gif" />',
- css:	{
- padding: '15px',
- '-webkit-border-radius': '10px',
- '-moz-border-radius': '10px'
- }
- });
- jomresJquery.get(url+'&task=switcheditingmode&switchmode='+val,function(data){
-
- jomresJquery.get(original_url+"&format=raw",
- function(data){
- populateDiv('jomres_content_area',data);
- }
- );
- jomresJquery('div.jomres_content_area').unblock();
- });
- //window.location.reload();
- }
- */
-
 function populateDiv(div_id, content) {
 	if (jomresJquery("#" + div_id).length > 0) {
 		document.getElementById(div_id).innerHTML = content;
@@ -407,13 +381,6 @@ function jomres_checkAll(n) {
 
 
 function jomres_submitbutton(pressbutton) {
-	/*
-	 var hid = jomresJquery('<input type="text" name="nohtml" value="1"/>');
-	 hid.prependTo("adminForm");
-	 var theval = jomresJquery("input[name=nohtml]").val();
-	 alert(theval);
-	 return;
-	 */
 	document.adminForm.task.value = pressbutton;
 	try {
 		document.adminForm.onsubmit();
@@ -444,9 +411,6 @@ function enableSubmitButton(button) {
 		button.onclick = button.oldOnclick;
 		button.buttonDisabled = false;
 	}
-
-	// Disabled as causes a js error in ie if the booking form is in the property details.
-	//document.getElementById('submitbutton').focus();
 };
 
 
