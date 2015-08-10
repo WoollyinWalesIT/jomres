@@ -135,8 +135,11 @@ class j00004a_init_javascript_css_files
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.tipsy.js");
 		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/","tipsy.css");
 		
-		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "dataTables.tableTools.css");
-		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "dataTables.colVis.css");
+		if ($thisJRUser->userIsRegistered)
+			{
+			$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "dataTables.tableTools.css");
+			$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "dataTables.colVis.css");
+			}
 		
 		if (!isset( $jrConfig[ 'load_font_awesome' ]))
 			$jrConfig[ 'load_font_awesome' ] = "0";
