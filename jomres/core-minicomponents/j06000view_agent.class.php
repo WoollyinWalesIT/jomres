@@ -25,7 +25,6 @@ class j06000view_agent
 
 			return;
 			}
-
 		$MiniComponents->triggerEvent( '01004', $componentArgs ); // optional
 		$MiniComponents->triggerEvent( '01005', $componentArgs ); // optional
 		$MiniComponents->triggerEvent( '01006', $componentArgs ); // optional
@@ -35,37 +34,41 @@ class j06000view_agent
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 
-		$manager_id = jomresGetParam( $_REQUEST, 'id', 0 );
-
-		$query  = "SELECT manager_uid  FROM #__jomres_managers WHERE userid  = " . (int) $manager_id;
-		$result = doSelectSql( $query, 1 );
-		if ( !$result ) // this id doesn't correspond to a manager in the system, progress no further
-		return;
-
 		$property_manager_xref = get_showtime( 'property_manager_xref' );
 		if ( is_null( $property_manager_xref ) )
 			{
 			$property_manager_xref = build_property_manager_xref_array();
 			}
-
-		$property_uids = array ();
-		foreach ( $property_manager_xref as $property_id => $m_id )
+		
+		if ( isset($componentArgs['property_uid']) || $_REQUEST['property_uid'] )
 			{
-			if ( $m_id == $manager_id )
+			if ( isset( $componentArgs['property_uid']) )
 				{
-				$property_uids[ ] = $property_id;
+				$property_uid = (int)$componentArgs['property_uid'];
+				}
+			else (isset($_REQUEST['property_uid']))
+				{
+				$property_uid = (int)$_REQUEST['property_uid'];
+				}
+
+			if ( array_key_exists( $property_uid ,  $property_manager_xref ) )
+				{
+				$manager_id =  $property_manager_xref[ $property_uid ];
+				}
+			else
+				{
+				return;
 				}
 			}
-		
-		$gOr = genericOr($property_uids , "propertys_uid");
-		$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE approved = 1 AND `published` = 1 AND propertys_uid IN (".implode(',',$property_uids).") ";
-		$result = doSelectSql($query);
-
-		$property_uids = array ();
-		foreach ( $result as $property)
+		else
 			{
-			$property_uids[ ] = $property->propertys_uid ;
+			$manager_id = jomresGetParam( $_REQUEST, 'id', 0 );
 			}
+			
+		$query  = "SELECT manager_uid  FROM #__jomres_managers WHERE userid  = " . (int) $manager_id;
+		$result = doSelectSql( $query, 1 );
+		if ( !$result ) // this id doesn't correspond to a manager in the system, progress no further
+			return;
 		
 		$output[ 'HFIRSTNAME' ]             = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME', _JOMRES_COM_MR_DISPGUEST_FIRSTNAME );
 		$output[ 'HSURNAME' ]               = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_SURNAME', _JOMRES_COM_MR_DISPGUEST_SURNAME );
@@ -108,6 +111,9 @@ class j06000view_agent
 				$output[ 'MOBILE' ]    = $data->tel_mobile;
 				$output[ 'FAX' ]       = $data->tel_fax;
 				$output[ 'EMAIL' ]     = $data->email;
+				
+				if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . 'userimages' . JRDS . "userimage_" . $manager_id . ".jpg" ) ) 
+					$output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH . 'userimages/userimage_' . $manager_id . '_thumbnail.jpg';
 				}
 			}
 
@@ -116,10 +122,37 @@ class j06000view_agent
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		$tmpl->readTemplatesFromInput( 'view_agent.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		echo $tmpl->getParsedTemplate();
+		$template = $tmpl->getParsedTemplate();
+		
+		if ( !isset($componentArgs[ 'output_now' ]))
+			$componentArgs[ 'output_now' ] = true;
+		
+		if ($componentArgs[ 'output_now' ])
+			echo $template;
+		else
+			$this->retVals = $template;
 
-		if ( count( $property_uids ) > 0 )
+		if ( $componentArgs[ 'output_now' ] ) // We'll also include a list of the manager's properties.
 			{
+			$property_uids = array ();
+			foreach ( $property_manager_xref as $property_id => $m_id )
+				{
+				if ( $m_id == $manager_id )
+					{
+					$property_uids[ ] = $property_id;
+					}
+				}
+			
+			$gOr = genericOr($property_uids , "propertys_uid");
+			$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE approved = 1 AND `published` = 1 AND propertys_uid IN (".implode(',',$property_uids).") ";
+			$result = doSelectSql($query);
+
+			$property_uids = array ();
+			foreach ( $result as $property)
+				{
+				$property_uids[ ] = $property->propertys_uid ;
+				}
+			
 			$componentArgs                    = array ();
 			$componentArgs[ 'propertys_uid' ] = $property_uids;
 			$MiniComponents->specificEvent( '01010', 'listpropertys', $componentArgs );
