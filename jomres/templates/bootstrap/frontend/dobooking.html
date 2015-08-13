@@ -270,12 +270,11 @@
 		
 		<h3 class="page-header">{_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER}</h3>
 	</patTemplate:tmpl>
-	<patTemplate:tmpl name="roomfeaturesrow" type="simpleCondition" requiredVars="inputbox">
-		<label class="checkbox">
-			{INPUTBOX} {IMAGE} {DESCRIPTION}
-		</label>
 
+	<patTemplate:tmpl name="roomfeaturesrow" type="simpleCondition" requiredVars="inputbox">
+		<div class="span12">{INPUTBOX} {DESCRIPTION}</div>
 	</patTemplate:tmpl>
+	
 	<br/>
 
 	<div class="clearfix"></div>
