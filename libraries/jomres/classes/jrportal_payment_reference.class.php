@@ -116,18 +116,24 @@ class jrportal_payment_reference
 			
 		if ( $gateway_active )
 			{
+			$current_contract_details = jomres_singleton_abstract::getInstance( 'basic_contract_details' );
+			$current_contract_details->gather_data($invoice->contract_id, $invoice->property_uid);
+			
 			$invoice_data = array();
 			$invoice_data['invoice_number']		= $payment_details['invoice_id'];
 			$invoice_data['currencycode']		= $invoice->currencycode;
 			$invoice_data['balance']			= $invoice->balance;
 			$invoice_data['line_items']			= $invoice->lineitems;
-			$invoice_data['booking_number']			= $booking_number;
+			$invoice_data['booking_number']		= $booking_number;
+			$invoice_data['payer']				= $current_contract_details->contract[$invoice->contract_id]['guestdeets'];
 			
 			$this->gateway_settings = $settings;
 			$this->invoice_data = $invoice_data;
 			
 			$this->gateway = $payment_details['gateway'];
 			$this->invoice_id =$payment_details['invoice_id'];
+			
+			
 			
 			return array ( 'gateway' => $this->gateway , 'invoice_data' => $invoice_data , 'gateway_settings' => $this->gateway_settings , 'invoice_id' => $this->invoice_id , 'payment_reference' =>$payment_details['id']  );
 			}
