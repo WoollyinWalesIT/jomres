@@ -46,7 +46,7 @@ class j06000view_agent
 				{
 				$property_uid = (int)$componentArgs['property_uid'];
 				}
-			else (isset($_REQUEST['property_uid']))
+			elseif(isset($_REQUEST['property_uid']))
 				{
 				$property_uid = (int)$_REQUEST['property_uid'];
 				}
