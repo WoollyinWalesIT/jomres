@@ -275,7 +275,8 @@ class j00015viewproperty
 			$property[ 'PRINT_ICON' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Printer.png';
 			$property[ 'PRINT_LINK' ] = jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&jr_printable=1&popup=1&tmpl=".get_showtime("tmplcomponent")."&property_uid=" . $property_uid );
 			
-			$property['AGENT_PANE'] = $MiniComponents->specificEvent( '06000', 'view_agent' , array( "property_uid" => $property_uid ,"output_now" => false ) );
+			// Uncomment to add the agent pane to the property details page.
+			//$property['AGENT_PANE'] = $MiniComponents->specificEvent( '06000', 'view_agent' , array( "property_uid" => $property_uid ,"output_now" => false ) );
 			
 			if ( $jrConfig[ 'use_reviews' ] == "1" )
 				{
