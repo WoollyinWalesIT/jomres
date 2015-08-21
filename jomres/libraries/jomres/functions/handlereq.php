@@ -592,7 +592,8 @@ function bookingformlistRooms( $isSingleRoomProperty, &$bkg )
 		if ( count( $freeRoomsArray ) > 0 ) $freeRoomsArray = $bkg->extractLockedRooms( $freeRoomsArray );
 		$bkg->setErrorLog( "handlereq-bookingformlistRooms:: Number of free rooms " . count( $freeRoomsArray ) );
 		$bkg->number_of_free_rooms = count( $freeRoomsArray );
-		if ( count( $freeRoomsArray ) > 0 ) $roomAndTariffArray = $bkg->getTariffsForRoomUids( $freeRoomsArray );
+		if ( count( $freeRoomsArray ) > 0 ) 
+			$roomAndTariffArray = $bkg->getTariffsForRoomUids( $freeRoomsArray );
 
 		$bkg->setErrorLog( "handlereq-bookingformlistRooms:: Room and Tariff array count = " . count( $roomAndTariffArray ) );
 		$output = "";
