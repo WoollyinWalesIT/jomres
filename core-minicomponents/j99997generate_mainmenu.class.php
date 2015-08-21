@@ -230,7 +230,7 @@ class j99997generate_mainmenu
 		$tmpl->readTemplatesFromInput( 'management_menu_wrapper.html' );
 		$tmpl->addRows( 'button_output', $button_o );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'help', $help );
+		//$tmpl->addRows( 'help', $help );
 		$this->ret_vals = $tmpl->getParsedTemplate();
 		echo $this->ret_vals;
 		}

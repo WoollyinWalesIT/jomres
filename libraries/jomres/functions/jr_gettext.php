@@ -99,14 +99,17 @@ function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false 
 
 	if ( isset( $thisJRUser ) )
 		{
-		if ( ( $_REQUEST[ 'task' ] == "touch_templates" || $_REQUEST[ 'task' ] == "translate_locales" || $_REQUEST[ 'task' ] == "translate_lang_file_strings" ) && $thisJRUser->userIsManager )
+		if ( isset($_REQUEST[ 'task' ]))
 			{
-			$property_uid                                  = 0;
-			$jrConfig[ 'editinplace' ]                     = 1;
-			$jrConfig[ 'editingModeAffectsAllProperties' ] = "1";
-			$editing                                       = true;
+			if ( ( $_REQUEST[ 'task' ] == "touch_templates" || $_REQUEST[ 'task' ] == "translate_locales" || $_REQUEST[ 'task' ] == "translate_lang_file_strings" ) && $thisJRUser->userIsManager )
+				{
+				$property_uid                                  = 0;
+				$jrConfig[ 'editinplace' ]                     = 1;
+				$jrConfig[ 'editingModeAffectsAllProperties' ] = "1";
+				$editing                                       = true;
+				}
 			}
-
+		
 		if ( $jrConfig[ 'allowHTMLeditor' ] != "1" ) 
 			$theText = jomres_remove_HTML( $theText );
 

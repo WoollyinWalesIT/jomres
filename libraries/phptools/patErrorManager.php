@@ -84,7 +84,7 @@ class patErrorManager
 	 * @param    mixed &$object
 	 * @return    boolean $result    True if argument is a patError-object, false otherwise.
 	 */
-	function isError( &$object )
+	public static function isError( &$object )
 		{
 		if ( !is_object( $object ) )
 			{
