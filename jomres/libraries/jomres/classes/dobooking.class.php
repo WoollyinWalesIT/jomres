@@ -230,7 +230,7 @@ class dobooking
 
 		foreach ( $this->varianceuids as $key => $variance_uid )
 			{
-			if ( !$this->checkGuestVariantIdAndQty( $variance_uid, 1 ) )
+			if ( (int)$variance_uid == 0 || !$this->checkGuestVariantIdAndQty( $variance_uid, 1 ) )
 				{
 				$this->setErrorLog( "init::Unsetting variances with key " . $key );
 				unset( $this->variancetypes[ $key ] );
@@ -1371,7 +1371,7 @@ class dobooking
 		{
 		if ( empty( $type ) || empty( $id ) ) return false;
 		$found = false;
-		for ( $i = 0; $i < count( $this->variancetypes ); $i++ )
+		for ( $i = 0; $i <= count( $this->variancetypes ); $i++ )
 			{
 			if ( $this->variancetypes[ $i ] == $type && $this->varianceuids[ $i ] == $id )
 				{
@@ -1388,7 +1388,7 @@ class dobooking
 			$this->varianceqty[ ]   = $qty;
 			$this->variancevals[ ]  = $val;
 			}
-
+		
 		return true;
 		}
 
@@ -1425,7 +1425,7 @@ class dobooking
 		if ( !isset( $type ) || empty( $type ) ) return false;
 		//$this->setErrorLog("There are : ".count($this->variancetypes)." examples of variant type ".$type." in the object." );
 		//$this->setErrorLog("Variable variancetypes is : ".gettype($this->variancetypes) );
-		for ( $i = 0; $i < count( $this->variancetypes ); $i++ )
+		for ( $i = 0; $i <= count( $this->variancetypes ); $i++ )
 			{
 			if ( $this->variancetypes[ $i ] == $type )
 				{
@@ -1666,10 +1666,13 @@ class dobooking
 	function setGuestVariantDetails( $id, $qty )
 		{
 		$this->setErrorLog( "setGuestVariantDetails: Setting guest type variant " . $id );
+		
 		$result = $this->setVariant( 'guesttype', $id, $qty, 0.00 );
-		if ( $result ) return true;
+		
+		if ( $result ) 
+			return true;
 		else
-		return false;
+			return false;
 		}
 
 	/**
@@ -1680,10 +1683,13 @@ class dobooking
 	function initGuestVariant( $id, $qty )
 		{
 		$this->setErrorLog( "initGuestVariant: Initialising guest type variant " . $id . " Quantity " . $qty );
+
 		$result = $this->setVariant( 'guesttype', $id, $qty, 0.00 );
-		if ( $result ) return true;
+		
+		if ( $result ) 
+			return true;
 		else
-		return false;
+			return false;
 		}
 
 	/**
@@ -1702,12 +1708,12 @@ class dobooking
 
 			return false;
 			}
-		$query  = "SELECT maximum FROM #__jomres_customertypes WHERE property_uid = '$this->property_uid' AND id = '$id' ";
+		$query  = "SELECT maximum FROM #__jomres_customertypes WHERE property_uid = '$this->property_uid' AND id = '$id' AND published = '1' ";
 		$result = doSelectSql( $query, 1 );
 		//$this->setErrorLog("Variant maximum found =".$result);
 		if ( !$result )
 			{
-			$this->setErrorLog( "checkGuestVariantIdAndQty::Variant id could not be reconciled with property uid" );
+			$this->setErrorLog( "checkGuestVariantIdAndQty::Variant id could not be reconciled with property uid or the guest type is not published" );
 
 			return false;
 			}
@@ -2723,7 +2729,7 @@ class dobooking
 		//global $jomresConfig_locale;
 		//setlocale(LC_ALL, $jomresConfig_locale);
 		$date_elements = explode( "/", $thedate );
-		$unixDate      = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
+		$unixDate      = adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
 		if ( $this->cfg_dateFormatStyle == "1" ) $formattedDate = date( $this->cfg_cal_output, $unixDate );
 		else
 		$formattedDate = strftime( $this->cfg_cal_output, $unixDate );
@@ -3511,6 +3517,7 @@ class dobooking
 		{
 		$this->room_allocations = array ();
 		$guests                 = $this->getVariantsOfType( "guesttype" );
+		
 		$this->setErrorLog( "checkAllGuestsAllocatedToRooms::Starting " );
 		if ( count( $guests ) > 0 )
 			{
@@ -5348,6 +5355,7 @@ class dobooking
 			// }
 
 			$numberOfGuestTypes = $this->getVariantsOfType( "guesttype" );
+
 			foreach ( $numberOfGuestTypes as $r )
 				{
 				if ( !$this->checkGuestVariantIdAndQty( $r[ 'id' ], $r[ 'qty' ] ) )
