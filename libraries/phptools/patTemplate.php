@@ -864,16 +864,11 @@ class patTemplate
 		if ( defined(COMMON_PLACEHOLDER_POSTCODE))
 			$common_strings[ 'COMMON_PLACEHOLDER_POSTCODE' ]		= jr_gettext( 'COMMON_PLACEHOLDER_POSTCODE', COMMON_PLACEHOLDER_POSTCODE, false );
 
-		if ( defined(JOMRES_SITEPAGE_URL))
-			$common_strings[ 'JOMRES_SITEPAGE_URL' ]            = JOMRES_SITEPAGE_URL;
-		if ( defined(JOMRES_SITEPAGE_URL_NOSEF))
-			$common_strings[ 'JOMRES_SITEPAGE_URL_NOSEF' ]      = JOMRES_SITEPAGE_URL_NOSEF;
-		if ( defined(JOMRES_SITEPAGE_URL_AJAX))
-			$common_strings[ 'JOMRES_SITEPAGE_URL_AJAX' ]       = JOMRES_SITEPAGE_URL_AJAX;
-		if ( defined(JOMRES_SITEPAGE_URL_ADMIN))
-			$common_strings[ 'JOMRES_SITEPAGE_URL_ADMIN' ]      = JOMRES_SITEPAGE_URL_ADMIN;
-		if ( defined(JOMRES_SITEPAGE_URL_ADMIN_AJAX))
-			$common_strings[ 'JOMRES_SITEPAGE_URL_ADMIN_AJAX' ] = JOMRES_SITEPAGE_URL_ADMIN_AJAX;
+		$common_strings[ 'JOMRES_SITEPAGE_URL' ]            = JOMRES_SITEPAGE_URL;
+		$common_strings[ 'JOMRES_SITEPAGE_URL_NOSEF' ]      = JOMRES_SITEPAGE_URL_NOSEF;
+		$common_strings[ 'JOMRES_SITEPAGE_URL_AJAX' ]       = JOMRES_SITEPAGE_URL_AJAX;
+		$common_strings[ 'JOMRES_SITEPAGE_URL_ADMIN' ]      = JOMRES_SITEPAGE_URL_ADMIN;
+		$common_strings[ 'JOMRES_SITEPAGE_URL_ADMIN_AJAX' ] = JOMRES_SITEPAGE_URL_ADMIN_AJAX;
 
 		$common_strings[ 'LIVE_SITE' ]                       = get_showtime( "live_site" );
 		$common_strings[ 'LIVESITE' ]                        = get_showtime( "live_site" );
@@ -1206,12 +1201,11 @@ class patTemplate
 	 */
 	function readTemplatesFromInput( $input, $reader = 'Jomres', $options = null, $parseInto = null )
 		{
-		if (!is_array($this->current_template_files))
-			return patErrorManager::raiseError( PATTEMPLATE_ERROR_NO_INPUT, 'The variable $this->current_template_files is not an array. ' );
-		
-		if (!in_array($input,$this->current_template_files))
-			$this->current_template_files[] = $input;
-		
+		if (is_array($this->current_template_files))
+			{
+			if (!in_array($input,$this->current_template_files))
+				$this->current_template_files[] = $input;
+			}
 		//echo $input."<br>";
 		if ( (string) $input === '' )
 			{
