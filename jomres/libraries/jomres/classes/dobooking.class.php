@@ -2723,7 +2723,7 @@ class dobooking
 		//global $jomresConfig_locale;
 		//setlocale(LC_ALL, $jomresConfig_locale);
 		$date_elements = explode( "/", $thedate );
-		$unixDate      = adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
+		$unixDate      = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
 		if ( $this->cfg_dateFormatStyle == "1" ) $formattedDate = date( $this->cfg_cal_output, $unixDate );
 		else
 		$formattedDate = strftime( $this->cfg_cal_output, $unixDate );
