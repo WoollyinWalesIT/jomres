@@ -64,6 +64,16 @@ class j03025insertbooking_invoice
 		$extrasvalues_items       	= unserialize( $tmpBookingHandler->getBookingFieldVal( "extrasvalues_items" ) );
 		$depositpaidsuccessfully  	= $tmpBookingHandler->getBookingFieldVal( "depositpaidsuccessfully" );
 		$additional_line_items    	= unserialize( $tmpBookingHandler->getBookingFieldVal( "additional_line_items" ) );
+		$total_in_party				= $tmpBookingHandler->getBookingFieldVal( "total_in_party" );
+		$room_allocations			= unserialize($tmpBookingHandler->getBookingFieldVal( "room_allocations" ));
+		
+		//we`ll need this if wise price is enabled and we charge per person per night
+		$guests_by_room = array();
+		$guests_by_room_array_index = 0;
+		foreach ($room_allocations as $k)
+			{
+			$guests_by_room[] = $k['number_allocated']; 
+			}
 
 		if ( $resource == "1" ) 
 			$depositPaid = true;
@@ -96,7 +106,18 @@ class j03025insertbooking_invoice
 					$discount_amount = (float) $d[ 'discountfrom' ] - (float) $d[ 'discountto' ];
 					
 					if ($d['type'] == "MRP") //wiseprice
+						{
+						if ($mrConfig['perPersonPerNight'] == '1')
+							{
+							if ((int)$guests_by_room[$guests_by_room_array_index] > 0)
+								{
+								$discount_amount = $discount_amount * (int)$guests_by_room[$guests_by_room_array_index];
+								$guests_by_room_array_index++;
+								}
+							}
+						
 						$discount_amount = $discount_amount * $stayDays;
+						}
 					
 					$totalDiscountForRoom += $discount_amount;
 					}

@@ -67,6 +67,7 @@ class dobooking
 		$this->varianceuids   = array ();
 		$this->varianceqty    = array ();
 		$this->variancevals   = array ();
+		$this->variancevals_nodiscount   = array ();
 		//$this->coupon_id				= "";
 		//$this->coupon					= "";
 		$this->lastminute_id            = "";
@@ -159,6 +160,7 @@ class dobooking
 			$this->vu                        = $bookingDeets[ 'varianceuids' ];
 			$this->vq                        = $bookingDeets[ 'varianceqty' ];
 			$this->vv                        = $bookingDeets[ 'variancevals' ];
+			$this->vv_nodiscount             = $bookingDeets[ 'variancevals_nodiscount' ];
 			//$this->coupon_id				= $bookingDeets['coupon_id'];
 			//$this->coupon					= $bookingDeets['coupon'];
 			$this->lastminute_id                   = $bookingDeets[ 'lastminute_id' ];
@@ -227,6 +229,7 @@ class dobooking
 		$this->varianceuids  = explode( ",", $this->vu );
 		$this->varianceqty   = explode( ",", $this->vq );
 		$this->variancevals  = explode( ",", $this->vv );
+		$this->variancevals_nodiscount  = explode( ",", $this->vv_nodiscount );
 
 		foreach ( $this->varianceuids as $key => $variance_uid )
 			{
@@ -237,6 +240,7 @@ class dobooking
 				unset( $this->varianceuids[ $key ] );
 				unset( $this->varianceqty[ $key ] );
 				unset( $this->variancevals[ $key ] );
+				unset( $this->variancevals_nodiscount[ $key ] );
 				}
 			}
 
@@ -464,6 +468,7 @@ class dobooking
 		$tmpBookingHandler->tmpbooking[ "varianceuids" ]  = $this->vu;
 		$tmpBookingHandler->tmpbooking[ "varianceqty" ]   = $this->vq;
 		$tmpBookingHandler->tmpbooking[ "variancevals" ]  = $this->vv;
+		$tmpBookingHandler->tmpbooking[ "variancevals_nodiscount" ]  = $this->vv_nodiscount;
 		//$tmpBookingHandler->tmpbooking["coupon_id"]						= $this->coupon_id;
 		//$tmpBookingHandler->tmpbooking["coupon"]						= $this->coupon;
 		$tmpBookingHandler->tmpbooking[ "lastminute_id" ]                   = $this->lastminute_id;
@@ -1358,6 +1363,7 @@ class dobooking
 		$this->vu = implode( ",", $this->varianceuids );
 		$this->vq = implode( ",", $this->varianceqty );
 		$this->vv = implode( ",", $this->variancevals );
+		$this->vv_nodiscount = implode( ",", $this->variancevals_nodiscount );
 
 		return true;
 		}
@@ -1367,7 +1373,7 @@ class dobooking
 	 * Generic variant handling. Sets the variant to the specified values.
 	#
 	 */
-	function setVariant( $type = "", $id = "", $qty = 0, $val = 0.00 )
+	function setVariant( $type = "", $id = "", $qty = 0, $val = 0.00, $val_nodiscount = 0.00 )
 		{
 		if ( empty( $type ) || empty( $id ) ) return false;
 		$found = false;
@@ -1379,6 +1385,7 @@ class dobooking
 				$found                    = true;
 				$this->varianceqty[ $i ]  = $qty;
 				$this->variancevals[ $i ] = $val;
+				$this->variancevals_nodiscount[ $i ] = $val_nodiscount;
 				}
 			}
 		if ( !$found )
@@ -1387,6 +1394,7 @@ class dobooking
 			$this->varianceuids[ ]  = $id;
 			$this->varianceqty[ ]   = $qty;
 			$this->variancevals[ ]  = $val;
+			$this->variancevals_nodiscount[ ] = $val_nodiscount;
 			}
 		
 		return true;
@@ -1406,8 +1414,9 @@ class dobooking
 				{
 				$qty = $this->varianceqty[ $i ];
 				$val = $this->variancevals[ $i ];
+				$val_nodiscount = $this->variancevals_nodiscount[ $i ];
 
-				return array ( 'quantity' => $qty, 'value' => $val );
+				return array ( 'quantity' => $qty, 'value' => $val, 'value_nodiscount' => $val_nodiscount );
 				}
 			}
 
@@ -1432,7 +1441,8 @@ class dobooking
 				$id          = $this->varianceuids[ $i ];
 				$qty         = $this->varianceqty[ $i ];
 				$val         = $this->variancevals[ $i ];
-				$tmpArray[ ] = array ( 'id' => $id, 'qty' => $qty, 'val' => $val );
+				$val_nodiscount = $this->variancevals_nodiscount[ $i ];
+				$tmpArray[ ] = array ( 'id' => $id, 'qty' => $qty, 'val' => $val, 'val_nodiscount' => $val_nodiscount );
 				}
 			}
 
@@ -5594,6 +5604,8 @@ class dobooking
 		if ( count( $result ) > 0 )
 			{
 			$ratePerNight = $this->rate_pernight;
+			$ratePerNight_nodiscount = $this->rate_pernight_nodiscount;
+			
 			$this->setErrorLog( "setGuestTypeVariantValues::Setting variant values" );
 			foreach ( $result as $r )
 				{
@@ -5615,18 +5627,32 @@ class dobooking
 							$variance = $variance / $divisor;
 							}
 
-						if ( $gt[ 'posneg' ] == "1" ) $val = $ratePerNight + $variance;
+						if ( $gt[ 'posneg' ] == "1" ) 
+							{
+							$val = $ratePerNight + $variance;
+							$val_nodiscount = $ratePerNight_nodiscount + $variance;
+							}
 						else
-						$val = $ratePerNight - $variance;
+							{
+							$val = $ratePerNight - $variance;
+							$val_nodiscount = $ratePerNight_nodiscount - $variance;
+							}
 						}
 					else
 						{
-						if ( $gt[ 'posneg' ] == "1" ) $val = ( ( $ratePerNight / 100 ) * $variance ) + $ratePerNight;
+						if ( $gt[ 'posneg' ] == "1" ) 
+							{
+							$val = ( ( $ratePerNight / 100 ) * $variance ) + $ratePerNight;
+							$val_nodiscount = ( ( $ratePerNight_nodiscount / 100 ) * $variance ) + $ratePerNight_nodiscount;
+							}
 						else
-						$val = $ratePerNight - ( ( $ratePerNight / 100 ) * $variance );
+							{
+							$val = $ratePerNight - ( ( $ratePerNight / 100 ) * $variance );
+							$val_nodiscount = $ratePerNight_nodiscount - ( ( $ratePerNight_nodiscount / 100 ) * $variance );
+							}
 						}
 					$this->setErrorLog( "setGuestTypeVariantValues::Setting variant value " . $id . " to " . $val );
-					$this->setVariant( "guesttype", $id, $qty, $val );
+					$this->setVariant( "guesttype", $id, $qty, $val, $val_nodiscount );
 					}
 				else
 				return false;
@@ -5684,27 +5710,41 @@ class dobooking
 				{
 				if ( $this->cfg_perPersonPerNight == "1" )
 					{
-					if ( $this->allRoomsAreIgnorePPPN ) $val = $this->rate_pernight;
+					if ( $this->allRoomsAreIgnorePPPN )
+						{
+						$val = $this->rate_pernight;
+						$val_nodiscount = $this->rate_pernight_nodiscount;
+						}
 					else
-					$val = $r[ 'qty' ] * $r[ 'val' ];
+						{
+						$val = $r[ 'qty' ] * $r[ 'val' ];
+						$val_nodiscount = $r[ 'qty' ] * $r[ 'val_nodiscount' ];
+						}
 					}
 				else
 					{
-					if ( $r[ 'qty' ] != 0 ) $val = $r[ 'val' ];
+					if ( $r[ 'qty' ] != 0 ) 
+						{
+						$val = $r[ 'val' ];
+						$val_nodiscount = $r[ 'val' ];
+						}
 					else
-					$val = 0;
+						{
+						$val = 0;
+						$val_nodiscount = 0;
+						}
 					}
 				if ( $this->cfg_perPersonPerNight == "1" && $this->allRoomsAreIgnorePPPN ) 
 					{
 					$total = $val * count( $this->requestedRoom );
-					$total_nodiscount = $val * count( $this->requestedRoom );
+					$total_nodiscount = $val_nodiscount * count( $this->requestedRoom );
 					}
 				else
 					{
 					if ( $this->cfg_perPersonPerNight == "1" ) 
 						{
 						$total += $val;
-						$total_nodiscount += $val;
+						$total_nodiscount += $val_nodiscount;
 						}
 					else
 						{
