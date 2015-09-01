@@ -816,53 +816,7 @@ class patTemplate
 			$common_strings                    = array ();
 			}
 		
-		
 		$common_strings[ 'JOMRES_ROOT_DIRECTORY' ]   = JOMRES_ROOT_DIRECTORY;
-		
-		if ( defined(COMMON_NEXT))
-			$common_strings[ 'COMMON_NEXT' ]   = jr_gettext( 'COMMON_NEXT', COMMON_NEXT, false );
-		
-		if ( defined(COMMON_CANCEL))
-			$common_strings[ 'COMMON_CANCEL' ] = jr_gettext( 'COMMON_CANCEL', COMMON_CANCEL, false );
-		if ( defined(COMMON_SUBMIT))
-			$common_strings[ 'COMMON_SUBMIT' ] = jr_gettext( 'COMMON_SUBMIT', COMMON_SUBMIT, false );
-		if ( defined(COMMON_SAVE))
-			$common_strings[ 'COMMON_SAVE' ]   = jr_gettext( 'COMMON_SAVE', COMMON_SAVE, false );
-		if ( defined(COMMON_DELETE))
-			$common_strings[ 'COMMON_DELETE' ] = jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false );
-		if ( defined(COMMON_RETURN))
-			$common_strings[ 'COMMON_RETURN' ] = jr_gettext( 'COMMON_RETURN', COMMON_RETURN, false );
-		if ( defined(COMMON_CLOSE))
-			$common_strings[ 'COMMON_CLOSE' ]  = jr_gettext( 'COMMON_CLOSE', COMMON_CLOSE, false );
-		if ( defined(COMMON_BACK))
-			$common_strings[ 'COMMON_BACK' ]   = jr_gettext( 'COMMON_BACK', COMMON_BACK, false );
-		if ( defined(COMMON_HOME))
-			$common_strings[ 'COMMON_HOME' ]   = jr_gettext( 'COMMON_HOME', COMMON_HOME, false );
-		if ( defined(COMMON_NEW))
-			$common_strings[ 'COMMON_NEW' ]    = jr_gettext( 'COMMON_NEW', COMMON_NEW, false );
-		if ( defined(COMMON_SEND))
-			$common_strings[ 'COMMON_SEND' ]   = jr_gettext( 'COMMON_SEND', COMMON_SEND, false );
-		
-		if ( defined(COMMON_PLACEHOLDER_PROPERTYNAME))
-			$common_strings[ 'COMMON_PLACEHOLDER_PROPERTYNAME']	= jr_gettext( 'COMMON_PLACEHOLDER_PROPERTYNAME', COMMON_PLACEHOLDER_PROPERTYNAME, false );
-		if ( defined(COMMON_PLACEHOLDER_FIRSTNAME))
-			$common_strings[ 'COMMON_PLACEHOLDER_FIRSTNAME' ]		= jr_gettext( 'COMMON_PLACEHOLDER_FIRSTNAME', COMMON_PLACEHOLDER_FIRSTNAME, false );
-		if ( defined(COMMON_PLACEHOLDER_SURNAME))
-			$common_strings[ 'COMMON_PLACEHOLDER_SURNAME' ]			= jr_gettext( 'COMMON_PLACEHOLDER_SURNAME', COMMON_PLACEHOLDER_SURNAME, false );
-		if ( defined(COMMON_PLACEHOLDER_HOUSENUMBER))
-			$common_strings[ 'COMMON_PLACEHOLDER_HOUSENUMBER' ]		= jr_gettext( 'COMMON_PLACEHOLDER_HOUSENUMBER', COMMON_PLACEHOLDER_HOUSENUMBER, false );
-		if ( defined(COMMON_PLACEHOLDER_STREET))
-			$common_strings[ 'COMMON_PLACEHOLDER_STREET' ]			= jr_gettext( 'COMMON_PLACEHOLDER_STREET', COMMON_PLACEHOLDER_STREET, false );
-		if ( defined(COMMON_PLACEHOLDER_TOWN))
-			$common_strings[ 'COMMON_PLACEHOLDER_TOWN' ]			= jr_gettext( 'COMMON_PLACEHOLDER_TOWN', COMMON_PLACEHOLDER_TOWN, false );
-		if ( defined(COMMON_PLACEHOLDER_LANDLINE))
-			$common_strings[ 'COMMON_PLACEHOLDER_LANDLINE' ]		= jr_gettext( 'COMMON_PLACEHOLDER_LANDLINE', COMMON_PLACEHOLDER_LANDLINE, false );
-		if ( defined(COMMON_PLACEHOLDER_MOBILE))
-			$common_strings[ 'COMMON_PLACEHOLDER_MOBILE' ]			= jr_gettext( 'COMMON_PLACEHOLDER_MOBILE', COMMON_PLACEHOLDER_MOBILE, false );
-		if ( defined(COMMON_PLACEHOLDER_EMAIL))
-			$common_strings[ 'COMMON_PLACEHOLDER_EMAIL' ]			= jr_gettext( 'COMMON_PLACEHOLDER_EMAIL', COMMON_PLACEHOLDER_EMAIL, false );
-		if ( defined(COMMON_PLACEHOLDER_POSTCODE))
-			$common_strings[ 'COMMON_PLACEHOLDER_POSTCODE' ]		= jr_gettext( 'COMMON_PLACEHOLDER_POSTCODE', COMMON_PLACEHOLDER_POSTCODE, false );
 
 		$common_strings[ 'JOMRES_SITEPAGE_URL' ]            = JOMRES_SITEPAGE_URL;
 		$common_strings[ 'JOMRES_SITEPAGE_URL_NOSEF' ]      = JOMRES_SITEPAGE_URL_NOSEF;
@@ -873,18 +827,6 @@ class patTemplate
 		$common_strings[ 'LIVE_SITE' ]                       = get_showtime( "live_site" );
 		$common_strings[ 'LIVESITE' ]                        = get_showtime( "live_site" );
 		$common_strings[ 'COMMON_LAST_VIEWED_PROPERTY_UID' ] = get_showtime( 'last_viewed_property_uid' );
-
-		if ( defined(COMMON_ACTION))
-			$common_strings[ 'COMMON_ACTION' ] = jr_gettext( 'COMMON_ACTION', COMMON_ACTION, false );
-		if ( defined(COMMON_VIEW))
-			$common_strings[ 'COMMON_VIEW' ]   = jr_gettext( 'COMMON_VIEW', COMMON_VIEW, false );
-		if ( defined(COMMON_PRINT))
-			$common_strings[ 'COMMON_PRINT' ]  = jr_gettext( 'COMMON_PRINT', COMMON_PRINT, false );
-
-		if ( defined(COMMON_EDIT))
-			$common_strings[ 'COMMON_EDIT' ] = jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false );
-		if ( defined(COMMON_COPY))
-			$common_strings[ 'COMMON_COPY' ] = jr_gettext( 'COMMON_COPY', COMMON_COPY, false );
 
 		$backtrace                                = debug_backtrace();
 		$common_strings[ 'COMMON_SOURCE_SCRIPT' ] = $backtrace[ 1 ][ 'file' ];
