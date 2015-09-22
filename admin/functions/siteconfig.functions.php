@@ -492,7 +492,7 @@ function searchCSSThemesDirForCSSFiles()
 						$filename  = $entry;
 						$tmpArr    = explode( ".", $filename );
 						$extension = $tmpArr[ count( $tmpArr ) - 1 ];
-						if ( $extension == "css" ) $cssFiles[ ] = array ( "cssfile" => $filename, "subdir" => $doc );
+						if ( $filename == "jquery-ui.css" ) $cssFiles[ ] = array ( "cssfile" => $filename, "subdir" => $doc );
 						}
 					$dr->close();
 					}
