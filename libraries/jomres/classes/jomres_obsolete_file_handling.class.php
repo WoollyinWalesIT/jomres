@@ -1130,6 +1130,9 @@ class jomres_obsolete_file_handling
 
 		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'paypal_settings.html' );
 		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'paypal_settings.html' );
+		
+		$this->add_obs_dir( $this->dir_jomres . 'css' . JRDS . 'jquery_ui_themes' . JRDS . 'bootstrap' );
+		
 		}
 
 	function add_obs_file( $path_and_file )
