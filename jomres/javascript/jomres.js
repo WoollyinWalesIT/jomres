@@ -70,7 +70,6 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 		"bJQueryUI": false,
 		"bStateSave": true,
 		"bAutoWidth": false,
-		"responsive": true,
 		"sDom": sDomm,
 		"order": [[ 1, "desc" ]],
 		"searchDelay": 1000,
@@ -97,6 +96,11 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 					"sSortDescending": dataTables_sSortDescending
 				}
 			},
+		"responsive": {
+			"details": {
+				"type": "inline"
+			}
+		},
 		"buttons": [
 				{
 					"extend": "copy",
@@ -146,8 +150,8 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 function dataTableSetHiddenColumns(table_id, column_ids)
 	{
 	var oTable = jomresJquery('#' + table_id).DataTable();
-	var hidden_columns_already_set = localStorage.getItem( 'hidden_columns_already_set_' + table_id);
-	if (hidden_columns_already_set === false && column_ids.constructor === Array && column_ids.length > 0 )
+	var hiddenColumnsSet = localStorage.getItem( 'hiddenColumnsSet' + table_id);
+	if (!hiddenColumnsSet && column_ids.constructor === Array && column_ids.length > 0 )
 		{
 		oTable.columns(column_ids).visible(false,false);
 		jomresJquery( oTable.columns(column_ids).header() ).addClass( 'none' );
@@ -155,23 +159,21 @@ function dataTableSetHiddenColumns(table_id, column_ids)
 	else
 		{
 		oTable.columns().every( function () {
-			var that = this;
-			if (that.visible() === false ) 
+			if (this.visible() === false ) 
 				{
-				
-				jomresJquery( that.header() ).addClass( 'none' );
-				that.visible(false,false);
+				this.visible(false,false);
+				jomresJquery( this.header() ).addClass( 'none' );
 				}
 			else
 				{
-				jomresJquery( that.header() ).removeClass( 'none' );
-				that.visible(true,false);
+				this.visible(true,false);
+				jomresJquery( this.header() ).removeClass( 'none' );
 				}
 			} );
 		}
 	oTable.responsive.rebuild();
 	oTable.responsive.recalc();
-	localStorage.setItem( 'hidden_columns_already_set_' + table_id, true);
+	localStorage.setItem( 'hiddenColumnsSet' + table_id, true);
 }
 
 /* Credit : http://www.developersnippets.com/2009/05/20/evaluate-scripts-while-working-on-ajax-requests/ */
