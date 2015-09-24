@@ -47,10 +47,10 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 	if (showTableTools)
 		{
 		if (jomres_template_version == "bootstrap3"){
-			sDomm = "<'row'<'col-xs-4'lr><'col-xs-4'TC><'col-xs-4'f>>t<'row'<'col-xs-4'i><'col-xs-8'p>>";
+			sDomm = "<'row'<'col-xs-4'lr><'col-xs-4'B><'col-xs-4'f>>t<'row'<'col-xs-4'i><'col-xs-8'p>>";
 			}
 		else {
-			sDomm = "<'row-fluid'<'span3'lr><'span5'TC><'span4'f>>t<'row-fluid'<'span4'i><'span8'p>>";
+			sDomm = "<'row-fluid'<'span4'lr><'span4'B><'span4'f>>t<'row-fluid'<'span4'i><'span8'p>>";
 			}
 		}
 	else
@@ -70,10 +70,10 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 		"bJQueryUI": false,
 		"bStateSave": true,
 		"bAutoWidth": false,
-		"sPaginationType": "bootstrap",
+		"responsive": true,
 		"sDom": sDomm,
-		"sWrapper": "dataTables_wrapper form-inline",
-		"order": [[ 0, "desc" ]],
+		"order": [[ 1, "desc" ]],
+		"searchDelay": 1000,
 		"oLanguage": {
 				"sEmptyTable":     dataTables_sEmptyTable,
 				"sInfo":           dataTables_sInfo,
@@ -97,58 +97,81 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 					"sSortDescending": dataTables_sSortDescending
 				}
 			},
-		"fnStateSave": function (oSettings, oData) {
-			localStorage.setItem('DataTables' + table_id, JSON.stringify(oData));
-		},
-		"fnStateLoad": function (oSettings) {
-			return JSON.parse(localStorage.getItem('DataTables' + table_id));
-		},
-		"oTableTools": {
-			"sSwfPath": livesite + "/"+JOMRES_ROOT_DIRECTORY+"/javascript/copy_cvs_xls_pdf.swf",
-			"aButtons": [
-				"copy",
+		"buttons": [
 				{
-					"sExtends": "csv",
-					"sCharSet": "utf8"
+					"extend": "copy",
+					"exportOptions": {
+						"columns": ':visible'
+					}
 				},
 				{
-					"sExtends": "xls",
-					"sCharSet": "utf16le"
+					"extend": "csv",
+					"charset": "utf8",
+					"exportOptions": {
+						"columns": ':visible'
+					}
 				},
 				{
-					"sExtends": "pdf",
-					"sCharSet": "utf8",
-					"sPdfOrientation": "landscape",
-					"sTitle": pagetitle
+					"extend": "excel",
+					"charset": "utf16le",
+					"exportOptions": {
+						"columns": ':visible'
+					}
 				},
-				"print"
+				{
+					"extend": "pdf",
+					"charset": "utf8",
+					"orientation": "landscape",
+					"title": pagetitle,
+					"exportOptions": {
+						"columns": ':visible'
+					}
+				},
+				{
+					"extend": "print",
+					"title": pagetitle,
+					"autoPrint": false,
+					"exportOptions": {
+						"columns": ':visible',
+					}
+				},
+				{
+					"extend": "colvis",
+					//"columns": ":gt(0)"
+				}
 			]
-		},
-		"oColVis": {
-			"aiExclude": [ 0 ],
-			"bRestore": false,
-			"buttonText" : dataTables_showhide
-		}
-	}).fnSetFilteringDelay();
-	jomresJquery.extend(jomresJquery.fn.dataTableExt.oStdClasses, {
-		"sSortAsc": "header headerSortDown",
-		"sSortDesc": "header headerSortUp",
-		"sSortable": "header"
 		});
 }
 
 function dataTableSetHiddenColumns(table_id, column_ids)
 	{
-	var oTable = jomresJquery('#' + table_id).dataTable();
-	var toggleChanged = localStorage.getItem( 'toggleChanged_' + table_id);
-	if (!toggleChanged)
+	var oTable = jomresJquery('#' + table_id).DataTable();
+	var hidden_columns_already_set = localStorage.getItem( 'hidden_columns_already_set_' + table_id);
+	if (hidden_columns_already_set === false && column_ids.constructor === Array && column_ids.length > 0 )
 		{
-		jomresJquery.each(column_ids, function(i) {
-			oTable.fnSetColumnVis( column_ids[i], false, false );
-			});
-		localStorage.setItem( 'toggleChanged_' + table_id, true);
-		jomresJquery.fn.dataTable.ColVis.fnRebuild( oTable );
+		oTable.columns(column_ids).visible(false,false);
+		jomresJquery( oTable.columns(column_ids).header() ).addClass( 'none' );
 		}
+	else
+		{
+		oTable.columns().every( function () {
+			var that = this;
+			if (that.visible() === false ) 
+				{
+				
+				jomresJquery( that.header() ).addClass( 'none' );
+				that.visible(false,false);
+				}
+			else
+				{
+				jomresJquery( that.header() ).removeClass( 'none' );
+				that.visible(true,false);
+				}
+			} );
+		}
+	oTable.responsive.rebuild();
+	oTable.responsive.recalc();
+	localStorage.setItem( 'hidden_columns_already_set_' + table_id, true);
 }
 
 /* Credit : http://www.developersnippets.com/2009/05/20/evaluate-scripts-while-working-on-ajax-requests/ */

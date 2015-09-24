@@ -194,3 +194,8 @@ fieldset.radio.btn-group {
 img.ui-datepicker-trigger {
 	display:none;
 }
+
+/*DataTables overrides*/
+table.dataTable tbody .btn-group {
+	display:inline-flex !important;
+}

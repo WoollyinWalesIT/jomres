@@ -1131,7 +1131,21 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'paypal_settings.html' );
 		$this->add_obs_file( $this->dir_templates_jqueryui_administrator . 'paypal_settings.html' );
 		
-		$this->add_obs_dir( $this->dir_jomres . 'css' . JRDS . 'jquery_ui_themes' . JRDS . 'bootstrap' );
+		$this->add_obs_dir( $this->dir_css . 'jquery_ui_themes' . JRDS . 'bootstrap' );
+		
+		$this->add_obs_dir( $this->dir_css . 'jomres' );
+		$this->add_obs_dir( $this->dir_javascript . 'cal' );
+		$this->add_obs_file( $this->dir_css . 'bootstrap.css' );
+		$this->add_obs_file( $this->dir_css . 'bootstrap_jomres_plugin.css' );
+		$this->add_obs_file( $this->dir_css . 'dataTables.colVis.css' );
+		$this->add_obs_file( $this->dir_css . 'dataTables.tableTools.css' );
+		$this->add_obs_file( $this->dir_css . 'DT_bootstrap.css' );
+		$this->add_obs_file( $this->dir_css . 'jquery.dataTables_themeroller.css' );
+		$this->add_obs_file( $this->dir_javascript . 'copy_cvs_xls_pdf.swf' );
+		$this->add_obs_file( $this->dir_javascript . 'dataTables.colVis.js' );
+		$this->add_obs_file( $this->dir_javascript . 'dataTables.tableTools.js' );
+		$this->add_obs_file( $this->dir_javascript . 'jquery.dataTables.js' );
+		$this->add_obs_file( $this->dir_javascript . 'jquery.easing.compatibility.js' );
 		
 		}
 
