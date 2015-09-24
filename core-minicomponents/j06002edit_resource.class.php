@@ -70,7 +70,8 @@ class j06002edit_resource
 			$classOptions[ ] = jomresHTML::makeOption( '', "" );
 			foreach ( $basic_property_details->this_property_room_classes as $key => $roomClass )
 				{
-				$classOptions[ ] = jomresHTML::makeOption( $key, $roomClass[ 'abbv' ] );
+				if (!is_null($roomClass))
+					$classOptions[ ] = jomresHTML::makeOption( $key, $roomClass[ 'abbv' ] );
 				}
 			$classDropDownList      = jomresHTML::selectList( $classOptions, 'roomClasses', 'class="inputbox" size="1"', 'value', 'text', $room_classes_uid );
 			
