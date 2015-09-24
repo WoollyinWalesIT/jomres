@@ -48,21 +48,24 @@ defined('_JOMRES_INITCHECK') or die;
 		}
 	elseif ($view == "bootstrap3")
 		{
-		wp_register_script('bootstrap.min.js', '/'.JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/bootstrap3/dist/js/bootstrap.min.js', 'jquery' );
+		wp_register_script('bootstrap.min.js', '/'.JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/bootstrap3/js/bootstrap.min.js', 'jquery' );
 		wp_enqueue_script('bootstrap.min.js');
 		}
 
 	wp_head();
 	?>
-	<?php if ($view == "bootstrap") : ?>
-	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap/css/fullscreen.css" type="text/css" />
-	<?php elseif ($view == "bootstrap3") : ?>
-	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/jquery_ui_themes/jomres/jquery-ui.css" type="text/css" />
-	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap3/dist/css/bootstrap.min.css" type="text/css" />
-	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap3/dist/css/bootstrap-theme.min.css" type="text/css" />
-	<?php elseif ($view == "jquery_ui") : ?>
-	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/jquery_ui_themes/jomres/jquery-ui.css" type="text/css" />
-	<?php endif; ?>
+	<?php if ($view == "bootstrap") : 
+		wp_register_style('fullscreen.css', '/'.JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/bootstrap/css/fullscreen.css' );
+		wp_enqueue_style('fullscreen.css');
+	elseif ($view == "bootstrap3") :
+		wp_register_style('jquery-ui.css', '/'.JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/jomres/jquery-ui.css' );
+		wp_enqueue_style('jquery-ui.css');
+		wp_register_style('fullscreen.css', '/'.JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/bootstrap3/css/fullscreen.css' );
+		wp_enqueue_style('fullscreen.css');
+	elseif ($view == "jquery_ui") : 
+		wp_register_style('jquery-ui.css', '/'.JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/jomres/jquery-ui.css' );
+		wp_enqueue_style('jquery-ui.css');
+	endif; ?>
 </head>
 <body class="contentpane">
 	<?php the_content(); ?>
