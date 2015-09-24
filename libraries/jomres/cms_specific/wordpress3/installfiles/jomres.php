@@ -232,7 +232,8 @@ if ( ! class_exists( 'wp_jomres' ) )
 		}
 	}
 
-$wp_jomres = wp_jomres::getInstance();
+if (!isset($_REQUEST['pll_ajax_backend']))
+	$wp_jomres = wp_jomres::getInstance();
 
 if ($_GET['page'] == "jomres/jomres.php" )
 	echo $wp_jomres->contents;
