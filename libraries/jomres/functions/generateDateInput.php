@@ -93,7 +93,7 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 	else
 		{
 		$output .= 'buttonText: "",';
-		$bs3_icon = '<span class="input-group-addon"><i class="fa fa-calendar"></i></span>';
+		$bs3_icon = '<span class="input-group-addon" id="dp_trigger_'.$uniqueID.'"><i class="fa fa-calendar"></i></span>';
 		}
 
 	$output .= '
@@ -122,7 +122,14 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 
 	$output .= '} );
 
-	});
+	});';
+	
+	if (using_bootstrap() && jomres_bootstrap_version() == "3")
+		$output .= '
+		jomresJquery(function() {jomresJquery("#dp_trigger_'.$uniqueID.'").on("click", function() {jomresJquery("#' . $uniqueID . '").datepicker("show");})});
+		';
+	
+	$output .= '
 	</script>
 	<div class="input-group">
 		<input type="text" ' . $size . ' name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" class="' . $input_class . ' form-control" />'.$bs3_icon.'
