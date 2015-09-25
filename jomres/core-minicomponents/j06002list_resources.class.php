@@ -122,7 +122,7 @@ class j06002list_resources
 						{
 						if ( $roomFeaturesArray[ $i ] == ( $feature->room_features_uid ) )
 							{
-							$fd = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURES' . (int) $feature->room_features_uid, $feature->feature_description );
+							$fd = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURES' . (int) $feature->room_features_uid, jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION' . (int) $feature->room_features_uid, stripslashes( $feature->feature_description ) ,false , false  ) );
 							$listTxt .= "<li>" . $fd . "</li>
 							";
 							}

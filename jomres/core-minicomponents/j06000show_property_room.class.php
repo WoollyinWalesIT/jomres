@@ -79,6 +79,7 @@ class j06000show_property_room
 			
 			//room features
 			$output[ 'ROOM_FEATURES' ] = "";
+			
 			foreach ($roomFeatureUidsArray as $f)
 				{
 				$output[ 'ROOM_FEATURES' ] .= $basic_room_details->all_room_features[ $f ]['tooltip'];
