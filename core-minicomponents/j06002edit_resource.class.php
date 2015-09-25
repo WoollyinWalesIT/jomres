@@ -94,14 +94,14 @@ class j06002edit_resource
 						{
 						if ( in_array( ( $roomFeature->room_features_uid ), $roomFeaturesArray ) ) 	
 							$checked = "checked";
-						$featureListTxt .= "<input type=\"checkbox\" name=\"features_list[]\" value=\"" . ( $roomFeature->room_features_uid ) . "\" " . $checked . " >" . ( $roomFeature->feature_description ) . "<br>";
+						$featureListTxt .= "<input type=\"checkbox\" name=\"features_list[]\" value=\"" . ( $roomFeature->room_features_uid ) . "\" " . $checked . " >" . jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION' . (int) $roomFeature->room_features_uid, stripslashes( $roomFeature->feature_description ) ,false , false ) . "<br>";
 						}
 					}
 				else
 					{
 					if ( in_array( ( $roomFeature->room_features_uid ), $roomFeaturesArray ) ) 	
 							$checked = "checked";
-						$featureListTxt .= "<input type=\"checkbox\" name=\"features_list[]\" value=\"" . ( $roomFeature->room_features_uid ) . "\" " . $checked . " >" . ( $roomFeature->feature_description ) . "<br>";
+						$featureListTxt .= "<input type=\"checkbox\" name=\"features_list[]\" value=\"" . ( $roomFeature->room_features_uid ) . "\" " . $checked . " >" . jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION' . (int) $roomFeature->room_features_uid, stripslashes( $roomFeature->feature_description ) ,false , false ) . "<br>";
 					}
 				}
 
@@ -116,14 +116,14 @@ class j06002edit_resource
 			$output[ 'FEATURES' ]     = $featureListTxt;
 			$output[ 'SUPPLIMENT' ]   = $singleperson_suppliment;
 
-			$output[ 'HTYPE' ]           = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE );
-			$output[ 'HNAME' ]           = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME );
-			$output[ 'HNUMBER' ]         = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER );
-			$output[ 'HFLOOR' ]          = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR );
-			$output[ 'HMAXPEOPLE' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE );
-			$output[ 'HFEATURES' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES );
-			$output[ 'HSUPPLIMENT' ]     = jr_gettext( '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON', _JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON );
-			$output[ 'SUPPLIMENT_DESC' ] = jr_gettext( '_JOMRES_COM_SPS_EDITROOM_DESC', _JOMRES_COM_SPS_EDITROOM_DESC );
+			$output[ 'HTYPE' ]           = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE , false , false );
+			$output[ 'HNAME' ]           = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME , false , false);
+			$output[ 'HNUMBER' ]         = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER , false , false);
+			$output[ 'HFLOOR' ]          = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR , false , false);
+			$output[ 'HMAXPEOPLE' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE , false , false);
+			$output[ 'HFEATURES' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES , false , false);
+			$output[ 'HSUPPLIMENT' ]     = jr_gettext( '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON', _JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON , false , false);
+			$output[ 'SUPPLIMENT_DESC' ] = jr_gettext( '_JOMRES_COM_SPS_EDITROOM_DESC', _JOMRES_COM_SPS_EDITROOM_DESC , false , false);
 
 			$output[ 'MOSCONFIGLIVESITE' ] = get_showtime( 'live_site' );
 
