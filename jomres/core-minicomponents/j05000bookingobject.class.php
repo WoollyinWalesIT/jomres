@@ -134,7 +134,7 @@ if ( !class_exists( 'booking' ) )
 			else
 				{
 				$output .= 'buttonText: "",';
-				$bs3_icon = '<span class="input-group-addon"><span class="fa fa-calendar"></span></span>';
+				$bs3_icon = '<span class="input-group-addon" id="dp_trigger_'.$uniqueID.'"><span class="fa fa-calendar"></span></span>';
 				
 				}
 			$output .= '
@@ -163,7 +163,14 @@ if ( !class_exists( 'booking' ) )
 
 			$output .= '} );
 
-			});
+			});';
+			
+			if (using_bootstrap() && jomres_bootstrap_version() == "3")
+				$output .= '
+				jomresJquery(function() {jomresJquery("#dp_trigger_'.$uniqueID.'").on("click", function() {jomresJquery("#' . $uniqueID . '").datepicker("show");})});
+				';
+			
+			$output .= '
 			</script>
 			<input type="text" ' . $size . ' class="' . $input_class . ' form-control input-group" name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" autocomplete="off" />'.$bs3_icon.'
 			';
