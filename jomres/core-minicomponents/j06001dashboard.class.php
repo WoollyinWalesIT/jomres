@@ -216,7 +216,7 @@ class j06001dashboard
 				{
 				$ec[] = jomresHTML::makeOption( $customer->guests_uid, stripslashes( $customer->surname ) . " " . stripslashes( $customer->firstname ) );
 				}
-			$dropDownList = jomresHTML::selectList( $ec, 'existingGuests', ' size="1" class="input-medium"', 'value', 'text', '0' );
+			$dropDownList = jomresHTML::selectList( $ec, 'existingGuests', ' size="1" class="input-medium"', 'value', 'text', '0' , false );
 			}
 
 		return $dropDownList;
