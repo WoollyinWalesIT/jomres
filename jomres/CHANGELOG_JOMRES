@@ -1,3 +1,27 @@
+<h3>Jomres 9.1.4 27/09/2015</h3>
+
+<span class="label label-success">Feature</span> Updated datatables to the most recent version.
+
+<span class="label label-warning">Change</span> Modified the calendar icon in BS3 so that it's clickable ( Cheers Allan ).
+<span class="label label-warning">Change</span> Added more translation functionality to room features.
+<span class="label label-warning">Change</span> Upadated the link to the manual to point to the new manual.
+
+<span class="label label-important label-danger">Fix</span> Resolved a few Strict errors.
+<span class="label label-important label-danger">Fix</span> Removed a reference to adobe_mktime that was added way back in the dark mists of time, when dinosaurs ( PHP4 ) ruled the earth.
+<span class="label label-important label-danger">Fix</span> Solved an obscure bug with guest types and amending bookings.
+<span class="label label-important label-danger">Fix</span> Fixed an incorrect url used when filtering invoices in administrator area.
+<span class="label label-important label-danger">Fix</span> Fixed an incorrect placeholder in edit_guest.html template. Thanks Nikos.
+<span class="label label-important label-danger">Fix</span> Resolved an issue where recent changes would trigger issues with modal common strings.
+<span class="label label-important label-danger">Fix</span> Resolved a really obscure issue with Wiseprice and PPPN invoices not showing the correct figure in invoices.
+<span class="label label-important label-danger">Fix</span> Modified the cancel booking url
+<span class="label label-important label-danger">Fix</span> Fixed some javascript that's prevented gmaps from showing in fullscreen since Google changed a url.
+<span class="label label-important label-danger">Fix</span> Jquery UI css files updated.
+<span class="label label-important label-danger">Fix</span> Added a check for NULL when building room types, because, you know, Peter.
+
+<span class="label label-info">Wordpress</span> Added a tweak to WP to check for a server variable used by Page Builder when saving data through ajax, although this may need more investigation.
+<span class="label label-info">Wordpress</span> Updated the Jomres fullscreen for Wordpress.
+
+
 <h3>Jomres 9.1.3 17/08/2015</h3>
 
 <span class="label label-success">Feature</span> Dashboard templates updated to add periodic update of dashboard so that new bookings are added in almost-realtime.
