@@ -80,7 +80,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 			//fullscreen view
 			add_filter( 'template_include', array($this,'jomres_fullscreen_view') );
 			
-			add_filter( 'wp_footer', array($this,'add_jomres_js_css') );
+			//add_filter( 'wp_footer', array($this,'add_jomres_js_css') );
 			}
 			
 		function asamodule_search_results($content) 
@@ -172,6 +172,11 @@ if ( ! class_exists( 'wp_jomres' ) )
 			{
 			if (count($this->js)>0)
 				{
+				wp_register_script('bootstrap', '/'.JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/bootstrap3/js/bootstrap.min.js', 'jquery' );
+				
+				//global $wp_scripts;
+				//var_dump($wp_scripts);
+				
 				foreach ($this->js as $js)
 					{
 					if (strpos($js['1'], 'bootstrap-editable'))
@@ -232,8 +237,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 		}
 	}
 
-if (!isset($_REQUEST['pll_ajax_backend']))
-	$wp_jomres = wp_jomres::getInstance();
+$wp_jomres = wp_jomres::getInstance();
 
 if ($_GET['page'] == "jomres/jomres.php" )
 	echo $wp_jomres->contents;
