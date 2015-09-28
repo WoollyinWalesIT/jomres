@@ -154,7 +154,7 @@ class j01009a_filterproperties
 		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_PROPERTYTOWN', _JOMRES_SORTORDER_PROPERTYTOWN );
 		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_STARS', _JOMRES_SORTORDER_STARS );
 		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_PRICE_ASC', _JOMRES_SORTORDER_PRICE_ASC );
-		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_STARS', _JOMRES_SORTORDER_PRICE_DESC );
+		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_PRICE_DESC', _JOMRES_SORTORDER_PRICE_DESC );
 
 		foreach ( $output as $o )
 			{
