@@ -664,3 +664,10 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
 .btn-mini .label, .btn-mini .badge {
     top: 0;
 }
+
+/* adding back the ui-state-success */
+.ui-state-success, .ui-widget-content .ui-state-success, .ui-widget-header .ui-state-success {
+    background: #dff0d8;
+    border: 1px solid #d6e9c6;
+    color: #3c763d;
+}
