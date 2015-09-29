@@ -101,8 +101,16 @@ class minicomponent_registry
 			echo "<script>window.location.reload()</script>";
 			}
 		
+		//clear cache
 		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 		$c->eraseAll();
+		
+		//delete js files in /jomres/temp dir
+		$javascript_files_in_temp_dir = scandir_getfiles( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS, $extension = "js" );
+		foreach ( $javascript_files_in_temp_dir as $file )
+			{
+			unlink( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . $file );
+			}
 		}
 
 	function save_registry_file()
