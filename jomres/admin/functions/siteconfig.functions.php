@@ -400,7 +400,7 @@ function showSiteConfig()
  * Saves the site configuration data
 #
  */
-function saveSiteConfig()
+function saveSiteConfig( $overrides = array() )
 	{
 	ignore_user_abort( true );
 	
@@ -414,7 +414,14 @@ function saveSiteConfig()
 		include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'site_config.php' );
 		$tmpConfig = $jrConfig;
 		}
-		
+	if ( count($overrides)>0)
+		{
+		foreach ($overrides as $key => $val )
+			{
+			$tmpConfig[$key] = $val;
+			}
+		}
+
 	foreach ( $_POST as $k => $v )
 		{
 		if (strpos($k, "cfg_") !== false)
