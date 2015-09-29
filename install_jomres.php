@@ -705,11 +705,14 @@ $jrConfig = ' . var_export($tmpConfig, true) . ';
 			}
 		else
 			{
-			$query = "DROP TABLE IF EXISTS #__jomres_site_settings";
-			if (!doInsertSql( $query, '' ))
-				output_message ( "Error dropping the _jomres_site_settings table", "danger" );
-			else
-				output_message ( "Dropped the _jomres_site_settings table", "info" );
+			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php')) // Triple check that the settings file has been created before we drop this table
+				{
+				$query = "DROP TABLE IF EXISTS #__jomres_site_settings";
+				if (!doInsertSql( $query, '' ))
+					output_message ( "Error dropping the _jomres_site_settings table", "danger" );
+				else
+					output_message ( "Dropped the _jomres_site_settings table", "info" );
+				}
 			}
 		}
 	}
