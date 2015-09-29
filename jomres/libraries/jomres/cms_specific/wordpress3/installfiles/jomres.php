@@ -44,8 +44,11 @@ if ( ! class_exists( 'wp_jomres' ) )
 
 			add_action('wp', array($this,'frontend_trigger_jomres'), 1);
 				
-			if ($_GET['page'] == "jomres/jomres.php" )
+			if (is_admin() && $_REQUEST['page'] == "jomres/jomres.php" )
 				{
+				if (!defined('_JOMRES_INITCHECK_ADMIN'))
+					define('_JOMRES_INITCHECK_ADMIN', 1 );
+
 				add_action('init', array($this,'admin_trigger_jomres'), 1);
 				}
 				
@@ -58,22 +61,15 @@ if ( ! class_exists( 'wp_jomres' ) )
 			add_filter('wp_title', array($this,'set_jomres_meta_title'));
 			//add_filter('the_title', array($this,'remove_jomres_post_title'));
 
-			add_action('wp_enqueue_scripts', array($this,'add_jomres_js_css'));
-		
-			if ($_GET['page'] == "jomres/jomres.php" )
+			if (is_admin() && ( $_REQUEST['page'] == "jomres/jomres.php" || $_REQUEST['action'] == "jomres/trigger.php") )
 				{
-				add_action('admin_enqueue_scripts', array($this,'add_jomres_js_css'));
+				add_action( 'wp_ajax_nopriv_'.$_REQUEST['action'], array($this,'jomres_wp_ajax') );
+				add_action( 'wp_ajax_'.$_REQUEST['action'], array($this,'jomres_wp_ajax') );
+				add_action( 'wp_ajax_nopriv_'.$_REQUEST['page'], array($this,'jomres_wp_ajax') );
+				add_action( 'wp_ajax_'.$_REQUEST['page'], array($this,'jomres_wp_ajax') );
 				}
-
-			// Disable the admin toolbar, if we are using jq ui then the menu at the top is the only position that works on a default WP installation.
-			add_filter( 'show_admin_bar', '__return_false' );
-
-			add_action( 'wp_ajax_nopriv_'.$_REQUEST['action'], array($this,'jomres_wp_ajax') );
-			add_action( 'wp_ajax_'.$_REQUEST['action'], array($this,'jomres_wp_ajax') );
-			add_action( 'wp_ajax_nopriv_'.$_REQUEST['page'], array($this,'jomres_wp_ajax') );
-			add_action( 'wp_ajax_'.$_REQUEST['page'], array($this,'jomres_wp_ajax') );
 			
-			// If popup is in $_REQUEST we'll disable all widgets, but leave the keys intact so that you don't get the "please activate a widget" message
+			// If &popup=1 is in $_REQUEST we'll disable all widgets, but leave the keys intact so that you don't get the "please activate a widget" message
 			add_filter( 'sidebars_widgets', array(&$this,'disable_all_widgets') );
 			
 			//fullscreen view
@@ -118,9 +114,15 @@ if ( ! class_exists( 'wp_jomres' ) )
 				if ( strstr(strtolower($post->post_content), "[jomres]") )
 					{
 					ob_start();
-					$path = plugin_dir_path( __FILE__ );
+					
+					add_action('wp_enqueue_scripts', array($this,'add_jomres_js_css'));
+					
+					// Disable the admin toolbar, if we are using jq ui then the menu at the top is the only position that works on a default WP installation.
+					if( isset( $_REQUEST['tmpl']) && $_REQUEST['tmpl'] == 'jomres' )
+						add_filter( 'show_admin_bar', '__return_false' );
+
 					if (!function_exists('jr_wp_trigger_frontend'))
-						require_once($path . "trigger.php");
+						require_once(plugin_dir_path( __FILE__ ) . "trigger.php");
 			
 					$this->contents = ob_get_contents();
 			
@@ -139,9 +141,11 @@ if ( ! class_exists( 'wp_jomres' ) )
 				if ($_GET['page'] == "jomres/jomres.php" )
 					{
 					ob_start();
-					$path = plugin_dir_path( __FILE__ );
+					
+					add_action('admin_enqueue_scripts', array($this,'add_jomres_js_css'));
+
 					if (!function_exists('jr_wp_trigger_admin'))
-						require_once($path . "trigger.php");
+						require_once(plugin_dir_path( __FILE__ ) . "trigger.php");
 			
 					$this->contents = ob_get_contents();
 			

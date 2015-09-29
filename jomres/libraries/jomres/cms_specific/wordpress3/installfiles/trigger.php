@@ -3,7 +3,8 @@
 if (!defined('_JOMRES_INITCHECK'))
 	define('_JOMRES_INITCHECK', 1 );
 
-define( '_JOMRES_INITCHECK_ADMIN', 1 );
+if (!defined('_JOMRES_INITCHECK_ADMIN'))
+	define('_JOMRES_INITCHECK_ADMIN', 1 );
 
 require_once (dirname(__FILE__).'/../../../jomres_root.php');
 
@@ -16,7 +17,7 @@ else
 	{
 	if (isset($_REQUEST['jr_wp_source']))
 		{
-		if ($_GET['jr_wp_source'] == "admin")
+		if ($_REQUEST['jr_wp_source'] == "admin")
 			{
 			jr_wp_trigger_admin();
 			}
@@ -27,7 +28,7 @@ else
 		}
 	else
 		{
-		if (strpos($_SERVER['SCRIPT_FILENAME'] ,"wp-admin/admin.php") > 0 )
+		if (strpos($_SERVER['SCRIPT_FILENAME'] ,"wp-admin") > 0 )
 			{
 			jr_wp_trigger_admin();
 			}
