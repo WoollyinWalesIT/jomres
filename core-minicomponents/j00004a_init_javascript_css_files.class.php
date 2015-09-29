@@ -201,7 +201,7 @@ class j00004a_init_javascript_css_files
 			}
 			
 			
-		 if ( 
+		/* if ( 
 			using_bootstrap() && 
 			!jomres_cmsspecific_areweinadminarea() &&
 			( $thisJRUser->userIsManager ) ||
@@ -217,7 +217,7 @@ class j00004a_init_javascript_css_files
 				{
 				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "bootstrap-tour.js");
 				}
-			}
+			}*/
 		
 		$ls = jomresGetDomain();
 		if ( stristr( $ls, ".xn--", $ls ) && !jomres_cmsspecific_areweinadminarea() ) // We check to see if we're in the admin area because our one and only client with an umlat in the domain name has found that the redirect function doesn't work in the administrator area if the domain's been converted.
@@ -263,18 +263,22 @@ class j00004a_init_javascript_css_files
 			var dataTables_sSortAscending	= "'. jr_gettext( 'DATATABLES_SSORTASCENDING', DATATABLES_SSORTASCENDING, false ).'";
 			var dataTables_sSortDescending	= "'. jr_gettext( 'DATATABLES_SSORTDESCENDING', DATATABLES_SSORTDESCENDING, false ).'";
 			var dataTables_showhide			= "'. jr_gettext( 'DATATABLES_SHOWHIDE', DATATABLES_SHOWHIDE, false ).'";
-			
-			
+
 			';
 
 		if ( ( !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ) || $_SERVER['SERVER_PORT'] == 443)// We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
 			{
-			$temp_file =  $ls . "_ssl_" . get_showtime( 'lang' ) ."_". $current_property_details->property_type."_". "_misc_url_defs.js";
+			$temp_file =  $ls . "_ssl_" . get_showtime( 'lang' ) ."_". $current_property_details->property_type."_";
 			}
 		else
 			{
-			$temp_file =  $ls . "_" . get_showtime( 'lang' ) ."_". $current_property_details->property_type."_". "_misc_url_defs.js";
+			$temp_file =  $ls . "_" . get_showtime( 'lang' ) ."_". $current_property_details->property_type."_";
 			}
+		
+		if (jomres_cmsspecific_areweinadminarea())
+			$temp_file .= '_misc_url_defs_admin.js';
+		else
+			$temp_file .= '_misc_url_defs.js';
 		
 		if (!file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $temp_file ))
 			file_put_contents(  JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $temp_file , $misc_url_defs );
