@@ -1,3 +1,18 @@
+<h3>Jomres 9.1.5 30/09/2015</h3>
+
+<span class="label label-warning">Change</span> Re-added some css classes that had previously been removed.
+<span class="label label-warning">Change</span> Added a triple check for file creation before site settings table is removed.
+<span class="label label-warning">Change</span> Modified functionality so that javascript cache files are rebuilt on rebuild registry or save site config.
+<span class="label label-warning">Change</span> Removed an icon from a template.
+
+<span class="label label-info">Wordpress</span> Improved the WP bridging functionality. Good work Aladar.
+<span class="label label-info">Wordpress</span> Modified how the jomres_template_version javascript variable is generated because it's possible to have non-BS in the admin area, and BS in the frontend ( Wordpress ).
+<span class="label label-info">Wordpress</span> Added more Wordpress related tweaks to do with script registration/deregistration.
+<span class="label label-info">Wordpress</span> Fixed a large whitespace problem in jq ui admin area.
+<span class="label label-info">Wordpress</span> Added widget related functionality to ensure that Jomres javascript/css files are loaded when needed.
+
+<span class="label label-important label-danger">Fix</span> Added code to check for errors in JShrink and automatically disable javascript caching if they arise. A number of users have been seeing "Unclosed regex pattern at position:" errors when trying to use any page with Jomres on it. We THINK that this is related to the new Table Tools implementation in the previous version of Jomres, and the javascript minification functionality of JShrink. This fix will detect the error and automatically switch off the minification feature in the site settings, then re-direct the user to the same page again effectively making the error invisible to users. Admins will also receive a message saying that this has been done.
+
 <h3>Jomres 9.1.4 27/09/2015</h3>
 
 <span class="label label-success">Feature</span> Updated datatables to the most recent version.
