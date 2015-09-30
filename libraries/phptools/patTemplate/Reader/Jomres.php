@@ -24,7 +24,7 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 		{
 		$override_template = false;
 		if ( !isset( $_REQUEST[ 'nocustomtemplate' ] ) )
-			$override_template = $this->get_joomla_template_override( $templatename);
+			$override_template = $this->get_cms_template_override( $templatename);
 		
 		if ( !$override_template )
 			{
@@ -77,8 +77,10 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 		return $templates;
 		}
 		
-	function get_joomla_template_override($jomres_template_name)
+	function get_cms_template_override($jomres_template_name)
 		{
+		$override_path = false;
+		
 		if (this_cms_is_joomla())
 			{
 			$app = JFactory::getApplication();
@@ -100,24 +102,37 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 				if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . $name . JRDS . $jomres_template_name) )
 					$override_path = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . $name;
 				}
-			
-			if (is_dir($override_path))
+			}
+		elseif (this_cms_is_wordpress())
+			{
+			$override_path = get_template_directory() . JRDS . 'html' . JRDS . 'com_jomres';
+
+			if (strpos($jomres_template_name,'mod_jomsearch_m') !== false)
 				{
-				if (is_file( $override_path . JRDS . $jomres_template_name ) )
-					{
-					return file_get_contents( $override_path . JRDS . $jomres_template_name );
-					}
-				else
-					{
-					return false;
-					}
+				$arr = explode(".", $jomres_template_name); 
+				$name = $arr[0];
+				
+				if ( file_exists(get_template_directory() . JRDS . 'html' . JRDS . $name . JRDS . $jomres_template_name) )
+					$override_path = get_template_directory() . JRDS . 'html' . JRDS . $name;
+				}
+			}
+			
+		if ($override_path != '' && is_dir($override_path))
+			{
+			if (is_file( $override_path . JRDS . $jomres_template_name ) )
+				{
+				return file_get_contents( $override_path . JRDS . $jomres_template_name );
 				}
 			else
 				{
 				return false;
 				}
 			}
-			
+		else
+			{
+			return false;
+			}
+		
 		return false;
 		}
 	
