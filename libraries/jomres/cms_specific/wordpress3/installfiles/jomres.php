@@ -115,14 +115,14 @@ if ( ! class_exists( 'wp_jomres' ) )
 					{
 					ob_start();
 					
-					add_action('wp_enqueue_scripts', array($this,'add_jomres_js_css'));
-					
 					// Disable the admin toolbar, if we are using jq ui then the menu at the top is the only position that works on a default WP installation.
 					if( isset( $_REQUEST['tmpl']) && $_REQUEST['tmpl'] == 'jomres' )
 						add_filter( 'show_admin_bar', '__return_false' );
 
 					if (!function_exists('jr_wp_trigger_frontend'))
 						require_once(plugin_dir_path( __FILE__ ) . "trigger.php");
+					
+					add_action('wp_enqueue_scripts', array($this,'add_jomres_js_css'), 9999);
 			
 					$this->contents = ob_get_contents();
 			
@@ -141,11 +141,11 @@ if ( ! class_exists( 'wp_jomres' ) )
 				if ($_GET['page'] == "jomres/jomres.php" )
 					{
 					ob_start();
-					
-					add_action('admin_enqueue_scripts', array($this,'add_jomres_js_css'));
 
 					if (!function_exists('jr_wp_trigger_admin'))
 						require_once(plugin_dir_path( __FILE__ ) . "trigger.php");
+					
+					add_action('admin_enqueue_scripts', array($this,'add_jomres_js_css'), 9999);
 			
 					$this->contents = ob_get_contents();
 			
@@ -185,6 +185,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 						wp_register_script($js['0'], $js['1'], array("jquery"), $js['2']);
 					wp_enqueue_script($js['0']);
 					}
+				$this->js = array();
 				}
 			
 			if (count($this->css)>0)
@@ -194,6 +195,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 					wp_register_style($css['0'], $css['1'], array(), $css['2']);
 					wp_enqueue_style($css['0']);
 					}
+				$this->css = array();
 				}
 			}
 		
