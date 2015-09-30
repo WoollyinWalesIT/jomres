@@ -89,8 +89,7 @@ class minicomponent_registry
 		
 			$scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 			if ( !strstr( $scriptname, 'install_jomres.php' ) )
-				$this->getMiniComponentJoomlaTemplateClasses();
-			// $this->getMiniComponentComponentClasses(); // Was added for BC, these minicomponents should no longer be used (since circa v3 of Jomres) so this line will be disabled
+				$this->getMiniComponentCmsTemplateClasses();
 			}
 
 		asort( $this->registeredClasses );
@@ -166,16 +165,26 @@ class jomres_mc_registry
 		}
 
 	// If this is Joomla we'll also scan the Joomla template's html/com_jomres dir for minicomponents. 
-	function getMiniComponentJoomlaTemplateClasses()
+	function getMiniComponentCmsTemplateClasses()
 		{
-		if ( !this_cms_is_joomla())
+		if ( !this_cms_is_joomla() && !this_cms_is_wordpress() )
 			return;
-		$db = JFactory::getDBO();
-		$query = "SELECT template FROM #__template_styles WHERE client_id = 0 AND home = 1";
-		$db->setQuery($query);
-		$templateName = $db->loadResult();
-
-		$jrePath = JOMRESCONFIG_ABSOLUTE_PATH . 'templates' . JRDS . $templateName . JRDS . 'html' . JRDS . 'com_jomres' . JRDS ;
+		
+		if ( this_cms_is_joomla() )
+			{
+			$db = JFactory::getDBO();
+			$query = "SELECT template FROM #__template_styles WHERE client_id = 0 AND home = 1";
+			$db->setQuery($query);
+			$templateName = $db->loadResult();
+	
+			$jrePath = JOMRESCONFIG_ABSOLUTE_PATH . 'templates' . JRDS . $templateName . JRDS . 'html' . JRDS . 'com_jomres' . JRDS ;
+			}
+		elseif ( this_cms_is_wordpress() )
+			{
+			$jrePath = get_template_directory() . JRDS . 'html' . JRDS . 'com_jomres' . JRDS ;
+			}
+		else
+			return;
 
 		$d       = @dir( $jrePath );
 		$docs    = array ();
@@ -203,7 +212,7 @@ class jomres_mc_registry
 						while ( false !== ( $entry = $dr->read() ) )
 							{
 							$filename = $entry;
-							$this->registerComponentFile( $listdir, $filename, 'joomlatemplate' );
+							$this->registerComponentFile( $listdir, $filename, 'cmstemplate' );
 							}
 						$dr->close();
 						}
