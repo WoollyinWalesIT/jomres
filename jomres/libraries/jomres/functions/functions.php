@@ -4375,7 +4375,7 @@ function showAvailability( $roomUid, $requestedDate = "", $property_uid, $showFu
 	$componentArgs[ 'property_uid' ]	 = $property_uid;
 	$componentArgs[ 'showFullYear' ]	 = $showFullYear;
 	$componentArgs[ 'room_avl_enquiry' ] = $room_avl_enquiry;
-	$MiniComponents->triggerEvent( '0017', $componentArgs ); // Availability calendar
+	$MiniComponents->triggerEvent( '00017', $componentArgs ); // Availability calendar
 	}
 
 /**
