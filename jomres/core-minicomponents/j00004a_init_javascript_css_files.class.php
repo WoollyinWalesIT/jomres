@@ -239,7 +239,15 @@ class j00004a_init_javascript_css_files
 			var compare_url = "'.JOMRES_SITEPAGE_URL_NOSEF . "&task=compare" .'";
 			var path_to_jomres_dir = "'.get_showtime( 'live_site' ).'";
 			var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX . '&task=module_popup&nofollowtmpl=1&id=";
-			var jomres_template_version = "'.find_plugin_template_directory().'";
+			';
+		
+		$template_dir = find_plugin_template_directory();
+		
+		if (jomres_cmsspecific_areweinadminarea() && this_cms_is_joomla() && $template_dir != 'jquery_ui')
+			$template_dir = 'bootstrap';
+			
+		$misc_url_defs .= '
+			var jomres_template_version = "'.$template_dir.'";
 			var property_reviews_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX . '&task=show_property_reviews&nofollowtmpl=1&property_uid=";
 			
 			var JOMRES_ROOT_DIRECTORY = "' . JOMRES_ROOT_DIRECTORY.'";
