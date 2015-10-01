@@ -61,8 +61,13 @@ class jrportal_payment_reference
 		$invoice = jomres_singleton_abstract::getInstance( 'basic_invoice_details' );
 		$invoice->gatherData($invoice_id);
 		
-		$query  = "SELECT tag FROM #__jomres_contracts WHERE contract_uid = " . (int) $invoice->contract_id;
-		$booking_number = trim( doSelectSql( $query, 1 ));
+		if ( (int) $invoice->contract_id > 0 )
+			{
+			$query  = "SELECT tag FROM #__jomres_contracts WHERE contract_uid = " . (int) $invoice->contract_id;
+			$booking_number = trim( doSelectSql( $query, 1 ));
+			}
+		else
+			$booking_number = false;
 		
 		$settings = array();
 		if ( (int) $invoice->subscription_id > 0 || (int) $invoice->is_commission > 0 )
@@ -116,24 +121,38 @@ class jrportal_payment_reference
 			
 		if ( $gateway_active )
 			{
-			$current_contract_details = jomres_singleton_abstract::getInstance( 'basic_contract_details' );
-			$current_contract_details->gather_data($invoice->contract_id, $invoice->property_uid);
+			if ( (int)$invoice->contract_id > 0 && (int)$invoice->property_uid > 0 )
+				{
+				$current_contract_details = jomres_singleton_abstract::getInstance( 'basic_contract_details' );
+				$current_contract_details->gather_data($invoice->contract_id, $invoice->property_uid);
+				
+				$payer = $current_contract_details->contract[$invoice->contract_id]['guestdeets'];
+				}
+			else
+				$payer = false;
 			
 			$invoice_data = array();
 			$invoice_data['invoice_number']		= $payment_details['invoice_id'];
 			$invoice_data['currencycode']		= $invoice->currencycode;
 			$invoice_data['balance']			= $invoice->balance;
 			$invoice_data['line_items']			= $invoice->lineitems;
-			$invoice_data['booking_number']		= $booking_number;
-			$invoice_data['payer']				= $current_contract_details->contract[$invoice->contract_id]['guestdeets'];
+			
+			if ($booking_number)
+				$invoice_data['booking_number']		= $booking_number;
+			else
+				$invoice_data['booking_number']		= '';
+			
+			if ($payer)
+				$invoice_data['payer']				= $payer;
+			else
+				$invoice_data['payer']				= array();
 			
 			$this->gateway_settings = $settings;
 			$this->invoice_data = $invoice_data;
 			
 			$this->gateway = $payment_details['gateway'];
 			$this->invoice_id =$payment_details['invoice_id'];
-			
-			
+
 			
 			return array ( 'gateway' => $this->gateway , 'invoice_data' => $invoice_data , 'gateway_settings' => $this->gateway_settings , 'invoice_id' => $this->invoice_id , 'payment_reference' =>$payment_details['id']  );
 			}
