@@ -15,40 +15,36 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j06000terms
 	{
-	function __construct()
+	function __construct($componentArgs)
 		{
 		$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
-		$this->pop    = jomresGetParam( $_REQUEST, 'popup', 0 );
-		//if ($this->pop==1)
-		//property_header($property_uid);
 
-		$mrConfig      = getPropertySpecificSettings( $property_uid );
 		$userIsManager = checkUserIsManager();
 
-		$query        = "SELECT property_name,property_policies_disclaimers
-		FROM #__jomres_propertys WHERE propertys_uid = '" . $property_uid . "' LIMIT 1";
-		$propertyList = doSelectSql( $query );
+		$query        = "SELECT property_policies_disclaimers FROM #__jomres_propertys WHERE propertys_uid = '" . $property_uid . "' LIMIT 1";
+		$property_policiesdisclaimers = doSelectSql( $query , 1 );
 
-		foreach ( $propertyList as $pproperty ) $property_policiesdisclaimers = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS', htmlspecialchars( trim( stripslashes( $pproperty->property_policies_disclaimers ) ), ENT_QUOTES ) );
+		$property_policiesdisclaimers = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS',  $property_policiesdisclaimers , false , false );
 
-		if ( ( !$userIsManager ) || $userIsManager )
-			{
-			$property                           = array ();
-			$property[ 'LIVESITE' ]             = get_showtime( 'live_site' );
-			$property[ 'HPROPERTYNAME' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME );
-			$property[ 'HPOLICIESDISCLAIMERS' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS );
+		$property                           = array ();
+		$property[ 'LIVESITE' ]             = get_showtime( 'live_site' );
+		$property[ 'HPROPERTYNAME' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME );
+		$property[ 'HPOLICIESDISCLAIMERS' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS );
 
-			$property[ 'POLICIESDISCLAIMERS' ] = $property_policiesdisclaimers;
-			if ( empty( $property[ 'POLICIESDISCLAIMERS' ] ) ) $property[ 'HPOLICIESDISCLAIMERS' ] = "";
+		$property[ 'POLICIESDISCLAIMERS' ] = $property_policiesdisclaimers;
+		if ( empty( $property[ 'POLICIESDISCLAIMERS' ] ) ) 
+			$property[ 'HPOLICIESDISCLAIMERS' ] = "";
 
-			$property_deets[ ] = $property;
+		$property_deets[ ] = $property;
 
-			$tmpl = new patTemplate();
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-			$tmpl->addRows( 'property_deets', $property_deets );
-			$tmpl->readTemplatesFromInput( 'terms.html' );
+		$tmpl = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		$tmpl->addRows( 'property_deets', $property_deets );
+		$tmpl->readTemplatesFromInput( 'terms.html' );
+		if ( !isset($componentArgs['return_template']))
 			$tmpl->displayParsedTemplate();
-			}
+		else
+			$this->retVals = $tmpl->getParsedTemplate();
 		}
 
 	/**
@@ -61,6 +57,6 @@ class j06000terms
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return null;
+		return $this->retVals;
 		}
 	}

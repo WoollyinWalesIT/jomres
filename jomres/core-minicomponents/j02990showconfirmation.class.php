@@ -491,6 +491,7 @@ class j02990showconfirmation
 		$booking_parts[ 'HTAX' ] = "";
 
 		$booking_parts[ 'TERMS' ]        = makePopupLink( JOMRES_SITEPAGE_URL . "&task=terms&popup=1&tmpl=".get_showtime("tmplcomponent")."&property_uid=$property_uid", jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS ), true, 750, 500 );
+		$booking_parts[ 'TERMS_NO_POPUP' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS , false, false );
 		$booking_parts[ 'TERMSPRETEXT' ] = jr_gettext( '_JOMRES_CONFIRMATION_TERMS_PRETEXT', _JOMRES_CONFIRMATION_TERMS_PRETEXT );
 		$booking_parts[ 'TERMSTEXT' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS, false );
 		$booking_parts[ 'ALERT' ]        = jr_gettext( '_JOMRES_CONFIRMATION_ALERT', _JOMRES_CONFIRMATION_ALERT, false );
@@ -618,6 +619,7 @@ class j02990showconfirmation
 			$booking_room_specific_info[ ]                   = $booking_room_specific;
 			}
 
+		$booking_parts['TERMS_MODAL_CONTENTS'] = $MiniComponents->specificEvent( '06000', 'terms' , array( "return_template" => true ) );
 
 		$booking_particulars[ ] = $booking_parts;
 		$tmpl                   = new patTemplate();
