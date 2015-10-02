@@ -67,7 +67,13 @@ class j01070showpropertyheader
 			$output[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images ['property'][0][0]['large'];
 			$output[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images ['property'][0][0]['medium'];
 			$output[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images ['property'][0][0]['small'];
-
+			if (is_null($output[ 'IMAGELARGE' ]))
+				{
+				$output[ 'IMAGELARGE' ]  = $jomres_media_centre_images->multi_query_images ['noimage-large'];
+				$output[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->multi_query_images ['noimage-medium'];
+				$output[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->multi_query_images ['noimage-small'];
+				}
+			
 			//rooms
 			$rtRows    = array ();
 			if ( !get_showtime( 'is_jintour_property' ) )
