@@ -21,7 +21,32 @@ if ( strstr( $scriptname, 'install_jomres.php' ) )
 $ssllink = str_replace( "https://", "http://", get_showtime( 'live_site' ) );
 define( 'JOMRES_ADMINISTRATORDIRECTORY', "wp-admin" );
 
-$jomresItemid = 0; //should only kick in on install
+$scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
+if ( !strstr( $scriptname, 'install_jomres.php' ) )
+	{
+	$query = "SELECT `ID` FROM #__posts WHERE `post_content` = '[jomres]' AND `post_parent` = 0 AND `post_status` = 'publish' LIMIT 1";
+	$itemQueryRes = (int)doSelectSql( $query,1 );
+
+	$itemIdFound=false;
+	
+	if ($itemQueryRes > 0)
+		{
+		$itemIdFound=true;
+		$jomresItemid=$itemQueryRes;
+		}
+	
+	if ( !$itemIdFound )
+		{
+		if ( isset( $jrConfig[ 'jomresItemid' ] ) ) 
+			$jomresItemid = $jrConfig[ 'jomresItemid' ];
+		else
+			$jomresItemid = 0;
+		}
+	}
+else
+	{
+	$jomresItemid = 0; //should only kick in on install
+	}
 
 $jrConfig = $siteConfig->set_setting( "jomresItemid", $jomresItemid );
 
@@ -97,19 +122,9 @@ if ( isset( $_REQUEST[ 'jomreslang' ] ) )
 		}
 	}
 
-$page_id = get_the_ID();
-if ((int)$page_id == 0)
-	$page_id = jomresGetParam($_GET, 'page_id', '0');
-if ((int)$page_id == 0)
-	{
-	$query = "SELECT id FROM #__posts WHERE post_content LIKE '%[jomres]%' LIMIT 1 ";
-	$page_id = doSelectSql($query, 1);
-	}	
-
-
-define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/?option=com_jomres&page_id=" . $page_id . $tmpl . $lang);
-define( "JOMRES_SITEPAGE_URL_NOSEF", get_showtime( 'live_site' ) . "/index.php?option=com_jomres&page_id=" . $page_id . $tmpl . $lang );
-define( "JOMRES_SITEPAGE_URL_AJAX",get_showtime( 'live_site' ) . "/index.php?action=jomres/trigger.php&no_html=1&jrajax=1&jr_wp_source=frontend&option=com_jomres&page_id=" . $page_id . $tmpl . $lang);
+define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/?option=com_jomres&page_id=" . $jomresItemid . $tmpl . $lang);
+define( "JOMRES_SITEPAGE_URL_NOSEF", get_showtime( 'live_site' ) . "/index.php?option=com_jomres&page_id=" . $jomresItemid . $tmpl . $lang );
+define( "JOMRES_SITEPAGE_URL_AJAX",get_showtime( 'live_site' ) . "/index.php?action=jomres/trigger.php&no_html=1&jrajax=1&jr_wp_source=frontend&option=com_jomres&page_id=" . $jomresItemid . $tmpl . $lang);
 
 define( "JOMRES_SITEPAGE_URL_ADMIN", get_showtime( 'live_site' ) . "/wp-admin/admin.php?page=jomres/jomres.php&jr_wp_source=admin&option=com_jomres" . $tmpl . $lang . $lang_param );
 define( "JOMRES_SITEPAGE_URL_ADMIN_AJAX", get_showtime( 'live_site' ) . "/wp-admin/admin-ajax.php?action=jomres/trigger.php&no_html=1&jrajax=1&jr_wp_source=admin&option=com_jomres" . $tmpl . $lang . $lang_param);

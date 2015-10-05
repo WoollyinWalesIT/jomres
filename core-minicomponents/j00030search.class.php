@@ -87,10 +87,14 @@ class j00030search
 
 		jr_import( 'jomSearch' );
 
-		$sch                  = new jomSearch( $calledByModule );
+		$sch                  = new jomSearch( $calledByModule, $includedInModule);
 		$sch->searchAll       = $searchAll;
 		$searchOptions        = $sch->searchOptions;
 		$h                    = '<input type="hidden" name="calledByModule" value="' . $sch->calledByModule . '"/><input type="hidden" name="Itemid" value="' . $jrConfig[ 'jomresItemid' ] . '"/>';
+		
+		if (this_cms_is_wordpress())
+			$h                = '<input type="hidden" name="calledByModule" value="' . $sch->calledByModule . '"/><input type="hidden" name="page_id" value="' . $jrConfig[ 'jomresItemid' ] . '"/>';
+		
 		$output[ 'HIDDEN' ]   = $h;
 		$jomresSearchFormname = $sch->formname;
 		$searchOutput         = $sch->searchOutput;
@@ -292,7 +296,7 @@ class j00030search
 			$output[ 'HSTARS' ] = jr_gettext( '_JOMRES_SEARCH_STARS', _JOMRES_SEARCH_STARS, false );
 			}
 
-		$output[ 'SUBMITURL' ] = jomresURL( JOMRES_SITEPAGE_URL );
+		$output[ 'SUBMITURL' ] = jomresURL( JOMRES_SITEPAGE_URL_NOSEF );
 		$output[ 'FORMNAME' ]  = $jomresSearchFormname;
 
 
@@ -787,7 +791,7 @@ class j00030search
 
 		if ( !$data_only )
 			{
-			if ( !$doSearch || ( $calledByModule == "mod_jomsearch_m0" && $jrConfig[ 'integratedSearch_enable' ] == '1' ) )
+			if ( !$doSearch || ( $calledByModule == "mod_jomsearch_m0" && $jrConfig[ 'integratedSearch_enable' ] == '1' && this_cms_is_joomla()) )
 				{
 				$stmpl = new patTemplate();
 				$stmpl->setRoot( $sch->templateFilePath );
