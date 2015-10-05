@@ -74,33 +74,8 @@ class j01070showpropertyheader
 				$output[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->multi_query_images ['noimage-small'];
 				}
 			
-			//rooms
-			$rtRows    = array ();
-			if ( !get_showtime( 'is_jintour_property' ) )
-				{
-				$property[ 'HRTYPES' ] = "";
-				if ( count( $current_property_details->room_types ) > 0 )
-					{
-					$property[ 'HRTYPES' ] = jr_gettext( '_JOMRES_FRONT_ROOMTYPES', _JOMRES_FRONT_ROOMTYPES );
-					foreach ( $current_property_details->room_types as $type )
-						{
-						$rtRows                = array ();
-						$rtRows[ 'ROOM_TYPE' ] = jomres_makeTooltip( $type['abbv'], $type['abbv'], $type['desc'], $type['image'], "", "room_type", array () );
-						$roomtypes[ ]          = $rtRows;
-						}
-					}
-				}
-			
-			//features
-			$features = $current_property_details->features;
-			if ( count( $features ) > 0 )
-				{
-				foreach ( $features as $f )
-					{
-					$propertyFeatureDescriptionsArray[ 'FEATURE' ] = jomres_makeTooltip( $f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], $f[ 'image' ], "", "property_feature", array () );
-					$featureList[ ]                                = $propertyFeatureDescriptionsArray;
-					}
-				}
+			$output['FEATURES']		= $MiniComponents->specificEvent( '06000', 'show_property_features',array('output_now'=>false, 'property_uid'=>$property_uid));
+			$output['ROOMTYPES']	= $MiniComponents->specificEvent( '06000', 'show_property_room_types',array('output_now'=>false, 'property_uid'=>$property_uid));
 
 			//meta data
 			if ( strlen( $current_property_details->metatitle ) > 0 ) 
