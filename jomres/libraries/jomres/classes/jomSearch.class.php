@@ -29,7 +29,7 @@ class jomSearch
 	 * Constructs the search object
 	#
 	 */
-	function __construct( $calledByModule )
+	function __construct( $calledByModule, $includedInModule = false )
 		{
 		//var_dump($searchOptions);
 		$searchAll       = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
@@ -53,7 +53,10 @@ class jomSearch
 			$this->templateFilePath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'modules' . JRDS . $calledByModule . JRDS . $calledByModule;
 			$this->templateFile     = $calledByModule.".html";
 
-			if ( $calledByModule == "mod_jomsearch_m0" && $jrConfig[ 'integratedSearch_enable' ] == '1' )
+			if ( 
+				($calledByModule == "mod_jomsearch_m0" && $jrConfig[ 'integratedSearch_enable' ] == '1' && this_cms_is_joomla()) ||
+				($calledByModule == "mod_jomsearch_m0" && this_cms_is_wordpress() && $includedInModule)
+				)
 				{
 				$this->templateFilePath = JOMRES_TEMPLATEPATH_FRONTEND;
 				$this->templateFile     = "search.html";
