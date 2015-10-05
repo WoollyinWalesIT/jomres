@@ -33,9 +33,19 @@
 </div>
 
 <patTemplate:comment>
-<img src="{IMAGETHUMB}"/>
-<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">{ROOM_TYPE}</patTemplate:tmpl>
-<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">{FEATURE}</patTemplate:tmpl>
+{IMAGELARGE}
+{IMAGEMEDIUM}
+
+			<div class="row">
+				<div class="col-md-12">
+					{FEATURES}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					{ROOMTYPES}
+				</div>
+			</div>
 </patTemplate:comment>
 
 </patTemplate:tmpl>
