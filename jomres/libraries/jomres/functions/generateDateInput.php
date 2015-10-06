@@ -132,7 +132,7 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 	$output .= '
 	</script>
 	<div class="input-group">
-		<input type="text" ' . $size . ' name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" class="' . $input_class . ' form-control" />'.$bs3_icon.'
+		<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF;" ' . $size . ' name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" class="' . $input_class . ' form-control" />'.$bs3_icon.'
 	</div>';
 	$br = "";
 	if ( $fieldName == "departureDate" && $jrConfig[ 'use_cleardate_checkbox' ] == "1" ) 

@@ -172,7 +172,7 @@ if ( !class_exists( 'booking' ) )
 			
 			$output .= '
 			</script>
-			<input type="text" ' . $size . ' class="' . $input_class . ' form-control input-group" name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" autocomplete="off" />'.$bs3_icon.'
+			<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF;" ' . $size . ' class="' . $input_class . ' form-control input-group" name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" autocomplete="off" />'.$bs3_icon.'
 			';
 
 			return $output;
