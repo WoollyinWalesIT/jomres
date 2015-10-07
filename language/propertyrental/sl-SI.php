@@ -2744,3 +2744,5 @@ LIMITATIONS OF LIABILITY: The Renter represents, warrants, acknowledges and agre
 
 ' );
 
+
+jr_define( '_JOMRES_NUMBER_OF_BEDROOMS', 'Bedrooms' );
