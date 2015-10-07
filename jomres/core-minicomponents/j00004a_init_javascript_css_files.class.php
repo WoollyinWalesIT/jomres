@@ -133,7 +133,6 @@ class j00004a_init_javascript_css_files
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/jquery-ui-cal-localisation/", $datepicker_localisation_file);
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.cookee.js");
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "heartbeat.js");
-		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/',  "jquery.hoverIntent.js");
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.validate.js");
 		
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.jlabel-1.3.js");
@@ -155,7 +154,6 @@ class j00004a_init_javascript_css_files
 			$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "font-awesome.min.css");
 		
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.jeditable.js");
-		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "excanvas.js");
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.chainedSelects.js");
 		
 		if (!isset($jrConfig['live_scrolling_enabled']))
