@@ -86,11 +86,6 @@ class j10501a_misc
 		$configurationPanel->setright( jr_gettext( _JOMRES_BOOTSTRAP_VERSION_DESC, '_JOMRES_BOOTSTRAP_VERSION_DESC', false ) );
 		$configurationPanel->insertSetting();
 		
-		$configurationPanel->setleft( jr_gettext( _JOMRES_BOOTSTRAPSWITCH_ADMINISTRATOR, '_JOMRES_BOOTSTRAPSWITCH_ADMINISTRATOR', false ) );
-		$configurationPanel->setmiddle( $lists[ 'use_bootstrap_in_admin' ] );
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
-		
 		$configurationPanel->setleft( jr_gettext( _JOMRES_PROPERTYDETAILS_INTABS_TITLE, '_JOMRES_PROPERTYDETAILS_INTABS_TITLE', false ) );
 		$configurationPanel->setmiddle( $lists[ 'property_details_in_tabs' ] );
 		$configurationPanel->setright( jr_gettext( _JOMRES_PROPERTYDETAILS_INTABS_DESC, '_JOMRES_PROPERTYDETAILS_INTABS_DESC', false ) );

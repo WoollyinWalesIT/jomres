@@ -258,7 +258,10 @@ function jomres_bootstrap_version()
 function find_plugin_template_directory()
 	{
 	$template_dir = "jquery_ui";
-	if ( using_bootstrap())
+	
+	if (jomres_cmsspecific_areweinadminarea())
+		$template_dir = 'bootstrap';
+	elseif ( using_bootstrap())
 		{
 		$template_dir = "bootstrap";
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
@@ -714,21 +717,17 @@ function using_bootstrap()
 		{
 		if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34")
 			{
-			$jrConfig[ 'use_bootstrap_in_admin' ]	= "1";
 			$jrConfig[ 'use_bootstrap_in_frontend' ] = "1";
 			}
 		else
 			{
-			$jrConfig[ 'use_bootstrap_in_admin' ]	= "0";
 			$jrConfig[ 'use_bootstrap_in_frontend' ] = "0";
 			}
 		}
 
 	if ( jomres_cmsspecific_areweinadminarea() )
 		{
-		if ( $jrConfig[ 'use_bootstrap_in_admin' ] == "1" ) return true;
-		else
-		return false;
+		return true;
 		}
 	else
 		{

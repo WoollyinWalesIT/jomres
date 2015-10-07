@@ -7,8 +7,11 @@
 		dataTableSetHiddenColumns('admin_listproperties', column_ids);
 		
 		var $content = jomresJquery('#filter_properties').html();
-		jomresJquery('#toolbar').html($content);
+		jomresJquery('#jomres_admin_toolbar').html($content);
 		jomresJquery('#filter_properties').empty();
+		
+		if (jomresJquery('#jomres_admin_toolbar').html().trim() != '')
+			jomresJquery('#jomres_admin_toolbar').css("display", "block");
 		});
 	
 	function savecrates(property_uid, crate_id) 

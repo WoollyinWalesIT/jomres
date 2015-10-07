@@ -384,3 +384,7 @@ fieldset.radio.btn-group {
     color: #fff;
     font-size: 18px;
 }
+
+#jomres_admin_toolbar {
+	display: none;
+}
