@@ -5,10 +5,13 @@
 		make_datatable('admin_list_invoices', '{PAGETITLE}', '{LIVESITE}', '{AJAX_URL}');
 		column_ids = new Array(4,6);
 		dataTableSetHiddenColumns('admin_list_invoices', column_ids);
-
+		
 		var $content = jomresJquery('#filter_invoices').html();
-		jomresJquery('#toolbar').html($content);
+		jomresJquery('#jomres_admin_toolbar').html($content);
 		jomresJquery('#filter_invoices').empty();
+		
+		if (jomresJquery('#jomres_admin_toolbar').html().trim() != '')
+			jomresJquery('#jomres_admin_toolbar').css("display", "block");
 	});
 	//-->
 </script>

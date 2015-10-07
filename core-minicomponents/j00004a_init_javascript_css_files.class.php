@@ -111,6 +111,19 @@ class j00004a_init_javascript_css_files
 			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery-ui.js");
 			}
 		
+		if ( jomres_cmsspecific_areweinadminarea() && (this_cms_is_wordpress() || _JOMRES_DETECTED_CMS == "joomla25") )
+			{
+			jomres_cmsspecific_addheaddata( "css", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/css/', 'jomres_bootstrap_wrapper.css' );
+			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-modal.js' );
+			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-tooltip.js' );
+			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-popover.js' );
+			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-collapse.js' );
+			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-dropdown.js' );
+			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-tab.js' );
+			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-transition.js' );
+			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'jomres_bootstrap_wrapper.js' );
+			}
+		
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jomres.js");
 		
 		$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
@@ -243,7 +256,7 @@ class j00004a_init_javascript_css_files
 		
 		$template_dir = find_plugin_template_directory();
 		
-		if (jomres_cmsspecific_areweinadminarea() && this_cms_is_joomla() && $template_dir != 'jquery_ui')
+		if (jomres_cmsspecific_areweinadminarea() && $template_dir != 'jquery_ui')
 			$template_dir = 'bootstrap';
 			
 		$misc_url_defs .= '

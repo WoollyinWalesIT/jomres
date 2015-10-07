@@ -320,17 +320,14 @@ function showSiteConfig()
 		{
 		if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" )
 			{
-			$jrConfig[ 'use_bootstrap_in_admin' ]    = "1";
 			$jrConfig[ 'use_bootstrap_in_frontend' ] = "1";
 			}
 		else
 			{
-			$jrConfig[ 'use_bootstrap_in_admin' ]    = "0";
 			$jrConfig[ 'use_bootstrap_in_frontend' ] = "0";
 			}
 		}
 
-	$lists[ 'use_bootstrap_in_admin' ]         = jomresHTML::selectList( $yesno, 'cfg_use_bootstrap_in_admin', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_bootstrap_in_admin' ] );
 	$lists[ 'use_bootstrap_in_frontend' ]      = jomresHTML::selectList( $yesno, 'cfg_use_bootstrap_in_frontend', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_bootstrap_in_frontend' ] );
 	$lists[ 'show_cumulative_price_overlay' ]  = jomresHTML::selectList( $yesno, 'cfg_show_cumulative_price_overlay', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_cumulative_price_overlay' ] );
 	
