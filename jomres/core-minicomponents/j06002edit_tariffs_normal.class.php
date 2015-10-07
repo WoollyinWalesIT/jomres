@@ -42,7 +42,13 @@ class j06002edit_tariffs_normal
 				if ( array_key_exists( $key, $basic_property_details->classAbbvs ) ) $room_classes_array[ ] = $key;
 				}
 			}
-
+		if ( count ($room_classes_array) == 0 )
+			{
+			$message = "Error, there are no room types for this property type";
+			throw new Exception( $message );
+			return;
+			}
+		
 		$propertyRowInfo = "";
 
 		$query     = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,max_people FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $defaultProperty . "' ORDER BY room_number ";
