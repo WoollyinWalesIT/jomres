@@ -131,11 +131,10 @@ class j00004a_init_javascript_css_files
 		$datepicker_localisation_file = 'jquery.ui.datepicker-' . JOMRESDATEPICKERLANG . '.js';
 		
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/jquery-ui-cal-localisation/", $datepicker_localisation_file);
-		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.cookee.js");
+		//$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.cookee.js");
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "heartbeat.js");
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.validate.js");
 		
-		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.jlabel-1.3.js");
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.rating.js");
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.validate.js");
 		$css_files[]= array( JOMRES_ROOT_DIRECTORY."/css/","jquery.rating.css");

@@ -30,8 +30,6 @@ class jomres_javascript_cache
 			{
 			$this->consolidation_array = array ( );
 			$this->consolidation_array ["misc"] = array(
-				"jquery.cookee.js",
-				"jquery.cookee.for_tabs.js",
 				"heartbeat.js",
 				"jquery.hoverIntent.js",
 				"jquery.validate.js",
@@ -40,7 +38,6 @@ class jomres_javascript_cache
 				"jquery.easing.compatibility.js",
 				//"jquery.livequery.js", 
 				//"jquery.tipsy.js",
-				"jquery.jlabel-1.3.js",
 				"jquery.rating.js",
 				"jquery.validate.js",
 				"jquery.ui.potato.menu.js",

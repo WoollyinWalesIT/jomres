@@ -3,8 +3,11 @@
 		<!--
 		jomresJquery(function () {
 			var $content = jomresJquery('#save-cron-settings').html();
-			jomresJquery('#toolbar').html($content);
+			jomresJquery('#jomres_admin_toolbar').html($content);
 			jomresJquery('#save-cron-settings').empty();
+			
+			if (jomresJquery('#jomres_admin_toolbar').html().trim() != '')
+				jomresJquery('#jomres_admin_toolbar').css("display", "block");
 		});
 		//-->
 	</script>
