@@ -462,7 +462,8 @@ $jrConfig = ' . var_export($tmpConfig, true) . ';
 	$jomres_css_cache = new jomres_css_cache();
 	$jomres_css_cache->remove_all_temp_files();
 	
-	jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=site_settings" ), "Configuration saved" );
+	if ( count ($overrides) ==0) // If we've come from the Site Config page, we want to redirect the user back to the site configuration page, otherwise we don't redirect.
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=site_settings" ), "Configuration saved" );
 	}
 
 
