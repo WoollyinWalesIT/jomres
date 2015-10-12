@@ -21,7 +21,6 @@ class j06000mainmenu
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
 			return;
 			}
 		$MiniComponents->triggerEvent( '99995' );
