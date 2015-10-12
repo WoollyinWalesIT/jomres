@@ -63,26 +63,28 @@
 		font-size: @baseFontSize;
 		line-height: @baseLineHeight;
 		color: @grayDark;
-		background:@white;
+		background-color: @white;
 	}
 	
 	// Shared size and type resets
-	input, textarea {
-		box-sizing: unset;
-	}
-	
-	.btn-group:first-child {
-    	padding-left: 0;
-	}
-	
-	.radio.btn-group input[type="radio"] {
-		display: none;
-	}
-	
-	.radio.btn-group > label:first-of-type {
-		border-bottom-left-radius: 4px;
-		border-top-left-radius: 4px;
-		margin-left: 0;
+	select,
+	textarea,
+	input[type="text"],
+	input[type="password"],
+	input[type="datetime"],
+	input[type="datetime-local"],
+	input[type="date"],
+	input[type="month"],
+	input[type="time"],
+	input[type="week"],
+	input[type="number"],
+	input[type="email"],
+	input[type="url"],
+	input[type="search"],
+	input[type="tel"],
+	input[type="color"],
+	.uneditable-input {
+	  height: auto;
 	}
 	
 	table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child, table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child {
@@ -94,5 +96,4 @@
 
 /*Wordpress classes overrides*/
 #wpfooter {position:relative;}
-#adminmenuwrap, #wpadminbar {z-index:1030;}
 
