@@ -8,6 +8,10 @@ defined('_JOMRES_INITCHECK') or die;
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
 	
+	<script type="text/javascript">
+	var addon_animations_enable = false;
+	</script>
+	
 	<?php
 	//find the jomres template set to be used
 	if ( !using_bootstrap() )
@@ -60,6 +64,7 @@ defined('_JOMRES_INITCHECK') or die;
 	endif; ?>
 	<style type="text/css" media="screen">
 	.modal-backdrop {z-index:1030 !important;}
+	.appear {opacity:1 !important;}
 	</style>
 </head>
 <body class="contentpane">

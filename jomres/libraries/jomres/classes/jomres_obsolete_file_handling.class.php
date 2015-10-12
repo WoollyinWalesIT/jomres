@@ -1150,6 +1150,9 @@ class jomres_obsolete_file_handling
 		$this->add_obs_dir( $this->dir_templates_jqueryui_administrator );
 		$this->add_obs_file( $this->dir_javascript . 'jquery.hoverIntent.js' );
 		$this->add_obs_file( $this->dir_javascript . 'excanvas.js' );
+		$this->add_obs_file( $this->dir_css . 'jquery.jgrowl.css.1.2.0' );
+
+		$this->add_obs_file( $this->dir_javascript . 'jquery.jlabel-1.3.js' );
 		}
 
 	function add_obs_file( $path_and_file )
