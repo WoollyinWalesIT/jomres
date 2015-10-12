@@ -26,6 +26,9 @@ class j06000module_popup
 			}
 		//add_gmaps_source();
 		$property_uid = (int) jomresGetParam( $_REQUEST, "id", 0 );
+		if ( $property_uid == 0 )
+			$property_uid = (int) jomresGetParam( $_REQUEST, "property_uid", 0 );
+		
 		$result       = '';
 		if ( $property_uid > 0 )
 			{
