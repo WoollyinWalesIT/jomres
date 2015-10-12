@@ -967,6 +967,7 @@ catch (Exception $e)
 		// https://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CCAQFjAAahUKEwjJhIOt_JvIAhXLVhQKHQ7fAMk&url=https%3A%2F%2Fgithub.com%2Ftedious%2FJShrink%2Fissues%2F39&usg=AFQjCNHDDIZ655USiRRgv9k5DWnVTbbIhg&sig2=mIDxMyB2jfvvnzEmpxIBjA&bvm=bv.103627116,d.d24&cad=rja
 	if (strpos($e->getMessage(),'Unclosed regex pattern at position') !== false) // 29/09/2015 There's an un-fixed bug in Jshrink that causes this error, so we'll need to switch off javascript minification and try again
 		{
+		require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'siteconfig.functions.php' );
 		saveSiteConfig( array ( 'javascript_caching_enabled' => "0" ) );
 		sendAdminEmail( "Jomres detected an error.", "Jomres detected an error in javascript minification and javascript caching was automatically switched off. There is currently no known fix for this issue so you will need to leave it switched off for now.");
 		$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
