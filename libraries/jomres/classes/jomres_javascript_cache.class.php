@@ -38,7 +38,7 @@ class jomres_javascript_cache
 				"jquery.rating.js",
 				"jquery.validate.js",
 				"jquery.ui.potato.menu.js",
-				"jquery.jeditable.js",
+				"jqueryui-editable.js",
 				"bootstrap-editable.min.js"
 				);
 				
