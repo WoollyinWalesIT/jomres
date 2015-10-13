@@ -294,19 +294,19 @@ class j00004a_init_javascript_css_files
 		
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/temp/" ,$temp_file );
 		
-		if ( $jrConfig[ 'javascript_caching_enabled' ] =="0")
-			{
+		//if ( $jrConfig[ 'javascript_caching_enabled' ] =="0")
+			//{
 			foreach ( $javascript_files as $file)
 				{
 				jomres_cmsspecific_addheaddata( "javascript",$file[0] , $file[1] );
 				}
-			}
-		else
-			{
-			jr_import('jomres_javascript_cache');
-			$jomres_javascript_cache = new jomres_javascript_cache();
-			$jomres_javascript_cache->cache_javascript($javascript_files);
-			}
+			//}
+		//else
+			//{
+//			jr_import('jomres_javascript_cache');
+//			$jomres_javascript_cache = new jomres_javascript_cache();
+//			$jomres_javascript_cache->cache_javascript($javascript_files);
+//			}
 		
 		//if ( $jrConfig[ 'css_caching_enabled' ] =="0")
 			//{
