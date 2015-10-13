@@ -1,3 +1,46 @@
+<h3>Jomres 9.1.6 13/10/2015</h3>
+
+<span class="label label-warning">Change</span> Applied a minor correction to how the availability calendar is called to make sure the trigger number is correct in case we change how the mcHandler class works in the future.
+<span class="label label-warning">Change</span> Tweaked how Jomres figures out which bootstrap flavour to use in the administrator area.
+<span class="label label-warning">Change</span> Modified Show Confirmation page in BS3 to show terms and conditions as a modal.
+<span class="label label-warning">Change</span> Added some default terms and conditions to language files.
+<span class="label label-warning">Change</span> Added a new show property room types 06000 script, removed some redundant and no longer working room feature and room type code from property header and replaced with new code to output the modern data.
+<span class="label label-warning">Change</span> Added a variety of changes that allow us to have a search "widget" for Wordpress too, which is in addition to the existing ajax search functionality.
+<span class="label label-warning">Change</span> Tweaked date inputs to ensure that they can't be manually entered.
+<span class="label label-warning">Change</span> Updated booking data archive template to use new tabletools functionality.
+<span class="label label-warning">Change</span> Added a check for no room types for this property type mrp/srp combination and will throw an error if there's an issue. New functionality in the property creation script will prevent users from creating for example Cottages as MRPs, so these two changes together should prevent people from generating this kind of issue.
+<span class="label label-warning">Change</span> Removed a definition of MRP/SRP that should have been a dynamically added string.
+<span class="label label-warning">Change</span> Removed some obsolete javascript files.
+<span class="label label-warning">Change</span> Obsoleted jLabels javascript file, removed references from templates.
+<span class="label label-warning">Change</span> Obsoleted an old jgrowl css file.
+<span class="label label-warning">Change</span> Updated data tables templates code in cron and access control templates.
+<span class="label label-warning">Change</span> Added a call to a file in case site config needs to be adjusted via frontend scripts.
+<span class="label label-warning">Change</span> Modified saveSiteConfig function so that it doesn't redirect if there are some overrides set.
+<span class="label label-warning">Change</span> Added a new 06000 script "property_details" that allows us to call Jomres via the asamodule mambot.
+<span class="label label-warning">Change</span> Added ability for script to check for "property_uid" as well as "id" in the url (module_popup)
+<span class="label label-warning">Change</span> Tweaked contact owner script to accept property_uid in the url.
+<span class="label label-warning">Change</span> Audit functionality will be disabed by default.
+<span class="label label-warning">Change</span> Javascript caching tweaked to not include datatables.
+<span class="label label-warning">Change</span> Added an older datatables file to the obsolete files list.
+<span class="label label-warning">Change</span> Retired the jQuery Growl popups, they don't work well on mobile devices so instead the previous messages are output to the next page shown.
+<span class="label label-warning">Change</span> Joined several javascript and css files together, they're very rarely changed so lumping them together will give us a small overall speed improvement.
+<span class="label label-warning">Change</span> Updated the Property registration templates to improve validation of the form.
+<span class="label label-warning">Change</span> Javascript caching feature disabled temporarily as we have doubts about it's effectiveness. This will be reworked for the next version.
+
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue where the payment reference class was looking for a contract uid where sometimes it didn't exist.
+<span class="label label-important label-danger">Fix</span> Modified the integrated search template to use a SEF url.
+<span class="label label-important label-danger">Fix</span> Added fix to new code to ensure that buttons in datatables don't overlap.
+<span class="label label-important label-danger">Fix</span> Added a tweak to the version of Gmaps we call to see if that fixes an intermittent problem that they seem to be having with their v3.22 version of G maps.
+
+<span class="label label-info">Wordpress</span> Added functionality to Jomres patTemplate reader to use Template overrides in Wordpress as well as Joomla.
+<span class="label label-info">Wordpress</span> Added more template override classes for wordpress to minicomponent_registry.class.php
+<span class="label label-info">Wordpress</span> Added a variety of changes that allow us to have a search "widget" for Wordpress too, which is in addition to the existing ajax search functionality.
+<span class="label label-info">Wordpress</span> Added more changes to the Jomres WP bridging code which are mostly javascript related.
+<span class="label label-info">Wordpress</span> Figured out how to drop the administrator area JQ UI templates, and switch Wordpress users over to use bootstrap in the Jomres administrator area. You lucky, lucky bunnies.
+<span class="label label-info">Wordpress</span> Tweaked the Fullscreen version of the Jomres bootstrap wrapper .less file.
+<span class="label label-info">Wordpress</span> Added tweaks to wordpress related files to resolve animation issues.
+
 <h3>Jomres 9.1.5 30/09/2015</h3>
 
 <span class="label label-warning">Change</span> Re-added some css classes that had previously been removed.
