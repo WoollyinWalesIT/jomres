@@ -20,14 +20,6 @@ class jomres_messages
 		{
 		$jomres_messages = array ();
 		if ( isset( $_COOKIE[ 'jomres_messages' ] ) ) $this->jomres_messages = $_COOKIE[ 'jomres_messages' ];
-		
-		//add the growl js and css
-/* 		if (!defined('GROWL_JS_CSS_ADDED'))
-			{
-			define('GROWL_JS_CSS_ADDED',1);
-			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.jgrowl.js" );
-			jomres_cmsspecific_addheaddata( "css", JOMRES_ROOT_DIRECTORY.'/css/', 'jquery.jgrowl.css' );
-			} */
 		}
 
 	function get_messages()

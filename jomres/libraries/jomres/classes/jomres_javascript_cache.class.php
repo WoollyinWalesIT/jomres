@@ -31,7 +31,6 @@ class jomres_javascript_cache
 			$this->consolidation_array = array ( );
 			$this->consolidation_array ["misc"] = array(
 				"jquery-ui.js",
-				"heartbeat.js",
 				"jquery.validate.js",
 				"jquery.chainedSelects.js",
 				"jquery.livequery.js", 
@@ -39,10 +38,8 @@ class jomres_javascript_cache
 				"jquery.rating.js",
 				"jquery.validate.js",
 				"jquery.ui.potato.menu.js",
-				"list_properties.js",
 				"jquery.jeditable.js",
-				"bootstrap-editable.min.js",
-				"jquery.jgrowl.js"
+				"bootstrap-editable.min.js"
 				);
 				
 			$this->do_not_minify = array (

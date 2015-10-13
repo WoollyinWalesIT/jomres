@@ -1031,4 +1031,150 @@ function createGraph(labels, values, type, legend, thediv) {
 	graph.absValuesBorder = "2px groove white";
 	document.getElementById(thediv).innerHTML = graph.create();
 }
-	
+
+/* list_properties.js */
+function toggle_review_div(uid, property_name) {
+	div_id = "#property_reviews" + uid;
+	jomresJquery(div_id).dialog({
+		resizable: false,
+		height: 500,
+		width: 800,
+		modal: true,
+		resizable: true,
+		open: function () {
+			jomresJquery.get(live_site_ajax + "&task=show_property_reviews&property_uid=" + uid,
+				function (data) {
+					jomresJquery('#property_reviews' + uid).html(data);
+					//jomresJquery('.star').rating();
+				});
+		}
+	});
+	jomresJquery('.ui-widget-overlay').live("click", function () {
+		jomresJquery(div_id).dialog("close");
+	});
+};
+
+function shortlist(property_uid) {
+	jomresJquery.get(live_site_ajax + "&task=ajax_shortlist&property_uid=" + property_uid, function (data) {
+		jomresJquery('#shortlist_' + property_uid).html(data);
+	});
+}
+
+function set_budget(budget_price , reload , formname ) {
+	jomresJquery.get(live_site_ajax + "&task=ajax_budget&budget_figure="+budget_price, function (data) {
+		if (reload)
+			location.reload();
+		else
+			submit_search(formname);
+	});
+}
+
+var killScroll = false; // IMPORTANT
+var last_scrolled_id = 0;
+function lastAddedLiveFunc() {
+	if (live_scrolling_enabled) {
+		id = jomresJquery(".jomres_property_list_propertywrapper:last").attr("id");
+		if (id != last_scrolled_id) {
+			var animation = '<div id="animation"><img src="' + path_to_jomres_dir + '/'+JOMRES_ROOT_DIRECTORY + '/images/ajax_animation/broken_circle.gif" /></div>';
+			jomresJquery("#livescrolling_results").append(animation);
+			jomresJquery.get(live_site_ajax + "&task=ajax_list_properties&nofollowtmpl&lastID=" + id,
+			function (data) {
+				var result = data.split("^");
+				jomresJquery("#animation").remove();
+				if (result[0] != "") {
+					jomresJquery("#livescrolling_results").replaceWith(result[0]);
+					bind_data_toggle();
+					eval(result[1]);
+				}
+
+				killScroll = false; // IMPORTANT - Make function available again.
+				var bol = jomresJquery("input[type=checkbox][name=compare]:checked").length >= 3;
+				jomresJquery("input[type=checkbox][name=compare]").not(":checked").attr("disabled", bol);
+				last_scrolled_id = id;
+				jomresJquery(".jomres_bt_tooltip_features").tipsy({html: true, fade: true, gravity: 'sw', delayOut: 100});
+				//console.log(last_scrolled_id);
+			});
+		}
+	}
+};
+
+jomresJquery(document).ready(function () {
+	jomresJquery(window).scroll(function () {
+		if (jomresJquery(window).height() + jomresJquery(window).scrollTop() >= jomresJquery(document).height() - 2000) {
+			if (killScroll == false) { // IMPORTANT - Keeps the loader from fetching more than once.
+				killScroll = true; // IMPORTANT - Set killScroll to true, to make sure we do not trigger this code again before it's done running.
+				lastAddedLiveFunc();
+			}
+		}
+	});
+});
+
+
+jomresJquery(document).ready(function () {
+	jomresJquery("input[type=checkbox][name=compare]").click(function () {
+		var bol = jomresJquery("input[type=checkbox][name=compare]:checked").length >= 3;
+		jomresJquery("input[type=checkbox][name=compare]").not(":checked").attr("disabled", bol);
+	});
+	bind_data_toggle();
+});
+
+function trigger_comparison(form) {
+	var values = new Array();
+	jomresJquery(":checkbox:checked").each(
+		function () {
+			values.push(jomresJquery(this).val());
+		}
+	);
+
+	if (values.length > 1) {
+		url = compare_url + "&property_uids=" + values;
+		window.location = url;
+	}
+	//	console.log(url);
+}
+
+/*
+ * jHeartbeat 0.3.0
+ * (C)Alex Richards - http://www.ajtrichards.co.uk/
+ */
+jomresJquery.jheartbeat = {
+	options: {
+		url: "heartbeat_default.asp",
+		delay: 10000,
+		div_id: "test_div"
+	},
+	beatfunction: function () {
+	},
+	timeoutobj: {
+		id: -1
+	},
+	set: function (options, onbeatfunction) {
+		if (this.timeoutobj.id > -1) {
+			clearTimeout(this.timeoutobj);
+		}
+		if (options) {
+			jomresJquery.extend(this.options, options);
+		}
+		if (onbeatfunction) {
+			this.beatfunction = onbeatfunction;
+		}
+		// Add the HeartBeatDIV to the page
+		jomresJquery("body").append("<div id=\"" + this.options.div_id + "\" style=\"display: none;\"></div>");
+		this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
+	},
+	beat: function () {
+		jomresJquery.ajax({
+			url: this.options.url,
+			dataType: "html",
+			type: "GET",
+			error: function (e) {
+				jomresJquery('#' + jomresJquery.jheartbeat.options.div_id).append("");
+			},
+			success: function (data) {
+				jomresJquery('#' + jomresJquery.jheartbeat.options.div_id).html(data);
+			}
+		});
+		this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
+		this.beatfunction();
+	}
+};

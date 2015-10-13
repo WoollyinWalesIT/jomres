@@ -228,7 +228,6 @@ class j01010listpropertys
 				if ( JOMRES_NOHTML != 1 && get_showtime( 'task' ) != "ajax_search_filter" )
 					{
 					$output[ 'JOMRES_SITEPAGE_URL_AJAX' ] = "<script type=\"text/javascript\"> var live_site_ajax = '" . JOMRES_SITEPAGE_URL_AJAX . "'; </script>";
-					//jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "list_properties.js" );
 					}
 
 				if ( $live_scrolling_enabled ) 

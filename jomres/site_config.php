@@ -17,7 +17,6 @@ $jrConfig[ 'property_list_limit' ] = '5';
 $jrConfig[ 'useGlobalCurrency' ]   = '0';
 $jrConfig[ 'globalCurrency' ]      = '€';
 $jrConfig[ 'globalCurrencyCode' ]  = 'EUR';
-$jrConfig[ 'menusAsImages' ]       = '1';
 $jrConfig[ 'google_maps_api_key' ] = '';
 
 $jrConfig[ 'minimalconfiguration' ]            = '0';
@@ -134,10 +133,8 @@ $pluginConfig[ 'backend_paypal_settings' ][ 'currencycode' ] = 'EUR';
 $pluginConfig[ 'backend_paypal_settings' ][ 'email' ]        = '';
 $pluginConfig[ 'backend_paypal_settings' ][ 'override' ]     = '0';
 
-$jrConfig[ 'useCaching' ]         = '0';
 $jrConfig[ 'showLangDropdown' ]   = '0';
 $jrConfig[ 'thumbnail_width' ]    = '50';
-$jrConfig[ 'useJomresMessaging' ] = '1';
 $jrConfig[ 'useSubscriptions' ]   = "0";
 $jrConfig[ 'useNewusers' ]        = "0";
 
