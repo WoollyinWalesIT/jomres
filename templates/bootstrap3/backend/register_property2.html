@@ -1,63 +1,70 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<style>
-	.REmail {
-		border:solid 1px {INPUTBOXERRORBORDER};
-		background-color: {INPUTBOXERRORBACKGROUND};
-		}
-
-	span.required {
-		color: red;
-	}
-</style>
 
 <script type="text/javascript">
 	<!--
 	function validatePropertyRegistration() {
 		valid = true;
-		missingfields = "";
-		document.regForm.property_name.className = "inputbox";
-		document.regForm.property_street.className = "inputbox";
-		document.regForm.property_town.className = "inputbox";
-		document.regForm.property_postcode.className = "inputbox";
-		document.regForm.property_tel.className = "inputbox";
-		document.regForm.property_email.className = "inputbox";
-		document.regForm.property_description.className = "inputbox";
-		if (document.regForm.property_name.value == "") {
-			document.regForm.property_name.className = "REmail";
-			valid = false;
-		}
-		if (document.regForm.property_street.value == "") {
-			document.regForm.property_street.className = "REmail";
-			valid = false;
-		}
-		if (document.regForm.property_town.value == "") {
-			document.regForm.property_town.className = "REmail";
-			valid = false;
-		}
-		if (document.regForm.property_postcode.value == "") {
-			document.regForm.property_postcode.className = "REmail";
-			valid = false;
-		}
-		if (document.regForm.property_tel.value == "") {
-			document.regForm.property_tel.className = "REmail";
-			valid = false;
-		}
-
-
-		var emailID = document.regForm.property_email
-		if ((emailID.value == null) || (emailID.value == "")) {
-			document.regForm.property_email.className = "REmail";
-			emailID.focus()
-			valid = false;
-		}
-		else {
-			if (echeck(emailID.value) == false) {
-				document.regForm.property_email.className = "REmail";
-				emailID.value = ""
-				emailID.focus()
-				valid = false;
+			
+		if(jomresJquery('#property_name').val()) 
+			{
+			jomresJquery('#property_name').closest(".form-group").removeClass("has-error").addClass("has-warning");
 			}
-		}
+		else {
+			jomresJquery('#property_name').closest(".form-group").removeClass("has-warning").addClass("has-error");
+			jomresJquery('#property_name').focus();
+			valid = false;
+			}
+			
+		if(jomresJquery('#property_street').val()) 
+			{
+			jomresJquery('#property_street').closest(".form-group").removeClass("has-error").addClass("has-warning");
+			}
+		else {
+			jomresJquery('#property_street').closest(".form-group").removeClass("has-warning").addClass("has-error");
+			jomresJquery('#property_street').focus();
+			valid = false;
+			}
+			
+		if(jomresJquery('#property_town').val()) 
+			{
+			jomresJquery('#property_town').closest(".form-group").removeClass("has-error").addClass("has-warning");
+			}
+		else {
+			jomresJquery('#property_town').closest(".form-group").removeClass("has-warning").addClass("has-error");
+			jomresJquery('#property_town').focus();
+			valid = false;
+			}
+			
+		if(jomresJquery('#property_postcode').val()) 
+			{
+			jomresJquery('#property_postcode').closest(".form-group").removeClass("has-error").addClass("has-warning");
+			}
+		else {
+			jomresJquery('#property_postcode').closest(".form-group").removeClass("has-warning").addClass("has-error");
+			jomresJquery('#property_postcode').focus();
+			valid = false;
+			}
+			
+		if(jomresJquery('#property_tel').val()) 
+			{
+			jomresJquery('#property_tel').closest(".form-group").removeClass("has-error").addClass("has-warning");
+			}
+		else {
+			jomresJquery('#property_tel').closest(".form-group").removeClass("has-warning").addClass("has-error");
+			jomresJquery('#property_tel').focus();
+			valid = false;
+			}
+
+		if( jomresJquery('#property_email').val() && echeck(jomresJquery('#property_email').val())) 
+			{
+			jomresJquery('#property_email').closest(".form-group").removeClass("has-error").addClass("has-warning");
+			}
+		else {
+			jomresJquery('#property_email').closest(".form-group").removeClass("has-warning").addClass("has-error");
+			jomresJquery('#property_email').focus();
+			valid = false;
+			}
+
 		if (valid) {
 			document.regForm.action = "{JOMRES_SITEPAGE_URL}&task=saveRegisterProp"
 			document.regForm.submit();
@@ -65,45 +72,6 @@
 		else {
 			alert("{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2_BUTTON}");
 		}
-	}
-	/**
-	 * DHTML email validation script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
-	 */
-	function echeck(str) {
-		var at = "@"
-		var dot = "."
-		var lat = str.indexOf(at)
-		var lstr = str.length
-		var ldot = str.indexOf(dot)
-		if (str.indexOf(at) == -1) {
-			alert("Invalid E-mail ID")
-			return false
-		}
-		if (str.indexOf(at) == -1 || str.indexOf(at) == 0 || str.indexOf(at) == lstr) {
-			alert("Invalid E-mail ID");
-			return false;
-		}
-		if (str.indexOf(dot) == -1 || str.indexOf(dot) == 0 || str.indexOf(dot) == lstr) {
-			alert("Invalid E-mail ID")
-			return false
-		}
-		if (str.indexOf(at, (lat + 1)) != -1) {
-			alert("Invalid E-mail ID")
-			return false
-		}
-		if (str.substring(lat - 1, lat) == dot || str.substring(lat + 1, lat + 2) == dot) {
-			alert("Invalid E-mail ID")
-			return false
-		}
-		if (str.indexOf(dot, (lat + 2)) == -1) {
-			alert("Invalid E-mail ID")
-			return false
-		}
-		if (str.indexOf(" ") != -1) {
-			alert("Invalid E-mail ID")
-			return false
-		}
-		return true
 	}
 
 	jomresJquery(document).ready(function () {
@@ -132,31 +100,31 @@
 			{ISTHISANMRP_DROPDOWN}
 		</div>
 	</div>
-	<div class="form-group warning">
+	<div class="form-group has-warning">
 		<label class="col-md-2 control-label" for="property_name">{HNAME}</label><div id="tour_target_registration_2_name_address"></div>
 		<div class="col-md-10">
 			<input id="property_name" name="property_name" type="text" value="{PROPERTY_NAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_PROPERTYNAME}"/>
 		</div>
 	</div>
-	<div class="form-group warning">
+	<div class="form-group has-warning">
 		<label class="col-md-2 control-label" for="property_street">{HSTREET}</label>
 		<div class="col-md-10">
 			<input id="property_street" name="property_street" type="text" value="{PROPERTY_STREET}" class="form-control" placeholder="{COMMON_PLACEHOLDER_STREET}"/>
 		</div>
 	</div>
-	<div class="form-group warning">
+	<div class="form-group has-warning">
 		<label class="col-md-2 control-label" for="property_town">{HTOWN}</label>
 		<div class="col-md-10">
 			<input id="property_town" name="property_town" type="text" value="{PROPERTY_TOWN}" class="form-control" placeholder="{COMMON_PLACEHOLDER_TOWN}"/>
 		</div>
 	</div>
-	<div class="form-group warning">
+	<div class="form-group has-warning">
 		<label class="col-md-2 control-label" for="property_postcode">{HPOSTCODE}</label>
 		<div class="col-md-10">
 			<input id="property_postcode" name="property_postcode" type="text" value="{PROPERTY_POSTCODE}" class="form-control" placeholder="{COMMON_PLACEHOLDER_POSTCODE}"/>
 		</div>
 	</div>
-	<div class="form-group warning">
+	<div class="form-group has-warning">
 		<label class="col-md-2 control-label" for="property_tel">{HTELEPHONE}</label>
 		<div class="col-md-10">
 			<input id="property_tel" name="property_tel" type="tel" value="{PROPERTY_TEL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_LANDLINE}"/>
@@ -168,7 +136,7 @@
 			<input id="property_fax" name="property_fax" type="tel" value="{PROPERTY_FAX}" class="form-control" placeholder="{HFAX}"/>
 		</div>
 	</div>
-	<div class="form-group warning">
+	<div class="form-group has-warning">
 		<label class="col-md-2 control-label" for="property_email">{HEMAIL}</label>
 		<div class="col-md-10">
 			<input id="property_email" name="property_email" type="email" value="{PROPERTY_EMAIL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_EMAIL}"/>
@@ -209,7 +177,7 @@
 		</div>
 	</div>
 	<div class="clearfix"></div>
-	<div class="form-group warning">
+	<div class="form-group has-warning">
 		<label class="col-md-2 control-label" for="property_description">{HPROPDESCRIPTION}</label><div id="tour_target_registration_2_description"></div>
 		<div class="col-md-10">
 			{PROPERTY_DESCRIPTION}
