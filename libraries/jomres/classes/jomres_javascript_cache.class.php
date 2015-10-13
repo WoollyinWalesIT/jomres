@@ -30,32 +30,26 @@ class jomres_javascript_cache
 			{
 			$this->consolidation_array = array ( );
 			$this->consolidation_array ["misc"] = array(
+				"jquery-ui.js",
 				"heartbeat.js",
-				"jquery.hoverIntent.js",
 				"jquery.validate.js",
-				"excanvas.js",
 				"jquery.chainedSelects.js",
-				"jquery.easing.compatibility.js",
-				//"jquery.livequery.js", 
-				//"jquery.tipsy.js",
+				"jquery.livequery.js", 
+				"jquery.tipsy.js",
 				"jquery.rating.js",
 				"jquery.validate.js",
 				"jquery.ui.potato.menu.js",
 				"list_properties.js",
-				//"jquery.jeditable.js",
-				//"bootstrap-editable.min.js",
-				"jquery.jgrowl.js",
-				//"bootstrap-tour.js"
+				"jquery.jeditable.js",
+				"bootstrap-editable.min.js",
+				"jquery.jgrowl.js"
 				);
-/* 			if (! jomres_cmsspecific_areweinadminarea() )
-				{
-				 $this->consolidation_array ["table_tools"] = array (
-					"jquery.dataTables.js",
-					"TableTools.min.js",
-					"datatables_pagination.js",
-					"ColVis.min.js"
-					);
-				} */
+				
+			$this->do_not_minify = array (
+				"datatables.js",
+				"jomres.js"
+				);
+			
 /* 		 $this->consolidation_array ["media_centre"] = array (
 				"load-image.min.js",
 				"canvas-to-blob.min.js",
@@ -115,9 +109,10 @@ class jomres_javascript_cache
 				throw new Exception( "Error, unable to make directory " . $this->cons_dir_abs . " automatically. Please create the directory manually and ensure that it's writable by the web server" );
 				}
 			}
-
+			
 		foreach ( $javascript_files as $file )
 			{
+
 			// So, to override, you would do something like set_showtime ( "jsfile_I_want_to_override" , array ( 0 => "pathtofile" , 1 = "jsfile_I_want_to_override"));
 			$fn = $file[1];
 			if (isset($showtime->$fn))
@@ -137,11 +132,14 @@ class jomres_javascript_cache
 					$subdir = $this->make_consolidation_dir($key);
 				}
 
+			if ( in_array( $file[1] , $this->do_not_minify ) )
+				$subdir = 'no_consolidation';
+			
 			$path_file = $this->temp_dir_abs. $subdir . JRDS . $hash.$file[1];
 			if ( $subdir ==  'no_consolidation')
 				$this->individual_files_to_serve[]= $hash.$file[1];
 			
-			
+
 			
 			if (!file_exists( $path_file ))
 				{
@@ -151,7 +149,7 @@ class jomres_javascript_cache
 
 				if (!$already_minified)
 					{
-					if ($jrConfig['development_production'] != 'development' || $this->force_consolidation_and_compression )
+					if ( ( $jrConfig['development_production'] != 'development' || $this->force_consolidation_and_compression ) && !in_array( $file[1] , $this->do_not_minify ) )
 						{
 						require_once (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'JShrink' . JRDS . 'Minifier.php') ;
 						$minifiedCode = \JShrink\Minifier::minify($contents);
