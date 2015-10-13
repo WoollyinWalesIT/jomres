@@ -505,16 +505,12 @@ if ( $field != "heartbeat" && $field != "show_log" && $field != "email_usage_che
 		$errorLog = $bkg->getErrorLog();
 		}
 	echo '; populateDiv("room_allocations","' . $bkg->getRoomAllocationOutput() . '");';
-	if ( $bkg->getOkToBook() )
-		{
-		$allocation_popup = $bkg->getRoomAllocationOutput();
-		if ( $allocation_popup != "" && $bkg->jrConfig[ 'useJomresMessaging' ] == '1' ) echo '; jomresJquery.jGrowl(\'' . $allocation_popup . '\', { life: 30000 });';
-		}
+
 	$bkg->setErrorLogFirst( $ajrq );
 	$bkg->storeBookingDetails();
 	}
 
-echo $bkg->getGrowlMessages();
+//echo $bkg->getGrowlMessages();
 
 ob_end_flush();
 

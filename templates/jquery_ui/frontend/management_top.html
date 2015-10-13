@@ -53,15 +53,6 @@
 			</noscript>
 			<h2>{HACTIVE_PROPERTY}{PROPERTYNAME}</h2>
 			<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
-				<!-- <a href="javascript:void(0);" onclick="jomresJquery.jGrowl('{MESSAGE}',{sticky: true});">Message</a> -->
-				<script type="text/javascript">
-					jomresJquery.jGrowl("{MESSAGE}", { life: 10000 });
-				</script>
-			</patTemplate:tmpl>
-			<patTemplate:tmpl name="sticky_messages" type="simpleCondition" requiredVars="message">
-				<!-- <a href="javascript:void(0);" onclick="jomresJquery.jGrowl('{MESSAGE}',{sticky: true});">Message</a> -->
-				<script type="text/javascript">
-					jomresJquery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });
-				</script>
+				<div class="ui-state-highlight">{MESSAGE}</div>
 			</patTemplate:tmpl>
 </patTemplate:tmpl>

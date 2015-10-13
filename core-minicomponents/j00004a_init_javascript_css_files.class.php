@@ -131,28 +131,19 @@ class j00004a_init_javascript_css_files
 		$datepicker_localisation_file = 'jquery.ui.datepicker-' . JOMRESDATEPICKERLANG . '.js';
 		
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/jquery-ui-cal-localisation/", $datepicker_localisation_file);
-		//$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.cookee.js");
-		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "heartbeat.js");
+		
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.validate.js");
 		
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.rating.js");
-		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.validate.js");
-		$css_files[]= array( JOMRES_ROOT_DIRECTORY."/css/","jquery.rating.css");
-		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "list_properties.js");
-		
-		$css_files[]= array( JOMRES_ROOT_DIRECTORY."/css/","jquery.jgrowl.css");
-		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.jgrowl.js");
 		
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.tipsy.js");
-		$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/","tipsy.css");
 		
 		if (!isset( $jrConfig[ 'load_font_awesome' ]))
 			$jrConfig[ 'load_font_awesome' ] = "0";
 		
 		if ( $jrConfig[ 'load_font_awesome' ] == "1" || jomres_cmsspecific_areweinadminarea() )
 			$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "font-awesome.min.css");
-		
-		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.jeditable.js");
+
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.chainedSelects.js");
 		
 		if (!isset($jrConfig['live_scrolling_enabled']))
@@ -163,7 +154,7 @@ class j00004a_init_javascript_css_files
 		
 		if ( $thisJRUser->userIsRegistered || jomres_cmsspecific_areweinadminarea() )
 			{
-			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "datatables.js");
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "datatables.min.js");
 			$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "datatables.css");
 			}
 			
@@ -317,19 +308,19 @@ class j00004a_init_javascript_css_files
 			$jomres_javascript_cache->cache_javascript($javascript_files);
 			}
 		
-		if ( $jrConfig[ 'css_caching_enabled' ] =="0")
-			{
+		//if ( $jrConfig[ 'css_caching_enabled' ] =="0")
+			//{
 			foreach ( $css_files as $file)
 				{
 				jomres_cmsspecific_addheaddata( "css",$file[0] , $file[1] );
 				}
-			}
-		else
-			{
-			jr_import('jomres_css_cache');
-			$jomres_css_cache = new jomres_css_cache();
-			$jomres_css_cache->cache_css($css_files);
-			}
+			//}
+		//else
+//			{
+//			jr_import('jomres_css_cache');
+//			$jomres_css_cache = new jomres_css_cache();
+//			$jomres_css_cache->cache_css($css_files);
+//			}
 		
 		}
 

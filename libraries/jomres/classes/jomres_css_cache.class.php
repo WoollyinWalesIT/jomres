@@ -30,14 +30,8 @@ class jomres_css_cache
 			{
 			$this->consolidation_array = array ( );
 			$this->consolidation_array ["misc"] = array(
-				"jquery.rating.css",
-				"jquery.jgrowl.css",
-				"tipsy.css",
 				//"jqueryui-editable.css",
-				"TableTools_JUI.css",
-				"ColVis.css",
 				//"jquery-ui.css",
-				"DT_bootstrap.css",
 				//"bootstrap-editable.css"
 				);
 			}

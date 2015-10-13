@@ -1154,6 +1154,17 @@ class jomres_obsolete_file_handling
 
 		$this->add_obs_file( $this->dir_javascript . 'jquery.jlabel-1.3.js' );
 		$this->add_obs_file( $this->dir_javascript . 'datatables_pagination.js' );
+		$this->add_obs_file( $this->dir_javascript . 'datatables.js' );
+		$this->add_obs_file( $this->dir_javascript . 'heartbeat.js' );
+		$this->add_obs_file( $this->dir_javascript . 'list_properties.js' );
+		$this->add_obs_file( $this->dir_javascript . 'jquery.jgrowl.js' );
+		$this->add_obs_file( $this->dir_javascript . 'jquery.jeditable.js' );
+		
+		$this->add_obs_file( $this->dir_css . 'jquery.jgrowl.css' );
+		$this->add_obs_file( $this->dir_css . 'jquery.rating.css' );
+		$this->add_obs_file( $this->dir_css . 'tipsy.css' );
+		
+		$this->add_obs_file( $this->dir_classes . 'jomres_sticky_messages.class.php' );
 		}
 
 	function add_obs_file( $path_and_file )

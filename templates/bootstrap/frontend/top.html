@@ -43,11 +43,6 @@ width: auto;
 		<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
 			<div class="alert alert-warning">{MESSAGE}</div>
 		</patTemplate:tmpl>
-		<patTemplate:tmpl name="sticky_messages" type="simpleCondition" requiredVars="message">
-			<script type="text/javascript"><!--
-			jomresJquery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });//-->
-			</script>
-		</patTemplate:tmpl>
 
 <div id="tour_target_content"></div>
 </patTemplate:tmpl>

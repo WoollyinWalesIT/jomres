@@ -86,7 +86,6 @@ function showSiteConfig()
 		$crateOptions[ ] = jomresHTML::makeOption( $c[ 'id' ], $c[ 'title' ] );
 		}
 	$lists[ 'defaultCrate' ]                    = jomresHTML::selectList( $crateOptions, 'cfg_defaultCrate', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'defaultCrate' ] );
-	$lists[ 'menusAsImages' ]                   = jomresHTML::selectList( $yesno, 'cfg_menusAsImages', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'menusAsImages' ] );
 	$lists[ 'errorChecking' ]                   = jomresHTML::selectList( $yesno, 'cfg_errorChecking', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'errorChecking' ] );
 	$lists[ 'useGlobalCurrency' ]               = jomresHTML::selectList( $yesno, 'cfg_useGlobalCurrency', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useGlobalCurrency' ] );
 	$lists[ 'editingModeAffectsAllProperties' ] = jomresHTML::selectList( $yesno, 'cfg_editingModeAffectsAllProperties', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'editingModeAffectsAllProperties' ] );
@@ -231,11 +230,8 @@ function showSiteConfig()
 	$lists[ 'integratedSearch_guestnumber' ] = jomresHTML::selectList( $yesno, 'cfg_integratedSearch_guestnumber', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_guestnumber' ] );
 	$lists[ 'integratedSearch_stars' ]       = jomresHTML::selectList( $yesno, 'cfg_integratedSearch_stars', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_stars' ] );
 
-
-	$lists[ 'useCaching' ]                          = jomresHTML::selectList( $yesno, 'cfg_useCaching', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useCaching' ] );
 	$lists[ 'useArrayCaching' ]                     = jomresHTML::selectList( $yesno, 'cfg_useArrayCaching', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useArrayCaching' ] );
 	$lists[ 'showLangDropdown' ]                    = jomresHTML::selectList( $yesno, 'cfg_showLangDropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'showLangDropdown' ] );
-	$lists[ 'useJomresMessaging' ]                  = jomresHTML::selectList( $yesno, 'cfg_useJomresMessaging', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useJomresMessaging' ] );
 	$lists[ 'useNewusers' ]                         = jomresHTML::selectList( $yesno, 'cfg_useNewusers', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useNewusers' ] );
 	$lists[ 'outputHeadersInline' ]                 = jomresHTML::selectList( $yesno, 'cfg_outputHeadersInline', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'outputHeadersInline' ] );
 	$lists[ 'contact_owner_emails_to_alternative' ] = jomresHTML::selectList( $yesno, 'cfg_contact_owner_emails_to_alternative', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'contact_owner_emails_to_alternative' ] );

@@ -46,10 +46,10 @@ class j10501caching
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_CSS_CACHING_TITLE', _JOMRES_CSS_CACHING_TITLE, false ) );
+			/*$configurationPanel->setleft( jr_gettext( '_JOMRES_CSS_CACHING_TITLE', _JOMRES_CSS_CACHING_TITLE, false ) );
 			$configurationPanel->setmiddle( $lists[ 'css_caching_enabled' ] );
 			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+			$configurationPanel->insertSetting();*/
 			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_WORD_PATTEMPLATE_CACHING', _JOMRES_WORD_PATTEMPLATE_CACHING, false ) );
 			$configurationPanel->setmiddle( $lists[ 'pattemplate_caching_enabled' ] );

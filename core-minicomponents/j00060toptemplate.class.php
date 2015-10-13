@@ -128,30 +128,16 @@ class j00060toptemplate
 			}
 		
 		$messaging = array ();
-		$sticky_messaging = array ();
-		if ( $jrConfig[ 'useJomresMessaging' ] == '1' )
+
+		$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
+		$messages = $jomres_messaging->get_messages();
+
+		if ( count( $messages ) > 0 )
 			{
-			$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
-			$messages = $jomres_messaging->get_messages();
-
-			if ( count( $messages ) > 0 )
+			foreach ( $messages as $mes )
 				{
-				foreach ( $messages as $mes )
-					{
-					$m[ 'MESSAGE' ] = $mes;
-					$messaging[ ] = $m;
-					}
-				}
-			$jomres_sticky_messaging = jomres_singleton_abstract::getInstance( 'jomres_sticky_messages' );
-			$sticky_messages = $jomres_sticky_messaging->get_messages();
-
-			if ( count( $sticky_messages ) > 0 )
-				{
-				foreach ( $sticky_messages as $mes )
-					{
-					$m[ 'MESSAGE' ] = $mes;
-					$sticky_messaging[ ] = $m;
-					}
+				$m[ 'MESSAGE' ] = $mes;
+				$messaging[ ] = $m;
 				}
 			}
 
@@ -173,7 +159,6 @@ class j00060toptemplate
 		//$tmpl->addRows( 'timezone_dropdown', $timezone_dropdown );
 		$tmpl->addRows( 'lang_dropdown', $lang_dropdown );
 		$tmpl->addRows( 'editing_dropdown', $editing_dropdown );
-		$tmpl->addRows( 'sticky_messages', $sticky_messaging );
 		$tmpl->displayParsedTemplate();
 		$pageoutput = array ();
 		$output     = array ();
