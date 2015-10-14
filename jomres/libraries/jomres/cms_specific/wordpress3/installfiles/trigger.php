@@ -72,6 +72,8 @@ function jomres_check_if_jomres_installed()
 	if ( defined ( 'JOMRES_ROOT_DIRECTORY' ) && file_exists( ABSPATH . JOMRES_ROOT_DIRECTORY.'/jomres.php' ) )
 		{
 		$jomres_installed = true;
+		if ( file_exists(dirname(__FILE__).'/jomres_webinstall.php' ) ) 
+			unlink(dirname(__FILE__).'/jomres_webinstall.php');
 		}
 
 	return $jomres_installed;
