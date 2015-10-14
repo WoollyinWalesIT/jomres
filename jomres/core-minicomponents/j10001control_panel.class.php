@@ -251,15 +251,15 @@ function control_panel_writability_tests()
 	$foldersToTestForWritability = array ();
 	if ( this_cms_is_joomla() )
 		$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'modules' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'sessions' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'updates' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS;
-	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'cache' . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'sessions' . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'updates' . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS;
+	$foldersToTestForWritability[ ] = JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'cache' . JRDS;
 
 	$writabilityCheckPassImage = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/writability_check_passed.png";
 	$writabilityCheckFailImage = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/writability_check_failed.png";
@@ -283,7 +283,11 @@ function jomresStatusTestFolderIsWritable( $path )
 	{
 	$tmpFile = "temp.txt";
 	$tmpDir  = "jomres_test_dir";
-	if ( !is_dir( $path ) ) return array ( "result" => false, "message" => "Directory " . $path . " doesn't exist" );
+	if ( !is_dir( $path ) ) 
+		{
+		if ( @!mkdir( $path ) )
+			return array ( "result" => false, "message" => "Directory " . $path . " doesn't exist and we don't have permission to create it." );
+		}
 	if ( !is_writable( $path ) ) return array ( "result" => false, "message" => "Directory " . $path . " isn't writable" );
 	if ( !touch( $path . $tmpFile ) ) return array ( "result" => false, "message" => "Could not write " . $path . $tmpFile );
 	if ( !file_exists( $path . $tmpFile ) ) return array ( "result" => false, "message" => "Could not find " . $path . $tmpFile . " after seeming to be able to create it." );
