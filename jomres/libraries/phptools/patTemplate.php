@@ -2615,9 +2615,62 @@ class patTemplate
 
 		$result = $this->output_template_name_details( $result , $files );
 
-		if ( isset( $this->json_output ) ) return json_encode( $this->json_output );
+		$regex = '/{asamambot\s*.*?}/i';
+		// find all instances of mambot and put in $matches
+		preg_match_all( $regex, $result, $matches );
+		
+		if (count($matches)>0)
+			{
+			foreach ($matches[0] as $m)
+				{
+				$original_task = get_showtime('task');
+
+				$match = str_replace(array("{","}"),"",$m);
+				$match = str_replace("&amp;","&",$match);
+				$bang = explode (" ",$match);
+				$our_task = $bang[1];
+				$arguments = $bang[2];
+
+				if ($arguments!='')
+					{
+					$args_array = explode("&",$arguments);
+					foreach ($args_array as $arg)
+						{
+						$vals = explode ("=",$arg);
+						if(array_key_exists(1,$vals))
+							{
+							if ($vals[1] == "N")
+								{
+								$vals[1] = get_showtime("property_uid");
+								if ($vals[1] == 0) // For whatever reason, property uid isn't set, we won't be able to continue showing this snippet. We'll dive out here.
+									break;
+								}
+							$vals[1] = str_replace("+","-",$vals[1]);
+							$_REQUEST[$vals[0]]=$vals[1];
+							$_GET[$vals[0]]=$vals[1];
+							}
+						}
+					}
+				
+				if ( $our_task != $original_task ) // Can you say recurururururing?
+					{
+					ob_start();
+					$MiniComponents =jomres_getSingleton('mcHandler');
+					set_showtime('task',$our_task);
+					$MiniComponents->specificEvent('06000',$our_task);
+					$contents = ob_get_contents();
+					set_showtime('task',$original_task);
+					$result = str_replace($m,$contents,$result);
+					unset($contents);
+					ob_end_clean();
+					}
+				}
+			}
+
+		if ( isset( $this->json_output ) ) 
+			return json_encode( $this->json_output );
 		else
-		return $result;
+			return $result;
 		}
 
 	/**
