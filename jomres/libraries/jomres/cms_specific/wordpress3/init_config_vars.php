@@ -48,34 +48,29 @@ $showtime->password			= DB_PASSWORD;
 $showtime->db				= DB_NAME;
 $showtime->host				= DB_HOST;
 $showtime->secret			= AUTH_SALT;
+
 global $table_prefix;
 $showtime->dbprefix			= $table_prefix ;
-$query = "SELECT * FROM #__options";
-$result = doSelectSql($query);
-foreach ($result as $CONFIG)
-	{
-	$showtime->sitename			= $CONFIG->blogname;
-	//$showtime->lifetime			= $CONFIG->lifetime;
-	//$showtime->MetaDesc			= $CONFIG->MetaDesc;
-	//$showtime->MetaKeys			= $CONFIG->MetaKeys;
-	//$showtime->MetaTitle			= $CONFIG->MetaTitle;
-	//$showtime->MetaAuthor			= $CONFIG->MetaAuthor;
-	//$showtime->debug				= $CONFIG->debug;
-	//$showtime->mailer				= $CONFIG->mailer;
-	//$showtime->mailfrom			= $CONFIG->mailfrom;
-	//$showtime->fromname			= $CONFIG->fromname;
-	$showtime->sendmail			= $CONFIG->sendmail;
-	$showtime->smtpauth			= $CONFIG->smtpauth;
-	$showtime->smtpuser			= $CONFIG->mailserver_login;
-	$showtime->smtppass			= $CONFIG->mailserver_pass;
-	$showtime->smtphost			= $CONFIG->mailserver_url;
 
-	// $showtime->helpurl			= $CONFIG->helpurl;
-	// $showtime->editor			= $CONFIG->editor;
-	// $showtime->caching			= $CONFIG->caching;
-	// $showtime->cachetime			= $CONFIG->cachetime;
-	// $showtime->offset			= $CONFIG->offset;
-	// $showtime->sef				= $CONFIG->sef;
-	$showtime->gzip				= $CONFIG->gzipcompression;
-	}
+$showtime->sitename			= get_option( 'blogname' );
+//$showtime->lifetime			= $CONFIG->lifetime;
+//$showtime->MetaDesc			= $CONFIG->MetaDesc;
+//$showtime->MetaKeys			= $CONFIG->MetaKeys;
+//$showtime->MetaTitle			= $CONFIG->MetaTitle;
+//$showtime->MetaAuthor			= $CONFIG->MetaAuthor;
+//$showtime->debug				= $CONFIG->debug;
+//$showtime->mailer				= $CONFIG->mailer;
+//$showtime->mailfrom			= $CONFIG->mailfrom;
+//$showtime->fromname			= $CONFIG->fromname;
+$showtime->smtpuser			= get_option( 'mailserver_login' );
+$showtime->smtppass			= get_option( 'mailserver_pass' );
+$showtime->smtphost			= get_option( 'mailserver_url' );
+// $showtime->helpurl			= $CONFIG->helpurl;
+// $showtime->editor			= $CONFIG->editor;
+// $showtime->caching			= $CONFIG->caching;
+// $showtime->cachetime			= $CONFIG->cachetime;
+// $showtime->offset			= $CONFIG->offset;
+// $showtime->sef				= $CONFIG->sef;
+$showtime->gzip				= get_option( 'gzipcompression' );
+	
 
