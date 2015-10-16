@@ -40,6 +40,11 @@ if ( ! class_exists( 'wp_jomres' ) )
 		
 		function _init()
 			{
+			if (!isset($_REQUEST['page']))
+				$_REQUEST['page'] = "";
+			if (!isset($_REQUEST['action']))
+				$_REQUEST['action'] = "";
+			
 			add_action( 'admin_menu', array($this,'register_my_custom_menu_page') );
 
 			add_action('wp', array($this,'frontend_trigger_jomres'), 1);
