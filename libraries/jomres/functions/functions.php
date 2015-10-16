@@ -16,6 +16,29 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries'.JRDS.'http_build_url.php');
 
+function user_can_view_this_property($property_uid)
+	{
+	$thisJRUser		= jomres_singleton_abstract::getInstance( 'jr_user' );
+	$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+	$current_property_details->gather_data( $property_uid );
+	
+	if ($current_property_details->published)
+		return true;
+	
+	if (!$thisJRUser->userIsManager)
+		return false;
+	
+	if ($thisJRUser->superPropertyManager)
+		return true;
+	
+	if ( in_array( $property_uid , $thisJRUser->authorisedProperties ) )
+		return true;
+	
+	return false;
+
+	}
+
+
 function can_modify_this_booking($contract_uid)
 	{
 	$thisJRUser		= jomres_singleton_abstract::getInstance( 'jr_user' );
