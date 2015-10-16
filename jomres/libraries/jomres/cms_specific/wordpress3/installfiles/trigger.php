@@ -6,13 +6,13 @@ if (!defined('_JOMRES_INITCHECK'))
 if (!defined('_JOMRES_INITCHECK_ADMIN'))
 	define('_JOMRES_INITCHECK_ADMIN', 1 );
 
-require_once (dirname(__FILE__).'/../../../jomres_root.php');
+if ( file_exists(dirname(__FILE__).'/../../../jomres_root.php') ) 
+	require_once (dirname(__FILE__).'/../../../jomres_root.php');
 
 if (!jomres_check_if_jomres_installed())
 	{
 	output_jomres_not_installed_message();
 	}
-
 else
 	{
 	if (isset($_REQUEST['jr_wp_source']))
@@ -67,7 +67,6 @@ function jr_wp_trigger_admin()
 
 function jomres_check_if_jomres_installed()
 	{
-	
 	$jomres_installed = false;
 	if ( defined ( 'JOMRES_ROOT_DIRECTORY' ) && file_exists( ABSPATH . JOMRES_ROOT_DIRECTORY.'/jomres.php' ) )
 		{
@@ -81,6 +80,22 @@ function jomres_check_if_jomres_installed()
 
 function output_jomres_not_installed_message()
 	{
-	echo '<br/><br/>Sorry, it doesn\'t look like Jomres Core is installed yet, currently only this bridging plugin is installed. Please visit the <a href="http://www.jomres.net/download" target="_blank">Jomres.net download page</a> to download the web installer that will download Jomres Core to your Wordpress installation.';
-	}
+	$dir_path = dirname(__FILE__) ;
+	copy(
+		$dir_path.'/jomres_webinstall.php' , 
+		ABSPATH.'/jomres_webinstall.php'
+		);
+	
+	unlink($dir_path.'/jomres_webinstall.php');
 
+	if (!file_exists(ABSPATH.'/jomres_webinstall.php') )
+		{
+		echo 'Error, couldn\'t copy '.$dir_path.'/jomres_webinstall.php to '.ABSPATH.'/jomres_webinstall.php <br/>';
+		echo 'Please use ftp to copy the file to '.ABSPATH.' then run it manually.';
+		}
+	else
+		{
+		wp_redirect(site_url()."/jomres_webinstall.php");
+		}
+	
+	}
