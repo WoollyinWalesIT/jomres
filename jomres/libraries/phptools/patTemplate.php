@@ -2624,6 +2624,7 @@ class patTemplate
 			foreach ($matches[0] as $m)
 				{
 				$original_task = get_showtime('task');
+				$original_request = $_REQUEST;
 
 				$match = str_replace(array("{","}"),"",$m);
 				$match = str_replace("&amp;","&",$match);
@@ -2660,6 +2661,7 @@ class patTemplate
 					$MiniComponents->specificEvent('06000',$our_task);
 					$contents = ob_get_contents();
 					set_showtime('task',$original_task);
+					$_REQUEST = $original_request;
 					$result = str_replace($m,$contents,$result);
 					unset($contents);
 					ob_end_clean();
