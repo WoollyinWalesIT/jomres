@@ -57,7 +57,6 @@ class j00016composite_property_details
 				$componentArgs = array ( 'all' => "all", 'property_uid' => $property_uid );
 				$MiniComponents->triggerEvent( '00018', $componentArgs );
 				}
-
 			return;
 			}
 
@@ -125,7 +124,10 @@ class j00016composite_property_details
 							$tab_active = true;
 							}
 						else
-						$tab_class = "";
+							{
+							$tab_class = "";
+							}
+						
 						$content                                       = $tabs[ 'TAB_CONTENT' ];
 						$title                                         = $tabs[ 'TAB_TITLE' ];
 						$tab_id                                        = $tabs[ 'TAB_ID' ];
