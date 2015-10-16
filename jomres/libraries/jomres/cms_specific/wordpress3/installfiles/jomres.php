@@ -1,7 +1,7 @@
 <?php
 /**
  * @package Jomres
- * @version 8
+ * @version 9.1.6
  */
 /*
 Plugin Name: Jomres
@@ -87,7 +87,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 			global $post;
 
 			if ( strstr(strtolower($post->post_content), "[jomres]") )
-				{
+			{
 				if ($this->contents != '')
 					$content = '<div id="asamodule_search_results">'.$this->contents.'</div>';
 				else
