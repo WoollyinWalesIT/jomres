@@ -244,8 +244,13 @@ class j00004a_init_javascript_css_files
 		
 		$template_dir = find_plugin_template_directory();
 		
-		if (jomres_cmsspecific_areweinadminarea() && $template_dir != 'jquery_ui')
-			$template_dir = 'bootstrap';
+		if (jomres_cmsspecific_areweinadminarea())
+			{
+			if ($template_dir != 'jquery_ui')
+				$template_dir = 'bootstrap';
+			
+			$live_scrolling_enabled = "false";
+			}
 			
 		$misc_url_defs .= '
 			var jomres_template_version = "'.$template_dir.'";
