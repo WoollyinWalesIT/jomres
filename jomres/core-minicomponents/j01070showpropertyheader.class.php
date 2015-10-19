@@ -30,9 +30,13 @@ class j01070showpropertyheader
 		$jrConfig   = $siteConfig->get();
 		$output     = array ();
 		$pageoutput = array ();
-
+	
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
-
+		
+		$show_property_header = intval( jomresGetParam( $_REQUEST, 'show_property_header', 1 ) );
+		if ($show_property_header == 0)
+			return;
+	
 		if ( is_null( $property_uid ) ) 
 			$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 
