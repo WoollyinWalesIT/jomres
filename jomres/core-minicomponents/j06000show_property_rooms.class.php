@@ -50,6 +50,10 @@ class j06000show_property_rooms
 		else
 			$display_slideshow = true;
 
+		$show_slideshow = intval( jomresGetParam( $_REQUEST, 'show_rooms_list_slideshow', 1 ) );
+		if ($show_slideshow == 0)
+			$display_slideshow = false;
+		
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 		
