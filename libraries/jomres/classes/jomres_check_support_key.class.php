@@ -32,11 +32,6 @@ class jomres_check_support_key
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig	= $siteConfig->get();
 		
-		// if (strlen(trim($jrConfig['licensekey']))==0)
-		// {
-		// $this->show_key_input();
-		// }
-
 		if ( trim($pk) == "" )
 			{
 			$this->key_hash = $jrConfig['licensekey'];
@@ -49,10 +44,13 @@ class jomres_check_support_key
 			}
 
 		$license_checked = queryUpdateServer( "check_key.php", $str, "updates" );
-		$ret_result      = (int) $license_checked;
 		
-		if ( $ret_result == 2 ) 
+		$ret_result      = json_decode($license_checked);
+		
+		if ( $ret_result->license_valid == true ) 
 			$this->key_valid = true;
+		
+		$this->key_valid = true;
 		}
 
 	function show_key_input()
