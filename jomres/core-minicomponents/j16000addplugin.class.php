@@ -32,10 +32,12 @@ class j16000addplugin
 		$thirdparty = jomresGetParam( $_REQUEST, 'thirdparty', false );
 
 		$pluginName = jomresGetParam( $_REQUEST, 'plugin', '' );
-		if ( isset( $componentArgs[ 'plugin' ] ) ) $pluginName = $componentArgs[ 'plugin' ];
+		if ( isset( $componentArgs[ 'plugin' ] ) ) 
+			$pluginName = $componentArgs[ 'plugin' ];
 
 		$autoupgrade = jomresGetParam( $_REQUEST, 'autoupgrade', false );
-		if ( isset( $componentArgs[ 'autoupgrade' ] ) ) $autoupgrade = $componentArgs[ 'autoupgrade' ];
+		if ( isset( $componentArgs[ 'autoupgrade' ] ) ) 
+			$autoupgrade = $componentArgs[ 'autoupgrade' ];
 
 		$progress_messages         = array ();
 		$error_messsage            = array ();
@@ -57,7 +59,7 @@ class j16000addplugin
 			$plugin = jomresGetParam( $_REQUEST, 'plugin' , '' );
 			}
 
-		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=addplugin&no_html=1&plugin=" . $pluginName, $pk, $plugin );
+		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=addplugin&no_html=1&plugin=" . $pluginName ."&hostname=".get_showtime('live_site'), $pk, $plugin );
 		$this->key_valid = $key_validation->key_valid;
 
 		if ( $thirdparty )
@@ -67,9 +69,10 @@ class j16000addplugin
 			$pluginName  = $blowdedUp[ 0 ];
 			}
 
-		if ( $thirdparty ) $remote_pluginsDirPath = JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS;
+		if ( $thirdparty ) 
+			$remote_pluginsDirPath = JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS;
 		else
-		$remote_pluginsDirPath = JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
+			$remote_pluginsDirPath = JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
 
 		if ( strlen( $pluginName ) == 0 && !$thirdparty )
 			{
@@ -85,10 +88,10 @@ class j16000addplugin
 				if ( $autoupgrade ) return false;
 				}
 			else
-			$progress_messages[ ] = array ( "MESSAGE" => "Made " . $remote_pluginsDirPath . "" );
+				$progress_messages[ ] = array ( "MESSAGE" => "Made " . $remote_pluginsDirPath . "" );
 			}
 		else
-		$progress_messages[ ] = array ( "MESSAGE" => "No need to make " . $remote_pluginsDirPath . "" );
+			$progress_messages[ ] = array ( "MESSAGE" => "No need to make " . $remote_pluginsDirPath . "" );
 
 		if ( strlen( $pluginName ) > 0 )
 			{
@@ -136,19 +139,17 @@ class j16000addplugin
 			return;
 			}
 
-		if ( mkdir( $updateDirPath . "unpacked" ) ) $progress_messages[ ] = array ( "MESSAGE" => "Made " . $updateDirPath . "unpacked for a new installation of the plugin." );
+		if ( mkdir( $updateDirPath . "unpacked" ) ) 
+			$progress_messages[ ] = array ( "MESSAGE" => "Made " . $updateDirPath . "unpacked for a new installation of the plugin." );
 		else
 			{
 			$error_messsage[ "ERROR" ] = "Couldn't make the folder " . $updateDirPath . "unpacked so quitting.";
 			echo $error_messsage[ "ERROR" ];
-
 			return;
 			}
 
-
 		if ( $thirdparty )
 			{
-
 			if ( (int)$_FILES['pluginfile']['error'] == 0 )
 				{
 				$error = false;
@@ -168,7 +169,7 @@ class j16000addplugin
 						$pluginName     = substr( $temp_file_name, 0, $pos );
 						}
 					else
-					$newfilename = $updateDirPath . $formElement[ 'name' ] . "";
+						$newfilename = $updateDirPath . $formElement[ 'name' ] . "";
 
 					if ( is_uploaded_file( $formElement[ 'tmp_name' ] ) )
 						{
@@ -216,8 +217,8 @@ class j16000addplugin
 				$p                    = '';
 				if ( isset( $_REQUEST[ 'plugin' ] ) ) $p = "&plugin=" . $pluginName;
 
-				$queryServer = "http://plugins.jomres4.net/index.php?r=gp&cms=" . _JOMRES_DETECTED_CMS . "&vnw=1&key=" . $key_validation->key_hash . $p . "&jomresver=" . $mrConfig[ 'version' ];
-
+				$queryServer = "http://plugins.jomres4.net/index.php?r=gp&cms=" . _JOMRES_DETECTED_CMS . "&vnw=1&key=" . $key_validation->key_hash . $p . "&jomresver=" . $mrConfig[ 'version' ]."&hostname=".get_showtime('live_site');
+//echo $queryServer;exit;
 				$progress_messages[ ] = array ( "MESSAGE" => $queryServer );
 
 				$curl_handle = curl_init( $queryServer );
@@ -231,15 +232,22 @@ class j16000addplugin
 				curl_setopt( $curl_handle, CURLOPT_FILE, $file_handle );
 				curl_setopt( $curl_handle, CURLOPT_HEADER, 0 );
 				curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
+				$result			= curl_exec( $curl_handle );
+				$content_type	= curl_getinfo($curl_handle, CURLINFO_CONTENT_TYPE);
 
-				$result = curl_exec( $curl_handle );
+				if ($content_type == "text/html")
+					{
+
+					echo "<p class='alert alert-danger'>Error There was a problem downloading the plugin, it's likely that your license isn't valid for this domain.</p>";
+					return;
+					}
 				curl_close( $curl_handle );
 				fclose( $file_handle );
-				curl_close( $curl_handle );
+				curl_close( $curl_handle ); // Deliberate due to one version of PHP requiring you to close the curl handle twice ( 5.2-ish IIRC )
 				fclose( $file_handle );
 				}
 			}
-
+		
 		if ( !file_exists( $newfilename ) || filesize( $newfilename ) == 0 )
 			{
 			$error_messsage[ "ERROR" ] = "Something went wrong downloading the update files. Quitting";

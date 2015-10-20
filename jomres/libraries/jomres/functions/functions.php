@@ -1862,9 +1862,10 @@ function queryUpdateServer( $script, $queryString, $serverType = "plugin" )
 	include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'jomres_config.php' );
 	$current_version = $mrConfig[ 'version' ];
 
-	if ( $serverType == "plugin" ) $updateServer = "http://plugins.jomres4.net";
+	if ( $serverType == "plugin" ) 
+		$updateServer = "http://plugins.jomres4.net";
 	else
-	$updateServer = "http://updates.jomres4.net";
+		$updateServer = "http://updates.jomres4.net";
 
 	if ( strlen( $script ) == 0 ) $script = "index.php";
 	if ( !function_exists( "curl_init" ) )
@@ -1874,7 +1875,7 @@ function queryUpdateServer( $script, $queryString, $serverType = "plugin" )
 	else
 		{
 		$curl_handle = curl_init();
-		curl_setopt( $curl_handle, CURLOPT_URL, $updateServer . "/" . $script . "?" . $queryString . "&jomresver=" . $current_version );
+		curl_setopt( $curl_handle, CURLOPT_URL, $updateServer . "/" . $script . "?" . $queryString . "&jomresver=" . $current_version ."&hostname=".get_showtime('live_site'));
 		curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 2 );
 		//curl_setopt( $curl_handle, CURLOPT_TIMEOUT, 10 ); // If the plugin server/internet connection is slow and this is enabled an empty plugin list will be returned.
 		curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
