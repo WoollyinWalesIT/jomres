@@ -34,7 +34,6 @@ class j00035tabcontent_04_roomslist
 			if ( $mrConfig[ 'roomslistinpropertydetails' ] == "1" && $mrConfig[ 'singleRoomProperty' ] != "1" )
 				{
 				$componentArgs[ 'output_now' ] = false;
-				$componentArgs[ 'slideshow' ] = false;
 				
 				$anchor        = jomres_generate_tab_anchor( $output[ 'TITLE_ROOMSLIST' ] );
 				$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'TITLE_ROOMSLIST' ], "TAB_CONTENT" => $MiniComponents->specificEvent( '06000', 'show_property_rooms',$componentArgs) , "TAB_ID" => 'tour_target_rooms_list' );
