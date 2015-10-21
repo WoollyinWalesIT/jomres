@@ -60,6 +60,9 @@ class jomSearch
 				{
 				$this->templateFilePath = JOMRES_TEMPLATEPATH_FRONTEND;
 				$this->templateFile     = "search.html";
+				
+				if (this_cms_is_wordpress() && $jrConfig['is_single_property_installation'] == "1")
+					$this->templateFile = "search_single_property.html";
 				}
 
 			$vals = jomres_cmsspecific_getSearchModuleParameters( $calledByModule );
