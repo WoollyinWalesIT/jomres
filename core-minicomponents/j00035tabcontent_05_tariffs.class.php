@@ -27,33 +27,23 @@ class j00035tabcontent_05_tariffs
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
 
-		$output = $componentArgs[ 'currrent_output' ];
+		$tariffs_list = $MiniComponents->specificEvent( '06000', 'show_property_tariffs',array('output_now'=>false, 'property_uid'=>$property_uid));
+		$tariffs_list_title = jr_gettext( '_JOMRES_FRONT_TARIFFS', _JOMRES_FRONT_TARIFFS, false );
 
-		// j01020 tariffs (either the verbose or the compact view, depending on General Config)
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
 			if ( $mrConfig[ 'showTariffsInline' ] == "1" )
 				{
-				$anchor        = jomres_generate_tab_anchor( $output[ 'TITLE_TARIFF' ] );
-				$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'TITLE_TARIFF' ], "TAB_CONTENT" => $MiniComponents->miniComponentData[ '01020' ][ 'showtariffs' ] , "TAB_ID" => 'tour_target_property_details_tariffs');
+				$anchor        = jomres_generate_tab_anchor( $tariffs_list_title );
+				$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $tariffs_list_title, "TAB_CONTENT" => $tariffs_list , "TAB_ID" => 'tour_target_property_details_tariffs');
 				$this->retVals = $tab;
 				}
 			}
 		}
 
-	/**
-	#
-	 * Must be included in every mini-component
-	#
-	 * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
-	#
-	 */
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
 		return $this->retVals;
 		}
-
 	}
-
-?>

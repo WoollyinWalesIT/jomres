@@ -31,9 +31,19 @@ class j06000ui_availability_calendar
 		if ( $componentArgs[ 'noshowlegend' ] == "1" || $_REQUEST[ 'noshowlegend' ] == "1" ) 
 			$show_legend = false;
 
-		$property_uid = get_showtime( 'property_uid' );
-		if ( isset( $_REQUEST[ 'property_uid' ] ) && $_REQUEST[ 'property_uid' ] != "0" ) 
-			$property_uid = (int) $_REQUEST[ 'property_uid' ];
+		if (isset($componentArgs[ 'property_uid' ]))
+			$property_uid = (int) $componentArgs[ 'property_uid' ];
+		elseif ( isset ( $_REQUEST['property_uid'] ))
+			$property_uid = (int) $_REQUEST['property_uid'];
+		else return;
+		
+		if (!user_can_view_this_property($property_uid))
+			return;
+		
+		if (isset($componentArgs[ 'output_now' ]))
+			$output_now = $componentArgs[ 'output_now' ];
+		else
+			$output_now = true;
 
 		if ( get_showtime( 'is_jintour_property' ) )
 			{
@@ -270,9 +280,11 @@ class j06000ui_availability_calendar
 				';
 				}
 			}
-		if ( $componentArgs[ 'return_calendar' ] == "1" || $_REQUEST[ 'return_calendar' ] == "1" ) $this->retVals = $inline_calendar;
+		
+		if ($output_now)
+			echo $inline_calendar;
 		else
-		echo $inline_calendar;
+			$this->retVals = $inline_calendar;
 		}
 
 	/**

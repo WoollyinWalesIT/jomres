@@ -28,12 +28,13 @@ class j00035tabcontent_02_map
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
 
-		$output = $componentArgs[ 'currrent_output' ];
-		// j01050 geocoder (google maps)
-		if ( strlen( $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ] ) > 0 )
+		$map = $MiniComponents->specificEvent( '06000', 'show_property_map', array('output_now'=>false, 'property_uid'=>$property_uid));
+		$map_title = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK, false);
+		
+		if ( strlen( $map ) > 0 )
 			{
 			$tab_id = "mapTab";
-			$anchor = jomres_generate_tab_anchor( $output[ 'TITLE_MAP' ] );
+			$anchor = jomres_generate_tab_anchor( $map_title );
 			?>
 				<script type="text/javascript">
 					jomresJquery(document).ready(function () {
@@ -45,24 +46,14 @@ class j00035tabcontent_02_map
 					});
 				</script>
 			<?php
-			$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_ID" => $tab_id, "TAB_TITLE" => $output[ 'TITLE_MAP' ], "TAB_CONTENT" => $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ]);
+			$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_ID" => $tab_id, "TAB_TITLE" => $map_title, "TAB_CONTENT" => $map);
 			$this->retVals = $tab;
 			}
 		}
 
-	/**
-	#
-	 * Must be included in every mini-component
-	#
-	 * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
-	#
-	 */
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
 		return $this->retVals;
 		}
-
 	}
-
-?>

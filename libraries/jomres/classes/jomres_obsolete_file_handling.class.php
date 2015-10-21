@@ -1165,6 +1165,19 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_css . 'tipsy.css' );
 		
 		$this->add_obs_file( $this->dir_classes . 'jomres_sticky_messages.class.php' );
+		
+		$this->add_obs_file( $this->dir_minicomponents . 'j00035tabcontent_03_slideshow.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j01070showpropertyheader.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00015viewproperty.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00016composite_property_details.class.php' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'admin_list_bookings.html' );
+		
+		$this->add_obs_file( $this->dir_images . '_star.png' );
+		$this->add_obs_file( $this->dir_javascript . JRDS . '_jquery.dataTables.js' );
+		$this->add_obs_file( $this->dir_javascript . JRDS . 'jrportal.js' );
+		$this->add_obs_file( $this->dir_javascript . JRDS . 'slideshow_themes'. JRDS . 'classic' . JRDS . 'galleria-1.2.5.min.js' );
+		$this->add_obs_file( $this->dir_javascript . JRDS . 'slideshow_themes'. JRDS . 'classic' . JRDS . 'galleria-1.2.7.min.js' );
+		$this->add_obs_file( $this->dir_javascript . JRDS . 'slideshow_themes'. JRDS . 'classic' . JRDS . 'galleria-1.2.9.min.js' );
 		}
 
 	function add_obs_file( $path_and_file )

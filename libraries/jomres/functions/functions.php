@@ -16,26 +16,24 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries'.JRDS.'http_build_url.php');
 
-function user_can_view_this_property($property_uid)
+function user_can_view_this_property($property_uid = 0)
 	{
-	$thisJRUser		= jomres_singleton_abstract::getInstance( 'jr_user' );
+	if ($property_uid == 0)
+		return false;
+
+	$thisJRUser	= jomres_singleton_abstract::getInstance( 'jr_user' );
 	$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 	$current_property_details->gather_data( $property_uid );
 	
-	if ($current_property_details->published)
-		return true;
-	
-	if (!$thisJRUser->userIsManager)
-		return false;
-	
 	if ($thisJRUser->superPropertyManager)
 		return true;
-	
-	if ( in_array( $property_uid , $thisJRUser->authorisedProperties ) )
-		return true;
-	
-	return false;
+	else
+		{
+		if ($current_property_details->published == 0 && (!$thisJRUser->userIsManager || ($thisJRUser->userIsManager && !in_array($property_uid, $thisJRUser->authorisedProperties))))
+			return false;
+		}
 
+	return true;
 	}
 
 
@@ -4409,7 +4407,7 @@ function showAvailability( $roomUid, $requestedDate = "", $property_uid, $showFu
 function property_header( $property_uid )
 	{
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-	$MiniComponents->triggerEvent( '01070', array ( 'property_uid' => $property_uid ) ); // Call property header mini-component
+	$MiniComponents->specificEvent( '06000', 'show_property_header',array('property_uid'=>$property_uid));
 	}
 
 /**

@@ -27,8 +27,6 @@ class j00035tabcontent_06_extras
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
 
-		$output = $componentArgs[ 'currrent_output' ];
-
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
 			if ( $mrConfig[ 'showExtras' ] == "1" )

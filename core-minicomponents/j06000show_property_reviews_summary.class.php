@@ -13,20 +13,20 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j06000show_property_description
+class j06000show_property_reviews_summary
 	{
-	function __construct( $componentArgs )
+	function __construct($componentArgs)
 		{
-		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
 			return;
 			}
-		$output = array ();
 		
+		$siteConfig			= jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig			= $siteConfig->get();
+
 		if (isset($componentArgs[ 'property_uid' ]))
 			$property_uid = (int) $componentArgs[ 'property_uid' ];
 		elseif ( isset ( $_REQUEST['property_uid'] ))
@@ -41,26 +41,37 @@ class j06000show_property_description
 		else
 			$output_now = true;
 
-		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-		$current_property_details->gather_data( $property_uid );
+		if ( (int)$jrConfig[ 'use_reviews' ] == 0 )
+			return;
 
-		$output['PROPERTY_DESCRIPTION'] = $current_property_details->property_description;
+		$output     = array ();
+		$pageoutput = array ();
+			
+		jr_import( 'jomres_reviews' );
+		$Reviews = new jomres_reviews();
+		$Reviews->property_uid = $property_uid;
+		$itemRating = $Reviews->showRating( $property_uid );
 		
-		$pageoutput = array( $output );
+		$output[ 'AVERAGE_RATING' ]    = number_format( $itemRating[ 'avg_rating' ], 1, '.', '' );
+		$output[ 'NUMBER_OF_REVIEWS' ] = $itemRating[ 'counter' ];
+		$output[ '_JOMRES_REVIEWS_AVERAGE_RATING' ] = jr_gettext( '_JOMRES_REVIEWS_AVERAGE_RATING', _JOMRES_REVIEWS_AVERAGE_RATING, false, false );
+		$output[ '_JOMRES_REVIEWS_TOTAL_VOTES' ]    = jr_gettext( '_JOMRES_REVIEWS_TOTAL_VOTES', _JOMRES_REVIEWS_TOTAL_VOTES, false, false );
+		
+		$pageoutput[]=$output;
+			
 		$tmpl = new patTemplate();
+		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		$tmpl->addRows( 'pageoutput',$pageoutput);
-		$tmpl->readTemplatesFromInput( 'show_property_description.html' );
-		$template = $tmpl->getParsedTemplate();
-		if ( $output_now )
-			echo $template;
+		$tmpl->readTemplatesFromInput( 'show_property_reviews_summary.html' );
+		$result = $tmpl->getParsedTemplate();
+		
+		if ($output_now)
+			echo $result;
 		else
-			$this->retVals = $template;
-				
+			$this->retVals = $result;
 		}
 
-
-	// This must be included in every Event/Mini-component
+	//this must be included in all mini-components
 	function getRetVals()
 		{
 		return $this->retVals;

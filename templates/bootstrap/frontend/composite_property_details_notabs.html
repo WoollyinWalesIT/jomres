@@ -1,16 +1,5 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <div id="property_details">
-	<!--<div class="row-fluid">
-		<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 alert alert-success">
-			<h4>
-				{PRICE_PRE_TEXT}
-				{PRICE_PRICE}
-				{PRICE_POST_TEXT}
-			</h4>
-		</div>
-		<div class="span5">
-		</div>
-	</div>-->
 	<div class="row-fluid">
 		<div id="gallerywrapper" class="span8">
 			<div class="well">{SLIDESHOW}</div>
@@ -18,14 +7,7 @@
 		<div class="span4" id="tour_target_property_details_buttons">
 			<div class="buttonswrapper well">
 				<div class="pdetails-reviews">
-					<div class="row-fluid">
-						<div class="span6" align="center">
-							{_JOMRES_REVIEWS_AVERAGE_RATING}<span class="reviews-big">{AVERAGE_RATING}</span>
-						</div>
-						<div class="span6" align="center">
-							{_JOMRES_REVIEWS_TOTAL_VOTES}<span class="reviews-big">{NUMBER_OF_REVIEWS}</span>
-						</div>
-					</div>
+					{REVIEWS_SUMMARY}
 				</div>
 				
 				<div class="pdetails-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
@@ -61,73 +43,73 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="clearfix"></div>
+	<p>&nbsp;</p>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2 class="panel-title">{TABCONTENT_01_MAIN_DETAILS_TITLE}</h2>
+		</div>
+		<div class="panel-body">
+			{TABCONTENT_01_MAIN_DETAILS_CONTENT}
+		</div>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2 class="panel-title">{TABCONTENT_01_MORE_INFO_TITLE}</h2>
+		</div>
+		<div class="panel-body">
+			{TABCONTENT_01_MORE_INFO_CONTENT}
+		</div>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2 class="panel-title">{TABCONTENT_06_EXTRAS_TITLE}</h2>
+		</div>
+		<div class="panel-body">
+			{TABCONTENT_06_EXTRAS_CONTENT}
+		</div>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2 class="panel-title">{TABCONTENT_02_MAP_TITLE}</h2>
+		</div>
+		<div class="panel-body">
+			{TABCONTENT_02_MAP_CONTENT}
+		</div>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2 class="panel-title">{TABCONTENT_03_REVIEWS_TITLE}</h2>
+		</div>
+		<div class="panel-body">
+			{TABCONTENT_03_REVIEWS_CONTENT}
+		</div>
+	</div>
+	
+	<h2>{TABCONTENT_02_BOOKINGFORM_TITLE}</h2>
+	{TABCONTENT_02_BOOKINGFORM_CONTENT}
+	
+	<div class="tabbable">
+		<ul class="nav nav-tabs">
+			<patTemplate:tmpl name="tabs_titles">
+				<li class="{ACTIVE}"><a href="#{TAB_ANCHOR}" data-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a></li>
+			</patTemplate:tmpl>
+		</ul>
+		<div class="tab-content">
+			<patTemplate:tmpl name="tabs_content">
+				<div class="tab-pane {ACTIVE}" id="{TAB_ANCHOR}">
+					{TAB_CONTENT}
+				</div>
+			</patTemplate:tmpl>
+		</div>
+	</div>
 </div>
-<div class="clearfix"></div>
-<p>&nbsp;</p>
-
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h2 class="panel-title">{TABCONTENT_01_MAIN_DETAILS_TITLE}</h2>
-	</div>
-	<div class="panel-body">
-		{TABCONTENT_01_MAIN_DETAILS_CONTENT}
-	</div>
-</div>
-
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h2 class="panel-title">{TABCONTENT_01_MORE_INFO_TITLE}</h2>
-	</div>
-	<div class="panel-body">
-		{TABCONTENT_01_MORE_INFO_CONTENT}
-	</div>
-</div>
-
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h2 class="panel-title">{TABCONTENT_06_EXTRAS_TITLE}</h2>
-	</div>
-	<div class="panel-body">
-		{TABCONTENT_06_EXTRAS_CONTENT}
-	</div>
-</div>
-
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h2 class="panel-title">{TABCONTENT_02_MAP_TITLE}</h2>
-	</div>
-	<div class="panel-body">
-		{TABCONTENT_02_MAP_CONTENT}
-	</div>
-</div>
-
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h2 class="panel-title">{TABCONTENT_03_REVIEWS_TITLE}</h2>
-	</div>
-	<div class="panel-body">
-		{TABCONTENT_03_REVIEWS_CONTENT}
-	</div>
-</div>
-
-<h2>{TABCONTENT_02_BOOKINGFORM_TITLE}</h2>
-{TABCONTENT_02_BOOKINGFORM_CONTENT}
-
-<div class="tabbable">
-	<ul class="nav nav-tabs">
-		<patTemplate:tmpl name="tabs_titles">
-			<li class="{ACTIVE}"><a href="#{TAB_ANCHOR}" data-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a></li>
-		</patTemplate:tmpl>
-	</ul>
-	<div class="tab-content">
-		<patTemplate:tmpl name="tabs_content">
-			<div class="tab-pane {ACTIVE}" id="{TAB_ANCHOR}">
-				{TAB_CONTENT}
-			</div>
-		</patTemplate:tmpl>
-	</div>
-</div>
-
 
 
 

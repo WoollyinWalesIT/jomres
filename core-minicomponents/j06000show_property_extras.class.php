@@ -24,11 +24,13 @@ class j06000show_property_extras
 			return;
 			}
 
-		if (isset($componentArgs['property_uid']))
-			$property_uid = (int)$componentArgs['property_uid'];
-		elseif ( isset ( $_REQUEST ['property_uid'] ))
-			$property_uid = (int)$_REQUEST ['property_uid'];
-		else 
+		if (isset($componentArgs[ 'property_uid' ]))
+			$property_uid = (int) $componentArgs[ 'property_uid' ];
+		elseif ( isset ( $_REQUEST['property_uid'] ))
+			$property_uid = (int) $_REQUEST['property_uid'];
+		else return;
+		
+		if (!user_can_view_this_property($property_uid))
 			return;
 		
 		if (isset($componentArgs['output_now']))
@@ -42,9 +44,6 @@ class j06000show_property_extras
 			{
 			$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 			$jomres_media_centre_images->get_images($property_uid, array('extras'));
-			
-			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-			$current_property_details->gather_data( $property_uid );
 
 			$extra_details = array();
 			

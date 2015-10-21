@@ -24,17 +24,13 @@ class j06000show_property_room_types
 			return;
 			}
 
-		if ( isset($componentArgs[ 'property_uid' ]) )
-			$property_uid = $componentArgs[ 'property_uid' ];
-		else
-			{
-			if( isset($_REQUEST['property_uid']) )
-				$property_uid = (int)jomresGetParam( $_REQUEST, 'property_uid', 0 );
-			else
-				$property_uid = get_showtime('property_uid');
-			}
+		if (isset($componentArgs[ 'property_uid' ]))
+			$property_uid = (int) $componentArgs[ 'property_uid' ];
+		elseif ( isset ( $_REQUEST['property_uid'] ))
+			$property_uid = (int) $_REQUEST['property_uid'];
+		else return;
 		
-		if ( $property_uid == 0 ) 
+		if (!user_can_view_this_property($property_uid))
 			return;
 		
 		$output_now = true;

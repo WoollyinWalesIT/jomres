@@ -13,18 +13,13 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j06000show_property_map
+class j06000show_property_slideshow
 	{
 	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch )
-			{
-			$this->template_touchable = false;
-
-			return;
-			}
+		if ( $MiniComponents->template_touch ){$this->template_touchable = false;return;}
 
 		if (isset($componentArgs[ 'property_uid' ]))
 			$property_uid = (int) $componentArgs[ 'property_uid' ];
@@ -39,33 +34,26 @@ class j06000show_property_map
 			$output_now = $componentArgs[ 'output_now' ];
 		else
 			$output_now = true;
+
+		$output = array();
 		
-		$mrConfig      = getPropertySpecificSettings( $property_uid );
-
-		$mw       = 600;
-		$mh       = 600;
-		if ( isset( $_REQUEST[ 'property_uid' ] ) )
-			{
-			if ( isset( $_REQUEST[ 'mw' ] ) ) $mw = (int) $_REQUEST[ 'mw' ];
-			if ( isset( $_REQUEST[ 'mh' ] ) ) $mh = (int) $_REQUEST[ 'mh' ];
-			if ( isset( $_REQUEST[ 'output_now' ] ) ) $output_now = (bool)jomresGetParam($_REQUEST, 'output_now', 1);
-			}
+		$result = $MiniComponents->specificEvent( '01060', 'slideshow' , array( "property_uid" => $property_uid ) );
+		$output[ 'SLIDESHOW' ] = $result ['slideshow'];
+			
+		$pageoutput=array();
+		$pageoutput[]=$output;
+		
+		$tmpl = new patTemplate();
+		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		$tmpl->readTemplatesFromInput( 'show_property_slideshow.html' );
+		$result = $tmpl->getParsedTemplate();
+		
+		if ($output_now )
+			echo $result;
 		else
-			{
-			if ( isset( $componentArgs[ 'mw' ] ) ) $mw = (int) $componentArgs[ 'mw' ];
-			if ( isset( $componentArgs[ 'mh' ] ) ) $mh = (int) $componentArgs[ 'mh' ];
-			if ( isset( $componentArgs[ 'output_now' ] ) ) $output_now = (bool) $componentArgs[ 'output_now' ];
-			}
-
-		$componentArgs = array ( 'property_uid' => $property_uid, "width" => $mw, "height" => $mh );
-		$MiniComponents->specificEvent( '01050', 'x_geocoder', $componentArgs );
-
-		if ( $output_now )
-			echo $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
-		else
-			$this->retVals = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
+			$this->retVals = $result;
 		}
-
 
 	// This must be included in every Event/Mini-component
 	function getRetVals()
