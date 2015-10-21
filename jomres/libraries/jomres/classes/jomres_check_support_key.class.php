@@ -27,7 +27,7 @@ class jomres_check_support_key
 		$this->check_license_key( $pk, $plugin );
 		}
 
-	function check_license_key( $pk, $plugin )
+	function check_license_key( $pk='', $plugin='' )
 		{
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig	= $siteConfig->get();
@@ -49,8 +49,6 @@ class jomres_check_support_key
 		
 		if ( $ret_result->license_valid == true ) 
 			$this->key_valid = true;
-		
-		$this->key_valid = true;
 		}
 
 	function show_key_input()
