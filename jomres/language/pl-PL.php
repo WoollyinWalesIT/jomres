@@ -2479,3 +2479,6 @@ Właściciel oferty nie ponosi odpowiedzialności, ani nie zapewni zwrotu, na ka
 Klient zobowiązuje się do przestrzegania niniejszego Regulaminu oraz wszelkich innych instrukcji zawartych w szczegółowych warunkach oferty i przyjmuje do wiadomości inne dodatkowe informacje i instrukcje, dostarczone przez Oferenta.');
 
 jr_define('_JOMRES_NUMBER_OF_BEDROOMS','Zasoby');
+
+jr_define( '_JOMRES_SUPPORTKEY_DESC_VALID', 'Your download and support key is valid, you will be able to download plugins via the plugin manager.' );
+jr_define( '_JOMRES_SUPPORTKEY_DESC_INVALID', 'Your download and support key is NOT valid, you will be NOT able to download plugins via the plugin manager.' );

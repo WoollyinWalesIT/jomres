@@ -2709,3 +2709,6 @@ LIMITATIONS OF LIABILITY: The Renter represents, warrants, acknowledges and agre
 
 
 jr_define( '_JOMRES_NUMBER_OF_BEDROOMS', 'Bedrooms' );
+
+jr_define( '_JOMRES_SUPPORTKEY_DESC_VALID', 'Your download and support key is valid, you will be able to download plugins via the plugin manager.' );
+jr_define( '_JOMRES_SUPPORTKEY_DESC_INVALID', 'Your download and support key is NOT valid, you will be NOT able to download plugins via the plugin manager.' );
