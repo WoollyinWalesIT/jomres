@@ -24,7 +24,7 @@ define( 'JOMRES_ADMINISTRATORDIRECTORY', "wp-admin" );
 $scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 if ( !strstr( $scriptname, 'install_jomres.php' ) )
 	{
-	$query = "SELECT `ID` FROM #__posts WHERE `post_content` = '%[jomres]%' AND `post_parent` = 0 AND `post_status` = 'publish' LIMIT 1";
+	$query = "SELECT `ID` FROM #__posts WHERE `post_content` LIKE '%[jomres]%' AND `post_parent` = 0 AND `post_status` = 'publish' LIMIT 1";
 	$itemQueryRes = (int)doSelectSql( $query,1 );
 
 	$itemIdFound=false;
