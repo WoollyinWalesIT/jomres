@@ -57,8 +57,8 @@ class j10501a_misc
 		$configurationPanel->insertSetting();
 
 		$configurationPanel->setleft( jr_gettext( _JOMRES_SUPPORTKEY, '_JOMRES_SUPPORTKEY', false ) );
-		$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_licensekey" value="' . $jrConfig[ 'licensekey' ] . '" />' );
-		$configurationPanel->setright( jr_gettext( _JOMRES_SUPPORTKEY_DESC, '_JOMRES_SUPPORTKEY_DESC', false )." ".$support_key_message." " );
+		$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_licensekey" value="' . $jrConfig[ 'licensekey' ] . '" />'.' '.$support_key_message );
+		$configurationPanel->setright( jr_gettext( _JOMRES_SUPPORTKEY_DESC, '_JOMRES_SUPPORTKEY_DESC', false ) );
 		$configurationPanel->insertSetting();
 		
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 ) 
