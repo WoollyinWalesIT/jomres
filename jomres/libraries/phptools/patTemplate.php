@@ -2615,7 +2615,7 @@ class patTemplate
 
 		$result = $this->output_template_name_details( $result , $files );
 
-		$regex = '/{asamambot\s*.*?}/i';
+/* 		$regex = '/{asamambot\s*.*?}/i';
 		// find all instances of mambot and put in $matches
 		preg_match_all( $regex, $result, $matches );
 		
@@ -2667,7 +2667,7 @@ class patTemplate
 					ob_end_clean();
 					}
 				}
-			}
+			} */
 
 		if ( isset( $this->json_output ) ) 
 			return json_encode( $this->json_output );
