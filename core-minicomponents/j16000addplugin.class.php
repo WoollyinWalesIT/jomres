@@ -237,8 +237,24 @@ class j16000addplugin
 
 				if ($content_type == "text/html")
 					{
-
-					echo "<p class='alert alert-danger'>Error There was a problem downloading the plugin, it's likely that your license isn't valid for this domain.</p>";
+					$output2 = array();
+					$pageoutput2=array();
+					$returned_error = json_decode(file_get_contents($newfilename));
+					
+					
+					$output2['_JOMRES_ERROR'] = jr_gettext( '_JOMRES_ERROR' , _JOMRES_ERROR , false, false ) ;
+					$output2['MESSAGE'] = filter_var( $returned_error->message , FILTER_SANITIZE_STRING ) ;
+					$output2['PLUGIN_MANAGER_LINK'] =  JOMRES_SITEPAGE_URL_ADMIN . '&task=showplugins';
+					$output2['PLUGIN_MANAGER_TEXT'] = jr_gettext( "_JOMRES_CUSTOMCODE_PLUGINMANAGER", _JOMRES_CUSTOMCODE_PLUGINMANAGER, false, false );
+					$pageoutput2[]=$output2;
+					$tmpl = new patTemplate();
+					$tmpl->addRows( 'pageoutput', $pageoutput2 );
+					$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+					$tmpl->readTemplatesFromInput( 'plugin_manager_error.html' );
+					$tmpl->displayParsedTemplate();
+					
+					emptyDir( $updateDirPath . "unpacked" );
+					rmdir( $updateDirPath . "unpacked" );
 					return;
 					}
 				curl_close( $curl_handle );
@@ -247,7 +263,7 @@ class j16000addplugin
 				fclose( $file_handle );
 				}
 			}
-		
+
 		if ( !file_exists( $newfilename ) || filesize( $newfilename ) == 0 )
 			{
 			$error_messsage[ "ERROR" ] = "Something went wrong downloading the update files. Quitting";
