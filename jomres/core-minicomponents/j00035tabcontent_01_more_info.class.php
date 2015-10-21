@@ -26,24 +26,19 @@ class j00035tabcontent_01_more_info
 			}
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
-		$output       = $componentArgs[ 'currrent_output' ];
+		
+		$output       = array();
 
-		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
-			{
-			$property_uid = (int) $componentArgs[ 'property_uid' ];
-			$output       = $componentArgs[ 'currrent_output' ];
+		if ( (int)$mrConfig[ 'is_real_estate_listing' ] == 1 )
+			return;
+		
+		//property more info
+		$output['HPROPERTY_MOREINFO'] = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION, false );
+		$output['PROPERTY_MOREINFO'] = $MiniComponents->specificEvent( '06000', 'show_property_moreinfo',array('output_now'=>false, 'property_uid'=>$property_uid));
 
-			$pageoutput[ ] = $output;
-			$tmpl          = new patTemplate();
-			$tmpl->addRows( 'pageoutput', $pageoutput );
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-			$tmpl->readTemplatesFromInput( 'tabcontent_01_more_info.html' );
-			$parsedTemplate = $tmpl->getParsedTemplate();
-
-			$anchor        = jomres_generate_tab_anchor( $output[ 'TITLE_MOREINFO' ] );
-			$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'TITLE_MOREINFO' ], "TAB_CONTENT" => $parsedTemplate , "TAB_ID" => 'tour_target_property_details_moreinfo');
-			$this->retVals = $tab;
-			}
+		$anchor        = jomres_generate_tab_anchor( $output[ 'HPROPERTY_MOREINFO' ] );
+		$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'HPROPERTY_MOREINFO' ], "TAB_CONTENT" => $output['PROPERTY_MOREINFO'] , "TAB_ID" => 'tour_target_property_details_moreinfo');
+		$this->retVals = $tab;
 		}
 
 	/**
@@ -58,7 +53,4 @@ class j00035tabcontent_01_more_info
 		{
 		return $this->retVals;
 		}
-
 	}
-
-?>

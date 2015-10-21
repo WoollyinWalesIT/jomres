@@ -24,14 +24,29 @@ class j00035tabcontent_01_main_details
 
 			return;
 			}
+		
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
-		$output       = $componentArgs[ 'currrent_output' ];
+		
+		$output       = array();
 
 		$discount_text   = "";
 		$discount_output = array ();
-		$featureList     = $MiniComponents->miniComponentData[ '00015' ][ 'viewproperty' ][ 'featurelist' ];
-		$rtRows          = $MiniComponents->miniComponentData[ '00015' ][ 'viewproperty' ][ 'roomtypes' ];
+		
+		//property description
+		$output['HDESCRIPTION'] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION, false );
+		$output['DESCRIPTION'] = $MiniComponents->specificEvent( '06000', 'show_property_description',array('output_now'=>false, 'property_uid'=>$property_uid));
+		
+		//property features
+		$output['FEATURES'] = $MiniComponents->specificEvent( '06000', 'show_property_features',array('output_now'=>false, 'property_uid'=>$property_uid));
+			
+		//room types
+		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
+			$output['ROOM_TYPES'] = $MiniComponents->specificEvent( '06000', 'show_property_room_types',array('output_now'=>false, 'property_uid'=>$property_uid));
+		else
+			$output['ROOM_TYPES'] = '';
+		
+		//property discounts
 		$MiniComponents->triggerEvent( '01011', array ( 'property_uids' => array('0'=>$property_uid) ) );
 		$discount=get_showtime( 'propertylist_discounts');
 		if(count($discount)>0)
@@ -71,21 +86,20 @@ class j00035tabcontent_01_main_details
 		if ( $discount_text != "" )
 			$discount_output[ ] = array ( "DISCOUNT_OUTPUT" => $discount_text );
 
-		$output[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
-
 		$pageoutput[ ] = $output;
-		$tmpl          = new patTemplate();
+		$tmpl = new patTemplate();
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'feature_icons', $featureList );
-		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 ) $tmpl->addRows( 'roomtype_icons', $rtRows );
-
-		if ( $discount_text != "" ) $tmpl->addRows( 'discount_output', $discount_output );
+		
+		if ( $discount_text != "" ) 
+			$tmpl->addRows( 'discount_output', $discount_output );
+		
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		$tmpl->readTemplatesFromInput( 'tabcontent_01_main_details.html' );
+		
 		$parsedTemplate = $tmpl->getParsedTemplate();
 
-		$anchor        = jomres_generate_tab_anchor( $output[ 'HDESCRIPTION' ] );
-		$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'HDESCRIPTION' ], "TAB_CONTENT" => $parsedTemplate , "TAB_ID" => 'tour_target_property_details_main_details');
+		$anchor = jomres_generate_tab_anchor( $output[ 'HDESCRIPTION' ] );
+		$tab = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'HDESCRIPTION' ], "TAB_CONTENT" => $parsedTemplate , "TAB_ID" => 'tour_target_property_details_main_details');
 		$this->retVals = $tab;
 		}
 
@@ -101,7 +115,4 @@ class j00035tabcontent_01_main_details
 		{
 		return $this->retVals;
 		}
-
 	}
-
-?>

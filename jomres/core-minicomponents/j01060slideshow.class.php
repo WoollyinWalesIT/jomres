@@ -100,12 +100,8 @@ class j01060slideshow
 			$tmpl->readTemplatesFromInput( 'slideshow.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $rows );
-			$output_now = (bool) jomresGetParam( $_REQUEST, 'op', false );
-
-			if ( $output_now ) 
-				$tmpl->displayParsedTemplate();
-			else
-				$this->retVals[ 'slideshow' ] = $tmpl->getParsedTemplate();
+			
+			$this->retVals[ 'slideshow' ] = $tmpl->getParsedTemplate();
 			}
 		else
 			{

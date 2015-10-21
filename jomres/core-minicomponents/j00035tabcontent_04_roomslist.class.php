@@ -27,28 +27,20 @@ class j00035tabcontent_04_roomslist
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
 
-		$output = $componentArgs[ 'currrent_output' ];
+		$rooms_list = $MiniComponents->specificEvent( '06000', 'show_property_rooms',array('output_now'=>false, 'property_uid'=>$property_uid));
+		$rooms_list_title = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', _JOMRES_COM_MR_QUICKRES_STEP2_TITLE, false );
 
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
 			if ( $mrConfig[ 'roomslistinpropertydetails' ] == "1" && $mrConfig[ 'singleRoomProperty' ] != "1" )
 				{
-				$componentArgs[ 'output_now' ] = false;
-				
-				$anchor        = jomres_generate_tab_anchor( $output[ 'TITLE_ROOMSLIST' ] );
-				$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $output[ 'TITLE_ROOMSLIST' ], "TAB_CONTENT" => $MiniComponents->specificEvent( '06000', 'show_property_rooms',$componentArgs) , "TAB_ID" => 'tour_target_rooms_list' );
+				$anchor        = jomres_generate_tab_anchor( $rooms_list_title );
+				$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $rooms_list_title, "TAB_CONTENT" => $rooms_list , "TAB_ID" => 'tour_target_rooms_list' );
 				$this->retVals = $tab;
 				}
 			}
 		}
 
-	/**
-	#
-	 * Must be included in every mini-component
-	#
-	 * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
-	#
-	 */
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
@@ -56,5 +48,3 @@ class j00035tabcontent_04_roomslist
 		}
 
 	}
-
-?>

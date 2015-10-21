@@ -810,28 +810,13 @@ try
 				//jomresShowSearch();
 				break;
 			#########################################################################################
-			case 'viewproperty':
-				// Used to trigger an error artificially to test error handling
-				//if ($divisor == 0) { trigger_error ("Cannot divide by zero", E_USER_ERROR); }
-				$componentArgs                   = array ();
-				$componentArgs[ 'property_uid' ] = $property_uid;
-				if ( in_array( intval( $_REQUEST[ 'property_uid' ] ), $thisJRUser->authorisedProperties ) && intval( $thisJRUser->currentproperty ) != intval( $_REQUEST[ 'property_uid' ] ) )
-					{
-					$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
-					$thisJRUser->set_currentproperty( $property_uid );
-					jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&Itemid=$Itemid&property_uid=$property_uid" ), "" );
-					}
-				property_header( $property_uid );
-				$MiniComponents->triggerEvent( '00016', $componentArgs );
-				break;
-			#########################################################################################
 			case 'preview':
 				if ( $thisJRUser->userIsManager )
 					{
 					property_header( $property_uid );
 					$componentArgs                   = array ();
 					$componentArgs[ 'property_uid' ] = $property_uid;
-					$MiniComponents->triggerEvent( '00016', $componentArgs );
+					$MiniComponents->specificEvent( '06000', 'view_property',array('property_uid'=>$property_uid));
 					}
 				else
 				userHasBeenLoggedOut();

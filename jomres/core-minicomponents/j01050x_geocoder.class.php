@@ -162,24 +162,12 @@ class j01050x_geocoder
 		$tmpl->readTemplatesFromInput( 'geocoder_latlong.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 
-		if ( $jrConfig[ 'composite_property_details' ] != "1" ) $tmpl->displayParsedTemplate();
-		else
 		$this->retVals = $tmpl->getParsedTemplate();
 		}
 
-
-	/**
-	#
-	 * Must be included in every mini-component
-	#
-	 * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
-	#
-	 */
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
 		return $this->retVals;
 		}
 	}
-
-?>

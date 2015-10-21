@@ -13,7 +13,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j06000show_property_map
+class j06000show_property_tariffs
 	{
 	function __construct( $componentArgs )
 		{
@@ -22,7 +22,6 @@ class j06000show_property_map
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
 			return;
 			}
 
@@ -35,37 +34,22 @@ class j06000show_property_map
 		if (!user_can_view_this_property($property_uid))
 			return;
 		
+		$output_now = true;
 		if (isset($componentArgs[ 'output_now' ]))
-			$output_now = $componentArgs[ 'output_now' ];
-		else
-			$output_now = true;
+			$output_now = (bool)$componentArgs[ 'output_now' ];
 		
-		$mrConfig      = getPropertySpecificSettings( $property_uid );
+		if ($output_now)
+			property_header( $property_uid );
+		
+		$output = array();
 
-		$mw       = 600;
-		$mh       = 600;
-		if ( isset( $_REQUEST[ 'property_uid' ] ) )
-			{
-			if ( isset( $_REQUEST[ 'mw' ] ) ) $mw = (int) $_REQUEST[ 'mw' ];
-			if ( isset( $_REQUEST[ 'mh' ] ) ) $mh = (int) $_REQUEST[ 'mh' ];
-			if ( isset( $_REQUEST[ 'output_now' ] ) ) $output_now = (bool)jomresGetParam($_REQUEST, 'output_now', 1);
-			}
-		else
-			{
-			if ( isset( $componentArgs[ 'mw' ] ) ) $mw = (int) $componentArgs[ 'mw' ];
-			if ( isset( $componentArgs[ 'mh' ] ) ) $mh = (int) $componentArgs[ 'mh' ];
-			if ( isset( $componentArgs[ 'output_now' ] ) ) $output_now = (bool) $componentArgs[ 'output_now' ];
-			}
-
-		$componentArgs = array ( 'property_uid' => $property_uid, "width" => $mw, "height" => $mh );
-		$MiniComponents->specificEvent( '01050', 'x_geocoder', $componentArgs );
+		$MiniComponents->specificEvent( '01020', 'showtariffs', $componentArgs );
 
 		if ( $output_now )
-			echo $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
+			echo $MiniComponents->miniComponentData[ '01020' ][ 'showtariffs' ];
 		else
-			$this->retVals = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
+			$this->retVals = $MiniComponents->miniComponentData[ '01020' ][ 'showtariffs' ];
 		}
-
 
 	// This must be included in every Event/Mini-component
 	function getRetVals()

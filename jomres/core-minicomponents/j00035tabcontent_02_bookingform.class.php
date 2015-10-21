@@ -37,7 +37,6 @@ class j00035tabcontent_02_bookingform
 			return;
 			}
 
-		$output = $componentArgs[ 'currrent_output' ];
 		// Booking form tab
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && $jrConfig[ 'show_booking_form_in_property_details' ] == "1" && $mrConfig[ 'visitorscanbookonline' ] == '1' && !isset( $_REQUEST[ 'jr_printable' ] ) )
 			{
@@ -53,13 +52,6 @@ class j00035tabcontent_02_bookingform
 			}
 		}
 
-	/**
-	#
-	 * Must be included in every mini-component
-	#
-	 * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
-	#
-	 */
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
@@ -67,5 +59,3 @@ class j00035tabcontent_02_bookingform
 		}
 
 	}
-
-?>

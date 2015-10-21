@@ -470,7 +470,7 @@ class j01010listpropertys
 						$property_deets [ 'REVIEWS_SNIPPET' ]               = '';
 						}
 
-					//$property_deets['AVAILABILITY_CALENDAR'] = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property->propertys_uid,'return_calendar'=>"1",'noshowlegend'=>1) );
+					//$property_deets['AVAILABILITY_CALENDAR'] = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property->propertys_uid,'output_now'=>"1",'noshowlegend'=>1) );
 					
 					$starslink = "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/blank.png\" alt=\"star\" border=\"0\" height=\"1\" hspace=\"10\" vspace=\"1\" />";
 					if ( $property_stars!= "0" )

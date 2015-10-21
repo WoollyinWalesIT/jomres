@@ -1,49 +1,49 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-
-	<div id="property_details">
-		<div class="row-fluid">
-			<div class="span7 alert alert-success">
-				<h4>
-					{PRICE_PRE_TEXT}
-					{PRICE_PRICE}
-					{PRICE_POST_TEXT}
-				</h4>
-			</div>
-			<div class="span5">
-			</div>
+<div id="property_details">
+	<div class="row-fluid">
+		<div id="gallerywrapper" class="span8">
+			<div class="well">{SLIDESHOW}</div>
 		</div>
-		<div class="row-fluid">
-			<div id="gallerywrapper" class="span7 well">{SLIDESHOW}</div>
-			<div class="span5" id="tour_target_property_details_buttons">
-				<div class="big-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
+		<div class="span4" id="tour_target_property_details_buttons">
+			<div class="buttonswrapper well">
+				<div class="pdetails-reviews">
+					{REVIEWS_SUMMARY}
+				</div>
+				
+				<div class="pdetails-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
+				
+				<div id="tour_target_inline_calendar" class="pdetails-availability-inline" align="center">{INLINE_CALENDAR}</div>
+				
 				<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-					<div class="btn-toolbar"><a href="{LINK}"
-												class="btn btn-primary property_details_buttons btn-large"><i
-							class="icon-calendar pull-left"></i> {TEXT}</a></div>
+					<a href="{LINK}" class="btn btn-success btn-lg btn-block"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
 				</patTemplate:tmpl>
-				<patTemplate:tmpl name="contactuslink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-					<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons"><i
-							class="icon-mail pull-left"></i> {TEXT}</a></div>
-				</patTemplate:tmpl>
+				
 				<patTemplate:tmpl name="slideshowlink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-					<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons"><i
-							class="icon-pictures pull-left"></i> {TEXT}</a></div>
+					<a href="{LINK}" class="btn btn-default btn-block">{TEXT}</a>
 				</patTemplate:tmpl>
 				<patTemplate:tmpl name="tariffslink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-					<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons"><i
-							class="icon-grid-view pull-left "></i> {TEXT}</a></div>
+					<a href="{LINK}" class="btn btn-default btn-block">{TEXT}</a>
 				</patTemplate:tmpl>
 				<patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-					<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons"><i
-							class="icon-key pull-left"></i> {TEXT}</a></div>
+					<a href="{LINK}" class="btn btn-default btn-block">{TEXT}</a>
 				</patTemplate:tmpl>
-				<div class="btn-toolbar"><a href="{PRINT_LINK}" target="_blank" class="btn property_details_buttons"><i
-						class="icon-printer  pull-left"></i> {COMMON_PRINT}</a></div>
-				<div style="clear:both;"></div>
-				<div id="tour_target_inline_calendar">{INLINE_CALENDAR}</div>
+				
+				<div class="pdetails-icons">
+					<div class="row-fluid">
+						<patTemplate:tmpl name="contactuslink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+						<div class="span6" align="center">
+							<a href="{LINK}" class="pdetails-btn-icon" title="{TEXT}"><i class="fa fa-envelope"></i></a>
+						</div>
+						</patTemplate:tmpl>
+						<div class="span6" align="center">
+							<a href="{PRINT_LINK}" target="_blank" class="pdetails-btn-icon" title="{COMMON_PRINT}"><i class="fa fa-print"></i></a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+
 	<div class="clearfix"></div>
 	<p>&nbsp;</p>
 
@@ -61,6 +61,7 @@
 			</patTemplate:tmpl>
 		</div>
 	</div>
-	<div class="clearfix"></div>
-	<p>&nbsp;</p>
+</div>
+<div class="clearfix"></div>
+<p>&nbsp;</p>
 </patTemplate:tmpl>

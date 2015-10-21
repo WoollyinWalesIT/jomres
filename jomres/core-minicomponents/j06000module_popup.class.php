@@ -35,7 +35,7 @@ class j06000module_popup
 			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 			$current_property_details->gather_data($property_uid);
 
-			$inline_calendar = $MiniComponents->specificEvent( '06000', 'ui_availability_calendar', array ( 'property_uid' => $property_uid, 'return_calendar' => "1", 'noshowlegend' => "1" ) );
+			$inline_calendar = $MiniComponents->specificEvent( '06000', 'ui_availability_calendar', array ( 'property_uid' => $property_uid, 'output_now' => "1", 'noshowlegend' => "1" ) );
 
 			$mrConfig = getPropertySpecificSettings( $property_uid );
 			set_showtime( 'property_uid', $property_uid );
