@@ -127,7 +127,7 @@ class j01010listpropertys
 			$propertys_uids = $tmpArray;
 			}
 
-		if (isset($_REQUEST['propertylist_layout']) || isset($_GET['page']) )
+		if ( (isset($_REQUEST['propertylist_layout']) || isset($_GET['page']) ) || isset($_REQUEST['return_to_search_results']) )
 			{
 			$propertys_uids = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
 			}
