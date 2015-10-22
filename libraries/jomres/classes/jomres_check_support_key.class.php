@@ -46,9 +46,10 @@ class jomres_check_support_key
 		$license_checked = queryUpdateServer( "check_key.php", $str, "updates" );
 		
 		$ret_result      = json_decode($license_checked);
-		
-		$this->key_status = $ret_result->status;
-		$this->owner = $ret_result->owner;
+
+		$this->expires		= $ret_result->expires;
+		$this->key_status	= $ret_result->status;
+		$this->owner		= $ret_result->owner;
 		if ( $ret_result->license_valid == true ) 
 			$this->key_valid = true;
 		}

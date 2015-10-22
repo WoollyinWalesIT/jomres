@@ -51,6 +51,8 @@ class j10501a_misc
 				}
 			$support_key_status = '<span class="badge">Status</span> '.$jomres_check_support_key->key_status.'';
 			$support_key_owner = '<span class="badge">Owner</span> '.$jomres_check_support_key->owner.'';
+			$support_key_expires = '<span class="badge">Expires</span> '.$jomres_check_support_key->expires.'';
+			
 			}
 		else
 			{
@@ -66,7 +68,7 @@ class j10501a_misc
 		$configurationPanel->insertSetting();
 
 		$configurationPanel->setleft( jr_gettext( _JOMRES_SUPPORTKEY, '_JOMRES_SUPPORTKEY', false ) );
-		$configurationPanel->setmiddle( '<input type="password" class="input-xlarge" name="cfg_licensekey" value="' . $jrConfig[ 'licensekey' ] . '" /><br/>'.' '.$support_key_status.' '.$support_key_owner );
+		$configurationPanel->setmiddle( '<input type="password" class="input-xlarge" name="cfg_licensekey" value="' . $jrConfig[ 'licensekey' ] . '" /><br/>'.' '.$support_key_status.' '.$support_key_owner.' '.$support_key_expires );
 		$configurationPanel->setright( jr_gettext( _JOMRES_SUPPORTKEY_DESC, '_JOMRES_SUPPORTKEY_DESC', false ).' '.$support_key_message );
 		$configurationPanel->insertSetting();
 		
