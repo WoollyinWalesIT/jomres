@@ -47,6 +47,8 @@ class jomres_check_support_key
 		
 		$ret_result      = json_decode($license_checked);
 		
+		$this->key_status = $ret_result->status;
+		$this->owner = $ret_result->owner;
 		if ( $ret_result->license_valid == true ) 
 			$this->key_valid = true;
 		}
