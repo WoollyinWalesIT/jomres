@@ -42,8 +42,8 @@ class j06000show_property_map
 		
 		$mrConfig      = getPropertySpecificSettings( $property_uid );
 
-		$mw       = 600;
-		$mh       = 600;
+		$mw       = 300;
+		$mh       = 300;
 		if ( isset( $_REQUEST[ 'property_uid' ] ) )
 			{
 			if ( isset( $_REQUEST[ 'mw' ] ) ) $mw = (int) $_REQUEST[ 'mw' ];
