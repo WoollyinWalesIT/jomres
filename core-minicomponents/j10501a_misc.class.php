@@ -40,13 +40,22 @@ class j10501a_misc
 			jr_import('jomres_check_support_key');
 			$jomres_check_support_key = new jomres_check_support_key();
 			$jomres_check_support_key->check_license_key();
+
 			if ($jomres_check_support_key->key_valid)
+				{
 				$support_key_message = '<p class="alert alert-success">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_VALID',_JOMRES_SUPPORTKEY_DESC_VALID,false,false).'</p>';
+				}
 			else
+				{
 				$support_key_message =  '<p class="alert alert-danger">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_INVALID',_JOMRES_SUPPORTKEY_DESC_INVALID,false,false).'</p>';
+				}
+			$support_key_status = '<span class="badge">Status</span> '.$jomres_check_support_key->key_status.'';
+			$support_key_owner = '<span class="badge">Owner</span> '.$jomres_check_support_key->owner.'';
 			}
 		else
 			{
+			$support_key_status = '';
+			$support_key_owner = '';
 			$support_key_message = '';
 			}
 		$configurationPanel->startPanel( jr_gettext( "_JOMRES_A_TABS_MISC", _JOMRES_A_TABS_MISC, false ) );
@@ -57,8 +66,8 @@ class j10501a_misc
 		$configurationPanel->insertSetting();
 
 		$configurationPanel->setleft( jr_gettext( _JOMRES_SUPPORTKEY, '_JOMRES_SUPPORTKEY', false ) );
-		$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_licensekey" value="' . $jrConfig[ 'licensekey' ] . '" />'.' '.$support_key_message );
-		$configurationPanel->setright( jr_gettext( _JOMRES_SUPPORTKEY_DESC, '_JOMRES_SUPPORTKEY_DESC', false ) );
+		$configurationPanel->setmiddle( '<input type="password" class="input-xlarge" name="cfg_licensekey" value="' . $jrConfig[ 'licensekey' ] . '" /><br/>'.' '.$support_key_status.' '.$support_key_owner );
+		$configurationPanel->setright( jr_gettext( _JOMRES_SUPPORTKEY_DESC, '_JOMRES_SUPPORTKEY_DESC', false ).' '.$support_key_message );
 		$configurationPanel->insertSetting();
 		
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 ) 
@@ -94,7 +103,7 @@ class j10501a_misc
 		$configurationPanel->setright( jr_gettext( _JOMRES_PROPERTYDETAILS_INTABS_DESC, '_JOMRES_PROPERTYDETAILS_INTABS_DESC', false ) );
 		$configurationPanel->insertSetting();
 	
-		if ( $jrConfig[ 'advanced_site_config' ] == 1 ) 
+	if ( $jrConfig[ 'advanced_site_config' ] == 1 ) 
 			{
 			$configurationPanel->setleft( jr_gettext( _JOMRES_COOKIEPOLICY_TITLE, '_JOMRES_COOKIEPOLICY_TITLE', false ) );
 			$configurationPanel->setmiddle( $lists[ 'use_cookie_policy' ] );
