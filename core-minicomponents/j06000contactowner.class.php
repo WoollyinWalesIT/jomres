@@ -69,9 +69,6 @@ class j06000contactowner
 
 		if ( isset( $_POST[ 'property_uid' ] ) ) 
 			$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
-		
-		if ( $property_uid == 0 ) 
-			return;
 
 		if (!user_can_view_this_property($property_uid))
 			return;
