@@ -61,7 +61,10 @@ class jomres_language_definitions
 				}
 			else //in case there is no language_context set and the property type specific language dir was manually deleted
 				{
-				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' );
+				if ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' ) )
+					require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' );
+				else
+					require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . 'en-GB' . '.php' );
 				}
 			}
 
