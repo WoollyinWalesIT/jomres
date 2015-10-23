@@ -73,20 +73,8 @@ class j06000contactowner
 		if ( $property_uid == 0 ) 
 			return;
 
-		$thisJRUser                     = jomres_singleton_abstract::getInstance( 'jr_user' );
-		$all_properties_in_system       = get_showtime( 'all_properties_in_system' );
-		$published_properties_in_system = get_showtime( 'published_properties_in_system' );
-		if ( !in_array( $property_uid, $all_properties_in_system ) )
-			{
-			echo "Cannot message this property as it doesn't exist";
+		if (!user_can_view_this_property($property_uid))
 			return;
-			}
-		
-		if ( !$thisJRUser->userIsManager && !in_array( $property_uid, $published_properties_in_system ) )
-			{
-			echo "Cannot message an unpublished property";
-			return;
-			}
 
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$current_property_details->gather_data( $property_uid );
