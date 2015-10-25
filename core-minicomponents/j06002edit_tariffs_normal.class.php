@@ -44,7 +44,7 @@ class j06002edit_tariffs_normal
 			}
 		if ( count ($room_classes_array) == 0 )
 			{
-			$message = "Error, there are no room types for this property type";
+			$message = "Error, there are no room types for this property type. You can fix this by visiting Administrator -> Jomres -> Site Structure -> and editing the room/resource types. Remember to set the Is SRP flag correctly.";
 			throw new Exception( $message );
 			return;
 			}
