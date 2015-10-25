@@ -949,6 +949,15 @@ try
 	}
 catch (Exception $e) 
 	{
+	$MiniComponents->triggerEvent( '99994' );
+	$performance_monitor->set_point( "pre-menu generation" );
+	if ( !defined( 'JOMRES_NOHTML' ) && !isset( $_REQUEST[ 'popup' ] ) ) // Generate the main menu
+		{
+		$MiniComponents->triggerEvent( '99995' );
+		}
+	$performance_monitor->set_point( "post-menu generation" );
+	$MiniComponents->triggerEvent( '99999', $componentArgs ); // Optional end run scripts
+	
 		// https://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CCAQFjAAahUKEwjJhIOt_JvIAhXLVhQKHQ7fAMk&url=https%3A%2F%2Fgithub.com%2Ftedious%2FJShrink%2Fissues%2F39&usg=AFQjCNHDDIZ655USiRRgv9k5DWnVTbbIhg&sig2=mIDxMyB2jfvvnzEmpxIBjA&bvm=bv.103627116,d.d24&cad=rja
 	if (strpos($e->getMessage(),'Unclosed regex pattern at position') !== false) // 29/09/2015 There's an un-fixed bug in Jshrink that causes this error, so we'll need to switch off javascript minification and try again
 		{
