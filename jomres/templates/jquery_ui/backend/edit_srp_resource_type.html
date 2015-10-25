@@ -1,0 +1,19 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2>{_JOMRES_SRP_RESOURCE_TYPE}</h2>
+	<p class="alert alert-info">{_JOMRES_SRP_RESOURCE_TYPE_EXPLANATION}</p>
+	<form action="{JOMRES_SITEPAGE_URL_NOSEF}&task=save_srp_room_type" method="post" name="adminForm">
+		{JOMRESTOOLBAR}
+		<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+			<tr>
+				<td width="30%">{_JOMRES_SRP_RESOURCE_TYPE}</td>
+				<td>{RESOURCEDROPDOWN}</td>
+			</tr>
+			<tr>
+				<td width="30%">{HMAXPEOPLE}</td>
+				<td>{MAXPEOPLE_DROPDOWN}</td>
+			</tr>
+		</table>
+	<input type="hidden" name="task" value="save_srp_room_type"/>
+	<input type="hidden" name="no_html" value="1"/>
+	</form>
+</patTemplate:tmpl>

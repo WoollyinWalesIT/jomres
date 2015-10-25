@@ -2735,3 +2735,9 @@ jr_define( '_JOMRES_NUMBER_OF_BEDROOMS', 'Bedrooms' );
 
 jr_define( '_JOMRES_SUPPORTKEY_DESC_VALID', 'Your download and support key is valid, you will be able to download plugins via the plugin manager.' );
 jr_define( '_JOMRES_SUPPORTKEY_DESC_INVALID', 'Your download and support key is NOT valid, you will be NOT able to download plugins via the plugin manager.' );
+
+jr_define( '_JOMRES_SRP_RESOURCE_TYPE', 'Resource type' );
+jr_define( '_JOMRES_SRP_RESOURCE_TYPE_EXPLANATION', 'You must choose a resource type before you can create tariffs for this property.' );
+jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK", "You haven't yet assigned this property a resource type yet." );
+jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK", "Give your property a resource type" );
+
