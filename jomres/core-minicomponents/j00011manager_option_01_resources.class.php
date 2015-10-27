@@ -29,14 +29,8 @@ class j00011manager_option_01_resources
 		if ($mrConfig['tariffmode']=='0') return;
 		
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 || get_showtime('is_jintour_property' )) return;
-		if ( $mrConfig[ 'singleRoomProperty' ] == '1' )
-			{
-			$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=edit_srp_room_type", 'roomTypes.png', jr_gettext( '_JOMRES_SRP_RESOURCE_TYPE', _JOMRES_SRP_RESOURCE_TYPE, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS, false, false ) );
-			}
-		else
-			{
-			$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=list_resources", 'roomTypes.png', jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS, false, false ) );
-			}
+
+		$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=list_resources", 'roomTypes.png', jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS, false, false ) );
 		}
 
 	function touch_template_language()
