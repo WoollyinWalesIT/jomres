@@ -31,6 +31,11 @@ class j06002edit_resource
 		$jrConfig        = $siteConfig->get();
 		$defaultProperty = getDefaultProperty();
 		$output          = array ();
+		$max_max_people	 = 100;
+		
+		$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$basic_property_details->gather_data( $defaultProperty );
+		
 		if ( $mrConfig[ 'singleRoomProperty' ] == "0" )
 			{
 			$roomUid = intval( jomresGetParam( $_REQUEST, 'roomUid', 0 ) );
@@ -63,9 +68,6 @@ class j06002edit_resource
 					}
 				}
 			if ( $clone ) $roomUid = 0;
-
-			$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-			$basic_property_details->gather_data( $defaultProperty );
 
 			$classOptions[ ] = jomresHTML::makeOption( '', "" );
 			foreach ( $basic_property_details->this_property_room_classes as $key => $roomClass )
@@ -106,15 +108,17 @@ class j06002edit_resource
 				}
 
 			$roomImageLocation = '<img src="' . getImageForProperty( "room", $defaultProperty, (int) $roomUid ) . '" />';
+			
+			$max_people_dropdown = jomresHTML::integerSelectList( 1,$max_max_people,1, 'maxpeople','', $max_people );
 
-			$output[ 'ROOMUID' ]      = $roomUid;
-			$output[ 'TYPEDROPDOWN' ] = $classDropDownList;
-			$output[ 'ROOMNAME' ]     = $room_name;
-			$output[ 'ROOMNUMBER' ]   = $room_number;
-			$output[ 'ROOMFLOOR' ]    = $room_floor;
-			$output[ 'MAXPEOPLE' ]    = $max_people;
-			$output[ 'FEATURES' ]     = $featureListTxt;
-			$output[ 'SUPPLIMENT' ]   = $singleperson_suppliment;
+			$output[ 'ROOMUID' ]      		= $roomUid;
+			$output[ 'TYPEDROPDOWN' ] 		= $classDropDownList;
+			$output[ 'ROOMNAME' ]     		= $room_name;
+			$output[ 'ROOMNUMBER' ]   		= $room_number;
+			$output[ 'ROOMFLOOR' ]    		= $room_floor;
+			$output[ 'MAXPEOPLE_DROPDOWN' ] = $max_people_dropdown;
+			$output[ 'FEATURES' ]     		= $featureListTxt;
+			$output[ 'SUPPLIMENT' ]   		= $singleperson_suppliment;
 
 			$output[ 'HTYPE' ]           = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE , false , false );
 			$output[ 'HNAME' ]           = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME , false , false);
@@ -157,8 +161,6 @@ class j06002edit_resource
 			$jrtb .= $jrtbar->endTable();
 			$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-			$output[ 'JOMRES_SITEPAGE_URL' ] = JOMRES_SITEPAGE_URL;
-
 			$pageoutput[ ] = $output;
 			$tmpl          = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
@@ -177,8 +179,16 @@ class j06002edit_resource
 			$query                     = "SELECT max_people FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $defaultProperty . "'";
 			$max_people                = doSelectSql( $query, 1 );
 
-			$query        = "SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 AND `srp_only` = '1'  ORDER BY room_class_abbv ";
+			$query        = "SELECT a.room_classes_uid, 
+									a.room_class_abbv,
+									b.propertytype_id
+								FROM #__jomres_room_classes a 
+								CROSS JOIN #__jomres_roomtypes_propertytypes_xref b 
+								ON a.room_classes_uid = b.roomtype_id 
+								WHERE a.property_uid = 0 AND a.srp_only = 1 AND b.propertytype_id = ".$basic_property_details->ptype_id." 
+								ORDER BY room_class_abbv ";
 			$roomClasses  = doSelectSql( $query );
+			
 			$dropDownList = "<select class=\"inputbox\" name=\"roomClass\">";
 			foreach ( $roomClasses as $roomClass )
 				{
@@ -190,6 +200,8 @@ class j06002edit_resource
 
 				}
 			$dropDownList .= "</select>";
+			
+			$max_people_dropdown = jomresHTML::integerSelectList( 1,$max_max_people,1, 'maxpeople','', $max_people );
 
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb   = $jrtbar->startTable();
@@ -203,7 +215,7 @@ class j06002edit_resource
 			$output[ '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE );
 			$output[ 'DROPDOWNLIST' ]                              = $dropDownList;
 			$output[ 'JOMRESTOOLBAR' ]                             = $jrtb;
-			$output[ 'MAX_PEOPLE' ]                                = $max_people;
+			$output[ 'MAXPEOPLE_DROPDOWN' ]                        = $max_people_dropdown;
 
 			$pageoutput[ ] = $output;
 			$tmpl          = new patTemplate();
