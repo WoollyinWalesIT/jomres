@@ -32,7 +32,7 @@ function user_can_view_this_property($property_uid = 0)
 		if ($current_property_details->published == 0 && (!$thisJRUser->userIsManager || ($thisJRUser->userIsManager && !in_array($property_uid, $thisJRUser->authorisedProperties))))
 			return false;
 		}
-		
+
 	return true;
 	}
 
@@ -3006,6 +3006,16 @@ function saveHotelSettings()
 
 	//$updateText="";
 
+	//check if the property MRP/SRP has changed
+	$mrpsrpChange = false;
+	if ( $_POST[ 'oldsetting_cfg_singleRoomProperty' ] != $_POST[ 'cfg_singleRoomProperty' ] )
+		{
+		echo "Deleting all tariffs and rooms";
+		removeAllPropertyTariffs( $property_uid );
+		removeAllPropertyEnhanceTariffsXref( $property_uid );
+		removeAllPropertyRooms( $property_uid );
+		$mrpsrpChange = true;
+		}
 	
 	$tariffmodeChange = false;
 	if ( $_POST[ 'oldsetting_cfg_tariffmode' ] == "1" && $_POST[ 'cfg_tariffmode' ] == "2" ) // Advanced  -> micromanage
@@ -3085,16 +3095,10 @@ function saveHotelSettings()
 		$validation->save_subject($type = "property", array( "property_uid"=>$property_uid ) );
 		}
 	
-	//check if the property MRP/SRP has changed
-	if ( $_POST[ 'cfg_singleRoomProperty' ] =="1" && $_POST[ 'oldsetting_cfg_singleRoomProperty' ] != $_POST[ 'cfg_singleRoomProperty' ] )
-		{
-		removeAllPropertyTariffs( $property_uid );
-		removeAllPropertyEnhanceTariffsXref( $property_uid );
-		removeAllPropertyRooms( $property_uid );
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=edit_srp_room_type" ), '' );
-		}
-	
-	jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=business_settings&property_uid=$property_uid" ), '' );
+	if ( $mrpsrpChange )
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=edit_resource" ), '' );
+	else
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=business_settings&property_uid=$property_uid" ), '' );
 	}
 
 function removeAllPropertyEnhanceTariffsXref( $property_uid )
