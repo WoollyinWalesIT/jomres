@@ -33,6 +33,9 @@ class j06002edit_resource
 		$output          = array ();
 		$max_max_people	 = 100;
 		
+		$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$basic_property_details->gather_data( $defaultProperty );
+		
 		if ( $mrConfig[ 'singleRoomProperty' ] == "0" )
 			{
 			$roomUid = intval( jomresGetParam( $_REQUEST, 'roomUid', 0 ) );
@@ -65,9 +68,6 @@ class j06002edit_resource
 					}
 				}
 			if ( $clone ) $roomUid = 0;
-
-			$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-			$basic_property_details->gather_data( $defaultProperty );
 
 			$classOptions[ ] = jomresHTML::makeOption( '', "" );
 			foreach ( $basic_property_details->this_property_room_classes as $key => $roomClass )
@@ -179,8 +179,16 @@ class j06002edit_resource
 			$query                     = "SELECT max_people FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $defaultProperty . "'";
 			$max_people                = doSelectSql( $query, 1 );
 
-			$query        = "SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 AND `srp_only` = '1'  ORDER BY room_class_abbv ";
+			$query        = "SELECT a.room_classes_uid, 
+									a.room_class_abbv,
+									b.propertytype_id
+								FROM #__jomres_room_classes a 
+								CROSS JOIN #__jomres_roomtypes_propertytypes_xref b 
+								ON a.room_classes_uid = b.roomtype_id 
+								WHERE a.property_uid = 0 AND a.srp_only = 1 AND b.propertytype_id = ".$basic_property_details->ptype_id." 
+								ORDER BY room_class_abbv ";
 			$roomClasses  = doSelectSql( $query );
+			
 			$dropDownList = "<select class=\"inputbox\" name=\"roomClass\">";
 			foreach ( $roomClasses as $roomClass )
 				{
