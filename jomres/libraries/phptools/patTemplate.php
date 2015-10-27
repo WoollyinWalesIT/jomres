@@ -229,6 +229,7 @@ class patTemplate
 
 		$this->setType( $type );
 		$this->applyInputFilter( 'ShortModifiers' );
+		$this->current_template_files = array ();
 		
 		$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig     = $siteConfig->get();
@@ -2578,14 +2579,13 @@ class patTemplate
 	 */
 	function getParsedTemplate( $name = null, $applyFilters = false )
 		{
-/* 		$current_template_files = '';
 		if ( count ($this->current_template_files) > 0)
 			{
 			foreach ($this->current_template_files as $file)
 				{
 				$current_template_files .= $file;
 				}
-			} */
+			}
 		if ( is_null( $name ) )
 			{
 			$name = $this->_root;
