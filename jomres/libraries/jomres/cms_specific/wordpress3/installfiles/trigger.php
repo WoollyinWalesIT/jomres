@@ -1,4 +1,5 @@
 <?php
+defined('WPINC') or die;
 
 if (!defined('_JOMRES_INITCHECK'))
 	define('_JOMRES_INITCHECK', 1 );

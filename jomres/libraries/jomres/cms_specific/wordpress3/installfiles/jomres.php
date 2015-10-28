@@ -11,6 +11,7 @@ Author: Vince Wooll
 Version: 8
 Author URI: http://www.jomres.net/
 */
+defined('WPINC') or die;
 
 if ( ! class_exists( 'wp_jomres' ) ) 
 	{
