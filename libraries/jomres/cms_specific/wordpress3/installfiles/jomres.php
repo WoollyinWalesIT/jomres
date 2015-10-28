@@ -40,16 +40,11 @@ if ( ! class_exists( 'wp_jomres' ) )
 		
 		function _init()
 			{
-			if (!isset($_REQUEST['page']))
-				$_REQUEST['page'] = "";
-			if (!isset($_REQUEST['action']))
-				$_REQUEST['action'] = "";
-			
 			add_action( 'admin_menu', array($this,'register_my_custom_menu_page') );
 
 			add_action('wp', array($this,'frontend_trigger_jomres'), 1);
 				
-			if (is_admin() && $_REQUEST['page'] == "jomres/jomres.php" )
+			if (is_admin() && isset($_REQUEST['page']) && $_REQUEST['page'] == "jomres/jomres.php" )
 				{
 				if (!defined('_JOMRES_INITCHECK_ADMIN'))
 					define('_JOMRES_INITCHECK_ADMIN', 1 );
@@ -65,7 +60,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 			add_filter('the_content', array($this,'asamodule_search_results') );
 			add_filter('wp_title', array($this,'set_jomres_meta_title'), 10, 2);
 
-			if (is_admin() && ( $_REQUEST['page'] == "jomres/jomres.php" || $_REQUEST['action'] == "jomres/trigger.php") )
+			if (is_admin() && ( (isset($_REQUEST['page']) && $_REQUEST['page'] == "jomres/jomres.php") || ( isset($_REQUEST['action']) && $_REQUEST['action'] == "jomres/trigger.php")) )
 				{
 				add_action( 'wp_ajax_nopriv_'.$_REQUEST['action'], array($this,'jomres_wp_ajax') );
 				add_action( 'wp_ajax_'.$_REQUEST['action'], array($this,'jomres_wp_ajax') );
@@ -142,7 +137,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 			//check if we are on the jomres admin page
 			if ($this->contents == '')
 				{
-				if ($_GET['page'] == "jomres/jomres.php" )
+				if (isset($_GET['page']) && $_GET['page'] == "jomres/jomres.php" )
 					{
 					ob_start();
 
@@ -165,7 +160,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 	
 		function disable_all_widgets( $sidebars_widgets ) 
 			{
-			if ( $_REQUEST['popup'] == "1" )
+			if ( isset($_REQUEST['popup']) && (int)$_REQUEST['popup'] == 1 )
 				{
 				foreach ( $sidebars_widgets as $key=>$widget)
 					{
@@ -181,8 +176,6 @@ if ( ! class_exists( 'wp_jomres' ) )
 				{
 				foreach ($this->js as $js)
 					{
-					/*if (strpos($js['1'], 'bootstrap-editable'))
-						wp_register_script($js['0'], $js['1'], array("jquery"), $js['2']);*/
 					if (strpos($js['1'], 'jomres.js'))
 						wp_register_script($js['0'], $js['1'], array("jquery"), $js['2']);
 					else
@@ -230,5 +223,5 @@ if ( ! class_exists( 'wp_jomres' ) )
 
 $wp_jomres = wp_jomres::getInstance();
 
-if ($_GET['page'] == "jomres/jomres.php" )
+if (isset($_GET['page']) && $_GET['page'] == "jomres/jomres.php" )
 	echo $wp_jomres->contents;
