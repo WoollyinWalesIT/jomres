@@ -1,14 +1,10 @@
 <?php
-/**
- * @package Jomres
- * @version 9.1.6
- */
 /*
 Plugin Name: Jomres
 Plugin URI: http://www.jomres.net
-Description: The best Joomla hotel booking system comes to Wordpress!
+Description: The complete hotel booking system for Wordpress!
 Author: Vince Wooll
-Version: 8
+Version: 9.2
 Author URI: http://www.jomres.net/
 */
 defined('WPINC') or die;
