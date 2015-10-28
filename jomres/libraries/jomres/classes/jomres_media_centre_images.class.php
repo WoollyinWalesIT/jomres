@@ -207,10 +207,11 @@ class jomres_media_centre_images
 				$all_types = array();
 				foreach ($resource_types as $type)
 					{
-					$all_types[] = $type['resource_type'];
+					if (is_array($type))
+						$all_types[] = $type['resource_type'];
 					}
 				}
-			
+
 			if (count($all_types)>0)
 				{
 				foreach ($property_uids as $property_id)
