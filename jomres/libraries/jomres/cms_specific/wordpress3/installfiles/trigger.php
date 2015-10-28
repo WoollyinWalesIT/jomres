@@ -43,7 +43,7 @@ function jr_wp_trigger_frontend()
 	{
 
 	require_once( ABSPATH . JOMRES_ROOT_DIRECTORY.'/jomres.php' );
-	if ( (int)$_REQUEST['jrajax'] == 1 ) // If it's an ajax called, we need to die when Jomres has done it's stuff
+	if ( isset($_REQUEST['jrajax']) && (int)$_REQUEST['jrajax'] == 1 ) // If it's an ajax called, we need to die when Jomres has done it's stuff
 		{
 		die();
 		}
@@ -59,7 +59,7 @@ function jr_wp_trigger_admin()
 		{
 		require_once( ABSPATH . JOMRES_ROOT_DIRECTORY.'/admin.php' );
 		}
-	if ( (int)$_REQUEST['jrajax'] == 1 ) // If it's an ajax called, we need to die when Jomres has done it's stuff
+	if ( isset($_REQUEST['jrajax']) && (int)$_REQUEST['jrajax'] == 1 ) // If it's an ajax called, we need to die when Jomres has done it's stuff
 		{
 		die();
 		}
