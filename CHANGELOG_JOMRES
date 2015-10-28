@@ -1,3 +1,46 @@
+<h3>Jomres 9.2.0 23/10/2015</h3>
+
+<span class="label label-success">Feature</span> Rewrote how the property details page is built, retired older viewproperty and composite property details scripts as they were ugly. Replaced by more flexible 06000 scripts. We've identified a strong need for single property site developers to be able to include various sections of the Jomres output in pages independently of the main Jomres plugin. This allows them to configure their property in one place ( Jomres itself ) and for the output to be mirrored in numerous pages of their choosing. 
+<span class="label label-success">Feature</span> Added new functionality to Jomres to allow users to switch a property between MRPs and SRPs. Requires addition of scripts that'll create the invisible room. Normal Tariff Editing mode does it already, however Advanced/Micromanage didn't, which could prove confusing, therefore added scripts that are referred to in the Sanity Checks and linked to if vital data is missing. With the introduction of the Single Property Wordpress Quickstart, we realised that some users would want to switch a property from MRP to SRP or vice versa. Rather than produce two Quickstarts it made sense to re-introduce this functionality and improve how it works.
+<span class="label label-success">Feature</span> Added Farsi language file, thanks Soroosh. Files have been visually checked and a few issues resolved, however we can't find a Farsi language file for J3.x so haven't been able to definitively confirm that it's working. Please let us know if you have any issues with it.
+
+<span class="label label-warning">Change</span> Added a tweak so that the control panel will attempt to create a missing working directory before checking it for writability.
+<span class="label label-warning">Change</span> Added mambot parsing code for use in templates for testing. (Currently disabled while we determine if we can use it)
+<span class="label label-warning">Change</span> Added a function to make it easy for scripts to tell if users should be viewing snippets.
+<span class="label label-warning">Change</span> Added a check for CURL before trying to call partners servers for plugin lists.
+<span class="label label-warning">Change</span> Added a way to not show property header via a switch in the url.
+<span class="label label-warning">Change</span> Added a small plugin to show property description on it's own if required.
+<span class="label label-warning">Change</span> Removed rooms slideshow from rooms list, as it's already a separate plugin which can be called independently.
+<span class="label label-warning">Change</span> Updated Polish lang file, many thanks Patryk.
+<span class="label label-warning">Change</span> Added new functionality related to domain name binding.
+<span class="label label-warning">Change</span> Improved license failure output messages and added a new message to the Misc tab in Site Config if the license isn't valid. This is just for user information.
+<span class="label label-warning">Change</span> Added new definitions to language files.
+<span class="label label-warning">Change</span> Added functionality that allows us to have a search different search template for Single Property sites.
+<span class="label label-warning">Change</span> Changed default map width and height to 300.
+<span class="label label-warning">Change</span> Added a check for a flag in $_REQUEST. If found we will show the last set of search results. ( list properties )
+<span class="label label-warning">Change</span> Added a check to see if the JomresRouter class doesn't already exist.
+<span class="label label-warning">Change</span> Added a check to see if a language file exists before trying to include it if the file was added by a developer.
+<span class="label label-warning">Change</span> Removed superfluous periods from language files, thanks JK.
+<span class="label label-warning">Change</span> Removed an un-necessary section of code in contactowner script.
+<span class="label label-warning">Change</span> Tweaked the currency codes class to show currency codes if the open exchange rates api key isn't set.
+<span class="label label-warning">Change</span> Updated a language string that refers to the different license packages in Jomres.
+<span class="label label-warning">Change</span> Added more information to the No Room Types warning in Normal Tariff editing mode script.
+<span class="label label-warning">Change</span> Modified system so that Manager's menus will still show after an error is thrown.
+<span class="label label-warning">Change</span> Added a check for a null value in the media centre class.
+
+<span class="label label-important label-danger">Fix</span> Fixed issues where optional extras weren't showing the correct currency codes.
+
+<span class="label label-info">Wordpress</span> Added fixes so that internal update feature can be used on WP
+<span class="label label-info">Wordpress</span> Added a check to see if the web installer has been left inside the wp-content/plugins/jomres directory. If it has, we'll remove it.
+<span class="label label-info">Wordpress</span> Fixed an issue where some smtp settings weren't being set correctly in WP
+<span class="label label-info">Wordpress</span> Wordpress Added changes related to sef/permalinks.
+<span class="label label-info">Wordpress</span> Tweaked page and action to ensure that they're defined variables if not previously set.
+<span class="label label-info">Wordpress</span> wp jomres.php modified to tally with that on wp.org (svn)
+<span class="label label-info">Wordpress</span> Tweaked the query that searches for [jomres] in WP posts to find pages with [jomres] in to determine the page ID because javascript editors can add html to the page and make the query fail, thereby breaking the ajax in the dashboard calendar.
+<span class="label label-info">Wordpress</span> Updated Wordpress files to negate some NOTICE warnings.
+<span class="label label-info">Wordpress</span> Add defined('WPINC') or die; to WP specific scripts. Yay!
+
+
 <h3>Jomres 9.1.6 13/10/2015</h3>
 
 <span class="label label-warning">Change</span> Applied a minor correction to how the availability calendar is called to make sure the trigger number is correct in case we change how the mcHandler class works in the future.
