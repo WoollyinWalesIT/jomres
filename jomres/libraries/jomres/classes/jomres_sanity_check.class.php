@@ -181,7 +181,7 @@ class jomres_sanity_check
 		
 	function check_srp_room_exists()
 		{
-		if (get_showtime("task") != "edit_srp_room_type")
+		if (get_showtime("task") != "edit_resource")
 			{
 			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 			$current_property_details->gather_data( get_showtime( "property_uid" ) );
