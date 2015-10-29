@@ -23,7 +23,7 @@ class j06000viewproperty
 			$this->template_touchable = true;
 			return;
 			}
-		
+
 		$siteConfig			= jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig			= $siteConfig->get();
 		
@@ -40,6 +40,15 @@ class j06000viewproperty
 		$tmpBookingHandler	= jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		
 		$mrConfig 			= getPropertySpecificSettings( $property_uid );
+		if  ( $mrConfig['showOnlyAvailabilityCalendar'] == "1" )
+			{
+			$componentArgs[ 'property_uid' ] = $property_uid;
+			if ( $mrConfig['singleRoomProperty'] =="1" )
+				echo $MiniComponents->triggerEvent( '00017', $componentArgs ); 
+			else
+				echo $MiniComponents->triggerEvent( '00018', $componentArgs ); 
+			return;
+			}
 		
 		$thisJRUser			= jomres_singleton_abstract::getInstance( 'jr_user' );
 		
