@@ -2747,3 +2747,6 @@ jr_define( '_JOMRES_SRP_RESOURCE_TYPE_EXPLANATION', 'You must choose a resource 
 jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK", "You haven't yet assigned this property a resource type yet." );
 jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK", "Give your property a resource type" );
 
+
+jr_define( "_JOMRES_EMAIL_TEMPLATES_TITLE", "Email templates" );
+
