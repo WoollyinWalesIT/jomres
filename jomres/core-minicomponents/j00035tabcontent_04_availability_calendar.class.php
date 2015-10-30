@@ -33,24 +33,14 @@ class j00035tabcontent_04_availability_calendar
 		// j00018 MRP avl cal
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
-			if ( $mrConfig[ 'showOnlyAvailabilityCalendar' ] )
-				{
-				if ( $mrConfig[ 'singleRoomProperty' ] )
-					{
-					echo $MiniComponents->miniComponentData[ '00017' ][ 'SRPavailabilitycalendar' ];
-					}
-				else
-					{
-					echo $MiniComponents->miniComponentData[ '00018' ][ 'MRPavailabilitycalendar' ];
-					}
-
+			if ($mrConfig[ 'showOnlyAvailabilityCalendar' ] == "1")
 				return;
-				}
-			else
+
+			$tab_title = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY, false);
+			
+			if ( $mrConfig[ 'showAvailabilityCalendar' ] == 1 )
 				{
-				$tab_title = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY, false);
-				
-				if ( ( $mrConfig[ 'showAvailabilityCalendar' ] && $mrConfig[ 'singleRoomProperty' ] ) )
+				if ( $mrConfig[ 'singleRoomProperty' ] == 1 )
 					{
 					$MiniComponents->specificEvent( '00017', 'SRPavailabilitycalendar', $componentArgs );
 					
@@ -58,7 +48,7 @@ class j00035tabcontent_04_availability_calendar
 					$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $tab_title, "TAB_CONTENT" => $MiniComponents->miniComponentData[ '00017' ][ 'SRPavailabilitycalendar' ]  , "TAB_ID" => 'tour_target_availability_calendar_srp');
 					$this->retVals = $tab;
 					}
-				elseif ( $mrConfig[ 'showAvailabilityCalendar' ] )
+				else
 					{
 					$MiniComponents->specificEvent( '00018', 'MRPavailabilitycalendar', $componentArgs );
 					
