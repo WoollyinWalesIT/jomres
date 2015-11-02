@@ -184,7 +184,20 @@ class j10001control_panel
 				$news_rows[ ] = array ( "DATE" => filter_var( $row->date, FILTER_SANITIZE_SPECIAL_CHARS ), "NEWS" => filter_var( $row->news, FILTER_SANITIZE_SPECIAL_CHARS ), "STATE" => $state, "TITLE" => filter_var( $row->title, FILTER_SANITIZE_SPECIAL_CHARS ), "URL" => filter_var( $row->url, FILTER_SANITIZE_URL ), "URL_TEXT" => filter_var( $row->url_text, FILTER_SANITIZE_SPECIAL_CHARS ) , "PANEL" => $panel ); // Filter var added here so that in the unlikely event that the updates server is compromised, no naughty data is downloaded from the updates server to be executed on this server/user's browser.
 				}
 			}
-
+		
+		if (this_cms_is_wordpress() )
+			{
+			$output['REVIEW_SITE_URL'] = 'https://wordpress.org/support/view/plugin-reviews/jomres';
+			$output['REVIEW_SITE_TEXT'] = 'Wordpress Plugins site';
+			}
+		else
+			{
+			$output['REVIEW_SITE_URL'] = 'http://extensions.joomla.org/extensions/vertical-markets/booking-a-reservations/booking/335';
+			$output['REVIEW_SITE_TEXT'] = 'Joomla! Extensions Directory';
+			}
+			
+		
+		
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
