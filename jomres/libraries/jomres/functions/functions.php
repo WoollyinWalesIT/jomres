@@ -2932,7 +2932,7 @@ function hotelSettings()
 	// The following javascript is for selecting currency codes
 	?>
 
-		<form action="<?php echo JOMRES_SITEPAGE_URL; ?>" method="post" name="adminForm">
+		<form action="<?php echo JOMRES_SITEPAGE_URL_NOSEF ?>" method="post" name="adminForm">
 			<h2 class="page-header"><?php echo jr_gettext( "_JOMRES_COM_MR_GENERALCONFIGDESC", _JOMRES_COM_MR_GENERALCONFIGDESC ); ?></h2>
 			<?php
 
