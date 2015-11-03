@@ -3018,7 +3018,7 @@ function saveHotelSettings()
 
 	//check if the property MRP/SRP has changed
 	$mrpsrpChange = false;
-	if ( $_POST[ 'oldsetting_cfg_singleRoomProperty' ] != $_POST[ 'cfg_singleRoomProperty' ] )
+	if ( isset($_POST[ 'oldsetting_cfg_singleRoomProperty' ]) && isset($_POST[ 'cfg_singleRoomProperty' ]) && $_POST[ 'oldsetting_cfg_singleRoomProperty' ] != $_POST[ 'cfg_singleRoomProperty' ] )
 		{
 		echo "Deleting all tariffs and rooms";
 		removeAllPropertyTariffs( $property_uid );
@@ -3106,7 +3106,12 @@ function saveHotelSettings()
 		}
 	
 	if ( $mrpsrpChange )
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=edit_resource" ), '' );
+		{
+		if (isset($_POST[ 'cfg_tariffmode' ]) && $_POST[ 'cfg_tariffmode' ] != "0" )
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=edit_resource" ), '' );
+		else
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=edit_tariffs_normal" ), '' );
+		}
 	else
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=business_settings&property_uid=$property_uid" ), '' );
 	}
