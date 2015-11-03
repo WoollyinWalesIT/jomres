@@ -353,10 +353,10 @@ class j03025insertbooking_invoice
 			$tmp_init_total = number_format( (float) $invoice->init_total, 2, '.', '' );
 			
 			//Mark invoice pending or paid
-			if ( $mrConfig[ 'depAmount' ] == 0 ) 
-				$invoice->mark_invoice_pending();
-			elseif ( $depositpaidsuccessfully && $tmp_init_total == 0.00 ) 
+			if ( $depositpaidsuccessfully && $tmp_init_total == 0.00 ) 
 				$invoice->mark_invoice_paid();
+			else
+				$invoice->mark_invoice_pending();
 			
 			$this->results = array ( "invoice_id" => $invoice->id );
 			}
