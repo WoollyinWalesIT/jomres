@@ -93,8 +93,14 @@ class j06000viewproperty
 		$output['REVIEWS_SUMMARY'] = $MiniComponents->specificEvent( '06000', 'show_property_reviews_summary',array('output_now'=>false, 'property_uid'=>$property_uid));
 		
 		//property inline availability calendar
-		$output['INLINE_CALENDAR'] = $MiniComponents->specificEvent( '06000', 'ui_availability_calendar',array('output_now'=>false, 'property_uid'=>$property_uid));
-
+		$output['INLINE_CALENDAR'] = '';
+		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
+			{
+			if ( $mrConfig[ 'showAvailabilityCalendar' ] == 1 )
+				{
+				$output['INLINE_CALENDAR'] = $MiniComponents->specificEvent( '06000', 'ui_availability_calendar',array('output_now'=>false, 'property_uid'=>$property_uid));
+				}
+			}
 
 		//Property details buttons/links start
 		$tariffslink   = array ();
