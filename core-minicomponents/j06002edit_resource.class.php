@@ -109,7 +109,7 @@ class j06002edit_resource
 
 			$roomImageLocation = '<img src="' . getImageForProperty( "room", $defaultProperty, (int) $roomUid ) . '" />';
 			
-			$max_people_dropdown = jomresHTML::integerSelectList( 1,$max_max_people,1, 'maxpeople','', $max_people );
+			$max_people_dropdown = jomresHTML::integerSelectList( 1,$max_max_people,1, 'max_people','', $max_people );
 
 			$output[ 'ROOMUID' ]      		= $roomUid;
 			$output[ 'TYPEDROPDOWN' ] 		= $classDropDownList;
