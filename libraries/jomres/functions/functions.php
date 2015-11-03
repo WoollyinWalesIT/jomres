@@ -1359,11 +1359,21 @@ function get_plugin_settings( $plugin, $prop_id = 0 )
 			}
 		}
 
-	$query		= "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '" . (int) $property_uid . "' AND plugin = '" . $plugin . "' ";
+	$query		= "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = 0 AND plugin = '" . $plugin . "' ";
 	$settingsList = doSelectSql( $query );
 	foreach ( $settingsList as $set )
 		{
 		$settingArray[ $set->setting ] = trim($set->value);
+		}
+
+	if ( isset($settingArray['override']) && $settingArray['override'] == "0" )
+		{
+		$query		= "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '" . (int) $property_uid . "' AND plugin = '" . $plugin . "' ";
+		$settingsList = doSelectSql( $query );
+		foreach ( $settingsList as $set )
+			{
+			$settingArray[ $set->setting ] = trim($set->value);
+			}
 		}
 
 	if ( $plugin == "paypal" )
