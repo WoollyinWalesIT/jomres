@@ -25,6 +25,7 @@ class j00501gateways
 
 			return;
 			}
+			
 		$mrConfig = getPropertySpecificSettings();
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) return;
 		$configurationPanel = $componentArgs[ 'configurationPanel' ];
@@ -46,12 +47,30 @@ class j00501gateways
 			$MiniComponents->triggerEvent( '00509', $componentArgs );
 
 			$outputArray = $MiniComponents->miniComponentData[ '00509' ];
-			foreach ( $outputArray as $gw )
+			
+			$settingArray = array();
+			foreach ( $outputArray as $gateway_name=>$gw )
 				{
-				$configurationPanel->setleft( $gw[ 'button' ] );
-				$configurationPanel->setmiddle( $gw[ 'link' ] );
-				$configurationPanel->setright( $gw[ 'active' ] );
-				$configurationPanel->insertSetting();
+				$query		= "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = 0 AND plugin = '" . $gateway_name . "' ";
+				$settingsList = doSelectSql( $query );
+				if ( count ($settingsList) > 0)
+					{
+					foreach ( $settingsList as $set )
+						{
+						$settingArray[$gateway_name][ $set->setting ] = trim($set->value);
+						}
+					}
+				}
+
+			foreach ( $outputArray as $gateway_name=>$gw )
+				{
+				if ( is_null ($settingArray[$gateway_name] ) || $settingArray[$gateway_name]['override'] != "1")
+					{
+					$configurationPanel->setleft( $gw[ 'button' ] );
+					$configurationPanel->setmiddle( $gw[ 'link' ] );
+					$configurationPanel->setright( $gw[ 'active' ] );
+					$configurationPanel->insertSetting();
+					}
 				}
 			$configurationPanel->endPanel();
 			}
