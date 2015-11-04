@@ -68,7 +68,7 @@ class jrportal_payment_reference
 			}
 		else
 			$booking_number = false;
-		
+
 		$settings = array();
 		if ( (int) $invoice->subscription_id > 0 || (int) $invoice->is_commission > 0 )
 			{
@@ -85,12 +85,7 @@ class jrportal_payment_reference
 			}
 		else
 			{
-			$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '".(int)$invoice->property_uid."' AND plugin = '".$payment_details['gateway']."' ";
-			$settingsList=doSelectSql($query);
-			foreach ($settingsList as $set)
-				{
-				$settings[$set->setting]=$set->value;
-				}
+			$settings = get_plugin_settings($payment_details['gateway'],$invoice->property_uid);
 			if ( $settings['active'] == "1")
 				{
 				$gateway_active = true;
