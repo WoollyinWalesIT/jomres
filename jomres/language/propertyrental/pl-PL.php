@@ -7,7 +7,7 @@
 * @copyright	2005-2013 Vince Wooll
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
 * @Polska adaptacja Patryk Doering - http://www.rekinet.pl - kontakt@rekinet.pl
-* @Aktualizacja wersji językowej z 18-10-2015r.
+* @Aktualizacja wersji językowej z 28-10-2015r.
 **/
 
 ##################################################################
@@ -120,7 +120,7 @@ jr_define('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER','Nr');
 jr_define('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR','Piętro');
 jr_define('_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS','Dla niepełnosprawnych');
 jr_define('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE','Maks klientów');
-jr_define('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES','Charakterystyczne cechy');
+jr_define('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES','Cechy zasobu');
 jr_define('_JOMRES_COM_MR_VRCT_ROOM_SAVE_INSERT','Zasób został dodany.');
 jr_define('_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT','Edycja');
 jr_define('_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_LINK','Cechy ofert');
@@ -151,7 +151,7 @@ jr_define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV','Nazwa zasobu');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC','Opis cechy ofert');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT','Zapisz cechę oferty');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE','Aktualizuj cechę oferty');
-jr_define('_JOMRES_COM_MR_LISTTARIFF_TITLE','Ceny');
+jr_define('_JOMRES_COM_MR_LISTTARIFF_TITLE','Konfigurator cen');
 jr_define('_JOMRES_COM_MR_LISTTARIFF_RATETITLE','Cennik');
 jr_define('_JOMRES_COM_MR_LISTTARIFF_RATEDESCRIPTION','Opis');
 jr_define('_JOMRES_COM_MR_LISTTARIFF_VALIDFROM','Ważny od dnia');
@@ -660,7 +660,7 @@ jr_define('_JOMRES_REGISTEREDUSERSONLYBOOK','Musisz być zarejestrowanym i zalog
 jr_define('_JOMRES_COM_AVLCAL_CURRENTBOOKINGFONT','Kolor odsyłaczy do aktualnych rezerwacji');
 jr_define('_JOMRES_COM_AVLCAL_WEEKENDBORDER','Ramki tygodni');
 jr_define('_JOMRES_COM_AVLCAL_BOOKING_KEY','Zasób zarezerwowany');
-jr_define('_JOMRES_COM_AVLCAL_BLACK_KEY','Wyłączenie');
+jr_define('_JOMRES_COM_AVLCAL_BLACK_KEY','Wyłączone');
 jr_define('_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP','Zaokrąglaj zadatki do pełnych kwot');
 jr_define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT','Zadatek jest wymagany');
 jr_define('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY','Zapisz cennik jako opłaty tygodniowe');
@@ -1588,7 +1588,7 @@ jr_define('_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY','Za dzień');
 jr_define('_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY','Za osobę za dzień');
 jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY','Rezerwacja od');
 jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY','Rezerwacja do');
-jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS_WHOLEDAY',"dzień/i przy");
+jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS_WHOLEDAY',"dzień(ni) za");
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID_WHOLEDAY','Nieprawidłowa data końca rezerwacji.');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1_WHOLEDAY','Czas rezerwacji jest zbyt krótki. Musi być co najmniej, pomiędzy początkową i końcową datą rezerwacji:');
 jr_define('_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY','Rezerwacja od/Rezerwacja do minimum interwał');
@@ -1616,12 +1616,12 @@ jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC_FULL_WHOLEDAY','Funkcja umożliwia przy
 	Ilość określa liczbę dni, w jakim musi mieścić się data początku rezerwacji zanim ceny zasobówzostaną regulowane przez tę funkcję. Opcje umożliwiają skonfigurowanie procentu zasobówktóre mogą być dostępne przed zastosowaniem danego rabatu.');
 
 jr_define('_JOMCOMP_WISEPRICE_THREASHOLD_WHOLEDAY','Próg (liczba dni pomiędzy dniem początku rezerwacji a dniem składania rezerwacji)');
-jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY','Czas początku rezerwacji');
-jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY','Początek rezerwacji dzisiaj');
-jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY','Początek rezerwacji');
-jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY','Początek rezerwacji dzisiaj');
-jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY','Koniec rezerwacji miniony');
-jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY','Nie podniósł');
+jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY','Oczekiwanie');
+jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY','Dzisiaj rezerwacja');
+jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY','Klient obecny');
+jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY','Dzisiaj wyrejstrowanie');
+jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY','Przeterminowane');
+jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY','Klient nie dotarł');
 jr_define('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY','Dni');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN_WHOLEDAY','Oznacz rezerwacje podniosłem.');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT_WHOLEDAY','Oznacz rezerwacje zwrócone.');
@@ -2252,7 +2252,7 @@ jr_define('COMMON_PLACEHOLDER_POSTCODE',"12-123");
 jr_define('COMMON_PLACEHOLDER_EMAIL',"nowak@domena.pl");
 jr_define('EXTENDED_CONFIGURATION',"Rozszerzona konfiguracja");
 jr_define('SIMPLE_CONFIGURATION',"Prosta konfiguracja");
-jr_define('_JOMRES_HRESOURCE_FEATURES',"Cechy zasobu");
+jr_define('_JOMRES_HRESOURCE_FEATURES',"Cechy zasobów");
 jr_define('_JOMRES_HRESOURCE_TYPE',"Zasób");
  jr_define('_JOMRES_HEDIT_GUEST_TYPE',"Edycja rodzaju klienta");
 jr_define('_JOMRES_HEDIT_COUPON',"Edycja kuponu promocyjnego");
@@ -2480,14 +2480,11 @@ Klient zobowiązuje się do przestrzegania niniejszego Regulaminu oraz wszelkich
 
 jr_define('_JOMRES_NUMBER_OF_BEDROOMS','Zasoby');
 
-jr_define( '_JOMRES_SUPPORTKEY_DESC_VALID', 'Your download and support key is valid, you will be able to download plugins via the plugin manager.' );
-jr_define( '_JOMRES_SUPPORTKEY_DESC_INVALID', 'Your download and support key is NOT valid, you will be NOT able to download plugins via the plugin manager.' );
-
-jr_define( '_JOMRES_SRP_RESOURCE_TYPE', 'Resource type' );
-jr_define( '_JOMRES_SRP_RESOURCE_TYPE_EXPLANATION', 'You must choose a resource type before you can create tariffs for this property.' );
-jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK", "You haven't yet assigned this property a resource type yet." );
-jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK", "Give your property a resource type" );
-
-
+jr_define('_JOMRES_SUPPORTKEY_DESC_VALID','Klucz licencyjny jest ważny, można pobierać dodatkowe rozszerzenia i korzystać ze wsparcia.');
+jr_define('_JOMRES_SUPPORTKEY_DESC_INVALID','Klucz licencyjny nie jest ważny, nie można pobierać dodatkowych rozszerzeń ani korzystać ze wsparcia.');
+jr_define('_JOMRES_SRP_RESOURCE_TYPE','Typ zasobu');
+jr_define('_JOMRES_SRP_RESOURCE_TYPE_EXPLANATION','Musisz wybrać typ zasobu przed zdefiniowaniem cen dla tej oferty.');
+jr_define("_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK","Nie został jeszcze przypisany typ zasobu dla tej oferty.");
+jr_define("_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK","Ustal typ zasobu dla oferty");
 jr_define( "_JOMRES_EMAIL_TEMPLATES_TITLE", "Email templates" );
 
