@@ -24,6 +24,7 @@ class j06000ui_availability_calendar
 
 			return;
 			}
+		
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 
@@ -35,7 +36,11 @@ class j06000ui_availability_calendar
 			$property_uid = (int) $componentArgs[ 'property_uid' ];
 		elseif ( isset ( $_REQUEST['property_uid'] ))
 			$property_uid = (int) $_REQUEST['property_uid'];
-		else return;
+		else 
+			$property_uid = (int) get_showtime("property_uid");
+			
+		if ($property_uid == 0 )
+			return;
 		
 		if (!user_can_view_this_property($property_uid))
 			return;
