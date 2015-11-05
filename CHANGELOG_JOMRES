@@ -1,3 +1,24 @@
+<h3>Jomres 9.2.1 05/11/2015</h3>
+
+<span class="label label-success">Feature</span> Added a new tab to site configuration called Contact settings. From here you can (optionally) override all properties contact details (email, phone, fax) so all communication with guests will be sent to you and not to the property owners. Property owners are free to add contact information to email templates that are sent after bookings are taken, but prior to that, all communications must go through the site administrators. This should prevent property owners depriving site managers of booking commission by taking bookings offline.
+
+<span class="label label-warning">Change</span> Tweaked sanity check to not show on edit resource page.
+<span class="label label-warning">Change</span> Added "Email templates" string to lang files and ensured that the correct call is used when building menus.
+<span class="label label-warning">Change</span> Modified get_plugin_settings function to use override option from admin edit gateways area.
+<span class="label label-warning">Change</span> Added checks to frontend property config gateway code to see if override is set to Yes. If so, settings for that gateway aren't shown.
+<span class="label label-warning">Change</span> Tweaked insertbooking invoice script so that initial status is Pending in most cases. Previously, with deposits disabled, the status would be 0 with precluded further payments.
+<span class="label label-warning">Change</span> Many thanks Patryk for your Polish language contributions.
+<span class="label label-warning">Change</span> Modified ui availability calendar to use get_showtime property uid variable if available, as last resort.
+
+
+<span class="label label-important label-danger">Fix</span> Fixed a bug where the calendar would not show if Show Only Avl Calendar option was set to yes in property config.
+<span class="label label-important label-danger">Fix</span> Fixed review site text so that the correct urls are shown dependant on the CMS.
+<span class="label label-important label-danger">Fix</span> Resolved issue where wrong Active setting was seen in admin list gateways.
+<span class="label label-important label-danger">Fix</span> Improved new property type switching functionality.
+<span class="label label-important label-danger">Fix</span> Fixed an issue when finding payment gateways. If the gateway was set to override then the correct gateway settings couldn't be found.
+
+<span class="label label-info">Wordpress</span> Changed the Save hotel settings form action so that it doesn't trigger 404 errors in WP
+
 <h3>Jomres 9.2.0 23/10/2015</h3>
 
 <span class="label label-success">Feature</span> Rewrote how the property details page is built, retired older viewproperty and composite property details scripts as they were ugly. Replaced by more flexible 06000 scripts. We've identified a strong need for single property site developers to be able to include various sections of the Jomres output in pages independently of the main Jomres plugin. This allows them to configure their property in one place ( Jomres itself ) and for the output to be mirrored in numerous pages of their choosing. 
