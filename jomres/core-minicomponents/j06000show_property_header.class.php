@@ -133,8 +133,20 @@ class j06000show_property_header
 		$output[ 'POSTCODE' ]      = $current_property_details->property_postcode;
 		$output[ 'TELEPHONE' ]     = $current_property_details->property_tel;
 		$output[ 'FAX' ]           = $current_property_details->property_fax;
-		if ( $output[ 'TELEPHONE' ] != "" ) $output[ 'HTELEPHONE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE ) . ": ";
-		if ( $output[ 'FAX' ] != "" ) $output[ 'HFAX' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX ) . ": ";
+		
+		if ((int)$jrConfig['override_property_contact_details'] == 1)
+			{
+			if ($jrConfig['override_property_contact_tel'] != '')
+				$output[ 'TELEPHONE' ]     = $jrConfig['override_property_contact_tel'];
+			
+			if ($jrConfig['override_property_contact_fax'] != '')
+				$output[ 'FAX' ]           = $jrConfig['override_property_contact_fax'];
+			}
+		
+		if ( $output[ 'TELEPHONE' ] != "" ) 
+			$output[ 'HTELEPHONE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE ) . ": ";
+		if ( $output[ 'FAX' ] != "" ) 
+			$output[ 'HFAX' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX ) . ": ";
 
 		if ( $mrConfig[ 'galleryLink' ] != "" )
 			{

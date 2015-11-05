@@ -29,129 +29,42 @@ class j06000module_popup
 		if ( $property_uid == 0 )
 			$property_uid = (int) jomresGetParam( $_REQUEST, "property_uid", 0 );
 		
-		$result       = '';
+		$result = '';
+		$output = array ();
+		
 		if ( $property_uid > 0 )
 			{
-			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-			$current_property_details->gather_data($property_uid);
-
-			$inline_calendar = $MiniComponents->specificEvent( '06000', 'ui_availability_calendar', array ( 'property_uid' => $property_uid, 'output_now' => "1", 'noshowlegend' => "1" ) );
-
-			$mrConfig = getPropertySpecificSettings( $property_uid );
-			set_showtime( 'property_uid', $property_uid );
-			$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
-
-			//$property_image = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/jrhouse.png";
-			//if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "uploadedimages" . JRDS . $property_uid . "_property_" . $property_uid . ".jpg" ) ) 
-				//$property_image = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/uploadedimages/" . $property_uid . "_property_" . $property_uid . ".jpg";
-
-			$output                = array ();
-
+			property_header( $property_uid, false );
+			
+			$output[ 'PROPERTY_UID' ]             = $property_uid;
+			$output[ 'RANDOM_IDENTIFIER' ]        = generateJomresRandomString( 10 );
+			$output[ 'MOREINFORMATION' ]          = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION, $editable = false, true );
+			$output[ 'MOREINFORMATIONLINK' ]      = jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $property_uid );
+			
+			//property description
+			$output['PROPERTY_DESCRIPTION'] = $MiniComponents->specificEvent( '06000', 'show_property_description',array('output_now'=>false, 'property_uid'=>$property_uid));
+			
+			//property features
+			$output['FEATURES'] = $MiniComponents->specificEvent( '06000', 'show_property_features',array('output_now'=>false, 'property_uid'=>$property_uid));
+				
+			//room types
+			if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
+				$output['ROOM_TYPES'] = $MiniComponents->specificEvent( '06000', 'show_property_room_types',array('output_now'=>false, 'property_uid'=>$property_uid));
+			else
+				$output['ROOM_TYPES'] = '';
+			
+			//property prices from
 			$price_output                = get_property_price_for_display_in_lists( $property_uid );
 			$output[ 'PRICE_PRE_TEXT' ]  = $price_output[ 'PRE_TEXT' ];
 			$output[ 'PRICE_PRICE' ]     = $price_output[ 'PRICE' ];
 			$output[ 'PRICE_POST_TEXT' ] = $price_output[ 'POST_TEXT' ];
-
-			$output[ 'PROPERTY_UID' ]             = $property_uid;
-			$output[ 'RANDOM_IDENTIFIER' ]        = generateJomresRandomString( 10 );
-			$output[ 'JOMRES_SITEPAGE_URL_AJAX' ] = JOMRES_SITEPAGE_URL_AJAX;
-			$output[ 'LIVE_SITE' ]                = get_showtime( 'live_site' );
-			$output[ 'MOREINFORMATION' ]          = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION, $editable = false, true );
-			$output[ 'MOREINFORMATIONLINK' ]      = jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $property_uid );
-			$output[ 'STARSIMAGES' ]              = '';
-			for ( $i = 1; $i <= $current_property_details->stars; $i++ )
-				{
-				$output[ 'STARSIMAGES' ] .= "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/star.png\" alt=\"star\" border=\"0\" />";
-				}
-			
-			$output[ 'SUPERIOR' ] = '';
-			if ( $current_property_details->superior == 1 ) 
-				$output[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/superior.png\" alt=\"superior\" border=\"0\" />";
-
-			$output[ 'PROPERTY_NAME' ]				   = $current_property_details->property_name;
-			$output[ 'PROPERTY_STREET' ]               = $current_property_details->property_street;
-			$output[ 'PROPERTY_TOWN' ]                 = $current_property_details->property_town;
-			$output[ 'PROPERTY_POSTCODE' ]             = $current_property_details->property_postcode;
-			$output[ 'PROPERTY_REGION' ]               = $current_property_details->property_region;
-			$output[ 'PROPERTY_COUNTRY' ]              = $current_property_details->property_country;
-			$output[ 'PROPERTY_COUNTRY_CODE' ]         = $current_property_details->property_country_code;
-			$output[ 'PROPERTY_TEL' ]                  = $current_property_details->property_tel;
-			$output[ 'PROPERTY_EMAIL' ]                = $current_property_details->property_email;
-			$output[ 'STARS' ]                         = $current_property_details->stars;
-			$output[ 'LAT' ]                           = $current_property_details->lat;
-			$output[ 'LONG' ]                          = $current_property_details->long;
-			$output[ 'PROPERTY_DESCRIPTION' ]          = $current_property_details->property_description;
-			$output[ 'PROPERTY_CHECKIN_TIMES' ]        = $current_property_details->property_checkin_times;
-			$output[ 'PROPERTY_AREA_ACTIVITIES' ]      = $current_property_details->property_area_activities;
-			$output[ 'PROPERTY_DRIVING_DIRECTIONS' ]   = $current_property_details->property_driving_directions;
-			$output[ 'PROPERTY_AIRPORTS' ]             = $current_property_details->property_airports;
-			$output[ 'PROPERTY_OTHERTRANSPORT' ]       = $current_property_details->property_othertransport;
-			$output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = $current_property_details->property_policies_disclaimers;
-
-			$output[ '_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS' ] = jr_gettext( _JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS, _JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS, false, false );
-			$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE' ]        = jr_gettext( _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE, _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE, false, false );
-			
-			$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
-			$jomres_media_centre_images->get_images($property_uid, array('property'));
-			$output[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images ['property'][0][0]['large'];
-			$output[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images ['property'][0][0]['medium'];
-			$output[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images ['property'][0][0]['small'];
-
-			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-			$jrConfig   = $siteConfig->get();
-			if ( $jrConfig[ 'make_gifs_from_slideshows' ] == "1" && $images ['gif'] [ 'small' ] != '' )
-				{
-				$output[ 'IMAGETHUMB' ]  = $images ['gif'] [ 'small' ];
-				$output[ 'IMAGEMEDIUM' ] = $images ['gif'] [ 'medium' ];
-				}
-				
-
-			$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $property_uid . "' ";
-			$rt    = doSelectSql( $query );
-			if ( count( $rt ) > 0 )
-				{
-				$roomTypeArray = array ();
-				foreach ( $rt as $roomtype )
-					{
-					$roomTypeArray[ ] = $roomtype->room_classes_uid;
-					}
-
-				if ( count( $roomTypeArray ) > 1 ) $roomTypeArray = array_unique( $roomTypeArray );
-				if ( count( $roomTypeArray ) > 0 )
-					{
-					$output[ 'HRTYPES' ] = jr_gettext( '_JOMRES_FRONT_ROOMTYPES', _JOMRES_FRONT_ROOMTYPES );
-					foreach ( $roomTypeArray as $type )
-						{
-						$roomtype_abbv         = $current_property_details->all_room_types[ $type ][ 'room_class_abbv' ];
-						$roomtype_desc         = $current_property_details->all_room_types[ $type ][ 'room_class_full_desc' ];
-						$rtRows[ 'ROOM_TYPE' ] = jomres_makeTooltip( $roomtype_abbv, $roomtype_abbv, $roomtype_desc, JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$current_property_details->all_room_types[ $type ][ 'image' ], "", "room_type", array () );
-						$roomtypes[ ]          = $rtRows;
-						}
-					}
-				}
-
-			$features    = $current_property_details->features;
-			$featureList = array ();
-			if ( count( $features ) > 0 )
-				{
-				foreach ( $features as $f )
-					{
-					$propertyFeatureDescriptionsArray[ 'FEATURE' ] = jomres_makeTooltip( $f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$f[ 'image' ], "", "property_feature", array () );
-					$featureList[ ]                                = $propertyFeatureDescriptionsArray;
-					}
-				$output[ 'HFEATURES' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES );
-				}
-			else
-			$output[ 'HFEATURES' ] = "";
 			
 			//calendar
-			$this_task = get_showtime("task");
+			/*$this_task = get_showtime("task");
 			set_showtime("task", "remoteavailability");
 			$MiniComponents->specificEvent( '06000', 'remoteavailability',array("property_uid"=> $property_uid , "return_calendar" => true ) );
 			$output[ 'CALENDAR' ] = $MiniComponents->miniComponentData[ '06000' ][ 'remoteavailability' ];
-			set_showtime("task", $this_task);
-			
-			//$output[ 'CALENDAR' ]);exit;
+			set_showtime("task", $this_task);*/
 			
 			$componentArgs = array ( 'property_uid' => $property_uid, "width" => '200', "height" => '214' );
 			$MiniComponents->specificEvent( '01050', 'x_geocoder', $componentArgs );
@@ -177,5 +90,3 @@ class j06000module_popup
 		return null;
 		}
 	}
-
-?>

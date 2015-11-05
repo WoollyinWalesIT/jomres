@@ -22,10 +22,15 @@
 </script>
 
 <h2 class="page-header">{PAGETITLE}</h2>
+
+<patTemplate:tmpl name="approval_warning" type="simpleCondition" requiredVars="approvalwarning">
+<p class="alert alert-warning">{APPROVALWARNING}</p>
+</patTemplate:tmpl>
+
 <patTemplate:tmpl name="change_country_warning" type="simpleCondition" requiredVars="changecountrywarning">
 <p class="alert alert-info">{CHANGECOUNTRYWARNING}</p>
 </patTemplate:tmpl>
-<p>{DELETEWARNING}</p>
+
 
 <form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal" role="form">
 	<div class="form-group">

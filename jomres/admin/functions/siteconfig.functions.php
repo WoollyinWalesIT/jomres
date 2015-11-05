@@ -234,7 +234,6 @@ function showSiteConfig()
 	$lists[ 'showLangDropdown' ]                    = jomresHTML::selectList( $yesno, 'cfg_showLangDropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'showLangDropdown' ] );
 	$lists[ 'useNewusers' ]                         = jomresHTML::selectList( $yesno, 'cfg_useNewusers', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useNewusers' ] );
 	$lists[ 'outputHeadersInline' ]                 = jomresHTML::selectList( $yesno, 'cfg_outputHeadersInline', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'outputHeadersInline' ] );
-	$lists[ 'contact_owner_emails_to_alternative' ] = jomresHTML::selectList( $yesno, 'cfg_contact_owner_emails_to_alternative', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'contact_owner_emails_to_alternative' ] );
 	$lists[ 'is_single_property_installation' ]     = jomresHTML::selectList( $yesno, 'cfg_is_single_property_installation', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'is_single_property_installation' ] );
 	$lists[ 'use_html_purifier' ]                   = jomresHTML::selectList( $yesno, 'cfg_use_html_purifier', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_html_purifier' ] );
 	$lists[ 'limit_property_country' ]              = jomresHTML::selectList( $yesno, 'cfg_limit_property_country', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'limit_property_country' ] );
@@ -335,7 +334,7 @@ function showSiteConfig()
 	if (!isset( $jrConfig[ 'load_font_awesome' ]))
 		$jrConfig[ 'load_font_awesome' ] = "0";
 	$lists[ 'load_font_awesome' ]              = jomresHTML::selectList( $yesno, 'cfg_load_font_awesome', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'load_font_awesome' ] );
-	
+	$lists[ 'override_property_contact_details' ] = jomresHTML::selectList( $yesno, 'cfg_override_property_contact_details', 'class="inputbox" size="1"', 'value', 'text', (int)$jrConfig[ 'override_property_contact_details' ] );
 	
 	$componentArgs = array ();
 	$componentArgs[ 'lists' ]							= $lists;

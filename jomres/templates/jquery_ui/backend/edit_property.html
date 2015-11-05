@@ -20,12 +20,17 @@
 		}
 		//-->
 	</script>
-	<h2>{PAGETITLE}</h2>
 
-	<patTemplate:tmpl name="change_country_warning" type="simpleCondition" requiredVars="changecountrywarning"
-	<p class="ui-state-highlight">{CHANGECOUNTRYWARNING}</p>
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<patTemplate:tmpl name="approval_warning" type="simpleCondition" requiredVars="approvalwarning">
+<p class="ui-state-highlight">{APPROVALWARNING}</p>
 </patTemplate:tmpl>
-<p>{DELETEWARNING}</p>
+
+<patTemplate:tmpl name="change_country_warning" type="simpleCondition" requiredVars="changecountrywarning">
+<p class="ui-state-default">{CHANGECOUNTRYWARNING}</p>
+</patTemplate:tmpl>
+
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
 	{JOMRESTOOLBAR}
 	<table class="ui-widget-content ui-corner-all" border="0" width="100%">
