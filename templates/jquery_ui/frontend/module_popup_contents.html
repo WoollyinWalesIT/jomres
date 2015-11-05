@@ -1,76 +1,28 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<div title="{PROPERTY_NAME}" class="ui-widget-content ui-corner-all ui-helper-clearfix">
-		<table width="320" border="0" class="float-left">
-			<tr>
-				<td>
-					<div title="{PROPERTY_NAME}_map" class="ui-helper-clearfix"
-						 style="width:{MAP_WIDTH}px;height:{MAP_HEIGHT}px;">
-						{MAP}
-					</div>
-				</td>
-			</tr>
-		</table>
-		<table width="140" border="0" class="float-right">
-			<tr>
-				<td><a href="{MOREINFORMATIONLINK}"><img src="{IMAGEMEDIUM}" width="130" height="98"
-														 style="margin-bottom:3px;border:1px solid #fff;"/></a></td>
-			</tr>
-			<tr>
-				<td>
-					<div class="ui-state-highlight ui-corner-all price-wrapper-popup" align="center">
-						<div class="prices-from">{PRICE_PRE_TEXT}</div>
-						<div class="big-price">{PRICE_PRICE}</div>
-						<div class="prices-period">{PRICE_POST_TEXT}</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div align="center" style="text-align:center;margin:5px 0;"><a href="{MOREINFORMATIONLINK}"
-																				   class="fg-button ui-state-default ui-corner-all more-info-link">{MOREINFORMATION}</a>
-					</div>
-				</td>
-			</tr>
-
-		</table>
-		<br/>
-		<table width="100%" border="0">
-			<tr>
-				<td>{STARSIMAGES} {SUPERIOR}</td>
-			</tr>
-			<tr>
-				<td>
-					<div><strong>{_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS} </strong>{PROPERTY_STREET},
-						{PROPERTY_TOWN}, {PROPERTY_POSTCODE}, {PROPERTY_REGION}, {PROPERTY_COUNTRY} <br/>
-						<strong>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE} </strong>{PROPERTY_TEL}<br/><br/>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<strong>{HRTYPES}</strong>
-
-					<div style="clear:both;">
-						<patTemplate:tmpl name="room_types" type="simpleCondition" requiredVars="room_type">
-							{ROOM_TYPE}
-						</patTemplate:tmpl>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<strong>{HFEATURES}</strong>
-
-					<div style="clear:both;">
-						<patTemplate:tmpl name="property_features" type="simpleCondition" requiredVars="feature">
-							{FEATURE}
-						</patTemplate:tmpl>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>{PROPERTY_DESCRIPTION}</td>
-			</tr>
-		</table>
-		<p align="center">{CALENDAR}</p>
+<table width="100%" border="0">
+	<tr>
+		<td width="70%">
+			<div title="{PROPERTY_NAME}_map" class="ui-helper-clearfix" style="width:{MAP_WIDTH}px;height:{MAP_HEIGHT}px;">
+				{MAP}
+			</div>
+			<div class="clearfix">&nbsp;</div>
+			<p>{PROPERTY_DESCRIPTION}</p>
+			<p class="well">{PRICE_PRE_TEXT}{PRICE_PRICE}{PRICE_POST_TEXT}</p>
+		</td>
+		<td>
+			<div class="well">
+				{ROOM_TYPES}
+				<div class="clearfix"></div>
+				{FEATURES}
+				<div class="clearfix"></div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<p align="center"><a href="{MOREINFORMATIONLINK}" class="btn btn-primary btn-large">{MOREINFORMATION}</a></p>
+		</td>
+	</tr>
+</table>
+<!--<p align="center">{CALENDAR}</p>-->
 </patTemplate:tmpl>

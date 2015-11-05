@@ -204,16 +204,6 @@ class j10501a_misc
 			$configurationPanel->setright( jr_gettext( _JOMRES_COM_CALENDAROUTPUT_DESC, '_JOMRES_COM_CALENDAROUTPUT_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( _JOMRES_CONTACTOWNER_TO_ADMIN, '_JOMRES_CONTACTOWNER_TO_ADMIN', false ) );
-			$configurationPanel->setmiddle( $lists[ 'contact_owner_emails_to_alternative' ] );
-			$configurationPanel->setright( jr_gettext( _JOMRES_CONTACTOWNER_TO_ADMIN_DESC, '_JOMRES_CONTACTOWNER_TO_ADMIN_DESC', false ) );
-			$configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft( jr_gettext( _JOMRES_CONTACTOWNER_TO_ADMIN_ALTERNATIVE, '_JOMRES_CONTACTOWNER_TO_ADMIN_ALTERNATIVE', false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_contact_owner_emails_to_alternative_email" value="' . $jrConfig[ 'contact_owner_emails_to_alternative_email' ] . '" />' );
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			
 			/*$configurationPanel->setleft( jr_gettext( _JOMRES_COM_JOMRESEMAILCHECK, '_JOMRES_COM_JOMRESEMAILCHECK', false ) );
 			$configurationPanel->setmiddle( $lists[ 'useJomresEmailCheck' ] );
 			$configurationPanel->setright( jr_gettext( _JOMRES_COM_JOMRESEMAILCHECK_DESC, '_JOMRES_COM_JOMRESEMAILCHECK_DESC', false ) );

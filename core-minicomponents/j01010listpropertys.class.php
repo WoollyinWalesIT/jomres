@@ -657,6 +657,12 @@ class j01010listpropertys
 					$property_deets[ 'PROPERTYCOUNTRY' ]                          = jomres_decode( stripslashes( $current_property_details->multi_query_result[ $propertys_uid ][ 'property_country' ] ) );
 
 					$property_deets[ 'TELEPHONE_NUMBER' ] = jomres_decode( $current_property_details->multi_query_result[ $propertys_uid ]['property_tel'] );
+					
+					if ((int)$jrConfig['override_property_contact_details'] == 1)
+						{
+						if ($jrConfig['override_property_contact_tel'] != '')
+							$output[ 'TELEPHONE_NUMBER' ] = $jrConfig['override_property_contact_tel'];
+						}
 
 					if ( strlen( $propertyDesc ) > (int) $jrConfig[ 'propertyListDescriptionLimit' ] ) $property_deets[ 'PROPERTYDESC' ] = jr_substr( $propertyDesc, 0, $jrConfig[ 'propertyListDescriptionLimit' ] ) . "...";
 					else

@@ -152,8 +152,12 @@ class j06000contactowner
 			$output[ 'ENQUIRY' ] .= '<br />Email: ' . $output[ 'GUEST_EMAIL' ];
 
 			$target_email = $current_property_details->property_email;
-			if ( $jrConfig[ 'contact_owner_emails_to_alternative' ] == "1" ) 
-				$target_email = $jrConfig[ 'contact_owner_emails_to_alternative_email' ];
+			
+			if ((int)$jrConfig['override_property_contact_details'] == 1)
+				{
+				if ($jrConfig['override_property_contact_email'] != '')
+					$target_email = $jrConfig['override_property_contact_email'];
+				}
 
 			if ( !jomresMailer( $output[ 'GUEST_EMAIL' ], $current_property_details->property_name, $target_email, $subject, $output[ 'ENQUIRY' ], $mode = 1 ) ) 
 				error_logging( 'Failure in sending enquiry email to hotel. Target address: ' . $target_email . ' Subject' . $subject );

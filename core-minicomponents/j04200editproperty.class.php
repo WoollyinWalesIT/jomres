@@ -313,7 +313,8 @@ class j04200editproperty
 		$output[ 'HOTHERTRANSPORT' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT );
 		$output[ 'HPOLICIESDISCLAIMERS' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS );
 
-		if ( $jrConfig[ 'limit_property_country' ] == "0" ) $change_country_warning = array ( 'CHANGECOUNTRYWARNING' => jr_gettext( '_JOMRES_EDITPROPERTY_SELECTCOUNTRY', _JOMRES_EDITPROPERTY_SELECTCOUNTRY, false ) );
+		if ( $jrConfig[ 'limit_property_country' ] == "0" ) 
+			$change_country_warning[] = array ( 'CHANGECOUNTRYWARNING' => jr_gettext( '_JOMRES_EDITPROPERTY_SELECTCOUNTRY', _JOMRES_EDITPROPERTY_SELECTCOUNTRY, false ) );
 		$output[ 'SAVEBEFOREUPLOADWARNING' ] = jr_gettext( '_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD', _JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD, false );
 		$output[ '_JOMRES_METADESCRIPTION' ] = jr_gettext( '_JOMRES_METADESCRIPTION', _JOMRES_METADESCRIPTION, false );
 		$output[ '_JOMRES_METAKEYWORDS' ]    = jr_gettext( '_JOMRES_METAKEYWORDS', _JOMRES_METAKEYWORDS, false );
@@ -350,7 +351,7 @@ class j04200editproperty
 			}
 		$output[ 'UPLOADIMAGE' ] = jr_gettext( '_JOMRES_UPLOAD_IMAGE', _JOMRES_UPLOAD_IMAGE, false );
 
-		$output[ 'JOMRES_SITEPAGE_URL' ] = JOMRES_SITEPAGE_URL;
+		$approval_warning[] = array('APPROVALWARNING' => jr_gettext( '_JOMRES_EDITPROPERTY_APPROVAL_WARNING', _JOMRES_EDITPROPERTY_APPROVAL_WARNING, false ));
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
@@ -361,6 +362,8 @@ class j04200editproperty
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'delimg_rows', $delimg_rows );
 		$tmpl->addRows( 'change_country_warning', $change_country_warning );
+		if ((int)$jrConfig['automatically_approve_new_properties'] == 0 && !$thisJRUser->superPropertyManager)
+			$tmpl->addRows( 'approval_warning', $approval_warning );
 		$tmpl->addRows('multi',$multi);
 		
 		if ( $jrConfig[ 'useGlobalPFeatures' ] == "1" ) $tmpl->addRows( 'globalPfeatures', $globalPfeatures );

@@ -58,6 +58,15 @@ class j04900saveproperty
 		$long  = parseFloat( jomresGetParam( $_POST, 'long', '' ) );
 		
 		$property_site_id				= jomresGetParam( $_POST, 'property_site_id', '' );
+	
+		$approved = 1;
+		$published = 1;
+		
+		if ((int)$jrConfig['automatically_approve_new_properties'] == 0 && !$thisJRUser->superPropertyManager)
+			{
+			$approved = 0;
+			$published = 0;
+			}
 
 		if ( $jrConfig[ 'allowHTMLeditor' ] == "0" )
 			{
@@ -180,11 +189,13 @@ class j04900saveproperty
 				`property_othertransport`='$property_othertransport',
 				`property_policies_disclaimers`='$property_policies_disclaimers',
 				`property_key`='" . (float) $price . "',
+				`published`= " . $published . ",
 				`lat`='$lat',
 				`long`='$long',
 				`metatitle`='$metatitle',
 				`metadescription`='$metadescription',
 				`metakeywords`='$metakeywords',
+				`approved`=".$approved.",
 				`stars`='" . (int) $property_stars . "',
 				`superior`='" . (int) $property_superior . "',
 				" . $apiclause . "
@@ -209,6 +220,14 @@ class j04900saveproperty
 			updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION", $metadescription, true );
 			updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS", $metakeywords, true );
 
+			if ((int)$jrConfig['automatically_approve_new_properties'] == 0 && !$thisJRUser->superPropertyManager)
+				{
+				$link = JOMRES_SITEPAGE_URL_ADMIN."&task=list_properties_awaiting_approval";
+				$subject=jr_gettext("_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT",_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT,false);
+				$message=jr_gettext("_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT",_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT,false).$link;
+				sendAdminEmail($subject,$message);
+				}
+			
 			jomresRedirect( jomresUrl(JOMRES_SITEPAGE_URL . "&task=editProperty&propertyUid=" . $propertyUid) );
 			}
 
