@@ -64,7 +64,7 @@ class j06000view_agent
 			{
 			$manager_id = jomresGetParam( $_REQUEST, 'id', 0 );
 			}
-			
+
 		$query  = "SELECT manager_uid  FROM #__jomres_managers WHERE userid  = " . (int) $manager_id;
 		$result = doSelectSql( $query, 1 );
 		if ( !$result ) // this id doesn't correspond to a manager in the system, progress no further
@@ -110,13 +110,17 @@ class j06000view_agent
 				$output[ 'LANDLINE' ]  = $data->tel_landline;
 				$output[ 'MOBILE' ]    = $data->tel_mobile;
 				$output[ 'FAX' ]       = $data->tel_fax;
-				$output[ 'EMAIL' ]     = $data->email;
-				
+				$output[ 'EMAIL' ]     = jomres_hide_email($data->email);
+
 				if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . 'userimages' . JRDS . "userimage_" . $manager_id . ".jpg" ) ) 
 					$output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH . 'userimages/userimage_' . $manager_id . '_thumbnail.jpg';
 				}
 			}
-
+		else
+			{
+			echo "Sorry, no manager data is available for that property";
+			return;
+			}
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
