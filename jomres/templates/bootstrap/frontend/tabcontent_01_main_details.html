@@ -5,15 +5,10 @@
 	<div class="row-fluid">
 		<div class="span8 pull-left">
 			<p>{DESCRIPTION}</p>
+			{ROOM_TYPES}
+			<div class="clearfix"></div>
 		</div>
 		<div class="span4 well pull-right">
-			<p>
-				<strong>{HRTYPES}</strong>
-			</p>
-			<patTemplate:tmpl name="roomtype_icons" type="simpleCondition" requiredVars="room_type">
-				<p style="text-transform:capitalize;">{ROOM_TYPE}</p>
-			</patTemplate:tmpl>
-			<div class="clearfix"></div>
 			{FEATURES}
 			<div class="clearfix"></div>
 		</div>

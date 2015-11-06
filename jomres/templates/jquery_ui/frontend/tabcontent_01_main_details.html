@@ -9,15 +9,9 @@
 			<div>{DESCRIPTION}</div>
 		</div>
 		<div class="right-column float-right ui-tabs ui-widget-content ui-corner-all">
-			<div style="clear:both;">
-				<strong>{HRTYPES}</strong>
-			</div>
-			<patTemplate:tmpl name="roomtype_icons" type="simpleCondition" requiredVars="room_type">
-				<p style="text-transform:capitalize;">{ROOM_TYPE}</p>
-			</patTemplate:tmpl>
-			<div style="clear:both;">
-				{FEATURES}
-			</div>
+			{ROOM_TYPES}
+			<div style="clear:both;"></div>
+			{FEATURES}
 		</div>
 		<div style="clear:both;"></div>
 	</div>

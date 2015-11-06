@@ -2,9 +2,17 @@
 
 <p><strong>{_JOMRES_SEARCH_RTYPES}</strong></p>
 
-<patTemplate:tmpl name="room_types">
-{ROOM_TYPE}
-</patTemplate:tmpl>
+<div class="row">
+	<patTemplate:tmpl name="room_types">
+	<div class="col-md-3">
+		<div class="well" align="center">
+			<div class="pdetails-roomtype">{ROOM_TYPE}</div>
+			<div>{ROOM_TYPE_TEXT}</div>
+			<div class="reviews-big">{ROOM_TYPE_COUNTER}</div>
+		</div>
+	</div>
+	</patTemplate:tmpl>
+</div>
 
 <div class="clearfix"></div>
 
