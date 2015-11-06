@@ -201,7 +201,7 @@ class j06002edit_resource
 				}
 			$dropDownList .= "</select>";
 			
-			$max_people_dropdown = jomresHTML::integerSelectList( 1,$max_max_people,1, 'maxpeople','', $max_people );
+			$max_people_dropdown = jomresHTML::integerSelectList( 1,$max_max_people,1, 'max_people','', $max_people );
 
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb   = $jrtbar->startTable();
