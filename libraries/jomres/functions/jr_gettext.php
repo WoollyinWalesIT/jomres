@@ -131,9 +131,10 @@ function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false 
 				{
 				if ( $jrConfig[ 'editinplace' ] == 1 && $_REQUEST[ 'no_html' ] != '1' )
 					{
-					if ( jomres_cmsspecific_areweinadminarea() ) $url = JOMRES_SITEPAGE_URL_ADMIN_AJAX . '&task=editinplace&no_html=1&lang=' . get_showtime( "lang" );
+					if ( jomres_cmsspecific_areweinadminarea() ) 
+						$url = JOMRES_SITEPAGE_URL_ADMIN_AJAX . '&task=editinplace&lang=' . get_showtime( "lang" );
 					else
-					$url = JOMRES_SITEPAGE_URL_AJAX . '&task=editinplace&no_html=1';
+						$url = JOMRES_SITEPAGE_URL_AJAX . '&task=editinplace';
 
 					$theText = '<a href="#" id="' . $theConstant . '" data-type="text" data-pk="' . $theConstant . '" data-url="' . $url . '" data-original-title="' . htmlspecialchars( $theText ) . '">' . htmlspecialchars( $theText ) . '</a>
 					<script>jQuery(document).ready(function () {jomresJquery(\'#' . $theConstant . '\').editable();});</script>';
