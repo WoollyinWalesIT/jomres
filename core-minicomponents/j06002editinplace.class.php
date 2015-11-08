@@ -30,12 +30,28 @@ class j06002editinplace
 		$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig     = $siteConfig->get();
 		$property_uid = (int) getDefaultProperty();
-		if ( $jrConfig[ 'allowHTMLeditor' ] == "1" )
-			$customText = jomresGetParam( $_POST, 'value', "", _MOS_ALLOWHTML );
+		
+		if ($_SERVER['REQUEST_METHOD'] == 'PUT')
+			{
+			parse_str(file_get_contents("php://input"), $_PUT);
+			
+			if ( $jrConfig[ 'allowHTMLeditor' ] == "1" )
+				$customText = jomresGetParam( $_PUT, 'value', "", _MOS_ALLOWHTML );
+			else
+				$customText = jomresGetParam( $_PUT, 'value', '', 'string' );
+	
+			$theConstant = filter_var( $_PUT[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS );
+			}
 		else
-			$customText = jomresGetParam( $_POST, 'value', '', 'string' );
-
-		$theConstant = filter_var( $_POST[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS );
+			{
+			if ( $jrConfig[ 'allowHTMLeditor' ] == "1" )
+				$customText = jomresGetParam( $_POST, 'value', "", _MOS_ALLOWHTML );
+			else
+				$customText = jomresGetParam( $_POST, 'value', '', 'string' );
+	
+			$theConstant = filter_var( $_POST[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS );
+			}
+			
 
 		$result = updateCustomText( $theConstant, $customText, true, $property_uid );
 		//$result = false;
@@ -58,5 +74,3 @@ class j06002editinplace
 		return null;
 		}
 	}
-
-?>
