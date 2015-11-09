@@ -37,7 +37,7 @@ if (!strstr($scriptname,'install_jomres.php'))
 
 $showtime = jomres_getSingleton('showtime');
 
-$showtime->error_reporting	= $CONFIG->error_reporting;
+$showtime->error_reporting	= 0;
 
 $showtime->lang				= $jomresConfig_lang;
 $showtime->live_site		= $jomresConfig_live_site;
