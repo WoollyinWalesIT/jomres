@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+        <view title="component=com_jomres">
+                <message>Towns</message>
+        </view>
+	<!-- Add fields to the request variables for the layout. -->
+	<fields name="request">
+		<fieldset name="request">
+		
+			<field name="selected_town" type="sql" default="10" label="Select a town" query="SELECT DISTINCT property_town AS value, property_town AS selected_town FROM #__jomres_propertys ORDER BY property_town" />
+			
+		</fieldset>
+	</fields>
+</metadata>
