@@ -1168,6 +1168,8 @@ class dobooking
 	function makeOutputText()
 		{
 		$mrConfig = $this->mrConfig;
+		
+		$thisJRUser    = jomres_getSingleton( 'jr_user' );
 
 		$tax_output = "";
 		if ( $this->accommodation_tax_rate > 0 ) $tax_output = " (" . $this->accommodation_tax_rate . "%)";
@@ -1313,7 +1315,11 @@ class dobooking
 			$output[ 'STAYDAYS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS', _JOMRES_AJAXFORM_ACCOMMODATION_MONTHS ) );
 			}
 
-		$output[ 'SUBMIT' ]             = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_REVIEWBOOKING', _JOMRES_FRONT_MR_REVIEWBOOKING, false, false ) );
+		if ($mrConfig[ 'requireApproval' ] == "1" && !$thisJRUser->userIsManager)
+			$output[ 'SUBMIT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKING_ENQUIRY_REVIEW', _JOMRES_BOOKING_ENQUIRY_REVIEW, false, false ) );
+		else
+			$output[ 'SUBMIT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_REVIEWBOOKING', _JOMRES_FRONT_MR_REVIEWBOOKING, false, false ) );
+			
 		$output[ 'LOOKRIGHT' ]          = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_LOOKRIGHT', _JOMRES_BOOKINGFORM_LOOKRIGHT, false, false ) );
 		$output[ 'ROOM_TOTAL_INC_TAX' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', _JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX, false, false ) );
 		if ( $this->jrConfig[ 'show_tax_in_totals_summary' ] == "1" )
