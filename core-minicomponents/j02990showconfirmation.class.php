@@ -418,7 +418,12 @@ class j02990showconfirmation
 		$booking_parts[ 'BILLING_ROOMTOTAL' ]     = jr_gettext( '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', _JOMRES_AJAXFORM_BILLING_ROOM_TOTAL );
 		$booking_parts[ 'AJAXFORM_ADDRESS' ]      = jr_gettext( '_JOMRES_AJAXFORM_ADDRESS', _JOMRES_AJAXFORM_ADDRESS );
 		$booking_parts[ 'AMENDTEXT' ]             = jr_gettext( '_JOMRES_CONFIRMATION_AMENDTEXT', _JOMRES_CONFIRMATION_AMENDTEXT );
-		$booking_parts[ 'AMEND' ]                 = jr_gettext( '_JOMRES_CONFIRMATION_AMEND', _JOMRES_CONFIRMATION_AMEND, false );
+		
+		if ($mrConfig[ 'requireApproval' ] == "1" && !$thisJRUser->userIsManager)
+			$booking_parts[ 'AMEND' ]             = jr_gettext( '_JOMRES_BOOKING_ENQUIRY_AMEND', _JOMRES_BOOKING_ENQUIRY_AMEND, false );
+		else
+			$booking_parts[ 'AMEND' ]             = jr_gettext( '_JOMRES_CONFIRMATION_AMEND', _JOMRES_CONFIRMATION_AMEND, false );
+
 		$booking_parts[ 'SPECIALS' ]              = jr_gettext( '_JOMRES_CONFIRMATION_SPECIALS', _JOMRES_CONFIRMATION_SPECIALS );
 		$booking_parts[ 'ACCOMMODATION_TOTAL' ]   = jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL', _JOMRES_AJAXFORM_ACCOMMODATION_TOTAL ) . $accommodation_tax_output;
 		$booking_parts[ 'ACCOMMODATION_NIGHTS' ]  = jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS', _JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS );
@@ -473,7 +478,10 @@ class j02990showconfirmation
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 
-		$booking_parts[ 'THEBUTTON' ] = jr_gettext( '_JOMRES_COM_MR_CONFIRMBOOKING', _JOMRES_COM_MR_CONFIRMBOOKING, false );
+		if ($mrConfig[ 'requireApproval' ] == "1" && !$thisJRUser->userIsManager)
+			$booking_parts[ 'THEBUTTON' ] = jr_gettext( '_JOMRES_BOOKING_ENQUIRY_CONFIRM', _JOMRES_BOOKING_ENQUIRY_CONFIRM, false );
+		else
+			$booking_parts[ 'THEBUTTON' ] = jr_gettext( '_JOMRES_COM_MR_CONFIRMBOOKING', _JOMRES_COM_MR_CONFIRMBOOKING, false );
 
 		$booking_parts[ 'HFIRSTNAME' ] = jr_gettext( '_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME', _JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME );
 		$booking_parts[ 'HSURNAME' ]   = jr_gettext( '_JOMRES_FRONT_MR_DISPGUEST_SURNAME', _JOMRES_FRONT_MR_DISPGUEST_SURNAME );
