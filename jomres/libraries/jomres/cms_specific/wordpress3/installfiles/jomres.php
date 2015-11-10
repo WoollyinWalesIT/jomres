@@ -57,17 +57,19 @@ if ( ! class_exists( 'wp_jomres' ) )
 			add_filter('the_content', array($this,'asamodule_search_results') );
 			add_filter('wp_title', array($this,'set_jomres_meta_title'), 10, 2);
 
-			if ( !isset($_REQUEST['action']) )
-				$_REQUEST['action'] = '';
-			if ( !isset($_REQUEST['page']) )
-				$_REQUEST['page'] = '';
-			
-			if (is_admin() && (  $_REQUEST['page'] == "jomres/jomres.php" ||  $_REQUEST['action'] == "jomres/trigger.php") )
+			if (is_admin())
 				{
-				add_action( 'wp_ajax_nopriv_'.$_REQUEST['action'], array($this,'jomres_wp_ajax') );
-				add_action( 'wp_ajax_'.$_REQUEST['action'], array($this,'jomres_wp_ajax') );
-				add_action( 'wp_ajax_nopriv_'.$_REQUEST['page'], array($this,'jomres_wp_ajax') );
-				add_action( 'wp_ajax_'.$_REQUEST['page'], array($this,'jomres_wp_ajax') );
+				if (isset($_REQUEST['page']) && $_REQUEST['page'] == "jomres/jomres.php")
+					{
+					add_action( 'wp_ajax_nopriv_'.$_REQUEST['page'], array($this,'jomres_wp_ajax') );
+					add_action( 'wp_ajax_'.$_REQUEST['page'], array($this,'jomres_wp_ajax') );
+					}
+				
+				if (isset($_REQUEST['action']) && $_REQUEST['action'] == "jomres/trigger.php")
+					{
+					add_action( 'wp_ajax_nopriv_'.$_REQUEST['action'], array($this,'jomres_wp_ajax') );
+					add_action( 'wp_ajax_'.$_REQUEST['action'], array($this,'jomres_wp_ajax') );
+					}
 				}
 			
 			// If &popup=1 is in $_REQUEST we'll disable all widgets, but leave the keys intact so that you don't get the "please activate a widget" message
