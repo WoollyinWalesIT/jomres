@@ -173,8 +173,6 @@ class j06002edit_tariffs_normal
 					}
 				}
 
-			$output[ 'JOMRES_SITEPAGE_URL' ] = JOMRES_SITEPAGE_URL;
-
 			$pageoutput[ ] = $output;
 			$tmpl          = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
@@ -210,8 +208,6 @@ class j06002edit_tariffs_normal
 				$r[ 'ROOM_CLASS_RADIO' ] = '<input type="radio" name="roomtype" id="' . $roomtype_id . '" value="' . $roomtype_id . '" ' . $selected . '>' . $r[ 'ROOM_CLASS_ABBV' ] . "</label>";
 				$rows[ ]                 = $r;
 				}
-
-			$output[ 'JOMRES_SITEPAGE_URL' ] = JOMRES_SITEPAGE_URL;
 
 			$pageoutput[ ] = $output;
 			$tmpl          = new patTemplate();
