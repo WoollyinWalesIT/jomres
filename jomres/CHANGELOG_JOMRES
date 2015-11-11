@@ -1,3 +1,23 @@
+<h3>Jomres 9.2.2 11/11/2015</h3>
+
+<span class="label label-success">Feature</span> Added Joomla 3.5 related changes. 
+
+<span class="label label-warning">Change</span> Improved buttons/language strings so that Booking Enquiry related functionality is more logical.
+<span class="label label-warning">Change</span> Modified edit resource as SRP room type was missed in last version.
+<span class="label label-warning">Change</span> Added email obfuscation to view_agent page.
+<span class="label label-warning">Change</span> Minor fix added to jr gettext to prevent some variables being added to urls.
+<span class="label label-warning">Change</span> Improved bootstrap multiselect css.
+<span class="label label-warning">Change</span> Changed some forms to use JOMRES_SITEPAGE_URL_NOSEF instead of JOMRES_SITEPAGE_URL.
+
+<span class="label label-important label-danger">Fix</span> Added some changes to room type output that went missing after a script change.
+<span class="label label-important label-danger">Fix</span> Fixed a bug where modal terms wasn't available to noroom bookings, and reduced the size of the button so that it's not confused with the Completion button.
+<span class="label label-important label-danger">Fix</span> Tweaked view property page to not show book now button if is a real estate listing.
+
+<span class="label label-info">Wordpress</span> Updated the editinplace functionality. Wordpress doesn't like it when you use "name" as a POST variable and returns 404 ( Seriously, WP? ) so edited editinplace to not do that.
+<span class="label label-info">Wordpress</span> Modified the WP initialisation script to not show an error as the setting is NA in WP.
+<span class="label label-info">Wordpress</span> Fixed an issue where some WP installations would throw a 404 error when saving normal tariffs.
+
+
 <h3>Jomres 9.2.1 05/11/2015</h3>
 
 <span class="label label-success">Feature</span> Added a new tab to site configuration called Contact settings. From here you can (optionally) override all properties contact details (email, phone, fax) so all communication with guests will be sent to you and not to the property owners. Property owners are free to add contact information to email templates that are sent after bookings are taken, but prior to that, all communications must go through the site administrators. This should prevent property owners depriving site managers of booking commission by taking bookings offline.
