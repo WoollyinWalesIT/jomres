@@ -160,7 +160,7 @@ class j06000viewproperty
 
 		
 		//booking link
-		if ( $mrConfig[ 'visitorscanbookonline' ] == '1' && $jrConfig[ 'show_booking_form_in_property_details' ] != "1" )
+		if ( $mrConfig[ 'visitorscanbookonline' ] == '1' && $jrConfig[ 'show_booking_form_in_property_details' ] != "1" && $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
 			$link = array ();
 			$url  = JOMRES_SITEPAGE_URL . "&task=dobooking&amp;selectedProperty=$property_uid";
