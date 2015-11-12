@@ -191,7 +191,8 @@ class basic_contract_details
 						a.service_description,
 						a.service_value,
 						a.tax_rate_val,
-						a.tax_code
+						a.tax_code,
+						a.service_qty
 					FROM #__jomres_extraservices a 
 					WHERE a.contract_uid = '" . (int) $contract_uid . "' ";
 		$extraServicesData = doSelectSql( $query );
@@ -203,6 +204,7 @@ class basic_contract_details
 			$this->contract[$contract_uid]['extraservice'][$extraService->extraservice_uid]['service_value'] = $extraService->service_value;
 			$this->contract[$contract_uid]['extraservice'][$extraService->extraservice_uid]['tax_rate_val'] = $extraService->tax_rate_val;
 			$this->contract[$contract_uid]['extraservice'][$extraService->extraservice_uid]['tax_code'] = $extraService->tax_code;
+			$this->contract[$contract_uid]['extraservice'][$extraService->extraservice_uid]['service_qty'] = $extraService->service_qty;
 			}
 		
 		//rooms data

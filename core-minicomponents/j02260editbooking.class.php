@@ -469,12 +469,13 @@ class j02260editbooking
 			{
 			foreach ( $current_contract_details->contract[$contract_uid]['extraservice'] as $e )
 				{
-				$xs_tax = ( $e['service_value'] / 100 ) * (float) $e['tax_rate_val'];
-				$otherServiceTotal = $otherServiceTotal + ( $e['service_value'] + $xs_tax );
+				$service_value = $e['service_value'] * $e['service_qty'];
+				$xs_tax = ( $service_value / 100 ) * (float) $e['tax_rate_val'];
+				$otherServiceTotal = $otherServiceTotal + ( $service_value + $xs_tax );
 
 				$r = array ();
 				$r[ 'OTHER_SERVICE' ] = $e['service_description'];
-				$r[ 'OTHER_SERVICE_VALUE' ] = output_price( $e['service_value'] + $xs_tax );
+				$r[ 'OTHER_SERVICE_VALUE' ] = output_price( $service_value + $xs_tax );
 				$other_services_rows[ ] = $r;
 				}
 			}

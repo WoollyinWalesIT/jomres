@@ -34,10 +34,12 @@ class j02150addservicetobill
 			{
 			$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_COM_ADDSERVICE_TITLE', _JOMRES_COM_ADDSERVICE_TITLE );
 			$output[ 'HSERVICEDESCRIPTION' ] = jr_gettext( '_JOMRES_COM_ADDSERVICE_DESCRIPTION', _JOMRES_COM_ADDSERVICE_DESCRIPTION );
-			$output[ 'HSERVICEVALUE' ]       = jr_gettext( '_JOMRES_COM_ADDSERVICE_VALUE', _JOMRES_COM_ADDSERVICE_VALUE );
+			$output[ 'HSERVICEVALUE' ]       = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE', _JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE );
 			$output[ 'HTAXRATE' ]            = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', _JRPORTAL_INVOICES_LINEITEMS_TAX_RATE );
-			//$output['CURRENCY']=$mrConfig['currency'];
+			$output[ 'HQTY' ]            	 = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_INIT_QTY', _JRPORTAL_INVOICES_LINEITEMS_INIT_QTY );
+
 			$output[ 'CONTRACTUID' ]     = $contract_uid;
+			
 			$output[ 'TAXRATEDROPDOWN' ] = $jrportal_taxrate->makeTaxratesDropdown( 1 );
 
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
@@ -60,6 +62,7 @@ class j02150addservicetobill
 			$service_description = ucfirst( jomresGetParam( $_POST, 'service_description', '' ) );
 			$service_value       = convert_entered_price_into_safe_float (jomresGetParam( $_POST, 'service_value', '' ));
 			$taxrate             = jomresGetParam( $_POST, 'taxrate', 0 );
+			$service_qty	     = jomresGetParam( $_POST, 'service_qty', 1.00 );
 			
 			$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 			$jrportal_taxrate->gather_data($taxrate);
@@ -67,8 +70,9 @@ class j02150addservicetobill
 
 			if ( $contract_uid && $service_description)
 				{
-				$query = "INSERT INTO #__jomres_extraservices (`service_description`,`service_value`,`contract_uid`,`tax_rate_val`,`tax_code`) VALUES ('$service_description','" . (float) $service_value . "','" . (int) $contract_uid . "'," . $tax_value . "," . $taxrate . ")";
-				if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_ADDSERVICE', _JOMRES_MR_AUDIT_ADDSERVICE, false ) ) ) trigger_error( "Unable to insert into extraservices table, mysql db failure", E_USER_ERROR );
+				$query = "INSERT INTO #__jomres_extraservices (`service_description`,`service_value`,`contract_uid`,`tax_rate_val`,`tax_code`, `service_qty`) VALUES ('$service_description','" . (float) $service_value . "','" . (int) $contract_uid . "'," . $tax_value . "," . $taxrate . "," . $service_qty . ")";
+				if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_ADDSERVICE', _JOMRES_MR_AUDIT_ADDSERVICE, false ) ) ) 
+					trigger_error( "Unable to insert into extraservices table, mysql db failure", E_USER_ERROR );
 				else
 					{
 					jr_import( 'jrportal_invoice' );
@@ -79,7 +83,7 @@ class j02150addservicetobill
 										 'name' => $service_description, 
 										 'description' => '', 
 										 'init_price' => number_format( $service_value, 2, '.', '' ), 
-										 'init_qty' => 1, 
+										 'init_qty' => number_format( $service_qty, 2, '.', '' ), 
 										 'init_discount' => 0
 										 );
 

@@ -453,8 +453,31 @@ function doTableUpdates()
 	if ( !checkPfeaturesCategoryColExists() ) alterPfeaturesCategoryCol();
 	if ( checkRoomSmokingColExists() ) alterRoomsSmokingCol();
 	if ( checkContractsSmokingColExists() ) alterContractsSmokingCol();
+	if ( !checkExtraservicesQtyColExists() ) alterExtraservicesQtyCol();
 	
 	updateSiteSettings ( "update_time" , time() );
+	}
+
+function checkExtraservicesQtyColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_extraservices LIKE 'service_qty'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
+
+function alterExtraservicesQtyCol()
+	{
+	output_message ( "Editing __jomres_extraservices table adding services_qty column");
+	$query = "ALTER TABLE #__jomres_extraservices ADD `service_qty` FLOAT NOT NULL DEFAULT 1 AFTER `tax_code` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_extraservices service_qty column", "danger" );
+		}
 	}
 
 function checkRoomSmokingColExists()
