@@ -2196,7 +2196,16 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 			$mail->Username   = trim( $jrConfig[ 'alternate_smtp_username' ] );
 			$mail->Password   = trim( $jrConfig[ 'alternate_smtp_password' ] );
 			}
-
+		else
+			{
+			$mail->Mailer		= 'smtp';
+			$mail->Host			= trim( get_showtime( 'smtphost' ) );
+			$mail->Port			= trim( get_showtime( 'smtpport' ) );
+			$mail->SMTPSecure	= trim( $jrConfig[ 'alternate_smtp_protocol' ] );
+			$mail->SMTPAuth		= trim( get_showtime( 'smtpauth' ) );
+			$mail->Username		= trim( get_showtime( 'smtpuser' ) );
+			$mail->Password		= trim( get_showtime( 'smtppass' ) );
+			}
 		//	$mail->AltBody		= "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 
 
