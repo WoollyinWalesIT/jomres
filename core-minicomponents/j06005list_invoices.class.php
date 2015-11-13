@@ -56,8 +56,8 @@ class j06005list_invoices
 		$pageoutput = array ();
 
 		$output[ 'PAGETITLE' ]                    = jr_gettext( "_JRPORTAL_INVOICES_TITLE", _JRPORTAL_INVOICES_TITLE, false );
-		$output[ 'HBOOKINGNO' ]  				  = jr_gettext( '_JOMRES_BOOKING_NUMBER', _JOMRES_BOOKING_NUMBER, true, false );
-		$output[ 'HPROPERTY_NAME' ] 		      = jr_gettext( '_JRPORTAL_PROPERTIES_PROPERTYNAME', _JRPORTAL_PROPERTIES_PROPERTYNAME, true, false );
+		$output[ 'HBOOKINGNO' ]  				  = jr_gettext( '_JOMRES_BOOKING_NUMBER', _JOMRES_BOOKING_NUMBER, false );
+		$output[ 'HPROPERTY_NAME' ] 		      = jr_gettext( '_JRPORTAL_PROPERTIES_PROPERTYNAME', _JRPORTAL_PROPERTIES_PROPERTYNAME, false );
 		$output[ 'HFIRSTNAME' ]                   = jr_gettext( "_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME", _JOMRES_COM_MR_VIEWBOOKINGS_SURNAME, false );
 		$output[ 'HSURNAME' ]       	          = jr_gettext( "_JOMRES_FRONT_MR_DISPGUEST_SURNAME", _JOMRES_FRONT_MR_DISPGUEST_SURNAME, false );
 		$output[ 'HSTATUS' ]                      = jr_gettext( "_JRPORTAL_INVOICES_STATUS", _JRPORTAL_INVOICES_STATUS, false );
@@ -67,8 +67,8 @@ class j06005list_invoices
 		$output[ 'HINITTOTAL' ]                   = jr_gettext( "_JRPORTAL_INVOICES_INITTOTAL", _JRPORTAL_INVOICES_INITTOTAL, false );
 		$output[ 'HGRAND_TOTAL' ]                 = jr_gettext( "_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL", _JOMRES_COM_INVOICE_LETTER_GRANDTOTAL, false );
 		$output[ 'HLINEITEMS' ] 				  = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS", _JRPORTAL_INVOICES_LINEITEMS, false );
-		$output[ 'HEDITLINK' ]   				  = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_EDITDETAILS', _JOMRES_COM_MR_DISPGUEST_EDITDETAILS );
-		$output[ 'HLEGEND' ] 					  = jr_gettext( "_JOMRES_HLEGEND", _JOMRES_HLEGEND );
+		$output[ 'HEDITLINK' ]   				  = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_EDITDETAILS', _JOMRES_COM_MR_DISPGUEST_EDITDETAILS, false );
+		$output[ 'HLEGEND' ] 					  = jr_gettext( "_JOMRES_HLEGEND", _JOMRES_HLEGEND, false );
 		$output[ 'HUNPAID' ] 					  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_UNPAID', _JRPORTAL_INVOICES_STATUS_UNPAID, false );
 		$output[ 'HPAID' ] 						  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PAID', _JRPORTAL_INVOICES_STATUS_PAID, false );
 		$output[ 'HCANCELLED' ] 				  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_CANCELLED', _JRPORTAL_INVOICES_STATUS_CANCELLED, false );
