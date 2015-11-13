@@ -1584,7 +1584,7 @@ function getIntegratedSearchModuleVals()
 function getThisMonthName( $monthNumber, $editable = true )
 	{
 	$monthNumber   = intval( $monthNumber - 1 );
-	$mName		 = jr_gettext( '_JRPORTAL_MONTHS_LONG_' . $monthNumber, '_JRPORTAL_MONTHS_LONG_' . $monthNumber );
+	$mName		 = jr_gettext( '_JRPORTAL_MONTHS_LONG_' . $monthNumber, '_JRPORTAL_MONTHS_LONG_' . $monthNumber, $editable  );
 	$thisMonthName = jr_gettext( '_JOMRES_CUSTOMTEXT_' . $monthNumber, $mName, $editable );
 
 	return $thisMonthName;

@@ -268,8 +268,9 @@ jomresJquery(function(){
 		$dateElements   = explode( "/", $todaysDate );
 		$unixTodaysDate = mktime( 0, 0, 0, $dateElements[ 1 ], $dateElements[ 2 ], $dateElements[ 0 ] );
 
-		$thisMonthName = getThisMonthName( date( "n", $stdate ) );
-		if ( $thisMonthName == "" ) $thisMonthName = jr_gettext( '_JOMRES_CUSTOMTEXT_' . date( "M", $stdate ), strftime( "%B", $stdate ), true );
+		$thisMonthName = getThisMonthName( date( "n", $stdate ) , false);
+		if ( $thisMonthName == "" ) 
+			$thisMonthName = jr_gettext( '_JOMRES_CUSTOMTEXT_' . date( "M", $stdate ), strftime( "%B", $stdate ), false , false );
 
 		$this->retVals .= "\n<table class=\"rescal\" cellspacing=\"0\">\n";
 		if ( using_bootstrap() ) $this->retVals .= "<tr>\n<th class=\"alert-info\" colspan=\"7\" height=\"$height\"><font face=\"$face\" size=\"$size\">" . $thisMonthName . " " . strftime( "%Y", $stdate ) . "</font></th>\n</tr>\n";
