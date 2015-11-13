@@ -2599,7 +2599,7 @@ function trashTables()
 			}
 
 		}
-	$query = "DELETE FROM #__extensions WHERE `name` = 'com_jomres'";
+	$query = "DELETE FROM #__extensions WHERE `element` = 'com_jomres'";
 	doInsertSql( $query, '' );
 
 	return false;
