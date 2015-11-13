@@ -66,6 +66,20 @@ class j06000module_popup
 			$output[ 'CALENDAR' ] = $MiniComponents->miniComponentData[ '06000' ][ 'remoteavailability' ];
 			set_showtime("task", $this_task);*/
 			
+			/*
+			$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+			$output[ 'IMAGELARGE' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
+			$output[ 'IMAGEMEDIUM' ] = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
+			$output[ 'IMAGETHUMB' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
+			$jomres_media_centre_images->get_images($propertys_uid, array('property'));
+			if ($jomres_media_centre_images->images['property'][0][0]['large'] != "")
+				{
+				$output[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images['property'][0][0]['large'];
+				$output[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['property'][0][0]['medium'];
+				$output[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images['property'][0][0]['small'];
+				}
+			*/
+			
 			$componentArgs = array ( 'property_uid' => $property_uid, "width" => '200', "height" => '214' );
 			$MiniComponents->specificEvent( '01050', 'x_geocoder', $componentArgs );
 			$output[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
