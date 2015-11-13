@@ -41,12 +41,12 @@ class j10501caching
 			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_CACHING_DESC', _JOMRES_COM_CACHING_DESC, false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_JAVASCRIPT_CACHING_TITLE', _JOMRES_JAVASCRIPT_CACHING_TITLE, false ) );
+			/*$configurationPanel->setleft( jr_gettext( '_JOMRES_JAVASCRIPT_CACHING_TITLE', _JOMRES_JAVASCRIPT_CACHING_TITLE, false ) );
 			$configurationPanel->setmiddle( $lists[ 'javascript_caching_enabled' ] );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			/*$configurationPanel->setleft( jr_gettext( '_JOMRES_CSS_CACHING_TITLE', _JOMRES_CSS_CACHING_TITLE, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_CSS_CACHING_TITLE', _JOMRES_CSS_CACHING_TITLE, false ) );
 			$configurationPanel->setmiddle( $lists[ 'css_caching_enabled' ] );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();*/
