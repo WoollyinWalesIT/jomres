@@ -71,7 +71,7 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 		"bStateSave": true,
 		"bAutoWidth": false,
 		"sDom": sDomm,
-		"order": [[ 1, "desc" ]],
+		"order": [[ 0, "desc" ]],
 		"searchDelay": 1000,
 		"oLanguage": {
 				"sEmptyTable":     dataTables_sEmptyTable,
