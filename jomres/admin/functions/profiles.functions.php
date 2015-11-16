@@ -98,6 +98,9 @@ function editProfile()
 		{
 		$managersArray[ $m->userid ] = $m->username;
 		}
+	
+	$output['USERNAME'] = $managersArray[ $userid ];
+	
 	$rows = array ();
 	foreach ( $propertyIdArray as $i )
 		{
