@@ -419,7 +419,7 @@ class j02990showconfirmation
 		$booking_parts[ 'AJAXFORM_ADDRESS' ]      = jr_gettext( '_JOMRES_AJAXFORM_ADDRESS', _JOMRES_AJAXFORM_ADDRESS );
 		$booking_parts[ 'AMENDTEXT' ]             = jr_gettext( '_JOMRES_CONFIRMATION_AMENDTEXT', _JOMRES_CONFIRMATION_AMENDTEXT );
 		
-		if ($mrConfig[ 'requireApproval' ] == "1" && !$thisJRUser->userIsManager)
+		if ($mrConfig[ 'requireApproval' ] == "1" && !$thisJRUser->userIsManager && !$secret_key_payment)
 			$booking_parts[ 'AMEND' ]             = jr_gettext( '_JOMRES_BOOKING_ENQUIRY_AMEND', _JOMRES_BOOKING_ENQUIRY_AMEND, false );
 		else
 			$booking_parts[ 'AMEND' ]             = jr_gettext( '_JOMRES_CONFIRMATION_AMEND', _JOMRES_CONFIRMATION_AMEND, false );
@@ -478,7 +478,7 @@ class j02990showconfirmation
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 
-		if ($mrConfig[ 'requireApproval' ] == "1" && !$thisJRUser->userIsManager)
+		if ($mrConfig[ 'requireApproval' ] == "1" && !$thisJRUser->userIsManager && !$secret_key_payment)
 			$booking_parts[ 'THEBUTTON' ] = jr_gettext( '_JOMRES_BOOKING_ENQUIRY_CONFIRM', _JOMRES_BOOKING_ENQUIRY_CONFIRM, false );
 		else
 			$booking_parts[ 'THEBUTTON' ] = jr_gettext( '_JOMRES_COM_MR_CONFIRMBOOKING', _JOMRES_COM_MR_CONFIRMBOOKING, false );
