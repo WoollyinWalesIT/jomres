@@ -54,8 +54,15 @@ class j00017SRPavailabilitycalendar
 		else
 			{
 			$property_uid = (int) $componentArgs[ 'property_uid' ];
-			$roomUid      = $componentArgs[ 'roomUid' ];
+			if (!isset($componentArgs[ 'roomUid' ]))
+				{
+				$query        = "SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = " . $property_uid;
+				$roomUid      = doSelectSql( $query, 1 );
+				}
+			else
+				$roomUid      = $componentArgs[ 'roomUid' ];
 			}
+
 		$this->pop = jomresGetParam( $_REQUEST, 'popup', 0 );
 		if ( $this->pop == 1 ) property_header( $property_uid );
 
