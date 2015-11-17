@@ -264,7 +264,7 @@
 
 				//standard params
 				params = {
-					name: this.options.name || '',
+					jomres_name: this.options.jomres_name || '',
 					value: submitValue,
 					pk: pk
 				};
@@ -403,7 +403,7 @@
 		 @type string
 		 @default null
 		 **/
-		name: null,
+		jomres_name: null,
 		/**
 		 Primary key of editable object (e.g. record id in database). For composite keys use object, e.g. <code>{id: 1, lang: 'en'}</code>.
 		 Can be calculated dynamically via function.
@@ -1079,7 +1079,7 @@
 			}
 
 			//name
-			this.options.name = this.options.name || this.$element.attr('id');
+			this.options.jomres_name = this.options.jomres_name || this.$element.attr('id');
 
 			//create input of specified type. Input will be used for converting value, not in form
 			if (typeof $.fn.editabletypes[this.options.type] === 'function') {
@@ -1445,7 +1445,7 @@
 				this.each(function () {
 					var $this = $(this), data = $this.data(datakey), error;
 					if (data && (error = data.validate())) {
-						result[data.options.name] = error;
+						result[data.options.jomres_name] = error;
 					}
 				});
 				return result;
@@ -1466,7 +1466,7 @@
 				this.each(function () {
 					var $this = $(this), data = $this.data(datakey);
 					if (data && data.value !== undefined && data.value !== null) {
-						result[data.options.name] = data.input.value2submit(data.value);
+						result[data.options.jomres_name] = data.input.value2submit(data.value);
 					}
 				});
 				return result;
@@ -1881,7 +1881,7 @@
 			if (typeof this.options.source === 'string') {
 				//try to get from cache
 				if (this.options.sourceCache) {
-					var cacheID = this.options.source + (this.options.name ? '-' + this.options.name : ''),
+					var cacheID = this.options.source + (this.options.jomres_name ? '-' + this.options.jomres_name : ''),
 						cache;
 
 					if (!$(document).data(cacheID)) {
@@ -1915,7 +1915,7 @@
 					url: this.options.source,
 					type: 'get',
 					cache: false,
-					data: this.options.name ? {name: this.options.name} : {},
+					data: this.options.jomres_name ? {jomres_name: this.options.jomres_name} : {},
 					dataType: 'json',
 					success: $.proxy(function (data) {
 						if (cache) {
@@ -2356,7 +2356,7 @@
 				$label = $('<label>').append($('<input>', {
 						type: 'checkbox',
 						value: this.sourceData[i].value,
-						name: this.options.name
+						jomres_name: this.options.jomres_name
 					}))
 					.append($('<span>').text(' ' + this.sourceData[i].text));
 
