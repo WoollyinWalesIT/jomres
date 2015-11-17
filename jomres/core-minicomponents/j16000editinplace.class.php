@@ -26,19 +26,9 @@ class j16000editinplace
 			return;
 			}
 		
-		if ($_SERVER['REQUEST_METHOD'] == 'PUT')
-			{
-			parse_str(file_get_contents("php://input"), $_PUT);	
-			$customText  = jomresGetParam( $_PUT, 'value', '', 'string' );
-			$theConstant = filter_var( $_PUT[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS );
-			}
-		else
-			{
-			$customText  = jomresGetParam( $_POST, 'value', '', 'string' );
-			$theConstant = filter_var( $_POST[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS );
-			}
-
-
+		$customText  = jomresGetParam( $_POST, 'value', '', 'string' );
+		$theConstant = filter_var( $_POST[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS );
+		
 		$result = updateCustomText( $theConstant, $customText, true, 0 );
 
 		if ( $result )

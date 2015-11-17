@@ -137,7 +137,7 @@ function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false 
 						$url = JOMRES_SITEPAGE_URL_AJAX . '&task=editinplace';
 
 					$theText = '<a href="#" id="' . $theConstant . '" data-type="text" data-pk="' . $theConstant . '" data-url="' . $url . '" data-original-title="' . htmlspecialchars( $theText ) . '">' . htmlspecialchars( $theText ) . '</a>
-					<script>jQuery(document).ready(function () {jomresJquery(\'#' . $theConstant . '\').editable( {ajaxOptions: {type: \'put\'}});});</script>';
+					<script>jQuery(document).ready(function () {jomresJquery(\'#' . $theConstant . '\').editable();});</script>';
 					}
 				else
 					{
