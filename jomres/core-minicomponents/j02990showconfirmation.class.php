@@ -519,7 +519,7 @@ class j02990showconfirmation
 					$gw = array();
 					$gw[ 'GWNAME' ] = "Paypal";
 					$gw[ 'GWINPUT' ] = '<input type="radio" name="plugin" value="paypal" checked /> Paypal ';
-					$gw[ 'GWIMAGE' ] = '<img src="' .get_showtime( 'live_site' ). '/jomres/core-plugins/core_gateway_paypal/j00510paypal.gif" border="0">';
+					$gw[ 'GWIMAGE' ] = '<img src="' .get_showtime( 'live_site' ). '/'.JOMRES_ROOT_DIRECTORY.'/core-plugins/core_gateway_paypal/j00510paypal.gif" border="0">';
 					$gatewayDeets = array (1); // Further down we'll check that $gatewayDeets is set to decide if we show the output
 					$gateways[ ]     = $gw;
 					}
