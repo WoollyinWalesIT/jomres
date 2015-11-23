@@ -75,6 +75,14 @@ class j10501a_misc
 		$configurationPanel->setright( jr_gettext( _JOMRES_SUPPORTKEY_DESC, '_JOMRES_SUPPORTKEY_DESC', false ).' '.$support_key_message );
 		$configurationPanel->insertSetting();
 		
+		/*
+		Not currently enabled 23/11/2015
+		$configurationPanel->setleft( jr_gettext( _JOMRES_TRACKING_ENABLE, '_JOMRES_TRACKING_ENABLE', false ) );
+		$configurationPanel->setmiddle( $lists[ 'send_tracking_data' ] );
+		$configurationPanel->setright( jr_gettext( _JOMRES_TRACKING_ENABLE_DESC, '_JOMRES_TRACKING_ENABLE_DESC', false ) );
+		$configurationPanel->insertSetting();
+		*/
+		
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 ) 
 			{
 			$configurationPanel->setleft( jr_gettext( _JOMRES_REGION_TRANSLATION_SWITCH_TITLE, '_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', false ) );

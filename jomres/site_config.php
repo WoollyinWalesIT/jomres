@@ -272,4 +272,5 @@ $jrConfig[ 'bootstrap_version' ]				= "";
 $jrConfig[ 'show_powered_by' ]					= "0";
 $jrConfig['use_budget_feature']					= "1";
 $jrConfig['live_scrolling_enabled']				= "1";  // Live scrolling enabled by default for existing users 
-$jrConfig[ 'pattemplate_caching_enabled' ] = "0";
+$jrConfig[ 'pattemplate_caching_enabled' ]		= "0";
+$jrConfig[ 'send_tracking_data' ]				= "0"; // Anonymous tracking data. Off by default.

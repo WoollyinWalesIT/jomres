@@ -934,6 +934,9 @@ try
 		$document->setBase( null );
 		}
 
+	jr_import("jomres_usage_reporting");
+	$tracking = new jomres_usage_reporting();
+
 	endrun();
 
 	if ( defined( "JOMRES_RETURNDATA" ) )
