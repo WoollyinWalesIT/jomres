@@ -2645,6 +2645,9 @@ jr_define( '_JOMRES_BOOKING_ENQUIRY_REVIEW', 'Review booking request' );
 jr_define( '_JOMRES_BOOKING_ENQUIRY_CONFIRM', 'Confirm booking request' );
 jr_define( '_JOMRES_BOOKING_ENQUIRY_AMEND', 'Amend booking request' );
 
+jr_define( '_JOMRES_INVOICE_MARKASPENDING', 'Mark invoice as pending' );
+jr_define( '_JOMRES_INVOICE_MARKEDASPENDING', 'Invoice marked as pending' );
+
 jr_define( '_JOMRES_TRACKING_ENABLE', 'Send anonymous tracking data?' );
 jr_define( '_JOMRES_TRACKING_ENABLE_DESC', 'Set this option to Yes to send anonymous tracking data to Jomres.net to help us understand better how you use the system.' );
 
