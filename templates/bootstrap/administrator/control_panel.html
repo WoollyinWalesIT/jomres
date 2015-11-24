@@ -1,4 +1,26 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+	<div class="row-fluid">
+		<div class="span12">
+			<p><strong>{_JOMRES_VERSIONCHECK_THISJOMRESVERSION} {THIS_JOMRES_VERSION}</strong><br/>
+			<strong>{_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION} {LATEST_JOMRES_VERSION}</strong></p>
+			<div id="version_check_warning">
+				<div class="{HIGHLIGHT}">{ALERT}{EFFECT}</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row-fluid">
+		<div class="span12">
+			{CHARTS}
+		</div>
+	</div>
+	
+	<div class="row-fluid">
+		<div class="span12">
+			{PROPERTIES_TABLE}
+		</div>
+	</div>
 	<div class="row-fluid">
 		<div class="span6">
 			<div class="">
@@ -33,12 +55,7 @@
 					<div>{PLUGIN_CHECK}</div>
 					<div>{MAX_INPUT_VARS_CHECK}</div>
 					<div class="{ACCESS_CONTROL_HIGHLIGHT}">{ACCESS_CONTROL_ALERT}</div>
-					<p><strong>{_JOMRES_VERSIONCHECK_THISJOMRESVERSION} {THIS_JOMRES_VERSION}</strong><br/>
-						<strong>{_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION} {LATEST_JOMRES_VERSION}</strong></p>
 
-					<div id="version_check_warning">
-						<div class="{HIGHLIGHT}">{ALERT}{EFFECT}</div>
-					</div>
 
 					<div id="cache_check_warning">
 						<div class="{CACHE_HIGHLIGHT}">{CACHE_WARNING}</div>

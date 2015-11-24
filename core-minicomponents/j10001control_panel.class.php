@@ -144,7 +144,8 @@ class j10001control_panel
 				}
 			}
 			
-			
+		$output['PROPERTIES_TABLE']		= $MiniComponents->specificEvent( '16000', 'listproperties' , array ("return_data"=>true) );
+		$output['CHARTS']				= $MiniComponents->specificEvent( '16000', 'show_charts' , array ("return_data"=>true) );
 
 		if ( empty( $buffer ) ) $output[ 'LATEST_JOMRES_VERSION' ] .= "Sorry, could not get latest Jomres news, is there a firewall or slow internet connection preventing communication with http://updates.jomres4.net ?<p>";
 		else
