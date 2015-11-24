@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j16000listproperties
 	{
-	function __construct()
+	function __construct($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -25,7 +25,8 @@ class j16000listproperties
 
 			return;
 			}
-
+		
+		
 		$published=(int)jomresGetParam( $_POST, 'published', '2');
 		$approved = (int)jomresGetParam( $_POST, 'approved', '2');
 		$ptype_id=(int)jomresGetParam( $_POST, 'ptype', '0');
@@ -95,13 +96,16 @@ class j16000listproperties
 		$tmpl->readTemplatesFromInput( 'admin_listproperties.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'rows', $rows );
-		$tmpl->displayParsedTemplate();
+		if ( isset($componentArgs['return_data']))
+			$this->retVals=$tmpl->getParsedTemplate();
+		else
+			$tmpl->displayParsedTemplate();
 		}
 
 
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return null;
+		return $this->retVals;
 		}
 	}
