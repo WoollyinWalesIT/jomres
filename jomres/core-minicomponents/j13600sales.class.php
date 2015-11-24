@@ -46,7 +46,7 @@ class j13600sales
 			while( $current <= $last ) {
 				$dates[] = date("Y-m-d", $current);
 				$current = strtotime('+1 day', $current);
-			}
+				}
 
 			foreach ( $dates as $date)
 				{
