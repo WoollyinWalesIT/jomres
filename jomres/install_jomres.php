@@ -87,12 +87,12 @@ $jomres_systemLog_path = JOMRESCONFIG_ABSOLUTE_PATH . $jrConfig[ 'jomres_systemL
 
 if ( $_GET[ 'forceMigrate' ] == '1' )
 	{
-	migrate();
+	jomres_migrate();
 	}
 
 if ( componentsIntegrationExists() )
 	{
-	migrate();
+	jomres_migrate();
 	}
 
 
@@ -454,10 +454,65 @@ function doTableUpdates()
 	if ( checkRoomSmokingColExists() ) alterRoomsSmokingCol();
 	if ( checkContractsSmokingColExists() ) alterContractsSmokingCol();
 	if ( !checkExtraservicesQtyColExists() ) alterExtraservicesQtyCol();
+	if ( !checkPartnerBookingsTableExists() ) createPartnerBookingsTable();
+	if ( !checkGuestsPartnerIdColExists() ) alterGuestsPartnerIdCol();
 	
 	updateSiteSettings ( "update_time" , time() );
 	}
 
+function alterGuestsPartnerIdCol()
+	{
+	output_message ( "Editing __jomres_guests table adding partner_id columns");
+	$query = "ALTER TABLE `#__jomres_guests` ADD `partner_id` INT(11) NOT NULL DEFAULT 0 NOT NULL AFTER `vat_number_validation_response` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_guests partner_id", "danger" );
+		}
+	}
+
+function checkGuestsPartnerIdColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_guests LIKE 'partner_id'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
+	
+function createPartnerBookingsTable()
+	{
+	output_message ( "Creating _jomres_partner_bookings table");
+	$query  = "CREATE TABLE IF NOT EXISTS `#__jomres_partner_bookings` (
+		`id` INT(11) auto_increment,
+		`contract_uid` INT(11) NOT NULL DEFAULT 0,
+		`partner_id` INT(11) NOT NULL DEFAULT 0,
+		PRIMARY KEY	(`id`)
+		) ";
+	$result = doInsertSql( $query, "" );
+	if ( !$result )
+		{
+		output_message ( "Error creating table table _jomres_partner_bookings ", "danger" );
+		}
+	}
+
+function checkPartnerBookingsTableExists()
+	{
+	
+	$tablesFound = false;
+	$query       = "SHOW TABLES";
+	$result      = doSelectSql( $query, $mode = false );
+	$string      = "Tables_in_" . get_showtime("db");
+	foreach ( $result as $r )
+		{
+		if ( strstr( $r->$string, '_jomres_partner_bookings' ) ) return true;
+		}
+
+	return false;
+	}
+	
 function checkExtraservicesQtyColExists()
 	{
 	$query  = "SHOW COLUMNS FROM #__jomres_extraservices LIKE 'service_qty'";
@@ -3499,6 +3554,7 @@ function createJomresTables()
 		`vat_number` CHAR (25) DEFAULT '' NOT NULL,
 		`vat_number_validated` BOOL NOT NULL DEFAULT '0',
 		`vat_number_validation_response` TEXT NULL,
+		`partner_id` INT(11) NOT NULL DEFAULT 0 NOT NULL,
 		PRIMARY KEY(guests_uid)
 		) ";
 	if ( !doInsertSql( $query ) )
@@ -3804,6 +3860,7 @@ function createJomresTables()
 		}
 	
 	if ( !checkCountriesTableExists() ) createCountriesTable();
+	if ( !checkPartnerBookingsTableExists() ) createPartnerBookingsTable();
 	
 	//create the configuration file and drop _site_settings
 	save_configuration_file();
@@ -4547,7 +4604,7 @@ function insertPortalTables()
 
 ///////////////////////////////////////////////////////////////////////////////////////////// Migratiion //////////////////////////////////////////////////////////////
 
-function migrate()
+function jomres_migrate()
 	{
 	if ( !defined( 'ACTION' ) ) define( 'ACTION', "Migration" );
 	if ( basicTemplatesExist() )

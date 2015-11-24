@@ -98,7 +98,7 @@ class jomres_database
 					} 
 				catch(PDOException $e) 
 					{
-					die('ERROR: ' . $e->getMessage());
+					output_fatal_error( $e );
 					}
 				$this->PDOdb->exec( "SET CHARACTER SET utf8" );
 				$this->PDOdb->exec( "SET NAMES utf8" );
@@ -129,7 +129,7 @@ class jomres_database
 					}
 				catch(PDOException $e) 
 					{
-					die('ERROR: ' . $this->query . ' ' . $e->getMessage());
+					output_fatal_error( $e );
 					}
 				break;
 			default:
@@ -216,7 +216,7 @@ class jomres_database
 					}
 				catch(PDOException $e) 
 					{
-					die('ERROR: ' . $this->query . ' ' . $e->getMessage());
+					output_fatal_error( $e );
 					}
 				break;
 			default:

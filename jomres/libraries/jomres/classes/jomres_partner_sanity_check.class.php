@@ -1,0 +1,84 @@
+<?php
+/**
+ * Core file
+ *
+ * @author Vince Wooll <sales@jomres.net>
+ * @version Jomres 8
+ * @package Jomres
+ * @copyright	2005-2015 Vince Wooll
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
+ **/
+
+
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
+
+class jomres_partner_sanity_check
+	{
+	function __construct( $autorun = true )
+		{
+		if ( get_showtime( 'no_html', $no_html ) == 1 || get_showtime( 'popup', $popup ) == 1 ) return;
+		if ( $autorun )
+			{
+			$this->warnings     = "";
+			$siteConfig         = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+			$this->jrConfig     = $siteConfig->get();
+			$this->mrConfig     = getPropertySpecificSettings();
+			$this->property_uid = getDefaultProperty();
+			}
+		}
+
+	function do_sanity_checks()
+		{
+		$this->warnings .= $this->check_details_completed();
+
+		return $this->warnings;
+		}
+
+	function construct_warning( $message_array )
+		{
+		$message = $message_array['MESSAGE'];
+		$warning = "";
+		$warning .= jr_gettext( '_JOMRES_WARNINGS_DANGERWILLROBINSON', _JOMRES_WARNINGS_DANGERWILLROBINSON, false );
+		$warning .= $message ;
+		if (isset($message_array['LINK']))
+			{
+			$pageoutput	= array();
+			$output		= array();
+			
+			$output['LINK']			= $message_array['LINK'];
+			$output['BUTTON_TEXT']	= $message_array['BUTTON_TEXT'];
+			
+			$pageoutput[ ] = $output;
+			$tmpl          = new patTemplate();
+			$tmpl->addRows( 'pageoutput', $pageoutput );
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+			$tmpl->readTemplatesFromInput( 'sanity_checks_button.html' );
+			$warning .= $tmpl->getParsedTemplate();
+			}
+		return '<p>'.$warning.'</p>';
+		}
+
+	function check_details_completed()
+		{
+		if (get_showtime("task") != "edit_my_account")
+			{
+			$thisJRUser			= jomres_singleton_abstract::getInstance( 'jr_user' );
+			$partners			= jomres_singleton_abstract::getInstance( 'jomres_partners' );
+			$details_complete	= $partners->check_partner_details_complete($thisJRUser->id);
+			
+			if ( !$details_complete )
+				{
+				$message = jr_gettext( '_JOMRES_PARTNERS_PLEASE_COMPLETE', _JOMRES_PARTNERS_PLEASE_COMPLETE, false );
+				$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_my_account');
+				$button_text = jr_gettext( '_JOMRES_MY_ACCOUNT_EDIT', _JOMRES_MY_ACCOUNT_EDIT, false );
+
+				return $this->construct_warning( array( "MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $button_text ) );
+				}
+			}
+		}
+
+	}
+
+?>

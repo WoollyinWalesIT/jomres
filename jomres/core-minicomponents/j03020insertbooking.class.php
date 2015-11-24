@@ -126,7 +126,7 @@ class j03020insertbooking
 						$extrasquantities = serialize( $tmpextrasquantities );
 						}
 					else
-					$extrasquantities = "";
+						$extrasquantities = "";
 
 					if ( count( $discount ) > 0 )
 						{
@@ -204,7 +204,8 @@ class j03020insertbooking
 					{
 					// Delete exisiting room booking - may be the same but easier to delete and insert
 					$query = "DELETE FROM #__jomres_room_bookings WHERE contract_uid = '$amend_contractuid'";
-					if ( !doInsertSql( $query, "" ) ) trigger_error( "Unable to delete from room bookings table, mysql db failure", E_USER_ERROR );
+					if ( !doInsertSql( $query, "" ) ) 
+						trigger_error( "Unable to delete from room bookings table, mysql db failure", E_USER_ERROR );
 
 					$rates_uids     = array ();
 					$dateRangeArray = explode( ",", $dateRangeString );
@@ -233,7 +234,8 @@ class j03020insertbooking
 				jomres_audit( get_showtime( 'jomressession' ), "Amend booking - updated room booking " . $amend_contractuid );
 				$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
 				$jomres_messaging->set_message( "Amend booking - updated room booking " . $amend_contractuid );
-				if ( count( $rates_uids ) > 1 ) $rates_uids = array_unique( $rates_uids );
+				if ( count( $rates_uids ) > 1 ) 
+					$rates_uids = array_unique( $rates_uids );
 
 				$this->insertBookingEventValues[ 'cartnumber' ]          = $amend_contractuid;
 				$this->insertBookingEventValues[ 'tempBookingDataList' ] = $tempBookingDataList;
@@ -250,13 +252,18 @@ class j03020insertbooking
 
 				$MiniComponents->triggerEvent( '03025', $componentArgs ); // Generate invoice
 
-				if ( $this->insertSuccessful ) gateway_log( "j03020insertbooking :: Booking amendment successful " );
+				if ( $this->insertSuccessful ) 
+					gateway_log( "j03020insertbooking :: Booking amendment successful " );
 				else
-				gateway_log( "j03020insertbooking :: Booking amendment failed " );
+					gateway_log( "j03020insertbooking :: Booking amendment failed " );
 				}
 			else
 				{
-				$new_user_id = jomres_cmsspecific_createNewUserOnBooking();
+				if (!$thisJRUser->is_partner) // We don't create new CMS users when partners make bookings, as the partner is billed, not the "guest"
+					{
+					$new_user_id = jomres_cmsspecific_createNewUserOnBooking();
+					}
+				
 
 				$guests_uid = insertGuestDeets( get_showtime( 'jomressession' ) );
 
@@ -484,8 +491,15 @@ class j03020insertbooking
 									}
 								}
 							}
-
-						if ( count( $rates_uids ) > 1 ) $rates_uids = array_unique( $rates_uids );
+						
+						if ($thisJRUser->is_partner)
+							{
+							$query = "INSERT INTO #__jomres_partner_bookings (`contract_uid`,`partner_id`) VALUES (".(int)$contract_uid." , ".$thisJRUser->id." ) ";
+							doInsertSql($query);
+							}
+						
+						if ( count( $rates_uids ) > 1 ) 
+							$rates_uids = array_unique( $rates_uids );
 						jomres_audit( $cartnumber, jr_gettext( '_JOMRES_MR_AUDIT_BOOKED_ROOM', _JOMRES_MR_AUDIT_BOOKED_ROOM, false ) );
 						}
 					}

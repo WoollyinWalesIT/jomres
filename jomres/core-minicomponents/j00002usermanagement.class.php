@@ -42,6 +42,15 @@ class j00002usermanagement
 			$thisJRUser->setToAnyAuthorisedProperty();
 		$this->userObject = $thisJRUser;
 		set_showtime( "jr_user_ready", true );
+		
+		if ( $thisJRUser->id > 0)
+			{
+			
+			jr_import('jomres_partners');
+			$partners = new jomres_partners();
+			$thisJRUser->is_partner = $partners->is_this_cms_user_a_partner($thisJRUser->id);
+			}
+			
 		}
 
 	/**

@@ -44,6 +44,21 @@ class j00006sanity_checks
 				$tmpl->readTemplatesFromInput( 'sanity_checks.html' );
 				set_showtime( "sanity_check_warnings", $tmpl->getParsedTemplate() );
 				}
+				
+			if ( $thisJRUser->is_partner == true )
+				{
+				$output = array ();
+				jr_import( 'jomres_partner_sanity_check' );
+				$jomres_partner_sanity_check        = new jomres_partner_sanity_check();
+				$output[ 'WARNINGS' ] = $jomres_partner_sanity_check->do_sanity_checks();
+
+				$pageoutput[ ] = $output;
+				$tmpl          = new patTemplate();
+				$tmpl->addRows( 'pageoutput', $pageoutput );
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+				$tmpl->readTemplatesFromInput( 'sanity_checks.html' );
+				set_showtime( "sanity_check_warnings", $tmpl->getParsedTemplate() );
+				}
 			}
 		}
 
