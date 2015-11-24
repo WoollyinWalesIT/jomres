@@ -37,7 +37,11 @@ class j06005mulistbookings
 			$r            = array ();
 			$allGuestUids = array ();
 
-			$query       = "SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '" . (int) $thisJRUser->id . "' ";
+			if (!$thisJRUser->is_partner)
+				$query       = "SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '" . (int) $thisJRUser->id . "' ";
+			else
+				$query       = "SELECT guests_uid FROM #__jomres_guests WHERE partner_id = '" . (int) $thisJRUser->id . "' ";
+				
 			$guests_uids = doSelectSql( $query );
 			// Because a new record is made in the guests table for each new property the guest registers in, we need to find all the guest uids for this user
 			if ( count( $guests_uids ) > 0 )

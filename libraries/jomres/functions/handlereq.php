@@ -22,6 +22,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 #
  */
 
+$thisJRUser = jomres_getSingleton( 'jr_user' );
 
 $tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 $bookingDeets      = gettempBookingdata();
@@ -289,7 +290,8 @@ switch ( $field )
 			echo '; document.ajaxform.postcode.value=""';
 			echo '; document.ajaxform.tel_landline.value=""';
 			echo '; document.ajaxform.tel_mobile.value=""';
-			echo '; document.ajaxform.eemail.value=""';
+			if (!$thisJRUser->is_partner)
+				echo '; document.ajaxform.eemail.value=""';
 			}
 		break;
 	case 'requestedRoom':

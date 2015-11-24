@@ -13,20 +13,6 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-////////////////////////////////
-//  bookerClasses. Largely unused, but classes have been set asside for future development
-// 000 Unregistered visitor
-// 001 Registered visitor
-// 100 Unclassified manager
-// 200 Receptionist, this property
-// 300 Property manager, this property
-// 400 Receptionist, any property
-// 500 Property manager, any property
-// 600 Agent this property
-// 700 Agent any property
-// 800 Agent selected propertys
-// 900
-////////////////////////////////
 
 /**
 #
@@ -1175,21 +1161,23 @@ class dobooking
 		if ( $this->accommodation_tax_rate > 0 ) $tax_output = " (" . $this->accommodation_tax_rate . "%)";
 
 		$output = array ();
-		if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $output[ 'HARRIVALDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY ) );
+		if ( $mrConfig[ 'wholeday_booking' ] == "1" ) 
+			$output[ 'HARRIVALDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY ) );
 		else
-		$output[ 'HARRIVALDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL ) );
+			$output[ 'HARRIVALDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL ) );
 		if ( $mrConfig[ 'showdepartureinput' ] == "1" )
 			{
 			if ( $mrConfig[ 'fixedPeriodBookings' ] == '1' ) $output[ 'HDEPARTUREDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_FIXEDPRIOD1', _JOMRES_FRONT_MR_FIXEDPRIOD1 ) );
 			else
 				{
-				if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $output[ 'HDEPARTUREDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY ) );
+				if ( $mrConfig[ 'wholeday_booking' ] == "1" ) 
+					$output[ 'HDEPARTUREDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY ) );
 				else
-				$output[ 'HDEPARTUREDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE ) );
+					$output[ 'HDEPARTUREDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE ) );
 				}
 			}
 		else
-		$output[ 'HDEPARTUREDATE' ] = "&nbsp;";
+			$output[ 'HDEPARTUREDATE' ] = "&nbsp;";
 		
 		$output[ 'BOOKINGHEADER' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_QUICKRESDESC', _JOMRES_COM_MR_QUICKRESDESC ) );
 		$output[ 'ADDRESSHEADER' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS', _JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS ) );
@@ -1198,13 +1186,16 @@ class dobooking
 		$output[ 'REQUIREDTEXT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_JAVASCRIPT_', _JOMRES_JAVASCRIPT_ ) );
 		if ( $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == "0" )
 			{
-			if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $output[ 'BILLING_ROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY ) );
+			if ( $mrConfig[ 'wholeday_booking' ] == "1" ) 
+				$output[ 'BILLING_ROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY ) );
 			else
-			$output[ 'BILLING_ROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_ROOM', _JOMRES_AJAXFORM_BILLING_ROOM ) );
+				$output[ 'BILLING_ROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_ROOM', _JOMRES_AJAXFORM_BILLING_ROOM ) );
 			}
 		$output[ 'BILLING_ROOMTOTAL' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', _JOMRES_AJAXFORM_BILLING_ROOM_TOTAL ) );
-		if ( $mrConfig[ 'showExtras' ] == "1" ) $output[ 'BILLING_EXTRAS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_EXTRAS', _JOMRES_AJAXFORM_BILLING_EXTRAS ) );
-		if ( get_showtime( 'include_room_booking_functionality' ) ) $output[ 'BILLING_TAX' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_TAX', _JOMRES_AJAXFORM_BILLING_TAX ) );
+		if ( $mrConfig[ 'showExtras' ] == "1" ) 
+			$output[ 'BILLING_EXTRAS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_EXTRAS', _JOMRES_AJAXFORM_BILLING_EXTRAS ) );
+		if ( get_showtime( 'include_room_booking_functionality' ) ) 
+			$output[ 'BILLING_TAX' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_TAX', _JOMRES_AJAXFORM_BILLING_TAX ) );
 
 		$output[ 'BILLING_DISCOUNT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_DISCOUNT', _JOMRES_AJAXFORM_BILLING_DISCOUNT ) );
 
@@ -1215,7 +1206,10 @@ class dobooking
 		$output[ 'AJAXFORM_PARTICULARS' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_PARTICULARS', _JOMRES_AJAXFORM_PARTICULARS ) );
 		$output[ 'AJAXFORM_PARTICULARS_DESC' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_PARTICULARS_DESC', _JOMRES_AJAXFORM_PARTICULARS_DESC ) );
 		$output[ 'AJAXFORM_AVAILABLE' ]        = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_AVAILABLE', _JOMRES_AJAXFORM_AVAILABLE ) );
-		$output[ 'AJAXFORM_ADDRESS' ]          = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ADDRESS', _JOMRES_AJAXFORM_ADDRESS ) );
+		if ($thisJRUser->is_partner)
+			$output[ 'AJAXFORM_ADDRESS' ]          = $this->sanitiseOutput( jr_gettext( '_JOMRES_PARTNERS_GUEST_ADDRESS', _JOMRES_PARTNERS_GUEST_ADDRESS ) );
+		else
+			$output[ 'AJAXFORM_ADDRESS' ]          = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ADDRESS', _JOMRES_AJAXFORM_ADDRESS ) );
 		$output[ 'AJAXFORM_ADDRESS_DESC' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ADDRESS_DESC', _JOMRES_AJAXFORM_ADDRESS_DESC, false ) );
 		$output[ 'AJAXFORM_AVAILABLEROOMS' ]   = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_AVAILABLEROOMS', _JOMRES_AJAXFORM_AVAILABLEROOMS ) );
 		$output[ 'AJAXFORM_SELECTEDROOMS' ]    = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_SELECTEDROOMS', _JOMRES_AJAXFORM_SELECTEDROOMS, false ) );
@@ -3069,17 +3063,23 @@ class dobooking
 	 */
 	function getExistingCustomerData( $id )
 		{
-		$bookerClass = $this->getBookerClass();
 		$thisJRUser = jomres_getSingleton( 'jr_user' );
-		
-		$this->setErrorLog( "getExistingCustomerData::Booker class: " . $bookerClass );
-		if ( $bookerClass == "100" )
+
+		if ($thisJRUser->is_partner || $thisJRUser->userIsManager )
 			{
-			$query  = "SELECT guests_uid,mos_userid,firstname,surname,house,street,town,county ,country,postcode,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE guests_uid = '$id' AND property_uid IN (".implode(',',$thisJRUser->authorisedProperties).") LIMIT 1";
+			if ( $thisJRUser->userIsManager )
+				{
+				$query  = "SELECT guests_uid,mos_userid,firstname,surname,house,street,town,county ,country,postcode,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE guests_uid = '$id' AND property_uid IN (".implode(',',$thisJRUser->authorisedProperties).") LIMIT 1";
+				}
+			else
+				{
+				$query = "SELECT guests_uid,mos_userid,firstname,surname,house,street,town,county ,country,postcode,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE partner_id = ".$thisJRUser->id." AND guests_uid = '$id' LIMIT 1";
+				}
 			$result = doSelectSql( $query, 2 );
 			if ( count( $result ) > 0 )
 				{
-				if ( empty( $result[ 'country' ] ) ) $result[ 'country' ] = $this->cfg_defaultcountry;
+				if ( empty( $result[ 'country' ] ) ) 
+					$result[ 'country' ] = $this->cfg_defaultcountry;
 				$this->setGuest_existing_id( $id );
 
 				$this->mos_userid = $result[ 'mos_userid' ];
@@ -3099,10 +3099,10 @@ class dobooking
 				return $result;
 				}
 			else
-			return false;
+				return false;
 			}
 		else
-		return false;
+			return false;
 		}
 
 	/**
@@ -3112,6 +3112,8 @@ class dobooking
 	 */
 	function resetExistingCustomer()
 		{
+		$thisJRUser = jomres_getSingleton( 'jr_user' );
+		
 		$this->setGuest_existing_id( "" );
 		$this->setGuest_firstname( "" );
 		$this->setGuest_surname( "" );
@@ -3123,7 +3125,8 @@ class dobooking
 		$this->setGuest_postcode( "" );
 		$this->setGuest_tel_landline( "" );
 		$this->setGuest_tel_mobile( "" );
-		$this->setGuest_email( "" );
+		if (!$thisJRUser->is_partner)
+			$this->setGuest_email( "" );
 		$this->setGuest_discount( 0 );
 		}
 
@@ -3240,11 +3243,15 @@ class dobooking
 	 */
 	function initGuestDetails( &$bkg, $guest_deets )
 		{
+		$thisJRUser = jomres_getSingleton( 'jr_user' );
+		
+		
 		$tmpBookingHandler = jomres_getSingleton( 'jomres_temp_booking_handler' );
 		$amend_contract    = $tmpBookingHandler->getBookingFieldVal( "amend_contract" );
-		if ( $amend_contract ) $this->existing_id = $this->guests_uid;
+		if ( $amend_contract ) 
+			$this->existing_id = $this->guests_uid;
 		else
-		$bkg->setGuest_existing_id( $guest_deets[ 'EXISTINGID' ] );
+			$bkg->setGuest_existing_id( $guest_deets[ 'EXISTINGID' ] );
 		$bkg->setGuest_firstname( $guest_deets[ 'FIRSTNAME' ] );
 		$bkg->setGuest_surname( $guest_deets[ 'SURNAME' ] );
 		$bkg->setGuest_house( $guest_deets[ 'HOUSENO' ] );
@@ -3255,7 +3262,10 @@ class dobooking
 		$bkg->setGuest_postcode( $guest_deets[ 'POSTCODE' ] );
 		$bkg->setGuest_tel_landline( $guest_deets[ 'TEL' ] );
 		$bkg->setGuest_tel_mobile( $guest_deets[ 'MOBILE' ] );
-		$bkg->setGuest_email( $guest_deets[ 'EMAIL' ] );
+		if ( $thisJRUser->is_partner )
+			$bkg->setGuest_email( $thisJRUser->email );
+		else
+			$bkg->setGuest_email( $guest_deets[ 'EMAIL' ] );
 		$bkg->setGuest_discount( (int) $guest_deets[ 'DISCOUNT' ] );
 		}
 
@@ -3292,13 +3302,18 @@ class dobooking
 		$guest_postcode     = $this->postcode;
 		$guest_tel_landline = $this->tel_landline;
 		$guest_tel_mobile   = $this->tel_mobile;
-		$guest_email        = $this->email;
+		
+		if ( $thisJRUser->is_partner )
+			$guest_email        = $thisJRUser->email;
+		else
+			$guest_email        = $this->email;
 		$guest_discount     = (int) $this->guest_specific_discount;
 
 
 		//$this->mos_userid=$thisJRUser->id;
 		$id = $thisJRUser->id;
-		if ( $userIsManager ) $guest_deets[ 'GUESTDROPDOWN' ] = $this->AJgetGuestDropdown();
+		if ( $userIsManager || $thisJRUser->is_partner ) 
+			$guest_deets[ 'GUESTDROPDOWN' ] = $this->AJgetGuestDropdown();
 
 		if ( $id != 0 && !$userIsManager )
 			{
@@ -3340,8 +3355,10 @@ class dobooking
 		$guest_deets[ 'HCOUNTRY' ]   = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY, false );
 		$guest_deets[ 'HTEL' ]       = jr_gettext( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', _JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL, false );
 		$guest_deets[ 'HMOBILE' ]    = jr_gettext( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', _JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL, false );
-		$guest_deets[ 'HEMAIL' ]     = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL, false );
-
+		if ($thisJRUser->is_partner)
+			$guest_deets[ 'HEMAIL' ]     = jr_gettext( '_JOMRES_DEBUGGING_YOUREMAIL', _JOMRES_DEBUGGING_YOUREMAIL, false );
+		else
+			$guest_deets[ 'HEMAIL' ]     = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL, false );
 
 		$guest_deets[ 'EXISTINGID' ] = $guests_uid;
 		$guest_deets[ 'FIRSTNAME' ]  = $guest_firstname;
@@ -3371,16 +3388,29 @@ class dobooking
 	function AJgetGuestDropdown()
 		{
 		$dropDownList      = "";
+		$existingCustomers = array();
 		$thisJRUser = jomres_getSingleton( 'jr_user' );
-		$query             = "SELECT guests_uid,surname, firstname, house, street,town,county FROM #__jomres_guests WHERE property_uid IN (".implode(',',$thisJRUser->authorisedProperties).") ORDER BY surname";
-		$existingCustomers = doSelectSql( $query );
-		$ec                = array ();
+		
+		if ( $thisJRUser->is_partner )
+			{
+			$partners = jomres_singleton_abstract::getInstance( 'jomres_partners' );
+			$guest_ids = $partners->get_guest_uids_for_partner( $thisJRUser->id);
+			$query             = "SELECT guests_uid,surname, firstname, house, street,town,county FROM #__jomres_guests WHERE partner_id = ".$thisJRUser->id." ORDER BY surname";
+			$existingCustomers = doSelectSql( $query );
+			}
+		elseif ($thisJRUser->userIsManager)
+			{
+			$query             = "SELECT guests_uid,surname, firstname, house, street,town,county FROM #__jomres_guests WHERE property_uid IN (".implode(',',$thisJRUser->authorisedProperties).") ORDER BY surname";
+			$existingCustomers = doSelectSql( $query );
+			}
+
 		if ( count( $existingCustomers ) > 0 )
 			{
-			$ec[ ] = jomresHTML::makeOption( '0', '&nbsp;' );
+			$ec                = array ();
+			
+			$ec[ ] = jomresHTML::makeOption( '0',  jr_gettext( '_JOMRES_CLEAR_GUEST_DETAILS' , _JOMRES_CLEAR_GUEST_DETAILS , false, false ) );
 			foreach ( $existingCustomers as $customer )
 				{
-				//$ec[] = jomresHTML::makeOption( $customer->guests_uid, stripslashes($customer->surname).", ".stripslashes($customer->firstname).", ".stripslashes($customer->street).". ".stripslashes($customer->town));
 				$ec[ ] = jomresHTML::makeOption( $customer->guests_uid, stripslashes( $customer->surname ) . ", " . stripslashes( $customer->firstname ) );
 				}
 			$dropDownList = jomresHTML::selectList( $ec, 'existingCustomers', ' onchange="getResponse_existing(\'existingCustomers\',this.value);" size="1" class="input-medium"', 'value', 'text', 0 );
@@ -3409,34 +3439,6 @@ class dobooking
 		$countryDropdown = jomresHTML::selectList( $thecountryCodes, 'country', ' class="input-medium" ', 'value', 'text', $selectedCountry );
 
 		return $countryDropdown;
-		}
-
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//
-	//	BookerClass management
-	//
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	/**
-	#
-	 * Set the booker's class
-	#
-	 */
-	function setBookerClass( $value )
-		{
-		$this->booker_class = $value;
-		}
-
-	/**
-	#
-	 * Return the booker's class
-	#
-	 */
-	function getBookerClass()
-		{
-		return $this->booker_class;
 		}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

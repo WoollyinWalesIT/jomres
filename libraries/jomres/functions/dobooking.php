@@ -46,7 +46,6 @@ $unixTodaysDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $da
 
 if ( !isset( $_REQUEST[ 'arrivalDate' ] ) )
 	{
-	//if (!isset($_COOKIE['jomsearch_availability']))
 	if ( $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == "" )
 		{
 		$arrivalDate = JSCalmakeInputDates( date( "Y/m/d", $unixTodaysDate ), $siteCal = true );
@@ -54,22 +53,31 @@ if ( !isset( $_REQUEST[ 'arrivalDate' ] ) )
 		}
 	else
 	$thisdate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
-	//$thisdate	=jomresGetParam( $_COOKIE,'jomsearch_availability', '' );
 	}
 else
 	{
-	if ( isset( $tmpBookingHandler->tmpbooking[ "confirmationSeen" ] ) ) $tmpBookingHandler->tmpbooking[ "confirmationSeen" ] = null;
-	if ( !isset( $_REQUEST[ 'pdetails_cal' ] ) ) $thisdate = JSCalConvertInputDates( jomresGetParam( $_REQUEST, 'arrivalDate', "" ) );
+	if ( isset( $tmpBookingHandler->tmpbooking[ "confirmationSeen" ] ) ) 
+		$tmpBookingHandler->tmpbooking[ "confirmationSeen" ] = null;
+	if ( !isset( $_REQUEST[ 'pdetails_cal' ] ) ) 
+		$thisdate = JSCalConvertInputDates( jomresGetParam( $_REQUEST, 'arrivalDate', "" ) );
 	else
 		{
 		$bang     = explode( "/", $_REQUEST[ 'arrivalDate' ] );
 		$thisdate = (int) $bang[ 0 ] . "/" . (int) $bang[ 1 ] . "/" . (int) $bang[ 2 ];
-
 		}
-	//var_dump($thisdate);exit;
 	}
 
 $thisdate = str_replace( "-", "/", $thisdate );
+
+if ($thisJRUser->is_partner)
+	{
+	$partners			= jomres_singleton_abstract::getInstance( 'jomres_partners' );
+	$details_complete	= $partners->check_partner_details_complete($thisJRUser->id);
+	if ( !$details_complete )
+		{
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=edit_my_account" ), "" );
+		}
+	}
 
 $MiniComponents->triggerEvent( '00101' ); // Pre-form generation. Optional
 $query = "SELECT propertys_uid FROM #__jomres_propertys WHERE propertys_uid = '" . (int) $selectedProperty . "'";
@@ -82,7 +90,7 @@ if ( count( $result ) > 0 )
 	echo "Property uid incorrect";
 	}
 else
-echo "Incorrect property uid selected";
+	echo "Incorrect property uid selected";
 // End run here.
 
 
@@ -187,9 +195,6 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$output[ 'RELPATH' ]   = get_showtime( 'live_site' );
 	$output[ 'AJAXURL' ]   = JOMRES_SITEPAGE_URL_AJAX;
 	$output[ 'SUBMITURL' ] = JOMRES_SITEPAGE_URL_NOSEF . "&task=confirmbooking";
-	if ( !$thisJRUser->userIsManager ) $bkg->setBookerClass( "000" );
-	else
-	$bkg->setBookerClass( "100" );
 
 	$bkg->initCoupons();
 	$coupons              = array ();
@@ -237,8 +242,10 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	//if (!$bkg->ok_to_book || $bkg->cfg_singleRoomProperty == "1")
 	$bkg->resetRequestedRoom();
 	$bkg->initGuestDetails( $bkg, $guest );
+	
 
-	if ( $bkg->guest_specific_discount > 0 ) $output[ 'PERSONAL_DISCOUNT' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_PERSONAL_DISCOUNT', _JOMRES_PERSONAL_DISCOUNT ) );
+	if ( $bkg->guest_specific_discount > 0 ) 
+		$output[ 'PERSONAL_DISCOUNT' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_PERSONAL_DISCOUNT', _JOMRES_PERSONAL_DISCOUNT ) );
 
 	$overrideSessionArrivalDate = false;
 	if ( $thisdate != "" ) $overrideSessionArrivalDate = true;
@@ -533,7 +540,8 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$output[ 'EMAIL_ALREADY_INUSE' ] = jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', _JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE, false, false );
 
 	$output[ 'EMAIL_INPUT_DISABLED' ] = '';
-	if ( $thisJRUser->userIsRegistered && $output[ 'EMAIL' ] != '' && !$thisJRUser->userIsManager ) $output[ 'EMAIL_INPUT_DISABLED' ] = 'disabled';
+	if (  ($thisJRUser->userIsRegistered && $output[ 'EMAIL' ] != '' && !$thisJRUser->userIsManager ) || $thisJRUser->is_partner )
+		$output[ 'EMAIL_INPUT_DISABLED' ] = 'disabled';
 
 	$output[ 'DEPOSIT_CLASS' ] = '';
 	if ( isset( $output[ 'DEPOSIT' ] ) ) // Need this to stop the booking form totals panel from showing a thick line if the deposit option is disabled
@@ -635,8 +643,8 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$output[ 'PROPERTYUID' ] = $selectedProperty;
 
 	$output[ 'BOOTSTRAP_JS_VAR' ] = 'false';
-	if ( using_bootstrap() ) $output[ 'BOOTSTRAP_JS_VAR' ] = 'true';
-
+	if ( using_bootstrap() ) 
+		$output[ 'BOOTSTRAP_JS_VAR' ] = 'true';
 
 	$pageoutput[ ] = $output;
 	$tmpl          = new patTemplate();

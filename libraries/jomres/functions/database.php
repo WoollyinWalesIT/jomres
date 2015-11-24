@@ -39,8 +39,7 @@ function doSelectSql( $query, $mode = false )
 			// Mode 2. The calling function expects 1 row with elements in it. Returns an associative array
 			if ( $num > 1 )
 				{
-				echo "Error, more than one result returned. One expected. Stop.";
-				exit;
+				throw new Exception("Database error more than one result returned. One expected. Stop.");
 				}
 			if ( count( $jomres_db->result[0] ) == 0 )
 				{

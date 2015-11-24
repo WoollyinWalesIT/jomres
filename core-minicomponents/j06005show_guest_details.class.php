@@ -37,23 +37,29 @@ class j06005show_guest_details
 			$result       = doSelectSql( $query );
 			if ( count( $result ) < 1 || count( $result ) > 1 )
 				{
-				trigger_error( "Unable to view guest details, either guest id not found, or guest id tampered with.", E_USER_ERROR );
-
-				return;
+				throw new Exception("Unable to view guest details, either guest id not found, or guest id tampered with.");
 				}
 			}
-		else
+		elseif ( !$thisJRUser->is_partner)
 			{
 			$userid = $thisJRUser->id;
 			$query  = "SELECT guests_uid FROM #__jomres_guests WHERE `mos_userid`= " . (int) $userid . "";
 			$result = doSelectSql( $query );
 			if ( count( $result ) < 1 )
 				{
-				trigger_error( "Unable to view guest details, either guest id not found, or guest id tampered with.", E_USER_ERROR );
-
-				return;
+				throw new Exception("Unable to view guest details, either guest id not found, or guest id tampered with.");
 				}
 			}
+		elseif ( $thisJRUser->is_partner)
+			{
+			$partners = jomres_singleton_abstract::getInstance( 'jomres_partners' );
+			$partner_guests = $partners->get_guest_uids_for_partner($thisJRUser->id);
+			if ( count( $partner_guests ) < 1 )
+				{
+				throw new Exception("Unable to view guest details, this partner doesn't have sufficient rights to view this guest's details.");
+				}
+			}
+		
 		$query           = "SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email,vat_number FROM #__jomres_guests WHERE guests_uid = " . (int) $guestUid . "";
 		$guestData       = doSelectSql( $query );
 		$numberOfReturns = count( $guestData );
@@ -78,7 +84,8 @@ class j06005show_guest_details
 				}
 			}
 		else
-		return;
+			return;
+		
 		$output[ 'TITLE' ]      = jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', _JOMRES_COM_MR_EDITBOOKING_TAB_GUEST );
 		$output[ 'HFIRSTNAME' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME', _JOMRES_COM_MR_VIEWBOOKINGS_SURNAME );
 		$output[ 'HSURNAME' ]   = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_SURNAME', _JOMRES_COM_MR_DISPGUEST_SURNAME );
