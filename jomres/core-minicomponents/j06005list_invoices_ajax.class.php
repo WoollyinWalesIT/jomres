@@ -320,7 +320,7 @@ class j06005list_invoices_ajax
 			if ( (int)$p->status == 3 )
 				{
 				if (
-					( !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager && $p->contract_id > 0 ) || //booking invoice
+					( !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager && $p->contract_id > 0 && $p->approved == 1 ) || //booking invoice
 					( $p->contract_id == 0 && ($p->subscription > 0 || $p->is_commission > 0) ) //subscription/commission invoice
 					)
 					{
