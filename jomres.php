@@ -88,9 +88,10 @@ try
 	$tz = new jomres_timezones();
 
 	$performance_monitor = jomres_singleton_abstract::getInstance( 'jomres_performance_monitor' );
-	if ( $jrConfig[ 'errorChecking' ] == "1" ) $performance_monitor->switch_on();
+	if ( $jrConfig[ 'errorChecking' ] == "1" ) 
+		$performance_monitor->switch_on();
 	else
-	$performance_monitor->switch_off();
+		$performance_monitor->switch_off();
 
 	if ( isset( $_REQUEST[ 'is_wrapped' ] ) )
 		{

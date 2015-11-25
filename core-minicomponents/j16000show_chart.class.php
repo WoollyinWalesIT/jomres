@@ -18,7 +18,7 @@ class j16000show_chart
 	function __construct($componentArgs)
 		{
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch ){$this->template_touchable = true;return;}
+		if ( $MiniComponents->template_touch ){$this->template_touchable = false;return;}
 
 		jomres_cmsspecific_addheaddata( "javascript",  JOMRES_ROOT_DIRECTORY."/javascript/", "Chart.js" );
 		
@@ -37,7 +37,7 @@ class j16000show_chart
 				{
 				$componentArgs['data'][] = filter_var( $val, FILTER_SANITIZE_SPECIAL_CHARS );
 				}
-			 $componentArgs['label'] = filter_var( $_REQUEST['chart_params']['label'], FILTER_SANITIZE_SPECIAL_CHARS );
+			$componentArgs['label'] = filter_var( $_REQUEST['chart_params']['label'], FILTER_SANITIZE_SPECIAL_CHARS );
 			}
 
 		
