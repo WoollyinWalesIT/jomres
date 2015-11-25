@@ -18,8 +18,9 @@ ob_start( "removeBOMadmin" );
 @ini_set( "max_execution_time", "480" );
 
 require_once( dirname( __FILE__ ) . '/integration.php' );
+
 try
-		{
+	{
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	$siteConfig     = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig       = $siteConfig->get();
@@ -31,6 +32,12 @@ try
 		//@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
 		}
 
+	$performance_monitor = jomres_singleton_abstract::getInstance( 'jomres_performance_monitor' );
+	if ( $jrConfig[ 'errorChecking' ] == "1" ) 
+		$performance_monitor->switch_on();
+	else
+		$performance_monitor->switch_off();
+	
 	//get all property uids in system, useful for both admin and frontend. Once these uids are set in one side, they`ll be used in the other side too.
 	set_showtime( 'heavyweight_system', false );
 
@@ -62,11 +69,23 @@ try
 		
 		$c->store('all_property_uids',array('all_propertys'=>$all_propertys,'all_published_propertys'=>$all_published_propertys));
 		}
+		
+	//image paths
+	if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )
+		{
+		define( 'JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS );
+		define( 'JOMRES_IMAGELOCATION_RELPATH', get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/' );
+		}
 
-	$thisJRUser = $MiniComponents->triggerEvent( '00002' ); // Register user
+	//Register user
+	$thisJRUser = $MiniComponents->triggerEvent( '00002' ); //TODO: is it needed in admin cpanel?
+	
+	//language
 	$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
-	$jomreslang->get_language();
+	$jomreslang->get_language($jrConfig[ 'language_context' ]);
+	
 	$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
+	
 	if ( isset( $_REQUEST[ 'jomreslang' ] ) )
 		{
 		$lang_switcher_lang = jomresGetParam( $_REQUEST, 'jomreslang', '' );
@@ -77,22 +96,17 @@ try
 			}
 		}
 
+	//input filtering
 	$MiniComponents->triggerEvent( '00003' );
 
+	//session
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 	$tmpBookingHandler->initBookingSession();
 
 	$jomressession = $tmpBookingHandler->getJomressession();
 	set_showtime( 'jomressession', $jomressession );
-
-	$showSearchOptions = true;
-
-
-	if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )
-		{
-		define( 'JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS );
-		define( 'JOMRES_IMAGELOCATION_RELPATH', get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/' );
-		}
+	
+	//set task showtime
 	$task = jomresGetParam( $_REQUEST, 'task', "" );
 	$task = str_replace( "&#60;x&#62;", "", $task );
 	set_showtime( 'task', $task );
@@ -100,7 +114,6 @@ try
 	if ( $task == "save_site_settings" )
 		{
 		// We're going to silently delete any .js files in the temp dir. This is a basic cleanup, if a server's moved from A to B or an upgrade changes something then we'll delete .js files that might cause problems if they're wrong. Any .js files that don't exist are automatically recreated so this will ensure that the js remains fresh.
-
 		$javascript_files_in_temp_dir = scandir_getfiles( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS, $extension = "js" );
 		foreach ( $javascript_files_in_temp_dir as $file )
 			{
@@ -115,39 +128,36 @@ try
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'propertytypes.functions.php' );
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'profiles.functions.php' );
 
-	$nohtml = jomresGetParam( $_REQUEST, 'no_html', 0 );
-
-
-	$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
-	$jomreslang->get_language( $propertytype );
-	$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
-
+	//00005 trigger point
 	$MiniComponents->triggerEvent( '00005' );
+	
 	if ( !AJAXCALL )
 		{
-		// And a couple that are only used in the admin area
 		init_javascript();
+		
+		// And a couple js and css files that are only used in the admin area
 		jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', 'graphs.js' );
-		//jomres_cmsspecific_addheaddata("javascript",JOMRES_ROOT_DIRECTORY.'/javascript/','jrportal.js');
 
 		// Dates back to Jomres v4. Could be removed, but we'll leave it in for those users upgrading from v4, as v4 spanned two years
 		if ( is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'plugins' ) )
 			{
 			emptyDir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'plugins' );
 			rmdir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'plugins' );
-			if ( is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'plugins' ) ) echo '<font color="red" face="arial" size="1">Warning: directory ' . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'plugins still exists. Please delete it.</font><br/>';
+			if ( is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'plugins' ) ) 
+				echo '<font color="red" face="arial" size="1">Warning: directory ' . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'plugins still exists. Please delete it.</font><br/>';
 			emptyDir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'cache' . JRDS );
 			}
 
 		$pageoutput = array ();
 		$output     = array ();
 
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		//cpanel main menu
 		$MiniComponents->triggerEvent( '10002' ); // 10002 scripts build the menu options
 		$MiniComponents->getAllEventPointsData( '10002' );
 		$MiniComponents->triggerEvent( '10003' ); // 10003 builds the menu arrays
 		$output[ 'CONTROL_PANEL_MENU' ] = $MiniComponents->miniComponentData[ '10004' ][ 'generate_control_panel' ]; // 10004 Builds the actual menu items
 
+		//obsolete files warnings
 		$ouput[ 'OBSOLETE_FILES_WARNINGS' ] = '';
 		jr_import( 'jomres_obsolete_file_handling' );
 		$obsolete_files = new jomres_obsolete_file_handling();
@@ -164,16 +174,17 @@ try
 			$output[ 'OBSOLETE_FILES_WARNINGS' ] = $obsolete_files->remove_obs_files();
 			}
 
-		$output[ 'LANGDROPDOWN' ] = '';
-		//if (_JOMRES_DETECTED_CMS != "joomla25" && _JOMRES_DETECTED_CMS != "joomla30") // previously the switcher didn't work in J2.5/J3 so we disabled it from the output. 7.1.4 changes indicate that we've found a way around those problems, so we'll now enable it in those versions. We'll leave this line in-situ for now in case we need to step back from that and disable the lang dropdown in 2.5/3 in the future.
+		//language dropdown
 		$output[ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
 
 		$output[ 'BACKTOTOP' ] = jr_gettext( 'BACKTOTOP', BACKTOTOP, false );
 
-		if ( using_bootstrap() ) $output[ 'USING_BOOTSTRAP' ] = "true";
+		if ( using_bootstrap() ) 
+			$output[ 'USING_BOOTSTRAP' ] = "true";
 		else
-		$output[ 'USING_BOOTSTRAP' ] = "false";
+			$output[ 'USING_BOOTSTRAP' ] = "false";
 
+		//output top area
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
@@ -181,6 +192,8 @@ try
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->displayParsedTemplate();
 		}
+	
+	//set statistics cookies
 	if ( isset( $_REQUEST[ 'statoption' ] ) )
 		{
 		$statoption = jomresGetParam( $_REQUEST, 'statoption', '' );
@@ -195,9 +208,9 @@ try
 
 	//admins_first_run();
 
-
+	//task
 	switch ( get_showtime( 'task' ) )
-	{
+		{
 		case "convertCustomTextAll":
 			convertCustomTextAll();
 			break;
@@ -242,16 +255,17 @@ try
 				}
 			else
 				{
-				// $version=$mrConfig['version'];
-				// HTML_jomres::controlPanel($version);
 				$MiniComponents->triggerEvent( '10001' );
-
 				}
 			break;
-	}
+		}
 
+	//output bottom area
 	if ( !AJAXCALL )
 		{
+		$performance_monitor->set_point( "end run" );
+		$performance_monitor->output_report();
+	
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
@@ -260,21 +274,12 @@ try
 		$tmpl->displayParsedTemplate();
 		}
 
-
-	$head_contents = '';
-	$MiniComponents->triggerEvent( '16003' );
-	if ( is_array( $MiniComponents->miniComponentData[ '16003' ] ) )
-		{
-		foreach ( $MiniComponents->miniComponentData[ '16003' ] as $concatenate )
-			{
-			$head_contents .= $concatenate;
-			}
-		}
-
 	$componentArgs = array ();
 	$MiniComponents->triggerEvent( '99999', $componentArgs );
 	$componentArgs = array ();
 
+	
+	
 	endrun();
 	}
 catch (Exception $e) 
@@ -292,7 +297,6 @@ catch (Exception $e)
 	}
 
 
-
 if ( defined( "JOMRES_RETURNDATA" ) )
 	{
 	$contents = ob_get_contents();
@@ -302,7 +306,7 @@ if ( defined( "JOMRES_RETURNDATA" ) )
 	ob_end_clean();
 	}
 else
-ob_end_flush();
+	ob_end_flush();
 
 // Jomres 4.7.8 strips BOM from all areas of the output, not just the beginning.
 function removeBOMadmin( $str = "" )

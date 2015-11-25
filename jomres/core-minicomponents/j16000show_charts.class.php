@@ -18,7 +18,7 @@ class j16000show_charts
 	function __construct($componentArgs)
 		{
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch ){$this->template_touchable = true;return;}
+		if ( $MiniComponents->template_touch ){$this->template_touchable = false;return;}
 
 		$MiniComponents->triggerEvent( '13600' ); // All charting minicomponents
 
@@ -28,7 +28,7 @@ class j16000show_charts
 			if ( isset($minicomponent_data) )
 				{
 				$r = array();
-				$r['CHART']			= $MiniComponents->specificEvent( '06001', 'show_chart' , $minicomponent_data );
+				$r['CHART']			= $MiniComponents->specificEvent( '16000', 'show_chart' , $minicomponent_data );
 				$r['TITLE']			= $minicomponent_data['label'];
 				$r['CHART_PARAMS']	= "&task=show_chart&".$minicomponent_data['chart_params'];
 				$r['TITLE_CLASS']	= $minicomponent_data['title_class'];
