@@ -99,7 +99,7 @@ class jomres_generic_booking_insert
 			throw new Exception(" Error booking_number is not set");
 			}
 		
-		$query  = "SELECT contract_uid FROM #__jomres_contracts WHERE tag LIKE '" . $this->booking_details['booking_number'] . "' LIMIT 1";
+		$query  = "SELECT contract_uid FROM #__jomres_contracts WHERE tag LIKE '" . $this->booking_details['booking_number'] . "' AND `cancelled` = 0 LIMIT 1";
 		$bklist = doSelectSql( $query );
 		if ( count($bklist) > 0)
 			{
