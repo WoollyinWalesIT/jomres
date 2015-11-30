@@ -458,8 +458,47 @@ function doTableUpdates()
 	if ( !checkGuestsPartnerIdColExists() ) alterGuestsPartnerIdCol();
 	
 	if ( !checkExtrasLimitedtoroomtypeColExists() ) alterExtrasLimitedtoroomtypeCol();
+	if ( !checkPageviewsTableExists() ) createPageviewsTable();
 	
 	updateSiteSettings ( "update_time" , time() );
+	}
+
+
+function createPageviewsTable()
+	{
+	output_message ( "Creating pageviews table");
+	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_pageviews` (
+	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+	`task` varchar( 255 ) default NULL ,
+	`property_uid` int(10) NOT NULL default '0',
+	`ip` varchar( 255 ) default NULL ,
+	`country_code` VARCHAR(2),
+	`date_time` datetime default NULL ,
+	`user_id` int( 11 ) default NULL ,
+	`user_is_manager` BOOL NOT NULL DEFAULT '0',
+	`user_is_registered` BOOL NOT NULL DEFAULT '0',
+	PRIMARY KEY ( `id` )
+	)";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_pageviews table", "danger" );
+		}
+
+	}
+
+function checkPageviewsTableExists()
+	{
+	
+	$tablesFound = false;
+	$query       = "SHOW TABLES";
+	$result      = doSelectSql( $query, $mode = false );
+	$string      = "Tables_in_" . get_showtime("db");
+	foreach ( $result as $r )
+		{
+		if ( strstr( $r->$string, '_jomres_pageviews' ) ) return true;
+		}
+
+	return false;
 	}
 
 function alterExtrasLimitedtoroomtypeCol()
@@ -3887,6 +3926,7 @@ function createJomresTables()
 	
 	if ( !checkCountriesTableExists() ) createCountriesTable();
 	if ( !checkPartnerBookingsTableExists() ) createPartnerBookingsTable();
+	if ( !checkPageviewsTableExists() ) createPageviewsTable();
 	
 	//create the configuration file and drop _site_settings
 	save_configuration_file();

@@ -939,7 +939,10 @@ try
 	$tracking = new jomres_usage_reporting();
 
 	endrun();
-
+	
+	jr_import("jomres_pageview_record");
+	$jomres_pageview_record = new jomres_pageview_record();
+	
 	if ( defined( "JOMRES_RETURNDATA" ) )
 		{
 		$contents = ob_get_contents();
