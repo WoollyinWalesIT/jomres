@@ -419,8 +419,8 @@ if ( $field != "heartbeat" && $field != "show_log" && $field != "email_usage_che
 
 			if ( $bkg->cfg_showExtras)
 				{
-				//only rebuild extras if dates change
-				if ($field == "arrivalDate" || $field == "arrival_period" || $field == "departureDate" || $field == "departure_period")
+				//only rebuild extras if dates change or a room/room type is selected
+				if ($field == "arrivalDate" || $field == "arrival_period" || $field == "departureDate" || $field == "departure_period" || $field == "multiroom_select"|| $field == "requestedRoom")
 					{
 					$ex                 = $bkg->makeExtras( $pid );
 				

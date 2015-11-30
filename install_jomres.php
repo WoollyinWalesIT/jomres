@@ -457,8 +457,33 @@ function doTableUpdates()
 	if ( !checkPartnerBookingsTableExists() ) createPartnerBookingsTable();
 	if ( !checkGuestsPartnerIdColExists() ) alterGuestsPartnerIdCol();
 	
+	if ( !checkExtrasLimitedtoroomtypeColExists() ) alterExtrasLimitedtoroomtypeCol();
+	
 	updateSiteSettings ( "update_time" , time() );
 	}
+
+function alterExtrasLimitedtoroomtypeCol()
+	{
+	output_message ( "Editing __jomres_extras table adding limited_to_room_type column");
+	$query = "ALTER TABLE `#__jomres_extras` ADD `limited_to_room_type` INT(11) NOT NULL DEFAULT 0 NOT NULL AFTER `include_in_property_lists`";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_extras limited_to_room_type", "danger" );
+		}
+	}
+
+function checkExtrasLimitedtoroomtypeColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_extras LIKE 'limited_to_room_type'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
+
 
 function alterGuestsPartnerIdCol()
 	{
@@ -3361,6 +3386,7 @@ function createJomresTables()
 		`validfrom` DATETIME DEFAULT NULL,
 		`validto` DATETIME DEFAULT NULL,
 		`include_in_property_lists` BOOL NOT NULL DEFAULT '1',
+		`limited_to_room_type` int( 11 ),
 		PRIMARY KEY ( `uid` )
 		) ";
 	if ( !doInsertSql( $query ) )
