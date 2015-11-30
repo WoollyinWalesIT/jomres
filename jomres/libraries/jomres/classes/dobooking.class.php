@@ -940,9 +940,21 @@ class dobooking
 
 		if ( $mrConfig[ 'showExtras' ] == "1" )
 			{
-			$query  = "SELECT `uid`,`name`,`desc`,`maxquantity`,`price`,`auto_select`,`tax_rate`,`chargabledaily`,`property_uid`,`published`,`validfrom`,`validto` FROM `#__jomres_extras` where property_uid = '$selectedProperty' AND published = '1' ORDER BY name";
+			$query  = "SELECT `uid`,`name`,`desc`,`maxquantity`,`price`,`auto_select`,`tax_rate`,`chargabledaily`,`property_uid`,`published`,`validfrom`,`validto`,`limited_to_room_type` FROM `#__jomres_extras` where property_uid = '$selectedProperty' AND published = '1' ORDER BY name";
 			$exList = doSelectSql( $query );
-
+			
+			$selected_rooms_room_types = array();
+			if ( count($this->requestedRoom) > 0 )
+				{
+				foreach ( $this->requestedRoom as $rm )
+					{
+					$room  = explode( "^", $rm );
+					$tariff_id = $room[ 1 ];
+					$booking_room_type_id = $this->allPropertyTariffs[ $tariff_id ] ['roomclass_uid'];
+					$selected_rooms_room_types [] = $booking_room_type_id ;
+					}
+				}
+			
 			foreach ( $exList as $ex )
 				{
 				$show_extra = true;
@@ -959,8 +971,15 @@ class dobooking
 						}
 					}
 				
-				// Todo, add checks for room types
-				
+				// add checks for room types
+			
+				if ( (int)$ex->limited_to_room_type > 0 && count($selected_rooms_room_types) > 0 )
+					{
+					if (!in_array( (int)$ex->limited_to_room_type , $selected_rooms_room_types ))
+						{
+						$show_extra = false;
+						}
+					}
 				
 				
 				
@@ -1112,12 +1131,19 @@ class dobooking
 				}
 			}
 		
-		$pageoutput[]=$output;
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		$tmpl->addRows( 'extras',$extra_details);
-		$tmpl->readTemplatesFromInput( 'dobooking_extras.html' );
-		$extras_template = $tmpl->getParsedTemplate();
+		if ( count($extra_details) > 0)
+			{
+			$pageoutput[]=$output;
+			$tmpl = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			$tmpl->addRows( 'extras',$extra_details);
+			$tmpl->readTemplatesFromInput( 'dobooking_extras.html' );
+			$extras_template = $tmpl->getParsedTemplate();
+			}
+		else
+			{
+			$extras_template = $this->sanitiseOutput( jr_gettext( '_JOMRES_EXTRAS_NOEXTRAS', _JOMRES_EXTRAS_NOEXTRAS ) );;
+			}
 		
 		return array ( "core_extras" => $extras_template );
 		}
