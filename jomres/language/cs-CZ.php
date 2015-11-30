@@ -730,7 +730,7 @@ jr_define( '_JOMRES_SEARCH_DESCRIPTION_INFO', 'Vložte frázi, kterou chcete vyh
 jr_define( '_JOMRES_SEARCH_DESCRIPTION_LABEL', 'Vyhledat slovo(a): ' );
 jr_define( '_JOMRES_SEARCH_AVL_INFO', 'Prosím vložte váš předpokládaný příjezd a odjezd a stiskněte tlačítko. Vyhledáme kapacity s volným ubytováním ve vámi zadaném termínu.' );
 jr_define( '_JOMRES_SEARCH_PTYPES', 'Vypsat všechny kapacity dle jejich typu.' );
-jr_define( '_JOMRES_SEARCH_RTYPES', 'Vypsat všechny kapacity dle typu pokoje.' );
+jr_define( '_JOMRES_SEARCH_RTYPES', 'Vypsat všechny kapacity dle typu pokoje' );
 jr_define( '_JOMRES_SORTORDER_DEFAULT', 'Výchozí' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYNAME', 'Název kapacity' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYREGION', 'Oblast' );

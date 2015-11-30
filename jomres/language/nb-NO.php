@@ -729,7 +729,7 @@ jr_define( '_JOMRES_SEARCH_BUTTON', 'Search' );
 jr_define( '_JOMRES_SEARCH_DESCRIPTION_INFO', 'Search term' );
 jr_define( '_JOMRES_SEARCH_DESCRIPTION_LABEL', 'Search word(s): ' );
 jr_define( '_JOMRES_SEARCH_AVL_INFO', 'Please enter your intended arrival and departure dates and press the button to find properties that have accommodation available on your chosen dates.' );
-jr_define( '_JOMRES_SEARCH_PTYPES', 'List all properties by property type.' );
+jr_define( '_JOMRES_SEARCH_PTYPES', 'List all properties by property type' );
 jr_define( '_JOMRES_SEARCH_RTYPES', 'List all properties by room type.' );
 jr_define( '_JOMRES_SORTORDER_DEFAULT', 'Default' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYNAME', 'Property Name' );

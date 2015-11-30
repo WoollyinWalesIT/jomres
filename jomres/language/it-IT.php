@@ -741,7 +741,7 @@ jr_define( '_JOMRES_SEARCH_DESCRIPTION_INFO', 'Inserisci la parola nel box e inv
 jr_define( '_JOMRES_SEARCH_DESCRIPTION_LABEL', 'Cerca parola(e): ' );
 jr_define( '_JOMRES_SEARCH_AVL_INFO', 'Inserisci le date di arrivo e partenza e clicca il pulsante per trovare tutte le strutture disponibili per i giorni selezionati.' );
 jr_define( '_JOMRES_SEARCH_PTYPES', 'Elenca tutte le strutture in base al tipo.' );
-jr_define( '_JOMRES_SEARCH_RTYPES', 'Elenca tutte le strutture in base al tipo di camera.' );
+jr_define( '_JOMRES_SEARCH_RTYPES', 'Elenca tutte le strutture in base al tipo di camera' );
 jr_define( '_JOMRES_SORTORDER_DEFAULT', 'Standard' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYNAME', 'Nome struttura' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYREGION', 'Regione struttura' );

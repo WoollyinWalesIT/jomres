@@ -733,7 +733,7 @@ jr_define( '_JOMRES_SEARCH_DESCRIPTION_INFO', 'Angiv et søgeord i boksen og try
 jr_define( '_JOMRES_SEARCH_DESCRIPTION_LABEL', 'Søgeord: ' );
 jr_define( '_JOMRES_SEARCH_AVL_INFO', 'Angiv venligst dine formodede ankomsts- og afrejsedatoer og tryk på knappen for at finde ejendomme der er ledige på de valgte datoer.' );
 jr_define( '_JOMRES_SEARCH_PTYPES', 'List alle ejendomme efter ejendomstype.' );
-jr_define( '_JOMRES_SEARCH_RTYPES', 'List alle ejendomme efter værelsestype.' );
+jr_define( '_JOMRES_SEARCH_RTYPES', 'List alle ejendomme efter værelsestype' );
 jr_define( '_JOMRES_SORTORDER_DEFAULT', 'Standard' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYNAME', 'Ejendomsnavn' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYREGION', 'Ejendomsregion' );

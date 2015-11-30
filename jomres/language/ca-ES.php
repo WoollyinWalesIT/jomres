@@ -730,7 +730,7 @@ jr_define( '_JOMRES_SEARCH_DESCRIPTION_INFO', 'Escrigui una paraula en el quadre
 jr_define( '_JOMRES_SEARCH_DESCRIPTION_LABEL', 'Paraules de cerca: ' );
 jr_define( '_JOMRES_SEARCH_AVL_INFO', 'Si us plau, introdueixi la seva arribada prevista i la data de sortida i premi el botó per a buscar habitacions disponibles en les dates escollides.' );
 jr_define( '_JOMRES_SEARCH_PTYPES', 'Llistar propietats per tipus de propietat' );
-jr_define( '_JOMRES_SEARCH_RTYPES', "Llistar propietats per tipus d'habitació." );
+jr_define( '_JOMRES_SEARCH_RTYPES', "Llistar propietats per tipus d'habitació" );
 jr_define( '_JOMRES_SORTORDER_DEFAULT', 'Per defecte' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYNAME', 'Nom Propietat' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYREGION', 'Regió Propietat' );

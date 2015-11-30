@@ -717,7 +717,7 @@ jr_define( '_JOMRES_SEARCH_DESCRIPTION_INFO', 'Ange ett sökord i rutan och klic
 jr_define( '_JOMRES_SEARCH_DESCRIPTION_LABEL', 'Sökord:' );
 jr_define( '_JOMRES_SEARCH_AVL_INFO', 'Ange din avsedda in- och utcheckningsdatum och klicka på knappen för att hitta verksamheter som har boende tillgängligt på dina valda datum.' );
 jr_define( '_JOMRES_SEARCH_PTYPES', 'Lista alla företag efter verksamhetstyp.' );
-jr_define( '_JOMRES_SEARCH_RTYPES', 'Lista alla företag efter inkvarterings/verksamhetstyp.' );
+jr_define( '_JOMRES_SEARCH_RTYPES', 'Lista alla företag efter inkvarterings/verksamhetstyp' );
 jr_define( '_JOMRES_SORTORDER_DEFAULT', 'Standard' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYNAME', 'Verksamhetens namn' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYREGION', 'Verksamhetens region' );
