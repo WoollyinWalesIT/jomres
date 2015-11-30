@@ -733,7 +733,7 @@ jr_define( '_JOMRES_SEARCH_DESCRIPTION_INFO', 'Условие поиска' );
 jr_define( '_JOMRES_SEARCH_DESCRIPTION_LABEL', 'Слова для поиска: ' );
 jr_define( '_JOMRES_SEARCH_AVL_INFO', 'Пожалуйста, введите вашего предполагаемого прибытия и даты вылета и нажмите кнопку Найти недвижимость, которая имеет свободные номера на выбранные вами даты.' );
 jr_define( '_JOMRES_SEARCH_PTYPES', 'Перечислить все свойства недвижимости.' );
-jr_define( '_JOMRES_SEARCH_RTYPES', 'Перечислите всю недвижимость по типу номера.' );
+jr_define( '_JOMRES_SEARCH_RTYPES', 'Перечислите всю недвижимость по типу номера' );
 jr_define( '_JOMRES_SORTORDER_DEFAULT', 'По умолчанию' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYNAME', 'Название недвижимости' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYREGION', 'Регион Недвижимости' );

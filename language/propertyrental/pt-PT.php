@@ -702,7 +702,7 @@ jr_define( '_JOMRES_SEARCH_DESCRIPTION_INFO', 'Introduza uma palavra de pesquisa
 jr_define( '_JOMRES_SEARCH_DESCRIPTION_LABEL', 'Palavra(s) de pesquisa: ' );
 jr_define( '_JOMRES_SEARCH_AVL_INFO', 'P.f. introduza as datas em que tenciona chegar e partir, para complementar pesquisa de disponibilidade' );
 jr_define( '_JOMRES_SEARCH_PTYPES', 'Listar todas as propriedades por tipo.' );
-jr_define( '_JOMRES_SEARCH_RTYPES', 'Listar todas as propriedades por tipo de quarto.' );
+jr_define( '_JOMRES_SEARCH_RTYPES', 'Listar todas as propriedades por tipo de quarto' );
 jr_define( '_JOMRES_SORTORDER_DEFAULT', 'Por defeito' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYNAME', 'Nome da propriedade' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYREGION', 'Região da propriedade' );

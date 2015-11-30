@@ -730,7 +730,7 @@ jr_define( '_JOMRES_SEARCH_DESCRIPTION_INFO', 'Escriba una palabra en el cuadro 
 jr_define( '_JOMRES_SEARCH_DESCRIPTION_LABEL', 'Palabras de búsqueda: ' );
 jr_define( '_JOMRES_SEARCH_AVL_INFO', 'Por favor, introduzca su llegada prevista y la fecha de salida y pulse el botón para buscar habitaciones disponibles en las fechas elegidas.' );
 jr_define( '_JOMRES_SEARCH_PTYPES', 'Listar propiedades por tipo de propiedad' );
-jr_define( '_JOMRES_SEARCH_RTYPES', 'Listar propiedades por tipo de habitación.' );
+jr_define( '_JOMRES_SEARCH_RTYPES', 'Listar propiedades por tipo de habitación' );
 jr_define( '_JOMRES_SORTORDER_DEFAULT', 'Por defecto' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYNAME', 'Nombre Propiedad' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYREGION', 'Región Propiedad' );

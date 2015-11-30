@@ -732,7 +732,7 @@ jr_define( '_JOMRES_SEARCH_DESCRIPTION_INFO', 'Vpíšte hľadané slovo do rámi
 jr_define( '_JOMRES_SEARCH_DESCRIPTION_LABEL', 'Vyhľadať slovo/slová: ' );
 jr_define( '_JOMRES_SEARCH_AVL_INFO', 'Uveďte dátumy príchodu a odchodu a stlačte tlačítko. Vyhľadajú sa ubytovacie zariadenia vyhovujúce zadaným kritériám.' );
 jr_define( '_JOMRES_SEARCH_PTYPES', 'Zoznam ubytovacích zariadení podľa typu zariadenia.' );
-jr_define( '_JOMRES_SEARCH_RTYPES', 'Zoznam ubytovacích zariadení podľa typu izieb.' );
+jr_define( '_JOMRES_SEARCH_RTYPES', 'Zoznam ubytovacích zariadení podľa typu izieb' );
 jr_define( '_JOMRES_SORTORDER_DEFAULT', 'Prednastavené' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYNAME', 'Názov ubyt. zariadenia' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYREGION', 'Región ubyt. zariadenia' );

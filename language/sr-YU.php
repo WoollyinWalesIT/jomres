@@ -735,7 +735,7 @@ jr_define( '_JOMRES_SEARCH_DESCRIPTION_INFO', 'Pretraga reči' );
 jr_define( '_JOMRES_SEARCH_DESCRIPTION_LABEL', 'Search word(s): ' );
 jr_define( '_JOMRES_SEARCH_AVL_INFO', '' );
 jr_define( '_JOMRES_SEARCH_PTYPES', 'Izlistaj po vrsti objekta: ' );
-jr_define( '_JOMRES_SEARCH_RTYPES', 'List all properties by room type.' );
+jr_define( '_JOMRES_SEARCH_RTYPES', 'List all properties by room type' );
 jr_define( '_JOMRES_SORTORDER_DEFAULT', 'Default' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYNAME', 'Property Name' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYREGION', 'Property Region' );

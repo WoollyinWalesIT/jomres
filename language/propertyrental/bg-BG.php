@@ -717,7 +717,7 @@ jr_define( '_JOMRES_SEARCH_DESCRIPTION_INFO', 'Търси по ключова д
 jr_define( '_JOMRES_SEARCH_DESCRIPTION_LABEL', 'Търсене думи: ' );
 jr_define( '_JOMRES_SEARCH_AVL_INFO', 'Моля въведете дните на пристигане и заминаване за визуализиране на свободни стаи.' );
 jr_define( '_JOMRES_SEARCH_PTYPES', 'Всички обекти по тип.' );
-jr_define( '_JOMRES_SEARCH_RTYPES', 'Всички обекти по тип стаи.' );
+jr_define( '_JOMRES_SEARCH_RTYPES', 'Всички обекти по тип стаи' );
 jr_define( '_JOMRES_SORTORDER_DEFAULT', 'По подразбиране' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYNAME', 'Име на обект' );
 jr_define( '_JOMRES_SORTORDER_PROPERTYREGION', 'Регион на обекта' );
