@@ -48,7 +48,7 @@ class j03020insertbooking
 		$jomresProccessingBookingObject = getCurrentBookingData( get_showtime( 'jomressession' ) );
 		$guestDetails                   = $jomresProccessingBookingObject->guestDetails;
 		$tempBookingDataList            = $jomresProccessingBookingObject->tempBookingDataList;
-		gateway_log( "j03020insertbooking :: Attempting to insert booking jsid: " . get_showtime( 'jomressession' ) );
+		system_log( "j03020insertbooking :: Attempting to insert booking jsid: " . get_showtime( 'jomressession' ) );
 		
 		if ($jrConfig['useGlobalCurrency'] == 1)
 			$ccode = $jrConfig['globalCurrencyCode'];
@@ -64,7 +64,7 @@ class j03020insertbooking
 			}
 		if ( count( $tempBookingDataList ) == 0 )
 			{
-			gateway_log( "j03020insertbooking :: Failed to insert booking: Booking data not found. Probably already booking inserted. " . get_showtime( 'jomressession' ) );
+			system_log( "j03020insertbooking :: Failed to insert booking: Booking data not found. Probably already booking inserted. " . get_showtime( 'jomressession' ) );
 			$this->insertSuccessful = false;
 			echo "Booking already made";
 			}
@@ -88,7 +88,7 @@ class j03020insertbooking
 				{
 
 				//Booking amendment code
-				gateway_log( "j03020insertbooking :: Amending contract. " . $amend_contractuid . " for " . get_showtime( 'jomressession' ) );
+				system_log( "j03020insertbooking :: Amending contract. " . $amend_contractuid . " for " . get_showtime( 'jomressession' ) );
 
 				$guests_uid = insertGuestDeets( get_showtime( 'jomressession' ) );
 
@@ -126,7 +126,7 @@ class j03020insertbooking
 						$extrasquantities = serialize( $tmpextrasquantities );
 						}
 					else
-						$extrasquantities = "";
+					$extrasquantities = "";
 
 					if ( count( $discount ) > 0 )
 						{
@@ -204,8 +204,7 @@ class j03020insertbooking
 					{
 					// Delete exisiting room booking - may be the same but easier to delete and insert
 					$query = "DELETE FROM #__jomres_room_bookings WHERE contract_uid = '$amend_contractuid'";
-					if ( !doInsertSql( $query, "" ) ) 
-						trigger_error( "Unable to delete from room bookings table, mysql db failure", E_USER_ERROR );
+					if ( !doInsertSql( $query, "" ) ) trigger_error( "Unable to delete from room bookings table, mysql db failure", E_USER_ERROR );
 
 					$rates_uids     = array ();
 					$dateRangeArray = explode( ",", $dateRangeString );
@@ -234,8 +233,7 @@ class j03020insertbooking
 				jomres_audit( get_showtime( 'jomressession' ), "Amend booking - updated room booking " . $amend_contractuid );
 				$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
 				$jomres_messaging->set_message( "Amend booking - updated room booking " . $amend_contractuid );
-				if ( count( $rates_uids ) > 1 ) 
-					$rates_uids = array_unique( $rates_uids );
+				if ( count( $rates_uids ) > 1 ) $rates_uids = array_unique( $rates_uids );
 
 				$this->insertBookingEventValues[ 'cartnumber' ]          = $amend_contractuid;
 				$this->insertBookingEventValues[ 'tempBookingDataList' ] = $tempBookingDataList;
@@ -252,18 +250,13 @@ class j03020insertbooking
 
 				$MiniComponents->triggerEvent( '03025', $componentArgs ); // Generate invoice
 
-				if ( $this->insertSuccessful ) 
-					gateway_log( "j03020insertbooking :: Booking amendment successful " );
+				if ( $this->insertSuccessful ) system_log( "j03020insertbooking :: Booking amendment successful " );
 				else
-					gateway_log( "j03020insertbooking :: Booking amendment failed " );
+				system_log( "j03020insertbooking :: Booking amendment failed " );
 				}
 			else
 				{
-				if (!$thisJRUser->is_partner) // We don't create new CMS users when partners make bookings, as the partner is billed, not the "guest"
-					{
-					$new_user_id = jomres_cmsspecific_createNewUserOnBooking();
-					}
-				
+				$new_user_id = jomres_cmsspecific_createNewUserOnBooking();
 
 				$guests_uid = insertGuestDeets( get_showtime( 'jomressession' ) );
 
@@ -288,7 +281,7 @@ class j03020insertbooking
 					$approved = 1;
 					}
 
-				gateway_log( "j03020insertbooking :: Setting cart number. " . $cartnumber . " for " . get_showtime( 'jomressession' ) );
+				system_log( "j03020insertbooking :: Setting cart number. " . $cartnumber . " for " . get_showtime( 'jomressession' ) );
 
 				foreach ( $tempBookingDataList as $tempBookingData )
 					{
@@ -328,7 +321,9 @@ class j03020insertbooking
 						{
 						$bookersUsername = $tmpBookingHandler->tmpguest['firstname']." ".$tmpBookingHandler->tmpguest['surname'];
 						}
-
+					
+					system_log( "j03020insertbooking :: Basic details set ");
+					
 					// The extras quantites is passed with ALL extra uids and default quanties. At this point we will strip out the extra uid that weren't actually selected before adding the serialized extras quantities to the db
 					$tmpextrasquantities = array ();
 					$currentExtras       = explode( ",", $extras );
@@ -344,10 +339,11 @@ class j03020insertbooking
 						$extrasquantities = serialize( $tmpextrasquantities );
 						}
 					else
-					$extrasquantities = "";
+						$extrasquantities = "";
 
 					$resource = $tempBookingData->resource;
-					if ( $resource == "1" ) $depositPaid = 1;
+					if ( $resource == "1" ) 
+						$depositPaid = 1;
 
 					if ( count( $discount ) > 0 )
 						{
@@ -362,6 +358,7 @@ class j03020insertbooking
 					
 					if ( !$secret_key_payment )
 						{
+						system_log( "j03020insertbooking :: Not a secret key booking ");
 						// Now to double check that the rooms haven't been booked while this person was paying
 						$dateRangeArray = explode( ",", $dateRangeString );
 						if ( get_showtime( 'include_room_booking_functionality' ) )
@@ -379,16 +376,18 @@ class j03020insertbooking
 									$result        = doSelectSql( $query );
 									if ( count( $result ) > 0 )
 										{
+										system_log( "j03020insertbooking :: Failed to insert booking looks like the room has been double booked ");
 										trigger_error( "Failed to insert booking looks like the room has been double booked ", E_USER_ERROR );
 										$this->insertSuccessful = false;
-
 										return false;
 										}
 									}
 								}
+							system_log( "j03020insertbooking :: Room(s) have not been double booked ");
 							}
 						}
-
+					
+					system_log( "j03020insertbooking :: Getting guest type data ");
 					// Let's get our guest type data
 					$tmpArray      = array ();
 					$variancetypes = explode( ",", $tempBookingData->variancetypes );
@@ -413,7 +412,7 @@ class j03020insertbooking
 							$rateRules .= "guesttype" . '_' . $guestTypes[ 'id' ] . '_' . $guestTypes[ 'qty' ] . '_' . $guestTypes[ 'val' ] . ',';
 							}
 						}
-					$mrConfig = getPropertySpecificSettings( $property_uid );
+					//$mrConfig = getPropertySpecificSettings( $property_uid );
 					}
 				
 				jr_import("jomres_contract_secret_key");
@@ -423,18 +422,25 @@ class j03020insertbooking
 				$query = "SELECT id FROM #__jomres_booking_data_archive WHERE tag = '".$cartnumber."'";
 				$booking_data_archive_id = doSelectSql($query,1);
 				
+				system_log("Referrer ".serialize($tmpBookingHandler->tmpbooking[ "referrer" ]));
+				
+				if (!isset($tmpBookingHandler->tmpbooking[ "referrer" ]))
+					{
+					$tmpBookingHandler->tmpbooking[ "referrer" ] = "Jomres";
+					}
+				
 				if (!$secret_key_payment)
 					{
 					$query        = "INSERT INTO #__jomres_contracts (
-						`arrival`, `departure`, `rates_uid`, `guest_uid`, `rate_rules`, `rooms_tariffs`, `contract_total`, `special_reqs`, `deposit_paid`, `deposit_required`, `date_range_string`, `booked_in`, `booked_out`, `property_uid`, `single_person_suppliment`, `extras`, `extrasquantities`, `extrasvalue`, `tax`, `tag`, `timestamp`, `room_total`, `discount`, `currency_code`, `discount_details`, `username`, `coupon_id`, `approved`, `booking_data_archive_id`, `secret_key`, `booking_language`)
+						`arrival`, `departure`, `rates_uid`, `guest_uid`, `rate_rules`, `rooms_tariffs`, `contract_total`, `special_reqs`, `deposit_paid`, `deposit_required`, `date_range_string`, `booked_in`, `booked_out`, `property_uid`, `single_person_suppliment`, `extras`, `extrasquantities`, `extrasvalue`, `tax`, `tag`, `timestamp`, `room_total`, `discount`, `currency_code`, `discount_details`, `username`, `coupon_id`, `approved`, `booking_data_archive_id`, `secret_key`, `booking_language` , `referrer`)
 						VALUES (
 						'$arrivalDate','$departureDate','" . (int) $rates_uid . "',
 						'" . (int) $guests_uid . "','$rateRules','" . (string) $requestedRoom . "', '" . (float) $contract_total . "','$specialReqs',
 						'" . (int) $depositPaid . "','" . (float) $deposit_required . "',
 						'$dateRangeString','" . (int) $booked_in . "','0',
-						'" . (int) $property_uid . "','" . (float) $single_person_suppliment . "','$extras','" . (string) $extrasquantities . "','" . (float) $extrasValue . "','" . (float) $tax . "','$cartnumber','$datetime','" . (float) $room_total . "','" . (float) $discount . "','$ccode','" . $discount_details . "','" . $bookersUsername . "'," . (int) $coupon_id . "," . $approved . " , '".$booking_data_archive_id ."' , '".$secret_key."' , '".get_showtime('lang')."') ";
+						'" . (int) $property_uid . "','" . (float) $single_person_suppliment . "','$extras','" . (string) $extrasquantities . "','" . (float) $extrasValue . "','" . (float) $tax . "','$cartnumber','$datetime','" . (float) $room_total . "','" . (float) $discount . "','$ccode','" . $discount_details . "','" . $bookersUsername . "'," . (int) $coupon_id . "," . $approved . " , '".$booking_data_archive_id ."' , '".$secret_key."' , '".get_showtime('lang')."' , '".$tmpBookingHandler->tmpbooking[ "referrer" ]."') ";
 					$contract_uid = doInsertSql( $query, "" );
-					
+					system_log("Insert query ".$query);
 					if ( $booking_data_archive_id > 0 ) // Quick bookings will log a mysql error, but quick bookings don't use the booking data archive.
 						{
 						$query = "UPDATE #__jomres_booking_data_archive SET contract_uid = ".$contract_uid." WHERE id = ".$booking_data_archive_id;
@@ -491,7 +497,7 @@ class j03020insertbooking
 									}
 								}
 							}
-						
+
 						if ($thisJRUser->is_partner)
 							{
 							$query = "INSERT INTO #__jomres_partner_bookings (`contract_uid`,`partner_id`) VALUES (".(int)$contract_uid." , ".$thisJRUser->id." ) ";
@@ -571,12 +577,12 @@ class j03020insertbooking
 				$this->insertBookingEventValues[ 'contract_uid' ]        = $contract_uid;
 
 				$this->insertBookingEventValues[ 'insertSuccessful' ] = $this->insertSuccessful;
-				gateway_log( "j03020insertbooking insertBookingEventValues :: " . serialize( $this->insertBookingEventValues ) );
+				system_log( "j03020insertbooking insertBookingEventValues :: " . serialize( $this->insertBookingEventValues ) );
 
 				if ( $this->insertSuccessful ) 
-					gateway_log( "j03020insertbooking :: Booking insert Successful " );
+					system_log( "j03020insertbooking :: Booking insert Successful " );
 				else
-					gateway_log( "j03020insertbooking :: Booking insert failed " );
+					system_log( "j03020insertbooking :: Booking insert failed " );
 				}
 
 			if (!$secret_key_payment)
