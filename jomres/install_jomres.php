@@ -459,11 +459,34 @@ function doTableUpdates()
 	
 	if ( !checkExtrasLimitedtoroomtypeColExists() ) alterExtrasLimitedtoroomtypeCol();
 	if ( !checkPageviewsTableExists() ) createPageviewsTable();
+	if ( !checkContractsReferrerColExists() ) alterContractsReferrerCol();
 	
 	updateSiteSettings ( "update_time" , time() );
 	}
 
+function alterContractsReferrerCol()
+	{
+	output_message ( "Editing __jomres_contracts table adding referrer column");
+	$query = "ALTER TABLE `#__jomres_contracts` ADD `referrer` varchar( 255 ) DEFAULT 'Jomres' AFTER `last_changed` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_contracts referrer", "danger" );
+		}
+	}
 
+function checkContractsReferrerColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_contracts LIKE 'referrer'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
+	
+	
 function createPageviewsTable()
 	{
 	output_message ( "Creating pageviews table");
@@ -3553,6 +3576,7 @@ function createJomresTables()
 		`secret_key_used` TINYINT DEFAULT 0 NOT NULL,
 		`booking_language` CHAR( 5 ) DEFAULT 'en-GB' NOT NULL,
 		`last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		`referrer` varchar( 255 ) DEFAULT 'Jomres',
 		PRIMARY KEY(`contract_uid`)
 		) ";
 	if ( !doInsertSql( $query ) )
