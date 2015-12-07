@@ -63,7 +63,7 @@ class j03100send_email_admin_newbooking
 								$mode = 1,
 								$booking_email_details->parsed_email['attachments']) 
 				) 
-				error_logging( 'Failure in sending new booking email to admin. Target address: ' . $adminemail . ' Subject' . $booking_email_details->parsed_email['subject'].$booking_email_details->parsed_email['text'] );
+				error_logging( 'Failure in sending new booking email to admin. Target address: ' . $site_paypal_settings['paypalemail'] . ' Subject' . $booking_email_details->parsed_email['subject'].$booking_email_details->parsed_email['text'] );
 			}
 		else
 			echo $booking_email_details->parsed_email['text'];
