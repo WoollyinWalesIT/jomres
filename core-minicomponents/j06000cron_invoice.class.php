@@ -24,6 +24,12 @@ class j06000cron_invoice
 			return;
 			}
 		
+		$jomresConfig_secret = get_showtime( 'secret' );
+		$secret = base64_decode(jomresGetParam( $_REQUEST, "secret", "" ));
+		
+		if ($secret != $jomresConfig_secret)
+			return;
+		
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig = $siteConfig->get();
 
