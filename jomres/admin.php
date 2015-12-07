@@ -134,9 +134,6 @@ try
 	if ( !AJAXCALL )
 		{
 		init_javascript();
-		
-		// And a couple js and css files that are only used in the admin area
-		jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', 'graphs.js' );
 
 		// Dates back to Jomres v4. Could be removed, but we'll leave it in for those users upgrading from v4, as v4 spanned two years
 		if ( is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'plugins' ) )

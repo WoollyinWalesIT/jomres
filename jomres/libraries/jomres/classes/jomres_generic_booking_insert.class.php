@@ -29,12 +29,9 @@ class jomres_generic_booking_insert
 		try
 			{
 			$this->validate();
-			system_log("jomres_generic_booking_insert Booking ".$this->booking_details['booking_number']." validated as ok to insert ");
 			$this->apply_booking_details();
 			$this->apply_guest_details();
-			system_log("jomres_generic_booking_insert Inserting booking ");
 			$insertSuccessful = insertInternetBooking( $jomressession, $this->booking_details['depositpaidsuccessfully'], false , "", false );
-			system_log("jomres_generic_booking_insert Inserted booking ");
 			return $insertSuccessful;
 			}
 		catch(Exception $e)
@@ -45,8 +42,6 @@ class jomres_generic_booking_insert
 	
 	private function validate()
 		{
-		system_log("jomres_generic_booking_insert Validating data");
-		
 		if ( $this->guest_details['firstname'] == '' )
 			{
 			throw new Exception(" Error firstname is not valid");
@@ -104,16 +99,13 @@ class jomres_generic_booking_insert
 			throw new Exception(" Error booking_number is not set");
 			}
 		
-		system_log("jomres_generic_booking_insert Booking data validated");
-			
-		$query  = "SELECT contract_uid FROM #__jomres_contracts WHERE tag LIKE '" . $this->booking_details['booking_number'] . "' AND `cancelled` = 0 LIMIT 1";
+		$query  = "SELECT contract_uid FROM #__jomres_contracts WHERE tag LIKE '" . $this->booking_details['booking_number'] . "' LIMIT 1";
 		$bklist = doSelectSql( $query );
 		if ( count($bklist) > 0)
 			{
-			system_log("jomres_generic_booking_insert Booking ".$this->booking_details['booking_number']." already exists. ");
 			throw new Exception(" Error booking_number ".$this->booking_details['booking_number']." already exists in the database.");
 			}
-		
+
 		$this->booking_details['ok_to_book'] == true;
 		return true;
 		}
@@ -155,7 +147,7 @@ class jomres_generic_booking_insert
 			"departureDate"				=> "",					// "2013/12/16" ***** Required *****
 			"booked_in"					=> 0,					// (int) 1 if guest is set as booked in
 			"sendGuestEmail"			=> true,				// (bool) true if should send a booking email to guest
-			"sendHotelEmail"			=> true,					// (book) true if should send a booking email to hotel
+			"sendHotelEmail"			=> true					// (book) true if should send a booking email to hotel
 			"referrer"					=> ""					// "AN Other channel"
 			);
 		
