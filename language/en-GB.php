@@ -2504,15 +2504,6 @@ jr_define( 'PROPERTY_DETAILS_PAGE_OPTIONS', 'Property Details page settings' );
 
 jr_define( '_JOMRES_HLIST_PROPERTIES_WARNING', 'Property management in Jomres is made only from the site frontend cpanel. On this page you`ll be able to list all properties in the system, so you can assign commission rates and approve/unapprove them (if these features are enabled). To create a new property, edit existing ones, manage bookings or any other property/bookings related tasks, you`ll have to login to the site frontend and go to the Jomres default page. There you`ll see the Jomres frontend cpanel.' );
 
-jr_define( 'PROPERTY_STATS_SALES', 'Sales' );
-jr_define( 'PROPERTY_STATS_SALES_DESC', 'This is when bookings were taken' );
-
-jr_define( 'PROPERTY_STATS_BOOKINGS_DAYS', 'Bookings (days)' );
-jr_define( 'PROPERTY_STATS_BOOKINGS_DAYS_DESC', 'Booking dates start and number of days.' );
-
-jr_define( 'PROPERTY_STATS_ROOM_BOOKINGS_DAYS', 'Bookings (rooms x days)' );
-jr_define( 'PROPERTY_STATS_ROOM_BOOKINGS_DAYS_DESC', 'Number of rooms booked out in a certain month.' );
-
 jr_define( '_MEDIA_CENTRE_RESOURCE_FEATURES_ICONS', 'Room feature icons' );
 
 jr_define( '_JOMRES_PROPERTYFEATURES_HCATEGORIES', 'Business Features Categories' );
@@ -2654,3 +2645,7 @@ jr_define( '_JOMRES_TRACKING_ENABLE_DESC', 'Set this option to Yes to send anony
 jr_define( '_JOMRES_PARTNERS_PLEASE_COMPLETE', 'Please ensure that your details have been completed on the Edit My Account page before attempting to make bookings on behalf of your clients.' );
 jr_define( '_JOMRES_PARTNERS_GUEST_ADDRESS', "Guest's contact details" );
 jr_define( '_JOMRES_CLEAR_GUEST_DETAILS', " -- Clear guest details --" );
+
+jr_define( '_JOMRES_CHARTS', 'Charts' );
+jr_define( '_JOMRES_CHARTS_SELECT', 'Select chart...' );
+jr_define( '_JOMRES_CHART_BOOKINGS_DESC', 'Income by year/month' );

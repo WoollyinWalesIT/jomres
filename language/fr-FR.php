@@ -2681,3 +2681,7 @@ jr_define( '_JOMRES_BOOKING_ENQUIRY_AMEND', 'Amend booking request' );
 
 jr_define( '_JOMRES_INVOICE_MARKASPENDING', 'Mark invoice as pending' );
 jr_define( '_JOMRES_INVOICE_MARKEDASPENDING', 'Invoice marked as pending' );
+
+jr_define( '_JOMRES_CHARTS', 'Charts' );
+jr_define( '_JOMRES_CHARTS_SELECT', 'Select chart...' );
+jr_define( '_JOMRES_CHART_BOOKINGS_DESC', 'Income by year/month' );

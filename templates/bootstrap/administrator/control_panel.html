@@ -1,98 +1,38 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
-	<div class="row-fluid">
-		<div class="span12">
-			{CHARTS}
-		</div>
+<div class="row-fluid">
+	<div class="span4">
+		{BOOKINGS_CHART}
+		{JOMRES_OVERVIEW}
 	</div>
-	
-	<div class="row-fluid">
-		<div class="span12">
-			{PROPERTIES_TABLE}
-		</div>
+	<div class="span4">
+		{COMMISSIONS_CHART}
+		{JOMRES_NEWS}
 	</div>
-
-
-	
-	<div class="row-fluid">
-		<div class="span12">
-			<p><strong>{_JOMRES_VERSIONCHECK_THISJOMRESVERSION} {THIS_JOMRES_VERSION}</strong><br/>
-			<strong>{_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION} {LATEST_JOMRES_VERSION}</strong></p>
-			<div id="version_check_warning">
-				<div class="{HIGHLIGHT}">{ALERT}{EFFECT}</div>
-			</div>
-		</div>
+	<div class="span4">
+		{SUBSCRIPTIONS_CHART}
+		{JOMRES_SYSTEM_INFO}
+		{JOMRES_WRITABILITY_CHECK}
 	</div>
-	
-	<div class="row-fluid">
-		<div class="span6">
-			<div class="">
-				<div class="module-title">
-					<h4>News</h4>
-				</div>
-				<div class="">
-					<patTemplate:tmpl name="news_rows" unusedvars="strip">
-						<div class="{PANEL} panel">
-							 <div class="panel-heading">
-								<p>{DATE} : {TITLE}</p>
-							</div>
-							<div class="panel-body">
-								<p>{NEWS}</p>
-								<a href="{URL}" target="_blank">{URL_TEXT}</a>
-							</div>
-						</div>
-					</patTemplate:tmpl>
-				</div>
+</div>
+
+<div class="row-fluid">
+	<div class="span12">
+		{PROPERTIES_TABLE}
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="row-fluid">
+			<div class="span6">
+				<img src="{LIVESITE}/{JOMRES_ROOT_DIRECTORY}/images/jrhouse.png" width="24" height="24" align="top" border="0"/> <strong>Copyright:</strong> &copy; 2005 - 2015 Vince Wooll
 			</div>
-		</div>
-		<div class="span6">
-			<patTemplate:tmpl name="beez_warning" type="simpleCondition" requiredVars="_jomres_beez_warning">
-				<div class="alert alert-error">{_JOMRES_BEEZ_WARNING}</div>
-			</patTemplate:tmpl>
-			<div class="well well-small">
-				<div class="module-title">
-					<h6>System status</h6>
-				</div>
-				<div class="row-striped">
-					<div {ADVANCED_SITE_CONFIG_WARNING_HIGHLIGHT} >{ADVANCED_SITE_CONFIG_WARNING}</div>
-					<div>{PLUGIN_CHECK}</div>
-					<div>{MAX_INPUT_VARS_CHECK}</div>
-					<div class="{ACCESS_CONTROL_HIGHLIGHT}">{ACCESS_CONTROL_ALERT}</div>
-
-
-					<div id="cache_check_warning">
-						<div class="{CACHE_HIGHLIGHT}">{CACHE_WARNING}</div>
-					</div>
-					<p>{_JOMRES_PRODUCT_INFORMATION}<br/>{_JOMRES_PRODUCT_INFORMATION2}</p>
-
-					<p><strong>If you use Jomres, please post a rating and a review at the <a
-							href="{REVIEW_SITE_URL}"
-							target="_blank">{REVIEW_SITE_TEXT}</a>.</strong></p>
-				</div>
-			</div>
-			<div class="well well-small">
-				<div class="module-title">
-					<h6>Writability check</h6>
-				</div>
-				<div class="row-striped">
-					<p>If any of the above folders is not writable you may experience problems with running Jomres. It
-						is recommended that you resolve any problems before attempting to use Jomres further. Whilst it
-						is preferable that Jomres can write to the /jomres folders it is not vital (but it's better if
-						it can because you can then use the updates feature) but folders such as the sessions and temp
-						folders <i> have </i> to be writable for the system to work.</p>
-					{WRITABILITY_TESTS}
-				</div>
+			<div class="span6" align="right">
+				Thanks to Aladar Barthi (Piranha) for your continuing help in providing support to Jomres users.
 			</div>
 		</div>
 	</div>
-	<div class="row-fluid">
-		<div class="well well-small">
-			<div class="span6"><img src="{LIVESITE}/{JOMRES_ROOT_DIRECTORY}/images/User_Ninja.png" width="24" height="24" align="middle"
-									border="0"/><strong>Copyright:</strong> &copy; 2005 - 2015 Vince Wooll
-			</div>
-			<div class="span6" align="right">Thanks to Aladar Barthi (Piranha) for your continuing help in providing
-				support to Jomres users.
-			</div>
-		</div>
-	</div>
+</div>
+
 </patTemplate:tmpl>

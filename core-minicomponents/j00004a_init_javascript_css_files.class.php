@@ -113,15 +113,15 @@ class j00004a_init_javascript_css_files
 		
 		if ( jomres_cmsspecific_areweinadminarea() && (this_cms_is_wordpress() || _JOMRES_DETECTED_CMS == "joomla25") )
 			{
-			jomres_cmsspecific_addheaddata( "css", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/css/', 'jomres_bootstrap_wrapper.css' );
-			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-modal.js' );
-			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-tooltip.js' );
-			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-popover.js' );
-			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-collapse.js' );
-			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-dropdown.js' );
-			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-tab.js' );
-			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-transition.js' );
-			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'jomres_bootstrap_wrapper.js' );
+			$css_files[] = array( JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/css/', 'jomres_bootstrap_wrapper.css' );
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-modal.js' );
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-tooltip.js' );
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-popover.js' );
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-collapse.js' );
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-dropdown.js' );
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-tab.js' );
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-transition.js' );
+			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'jomres_bootstrap_wrapper.js' );
 			}
 		
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jomres.js");
@@ -142,7 +142,7 @@ class j00004a_init_javascript_css_files
 			$jrConfig[ 'load_font_awesome' ] = "0";
 		
 		if ( $jrConfig[ 'load_font_awesome' ] == "1" || jomres_cmsspecific_areweinadminarea() )
-			$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/css/", "font-awesome.min.css");
+			$css_files[]= array( JOMRES_ROOT_DIRECTORY."/css/", "font-awesome.min.css");
 
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.chainedSelects.js");
 		

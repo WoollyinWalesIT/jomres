@@ -26,10 +26,19 @@ class j16000listproperties
 			return;
 			}
 		
-		
 		$published=(int)jomresGetParam( $_POST, 'published', '2');
 		$approved = (int)jomresGetParam( $_POST, 'approved', '2');
 		$ptype_id=(int)jomresGetParam( $_POST, 'ptype', '0');
+		
+		if (isset($componentArgs[ 'output_now' ]))
+			$output_now = $componentArgs[ 'output_now' ];
+		else
+			$output_now = true;
+
+		//we`ll show the table in a panel on admin cpanel frontpage
+		$show_as_panel = false;
+		if (isset($componentArgs['show_as_panel']))
+			$show_as_panel = (bool)$componentArgs['show_as_panel'];
 
 		$output=array();
 		$rows=array();
@@ -93,11 +102,15 @@ class j16000listproperties
 		$subsoutput[ ] = $subs;
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-		$tmpl->readTemplatesFromInput( 'admin_listproperties.html' );
+		if (!$show_as_panel)
+			$tmpl->readTemplatesFromInput( 'admin_listproperties.html' );
+		else
+			$tmpl->readTemplatesFromInput( 'admin_listproperties_panel.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'rows', $rows );
-		if ( isset($componentArgs['return_data']))
-			$this->retVals=$tmpl->getParsedTemplate();
+		
+		if (!$output_now)
+			$this->retVals = $tmpl->getParsedTemplate();
 		else
 			$tmpl->displayParsedTemplate();
 		}

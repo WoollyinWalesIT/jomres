@@ -1179,6 +1179,39 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_javascript . JRDS . 'slideshow_themes'. JRDS . 'classic' . JRDS . 'galleria-1.2.5.min.js' );
 		$this->add_obs_file( $this->dir_javascript . JRDS . 'slideshow_themes'. JRDS . 'classic' . JRDS . 'galleria-1.2.7.min.js' );
 		$this->add_obs_file( $this->dir_javascript . JRDS . 'slideshow_themes'. JRDS . 'classic' . JRDS . 'galleria-1.2.9.min.js' );
+		
+		$this->add_obs_file( $this->dir_javascript . JRDS . 'graphs.js' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'show_stats.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'admin_chart.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'admin_charts.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'chart.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'charts.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'chart.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'charts.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'chart.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'charts.html' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000showstats.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000getstats.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16010stats_properties_clicks.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16010stats_properties_currentbookings.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16010stats_properties_currentbookings_values.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16020stats_properties_clicks.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16020stats_properties_currentbookings.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16020stats_properties_currentbookings_values.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000show_charts.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000show_chart.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06001show_chart.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06001show_charts.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j13600sales.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j13600bookings_days.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j13600bookings_rooms.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j03600bookings_days.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j03600bookings_rooms.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j03600sales.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_07_stats.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j10002stats.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j07020list_properties_awaiting_approval.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j10002manage_properties.class.php' );
 		}
 
 	function add_obs_file( $path_and_file )
