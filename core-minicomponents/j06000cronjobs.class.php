@@ -35,6 +35,6 @@ class j06000cronjobs
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return array ( 'filepath' => $this->filepath, 'gatewayname' => $this->gatewayname );
+		return null;
 		}
 	}
