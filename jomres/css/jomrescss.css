@@ -855,3 +855,70 @@ div.star-rating {
 	border-bottom-color: transparent;
 }
 /* END Tipsy CSS */
+
+.jomres-calendar-day-num{
+	margin: 1px;
+	line-height: 22px;
+	text-align: center;
+	background-color: #FFFFFF;
+}
+
+.jomres-calendar-available{
+	background-color:#FFFFFF;
+	}
+	
+.jomres-calendar-booking-start {
+	background: -moz-linear-gradient(-45deg,  #FFFFFF 0%, #FFFFFF 50%, #FF433F 50%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#FFFFFF), color-stop(50%,#FFFFFF), color-stop(50%,#FF433F)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(-45deg,  #FFFFFF 0%,#FFFFFF 50%,#FF433F 50%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg,  #FFFFFF 0%,#FFFFFF 50%,#FF433F 50%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(-45deg,  #FFFFFF 0%,#FFFFFF 50%,#FF433F 50%); /* IE10+ */
+	background: linear-gradient(135deg,  #FFFFFF 0%,#FFFFFF 50%,#FF433F 50%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#FF433F',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.jomres-calendar-booking-occupied {
+	background-color: #FF433F;
+}
+
+.jomres-calendar-booking-end {
+	background: -moz-linear-gradient(-45deg,  #FF433F 50%, #FFFFFF 50%, #FFFFFF 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(50%,#FF433F), color-stop(50%,#FFFFFF), color-stop(100%,#FFFFFF)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(-45deg,  #FF433F 50%,#FFFFFF 50%,#FFFFFF 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg,  #FF433F 50%,#FFFFFF 50%,#FFFFFF 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(-45deg,  #FF433F 50%,#FFFFFF 50%,#FFFFFF 100%); /* IE10+ */
+	background: linear-gradient(135deg,  #FF433F 50%,#FFFFFF 50%,#FFFFFF 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FF433F', endColorstr='#FFFFFF',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
+
+}
+
+
+.jomres-calendar-booking-crossover{
+	background: #FF433F;
+	background: -moz-linear-gradient(-45deg, #FF433F 0%, #FF433F 46%, #FFFFFF 47%, #FFFFFF 50%, #FFFFFF 54%, #FF433F 55%, #FF433F 100%);
+	background: -webkit-gradient(left top, right bottom, color-stop(0%, #FF433F), color-stop(46%, #FF433F), color-stop(47%, #FFFFFF), color-stop(50%, #FFFFFF), color-stop(54%, #FFFFFF), color-stop(55%, #FF433F), color-stop(100%, #FF433F));
+	background: -webkit-linear-gradient(-45deg, #FF433F 0%, #FF433F 46%, #FFFFFF 47%, #FFFFFF 50%, #FFFFFF 54%, #FF433F 55%, #FF433F 100%);
+	background: -o-linear-gradient(-45deg, #FF433F 0%, #FF433F 46%, #FFFFFF 47%, #FFFFFF 50%, #FFFFFF 54%, #FF433F 55%, #FF433F 100%);
+	background: -ms-linear-gradient(-45deg, #FF433F 0%, #FF433F 46%, #FFFFFF 47%, #FFFFFF 50%, #FFFFFF 54%, #FF433F 55%, #FF433F 100%);
+	background: linear-gradient(135deg, #FF433F 0%, #FF433F 46%, #FFFFFF 47%, #FFFFFF 50%, #FFFFFF 54%, #FF433F 55%, #FF433F 100%);
+}
+
+
+.calendar-month-container {
+	width:90%; text-align:center;
+	float: left;
+	padding: 5px;
+	margin: 0 5px 10px 5px;
+	border: 1px solid #cccccc;
+	min-height: 200px;
+}
+
+.calendar-month-name {
+	text-align: center;
+	width: 100%;
+	margin-bottom: 10px;
+	color:#000;
+}
+
+.calendar{ width:100%;}
+
