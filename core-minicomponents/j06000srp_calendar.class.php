@@ -25,8 +25,6 @@ class j06000srp_calendar
 		$jrConfig		 = $siteConfig->get();
 		$this->retVals	= "";
 
-		jomres_cmsspecific_addheaddata( "css",JOMRES_ROOT_DIRECTORY."/css/" , "calendar.css" );
-
 		$property_uid = (int) jomresGetParam( $_REQUEST, 'property_uid', '' );
 		$mrConfig	 = getPropertySpecificSettings( $property_uid );
 		$query		= "SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = " . $property_uid . " LIMIT 1 ";
