@@ -30,10 +30,14 @@ class j06000mrp_calendar
 			{
 			$property_uid = (int)$componentArgs ['property_uid'];
 			}
+			
+		if (!user_can_view_this_property($property_uid))
+			return;
+		
 		$output_now = (bool) jomresGetParam( $_REQUEST, 'op', true );
 		if (isset($componentArgs ['output_now']))
 			{
-			$output_now = (bool)$componentArgs ['output_now'];
+				$output_now = (bool)$componentArgs ['output_now'];
 			}
 		
 		$months_to_show = (int) jomresGetParam( $_REQUEST, 'months_to_show', 24 );

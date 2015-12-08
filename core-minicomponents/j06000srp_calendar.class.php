@@ -30,6 +30,10 @@ class j06000srp_calendar
 			{
 			$property_uid = (int)$componentArgs ['property_uid'];
 			}
+			
+		if (!user_can_view_this_property($property_uid))
+			return;
+		
 		$output_now = (bool) jomresGetParam( $_REQUEST, 'op', true );
 		if (isset($componentArgs ['output_now']))
 			{

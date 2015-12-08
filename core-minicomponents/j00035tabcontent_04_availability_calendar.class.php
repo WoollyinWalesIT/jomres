@@ -23,7 +23,6 @@ class j00035tabcontent_04_availability_calendar
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
 
-		// j00018 MRP avl cal
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
 			if ($mrConfig[ 'showOnlyAvailabilityCalendar' ] == "1")
