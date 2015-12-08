@@ -264,7 +264,7 @@ class jomres_cron
 					curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, 'XGET' );
 					curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true);
 					curl_setopt( $ch, CURLOPT_PORT, 80 );
-					curl_setopt( $ch, CURLOPT_TIMEOUT, 1 );
+					curl_setopt( $ch, CURLOPT_TIMEOUT, 480 );
 					curl_setopt( $ch, CURLOPT_HTTPHEADER, array ( 'Content-Type: text/html; charset=utf-8' ) );
 					$curl_output = curl_exec( $ch );
 					curl_close( $ch );
