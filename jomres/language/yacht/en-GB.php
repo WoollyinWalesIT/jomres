@@ -2715,14 +2715,22 @@ jr_define( "_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS_DESC", "If this option is 
 jr_define( "_JOMRES_EDITPROPERTY_APPROVAL_WARNING", "Changes made to listing details require site admin verification. If you save new details, your listing will be unpublished and pending site admin approval before being visible again to site visitors. You won`t be able to receive online bookings while your listing is unpublished and pending approval.");
 
 
+
 jr_define( '_JOMRES_BOOKING_ENQUIRY_REVIEW', 'Review booking request' );
 jr_define( '_JOMRES_BOOKING_ENQUIRY_CONFIRM', 'Confirm booking request' );
 jr_define( '_JOMRES_BOOKING_ENQUIRY_AMEND', 'Amend booking request' );
 
-
 jr_define( '_JOMRES_INVOICE_MARKASPENDING', 'Mark invoice as pending' );
 jr_define( '_JOMRES_INVOICE_MARKEDASPENDING', 'Invoice marked as pending' );
+
+jr_define( '_JOMRES_TRACKING_ENABLE', 'Send anonymous tracking data?' );
+jr_define( '_JOMRES_TRACKING_ENABLE_DESC', 'Set this option to Yes to send anonymous tracking data to Jomres.net to help us understand better how you use the system.' );
+
+jr_define( '_JOMRES_PARTNERS_PLEASE_COMPLETE', 'Please ensure that your details have been completed on the Edit My Account page before attempting to make bookings on behalf of your clients.' );
+jr_define( '_JOMRES_PARTNERS_GUEST_ADDRESS', "Guest's contact details" );
+jr_define( '_JOMRES_CLEAR_GUEST_DETAILS', " -- New Guest -- " );
 
 jr_define( '_JOMRES_CHARTS', 'Charts' );
 jr_define( '_JOMRES_CHARTS_SELECT', 'Select chart...' );
 jr_define( '_JOMRES_CHART_BOOKINGS_DESC', 'Income by year/month' );
+
