@@ -98,6 +98,14 @@ try
 
 	//input filtering
 	$MiniComponents->triggerEvent( '00003' );
+	
+	//cron jobs
+	$cron = jomres_singleton_abstract::getInstance( 'jomres_cron' );
+	if ( $cron->method == "Minicomponent" && !AJAXCALL)
+		{
+		$cron->triggerJobs();
+		$cron->displayDebug();
+		}
 
 	//session
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
