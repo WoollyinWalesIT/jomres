@@ -39,14 +39,15 @@ class j06001dashboard_resources_ajax {
 		$rooms=array();
 		$result=array();
 		
-		$query = "SELECT room_uid, room_classes_uid, room_name, room_number FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $property_uid . "' ORDER BY room_classes_uid, room_number, room_name";
+		$query = "SELECT room_uid, room_classes_uid, room_name, room_number FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $property_uid . "' ORDER BY room_number, room_name , room_classes_uid ";
 		$roomsList = doSelectSql( $query );
 		foreach ( $roomsList as $r )
 			{
 			$name = '<span class="small">';
-			$name .= $current_property_details->all_room_types[ $r->room_classes_uid ][ 'room_class_abbv' ];
 			if ( $mrConfig[ 'singleRoomProperty' ] == 0 )
-				 $name .= ' ' . $r->room_number;
+				 $name .= $r->room_number;
+			$name .= ' ' .$current_property_details->all_room_types[ $r->room_classes_uid ][ 'room_class_abbv' ];
+
 			$name .= '</span>';
 			
 			$rooms[] = array ( 'id' => $r->room_uid, 'name' => $name );
