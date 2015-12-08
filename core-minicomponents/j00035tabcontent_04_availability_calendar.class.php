@@ -18,18 +18,11 @@ class j00035tabcontent_04_availability_calendar
 	function __construct( $componentArgs )
 		{
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch )
-			{
-			$this->template_touchable = false;
-
-			return;
-			}
+		if ( $MiniComponents->template_touch ){$this->template_touchable = false;return;}
+		
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
-		
-		return; //tab not used. remove this if you want to use this tab again
 
-		// j00017 SRP avl cal
 		// j00018 MRP avl cal
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
@@ -38,24 +31,21 @@ class j00035tabcontent_04_availability_calendar
 
 			$tab_title = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY, false);
 			
-			if ( $mrConfig[ 'showAvailabilityCalendar' ] == 1 )
+			if ( $mrConfig[ 'singleRoomProperty' ] == 1 )
 				{
-				if ( $mrConfig[ 'singleRoomProperty' ] == 1 )
-					{
-					$MiniComponents->specificEvent( '00017', 'SRPavailabilitycalendar', $componentArgs );
-					
-					$anchor        = jomres_generate_tab_anchor( $tab_title );
-					$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $tab_title, "TAB_CONTENT" => $MiniComponents->miniComponentData[ '00017' ][ 'SRPavailabilitycalendar' ]  , "TAB_ID" => 'tour_target_availability_calendar_srp');
-					$this->retVals = $tab;
-					}
-				else
-					{
-					$MiniComponents->specificEvent( '00018', 'MRPavailabilitycalendar', $componentArgs );
-					
-					$anchor        = jomres_generate_tab_anchor( $tab_title );
-					$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $tab_title, "TAB_CONTENT" => $MiniComponents->miniComponentData[ '00018' ][ 'MRPavailabilitycalendar' ] , "TAB_ID" => 'tour_target_availability_calendar_mrp' );
-					$this->retVals = $tab;
-					}
+				$MiniComponents->specificEvent( '06000', 'srp_calendar', array('output_now'=>false, 'property_uid'=>$property_uid , 'months_to_show' => 24 , 'show_just_month' => false) );
+
+				$anchor        = jomres_generate_tab_anchor( $tab_title );
+				$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $tab_title, "TAB_CONTENT" => $MiniComponents->miniComponentData[ '06000' ][ 'srp_calendar' ]  , "TAB_ID" => 'tour_target_availability_calendar_srp');
+				$this->retVals = $tab;
+				}
+			else
+				{
+				$MiniComponents->specificEvent( '06000', 'mrp_calendar', array('output_now'=>false, 'property_uid'=>$property_uid , 'months_to_show' => 24 , 'show_just_month' => false) );
+				
+				$anchor        = jomres_generate_tab_anchor( $tab_title );
+				$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $tab_title, "TAB_CONTENT" => $MiniComponents->miniComponentData[ '06000' ][ 'mrp_calendar' ] , "TAB_ID" => 'tour_target_availability_calendar_mrp' );
+				$this->retVals = $tab;
 				}
 			}
 		}
