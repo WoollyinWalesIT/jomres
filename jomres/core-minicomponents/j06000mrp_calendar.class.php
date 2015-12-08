@@ -13,7 +13,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j06000srp_calendar
+class j06000mrp_calendar
 	{
 	function __construct( $componentArgs = null )
 		{
@@ -58,47 +58,36 @@ class j06000srp_calendar
 			{
 			$show_just_month = (bool)$componentArgs ['show_just_month'];
 			}
-
-		$room_uid = (int) jomresGetParam( $_REQUEST, 'room_uid', 0 );
-		if (isset($componentArgs ['room_uid']))
-			{
-			$room_uid = (int)$componentArgs ['room_uid'];
-			}
-
-		if ($room_uid == 0)
-			{
-			$query		= "SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = " . $property_uid . " LIMIT 1 ";
-			$room_uid	  = (int)doSelectSql( $query, 1 );
-			}
 		
-		if ( $room_uid == 0)
+		$mrConfig	 = getPropertySpecificSettings( $property_uid );
+		$query		= "SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = " . $property_uid . " ";
+		$roomUids	  = doSelectSql( $query );
+
+		if ( count($roomUids) ==0)
 			{
 			// Nothing we can do here to legitimately show availability, we'll return out as it's pointless to continue
 			return;
 			}
-
-		$mrConfig	 = getPropertySpecificSettings( $property_uid );
+			
+		$room_uids=array();
+		foreach ($roomUids as $r)
+			{
+			$room_uids[]=$r->room_uid;
+			}
+		
+		$this->number_of_rooms_in_property = count( $room_uids );
+		
 		$contracts = array();
 		$booked_dates = array();
 		
-		$query	= "SELECT `date`,`contract_uid` FROM #__jomres_room_bookings WHERE room_uid = '" . (int) $room_uid . "' ";
+		$query	= "SELECT `date`,`contract_uid` FROM #__jomres_room_bookings WHERE room_uid IN ('" . implode('\',\'',$room_uids) ."')";
 		$room_bookings = doSelectSql( $query );
 		foreach ( $room_bookings as $b)
 			{
-			$this->booked_dates[]=$b->date;
-			$contracts[]=$b->contract_uid;
-			}
-
-		if ( count($contracts) > 0)
-			{
-			$query		= "SELECT `arrival`,`departure` FROM #__jomres_contracts WHERE `contract_uid` IN ('" . implode('\',\'',$contracts) ."')";
-			$contractList = doSelectSql( $query );
-
-			foreach ( $contractList as $contract )
-				{
-				$this->booking_start_dates[] = $contract->arrival;
-				$this->booking_end_dates[] = $contract->departure;
-				}
+			if (!isset($this->booked_dates[$b->date]))
+				$this->booked_dates[$b->date] = 1;
+			else
+				$this->booked_dates[$b->date]++;
 			}
 
 		$counter		 = 1;
@@ -107,8 +96,11 @@ class j06000srp_calendar
 			{
 			$this->retVals = '
 				<div class="row">
-					<div class="col-md-3 jomres-calendar-day-num jomres-calendar-available"> ' . jr_gettext( '_JOMRES_COM_AVLCAL_INMONTHFACE_KEY', _JOMRES_COM_AVLCAL_INMONTHFACE_KEY ) . '</div>
-					<div class="col-md-3 jomres-calendar-day-num jomres-calendar-booking-occupied">' . jr_gettext( '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', _JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY ) . '</div>
+					<div class="col-md-2 jomres-calendar-day-num jomres-calendar-available"> ' . jr_gettext( '_JOMRES_COM_AVLCAL_INMONTHFACE_KEY', _JOMRES_COM_AVLCAL_INMONTHFACE_KEY ) . '</div>
+					<div class="col-md-2 jomres-calendar-day-num jomres-calendar-booking-occupied-quarter ">' . jr_gettext( '_JOMRES_AVLCAL_QUARTER', _JOMRES_AVLCAL_QUARTER ) . '</div>
+					<div class="col-md-2 jomres-calendar-day-num jomres-calendar-booking-occupied-half ">' . jr_gettext( '_JOMRES_AVLCAL_HALF', _JOMRES_AVLCAL_HALF ) . '</div>
+					<div class="col-md-2 jomres-calendar-day-num jomres-calendar-booking-occupied-threequarter ">' . jr_gettext( '_JOMRES_AVLCAL_THREEQUARTER', _JOMRES_AVLCAL_THREEQUARTER ) . '</div>
+					<div class="col-md-2 jomres-calendar-day-num jomres-calendar-booking-occupied-completely ">' . jr_gettext( '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', _JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY ) . '</div>
 				</div>
 				<table width="100%">
 					<tr>';
@@ -146,6 +138,7 @@ class j06000srp_calendar
 
 	function makecal( $stmonth, $styear, $property_uid )
 		{
+		
 		$stdate     = mktime( 0, 0, 0, $stmonth, 1, $styear );
 		$startdate = mktime( 0, 0, 0, $stmonth, 1 - date( "w", mktime( 0, 0, 0, $stmonth, 1, $styear ) ), $styear );
 		$enddate        = mktime( 0, 0, 0, date( "m", $stdate ) + 1, 7 - date( "w", mktime( 0, 0, 0, $stmonth + 1, 0, $styear ) ), $styear );
@@ -170,34 +163,31 @@ class j06000srp_calendar
 
 		$i             = 0;
 		$currdate      = mktime( 0, 0, 0, date( "m", $startdate ), date( "d", $startdate ), date( "Y", $startdate ) );
-
+		
 		while ( $currdate < $enddate )
 			{
 			$this->retVals .= "<tr>";
 			for ( $c = 0; $c < 7; $c++ )
 				{
-				
 				$class = "normal-day";
 				$link = JOMRES_SITEPAGE_URL . '&task=dobooking&amp;selectedProperty=' . $property_uid . '&arrivalDate=' .JSCalmakeInputDates(date("Y/m/d",$currdate));
 				$fmt = date( "Y", $currdate )."/". date( "m", $currdate )."/". date( "d", $currdate );
-				if ( in_array ( $fmt , $this->booked_dates) )
+				
+				if (!isset($this->booked_dates[$fmt]))
+					$this->booked_dates[$fmt] = 0;
+				
+				$percentage_booked = ceil(($this->booked_dates[$fmt] /$this->number_of_rooms_in_property ) * 100 );
+
+				if ( $percentage_booked > 0 && $percentage_booked <= 25 )
+					$class = "jomres-calendar-booking-occupied-quarter";
+				if ( $percentage_booked > 26 && $percentage_booked <= 50 )
+					$class = "jomres-calendar-booking-occupied-half";
+				if ( $percentage_booked > 51 && $percentage_booked < 100 )
+					$class = "jomres-calendar-booking-occupied-threequarter";
+				if ( $percentage_booked == 100 )
 					{
 					$link = '';
-					$class = "jomres-calendar-booking-occupied-completely";
-					}
-				if ( in_array ( $fmt , $this->booking_start_dates) )
-					{
-					$link = '';
-					$class = "jomres-calendar-booking-start";
-					}
-				if ( in_array ( $fmt , $this->booking_end_dates) )
-					{
-					$class = "jomres-calendar-booking-end";
-					}
-				if ( in_array ( $fmt , $this->booking_start_dates) &&  in_array ( $fmt , $this->booking_end_dates) )
-					{
-					$link = '';
-					$class = "jomres-calendar-booking-crossover";
+					$class = "jomres-calendar-booking-occupied-completely ";
 					}
 
 				$this->retVals .= "<td>";

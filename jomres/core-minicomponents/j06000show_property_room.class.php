@@ -102,7 +102,7 @@ class j06000show_property_room
 			//availability calendar
 			if ( (int)$mrConfig[ 'showAvailabilityCalendar' ] == 1 )
 				{
-				showAvailability( $room_uid, "", $property_uid, 6, $room_avl_enquiry = true );
+				$MiniComponents->specificEvent( '06000', 'srp_calendar', array('output_now'=>true, 'property_uid'=>$property_uid , 'months_to_show' => 24 , 'show_just_month' => false , 'room_uid' => $room_uid ) );
 				}
 			}
 		}

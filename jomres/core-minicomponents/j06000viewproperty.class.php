@@ -44,7 +44,7 @@ class j06000viewproperty
 			{
 			$componentArgs[ 'property_uid' ] = $property_uid;
 			if ( $mrConfig['singleRoomProperty'] =="1" )
-				echo $MiniComponents->triggerEvent( '00017', $componentArgs ); 
+				echo $MiniComponents->specificEvent( '06000', 'srp_calendar',array('output_now'=>false, 'property_uid'=>$property_uid , 'months_to_show' => 24 ));
 			else
 				echo $MiniComponents->triggerEvent( '00018', $componentArgs ); 
 			return;
@@ -87,7 +87,7 @@ class j06000viewproperty
 		
 		//property agent
 		// Uncomment to add the agent pane to the property details page.
-		//$output['AGENT_DETAILS'] = $MiniComponents->specificEvent( '06000', 'view_agent' , array( "output_now" => false, "property_uid" => $property_uid ) );
+		$output['AGENT_DETAILS'] = $MiniComponents->specificEvent( '06000', 'view_agent' , array( "output_now" => false, "property_uid" => $property_uid ) );
 		
 		//property reviews summary
 		$output['REVIEWS_SUMMARY'] = $MiniComponents->specificEvent( '06000', 'show_property_reviews_summary',array('output_now'=>false, 'property_uid'=>$property_uid));
@@ -158,7 +158,6 @@ class j06000viewproperty
 				}
 			}
 
-		
 		//booking link
 		if ( $mrConfig[ 'visitorscanbookonline' ] == '1' && $jrConfig[ 'show_booking_form_in_property_details' ] != "1" && $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
@@ -302,7 +301,8 @@ class j06000viewproperty
 			$tmpl->addRows( 'tariffslink', $tariffslink );
 		
 		$tmpl->addRows( 'gallerylink', $gallerylink );
-		
+		$tmpl->addRows( 'srp_large_calendar', $srp_large_calendar );
+
 		if ( $mrConfig[ 'singleRoomProperty' ] == "0" && $mrConfig[ 'showroomslistlink' ] == 1) 
 			$tmpl->addRows( 'roomslistlink', $roomslistlink );
 		

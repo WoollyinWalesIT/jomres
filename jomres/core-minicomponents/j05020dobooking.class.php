@@ -34,13 +34,11 @@ class j05020dobooking
 			{
 			if ( $mrConfig[ 'singleRoomProperty' ] )
 				{
-				showSingleRoomPropAvl( $property_uid );
+				$MiniComponents->specificEvent( '06000', 'srp_calendar', array('output_now'=>true, 'property_uid'=>$property_uid , 'months_to_show' => 24 , 'show_just_month' => false) );
 				}
 			elseif ( $mrConfig[ 'showRoomsInPropertyDetails' ] )
 				{
-				$componentArgs = array ( 'all' => "all", 'property_uid' => $property_uid, "showlinks" => false );
-				$MiniComponents->triggerEvent( '00018', $componentArgs );
-				//showRoomDetails("all",$property_uid);
+				$MiniComponents->specificEvent( '06000', 'mrp_calendar', array('output_now'=>true, 'property_uid'=>$property_uid , 'months_to_show' => 24 , 'show_just_month' => false) );
 				}
 			}
 

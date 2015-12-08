@@ -877,7 +877,16 @@ div.star-rating {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#FF433F',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
-.jomres-calendar-booking-occupied {
+.jomres-calendar-booking-occupied-quarter{
+	background-color: #B1FB17;
+}
+.jomres-calendar-booking-occupied-half{
+	background-color: #FFFC17;
+}
+.jomres-calendar-booking-occupied-threequarter{
+	background-color: #F88017;
+}
+.jomres-calendar-booking-occupied-completely {
 	background-color: #FF433F;
 }
 
