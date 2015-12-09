@@ -116,11 +116,11 @@ class j06000view_agent
 					$output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH . 'userimages/userimage_' . $manager_id . '_thumbnail.jpg';
 				}
 			}
-		else
+/* 		else
 			{
 			echo "Sorry, no manager data is available for that property";
 			return;
-			}
+			} */
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
