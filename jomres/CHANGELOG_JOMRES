@@ -1,3 +1,37 @@
+<h3>Jomres 9.3.0 09/12/2015</h3>
+
+<span class="label label-success">Feature</span> Added a feature to allow extra services to have quantities ( mainly as a feature request from Marhinio ).
+<span class="label label-success">Feature</span> Added the foundation of new Partner related functionality. Allows a user who is defined as a partner to make bookings on behalf of third parties.
+<span class="label label-success">Feature</span> Added functionality that allows us to limit which optional extras to show based on room types of rooms already selected. 
+<span class="label label-success">Feature</span> Added new availability calendars, which are improved and tidied up versions of the older calendars. These babies are much easier to maintain than the older code. Existing MRP and SRP calendars will be left in-place as we're aware that site users have made significant use of the older calendars and simply removing them will potentially detrimentally affect these users on upgrade. Delivering both side-by-side for a period of time will give those users a chance to change their code to take advantage of the new, improved ones.
+
+<span class="label label-warning">Change</span> Added commented out property image code to module_popup script.
+<span class="label label-warning">Change</span> Hid the javascript caching setting until we can rework the feature.
+<span class="label label-warning">Change</span> Changed the item we're searching for when doing an upgrade, to see if we're upgrading or installing for the first time.
+<span class="label label-warning">Change</span> Added username to Profile Edit page.
+<span class="label label-warning">Change</span> Tweaked datatable javascript so that default ordering is descending ( i.e. new stuff at the top of tables by default )
+<span class="label label-warning">Change</span> Modified booking confirmation page to clarify what's a booking, and what's a booking request.
+<span class="label label-warning">Change</span> Added a tweak to SRP availability calendar for when room uid isn't sent in the component args variable.
+<span class="label label-warning">Change</span> Modified the  confirmation page to use the JOMRES_ROOT_DIRECTORY variable when building the path to gateway images.
+<span class="label label-warning">Change</span> Added functionality that allows us to anonymously track Jomres usage. Feature is disabled by default, and it's not currently enabled as we need to figure out how/if we're going to use it.
+<span class="label label-warning">Change</span> Modified several items so that they are shown by default, not when Advanced Site Config is enabled.
+<span class="label label-warning">Change</span> Modified the list invoices ajax task to not show the Pay Now button if the booking hasn't been approved yet.
+<span class="label label-warning">Change</span> Removed some superfluous periods from language files.
+<span class="label label-warning">Change</span> Added functionality to record page views for use by stats functionality that's under development ( not related to anon jomres usage tracking ).
+<span class="label label-warning">Change</span> Added ability for us to pass a referrer to the booking contract.
+<span class="label label-warning">Change</span> Added a missing check for the secret when running the invoice cron job.
+<span class="label label-warning">Change</span> Modified dashboard script to order rooms by room number first, then room name.
+<span class="label label-warning">Change</span> Added a new show_property_calendar script for the benefit of shortcode lovers, and updated existing scripts to ensure sufficient validation is done of the user to ensure only allowed users can see new scripts.
+<span class="label label-warning">Change</span> Increased timetout calls for cron jobs, and added places where cron functionality is called. This should allow cron stuff to happen more often.
+
+
+<span class="label label-important label-danger">Fix</span> Added fixes for javascript showing when editing mode enabled in calendar and backend property list.
+<span class="label label-important label-danger">Fix</span> Updated an error log message for send admin email newbooking to ensure that the email address is reported correctly.
+<span class="label label-important label-danger">Fix</span> Fixed the cron job class to return null, not some nonsense data.
+
+<span class="label label-info">Wordpress</span> Changed editinplace functionality to use a different input name to resolve issues found on some servers.
+<span class="label label-info">Wordpress</span> Re-added some older globals that are used in wp
+
 <h3>Jomres 9.2.2 11/11/2015</h3>
 
 <span class="label label-success">Feature</span> Added Joomla 3.5 related changes. 
