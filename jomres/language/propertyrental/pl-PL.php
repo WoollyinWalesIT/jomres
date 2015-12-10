@@ -7,7 +7,7 @@
 * @copyright	2005-2013 Vince Wooll
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
 * @Polska adaptacja Patryk Doering - http://www.rekinet.pl - kontakt@rekinet.pl
-* @Aktualizacja wersji językowej z 28-10-2015r.
+* @Aktualizacja wersji językowej z 10-12-2015r.
 **/
 
 ##################################################################
@@ -876,7 +876,7 @@ jr_define('_JOMRES_COM_ISTHISANMRP',"Czy to oferta typu hotel/pensjonat");
 jr_define('_JOMRES_COM_ISTHISANMRP_DESC',"Opcje konfiguracji różnią się w zależności czy są to wynajmowane pokoje w ofercie (np. hotel) lub cała oferta (np. domek letniskowy). Wybierz MRP jeśli oferujesz wynajem pokoii w ofercie, wybierz SRP, jeśli oferujesz do wynajęcia całą ofertę.");
 jr_define('_JOMRES_COM_JOMRESEMAILCHECK',"Użyj sprawdzania adresu e-mail?");
 jr_define('_JOMRES_COM_JOMRESEMAILCHECK_DESC',"Wymusza ściślejszą kontrolę wysyłki wiadomości e-mail. Niektóre bezpieczne serwery WWW zgłoszą błąd 500 (wewnętrzny błąd serwera) przy próbie wysłania wiadomości na nieistniejący adres e-mail. Ustawienie to pozwala na wykorzystanie funkcji checkdnsrr w php przed przystąpieniem do wysyłki wiadomości, zapobiegając wyświetlaniu błędu 500.");
-jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',"Pełne zakwaterowanie");
+jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',"Kwota noclegu");
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS',"Noc/y");
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM',"Za zasób");
 jr_define('_JOMRES_AJAXFORM_EXTRAS_TOTAL',"Opcje dodatkowe");
@@ -1291,8 +1291,8 @@ jr_define('_JOMRES_REALESTATE_TITLE','Prawdziwy wykaz ofert');
 jr_define('_JOMRES_REALESTATE_YESNO','Obsługa pojedyńczej oferty');
 jr_define('_JOMRES_REALESTATE_YESNO_DESC','Ustaw Tak, jeśli oferójesz możliwość rezerwacji całej oferty (domek letniskowy), wybierz Nie, jeśli twoja oferta to hotel/pensjonat gdzie wynajmowane będą pomieszczenia.');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACT_AGENT','Kontakt');
-jr_define('_JOMRES_INVOICE_MARKASPAID','Oznacz jako zapłacone');
-jr_define('_JOMRES_INVOICE_MARKEDASPAID','Oznaczona jako zapłacona');
+jr_define('_JOMRES_INVOICE_MARKASPAID','Oznacz jako Zapłacona');
+jr_define('_JOMRES_INVOICE_MARKEDASPAID','Faktura oznaczona jako zapłacona');
 jr_define('_JOMRES_APIKEY_REMAKE','Dodaj nowy klucz API');
 jr_define('_JOMRES_AUTOTRANSLATE_TITLE','Użyj Google dla pierwszych tłumaczeń');
 jr_define('_JOMRES_AUTOTRANSLATE_DESC','Funkcja ta jest nowa i eksperymentalna, więc używaj jej na własne ryzyko. Celem funkcji jest zapytanie narzędzia do tłumaczenia Google, by automatycznie skonfigurować tłumaczenia dla danej oferty.<br />');
@@ -2486,31 +2486,22 @@ jr_define('_JOMRES_SRP_RESOURCE_TYPE','Typ zasobu');
 jr_define('_JOMRES_SRP_RESOURCE_TYPE_EXPLANATION','Musisz wybrać typ zasobu przed zdefiniowaniem cen dla tej oferty.');
 jr_define("_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK","Nie został jeszcze przypisany typ zasobu dla tej oferty.");
 jr_define("_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK","Ustal typ zasobu dla oferty");
-jr_define( "_JOMRES_EMAIL_TEMPLATES_TITLE", "Email templates" );
-
-
-jr_define( "_JOMRES_CONTACT_SETTINGS", "Contact settings" );
-jr_define( "_JOMRES_CONTACT_SETTINGS_DESC", "From here you can override all properties contact details (email, phone, fax) so all communication with guests will be sent to you and not to the property owners." );
-jr_define( "_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS", "Override listings contact details?");
-jr_define( "_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS_DESC", "If this option is set to Yes then property email addresses and phone numbers will be replaced with the ones set in this tab. This forces all communications to be sent to your nominated email address ensuring that the guest and property owner can't bypass the booking engine and the commission charges that will result. It also means that whenever a property's description is changed the property will be set to Unapproved (if the approvals feature is enabled) and you will need to manually check the description to ensure that the managers hasn't entered telephone or email details into the text fields before approving it again." );
-jr_define( "_JOMRES_EDITPROPERTY_APPROVAL_WARNING", "Changes made to listing details require site admin verification. If you save new details, your listing will be unpublished and pending site admin approval before being visible again to site visitors. You won`t be able to receive online bookings while your listing is unpublished and pending approval.");
-
-
-jr_define( '_JOMRES_BOOKING_ENQUIRY_REVIEW', 'Review booking request' );
-jr_define( '_JOMRES_BOOKING_ENQUIRY_CONFIRM', 'Confirm booking request' );
-jr_define( '_JOMRES_BOOKING_ENQUIRY_AMEND', 'Amend booking request' );
-
-
-jr_define( '_JOMRES_INVOICE_MARKASPENDING', 'Mark invoice as pending' );
-jr_define( '_JOMRES_INVOICE_MARKEDASPENDING', 'Invoice marked as pending' );
-
-jr_define( '_JOMRES_TRACKING_ENABLE', 'Send anonymous tracking data?' );
-jr_define( '_JOMRES_TRACKING_ENABLE_DESC', 'Set this option to Yes to send anonymous tracking data to Jomres.net to help us understand better how you use the system.' );
-
-jr_define( '_JOMRES_PARTNERS_PLEASE_COMPLETE', 'Please ensure that your details have been completed on the Edit My Account page before attempting to make bookings on behalf of your clients.' );
-jr_define( '_JOMRES_PARTNERS_GUEST_ADDRESS', "Guest's contact details" );
-jr_define( '_JOMRES_CLEAR_GUEST_DETAILS', " -- New Guest -- " );
-
-jr_define( '_JOMRES_CHARTS', 'Charts' );
-jr_define( '_JOMRES_CHARTS_SELECT', 'Select chart...' );
-jr_define( '_JOMRES_CHART_BOOKINGS_DESC', 'Income by year/month' );
+jr_define("_JOMRES_EMAIL_TEMPLATES_TITLE","Szablony e-mail");
+jr_define("_JOMRES_CONTACT_SETTINGS","Ustawienia kontaktu");
+jr_define("_JOMRES_CONTACT_SETTINGS_DESC","W tym miejscu można nadpisać wszystkie dane kontaktowe ofert (e-mail, telefon, fax), co spowoduje przekierowanie całej komunikacji klientów do administracji serwisu a nie do właścicieli ofert.");
+jr_define("_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS","Zastąpić dane kontaktowe ofert?");
+jr_define("_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS_DESC","Jeśli opcja ta jest ustawiona na Tak, to adresy e-mail i telefony w ofertach zostaną zastąpione danymi kontaktowymi globalnymi dla serwisu skonfigurowanymi na tej stronie. Funkcjonalność ta wymusza przysyłanie wszystkich wiadomości e-mail do Administracji Serwisu, co jest zabezpieczeniem przed omijaniem dokonywania rezerwacji przez właścicieli ofert i ich Klientów w systemie, co powoduje nie naliczanie prowizji. Funkcjonalność spowoduje również konieczność przejrzenia zatwierdzonych wcześniej ofert pod kontem upewnienia się, że w polach edycyjnych np. opisu oferty nie zostały wprowadzone przez właściciela oferty dane adresowe typu e-mail lub numer telefonu.");
+jr_define("_JOMRES_EDITPROPERTY_APPROVAL_WARNING","Zmiany wprowadzone w szczegółach oferty wymagają weryfikacji przez administratora serwisu. Po zapisaniu nowych szczegółów oferty Twoja oferta do czasu zatwierdzenia wprowadzonych zmian przez administratora serwisu nie będzie opublikowana w serwisie i nie będzie widoczna dla odwiedzających. Co oznacza również, że Klienci nie będą mogli w tym czasie dokonywać nowych rezerwacji.");
+jr_define('_JOMRES_BOOKING_ENQUIRY_REVIEW','Wniosek o weryfikację Rezerwacji');
+jr_define('_JOMRES_BOOKING_ENQUIRY_CONFIRM','Potwierdź wniosek o rezerwację');
+jr_define('_JOMRES_BOOKING_ENQUIRY_AMEND','Zmień wniosek o rezerwację');
+jr_define('_JOMRES_INVOICE_MARKASPENDING','Oznacz jako Oczekuje');
+jr_define('_JOMRES_INVOICE_MARKEDASPENDING','Faktura oznaczona jako oczekująca');
+jr_define('_JOMRES_TRACKING_ENABLE','Wysyłać anonimowe dane śledzenia?');
+jr_define('_JOMRES_TRACKING_ENABLE_DESC','Ustaw tę opcję na Tak, aby uruchomić przesyłanie anonimowych danych na temat sposobu używania systemu Jomres do Jomres.net. Pomoże to nam lepiej zrozumieć Twoje oczekiwania odnośnie systemu.');
+jr_define('_JOMRES_PARTNERS_PLEASE_COMPLETE','Prosimy upewnić się, że dane Klientów są kompletne przed rozpoczęciem dodawania rezerwacji w ich imieniu.');
+jr_define('_JOMRES_PARTNERS_GUEST_ADDRESS',"Dane kontaktowe Klientów");
+jr_define('_JOMRES_CLEAR_GUEST_DETAILS'," -- Nowy Klient -- ");
+jr_define('_JOMRES_CHARTS','Wykresy');
+jr_define('_JOMRES_CHARTS_SELECT','Wybierz wykres...');
+jr_define('_JOMRES_CHART_BOOKINGS_DESC','Dochody za rok/miesiąc');
