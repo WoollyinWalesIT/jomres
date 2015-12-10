@@ -112,7 +112,7 @@ class j06000srp_calendar
 			$this->retVals = '
 				<div class="row">
 					<div class="col-md-3 jomres-calendar-day-num jomres-calendar-available"> ' . jr_gettext( '_JOMRES_COM_AVLCAL_INMONTHFACE_KEY', _JOMRES_COM_AVLCAL_INMONTHFACE_KEY ) . '</div>
-					<div class="col-md-3 jomres-calendar-day-num jomres-calendar-booking-occupied">' . jr_gettext( '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', _JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY ) . '</div>
+					<div class="col-md-3 jomres-calendar-day-num jomres-calendar-booking-occupied-completely">' . jr_gettext( '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', _JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY ) . '</div>
 				</div>
 				<table width="100%">
 					<tr>';
