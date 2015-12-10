@@ -10,8 +10,8 @@ Line type chart
 <script>
 var lineChartData_{RANDOM_ID} = {
 	labels : [{LABELS}],
-	<patTemplate:tmpl name="rows">
 	datasets : [
+		<patTemplate:tmpl name="rows">
 		{
 		label: "{LABEL}",
 		fillColor : "{FILLCOLOR}",
@@ -22,7 +22,7 @@ var lineChartData_{RANDOM_ID} = {
 		pointHighlightStroke : "{POINTHIGHLIGHTSTROKE}",
 		data : [{DATA}]
 		}{COMMA}
-	</patTemplate:tmpl>
+		</patTemplate:tmpl>
 	]
 }
 
