@@ -155,6 +155,8 @@ class j06000show_property_reviews
 				$r[ 'REPORT_URL' ]        = jomresURL( JOMRES_SITEPAGE_URL . '&task=report_review&amp;rating_id=' . $r[ 'RATING_ID' ] );
 				$r[ 'REPORT_TEXT' ]       = $r[ '_JOMRES_REVIEWS_REPORT_REVIEW' ];
 				//}
+				
+				$r[ 'PROPERTY_NAME' ] = $current_property_details->property_name;
 
 				$confirm_states = $Reviews->showConfirm( $review[ 'rating_id' ] );
 
