@@ -511,15 +511,16 @@ class jomSearch
 				$filter = jomres_cmsspecific_stringURLSafe( $filter );
 				$filter = str_replace( "-", "%", $filter );
 				}
-			$query              = "SELECT DISTINCT a.propertys_uid AS propertys_uid 
-										FROM #__jomres_propertys a, #__jomres_custom_text b 
-										WHERE a.published = '1' 
-											AND ( (a.property_town LIKE '$filter' ) 
-												   OR (a.propertys_uid = b.property_uid 
-													   AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' 
-													   AND b.language = '".get_showtime('lang')."' 
-													   AND b.customtext LIKE '$filter' ) 
-												   ) $property_ors ";
+			$query              = "SELECT a.propertys_uid  
+										FROM #__jomres_propertys a
+										LEFT JOIN #__jomres_custom_text b ON (
+																			a.propertys_uid = b.property_uid 
+																			AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' 
+																			AND b.language = '".get_showtime('lang')."'
+																			)
+										WHERE a.published = 1  
+											AND ( a.property_town LIKE '$filter' OR b.customtext LIKE '$filter') 
+											$property_ors ";
 			$this->resultBucket = doSelectSql( $query );
 			}
 		else
