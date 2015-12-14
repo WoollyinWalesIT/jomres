@@ -1,3 +1,16 @@
+<h3>Jomres 9.3.1 14/12/2015</h3>
+
+<span class="label label-success">Feature</span> Added support for exporting bookings as iCal files ( new plugin in plugin manager ) via the Bookings list.
+
+<span class="label label-warning">Change</span> Polish language file updated, thanks Patryk.
+<span class="label label-warning">Change</span> Added "reviewed item" to review snippets and associated templates.
+<span class="label label-warning">Change</span> Improved query used for searching town names.
+
+<span class="label label-important label-danger">Fix</span> Fixed a bug that caused the dashboard new booking functionality to not work.
+<span class="label label-important label-danger">Fix</span> Modified the agent plugin so that it doesn't output that no agent information is available if it's not. 
+<span class="label label-important label-danger">Fix</span> Added a missing class for the SRP calendar legend.
+<span class="label label-important label-danger">Fix</span> Fixed a bug in templates that prevented multiple years from showing correctly. (New charting functionality )
+
 <h3>Jomres 9.3.0 09/12/2015</h3>
 
 <span class="label label-success">Feature</span> Added a feature to allow extra services to have quantities ( mainly as a feature request from Marhinio ).
