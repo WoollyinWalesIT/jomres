@@ -250,7 +250,6 @@ class j06001list_bookings_ajax
 					elseif( $p->bookedout == 0 )
 						$jrtb .= $jrtbar->toolbarItem( 'bookGuestOut', jomresURL( JOMRES_SITEPAGE_URL . '&task=checkout' . '&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_FRONT_MR_BOOKOUT_TITLE', _JOMRES_FRONT_MR_BOOKOUT_TITLE, false ) );
 					}
-				//TODO add check for mrConfig setting - no need to, if requireApprovals is disabled, it will insert bookings with approved = 1 (default)
 				if ( $p->approved == 0 && isset($MiniComponents->registeredClasses['00005booking_enquiries']))
 					{
 					$jrtb .= $jrtbar->toolbarItem( 'publish', jomresURL( JOMRES_SITEPAGE_URL . '&task=approve_enquiry' . '&contractUid=' . $p->contract_uid  . $thisProperty ), jr_gettext( '_JOMRES_BOOKING_APPROVE_INQUIRY', _JOMRES_BOOKING_APPROVE_INQUIRY, false ) );
@@ -300,6 +299,8 @@ class j06001list_bookings_ajax
 						$toolbar->addSecondaryItem( 'fa fa-usd', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editDeposit&contractUid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE, false ) );
 					if ( $p->booked_in == 0 )
 						$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=cancelBooking&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', _JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING, false ) );
+					if (isset($MiniComponents->registeredClasses['00005jomres_ical']))
+						$toolbar->addSecondaryItem( 'fa fa-calendar', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=ical_export&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_ICAL', _JOMRES_ICAL, false ) );
 					}
 				elseif( $p->cancelled == 1 )
 					{
