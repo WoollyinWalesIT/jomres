@@ -225,6 +225,16 @@ class j02260editbooking
 				$notesLink = JOMRES_SITEPAGE_URL . '&task=addnote&contract_uid=' . $contract_uid;
 				$jrtb .= $jrtbar->toolbarItem( 'note', $notesLink, jr_gettext( '_JOMCOMP_BOOKINGNOTES_ADD', _JOMCOMP_BOOKINGNOTES_ADD, $editable = false, $isLink = false ) );
 				//add_menu_option( $notesLink, null, jr_gettext( '_JOMCOMP_BOOKINGNOTES_ADD', _JOMCOMP_BOOKINGNOTES_ADD, $editable = false, $isLink = true ), null, jr_gettext( "_JOMRES_COM_MR_EDITBOOKINGTITLE", _JOMRES_COM_MR_EDITBOOKINGTITLE,false ) );
+				
+				if ((int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 && isset($MiniComponents->registeredClasses['00005jomres_ical']))
+					{
+					$output[ 'ICAL_EXPORT' ] = jr_gettext( '_JOMRES_ICAL', _JOMRES_ICAL, $editable = false, $isLink = true );
+					$link = JOMRES_SITEPAGE_URL . '&task=ical_export&contract_uid=' . $contract_uid;
+					$targetTask = 'ical_export';
+					$image = '/'.JOMRES_ROOT_DIRECTORY.'/images/calendar.png';
+					
+					$jrtb .= $jrtbar->customToolbarItem( $targetTask, $link, $output[ 'ICAL_EXPORT' ], $submitOnClick = false, $submitTask = "", $image );
+					}
 				}
 			else
 				{
