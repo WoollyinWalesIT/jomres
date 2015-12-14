@@ -147,7 +147,7 @@ class jomres_generic_booking_insert
 			"departureDate"				=> "",					// "2013/12/16" ***** Required *****
 			"booked_in"					=> 0,					// (int) 1 if guest is set as booked in
 			"sendGuestEmail"			=> true,				// (bool) true if should send a booking email to guest
-			"sendHotelEmail"			=> true					// (book) true if should send a booking email to hotel
+			"sendHotelEmail"			=> true,					// (book) true if should send a booking email to hotel
 			"referrer"					=> ""					// "AN Other channel"
 			);
 		
