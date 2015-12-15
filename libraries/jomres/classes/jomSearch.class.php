@@ -867,8 +867,11 @@ class jomSearch
 		{
 		$arrivalDate   = $this->filter[ 'arrival' ];
 		$departureDate = $this->filter[ 'departure' ];
+		
+		$this->makeOrs();
+		$property_ors = $this->ors;
 
-		if ( $arrivalDate != "" && $departureDate != "" )
+		if ( $arrivalDate != "" && $departureDate != "" && $property_ors)
 			{
 			if ($arrivalDate == $departureDate)
 				$stayDays = 1;
