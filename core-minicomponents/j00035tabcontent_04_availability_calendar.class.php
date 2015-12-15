@@ -27,6 +27,9 @@ class j00035tabcontent_04_availability_calendar
 			{
 			if ($mrConfig[ 'showOnlyAvailabilityCalendar' ] == "1")
 				return;
+			
+			if ( $mrConfig[ 'showAvailabilityCalendar' ] == "0" )
+				return;
 
 			$tab_title = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY, false);
 			
