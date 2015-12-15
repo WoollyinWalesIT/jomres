@@ -550,11 +550,8 @@ function make_gmap_url_for_property_uid( $property_uid )
 
 function jomres_make_qr_code( $string = "", $format = "text" )
 	{
-	jr_import( 'jomres_qr_code' );
-	if ( !class_exists( 'QRcode' ) ) // Triggers the importing of the qrcode library.
-		{
-		$qr = new jomres_qr_code();
-		}
+	$qr = jomres_singleton_abstract::getInstance( 'jomres_qr_code' );
+	
 	$dir = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'qr_codes';
 	test_and_make_directory( $dir );
 	
