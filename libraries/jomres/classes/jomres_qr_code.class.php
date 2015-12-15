@@ -16,10 +16,20 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_qr_code
 	{
-	function __construct()
+	private static $configInstance;
+	
+	public function __construct()
 		{
 		require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'qr_code_lib' . JRDS . 'qrlib.php' );
 		}
-	}
+	
+	public static function getInstance()
+		{
+		if ( !self::$configInstance )
+			{
+			self::$configInstance = new jomres_qr_code();
+			}
 
-?>
+		return self::$configInstance;
+		}
+	}
