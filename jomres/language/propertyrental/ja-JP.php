@@ -2710,3 +2710,6 @@ jr_define( '_JOMRES_INVOICE_MARKEDASPENDING', 'Invoice marked as pending' );
 jr_define( '_JOMRES_CHARTS', 'Charts' );
 jr_define( '_JOMRES_CHARTS_SELECT', 'Select chart...' );
 jr_define( '_JOMRES_CHART_BOOKINGS_DESC', 'Income by year/month' );
+
+jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK", "You haven't created any rooms for this property" );
+jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK", "Create some rooms now" );

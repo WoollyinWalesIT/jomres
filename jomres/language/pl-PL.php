@@ -2505,3 +2505,6 @@ jr_define('_JOMRES_CLEAR_GUEST_DETAILS'," -- Nowy Klient -- ");
 jr_define('_JOMRES_CHARTS','Wykresy');
 jr_define('_JOMRES_CHARTS_SELECT','Wybierz wykres...');
 jr_define('_JOMRES_CHART_BOOKINGS_DESC','Dochody za rok/miesiąc');
+
+jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK", "You haven't created any rooms for this property" );
+jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK", "Create some rooms now" );
