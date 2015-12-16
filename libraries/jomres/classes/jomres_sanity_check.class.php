@@ -44,7 +44,7 @@ class jomres_sanity_check
 
 			
 		$this->warnings .= $this->check_editing_mode();
-		$this->warnings .= $this->check_images();
+		$this->warnings .= $this->check_main_image();
 		$this->warnings .= $this->check_published();
 
 		return $this->warnings;
@@ -74,15 +74,17 @@ class jomres_sanity_check
 		return '<p>'.$warning.'</p>';
 		}
 
-	function check_images()
+	function check_main_image()
 		{
 		if (get_showtime("task") != "media_centre")
 			{
 			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 			$current_property_details->gather_data( get_showtime( "property_uid" ) );
 			$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+			$jomres_media_centre_images->get_images( get_showtime( "property_uid" ), array('property'));
+			$noimage = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/noimage.gif";
 
-			if ( count($jomres_media_centre_images->images) ==0 )
+			if ( $jomres_media_centre_images->images['property'][0][0]['large'] == $noimage )
 				{
 				$message = jr_gettext( '_JOMRES_IMAGES_EXIST_SANITY_CHECK', _JOMRES_IMAGES_EXIST_SANITY_CHECK, false );
 				$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=media_centre&upload_context=properties');

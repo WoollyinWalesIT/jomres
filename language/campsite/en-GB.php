@@ -2744,7 +2744,7 @@ jr_define( '_JOMRES_CHART_BOOKINGS_DESC', 'Income by year/month' );
 jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK", "You haven't created any rooms for this property" );
 jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK", "Create some rooms now" );
 
-jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK", "You haven't added any images to this property yet" );
-jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK_LINK", "Upload some images now" );
+jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK", "You haven't added a main image to this property yet." );
+jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK_LINK", "Click here to upload an image" );
 
 jr_define( "_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK", "Create some tariffs" );
