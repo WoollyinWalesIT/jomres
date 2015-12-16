@@ -149,9 +149,19 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	
 	$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 	$current_property_details->gather_data($selectedProperty);
+ 	if ( is_null($current_property_details->rooms) )
+		{
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=contactowner&amp;selectedProperty=".$selectedProperty."&amp;arrivalDate=".$thisdate ) );
+		}
 	
 	$MiniComponents->triggerEvent( '00102' ); // First-form generation
 	$bkg                      = $MiniComponents->triggerEvent( '05000' ); // Create the booking object
+
+ 	if ( count($bkg->allPropertyTariffs) == 0 )
+		{
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=contactowner&amp;selectedProperty=".$selectedProperty."&amp;arrivalDate=".$thisdate ) );
+		}
+		
 	$bkg->room_feature_filter = array ();
 	if ( !is_object( $bkg ) )
 		{
