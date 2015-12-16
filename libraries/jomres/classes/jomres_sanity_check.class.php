@@ -44,6 +44,7 @@ class jomres_sanity_check
 
 			
 		$this->warnings .= $this->check_editing_mode();
+		$this->warnings .= $this->check_images();
 		$this->warnings .= $this->check_published();
 
 		return $this->warnings;
@@ -73,6 +74,25 @@ class jomres_sanity_check
 		return '<p>'.$warning.'</p>';
 		}
 
+	function check_images()
+		{
+		if (get_showtime("task") != "media_centre")
+			{
+			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+			$current_property_details->gather_data( get_showtime( "property_uid" ) );
+			$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+
+			if ( count($jomres_media_centre_images->images) ==0 )
+				{
+				$message = jr_gettext( '_JOMRES_IMAGES_EXIST_SANITY_CHECK', _JOMRES_IMAGES_EXIST_SANITY_CHECK, false );
+				$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=media_centre&upload_context=properties');
+				$button_text = jr_gettext( '_JOMRES_IMAGES_EXIST_SANITY_CHECK_LINK', _JOMRES_IMAGES_EXIST_SANITY_CHECK_LINK, false );
+
+				return $this->construct_warning( array( "MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $button_text ) );
+				}
+			}
+		}
+	
 	function check_approved()
 		{
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
@@ -135,17 +155,17 @@ class jomres_sanity_check
 				if ($mrConfig['tariffmode']=='0')
 					{
 					$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_tariffs_normal');
-					$button_text = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_TITLE', _JOMRES_COM_MR_LISTTARIFF_TITLE, false, false ) . " &amp; " . jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM, false, false );
+					$button_text = jr_gettext( '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', _JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK, false, false ) . " &amp; " . jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM, false, false );
 					}
 				elseif ($mrConfig['tariffmode']=='1')
 					{
 					$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=list_tariffs_advanced');
-					$button_text = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_TITLE', _JOMRES_COM_MR_LISTTARIFF_TITLE, false );
+					$button_text = jr_gettext( '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', _JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK, false );
 					}
 				else
 					{
 					$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=list_tariffs_micromanage');
-					$button_text = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_TITLE', _JOMRES_COM_MR_LISTTARIFF_TITLE, false );
+					$button_text = jr_gettext( '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', _JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK, false );
 					}
 
 				return $this->construct_warning( array( "MESSAGE" => $message  , "LINK" => $link , "BUTTON_TEXT" => $button_text) );
