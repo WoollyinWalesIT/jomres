@@ -73,7 +73,7 @@ class j10501email_settings
 		$configurationPanel->insertSetting();
 		
 		$configurationPanel->setleft( jr_gettext( '_JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD', _JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD, false ) );
-		$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_alternate_smtp_password" value="' . $jrConfig[ 'alternate_smtp_password' ] . '" />' );
+		$configurationPanel->setmiddle( '<input type="password" class="input-large" name="cfg_alternate_smtp_password" value="' . $jrConfig[ 'alternate_smtp_password' ] . '" />' );
 		$configurationPanel->setright( jr_gettext( '_JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD_DESC', _JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD_DESC, false ) );
 		$configurationPanel->insertSetting();
 		
