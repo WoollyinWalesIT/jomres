@@ -83,8 +83,7 @@ class jomres_sanity_check
 			$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 			$jomres_media_centre_images->get_images( get_showtime( "property_uid" ), array('property'));
 			$noimage = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/noimage.gif";
-
-			if ( $jomres_media_centre_images->images['property'][0][0]['large'] == $noimage )
+			if ( $jomres_media_centre_images->images['property'][0][0]['large'] == $noimage || is_null($jomres_media_centre_images->images['property'][0][0]['large']) )
 				{
 				$message = jr_gettext( '_JOMRES_IMAGES_EXIST_SANITY_CHECK', _JOMRES_IMAGES_EXIST_SANITY_CHECK, false );
 				$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=media_centre&upload_context=properties');
