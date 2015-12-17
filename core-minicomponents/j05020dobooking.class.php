@@ -30,7 +30,7 @@ class j05020dobooking
 
 		$property_uid = get_showtime( 'property_uid' );
 		$mrConfig     = getPropertySpecificSettings();
-		if ( get_showtime( 'include_room_booking_functionality' ) )
+		if ( get_showtime( 'include_room_booking_functionality' ) && $mrConfig['showAvailabilityCalendar'] == "1" )
 			{
 			if ( $mrConfig[ 'singleRoomProperty' ] )
 				{
