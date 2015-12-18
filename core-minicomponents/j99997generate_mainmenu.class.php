@@ -164,7 +164,7 @@ class j99997generate_mainmenu
 			{
 			
 			
-			if ($thisJRUser->userIsManager || $task == 'registerProp_step1' || $task == 'registerProp_step2' )
+			if ($thisJRUser->userIsManager || $task == 'registerProp_step1' )
 				{
 				$fullscreen = false;
 				$fullscreen_view = "_windowed";
