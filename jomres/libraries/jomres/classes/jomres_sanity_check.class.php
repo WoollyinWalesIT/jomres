@@ -34,13 +34,16 @@ class jomres_sanity_check
 		{
 		$this->warnings .= $this->check_approved();
 		$this->warnings .= $this->check_suspended();
-		if ( $this->mrConfig[ 'singleRoomProperty' ] == 1 )
+		if ( get_showtime('include_room_booking_functionality') )
 			{
-			$this->warnings .= $this->check_srp_room_exists();
-			$this->warnings .= $this->check_srp_room_type_set();
+			if ( $this->mrConfig[ 'singleRoomProperty' ] == 1 )
+				{
+				$this->warnings .= $this->check_srp_room_exists();
+				$this->warnings .= $this->check_srp_room_type_set();
+				}
+			else
+				$this->warnings .= $this->check_mrp_rooms_exists();
 			}
-		else
-			$this->warnings .= $this->check_mrp_rooms_exists();
 		
 		$this->warnings .= $this->checks_guest_types_pppn();
 		if ( $this->mrConfig[ 'is_real_estate_listing' ] == 0 ) 
