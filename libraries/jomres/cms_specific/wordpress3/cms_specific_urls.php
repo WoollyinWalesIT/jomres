@@ -25,31 +25,24 @@ $scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 if ( !strstr( $scriptname, 'install_jomres.php' ) )
 	{
 	$jomresItemid =0;
-	if ( isset($_REQUEST['page_id']))
-		{
-		$jomresItemid = (int) $_REQUEST['page_id'];
-		}
-	
-	if ($jomresItemid == 0)
-		{
-		$query = "SELECT `ID` FROM #__posts WHERE `post_content` LIKE '%[jomres]%' AND `post_parent` = 0 AND `post_status` = 'publish' LIMIT 1";
-		$itemQueryRes = (int)doSelectSql( $query,1 );
 
-		$itemIdFound=false;
+	$query = "SELECT `ID` FROM #__posts WHERE `post_content` LIKE '%[jomres]%' AND `post_parent` = 0 AND `post_status` = 'publish' LIMIT 1";
+	$itemQueryRes = (int)doSelectSql( $query,1 );
+
+	$itemIdFound=false;
+	
+	if ($itemQueryRes > 0)
+		{
+		$itemIdFound=true;
+		$jomresItemid=$itemQueryRes;
+		}
 		
-		if ($itemQueryRes > 0)
-			{
-			$itemIdFound=true;
-			$jomresItemid=$itemQueryRes;
-			}
-		
-		if ( !$itemIdFound )
-			{
-			if ( isset( $jrConfig[ 'jomresItemid' ] ) ) 
-				$jomresItemid = $jrConfig[ 'jomresItemid' ];
-			else
-				$jomresItemid = 0;
-			}
+	if ( !$itemIdFound )
+		{
+		if ( isset( $jrConfig[ 'jomresItemid' ] ) ) 
+			$jomresItemid = $jrConfig[ 'jomresItemid' ];
+		else
+			$jomresItemid = 0;
 		}
 	}
 else
