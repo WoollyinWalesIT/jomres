@@ -160,59 +160,64 @@ class jomres_sanity_check
 
 	function checks_guest_types_pppn()
 		{
-		$ignore_on_tasks = array ( 'listCustomerTypes', 'editCustomerType', 'saveCustomerType', 'deleteCustomerType', 'saveCustomerTypeOrder' );
-		if ( !in_array( get_showtime( 'task' ), $ignore_on_tasks ) )
+		if ( $this->mrConfig[ 'is_real_estate_listing' ] =="0" )
 			{
-			$query  = "SELECT `id` FROM `#__jomres_customertypes` where property_uid = " . (int) $this->property_uid . " AND published = 1";
-			$result = doSelectSql( $query );
-			if ( (int) $this->mrConfig[ 'perPersonPerNight' ] == 1 && count( $result ) == 0 )
+			$ignore_on_tasks = array ( 'listCustomerTypes', 'editCustomerType', 'saveCustomerType', 'deleteCustomerType', 'saveCustomerTypeOrder' );
+			if ( !in_array( get_showtime( 'task' ), $ignore_on_tasks ) )
 				{
-				$message = jr_gettext( '_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', _JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES, false );
-				$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=listCustomerTypes');
-				$button_text = jr_gettext( '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', _JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES, false );
+				$query  = "SELECT `id` FROM `#__jomres_customertypes` where property_uid = " . (int) $this->property_uid . " AND published = 1";
+				$result = doSelectSql( $query );
+				if ( (int) $this->mrConfig[ 'perPersonPerNight' ] == 1 && count( $result ) == 0 )
+					{
+					$message = jr_gettext( '_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', _JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES, false );
+					$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=listCustomerTypes');
+					$button_text = jr_gettext( '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', _JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES, false );
 
-				return $this->construct_warning( array( "MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $button_text ) );
+					return $this->construct_warning( array( "MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $button_text ) );
+					}
 				}
 			}
-
+		
 		return "";
 		}
 
 	function checks_tariffs_exist()
 		{
-		if ( !get_showtime( 'include_room_booking_functionality' ) ) return "";
-		$ignore_on_tasks = array ( 'propertyadmin', 'editTariff', 'saveTariff','edit_tariff_micromanage', 'list_tariffs_micromanage', 'list_tariffs_advanced', 'edit_tariff_advanced' , 'edit_tariffs_normal');
-		if ( !in_array( get_showtime( 'task' ), $ignore_on_tasks ) )
+		if ( $this->mrConfig[ 'is_real_estate_listing' ] =="0" )
 			{
-			$query  = "SELECT `rates_uid` FROM `#__jomres_rates` where property_uid = " . (int) $this->property_uid . "";
-			$result = doSelectSql( $query );
-			if ( count( $result ) == 0 )
+			if ( !get_showtime( 'include_room_booking_functionality' ) ) return "";
+			$ignore_on_tasks = array ( 'propertyadmin', 'editTariff', 'saveTariff','edit_tariff_micromanage', 'list_tariffs_micromanage', 'list_tariffs_advanced', 'edit_tariff_advanced' , 'edit_tariffs_normal');
+			if ( !in_array( get_showtime( 'task' ), $ignore_on_tasks ) )
 				{
-				$message = jr_gettext( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', _JOMRES_WARNINGS_TARIFFS_NOTARIFFS, false );
-				
-				$property_uid=getDefaultProperty();
-				$mrConfig=getPropertySpecificSettings($property_uid);
+				$query  = "SELECT `rates_uid` FROM `#__jomres_rates` where property_uid = " . (int) $this->property_uid . "";
+				$result = doSelectSql( $query );
+				if ( count( $result ) == 0 )
+					{
+					$message = jr_gettext( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', _JOMRES_WARNINGS_TARIFFS_NOTARIFFS, false );
+					
+					$property_uid=getDefaultProperty();
+					$mrConfig=getPropertySpecificSettings($property_uid);
 
-				if ($mrConfig['tariffmode']=='0')
-					{
-					$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_tariffs_normal');
-					$button_text = jr_gettext( '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', _JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK, false, false ) ;
-					}
-				elseif ($mrConfig['tariffmode']=='1')
-					{
-					$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=list_tariffs_advanced');
-					$button_text = jr_gettext( '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', _JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK, false );
-					}
-				else
-					{
-					$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=list_tariffs_micromanage');
-					$button_text = jr_gettext( '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', _JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK, false );
-					}
+					if ($mrConfig['tariffmode']=='0')
+						{
+						$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_tariffs_normal');
+						$button_text = jr_gettext( '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', _JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK, false, false ) ;
+						}
+					elseif ($mrConfig['tariffmode']=='1')
+						{
+						$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=list_tariffs_advanced');
+						$button_text = jr_gettext( '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', _JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK, false );
+						}
+					else
+						{
+						$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=list_tariffs_micromanage');
+						$button_text = jr_gettext( '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', _JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK, false );
+						}
 
-				return $this->construct_warning( array( "MESSAGE" => $message  , "LINK" => $link , "BUTTON_TEXT" => $button_text) );
+					return $this->construct_warning( array( "MESSAGE" => $message  , "LINK" => $link , "BUTTON_TEXT" => $button_text) );
+					}
 				}
 			}
-
 		return "";
 		}
 
@@ -245,29 +250,13 @@ class jomres_sanity_check
 		
 	function check_srp_room_exists()
 		{
-		if (get_showtime("task") != "edit_resource")
+		if ( $this->mrConfig[ 'is_real_estate_listing' ] =="0" )
 			{
-			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-			$current_property_details->gather_data( get_showtime( "property_uid" ) );
-			if ( is_null($current_property_details->rooms) )
+			if (get_showtime("task") != "edit_resource")
 				{
-				$message = jr_gettext( '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', _JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK, false );
-				$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_resource');
-				$button_text = jr_gettext( '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK', _JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK, false );
-				return $this->construct_warning( array( "MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $button_text ) );
-				}
-			}
-		}
-		
-	function check_srp_room_type_set()
-		{
-		if (get_showtime("task") != "edit_resource")
-			{
-			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-			$current_property_details->gather_data( get_showtime( "property_uid" ) );
-			foreach ($current_property_details->room_types as $rt)
-				{
-				if (is_null($rt['abbv']) )
+				$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+				$current_property_details->gather_data( get_showtime( "property_uid" ) );
+				if ( is_null($current_property_details->rooms) )
 					{
 					$message = jr_gettext( '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', _JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK, false );
 					$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_resource');
@@ -277,22 +266,47 @@ class jomres_sanity_check
 				}
 			}
 		}
+		
+	function check_srp_room_type_set()
+		{
+		if ( $this->mrConfig[ 'is_real_estate_listing' ] =="0" )
+			{
+			if (get_showtime("task") != "edit_resource")
+				{
+				$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+				$current_property_details->gather_data( get_showtime( "property_uid" ) );
+				foreach ($current_property_details->room_types as $rt)
+					{
+					if (is_null($rt['abbv']) )
+						{
+						$message = jr_gettext( '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', _JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK, false );
+						$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_resource');
+						$button_text = jr_gettext( '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK', _JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK, false );
+						return $this->construct_warning( array( "MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $button_text ) );
+						}
+					}
+				}
+			}
+		}
 
 	function check_mrp_rooms_exists()
 		{
-		if (get_showtime("task") != "edit_resource")
+		if ( $this->mrConfig[ 'is_real_estate_listing' ] =="0" )
 			{
-			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-			$current_property_details->gather_data( get_showtime( "property_uid" ) );
-			if ( is_null($current_property_details->rooms) )
+			if (get_showtime("task") != "edit_resource")
 				{
-				$message = jr_gettext( '_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK', _JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK, false );
-				if ($this->mrConfig['tariffmode'] == 0 )
-					$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_tariffs_normal');
-				else
-					$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_resource');
-				$button_text = jr_gettext( '_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK', _JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK, false );
-				return $this->construct_warning( array( "MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $button_text ) );
+				$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+				$current_property_details->gather_data( get_showtime( "property_uid" ) );
+				if ( is_null($current_property_details->rooms) )
+					{
+					$message = jr_gettext( '_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK', _JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK, false );
+					if ($this->mrConfig['tariffmode'] == 0 )
+						$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_tariffs_normal');
+					else
+						$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_resource');
+					$button_text = jr_gettext( '_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK', _JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK, false );
+					return $this->construct_warning( array( "MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $button_text ) );
+					}
 				}
 			}
 		}
