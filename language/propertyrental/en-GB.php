@@ -1231,7 +1231,7 @@ If the property has one or more bookings for the period selected, then you will 
 jr_define( '_JOMRES_FRONT_BLACKBOOKING_SRP_CANNOTBLACKBOOK', 'Sorry, you cannot black book this property for those dates.' );
 jr_define( '_JOMRES_FRONT_BLACKBOOKING_SRP_CANBLACKBOOK', 'You can blackbook this property for those dates.' );
 jr_define( '_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', 'Your property is configured to charge per person per night but you do not have any guest types created or published, please create and publish one or more guest types. ' );
-jr_define( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', 'You don\'t have any tariffs configured yet, you will not be able take any bookings for your business.' );
+jr_define( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', 'Next you will need to add some tariffs. These are your basic room prices, you should add prices for each room type that you have in your real-life property.' );
 jr_define( '_JOMRES_EDITINGMODE_ON', 'Editing mode on' );
 jr_define( '_JOMRES_EDITINGMODE_OFF', 'Editing mode off' );
 jr_define( '_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE', 'Charge variable deposits?' );
@@ -2715,7 +2715,7 @@ jr_define( '_JOMRES_SUPPORTKEY_DESC_INVALID', 'Your download and support key is 
 
 jr_define( '_JOMRES_SRP_RESOURCE_TYPE', 'Resource type' );
 jr_define( '_JOMRES_SRP_RESOURCE_TYPE_EXPLANATION', 'You must choose a resource type before you can create tariffs for this property.' );
-jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK", "You haven't yet assigned this property a resource type." );
+jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK", "You haven't yet set your property resource type. This is where you define it as something like a 5 bedroom villa or 4 bedroom cottage and it helps guests who are searching to refine their searches." );
 jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK", "Give your property a resource type" );
 
 
@@ -2748,10 +2748,10 @@ jr_define( '_JOMRES_CHARTS', 'Charts' );
 jr_define( '_JOMRES_CHARTS_SELECT', 'Select chart...' );
 jr_define( '_JOMRES_CHART_BOOKINGS_DESC', 'Income by year/month' );
 
-jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK", "You haven't created any rooms for this property" );
+jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK", "Ok, let's get started. First you need to create some rooms for this property." );
 jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK", "Create some rooms now" );
 
-jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK", "You haven't added a main image to this property yet." );
+jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK", "Research has proven that properties with lots of high quality images generate more views. Upload a main image and some slideshow pictures to improve your chances of getting bookings." );
 jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK_LINK", "Upload an image" );
 
 jr_define( "_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK", "Create some tariffs" );
@@ -2764,7 +2764,7 @@ jr_define( "_JOMRES_PROPERTYTYPE_FLAG_NEITHER", "Neither" );
 jr_define( "_JOMRES_PROPERTYTYPE_FLAG_BOTH", "Both" ); // This is an interim setting that gives backward compatability for existing users who won't yet have updated their property types. It won't be selectable 
 jr_define( "_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD", "Hotel or Villa?" );
 
-jr_define( "_JOMRES_ADDRESS_SANITY_CHECK", "Your address details aren't complete yet." );
+jr_define( "_JOMRES_ADDRESS_SANITY_CHECK", "You'll need to complete your address details so that your guests can find you when they come to stay." );
 jr_define( "_JOMRES_ADDRESS_SANITY_CHECK_LINK", "Update your address" );
 
 
