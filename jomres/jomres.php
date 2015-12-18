@@ -501,13 +501,7 @@ try
 				echo jr_gettext( '_JOMRES_REGISTRATION_NOTALLOWED', _JOMRES_REGISTRATION_NOTALLOWED, false );
 				break;
 			#########################################################################################
-			case 'registerProp_step2':
-				if ( $thisJRUser->userIsRegistered || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02310' );
-				else
-				echo jr_gettext( '_JOMRES_REGISTRATION_NOTALLOWED', _JOMRES_REGISTRATION_NOTALLOWED, false );
-				break;
-			#########################################################################################
-			case 'saveRegisterProp':
+			case 'registerProp_step3':
 				if ( $thisJRUser->userIsRegistered || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02320' );
 				break;
 			#########################################################################################
@@ -529,12 +523,6 @@ try
 				userHasBeenLoggedOut();
 				break;
 			#########################################################################################
-			case 'dropImage':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '03350' );
-				else
-				userHasBeenLoggedOut();
-				break;
-			#########################################################################################
 			case 'editCustomText':
 				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '03360' );
 				else
@@ -543,30 +531,6 @@ try
 			#########################################################################################
 			case 'saveCustomText':
 				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '03370' );
-				else
-				userHasBeenLoggedOut();
-				break;
-			#########################################################################################
-			case 'bUploadForm':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '03380' );
-				else
-				userHasBeenLoggedOut();
-				break;
-			#########################################################################################
-			case 'bUpload':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '03390' );
-				else
-				userHasBeenLoggedOut();
-				break;
-			#########################################################################################
-			case 'uploadPropertyImage':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '03400' );
-				else
-				userHasBeenLoggedOut();
-				break;
-			#########################################################################################
-			case 'uploadRoomImage':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '03410' );
 				else
 				userHasBeenLoggedOut();
 				break;
@@ -649,13 +613,6 @@ try
 				userHasBeenLoggedOut();
 				break;
 			#########################################################################################
-			// We believe that this feature is little used, so there's no point in maintaining it. Will disable this for now and gague the response from that before deciding whether or not to completely remove it.
-			// case 'showAuditTrail':
-				// if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02250' ); //showAuditTrail();
-				// else
-				// userHasBeenLoggedOut();
-				// break;
-			#########################################################################################
 			case 'archiveAudit':
 				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02252' ); //archiveAudit();
 				else
@@ -674,13 +631,6 @@ try
 				userHasBeenLoggedOut();
 				break;
 			#########################################################################################
-			// 28/03/2014 removed due to new 
-/* 			case 'confirmationForm':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02190' ); //confirmationForm();
-				else
-				userHasBeenLoggedOut();
-				break; */
-			#########################################################################################
 			case 'saveCancellation':
 				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02162' ); //saveCancellation();
 				else
@@ -692,24 +642,6 @@ try
 				else
 				userHasBeenLoggedOut();
 				break;
-			#########################################################################################
-			/*case 'bookGuestIn':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02170' ); //bookGuestIn();
-				else
-				userHasBeenLoggedOut();
-				break;
-			#########################################################################################
-			case 'bookGuestOut':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02180' ); //bookGuestOut();
-				else
-				userHasBeenLoggedOut();
-				break;
-			#########################################################################################
-			case 'saveBookout':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02182' ); //saveBookout();
-				else
-				userHasBeenLoggedOut();
-				break;*/
 			#########################################################################################
 			case 'editBooking':
 				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02260' ); //editBooking();
@@ -741,18 +673,6 @@ try
 				userHasBeenLoggedOut();
 				break;
 			#########################################################################################
-			/*case 'listLiveBookings':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02240' ); //listLiveBookings();
-				else
-				userHasBeenLoggedOut();
-				break;*/
-			#########################################################################################
-			/*case 'listNewBookings':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02242' ); //listNewBookings();
-				else
-				userHasBeenLoggedOut();
-				break;*/
-			#########################################################################################
 			case 'editDeposit':
 				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02200' ); //editDeposit();
 				else
@@ -764,24 +684,6 @@ try
 				else
 				userHasBeenLoggedOut();
 				break;
-			/*#########################################################################################
-			case 'editTariff':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02212' ); //editTariff()
-				else
-				userHasBeenLoggedOut();
-				break;
-			#########################################################################################
-			case 'saveTariff':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02214' ); //saveTariff();
-				else
-				userHasBeenLoggedOut();
-				break;
-			#########################################################################################
-			case 'deleteTariff':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) $MiniComponents->triggerEvent( '02216' ); //deleteTariff();
-				else
-				userHasBeenLoggedOut();
-				break;*/
 			#########################################################################################
 			case 'tagSearch':
 				if ( $thisJRUser->userIsManager || $jrConfig[ 'full_access_control' ] == "1" )
@@ -791,7 +693,7 @@ try
 					$MiniComponents->triggerEvent( '00020', $componentArgs ); //tagSearch();
 					}
 				else
-				userHasBeenLoggedOut();
+					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'showTariffs':
@@ -800,15 +702,12 @@ try
 				break;
 			#########################################################################################
 			case 'listProperties':
-
 				$MiniComponents->triggerEvent( '01004', $componentArgs ); // optional
 				$MiniComponents->triggerEvent( '01005', $componentArgs ); // optional
 				$MiniComponents->triggerEvent( '01006', $componentArgs ); // optional
 				$MiniComponents->triggerEvent( '01007', $componentArgs ); // optional
 				$componentArgs[ 'propertys_uid' ] = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
-				//var_dump($componentArgs['propertys_uid']);exit;
 				$MiniComponents->triggerEvent( '01010', $componentArgs ); // listPropertys
-				//jomresShowSearch();
 				break;
 			#########################################################################################
 			case 'preview':

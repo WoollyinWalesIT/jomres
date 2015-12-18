@@ -2722,7 +2722,7 @@ jr_define( '_JOMRES_SUPPORTKEY_DESC_INVALID', 'Your download and support key is 
 
 jr_define( '_JOMRES_SRP_RESOURCE_TYPE', 'Resource type' );
 jr_define( '_JOMRES_SRP_RESOURCE_TYPE_EXPLANATION', 'You must choose a resource type before you can create tariffs for this property.' );
-jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK", "You haven't yet assigned this property a resource type yet." );
+jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK", "You haven't yet assigned this property a resource type." );
 jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK", "Give your property a resource type" );
 
 
@@ -2760,6 +2760,18 @@ jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK", "You haven't created any room
 jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK", "Create some rooms now" );
 
 jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK", "You haven't added a main image to this property yet." );
-jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK_LINK", "Click here to upload an image" );
+jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK_LINK", "Upload an image" );
 
 jr_define( "_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK", "Create some tariffs" );
+
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG", "What style of property is this?" );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_DESC", "Is this property type a hotel type property, where you rent out multiple rooms in the property, or a villa type property, where you rent out the property in it's entirety? If the property type is intended for properties that don't offer room or property booking functionality ( like tours ) choose Neither." );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_HOTEL", "Hotel/Bed & breakfast/Pension" );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_VILLA", "Villa/Cottage/Apartment" );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_NEITHER", "Neither" );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_BOTH", "Both" ); // This is an interim setting that gives backward compatability for existing users who won't yet have updated their property types. It won't be selectable 
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD", "Hotel or Villa?" );
+
+jr_define( "_JOMRES_ADDRESS_SANITY_CHECK", "Your address details aren't complete yet." );
+jr_define( "_JOMRES_ADDRESS_SANITY_CHECK_LINK", "Update your address" );
+

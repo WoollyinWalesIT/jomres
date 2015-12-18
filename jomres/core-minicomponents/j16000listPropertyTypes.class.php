@@ -25,26 +25,30 @@ class j16000listPropertyTypes
 
 			return;
 			}
-		$editIcon                              = '<IMG SRC="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0">';
-		$ptypeData                             = array ();
-		$output                                = array ();
-		$output[ 'PAGETITLE' ]                 = jr_gettext( '_JOMRES_COM_PTYPES_LIST_TITLE', _JOMRES_COM_PTYPES_LIST_TITLE,false );
-		$output[ 'HPTYPE' ]                    = jr_gettext( '_JOMRES_COM_PTYPES_PTYPE', _JOMRES_COM_PTYPES_PTYPE,false );
-		$output[ 'HPTYPE_DESC' ]               = jr_gettext( '_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR', _JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR,false );
-		$output[ 'HPUBLISHED' ]                = jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISHED', _JOMRES_COM_MR_VRCT_PUBLISHED,false );
-		$output[ '_JOMRES_ORDER' ]             = jr_gettext( '_JOMRES_ORDER', _JOMRES_ORDER,false );
+		$editIcon												= '<IMG SRC="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0">';
+		$ptypeData												= array ();
+		$output													= array ();
+		$output[ 'PAGETITLE' ]									= jr_gettext( '_JOMRES_COM_PTYPES_LIST_TITLE', _JOMRES_COM_PTYPES_LIST_TITLE,false );
+		$output[ 'HPTYPE' ]										= jr_gettext( '_JOMRES_COM_PTYPES_PTYPE', _JOMRES_COM_PTYPES_PTYPE,false );
+		$output[ 'HPTYPE_DESC' ]								= jr_gettext( '_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR', _JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR,false );
+		$output[ 'HPUBLISHED' ]									= jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISHED', _JOMRES_COM_MR_VRCT_PUBLISHED,false );
+		$output[ '_JOMRES_ORDER' ]				 				= jr_gettext( '_JOMRES_ORDER', _JOMRES_ORDER,false );
+		$output[ '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD' ]		= jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD', _JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD,false );
+		
+		
 
-		$query     = "SELECT `id`,`ptype`,`ptype_desc`,`published`,`order` FROM #__jomres_ptypes ORDER BY `order` ASC";
+		$query	  = "SELECT `id`,`ptype`,`ptype_desc`,`published`,`order` , `mrp_srp_flag` FROM #__jomres_ptypes ORDER BY `order` ASC";
 		$ptypeList = doSelectSql( $query );
-		$rowInfo   = "";
-		$counter   = 0;
+		$rowInfo	= "";
+		$counter	= 0;
 		foreach ( $ptypeList as $ptype )
 			{
 			$counter++;
-			$ptypeData[ 'id' ]         = $ptype->id;
-			$ptypeData[ 'ptype' ]      = $ptype->ptype;
-			$ptypeData[ 'ptype_desc' ] = $ptype->ptype_desc;
-			$published                 = $ptype->published;
+			$ptypeData[ 'id' ]			= $ptype->id;
+			$ptypeData[ 'ptype' ]		= $ptype->ptype;
+			$ptypeData[ 'ptype_desc' ]	= $ptype->ptype_desc;
+			$published					= $ptype->published;
+			$mrp_srp_flag				= $ptype->mrp_srp_flag;
 			
 			if ( $published ) 
 				$ptypeData[ 'published' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Tick.png';
@@ -52,19 +56,29 @@ class j16000listPropertyTypes
 				$ptypeData[ 'published' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Cancel.png';
 
 
-			$r                = array ();
-			$r[ 'COUNTER' ]   = $counter;
-			$r[ 'ID' ]        = $ptypeData[ 'id' ];
+			$r					 = array ();
 			
-			$r[ 'EDITURL' ]   = JOMRES_SITEPAGE_URL_ADMIN . "&task=editPropertyType&id=" . $ptypeData[ 'id' ];
+			if ( $mrp_srp_flag == 3)
+				$r[ 'MRP_SRP_FLAG' ]	= jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_NEITHER', _JOMRES_PROPERTYTYPE_FLAG_NEITHER,false );
+			elseif ( $mrp_srp_flag == 2)
+				$r[ 'MRP_SRP_FLAG' ]	= jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_BOTH', _JOMRES_PROPERTYTYPE_FLAG_BOTH,false );
+			elseif ( $mrp_srp_flag == 1)
+				$r[ 'MRP_SRP_FLAG' ]	= jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_VILLA', _JOMRES_PROPERTYTYPE_FLAG_VILLA,false );
+				else
+					$r[ 'MRP_SRP_FLAG' ]	= jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', _JOMRES_PROPERTYTYPE_FLAG_HOTEL,false );
+					
+			$r[ 'COUNTER' ]	= $counter;
+			$r[ 'ID' ]		  = $ptypeData[ 'id' ];
+			
+			$r[ 'EDITURL' ]	= JOMRES_SITEPAGE_URL_ADMIN . "&task=editPropertyType&id=" . $ptypeData[ 'id' ];
 			$r[ 'EDITICON' ]  = $editIcon;
 			
-			$r[ 'PTYPE' ]     = $ptypeData[ 'ptype' ];
+			$r[ 'PTYPE' ]	  = $ptypeData[ 'ptype' ];
 			$r[ 'PTYPEDESC' ] = $ptypeData[ 'ptype_desc' ];
 
-			$r[ 'PUBLISHURL' ]   = JOMRES_SITEPAGE_URL_ADMIN . "&task=publishPropertyType&id=" . $ptypeData[ 'id' ];
+			$r[ 'PUBLISHURL' ]	= JOMRES_SITEPAGE_URL_ADMIN . "&task=publishPropertyType&id=" . $ptypeData[ 'id' ];
 			$r[ 'PUBLISHIMAGE' ] = $ptypeData[ 'published' ];
-			$r[ 'ORDER' ]        = $ptype->order;
+			$r[ 'ORDER' ]		  = $ptype->order;
 			
 			if (!using_bootstrap())
 				{
@@ -88,14 +102,14 @@ class j16000listPropertyTypes
 			$rows[ ] = $r;
 			}
 		
-		$output[ 'COUNTER' ]            = count( $rows );
+		$output[ 'COUNTER' ]				= count( $rows );
 		$output[ 'TOTALINLISTPLUSONE' ] = count( $rows ) + 1;
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
-		$jrtb   = $jrtbar->startTable();
+		$jrtb	= $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, '' );
 		$image  = $jrtbar->makeImageValid( "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/AddItem.png" );
-		$link   = JOMRES_SITEPAGE_URL_ADMIN;
+		$link	= JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem( 'editPropertyType', $link, jr_gettext( '_JOMRES_COM_MR_NEWTARIFF', _JOMRES_COM_MR_NEWTARIFF,false ), $submitOnClick = true, $submitTask = "editPropertyType", $image );
 		$image = $jrtbar->makeImageValid( "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/WasteBasket.png" );
 		$link  = JOMRES_SITEPAGE_URL_ADMIN;
@@ -105,7 +119,7 @@ class j16000listPropertyTypes
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
 		$pageoutput[ ] = $output;
-		$tmpl          = new patTemplate();
+		$tmpl			 = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->readTemplatesFromInput( 'list_ptypes.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
@@ -118,7 +132,7 @@ class j16000listPropertyTypes
 		{
 		$output = array ();
 
-		$query     = "SELECT id,ptype FROM #__jomres_ptypes";
+		$query	  = "SELECT id,ptype FROM #__jomres_ptypes";
 		$ptypeList = doSelectSql( $query );
 		foreach ( $ptypeList as $ptype )
 			{

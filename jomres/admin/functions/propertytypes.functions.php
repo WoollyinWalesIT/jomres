@@ -60,22 +60,35 @@ function editPropertyType()
 	$output[ 'FURTHER' ]                   = jr_gettext( "_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER", _JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER, false );
 	$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = jr_gettext( "JOMRES_SITEPAGE_URL_ADMIN", JOMRES_SITEPAGE_URL_ADMIN, false );
 
+	$output[ '_JOMRES_PROPERTYTYPE_FLAG' ]			= jr_gettext( "_JOMRES_PROPERTYTYPE_FLAG", _JOMRES_PROPERTYTYPE_FLAG, false );
+	$output[ '_JOMRES_PROPERTYTYPE_FLAG_DESC' ]		= jr_gettext( "_JOMRES_PROPERTYTYPE_FLAG_DESC", _JOMRES_PROPERTYTYPE_FLAG_DESC, false );
 
+
+	
+	
 	$output[ 'PTYPE' ]      = "";
 	$output[ 'PTYPE_DESC' ] = "";
 	$output[ 'PUBLISHED' ]  = "";
 	if ( isset( $id ) && !empty( $id ) )
 		{
-		$query     = "SELECT ptype,ptype_desc,published FROM #__jomres_ptypes WHERE id = '" . (int) $id . "' ";
+		$query     = "SELECT ptype,ptype_desc,published,mrp_srp_flag FROM #__jomres_ptypes WHERE id = '" . (int) $id . "' ";
 		$ptypeList = doSelectSql( $query );
 		foreach ( $ptypeList as $ptype )
 			{
-			$output[ 'PTYPE' ]      = stripslashes( $ptype->ptype );
-			$output[ 'PTYPE_DESC' ] = stripslashes( $ptype->ptype_desc );
+			$output[ 'PTYPE' ]		= stripslashes( $ptype->ptype );
+			$output[ 'PTYPE_DESC' ]	= stripslashes( $ptype->ptype_desc );
+			if ($ptype->mrp_srp_flag == "2")
+				$ptype->mrp_srp_flag = "0";
+			$mrp_srp_flag			= (int)$ptype->mrp_srp_flag;
 			}
 		}
-
-
+	
+	$mrp_srp_flag_options    = array ();
+	$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '0', jr_gettext( _JOMRES_PROPERTYTYPE_FLAG_HOTEL, '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', false ) );
+	$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '1', jr_gettext( _JOMRES_PROPERTYTYPE_FLAG_VILLA, '_JOMRES_PROPERTYTYPE_FLAG_VILLA', false ) );
+	$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '3', jr_gettext( _JOMRES_PROPERTYTYPE_FLAG_NEITHER, '_JOMRES_PROPERTYTYPE_FLAG_NEITHER', false ) );
+	$output[ '_JOMRES_PROPERTYTYPE_FLAG_DROPDOWN' ]= jomresHTML::selectList( $mrp_srp_flag_options, 'mrp_srp_flag', 'class="inputbox" size="1"', 'value', 'text', $mrp_srp_flag );
+	
 	$output[ 'ID' ] = $id;
 
 	$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
@@ -104,10 +117,11 @@ function editPropertyType()
  */
 function savePropertyType()
 	{
-	$id         = jomresGetParam( $_POST, 'id', 0 );
-	$ptype      = jomresGetParam( $_POST, 'ptype', '' );
-	$ptype_desc = strtolower( jomresGetParam( $_POST, 'ptype_desc', '' ) );
-	$ptype_desc = preg_replace( '/[^A-Za-z0-9_-]+/', "", $ptype_desc );
+	$id				= jomresGetParam( $_POST, 'id', 0 );
+	$ptype			= jomresGetParam( $_POST, 'ptype', '' );
+	$ptype_desc		= strtolower( jomresGetParam( $_POST, 'ptype_desc', '' ) );
+	$ptype_desc		= preg_replace( '/[^A-Za-z0-9_-]+/', "", $ptype_desc );
+	$mrp_srp_flag	= (int)jomresGetParam( $_POST, 'mrp_srp_flag', 2 );
 	
 	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 	$c->eraseAll();
@@ -117,9 +131,10 @@ function savePropertyType()
 		mkdir( JOMRESPATH_BASE . '/language/' . $ptype_desc );
 		copy( JOMRESPATH_BASE . '/language/' . get_showtime( 'lang' ) . ".php", JOMRESPATH_BASE . '/language/' . $ptype_desc . "/" . get_showtime( 'lang' ) . ".php" );
 		}
-	if ( isset( $id ) && !empty( $id ) ) $query = "UPDATE #__jomres_ptypes SET `ptype`='$ptype',`ptype_desc`='$ptype_desc' WHERE id = '" . (int) $id . "'";
+	if ( isset( $id ) && !empty( $id ) ) 
+		$query = "UPDATE #__jomres_ptypes SET `ptype`='$ptype',`ptype_desc`='$ptype_desc' , `mrp_srp_flag`=".$mrp_srp_flag." WHERE id = '" . (int) $id . "'";
 	else
-	$query = "INSERT INTO #__jomres_ptypes (`ptype`,`ptype_desc`) VALUES ('$ptype','$ptype_desc')";
+		$query = "INSERT INTO #__jomres_ptypes (`ptype`,`ptype_desc` ,`mrp_srp_flag` ) VALUES ('$ptype','$ptype_desc' , ".$mrp_srp_flag.")";
 
 	if ( !doInsertSql( $query, false ) ) echo "Nope";
 	jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes" ), jr_gettext( "_JOMRES_COM_PTYPES_SAVED", _JOMRES_COM_PTYPES_SAVED, false ) );
