@@ -26,6 +26,7 @@ class jomres_sanity_check
 			$this->jrConfig     = $siteConfig->get();
 			$this->mrConfig     = getPropertySpecificSettings();
 			$this->property_uid = getDefaultProperty();
+			$this->warning_counter = 0;
 			}
 		}
 
@@ -33,8 +34,11 @@ class jomres_sanity_check
 		{
 		$this->warnings .= $this->check_approved();
 		$this->warnings .= $this->check_suspended();
-		if ( $this->mrConfig[ 'singleRoomProperty' ] == 1 ) 
+		if ( $this->mrConfig[ 'singleRoomProperty' ] == 1 )
+			{
 			$this->warnings .= $this->check_srp_room_exists();
+			$this->warnings .= $this->check_srp_room_type_set();
+			}
 		else
 			$this->warnings .= $this->check_mrp_rooms_exists();
 		
@@ -42,9 +46,9 @@ class jomres_sanity_check
 		if ( $this->mrConfig[ 'is_real_estate_listing' ] == 0 ) 
 			$this->warnings .= $this->checks_tariffs_exist();
 
-			
-		$this->warnings .= $this->check_editing_mode();
+		$this->warnings .= $this->check_address();
 		$this->warnings .= $this->check_main_image();
+		$this->warnings .= $this->check_editing_mode();
 		$this->warnings .= $this->check_published();
 
 		return $this->warnings;
@@ -52,28 +56,64 @@ class jomres_sanity_check
 
 	function construct_warning( $message_array )
 		{
-		$message = $message_array['MESSAGE'];
-		$warning = "";
-		$warning .= jr_gettext( '_JOMRES_WARNINGS_DANGERWILLROBINSON', _JOMRES_WARNINGS_DANGERWILLROBINSON, false );
-		$warning .= $message ;
+		$button = '';
+		$this->warning_counter++;
+		
 		if (isset($message_array['LINK']))
 			{
 			$pageoutput	= array();
 			$output		= array();
-			
 			$output['LINK']			= $message_array['LINK'];
 			$output['BUTTON_TEXT']	= $message_array['BUTTON_TEXT'];
-			
 			$pageoutput[ ] = $output;
 			$tmpl          = new patTemplate();
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
 			$tmpl->readTemplatesFromInput( 'sanity_checks_button.html' );
-			$warning .= $tmpl->getParsedTemplate();
+			$button = $tmpl->getParsedTemplate();
 			}
-		return '<p>'.$warning.'</p>';
+
+		$pageoutput	= array();
+		$output		= array();
+		
+		$output['WARNING_WORD']		= jr_gettext( '_JOMRES_WARNINGS_DANGERWILLROBINSON', _JOMRES_WARNINGS_DANGERWILLROBINSON, false );
+		$output['WARNING_MESSAGE']	= $message_array['MESSAGE'];
+		$output['WARNING_COUNTER']	= $this->warning_counter;
+		$output['ACTION_LINK']		= $button;
+
+		$pageoutput[ ] = $output;
+
+		$tmpl          = new patTemplate();
+		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+		$tmpl->readTemplatesFromInput( 'sanity_check_pane.html' );
+		return $tmpl->getParsedTemplate();
 		}
 
+	function check_address()
+		{
+		if (get_showtime("task") != "editProperty")
+			{
+			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+			$current_property_details->gather_data( get_showtime( "property_uid" ) );
+			if (
+				$current_property_details->property_street == "" || 
+				$current_property_details->property_town == "" || 
+				$current_property_details->property_postcode == "" || 
+				$current_property_details->property_region_id == "" || 
+				$current_property_details->property_country_code == "" || 
+				$current_property_details->property_tel == "" 
+				)
+				{
+				$message = jr_gettext( '_JOMRES_ADDRESS_SANITY_CHECK', _JOMRES_ADDRESS_SANITY_CHECK, false );
+				$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=editProperty');
+				$button_text = jr_gettext( '_JOMRES_ADDRESS_SANITY_CHECK_LINK', _JOMRES_ADDRESS_SANITY_CHECK_LINK, false );
+
+				return $this->construct_warning( array( "MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $button_text ) );
+				}
+			}
+		}
+	
 	function check_main_image()
 		{
 		if (get_showtime("task") != "media_centre")
@@ -156,7 +196,7 @@ class jomres_sanity_check
 				if ($mrConfig['tariffmode']=='0')
 					{
 					$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_tariffs_normal');
-					$button_text = jr_gettext( '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', _JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK, false, false ) . " &amp; " . jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM, false, false );
+					$button_text = jr_gettext( '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', _JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK, false, false ) ;
 					}
 				elseif ($mrConfig['tariffmode']=='1')
 					{
@@ -215,6 +255,25 @@ class jomres_sanity_check
 				$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_resource');
 				$button_text = jr_gettext( '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK', _JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK, false );
 				return $this->construct_warning( array( "MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $button_text ) );
+				}
+			}
+		}
+		
+	function check_srp_room_type_set()
+		{
+		if (get_showtime("task") != "edit_resource")
+			{
+			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+			$current_property_details->gather_data( get_showtime( "property_uid" ) );
+			foreach ($current_property_details->room_types as $rt)
+				{
+				if (is_null($rt['abbv']) )
+					{
+					$message = jr_gettext( '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', _JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK, false );
+					$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_resource');
+					$button_text = jr_gettext( '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK', _JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK, false );
+					return $this->construct_warning( array( "MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $button_text ) );
+					}
 				}
 			}
 		}

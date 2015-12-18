@@ -15,46 +15,6 @@
 			valid = false;
 			}
 			
-		if(jomresJquery('#property_street').val()) 
-			{
-			jomresJquery('#property_street').closest(".form-group").removeClass("has-error").addClass("has-warning");
-			}
-		else {
-			jomresJquery('#property_street').closest(".form-group").removeClass("has-warning").addClass("has-error");
-			jomresJquery('#property_street').focus();
-			valid = false;
-			}
-			
-		if(jomresJquery('#property_town').val()) 
-			{
-			jomresJquery('#property_town').closest(".form-group").removeClass("has-error").addClass("has-warning");
-			}
-		else {
-			jomresJquery('#property_town').closest(".form-group").removeClass("has-warning").addClass("has-error");
-			jomresJquery('#property_town').focus();
-			valid = false;
-			}
-			
-		if(jomresJquery('#property_postcode').val()) 
-			{
-			jomresJquery('#property_postcode').closest(".form-group").removeClass("has-error").addClass("has-warning");
-			}
-		else {
-			jomresJquery('#property_postcode').closest(".form-group").removeClass("has-warning").addClass("has-error");
-			jomresJquery('#property_postcode').focus();
-			valid = false;
-			}
-			
-		if(jomresJquery('#property_tel').val()) 
-			{
-			jomresJquery('#property_tel').closest(".form-group").removeClass("has-error").addClass("has-warning");
-			}
-		else {
-			jomresJquery('#property_tel').closest(".form-group").removeClass("has-warning").addClass("has-error");
-			jomresJquery('#property_tel').focus();
-			valid = false;
-			}
-
 		if( jomresJquery('#property_email').val() && echeck(jomresJquery('#property_email').val())) 
 			{
 			jomresJquery('#property_email').closest(".form-group").removeClass("has-error").addClass("has-warning");
@@ -94,131 +54,20 @@
 <p>{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1} {JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2}</p>
 
 <form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="regForm" class="form-horizontal" role="form">
-	<div class="form-group"><div id="tour_target_registration_2_mrpsrp"></div>
-		<label class="col-md-2 control-label" for="mrpsrp">{ISTHISANMRP}</label>
-		<div class="col-md-10">
-			{ISTHISANMRP_DROPDOWN}
-		</div>
-	</div>
 	<div class="form-group has-warning">
 		<label class="col-md-2 control-label" for="property_name">{HNAME}</label><div id="tour_target_registration_2_name_address"></div>
 		<div class="col-md-10">
 			<input id="property_name" name="property_name" type="text" value="{PROPERTY_NAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_PROPERTYNAME}"/>
 		</div>
 	</div>
-	<div class="form-group has-warning">
-		<label class="col-md-2 control-label" for="property_street">{HSTREET}</label>
-		<div class="col-md-10">
-			<input id="property_street" name="property_street" type="text" value="{PROPERTY_STREET}" class="form-control" placeholder="{COMMON_PLACEHOLDER_STREET}"/>
-		</div>
-	</div>
-	<div class="form-group has-warning">
-		<label class="col-md-2 control-label" for="property_town">{HTOWN}</label>
-		<div class="col-md-10">
-			<input id="property_town" name="property_town" type="text" value="{PROPERTY_TOWN}" class="form-control" placeholder="{COMMON_PLACEHOLDER_TOWN}"/>
-		</div>
-	</div>
-	<div class="form-group has-warning">
-		<label class="col-md-2 control-label" for="property_postcode">{HPOSTCODE}</label>
-		<div class="col-md-10">
-			<input id="property_postcode" name="property_postcode" type="text" value="{PROPERTY_POSTCODE}" class="form-control" placeholder="{COMMON_PLACEHOLDER_POSTCODE}"/>
-		</div>
-	</div>
-	<div class="form-group has-warning">
-		<label class="col-md-2 control-label" for="property_tel">{HTELEPHONE}</label>
-		<div class="col-md-10">
-			<input id="property_tel" name="property_tel" type="tel" value="{PROPERTY_TEL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_LANDLINE}"/>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="property_fax">{HFAX}</label>
-		<div class="col-md-10">
-			<input id="property_fax" name="property_fax" type="tel" value="{PROPERTY_FAX}" class="form-control" placeholder="{HFAX}"/>
-		</div>
-	</div>
+
 	<div class="form-group has-warning">
 		<label class="col-md-2 control-label" for="property_email">{HEMAIL}</label>
 		<div class="col-md-10">
 			<input id="property_email" name="property_email" type="email" value="{PROPERTY_EMAIL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_EMAIL}"/>
 		</div>
 	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="stars">{HSTARS}</label><div id="tour_target_registration_2_stars"></div>
-		<div class="col-md-10">
-			{STARSDROPDOWN}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="lat">Lat: (nn.nnnn)</label>
-		<div class="col-md-10">
-			<input id="lat" name="lat" type="text" value="{LAT}" class="form-control" placeholder="00.0000"/>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="long">Long: (nn.nnnn)</label>
-		<div class="col-md-10">
-			<input id="lng" name="long" type="text" value="{LONG}" class="form-control" placeholder="00.0000"/>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="firstname">{LATLONG_DESC}</label><div id="tour_target_registration_2_latlong"></div>
-		<div class="col-md-10">
-			{MAP}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="pid">{HFEATURES}</label><div id="tour_target_registration_2_features"></div>
-		<div class="col-md-10">
-			<patTemplate:tmpl name="globalPfeatures">
-			<div style="float:left;">
-				<input type="checkbox" name="pid[]" value="{PID}" style="float:left;"> {FEATURE}
-			</div>
-			</patTemplate:tmpl>
-		</div>
-	</div>
-	<div class="clearfix"></div>
-	<div class="form-group has-warning">
-		<label class="col-md-2 control-label" for="property_description">{HPROPDESCRIPTION}</label><div id="tour_target_registration_2_description"></div>
-		<div class="col-md-10">
-			{PROPERTY_DESCRIPTION}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="property_checkin_times">{HCHECKINTIMES}</label>
-		<div class="col-md-10">
-			{PROPERTY_CHECKIN_TIMES}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="property_area_activities">{HAREAACTIVITIES}</label>
-		<div class="col-md-10">
-			{PROPERTY_AREA_ACTIVITIES}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="property_driving_directions">{HDRIVINGDIRECTIONS}</label>
-		<div class="col-md-10">
-			{PROPERTY_DRIVING_DIRECTIONS}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="property_airports">{HAIRPORTS}</label>
-		<div class="col-md-10">
-			{PROPERTY_AIRPORTS}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="property_othertransport">{HOTHERTRANSPORT}</label>
-		<div class="col-md-10">
-			{PROPERTY_OTHERTRANSPORT}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="property_policies_disclaimers">{HPOLICIESDISCLAIMERS}</label><div id="tour_target_registration_2_policies"></div>
-		<div class="col-md-10">
-			{PROPERTY_POLICIES_DISCLAIMERS}
-		</div>
-	</div>
+
 	<patTemplate:tmpl name="multi" type="simpleCondition" requiredVars="multisites_select">
 	<div class="form-group">
 		<label class="col-md-2 control-label" for="property_site_id">{LABEL}</label>
@@ -233,6 +82,7 @@
 			<a href="{JOMRES_SITEPAGE_URL}" class="btn btn-default"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
 		</div>
 	</div>
+	{MRP_SRP_FLAG}
 	<input type="hidden" name="propertyType" value="{PROPERTYTYPE}"/>
 	<input type="hidden" name="property_region" value="{PROPERTY_REGION}"/>
 	<input type="hidden" name="property_country" value="{PROPERTY_COUNTRY}"/>

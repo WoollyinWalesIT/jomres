@@ -3664,20 +3664,29 @@ function listGateways()
  * Shows the dropdown for selecting the property type in the edit property function
 #
  */
-function getPropertyTypeDropdown( $propertyType = "", $all = false, $empty_ok = false )
+function getPropertyTypeDropdown( $propertyType = "" , $all = false )
 	{
-	$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
-	$ptypeOptions = array ();
+	$query = "SELECT `mrp_srp_flag` FROM #__jomres_ptypes WHERE id = '" . (int) $propertyType . "' ";
+	$mrp_srp = (int)doSelectSql( $query , 1 );
 	
-	if ( $all ) 
-		$ptypeOptions[ ] = jomresHTML::makeOption( 0, jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false ) );
-	
-	if ( $empty_ok ) 
-		$ptypeOptions[ ] = jomresHTML::makeOption( 0, ' ' );
-
-	foreach($current_property_details->all_property_type_titles as $k=>$v)
+	if (!$all)
 		{
-		$ptypeOptions[] = jomresHTML::makeOption( $k, $v );
+		if ($mrp_srp == 0)
+			$clause = " mrp_srp_flag = 0 OR mrp_srp_flag = 2 AND ";
+		if ($mrp_srp == 1)
+			$clause = " mrp_srp_flag = 1 OR mrp_srp_flag = 2 AND";
+		if ($mrp_srp == 2)
+			$clause = " mrp_srp_flag = 0 OR mrp_srp_flag = 1 OR mrp_srp_flag = 2 AND";
+		if ($mrp_srp == 3)
+			$clause = " mrp_srp_flag = 3 AND";
+		}
+	
+	$query     = "SELECT id , ptype FROM #__jomres_ptypes  WHERE " . $clause . " published = 1 ";
+	$ptypeList = doSelectSql( $query );
+	$ptypeOptions = array ();
+	foreach($ptypeList as $ptype)
+		{
+		$ptypeOptions[] = jomresHTML::makeOption( $ptype->id, jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $ptype->id, $ptype->ptype, false, false ) );
 		}
 
 	$ptypeDropDownList = jomresHTML::selectList( $ptypeOptions, 'propertyType', 'class="inputbox" size="1"', 'value', 'text', $propertyType );

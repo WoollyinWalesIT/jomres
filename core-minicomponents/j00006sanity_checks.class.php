@@ -36,7 +36,6 @@ class j00006sanity_checks
 				jr_import( 'jomres_sanity_check' );
 				$sanity_checks        = new jomres_sanity_check();
 				$output[ 'WARNINGS' ] = $sanity_checks->do_sanity_checks();
-
 				$pageoutput[ ] = $output;
 				$tmpl          = new patTemplate();
 				$tmpl->addRows( 'pageoutput', $pageoutput );

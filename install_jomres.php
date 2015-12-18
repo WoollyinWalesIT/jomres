@@ -460,8 +460,31 @@ function doTableUpdates()
 	if ( !checkExtrasLimitedtoroomtypeColExists() ) alterExtrasLimitedtoroomtypeCol();
 	if ( !checkPageviewsTableExists() ) createPageviewsTable();
 	if ( !checkContractsReferrerColExists() ) alterContractsReferrerCol();
+	if ( !checkPtypesMrpsrpFlagColExists() ) alterPtypesMrpsrpFlagCol();
 	
 	updateSiteSettings ( "update_time" , time() );
+	}
+
+function alterPtypesMrpsrpFlagCol()
+	{
+	output_message ( "Editing __jomres_ptypes table adding mrp_srp_flag column");
+	$query = "ALTER TABLE `#__jomres_ptypes` ADD `mrp_srp_flag` TINYINT DEFAULT '2' AFTER `order`";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_ptypes mrp_srp_flag", "danger" );
+		}
+	}
+
+function checkPtypesMrpsrpFlagColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_ptypes LIKE 'mrp_srp_flag'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
 	}
 
 function alterContractsReferrerCol()
@@ -3413,6 +3436,7 @@ function createJomresTables()
 		`ptype_desc` VARCHAR( 255 ),
 		`published` TINYINT DEFAULT '1',
 		`order` INT NULL DEFAULT '0',
+		`mrp_srp_flag` TINYINT DEFAULT '2',
 		PRIMARY KEY (`id`)
 		) ";
 	if ( !doInsertSql( $query ) )
