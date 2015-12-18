@@ -2785,3 +2785,5 @@ jr_define( "_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD", "Hotel or Villa?" );
 jr_define( "_JOMRES_ADDRESS_SANITY_CHECK", "Your address details aren't complete yet." );
 jr_define( "_JOMRES_ADDRESS_SANITY_CHECK_LINK", "Update your address" );
 
+
+jr_define( "_JOMRES_FIELDS_HIGHLIGHTED_ARE_REQUIRED", "Oops, it looks like you might have forgotten to complete all the fields." );
