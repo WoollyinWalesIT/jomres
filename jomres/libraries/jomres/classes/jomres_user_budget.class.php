@@ -63,8 +63,11 @@ class jomres_user_budget
 		$output['FIGURE'] = $this->get_budget(true);
 		
 		$prices = $this->get_price_ranges();
+		
+		$highest_price = max($prices);
+		$range = $highest_price/10;
 
-		$ranges = range(min($prices), max($prices), 50);
+		$ranges = range(min($prices), max($prices)+$range, $range);
 
 		// This can be called via either the "search" task, or more complicatedly through ajax search. If it is, instead of having a simple js function to call we need to call a different one, using the form name variable. Incidently, this is the same onclick function that's used to return to search results. If we didn't do this, clicking on the dropdown after doing an ajax search would reload the current page, e.g. "viewproperty" or somesuch.
 		$onclick=false;
