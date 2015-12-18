@@ -1,3 +1,18 @@
+<h3>Jomres 9.4.-3 18/12/2015</h3>
+
+<span class="label label-success">Feature</span> Modified property creation process, drastically reducing the time required to create a new property. Added a number of new sanity checks that will guide the user when creating a new property.
+
+<span class="label label-warning">Change</span> Added Tajikisan Somani to currency codes.
+<span class="label label-warning">Change</span> Further improved search functionality related to translated town searches.
+<span class="label label-warning">Change</span> Changed site config so that email password input is a password input.
+<span class="label label-warning">Change</span> Added tweaks to new user email that's sent, adding carriage returns.
+<span class="label label-warning">Change</span> Modified the user budget so that only 10 price ranges are found. Prevents memory errors caused by a wide disparity of different prices.
+
+<span class="label label-important label-danger">Fix</span> Added an option to honour the old "availability calendar off" switch, to new code.
+<span class="label label-important label-danger">Fix</span> Tweaked a script so that if the "Show availability calendar inline" setting is off, then the calendar is also not shown in the booking form page.
+<span class="label label-important label-danger">Fix</span> Resolved an intermittent issue we discovered from error reports from the userdemo. If search results are 0 before the availability search is performed, we didn't check to see if there uids available returned by other searches. If there are already no results found, we were still doing the availability search, which wasn't ok.
+<span class="label label-important label-danger">Fix</span> Solved a weird bug in how the qr code class includes it's library files. For an unknown reason class_exists returned true when it should false, resulting in fatal errors with "Call to undefined method QRcode::png()". Making the class a singleton fixed the issue.
+
 <h3>Jomres 9.3.1 14/12/2015</h3>
 
 <span class="label label-success">Feature</span> Added support for exporting bookings as iCal files ( new plugin in plugin manager ) via the Bookings list.
