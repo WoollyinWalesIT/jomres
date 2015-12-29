@@ -50,7 +50,7 @@ else
 	$jomresItemid = 0; //should only kick in on install
 	}
 
-$jrConfig = $siteConfig->set_setting( "jomresItemid", $jomresItemid );
+$siteConfig->set_setting( "jomresItemid", $jomresItemid );
 
 $disable_cache = false;
 
