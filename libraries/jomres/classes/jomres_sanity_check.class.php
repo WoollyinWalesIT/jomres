@@ -52,7 +52,8 @@ class jomres_sanity_check
 		$this->warnings .= $this->check_address();
 		$this->warnings .= $this->check_main_image();
 		$this->warnings .= $this->check_editing_mode();
-		$this->warnings .= $this->check_published();
+		if ( trim($this->warnings) == "")
+			$this->warnings .= $this->check_published();
 
 		return $this->warnings;
 		}
