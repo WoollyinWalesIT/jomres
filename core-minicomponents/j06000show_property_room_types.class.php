@@ -38,7 +38,6 @@ class j06000show_property_room_types
 			$output_now = (bool)$componentArgs[ 'output_now' ];
 
 		$mrConfig = getPropertySpecificSettings( $property_uid );
-		
 		$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$basic_property_details->gather_data( $property_uid );
 		
@@ -63,7 +62,10 @@ class j06000show_property_room_types
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			$tmpl->addRows( 'pageoutput',$pageoutput);
 			$tmpl->addRows( 'room_types',$room_types);
-			$tmpl->readTemplatesFromInput( 'show_property_room_types.html' );
+			if ($mrConfig['singleRoomProperty'] == "1")
+				$tmpl->readTemplatesFromInput( 'show_property_room_types_srp.html' );
+			else
+				$tmpl->readTemplatesFromInput( 'show_property_room_types.html' );
 			$features_template = $tmpl->getParsedTemplate();
 			if ( $output_now )
 				echo $features_template;
