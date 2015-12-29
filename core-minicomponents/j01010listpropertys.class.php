@@ -27,14 +27,14 @@ class j01010listpropertys
 			}
 		$MiniComponents->triggerEvent( '01008', $componentArgs ); // optional
 		$data_only = false;
-		if ( isset( $_REQUEST[ 'dataonly' ] ) ) 
+		if ( isset( $_REQUEST[ 'dataonly' ] ) )
 			$data_only = true;
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-		
+
 		$stayDays = 1;
 
 		if ( $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] != '' && $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] )
@@ -49,14 +49,14 @@ class j01010listpropertys
 			{
 				$start = JSCalConvertInputDates( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] , $siteCal = true );
 			$end = JSCalConvertInputDates( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] , $siteCal = true );
-			
+
 			$range = get_periods ( $start , $end );
 			$stayDays = count($range);
 			}
-		
+
 		$customTextObj     = jomres_singleton_abstract::getInstance( 'custom_text' );
 
-		if ( is_null( $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ] ) ) 
+		if ( is_null( $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ] ) )
 			$tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ] = $jrConfig[ 'property_list_layout_default' ];
 
 		$property_list_layouts = get_showtime( 'property_list_layouts' );
@@ -87,10 +87,10 @@ class j01010listpropertys
 		$layout = $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ];
 
 		$propertys_uids = $componentArgs[ 'propertys_uid' ];
-		
+
 		$live_scrolling_enabled = get_showtime("live_scrolling_enabled");
 
-		if ( !isset( $componentArgs[ 'live_scrolling_enabled' ] ) && is_null($live_scrolling_enabled) ) 
+		if ( !isset( $componentArgs[ 'live_scrolling_enabled' ] ) && is_null($live_scrolling_enabled) )
 			{
 			$live_scrolling_enabled = (bool)$jrConfig['live_scrolling_enabled'];
 			}
@@ -98,7 +98,7 @@ class j01010listpropertys
 			{
 			$live_scrolling_enabled = (bool) $componentArgs[ 'live_scrolling_enabled' ];
 			}
-		
+
 		if ( $propertys_uids == "" ) $propertys_uids = array ();
 
 		if ( !@session_start() )
@@ -119,7 +119,7 @@ class j01010listpropertys
 				{
 				$tmpArray[ ] = $propertys_uids[ $key ];
 				$counter++;
-				if ( $counter == $maximumProperties ) 
+				if ( $counter == $maximumProperties )
 					{
 					break;
 					}
@@ -131,11 +131,11 @@ class j01010listpropertys
 			{
 			$propertys_uids = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
 			}
-		
-		
+
+
 		if ( count( $propertys_uids ) == 0)
 			return;
-		
+
 		if ( !AJAXCALL || get_showtime( 'task' ) == "ajax_search_filter" )
 			{
 			$propertys_uids = $MiniComponents->triggerEvent( '01009', array ( 'propertys_uids' => $propertys_uids ) ); // Pre list properties parser. Allows us to to filter property lists if required
@@ -169,12 +169,12 @@ class j01010listpropertys
 				}
 			$layout_template = $property_list_layouts[ $layout ][ "layout" ];
 
-			if ( is_null( $property_list_layouts[ $layout ][ "path" ] ) ) 
+			if ( is_null( $property_list_layouts[ $layout ][ "path" ] ) )
 				$layout_path_to_template = JOMRES_TEMPLATEPATH_FRONTEND;
 			else
 				$layout_path_to_template = $property_list_layouts[ $layout ][ "path" ];
 
-			if ( is_null( $layout_template ) ) 
+			if ( is_null( $layout_template ) )
 				$layout_template = "list_properties.html";
 
 			if ($live_scrolling_enabled)
@@ -183,7 +183,7 @@ class j01010listpropertys
 			if ( $jrConfig[ 'is_single_property_installation' ] == "1" )
 				{
 				$arrival_clause = '';
-				if ( isset( $_REQUEST[ 'arrivalDate' ] ) ) 
+				if ( isset( $_REQUEST[ 'arrivalDate' ] ) )
 					{
 					$arrival_clause = "&arrivalDate=" . $_REQUEST[ 'arrivalDate' ]."&departureDate=".$_REQUEST[ 'departureDate' ]; // There's no need for these elements to be sanitised, as we're just redirecting again to a new url, these items will be sanitised at that point.
 					}
@@ -192,7 +192,7 @@ class j01010listpropertys
 
 			if (!isset($jrConfig['use_budget_feature']))
 				$jrConfig['use_budget_feature'] = "1";
-				
+
 			if ( using_bootstrap() && $jrConfig['use_budget_feature'] == "1")
 				{
 				jr_import('jomres_user_budget');
@@ -201,24 +201,24 @@ class j01010listpropertys
 				$budget_output = array();
 				$budget_output[0]['BUDGET_DROPDOWN'] = $budget-> get_budget_dropdown();
 				}
-			
-			
+
+
 			if ( count( $propertys_uids ) > 0 )
 				{
 				$header_output = array ();
 
 				$header_output[ 'HARRIVALDATE' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL, false );
 				$header_output[ 'HDEPARTUREDATE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE, false );
-				
+
 				$header_output[ 'ARRIVALDATE' ]   = generateDateInput( "arrivalDate",$tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] , "ad", true );
 				$header_output[ 'DEPARTUREDATE' ] = generateDateInput( "departureDate", $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'], false, true, false );
 				$header_output[ 'CLEARDATES_CHECKBOX' ] = get_showtime ( 'current_clear_checkbox' );
 				$header_output[ 'HSEARCH' ] = jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON );
-				if ( !using_bootstrap() ) 
+				if ( !using_bootstrap() )
 					$header_output[ 'THEBUTTON' ] = '<input type="submit" name="send" value="' . jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON, false ) . '" class="button" />';
 				else
 					$header_output[ 'THEBUTTON' ] = '<input type="submit" class="btn btn-primary" name="send" value="' . jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON, false ) . '" />';
-				
+
 				$header_output[ 'ORDER_DROPDOWN' ] = get_showtime( "order_dropdown" );
 				$header_output[ 'CLICKTOHIDE' ]    = jr_gettext( '_JOMRES_REVIEWS_CLICKTOHIDE', _JOMRES_REVIEWS_CLICKTOHIDE, false, false );
 				$header_output[ 'CLICKTOSHOW' ]    = jr_gettext( '_JOMRES_REVIEWS_CLICKTOSHOW', _JOMRES_REVIEWS_CLICKTOSHOW, false, false );
@@ -234,11 +234,11 @@ class j01010listpropertys
 					$output[ 'JOMRES_SITEPAGE_URL_AJAX' ] = "<script type=\"text/javascript\"> var live_site_ajax = '" . JOMRES_SITEPAGE_URL_AJAX . "'; </script>";
 					}
 
-				if ( $live_scrolling_enabled ) 
+				if ( $live_scrolling_enabled )
 					$limit = (int) $jrConfig[ 'property_list_limit' ];
 				else
 					$limit = count( $propertys_uids );
-				
+
 				$i=0;
 				foreach ($propertys_uids as $puid)
 					{
@@ -250,10 +250,10 @@ class j01010listpropertys
 				$show_paging = false;
 				if ( !$live_scrolling_enabled || ( AJAXCALL && $jrConfig['live_scrolling_enabled'] == "0" ) )
 					$show_paging = true;
-				
+
 				if (  get_showtime( 'disable_paging' ) == true)
 					$show_paging = false;
-				
+
 				$output['PAGING'] = '';
 				if ( $show_paging )
 					{
@@ -267,15 +267,15 @@ class j01010listpropertys
 					{
 					$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 					$current_property_details->gather_data_multi( $propertysToShow );
-					
+
 					$jomres_property_list_prices = jomres_singleton_abstract::getInstance( 'jomres_property_list_prices' );
-					
+
 					$limited_property_uids = $propertys_uids;
 					$jomres_property_list_prices->gather_lowest_prices_multi($propertysToShow);
-					
+
 					$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 					$jomres_media_centre_images->get_images_multi($propertysToShow, array('property'));
-					
+
 					// Last booked
 					$lastBookedArray = array ();
 					$query           = "SELECT property_uid, max(timestamp) as ts FROM #__jomres_contracts WHERE property_uid IN (" . implode(',',$propertysToShow) . ") AND `timestamp` IS NOT NULL GROUP BY property_uid ";
@@ -297,7 +297,7 @@ class j01010listpropertys
 						}
 					}
 				}
-			
+
 			$templateCounter = 1;
 
 			if ( !isset( $_REQUEST[ 'arrivalDate' ] ) )
@@ -316,19 +316,19 @@ class j01010listpropertys
 			$featured_properties = get_showtime( "featured_properties" );
 			if ( count( $featured_properties ) > 0 ) // only store the featured properties if their count is > 0. That's because featured properties are only set in non-ajax calls. If it's an ajax called, we don't want to set the featured properties to null
 				$tmpBookingHandler->tmpsearch_data[ 'featured_properties' ] = $featured_properties;
-			
+
 			if ($jrConfig['use_budget_feature'] == "1" && using_bootstrap() )
 				{
 				$guest_budget = $budget->get_budget();
 				}
-			
-			
+
+
 			if ( count( $propertysToShow ) > 0 )
 				{
 				$property_details = array ();
 				$MiniComponents->triggerEvent( '01011', array ( 'property_uids' => $propertysToShow ) ); // Discount finding script uses this trigger. We'll send it an array of property uids to reduce the number of queries it performs.
 				$MiniComponents->triggerEvent( '01012', array ( 'property_uids' => $propertysToShow ) );
-				
+
 				$jomres_property_payment_methods = jomres_singleton_abstract::getInstance( 'jomres_property_payment_methods' );
 				$jomres_property_payment_methods->get_gateways_multi( $propertysToShow );
 
@@ -339,26 +339,26 @@ class j01010listpropertys
 					set_showtime( 'property_type', $current_property_details->multi_query_result[ $propertys_uid ]['property_type'] );
 
 					$customTextObj->get_custom_text_for_property( $propertys_uid );
-					
-					
 
-					
+
+
+
 					$property_deets = $MiniComponents->triggerEvent( '00042', array ( 'property_uid' => $propertys_uid ) );
 					$mrConfig       = getPropertySpecificSettings( $propertys_uid );
 
 					$property_deets['GATEWAYS'] = '';
 					$payment_methods = $jomres_property_payment_methods->get_property_gateways($propertys_uid);
-					
+
 					if (count($payment_methods)>0)
 						{
 						$tmpl          = new patTemplate();
 						$tmpl->addRows( 'pageoutput', $payment_methods );
-						
+
 						$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND );
 						$tmpl->readTemplatesFromInput( "list_properties_gateways_snippet.html" );
 						$property_deets['GATEWAYS'] = $tmpl->getParsedTemplate();
 						}
-					
+
 					$dobooking_task = "dobooking";
 					if ( $mrConfig[ 'registeredUsersOnlyCanBook' ] == "1" && $thisJRUser->id == 0 ) $dobooking_task = "contactowner";
 
@@ -369,25 +369,25 @@ class j01010listpropertys
 
 					if ( in_array( $propertys_uid, $tmpBookingHandler->tmpsearch_data[ 'featured_properties' ] ) )
 						{
-						if ( !isset( $jrConfig[ 'featured_listings_emphasis' ] ) ) 
+						if ( !isset( $jrConfig[ 'featured_listings_emphasis' ] ) )
 							$jrConfig[ 'featured_listings_emphasis' ] = "";
-						
+
 						$property_deets[ 'FEATURED_LISTINGS_CLASS' ] = $jrConfig[ 'featured_listings_emphasis' ];
 						}
-						
+
 					if ($jrConfig['use_budget_feature'] == "1" && in_array( $propertys_uid, $tmpBookingHandler->tmpsearch_data[ 'featured_properties' ] )) // We need to force the featured listings class to use panel-primary
 						{
 						$property_deets[ 'FEATURED_LISTINGS_CLASS' ] = 'panel-primary';
 						}
-						
+
 					if ( ($property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ]) || !isset($jrConfig[ 'featured_listings_emphasis' ]) )
 						$property_deets[ 'BUDGET_BORDER_CLASS' ] = 'panel-default';
 
 					if ($guest_budget > 0 && $jrConfig['use_budget_feature'] == "1" && using_bootstrap() )
 						{
 						if (
-							$guest_budget >= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] &&  
-							$jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > 0 
+							$guest_budget >= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] &&
+							$jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > 0
 							//$property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ]
 							)
 							{
@@ -397,19 +397,19 @@ class j01010listpropertys
 							{
 							$property_deets[ 'BUDGET_BORDER_CLASS' ] .= ' property-list-overbudget-properties';
 							}
-	
+
 						// Don't know if I want to use this yet. Jomres 8.1
-						/*if ( $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > ($guest_budget*3)) 
+						/*if ( $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > ($guest_budget*3))
 							{
 							$property_deets[ 'BUDGET_BORDER_CLASS' ] = "panel-danger property-list-overbudget-properties";
 							} */
 						}
-					
+
 					if ( $jrConfig[ 'use_reviews' ] == "1" )
 						{
 						$Reviews->property_uid                 = $propertys_uid;
 						$itemRating                            = $Reviews->showRating( $propertys_uid );
-						
+
 						$property_deets[ 'AVERAGE_RATING' ]    = number_format( $itemRating[ 'avg_rating' ], 1, '.', '' );
 						$property_deets[ 'NUMBER_OF_REVIEWS' ] = $itemRating[ 'counter' ];
 
@@ -419,7 +419,7 @@ class j01010listpropertys
 						$property_deets[ '_JOMRES_REVIEWS_CLICKTOSHOW' ]    = jr_gettext( '_JOMRES_REVIEWS_CLICKTOSHOW', _JOMRES_REVIEWS_CLICKTOSHOW, false, false );
 						$property_deets[ 'COLON' ]                          = " : ";
 						$property_deets[ 'HYPHEN' ]                         = " - ";
-						
+
 						// Property review information needs to be in it's own array so that a patTemplate condition can be used to decide if reviews are shown or no.
 						// To allow BC with older templates we'll copy the review info from the old property deets array to a new property_reviews array.
 						if ( (int)$property_deets[ 'NUMBER_OF_REVIEWS' ] > 0 )
@@ -435,11 +435,11 @@ class j01010listpropertys
 							$property_reviews[0][ 'HYPHEN' ]							= $property_deets[ 'HYPHEN' ];
 							$property_reviews[0][ 'REVIEWS_RANDOM_IDENTIFIER' ]			= generateJomresRandomString( 10 );
 							$property_reviews[0][ 'UID' ]								= $propertys_uid;
-							
+
 							$property_reviews[0][ 'PROPERTY_NAME' ]						= urlencode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_name' ]);
-							
-							$property_reviews[0][ 'MODAL_BUTTON' ] = 
-								make_modal_button( 
+
+							$property_reviews[0][ 'MODAL_BUTTON' ] =
+								make_modal_button(
 									$property_reviews[0][ '_JOMRES_REVIEWS_CLICKTOSHOW' ],  // Test of the button
 									'show_property_reviews',								// The task being called
 									'&property_uid='.$propertys_uid,						// Extra arguments being added to the url for that specific task
@@ -447,7 +447,7 @@ class j01010listpropertys
 									'btn-default'											// The colour of the button
 									);
 
-							
+
 							$tmpl          = new patTemplate();
 							$tmpl->addRows( 'property_reviews', $property_reviews );
 							$tmpl->setRoot( $layout_path_to_template );
@@ -458,7 +458,7 @@ class j01010listpropertys
 							{
 							$property_deets [ 'REVIEWS_SNIPPET' ] = jr_gettext( '_JOMRES_REVIEWS_NOREVIEWS', _JOMRES_REVIEWS_NOREVIEWS, false, false );
 							}
-						
+
 						}
 					else
 						{
@@ -475,7 +475,7 @@ class j01010listpropertys
 						}
 
 					//$property_deets['AVAILABILITY_CALENDAR'] = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property->propertys_uid,'output_now'=>"1",'noshowlegend'=>1) );
-					
+
 					$starslink = "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/blank.png\" alt=\"star\" border=\"0\" height=\"1\" hspace=\"10\" vspace=\"1\" />";
 					if ( $property_stars!= "0" )
 						{
@@ -488,7 +488,7 @@ class j01010listpropertys
 						}
 
 					$property_deets[ 'SUPERIOR' ] = '';
-					if ( $current_property_details->multi_query_result[ $propertys_uid ]['superior'] == 1 ) 
+					if ( $current_property_details->multi_query_result[ $propertys_uid ]['superior'] == 1 )
 						$property_deets[ 'SUPERIOR' ] = "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/superior.png\" alt=\"superior\" border=\"0\" />";
 
 					$rtRows = "";
@@ -505,7 +505,7 @@ class j01010listpropertys
 
 					$property_deets[ 'ROOMTYPES' ] = $rtRows;
 					$property_deets[ 'ROOMTYPES_LABELS' ] = $rtRowsLabels;
-					
+
 					$propertyFeaturesArray = explode( ",", ( $current_property_details->multi_query_result[ $propertys_uid ]['property_features'] ) );
 
 					if ( count( $propertyFeaturesArray ) > 0 )
@@ -516,7 +516,7 @@ class j01010listpropertys
 							{
 							if ($f!='')
 								{
-								if ( ( $counter / 10 ) == 0 ) 
+								if ( ( $counter / 10 ) == 0 )
 									$br = "<br />";
 								$hotel_feature_abbv=$current_property_details->all_property_features[ $f ]['abbv'];
 								$hotel_feature_full_desc=$current_property_details->all_property_features[ $f ]['desc'];
@@ -532,7 +532,7 @@ class j01010listpropertys
 					$property_deets[ 'PRICE_PRICE' ]		= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE' ];
 					$property_deets[ 'PRICE_POST_TEXT' ]	= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'POST_TEXT' ];
 					$property_deets[ 'PRICE_NOCONVERSION' ]	= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE_NOCONVERSION' ];
-					
+
 					//total price
 					$plugin_will_provide_lowest_price = false;
 					$MiniComponents->triggerEvent( '07015', array ( 'property_uid' => $propertys_uid ) ); // Optional
@@ -567,7 +567,7 @@ class j01010listpropertys
 							}
 						else
 							$property_deets[ 'PRICE_CUMULATIVE' ]	=$property_deets[ 'PRICE_PRICE' ];
-						
+
 						$property_deets['FOR'] =  jr_gettext( '_JOMRES_FOR', _JOMRES_FOR , false );
 						if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0 )
 							{
@@ -580,7 +580,7 @@ class j01010listpropertys
 								else
 									$property_deets[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_PRICINGOUTPUT_NIGHTS', _JOMRES_PRICINGOUTPUT_NIGHTS , false );
 								}
-								
+
 							$property_deets[ 'STAY_DAYS' ]	= $stayDays;
 							}
 						else
@@ -590,7 +590,7 @@ class j01010listpropertys
 							}
 						}
 					//end total price
-					
+
 					if ( array_key_exists( $propertys_uid, $lastBookedArray ) )
 						{
 						$property_deets[ 'LASTBOOKED' ]        = jr_gettext( '_JOMRES_DATEPERIOD_LATESTBOOKING', _JOMRES_DATEPERIOD_LATESTBOOKING ) . " " . $lastBookedArray[ $propertys_uid ];
@@ -661,7 +661,7 @@ class j01010listpropertys
 					$property_deets[ 'PROPERTYCOUNTRY' ]                          = jomres_decode( stripslashes( $current_property_details->multi_query_result[ $propertys_uid ][ 'property_country' ] ) );
 
 					$property_deets[ 'TELEPHONE_NUMBER' ] = jomres_decode( $current_property_details->multi_query_result[ $propertys_uid ]['property_tel'] );
-					
+
 					if ((int)$jrConfig['override_property_contact_details'] == 1)
 						{
 						if ($jrConfig['override_property_contact_tel'] != '')
@@ -682,7 +682,7 @@ class j01010listpropertys
 						$property_deets[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['property'][0][0]['medium'];
 						$property_deets[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images['property'][0][0]['small'];
 						}
-					
+
 
 					$property_deets[ '_JOMRES_QUICK_INFO' ] = jr_gettext( '_JOMRES_QUICK_INFO', _JOMRES_QUICK_INFO, false, false );
 					$property_deets[ 'REMOTE_URL' ]         = $mrConfig[ 'galleryLink' ];
@@ -716,7 +716,7 @@ class j01010listpropertys
 						}
 
 					add_gmaps_source(); // Needs to be included, regardless of the settings below because the module popup will not work without it.
-					
+
 					$showmaps = false;
 					$layout   = $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ];
 					if ( get_showtime( 'layout_showmaps' ) != null || $layout == "listwithmaps" )
@@ -758,7 +758,7 @@ class j01010listpropertys
 							}
 						}
 
-					if ( $output_lowest ) 
+					if ( $output_lowest )
 						{
 						$property_deets[ 'LOWESTPRICE' ] = $price;
 						}
@@ -768,12 +768,12 @@ class j01010listpropertys
 						}
 
 					$property_deets[ 'STARS' ] = $starslink;
-					
+
 					$property_deets[ 'REQUIRE_APPROVAL' ] = '';
 					$property_deets[ 'REQUIRE_APPROVAL_CLASS' ] = '';
 					if ($mrConfig[ 'is_real_estate_listing' ] == 0)
 						{
-						if ( $mrConfig[ 'requireApproval' ] == "1" )
+						if ( $mrConfig[ 'requireApproval' ] == "1" || $mrConfig['visitorscanbookonline'] == "0" )
 							{
 							$property_deets[ 'REQUIRE_APPROVAL' ] = jr_gettext( '_BOOKING_ONREQUEST', _BOOKING_ONREQUEST , false );
 							$property_deets[ 'REQUIRE_APPROVAL_CLASS' ] = 'booking-onrequest';
@@ -798,7 +798,7 @@ class j01010listpropertys
 								}
 							}
 						}
-					
+
 					$MiniComponents->triggerEvent( '01012', array ( 'property_uid' => $propertys_uid ) ); // Optional
 					$mcOutput = $MiniComponents->getAllEventPointsData( '01012' );
 					if ( count( $mcOutput ) > 0 )
@@ -834,7 +834,7 @@ class j01010listpropertys
 						$tmpl->readTemplatesFromInput( "list_properties_header.html" );
 						$output[ 'HEADER' ] = $tmpl->getParsedTemplate();
 						}
-					
+
 					$pageoutput[ ] = $output;
 					$tmpl          = new patTemplate();
 					$tmpl->addRows( 'property_reviews', $property_reviews );
@@ -915,7 +915,7 @@ class j01010listpropertys
 			}
 		}
 
-	
+
 	function generate_paging( $propertys_uids , $limit )
 		{
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
@@ -925,55 +925,55 @@ class j01010listpropertys
 			{
 			switch ($key )
 				{
-				case 'stars': 
+				case 'stars':
 					foreach ($val as $v)
 						$selections .= "&stars[]=".$v;
 					break;
-				case 'pricerange_value_from': 
+				case 'pricerange_value_from':
 					$selections .= "&pricerange_value_from=".$val;
 					break;
-				case 'pricerange_value_to': 
+				case 'pricerange_value_to':
 					$selections .= "&pricerange_value_to=".$val;
 					break;
-				case 'feature_uids': 
+				case 'feature_uids':
 					foreach ($val as $v)
 						$selections .= "&feature_uids[]=".$v;
 					break;
-				case 'countries': 
+				case 'countries':
 					foreach ($val as $v)
 						$selections .= "&countries[]=".$v;
 					break;
-				case 'regions': 
+				case 'regions':
 					foreach ($val as $v)
 						$selections .= "&regions[]=".$v;
 					break;
-				case 'towns': 
+				case 'towns':
 					foreach ($val as $v)
 						$selections .= "&towns[]=".$v;
 					break;
-				case 'room_type_uids': 
+				case 'room_type_uids':
 					foreach ($val as $v)
 						$selections .= "&room_type_uids[]=".$v;
 					break;
-				case 'property_type_uids': 
+				case 'property_type_uids':
 					foreach ($val as $v)
 						$selections .= "&property_type_uids[]=".$v;
 					break;
-				case 'guestnumbers': 
+				case 'guestnumbers':
 					foreach ($val as $v)
 						$selections .= "&guestnumbers[]=".$v;
 					break;
-				case 'arrivalDate': 
+				case 'arrivalDate':
 					$selections .= "&arrivalDate=".$val;
 					break;
-				case 'departureDate': 
+				case 'departureDate':
 					$selections .= "&departureDate=".$val;
 					break;
 				}
 			}
 
 		$number_of_pages = ceil(count($propertys_uids) / $limit);
-		
+
 		if(!isset($_GET['page']))
 			{
 			$current_page = 0;
@@ -991,7 +991,7 @@ class j01010listpropertys
 			{
 			$current_page = $number_of_pages;
 			}
-		
+
 		$rows = array();
 		foreach(range(1, $number_of_pages) as $page)
 			{
@@ -1004,18 +1004,18 @@ class j01010listpropertys
 				{
 				$r['CLASS'] = "active";
 				}
-			
+
 			$r['PAGE'] = $page;
 			$r['LINK'] = jomresURL(JOMRES_SITEPAGE_URL . "&task=search&page=" . $page . $selections );
 			$rows[]=$r;
 			}
-		
+
 		$pageoutput = array();
 		$output = array();
-		
+
 		$output['FORWARD_CLASS'] = "active";
 		$output['BACKWARD_CLASS'] = "active";
-		
+
 		if ( $current_page < $number_of_pages )
 			{
 			$next = $current_page+1;
@@ -1047,9 +1047,9 @@ class j01010listpropertys
 		$pagination = $tmpl->getParsedTemplate();
 
 		return array ("PAGINATION" => $pagination , "current_page" => $current_page );
-		
+
 		}
-	
+
 	/**
 	#
 	 * Must be included in every mini-component
