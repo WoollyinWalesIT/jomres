@@ -2819,3 +2819,5 @@ jr_define( "_JOMRES_ADDRESS_SANITY_CHECK_LINK", "Update your address" );
 
 
 jr_define( "_JOMRES_FIELDS_HIGHLIGHTED_ARE_REQUIRED", "Oops, it looks like you might have forgotten to complete all the fields." );
+
+jr_define( "_JOMRES_MANAGER_HAS_NO_PROPERTIES", "Error, this user is configured as a manager but has not been assigned to any properties" );

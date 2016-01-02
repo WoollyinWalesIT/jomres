@@ -16,6 +16,22 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries'.JRDS.'http_build_url.php');
 
+
+function set_user_feedback_message ( $message = "", $css_class = "info" , $link = false, $link_message =false  )
+	{
+	$messages_array = get_showtime("user_feedback_messages");
+	if (!$link)
+		{
+		$messages_array[] = array ("MESSAGE" => $message , "CSS_CLASS" => $css_class );
+		}
+	else
+		{
+		$messages_array[] = array ("MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $link_message , "CSS_CLASS" => $css_class);
+		}
+	set_showtime("user_feedback_messages" , $messages_array);
+	}
+
+
 // http://www.maurits.vdschee.nl/php_hide_email/ 
 function jomres_hide_email($email)
 	{ 
