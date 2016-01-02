@@ -70,15 +70,29 @@ class j06000contactowner
 		if ( isset( $_POST[ 'property_uid' ] ) ) 
 			$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 
-		if (!user_can_view_this_property($property_uid))
-			return;
-
+		if ( $property_uid > 0)
+			{
+			if (!user_can_view_this_property($property_uid))
+				return;
+			}
+		
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$current_property_details->gather_data( $property_uid );
 
 		$output                = array ();
-		$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', _JOMRES_FRONT_MR_MENU_CONTACTHOTEL );
-		$output[ 'SUBJECT' ]   = jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE', _JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE ) . " " . $current_property_details->property_name;
+		
+		if ( $property_uid > 0)
+			{
+			$target = $current_property_details->property_name;
+			$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', _JOMRES_FRONT_MR_MENU_CONTACTHOTEL );
+			}
+		else
+			{
+			$target = $jrConfig['business_name'];
+			$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_CONTANT_US', _JOMRES_CONTANT_US );
+			}
+		
+		$output[ 'SUBJECT' ]   = jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE', _JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE ) . " " . $target;
 		$output[ 'ENQUIRY' ]   = jomresGetParam( $_REQUEST, 'enquiry', jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY', _JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY, false ) );
 
 		$output[ 'GUEST_NAME' ]   = jomresGetParam( $_REQUEST, 'guest_name', '' );
@@ -150,9 +164,12 @@ class j06000contactowner
 			$subject            = jr_gettext( "_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT", _JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT, false ) . " " . $output[ 'GUEST_NAME' ] . " " . jr_gettext( "_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING", _JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING, false ) . " " . $current_property_details->property_name;
 			$output[ 'THANKS' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS', _JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS );
 			$output[ 'ENQUIRY' ] .= '<br />Email: ' . $output[ 'GUEST_EMAIL' ];
-
-			$target_email = $current_property_details->property_email;
 			
+			if ( $property_uid > 0 )
+				$target_email = $current_property_details->property_email;
+			else
+				$target_email = $jrConfig['business_email'];
+
 			if ((int)$jrConfig['override_property_contact_details'] == 1)
 				{
 				if ($jrConfig['override_property_contact_email'] != '')
@@ -165,9 +182,18 @@ class j06000contactowner
 			if ( !jomresMailer( $target_email, $current_property_details->property_name, $output[ 'GUEST_EMAIL' ], $subject, $output[ 'ENQUIRY' ], $mode = 1 ) ) 
 				error_logging( 'Failure in sending enquiry email to guest. Target address: ' . $output[ 'GUEST_EMAIL' ] . ' Subject' . $subject );
 
-			$output[ 'BACKTOPROPERTY' ] = jr_gettext( '_JOMRES_BACKTOPROPERTYDETAILSLINK', _JOMRES_BACKTOPROPERTYDETAILSLINK );
+			
 			$output[ 'PROPERTYUID' ]    = $property_uid;
-
+			
+			$output[ 'TASK' ]= "viewproperty&property_uid=".$property_uid;
+			$output[ 'BACKTOPROPERTY' ] = jr_gettext( '_JOMRES_BACKTOPROPERTYDETAILSLINK', _JOMRES_BACKTOPROPERTYDETAILSLINK );
+			
+			if ($property_uid == 0)
+				{
+				$output[ 'TASK' ]= "search";
+				$output[ 'BACKTOPROPERTY' ] = jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON );
+				}
+			
 			$output[ 'JOMRES_SITEPAGE_URL' ] = JOMRES_SITEPAGE_URL;
 			}
 		else
