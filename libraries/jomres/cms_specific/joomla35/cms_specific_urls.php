@@ -66,7 +66,7 @@ $index = "index.php";
 $tmpl  = "";
 if ( !isset( $_GET[ 'tmpl' ] ) ) $_GET[ 'tmpl' ] = false;
 
-if ( ( $jrConfig[ 'isInIframe' ] == (bool) "1" || $_GET[ 'tmpl' ] == get_showtime("tmplcomponent") ) && !isset( $_REQUEST[ 'nofollowtmpl' ] ) )
+if ( ( $jrConfig[ 'isInIframe' ] == (bool) "1" || $_GET[ 'tmpl' ] == get_showtime("tmplcomponent") ) && !isset( $_REQUEST[ 'nofollowtmpl' ] ) && !jomres_cmsspecific_areweinadminarea() )
 	{
 	$index = "index.php";
 	$tmpl = '&tmpl='.get_showtime("tmplcomponent");
@@ -78,7 +78,8 @@ else
 
 if ( isset( $_REQUEST[ 'is_wrapped' ] ) )
 	{
-	if ( $_REQUEST[ 'is_wrapped' ] == "1" ) $tmpl .= "&is_wrapped=1";
+	if ( $_REQUEST[ 'is_wrapped' ] == "1" ) 
+		$tmpl .= "&is_wrapped=1";
 	}
 
 if ( isset( $_REQUEST[ 'menuoff' ] ) )
