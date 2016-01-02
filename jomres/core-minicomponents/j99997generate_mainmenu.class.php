@@ -21,7 +21,7 @@ class j99997generate_mainmenu
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
+			
 			return;
 			}
 
@@ -214,8 +214,8 @@ class j99997generate_mainmenu
 
 		$output['_JOMRES_BOOKING_NUMBER'] = jr_gettext("_JOMRES_BOOKING_NUMBER",_JOMRES_BOOKING_NUMBER,false);
 		$output['TAG_SEARCH_URL'] = jomresUrl(JOMRES_SITEPAGE_URL_NOSEF . '&task=list_bookings');
-		
-		
+		$output['USER_FEEDBACK'] = get_showtime("user_feedback");
+
 		$pageoutput[ ]                    = $output;
 		$tmpl                             = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
