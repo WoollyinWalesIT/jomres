@@ -2097,7 +2097,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 	$jomresConfig_smtpuser = get_showtime( 'smtpuser' );
 	$jomresConfig_smtpport = get_showtime( 'smtpport' );
 	$jomresConfig_mailer   = get_showtime( 'mailer' );
-	$jomresConfig_debug	= true;
+	$jomresConfig_debug	= false;
 	$siteConfig			= jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig			  = $siteConfig->get();
 
