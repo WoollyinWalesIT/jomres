@@ -33,7 +33,7 @@ class j16000booking_data_archive
 		$output[ '_JOMRES_SORTORDER_PROPERTYNAME' ]             = jr_gettext( "_JOMRES_SORTORDER_PROPERTYNAME", _JOMRES_SORTORDER_PROPERTYNAME,false );
 		$output[ '_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED' ] = jr_gettext( "_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED", _JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED,false );
 
-		$query  = "SELECT id,data,date FROM #__jomres_booking_data_archive";
+		$query  = "SELECT id,data,date FROM #__jomres_booking_data_archive LIMIT 500";
 		$result = doSelectSql( $query );
 		foreach ( $result as $res )
 			{
