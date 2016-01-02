@@ -246,15 +246,20 @@ class jr_user
 							}
 						elseif ( !defined( '_JOMRES_INITCHECK_ADMIN' ) )
 							{
-							trigger_error( "This manager " . (int) $this->id . "  hasn't got any properties.", E_USER_ERROR );
+							$this->reset_manager_to_non_manager();
 							}
 						}
+					
 					if ( count($this->authorisedProperties)>0)
 						{
 						if (!in_array( $this->currentproperty, $this->authorisedProperties ))
 							{
 							$this->currentproperty = $this->setToAnyAuthorisedProperty();
 							}
+						}
+					else
+						{
+						$this->reset_manager_to_non_manager();
 						}
 					}
 				}
@@ -274,7 +279,24 @@ class jr_user
 			$this->userIsManager=false;
 			}
 		}
-
+	
+	private function reset_manager_to_non_manager() // We can't throw an error here, otherwise the whole MiniComponents variable isn't created and all sorts of wonderful things might happen, so instead we'll just reset the user so that they don't have any access rights to properties
+		{
+		$this->userIsManager                = false;
+		$this->accesslevel                  = false;
+		$this->defaultproperty              = false;
+		$this->currentproperty              = false;
+		$this->last_active                  = false;
+		$this->authorisedProperties         = array ();
+		$this->authorisedPropertyDetails    = array ();
+		$this->superPropertyManager         = false;
+		$this->jomres_manager_id = 0;
+		$this->userIsSuspended				= false;
+		$this->simple_configuration			= false;
+		
+		}
+	
+	
 	public static function getInstance()
 		{
 		if ( !self::$configInstance )
