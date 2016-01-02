@@ -71,8 +71,7 @@ try
 
 	if (count($thisJRUser->authorisedProperties)==0 && $thisJRUser->userIsManager)
 		{
-		echo "Error, manager has no properties";
-		return;
+		throw new Exception( "This manager " .  jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( (int) $this->id ) . "  hasn't got any properties.");
 		}
 	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig   = $siteConfig->get();
