@@ -76,13 +76,15 @@ class j06000contactowner
 				return;
 			}
 		
-		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-		$current_property_details->gather_data( $property_uid );
+
 
 		$output                = array ();
 		
 		if ( $property_uid > 0)
 			{
+			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+			$current_property_details->gather_data( $property_uid );
+		
 			$target = $current_property_details->property_name;
 			$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', _JOMRES_FRONT_MR_MENU_CONTACTHOTEL );
 			}
