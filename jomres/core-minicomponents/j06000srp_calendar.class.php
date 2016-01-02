@@ -210,7 +210,7 @@ class j06000srp_calendar
 				if ( date( "m" , $currdate ) == $stmonth  )
 					{
 					if ($link != "")
-						$this->retVals .= '<a style="color: black  !important;" href="'.$link.'">'.date( "j", $currdate ).'</a>';
+						$this->retVals .= '<a style="color: black  !important;" href="'.$link.'" rel="nofollow">'.date( "j", $currdate ).'</a>';
 					else
 						$this->retVals .= date( "j", $currdate );
 					}
