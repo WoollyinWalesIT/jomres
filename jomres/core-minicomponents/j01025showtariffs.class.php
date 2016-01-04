@@ -149,9 +149,9 @@ class j01025showtariffs
 					if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 						{
 						if ( $tariff->ignore_pppn || $mrConfig[ 'perPersonPerNight' ] == "0" ) 
-							$r[ 'ROOMRATEPERDAY' ] = output_price( $price_inc_vat ) . " " . jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY );
+							$r[ 'ROOMRATEPERDAY' ] = output_price( $price_inc_vat * $multiplier ) . " " . jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY );
 						else
-							$r[ 'ROOMRATEPERDAY' ] = output_price( $price_inc_vat ) . " " . jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY );
+							$r[ 'ROOMRATEPERDAY' ] = output_price( $price_inc_vat * $multiplier ) . " " . jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY );
 						}
 					else
 						{
