@@ -61,13 +61,19 @@ if ( isset( $_REQUEST[ "task" ] ) )
 
 $index = "index.php";
 $tmpl  = "";
-if ( !isset( $_GET[ 'tmpl' ] ) ) $_GET[ 'tmpl' ] = false;
+if ( !isset( $_GET[ 'tmpl' ] ) ) 
+	$_GET[ 'tmpl' ] = false;
 
-if ( ( $jrConfig[ 'isInIframe' ] == (bool) "1" || $_GET[ 'tmpl' ] == get_showtime("tmplcomponent") ) && !isset( $_REQUEST[ 'nofollowtmpl' ] ) )
+if ( ( $jrConfig[ 'isInIframe' ] == (bool) "1" || $_GET[ 'tmpl' ] == get_showtime("tmplcomponent") ) && !isset( $_REQUEST[ 'nofollowtmpl' ] ) && !jomres_cmsspecific_areweinadminarea() )
 	{
 	$index = "index.php";
 	$tmpl = '&tmpl='.get_showtime("tmplcomponent");
 	define( "JOMRES_WRAPPED", 1 );
+	if (!isset($_REQUEST['tmpl']))
+		{
+		$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."&tmpl=jomres";
+		jomresRedirect($url);
+		}
 	}
 else
 	define( "JOMRES_WRAPPED", 0 );
