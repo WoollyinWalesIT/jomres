@@ -713,7 +713,7 @@ jr_define( '_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO', 'Use global currency?' );
 jr_define( '_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC', 'Set this to yes to force all businesses to use the same currency (e.g. & # 8 3 6 4 ;)' );
 jr_define( '_JOMRES_COM_JRCONFIG_GLOBALCURRENCY', 'Global currency symbol' );
 jr_define( '_JOMRES_COM_JRCONFIG_ISWRAPPED', 'Component wrapped' );
-jr_define( '_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC', 'Set this to Yes if the component is wrapped so that module and header areas are not to be seen' );
+jr_define( '_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC', 'Set this to Yes if if you want to force the site into Full Page view. This might be useful if you intend to access the site via iframes.' );
 jr_define( '_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER', 'Super Business Manager' );
 jr_define( '_JOMRES_COM_WEEKENDONLY', 'Weekends only' );
 jr_define( '_JOMRES_COM_WEEKENDDAYS', 'Weekend days' );
