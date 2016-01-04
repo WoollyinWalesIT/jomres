@@ -420,7 +420,7 @@ class j03020insertbooking
 				$secret_key = $jomres_contract_secret_key->generate_secret_key();
 				
 				$query = "SELECT id FROM #__jomres_booking_data_archive WHERE tag = '".$cartnumber."'";
-				$booking_data_archive_id = doSelectSql($query,1);
+				$booking_data_archive_id = (int)doSelectSql($query,1);
 				
 				system_log("Referrer ".serialize($tmpBookingHandler->tmpbooking[ "referrer" ]));
 				
