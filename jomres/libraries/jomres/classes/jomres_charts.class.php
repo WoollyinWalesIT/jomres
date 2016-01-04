@@ -137,7 +137,6 @@ class jomres_charts
 		if (count($this->datasets) < 1)
 			$this->datasets[0] = $this->data;
 
-		$i = 0;
 		foreach ($this->datasets as $k=>$v)
 			{
 			$r = array();
@@ -190,14 +189,12 @@ class jomres_charts
 			else
 				$r['pointHighlightStroke'] = $this->pointHighlightStroke;
 			
-			if (array_key_exists($i+1, $this->datasets))
+			if (array_key_exists($k+1, $this->datasets))
 				$r['COMMA'] = ',';
 			else
 				$r['COMMA'] = '';
 
 			$rows[] = $r;
-			
-			$i++;
 			}
 		
 		$output['RANDOM_ID'] = generateJomresRandomString( 10 );
