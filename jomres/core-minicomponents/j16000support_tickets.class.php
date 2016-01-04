@@ -46,14 +46,14 @@ class j16000support_tickets
 			<p>Here you can submit support request tickets. Please make sure you login first (create an account if you don`t already have one).</p>
 			<div class="' . $class . '" style="width:100%;">
 			<div style="' . $style . '">
-			<iframe src="http://tickets.jomres.net" width="100%" height="1000" id="tickets" marginheight="0" frameborder="0">You need to enable frames in your browser to view this content.</iframe> 
+			<iframe src="https://tickets.jomres.net" width="100%" height="1000" id="tickets" marginheight="0" frameborder="0">You need to enable frames in your browser to view this content.</iframe> 
 			</div></div>
 			';
 			}
 		else
 			{
 			echo '<h2>Jomres Support Tickets</h2>
-			<p>Sorry, your support key has expired or is not valid, please consider purchasing a support key or renewing your existing support by visiting <a href="http://www.jomres.net/prices" target="_blank">Jomres.net</a></p>
+			<p>Sorry, your support key has expired or is not valid, please consider purchasing a support key or renewing your existing support by visiting <a href="https://www.jomres.net/prices" target="_blank">Jomres.net</a></p>
 			';
 			}
 		}
