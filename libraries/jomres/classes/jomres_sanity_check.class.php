@@ -46,9 +46,12 @@ class jomres_sanity_check
 			}
 		
 		$this->warnings .= $this->checks_guest_types_pppn();
-		if ( $this->mrConfig[ 'is_real_estate_listing' ] == 0 ) 
+		if ( $this->mrConfig[ 'is_real_estate_listing' ] == 0 && get_showtime('include_room_booking_functionality') ) 
 			$this->warnings .= $this->checks_tariffs_exist();
-
+		
+		if ( get_showtime('is_jintour_property' ) )
+			$this->warnings .= $this->check_tours_exist();
+			
 		$this->warnings .= $this->check_address();
 		$this->warnings .= $this->check_main_image();
 		$this->warnings .= $this->check_editing_mode();
@@ -93,6 +96,36 @@ class jomres_sanity_check
 		$tmpl->readTemplatesFromInput( 'sanity_check_pane.html' );
 		return $tmpl->getParsedTemplate();
 		}
+
+	function check_tours_exist()
+		{
+		if (get_showtime("task") != "jintour")
+			{
+			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+			$current_property_details->gather_data( get_showtime( "property_uid" ) );
+			
+			$tours = jintour_get_all_tours(get_showtime( "property_uid" ));
+			$future_tours = array();
+			$today = date("Y/m/d");
+			foreach ( $tours as $tour )
+				{
+				$tempArr=explode('-', $tour['tourdate']);
+				$tourdate = date("Y/m/d", mktime(0, 0, 0, $tempArr[1], $tempArr[2], $tempArr[0]));
+				if(strtotime($today)<strtotime($tourdate))
+					$future_tours[]=$tour;
+				}
+			
+			if (count($future_tours) == 0)
+				{
+				$message = jr_gettext( '_JOMRES_JINTOUR_SANITY_CHECK', _JOMRES_JINTOUR_SANITY_CHECK, false );
+				$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=jintour');
+				$button_text = jr_gettext( '_JOMRES_JINTOUR_SANITY_CHECK_LINK', _JOMRES_JINTOUR_SANITY_CHECK_LINK, false );
+
+				return $this->construct_warning( array( "MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $button_text ) );
+				}
+			}
+		}
+	
 
 	function check_address()
 		{
