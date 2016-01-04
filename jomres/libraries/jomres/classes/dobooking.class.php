@@ -2077,7 +2077,10 @@ class dobooking
 		{
 		$tmpBookingHandler = jomres_getSingleton( 'jomres_temp_booking_handler' );
 		$amend_contract    = $tmpBookingHandler->getBookingFieldVal( "amend_contract" );
-		if ( empty( $this->cfg_mindaysbeforearrival ) ) $this->cfg_mindaysbeforearrival = 0;
+		$thisJRUser = jomres_getSingleton( 'jr_user' );
+
+		if ( empty( $this->cfg_mindaysbeforearrival )|| $thisJRUser->userIsManager ) 
+			$this->cfg_mindaysbeforearrival = 0;
 		$date_elements = explode( "/", $this->today );
 		if ( count( $date_elements ) != 3 )
 			{
