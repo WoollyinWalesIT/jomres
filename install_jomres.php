@@ -10,7 +10,9 @@
  **/
 
 if ( isset( $_REQUEST[ 'autoupgrade' ] ) ) 
+	{
 	define( 'AUTO_UPGRADE', true );
+	}
 else
 	{
 	define( 'AUTO_UPGRADE', false );
@@ -274,7 +276,8 @@ if ( $folderChecksPassed && $functionChecksPassed && ACTION != "Migration" )
 	}
 
 if ( !AUTO_UPGRADE ) showfooter();
-if ( AUTO_UPGRADE ) echo "1";
+if ( AUTO_UPGRADE ) jomresRedirect( jomres_installer_get_admin_url() );
+
 
 
 // This function added to help us to understand installation success/failure to see if there are any changes needed to improve the behaviour of the installer. 
@@ -6577,31 +6580,9 @@ function proceed()
 
 function showCompletedText()
 	{
-	list( $path, $args ) = explode( "?", $_SERVER[ 'REQUEST_URI' ] );
-	$_URI = explode( "/", $path );
 
-	array_shift( $_URI );
-	$_URI = array_slice( $_URI, 0, count( $_URI ) - 2 );
-	array_unshift( $_URI, $_SERVER[ 'SERVER_NAME' ] );
-	
-	if ( this_cms_is_joomla() )
-		$administrator_url = "http://" . implode( "/", $_URI ) . "/administrator/index.php?option=com_jomres";
-	elseif (this_cms_is_wordpress())
-		{
-		if ( ACTION == "Upgrade")
-			{
-			$administrator_url = JOMRES_SITEPAGE_URL_ADMIN;
-			}
-		else
-			{
-			$administrator_url = "http://" . implode( "/", $_URI ) ."/wp-admin/plugins.php";
-			}
-		}
-	else
-		{
-		$administrator_url = JOMRES_SITEPAGE_URL_ADMIN;
-		}
 
+	$administrator_url=jomres_installer_get_admin_url();
 	
 	output_message ( 'Thank you for installing Jomres. You may now go to your CMS\'s administrator area and configure Jomres' , "success");
 	
@@ -6628,6 +6609,35 @@ function showCompletedText()
 			}, 5000);
 			</script>');
 		}
+	}
+
+function jomres_installer_get_admin_url()
+	{
+	list( $path, $args ) = explode( "?", $_SERVER[ 'REQUEST_URI' ] );
+	$_URI = explode( "/", $path );
+
+	array_shift( $_URI );
+	$_URI = array_slice( $_URI, 0, count( $_URI ) - 2 );
+	array_unshift( $_URI, $_SERVER[ 'SERVER_NAME' ] );
+	
+	if ( this_cms_is_joomla() )
+		$administrator_url = "http://" . implode( "/", $_URI ) . "/administrator/index.php?option=com_jomres";
+	elseif (this_cms_is_wordpress())
+		{
+		if ( ACTION == "Upgrade")
+			{
+			$administrator_url = JOMRES_SITEPAGE_URL_ADMIN;
+			}
+		else
+			{
+			$administrator_url = "http://" . implode( "/", $_URI ) ."/wp-admin/plugins.php";
+			}
+		}
+	else
+		{
+		$administrator_url = JOMRES_SITEPAGE_URL_ADMIN;
+		}
+	return $administrator_url;
 	}
 
 function showfooter()
