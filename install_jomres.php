@@ -1951,6 +1951,7 @@ function alterExtraServicesTaxCol()
 		`property_uid` VARCHAR(11),
 		`tax_rate_val` CHAR (10) DEFAULT '0',
 		`tax_code` CHAR (10) DEFAULT '0',
+		`service_qty` FLOAT NOT NULL DEFAULT 1,
 		PRIMARY KEY	(`extraservice_uid`)
 		) ";
 	$result = doInsertSql( $query, "" );
@@ -3542,6 +3543,7 @@ function createJomresTables()
 		`property_uid` VARCHAR(11),
 		`tax_rate_val` CHAR (10) DEFAULT '0',
 		`tax_code` CHAR (10) DEFAULT '0',
+		`service_qty` FLOAT NOT NULL DEFAULT 1,
 		PRIMARY KEY	(`extraservice_uid`)
 		) ";
 	if ( !doInsertSql( $query ) )
