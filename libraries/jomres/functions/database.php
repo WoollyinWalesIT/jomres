@@ -95,6 +95,7 @@ function doInsertSql( $query, $op = "", $ignoreErrors = false )
 
 function jomres_audit( $query, $op = "" )
 	{
+	return; // Disabled audit logging. It's unloved, nobody uses it that we're aware of.
 	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig   = $siteConfig->get();
