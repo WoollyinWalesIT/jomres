@@ -63,7 +63,7 @@ class j06002charts
 		$options[] = jomresHTML::makeOption( 'line', 'Line' );
 		$options[] = jomresHTML::makeOption( 'bar', 'Bar' );
 		$options[] = jomresHTML::makeOption( 'radar', 'Radar' );
-		$output['CHART_TYPES_DROPDOWN'] = jomresHTML::selectList( $options, 'jr_chart_type','class="inputbox" size="1"', 'value', 'text', $chart_type);
+		$output['CHART_TYPES_DROPDOWN'] = jomresHTML::selectList( $options, 'jr_chart_type','class="inputbox" size="1"', 'value', 'text', $chart_type , false);
 		
 		//get selected jr chart
 		if (get_showtime('jr_chart') == '0')
