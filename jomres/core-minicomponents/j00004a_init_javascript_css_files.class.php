@@ -232,7 +232,7 @@ class j00004a_init_javascript_css_files
 		$current_property_details->gather_data( get_showtime('property_uid') );
 		
 		$live_scrolling_enabled = "true";
-		if ( $jrConfig['live_scrolling_enabled'] == "0")
+		if ( $jrConfig['live_scrolling_enabled'] == "0" || jomres_cmsspecific_areweinadminarea())
 			$live_scrolling_enabled = "false";
 		
 		$misc_url_defs = '
