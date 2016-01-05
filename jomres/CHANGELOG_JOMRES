@@ -1,3 +1,36 @@
+<h3>Jomres 9.4.-1 05/01/2016</h3>
+
+<span class="label label-warning">Change</span> In List Properties, if the number of property uids = 0, then do nothing. Minor tweak.
+<span class="label label-warning">Change</span> Modified calendar month output to account for non-Latin characters. Thanks Nikos.
+<span class="label label-warning">Change</span> Tweaked list properties so that if Visitors can book online option is set to No, then Booking On Request is shown instead of the "Instant booking" image overlay.
+<span class="label label-warning">Change</span> Added a new show_property_room_types_srp.html template to improve output of SRP property type output in Preview page.
+<span class="label label-warning">Change</span> Updated Sanity checks to only show Publish option when other requirements have been met.
+<span class="label label-warning">Change</span> Added a 500 record limit to booking data archive script.
+<span class="label label-warning">Change</span> Added rel nofollow to calendar links.
+<span class="label label-warning">Change</span> Improved manager handling so that a manager user with no properties is reverted back to a non-manager user for security reasons. This is better than simply throwing a fatal error.
+<span class="label label-warning">Change</span> Added a new User Feedback function and supporting scripts. Sanity checks are great, but they don't need to be run every time a non-manager user access the page, however we sometimes need to provide feedback to non-manager users ( for example the previous changeset improves how managers with no properties are handled, however there was no reliable way to provide feedback to this user ). Enter, the new "set_user_feedback_message" function.
+<span class="label label-warning">Change</span> Added Contact Us string to language files.
+<span class="label label-warning">Change</span> Contact Owner script modified to send emails direct to site admin ( using email address set in Site Config -> Your Business Details ) if property uid = 0 to give new property managers a direct link to contact site managers.
+<span class="label label-warning">Change</span> Added new language strings to Jomres pertaining to post-property creation emails.
+<span class="label label-warning">Change</span> My favourites menu option modified so that property managers can tag a property as a favourite too.
+<span class="label label-warning">Change</span> Improved new charting code to show multiple year datasets properly.
+<span class="label label-warning">Change</span> Tweaked CMS specific urls to ensure that the site is forced to fullscreen view if the Is Wrapped setting is used.
+<span class="label label-warning">Change</span> Added a Jintour Sanity check.
+<span class="label label-warning">Change</span> Disabled audit logging, it's not used and unloved.
+<span class="label label-warning">Change</span> Disabled audit logging, it's not used and unloved.
+<span class="label label-warning">Change</span> Modified Top Level language files to use property specific language strings. Whilst Jomres is capable of managing anything that's booked by the day, 95% of our users are using it for property rental, and having "business" specific language strings is confusing to our users.
+<span class="label label-warning">Change</span> Modified the installer to automatically apply upgrades, and then redirect to the administrator area when the autoupgrade flag is set.
+<span class="label label-warning">Change</span> Tweaked javascript so that live scolling code isn't triggered in administrator area.
+
+<span class="label label-important label-danger">Fix</span> Added a check to see if the property is a Jintour property, before checking to see if rooms and/or tariffs are available and sending the guest to the contact form if they're not ( as Jintour properties don't have these ).
+<span class="label label-important label-danger">Fix</span> Fixed an issue in cms_specific_urls.php for J3.4, j3.5 & wp where the jrConfig setting becomes unset incorrectly, which breaks the Is Wrapped setting ( which forces the Jomres output into fullscreen mode ).
+<span class="label label-important label-danger">Fix</span> Fixed a small issue where the Support Tickets page in administrator would throw warnings when used in administrator areas that use https.
+<span class="label label-important label-danger">Fix</span> Added a missing multiplier for showing prices per week/month in show tariffs page.
+<span class="label label-important label-danger">Fix</span> Tweaked booking insertion code to ensure that if it's a quick booking, then an id is set to an integer.
+<span class="label label-important label-danger">Fix</span> Modified checkArrivalDate method to ensure that managers are able to make bookings before the Min Days Before Arrival option kicks in.
+<span class="label label-important label-danger">Fix</span> Fixed an issue in installer where `service_qty` column was not being added on installation.
+
+
 <h3>Jomres 9.4.-3 18/12/2015</h3>
 
 <span class="label label-success">Feature</span> Modified property creation process, drastically reducing the time required to create a new property. Added a number of new sanity checks that will guide the user when creating a new property.
