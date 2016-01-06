@@ -69,6 +69,10 @@ class j00501tariffs
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_SWAP", _JOMRES_COM_A_TARIFFS_SWAP, false ) );
+			$configurationPanel->setmiddle( $lists[ 'currency_symbol_swap' ] );
+			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TARIFFS_SWAP_DESC", _JOMRES_COM_A_TARIFFS_SWAP_DESC, false ) );
+			$configurationPanel->insertSetting();
 			}
 		
 		if ( !$thisJRUser->simple_configuration )

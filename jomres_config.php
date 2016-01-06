@@ -169,3 +169,4 @@ $mrConfig[ 'vat_number_validation_response' ] = "";
 $mrConfig[ 'requireApproval' ] = "0";
 $mrConfig[ 'showPfeaturesCategories' ] = "1";
 
+$mrConfig[ 'currency_symbol_swap' ] = '0';
