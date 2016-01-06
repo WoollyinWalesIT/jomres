@@ -1622,7 +1622,7 @@ jr_define("_JOMRES_COOKIEPOLICY_TITLE","Показувати політику в
 jr_define("_JOMRES_COOKIEPOLICY_DESC","EU Legislation requires that all websites that use cookies request permission from site visitors to store cookies.
 <br/>
 Jomres uses the host CMS's cookie to construct it's own session file where information about the user's search results and other activities can be saved, to make the user's visit more pleasant. Whilst we believe that normal Jomres functionality is probably covered by provisions in the legislation defined as 'such storage or access is strictly necessary to provide an information society service requested by the subscriber or user' (see http://www.ico.gov.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies.aspx) we have included this feature to give you the ability to prevent users from accessing pages other than search pages in the event that the user does not allow their cookie to be used in this way. <br/>
-If enabled Jomres will show an 'opt-in' link where users can choose to have the cookie which is stored for them used in this way. If they do not choose to opt-in then Jomres will only show them some basic pages (like the properties details, show shortlist, search results etc). 
+If enabled Jomres will show an 'opt-in' link where users can choose to have the cookie which is stored for them used in this way. If they do not choose to opt-in then Jomres will only show them some basic pages (like the properties details, show favourites, search results etc). 
 <br/>
 Set this option to Yes to enact this policy.");
 jr_define("_JOMRES_COOKIEPOLICY_1","Важливо: ПОлітика використання сookie");
