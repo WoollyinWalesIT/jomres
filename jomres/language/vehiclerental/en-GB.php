@@ -327,7 +327,7 @@ jr_define( '_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR', 'Th' );
 jr_define( '_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR', 'Fr' );
 jr_define( '_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR', 'Sa' );
 jr_define( '_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR', 'Su' );
-jr_define( '_JOMRES_COM_A_AVLCAL', 'Availability cal.' );
+jr_define( '_JOMRES_COM_A_AVLCAL', 'Calendar' );
 jr_define( '_JOMRES_COM_AVLCAL_TODAYCOLOUR', 'Font colour for the current date' );
 jr_define( '_JOMRES_COM_AVLCAL_INMONTHFACE', 'Font colour for days in the display month ' );
 jr_define( '_JOMRES_COM_AVLCAL_OUTMONTHFACE', 'Font colour for days not in the display month' );
