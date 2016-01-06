@@ -8,7 +8,7 @@
 		</div>
 		<div class="col-md-9">
 			<img src="{QR_CODE_MAP}" title="{_JOMRES_SCAN_FOR_DIRECTIONS}" alt="qrcode" width="75" class="pull-right"/>
-			<h1 id="tour_target_property_header">{PROPERTY_NAME} <span>{STARS} {SUPERIOR}</span></h1>	
+			<h1 id="tour_target_property_header">{PROPERTY_NAME} <span>{STARS} {SUPERIOR}</span></h1>
 			<address>
 				<span itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
 					<span itemprop="street-address">{STREET}</span>,
@@ -28,6 +28,7 @@
 				</span>
 				<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
 			</address>
+			<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}')">{SHORTLIST}</a>
 		</div>
 	</div>
 </div>

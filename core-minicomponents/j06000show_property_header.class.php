@@ -51,6 +51,7 @@ class j06000show_property_header
 		$output     = array ();
 		$pageoutput = array ();
 		
+		$output['PROPERTY_UID'] = $property_uid;
 		$show_property_header = intval( jomresGetParam( $_REQUEST, 'show_property_header', 1 ) );
 		if ($show_property_header == 0)
 			return;
@@ -161,6 +162,51 @@ class j06000show_property_header
 
 		$output[ 'JOMRES_TAPTOCALL' ] = jr_gettext( "JOMRES_TAPTOCALL", JOMRES_TAPTOCALL, false, false );
 
+		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		$shortlist_items = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
+		if ( $thisJRUser->userIsRegistered )
+			{
+			$query  = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE `my_id` = '" . (int) $thisJRUser->id . "'";
+			$propys = doSelectSql( $query );
+
+			if ( count( $propys ) > 0 )
+				{
+				foreach ($propys as $p)
+					{
+					if ( !in_array($p->property_uid , $shortlist_items))
+						{
+						$shortlist_items[]=(int)$p->property_uid;
+						}
+					}
+				$tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ] = $shortlist_items;
+				}
+			}
+
+		if ( !in_array( $property_uid, $shortlist_items ) )
+			{
+			$shortlist_output = array();
+			$shortlist_pageoutput = array();
+			$shortlist_output['TEXT']= jr_gettext( '_JOMRES_ADDTOSHORTLIST', _JOMRES_ADDTOSHORTLIST, false, false );
+			$shortlist_pageoutput[ ] = $shortlist_output;
+			$tmpl          = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			$tmpl->readTemplatesFromInput( 'shortlist_removed_text.html' );
+			$tmpl->addRows( 'pageoutput', $shortlist_pageoutput );
+			$output[ 'SHORTLIST' ] = $tmpl->getParsedTemplate();
+			}
+		else
+			{
+			$shortlist_output = array();
+			$shortlist_pageoutput = array();
+			$shortlist_output['TEXT']= jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', _JOMRES_REMOVEFROMSHORTLIST, false, false );
+			$shortlist_pageoutput[ ] = $shortlist_output;
+			$tmpl          = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			$tmpl->readTemplatesFromInput( 'shortlilst_added_text.html' );
+			$tmpl->addRows( 'pageoutput', $shortlist_pageoutput );
+			$output[ 'SHORTLIST' ] = $tmpl->getParsedTemplate();
+			}
+	
 		$url                                     = make_gmap_url_for_property_uid( $property_uid );
 		$qr_code_map                             = jomres_make_qr_code( str_replace(" ", "+",$url ) );
 		$output[ 'QR_CODE_MAP' ]                 = $qr_code_map[ 'relative_path' ];
