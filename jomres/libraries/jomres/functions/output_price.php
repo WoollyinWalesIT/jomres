@@ -53,6 +53,8 @@ function output_price( $value, $currencycode = "", $do_conversion = true, $zeroO
 		$jomres_geolocation->auto_set_user_currency_code();
 		}
 	$foreign = $tmpBookingHandler->user_settings[ 'current_exchange_rate' ];
+	
+	
 	if ( $conversion->this_code_can_be_converted( $currencycode ) && $currencycode != $foreign && $do_conversion && $foreign != "" && $price > 0.00 )
 		{
 		$base                   = $currencycode;
@@ -61,6 +63,17 @@ function output_price( $value, $currencycode = "", $do_conversion = true, $zeroO
 
 		$c_codes                = new currency_codes( $converted_currencycode );
 		$symbols                = $c_codes->getSymbol();
+		if (!isset($mrConfig['currency_symbol_swap']))
+			$mrConfig['currency_symbol_swap'] = "0";
+		
+		if ( $mrConfig['currency_symbol_swap'] =="1" )
+			{
+			$tmp_pre			= $symbols[ 'pre' ];
+			$tmp_post			= $symbols[ 'post' ];
+			$symbols[ 'pre' ]	= $tmp_post;
+			$symbols[ 'post' ]	= $tmp_pre;
+			}
+
 		$converted_price        = $currfmt->get_formatted( $converted_price );
 		$converted_output_price = $symbols[ 'pre' ] . $converted_price . $symbols[ 'post' ];
 
@@ -90,6 +103,16 @@ function output_price( $value, $currencycode = "", $do_conversion = true, $zeroO
 		{
 		$c_codes = new currency_codes( $currencycode );
 		$symbols = $c_codes->getSymbol();
+		if (!isset($mrConfig['currency_symbol_swap']))
+			$mrConfig['currency_symbol_swap'] = "0";
+		
+		if ( $mrConfig['currency_symbol_swap'] =="1" )
+			{
+			$tmp_pre			= $symbols[ 'pre' ];
+			$tmp_post			= $symbols[ 'post' ];
+			$symbols[ 'pre' ]	= $tmp_post;
+			$symbols[ 'post' ]	= $tmp_pre;
+			}
 
 		if ( $price > 0.00 || $zeroOK )
 			{

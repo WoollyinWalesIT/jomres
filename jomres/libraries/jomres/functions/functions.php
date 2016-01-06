@@ -2942,7 +2942,7 @@ function hotelSettings()
 	$lists[ 'auto_detect_country_for_booking_form' ] = jomresHTML::selectList( $yesno, 'cfg_auto_detect_country_for_booking_form', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'auto_detect_country_for_booking_form' ] );
 
 	$lists[ 'showPfeaturesCategories' ] = jomresHTML::selectList( $yesno, 'cfg_showPfeaturesCategories', 'class="inputbox" size="1"', 'value', 'text', (int)$mrConfig[ 'showPfeaturesCategories' ] );
-
+	$lists[ 'currency_symbol_swap' ] = jomresHTML::selectList( $yesno, 'cfg_currency_symbol_swap', 'class="inputbox" size="1"', 'value', 'text', (int)$mrConfig[ 'currency_symbol_swap' ] );
 
 	$componentArgs								= array ();
 	$componentArgs[ 'mrConfig' ]				  = $mrConfig;
