@@ -26,22 +26,25 @@ class j05020dobooking
 			return;
 			}
 
-		require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'dobooking.php' );
+		
 
 		$property_uid = get_showtime( 'property_uid' );
 		$mrConfig     = getPropertySpecificSettings();
+		$calendar ="";
 		if ( get_showtime( 'include_room_booking_functionality' ) && $mrConfig['showAvailabilityCalendar'] == "1" )
 			{
 			if ( $mrConfig[ 'singleRoomProperty' ] )
 				{
-				$MiniComponents->specificEvent( '06000', 'srp_calendar', array('output_now'=>true, 'property_uid'=>$property_uid , 'months_to_show' => 24 , 'show_just_month' => false) );
+				$calendar = $MiniComponents->specificEvent( '06000', 'srp_calendar', array('output_now'=>false, 'property_uid'=>$property_uid , 'months_to_show' => 24 , 'show_just_month' => false) );
 				}
 			elseif ( $mrConfig[ 'showRoomsInPropertyDetails' ] )
 				{
-				$MiniComponents->specificEvent( '06000', 'mrp_calendar', array('output_now'=>true, 'property_uid'=>$property_uid , 'months_to_show' => 24 , 'show_just_month' => false) );
+				$calendar = $MiniComponents->specificEvent( '06000', 'mrp_calendar', array('output_now'=>false, 'property_uid'=>$property_uid , 'months_to_show' => 24 , 'show_just_month' => false) );
 				}
 			}
-
+		set_showtime("booking_form_calendar" , $calendar );
+		require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'dobooking.php' );
+		
 		if ( !defined( "DOBOOKING_IN_DETAILS" ) ) jomres_cmsspecific_setmetadata( "robots", "noindex,nofollow" );
 
 		}
