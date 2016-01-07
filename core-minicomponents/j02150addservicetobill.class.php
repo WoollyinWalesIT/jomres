@@ -91,6 +91,9 @@ class j02150addservicetobill
 						{
 						$invoice->add_line_item( $line_item );
 						$invoice->commitUpdateInvoice();
+						
+						if ($invoice->status == 1 && $service_value > 0)
+							$invoice->mark_invoice_pending();
 						}
 					else
 						{
