@@ -131,6 +131,9 @@ class j16000jomres_system_info
 			$output['REVIEW_SITE_TEXT'] = 'Joomla! Extensions Directory';
 			}
 		
+		$output['CAPTERRA_REVIEW_SITE_URL'] = 'http://www.capterra.com/reservations-software/reviews/134469/Jomres/Woollyinwales%20IT/new';
+		$output['CAPTERRA_REVIEW_SITE_TEXT'] = 'Capterra';
+		
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );

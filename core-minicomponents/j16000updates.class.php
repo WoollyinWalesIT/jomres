@@ -61,6 +61,10 @@ class j16000updates
 			else
 				$output['REVIEW_URL'] = "You can leave a review on the <br/><a href=\'http://extensions.joomla.org/extensions/extension/vertical-markets/booking-a-reservations/jomres\' target=\'_blank\'>Joomla extension directory</a><br>";
 				
+			$output['REVIEW_URL'] .= "Alternatively, you can leave a review with <br/><a href=\'http://www.capterra.com/reservations-software/reviews/134469/Jomres/Woollyinwales%20IT/new\' target=\'_blank\'>Capterra.</a><br>";
+			
+				
+				
 			$output['RATIONAL'] = "Good reviews are crucial in helping users to decide whether or not to invest time in researching a product such as Jomres. We\'d appreciate it if you could take a few minutes out of your day to share your thoughts of the system for the benefit of others. Without reviews helping to drive business to our site we can\'t pay the bills. If you\'ve already left a review then we thank you and hope you\'ll wait a few moments for the page to reload.";
 			$output['REDIRECT1'] = "You will be able to continue the upgrade process in ";
 			$output['REDIRECT2'] = " seconds.";
