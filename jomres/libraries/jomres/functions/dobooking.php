@@ -164,7 +164,24 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=contactowner&amp;selectedProperty=".$selectedProperty."&amp;arrivalDate=".$thisdate ) );
 			}
 		}
-
+	elseif ( get_showtime('is_jintour_property' ) )
+		{
+		$tours = jintour_get_all_tours(get_showtime( "property_uid" ));
+		$future_tours = array();
+		$today = date("Y/m/d");
+		foreach ( $tours as $tour )
+			{
+			$tempArr=explode('-', $tour['tourdate']);
+			$tourdate = date("Y/m/d", mktime(0, 0, 0, $tempArr[1], $tempArr[2], $tempArr[0]));
+			if(strtotime($today)<strtotime($tourdate))
+				$future_tours[]=$tour;
+			}
+		if ( count($future_tours) ==0 )
+			{
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=contactowner&amp;selectedProperty=".$selectedProperty."&amp;arrivalDate=".$thisdate ) );
+			}
+		}
+	
 	$bkg->room_feature_filter = array ();
 	if ( !is_object( $bkg ) )
 		{
