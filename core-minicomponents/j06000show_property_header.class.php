@@ -226,6 +226,9 @@ class j06000show_property_header
 			$reviews_link[]['REVIEWS_LINK'] = jomresURL( JOMRES_SITEPAGE_URL . "&task=show_property_reviews&property_uid=" . $property_uid );
 			}
 		
+		$output[ 'AGENT_LINK' ] = make_agent_link( $property_uid );
+		$output[ '_JOMRES_AGENT' ] = jr_gettext( "_JOMRES_AGENT", _JOMRES_AGENT );
+					
 		$url                                     = make_gmap_url_for_property_uid( $property_uid );
 		$qr_code_map                             = jomres_make_qr_code( str_replace(" ", "+",$url ) );
 		$output[ 'QR_CODE_MAP' ]                 = $qr_code_map[ 'relative_path' ];
