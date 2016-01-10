@@ -41,6 +41,7 @@
 		{_JOMRES_REVIEWS_THANKS_FOR_REVIEW}
 	</div>
 </div>
+<div itemscope itemtype="http://schema.org/Hotel">
 <div itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
 	<h2>
 		<span itemprop="itemreviewed">{PROPERTY_NAME}</span><!-- hotel name -->
@@ -68,7 +69,6 @@
 		<meta itemprop="bestRating" content = "{RATING_SCHEMA_BESTRATING}">
 		<meta itemprop="worstRating"  content = "{RATING_SCHEMA_WORSTRATING}">
 		<meta itemprop="ratingValue" content = "{RATING_SCHEMA_RATINGVALUE}">
-		<meta itemprop="itemReviewed" content = "{PROPERTY_NAME}">
 		<div class="col-md-4">
 			<div class="well">
 				<div class="row">
@@ -166,5 +166,6 @@
 	<div>{NUMBER_DISAGREE} {_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW}&nbsp;</div>-->
 </div>
 </patTemplate:tmpl>
+</div>
 <div>{_JOMRES_REVIEWS_ADD_REVIEW}</div>
 </patTemplate:tmpl>
