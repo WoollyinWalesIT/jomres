@@ -47,7 +47,7 @@ class j06000show_property_header
 
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$current_property_details->gather_data( $property_uid );
-	
+		
 		$output     = array ();
 		$pageoutput = array ();
 		
@@ -118,10 +118,11 @@ class j06000show_property_header
 			}
 
 		//Facebook meta data
+		$short_property_description =  jomres_decode(jr_substr( strip_tags(  $current_property_details->property_description  ), 0, 200 )) . '...';
 		jomres_cmsspecific_addcustomtag( '<meta property="og:url" content="' . jomres_cmsspecific_currenturl() . '" />' );
 		jomres_cmsspecific_addcustomtag( '<meta property="og:type" content="article" />' );
 		jomres_cmsspecific_addcustomtag( '<meta property="og:title" content="' . jomres_decode($current_property_details->property_name) . '" />' );
-		jomres_cmsspecific_addcustomtag( '<meta property="og:description" content="' . jomres_decode(jr_substr( strip_tags(  $current_property_details->property_description  ), 0, 200 )) . '...' . '" />' );
+		jomres_cmsspecific_addcustomtag( '<meta property="og:description" content="' . $short_property_description . '" />' );
 		jomres_cmsspecific_addcustomtag( '<meta property="og:image" content="' . $output[ 'IMAGELARGE' ] . '" />' );
 
 
@@ -135,6 +136,19 @@ class j06000show_property_header
 		$output[ 'TELEPHONE' ]     = $current_property_details->property_tel;
 		$output[ 'FAX' ]           = $current_property_details->property_fax;
 		
+		$output['PROPERTY_LAT']=$current_property_details->lat;
+		$output['PROPERTY_LONG']=$current_property_details->long;
+		$output['SHORT_PROPERTY_DESCRIPTION']= $short_property_description;
+		$output['_JOMRES_COM_A_CLICKFORMOREINFORMATION']= jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION , false );
+		$output['DIRECT_URL']= jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $propertys_uid );
+
+		
+		$price = get_property_price_for_display_in_lists( $property_uid );
+
+		$output['PRICE']		=$price['PRICE'];
+		$output['PRE_TEXT']		=$price['PRE_TEXT'];
+		$output['POST_TEXT']	=$price['POST_TEXT'];
+
 		if ((int)$jrConfig['override_property_contact_details'] == 1)
 			{
 			if ($jrConfig['override_property_contact_tel'] != '')
@@ -206,7 +220,12 @@ class j06000show_property_header
 			$tmpl->addRows( 'pageoutput', $shortlist_pageoutput );
 			$output[ 'SHORTLIST' ] = $tmpl->getParsedTemplate();
 			}
-	
+		
+		if ( $jrConfig[ 'use_reviews' ] == "1" )
+			{
+			$reviews_link[]['REVIEWS_LINK'] = jomresURL( JOMRES_SITEPAGE_URL . "&task=show_property_reviews&property_uid=" . $property_uid );
+			}
+		
 		$url                                     = make_gmap_url_for_property_uid( $property_uid );
 		$qr_code_map                             = jomres_make_qr_code( str_replace(" ", "+",$url ) );
 		$output[ 'QR_CODE_MAP' ]                 = $qr_code_map[ 'relative_path' ];
@@ -220,6 +239,7 @@ class j06000show_property_header
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'featurelist', $featureList );
 		$tmpl->addRows( 'roomtypes', $roomtypes );
+		$tmpl->addRows( 'reviews_link', $reviews_link );
 		$tmpl->readTemplatesFromInput( 'property_header.html' );
 		$tmpl->displayParsedTemplate();
 		}

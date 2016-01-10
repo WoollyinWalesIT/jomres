@@ -49,4 +49,19 @@
 			</div>
 </patTemplate:comment>
 
+<div itemscope itemtype="http://schema.org/Hotel">
+	<span itemprop="location"> 
+		<span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+			<meta itemprop="latitude" content="{PROPERTY_LAT}" />
+			<meta itemprop="longitude" content="{PROPERTY_LONG}" />
+		</span>
+	</span>
+	from <span itemprop="priceRange">{PRICE}</span>
+ 		<span itemprop="description"> {SHORT_PROPERTY_DESCRIPTION}
+			<a itemprop="url" href="..." 
+				title="{_JOMRES_COM_A_CLICKFORMOREINFORMATION} - {PROPERTY_NAME}"
+			>More...</a>
+		</span>
+</div>
+
 </patTemplate:tmpl>
