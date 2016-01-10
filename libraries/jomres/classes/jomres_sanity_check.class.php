@@ -101,9 +101,6 @@ class jomres_sanity_check
 		{
 		if (get_showtime("task") != "jintour")
 			{
-			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-			$current_property_details->gather_data( get_showtime( "property_uid" ) );
-			
 			$tours = jintour_get_all_tours(get_showtime( "property_uid" ));
 			$future_tours = array();
 			$today = date("Y/m/d");
