@@ -1,37 +1,81 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<div class="property-header">
-	<div class="row">
-		<div class="col-md-3">
-			<div class="thumbnail">
-				<img src="{IMAGETHUMB}" class="img-responsive"/>
+<style>
+
+.cover{
+	color: rgb(255, 255, 255);
+	position: relative;
+	min-height: 350px;
+	background: url("{IMAGELARGE}") no-repeat scroll 0px;
+	background-size:cover;
+}
+ <img alt="full screen background image" src="/background.jpg" id="full-screen-background-image" /> 
+
+</style>
+	
+
+<div itemscope itemtype="http://schema.org/Hotel">
+	<div class="cover">
+		<div class="clearfix"></div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-body">
+				<h1>{PROPERTY_NAME} <span>{STARS} {SUPERIOR}</span></h1>
+			<div class="row">
+				<div class="col-md-6">
+					<address>
+						<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+							<span itemprop="streetAddress">{STREET}</span>
+							<span itemprop="addressLocality">{TOWN}</span>,
+							<span itemprop="addressRegion">{REGION}</span>
+							<span itemprop="addressCountry">{COUNTRY}</span>
+							<span itemprop="postalCode">{POSTCODE}</span>
+						</div>
+						<span itemprop="location">
+							<span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+								<meta itemprop="latitude" content="{PROPERTY_LAT}" />
+								<meta itemprop="longitude" content="{PROPERTY_LONG}" />
+							</span>
+						</span>
+						<span class="hidden-xs">
+							{HTELEPHONE}<span>{TELEPHONE}</span>,
+							{HFAX}{FAX}
+						</span>
+						<span class="visible-xs">
+							<br/>
+							<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="fa fa-phone"></i> 
+								{JOMRES_TAPTOCALL} {TELEPHONE}</a>
+						</span>
+						<div>
+							<a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a>
+						</div>
+					</address>
+				</div>
+				<div class="col-md-3">
+					<button class="btn btn-primary" type="button">
+						{PRE_TEXT} <span itemprop="priceRange">{PRICE}</span> {POST_TEXT}
+					</button><br/><br/>
+					<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}')">{SHORTLIST}</a>
+				</div>
+				<div class="col-md-3">
+					<img src="{QR_CODE_MAP}" title="{_JOMRES_SCAN_FOR_DIRECTIONS}" alt="qrcode" width="75" class="pull-right"/>
+				<patTemplate:comment>{AGENT_LINK}</patTemplate:comment>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					{FEATURES}
+				</div>
 			</div>
 		</div>
-		<div class="col-md-9">
-			<img src="{QR_CODE_MAP}" title="{_JOMRES_SCAN_FOR_DIRECTIONS}" alt="qrcode" width="75" class="pull-right"/>
-			<h1 id="tour_target_property_header">{PROPERTY_NAME} <span>{STARS} {SUPERIOR}</span></h1>
-			<address>
-				<span itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
-					<span itemprop="street-address">{STREET}</span>,
-					<span itemprop="locality">{TOWN}</span>, 
-					<span itemprop="region">{REGION}</span>, 
-					<span itemprop="postal-code">{POSTCODE}</span>, 
-					<span itemprop="country-name">{COUNTRY}</span><br/>
-					<span class="hidden-xs">
-						{HTELEPHONE}<span>{TELEPHONE}</span>,
-						{HFAX}{FAX}
-					</span>
-					<span class="visible-xs">
-						<br/>
-						<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="fa fa-phone"></i> 
-							{JOMRES_TAPTOCALL} {TELEPHONE}</a>
-					</span>
-				</span>
-				<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
-			</address>
-			<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}')">{SHORTLIST}</a>
-		</div>
+	</div>
+	<div class="hidden">
+		<span itemprop="description"> {SHORT_PROPERTY_DESCRIPTION}
+			<a itemprop="url" href="{DIRECT_URL}" title="{_JOMRES_COM_A_CLICKFORMOREINFORMATION} - {PROPERTY_NAME}">{_JOMRES_COM_A_CLICKFORMOREINFORMATION}</a>
+		</span>
 	</div>
 </div>
+
+
 
 <patTemplate:comment>
 {IMAGELARGE}
@@ -48,20 +92,5 @@
 				</div>
 			</div>
 </patTemplate:comment>
-
-<div itemscope itemtype="http://schema.org/Hotel">
-	<span itemprop="location"> 
-		<span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
-			<meta itemprop="latitude" content="{PROPERTY_LAT}" />
-			<meta itemprop="longitude" content="{PROPERTY_LONG}" />
-		</span>
-	</span>
-	from <span itemprop="priceRange">{PRICE}</span>
- 		<span itemprop="description"> {SHORT_PROPERTY_DESCRIPTION}
-			<a itemprop="url" href="..." 
-				title="{_JOMRES_COM_A_CLICKFORMOREINFORMATION} - {PROPERTY_NAME}"
-			>More...</a>
-		</span>
-</div>
 
 </patTemplate:tmpl>
