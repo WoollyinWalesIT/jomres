@@ -56,7 +56,7 @@ class j06002charts
 			{
 			$options[] = jomresHTML::makeOption( $k['id'], $k['title'].' - '.$k['description'] );
 			}
-		$output['CHARTS_DROPDOWN'] = jomresHTML::selectList( $options, 'jr_chart','class="inputbox" size="1"', 'value', 'text', get_showtime('jr_chart'));
+		$output['CHARTS_DROPDOWN'] = jomresHTML::selectList( $options, 'jr_chart','class="inputbox" size="1"', 'value', 'text', get_showtime('jr_chart'), false);
 		
 		//chart types dropdown
 		$options = array();
