@@ -46,7 +46,7 @@ class j06000show_property_features
 
 		if ( count($basic_property_details->features) > 0 )
 			{
-			if ( (int)$mrConfig['showPfeaturesCategories'] == 0 )
+			if ( (int)$mrConfig['showPfeaturesCategories'] == 0 || $componentArgs[ 'show_feature_categories' ] == false )
 				{
 				$pFeatures = array();
 				

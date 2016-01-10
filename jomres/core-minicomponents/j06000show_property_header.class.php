@@ -89,7 +89,7 @@ class j06000show_property_header
 			$output[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->multi_query_images ['noimage-small'];
 			}
 		
-		$output['FEATURES']		= $MiniComponents->specificEvent( '06000', 'show_property_features',array('output_now'=>false, 'property_uid'=>$property_uid));
+		$output['FEATURES']		= $MiniComponents->specificEvent( '06000', 'show_property_features',array('output_now'=>false, 'property_uid'=>$property_uid , 'show_feature_categories'=>false));
 		$output['ROOMTYPES']	= $MiniComponents->specificEvent( '06000', 'show_property_room_types',array('output_now'=>false, 'property_uid'=>$property_uid));
 
 		//meta data
@@ -221,9 +221,25 @@ class j06000show_property_header
 			$output[ 'SHORTLIST' ] = $tmpl->getParsedTemplate();
 			}
 		
+		if ($mrConfig[ 'is_real_estate_listing' ] == 0)
+			{
+			if ( $mrConfig[ 'requireApproval' ] == "1" || $mrConfig['visitorscanbookonline'] == "0" )
+				{
+				$output[ 'REQUIRE_APPROVAL' ] = jr_gettext( '_BOOKING_ONREQUEST', _BOOKING_ONREQUEST , false );
+				$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'booking-onrequest';
+				}
+			else
+				{
+				$output[ 'REQUIRE_APPROVAL' ] = jr_gettext( '_BOOKING_INSTANT', _BOOKING_INSTANT , false );
+				$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'booking-instant';
+				}
+			}
+
+		$reviews_link = array();
 		if ( $jrConfig[ 'use_reviews' ] == "1" )
 			{
-			$reviews_link[]['REVIEWS_LINK'] = jomresURL( JOMRES_SITEPAGE_URL . "&task=show_property_reviews&property_uid=" . $property_uid );
+			$reviews_link[0]['REVIEWS_LINK'] = jomresURL( JOMRES_SITEPAGE_URL . "&task=show_property_reviews&property_uid=" . $property_uid );
+			$reviews_link[0]['REVIEWS_TEXT'] = jr_gettext( '_JOMRES_REVIEWS', _JOMRES_REVIEWS, false, false );
 			}
 		
 		$output[ 'AGENT_LINK' ] = make_agent_link( $property_uid );
