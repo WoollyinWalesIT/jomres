@@ -371,20 +371,25 @@ class dobooking
 
 		// Let's get the room, tariff, room type (class) and room feature information for this property
 
-		$this->getAllRoomsData();
-		$this->getAllTariffsData();
-		$this->getAllRoomFeatureDetails();
-		$this->getAllRoomClasses();
-		$this->getAllRoomFeatures();
-		$this->getAllBookings();
-		$this->getAllTaxRates();
-		$this->get_all_tariff_types();
+		if ( get_showtime( 'include_room_booking_functionality' ) ) 
+			{
+			$this->getAllRoomsData();
+			$this->getAllTariffsData();
+			$this->getAllRoomFeatureDetails();
+			$this->getAllRoomClasses();
+			$this->getAllRoomFeatures();
+			$this->getAllBookings();
+			$this->getAllTaxRates();
+			$this->get_all_tariff_types();
+
+			$this->checkAllGuestsAllocatedToRooms();
+			}
 
 		$this->checkAllGuestsAllocatedToRooms();
 
 		return true;
 		}
-
+		
 
 	/**
 	#
