@@ -153,10 +153,7 @@ class j00501booking_settings
 				$configurationPanel->insertSetting();
 				}
 			
-			$configurationPanel->setleft( '<h3>'.jr_gettext( "_JOMRES_HFIXED_PERIODS", _JOMRES_HFIXED_PERIODS, false ).'</h3>' );
-			$configurationPanel->setmiddle();
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+			$configurationPanel->insertHeading(jr_gettext( _JOMRES_HFIXED_PERIODS, '_JOMRES_HFIXED_PERIODS', false ));
 	
 			if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 				{
@@ -239,10 +236,7 @@ class j00501booking_settings
 		
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
-			$configurationPanel->setleft( '<h3>'.jr_gettext( "_JOMRES_HDEPOSITS", _JOMRES_HDEPOSITS, false ).'</h3>' );
-			$configurationPanel->setmiddle();
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+			$configurationPanel->insertHeading(jr_gettext( _JOMRES_HDEPOSITS, '_JOMRES_HDEPOSITS', false ));
 		
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT", _JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT, false ) );
 			$configurationPanel->setmiddle( $lists[ 'chargeDepositYesNo' ] );
