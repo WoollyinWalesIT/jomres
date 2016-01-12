@@ -109,6 +109,7 @@ function get_periods( $start, $end, $interval = null )
 // Function to get the client IP address
 function jomres_get_client_ip() {
 	$ipaddress = '';
+
 	if ($_SERVER['HTTP_CLIENT_IP'])
 		$ipaddress = $_SERVER['HTTP_CLIENT_IP'];
 	else if($_SERVER['REMOTE_ADDR'])
@@ -123,6 +124,10 @@ function jomres_get_client_ip() {
 		$ipaddress = $_SERVER['HTTP_FORWARDED'];
 	else
 		$ipaddress = 'UNKNOWN';
+	
+	if ($ipaddress == '::1')
+		$ipaddress = '127.0.0.1';
+	
 	return filter_var( $ipaddress , FILTER_SANITIZE_STRING ) ;
 }
 
