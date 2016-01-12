@@ -99,10 +99,7 @@ class j00501booking_form
 
 		if ( !$thisJRUser->simple_configuration )
 			{
-			$configurationPanel->setleft( '<h3>'.jr_gettext( "_JOMRES_HREQUIRED_FIELDS", _JOMRES_HREQUIRED_FIELDS, false ).'</h3>' );
-			$configurationPanel->setmiddle();
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+			$configurationPanel->insertHeading(jr_gettext( _JOMRES_HREQUIRED_FIELDS, '_JOMRES_HREQUIRED_FIELDS', false ));
 			
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME", _JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME ) );
 			$configurationPanel->setmiddle( $lists[ 'bookingform_requiredfields_name' ] );
