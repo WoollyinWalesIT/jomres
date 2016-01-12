@@ -1,3 +1,27 @@
+<h3>Jomres 9.4.0 12/01/2016</h3>
+
+<span class="label label-success">Feature</span> Made a number of changes that add a cover to the property header based on the Main property image, added some more elements of interest to guests such as property features, and updated rich snippets so that they validate and we add price + hidden short description.
+<span class="label label-success">Feature</span> Added an option to allow property managers to swap the location of the currency symbol in price outputs.
+
+<span class="label label-warning">Change</span> Property header modified to have Add to Favourites ajax icon, so most guest facing pages will benefit from this feature, not just the property lists.
+<span class="label label-warning">Change</span> Modified some language strings from Availability Cal. to Calendar as will be used in the booking form.
+<span class="label label-warning">Change</span> Modified booking form so that the large calendar is passed back to the dobooking script, instead of output immediately, and the calendar is now in a modal that can be triggered through a button. MRP, Bootstrap 3 only.
+<span class="label label-warning">Change</span> Modified view favourites to filter out 0 value array elements.
+<span class="label label-warning">Change</span> Term "shortlist" renamed to "favorites".
+<span class="label label-warning">Change</span> Tweaked functionality to ensure that if a service is added to a bill, then the bill is marked again as unpaid.
+<span class="label label-warning">Change</span> Added Capterra review page link to various administrator area pages.
+<span class="label label-warning">Change</span> Improved month short strings in german lang file.
+<span class="label label-warning">Change</span> Added ( commented ) agent link calling to property header script.
+<span class="label label-warning">Change</span> Added a check to dobooking to ensure that if there are no future tours, guests are redirected to the contact owner form.
+<span class="label label-warning">Change</span> Added a check so that Tour type properties wouldn't trigger errors when the booking form is opened.
+<span class="label label-warning">Change</span> Added a switch to show_property_features to allow a calling script to disable showing of property feature categories.
+<span class="label label-warning">Change</span> Modified property header to show Instant Booking or Booking on Request flags in header.
+<span class="label label-warning">Change</span> Added a small tweak to define :::1 as 127.0.0.1 for IP recording reasons.
+
+<span class="label label-important label-danger">Fix</span> Added a small tweak to ensure that chart options with one option are still shown as a dropdown.
+<span class="label label-important label-danger">Fix</span> Removed an element from show_property_reviews.html that was preventing micro data from validating.
+
+
 <h3>Jomres 9.4.-1 05/01/2016</h3>
 
 <span class="label label-warning">Change</span> In List Properties, if the number of property uids = 0, then do nothing. Minor tweak.
