@@ -71,7 +71,12 @@ class jomres_configpanel extends jomres_content_tabs
 	
 	function insertDescription( $description = "" , $class = "alert alert-info")
 		{
-		$this->panes[ ] = '<div class="'.$class.'">'.$description.'</div>';
+		$this->panes[ ] = '<p class="'.$class.'">'.$description.'</p>';
+		}
+	
+	function insertHeading( $text = "" , $type = "h3")
+		{
+		$this->panes[ ] = '<div class="row-fluid"><div class="span12"><'.$type.'>'.$text.'</'.$type.'></div></div>';
 		}
 
 	/**
