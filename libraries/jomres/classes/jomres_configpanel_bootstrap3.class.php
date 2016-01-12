@@ -46,9 +46,11 @@ class jomres_configpanel_bootstrap3 extends jomres_content_tabs
 		
 		$this->panes[ ] = '
 			<div class="col-md-12 ' . $rowclass . '">
-				<div class="col-md-3">' . $this->left . '</div>
-				<div class="col-md-4">' . $this->middle.'</div>
-				<div class="col-md-5">' . $this->right .'</div>
+				<div class="row">
+					<div class="col-md-3">' . $this->left . '</div>
+					<div class="col-md-4">' . $this->middle.'</div>
+					<div class="col-md-5">' . $this->right .'</div>
+				</div>
 			</div>
 			';
 		
@@ -65,7 +67,17 @@ class jomres_configpanel_bootstrap3 extends jomres_content_tabs
 	 */
 	function insertDescription( $description = "" , $class = "alert alert-info")
 		{
-		$this->panes[ ] = '<div class="'.$class.'">'.$description.'</div>';
+		$this->panes[ ] = '<div class="row"><div class="col-md-12"><p class="'.$class.'">'.$description.'</p></div></div>';
+		}
+	
+	/**
+	#
+	 * Inserts a heading
+	#
+	 */
+	function insertHeading( $text = "" , $type = "h3")
+		{
+		$this->panes[ ] = '<div class="row"><div class="col-md-12"><'.$type.'>'.$text.'</'.$type.'></div></div>';
 		}
 
 	/**
