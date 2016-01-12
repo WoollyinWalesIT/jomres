@@ -71,7 +71,12 @@ class jomres_language_definitions
 		if ( isset( $this->definitions[ $this->ptype ][ $constant ] ) ) 
 			return $this->definitions[ $this->ptype ][ $constant ];
 		else
-			return $this->definitions[ $this->default_ptype ][ $constant ];
+			{
+			if ( isset($this->definitions[ $this->default_ptype ][ $constant ]) )
+				return $this->definitions[ $this->default_ptype ][ $constant ];
+			else
+				return $constant;
+			}
 		}
 
 	function reset_lang_and_property_type()
