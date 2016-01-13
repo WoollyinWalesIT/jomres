@@ -12,23 +12,18 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
 
-class j00011manager_option_09_newproperty {
+class j00011manager_option_12_deleteproperty {
 	function __construct($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
-		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-		$jrConfig=$siteConfig->get();
-		if ($jrConfig['is_single_property_installation'] == "0")
-			{
-			if ( $jrConfig['selfRegistrationAllowed']=='1' || $thisJRUser->superPropertyManager)
-				$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=registerProp_step1"), 'AddProperty.png', jr_gettext('_JOMRES_COM_MR_NEWPROPERTY',_JOMRES_COM_MR_NEWPROPERTY,false,false),null,jr_gettext("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES" , _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES,false,false),false,false );
-			}
+		$thisJRUser=jomres_getSingleton('jr_user');
+		if ( $thisJRUser->superPropertyManager)
+		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=deleteProperty", 'WasteBasket.png', jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE',_JOMRES_COM_MR_PROPERTY_DELETE,false,false),null,jr_gettext("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES" , _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES ,false,false),false);
 		}
 	
 	

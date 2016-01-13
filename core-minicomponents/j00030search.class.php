@@ -791,7 +791,7 @@ class j00030search
 
 		if ( !$data_only )
 			{
-			if ( !$doSearch || ( $calledByModule == "mod_jomsearch_m0" && $jrConfig[ 'integratedSearch_enable' ] == '1' && this_cms_is_joomla()) )
+			if ( !$doSearch || ( $calledByModule == "mod_jomsearch_m0" && $jrConfig[ 'integratedSearch_enable' ] == '1' && !this_cms_is_joomla() && !this_cms_is_wordpress()) )
 				{
 				$stmpl = new patTemplate();
 				$stmpl->setRoot( $sch->templateFilePath );
