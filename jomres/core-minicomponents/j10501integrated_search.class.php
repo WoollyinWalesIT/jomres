@@ -39,7 +39,7 @@ class j10501integrated_search
 			
 			$configurationPanel->insertDescription(jr_gettext( _JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC, '_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC', false ));
 	
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE', _JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE, false ) );
+			/* $configurationPanel->setleft( jr_gettext( '_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE', _JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE, false ) );
 			$configurationPanel->setmiddle( $lists[ 'integratedSearch_enable' ] );
 			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC', _JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC, false ) );
 			$configurationPanel->insertSetting();
@@ -47,7 +47,7 @@ class j10501integrated_search
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS', _JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS, false ) );
 			$configurationPanel->setmiddle( $lists[ 'integratedSearch_useCols' ] );
 			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS_DESC', _JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS_DESC, false ) );
-			$configurationPanel->insertSetting();
+			$configurationPanel->insertSetting(); */
 			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO', _JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO, false ) );
 			$configurationPanel->setmiddle( $lists[ 'integratedSearch_selectcombo' ] );
