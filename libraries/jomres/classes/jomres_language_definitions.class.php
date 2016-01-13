@@ -61,22 +61,14 @@ class jomres_language_definitions
 				}
 			else //in case there is no language_context set and the property type specific language dir was manually deleted
 				{
-				if ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' ) )
-					require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' );
-				else
-					require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . 'en-GB' . '.php' );
+				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' );
 				}
 			}
 
 		if ( isset( $this->definitions[ $this->ptype ][ $constant ] ) ) 
 			return $this->definitions[ $this->ptype ][ $constant ];
 		else
-			{
-			if ( isset($this->definitions[ $this->default_ptype ][ $constant ]) )
-				return $this->definitions[ $this->default_ptype ][ $constant ];
-			else
-				return $constant;
-			}
+			return $this->definitions[ $this->default_ptype ][ $constant ];
 		}
 
 	function reset_lang_and_property_type()
