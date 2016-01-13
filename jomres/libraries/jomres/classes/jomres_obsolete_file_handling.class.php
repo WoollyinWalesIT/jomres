@@ -440,12 +440,12 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j16000partners_property_find.class.php' );
 		// $this->add_obs_file($this->dir_minicomponents.'j00011manager_option_09_newproperty.class.php'); // This file has now been re-added to Jomres, in a disabled state
 		// $this->add_obs_file($this->dir_minicomponents.'j00011manager_option_12_deleteproperty.class.php'); // This file has now been re-added to Jomres, in a disabled state
-		$this->add_obs_file( $this->dir_minicomponents . 'j02299regprop1_a_roombookings.class.php' );
-		$this->add_obs_file( $this->dir_minicomponents . 'j02299regprop1_realestate.class.php' );
-		$this->add_obs_file( $this->dir_minicomponents . 'j02300regprop1.class.php' );
+		//$this->add_obs_file( $this->dir_minicomponents . 'j02299regprop1_a_roombookings.class.php' ); // Property creation functionality now re-added to Core
+		//$this->add_obs_file( $this->dir_minicomponents . 'j02299regprop1_realestate.class.php' ); // Property creation functionality now re-added to Core
+		//$this->add_obs_file( $this->dir_minicomponents . 'j02300regprop1.class.php' ); // Property creation functionality now re-added to Core
 		$this->add_obs_file( $this->dir_minicomponents . 'j02310regprop2.class.php' );
-		$this->add_obs_file( $this->dir_minicomponents . 'j02320regprop3.class.php' );
-		$this->add_obs_file( $this->dir_minicomponents . 'j04910deleteproperty.class.php' );
+		//$this->add_obs_file( $this->dir_minicomponents . 'j02320regprop3.class.php' ); // Property creation functionality now re-added to Core
+		//$this->add_obs_file( $this->dir_minicomponents . 'j04910deleteproperty.class.php' ); // Property creation functionality now re-added to Core
 		$this->add_obs_file( $this->dir_minicomponents . 'j00501sms_clickatell.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j03100sms_clickatell.class.php' );
 		// $this->add_obs_file($this->dir_minicomponents.'j10002sms_clickatell.class.php'); // This file has now been re-added to Jomres, in a disabled state
@@ -803,7 +803,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j00010reception_option_06_listoldbookings.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_08_publish.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_09_myproperties.class.php' );
-		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_12_deleteproperty.class.php' );
+		// $this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_12_deleteproperty.class.php' );  // Property creation functionality now re-added to Core
 		$this->add_obs_file( $this->dir_minicomponents . 'j00013x_listyourproperties.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j02242listnewbookings.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j06001listoldbookings.class.php' );
