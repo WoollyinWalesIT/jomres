@@ -20,9 +20,9 @@
 	<div class="panel panel-default">
 		<div class="panel-body">
 				 
-				<h1>{PROPERTY_NAME} <span>{STARS} {SUPERIOR}</span></h1>
+		<h1><a href="{DIRECT_URL}" title="{PROPERTY_NAME}">{PROPERTY_NAME}</a> <span>{STARS} {SUPERIOR}</span></h1>
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-6 col-sm-5">
 					<address>
 						<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 							<span itemprop="streetAddress">{STREET}</span>
@@ -54,7 +54,7 @@
 						<patTemplate:tmpl name="reviews_link" type="simpleCondition" requiredVars="reviews_link"> <a href="{REVIEWS_LINK}" class="btn btn-success">{REVIEWS_TEXT}</a></patTemplate:tmpl>
 					</patTemplate:comment>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3 col-sm-4">
 
 					<div class="row">
 						<h4><span class="label label-success">{PRE_TEXT} <span itemprop="priceRange">{PRICE}</span> {POST_TEXT}</span></h4>
@@ -63,10 +63,10 @@
 						<h4><span class="label label-info">{REQUIRE_APPROVAL}</span></h4>
 					</div>
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-2 col-sm-3">
 					<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}')">{SHORTLIST}</a>
 				</div>
-				<div class="col-md-1">
+				<div class="col-md-1 hidden-xs hidden-sm ">
 					<img src="{QR_CODE_MAP}" title="{_JOMRES_SCAN_FOR_DIRECTIONS}" alt="qrcode" width="75" class="pull-right"/>
 				<patTemplate:comment>{AGENT_LINK}</patTemplate:comment>
 				</div>
