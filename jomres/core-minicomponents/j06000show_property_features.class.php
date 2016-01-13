@@ -43,7 +43,10 @@ class j06000show_property_features
 		$basic_property_details->gather_data( $property_uid );
 
 		$output = array();
-
+		
+		if (!isset($componentArgs[ 'show_feature_categories' ]))
+			$componentArgs[ 'show_feature_categories' ] = true;
+		
 		if ( count($basic_property_details->features) > 0 )
 			{
 			if ( (int)$mrConfig['showPfeaturesCategories'] == 0 || $componentArgs[ 'show_feature_categories' ] == false )
