@@ -140,7 +140,7 @@ class j06000show_property_header
 		$output['PROPERTY_LONG']=$current_property_details->long;
 		$output['SHORT_PROPERTY_DESCRIPTION']= $short_property_description;
 		$output['_JOMRES_COM_A_CLICKFORMOREINFORMATION']= jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION , false );
-		$output['DIRECT_URL']= jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $propertys_uid );
+		$output['DIRECT_URL']= jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $property_uid );
 
 		
 		$price = get_property_price_for_display_in_lists( $property_uid );
