@@ -46,7 +46,8 @@ class j00060toptemplate
 		$output[ 'TIMEZONE_DROPDOWN' ] = '';
 		$output[ 'TIMEZONEBLURB' ]     = '';
 		$output[ 'PROPERTY_SELECTOR_DROPDOWN' ] ='';
-					
+		$output['FB_LOCALISE']= str_replace ( "-" , "_" , get_showtime("lang") );
+		
 		$editing_mode = jomres_singleton_abstract::getInstance( 'jomres_editing_mode' );
 		$result = $editing_mode->make_editing_mode_dropdown();
 			

@@ -250,6 +250,9 @@ class j06000show_property_header
 		$output[ 'QR_CODE_MAP' ]                 = $qr_code_map[ 'relative_path' ];
 		$output[ '_JOMRES_SCAN_FOR_DIRECTIONS' ] = jr_gettext( '_JOMRES_SCAN_FOR_DIRECTIONS', _JOMRES_SCAN_FOR_DIRECTIONS, false );
 		$output[ 'GMAP_LINK' ]                   = $url;
+		
+		
+		$output['FACEBOOK_BUTTONS'] = $MiniComponents->specificEvent( '06000', 'show_facebook_buttons',array('output_now'=>false, 'property_uid'=>$property_uid));
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
