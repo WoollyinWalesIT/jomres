@@ -1223,7 +1223,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'register_property2.html' );
 		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'register_property2_realestate.html' );
 		
-		emptyDir ($this->dir_core_plugins . JRDS . 'property_creation_plugins' . JRDS );
+		$this->add_obs_dir( $this->dir_core_plugins . JRDS . 'property_creation_plugins' . JRDS );
 		
 		}
 
