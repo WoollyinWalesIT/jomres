@@ -37,7 +37,12 @@ class j00501propertydetailsoptions
 		
 		$configurationPanel->startPanel( jr_gettext( "PROPERTY_DETAILS_PAGE_OPTIONS", PROPERTY_DETAILS_PAGE_OPTIONS, false ) );
 		
-
+		$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK", _JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK, false ) );
+		$configurationPanel->setmiddle( '<input text="text" class="inputbox" size="5" name="cfg_facebook_page" value="' . $mrConfig[ 'facebook_page' ] . '"/>' );
+		$configurationPanel->setright( jr_gettext( "_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC", _JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC, false ) );
+		$configurationPanel->insertSetting();
+		
+		
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
 			if ( !$thisJRUser->simple_configuration )
