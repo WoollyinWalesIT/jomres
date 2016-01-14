@@ -261,6 +261,8 @@ class j06000show_property_header
 		$tmpl->addRows( 'reviews_link', $reviews_link );
 		$tmpl->readTemplatesFromInput( 'property_header.html' );
 		$tmpl->displayParsedTemplate();
+		
+		$MiniComponents->triggerEvent( '01070' ); // Optional post header display
 		}
 
 	// This must be included in every Event/Mini-component
