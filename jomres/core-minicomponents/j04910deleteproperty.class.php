@@ -74,7 +74,7 @@ class j04910deleteproperty {
 					doInsertSql($query,'');
 					$query="DELETE FROM #__jomres_jintour_tours WHERE property_uid = '".$property_uid."'";
 					doInsertSql($query,'');
-					$query="DELETE FROM #__jomres_jintour_tour_bookings WHERE property_uid = '".$property_uid."'";
+					$query="DELETE FROM #__jomres_jintour_tour_bookings WHERE property_id = '".$property_uid."'";
 					doInsertSql($query,'');
 					}
 				
