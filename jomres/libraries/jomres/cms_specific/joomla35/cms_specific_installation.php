@@ -82,7 +82,7 @@ if ( $folderChecksPassed )
 
 
 // Looking to see if Jomres is already installed in Joomla. If it is, we'll simply return true as there's nothing else to do
-$query  = "SELECT `element` FROM #__extensions WHERE `element` = 'com_jomres'";
+$query  = "SELECT `element` FROM #__extensions WHERE `element` = 'com_jomres' AND `params` = '{}'";
 $result = doSelectSql( $query );
 if ( count( $result ) == 1 )
 	{
