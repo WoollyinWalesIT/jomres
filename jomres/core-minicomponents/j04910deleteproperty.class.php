@@ -36,62 +36,60 @@ class j04910deleteproperty {
 				dropImage($property_uid,"property",0,false);
 
 				$subject=_JOMRES_MR_AUDIT_DELETE_PROPERTY.$property_name;
-				sendAdminEmail(getPropertyName($property_uid),$saveMessage);
+				//sendAdminEmail(getPropertyName($property_uid),$saveMessage);
 
-				$query="DELETE FROM #__jomres_customertypes WHERE property_uid = '".$property_uid."'";
+				$query="DELETE FROM #__jomres_customertypes WHERE property_uid = '".$property_uid."' LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_extraservices WHERE property_uid = '".$property_uid."'";
+				$query="DELETE FROM #__jomres_extraservices WHERE property_uid = '".$property_uid."' LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_contracts WHERE property_uid = '".$property_uid."'";
+				$query="DELETE FROM #__jomres_contracts WHERE property_uid = '".$property_uid."' LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_rates WHERE property_uid = '".$property_uid."'";
+				$query="DELETE FROM #__jomres_rates WHERE property_uid = '".$property_uid."' LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_room_bookings WHERE property_uid = '".$property_uid."'";
+				$query="DELETE FROM #__jomres_room_bookings WHERE property_uid = '".$property_uid."' LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_room_classes WHERE property_uid = '".$property_uid."'";
+				$query="DELETE FROM #__jomres_room_classes WHERE property_uid = '".$property_uid."' LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_rooms WHERE propertys_uid = '".$property_uid."'";
+				$query="DELETE FROM #__jomres_rooms WHERE propertys_uid = '".$property_uid."' LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_room_features WHERE property_uid = '".$property_uid."'";
+				$query="DELETE FROM #__jomres_room_features WHERE property_uid = '".$property_uid."' LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_hotel_features WHERE property_uid = '".$property_uid."'";
+				$query="DELETE FROM #__jomres_hotel_features WHERE property_uid = '".$property_uid."' LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_pluginsettings WHERE prid = '".$property_uid."'";
+				$query="DELETE FROM #__jomres_pluginsettings WHERE prid = '".$property_uid."' LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_settings WHERE property_uid = '".$property_uid."'";
+				$query="DELETE FROM #__jomres_settings WHERE property_uid = '".$property_uid."' LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_custom_text WHERE property_uid = '".$property_uid."'";
+				$query="DELETE FROM #__jomres_custom_text WHERE property_uid = '".$property_uid."' LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_pcounter WHERE p_uid = '".$property_uid."'";
+				$query="DELETE FROM #__jomres_pcounter WHERE p_uid = '".$property_uid."' LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_managers_propertys_xref WHERE property_uid = '".$property_uid."'";
+				$query="DELETE FROM #__jomres_managers_propertys_xref WHERE property_uid = '".$property_uid."' LIMIT 10000";
 				doInsertSql($query,'');
 				if ( $is_jintour_property )
 					{
-					$query="DELETE FROM #__jomres_jintour_profiles WHERE property_uid = '".$property_uid."'";
+					$query="DELETE FROM #__jomres_jintour_profiles WHERE property_uid = '".$property_uid."' LIMIT 10000";
 					doInsertSql($query,'');
-					$query="DELETE FROM #__jomres_jintour_properties WHERE property_uid = '".$property_uid."'";
+					$query="DELETE FROM #__jomres_jintour_properties WHERE property_uid = '".$property_uid."' LIMIT 10000";
 					doInsertSql($query,'');
-					$query="DELETE FROM #__jomres_jintour_tours WHERE property_uid = '".$property_uid."'";
+					$query="DELETE FROM #__jomres_jintour_tours WHERE property_uid = '".$property_uid."' LIMIT 10000";
 					doInsertSql($query,'');
-					$query="DELETE FROM #__jomres_jintour_tour_bookings WHERE property_id = '".$property_uid."'";
+					$query="DELETE FROM #__jomres_jintour_tour_bookings WHERE property_uid = '".$property_uid."' LIMIT 10000";
 					doInsertSql($query,'');
 					}
 				
-				$query="DELETE FROM #__jomres_propertys WHERE propertys_uid = '".$property_uid."'";
-				if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_DELETE_PROPERTY',_JOMRES_MR_AUDIT_DELETE_PROPERTY,FALSE)))
-					{
-					$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
-					$c->eraseAll();
+				$query="DELETE FROM #__jomres_propertys WHERE propertys_uid = '".$property_uid."' LIMIT 1";
+				$result = doInsertSql($query);
+
+				$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+				$c->eraseAll();
 					
-					$resetProperty = $thisJRUser->check_currentproperty();
-					$jomres_messaging =jomres_getSingleton('jomres_messages');
-					$jomres_messaging->set_message($saveMessage);
+				$resetProperty = $thisJRUser->check_currentproperty();
+				$jomres_messaging =jomres_getSingleton('jomres_messages');
+				$jomres_messaging->set_message($saveMessage);
 					
-					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties&thisProperty=".$resetProperty, '' ));
-					}
-				else
-					trigger_error ("Unable to delete from propertys table, mysql db failure", E_USER_ERROR);
+				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties&thisProperty=".$resetProperty, '' ));
+
 				}
 			else
 				{
