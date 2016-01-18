@@ -111,11 +111,10 @@ class j02320regprop3
 		$thisJRUser->authorisedProperties[]=$newPropId;
 		updateManagerIdToPropertyXrefTable($thisJRUser->id,$thisJRUser->authorisedProperties );
 		$componentArgs=array('property_uid'=>(int)$newPropId);
-		$MiniComponents->triggerEvent('04901',$componentArgs); // Trigger point. Not currently used, but available if somebody wants a trigger point after the create property phase.
+		$MiniComponents->triggerEvent('04901',$componentArgs); // Trigger point for welcome email
 		$subject=jr_gettext("_JOMRES_REGISTRATION_CREATEDPROPERTY",_JOMRES_REGISTRATION_CREATEDPROPERTY,false).$property_name;
 		$message=jr_gettext("_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER",_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER,false).$thisJRUser->username;
-		sendAdminEmail($subject,$message);
-		
+
 		if ($approved ==0)
 			{
 			$link = JOMRES_SITEPAGE_URL_ADMIN."&task=list_properties_awaiting_approval";
