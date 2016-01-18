@@ -1195,7 +1195,7 @@ class jomresPHPMailer
     public function getSMTPInstance()
     {
         if (!is_object($this->smtp)) {
-            $this->smtp = new SMTP;
+            $this->smtp = new jomres_SMTP;
         }
         return $this->smtp;
     }

@@ -1225,6 +1225,8 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_dir( $this->dir_core_plugins . JRDS . 'property_creation_plugins' . JRDS );
 		
+		$this->add_obs_file( $this->dir_libraries . 'PHPMailer_v5.2.9' . JRDS . 'class.pop3.php' );
+		$this->add_obs_file( $this->dir_libraries . 'PHPMailer_v5.2.9' . JRDS . 'class.smtp.php' );
 		}
 
 	function add_obs_file( $path_and_file )
