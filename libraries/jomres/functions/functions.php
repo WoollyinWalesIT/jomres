@@ -2263,7 +2263,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 			}
 		$mail->Send();
 		}
-	catch (phpmailerException $e) 
+	catch (jomres_phpmailerException $e) 
 		{
 		error_logging($GLOBALS['debug']);
 		$GLOBALS['debug'] = '';
