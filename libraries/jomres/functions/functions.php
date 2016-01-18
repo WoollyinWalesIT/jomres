@@ -2094,7 +2094,7 @@ function mailer_get_css()
 Allows us to work independantly of Joomla or Mambo's emailers
 */
 
-function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mode = 1, $attachments = array () , $debugging = false )
+function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mode = 1, $attachments = array () , $debugging = true )
 	{
 	$jomresConfig_smtpauth = get_showtime( 'smtpauth' );
 	$jomresConfig_smtphost = get_showtime( 'smtphost' );
@@ -2102,7 +2102,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 	$jomresConfig_smtpuser = get_showtime( 'smtpuser' );
 	$jomresConfig_smtpport = get_showtime( 'smtpport' );
 	$jomresConfig_mailer   = get_showtime( 'mailer' );
-	$jomresConfig_debug	= false;
+
 	$siteConfig			= jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig			  = $siteConfig->get();
 
@@ -2161,13 +2161,14 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 	try 
 		{
 		
-		if (!$debugging)
-			$mail->SMTPDebug = get_showtime( 'error_reporting' );
-		else
+		$mail->SMTPDebug	= 2;
+		$mail->Debugoutput = function($str, $level) 
 			{
-			$mail->SMTPDebug = 4;
-			$mail->$Debugoutput = 'echo';
-			}
+			$GLOBALS['debug'] .= "$level: $str<br/>";
+			};
+		
+		$mail->Timeout		= 300;
+		
 		if ( $mode == 1 ) 
 			$mail->IsHTML( true );
 		$mail->Mailer = $jomresConfig_mailer;
@@ -2204,6 +2205,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
+
 		if ( $jrConfig[ 'alternate_smtp_use_settings' ] == "1" )
 			{
 			$mail->Mailer	 = 'smtp';
@@ -2219,13 +2221,12 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 			$mail->Mailer		= 'smtp';
 			$mail->Host			= trim( get_showtime( 'smtphost' ) );
 			$mail->Port			= trim( get_showtime( 'smtpport' ) );
-			$mail->SMTPSecure	= trim( $jrConfig[ 'alternate_smtp_protocol' ] );
+			$mail->SMTPSecure	= trim( get_showtime( 'smtpsecure' ) );
 			$mail->SMTPAuth		= trim( get_showtime( 'smtpauth' ) );
 			$mail->Username		= trim( get_showtime( 'smtpuser' ) );
 			$mail->Password		= trim( get_showtime( 'smtppass' ) );
 			}
 		//	$mail->AltBody		= "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
-
 
 		if ( count( $attachments ) > 0 )
 			{
@@ -2264,12 +2265,13 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 		}
 	catch (phpmailerException $e) 
 		{
-		echo $e->errorMessage(); //Pretty error messages from PHPMailer
+		error_logging($GLOBALS['debug']);
+		$GLOBALS['debug'] = '';
 		return false;
 		} 
 	catch (Exception $e) 
 		{
-		echo $e->getMessage(); //Boring error messages from anything else!
+		//echo $e->getMessage(); //Boring error messages from anything else!
 		return false;
 		}
 

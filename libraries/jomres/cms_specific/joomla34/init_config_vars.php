@@ -119,6 +119,8 @@ $showtime->smtpauth   = $CONFIG->smtpauth;
 $showtime->smtpuser   = $CONFIG->smtpuser;
 $showtime->smtppass   = $CONFIG->smtppass;
 $showtime->smtphost   = $CONFIG->smtphost;
+$showtime->smtpsecure = $CONFIG->smtpsecure;
+$showtime->smtpport   = $CONFIG->smtpport;
 $showtime->secret     = $CONFIG->secret;
 $showtime->dbprefix   = $CONFIG->dbprefix;
 $showtime->user       = $CONFIG->user;
@@ -132,7 +134,6 @@ $showtime->cachetime  = $CONFIG->cachetime;
 $showtime->offset     = $CONFIG->offset;
 $showtime->sef        = $CONFIG->sef;
 $showtime->gzip       = $CONFIG->gzip;
-
 
 $jomresConfig_sitename = $CONFIG->sitename;
 $jomresConfig_lifetime = $CONFIG->lifetime;
