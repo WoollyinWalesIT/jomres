@@ -370,19 +370,15 @@ class j01010listpropertys
 					if ( in_array( $propertys_uid, $tmpBookingHandler->tmpsearch_data[ 'featured_properties' ] ) )
 						{
 						if ( !isset( $jrConfig[ 'featured_listings_emphasis' ] ) )
-							$jrConfig[ 'featured_listings_emphasis' ] = "";
+							$jrConfig[ 'featured_listings_emphasis' ] = "panel-primary";
 
 						$property_deets[ 'FEATURED_LISTINGS_CLASS' ] = $jrConfig[ 'featured_listings_emphasis' ];
 						}
+					else
+						$property_deets[ 'FEATURED_LISTINGS_CLASS' ] = "panel-default";
 
-					if ($jrConfig['use_budget_feature'] == "1" && in_array( $propertys_uid, $tmpBookingHandler->tmpsearch_data[ 'featured_properties' ] )) // We need to force the featured listings class to use panel-primary
-						{
-						$property_deets[ 'FEATURED_LISTINGS_CLASS' ] = 'panel-primary';
-						}
-
-					if ( ($property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ]) || !isset($jrConfig[ 'featured_listings_emphasis' ]) )
-						$property_deets[ 'BUDGET_BORDER_CLASS' ] = 'panel-default';
-
+					$property_deets[ 'BUDGET_BORDER_CLASS' ] = "";
+					
 					if ($guest_budget > 0 && $jrConfig['use_budget_feature'] == "1" && using_bootstrap() )
 						{
 						if (
@@ -393,7 +389,7 @@ class j01010listpropertys
 							{
 							$property_deets[ 'BUDGET_BORDER_CLASS' ] = "panel-success";
 							}
-						elseif ($property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ])
+						else
 							{
 							$property_deets[ 'BUDGET_BORDER_CLASS' ] .= ' property-list-overbudget-properties';
 							}
