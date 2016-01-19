@@ -490,7 +490,7 @@ jr_define( "_JOMRES_COM_A_GATEWAYLIST", "Gateways" );
 jr_define( "_JOMRES_COM_A_CANCEL", "ยกเลิก" );
 jr_define( "_JOMRES_FRONT_BLACKBOOKING_DESC", "Select the dates that you want to apply the black bookings for. When you have selected the appropriate dates, click the \"apply\" button to re-check availability. <br/> 
 <br/> 
-Choose the resource(s) you wish to take out of service. <br>If a resource does not have a check mark against it, it cannot be included in the black booking until any outstanding bookings have been completed/cancelled.<br/> " );
+Choose the room(s) you wish to take out of service. <br>If a resource does not have a check mark against it, it cannot be included in the black booking until any outstanding bookings have been completed/cancelled.<br/> " );
 jr_define( "_JOMRES_JR_NOTLOGGEDIN", "<center><b>You have been logged out for inactivity</b> Please log in and try again." );
 jr_define( "_JOMRES_JR_BLACKBOOKING_REASON", "เหตุผล" );
 jr_define( "_JOMRES_COM_A_GATEWAY_USEGATEWAYS", "Use payment gateways?" );
@@ -655,7 +655,7 @@ jr_define( "_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2", "เป็นช
 jr_define( "_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT", "ประเภทบุคคลไม่ถูกต้อง" );
 jr_define( "_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS", "เลือกแขกจำนวน/ประเภท" );
 jr_define( "_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS", "You have too many in the party for the available tariffs" );
-jr_define( "_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS", "You have chosen more resources than you have guests, click on a resource name to remove it from your selection" );
+jr_define( "_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS", "You have chosen more resources than you have guests, click on a room to remove it from your selection" );
 jr_define( "_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS", "Too many guests for the available beds" );
 jr_define( "_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS", "คุณต้องเลือกประเภทเพิ่มเติม" );
 jr_define( "_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM", "เลือกประเภท" );
@@ -738,7 +738,7 @@ jr_define( "JOMRES_COM_A_TARIFFMODE", "โหมดการกำหนดร�
 jr_define( "JOMRES_COM_A_TARIFFMODE_DESC", "<b>Warning: Switching between different tariff types may result in loss of data. See the note below regarding this</b>.
 <br/><br/>
 You have three options as to how you configure your tariffs.<br/>
-Normal mode: You will have one tariff for each resource type that is valid for the next 10 years.<br/>
+Normal mode: You will have one tariff for each room type that is valid for the next 10 years.<br/>
 Micromanage: You can modify the price for each and every day for each resource/business type. <br/>
 Advanced: The \"old\" Jomres method of managing tariffs. <br/>
 <br/>

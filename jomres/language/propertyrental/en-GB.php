@@ -213,7 +213,7 @@ jr_define( '_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE', 'Deposit required is percentage
 jr_define( '_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC', 'Is the deposit required to be a percentage of the total booking? If No, then the deposit applied with be a flat value' );
 jr_define( '_JOMRES_COM_A_DEPOSIT_VALUE', 'Deposit required value' );
 jr_define( '_JOMRES_COM_A_TARIFFS_PER', 'Per person, per night' );
-jr_define( '_JOMRES_COM_A_TARIFFS_PER_DESC', 'Select Yes if you want to charge per-person-per-night. If no, then costs will be calculated on a per-resource-per-night basis' );
+jr_define( '_JOMRES_COM_A_TARIFFS_PER_DESC', 'Select Yes if you want to charge per-person-per-night. If no, then costs will be calculated on a per-room-per-night basis' );
 jr_define( '_JOMRES_COM_A_UPLOADS_FILESIZE', 'File size' );
 jr_define( '_JOMRES_COM_A_UPLOADS_FILESIZE_DESC', 'Max. Image Filesize in Kilobyte' );
 jr_define( '_JOMRES_FRONT_MR_BOOKED', 'Rooms booked' );
@@ -271,10 +271,10 @@ jr_define( '_JOMRES_COM_A_ERRORCHECKING_DESC', 'Switch this to Yes to see a log 
 jr_define( '_JOMRES_FILE_DELETE', 'Delete this image' );
 jr_define( '_JOMRES_FILE_DELETED', 'File(s) deleted' );
 jr_define( '_JOMRES_COM_MR_ROOM_DELETE', 'Delete' );
-jr_define( '_JOMRES_COM_MR_ROOM_UNABLETODELETE', 'Unable to remove this resource, there are bookings against it. Cancel those bookings then retry.' );
+jr_define( '_JOMRES_COM_MR_ROOM_UNABLETODELETE', 'Unable to remove this room, there are bookings against it. Cancel those bookings then retry.' );
 jr_define( '_JOMRES_COM_MR_ROOM_DELETED', 'Room deleted' );
-jr_define( '_JOMRES_COM_MR_ROOMFEATURE_DELETE', 'Delete resource feature' );
-jr_define( '_JOMRES_COM_MR_ROOMFEATURE_UNABLETODELETE', 'Unable to remove this resource feature, it is assigned to a resource or rooms. Remove the feature from those rooms and retry.' );
+jr_define( '_JOMRES_COM_MR_ROOMFEATURE_DELETE', 'Delete room feature' );
+jr_define( '_JOMRES_COM_MR_ROOMFEATURE_UNABLETODELETE', 'Unable to remove this room feature, it is assigned to a room or rooms. Remove the feature from those rooms and retry.' );
 jr_define( '_JOMRES_COM_MR_ROOMFEATURE_DELETED', 'Room feature deleted' );
 jr_define( '_JOMRES_COM_MR_PROPERTYFEATURE_DELETE', 'Delete property feature' );
 jr_define( '_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE', 'Unable to remove this property feature, it is assigned to a business. Remove the feature from this property and retry.' );
@@ -346,7 +346,7 @@ jr_define( '_JOMRES_FRONT_BLACKBOOKING_NEW', 'New Black booking' );
 jr_define( '_JOMRES_FRONT_DELETEGUEST', 'Delete guest' );
 jr_define( '_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', 'Guest deleted' );
 jr_define( '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', 'Unable to delete this guest as they have bookings open against them with another business.' );
-jr_define( '_JOMRES_COM_INVOICE_ACTUALROOMCOST', 'Actual resource cost: ' );
+jr_define( '_JOMRES_COM_INVOICE_ACTUALROOMCOST', 'Actual room cost: ' );
 
 
 
@@ -380,9 +380,9 @@ jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY', 'Departs today' );
 jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE', 'Departure overdue' );
 jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_LATE', 'Has not arrived' );
 jr_define( '_JOMRES_MR_AUDIT_UNKNOWNUSER', 'Unknown user' );
-jr_define( '_JOMRES_MR_AUDIT_INSERT_ROOM', 'Created resource' );
-jr_define( '_JOMRES_MR_AUDIT_UPDATE_ROOM', 'Updated resource' );
-jr_define( '_JOMRES_MR_AUDIT_DELETE_ROOM', 'Deleted resource' );
+jr_define( '_JOMRES_MR_AUDIT_INSERT_ROOM', 'Created room' );
+jr_define( '_JOMRES_MR_AUDIT_UPDATE_ROOM', 'Updated room' );
+jr_define( '_JOMRES_MR_AUDIT_DELETE_ROOM', 'Deleted room' );
 jr_define( '_JOMRES_MR_AUDIT_INSERT_ROOM_FEATURE', 'Created resourcefeature' );
 jr_define( '_JOMRES_MR_AUDIT_UPDATE_ROOM_FEATURE', 'Updated resourcefeature' );
 jr_define( '_JOMRES_MR_AUDIT_DELETE_ROOM_FEATURE', 'Deleted resourcefeature' );
@@ -493,13 +493,13 @@ jr_define( '_JOMRES_COM_CHARGING_FULLAMT', 'Full amount' );
 jr_define( '_JOMRES_COM_CHARGING_CONFIG', 'Amount charged at booking time' );
 jr_define( '_JOMRES_COM_CHARGING_CONFIG_DESC', 'Use this option to decide what should be charged at booking time. Choose deposit if the deposit should be charged, or Full amount if the full amount should be charged.' );
 jr_define( '_JOMRES_COM_MONTHSTOSHOW', 'Cal months to show' );
-jr_define( '_JOMRES_COM_MONTHSTOSHOW_DESC', 'In the resource availability, How many months of the calendar should be shown?' );
+jr_define( '_JOMRES_COM_MONTHSTOSHOW_DESC', 'In the room availability, How many months of the calendar should be shown?' );
 jr_define( '_JOMRES_INVOICE_SIGNEDONBEHALFOF', 'Signed on behalf of ' );
 jr_define( '_JOMRES_COM_A_GATEWAYLIST', 'Gateways' );
 jr_define( '_JOMRES_COM_A_CANCEL', 'Cancel' );
 jr_define( '_JOMRES_FRONT_BLACKBOOKING_DESC', 'Select the dates that you want to apply the black bookings for. When you have selected the appropriate dates, click the "apply" button to re-check availability. <br/> 
 <br/> 
-Choose the resource(s) you wish to take out of service. <br>If a resource does not have a check mark against it, it cannot be included in the black booking until any outstanding bookings have been completed/cancelled.<br/> ' );
+Choose the room(s) you wish to take out of service. <br>If a resource does not have a check mark against it, it cannot be included in the black booking until any outstanding bookings have been completed/cancelled.<br/> ' );
 jr_define( '_JOMRES_JR_NOTLOGGEDIN', '<center><b>You have been logged out for inactivity</b> Please log in and try again.' );
 jr_define( '_JOMRES_JR_BLACKBOOKING_REASON', 'Reason' );
 jr_define( '_JOMRES_COM_A_GATEWAY_USEGATEWAYS', 'Use payment gateways?' );
@@ -632,9 +632,9 @@ jr_define( '_JOMRES_COM_A_SHOWONLYAVLCAL', 'Show <b>only</b> Availability calend
 jr_define( '_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', 'Switch this to Yes to disable display of the property header and details, so that only the availability calendar is viewable in the property details section. Only really intended for users renting out single resource businesses (eg apartments, cottages etc).' );
 jr_define( '_JOMRES_COM_A_MINIMUMINTERVAL', 'Arr-Dep minimum interval' );
 jr_define( '_JOMRES_COM_A_MINIMUMINTERVAL_DESC', 'The mimimum interval in the booking form between the arrival date and the departure date.' );
-jr_define( '_JOMRES_COM_A_BOOKINGFORM_SHOWROOMNO', 'Booking form resource list show resource number' );
-jr_define( '_JOMRES_COM_A_BOOKINGFORM_SHOWROOMNAME', 'Booking form resource list show resource name' );
-jr_define( '_JOMRES_COM_A_BOOKINGFORM_SHOWTARIFFTITLE', 'Booking form resource list show tariff title' );
+jr_define( '_JOMRES_COM_A_BOOKINGFORM_SHOWROOMNO', 'Booking form resource list show room number' );
+jr_define( '_JOMRES_COM_A_BOOKINGFORM_SHOWROOMNAME', 'Booking form resource list show room name' );
+jr_define( '_JOMRES_COM_A_BOOKINGFORM_SHOWTARIFFTITLE', 'Booking form room list show tariff title' );
 jr_define( '_JOMRES_ORDER', 'Order' );
 jr_define( '_JOMRES_REQUIREDFIELDS', 'Required' );
 jr_define( '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING', 'Days before arrival' );
@@ -664,10 +664,10 @@ jr_define( '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', 'Your interval i
 jr_define( '_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT', 'Guesttype variant incorrect' );
 jr_define( '_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS', 'Select your guest numbers/type' );
 jr_define( '_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS', 'You have too many in the party for the available tariffs' );
-jr_define( '_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', 'You have chosen more rooms than you have guests, click on a resource name to remove it from your selection' );
+jr_define( '_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', 'You have chosen more rooms than you have guests, click on a room to remove it from your selection' );
 jr_define( '_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS', 'Too many guests for the available beds' );
 jr_define( '_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', 'You need to choose more rooms' );
-jr_define( '_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', 'Select a resource' );
+jr_define( '_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', 'Select a room' );
 jr_define( '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME', 'First name is required' );
 jr_define( '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME', 'Surname is required' );
 jr_define( '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO', 'House no/name is required' );
@@ -748,7 +748,7 @@ jr_define( 'JOMRES_COM_A_TARIFFMODE', 'Tariff Configuration Mode' );
 jr_define( 'JOMRES_COM_A_TARIFFMODE_DESC', "<b>Warning: Switching between different tariff types may result in loss of data. See the note below regarding this</b>.
 <br/><br/>
 You have three options as to how you configure your tariffs.<br/>
-Normal mode: You will have one tariff for each resource type that is valid for the next 10 years.<br/>
+Normal mode: You will have one tariff for each room type that is valid for the next 10 years.<br/>
 Micromanage: You can modify the price for each and every day for each resource/property type. <br/>
 Advanced: The \"old\" Jomres method of managing tariffs. <br/>
 <br/>
