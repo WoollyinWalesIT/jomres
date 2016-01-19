@@ -1256,7 +1256,7 @@ jr_define( '_JOMRES_HTMP_PURIFIER', 'Använd HTML rensning?' );
 jr_define( '_JOMRES_HTMP_PURIFIER_DESC', 'Välj På så att Jomres kan använda htmlrensningsbiblioteket (http://htmlpurifier.org/). Biblioteket används som en extra säkerhetsnivå när man hanterar in-och utdata och rekommendationen är att det är aktiverat, men det kommer att använda mer minne.' );
 jr_define( '_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT', 'Slutbetalning' );
 jr_define( '_JOMRES_AJAXFORM_BILLING_INVOICE_BALANCE', 'Saldo' );
-jr_define( '_JOMRES_WARNINGS_GLOBALEDITINGMODE', 'Observera att redigeringsläget används med det globala redigeringsläget aktiverat. Detta är bra om du förstår vad globala redigeringsläget innebär, om inte kan det ge problem. Om du är osäker på om du ska använda Jomres på detta sätt <a href="http://manual.jomres.net/developers_guide_customising_editmode.html" target="_blank">the editing mode manual page</a> för mer information.' );
+jr_define( '_JOMRES_WARNINGS_GLOBALEDITINGMODE', 'Observera att redigeringsläget används med det globala redigeringsläget aktiverat. Detta är bra om du förstår vad globala redigeringsläget innebär, om inte kan det ge problem. Om du är osäker på om du ska använda Jomres på detta sätt <a href="http://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268-editing-mode" target="_blank">the editing mode manual page</a> för mer information.' );
 jr_define( '_JOMRES_SUPPORTKEY', 'Supportnyckel' );
 jr_define( '_JOMRES_SUPPORTKEY_DESC', 'Din supportlicensnyckel (licensnummer). Du behöver en aktuell licens för att kunna ladda ned plugins till Jomres.' );
 jr_define( '_JOMRES_PERSONAL_DISCOUNT', 'Personlig rabatt' );

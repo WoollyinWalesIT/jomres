@@ -1241,7 +1241,7 @@ jr_define( '_JOMRES_HTMP_PURIFIER', 'ХТМЛ пречиствател?' );
 jr_define( '_JOMRES_HTMP_PURIFIER_DESC', 'Да се използва от системния администратор.' );
 jr_define( '_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT', 'Балансово плащане' );
 jr_define( '_JOMRES_AJAXFORM_BILLING_INVOICE_BALANCE', 'Баланс' );
-jr_define( '_JOMRES_WARNINGS_GLOBALEDITINGMODE', 'Note, you are using Editing Mode with the Global Editing mode enabled. This is fine if you understand what Global Editing mode means, however if you don\'t you may cause yourself problems. If you are unsure if you should be using Jomres in this way, please see <a href="http://manual.jomres.net/developers_guide_customising_editmode.html" target="_blank">the editing mode manual page</a> for more information on this subject.' );
+jr_define( '_JOMRES_WARNINGS_GLOBALEDITINGMODE', 'Note, you are using Editing Mode with the Global Editing mode enabled. This is fine if you understand what Global Editing mode means, however if you don\'t you may cause yourself problems. If you are unsure if you should be using Jomres in this way, please see <a href="http://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268-editing-mode" target="_blank">the editing mode manual page</a> for more information on this subject.' );
 jr_define( '_JOMRES_SUPPORTKEY', 'Лиценз' );
 jr_define( '_JOMRES_SUPPORTKEY_DESC', 'Лицензен ключ.' );
 jr_define( '_JOMRES_PERSONAL_DISCOUNT', 'Персонална отстъпка' );
