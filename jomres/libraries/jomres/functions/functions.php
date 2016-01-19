@@ -2689,7 +2689,7 @@ function writexml( $logfile, $rootelement, $entry, $newlines )
  * Redirects to $url
 #
  */
-function jomresRedirect( $url, $msg = '' )
+/* function jomresRedirect( $url, $msg = '' )
 	{
 	// msg depreciated now as we're using growl for feedback after redirect, however we'll leave it in-situ in case we want it back again sometime in the future.
 	$MiniComponents =jomres_getSingleton('mcHandler');
@@ -2705,19 +2705,40 @@ function jomresRedirect( $url, $msg = '' )
 		{
 		echo '<script>document.location.href=\'' . $url . '\';</script>';
 		}
-	elseif ( $browser == "Safari" || $browser == "Chrome" ) // Webkit
+	elseif ( $browser == "Safari" ) // Webkit
 		{
 		echo '<meta http-equiv="refresh" content="0; url=' . $url . '"
 			/>';
 		}
 	else
 		{
-		//if (this_cms_is_wordpress() )
-			//echo '<script>document.location.href=\'' . $url . '\';</script>';
-		//else
-			header( 'Location: ' . $url, true );
+		header( 'Location: ' . $url, true );
 		} 
 	exit;
+	} */
+	
+function jomresRedirect($url, $msg = '', $code = 302)
+	{
+    if (strncmp('cli', PHP_SAPI, 3) !== 0)
+		{
+		if (headers_sent() !== true)
+			{
+			if (strlen(session_id()) > 0) // if using sessions
+				{
+				session_regenerate_id(true); // avoids session fixation attacks
+				session_write_close(); // avoids having sessions lock other requests
+				}
+			
+			if (strncmp('cgi', PHP_SAPI, 3) === 0)
+				{
+				header(sprintf('Status: %03u', $code), true, $code);
+				}
+			
+			header('Location: ' . $url, true, (preg_match('~^30[1237]$~', $code) > 0) ? $code : 302);
+			}
+		
+		exit();
+		}
 	}
 
 
@@ -5207,6 +5228,21 @@ function max_input_vars_test()
 		{
 		$highlight = ( using_bootstrap() ? "alert" : "ui-state-highlight" );
 		$response  = "<div class='" . $highlight . "'>Please note, your max_input_vars setting seems to be set to 1000, which is the default setting. If you're using the Micromanage tariff editing mode and wish to save prices for more than a year in advance, we recommend that you change this setting to 3000 or more. <a href=\"https://tickets.jomres.net/index.php?/Knowledgebase/Article/View/115/15/too-many-variables\" target=\"_blank\">This page </a>has  more information.</div>";
+		}
+
+	return $response;
+	}
+	
+function suhosin_get_max_vars_test()
+	{
+	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+	$response       = '';
+	$max_vars       = (int) ini_get( 'suhosin.get.max_value_length' );
+
+	if ( $max_vars != 0 && $max_vars <= 512 ) // The default is 512 on most installations with the suhosin patch
+		{
+		$highlight = ( using_bootstrap() ? "alert" : "ui-state-highlight" );
+		$response  = "<div class='" . $highlight . "'>Please note that PHP setups with the suhosin patch installed will have a default limit of 512 characters for get parameters. Although bad practice, most browsers (including IE) supports URLs up to around 2000 characters, while Apache has a default of 8000. To add support for long parameters with suhosin, add suhosin.get.max_value_length = <limit> in php.ini";
 		}
 
 	return $response;
