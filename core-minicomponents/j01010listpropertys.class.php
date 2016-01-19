@@ -369,7 +369,7 @@ class j01010listpropertys
 
 					if ( in_array( $propertys_uid, $tmpBookingHandler->tmpsearch_data[ 'featured_properties' ] ) )
 						{
-						if ( !isset( $jrConfig[ 'featured_listings_emphasis' ] ) )
+						if ( !isset( $jrConfig[ 'featured_listings_emphasis' ] ) || $jrConfig[ 'featured_listings_emphasis' ] == '')
 							$jrConfig[ 'featured_listings_emphasis' ] = "panel-primary";
 
 						$property_deets[ 'FEATURED_LISTINGS_CLASS' ] = $jrConfig[ 'featured_listings_emphasis' ];
@@ -384,7 +384,6 @@ class j01010listpropertys
 						if (
 							$guest_budget >= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] &&
 							$jomres_property_list_prices->lowest_prices[$propertys_uid][ 'RAW_PRICE' ] > 0
-							//$property_deets[ 'FEATURED_LISTINGS_CLASS' ] != $jrConfig[ 'featured_listings_emphasis' ]
 							)
 							{
 							$property_deets[ 'BUDGET_BORDER_CLASS' ] = "panel-success";
