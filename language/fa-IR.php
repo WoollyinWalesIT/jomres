@@ -457,7 +457,7 @@ jr_define("_JOMRES_COM_A_GATEWAYLIST","درگاه");
 jr_define("_JOMRES_COM_A_CANCEL","کنسل");
 jr_define("_JOMRES_FRONT_BLACKBOOKING_DESC","Select the dates that you want to apply the black bookings for. When you have selected the appropriate dates, click the \"apply\" button to re-check availability. <br/> 
 <br/> 
-Choose the resource(s) you wish to take out of service. <br>If a resource does not have a check mark against it, it cannot be included in the black booking until any outstanding bookings have been completed/cancelled.<br/>");
+Choose the room(s) you wish to take out of service. <br>If a resource does not have a check mark against it, it cannot be included in the black booking until any outstanding bookings have been completed/cancelled.<br/>");
 jr_define("_JOMRES_JR_NOTLOGGEDIN","به دلیل عدم فعالیت باید مجددا به سیستم وارد شوید");
 jr_define("_JOMRES_JR_BLACKBOOKING_REASON","دلیل");
 jr_define("_JOMRES_COM_A_GATEWAY_USEGATEWAYS","از درگاه پرداخت استفاده شود؟");
@@ -705,7 +705,7 @@ jr_define("JOMRES_COM_A_TARIFFMODE","تغییرات تعرفه");
 jr_define("JOMRES_COM_A_TARIFFMODE_DESC","Warning: Switching between different tariff types may result in loss of data. See the note below regarding this.
 <br/><br/>
 You have three options as to how you configure your tariffs.<br/>
-Normal mode: You will have one tariff for each resource type that is valid for the next 10 years.<br/>
+Normal mode: You will have one tariff for each room type that is valid for the next 10 years.<br/>
 Micromanage: You can modify the price for each and every day for each resource/business type. <br/>
 Advanced: The \"old\" Jomres method of managing tariffs. <br/>
 <br/>
