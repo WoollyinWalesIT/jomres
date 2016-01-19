@@ -48,6 +48,9 @@ class j16000jomres_system_info
 		//max input vars set to 1000 warning only if micromanage is enabled
 		$output[ 'MAX_INPUT_VARS_CHECK' ] = max_input_vars_test();
 		
+		//max get vars set to 512 or less warning for datatables
+		$output[ 'SUHOSIN_GET_MAX_VARS_CHECK' ] = suhosin_get_max_vars_test();
+		
 		//jomres version
 		$configfile = JOMRESPATH_BASE . JRDS . "jomres_config.php"; // This is to pull in the Jomres version from mrConfig
 		include( $configfile );
