@@ -749,7 +749,7 @@ Micromanage -> Normal. All existing cross references and tariffs are removed.<br
 jr_define( '_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'Show rooms list in property details page?' );
 jr_define( 'JOMRES_PROPERTYTYPE', 'Property type' );
 jr_define( 'JOMRES_COM_A_SRPONLY', 'SRP only' );
-jr_define( 'JOMRES_MAXPEOPLEINROOM', 'Max people per resource' );
+jr_define( 'JOMRES_MAXPEOPLEINROOM', 'Max people per room' );
 jr_define( 'JOMRES_MAXPEOPLEINBOOKING', 'Max people in booking' );
 jr_define( '_JOMCOMP_BOOKINGNOTES_ADD', 'Add note' );
 jr_define( '_JOMCOMP_BOOKINGNOTES_EDIT', 'Edit note' );
