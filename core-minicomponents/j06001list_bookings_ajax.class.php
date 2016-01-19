@@ -300,7 +300,7 @@ class j06001list_bookings_ajax
 					if ( $p->booked_in == 0 )
 						$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=cancelBooking&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', _JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING, false ) );
 					if (isset($MiniComponents->registeredClasses['00005jomres_ical']))
-						$toolbar->addSecondaryItem( 'fa fa-calendar', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=ical_export&contract_uid=' . $p->contract_uid . $thisProperty ), jr_gettext( '_JOMRES_ICAL', _JOMRES_ICAL, false ) );
+						$toolbar->addSecondaryItem( 'fa fa-calendar', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=ical_export_contract&contract_uid=' . $p->contract_uid . '&property_uid='.$p->property_uid ), jr_gettext( '_JOMRES_ICAL_EVENT', _JOMRES_ICAL_EVENT, false ) );
 					}
 				elseif( $p->cancelled == 1 )
 					{
