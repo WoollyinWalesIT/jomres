@@ -1302,7 +1302,7 @@ jr_define('_JOMRES_HTMP_PURIFIER','Funkcja HTML oczyszczacz');
 jr_define('_JOMRES_HTMP_PURIFIER_DESC','Włącz jeśli chcesz używać bibliotek oczyszczania HTML (http://htmlpurifier.org/). Biblioteka jest używana jako dodatkowa warstwa zabezpieczeń w kontaktach z danymi wejściowymi i wyjściowymi i zaleca się, aby pozostawić włączoną, jednak będzie to wymagało większej ilości pamięci.');
 jr_define('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT','Płatność końcowa');
 jr_define('_JOMRES_AJAXFORM_BILLING_INVOICE_BALANCE','Wartość');
-jr_define('_JOMRES_WARNINGS_GLOBALEDITINGMODE','Uwaga! Używasz globalnego trybu edycji. Jest to dobre rozwiązanie jeśli dobrze rozumiesz co oznacza ta funkcja. Jeśli nie jesteś pewien, czy należy używać Jomres w ten sposób, patrz <a href="http://manual.jomres.net/developers_guide_customising_editmode.html" target="_blank">tryb edycji ręcznej</a> więcej informacji na ten temat.');
+jr_define('_JOMRES_WARNINGS_GLOBALEDITINGMODE','Uwaga! Używasz globalnego trybu edycji. Jest to dobre rozwiązanie jeśli dobrze rozumiesz co oznacza ta funkcja. Jeśli nie jesteś pewien, czy należy używać Jomres w ten sposób, patrz <a href="http://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268-editing-mode" target="_blank">tryb edycji ręcznej</a> więcej informacji na ten temat.');
 jr_define('_JOMRES_SUPPORTKEY','Kod wsparcia');
 jr_define('_JOMRES_SUPPORTKEY_DESC','Kod wsparcia (znany również jako numer licencji). Umożliwia pobieranie dodatków dla Jomres.');
 jr_define('_JOMRES_PERSONAL_DISCOUNT','Rabat');
