@@ -2838,3 +2838,5 @@ jr_define( '_JOMRES_COM_A_TARIFFS_SWAP_DESC', 'Use this option to move the curre
 
 jr_define( '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', 'Facebook' );
 jr_define( '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', 'Enter your facebook page id, for example "jomres". Leave this blank to show nothing. Do not enter https://www.facebooking.com or anything else.' );
+
+jr_define( 'COMMON_DOWNLOAD', 'Download' );

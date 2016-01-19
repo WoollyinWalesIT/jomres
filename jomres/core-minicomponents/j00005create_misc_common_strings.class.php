@@ -44,6 +44,7 @@ class j00005create_misc_common_strings
 		$current_common_strings[ 'COMMON_PRINT' ]  = jr_gettext( 'COMMON_PRINT', COMMON_PRINT, false );
 		$current_common_strings[ 'COMMON_EDIT' ] = jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false );
 		$current_common_strings[ 'COMMON_COPY' ] = jr_gettext( 'COMMON_COPY', COMMON_COPY, false );
+		$current_common_strings[ 'COMMON_DOWNLOAD' ] = jr_gettext( 'COMMON_DOWNLOAD', COMMON_DOWNLOAD, false );
 	
 		$current_common_strings[ 'COMMON_PLACEHOLDER_PROPERTYNAME']	= jr_gettext( 'COMMON_PLACEHOLDER_PROPERTYNAME', COMMON_PLACEHOLDER_PROPERTYNAME, false );
 		$current_common_strings[ 'COMMON_PLACEHOLDER_FIRSTNAME' ]		= jr_gettext( 'COMMON_PLACEHOLDER_FIRSTNAME', COMMON_PLACEHOLDER_FIRSTNAME, false );
