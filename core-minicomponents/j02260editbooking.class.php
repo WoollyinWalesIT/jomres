@@ -228,9 +228,9 @@ class j02260editbooking
 				
 				if ((int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 && isset($MiniComponents->registeredClasses['00005jomres_ical']))
 					{
-					$output[ 'ICAL_EXPORT' ] = jr_gettext( '_JOMRES_ICAL', _JOMRES_ICAL, $editable = false, $isLink = true );
-					$link = JOMRES_SITEPAGE_URL . '&task=ical_export&contract_uid=' . $contract_uid;
-					$targetTask = 'ical_export';
+					$output[ 'ICAL_EXPORT' ] = jr_gettext( '_JOMRES_ICAL_EVENT', _JOMRES_ICAL_EVENT, $editable = false, $isLink = true );
+					$link = JOMRES_SITEPAGE_URL . '&task=ical_export_contract&contract_uid=' . $contract_uid .'&property_uid='.$defaultProperty;
+					$targetTask = 'ical_export_contract';
 					$image = '/'.JOMRES_ROOT_DIRECTORY.'/images/calendar.png';
 					
 					$jrtb .= $jrtbar->customToolbarItem( $targetTask, $link, $output[ 'ICAL_EXPORT' ], $submitOnClick = false, $submitTask = "", $image );
