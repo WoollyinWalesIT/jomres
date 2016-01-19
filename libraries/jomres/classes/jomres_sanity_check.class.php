@@ -32,6 +32,7 @@ class jomres_sanity_check
 
 	function do_sanity_checks()
 		{
+		$this->warnings .= $this->check_editing_mode();
 		$this->warnings .= $this->check_approved();
 		$this->warnings .= $this->check_suspended();
 		if ( get_showtime('include_room_booking_functionality') )
@@ -54,7 +55,7 @@ class jomres_sanity_check
 			
 		$this->warnings .= $this->check_address();
 		$this->warnings .= $this->check_main_image();
-		$this->warnings .= $this->check_editing_mode();
+		
 		if ( trim($this->warnings) == "")
 			$this->warnings .= $this->check_published();
 
@@ -65,6 +66,7 @@ class jomres_sanity_check
 		{
 		$button = '';
 		$this->warning_counter++;
+
 		
 		if (isset($message_array['LINK']))
 			{
@@ -82,6 +84,11 @@ class jomres_sanity_check
 
 		$pageoutput	= array();
 		$output		= array();
+		
+		if (!isset($message_array['LABEL']))
+			$message_array['LABEL'] = 'warning';
+		
+		$output['LABEL_CLASS']		= $message_array['LABEL'];
 		
 		$output['WARNING_WORD']		= jr_gettext( '_JOMRES_WARNINGS_DANGERWILLROBINSON', _JOMRES_WARNINGS_DANGERWILLROBINSON, false );
 		$output['WARNING_MESSAGE']	= $message_array['MESSAGE'];
@@ -264,7 +271,7 @@ class jomres_sanity_check
 			{
 			$message = jr_gettext( '_JOMRES_WARNINGS_GLOBALEDITINGMODE', _JOMRES_WARNINGS_GLOBALEDITINGMODE, false );
 
-			return $this->construct_warning( array( "MESSAGE" => $message ) );
+			return $this->construct_warning( array( "MESSAGE" => $message , "LABEL" => "danger") );
 			}
 		}
 
