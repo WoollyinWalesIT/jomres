@@ -61,7 +61,8 @@ class j06001dashboard_events_ajax {
 						a.bookedout,
 						a.rates_uid,
 						a.tag,
-						b.room_uid 
+						b.room_uid,
+						b.black_booking 
 					FROM #__jomres_contracts a
 					LEFT JOIN #__jomres_room_bookings b ON a.contract_uid = b.contract_uid AND b.property_uid = '" . (int) $property_uid . "' 
 					WHERE ( a.property_uid = '" . (int) $property_uid . "' AND a.cancelled != '1' ) 
@@ -113,7 +114,10 @@ class j06001dashboard_events_ajax {
 				else
 					$end=date("Y-m-d", strtotime($c->departure) )."T10:00:00";
 				
-				$url=JOMRES_SITEPAGE_URL_NOSEF.'&task=editBooking&contract_uid='.$c->contract_uid;
+				if ((int)$c->black_booking == 1)
+					$url=JOMRES_SITEPAGE_URL_NOSEF.'&task=viewBlackBooking&contract_uid='.$c->contract_uid;
+				else
+					$url=JOMRES_SITEPAGE_URL_NOSEF.'&task=editBooking&contract_uid='.$c->contract_uid;
 				
 				$date_elements = explode( "/", $today );
 				$unixToday     = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
