@@ -104,11 +104,11 @@ class j00060toptemplate
 		$output[ 'DATEPICKERLANG' ] = JOMRESDATEPICKERLANG;
 		
 		$lang_dropdown = array();
-		if ($jrConfig[ 'showLangDropdown' ] == '1')
+		/* if ($jrConfig[ 'showLangDropdown' ] == '1')
 			{
 			$lang_dropdown[ ][ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
 			set_showtime( "menuitem_langdropdown", $lang_dropdown[ 0 ][ 'LANGDROPDOWN' ] );
-			}
+			} */
 		
 		if ($thisJRUser->userIsManager)
 			{
