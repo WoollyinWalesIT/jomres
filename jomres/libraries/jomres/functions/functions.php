@@ -2218,7 +2218,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 			}
 		else
 			{
-			$mail->Mailer		= 'smtp';
+			$mail->Mailer		= trim( get_showtime( 'mailer' ) );
 			$mail->Host			= trim( get_showtime( 'smtphost' ) );
 			$mail->Port			= trim( get_showtime( 'smtpport' ) );
 			$mail->SMTPSecure	= trim( get_showtime( 'smtpsecure' ) );
@@ -2226,6 +2226,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 			$mail->Username		= trim( get_showtime( 'smtpuser' ) );
 			$mail->Password		= trim( get_showtime( 'smtppass' ) );
 			}
+			
 		//	$mail->AltBody		= "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 
 		if ( count( $attachments ) > 0 )
