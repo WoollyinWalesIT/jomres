@@ -1,3 +1,39 @@
+<h3>Jomres 9.5.0 20/01/2016</h3>
+
+<span class="label label-success">Feature</span> Property creation functionality removed from plugin library and re-added to the core system. Now "Free Core" users are able to add new properties too.
+<span class="label label-success">Feature</span> Modified the booking engine to use discount codes when booking tours, if the property is a Jintour property.
+<span class="label label-success">Feature</span> Following feedback post 9.4.0 release, property header improved by adding direct link to property details page to Property Name, and header text improved by making details scale better in small viewports.
+<span class="label label-success">Feature</span> Added javascript to BS3 property header so tapping on the address _should_ open the address in a device's map app.
+<span class="label label-success">Feature</span> Added facebook integration code, shows facebook like and share buttons under property header, and a new tab that holds a property facebook page output. New setting in Property Config -> Property details options tab allows input of FB page name.
+
+<span class="label label-warning">Change</span> Modified show property features script so that it has a default option setting for $componentArgs[ 'show_feature_categories' ]
+<span class="label label-warning">Change</span> Added some minor tweaks to property config tab layouts.
+<span class="label label-warning">Change</span> Added an optional 01070 trigger for displaying after property header is output.
+<span class="label label-warning">Change</span> Improved debugging of emailing functionality.
+<span class="label label-warning">Change</span> Modified welcome email to use JOMRES_SITEPAGE_URL_NOSEF instead of JOMRES_SITEPAGE_URL for off-site links.
+<span class="label label-warning">Change</span> Added some limits to DELETE functionality in deleteproperty class. They're pretty liberal, however.
+<span class="label label-warning">Change</span> HTML purifier updated to 4.7
+<span class="label label-warning">Change</span> Added download option of contract as ics to edit booking page.
+<span class="label label-warning">Change</span> Added export of ics file to list bookings data.
+<span class="label label-warning">Change</span> Added black booking flag to dashboard data returned via ajax.
+<span class="label label-warning">Change</span> Added new Download common string to language files.
+<span class="label label-warning">Change</span> Modified sanity checks to make the global editing mode warning more prominent.
+<span class="label label-warning">Change</span> Global editing mode manual page link updated to new manual in language files.
+<span class="label label-warning">Change</span> Updated the jomresRedirect function.
+<span class="label label-warning">Change</span> Added a warning to plugin manager stating that you should upgrade Jomres before upgrading plugins.
+<span class="label label-warning">Change</span> Improved control panel to add a check for max_get_vars value which, if limited, can affect the effectiveness of the table tools ajax.
+<span class="label label-warning">Change</span> Updated several language files to swap Resource for Room
+
+<span class="label label-important label-danger">Fix</span> Fixed an incorrect column id in delete property script for jintour properties.
+<span class="label label-important label-danger">Fix</span> Fixed an incorrect task name in property registration forms for BS2 and jquery ui.
+<span class="label label-important label-danger">Fix</span> Modified list properties so that featured listings no longer always have the "primary" class, meaning that if they're over budget, their class will now be set to over budget.
+<span class="label label-important label-danger">Fix</span> Changed how the mailer is determind from the host CMS's settings.
+
+<span class="label label-info">Joomla</span> Added a check for params in the menu option for Jomres in Joomla. If it doesn't exist, we'll add a new menu entry. This counteracts a new change to J3.4.8-ish where older menu options seem to go missing after upgrading Jomres.
+
+<span class="label label-info">Wordpress</span> Renamed class.pop3.php and class.smtp.php files and classes to get around problems with Wordpress throwing errors.
+
+
 <h3>Jomres 9.4.0 12/01/2016</h3>
 
 <span class="label label-success">Feature</span> Made a number of changes that add a cover to the property header based on the Main property image, added some more elements of interest to guests such as property features, and updated rich snippets so that they validate and we add price + hidden short description.
