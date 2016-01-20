@@ -5032,7 +5032,7 @@ function insertNewJRConfigSettings()
 	$jrConfig[ 'integratedSearch_priceranges' ]            = '0';
 	$jrConfig[ 'integratedSearch_pricerange_increments' ]  = '20';
 	$jrConfig[ 'useCaching' ]                              = '0';
-	$jrConfig[ 'showLangDropdown' ]                        = '1';
+	$jrConfig[ 'showLangDropdown' ]                        = '0';
 
 	foreach ( $jrConfig as $key => $val )
 		{
