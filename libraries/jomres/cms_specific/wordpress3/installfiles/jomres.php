@@ -84,8 +84,10 @@ if ( ! class_exists( 'wp_jomres' ) )
 		function asamodule_search_results($content) 
 			{
 			global $post;
+			
+			$language = get_bloginfo( 'language' );
 
-			if ( strstr(strtolower($post->post_content), "[jomres]") )
+			if ( strstr(strtolower($post->post_content), "[jomres:".strtolower($language)."]") )
 			{
 				if ($this->contents != '')
 					$content = '<div id="asamodule_search_results">'.$this->contents.'</div>';
@@ -106,15 +108,17 @@ if ( ! class_exists( 'wp_jomres' ) )
 			add_menu_page( 'Jomres admin', 'Jomres', 'manage_options', 'jomres/jomres.php', '', '', 6 );
 			}
 		
-		// Shortcode [jomres]
+		// Shortcode [jomres:xx-XX] xx-XX is the language code
 		function frontend_trigger_jomres($content)
 			{
 			global $post;
+			
+			$language = get_bloginfo( 'language' );
 
 			if ($this->contents == '')
 				{
-				//check if we are on a [jomres] post
-				if ( strstr(strtolower($post->post_content), "[jomres]") )
+				//check if we are on a [jomres:xx-XX] post
+				if ( strstr(strtolower($post->post_content), "[jomres:".strtolower($language)."]") )
 					{
 					ob_start();
 					
