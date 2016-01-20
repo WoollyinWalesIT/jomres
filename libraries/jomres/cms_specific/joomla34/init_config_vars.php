@@ -25,7 +25,6 @@ if ( isset( $_REQUEST[ 'no_html' ] ) ) $no_html = (int) $_REQUEST[ 'no_html' ];
 else
 $no_html = 0;
 
-
 if ( !strstr( $scriptname, 'install_jomres.php' ) )
 	{
 	//JFactory::getConfig()->setValue('config.caching', 0);
@@ -92,9 +91,9 @@ if ( substr( $jomresConfig_live_site, -1 ) == "/" ) $jomresConfig_live_site = su
 $scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 if ( !strstr( $scriptname, 'install_jomres.php' ) )
 	{
-	$lang              = @ JFactory::getLanguage();
-	$jomresConfig_lang = $lang->getTag();
+	$jomresConfig_lang = JFactory::getLanguage()->getTag();
 	}
+
 $showtime = jomres_singleton_abstract::getInstance( 'showtime' );
 
 $showtime->error_reporting = $CONFIG->error_reporting;

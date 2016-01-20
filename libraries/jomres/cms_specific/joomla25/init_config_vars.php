@@ -72,8 +72,7 @@ if ( substr( $jomresConfig_live_site, -1 ) == "/" ) $jomresConfig_live_site = su
 $scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 if ( !strstr( $scriptname, 'install_jomres.php' ) )
 	{
-	$lang              = @ JFactory::getLanguage();
-	$jomresConfig_lang = $lang->getTag();
+	$jomresConfig_lang = JFactory::getLanguage()->getTag();
 	}
 $showtime = jomres_singleton_abstract::getInstance( 'showtime' );
 
