@@ -31,71 +31,17 @@ class jomres_language
 		$this->showLangDropdown = $jrConfig[ 'showLangDropdown' ];
 		$administrator_area     = jomres_cmsspecific_areweinadminarea();
 
-		$testing = false;
-
 		if ( isset( $_POST[ 'jomreslang' ] ) )
 			{
-			if ( $testing && !AJAXCALL ) 
-				echo 'Used $_POST[\'jomreslang\'] to switch langs<br>';
 			$jomresConfig_lang = (string) RemoveXSS( jomresGetParam( $_POST, 'jomreslang', "" ) );
+			}
+		elseif ( isset( $_GET[ 'jomreslang' ] ) )
+			{
+			$jomresConfig_lang = (string) RemoveXSS( jomresGetParam( $_GET, 'jomreslang', "" ) );
 			}
 		else
 			{
-			if ( isset( $_GET[ 'jomreslang' ] ) )
-				{
-				if ( $testing && !AJAXCALL ) 
-					echo 'Used $_GET[\'jomreslang\'] to switch langs<br>';
-				$jomresConfig_lang = (string) RemoveXSS( jomresGetParam( $_GET, 'jomreslang', "" ) );
-				}
-			else
-				{
-				if ( _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35")
-					{
-					$lang = JFactory::getLanguage();
-					if ( $testing && !AJAXCALL ) 
-						echo 'Used $lang->getTag() to switch langs<br>';
-					$jomresConfig_lang = (string) $lang->getTag();
-					}
-				else
-					{
-					if ( isset( $_GET[ 'lang' ] ) )
-						{
-						if ( $testing && !AJAXCALL ) 
-							echo 'Used $_GET[\'lang\'] to switch langs<br>';
-						$jomresConfig_lang = (string) RemoveXSS( jomresGetParam( $_GET, 'lang', "" ) );
-						}
-					else
-						{
-						if ( this_cms_is_wordpress() && !isset($_GET[ 'lang' ]) )
-							{
-							if ( $testing && !AJAXCALL ) 
-								echo 'Used wordpress switch to change language.<br>';
-							$jomresConfig_lang = $tmpBookingHandler->tmplang[ 'jomreslang' ];
-							}
-						elseif ( isset( $_COOKIE[ 'jfcookie' ] ) && file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_joomfish" . JRDS . "joomfish.php" ) && !$administrator_area )
-							{
-							if ( $testing && !AJAXCALL ) 
-								echo 'Used $_COOKIE[\'jfcookie\'] to switch langs<br>';
-							$jomresConfig_lang = (string) RemoveXSS( $_COOKIE[ 'jfcookie' ][ 'lang' ] );
-							}
-						else
-							{
-							if ( isset( $tmpBookingHandler->tmplang[ 'jomreslang' ] ) )
-								{
-								if ( $testing && !AJAXCALL ) 
-									echo 'Used $tmpBookingHandler->tmplang[\'jomreslang\'] to switch langs<br>';
-								$jomresConfig_lang = (string) RemoveXSS( $tmpBookingHandler->tmplang[ 'jomreslang' ] );
-								}
-							elseif ( strlen( $jomresConfig_lang ) == 0 )
-								{
-								if ( $testing && !AJAXCALL ) 
-									echo 'Used $jrConfig[\'siteLang\'] to switch langs<br>';
-								$jomresConfig_lang = substr( $jrConfig[ 'siteLang' ], 0, strlen( $jrConfig[ 'siteLang' ] ) - 4 );
-								}
-							}
-						}
-					}
-				}
+			$jomresConfig_lang = (string) RemoveXSS( jomres_cmsspecific_getcmslang() );
 			}
 
 		$langfile_crossref         = $this->define_langfile_to_languages_array();
@@ -417,6 +363,3 @@ class jomres_language
 		return $langs;
 		}
 	}
-
-
-?>

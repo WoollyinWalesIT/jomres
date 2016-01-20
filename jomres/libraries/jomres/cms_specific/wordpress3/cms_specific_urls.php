@@ -21,12 +21,17 @@ if ( strstr( $scriptname, 'install_jomres.php' ) )
 $ssllink = str_replace( "https://", "http://", get_showtime( 'live_site' ) );
 define( 'JOMRES_ADMINISTRATORDIRECTORY', "wp-admin" );
 
+//let`s find if we have some language set
+$currentBlogLang = get_bloginfo( 'language' );
+
+$keyword = "[jomres:".strtolower($currentBlogLang)."]";
+
 $scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 if ( !strstr( $scriptname, 'install_jomres.php' ) )
 	{
 	$jomresItemid =0;
 
-	$query = "SELECT `ID` FROM #__posts WHERE `post_content` LIKE '%[jomres]%' AND `post_parent` = 0 AND `post_status` = 'publish' LIMIT 1";
+	$query = "SELECT `ID` FROM #__posts WHERE LOWER(`post_content`) LIKE '%".$keyword."%' AND `post_parent` = 0 AND `post_status` = 'publish' LIMIT 1";
 	$itemQueryRes = (int)doSelectSql( $query,1 );
 
 	$itemIdFound=false;

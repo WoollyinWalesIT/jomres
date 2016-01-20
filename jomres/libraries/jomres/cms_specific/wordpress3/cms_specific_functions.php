@@ -461,3 +461,9 @@ function jomres_cmsspecific_patchJoomlaTemplate($force = false)
 		}
 	return false; */
 	}
+
+// Get the cms language
+function jomres_cmsspecific_getcmslang()
+	{
+	return get_bloginfo( 'language' );
+	}
