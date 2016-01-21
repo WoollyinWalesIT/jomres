@@ -234,7 +234,11 @@ class jomres_sanity_check
 				$result = doSelectSql( $query );
 				if ( count( $result ) == 0 )
 					{
-					$message = jr_gettext( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', _JOMRES_WARNINGS_TARIFFS_NOTARIFFS, false );
+				
+					if ( $this->mrConfig[ 'singleRoomProperty' ] == 0 )
+						$message = jr_gettext( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', _JOMRES_WARNINGS_TARIFFS_NOTARIFFS, false );
+					else
+						$message = jr_gettext( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS_SRP', _JOMRES_WARNINGS_TARIFFS_NOTARIFFS_SRP, false );
 					
 					$property_uid=getDefaultProperty();
 					$mrConfig=getPropertySpecificSettings($property_uid);

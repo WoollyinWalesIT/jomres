@@ -61,6 +61,7 @@
 				{TOTALINPARTY}
 			</div>
 		</div>
+		<patTemplate:tmpl name="mrp_room_details" type="simpleCondition" requiredVars="hroomsbooked">
 		<div class="row-fluid">
 			<div class="span6">
 				<strong>{PROPERTYNAME} - {HROOMSBOOKED} - {NUMROOMS}</strong>
@@ -69,9 +70,10 @@
 				<patTemplate:tmpl name="booking_rooms">
 					{FULLDESC}
 				</patTemplate:tmpl>
-
 			</div>
 		</div>
+		</patTemplate:tmpl>
+
 		<patTemplate:tmpl name="room_info">
 			<div class="row-fluid">
 				<div class="span6">

@@ -62,9 +62,9 @@
 				<td>{TOTALINPARTY}</td>
 				<td colspan="2">{HTEL}: {LANDLINE}</td>
 			</tr>
+			<patTemplate:tmpl name="mrp_room_details" type="simpleCondition" requiredVars="hroomsbooked">
 			<tr>
 				<td colspan="2"><strong>{PROPERTYNAME} - {HROOMSBOOKED} - {NUMROOMS}</strong></td>
-				<td colspan="2">{HMOBILE}: {MOBILE}</td>
 			</tr>
 			<tr>
 				<td colspan="2" valign="top">
@@ -74,6 +74,7 @@
 				</td>
 				<td colspan="2" valign="top"></td>
 			</tr>
+			</patTemplate:tmpl>
 			<!--<tr>
 				<td colspan="4" class="jomres_message">{ALLOCATION}</td>
 			</tr>-->

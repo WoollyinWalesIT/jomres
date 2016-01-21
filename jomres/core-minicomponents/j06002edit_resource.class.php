@@ -210,8 +210,8 @@ class j06002edit_resource
 			$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'save_resource' );
 			$jrtb .= $jrtbar->endTable();
 
-			$output[ 'PAGETITLE' ]   = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', _JOMRES_COM_MR_EB_ROOM_CLASS_ABBV );
-			$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO', _JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO );
+			$output[ 'PAGETITLE' ]   = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV_SRP', _JOMRES_COM_MR_EB_ROOM_CLASS_ABBV_SRP );
+			$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO_SRP', _JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO_SRP );
 			$output[ '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE );
 			$output[ 'DROPDOWNLIST' ]                              = $dropDownList;
 			$output[ 'JOMRESTOOLBAR' ]                             = $jrtb;
