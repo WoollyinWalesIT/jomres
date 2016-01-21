@@ -171,4 +171,4 @@ $mrConfig[ 'showPfeaturesCategories' ] = "1";
 
 $mrConfig[ 'currency_symbol_swap' ] = '0';
 
-$mrConfig[ 'facebook_page' ] = 'jomres';
+$mrConfig[ 'facebook_page' ] = '';
