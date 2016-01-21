@@ -430,7 +430,7 @@ jr_define( '_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC', 'Set this to yes if y
 jr_define( '_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS', 'Days advanced bookings limited to:' );
 jr_define( '_JOMRES_COM_A_TAX_WARNING', '<font color=red>NOTE: It is not recommended that you set both of the following options to Yes, you should use only one of the two tax calculations available to you. </FONT>' );
 jr_define( '_JOMRES_COM_FRONT_ROOMTAX', 'Tax' );
-jr_define( '_JOMRES_COM_A_ROOMTAX', 'Room tax' );
+jr_define( '_JOMRES_COM_A_ROOMTAX', 'accommodation tax' );
 jr_define( '_JOMRES_COM_A_ROOMTAX_DESC', 'Designed for the American market. These are the resource tax amounts that will be charged to the guest. You can charge a combination and/or of fixed and percentage figures. Note that these taxes are only applied to the cost of the resource.' );
 jr_define( '_JOMRES_COM_A_ROOMTAX_FIXED', 'Tax fixed amount' );
 jr_define( '_JOMRES_COM_A_ROOMTAX_PERCENTAGE', 'Tax percentage' );
@@ -882,7 +882,7 @@ if ( !defined( '_PN_END' ) ) jr_define( '_PN_END', 'End' );
 if ( !defined( '_PN_RESULTS' ) ) jr_define( '_PN_RESULTS', 'Results' );
 
 jr_define( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE', 'Please enter the message you\'d like to send to ' );
-jr_define( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', 'Contact hotel' );
+jr_define( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', 'Contact us' );
 jr_define( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT', 'Property enquiry from ' );
 jr_define( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS', 'Thank you for your enquiry, your message has been sent to the business\'s contact email address, and copied to your own address for your records. They will respond to you as soon as possible with their reply.' );
 jr_define( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING', ' regarding ' );
@@ -1519,9 +1519,9 @@ jr_define( '_JOMRES_BOOKINGORM_MODALPOPUP', 'Show the booking form in a modal po
 jr_define( '_JOMRES_BOOKINGORM_MODALPOPUP_DESC', 'If the option to show the booking form in the property details is set to No, then when the booking form page is opened Jomres can show the booking form in a modal popup. This allows you to include much more information in the booking form without overwhelming the customer by having too many elements on the screen (as they\'re hidden behind the popup)' );
 jr_define( '_JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION', 'Totals panel location' );
 jr_define( '_JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION_DESC', 'In the booking form the totals panel needs different settings depending on the template. For example, on the Jomres Joomla template a setting of 712 works well, however on Milkyway a setting of circa 1500 is more suitablem, particularly if you do not have the modal popup feature enabled. It\'s likely that you\'ll need to experiment with different settings to find something that works well in your chosen template. ' );
-jr_define( '_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Accomodation ex tax' );
-jr_define( '_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Accomodation inc tax' );
-jr_define( '_JOMRES_AJAXFORM_BILLING_TAX_ACCOM', 'Room tax:' );
+jr_define( '_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Accommodation ex tax' );
+jr_define( '_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Accommodation inc tax' );
+jr_define( '_JOMRES_AJAXFORM_BILLING_TAX_ACCOM', 'Accommodation tax' );
 
 jr_define( '_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM', 'Open the booking form' );
 
@@ -2694,10 +2694,10 @@ jr_define( '_JOMRES_NUMBER_OF_BEDROOMS', 'Bedrooms' );
 jr_define( '_JOMRES_SUPPORTKEY_DESC_VALID', 'Your download and support key is valid, you will be able to download plugins via the plugin manager.' );
 jr_define( '_JOMRES_SUPPORTKEY_DESC_INVALID', 'Your download and support key is NOT valid, you will be NOT able to download plugins via the plugin manager.' );
 
-jr_define( '_JOMRES_SRP_RESOURCE_TYPE', 'Resource type' );
-jr_define( '_JOMRES_SRP_RESOURCE_TYPE_EXPLANATION', 'You must choose a resource type before you can create tariffs for this property.' );
-jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK", "You haven't yet set your property resource type. This is where you define it as something like a 5 bedroom villa or 4 bedroom cottage and it helps guests who are searching to refine their searches." );
-jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK", "Give your property a resource type" );
+jr_define( '_JOMRES_SRP_RESOURCE_TYPE', 'Sub-type' );
+jr_define( '_JOMRES_SRP_RESOURCE_TYPE_EXPLANATION', 'You must choose a sub-type before you can create tariffs for this property.' );
+jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK", "You haven't yet set your property sub-type. This is where you define it as something like a 5 bedroom villa or 4 bedroom cottage and it helps guests who are searching to refine their searches." );
+jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK", "Give your property a sub-type" );
 
 
 jr_define( "_JOMRES_EMAIL_TEMPLATES_TITLE", "Email templates" );
@@ -2781,3 +2781,7 @@ jr_define( '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', 'Facebook' );
 jr_define( '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', 'Enter your facebook page id, for example "jomres". Leave this blank to show nothing. Do not enter https://www.facebooking.com or anything else.' );
 
 jr_define( 'COMMON_DOWNLOAD', 'Download' );
+
+jr_define( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS_SRP', 'Next you will need to add some tariffs. These are your basic prices.' );
+jr_define( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV_SRP', 'Property sub-type' );
+jr_define( '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO_SRP', 'Property sub-type' );
