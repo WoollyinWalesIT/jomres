@@ -1,3 +1,9 @@
+<h3>Jomres 9.5.1 21/01/2016</h3>
+
+Added a new jomres_cmsspecific_getcmslang() function to bridge scripts. This allows us to correctly discover Wordpress' current language and switch languages with WP.
+Removed session related code from new redirect function.
+Finally switched off Jomres language switcher now that CMSs are up to date with multi-language features.
+
 <h3>Jomres 9.5.0 20/01/2016</h3>
 
 <span class="label label-success">Feature</span> Property creation functionality removed from plugin library and re-added to the core system. Now "Free Core" users are able to add new properties too.
