@@ -26,6 +26,7 @@ defined( "_JOMRES_INITCHECK" ) or die( "" );
  * @author Andy Prevost (codeworxtech) <codeworxtech@users.sourceforge.net>
  * @author Brent R. Matzelle (original founder)
  */
+ 
 class jomresPHPMailer
 {
     /**
@@ -3485,16 +3486,18 @@ class jomresPHPMailer
  * @package PHPMailer
  */
 
-	class jomres_phpmailerException extends Exception
+if (!class_exists('jomres_phpmailerException'))
 	{
-		/**
-		 * Prettify error message output
-		 * @return string
-		 */
-		public function errorMessage()
+	class jomres_phpmailerException extends Exception
 		{
-			$errorMsg = '<strong>' . $this->getMessage() . "</strong><br />\n";
-			return $errorMsg;
+			/**
+			 * Prettify error message output
+			 * @return string
+			 */
+			public function errorMessage()
+			{
+				$errorMsg = '<strong>' . $this->getMessage() . "</strong><br />\n";
+				return $errorMsg;
+			}
 		}
 	}
-
