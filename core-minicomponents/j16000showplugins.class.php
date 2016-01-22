@@ -398,36 +398,19 @@ class j16000showplugins
 				$r[ 'DEMO_CLASS' ] = 'btn';
 				}
 
-			if ( !using_bootstrap() )
+			$r[ 'CHANGELOG' ] = '';
+			if ( $rp[ 'change_log' ] != '' )
 				{
-				$r[ 'CHANGELOG' ]         = '';
-				$r[ 'CHANGELOG_TOOLTIP' ] = '';
-				if ( $rp[ 'change_log' ] != '' )
-					{
-					$r[ 'CHANGELOG' ]         = $rp[ 'change_log' ];
-					$r[ 'CHANGELOG_TOOLTIP' ] = jomres_makeTooltip( $rp[ 'name' ], $hover_title = "", $rp[ 'change_log' ], $rp[ 'change_log' ], $class = "", $type = "infoimage" );
-					}
-				$r[ 'HIGHLIGHT' ]         = '';
-				$r[ 'HIGHLIGHT_TOOLTIP' ] = '';
-				if ( $rp[ 'highlight' ] != '' )
-					{
-					$r[ 'HIGHLIGHT' ]         = $rp[ 'highlight' ];
-					$r[ 'HIGHLIGHT_TOOLTIP' ] = jomres_makeTooltip( $rp[ 'name' ] . "_warning", $hover_title = "", $rp[ 'highlight' ], $rp[ 'highlight' ], $class = "", $type = "warning" );
-					}
+				$r[ 'CHANGELOG' ] = $rp[ 'change_log' ];
 				}
-			else
+			$r[ 'HIGHLIGHT' ] = '';
+			$r[ 'HIGHLIGHT_CLASS' ] = '';
+			if ( $rp[ 'highlight' ] != '' )
 				{
-				$r[ 'CHANGELOG' ] = '';
-				if ( $rp[ 'change_log' ] != '' )
-					{
-					$r[ 'CHANGELOG' ] = '<script> jomresJquery(function () { jomresJquery("#changelog_' . $rp[ 'name' ] . '").popover({trigger: \'hover\'}); }); </script><a class="btn" id="changelog_' . $rp[ 'name' ] . '" rel="popover" title="Changelog" data-content="' . $rp[ 'change_log' ] . '">Changelog</a>';
-					}
-				$r[ 'HIGHLIGHT' ] = '';
-				if ( $rp[ 'highlight' ] != '' )
-					{
-					$r[ 'HIGHLIGHT' ] = '<script> jomresJquery(function () { jomresJquery("#highlight_' . $rp[ 'name' ] . '").popover({trigger: \'hover\'}); }); </script><a class="btn btn-warning" id="highlight_' . $rp[ 'name' ] . '" rel="popover" title="Warning" data-content="' . $rp[ 'highlight' ] . '">Warning</a>';
-					}
+				$r[ 'HIGHLIGHT' ] = $rp[ 'highlight' ];
+				$r[ 'HIGHLIGHT_CLASS' ] = 'alert alert-warning';
 				}
+			
 			$readable_name        = ucwords( " " . str_replace( "_", " ", $rp[ 'name' ] ) );
 			$r[ 'READABLE_NAME' ] = $readable_name;
 

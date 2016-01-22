@@ -46,45 +46,13 @@
 
 	<h2 class="page-header">{PAGETITLE}</h2>
 	<style>
-		.fixed-dialog {
-			position: fixed;
-			top: 50%;
-			left: 50%;
+	.modal-body {
+		max-height: 800px;
 		}
 	</style>
 
 	<div class="row-fluid">
 		<div class="span9">
-		<patTemplate:tmpl name="bronze_users" type="simpleCondition" requiredVars="license_server_username">
-			<!--
-			<button class="btn btn-primary" onClick="showCart()"><i class="fa fa-shopping-cart"></i> Show cart</button>
-			<div class="alert alert-info">Prices do not include VAT. If you are liable to pay VAT this will show on your invoice once you have placed your order.</div>
-			<div id="cart_wrapper" class="hide">
-				<h3 class="page-header"><img src = "{LIVE_SITE}/{JOMRES_ROOT_DIRECTORY}/images/cart_red_transparent.png"/>Your shopping cart</h3>
-				<p><strong>Total &pound;<span id="total"></span></strong></p>
-				<button id="purchase" class="btn btn-primary" onClick="purchase();"><i class="fa fa-thumbs-up"></i> Order plugin(s)</button>
-					<div class="row-striped">
-						<form id="cart">
-						</form>
-					</div>
-					<p class="alert alert-warning">Note, if you have a Jomres  Silver or Gold license number, please make sure you've entered it in the <i>Site Configuration -> Misc tab -> Support key</i> field, otherwise you will not be able to download plugins that you are entitled to.</p>
-			</div>
-			<div id="hidden_inputs"  class="hide"></div>
-			<div id="username_input" class="hide">
-				<fieldset>
-				<p class="small">Before you can purchase plugins, you need a Username and Password, which you can get by registering for free at <a href="http://www.jomres.net/my-account/register" target="_blank">Jomres.net</a>.<br/> If you already have a username and password please enter them here. When you've done that, click the Purchase Plugins! button.</p>
-					<label for="name">Username</label>
-					<input id="name" name="name" type="text" placeholder="Your username" value="{LICENSE_SERVER_USERNAME}" required autofocus>
-					<label for="password">Password</label>
-					<input id="password" name="password" type="password" placeholder="Your password" value="{LICENSE_SERVER_PASSWORD}" required>
-				</fieldset>
-				<p class="small">Once you have paid your invoice, Jomres will automatically offer you an installation link next to your purchased plugin(s), click that link to install the plugin(s).</p><br />
-				<p class="small">Note that purchase of a plugin download does not entitle you to support for Jomres. If you require support we would encourage you to purchase a Jomres Developer or Jomres Perpetual license.</p><br />
-				<div class="form-actions"><button class="btn btn-primary" id="purchase_button" onClick="sumbint();">Purchase plugins!</button></div>
-			</div>
-			-->
-		</patTemplate:tmpl>
-
 		<patTemplate:tmpl name="developer_users" type="simpleCondition" requiredVars="dummy">
 			<p class="alert alert-warning">Please do not install all plugins with the hope that they will come in
 				useful later. They are not all mutually exclusive, I.E. one plug may interfere with another, so it
@@ -131,44 +99,69 @@
 				<table width="100%" class="table">
 					<tr>
 						<th>Name</th>
-						<!--
-						<th>Image</th>
-						-->
-						<th>Minimum Jomres version</th>
-						<th>Your Version</th>
-						<th>Current Version</th>
-						<th>Last updated</th>
-						<th>Description</th>
-						<th>Changelog</th>
-						<th>Warnings</th>
+						<th></th>
 						<th>Add/reinstall/upgrade plugin</th>
 						<th>Remove plugin</th>
-						<!-- <th>{HPLUGINPRICE}</th> -->
 					</tr>
 					<patTemplate:tmpl name="jomresdotnet_plugins" unusedvars="strip">
 						<tr>
 							<td class="{ROWCLASS}"><a name="{PLUGIN_NAME}"></a>{STRONG1}{READABLE_NAME}{STRONG2}</td>
 							<!--<td><a href="#" class="thumbnail"><img src="{IMAGE}" alt=""></a></td>-->
-							<td>{MIN_JOMRES_VER}</td>
-							<td>{LOCAL_VER}</td>
-							<td>{REMOTE_VER}</td>
-							<td>{LASTUPDATE}</td>
 							<td>
-								<a class="btn btn-info" id="{PLUGIN_NAME}" rel="popover" title="{PLUGIN_NAME}"
-								   data-content="{PLUGIN_DESC}">Description</a>
-								<script> jomresJquery(function () {
-									jomresJquery("#{PLUGIN_NAME}").popover({trigger: 'hover'});
-								}); </script>
-								<!-- {PLUGIN_DESC}<br/> Temp commented out, seems that since J3b1 the popover code has changed and this no longer works -->
-								<a href="{MANUAL_LINK}" target="_blank" class="{MANUAL_CLASS}">{MANUAL_TEXT}</a>
-								<a href="{DEMO_LINK}" target="_blank" class="{DEMO_CLASS}">{DEMO_TEXT}</a>
+								<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal_trigger_{PLUGIN_NAME}">More info</button>
 							</td>
-							<td>{CHANGELOG}</td>
-							<td>{HIGHLIGHT}</td>
 							<td>{INSTALL} {LATERVERSION}</td>
 							<td>{UNINSTALL}</td>
-							<!-- <td>{ADD_TO_CART_BUTTON}</td> -->
 						</tr>
+								<!-- Modal -->
+								<div id="modal_trigger_{PLUGIN_NAME}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										<h3 id="myModalLabel">{READABLE_NAME}</h3>
+									</div>
+									<div class="modal-body">
+										<div class="alert alert-info">
+											<div class="row-fluid">
+												<div class="span3">
+													Minimum Jomres version {MIN_JOMRES_VER}
+												</div>
+												<div class="span2">
+													Your Version {LOCAL_VER}
+												</div>
+												<div class="span2">
+													Current Version {REMOTE_VER}
+												</div>
+												<div class="span3">
+													Last updated {LASTUPDATE}
+												</div>
+												<div class="span1">
+													<a href="{MANUAL_LINK}" target="_blank" class="{MANUAL_CLASS}">{MANUAL_TEXT}</a>
+												</div>
+												<div class="span1">
+													<a href="{DEMO_LINK}" target="_blank" class="{DEMO_CLASS}">{DEMO_TEXT}</a>
+												</div>
+											</div>
+										</div>
+										<div class="container">
+											<div class="row">
+											  <div class="span4"></div>
+											  <div class="span4"><img src="{IMAGE}"  class="img-responsive" alt="{READABLE_NAME}"></div>
+											  <div class="span4"></div>
+											</div>
+										</div>
+										<br/>
+										<p class="text-info">{PLUGIN_DESC}</p>
+										<p class="{HIGHLIGHT_CLASS}">{HIGHLIGHT}</p>
+										<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#collapse_{PLUGIN_NAME}">
+											Changelog
+										</button>
+										<div id="collapse_{PLUGIN_NAME}" class="collapse"><p class="muted"> {CHANGELOG}</p></div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+								</div>
+
 					</patTemplate:tmpl>
 				</table>
 			</div>
