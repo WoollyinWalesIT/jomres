@@ -277,9 +277,20 @@ class j06000viewproperty
 					}
 				else
 					{
-					$output [ strtoupper( $key )."_CONTENT" ] = $tabs[ 'TAB_CONTENT' ];
-					$output [ strtoupper( $key )."_TITLE" ] = $tabs[ 'TAB_TITLE' ];
-					$output [ strtoupper( $key )."_ANCHOR" ] = $tabs[ 'TAB_ANCHOR' ];
+					if (  strtoupper($key) == "TABCONTENT_06_EXTRAS")
+						{
+						$extras_output [0][ strtoupper( $key )."_CONTENT" ] = $tabs[ 'TAB_CONTENT' ];
+						$extras_output [0][ strtoupper( $key )."_TITLE" ] = $tabs[ 'TAB_TITLE' ];
+						$extras_output [0][ strtoupper( $key )."_ANCHOR" ] = $tabs[ 'TAB_ANCHOR' ];
+						
+						$tmpl->addRows( 'extras_output', $extras_output );
+						}
+					else
+						{
+						$output [ strtoupper( $key )."_CONTENT" ] = $tabs[ 'TAB_CONTENT' ];
+						$output [ strtoupper( $key )."_TITLE" ] = $tabs[ 'TAB_TITLE' ];
+						$output [ strtoupper( $key )."_ANCHOR" ] = $tabs[ 'TAB_ANCHOR' ];
+						}
 					}
 				}
 			$tmpl->addRows( 'tabs_titles', $tab_titles );
@@ -291,7 +302,6 @@ class j06000viewproperty
 		$pageoutput[] = $output;
 		
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		
 		$tmpl->addRows( 'bookinglink', $bookinglink );
 		
 		if ($mrConfig[ 'showslideshowlink' ] == 1)
