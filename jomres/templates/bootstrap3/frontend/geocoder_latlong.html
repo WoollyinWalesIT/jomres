@@ -18,6 +18,7 @@ function init_map_{RANDOM_IDENTIFIER}()
 	geocoder = new google.maps.Geocoder();
 	latLng = new google.maps.LatLng({LAT}, {LONG});
 	var options_{RANDOM_IDENTIFIER} = {
+		scrollwheel: false,
 		center: latLng,
 		zoom: 12,
 		{DISABLE_UI}
