@@ -2768,8 +2768,8 @@ function trashTables()
 			}
 
 		}
-	$query = "DELETE FROM #__extensions WHERE `element` = 'com_jomres'";
-	doInsertSql( $query, '' );
+	//$query = "DELETE FROM #__extensions WHERE `element` = 'com_jomres'";
+	//doInsertSql( $query, '' );
 
 	return false;
 	}
