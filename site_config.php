@@ -198,7 +198,7 @@ $jrConfig[ 'commission_autosuspend_on_overdue' ]            = "0";
 $jrConfig[ 'commission_autosuspend_on_overdue_threashold' ] = "60";
 
 $jrConfig[ 'language_context' ]             = "";
-$jrConfig[ 'advanced_site_config' ]         = 0;
+$jrConfig[ 'advanced_site_config' ]         = 1;
 $jrConfig[ 'booking_form_lnks_as_buttons' ] = "1";
 
 $jrConfig[ 'load_jquery_ui' ] = "1";
