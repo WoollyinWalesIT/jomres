@@ -66,6 +66,9 @@ $index = "index.php";
 $tmpl  = "";
 if ( !isset( $_GET[ 'tmpl' ] ) ) $_GET[ 'tmpl' ] = false;
 
+if ( !isset($jrConfig[ 'isInIframe' ]))
+	$jrConfig[ 'isInIframe' ] = "0";
+
 if ( ( $jrConfig[ 'isInIframe' ] == (bool) "1" || $_GET[ 'tmpl' ] == get_showtime("tmplcomponent") ) && !isset( $_REQUEST[ 'nofollowtmpl' ] ) && !jomres_cmsspecific_areweinadminarea() )
 	{
 	$index = "index.php";
