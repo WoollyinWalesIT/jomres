@@ -53,6 +53,8 @@ if ( $folderChecksPassed )
 
 	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "manifest.xml", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "manifest.xml" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "manifest.xml to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "manifest.xml automatically, please do this manually through FTP</h1><br/>";
 	
+	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "en-GB.com_jomres.ini", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "language" . JRDS . "en-GB" . JRDS . "en-GB.com_jomres.ini" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "en-GB.com_jomres.ini to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "language" . JRDS . "en-GB" . JRDS . "en-GB.com_jomres.ini automatically, please do this manually through FTP</h1><br/>";
+	
 	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "uninstall.jomres.php", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "uninstall.jomres.php" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "uninstall.jomres.php to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "uninstall.jomres.php
 			automatically, please do this manually through FTP</h1><br/>";
 
