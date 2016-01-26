@@ -28,6 +28,7 @@ class j16000support_tickets
 		jr_import( 'jomres_check_support_key' );
 		$key_validation  = new jomres_check_support_key( '' );
 		$this->key_valid = $key_validation->key_valid;
+	
 		if ( $this->key_valid )
 			{
 			if ( !using_bootstrap() )
@@ -52,9 +53,7 @@ class j16000support_tickets
 			}
 		else
 			{
-			echo '<h2>Jomres Support Tickets</h2>
-			<p>Sorry, your support key has expired or is not valid, please consider purchasing a support key or renewing your existing support by visiting <a href="https://www.jomres.net/prices" target="_blank">Jomres.net</a></p>
-			';
+			echo $MiniComponents->specificEvent( '16000', 'show_license_modal',array('output_now'=>false));
 			}
 		}
 

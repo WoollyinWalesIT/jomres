@@ -61,8 +61,15 @@ class j10001control_panel
 		$output['COMMISSIONS_CHART'] = '';
 		if (isset($MiniComponents->registeredClasses['16000chart_commission']) && (int)$jrConfig['useSubscriptions'] == 1)
 			$output['COMMISSIONS_CHART']		= $MiniComponents->specificEvent( '16000', 'chart_commission' , array ("output_now"=>false) );
-
-
+		
+		$output['LICENSE_WARNING'] = '';
+		jr_import( 'jomres_check_support_key' );
+		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=showplugins" );
+		if ($key_validation->key_status == "Expired")
+			{
+			$output['LICENSE_WARNING'] = $MiniComponents->specificEvent( '16000', 'show_license_modal',array('output_now'=>false));
+			}
+		
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
