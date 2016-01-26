@@ -1,3 +1,23 @@
+<h3>Jomres 9.5.2 26/01/2016</h3>
+
+<span class="label label-warning">Change</span> Added changes that remove some references to rooms when in an SRP, and renamed Resource type to Sub-type for SRPs.
+<span class="label label-warning">Change</span> Tweaked layout of top.html
+<span class="label label-warning">Change</span> Modified default property config to ensure that default Facebook page is blank so it doesn't show.
+<span class="label label-warning">Change</span> Added a check to ensure that if the mailer exception class already exists, that it can't be created again.
+<span class="label label-warning">Change</span> Improved the plugin manager to show most information in modals.
+<span class="label label-warning">Change</span> By default, new sites will have Advanced config set to Yes.
+<span class="label label-warning">Change</span> Modified map options so that zoom on scroll is off by default.
+<span class="label label-warning">Change</span> Modified view property script and composite_property_details_notabs.html so that if the extras information isn't populated, the Extras panel isn't shown.
+
+<span class="label label-important label-danger">Fix</span> Fixed facebook share page, wrong variable was used to get the property uid.
+<span class="label label-important label-danger">Fix</span> Resolved a php warning message about an index not being set.
+<span class="label label-important label-danger">Fix</span> Added manifest.xml to cms specific installation.
+
+<span class="label label-info">Joomla</span> Improved how Jomres is added to Joomla component menus.
+
+<span class="label label-info">Wordpress</span> Updated the Getting Started instructions for Wordpress users.
+
+
 <h3>Jomres 9.5.1 21/01/2016</h3>
 
 Added a new jomres_cmsspecific_getcmslang() function to bridge scripts. This allows us to correctly discover Wordpress' current language and switch languages with WP.
