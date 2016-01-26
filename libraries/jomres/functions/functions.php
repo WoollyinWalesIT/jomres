@@ -944,7 +944,7 @@ function admins_first_run( $manual_trigger = false )
 				}
 			elseif (this_cms_is_wordpress())
 				{
-				echo '<li>Now you want to make sure that Jomres pages are visible to site visitors, so you will need to add the <i>[jomres]</i> shortcode to a new page to display your Jomres pages in the frontend of Wordpress.</li>';
+				echo '<li>Now you want to make sure that Jomres pages are visible to site visitors, so you will need to add the <i>[jomres:en-US]</i> shortcode to a new page to display your Jomres pages in the frontend of Wordpress, if using English, for other languages add [jomres:xx-XX] where xx-XX is the shortcode for your chosen language.</li>';
 
 				echo '<li>Now go to the <a href="' . get_showtime( 'live_site' ) . '/index.php" target="_blank">public pages</a> of your site and log in as "admin". When you visit the post you added the shortcode to, as you are logged in, you will see the <a href="http://www.jomres.net/manual/property-managers-guide/38-your-toolbar" target="_blank">Property Manager\'s toolbar</a>. Go to the button marked "Tariffs & Rooms" (under Settings) and click on it.</li>';
 				}
