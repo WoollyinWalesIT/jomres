@@ -109,7 +109,6 @@ class j16000partners
 					}
 				}
 			
-			//print_r($partner_data);exit;
 			$pageoutput=array();
 			$pageoutput[]=$output;
 			$tmpl          = new patTemplate();
