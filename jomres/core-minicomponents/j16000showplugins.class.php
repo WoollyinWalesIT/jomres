@@ -544,7 +544,7 @@ class j16000showplugins
 			}
 		
 		$output[ 'PLUGINS_TO_UPGRADE' ] = implode( ",", $plugins_needing_upgrading );
-		$output[ 'LICENSE_WARNING' ] = $MiniComponents->specificEvent( '16000', 'show_license_modal',array('output_now'=>false));
+		$output[ 'LICENSE_WARNING' ] = $MiniComponents->specificEvent( '16000', 'show_license_message',array('output_now'=>false));
 		
 		
 		if ( $this->key_valid ) $plugins_require_upgrade[ ][ 'upgrade_text' ] = 'Upgrade all Core plugins. You must upgrade Jomres first before upgrading plugins.';
