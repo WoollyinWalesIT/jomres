@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Core file
+	* Core file
  *
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 8
@@ -15,8 +15,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-
-$mrConfig[ 'version' ] = '9.5.2';
+$mrConfig[ 'version' ] = '9.5.3';
 
 $mrConfig[ 'newTariffModels' ]                 = "2";
 $mrConfig[ 'singlePersonSuppliment' ]          = '0';
