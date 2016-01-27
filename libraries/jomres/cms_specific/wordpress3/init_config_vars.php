@@ -52,31 +52,17 @@ global $table_prefix;
 $showtime->dbprefix			= $table_prefix ;
 
 $showtime->sitename			= get_option( 'blogname' );
-//$showtime->lifetime			= $CONFIG->lifetime;
-//$showtime->MetaDesc			= $CONFIG->MetaDesc;
-//$showtime->MetaKeys			= $CONFIG->MetaKeys;
-//$showtime->MetaTitle			= $CONFIG->MetaTitle;
-//$showtime->MetaAuthor			= $CONFIG->MetaAuthor;
-//$showtime->debug				= $CONFIG->debug;
-//$showtime->mailer				= $CONFIG->mailer;
-//$showtime->mailfrom			= $CONFIG->mailfrom;
-//$showtime->fromname			= $CONFIG->fromname;
+$showtime->mailer     		= 'mail';
 $showtime->smtpuser			= get_option( 'mailserver_login' );
 $showtime->smtppass			= get_option( 'mailserver_pass' );
 $showtime->smtphost			= get_option( 'mailserver_url' );
 $showtime->smtpport			= get_option( 'mailserver_port' );
-// $showtime->helpurl			= $CONFIG->helpurl;
-// $showtime->editor			= $CONFIG->editor;
-// $showtime->caching			= $CONFIG->caching;
-// $showtime->cachetime			= $CONFIG->cachetime;
-// $showtime->offset			= $CONFIG->offset;
-// $showtime->sef				= $CONFIG->sef;
 $showtime->gzip				= get_option( 'gzipcompression' );
 
 //globals..to be removed completely in future versions
 $jomresConfig_sitename = get_option( 'blogname' );
 $jomresConfig_debug           = false;
-$jomresConfig_mailer          = 'smtp';
+$jomresConfig_mailer          = 'mail';
 $jomresConfig_mailfrom        = $CONFIG->mailfrom;
 $jomresConfig_fromname        = get_option( 'blogname' );
 $jomresConfig_smtpuser        = get_option( 'mailserver_login' );
