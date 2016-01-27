@@ -13,9 +13,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j16000show_license_modal
+class j16000show_license_message
 	{
-	function __construct()
+	function __construct($componentArgs)
 		{
 		jr_import( 'minicomponent_registry' );
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -27,7 +27,12 @@ class j16000show_license_modal
 			$output_now = $componentArgs[ 'output_now' ];
 		else
 			$output_now = true;
-		
+
+		if (isset($componentArgs[ 'as_modal' ]))
+			$as_modal = $componentArgs[ 'as_modal' ];
+		else
+			$as_modal = true;
+	
 		jr_import( 'jomres_check_support_key' );
 		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=showplugins" );
 		
@@ -51,7 +56,10 @@ class j16000show_license_modal
 			$tmpl          = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
-			$tmpl->readTemplatesFromInput( 'license_warning.html' );
+			if ($as_modal)
+				$tmpl->readTemplatesFromInput( 'license_warning_modal.html' );
+			else
+				$tmpl->readTemplatesFromInput( 'license_warning.html' );
 			$modal_warning = $tmpl->getParsedTemplate();
 			}
 		else
