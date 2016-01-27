@@ -29,17 +29,14 @@ class j00035tabcontent_07_facebook
 
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
-			if ( $mrConfig[ 'showExtras' ] == "1" )
-				{
-				$componentArgs[ 'output_now' ] = false;
-				
-				$tabTitle = jr_gettext( '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', _JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK, false, false );
-				
-				$anchor = jomres_generate_tab_anchor( $tabTitle );
+			$componentArgs[ 'output_now' ] = false;
+			
+			$tabTitle = jr_gettext( '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', _JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK, false, false );
+			
+			$anchor = jomres_generate_tab_anchor( $tabTitle );
 
-				$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $tabTitle, "TAB_CONTENT" => $MiniComponents->specificEvent( '06000', 'show_facebook_page',array('output_now'=>false, 'property_uid'=>$property_uid)) , "TAB_ID" => 'tour_target_facebook' );
-				$this->retVals = $tab;
-				}
+			$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $tabTitle, "TAB_CONTENT" => $MiniComponents->specificEvent( '06000', 'show_facebook_page',array('output_now'=>false, 'property_uid'=>$property_uid)) , "TAB_ID" => 'tour_target_facebook' );
+			$this->retVals = $tab;
 			}
 		}
 
