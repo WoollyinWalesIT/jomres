@@ -269,7 +269,7 @@ $jrConfig[ 'navbar_location' ]        = "component_area";
 $jrConfig[ 'navbar_inverse' ]         = 0;
 
 $jrConfig[ 'bootstrap_version' ]				= "";
-$jrConfig[ 'show_powered_by' ]					= "0";
+$jrConfig[ 'show_powered_by' ]					= "1";
 $jrConfig['use_budget_feature']					= "1";
 $jrConfig['live_scrolling_enabled']				= "1";  // Live scrolling enabled by default for existing users 
 $jrConfig[ 'pattemplate_caching_enabled' ]		= "0";
