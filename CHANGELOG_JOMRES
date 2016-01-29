@@ -1,3 +1,10 @@
+<h3>Jomres 9.5.4 29/01/2016</h3>
+
+Added a check for class_exists jomresPHPMailer
+Improved license warning output.
+Added license key check caching.
+
+
 <h3>Jomres 9.5.3 27/01/2016</h3>
 
 <span class="label label-warning">Change</span> Added a new modal that warns that you do not have a valid license in the plugin manager.
