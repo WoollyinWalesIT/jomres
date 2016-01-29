@@ -51,20 +51,34 @@ class jomres_check_support_key
 				}
 			else
 				{
-				$buffer = file_get_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php" );
+				include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php" );
 				}
 			}
-		
+
 		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php") || $this->force_check )
 			{
 			$buffer = queryUpdateServer( "check_key.php", $str, "updates" );
 			if ($buffer != "")
 				{
-				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php",$buffer);
+				$license_data =json_decode($buffer);
+				if ($license_data->license_valid === true)
+					$license_data->license_valid = "1";
+				else
+					$license_data->license_valid = "0";
+				$lic_data = '<?php
+defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
+$license_data	= new stdClass;
+$license_data->expires = "'.$license_data->expires.'";
+$license_data->key_status = "'.$license_data->key_status.'";
+$license_data->owner = "'.$license_data->owner.'";
+$license_data->license_valid = '.$license_data->license_valid.';
+';
+
+				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php", $lic_data);
 				}
 			}
-		
-		if ( empty( $buffer ) ) // Query failed for some reason, perhaps slow connection
+
+		if ( empty( $license_data ) ) // Query failed for some reason, perhaps slow connection
 			{
 			$this->expires		= "Unknown";
 			$this->key_status	= "Unknown";
@@ -73,15 +87,15 @@ class jomres_check_support_key
 			}
 		else
 			{
-			$ret_result			= json_decode($buffer);
-			$this->expires		= $ret_result->expires;
-			$this->key_status	= $ret_result->status;
-			$this->owner		= $ret_result->owner;
-			if ( $ret_result->license_valid == true ) 
+			$this->expires		= $license_data->expires;
+			$this->key_status	= $license_data->status;
+			$this->owner		= $license_data->owner;
+			if ( $license_data->license_valid == true ) 
 				$this->key_valid = true;
 			}
 		}
-
+	
+	
 	function show_key_input()
 		{
 		?>
