@@ -52,14 +52,8 @@ class j16000addplugin
 		$pluginName = str_replace( "&#60;x&#62;", "", $pluginName );
 
 		jr_import( 'jomres_check_support_key' );
-		$pk = "";
-		if ( isset( $_REQUEST[ 'plugin_key' ] ) )
-			{
-			$pk     = jomresGetParam( $_REQUEST, 'plugin_key' , '' );
-			$plugin = jomresGetParam( $_REQUEST, 'plugin' , '' );
-			}
 
-		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=addplugin&no_html=1&plugin=" . $pluginName ."&hostname=".get_showtime('live_site'), $pk, $plugin );
+		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=addplugin&no_html=1&plugin=" . $pluginName ."&hostname=".get_showtime('live_site'), true );
 		$this->key_valid = $key_validation->key_valid;
 
 		if ( $thirdparty )
