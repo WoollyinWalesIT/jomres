@@ -49,7 +49,7 @@ class j10501a_misc
 			else
 				{
 				$support_key_message =  '<p class="alert alert-danger">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_INVALID',_JOMRES_SUPPORTKEY_DESC_INVALID,false,false).'</p>';
-				$renewal_link = '<a href="https://www.jomres.net/" target="_blank">Renew now</a>';
+				$renewal_link = '<a href="https://license-server.jomres.net/order.php?cmd=products/licenses/list&product_id=13" target="_blank">Renew now</a>';
 				}
 			$support_key_status = '<span class="badge">Status</span> '.$jomres_check_support_key->key_status.'';
 			$support_key_owner = '<span class="badge">Owner</span> '.$jomres_check_support_key->owner.'<br/>';

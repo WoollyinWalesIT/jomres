@@ -16,42 +16,70 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_check_support_key
 	{
-	function __construct( $task, $pk = "", $plugin = "" )
+	function __construct( $task , $force_check = false )
 		{
 		$this->task      = $task;
 		$this->key_valid = false;
+		$this->force_check = $force_check;
 		
 		if ( isset( $_REQUEST[ 'support_key' ] ) && strlen( $_REQUEST[ 'support_key' ] ) > 0 ) 
 			$this->save_key( $task );
 		
-		$this->check_license_key( $pk, $plugin );
+		if (!isset($_REQUEST['task']))
+			$_REQUEST['task'] = "";
+		
+		if ($_REQUEST['task'] == "site_settings" || $_REQUEST['task'] == "showplugins"  )
+			$this->force_check = true;
+		
+		$this->check_license_key(  );
 		}
 
-	function check_license_key( $pk='', $plugin='' )
+	function check_license_key(  )
 		{
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig	= $siteConfig->get();
 		
-		if ( trim($pk) == "" )
+		$str            = "key=" . $jrConfig['licensekey'];
+			
+		if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php"))
 			{
-			$this->key_hash = $jrConfig['licensekey'];
-			$str            = "key=" . $jrConfig['licensekey'];
+			$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php");
+			$seconds_timediff = time() - $last_modified;
+			if ( $seconds_timediff > 3600 ) 
+				{
+				unlink(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php" );
+				}
+			else
+				{
+				$buffer = file_get_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php" );
+				}
+			}
+		
+		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php") || $this->force_check )
+			{
+			$buffer = queryUpdateServer( "check_key.php", $str, "updates" );
+			if ($buffer != "")
+				{
+				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php",$buffer);
+				}
+			}
+		
+		if ( empty( $buffer ) ) // Query failed for some reason, perhaps slow connection
+			{
+			$this->expires		= "Unknown";
+			$this->key_status	= "Unknown";
+			$this->owner		= "Unknown";
+			$this->key_valid = false;
 			}
 		else
 			{
-			$this->key_hash = $pk;
-			$str            = "plugin_key=" . $pk . "&plugin=" . $plugin;
+			$ret_result			= json_decode($buffer);
+			$this->expires		= $ret_result->expires;
+			$this->key_status	= $ret_result->status;
+			$this->owner		= $ret_result->owner;
+			if ( $ret_result->license_valid == true ) 
+				$this->key_valid = true;
 			}
-
-		$license_checked = queryUpdateServer( "check_key.php", $str, "updates" );
-		
-		$ret_result      = json_decode($license_checked);
-
-		$this->expires		= $ret_result->expires;
-		$this->key_status	= $ret_result->status;
-		$this->owner		= $ret_result->owner;
-		if ( $ret_result->license_valid == true ) 
-			$this->key_valid = true;
 		}
 
 	function show_key_input()
