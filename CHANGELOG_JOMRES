@@ -1,9 +1,12 @@
+<h3>Jomres 9.5.5 01/02/2016</h3>
+
+<span class="label label-important label-danger">Fix</span> Fixed a bug where plugins could not be installed.
+
 <h3>Jomres 9.5.4 29/01/2016</h3>
 
-Added a check for class_exists jomresPHPMailer
-Improved license warning output.
-Added license key check caching.
-
+<span class="label label-warning">Change</span> Added a check for class_exists jomresPHPMailer
+<span class="label label-warning">Change</span> Improved license warning output.
+<span class="label label-warning">Change</span> Added license key check caching.
 
 <h3>Jomres 9.5.3 27/01/2016</h3>
 
