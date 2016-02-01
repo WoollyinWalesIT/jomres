@@ -28,7 +28,7 @@ class jomres_check_support_key
 		if (!isset($_REQUEST['task']))
 			$_REQUEST['task'] = "";
 		
-		if ($_REQUEST['task'] == "site_settings" || $_REQUEST['task'] == "showplugins"  )
+		if ($_REQUEST['task'] == "site_settings" || $_REQUEST['task'] == "showplugins" || $_REQUEST['task'] == "addplugin" )
 			$this->force_check = true;
 		
 		$this->check_license_key(  );
@@ -40,7 +40,8 @@ class jomres_check_support_key
 		$jrConfig	= $siteConfig->get();
 		
 		$str            = "key=" . $jrConfig['licensekey'];
-			
+		$this->key_hash =  $jrConfig['licensekey'];
+		
 		if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php"))
 			{
 			$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php");
