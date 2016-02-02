@@ -33,64 +33,68 @@ function navigate(lat, lng) {
 .property-header span.label {font-size:90%;padding:0.2em 0.6em;}
 </style>
 
-<div class="property-header" itemscope itemtype="http://schema.org/Hotel">
-	<div class="row">
-		<div class="col-md-2">
-			<img alt="{PROPERTY_NAME}" src="{IMAGETHUMB}" class="img-responsive"/>
-		</div>
-		<div class="col-md-10">
-			<h1 id="tour_target_property_header">{PROPERTY_NAME} <span>{STARS} {SUPERIOR}</span></h1>
-			<div class="property-header-labels">
-				<span class="label {REQUIRE_APPROVAL_CLASS}">{REQUIRE_APPROVAL}</span>
-				<span class="label label-info">{PRE_TEXT} <span itemprop="priceRange">{PRICE}</span> {POST_TEXT}</span>
-			</div>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="property-header" itemscope itemtype="http://schema.org/Hotel">
 			<div class="row">
-				<div class="col-md-6">
-					<address>
-						<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-							<span itemprop="streetAddress">{STREET}</span>,
-							<span itemprop="addressLocality">{TOWN}</span>, 
-							<span itemprop="addressRegion">{REGION}</span>, 
-							<span itemprop="postalCode">{POSTCODE}</span>, 
-							<span itemprop="addressCountry">{COUNTRY}</span><br/>
-							<span itemprop="location">
-								<span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
-									<meta itemprop="latitude" content="{PROPERTY_LAT}" />
-									<meta itemprop="longitude" content="{PROPERTY_LONG}" />
-								</span>
-							</span>
-							<span class="hidden-xs">
-								{HTELEPHONE}<span>{TELEPHONE}</span>,
-								{HFAX}{FAX}
-							</span>
-							<span class="visible-xs">
-								<br/>
-								<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="fa fa-phone"></i> 
-									{JOMRES_TAPTOCALL} {TELEPHONE}</a>
-							</span>
-						</span>
-						<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
-					</address>
+				<div class="col-md-2">
+					<img alt="{PROPERTY_NAME}" src="{IMAGETHUMB}" class="img-responsive"/>
 				</div>
-				<div class="col-md-6">
-					<div class="pull-right">
-						<a href="{DIRECT_URL}" class="btn btn-default">{COMMON_VIEW}</a>
-						<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-						<a href="{LINK}" class="btn btn-success">{TEXT}</a>
-						</patTemplate:tmpl>
-						<a href="{CONTACT_LINK}" class="btn btn-default">{HCONTACT}</a>
-						<a href="{SHORTLIST_LINK}" class="btn btn-default">{HSHORTLIST}</a>
-						<a href="javascript:navigate({PROPERTY_LAT},{PROPERTY_LONG});" class="btn btn-default">{HMAP}</a>
+				<div class="col-md-10">
+					<h1 id="tour_target_property_header">{PROPERTY_NAME} <span>{STARS} {SUPERIOR}</span></h1>
+					<div class="property-header-labels">
+						<span class="label {REQUIRE_APPROVAL_CLASS}">{REQUIRE_APPROVAL}</span>
+						<span class="label label-info">{PRE_TEXT} <span itemprop="priceRange">{PRICE}</span> {POST_TEXT}</span>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<address>
+								<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+									<span itemprop="streetAddress">{STREET}</span>,
+									<span itemprop="addressLocality">{TOWN}</span>, 
+									<span itemprop="addressRegion">{REGION}</span>, 
+									<span itemprop="postalCode">{POSTCODE}</span>, 
+									<span itemprop="addressCountry">{COUNTRY}</span><br/>
+									<span itemprop="location">
+										<span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+											<meta itemprop="latitude" content="{PROPERTY_LAT}" />
+											<meta itemprop="longitude" content="{PROPERTY_LONG}" />
+										</span>
+									</span>
+									<span class="hidden-xs">
+										{HTELEPHONE}<span>{TELEPHONE}</span>,
+										{HFAX}{FAX}
+									</span>
+									<span class="visible-xs">
+										<br/>
+										<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="fa fa-phone"></i> 
+											{JOMRES_TAPTOCALL} {TELEPHONE}</a>
+									</span>
+								</span>
+								<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
+							</address>
+						</div>
+						<div class="col-md-6">
+							<div class="pull-right">
+								<a href="{DIRECT_URL}" class="btn btn-default">{COMMON_VIEW}</a>
+								<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+								<a href="{LINK}" class="btn btn-success">{TEXT}</a>
+								</patTemplate:tmpl>
+								<a href="{CONTACT_LINK}" class="btn btn-default">{HCONTACT}</a>
+								<a href="{SHORTLIST_LINK}" class="btn btn-default">{HSHORTLIST}</a>
+								<a href="javascript:navigate({PROPERTY_LAT},{PROPERTY_LONG});" class="btn btn-default">{HMAP}</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="property-header-fb">
-				<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}', '1')" class="btn btn-xs btn-default">{SHORTLIST}</a>&nbsp;
-				{FACEBOOK_BUTTONS}
+			<div class="row">
+				<div class="col-md-12">
+					<div class="property-header-fb">
+						<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}', '1')" class="btn btn-xs btn-default">{SHORTLIST}</a>&nbsp;
+						{FACEBOOK_BUTTONS}
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
