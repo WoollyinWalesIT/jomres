@@ -33,10 +33,12 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 	if ( $fieldName == "arrivalDate" || $fieldName == "asc_arrivalDate" )
 		{
 		set_showtime( 'departure_date_unique_id', $uniqueID . "_XXX" );
+		$placeholder = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL, false );
 		}
 	elseif ( $fieldName == "departureDate" || $fieldName == "asc_departureDate" )
 		{
 		$uniqueID = get_showtime( 'departure_date_unique_id' );
+		$placeholder = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE, false );
 		}
 
 	if ( $dateValue == "" ) 
@@ -61,7 +63,7 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 		$clear              = jr_gettext( '_JOMRES_CLEARDATES', _JOMRES_CLEARDATES );
 		$rand_id            = generateJomresRandomString( 10 );
 		//$clear_checkbox_js = '<input type="checkbox" onClick="jomresJquery(\'#'.$uniqueID.'\').datepicker( \'setDate\' , null );jomresJquery(\'#'.$arr_date_unique_id.'\').datepicker( \'setDate\' , null );" /> '.$clear;
-		$clear_checkbox_js = '<input type="checkbox" name="nodates" value="1" id="' . $rand_id . '" onClick="jomresJquery(\'#' . $uniqueID . '\').datepicker( \'isDisabled\' )?jomresJquery(\'#' . $uniqueID . '\').datepicker( \'enable\' ):jomresJquery(\'#' . $uniqueID . '\').datepicker( \'disable\' );jomresJquery(\'#' . $arr_date_unique_id . '\').datepicker( \'isDisabled\' )?jomresJquery(\'#' . $arr_date_unique_id . '\').datepicker( \'enable\' ):jomresJquery(\'#' . $arr_date_unique_id . '\').datepicker( \'disable\' );" /> ' . $clear;
+		//$clear_checkbox_js = '<input type="checkbox" name="nodates" value="1" id="' . $rand_id . '" onClick="jomresJquery(\'#' . $uniqueID . '\').datepicker( \'isDisabled\' )?jomresJquery(\'#' . $uniqueID . '\').datepicker( \'enable\' ):jomresJquery(\'#' . $uniqueID . '\').datepicker( \'disable\' );jomresJquery(\'#' . $arr_date_unique_id . '\').datepicker( \'isDisabled\' )?jomresJquery(\'#' . $arr_date_unique_id . '\').datepicker( \'enable\' ):jomresJquery(\'#' . $arr_date_unique_id . '\').datepicker( \'disable\' );" /> ' . $clear;
 		}
 
 	$size        = " size=\"10\" ";
@@ -116,7 +118,6 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 				var nextDayDate = jomresJquery("#' . $uniqueID . '").datepicker(\'getDate\', \'+1d\');
 				nextDayDate.setDate(nextDayDate.getDate() + 1);
 				jomresJquery("#' . get_showtime( 'departure_date_unique_id' ) . '").datepicker(\'setDate\', nextDayDate);
-				//alert(date);
 				}';
 		}
 
@@ -132,7 +133,7 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 	$output .= '
 	</script>
 	<div class="input-group">
-		<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF;" ' . $size . ' name="' . $fieldName . '" id="' . $uniqueID . '" value="' . $dateValue . '" class="' . $input_class . ' form-control" />'.$bs3_icon.'
+		<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF;" ' . $size . ' name="' . $fieldName . '" id="' . $uniqueID . '" value="" placeholder="'.$placeholder.'" class="' . $input_class . ' form-control" />'.$bs3_icon.'
 	</div>';
 	$br = "";
 	if ( $fieldName == "departureDate" && $jrConfig[ 'use_cleardate_checkbox' ] == "1" ) 
