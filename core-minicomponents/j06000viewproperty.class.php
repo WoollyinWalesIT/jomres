@@ -220,7 +220,9 @@ class j06000viewproperty
 			$output[ 'REAL_ESTATE_PROPERTY_PRICE' ] = output_price( $current_property_details->real_estate_property_price );
 		else
 			$output[ 'REAL_ESTATE_PROPERTY_PRICE' ] = '';
-			
+		
+		//qr code
+		$output['QR_CODE_DIRECTIONS'] = $MiniComponents->specificEvent( '06000', 'show_property_qr_code_directions',array('output_now'=>false, 'property_uid'=>$property_uid));
 			
 		//get the tabs content
 		if ( !isset( $jrConfig[ 'property_details_in_tabs' ] ) ) 
