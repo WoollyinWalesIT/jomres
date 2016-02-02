@@ -44,6 +44,9 @@ class j06000show_property_header
 			$output_now = true;
 		
 		$mrConfig = getPropertySpecificSettings($property_uid);
+		
+		$tmpBookingHandler 	= jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+		$thisJRUser 		= jomres_singleton_abstract::getInstance( 'jr_user' );
 
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$current_property_details->gather_data( $property_uid );
@@ -56,6 +59,7 @@ class j06000show_property_header
 		if ($show_property_header == 0)
 			return;
 
+		//stars
 		$stars     = $current_property_details->stars;
 		$starslink = "<img src=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" alt=\"blank\" />";
 		if ( $stars != "0" )
@@ -77,6 +81,7 @@ class j06000show_property_header
 			$output[ 'SUPERIOR' ] = '';
 			}
 
+		//property image
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 		$jomres_media_centre_images->get_images($property_uid, array('property'));
 		$output[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images ['property'][0][0]['large'];
@@ -88,8 +93,10 @@ class j06000show_property_header
 			$output[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->multi_query_images ['noimage-medium'];
 			$output[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->multi_query_images ['noimage-small'];
 			}
-		
+		//property features
 		$output['FEATURES']		= $MiniComponents->specificEvent( '06000', 'show_property_features',array('output_now'=>false, 'property_uid'=>$property_uid , 'show_feature_categories'=>false));
+		
+		//property room types
 		$output['ROOMTYPES']	= $MiniComponents->specificEvent( '06000', 'show_property_room_types',array('output_now'=>false, 'property_uid'=>$property_uid));
 
 		//meta data
@@ -126,6 +133,7 @@ class j06000show_property_header
 		jomres_cmsspecific_addcustomtag( '<meta property="og:image" content="' . $output[ 'IMAGELARGE' ] . '" />' );
 
 
+		//property details
 		$output[ 'STARS' ]         = $starslink;
 		$output[ 'PROPERTY_NAME' ] = $current_property_details->property_name;
 		$output[ 'STREET' ]        = $current_property_details->property_street;
@@ -140,15 +148,15 @@ class j06000show_property_header
 		$output['PROPERTY_LONG']=$current_property_details->long;
 		$output['SHORT_PROPERTY_DESCRIPTION']= $short_property_description;
 		$output['_JOMRES_COM_A_CLICKFORMOREINFORMATION']= jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION , false );
-		$output['DIRECT_URL']= jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $property_uid );
 
-		
+		//property prices from
 		$price = get_property_price_for_display_in_lists( $property_uid );
 
 		$output['PRICE']		=$price['PRICE'];
 		$output['PRE_TEXT']		=$price['PRE_TEXT'];
 		$output['POST_TEXT']	=$price['POST_TEXT'];
 
+		//property contact details override
 		if ((int)$jrConfig['override_property_contact_details'] == 1)
 			{
 			if ($jrConfig['override_property_contact_tel'] != '')
@@ -163,6 +171,7 @@ class j06000show_property_header
 		if ( $output[ 'FAX' ] != "" ) 
 			$output[ 'HFAX' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX ) . ": ";
 
+		//external link
 		if ( $mrConfig[ 'galleryLink' ] != "" )
 			{
 			// http://www.worldofwebcraft.com/blog.php?id=250
@@ -176,8 +185,9 @@ class j06000show_property_header
 
 		$output[ 'JOMRES_TAPTOCALL' ] = jr_gettext( "JOMRES_TAPTOCALL", JOMRES_TAPTOCALL, false, false );
 
-		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		//shortlist/favourites
 		$shortlist_items = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
+
 		if ( $thisJRUser->userIsRegistered )
 			{
 			$query  = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE `my_id` = '" . (int) $thisJRUser->id . "'";
@@ -202,7 +212,8 @@ class j06000show_property_header
 			$shortlist_pageoutput = array();
 			$shortlist_output['TEXT']= jr_gettext( '_JOMRES_ADDTOSHORTLIST', _JOMRES_ADDTOSHORTLIST, false, false );
 			$shortlist_pageoutput[ ] = $shortlist_output;
-			$tmpl          = new patTemplate();
+			
+			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			$tmpl->readTemplatesFromInput( 'shortlist_removed_text.html' );
 			$tmpl->addRows( 'pageoutput', $shortlist_pageoutput );
@@ -214,27 +225,30 @@ class j06000show_property_header
 			$shortlist_pageoutput = array();
 			$shortlist_output['TEXT']= jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', _JOMRES_REMOVEFROMSHORTLIST, false, false );
 			$shortlist_pageoutput[ ] = $shortlist_output;
-			$tmpl          = new patTemplate();
+			
+			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			$tmpl->readTemplatesFromInput( 'shortlilst_added_text.html' );
 			$tmpl->addRows( 'pageoutput', $shortlist_pageoutput );
 			$output[ 'SHORTLIST' ] = $tmpl->getParsedTemplate();
 			}
 		
+		//approval labels
 		if ($mrConfig[ 'is_real_estate_listing' ] == 0)
 			{
 			if ( $mrConfig[ 'requireApproval' ] == "1" || $mrConfig['visitorscanbookonline'] == "0" )
 				{
 				$output[ 'REQUIRE_APPROVAL' ] = jr_gettext( '_BOOKING_ONREQUEST', _BOOKING_ONREQUEST , false );
-				$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'booking-onrequest';
+				$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'label-warning';
 				}
 			else
 				{
 				$output[ 'REQUIRE_APPROVAL' ] = jr_gettext( '_BOOKING_INSTANT', _BOOKING_INSTANT , false );
-				$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'booking-instant';
+				$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'label-success';
 				}
 			}
 
+		//reviews link
 		$reviews_link = array();
 		if ( $jrConfig[ 'use_reviews' ] == "1" )
 			{
@@ -242,12 +256,44 @@ class j06000show_property_header
 			$reviews_link[0]['REVIEWS_TEXT'] = jr_gettext( '_JOMRES_REVIEWS', _JOMRES_REVIEWS, false, false );
 			}
 		
+		//property agent
 		$output[ 'AGENT_LINK' ] = make_agent_link( $property_uid );
 		$output[ '_JOMRES_AGENT' ] = jr_gettext( "_JOMRES_AGENT", _JOMRES_AGENT );
-					
-		$url                                     = make_gmap_url_for_property_uid( $property_uid );
-		$output[ 'GMAP_LINK' ]                   = $url;
 		
+		//property buttons
+		$output[ 'DIRECT_URL' ] 	= jomresUrl(JOMRES_SITEPAGE_URL . '&task=viewproperty&property_uid='.$property_uid);
+		$output[ 'CONTACT_LINK' ] 	= jomresUrl(JOMRES_SITEPAGE_URL . '&task=contactowner&selectedProperty='.$property_uid);
+		$output[ 'HCONTACT' ] 		= jr_gettext( "_JOMRES_FRONT_MR_MENU_CONTACTHOTEL", _JOMRES_FRONT_MR_MENU_CONTACTHOTEL );
+		$output[ 'SHORTLIST_LINK' ] = jomresUrl(JOMRES_SITEPAGE_URL . '&task=show_shortlisted_properties');
+		$output[ 'HSHORTLIST' ] 	= jr_gettext( "_JOMCOMP_MYUSER_VIEWFAVOURITES", _JOMCOMP_MYUSER_VIEWFAVOURITES );
+		$output[ 'HMAP' ] 			= jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK", _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK );
+		
+		//booking button
+		$bookinglink = array();
+		
+		if ( $mrConfig[ 'visitorscanbookonline' ] == '1' && $jrConfig[ 'show_booking_form_in_property_details' ] != "1" && $mrConfig[ 'is_real_estate_listing' ] == 0 )
+			{
+			$link = array ();
+			$url  = JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=".$property_uid;
+			if ( ( ( $mrConfig[ 'fixedArrivalDateYesNo' ] == '1' || $mrConfig[ 'fixedPeriodBookings' ] == '1' ) ) && !isset( $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] ) ) // We'll add an invalid arrival date if the fixed arrival date setting is set to Yes. This way we can force the booking engine to see the arrival date is wrong and it'll rebuild the available rooms list, which it doesn't if the date is correct when coming from the Book a room link.
+			$url .= "&arrivalDate=2009-01-01";
+			
+			if ( $jrConfig[ 'useSSLinBookingform' ] == "1" ) 
+				$url = jomresURL( $url, 1 );
+			else
+				$url = jomresURL( $url );
+
+			$link[ 'LINK' ] = $url;
+
+			if ( $mrConfig[ 'requireApproval' ] == "1" )
+				$link[ 'TEXT' ] = jr_gettext( '_BOOKING_CALCQUOTE', _BOOKING_CALCQUOTE, false, false );
+			else
+				$link[ 'TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKAROOM', _JOMRES_FRONT_MR_MENU_BOOKAROOM, false, false );
+
+			$bookinglink[ ] = $link;
+			}
+		
+		//facebook buttons
 		$output['FACEBOOK_BUTTONS'] = $MiniComponents->specificEvent( '06000', 'show_facebook_buttons',array('output_now'=>false, 'property_uid'=>$property_uid));
 
 		$pageoutput[ ] = $output;
@@ -258,6 +304,7 @@ class j06000show_property_header
 		$tmpl->addRows( 'featurelist', $featureList );
 		$tmpl->addRows( 'roomtypes', $roomtypes );
 		$tmpl->addRows( 'reviews_link', $reviews_link );
+		$tmpl->addRows( 'bookinglink', $bookinglink );
 		$tmpl->readTemplatesFromInput( 'property_header.html' );
 		$tmpl->displayParsedTemplate();
 		

@@ -31,12 +31,15 @@
 				<div class="pdetails-icons">
 					<div class="row">
 						<patTemplate:tmpl name="contactuslink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-						<div class="col-xs-6" align="center">
+						<div class="col-xs-4" align="center">
 							<a href="{LINK}" class="pdetails-btn-icon" title="{TEXT}"><i class="fa fa-envelope"></i></a>
 						</div>
 						</patTemplate:tmpl>
-						<div class="col-xs-6" align="center">
+						<div class="col-xs-4" align="center">
 							<a href="{PRINT_LINK}" target="_blank" class="pdetails-btn-icon" title="{COMMON_PRINT}"><i class="fa fa-print"></i></a>
+						</div>
+						<div class="col-xs-4" align="center">
+							{QR_CODE_DIRECTIONS}
 						</div>
 					</div>
 				</div>

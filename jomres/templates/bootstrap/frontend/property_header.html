@@ -1,37 +1,98 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<div class="page-header">
-		<div class="row-fluid">
-			<div class="span10">
-				<h1 id="tour_target_property_header">{PROPERTY_NAME}&nbsp;{STARS} {SUPERIOR}</h1>
-				<address>
-				<span itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
-					<span itemprop="street-address">{STREET}</span>,
-					<span itemprop="locality">{TOWN}</span>, 
-					<span itemprop="region">{REGION}</span>, 
-					<span itemprop="postal-code">{POSTCODE}</span>, 
-					<span itemprop="country-name">{COUNTRY}</span><br/>
-					<span class="hidden-phone">
-						{HTELEPHONE}<span>{TELEPHONE}</span>,
-						{HFAX}{FAX}
-					</span>
-					<span class="hidden-tablet hidden-desktop">
-						<br/>
-						<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="icon-mobile"></i>
-							{JOMRES_TAPTOCALL} {TELEPHONE}</a>
-					</span>
-				</span>
+<script type="text/javascript">
+function navigate(lat, lng) {
+    // If it's an iPhone..
+    if ((navigator.platform.indexOf("iPhone") !== -1) || (navigator.platform.indexOf("iPod") !== -1)) {
+		function iOSversion() {
+        if (/iP(hone|od|ad)/.test(navigator.platform)) {
+          // supports iOS 2.0 and later: <http://bit.ly/TJjs1V>
+          var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+          return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+        }
+      }
+      var ver = iOSversion() || [0];
 
-					<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
-				</address>
-				<!--
-				<img src="{IMAGETHUMB}"/>
-				<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">{ROOM_TYPE}</patTemplate:tmpl>
-				<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">{FEATURE}</patTemplate:tmpl>
-				-->
+      if (ver[0] >= 6) {
+        protocol = 'maps://';
+      } else {
+        protocol = 'http://';
+
+      }
+      window.location = protocol + 'maps.apple.com/maps?daddr=' + lat + ',' + lng + '&amp;ll=';
+    }
+    else {
+      window.open('http://maps.google.com?daddr=' + lat + ',' + lng + '&amp;ll=');
+    }
+  }
+</script>
+
+<style type="text/css">
+.property-header-fb span.fb_iframe_widget span {height:25px !important;vertical-align:top !important;}
+.property-header-fb .btn-xs .fa-heart, .property-header-fb .btn-xs .fa-heart-o {font-size:16px;}
+.property-header-labels {padding:5px 0;}
+.property-header span.label {font-size:90%;padding:0.2em 0.6em;}
+</style>
+
+<div class="property-header" itemscope itemtype="http://schema.org/Hotel">
+	<div class="row-fluid">
+		<div class="span2">
+			<img alt="{PROPERTY_NAME}" src="{IMAGETHUMB}" class="responsive"/>
+		</div>
+		<div class="span10">
+			<h1 id="tour_target_property_header">{PROPERTY_NAME} <span>{STARS} {SUPERIOR}</span></h1>
+			<div class="property-header-labels">
+				<span class="label {REQUIRE_APPROVAL_CLASS}">{REQUIRE_APPROVAL}</span>
+				<span class="label label-info">{PRE_TEXT} <span itemprop="priceRange">{PRICE}</span> {POST_TEXT}</span>
 			</div>
-			<div class="span2">
-				<img src="{QR_CODE_MAP}" title="{_JOMRES_SCAN_FOR_DIRECTIONS}" align="qrcode"/>
+			<div class="row-fluid">
+				<div class="span6">
+					<address>
+						<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+							<span itemprop="streetAddress">{STREET}</span>,
+							<span itemprop="addressLocality">{TOWN}</span>, 
+							<span itemprop="addressRegion">{REGION}</span>, 
+							<span itemprop="postalCode">{POSTCODE}</span>, 
+							<span itemprop="addressCountry">{COUNTRY}</span><br/>
+							<span itemprop="location">
+								<span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+									<meta itemprop="latitude" content="{PROPERTY_LAT}" />
+									<meta itemprop="longitude" content="{PROPERTY_LONG}" />
+								</span>
+							</span>
+							<span class="hidden-phone">
+								{HTELEPHONE}<span>{TELEPHONE}</span>,
+								{HFAX}{FAX}
+							</span>
+							<span class="visible-phone">
+								<br/>
+								<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="fa fa-phone"></i> 
+									{JOMRES_TAPTOCALL} {TELEPHONE}</a>
+							</span>
+						</span>
+						<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
+					</address>
+				</div>
+				<div class="span6">
+					<div class="pull-right">
+						<a href="{DIRECT_URL}" class="btn btn-default">{COMMON_VIEW}</a>
+						<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+						<a href="{LINK}" class="btn btn-success">{TEXT}</a>
+						</patTemplate:tmpl>
+						<a href="{CONTACT_LINK}" class="btn btn-default">{HCONTACT}</a>
+						<a href="{SHORTLIST_LINK}" class="btn btn-default">{HSHORTLIST}</a>
+						<a href="javascript:navigate({PROPERTY_LAT},{PROPERTY_LONG});" class="btn btn-default">{HMAP}</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="property-header-fb">
+				<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}', '1')" class="btn btn-xs btn-default">{SHORTLIST}</a>&nbsp;
+				{FACEBOOK_BUTTONS}
+			</div>
+		</div>
+	</div>
+</div>
 </patTemplate:tmpl>
