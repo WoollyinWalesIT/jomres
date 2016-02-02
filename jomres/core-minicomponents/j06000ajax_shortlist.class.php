@@ -24,12 +24,17 @@ class j06000ajax_shortlist
 
 			return;
 			}
-		$property_uid      = (int) $_REQUEST[ 'property_uid' ];
+		
+		$property_uid = (int)jomresGetParam($_GET, 'property_uid', 0);
+		$show_label   = (int)jomresGetParam($_GET, 'show_label', 0);
+		$result		  = '';
+		
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		
 		$shortlist_items   = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
+		
 		if ( ( get_showtime( 'this_property_published' ) && !in_array( $property_uid, $shortlist_items ) ) )
 			{
 			$shortlist_items[ ]                                     = $property_uid;
@@ -39,13 +44,15 @@ class j06000ajax_shortlist
 			$pageoutput = array();
 			$output['TEXT']= jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', _JOMRES_REMOVEFROMSHORTLIST, false, false );
 			$pageoutput[ ] = $output;
-			$tmpl          = new patTemplate();
+			
+			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-			$tmpl->readTemplatesFromInput( 'shortlilst_added.html' );
+			if ($show_label == 1)
+				$tmpl->readTemplatesFromInput( 'shortlilst_added_text.html' );
+			else
+				$tmpl->readTemplatesFromInput( 'shortlilst_added.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$result = $tmpl->getParsedTemplate();
-			
-			echo $result;
 
 			if ( $thisJRUser->userIsRegistered )
 				{
@@ -75,13 +82,15 @@ class j06000ajax_shortlist
 			$pageoutput = array();
 			$output['TEXT']= jr_gettext( '_JOMRES_ADDTOSHORTLIST', _JOMRES_ADDTOSHORTLIST, false, false );
 			$pageoutput[ ] = $output;
-			$tmpl          = new patTemplate();
+			
+			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-			$tmpl->readTemplatesFromInput( 'shortlist_removed.html' );
+			if ($show_label == 1)
+				$tmpl->readTemplatesFromInput( 'shortlist_removed_text.html' );
+			else
+				$tmpl->readTemplatesFromInput( 'shortlist_removed.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$result = $tmpl->getParsedTemplate();
-			
-			echo $result;
 			
 			if ( $thisJRUser->userIsRegistered )
 				{
@@ -93,8 +102,10 @@ class j06000ajax_shortlist
 					doInsertSql( $query, '' );
 					}
 				}
-
 			}
+		
+		
+		echo $result;
 		}
 
 	// This must be included in every Event/Mini-component
@@ -103,5 +114,3 @@ class j06000ajax_shortlist
 		return null;
 		}
 	}
-
-?>
