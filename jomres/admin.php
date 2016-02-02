@@ -142,7 +142,9 @@ try
 	if ( !AJAXCALL )
 		{
 		init_javascript();
-
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+	
 		// Dates back to Jomres v4. Could be removed, but we'll leave it in for those users upgrading from v4, as v4 spanned two years
 		if ( is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'plugins' ) )
 			{
@@ -195,7 +197,12 @@ try
 			$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=showplugins" );
 			$output['LICENSE_WARNING'] = $MiniComponents->specificEvent( '16000', 'show_license_message',array('output_now'=>false , "as_modal" => false ));
 			}
-		
+
+		if ($jrConfig['use_bootstrap_in_frontend'] == "0")
+			{
+			$output['BOOTSTRAP_WARNING'] = $MiniComponents->specificEvent( '16000', 'show_bootstrap_warning',array('output_now'=>false ));
+			}
+
 		//output top area
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
