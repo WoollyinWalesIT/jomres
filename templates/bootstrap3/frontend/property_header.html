@@ -1,6 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script>
-  function navigate(lat, lng) {
+<script type="text/javascript">
+function navigate(lat, lng) {
     // If it's an iPhone..
     if ((navigator.platform.indexOf("iPhone") !== -1) || (navigator.platform.indexOf("iPod") !== -1)) {
 		function iOSversion() {
@@ -26,39 +26,33 @@
   }
 </script>
 
-<style>
-
-.cover{
-	color: rgb(255, 255, 255);
-	position: relative;
-	min-height: 350px;
-	background: url("{IMAGELARGE}") no-repeat scroll 0px;
-	background-size:cover;
-}
- <img alt="full screen background image" src="/background.jpg" id="full-screen-background-image" /> 
-
+<style type="text/css">
+.property-header-fb span.fb_iframe_widget span {height:25px !important;vertical-align:top !important;}
+.property-header-fb .btn-xs .fa-heart, .property-header-fb .btn-xs .fa-heart-o {font-size:16px;}
+.property-header-labels {padding:5px 0;}
+.property-header span.label {font-size:90%;padding:0.2em 0.6em;}
 </style>
-	
 
-<div itemscope itemtype="http://schema.org/Hotel">
-	<div class="cover">
-		<div class="clearfix"></div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-body">
-				 
-		<h1><a href="{DIRECT_URL}" title="{PROPERTY_NAME}">{PROPERTY_NAME}</a> <span>{STARS} {SUPERIOR}</span></h1>
+<div class="property-header" itemscope itemtype="http://schema.org/Hotel">
+	<div class="row">
+		<div class="col-md-2">
+			<img alt="{PROPERTY_NAME}" src="{IMAGETHUMB}" class="img-responsive"/>
+		</div>
+		<div class="col-md-10">
+			<h1 id="tour_target_property_header">{PROPERTY_NAME} <span>{STARS} {SUPERIOR}</span></h1>
+			<div class="property-header-labels">
+				<span class="label {REQUIRE_APPROVAL_CLASS}">{REQUIRE_APPROVAL}</span>
+				<span class="label label-info">{PRE_TEXT} <span itemprop="priceRange">{PRICE}</span> {POST_TEXT}</span>
+			</div>
 			<div class="row">
-				<div class="col-md-6 col-sm-5">
-					<a onclick="navigate({PROPERTY_LAT},{PROPERTY_LONG})" >
-						<address>
-							<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-								<span itemprop="streetAddress">{STREET}</span>
-								<span itemprop="addressLocality">{TOWN}</span>,
-								<span itemprop="addressRegion">{REGION}</span>
-								<span itemprop="addressCountry">{COUNTRY}</span>
-								<span itemprop="postalCode">{POSTCODE}</span>
-							</div>
+				<div class="col-md-6">
+					<address>
+						<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+							<span itemprop="streetAddress">{STREET}</span>,
+							<span itemprop="addressLocality">{TOWN}</span>, 
+							<span itemprop="addressRegion">{REGION}</span>, 
+							<span itemprop="postalCode">{POSTCODE}</span>, 
+							<span itemprop="addressCountry">{COUNTRY}</span><br/>
 							<span itemprop="location">
 								<span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
 									<meta itemprop="latitude" content="{PROPERTY_LAT}" />
@@ -69,67 +63,36 @@
 								{HTELEPHONE}<span>{TELEPHONE}</span>,
 								{HFAX}{FAX}
 							</span>
-							<div>
-								<a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a>
-							</div>
-						</address>
-					</a>
-					<span class="visible-xs">
-						<br/>
-						<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="fa fa-phone"></i> 
-						{JOMRES_TAPTOCALL} {TELEPHONE}</a>
-					</span>
-					<patTemplate:comment>
-						<patTemplate:tmpl name="reviews_link" type="simpleCondition" requiredVars="reviews_link"> <a href="{REVIEWS_LINK}" class="btn btn-success">{REVIEWS_TEXT}</a></patTemplate:tmpl>
-					</patTemplate:comment>
+							<span class="visible-xs">
+								<br/>
+								<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="fa fa-phone"></i> 
+									{JOMRES_TAPTOCALL} {TELEPHONE}</a>
+							</span>
+						</span>
+						<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
+					</address>
 				</div>
-				<div class="col-md-3 col-sm-4">
-
-					<div class="row">
-						<h4><span class="label label-success">{PRE_TEXT} <span itemprop="priceRange">{PRICE}</span> {POST_TEXT}</span></h4>
+				<div class="col-md-6">
+					<div class="pull-right">
+						<a href="{DIRECT_URL}" class="btn btn-default">{COMMON_VIEW}</a>
+						<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+						<a href="{LINK}" class="btn btn-success">{TEXT}</a>
+						</patTemplate:tmpl>
+						<a href="{CONTACT_LINK}" class="btn btn-default">{HCONTACT}</a>
+						<a href="{SHORTLIST_LINK}" class="btn btn-default">{HSHORTLIST}</a>
+						<a href="javascript:navigate({PROPERTY_LAT},{PROPERTY_LONG});" class="btn btn-default">{HMAP}</a>
 					</div>
-					<div class="row">
-						<h4><span class="label label-info">{REQUIRE_APPROVAL}</span></h4>
-					</div>
-				</div>
-				<div class="col-md-2 col-sm-3">
-					<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}')">{SHORTLIST}</a>
-				</div>
-				<div class="col-md-1 hidden-xs hidden-sm ">
-					<img src="{QR_CODE_MAP}" title="{_JOMRES_SCAN_FOR_DIRECTIONS}" alt="qrcode" width="75" class="pull-right"/>
-				<patTemplate:comment>{AGENT_LINK}</patTemplate:comment>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					{FEATURES}
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="hidden">
-		<span itemprop="description"> {SHORT_PROPERTY_DESCRIPTION}
-			<a itemprop="url" href="{DIRECT_URL}" title="{_JOMRES_COM_A_CLICKFORMOREINFORMATION} - {PROPERTY_NAME}">{_JOMRES_COM_A_CLICKFORMOREINFORMATION}</a>
-		</span>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="property-header-fb">
+				<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}', '1')" class="btn btn-xs btn-default">{SHORTLIST}</a>&nbsp;
+				{FACEBOOK_BUTTONS}
+			</div>
+		</div>
 	</div>
 </div>
-
-{FACEBOOK_BUTTONS}
-
-<patTemplate:comment>
-{IMAGELARGE}
-{IMAGEMEDIUM}
-
-			<div class="row">
-				<div class="col-md-12">
-					{FEATURES}
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					{ROOMTYPES}
-				</div>
-			</div>
-</patTemplate:comment>
-
 </patTemplate:tmpl>
