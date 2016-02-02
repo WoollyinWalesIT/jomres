@@ -1054,8 +1054,14 @@ function toggle_review_div(uid, property_name) {
 	});
 };
 
-function shortlist(property_uid) {
-	jomresJquery.get(live_site_ajax + "&task=ajax_shortlist&property_uid=" + property_uid, function (data) {
+function shortlist(property_uid, show_label) {
+	if (typeof show_label !== 'undefined' && show_label != '') {
+		a = parseInt(show_label);
+	}
+	else {
+		a = 0;
+	}
+	jomresJquery.get(live_site_ajax + "&task=ajax_shortlist&property_uid=" + property_uid + "&show_label=" + a, function (data) {
 		jomresJquery('#shortlist_' + property_uid).html(data);
 	});
 }
