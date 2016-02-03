@@ -212,7 +212,6 @@ class j01010listpropertys
 
 				$header_output[ 'ARRIVALDATE' ]   = generateDateInput( "arrivalDate",$tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] , "ad", true );
 				$header_output[ 'DEPARTUREDATE' ] = generateDateInput( "departureDate", $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'], false, true, false );
-				$header_output[ 'CLEARDATES_CHECKBOX' ] = get_showtime ( 'current_clear_checkbox' );
 				$header_output[ 'HSEARCH' ] = jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON );
 				if ( !using_bootstrap() )
 					$header_output[ 'THEBUTTON' ] = '<input type="submit" name="send" value="' . jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON, false ) . '" class="button" />';

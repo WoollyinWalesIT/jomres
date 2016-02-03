@@ -20,30 +20,55 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * Makes a javascript date input field. Creates a random name for the form element each time so that multiple javascript forms can be used on the same page without collision
 #
  */
-function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig = false, $historic = false )
+function generateDateInput( $fieldName, $dateValue='', $myID = false, $siteConfig = false, $historic = false )
 	{
 	// We need to give the javascript date function a random name because it will be called by both the component and modules
 	$uniqueID = "";
 	$output   = "";
+	
 	// If this date picker is "arrivalDate" then we need to create a departure date input name too, then set it in showtime. With that we'll be able to tell this set of functionality what the id of the
 	// departureDate is so that it can set it's date when this one changes
 	
 	$uniqueID = generateJomresRandomString( 15 );
+
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+	$placeholder = '';
 	
 	if ( $fieldName == "arrivalDate" || $fieldName == "asc_arrivalDate" )
 		{
 		set_showtime( 'departure_date_unique_id', $uniqueID . "_XXX" );
-		$placeholder = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL, false );
+		
+		//var_dump( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'], $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'], $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ], $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ]);exit;
+		
+		if (
+			!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) &&
+			!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) &&
+			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == '' &&
+			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] == '' 
+			)
+			{
+			$placeholder = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL, false );
+			$dateValue='';
+			}
 		}
 	elseif ( $fieldName == "departureDate" || $fieldName == "asc_departureDate" )
 		{
 		$uniqueID = get_showtime( 'departure_date_unique_id' );
-		$placeholder = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE, false );
+		
+		if (
+			!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) &&
+			!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) &&
+			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == '' &&
+			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] == ''
+			)
+			{
+			$placeholder = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE, false );
+			$dateValue='';
+			}
 		}
-
-	if ( $dateValue == "" ) 
-		$dateValue = date( "Y/m/d" );
-	$dateValue = JSCalmakeInputDates( $dateValue, $siteConfig );
+	
+	if ($dateValue != '')
+		$dateValue = JSCalmakeInputDates( $dateValue, $siteConfig );
 
 	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig   = $siteConfig->get();
@@ -53,18 +78,8 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 	$dateFormat = str_replace( "m", "mm", $dateFormat );
 	$dateFormat = str_replace( "d", "dd", $dateFormat );
 
-	if ( !defined( '_JOMRES_CALENDAR_RTL' ) ) define( '_JOMRES_CALENDAR_RTL', 'false' );
-
-	$clear_checkbox_js = '&nbsp;';
-
-	if ( ( $fieldName == "departureDate" || $fieldName == "asc_departureDate" ) && $jrConfig[ 'use_cleardate_checkbox' ] == "1" )
-		{
-		$arr_date_unique_id = str_replace( "_XXX", "", $uniqueID );
-		$clear              = jr_gettext( '_JOMRES_CLEARDATES', _JOMRES_CLEARDATES );
-		$rand_id            = generateJomresRandomString( 10 );
-		//$clear_checkbox_js = '<input type="checkbox" onClick="jomresJquery(\'#'.$uniqueID.'\').datepicker( \'setDate\' , null );jomresJquery(\'#'.$arr_date_unique_id.'\').datepicker( \'setDate\' , null );" /> '.$clear;
-		//$clear_checkbox_js = '<input type="checkbox" name="nodates" value="1" id="' . $rand_id . '" onClick="jomresJquery(\'#' . $uniqueID . '\').datepicker( \'isDisabled\' )?jomresJquery(\'#' . $uniqueID . '\').datepicker( \'enable\' ):jomresJquery(\'#' . $uniqueID . '\').datepicker( \'disable\' );jomresJquery(\'#' . $arr_date_unique_id . '\').datepicker( \'isDisabled\' )?jomresJquery(\'#' . $arr_date_unique_id . '\').datepicker( \'enable\' ):jomresJquery(\'#' . $arr_date_unique_id . '\').datepicker( \'disable\' );" /> ' . $clear;
-		}
+	if ( !defined( '_JOMRES_CALENDAR_RTL' ) ) 
+		define( '_JOMRES_CALENDAR_RTL', 'false' );
 
 	$size        = " size=\"10\" ";
 	$input_class = "";
@@ -130,18 +145,14 @@ function generateDateInput( $fieldName, $dateValue, $myID = false, $siteConfig =
 		jomresJquery(function() {jomresJquery("#dp_trigger_'.$uniqueID.'").on("click", function() {jomresJquery("#' . $uniqueID . '").datepicker("show");})});
 		';
 	
+
 	$output .= '
 	</script>
 	<div class="input-group">
-		<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF;" ' . $size . ' name="' . $fieldName . '" id="' . $uniqueID . '" value="" placeholder="'.$placeholder.'" class="' . $input_class . ' form-control" />'.$bs3_icon.'
+		<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF;" ' . $size . ' name="' . $fieldName . '" id="' . $uniqueID . '" value="'.$dateValue.'" placeholder="'.$placeholder.'" class="' . $input_class . ' form-control" />'.$bs3_icon.'
 	</div>';
-	$br = "";
-	if ( $fieldName == "departureDate" && $jrConfig[ 'use_cleardate_checkbox' ] == "1" ) 
-		$br = "<br/>";
-
-	set_showtime("current_clear_checkbox" , $clear_checkbox_js );
 	
-	$pageoutput[ ] = array ( "INPUT" => $output, "CHECKBOX" => $clear_checkbox_js, "BR" => $br );
+	$pageoutput[ ] = array ( "INPUT" => $output );
 	$tmpl          = new patTemplate();
 	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 	$tmpl->readTemplatesFromInput( 'js_calendar_input.html' );
