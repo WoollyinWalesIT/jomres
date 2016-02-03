@@ -1,3 +1,17 @@
+<h3>Jomres 9.5.6 03/02/2016</h3>
+
+<span class="label label-warning">Change</span> Enabled some new code that allows us to use shortcodes in templates directly, for example {jomres_shortcode show_property_map N&mh=231} will allow us to show a map anywhere in the template that we've determined.
+<span class="label label-warning">Change</span> Added a new show_property_qr_code_directions script so that it can be called from anywhere.
+<span class="label label-warning">Change</span> Changed the template that's shown when a property is added to the shortlist.
+<span class="label label-warning">Change</span> Directions QR code added to property details template.
+<span class="label label-warning">Change</span> Added the ability to send a map identifier to the map show script, that can be used instead of the random id tag.
+<span class="label label-warning">Change</span> Added ability to pass the required label to the shortlist javascript function.
+<span class="label label-warning">Change</span> Updated Property Header, added more useful buttons, move QR code into property details proper. Tweaked some layouts relating to these.
+<span class="label label-warning">Change</span> Added a Boostrap Off sanity check to admin area.
+<span class="label label-warning">Change</span> Removed "Haven't got any dates yet" checkbox, and added placeholders to generateDateInput.php function.
+<span class="label label-warning">Change</span> Modified contact owner so that property header is shown if property uid is set.
+
+
 <h3>Jomres 9.5.5 01/02/2016</h3>
 
 <span class="label label-important label-danger">Fix</span> Fixed a bug where plugins could not be installed.
