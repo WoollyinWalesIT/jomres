@@ -41,8 +41,8 @@ function generateDateInput( $fieldName, $dateValue='', $myID = false, $siteConfi
 		//var_dump( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'], $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'], $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ], $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ]);exit;
 		
 		if (
-			!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) &&
-			!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) &&
+			(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] == '' ) &&
+			(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] == '') &&
 			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == '' &&
 			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] == '' 
 			)
@@ -56,8 +56,8 @@ function generateDateInput( $fieldName, $dateValue='', $myID = false, $siteConfi
 		$uniqueID = get_showtime( 'departure_date_unique_id' );
 		
 		if (
-			!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) &&
-			!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) &&
+			(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] == '' ) &&
+			(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] == '') &&
 			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == '' &&
 			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] == ''
 			)
