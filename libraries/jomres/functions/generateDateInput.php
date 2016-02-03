@@ -66,6 +66,11 @@ function generateDateInput( $fieldName, $dateValue='', $myID = false, $siteConfi
 			$dateValue='';
 			}
 		}
+	else //all other date input fields
+		{
+		if ($dateValue == '')
+			$dateValue = date("Y/m/d");
+		}
 	
 	if ($dateValue != '')
 		$dateValue = JSCalmakeInputDates( $dateValue, $siteConfig );
