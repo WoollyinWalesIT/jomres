@@ -142,13 +142,15 @@ class j00005set_search_selections
 		if ( isset($_REQUEST[ 'arrivalDate' ]) )
 			{
 			$arrivalDate	=jomresGetParam( $_REQUEST, 'arrivalDate', "");
-			$tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']=$arrivalDate;
+			if ($arrivalDate != '')
+				$tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']=$arrivalDate;
 			}
 		
 		if ( isset($_REQUEST[ 'departureDate' ]) )
 			{
 			$departureDate	=jomresGetParam( $_REQUEST, 'departureDate', "");
-			$tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']=$departureDate;
+			if ($departureDate != '')
+				$tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']=$departureDate;
 			}
 
 		}

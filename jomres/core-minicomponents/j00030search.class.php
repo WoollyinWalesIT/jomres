@@ -682,7 +682,6 @@ class j00030search
 			{
 			$output[ 'ARRIVALDATE' ]   = generateDateInput( "arrivalDate", $sch->prep[ 'arrival' ], "ad", true );
 			$output[ 'DEPARTUREDATE' ] = generateDateInput( "departureDate", $sch->prep[ 'departure' ], false, true, false );
-			$output[ 'CLEARDATES_CHECKBOX' ] = get_showtime ( 'current_clear_checkbox' );
 			$showButton                = true;
 			}
 

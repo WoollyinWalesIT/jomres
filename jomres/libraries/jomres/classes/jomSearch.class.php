@@ -1212,8 +1212,11 @@ function prepAvailabilitySearch()
 	$unixTomorrowsDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ] + 1, $date_elements[ 0 ] );
 	$unixTodaysDate    = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
 	$gmtTomorrowsDate  = date( "Y/m/d", $unixTomorrowsDate );
+	
+	$arrivalDate   = '';
+	$departureDate = '';
 
-	if ( isset( $_REQUEST[ 'arrivalDate' ] ) )
+	if ( isset( $_REQUEST[ 'arrivalDate' ] ) && jomresGetParam( $_REQUEST, 'arrivalDate', "" ) != '' )
 		{
 		$arrivalDate = jomresGetParam( $_REQUEST, 'arrivalDate', "" );
 		
@@ -1243,30 +1246,41 @@ function prepAvailabilitySearch()
 			$arrivalDate   = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
 			$departureDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ];
 			}
-		else
+		/* else
 			{
 			$arrivalDate = JSCalmakeInputDates( date( "Y/m/d", $unixTodaysDate ), $siteCal = true );
 			$arrivalDate = JSCalConvertInputDates( $arrivalDate, $siteCal = true );
 			$departureDate = JSCalmakeInputDates( date( "Y/m/d", $unixTomorrowsDate ), $siteCal = true );
 			$departureDate = JSCalConvertInputDates( $departureDate, $siteCal = true );
-			}
+			} */
 		}
 
 	// Assuming the arrival date was passed from $_REQUEST
 	$date_elements   = explode( "/", $arrivalDate );
 	$unixArrivalDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
-	if ( $unixArrivalDate < $unixTodaysDate ) $arrivalDate = $today;
+	if ($arrivalDate != '')
+		{
+		if ( $unixArrivalDate < $unixTodaysDate ) 
+			$arrivalDate = $today;
+		}
 
 	$date_elements     = explode( "/", $departureDate );
 	$unixDepartureDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
-	if ( $unixDepartureDate < $unixTodaysDate ) $departureDate = $gmtTomorrowsDate;
+	if ($departureDate != '')
+		{
+		if ( $unixDepartureDate < $unixTodaysDate ) 
+			$departureDate = $gmtTomorrowsDate;
+		}
 
 
 	$result = array ( 'arrival' => $arrivalDate, 'departure' => $departureDate );
 
-	$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]           = $arrivalDate;
-	$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = $departureDate;
-	$tmpBookingHandler->close_jomres_session();
+	if ($arrivalDate != '' && $departureDate != '')
+		{
+		$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]           = $arrivalDate;
+		$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = $departureDate;
+		$tmpBookingHandler->close_jomres_session();
+		}
 
 	return $result;
 	}
