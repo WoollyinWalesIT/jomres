@@ -27,27 +27,24 @@ function navigate(lat, lng) {
 </script>
 
 <style type="text/css">
+.property-header-buttons {padding-top:10px;}
 .property-header-fb span.fb_iframe_widget span {height:25px !important;vertical-align:top !important;}
-.property-header-fb .btn-xs .fa-heart, .property-header-fb .btn-xs .fa-heart-o {font-size:16px;}
 .property-header-labels {padding:5px 0;}
-.property-header span.label {font-size:90%;padding:0.2em 0.6em;}
+.property-header-labels span.label {font-size:100%;padding:0.3em 0.6em;display:block;}
+.property-header address {margin-bottom:5px;}
 </style>
 
 <div class="panel panel-default">
 	<div class="panel-body">
 		<div class="property-header" itemscope itemtype="http://schema.org/Hotel">
 			<div class="row">
-				<div class="col-md-2">
+				<div class="col-md-2 hidden-xs hidden-sm">
 					<img alt="{PROPERTY_NAME}" src="{IMAGETHUMB}" class="img-responsive"/>
 				</div>
 				<div class="col-md-10">
 					<h1 id="tour_target_property_header">{PROPERTY_NAME} <span>{STARS} {SUPERIOR}</span></h1>
-					<div class="property-header-labels">
-						<span class="label {REQUIRE_APPROVAL_CLASS}">{REQUIRE_APPROVAL}</span>
-						<span class="label label-info">{PRE_TEXT} <span itemprop="priceRange">{PRICE}</span> {POST_TEXT}</span>
-					</div>
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-8">
 							<address>
 								<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 									<span itemprop="streetAddress">{STREET}</span>,
@@ -73,26 +70,32 @@ function navigate(lat, lng) {
 								</span>
 								<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
 							</address>
+							<div class="property-header-fb hidden-xs hidden-sm">
+								{FACEBOOK_BUTTONS}
+							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="pull-right">
-								<a href="{DIRECT_URL}" class="btn btn-default">{COMMON_VIEW}</a>
-								<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-								<a href="{LINK}" class="btn btn-success">{TEXT}</a>
-								</patTemplate:tmpl>
-								<a href="{CONTACT_LINK}" class="btn btn-default">{HCONTACT}</a>
-								<a href="{SHORTLIST_LINK}" class="btn btn-default">{HSHORTLIST}</a>
-								<a href="javascript:navigate({PROPERTY_LAT},{PROPERTY_LONG});" class="btn btn-default">{HMAP}</a>
+						<div class="col-md-4 hidden-xs hidden-sm">
+							<div class="property-header-labels pull-right">
+								<span class="label {REQUIRE_APPROVAL_CLASS}">{REQUIRE_APPROVAL}</span>
+							</div>
+							<div class="property-header-labels pull-right">
+								<span class="label label-info">{PRE_TEXT} <span itemprop="priceRange">{PRICE}</span> {POST_TEXT}</span>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row hidden-xs hidden-sm">
 				<div class="col-md-12">
-					<div class="property-header-fb">
-						<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}', '1')" class="btn btn-xs btn-default">{SHORTLIST}</a>&nbsp;
-						{FACEBOOK_BUTTONS}
+					<div class="property-header-buttons pull-left">
+						<a href="{DIRECT_URL}" class="btn btn-default"><i class="fa fa-info-circle"></i> {COMMON_VIEW}</a>
+						<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+						<a href="{LINK}" class="btn btn-success"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
+						</patTemplate:tmpl>
+						<a href="{CONTACT_LINK}" class="btn btn-default"><i class="fa fa-envelope"></i> {HCONTACT}</a>
+						<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}', '1')" class="btn btn-default">{SHORTLIST}</a>
+						<a href="{SHORTLIST_LINK}" class="btn btn-default"><i class="fa fa-heart"></i> {HSHORTLIST}</a>
+						<a href="javascript:navigate({PROPERTY_LAT},{PROPERTY_LONG});" class="btn btn-default"><i class="fa fa-map-marker"></i> {HMAP}</a>
 					</div>
 				</div>
 			</div>
