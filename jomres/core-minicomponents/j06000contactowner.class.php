@@ -74,9 +74,12 @@ class j06000contactowner
 			{
 			if (!user_can_view_this_property($property_uid))
 				return;
+			else
+				{
+				if ( !isset( $componentArgs[ 'noshownow' ] ) )
+					property_header($property_uid);
+				}
 			}
-		
-
 
 		$output                = array ();
 		
