@@ -30,6 +30,10 @@ class j02320regprop3
 			return;
 
 		$property_name						= trim(jomresGetParam( $_POST, 'property_name', "" ));
+		
+		if ($property_name == '')
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL."&task=registerProp_step1" ),"");
+		
 		if ($jrConfig['limit_property_country'] == "0")
 			$property_country				= jomresGetParam( $_POST, 'new_property_country', "" );
 		else
