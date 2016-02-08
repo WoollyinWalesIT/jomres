@@ -71,6 +71,17 @@ class j16000partners
 			"image"=>"osdcs.com.png",
 			"link"=>"http://www.joomla-payment-gateways.osdcs.com/index.php?option=com_digistore&controller=digistoreProducts&task=list&cid=2&Itemid=5"
 			);
+			
+		$partners ['deligence'] = array (
+			"name"=>"Deligence", 
+			"intro"=>"Say hello to our new partners Deligence.",
+			"plugin_list_url"=>"http://www.deligence.com/deligence.com.php",
+			"image"=>"deligence.png",
+			"link"=>"hhttp://www.deligence.com/"
+			);
+			
+			
+			
 		$partner_data = array();
 		
 		if ( function_exists( "curl_init" ))
