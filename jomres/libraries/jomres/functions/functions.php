@@ -157,17 +157,20 @@ function output_fatal_error($e)
 	//$link =  "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	$cleaned_link = jomres_sanitise_string($link);
 
-	$output = array(
-		"URL" => $cleaned_link,
-		"MESSAGE" => $e->getMessage(),
-		"FILE"  => $e->getFile(),
-		"LINE"  => $e->getLine(),
-		"TRACE"  => $e->getTraceAsString(),
-		'_JOMRES_ERROR_DEBUGGING_MESSAGE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_MESSAGE", _JOMRES_ERROR_DEBUGGING_MESSAGE, false ) ,
-		'_JOMRES_ERROR_DEBUGGING_FILE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_FILE", _JOMRES_ERROR_DEBUGGING_FILE, false ) ,
-		'_JOMRES_ERROR_DEBUGGING_LINE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_LINE", _JOMRES_ERROR_DEBUGGING_LINE, false ) ,
-		'_JOMRES_ERROR_DEBUGGING_TRACE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_TRACE", _JOMRES_ERROR_DEBUGGING_TRACE, false ) ,
-		 ); 
+	if (is_object($e))
+		{
+		$output = array(
+			"URL" => $cleaned_link,
+			"MESSAGE" => $e->getMessage(),
+			"FILE"  => $e->getFile(),
+			"LINE"  => $e->getLine(),
+			"TRACE"  => $e->getTraceAsString(),
+			'_JOMRES_ERROR_DEBUGGING_MESSAGE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_MESSAGE", _JOMRES_ERROR_DEBUGGING_MESSAGE, false ) ,
+			'_JOMRES_ERROR_DEBUGGING_FILE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_FILE", _JOMRES_ERROR_DEBUGGING_FILE, false ) ,
+			'_JOMRES_ERROR_DEBUGGING_LINE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_LINE", _JOMRES_ERROR_DEBUGGING_LINE, false ) ,
+			'_JOMRES_ERROR_DEBUGGING_TRACE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_TRACE", _JOMRES_ERROR_DEBUGGING_TRACE, false ) ,
+			 ); 
+		}
 	
 	$output['IP_NUMBER'] = jomres_get_client_ip();
 	
