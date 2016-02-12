@@ -76,7 +76,12 @@ function get_property_price_for_display_in_lists( $property_uid )
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		if ( isset( $_REQUEST[ 'arrivalDate' ] ) && $_REQUEST[ 'arrivalDate' ] != "" )
 			{
-			$searchDate = JSCalConvertInputDates( jomresGetParam( $_REQUEST, 'arrivalDate', "" ) );
+			$arrivalDate = jomresGetParam( $_REQUEST, 'arrivalDate', "" );
+			if ( isset( $_REQUEST[ 'pdetails_cal' ]) )
+				{
+				$arrivalDate = JSCalmakeInputDates($arrivalDate);
+				}
+			$searchDate = JSCalConvertInputDates( $arrivalDate );
 			}
 		elseif ( isset ( $tmpBookingHandler->tmpsearch_data ) && trim( $tmpBookingHandler->tmpsearch_data ) != '' )
 			{
