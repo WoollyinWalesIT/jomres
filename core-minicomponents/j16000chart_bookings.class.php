@@ -69,7 +69,7 @@ class j16000chart_bookings
 				$month =  date("n" , strtotime($r->raised_date) );
 				$year =  date("Y" , strtotime($r->raised_date) );
 				
-				$results[$year][$month] += $r->grand_total;
+				$results[$year][$month] += number_format((float)$r->grand_total, 2, '.', '');
 				}
 			
 			//sort results by year ascending
