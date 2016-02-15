@@ -919,7 +919,7 @@ if ( !defined( '_PN_NEXT' ) ) jr_define( '_PN_NEXT', 'Next' );
 if ( !defined( '_PN_END' ) ) jr_define( '_PN_END', 'End' );
 if ( !defined( '_PN_RESULTS' ) ) jr_define( '_PN_RESULTS', 'Results' );
 jr_define( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE', 'Note that this is not a booking form, instead you are sending an email.<br/>Please enter the message you\'d like to send to ' );
-jr_define( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', 'Contact hotel' );
+jr_define( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', 'Contact yacht' );
 jr_define( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT', 'Brokerage enquiry from ' );
 jr_define( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS', 'Thank you for your enquiry, your message has been sent to the brokerage\'s contact email address, and copied to your own address for your records. They will respond to you as soon as possible with their reply.' );
 jr_define( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING', ' regarding ' );
