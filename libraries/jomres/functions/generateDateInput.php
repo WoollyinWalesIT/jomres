@@ -138,6 +138,7 @@ function generateDateInput( $fieldName, $dateValue='', $myID = false, $siteConfi
 				var nextDayDate = jomresJquery("#' . $uniqueID . '").datepicker(\'getDate\', \'+1d\');
 				nextDayDate.setDate(nextDayDate.getDate() + 1);
 				jomresJquery("#' . get_showtime( 'departure_date_unique_id' ) . '").datepicker(\'setDate\', nextDayDate);
+				jomresJquery("#' . get_showtime( 'departure_date_unique_id' ) . '").datepicker(\'option\', {minDate: jomresJquery(this).datepicker(\'getDate\')});
 				}';
 		}
 
