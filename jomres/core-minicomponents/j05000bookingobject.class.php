@@ -101,9 +101,13 @@ if ( !class_exists( 'booking' ) )
 			$onchange = "";
 			if ( $fieldName == "arrivalDate" )
 				{
-				if ( $this->cfg_fixedPeriodBookings == "1" ) $onchange .= ' getResponse_particulars(\'arrivalDate\',this.value); ';
+				if ( $this->cfg_fixedPeriodBookings == "1" ) 
+					$onchange .= ' getResponse_particulars(\'arrivalDate\',this.value); ';
 				else
-				$onchange .= ' ajaxADate(this.value,\'' . $this->cfg_cal_input . '\'); getResponse_particulars(\'arrivalDate\',this.value,\'' . $uniqueID . '\'); ';
+					{
+					$onchange .= ' ajaxADate(this.value,\'' . $this->cfg_cal_input . '\'); getResponse_particulars(\'arrivalDate\',this.value,\'' . $uniqueID . '\'); ';
+					$onchange .= 'jomresJquery("#' . get_showtime( 'departure_date_unique_id' ) . '").datepicker(\'option\', {minDate: jomresJquery(this).datepicker(\'getDate\')})';
+					}
 				}
 			else
 				$onchange .= ' getResponse_particulars(\'departureDate\',this.value); ';
