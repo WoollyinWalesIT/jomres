@@ -43,7 +43,14 @@ class j10501a_misc
 
 			if ($jomres_check_support_key->key_valid)
 				{
-				$support_key_message = '<p class="alert alert-success">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_VALID',_JOMRES_SUPPORTKEY_DESC_VALID,false,false).'</p>';
+				if ($jomres_check_support_key->allows_plugins == "1")
+					{
+					$support_key_message = '<p class="alert alert-success">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_VALID',_JOMRES_SUPPORTKEY_DESC_VALID,false,false).'</p>';
+					}
+				else
+					{
+					$support_key_message = '<p class="alert alert-success">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS',_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS,false,false).'</p>';
+					}
 				$renewal_link = '';
 				}
 			else
