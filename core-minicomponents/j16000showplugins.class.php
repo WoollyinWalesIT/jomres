@@ -75,6 +75,25 @@ class j16000showplugins
 		jr_import( 'jomres_check_support_key' );
 		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=showplugins" );
 		$this->key_valid = $key_validation->key_valid;
+		if ($key_validation->allows_plugins == "0" && $this->key_valid )
+			{
+			$output=array();
+			$pageoutput=array();
+			
+			$output['TITLE'] =jr_gettext( "_JOMRES_ERROR" , _JOMRES_ERROR , false , false );
+			$output['MESSAGE'] = jr_gettext( "_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS_PLUGIN_MANAGER" , _JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS_PLUGIN_MANAGER , false , false );
+
+			$pageoutput[ ] = $output;
+			$tmpl          = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+			$tmpl->addRows( 'pageoutput', $pageoutput );
+			$tmpl->addRows( 'plugins_require_upgrade', $plugins_require_upgrade );
+			$tmpl->readTemplatesFromInput( 'plugin_manager_noplugins_error.html' );
+			$tmpl->displayParsedTemplate();
+			return;
+			}
+
+
 
 		//$this->key_valid = false; // for testing
 

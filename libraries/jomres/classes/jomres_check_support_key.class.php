@@ -73,6 +73,7 @@ $license_data->expires = "'.$license_data->expires.'";
 $license_data->key_status = "'.$license_data->key_status.'";
 $license_data->owner = "'.$license_data->owner.'";
 $license_data->license_valid = '.$license_data->license_valid.';
+$license_data->allows_plugins = '.$license_data->allows_plugins.';
 ';
 
 				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php", $lic_data);
@@ -84,7 +85,8 @@ $license_data->license_valid = '.$license_data->license_valid.';
 			$this->expires		= "Unknown";
 			$this->key_status	= "Unknown";
 			$this->owner		= "Unknown";
-			$this->key_valid = false;
+			$this->owner		= "Unknown";
+			$this->allows_plugins = false;
 			}
 		else
 			{
@@ -93,6 +95,7 @@ $license_data->license_valid = '.$license_data->license_valid.';
 			$this->owner		= $license_data->owner;
 			if ( $license_data->license_valid == true ) 
 				$this->key_valid = true;
+			$this->allows_plugins		= $license_data->allows_plugins;
 			}
 		}
 	
