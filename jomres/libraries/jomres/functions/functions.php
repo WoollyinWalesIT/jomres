@@ -157,7 +157,6 @@ function output_fatal_error($e)
 	//$link =  "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	$cleaned_link = jomres_sanitise_string($link);
 
-	
 	$output = array(
 		"URL" => $cleaned_link,
 		"MESSAGE" => $e->getMessage(),
@@ -168,7 +167,7 @@ function output_fatal_error($e)
 		'_JOMRES_ERROR_DEBUGGING_FILE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_FILE", _JOMRES_ERROR_DEBUGGING_FILE, false ) ,
 		'_JOMRES_ERROR_DEBUGGING_LINE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_LINE", _JOMRES_ERROR_DEBUGGING_LINE, false ) ,
 		'_JOMRES_ERROR_DEBUGGING_TRACE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_TRACE", _JOMRES_ERROR_DEBUGGING_TRACE, false ) ,
-		 );
+		 ); 
 	
 	$output['IP_NUMBER'] = jomres_get_client_ip();
 	
@@ -803,7 +802,7 @@ function init_javascript()
 	}
 
 
-function add_gmaps_source( $sensor = 0 )
+function add_gmaps_source()
 	{
 	if ( defined( 'JOMRES_NOHTML' ) ) return;
 	if ( !defined( 'GMAPS_SOURCE_ADDED' ) && !AJAXCALL)
@@ -814,8 +813,6 @@ function add_gmaps_source( $sensor = 0 )
 		$site_lang  = get_showtime( 'lang' );
 		$lang	   = explode( '-', $site_lang );
 		$shortcode  = $lang[ 0 ];
-		$s		  = "false";
-		if ( $sensor == 1 ) $s = "true";
 
 		$libraries = '';
 
@@ -833,7 +830,7 @@ function add_gmaps_source( $sensor = 0 )
 
 		if ( $libraries != '' ) $libraries = '&libraries=' . $libraries;
 
-		jomres_cmsspecific_addheaddata('javascript' , 'https://maps.googleapis.com/maps/api/js?v=3.21&sensor=' . $s . '&language=' . $shortcode . $libraries , '&key=' . $jrConfig[ 'google_maps_api_key' ], $includeVersion = false );
+		jomres_cmsspecific_addheaddata('javascript' , 'https://maps.googleapis.com/maps/api/js?v=3.21&language=' . $shortcode . $libraries , '&key=' . $jrConfig[ 'google_maps_api_key' ], $includeVersion = false );
 		}
 	}
 
