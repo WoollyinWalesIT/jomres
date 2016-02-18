@@ -198,11 +198,14 @@ $jrConfig = ' . var_export($jrConfig, true) . ';
 				$jomres_db->setQuery( $query );
 				$result = $jomres_db->loadObjectList();
 				$string = "Tables_in_" . $jomresConfig_db;
-				foreach ( $result as $r )
+				if (count($result) > 0)
 					{
-					if ( strstr( $r->$string, $jomresConfig_dbprefix . 'jomres_site_settings' ) )
+					foreach ( $result as $r )
 						{
-						$tablesFound = true;
+						if ( strstr( $r->$string, $jomresConfig_dbprefix . 'jomres_site_settings' ) )
+							{
+							$tablesFound = true;
+							}
 						}
 					}
 				if ( !$tablesFound )
