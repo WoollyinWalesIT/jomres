@@ -99,6 +99,7 @@ if ( !class_exists( 'booking' ) )
 				}
 
 			$onchange = "";
+			$onclose = "";
 			if ( $fieldName == "arrivalDate" )
 				{
 				if ( $this->cfg_fixedPeriodBookings == "1" ) 
@@ -106,7 +107,8 @@ if ( !class_exists( 'booking' ) )
 				else
 					{
 					$onchange .= ' ajaxADate(this.value,\'' . $this->cfg_cal_input . '\'); getResponse_particulars(\'arrivalDate\',this.value,\'' . $uniqueID . '\'); ';
-					$onchange .= 'jomresJquery("#' . get_showtime( 'departure_date_unique_id' ) . '").datepicker(\'option\', {minDate: jomresJquery(this).datepicker(\'getDate\')})';
+					$onchange .= ' jomresJquery("#' . get_showtime( 'departure_date_unique_id' ) . '").datepicker(\'option\', {minDate: jomresJquery(this).datepicker(\'getDate\')})';
+					$onclose .= ' jomresJquery("#' . get_showtime( 'departure_date_unique_id' ) . '").datepicker(\'show\'); ';
 					}
 				}
 			else
@@ -162,8 +164,14 @@ if ( !class_exists( 'booking' ) )
 			$output .= 'onSelect: function() {
 							' . $onchange . '
 						}';
+			
 			if ( $fieldName == "arrivalDate" ) 
+				{
 				$output .= ',beforeShowDay: isAvailable';
+				$output .= ', onClose: function() {
+							' . $onclose . '
+						}';
+				}
 
 			$output .= '} );
 
