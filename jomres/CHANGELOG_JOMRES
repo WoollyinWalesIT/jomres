@@ -1,3 +1,25 @@
+
+<h3>Jomres 9.5.7 19/02/2016</h3>
+
+<span class="label label-warning">Change</span> Added Tanzanian Schilling to currency codes class.
+<span class="label label-warning">Change</span> Added checks to ensure if Property Name isn't set then user is redirected back to the registration page.
+<span class="label label-warning">Change</span> Deligence added to our partner's list.
+<span class="label label-warning">Change</span> Added donation buttons to license warning for us and Dog's Trust.
+<span class="label label-warning">Change</span> Modified a pricing function to account for links from the jquery ui calendar.
+<span class="label label-warning">Change</span> Added code to limit the number of decimal places in charts.
+<span class="label label-warning">Change</span> Modified how new black bookings are saved as form action needs to be blank in some circumstances.
+<span class="label label-warning">Change</span> Updated language files to say "Contact Yacht" instead of contact hotel.
+<span class="label label-warning">Change</span> Renamed an ini file.
+<span class="label label-warning">Change</span> Added functionality that pops the departure date picker up when the arrival date has been selected.
+<span class="label label-warning">Change</span> Added support for no-plugin licenses.
+<span class="label label-warning">Change</span> Modified the site singleton to prevent some notices from showing.
+<span class="label label-warning">Change</span> Sanity check tweaked so that only one set of notices is shown if Tariff editing mode is Normal.
+<span class="label label-warning">Change</span> Removed gmap sensor as it's depreciated.
+<span class="label label-warning">Change</span> Modal popups replaced with direct links to properties. Modal code is still available, but commented out.
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue where FB urls wouldn't always work if SEF enabled.
+
+
 <h3>Jomres 9.5.6 03/02/2016</h3>
 
 <span class="label label-warning">Change</span> Enabled some new code that allows us to use shortcodes in templates directly, for example {jomres_shortcode show_property_map N&mh=231} will allow us to show a map anywhere in the template that we've determined.
