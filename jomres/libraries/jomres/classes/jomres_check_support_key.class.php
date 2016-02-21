@@ -66,6 +66,7 @@ class jomres_check_support_key
 					$license_data->license_valid = "1";
 				else
 					$license_data->license_valid = "0";
+				
 				$lic_data = '<?php
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 $license_data	= new stdClass;
@@ -73,7 +74,7 @@ $license_data->expires = "'.$license_data->expires.'";
 $license_data->key_status = "'.$license_data->key_status.'";
 $license_data->owner = "'.$license_data->owner.'";
 $license_data->license_valid = '.$license_data->license_valid.';
-$license_data->allows_plugins = '.$license_data->allows_plugins.';
+$license_data->allows_plugins = "'.$license_data->allows_plugins.'";
 ';
 
 				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php", $lic_data);
