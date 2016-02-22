@@ -1,3 +1,6 @@
+<h3>Jomres 9.5.8 22/02/2016</h3>
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue with a cache file being saved in a way that causes errors.
 
 <h3>Jomres 9.5.7 19/02/2016</h3>
 
