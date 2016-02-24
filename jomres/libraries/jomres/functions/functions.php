@@ -830,7 +830,7 @@ function add_gmaps_source()
 
 		if ( $libraries != '' ) $libraries = '&libraries=' . $libraries;
 
-		jomres_cmsspecific_addheaddata('javascript' , 'https://maps.googleapis.com/maps/api/js?v=3.21&language=' . $shortcode . $libraries , '&key=' . $jrConfig[ 'google_maps_api_key' ], $includeVersion = false );
+		jomres_cmsspecific_addheaddata('javascript' , 'https://maps.googleapis.com/maps/api/js?v=3&language=' . $shortcode . $libraries , '&key=' . $jrConfig[ 'google_maps_api_key' ], $includeVersion = false );
 		}
 	}
 
