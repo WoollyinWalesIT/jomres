@@ -99,11 +99,9 @@ class j04910deleteproperty {
 			}
 		else
 			{
-			$query="SELECT propertys_uid FROM #__jomres_propertys";
-			$propertyList = doSelectSql($query);
-			if (count($propertyList) > 1)
+			$property_uid = (int)getDefaultProperty();
+			if ($property_uid > 0)
 				{
-				$property_uid  = intval( jomresGetParam( $_POST, 'property_uid', 0 ) );
 				?>
 				<script type="text/javascript">
 				<!--
