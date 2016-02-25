@@ -32,76 +32,84 @@ class jomres_sanity_check
 
 	function do_sanity_checks()
 		{
-		$this->warnings .= $this->check_editing_mode();
-		$this->warnings .= $this->check_approved();
-		$this->warnings .= $this->check_suspended();
-		if ( get_showtime('include_room_booking_functionality') )
+		$thisJRUser			= jomres_singleton_abstract::getInstance( 'jr_user' );
+		if ( $thisJRUser->userIsManager )
 			{
-			if ( $this->mrConfig[ 'singleRoomProperty' ] == 1 )
+			$this->warnings .= $this->check_editing_mode();
+			$this->warnings .= $this->check_approved();
+			$this->warnings .= $this->check_suspended();
+			if ( get_showtime('include_room_booking_functionality') )
 				{
-				$this->warnings .= $this->check_srp_room_exists();
-				$this->warnings .= $this->check_srp_room_type_set();
+				if ( $this->mrConfig[ 'singleRoomProperty' ] == 1 )
+					{
+					$this->warnings .= $this->check_srp_room_exists();
+					$this->warnings .= $this->check_srp_room_type_set();
+					}
+				else
+					$this->warnings .= $this->check_mrp_rooms_exists();
 				}
-			else
-				$this->warnings .= $this->check_mrp_rooms_exists();
-			}
-		
-		$this->warnings .= $this->checks_guest_types_pppn();
-		if ( $this->mrConfig[ 'is_real_estate_listing' ] == 0 && get_showtime('include_room_booking_functionality') ) 
-			$this->warnings .= $this->checks_tariffs_exist();
-		
-		if ( get_showtime('is_jintour_property' ) )
-			$this->warnings .= $this->check_tours_exist();
 			
-		$this->warnings .= $this->check_address();
-		$this->warnings .= $this->check_main_image();
-		
-		if ( trim($this->warnings) == "")
-			$this->warnings .= $this->check_published();
+			$this->warnings .= $this->checks_guest_types_pppn();
+			if ( $this->mrConfig[ 'is_real_estate_listing' ] == 0 && get_showtime('include_room_booking_functionality') ) 
+				$this->warnings .= $this->checks_tariffs_exist();
+			
+			if ( get_showtime('is_jintour_property' ) )
+				$this->warnings .= $this->check_tours_exist();
+				
+			$this->warnings .= $this->check_address();
+			$this->warnings .= $this->check_main_image();
+			
+			if ( trim($this->warnings) == "")
+				$this->warnings .= $this->check_published();
 
-		return $this->warnings;
+			return $this->warnings;
+			}
 		}
 
 	function construct_warning( $message_array )
 		{
-		$button = '';
-		$this->warning_counter++;
-
-		
-		if (isset($message_array['LINK']))
+		$thisJRUser			= jomres_singleton_abstract::getInstance( 'jr_user' );
+		if ( $thisJRUser->userIsManager )
 			{
+			$button = '';
+			$this->warning_counter++;
+
+			
+			if (isset($message_array['LINK']))
+				{
+				$pageoutput	= array();
+				$output		= array();
+				$output['LINK']			= $message_array['LINK'];
+				$output['BUTTON_TEXT']	= $message_array['BUTTON_TEXT'];
+				$pageoutput[ ] = $output;
+				$tmpl          = new patTemplate();
+				$tmpl->addRows( 'pageoutput', $pageoutput );
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+				$tmpl->readTemplatesFromInput( 'sanity_checks_button.html' );
+				$button = $tmpl->getParsedTemplate();
+				}
+
 			$pageoutput	= array();
 			$output		= array();
-			$output['LINK']			= $message_array['LINK'];
-			$output['BUTTON_TEXT']	= $message_array['BUTTON_TEXT'];
+			
+			if (!isset($message_array['LABEL']))
+				$message_array['LABEL'] = 'warning';
+			
+			$output['LABEL_CLASS']		= $message_array['LABEL'];
+			
+			$output['WARNING_WORD']		= jr_gettext( '_JOMRES_WARNINGS_DANGERWILLROBINSON', _JOMRES_WARNINGS_DANGERWILLROBINSON, false );
+			$output['WARNING_MESSAGE']	= $message_array['MESSAGE'];
+			$output['WARNING_COUNTER']	= $this->warning_counter;
+			$output['ACTION_LINK']		= $button;
+
 			$pageoutput[ ] = $output;
+
 			$tmpl          = new patTemplate();
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-			$tmpl->readTemplatesFromInput( 'sanity_checks_button.html' );
-			$button = $tmpl->getParsedTemplate();
+			$tmpl->readTemplatesFromInput( 'sanity_check_pane.html' );
+			return $tmpl->getParsedTemplate();
 			}
-
-		$pageoutput	= array();
-		$output		= array();
-		
-		if (!isset($message_array['LABEL']))
-			$message_array['LABEL'] = 'warning';
-		
-		$output['LABEL_CLASS']		= $message_array['LABEL'];
-		
-		$output['WARNING_WORD']		= jr_gettext( '_JOMRES_WARNINGS_DANGERWILLROBINSON', _JOMRES_WARNINGS_DANGERWILLROBINSON, false );
-		$output['WARNING_MESSAGE']	= $message_array['MESSAGE'];
-		$output['WARNING_COUNTER']	= $this->warning_counter;
-		$output['ACTION_LINK']		= $button;
-
-		$pageoutput[ ] = $output;
-
-		$tmpl          = new patTemplate();
-		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-		$tmpl->readTemplatesFromInput( 'sanity_check_pane.html' );
-		return $tmpl->getParsedTemplate();
 		}
 
 	function check_tours_exist()
