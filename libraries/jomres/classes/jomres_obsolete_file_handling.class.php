@@ -1227,6 +1227,15 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file( $this->dir_libraries . 'PHPMailer_v5.2.9' . JRDS . 'class.pop3.php' );
 		$this->add_obs_file( $this->dir_libraries . 'PHPMailer_v5.2.9' . JRDS . 'class.smtp.php' );
+		
+		$this->add_obs_file( $this->dir_libraries . 'recaptcha' . JRDS . 'ReCaptcha.php' );
+		$this->add_obs_file( $this->dir_libraries . 'recaptcha' . JRDS . 'recaptchalib.php' );
+		$this->add_obs_file( $this->dir_libraries . 'recaptcha' . JRDS . 'RequestMethod.php' );
+		$this->add_obs_file( $this->dir_libraries . 'recaptcha' . JRDS . 'RequestParameters.php' );
+		$this->add_obs_file( $this->dir_libraries . 'recaptcha' . JRDS . 'Response.php' );
+		
+		$this->add_obs_dir(  $this->dir_libraries . 'recaptcha' . JRDS . 'RequestMethod' . JRDS );
+		
 		}
 
 	function add_obs_file( $path_and_file )
