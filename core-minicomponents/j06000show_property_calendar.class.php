@@ -32,15 +32,21 @@ class j06000show_property_calendar
 		if (!user_can_view_this_property($property_uid))
 			return;
 		
+		if (!isset($_REQUEST['months_to_show']))
+			$_REQUEST['months_to_show'] = 24;
+		
+		if (!isset($_REQUEST['show_just_month']))
+			$_REQUEST['show_just_month'] = false;
+		
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
 			if ( $mrConfig[ 'singleRoomProperty' ] == 1 )
 				{
-				$MiniComponents->specificEvent( '06000', 'srp_calendar', array('output_now'=>true, 'property_uid'=>$property_uid , 'months_to_show' => 24 , 'show_just_month' => false) );
+				$MiniComponents->specificEvent( '06000', 'srp_calendar', array('output_now'=>true, 'property_uid'=>$property_uid ) );
 				}
 			else
 				{
-				$MiniComponents->specificEvent( '06000', 'mrp_calendar', array('output_now'=>true, 'property_uid'=>$property_uid , 'months_to_show' => 24 , 'show_just_month' => false) );
+				$MiniComponents->specificEvent( '06000', 'mrp_calendar', array('output_now'=>true, 'property_uid'=>$property_uid ) );
 				}
 			}
 		}
