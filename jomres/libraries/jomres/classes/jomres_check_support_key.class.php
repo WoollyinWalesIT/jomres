@@ -73,7 +73,7 @@ $license_data	= new stdClass;
 $license_data->expires = "'.$license_data->expires.'";
 $license_data->key_status = "'.$license_data->key_status.'";
 $license_data->owner = "'.$license_data->owner.'";
-$license_data->license_valid = '.$license_data->license_valid.';
+$license_data->license_valid = "'.$license_data->license_valid.'";
 $license_data->allows_plugins = "'.$license_data->allows_plugins.'";
 ';
 
