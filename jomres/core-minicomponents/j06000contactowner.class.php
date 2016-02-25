@@ -43,13 +43,8 @@ class j06000contactowner
 				require_once( JOMRESPATH_BASE . '/libraries/recaptcha/recaptchalib.php' );
 			elseif ($version == "V2")
 				{
-				// We're not going to use the autoloader here, let's load this stuff manually
-				require_once( JOMRESPATH_BASE . '/libraries/recaptcha/ReCaptcha.php' );
-				require_once( JOMRESPATH_BASE . '/libraries/recaptcha/RequestMethod.php' );
-				require_once( JOMRESPATH_BASE . '/libraries/recaptcha/RequestParameters.php' );
-				require_once( JOMRESPATH_BASE . '/libraries/recaptcha/Response.php' );
-				require_once( JOMRESPATH_BASE . '/libraries/recaptcha/RequestMethod/Post.php' );
-				$recaptcha = new \ReCaptcha\ReCaptcha( $jrConfig[ 'recaptcha_private_key' ] );
+				require_once( JOMRESPATH_BASE . '/libraries/recaptcha/autoload.php' );
+				$recaptcha = new \ReCaptcha\ReCaptcha($jrConfig[ 'recaptcha_private_key' ], new \ReCaptcha\RequestMethod\CurlPost());
 				}
 			}
 
