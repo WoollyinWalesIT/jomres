@@ -1,22 +1,35 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <style type="text/css">
 /*Overrides*/
-#calendar table.fc-border-separate {
-	table-layout:fixed;
+.fc-toolbar {
+	display:none;
 }
-td.fc-resourceName {
-    background: none repeat scroll 0 0 #ddd;
-    width: 200px;
-	text-align:center;
+.fc-main-col {
+	background:#f5f5f5;
 }
-th.fc-resourceName {
-	background:none;
-	width: 200px;
+.fc-no-overlap .fc-body .fc-resource-area .fc-cell-content {
+    padding-bottom: 2px;
+    padding-top: 2px;
 }
-.fc-resourceName .small {
-	font-size:11px;
-	padding: 0 5px;
-	font-weight:bold;
+.fc-timeline-event {
+	font-size:inherit !important;
+	font-weight:normal !important;
+	padding:2px !important;
+	line-height:1 !important;
+	margin-top:1px !important;
+	margin-bottom:1px !important;
+}
+.fc-event {
+	font-size:0.9em !important;
+}
+.fc-event .fc-bg {
+	background:transparent;
+}
+.fc-time-area .fc-event-container {
+	padding-bottom:0;
+}
+.fc-timeline-event .fc-content {
+	padding:2px;
 }
 a.fc-event:hover {
    text-decoration:none;
@@ -25,33 +38,76 @@ a.fc-event, .fc-event-draggable {
     border: 0 none !important;
 }
 .fc-widget-header {
-	font-size:11px;
+	font-size:0.9em;
 	color:#999;
 	font-weight:normal;
 	font-style:italic;
+	background:#f5f5f5;
 }
-.fc-weekend, .fc-weekend-column {
-	background:#f9f9f9;
+#jrCalendarTrash .jr-calendar-trash{
+	background:#f5f5f5;
+	border: 2px dashed #ccc;
+	color:#999;
+	height:50px;
+	text-align:center;
+	margin-top:25px;
+	font-size:36px;
+	width:100%;
+	padding-top:4px;
+	white-space:nowrap;
+}
+#jrCalendarTrash .jr-calendar-trash span {
+	font-size:13px;
+	vertical-align:middle;
 }
 </style>
 
 <script type='text/javascript'>
 jomresJquery(document).ready(function() {
 
-	var date = new Date();
-	var d = date.getDate();
-	var m = date.getMonth();
-	var y = date.getFullYear();
 	var wholeDayBookings = '{WHOLEDAY_BOOKINGS}';
 	
 	var calendar = jomresJquery('#jomres_dashboard{PROPERTY_UID}').fullCalendar({
+		schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+		scrollTime: '00:00',
+		height: 'auto',
+		contentHeight: 'auto',
+		resourceAreaWidth: '15%',
+		nowIndicator: true,
+		titleRangeSeparator: ' - ',
+		resourceLabelText: '{HROOMS}',
+		eventDurationEditable: false,
+		eventStartEditable: true,
+		eventOverlap: false,
+		selectOverlap: false,
 		header: {
 			left: '',
 			center: '',
 			right: ''
 		},
-		defaultView: 'resourceNextWeeks',
-		numberOfWeeks: 2,
+		defaultView: 'timelineTwoWeeks',
+		views: {
+			timelineDay: {
+				type: 'timeline'
+			},
+			timelineWeek: {
+				type: 'timeline',
+				slotDuration: { hours:12 }
+			},
+			timelineTwoWeeks: {
+				type: 'timeline',
+				duration: { days: 14 },
+				slotDuration: { hours:12 }
+			},
+			timelineMonth: {
+				type: 'timeline',
+				slotDuration: { hours:12 }
+			},
+			timelineYear: {
+				type: 'timeline',
+				slotDuration: { hours:12 }
+			}
+		},
 		firstDay: '{FIRST_DAY_OF_WEEK}',
 		monthNames: ['{_JRPORTAL_MONTHS_LONG_0}','{_JRPORTAL_MONTHS_LONG_1}','{_JRPORTAL_MONTHS_LONG_2}','{_JRPORTAL_MONTHS_LONG_3}','{_JRPORTAL_MONTHS_LONG_4}','{_JRPORTAL_MONTHS_LONG_5}','{_JRPORTAL_MONTHS_LONG_6}','{_JRPORTAL_MONTHS_LONG_7}','{_JRPORTAL_MONTHS_LONG_8}','{_JRPORTAL_MONTHS_LONG_9}','{_JRPORTAL_MONTHS_LONG_10}','{_JRPORTAL_MONTHS_LONG_11}'],
 		monthNamesShort: ['{_JRPORTAL_MONTHS_SHORT_0}','{_JRPORTAL_MONTHS_SHORT_1}','{_JRPORTAL_MONTHS_SHORT_2}','{_JRPORTAL_MONTHS_SHORT_3}','{_JRPORTAL_MONTHS_SHORT_4}','{_JRPORTAL_MONTHS_SHORT_5}','{_JRPORTAL_MONTHS_SHORT_6}','{_JRPORTAL_MONTHS_SHORT_7}','{_JRPORTAL_MONTHS_SHORT_8}','{_JRPORTAL_MONTHS_SHORT_9}','{_JRPORTAL_MONTHS_SHORT_10}','{_JRPORTAL_MONTHS_SHORT_11}'],
@@ -60,40 +116,28 @@ jomresJquery(document).ready(function() {
 		editable: true,
 		selectable: true,
 		selectHelper: true,
-		minTime:1,
-		maxTime:24,
-		slotMinutes: 60,
+		resourceGroupField: 'itemtype',
 		resources: '{AJAXURL_RESOURCES}',
 		events: '{AJAXURL_EVENTS}',
 		buttonText: {
 			prev: '&lt;&lt; {PREV}',
 			next: '{NEXT} &gt;&gt;',
 			today: '{TODAY}',
-			resourceDay: '{DAY}',
-			resourceWeek: '{WEEK}',
-			resourceNextWeeks: '{TWOWEEKS}',
-			resourceMonth: '{MONTH}'
+			timelineDay: '{DAY}',
+			timelineWeek: '{WEEK}',
+			timelineTwoWeeks: '{TWOWEEKS}',
+			timelineMonth: '{MONTH}'
 		},
-		titleFormat: {
-			resourceDay: 'dddd, MMM d, yyyy',
-			resourceWeek: "MMM d[ yyyy]{ '-'[ MMM] d yyyy}",
-			resourceNextWeeks: "MMM d[ yyyy]{ '-'[ MMM] d yyyy}",
-			resourceMonth: 'MMMM yyyy'
-		},
-		columnFormat: {
-			resourceMonth: 'ddd dd',
-			resourceWeek: 'ddd dd',
-			resourceNextWeeks: 'ddd dd'
-		},
-		
-		select: function(start, end, allDay, jsEvent, view, resource) {
-			startDate = jomresJquery.fullCalendar.formatDate(start, 'yyyy/MM/dd');
-			endDate = jomresJquery.fullCalendar.formatDate(end, 'yyyy/MM/dd');
+		select: function(start, end, jsEvent, view, resource) {
+			startMoment = jomresJquery.fullCalendar.moment(start);
+			endMoment = jomresJquery.fullCalendar.moment(end);
+			startDate = startMoment.format('YYYY/MM/DD');
+			endDate = endMoment.format('YYYY/MM/DD');
 			
 			if (startDate == endDate && wholeDayBookings == '0')
 				{
-				end.setDate(end.getDate() + 1);
-				endDate = jomresJquery.fullCalendar.formatDate(end, 'yyyy/MM/dd');
+				endMoment.add(1, 'day');
+				endDate = endMoment.format('YYYY/MM/DD');
 				}
 
 			mywhen = startDate + ' - ' + endDate;
@@ -104,25 +148,24 @@ jomresJquery(document).ready(function() {
 			reset_region_dropdown();
 			
 			//set the new hidden values
-			resource_name = resource.name.replace(/(<([^>]+)>)/ig,"");
 			jomresJquery('#blackBookingModal #start').val(startDate);
 			jomresJquery('#blackBookingModal #end').val(endDate);
 			jomresJquery('#blackBookingModal #room_uid').val(resource.id);
-			jomresJquery('#blackBookingModal #allDay').val(allDay);
+			jomresJquery('#blackBookingModal #allDay').val('');
 			jomresJquery('#blackBookingModal #when').text(mywhen);
-			jomresJquery('#blackBookingModal #where').text(resource_name);
+			jomresJquery('#blackBookingModal #where').text(resource.title);
 			
 			//generate the new modal 
 			var modal = jomresJquery('#blackBookingModal').modal('show');
 		},
-		resourceRender: function(resource, element, view) {
+		resourceRender: function(resourceObj, labelTds, bodyTds) {
 			// this is triggered when the resource is rendered, just like eventRender
 		},
-		eventDrop: function( event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view ) {
+		eventDrop: function( event, delta, revertFunc, jsEvent, ui, view ) {
 			jomresJquery(this).popover('hide');
 			revertFunc();
 		},
-		eventResize: function( event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view ) {
+		eventResize: function( event, delta, revertFunc, jsEvent, ui, view ) {
 			jomresJquery(this).popover('hide');
 			revertFunc();
 		},
@@ -137,6 +180,7 @@ jomresJquery(document).ready(function() {
 				html: true,
 				title: event.title,
 				content: event.description,
+				container:'body',
 				trigger: 'manual'
 			});
 		},
@@ -146,33 +190,83 @@ jomresJquery(document).ready(function() {
 		eventMouseout: function ( event, jsEvent, view )  {
 			jomresJquery(this).popover('hide');
 		},
-		eventDropOutside: function( event, ev, ui ) {
-			if (confirm('{CANCELLATION_WARNING}')) 
+		//not used
+		/*eventDragStop: function ( event, jsEvent, ui, view ) {
+			var trashEl = jomresJquery('#jrCalendarTrash');
+			var ofs = trashEl.offset();
+
+			var x1 = ofs.left;
+			var x2 = ofs.left + trashEl.outerWidth(true);
+			var y1 = ofs.top;
+			var y2 = ofs.top + trashEl.outerHeight(true);
+
+			if (jsEvent.pageX >= x1 && jsEvent.pageX<= x2 && jsEvent.pageY>= y1 && jsEvent.pageY <= y2) 
+				{
+				if (confirm('{CANCELLATION_WARNING}')) 
+					{
+					jomresJquery.ajax({
+						type: 'GET',
+						url: live_site_ajax + '&task=dashboard_cancelbooking_ajax',
+						data: {
+							contract_uid: event.id
+							},
+						success: function(data)
+							{
+							var cancellation_status = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);
+							if (cancellation_status.insertStatus == 1)
+								{
+								calendar.fullCalendar( 'removeEvents', event.id );
+								}
+							else
+								{
+								alert( cancellation_status.insertMessage );
+								}
+							}
+						});
+					}
+				}
+		},*/
+		eventDrop: function ( event, delta, revertFunc, jsEvent, ui, view ) {
+			jomresJquery(this).popover('hide');
+
+			eventStart = jomresJquery.fullCalendar.moment(event.start);
+			start = eventStart.format('YYYY/MM/DD');
+			eventEnd = jomresJquery.fullCalendar.moment(event.end);
+			end = eventEnd.format('YYYY/MM/DD');
+
+			if (confirm('{AMEND_WARNING}')) 
 				{
 				jomresJquery.ajax({
 					type: 'GET',
-					url: live_site_ajax + '&task=dashboard_cancelbooking_ajax',
+					url: live_site_ajax + '&task=dashboard_amendbooking_ajax',
 					data: {
-						contract_uid: event.id
+						event_id: event.id,
+						new_resource_id: event.resourceId,
+						event_start: start,
+						event_end: end
 						},
 					success: function(data)
 						{
-						var cancellation_status = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);
-						if (cancellation_status.insertStatus == 1)
+						var amend_status = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);
+						if (amend_status.insertStatus == 1)
 							{
-							calendar.fullCalendar( 'removeEvents', event.id );
+							event.id = amend_status.id;
+							calendar.fullCalendar( 'updateEvent', event );
+							alert( amend_status.insertMessage );
 							}
 						else
 							{
-							alert( cancellation_status.insertMessage );
+							alert( amend_status.insertMessage );
+							revertFunc();
 							}
 						}
 					});
 				}
-			}
-		/*windowResize: function( view ) {
-			calendar.fullCalendar('option', 'height', jomresJquery(window).height() - 100);
-		}*/
+			else
+				{
+				revertFunc();
+				}
+		}
 	});
 	jomresJquery('.btn-group button[data-calendar-nav]').each(function() {
 		var $this = jomresJquery(this);
@@ -197,8 +291,8 @@ jomresJquery(document).ready(function() {
 	var view = jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar('getView');
 	jomresJquery('.jomres-dashboard h2 span').html(': ' + view.title);
 	
-	/* Set a timeout to refresh events every minute */
-	setInterval(function(){jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar( 'refetchEvents' )}, 60000);
+	/* Set a timeout to refresh events every 5 minutes */
+	setInterval(function(){jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar( 'refetchEvents' )}, 300000);
 	
 	/* Modal submit */
 	//jomresJquery("#blackBookingModal").modal('hide');
@@ -231,7 +325,7 @@ jomresJquery(document).ready(function() {
 							start: new_event.start,
 							end: new_event.end,
 							allDay: new_event.allDay,
-							resource: new_event.resource,
+							resourceId: new_event.resourceId,
 							url: new_event.url,
 							className: new_event.className
 							},

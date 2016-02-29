@@ -44,7 +44,7 @@ class j06001dashboard_insertbooking_ajax
 		$endDate 				= jomresGetParam($_GET,'end','');
 		$arrivalDate 			= date("Y/m/d", strtotime($startDate));
 		$departureDate			= date("Y/m/d", strtotime($endDate));
-		if ($mrConfig[ 'wholeday_booking' ] == '0')
+		if ((int)$mrConfig[ 'wholeday_booking' ] == '0')
 			$lastDay			= date("Y/m/d", strtotime($endDate."-1 day"));
 		else
 			$lastDay			= $departureDate;
@@ -131,11 +131,14 @@ class j06001dashboard_insertbooking_ajax
 			$description.=jr_gettext( '_JOMRES_HFROM', _JOMRES_HFROM,false ).': '.outputDate($startDate) . '<br/>';
 			$description.=jr_gettext( '_JOMRES_HTO', _JOMRES_HTO,false ).': '.outputDate($endDate);
 			
-			$from=date("Y-m-d", strtotime($startDate))."T12:00:00";
-			if ($mrConfig[ 'wholeday_booking' ] == '0')
-				$to=date("Y-m-d", strtotime($endDate . "-1 day") )."T10:00:00";
-			else
-				$to=date("Y-m-d", strtotime($endDate) )."T10:00:00";
+			$from = date("Y-m-d", strtotime($startDate))."T12:00:00";
+			$to = date("Y-m-d", strtotime($endDate))."T11:59:59";
+			
+			if ((int)$mrConfig[ 'wholeday_booking' ] == 1)
+				{
+				$from = date("Y-m-d", strtotime($startDate))."T00:00:01";
+				$to = date("Y-m-d", strtotime($endDate))."T23:59:59";
+				}
 
 			$insertMessage="Booking saved successfully";
 			
@@ -164,23 +167,22 @@ class j06001dashboard_insertbooking_ajax
 			//the guest is still here even if the departure date has passed, so let`s adjust the event size. If it overlaps with other booking, it will be clearly visible in the dashboard. Receptionists can then amend bookings.
 			if ($imgToShow == $img_stillhere)
 				{
-				if ($mrConfig[ 'wholeday_booking' ] == '0')
-					$to=date("Y-m-d", strtotime($today . "-1 day") )."T10:00:00";
+				if ((int)$mrConfig[ 'wholeday_booking' ] == 0)
+					$to = date("Y-m-d", strtotime($today))."T11:59:59";
 				else
-					$to=date("Y-m-d", strtotime($today) )."T10:00:00";
+					$to = date("Y-m-d", strtotime($today))."T23:59:59";
 				}
 			
 			$new_contract=array("insertStatus"=>1,
 								"insertMessage"=>$insertMessage,
-								"id"=>$contract_uid, 
+								"id"=>$contract_uid.'_'.$room_uid, 
 								"start" => $from, 
 								"end" => $to,
 								"title" => $firstname . ' ' . $surname, 
 								"url"=>$url, 
-								"resource"=>(string)$room_uid, 
+								"resourceId"=>$room_uid, 
 								"className"=>$imgToShow, 
-								"description"=>$description,
-								"allDay"=>true
+								"description"=>$description
 								);
 			
 			//clean the buffer from any other output (other echos, for example if emails sending failed) and echo just the json
@@ -202,4 +204,3 @@ class j06001dashboard_insertbooking_ajax
 		return null;
 		}
 	}
-?>
