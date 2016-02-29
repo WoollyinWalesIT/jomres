@@ -251,12 +251,16 @@ class jomres_cron
 					$new      = str_replace( $livesite, $encoded, JOMRES_SITEPAGE_URL_AJAX );
 					$livesite = $new;
 					}
+				else
+					$livesite = JOMRES_SITEPAGE_URL_AJAX;
+				
 				foreach ( $this->dueJobs as $job )
 					{
 					if (this_cms_is_wordpress())
-						$request = $livesite . "/index.php?action=jomres/trigger.php&no_html=1&jrajax=1&jr_wp_source=frontend&option=com_jomres&tmpl=".get_showtime("tmplcomponent")."&task=cron_" . $job[ 'job_name' ] . "&secret=" . $jomresConfig_secret;
+						$request = $livesite . "&task=cron_" . $job[ 'job_name' ] . "&secret=" . $jomresConfig_secret;
 					else
-						$request = $livesite . "/index.php?option=com_jomres&tmpl=".get_showtime("tmplcomponent")."&jrajax=1&no_html=1&task=cron_" . $job[ 'job_name' ] . "&secret=" . $jomresConfig_secret;
+						$request = $livesite . "task=cron_" . $job[ 'job_name' ] . "&secret=" . $jomresConfig_secret;
+					var_dump($request);
 					$ch      = curl_init();
 					curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 					curl_setopt( $ch, CURLOPT_USERAGENT, 'Jomres' );
