@@ -93,7 +93,8 @@ function get_periods( $start, $end, $interval = null )
 	{
 	$start = new DateTime( $start );
 	$end   = new DateTime( $end );
-	if ( is_null( $interval ) ) $interval = new DateInterval( 'P1D' );
+	if ( is_null( $interval ) ) 
+		$interval = new DateInterval( 'P1D' );
 
 	$period = new DatePeriod( $start, $interval, $end );
 	$dates  = array ();

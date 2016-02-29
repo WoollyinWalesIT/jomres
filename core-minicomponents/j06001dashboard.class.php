@@ -42,11 +42,16 @@ class j06001dashboard
 		$output=array();
 		$pageoutput=array();
 
-		jomres_cmsspecific_addheaddata("javascript",JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/',"fullcalendar.js");
-		jomres_cmsspecific_addheaddata("css",JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/','fullcalendar.css');
+		jomres_cmsspecific_addheaddata("javascript",JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/',"moment.min.js");
+		jomres_cmsspecific_addheaddata("javascript",JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/',"fullcalendar.min.js");
+		jomres_cmsspecific_addheaddata("javascript",JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/',"lang-all.js");
+		jomres_cmsspecific_addheaddata("javascript",JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/',"scheduler.min.js");
+		jomres_cmsspecific_addheaddata("css",JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/','fullcalendar.min.css');
+		jomres_cmsspecific_addheaddata("css",JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/','scheduler.min.css');
 		//jomres_cmsspecific_addheaddata("css",JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/','fullcalendar.print.css');
 
 		$output['PAGETITLE'] = jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', _JOMRES_FRONT_MR_MENU_ADMIN_HOME, false );
+		$output['HROOMS'] = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM, false );
 		
 		//buttons
 		$output['NEXT'] = jr_gettext( 'COMMON_NEXT', COMMON_NEXT, false );
@@ -56,6 +61,7 @@ class j06001dashboard
 		$output['WEEK'] = jr_gettext( '_JOMRES_DASHBOARD_WEEK', _JOMRES_DASHBOARD_WEEK, false );
 		$output['TWOWEEKS'] = jr_gettext( '_JOMRES_HTWO_WEEKS', _JOMRES_HTWO_WEEKS, false );
 		$output['DAY'] = jr_gettext( '_JOMRES_DASHBOARD_DAY', _JOMRES_DASHBOARD_DAY, false );
+		$output['YEAR'] = jr_gettext( '_JOMRES_DASHBOARD_YEAR', _JOMRES_DASHBOARD_YEAR, false );
 		$output['HNEW_BOOKING']= jr_gettext( '_JOMRES_HNEW_BOOKING', _JOMRES_HNEW_BOOKING, false );
 		$output['NEW_BOOKING_URL']=jomresUrl(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$property_uid);
 		$output['HBLACK_BOOKINGS']= jr_gettext( '_JOMRES_FRONT_BLACKBOOKING', _JOMRES_FRONT_BLACKBOOKING, false );
@@ -72,7 +78,9 @@ class j06001dashboard
 		$output[ 'TEXT_BOOKEDOUT' ]   = jr_gettext( '_JOMRES_STATUS_CHECKEDOUT', _JOMRES_STATUS_CHECKEDOUT, false );
 		$output['HBLACKBOOKING']=jr_gettext( '_JOMRES_COM_AVLCAL_BLACK_KEY', _JOMRES_COM_AVLCAL_BLACK_KEY,false );
 		
+		//warnings
 		$output['CANCELLATION_WARNING'] = jr_gettext( '_JOMRES_BOOKING_CANCELLATION_WARNING', _JOMRES_BOOKING_CANCELLATION_WARNING,false );
+		$output['AMEND_WARNING'] = jr_gettext( '_JOMRES_BOOKING_AMEND_WARNING', _JOMRES_BOOKING_AMEND_WARNING,false );
 		
 		$output['WHOLEDAY_BOOKINGS'] = $mrConfig[ 'wholeday_booking' ];
 			
@@ -85,10 +93,11 @@ class j06001dashboard
 		else
 			$output['FIRST_DAY_OF_WEEK']='1';
 
-		$rows=array("0"=>array("VIEW"=>"resourceDay","ACTIVE"=>"","VIEW_NAME"=>$output['DAY']),
-					"1"=>array("VIEW"=>"resourceWeek","ACTIVE"=>"","VIEW_NAME"=>$output['WEEK']),
-					"2"=>array("VIEW"=>"resourceNextWeeks","ACTIVE"=>"active","VIEW_NAME"=>$output['TWOWEEKS']),
-					"3"=>array("VIEW"=>"resourceMonth","ACTIVE"=>"","VIEW_NAME"=>$output['MONTH']));
+		$rows=array("0"=>array("VIEW"=>"timelineDay","ACTIVE"=>"","VIEW_NAME"=>$output['DAY']),
+					"1"=>array("VIEW"=>"timelineWeek","ACTIVE"=>"","VIEW_NAME"=>$output['WEEK']),
+					"2"=>array("VIEW"=>"timelineTwoWeeks","ACTIVE"=>"active","VIEW_NAME"=>$output['TWOWEEKS']),
+					"3"=>array("VIEW"=>"timelineMonth","ACTIVE"=>"","VIEW_NAME"=>$output['MONTH']),
+					"4"=>array("VIEW"=>"timelineYear","ACTIVE"=>"","VIEW_NAME"=>$output['YEAR']));
 
 		//guest modal form
 		$output[ 'HQUICK_BOOKING' ]		= jr_gettext( '_JOMRES_HQUICK_BOOKING', _JOMRES_HQUICK_BOOKING, false );

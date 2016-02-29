@@ -49,8 +49,8 @@ class j06001dashboard_events_ajax {
 		$from=jomresGetParam($_GET, 'start', '');
 		$to=jomresGetParam($_GET, 'end', '');
 		
-		$from=date('Y/m/d',$from);
-		$to=date('Y/m/d',$to);
+		$from=date('Y/m/d',strtotime($from));
+		$to=date('Y/m/d',strtotime($to));
 
 		$query= "SELECT a.contract_uid,
 						DATE_FORMAT(a.arrival, '%Y-%m-%d') AS arrival,
@@ -105,14 +105,16 @@ class j06001dashboard_events_ajax {
 
 			foreach ( $contractList as $c )
 				{
-				$id=$c->contract_uid;
-				$resource=$c->room_uid;
-				$start=$c->arrival."T12:00:00";
+				$id=$c->contract_uid.'_'.$c->room_uid;
+				$resource = $c->room_uid;
+				$start = date("Y-m-d", strtotime($c->arrival))."T12:00:00";
+				$end = date("Y-m-d", strtotime($c->departure))."T11:59:59";
 				
-				if ($mrConfig[ 'wholeday_booking' ] == '0')
-					$end=date("Y-m-d", strtotime($c->departure . "-1 day") )."T10:00:00";
-				else
-					$end=date("Y-m-d", strtotime($c->departure) )."T10:00:00";
+				if ((int)$mrConfig[ 'wholeday_booking' ] == 1)
+					{
+					$start = date("Y-m-d", strtotime($c->arrival))."T00:00:01";
+					$end = date("Y-m-d", strtotime($c->departure))."T23:59:59";
+					}
 				
 				if ((int)$c->black_booking == 1)
 					$url=JOMRES_SITEPAGE_URL_NOSEF.'&task=viewBlackBooking&contract_uid='.$c->contract_uid;
@@ -138,10 +140,10 @@ class j06001dashboard_events_ajax {
 				//the guest is still here even if the departure date has passed, so let`s adjust the event size. If it overlaps with other booking, it will be clearly visible in the dashboard. Receptionists can then amend bookings.
 				if ($imgToShow == $img_stillhere)
 					{
-					if ($mrConfig[ 'wholeday_booking' ] == '0')
-						$end=date("Y-m-d", strtotime($today . "-1 day") )."T10:00:00";
+					if ((int)$mrConfig[ 'wholeday_booking' ] == 0)
+						$end = date("Y-m-d", strtotime($today))."T11:59:59";
 					else
-						$end=date("Y-m-d", strtotime($today) )."T10:00:00";
+						$end = date("Y-m-d", strtotime($today))."T23:59:59";
 					}
 
 				$title='';
@@ -157,12 +159,21 @@ class j06001dashboard_events_ajax {
 				$description.=jr_gettext( '_JOMRES_HTO', _JOMRES_HTO,false ).': '.outputDate($c->departure);
 				
 				if ((int)$resource > 0)
-					$contracts[] = array ( "id"=>$id, "start" => $start, "end" => $end, "title" => $title, "url"=>$url, "resource"=>$resource, "className"=>$imgToShow, "description"=>$description );
+					$contracts[] = array ( 
+										"id"=>$id, 
+										"resourceId"=>$resource,
+										"start" => $start, 
+										"end" => $end, 
+										"title" => $title, 
+										"url"=>$url, 
+										"className"=>$imgToShow, 
+										"description"=>$description 
+										);
 				}
 			}
 		else
 			{
-			$contracts[] = array();
+			$contracts = array();
 			}
 		
 		echo json_encode($contracts);
@@ -173,4 +184,3 @@ class j06001dashboard_events_ajax {
 		return null;
 		}
 	}
-?>
