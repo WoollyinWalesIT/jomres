@@ -260,7 +260,7 @@ class jomres_cron
 						$request = $livesite . "&task=cron_" . $job[ 'job_name' ] . "&secret=" . $jomresConfig_secret;
 					else
 						$request = $livesite . "task=cron_" . $job[ 'job_name' ] . "&secret=" . $jomresConfig_secret;
-					var_dump($request);
+
 					$ch      = curl_init();
 					curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 					curl_setopt( $ch, CURLOPT_USERAGENT, 'Jomres' );
