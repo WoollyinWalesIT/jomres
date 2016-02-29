@@ -41,10 +41,13 @@ class j00035tabcontent_02_bookingform
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && $jrConfig[ 'show_booking_form_in_property_details' ] == "1" && $mrConfig[ 'visitorscanbookonline' ] == '1' && !isset( $_REQUEST[ 'jr_printable' ] ) )
 			{
 			define( "DOBOOKING_IN_DETAILS", 1 );
-			require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'dobooking.php' );
+
+			$MiniComponents->specificEvent( '05020', 'dobooking', array());
 
 			$book_now_text = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKAROOM', _JOMRES_FRONT_MR_MENU_BOOKAROOM, false, false );
-			if ( $mrConfig[ 'singleRoomProperty' ] == '1' ) $book_now_text = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', _JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY, false, false );
+			
+			if ( $mrConfig[ 'singleRoomProperty' ] == '1' ) 
+				$book_now_text = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', _JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY, false, false );
 
 			$anchor        = jomres_generate_tab_anchor( $book_now_text );
 			$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $book_now_text, "TAB_CONTENT" => BOOKING_FORM_FOR_PROPERTY_DETAILS , "TAB_ID" => 'tour_target_property_details_booking_form');

@@ -46,6 +46,8 @@ class j05020dobooking
 		require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'dobooking.php' );
 		
 		if ( !defined( "DOBOOKING_IN_DETAILS" ) ) jomres_cmsspecific_setmetadata( "robots", "noindex,nofollow" );
+		
+		echo '<script type="text/javascript">jomresJquery(document).ready(function(){jomresJquery("#availability_calendar_model").appendTo("body");});</script>';
 
 		}
 
