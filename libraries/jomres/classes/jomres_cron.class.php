@@ -259,7 +259,7 @@ class jomres_cron
 					if (this_cms_is_wordpress())
 						$request = $livesite . "&task=cron_" . $job[ 'job_name' ] . "&secret=" . $jomresConfig_secret;
 					else
-						$request = $livesite . "task=cron_" . $job[ 'job_name' ] . "&secret=" . $jomresConfig_secret;
+						$request = $livesite . "&task=cron_" . $job[ 'job_name' ] . "&secret=" . $jomresConfig_secret;
 
 					$ch      = curl_init();
 					curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
