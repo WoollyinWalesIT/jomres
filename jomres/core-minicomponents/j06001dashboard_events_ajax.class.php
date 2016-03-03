@@ -91,6 +91,7 @@ class j06001dashboard_events_ajax {
 			foreach ( $contractList as $contract )
 				{
 				$guest_uids[]=$contract->guest_uid;
+				$room_uids[$contract->contract_uid][]=$contract->room_uid;
 				}
 			if ( count( $guest_uids ) > 0 )
 				{			
@@ -167,7 +168,10 @@ class j06001dashboard_events_ajax {
 										"title" => $title, 
 										"url"=>$url, 
 										"className"=>$imgToShow, 
-										"description"=>$description 
+										"description"=>$description,
+										"contract_uid"=>$c->contract_uid,
+										"room_uid"=>$c->room_uid,
+										"this_contract_room_uids"=>$room_uids[$c->contract_uid]										
 										);
 				}
 			}
