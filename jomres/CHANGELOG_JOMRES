@@ -1,3 +1,29 @@
+
+
+<h3>Jomres 9.6.0 03/03/2016</h3>
+
+<span class="label label-success">Feature</span> Dashboard signficantly upgraded. You can now drag/drop to change a booking's dates and room. You can drag a booking to increase/decrease it's length and the drag to cancel area is now clearly visable. 
+
+<span class="label label-warning">Change</span> Modified booking form so that property uid is passed to the booking engine on heartbeat calls.
+<span class="label label-warning">Change</span> Added "clear cache" to rebuild registry menu item.
+<span class="label label-warning">Change</span> Removed a hardcoded version number for gmaps as google appear to have fixed their bug now.
+<span class="label label-warning">Change</span> Modified how property uid is determined when deleting a property.
+<span class="label label-warning">Change</span> Modified the printable invoice to include styles.
+<span class="label label-warning">Change</span> Modified show property calendar so that asamodule parameters are sent properly.
+<span class="label label-warning">Change</span> Added caveats to sanity checks to ensure that they're not run by non-managers.
+<span class="label label-warning">Change</span> Google's recaptcha library updated.
+<span class="label label-warning">Change</span> Modified how some data is saved in the support key cache file.
+<span class="label label-warning">Change</span> Removed some growl output from booking engine.
+<span class="label label-warning">Change</span> Modified how cron jobs are triggered.
+<span class="label label-warning">Change</span> Review request timer set to 60 seconds from 120.
+<span class="label label-warning">Change</span> Added a warning to advise people against upgrading if their license doesn't allow plugin installation.
+<span class="label label-warning">Change</span> Polish language file updated.
+
+
+<span class="label label-important label-danger">Fix</span> Modified booking form in property details tab so that availability calendar is properly opened.
+<span class="label label-important label-danger">Fix</span> Fix for modal append to body.
+
+
 <h3>Jomres 9.5.8 22/02/2016</h3>
 
 <span class="label label-important label-danger">Fix</span> Fixed an issue with a cache file being saved in a way that causes errors.
@@ -75,9 +101,9 @@
 
 <h3>Jomres 9.5.1 21/01/2016</h3>
 
-Added a new jomres_cmsspecific_getcmslang() function to bridge scripts. This allows us to correctly discover Wordpress' current language and switch languages with WP.
-Removed session related code from new redirect function.
-Finally switched off Jomres language switcher now that CMSs are up to date with multi-language features.
+<span class="label label-warning">Change</span> Added a new jomres_cmsspecific_getcmslang() function to bridge scripts. This allows us to correctly discover Wordpress' current language and switch languages with WP.
+<span class="label label-warning">Change</span> Removed session related code from new redirect function.
+<span class="label label-warning">Change</span> Finally switched off Jomres language switcher now that CMSs are up to date with multi-language features.
 
 <h3>Jomres 9.5.0 20/01/2016</h3>
 
