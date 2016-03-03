@@ -4,7 +4,7 @@ Plugin Name: Jomres
 Plugin URI: http://www.jomres.net
 Description: The complete hotel booking system for Wordpress!
 Author: Vince Wooll
-Version: 9.5.8
+Version: 9.6.0
 Author URI: http://www.jomres.net/
 */
 defined('WPINC') or die;
