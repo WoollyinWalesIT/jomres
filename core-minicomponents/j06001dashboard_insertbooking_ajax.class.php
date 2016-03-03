@@ -182,7 +182,10 @@ class j06001dashboard_insertbooking_ajax
 								"url"=>$url, 
 								"resourceId"=>$room_uid, 
 								"className"=>$imgToShow, 
-								"description"=>$description
+								"description"=>$description,
+								"contract_uid"=>$contract_uid,
+								"room_uid"=>$room_uid,
+								"this_contract_room_uids"=>array("0"=>$room_uid)
 								);
 			
 			//clean the buffer from any other output (other echos, for example if emails sending failed) and echo just the json

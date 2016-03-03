@@ -19,24 +19,27 @@ class j06001dashboard_amendbooking_ajax
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
-		if ($MiniComponents->template_touch){$this->template_touchable=false; return;}
+		if ($MiniComponents->template_touch)
+			{
+			$this->template_touchable=false; return;
+			}
 		
-		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		$property_uid = getDefaultProperty();
 		
 		$mrConfig = getPropertySpecificSettings( $property_uid );
-		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) 
-			return;
-
+		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) return;
+		
 		$amendSuccessful = false;
 		
 		jr_import( 'jomres_generic_booking_amend' );
 		$bkg = new jomres_generic_booking_amend();
 		
-		$event_id		= jomresGetParam($_GET,'event_id','');
-		$new_room_uid	= (int)jomresGetParam($_GET,'new_resource_id',0);
-		$delta			= (int)jomresGetParam($_GET,'delta',0);
-		
+		$event_id 				= jomresGetParam($_GET,'event_id','');
+		$room_uid 				= (int)jomresGetParam($_GET,'room_uid',0);
+		$new_room_uid 			= (int)jomresGetParam($_GET,'new_room_uid',0);
+		$contract_uid 			= (int)jomresGetParam($_GET,'contract_uid',0);
+		$this_contract_room_uids= jomresGetParam($_GET,'this_contract_room_uids',array());
+
 		//check if we have an event id, otherwise stop here
 		if ( $event_id == '' )
 			{
@@ -45,59 +48,51 @@ class j06001dashboard_amendbooking_ajax
 			exit;
 			}
 		
-		$bang = explode("_",$event_id);
-		
-		//check if we can get the contract uid and room uid from the event id
-		if (count($bang) > 0)
-			{
-			$contract_uid = (int)$bang[0];
-			$old_room_uid = (int)$bang[1];
-			}
-		else
-			{
-			$insertMessage="Error: Could not get contract uid and room uid from event_id. Exitting.";
-			echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
-			exit;
-			}
-		
 		//OK, let`s move on and set the booking details
-		$bkg->property_uid 	= $property_uid;
-		$bkg->contract_uid 	= $contract_uid;
-		$bkg->room_uid 		= $old_room_uid;
-		$bkg->new_room_uid 	= $new_room_uid;
-
-		$bkg->note 			= 'Booking moved via drag drop to room uid '.$bkg->new_room_uid.' by '.$thisJRUser->username.'';
-
-		$query = "SELECT `room_bookings_uid`,`date` FROM #__jomres_room_bookings WHERE `room_uid` = ".$old_room_uid." AND contract_uid = ".$contract_uid." ";
-		$result = doSelectSql($query);
-
-		$booking_dates = array();
-
-		if ( count($result) > 0 )
+		$bkg->property_uid 				= $property_uid;
+		$bkg->contract_uid 				= $contract_uid;
+		$bkg->room_uid 					= $room_uid;
+		$bkg->new_room_uid 				= $new_room_uid;
+		$bkg->this_contract_room_uids	= $this_contract_room_uids;
+		$bkg->event_resized				= $event_resized;
+		$bkg->note 						= '';
+		$bkg->arrival 					= date("Y/m/d", strtotime(jomresGetParam($_GET,'event_start','')));
+		$bkg->departure 				= date("Y/m/d", strtotime(jomresGetParam($_GET,'event_end','')));
+		
+		if ((int)$mrConfig[ 'wholeday_booking' ] == 1)
+			$bkg->last_booked_date 	= date("Y/m/d", strtotime(jomresGetParam($_GET,'event_end','')));
+		else
+			$bkg->last_booked_date 	= date("Y/m/d", strtotime(jomresGetParam($_GET,'event_end','').'-1 day'));
+		
+		$from = date("Y-m-d", strtotime($bkg->arrival))."T12:00:00";
+		$to = date("Y-m-d", strtotime($bkg->departure))."T11:59:59";
+		
+		if ((int)$mrConfig[ 'wholeday_booking' ] == 1)
 			{
-			foreach ($result as $r)
-				{
-				$d = strtotime ($r->date.' +'.$delta.' day');
-				$new_date = date("Y/m/d",$d);
-				$booking_dates[]= $new_date;
-				}
+			$from = date("Y-m-d", strtotime($bkg->arrival))."T00:00:01";
+			$to = date("Y-m-d", strtotime($bkg->departure))."T23:59:59";
 			}
 
-		$bkg->arrival 		= $booking_dates[0];
-		if ((int)$mrConfig[ 'wholeday_booking' ] == 1)
-			$bkg->departure 	= $booking_dates[ count($booking_dates) ];
-		else
-			$bkg->departure 	= $booking_dates[ count($booking_dates)-1 ];
-		
  		//Finally let`s amend the booking
 		$amendSuccessful = $bkg->amend_booking();
 		
-		$new_id = $contract_uid.'_'.$new_room_uid;
+		$new_id = $bkg->contract_uid.'_'.$bkg->new_room_uid;
 
 		if ($amendSuccessful === true)
 			{
 			$insertMessage = "Room changed successfully.";
-			echo json_encode(array("insertStatus"=>1,"insertMessage"=>$insertMessage,"id"=>$new_id,));
+			echo json_encode(
+							array(
+								"insertStatus"=>1,
+								"insertMessage"=>$insertMessage,
+								"id"=>$new_id,
+								"start"=>$from,
+								"end"=>$to,
+								"contract_uid"=>$bkg->contract_uid, 
+								"room_uid"=>$bkg->new_room_uid,
+								"this_contract_room_uids"=>$bkg->this_contract_room_uids
+								)
+							);
 			}
 		else
 			{
