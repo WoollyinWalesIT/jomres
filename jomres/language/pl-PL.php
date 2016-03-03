@@ -7,7 +7,7 @@
 * @copyright	2005-2013 Vince Wooll
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
 * @Polska adaptacja Patryk Doering - http://www.rekinet.pl - kontakt@rekinet.pl
-* @Aktualizacja wersji językowej z 10-12-2015r.
+* @Aktualizacja wersji językowej z 22-02-2016r.
 **/
 
 ##################################################################
@@ -190,8 +190,8 @@ jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_TOWN_EXPL','Miejscowość');
 jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL','Kod pocztowy');
 jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL','Telefon stacjonarny');
 jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL','Telefon komórkowy');
-jr_define('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE','Niestety obecna oferta nie spełnia wymaganych kryteriów.');
-jr_define('_JOMRES_FRONT_MR_BOOKINGMADE','<h3>Dziękujemy. Rezerwacja została przyjęta.</h3><br />Wkrótce skontaktujemy się w celu ustalenia sposobu płatności.<br /><br /><small>Prosimy wziąść pod uwagę, że ta rezerwacja jest tymczasowa i dopiero po otrzymaniu potwierdzenia transakcji lub dokonania wpłaty w systemie płatności elektronicznych będzie wiążąca dla obu stron. Wszystkie informacje zostały przesłane na podany w formularzu adres e-mail.</small><br />');
+jr_define('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE','Niestety obecnie nie są dostępne oferty spełniające określone kryteria. Proszę zmienić wybrane parametry oferty.');
+jr_define('_JOMRES_FRONT_MR_BOOKINGMADE','<h3>Dziękujemy. Rezerwacja została przyjęta.</h3><br />Wszystkie informacje zostały przesłane na podany w formularzu adres e-mail.<br /><br /><small>Prosimy wziąć pod uwagę, że ta rezerwacja jest tymczasowa i dopiero po otrzymaniu zadatku w określonej kwocie przelewem bankowym lub dokonaniu wpłaty w systemie płatności elektronicznych będzie wiążąca dla obu stron.</small><br />');
 jr_define('_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE','Rezerwacja internetowa:');
 jr_define('_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM','Rezerwacja dla:');
 jr_define('_JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL','Rezerwacja od:');
@@ -1302,7 +1302,7 @@ jr_define('_JOMRES_HTMP_PURIFIER','Funkcja HTML oczyszczacz');
 jr_define('_JOMRES_HTMP_PURIFIER_DESC','Włącz jeśli chcesz używać bibliotek oczyszczania HTML (http://htmlpurifier.org/). Biblioteka jest używana jako dodatkowa warstwa zabezpieczeń w kontaktach z danymi wejściowymi i wyjściowymi i zaleca się, aby pozostawić włączoną, jednak będzie to wymagało większej ilości pamięci.');
 jr_define('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT','Płatność końcowa');
 jr_define('_JOMRES_AJAXFORM_BILLING_INVOICE_BALANCE','Wartość');
-jr_define('_JOMRES_WARNINGS_GLOBALEDITINGMODE','Uwaga! Używasz globalnego trybu edycji. Jest to dobre rozwiązanie jeśli dobrze rozumiesz co oznacza ta funkcja. Jeśli nie jesteś pewien, czy należy używać Jomres w ten sposób, patrz <a href="http://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268-editing-mode" target="_blank">tryb edycji ręcznej</a> więcej informacji na ten temat.');
+jr_define('_JOMRES_WARNINGS_GLOBALEDITINGMODE','Uwaga! Używasz globalnego trybu edycji. Jest to dobre rozwiązanie jeśli dobrze rozumiesz co oznacza ta funkcja. Jeśli nie jesteś pewien, czy należy używać Jomres w ten sposób, patrz <a href="http://manual.jomres.net/developers_guide_customising_editmode.html" target="_blank">tryb edycji ręcznej</a> więcej informacji na ten temat.');
 jr_define('_JOMRES_SUPPORTKEY','Kod wsparcia');
 jr_define('_JOMRES_SUPPORTKEY_DESC','Kod wsparcia (znany również jako numer licencji). Umożliwia pobieranie dodatków dla Jomres.');
 jr_define('_JOMRES_PERSONAL_DISCOUNT','Rabat');
@@ -2505,26 +2505,47 @@ jr_define('_JOMRES_CLEAR_GUEST_DETAILS'," -- Nowy Klient -- ");
 jr_define('_JOMRES_CHARTS','Wykresy');
 jr_define('_JOMRES_CHARTS_SELECT','Wybierz wykres...');
 jr_define('_JOMRES_CHART_BOOKINGS_DESC','Dochody za rok/miesiąc');
-
-jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK", "Ok, let's get started. First you need to create some rooms for this property." );
-jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK", "Create some rooms now" );
-
-jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK", "Research has proven that properties with lots of high quality images generate more views. Upload a main image and some slideshow pictures to improve your chances of getting bookings." );
-jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK_LINK", "Upload an image" );
-
-jr_define( "_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK", "Create some tariffs" );
-
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG", "What style of property is this?" );
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_DESC", "Is this property type a hotel type property, where you rent out multiple rooms in the property, or a villa type property, where you rent out the property in it's entirety? If the property type is intended for properties that don't offer room or property booking functionality ( like tours ) choose Neither." );
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_HOTEL", "Hotel/Bed & breakfast/Pension" );
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_VILLA", "Villa/Cottage/Apartment" );
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_NEITHER", "Neither" );
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_BOTH", "Both" ); // This is an interim setting that gives backward compatability for existing users who won't yet have updated their property types. It won't be selectable 
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD", "Hotel or Villa?" );
-
-jr_define( "_JOMRES_ADDRESS_SANITY_CHECK", "You'll need to complete your address details so that your guests can find you when they come to stay." );
-jr_define( "_JOMRES_ADDRESS_SANITY_CHECK_LINK", "Update your address" );
-
-
-jr_define( "_JOMRES_FIELDS_HIGHLIGHTED_ARE_REQUIRED", "Oops, it looks like you might have forgotten to complete all the fields." );
-jr_define( "_JOMRES_MANAGER_HAS_NO_PROPERTIES", "Error, this user is configured as a manager but has not been assigned to any properties" );jr_define( "_JOMRES_CONTANT_US", "Contact us" );jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_TITLE", "Welcome to your new online listing for " );jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_1", "Hi, and welcome to your new property on " );jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_2", "You recently added a new property to our website, and we'd like to welcome you to the family." );jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_3", "You can see your new dashboard " );jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT", " here " );jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_4", "Once you've setup your property you can see how it looks to site visitors by visiting " );jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_4_LINKTEXT", " your front page." );jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_5", "(it's not published, so site visitors can't see it yet)." );jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_6", "At the top of the page you'll see a number of messages. The buttons next to these messages will guide you to the pages you need to visit to set up your property on our site. Once you've performed each of these tasks it'll be much easier for visitors on our site to find your property and make bookings online." );jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_7", "If you have any questions at all, please " );jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_7_LINKTEXT", "contact us" );jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_8", "and we'll be delighted to answer all your questions." );jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_BYEBYE", "All the best, our team at " );jr_define( "_JOMRES_JINTOUR_SANITY_CHECK", "You don't seem to have any tours to sell. Create a tour profile, then use the Generate button to create some tours." );jr_define( "_JOMRES_JINTOUR_SANITY_CHECK_LINK", "Let's create some tours!" );jr_define( '_JOMRES_COM_A_TARIFFS_SWAP', 'Swap currency symbol location' );jr_define( '_JOMRES_COM_A_TARIFFS_SWAP_DESC', 'Use this option to move the currency symbol from behind of, to in front of the price figure, or vice versa.' );jr_define( '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', 'Facebook' );jr_define( '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', 'Enter your facebook page id, for example "jomres". Leave this blank to show nothing. Do not enter https://www.facebooking.com or anything else.' );jr_define( 'COMMON_DOWNLOAD', 'Download' );jr_define( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS_SRP', 'Next you will need to add some tariffs. These are your basic prices.' );jr_define( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV_SRP', 'Property sub-type' );jr_define( '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO_SRP', 'Property sub-type' );jr_define( '_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE', 'Bootstrap is not enabled!' );jr_define( '_JOMRES_BOOTSTRAP_OFF_WARNING', 'Warning, you do not have Bootstrap enabled in Jomres Site Configuration -> Misc tab. To provide <i>some</i> functionality Jomres is currently using it\'s old, jQuery UI based templates, however these have not been worked on in several years. All current development and improvements of Jomres templates ( layout files ) are made to it\'s Bootstrap 3 template files. To get the best out of Jomres we recommend you install a Bootstrap 3 based theme for Wordpress or Joomla. Once you have done that you can enable Jomres\' Bootstrap templates in Site Configuration.' );jr_define( '_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Your support key is valid. Note that this license does not allow plugin downloads.' );jr_define( '_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS_PLUGIN_MANAGER', 'Your license does not support plugin downloads.' );
+jr_define("_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK","OK, zaczynajmy. Najpierw należy utworzyć kilka zasobów do rezerwacji jakie będą dostępne w tej ofercie.");
+jr_define("_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK","Tworzenie zasobów");
+jr_define("_JOMRES_IMAGES_EXIST_SANITY_CHECK","Badania pokazują, że oferty z dużą ilością zdjęć wysokiej jakości generują więcej odsłon. Wgraj zdjęcie główne oferty i zdjęcia wyświetlane w pokazie slajdów etc, aby zwiększyć swoje szanse na uzyskanie rezerwacji.");
+jr_define("_JOMRES_IMAGES_EXIST_SANITY_CHECK_LINK","Przesyłanie zdjęć");
+jr_define("_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK","Definiowanie cen");
+jr_define("_JOMRES_PROPERTYTYPE_FLAG","Jaki jest to rodzaj oferty?");
+jr_define("_JOMRES_PROPERTYTYPE_FLAG_DESC","Czy jest to rodzaj oferty typu hotel gdzie można wynająć kilka pokoi, czy jest to oferta typu apartament gdzie można wynająć całość oferty? Jeśli oferta nie wiąże się się z rezerwacją zasobów w ofercie lub całej oferty, jeśli jest to np. rezerwacja/sprzedaż wycieczek, biletów to prosimy wybrać opcję Inny.");
+jr_define("_JOMRES_PROPERTYTYPE_FLAG_HOTEL","Hotel/Łóżko & Śniadanie/Pensjonat");
+jr_define("_JOMRES_PROPERTYTYPE_FLAG_VILLA","Apartament & Dom & Willa");
+jr_define("_JOMRES_PROPERTYTYPE_FLAG_NEITHER","Inny");
+jr_define("_JOMRES_PROPERTYTYPE_FLAG_BOTH","Zarówno"); // Wyboru tego nie będzie jeśli nie zostały zaktualizowane typy ofert
+jr_define("_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD","Hotel czy Willa?");
+jr_define("_JOMRES_ADDRESS_SANITY_CHECK","Musisz uzupełnić swoje dane adresowe, dzięki czemu klienci będą mogli Cię znaleźć, jeśli będą poszukiwać Twojej oferty.");
+jr_define("_JOMRES_ADDRESS_SANITY_CHECK_LINK","Aktualizacja adresu");
+jr_define("_JOMRES_FIELDS_HIGHLIGHTED_ARE_REQUIRED","Ups, wygląda na to, że nie wszystkie pola zostały uzupełnione.");
+jr_define("_JOMRES_MANAGER_HAS_NO_PROPERTIES","Błąd: Ten użytkownik jest skonfigurowany jako menadżer, ale nie został przypisany do żadnej z ofert.");
+jr_define("_JOMRES_CONTANT_US","Skontaktuj się z nami");
+jr_define("_JOMRES_NEW_PROPERTY_WELCOME_TITLE","Witamy na nowej aukcji online dla ");
+jr_define("_JOMRES_NEW_PROPERTY_WELCOME_1","Witamy i zapraszamy do nowej oferty na ");
+jr_define("_JOMRES_NEW_PROPERTY_WELCOME_2","Ostatnio dodano nowe oferty na naszej stronie internetowej, i chcielibyśmy serdecznie zaprosić do odwiedzin.");
+jr_define("_JOMRES_NEW_PROPERTY_WELCOME_3","Można zobaczyć nowy kokpit ");
+jr_define("_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT"," tutaj ");
+jr_define("_JOMRES_NEW_PROPERTY_WELCOME_4","Po skonfigurowaniu oferty można zobaczyć jak widzą ją odwiedzający witrynę przechodząc ");
+jr_define("_JOMRES_NEW_PROPERTY_WELCOME_4_LINKTEXT"," na stronę frontową.");
+jr_define("_JOMRES_NEW_PROPERTY_WELCOME_5","(Oferta nie jest jeszcze opublikowana i nie jest dostępna dla klientów.)");
+jr_define("_JOMRES_NEW_PROPERTY_WELCOME_6","W górnej części strony zobaczysz dostępne wiadomości. Przyciski widoczne obok tych wiadomości poprowadzą Cię do stron, które trzeba odwiedzić aby dodać i skonfigurować dane oferty. Podanie wszystkich danych ułatwi odnalezienie Twojej oferty w naszym serwisie i przyczyni się do zwiększenia ilości składanych rezerwacji online.");
+jr_define("_JOMRES_NEW_PROPERTY_WELCOME_7","Jeśli masz jakieś pytania, prosimy ");
+jr_define("_JOMRES_NEW_PROPERTY_WELCOME_7_LINKTEXT","skontaktuj się z nami");
+jr_define("_JOMRES_NEW_PROPERTY_WELCOME_8","z przyjemnością odpowiemy na wszystkie Twoje pytania.");
+jr_define("_JOMRES_NEW_PROPERTY_WELCOME_BYEBYE","Pozdrowienia załącza cały nasz zespół");
+jr_define("_JOMRES_JINTOUR_SANITY_CHECK","Wygląda, że nie zostały stworzone żadne profile sprzedaży ofert typu wycieczki czy biletów. Utwórz odpowiedni profil oferty a w kolejnym kroku wygeneruj przedmioty sprzedaży.");
+jr_define("_JOMRES_JINTOUR_SANITY_CHECK_LINK","Stwórzmy jakiś profil oferty!");
+jr_define('_JOMRES_COM_A_TARIFFS_SWAP','Położenie symbolu waluty');
+jr_define('_JOMRES_COM_A_TARIFFS_SWAP_DESC','Użyj tej opcji, aby skonfigurować położenie symbolu waluty, ustaw go przed kwotą lub po niej.');
+jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK','Facebook');
+jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC','Wprowadź swój identyfikator strony na Facebooku np. "moja-strona". Pole nie może być puste. Nie wprowadzaj https://www.facebook.com lub czegokolwiek innego.');
+jr_define('COMMON_DOWNLOAD','Pobierz');
+jr_define('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS_SRP','Dalej będzie trzeba dodać kilka taryf. Są to ceny podstawowe.');
+jr_define('_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV_SRP','Podtyp oferty');
+jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO_SRP','Podtyp oferty');
+jr_define('_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE','Bootstrap nie jest włączony!');
+jr_define('_JOMRES_BOOTSTRAP_OFF_WARNING','Uwaga: Nie masz włączonego Bootstrap w konfiguracji Jomres w zakładce Różne, aby włączyć <i>niektóre</i> funkcje Jomres. Aktualnie używasz starych szablonów opartych na jQuery UI, jednak te nie są wspierane już od kilku lat. Wszystkie obecnie rozwijane i ulepszane szablony Jomres (pliki układu graficznego) wykonane są w oparciu o Bootstrap 3. Aby uzyskać najlepsze wrażenia z Jomres radzimy zainstalować motyw oparty o Bootstrap 3 w WordPress i Joomla. Gdy już to zrobisz możesz włączyć szablony Jomres w konfiguracji komponentu.');
+jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS','Klucz wsparcia jest ważny. Zauważ, że ta licencja nie zezwala na pobieranie dodatków.');
+jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS_PLUGIN_MANAGER','Twoja licencja nie pozwala na pobieranie dodatków.');
