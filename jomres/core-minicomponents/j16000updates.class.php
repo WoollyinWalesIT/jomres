@@ -33,53 +33,77 @@ class j16000updates
 			return;
 			}
 		
-		$current_version_is_uptodate   = check_jomres_version();
+		// This is just to improve the user's experience. Users can remove this and attempt to upgrade, but then their Quickstart Only installation's plugins may not work with the newer version of Jomres.
+		jr_import( 'jomres_check_support_key' );
+		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=showplugins" );
+		$this->key_valid = $key_validation->key_valid;
 
+		
+		$current_version_is_uptodate   = check_jomres_version();
+$current_version_is_uptodate = false;
 		if (!$current_version_is_uptodate && !isset($_REQUEST['reviewseen']) && !isset($_REQUEST['version']) )
 			{
+
 			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.blockUI.js" );
 			
 			$output = array();
 			
-			jr_import( 'jomres_check_support_key' );
-			$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=showplugins" );
-			$this->key_valid = $key_validation->key_valid;
-			
-			if ($this->key_valid)
+			if ($key_validation->allows_plugins == "0" && $this->key_valid )
 				{
-				$output['THANKS'] = "Thank you for being a loyal client.";
-				$output['UPGRADING'] = "It has been a pleasure to serve you with your Jomres system.";
+
+				//JOMRES_SITEPAGE_URL_ADMIN.'&task=updates&reviewseen=1';
+				
+				$output['WARNING'] = "Your license doesn\'t allow you to download plugins!";
+				$output['UPGRADING'] = "If you upgrade Jomres your currently installed plugins may not work with the new version of Jomres.";
+				$output['PURCHASE'] = "If you want to upgrade, we recommend you purchase a Starter, Business or Enterprise license, which allows you to install and upgrade any plugin.";
+				$output['BUYNOW'] = "Buy now!";
+				
+				$output['REDIRECT1'] = "You will be able to continue the upgrade process in ";
+				$output['REDIRECT2'] = " seconds.";
+				$output['CONTINUE_URL'] = JOMRES_SITEPAGE_URL_ADMIN.'&task=updates&reviewseen=1';
+				
+				$pageoutput[]=$output;
+				
+				$tmpl = new patTemplate();
+				$tmpl->addRows( 'pageoutput', $pageoutput );
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+				$tmpl->readTemplatesFromInput( 'upgrade_warning.html' );
+				$tmpl->displayParsedTemplate();
 				}
 			else
 				{
-				$output['THANKS'] = "Thank you for upgrading Jomres.";
-				$output['UPGRADING'] = "You appear to be happy using the software that we\'ve worked long and hard on, that\'s great to see.";
+				if ($this->key_valid)
+					{
+					$output['THANKS'] = "Thank you for being a loyal client.";
+					$output['UPGRADING'] = "It has been a pleasure to serve you with your Jomres system.";
+					}
+				else
+					{
+					$output['THANKS'] = "Thank you for upgrading Jomres.";
+					$output['UPGRADING'] = "You appear to be happy using the software that we\'ve worked long and hard on, that\'s great to see.";
+					}
+				
+				if ( this_cms_is_wordpress() )
+					$output['REVIEW_URL'] = "You can leave a review on the <br/><a href=\'https://wordpress.org/support/view/plugin-reviews/jomres\' target=\'_blank\'>Wordpress Plugins site</a><br>";
+				else
+					$output['REVIEW_URL'] = "You can leave a review on the <br/><a href=\'http://extensions.joomla.org/extensions/extension/vertical-markets/booking-a-reservations/jomres\' target=\'_blank\'>Joomla extension directory</a><br>";
+					
+				$output['REVIEW_URL'] .= "Alternatively, you can leave a review with <br/><a href=\'http://www.capterra.com/reservations-software/reviews/134469/Jomres/Woollyinwales%20IT/new\' target=\'_blank\'>Capterra.</a><br>";
+				
+				$output['RATIONAL'] = "Good reviews are crucial in helping users to decide whether or not to invest time in researching a product such as Jomres. We\'d appreciate it if you could take a few minutes out of your day to share your thoughts of the system for the benefit of others. Without reviews helping to drive business to our site we can\'t pay the bills. If you\'ve already left a review then we thank you and hope you\'ll wait a few moments for the page to reload.";
+				$output['REDIRECT1'] = "You will be able to continue the upgrade process in ";
+				$output['REDIRECT2'] = " seconds.";
+
+				$output['CONTINUE_URL'] = JOMRES_SITEPAGE_URL_ADMIN.'&task=updates&reviewseen=1';
+
+				$pageoutput[]=$output;
+				
+				$tmpl = new patTemplate();
+				$tmpl->addRows( 'pageoutput', $pageoutput );
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+				$tmpl->readTemplatesFromInput( 'review_request.html' );
+				$tmpl->displayParsedTemplate();
 				}
-			
-			if ( this_cms_is_wordpress() )
-				$output['REVIEW_URL'] = "You can leave a review on the <br/><a href=\'https://wordpress.org/support/view/plugin-reviews/jomres\' target=\'_blank\'>Wordpress Plugins site</a><br>";
-			else
-				$output['REVIEW_URL'] = "You can leave a review on the <br/><a href=\'http://extensions.joomla.org/extensions/extension/vertical-markets/booking-a-reservations/jomres\' target=\'_blank\'>Joomla extension directory</a><br>";
-				
-			$output['REVIEW_URL'] .= "Alternatively, you can leave a review with <br/><a href=\'http://www.capterra.com/reservations-software/reviews/134469/Jomres/Woollyinwales%20IT/new\' target=\'_blank\'>Capterra.</a><br>";
-			
-				
-				
-			$output['RATIONAL'] = "Good reviews are crucial in helping users to decide whether or not to invest time in researching a product such as Jomres. We\'d appreciate it if you could take a few minutes out of your day to share your thoughts of the system for the benefit of others. Without reviews helping to drive business to our site we can\'t pay the bills. If you\'ve already left a review then we thank you and hope you\'ll wait a few moments for the page to reload.";
-			$output['REDIRECT1'] = "You will be able to continue the upgrade process in ";
-			$output['REDIRECT2'] = " seconds.";
-			
-			
-			$output['CONTINUE_URL'] = JOMRES_SITEPAGE_URL_ADMIN.'&task=updates&reviewseen=1';
-			
-			
-			$pageoutput[]=$output;
-			
-			$tmpl = new patTemplate();
-			$tmpl->addRows( 'pageoutput', $pageoutput );
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-			$tmpl->readTemplatesFromInput( 'review_request.html' );
-			$tmpl->displayParsedTemplate();
 			}
 			
 		else
