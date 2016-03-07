@@ -54,10 +54,10 @@ class j06000module_popup
 				$output['ROOM_TYPES'] = '';
 			
 			//property prices from
-			$price_output                = get_property_price_for_display_in_lists( $property_uid );
-			$output[ 'PRICE_PRE_TEXT' ]  = $price_output[ 'PRE_TEXT' ];
-			$output[ 'PRICE_PRICE' ]     = $price_output[ 'PRICE' ];
-			$output[ 'PRICE_POST_TEXT' ] = $price_output[ 'POST_TEXT' ];
+			//$price_output                = get_property_price_for_display_in_lists( $property_uid );
+			//$output[ 'PRICE_PRE_TEXT' ]  = $price_output[ 'PRE_TEXT' ];
+			//$output[ 'PRICE_PRICE' ]     = $price_output[ 'PRICE' ];
+			//$output[ 'PRICE_POST_TEXT' ] = $price_output[ 'POST_TEXT' ];
 			
 			//calendar
 			/*$this_task = get_showtime("task");
