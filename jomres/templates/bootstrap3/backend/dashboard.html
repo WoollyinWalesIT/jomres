@@ -154,7 +154,6 @@ jomresJquery(document).ready(function() {
 				{
 				if (startTime < checkin_time || endTime > checkout_time)
 					{
-					revertFunc();
 					return false;
 					}
 				}
@@ -162,7 +161,6 @@ jomresJquery(document).ready(function() {
 				{
 				if (startTime > checkin_time || endTime < checkout_time)
 					{
-					revertFunc();
 					return false;
 					}
 				}

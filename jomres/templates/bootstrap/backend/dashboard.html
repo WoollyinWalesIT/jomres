@@ -154,7 +154,6 @@ jomresJquery(document).ready(function() {
 				{
 				if (startTime < checkin_time || endTime > checkout_time)
 					{
-					revertFunc();
 					return false;
 					}
 				}
@@ -162,7 +161,6 @@ jomresJquery(document).ready(function() {
 				{
 				if (startTime > checkin_time || endTime < checkout_time)
 					{
-					revertFunc();
 					return false;
 					}
 				}
@@ -589,6 +587,15 @@ function reset_booking_modal() {
 </div>
 
 <div id="jomres_dashboard{PROPERTY_UID}"></div>
+
+<div id="jrCalendarTrash" class="row-fluid">
+	<div class="span12">
+		<div class="jr-calendar-trash">
+			<i class="fa fa-trash"></i> <span>Drag bookings to this area to cancel them</span>
+		</div>
+	</div>
+</div>
+
 <div>&nbsp;</div>
 <h5>{HLEGEND}</h5>
 <span class="label label-grey">{TEXT_PENDING}</span>
