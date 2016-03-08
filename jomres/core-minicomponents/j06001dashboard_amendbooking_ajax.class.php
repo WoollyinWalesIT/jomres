@@ -24,7 +24,12 @@ class j06001dashboard_amendbooking_ajax
 			$this->template_touchable=false; return;
 			}
 		
-		$property_uid = getDefaultProperty();
+		$property_uid = jomresGetParam($_GET, 'property_uid', 0);
+		if ( $property_uid == 0 )
+			$property_uid = getDefaultProperty();
+		
+		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		if ( !in_array( $property_uid, $thisJRUser->authorisedProperties ) ) return;
 		
 		$mrConfig = getPropertySpecificSettings( $property_uid );
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) return;
