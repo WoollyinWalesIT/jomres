@@ -24,7 +24,8 @@ class j06001dashboard_events_ajax {
 			}
 		
 		$property_uid = jomresGetParam($_GET, 'property_uid', 0);
-		if ( $property_uid == 0 ) return;
+		if ( $property_uid == 0 )
+			$property_uid = getDefaultProperty();
 		
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		if ( !in_array( $property_uid, $thisJRUser->authorisedProperties ) ) return;
