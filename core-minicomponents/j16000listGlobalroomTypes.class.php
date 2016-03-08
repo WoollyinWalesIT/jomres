@@ -58,6 +58,7 @@ class j16000listGlobalroomTypes
 		$output[ 'HRTTITLE' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV,false );
 		$output[ 'HRTDESCRIPTION' ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_DESC', _JOMRES_COM_MR_EB_ROOM_CLASS_DESC,false );
 		$output[ 'HJOMRES_A_ICON' ] = jr_gettext( '_JOMRES_A_ICON', _JOMRES_A_ICON,false );
+		$output[ 'HPTYPE_ASSIGNMENT' ] = jr_gettext( '_JOMRES_PROPERTY_TYPE_ASSIGNMENT', _JOMRES_PROPERTY_TYPE_ASSIGNMENT,false );
 
 		foreach ( $roomtypeList as $roomtype )
 			{
