@@ -19,7 +19,7 @@ class j06001dashboard_events_ajax {
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
-			{
+		{
 			$this->template_touchable=false; return;
 			}
 		
@@ -119,9 +119,9 @@ class j06001dashboard_events_ajax {
 					}
 				
 				if ((int)$c->black_booking == 1)
-					$url=JOMRES_SITEPAGE_URL_NOSEF.'&task=viewBlackBooking&contract_uid='.$c->contract_uid;
+					$url=JOMRES_SITEPAGE_URL_NOSEF.'&task=viewBlackBooking&contract_uid='.$c->contract_uid.'&thisProperty='.$property_uid;
 				else
-					$url=JOMRES_SITEPAGE_URL_NOSEF.'&task=editBooking&contract_uid='.$c->contract_uid;
+					$url=JOMRES_SITEPAGE_URL_NOSEF.'&task=editBooking&contract_uid='.$c->contract_uid.'&thisProperty='.$property_uid;
 				
 				$date_elements = explode( "/", $today );
 				$unixToday     = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
