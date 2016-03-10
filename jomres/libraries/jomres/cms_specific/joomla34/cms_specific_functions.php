@@ -28,10 +28,14 @@ function jomres_cmsspecific_getsessionid()
 	}
 
 // Date is sent in format YYYY/mm/dd, e.g. 2013/
+// Date is sent in format YYYY/mm/dd, e.g. 2013/
 function jomres_cmsspecific_output_date( $date, $format = false )
 	{
-	if ( !$format ) $format = JText::_( 'DATE_FORMAT_LC' );
-	$result = JHTML::_( 'date', $date, $format );
+	if ( !$format ) 
+		$format = JText::_( 'DATE_FORMAT_LC' );
+
+	$d = new DateTime($date);
+	$result = $d->format($format);
 
 	return $result;
 	}
