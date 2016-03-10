@@ -40,7 +40,10 @@ class j16000updates
 
 		
 		$current_version_is_uptodate   = check_jomres_version();
-
+		
+		// Currently disabling the review request popup.
+		$_REQUEST['reviewseen'] = 1;
+		
 		if (!$current_version_is_uptodate && !isset($_REQUEST['reviewseen']) && !isset($_REQUEST['version']) )
 			{
 
