@@ -2539,9 +2539,22 @@ class patTemplate
 	function _handleUnusedVars( $template )
 		{
 		$regexp = '/([^\\\])(' . $this->_startTag . '[^a-z]+[^\\\]' . $this->_endTag . ')/U';
+		$language_constant_regexp = '/(' . $this->_startTag . '__[^a-z]+[^\\\]' . $this->_endTag . ')/U';
+		
+		$this->_templates[ $template ][ 'result' ] = 
+			preg_replace_callback($language_constant_regexp, function($match) 
+				{
+				$data=str_replace( array ("{","}","\n","\r","\t" ),"",$match[0]);
+				$data=substr($data, 2);
+				$result = jr_gettext( $data, $data ,false, false );
+				if (trim($result) != $data)
+					return $result;
+				else
+					return $match[0];
+				}, $this->_templates[ $template ][ 'result' ]); 
 
 		switch ( $this->_templates[ $template ][ 'attributes' ][ 'unusedvars' ] )
-		{
+			{
 			case 'comment':
 				$this->_templates[ $template ][ 'result' ] = preg_replace( $regexp, '<!-- \\1\\2 -->', $this->_templates[ $template ][ 'result' ] );
 				break;
@@ -2556,8 +2569,9 @@ class patTemplate
 			default:
 				$this->_templates[ $template ][ 'result' ] = preg_replace( $regexp, '\\1' . $this->_templates[ $template ][ 'attributes' ][ 'unusedvars' ], $this->_templates[ $template ][ 'result' ] );
 				break;
-		}
+			}
 
+			
 		// replace quoted variables
 		$regexp                                    = '/[\\\]' . $this->_startTag . '([^a-z]+)[\\\]' . $this->_endTag . '/U';
 		$this->_templates[ $template ][ 'result' ] = preg_replace( $regexp, $this->_startTag . '\\1' . $this->_endTag, $this->_templates[ $template ][ 'result' ] );
