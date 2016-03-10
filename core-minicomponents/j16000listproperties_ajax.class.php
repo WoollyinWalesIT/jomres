@@ -206,6 +206,7 @@ class j16000listproperties_ajax
 
 				$url = jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=dashboard&thisProperty=" . $p->propertys_uid . "&tmpl=" . get_showtime('tmplcomponent') );
 				$toolbar->addItem( 'fa fa-tachometer', 'btn btn-info', '', $url, jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', _JOMRES_FRONT_MR_MENU_ADMIN_HOME, false ), false, 'target="_blank"' );
+				$toolbar->addSecondaryItem( 'fa fa-tachometer', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_property_reviews&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_REVIEWS', _JOMRES_REVIEWS, false ) );
 				
 				$r[]=$toolbar->getToolbar();
 				}
