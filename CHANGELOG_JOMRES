@@ -1,4 +1,16 @@
+<h3>Jomres 9.6.1 10/03/2016</h3>
 
+<span class="label label-success">Feature</span> Added new functionality that allows us to add any Jomres definition to any template without declaring it in the calling script.
+
+<span class="label label-warning">Change</span> Removed price from module popup contents as it's in the header.
+<span class="label label-warning">Change</span> Added language support to new dashboard functionality.
+<span class="label label-warning">Change</span> Removed a hard coded string from the list room types template.
+<span class="label label-warning">Change</span> Modified dashboard scripts so that more dashboards can be used on the same page.
+<span class="label label-warning">Change</span> Changed how date is output due to a bug in Joomla's functionality.
+<span class="label label-warning">Change</span> Modified admin list properties to add link to reviews page for a property.
+<span class="label label-warning">Change</span> Review requests removed from Administrator area.
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue in the new dashboard with a function not being defined.
 
 <h3>Jomres 9.6.0 03/03/2016</h3>
 
