@@ -25,7 +25,11 @@ class j16000purchase_plugins
 
 			return;
 			}
-
+		
+		jr_import("jomres_check_support_key");
+		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=showplugins" );
+		$key_validation->remove_plugin_licenses_file();
+		
 		$items    = jomresGetParam( $_REQUEST, 'items', '' );
 		$username = jomresGetParam( $_REQUEST, 'username', '' );
 		$password = jomresGetParam( $_REQUEST, 'password', '' );
@@ -37,25 +41,13 @@ class j16000purchase_plugins
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 
-		if ( !isset( $jrConfig[ 'license_server_username' ] ) )
-			{
-			$query  = "INSERT INTO #__jomres_site_settings (`akey`,`value`) VALUES ('license_server_username','" . $username . "'),('license_server_password','" . $password . "')";
-			$result = doInsertSql( $query, '' );
-			}
-		else
-			{
-			$query  = "UPDATE #__jomres_site_settings SET `value`='" . $username . "' WHERE `akey`='license_server_username'";
-			$result = doInsertSql( $query, '' );
-			$query  = "UPDATE #__jomres_site_settings SET `value`='" . $password . "' WHERE `akey`='license_server_password'";
-			$result = doInsertSql( $query, '' );
-			}
-
-
+		saveSiteConfig( array( "license_server_username"=>$username , "license_server_password" => $password ) );
+		
 		$request  = "request=create_invoice&username=" . $username . "&password=" . $password . "&items=" . $items;
 		$response = query_shop( $request );
 		if ( $response->success )
 			{
-			$output[ 'MESSAGE' ] = "Thank you for your purchase, a link to the invoice has been created and emailed to you. Alternatively, you can log in below to purchase. Once you select a payment method the frame will be removed.<br/> When the invoice has been paid you will be able to use the Jomres Plugin Manager to install the plugin(s). If you have ordered only free plugins then no invoice will be created, but you will be able to install them through the plugin manager.";
+			$output[ 'MESSAGE' ] = "Thank you for your purchase, a link to the invoice has been created and emailed to you. When the invoice has been paid you will be able to use the Jomres Plugin Manager to install the plugin(s). If you have ordered only free plugins then no invoice will be created, but you will be able to install them through the plugin manager.";
 			$template            = 'purchase_success.html';
 			}
 		else

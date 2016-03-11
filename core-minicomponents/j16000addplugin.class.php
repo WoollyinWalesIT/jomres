@@ -56,6 +56,34 @@ class j16000addplugin
 		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=addplugin&no_html=1&plugin=" . $pluginName ."&hostname=".get_showtime('live_site'), true );
 		$this->key_valid = $key_validation->key_valid;
 
+		if (!$this->key_valid)
+			{
+			$current_licenses = array ();
+			if ( count($key_validation->plugin_licenses) > 0 )
+				{
+				foreach ($key_validation->plugin_licenses as $key=>$val)
+					{
+					if ($val['status'] == 1)
+						$current_licenses[ $key ] = $val['key'];
+					}
+				}
+			}
+		
+		$user_allowed_to_download = false;
+		if ($this->key_valid)
+			{
+			$user_allowed_to_download = true;
+			$key_to_send = $key_validation->key_hash;
+			}
+		else
+			{
+			if (array_key_exists($pluginName,$current_licenses))
+				{
+				$user_allowed_to_download = true;
+				$key_to_send = $current_licenses[$pluginName];
+				}
+			}
+
 		if ( $thirdparty )
 			{
 			$formElement = $_FILES[ 'pluginfile' ];
@@ -197,7 +225,7 @@ class j16000addplugin
 			}
 		else
 			{
-			if ( $this->key_valid )
+			if ( $user_allowed_to_download )
 				{
 				if ( !mkdir( $remote_pluginsDirPath . $pluginName . JRDS ) )
 					{
@@ -209,10 +237,11 @@ class j16000addplugin
 				$newfilename          = $updateDirPath . $pluginName . ".vnw";
 
 				$p                    = '';
-				if ( isset( $_REQUEST[ 'plugin' ] ) ) $p = "&plugin=" . $pluginName;
+				if ( isset( $_REQUEST[ 'plugin' ] ) ) 
+					$p = "&plugin=" . $pluginName;
 
-				$queryServer = "http://plugins.jomres4.net/index.php?r=gp&cms=" . _JOMRES_DETECTED_CMS . "&vnw=1&key=" . $key_validation->key_hash . $p . "&jomresver=" . $mrConfig[ 'version' ]."&hostname=".get_showtime('live_site');
-//echo $queryServer;exit;
+				$queryServer = "http://plugins.jomres4.net/index.php?r=gp&cms=" . _JOMRES_DETECTED_CMS . "&vnw=1&key=" . $key_to_send . $p . "&jomresver=" . $mrConfig[ 'version' ]."&hostname=".get_showtime('live_site');
+
 				$progress_messages[ ] = array ( "MESSAGE" => $queryServer );
 
 				$curl_handle = curl_init( $queryServer );
@@ -255,6 +284,11 @@ class j16000addplugin
 				fclose( $file_handle );
 				curl_close( $curl_handle ); // Deliberate due to one version of PHP requiring you to close the curl handle twice ( 5.2-ish IIRC )
 				fclose( $file_handle );
+				}
+			else
+				{
+				echo "Oops, that key isn't valid";
+				return;
 				}
 			}
 

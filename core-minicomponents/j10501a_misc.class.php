@@ -81,6 +81,21 @@ class j10501a_misc
 		$configurationPanel->setmiddle( '<input type="password" class="input-xlarge" name="cfg_licensekey" value="' . $jrConfig[ 'licensekey' ] . '" /><br/>'.' '.$support_key_status.' '.$support_key_owner.' '.$support_key_expires.' '.$renewal_link );
 		$configurationPanel->setright( jr_gettext( _JOMRES_SUPPORTKEY_DESC, '_JOMRES_SUPPORTKEY_DESC', false ).' '.$support_key_message ."<a href='http://www.jomres.net/manual/installation-and-upgrading/322-after-installation-hostname-restrictions' target='_blank' >More info</a> ");
 		$configurationPanel->insertSetting();
+
+		jr_import( 'jomres_check_support_key' );
+		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=showplugins" );
+		if ($key_validation->shop_status == "OPEN" )
+			{
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_LICENSESERVER_USERNAME', _JOMRES_LICENSESERVER_USERNAME, false ) );
+			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_license_server_username" value="' . $jrConfig[ 'license_server_username' ] . '" />' );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_LICENSESERVER_USERNAME_DESC', _JOMRES_LICENSESERVER_USERNAME_DESC, false ) );
+			$configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_LICENSESERVER_PASSWORD', _JOMRES_LICENSESERVER_PASSWORD, false ) );
+			$configurationPanel->setmiddle( '<input type="password" class="input-large" name="cfg_license_server_password" value="' . $jrConfig[ 'license_server_password' ] . '" />' );
+			$configurationPanel->setright( );
+			$configurationPanel->insertSetting();
+			}
 		
 		/*
 		Not currently enabled 23/11/2015
