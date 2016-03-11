@@ -2,7 +2,8 @@
 	<script type="text/javascript">
 		<!--
 		var plugins_to_upgrade = '{PLUGINS_TO_UPGRADE}';
-
+		var ajax_url = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}';
+		
 		function upgrade_core_plugins(){
 			jomresJquery.blockUI({ 
 			message: '<h3>Upgrading plugins, please wait, this may take a few minutes depending on internet speed.</h3><br/> The page will reload when the plugins have been updated, but it is important that you do not interrupt the process.',
@@ -61,6 +62,86 @@
 				building a portal, and if you have upgraded from v4 you should consider installing those plugins to
 				continue working as before.</p>
 		</patTemplate:tmpl>
+		
+		<patTemplate:tmpl name="bronze_users" type="simpleCondition" requiredVars="license_server_username">
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#shopping_cart">
+			Show cart
+		</button>
+
+		<div id="license_server_account_details" class="modal hide fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h3 id="cart_label">Your cart</h3>
+				</div>
+				<div class="modal-body">
+					<div id="username_input" >
+						
+						<p class="small">Before you can purchase plugins, you need a Username and Password, which you can get by registering for free at <a href="https://license-server.jomres.net/index.php?cmd=register" target="_blank">Jomres.net</a>.<br/> If you already have a username and password please enter them here. When you've done that, click the Purchase Plugins! button.</p>
+						
+						<form class="form-inline">
+							<fieldset>
+								<div class="control-group">
+									<label class="control-label" for="name">License server Username</label>
+									<div class="controls">
+										<input class="input-medium" type="text" id="license_server_username" name="name" value="{LICENSE_SERVER_USERNAME}" placeholder="Your username" required autofocus/>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="country_name">License server Password</label>
+									<div class="controls">
+										<input class="input-large" type="password" id="license_server_password" name="password" value="{LICENSE_SERVER_PASSWORD}" required/>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+						<p class="small">Once you have paid your invoice, Jomres will automatically offer you an installation link next to your purchased plugin(s), click that link to install the plugin(s).</p><br />
+						<p class="small">Note that purchase of a plugin download does not entitle you to support for Jomres, only for the purchased plugin.</p><br />
+						
+					</div>
+				</div>
+				<div class="modal-footer">
+				<button class="btn btn-primary" id="purchase_button" onClick="sumbint();">Purchase plugins!</button>
+				</div>
+			</div>
+		</div>
+		
+
+		<div id="shopping_cart" class="modal hide fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h3 id="cart_label">Your cart</h3>
+				</div>
+				<div class="modal-body">
+					<div id="cart_wrapper">
+						<div class="row-fluid">
+							<div class="span9">
+								<h3>Total &pound;<span id="total"></span></h3>
+							</div>
+							<div class="span3">
+								<h3 class="page-header"><img src = "{LIVE_SITE}/jomres/images/cart_red_transparent.png"/>Your shopping cart</h3>
+							</div>
+						</div>
+
+						<div id="cart" class="well"></div>
+						
+						<p class="alert alert-info">Prices do not include VAT. If you are liable to pay VAT this will show on your invoice once you have placed your order.</p>
+						<p class="alert alert-warning">Note, if you have a Jomres Starter, Business or Enterprise license number you don't need to fill these fields, instead please make sure you've entered it in the <i>Site Configuration -> Misc tab -> Support key</i> field, otherwise you will not be able to download plugins that you are entitled to.</p>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="purchase" class="btn btn-primary" onClick="purchase();">Order plugin(s)</button>
+				</div>
+			</div>
+		</div>
+		
+		<div id="hidden_inputs"  class="hide"></div>
+		</patTemplate:tmpl>
+		
+
+	
 		</div>
 		<div class="span3">
 			<h3 class="page-header">Legend</h3>
@@ -102,6 +183,7 @@
 						<th></th>
 						<th>Add/reinstall/upgrade plugin</th>
 						<th>Remove plugin</th>
+						<th>{HPLUGINPRICE}</th>
 					</tr>
 					<patTemplate:tmpl name="jomresdotnet_plugins" unusedvars="strip">
 					<tr>
@@ -112,6 +194,7 @@
 						</td>
 						<td>{INSTALL} {LATERVERSION}</td>
 						<td>{UNINSTALL}</td>
+						<td>{ADD_TO_CART_BUTTON}</td>
 					</tr>
 					<!-- Modal -->
 					<div id="modal_trigger_{PLUGIN_NAME}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

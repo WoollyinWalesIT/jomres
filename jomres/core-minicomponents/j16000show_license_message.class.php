@@ -20,6 +20,8 @@ class j16000show_license_message
 		jr_import( 'minicomponent_registry' );
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		
+		return;
+		
 		if ( $MiniComponents->template_touch )
 			{$this->template_touchable = false;return;}
 

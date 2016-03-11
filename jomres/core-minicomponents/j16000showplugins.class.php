@@ -18,13 +18,9 @@ class j16000showplugins
 	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		if ( function_exists( 'jr_import' ) )
-			{
-			jr_import( 'minicomponent_registry' );
-			$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-			}
-		else
-		global $MiniComponents;
+		jr_import( 'minicomponent_registry' );
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+
 		if ( isset( $_REQUEST[ 'purchase' ] ) )
 			{
 			$items    = "&items=" . jomresGetParam( $_REQUEST, 'items', '' );
@@ -75,27 +71,6 @@ class j16000showplugins
 		jr_import( 'jomres_check_support_key' );
 		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=showplugins" );
 		$this->key_valid = $key_validation->key_valid;
-		if ($key_validation->allows_plugins == "0" && $this->key_valid )
-			{
-			$output=array();
-			$pageoutput=array();
-			
-			$output['TITLE'] =jr_gettext( "_JOMRES_ERROR" , _JOMRES_ERROR , false , false );
-			$output['MESSAGE'] = jr_gettext( "_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS_PLUGIN_MANAGER" , _JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS_PLUGIN_MANAGER , false , false );
-
-			$pageoutput[ ] = $output;
-			$tmpl          = new patTemplate();
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-			$tmpl->addRows( 'pageoutput', $pageoutput );
-			$tmpl->addRows( 'plugins_require_upgrade', $plugins_require_upgrade );
-			$tmpl->readTemplatesFromInput( 'plugin_manager_noplugins_error.html' );
-			$tmpl->displayParsedTemplate();
-			return;
-			}
-
-
-
-		//$this->key_valid = false; // for testing
 
 		$developer_user = false;
 
@@ -110,14 +85,12 @@ class j16000showplugins
 			}
 		else
 			{
-			$request  = "request=get_license_numbers&username=" . $jrConfig[ 'license_server_username' ] . "&password=" . $jrConfig[ 'license_server_password' ];
-			$response = query_shop( $request );
-
-			if ( $response->success )
+			if ( count($key_validation->plugin_licenses) > 0 )
 				{
-				foreach ( $response->licenses as $license )
+				foreach ($key_validation->plugin_licenses as $key=>$val)
 					{
-					$current_licenses[ $license->name ] = $license->license_key;
+					if ($val['status'] == 1)
+						$current_licenses[ $key ] = $val['key'];
 					}
 				}
 			}
@@ -128,7 +101,8 @@ class j16000showplugins
 		foreach ( $rp_array as $rp )
 			{
 			$price_known = true;
-			if ( !isset( $rp->price ) ) $price_known = false;
+			if ( !isset( $rp->price ) ) 
+				$price_known = false;
 
 			$remote_plugins[trim( jomres_sanitise_string( @$rp->name ) ) ] = array ( 
 					"name" => trim( jomres_sanitise_string( @$rp->name ) ), 
@@ -303,11 +277,11 @@ class j16000showplugins
 		$retired_plugins = array();
 		
 		$output[ 'HPLUGINPRICE' ] = '';
-		if ( !$developer_user )
+		if ( !$developer_user && $key_validation->shop_status == "OPEN" )
 			{
-			$output[ 'HPLUGINPRICE' ] = "Plugin price<br/>(Click to add to your cart)";
+			$output[ 'HPLUGINPRICE' ] = "Plugin price";
 			}
-				
+
 		foreach ( $remote_plugins as $rp )
 			{
 			$r = array ();
@@ -381,20 +355,12 @@ class j16000showplugins
 
 			$style = "";
 
+			
 			if ( $rp[ 'price' ] == 0 && $row_class == '' )
 				{
-				if ( !using_bootstrap() )
-					{
-					$row_class = '';
-					// $style = 'style="border-style:solid;border-color:#00ff00;border-width:1px;" '; // Shop now disabled
-					$style = '';
-					}
-				else
-					{
-					//$row_class='freeplugin'; // Shop now disabled
-					$row_class = '';
-					$style     = '';
-					}
+				//$row_class='freeplugin'; // Shop now disabled
+				$row_class = '';
+				$style     = '';
 				}
 
 			$r[ 'MANUAL_LINK' ]  = '';
@@ -456,7 +422,7 @@ class j16000showplugins
 			elseif ( $current_major_version >= $min_major_version && $current_minor_version > $min_minor_version ) $condition = 1;
 			elseif ( $current_major_version > $min_major_version ) $condition = 1;
 			else
-			$condition = 0;
+				$condition = 0;
 
 			if ( $condition == 1 ) 
 				$r[ 'LATERVERSION' ] = "";
@@ -476,43 +442,38 @@ class j16000showplugins
 			if ($rp[ 'retired' ])
 				$r[ 'INSTALL' ] = '';
 
-			$r[ 'PRICE' ] = $rp[ 'price' ];
-			if ( !array_key_exists( $rp[ 'name' ], $installed_plugins ) && !array_key_exists( $rp[ 'name' ], $current_licenses ) )
+			if ( $key_validation->shop_status == "OPEN" )
 				{
-				if ( $rp[ 'price' ] == 0 )
+				if (!is_null($rp[ 'price' ]))
 					{
-					$rp[ 'price' ] = 0.00;
-					}
-				$r[ 'PRICE' ]    = $rp[ 'price' ];
-				$r[ 'ADD_TEXT' ] = "Add to cart";
-				}
-
-			if ( ( array_key_exists( $rp[ 'name' ], $installed_plugins ) || array_key_exists( $rp[ 'name' ], $current_licenses ) ) || $developer_user )
-				{
-				$r[ 'PRICE' ]              = '';
-				$r[ 'ADD_TEXT' ]           = "";
-				$r[ 'ADD_TO_CART_BUTTON' ] = "";
-				}
-			else
-				{
-				//if ( (float) $r[ 'PRICE' ] > 0 )
-				//	{
-					if ( using_bootstrap() )
+					if ( !array_key_exists( $rp[ 'name' ], $current_licenses ) )
 						{
-						$btn_emphasis = "btn-success";
-						if ( $r[ 'PRICE' ] == 0 ) 
-							$btn_emphasis = "btn-info";
-
-						$r[ 'ADD_TO_CART_BUTTON' ] = '<button id="' . $r[ 'PLUGIN_NAME' ] . '" class="btn ' . $btn_emphasis . '" onClick="addToCart(\'' . $r[ 'PLUGIN_NAME' ] . '\',\'' . $r[ 'PRICE' ] . '\');">&pound;' . number_format( $r[ 'PRICE' ], 2 ) . '</button>';
+						if ( $rp[ 'price' ] == 0 )
+							{
+							$rp[ 'price' ] = 0.00;
+							}
+						if ($rp[ 'price' ] == 0.00)
+							$text = "Free!";
+						else
+							$text = "&pound;".number_format($rp[ 'price' ], 2 );
+						$r[ 'ADD_TO_CART_BUTTON' ] = '<button class="btn btn-success" id="' . $r[ 'PLUGIN_NAME' ] . '" class="btn ' . $btn_emphasis . '" onClick="addToCart(\'' . $r[ 'PLUGIN_NAME' ] . '\',\'' . $rp[ 'price' ] . '\');">' . $text . '</button>';
 						}
 					else
 						{
-						$r[ 'ADD_TO_CART_BUTTON' ] = '<button id="' . $r[ 'PLUGIN_NAME' ] . '" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\'' . $r[ 'PLUGIN_NAME' ] . '\',\'' . $r[ 'PRICE' ] . '\');" >&pound;' . number_format( $r[ 'PRICE' ], 2 ) . '</button>';
+						$r[ 'ADD_TO_CART_BUTTON' ] = '&pound;' . number_format( $rp[ 'price' ], 2 ). " Thank you! " ;
 						}
-				//	}
-				//else
-				//	$r[ 'ADD_TO_CART_BUTTON' ] = 'Price unknown, unable to query remote server.';
+					}
+				else
+					{
+					$r[ 'ADD_TO_CART_BUTTON' ] = "Not for sale" ;
+					
+					}
 				}
+			else
+				{
+				$r[ 'ADD_TO_CART_BUTTON' ] = "" ;
+				}
+				
 
 			if ( using_bootstrap() )
 				{
@@ -572,7 +533,8 @@ class j16000showplugins
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'bronze_users', $bronze_users );
+		if ( $key_validation->shop_status == "OPEN" )
+			$tmpl->addRows( 'bronze_users', $bronze_users );
 		$tmpl->addRows( 'thirdpartyplugins', $thirdpartyplugins );
 		$tmpl->addRows( 'jomresdotnet_plugins', $jomresdotnet_plugins );
 		$tmpl->addRows( 'plugins_require_upgrade', $plugins_require_upgrade );

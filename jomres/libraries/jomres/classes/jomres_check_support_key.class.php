@@ -31,9 +31,101 @@ class jomres_check_support_key
 		if ($_REQUEST['task'] == "site_settings" || $_REQUEST['task'] == "showplugins" || $_REQUEST['task'] == "addplugin" )
 			$this->force_check = true;
 		
-		$this->check_license_key(  );
+		if ( function_exists( "curl_init" ) )
+			{
+			$this->get_shop_status();
+			
+			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+			$jrConfig   = $siteConfig->get();
+			$this->license_server_username = $jrConfig[ 'license_server_username' ];
+			$this->license_server_password = $jrConfig[ 'license_server_password' ];
+			
+			if ( trim($this->license_server_username) != "" && trim($this->license_server_password) != "")
+				{
+				$this->user_plugin_license_temp_file_name = "user_plugin_licenses.php";
+				$this->remote_get_all_user_plugin_licenses();
+				$this->get_user_plugin_licenses();
+				}
+				
+			$this->check_license_key(  );
+			}
 		}
+	
+	function get_shop_status()
+		{
+		$request  = "request=shop_status";
+		$response = query_shop( $request );
+		$this->shop_status = $response->status;
+		}
+	
+	function remove_plugin_licenses_file()
+		{
+		unlink(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $this->user_plugin_license_temp_file_name );
+		}
+	
+	function remote_get_all_user_plugin_licenses()
+		{
+		$current_licenses = array ();
+		
+		$request  = "request=get_license_numbers_for_user&username=" . $this->license_server_username . "&password=" . $this->license_server_password;
+		$response = query_shop( $request );
 
+		if ( $response->success )
+			{
+			foreach ( $response->licenses as $license )
+				{
+				$current_licenses[ $license->name ] = array ( "key" => $license->license_key , "status" =>$license->status) ;
+				}
+			}
+		
+		if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $this->user_plugin_license_temp_file_name))
+			{
+			$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $this->user_plugin_license_temp_file_name);
+			$seconds_timediff = time() - $last_modified;
+			if ( $seconds_timediff > 60 ) 
+				{
+				unlink(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $this->user_plugin_license_temp_file_name );
+				}
+			else
+				{
+				include_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $this->user_plugin_license_temp_file_name );
+				}
+			}
+
+		if ( !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $this->user_plugin_license_temp_file_name) )
+			{
+			$str = '';
+			if (count($current_licenses)>0)
+				{
+				foreach ($current_licenses as $key=>$val)
+					{
+
+					$str .= '$current_licenses["'.$key.'"] = array ( "key" => "'.$val['key'].'" , "status" => "'.$val['status'].'" );
+';
+					}
+				}
+			else
+				{
+				$str = ' // No current licenses
+					';
+				}
+ 			$lic_data = '<?php
+defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
+function plugin_licenses () {
+$current_licenses = array();
+'.$str .'
+return $current_licenses;
+}'; 
+			file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "user_plugin_licenses.php", $lic_data);
+			}
+		}
+	
+	function get_user_plugin_licenses()
+		{
+		include_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $this->user_plugin_license_temp_file_name );
+		$this->plugin_licenses = plugin_licenses();
+		}
+	
 	function check_license_key(  )
 		{
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
@@ -99,40 +191,4 @@ $license_data->allows_plugins = "'.$license_data->allows_plugins.'";
 			$this->allows_plugins		= $license_data->allows_plugins;
 			}
 		}
-	
-	
-	function show_key_input()
-		{
-		?>
-		<center>
-			<form action="<?php echo $this->task; ?>" method="post">
-				<div class="jomresinstaller_panel">
-					Please enter your support number in the following field.<br/>
-					<input class="inputbox" type="text" name="support_key" value="" size="35"/>
-				</div>
-				<button name="combo" type="submit" value="0"><strong>Save support key</strong></button>
-			</form>
-		</center>
-		<?php
-		}
-
-	function save_key( $return_url )
-		{
-		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig	= $siteConfig->get();
-		
-		$jrConfig['licensekey'] = trim( $_REQUEST[ 'support_key' ] );
-		
-		file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php', 
-'<?php
-##################################################################
-defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
-##################################################################
-
-$jrConfig = ' . var_export($jrConfig, true) . ';
-');
-
-		return true;
-		}
-
 	}
