@@ -63,7 +63,6 @@ function purchase() {
 
 function sumbint() //Deliberate typo
 {
-	original_url = window.location.href;
 	var items = '';
 	var username_str = "&username=" + jomresJquery("#license_server_username").val() + "&";
 	var password_str = "&password=" + jomresJquery("#license_server_password").val() + "&";
