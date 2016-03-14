@@ -77,6 +77,7 @@ class j06000media_centre
 			$output['URL_CONTEXT']                                      = $upload_context [ 'url_context' ];
 			$output['ALLOWED_FILE_TYPES']                               = $upload_context [ 'allowed_file_types' ];
 			$output['_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL']           = jr_gettext( '_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL', _JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL, false );
+			$output['HUPLOAD_FORM']							           	= jr_gettext( '_JOMRES_UPLOAD_IMAGE', _JOMRES_UPLOAD_IMAGE, false );
 			
 			
 			if (!jomres_cmsspecific_areweinadminarea())
