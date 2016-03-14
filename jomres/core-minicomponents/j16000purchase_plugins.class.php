@@ -35,27 +35,30 @@ class j16000purchase_plugins
 		$password = jomresGetParam( $_REQUEST, 'password', '' );
 		if ( $username == "" || $password == "" )
 			{
-			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=showplugins' ), "Error, you didn't enter your jomres.net username or password" );
-			exit;
-			}
-		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig   = $siteConfig->get();
-
-		saveSiteConfig( array( "license_server_username"=>$username , "license_server_password" => $password ) );
-		
-		$request  = "request=create_invoice&username=" . $username . "&password=" . $password . "&items=" . $items;
-		$response = query_shop( $request );
-		if ( $response->success )
-			{
-			$output[ 'MESSAGE' ] = "Thank you for your purchase, a link to the invoice has been created and emailed to you. When the invoice has been paid you will be able to use the Jomres Plugin Manager to install the plugin(s). If you have ordered only free plugins then no invoice will be created, but you will be able to install them through the plugin manager.";
-			$template            = 'purchase_success.html';
+			$output[ 'MESSAGE' ] = "Sorry, you didn't enter your username and/or your password.";
+			$template            = 'purchase_failure.html';
 			}
 		else
 			{
-			$output[ 'MESSAGE' ] = "Sorry, there was a problem creating the invoice, please press the back button in your browser and choose your plugins again, then double check your License Server username and password are correct.";
-			$template            = 'purchase_failure.html';
-			}
+			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+			$jrConfig   = $siteConfig->get();
 
+			saveSiteConfig( array( "license_server_username"=>$username , "license_server_password" => $password ) );
+			
+			$request  = "request=create_invoice&username=" . $username . "&password=" . $password . "&items=" . $items;
+			$response = query_shop( $request );
+			if ( $response->success )
+				{
+				$output[ 'MESSAGE' ] = "Thank you for your purchase, a link to the invoice has been created and emailed to you. When the invoice has been paid you will be able to use the Jomres Plugin Manager to install the plugin(s). If you have ordered only free plugins then no invoice will be created, but you will be able to install them through the plugin manager.";
+				$template            = 'purchase_success.html';
+				}
+			else
+				{
+				$output[ 'MESSAGE' ] = "Sorry, there was a problem creating the invoice, please press the back button in your browser and choose your plugins again, then double check your License Server username and password are correct.";
+				$template            = 'purchase_failure.html';
+				}
+			}
+		
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
