@@ -81,6 +81,21 @@ class j06005cancelGuestBooking
 
 					$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 					$current_property_details->gather_data( $property_uid );
+					
+					//update invoice details (set as cancelled)
+					$query = "SELECT id FROM #__jomresportal_invoices 
+								WHERE contract_id = " . (int) $contract_uid . " 
+								LIMIT 1
+								";
+					$invoice_uid = doSelectSql( $query, 1 );
+					if ( $invoice_uid > 0 )
+						{
+						jr_import( "jrportal_invoice" );
+						$invoice = new jrportal_invoice();
+						$invoice->id = $invoice_uid;
+						$invoice->getInvoice();
+						$invoice->mark_invoice_cancelled();
+						}
 
 					$query     = "SELECT email,firstname,surname FROM #__jomres_guests WHERE guests_uid = " . $guest_uid . " LIMIT 1";
 					$guestData = doSelectSql( $query, 2 );
