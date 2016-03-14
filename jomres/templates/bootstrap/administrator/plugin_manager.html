@@ -48,8 +48,10 @@
 	<h2 class="page-header">{PAGETITLE}</h2>
 	<style>
 	.modal-body {
-		max-height: 800px;
+		max-height: 600px;
+		overflow-y: auto;
 		}
+		
 	</style>
 
 	<div class="row-fluid">
@@ -65,9 +67,12 @@
 		
 		<patTemplate:tmpl name="bronze_users" type="simpleCondition" requiredVars="license_server_username">
 		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#shopping_cart">
-			Show cart
+			Plugin Shop cart
 		</button>
-
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#shop_information">
+			Plugin Shop T&C
+		</button>
+		
 		<div id="license_server_account_details" class="modal hide fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-header">
@@ -76,8 +81,10 @@
 				</div>
 				<div class="modal-body">
 					<div id="username_input" >
+					
+						<p class="alert alert-info">Before you can purchase plugins, you need a Username and Password, which you can get by registering for free at Jomres.net.<br/> If you already have a username and password please enter them here. When you've done that, click the Purchase Plugins! button.</p>
+						<p><a href="https://license-server.jomres.net/index.php?cmd=register" target="_blank" class="btn btn-primary">Register here if you haven't already</a></p>
 						
-						<p class="small">Before you can purchase plugins, you need a Username and Password, which you can get by registering for free at <a href="https://license-server.jomres.net/index.php?cmd=register" target="_blank">Jomres.net</a>.<br/> If you already have a username and password please enter them here. When you've done that, click the Purchase Plugins! button.</p>
 						
 						<form class="form-inline">
 							<fieldset>
@@ -89,24 +96,26 @@
 								</div>
 
 								<div class="control-group">
-									<label class="control-label" for="country_name">License server Password</label>
+									<label class="control-label" for="license_server_password">License server Password</label>
 									<div class="controls">
-										<input class="input-large" type="password" id="license_server_password" name="password" value="{LICENSE_SERVER_PASSWORD}" required/>
+										<input class="input-medium" type="password" id="license_server_password" name="password" value="{LICENSE_SERVER_PASSWORD}" required/>
 									</div>
 								</div>
 							</fieldset>
 						</form>
-						<p class="small">Once you have paid your invoice, Jomres will automatically offer you an installation link next to your purchased plugin(s), click that link to install the plugin(s).</p><br />
-						<p class="small">Note that purchase of a plugin download does not entitle you to support for Jomres, only for the purchased plugin.</p><br />
+						<p>Once you have paid your invoice, Jomres will automatically offer you an installation link next to your purchased plugin(s), click that link to install the plugin(s). You may need to reload the plugin manager page if you can't see the Install button.</p>
+						<p>Note that purchase of a plugin download does not entitle you to support for Jomres, only for the purchased plugin.</p>
 						
 					</div>
 				</div>
 				<div class="modal-footer">
-				<button class="btn btn-primary" id="purchase_button" onClick="sumbint();">Purchase plugins!</button>
+					<a class="btn btn-default" data-dismiss="modal">Close</a>
+					<button class="btn btn-primary" id="purchase_button" onClick="sumbint();">Let's do this!</button>
 				</div>
 			</div>
 		</div>
 		
+		<div id="license_server_message"></div>
 
 		<div id="shopping_cart" class="modal hide fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
@@ -118,7 +127,7 @@
 					<div id="cart_wrapper">
 						<div class="row-fluid">
 							<div class="span9">
-								<h3>Total &pound;<span id="total"></span></h3>
+								<h3>Total &pound;<span id="total">0.00</span></h3>
 							</div>
 							<div class="span3">
 								<h3 class="page-header"><img src = "{LIVE_SITE}/jomres/images/cart_red_transparent.png"/>Your shopping cart</h3>
@@ -132,7 +141,85 @@
 					</div>
 				</div>
 				<div class="modal-footer">
+					<a class="btn btn-default" data-dismiss="modal">Close</a>
 					<button id="purchase" class="btn btn-primary" onClick="purchase();">Order plugin(s)</button>
+				</div>
+			</div>
+		</div>
+		
+
+		<div id="shop_information" class="modal hide fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h3>The Jomres Plugin Shop Terms and Conditions</h3>
+				</div>
+				<div class="modal-body">
+					
+					<p class="alert alert-info">The Jomres Plugin Manager Shop allows you to purchase individual plugins for Jomres without needing to purchase a full license, and to install those plugins direct into your Jomres installation through the Jomres Plugin Manager. To use the Plugin Manager Shop you will first need a verified account on our License Server. If you already have an account that's great, you can enter your details during the purchase process.</p>
+					
+					<a href="https://license-server.jomres.net/index.php?cmd=register" target="_blank" class="btn btn-primary">Register here if you haven't already</a>
+					
+					<h2>Terms & Conditions</h2>
+
+					<h3>1. Software License</h3>
+
+					<p>All software available from the Jomres Plugin Manager Shop (the Shop) is released under the GPL v2 ( GNU General Public License version 2 <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="_blank">http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a>), unless otherwise stated. Ordering a download from the Jomres Plugin Manager grants you a non-exclusive limited license to download the plugin through the plugin manager. </p>
+
+					<h3>2. Delivery</h3>
+
+					<p class="alert alert-warning">
+					Plugins are often updated when Jomres is updated, so older versions of plugins <i>may</i> not work with newer versions of Jomres. This means that if you purchased a plugin 8 months ago, we cannot guarantee that it will work with the newest version of Jomres. This may require that you will need to purchase access to that plugin again if the download license has expired. This is unavoidable, so consider carefully before upgrading Jomres. If you expect to upgrade Jomres continuously, we would ask you to consider purchasing a <strong><a href="https://www.jomres.net/pricing" target="_blank">Jomres Business or Enterprise license</a></strong> instead of a plugin license or licenses.
+					</p>
+					
+					<p>If you are in any doubt as to whether or not your hosting service will allow you to install plugins remotely through this plugin shop, we urge you to "purchase" one of the free plugins first to confirm that the functionality will work as expected before you purchase any paid products.</p>
+
+					<p>Upon purchasing access to plugins from the Shop, an email will be sent to the email account associated with your account on the license server confirming creation of an invoice.  Once this invoice has been paid, then you will be able to download the plugin from the Jomres Plugin Manager.  Normally this is virtually instantaneous after payment, however in exceptional circumstances some invoices may need to be manually approved so may take a little longer. </p>
+
+					<p>On purchase approval you will be able to download any purchased plugins for 6 months after purchase. If you should uninstall that plugin after that time, you will need to purchase it again, including for updates to that plugin. Plugins are ONLY available for download through the Jomres Plugin Manager, they are not available through your account on the license server.</p>
+					
+					
+					<p>Some plugins require the installation of other plugins, for example any plugin that mentions Jomres ASAModule in the description requires that you also have the Jomres ASAModule/Jomres Shortcodes (Wordpress equivalent) Plugin installed to be able to use it, so please ensure that you've purchased that plugin first.</p>
+
+					<h3>3. Ownership</h3>
+
+					<p>You may not claim intellectual or exclusive ownership to any of our products, modified or unmodified. All products are property of Woollyinwales IT Ltd.</p>
+
+					<h3>4. Refund Policy</h3>
+
+					<p>If you purchase a plugin from our Shop, you are entitled to a 7 days Cooling Off Period during which you can withdraw from your purchase. You will lose your right of withdrawal if you start downloading the purchased plugin(s) from the Jomres Plugin Manager, before the end of the Cooling Off Period.</p>
+
+					<p>Jomres and it's plugins are provided completely un-encoded, and are licensed under the GPL and MIT licenses. As a result, it's not possible to provide "trial" copies ( we would like to, but we can't ) for you to experiment with on your own server. This is one of the reasons we supply the Core and selected plugins for free, it allows you to install the basic system on your own servers to ensure that it'll run without a hitch.</p>
+
+					<p>It's your responsibility to ensure that Jomres supplies all of the features you need before purchasing. If you are in doubt as to whether Jomres is suitable for you, please contact us via the Contact page on Jomres.net or via our ticket system.</p>
+
+					<h3>5. Support Policy</h3>
+
+					<p>Woollyinwales IT offers Jomres Plugins “as is” and with no implied meaning that they will function exactly as you would like or will be compatible with all 3rd-party plugins, themes or other components. If you purchase a plugin, we will only supply support for that plugin, not Jomres in general.</p>
+
+					<h3>6. Price Changes</h3>
+
+					<p>Woollyinwales IT reserve the right, at any time, to modify or discontinue, temporarily or permanently, the product prices with or without notice.</p>
+
+					<h3>7. Warranty</h3>
+
+					<p>THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.</p>
+
+					<h3>8. Liability</h3>
+
+					<p>IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+
+					<h3>9. Notice</h3>
+
+					<p>Woollyinwales IT reserve the right to change or modify the Terms and Conditions at any time with or without any prior notice.</p>
+
+					<h3>10. Acceptance</h3>
+
+					<p>Purchase of plugins from the Shop indicates that you have read and agree to these Terms & Conditions of sale.</p>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
@@ -177,7 +264,7 @@
 				<patTemplate:tmpl name="plugins_require_upgrade" type="simpleCondition" requiredVars="upgrade_text">
 					<a href="javascript:void(0);" onclick="upgrade_core_plugins();" id="upgrade_core_plugins" class="btn btn-primary btn-large">{UPGRADE_TEXT}</a>
 				</patTemplate:tmpl>
-				<table width="100%" class="table">
+				<table width="100%" class="table table-hover ">
 					<tr>
 						<th>Name</th>
 						<th></th>

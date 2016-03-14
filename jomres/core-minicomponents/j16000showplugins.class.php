@@ -453,14 +453,23 @@ class j16000showplugins
 							$rp[ 'price' ] = 0.00;
 							}
 						if ($rp[ 'price' ] == 0.00)
+							{
+							$shop_btnclass = 'info';
 							$text = "Free!";
+							}
 						else
+							{
+							$shop_btnclass = 'success';
 							$text = "&pound;".number_format($rp[ 'price' ], 2 );
-						$r[ 'ADD_TO_CART_BUTTON' ] = '<button class="btn btn-success" id="' . $r[ 'PLUGIN_NAME' ] . '" class="btn ' . $btn_emphasis . '" onClick="addToCart(\'' . $r[ 'PLUGIN_NAME' ] . '\',\'' . $rp[ 'price' ] . '\');">' . $text . '</button>';
+							}
+						$r[ 'ADD_TO_CART_BUTTON' ] = '<button class="btn btn-'.$shop_btnclass.'" id="' . $r[ 'PLUGIN_NAME' ] . '" class="btn ' . $btn_emphasis . '" onClick="addToCart(\'' . $r[ 'PLUGIN_NAME' ] . '\',\'' . $rp[ 'price' ] . '\');">' . $text . '</button>';
 						}
 					else
 						{
-						$r[ 'ADD_TO_CART_BUTTON' ] = '&pound;' . number_format( $rp[ 'price' ], 2 ). " Thank you! " ;
+						$thanks = '';
+						if ( $rp[ 'price' ] > 0 )
+							$thanks = " Thank you! ";
+						$r[ 'ADD_TO_CART_BUTTON' ] = '&pound;' . number_format( $rp[ 'price' ], 2 ). $thanks ;
 						}
 					}
 				else
