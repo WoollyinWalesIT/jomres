@@ -54,7 +54,7 @@ class j16000purchase_plugins
 				}
 			else
 				{
-				$output[ 'MESSAGE' ] = "Sorry, there was a problem creating the invoice, please press the back button in your browser and choose your plugins again, then double check your License Server username and password are correct.";
+				$output[ 'MESSAGE' ] = "Sorry, there was a problem creating the invoice, please double check your License Server username and password are correct.";
 				$template            = 'purchase_failure.html';
 				}
 			}

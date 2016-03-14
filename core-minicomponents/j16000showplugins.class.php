@@ -442,7 +442,7 @@ class j16000showplugins
 			if ($rp[ 'retired' ])
 				$r[ 'INSTALL' ] = '';
 
-			if ( $key_validation->shop_status == "OPEN" )
+			if ( $key_validation->shop_status == "OPEN" && !$developer_user )
 				{
 				if (!is_null($rp[ 'price' ]))
 					{
