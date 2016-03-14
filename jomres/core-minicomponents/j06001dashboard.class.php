@@ -54,6 +54,7 @@ class j06001dashboard
 
 		$output['PAGETITLE'] = jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', _JOMRES_FRONT_MR_MENU_ADMIN_HOME, false );
 		$output['HROOMS'] = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM, false );
+		$output['HDRAG_TRASH'] = jr_gettext( '_JOMRES_DASHBOARD_DRAG_TRASH', _JOMRES_DASHBOARD_DRAG_TRASH, false );
 		
 		//buttons
 		$output['NEXT'] = jr_gettext( 'COMMON_NEXT', COMMON_NEXT, false );

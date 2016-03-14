@@ -320,6 +320,8 @@ class j04200editproperty
 		$output[ '_JOMRES_METAKEYWORDS' ]    = jr_gettext( '_JOMRES_METAKEYWORDS', _JOMRES_METAKEYWORDS, false );
 		$output[ '_JOMRES_METATITLE' ]       = jr_gettext( '_JOMRES_METATITLE', _JOMRES_METATITLE, false );
 		$output[ 'LATLONG_DESC' ]            = jr_gettext( '_JOMRES_LATLONG_DESC', _JOMRES_LATLONG_DESC, false );
+		$output[ 'HLAT' ]            		 = jr_gettext( '_JOMRES_LATLONG_DESC', _JOMRES_LATLONG_DESC, false );
+		$output[ 'HLONG' ]            		 = jr_gettext( '_JOMRES_LATLONG_DESC', _JOMRES_LATLONG_DESC, false );
 
 
 		$output[ 'MOSCONFIGLIVESITE' ] = get_showtime( 'live_site' );
