@@ -77,11 +77,16 @@ function sumbint() //Deliberate typo
 				items = items + value + ",";
 			}
 		});
-
-	jomresJquery.get(ajax_url + "&task=purchase_plugins" + username_str + password_str + "items=" + items, { },
-		function (data) {
-			jomresJquery(data).modal('show');
+	
+	jomresJquery.ajax({
+		type: 'GET',
+		url: ajax_url + "&task=purchase_plugins" + username_str + password_str + "items=" + items,
+		data: '',
+		success: function(data)
+			{
+			jomresJquery('#license_server_message').html(data);
+			jomresJquery('#invoice_created').modal('show');
 			}
-	);
+	});
 	
 }
