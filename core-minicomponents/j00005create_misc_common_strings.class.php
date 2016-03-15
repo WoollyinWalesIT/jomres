@@ -28,7 +28,10 @@ class j00005create_misc_common_strings
 
 		$current_common_strings = get_showtime( 'common_template_strings' );
 
-		$current_common_strings[ 'COMMON_NEXT' ]   = jr_gettext( 'COMMON_NEXT', COMMON_NEXT, false );
+		$current_common_strings[ 'COMMON_NEXT' ]   = jr_gettext( 'DATATABLES_SNEXT', DATATABLES_SNEXT, false );
+		$current_common_strings[ 'COMMON_PREV' ]   = jr_gettext( 'DATATABLES_SPREVIOUS', DATATABLES_SPREVIOUS, false );
+		$current_common_strings[ 'COMMON_FIRST' ]   = jr_gettext( 'DATATABLES_SFIRST', DATATABLES_SFIRST, false );
+		$current_common_strings[ 'COMMON_LAST' ]   = jr_gettext( 'DATATABLES_SLAST', DATATABLES_SLAST, false );
 		$current_common_strings[ 'COMMON_CANCEL' ] = jr_gettext( 'COMMON_CANCEL', COMMON_CANCEL, false );
 		$current_common_strings[ 'COMMON_SUBMIT' ] = jr_gettext( 'COMMON_SUBMIT', COMMON_SUBMIT, false );
 		$current_common_strings[ 'COMMON_SAVE' ]   = jr_gettext( 'COMMON_SAVE', COMMON_SAVE, false );
