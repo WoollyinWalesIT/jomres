@@ -90,6 +90,10 @@ class j01010listpropertys
 
 		$live_scrolling_enabled = get_showtime("live_scrolling_enabled");
 
+		$show_paging = false;
+		if ( !$live_scrolling_enabled || ( AJAXCALL && $jrConfig['live_scrolling_enabled'] == "0" ) )
+			$show_paging = true;
+		
 		if ( !isset( $componentArgs[ 'live_scrolling_enabled' ] ) && is_null($live_scrolling_enabled) )
 			{
 			$live_scrolling_enabled = (bool)$jrConfig['live_scrolling_enabled'];
@@ -106,8 +110,8 @@ class j01010listpropertys
 			@ini_set( 'session.save_handler', 'files' );
 			session_start();
 			}
-
-		if ( (isset($_REQUEST['propertylist_layout']) || isset($_GET['page']) ) || isset($_REQUEST['return_to_search_results']) )
+		
+		if ( (isset($_REQUEST['propertylist_layout']) || isset($_REQUEST['jr_page']) ) || isset($_REQUEST['return_to_search_results']) )
 			{
 			$propertys_uids = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
 			}
@@ -226,10 +230,6 @@ class j01010listpropertys
 					$i++;
 					}
 
-				$show_paging = false;
-				if ( !$live_scrolling_enabled || ( AJAXCALL && $jrConfig['live_scrolling_enabled'] == "0" ) )
-					$show_paging = true;
-
 				if (  get_showtime( 'disable_paging' ) == true)
 					$show_paging = false;
 
@@ -239,7 +239,7 @@ class j01010listpropertys
 					$pagination_result = $this->generate_paging( $propertys_uids , (int)$jrConfig[ 'property_list_limit' ] );
 					$output['PAGING'] = $pagination_result['PAGINATION'];
 					$current_page = $pagination_result['current_page'];
-					$propertysToShow = array_slice ( $propertysToShow , ($current_page-1) * (int)$jrConfig[ 'property_list_limit' ] , (int)$jrConfig[ 'property_list_limit' ] );
+					$propertysToShow = array_slice ( $propertys_uids , ($current_page-1) * (int)$jrConfig[ 'property_list_limit' ] , (int)$jrConfig[ 'property_list_limit' ] );
 					}
 
 				if ( count( $propertysToShow ) > 0 )
@@ -318,9 +318,6 @@ class j01010listpropertys
 					set_showtime( 'property_type', $current_property_details->multi_query_result[ $propertys_uid ]['property_type'] );
 
 					$customTextObj->get_custom_text_for_property( $propertys_uid );
-
-
-
 
 					$property_deets = $MiniComponents->triggerEvent( '00042', array ( 'property_uid' => $propertys_uid ) );
 					$mrConfig       = getPropertySpecificSettings( $propertys_uid );
@@ -892,6 +889,13 @@ class j01010listpropertys
 
 	function generate_paging( $propertys_uids , $limit )
 		{
+		$output = array();
+		$first_output = array();
+		$last_output = array();
+		$pages_output = array();
+		$prev_output = array();
+		$next_output = array();
+		
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 
 		$selections = '';
@@ -945,77 +949,65 @@ class j01010listpropertys
 					break;
 				}
 			}
-
-		$number_of_pages = ceil(count($propertys_uids) / $limit);
-
-		if(!isset($_GET['page']))
-			{
-			$current_page = 0;
-			}
-		else
-			{
-			$current_page = (int)$_GET['page'];
-			}
-
-		if($current_page < 1)
+		
+		if(!isset($_REQUEST['jr_page']))
 			{
 			$current_page = 1;
 			}
-		else if($current_page > $number_of_pages)
+		else
 			{
-			$current_page = $number_of_pages;
+			$current_page = (int)$_REQUEST['jr_page'];
 			}
+		
+		$totalItems = count($propertys_uids);
+		$urlPattern = jomresURL(JOMRES_SITEPAGE_URL . "&task=search&jr_page=(:num)" . $selections );
 
-		$rows = array();
-		foreach(range(1, $number_of_pages) as $page)
+		//build the pagination
+		jr_import('jomres_pagination');
+		$paginator = new jomres_pagination($totalItems, $limit, $current_page, $urlPattern);
+		
+		//previous page
+		if ($paginator->getPrevUrl())
 			{
-			$r=array();
-			if ($page == $current_page)
+			$prev_output[]['PREV_URL'] = $paginator->getPrevUrl();
+			$first_output[]['FIRST_URL'] = jomresURL(JOMRES_SITEPAGE_URL . "&task=search" . $selections );
+			}
+		
+		//next page
+		if ($paginator->getNextUrl())
+			{
+			$next_output[]['NEXT_URL'] = $paginator->getNextUrl();
+			$last_output[]['LAST_URL'] = jomresURL(JOMRES_SITEPAGE_URL . "&task=search&jr_page=" . ceil(count($propertys_uids) / $limit) . $selections );
+			}
+		
+		//pages 
+		foreach ($paginator->getPages() as $page)
+			{
+			$r = array();
+			if ($page['url'])
 				{
-				$r['CLASS'] = "disabled";
+				if ($page['isCurrent'])
+					$r['PAGE_CLASS'] = "active";
+				$r['PAGE_URL'] = $page['url'];
 				}
 			else
 				{
-				$r['CLASS'] = "active";
+				$r['PAGE_CLASS'] = "disabled";
+				$r['PAGE_URL'] = 'javascript:void();';
 				}
-
-			$r['PAGE'] = $page;
-			$r['LINK'] = jomresURL(JOMRES_SITEPAGE_URL . "&task=search&page=" . $page . $selections );
-			$rows[]=$r;
-			}
-
-		$pageoutput = array();
-		$output = array();
-
-		$output['FORWARD_CLASS'] = "active";
-		$output['BACKWARD_CLASS'] = "active";
-
-		if ( $current_page < $number_of_pages )
-			{
-			$next = $current_page+1;
-			$output['FORWARD_LINK'] =  jomresURL(JOMRES_SITEPAGE_URL . "&task=search&page=" . $next . $selections);
-			}
-		else
-			{
-			$output['BACKWARD_CLASS'] = "disabled";
-			$output['FORWARD_LINK'] =  jomresURL(JOMRES_SITEPAGE_URL . "&task=search&page=" . $current_page . $selections);
-			}
-
-		if ( $current_page > 1 )
-			{
-			$prev =  $current_page-1;
-			$output['BACKWARD_LINK'] =  jomresURL(JOMRES_SITEPAGE_URL . "&task=search&page=" . $prev . $selections);
-			}
-		else
-			{
-			$output['FORWARD_CLASS'] = "disabled";
-			$output['BACKWARD_LINK'] =  jomresURL(JOMRES_SITEPAGE_URL . "&task=search&page=" . $current_page . $selections);
+				
+			$r['PAGE_NUMBER'] = $page['num'];
+			$pages_output[] = $r;
 			}
 
 		$pageoutput[]=$output;
-		$tmpl                 = new patTemplate();
+		$tmpl = new patTemplate();
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'rows', $rows );
+		$tmpl->addRows( 'first_output', $first_output );
+		$tmpl->addRows( 'last_output', $last_output );
+		$tmpl->addRows( 'prev_output', $prev_output );
+		$tmpl->addRows( 'next_output', $next_output );
+		$tmpl->addRows( 'pages_output', $pages_output );
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		$tmpl->readTemplatesFromInput( "list_properties_pagination.html" );
 		$pagination = $tmpl->getParsedTemplate();
