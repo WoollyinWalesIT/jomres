@@ -555,7 +555,7 @@ jr_define( '_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS_TITLE', 'Show detailed busin
 jr_define( '_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS_TITLE', 'Show vehicles and availability below this link' );
 jr_define( '_JOMRES_COM_A_BASICTEMPLATE_SHOWTARIFFS_TITLE', 'Show tariff information below this link' );
 jr_define( '_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF', 'Flat rate tariffs' );
-jr_define( '_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES', 'Averages' );
+jr_define( '_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES', 'Variable' );
 jr_define( '_JOMRES_COM_A_TARIFFS_MODEL', 'Select the tariffs model you want to use' );
 jr_define( '_JOMRES_COM_A_TARIFFS_MODEL_DESC', "You have two choices of tariff calculation methods. The first, the 'flat rate' method allows you to offer a number of different tariffs to the person and the rate for the stay is the same for the entire time. This is useful if you want to offer several different tariffs for the same date, eg Bed and Breakfast tariff and B&B and Evening meal tariff. Choose the 'averages' tariff if you want to adjust your prices dependant on the date in question. Jomres will find all of the tariffs for each day in the booking, add them together then return the average rate across the period" );
 // v1.4e
