@@ -1,3 +1,15 @@
+<h3>Jomres 9.7.0 15/03/2016 (Happy Birthday Ivan)</h3>
+
+<span class="label label-success">Feature</span> Added new "Shop" functionality to the plugin manager. This allows users to purchase plugins direct through the plugin manager without needing to purchase a full license.
+
+<span class="label label-warning">Change</span> Modified cancel guest booking script so that invoice is cancelled if they cancel the booking.
+<span class="label label-warning">Change</span> Removed a few hardcoded strings and replaced them with language definitions.
+<span class="label label-warning">Change</span> Renamed Tariff Model Averages to Variable, as that better describes it's function.
+<span class="label label-warning">Change</span> Removed 100 property limit from property list as it no longer applies in modern Jomres.
+<span class="label label-warning">Change</span> Tweaked dashboard for BS3 so that cancel bar is now sticky just above the bottom ( can't fix to bottom due to full-screen navbar ).
+
+<span class="label label-info">Wordpress</span> Modified functionality so that correct password should be sent to newly created users.
+
 <h3>Jomres 9.6.1 10/03/2016</h3>
 
 <span class="label label-success">Feature</span> Added new functionality that allows us to add any Jomres definition to any template without declaring it in the calling script.
