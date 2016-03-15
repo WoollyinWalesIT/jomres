@@ -107,26 +107,6 @@ class j01010listpropertys
 			session_start();
 			}
 
-		// Added to prevent out of memory messages.
-		// Modified for 4.5.3 as the previous loop wasn't taking missing keys into account.
-		// this may not be needed anymore.
-		$maximumProperties = 100; // Limits the maximum number of properties that can be returned in a search
-		if ( count( $propertys_uids ) > $maximumProperties )
-			{
-			$counter  = 1;
-			$tmpArray = array ();
-			foreach ( $propertys_uids as $key => $val )
-				{
-				$tmpArray[ ] = $propertys_uids[ $key ];
-				$counter++;
-				if ( $counter == $maximumProperties )
-					{
-					break;
-					}
-				}
-			$propertys_uids = $tmpArray;
-			}
-
 		if ( (isset($_REQUEST['propertylist_layout']) || isset($_GET['page']) ) || isset($_REQUEST['return_to_search_results']) )
 			{
 			$propertys_uids = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
