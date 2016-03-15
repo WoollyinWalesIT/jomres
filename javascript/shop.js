@@ -76,10 +76,11 @@ function sumbint() //Deliberate typo
 				items = items + value + ",";
 			}
 		});
-	
+	total = jomresJquery('#total').text(); // Just to decide what message to return to the user
+
 	jomresJquery.ajax({
 		type: 'GET',
-		url: ajax_url + "&task=purchase_plugins" + username_str + password_str + "items=" + items,
+		url: ajax_url + "&task=purchase_plugins" + username_str + password_str + "items=" + items + "&total="+total,
 		data: '',
 		success: function(data)
 			{
