@@ -31,6 +31,7 @@ class j16000purchase_plugins
 		$key_validation->remove_plugin_licenses_file();
 		
 		$items    = jomresGetParam( $_REQUEST, 'items', '' );
+		$total    = (float)jomresGetParam( $_REQUEST, 'total', 0 );
 		$username = jomresGetParam( $_REQUEST, 'username', '' );
 		$password = jomresGetParam( $_REQUEST, 'password', '' );
 		if ( $username == "" || $password == "" )
@@ -49,7 +50,14 @@ class j16000purchase_plugins
 			$response = query_shop( $request );
 			if ( $response->success )
 				{
-				$output[ 'MESSAGE' ] = "Thank you for your purchase, a link to the invoice has been created and emailed to you. When the invoice has been paid you will be able to use the Jomres Plugin Manager to install the plugin(s). If you have ordered only free plugins then no invoice will be created, but you will be able to install them through the plugin manager.";
+				if ($total == 0)
+					{
+					$output[ 'MESSAGE' ] = "Thank you for your request, you will be able to install the plugin(s) you requested through the plugin manager.";
+					}
+				else
+					{
+					$output[ 'MESSAGE' ] = "Thank you for your purchase, a link to the invoice has been created and emailed to you. When the invoice has been paid you will be able to use the Jomres Plugin Manager to install the plugin(s).";
+					}
 				$template            = 'purchase_success.html';
 				}
 			else

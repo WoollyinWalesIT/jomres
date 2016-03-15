@@ -1014,7 +1014,7 @@ function admins_first_run( $manual_trigger = false )
 	else
 		{
 		$curl_handle = curl_init();
-		curl_setopt( $curl_handle, CURLOPT_URL, 'https://license-server.jomres.net/shop/index.php?' . $request );
+		curl_setopt( $curl_handle, CURLOPT_URL, 'http://license-server.jomres.net/shop/index.php?' . $request );
 		curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 2 );
 		curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
 		curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, 1 );
