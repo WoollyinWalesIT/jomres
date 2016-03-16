@@ -32,6 +32,34 @@ class j01060slideshow
 		
 		if (!isset($componentArgs[ 'size' ]))
 			$componentArgs[ 'size' ] = "large";
+		
+		$height = 0.65;
+		if ( isset($componentArgs[ 'height' ]) )
+			$height = $componentArgs[ 'height' ];
+		
+		$lightbox = 'true';
+		if ( isset($componentArgs[ 'lightbox' ]) )
+			$lightbox = $componentArgs[ 'lightbox' ];
+		
+		$autoplay = 'true';
+		if ( isset($componentArgs[ 'autoplay' ]) )
+			$autoplay = $componentArgs[ 'autoplay' ];
+		
+		$thumbnails = 'true';
+		if ( isset($componentArgs[ 'thumbnails' ]) )
+			$thumbnails = $componentArgs[ 'thumbnails' ];
+		
+		$transition = 'slide';
+		if ( isset($componentArgs[ 'transition' ]) )
+			$transition = $componentArgs[ 'transition' ];
+		
+		$showcounter = 'true';
+		if ( isset($componentArgs[ 'showcounter' ]) )
+			$showcounter = $componentArgs[ 'showcounter' ];
+		
+		$link_to_property_details = false;
+		if ( isset($componentArgs[ 'link_to_property_details' ]) )
+			$link_to_property_details = $componentArgs[ 'link_to_property_details' ];
 
 		if (!isset($componentArgs[ 'images' ]))
 			{
@@ -75,7 +103,13 @@ class j01060slideshow
 				break;
 			}
 
-		$output['RANDOM_IDENTIFIER']  = generateJomresRandomString( 10 );
+		$output['RANDOM_IDENTIFIER'] = generateJomresRandomString( 10 );
+		$output['LIGHTBOX'] = $lightbox;
+		$output['AUTOPLAY'] = $autoplay;
+		$output['THUMBNAILS'] = $thumbnails;
+		$output['HEIGHT'] = $height;
+		$output['TRANSITION'] = $transition;
+		$output['SHOWCOUNTER'] = $showcounter;
 
 		$count = count( $imagesArray );
 
@@ -83,16 +117,21 @@ class j01060slideshow
 			{
 			for ( $i = 0; $i < $count; $i++ )
 				{
-				$r                 = array ();
-				$r[ 'IMAGETHUMB' ] = $imagesArray[ $i ][ 'small' ];
-				$r[ 'IMAGE' ]      = $imagesArray[ $i ][ 'large' ];
-				$rows[ ]           = $r;
+				$r                 	= array ();
+				$r[ 'IMAGETHUMB' ] 	= $imagesArray[ $i ][ 'small' ];
+				$r[ 'IMAGE' ]      	= $imagesArray[ $i ][ 'large' ];
+				
+				if ( $link_to_property_details && (int)$componentArgs[ 'property_uid' ] > 0 )
+					$r[ 'LINK' ] 	= jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . (int)$componentArgs[ 'property_uid' ] );
+				else
+					$r[ 'LINK' ] 	= '';
+				
+				$rows[] = $r;
 				}
 
 			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/slideshow_themes/classic/', "galleria-1.4.2.min.js" );
 			jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/slideshow_themes/classic/', "galleria.classic.min.js" );
 			jomres_cmsspecific_addheaddata( "css", JOMRES_ROOT_DIRECTORY.'/javascript/slideshow_themes/classic/', 'galleria.classic.css' );
-
 			
 			$pageoutput[ ] = $output;
 			$tmpl = new patTemplate();
@@ -106,7 +145,7 @@ class j01060slideshow
 		else
 			{
 			$jomres_media_centre_images->get_images($property_uid, array('property'));
-			$this->retVals[ 'slideshow' ] = '<img src="'.$jomres_media_centre_images->images['property'][0][0]['medium'].'" alt="property image"/>';
+			$this->retVals[ 'slideshow' ] = '<img src="'.$jomres_media_centre_images->images['property'][0][0]['medium'].'" class="responsive img-responsive" alt="property image"/>';
 			}
 		}
 
