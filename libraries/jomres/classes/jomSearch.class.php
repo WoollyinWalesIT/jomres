@@ -412,15 +412,13 @@ class jomSearch
 	 */
 	function jomSearch_random()
 		{
-		$random_keys=array();
 		$result=array();
 		$all_published_properties=get_showtime( 'published_properties_in_system');
 
-		$random_keys=array_rand($all_published_properties, $randomSearchLimit);
-		foreach ($random_keys as $key)
+		foreach ($all_published_properties as $k=>$v)
 			{
 			$obj                = new stdClass();
-			$obj->propertys_uid = $all_published_properties[$key];
+			$obj->propertys_uid = $v;
 			$result[ ]          = $obj;
 			}
 		$this->resultBucket=$result;
