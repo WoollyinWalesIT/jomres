@@ -244,20 +244,28 @@ class j04200editproperty
 		$propertyImageLocation = '<img src="' . $propImage . '" />';
 
 		$output[ 'STARSDROPDOWN' ] = $starsDropDownList;
+		
+		
 		if ( $jrConfig[ 'limit_property_country' ] == "0" )
 			{
 			$output[ 'COUNTRIESDROPDOWN' ] = createCountriesDropdown( $selectedCountry );
 			$output[ 'REGIONDROPDOWN' ]    = setupRegions( $selectedCountry, $propertyRegion );
+			
+			$output[ 'AJAX_COUNTRIESDROPDOWN' ]	= createSimpleCountriesDropdown( $selectedCountry , "country" ) ;
+			$output[ 'AJAX_REGIONDROPDOWN' ]	= setupRegions($selectedCountry , $propertyRegion , false , "region");
 			}
 		else
 			{
 			$output[ 'COUNTRIESDROPDOWN' ] = getSimpleCountry( $jrConfig[ 'limit_property_country_country' ] );
 			$output[ 'REGIONDROPDOWN' ]    = setupRegions( $jrConfig[ 'limit_property_country_country' ], $propertyRegion );
+			
+			$output[ 'AJAX_COUNTRIESDROPDOWN' ]	= createSimpleCountriesDropdown( $jrConfig[ 'limit_property_country_country' ] , "country" ) ;
+			$output[ 'AJAX_REGIONDROPDOWN' ]	= setupRegions($jrConfig[ 'limit_property_country_country' ] , $propertyRegion  , false , "region");
 			}
 
 		if ( $output[ 'LAT' ] == "" ) // Let's ask Auntie Google what the lat long should be.
 			{
-			$url = "https://maps-api-ssl.google.com/maps/api/geocode/json?address=" . urlencode( $output[ 'PROPERTY_NAME' ] ) . "," . urlencode( $output[ 'PROPERTY_STREET' ] ) . "," . urlencode( $output[ 'PROPERTY_TOWN' ] ) . "," . urlencode( $propertyRegion ) . "," . urlencode( $selectedCountry ) . "&sensor=false";
+			$url = "https://maps-api-ssl.google.com/maps/api/geocode/json?address=" . urlencode( $output[ 'PROPERTY_NAME' ] ) . "," . urlencode( $output[ 'PROPERTY_STREET' ] ) . "," . urlencode( $output[ 'PROPERTY_TOWN' ] ) . "," . urlencode( $propertyRegion ) . "," . urlencode( $selectedCountry ) ;
 			//$url = urlencode($url);
 			//echo $url;exit;
 			$curl_handle = curl_init();
@@ -291,6 +299,9 @@ class j04200editproperty
 				}
 			}
 		
+		
+		$output[ '_JOMRES_REQUIREDFIELDS' ]   = jr_gettext( '_JOMRES_REQUIREDFIELDS', _JOMRES_REQUIREDFIELDS );
+		
 		$output[ 'APIKEY' ]     = $jrConfig[ 'google_maps_api_key' ];
 		$output[ 'HCOUNTRY' ]   = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY );
 		$output[ 'HREGION' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION );
@@ -320,8 +331,8 @@ class j04200editproperty
 		$output[ '_JOMRES_METAKEYWORDS' ]    = jr_gettext( '_JOMRES_METAKEYWORDS', _JOMRES_METAKEYWORDS, false );
 		$output[ '_JOMRES_METATITLE' ]       = jr_gettext( '_JOMRES_METATITLE', _JOMRES_METATITLE, false );
 		$output[ 'LATLONG_DESC' ]            = jr_gettext( '_JOMRES_LATLONG_DESC', _JOMRES_LATLONG_DESC, false );
-		$output[ 'HLAT' ]            		 = jr_gettext( '_JOMRES_LATLONG_DESC', _JOMRES_LATLONG_DESC, false );
-		$output[ 'HLONG' ]            		 = jr_gettext( '_JOMRES_LATLONG_DESC', _JOMRES_LATLONG_DESC, false );
+		$output[ 'HLAT' ]            		 = jr_gettext( '_JOMRES_LAT', _JOMRES_LAT, false );
+		$output[ 'HLONG' ]            		 = jr_gettext( '_JOMRES_LONG', _JOMRES_LONG, false );
 
 
 		$output[ 'MOSCONFIGLIVESITE' ] = get_showtime( 'live_site' );
@@ -337,6 +348,7 @@ class j04200editproperty
 
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
+		$output[ 'CANCEL_URL' ] = jomresURL( JOMRES_SITEPAGE_URL."&task=dashboard" );
 
 		$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_PROPERTYS', _JOMRES_COM_MR_VRCT_TAB_PROPERTYS );
 		$output[ 'IMAGE' ]     = $propertyImageLocation;
