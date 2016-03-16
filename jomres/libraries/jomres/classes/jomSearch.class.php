@@ -37,8 +37,6 @@ class jomSearch
 		$jrConfig        = $siteConfig->get();
 		$this->formname  = "";
 		$this->searchAll = $searchAll;
-		if ( empty( $jrConfig[ 'randomsearchlimit' ] ) ) $jrConfig[ 'randomsearchlimit' ] = 2;
-		$randomsearchlimit = $jrConfig[ 'randomsearchlimit' ];
 		$this->filter      = array ( 'propertyname' => "", 'country' => "", 'region' => "", 'town' => "", 'description' => "", 'feature_uids' => "", 'arrival' => "", 'departure' => "", 'ptype' => "", 'room_type' => "" );
 		$this->makeFormName();
 
@@ -102,7 +100,6 @@ class jomSearch
 		$this->featurecols = $featurecols;
 		$this->cols        = $useCols;
 		//$this->overlibLables=$useoverlibLabels;
-		$this->randomSearchLimit = $randomsearchlimit;
 		$searchOptions           = array ();
 		if ( $pn ) $searchOptions[ ] = "propertyname";
 		if ( $ptype ) $searchOptions[ ] = "ptype";
@@ -415,33 +412,18 @@ class jomSearch
 	 */
 	function jomSearch_random()
 		{
-		//$query              = "SELECT propertys_uid FROM #__jomres_propertys WHERE published='1' ORDER BY RAND(),property_name LIMIT " . (int) $this->randomSearchLimit . " ";
-		//$this->resultBucket = doSelectSql( $query );
 		$random_keys=array();
 		$result=array();
 		$all_published_properties=get_showtime( 'published_properties_in_system');
-		$randomSearchLimit=(int)$this->randomSearchLimit;
-		if (count($all_published_properties) > $randomSearchLimit)
+
+		$random_keys=array_rand($all_published_properties, $randomSearchLimit);
+		foreach ($random_keys as $key)
 			{
-			$random_keys=array_rand($all_published_properties, $randomSearchLimit);
-			foreach ($random_keys as $key)
-				{
-				$obj                = new stdClass();
-				$obj->propertys_uid = $all_published_properties[$key];
-				$result[ ]          = $obj;
-				}
-			$this->resultBucket=$result;
+			$obj                = new stdClass();
+			$obj->propertys_uid = $all_published_properties[$key];
+			$result[ ]          = $obj;
 			}
-		else
-			{
-			foreach ($all_published_properties as $puid)
-				{
-				$obj                = new stdClass();
-				$obj->propertys_uid = $puid;
-				$result[ ]          = $obj;
-				}
-			$this->resultBucket=$result;
-			}
+		$this->resultBucket=$result;
 		$this->sortResult();
 		}
 

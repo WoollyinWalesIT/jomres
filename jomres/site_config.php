@@ -35,7 +35,6 @@ $jrConfig[ 'maxwidth' ]                        = '900';
 $jrConfig[ 'fileSize' ]                        = '2000';
 $jrConfig[ 'slideshow' ]                       = 'tooltips';
 $jrConfig[ 'propertyListDescriptionLimit' ]    = '200';
-$jrConfig[ 'randomsearchlimit' ]               = '10';
 $jrConfig[ 'useGlobalPFeatures' ]              = '1';
 $jrConfig[ 'useGlobalRoomTypes' ]              = '1';
 $jrConfig[ 'dynamicMinIntervalRecalculation' ] = '0';
