@@ -639,22 +639,11 @@ class j01010listpropertys
 							$output[ 'TELEPHONE_NUMBER' ] = $jrConfig['override_property_contact_tel'];
 						}
 
-					if ( strlen( $propertyDesc ) > (int) $jrConfig[ 'propertyListDescriptionLimit' ] ) $property_deets[ 'PROPERTYDESC' ] = jr_substr( $propertyDesc, 0, $jrConfig[ 'propertyListDescriptionLimit' ] ) . "...";
+					if ( strlen( $propertyDesc ) > (int) $jrConfig[ 'propertyListDescriptionLimit' ] ) 
+							$property_deets[ 'PROPERTYDESC' ] = jr_substr( $propertyDesc, 0, $jrConfig[ 'propertyListDescriptionLimit' ] ) . "...";
 					else
-					$property_deets[ 'PROPERTYDESC' ] = $propertyDesc;
-					$property_deets[ 'IMAGELARGE' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
-					$property_deets[ 'IMAGEMEDIUM' ] = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
-					$property_deets[ 'IMAGETHUMB' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
-
-					$jomres_media_centre_images->get_images($propertys_uid, array('property'));
-					if ($jomres_media_centre_images->images['property'][0][0]['large'] != "")
-						{
-						$property_deets[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images['property'][0][0]['large'];
-						$property_deets[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['property'][0][0]['medium'];
-						$property_deets[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images['property'][0][0]['small'];
-						}
-
-
+						$property_deets[ 'PROPERTYDESC' ] = $propertyDesc;
+					
 					$property_deets[ '_JOMRES_QUICK_INFO' ] = jr_gettext( '_JOMRES_QUICK_INFO', _JOMRES_QUICK_INFO, false, false );
 					$property_deets[ 'REMOTE_URL' ]         = $mrConfig[ 'galleryLink' ];
 					$property_deets[ 'RANDOM_IDENTIFIER' ]  = generateJomresRandomString( 10 );
@@ -754,6 +743,21 @@ class j01010listpropertys
 							$property_deets[ 'REQUIRE_APPROVAL' ] = jr_gettext( '_BOOKING_INSTANT', _BOOKING_INSTANT , false );
 							$property_deets[ 'REQUIRE_APPROVAL_CLASS' ] = 'booking-instant';
 							}
+						}
+					
+					//property image or slideshow
+					$property_deets[ 'PROPERTY_IMAGE_OR_SLIDESHOW' ] = $MiniComponents->specificEvent( '06000', 'show_property_main_image', array('output_now'=>false, 'property_uid'=>$propertys_uid) );
+					
+					$property_deets[ 'IMAGELARGE' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
+					$property_deets[ 'IMAGEMEDIUM' ] = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
+					$property_deets[ 'IMAGETHUMB' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
+
+					$jomres_media_centre_images->get_images($propertys_uid, array('property'));
+					if ($jomres_media_centre_images->images['property'][0][0]['large'] != "")
+						{
+						$property_deets[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images['property'][0][0]['large'];
+						$property_deets[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['property'][0][0]['medium'];
+						$property_deets[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images['property'][0][0]['small'];
 						}
 
 					$MiniComponents->triggerEvent( '01011', array ( 'property_uid' => $propertys_uid ) ); // Optional

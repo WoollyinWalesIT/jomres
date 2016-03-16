@@ -21,9 +21,7 @@
 				<div class="panel-body">
 					<span class="label label-default">{PROPERTY_TYPE}</span> <span>{STARS} {SUPERIOR}</span>
 					<p class="small"><i>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</i></p>
-					<a href="#module_{RANDOM_IDENTIFIER}_popup" data-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}">
-						<img src="{IMAGEMEDIUM}" alt="{PROPERTYNAME}" class="photoview-image img-responsive"/>
-					</a>
+					{PROPERTY_IMAGE_OR_SLIDESHOW}
 					<!--<div align="center">{PRICE_PRE_TEXT}</div>-->
 					<div class="well">
 						<div class="row" align="center">
@@ -40,7 +38,7 @@
 				</div>
 				<div class="panel-footer clearfix">
 					<a href="{LINK}" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
-					<div class="hidden-xs hidden-sm photoview-compare checkbox pull-left">
+					<div class="hidden-xs hidden-sm photoview-compare">
 						<label>
 							<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/>
 							{_JOMRES_COMPARE}

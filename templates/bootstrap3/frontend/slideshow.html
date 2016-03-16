@@ -1,7 +1,7 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<div id="galleria_{RANDOM_IDENTIFIER}">
+<div id="galleria_{RANDOM_IDENTIFIER}" style="display:none;">
 	<patTemplate:tmpl name="rows">
-		<a href="{IMAGE}"><img src="{IMAGETHUMB}"/></a>
+		<a href="{IMAGE}"><img src="{IMAGETHUMB}" data-link="{LINK}"/></a>
 	</patTemplate:tmpl>
 </div>
 
@@ -11,14 +11,17 @@
 		jomresJquery('#galleria_{RANDOM_IDENTIFIER}').galleria({
 			responsive: true,
 			width: '100%',
-			height: 0.65,
-			transition: "slide",
+			height: {HEIGHT},
+			transition: "{TRANSITION}",
 			imageCrop: true,
-			lightbox: true,
-			autoplay: 5000,
+			lightbox: {LIGHTBOX},
+			autoplay: {AUTOPLAY},
 			preload: 0,
-			debug: false
+			debug: false,
+			thumbnails: {THUMBNAILS},
+			showCounter: {SHOWCOUNTER}
 		});
+		jomresJquery('#galleria_{RANDOM_IDENTIFIER}').show();
 	});
 	//-->
 </script>

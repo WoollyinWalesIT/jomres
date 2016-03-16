@@ -27,14 +27,10 @@
 						<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/> {_JOMRES_COMPARE}
 					</div>
 				</div>
-			
-				<div class="align-center photoview-image hidden-phone">
-					<a href="#module_{RANDOM_IDENTIFIER}_popup" class="hidden-phone thumbnail" data-toggle="modal"
-					   random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}"><img
-							src="{IMAGEMEDIUM}" alt="{PROPERTYNAME}" align="middle"/></a>
-				</div>
-				<div class="align-center photoview-image visible-phone">
-					<a href="{MOREINFORMATIONLINK}" class="thumbnail"><img src="{IMAGEMEDIUM}" align="middle"/></a>
+				<div class="align-center photoview-image">
+					<a href="{MOREINFORMATIONLINK}">
+						{PROPERTY_IMAGE_OR_SLIDESHOW}
+					</a>
 				</div>
 				<div class="caption">
 					<div class="well align-center">

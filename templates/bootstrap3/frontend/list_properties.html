@@ -20,7 +20,7 @@
 						<h2 class="panel-title"><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a></h2> 
 					</div>
 					<div class="col-md-2">
-						<div class="hidden-xs hidden-sm plist-compare checkbox" align="right">
+						<div class="hidden-xs hidden-sm plist-compare" align="right">
 							<label>
 								<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/>
 								{_JOMRES_COMPARE}
@@ -32,9 +32,7 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-md-3">
-						<a href="#module_{RANDOM_IDENTIFIER}_popup" data-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTYNAME}" property_uid="{UID}">
-							<img src="{IMAGEMEDIUM}" class="img-responsive plist-image" alt="{PROPERTYNAME}"/>
-						</a>
+						{PROPERTY_IMAGE_OR_SLIDESHOW}
 					</div>
 					<div class="col-md-6">
 						<span class="label label-default">{PROPERTY_TYPE}</span> <span>{STARS} {SUPERIOR}</span> <span class="label label-info">{_JOMRES_REVIEWS_AVERAGE_RATING} {AVERAGE_RATING}</span>
