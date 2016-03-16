@@ -70,10 +70,10 @@ class j10501search_options
 			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_PROPERTYLISTDESC_DESC', _JOMRES_COM_PROPERTYLISTDESC_DESC, false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT', _JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT, false ) );
+			/* $configurationPanel->setleft( jr_gettext( '_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT', _JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT, false ) );
 			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_randomsearchlimit" value="' . $jrConfig[ 'randomsearchlimit' ] . '" />' );
 			$configurationPanel->setright( jr_gettext( '_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC', _JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC, false ) );
-			$configurationPanel->insertSetting();
+			$configurationPanel->insertSetting(); */
 			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_A_LISTLIMIT', _JOMRES_COM_A_LISTLIMIT, false ) );
 			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_property_list_limit" value="' . $jrConfig[ 'property_list_limit' ] . '" />' );
