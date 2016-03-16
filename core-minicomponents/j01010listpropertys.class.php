@@ -89,10 +89,6 @@ class j01010listpropertys
 		$propertys_uids = $componentArgs[ 'propertys_uid' ];
 
 		$live_scrolling_enabled = get_showtime("live_scrolling_enabled");
-
-		$show_paging = false;
-		if ( !$live_scrolling_enabled || ( AJAXCALL && $jrConfig['live_scrolling_enabled'] == "0" ) )
-			$show_paging = true;
 		
 		if ( !isset( $componentArgs[ 'live_scrolling_enabled' ] ) && is_null($live_scrolling_enabled) )
 			{
@@ -102,6 +98,10 @@ class j01010listpropertys
 			{
 			$live_scrolling_enabled = (bool) $componentArgs[ 'live_scrolling_enabled' ];
 			}
+		
+		$show_paging = false;
+		if ( !$live_scrolling_enabled || ( AJAXCALL && $jrConfig['live_scrolling_enabled'] == "0" ) )
+			$show_paging = true;
 
 		if ( $propertys_uids == "" ) $propertys_uids = array ();
 
