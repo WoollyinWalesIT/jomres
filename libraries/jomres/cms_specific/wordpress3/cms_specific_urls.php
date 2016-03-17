@@ -55,6 +55,8 @@ else
 	$jomresItemid = 0; //should only kick in on install
 	}
 
+set_showtime('itemid', $jomresItemid);
+
 $siteConfig->set_setting( "jomresItemid", $jomresItemid );
 
 $disable_cache = false;
