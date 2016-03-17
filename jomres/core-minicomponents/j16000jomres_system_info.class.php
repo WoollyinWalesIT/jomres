@@ -122,6 +122,15 @@ class j16000jomres_system_info
 			$output[ 'ACCESS_CONTROL_ALERT' ]     = $access_control_check[ 'message' ];
 			}
 		
+		//wordpress Page with [jomres:xx-XX] not created yet
+		$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = '';
+		$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ]     = '';
+		if ( this_cms_is_wordpress() && (int)get_showtime('itemid') == 0 )
+			{
+			$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = ( using_bootstrap() ? "alert alert-error" : "ui-state-error" );
+			$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = jr_gettext('_JOMRES_DEFAULT_SHORTCODE_ALERT', JOMRES_DEFAULT_SHORTCODE_ALERT, false);
+			}
+		
 		//review text
 		if (this_cms_is_wordpress() )
 			{
