@@ -46,6 +46,7 @@ class j00060toptemplate
 		$output[ 'TIMEZONE_DROPDOWN' ] = '';
 		$output[ 'TIMEZONEBLURB' ]     = '';
 		$output[ 'PROPERTY_SELECTOR_DROPDOWN' ] ='';
+		$output[ 'CURRENT_PROPERTY_STYLE' ] = '';
 		$output['FB_LOCALISE']= str_replace ( "-" , "_" , get_showtime("lang") );
 		
 		$editing_mode = jomres_singleton_abstract::getInstance( 'jomres_editing_mode' );
@@ -126,6 +127,10 @@ class j00060toptemplate
 				$current_property_details->gather_data($defaultProperty);
 				$output[ 'PROPERTYNAME' ] = $current_property_details->property_name;
 				}
+			}
+		else
+			{
+			$output[ 'CURRENT_PROPERTY_STYLE' ] = "display:none;";
 			}
 		
 		$messaging = array ();
