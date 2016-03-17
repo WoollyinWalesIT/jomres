@@ -1,5 +1,5 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<div id="galleria_{RANDOM_IDENTIFIER}" style="display:none;">
+<div id="galleria_{RANDOM_IDENTIFIER}">
 	<patTemplate:tmpl name="rows">
 		<a href="{IMAGE}"><img src="{IMAGETHUMB}" data-link="{LINK}"/></a>
 	</patTemplate:tmpl>
@@ -21,7 +21,6 @@
 			thumbnails: {THUMBNAILS},
 			showCounter: {SHOWCOUNTER}
 		});
-		jomresJquery('#galleria_{RANDOM_IDENTIFIER}').show();
 	});
 	//-->
 </script>
