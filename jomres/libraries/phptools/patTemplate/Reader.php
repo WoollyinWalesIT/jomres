@@ -598,7 +598,8 @@ class patTemplate_Reader extends patTemplate_Module
 
 		if ( $el[ 'name' ] != $name || $el[ 'ns' ] != $ns )
 			{
-			return patErrorManager::raiseError( PATTEMPLATE_READER_ERROR_INVALID_CLOSING_TAG, $this->_createErrorMessage( "Invalid closing tag {$ns}:{$name}, {$el['ns']}:{$el['name']} expected" ) );
+			$file  = implode( " or " , $this->_tmpl->current_template_files );
+			return patErrorManager::raiseError( PATTEMPLATE_READER_ERROR_INVALID_CLOSING_TAG, $this->_createErrorMessage( "Invalid closing tag {$ns}:{$name}, {$el['ns']}:{$el['name']} expected in ". $file) );
 			}
 
 		$tmpl = array_pop( $this->_tmplStack );
