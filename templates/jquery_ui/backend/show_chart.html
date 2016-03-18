@@ -1,0 +1,31 @@
+<patTemplate:tmpl name="pageoutput">
+
+<table class="ui-widget-content ui-corner-all" width="100%" border="0">
+	<thead>
+		<tr>
+			<th width="100%">
+				<a href="{URL}">{TITLE}</a>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<div>{DESCRIPTION}</div>
+				{CHART}
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td>
+				<h5>Legend</h5>
+				<patTemplate:tmpl name="legend_rows" unusedvars="strip">
+				<i class="fa fa-circle" style="color:{STROKECOLOR};"></i> {LABEL} &nbsp;&nbsp;
+				</patTemplate:tmpl>
+			</td>
+		</tr>
+	</tfoot>
+</table>
+
+</patTemplate:tmpl>
