@@ -36,35 +36,26 @@ class jomres_custom_template_handler
 			{
 			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 			$jrConfig   = $siteConfig->get();
-			
 			if (!isset($jrConfig[ 'bootstrap_version' ]))
 				$jrConfig[ 'bootstrap_version' ] = "";
 			
-			if ( jomres_cmsspecific_areweinadminarea() ) 
+			if ( _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35") 
 				$this->using_bootstrap = true;
 			else
 				{
-				if ( _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35") 
-					$this->using_bootstrap = true;
+				if ( $jrConfig[ 'use_bootstrap_in_frontend' ] == "1" ) $this->using_bootstrap = true;
 				else
-					{
-					if ( $jrConfig[ 'use_bootstrap_in_frontend' ] == "1" ) 
-						$this->using_bootstrap = true;
-					else
-						$this->using_bootstrap = false;
-					}
+				$this->using_bootstrap = false;
 				}
 
-			if ( $this->using_bootstrap ) 
-				$this->default_template_files_folder = JOMRESPATH_BASE . JRDS . 'templates' . JRDS . 'bootstrap'.$jrConfig[ 'bootstrap_version' ] . JRDS . 'frontend';
+			if ( $this->using_bootstrap ) $this->default_template_files_folder = JOMRESPATH_BASE . JRDS . 'templates' . JRDS . 'bootstrap'.$jrConfig[ 'bootstrap_version' ] . JRDS . 'frontend';
 			else
-				$this->default_template_files_folder = JOMRESPATH_BASE . JRDS . 'templates' . JRDS . 'jquery_ui' . JRDS . 'frontend';
+			$this->default_template_files_folder = JOMRESPATH_BASE . JRDS . 'templates' . JRDS . 'jquery_ui' . JRDS . 'frontend';
 			}
 		else
 			{
 			$this->default_template_files_folder = $specific_path;
 			}
-		
 		$this->temp_ptype_id = null; // After checking to see if a template's been customised, we'll need to store the ptype found in case it's 0 (zero) which means the template's for all properties
 		$this->getAllCustomTemplates();
 		}
