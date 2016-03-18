@@ -116,7 +116,7 @@ class jomres_charts
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->addRows( 'legend_rows',$legend_rows);
 		$tmpl->readTemplatesFromInput( 'show_chart.html' );
@@ -201,7 +201,7 @@ class jomres_charts
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->addRows( 'rows',$rows);
 		$tmpl->readTemplatesFromInput( 'chart_'.$this->type.'.html' );

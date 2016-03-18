@@ -1236,6 +1236,19 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_dir(  $this->dir_libraries . 'recaptcha' . JRDS . 'RequestMethod' . JRDS );
 		
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'chart_bar.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'chart_line.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'chart_radar.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'show_chart.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'chart_bar.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'chart_line.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'chart_radar.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'show_chart.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'chart_bar.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'chart_line.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'chart_radar.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'show_chart.html' );
+		
 		}
 
 	function add_obs_file( $path_and_file )
