@@ -1253,8 +1253,8 @@ jr_define( '_JOMRES_FRONT_BLACKBOOKING_SRP_CANNOTBLACKBOOK', 'Sorry, you cannot 
 jr_define( '_JOMRES_FRONT_BLACKBOOKING_SRP_CANBLACKBOOK', 'You can blackbook this property for those dates.' );
 jr_define( '_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', 'Your property is configured to charge per person per night but you do not have any guest types created or published, please create and publish one or more guest types. ' );
 jr_define( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', 'Még nem állított be egy tarifát sem, így nem tud foglalásokat fogadni.' );
-jr_define( '_JOMRES_EDITINGMODE_ON', 'Editing mode on' );
-jr_define( '_JOMRES_EDITINGMODE_OFF', 'Editing mode off' );
+jr_define( '_JOMRES_EDITINGMODE_ON', 'Label Editing mode on' );
+jr_define( '_JOMRES_EDITINGMODE_OFF', 'Label Editing mode off' );
 jr_define( '_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE', 'Változó előleg kérése?' );
 jr_define( '_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC', 'A változó előleg beállítás lehetővé teszi, hogy a foglalás teljes árát felszámolja előlegként, ha a foglalás érkezési napja egy bizonyos számú napnál közelebb van "mához". Állítsa ezt az opciót igenre, és írja be a napok számát alul. Pl. ha ma 2011-10-15-e van, és ön 15 napot állított be, minden 2011-10-01-e után beérkező foglaláskor a vendégnek előre ki kell fizetnie a teljes árat. Az ez előtti foglalásokkor a fenti foglaló-beállítások lesznek alkalmazva.' );
 jr_define( '_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS', 'Napok száma, amin belüli foglalásokkor a teljes ár felszámolalásra kerül mint foglaló' );
