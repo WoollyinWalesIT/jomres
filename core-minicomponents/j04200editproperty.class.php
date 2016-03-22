@@ -108,7 +108,10 @@ class j04200editproperty
 				$property_drivingdirections   = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS', trim($property->property_driving_directions ), false, false );
 				$property_airports            = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS', trim($property->property_airports ), false, false );
 				$property_othertransport      = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT', trim($property->property_othertransport ), false, false );
-				$property_policiesdisclaimers = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS', trim($property->property_policies_disclaimers ), false, false );
+				if ( $property->property_policies_disclaimers == "")
+					$property_policiesdisclaimers = jr_gettext( 'DEFAULT_TERMS_AND_CONDITIONS', DEFAULT_TERMS_AND_CONDITIONS, false); 
+				else
+					$property_policiesdisclaimers = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS', trim($property->property_policies_disclaimers ), false, false );
 
 				if ( $jrConfig[ 'allowHTMLeditor' ] == "1" )
 					{
@@ -161,7 +164,7 @@ class j04200editproperty
 				$output[ 'PROPERTY_DRIVING_DIRECTIONS' ]   = editorAreaText( 'property_driving_directions', $defaultText, 'property_driving_directions', $width, $height, $col, $row );
 				$output[ 'PROPERTY_AIRPORTS' ]             = editorAreaText( 'property_airports', $defaultText, 'property_airports', $width, $height, $col, $row );
 				$output[ 'PROPERTY_OTHERTRANSPORT' ]       = editorAreaText( 'property_othertransport', $defaultText, 'property_othertransport', $width, $height, $col, $row );
-				$output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = editorAreaText( 'property_policies_disclaimers', $defaultText, 'property_policies_disclaimers', $width, $height, $col, $row );
+				$output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = editorAreaText( 'property_policies_disclaimers', jr_gettext( 'DEFAULT_TERMS_AND_CONDITIONS', DEFAULT_TERMS_AND_CONDITIONS, false), 'property_policies_disclaimers', $width, $height, $col, $row );
 				}
 			else
 				{
@@ -171,7 +174,7 @@ class j04200editproperty
 				$output[ 'PROPERTY_DRIVING_DIRECTIONS' ]   = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_driving_directions">' . $defaultText . '</textarea>';
 				$output[ 'PROPERTY_AIRPORTS' ]             = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_airports">' . $defaultText . '</textarea>';
 				$output[ 'PROPERTY_OTHERTRANSPORT' ]       = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_othertransport">' . $defaultText . '</textarea>';
-				$output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_policies_disclaimers">' . $defaultText . '</textarea>';
+				$output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_policies_disclaimers">' . jr_gettext( 'DEFAULT_TERMS_AND_CONDITIONS', DEFAULT_TERMS_AND_CONDITIONS, false) . '</textarea>';
 				}
 
 			$starsDropDownList = "<select class=\"inputbox\" name=\"stars\">";
