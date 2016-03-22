@@ -1,3 +1,26 @@
+<h3>Jomres 9.7.1 22/03/2016</h3>
+
+<span class="label label-success">Feature</span> Modified property list so that images are now shown as a slideshow ( manually triggered ). Looks damn nice too!
+<span class="label label-success">Feature</span> Updated BS3 Edit property to provide some form validation and replace the older country selection with ajax country selection. Also improved layout of the form.
+
+<span class="label label-warning">Change</span> Improved the Paging property listing functionality.
+<span class="label label-warning">Change</span> Removed some old settings that are no longer relevant vis a vis search limitations.
+<span class="label label-warning">Change</span> Modified top template so that property name area will not show if the user's not logged in. Prevents a blank row from showing.
+<span class="label label-warning">Change</span> Added indication to reader of which template file it found a fatal error in.
+<span class="label label-warning">Change</span> Moved chart templates from frontend to backend.
+<span class="label label-warning">Change</span> Improved the jq ui dashboard.
+<span class="label label-warning">Change</span> Editing mode dropdown changed to Label Editing Mode for clarity.
+<span class="label label-warning">Change</span> Modified BS3 printable invoice template to make it friendly to pdfs too.
+<span class="label label-warning">Change</span> Modified edit property to ensure it uses default terms and conditions text which was previously used in the property creation page.
+
+<span class="label label-important label-danger">Fix</span> Removed javascript comment tags intended for validation as they break javascript in Edge.
+<span class="label label-important label-danger">Fix</span> Fixed a bug in jq ui dashboard template
+
+<span class="label label-info">Joomla</span> Added a missing check for Joomla 3.5
+<span class="label label-info">Joomla</span> Modified how we detect the CMS version due to changes in how J3.5 version class is constructed.
+
+<span class="label label-info">Wordpress</span> Added a warning to ensure that WP users are highlighted to the need for a page with jomres:xx-xx.
+
 <h3>Jomres 9.7.0 15/03/2016 (Happy Birthday Ivan)</h3>
 
 <span class="label label-success">Feature</span> Added new "Shop" functionality to the plugin manager. This allows users to purchase plugins direct through the plugin manager without needing to purchase a full license.
