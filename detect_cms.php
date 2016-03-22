@@ -25,38 +25,42 @@ if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'libraries' . JRDS . 'cms'
 	if (!defined("JPATH_PLATFORM"))
 		define("JPATH_PLATFORM",1); // Joomla 3.3.1 uses this instead of JEXEC.
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'libraries' . JRDS . 'cms' . JRDS . 'version' . JRDS . 'version.php' );
+	
 	$jversion = new JVersion();
-	if ( $jversion->RELEASE == '2.5' )
+	$bang = explode(".",$jversion->getShortVersion());
+	$vshort_version = $bang[0].".".$bang[1];
+
+	if ( $vshort_version == '2.5' )
 		{
 		define( "_JOMRES_DETECTED_CMS", "joomla25" );
 		define( "_JOMRES_DETECTED_CMS_SPECIFIC_FILES", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "jomres" . JRDS . "cms_specific" . JRDS . _JOMRES_DETECTED_CMS . JRDS );
 		}
-	if ( $jversion->RELEASE == '3.0' )
+	if ( $vshort_version == '3.0' )
 		{
 		define( "_JOMRES_DETECTED_CMS", "joomla30" );
 		define( "_JOMRES_DETECTED_CMS_SPECIFIC_FILES", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "jomres" . JRDS . "cms_specific" . JRDS . _JOMRES_DETECTED_CMS . JRDS );
 		}
-	if ( $jversion->RELEASE == '3.1' )
+	if ( $vshort_version == '3.1' )
 		{
 		define( "_JOMRES_DETECTED_CMS", "joomla31" );
 		define( "_JOMRES_DETECTED_CMS_SPECIFIC_FILES", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "jomres" . JRDS . "cms_specific" . JRDS . _JOMRES_DETECTED_CMS . JRDS );
 		}
-	if ( $jversion->RELEASE == '3.2' )
+	if ( $vshort_version == '3.2' )
 		{
 		define( "_JOMRES_DETECTED_CMS", "joomla32" );
 		define( "_JOMRES_DETECTED_CMS_SPECIFIC_FILES", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "jomres" . JRDS . "cms_specific" . JRDS . _JOMRES_DETECTED_CMS . JRDS );
 		}
-	if ( $jversion->RELEASE == '3.3' )
+	if ( $vshort_version == '3.3' )
 		{
 		define( "_JOMRES_DETECTED_CMS", "joomla33" );
 		define( "_JOMRES_DETECTED_CMS_SPECIFIC_FILES", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "jomres" . JRDS . "cms_specific" . JRDS . _JOMRES_DETECTED_CMS . JRDS );
 		}
-	if ( $jversion->RELEASE == '3.4' )
+	if ( $vshort_version == '3.4' )
 		{
 		define( "_JOMRES_DETECTED_CMS", "joomla34" );
 		define( "_JOMRES_DETECTED_CMS_SPECIFIC_FILES", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "jomres" . JRDS . "cms_specific" . JRDS . _JOMRES_DETECTED_CMS . JRDS );
 		}
-	if ( $jversion->RELEASE == '3.5' )
+	if ( $vshort_version == '3.5' )
 		{
 		define( "_JOMRES_DETECTED_CMS", "joomla35" );
 		define( "_JOMRES_DETECTED_CMS_SPECIFIC_FILES", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "jomres" . JRDS . "cms_specific" . JRDS . _JOMRES_DETECTED_CMS . JRDS );
@@ -98,7 +102,7 @@ else
 			}
 		}
 	}
-
+	
 
 if ( !defined( '_JOMRES_DETECTED_CMS' ) )
 	{
