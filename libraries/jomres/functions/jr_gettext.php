@@ -96,7 +96,7 @@ function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false 
 		}
 	else
 		$theText = jr_get_defined( $theConstant, $theValue );
-	$theText = nl2br($theText);
+
 	if ( isset( $thisJRUser ) )
 		{
 		if ( isset($_REQUEST[ 'task' ]))
