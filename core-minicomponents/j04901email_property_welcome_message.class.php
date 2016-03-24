@@ -27,6 +27,7 @@ class j04901email_property_welcome_message
 		$property_uid = $componentArgs['property_uid'];
 
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$current_property_details->gather_data($property_uid);
 
 		$pageoutput=array();
 		$output = array();
