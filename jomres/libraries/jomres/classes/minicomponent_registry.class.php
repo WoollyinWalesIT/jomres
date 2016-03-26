@@ -138,7 +138,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 		$class_structure_start          = "
 class jomres_mc_registry
 	{
-	function jomres_mc_registry()
+	function __construct()
 		{";
 		$class_structure_end            = "
 		}

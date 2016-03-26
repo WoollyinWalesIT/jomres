@@ -150,7 +150,7 @@ class jomres_currency_exchange_rates
 			
 		class jomres_currency_exchange_rates_temp_data
 			{
-			function jomres_currency_exchange_rates_temp_data()
+			function __construct()
 				{
 				' . $lines . '
 				}
