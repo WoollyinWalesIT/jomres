@@ -1,0 +1,21 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+	<p class="alert alert-danger">{_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES} {_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LIST_ROOM_TYPES}</p>
+	
+	<table id="admin_list_ptypes" class="table table-striped" width="100%">
+		<thead>
+		<tr class="alert alert-danger">
+			<th>{HPTYPE}</th>
+			<th>{_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows">
+			<tr class="alert alert-danger">
+				<td>{PROPERTY_TYPE}</td>
+				<td>{MANAGEMENT_PROCESS}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+	{LINK}
+</patTemplate:tmpl>

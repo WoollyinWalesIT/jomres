@@ -147,32 +147,25 @@ class j16000jomres_system_info
 		$output['CAPTERRA_REVIEW_SITE_TEXT'] = 'Capterra';
 		
 		// Property type checks //
-		// We have a situation where a property type needs to be cross-referenced with room types
+		// We have a situation where a property type needs to be cross-referenced with room types, this check will ascertain if any property types are missing room types
 		
+		$output['PROPERTY_TYPE_WARNING'] = '';
 		$property_types_requiring_attention = array();
 		
-		$room_types = array();
-		$query = "SELECT room_classes_uid , room_class_abbv , srp_only FROM #__jomres_room_classes";
-		$result = doSelectSql($query);
-		if (count($result)>0)
-			{
-			foreach ($result as $r)
-				{
-				$room_types[$r->room_classes_uid] = array("room_class_abbv" => $r->room_class_abbv , "srp_only" => $r->srp_only );
-				}
-			}
-		
-		$roomtype_propertytype_xref = array();
+		$query = "SELECT room_classes_uid FROM #__jomres_room_classes";
+		$room_types = doSelectSql($query);
+
+ 		$roomtype_propertytype_xref = array();
 		$query = "SELECT roomtype_id , propertytype_id FROM #__jomres_roomtypes_propertytypes_xref ";
 		$result = doSelectSql( $query );
 		if (count($result)>0)
 			{
 			foreach ($result as $r)
 				{
-				$roomtype_propertytype_xref[$r->roomtype_id] = $r->propertytype_id;
+				$all_property_types_that_have_room_types[] = $r->propertytype_id;
 				}
 			}
-		
+
 		if (count($room_types)>0)
 			{
 			$query = "SELECT `id`,`ptype`,`mrp_srp_flag` FROM #__jomres_ptypes ORDER BY `order` ASC";
@@ -181,9 +174,44 @@ class j16000jomres_system_info
 				{
 				foreach ( $ptypeList as $ptype)
 					{
-					
-					
+					if ($ptype->mrp_srp_flag == "0" || $ptype->mrp_srp_flag == "1")
+						{
+						if (!in_array($ptype->id,$all_property_types_that_have_room_types))
+							{
+							$property_types_requiring_attention[] = array ("ptype_abbv"=>$ptype->ptype , "process" => $ptype->mrp_srp_flag);
+							}
+						}
 					}
+				}
+			
+			if (count($property_types_requiring_attention)>0)
+				{
+				$o=array();
+				$po=array();
+				$rows=array();
+				$o['_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES'] = jr_gettext('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES',_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES,false);
+				$o['HPTYPE']= jr_gettext( '_JOMRES_FRONT_PTYPE', _JOMRES_FRONT_PTYPE, false );
+				$o[ '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD' ]=jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD', _JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD,false );
+				$o['LINK'] = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN . '&task=listGlobalroomTypes'.'" class="btn btn-primary">'.jr_gettext('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT',_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT,false).'</a>';
+
+				foreach ($property_types_requiring_attention as $property_type)
+					{
+					$r=array();
+					$r['PROPERTY_TYPE'] = $property_type['ptype_abbv'];
+					if ( $property_type['process'] == "0")
+						$r['MANAGEMENT_PROCESS'] =  jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', _JOMRES_PROPERTYTYPE_FLAG_HOTEL,false );
+					else
+						$r['MANAGEMENT_PROCESS'] =  jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_VILLA', _JOMRES_PROPERTYTYPE_FLAG_VILLA,false );
+					$rows[]=$r;
+					}
+				
+				$po[ ] = $o;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+				$tmpl->addRows( 'pageoutput', $po );
+				$tmpl->addRows( 'rows', $rows );
+				$tmpl->readTemplatesFromInput( 'list_ptypes_without_room_types.html' );
+				$output['PROPERTY_TYPE_WARNING'] = $tmpl->getParsedTemplate();
 				}
 			}
 		

@@ -106,6 +106,73 @@ class j16000listGlobalroomTypes
 		$output[ 'COUNTER' ]            = count( $rows );
 		$output[ 'TOTALINLISTPLUSONE' ] = count( $rows ) + 1;
 
+		// Property type checks //
+		// We have a situation where a property type needs to be cross-referenced with room types, this check will ascertain if any property types are missing room types
+		
+		$output['PROPERTY_TYPE_WARNING'] = '';
+		$property_types_requiring_attention = array();
+		
+ 		$roomtype_propertytype_xref = array();
+		$query = "SELECT roomtype_id , propertytype_id FROM #__jomres_roomtypes_propertytypes_xref ";
+		$result = doSelectSql( $query );
+		if (count($result)>0)
+			{
+			foreach ($result as $r)
+				{
+				$all_property_types_that_have_room_types[] = $r->propertytype_id;
+				}
+			}
+
+		if (count($roomtypeList)>0)
+			{
+			$query = "SELECT `id`,`ptype`,`mrp_srp_flag` FROM #__jomres_ptypes ORDER BY `order` ASC";
+			$ptypeList = doSelectSql( $query );
+			if (count($ptypeList) > 0)
+				{
+				foreach ( $ptypeList as $ptype)
+					{
+					if ($ptype->mrp_srp_flag == "0" || $ptype->mrp_srp_flag == "1")
+						{
+						if (!in_array($ptype->id,$all_property_types_that_have_room_types))
+							{
+							$property_types_requiring_attention[] = array ("ptype_abbv"=>$ptype->ptype , "process" => $ptype->mrp_srp_flag);
+							}
+						}
+					}
+				}
+			
+			if (count($property_types_requiring_attention)>0)
+				{
+				$o=array();
+				$po=array();
+				$rws=array();
+				$o['_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES']					= jr_gettext('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES',_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES,false);
+				$o['_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LIST_ROOM_TYPES']	= jr_gettext('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LIST_ROOM_TYPES',_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LIST_ROOM_TYPES,false);
+				$o[ '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD' ]=$output[ '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD' ];
+				$o['HPTYPE']= jr_gettext( '_JOMRES_FRONT_PTYPE', _JOMRES_FRONT_PTYPE, false );
+				$o['LINK'] = '';
+				foreach ($property_types_requiring_attention as $property_type)
+					{
+					$r=array();
+					$r['PROPERTY_TYPE'] = $property_type['ptype_abbv'];
+					if ( $property_type['process'] == "0")
+						$r['MANAGEMENT_PROCESS'] =  jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', _JOMRES_PROPERTYTYPE_FLAG_HOTEL,false );
+					else
+						$r['MANAGEMENT_PROCESS'] =  jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_VILLA', _JOMRES_PROPERTYTYPE_FLAG_VILLA,false );
+					$rws[]=$r;
+					}
+				
+				$po[ ] = $o;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+				$tmpl->addRows( 'pageoutput', $po );
+				$tmpl->addRows( 'rows', $rws );
+				$tmpl->readTemplatesFromInput( 'list_ptypes_without_room_types.html' );
+				$output['PROPERTY_TYPE_WARNING'] = $tmpl->getParsedTemplate();
+				}
+			}
+		
+		// End property type checks //
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, '' );
