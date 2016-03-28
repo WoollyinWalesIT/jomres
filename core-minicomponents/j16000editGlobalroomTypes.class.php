@@ -25,15 +25,9 @@ class j16000editGlobalroomTypes
 
 			return;
 			}
-		$rmTypeUid = intval( jomresGetParam( $_REQUEST, 'rmTypeUid', 0 ) );
-		$clone     = intval( jomresGetParam( $_REQUEST, 'clone', 0 ) );
-		$yesno     = array ();
-		$yesno[ ]  = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO,false ) );
-		$yesno[ ]  = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES,false ) );
-
-		$query     = "SELECT * FROM #__jomres_ptypes";
-		$ptypeList = doSelectSql( $query );
-
+		$rmTypeUid		= intval( jomresGetParam( $_REQUEST, 'rmTypeUid', 0 ) );
+		$mrp_srp_flag	= intval( jomresGetParam( $_REQUEST, 'mrp_srp_flag', 0 ) );
+		
 		$selected_ptype_rows = array ();
 		if ( $rmTypeUid > 0 )
 			{
@@ -53,7 +47,7 @@ class j16000editGlobalroomTypes
 				{
 				$output[ 'CLASSABBV' ] = stripslashes( $rt->room_class_abbv );
 				$output[ 'CLASSDESC' ] = stripslashes( $rt->room_class_full_desc );
-				$output[ 'SRP_ONLY' ]  = jomresHTML::selectList( $yesno, 'srp_only', 'class="inputbox" size="1"', 'value', 'text', $rt->srp_only );
+				$output[ 'SRP_ONLY' ]  = $rt->srp_only;
 				$image                 = $rt->image;
 				}
 			}
@@ -61,11 +55,13 @@ class j16000editGlobalroomTypes
 			{
 			$output[ 'CLASSABBV' ] = "";
 			$output[ 'CLASSDESC' ] = "";
-			$output[ 'SRP_ONLY' ]  = jomresHTML::selectList( $yesno, 'srp_only', 'class="inputbox" size="1"', 'value', 'text', 0 );
+			$output[ 'SRP_ONLY' ]  = $mrp_srp_flag;
 			}
-		if ( $clone ) $propertyFeatureUid = false;
-
-
+		
+		
+		$query     = "SELECT * FROM #__jomres_ptypes WHERE mrp_srp_flag = ".(int)$output[ 'SRP_ONLY' ];
+		$ptypeList = doSelectSql( $query );
+		
 		$all_ptype_rows = array ();
 		if ( count( $ptypeList ) > 0 )
 			{
@@ -117,7 +113,14 @@ class j16000editGlobalroomTypes
 		$output[ 'PAGETITLE' ]                        = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK,false );
 		$output[ '_JOMRES_PROPERTY_TYPE_ASSIGNMENT' ] = jr_gettext( '_JOMRES_PROPERTY_TYPE_ASSIGNMENT', _JOMRES_PROPERTY_TYPE_ASSIGNMENT,false );
 		$output[ '_JOMRES_IMAGE' ]                    = jr_gettext( '_JOMRES_IMAGE', _JOMRES_IMAGE,false );
-
+		
+		$output[ '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD' ] = nl2br(jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD', _JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD,false ));
+		if ($output[ 'SRP_ONLY' ] == "0")
+			$output['MANAGEMENT_PROCESS'] =  jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', _JOMRES_PROPERTYTYPE_FLAG_HOTEL,false );
+		elseif ($output[ 'SRP_ONLY' ] == "1")
+			$output['MANAGEMENT_PROCESS'] =  jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_VILLA', _JOMRES_PROPERTYTYPE_FLAG_VILLA,false );
+		else
+			$output['MANAGEMENT_PROCESS'] = jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_NEITHER', _JOMRES_PROPERTYTYPE_FLAG_NEITHER,false );
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();

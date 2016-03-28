@@ -2800,13 +2800,13 @@ jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK_LINK", "Upload an image" );
 
 jr_define( "_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK", "Create some tariffs" );
 
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG", "What style of property is this?" );
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_DESC", "Is this property type a hotel type property, where you rent out multiple rooms in the property, or a villa type property, where you rent out the property in it's entirety? If the property type is intended for properties that don't offer room or property booking functionality ( like tours ) choose Neither." );
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_HOTEL", "Hotel/Bed & breakfast/Pension" );
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_VILLA", "Villa/Cottage/Apartment" );
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_NEITHER", "Neither" );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG", "Which management process?" );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_DESC", "Is this property type a hotel type property, where you rent out rooms in the property, or a villa type property, where you rent out the whole property in one booking? If the property type is intended for properties that don't offer room or property booking functionality ( like tours ) choose None." );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_HOTEL", "Rooms in property" );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_VILLA", "Entire property" );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_NEITHER", "None" );
 jr_define( "_JOMRES_PROPERTYTYPE_FLAG_BOTH", "Both" ); // This is an interim setting that gives backward compatability for existing users who won't yet have updated their property types. It won't be selectable 
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD", "Hotel or Villa?" );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD", "Management process" );
 
 jr_define( "_JOMRES_ADDRESS_SANITY_CHECK", "You'll need to complete your address details so that your guests can find you when they come to stay." );
 jr_define( "_JOMRES_ADDRESS_SANITY_CHECK_LINK", "Update your address" );
@@ -2862,3 +2862,12 @@ jr_define( '_JOMRES_LAT', 'Lat (nn.nnnn)' );
 jr_define( '_JOMRES_LONG', 'Long (nn.nnnn)' );
 
 jr_define( '_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] ) otherwise you will not be able to access Jomres from the site forntend to manage your properties and bookings.' );
+jr_define( '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Every property in Jomres has a rental management process. Hotels/B&Bs/Pensions rent out individual rooms, and cottages/villas/apartments rent out the entire property. This is invisible to the property manager, but for them to be able to create tariffs for their property you must first add room types that are appropriate for the property type.
+
+For example, A hotel property type would normally need several room types ( double rooms, single rooms and twins ) whereas a villa can only have one room type, e.g. 2 Bedrooms, 5 bedrooms.
+
+It is possible to create room types for properties like Tours. This allows customers to search for properties like tours only, but the Property manager will not create tariffs for this property type, so the Management Process is not relevant to them.
+');
+
+jr_define( "_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES", "What management process will this room type be for?" );
+jr_define( "_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES_DESC", "Is the room type for a hotel type property, or a villa type property?" );

@@ -34,7 +34,7 @@ class j16000listPropertyTypes
 		$output[ 'HPUBLISHED' ]									= jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISHED', _JOMRES_COM_MR_VRCT_PUBLISHED,false );
 		$output[ '_JOMRES_ORDER' ]				 				= jr_gettext( '_JOMRES_ORDER', _JOMRES_ORDER,false );
 		$output[ '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD' ]		= jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD', _JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD,false );
-		
+		$output[ '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES' ]		= nl2br(jr_gettext( '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', _JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES,false ));
 		
 
 		$query	  = "SELECT `id`,`ptype`,`ptype_desc`,`published`,`order` , `mrp_srp_flag` FROM #__jomres_ptypes ORDER BY `order` ASC";
