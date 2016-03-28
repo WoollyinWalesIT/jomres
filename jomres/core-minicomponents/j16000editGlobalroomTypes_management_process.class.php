@@ -25,9 +25,7 @@ class j16000editGlobalroomTypes_management_process
 
 			return;
 			}
-		
-		
-		
+
 		$mrp_srp_flag_options    = array ();
 		$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '0', jr_gettext( _JOMRES_PROPERTYTYPE_FLAG_HOTEL, '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', false ) );
 		$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '1', jr_gettext( _JOMRES_PROPERTYTYPE_FLAG_VILLA, '_JOMRES_PROPERTYTYPE_FLAG_VILLA', false ) );
@@ -35,10 +33,9 @@ class j16000editGlobalroomTypes_management_process
 		$output[ '_JOMRES_PROPERTYTYPE_FLAG_DROPDOWN' ]= jomresHTML::selectList( $mrp_srp_flag_options, 'mrp_srp_flag', 'class="inputbox" size="1"', 'value', 'text', 0 );
 	
 		
-		$output[ '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES' ]=jr_gettext( _JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES, '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', false );
+		$output[ '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES' ]=nl2br(jr_gettext( _JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES, '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', false ));
 		$output[ '_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES' ]=jr_gettext( _JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES, '_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES', false );
-		$output[ '_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES_DESC' ]=jr_gettext( _JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES_DESC, '_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES_DESC', false );
-		
+
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=listGlobalroomTypes", '' );
