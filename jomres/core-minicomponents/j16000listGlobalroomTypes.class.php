@@ -26,7 +26,7 @@ class j16000listGlobalroomTypes
 			return;
 			}
 		$editIcon     = '<IMG SRC="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0">';
-		$query        = "SELECT room_classes_uid, room_class_abbv, room_class_full_desc,image FROM #__jomres_room_classes  WHERE property_uid = '0' ORDER BY room_class_abbv";
+		$query        = "SELECT room_classes_uid, room_class_abbv, room_class_full_desc,image,srp_only FROM #__jomres_room_classes  WHERE property_uid = '0' ORDER BY room_class_abbv";
 		$roomtypeList = doSelectSql( $query );
 
 		$query      = "SELECT * FROM #__jomres_ptypes";
@@ -59,7 +59,11 @@ class j16000listGlobalroomTypes
 		$output[ 'HRTDESCRIPTION' ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_DESC', _JOMRES_COM_MR_EB_ROOM_CLASS_DESC,false );
 		$output[ 'HJOMRES_A_ICON' ] = jr_gettext( '_JOMRES_A_ICON', _JOMRES_A_ICON,false );
 		$output[ 'HPTYPE_ASSIGNMENT' ] = jr_gettext( '_JOMRES_PROPERTY_TYPE_ASSIGNMENT', _JOMRES_PROPERTY_TYPE_ASSIGNMENT,false );
-
+		
+		$output[ '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD' ]				= jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD', _JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD,false );
+		$output[ '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES' ]		= nl2br(jr_gettext( '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', _JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES,false ));
+		
+		
 		foreach ( $roomtypeList as $roomtype )
 			{
 			$selected_ptype_rows = "";
@@ -70,7 +74,14 @@ class j16000listGlobalroomTypes
 					$selected_ptype_rows .= $all_ptypes[ $ptype ] . " ";
 					}
 				}
-
+			
+			if ($roomtype->srp_only == "0")
+				$r['MANAGEMENT_PROCESS'] =  jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', _JOMRES_PROPERTYTYPE_FLAG_HOTEL,false );
+			elseif ($roomtype->srp_only == "1")
+				$r['MANAGEMENT_PROCESS'] =  jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_VILLA', _JOMRES_PROPERTYTYPE_FLAG_VILLA,false );
+			else
+				$r['MANAGEMENT_PROCESS'] = jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_NEITHER', _JOMRES_PROPERTYTYPE_FLAG_NEITHER,false );
+			
 			$r[ 'CHECKBOX' ]       = '<input type="checkbox" id="cb' . count( $rows ) . '" name="idarray[]" value="' . $roomtype->room_classes_uid . '" onClick="jomres_isChecked(this.checked);">';
 			$r[ 'RTTITLE' ]        = $roomtype->room_class_abbv;
 			$r[ 'RTDESCRIPTION' ]  = $roomtype->room_class_full_desc;
@@ -100,7 +111,7 @@ class j16000listGlobalroomTypes
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, '' );
 		$image  = $jrtbar->makeImageValid( "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/AddItem.png" );
 		$link   = JOMRES_SITEPAGE_URL_ADMIN;
-		$jrtb .= $jrtbar->customToolbarItem( 'editGlobalroomTypes', $link, jr_gettext( '_JOMRES_COM_MR_NEWTARIFF', _JOMRES_COM_MR_NEWTARIFF,false ), $submitOnClick = true, $submitTask = "editGlobalroomTypes", $image );
+		$jrtb .= $jrtbar->customToolbarItem( 'editGlobalroomTypes_management_process', $link, jr_gettext( '_JOMRES_COM_MR_NEWTARIFF', _JOMRES_COM_MR_NEWTARIFF,false ), $submitOnClick = true, $submitTask = "editGlobalroomTypes_management_process", $image );
 		$image = $jrtbar->makeImageValid( "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/WasteBasket.png" );
 		$link  = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem( 'deleteGlobalroomTypes', $link, jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', _JOMRES_COM_MR_ROOM_DELETE,false ), $submitOnClick = true, $submitTask = "deleteGlobalroomTypes", $image );

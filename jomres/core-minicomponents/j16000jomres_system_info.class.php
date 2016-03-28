@@ -146,6 +146,49 @@ class j16000jomres_system_info
 		$output['CAPTERRA_REVIEW_SITE_URL'] = 'http://www.capterra.com/reservations-software/reviews/134469/Jomres/Woollyinwales%20IT/new';
 		$output['CAPTERRA_REVIEW_SITE_TEXT'] = 'Capterra';
 		
+		// Property type checks //
+		// We have a situation where a property type needs to be cross-referenced with room types
+		
+		$property_types_requiring_attention = array();
+		
+		$room_types = array();
+		$query = "SELECT room_classes_uid , room_class_abbv , srp_only FROM #__jomres_room_classes";
+		$result = doSelectSql($query);
+		if (count($result)>0)
+			{
+			foreach ($result as $r)
+				{
+				$room_types[$r->room_classes_uid] = array("room_class_abbv" => $r->room_class_abbv , "srp_only" => $r->srp_only );
+				}
+			}
+		
+		$roomtype_propertytype_xref = array();
+		$query = "SELECT roomtype_id , propertytype_id FROM #__jomres_roomtypes_propertytypes_xref ";
+		$result = doSelectSql( $query );
+		if (count($result)>0)
+			{
+			foreach ($result as $r)
+				{
+				$roomtype_propertytype_xref[$r->roomtype_id] = $r->propertytype_id;
+				}
+			}
+		
+		if (count($room_types)>0)
+			{
+			$query = "SELECT `id`,`ptype`,`mrp_srp_flag` FROM #__jomres_ptypes ORDER BY `order` ASC";
+			$ptypeList = doSelectSql( $query );
+			if (count($ptypeList) > 0)
+				{
+				foreach ( $ptypeList as $ptype)
+					{
+					
+					
+					}
+				}
+			}
+		
+		// End property type checks //
+		
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
