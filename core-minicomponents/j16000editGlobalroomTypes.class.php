@@ -106,7 +106,7 @@ class j16000editGlobalroomTypes
 		$output[ 'TASK' ]                             = 'saveGlobalRoomClass';
 		$output[ 'HLINKTEXT' ]                        = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_LINKTEXT', _JOMRES_COM_MR_VRCT_ROOMTYPES_LINKTEXT,false );
 		$output[ 'HLINKTEXTCLONE' ]                   = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE', _JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE,false );
-		$output[ 'HABBV' ]                            = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV,false );
+		$output[ 'HABBV' ]                            = jr_gettext( '_JOMRES_SEARCH_RTYPES', _JOMRES_SEARCH_RTYPES,false );
 		$output[ 'HDESC' ]                            = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_DESC', _JOMRES_COM_MR_EB_ROOM_CLASS_DESC,false );
 		$output[ 'HSRP_ONLY' ]                        = jr_gettext( 'JOMRES_COM_A_SRPONLY', JOMRES_COM_A_SRPONLY,false );
 		$output[ 'MOSCONFIGLIVESITE' ]                = get_showtime( 'live_site' );
