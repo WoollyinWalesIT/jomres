@@ -61,7 +61,11 @@ class j10501a_misc
 			$support_key_status = '<span class="badge">Status</span> '.$jomres_check_support_key->key_status.'';
 			$support_key_owner = '<span class="badge">Owner</span> '.$jomres_check_support_key->owner.'<br/>';
 			$support_key_expires = '<span class="badge">Expires</span> '.$jomres_check_support_key->expires.'';
-			
+
+			if ( $jomres_check_support_key->is_trial_license=="1")
+				$support_key_is_trial_license = '<span class="badge badge-warning">Trial license</span> ';
+			else
+				$support_key_is_trial_license = '';
 			}
 		else
 			{
@@ -78,7 +82,7 @@ class j10501a_misc
 		$configurationPanel->insertSetting();
 
 		$configurationPanel->setleft( jr_gettext( _JOMRES_SUPPORTKEY, '_JOMRES_SUPPORTKEY', false ) );
-		$configurationPanel->setmiddle( '<input type="password" class="input-xlarge" name="cfg_licensekey" value="' . $jrConfig[ 'licensekey' ] . '" /><br/>'.' '.$support_key_status.' '.$support_key_owner.' '.$support_key_expires.' '.$renewal_link );
+		$configurationPanel->setmiddle( '<input type="password" class="input-xlarge" name="cfg_licensekey" value="' . $jrConfig[ 'licensekey' ] . '" /><br/>'.' '.$support_key_status.' '.$support_key_owner.' '.$support_key_expires.' '.$renewal_link.' '.$support_key_is_trial_license );
 		$configurationPanel->setright( jr_gettext( _JOMRES_SUPPORTKEY_DESC, '_JOMRES_SUPPORTKEY_DESC', false ).' '.$support_key_message ."<a href='http://www.jomres.net/manual/installation-and-upgrading/322-after-installation-hostname-restrictions' target='_blank' >More info</a> ");
 		$configurationPanel->insertSetting();
 
@@ -167,7 +171,7 @@ class j10501a_misc
 		$configurationPanel->insertSetting();
 		
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 ) 
-			{
+		{
 			$configurationPanel->setleft( jr_gettext( _JOMRES_COM_LANGUAGE_CONTEXT, '_JOMRES_COM_LANGUAGE_CONTEXT', false ) );
 			$configurationPanel->setmiddle( $language_context_dropdown );
 			$configurationPanel->setright( jr_gettext( _JOMRES_COM_LANGUAGE_CONTEXT_DESC, '_JOMRES_COM_LANGUAGE_CONTEXT_DESC', false ) );

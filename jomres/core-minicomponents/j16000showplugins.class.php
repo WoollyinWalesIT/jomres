@@ -72,6 +72,11 @@ class j16000showplugins
 		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=showplugins" );
 		$this->key_valid = $key_validation->key_valid;
 
+		if($key_validation->is_trial_license =="1" && !extension_loaded("IonCube Loader")) 
+			{     
+			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=loader_wizard" );
+			}
+			
 		$developer_user = false;
 
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );

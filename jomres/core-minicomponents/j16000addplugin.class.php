@@ -56,6 +56,11 @@ class j16000addplugin
 		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=addplugin&no_html=1&plugin=" . $pluginName ."&hostname=".get_showtime('live_site'), true );
 		$this->key_valid = $key_validation->key_valid;
 
+		if($key_validation->is_trial_license =="1"&& !extension_loaded("IonCube Loader")) 
+			{     
+			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=loader_wizard" );
+			}
+		
 		if (!$this->key_valid)
 			{
 			$current_licenses = array ();

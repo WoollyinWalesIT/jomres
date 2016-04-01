@@ -154,6 +154,7 @@ return $current_licenses;
 			if ($buffer != "")
 				{
 				$license_data =json_decode($buffer);
+
 				if ($license_data->license_valid === true)
 					$license_data->license_valid = "1";
 				else
@@ -167,6 +168,7 @@ $license_data->key_status = "'.$license_data->key_status.'";
 $license_data->owner = "'.$license_data->owner.'";
 $license_data->license_valid = "'.$license_data->license_valid.'";
 $license_data->allows_plugins = "'.$license_data->allows_plugins.'";
+$license_data->is_trial_license = "'.$license_data->is_trial_license.'";
 ';
 
 				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php", $lic_data);
@@ -180,6 +182,7 @@ $license_data->allows_plugins = "'.$license_data->allows_plugins.'";
 			$this->owner		= "Unknown";
 			$this->owner		= "Unknown";
 			$this->allows_plugins = false;
+			$this->is_trial_license		= false;
 			}
 		else
 			{
@@ -189,6 +192,7 @@ $license_data->allows_plugins = "'.$license_data->allows_plugins.'";
 			if ( $license_data->license_valid == true ) 
 				$this->key_valid = true;
 			$this->allows_plugins		= $license_data->allows_plugins;
+			$this->is_trial_license		= (bool)$license_data->is_trial_license;
 			}
 		}
 	}
