@@ -401,6 +401,9 @@ function saveSiteConfig( $overrides = array() )
 	{
 	ignore_user_abort( true );
 	
+	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS .'temp'.JRDS.'key.php'))
+		unlink(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS .'temp'.JRDS.'key.php');
+	
 	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php'))
 		{
 		include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php' );
