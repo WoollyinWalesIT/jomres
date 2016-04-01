@@ -1877,7 +1877,7 @@ function zend_extension_instructions($server_type,$loader_dir)
 			   echo $edit_line;
 			}
 		} else {
-			$download_ini_file = "<li><a href=\"$base&amp;page=phpconfig&amp;ininame=$php_ini_name&amp;stype=$server_type_code&amp;download=1&amp;prepend=1\">Save this  <code>$php_ini_name</code> file</a> and upload it to <code>$ini_dir</code> (full path on your server).";
+			$download_ini_file = "<li><a href=\"$base&amp;pagewizard=phpconfig&amp;ininame=$php_ini_name&amp;stype=$server_type_code&amp;download=1&amp;prepend=1\">Save this  <code>$php_ini_name</code> file</a> and upload it to <code>$ini_dir</code> (full path on your server).";
 			if (@is_writeable($ini_dir)) {
 				$fh = @fopen($php_ini_path,"wb");
 				if ($fh !== false) {
@@ -1910,7 +1910,7 @@ function zend_extension_instructions($server_type,$loader_dir)
 			$php_ini_path = find_additional_ioncube_ini();
 			if (empty($php_ini_path)) {
 				$php_ini_name = ADDITIONAL_INI_FILE_NAME;
-				echo "<li><a href=\"$base&amp;page=phpconfig&amp;download=1&amp;newlinesonly=1&amp;ininame=$php_ini_name&amp;stype=$server_type_code\">Save this $php_ini_name file</a> and put it in your ini files directory, <code>${sysinfo['PHP_INI_DIR']}</code>";
+				echo "<li><a href=\"$base&amp;pagewizard=phpconfig&amp;download=1&amp;newlinesonly=1&amp;ininame=$php_ini_name&amp;stype=$server_type_code\">Save this $php_ini_name file</a> and put it in your ini files directory, <code>${sysinfo['PHP_INI_DIR']}</code>";
 				$editing_ini = false;
 			} else {
 				$php_ini_name = basename($php_ini_path);
@@ -1927,7 +1927,7 @@ function zend_extension_instructions($server_type,$loader_dir)
 		}
 		if (!empty($php_ini_path)) {
 			if (zend_extension_line_missing($php_ini_path)) {
-				echo "<a>Alternatively, replace your current <code>$php_ini_path</code> file with <a href=\"$base&amp;page=phpconfig&amp;ininame=$php_ini_name&amp;stype=$server_type_code&amp;download=1&amp;prepend=1\">this new $php_ini_name file</a>."; 
+				echo "<a>Alternatively, replace your current <code>$php_ini_path</code> file with <a href=\"$base&amp;pagewizard=phpconfig&amp;ininame=$php_ini_name&amp;stype=$server_type_code&amp;download=1&amp;prepend=1\">this new $php_ini_name file</a>."; 
 			}
 		}
 	}
@@ -1945,7 +1945,7 @@ function server_restart_instructions()
 		echo "<li>Restart the server software.</li>";
 	}
 
-	echo "<li>When the server software has restarted, <a href=\"$base&amp;page=loader_check\" onclick=\"showOverlay();\">click here to test the Loader</a>.</li>";
+	echo "<li>When the server software has restarted, <a href=\"$base&amp;pagewizard=loader_check\" onclick=\"showOverlay();\">click here to test the Loader</a>.</li>";
 
 	if ($sysinfo['SS'] == 'Apache' && !is_ms_windows()) {
 		echo '<li>If the Loader installation failed, check the Apache error log file for errors and see our guide to <a target="unix_errors" href="'. UNIX_ERRORS_URL . '">Unix related errors</a>.</li>';
@@ -1955,7 +1955,7 @@ function server_restart_instructions()
 function shared_test_instructions()
 {
 	$base = get_base_address();
-	echo "<li><a href=\"$base&amp;page=loader_check\" onclick=\"showOverlay();\">Click here to test the Loader</a>.</li>";
+	echo "<li><a href=\"$base&amp;pagewizard=loader_check\" onclick=\"showOverlay();\">Click here to test the Loader</a>.</li>";
 }
 
 function link_to_php_ini_instructions()
@@ -2203,9 +2203,9 @@ function system_info_archive_page()
 		echo "<p>A downloadable archive of system information could not be created.<br> 
 			<strong>Please save each of the following and then attach those files to the support ticket:</strong></p>"; 
 		echo "<ul>";
-		echo "<li><a href=\"$base&amp;page=phpinfo\" target=\"phpinfo\">phpinfo()</a></li>";
-		echo "<li><a href=\"$base&amp;page=phpconfig\" target=\"phpconfig\">config</a></li>";
-		echo "<li><a href=\"$base&amp;page=extra&amp;stype=$server_type_code\" target=\"extra\">additional information</a></li>";
+		echo "<li><a href=\"$base&amp;pagewizard=phpinfo\" target=\"phpinfo\">phpinfo()</a></li>";
+		echo "<li><a href=\"$base&amp;pagewizard=phpconfig\" target=\"phpconfig\">config</a></li>";
+		echo "<li><a href=\"$base&amp;pagewizard=extra&amp;stype=$server_type_code\" target=\"extra\">additional information</a></li>";
 		echo "<li><a href=\"$self?page=loaderbin\">loader file</a></li>";
 		echo "</ul>";
 		footer(true);
@@ -2653,7 +2653,7 @@ function run()
 
 	(php_sapi_name() == 'cli') && die("This script should only be run by a web server.\n");
 
-	$page = get_request_parameter('page');
+	$page = get_request_parameter('pagewizard');
 	$host = get_request_parameter('host');
 	$clear = get_request_parameter('clear');
 	$ini = get_request_parameter('ini');
@@ -2817,7 +2817,7 @@ function initial_page()
 			xmlHttp.onreadystatechange=function() {
 				checkNextStep(xmlHttp,"1",startMainLoaderWizard);
 			}
-			xmlHttp.open("GET","$self?page=loaderversion",true);
+			xmlHttp.open("GET","$self?pagewizard=loaderversion",true);
 			xmlHttp.send("");
 			ajax = xmlHttp;
 			xmlHttpTimeout=setTimeout('ajaxTimeout()',stage_timeout);
@@ -2828,7 +2828,7 @@ function initial_page()
 			xmlHttp.onreadystatechange=function() {
 				checkNextStep(xmlHttp,"1",loaderVersionCheck);
 			}
-			xmlHttp.open("GET","$self?page=platforminfo",true);
+			xmlHttp.open("GET","$self?pagewizard=platforminfo",true);
 			xmlHttp.send("");
 			ajax = xmlHttp;
 			xmlHttpTimeout=setTimeout('ajaxTimeout()',stage_timeout);
@@ -2839,7 +2839,7 @@ function initial_page()
 			xmlHttp.onreadystatechange=function() {
 				checkNextStep(xmlHttp,"1",platformCheck);
 			}
-			xmlHttp.open("GET","$self?page=compilerversion",true);
+			xmlHttp.open("GET","$self?pagewizard=compilerversion",true);
 			xmlHttp.send("");
 			ajax = xmlHttp;
 			xmlHttpTimeout=setTimeout('ajaxTimeout()',stage_timeout);
@@ -3192,7 +3192,7 @@ function server_selection_form()
 		}
 	</script>
 	<form method=GET action=$self>
-		<input type="hidden" name="page" value="default">
+		<input type="hidden" name="pagewizard" value="default">
 		<input type="hidden" name="timeout" value="$timeout">
 		<input type=radio id=shared name=stype value=s onclick="document.getElementById('hostinginfo').style.display = 'block';"><label for=shared>Shared <small>(for example, server with FTP access only and no access to php.ini)</small></label><br>
 		<input type=radio id=dedi name=stype value=d onclick="document.getElementById('hostinginfo').style.display = 'block';"><label for=dedi>Dedicated or VPS <small>(server with full root ssh access)</small></label><br>
@@ -3572,7 +3572,7 @@ function extra_page($check_access_to_info = true)
 			$lines['File size is'] = filesize($loader_path) . " bytes.";
 			$lines['MD5 sum is'] = md5_file($loader_path);
 		}
-		$lines['Loader file'] = "<a href=\"$self?page=loaderbin\">Download loader file</a>";
+		$lines['Loader file'] = "<a href=\"$self?pagewizard=loaderbin\">Download loader file</a>";
 	} else {
 		$lines['Loader file'] = "Loader cannot be found.";
 	}
@@ -3673,7 +3673,7 @@ function GoDaddy_linux_instructions($html_dir)
 	if (@file_exists($ini_path)) {
 	   $instr[] = "Edit the $php_ini_name in your  $html_dir and add the following line to the <b>top</b> of the file:<br>" . $zend_extension_line ;
 	} else {
-		$instr[] = "<a href=\"$base&amp;page=phpconfig&amp;ininame=$php_ini_name&amp;stype=s&amp;download=1&amp;prepend=1\">Save this $php_ini_name file</a> and upload it to your html directory, $html_dir";
+		$instr[] = "<a href=\"$base&amp;pagewizard=phpconfig&amp;ininame=$php_ini_name&amp;stype=s&amp;download=1&amp;prepend=1\">Save this $php_ini_name file</a> and upload it to your html directory, $html_dir";
 	}
 	$instr[] = 'Download the <a target="_blank" href="' . IONCUBE_DOWNLOADS_SERVER . '"/ioncube_loaders_lin_x86.zip">Linux ionCube Loaders</a>.';
 	$instr[] = 'Unzip the loaders and upload them into the ioncube directory you created previously.';
@@ -3692,8 +3692,8 @@ function GoDaddy_page()
 
 		$inst_str = '<h4>GoDaddy Installation Instructions</h4>';
 		$inst_str .= '<p>It appears that you are hosted with GoDaddy (<a target="_blank" href="http://www.godaddy.com/">www.godaddy.com</a>). ';
-		$inst_str .= "If that is <b>not</b> the case then please <a href=\"$base&amp;page=default&amp;host=ngd\">click here to go to the main page of this installation wizard</a>.</p>";
-		$inst_str .= "<p>If you have already installed the loader then please <a href=\"$base&amp;page=loader_check\" onclick=\"showOverlay();\">click here to test the loader</a>.</p>";
+		$inst_str .= "If that is <b>not</b> the case then please <a href=\"$base&amp;pagewizard=default&amp;host=ngd\">click here to go to the main page of this installation wizard</a>.</p>";
+		$inst_str .= "<p>If you have already installed the loader then please <a href=\"$base&amp;pagewizard=loader_check\" onclick=\"showOverlay();\">click here to test the loader</a>.</p>";
 
 		echo $inst_str;
 
@@ -3842,7 +3842,7 @@ function get_default_address($include_timeout = true)
 	}
 	$page = get_default_page();
 
-	return $base . 'page=' . $page;
+	return $base . 'pagewizard=' . $page;
 }
 
 function heading()
@@ -3850,7 +3850,7 @@ function heading()
 	$self = get_self();
 
 	echo <<<EOT
-		<link rel="stylesheet" type="text/css" href="$self?page=css">
+		<link rel="stylesheet" type="text/css" href="$self?pagewizard=css">
 		<script type="text/javascript">
 			function showOverlay()
 			{
@@ -3922,7 +3922,7 @@ function footer($update_info = null)
 				ldel.innerHTML = '<p>' + msg +  '<br>' + buttons + '</p>';
 			}
 		}
-		xmlhttp.open("GET",'$self?page=wizardversion&wizard_only=1&clear_info=1',true);
+		xmlhttp.open("GET",'$self?pagewizard=wizardversion&wizard_only=1&clear_info=1',true);
 		xmlhttp.send();
 		var xmlHttpTimeout=setTimeout(ajaxTimeout,7000);
 	}
@@ -3950,13 +3950,13 @@ EOT;
 	$server_type_code = server_type_code();
 	
 	if (!info_should_be_disabled(true)) {
-		echo " | <a href=\"$base&amp;page=phpinfo\" target=\"phpinfo\">phpinfo</a>";
-		echo " | <a href=\"$base&amp;page=phpconfig\" target=\"phpconfig\">config</a>";
-		echo " | <a href=\"$base&amp;page=extra&amp;stype=$server_type_code\" target=\"extra\">additional</a>";
+		echo " | <a href=\"$base&amp;pagewizard=phpinfo\" target=\"phpinfo\">phpinfo</a>";
+		echo " | <a href=\"$base&amp;pagewizard=phpconfig\" target=\"phpconfig\">config</a>";
+		echo " | <a href=\"$base&amp;pagewizard=extra&amp;stype=$server_type_code\" target=\"extra\">additional</a>";
 	}
 
 	echo " | <a href=\"$default\" onclick=\"showOverlay();\">wizard start</a>";
-	echo " | <a href=\"$base&amp;page=loader_check\" onclick=\"showOverlay();\">loader test</a>";
+	echo " | <a href=\"$base&amp;pagewizard=loader_check\" onclick=\"showOverlay();\">loader test</a>";
 	echo ' | <a href="' . LOADERS_PAGE . '" target="loaders">loaders</a>';
 
 	echo "</div>\n";
