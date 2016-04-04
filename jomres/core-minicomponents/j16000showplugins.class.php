@@ -165,6 +165,16 @@ class j16000showplugins
 					{
 					if ( file_exists( $jrcPath . $entry . JRDS . "plugin_info.php" ) )
 						{
+						$encoded = false;
+						$fa_icon = '';
+						// Let's read the first line of the plugin info file
+						$line = fgets(fopen($jrcPath . $entry . JRDS . "plugin_info.php ", 'r'));
+						$result = substr($line, 0, 13);
+						if ($result == "<?php //004fb")
+							{
+							$encoded = true;
+							$fa_icon = '<i class="fa fa-lock"></i>';
+							}
 						include_once( $jrcPath . $entry . JRDS . "plugin_info.php" );
 						$cname = "plugin_info_" . $entry;
 						if ( class_exists( $cname ) )
@@ -172,7 +182,11 @@ class j16000showplugins
 							$info = new $cname();
 							// When developing it's easy to incorrectly rename a plugin info.php file. Uncomment the next line and run showplugins again to see which was the last plugin info that was called correctly before the script crashed
 							// echo $cname."<br/>";
+							
+							$info->data['encoded'] = $encoded; // This is used later on to indicate if the plugin is encoded.
+							$info->data['encoded_icon'] = $fa_icon; // This is used later on to indicate if the plugin is encoded.
 							$installed_plugins[ $info->data[ 'name' ] ] = $info->data;
+							
 							}
 						}
 					}
@@ -305,6 +319,7 @@ class j16000showplugins
 			$row_class       = '';
 			$installAction   = $install_text;
 			$uninstallAction = " ";
+			$r['ENCODED_ICON'] = '';
 			if ( array_key_exists( $rp[ 'name' ], $installed_plugins ) )
 				{
 				$uninstallAction       = $uninstall_text;
@@ -332,7 +347,7 @@ class j16000showplugins
 			if ( array_key_exists( $plugin_name, $current_licenses ) || $developer_user )
 				{
 				$r[ 'INSTALL_LINK' ] = JOMRES_SITEPAGE_URL_ADMIN . '&task=addplugin&plugin=' . $n;
-				$r[ 'INSTALL_TEXT' ] = $installAction;
+				$r[ 'INSTALL_TEXT' ] = $installed_plugins[ $plugin_name ] ['encoded_icon']." ".$installAction;
 				}
 
 			$r[ 'UNINSTALL_LINK' ] = '';
