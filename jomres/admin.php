@@ -192,11 +192,11 @@ try
 			$output[ 'USING_BOOTSTRAP' ] = "false";
 		
 		jr_import( 'jomres_check_support_key' );
-		if ($_REQUEST['task'] != "showplugins")
-			{
+		//if ($_REQUEST['task'] != "showplugins")
+		//	{
 			$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=showplugins" );
 			$output['LICENSE_WARNING'] = $MiniComponents->specificEvent( '16000', 'show_license_message',array('output_now'=>false , "as_modal" => false ));
-			}
+		//	}
 
 		if ($jrConfig['use_bootstrap_in_frontend'] == "0")
 			{
