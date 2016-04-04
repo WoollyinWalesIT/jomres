@@ -28,7 +28,7 @@ class j00002usermanagement
 
 		set_showtime( "jr_user_ready", false );
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-		if ( $thisJRUser->userIsManager == true ) 
+		if ( $thisJRUser->userIsManager == true && !jomres_cmsspecific_areweinadminarea())
 			$thisJRUser->check_currentproperty();
 		$thisProperty = trim( jomresGetParam( $_REQUEST, 'thisProperty', 0 ) );
 		if ( in_array( $thisProperty, $thisJRUser->authorisedProperties ) && $thisProperty != $thisJRUser->currentproperty )
