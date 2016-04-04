@@ -177,7 +177,7 @@ $showtime->tmplcomponent_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROO
 if ( !strstr( $scriptname, 'install_jomres.php' ) )
 	jomres_cmsspecific_patchJoomlaTemplate(); //copy the management_view.php renamed to jomres.php to the joomla template dir to help with fullscreen mode
 
-
+require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_urls.php" );
 $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 $MiniComponents->triggerEvent( '00001' ); // Start
 
@@ -186,7 +186,7 @@ $jomres_access_control = jomres_singleton_abstract::getInstance( 'jomres_access_
 if ( !defined( 'JOMRES_CSSRELPATH' ) ) define( 'JOMRES_CSSRELPATH', JOMRES_ROOT_DIRECTORY.'/css/' );
 
 
-require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_urls.php" );
+
 
 set_error_handler( 'errorHandler' );
 jomres_parseRequest();
