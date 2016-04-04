@@ -332,7 +332,7 @@ class jr_user
 	 */
 	function check_currentproperty()
 		{
-		$query         = "SELECT propertys_uid FROM #__jomres_propertys WHERE propertys_uid = '" . (int) $this->currentproperty . "'";
+		$query         = "SELECT propertys_uid FROM #__jomres_propertys WHERE propertys_uid = " . (int) $this->currentproperty . " ";
 		$propertycount = doSelectSql( $query );
 		if ( count( $propertycount ) == 0 )
 			{
@@ -350,7 +350,7 @@ class jr_user
 
 		if ( in_array( $currentProperty, $this->authorisedProperties ) )
 			{
-			$query = "UPDATE #__jomres_managers SET `currentproperty`='".(int)$currentProperty."' WHERE userid = '" . (int) $this->id . "'";
+			$query = "UPDATE #__jomres_managers SET `currentproperty`=".(int)$currentProperty." WHERE userid = " . (int) $this->id . " ";
 			if ( !doInsertSql( $query, false ) ) 
 				trigger_error( "Unable to set current property, mysql db failure", E_USER_ERROR );
 			$this->currentproperty = $currentProperty;
@@ -385,5 +385,3 @@ class jr_user
 			}
 		}
 	}
-
-?>
