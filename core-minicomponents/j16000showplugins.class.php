@@ -319,7 +319,6 @@ class j16000showplugins
 			$row_class       = '';
 			$installAction   = $install_text;
 			$uninstallAction = " ";
-			$r['ENCODED_ICON'] = '';
 			if ( array_key_exists( $rp[ 'name' ], $installed_plugins ) )
 				{
 				$uninstallAction       = $uninstall_text;
@@ -347,9 +346,11 @@ class j16000showplugins
 			if ( array_key_exists( $plugin_name, $current_licenses ) || $developer_user )
 				{
 				$r[ 'INSTALL_LINK' ] = JOMRES_SITEPAGE_URL_ADMIN . '&task=addplugin&plugin=' . $n;
-				$r[ 'INSTALL_TEXT' ] = $installed_plugins[ $plugin_name ] ['encoded_icon']." ".$installAction;
+				$r[ 'INSTALL_TEXT' ] = $installAction;
 				}
-
+			
+			$r['ENCODED_ICON'] = $installed_plugins[ $plugin_name ] ['encoded_icon'];
+			
 			$r[ 'UNINSTALL_LINK' ] = '';
 			$r[ 'UNINSTALL_TEXT' ] = '';
 			$r[ 'UNINSTALL' ]      = '';
@@ -553,8 +554,6 @@ class j16000showplugins
 			}
 		
 		$output[ 'PLUGINS_TO_UPGRADE' ] = implode( ",", $plugins_needing_upgrading );
-		$output[ 'LICENSE_WARNING' ] = $MiniComponents->specificEvent( '16000', 'show_license_message',array('output_now'=>false));
-		
 		
 		if ( $this->key_valid ) $plugins_require_upgrade[ ][ 'upgrade_text' ] = 'Upgrade all Core plugins. You must upgrade Jomres first before upgrading plugins.';
 
