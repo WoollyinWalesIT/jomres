@@ -77,6 +77,20 @@ class j16000showplugins
 			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=loader_wizard" );
 			}
 			
+		if($key_validation->is_trial_license =="1")
+			{
+			if (function_exists('ioncube_loader_version')) 
+				{
+				$ioncubeVersion = ioncube_loader_version();
+				$ioncubeMajorVersion = (int)substr($ioncubeVersion, 0, strpos($ioncubeVersion, '.'));
+				$ioncubeMinorVersion = (int)substr($ioncubeVersion, strpos($ioncubeVersion, '.')+1);
+				if ($ioncubeMajorVersion < 5 || ($ioncubeMajorVersion == 0 && $ioncubeMinorVersion < 21 )) 
+					{
+					echo "<p class='alert alert-warning'>Uh oh, Ioncube loaders are installed, however they may be too old to run these scripts.</p><p>Please visit <a href='http://www.ioncube.com/loaders.php' target='_blank'>Ioncube's website</a> to download the most current versions of the loader wizard. This will walk you through installing the loaders. Alternatively, ask your hosts for help.</p>";
+					return;
+					}
+				}
+			}
 		$developer_user = false;
 
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
