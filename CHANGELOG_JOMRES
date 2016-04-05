@@ -1,3 +1,19 @@
+<h3>Jomres 9.7.2 05/04/2016</h3>
+
+<span class="label label-success">Feature</span> Modified Property type and Room type functionality to provide clearer relationships between property types and room types.
+<span class="label label-success">Feature</span> Added warnings to System info and List Room types so that it's clear if a property type requires a room type.
+<span class="label label-success">Feature</span> Added code to support trial licenses, which will use encoded versions of plugins so that new users can experiment with the system.
+
+<span class="label label-warning">Change</span> Modified BS2 printable invoice template to make it friendly to pdfs too.
+<span class="label label-warning">Change</span> Improved the property creation welcome message email functionality.
+<span class="label label-warning">Change</span> Updated a localisation file to ensure that the dashboard works with Chinese languages.
+<span class="label label-warning">Change</span> Removed some redundant code from queries.
+<span class="label label-warning">Change</span> Tweaked usermanagement to ensure that a query isn't performed when in site admin as it's unnecessary.
+<span class="label label-warning">Change</span> Modified two files to ensure they produce PHP7 ready classes in temporary files.
+
+<span class="label label-important label-danger">Fix</span> Fixed a typo in language files where "frontend" was mis-spelled.
+
+
 <h3>Jomres 9.7.1 22/03/2016</h3>
 
 <span class="label label-success">Feature</span> Modified property list so that images are now shown as a slideshow ( manually triggered ). Looks damn nice too!
