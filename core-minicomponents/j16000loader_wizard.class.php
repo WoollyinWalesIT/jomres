@@ -27,7 +27,22 @@ class j16000loader_wizard
 		if (!$this->test_for_ioncube())
 			echo "<p class='alert alert-danger'>Error, Ioncube loaders are not installed.</p><p>Please use the loader wizard found <a href='http://www.ioncube.com/loaders.php' target='_blank'>on Ioncube's website</a> for more information on how to install loaders on your server.</p>";
 		else
-			echo "<p class='alert alert-success'>Success, Ioncube loaders are installed.</p><p>If you run into any problems running the loaders on your server, please visit <a href='http://www.ioncube.com/loaders.php' target='_blank'>Ioncube's website</a> to download the most current versions of the loader wizard. This will walk you through installing the loaders. Alternatively, ask your hosts for help.</p>";
+			{
+			if (function_exists('ioncube_loader_version')) 
+				{
+				$ioncubeVersion = ioncube_loader_version();
+				$ioncubeMajorVersion = (int)substr($ioncubeVersion, 0, strpos($ioncubeVersion, '.'));
+				$ioncubeMinorVersion = (int)substr($ioncubeVersion, strpos($ioncubeVersion, '.')+1);
+				if ($ioncubeMajorVersion < 5 || ($ioncubeMajorVersion == 0 && $ioncubeMinorVersion < 21 )) 
+					{
+					echo "<p class='alert alert-warning'>Uh oh, Ioncube loaders are installed, however they may be too old to run these scripts.</p><p>Please visit <a href='http://www.ioncube.com/loaders.php' target='_blank'>Ioncube's website</a> to download the most current versions of the loader wizard. This will walk you through installing the loaders. Alternatively, ask your hosts for help.</p>";
+					}
+				else
+					{
+					echo "<p class='alert alert-success'>Success, Ioncube loaders are installed.</p><p>If you run into any problems running the loaders on your server, please visit <a href='http://www.ioncube.com/loaders.php' target='_blank'>Ioncube's website</a> to download the most current versions of the loader wizard. This will walk you through installing the loaders. Alternatively, ask your hosts for help.</p>";
+					}
+				}
+			}
 		}
 
 	function test_for_ioncube()
