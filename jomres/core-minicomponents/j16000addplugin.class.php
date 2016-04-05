@@ -50,10 +50,17 @@ class j16000addplugin
 
 		$pluginName = str_replace( "<x>", "", $pluginName );
 		$pluginName = str_replace( "&#60;x&#62;", "", $pluginName );
-
+		
+		$v = explode('.',PHP_VERSION);
+		$vprts = array(
+			'major'      =>  $v[0],
+			'minor'      =>  $v[1],
+			'release'    =>  $v[2]);
+		$php_version = $vprts['major'] . '.' . $vprts['minor'];
+		
 		jr_import( 'jomres_check_support_key' );
 
-		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=addplugin&no_html=1&plugin=" . $pluginName ."&hostname=".get_showtime('live_site'), true );
+		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=addplugin&no_html=1&plugin=" . $pluginName ."&hostname=".get_showtime('live_site')."&php_version=".$php_version, true );
 		$this->key_valid = $key_validation->key_valid;
 
 		if($key_validation->is_trial_license =="1"&& !extension_loaded("IonCube Loader")) 
