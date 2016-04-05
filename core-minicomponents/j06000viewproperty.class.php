@@ -114,7 +114,7 @@ class j06000viewproperty
 		//tariffs link
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
-			if ( $mrConfig[ 'showTariffsLink' ] == "1" )
+			if ( $mrConfig[ 'showTariffsInline' ] == "1" )
 				{
 				$link            = array ();
 				$link[ 'LINK' ]  = jomresURL( JOMRES_SITEPAGE_URL . "&task=showTariffs&property_uid=$property_uid" . $output_now );
@@ -309,7 +309,7 @@ class j06000viewproperty
 		if ($mrConfig[ 'showslideshowlink' ] == 1)
 			$tmpl->addRows( 'slideshowlink', $slideshowlink );
 		
-		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && $mrConfig[ 'showtariffslink' ] == 1) 
+		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && $mrConfig[ 'showTariffsInline' ] == 1) 
 			$tmpl->addRows( 'tariffslink', $tariffslink );
 		
 		$tmpl->addRows( 'gallerylink', $gallerylink );
