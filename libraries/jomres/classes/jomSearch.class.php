@@ -873,13 +873,13 @@ class jomSearch
 			$propertiesWithFreeRoomsArray = array ();
 
 			$all_property_rooms = array ();
-			$query              = "SELECT propertys_uid,room_uid,room_classes_uid FROM #__jomres_rooms WHERE propertys_uid IN (" . implode(',',end( $this->propertys_uid )) .") ";
+			$query              = "SELECT propertys_uid, room_uid, room_classes_uid, max_people FROM #__jomres_rooms WHERE propertys_uid IN (" . implode(',',end( $this->propertys_uid )) .") ";
 			$roomsLists         = doSelectSql( $query );
 			if ( count( $roomsLists ) > 0 )
 				{
 				foreach ( $roomsLists as $room )
 					{
-					$all_property_rooms[ $room->propertys_uid ][ $room->room_uid ] = array ( "room_classes_uid" => $room->room_classes_uid, "room_uid" => $room->room_uid );
+					$all_property_rooms[ $room->propertys_uid ][ $room->room_uid ] = array ( "room_classes_uid" => $room->room_classes_uid, "room_uid" => $room->room_uid, "max_people" => $room->max_people );
 					}
 				}
 
@@ -898,6 +898,8 @@ class jomSearch
 			foreach ( end( $this->propertys_uid ) as $property )
 				{
 				$propertyHasFreeRooms = false;
+				$available_rooms = array();
+				$max_capacity = 0;
 				// Then we find their rooms
 				// $query="SELECT room_uid,room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property."'";
 				// $roomsList=doSelectSql($query);
@@ -909,7 +911,8 @@ class jomSearch
 					$ok = true;
 					if ( $_REQUEST[ 'room_type' ] != $this->searchAll )
 						{
-						if ( !empty( $_REQUEST[ 'room_type' ] ) && $room[ 'room_classes_uid' ] != $this->filter[ 'room_type' ] ) $ok = false;
+						if ( !empty( $_REQUEST[ 'room_type' ] ) && $room[ 'room_classes_uid' ] != $this->filter[ 'room_type' ] ) 
+							$ok = false;
 						}
 					if ( $ok )
 						{
@@ -917,17 +920,38 @@ class jomSearch
 						// $query="SELECT room_uid FROM #__jomres_room_bookings WHERE room_uid = '".(int)$room->room_uid."' AND property_uid ='".(int)$property."'  AND (".$st.")";
 						// $datesList=doSelectSql($query);
 
-						if ( !in_array( $room[ 'room_uid' ], $all_property_bookings[ $property ] ) ) $propertyHasFreeRooms = true;
+						if ( !in_array( $room[ 'room_uid' ], $all_property_bookings[ $property ] ) ) 
+							{
+							$propertyHasFreeRooms = true;
+							$available_rooms[$room[ 'room_uid' ]] = $room;
+							}
 
 						// if (count($datesList)==0)
 						// $propertyHasFreeRooms=TRUE;
 						}
 					}
-				if ( $propertyHasFreeRooms ) $propertiesWithFreeRoomsArray[ ] = $property;
+				if ( $propertyHasFreeRooms )
+					{
+					foreach ($available_rooms as $r)
+						{
+						$max_capacity += $r['max_people'];
+						}
+
+					if ((int)$this->filter[ 'guestnumber' ] == 0)
+						$total_in_party = 1;
+					
+					if ($total_in_party <= $max_capacity)
+						{
+						$propertiesWithFreeRoomsArray[ ] = $property;
+						set_showtime('available_rooms'.$property, $available_rooms);
+						}
+					}
 				}
 			if ( count( $propertiesWithFreeRoomsArray ) > 0 )
 				{
-				if ( count( $propertiesWithFreeRoomsArray ) > 1 ) $propertiesWithFreeRoomsArray = array_unique( $propertiesWithFreeRoomsArray );
+				if ( count( $propertiesWithFreeRoomsArray ) > 1 ) 
+					$propertiesWithFreeRoomsArray = array_unique( $propertiesWithFreeRoomsArray );
+				
 				$this->propertys_uid[ ] = $propertiesWithFreeRoomsArray;
 				}
 			else

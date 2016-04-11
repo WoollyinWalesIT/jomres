@@ -519,26 +519,13 @@ class j01010listpropertys
 							}
 						}
 
-					if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && !$plugin_will_provide_lowest_price && $jomres_property_list_prices->lowest_prices[$propertys_uid]['PRICE'] != jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', _JOMRES_PRICE_ON_APPLICATION, "", true, false ) && $stayDays > 1)
+					if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && !$plugin_will_provide_lowest_price && $jomres_property_list_prices->lowest_prices[$propertys_uid]['PRICE'] != jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', _JOMRES_PRICE_ON_APPLICATION, "", true, false ) )//&& $stayDays > 1)
 						{
 						if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0)
-							{
-							switch ( $mrConfig[ 'booking_form_daily_weekly_monthly' ] )
-								{
-								case "D":
-									$property_deets[ 'PRICE_CUMULATIVE' ]	= output_price($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] * $stayDays,"");
-									break;
-								case "W":
-									$property_deets[ 'PRICE_CUMULATIVE' ]	= output_price( ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] / 7) * $stayDays,"");
-									break;
-								case "M":
-									$property_deets[ 'PRICE_CUMULATIVE' ]	= output_price( ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] / 30 ) * $stayDays,"");
-									break;
-								}
-							}
+							$property_deets[ 'PRICE_CUMULATIVE' ] = $jomres_property_list_prices->lowest_prices[$propertys_uid]['PRICE_CUMULATIVE'];
 						else
-							$property_deets[ 'PRICE_CUMULATIVE' ]	=$property_deets[ 'PRICE_PRICE' ];
-
+							$property_deets[ 'PRICE_CUMULATIVE' ] = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE' ];
+						
 						$property_deets['FOR'] =  jr_gettext( '_JOMRES_FOR', _JOMRES_FOR , false );
 						if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0 )
 							{

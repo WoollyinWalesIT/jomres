@@ -22,7 +22,11 @@ class jomres_property_list_prices
 	public function __construct()
 		{
 		self::$configInstance         	= false;
-		$this->lowest_prices      		= array ();
+		$this->lowest_prices      		= array();
+		$this->stayDays					= array();
+		$this->today					= date("Y/m/d");
+		$this->arrivalDate 				= date("Y/m/d", strtotime($this->today."+1 day"));
+		$this->departureDate 			= date("Y/m/d", strtotime($this->arrivalDate."+1 day"));
 		}
 
 	public static function getInstance()
@@ -111,25 +115,46 @@ class jomres_property_list_prices
 				$pricesFromArray   = array ();
 				$searchDate        = date( "Y/m/d" );
 				$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+				
+				//get arrival date
 				if ( isset( $_REQUEST[ 'arrivalDate' ] ) && $_REQUEST[ 'arrivalDate' ] != "" )
 					{
-					$searchDate = JSCalConvertInputDates( jomresGetParam( $_REQUEST, 'arrivalDate', "" ) );
+					$this->arrivalDate = JSCalConvertInputDates( jomresGetParam( $_REQUEST, 'arrivalDate', "" ) );
 					}
 				elseif ( count( $tmpBookingHandler->tmpsearch_data ) > 0 )
 					{
 					if (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) && trim($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ])!='')
 						{
-						$searchDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
+						$this->arrivalDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
 						}
 					elseif (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) && trim($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != ''))
 						{
-						$searchDate = JSCalConvertInputDates($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'],$siteCal=true);
+						$this->arrivalDate = JSCalConvertInputDates($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'],$siteCal=true);
 						}
 					}
 				
+				//get departure date
+				if ( isset( $_REQUEST[ 'departureDate' ] ) && $_REQUEST[ 'departureDate' ] != "" )
+					{
+					$this->departureDate = JSCalConvertInputDates( jomresGetParam( $_REQUEST, 'departureDate', "" ) );
+					}
+				elseif ( count( $tmpBookingHandler->tmpsearch_data ) > 0 )
+					{
+					if (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ]) && trim($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ])!='')
+						{
+						$this->departureDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ];
+						}
+					elseif (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) && trim($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] != ''))
+						{
+						$this->departureDate = JSCalConvertInputDates($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'],$siteCal=true);
+						}
+					}
+				
+				$this->stayDays = $this->dateDiff( $this->arrivalDate, $this->departureDate );
+				
 				$clause="";
 				if (!$lowest_ever)
-					$clause="AND DATE_FORMAT('" . $searchDate . "', '%Y/%m/%d') BETWEEN DATE_FORMAT(`validfrom`, '%Y/%m/%d') AND DATE_FORMAT(`validto`, '%Y/%m/%d')";
+					$clause="AND DATE_FORMAT('" . $this->arrivalDate . "', '%Y/%m/%d') BETWEEN DATE_FORMAT(`validfrom`, '%Y/%m/%d') AND DATE_FORMAT(`validto`, '%Y/%m/%d')";
 	
 				$query = "SELECT property_uid, roomrateperday FROM #__jomres_rates WHERE property_uid IN (" . implode(',',$property_uids) .") AND roomrateperday > 0 $clause ";
 				$tariffList = doSelectSql( $query );
@@ -140,6 +165,7 @@ class jomres_property_list_prices
 					$post_text="";
 					$price = 0.00;
 					$pricesFromArray=array();
+					$grand_total= 0.00;
 					
 					set_showtime( 'property_uid', $property_uid );
 					set_showtime( 'property_type', $basic_property_details->multi_query_result[ $property_uid ]['property_type'] );
@@ -158,7 +184,8 @@ class jomres_property_list_prices
 							$multiplier = 1;
 							break;
 						case "W":
-							if ( $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] != "1" ) $multiplier = 7;
+							if ( $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] != "1" ) 
+								$multiplier = 7;
 							break;
 						case "M":
 							$multiplier = 30;
@@ -192,6 +219,9 @@ class jomres_property_list_prices
 									$price = output_price( $pricesFromArray[ $property_uid ] * $multiplier, "", true, true );
 									$price_no_conversion = output_price( $pricesFromArray[ $property_uid ] * $multiplier, "", false, true );
 									}
+								
+								//grand total including extras
+								$grand_total = output_price((($raw_price / $multiplier) * $this->stayDays), '');
 				
 								if ( $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == "1" && $mrConfig[ 'tariffmode' ] == "1" ) 
 									$post_text = "&nbsp;" . jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK );
@@ -264,12 +294,23 @@ class jomres_property_list_prices
 						{
 						$raw_price = -1;
 						}
-					$this->lowest_prices[$property_uid]=array ( "PRE_TEXT" => $pre_text, "PRICE" => $price, "POST_TEXT" => $post_text , "RAW_PRICE" => $raw_price , "PRICE_NOCONVERSION" => $price_no_conversion);
+					$this->lowest_prices[$property_uid]=array ( "PRE_TEXT" => $pre_text, "PRICE" => $price, "POST_TEXT" => $post_text , "RAW_PRICE" => $raw_price , "PRICE_NOCONVERSION" => $price_no_conversion, "PRICE_CUMULATIVE" => $grand_total);
 					}
 				}
 			}
 		return $this->lowest_prices;
 		}
+	
+	function dateDiff( $first_date, $second_date )
+		{
+		$first_date_ex  = explode( "/", $first_date );
+		$second_date_ex = explode( "/", $second_date );
+		$fd             = gregoriantojd( $first_date_ex[ 1 ], $first_date_ex[ 2 ], $first_date_ex[ 0 ] );
+		$sd             = gregoriantojd( $second_date_ex[ 1 ], $second_date_ex[ 2 ], $second_date_ex[ 0 ] );
+
+		$days = $sd - $fd;
+
+		return $days;
+		}
 
 	}
-?>
