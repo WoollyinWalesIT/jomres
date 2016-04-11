@@ -1,3 +1,10 @@
+<h3>Jomres 9.7.4 11/04/2016</h3>
+
+<span class="label label-success">Feature</span> Added functionality to support Enhanced Property List Totals plugin.
+
+<span class="label label-warning">Change</span> Modified the showTariffsLink setting in property details to use showTariffsInline instead.
+<span class="label label-warning">Change</span> Added a check to dobooking so that if show extras is off, then they're not shown in the booking form.
+
 <h3>Jomres 9.7.2 05/04/2016</h3>
 
 <span class="label label-success">Feature</span> Modified Property type and Room type functionality to provide clearer relationships between property types and room types.
@@ -82,7 +89,6 @@
 <span class="label label-warning">Change</span> Added a warning to advise people against upgrading if their license doesn't allow plugin installation.
 <span class="label label-warning">Change</span> Polish language file updated.
 
-
 <span class="label label-important label-danger">Fix</span> Modified booking form in property details tab so that availability calendar is properly opened.
 <span class="label label-important label-danger">Fix</span> Fix for modal append to body.
 
@@ -110,7 +116,6 @@
 <span class="label label-warning">Change</span> Modal popups replaced with direct links to properties. Modal code is still available, but commented out.
 
 <span class="label label-important label-danger">Fix</span> Fixed an issue where FB urls wouldn't always work if SEF enabled.
-
 
 <h3>Jomres 9.5.6 03/02/2016</h3>
 
