@@ -230,10 +230,11 @@ class basic_property_details
 			$this->apikey                        = $this->multi_query_result[ $this->property_uid ][ 'apikey' ];
 			$this->approved                      = $this->multi_query_result[ $this->property_uid ][ 'approved' ];
 
-			$this->accommodation_tax_rate		 =$this->multi_query_result[ $this->property_uid ][ 'accommodation_tax_rate' ];
-			$this->room_types                    =$this->multi_query_result[ $this->property_uid ][ 'room_types' ];
-			$this->rooms                         =$this->multi_query_result[ $this->property_uid ][ 'rooms' ];
-			$this->rooms_by_type                 =$this->multi_query_result[ $this->property_uid ][ 'rooms_by_type' ];
+			$this->accommodation_tax_rate		 = $this->multi_query_result[ $this->property_uid ][ 'accommodation_tax_rate' ];
+			$this->room_types                    = $this->multi_query_result[ $this->property_uid ][ 'room_types' ];
+			$this->rooms                         = $this->multi_query_result[ $this->property_uid ][ 'rooms' ];
+			$this->rooms_by_type                 = $this->multi_query_result[ $this->property_uid ][ 'rooms_by_type' ];
+			$this->rooms_max_people              = $this->multi_query_result[ $this->property_uid ][ 'rooms_max_people' ];
 			}
 
 		$mrConfig = getPropertySpecificSettings( $this->property_uid );
@@ -403,7 +404,7 @@ class basic_property_details
 				}
 
 			$temp_rooms = array ();
-			$query      = "SELECT `room_uid`,`room_classes_uid`,`propertys_uid` FROM #__jomres_rooms WHERE propertys_uid IN (" . implode(',',$property_uids) .") ";
+			$query      = "SELECT `room_uid`,`room_classes_uid`,`propertys_uid`,`max_people` FROM #__jomres_rooms WHERE propertys_uid IN (" . implode(',',$property_uids) .") ";
 			$rooms      = doSelectSql( $query );
 			foreach ( $rooms as $room )
 				{
@@ -413,6 +414,7 @@ class basic_property_details
 				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'image' ] = $this->all_room_types[ $room->room_classes_uid ][ 'image' ];
 				
 				$this->multi_query_result[ $room->propertys_uid ][ 'rooms_by_type' ][ $room->room_classes_uid ][] = $room->room_uid;
+				$this->multi_query_result[ $room->propertys_uid ][ 'rooms_max_people' ][ $room->room_classes_uid ][$room->room_uid] = $room->max_people;
 				}
 
 			foreach ( $property_uids as $id )
