@@ -412,7 +412,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$exx				= $bkg->makeThirdPartyExtras( $selectedProperty );
 	$third_party_extras = $exx[ 'third_party_extras' ];
 
-	if ( count( $extra_details ) > 0 || count( $third_party_extras ) > 0 )
+	if ( (count( $extra_details ) > 0 || count( $third_party_extras ) > 0) && $mrConfig[ 'showExtras' ] == "1")
 		{
 		$output[ 'EXTRAS_INFO' ] = '<img border="0" style="vertical-align:top;" src="' . get_showtime( 'live_site' ) . '/components/com_jomres/images/info.png" />';
 		$output[ 'AJAXFORM_EXTRAS' ]      = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS', _JOMRES_AJAXFORM_EXTRAS ) );
