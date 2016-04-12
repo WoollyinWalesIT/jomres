@@ -1533,7 +1533,7 @@ jr_define("_JOMRES_LICENSESERVER_USERNAME_DESC","If you have a username and pass
 jr_define("_JOMRES_VERSIONCHECK_THISJOMRESVERSION","Версія модуля :");
 jr_define("_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION","Найновіша версія");
 jr_define("_JOMRES_VERSIONCHECK_VERSIONWARNING","Alert : There is a new version of Jomres available, you are advised to upgrade at your earliest convenience.");
-jr_define("_JOMRES_PRODUCT_INFORMATION","Welcome to Jomres, we hope you enjoy using Joomla's favourite booking system. If you would like to purchase a Jomres Zero, Solo or Silver license,  please visit our site for information on how you can upgrade.");
+jr_define("_JOMRES_PRODUCT_INFORMATION","Welcome to Jomres, we hope you enjoy using Joomla's favourite booking system. If you would like to purchase a Jomres Starter, Business or Enterprise license,  please visit our site for information on how you can upgrade.");
 jr_define("_JOMRES_PRODUCT_INFORMATION2","This system is ideal for any scenario, be it a simple booking form for a single property, right up to a site that has multiple users, in multiple languages, with multiple properties. Please see the -Help- section to the left, including the -Getting Started- page which will guide you through your first steps.");
 jr_define("_JOMRES_ROBBED_PORTALUI_CURRENT_PROPERTY","Активний об'єкт");
 jr_define("_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY","Змінити активний об'єкт");
