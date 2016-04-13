@@ -83,7 +83,7 @@ class j10501a_misc
 
 		$configurationPanel->setleft( jr_gettext( _JOMRES_SUPPORTKEY, '_JOMRES_SUPPORTKEY', false ) );
 		$configurationPanel->setmiddle( '<input type="password" class="input-xlarge" name="cfg_licensekey" value="' . $jrConfig[ 'licensekey' ] . '" /><br/>'.' '.$support_key_status.' '.$support_key_owner.' '.$support_key_expires.' '.$renewal_link.' '.$support_key_is_trial_license );
-		$configurationPanel->setright( jr_gettext( _JOMRES_SUPPORTKEY_DESC, '_JOMRES_SUPPORTKEY_DESC', false ).' '.$support_key_message );
+		$configurationPanel->setright( jr_gettext( _JOMRES_SUPPORTKEY_DESC, '_JOMRES_SUPPORTKEY_DESC', false ).' '.$support_key_message ."<a href='http://www.jomres.net/manual/installation-and-upgrading/322-after-installation-hostname-restrictions' target='_blank' >More info</a> ");
 		$configurationPanel->insertSetting();
 
 		jr_import( 'jomres_check_support_key' );
@@ -114,16 +114,6 @@ class j10501a_misc
 			$configurationPanel->setleft( jr_gettext( _JOMRES_REGION_TRANSLATION_SWITCH_TITLE, '_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', false ) );
 			$configurationPanel->setmiddle( $lists[ 'region_names_are_translatable' ] );
 			$configurationPanel->setright( jr_gettext( _JOMRES_REGION_TRANSLATION_SWITCH_DESC, '_JOMRES_REGION_TRANSLATION_SWITCH_DESC', false ) );
-			$configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft( jr_gettext( _JOMRES_PROPERTYLIST_IMAGESASGIFS, '_JOMRES_PROPERTYLIST_IMAGESASGIFS', false ) );
-			$configurationPanel->setmiddle( $lists[ 'make_gifs_from_slideshows' ] );
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft( jr_gettext( _JOMRES_PROPERTYLIST_IMAGESASGIFS_FEATURED_ONLY, '_JOMRES_PROPERTYLIST_IMAGESASGIFS_FEATURED_ONLY', false ) );
-			$configurationPanel->setmiddle( $lists[ 'only_featured_properties_as_gifs' ] );
-			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			}
 		

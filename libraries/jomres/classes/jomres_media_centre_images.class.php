@@ -92,8 +92,7 @@ class jomres_media_centre_images
 					$this->images [ 'rooms' ] [ $room_id ] [] = array ( 
 						"large" =>  $this->multi_query_images[ 'noimage-large' ] ,
 						"medium" =>  $this->multi_query_images[ 'noimage-medium' ] ,
-						"small" =>  $this->multi_query_images[ 'noimage-small' ] ,
-						"gifs" => array ()
+						"small" =>  $this->multi_query_images[ 'noimage-small' ] 
 						);
 					}
 				}
@@ -114,8 +113,7 @@ class jomres_media_centre_images
 					$this->images [ 'rooms' ] [ $room_id ] [] = array ( 
 						"large" =>  $this->multi_query_images[ 'noimage-large' ] ,
 						"medium" =>  $this->multi_query_images[ 'noimage-medium' ] ,
-						"small" =>  $this->multi_query_images[ 'noimage-small' ] ,
-						"gifs" => array ()
+						"small" =>  $this->multi_query_images[ 'noimage-small' ] 
 						);
 					}
 				}
@@ -249,8 +247,7 @@ class jomres_media_centre_images
 										$this->multi_query_images [ $property_id ][ $dir ] [ $resouce_id ] [] = array ( 
 												"large" =>  $this->multi_query_images[ 'noimage-large' ] ,
 												"medium" => $this->multi_query_images[ 'noimage-medium' ] ,
-												"small" => $this->multi_query_images[ 'noimage-small' ] ,
-												"gifs" => array ()
+												"small" => $this->multi_query_images[ 'noimage-small' ] 
 												);
 										}
 									}
@@ -258,15 +255,6 @@ class jomres_media_centre_images
 							}
 						}
 					}
-				$small_gif = '';
-				$medium_gif = '';
-				if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . $property_id . JRDS . 'gif' . JRDS . 'small_thumb.gif') )
-					{
-					$small_gif  = $rel_path . "gif/small_thumb.gif";
-					$medium_gif = $rel_path . "gif/medium_thumb.gif";
-					}
-				$this->multi_query_images [ $property_id ] [ 'gif' ] [ 'small' ]  = $small_gif ;
-				$this->multi_query_images [ $property_id ] [ 'gif' ] [ 'medium' ] = $medium_gif ;
 				}
 			}
 		return $this->multi_query_images;

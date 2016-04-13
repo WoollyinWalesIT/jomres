@@ -689,21 +689,9 @@ class j01010listpropertys
 					$property_deets[ 'PROPERTY_TYPE' ]            = $current_property_details->multi_query_result[ $propertys_uid ]['property_type_title'];
 					$property_deets[ 'PROPERTY_TYPE_SEARCH_URL' ] = jomresURL( JOMRES_SITEPAGE_URL . "&amp;task=search&amp;ptype=" . $current_property_details->multi_query_result[ $propertys_uid ]['ptype_id'] );
 
-					if ( !isset( $jrConfig[ 'make_gifs_from_slideshows' ] ) ) $jrConfig[ 'make_gifs_from_slideshows' ] = "1";
-
 					$property_deets[ 'AGENT_LINK' ] = make_agent_link( $propertys_uid );
 
 					$property_deets[ '_JOMRES_AGENT' ] = jr_gettext( "_JOMRES_AGENT", _JOMRES_AGENT );
-
-					if ( $jrConfig[ 'make_gifs_from_slideshows' ] == "1" )
-						{
-						$result = gif_builder( $propertys_uid );
-						if ( $result[ 'SMALL' ] != "" )
-							{
-							$property_deets[ 'IMAGETHUMB' ]  = $result[ 'SMALL' ];
-							$property_deets[ 'IMAGEMEDIUM' ] = $result[ 'MEDIUM' ];
-							}
-						}
 
 					if ( $output_lowest )
 						{

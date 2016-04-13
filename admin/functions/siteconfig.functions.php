@@ -306,16 +306,6 @@ function showSiteConfig()
 
 	$lists[ 'automatically_approve_new_properties' ] = jomresHTML::selectList( $yesno, 'cfg_automatically_approve_new_properties', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'automatically_approve_new_properties' ] );
 
-
-	if ( !isset( $jrConfig[ 'make_gifs_from_slideshows' ] ) )
-		{
-		$jrConfig[ 'make_gifs_from_slideshows' ]        = "1";
-		$jrConfig[ 'only_featured_properties_as_gifs' ] = "1";
-		}
-
-	$lists[ 'make_gifs_from_slideshows' ]        = jomresHTML::selectList( $yesno, 'cfg_make_gifs_from_slideshows', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'make_gifs_from_slideshows' ] );
-	$lists[ 'only_featured_properties_as_gifs' ] = jomresHTML::selectList( $yesno, 'cfg_only_featured_properties_as_gifs', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'only_featured_properties_as_gifs' ] );
-
 	if ( !isset( $jrConfig[ 'use_bootstrap_in_frontend' ] ) )
 		{
 		if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35" )
