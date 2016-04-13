@@ -28,14 +28,13 @@ function jomres_cmsspecific_getsessionid()
 	}
 
 // Date is sent in format YYYY/mm/dd, e.g. 2013/
-// Date is sent in format YYYY/mm/dd, e.g. 2013/
+// https://docs.joomla.org/API16:JHtml/date
 function jomres_cmsspecific_output_date( $date, $format = false )
 	{
 	if ( !$format ) 
 		$format = JText::_( 'DATE_FORMAT_LC' );
-
-	$d = new DateTime($date);
-	$result = $d->format($format);
+	
+	$result = JHtml::date( strtotime( $date ) , $format, $usertimezone = false);
 
 	return $result;
 	}
