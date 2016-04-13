@@ -1249,6 +1249,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'chart_radar.html' );
 		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'show_chart.html' );
 		
+		$this->add_obs_dir(  $this->dir_libraries . 'sybio' . JRDS );
+		
 		}
 
 	function add_obs_file( $path_and_file )
