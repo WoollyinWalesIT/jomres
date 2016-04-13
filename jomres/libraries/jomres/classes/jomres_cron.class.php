@@ -254,6 +254,12 @@ class jomres_cron
 				else
 					$livesite = JOMRES_SITEPAGE_URL_AJAX;
 				
+				//set the port depending on http/https
+				if (strpos($livesite, 'https://') !== false)
+					$curl_port = 443;
+				else
+					$curl_port = 80;
+				
 				foreach ( $this->dueJobs as $job )
 					{
 					if (this_cms_is_wordpress())
@@ -267,7 +273,7 @@ class jomres_cron
 					curl_setopt( $ch, CURLOPT_URL, $request );
 					curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, 'XGET' );
 					curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true);
-					curl_setopt( $ch, CURLOPT_PORT, 80 );
+					curl_setopt( $ch, CURLOPT_PORT, $curl_port );
 					curl_setopt( $ch, CURLOPT_TIMEOUT, 480 );
 					curl_setopt( $ch, CURLOPT_HTTPHEADER, array ( 'Content-Type: text/html; charset=utf-8' ) );
 					$curl_output = curl_exec( $ch );
