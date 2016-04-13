@@ -26,6 +26,8 @@ function showSiteConfig()
 	{
 	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig   = $siteConfig->get();
+	
+	$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 
 	$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 	$jrtb   = $jrtbar->startTable();
@@ -150,17 +152,15 @@ function showSiteConfig()
 	$c_codes                 = new currency_codes( $jrConfig[ 'globalCurrencyCode' ], true );
 	$currency_codes_dropdown = $c_codes->makeCodesDropdown();
 
-	$query  = "SELECT ptype,ptype_desc FROM #__jomres_ptypes";
-	$result = doSelectSql( $query );
-
 	$language_context    = array ();
 	$ptype_descs         = array ();
 	$language_context[ ] = jomresHTML::makeOption( '', '' );
-	if ( count( $result ) > 0 )
+	
+	if ( count( $basic_property_details->all_property_types ) > 0 )
 		{
-		foreach ( $result as $lang )
+		foreach ( $basic_property_details->all_property_types as $k=>$v )
 			{
-			$ptype_descs[ ] = $lang->ptype_desc;
+			$ptype_descs[] = $v;
 			}
 		$ptype_descs = array_unique( $ptype_descs );
 		foreach ( $ptype_descs as $desc )
@@ -253,7 +253,6 @@ function showSiteConfig()
 	$lists[ 'load_jquery_ui' ]                      = jomresHTML::selectList( $yesno, 'cfg_load_jquery_ui', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'load_jquery_ui' ] );
 	$lists[ 'load_jquery_ui_css' ]                  = jomresHTML::selectList( $yesno, 'cfg_load_jquery_ui_css', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'load_jquery_ui_css' ] );
 	$lists[ 'use_conversion_feature' ]              = jomresHTML::selectList( $yesno, 'cfg_use_conversion_feature', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_conversion_feature' ] );
-	$lists[ 'javascript_caching_enabled' ]          = jomresHTML::selectList( $yesno, 'cfg_javascript_caching_enabled', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'javascript_caching_enabled' ] );
 	$lists[ 'booking_form_modal_popup' ]            = jomresHTML::selectList( $yesno, 'cfg_booking_form_modal_popup', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'booking_form_modal_popup' ] );
 	$lists[ 'booking_form_totals_panel_as_slider' ] = jomresHTML::selectList( $yesno, 'cfg_booking_form_totals_panel_as_slider', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'booking_form_totals_panel_as_slider' ] );
 	$lists[ 'useNewusers_sendemail' ]               = jomresHTML::selectList( $yesno, 'cfg_useNewusers_sendemail', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useNewusers_sendemail' ] );
@@ -263,10 +262,7 @@ function showSiteConfig()
 	$lists[ 'alternate_mainmenu' ]                  = jomresHTML::selectList( $yesno, 'cfg_alternate_mainmenu', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'alternate_mainmenu' ] );
 	$lists[ 'full_access_control' ]                 = jomresHTML::selectList( $yesno, 'cfg_full_access_control', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'full_access_control' ] );
 	$lists[ 'mobile_redirect' ]                     = jomresHTML::selectList( $yesno, 'cfg_mobile_redirect', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'mobile_redirect' ] );
-	$lists[ 'css_caching_enabled' ]                 = jomresHTML::selectList( $yesno, 'cfg_css_caching_enabled', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'css_caching_enabled' ] );
 	$lists[ 'pattemplate_caching_enabled' ]         = jomresHTML::selectList( $yesno, 'cfg_pattemplate_caching_enabled', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'pattemplate_caching_enabled' ] );
-	$lists[ 'use_cleardate_checkbox' ]              = jomresHTML::selectList( $yesno, 'cfg_use_cleardate_checkbox', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_cleardate_checkbox' ] );
-	$lists[ 'use_cookie_policy' ]                   = jomresHTML::selectList( $yesno, 'cfg_use_cookie_policy', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_cookie_policy' ] );
 	$lists[ 'mobile_simulation' ]                   = jomresHTML::selectList( $yesno, 'cfg_mobile_simulation', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'mobile_simulation' ] );
 	$lists[ 'safe_mode' ]                           = jomresHTML::selectList( $yesno, 'cfg_safe_mode', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'safe_mode' ] );
 	$lists[ 'use_jomres_own_editor' ]               = jomresHTML::selectList( $yesno, 'cfg_use_jomres_own_editor', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_jomres_own_editor' ] );
@@ -446,14 +442,6 @@ $jrConfig = ' . var_export($tmpConfig, true) . ';
 	
 	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 	$c->eraseAll();
-	
-	jr_import('jomres_javascript_cache');
-	$jomres_javascript_cache = new jomres_javascript_cache();
-	$jomres_javascript_cache->remove_all_temp_files();
-		
-	jr_import('jomres_css_cache');
-	$jomres_css_cache = new jomres_css_cache();
-	$jomres_css_cache->remove_all_temp_files();
 	
 	if ( count ($overrides) ==0) // If we've come from the Site Config page, we want to redirect the user back to the site configuration page, otherwise we don't redirect.
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=site_settings" ), "Configuration saved" );

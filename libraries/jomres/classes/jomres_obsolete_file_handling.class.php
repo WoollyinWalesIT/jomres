@@ -1250,6 +1250,15 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'show_chart.html' );
 		
 		$this->add_obs_dir(  $this->dir_libraries . 'sybio' . JRDS );
+		$this->add_obs_dir(  $this->dir_libraries . 'CssMin' . JRDS );
+		$this->add_obs_dir(  $this->dir_libraries . 'editor' . JRDS );
+		$this->add_obs_dir(  $this->dir_libraries . 'JShrink' . JRDS );
+		$this->add_obs_file( $this->dir_classes . 'jomres_css_cache.class.php' );
+		$this->add_obs_file( $this->dir_classes . 'jomres_javascript_cache.class.php' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'cookies.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'cookies.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'cookies.html' );
+		
 		
 		}
 

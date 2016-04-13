@@ -206,7 +206,6 @@ $jrConfig[ 'guestnumbersearch' ] = "lessthan";
 
 $jrConfig[ 'load_jquery_ui_css' ]         = "1";
 $jrConfig[ 'use_conversion_feature' ]     = "1";
-$jrConfig[ 'javascript_caching_enabled' ] = "0";
 
 $jrConfig[ 'geolocation_api_key' ]                 = "";
 $jrConfig[ 'booking_form_modal_popup' ]            = "0";
@@ -232,10 +231,6 @@ $jrConfig[ 'default_lat' ]  = "51.50068";
 $jrConfig[ 'default_long' ] = "-0.14317";
 
 $jrConfig[ 'default_from_address' ] = "";
-
-$jrConfig[ 'css_caching_enabled' ]              = "0";
-$jrConfig[ 'use_cleardate_checkbox' ]           = "1";
-$jrConfig[ 'use_cookie_policy' ]                = "0";
 
 $jrConfig[ 'safe_mode' ]                        = "0";
 $jrConfig[ 'use_jomres_own_editor' ]            = "1";
