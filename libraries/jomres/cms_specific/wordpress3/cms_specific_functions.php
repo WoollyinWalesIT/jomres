@@ -45,8 +45,7 @@ function jomres_cmsspecific_output_date( $date, $format = false )
 	if ( !$format ) 
 		$format = get_option('date_format');
 
-	$d = new DateTime($date);
-	$result = $d->format($format);
+	$result = date_i18n( $format, strtotime( $date ) );
 
 	return $result;
 	}
