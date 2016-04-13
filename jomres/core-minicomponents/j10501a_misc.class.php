@@ -134,11 +134,6 @@ class j10501a_misc
 	
 	if ( $jrConfig[ 'advanced_site_config' ] == 1 ) 
 			{
-			$configurationPanel->setleft( jr_gettext( _JOMRES_COOKIEPOLICY_TITLE, '_JOMRES_COOKIEPOLICY_TITLE', false ) );
-			$configurationPanel->setmiddle( $lists[ 'use_cookie_policy' ] );
-			$configurationPanel->setright( jr_gettext( _JOMRES_COOKIEPOLICY_DESC, '_JOMRES_COOKIEPOLICY_DESC', false ) );
-			$configurationPanel->insertSetting();
-			
 			$configurationPanel->setleft( jr_gettext( _JOMRES_APPROVALS_CONFIG_TITLE, _JOMRES_APPROVALS_CONFIG_TITLE,false ) );
 			$configurationPanel->setmiddle( $lists[ 'automatically_approve_new_properties' ] );
 			$configurationPanel->setright( jr_gettext( _JOMRES_APPROVALS_CONFIG_DESC, _JOMRES_APPROVALS_CONFIG_DESC,false ) );

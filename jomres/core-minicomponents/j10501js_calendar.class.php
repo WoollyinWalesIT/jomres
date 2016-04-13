@@ -33,41 +33,8 @@ class j10501js_calendar
 		$lists 							= $componentArgs[ 'lists' ];
 		$jsInputFormatDropdownList		= $componentArgs[ 'jsInputFormatDropdownList' ];
 		$calendarStartDaysDropdownList	= $componentArgs[ 'calendarStartDaysDropdownList' ];
-		
-		/* Not used anymore
-		$currentLangFile = $jrConfig[ 'jscalendarLangfile' ];
-		$calendarFileNamesArray = array ( "calendar-en.js", "calendar-af.js", "calendar-al.js", "calendar-bg.js", "calendar-big5.js", "calendar-big5-utf8.js", "calendar-br.js", "calendar-ca.js", "calendar-cs-utf8.js", "calendar-cs-win.js", "calendar-da.js", "calendar-de.js", "calendar-du.js", "calendar-el.js", "calendar-es.js", "calendar-fi.js", "calendar-fr.js", "calendar-he-utf8.js", "calendar-hr.js", "calendar-hr-utf8.js", "calendar-hu.js", "calendar-it.js", "calendar-jp.js", "calendar-ko.js", "calendar-ko-utf8.js", "calendar-lt.js", "calendar-lt-utf8.js", "calendar-lv.js", "calendar-nl.js", "calendar-no.js", "calendar-pl.js", "calendar-pl-utf8.js", "calendar-pt.js", "calendar-ro.js", "calendar-ru.js", "calendar-ru_win_.js", "calendar-si.js", "calendar-sk.js", "calendar-sp.js", "calendar-sv.js", "calendar-tr.js", "calendar-zh.js", "cn_utf8.js" );
-
-		$jsCalLangfile = "<select class=\"inputbox\" name=\"cfg_jscalendarLangfile\">";
-		foreach ( $calendarFileNamesArray as $fileName )
-			{
-			$selected = "";
-			if ( $fileName == $currentLangFile ) 
-				$selected = "selected";
-			$jsCalLangfile .= "<option " . $selected . " value=\"" . $fileName . "\" >" . $fileName . "</option>/n";
-			}
-		$jsCalLangfile .= "</select>";
-
-		$currentCSSFile = $jrConfig[ 'jscalendarCSSfile' ];
-		$calendarFileNamesArray = array ( "calendar-win2k-cold-2.css", "calendar-blue2.css", "calendar-blue.css", "calendar-brown.css", "calendar-green.css", "calendar-system.css", "calendar-tas.css", "calendar-win2k-1.css", "calendar-win2k-2.css", "calendar-win2k-cold-1.css" );
-		
-		$jsCalCSSfile = "<select class=\"inputbox\" name=\"cfg_jscalendarCSSfile\">";
-		foreach ( $calendarFileNamesArray as $fileName )
-			{
-			$selected = "";
-			if ( $fileName == $currentCSSFile ) 
-				$selected = "selected";
-			$jsCalCSSfile .= "<option " . $selected . " value=\"" . $fileName . "\" >" . $fileName . "</option>/n";
-			}
-		$jsCalCSSfile .= "</select>";*/
-		
 						
 		$configurationPanel->startPanel( jr_gettext( "_JOMRES_COM_A_JSCALENDAR", _JOMRES_COM_A_JSCALENDAR, false ) );
-
-		$configurationPanel->setleft( jr_gettext( '_JOMRES_JSCALENDAR_USECLEARCHECKBOX', _JOMRES_JSCALENDAR_USECLEARCHECKBOX, false ) );
-		$configurationPanel->setmiddle( $lists[ 'use_cleardate_checkbox' ] );
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
 		
 		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_CALENDARINPUT', _JOMRES_COM_CALENDARINPUT, false ) );
 		$configurationPanel->setmiddle( $jsInputFormatDropdownList );

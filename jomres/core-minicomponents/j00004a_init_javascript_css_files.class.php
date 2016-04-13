@@ -293,34 +293,17 @@ class j00004a_init_javascript_css_files
 			file_put_contents(  JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $temp_file , $misc_url_defs );
 		
 		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/temp/" ,$temp_file );
-		
-		//if ( $jrConfig[ 'javascript_caching_enabled' ] =="0")
-			//{
-			foreach ( $javascript_files as $file)
-				{
-				jomres_cmsspecific_addheaddata( "javascript",$file[0] , $file[1] );
-				}
-			//}
-		//else
-			//{
-//			jr_import('jomres_javascript_cache');
-//			$jomres_javascript_cache = new jomres_javascript_cache();
-//			$jomres_javascript_cache->cache_javascript($javascript_files);
-//			}
-		
-		//if ( $jrConfig[ 'css_caching_enabled' ] =="0")
-			//{
-			foreach ( $css_files as $file)
-				{
-				jomres_cmsspecific_addheaddata( "css",$file[0] , $file[1] );
-				}
-			//}
-		//else
-//			{
-//			jr_import('jomres_css_cache');
-//			$jomres_css_cache = new jomres_css_cache();
-//			$jomres_css_cache->cache_css($css_files);
-//			}
+
+		//now let`s add the js and css in the head
+		foreach ( $javascript_files as $file)
+			{
+			jomres_cmsspecific_addheaddata( "javascript",$file[0] , $file[1] );
+			}
+
+		foreach ( $css_files as $file)
+			{
+			jomres_cmsspecific_addheaddata( "css",$file[0] , $file[1] );
+			}
 		
 		}
 
@@ -336,34 +319,4 @@ class j00004a_init_javascript_css_files
 		{
 		return null;
 		}
-		
-	function delete_old_md5s($folder) 
-		{
-		$olddate=time()-3600;
-		$dircontent = scandir($folder);
-		foreach($dircontent as $filename) 
-			{
-			if (strlen($filename)==32 && filemtime($folder.$filename) && filemtime($folder.$filename)<$olddate) 
-				unlink($folder.$filename);
-			}
-		}
-
-	function md5_of_dir($folder) 
-		{
-		$dircontent = scandir($folder);
-		$ret='';
-		foreach($dircontent as $filename) 
-			{
-			if ($filename != '.' && $filename != '..') 
-				{
-				if (filemtime($folder.$filename) === false) 
-					return false;
-			  $ret.=date("YmdHis", filemtime($folder.$filename)).$filename;
-				}
-			}
-		return md5($ret);
-		}
 	}
-
-
-?>
