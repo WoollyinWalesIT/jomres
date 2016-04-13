@@ -168,6 +168,7 @@ class jomres_generic_booking_email
 		$this->data[$contract_uid]['DEPOSIT'] = output_price( $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_required'] );
 		$this->data[$contract_uid]['SPECIAL_REQUIREMENTS'] = jomres_decode($current_contract_details->contract[$contract_uid]['contractdeets']['special_reqs']);
 		$this->data[$contract_uid]['ALLOCATION_NOTE'] = $tmpBookingHandler->tmpbooking[ "booking_notes" ][ "suppliment_note" ];
+		$this->data[$contract_uid]['BOOKING_CREATION_DATE'] = outputDate($current_contract_details->contract[$contract_uid]['contractdeets']['timestamp']);
 		
 		$this->data[$contract_uid]['REMOTE_IP'] = $_SERVER['REMOTE_ADDR'];
 		
