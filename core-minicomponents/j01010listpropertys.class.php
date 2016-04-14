@@ -250,7 +250,7 @@ class j01010listpropertys
 					$jomres_property_list_prices = jomres_singleton_abstract::getInstance( 'jomres_property_list_prices' );
 
 					$limited_property_uids = $propertys_uids;
-					$jomres_property_list_prices->gather_lowest_prices_multi($propertysToShow);
+					$jomres_property_list_prices->gather_lowest_prices_multi($propertysToShow, $lowest_ever = false, $hide_rpn = true);
 
 					$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 					$jomres_media_centre_images->get_images_multi($propertysToShow, array('property'));

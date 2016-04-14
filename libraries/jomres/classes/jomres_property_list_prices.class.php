@@ -55,7 +55,7 @@ class jomres_property_list_prices
 		return $this->$setting;
 		}
 
-	function gather_lowest_prices_multi( $property_uids = array (), $lowest_ever = false )
+	function gather_lowest_prices_multi( $property_uids = array (), $lowest_ever = false, $hide_rpn = false )
 		{
 		// First we need to extract those uids that are not already in the $this->lowest_prices var, this (may) reduce the number of properties we need to query
 		$temp_array = array ();
