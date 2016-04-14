@@ -72,6 +72,8 @@ if ( ! class_exists( 'wp_jomres' ) )
 					}
 				}
 			
+			add_filter('redirect_canonical', array($this,'payments_redirect_canonical'), 10, 2);
+			
 			// If &popup=1 is in $_REQUEST we'll disable all widgets, but leave the keys intact so that you don't get the "please activate a widget" message
 			add_filter( 'sidebars_widgets', array(&$this,'disable_all_widgets') );
 			
@@ -225,6 +227,23 @@ if ( ! class_exists( 'wp_jomres' ) )
 			if (!function_exists('jr_wp_trigger_admin'))
 				require_once(plugin_dir_path( __FILE__ ) . "trigger.php");
 			die();  // Required for a proper Wordpress AJAX result
+			}
+		
+		function payments_redirect_canonical($redirect_url, $requested_url)
+			{
+			if (
+				$_REQUEST['task']== "completebk" || 
+				$_REQUEST['task']== "processpayment" || 
+				$_REQUEST['task']== "confirmbooking"|| 
+				$_REQUEST['task']== "invoice_payment_receive"
+				) 
+				{
+				return $requested_url;
+				} 
+			else 
+				{
+				return $redirect_url;
+				}
 			}
 		}
 	}
