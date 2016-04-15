@@ -4719,10 +4719,14 @@ function scandir_getfiles( $path, $extension = false )
 	}
 
 // Credit : http://www.php.net/manual/en/function.scandir.php#109140
+// Often used to find obsolete files, so we'll pass back an empty array if the directory does not exist
+
 function scandir_getfiles_recursive( $directory, $recursive = true, $listDirs = false, $listFiles = true, $exclude = '' )
 	{
 	$arrayItems	= array ();
 	$skipByExclude = false;
+	if (!is_dir($directory))
+		throw new Exception("Tried to scan a directory that doesn't exist ".(string)$directory); 
 	$handle		= opendir( $directory );
 	if ( $handle )
 		{
