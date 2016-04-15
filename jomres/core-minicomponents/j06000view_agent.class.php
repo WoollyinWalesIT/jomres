@@ -31,6 +31,8 @@ class j06000view_agent
 		$MiniComponents->triggerEvent( '01007', $componentArgs ); // optional
 
 		$output     = array ();
+		$this->retVals = '';
+		
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 
@@ -130,7 +132,7 @@ class j06000view_agent
 		
 		if ( !isset($componentArgs[ 'output_now' ]))
 			$componentArgs[ 'output_now' ] = true;
-		
+
 		if ($componentArgs[ 'output_now' ])
 			echo $template;
 		else

@@ -30,7 +30,8 @@ function jr_get_defined( $constant, $default = '' )
 		$jomres_language_definitions->set_language( get_showtime( 'lang' ) );
 		$jomres_language_definitions->set_property_type( get_showtime( 'property_type' ) );
 		$result = $jomres_language_definitions->get_defined( $constant );
-		if ( is_null( $result ) && $default != '' ) 
+		
+		if ( !$result && $default != '' ) 
 			$result = $default;
 
 		return $result;
@@ -42,12 +43,6 @@ function jr_get_defined( $constant, $default = '' )
 function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false )
 	{
 	$property_uid = (int) get_showtime( 'property_uid' );
-
-	global $text_bucket;
-	if ( !isset( $text_bucket ) ) 
-		$text_bucket = array ();
-	if ( isset( $text_bucket[ $property_uid ][ $theConstant ][ $okToEdit ] ) ) 
-		return $text_bucket[ $property_uid ][ $theConstant ][ $okToEdit ];
 
 	$customTextObj   = jomres_singleton_abstract::getInstance( 'custom_text' );
 	$customTextArray = $customTextObj->get_custom_text();
@@ -146,8 +141,6 @@ function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false 
 				}
 			}
 		}
-
-	$text_bucket[ $property_uid ][ $theConstant ][ $okToEdit ] = $theText;
 
 	return $theText;
 	}

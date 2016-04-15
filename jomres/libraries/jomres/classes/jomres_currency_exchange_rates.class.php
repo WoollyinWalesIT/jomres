@@ -27,6 +27,8 @@ class jomres_currency_exchange_rates
 		$this->app_id = trim($jrConfig['openexchangerates_api_key']);
 
 		$this->exchange_rates = array ();
+		$this->rates     = array ();
+		
 		if ( $base == "" ) 
 			$this->base_code = "GBP";
 		else

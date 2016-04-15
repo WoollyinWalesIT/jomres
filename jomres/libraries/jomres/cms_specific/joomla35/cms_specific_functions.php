@@ -22,7 +22,7 @@ function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 
 function jomres_cmsspecific_getsessionid()
 	{
-	$session = & JFactory::getSession();
+	$session = JFactory::getSession();
 
 	return $session_id = $session->getId();
 	}
@@ -181,7 +181,7 @@ function jomres_cmsspecific_getTextEditor( $name, $content, $hiddenField, $width
 		}
 	else
 		{
-		$editor =& JFactory::getEditor();
+		$editor = JFactory::getEditor();
 		$ret    = $editor->display( $name, $content, $width, $height, $col, $row , false );
 		}
 
@@ -199,7 +199,7 @@ function jomres_cmsspecific_setlanguage( $lang )
 function jomres_cmsspecific_getcurrentusers_id()
 	{
 	$id   = 0;
-	$user =& JFactory::getUser();
+	$user = JFactory::getUser();
 	$id   = $user->get( 'id' );
 
 	return $id;
@@ -249,7 +249,7 @@ function jomres_cmsspecific_setmetadata( $meta, $data )
 	{
 	
 	$data     = jomres_decode( $data );
-	$document =& JFactory::getDocument();
+	$document = JFactory::getDocument();
 	switch ( $meta )
 	{
 		case "title":
@@ -430,11 +430,11 @@ function jomres_cmsspecific_parseByBots( $str )
 	{
 	$limitstart = 0;
 	$params     = '';
-	$dispatcher =& JDispatcher::getInstance();
+	$dispatcher = JEventDispatcher::getInstance();
 	JPluginHelper::importPlugin( 'content' );
 	$obj       = new stdClass;
 	$obj->text = $str;
-	$output    = $dispatcher->trigger( 'onContentPrepare', array ( 'onContentPrepare', &$obj, & $params, $limitstart ) );
+	$output    = $dispatcher->trigger( 'onContentPrepare', array ( 'jomres.default', &$obj, & $params, $limitstart ) );
 	$output    = $obj->text;
 
 	return $output;
@@ -458,7 +458,7 @@ function jomres_cmsspecific_stringURLSafe( $str )
 
 function jomres_cmsspecific_addcustomtag( $data )
 	{
-	$document =& JFactory::getDocument();
+	$document = JFactory::getDocument();
 	$document->addCustomTag( $data );
 	}
 

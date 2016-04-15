@@ -67,6 +67,8 @@ try
 		$c->store('all_property_uids',array('all_propertys'=>$all_propertys,'all_published_propertys'=>$all_published_propertys));
 		}
 
+	$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
+	
 	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' ); // 00002 event is triggered here
 
 	if (count($thisJRUser->authorisedProperties)==0 && $thisJRUser->userIsManager)
@@ -78,8 +80,8 @@ try
 
 	if ($jrConfig[ 'development_production' ]  != "production")
 		{
-		ini_set( "display_errors", 1 );
-		ini_set('error_reporting', E_ALL| E_STRICT);
+		@ini_set( "display_errors", 1 );
+		@ini_set('error_reporting', E_ALL);
 		//@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
 		}
 
@@ -153,8 +155,6 @@ try
 
 
 	//if ( $tag != "" && get_showtime( 'task' ) != "editBooking" ) set_showtime( 'task', "tagSearch" );
-
-	$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
 
 	jr_import( 'jomres_currency_exchange_rates' );
 	$exchange_rates = new jomres_currency_exchange_rates( "GBP" );
@@ -805,7 +805,7 @@ try
 	// More reading https://groups.google.com/forum/?fromgroups=#!topic/joomla-devel/HOHzzne5HYo
 	if ( this_cms_is_joomla() )
 		{
-		$document =& JFactory::getDocument();
+		$document = JFactory::getDocument();
 		$document->setBase( null );
 		}
 

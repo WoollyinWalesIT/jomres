@@ -20,7 +20,11 @@ class jomres_currency_conversion
 	function __construct()
 		{
 		$jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance( 'jomres_currency_exchange_rates' );
-		$this->rates = get_showtime( 'temp_exchangerate_data' );
+		
+		if (is_array(get_showtime( 'temp_exchangerate_data' )))
+			$this->rates = get_showtime( 'temp_exchangerate_data' );
+		else
+			$this->rates = array();
 		}
 
 	function this_code_can_be_converted( $target_code )

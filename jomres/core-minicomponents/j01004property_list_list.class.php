@@ -26,13 +26,23 @@ class j01004property_list_list
 			return;
 			}
 		$this_plugin       = "list";
+		$layout = '';
+		
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-		$layout            = $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ];
-		if ( $layout == $this_plugin ) set_showtime( "number_of_ajax_results_required", 6 ); // This is for the list scrolling feature, we need to know the number of properties that should be returned
+		
+		if(isset($tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ]))
+			$layout = $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ];
+		
+		if ( $layout == $this_plugin ) 
+			set_showtime( "number_of_ajax_results_required", 6 ); // This is for the list scrolling feature, we need to know the number of properties that should be returned
 
 		$property_list_layouts = get_showtime( 'property_list_layouts' );
-		if ( is_null( $property_list_layouts ) ) $property_list_layouts = array ();
+		
+		if ( is_null( $property_list_layouts ) ) 
+			$property_list_layouts = array ();
+		
 		$property_list_layouts[ $this_plugin ] = array ( "layout" => "list_properties.html", "title" => jr_gettext( "_JOMRES_PROPERTYLIST_LAYOUT_LIST", _JOMRES_PROPERTYLIST_LAYOUT_LIST, false, false ), "path" => null );
+		
 		set_showtime( 'property_list_layouts', $property_list_layouts );
 		}
 
@@ -51,7 +61,7 @@ class j01004property_list_list
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return $this->propertys_uids;
+		return null;
 		}
 	}
 

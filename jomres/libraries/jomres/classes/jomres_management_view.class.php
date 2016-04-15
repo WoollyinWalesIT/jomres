@@ -65,7 +65,7 @@ class jomres_management_view
 	function curPageURL()
 		{
 		$pageURL = 'http';
-		if ($_SERVER["HTTPS"] == "on")
+		if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on")
 			{
 			$pageURL .= "s";
 			}

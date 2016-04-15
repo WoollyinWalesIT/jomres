@@ -29,7 +29,7 @@ class j06000ui_availability_calendar
 		$jrConfig   = $siteConfig->get();
 
 		$show_legend = true;
-		if ( $componentArgs[ 'noshowlegend' ] == "1" || $_REQUEST[ 'noshowlegend' ] == "1" ) 
+		if ( (isset($componentArgs[ 'noshowlegend' ]) && $componentArgs[ 'noshowlegend' ] == "1") || (isset($_REQUEST[ 'noshowlegend' ]) && $_REQUEST[ 'noshowlegend' ] == "1") ) 
 			$show_legend = false;
 
 		if (isset($componentArgs[ 'property_uid' ]))

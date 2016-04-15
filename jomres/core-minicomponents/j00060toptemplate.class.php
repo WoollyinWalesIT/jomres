@@ -53,9 +53,10 @@ class j00060toptemplate
 		$result = $editing_mode->make_editing_mode_dropdown();
 			
 		if ( $result ) 
+			{
 			$editing_dropdown[ ][ 'EDITING_MODE_DROPDOWN' ] = $result;
-		
-		set_showtime( "menuitem_editing_mode_dropdown", $editing_dropdown[ 0 ][ 'EDITING_MODE_DROPDOWN' ] );
+			set_showtime( "menuitem_editing_mode_dropdown", $editing_dropdown[ 0 ][ 'EDITING_MODE_DROPDOWN' ] );
+			}
 			
 		if ( this_cms_is_joomla() || this_cms_is_wordpress() )
 			{
@@ -161,10 +162,10 @@ class j00060toptemplate
 			$tmpl->readTemplatesFromInput( 'top.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'messages', $messaging );
-		$tmpl->addRows( 'help', $help );
 		//$tmpl->addRows( 'timezone_dropdown', $timezone_dropdown );
 		$tmpl->addRows( 'lang_dropdown', $lang_dropdown );
-		$tmpl->addRows( 'editing_dropdown', $editing_dropdown );
+		if ( $result )
+			$tmpl->addRows( 'editing_dropdown', $editing_dropdown );
 		$tmpl->displayParsedTemplate();
 		$pageoutput = array ();
 		$output     = array ();

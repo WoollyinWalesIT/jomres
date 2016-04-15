@@ -193,7 +193,7 @@ class basic_room_details
 				$this->all_room_features[ $r->room_features_uid ][ 'room_features_uid' ] = (int)$r->room_features_uid;
 				$this->all_room_features[ $r->room_features_uid ][ 'feature_description' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION' . (int) $r->room_features_uid, stripslashes( $r->feature_description ),false,false );
 				
-				if ($f->ptype_xref != '')
+				if ($r->ptype_xref != '')
 					$this->all_room_features[ $r->room_features_uid ][ 'ptype_xref' ] = unserialize($r->ptype_xref);
 				else
 					$this->all_room_features[ $r->room_features_uid ][ 'ptype_xref' ] = array();

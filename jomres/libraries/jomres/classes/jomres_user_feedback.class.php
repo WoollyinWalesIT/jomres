@@ -20,7 +20,7 @@ class jomres_user_feedback
 	{
 	function __construct( $autorun = true )
 		{
-		if ( get_showtime( 'no_html', $no_html ) == 1 || get_showtime( 'popup', $popup ) == 1 ) 
+		if ( get_showtime( 'no_html' ) == 1 || get_showtime( 'popup' ) == 1 ) 
 			return "";
 		if ( $autorun )
 			{

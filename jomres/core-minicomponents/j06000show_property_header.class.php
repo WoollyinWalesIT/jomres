@@ -84,14 +84,14 @@ class j06000show_property_header
 		//property image
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 		$jomres_media_centre_images->get_images($property_uid, array('property'));
-		$output[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images ['property'][0][0]['large'];
-		$output[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images ['property'][0][0]['medium'];
-		$output[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images ['property'][0][0]['small'];
-		if (is_null($output[ 'IMAGELARGE' ]))
+		$output[ 'IMAGELARGE' ]  = $jomres_media_centre_images->multi_query_images ['noimage-large'];
+		$output[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->multi_query_images ['noimage-medium'];
+		$output[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->multi_query_images ['noimage-small'];
+		if (isset($jomres_media_centre_images->images ['property'][0][0]['large']))
 			{
-			$output[ 'IMAGELARGE' ]  = $jomres_media_centre_images->multi_query_images ['noimage-large'];
-			$output[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->multi_query_images ['noimage-medium'];
-			$output[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->multi_query_images ['noimage-small'];
+			$output[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images ['property'][0][0]['large'];
+			$output[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images ['property'][0][0]['medium'];
+			$output[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images ['property'][0][0]['small'];
 			}
 		//property features
 		$output['FEATURES']		= $MiniComponents->specificEvent( '06000', 'show_property_features',array('output_now'=>false, 'property_uid'=>$property_uid , 'show_feature_categories'=>false));
@@ -172,7 +172,7 @@ class j06000show_property_header
 			$output[ 'HFAX' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX ) . ": ";
 
 		//external link
-		if ( $mrConfig[ 'galleryLink' ] != "" )
+		if ( isset($mrConfig[ 'galleryLink' ]) && $mrConfig[ 'galleryLink' ] != "" )
 			{
 			// http://www.worldofwebcraft.com/blog.php?id=250
 			$pattern = '/[^\pL\pN$-_.+!*\'\(\)\,\{\}\|\\\\\^\~\[\]`\<\>\#\%\"\;\/\?\:\@\&\=\.]/u';
@@ -186,7 +186,10 @@ class j06000show_property_header
 		$output[ 'JOMRES_TAPTOCALL' ] = jr_gettext( "JOMRES_TAPTOCALL", JOMRES_TAPTOCALL, false, false );
 
 		//shortlist/favourites
-		$shortlist_items = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
+		if (isset($tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ]) && is_array($tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ]))
+			$shortlist_items = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
+		else
+			$shortlist_items = array();
 
 		if ( $thisJRUser->userIsRegistered )
 			{
@@ -301,8 +304,6 @@ class j06000show_property_header
 
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'featurelist', $featureList );
-		$tmpl->addRows( 'roomtypes', $roomtypes );
 		$tmpl->addRows( 'reviews_link', $reviews_link );
 		$tmpl->addRows( 'bookinglink', $bookinglink );
 		$tmpl->readTemplatesFromInput( 'property_header.html' );

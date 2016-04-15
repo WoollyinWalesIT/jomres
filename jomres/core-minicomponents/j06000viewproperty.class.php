@@ -133,7 +133,7 @@ class j06000viewproperty
 			}
 		
 		//external link
-		if ( $mrConfig[ 'galleryLink' ] != "" )
+		if ( isset($mrConfig[ 'galleryLink' ]) && $mrConfig[ 'galleryLink' ] != "" )
 			{
 			$link = array ();
 			
@@ -306,16 +306,15 @@ class j06000viewproperty
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'bookinglink', $bookinglink );
 		
-		if ($mrConfig[ 'showslideshowlink' ] == 1)
+		if ($mrConfig[ 'showSlideshowLink' ] == 1)
 			$tmpl->addRows( 'slideshowlink', $slideshowlink );
 		
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && $mrConfig[ 'showTariffsInline' ] == 1) 
 			$tmpl->addRows( 'tariffslink', $tariffslink );
 		
 		$tmpl->addRows( 'gallerylink', $gallerylink );
-		$tmpl->addRows( 'srp_large_calendar', $srp_large_calendar );
 
-		if ( $mrConfig[ 'singleRoomProperty' ] == "0" && $mrConfig[ 'showroomslistlink' ] == 1) 
+		if ( $mrConfig[ 'singleRoomProperty' ] == "0" && $mrConfig[ 'showRoomsListingLink' ] == 1) 
 			$tmpl->addRows( 'roomslistlink', $roomslistlink );
 		
 		//$tmpl->addRows( 'mappinglink', $mappinglink );
@@ -403,6 +402,6 @@ class j06000viewproperty
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return $this->retVals;
+		return null;
 		}
 	}

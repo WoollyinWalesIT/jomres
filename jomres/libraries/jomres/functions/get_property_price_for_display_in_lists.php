@@ -83,7 +83,7 @@ function get_property_price_for_display_in_lists( $property_uid )
 				}
 			$searchDate = JSCalConvertInputDates( $arrivalDate );
 			}
-		elseif ( isset ( $tmpBookingHandler->tmpsearch_data ) && trim( $tmpBookingHandler->tmpsearch_data ) != '' )
+		elseif ( isset ( $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] ) && trim( $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] ) != '' )
 			{
 			$searchDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
 			}
