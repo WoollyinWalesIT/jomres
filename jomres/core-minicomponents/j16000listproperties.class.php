@@ -99,7 +99,7 @@ class j16000listproperties
 		$output['AJAX_URL']=JOMRES_SITEPAGE_URL_ADMIN_AJAX."&task=listproperties_ajax&published=".$published."&approved=".$approved."&ptype=".$ptype_id;
 
 		$pageoutput[ ] = $output;
-		$subsoutput[ ] = $subs;
+
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		if (!$show_as_panel)

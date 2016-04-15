@@ -66,7 +66,6 @@ class j10001control_panel
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'news_rows', $news_rows );
 		$tmpl->readTemplatesFromInput( 'control_panel.html' );
 		$tmpl->displayParsedTemplate();
 		}
