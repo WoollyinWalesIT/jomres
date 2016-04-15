@@ -150,11 +150,11 @@ return $current_licenses;
 
 		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php") || $this->force_check )
 			{
-			$this->expires		= "Unknown";
-			$this->key_status	= "Unknown";
-			$this->owner		= "Unknown";
-			$this->allows_plugins = false;
-			$this->is_trial_license		= false;
+			$license_data->expires		= "Unknown";
+			$license_data->key_status	= "Unknown";
+			$license_data->owner		= "Unknown";
+			$license_data->allows_plugins = false;
+			$license_data->is_trial_license		= false;
 			
 			$buffer = queryUpdateServer( "check_key.php", $str, "updates" );
 			if ($buffer != "")
@@ -165,6 +165,15 @@ return $current_licenses;
 					$license_data->license_valid = "1";
 				else
 					$license_data->license_valid = "0";
+
+				if (is_null($license_data->expires))
+					$license_data->expires= "Unknown";
+				if (is_null($license_data->allows_plugins))
+					$license_data->allows_plugins= "Unknown";
+				if (is_null($license_data->is_trial_license))
+					$license_data->is_trial_license= "Unknown";
+				if (!isset($license_data->key_status) || is_null($license_data->key_status))
+					$license_data->key_status= "Unknown";
 				
 				$lic_data = '<?php
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
