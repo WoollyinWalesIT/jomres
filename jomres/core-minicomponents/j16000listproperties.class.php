@@ -112,7 +112,10 @@ class j16000listproperties
 		if (!$output_now)
 			$this->retVals = $tmpl->getParsedTemplate();
 		else
+			{
+			$this->retVals = '';
 			$tmpl->displayParsedTemplate();
+			}
 		}
 
 

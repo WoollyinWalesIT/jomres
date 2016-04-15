@@ -86,6 +86,6 @@ class j16000charts
 
 	function getRetVals()
 		{
-		return $this->retVals;
+		return null;
 		}
 	}

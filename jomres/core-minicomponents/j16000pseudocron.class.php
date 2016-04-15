@@ -78,7 +78,7 @@ class j16000pseudocron
 
 
 		jr_import( 'jomres_cron' );
-		$cron = new jomres_cron( $displayLog );
+		$cron = new jomres_cron( $displayLog = false );
 		foreach ( $cron->allUnlockedJobs as $job )
 			{
 			$r          = array ();
@@ -107,6 +107,7 @@ class j16000pseudocron
 
 	function getcronconfig( $plugin )
 		{
+		$defaultProperty = "0";
 		$cronConfigOptions = array ();
 		$query             = "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '" . (int) $defaultProperty . "' AND plugin = '$plugin'";
 		$settingList       = doSelectSql( $query );
