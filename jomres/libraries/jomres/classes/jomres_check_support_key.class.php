@@ -150,6 +150,12 @@ return $current_licenses;
 
 		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php") || $this->force_check )
 			{
+			$this->expires		= "Unknown";
+			$this->key_status	= "Unknown";
+			$this->owner		= "Unknown";
+			$this->allows_plugins = false;
+			$this->is_trial_license		= false;
+			
 			$buffer = queryUpdateServer( "check_key.php", $str, "updates" );
 			if ($buffer != "")
 				{
@@ -175,19 +181,10 @@ $license_data->is_trial_license = "'.$license_data->is_trial_license.'";
 				}
 			}
 
-		if ( empty( $license_data ) ) // Query failed for some reason, perhaps slow connection
-			{
-			$this->expires		= "Unknown";
-			$this->key_status	= "Unknown";
-			$this->owner		= "Unknown";
-			$this->owner		= "Unknown";
-			$this->allows_plugins = false;
-			$this->is_trial_license		= false;
-			}
-		else
+		if ( !empty( $license_data ) ) // Query failed for some reason, perhaps slow connection
 			{
 			$this->expires		= $license_data->expires;
-			$this->key_status	= $license_data->status;
+			$this->key_status	= $license_data->key_status;
 			$this->owner		= $license_data->owner;
 			if ( $license_data->license_valid == true ) 
 				$this->key_valid = true;
