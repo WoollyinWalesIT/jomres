@@ -38,7 +38,7 @@ class j10501a_misc
 		if ( trim($jrConfig['licensekey']) != "")
 			{
 			jr_import('jomres_check_support_key');
-			$jomres_check_support_key = new jomres_check_support_key();
+			$jomres_check_support_key = new jomres_check_support_key('site_settings');
 			$jomres_check_support_key->check_license_key();
 
 			if ($jomres_check_support_key->key_valid)

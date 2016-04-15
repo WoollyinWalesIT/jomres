@@ -50,7 +50,9 @@ class jomresHTML
 			';
 			define( 'SELECTLISTJAVASCRIPT', 1 );
 			}
-
+		
+		if (!isset($value))
+			$value ='';
 		$obj              = new stdClass;
 		$obj->$value_name = $val;
 		$obj->$text_name  = trim( $text ) ? $text : $value;

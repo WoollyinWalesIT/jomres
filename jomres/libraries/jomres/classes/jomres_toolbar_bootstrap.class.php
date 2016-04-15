@@ -79,7 +79,6 @@ class jomres_toolbar_bootstrap
 	function customToolbarItem( $targetTask, $link, $text = "", $submitOnClick = false, $submitTask = "", $image, $concat = false )
 		{
 		$this->items[] = array( "cell" => $this->makeCell( $image, $targetTask, $link, $text, $submitOnClick, $submitTask ), "concat"=> $concat);
-		return $output;
 		}
 
 	/**
