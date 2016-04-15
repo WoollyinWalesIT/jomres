@@ -57,6 +57,8 @@ class j10004generate_control_panel
 					{
 					$r[ 'BADGES' ]             = '';
 					$bang                      = explode( "task=", $r[ 'link' ] );
+					if (!isset($bang[ 1 ]))
+						$bang[ 1 ] = 0;
 					$items_requiring_attention = get_number_of_items_requiring_attention_for_menu_option( $bang[ 1 ] );
 					if ( count( $items_requiring_attention ) > 0 )
 						{
@@ -73,26 +75,28 @@ class j10004generate_control_panel
 							}
 						}
 					}
-
+				
 				parse_str( $val[ 'link' ], $url_params );
-				$button_task = $url_params[ 'task' ];
-				if ( $button_task == get_showtime( 'task' ) )
+				if(isset($url_params[ 'task' ]))
 					{
-					if ( !using_bootstrap() ) 
+					$button_task = $url_params[ 'task' ];
+					if ( $button_task == get_showtime( 'task' ) )
 						{
-						$r[ 'ACTIVE' ] = "ui-state-active";
+						if ( !using_bootstrap() ) 
+							{
+							$r[ 'ACTIVE' ] = "ui-state-active";
+							}
+						else
+							{
+							$r[ 'ACTIVE' ] = "active";
+							$output[ 'COLLAPSE_IN' ] = "in";
+							}
 						}
 					else
 						{
-						$r[ 'ACTIVE' ] = "active";
-						$output[ 'COLLAPSE_IN' ] = "in";
+						$r[ 'ACTIVE' ] = "";
 						}
 					}
-				else
-					{
-					$r[ 'ACTIVE' ] = "";
-					}
-				
 				$rows[ ] = $r;
 				}
 

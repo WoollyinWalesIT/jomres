@@ -33,6 +33,8 @@ class j10002approvals
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
 			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=listproperties', 'thumb_up.png', jr_gettext( "_JOMRES_APPROVALS_MENU_NAME", _JOMRES_APPROVALS_MENU_NAME, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN, false, false ) );
 			}
+		else
+			$this->cpanelButton = '';
 		}
 
 	// This must be included in every Event/Mini-component

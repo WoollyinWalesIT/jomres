@@ -25,6 +25,7 @@ class j10002list_tax_rules
 
 			return;
 			}
+		$this->cpanelButton = '';
 		return; // This functionality is currently disabled, whilst it's possible to create tax rules, there are currently very few exceptions and it's likely that this will confuse people un-necessarily.
 		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
 		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=list_tax_rules', 'Taxes.png', jr_gettext( "_JOMRES_TAX_RULES_LIST", _JOMRES_TAX_RULES_LIST, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES", _JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES, false, false ) );
