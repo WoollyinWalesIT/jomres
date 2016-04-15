@@ -74,7 +74,7 @@ class mcHandler
 		$pageoutput = array ();
 
 		$thisJRUser              = jomres_singleton_abstract::getInstance( 'jr_user' );
-		$mrConfig                = getPropertySpecificSettings( $property_uid );
+		$mrConfig                = getPropertySpecificSettings( 0 );
 		$eventArgs               = null;
 		$mrConfig[ 'editingOn' ] = "1";
 
@@ -143,7 +143,7 @@ class mcHandler
 		{
 		global $ePointFilepath;
 		$thisJRUser              = jomres_singleton_abstract::getInstance( 'jr_user' );
-		$mrConfig                = getPropertySpecificSettings( $property_uid );
+		$mrConfig                = getPropertySpecificSettings( 0 );
 		$eventArgs               = null;
 		$mrConfig[ 'editingOn' ] = "1";
 		//var_dump($thisJRUser);exit;

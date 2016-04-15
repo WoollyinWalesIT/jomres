@@ -76,11 +76,6 @@ class basic_subscription_package_details
 			return true;
 			}
 		
-		$clause = '';
-		
-		if ( $published_only === true )
-			$clause .= 'WHERE `published` = 1 ';
-		
 		$query = "SELECT 
 						`id`,
 						`name`,
@@ -92,7 +87,7 @@ class basic_subscription_package_details
 						`currencycode`,
 						`renewal_price`,
 						`params` 
-					FROM #__jomresportal_subscriptions_packages " . $clause;
+					FROM #__jomresportal_subscriptions_packages ";
 		$result = doSelectSql( $query );
 	
 		if ( count( $result ) > 0 )
