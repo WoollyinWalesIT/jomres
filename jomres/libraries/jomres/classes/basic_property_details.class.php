@@ -61,8 +61,10 @@ class basic_property_details
 	public function __get( $setting )
 		{
 		if ( self::$internal_debugging ) echo "Getting " . $setting . " which is " . $this->$setting . "<br>";
-
-		return $this->$setting;
+		if (isset($this->$setting))
+			return $this->$setting;
+		else
+			throw new Exception("Setting doesn't exist ".$setting, 2);
 		}
 
 	public function get_property_name( $property_uid = 0, $editable = true )
