@@ -3712,7 +3712,7 @@ function getPropertyTypeDropdown( $propertyType = "" , $all = false )
 	{
 	$query = "SELECT `mrp_srp_flag` FROM #__jomres_ptypes WHERE id = '" . (int) $propertyType . "' ";
 	$mrp_srp = (int)doSelectSql( $query , 1 );
-	
+	$clause = '';
 	if (!$all)
 		{
 		if ($mrp_srp == 0)
