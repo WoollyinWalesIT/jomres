@@ -100,7 +100,7 @@ class jomres_config_property_singleton
 			return $this->property_config;
 			}
 		else
-		return false;
+			return false;
 		}
 
 	//private function get_default_property_settings()

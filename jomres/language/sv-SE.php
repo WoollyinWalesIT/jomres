@@ -1198,7 +1198,6 @@ jr_define( '_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7', 'En lista över tillg�
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR', 'Tyvärr kan inte denna verksamhet publiceras eftersom du har fyllt alla tillgängliga verksamhetsluckor.' );
 jr_define( '_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', 'Tack för att du tecknar en prenumeration så att du kan lista din verksamhet på vår server. När din faktura är markerad som betald (det kan ske en fördröjning på grund av Paypal), <a href="' . JOMRES_SITEPAGE_URL . '"&task=registerProp_step1>klicka här för att skapa fler verksamheter.</a>' );
 jr_define( '_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE', 'Vi är ledsna att du inte har valt att prenumerera på vår tjänst. Vänligen meddela oss om det finns något sätt som vi kan hjälpa dig' );
-jr_define( '_JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH', 'Vi är ledsna, men du har nått gränsen för antalet verksamheter som du kan ha publicerade på detta system åt gången. Du kan öka antalet verksamheter som du kan publicera genom att köpa fler abonnemang paket här .' );
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_USE', 'Hantera din prenumeration' );
 jr_define( '_JOMRES_COM_NEWUSER', 'Skapa ny användare för bokning' );
 jr_define( '_JOMRES_COM_NEWUSER_DESC', 'Skapa nytt användarkonto för oregistrerad användares bokning. (endast Joomla)' );

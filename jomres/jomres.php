@@ -149,8 +149,11 @@ try
 	set_showtime( 'no_html', $no_html );
 	set_showtime( 'popup', $popup );
 
-	if ( $no_html == 1 ) define ( "JOMRES_NOHTML", 1 );
-
+	if ( $no_html == 1 ) 
+		define ( "JOMRES_NOHTML", 1 );
+	else
+		define ( "JOMRES_NOHTML", 0 );
+	
 	$propertyNamesArray = array ();
 
 
@@ -850,6 +853,9 @@ function no_task_set()
 	$jomresPathway  = jomres_singleton_abstract::getInstance( 'jomres_pathway' );
 	$thisJRUser     = jomres_singleton_abstract::getInstance( 'jr_user' );
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig   = $siteConfig->get();
+	
 	if ( ( isset( $_REQUEST[ 'calledByModule' ] ) || isset( $_REQUEST[ 'plistpage' ] ) ) && $thisJRUser->userIsManager )
 		{
 		$jomresPathway->addItem( "Search", "listProperties", "" );

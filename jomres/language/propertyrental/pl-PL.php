@@ -1243,7 +1243,6 @@ jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7',"Aby zobaczyć listę do
 jr_define('_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR',"Niestety, nie można opublikować tej oferty, osiągnięto maksymalną liczbę dostępnych ilości ofert w Twoim abonamencie.");
 jr_define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED',"Dziękujemy za zamówienie abonamentu. <a href='".JOMRES_SITEPAGE_URL."&task=registerProp_step1'>Kliknij tutaj, aby kontynuować.</a>");
 jr_define('_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE',"Z przykrością informujemy, że nie zdecydowałeś się zapisać w naszym serwisie. Daj nam znać, jeśli istnieje jakikolwiek sposób, w który możemy Ci pomóc.");
-jr_define('_JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH',"Przykro nam, ale nie spotkałem limitu liczby ofert które zostały opublikowane w tym systemie w dowolnym czasie. Można zwiększyć liczbę ofert które można publikować przez <a href='".JOMRES_SITEPAGE_URL."&task=list_subscription_packages&Itemid=".$Itemid."'>zakup większego pakietu abonamentowego tutaj</a>.");
 jr_define('_JRPORTAL_SUBSCRIPTIONS_USE',"Obsługa abonamentów");
 jr_define('_JOMRES_COM_NEWUSER','Utwórz nowego użytkownika');
 jr_define('_JOMRES_COM_NEWUSER_DESC','Utwórz nowe konto użytkownika.');

@@ -31,8 +31,9 @@ class j00012pathway
 		$numberOfPropertiesInSystem = get_showtime( 'numberOfPropertiesInSystem' );
 		
 		if ( _JOMRES_DETECTED_CMS == "joomla15" ) // J1.5 pathways are not supported
-		return;
-		if ( AJAXCALL ) return;
+			return;
+		if ( AJAXCALL ) 
+			return;
 
 		// We can't show the pathway if editing mode is enabled,
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
@@ -45,7 +46,7 @@ class j00012pathway
 		$jrConfig      = $siteConfig->get();
 
 		$popup = intval( jomresGetParam( $_REQUEST, 'popup', 0 ) );
-
+		$thisJRUser     = jomres_singleton_abstract::getInstance( 'jr_user' );
 		if ( $popup == 0 && !JOMRES_SINGLEPROPERTY && $numberOfPropertiesInSystem > 1 )
 			{
 			$pathwayArray = array ();

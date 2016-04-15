@@ -275,6 +275,7 @@ class j16000updates
 
 	function recur_dir( $dir, $getWritablesFiles = false )
 		{
+		$mod_array = array();
 		$dirlist = opendir( $dir );
 		while ( $file = readdir( $dirlist ) )
 			{

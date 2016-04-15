@@ -1218,7 +1218,6 @@ jr_define( '_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7', "Para ver uma lista do
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR', "Infelizmente, não pode publicar esta propriedade por ter atingido o número máximo que lhe está concedido." );
 jr_define( '_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', "Obrigado por ter criado uma subscrição para listar as suas propriedades no nosso servidor. Depois que a sua factura estiver assinalada e paga (pode haver um atraso em função da Paypal), por favor <a href='" . JOMRES_SITEPAGE_URL . "&task=registerProp_step1'>clique aqui para continuar a criar a(s) sua(s) propriedade(s).</a>" );
 jr_define( '_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE', "Lamentamos que tenha decidido não subscrever o nosso serviço. Por favor diga-nos se podemos auxiliá-lo de qualquer outra forma" );
-jr_define( '_JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH', "Lamentamos, mas atingiu o número máximo de propriedades que pode publicar neste sistema de uma só vez. Pode aumentar este número <a href='" . JOMRES_SITEPAGE_URL . "&task=list_subscription_packages&Itemid=" . $Itemid . "'>comprando mais pacotes de subscrição aqui.</a> " );
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_USE', "Usar a funcionalidade de manuseamento de subscrições" );
 jr_define( '_JOMRES_COM_NEWUSER', 'Criar novo utilizador ao reservar' );
 jr_define( '_JOMRES_COM_NEWUSER_DESC', 'Crirar nova conta de utilizador ao ser feita uma reserva por um utilizador não registado.' );

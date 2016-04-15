@@ -272,7 +272,9 @@ class j00030search
 			$output[ 'HARRIVALDATE' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL, false );
 			$output[ 'HDEPARTUREDATE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE, false );
 			}
-
+		if (!isset($overlibLables))
+			$overlibLables = 0;
+		
 		if ( in_array( "ptype", $searchOptions ) && $showSearchOptions )
 			{
 			if ( $overlibLables == "1" ) $output[ 'JOMRES_SEARCH_PTYPES' ] = makeFeatureImages( $infoIcon, _JOMRES_SEARCH_BUTTON, jr_gettext( '_JOMRES_SEARCH_PTYPES', _JOMRES_SEARCH_PTYPES, false ), $retString = true );
@@ -350,8 +352,8 @@ class j00030search
 					if ( trim( jomres_decode( $country[ 'countryname' ] ) ) != "" ) $countryArray[ ] = jomresHTML::makeOption( $country[ 'countrycode' ], jomres_decode( $country[ 'countryname' ] ) );
 					}
 
-				$output[ 'SELECTCOMBO_COUNTRY' ]                = jomresHTML::selectList( $countryArray, 'country', 'size="1" id="search_country" class="inputbox"', 'value', 'text', $selectOption ) . '<br />';
-								$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_REGION' ] = '<!-- state combobox is chained by country combobox--><select name="region" id="rregion" style="display:none"></select><br />';
+				$output[ 'SELECTCOMBO_COUNTRY' ] = jomresHTML::selectList( $countryArray, 'country', 'size="1" id="search_country" class="inputbox"', 'value', 'text', '' ) . '<br />';
+				$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_REGION' ] = '<!-- state combobox is chained by country combobox--><select name="region" id="rregion" style="display:none"></select><br />';
 				$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_TOWN' ]   = '<!-- city combobox is chained by state combobox--><select name="town" id="ttown" style="display:none"></select><br />';
 				$showButton                                     = true;
 				}

@@ -62,7 +62,7 @@ class j07100media_centre_uploader_contexts
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return mull;
+		return null;
 		}
 	}
 

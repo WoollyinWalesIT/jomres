@@ -1222,7 +1222,6 @@ jr_define( '_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7', "Per a veure una llist
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR', "Per desgràcia, no es pot publicar aquesta propietat vostè ha assolit el número màxim de paquets de propietat disponibles." );
 jr_define( '_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', "Gràcies per crear una subscripció per a incluïr la seva propietat en el nostre servidor. Un cop que la seva factura estigui marcada com pagada (pot haver un retràs en funció de Paypal), si us plau <a href='" . JOMRES_SITEPAGE_URL . "&task=registerProp_step1'>premi aquí per a seguir creant la seva propietat/s.</a>" );
 jr_define( '_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE', "Lamentem que no hagi escollit subscriure's al nostre servei. Si us plau, fagi'ns saber si hi ha alguna manera que puguem ajudar-lo més" );
-jr_define( '_JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH', "Ho sentim, però vostè ha arribat al límit de la quantitat de propietats que es poden publicar en aquest sistema en qualsevol moment. Pot augmentar el número de propietats que ese poden publicar per <a href='" . JOMRES_SITEPAGE_URL . "&task=list_subscription_packages&Itemid=" . $Itemid . "'>comprant més paquets de suscripció aquí.</a> " );
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_USE', "Utilitzi la funcionalitat de maneig de subscripcions" );
 jr_define( '_JOMRES_COM_NEWUSER', 'Crear nou usuari en reserva' );
 jr_define( '_JOMRES_COM_NEWUSER_DESC', "Crear nou compte d'usuari en usuaris no registrats." );

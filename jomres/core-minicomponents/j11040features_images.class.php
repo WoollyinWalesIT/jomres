@@ -31,7 +31,7 @@ class j11040features_images
 		$resource_type   = jomresGetParam( $_REQUEST, 'resource_type', '' );
 		
 		$files = scandir_getfiles($upload_context['upload_root_abs_path'] . $resource_type . JRDS);
-
+		$this->ret_vals=array();
 		if (count($files)>0)
 			{
 			foreach ($files as $file)

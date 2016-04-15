@@ -89,7 +89,7 @@ class j16000managers_choose
 				else
 				$accesslevel_img = $img_output_manager;
 
-				if ( $managerpu == "1" ) $accesslevel_img = $img_output_superpropertymanager;
+				if ( $manager->pu == "1" ) $accesslevel_img = $img_output_superpropertymanager;
 
 				if ( $manager->pu == "0" )
 					{
