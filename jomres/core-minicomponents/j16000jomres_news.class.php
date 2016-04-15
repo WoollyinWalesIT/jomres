@@ -93,6 +93,7 @@ class j16000jomres_news
 							break;
 						case "ui-state-default":
 							$label = "label-grey";
+							$panel = "panel-default";
 							break;
 						default:
 							//$state = "alert alert-info";
