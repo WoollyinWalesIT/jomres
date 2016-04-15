@@ -1222,7 +1222,6 @@ jr_define( '_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7', "Чтобы увиде
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR', "К сожалению, вы не можете опубликовать эту недвижимость, как вы достигли максимального количества доступных слотов собственности." );
 jr_define( '_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', "Спасибо за создание подписку на список вашу собственность на нашем сервере. После того, как ваш счет помечен как платные (там может быть некоторая задержка в зависимости от Paypal), пожалуйста, <a href='" . JOMRES_SITEPAGE_URL . "&task=registerProp_step1'>нажмите здесь, чтобы продолжить создание вашу недвижимость.</a>" );
 jr_define( '_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE', "Мы сожалеем, что вы не выбрали, чтобы подписаться на наши услуги. Пожалуйста, дайте нам знать, если есть какие-либо способ, которым мы можем Вам помочь" );
-jr_define( '_JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH', "We are sorry, but you've met the limit of the number of properties that you can have published on this system at any one time. You can raise the number of properties that you can publish by <a href='" . JOMRES_SITEPAGE_URL . "&task=list_subscription_packages&Itemid=" . $Itemid . "'>purchasing more subscription packages here.</a> " );
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_USE', "Использовать возможности обработки подписки" );
 jr_define( '_JOMRES_COM_NEWUSER', 'Создать нового пользователя при бронирование' );
 jr_define( '_JOMRES_COM_NEWUSER_DESC', 'Создать новую учетную запись Пользователя при бронировании.' );

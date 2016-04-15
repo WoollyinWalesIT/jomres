@@ -1199,7 +1199,6 @@ jr_define( '_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7', "لمشاهدة قائ
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR', "للأسف، لا يمكنك نشر هذا الفندق كما كنت قد وصلت الحد الأقصى لعدد من الفنادق المتاحة." );
 jr_define( '_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', "أشكركم على خلق الاشتراك في قائمة عملك على الخادم لدينا. مرة واحدة يتم وضع علامة الفاتورة ودفع (قد يكون هناك تأخير اعتمادا على بال) الرجاء <a href='" . JOMRES_SITEPAGE_URL . "&task=registerProp_step1'>انقر هنا للمتابعة إنشاء الفنادق الخاصة بك.</a>" );
 jr_define( '_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE', "نحن نعتذر التي لم تقم باختيار للاشتراك في خدمتنا. واسمحوا لنا أن نعرف إذا كان هناك أي الطريقة التي يمكن أن تساعدك على زيادة" );
-jr_define( '_JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH', "نحن نأسف، ولكن كنت قد اجتمعت الحد من عدد من الشركات التي يمكنك نشرت على هذا النظام في أي وقت من الأوقات. يمكنك زيادة عدد الشركات التي يمكنك نشر من قبل <a href='" . JOMRES_SITEPAGE_URL . "&task=list_subscription_packages&Itemid=" . $Itemid . "'>شراء حزم أكثر الاشتراك هنا.</a> " );
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_USE', "استخدام وظائف معالجة الاشتراك" );
 jr_define( '_JOMRES_COM_NEWUSER', 'إنشاء مستخدم جديد في الحجز' );
 jr_define( '_JOMRES_COM_NEWUSER_DESC', 'إنشاء حساب مستخدم جديد في الحجز مستخدم غير مسجل. (Joomla فقط)' );

@@ -52,9 +52,14 @@ class jomres_currency_format
 	function get_format( $cformat = false )
 		{
 		$mrConfig = getPropertySpecificSettings( get_showtime( 'property_uid' ) );
-		if ( !$cformat ) $this->cformat = $mrConfig[ 'cformat' ];
+		if ( !$cformat ) 
+			{
+			if (!isset( $mrConfig[ 'cformat' ]))
+				 $mrConfig[ 'cformat' ] = '2';
+			$this->cformat = $mrConfig[ 'cformat' ];
+			}
 		else
-		$this->cformat = $cformat;
+			$this->cformat = $cformat;
 		$this->currency_formats = array ( '1' => '123.456,00', '2' => '123,456.00', '3' => '123456.00', '4' => '123 456.00', '5' => '123 456,00', '6' => '123456' );
 
 		}

@@ -41,7 +41,7 @@ class jomSearch
 		$this->makeFormName();
 
 		if ( !isset( $calledByModule ) || empty( $calledByModule ) ) 
-			$calledByModule = jomresGetParam( $_REQUEST, 'calledByModule', "" );
+			$calledByModule = jomresGetParam( $_REQUEST, 'calledByModule', "mod_jomsearch_m0" );
 
 		if ( strlen( $calledByModule ) > 0 )
 			{
@@ -64,8 +64,9 @@ class jomSearch
 				}
 
 			$vals = jomres_cmsspecific_getSearchModuleParameters( $calledByModule );
-
-			$moduleclass_sfx = $vals[ 'moduleclass_sfx' ];
+			
+			if ( isset($vals[ 'moduleclass_sfx' ]))
+				$moduleclass_sfx = $vals[ 'moduleclass_sfx' ];
 
 			$useCols       = $vals[ 'useCols' ];
 			$featurecols   = $vals[ 'featurecols' ];
@@ -101,15 +102,25 @@ class jomSearch
 		$this->cols        = $useCols;
 		//$this->overlibLables=$useoverlibLabels;
 		$searchOptions           = array ();
-		if ( $pn ) $searchOptions[ ] = "propertyname";
-		if ( $ptype ) $searchOptions[ ] = "ptype";
-		if ( $room_type ) $searchOptions[ ] = "room_type";
-		if ( $features ) $searchOptions[ ] = "feature_uids";
-		if ( $description ) $searchOptions[ ] = "description";
-		if ( $geosearchtype ) $searchOptions[ ] = $geosearchtype;
-		if ( $availability ) $searchOptions[ ] = "availability";
-		if ( $priceranges ) $searchOptions[ ] = "priceranges";
-		if ( $guestnumber ) $searchOptions[ ] = "guestnumber";
+		if ( $pn ) 
+			$searchOptions[ ] = "propertyname";
+		if ( $ptype ) 
+			$searchOptions[ ] = "ptype";
+		if ( $room_type ) 
+			$searchOptions[ ] = "room_type";
+		if ( $features ) 
+			$searchOptions[ ] = "feature_uids";
+		if ( $description ) 
+			$searchOptions[ ] = "description";
+		if ( $geosearchtype ) 
+			$searchOptions[ ] = $geosearchtype;
+		if ( $availability ) 
+			$searchOptions[ ] = "availability";
+		if ( $priceranges ) 
+			$searchOptions[ ] = "priceranges";
+		if ( $guestnumber ) 
+			$searchOptions[ ] = "guestnumber";
+		
 		if ( $stars ) $searchOptions[ ] = "stars";
 
 		if ( $selectcombo )
@@ -1260,33 +1271,37 @@ function prepAvailabilitySearch()
 		}
 
 	// Assuming the arrival date was passed from $_REQUEST
-	$date_elements   = explode( "/", $arrivalDate );
-	$unixArrivalDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
-	if ($arrivalDate != '')
+	if ($arrivalDate != "")
 		{
-		if ( $unixArrivalDate < $unixTodaysDate ) 
-			$arrivalDate = $today;
+		$date_elements   = explode( "/", $arrivalDate );
+		$unixArrivalDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
+		if ($arrivalDate != '')
+			{
+			if ( $unixArrivalDate < $unixTodaysDate ) 
+				$arrivalDate = $today;
+			}
+
+		$date_elements     = explode( "/", $departureDate );
+		$unixDepartureDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
+		if ($departureDate != '')
+			{
+			if ( $unixDepartureDate < $unixTodaysDate ) 
+				$departureDate = $gmtTomorrowsDate;
+			}
+
+
+		$result = array ( 'arrival' => $arrivalDate, 'departure' => $departureDate );
+
+		if ($arrivalDate != '' && $departureDate != '')
+			{
+			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]           = $arrivalDate;
+			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = $departureDate;
+			$tmpBookingHandler->close_jomres_session();
+			}
+		return $result;
 		}
-
-	$date_elements     = explode( "/", $departureDate );
-	$unixDepartureDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
-	if ($departureDate != '')
-		{
-		if ( $unixDepartureDate < $unixTodaysDate ) 
-			$departureDate = $gmtTomorrowsDate;
-		}
-
-
-	$result = array ( 'arrival' => $arrivalDate, 'departure' => $departureDate );
-
-	if ($arrivalDate != '' && $departureDate != '')
-		{
-		$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]           = $arrivalDate;
-		$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = $departureDate;
-		$tmpBookingHandler->close_jomres_session();
-		}
-
-	return $result;
+	else
+		return array();
 	}
 
 /**

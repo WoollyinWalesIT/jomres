@@ -1233,7 +1233,6 @@ jr_define( '_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7', "Per vedere una lista 
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR', "Sfortunatamente, non puoi pubblicare questa proprieta perche hai usato tutti i crediti disponibili per la creazione strutture." );
 jr_define( '_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', "Grazie per aver sottoscritto i nostri servizi di pubblicazione della tua struttura sui nostri server. Quando il tuo ordine risultera come pagato (potrebbe esserci un ritardo causa Paypal). <a href='" . JOMRES_SITEPAGE_URL . "&task=registerProp_step1'>clicca qui per continuare con ad inserire la tua struttura(e).</a>" );
 jr_define( '_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE', "Ci dispiace molto che tu non abbia scelto di sottoscrivere i nostri servizi. Facci sapere se hai bisogno di ulteriori info o se possiamo aiutarti in qualsiasi modo a farlo" );
-jr_define( '_JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH', "Ci dispiace, ma hai esaurito i crediti disponibili per la pubblicazione delle tue strutture. Puoi aumentare il numero di strutture pubblicabili <a href='" . JOMRES_SITEPAGE_URL . "&task=list_subscription_packages&Itemid=" . $Itemid . "'>acquistando altri crediti qui.</a> " );
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_USE', "Usa la funzionalita di gestione sottoscrizione" );
 jr_define( '_JOMRES_COM_NEWUSER', 'Crea nuovo utente alla prenotazione' );
 jr_define( '_JOMRES_COM_NEWUSER_DESC', 'Crea un nuovo account utente su prenotazioni effettuate da utenti non registrati.' );

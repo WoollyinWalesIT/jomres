@@ -1165,7 +1165,6 @@ jr_define("_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7","購入できるサブ�
 jr_define("_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR","利用可能なプロパティ分を全部利用されているため、公開できません。新しいサブスクリプション プランを購入して下さい。");
 jr_define("_JRPORTAL_SUBSCRIBERS_SUBSCRIBED","サブスクリプション プランを購入していただき誠にありがとうございます。請求書が払済みとなりましたら（Paypal等の都合により、時間がかかる場合がございます。）ここをクリックしプロパティの作成を進めてください。");
 jr_define("_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE","このたびご要望にお応えすることができず誠に申し訳ございませんでした。Please let us know if there's any way we can help you further");
-jr_define("_JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH","現在のサブスクリプション プランで公開できるMAXプロパティ数が全部利用されてい増す。プロパティを新規に追加する場合、新しいサブスクリプション プランをここで購入して下さい。");
 jr_define("_JRPORTAL_SUBSCRIPTIONS_USE","サブスクリプションのハンドラーを利用する");
 jr_define("_JOMRES_COM_NEWUSER","予約と新規ユーザーの同時作成");
 jr_define("_JOMRES_COM_NEWUSER_DESC","未登録のユーザーが予約された場合、ユーザーアカウントが自動的に作成されます(Joomlaのみ)。");

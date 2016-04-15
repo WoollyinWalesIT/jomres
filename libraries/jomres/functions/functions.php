@@ -4125,7 +4125,8 @@ function getPropertySpecificSettings( $property_uid = null )
 	{
 	global $mrConfig;
 	$propertyConfig = jomres_singleton_abstract::getInstance( 'jomres_config_property_singleton' );
-	if ( $propertyConfig->property_uid == 0 ) $propertyConfig->init( $property_uid );
+	if ( $propertyConfig->property_uid == 0 ) 
+		$propertyConfig->init( $property_uid );
 
 	if ( $property_uid == null )
 		{
@@ -4139,7 +4140,7 @@ function getPropertySpecificSettings( $property_uid = null )
 			$mrConfig = $propertyConfig->get();
 			}
 		else
-		$mrConfig = $propertyConfig->get();
+			$mrConfig = $propertyConfig->get();
 		}
 
 	return $mrConfig;
@@ -4699,22 +4700,25 @@ function scandir_getdirectories( $path )
 function scandir_getfiles( $path, $extension = false )
 	{
 	$data = array ();
-	foreach ( scandir( $path ) as $file )
+	if (is_dir($path))
 		{
-		if ( is_file( $path . JRDS . $file ) )
+		foreach ( scandir( $path ) as $file )
 			{
-			if ( !$extension ) $data[ ] = $file;
-			else
+			if ( is_file( $path . JRDS . $file ) )
 				{
-				$filename = strtolower( $file );
-				$exts	 = explode( ".", $filename );
-				$n		= count( $exts ) - 1;
-				$exts	 = $exts[ $n ];
-				if ( $exts == $extension ) $data[ ] = $file;
+				if ( !$extension ) $data[ ] = $file;
+				else
+					{
+					$filename = strtolower( $file );
+					$exts	 = explode( ".", $filename );
+					$n		= count( $exts ) - 1;
+					$exts	 = $exts[ $n ];
+					if ( $exts == $extension ) $data[ ] = $file;
+					}
 				}
 			}
 		}
-
+	
 	return $data;
 	}
 

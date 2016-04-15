@@ -77,8 +77,11 @@ class j16000listPfeatures
 					}
 				}
 			else //for backward compatibility
-				$selected_ptype_rows = $all_ptypes[$propertyFeature->ptype_xref];
-
+				{
+				if (isset($all_ptypes[$propertyFeature->ptype_xref]))
+					$selected_ptype_rows = $all_ptypes[$propertyFeature->ptype_xref];
+				}
+			
 			$r[ 'CHECKBOX' ]            = '<input type="checkbox" id="cb' . count( $rows ) . '" name="idarray[]" value="' . $propertyFeature->hotel_features_uid . '" onClick="jomres_isChecked(this.checked);">';
 			$r[ 'PFEATURETITLE' ]       = $propertyFeature->hotel_feature_abbv;
 			$r[ 'PFEATUREDESCRIPTION' ] = $propertyFeature->hotel_feature_full_desc;

@@ -1192,7 +1192,6 @@ jr_define( '_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7', "Na výpis všech dost
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR', "Bohužel, nemůžete zveřejnit tuto kapacitu, dosáhli jste maximálního počtu otevřených kapacitních složek." );
 jr_define( '_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', "Děkujeme Vám za objednávku zveřejnění Vašich kapacit na našem serveru. Jakmile bude Vaše faktura označna jako zaplacená, můžete pokračovat zde: <a href='" . JOMRES_SITEPAGE_URL . "&task=registerProp_step1'>a zadat údaje o vašich kapacitách.</a>" );
 jr_define( '_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE', "Je nám líto, že jste se nerozhodli por využití našich služeb. Pokud V8m můžeme jakkoliv pomoci, neváhejte a kontaktujte nás." );
-jr_define( '_JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH', "Omlouvám se, ale dosáhli jste maximálního počtu kapacit, které můžete mít zveřejněné v jednom okamžiku. Pokud chcte jejich počet zvýšit, kliněnte na <a href='" . JOMRES_SITEPAGE_URL . "&task=list_subscription_packages&Itemid=" . $Itemid . "'>objednávku dalších balíčků.</a> " );
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_USE', "Použít funkce předplatného" );
 jr_define( '_JOMRES_COM_NEWUSER', 'Při rezervaci vytvořit nového uživatele' );
 jr_define( '_JOMRES_COM_NEWUSER_DESC', 'Pokud rezervaci zadává neregistrovaný uživatel, automaticky proběhne vytvoření nového uživatele.' );

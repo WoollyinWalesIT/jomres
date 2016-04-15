@@ -23,6 +23,7 @@ function output_price( $value, $currencycode = "", $do_conversion = true, $zeroO
 	if ( $jrConfig[ 'use_conversion_feature' ] != "1" ) $do_conversion = false;
 
 	$mrConfig = getPropertySpecificSettings();
+	
 	$currfmt  = jomres_singleton_abstract::getInstance( 'jomres_currency_format' );
 	$currfmt->get_format();
 
@@ -30,18 +31,22 @@ function output_price( $value, $currencycode = "", $do_conversion = true, $zeroO
 	$decimalpart = $price - $wholepart;
 
 	// To resolve issues of rounding (not sure if this is the best way, we'll need to monitor it). If the cents/pence/etc value is greater than .99 then we'll simply add 1 to the whole part.
-	if ( $decimalpart > .99 ) $price = $wholepart + 1;
+	if ( $decimalpart > .99 ) 
+		$price = $wholepart + 1;
 
 	if ( $currencycode == "" || $currencycode === true )
 		{
-		if ( !isset( $mrConfig[ 'property_currencycode' ] ) ) // for v4.5 converting the old currencyCode value to property_currencycode
-		$mrConfig[ 'property_currencycode' ] = $mrConfig[ 'currencyCode' ];
-		if ( $mrConfig[ 'property_currencycode' ] == "" ) $mrConfig[ 'property_currencycode' ] = "GBP";
+		if ( !isset( $mrConfig[ 'property_currencycode' ] ) && isset($mrConfig[ 'currencyCode' ]) ) // for v4.5 converting the old currencyCode value to property_currencycode
+			$mrConfig[ 'property_currencycode' ] = $mrConfig[ 'currencyCode' ];
+
+		if (!isset($mrConfig[ 'property_currencycode' ]))
+			$mrConfig[ 'property_currencycode' ] = "GBP";
 		$currencycode = $mrConfig[ 'property_currencycode' ];
 		}
 
 	jr_import( "currency_codes" );
-	if ( $jrConfig[ 'useGlobalCurrency' ] == "1" ) $currencycode = $jrConfig[ 'globalCurrencyCode' ];
+	if ( $jrConfig[ 'useGlobalCurrency' ] == "1" ) 
+		$currencycode = $jrConfig[ 'globalCurrencyCode' ];
 
 	$converted_output_price = '';
 	jr_import( 'jomres_currency_conversion' );
@@ -53,7 +58,6 @@ function output_price( $value, $currencycode = "", $do_conversion = true, $zeroO
 		$jomres_geolocation->auto_set_user_currency_code();
 		}
 	$foreign = $tmpBookingHandler->user_settings[ 'current_exchange_rate' ];
-	
 	
 	if ( $conversion->this_code_can_be_converted( $currencycode ) && $currencycode != $foreign && $do_conversion && $foreign != "" && $price > 0.00 )
 		{
