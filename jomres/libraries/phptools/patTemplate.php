@@ -2595,6 +2595,7 @@ class patTemplate
 		{
 		if ( count ($this->current_template_files) > 0)
 			{
+			$current_template_files = '';
 			foreach ($this->current_template_files as $file)
 				{
 				$current_template_files .= $file;
