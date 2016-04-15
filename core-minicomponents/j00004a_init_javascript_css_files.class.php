@@ -228,8 +228,7 @@ class j00004a_init_javascript_css_files
 			$ls  = $IDN->decode( $ls );
 			}
 		
-		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-		$current_property_details->gather_data( get_showtime('property_uid') );
+
 		
 		$live_scrolling_enabled = "true";
 		if ( $jrConfig['live_scrolling_enabled'] == "0" || jomres_cmsspecific_areweinadminarea())
@@ -274,14 +273,26 @@ class j00004a_init_javascript_css_files
 			var dataTables_showhide			= "'. jr_gettext( 'DATATABLES_SHOWHIDE', DATATABLES_SHOWHIDE, false ).'";
 
 			';
-
-		if ( ( !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ) || $_SERVER['SERVER_PORT'] == 443)// We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
+			
+		if (get_showtime('property_uid') > 0)
 			{
-			$temp_file =  $ls . "_ssl_" . get_showtime( 'lang' ) ."_". $current_property_details->property_type."_";
+			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+			$current_property_details->gather_data( get_showtime('property_uid') );
+
+			$property_type = $current_property_details->property_type;
 			}
 		else
 			{
-			$temp_file =  $ls . "_" . get_showtime( 'lang' ) ."_". $current_property_details->property_type."_";
+			$property_type = "nopropertytype";
+			}
+		
+		if ( ( !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ) || $_SERVER['SERVER_PORT'] == 443)// We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
+			{
+			$temp_file =  $ls . "_ssl_" . get_showtime( 'lang' ) ."_". $property_type."_";
+			}
+		else
+			{
+			$temp_file =  $ls . "_" . get_showtime( 'lang' ) ."_". $property_type."_";
 			}
 		
 		if (jomres_cmsspecific_areweinadminarea())
