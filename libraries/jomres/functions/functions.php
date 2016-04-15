@@ -111,17 +111,17 @@ function get_periods( $start, $end, $interval = null )
 function jomres_get_client_ip() {
 	$ipaddress = '';
 
-	if ($_SERVER['HTTP_CLIENT_IP'])
+	if (isset($_SERVER['HTTP_CLIENT_IP']))
 		$ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-	else if($_SERVER['REMOTE_ADDR'])
+	else if(isset($_SERVER['REMOTE_ADDR']))
 		$ipaddress = $_SERVER['REMOTE_ADDR'];
-	else if($_SERVER['HTTP_X_FORWARDED_FOR'])
+	else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
 		$ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-	else if($_SERVER['HTTP_X_FORWARDED'])
+	else if(isset($_SERVER['HTTP_X_FORWARDED']))
 		$ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-	else if($_SERVER['HTTP_FORWARDED_FOR'])
+	else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
 		$ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-	else if($_SERVER['HTTP_FORWARDED'])
+	else if(isset($_SERVER['HTTP_FORWARDED']))
 		$ipaddress = $_SERVER['HTTP_FORWARDED'];
 	else
 		$ipaddress = 'UNKNOWN';
@@ -618,12 +618,12 @@ function get_number_of_items_requiring_attention_for_menu_option( $task )
 		if ( $MiniComponents->eventSpecificlyExistsCheck( "07020", $task ) ) 
 			return $MiniComponents->specificEvent( '07020', $task );
 		else
-			return 0;
+			return array();
 		}
 	elseif ( $MiniComponents->eventSpecificlyExistsCheck( "07030", $task ) ) 
 		return $MiniComponents->specificEvent( '07030', $task );
 	else
-	return 0;
+	return array();
 	}
 
 
@@ -1161,9 +1161,13 @@ function detect_property_uid()
 	{
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 	$thisJRUser		= jomres_singleton_abstract::getInstance( 'jr_user' );
-	if ( isset( $_REQUEST[ 'selectedProperty' ] ) ) $property_uid = intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
+	
+	$defaultProperty = getDefaultProperty();
+	
+	if ( isset( $_REQUEST[ 'selectedProperty' ] ) ) 
+		$property_uid = intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
 	else
-	$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
+		$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 
 	// Finding the property uid
 	$numberOfPropertiesInSystem = (int) get_showtime( 'numberOfPropertiesInSystem');
@@ -1185,12 +1189,14 @@ function detect_property_uid()
 				{
 				$parray[ ] = (int) $prop;
 				}
-			if ( in_array( $defaultProperty, $parray ) ) $property_uid = $defaultProperty;
+			if ( in_array( $defaultProperty, $parray ) ) 
+				$property_uid = $defaultProperty;
 			else
-			$property_uid = $parray[ 0 ];
+				$property_uid = $parray[ 0 ];
 			}
 		}
-	else if ( $thisJRUser->userIsManager ) $property_uid = $defaultProperty;
+	elseif ( $thisJRUser->userIsManager ) 
+		$property_uid = $defaultProperty;
 
 	if ( get_showtime( 'task' ) == "showRoomDetails" )
 		{

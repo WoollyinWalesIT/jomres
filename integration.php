@@ -185,7 +185,9 @@ $jomres_access_control = jomres_singleton_abstract::getInstance( 'jomres_access_
 
 if ( !defined( 'JOMRES_CSSRELPATH' ) ) define( 'JOMRES_CSSRELPATH', JOMRES_ROOT_DIRECTORY.'/css/' );
 
-set_error_handler( 'errorHandler' );
+if ($jrConfig[ 'development_production' ] == "production")
+	set_error_handler( 'errorHandler' );
+
 jomres_parseRequest();
 
 if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )

@@ -29,13 +29,11 @@ class j00035tabcontent_02_bookingform
 		$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig     = $siteConfig->get();
 		$thisJRUser   = jomres_singleton_abstract::getInstance( 'jr_user' );
+		
+		$this->retVals = null;
 
 		if ( $mrConfig[ 'registeredUsersOnlyCanBook' ] == "1" && $thisJRUser->id == 0 )
-			{
-			$this->retVals = null;
-
 			return;
-			}
 
 		// Booking form tab
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && $jrConfig[ 'show_booking_form_in_property_details' ] == "1" && $mrConfig[ 'visitorscanbookonline' ] == '1' && !isset( $_REQUEST[ 'jr_printable' ] ) )

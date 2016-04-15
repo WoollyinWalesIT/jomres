@@ -25,7 +25,10 @@ class j00009user_option_05_myinvoices
 
 			return;
 			}
+		$this->cpanelButton = null;
+		
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		
 		if ( $thisJRUser->userIsRegistered && !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager )
 			{
 			$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=list_invoices", '', jr_gettext( '_JRPORTAL_INVOICES_SHOWINVOICES', _JRPORTAL_INVOICES_SHOWINVOICES, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT, false, false ) );

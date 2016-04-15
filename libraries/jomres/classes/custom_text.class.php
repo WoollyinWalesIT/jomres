@@ -22,9 +22,11 @@ class custom_text
 
 	public function __construct()
 		{
-		self::$internal_debugging = false;
-		$this->lang               = get_showtime( 'lang' );
-		//$this->xcustom_text();
+		self::$internal_debugging 			= false;
+		$this->lang               			= get_showtime( 'lang' );
+		$this->global_custom_text 			= array();
+		$this->all_properties_custom_text 	= array();
+
 		$this->get_custom_text_for_all_properties();
 		}
 
@@ -51,24 +53,6 @@ class custom_text
 		{
 		trigger_error( 'Cloning not allowed on a singleton object', E_USER_ERROR );
 		}
-
-	//function xcustom_text()
-//		{
-//		$this->global_custom_text        = array ();
-//		$this->property_uids_custom_text = array ();
-//		if ( $this->lang != '' ) $clause = "AND language = '" . $this->lang . "'";
-//		$query          = "SELECT constant,customtext,language FROM #__jomres_custom_text WHERE property_uid = 0 $clause ";
-//		$customTextList = doSelectSql( $query );
-//		if ( count( $customTextList ) )
-//			{
-//			$customTextArray = array ();
-//			foreach ( $customTextList as $text )
-//				{
-//				$theConstant                              = str_replace( "sc<x>ript", "script", $text->constant );
-//				$this->global_custom_text[ $theConstant ] = stripslashes( $text->customtext );
-//				}
-//			}
-//		}
 
 	function get_custom_text_for_all_properties()
 		{
@@ -119,7 +103,7 @@ class custom_text
 			$current_custom_text = $this->global_custom_text;
 
 			if ( (int) $this->property_uid > 0 && isset( $this->global_custom_text ) && isset( $this->all_properties_custom_text[ $this->property_uid ] ) ) 
-				$current_custom_text = array_merge( $this->global_custom_text, $this->all_properties_custom_text[ $this->property_uid ] );
+				$current_custom_text = array_merge( $this->all_properties_custom_text[ $this->property_uid ],$this->global_custom_text );
 			elseif ( isset( $this->all_properties_custom_text[ $this->property_uid ] ) ) 
 				$current_custom_text = $this->all_properties_custom_text[ $this->property_uid ];
 

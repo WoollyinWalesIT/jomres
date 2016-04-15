@@ -26,6 +26,8 @@ class j00035tabcontent_04_roomslist
 			}
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
+		
+		$this->retVals = null;
 
 		$rooms_list = $MiniComponents->specificEvent( '06000', 'show_property_rooms',array('output_now'=>false, 'property_uid'=>$property_uid));
 		$rooms_list_title = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', _JOMRES_COM_MR_QUICKRES_STEP2_TITLE, false );

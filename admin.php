@@ -27,8 +27,8 @@ try
 
 	if ($jrConfig[ 'development_production' ]  != "production")
 		{
-		ini_set( "display_errors", 1 );
-		ini_set('error_reporting', E_ALL| E_STRICT);
+		@ini_set( "display_errors", 1 );
+		@ini_set('error_reporting', E_ALL);
 		//@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
 		}
 
@@ -76,13 +76,13 @@ try
 		define( 'JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS );
 		define( 'JOMRES_IMAGELOCATION_RELPATH', get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/' );
 		}
-
-	//Register user
-	$thisJRUser = $MiniComponents->triggerEvent( '00002' ); //TODO: is it needed in admin cpanel?
 	
 	//language
 	$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
 	$jomreslang->get_language($jrConfig[ 'language_context' ]);
+
+	//Register user
+	$thisJRUser = $MiniComponents->triggerEvent( '00002' ); //TODO: is it needed in admin cpanel?
 	
 	$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 	

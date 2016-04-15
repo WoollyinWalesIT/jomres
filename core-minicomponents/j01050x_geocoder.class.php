@@ -28,8 +28,15 @@ class j01050x_geocoder
 
 		$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig     = $siteConfig->get();
-		$property_uid = (int) $componentArgs[ 'property_uid' ];
-		$editing      = $componentArgs[ 'editing_map' ];
+		
+		if (isset($componentArgs[ 'property_uid' ]))
+			$property_uid = (int) $componentArgs[ 'property_uid' ];
+		else
+			$property_uid = getDefaultProperty();
+		
+		$editing = false;
+		if (isset($componentArgs[ 'editing_map' ]))
+			$editing = $componentArgs[ 'editing_map' ];
 
 		add_gmaps_source();
 
@@ -85,13 +92,13 @@ class j01050x_geocoder
 			$jrConfig[ 'gmap_layer_transit' ]          = "0";
 			}
 
-
-		if ( $jrConfig[ 'gmap_layer_transit' ] == "1" ) $output[ 'TRANSIT_LAYER' ] .= '
+			
+		if ( $jrConfig[ 'gmap_layer_transit' ] == "1" ) $output[ 'TRANSIT_LAYER' ] = '
 				var transitLayer = new google.maps.TransitLayer();
 				transitLayer.setMap(map);
 			';
 
-		if ( $jrConfig[ 'gmap_pois' ] == "0" ) $output[ 'SUPPRESS_POIS' ] .= '
+		if ( $jrConfig[ 'gmap_pois' ] == "0" ) $output[ 'SUPPRESS_POIS' ] = '
 			,
 		styles:[{
 			featureType:"poi",

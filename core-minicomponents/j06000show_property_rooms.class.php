@@ -86,9 +86,9 @@ class j06000show_property_rooms
 
 				$r[ 'RANDOM_IDENTIFIER' ]  = generateJomresRandomString( 10 );
 				
-				$r[ 'IMAGELARGE' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
-				$r[ 'IMAGEMEDIUM' ] = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
-				$r[ 'IMAGETHUMB' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
+				$r[ 'IMAGELARGE' ]  = get_showtime('live_site') ."/jomres/images/noimage.gif";
+				$r[ 'IMAGEMEDIUM' ] = get_showtime('live_site') ."/jomres/images/noimage.gif";
+				$r[ 'IMAGETHUMB' ]  = get_showtime('live_site') ."/jomres/images/noimage.gif";
 
 				if ($jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'] != "")
 					{

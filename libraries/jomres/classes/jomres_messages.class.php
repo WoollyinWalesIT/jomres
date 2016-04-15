@@ -18,7 +18,7 @@ class jomres_messages
 	{
 	function __construct()
 		{
-		$jomres_messages = array ();
+		$this->jomres_messages = array ();
 		if ( isset( $_COOKIE[ 'jomres_messages' ] ) ) $this->jomres_messages = $_COOKIE[ 'jomres_messages' ];
 		}
 

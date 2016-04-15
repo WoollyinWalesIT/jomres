@@ -85,7 +85,7 @@ class j01025showtariffs
 					{
 					$r = array ();
 
-					if ( !is_null( $tariff_tarifftypes_xref[ $tariff->rates_uid ] ) ) 
+					if ( isset( $tariff_tarifftypes_xref[ $tariff->rates_uid ] ) ) 
 						$r[ 'TITLE' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID' . $tariff_tarifftypes_xref[ $tariff->rates_uid ], stripslashes( $tariff->rate_title ) );
 					else
 						$r[ 'TITLE' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_TARIFF_TITLE' . $tariff->rates_uid, stripslashes( $tariff->rate_title ) );

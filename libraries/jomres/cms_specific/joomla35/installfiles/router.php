@@ -86,59 +86,63 @@ if (!class_exists('JomresRouter'))
 					$property_name = doSelectSql( $sql, 1 );
 					}
 				}
-			switch ( $route_query[ 'task' ] )
-			{
-				case 'viewproperty':
-					$segments[ ] = $route_query[ 'task' ];
-					$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) );
-					$segments[ ] = $route_query[ 'property_uid' ];
-					//$segments[ ] = $route_query[ 'lang' ];
-					//if ( isset( $route_query[ 'lang' ] ) ) unset( $route_query[ 'lang' ] );
-					if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
-					if ( isset( $route_query[ 'property_uid' ] ) ) unset( $route_query[ 'property_uid' ] );
-					break;
-				case 'dobooking':
-					$segments[ ] = "dobooking";
-					$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) );
-					$segments[ ] = $route_query[ 'selectedProperty' ];
-					//$segments[ ] = $route_query[ 'lang' ];
-					//if ( isset( $route_query[ 'lang' ] ) ) unset( $route_query[ 'lang' ] );
-					if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
-					if ( isset( $route_query[ 'selectedProperty' ] ) ) unset( $route_query[ 'selectedProperty' ] );
-					break;
-				case 'showTariffs':
-					$segments[ ] = $route_query[ 'task' ];
-					$segments[ ] = $route_query[ 'property_uid' ];
-					$segments[ ] = $route_query[ 'op' ];
-					//$segments[ ] = $route_query[ 'lang' ];
-					//if ( isset( $route_query[ 'lang' ] ) ) unset( $route_query[ 'lang' ] );
-					if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
-					if ( isset( $route_query[ 'property_uid' ] ) ) unset( $route_query[ 'property_uid' ] );
-					if ( isset( $route_query[ 'op' ] ) ) unset( $route_query[ 'op' ] );
-					break;
-				case 'slideshow':
-					$segments[ ] = $route_query[ 'task' ];
-					$segments[ ] = $route_query[ 'property_uid' ];
-					$segments[ ] = $route_query[ 'op' ];
-					//$segments[ ] = $route_query[ 'lang' ];
-					//if ( isset( $route_query[ 'lang' ] ) ) unset( $route_query[ 'lang' ] );
-					if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
-					if ( isset( $route_query[ 'property_uid' ] ) ) unset( $route_query[ 'property_uid' ] );
-					if ( isset( $route_query[ 'op' ] ) ) unset( $route_query[ 'op' ] );
-					if ( isset( $route_query[ 'popup' ] ) ) unset( $route_query[ 'popup' ] );
-					break;
-				case 'showRoomsListing':
-					$segments[ ] = $route_query[ 'task' ];
-					$segments[ ] = $route_query[ 'property_uid' ];
-					$segments[ ] = $route_query[ 'op' ];
-					//$segments[ ] = $route_query[ 'lang' ];
-					//if ( isset( $route_query[ 'lang' ] ) ) unset( $route_query[ 'lang' ] );
-					if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
-					if ( isset( $route_query[ 'property_uid' ] ) ) unset( $route_query[ 'property_uid' ] );
-					if ( isset( $route_query[ 'op' ] ) ) unset( $route_query[ 'op' ] );
-					if ( isset( $route_query[ 'popup' ] ) ) unset( $route_query[ 'popup' ] );
-					break;
-			}
+			
+			if (isset($route_query[ 'task' ]))
+				{
+				switch ( $route_query[ 'task' ] )
+					{
+					case 'viewproperty':
+						$segments[ ] = $route_query[ 'task' ];
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) );
+						$segments[ ] = $route_query[ 'property_uid' ];
+						//$segments[ ] = $route_query[ 'lang' ];
+						//if ( isset( $route_query[ 'lang' ] ) ) unset( $route_query[ 'lang' ] );
+						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
+						if ( isset( $route_query[ 'property_uid' ] ) ) unset( $route_query[ 'property_uid' ] );
+						break;
+					case 'dobooking':
+						$segments[ ] = "dobooking";
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) );
+						$segments[ ] = $route_query[ 'selectedProperty' ];
+						//$segments[ ] = $route_query[ 'lang' ];
+						//if ( isset( $route_query[ 'lang' ] ) ) unset( $route_query[ 'lang' ] );
+						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
+						if ( isset( $route_query[ 'selectedProperty' ] ) ) unset( $route_query[ 'selectedProperty' ] );
+						break;
+					case 'showTariffs':
+						$segments[ ] = $route_query[ 'task' ];
+						$segments[ ] = $route_query[ 'property_uid' ];
+						$segments[ ] = $route_query[ 'op' ];
+						//$segments[ ] = $route_query[ 'lang' ];
+						//if ( isset( $route_query[ 'lang' ] ) ) unset( $route_query[ 'lang' ] );
+						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
+						if ( isset( $route_query[ 'property_uid' ] ) ) unset( $route_query[ 'property_uid' ] );
+						if ( isset( $route_query[ 'op' ] ) ) unset( $route_query[ 'op' ] );
+						break;
+					case 'slideshow':
+						$segments[ ] = $route_query[ 'task' ];
+						$segments[ ] = $route_query[ 'property_uid' ];
+						$segments[ ] = $route_query[ 'op' ];
+						//$segments[ ] = $route_query[ 'lang' ];
+						//if ( isset( $route_query[ 'lang' ] ) ) unset( $route_query[ 'lang' ] );
+						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
+						if ( isset( $route_query[ 'property_uid' ] ) ) unset( $route_query[ 'property_uid' ] );
+						if ( isset( $route_query[ 'op' ] ) ) unset( $route_query[ 'op' ] );
+						if ( isset( $route_query[ 'popup' ] ) ) unset( $route_query[ 'popup' ] );
+						break;
+					case 'showRoomsListing':
+						$segments[ ] = $route_query[ 'task' ];
+						$segments[ ] = $route_query[ 'property_uid' ];
+						$segments[ ] = $route_query[ 'op' ];
+						//$segments[ ] = $route_query[ 'lang' ];
+						//if ( isset( $route_query[ 'lang' ] ) ) unset( $route_query[ 'lang' ] );
+						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
+						if ( isset( $route_query[ 'property_uid' ] ) ) unset( $route_query[ 'property_uid' ] );
+						if ( isset( $route_query[ 'op' ] ) ) unset( $route_query[ 'op' ] );
+						if ( isset( $route_query[ 'popup' ] ) ) unset( $route_query[ 'popup' ] );
+						break;
+					}
+				}
 			if ( isset( $route_query[ 'calledByModule' ] ) )
 				{
 				$segments[ ] = $jrConfig[ 'sef_task_alias_search' ];

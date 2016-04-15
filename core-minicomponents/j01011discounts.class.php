@@ -29,6 +29,8 @@ class j01011discounts
 		if ( isset( $componentArgs[ 'property_uid' ] ) ) $property_uid = $componentArgs[ 'property_uid' ];
 		if ( isset( $componentArgs[ 'property_uids' ] ) ) $property_uids = $componentArgs[ 'property_uids' ];
 		
+		$this->returnValue   = array ();
+		
 		$allPropertiesConfig = jomres_singleton_abstract::getInstance( 'jomres_config_property_singleton' );
 
 		if ( is_array( $property_uids ) )
@@ -37,13 +39,13 @@ class j01011discounts
 			foreach ($property_uids as $property_uid)
 				{
 				$tmpConfig=$allPropertiesConfig->load_property_config($property_uid);
-				if ($tmpConfig['lastminuteactive']=='1')
+				if (isset($tmpConfig['lastminuteactive']) && $tmpConfig['lastminuteactive']=='1')
 					{
 					$relevant_properties[ $property_uid ][ 'discount_type' ] = 'lastminuteactive';
 					$relevant_properties[ $property_uid ][ 'lastminutethreshold' ] = $tmpConfig['lastminutethreshold'];
 					$relevant_properties[ $property_uid ][ 'lastminutediscount' ] = $tmpConfig['lastminutediscount'];
 					}
-				elseif ($tmpConfig['wisepriceactive']=='1')
+				elseif (isset($tmpConfig['wisepriceactive']) && $tmpConfig['wisepriceactive']=='1')
 					{
 					$relevant_properties[ $property_uid ][ 'discount_type' ] = 'wisepriceactive';
 					$relevant_properties[ $property_uid ][ 'wisepricethreshold' ] = $tmpConfig['wisepricethreshold'];
@@ -60,7 +62,6 @@ class j01011discounts
 				{
 				if ( $relevant_properties[ $property_uid ][ 'discount_type' ] == "lastminuteactive" ) // Using last minute calculations
 					{
-					$this->returnValue   = array ();
 					$lastminutethreshold = $relevant_properties[ $property_uid ][ 'lastminutethreshold' ];
 					$lastminutediscount  = $relevant_properties[ $property_uid ][ 'lastminutediscount' ];
 
@@ -79,8 +80,6 @@ class j01011discounts
 					}
 				elseif ( $relevant_properties[ $property_uid ][ 'discount_type' ] == "wisepriceactive" ) // Using wiseprice calculations
 					{
-					$this->returnValue = array ();
-
 					$wisepricethreshold = $relevant_properties[ $property_uid ][ 'wisepricethreshold' ];
 					$wisepricediscount  = $relevant_properties[ $property_uid ][ 'wiseprice75discount' ];
 
