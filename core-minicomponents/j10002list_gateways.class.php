@@ -25,17 +25,15 @@ class j10002list_gateways
 
 			return;
 			}
-		
-		$MiniComponents->triggerEvent( '10509', $componentArgs );
+		$MiniComponents->triggerEvent( '10509' );
 		$mcOutput = $MiniComponents->getAllEventPointsData( '10509' );
 		if ( count( $mcOutput ) > 0 )
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
 			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=list_gateways', 'listTemplates.png', jr_gettext( "_JOMRES_COM_A_GATEWAYLIST", _JOMRES_COM_A_GATEWAYLIST, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS, false, false ) );
 			}
-			
-		
-
+		else
+			$this->cpanelButton = '';
 		}
 
 
