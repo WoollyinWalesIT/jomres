@@ -687,19 +687,25 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_images . 'td_alt.jpg' );
 
 		// html purifier updated to 4.4, so 4.3 scripts can be deleted
-		$files_htmlpurifier430standalone = scandir_getfiles_recursive( $this->dir_libraries . 'htmlpurifier' . JRDS . 'htmlpurifier-4.3.0-standalone' );
-		foreach ( $files_htmlpurifier430standalone as $file )
+		if (is_dir($this->dir_libraries . 'htmlpurifier' . JRDS . 'htmlpurifier-4.3.0-standalone'))
 			{
-			$this->add_obs_file( $file );
+			$files_htmlpurifier430standalone = scandir_getfiles_recursive( $this->dir_libraries . 'htmlpurifier' . JRDS . 'htmlpurifier-4.3.0-standalone' );
+			foreach ( $files_htmlpurifier430standalone as $file )
+				{
+				$this->add_obs_file( $file );
+				}
 			}
-
+		
 		// Old 'jomres' templates directory renamed to 'jqueryui', will help to reduce confusion, so files in the /jomres/templates/jomres will need to be deleted
-		$files_old_jomres_templates = scandir_getfiles_recursive( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'jomres' );
-		foreach ( $files_old_jomres_templates as $file )
+		if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'jomres'))
 			{
-			$this->add_obs_file( $file );
+			$files_old_jomres_templates = scandir_getfiles_recursive( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'templates' . JRDS . 'jomres' );
+			foreach ( $files_old_jomres_templates as $file )
+				{
+				$this->add_obs_file( $file );
+				}
 			}
-
+		
 		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'list_normalmode_roomtariffs.html' );
 		$this->add_obs_file( $this->dir_templates_frontend . 'list_normalmode_roomtariffs.html' );
 
@@ -714,12 +720,15 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j00501editingmode.class.php' );
 
 		// Codemirror (for template editing) updated to 2.34
-		$files_old_codemirror_pre_234 = scandir_getfiles_recursive( $this->dir_javascript . 'codemirror' );
-		foreach ( $files_old_codemirror_pre_234 as $file )
+		if (is_dir($this->dir_javascript . 'codemirror'))
 			{
-			$this->add_obs_file( $file );
+			$files_old_codemirror_pre_234 = scandir_getfiles_recursive( $this->dir_javascript . 'codemirror' );
+			foreach ( $files_old_codemirror_pre_234 as $file )
+				{
+				$this->add_obs_file( $file );
+				}
 			}
-
+		
 		$this->add_obs_file( $this->dir_javascript . 'jquery-ui-1.8.23.custom.min.js' );
 
 		$this->add_obs_file( $this->dir_css . JRDS . 'jquery_ui_themes' . JRDS . 'black-tie' . JRDS . 'jquery-ui-1.8rc3.custom.css' );
@@ -755,23 +764,32 @@ class jomres_obsolete_file_handling
 		if ( _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35") 
 			$this->add_obs_file( $this->dir_components_administrator . 'admin.jomres.php' );
 
-		$files_old_jomressa = scandir_getfiles_recursive( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'jomressa' );
-		foreach ( $files_old_jomressa as $file )
+		if (is_dir($this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'jomressa'))
 			{
-			$this->add_obs_file( $file );
+			$files_old_jomressa = scandir_getfiles_recursive( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'jomressa' );
+			foreach ( $files_old_jomressa as $file )
+				{
+				$this->add_obs_file( $file );
+				}
 			}
-
-		$files_old_qr_code_library = scandir_getfiles_recursive( $this->dir_core_plugins . 'qr_code_lib' . JRDS . 'library' );
-		foreach ( $files_old_qr_code_library as $file )
+		
+		if (is_dir($this->dir_core_plugins . 'qr_code_lib' . JRDS . 'library'))
 			{
-			$this->add_obs_file( $file );
+			$files_old_qr_code_library = scandir_getfiles_recursive( $this->dir_core_plugins . 'qr_code_lib' . JRDS . 'library' );
+			foreach ( $files_old_qr_code_library as $file )
+				{
+				$this->add_obs_file( $file );
+				}
 			}
+			
 		$this->add_obs_file( $this->dir_core_plugins . 'qr_code_lib' . JRDS . 'j00001qr_code_lib.class.php' );
-
-		$phpmailer_5_1 = scandir_getfiles_recursive( $this->dir_libraries . 'PHPMailer_v5.1' );
-		foreach ( $phpmailer_5_1 as $file )
+		if (is_dir($this->dir_libraries . 'PHPMailer_v5.1'))
 			{
-			$this->add_obs_file( $file );
+			$phpmailer_5_1 = scandir_getfiles_recursive( $this->dir_libraries . 'PHPMailer_v5.1' );
+			foreach ( $phpmailer_5_1 as $file )
+				{
+				$this->add_obs_file( $file );
+				}
 			}
 		
 		$this->add_obs_file( $this->dir_minicomponents . 'j16000save_custom_field.class.php' );
