@@ -245,10 +245,12 @@ class j16000showplugins
 		$thirdpartyplugins = array ();
 		foreach ( $third_party_plugins as $tpp )
 			{
+			if (!isset($tpp[ 'type' ]))
+				$tpp[ 'type' ] = "Unknown";
+			
 			$type              = $tpp[ 'type' ];
 			$n                 = $tpp[ 'name' ];
 			$row_class         = 'availablefordownload';
-			$installAction     = $install_text;
 			$uninstallAction   = " ";
 			$already_installed = false;
 			$uninstallLink     = "";
@@ -256,7 +258,6 @@ class j16000showplugins
 				{
 				$already_installed = true;
 				$uninstallAction   = $uninstall_text;
-				$installAction     = $reinstall_text;
 				$row_class         = 'alreadyinstalled';
 				$uninstallLink     = JOMRES_SITEPAGE_URL_ADMIN . '&task=removeplugin&no_html=1&plugin=' . $n;
 				}
@@ -269,6 +270,14 @@ class j16000showplugins
 			$r[ 'ROWCLASS' ]      = $row_class;
 			$r[ 'NAME' ]          = $tpp[ 'name' ];
 			$r[ 'LOCALVERSION' ]  = $local_version;
+			
+			if (!isset($tpp[ 'authoremail' ]))
+				$tpp[ 'authoremail' ] = "Unknown";
+			if (!isset($tpp[ 'author' ]))
+				$tpp[ 'author' ] = "Unknown";
+			if (!isset($tpp[ 'description' ]))
+				$tpp[ 'description' ] = "Unknown";
+			
 			$r[ 'DESCRIPTION' ]   = stripslashes( $tpp[ 'description' ] );
 			$r[ 'AUTHOR' ]        = stripslashes( $tpp[ 'author' ] );
 			$r[ 'AUTHOREMAIL' ]   = stripslashes( $tpp[ 'authoremail' ] );
@@ -338,10 +347,7 @@ class j16000showplugins
 				$uninstallAction       = $uninstall_text;
 				$installAction         = $reinstall_text;
 				$row_class             = 'ui-state-success';
-				$action                = "Reinstall";
-				$uninstall             = "<a href=\"" . $uninstallLink . "\">" . $uninstallText . "</a>";
-				$r[ 'UNINSTALL_LINK' ] = $uninstallLink;
-				$r[ 'UNINSTALL_TEXT' ] = $uninstallText;
+
 				if ( $rp[ 'version' ] > $installed_plugins[ $plugin_name ][ 'version' ] )
 					{
 					$plugins_needing_upgrading[ ] = $plugin_name;
@@ -362,8 +368,10 @@ class j16000showplugins
 				$r[ 'INSTALL_LINK' ] = JOMRES_SITEPAGE_URL_ADMIN . '&task=addplugin&plugin=' . $n;
 				$r[ 'INSTALL_TEXT' ] = $installAction;
 				}
-			
-			$r['ENCODED_ICON'] = $installed_plugins[ $plugin_name ] ['encoded_icon'];
+			if (isset($installed_plugins[ $plugin_name ]))
+				$r['ENCODED_ICON'] = $installed_plugins[ $plugin_name ] ['encoded_icon'];
+			else
+				$r['ENCODED_ICON'] ='';
 			
 			$r[ 'UNINSTALL_LINK' ] = '';
 			$r[ 'UNINSTALL_TEXT' ] = '';
@@ -372,25 +380,21 @@ class j16000showplugins
 				{
 				$r[ 'UNINSTALL_LINK' ] = JOMRES_SITEPAGE_URL_ADMIN . '&task=removeplugin&no_html=1&plugin=' . $n;
 				$r[ 'UNINSTALL_TEXT' ] = $uninstallAction;
-				if ( using_bootstrap() ) 
-					{
-					if ( !$rp[ 'retired' ] )
-						$r[ 'UNINSTALL' ] = '<a href="' . $r[ 'UNINSTALL_LINK' ] . '" class="btn btn-danger" >' . $r[ 'UNINSTALL_TEXT' ] . '</a>';
-					else
-						$r[ 'UNINSTALL' ] = '<a href="' . $r[ 'UNINSTALL_LINK' ] . '" class="btn btn-success" >' . $r[ 'UNINSTALL_TEXT' ] . '</a>';
-					}
+				if ( !$rp[ 'retired' ] )
+					$r[ 'UNINSTALL' ] = '<a href="' . $r[ 'UNINSTALL_LINK' ] . '" class="btn btn-danger" >' . $uninstall_text . '</a>';
 				else
-					{
-					$r[ 'UNINSTALL' ] = '<a href="' . $r[ 'UNINSTALL_LINK' ] . '" class="fg-button ui-state-default ui-corner-all">' . $r[ 'UNINSTALL_TEXT' ] . '</a>';
-					}
+					$r[ 'UNINSTALL' ] = '<a href="' . $r[ 'UNINSTALL_LINK' ] . '" class="btn btn-success" >' . $uninstall_text . '</a>';
 				}
-
-			$local_version = $installed_plugins[ $plugin_name ][ 'version' ];
+			if (isset($installed_plugins[ $plugin_name ]))
+				$local_version = $installed_plugins[ $plugin_name ][ 'version' ];
+			else
+				$local_version ='';
+			
 			if ( !array_key_exists( $plugin_name, $installed_plugins ) ) $local_version = "N/A";
 
 			$style = "";
 
-			
+
 			if ( $rp[ 'price' ] == 0 && $row_class == '' )
 				{
 				//$row_class='freeplugin'; // Shop now disabled
@@ -497,7 +501,7 @@ class j16000showplugins
 							$shop_btnclass = 'success';
 							$text = "&pound;".number_format($rp[ 'price' ], 2 );
 							}
-						$r[ 'ADD_TO_CART_BUTTON' ] = '<button class="btn btn-'.$shop_btnclass.'" id="' . $r[ 'PLUGIN_NAME' ] . '" class="btn ' . $btn_emphasis . '" onClick="addToCart(\'' . $r[ 'PLUGIN_NAME' ] . '\',\'' . $rp[ 'price' ] . '\');">' . $text . '</button>';
+						$r[ 'ADD_TO_CART_BUTTON' ] = '<button class="btn btn-'.$shop_btnclass.'" id="' . $r[ 'PLUGIN_NAME' ] . ' onClick="addToCart(\'' . $r[ 'PLUGIN_NAME' ] . '\',\'' . $rp[ 'price' ] . '\');">' . $text . '</button>';
 						}
 					else
 						{
@@ -569,8 +573,11 @@ class j16000showplugins
 		
 		$output[ 'PLUGINS_TO_UPGRADE' ] = implode( ",", $plugins_needing_upgrading );
 		
-		if ( $this->key_valid ) $plugins_require_upgrade[ ][ 'upgrade_text' ] = 'Upgrade all Core plugins. You must upgrade Jomres first before upgrading plugins.';
-
+		if ( $this->key_valid ) 
+			$plugins_require_upgrade[ ][ 'upgrade_text' ] = 'Upgrade all Core plugins. You must upgrade Jomres first before upgrading plugins.';
+		
+		if (!isset($plugins_require_upgrade))
+			$plugins_require_upgrade = array();
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );

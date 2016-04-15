@@ -294,8 +294,6 @@ class j16000addplugin
 					}
 				curl_close( $curl_handle );
 				fclose( $file_handle );
-				curl_close( $curl_handle ); // Deliberate due to one version of PHP requiring you to close the curl handle twice ( 5.2-ish IIRC )
-				fclose( $file_handle );
 				}
 			else
 				{
@@ -388,7 +386,8 @@ class j16000addplugin
 					}
 
 				}
-
+			
+			$exclusions = array();
 			if ( file_exists( $updateDirPath . "unpacked" . JRDS . "plugin_exclusions_check.php" ) )
 				{
 				require_once( $updateDirPath . "unpacked" . JRDS . "plugin_exclusions_check.php" );
@@ -562,7 +561,7 @@ class j16000addplugin
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return $this->retVals;
+		return null;
 		}
 	}
 
