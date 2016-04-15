@@ -230,7 +230,7 @@ function jomresGetParam( $request, $element, $def = null, $mask = '' ) // variab
 				}
 			else
 				{
-				$clean = jomres_sanitise_string( $dirty , $element );
+				$clean = jomres_sanitise_string( $dirty  );
 				if (strstr($clean,"&#39;;") || strstr($clean,"&#34;;")|| strstr($clean,"Jzs=")|| strstr($clean,"Ijs=") || strstr($clean,"&quot;;")   || strstr($clean,"EMBED SRC") ) // '; "; '; (base64) "; (base64)
 					throw new Exception ("Error, illegal use of Javascript");
 				}
@@ -241,7 +241,7 @@ function jomresGetParam( $request, $element, $def = null, $mask = '' ) // variab
 	return $clean;
 	}
 
-function jomres_sanitise_string( $dirty , $element )
+function jomres_sanitise_string( $dirty )
 	{
 	$html_purifier = jomres_singleton_abstract::getInstance( 'jomres_input_filter_singleton' );
 	$dirty         = jomres_remove_HTML( $dirty ); // Strip out any html
