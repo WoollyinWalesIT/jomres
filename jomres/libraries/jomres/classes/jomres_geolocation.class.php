@@ -33,7 +33,7 @@ class jomres_geolocation
 
 		return self::$configInstance;
 		}
-
+		
 	public function __clone()
 		{
 		trigger_error( 'Cloning not allowed on a singleton object', E_USER_ERROR );
@@ -52,7 +52,7 @@ class jomres_geolocation
 	public function determine_user_location()
 		{
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-		if ( is_null( $tmpBookingHandler->user_settings[ 'geolocated_country' ] ) && $this->api_key != "" )
+		if ( !isset( $tmpBookingHandler->user_settings[ 'geolocated_country' ] ) && $this->api_key != "" )
 			{
 			$ip = get_remote_ip_number();
 			if ( $ip != "127.0.0.1" && $ip != "0.0.0.0" )
