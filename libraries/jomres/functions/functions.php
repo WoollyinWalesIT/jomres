@@ -5340,6 +5340,6 @@ function jomresAccessControlSanityCheck()
 		}
 	else $pass = true;
 
-
-	return array ( "result" => $pass, "message" => jr_gettext( _JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING, '_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING', false ) . " Controlled " . count( $jomres_access_control->controlled ) . " Controllable " . count( $controllable ) );
+	// April 15 2016 This feature isn't currently used however we'll keep it available in case it becomes useful again.
+	// return array ( "result" => $pass, "message" => jr_gettext( _JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING, '_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING', false ) . " Controlled " . count( $jomres_access_control->controlled ) . " Controllable " . count( $controllable ) );
 	}

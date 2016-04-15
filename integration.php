@@ -218,6 +218,11 @@ if ($_REQUEST['modal_wrap'] == "1")
 	{
 	echo simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, 'modal_wrap_start.html' , urldecode(jomresGetParam( $_REQUEST, 'modal_title', "" )) );
 	}
+	
+
+if (!isset($_REQUEST['task']))
+	$_REQUEST['task']='';
+
 // Stops here
 
 

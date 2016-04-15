@@ -198,7 +198,7 @@ function showSiteConfig()
 	
 	
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-	$MiniComponents->triggerEvent( '01004', $componentArgs ); // optional
+	$MiniComponents->triggerEvent( '01004', array() ); // optional
 	$property_list_layouts = get_showtime( 'property_list_layouts' );
 
 	$layout = array ();
@@ -216,6 +216,12 @@ function showSiteConfig()
 	$lists[ 'integratedSearch_ptype' ]                  = jomresHTML::selectList( $yesno, 'cfg_integratedSearch_ptype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_ptype' ] );
 	$lists[ 'integratedSearch_ptype_dropdown' ]         = jomresHTML::selectList( $yesno, 'cfg_integratedSearch_ptype_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_ptype_dropdown' ] );
 	$lists[ 'integratedSearch_geosearchtype_dropdown' ] = jomresHTML::selectList( $yesno, 'cfg_integratedSearch_geosearchtype_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_geosearchtype_dropdown' ] );
+	
+	if (!isset($jrConfig[ 'integratedSearch_town' ]))
+		$jrConfig[ 'integratedSearch_town' ] = '';
+	if (!isset($jrConfig[ 'integratedSearch_town_dropdown' ]))
+		$jrConfig[ 'integratedSearch_town_dropdown' ] = '';
+	
 	$lists[ 'integratedSearch_town' ]                   = jomresHTML::selectList( $yesno, 'cfg_integratedSearch_town', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_town' ] );
 	$lists[ 'integratedSearch_town_dropdown' ]          = jomresHTML::selectList( $yesno, 'cfg_integratedSearch_town_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_town_dropdown' ] );
 
