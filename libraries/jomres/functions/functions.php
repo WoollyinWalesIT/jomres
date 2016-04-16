@@ -255,7 +255,7 @@ function make_modal_button( $text , $task, $extra = '' , $title , $button_colour
 	$pageoutput[0][ 'BUTTON_COLOUR' ]			= $button_colour;
 
 	$tmpl		  = new patTemplate();
-	$tmpl->setRoot( $path );
+	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 	$tmpl->readTemplatesFromInput( "modal_button.html" );
 	$tmpl->addRows( 'pageoutput', $pageoutput );
 	return $tmpl->getParsedTemplate();

@@ -20,7 +20,7 @@ class j06000show_property_main_image
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch ){$this->template_touchable = false;return;}
-
+		$this->retVals = '';
 		if (isset($componentArgs[ 'property_uid' ]))
 			$property_uid = (int) $componentArgs[ 'property_uid' ];
 		elseif ( isset ( $_REQUEST['property_uid'] ))
@@ -40,6 +40,7 @@ class j06000show_property_main_image
 		
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 		$jomres_media_centre_images->get_images($property_uid, array('property'));
+		
 		$imagesArray = $jomres_media_centre_images->images['property'][0];
 		
 		$slideshowArgs = array();

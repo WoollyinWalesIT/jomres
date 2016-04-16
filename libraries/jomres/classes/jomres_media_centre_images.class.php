@@ -65,8 +65,7 @@ class jomres_media_centre_images
 				{
 				$this->get_images_multi( $property_id, array('property') );
 				}
-			if (!isset( $this->multi_query_images[$property_id]['property']))
-				$this->images ['property']=$this->multi_query_images[$property_id]['property'];
+			$this->images ['property']=$this->multi_query_images[$property_id]['property'];
 			}
 		elseif (count($types)>0 && in_array('property',$types))
 			{
@@ -74,8 +73,7 @@ class jomres_media_centre_images
 				{
 				$this->get_images_multi( $property_id, array('property') );
 				}
-			if (!isset( $this->multi_query_images[$property_id]['property']))
-				$this->images ['property']=$this->multi_query_images[$property_id]['property'];
+			$this->images ['property']=$this->multi_query_images[$property_id]['property'];
 			}
 
 		if (count($types)==0 || in_array('rooms',$types))
@@ -215,7 +213,7 @@ class jomres_media_centre_images
 				$all_types = array();
 				foreach ($resource_types as $type)
 					{
-					if (is_array($type))
+					if (is_array($type) && isset($type['resource_type']))
 						$all_types[] = $type['resource_type'];
 					}
 				}

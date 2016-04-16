@@ -234,10 +234,15 @@ class basic_property_details
 			$this->approved                      = $this->multi_query_result[ $this->property_uid ][ 'approved' ];
 
 			$this->accommodation_tax_rate		 = $this->multi_query_result[ $this->property_uid ][ 'accommodation_tax_rate' ];
-			$this->room_types                    = $this->multi_query_result[ $this->property_uid ][ 'room_types' ];
-			$this->rooms                         = $this->multi_query_result[ $this->property_uid ][ 'rooms' ];
-			$this->rooms_by_type                 = $this->multi_query_result[ $this->property_uid ][ 'rooms_by_type' ];
-			$this->rooms_max_people              = $this->multi_query_result[ $this->property_uid ][ 'rooms_max_people' ];
+			if (isset($this->multi_query_result[ $this->property_uid ][ 'room_types' ]))
+				$this->room_types                    = $this->multi_query_result[ $this->property_uid ][ 'room_types' ];
+			
+			if (isset($this->multi_query_result[ $this->property_uid ][ 'rooms' ]))
+				{
+				$this->rooms                         = $this->multi_query_result[ $this->property_uid ][ 'rooms' ];
+				$this->rooms_by_type                 = $this->multi_query_result[ $this->property_uid ][ 'rooms_by_type' ];
+				$this->rooms_max_people              = $this->multi_query_result[ $this->property_uid ][ 'rooms_max_people' ];
+				}
 			}
 
 		$mrConfig = getPropertySpecificSettings( $this->property_uid );
@@ -412,10 +417,12 @@ class basic_property_details
 			foreach ( $rooms as $room )
 				{
 				$this->multi_query_result[ $room->propertys_uid ][ 'rooms' ][ $room->room_uid ] = $room->room_uid ;
-				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'abbv' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'room_class_abbv' ];
-				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'desc' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'room_class_full_desc' ];
-				$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'image' ] = $this->all_room_types[ $room->room_classes_uid ][ 'image' ];
-				
+				if (isset($this->all_room_types[ $room->room_classes_uid ]))
+					{
+					$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'abbv' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'room_class_abbv' ];
+					$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'desc' ]  = $this->all_room_types[ $room->room_classes_uid ][ 'room_class_full_desc' ];
+					$this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'image' ] = $this->all_room_types[ $room->room_classes_uid ][ 'image' ];
+					}
 				$this->multi_query_result[ $room->propertys_uid ][ 'rooms_by_type' ][ $room->room_classes_uid ][] = $room->room_uid;
 				$this->multi_query_result[ $room->propertys_uid ][ 'rooms_max_people' ][ $room->room_classes_uid ][$room->room_uid] = $room->max_people;
 				}

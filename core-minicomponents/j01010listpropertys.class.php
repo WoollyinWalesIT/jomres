@@ -45,7 +45,7 @@ class j01010listpropertys
 			$range = get_periods ( $start, $end);
 			$stayDays = count($range);
 			}
-		elseif ( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '' && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] != '')
+		elseif ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']) && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '' && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] != '')
 			{
 				$start = JSCalConvertInputDates( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] , $siteCal = true );
 			$end = JSCalConvertInputDates( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] , $siteCal = true );
@@ -134,7 +134,9 @@ class j01010listpropertys
 			}
 		else
 			{
-			$shortlist_items = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
+			$shortlist_items = array();
+			if ( isset($tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ]))
+				$shortlist_items = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
 			if ( $thisJRUser->userIsRegistered )
 				{
 				$query  = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE `my_id` = '" . (int) $thisJRUser->id . "'";
@@ -194,8 +196,10 @@ class j01010listpropertys
 				$header_output[ 'HARRIVALDATE' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL, false );
 				$header_output[ 'HDEPARTUREDATE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE, false );
 
-				$header_output[ 'ARRIVALDATE' ]   = generateDateInput( "arrivalDate",$tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] , "ad", true );
-				$header_output[ 'DEPARTUREDATE' ] = generateDateInput( "departureDate", $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'], false, true, false );
+				if (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']))
+					$header_output[ 'ARRIVALDATE' ]   = generateDateInput( "arrivalDate",$tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] , "ad", true );
+				if (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']))
+					$header_output[ 'DEPARTUREDATE' ] = generateDateInput( "departureDate", $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'], false, true, false );
 				$header_output[ 'HSEARCH' ] = jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON );
 				if ( !using_bootstrap() )
 					$header_output[ 'THEBUTTON' ] = '<input type="submit" name="send" value="' . jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON, false ) . '" class="button" />';
@@ -464,7 +468,7 @@ class j01010listpropertys
 
 					$rtRows = "";
 					$rtRowsLabels = "";
-					if ( count($current_property_details->multi_query_result[ $propertys_uid ][ 'room_types' ]) > 0 )
+					if ( isset($current_property_details->multi_query_result[ $propertys_uid ][ 'room_types' ]) && count($current_property_details->multi_query_result[ $propertys_uid ][ 'room_types' ]) > 0 )
 						{
 						$rTypes=$current_property_details->multi_query_result[ $propertys_uid ][ 'room_types' ];
 						foreach ( $rTypes as $rtd )
@@ -502,7 +506,8 @@ class j01010listpropertys
 					$property_deets[ 'PRICE_PRE_TEXT' ]		= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRE_TEXT' ];
 					$property_deets[ 'PRICE_PRICE' ]		= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE' ];
 					$property_deets[ 'PRICE_POST_TEXT' ]	= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'POST_TEXT' ];
-					$property_deets[ 'PRICE_NOCONVERSION' ]	= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE_NOCONVERSION' ];
+					if (isset( $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE_NOCONVERSION' ]))
+						$property_deets[ 'PRICE_NOCONVERSION' ]	= $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE_NOCONVERSION' ];
 
 					//total price
 					$plugin_will_provide_lowest_price = false;
@@ -632,7 +637,8 @@ class j01010listpropertys
 						$property_deets[ 'PROPERTYDESC' ] = $propertyDesc;
 					
 					$property_deets[ '_JOMRES_QUICK_INFO' ] = jr_gettext( '_JOMRES_QUICK_INFO', _JOMRES_QUICK_INFO, false, false );
-					$property_deets[ 'REMOTE_URL' ]         = $mrConfig[ 'galleryLink' ];
+					if (isset( $mrConfig[ 'galleryLink' ]))
+						$property_deets[ 'REMOTE_URL' ]         = $mrConfig[ 'galleryLink' ];
 					$property_deets[ 'RANDOM_IDENTIFIER' ]  = generateJomresRandomString( 10 );
 					$property_deets[ '_JOMRES_COMPARE' ]    = jr_gettext( '_JOMRES_COMPARE', _JOMRES_COMPARE, false, false );
 
@@ -692,15 +698,6 @@ class j01010listpropertys
 					$property_deets[ 'AGENT_LINK' ] = make_agent_link( $propertys_uid );
 
 					$property_deets[ '_JOMRES_AGENT' ] = jr_gettext( "_JOMRES_AGENT", _JOMRES_AGENT );
-
-					if ( $output_lowest )
-						{
-						$property_deets[ 'LOWESTPRICE' ] = $price;
-						}
-					else
-						{
-						$property_deets[ 'LOWESTPRICE' ] = '';
-						}
 
 					$property_deets[ 'STARS' ] = $starslink;
 
@@ -787,8 +784,8 @@ class j01010listpropertys
 
 					$pageoutput[ ] = $output;
 					$tmpl          = new patTemplate();
-					$tmpl->addRows( 'property_reviews', $property_reviews );
-					$tmpl->addRows( 'property_reviews_none', $property_reviews_none );
+					if (isset($property_reviews))
+						$tmpl->addRows( 'property_reviews', $property_reviews );
 					$tmpl->addRows( 'pageoutput', $pageoutput );
 					$tmpl->addRows( 'property_details', $property_details );
 					$tmpl->setRoot( $layout_path_to_template );

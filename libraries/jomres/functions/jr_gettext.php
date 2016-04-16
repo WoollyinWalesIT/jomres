@@ -20,6 +20,7 @@ function jr_define( $constant, $string )
 	$jomres_language_definitions->set_language( get_showtime( 'lang' ) );
 	$jomres_language_definitions->set_property_type( get_showtime( 'property_type' ) );
 	$jomres_language_definitions->define( $constant, $string );
+	@define($constant,$string);	
 	}
 
 function jr_get_defined( $constant, $default = '' )
@@ -124,6 +125,9 @@ function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false 
 				}
 			else
 				{
+				if (!isset( $_REQUEST[ 'no_html' ]))
+					 $_REQUEST[ 'no_html' ] = 0;
+				 
 				if ( $jrConfig[ 'editinplace' ] == 1 && $_REQUEST[ 'no_html' ] != '1' )
 					{
 					if ( jomres_cmsspecific_areweinadminarea() ) 
