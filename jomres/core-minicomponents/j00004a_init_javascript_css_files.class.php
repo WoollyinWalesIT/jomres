@@ -29,10 +29,10 @@ class j00004a_init_javascript_css_files
 		else
 			return;
 
-		if ( AJAXCALL )
+		if ( AJAXCALL == "1" )
 			return;
-		
-		if ( defined( "JOMRES_NOHTML" ) )
+
+		if ( JOMRES_NOHTML == "1" )
 			return;
 		
 		

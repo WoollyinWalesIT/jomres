@@ -25,9 +25,12 @@ class j01011discounts
 
 			return;
 			}
-
-		if ( isset( $componentArgs[ 'property_uid' ] ) ) $property_uid = $componentArgs[ 'property_uid' ];
-		if ( isset( $componentArgs[ 'property_uids' ] ) ) $property_uids = $componentArgs[ 'property_uids' ];
+		$property_uids= '';
+		
+		if ( isset( $componentArgs[ 'property_uid' ] ) ) 
+			$property_uid = $componentArgs[ 'property_uid' ];
+		if ( isset( $componentArgs[ 'property_uids' ] ) ) 
+			$property_uids = $componentArgs[ 'property_uids' ];
 		
 		$this->returnValue   = array ();
 		
