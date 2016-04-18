@@ -83,7 +83,7 @@ class j10501a_misc
 
 		$configurationPanel->setleft( jr_gettext( _JOMRES_SUPPORTKEY, '_JOMRES_SUPPORTKEY', false ) );
 		$configurationPanel->setmiddle( '<input type="password" class="input-xlarge" name="cfg_licensekey" value="' . $jrConfig[ 'licensekey' ] . '" /><br/>'.' '.$support_key_status.' '.$support_key_owner.' '.$support_key_expires.' '.$renewal_link.' '.$support_key_is_trial_license );
-		$configurationPanel->setright( jr_gettext( _JOMRES_SUPPORTKEY_DESC, '_JOMRES_SUPPORTKEY_DESC', false ).' '.$support_key_message ."<a href='http://www.jomres.net/manual/installation-and-upgrading/322-after-installation-hostname-restrictions' target='_blank' >More info</a> ");
+		$configurationPanel->setright( jr_gettext( _JOMRES_SUPPORTKEY_DESC, '_JOMRES_SUPPORTKEY_DESC', false ).' '.$support_key_message );
 		$configurationPanel->insertSetting();
 
 		jr_import( 'jomres_check_support_key' );
