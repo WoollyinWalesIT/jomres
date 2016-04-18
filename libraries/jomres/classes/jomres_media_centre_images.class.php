@@ -25,7 +25,7 @@ class jomres_media_centre_images
 		$this->images		      		= array ();
 		$this->multi_query_images  		= array ();
 		}
-
+		
 	public static function getInstance()
 		{
 		if ( !self::$configInstance )
@@ -86,17 +86,21 @@ class jomres_media_centre_images
 				{
 				$this->get_images_multi( $property_id, array('rooms') );
 				}
+
 			if (isset( $this->multi_query_images[$property_id]['rooms']))
 				$this->images ['rooms']=$this->multi_query_images[$property_id]['rooms'];
 			foreach ( $current_property_details->rooms as $room_id)
 				{
-				if (!array_key_exists($room_id,$this->images['rooms']))
+				if (isset($this->images['rooms']))
 					{
-					$this->images [ 'rooms' ] [ $room_id ] [] = array ( 
-						"large" =>  $this->multi_query_images[ 'noimage-large' ] ,
-						"medium" =>  $this->multi_query_images[ 'noimage-medium' ] ,
-						"small" =>  $this->multi_query_images[ 'noimage-small' ] 
-						);
+					if (!array_key_exists($room_id,$this->images['rooms']))
+						{
+						$this->images [ 'rooms' ] [ $room_id ] [] = array ( 
+							"large" =>  $this->multi_query_images[ 'noimage-large' ] ,
+							"medium" =>  $this->multi_query_images[ 'noimage-medium' ] ,
+							"small" =>  $this->multi_query_images[ 'noimage-small' ] 
+							);
+						}
 					}
 				}
 			}
