@@ -405,9 +405,9 @@ function jomres_parseRequest() // A simple request parser to check that mosConf.
 	//%6A%72%43%6F%6E%66%69%67  jrConfig hex
 	foreach ( $_REQUEST as $key => $val )
 		{
-		$ex_base64 = base64_decode( $val );
 		if ( gettype( $val ) == "string" )
 			{
+			$ex_base64 = base64_decode( $val );
 			if ( strstr( $key, "php://" ) || strstr( $val, "php://" ) || strstr( $ex_base64, "php://" ) )
 				{
 				trigger_error( "Hack attempt", E_USER_ERROR );
