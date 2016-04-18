@@ -83,7 +83,9 @@ class j06000srp_calendar
 
 		$mrConfig	 = getPropertySpecificSettings( $property_uid );
 		$contracts = array();
-		$booked_dates = array();
+		$this->booked_dates = array();
+		$this->booking_start_dates = array();
+		$this->booking_end_dates = array();
 		
 		$query	= "SELECT `date`,`contract_uid` FROM #__jomres_room_bookings WHERE room_uid = '" . (int) $room_uid . "' ";
 		$room_bookings = doSelectSql( $query );
