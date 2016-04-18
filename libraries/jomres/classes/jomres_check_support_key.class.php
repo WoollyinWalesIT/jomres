@@ -134,6 +134,14 @@ return $current_licenses;
 		$str            = "key=" . $jrConfig['licensekey'];
 		$this->key_hash =  $jrConfig['licensekey'];
 		
+		$license_data	= new stdClass;
+		$license_data->expires			= "Unknown";
+		$license_data->key_status		= "Unknown";
+		$license_data->owner			= "Unknown";
+		$license_data->license_valid	= false;
+		$license_data->allows_plugins	= false;
+		$license_data->is_trial_license	= false;
+		
 		if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php"))
 			{
 			$last_modified    = filemtime( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php");
@@ -150,12 +158,6 @@ return $current_licenses;
 
 		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "license_key_check_cache.php") || $this->force_check )
 			{
-			$license_data->expires		= "Unknown";
-			$license_data->key_status	= "Unknown";
-			$license_data->owner		= "Unknown";
-			$license_data->allows_plugins = false;
-			$license_data->is_trial_license		= false;
-			
 			$buffer = queryUpdateServer( "check_key.php", $str, "updates" );
 			if ($buffer != "")
 				{
