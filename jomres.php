@@ -156,13 +156,8 @@ try
 	
 	$propertyNamesArray = array ();
 
-
-	//if ( $tag != "" && get_showtime( 'task' ) != "editBooking" ) set_showtime( 'task', "tagSearch" );
-
 	jr_import( 'jomres_currency_exchange_rates' );
 	$exchange_rates = new jomres_currency_exchange_rates( "GBP" );
-	// $rates = get_showtime('temp_exchangerate_data');
-	// var_dump($rates);exit;
 
 	if ( get_showtime( 'task' ) != "error" )
 		{

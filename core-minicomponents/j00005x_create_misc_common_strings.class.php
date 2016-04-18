@@ -13,7 +13,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j00005create_misc_common_strings
+class j00005x_create_misc_common_strings
 	{
 	function __construct()
 		{
