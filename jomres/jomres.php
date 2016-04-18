@@ -684,7 +684,9 @@ try
 				$MiniComponents->triggerEvent( '01005', $componentArgs ); // optional
 				$MiniComponents->triggerEvent( '01006', $componentArgs ); // optional
 				$MiniComponents->triggerEvent( '01007', $componentArgs ); // optional
-				$componentArgs[ 'propertys_uid' ] = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
+				$componentArgs          = array ();
+				if (isset($tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ]))
+					$componentArgs[ 'propertys_uid' ] = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
 				$MiniComponents->triggerEvent( '01010', $componentArgs ); // listPropertys
 				break;
 			#########################################################################################
