@@ -174,9 +174,12 @@ return $current_licenses;
 					$license_data->allows_plugins= "Unknown";
 				if (is_null($license_data->is_trial_license))
 					$license_data->is_trial_license= "Unknown";
-				if (!isset($license_data->key_status) || is_null($license_data->key_status))
-					$license_data->key_status= "Unknown";
 				
+				if (!isset($license_data->status) )
+					$license_data->key_status= "Unknown";
+				else
+					$license_data->key_status=$license_data->status;
+
 				$lic_data = '<?php
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 $license_data	= new stdClass;
