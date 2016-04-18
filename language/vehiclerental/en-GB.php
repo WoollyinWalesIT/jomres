@@ -2478,7 +2478,25 @@ jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_TITLE' , "Discount." );
 jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_CONTENT' , "You can choose to give this guest an automatic discount which will be applied whenever they make a booking." );
 
 
-jr_define('DATATABLES_SINFO' , "Showing _START_ to _END_ of _TOTAL_ entries" );
+jr_define('DATATABLES_SEMPTYTABLE'		, "No data available in table" );
+jr_define('DATATABLES_SINFO'			, "Showing _START_ to _END_ of _TOTAL_ entries" );
+jr_define('DATATABLES_SINFOEMPTY'		, "Showing 0 to 0 of 0 entries" );
+jr_define('DATATABLES_SINFOFILTERED'	, "(filtered from _MAX_ total entries)" );
+jr_define('DATATABLES_SINFOPOSTFIX'		, "" );
+jr_define('DATATABLES_SINFOTHOUSANDS'	, "," );
+jr_define('DATATABLES_SLENGTHMENU'		, "Show _MENU_ entries" );
+jr_define('DATATABLES_SLOADINGRECORDS'	, "Loading..." );
+jr_define('DATATABLES_SPROCESSING'		, "Processing..." );
+jr_define('DATATABLES_SSEARCH'			, "Search:" );
+jr_define('DATATABLES_SZERORECORDS'		, "No matching records found" );
+jr_define('DATATABLES_SFIRST'			, "First" );
+jr_define('DATATABLES_SLAST'			, "Last" );
+jr_define('DATATABLES_SNEXT'			, "Next" );
+jr_define('DATATABLES_SPREVIOUS'		, "Previous" );
+jr_define('DATATABLES_SSORTASCENDING'	, ": activate to sort column ascending" );
+jr_define('DATATABLES_SSORTDESCENDING'	, ": activate to sort column descending" );
+
+jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );
 
 jr_define('_JOMRES_BOOKING_INQUIRY_HAPPROVAL',"Approval");
 jr_define('_JOMRES_BOOKING_REJECT_INQUIRY',"Reject booking inquiry");
