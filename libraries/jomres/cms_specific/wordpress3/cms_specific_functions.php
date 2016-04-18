@@ -23,7 +23,7 @@ function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 function jomres_cmsspecific_getsessionid()
 	{
 	if( !isset($_SESSION) )
-		session_start();
+		@session_start();
 	
 	if ( isset( $_SESSION['jomres_wp_session']['id'] ) && $_SESSION['jomres_wp_session']['id'] != '') 
 		{
