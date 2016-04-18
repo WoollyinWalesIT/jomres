@@ -355,29 +355,17 @@ class j04200editproperty
 
 		$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_PROPERTYS', _JOMRES_COM_MR_VRCT_TAB_PROPERTYS );
 		$output[ 'IMAGE' ]     = $propertyImageLocation;
-		if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . $propertyUid . "_property_" . $propertyUid . ".jpg" ) )
-			{
-
-			$output[ 'DELETEIMAGE' ]             = '<a href="' . jomresURL( JOMRES_SITEPAGE_URL . '&task=dropImage&imageType=property&no_html=1&itemUid=' . $propertyUid ) . '">' . jr_gettext( '_JOMRES_FILE_DELETE', _JOMRES_FILE_DELETE ) . '</a>';
-			$delimg_output                       = array ();
-			$delimg_rows                         = array ();
-			$delimg_output[ 'IMAGE' ]            = $propertyImageLocation;
-			$delimg_output[ 'DELETEIMAGE_LINK' ] = jomresURL( JOMRES_SITEPAGE_URL . '&task=dropImage&imageType=property&no_html=1&itemUid=' . $propertyUid );
-			$delimg_output[ 'DELETEIMAGE_TEXT' ] = jr_gettext( '_JOMRES_FILE_DELETE', _JOMRES_FILE_DELETE, false );
-			$delimg_rows[ ]                      = $delimg_output;
-			}
-		$output[ 'UPLOADIMAGE' ] = jr_gettext( '_JOMRES_UPLOAD_IMAGE', _JOMRES_UPLOAD_IMAGE, false );
 
 		$approval_warning[] = array('APPROVALWARNING' => jr_gettext( '_JOMRES_EDITPROPERTY_APPROVAL_WARNING', _JOMRES_EDITPROPERTY_APPROVAL_WARNING, false ));
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) $tmpl->readTemplatesFromInput( 'edit_property_realestate.html' );
+		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) 
+			$tmpl->readTemplatesFromInput( 'edit_property_realestate.html' );
 		else
-		$tmpl->readTemplatesFromInput( 'edit_property.html' );
+			$tmpl->readTemplatesFromInput( 'edit_property.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'delimg_rows', $delimg_rows );
 		$tmpl->addRows( 'change_country_warning', $change_country_warning );
 		if ((int)$jrConfig['automatically_approve_new_properties'] == 0 && !$thisJRUser->superPropertyManager)
 			$tmpl->addRows( 'approval_warning', $approval_warning );
