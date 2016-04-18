@@ -125,9 +125,11 @@ class j06000contactowner
 
 		if ( $use_recaptcha )
 			{
-			if ($version == "V1")
+			$challenge = '';
+			
+			if ($version == "V1" && isset($_POST[ "recaptcha_challenge_field" ]) )
 				$challenge = trim($_POST[ "recaptcha_challenge_field" ]);
-			elseif ($version == "V2")
+			elseif ($version == "V2" && isset($_POST[ "g-recaptcha-response" ]) )
 				$challenge = trim($_POST[ "g-recaptcha-response" ]);
 
 			if ( $challenge != "" )
