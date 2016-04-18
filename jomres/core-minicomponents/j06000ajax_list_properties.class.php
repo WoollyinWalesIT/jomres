@@ -36,6 +36,7 @@ class j06000ajax_list_properties
 		$original_search_results = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
 		$count                   = count( $original_search_results );
 
+		$this->resultBucket = array();
 		for ( $i = 0; $i <= $count; $i++ )
 			{
 			if ( $original_search_results[ $i ] == $last_id )
@@ -43,7 +44,8 @@ class j06000ajax_list_properties
 				for ( $n = 1; $n <= $number_of_results; $n++ )
 					{
 					$counter = $i + $n;
-					if ( !is_null( $original_search_results[ $counter ] ) ) $this->resultBucket[ ] = $original_search_results[ $counter ];
+					if ( isset( $original_search_results[ $counter ] ) ) 
+						$this->resultBucket[ ] = $original_search_results[ $counter ];
 
 					}
 				break;
