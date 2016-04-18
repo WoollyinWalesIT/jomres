@@ -81,9 +81,10 @@ class jomres_property_payment_methods
 				
 				if (!in_array($uid, $arrayKeys))
 					{
-					$this->multi_query_result[ $uid ][$data->plugin]["gateway"] = '';
-					$this->multi_query_result[ $uid ][$data->plugin]["gateway_name"] = '';
-					$this->multi_query_result[ $uid ][$data->plugin]["gateway_image"] = '';	
+					$this->multi_query_result[ $uid ]['XXX'] = '';
+					$this->multi_query_result[ $uid ]['XXX']["gateway"] = '';
+					$this->multi_query_result[ $uid ]['XXX']["gateway_name"] = '';
+					$this->multi_query_result[ $uid ]['XXX']["gateway_image"] = '';	
 					}
 				}
 			}
