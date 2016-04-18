@@ -94,7 +94,7 @@ class j01010listpropertys
 			{
 			$live_scrolling_enabled = (bool)$jrConfig['live_scrolling_enabled'];
 			}
-		else
+		elseif (isset($componentArgs[ 'live_scrolling_enabled' ]))
 			{
 			$live_scrolling_enabled = (bool) $componentArgs[ 'live_scrolling_enabled' ];
 			}
