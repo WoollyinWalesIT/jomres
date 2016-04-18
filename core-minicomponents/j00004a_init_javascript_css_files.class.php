@@ -23,19 +23,18 @@ class j00004a_init_javascript_css_files
 			{
 			$this->template_touchable = false; return;
 			}
-		
+
 		if ( !defined( "JOMRES_JSCALLED" ) )
 			define ( 'JOMRES_JSCALLED', 1 );
 		else
-			return;
+			return true;
 
 		if ( AJAXCALL == "1" )
-			return;
+			return true;
 
-		if ( defined('JOMRES_NOHTML'))
+		if ( defined('JOMRES_NOHTML') && JOMRES_NOHTML == "1")
 			{
-			if ( JOMRES_NOHTML == "1" )
-				return;
+			return true;
 			}
 		
 		
