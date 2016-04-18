@@ -65,7 +65,8 @@ class jomres_media_centre_images
 				{
 				$this->get_images_multi( $property_id, array('property') );
 				}
-			$this->images ['property']=$this->multi_query_images[$property_id]['property'];
+			if (isset( $this->multi_query_images[$property_id]['property']))
+				$this->images ['property']=$this->multi_query_images[$property_id]['property'];
 			}
 		elseif (count($types)>0 && in_array('property',$types))
 			{
@@ -73,7 +74,8 @@ class jomres_media_centre_images
 				{
 				$this->get_images_multi( $property_id, array('property') );
 				}
-			$this->images ['property']=$this->multi_query_images[$property_id]['property'];
+			if (isset( $this->multi_query_images[$property_id]['property']))
+				$this->images ['property']=$this->multi_query_images[$property_id]['property'];
 			}
 
 		if (count($types)==0 || in_array('rooms',$types))
