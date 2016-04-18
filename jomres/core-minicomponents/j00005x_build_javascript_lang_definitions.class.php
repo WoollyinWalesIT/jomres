@@ -26,20 +26,14 @@ class j00005x_build_javascript_lang_definitions
 			$this->template_touchable = false; return;
 			}
 		
-		if ( !defined( "JOMRES_JSCALLED" ) )
-			define ( 'JOMRES_JSCALLED', 1 );
-		else
-			return;
-
 		if ( AJAXCALL == "1" )
 			return;
 
-		if ( defined('JOMRES_NOHTML'))
-			{
-			if ( JOMRES_NOHTML == "1" )
-				return;
-			}
-
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+		$ls = jomresGetDomain();
+		$javascript_files = array();
+		
 		$live_scrolling_enabled = "true";
 		if ( $jrConfig['live_scrolling_enabled'] == "0" || jomres_cmsspecific_areweinadminarea())
 			$live_scrolling_enabled = "false";
@@ -119,12 +113,6 @@ class j00005x_build_javascript_lang_definitions
 			{
 			jomres_cmsspecific_addheaddata( "javascript",$file[0] , $file[1] );
 			}
-
-		foreach ( $css_files as $file)
-			{
-			jomres_cmsspecific_addheaddata( "css",$file[0] , $file[1] );
-			}
-		
 		}
 
 	/**
