@@ -805,10 +805,13 @@ function init_javascript()
 
 function add_gmaps_source()
 	{
-	if ( defined( 'JOMRES_NOHTML' ) ) return;
-	if ( !defined( 'GMAPS_SOURCE_ADDED' ) && !AJAXCALL)
+	if ( defined('JOMRES_NOHTML') && JOMRES_NOHTML == "1")
+		return true;
+	
+	if ( !defined( 'GMAPS_SOURCE_ADDED' ) && !AJAXCALL == "1")
 		{
 		define( 'GMAPS_SOURCE_ADDED', 1 );
+
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		$site_lang  = get_showtime( 'lang' );
@@ -831,7 +834,7 @@ function add_gmaps_source()
 
 		if ( $libraries != '' ) $libraries = '&libraries=' . $libraries;
 
-		jomres_cmsspecific_addheaddata('javascript' , 'https://maps.googleapis.com/maps/api/js?v=3&language=' . $shortcode . $libraries , '&key=' . $jrConfig[ 'google_maps_api_key' ], $includeVersion = false );
+		jomres_cmsspecific_addheaddata('javascript' , 'https://maps.googleapis.com/maps/api/js?v=3&language=' . $shortcode . $libraries , '&foo=bar', $includeVersion = false );
 		}
 	}
 
