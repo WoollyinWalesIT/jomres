@@ -774,7 +774,8 @@ try
 	$MiniComponents->triggerEvent( '99994' );
 	
 	$performance_monitor->set_point( "pre-menu generation" );
-	if ( !defined( 'JOMRES_NOHTML' ) && !isset( $_REQUEST[ 'popup' ] ) ) // Generate the main menu
+
+	if ( defined('JOMRES_NOHTML') && JOMRES_NOHTML != "1" && !isset( $_REQUEST[ 'popup' ]) )
 		{
 		$MiniComponents->triggerEvent( '99995' );
 		}
