@@ -23,6 +23,7 @@ class j00011manager_option_01_resources
 			{
 			$this->template_touchable = true; return;
 			}
+		$this->cpanelButton = false;
 		$property_uid=getDefaultProperty();
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		
