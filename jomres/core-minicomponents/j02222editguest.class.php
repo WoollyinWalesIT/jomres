@@ -89,9 +89,10 @@ class j02222editguest
 			}
 		else
 			{
+			$vat_validation = array();
 			$output[ 'REGION' ]    = setupRegions( "GB" );
 			$output[ 'COUNTRY' ]  = createSimpleCountriesDropdown( "GB" );
-			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList( 0, 100, 1, 'discount', 'class="inputbox" size="1"', $data->discount );
+			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList( 0, 100, 1, 'discount', 'class="inputbox" size="1"', 0 );
 			}
 
 		$output[ 'HFIRSTNAME' ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME', _JOMRES_COM_MR_DISPGUEST_FIRSTNAME );
