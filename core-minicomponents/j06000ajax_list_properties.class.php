@@ -39,16 +39,19 @@ class j06000ajax_list_properties
 		$this->resultBucket = array();
 		for ( $i = 0; $i <= $count; $i++ )
 			{
-			if ( $original_search_results[ $i ] == $last_id )
+			if (isset($original_search_results[ $i ]))
 				{
-				for ( $n = 1; $n <= $number_of_results; $n++ )
+				if ( $original_search_results[ $i ] == $last_id )
 					{
-					$counter = $i + $n;
-					if ( isset( $original_search_results[ $counter ] ) ) 
-						$this->resultBucket[ ] = $original_search_results[ $counter ];
+					for ( $n = 1; $n <= $number_of_results; $n++ )
+						{
+						$counter = $i + $n;
+						if ( isset( $original_search_results[ $counter ] ) ) 
+							$this->resultBucket[ ] = $original_search_results[ $counter ];
 
+						}
+					break;
 					}
-				break;
 				}
 			}
 

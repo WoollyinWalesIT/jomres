@@ -79,18 +79,20 @@ class j06000show_property_rooms
 				
 				//room features
 				$r[ 'ROOM_FEATURES' ] = "";
-				foreach ($roomFeatureUidsArray as $f)
+				if (count($basic_room_details->all_room_features)>0)
 					{
-					$r[ 'ROOM_FEATURES' ] .= $basic_room_details->all_room_features[ $f ]['tooltip'];
+					foreach ($roomFeatureUidsArray as $f)
+						{
+						$r[ 'ROOM_FEATURES' ] .= $basic_room_details->all_room_features[ $f ]['tooltip'];
+						}
 					}
-
 				$r[ 'RANDOM_IDENTIFIER' ]  = generateJomresRandomString( 10 );
 				
 				$r[ 'IMAGELARGE' ]  = get_showtime('live_site') ."/jomres/images/noimage.gif";
 				$r[ 'IMAGEMEDIUM' ] = get_showtime('live_site') ."/jomres/images/noimage.gif";
 				$r[ 'IMAGETHUMB' ]  = get_showtime('live_site') ."/jomres/images/noimage.gif";
 
-				if ($jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'] != "")
+				if ( isset($jomres_media_centre_images->images['rooms']) && $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'] != "")
 					{
 					$r[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'];
 					$r[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['medium'];

@@ -232,6 +232,7 @@ class j06000viewproperty
 		$MiniComponents->triggerEvent( '00035', $componentArgs );
 		
 		//set content/tabs that will be displayed inline
+		$standalone_elements = array ();
 		if ( $jrConfig[ 'property_details_in_tabs' ] == "0" && !isset( $_REQUEST[ 'jr_printable' ]) )
 			{
 			$standalone_elements = array (
@@ -270,7 +271,7 @@ class j06000viewproperty
 						
 						$content                                       = $tabs[ 'TAB_CONTENT' ];
 						$title                                         = $tabs[ 'TAB_TITLE' ];
-						$tab_id                                        = $tabs[ 'TAB_ID' ];
+						$tab_id                                        = $tabs[ 'TAB_TITLE' ];
 						$tab_titles[ ]                                 = array ( "TAB_ANCHOR" => $tabs[ 'TAB_ANCHOR' ], "TAB_TITLE" => $title, "ACTIVE" => $tab_class, "TAB_ID" => $tab_id );
 						$tab_contents[ ]                               = array ( "TAB_CONTENT" => $content, "TAB_TITLE" => $title, "TAB_ANCHOR" => $tabs[ 'TAB_ANCHOR' ], "ACTIVE" => $tab_class );
 						$output[ strtoupper( $key . "_tabtitle" ) ]    = $title;
