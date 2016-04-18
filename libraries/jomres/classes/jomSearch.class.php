@@ -798,9 +798,34 @@ class jomSearch
 			if ( $filter != "%" )
 				{
 				$property_ors = str_replace( "propertys_uid", "property_uid", $property_ors );
-				if ( is_array( $filter ) ) $query = "SELECT property_uid FROM #__jomres_rates WHERE roomrateperday >= " . $filter[ 'from' ] . " AND roomrateperday <= " . $filter[ 'to' ] . "  $property_ors ";
+				
+				//get arrival date
+				$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+				
+				$arrivalDate 				= date("Y/m/d", strtotime(date("Y/m/d")."+1 day"));
+				
+				if ( isset( $_REQUEST[ 'arrivalDate' ] ) && $_REQUEST[ 'arrivalDate' ] != "" )
+					{
+					$arrivalDate = JSCalConvertInputDates( jomresGetParam( $_REQUEST, 'arrivalDate', "" ) );
+					}
+				elseif ( count( $tmpBookingHandler->tmpsearch_data ) > 0 )
+					{
+					if (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) && trim($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ])!='')
+						{
+						$arrivalDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
+						}
+					elseif (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) && trim($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != ''))
+						{
+						$arrivalDate = JSCalConvertInputDates($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'],$siteCal=true);
+						}
+					}
+				
+				$clause = "AND DATE_FORMAT('" . $arrivalDate . "', '%Y/%m/%d') BETWEEN DATE_FORMAT(`validfrom`, '%Y/%m/%d') AND DATE_FORMAT(`validto`, '%Y/%m/%d') ";
+				
+				if ( is_array( $filter ) ) 
+					$query = "SELECT property_uid FROM #__jomres_rates WHERE roomrateperday >= " . $filter[ 'from' ] . " AND roomrateperday <= " . $filter[ 'to' ] . " $clause $property_ors ";
 				else
-				$query = "SELECT property_uid FROM #__jomres_rates WHERE roomrateperday LIKE '%' $property_ors ";
+					$query = "SELECT property_uid FROM #__jomres_rates WHERE roomrateperday LIKE '%' $clause $property_ors ";
 				$result = doSelectSql( $query );
 
 
