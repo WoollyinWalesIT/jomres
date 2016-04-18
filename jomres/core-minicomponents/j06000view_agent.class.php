@@ -111,7 +111,6 @@ class j06000view_agent
 				$output[ 'POSTCODE' ]  = $data->postcode;
 				$output[ 'LANDLINE' ]  = $data->tel_landline;
 				$output[ 'MOBILE' ]    = $data->tel_mobile;
-				$output[ 'FAX' ]       = $data->tel_fax;
 				$output[ 'EMAIL' ]     = jomres_hide_email($data->email);
 
 				if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . 'userimages' . JRDS . "userimage_" . $manager_id . ".jpg" ) ) 
