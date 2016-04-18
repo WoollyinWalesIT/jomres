@@ -59,10 +59,12 @@ class jomres_language_definitions
 				{
 				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $this->ptype ) . JRDS . $this->lang . '.php' );
 				}
-			else //in case there is no language_context set and the property type specific language dir was manually deleted
+			elseif ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' ) ) //in case there is no language_context set and the property type specific language dir was manually deleted
 				{
 				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' );
 				}
+			else
+				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . 'en-GB.php' );
 			}
 
 		if ( isset( $this->definitions[ $this->ptype ][ $constant ] ) ) 

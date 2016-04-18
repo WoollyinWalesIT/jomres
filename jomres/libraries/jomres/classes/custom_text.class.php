@@ -94,31 +94,32 @@ class custom_text
 			}
 		}
 
-	function get_custom_text_for_property( $property_uid )
+	function get_custom_text_for_property( $property_uid = 0)
 		{
-		if ( $property_uid > 0 ) $this->property_uid = $property_uid;
+		if ( (int)$property_uid > 0 ) 
+			$this->property_uid = $property_uid;
 
-		if ( isset( $this->global_custom_text ) )
+		if ( isset( $this->global_custom_text ) && $this->property_uid > 0)
 			{
 			$current_custom_text = $this->global_custom_text;
 
-			if ( (int) $this->property_uid > 0 && isset( $this->global_custom_text ) && isset( $this->all_properties_custom_text[ $this->property_uid ] ) ) 
+			if ( (int) $this->property_uid > 0 && isset( $this->all_properties_custom_text[ $this->property_uid ] ) ) 
 				$current_custom_text = array_merge( $this->all_properties_custom_text[ $this->property_uid ],$this->global_custom_text );
 			elseif ( isset( $this->all_properties_custom_text[ $this->property_uid ] ) ) 
 				$current_custom_text = $this->all_properties_custom_text[ $this->property_uid ];
-
-			return $current_custom_text;
 			}
+		else
+			$current_custom_text = $this->global_custom_text;
+
+		return $current_custom_text;
 		}
 
 
 	function get_custom_text()
 		{
-		$this->property_uid = get_showtime( 'property_uid' );
+		$this->property_uid = (int)get_showtime( 'property_uid' );
 		$result             = $this->get_custom_text_for_property( $this->property_uid );
 
 		return $result;
 		}
 	}
-
-?>

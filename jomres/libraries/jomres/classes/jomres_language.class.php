@@ -24,9 +24,12 @@ class jomres_language
 	function __construct()
 		{
 		global $jomresConfig_lang;
+		
 		$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig          = $siteConfig->get();
+		
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+		
 		// We'll specifically set the post and get routines here so that we don't end up saving the cookie/cms specific code every time if the cookie's the container for the lang.
 		$this->showLangDropdown = $jrConfig[ 'showLangDropdown' ];
 		$administrator_area     = jomres_cmsspecific_areweinadminarea();
@@ -66,14 +69,7 @@ class jomres_language
 
 	function get_language( $propertytype = "" )
 		{
-		$language_plugins = get_showtime( 'language_plugins' );
-		$language_plugins_langfile_path = $language_plugins[ $this->lang ][ $propertytype ][ 'path' ];
-		
-		if ( $propertytype != "" && file_exists( $language_plugins_langfile_path . $this->lang . "_" . $propertytype . '.php' ) )
-			{
-			require_once( $language_plugins_langfile_path . $this->lang . "_" . $propertytype . '.php' );
-			}
-		else if ( $propertytype != "" && file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $propertytype ) . JRDS . $this->lang . '.php' ) )
+		if ( $propertytype != "" && file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $propertytype ) . JRDS . $this->lang . '.php' ) )
 			{
 			require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $propertytype ) . JRDS . $this->lang . '.php' );
 			}
@@ -131,9 +127,6 @@ class jomres_language
 	function get_languageselection_dropdown( $config_option = false, $default_lang = "" )
 		{
 		$task = get_showtime( 'task' );
-		
-	//	if ( $this->showLangDropdown != "1" && $task != "touch_templates" && !jomres_cmsspecific_areweinadminarea() ) 
-	//		return "";
 		
 		$langDropdownFile  = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "langDropdown.php";
 		$langfile_crossref = $this->define_langfile_to_languages_array();
