@@ -32,8 +32,11 @@ class j00004a_init_javascript_css_files
 		if ( AJAXCALL == "1" )
 			return;
 
-		if ( JOMRES_NOHTML == "1" )
-			return;
+		if ( defined('JOMRES_NOHTML'))
+			{
+			if ( JOMRES_NOHTML == "1" )
+				return;
+			}
 		
 		
 		if ( !isset( $jrConfig[ 'load_jquery_ui' ] ) ) $jrConfig[ 'load_jquery_ui' ] = "1";
@@ -148,7 +151,7 @@ class j00004a_init_javascript_css_files
 		
 		if (!isset($jrConfig['live_scrolling_enabled']))
 			$jrConfig['live_scrolling_enabled'] = "1";
-		
+			
 		if ($jrConfig['live_scrolling_enabled'] == "1")
 			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js");
 		
