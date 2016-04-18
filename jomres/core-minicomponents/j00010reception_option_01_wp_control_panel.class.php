@@ -25,7 +25,7 @@ class j00010reception_option_01_wp_control_panel
 
 			return;
 			}
-		
+		$this->cpanelButton = false;
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		
 		if (this_cms_is_wordpress() && $thisJRUser->superPropertyManager) 
