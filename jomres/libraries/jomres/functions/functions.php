@@ -4686,17 +4686,19 @@ function parseFloat( $ptString )
 function scandir_getdirectories( $path )
 	{
 	$data = array ();
-	foreach ( scandir( $path ) as $dir )
+	if (is_dir($path))
 		{
-		if ( is_dir( $path . $dir ) )
+		foreach ( scandir( $path ) as $dir )
 			{
-			if ( $dir != "." && $dir != ".." )
+			if ( is_dir( $path . $dir ) )
 				{
-				$data[ ] = $dir;
+				if ( $dir != "." && $dir != ".." )
+					{
+					$data[ ] = $dir;
+					}
 				}
 			}
 		}
-
 	return $data;
 	}
 
