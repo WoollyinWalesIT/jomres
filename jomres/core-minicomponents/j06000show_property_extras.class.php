@@ -41,11 +41,13 @@ class j06000show_property_extras
 		$this->retVals = null;
 
 		$mrConfig = getPropertySpecificSettings( $property_uid );
-		
+
 		if ( $mrConfig[ 'showExtras' ] == "1" )
 			{
 			$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 			$jomres_media_centre_images->get_images($property_uid, array('extras'));
+
+			$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 
 			$extra_details = array();
 			
@@ -57,7 +59,8 @@ class j06000show_property_extras
 				foreach ( $exList as $ex )
 					{
 					$price = $ex->price;
-					$rate  = (float) $this->taxrates[ $ex->tax_rate ][ 'rate' ];
+					$jrportal_taxrate->gather_data($ex->tax_rate);
+					$rate  = (float) $jrportal_taxrate->rate;
 					if ( $mrConfig[ 'prices_inclusive' ] == 1 )
 						{
 						$divisor = ( $rate / 100 ) + 1;
