@@ -1278,6 +1278,20 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'cookies.html' );
 
 		$this->add_obs_file( $this->dir_minicomponents . 'j00005create_misc_common_strings.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_06_slideshows.class.php' );
+		
+		$this->add_obs_file( $this->dir_minicomponents . 'j00011manager_option_10_audittrail.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j02250showaudit.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j02252archiveaudit.class.php' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_frontend . 'audit_trail.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap3_frontend . 'audit_trail.html' );
+		$this->add_obs_file( $this->dir_templates_jqueryui_frontend . 'audit_trail.html' );
+		
+		$this->add_obs_file( $this->dir_minicomponents . 'j03380batch_upload_form.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j03390upload_business_images.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j03400upload_business_image.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j03410upload_resource_image.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j03350drop_image.class.php' );
 		}
 
 	function add_obs_file( $path_and_file )
