@@ -145,18 +145,9 @@ class j16000addplugin
 
 		$updateDirPath = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'updates' . JRDS . $pluginName . JRDS;
 
-
-		if ( is_dir( $updateDirPath . "unpacked" ) )
-			{
-			$progress_messages[ ] = array ( "MESSAGE" => "Cleaning up " . $updateDirPath . " unpacked for a new installation of the plugin." );
-			emptyDir( $updateDirPath . "unpacked" );
-			rmdir( $updateDirPath . "unpacked" );
-			rmdir( $updateDirPath );
-			}
-
 		if ( is_dir( $updateDirPath ) )
 			{
-			$progress_messages[ ] = array ( "MESSAGE" => "Cleaning up " . $updateDirPath . " for a new installation of the plugin." );
+			$progress_messages[ ] = array ( "MESSAGE" => "Cleaning up " . $updateDirPath . " unpacked for a new installation of the plugin." );
 			emptyDir( $updateDirPath );
 			rmdir( $updateDirPath );
 			}
@@ -169,7 +160,6 @@ class j16000addplugin
 			{
 			$error_messsage[ "ERROR" ] = "Couldn't make the folder " . $updateDirPath . " so quitting.";
 			echo $error_messsage[ "ERROR" ];
-
 			return;
 			}
 
@@ -315,31 +305,17 @@ class j16000addplugin
 			$progress_messages[ ] = array ( "MESSAGE" => "Starting extraction of $newfilename" );
 			clearstatcache();
 
-			if ( $thirdparty )
-				{
-				if ( !class_exists( "PclZip" ) ) require_once( JOMRESPATH_BASE . JRDS . "libraries" . JRDS . 'pclzip' . JRDS . "pclzip.lib.php" );
 
-				$archive = new PclZip( $newfilename );
-				$list    = $archive->extract( PCLZIP_OPT_PATH, $updateDirPath . "unpacked", PCLZIP_OPT_REMOVE_PATH, $pluginName . '/' );
-				}
-			else
+			$zip = new ZipArchive;
+			$res = $zip->open($newfilename);
+			if ($res === TRUE) 
 				{
-				if ( !class_exists( "dUnzip2" ) ) require_once( JOMRESPATH_BASE . JRDS . "libraries" . JRDS . "dUnzip2.inc.php" );
-				$zip = new dUnzip2( $newfilename );
-				// Activate debug
-				$zip->debug = $debugging;
-				// Unzip all the contents of the zipped file to this folder
-				$zip->getList();
-				$result = $zip->unZipAll( $updateDirPath . "unpacked" );
-				if ( $result[ 'result' ] == false )
-					{
-					$error_messsage[ "ERROR" ] = "Emptying " . $updateDirPath . "unpacked" . "";
-					emptyDir( $updateDirPath . "unpacked" );
-					rmdir( $updateDirPath . "unpacked" );
-					$error_messsage[ "ERROR" ] = $result[ 'msg' ];
-					if ( $autoupgrade ) return false;
-					}
+				$zip->extractTo($updateDirPath . "unpacked");
 				$zip->close();
+				} 
+			else 
+				{
+				$error_messsage[ "ERROR" ] = " Unable to unzip ".$newfilename;
 				}
 
 			if ( !unlink( $newfilename ) ) $error_messsage[ "ERROR" ] = "Error removing $newfilename";
@@ -363,7 +339,7 @@ class j16000addplugin
 							$result = $MiniComponents->specificEvent( '16000', 'addplugin', array ( "plugin" => $d, "autoupgrade" => true ) );
 							if ( !$autoupgrade )
 								{
-								$discovery_required = false;
+									$discovery_required = false;
 								if ( $result[ 'success' ] )
 									{
 									$auto_installation_result[ 'MESSAGE' ] = "Auto installed " . $d . " as it is required by " . $pluginName . ".";
@@ -404,72 +380,93 @@ class j16000addplugin
 					}
 				}
 
-
-			require_once( $updateDirPath . "unpacked" . JRDS . "plugin_info.php" );
-			$classname      = "plugin_info_" . $pluginName;
-			$plugin_class   = new $classname();
-			$min_jomres_ver = explode( ".", $plugin_class->data[ 'min_jomres_ver' ] );
-			if ( count( $min_jomres_ver ) == 3 && count( $this_jomres_version ) == 3 )
+			if (!file_exists($updateDirPath . "unpacked" . JRDS . "plugin_info.php"))
 				{
-				$min_major_version = $min_jomres_ver[ 0 ];
-				$min_minor_version = $min_jomres_ver[ 1 ];
-				$min_revis_version = $min_jomres_ver[ 2 ];
-
-				$current_major_version = $this_jomres_version[ 0 ];
-				$current_minor_version = $this_jomres_version[ 1 ];
-				$current_revis_version = $this_jomres_version[ 2 ];
-
-				$error = true;
-				if ( $current_major_version >= $min_major_version && $current_minor_version >= $min_minor_version && $current_revis_version >= $min_revis_version ) $error = false;
-
-				if ( $current_major_version >= $min_major_version && $current_minor_version > $min_minor_version ) $error = false;
-
-				if ( $current_major_version > $min_major_version ) $error = false;
-
-				if ( $error )
-					{
-					$error_messsage[ "ERROR" ] = "Error, this plugin requires at least version " . $plugin_class->data[ 'min_jomres_ver' ] . " of Jomres";
-					if ( $autoupgrade ) return false;
-					}
+				$error_messsage[ "ERROR" ] = " Plugin info file does not exist, cannot continue with installation. ";
 				}
-
-			$plugin_installed_successfully = false;
-
-			$result = dirmv( $updateDirPath . "unpacked", $remote_pluginsDirPath . $pluginName, true, $funcloc = JRDS );
-			if ( $result[ 'success' ] )
+			else
 				{
-				//echo $remote_pluginsDirPath.$pluginName.JRDS."plugin_install.php";exit;
-				$progress_messages[ ] = array ( "MESSAGE" => "Moved contents of $newfilename to " . $remote_pluginsDirPath . $pluginName . "" );
-				
-				emptyDir($updateDirPath . "unpacked");
-				if ( !rmdir( $updateDirPath . "unpacked" ) ) 
+				require_once( $updateDirPath . "unpacked" . JRDS . "plugin_info.php" );
+				$classname      = "plugin_info_" . $pluginName;
+				$plugin_class   = new $classname();
+				$min_jomres_ver = explode( ".", $plugin_class->data[ 'min_jomres_ver' ] );
+				if ( count( $min_jomres_ver ) == 3 && count( $this_jomres_version ) == 3 )
 					{
-					echo "Error removing ".$updateDirPath."unpacked";
-					}
-				if ( !rmdir( $updateDirPath  ) ) 
-					{
-					echo "Error removing $updateDirPath";
-					}
-				
-				
-				if ( file_exists( $remote_pluginsDirPath . $pluginName . JRDS . "plugin_install.php" ) )
-					{
-					require_once( $remote_pluginsDirPath . $pluginName . JRDS . "plugin_install.php" );
-					}
-				touch( $remote_pluginsDirPath . $pluginName . JRDS . "index.html" );
+					$min_major_version = $min_jomres_ver[ 0 ];
+					$min_minor_version = $min_jomres_ver[ 1 ];
+					$min_revis_version = $min_jomres_ver[ 2 ];
 
-				if ( $plugin_class->data[ 'type' ] == "mambot" || $plugin_class->data[ 'type' ] == "module" || $plugin_class->data[ 'type' ] == "widget" )
-					{
-					if ( _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "wordpress3" || _JOMRES_DETECTED_CMS == "joomla33"  || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35")
+					$current_major_version = $this_jomres_version[ 0 ];
+					$current_minor_version = $this_jomres_version[ 1 ];
+					$current_revis_version = $this_jomres_version[ 2 ];
+
+					$error = true;
+					if ( $current_major_version >= $min_major_version && $current_minor_version >= $min_minor_version && $current_revis_version >= $min_revis_version ) $error = false;
+
+					if ( $current_major_version >= $min_major_version && $current_minor_version > $min_minor_version ) $error = false;
+
+					if ( $current_major_version > $min_major_version ) $error = false;
+
+					if ( $error )
 						{
-						if ( !$autoupgrade )
+						$error_messsage[ "ERROR" ] = "Error, this plugin requires at least version " . $plugin_class->data[ 'min_jomres_ver' ] . " of Jomres";
+						if ( $autoupgrade ) return false;
+						}
+					}
+
+				$plugin_installed_successfully = false;
+
+				$result = dirmv( $updateDirPath . "unpacked", $remote_pluginsDirPath . $pluginName, true, $funcloc = JRDS );
+				if ( $result[ 'success' ] )
+					{
+					//echo $remote_pluginsDirPath.$pluginName.JRDS."plugin_install.php";exit;
+					$progress_messages[ ] = array ( "MESSAGE" => "Moved contents of $newfilename to " . $remote_pluginsDirPath . $pluginName . "" );
+					
+					emptyDir($updateDirPath . "unpacked");
+					if ( !rmdir( $updateDirPath . "unpacked" ) ) 
+						{
+						echo "Error removing ".$updateDirPath."unpacked";
+						}
+					if ( !rmdir( $updateDirPath  ) ) 
+						{
+						echo "Error removing $updateDirPath";
+						}
+					
+					
+					if ( file_exists( $remote_pluginsDirPath . $pluginName . JRDS . "plugin_install.php" ) )
+						{
+						require_once( $remote_pluginsDirPath . $pluginName . JRDS . "plugin_install.php" );
+						}
+					touch( $remote_pluginsDirPath . $pluginName . JRDS . "index.html" );
+
+					if ( isset($plugin_class->data[ 'type' ]) && ($plugin_class->data[ 'type' ] == "mambot" || $plugin_class->data[ 'type' ] == "module" || $plugin_class->data[ 'type' ] == "widget") )
+						{
+						if ( _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "wordpress3" || _JOMRES_DETECTED_CMS == "joomla33"  || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35")
 							{
-							$plugin_installed_successfully = true;
-							$discovery_required            = true;
+							if ( !$autoupgrade )
+								{
+								$plugin_installed_successfully = true;
+								$discovery_required            = true;
+								}
+							else
+								{
+								$this->retVals = array ( "success" => true, "discovery_required" => true );
+								}
 							}
 						else
 							{
-							$this->retVals = array ( "success" => true, "discovery_required" => true );
+							if ( !$autoupgrade )
+								{
+								$plugin_installed_successfully = true;
+								if ( !isset( $discovery_required ) ) 
+									{
+									$discovery_required = false;
+									}
+								}
+							else
+								{
+								$this->retVals = array ( "success" => true, "discovery_required" => false );
+								}
 							}
 						}
 					else
@@ -490,23 +487,14 @@ class j16000addplugin
 					}
 				else
 					{
-					if ( !$autoupgrade )
-						{
-						$plugin_installed_successfully = true;
-						if ( !isset( $discovery_required ) ) 
-							{
-							$discovery_required = false;
-							}
-						}
-					else
-					$this->retVals = array ( "success" => true, "discovery_required" => false );
+					$error_messsage[ "ERROR" ] = "There was an error while unpacking and moving the plugin";
 					}
 				}
-			else
-			$error_messsage[ "ERROR" ] = "There was an error while unpacking and moving the plugin";
 			}
 		else
-		$error_messsage[ "ERROR" ] = "Error " . $updateDirPath . "unpacked does not exist";
+			{
+			$error_messsage[ "ERROR" ] = "Error " . $updateDirPath . "unpacked does not exist";
+			}
 
 		if ( !$autoupgrade )
 			{
