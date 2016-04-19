@@ -77,8 +77,8 @@ class j10501email_settings
 		$configurationPanel->setright( jr_gettext( '_JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD_DESC', _JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD_DESC, false ) );
 		$configurationPanel->insertSetting();
 		
-		$configurationPanel->setleft( jr_gettext( _JOMRES_TEST_EMAIL_SEND, '_JOMRES_TEST_EMAIL_SEND', false ) );
-		$configurationPanel->setmiddle( '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">'. jr_gettext( _JOMRES_TEST_EMAIL_SEND, '_JOMRES_TEST_EMAIL_SEND', false ).'</button>' );
+		$configurationPanel->setleft( jr_gettext( '_JOMRES_TEST_EMAIL_SEND', _JOMRES_TEST_EMAIL_SEND, false ) );
+		$configurationPanel->setmiddle( '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">'. jr_gettext( '_JOMRES_TEST_EMAIL_SEND', _JOMRES_TEST_EMAIL_SEND, false ).'</button>' );
 		$configurationPanel->setright( 
 									'<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 										<div class="modal-dialog">
@@ -126,9 +126,9 @@ jomresJquery(function() {
 			url: "<?php echo JOMRES_SITEPAGE_URL_ADMIN_AJAX ?>&task=ajax_send_test_email&test_email_address="+test_email_address+"&default_from_address="+cfg_default_from_address+"&alternate_smtp_host="+cfg_alternate_smtp_host+"&alternate_smtp_port="+cfg_alternate_smtp_port+"&alternate_smtp_protocol="+cfg_alternate_smtp_protocol+"&alternate_smtp_authentication="+cfg_alternate_smtp_authentication+"&alternate_smtp_username="+cfg_alternate_smtp_username+"&alternate_smtp_password="+cfg_alternate_smtp_password,
 			success: function(data) {
 				if(data.status == true){
-					alert("<?php echo jr_gettext( _JOMRES_TEST_EMAIL_RESULT_SUCCESS, '_JOMRES_TEST_EMAIL_RESULT_SUCCESS', false ); ?>");
+					alert("<?php echo jr_gettext( '_JOMRES_TEST_EMAIL_RESULT_SUCCESS', _JOMRES_TEST_EMAIL_RESULT_SUCCESS, false ); ?>");
 				}else{
-					alert( "<?php echo jr_gettext( _JOMRES_TEST_EMAIL_RESULT_FAILURE, '_JOMRES_TEST_EMAIL_RESULT_FAILURE', false ); ?> " + data.failure_message);
+					alert( "<?php echo jr_gettext( '_JOMRES_TEST_EMAIL_RESULT_FAILURE', _JOMRES_TEST_EMAIL_RESULT_FAILURE, false ); ?> " + data.failure_message);
 				}
 				jomresJquery('#myModal').modal('hide');
 			},
