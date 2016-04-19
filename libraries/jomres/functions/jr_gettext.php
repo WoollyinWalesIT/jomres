@@ -37,12 +37,15 @@ function jr_get_defined( $constant, $default = '' )
 		return $result;
 		}
 	else
-		return constant( $constant );
+		return constant($constant);
 	}
 
 function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false )
 	{
-	$property_uid = (int) get_showtime( 'property_uid' );
+	if (!jomres_cmsspecific_areweinadminarea())
+		$property_uid = (int) get_showtime( 'property_uid' );
+	else
+		$property_uid = 0;
 
 	$customTextObj   = jomres_singleton_abstract::getInstance( 'custom_text' );
 	$customTextArray = $customTextObj->get_custom_text();
@@ -65,10 +68,10 @@ function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false 
 		}
 	else
 		$tmpBookingHandler->user_settings[ 'editing_on' ] = false;
-
-	$mrConfig   = getPropertySpecificSettings( $property_uid );
+	
 	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig   = $siteConfig->get();
+	
 	if ( isset( $thisJRUser->accesslevel ) ) 
 		$accessLevel = $thisJRUser->accesslevel;
 	else
@@ -98,10 +101,10 @@ function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false 
 		else
 			$theText = jr_get_defined( $theConstant, $theValue );
 		}
-	
-	if ( isset( $thisJRUser ) )
+
+	if ( isset($thisJRUser->userIsManager) && $thisJRUser->userIsManager )
 		{
-		if ( isset($_REQUEST[ 'task' ]))
+		if ( isset($_REQUEST[ 'task' ]) && jomres_cmsspecific_areweinadminarea())
 			{
 			if ( ( $_REQUEST[ 'task' ] == "touch_templates" || $_REQUEST[ 'task' ] == "translate_locales" || $_REQUEST[ 'task' ] == "translate_lang_file_strings" ) && $thisJRUser->userIsManager )
 				{
