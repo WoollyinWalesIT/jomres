@@ -39,7 +39,7 @@ class j16000editGlobalroomTypes_management_process
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=listGlobalroomTypes", '' );
-		$jrtb .= $jrtbar->customToolbarItem( 'editGlobalroomTypes', $link, jr_gettext( '_PN_NEXT', _PN_NEXT,false ), $submitOnClick = true, $submitTask = "editGlobalroomTypes", $image );
+		$jrtb .= $jrtbar->customToolbarItem( 'editGlobalroomTypes', '', jr_gettext( '_PN_NEXT', _PN_NEXT,false ), $submitOnClick = true, $submitTask = "editGlobalroomTypes", '' );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
@@ -50,8 +50,6 @@ class j16000editGlobalroomTypes_management_process
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->readTemplatesFromInput( 'management_process.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'rows', $rows );
-		$tmpl->addRows( 'all_ptype_rows', $all_ptype_rows );
 		$tmpl->displayParsedTemplate();
 		}
 
