@@ -36,7 +36,7 @@ function getSimpleCountry( $selectedCountry )
 
 function configCountries()
 	{
-	global $mrConfig;
+	$mrConfig       = getPropertySpecificSettings();
 	if ( !isset( $mrConfig[ 'defaultcountry' ] ) || empty( $mrConfig[ 'defaultcountry' ] ) )
 		{
 		$tmpBookingHandler = jomres_getSingleton( 'jomres_temp_booking_handler' );
@@ -65,10 +65,11 @@ function configCountries()
 	}
 
 
-function createSimpleCountriesDropdown( $selectedCountry ,$input_name = "guest_country" )
+function createSimpleCountriesDropdown( $selectedCountry = "" ,$input_name = "guest_country" )
 	{
-	global $mrConfig;
-	if ( !isset( $selectedCountry ) || empty( $selectedCountry ) ) $selectedCountry = $mrConfig[ 'defaultcountry' ];
+	$mrConfig       = getPropertySpecificSettings();
+	if ( !isset( $selectedCountry ) || $selectedCountry =="" ) 
+		$selectedCountry = $mrConfig[ 'defaultcountry' ];
 	$selectedCountry = strtoupper( $selectedCountry );
 	//$countryNames=countryNameArray();
 	$jomres_countries = jomres_singleton_abstract::getInstance( 'jomres_countries' );
