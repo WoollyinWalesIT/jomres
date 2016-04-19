@@ -42,7 +42,7 @@ class j10501business_details
 			{
 			$configurationPanel->startPanel( jr_gettext( "_JOMRES_COM_YOURBUSINESS", _JOMRES_COM_YOURBUSINESS, false ) );
 			
-			$configurationPanel->insertDescription(jr_gettext( _JOMRES_COM_YOURBUSINESS_INSTRUCTIONS, '_JOMRES_COM_YOURBUSINESS_INSTRUCTIONS', false ));
+			$configurationPanel->insertDescription(jr_gettext( '_JOMRES_COM_YOURBUSINESS_INSTRUCTIONS', _JOMRES_COM_YOURBUSINESS_INSTRUCTIONS, false ));
 	
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_YOURBUSINESS_NAME', _JOMRES_COM_YOURBUSINESS_NAME, false ) );
 			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_business_name" value="' . $jrConfig[ 'business_name' ] . '" />' );

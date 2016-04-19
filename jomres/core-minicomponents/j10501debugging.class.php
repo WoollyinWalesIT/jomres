@@ -58,7 +58,7 @@ class j10501debugging
 			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_DUMPTEMPLATEDATA_DESC', _JOMRES_COM_DUMPTEMPLATEDATA_DESC, false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->insertDescription(jr_gettext( _JOMRES_COM_LOGGING_WARNING, '_JOMRES_COM_LOGGING_WARNING', false ));
+			$configurationPanel->insertDescription(jr_gettext( '_JOMRES_COM_LOGGING_WARNING', _JOMRES_COM_LOGGING_WARNING, false ));
 			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_BOOKING', _JOMRES_COM_LOGGING_BOOKING, false ) );
 			$configurationPanel->setmiddle( $lists[ 'loggingBooking' ] );
