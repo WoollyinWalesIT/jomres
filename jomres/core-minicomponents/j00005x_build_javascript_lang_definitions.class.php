@@ -102,17 +102,19 @@ class j00005x_build_javascript_lang_definitions
 			$temp_file .= '_misc_url_defs_admin.js';
 		else
 			$temp_file .= '_misc_url_defs.js';
-		
+		;
 		if (!file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $temp_file ))
-			file_put_contents(  JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $temp_file , $misc_url_defs );
-		
-		$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/temp/" ,$temp_file );
-
-		//now let`s add the js and css in the head
-		foreach ( $javascript_files as $file)
 			{
-			jomres_cmsspecific_addheaddata( "javascript",$file[0] , $file[1] );
+			$result = file_put_contents(  JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $temp_file , $misc_url_defs );
+			if (!$result)
+				{
+				throw new Exception("Tried to write  ".JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . $temp_file . " but was not succcessful");
+				}
 			}
+
+			
+		jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/temp/', $temp_file );
+		
 		}
 
 	/**
