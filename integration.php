@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 define( '_COMPONENT_JOMRES_INTEGRATIONCALLED', '1' );
 
 global $jomresPath, $license_key, $jomresConfig_absolute_path, $MiniComponents;
-global $mrConfig, $jrConfig, $jomres_systemLog_path;
+global $mrConfig, $jrConfig;
 
 if (!defined('JOMRES_ROOT_DIRECTORY'))
 	{
