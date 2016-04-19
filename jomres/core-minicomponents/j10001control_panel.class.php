@@ -74,6 +74,6 @@ class j10001control_panel
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return $this->cpanelButton;
+		return null;
 		}
 	}
