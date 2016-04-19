@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j06005muviewfavourites
 	{
-	function __construct()
+	function __construct($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -24,10 +24,10 @@ class j06005muviewfavourites
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 
 		$tmpBookingHandler       = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-		$shortlist_items         = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
-	
-		$shortlist_items = array_filter( $shortlist_items, false );
-		if (is_null($shortlist_items))
+
+		if (isset($tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ]))
+			$shortlist_items         = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
+		else
 			$shortlist_items=array();
 		
 		$query  = "SELECT `property_uid` FROM #__jomcomp_mufavourites WHERE `my_id` = " . (int) $thisJRUser->id . " AND property_uid > 0";
