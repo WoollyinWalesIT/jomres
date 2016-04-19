@@ -28,6 +28,8 @@ class j10002invoices
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		
+		$this->cpanelButton = null;
+		
 		if ( (int)$jrConfig[ 'advanced_site_config' ] == 1 && ( (int)$jrConfig[ 'useSubscriptions' ] == 1 || (int)$jrConfig[ 'use_commission' ] == 1) )
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );

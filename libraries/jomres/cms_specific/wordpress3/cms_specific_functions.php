@@ -181,7 +181,7 @@ function jomres_cmsspecific_getcurrentusers_id()
 	{
 	$id=0;
 	$user = wp_get_current_user();
-	$id=$user->get('id');
+	$id=$user->get('ID');
 	return $id;
 	}
 

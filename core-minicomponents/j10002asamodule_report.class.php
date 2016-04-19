@@ -27,6 +27,8 @@ class j10002asamodule_report
 			}
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
+		
+		$this->cpanelButton = null;
 
 		if ($jrConfig[ 'advanced_site_config' ] == "1" && !this_cms_is_wordpress() )
 			{

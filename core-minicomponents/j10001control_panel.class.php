@@ -52,16 +52,16 @@ class j10001control_panel
 		//bookings chart
 		$output['BOOKINGS_CHART']			= $MiniComponents->specificEvent( '16000', 'chart_bookings' , array ("output_now"=>false) );
 		
-		//subscriptions chart
-		$output['SUBSCRIPTIONS_CHART'] = '';
-		if (isset($MiniComponents->registeredClasses['16000chart_subscriptions']) && (int)$jrConfig['use_commission'] == 1)
-			$output['SUBSCRIPTIONS_CHART']		= $MiniComponents->specificEvent( '16000', 'chart_subscriptions' , array ("output_now"=>false) );
-		
 		//commissions chart
 		$output['COMMISSIONS_CHART'] = '';
-		if (isset($MiniComponents->registeredClasses['16000chart_commission']) && (int)$jrConfig['useSubscriptions'] == 1)
+		if (isset($MiniComponents->registeredClasses['16000chart_commission']) && (int)$jrConfig['use_commission'] == 1)
 			$output['COMMISSIONS_CHART']		= $MiniComponents->specificEvent( '16000', 'chart_commission' , array ("output_now"=>false) );
 		
+		//subscriptions chart
+		$output['SUBSCRIPTIONS_CHART'] = '';
+		if (isset($MiniComponents->registeredClasses['16000chart_subscriptions']) && (int)$jrConfig['useSubscriptions'] == 1)
+			$output['SUBSCRIPTIONS_CHART']		= $MiniComponents->specificEvent( '16000', 'chart_subscriptions' , array ("output_now"=>false) );
+
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );

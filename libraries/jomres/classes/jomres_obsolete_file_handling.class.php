@@ -1295,6 +1295,7 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file( $this->dir_libraries . 'pclzip' );
 		$this->add_obs_file( $this->dir_libraries . 'dUnzip2.inc.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j10002listCustomFields.class.php' );
 		
 		}
 
