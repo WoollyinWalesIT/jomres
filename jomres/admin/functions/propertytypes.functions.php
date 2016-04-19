@@ -69,6 +69,7 @@ function editPropertyType()
 	$output[ 'PTYPE' ]      = "";
 	$output[ 'PTYPE_DESC' ] = "";
 	$output[ 'PUBLISHED' ]  = "";
+	$mrp_srp_flag = "0";
 	if ( isset( $id ) && !empty( $id ) )
 		{
 		$query     = "SELECT ptype,ptype_desc,published,mrp_srp_flag FROM #__jomres_ptypes WHERE id = '" . (int) $id . "' ";
