@@ -172,7 +172,7 @@ class j06001dashboard_events_ajax {
 										"description"=>$description,
 										"contract_uid"=>$c->contract_uid,
 										"room_uid"=>$c->room_uid,
-										"this_contract_room_uids"=>$room_uids[$c->contract_uid]										
+										"this_contract_room_uids"=>$room_uids[$c->contract_uid]
 										);
 				}
 			}

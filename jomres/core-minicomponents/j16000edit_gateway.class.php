@@ -92,7 +92,6 @@ class j16000edit_gateway
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->readTemplatesFromInput( 'edit_gateway.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'notes', $notes );
 		$tmpl->addRows( 'snippets', $snippets );
 		$tmpl->displayParsedTemplate(); 
 		}
