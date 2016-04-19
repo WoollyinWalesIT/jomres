@@ -83,11 +83,10 @@ require_once( 'integration.php' );
 if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "registry.php" ) ) @unlink( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "registry.php" );
 
 
-global $jomres_systemLog_path, $lkey;
-$jomres_systemLog_path = JOMRESCONFIG_ABSOLUTE_PATH . $jrConfig[ 'jomres_systemLog_path' ];
+global $lkey;
 
 
-if ( $_GET[ 'forceMigrate' ] == '1' )
+if ( isset($_GET[ 'forceMigrate' ]) && $_GET[ 'forceMigrate' ] == '1' )
 	{
 	jomres_migrate();
 	}
