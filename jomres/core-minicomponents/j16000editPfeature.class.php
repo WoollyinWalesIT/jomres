@@ -28,6 +28,18 @@ class j16000editPfeature
 		$propertyFeatureUid = jomresGetParam( $_REQUEST, 'propertyFeatureUid', 0 );
 		$clone              = intval( jomresGetParam( $_REQUEST, 'clone', false ) );
 		//$ptypeid            = 0;
+		
+		$all_categories = array();
+		$query      = "SELECT id,title FROM #__jomres_hotel_features_categories";
+		$catList  = doSelectSql( $query );
+		if ( count( $catList ) > 0 )
+			{
+			foreach ( $catList as $cat )
+				{
+				$all_categories[ $cat->id ] = $cat->title;
+				}
+			}
+
 		if ( $propertyFeatureUid > 0 )
 			{
 			$query        = "SELECT hotel_feature_abbv,hotel_feature_full_desc,image,property_uid,ptype_xref,cat_id FROM #__jomres_hotel_features WHERE hotel_features_uid  = '" . (int) $propertyFeatureUid . "' AND property_uid = '0'";
@@ -44,6 +56,11 @@ class j16000editPfeature
 				
 				$cat_id = $pFeature->cat_id;
 				}
+			}
+		else
+			{
+			$ptype_xref = 0;
+			$cat_id = key($all_categories);
 			}
 		if ( $clone ) $propertyFeatureUid = 0;
 
@@ -75,16 +92,7 @@ class j16000editPfeature
 				}
 			}
 		
-		$all_categories = array();
-		$query      = "SELECT id,title FROM #__jomres_hotel_features_categories";
-		$catList  = doSelectSql( $query );
-		if ( count( $catList ) > 0 )
-			{
-			foreach ( $catList as $cat )
-				{
-				$all_categories[ $cat->id ] = $cat->title;
-				}
-			}
+
 
 		$map  = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS;
 		$mrp  = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/';
