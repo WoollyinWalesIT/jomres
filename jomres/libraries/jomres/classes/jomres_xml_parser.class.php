@@ -79,6 +79,8 @@ class jomres_xml_parser
 					// else send in tag
 					array_push( $stack, $val[ 'tag' ] );
 					}
+				if (!isset($val[ 'value' ]))
+					$val[ 'value' ] = '';
 				$this->setArrayValue( $this->output, $stack, $val[ 'value' ] );
 				array_pop( $stack );
 				}
