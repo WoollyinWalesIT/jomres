@@ -67,7 +67,8 @@ class jomres_regions
 		{
 		foreach ( $this->regions as $region )
 			{
-			if ( $region[ 'countrycode' ] == $countrycode ) return $region;
+			if ( $region[ 'countrycode' ] == $countrycode ) 
+				return $region;
 			}
 
 		return false;
@@ -75,7 +76,10 @@ class jomres_regions
 
 	function get_region_by_id( $id )
 		{
-		return $this->regions[ $id ];
+		if (isset($this->regions[ $id ]))
+			return $this->regions[ $id ];
+		else
+			throw new Exception("Tried to get region with non-existant id");
 		}
 	}
 

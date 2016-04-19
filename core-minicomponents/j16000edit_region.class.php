@@ -27,16 +27,28 @@ class j16000edit_region
 			}
 		$id = intval( jomresGetParam( $_REQUEST, 'id', 0 ) );
 
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+		
 		$jomres_regions = jomres_singleton_abstract::getInstance( 'jomres_regions' );
-		$region         = $jomres_regions->get_region_by_id( $id );
-
+		if ($id>0)
+			{
+			$region		= $jomres_regions->get_region_by_id( $id );
+			$output[ 'ID' ]              = $id;
+			$output[ 'COUNTRYDROPDOWN' ] = createCountriesDropdown( $region[ 'countrycode' ], "countrycode", false );
+			$output[ 'REGIONNAME' ]      = $region[ 'regionname' ];
+			}
+		else
+			{
+			$region		=array();
+			$output[ 'ID' ]              = 0;
+			$output[ 'COUNTRYDROPDOWN' ] = createCountriesDropdown( $jrConfig['limit_property_country_country'], "countrycode", false );
+			$output[ 'REGIONNAME' ]      = '';
+			
+			}
 		$output[ '_JOMRES_EDIT_REGION_TITLE' ]        = jr_gettext( '_JOMRES_EDIT_REGION_TITLE', _JOMRES_EDIT_REGION_TITLE,false );
 		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYNAME' ] = jr_gettext( '_JOMRES_EDIT_COUNTRY_COUNTRYNAME', _JOMRES_EDIT_COUNTRY_COUNTRYNAME,false );
 		$output[ '_JOMRES_EDIT_REGION_REGIONNAME' ]   = jr_gettext( '_JOMRES_EDIT_REGION_REGIONNAME', _JOMRES_EDIT_REGION_REGIONNAME,false );
-
-		$output[ 'ID' ]              = $id;
-		$output[ 'COUNTRYDROPDOWN' ] = createCountriesDropdown( $region[ 'countrycode' ], "countrycode", false );
-		$output[ 'REGIONNAME' ]      = $region[ 'regionname' ];
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();

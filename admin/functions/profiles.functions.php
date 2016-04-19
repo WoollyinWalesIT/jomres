@@ -106,14 +106,21 @@ function editProfile()
 		{
 		$r                = array ();
 		$propertyManagers = "";
-		$managers         = $managersToPropertysArray[ $i ];
-		if ( count( $managers ) > 0 )
+		if (isset($managersToPropertysArray[ $i ]))
 			{
-			foreach ( $managers as $m )
+			$managers         = $managersToPropertysArray[ $i ];
+			if ( count( $managers ) > 0 )
 				{
-				$propertyManagers .= $managersArray[ $m ] . ", ";
+				foreach ( $managers as $m )
+					{
+					$propertyManagers .= $managersArray[ $m ] . ", ";
+					}
+				$propertyManagers = substr( $propertyManagers, 0, -2 );
 				}
-			$propertyManagers = substr( $propertyManagers, 0, -2 );
+			}
+		else
+			{
+			$propertyManagers = '';
 			}
 		if ( $i % 2 ) $row = "1";
 		$checked = "";
