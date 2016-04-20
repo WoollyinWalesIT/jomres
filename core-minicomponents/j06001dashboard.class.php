@@ -193,7 +193,6 @@ class j06001dashboard
 		$output['EXISTING_GUESTS_DROPDOWN'] = $this->getExistingGuestsDropdown($property_uid);
 
 		$pageoutput[]=$output;
-		$roomsoutput[]=$r;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
 		$tmpl->addRows( 'pageoutput',$pageoutput);

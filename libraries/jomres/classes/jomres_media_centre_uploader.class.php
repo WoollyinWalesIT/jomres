@@ -876,7 +876,7 @@ class UploadHandler
 			{
 			$resource_type = (string) jomresGetParam( $_REQUEST, 'resource_type', 'property' );
 			$resource_id   = (int) jomresGetParam( $_REQUEST, 'resource_id', 0 );
-			
+			$url_context   = (int) jomresGetParam( $_REQUEST, 'upload_context', 'property' );
 			
 			$content['files'][$key]->name           = str_replace($this->original_file_name,$this->final_image_name,$content['files'][$key]->name);
 			$content['files'][$key]->type           = 'image/jpeg';
@@ -885,13 +885,16 @@ class UploadHandler
 			$content['files'][$key]->thumbnailUrl   = str_replace($this->original_file_name,"/".$this->final_image_name,$content['files'][$key]->thumbnailUrl);
 			$content['files'][$key]->random_id      = generateJomresRandomString( 10 );
 
+			if (!isset($this->url_context))
+				
+			
 			if (!jomres_cmsspecific_areweinadminarea())
 				{
-				$content['files'][$key]->deleteUrl      = JOMRES_SITEPAGE_URL_AJAX."&task=media_centre_handler".$this->url_context."&delete=1&resource_type=".$resource_type."&resource_id=".$resource_id."&filename=".$this->final_image_name;
+				$content['files'][$key]->deleteUrl      = JOMRES_SITEPAGE_URL_AJAX."&task=media_centre_handler".$url_context."&delete=1&resource_type=".$resource_type."&resource_id=".$resource_id."&filename=".$this->final_image_name;
 				}
 			else
 				{
-				$content['files'][$key]->deleteUrl      = JOMRES_SITEPAGE_URL_ADMIN_AJAX."&task=media_centre_handler".$this->url_context."&delete=1&resource_type=".$resource_type."&resource_id=".$resource_id."&filename=".$this->final_image_name;
+				$content['files'][$key]->deleteUrl      = JOMRES_SITEPAGE_URL_ADMIN_AJAX."&task=media_centre_handler".$url_context."&delete=1&resource_type=".$resource_type."&resource_id=".$resource_id."&filename=".$this->final_image_name;
 				}
 			
 /* 			$content['files'][$key]->resource_type  = $resource_type;

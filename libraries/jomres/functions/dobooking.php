@@ -28,7 +28,12 @@ $thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
 $MiniComponents->triggerEvent( '00100' ); // Pre-dobooking. Optional
 $userIsManager = checkUserIsManager();
 
-if ( $userIsManager && in_array( intval( $_REQUEST[ 'selectedProperty' ] ), $thisJRUser->authorisedProperties ) && (int) $_REQUEST[ 'selectedProperty' ] > 0 && $thisJRUser->currentproperty != (int) $_REQUEST[ 'selectedProperty' ] )
+if ( 
+	isset($_REQUEST[ 'selectedProperty' ]) &&
+	$userIsManager && 
+	in_array( intval( $_REQUEST[ 'selectedProperty' ] ), $thisJRUser->authorisedProperties ) && 
+	(int) $_REQUEST[ 'selectedProperty' ] > 0 && 
+	$thisJRUser->currentproperty != (int) $_REQUEST[ 'selectedProperty' ] )
 	{
 	$thisJRUser->set_currentproperty( (int) $_REQUEST[ 'selectedProperty' ] );
 	jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "task=dobooking&selectedProperty=$selectedProperty" ), "" );

@@ -68,10 +68,6 @@ class jomres_tooltips
 
 				$output[ 'TITLE' ]  = $hover_content;
 				$output[ 'IMAGE' ]  = '/'.JOMRES_ROOT_DIRECTORY.'/images/SymbolInformation.png';
-				$output[ 'WIDTH' ]  = $width;
-				$output[ 'HEIGHT' ] = $height;
-				$output[ 'BORDER' ] = $border;
-
 
 				$pageoutput[ ] = $output;
 				$tmpl          = new patTemplate();

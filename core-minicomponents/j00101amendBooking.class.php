@@ -31,7 +31,7 @@ class j00101amendBooking
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 
-		if ( !$thisJRUser->userIsManager || !in_array( intval( $_REQUEST[ 'selectedProperty' ] ), $thisJRUser->authorisedProperties ))
+		if ( !$thisJRUser->userIsManager || ( isset($_REQUEST[ 'selectedProperty' ]) && !in_array( intval( $_REQUEST[ 'selectedProperty' ] ), $thisJRUser->authorisedProperties ) ) )
 			return;
 		
 		$amend = intval( jomresGetParam( $_REQUEST, 'amend', 0 ) );
@@ -285,7 +285,7 @@ class j00101amendBooking
 	 */
 	function getRetVals()
 		{
-		return $this->returnValue;
+		return null;
 		}
 	}
 
