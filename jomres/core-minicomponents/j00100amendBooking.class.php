@@ -29,7 +29,7 @@ class j00100amendBooking
 
 		if ( !$thisJRUser->userIsManager ) return;
 
-		if ( in_array( intval( $_REQUEST[ 'selectedProperty' ] ), $thisJRUser->authorisedProperties ) )
+		if ( isset($_REQUEST[ 'selectedProperty' ]) && in_array( intval( $_REQUEST[ 'selectedProperty' ] ), $thisJRUser->authorisedProperties ) )
 			{
 			$selectedProperty = jomresGetParam( $_REQUEST, "selectedProperty", 0 );
 			if ( $selectedProperty > 0 && $thisJRUser->currentproperty != $selectedProperty )
@@ -50,7 +50,7 @@ class j00100amendBooking
 	 */
 	function getRetVals()
 		{
-		return $this->returnValue;
+		return null;
 		}
 	}
 

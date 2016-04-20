@@ -190,7 +190,9 @@ class dobooking
 			// $this->mininterval				= $bookingDeets['mininterval'];
 			// if ($this->mininterval == 0)
 			// $this->mininterval = 1;
-			$this->amend_contract        = $bookingDeets[ 'amend_contract' ];
+			$this->amend_contract		 = false;
+			if (isset($bookingDeets[ 'amend_contract' ]))
+				$this->amend_contract        = $bookingDeets[ 'amend_contract' ];
 			$this->coupon_id             = $bookingDeets[ 'coupon_id' ];
 			$this->coupon_code           = $bookingDeets[ 'coupon_code' ];
 			$this->coupon_details        = $bookingDeets[ 'coupon_details' ];
@@ -281,9 +283,7 @@ class dobooking
 		$this->cfg_singleRoomProperty                   = $mrConfig[ 'singleRoomProperty' ];
 		$this->cfg_cal_output                           = $mrConfig[ 'cal_output' ];
 		$this->cfg_cal_input                            = $jrConfig[ 'cal_input' ];
-		//$this->cfg_showExtras									= $mrConfig['showExtras'];
-		$this->cfg_currency                  = $mrConfig[ 'currency' ];
-		$this->cfg_currencyCode              = $mrConfig[ 'currencyCode' ];
+
 		$this->cfg_templatePack              = "basic";
 		$this->cfg_limitAdvanceBookingsYesNo = $mrConfig[ 'limitAdvanceBookingsYesNo' ];
 		$this->cfg_advanceBookingsLimit      = $mrConfig[ 'advanceBookingsLimit' ];
@@ -293,11 +293,10 @@ class dobooking
 		$this->cfg_euroTaxYesNo              = $mrConfig[ 'euroTaxYesNo' ];
 		$this->cfg_euroTaxPercentage         = $mrConfig[ 'euroTaxPercentage' ];
 		$this->cfg_depAmount                 = $mrConfig[ 'depAmount' ];
-		$this->cfg_popupsAllowed             = $mrConfig[ 'popupsAllowed' ];
 		$this->cfg_showdepartureinput        = $mrConfig[ 'showdepartureinput' ];
 		$this->cfg_ratemultiplier            = $mrConfig[ 'ratemultiplier' ];
 		$this->cfg_dateFormatStyle           = $mrConfig[ 'dateFormatStyle' ];
-		//$this->cfg_inputBoxErrorBorder								= $mrConfig['inputBoxErrorBorder'];
+
 		$this->cfg_inputBoxErrorBackground = $mrConfig[ 'inputBoxErrorBackground' ];
 
 		$tmpBookingHandler = jomres_getSingleton( 'jomres_temp_booking_handler' );
@@ -314,7 +313,6 @@ class dobooking
 		$this->cfg_minimuminterval                   = $mrConfig[ 'minimuminterval' ];
 		$this->cfg_showDeposit                       = $mrConfig[ 'chargeDepositYesNo' ];
 		$this->cfg_showRoomImageInBookingFormOverlib = $mrConfig[ 'showRoomImageInBookingFormOverlib' ];
-		$this->cfg_showRoomTypeImageInBookingForm    = $mrConfig[ 'showRoomTypeImageInBookingForm' ];
 
 		if ( $this->booker_class == "100" ) $this->cfg_mindaysbeforearrival = 0;
 		else
@@ -531,7 +529,19 @@ class dobooking
 
 		foreach ( $basic_room_details->rooms as $r )
 			{
-			$this->allPropertyRooms[ $r['room_uid'] ] = array ( 'room_uid' => $r['room_uid'], 'room_classes_uid' => $r['room_classes_uid'], 'propertys_uid' => $r['propertys_uid'], 'room_features_uid' => $r['room_features_uid'], 'room_name' => $r['room_name'], 'room_number' => $r['room_number'], 'room_floor' => $r['room_floor'], 'max_people' => $r['max_people'], 'singleperson_suppliment' => $r['singleperson_suppliment'] , "small_room_image" => $room_images [ $r['room_uid'] ] [0] ['small'], "medium_room_image" => $room_images [ $r['room_uid'] ] [0] ['medium']);
+			$this->allPropertyRooms[ $r['room_uid'] ] = array ( 
+				'room_uid'					=> $r['room_uid'], 
+				'room_classes_uid'			=> $r['room_classes_uid'], 
+				'propertys_uid'				=> $r['propertys_uid'], 
+				'room_features_uid'			=> $r['room_features_uid'], 
+				'room_name'					=> $r['room_name'], 
+				'room_number'				=> $r['room_number'], 
+				'room_floor'				=> $r['room_floor'],
+				'max_people'				=> $r['max_people'], 
+				'singleperson_suppliment'	=> $r['singleperson_suppliment'] , 
+				"small_room_image"			=> $room_images [ $r['room_uid'] ] [0] ['small'], 
+				"medium_room_image"			=> $room_images [ $r['room_uid'] ] [0] ['medium']
+				);
 
 			$this->allPropertyRoomUids[ ] = $r['room_uid'];
 			
@@ -566,7 +576,27 @@ class dobooking
 			{
 			$roomrate                                  = $this->get_nett_price( $t->roomrateperday, $this->accommodation_tax_rate );
 			$dates                                     = $this->get_periods( $t->validfrom, $t->validto . ' 23:59:59', $interval );
-			$this->allPropertyTariffs[ $t->rates_uid ] = array ( 'rates_uid' => $t->rates_uid, 'rate_title' => $t->rate_title, 'rate_description' => $t->rate_description, 'validfrom' => $t->validfrom, 'validto' => $t->validto, 'roomrateperday' => $roomrate, 'mindays' => $t->mindays, 'maxdays' => $t->maxdays, 'minpeople' => $t->minpeople, 'maxpeople' => $t->maxpeople, 'roomclass_uid' => $t->roomclass_uid, 'ignore_pppn' => $t->ignore_pppn, 'allow_ph' => $t->allow_ph, 'allow_we' => $t->allow_we, 'weekendonly' => $t->weekendonly, 'dayofweek' => $t->dayofweek, 'minrooms_alreadyselected' => $t->minrooms_alreadyselected, 'maxrooms_alreadyselected' => $t->maxrooms_alreadyselected, 'tariff_dates' => $dates );
+			$this->allPropertyTariffs[ $t->rates_uid ] = array ( 
+				'rates_uid'					=> $t->rates_uid, 
+				'rate_title'				=> $t->rate_title, 
+				'rate_description'			=> $t->rate_description, 
+				'validfrom'					=> $t->validfrom, 
+				'validto'					=> $t->validto, 
+				'roomrateperday'			=> $roomrate, 
+				'mindays'					=> $t->mindays, 
+				'maxdays'					=> $t->maxdays, 
+				'minpeople'					=> $t->minpeople, 
+				'maxpeople'					=> $t->maxpeople, 
+				'roomclass_uid'				=> $t->roomclass_uid, 
+				'ignore_pppn'				=> $t->ignore_pppn, 
+				'allow_ph'					=> $t->allow_ph, 
+				'allow_we'					=> $t->allow_we, 
+				'weekendonly'				=> $t->weekendonly, 
+				'dayofweek'					=> $t->dayofweek, 
+				'minrooms_alreadyselected'	=> $t->minrooms_alreadyselected, 
+				'maxrooms_alreadyselected'	=> $t->maxrooms_alreadyselected, 
+				'tariff_dates'				=> $dates 
+				);
 			}
 
 		}
@@ -587,7 +617,7 @@ class dobooking
 
 	function getAllRoomClasses()
 		{
-		$query       = "SELECT room_classes_uid,room_class_abbv,image FROM #__jomres_room_classes WHERE room_classes_uid IN (".implode(',',$this->allRoomClassIds).") ";
+		$query       = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes WHERE room_classes_uid IN (".implode(',',$this->allRoomClassIds).") ";
 		$roomClasses = doSelectSql( $query );
 		foreach ( $roomClasses as $c )
 			{
@@ -1367,16 +1397,6 @@ class dobooking
 
 	/**
 	#
-	 * Returns the currency symbol for the property
-	#
-	 */
-	function getCurrencySymbol()
-		{
-		return $this->cfg_currency;
-		}
-
-	/**
-	#
 	 * Implodes the variances ready for storing in the database
 	#
 	 */
@@ -1465,9 +1485,10 @@ class dobooking
 		if ( !isset( $type ) || empty( $type ) ) return false;
 		//$this->setErrorLog("There are : ".count($this->variancetypes)." examples of variant type ".$type." in the object." );
 		//$this->setErrorLog("Variable variancetypes is : ".gettype($this->variancetypes) );
+
 		for ( $i = 0; $i <= count( $this->variancetypes ); $i++ )
 			{
-			if ( $this->variancetypes[ $i ] == $type )
+			if ( isset($this->variancetypes[ $i ]) && $this->variancetypes[ $i ] == $type )
 				{
 				$id          = $this->varianceuids[ $i ];
 				$qty         = $this->varianceqty[ $i ];
@@ -1989,7 +2010,8 @@ class dobooking
 
 	function remove_third_party_extra( $plugin, $id )
 		{
-		unset ( $this->third_party_extras[ $plugin ][ $id ] );
+		if (isset($this->third_party_extras[ $plugin ][ $id ]))
+			unset ( $this->third_party_extras[ $plugin ][ $id ] );
 		}
 
 	function reset_choices_for_plugin( $plugin )

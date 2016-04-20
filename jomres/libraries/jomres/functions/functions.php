@@ -176,7 +176,7 @@ function output_fatal_error($e)
 	
 	$pageoutput[] = $output;
 	$tmpl		  = new patTemplate();
-	$tmpl->setRoot( $path );
+	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 	$tmpl->readTemplatesFromInput( "error_developer.html" );
 	$tmpl->addRows( 'rows', $rows );
 	$tmpl->addRows( 'pageoutput', $pageoutput );
@@ -2585,6 +2585,8 @@ function request_log( $loggingRequest )
 			$log .= "<![CDATA[";
 			foreach ( $_REQUEST as $key => $value )
 				{
+				if (is_array($value))
+					$value = json_encode($value);
 				$log .= $key . " " . $value . " --- \n";
 				}
 			$log .= "]]>\n";

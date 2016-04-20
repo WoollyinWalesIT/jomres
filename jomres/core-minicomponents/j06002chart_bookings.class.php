@@ -122,6 +122,6 @@ class j06002chart_bookings
 
 	function getRetVals()
 		{
-		return $this->retVals;
+		return null;
 		}
 	}

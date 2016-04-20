@@ -336,7 +336,10 @@ class jomres_temp_booking_handler
 
 	function getBookingFieldVal( $field )
 		{
-		return $this->tmpbooking[ $field ];
+		if (isset($this->tmpbooking[ $field ]))
+			return $this->tmpbooking[ $field ];
+		else
+			return null;
 		}
 
 	function saveAllData()
@@ -347,7 +350,8 @@ class jomres_temp_booking_handler
 
 	function updateBookingField( $fieldname, $value )
 		{
-		if ( !isset( $this->tmpbooking[ $fieldname ] ) ) $this->addNewBookingField( $fieldname );
+		if ( !isset( $this->tmpbooking[ $fieldname ] ) ) 
+			$this->addNewBookingField( $fieldname );
 		$this->tmpbooking[ $fieldname ] = $value;
 		}
 
