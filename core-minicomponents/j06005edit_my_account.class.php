@@ -33,6 +33,7 @@ class j06005edit_my_account
 
 		$output     = array ();
 		$pageoutput = array ();
+		$vat_validation = array();
 
 		$user_details = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( $thisJRUser->id );
 
@@ -85,7 +86,6 @@ class j06005edit_my_account
 				
 				if ( strlen($validation_success) > 0 )
 					{
-					$vat_validation = array();
 					$vat_validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] =$validation_success;
 					
 					if ($validation->vat_number_validated)
@@ -149,7 +149,7 @@ class j06005edit_my_account
 
 		$output[ ] = jr_gettext( '_JOMRES_MR_CREDITCARD_EDIT', '_JOMRES_MR_CREDITCARD_EDIT' );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME', '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME' );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_SURNAME', _'JOMRES_COM_MR_DISPGUEST_SURNAME' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_SURNAME', '_JOMRES_COM_MR_DISPGUEST_SURNAME' );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_HOUSE', '_JOMRES_COM_MR_DISPGUEST_HOUSE' );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_STREET', '_JOMRES_COM_MR_DISPGUEST_STREET' );
 		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_TOWN', '_JOMRES_COM_MR_DISPGUEST_TOWN' );
