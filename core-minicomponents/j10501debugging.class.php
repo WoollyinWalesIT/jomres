@@ -36,51 +36,51 @@ class j10501debugging
 
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
-			$configurationPanel->startPanel( jr_gettext( "_JOMRES_DEBUGGING_TAB", _JOMRES_DEBUGGING_TAB, false ) );
+			$configurationPanel->startPanel( jr_gettext( "_JOMRES_DEBUGGING_TAB", '_JOMRES_DEBUGGING_TAB', false ) );
 	
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT', _JOMRES_CONFIG_PRODUCTION_DEVELOPMENT, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT', '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT', false ) );
 			$configurationPanel->setmiddle( $production_development_dropdown );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', _JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_SAFEMODE', _JOMRES_SAFEMODE, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_SAFEMODE', '_JOMRES_SAFEMODE', false ) );
 			$configurationPanel->setmiddle( $lists[ 'safe_mode' ] );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_SAFEMODE_DESC', _JOMRES_SAFEMODE_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_SAFEMODE_DESC', '_JOMRES_SAFEMODE_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_A_ERRORCHECKING', _JOMRES_COM_A_ERRORCHECKING, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_A_ERRORCHECKING', '_JOMRES_COM_A_ERRORCHECKING', false ) );
 			$configurationPanel->setmiddle( $lists[ 'errorChecking' ] );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_A_ERRORCHECKING_DESC', _JOMRES_COM_A_ERRORCHECKING_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_A_ERRORCHECKING_DESC', '_JOMRES_COM_A_ERRORCHECKING_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_DUMPTEMPLATEDATA', _JOMRES_COM_DUMPTEMPLATEDATA, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_DUMPTEMPLATEDATA', '_JOMRES_COM_DUMPTEMPLATEDATA', false ) );
 			$configurationPanel->setmiddle( $lists[ 'dumpTemplate' ] );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_DUMPTEMPLATEDATA_DESC', _JOMRES_COM_DUMPTEMPLATEDATA_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_DUMPTEMPLATEDATA_DESC', '_JOMRES_COM_DUMPTEMPLATEDATA_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->insertDescription(jr_gettext( '_JOMRES_COM_LOGGING_WARNING', _JOMRES_COM_LOGGING_WARNING, false ));
+			$configurationPanel->insertDescription(jr_gettext( '_JOMRES_COM_LOGGING_WARNING', '_JOMRES_COM_LOGGING_WARNING', false ));
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_BOOKING', _JOMRES_COM_LOGGING_BOOKING, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_BOOKING', '_JOMRES_COM_LOGGING_BOOKING', false ) );
 			$configurationPanel->setmiddle( $lists[ 'loggingBooking' ] );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_GATEWAY', _JOMRES_COM_LOGGING_GATEWAY, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_GATEWAY', '_JOMRES_COM_LOGGING_GATEWAY', false ) );
 			$configurationPanel->setmiddle( $lists[ 'loggingGateway' ] );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_SYSTEM', _JOMRES_COM_LOGGING_SYSTEM, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_SYSTEM', '_JOMRES_COM_LOGGING_SYSTEM', false ) );
 			$configurationPanel->setmiddle( $lists[ 'loggingSystem' ] );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_REQUEST', _JOMRES_COM_LOGGING_REQUEST, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_REQUEST', '_JOMRES_COM_LOGGING_REQUEST', false ) );
 			$configurationPanel->setmiddle( $lists[ 'loggingRequest' ] );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_JRPORTAL', _JOMRES_COM_LOGGING_JRPORTAL, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_JRPORTAL', '_JOMRES_COM_LOGGING_JRPORTAL', false ) );
 			$configurationPanel->setmiddle( $lists[ 'loggingPortal' ] );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();

@@ -34,31 +34,31 @@ class j10501currencies
 		$currency_codes_dropdown		= $componentArgs[ 'currency_codes_dropdown' ];
 		
 						
-		$configurationPanel->startPanel( jr_gettext( "_JOMRES_CURRENCYCONVERSION_TAB", _JOMRES_CURRENCYCONVERSION_TAB, false ) );
+		$configurationPanel->startPanel( jr_gettext( "_JOMRES_CURRENCYCONVERSION_TAB", '_JOMRES_CURRENCYCONVERSION_TAB', false ) );
 
-		$configurationPanel->setleft( jr_gettext( '_OPENEXCHANGE_API', _OPENEXCHANGE_API, false ) );
+		$configurationPanel->setleft( jr_gettext( '_OPENEXCHANGE_API', '_OPENEXCHANGE_API', false ) );
 		$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_openexchangerates_api_key" value="' . $jrConfig[ 'openexchangerates_api_key' ] . '" />' );
-		$configurationPanel->setright( jr_gettext( '_OPENEXCHANGE_API_DESC', _OPENEXCHANGE_API_DESC, false ) );
+		$configurationPanel->setright( jr_gettext( '_OPENEXCHANGE_API_DESC', '_OPENEXCHANGE_API_DESC', false ) );
 		$configurationPanel->insertSetting();
 		
-		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO', _JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO, false ) );
+		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO', '_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO', false ) );
 		$configurationPanel->setmiddle( $lists['useGlobalCurrency'] );
-		$configurationPanel->setright( jr_gettext( '_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC', _JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC, false ) );
+		$configurationPanel->setright( jr_gettext( '_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC', '_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC', false ) );
 		$configurationPanel->insertSetting();
 		
-		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_A_CURRENCYCODE', _JOMRES_COM_A_CURRENCYCODE, false ) );
+		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_A_CURRENCYCODE', '_JOMRES_COM_A_CURRENCYCODE', false ) );
 		$configurationPanel->setmiddle( $currency_codes_dropdown );
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 		
-		$configurationPanel->setleft( jr_gettext( '_JOMRES_CONVERSION_TITLE', _JOMRES_CONVERSION_TITLE, false ) );
+		$configurationPanel->setleft( jr_gettext( '_JOMRES_CONVERSION_TITLE', '_JOMRES_CONVERSION_TITLE', false ) );
 		$configurationPanel->setmiddle( $lists['use_conversion_feature'] );
-		$configurationPanel->setright( jr_gettext( '_JOMRES_CONVERSION_TITLE_DESC', _JOMRES_CONVERSION_TITLE_DESC, false ) );
+		$configurationPanel->setright( jr_gettext( '_JOMRES_CONVERSION_TITLE_DESC', '_JOMRES_CONVERSION_TITLE_DESC', false ) );
 		$configurationPanel->insertSetting();
 		
-		$configurationPanel->setleft( jr_gettext( '_JOMRES_IP_DETECTION_API_KEY_TITLE', _JOMRES_IP_DETECTION_API_KEY_TITLE, false ) );
+		$configurationPanel->setleft( jr_gettext( '_JOMRES_IP_DETECTION_API_KEY_TITLE', '_JOMRES_IP_DETECTION_API_KEY_TITLE', false ) );
 		$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_geolocation_api_key" value="' . $jrConfig[ 'geolocation_api_key' ] . '" />' );
-		$configurationPanel->setright( jr_gettext( '_JOMRES_IP_DETECTION_API_KEY_DESC', _JOMRES_IP_DETECTION_API_KEY_DESC, false ) );
+		$configurationPanel->setright( jr_gettext( '_JOMRES_IP_DETECTION_API_KEY_DESC', '_JOMRES_IP_DETECTION_API_KEY_DESC', false ) );
 		$configurationPanel->insertSetting();
 	
 		$configurationPanel->endPanel();

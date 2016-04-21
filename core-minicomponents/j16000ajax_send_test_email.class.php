@@ -50,8 +50,8 @@ class j16000ajax_send_test_email
 			$jrConfig[ 'default_from_address' ], 
 			$booking_email_details->data[$contract_uid]['PROPERTY_NAME'],
 			jomresGetParam( $_REQUEST, 'test_email_address', "" ),
-			 jr_gettext( _JOMRES_TEST_EMAIL_SUBJECT, '_JOMRES_TEST_EMAIL_SUBJECT', false ),
-			 jr_gettext( _JOMRES_TEST_EMAIL_CONTENT, '_JOMRES_TEST_EMAIL_CONTENT', false ),
+			 jr_gettext( '_JOMRES_TEST_EMAIL_SUBJECT', '_JOMRES_TEST_EMAIL_SUBJECT', false ),
+			 jr_gettext( '_JOMRES_TEST_EMAIL_CONTENT', '_JOMRES_TEST_EMAIL_CONTENT', false ),
 			$mode = 1,
 			true
 			);

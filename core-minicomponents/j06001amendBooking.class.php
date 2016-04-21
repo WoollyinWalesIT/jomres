@@ -61,15 +61,15 @@ class j06001amendBooking
 			//if (!JOMRES_SINGLEPROPERTY)
 			$output[ 'PROPERTYDROPDOWN' ] = '' . $propertyDropdown . '';
 
-			$cancelText = jr_gettext( '_JOMRES_COM_A_CANCEL', _JOMRES_COM_A_CANCEL, false );
+			$cancelText = jr_gettext( '_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL', false );
 			$jrtbar     = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb       = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL ), $cancelText );
 			$jrtb .= $jrtbar->endTable();
 			$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-			$output[ 'PAGETITLE' ]      = jr_gettext( '_JOMCOMP_AMEND', _JOMCOMP_AMEND );
-			$output[ 'SELECTPROPERTY' ] = jr_gettext( '_JOMCOMP_AMEND_SELECTPROPERTY', _JOMCOMP_AMEND_SELECTPROPERTY );
+			$output[ 'PAGETITLE' ]      = jr_gettext( '_JOMCOMP_AMEND', '_JOMCOMP_AMEND' );
+			$output[ 'SELECTPROPERTY' ] = jr_gettext( '_JOMCOMP_AMEND_SELECTPROPERTY', '_JOMCOMP_AMEND_SELECTPROPERTY' );
 			$output[ 'CONTRACTUID' ]    = $contract_uid;
 
 			$pageoutput[ ] = $output;
@@ -88,9 +88,9 @@ class j06001amendBooking
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMCOMP_AMEND', _JOMCOMP_AMEND );
-		$output[ ] = jr_gettext( '_JOMCOMP_AMEND_SELECTPROPERTY', _JOMCOMP_AMEND_SELECTPROPERTY );
-		$output[ ] = jr_gettext( '_JOMRES_COM_A_CANCEL', _JOMRES_COM_A_CANCEL );
+		$output[ ] = jr_gettext( '_JOMCOMP_AMEND', '_JOMCOMP_AMEND' );
+		$output[ ] = jr_gettext( '_JOMCOMP_AMEND_SELECTPROPERTY', '_JOMCOMP_AMEND_SELECTPROPERTY' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL' );
 
 		foreach ( $output as $o )
 			{

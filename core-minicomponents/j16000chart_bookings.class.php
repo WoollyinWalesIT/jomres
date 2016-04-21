@@ -38,10 +38,10 @@ class j16000chart_bookings
 		
 		//set new chart data
 		$chart->type 		= $chart_type;
-		$chart->title 		= jr_gettext("_JOMRES_STATUS_BOOKINGS",_JOMRES_STATUS_BOOKINGS,false,false);
+		$chart->title 		= jr_gettext("_JOMRES_STATUS_BOOKINGS",'_JOMRES_STATUS_BOOKINGS',false,false);
 		$chart->url 		= jomresUrl(JOMRES_SITEPAGE_URL_ADMIN . '&task=charts&jr_chart=chart_bookings');
 		$chart->title_class = 'panel-default';
-		$chart->description = jr_gettext("_JOMRES_CHART_BOOKINGS_DESC",_JOMRES_CHART_BOOKINGS_DESC,false,false);
+		$chart->description = jr_gettext("_JOMRES_CHART_BOOKINGS_DESC",'_JOMRES_CHART_BOOKINGS_DESC',false,false);
 		$chart->labels 		= array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
 		
 		//query db for relevant rows for this chart

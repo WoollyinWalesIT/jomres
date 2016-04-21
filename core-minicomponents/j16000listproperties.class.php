@@ -43,49 +43,49 @@ class j16000listproperties
 		$output=array();
 		$rows=array();
 		
-		$output[ 'PAGETITLE' ]          = jr_gettext( "_JOMRES_HLIST_PROPERTIES", _JOMRES_HLIST_PROPERTIES, false );
-		$output[ 'WARNING' ]          	= jr_gettext( "_JOMRES_HLIST_PROPERTIES_WARNING", _JOMRES_HLIST_PROPERTIES_WARNING, false );
-		$output[ 'HSTATUS' ] 			= jr_gettext( "COMMON_EDIT", COMMON_EDIT );
+		$output[ 'PAGETITLE' ]          = jr_gettext( "_JOMRES_HLIST_PROPERTIES", '_JOMRES_HLIST_PROPERTIES', false );
+		$output[ 'WARNING' ]          	= jr_gettext( "_JOMRES_HLIST_PROPERTIES_WARNING", '_JOMRES_HLIST_PROPERTIES_WARNING', false );
+		$output[ 'HSTATUS' ] 			= jr_gettext( "COMMON_EDIT", 'COMMON_EDIT' );
 		$output[ 'HPROPERTYUID' ]       = 'Uid';
-		$output[ 'HPROPERTYNAME' ]      = jr_gettext( "_JRPORTAL_PROPERTIES_PROPERTYNAME", _JRPORTAL_PROPERTIES_PROPERTYNAME );
-		$output[ 'HPROPERTY_STREET' ]   = jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET", _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET );
-		$output[ 'HPROPERTY_TOWN' ]  	= jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN", _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN );
-		$output[ 'HPROPERTY_REGION' ]   = jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION", _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION );
-		$output[ 'HPROPERTY_COUNTRY' ]  = jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY", _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY );
-		$output[ 'HPROPERTY_POSTCODE' ] = jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE", _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE );
-		$output[ 'HPROPERTY_TEL' ] 		= jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE", _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE );
-		$output[ 'HPROPERTY_EMAIL' ] 	= jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL", _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL );
-		$output[ 'HPROPERTY_FAX' ] 		= jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX", _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX );
-		$output[ 'HPROPERTY_STARS' ] 	= jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS", _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS );
-		$output[ 'HPROPERTY_SUPERIOR' ] = jr_gettext( "JOMRES_SUPERIOR", JOMRES_SUPERIOR );
+		$output[ 'HPROPERTYNAME' ]      = jr_gettext( "_JRPORTAL_PROPERTIES_PROPERTYNAME", '_JRPORTAL_PROPERTIES_PROPERTYNAME' );
+		$output[ 'HPROPERTY_STREET' ]   = jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET", '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET' );
+		$output[ 'HPROPERTY_TOWN' ]  	= jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN", '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN' );
+		$output[ 'HPROPERTY_REGION' ]   = jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION", '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION' );
+		$output[ 'HPROPERTY_COUNTRY' ]  = jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY", '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' );
+		$output[ 'HPROPERTY_POSTCODE' ] = jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE", '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE' );
+		$output[ 'HPROPERTY_TEL' ] 		= jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE", '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE' );
+		$output[ 'HPROPERTY_EMAIL' ] 	= jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL", '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL' );
+		$output[ 'HPROPERTY_FAX' ] 		= jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX", '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX' );
+		$output[ 'HPROPERTY_STARS' ] 	= jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS", '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS' );
+		$output[ 'HPROPERTY_SUPERIOR' ] = jr_gettext( "JOMRES_SUPERIOR", 'JOMRES_SUPERIOR' );
 		$output[ 'HPROPERTY_LAT' ] 		= 'Lat';
 		$output[ 'HPROPERTY_LONG' ] 	= 'Long';
-		$output[ 'HAPPROVED' ] 			= jr_gettext( "_JOMRES_HSTATUS_APPROVED", _JOMRES_HSTATUS_APPROVED );
-		$output[ 'HACTIVE' ] 			= jr_gettext( "_JOMRES_HSTATUS_CURRENT", _JOMRES_HSTATUS_CURRENT );
-		$output[ 'HLASTCHANGED' ] 		= jr_gettext( '_JOMRES_HLASTCHANGED', _JOMRES_HLASTCHANGED, false );
-		$output[ 'HCRATE' ] 			= jr_gettext( '_JRPORTAL_PROPERTIES_COMMISSIONRATE', _JRPORTAL_PROPERTIES_COMMISSIONRATE, false );
-		$output[ 'HLEGEND' ] 			= jr_gettext( "_JOMRES_HLEGEND", _JOMRES_HLEGEND );
+		$output[ 'HAPPROVED' ] 			= jr_gettext( "_JOMRES_HSTATUS_APPROVED", '_JOMRES_HSTATUS_APPROVED' );
+		$output[ 'HACTIVE' ] 			= jr_gettext( "_JOMRES_HSTATUS_CURRENT", '_JOMRES_HSTATUS_CURRENT' );
+		$output[ 'HLASTCHANGED' ] 		= jr_gettext( '_JOMRES_HLASTCHANGED', '_JOMRES_HLASTCHANGED', false );
+		$output[ 'HCRATE' ] 			= jr_gettext( '_JRPORTAL_PROPERTIES_COMMISSIONRATE', '_JRPORTAL_PROPERTIES_COMMISSIONRATE', false );
+		$output[ 'HLEGEND' ] 			= jr_gettext( "_JOMRES_HLEGEND", '_JOMRES_HLEGEND' );
 		
 		//filters output
-		$output['HFILTER']= jr_gettext( '_JOMRES_HFILTER', _JOMRES_HFILTER, false );
-		$output['HPUBLISHED_STATUS']= jr_gettext( '_JOMRES_HSTATUS_PUBLISHING', _JOMRES_HSTATUS_PUBLISHING, false );
-		$output['HPTYPE']= jr_gettext( '_JOMRES_FRONT_PTYPE', _JOMRES_FRONT_PTYPE, false );
+		$output['HFILTER']= jr_gettext( '_JOMRES_HFILTER', '_JOMRES_HFILTER', false );
+		$output['HPUBLISHED_STATUS']= jr_gettext( '_JOMRES_HSTATUS_PUBLISHING', '_JOMRES_HSTATUS_PUBLISHING', false );
+		$output['HPTYPE']= jr_gettext( '_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE', false );
 		
 		$options = array();
-		$options[] = jomresHTML::makeOption( '2', jr_gettext( '_JOMRES_STATUS_ANY', _JOMRES_STATUS_ANY, false ) );
-		$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_STATUS_PUBLISHED', _JOMRES_STATUS_PUBLISHED, false ) );
-		$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_STATUS_NOT_PUBLISHED', _JOMRES_STATUS_NOT_PUBLISHED, false ) );
+		$options[] = jomresHTML::makeOption( '2', jr_gettext( '_JOMRES_STATUS_ANY', '_JOMRES_STATUS_ANY', false ) );
+		$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_STATUS_PUBLISHED', '_JOMRES_STATUS_PUBLISHED', false ) );
+		$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_STATUS_NOT_PUBLISHED', '_JOMRES_STATUS_NOT_PUBLISHED', false ) );
 		$output['PUBLISHED_STATUS']=jomresHTML::selectList( $options, 'published','class="inputbox" size="1"', 'value', 'text', $published);
 		
 		$options = array();
-		$options[] = jomresHTML::makeOption( '2', jr_gettext( '_JOMRES_STATUS_ANY', _JOMRES_STATUS_ANY, false ) );
-		$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false ) );
-		$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false ) );
+		$options[] = jomresHTML::makeOption( '2', jr_gettext( '_JOMRES_STATUS_ANY', '_JOMRES_STATUS_ANY', false ) );
+		$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false ) );
+		$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false ) );
 		$output['APPROVED_STATUS']=jomresHTML::selectList( $options, 'approved','class="inputbox" size="1"', 'value', 'text', $approved);
 		
 		//property type filter
 		$options = array();
-		$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_STATUS_ANY', _JOMRES_STATUS_ANY, false ) );
+		$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_STATUS_ANY', '_JOMRES_STATUS_ANY', false ) );
 		
 		$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 		

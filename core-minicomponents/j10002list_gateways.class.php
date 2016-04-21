@@ -30,7 +30,7 @@ class j10002list_gateways
 		if ( count( $mcOutput ) > 0 )
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=list_gateways', 'listTemplates.png', jr_gettext( "_JOMRES_COM_A_GATEWAYLIST", _JOMRES_COM_A_GATEWAYLIST, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS, false, false ) );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=list_gateways', 'listTemplates.png', jr_gettext( "_JOMRES_COM_A_GATEWAYLIST", '_JOMRES_COM_A_GATEWAYLIST', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS', false, false ) );
 			}
 		else
 			$this->cpanelButton = '';

@@ -196,7 +196,7 @@ class j16000listproperties_ajax
 				{
 				$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 				$jrtb = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem( 'preview', jomresURL( JOMRES_SITEPAGE_URL_NOSEF . '&task=dashboard'  . '&thisProperty=' . $p->propertys_uid . "&tmpl=" . get_showtime('tmplcomponent') ), jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', _JOMRES_FRONT_MR_MENU_ADMIN_HOME, false ) );
+				$jrtb .= $jrtbar->toolbarItem( 'preview', jomresURL( JOMRES_SITEPAGE_URL_NOSEF . '&task=dashboard'  . '&thisProperty=' . $p->propertys_uid . "&tmpl=" . get_showtime('tmplcomponent') ), jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', false ) );
 				$r[] = $jrtb .= $jrtbar->endTable();
 				}
 			else 
@@ -205,8 +205,8 @@ class j16000listproperties_ajax
 				$toolbar->newToolbar();
 
 				$url = jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=dashboard&thisProperty=" . $p->propertys_uid . "&tmpl=" . get_showtime('tmplcomponent') );
-				$toolbar->addItem( 'fa fa-tachometer', 'btn btn-info', '', $url, jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', _JOMRES_FRONT_MR_MENU_ADMIN_HOME, false ), false, 'target="_blank"' );
-				$toolbar->addSecondaryItem( 'fa fa-tachometer', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_property_reviews&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_REVIEWS', _JOMRES_REVIEWS, false ) );
+				$toolbar->addItem( 'fa fa-tachometer', 'btn btn-info', '', $url, jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', false ), false, 'target="_blank"' );
+				$toolbar->addSecondaryItem( 'fa fa-tachometer', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_property_reviews&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false ) );
 				
 				$r[]=$toolbar->getToolbar();
 				}
@@ -231,17 +231,17 @@ class j16000listproperties_ajax
 			$r[] = $stars;
 			
 			if ((int)$p->superior == 1)
-				$r[] = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
+				$r[] = jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false );
 			else
-				$r[] = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
+				$r[] = jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false );
 			
 			$r[] = $p->lat;
 			$r[] = $p->long;
 			
 			//approval dropdown
 			$options = array ();
-			$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false ) );
-			$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false ) );
+			$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false ) );
+			$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false ) );
 			$r[] = jomresHTML::selectList( $options, "approved", ' size="1" onchange="setApproval(\''.$p->propertys_uid.'\', this.value );"', 'value', 'text', $p->approved, false );
 			
 			$r[] = $p->last_changed;

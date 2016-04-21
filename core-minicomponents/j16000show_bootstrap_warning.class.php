@@ -36,8 +36,8 @@ class j16000show_bootstrap_warning
 		$output = array();
 		$pageouput=array();
 
-		$output['_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE']	= jr_gettext("_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE",_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE,false,false);
-		$output['_JOMRES_BOOTSTRAP_OFF_WARNING']		= jr_gettext("_JOMRES_BOOTSTRAP_OFF_WARNING",_JOMRES_BOOTSTRAP_OFF_WARNING,false,false);
+		$output['_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE']	= jr_gettext("_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE",'_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE',false,false);
+		$output['_JOMRES_BOOTSTRAP_OFF_WARNING']		= jr_gettext("_JOMRES_BOOTSTRAP_OFF_WARNING",'_JOMRES_BOOTSTRAP_OFF_WARNING',false,false);
 		
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();

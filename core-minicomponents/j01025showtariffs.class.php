@@ -44,16 +44,16 @@ class j01025showtariffs
 		$google_deets                = array ();
 		$tariff_deets                = array ();
 		$output                      = array ();
-		$output[ 'HTITLE' ]          = jr_gettext( '_JOMRES_FRONT_TARIFFS_TITLE', _JOMRES_FRONT_TARIFFS_TITLE );
-		$output[ 'HDESC' ]           = jr_gettext( '_JOMRES_FRONT_TARIFFS_DESC', _JOMRES_FRONT_TARIFFS_DESC );
-		$output[ 'HROOMTYPE' ]       = jr_gettext( '_JOMRES_FRONT_TARIFFS_ROOMTYPE', _JOMRES_FRONT_TARIFFS_ROOMTYPE );
-		$output[ 'HSTARTS' ]         = jr_gettext( '_JOMRES_FRONT_TARIFFS_STARTS', _JOMRES_FRONT_TARIFFS_STARTS );
-		$output[ 'HENDS' ]           = jr_gettext( '_JOMRES_FRONT_TARIFFS_ENDS', _JOMRES_FRONT_TARIFFS_ENDS );
-		$output[ 'HMINDAYS' ]        = jr_gettext( '_JOMRES_FRONT_TARIFFS_MINDAYS', _JOMRES_FRONT_TARIFFS_MINDAYS );
-		$output[ 'HMAXDAYS' ]        = jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXDAYS', _JOMRES_FRONT_TARIFFS_MAXDAYS );
-		$output[ 'HMINPEEPS' ]       = jr_gettext( '_JOMRES_FRONT_TARIFFS_MINPEEPS', _JOMRES_FRONT_TARIFFS_MINPEEPS );
-		$output[ 'HMAXPEEPS' ]       = jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXPEEPS', _JOMRES_FRONT_TARIFFS_MAXPEEPS );
-		$output[ 'CONVERSIONBLURB' ] = jr_gettext( '_JOMRES_CURRENCYCONVERSIONTEXT', _JOMRES_CURRENCYCONVERSIONTEXT );
+		$output[ 'HTITLE' ]          = jr_gettext( '_JOMRES_FRONT_TARIFFS_TITLE', '_JOMRES_FRONT_TARIFFS_TITLE' );
+		$output[ 'HDESC' ]           = jr_gettext( '_JOMRES_FRONT_TARIFFS_DESC', '_JOMRES_FRONT_TARIFFS_DESC' );
+		$output[ 'HROOMTYPE' ]       = jr_gettext( '_JOMRES_FRONT_TARIFFS_ROOMTYPE', '_JOMRES_FRONT_TARIFFS_ROOMTYPE' );
+		$output[ 'HSTARTS' ]         = jr_gettext( '_JOMRES_FRONT_TARIFFS_STARTS', '_JOMRES_FRONT_TARIFFS_STARTS' );
+		$output[ 'HENDS' ]           = jr_gettext( '_JOMRES_FRONT_TARIFFS_ENDS', '_JOMRES_FRONT_TARIFFS_ENDS' );
+		$output[ 'HMINDAYS' ]        = jr_gettext( '_JOMRES_FRONT_TARIFFS_MINDAYS', '_JOMRES_FRONT_TARIFFS_MINDAYS' );
+		$output[ 'HMAXDAYS' ]        = jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXDAYS', '_JOMRES_FRONT_TARIFFS_MAXDAYS' );
+		$output[ 'HMINPEEPS' ]       = jr_gettext( '_JOMRES_FRONT_TARIFFS_MINPEEPS', '_JOMRES_FRONT_TARIFFS_MINPEEPS' );
+		$output[ 'HMAXPEEPS' ]       = jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXPEEPS', '_JOMRES_FRONT_TARIFFS_MAXPEEPS' );
+		$output[ 'CONVERSIONBLURB' ] = jr_gettext( '_JOMRES_CURRENCYCONVERSIONTEXT', '_JOMRES_CURRENCYCONVERSIONTEXT' );
 
 		$query                   = "SELECT tarifftype_id,tariff_id  FROM #__jomcomp_tarifftype_rate_xref  WHERE property_uid = " . (int) $property_uid;
 		$result                  = doSelectSql( $query );
@@ -130,16 +130,16 @@ class j01025showtariffs
 					switch ( $mrConfig[ 'booking_form_daily_weekly_monthly' ] )
 						{
 						case "D":
-							if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $post_text = jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY );
+							if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $post_text = jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY' );
 							else
 								{
-								if ( $mrConfig[ 'perPersonPerNight' ] == "0" ) $post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', _JOMRES_FRONT_TARIFFS_PN );
+								if ( $mrConfig[ 'perPersonPerNight' ] == "0" ) $post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', '_JOMRES_FRONT_TARIFFS_PN' );
 								else
-								$post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', _JOMRES_FRONT_TARIFFS_PPPN );
+								$post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', '_JOMRES_FRONT_TARIFFS_PPPN' );
 								}
 							break;
 						case "W":
-							$post_text = jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY );
+							$post_text = jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY' );
 							break;
 						case "M":
 							$post_text = jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY );
@@ -149,9 +149,9 @@ class j01025showtariffs
 					if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 						{
 						if ( $tariff->ignore_pppn || $mrConfig[ 'perPersonPerNight' ] == "0" ) 
-							$r[ 'ROOMRATEPERDAY' ] = output_price( $price_inc_vat * $multiplier ) . " " . jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY );
+							$r[ 'ROOMRATEPERDAY' ] = output_price( $price_inc_vat * $multiplier ) . " " . jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY' );
 						else
-							$r[ 'ROOMRATEPERDAY' ] = output_price( $price_inc_vat * $multiplier ) . " " . jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY );
+							$r[ 'ROOMRATEPERDAY' ] = output_price( $price_inc_vat * $multiplier ) . " " . jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY' );
 						}
 					else
 						{
@@ -161,11 +161,11 @@ class j01025showtariffs
 					if ( $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == "1" && $mrConfig[ 'tariffmode' ] == "1" )
 						{
 						if ( $mrConfig[ 'tariffmode' ] == 2 ) $price_inc_vat = $price_inc_vat * 7;
-						$r[ 'ROOMRATEPERDAY' ] = output_price( $price_inc_vat ) . " " . jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK );
+						$r[ 'ROOMRATEPERDAY' ] = output_price( $price_inc_vat ) . " " . jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK' );
 						}
 
 					if ( $tariff->allow_we == "0" ) 
-						$r[ 'NOTWEEKENDS' ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_NOTWEEKEND', _JOMRES_FRONT_TARIFFS_NOTWEEKEND );
+						$r[ 'NOTWEEKENDS' ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_NOTWEEKEND', '_JOMRES_FRONT_TARIFFS_NOTWEEKEND' );
 					$theRate = number_format( ( $price_inc_vat ), 2, '.', '' );
 
 					if ( $tariff->roomrateperday > 0 )
@@ -205,21 +205,21 @@ class j01025showtariffs
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMRES_CURRENCYCONVERSIONTEXT', _JOMRES_CURRENCYCONVERSIONTEXT );
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_NOTWEEKEND', _JOMRES_FRONT_TARIFFS_NOTWEEKEND );
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', _JOMRES_FRONT_TARIFFS_PN );
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', _JOMRES_FRONT_TARIFFS_PPPN );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK );
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_TITLE', _JOMRES_FRONT_TARIFFS_TITLE );
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_DESC', _JOMRES_FRONT_TARIFFS_DESC );
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_ROOMTYPE', _JOMRES_FRONT_TARIFFS_ROOMTYPE );
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_STARTS', _JOMRES_FRONT_TARIFFS_STARTS );
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_ENDS', _JOMRES_FRONT_TARIFFS_ENDS );
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_MINDAYS', _JOMRES_FRONT_TARIFFS_MINDAYS );
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXDAYS', _JOMRES_FRONT_TARIFFS_MAXDAYS );
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_MINPEEPS', _JOMRES_FRONT_TARIFFS_MINPEEPS );
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXPEEPS', _JOMRES_FRONT_TARIFFS_MAXPEEPS );
-		$output[ ] = jr_gettext( '_JOMRES_CURRENCYCONVERSIONTEXT', _JOMRES_CURRENCYCONVERSIONTEXT );
+		$output[ ] = jr_gettext( '_JOMRES_CURRENCYCONVERSIONTEXT', '_JOMRES_CURRENCYCONVERSIONTEXT' );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_NOTWEEKEND',' _JOMRES_FRONT_TARIFFS_NOTWEEKEND' );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', '_JOMRES_FRONT_TARIFFS_PN' );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', '_JOMRES_FRONT_TARIFFS_PPPN' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK' );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_TITLE', '_JOMRES_FRONT_TARIFFS_TITLE' );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_DESC', '_JOMRES_FRONT_TARIFFS_DESC' );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_ROOMTYPE', '_JOMRES_FRONT_TARIFFS_ROOMTYPE' );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_STARTS', '_JOMRES_FRONT_TARIFFS_STARTS' );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_ENDS', '_JOMRES_FRONT_TARIFFS_ENDS' );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_MINDAYS', '_JOMRES_FRONT_TARIFFS_MINDAYS' );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXDAYS', '_JOMRES_FRONT_TARIFFS_MAXDAYS' );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_MINPEEPS', '_JOMRES_FRONT_TARIFFS_MINPEEPS' );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXPEEPS', '_JOMRES_FRONT_TARIFFS_MAXPEEPS' );
+		$output[ ] = jr_gettext( '_JOMRES_CURRENCYCONVERSIONTEXT', '_JOMRES_CURRENCYCONVERSIONTEXT' );
 
 		foreach ( $output as $o )
 			{

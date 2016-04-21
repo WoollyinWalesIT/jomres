@@ -41,7 +41,7 @@ class j01004property_list_list
 		if ( is_null( $property_list_layouts ) ) 
 			$property_list_layouts = array ();
 		
-		$property_list_layouts[ $this_plugin ] = array ( "layout" => "list_properties.html", "title" => jr_gettext( "_JOMRES_PROPERTYLIST_LAYOUT_LIST", _JOMRES_PROPERTYLIST_LAYOUT_LIST, false, false ), "path" => null );
+		$property_list_layouts[ $this_plugin ] = array ( "layout" => "list_properties.html", "title" => jr_gettext( "_JOMRES_PROPERTYLIST_LAYOUT_LIST", '_JOMRES_PROPERTYLIST_LAYOUT_LIST', false, false ), "path" => null );
 		
 		set_showtime( 'property_list_layouts', $property_list_layouts );
 		}
@@ -49,7 +49,7 @@ class j01004property_list_list
 	function touch_template_language()
 		{
 		$output    = array ();
-		$output[ ] = jr_gettext( '_JOMRES_PROPERTYLIST_LAYOUT_LIST', _JOMRES_PROPERTYLIST_LAYOUT_LIST );
+		$output[ ] = jr_gettext( '_JOMRES_PROPERTYLIST_LAYOUT_LIST', '_JOMRES_PROPERTYLIST_LAYOUT_LIST' );
 
 		foreach ( $output as $o )
 			{

@@ -28,8 +28,8 @@ class j06000terms
 
 		$property                           = array ();
 		$property[ 'LIVESITE' ]             = get_showtime( 'live_site' );
-		$property[ 'HPROPERTYNAME' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME );
-		$property[ 'HPOLICIESDISCLAIMERS' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS );
+		$property[ 'HPROPERTYNAME' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME' );
+		$property[ 'HPOLICIESDISCLAIMERS' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS' );
 
 		$property[ 'POLICIESDISCLAIMERS' ] = $property_policiesdisclaimers;
 		if ( empty( $property[ 'POLICIESDISCLAIMERS' ] ) ) 

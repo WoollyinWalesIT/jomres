@@ -26,7 +26,7 @@ class j11010media_centre_feature_images_roomtypes
 			return;
 			}
 		
-		$this->ret_vals = array ( "resource_type" => "rmtypes" , "resource_id_required" => false , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOMTYPE_IMAGES', _JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOMTYPE_IMAGES, false ) );
+		$this->ret_vals = array ( "resource_type" => "rmtypes" , "resource_id_required" => false , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOMTYPE_IMAGES', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOMTYPE_IMAGES', false ) );
 		}
 
 	// This must be included in every Event/Mini-component

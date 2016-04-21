@@ -43,15 +43,15 @@ class j00501tariffs
 		if ( !isset( $mrConfig[ 'margin' ] ) || empty( $mrConfig[ 'margin' ] ) ) 
 			$mrConfig[ 'margin' ] = "0.00";
 
-		$configurationPanel->startPanel( jr_gettext( "_JOMRES_COM_A_TARIFFS", _JOMRES_COM_A_TARIFFS, false ) );
+		$configurationPanel->startPanel( jr_gettext( "_JOMRES_COM_A_TARIFFS", '_JOMRES_COM_A_TARIFFS', false ) );
 		
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && !get_showtime('is_jintour_property'))
 			{
 			if ( $mrConfig[ 'tariffmode' ] == "1" )
 				{
-				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFPRICESAREWEEKLY", _JOMRES_COM_A_TARIFFPRICESAREWEEKLY, false ) );
+				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFPRICESAREWEEKLY", '_JOMRES_COM_A_TARIFFPRICESAREWEEKLY', false ) );
 				$configurationPanel->setmiddle( $lists[ 'tariffChargesStoredWeeklyYesNo' ] );
-				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC", _JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC, false ) );
+				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC", '_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC', false ) );
 				$configurationPanel->insertSetting();
 				}
 			}
@@ -64,20 +64,20 @@ class j00501tariffs
 			$c_codes = new currency_codes( $mrConfig[ 'property_currencycode' ] );
 
 			$dropdown = $c_codes->makeCodesDropdown();
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_CURRENCYCODE", _JOMRES_COM_A_CURRENCYCODE, false ) );
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_CURRENCYCODE", '_JOMRES_COM_A_CURRENCYCODE', false ) );
 			$configurationPanel->setmiddle( $dropdown );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_SWAP", _JOMRES_COM_A_TARIFFS_SWAP, false ) );
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_SWAP", '_JOMRES_COM_A_TARIFFS_SWAP', false ) );
 			$configurationPanel->setmiddle( $lists[ 'currency_symbol_swap' ] );
-			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TARIFFS_SWAP_DESC", _JOMRES_COM_A_TARIFFS_SWAP_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TARIFFS_SWAP_DESC", '_JOMRES_COM_A_TARIFFS_SWAP_DESC', false ) );
 			$configurationPanel->insertSetting();
 			}
 		
 		if ( !$thisJRUser->simple_configuration )
 			{
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_CURRENCYFORMAT", _JOMRES_CURRENCYFORMAT, false ) );
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_CURRENCYFORMAT", '_JOMRES_CURRENCYFORMAT', false ) );
 			$configurationPanel->setmiddle( $cformatdropdown );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
@@ -89,21 +89,21 @@ class j00501tariffs
 				{
 				if (!get_showtime('is_jintour_property'))
 					{
-					$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL", _JOMRES_COM_A_TARIFFS_MODEL, false ) );
+					$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL", '_JOMRES_COM_A_TARIFFS_MODEL', false ) );
 					$configurationPanel->setmiddle( $tariffModelsDropdown );
-					$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL_DESC", _JOMRES_COM_A_TARIFFS_MODEL_DESC, false ) );
+					$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL_DESC", '_JOMRES_COM_A_TARIFFS_MODEL_DESC', false ) );
 					$configurationPanel->insertSetting();
 					}
 				}
 
-			$configurationPanel->setleft( jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE", _JRPORTAL_INVOICES_LINEITEMS_TAX_RATE, false ) );
+			$configurationPanel->setleft( jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE", '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', false ) );
 			$configurationPanel->setmiddle( $jrportal_taxrate->makeTaxratesDropdown( $mrConfig[ 'accommodation_tax_code' ], 'cfg_accommodation_tax_code' ) );
 			$configurationPanel->setright( '' );
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TAXINCLUSIVE", _JOMRES_COM_A_TAXINCLUSIVE, false ) );
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TAXINCLUSIVE", '_JOMRES_COM_A_TAXINCLUSIVE', false ) );
 			$configurationPanel->setmiddle( $lists[ 'prices_inclusive' ] );
-			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TAXINCLUSIVE_DESC", _JOMRES_COM_A_TAXINCLUSIVE_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TAXINCLUSIVE_DESC", '_JOMRES_COM_A_TAXINCLUSIVE_DESC', false ) );
 			$configurationPanel->insertSetting();
 			}
 
@@ -113,16 +113,16 @@ class j00501tariffs
 				{
 				if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 					{
-					$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY", _JOMRES_COM_A_TARIFFS_PER_WHOLEDAY, false ) );
+					$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY", '_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', false ) );
 					$configurationPanel->setmiddle( $lists[ 'perPersonPerNight' ] );
-					$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY", _JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY, false ) );
+					$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY", '_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', false ) );
 					$configurationPanel->insertSetting();
 					}
 				else
 					{
-					$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_PER", _JOMRES_COM_A_TARIFFS_PER, false ) );
+					$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_PER", '_JOMRES_COM_A_TARIFFS_PER', false ) );
 					$configurationPanel->setmiddle( $lists[ 'perPersonPerNight' ] );
-					$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TARIFFS_PER_DESC", _JOMRES_COM_A_TARIFFS_PER_DESC, false ) );
+					$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TARIFFS_PER_DESC", '_JOMRES_COM_A_TARIFFS_PER_DESC', false ) );
 					$configurationPanel->insertSetting();
 					}
 				}

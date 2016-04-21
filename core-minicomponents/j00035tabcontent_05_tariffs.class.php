@@ -28,7 +28,7 @@ class j00035tabcontent_05_tariffs
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
 
 		$tariffs_list = $MiniComponents->specificEvent( '06000', 'show_property_tariffs',array('output_now'=>false, 'property_uid'=>$property_uid));
-		$tariffs_list_title = jr_gettext( '_JOMRES_FRONT_TARIFFS', _JOMRES_FRONT_TARIFFS, false );
+		$tariffs_list_title = jr_gettext( '_JOMRES_FRONT_TARIFFS', '_JOMRES_FRONT_TARIFFS', false );
 
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{

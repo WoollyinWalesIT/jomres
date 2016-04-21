@@ -60,14 +60,14 @@ class j06002edit_email {
 		else
 			$output['EMAIL_TEXT']='<textarea class="inputbox" cols="60" rows="6" name="email_text">'.$email_text.'</textarea>';
 
-		$output['HEMAIL_TEXT']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_TEXT', _JOMRES_EMAIL_TEMPLATES_TEXT, false);
+		$output['HEMAIL_TEXT']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_TEXT', '_JOMRES_EMAIL_TEMPLATES_TEXT', false);
 		
 		//email title
-		$output['HEMAIL_SUBJECT']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_SUBJECT', _JOMRES_EMAIL_TEMPLATES_SUBJECT, false);
+		$output['HEMAIL_SUBJECT']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_SUBJECT', '_JOMRES_EMAIL_TEMPLATES_SUBJECT', false);
 		$output['EMAIL_SUBJECT']=jr_gettext('_EMAIL_SUBJECT_'.$email_type, '[PROPERTY_NAME] - [BOOKING_NUMBER]',false);
 
-		$output['PAGETITLE']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_EDIT', _JOMRES_EMAIL_TEMPLATES_EDIT, false);
-		$output['INSTRUCTIONS']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', _JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS, false);
+		$output['PAGETITLE']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_EDIT', '_JOMRES_EMAIL_TEMPLATES_EDIT', false);
+		$output['INSTRUCTIONS']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', '_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', false);
 
 		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();

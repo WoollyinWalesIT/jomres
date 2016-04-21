@@ -73,9 +73,9 @@ class j00012pathway
 				}
 			
 			$tasks[ 'viewproperty' ] = array ( 'text' => str_replace( "&#39;" , "'" ,getPropertyName( $property_uid )), 'url' => JOMRES_SITEPAGE_URL . '&task=viewproperty&amp;property_uid=' . $property_uid );
-			$tasks[ 'showTariffs' ]  = array ( 'text' => jr_gettext( "_JOMRES_COM_MR_LISTTARIFF_TITLE", _JOMRES_COM_MR_LISTTARIFF_TITLE ) . " " . str_replace( "&#39;" , "'" ,getPropertyName( $property_uid )), 'url' => JOMRES_SITEPAGE_URL . '&task=showTariffs&amp;op=1&amp;property_uid=' . $property_uid );
-			$tasks[ 'dobooking' ]    = array ( 'text' => jr_gettext( "_JOMRES_PATHWAY_BOOKINGFORM", _JOMRES_PATHWAY_BOOKINGFORM ), 'url' => JOMRES_SITEPAGE_URL . '&task=dobooking&amp;selectedProperty=' . $property_uid );
-			$tasks[ 'slideshow' ]    = array ( 'text' => jr_gettext( "_JOMRES_FRONT_SLIDESHOW", _JOMRES_FRONT_SLIDESHOW ), 'url' => JOMRES_SITEPAGE_URL . '&task=slideshow&amp;op=1&amp;property_uid=' . $property_uid );
+			$tasks[ 'showTariffs' ]  = array ( 'text' => jr_gettext( "_JOMRES_COM_MR_LISTTARIFF_TITLE", '_JOMRES_COM_MR_LISTTARIFF_TITLE' ) . " " . str_replace( "&#39;" , "'" ,getPropertyName( $property_uid )), 'url' => JOMRES_SITEPAGE_URL . '&task=showTariffs&amp;op=1&amp;property_uid=' . $property_uid );
+			$tasks[ 'dobooking' ]    = array ( 'text' => jr_gettext( "_JOMRES_PATHWAY_BOOKINGFORM", '_JOMRES_PATHWAY_BOOKINGFORM' ), 'url' => JOMRES_SITEPAGE_URL . '&task=dobooking&amp;selectedProperty=' . $property_uid );
+			$tasks[ 'slideshow' ]    = array ( 'text' => jr_gettext( "_JOMRES_FRONT_SLIDESHOW", '_JOMRES_FRONT_SLIDESHOW' ), 'url' => JOMRES_SITEPAGE_URL . '&task=slideshow&amp;op=1&amp;property_uid=' . $property_uid );
 
 			switch ( $task )
 			{

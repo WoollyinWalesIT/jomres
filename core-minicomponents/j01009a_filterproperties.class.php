@@ -120,15 +120,15 @@ class j01009a_filterproperties
 
 		$sortArray = array ();
 
-		$sortArray[ ] = jomresHTML::makeOption( "1", jr_gettext( '_JOMRES_SORTORDER_DEFAULT', _JOMRES_SORTORDER_DEFAULT, false, false ) );
-		$sortArray[ ] = jomresHTML::makeOption( "2", jr_gettext( '_JOMRES_SORTORDER_PROPERTYNAME', _JOMRES_SORTORDER_PROPERTYNAME, false, false ) );
-		$sortArray[ ] = jomresHTML::makeOption( "3", jr_gettext( '_JOMRES_SORTORDER_PROPERTYREGION', _JOMRES_SORTORDER_PROPERTYREGION, false, false ) );
-		$sortArray[ ] = jomresHTML::makeOption( "4", jr_gettext( '_JOMRES_SORTORDER_PROPERTYTOWN', _JOMRES_SORTORDER_PROPERTYTOWN, false, false ) );
-		$sortArray[ ] = jomresHTML::makeOption( "5", jr_gettext( '_JOMRES_SORTORDER_STARS', _JOMRES_SORTORDER_STARS, false, false ) );
-		//$sortArray[]=jomresHTML::makeOption("6", jr_gettext('_JOMRES_SORTORDER_PRICE_ASC',_JOMRES_SORTORDER_PRICE_ASC,false,false));
-		//$sortArray[]=jomresHTML::makeOption("7", jr_gettext('_JOMRES_SORTORDER_PRICE_DESC',_JOMRES_SORTORDER_PRICE_DESC,false,false));
+		$sortArray[ ] = jomresHTML::makeOption( "1", jr_gettext( '_JOMRES_SORTORDER_DEFAULT', '_JOMRES_SORTORDER_DEFAULT', false, false ) );
+		$sortArray[ ] = jomresHTML::makeOption( "2", jr_gettext( '_JOMRES_SORTORDER_PROPERTYNAME', '_JOMRES_SORTORDER_PROPERTYNAME', false, false ) );
+		$sortArray[ ] = jomresHTML::makeOption( "3", jr_gettext( '_JOMRES_SORTORDER_PROPERTYREGION', '_JOMRES_SORTORDER_PROPERTYREGION', false, false ) );
+		$sortArray[ ] = jomresHTML::makeOption( "4", jr_gettext( '_JOMRES_SORTORDER_PROPERTYTOWN', '_JOMRES_SORTORDER_PROPERTYTOWN', false, false ) );
+		$sortArray[ ] = jomresHTML::makeOption( "5", jr_gettext( '_JOMRES_SORTORDER_STARS', '_JOMRES_SORTORDER_STARS', false, false ) );
+		//$sortArray[]=jomresHTML::makeOption("6", jr_gettext('_JOMRES_SORTORDER_PRICE_ASC','_JOMRES_SORTORDER_PRICE_ASC',false,false));
+		//$sortArray[]=jomresHTML::makeOption("7", jr_gettext('_JOMRES_SORTORDER_PRICE_DESC','_JOMRES_SORTORDER_PRICE_DESC',false,false));
 
-		$order[ 'HORDER' ] = jr_gettext( '_JOMRES_ORDER', _JOMRES_ORDER );
+		$order[ 'HORDER' ] = jr_gettext( '_JOMRES_ORDER', '_JOMRES_ORDER' );
 
 		$order[ 'ORDER' ] = jomresHTML::selectList( $sortArray, 'sortby', 'onchange="generic_reload(\'jomsearch_sortby\',this.value);" size="1"', 'value', 'text', $sortid );
 		$sortorder        = array ();
@@ -148,13 +148,13 @@ class j01009a_filterproperties
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_DEFAULT', _JOMRES_SORTORDER_DEFAULT );
-		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_PROPERTYNAME', _JOMRES_SORTORDER_PROPERTYNAME );
-		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_PROPERTYREGION', _JOMRES_SORTORDER_PROPERTYREGION );
-		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_PROPERTYTOWN', _JOMRES_SORTORDER_PROPERTYTOWN );
-		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_STARS', _JOMRES_SORTORDER_STARS );
-		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_PRICE_ASC', _JOMRES_SORTORDER_PRICE_ASC );
-		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_PRICE_DESC', _JOMRES_SORTORDER_PRICE_DESC );
+		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_DEFAULT', '_JOMRES_SORTORDER_DEFAULT' );
+		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_PROPERTYNAME', '_JOMRES_SORTORDER_PROPERTYNAME' );
+		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_PROPERTYREGION', '_JOMRES_SORTORDER_PROPERTYREGION' );
+		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_PROPERTYTOWN', '_JOMRES_SORTORDER_PROPERTYTOWN' );
+		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_STARS', '_JOMRES_SORTORDER_STARS' );
+		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_PRICE_ASC', '_JOMRES_SORTORDER_PRICE_ASC' );
+		$output[ ] = jr_gettext( '_JOMRES_SORTORDER_PRICE_DESC', '_JOMRES_SORTORDER_PRICE_DESC' );
 
 		foreach ( $output as $o )
 			{

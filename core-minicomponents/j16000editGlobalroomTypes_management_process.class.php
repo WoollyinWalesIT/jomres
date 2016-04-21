@@ -27,23 +27,21 @@ class j16000editGlobalroomTypes_management_process
 			}
 
 		$mrp_srp_flag_options    = array ();
-		$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '0', jr_gettext( _JOMRES_PROPERTYTYPE_FLAG_HOTEL, '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', false ) );
-		$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '1', jr_gettext( _JOMRES_PROPERTYTYPE_FLAG_VILLA, '_JOMRES_PROPERTYTYPE_FLAG_VILLA', false ) );
-		$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '3', jr_gettext( _JOMRES_PROPERTYTYPE_FLAG_NEITHER, '_JOMRES_PROPERTYTYPE_FLAG_NEITHER', false ) );
+		$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', false ) );
+		$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_VILLA', '_JOMRES_PROPERTYTYPE_FLAG_VILLA', false ) );
+		$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '3', jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_NEITHER', '_JOMRES_PROPERTYTYPE_FLAG_NEITHER', false ) );
 		$output[ '_JOMRES_PROPERTYTYPE_FLAG_DROPDOWN' ]= jomresHTML::selectList( $mrp_srp_flag_options, 'mrp_srp_flag', 'class="inputbox" size="1"', 'value', 'text', 0 );
 	
 		
-		$output[ '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES' ]=nl2br(jr_gettext( _JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES, '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', false ));
-		$output[ '_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES' ]=jr_gettext( _JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES, '_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES', false );
+		$output[ '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES' ]=nl2br(jr_gettext( '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', false ));
+		$output[ '_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES' ]=jr_gettext( '_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES', '_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES', false );
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=listGlobalroomTypes", '' );
-		$jrtb .= $jrtbar->customToolbarItem( 'editGlobalroomTypes', '', jr_gettext( '_PN_NEXT', _PN_NEXT,false ), $submitOnClick = true, $submitTask = "editGlobalroomTypes", '' );
+		$jrtb .= $jrtbar->customToolbarItem( 'editGlobalroomTypes', '', jr_gettext( '_PN_NEXT', '_PN_NEXT',false ), $submitOnClick = true, $submitTask = "editGlobalroomTypes", '' );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
-
-		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = JOMRES_SITEPAGE_URL_ADMIN;
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();

@@ -25,7 +25,7 @@ class j00011manager_option_03_business_settings
 
 			return;
 			}
-		$this->cpanelButton = jomres_mainmenu_option( jomresURL( JOMRES_SITEPAGE_URL . '&task=business_settings' ), 'EditConfiguration.png', jr_gettext( '_JOMRES_COM_MR_GENERALCONFIGDESC', _JOMRES_COM_MR_GENERALCONFIGDESC, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS, false, false ) );
+		$this->cpanelButton = jomres_mainmenu_option( jomresURL( JOMRES_SITEPAGE_URL . '&task=business_settings' ), 'EditConfiguration.png', jr_gettext( '_JOMRES_COM_MR_GENERALCONFIGDESC', '_JOMRES_COM_MR_GENERALCONFIGDESC', false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS', false, false ) );
 		}
 
 

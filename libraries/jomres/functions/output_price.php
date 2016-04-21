@@ -125,7 +125,7 @@ function output_price( $value, $currencycode = "", $do_conversion = true, $zeroO
 			}
 		else
 			{
-			$price = " " . $symbols[ 'pre' ] . jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', _JOMRES_PRICE_ON_APPLICATION, false, false ) . $symbols[ 'post' ];
+			$price = " " . $symbols[ 'pre' ] . jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', false, false ) . $symbols[ 'post' ];
 			}
 		}
 

@@ -34,7 +34,7 @@ class j00035tabcontent_01_main_details
 		$discount_output = array ();
 		
 		//property description
-		$output['HDESCRIPTION'] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION, false );
+		$output['HDESCRIPTION'] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION', false );
 		$output['DESCRIPTION'] = $MiniComponents->specificEvent( '06000', 'show_property_description',array('output_now'=>false, 'property_uid'=>$property_uid));
 		
 		//property features
@@ -61,11 +61,11 @@ class j00035tabcontent_01_main_details
 				$unixTodaysDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ] + $lastminutethreshold, $date_elements[ 0 ] );
 				$latestDate     = JSCalmakeInputDates( date( "Y/m/d", $unixTodaysDate ) );
 
-				$discount_text = jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', _JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE, false, true );
+				$discount_text = jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', false, true );
 				$discount_text .= $lastminutediscount;
-				$discount_text .= jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID', _JOMCOMP_LASTMINUTE_PROPERTYLIST_MID, false, true );
+				$discount_text .= jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID', false, true );
 				$discount_text .= $latestDate;
-				$discount_text .= jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', _JOMCOMP_LASTMINUTE_PROPERTYLIST_POST, false, true );
+				$discount_text .= jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', false, true );
 				}
 			else // Using wiseprice calculations
 				{
@@ -77,10 +77,10 @@ class j00035tabcontent_01_main_details
 				$unixTodaysDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ] + $wisepricethreshold, $date_elements[ 0 ] );
 				$latestDate     = JSCalmakeInputDates( date( "Y/m/d", $unixTodaysDate ) );
 
-				$discount_text = jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', _JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE, false, true );
-				$discount_text .= (float) $wisepricediscount . jr_gettext( '_JOMCOMP_LASTMINUTE_ORMORE', _JOMCOMP_LASTMINUTE_ORMORE, false, true );
+				$discount_text = jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', false, true );
+				$discount_text .= (float) $wisepricediscount . jr_gettext( '_JOMCOMP_LASTMINUTE_ORMORE', '_JOMCOMP_LASTMINUTE_ORMORE', false, true );
 				$discount_text .= $latestDate;
-				$discount_text .= jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', _JOMCOMP_LASTMINUTE_PROPERTYLIST_POST, false, true );
+				$discount_text .= jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', false, true );
 				}
 			}
 		if ( $discount_text != "" )

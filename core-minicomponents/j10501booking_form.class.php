@@ -34,11 +34,11 @@ class j10501booking_form
 
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{				
-			$configurationPanel->startPanel( jr_gettext( "_JOMRES_PATHWAY_BOOKINGFORM", _JOMRES_PATHWAY_BOOKINGFORM, false ) );
+			$configurationPanel->startPanel( jr_gettext( "_JOMRES_PATHWAY_BOOKINGFORM", '_JOMRES_PATHWAY_BOOKINGFORM', false ) );
 	
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS', _JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS', '_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS', false ) );
 			$configurationPanel->setmiddle( $lists['show_booking_form_in_property_details'] );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC', _JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC', '_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
 			/*$configurationPanel->setleft( jr_gettext( '_JOMRES_BOOKINGORM_MODALPOPUP', _JOMRES_BOOKINGORM_MODALPOPUP, false ) );
@@ -46,24 +46,24 @@ class j10501booking_form
 			$configurationPanel->setright( jr_gettext( '_JOMRES_BOOKINGORM_MODALPOPUP_DESC', _JOMRES_BOOKINGORM_MODALPOPUP_DESC, false ) );
 			$configurationPanel->insertSetting();*/
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_BOOKINGORM_TAX_OUTPUT', _JOMRES_BOOKINGORM_TAX_OUTPUT, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_BOOKINGORM_TAX_OUTPUT', '_JOMRES_BOOKINGORM_TAX_OUTPUT', false ) );
 			$configurationPanel->setmiddle( $lists['show_tax_in_totals_summary'] );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_BOOKINGORM_TAX_OUTPUT_DESC', _JOMRES_BOOKINGORM_TAX_OUTPUT_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_BOOKINGORM_TAX_OUTPUT_DESC', '_JOMRES_BOOKINGORM_TAX_OUTPUT_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_NEWUSER', _JOMRES_COM_NEWUSER, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_NEWUSER', '_JOMRES_COM_NEWUSER', false ) );
 			$configurationPanel->setmiddle( $lists['useNewusers'] );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_NEWUSER_DESC', _JOMRES_COM_NEWUSER_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_NEWUSER_DESC', '_JOMRES_COM_NEWUSER_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS', _JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS', '_JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS', false ) );
 			$configurationPanel->setmiddle( $lists['useNewusers_sendemail'] );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS_DESC', _JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS_DESC', '_JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_BOOKINGFORM_LOCK_TITLE', _JOMRES_BOOKINGFORM_LOCK_TITLE, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_BOOKINGFORM_LOCK_TITLE', '_JOMRES_BOOKINGFORM_LOCK_TITLE', false ) );
 			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_room_lock_timeout" value="' . $jrConfig[ 'room_lock_timeout' ] . '" />' );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_BOOKINGFORM_LOCK_DESC', _JOMRES_BOOKINGFORM_LOCK_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_BOOKINGFORM_LOCK_DESC', '_JOMRES_BOOKINGFORM_LOCK_DESC', false ) );
 			$configurationPanel->insertSetting();
 		
 			$configurationPanel->endPanel();

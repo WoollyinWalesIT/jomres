@@ -47,7 +47,7 @@ function generateDateInput( $fieldName, $dateValue='', $myID = false, $siteConfi
 			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] == '' 
 			)
 			{
-			$placeholder = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL, false );
+			$placeholder = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', false );
 			$dateValue='';
 			}
 		}
@@ -62,7 +62,7 @@ function generateDateInput( $fieldName, $dateValue='', $myID = false, $siteConfi
 			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] == ''
 			)
 			{
-			$placeholder = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE, false );
+			$placeholder = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', false );
 			$dateValue='';
 			}
 		}

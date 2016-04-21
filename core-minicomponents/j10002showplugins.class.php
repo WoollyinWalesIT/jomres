@@ -28,10 +28,10 @@ class j10002showplugins
 		$htmlFuncs = jomres_singleton_abstract::getInstance( 'html_functions' );
 		if ( function_exists( "curl_init" ) )
 			{
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=showplugins', 'plugin_button.png', jr_gettext( "_JOMRES_CUSTOMCODE_PLUGINMANAGER", _JOMRES_CUSTOMCODE_PLUGINMANAGER, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN, false, false ) );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=showplugins', 'plugin_button.png', jr_gettext( "_JOMRES_CUSTOMCODE_PLUGINMANAGER", '_JOMRES_CUSTOMCODE_PLUGINMANAGER', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN', false, false ) );
 			}
 		else
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=nocurl', 'pluginManagerDisabled.png', "Plugin Manager", "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE, false, false ) );
+		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=nocurl', 'pluginManagerDisabled.png', "Plugin Manager", "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE', false, false ) );
 		}
 
 

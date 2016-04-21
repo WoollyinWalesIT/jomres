@@ -78,34 +78,34 @@ class j06000show_property_extras
 					switch ( $model[ 'model' ] )
 						{
 						case '1': // Per week
-							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERWEEK', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERWEEK );
+							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERWEEK', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERWEEK' );
 							break;
 						case '2': // per days
-							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYS', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYS );
+							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYS', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYS' );
 							break;
 						case '3': // per booking
-							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERBOOKING', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERBOOKING );
+							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERBOOKING', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERBOOKING' );
 							break;
 						case '4': // per person per booking
-							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING );
+							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING' );
 							break;
 						case '5': // per person per day
-							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY );
+							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY' );
 							break;
 						case '6': // per person per week
-							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK );
+							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK' );
 							break;
 						case '7': // per person per days min days
-							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS );
+							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS' );
 							break;
 						case '8': // per days per room
-							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM );
+							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM' );
 							break;
 						case '9': // per room
-							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING );
+							$model_text = jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING' );
 							break;
 						case '100': // Commission
-							$model_text = jr_gettext( '_JOMRES_COMMISSION', _JOMRES_COMMISSION );
+							$model_text = jr_gettext( '_JOMRES_COMMISSION', '_JOMRES_COMMISSION' );
 							break;
 						}
 					$tax_output = "";
@@ -121,14 +121,14 @@ class j06000show_property_extras
 					
 					if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 						{
-						if ( $ex->chargabledaily == "1" ) $extra_deets[ 'PERNIGHT' ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY, false, true );
+						if ( $ex->chargabledaily == "1" ) $extra_deets[ 'PERNIGHT' ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', false, true );
 						else
 						$extra_deets[ 'PERNIGHT' ] = "";
 						}
 					else
 						{
 						if ( $ex->chargabledaily == "1" ) 
-							$extra_deets[ 'PERNIGHT' ] = jr_gettext( '_JOMRES_COM_PERDAY', _JOMRES_COM_PERDAY, false, true );
+							$extra_deets[ 'PERNIGHT' ] = jr_gettext( '_JOMRES_COM_PERDAY', '_JOMRES_COM_PERDAY', false, true );
 						else
 							$extra_deets[ 'PERNIGHT' ] = "";
 						}
@@ -139,7 +139,7 @@ class j06000show_property_extras
 					}
 				
 				$output = array();
-				$output ['_JOMRES_EXTRAS_TEMPLATE'] = jr_gettext( '_JOMRES_EXTRAS_TEMPLATE', _JOMRES_EXTRAS_TEMPLATE );
+				$output ['_JOMRES_EXTRAS_TEMPLATE'] = jr_gettext( '_JOMRES_EXTRAS_TEMPLATE', '_JOMRES_EXTRAS_TEMPLATE' );
 				
 				$pageoutput[]=$output;
 				$tmpl = new patTemplate();
@@ -161,7 +161,7 @@ class j06000show_property_extras
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMRES_EXTRAS_TEMPLATE', _JOMRES_EXTRAS_TEMPLATE );
+		$output[ ] = jr_gettext( '_JOMRES_EXTRAS_TEMPLATE', '_JOMRES_EXTRAS_TEMPLATE' );
 
 
 		foreach ( $output as $o )

@@ -30,8 +30,8 @@ class j13600core_charts
 		//bookings chart
 		$all_jomres_charts[] = array(
 									 "id" => 'chart_bookings',
-									 "title"=> jr_gettext("_JOMRES_STATUS_BOOKINGS",_JOMRES_STATUS_BOOKINGS,false,false),
-									 "description"=> jr_gettext("_JOMRES_CHART_BOOKINGS_DESC",_JOMRES_CHART_BOOKINGS_DESC,false,false)
+									 "title"=> jr_gettext("_JOMRES_STATUS_BOOKINGS",'_JOMRES_STATUS_BOOKINGS',false,false),
+									 "description"=> jr_gettext("_JOMRES_CHART_BOOKINGS_DESC",'_JOMRES_CHART_BOOKINGS_DESC',false,false)
 									 );
 		
 		set_showtime("all_jomres_charts", $all_jomres_charts);

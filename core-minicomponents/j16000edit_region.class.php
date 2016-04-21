@@ -46,9 +46,9 @@ class j16000edit_region
 			$output[ 'REGIONNAME' ]      = '';
 			
 			}
-		$output[ '_JOMRES_EDIT_REGION_TITLE' ]        = jr_gettext( '_JOMRES_EDIT_REGION_TITLE', _JOMRES_EDIT_REGION_TITLE,false );
-		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYNAME' ] = jr_gettext( '_JOMRES_EDIT_COUNTRY_COUNTRYNAME', _JOMRES_EDIT_COUNTRY_COUNTRYNAME,false );
-		$output[ '_JOMRES_EDIT_REGION_REGIONNAME' ]   = jr_gettext( '_JOMRES_EDIT_REGION_REGIONNAME', _JOMRES_EDIT_REGION_REGIONNAME,false );
+		$output[ '_JOMRES_EDIT_REGION_TITLE' ]        = jr_gettext( '_JOMRES_EDIT_REGION_TITLE', '_JOMRES_EDIT_REGION_TITLE',false );
+		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYNAME' ] = jr_gettext( '_JOMRES_EDIT_COUNTRY_COUNTRYNAME', '_JOMRES_EDIT_COUNTRY_COUNTRYNAME',false );
+		$output[ '_JOMRES_EDIT_REGION_REGIONNAME' ]   = jr_gettext( '_JOMRES_EDIT_REGION_REGIONNAME', '_JOMRES_EDIT_REGION_REGIONNAME',false );
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();

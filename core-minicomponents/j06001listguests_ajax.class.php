@@ -176,18 +176,18 @@ class j06001listguests_ajax
 				{
 				$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 				$jrtb   = $jrtbar->startTable();
-				$jrtb  .= $jrtbar->toolbarItem( '', jomresURL( JOMRES_SITEPAGE_URL . '&task=list_invoices&guest_id=' . $g->guests_uid ), jr_gettext( '_JOMRES_MANAGER_SHOWINVOICES', _JOMRES_MANAGER_SHOWINVOICES, false ) );
-				$jrtb  .= $jrtbar->toolbarItem( 'edit', jomresURL( JOMRES_SITEPAGE_URL . '&task=editGuest&guestUid=' . $g->guests_uid .$thisProperty ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
-				$jrtb  .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . '&task=deleteGuest&guestUid=' . $g->guests_uid . $thisProperty), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
+				$jrtb  .= $jrtbar->toolbarItem( '', jomresURL( JOMRES_SITEPAGE_URL . '&task=list_invoices&guest_id=' . $g->guests_uid ), jr_gettext( '_JOMRES_MANAGER_SHOWINVOICES', '_JOMRES_MANAGER_SHOWINVOICES', false ) );
+				$jrtb  .= $jrtbar->toolbarItem( 'edit', jomresURL( JOMRES_SITEPAGE_URL . '&task=editGuest&guestUid=' . $g->guests_uid .$thisProperty ), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
+				$jrtb  .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . '&task=deleteGuest&guestUid=' . $g->guests_uid . $thisProperty), jr_gettext( 'COMMON_DELETE', 'COMMON_DELETE', false ) );
 				$r[]    = $jrtb .= $jrtbar->endTable();
 				}
 			else
 				{
 				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 				$toolbar->newToolbar();
-				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editGuest&guestUid=' . $g->guests_uid . $thisProperty), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
-				$toolbar->addSecondaryItem( 'fa fa-file-text', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=list_invoices&guest_id=' . $g->guests_uid ), jr_gettext( '_JOMRES_MANAGER_SHOWINVOICES', _JOMRES_MANAGER_SHOWINVOICES, false ) );
-				$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=deleteGuest&guestUid=' . $g->guests_uid . $thisProperty), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
+				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editGuest&guestUid=' . $g->guests_uid . $thisProperty), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
+				$toolbar->addSecondaryItem( 'fa fa-file-text', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=list_invoices&guest_id=' . $g->guests_uid ), jr_gettext( '_JOMRES_MANAGER_SHOWINVOICES', '_JOMRES_MANAGER_SHOWINVOICES', false ) );
+				$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=deleteGuest&guestUid=' . $g->guests_uid . $thisProperty), jr_gettext( 'COMMON_DELETE', 'COMMON_DELETE', false ) );
 				$r[]=$toolbar->getToolbar();
 				}
 			

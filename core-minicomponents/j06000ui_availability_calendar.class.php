@@ -255,7 +255,7 @@ class j06000ui_availability_calendar
 				<div id="legend_dialog" title="Legend">
 				<table width="100%" border="0">
 					<tr>
-						<td class="calendar_background_full" width="20">&nbsp;</td><td>' . jr_gettext( '_JOMRES_AVLCAL_FULLYBOOKED', _JOMRES_AVLCAL_FULLYBOOKED ) . '</td>
+						<td class="calendar_background_full" width="20">&nbsp;</td><td>' . jr_gettext( '_JOMRES_AVLCAL_FULLYBOOKED', '_JOMRES_AVLCAL_FULLYBOOKED' ) . '</td>
 					</tr>
 				</table>
 				</div>
@@ -269,16 +269,16 @@ class j06000ui_availability_calendar
 				<div id="legend_dialog" title="Legend">
 				<table width="100%" border="0">
 					<tr>
-						<td class="calendar_background_quarter" width="20">&nbsp;</td><td>' . jr_gettext( '_JOMRES_AVLCAL_QUARTER', _JOMRES_AVLCAL_QUARTER ) . '</td>
+						<td class="calendar_background_quarter" width="20">&nbsp;</td><td>' . jr_gettext( '_JOMRES_AVLCAL_QUARTER', '_JOMRES_AVLCAL_QUARTER' ) . '</td>
 					</tr>
 					<tr>
-						<td class="calendar_background_half" width="20">&nbsp;</td><td>' . jr_gettext( '_JOMRES_AVLCAL_HALF', _JOMRES_AVLCAL_HALF ) . '</td>
+						<td class="calendar_background_half" width="20">&nbsp;</td><td>' . jr_gettext( '_JOMRES_AVLCAL_HALF', '_JOMRES_AVLCAL_HALF' ) . '</td>
 					</tr>
 					<tr>
-						<td class="calendar_background_threequarter" width="20">&nbsp;</td><td>' . jr_gettext( '_JOMRES_AVLCAL_THREEQUARTER', _JOMRES_AVLCAL_THREEQUARTER ) . '</td>
+						<td class="calendar_background_threequarter" width="20">&nbsp;</td><td>' . jr_gettext( '_JOMRES_AVLCAL_THREEQUARTER', '_JOMRES_AVLCAL_THREEQUARTER' ) . '</td>
 					</tr>
 					<tr>
-						<td class="calendar_background_full" width="20">&nbsp;</td><td>' . jr_gettext( '_JOMRES_AVLCAL_FULLYBOOKED', _JOMRES_AVLCAL_FULLYBOOKED ) . '</td>
+						<td class="calendar_background_full" width="20">&nbsp;</td><td>' . jr_gettext( '_JOMRES_AVLCAL_FULLYBOOKED', '_JOMRES_AVLCAL_FULLYBOOKED' ) . '</td>
 					</tr>
 				</table>
 				</div>

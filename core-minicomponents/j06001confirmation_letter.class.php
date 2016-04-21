@@ -54,7 +54,7 @@ class j06001confirmation_letter
 				) 
 				error_logging( 'Failure in sending confirmation letter to guest. Target address: ' . $booking_email_details->data[$contract_uid]['EMAIL'] . ' Subject ' . $booking_email_details->parsed_email['subject'].$booking_email_details->parsed_email['text'] );
 			else
-				echo jr_gettext('_JOMRES_CONFIRMATION_EMAIL_SENT', _JOMRES_CONFIRMATION_EMAIL_SENT, false);
+				echo jr_gettext('_JOMRES_CONFIRMATION_EMAIL_SENT', '_JOMRES_CONFIRMATION_EMAIL_SENT', false);
 			}
 		else
 			echo $booking_email_details->parsed_email['text'];

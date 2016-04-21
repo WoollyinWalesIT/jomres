@@ -41,15 +41,15 @@ class j06000compare
 		else $property_uids = array ();
 
 		$output                                = array ();
-		$output[ '_JOMRES_RETURN_TO_RESULTS' ] = jr_gettext( '_JOMRES_RETURN_TO_RESULTS', _JOMRES_RETURN_TO_RESULTS, false, false );
+		$output[ '_JOMRES_RETURN_TO_RESULTS' ] = jr_gettext( '_JOMRES_RETURN_TO_RESULTS', '_JOMRES_RETURN_TO_RESULTS', false, false );
 		$output[ 'RETURN_TO_RESULTS_LINK' ]    = jomresURL( JOMRES_SITEPAGE_URL . "&task=compare" );
 
-		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN, false, false );
-		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' ]     = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY, false, false );
-		$output[ '_JOMRES_FRONT_PTYPE' ]                             = jr_gettext( '_JOMRES_FRONT_PTYPE', _JOMRES_FRONT_PTYPE, false, false );
-		$output[ '_JOMRES_SORTORDER_STARS' ]                         = jr_gettext( '_JOMRES_SORTORDER_STARS', _JOMRES_SORTORDER_STARS, false, false );
-		$output[ '_JOMRES_TARIFFSFROM' ]                             = jr_gettext( '_JOMRES_TARIFFSFROM', _JOMRES_TARIFFSFROM, false, false );
-		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK, false, false );
+		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false, false );
+		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' ]     = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false, false );
+		$output[ '_JOMRES_FRONT_PTYPE' ]                             = jr_gettext( '_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE', false, false );
+		$output[ '_JOMRES_SORTORDER_STARS' ]                         = jr_gettext( '_JOMRES_SORTORDER_STARS', '_JOMRES_SORTORDER_STARS', false, false );
+		$output[ '_JOMRES_TARIFFSFROM' ]                             = jr_gettext( '_JOMRES_TARIFFSFROM', '_JOMRES_TARIFFSFROM', false, false );
+		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', false, false );
 
 		if ( count( $property_uids ) > 0 )
 			{
@@ -153,7 +153,7 @@ class j06000compare
 
 				$r[ 'LIVE_SITE' ]           = get_showtime( 'live_site' );
 				$r[ 'MOREINFORMATIONLINK' ] = jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $property_uid );
-				$r[ 'MOREINFORMATION' ]     = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION, $editable = false, true );
+				$r[ 'MOREINFORMATION' ]     = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', $editable = false, true );
 				$r[ 'RANDOM_IDENTIFIER' ]   = generateJomresRandomString( 10 );
 				$ptype                      = $property[ 'ptype_id' ];
 				$r[ 'PROPERTY_TYPE' ]       = $property_types[ $ptype ];
@@ -164,7 +164,7 @@ class j06000compare
 					{
 					if ( $id != $property_uid ) $property_uids_url_string .= $id . ",";
 					}
-				$r[ '_JOMRES_REMOVE' ] = jr_gettext( '_JOMRES_REMOVE', _JOMRES_REMOVE, false, false );
+				$r[ '_JOMRES_REMOVE' ] = jr_gettext( '_JOMRES_REMOVE', '_JOMRES_REMOVE', false, false );
 				$r[ 'REMOVE_LINK' ]    = jomresURL( JOMRES_SITEPAGE_URL . "&task=compare" . $property_uids_url_string );
 				$rows[ ]               = $r;
 				}

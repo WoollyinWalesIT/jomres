@@ -25,7 +25,7 @@ class j16000touch_templates
 			return;
 			}
 		if ( !translation_user_check() ) return;
-		echo '<h2>' . jr_gettext( "_JOMRES_TOUCHTEMPLATES", _JOMRES_TOUCHTEMPLATES, false ) . '</h2>';
+		echo '<h2>' . jr_gettext( "_JOMRES_TOUCHTEMPLATES", '_JOMRES_TOUCHTEMPLATES', false ) . '</h2>';
 		echo "<br/><h3>" . get_showtime( 'lang' ) . "</h3><br/>";
 		// $jomreslang = $jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 		// echo $jomreslang->get_languageselection_dropdown();
@@ -35,7 +35,7 @@ class j16000touch_templates
 		
 		if ( count( $basic_subscription_package_details->allPackages ) > 0 )
 			{
-			echo jr_gettext( '_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE',_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE) . "<br/>";
+			echo jr_gettext( '_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE','_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITL'E) . "<br/>";
 			
 			foreach ( $basic_subscription_package_details->allPackages as $package )
 				{
@@ -85,7 +85,7 @@ class j16000touch_templates
 		$result = doSelectSql( $query );
 		if ( count( $result ) > 0 )
 			{
-			echo jr_gettext( '_JOMRES_PROPERTYFEATURES_HCATEGORIES',_JOMRES_PROPERTYFEATURES_HCATEGORIES) . "<br/>";
+			echo jr_gettext( '_JOMRES_PROPERTYFEATURES_HCATEGORIES','_JOMRES_PROPERTYFEATURES_HCATEGORIES') . "<br/>";
 			foreach ( $result as $r )
 				{
 				echo jr_gettext('_JOMRES_PROPERTY_FEATURES_CATEGORY'.(int)$r->id, stripslashes($r->title));

@@ -42,10 +42,10 @@ class j00035tabcontent_02_bookingform
 
 			$MiniComponents->specificEvent( '05020', 'dobooking', array());
 
-			$book_now_text = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKAROOM', _JOMRES_FRONT_MR_MENU_BOOKAROOM, false, false );
+			$book_now_text = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKAROOM', '_JOMRES_FRONT_MR_MENU_BOOKAROOM', false, false );
 			
 			if ( $mrConfig[ 'singleRoomProperty' ] == '1' ) 
-				$book_now_text = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', _JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY, false, false );
+				$book_now_text = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', false, false );
 
 			$anchor        = jomres_generate_tab_anchor( $book_now_text );
 			$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $book_now_text, "TAB_CONTENT" => BOOKING_FORM_FOR_PROPERTY_DETAILS , "TAB_ID" => 'tour_target_property_details_booking_form');

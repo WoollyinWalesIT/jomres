@@ -29,7 +29,7 @@ class j10002listPfeatures
 		$jrConfig   = $siteConfig->get();
 
 		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=listPfeatures', 'propertyFeatures.png', jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK", _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE, false, false ) );
+		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=listPfeatures', 'propertyFeatures.png', jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK", '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE', false, false ) );
 
 		}
 
@@ -37,7 +37,7 @@ class j10002listPfeatures
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE' );
 
 		foreach ( $output as $o )
 			{

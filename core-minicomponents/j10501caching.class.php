@@ -34,14 +34,14 @@ class j10501caching
 
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
-			$configurationPanel->startPanel( jr_gettext( "_JOMRES_WORD_CACHING", _JOMRES_WORD_CACHING, false ) );
+			$configurationPanel->startPanel( jr_gettext( "_JOMRES_WORD_CACHING", '_JOMRES_WORD_CACHING', false ) );
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_CACHING', _JOMRES_COM_CACHING, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_CACHING', '_JOMRES_COM_CACHING', false ) );
 			$configurationPanel->setmiddle( $lists[ 'useArrayCaching' ] );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_CACHING_DESC', _JOMRES_COM_CACHING_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_CACHING_DESC', '_JOMRES_COM_CACHING_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_WORD_PATTEMPLATE_CACHING', _JOMRES_WORD_PATTEMPLATE_CACHING, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_WORD_PATTEMPLATE_CACHING', '_JOMRES_WORD_PATTEMPLATE_CACHING', false ) );
 			$configurationPanel->setmiddle( $lists[ 'pattemplate_caching_enabled' ] );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();

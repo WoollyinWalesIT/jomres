@@ -73,11 +73,11 @@ class j01011discounts
 					$unixTodaysDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ] + $lastminutethreshold, $date_elements[ 0 ] );
 					$latestDate     = JSCalmakeInputDates( date( "Y/m/d", $unixTodaysDate ) );
 
-					$text = jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', _JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE, false, true );
+					$text = jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', false, true );
 					$text .= $lastminutediscount;
-					$text .= jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID', _JOMCOMP_LASTMINUTE_PROPERTYLIST_MID, false, true );
+					$text .= jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID', false, true );
 					$text .= ' ' . $latestDate;
-					$text .= jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', _JOMCOMP_LASTMINUTE_PROPERTYLIST_POST, false, true );
+					$text .= jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', false, true );
 
 					$this->returnValue = array ( 'LASTMINUTE' => $text, 'LASTMINUTECLASS' => 'jomres_message' );
 					}
@@ -91,10 +91,10 @@ class j01011discounts
 					$unixTodaysDate = mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ] + $wisepricethreshold, $date_elements[ 0 ] );
 					$latestDate     = JSCalmakeInputDates( date( "Y/m/d", $unixTodaysDate ) );
 
-					$text = jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', _JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE, false, true );
-					$text .= (float) $wisepricediscount . jr_gettext( '_JOMCOMP_LASTMINUTE_ORMORE', _JOMCOMP_LASTMINUTE_ORMORE, false, true );
+					$text = jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', false, true );
+					$text .= (float) $wisepricediscount . jr_gettext( '_JOMCOMP_LASTMINUTE_ORMORE', '_JOMCOMP_LASTMINUTE_ORMORE', false, true );
 					$text .= ' ' . $latestDate;
-					$text .= jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', _JOMCOMP_LASTMINUTE_PROPERTYLIST_POST, false, true );
+					$text .= jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', false, true );
 					$this->returnValue = array ( 'LASTMINUTE' => $text, 'LASTMINUTECLASS' => 'jomres_message' );
 					}
 				}
@@ -104,11 +104,11 @@ class j01011discounts
 	function touch_template_language()
 		{
 		$output    = array ();
-		$output[ ] = jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', _JOMCOMP_LASTMINUTE_PROPERTYLIST_POST );
-		$output[ ] = jr_gettext( '_JOMCOMP_LASTMINUTE_ORMORE', _JOMCOMP_LASTMINUTE_ORMORE );
-		$output[ ] = jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', _JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE );
-		$output[ ] = jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID', _JOMCOMP_LASTMINUTE_PROPERTYLIST_MID );
-		$output[ ] = jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', _JOMCOMP_LASTMINUTE_PROPERTYLIST_POST );
+		$output[ ] = jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST' );
+		$output[ ] = jr_gettext( '_JOMCOMP_LASTMINUTE_ORMORE', '_JOMCOMP_LASTMINUTE_ORMORE' );
+		$output[ ] = jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE' );
+		$output[ ] = jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID' );
+		$output[ ] = jr_gettext( '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST' );
 
 		foreach ( $output as $o )
 			{

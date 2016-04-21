@@ -33,14 +33,14 @@ class j16000list_taxrates
 		$pageoutput = array ();
 		$rows       = array ();
 
-		$output[ 'PAGETITLE' ]    = jr_gettext( '_JRPORTAL_TAXRATES_TITLE', _JRPORTAL_TAXRATES_TITLE,false );
-		$output[ 'HCODE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_CODE', _JRPORTAL_TAXRATES_CODE,false );
-		$output[ 'HDESCRIPTION' ] = jr_gettext( '_JRPORTAL_TAXRATES_DESCRIPTION', _JRPORTAL_TAXRATES_DESCRIPTION,false );
-		$output[ 'HRATE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_RATE', _JRPORTAL_TAXRATES_RATE,false );
-		$output[ '_JOMRES_IS_EU_COUNTRY' ]        = jr_gettext( '_JOMRES_IS_EU_COUNTRY', _JOMRES_IS_EU_COUNTRY,false );
+		$output[ 'PAGETITLE' ]    = jr_gettext( '_JRPORTAL_TAXRATES_TITLE', '_JRPORTAL_TAXRATES_TITLE',false );
+		$output[ 'HCODE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_CODE', '_JRPORTAL_TAXRATES_CODE',false );
+		$output[ 'HDESCRIPTION' ] = jr_gettext( '_JRPORTAL_TAXRATES_DESCRIPTION', '_JRPORTAL_TAXRATES_DESCRIPTION',false );
+		$output[ 'HRATE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_RATE', '_JRPORTAL_TAXRATES_RATE',false );
+		$output[ '_JOMRES_IS_EU_COUNTRY' ]        = jr_gettext( '_JOMRES_IS_EU_COUNTRY', '_JOMRES_IS_EU_COUNTRY',false );
 		
-		$output[ '_JOMRES_TAX_RATES_IMPORT' ]        = jr_gettext( '_JOMRES_TAX_RATES_IMPORT', _JOMRES_TAX_RATES_IMPORT,false );
-		$output[ '_JOMRES_TAX_RATES_IMPORT_INFO' ]   = jr_gettext( '_JOMRES_TAX_RATES_IMPORT_INFO', _JOMRES_TAX_RATES_IMPORT_INFO,false );
+		$output[ '_JOMRES_TAX_RATES_IMPORT' ]        = jr_gettext( '_JOMRES_TAX_RATES_IMPORT', '_JOMRES_TAX_RATES_IMPORT',false );
+		$output[ '_JOMRES_TAX_RATES_IMPORT_INFO' ]   = jr_gettext( '_JOMRES_TAX_RATES_IMPORT_INFO', '_JOMRES_TAX_RATES_IMPORT_INFO',false );
 		$output[ 'IMPORT_LINK'] = JOMRES_SITEPAGE_URL_ADMIN . "&task=import_eu_tax_rates";
 		
 		foreach ( $jrportal_taxrate->taxrates as $rate )
@@ -51,9 +51,9 @@ class j16000list_taxrates
 			$r[ 'DESCRIPTION' ] = $rate[ 'description' ];
 			$r[ 'RATE' ]        = $rate[ 'rate' ];
 
-			$r['IS_EU_COUNTRY'] =  jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO,false );
+			$r['IS_EU_COUNTRY'] =  jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO',false );
 			if ($rate[ 'is_eu_country' ] == "1")
-				$r['IS_EU_COUNTRY'] =  jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES,false );
+				$r['IS_EU_COUNTRY'] =  jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES',false );
 			
 			if (!using_bootstrap())
 				{
@@ -63,8 +63,8 @@ class j16000list_taxrates
 				{
 				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 				$toolbar->newToolbar();
-				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_taxrate&id=' . $rate[ 'id' ] ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
-				$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=delete_taxrate&id=' . $rate[ 'id' ] ), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
+				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_taxrate&id=' . $rate[ 'id' ] ), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
+				$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=delete_taxrate&id=' . $rate[ 'id' ] ), jr_gettext( 'COMMON_DELETE', 'COMMON_DELETE', false ) );
 				
 				$r['EDITLINK'] = $toolbar->getToolbar();
 				}

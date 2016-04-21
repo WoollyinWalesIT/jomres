@@ -41,7 +41,7 @@ class j10003control_panel_buttons
 		ksort( $control_panel_buttons_categorised );
 
 		// We need to find the dashboard category in this array, extract it then put it at the beginning.
-		$dashboard_category          = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN, false, false );
+		$dashboard_category          = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN', false, false );
 		$dashboard_category_contents = $control_panel_buttons_categorised[ $dashboard_category ];
 		unset( $control_panel_buttons_categorised[ $dashboard_category ] );
 		$new_arr = array ( $dashboard_category => $dashboard_category_contents );

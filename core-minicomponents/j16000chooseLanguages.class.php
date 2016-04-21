@@ -26,8 +26,8 @@ class j16000chooseLanguages
 			return;
 			}
 		$output                                = array ();
-		$output[ 'PAGETITLE' ]                 = jr_gettext( "_JOMRES_COM_CHOOSELANGUAGES", _JOMRES_COM_CHOOSELANGUAGES,false );
-		$output[ 'INFO' ]                      = jr_gettext( "_JOMRES_COM_CHOOSELANGUAGES_INFO", _JOMRES_COM_CHOOSELANGUAGES_INFO,false );
+		$output[ 'PAGETITLE' ]                 = jr_gettext( "_JOMRES_COM_CHOOSELANGUAGES", '_JOMRES_COM_CHOOSELANGUAGES',false );
+		$output[ 'INFO' ]                      = jr_gettext( "_JOMRES_COM_CHOOSELANGUAGES_INFO", '_JOMRES_COM_CHOOSELANGUAGES_INFO',false );
 		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = JOMRES_SITEPAGE_URL_ADMIN;
 		$langDropdownFile                      = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "langDropdown.php";
 		if ( file_exists( $langDropdownFile ) )

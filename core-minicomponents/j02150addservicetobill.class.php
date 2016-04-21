@@ -25,18 +25,18 @@ class j02150addservicetobill
 			return;
 			}
 		$mrConfig    = getPropertySpecificSettings();
-		$saveMessage = jr_gettext( '_JOMRES_COM_ADDSERVICE_SAVEMESSAGE', _JOMRES_COM_ADDSERVICE_SAVEMESSAGE );
+		$saveMessage = jr_gettext( '_JOMRES_COM_ADDSERVICE_SAVEMESSAGE', '_JOMRES_COM_ADDSERVICE_SAVEMESSAGE' );
 		$contract_uid = jomresGetParam( $_REQUEST, 'contract_uid', 0 );
 		
 		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 
 		if ( !isset( $_POST[ 'service_description' ] ) )
 			{
-			$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_COM_ADDSERVICE_TITLE', _JOMRES_COM_ADDSERVICE_TITLE );
-			$output[ 'HSERVICEDESCRIPTION' ] = jr_gettext( '_JOMRES_COM_ADDSERVICE_DESCRIPTION', _JOMRES_COM_ADDSERVICE_DESCRIPTION );
-			$output[ 'HSERVICEVALUE' ]       = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE', _JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE );
-			$output[ 'HTAXRATE' ]            = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', _JRPORTAL_INVOICES_LINEITEMS_TAX_RATE );
-			$output[ 'HQTY' ]            	 = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_INIT_QTY', _JRPORTAL_INVOICES_LINEITEMS_INIT_QTY );
+			$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_COM_ADDSERVICE_TITLE', '_JOMRES_COM_ADDSERVICE_TITLE' );
+			$output[ 'HSERVICEDESCRIPTION' ] = jr_gettext( '_JOMRES_COM_ADDSERVICE_DESCRIPTION', '_JOMRES_COM_ADDSERVICE_DESCRIPTION' );
+			$output[ 'HSERVICEVALUE' ]       = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE', '_JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE' );
+			$output[ 'HTAXRATE' ]            = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE' );
+			$output[ 'HQTY' ]            	 = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_INIT_QTY', '_JRPORTAL_INVOICES_LINEITEMS_INIT_QTY' );
 
 			$output[ 'CONTRACTUID' ]     = $contract_uid;
 			
@@ -71,7 +71,7 @@ class j02150addservicetobill
 			if ( $contract_uid && $service_description)
 				{
 				$query = "INSERT INTO #__jomres_extraservices (`service_description`,`service_value`,`contract_uid`,`tax_rate_val`,`tax_code`, `service_qty`) VALUES ('$service_description','" . (float) $service_value . "','" . (int) $contract_uid . "'," . $tax_value . "," . $taxrate . "," . $service_qty . ")";
-				if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_ADDSERVICE', _JOMRES_MR_AUDIT_ADDSERVICE, false ) ) ) 
+				if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_ADDSERVICE', '_JOMRES_MR_AUDIT_ADDSERVICE', false ) ) ) 
 					trigger_error( "Unable to insert into extraservices table, mysql db failure", E_USER_ERROR );
 				else
 					{
@@ -115,9 +115,9 @@ class j02150addservicetobill
 	function touch_template_language()
 		{
 		$output    = array ();
-		$output[ ] = jr_gettext( '_JOMRES_COM_ADDSERVICE_TITLE', _JOMRES_COM_ADDSERVICE_TITLE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_ADDSERVICE_DESCRIPTION', _JOMRES_COM_ADDSERVICE_DESCRIPTION );
-		$output[ ] = jr_gettext( '_JOMRES_COM_ADDSERVICE_VALUE', _JOMRES_COM_ADDSERVICE_VALUE );
+		$output[ ] = jr_gettext( '_JOMRES_COM_ADDSERVICE_TITLE', '_JOMRES_COM_ADDSERVICE_TITLE' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_ADDSERVICE_DESCRIPTION', '_JOMRES_COM_ADDSERVICE_DESCRIPTION' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_ADDSERVICE_VALUE', '_JOMRES_COM_ADDSERVICE_VALUE' );
 		foreach ( $output as $o )
 			{
 			echo $o;

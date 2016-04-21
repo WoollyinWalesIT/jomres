@@ -25,7 +25,7 @@ class j16000translate_lang_file_strings
 			return;
 			}
 		if ( !translation_user_check() ) return;
-		echo '<h2>' . jr_gettext( "_JOMRES_TOUCHTEMPLATES", _JOMRES_TOUCHTEMPLATES, false ) . '</h2>';
+		echo '<h2>' . jr_gettext( "_JOMRES_TOUCHTEMPLATES", '_JOMRES_TOUCHTEMPLATES', false ) . '</h2>';
 		echo "<br/><h3>" . get_showtime( 'lang' ) . "</h3><br/>";
 		// $jomreslang = $jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 		// echo $jomreslang->get_languageselection_dropdown();

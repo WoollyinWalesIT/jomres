@@ -34,26 +34,26 @@ class j10501contact_settings
 
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
-			$configurationPanel->startPanel( jr_gettext( "_JOMRES_CONTACT_SETTINGS", _JOMRES_CONTACT_SETTINGS, false ) );
+			$configurationPanel->startPanel( jr_gettext( "_JOMRES_CONTACT_SETTINGS", '_JOMRES_CONTACT_SETTINGS', false ) );
 			
-			$configurationPanel->insertDescription(jr_gettext( '_JOMRES_CONTACT_SETTINGS_DESC', _JOMRES_CONTACT_SETTINGS_DESC, false ));
+			$configurationPanel->insertDescription(jr_gettext( '_JOMRES_CONTACT_SETTINGS_DESC', '_JOMRES_CONTACT_SETTINGS_DESC', false ));
 	
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS', _JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS', '_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS', false ) );
 			$configurationPanel->setmiddle( $lists[ 'override_property_contact_details' ] );
 			$configurationPanel->setright( jr_gettext( '_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS_DESC', '_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL','_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', false ) );
 			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_override_property_contact_email" value="' . $jrConfig[ 'override_property_contact_email' ] . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE','_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', false ) );
 			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_override_property_contact_tel" value="' . $jrConfig[ 'override_property_contact_tel' ] . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX','_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX', false ) );
 			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_override_property_contact_fax" value="' . $jrConfig[ 'override_property_contact_fax' ] . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();

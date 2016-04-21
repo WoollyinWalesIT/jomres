@@ -27,7 +27,7 @@ class j04120deletepropertyfeature
 			}
 		$propertyFeatureUid = intval( jomresGetParam( $_REQUEST, 'propertyFeatureUid', 0 ) );
 		$defaultProperty    = getDefaultProperty();
-		$saveMessage        = jr_gettext( '_JOMRES_COM_MR_PROPERTYFEATURE_DELETED', _JOMRES_COM_MR_PROPERTYFEATURE_DELETED, false );
+		$saveMessage        = jr_gettext( '_JOMRES_COM_MR_PROPERTYFEATURE_DELETED', '_JOMRES_COM_MR_PROPERTYFEATURE_DELETED', false );
 		// First we need to check that the feature isn't recorded against any propertys. If it is, we can't move forward
 		$query                = "SELECT property_features FROM #__jomres_propertys WHERE propertys_uid = '" . (int) $defaultProperty . "'";
 		$propertyFeaturesList = doSelectSql( $query );
@@ -39,13 +39,13 @@ class j04120deletepropertyfeature
 			}
 		if ( !$safeToDelete )
 			{
-			trigger_error( jr_gettext( '_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE', _JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE, false ), E_USER_ERROR );
-			echo "<script> alert('" . jr_gettext( '_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE', _JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE, false ) . "'); ; </script>\n";
+			trigger_error( jr_gettext( '_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE', '_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE', false ), E_USER_ERROR );
+			echo "<script> alert('" . jr_gettext( '_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE', '_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE', false ) . "'); ; </script>\n";
 			}
 		else
 			{
 			$query = "DELETE FROM #__jomres_hotel_features  WHERE hotel_features_uid='" . (int) $propertyFeatureUid . "' AND property_uid='" . (int) $defaultProperty . "'";
-			if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_DELETE_PROPERTY_FEATURE', _JOMRES_MR_AUDIT_DELETE_PROPERTY_FEATURE, false ) ) ) returnToPropertyConfig( $saveMessage );
+			if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_DELETE_PROPERTY_FEATURE', '_JOMRES_MR_AUDIT_DELETE_PROPERTY_FEATURE', false ) ) ) returnToPropertyConfig( $saveMessage );
 			trigger_error( "Unable to delete from hotel features table, mysql db failure", E_USER_ERROR );
 			}
 		}

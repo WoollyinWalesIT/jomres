@@ -46,7 +46,7 @@ class j07110media_centre_upload_context_properties
 		$arr [ 'resource_subdirectories_used']    = true ;
 		$arr [ 'url_context']                     = '&upload_context='.$upload_context ;
 		$arr [ 'context']                         = $upload_context ;
-		$arr [ 'upload_context_title']            = jr_gettext( '_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY', _JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY );
+		$arr [ 'upload_context_title']            = jr_gettext( '_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY', '_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY' );
 		
 		
 		$this->ret_vals ['properties']  = $arr;

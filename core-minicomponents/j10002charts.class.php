@@ -30,7 +30,7 @@ class j10002charts
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=charts', 'ChartBarTrend.png', jr_gettext( "_JOMRES_CHARTS", _JOMRES_CHARTS, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS, false, false ) );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=charts', 'ChartBarTrend.png', jr_gettext( "_JOMRES_CHARTS", '_JOMRES_CHARTS', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS', false, false ) );
 			}
 		}
 
@@ -38,7 +38,7 @@ class j10002charts
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS' );
 
 		foreach ( $output as $o )
 			{

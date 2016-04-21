@@ -28,14 +28,14 @@ class j00010reception_option_05_list_bookings
 		$property_uid = getDefaultProperty();
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) return;
-		$this->cpanelButton = jomres_mainmenu_option( jomresURL( JOMRES_SITEPAGE_URL . "&task=list_bookings" ), 'ListBookings.png', jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS', _JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS, false, false ) );
+		$this->cpanelButton = jomres_mainmenu_option( jomresURL( JOMRES_SITEPAGE_URL . "&task=list_bookings" ), 'ListBookings.png', jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS', '_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS', false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS', false, false ) );
 		}
 
 	function touch_template_language()
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS' );
 
 		foreach ( $output as $o )
 			{

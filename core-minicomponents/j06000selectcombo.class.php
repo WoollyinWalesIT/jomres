@@ -40,7 +40,7 @@ class j06000selectcombo
 		$allPropertyLocations = prepGeographicSearch();
 		$filter               = jomresGetParam( $_REQUEST, '_name', "" );
 		$q                    = jomresGetParam( $_REQUEST, '_value', "" );
-		$searchAll            = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
+		$searchAll            = jr_gettext( '_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false );
 
 		if ( $filter == "country" )
 			{

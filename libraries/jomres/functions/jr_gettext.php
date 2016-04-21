@@ -80,27 +80,20 @@ function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false 
 	$br = "";
 	if ( get_showtime( 'task' ) == "editCustomTextAll" ) 
 		$br = "<br />";
-
-	if (!defined($theConstant) && $theValue != "" )
+	
+	if ( count( $customTextArray ) > 0 )
 		{
-		$theText = $theValue;
-		}
-	else
-		{
-		if ( count( $customTextArray ) > 0 )
+		if ( array_key_exists( $theConstant, $customTextArray ) )
 			{
-			if ( array_key_exists( $theConstant, $customTextArray ) )
-				{
-				$theText = stripslashes( $customTextArray[ $theConstant ] );
-				}
-			else
-				{
-				$theText = jr_get_defined( $theConstant, $theValue );
-				}
+			$theText = stripslashes( $customTextArray[ $theConstant ] );
 			}
 		else
+			{
 			$theText = jr_get_defined( $theConstant, $theValue );
+			}
 		}
+	else
+		$theText = jr_get_defined( $theConstant, $theValue );
 
 	if ( isset($thisJRUser->userIsManager) && $thisJRUser->userIsManager )
 		{

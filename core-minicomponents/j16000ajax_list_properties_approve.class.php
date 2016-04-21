@@ -49,12 +49,12 @@ class j16000ajax_list_properties_approve
 
 		switch($approved) {
 			case 1:
-				if ( !jomresMailer( $jomresConfig_mailfrom, $jomresConfig_fromname, $current_property_details->property_email, jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT',_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT,false ), jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT',_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT,false ) . $link, $mode = 1 ) )
-					error_logging( 'Failure in sending approval email to hotel. Target address: ' . $current_property_details->property_email . ' Subject ' . jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT',_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT,false ) );
+				if ( !jomresMailer( $jomresConfig_mailfrom, $jomresConfig_fromname, $current_property_details->property_email, jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT','_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT',false ), jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT','_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT',false ) . $link, $mode = 1 ) )
+					error_logging( 'Failure in sending approval email to hotel. Target address: ' . $current_property_details->property_email . ' Subject ' . jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT','_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT',false ) );
 				break;
 			case 0:
-				if ( !jomresMailer( $jomresConfig_mailfrom, $jomresConfig_fromname, $current_property_details->property_email, jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT',_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT,false ), jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT',_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT,false ) . $link, $mode = 1 ) )
-					error_logging( 'Failure in sending unapproval email to hotel. Target address: ' . $current_property_details->property_email . ' Subject ' . jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT',_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT,false ) );
+				if ( !jomresMailer( $jomresConfig_mailfrom, $jomresConfig_fromname, $current_property_details->property_email, jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT','_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT',false ), jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT','_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT',false ) . $link, $mode = 1 ) )
+					error_logging( 'Failure in sending unapproval email to hotel. Target address: ' . $current_property_details->property_email . ' Subject ' . jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT','_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT',false ) );
 				break;
 			default:
 				break;

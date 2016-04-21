@@ -30,7 +30,7 @@ class j00010reception_option_01_wp_control_panel
 		
 		if (this_cms_is_wordpress() && $thisJRUser->superPropertyManager) 
 			{
-			$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL_ADMIN , 'wp-icon.png', jr_gettext( '_JOMRES_CONTROLPANEL', _JOMRES_CONTROLPANEL, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME, false, false ) );
+			$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL_ADMIN , 'wp-icon.png', jr_gettext( '_JOMRES_CONTROLPANEL', '_JOMRES_CONTROLPANEL', false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME', false, false ) );
 			}
 		}
 

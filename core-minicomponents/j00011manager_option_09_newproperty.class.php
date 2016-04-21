@@ -27,7 +27,7 @@ class j00011manager_option_09_newproperty {
 		if ($jrConfig['is_single_property_installation'] == "0")
 			{
 			if ( $jrConfig['selfRegistrationAllowed']=='1' || $thisJRUser->superPropertyManager)
-				$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=registerProp_step1"), 'AddProperty.png', jr_gettext('_JOMRES_COM_MR_NEWPROPERTY',_JOMRES_COM_MR_NEWPROPERTY,false,false),null,jr_gettext("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES" , _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES,false,false),false,false );
+				$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=registerProp_step1"), 'AddProperty.png', jr_gettext('_JOMRES_COM_MR_NEWPROPERTY','_JOMRES_COM_MR_NEWPROPERTY',false,false),null,jr_gettext("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES" , '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES',false,false),false,false );
 			}
 		}
 	

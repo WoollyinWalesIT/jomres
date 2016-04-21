@@ -29,7 +29,7 @@ class j10002listMosUsers
 		$jrConfig   = $siteConfig->get();
 
 		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=managers_choose', 'Vendors.png', jr_gettext( "_JOMRES_COM_MR_SHOWPROFILES", _JOMRES_COM_MR_SHOWPROFILES, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT", _JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT, false, false ) );
+		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=managers_choose', 'Vendors.png', jr_gettext( "_JOMRES_COM_MR_SHOWPROFILES", '_JOMRES_COM_MR_SHOWPROFILES', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT', false, false ) );
 
 		}
 
@@ -37,7 +37,7 @@ class j10002listMosUsers
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT", _JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT' );
 
 		foreach ( $output as $o )
 			{

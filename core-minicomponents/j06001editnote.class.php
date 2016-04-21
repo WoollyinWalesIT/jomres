@@ -44,7 +44,7 @@ class j06001editnote
 
 		$query                = "SELECT `note` FROM #__jomcomp_notes WHERE `id`='" . (int) $note_id . "' AND `property_uid`='" . (int) $defaultProperty . "' LIMIT 1";
 		$output[ 'NOTE' ]     = doSelectSql( $query, 1 );
-		$output[ 'HNEWTEXT' ] = jr_gettext( '_JOMCOMP_BOOKINGNOTES_EDIT', _JOMCOMP_BOOKINGNOTES_EDIT );
+		$output[ 'HNEWTEXT' ] = jr_gettext( '_JOMCOMP_BOOKINGNOTES_EDIT', '_JOMCOMP_BOOKINGNOTES_EDIT' );
 		$output[ 'NOTE_ID' ]  = $note_id;
 
 		$output[ 'JOMRES_SITEPAGE_URL' ] = JOMRES_SITEPAGE_URL;
@@ -61,7 +61,7 @@ class j06001editnote
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMCOMP_BOOKINGNOTES_EDIT', _JOMCOMP_BOOKINGNOTES_EDIT );
+		$output[ ] = jr_gettext( '_JOMCOMP_BOOKINGNOTES_EDIT', '_JOMCOMP_BOOKINGNOTES_EDIT' );
 
 		foreach ( $output as $o )
 			{

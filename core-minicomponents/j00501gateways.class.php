@@ -37,11 +37,11 @@ class j00501gateways
 			$lists        = $componentArgs[ 'lists' ];
 			$gatewayNames = $componentArgs[ 'gatewayNames' ];
 
-			$configurationPanel->startPanel( jr_gettext( "_JOMRES_COM_A_GATEWAYLIST", _JOMRES_COM_A_GATEWAYLIST, false ) );
+			$configurationPanel->startPanel( jr_gettext( "_JOMRES_COM_A_GATEWAYLIST", '_JOMRES_COM_A_GATEWAYLIST', false ) );
 
 			$configurationPanel->setleft();
 			$configurationPanel->setmiddle();
-			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_GATEWAY_ENABLED", _JOMRES_COM_A_GATEWAY_ENABLED, false ) );
+			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_GATEWAY_ENABLED", '_JOMRES_COM_A_GATEWAY_ENABLED', false ) );
 			$configurationPanel->insertSetting();
 
 			$MiniComponents->triggerEvent( '00509', $componentArgs );

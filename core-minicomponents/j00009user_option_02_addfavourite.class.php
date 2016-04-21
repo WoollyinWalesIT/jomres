@@ -34,7 +34,7 @@ class j00009user_option_02_addfavourite
 				$query     = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE property_uid = '" . (int) $property_uid . "' AND my_id='" . (int) $thisJRUser->id . "'";
 				$favourite = doSelectSql( $query, 1 );
 				if (!$favourite)
-					$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=muaddtofavourites&no_html=1&amp;property_uid=" . $property_uid, '', jr_gettext( '_JOMCOMP_MYUSER_ADDTOFAVOURITES', _JOMCOMP_MYUSER_ADDTOFAVOURITES, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT, false, false ) );
+					$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=muaddtofavourites&no_html=1&amp;property_uid=" . $property_uid, '', jr_gettext( '_JOMCOMP_MYUSER_ADDTOFAVOURITES', '_JOMCOMP_MYUSER_ADDTOFAVOURITES', false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT', false, false ) );
 				}
 			}
 		}
@@ -42,7 +42,7 @@ class j00009user_option_02_addfavourite
 	function touch_template_language()
 		{
 		$output    = array ();
-		$output[ ] = jr_gettext( '_JOMCOMP_MYUSER_ADDTOFAVOURITES', _JOMCOMP_MYUSER_ADDTOFAVOURITES );
+		$output[ ] = jr_gettext( '_JOMCOMP_MYUSER_ADDTOFAVOURITES', '_JOMCOMP_MYUSER_ADDTOFAVOURITES' );
 
 		foreach ( $output as $o )
 			{

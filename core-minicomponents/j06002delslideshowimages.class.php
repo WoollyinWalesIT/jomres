@@ -76,7 +76,7 @@ class j06002delslideshowimages
 
 						$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
 						$jomres_messaging = new jomres_messages();
-						$jomres_messaging->set_message( $imageName . ' ' . jr_gettext( '_JOMRES_FILE_DELETED', _JOMRES_FILE_DELETED, false ) );
+						$jomres_messaging->set_message( $imageName . ' ' . jr_gettext( '_JOMRES_FILE_DELETED', '_JOMRES_FILE_DELETED', false ) );
 						}
 					}
 				}
@@ -99,7 +99,7 @@ class j06002delslideshowimages
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMRES_FILE_DELETED', _JOMRES_FILE_DELETED );
+		$output[ ] = jr_gettext( '_JOMRES_FILE_DELETED', '_JOMRES_FILE_DELETED' );
 
 		foreach ( $output as $o )
 			{

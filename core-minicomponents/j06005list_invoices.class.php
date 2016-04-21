@@ -55,31 +55,31 @@ class j06005list_invoices
 		$output     = array ();
 		$pageoutput = array ();
 
-		$output[ 'PAGETITLE' ]                    = jr_gettext( "_JRPORTAL_INVOICES_TITLE", _JRPORTAL_INVOICES_TITLE, false );
-		$output[ 'HBOOKINGNO' ]  				  = jr_gettext( '_JOMRES_BOOKING_NUMBER', _JOMRES_BOOKING_NUMBER, false );
-		$output[ 'HPROPERTY_NAME' ] 		      = jr_gettext( '_JRPORTAL_PROPERTIES_PROPERTYNAME', _JRPORTAL_PROPERTIES_PROPERTYNAME, false );
-		$output[ 'HFIRSTNAME' ]                   = jr_gettext( "_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME", _JOMRES_COM_MR_VIEWBOOKINGS_SURNAME, false );
-		$output[ 'HSURNAME' ]       	          = jr_gettext( "_JOMRES_FRONT_MR_DISPGUEST_SURNAME", _JOMRES_FRONT_MR_DISPGUEST_SURNAME, false );
-		$output[ 'HSTATUS' ]                      = jr_gettext( "_JRPORTAL_INVOICES_STATUS", _JRPORTAL_INVOICES_STATUS, false );
-		$output[ 'HRAISED' ]                      = jr_gettext( "_JRPORTAL_INVOICES_RAISED", _JRPORTAL_INVOICES_RAISED, false );
-		$output[ 'HDUE' ]                         = jr_gettext( "_JRPORTAL_INVOICES_DUE", _JRPORTAL_INVOICES_DUE, false );
-		$output[ 'HPAID' ]                        = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PAID", _JRPORTAL_INVOICES_STATUS_PAID, false );
-		$output[ 'HINITTOTAL' ]                   = jr_gettext( "_JRPORTAL_INVOICES_INITTOTAL", _JRPORTAL_INVOICES_INITTOTAL, false );
-		$output[ 'HGRAND_TOTAL' ]                 = jr_gettext( "_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL", _JOMRES_COM_INVOICE_LETTER_GRANDTOTAL, false );
-		$output[ 'HLINEITEMS' ] 				  = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS", _JRPORTAL_INVOICES_LINEITEMS, false );
-		$output[ 'HEDITLINK' ]   				  = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_EDITDETAILS', _JOMRES_COM_MR_DISPGUEST_EDITDETAILS, false );
-		$output[ 'HLEGEND' ] 					  = jr_gettext( "_JOMRES_HLEGEND", _JOMRES_HLEGEND, false );
-		$output[ 'HUNPAID' ] 					  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_UNPAID', _JRPORTAL_INVOICES_STATUS_UNPAID, false );
-		$output[ 'HPAID' ] 						  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PAID', _JRPORTAL_INVOICES_STATUS_PAID, false );
-		$output[ 'HCANCELLED' ] 				  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_CANCELLED', _JRPORTAL_INVOICES_STATUS_CANCELLED, false );
-		$output[ 'HPENDING' ] 					  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PENDING', _JRPORTAL_INVOICES_STATUS_PENDING, false );
-		$output[ '_JRPORTAL_INVOICES_LINEITEMS' ] = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS', _JRPORTAL_INVOICES_LINEITEMS, false );
-		$output[ 'HPAYNOW' ] 					  = jr_gettext( '_JRPORTAL_INVOICES_PAYNOW', _JRPORTAL_INVOICES_PAYNOW, false );
+		$output[ 'PAGETITLE' ]                    = jr_gettext( "_JRPORTAL_INVOICES_TITLE", '_JRPORTAL_INVOICES_TITLE', false );
+		$output[ 'HBOOKINGNO' ]  				  = jr_gettext( '_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER', false );
+		$output[ 'HPROPERTY_NAME' ] 		      = jr_gettext( '_JRPORTAL_PROPERTIES_PROPERTYNAME', '_JRPORTAL_PROPERTIES_PROPERTYNAME', false );
+		$output[ 'HFIRSTNAME' ]                   = jr_gettext( "_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME", '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME', false );
+		$output[ 'HSURNAME' ]       	          = jr_gettext( "_JOMRES_FRONT_MR_DISPGUEST_SURNAME", '_JOMRES_FRONT_MR_DISPGUEST_SURNAME', false );
+		$output[ 'HSTATUS' ]                      = jr_gettext( "_JRPORTAL_INVOICES_STATUS", '_JRPORTAL_INVOICES_STATUS', false );
+		$output[ 'HRAISED' ]                      = jr_gettext( "_JRPORTAL_INVOICES_RAISED", '_JRPORTAL_INVOICES_RAISED', false );
+		$output[ 'HDUE' ]                         = jr_gettext( "_JRPORTAL_INVOICES_DUE", '_JRPORTAL_INVOICES_DUE', false );
+		$output[ 'HPAID' ]                        = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PAID", '_JRPORTAL_INVOICES_STATUS_PAID', false );
+		$output[ 'HINITTOTAL' ]                   = jr_gettext( "_JRPORTAL_INVOICES_INITTOTAL", '_JRPORTAL_INVOICES_INITTOTAL', false );
+		$output[ 'HGRAND_TOTAL' ]                 = jr_gettext( "_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL", '_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL', false );
+		$output[ 'HLINEITEMS' ] 				  = jr_gettext( "_JRPORTAL_INVOICES_LINEITEMS", '_JRPORTAL_INVOICES_LINEITEMS', false );
+		$output[ 'HEDITLINK' ]   				  = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_EDITDETAILS', '_JOMRES_COM_MR_DISPGUEST_EDITDETAILS', false );
+		$output[ 'HLEGEND' ] 					  = jr_gettext( "_JOMRES_HLEGEND", '_JOMRES_HLEGEND', false );
+		$output[ 'HUNPAID' ] 					  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_UNPAID', '_JRPORTAL_INVOICES_STATUS_UNPAID', false );
+		$output[ 'HPAID' ] 						  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PAID', '_JRPORTAL_INVOICES_STATUS_PAID', false );
+		$output[ 'HCANCELLED' ] 				  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_CANCELLED', '_JRPORTAL_INVOICES_STATUS_CANCELLED', false );
+		$output[ 'HPENDING' ] 					  = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PENDING', '_JRPORTAL_INVOICES_STATUS_PENDING', false );
+		$output[ '_JRPORTAL_INVOICES_LINEITEMS' ] = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS', '_JRPORTAL_INVOICES_LINEITEMS', false );
+		$output[ 'HPAYNOW' ] 					  = jr_gettext( '_JRPORTAL_INVOICES_PAYNOW', '_JRPORTAL_INVOICES_PAYNOW', false );
 
 
 		if ( !using_bootstrap() )
 			{
-			$output[ 'TASK_FILTER_ANY' ]       = '<a href="' . JOMRES_SITEPAGE_URL . '&task=list_invoices">' . jr_gettext( '_JOMRES_FRONT_ROOMSMOKING_EITHER', _JOMRES_FRONT_ROOMSMOKING_EITHER, false ) . '</a>';
+			$output[ 'TASK_FILTER_ANY' ]       = '<a href="' . JOMRES_SITEPAGE_URL . '&task=list_invoices">' . jr_gettext( '_JOMRES_FRONT_ROOMSMOKING_EITHER', '_JOMRES_FRONT_ROOMSMOKING_EITHER', false ) . '</a>';
 			$output[ 'TASK_FILTER_UNPAID' ]    = '<a href="' . JOMRES_SITEPAGE_URL . '&task=list_invoices&invoice_status=0">' . $output[ 'HUNPAID' ] . '</a>';
 			$output[ 'TASK_FILTER_PAID' ]      = '<a href="' . JOMRES_SITEPAGE_URL . '&task=list_invoices&invoice_status=1">' . $output[ 'HPAID' ] . '</a>';
 			$output[ 'TASK_FILTER_CANCELLED' ] = '<a href="' . JOMRES_SITEPAGE_URL . '&task=list_invoices&invoice_status=2">' . $output[ 'HCANCELLED' ] . '</a>';
@@ -87,28 +87,28 @@ class j06005list_invoices
 			}
 		
 		//filters
-		$output['HFILTER'] = jr_gettext( '_JOMRES_HFILTER', _JOMRES_HFILTER, false );
-		$output['HINVOICE_STATUS']= jr_gettext( '_JOMRES_HSTATUS_INVOICE', _JOMRES_HSTATUS_INVOICE, false );
-		$output['HINVOICE_TYPE']= jr_gettext( '_JOMRES_HSTATUS_INVOICE_TYPE', _JOMRES_HSTATUS_INVOICE_TYPE, false );
-		$output['HSTART']= jr_gettext( '_JOMRES_HFROM', _JOMRES_HFROM, false );
-		$output['HEND']= jr_gettext( '_JOMRES_HTO', _JOMRES_HTO, false );
+		$output['HFILTER'] = jr_gettext( '_JOMRES_HFILTER', '_JOMRES_HFILTER', false );
+		$output['HINVOICE_STATUS']= jr_gettext( '_JOMRES_HSTATUS_INVOICE', '_JOMRES_HSTATUS_INVOICE', false );
+		$output['HINVOICE_TYPE']= jr_gettext( '_JOMRES_HSTATUS_INVOICE_TYPE', '_JOMRES_HSTATUS_INVOICE_TYPE', false );
+		$output['HSTART']= jr_gettext( '_JOMRES_HFROM', '_JOMRES_HFROM', false );
+		$output['HEND']= jr_gettext( '_JOMRES_HTO', '_JOMRES_HTO', false );
 		
 		$output[ 'START' ] = generateDateInput("startDate",$startDate,FALSE,TRUE,true);
 		$output[ 'END' ] = generateDateInput("endDate",$endDate,FALSE,TRUE,true);
 		
 		$options = array ();
-		$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_FRONT_ROOMSMOKING_EITHER', _JOMRES_FRONT_ROOMSMOKING_EITHER, false ) );
-		$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_STATUS_BOOKINGS', _JOMRES_STATUS_BOOKINGS, false ) );
+		$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_FRONT_ROOMSMOKING_EITHER', '_JOMRES_FRONT_ROOMSMOKING_EITHER', false ) );
+		$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_STATUS_BOOKINGS', '_JOMRES_STATUS_BOOKINGS', false ) );
 		if ($thisJRUser->userIsManager && $thisJRUser->accesslevel > 1)
 			{
-			$options[] = jomresHTML::makeOption( '2', jr_gettext( '_JOMRES_STATUS_COMMISSIONS', _JOMRES_STATUS_COMMISSIONS, false ) );
+			$options[] = jomresHTML::makeOption( '2', jr_gettext( '_JOMRES_STATUS_COMMISSIONS', '_JOMRES_STATUS_COMMISSIONS', false ) );
 			}
 		if ($thisJRUser->userIsRegistered && $thisJRUser->accesslevel != 1)
-			$options[] = jomresHTML::makeOption( '3', jr_gettext( '_JOMRES_STATUS_SUBSCRIPTIONS', _JOMRES_STATUS_SUBSCRIPTIONS, false ) );
+			$options[] = jomresHTML::makeOption( '3', jr_gettext( '_JOMRES_STATUS_SUBSCRIPTIONS', '_JOMRES_STATUS_SUBSCRIPTIONS', false ) );
 		$output['INVOICE_TYPE'] = jomresHTML::selectList( $options, 'invoice_type','class="inputbox" size="1"', 'value', 'text', $invoice_type);
 		
 		$options = array ();
-		$options[] = jomresHTML::makeOption( '4', jr_gettext( '_JOMRES_FRONT_ROOMSMOKING_EITHER', _JOMRES_FRONT_ROOMSMOKING_EITHER, false ) );
+		$options[] = jomresHTML::makeOption( '4', jr_gettext( '_JOMRES_FRONT_ROOMSMOKING_EITHER', '_JOMRES_FRONT_ROOMSMOKING_EITHER', false ) );
 		$options[] = jomresHTML::makeOption( '0', $output[ 'HUNPAID' ] );
 		$options[] = jomresHTML::makeOption( '1', $output[ 'HPAID' ] );
 		$options[] = jomresHTML::makeOption( '2', $output[ 'HCANCELLED' ] );
@@ -117,10 +117,10 @@ class j06005list_invoices
 		
 		if ($thisJRUser->userIsManager || $thisJRUser->superPropertyManager)
 			{
-			$output[ 'HSHOW_ALL' ] = jr_gettext( '_JOMRES_HSTATUS_SHOW_INVOICES_FOR', _JOMRES_HSTATUS_SHOW_INVOICES_FOR, false );
+			$output[ 'HSHOW_ALL' ] = jr_gettext( '_JOMRES_HSTATUS_SHOW_INVOICES_FOR', '_JOMRES_HSTATUS_SHOW_INVOICES_FOR', false );
 			$options = array();
-			$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_HSTATUS_CURRENT', _JOMRES_HSTATUS_CURRENT, false ) );
-			$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_STATUS_ALL_PROPERTIES', _JOMRES_STATUS_ALL_PROPERTIES, false ) );
+			$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_HSTATUS_CURRENT', '_JOMRES_HSTATUS_CURRENT', false ) );
+			$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_STATUS_ALL_PROPERTIES', '_JOMRES_STATUS_ALL_PROPERTIES', false ) );
 			$output['SHOW_ALL']=jomresHTML::selectList( $options, 'show_all','class="inputbox" size="1"', 'value', 'text', $show_all);
 			}
 		

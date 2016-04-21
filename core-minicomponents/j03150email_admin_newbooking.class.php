@@ -27,7 +27,7 @@ class j03150email_admin_newbooking
 		
 		$default_template = JOMRES_TEMPLATEPATH_BACKEND.JRDS.'email_admin_newbooking.html';
 		
-		$this->ret_vals = array ( "type" => "email_admin_newbooking", "name" => jr_gettext('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',_JOMRES_ADMIN_NEWBOOKING_EMAILNAME,false) , "desc" => jr_gettext('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',_JOMRES_ADMIN_NEWBOOKING_EMAILDESC,false), "default_template" => $default_template );
+		$this->ret_vals = array ( "type" => "email_admin_newbooking", "name" => jr_gettext('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME','_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',false) , "desc" => jr_gettext('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC','_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',false), "default_template" => $default_template );
 		
 		}
 

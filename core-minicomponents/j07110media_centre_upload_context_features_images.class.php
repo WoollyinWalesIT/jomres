@@ -49,7 +49,7 @@ class j07110media_centre_upload_context_features_images
 		$arr [ 'resource_subdirectories_used']    = false ;
 		$arr [ 'url_context']                     = '&upload_context='.$upload_context ;
 		$arr [ 'context']                         = $upload_context ;
-		$arr [ 'upload_context_title']            = jr_gettext( '_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES', _JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES );
+		$arr [ 'upload_context_title']            = jr_gettext( '_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES', '_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES' );
 		
 		
 		$this->ret_vals [$upload_context]  = $arr;

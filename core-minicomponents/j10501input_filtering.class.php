@@ -41,21 +41,21 @@ class j10501input_filtering
 			if ( !isset( $jrConfig[ 'inputs_allowing_html' ] ) ) 
 				$jrConfig[ 'inputs_allowing_html' ] = "property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers email_text description";
 				
-			$configurationPanel->startPanel( jr_gettext( "_JOMRES_INPUTFILTERING", _JOMRES_INPUTFILTERING, false ) );
+			$configurationPanel->startPanel( jr_gettext( "_JOMRES_INPUTFILTERING", '_JOMRES_INPUTFILTERING', false ) );
 	
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_INPUTFILTERING_LEVEL_TITLE', _JOMRES_INPUTFILTERING_LEVEL_TITLE, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_INPUTFILTERING_LEVEL_TITLE', '_JOMRES_INPUTFILTERING_LEVEL_TITLE', false ) );
 			$configurationPanel->setmiddle( $filtering_level_dropdown );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_INPUTFILTERING_LEVEL_DESC', _JOMRES_INPUTFILTERING_LEVEL_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_INPUTFILTERING_LEVEL_DESC', '_JOMRES_INPUTFILTERING_LEVEL_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_TITLE', _JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_TITLE, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_TITLE', '_JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_TITLE', false ) );
 			$configurationPanel->setmiddle( '<textarea type="text" class="input-large" name="cfg_html_purifier_allowed_tags" >' . $jrConfig[ 'html_purifier_allowed_tags' ] . ' </textarea>' );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_DESC', _JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_DESC', '_JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_INPUTFILTERING_INPUTS_TITLE', _JOMRES_INPUTFILTERING_INPUTS_TITLE, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_INPUTFILTERING_INPUTS_TITLE', '_JOMRES_INPUTFILTERING_INPUTS_TITLE', false ) );
 			$configurationPanel->setmiddle( '<textarea class="input-large" name="cfg_inputs_allowing_html" >' . $jrConfig[ 'inputs_allowing_html' ] . '</textarea>' );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_INPUTFILTERING_INPUTS_DESC', _JOMRES_INPUTFILTERING_INPUTS_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_INPUTFILTERING_INPUTS_DESC', '_JOMRES_INPUTFILTERING_INPUTS_DESC', false ) );
 			$configurationPanel->insertSetting();
 		
 			$configurationPanel->endPanel();

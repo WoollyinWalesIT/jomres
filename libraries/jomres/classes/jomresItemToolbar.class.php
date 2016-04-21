@@ -66,7 +66,7 @@ class jomresItemToolbar
 			if (jomres_bootstrap_version() == "3")
 				$this->toolbar.='<a class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" href="#"> <span class="caret"></span></a><ul class="dropdown-menu">';
 			else
-				$this->toolbar.='<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">'.jr_gettext( 'COMMON_MORE', COMMON_MORE, false ).' <span class="caret"></span></a><ul class="dropdown-menu">';
+				$this->toolbar.='<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">'.jr_gettext( 'COMMON_MORE', 'COMMON_MORE', false ).' <span class="caret"></span></a><ul class="dropdown-menu">';
 			foreach ($this->secondaryItems as $secondaryItem)
 				{
 				$this->toolbar.='<li>'.$secondaryItem.'</li>';

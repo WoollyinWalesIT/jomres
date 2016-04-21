@@ -32,22 +32,22 @@ class j04901email_property_welcome_message
 		$pageoutput=array();
 		$output = array();
 		
-		$output['_JOMRES_NEW_PROPERTY_WELCOME_TITLE']		= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_TITLE", _JOMRES_NEW_PROPERTY_WELCOME_TITLE, false, false )." ".$current_property_details->get_property_name($property_uid);
-		$output['_JOMRES_NEW_PROPERTY_WELCOME_1']			= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_1", _JOMRES_NEW_PROPERTY_WELCOME_1, false, false )." ".get_showtime("sitename");
-		$output['_JOMRES_NEW_PROPERTY_WELCOME_2']			= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_2", _JOMRES_NEW_PROPERTY_WELCOME_2, false, false );
-		$output['_JOMRES_NEW_PROPERTY_WELCOME_3']			= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_3", _JOMRES_NEW_PROPERTY_WELCOME_3, false, false );
+		$output['_JOMRES_NEW_PROPERTY_WELCOME_TITLE']		= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_TITLE", '_JOMRES_NEW_PROPERTY_WELCOME_TITLE', false, false )." ".$current_property_details->get_property_name($property_uid);
+		$output['_JOMRES_NEW_PROPERTY_WELCOME_1']			= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_1", '_JOMRES_NEW_PROPERTY_WELCOME_1', false, false )." ".get_showtime("sitename");
+		$output['_JOMRES_NEW_PROPERTY_WELCOME_2']			= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_2", '_JOMRES_NEW_PROPERTY_WELCOME_2', false, false );
+		$output['_JOMRES_NEW_PROPERTY_WELCOME_3']			= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_3", '_JOMRES_NEW_PROPERTY_WELCOME_3', false, false );
 		$output['_JOMRES_NEW_PROPERTY_WELCOME_3_LINK']		= jomresURL( JOMRES_SITEPAGE_URL_NOSEF."&task=dashboard&thisProperty=".$property_uid );
-		$output['_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT']	= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT", _JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT, false, false );
-		$output['_JOMRES_NEW_PROPERTY_WELCOME_4']			= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_4", _JOMRES_NEW_PROPERTY_WELCOME_4, false, false );
+		$output['_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT']	= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT", '_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT', false, false );
+		$output['_JOMRES_NEW_PROPERTY_WELCOME_4']			= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_4", '_JOMRES_NEW_PROPERTY_WELCOME_4', false, false );
 		$output['_JOMRES_NEW_PROPERTY_WELCOME_4_LINK']		= jomresURL( JOMRES_SITEPAGE_URL_NOSEF."&task=viewproperty&property_uid=".$property_uid );
-		$output['_JOMRES_NEW_PROPERTY_WELCOME_4_LINKTEXT']	= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_4_LINKTEXT", _JOMRES_NEW_PROPERTY_WELCOME_4_LINKTEXT, false, false );
-		$output['_JOMRES_NEW_PROPERTY_WELCOME_5']			= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_5", _JOMRES_NEW_PROPERTY_WELCOME_5, false, false );
-		$output['_JOMRES_NEW_PROPERTY_WELCOME_6']			= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_6", _JOMRES_NEW_PROPERTY_WELCOME_6, false, false );
-		$output['_JOMRES_NEW_PROPERTY_WELCOME_7']			= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_7", _JOMRES_NEW_PROPERTY_WELCOME_7, false, false );
+		$output['_JOMRES_NEW_PROPERTY_WELCOME_4_LINKTEXT']	= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_4_LINKTEXT", '_JOMRES_NEW_PROPERTY_WELCOME_4_LINKTEXT', false, false );
+		$output['_JOMRES_NEW_PROPERTY_WELCOME_5']			= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_5", '_JOMRES_NEW_PROPERTY_WELCOME_5', false, false );
+		$output['_JOMRES_NEW_PROPERTY_WELCOME_6']			= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_6", '_JOMRES_NEW_PROPERTY_WELCOME_6', false, false );
+		$output['_JOMRES_NEW_PROPERTY_WELCOME_7']			= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_7", '_JOMRES_NEW_PROPERTY_WELCOME_7', false, false );
 		$output['_JOMRES_NEW_PROPERTY_WELCOME_7_LINK']		= jomresURL( JOMRES_SITEPAGE_URL_NOSEF."&task=contactowner&property_uid=0" );
-		$output['_JOMRES_NEW_PROPERTY_WELCOME_7_LINKTEXT']	= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_7_LINKTEXT", _JOMRES_NEW_PROPERTY_WELCOME_7_LINKTEXT, false, false );
-		$output['_JOMRES_NEW_PROPERTY_WELCOME_8']			= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_8", _JOMRES_NEW_PROPERTY_WELCOME_8, false, false );
-		$output['_JOMRES_NEW_PROPERTY_WELCOME_BYEBYE']		= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_BYEBYE", _JOMRES_NEW_PROPERTY_WELCOME_BYEBYE, false, false )." ".get_showtime("sitename");
+		$output['_JOMRES_NEW_PROPERTY_WELCOME_7_LINKTEXT']	= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_7_LINKTEXT", '_JOMRES_NEW_PROPERTY_WELCOME_7_LINKTEXT', false, false );
+		$output['_JOMRES_NEW_PROPERTY_WELCOME_8']			= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_8", '_JOMRES_NEW_PROPERTY_WELCOME_8', false, false );
+		$output['_JOMRES_NEW_PROPERTY_WELCOME_BYEBYE']		= jr_gettext( "_JOMRES_NEW_PROPERTY_WELCOME_BYEBYE", '_JOMRES_NEW_PROPERTY_WELCOME_BYEBYE', false, false )." ".get_showtime("sitename");
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();

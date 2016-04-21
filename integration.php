@@ -185,24 +185,7 @@ $jomres_access_control = jomres_singleton_abstract::getInstance( 'jomres_access_
 
 if ( !defined( 'JOMRES_CSSRELPATH' ) ) define( 'JOMRES_CSSRELPATH', JOMRES_ROOT_DIRECTORY.'/css/' );
 
-if ($jrConfig[ 'development_production' ] == "production")
-	set_error_handler( 'errorHandler' );
-else // Because Jomres is so old, we've used "defines" well past their sell-by date for language string definitions. We'll capture those here and define them.
-	{
-	/* set_error_handler(function ($errNo, $errStr) {
-		if (strpos($errStr, 'Use of undefined constant ') === 0) {
-			$constant = strstr(substr($errStr, 26), ' ', true);
-			$string = jr_gettext((string)$constant,'',false);
-			if ($string != "")
-				define($constant,$string);
-			else
-				define($constant, $constant);
-		} else {
-			return false;
-		}
-	}, E_NOTICE); */
-	}
-
+//set_error_handler( 'errorHandler' );
 jomres_parseRequest();
 
 if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )

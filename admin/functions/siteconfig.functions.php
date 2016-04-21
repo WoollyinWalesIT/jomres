@@ -33,7 +33,7 @@ function showSiteConfig()
 	$jrtb   = $jrtbar->startTable();
 	$image  = $jrtbar->makeImageValid( "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/Save.png" );
 	$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN, '' );
-	$jrtb .= $jrtbar->customToolbarItem( 'saveSiteConfig', JOMRES_SITEPAGE_URL_ADMIN, jr_gettext( '_JOMRES_COM_MR_SAVE', _JOMRES_COM_MR_SAVE, false ), $submitOnClick = true, $submitTask = "save_site_settings", $image );
+	$jrtb .= $jrtbar->customToolbarItem( 'saveSiteConfig', JOMRES_SITEPAGE_URL_ADMIN, jr_gettext( '_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE', false ), $submitOnClick = true, $submitTask = "save_site_settings", $image );
 	$jrtb .= $jrtbar->endTable();
 
 	if ( !isset( $jrConfig[ 'load_jquery_ui' ] ) ) 
@@ -42,19 +42,19 @@ function showSiteConfig()
 	$lists = array ();
 	// make a standard yes/no list
 	$yesno    = array ();
-	$yesno[ ] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false ) );
-	$yesno[ ] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false ) );
+	$yesno[ ] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false ) );
+	$yesno[ ] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false ) );
 
 	$editoryesno    = array ();
-	$editoryesno[ ] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false ) );
-	$editoryesno[ ] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false ) );
+	$editoryesno[ ] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false ) );
+	$editoryesno[ ] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false ) );
 
 	$sortArray         = array (); // The search order dropdown list, this configure's the default.
-	$sortArray[ ]      = jomresHTML::makeOption( "1", jr_gettext( '_JOMRES_SORTORDER_DEFAULT', _JOMRES_SORTORDER_DEFAULT, false, false ) );
-	$sortArray[ ]      = jomresHTML::makeOption( "2", jr_gettext( '_JOMRES_SORTORDER_PROPERTYNAME', _JOMRES_SORTORDER_PROPERTYNAME, false, false ) );
-	$sortArray[ ]      = jomresHTML::makeOption( "3", jr_gettext( '_JOMRES_SORTORDER_PROPERTYREGION', _JOMRES_SORTORDER_PROPERTYREGION, false, false ) );
-	$sortArray[ ]      = jomresHTML::makeOption( "4", jr_gettext( '_JOMRES_SORTORDER_PROPERTYTOWN', _JOMRES_SORTORDER_PROPERTYTOWN, false, false ) );
-	$sortArray[ ]      = jomresHTML::makeOption( "5", jr_gettext( '_JOMRES_SORTORDER_STARS', _JOMRES_SORTORDER_STARS, false, false ) );
+	$sortArray[ ]      = jomresHTML::makeOption( "1", jr_gettext( '_JOMRES_SORTORDER_DEFAULT', '_JOMRES_SORTORDER_DEFAULT', false, false ) );
+	$sortArray[ ]      = jomresHTML::makeOption( "2", jr_gettext( '_JOMRES_SORTORDER_PROPERTYNAME', '_JOMRES_SORTORDER_PROPERTYNAME', false, false ) );
+	$sortArray[ ]      = jomresHTML::makeOption( "3", jr_gettext( '_JOMRES_SORTORDER_PROPERTYREGION', '_JOMRES_SORTORDER_PROPERTYREGION', false, false ) );
+	$sortArray[ ]      = jomresHTML::makeOption( "4", jr_gettext( '_JOMRES_SORTORDER_PROPERTYTOWN', '_JOMRES_SORTORDER_PROPERTYTOWN', false, false ) );
+	$sortArray[ ]      = jomresHTML::makeOption( "5", jr_gettext( '_JOMRES_SORTORDER_STARS', '_JOMRES_SORTORDER_STARS', false, false ) );
 	$sortArrayDropdown = jomresHTML::selectList( $sortArray, 'cfg_search_order_default', 'id="sortby" size="1"', 'value', 'text', $jrConfig[ 'search_order_default' ] );
 
 	$jsInputDateFormats[ ]     = jomresHTML::makeOption( "%d/%m/%Y", "01/02/2006 - 1st February 2006" );
@@ -125,18 +125,18 @@ function showSiteConfig()
 
 	$geosearchList         = array ();
 	$geosearchList[ ]      = jomresHTML::makeOption( '', '' );
-	$geosearchList[ ]      = jomresHTML::makeOption( 'town', jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN, false ) );
-	$geosearchList[ ]      = jomresHTML::makeOption( 'region', jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION, false ) );
+	$geosearchList[ ]      = jomresHTML::makeOption( 'town', jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false ) );
+	$geosearchList[ ]      = jomresHTML::makeOption( 'region', jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false ) );
 	$geosearchDropdownList = jomresHTML::selectList( $geosearchList, 'cfg_integratedSearch_geosearchtype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_geosearchtype' ] );
 
 	$mapWeatherTempGrad             = array ();
-	$mapWeatherTempGrad[ ]          = jomresHTML::makeOption( 'CELCIUS', jr_gettext( 'JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS', JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS, false ) );
-	$mapWeatherTempGrad[ ]          = jomresHTML::makeOption( 'FAHRENHEIT', jr_gettext( 'JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT', JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT, false ) );
+	$mapWeatherTempGrad[ ]          = jomresHTML::makeOption( 'CELCIUS', jr_gettext( 'JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS', 'JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS', false ) );
+	$mapWeatherTempGrad[ ]          = jomresHTML::makeOption( 'FAHRENHEIT', jr_gettext( 'JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT', 'JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT', false ) );
 	$mapWeatherTempGradDropdownList = jomresHTML::selectList( $mapWeatherTempGrad, 'cfg_gmap_layer_temperature_grad', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_layer_temperature_grad' ] );
 
 	$calendarStartDays             = array ();
-	$calendarStartDays[ ]          = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_SUNDAY', _JOMRES_COM_MR_WEEKDAYS_SUNDAY, false ) );
-	$calendarStartDays[ ]          = jomresHTML::makeOption( '2', jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_MONDAY', _JOMRES_COM_MR_WEEKDAYS_MONDAY, false ) );
+	$calendarStartDays[ ]          = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_SUNDAY', '_JOMRES_COM_MR_WEEKDAYS_SUNDAY', false ) );
+	$calendarStartDays[ ]          = jomresHTML::makeOption( '2', jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_MONDAY', '_JOMRES_COM_MR_WEEKDAYS_MONDAY', false ) );
 	$calendarStartDaysDropdownList = jomresHTML::selectList( $calendarStartDays, 'cfg_calendarstartofweekday', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'calendarstartofweekday' ] );
 
 	if ( !isset( $jrConfig[ 'guestnumbersearch' ] ) ) $jrConfig[ 'guestnumbersearch' ] = "equal";
@@ -171,21 +171,21 @@ function showSiteConfig()
 	$language_context_dropdown = jomresHTML::selectList( $language_context, 'cfg_language_context', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'language_context' ] );
 
 	$filtering_level          = array ();
-	$filtering_level[ ]       = jomresHTML::makeOption( 'weak', jr_gettext( '_JOMRES_INPUTFILTERING_LEVEL_WEAK', _JOMRES_INPUTFILTERING_LEVEL_WEAK, false ) );
-	$filtering_level[ ]       = jomresHTML::makeOption( 'strong', jr_gettext( '_JOMRES_INPUTFILTERING_LEVEL_STRONG', _JOMRES_INPUTFILTERING_LEVEL_STRONG, false ) );
+	$filtering_level[ ]       = jomresHTML::makeOption( 'weak', jr_gettext( '_JOMRES_INPUTFILTERING_LEVEL_WEAK', '_JOMRES_INPUTFILTERING_LEVEL_WEAK', false ) );
+	$filtering_level[ ]       = jomresHTML::makeOption( 'strong', jr_gettext( '_JOMRES_INPUTFILTERING_LEVEL_STRONG', '_JOMRES_INPUTFILTERING_LEVEL_STRONG', false ) );
 	$filtering_level_dropdown = jomresHTML::selectList( $filtering_level, 'cfg_input_filtering', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'input_filtering' ] );
 
 	$production_development          = array ();
-	$production_development[ ]       = jomresHTML::makeOption( 'production', jr_gettext( '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION', _JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION, false ) );
-	$production_development[ ]       = jomresHTML::makeOption( 'development', jr_gettext( '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT', _JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT, false ) );
+	$production_development[ ]       = jomresHTML::makeOption( 'production', jr_gettext( '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION', '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION', false ) );
+	$production_development[ ]       = jomresHTML::makeOption( 'development', jr_gettext( '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT', '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT', false ) );
 	$production_development_dropdown = jomresHTML::selectList( $production_development, 'cfg_development_production', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'development_production' ] );
 	
 	if (!isset($jrConfig[ 'navbar_location' ]))
 		$jrConfig[ 'navbar_location' ] = 'component_area'; 
 	$navbar_location          = array ();
-	$navbar_location[ ]       = jomresHTML::makeOption( 'component_area', jr_gettext( '_JOMRES_BOOTSTRAP_LOCATION_DEFAULT', _JOMRES_BOOTSTRAP_LOCATION_DEFAULT, false ) );
-	$navbar_location[ ]       = jomresHTML::makeOption( 'navbar-fixed-top', jr_gettext( '_JOMRES_BOOTSTRAP_LOCATION_TOP', _JOMRES_BOOTSTRAP_LOCATION_TOP, false ) );
-	$navbar_location[ ]       = jomresHTML::makeOption( 'navbar-fixed-bottom', jr_gettext( '_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', _JOMRES_BOOTSTRAP_LOCATION_BOTTOM, false ) );
+	$navbar_location[ ]       = jomresHTML::makeOption( 'component_area', jr_gettext( '_JOMRES_BOOTSTRAP_LOCATION_DEFAULT', '_JOMRES_BOOTSTRAP_LOCATION_DEFAULT', false ) );
+	$navbar_location[ ]       = jomresHTML::makeOption( 'navbar-fixed-top', jr_gettext( '_JOMRES_BOOTSTRAP_LOCATION_TOP', '_JOMRES_BOOTSTRAP_LOCATION_TOP', false ) );
+	$navbar_location[ ]       = jomresHTML::makeOption( 'navbar-fixed-bottom', jr_gettext( '_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', '_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', false ) );
 	$navbar_location_dropdown = jomresHTML::selectList( $navbar_location, 'cfg_navbar_location', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'navbar_location' ] );
 	
 	if (!isset($jrConfig[ 'bootstrap_version' ]))
@@ -351,7 +351,7 @@ function showSiteConfig()
 	
 	ob_start();
 	?>
-	<h2 class="page-header">Jomres <?php echo jr_gettext( '_JOMRES_A', _JOMRES_A, false ); ?></h2>
+	<h2 class="page-header">Jomres <?php echo jr_gettext( '_JOMRES_A', '_JOMRES_A', false ); ?></h2>
 	<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="post" name="adminForm">
 
 	<?php

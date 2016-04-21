@@ -31,8 +31,8 @@ class jomres_frontend_configuration_level
 		$output=array();
 		$pageoutput=array();
 		
-		$output['EXTENDED_CONFIGURATION']=jr_gettext( 'EXTENDED_CONFIGURATION', EXTENDED_CONFIGURATION, false, false );
-		$output['SIMPLE_CONFIGURATION']=jr_gettext( 'SIMPLE_CONFIGURATION', SIMPLE_CONFIGURATION, false, false );
+		$output['EXTENDED_CONFIGURATION']=jr_gettext( 'EXTENDED_CONFIGURATION', 'EXTENDED_CONFIGURATION', false, false );
+		$output['SIMPLE_CONFIGURATION']=jr_gettext( 'SIMPLE_CONFIGURATION', 'SIMPLE_CONFIGURATION', false, false );
 		
 		$output['EXTENDED_CONFIGURATION_LINK']=JOMRES_SITEPAGE_URL."&task=set_config_level&val=0";
 		$output['SIMPLE_CONFIGURATION_LINK']=JOMRES_SITEPAGE_URL."&task=set_config_level&val=1";

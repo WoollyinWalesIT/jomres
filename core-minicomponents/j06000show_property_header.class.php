@@ -147,7 +147,7 @@ class j06000show_property_header
 		$output['PROPERTY_LAT']=$current_property_details->lat;
 		$output['PROPERTY_LONG']=$current_property_details->long;
 		$output['SHORT_PROPERTY_DESCRIPTION']= $short_property_description;
-		$output['_JOMRES_COM_A_CLICKFORMOREINFORMATION']= jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION , false );
+		$output['_JOMRES_COM_A_CLICKFORMOREINFORMATION']= jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION' , false );
 
 		//property prices from
 		$price = get_property_price_for_display_in_lists( $property_uid );
@@ -167,9 +167,9 @@ class j06000show_property_header
 			}
 		
 		if ( $output[ 'TELEPHONE' ] != "" ) 
-			$output[ 'HTELEPHONE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE ) . ": ";
+			$output[ 'HTELEPHONE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE' ) . ": ";
 		if ( $output[ 'FAX' ] != "" ) 
-			$output[ 'HFAX' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX ) . ": ";
+			$output[ 'HFAX' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX' ) . ": ";
 
 		//external link
 		if ( isset($mrConfig[ 'galleryLink' ]) && $mrConfig[ 'galleryLink' ] != "" )
@@ -183,7 +183,7 @@ class j06000show_property_header
 			$output[ 'GALLERYDOMAIN' ] = $domain[ 'host' ];
 			}
 
-		$output[ 'JOMRES_TAPTOCALL' ] = jr_gettext( "JOMRES_TAPTOCALL", JOMRES_TAPTOCALL, false, false );
+		$output[ 'JOMRES_TAPTOCALL' ] = jr_gettext( "JOMRES_TAPTOCALL", 'JOMRES_TAPTOCALL', false, false );
 
 		//shortlist/favourites
 		if (isset($tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ]) && is_array($tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ]))
@@ -213,7 +213,7 @@ class j06000show_property_header
 			{
 			$shortlist_output = array();
 			$shortlist_pageoutput = array();
-			$shortlist_output['TEXT']= jr_gettext( '_JOMRES_ADDTOSHORTLIST', _JOMRES_ADDTOSHORTLIST, false, false );
+			$shortlist_output['TEXT']= jr_gettext( '_JOMRES_ADDTOSHORTLIST', '_JOMRES_ADDTOSHORTLIST', false, false );
 			$shortlist_pageoutput[ ] = $shortlist_output;
 			
 			$tmpl = new patTemplate();
@@ -226,7 +226,7 @@ class j06000show_property_header
 			{
 			$shortlist_output = array();
 			$shortlist_pageoutput = array();
-			$shortlist_output['TEXT']= jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', _JOMRES_REMOVEFROMSHORTLIST, false, false );
+			$shortlist_output['TEXT']= jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', '_JOMRES_REMOVEFROMSHORTLIST', false, false );
 			$shortlist_pageoutput[ ] = $shortlist_output;
 			
 			$tmpl = new patTemplate();
@@ -241,12 +241,12 @@ class j06000show_property_header
 			{
 			if ( $mrConfig[ 'requireApproval' ] == "1" || $mrConfig['visitorscanbookonline'] == "0" )
 				{
-				$output[ 'REQUIRE_APPROVAL' ] = jr_gettext( '_BOOKING_ONREQUEST', _BOOKING_ONREQUEST , false );
+				$output[ 'REQUIRE_APPROVAL' ] = jr_gettext( '_BOOKING_ONREQUEST', '_BOOKING_ONREQUEST' , false );
 				$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'label-warning';
 				}
 			else
 				{
-				$output[ 'REQUIRE_APPROVAL' ] = jr_gettext( '_BOOKING_INSTANT', _BOOKING_INSTANT , false );
+				$output[ 'REQUIRE_APPROVAL' ] = jr_gettext( '_BOOKING_INSTANT', '_BOOKING_INSTANT' , false );
 				$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'label-success';
 				}
 			}
@@ -256,7 +256,7 @@ class j06000show_property_header
 		if ( $jrConfig[ 'use_reviews' ] == "1" )
 			{
 			$reviews_link[0]['REVIEWS_LINK'] = jomresURL( JOMRES_SITEPAGE_URL . "&task=show_property_reviews&property_uid=" . $property_uid );
-			$reviews_link[0]['REVIEWS_TEXT'] = jr_gettext( '_JOMRES_REVIEWS', _JOMRES_REVIEWS, false, false );
+			$reviews_link[0]['REVIEWS_TEXT'] = jr_gettext( '_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false, false );
 			}
 		
 		//property agent
@@ -266,10 +266,10 @@ class j06000show_property_header
 		//property buttons
 		$output[ 'DIRECT_URL' ] 	= jomresUrl(JOMRES_SITEPAGE_URL . '&task=viewproperty&property_uid='.$property_uid);
 		$output[ 'CONTACT_LINK' ] 	= jomresUrl(JOMRES_SITEPAGE_URL . '&task=contactowner&selectedProperty='.$property_uid);
-		$output[ 'HCONTACT' ] 		= jr_gettext( "_JOMRES_FRONT_MR_MENU_CONTACTHOTEL", _JOMRES_FRONT_MR_MENU_CONTACTHOTEL );
+		$output[ 'HCONTACT' ] 		= jr_gettext( "_JOMRES_FRONT_MR_MENU_CONTACTHOTEL", '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL' );
 		$output[ 'SHORTLIST_LINK' ] = jomresUrl(JOMRES_SITEPAGE_URL . '&task=show_shortlisted_properties');
-		$output[ 'HSHORTLIST' ] 	= jr_gettext( "_JOMCOMP_MYUSER_VIEWFAVOURITES", _JOMCOMP_MYUSER_VIEWFAVOURITES );
-		$output[ 'HMAP' ] 			= jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK", _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK );
+		$output[ 'HSHORTLIST' ] 	= jr_gettext( "_JOMCOMP_MYUSER_VIEWFAVOURITES", '_JOMCOMP_MYUSER_VIEWFAVOURITES' );
+		$output[ 'HMAP' ] 			= jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK", '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK' );
 		
 		//booking button
 		$bookinglink = array();
@@ -289,9 +289,9 @@ class j06000show_property_header
 			$link[ 'LINK' ] = $url;
 
 			if ( $mrConfig[ 'requireApproval' ] == "1" )
-				$link[ 'TEXT' ] = jr_gettext( '_BOOKING_CALCQUOTE', _BOOKING_CALCQUOTE, false, false );
+				$link[ 'TEXT' ] = jr_gettext( '_BOOKING_CALCQUOTE', '_BOOKING_CALCQUOTE', false, false );
 			else
-				$link[ 'TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKAROOM', _JOMRES_FRONT_MR_MENU_BOOKAROOM, false, false );
+				$link[ 'TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKAROOM', '_JOMRES_FRONT_MR_MENU_BOOKAROOM', false, false );
 
 			$bookinglink[ ] = $link;
 			}

@@ -27,7 +27,7 @@ class j02226deleteguest
 			}
 		$guestUid                 = jomresGetParam( $_REQUEST, 'guestUid', 0 );
 		$defaultProperty          = getDefaultProperty();
-		$saveMessage              = jr_gettext( '_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', _JOMRES_FRONT_DELETEGUEST_GUESTDELETED, false );
+		$saveMessage              = jr_gettext( '_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', '_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', false );
 		$query                    = "SELECT guest_uid,contract_uid FROM #__jomres_contracts WHERE guest_uid = '" . (int) $guestUid . "' AND property_uid = '" . (int) $defaultProperty . "' AND cancelled != 1";
 		$bookingCountThisProperty = doSelectSql( $query );
 		$query                    = "SELECT guest_uid FROM #__jomres_contracts WHERE guest_uid = '" . (int) $guestUid . "' AND cancelled != 1";
@@ -53,13 +53,13 @@ class j02226deleteguest
 			//	echo "No bookings to delete";
 			$query = "DELETE FROM #__jomres_guests WHERE guests_uid = '" . (int) $guestUid . "' AND property_uid = '" . (int) $defaultProperty . "'";
 			//echo $query;
-			if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_DELETE_GUEST', _JOMRES_MR_AUDIT_DELETE_GUEST, false ) ) ) trigger_error( jr_gettext( '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', _JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST, false ), E_USER_ERROR );
+			if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_DELETE_GUEST', '_JOMRES_MR_AUDIT_DELETE_GUEST', false ) ) ) trigger_error( jr_gettext( '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', false ), E_USER_ERROR );
 			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=listguests" ), $saveMessage );
 			}
 		else
 			{
 
-			echo jr_gettext( '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', _JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST, false );
+			echo jr_gettext( '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', false );
 
 			}
 		}

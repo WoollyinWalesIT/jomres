@@ -42,7 +42,7 @@ class j06000ajax_shortlist
 
 			$output = array();
 			$pageoutput = array();
-			$output['TEXT']= jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', _JOMRES_REMOVEFROMSHORTLIST, false, false );
+			$output['TEXT']= jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', '_JOMRES_REMOVEFROMSHORTLIST', false, false );
 			$pageoutput[ ] = $output;
 			
 			$tmpl = new patTemplate();
@@ -80,7 +80,7 @@ class j06000ajax_shortlist
 			
 			$output = array();
 			$pageoutput = array();
-			$output['TEXT']= jr_gettext( '_JOMRES_ADDTOSHORTLIST', _JOMRES_ADDTOSHORTLIST, false, false );
+			$output['TEXT']= jr_gettext( '_JOMRES_ADDTOSHORTLIST', '_JOMRES_ADDTOSHORTLIST', false, false );
 			$pageoutput[ ] = $output;
 			
 			$tmpl = new patTemplate();

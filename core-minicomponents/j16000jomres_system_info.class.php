@@ -41,7 +41,7 @@ class j16000jomres_system_info
 		$output['ADVANCED_SITE_CONFIG_WARNING_HIGHLIGHT']='';
 		if ($jrConfig['advanced_site_config'] == "0")
 			{
-			$output['ADVANCED_SITE_CONFIG_WARNING']= jr_gettext( _JOMRES_COM_ADVANCED_SITE_CONFIG_WARNING, '_JOMRES_COM_ADVANCED_SITE_CONFIG_WARNING', false );
+			$output['ADVANCED_SITE_CONFIG_WARNING']= jr_gettext( '_JOMRES_COM_ADVANCED_SITE_CONFIG_WARNING', '_JOMRES_COM_ADVANCED_SITE_CONFIG_WARNING', false );
 			$output['ADVANCED_SITE_CONFIG_WARNING_HIGHLIGHT']="alert alert-warning";
 			}
 		
@@ -73,12 +73,12 @@ class j16000jomres_system_info
 			if ( !$current_version_is_uptodate )
 				{
 				$output[ 'HIGHLIGHT' ] = ( using_bootstrap() ? "alert alert-error" : "ui-state-error" );
-				$output[ 'ALERT' ]     = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN . '&task=updates" >'. jr_gettext( _JOMRES_VERSIONCHECK_VERSIONWARNING, '_JOMRES_VERSIONCHECK_VERSIONWARNING', false ).'</a>';
+				$output[ 'ALERT' ]     = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN . '&task=updates" >'. jr_gettext( '_JOMRES_VERSIONCHECK_VERSIONWARNING', '_JOMRES_VERSIONCHECK_VERSIONWARNING', false ).'</a>';
 				$output[ 'EFFECT' ]    = "<script>jomresJquery(document).ready(function() { jomresJquery( \"#version_check_warning\" ).effect( 'highlight' ); });</script> ";
 				}
 
-			$output[ '_JOMRES_VERSIONCHECK_THISJOMRESVERSION' ]   = jr_gettext( _JOMRES_VERSIONCHECK_THISJOMRESVERSION, '_JOMRES_VERSIONCHECK_THISJOMRESVERSION', false );
-			$output[ '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION' ] = jr_gettext( _JOMRES_VERSIONCHECK_LATESTJOMRESVERSION, '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', false );
+			$output[ '_JOMRES_VERSIONCHECK_THISJOMRESVERSION' ]   = jr_gettext( '_JOMRES_VERSIONCHECK_THISJOMRESVERSION', '_JOMRES_VERSIONCHECK_THISJOMRESVERSION', false );
+			$output[ '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION' ] = jr_gettext( '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', false );
 
 
 			$output[ 'LATEST_JOMRES_VERSION' ] = $latest_version;
@@ -88,28 +88,11 @@ class j16000jomres_system_info
 		//recommended plugins not installed warning
 		$output[ 'PLUGIN_CHECK' ] = plugin_check();
 		
-		// Changes to Jomres 7.5.4 jquery functionality mean that Joomla's caching should no longer cause problems.
-		$output[ 'CACHE_WARNING' ]   = "";
-		$output[ 'CACHE_HIGHLIGHT' ] = "";
-/* 		if ( this_cms_is_joomla() )
-			{
-			if ( _JOMRES_DETECTED_CMS == "joomla15" ) $query = "SELECT id FROM #__plugins WHERE `element`='cache' AND published = '1'";
-			else
-			$query = "SELECT extension_id FROM #__extensions WHERE `name`='plg_system_cache' AND `enabled`='1' ";
-			$cache = doSelectSql( $query );
-
-			if ( count( $cache ) > 0 )
-				{
-				$output[ 'CACHE_WARNING' ]   = jr_gettext( _JOMRES_WARNING_SYSTEM_CACHE, '_JOMRES_WARNING_SYSTEM_CACHE', false );
-				$output[ 'CACHE_HIGHLIGHT' ] = ( using_bootstrap() ? "alert alert-error" : "ui-state-error" );
-				}
-			} */
-		
 		//license key not entered warning
 		if ( trim( $jrConfig['licensekey'] ) == "" )
 			{
-			$output[ '_JOMRES_PRODUCT_INFORMATION' ]  = jr_gettext( _JOMRES_PRODUCT_INFORMATION, '_JOMRES_PRODUCT_INFORMATION', false );
-			$output[ '_JOMRES_PRODUCT_INFORMATION2' ] = jr_gettext( _JOMRES_PRODUCT_INFORMATION2, '_JOMRES_PRODUCT_INFORMATION2', false );
+			$output[ '_JOMRES_PRODUCT_INFORMATION' ]  = jr_gettext( '_JOMRES_PRODUCT_INFORMATION', '_JOMRES_PRODUCT_INFORMATION', false );
+			$output[ '_JOMRES_PRODUCT_INFORMATION2' ] = jr_gettext( '_JOMRES_PRODUCT_INFORMATION2', '_JOMRES_PRODUCT_INFORMATION2', false );
 			}
 
 		//full access control enabled warning
@@ -128,7 +111,7 @@ class j16000jomres_system_info
 		if ( this_cms_is_wordpress() && (int)get_showtime('itemid') == 0 )
 			{
 			$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = ( using_bootstrap() ? "alert alert-error" : "ui-state-error" );
-			$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = jr_gettext('_JOMRES_DEFAULT_SHORTCODE_ALERT', JOMRES_DEFAULT_SHORTCODE_ALERT, false);
+			$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = jr_gettext('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'JOMRES_DEFAULT_SHORTCODE_ALERT', false);
 			}
 		
 		//review text
@@ -189,19 +172,19 @@ class j16000jomres_system_info
 				$o=array();
 				$po=array();
 				$rows=array();
-				$o['_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES'] = jr_gettext('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES',_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES,false);
-				$o['HPTYPE']= jr_gettext( '_JOMRES_FRONT_PTYPE', _JOMRES_FRONT_PTYPE, false );
-				$o[ '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD' ]=jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD', _JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD,false );
-				$o['LINK'] = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN . '&task=listGlobalroomTypes'.'" class="btn btn-primary">'.jr_gettext('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT',_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT,false).'</a>';
+				$o['_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES'] = jr_gettext('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES','_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES',false);
+				$o['HPTYPE']= jr_gettext( '_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE', false );
+				$o[ '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD' ]=jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD', '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD',false );
+				$o['LINK'] = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN . '&task=listGlobalroomTypes'.'" class="btn btn-primary">'.jr_gettext('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT','_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT',false).'</a>';
 
 				foreach ($property_types_requiring_attention as $property_type)
 					{
 					$r=array();
 					$r['PROPERTY_TYPE'] = $property_type['ptype_abbv'];
 					if ( $property_type['process'] == "0")
-						$r['MANAGEMENT_PROCESS'] =  jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', _JOMRES_PROPERTYTYPE_FLAG_HOTEL,false );
+						$r['MANAGEMENT_PROCESS'] =  jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', '_JOMRES_PROPERTYTYPE_FLAG_HOTEL',false );
 					else
-						$r['MANAGEMENT_PROCESS'] =  jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_VILLA', _JOMRES_PROPERTYTYPE_FLAG_VILLA,false );
+						$r['MANAGEMENT_PROCESS'] =  jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_VILLA', '_JOMRES_PROPERTYTYPE_FLAG_VILLA',false );
 					$rows[]=$r;
 					}
 				

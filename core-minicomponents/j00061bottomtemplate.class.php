@@ -57,7 +57,7 @@ class j00061bottomtemplate
 				})(jQuery);
 			</script>';
 			}
-		$output[ 'BACKTOTOP' ] = jr_gettext( 'BACKTOTOP', BACKTOTOP, false );
+		$output[ 'BACKTOTOP' ] = jr_gettext( 'BACKTOTOP', 'BACKTOTOP', false );
 
 
 		$pageoutput[ ] = $output;
@@ -76,7 +76,7 @@ class j00061bottomtemplate
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( 'BACKTOTOP', BACKTOTOP );
+		$output[ ] = jr_gettext( 'BACKTOTOP', 'BACKTOTOP' );
 
 		foreach ( $output as $o )
 			{

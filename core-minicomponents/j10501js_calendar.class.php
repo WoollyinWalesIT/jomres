@@ -34,14 +34,14 @@ class j10501js_calendar
 		$jsInputFormatDropdownList		= $componentArgs[ 'jsInputFormatDropdownList' ];
 		$calendarStartDaysDropdownList	= $componentArgs[ 'calendarStartDaysDropdownList' ];
 						
-		$configurationPanel->startPanel( jr_gettext( "_JOMRES_COM_A_JSCALENDAR", _JOMRES_COM_A_JSCALENDAR, false ) );
+		$configurationPanel->startPanel( jr_gettext( "_JOMRES_COM_A_JSCALENDAR", '_JOMRES_COM_A_JSCALENDAR', false ) );
 		
-		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_CALENDARINPUT', _JOMRES_COM_CALENDARINPUT, false ) );
+		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_CALENDARINPUT', '_JOMRES_COM_CALENDARINPUT', false ) );
 		$configurationPanel->setmiddle( $jsInputFormatDropdownList );
-		$configurationPanel->setright( jr_gettext( '_JOMRES_COM_CALENDARINPUT_DESC', _JOMRES_COM_CALENDARINPUT_DESC, false ) );
+		$configurationPanel->setright( jr_gettext( '_JOMRES_COM_CALENDARINPUT_DESC', '_JOMRES_COM_CALENDARINPUT_DESC', false ) );
 		$configurationPanel->insertSetting();
 		
-		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_CALENDAR_STARTDAY', _JOMRES_COM_CALENDAR_STARTDAY, false ) );
+		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_CALENDAR_STARTDAY', '_JOMRES_COM_CALENDAR_STARTDAY', false ) );
 		$configurationPanel->setmiddle( $calendarStartDaysDropdownList );
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();

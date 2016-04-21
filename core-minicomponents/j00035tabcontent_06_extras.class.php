@@ -33,7 +33,7 @@ class j00035tabcontent_06_extras
 				{
 				$componentArgs[ 'output_now' ] = false;
 				
-				$tabTitle = jr_gettext( '_JOMRES_COM_MR_EXTRA_TITLE', _JOMRES_COM_MR_EXTRA_TITLE,false );
+				$tabTitle = jr_gettext( '_JOMRES_COM_MR_EXTRA_TITLE', '_JOMRES_COM_MR_EXTRA_TITLE',false );
 				
 				$anchor = jomres_generate_tab_anchor( $tabTitle );
 

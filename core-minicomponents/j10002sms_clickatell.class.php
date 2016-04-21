@@ -30,7 +30,7 @@ class j10002sms_clickatell
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=sms_clickatell_settings', 'clickatell.jpg', jr_gettext( "_JRPORTAL_SMS_CLICKATELL_TITLE", _JRPORTAL_SMS_CLICKATELL_TITLE, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION", _JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION, false, false ) );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=sms_clickatell_settings', 'clickatell.jpg', jr_gettext( "_JRPORTAL_SMS_CLICKATELL_TITLE", '_JRPORTAL_SMS_CLICKATELL_TITLE', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION', false, false ) );
 			}
 		}
 
@@ -38,7 +38,7 @@ class j10002sms_clickatell
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION", _JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION' );
 
 		foreach ( $output as $o )
 			{

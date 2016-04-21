@@ -83,7 +83,7 @@ class j00030search
 		$output     = array ();
 		$pageoutput = array ();
 		$showButton = false;
-		$searchAll  = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
+		$searchAll  = jr_gettext( '_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false );
 
 		jr_import( 'jomSearch' );
 
@@ -242,60 +242,60 @@ class j00030search
 
 		if ( in_array( "country", $searchOptions ) && $showSearchOptions )
 			{
-			$output[ 'JOMRES_SEARCH_GEO_COUNTRYSEARCH' ] = jr_gettext( '_JOMRES_SEARCH_GEO_COUNTRYSEARCH', _JOMRES_SEARCH_GEO_COUNTRYSEARCH, false );
+			$output[ 'JOMRES_SEARCH_GEO_COUNTRYSEARCH' ] = jr_gettext( '_JOMRES_SEARCH_GEO_COUNTRYSEARCH', '_JOMRES_SEARCH_GEO_COUNTRYSEARCH', false );
 			}
 		if ( in_array( "region", $searchOptions ) && $showSearchOptions )
 			{
-			$output[ 'JOMRES_SEARCH_GEO_REGIONSEARCH' ] = jr_gettext( '_JOMRES_SEARCH_GEO_REGIONSEARCH', _JOMRES_SEARCH_GEO_REGIONSEARCH, false );
+			$output[ 'JOMRES_SEARCH_GEO_REGIONSEARCH' ] = jr_gettext( '_JOMRES_SEARCH_GEO_REGIONSEARCH', '_JOMRES_SEARCH_GEO_REGIONSEARCH', false );
 			}
 		if ( in_array( "town", $searchOptions ) && $showSearchOptions )
 			{
-			$output[ 'JOMRES_SEARCH_GEO_TOWNSEARCH' ] = jr_gettext( '_JOMRES_SEARCH_GEO_TOWNSEARCH', _JOMRES_SEARCH_GEO_TOWNSEARCH, false );
+			$output[ 'JOMRES_SEARCH_GEO_TOWNSEARCH' ] = jr_gettext( '_JOMRES_SEARCH_GEO_TOWNSEARCH', '_JOMRES_SEARCH_GEO_TOWNSEARCH', false );
 			}
 		if ( in_array( "description", $searchOptions ) && $showSearchOptions )
 			{
-			$output[ 'JOMRES_SEARCH_DESCRIPTION_INFO' ]  = jr_gettext( '_JOMRES_SEARCH_DESCRIPTION_INFO', _JOMRES_SEARCH_DESCRIPTION_INFO, false );
-			$output[ 'JOMRES_SEARCH_DESCRIPTION_LABEL' ] = jr_gettext( '_JOMRES_SEARCH_DESCRIPTION_LABEL', _JOMRES_SEARCH_DESCRIPTION_LABEL, false );
+			$output[ 'JOMRES_SEARCH_DESCRIPTION_INFO' ]  = jr_gettext( '_JOMRES_SEARCH_DESCRIPTION_INFO', '_JOMRES_SEARCH_DESCRIPTION_INFO', false );
+			$output[ 'JOMRES_SEARCH_DESCRIPTION_LABEL' ] = jr_gettext( '_JOMRES_SEARCH_DESCRIPTION_LABEL', '_JOMRES_SEARCH_DESCRIPTION_LABEL', false );
 			}
 		if ( in_array( "feature_uids", $searchOptions ) && $showSearchOptions )
 			{
-			$output[ 'JOMRES_SEARCH_FEATURE_INFO' ] = jr_gettext( '_JOMRES_SEARCH_FEATURE_INFO', _JOMRES_SEARCH_FEATURE_INFO, false );
+			$output[ 'JOMRES_SEARCH_FEATURE_INFO' ] = jr_gettext( '_JOMRES_SEARCH_FEATURE_INFO', '_JOMRES_SEARCH_FEATURE_INFO', false );
 			}
 		if ( in_array( "room_type", $searchOptions ) && $showSearchOptions )
 			{
-			$output[ 'JOMRES_SEARCH_RTYPES' ] = jr_gettext( '_JOMRES_SEARCH_RTYPES', _JOMRES_SEARCH_RTYPES, false );
+			$output[ 'JOMRES_SEARCH_RTYPES' ] = jr_gettext( '_JOMRES_SEARCH_RTYPES', '_JOMRES_SEARCH_RTYPES', false );
 			}
 		if ( in_array( "availability", $searchOptions ) && $showSearchOptions && get_showtime( 'task' ) != "bookaroom" )
 			{
-			$output[ 'JOMRES_SEARCH_AVL_INFO' ] = jr_gettext( '_JOMRES_SEARCH_AVL_INFO', _JOMRES_SEARCH_AVL_INFO, false );
+			$output[ 'JOMRES_SEARCH_AVL_INFO' ] = jr_gettext( '_JOMRES_SEARCH_AVL_INFO', '_JOMRES_SEARCH_AVL_INFO', false );
 
-			$output[ 'HARRIVALDATE' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL, false );
-			$output[ 'HDEPARTUREDATE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE, false );
+			$output[ 'HARRIVALDATE' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', false );
+			$output[ 'HDEPARTUREDATE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', false );
 			}
 		if (!isset($overlibLables))
 			$overlibLables = 0;
 		
 		if ( in_array( "ptype", $searchOptions ) && $showSearchOptions )
 			{
-			if ( $overlibLables == "1" ) $output[ 'JOMRES_SEARCH_PTYPES' ] = makeFeatureImages( $infoIcon, _JOMRES_SEARCH_BUTTON, jr_gettext( '_JOMRES_SEARCH_PTYPES', _JOMRES_SEARCH_PTYPES, false ), $retString = true );
+			if ( $overlibLables == "1" ) $output[ 'JOMRES_SEARCH_PTYPES' ] = makeFeatureImages( $infoIcon, _JOMRES_SEARCH_BUTTON, jr_gettext( '_JOMRES_SEARCH_PTYPES', '_JOMRES_SEARCH_PTYPES', false ), $retString = true );
 			else
-			$output[ 'JOMRES_SEARCH_PTYPES' ] = jr_gettext( '_JOMRES_SEARCH_PTYPES', _JOMRES_SEARCH_PTYPES, false );
+			$output[ 'JOMRES_SEARCH_PTYPES' ] = jr_gettext( '_JOMRES_SEARCH_PTYPES', '_JOMRES_SEARCH_PTYPES', false );
 			}
 
 		if ( in_array( "priceranges", $searchOptions ) && $showSearchOptions )
 			{
-			if ( $overlibLables == "1" ) $output[ 'JOMRES_SEARCH_PRICERANGES' ] = makeFeatureImages( $infoIcon, _JOMRES_SEARCH_BUTTON, jr_gettext( '_JOMRES_SEARCH_PRICERANGES', _JOMRES_SEARCH_PRICERANGES, false ), $retString = true );
+			if ( $overlibLables == "1" ) $output[ 'JOMRES_SEARCH_PRICERANGES' ] = makeFeatureImages( $infoIcon, _JOMRES_SEARCH_BUTTON, jr_gettext( '_JOMRES_SEARCH_PRICERANGES', '_JOMRES_SEARCH_PRICERANGES', false ), $retString = true );
 			else
-			$output[ 'JOMRES_SEARCH_PRICERANGES' ] = jr_gettext( '_JOMRES_SEARCH_PRICERANGES', _JOMRES_SEARCH_PRICERANGES, false );
+			$output[ 'JOMRES_SEARCH_PRICERANGES' ] = jr_gettext( '_JOMRES_SEARCH_PRICERANGES', '_JOMRES_SEARCH_PRICERANGES', false );
 			}
 
 		if ( in_array( "guestnumber", $searchOptions ) && $showSearchOptions && get_showtime( 'task' ) != "bookaroom" )
 			{
-			$output[ 'HGUESTNUMBER' ] = jr_gettext( '_JOMRES_SEARCH_GUESTNUMBER', _JOMRES_SEARCH_GUESTNUMBER, false );
+			$output[ 'HGUESTNUMBER' ] = jr_gettext( '_JOMRES_SEARCH_GUESTNUMBER', '_JOMRES_SEARCH_GUESTNUMBER', false );
 			}
 		if ( in_array( "stars", $searchOptions ) && $showSearchOptions && get_showtime( 'task' ) != "bookaroom" )
 			{
-			$output[ 'HSTARS' ] = jr_gettext( '_JOMRES_SEARCH_STARS', _JOMRES_SEARCH_STARS, false );
+			$output[ 'HSTARS' ] = jr_gettext( '_JOMRES_SEARCH_STARS', '_JOMRES_SEARCH_STARS', false );
 			}
 
 		$output[ 'SUBMITURL' ] = jomresURL( JOMRES_SITEPAGE_URL_NOSEF );
@@ -778,12 +778,12 @@ class j00030search
 			}
 		if ( $showButton == true )
 			{
-			$output[ 'SEARCHBLURB' ] = jr_gettext( '_JOMRES_FRONT_MR_SEARCH_HERE', _JOMRES_FRONT_MR_SEARCH_HERE );
-			$output[ 'HSEARCH' ] = jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON );
+			$output[ 'SEARCHBLURB' ] = jr_gettext( '_JOMRES_FRONT_MR_SEARCH_HERE', '_JOMRES_FRONT_MR_SEARCH_HERE' );
+			$output[ 'HSEARCH' ] = jr_gettext( '_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON' );
 			
-			if ( !using_bootstrap() ) $output[ 'THEBUTTON' ] = '<input type="submit" name="send" value="' . jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON, false ) . '" class="button" />';
+			if ( !using_bootstrap() ) $output[ 'THEBUTTON' ] = '<input type="submit" name="send" value="' . jr_gettext( '_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON', false ) . '" class="button" />';
 			else
-			$output[ 'THEBUTTON' ] = '<input type="submit" class="btn btn-primary" name="send" value="' . jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON, false ) . '" />';
+			$output[ 'THEBUTTON' ] = '<input type="submit" class="btn btn-primary" name="send" value="' . jr_gettext( '_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON', false ) . '" />';
 
 			}
 
@@ -809,25 +809,25 @@ class j00030search
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON );
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_MR_SEARCH_HERE', _JOMRES_FRONT_MR_SEARCH_HERE );
-		$output[ ] = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL );
+		$output[ ] = jr_gettext( '_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON' );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_MR_SEARCH_HERE', '_JOMRES_FRONT_MR_SEARCH_HERE' );
+		$output[ ] = jr_gettext( '_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL' );
 
-		$output[ ] = jr_gettext( '_JOMRES_SEARCH_GEO_COUNTRYSEARCH', _JOMRES_SEARCH_GEO_COUNTRYSEARCH );
-		$output[ ] = jr_gettext( '_JOMRES_SEARCH_GEO_REGIONSEARCH', _JOMRES_SEARCH_GEO_REGIONSEARCH );
-		$output[ ] = jr_gettext( '_JOMRES_SEARCH_GEO_TOWNSEARCH', _JOMRES_SEARCH_GEO_TOWNSEARCH );
-		$output[ ] = jr_gettext( '_JOMRES_SEARCH_DESCRIPTION_INFO', _JOMRES_SEARCH_DESCRIPTION_INFO );
-		$output[ ] = jr_gettext( '_JOMRES_SEARCH_DESCRIPTION_LABEL', _JOMRES_SEARCH_DESCRIPTION_LABEL );
-		$output[ ] = jr_gettext( '_JOMRES_SEARCH_FEATURE_INFO', _JOMRES_SEARCH_FEATURE_INFO );
-		$output[ ] = jr_gettext( '_JOMRES_SEARCH_RTYPES', _JOMRES_SEARCH_RTYPES );
-		$output[ ] = jr_gettext( '_JOMRES_SEARCH_AVL_INFO', _JOMRES_SEARCH_AVL_INFO );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE );
-		$output[ ] = jr_gettext( '_JOMRES_SEARCH_GUESTNUMBER', _JOMRES_SEARCH_GUESTNUMBER );
-		$output[ ] = jr_gettext( '_JOMRES_SEARCH_STARS', _JOMRES_SEARCH_STARS );
-		$output[ ] = jr_gettext( '_JOMRES_SEARCH_PRICERANGES', _JOMRES_SEARCH_PRICERANGES );
+		$output[ ] = jr_gettext( '_JOMRES_SEARCH_GEO_COUNTRYSEARCH', '_JOMRES_SEARCH_GEO_COUNTRYSEARCH' );
+		$output[ ] = jr_gettext( '_JOMRES_SEARCH_GEO_REGIONSEARCH', '_JOMRES_SEARCH_GEO_REGIONSEARCH' );
+		$output[ ] = jr_gettext( '_JOMRES_SEARCH_GEO_TOWNSEARCH', '_JOMRES_SEARCH_GEO_TOWNSEARCH' );
+		$output[ ] = jr_gettext( '_JOMRES_SEARCH_DESCRIPTION_INFO', '_JOMRES_SEARCH_DESCRIPTION_INFO' );
+		$output[ ] = jr_gettext( '_JOMRES_SEARCH_DESCRIPTION_LABEL', '_JOMRES_SEARCH_DESCRIPTION_LABEL' );
+		$output[ ] = jr_gettext( '_JOMRES_SEARCH_FEATURE_INFO', '_JOMRES_SEARCH_FEATURE_INFO' );
+		$output[ ] = jr_gettext( '_JOMRES_SEARCH_RTYPES', '_JOMRES_SEARCH_RTYPES' );
+		$output[ ] = jr_gettext( '_JOMRES_SEARCH_AVL_INFO', '_JOMRES_SEARCH_AVL_INFO' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE' );
+		$output[ ] = jr_gettext( '_JOMRES_SEARCH_GUESTNUMBER', '_JOMRES_SEARCH_GUESTNUMBER' );
+		$output[ ] = jr_gettext( '_JOMRES_SEARCH_STARS', '_JOMRES_SEARCH_STARS' );
+		$output[ ] = jr_gettext( '_JOMRES_SEARCH_PRICERANGES', '_JOMRES_SEARCH_PRICERANGES' );
 
-		$output[ ] = jr_gettext( '_JOMRES_SEARCH_PTYPES', _JOMRES_SEARCH_PTYPES );
+		$output[ ] = jr_gettext( '_JOMRES_SEARCH_PTYPES', '_JOMRES_SEARCH_PTYPES' );
 
 		$query        = "SELECT room_classes_uid, room_class_abbv, room_class_full_desc,image FROM #__jomres_room_classes WHERE property_uid = '0' ORDER BY room_class_abbv ";
 		$roomTypeList = doSelectSql( $query );

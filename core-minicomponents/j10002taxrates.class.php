@@ -27,14 +27,14 @@ class j10002taxrates
 			}
 
 		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=list_taxrates', 'Taxes.png', jr_gettext( "_JRPORTAL_TAXRATES_TITLE", _JRPORTAL_TAXRATES_TITLE, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES", _JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES, false, false ) );
+		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=list_taxrates', 'Taxes.png', jr_gettext( "_JRPORTAL_TAXRATES_TITLE", '_JRPORTAL_TAXRATES_TITLE', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES', false, false ) );
 		}
 
 	function touch_template_language()
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES", _JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES' );
 
 		foreach ( $output as $o )
 			{

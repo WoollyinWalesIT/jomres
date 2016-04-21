@@ -51,7 +51,7 @@ class j06002charts
 		$all_jomres_charts = get_showtime("all_jomres_charts");
 		
 		$options = array();
-		$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_CHARTS_SELECT', _JOMRES_CHARTS_SELECT, false ) );
+		$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_CHARTS_SELECT', '_JOMRES_CHARTS_SELECT', false ) );
 		foreach ($all_jomres_charts as $k)
 			{
 			$options[] = jomresHTML::makeOption( $k['id'], $k['title'].' - '.$k['description'] );
@@ -74,7 +74,7 @@ class j06002charts
 				$output['CHART'] = $MiniComponents->specificEvent( '06002', get_showtime('jr_chart'), array("output_now"=>false));
 			}
 		
-		$output['PAGETITLE'] = jr_gettext( '_JOMRES_CHARTS', _JOMRES_CHARTS, false, false );
+		$output['PAGETITLE'] = jr_gettext( '_JOMRES_CHARTS', '_JOMRES_CHARTS', false, false );
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();

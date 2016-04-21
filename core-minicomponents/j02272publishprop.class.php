@@ -55,20 +55,20 @@ class j02272publishprop
 				if ( $published )
 					{
 					$query = "UPDATE #__jomres_propertys SET `published`='0' WHERE propertys_uid = " . (int) $defaultProperty . " LIMIT 1";
-					if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', _JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY, false ) ) )
+					if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', false ) ) )
 						{
 						$MiniComponents->triggerEvent( '02274' ); // Optional trigger after property unpublished
-						$jomres_messaging->set_message( jr_gettext( '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', _JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY, false ) );
+						$jomres_messaging->set_message( jr_gettext( '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', false ) );
 						jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=listyourproperties" ), "" );
 						}
 					}
 				else
 					{
 					$query = "UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = " . (int) $defaultProperty . " LIMIT 1";
-					if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', _JOMRES_MR_AUDIT_PUBLISH_PROPERTY, false ) ) )
+					if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', false ) ) )
 						{
 						$MiniComponents->triggerEvent( '02273' ); // Optional trigger after property published
-						$jomres_messaging->set_message( jr_gettext( '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', _JOMRES_MR_AUDIT_PUBLISH_PROPERTY, false ) );
+						$jomres_messaging->set_message( jr_gettext( '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', false ) );
 						jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=listyourproperties" ), "" );
 						}
 					}

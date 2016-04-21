@@ -148,19 +148,19 @@ if (!class_exists('JomresRouter'))
 				$segments[ ] = $jrConfig[ 'sef_task_alias_search' ];
 				if ( isset( $route_query[ 'town' ] ) )
 					{
-					$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN, false ) );
+					$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false ) );
 					$segments[ ] = jomres_cmsspecific_stringURLSafe( $route_query[ 'town' ] );
 					unset( $route_query[ 'town' ] );
 					}
 				if ( isset( $route_query[ 'region' ] ) )
 					{
-					$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION, false ) );
+					$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false ) );
 					$segments[ ] = jomres_cmsspecific_stringURLSafe( find_region_name($route_query[ 'region' ]) );
 					unset( $route_query[ 'region' ] );
 					}
 				if ( isset( $route_query[ 'country' ] ) )
 					{
-					$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY, false ) );
+					$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false ) );
 					$segments[ ] = jomres_cmsspecific_stringURLSafe( $route_query[ 'country' ] );
 					unset( $route_query[ 'country' ] );
 					}
@@ -200,9 +200,9 @@ if (!class_exists('JomresRouter'))
 					$searchParam              = $segments[ 1 ];
 					$vars[ 'send' ]           = "Search";
 					$vars[ 'calledByModule' ] = 'mod_jomsearch_m0';
-					if ( $searchParam == jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN, false ) ) ) $searchParam = 'town';
-					if ( $searchParam == jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY, false ) ) ) $searchParam = 'country';
-					if ( $searchParam == jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION, false ) ) ) $searchParam = 'region';
+					if ( $searchParam == jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false ) ) ) $searchParam = 'town';
+					if ( $searchParam == jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false ) ) ) $searchParam = 'country';
+					if ( $searchParam == jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false ) ) ) $searchParam = 'region';
 					$vars[ $searchParam ] = jomres_cmsspecific_stringURLSafe( $segments[ 2 ] );
 					break;
 				case 'showTariffs':

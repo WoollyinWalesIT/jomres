@@ -31,7 +31,7 @@ class j16000new_manager_api_key
 			{
 			$apikey = createNewAPIKey();
 			$query  = "UPDATE #__jomres_managers SET `apikey`='" . $apikey . "' WHERE userid = " . $userid;
-			if ( doInsertSql( $query, '' ) ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=editProfile&id=" . (int) $userid ), jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE', _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE ) );
+			if ( doInsertSql( $query, '' ) ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=editProfile&id=" . (int) $userid ), jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE', '_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE' ) );
 			else
 			echo "Erm looks like an sql failure, couldn't update the Manager's API key";
 			}

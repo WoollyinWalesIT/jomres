@@ -95,7 +95,7 @@ class j06000immediatepay
 			</script>
 
 		<?php
-		echo "<center><h2>" . jr_gettext( '_JOMRES_PAYPAL_REDIRECTMESSAGE', _JOMRES_PAYPAL_REDIRECTMESSAGE, false, false ) . "</h2></center>\n";
+		echo "<center><h2>" . jr_gettext( '_JOMRES_PAYPAL_REDIRECTMESSAGE', '_JOMRES_PAYPAL_REDIRECTMESSAGE', false, false ) . "</h2></center>\n";
 		echo "<form method=\"post\" name=\"paypal_form\" ";
 		echo "action=\"" . $this->paypal_settings[ 'submit_url' ] . "\">\n";
 		$txt = "";
@@ -105,8 +105,8 @@ class j06000immediatepay
 			echo "<input type=\"hidden\" name=\"$name\" value=\"$value\"/>\n";
 			}
 		gateway_log( $txt );
-		echo "<center><br/><br/>" . jr_gettext( '_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED', _JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED, false, false ) . "<br/><br/>\n";
-		echo "<input type=\"submit\" value=\"" . jr_gettext( '_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE', _JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE, false, false ) . "\"></center>\n";
+		echo "<center><br/><br/>" . jr_gettext( '_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED', '_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED', false, false ) . "<br/><br/>\n";
+		echo "<input type=\"submit\" value=\"" . jr_gettext( '_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE', '_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE', false, false ) . "\"></center>\n";
 		echo "</form>\n";
 		}
 

@@ -68,7 +68,7 @@ class j02320regprop3
 			VALUES
 			('".$property_name."','".$property_email."','".$property_country."','".$property_region."' , '".(float)$price."' , '".(int)$property_type."' , '".$apikey."' ,".(int)$approved." , '".$property_site_id."')";
 		
-		$newPropId=doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY',_JOMRES_MR_AUDIT_INSERT_PROPERTY,FALSE));
+		$newPropId=doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY','_JOMRES_MR_AUDIT_INSERT_PROPERTY',FALSE));
 		updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_NAME", $property_name, true, $newPropId );
 
 		if ($realestate ==false)
@@ -93,12 +93,12 @@ class j02320regprop3
 				
 				}
 			$query="INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('".(int)$newPropId."','singleRoomProperty','".$singleRoomProperty."')";
-			doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS',_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS,FALSE));
+			doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS','_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS',FALSE));
 			}
 		else
 			{
 			$query="INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('".(int)$newPropId."','is_real_estate_listing',1)";
-			doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS',_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS,FALSE));
+			doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS','_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS',FALSE));
 			}
 		
 		if (!$thisJRUser->userIsManager)
@@ -107,23 +107,23 @@ class j02320regprop3
 			$ufuncs=new jrportal_user_functions();
 			$userdeets=$ufuncs->getJoomlaUserDetailsForJoomlaId($thisJRUser->id);
 			$query="INSERT INTO #__jomres_managers (`userid`,`username`,`property_uid`,`access_level`)VALUES (".(int)$userdeets['id'].",'".(string)$userdeets['username']."','".(int)$newPropId."','2')";
-			$managerId=doInsertSql($query,jr_gettext("_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY",_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY));
+			$managerId=doInsertSql($query,jr_gettext("_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY",'_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY'));
 			}
 		
 		$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
-		$jomres_messaging->set_message(jr_gettext("_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY",_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY));
+		$jomres_messaging->set_message(jr_gettext("_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY",'_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY'));
 		$thisJRUser->authorisedProperties[]=$newPropId;
 		updateManagerIdToPropertyXrefTable($thisJRUser->id,$thisJRUser->authorisedProperties );
 		$componentArgs=array('property_uid'=>(int)$newPropId);
 		$MiniComponents->triggerEvent('04901',$componentArgs); // Trigger point for welcome email
-		$subject=jr_gettext("_JOMRES_REGISTRATION_CREATEDPROPERTY",_JOMRES_REGISTRATION_CREATEDPROPERTY,false).$property_name;
-		$message=jr_gettext("_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER",_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER,false).$thisJRUser->username;
+		$subject=jr_gettext("_JOMRES_REGISTRATION_CREATEDPROPERTY",'_JOMRES_REGISTRATION_CREATEDPROPERTY',false).$property_name;
+		$message=jr_gettext("_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER",'_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER',false).$thisJRUser->username;
 
 		if ($approved ==0)
 			{
 			$link = JOMRES_SITEPAGE_URL_ADMIN."&task=list_properties_awaiting_approval";
-			$subject=jr_gettext("_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT",_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT,false);
-			$message=jr_gettext("_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT",_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT,false).$link;
+			$subject=jr_gettext("_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT",'_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT',false);
+			$message=jr_gettext("_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT",'_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT',false).$link;
 			sendAdminEmail($subject,$message);
 			}
 

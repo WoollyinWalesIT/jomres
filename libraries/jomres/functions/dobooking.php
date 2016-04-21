@@ -209,21 +209,21 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$output        = array_merge( $output, $requiredIcons );
 	$guestTypes    = $bkg->makeCustomerTypes( $selectedProperty );
 
-	$output[ 'UPDATEADDRESSBUTTON' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_UPDATEADDRESSBUTTON', _JOMRES_BOOKINGFORM_UPDATEADDRESSBUTTON, false, false ) );
-	if ( $mrConfig[ 'singleRoomProperty' ] == "1" ) $output[ 'BLOCKUI_RECHECKINGROOMAVAILABILITY' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY_SRP', _JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY_SRP, false, false ) );
+	$output[ 'UPDATEADDRESSBUTTON' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_UPDATEADDRESSBUTTON', '_JOMRES_BOOKINGFORM_UPDATEADDRESSBUTTON', false, false ) );
+	if ( $mrConfig[ 'singleRoomProperty' ] == "1" ) $output[ 'BLOCKUI_RECHECKINGROOMAVAILABILITY' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY_SRP', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY_SRP', false, false ) );
 	else
-	$output[ 'BLOCKUI_RECHECKINGROOMAVAILABILITY' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY', _JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY, false, false ) );
+	$output[ 'BLOCKUI_RECHECKINGROOMAVAILABILITY' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY', false, false ) );
 
 
 	$output[ 'BOOKING_FORM_CALENDAR' ]			= get_showtime ("booking_form_calendar");
-	$output[ '_JOMRES_COM_A_AVLCAL' ]			= $bkg->sanitiseOutput( jr_gettext( '_JOMRES_COM_A_AVLCAL', _JOMRES_COM_A_AVLCAL, false, false ) );
-	$output[ '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY', _JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY, false, false ) );
+	$output[ '_JOMRES_COM_A_AVLCAL' ]			= $bkg->sanitiseOutput( jr_gettext( '_JOMRES_COM_A_AVLCAL', '_JOMRES_COM_A_AVLCAL', false, false ) );
+	$output[ '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY', '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY', false, false ) );
 	
-	$output[ 'BLOCKUI_CHANGINGEXTRA' ]         = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGEXTRA', _JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGEXTRA, false, false ) );
-	$output[ 'BLOCKUI_CHANGINGROOMSELECTION' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION', _JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION, false, false ) );
-	$output[ 'BLOCKUI_UPDATINGADDRESS' ]       = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS', _JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS, false, false ) );
-	$output[ 'BLOCKUI_ADDRESSINPUTERROR' ]     = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR', _JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR, false, false ) );
-	$output[ 'NOROOMSSELECTEDYETMESSAGE' ]     = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', _JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET, false, false ) );
+	$output[ 'BLOCKUI_CHANGINGEXTRA' ]         = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGEXTRA', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGEXTRA', false, false ) );
+	$output[ 'BLOCKUI_CHANGINGROOMSELECTION' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION', false, false ) );
+	$output[ 'BLOCKUI_UPDATINGADDRESS' ]       = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS', false, false ) );
+	$output[ 'BLOCKUI_ADDRESSINPUTERROR' ]     = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR', false, false ) );
+	$output[ 'NOROOMSSELECTEDYETMESSAGE' ]     = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', false, false ) );
 
 	if ( $thisJRUser->userIsManager ) $output[ 'ISMANAGER' ] = "true";
 	else
@@ -241,10 +241,10 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$coupon_output_totals = array ();
 	if ( $bkg->use_coupons )
 		{
-		$coupon_output[ 'COUPON_TITLE' ]                 = $bkg->sanitiseOutput( jr_gettext( '_JRPORTAL_COUPONS_CODE', _JRPORTAL_COUPONS_CODE, false, false ) );
-		$coupon_output[ 'COUPON_BUTTON' ]                = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_COUPON_APPLYBUTTON', _JOMRES_AJAXFORM_COUPON_APPLYBUTTON, false, false ) );
-		$coupon_output[ 'COUPON_INSTRUCTIONS' ]          = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS', _JOMRES_AJAXFORM_COUPON_INSTRUCTIONS ) );
-		$coupon_output_totals[ 'COUPON_DISCOUNT_VALUE' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE', _JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE ) );
+		$coupon_output[ 'COUPON_TITLE' ]                 = $bkg->sanitiseOutput( jr_gettext( '_JRPORTAL_COUPONS_CODE', '_JRPORTAL_COUPONS_CODE', false, false ) );
+		$coupon_output[ 'COUPON_BUTTON' ]                = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_COUPON_APPLYBUTTON', '_JOMRES_AJAXFORM_COUPON_APPLYBUTTON', false, false ) );
+		$coupon_output[ 'COUPON_INSTRUCTIONS' ]          = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS','_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS' ) );
+		$coupon_output_totals[ 'COUPON_DISCOUNT_VALUE' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE', '_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE' ) );
 
 		$coupon = jomresGetParam( $_REQUEST, "coupon", '' );
 
@@ -272,9 +272,9 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		$coupons_totals[ ] = $coupon_output_totals;
 		}
 
-	if ( $bkg->cfg_singleRoomProperty != "1" ) $output[ 'SELECTROOMMESSAGE' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', _JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM, false, false ) );
+	if ( $bkg->cfg_singleRoomProperty != "1" ) $output[ 'SELECTROOMMESSAGE' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', '_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', false, false ) );
 	else
-	$output[ 'SELECTROOMMESSAGE' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_TITLE', _JOMRES_COM_MR_QUICKRES_STEP4_TITLE, false, false ) );
+	$output[ 'SELECTROOMMESSAGE' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_TITLE', '_JOMRES_COM_MR_QUICKRES_STEP4_TITLE', false, false ) );
 	if ( (int) $mrConfig[ 'minimuminterval' ] == 0 ) $mrConfig[ 'minimuminterval' ] = 1;
 
 	$output[ 'MININTERVAL' ] = $mrConfig[ 'minimuminterval' ] . ' ; var selectroommessage = "' . $output[ 'SELECTROOMMESSAGE' ] . '"'; //For backward compatability this selectroommessage has been tacked onto the end of the min interval var definition
@@ -284,7 +284,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	
 
 	if ( $bkg->guest_specific_discount > 0 ) 
-		$output[ 'PERSONAL_DISCOUNT' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_PERSONAL_DISCOUNT', _JOMRES_PERSONAL_DISCOUNT ) );
+		$output[ 'PERSONAL_DISCOUNT' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_PERSONAL_DISCOUNT', '_JOMRES_PERSONAL_DISCOUNT' ) );
 
 	$overrideSessionArrivalDate = false;
 	if ( $thisdate != "" ) $overrideSessionArrivalDate = true;
@@ -375,7 +375,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		$bkg->setDateRangeString();
 		}
 
-	$output[ 'EARLIESTPOSSIBLEARRIVALDATE' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE', _JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE, false ) ) . $bkg->JSCalmakeInputDates( $arrivalDate );
+	$output[ 'EARLIESTPOSSIBLEARRIVALDATE' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE', '_JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE', false ) ) . $bkg->JSCalmakeInputDates( $arrivalDate );
 
 	$explodedEarliest = explode( "/", $today );
 
@@ -420,9 +420,9 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	if ( (count( $extra_details ) > 0 || count( $third_party_extras ) > 0) && $mrConfig[ 'showExtras' ] == "1")
 		{
 		$output[ 'EXTRAS_INFO' ] = '<img border="0" style="vertical-align:top;" src="' . get_showtime( 'live_site' ) . '/components/com_jomres/images/info.png" />';
-		$output[ 'AJAXFORM_EXTRAS' ]      = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS', _JOMRES_AJAXFORM_EXTRAS ) );
-		$output[ 'AJAXFORM_EXTRAS_DESC' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_DESC', _JOMRES_AJAXFORM_EXTRAS_DESC, false ) );
-		$output[ 'EXTRAS_TOTAL' ]         = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_TOTAL', _JOMRES_AJAXFORM_EXTRAS_TOTAL ) );
+		$output[ 'AJAXFORM_EXTRAS' ]      = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS', '_JOMRES_AJAXFORM_EXTRAS' ) );
+		$output[ 'AJAXFORM_EXTRAS_DESC' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_DESC', '_JOMRES_AJAXFORM_EXTRAS_DESC', false ) );
+		$output[ 'EXTRAS_TOTAL' ]         = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_TOTAL', '_JOMRES_AJAXFORM_EXTRAS_TOTAL' ) );
 		$extrasHeader                     = array ();
 		$extrasH                          = array ();
 		$extrasH[ 'EXTRAS_TOTAL' ]        = $output[ 'EXTRAS_TOTAL' ];
@@ -451,13 +451,13 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		{
 		if ( $mrConfig[ 'booking_form_rooms_list_style' ] == "1" )
 			{
-			$rm = '<div><strong>' . $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_SELECTEDROOMS', _JOMRES_AJAXFORM_SELECTEDROOMS ) ) . '</strong></div>';
+			$rm = '<div><strong>' . $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_SELECTEDROOMS', '_JOMRES_AJAXFORM_SELECTEDROOMS' ) ) . '</strong></div>';
 			if ( $bkg->numberOfCurrentlySelectedRooms() > 0 ) $rm .= $bkg->listCurrentlySelectedRooms();
 			else
-			$rm .= '<div class="ui-state-error">' . $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', _JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET ) ) . '</div>';
+			$rm .= '<div class="ui-state-error">' . $bkg->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET' ) ) . '</div>';
 			$output[ 'SELECTEDROOM' ] = $rm;
 
-			$rm = '<div><strong>' . $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_AVAILABLEROOMS', _JOMRES_AJAXFORM_AVAILABLEROOMS ) ) . '</strong></div>';
+			$rm = '<div><strong>' . $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_AVAILABLEROOMS', '_JOMRES_AJAXFORM_AVAILABLEROOMS' ) ) . '</strong></div>';
 			//$rm.="<br>";
 			$rm .= $bkg->generateRoomsList( $roomAndTariffArray );
 			}
@@ -576,7 +576,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 
 	$output[ 'PANELPOSITION' ]       = (int) $jrConfig[ 'booking_form_totalspanel_position' ];
 	$output[ 'BOOKINGFORMWIDTH' ]    = (int) $jrConfig[ 'booking_form_width' ];
-	$output[ 'EMAIL_ALREADY_INUSE' ] = jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', _JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE, false, false );
+	$output[ 'EMAIL_ALREADY_INUSE' ] = jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', false, false );
 
 	$output[ 'EMAIL_INPUT_DISABLED' ] = '';
 	if (  ($thisJRUser->userIsRegistered && $output[ 'EMAIL' ] != '' && !$thisJRUser->userIsManager ) || $thisJRUser->is_partner )
@@ -665,7 +665,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 
 	if ( $thisJRUser->userIsManager )
 		{
-		$manager_pricing[ ] = array ( '_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL' => jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', _JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL, false, false ), '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT' => jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', _JOMCOMP_AMEND_OVERRIDE_DEPOSIT, false, false ), '_JOMCOMP_AMEND_OVERRIDE_SAVE' => jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_SAVE', _JOMCOMP_AMEND_OVERRIDE_SAVE, false, false ) );
+		$manager_pricing[ ] = array ( '_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL' => jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', '_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', false, false ), '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT' => jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', false, false ), '_JOMCOMP_AMEND_OVERRIDE_SAVE' => jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_SAVE', '_JOMCOMP_AMEND_OVERRIDE_SAVE', false, false ) );
 		}
 
 	if ( $jrConfig[ 'show_tax_in_totals_summary' ] == "1" )

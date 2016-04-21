@@ -32,7 +32,7 @@ class jomSearch
 	function __construct( $calledByModule, $includedInModule = false )
 		{
 		//var_dump($searchOptions);
-		$searchAll       = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
+		$searchAll       = jr_gettext( '_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false );
 		$siteConfig      = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig        = $siteConfig->get();
 		$this->formname  = "";
@@ -93,11 +93,7 @@ class jomSearch
 
 			}
 		$option = jomresGetParam( $_REQUEST, 'option', "" );
-		if ( $option != "com_jomres" && !JOMRES_OVERLIB_CALLED )
-			{
-			define( "JOMRES_OVERLIB_CALLED", true );
-			mosCommonHTML::loadOverlib();
-			}
+		
 		$this->featurecols = $featurecols;
 		$this->cols        = $useCols;
 		//$this->overlibLables=$useoverlibLabels;
@@ -291,8 +287,15 @@ class jomSearch
 		if ( in_array( "availability", $searchOptions ) )
 			{
 			$result                    = prepAvailabilitySearch();
-			$this->prep[ 'arrival' ]   = $result[ 'arrival' ];
-			$this->prep[ 'departure' ] = $result[ 'departure' ];
+			if (isset($result[ 'arrival' ]))
+				$this->prep[ 'arrival' ]   = $result[ 'arrival' ];
+			else
+				$this->prep[ 'arrival' ]   ='';
+			
+			if (isset($result[ 'departure' ]))
+				$this->prep[ 'departure' ] = $result[ 'departure' ];
+			else
+				$this->prep[ 'departure' ] = '';
 			}
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 		if ( in_array( "feature_uids", $this->searchOptions ) )
@@ -351,7 +354,7 @@ class jomSearch
 			$result = prepGuestnumberSearch();
 			if ( $result && count( $result ) > 0 )
 				{
-				$searchAll                      = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
+				$searchAll                      = jr_gettext( '_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false );
 				$this->prep[ 'guestnumber' ][ ] = array ( 'id' => 0, 'guestnumber' => $searchAll );
 				foreach ( $result as $guestnumber )
 					{
@@ -362,7 +365,7 @@ class jomSearch
 
 		if ( in_array( "stars", $this->searchOptions ) )
 			{
-			$searchAll                = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
+			$searchAll                = jr_gettext( '_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false );
 			$this->prep[ 'stars' ][ ] = array ( 'id' => 0, 'stars' => $searchAll );
 			$this->prep[ 'stars' ][ ] = array ( 'id' => 1, 'stars' => 1 );
 			$this->prep[ 'stars' ][ ] = array ( 'id' => 2, 'stars' => 2 );
@@ -393,7 +396,7 @@ class jomSearch
 			$MiniComponents->triggerEvent( '01010', $componentArgs ); // listPropertys
 			}
 		else
-		echo jr_gettext( '_JOMRES_FRONT_NORESULTS', _JOMRES_FRONT_NORESULTS, $editable = true, $islink = false );
+		echo jr_gettext( '_JOMRES_FRONT_NORESULTS', '_JOMRES_FRONT_NORESULTS', $editable = true, $islink = false );
 		//listPropertys($tmpResultsArray);
 		}
 
@@ -1145,7 +1148,7 @@ function prepFeatureSearch()
 	if (!$result)
 		{
 		$result               = array ();
-		$searchAll            = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
+		$searchAll            = jr_gettext( '_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false );
 		
 		$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$propertyFeaturesList=$basic_property_details->all_property_features;
@@ -1199,7 +1202,7 @@ function prepFeatureSearch()
 function prepRoomtypeSearch()
 	{
 	// Prepares the Room type data required for a search
-	$searchAll          = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
+	$searchAll          = jr_gettext( '_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false );
 	
 	$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 	$roomTypeList=$basic_property_details->all_room_types;
@@ -1337,7 +1340,7 @@ function prepAvailabilitySearch()
 function prepPropertyTypeSearch()
 	{
 	// Prepares the PropertyType data required for a search
-	$searchAll = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
+	$searchAll = jr_gettext( '_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false );
 	$result    = array ();
 	$r         = array ();
 
@@ -1381,7 +1384,7 @@ function prepPriceRangeSearch( $increments = 10 )
 	
 	if (!$result)
 		{
-		$searchAll = jr_gettext( '_JOMRES_SEARCH_ALL', _JOMRES_SEARCH_ALL, false, false );
+		$searchAll = jr_gettext( '_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false );
 	
 		$query    = "SELECT DISTINCT roomrateperday FROM #__jomres_rates,#__jomres_propertys WHERE #__jomres_rates.property_uid = #__jomres_propertys.propertys_uid AND #__jomres_propertys.published = 1 ORDER by #__jomres_rates.roomrateperday";
 		$rateList = doSelectSql( $query );

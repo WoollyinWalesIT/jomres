@@ -48,10 +48,10 @@ class j16000additemtobill
 				if ( $r[ 'success' ] )
 					{
 					echo _JRPORTAL_ADD_ADHOC_ITEM_SUCCESS . $r[ 'billingSystem' ] . "<br>";
-					echo '<a href="' . $r[ 'orders_link' ] . '">' . jr_gettext( '_JRPORTAL_ADD_ADHOC_ITEM_VIEWNBILLORDERS', _JRPORTAL_ADD_ADHOC_ITEM_VIEWNBILLORDERS ) . '</a>';
+					echo '<a href="' . $r[ 'orders_link' ] . '">' . jr_gettext( '_JRPORTAL_ADD_ADHOC_ITEM_VIEWNBILLORDERS', '_JRPORTAL_ADD_ADHOC_ITEM_VIEWNBILLORDERS' ) . '</a>';
 					}
 				else
-				echo jr_gettext( '_JRPORTAL_ADD_ADHOC_ITEM_FAILURE', _JRPORTAL_ADD_ADHOC_ITEM_FAILURE ) . $r[ 'billingSystem' ] . "<br>";
+				echo jr_gettext( '_JRPORTAL_ADD_ADHOC_ITEM_FAILURE', '_JRPORTAL_ADD_ADHOC_ITEM_FAILURE' ) . $r[ 'billingSystem' ] . "<br>";
 				}
 			}
 		else

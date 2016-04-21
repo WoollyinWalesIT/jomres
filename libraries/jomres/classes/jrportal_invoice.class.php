@@ -69,7 +69,6 @@ class jrportal_invoice
 			}
 
 		$this->cms_user_id = (int) $invoice_data[ 'cms_user_id' ];
-		$this->guest_id    = (int) $invoice_data[ 'guest_id' ];
 		
 		if ( isset( $invoice_data[ 'raised_date' ] ) ) 
 			$this->due_date = $invoice_data[ 'raised_date' ];

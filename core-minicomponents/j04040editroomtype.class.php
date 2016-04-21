@@ -41,14 +41,14 @@ class j04040editroomtype
 		if ( $clone ) $classUid = false;
 
 		$output[ 'INDEX' ]        = "index.php";
-		$output[ 'HABBV' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV );
-		$output[ 'HDESC' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_DESC', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_DESC );
+		$output[ 'HABBV' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV', '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV' );
+		$output[ 'HDESC' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_DESC', '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_DESC' );
 		$output[ 'ROOMCLASSUID' ] = $classUid;
-		$output[ 'PAGETITLE' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', _JOMRES_COM_MR_VRCT_TAB_ROOMTYPES );
+		$output[ 'PAGETITLE' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES' );
 
-		$cancelText = jr_gettext( '_JOMRES_COM_A_CANCEL', _JOMRES_COM_A_CANCEL, false );
-		$deleteText = jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', _JOMRES_COM_MR_ROOM_DELETE, false );
-		$saveText   = jr_gettext( '_JOMRES_COM_MR_SAVE', _JOMRES_COM_MR_SAVE, false );
+		$cancelText = jr_gettext( '_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL', false );
+		$deleteText = jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', '_JOMRES_COM_MR_ROOM_DELETE', false );
+		$saveText   = jr_gettext( '_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE', false );
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();

@@ -97,11 +97,11 @@ class jomres_generic_booking_email
 			}
 		
 		//links
-		$this->data[$contract_uid]['LINK_TO_PROPERTY'] = "<a href=\"" . JOMRES_SITEPAGE_URL_NOSEF . "&task=viewproperty&property_uid=" . $property_uid . "\">" . jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE, false, false ) . "</a>";
+		$this->data[$contract_uid]['LINK_TO_PROPERTY'] = "<a href=\"" . JOMRES_SITEPAGE_URL_NOSEF . "&task=viewproperty&property_uid=" . $property_uid . "\">" . jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE', false, false ) . "</a>";
 		
 		if ( !$thisJRUser->userIsManager && $thisJRUser->userIsRegistered )
 			{
-			$this->data[$contract_uid]['LINK_TO_BOOKING'] = "<a href=\"" . JOMRES_SITEPAGE_URL_NOSEF . "&task=muviewbooking&contract_uid=" . $contract_uid . "\">" . jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKING', _JOMCOMP_MYUSER_VIEWBOOKING, false, false ) . "</a>";
+			$this->data[$contract_uid]['LINK_TO_BOOKING'] = "<a href=\"" . JOMRES_SITEPAGE_URL_NOSEF . "&task=muviewbooking&contract_uid=" . $contract_uid . "\">" . jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', false, false ) . "</a>";
 			}
 		
 		//number of guest types

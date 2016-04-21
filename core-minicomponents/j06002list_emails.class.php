@@ -33,10 +33,10 @@ class j06002list_emails
 		$output = array();
 		$rows=array();
 		
-		$output['PAGETITLE']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_TITLE', _JOMRES_EMAIL_TEMPLATES_TITLE, false);
-		$output['HEMAIL_TYPE']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_TYPE', _JOMRES_EMAIL_TEMPLATES_TYPE, false);
-		$output['HEMAIL_NAME']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_NAME', _JOMRES_EMAIL_TEMPLATES_NAME, false);
-		$output['HEMAIL_DESC']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_DESC', _JOMRES_EMAIL_TEMPLATES_DESC, false);
+		$output['PAGETITLE']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_TITLE', '_JOMRES_EMAIL_TEMPLATES_TITLE', false);
+		$output['HEMAIL_TYPE']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_TYPE', '_JOMRES_EMAIL_TEMPLATES_TYPE', false);
+		$output['HEMAIL_NAME']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_NAME', '_JOMRES_EMAIL_TEMPLATES_NAME', false);
+		$output['HEMAIL_DESC']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_DESC', '_JOMRES_EMAIL_TEMPLATES_DESC', false);
 		
 		$MiniComponents->triggerEvent( '03150' );
 
@@ -58,7 +58,7 @@ class j06002list_emails
 			else
 				{
 				$toolbar->newToolbar();
-				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL .'&task=edit_email&email_type='.$t['type'] ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
+				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL .'&task=edit_email&email_type='.$t['type'] ), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
 				$r['EDITLINK']=$toolbar->getToolbar();
 				}
 

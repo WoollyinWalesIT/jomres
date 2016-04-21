@@ -87,8 +87,8 @@ class j06000media_centre_resources_ajax_existing_images
 					}
 
 				$output['IMAGE_REL_LARGE'] = $image['large'];
-				$output['_JOMRES_MEDIA_CENTRE_BUTTON_DELETE'] = jr_gettext( '_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', _JOMRES_MEDIA_CENTRE_BUTTON_DELETE, false );
-				$output['_JOMRES_MEDIA_CENTRE_BUTTON_VIEW']   = jr_gettext( '_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', _JOMRES_MEDIA_CENTRE_BUTTON_VIEW, false );
+				$output['_JOMRES_MEDIA_CENTRE_BUTTON_DELETE'] = jr_gettext( '_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', '_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', false );
+				$output['_JOMRES_MEDIA_CENTRE_BUTTON_VIEW']   = jr_gettext( '_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', '_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', false );
 				$output['DELETE_URL'] = $delete_url.$image_name;
 				
 				$pageoutput[]=$output;

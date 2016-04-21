@@ -212,16 +212,16 @@ class j16000list_invoices_ajax
 				{
 				$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 				$jrtb = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem( 'edit', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_invoice' . '&id=' . $p->id ), jr_gettext( 'COMMON_VIEW', COMMON_VIEW, false ) );
+				$jrtb .= $jrtbar->toolbarItem( 'edit', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_invoice' . '&id=' . $p->id ), jr_gettext( 'COMMON_VIEW', 'COMMON_VIEW', false ) );
 				$r[] = $jrtb .= $jrtbar->endTable();
 				}
 			else
 				{
 				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 				$toolbar->newToolbar();
-				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_invoice&id=' . $p->id ), jr_gettext( 'COMMON_VIEW', COMMON_VIEW, false ) );
+				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_invoice&id=' . $p->id ), jr_gettext( 'COMMON_VIEW', 'COMMON_VIEW', false ) );
 				if ( $p->status != 1 && $p->raised_date != '0000-00-00 00:00:00')
-					$toolbar->addSecondaryItem( 'fa fa-usd', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=mark_invoice_paid&id=' . $p->id ), jr_gettext( '_JOMRES_INVOICE_MARKASPAID', _JOMRES_INVOICE_MARKASPAID, false ) );
+					$toolbar->addSecondaryItem( 'fa fa-usd', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=mark_invoice_paid&id=' . $p->id ), jr_gettext( '_JOMRES_INVOICE_MARKASPAID', '_JOMRES_INVOICE_MARKASPAID', false ) );
 				//$toolbar->addSecondaryItem( 'fa fa-print', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_invoice&popup=1&id=' . $p->id . '&tmpl='.get_showtime("tmplcomponent")), jr_gettext( 'COMMON_PRINT', COMMON_PRINT, false ) );
 				$r[]=$toolbar->getToolbar();
 				}

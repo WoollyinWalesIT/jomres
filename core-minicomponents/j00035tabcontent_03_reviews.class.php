@@ -32,7 +32,7 @@ class j00035tabcontent_03_reviews
 		if ( $jrConfig[ 'use_reviews' ] == "1" )
 			{
 			$reviews = $MiniComponents->specificEvent( '06000', 'show_property_reviews',array('output_now'=>false, 'property_uid'=>$property_uid));
-			$reviews_title = jr_gettext( '_JOMRES_REVIEWS', _JOMRES_REVIEWS, false, false );
+			$reviews_title = jr_gettext( '_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false, false );
 
 			$anchor        = jomres_generate_tab_anchor( $reviews_title );
 			$tab           = array ( "TAB_ANCHOR" => $anchor, "TAB_TITLE" => $reviews_title, "TAB_CONTENT" => $reviews , "TAB_ID" => 'tour_target_reviews_list');

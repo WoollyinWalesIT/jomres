@@ -72,20 +72,20 @@ class j06000view_agent
 		if ( !$result ) // this id doesn't correspond to a manager in the system, progress no further
 			return;
 		
-		$output[ 'HFIRSTNAME' ]             = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME', _JOMRES_COM_MR_DISPGUEST_FIRSTNAME );
-		$output[ 'HSURNAME' ]               = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_SURNAME', _JOMRES_COM_MR_DISPGUEST_SURNAME );
-		$output[ 'HHOUSE' ]                 = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_HOUSE', _JOMRES_COM_MR_DISPGUEST_HOUSE );
-		$output[ 'HSTREET' ]                = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_STREET', _JOMRES_COM_MR_DISPGUEST_STREET );
-		$output[ 'HTOWN' ]                  = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_TOWN', _JOMRES_COM_MR_DISPGUEST_TOWN );
-		$output[ 'HREGION' ]                = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION );
-		$output[ 'HCOUNTRY' ]               = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY );
-		$output[ 'HPOSTCODE' ]              = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_POSTCODE', _JOMRES_COM_MR_DISPGUEST_POSTCODE );
-		$output[ 'HLANDLINE' ]              = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_LANDLINE', _JOMRES_COM_MR_DISPGUEST_LANDLINE );
-		$output[ 'HMOBILE' ]                = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_MOBILE', _JOMRES_COM_MR_DISPGUEST_MOBILE );
-		$output[ 'HFAX' ]                   = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FAX', _JOMRES_COM_MR_DISPGUEST_FAX );
-		$output[ 'HEMAIL' ]                 = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL );
-		$output[ '_JOMRES_AGENT_DETAILS' ]  = jr_gettext( '_JOMRES_AGENT_DETAILS', _JOMRES_AGENT_DETAILS );
-		$output[ '_JOMRES_AGENT_LISTINGS' ] = jr_gettext( '_JOMRES_AGENT_LISTINGS', _JOMRES_AGENT_LISTINGS );
+		$output[ 'HFIRSTNAME' ]             = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME', '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME' );
+		$output[ 'HSURNAME' ]               = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_SURNAME', '_JOMRES_COM_MR_DISPGUEST_SURNAME' );
+		$output[ 'HHOUSE' ]                 = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_HOUSE', '_JOMRES_COM_MR_DISPGUEST_HOUSE' );
+		$output[ 'HSTREET' ]                = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_STREET', '_JOMRES_COM_MR_DISPGUEST_STREET' );
+		$output[ 'HTOWN' ]                  = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_TOWN', '_JOMRES_COM_MR_DISPGUEST_TOWN' );
+		$output[ 'HREGION' ]                = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION' );
+		$output[ 'HCOUNTRY' ]               = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' );
+		$output[ 'HPOSTCODE' ]              = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_POSTCODE', '_JOMRES_COM_MR_DISPGUEST_POSTCODE' );
+		$output[ 'HLANDLINE' ]              = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_LANDLINE', '_JOMRES_COM_MR_DISPGUEST_LANDLINE' );
+		$output[ 'HMOBILE' ]                = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_MOBILE', '_JOMRES_COM_MR_DISPGUEST_MOBILE' );
+		$output[ 'HFAX' ]                   = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FAX', '_JOMRES_COM_MR_DISPGUEST_FAX' );
+		$output[ 'HEMAIL' ]                 = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL' );
+		$output[ '_JOMRES_AGENT_DETAILS' ]  = jr_gettext( '_JOMRES_AGENT_DETAILS', '_JOMRES_AGENT_DETAILS' );
+		$output[ '_JOMRES_AGENT_LISTINGS' ] = jr_gettext( '_JOMRES_AGENT_LISTINGS', '_JOMRES_AGENT_LISTINGS' );
 
 		$query       = "SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email FROM #__jomres_guest_profile WHERE cms_user_id = " . (int) $manager_id . " LIMIT 1";
 		$managerData = doSelectSql( $query );

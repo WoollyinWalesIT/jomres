@@ -30,7 +30,7 @@ class j10002access_control
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=access_control', 'access_control.png', jr_gettext( "_JOMRES_CUSTOMCODE_ACCESSCONTROL", _JOMRES_CUSTOMCODE_ACCESSCONTROL, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE, false, false ) );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=access_control', 'access_control.png', jr_gettext( "_JOMRES_CUSTOMCODE_ACCESSCONTROL", '_JOMRES_CUSTOMCODE_ACCESSCONTROL', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE', false, false ) );
 			}
 		}
 

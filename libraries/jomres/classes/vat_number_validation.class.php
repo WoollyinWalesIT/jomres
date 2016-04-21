@@ -118,7 +118,7 @@ class vat_number_validation
 					$id = $arguments["guest_id"];
 					$property_uid = $arguments["property_uid"];
 					$query = "UPDATE #__jomres_guests SET `vat_number_validated`='".$validated."',`vat_number`='" . $this->validation_messages[ 'clean_vat_no' ] . "',`vat_number_validation_response`='".$messages."' WHERE guests_uid = '" . (int) $id . "' AND `property_uid` = " . (int)$property_uid;
-					if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_GUEST', _JOMRES_MR_AUDIT_UPDATE_GUEST, false ) ) ) 
+					if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_GUEST', '_JOMRES_MR_AUDIT_UPDATE_GUEST', false ) ) ) 
 						{
 						trigger_error( "Unable to update guest details, mysql db failure", E_USER_ERROR );
 						}
@@ -182,7 +182,7 @@ class vat_number_validation
 
 			if ( strlen( $countryCode ) != 2 || is_numeric( substr( $countryCode, 0, 1 ) ) || is_numeric( substr( $countryCode, 1, 2 ) ) )
 				{
-				$this->validation_messages = array ( 'result' => false, 'message' => jr_gettext( '_JOMRES_VIES_VATCHECK_INCORRECT_SYNTAX', _JOMRES_VIES_VATCHECK_INCORRECT_SYNTAX, false ), 'clean_vat_no' => $countryCode . $vatNumber );
+				$this->validation_messages = array ( 'result' => false, 'message' => jr_gettext( '_JOMRES_VIES_VATCHECK_INCORRECT_SYNTAX', '_JOMRES_VIES_VATCHECK_INCORRECT_SYNTAX', false ), 'clean_vat_no' => $countryCode . $vatNumber );
 				$this->vat_number_validated = "0";
 				return false;
 				}
@@ -218,13 +218,13 @@ class vat_number_validation
 
 			if ( $result[ 'valid' ] != "true" )
 				{
-				$this->validation_messages = array ( 'result' => false, 'message' => jr_gettext( '_JOMRES_VIES_VATCHECK_INCORRECT_COULDNOTVALIDATE', _JOMRES_VIES_VATCHECK_INCORRECT_COULDNOTVALIDATE, false ), 'response_content' => $results, 'clean_vat_no' => $countryCode . $vatNumber );
+				$this->validation_messages = array ( 'result' => false, 'message' => jr_gettext( '_JOMRES_VIES_VATCHECK_INCORRECT_COULDNOTVALIDATE', '_JOMRES_VIES_VATCHECK_INCORRECT_COULDNOTVALIDATE', false ), 'response_content' => $results, 'clean_vat_no' => $countryCode . $vatNumber );
 				$this->vat_number_validated = "0";
 				return false;
 				}
 			else
 				{
-				$this->validation_messages = array ( 'result' => true, 'message' => jr_gettext( '_JOMRES_VIES_VATCHECK_INCORRECT_VALIDATED', _JOMRES_VIES_VATCHECK_INCORRECT_VALIDATED, false ), 'response_content' => $results, 'clean_vat_no' => $countryCode . $vatNumber );
+				$this->validation_messages = array ( 'result' => true, 'message' => jr_gettext( '_JOMRES_VIES_VATCHECK_INCORRECT_VALIDATED', '_JOMRES_VIES_VATCHECK_INCORRECT_VALIDATED', false ), 'response_content' => $results, 'clean_vat_no' => $countryCode . $vatNumber );
 				$this->vat_number_validated = "1";
 				return true;
 				}

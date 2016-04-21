@@ -71,8 +71,8 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 			$property_data[ 'RANDOM_IDENTIFIER' ] = generateJomresRandomString( 10 );
 
 			$property_data[ 'LIVE_SITE' ]           = get_showtime( 'live_site' );
-			$property_data[ 'MOREINFORMATION' ]     = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION, $editable = false, true );
-			$property_data[ 'QUICKINFORMATION' ]     = jr_gettext( '_JOMRES_QUICK_INFO', _JOMRES_QUICK_INFO, $editable = false, true );
+			$property_data[ 'MOREINFORMATION' ]     = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', $editable = false, true );
+			$property_data[ 'QUICKINFORMATION' ]     = jr_gettext( '_JOMRES_QUICK_INFO', '_JOMRES_QUICK_INFO', $editable = false, true );
 			$property_data[ 'MOREINFORMATIONLINK' ] = jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $property_uid );
 			$property_data[ 'STARSIMAGES' ]         = '';
 			for ( $i = 1; $i <= $property_data[ 'stars' ]; $i++ )
@@ -95,8 +95,12 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 			else
 				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
-			if ( count( $current_property_details->multi_query_result[ $property_uid ][ 'room_types' ] ) > 0 ) $tmpl->addRows( 'room_types', $current_property_details->multi_query_result[ $property_uid ][ 'room_types' ] );
-			if ( count( $current_property_details->multi_query_result[ $property_uid ][ 'room_features' ] ) > 0 ) $tmpl->addRows( 'room_features', $current_property_details->multi_query_result[ $property_uid ][ 'room_features' ] );
+			
+			if ( isset( $current_property_details->multi_query_result[ $property_uid ][ 'room_types' ] ) && count( $current_property_details->multi_query_result[ $property_uid ][ 'room_types' ] ) > 0 ) 
+				$tmpl->addRows( 'room_types', $current_property_details->multi_query_result[ $property_uid ][ 'room_types' ] );
+			
+			if ( isset( $current_property_details->multi_query_result[ $property_uid ][ 'room_features' ] ) && count( $current_property_details->multi_query_result[ $property_uid ][ 'room_features' ] ) > 0 ) 
+				$tmpl->addRows( 'room_features', $current_property_details->multi_query_result[ $property_uid ][ 'room_features' ] );
 
 			if ( $alt_template_name != '' ) 
 				$tmpl->readTemplatesFromInput( $alt_template_name );

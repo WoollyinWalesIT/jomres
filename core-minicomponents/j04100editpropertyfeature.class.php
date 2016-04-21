@@ -42,14 +42,14 @@ class j04100editpropertyfeature
 
 		$output[ 'INDEX' ]               = "index.php";
 		$output[ 'PROPERTYFEATUREUID' ]  = $propertyFeatureUid;
-		$output[ 'HFEATUREABBV' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV );
-		$output[ 'HFEATUREDESCRIPTION' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC );
+		$output[ 'HFEATUREABBV' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV' );
+		$output[ 'HFEATUREDESCRIPTION' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC' );
 		$output[ 'MOSCONFIGLIVESITE' ]   = get_showtime( 'live_site' );
-		$output[ 'PAGETITLE' ]           = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_PROPERTYFEATURES', _JOMRES_COM_MR_VRCT_TAB_PROPERTYFEATURES );
+		$output[ 'PAGETITLE' ]           = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_PROPERTYFEATURES', '_JOMRES_COM_MR_VRCT_TAB_PROPERTYFEATURES' );
 
-		$cancelText = jr_gettext( '_JOMRES_COM_A_CANCEL', _JOMRES_COM_A_CANCEL, false );
-		$deleteText = jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', _JOMRES_COM_MR_ROOM_DELETE, false );
-		$saveText   = jr_gettext( '_JOMRES_COM_MR_SAVE', _JOMRES_COM_MR_SAVE, false );
+		$cancelText = jr_gettext( '_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL', false );
+		$deleteText = jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', '_JOMRES_COM_MR_ROOM_DELETE', false );
+		$saveText   = jr_gettext( '_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE', false );
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();

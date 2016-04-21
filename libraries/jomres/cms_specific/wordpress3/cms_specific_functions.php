@@ -133,13 +133,13 @@ function jomres_cmsspecific_createNewUserOnBooking()
 			$tmpBookingHandler->updateGuestField( 'mos_userid', $id );
 			$tmpBookingHandler->saveGuestData();
 
-			$subject = jr_gettext( '_JRPORTAL_NEWUSER_SUBJECT', _JRPORTAL_NEWUSER_SUBJECT, false, false );
+			$subject = jr_gettext( '_JRPORTAL_NEWUSER_SUBJECT', '_JRPORTAL_NEWUSER_SUBJECT', false, false );
 
-			$text = jr_gettext( '_JRPORTAL_NEWUSER_DEAR', _JRPORTAL_NEWUSER_DEAR, false, false ) . " " . stripslashes( $guestDeets[ 'firstname' ] ) . " " . stripslashes( $guestDeets[ 'surname' ] ) . " <br />";
-			$text .= jr_gettext( '_JRPORTAL_NEWUSER_THANKYOU', _JRPORTAL_NEWUSER_THANKYOU, false, false ) . " <br />";
-			$text .= jr_gettext( '_JRPORTAL_NEWUSER_USERNAME', _JRPORTAL_NEWUSER_USERNAME, false, false ) . " " . $username . " <br />";
-			$text .= jr_gettext( '_JRPORTAL_NEWUSER_PASSWORD', _JRPORTAL_NEWUSER_PASSWORD, false, false ) . " " . $userdata['user_pass'] . " <br />";
-			$text .= jr_gettext( '_JRPORTAL_NEWUSER_LOG_IN', _JRPORTAL_NEWUSER_LOG_IN, false, false ) . " " . get_showtime( 'live_site' ) . "<br />";
+			$text = jr_gettext( '_JRPORTAL_NEWUSER_DEAR', '_JRPORTAL_NEWUSER_DEAR', false, false ) . " " . stripslashes( $guestDeets[ 'firstname' ] ) . " " . stripslashes( $guestDeets[ 'surname' ] ) . " <br />";
+			$text .= jr_gettext( '_JRPORTAL_NEWUSER_THANKYOU', '_JRPORTAL_NEWUSER_THANKYOU', false, false ) . " <br />";
+			$text .= jr_gettext( '_JRPORTAL_NEWUSER_USERNAME', '_JRPORTAL_NEWUSER_USERNAME', false, false ) . " " . $username . " <br />";
+			$text .= jr_gettext( '_JRPORTAL_NEWUSER_PASSWORD', '_JRPORTAL_NEWUSER_PASSWORD', false, false ) . " " . $userdata['user_pass'] . " <br />";
+			$text .= jr_gettext( '_JRPORTAL_NEWUSER_LOG_IN', '_JRPORTAL_NEWUSER_LOG_IN', false, false ) . " " . get_showtime( 'live_site' ) . "<br />";
 
 			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 			$jrConfig   = $siteConfig->get();

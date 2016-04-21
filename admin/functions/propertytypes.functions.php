@@ -41,7 +41,7 @@ function publishPropertyType()
 	if ( $published ) $query = "UPDATE #__jomres_ptypes SET `published`='0' WHERE id = '$id'";
 	else
 	$query = "UPDATE #__jomres_ptypes SET `published`='1' WHERE id = '$id'";
-	if ( doInsertSql( $query, false ) ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes" ), jr_gettext( "_JOMRES_COM_PTYPES_SAVED", _JOMRES_COM_PTYPES_SAVED, false ) );
+	if ( doInsertSql( $query, false ) ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes" ), jr_gettext( "_JOMRES_COM_PTYPES_SAVED", '_JOMRES_COM_PTYPES_SAVED', false ) );
 	}
 
 /**
@@ -53,15 +53,15 @@ function editPropertyType()
 	{
 	$id                                    = jomresGetParam( $_GET, 'id', 0 );
 	$output                                = array ();
-	$output[ 'PAGETITLE' ]                 = jr_gettext( "_JOMRES_COM_PTYPES_LIST_TITLE_EDIT", _JOMRES_COM_PTYPES_LIST_TITLE_EDIT, false );
-	$output[ 'HPTYPE' ]                    = jr_gettext( "_JOMRES_COM_PTYPES_PTYPE", _JOMRES_COM_PTYPES_PTYPE, false );
-	$output[ 'HPTYPE_DESC' ]               = jr_gettext( "_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR", _JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR, false );
-	$output[ 'HPUBLISHED' ]                = jr_gettext( "_JOMRES_COM_MR_VRCT_PUBLISHED", _JOMRES_COM_MR_VRCT_PUBLISHED, false );
-	$output[ 'FURTHER' ]                   = jr_gettext( "_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER", _JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER, false );
-	$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = jr_gettext( "JOMRES_SITEPAGE_URL_ADMIN", JOMRES_SITEPAGE_URL_ADMIN, false );
+	$output[ 'PAGETITLE' ]                 = jr_gettext( "_JOMRES_COM_PTYPES_LIST_TITLE_EDIT", '_JOMRES_COM_PTYPES_LIST_TITLE_EDIT', false );
+	$output[ 'HPTYPE' ]                    = jr_gettext( "_JOMRES_COM_PTYPES_PTYPE", '_JOMRES_COM_PTYPES_PTYPE', false );
+	$output[ 'HPTYPE_DESC' ]               = jr_gettext( "_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR", '_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR', false );
+	$output[ 'HPUBLISHED' ]                = jr_gettext( "_JOMRES_COM_MR_VRCT_PUBLISHED", '_JOMRES_COM_MR_VRCT_PUBLISHED', false );
+	$output[ 'FURTHER' ]                   = jr_gettext( "_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER", '_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', false );
+	$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = jr_gettext( "JOMRES_SITEPAGE_URL_ADMIN", 'JOMRES_SITEPAGE_URL_ADMIN', false );
 
-	$output[ '_JOMRES_PROPERTYTYPE_FLAG' ]			= jr_gettext( "_JOMRES_PROPERTYTYPE_FLAG", _JOMRES_PROPERTYTYPE_FLAG, false );
-	$output[ '_JOMRES_PROPERTYTYPE_FLAG_DESC' ]		= jr_gettext( "_JOMRES_PROPERTYTYPE_FLAG_DESC", _JOMRES_PROPERTYTYPE_FLAG_DESC, false );
+	$output[ '_JOMRES_PROPERTYTYPE_FLAG' ]			= jr_gettext( "_JOMRES_PROPERTYTYPE_FLAG", '_JOMRES_PROPERTYTYPE_FLAG', false );
+	$output[ '_JOMRES_PROPERTYTYPE_FLAG_DESC' ]		= jr_gettext( "_JOMRES_PROPERTYTYPE_FLAG_DESC", '_JOMRES_PROPERTYTYPE_FLAG_DESC', false );
 
 
 	
@@ -85,9 +85,9 @@ function editPropertyType()
 		}
 	
 	$mrp_srp_flag_options    = array ();
-	$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '0', jr_gettext( _JOMRES_PROPERTYTYPE_FLAG_HOTEL, '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', false ) );
-	$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '1', jr_gettext( _JOMRES_PROPERTYTYPE_FLAG_VILLA, '_JOMRES_PROPERTYTYPE_FLAG_VILLA', false ) );
-	$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '3', jr_gettext( _JOMRES_PROPERTYTYPE_FLAG_NEITHER, '_JOMRES_PROPERTYTYPE_FLAG_NEITHER', false ) );
+	$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', false ) );
+	$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_VILLA', '_JOMRES_PROPERTYTYPE_FLAG_VILLA', false ) );
+	$mrp_srp_flag_options[ ] = jomresHTML::makeOption( '3', jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_NEITHER', '_JOMRES_PROPERTYTYPE_FLAG_NEITHER', false ) );
 	$output[ '_JOMRES_PROPERTYTYPE_FLAG_DROPDOWN' ]= jomresHTML::selectList( $mrp_srp_flag_options, 'mrp_srp_flag', 'class="inputbox" size="1"', 'value', 'text', $mrp_srp_flag );
 	
 	$output[ 'ID' ] = $id;
@@ -98,7 +98,7 @@ function editPropertyType()
 	$link   = JOMRES_SITEPAGE_URL_ADMIN;
 	
 	$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes", '' );
-	$jrtb .= $jrtbar->customToolbarItem( 'savePropertyType', $link, jr_gettext( "_JOMRES_COM_MR_SAVE", _JOMRES_COM_MR_SAVE, false ), $submitOnClick = true, $submitTask = "savePropertyType", $image );
+	$jrtb .= $jrtbar->customToolbarItem( 'savePropertyType', $link, jr_gettext( "_JOMRES_COM_MR_SAVE", '_JOMRES_COM_MR_SAVE', false ), $submitOnClick = true, $submitTask = "savePropertyType", $image );
 	$jrtb .= $jrtbar->endTable();
 
 	$output[ 'JOMRESTOOLBAR' ] = $jrtb;
@@ -138,7 +138,7 @@ function savePropertyType()
 		$query = "INSERT INTO #__jomres_ptypes (`ptype`,`ptype_desc` ,`mrp_srp_flag` ) VALUES ('$ptype','$ptype_desc' , ".$mrp_srp_flag.")";
 
 	if ( !doInsertSql( $query, false ) ) echo "Nope";
-	jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes" ), jr_gettext( "_JOMRES_COM_PTYPES_SAVED", _JOMRES_COM_PTYPES_SAVED, false ) );
+	jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes" ), jr_gettext( "_JOMRES_COM_PTYPES_SAVED", '_JOMRES_COM_PTYPES_SAVED', false ) );
 	}
 
 /**
@@ -159,7 +159,7 @@ function deletePropertyType()
 			if ( count( $ptypeList ) > 0 )
 				{
 				$success = false;
-				echo jr_gettext( "_JOMRES_COM_PTYPES_UNABLETO_DELETE", _JOMRES_COM_PTYPES_UNABLETO_DELETE, false ) . "<br>";
+				echo jr_gettext( "_JOMRES_COM_PTYPES_UNABLETO_DELETE", '_JOMRES_COM_PTYPES_UNABLETO_DELETE', false ) . "<br>";
 				}
 			else
 				{
@@ -172,6 +172,6 @@ function deletePropertyType()
 	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 	$c->eraseAll();
 	
-	if ( $success ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes" ), jr_gettext( "_JOMRES_COM_PTYPES_DELETED", _JOMRES_COM_PTYPES_DELETED, false ) );
+	if ( $success ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPropertyTypes" ), jr_gettext( "_JOMRES_COM_PTYPES_DELETED", '_JOMRES_COM_PTYPES_DELETED', false ) );
 	}
 

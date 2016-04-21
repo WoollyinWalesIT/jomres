@@ -27,7 +27,7 @@ class j03150email_hotel_cancelbooking
 		
 		$default_template = JOMRES_TEMPLATEPATH_BACKEND.JRDS.'email_hotel_cancelbooking.html';
 		
-		$this->ret_vals = array ( "type" => "email_hotel_cancelbooking", "name" => jr_gettext('_JOMRES_HOTEL_CANCELBOOKING_EMAILNAME',_JOMRES_HOTEL_CANCELBOOKING_EMAILNAME,false) , "desc" => jr_gettext('_JOMRES_HOTEL_CANCELBOOKING_EMAILDESC',_JOMRES_HOTEL_CANCELBOOKING_EMAILDESC,false), "default_template" => $default_template );
+		$this->ret_vals = array ( "type" => "email_hotel_cancelbooking", "name" => jr_gettext('_JOMRES_HOTEL_CANCELBOOKING_EMAILNAME','_JOMRES_HOTEL_CANCELBOOKING_EMAILNAME',false) , "desc" => jr_gettext('_JOMRES_HOTEL_CANCELBOOKING_EMAILDESC','_JOMRES_HOTEL_CANCELBOOKING_EMAILDESC',false), "default_template" => $default_template );
 		
 		}
 

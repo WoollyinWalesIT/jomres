@@ -30,7 +30,7 @@ class j00035tabcontent_04_roomslist
 		$this->retVals = null;
 
 		$rooms_list = $MiniComponents->specificEvent( '06000', 'show_property_rooms',array('output_now'=>false, 'property_uid'=>$property_uid));
-		$rooms_list_title = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', _JOMRES_COM_MR_QUICKRES_STEP2_TITLE, false );
+		$rooms_list_title = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', '_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', false );
 
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{

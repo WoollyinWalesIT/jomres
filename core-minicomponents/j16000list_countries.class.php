@@ -31,10 +31,10 @@ class j16000list_countries
 		$pageoutput = array ();
 
 
-		$output[ '_JOMRES_EDIT_COUNTRY_TITLE' ]       = jr_gettext( "_JOMRES_EDIT_COUNTRY_TITLE", _JOMRES_EDIT_COUNTRY_TITLE, false );
-		$output[ '_JOMRES_EDIT_COUNTRY_ID' ]          = jr_gettext( "_JOMRES_EDIT_COUNTRY_ID", _JOMRES_EDIT_COUNTRY_ID, false );
-		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYCODE' ] = jr_gettext( "_JOMRES_EDIT_COUNTRY_COUNTRYCODE", _JOMRES_EDIT_COUNTRY_COUNTRYCODE, false );
-		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYNAME' ] = jr_gettext( "_JOMRES_EDIT_COUNTRY_COUNTRYNAME", _JOMRES_EDIT_COUNTRY_COUNTRYNAME, false );
+		$output[ '_JOMRES_EDIT_COUNTRY_TITLE' ]       = jr_gettext( "_JOMRES_EDIT_COUNTRY_TITLE", '_JOMRES_EDIT_COUNTRY_TITLE', false );
+		$output[ '_JOMRES_EDIT_COUNTRY_ID' ]          = jr_gettext( "_JOMRES_EDIT_COUNTRY_ID", '_JOMRES_EDIT_COUNTRY_ID', false );
+		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYCODE' ] = jr_gettext( "_JOMRES_EDIT_COUNTRY_COUNTRYCODE", '_JOMRES_EDIT_COUNTRY_COUNTRYCODE', false );
+		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYNAME' ] = jr_gettext( "_JOMRES_EDIT_COUNTRY_COUNTRYNAME", '_JOMRES_EDIT_COUNTRY_COUNTRYNAME', false );
 
 		$jomres_countries = jomres_singleton_abstract::getInstance( 'jomres_countries' );
 
@@ -56,8 +56,8 @@ class j16000list_countries
 				{
 				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 				$toolbar->newToolbar();
-				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_country&id=' . $country[ 'id' ] ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
-				$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=delete_country&id=' . $country[ 'id' ] ), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
+				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_country&id=' . $country[ 'id' ] ), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
+				$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=delete_country&id=' . $country[ 'id' ] ), jr_gettext( 'COMMON_DELETE', 'COMMON_DELETE', false ) );
 				
 				$r['EDITLINK'] = $toolbar->getToolbar();
 				}

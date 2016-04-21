@@ -30,11 +30,11 @@ class j16000edit_taxrate
 		
 		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 
-		$output[ 'PAGETITLE' ]    = jr_gettext( '_JRPORTAL_TAX_RATE_EDIT', _JRPORTAL_TAX_RATE_EDIT,false );
-		$output[ 'HCODE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_CODE', _JRPORTAL_TAXRATES_CODE,false );
-		$output[ 'HDESCRIPTION' ] = jr_gettext( '_JRPORTAL_TAXRATES_DESCRIPTION', _JRPORTAL_TAXRATES_DESCRIPTION,false );
-		$output[ 'HRATE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_RATE', _JRPORTAL_TAXRATES_RATE,false );
-		$output[ '_JOMRES_IS_EU_COUNTRY' ]        = jr_gettext( '_JOMRES_IS_EU_COUNTRY', _JOMRES_IS_EU_COUNTRY,false );
+		$output[ 'PAGETITLE' ]    = jr_gettext( '_JRPORTAL_TAX_RATE_EDIT', '_JRPORTAL_TAX_RATE_EDIT',false );
+		$output[ 'HCODE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_CODE', '_JRPORTAL_TAXRATES_CODE',false );
+		$output[ 'HDESCRIPTION' ] = jr_gettext( '_JRPORTAL_TAXRATES_DESCRIPTION', '_JRPORTAL_TAXRATES_DESCRIPTION',false );
+		$output[ 'HRATE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_RATE', '_JRPORTAL_TAXRATES_RATE',false );
+		$output[ '_JOMRES_IS_EU_COUNTRY' ]        = jr_gettext( '_JOMRES_IS_EU_COUNTRY', '_JOMRES_IS_EU_COUNTRY',false );
 
 		if ( $id > 0 )
 			{
@@ -55,8 +55,8 @@ class j16000edit_taxrate
 			}
 
 		$yesno     = array ();
-		$yesno[ ]  = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO,false ) );
-		$yesno[ ]  = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES,false ) );
+		$yesno[ ]  = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO',false ) );
+		$yesno[ ]  = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES',false ) );
 		$output[ 'IS_EU_COUNTRY' ]  = jomresHTML::selectList( $yesno, 'is_eu_country', 'class="inputbox" size="1"', 'value', 'text', $selected );
 		
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
@@ -67,11 +67,9 @@ class j16000edit_taxrate
 		if ( $id > 0 ) 
 			$jrtb .= $jrtbar->toolbarItem( 'delete', JOMRES_SITEPAGE_URL_ADMIN . "&task=delete_taxrate" . "&no_html=1&id=" . $id, '' );
 		else
-			echo jr_gettext( '_JRPORTAL_TAXRATES_CANNOTDELETE', _JRPORTAL_TAXRATES_CANNOTDELETE,false );
+			echo jr_gettext( '_JRPORTAL_TAXRATES_CANNOTDELETE', '_JRPORTAL_TAXRATES_CANNOTDELETE',false );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
-
-		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = JOMRES_SITEPAGE_URL_ADMIN;
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();

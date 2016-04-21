@@ -42,7 +42,7 @@ class j06000show_property_qr_code_directions
 		$url                                     = make_gmap_url_for_property_uid( $property_uid );
 		$qr_code_map                             = jomres_make_qr_code( str_replace(" ", "+",$url ) );
 		$output[ 'QR_CODE_MAP' ]                 = $qr_code_map[ 'relative_path' ];
-		$output[ '_JOMRES_SCAN_FOR_DIRECTIONS' ] = jr_gettext( '_JOMRES_SCAN_FOR_DIRECTIONS', _JOMRES_SCAN_FOR_DIRECTIONS, false );
+		$output[ '_JOMRES_SCAN_FOR_DIRECTIONS' ] = jr_gettext( '_JOMRES_SCAN_FOR_DIRECTIONS', '_JOMRES_SCAN_FOR_DIRECTIONS', false );
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();

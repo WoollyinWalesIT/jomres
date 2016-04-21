@@ -46,8 +46,8 @@ class j16000editPfeatureCategory
 				}
 			}
 
-		$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT', _JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT,false );
-		$output[ 'HTITLE' ] = jr_gettext( '_JRPORTAL_CRATE_TITLE', _JRPORTAL_CRATE_TITLE,false );
+		$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT', '_JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT',false );
+		$output[ 'HTITLE' ] = jr_gettext( '_JRPORTAL_CRATE_TITLE', '_JRPORTAL_CRATE_TITLE',false );
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
@@ -55,7 +55,7 @@ class j16000editPfeatureCategory
 		$link   = JOMRES_SITEPAGE_URL_ADMIN;
 		
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeaturesCategories", '' );
-		$jrtb .= $jrtbar->customToolbarItem( 'savePfeatureCategory', $link, jr_gettext( '_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,false ), $submitOnClick = true, $submitTask = "savePfeatureCategory", $image );
+		$jrtb .= $jrtbar->customToolbarItem( 'savePfeatureCategory', $link, jr_gettext( '_JOMRES_COM_MR_SAVE','_JOMRES_COM_MR_SAVE',false ), $submitOnClick = true, $submitTask = "savePfeatureCategory", $image );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 

@@ -38,7 +38,7 @@ class j16000listLogs
 		$pageoutput = array ();
 		$rows       = array ();
 
-		$output[ 'PAGETITLE' ] = jr_gettext( "JOMRES_COM_A_AVAILABLELOGS", JOMRES_COM_A_AVAILABLELOGS,false );
+		$output[ 'PAGETITLE' ] = jr_gettext( "JOMRES_COM_A_AVAILABLELOGS", 'JOMRES_COM_A_AVAILABLELOGS',false );
 		$counter               = 0;
 		if ( count( $logFiles ) > 0 )
 			{
@@ -54,7 +54,7 @@ class j16000listLogs
 				}
 			}
 
-		if ( $counter == 0 ) echo jr_gettext( "JOMRES_COM_A_LOGS_NOENTRIES", JOMRES_COM_A_LOGS_NOENTRIES,false );
+		if ( $counter == 0 ) echo jr_gettext( "JOMRES_COM_A_LOGS_NOENTRIES", 'JOMRES_COM_A_LOGS_NOENTRIES',false );
 		else
 			{
 			$pageoutput[ ] = $output;

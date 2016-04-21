@@ -188,45 +188,45 @@ class j00101amendBooking
 
 				$currfmt                = jomres_singleton_abstract::getInstance( 'jomres_currency_format' );
 				$mrConfig               = getPropertySpecificSettings( $tmpBookingHandler->tmpbooking[ "amend_property_uid" ] );
-				$output[ 'HEADER' ]     = jr_gettext( '_JOMCOMP_AMEND_HEADER', _JOMCOMP_AMEND_HEADER );
-				$output[ 'HTOTAL' ]     = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTAL', _JOMRES_AJAXFORM_BILLING_TOTAL );
+				$output[ 'HEADER' ]     = jr_gettext( '_JOMCOMP_AMEND_HEADER', '_JOMCOMP_AMEND_HEADER' );
+				$output[ 'HTOTAL' ]     = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTAL', '_JOMRES_AJAXFORM_BILLING_TOTAL' );
 				$output[ 'TOTAL' ]      = output_price( $c->contract_total );
-				$output[ 'HROOMTOTAL' ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', _JOMRES_AJAXFORM_BILLING_ROOM_TOTAL );
+				$output[ 'HROOMTOTAL' ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL' );
 				$output[ 'ROOMTOTAL' ]  = output_price( $c->room_total );
-				$output[ 'HARRIVAL' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL );
+				$output[ 'HARRIVAL' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL' );
 				$output[ 'ARRIVAL' ]    = outputDate( $c->arrival );
-				$output[ 'HDEPARTURE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE );
+				$output[ 'HDEPARTURE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE' );
 				$output[ 'DEPARTURE' ]  = outputDate( $c->departure );
 
 				if ( $totalinparty != 0 )
 					{
-					$output[ 'HTOTALINPARTY' ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', _JOMRES_AJAXFORM_BILLING_TOTALINPARTY );
+					$output[ 'HTOTALINPARTY' ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', '_JOMRES_AJAXFORM_BILLING_TOTALINPARTY' );
 					$output[ 'TOTALINPARTY' ]  = $totalinparty;
 					}
 
 				if ( $mrConfig[ 'showExtras' ] == "1" )
 					{
-					$output[ 'HEXTRAS' ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_EXTRAS', _JOMRES_AJAXFORM_BILLING_EXTRAS );
+					$output[ 'HEXTRAS' ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_EXTRAS', '_JOMRES_AJAXFORM_BILLING_EXTRAS' );
 					$output[ 'EXTRAS' ]  = output_price( $c->extrasvalue );
 					}
 
 				if ( $mrConfig[ 'roomTaxYesNo' ] == "1" || $mrConfig[ 'euroTaxYesNo' ] == "1" )
 					{
-					$output[ 'HTAX' ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TAX', _JOMRES_AJAXFORM_BILLING_TAX );
+					$output[ 'HTAX' ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TAX', '_JOMRES_AJAXFORM_BILLING_TAX' );
 					$output[ 'TAX' ]  = output_price( $c->tax );
 					}
 
 				if ( $c->discount != 0 )
 					{
-					$output[ 'HDISCOUNT' ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_DISCOUNT', _JOMRES_AJAXFORM_BILLING_DISCOUNT );
+					$output[ 'HDISCOUNT' ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_DISCOUNT', '_JOMRES_AJAXFORM_BILLING_DISCOUNT' );
 					$output[ 'DISCOUNT' ]  = output_price( $c->discount );
 					}
 
 				if ( $mrConfig[ 'chargeDepositYesNo' ] == "1" )
 					{
-					if ( $c->deposit_paid > 0 ) $output[ 'HDEPOSIT' ] = jr_gettext( '_JOMCOMP_AMEND_DEPOSITPAID', _JOMCOMP_AMEND_DEPOSITPAID );
+					if ( $c->deposit_paid > 0 ) $output[ 'HDEPOSIT' ] = jr_gettext( '_JOMCOMP_AMEND_DEPOSITPAID', '_JOMCOMP_AMEND_DEPOSITPAID' );
 					else
-					$output[ 'HDEPOSIT' ] = jr_gettext( '_JOMCOMP_AMEND_DEPOSITDUE', _JOMCOMP_AMEND_DEPOSITDUE );
+					$output[ 'HDEPOSIT' ] = jr_gettext( '_JOMCOMP_AMEND_DEPOSITDUE', '_JOMCOMP_AMEND_DEPOSITDUE' );
 
 					$output[ 'DEPOSIT' ] = output_price( $tmpBookingHandler->tmpbooking[ "amend_deposit_required" ] );
 					}
@@ -257,17 +257,17 @@ class j00101amendBooking
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMCOMP_AMEND_HEADER', _JOMCOMP_AMEND_HEADER );
-		$output[ ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTAL', _JOMRES_AJAXFORM_BILLING_TOTAL );
-		$output[ ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', _JOMRES_AJAXFORM_BILLING_ROOM_TOTAL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE );
-		$output[ ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', _JOMRES_AJAXFORM_BILLING_TOTALINPARTY );
-		$output[ ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_EXTRAS', _JOMRES_AJAXFORM_BILLING_EXTRAS );
-		$output[ ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TAX', _JOMRES_AJAXFORM_BILLING_TAX );
-		$output[ ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_DISCOUNT', _JOMRES_AJAXFORM_BILLING_DISCOUNT );
-		$output[ ] = jr_gettext( '_JOMCOMP_AMEND_DEPOSITPAID', _JOMCOMP_AMEND_DEPOSITPAID );
-		$output[ ] = jr_gettext( '_JOMCOMP_AMEND_DEPOSITDUE', _JOMCOMP_AMEND_DEPOSITDUE );
+		$output[ ] = jr_gettext( '_JOMCOMP_AMEND_HEADER', '_JOMCOMP_AMEND_HEADER' );
+		$output[ ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTAL', '_JOMRES_AJAXFORM_BILLING_TOTAL' );
+		$output[ ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE' );
+		$output[ ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', '_JOMRES_AJAXFORM_BILLING_TOTALINPARTY' );
+		$output[ ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_EXTRAS', '_JOMRES_AJAXFORM_BILLING_EXTRAS' );
+		$output[ ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TAX', '_JOMRES_AJAXFORM_BILLING_TAX' );
+		$output[ ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_DISCOUNT', '_JOMRES_AJAXFORM_BILLING_DISCOUNT' );
+		$output[ ] = jr_gettext( '_JOMCOMP_AMEND_DEPOSITPAID', '_JOMCOMP_AMEND_DEPOSITPAID' );
+		$output[ ] = jr_gettext( '_JOMCOMP_AMEND_DEPOSITDUE', '_JOMCOMP_AMEND_DEPOSITDUE' );
 
 		foreach ( $output as $o )
 			{

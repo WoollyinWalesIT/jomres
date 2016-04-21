@@ -51,7 +51,7 @@ class j06001mark_booking_invoice_pending
 		$invoice->getInvoice();
 		$invoice->mark_invoice_pending();
 
-		addBookingNote( $invoice->contract_id, $property_uid, jr_gettext( '_JOMRES_INVOICE_MARKEDASPENDING', _JOMRES_INVOICE_MARKEDASPENDING, false, false ) );
+		addBookingNote( $invoice->contract_id, $property_uid, jr_gettext( '_JOMRES_INVOICE_MARKEDASPENDING', '_JOMRES_INVOICE_MARKEDASPENDING', false, false ) );
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . '&task=view_invoice&id=' . $invoice_id ), "" );
 		}
 

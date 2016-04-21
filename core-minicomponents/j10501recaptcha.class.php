@@ -34,16 +34,16 @@ class j10501recaptcha
 
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
-			$configurationPanel->startPanel( jr_gettext( "RECAPTCHA_TITLE", RECAPTCHA_TITLE, false ) );
+			$configurationPanel->startPanel( jr_gettext( "RECAPTCHA_TITLE", 'RECAPTCHA_TITLE', false ) );
 			
-			$configurationPanel->insertDescription(jr_gettext( RECAPTCHA_INFO, 'RECAPTCHA_INFO', false ));
+			$configurationPanel->insertDescription(jr_gettext( 'RECAPTCHA_INFO', 'RECAPTCHA_INFO', false ));
 	
-			$configurationPanel->setleft( jr_gettext( 'RECAPTCHA_PUBLIC_KEY', RECAPTCHA_PUBLIC_KEY, false ) );
+			$configurationPanel->setleft( jr_gettext( 'RECAPTCHA_PUBLIC_KEY', 'RECAPTCHA_PUBLIC_KEY', false ) );
 			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_recaptcha_public_key" value="' . $jrConfig[ 'recaptcha_public_key' ] . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( 'RECAPTCHA_PRIVATE_KEY', RECAPTCHA_PRIVATE_KEY, false ) );
+			$configurationPanel->setleft( jr_gettext( 'RECAPTCHA_PRIVATE_KEY', 'RECAPTCHA_PRIVATE_KEY', false ) );
 			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_recaptcha_private_key" value="' . $jrConfig[ 'recaptcha_private_key' ] . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();

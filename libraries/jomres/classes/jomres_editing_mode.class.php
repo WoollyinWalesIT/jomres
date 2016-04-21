@@ -73,8 +73,8 @@ class jomres_editing_mode
 	function make_editing_mode_dropdown()
 		{
 		if ( !$this->editing_allowed ) return false;
-		$on_text  = jr_gettext( '_JOMRES_EDITINGMODE_ON', _JOMRES_EDITINGMODE_ON, false );
-		$off_text = jr_gettext( '_JOMRES_EDITINGMODE_OFF', _JOMRES_EDITINGMODE_OFF, false );
+		$on_text  = jr_gettext( '_JOMRES_EDITINGMODE_ON', '_JOMRES_EDITINGMODE_ON', false );
+		$off_text = jr_gettext( '_JOMRES_EDITINGMODE_OFF', '_JOMRES_EDITINGMODE_OFF', false );
 
 		$mode_options    = array ();
 		$mode_options[ ] = jomresHTML::makeOption( '0', $off_text );

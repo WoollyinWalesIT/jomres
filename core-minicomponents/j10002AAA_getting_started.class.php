@@ -28,14 +28,14 @@ class j10002AAA_getting_started
 		global $htmlFuncs; // We'll leave this one instance of this variable as global here because some older plugins will need it, and as this plugin's the first to be run in administrator, this should fix it
 		$htmlFuncs = jomres_singleton_abstract::getInstance( 'html_functions' );
 
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . "&task=getting_started", 'Support_IT.png', jr_gettext( "_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED", '', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", '', false, false ) );
+		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . "&task=getting_started", 'Support_IT.png', jr_gettext( "_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED", '_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', false, false ) );
 		}
 
 	function touch_template_language()
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED", _JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED", '_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED' );
 
 		foreach ( $output as $o )
 			{

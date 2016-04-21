@@ -35,16 +35,16 @@ class j04050saveroomtype
 		
 		if ( $roomClassUid == "" )
 			{
-			$saveMessage = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', _JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT, false );
+			$saveMessage = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', false );
 			$query       = "INSERT INTO #__jomres_room_classes (`room_class_abbv`,`room_class_full_desc`,`property_uid` )VALUES ('$room_class_abbv','$room_class_full_desc','" . (int) $defaultProperty . "')";
-			if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_ROOM_TYPE', _JOMRES_MR_AUDIT_INSERT_ROOM_TYPE, false ) ) ) returnToPropertyConfig( $saveMessage );
+			if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_ROOM_TYPE', '_JOMRES_MR_AUDIT_INSERT_ROOM_TYPE', false ) ) ) returnToPropertyConfig( $saveMessage );
 			trigger_error( "Unable to insert into room type table, mysql db failure", E_USER_ERROR );
 			}
 		else
 			{
-			$saveMessage = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', _JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE, false );
+			$saveMessage = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', false );
 			$query       = "UPDATE #__jomres_room_classes SET `room_class_abbv`='$room_class_abbv',`room_class_full_desc`='$room_class_full_desc' WHERE room_classes_uid='" . (int) $roomClassUid . "' AND property_uid = '" . (int) $defaultProperty . "'";
-			if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_ROOM_TYPE', _JOMRES_MR_AUDIT_UPDATE_ROOM_TYPE, false ) ) ) returnToPropertyConfig( $saveMessage );
+			if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_ROOM_TYPE', '_JOMRES_MR_AUDIT_UPDATE_ROOM_TYPE', false ) ) ) returnToPropertyConfig( $saveMessage );
 			trigger_error( "Unable to update room type table, mysql db failure", E_USER_ERROR );
 			}
 

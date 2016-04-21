@@ -30,7 +30,7 @@ class j10002media_centre_features_images
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN .  "&task=media_centre&upload_context=features_images", 'Picture.png', jr_gettext( '_JOMRES_MEDIA_CENTRE_TITLE', _JOMRES_MEDIA_CENTRE_TITLE, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE", _JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE, false, false ) );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN .  "&task=media_centre&upload_context=features_images", 'Picture.png', jr_gettext( '_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE', false, false ) );
 			}
 		}
 
@@ -38,7 +38,7 @@ class j10002media_centre_features_images
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( "_JOMRES_MEDIA_CENTRE_TITLE", _JOMRES_MEDIA_CENTRE_TITLE );
+		$output[ ] = jr_gettext( "_JOMRES_MEDIA_CENTRE_TITLE", '_JOMRES_MEDIA_CENTRE_TITLE' );
 
 		foreach ( $output as $o )
 			{

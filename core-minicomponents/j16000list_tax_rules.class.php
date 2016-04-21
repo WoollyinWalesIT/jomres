@@ -36,13 +36,13 @@ class j16000list_tax_rules
 		$query = "SELECT `id`,`tax_rate_id`,`country_id`,`region_id` FROM #__jomres_tax_rules";
 		$all_tax_rules = doSelectSql($query);
 		
-		$output[ 'PAGETITLE' ]    = jr_gettext( '_JOMRES_TAX_RULES_LIST', _JOMRES_TAX_RULES_LIST,false );
-		$output[ '_JRPORTAL_TAXRATES_CODE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_CODE', _JRPORTAL_TAXRATES_CODE,false );
-		$output[ '_JRPORTAL_TAXRATES_DESCRIPTION' ] = jr_gettext( '_JRPORTAL_TAXRATES_DESCRIPTION', _JRPORTAL_TAXRATES_DESCRIPTION,false );
-		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY ,false);
-		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION,false );
-		$output[ '_JRPORTAL_TAXRATES_RATE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_RATE', _JRPORTAL_TAXRATES_RATE,false );
-		$output[ '_JOMRES_TAX_RULE_INFO' ]        = jr_gettext( '_JOMRES_TAX_RULE_INFO', _JOMRES_TAX_RULE_INFO,false );
+		$output[ 'PAGETITLE' ]    = jr_gettext( '_JOMRES_TAX_RULES_LIST', '_JOMRES_TAX_RULES_LIST',false );
+		$output[ '_JRPORTAL_TAXRATES_CODE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_CODE', '_JRPORTAL_TAXRATES_CODE',false );
+		$output[ '_JRPORTAL_TAXRATES_DESCRIPTION' ] = jr_gettext( '_JRPORTAL_TAXRATES_DESCRIPTION', '_JRPORTAL_TAXRATES_DESCRIPTION',false );
+		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' ,false);
+		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',false );
+		$output[ '_JRPORTAL_TAXRATES_RATE' ]        = jr_gettext( '_JRPORTAL_TAXRATES_RATE', '_JRPORTAL_TAXRATES_RATE',false );
+		$output[ '_JOMRES_TAX_RULE_INFO' ]        = jr_gettext( '_JOMRES_TAX_RULE_INFO', '_JOMRES_TAX_RULE_INFO',false );
 		
 		$jomres_countries = jomres_singleton_abstract::getInstance( 'jomres_countries' );
 

@@ -26,7 +26,7 @@ class j03379media_centre_resource_type_property
 			return;
 			}
 		
-		$this->ret_vals = array ( "resource_type" => "property" , "resource_id_required" => false , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', _JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY, false ) , "notes" => jr_gettext( '_JOMRES_MEDIA_CENTRE_NOTES_CORE', _JOMRES_MEDIA_CENTRE_NOTES_CORE, false )  );
+		$this->ret_vals = array ( "resource_type" => "property" , "resource_id_required" => false , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', false ) , "notes" => jr_gettext( '_JOMRES_MEDIA_CENTRE_NOTES_CORE', '_JOMRES_MEDIA_CENTRE_NOTES_CORE', false )  );
 		
 		}
 

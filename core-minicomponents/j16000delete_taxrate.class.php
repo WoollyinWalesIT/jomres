@@ -38,7 +38,7 @@ class j16000delete_taxrate
 			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_taxrates" ), $saveMessage );
 			}
 		else
-			echo jr_gettext( '_JRPORTAL_TAXRATES_CANNOTDELETE', _JRPORTAL_TAXRATES_CANNOTDELETE, false );
+			echo jr_gettext( '_JRPORTAL_TAXRATES_CANNOTDELETE', '_JRPORTAL_TAXRATES_CANNOTDELETE', false );
 		}
 
 	/**

@@ -29,7 +29,7 @@ class j02162savecancellation
 		$contract_uid = jomresGetParam( $_POST, 'contract_uid', 0 );
 		$reason = jomresGetParam( $_POST, 'reason', "" );
 		$cancellationSuccessful = false;
-		$saveMessage = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLED', _JOMRES_COM_MR_EB_GUEST_CANCELLED, false );
+		$saveMessage = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLED', '_JOMRES_COM_MR_EB_GUEST_CANCELLED', false );
 		
 		if ( $contract_uid != 0 )
 			{

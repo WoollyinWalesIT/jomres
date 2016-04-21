@@ -35,14 +35,14 @@ class j10501navbar
 
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
-			$configurationPanel->startPanel( jr_gettext( "_JOMRES_BOOTSTRAP_LOCATION_CONFIG_TAB", _JOMRES_BOOTSTRAP_LOCATION_CONFIG_TAB, false ) );
+			$configurationPanel->startPanel( jr_gettext( "_JOMRES_BOOTSTRAP_LOCATION_CONFIG_TAB", '_JOMRES_BOOTSTRAP_LOCATION_CONFIG_TAB', false ) );
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_BOOTSTRAP_LOCATION', _JOMRES_BOOTSTRAP_LOCATION, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_BOOTSTRAP_LOCATION', '_JOMRES_BOOTSTRAP_LOCATION', false ) );
 			$configurationPanel->setmiddle( $navbar_location_dropdown );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_BOOTSTRAP_LOCATION_INVERSE', _JOMRES_BOOTSTRAP_LOCATION_INVERSE, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_BOOTSTRAP_LOCATION_INVERSE', '_JOMRES_BOOTSTRAP_LOCATION_INVERSE', false ) );
 			$configurationPanel->setmiddle( $lists[ 'navbar_inverse' ] );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();

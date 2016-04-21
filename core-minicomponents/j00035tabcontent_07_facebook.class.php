@@ -31,7 +31,7 @@ class j00035tabcontent_07_facebook
 			{
 			$componentArgs[ 'output_now' ] = false;
 			
-			$tabTitle = jr_gettext( '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', _JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK, false, false );
+			$tabTitle = jr_gettext( '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', false, false );
 			
 			$anchor = jomres_generate_tab_anchor( $tabTitle );
 

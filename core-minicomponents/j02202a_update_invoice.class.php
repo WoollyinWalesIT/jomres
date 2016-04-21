@@ -45,7 +45,7 @@ class j02202a_update_invoice
 				$invoice->getInvoice();
 
 				$line_items = array ( 'tax_code_id' => 0, 
-										 'name' => jr_gettext( '_JOMRES_MR_AUDIT_ENTEREDDEPOSIT', _JOMRES_MR_AUDIT_ENTEREDDEPOSIT, false, false ),
+										 'name' => jr_gettext( '_JOMRES_MR_AUDIT_ENTEREDDEPOSIT', '_JOMRES_MR_AUDIT_ENTEREDDEPOSIT', false, false ),
 										 'description' => '('.$today.')', 
 										 'init_price' => "-" . number_format( $deposit_received, 2, '.', '' ), 
 										 'init_qty' => 1, 
