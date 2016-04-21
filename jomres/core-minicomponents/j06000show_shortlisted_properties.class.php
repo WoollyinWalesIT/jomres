@@ -57,14 +57,14 @@ class j06000show_shortlisted_properties
 			//$tmpBookingHandler->tmpsearch_data['ajax_list_search_results'] = $original_search_results;
 			}
 		else
-		echo jr_gettext( "_JOMRES_NOTHINGINSHORTLIST", _JOMRES_NOTHINGINSHORTLIST, false, false );;
+		echo jr_gettext( "_JOMRES_NOTHINGINSHORTLIST", '_JOMRES_NOTHINGINSHORTLIST', false, false );;
 		}
 
 	function touch_template_language()
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( "_JOMRES_NOTHINGINSHORTLIST", _JOMRES_NOTHINGINSHORTLIST );
+		$output[ ] = jr_gettext( "_JOMRES_NOTHINGINSHORTLIST", '_JOMRES_NOTHINGINSHORTLIST' );
 
 		foreach ( $output as $o )
 			{

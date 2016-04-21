@@ -29,7 +29,7 @@ class j00035tabcontent_02_map
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
 
 		$map = $MiniComponents->specificEvent( '06000', 'show_property_map', array('output_now'=>false, 'property_uid'=>$property_uid));
-		$map_title = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK, false);
+		$map_title = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', false);
 		
 		if ( strlen( $map ) > 0 )
 			{

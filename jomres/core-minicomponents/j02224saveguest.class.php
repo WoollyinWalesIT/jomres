@@ -48,16 +48,16 @@ class j02224saveguest
 		if ( $guests_uid != 0 )
 			{
 			$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
-			$jomres_messaging->set_message( jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_GUEST', _JOMRES_MR_AUDIT_UPDATE_GUEST, false ) );
+			$jomres_messaging->set_message( jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_GUEST', '_JOMRES_MR_AUDIT_UPDATE_GUEST', false ) );
 			$query = "UPDATE #__jomres_guests SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',`town`='$town',`county`='$region',`country`='$country',`postcode`='$postcode',`tel_landline`='$landline',`tel_mobile`='$mobile',`tel_fax`='$fax',`email`='$email',`discount`= $discount WHERE guests_uid = '" . (int) $guests_uid . "' AND `property_uid` = " . (int) $defaultProperty;
-			if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_GUEST', _JOMRES_MR_AUDIT_UPDATE_GUEST, false ) ) ) trigger_error( "Unable to update guest details, mysql db failure", E_USER_ERROR );
+			if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_GUEST', '_JOMRES_MR_AUDIT_UPDATE_GUEST', false ) ) ) trigger_error( "Unable to update guest details, mysql db failure", E_USER_ERROR );
 			}
 		else
 			{
 			$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
-			$jomres_messaging->set_message( jr_gettext( '_JOMRES_MR_AUDIT_INSERT_GUEST', _JOMRES_MR_AUDIT_INSERT_GUEST, false ) );
+			$jomres_messaging->set_message( jr_gettext( '_JOMRES_MR_AUDIT_INSERT_GUEST', '_JOMRES_MR_AUDIT_INSERT_GUEST', false ) );
 			$query = "INSERT INTO #__jomres_guests (`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`tel_fax`,`email`,`discount`,`property_uid`)VALUES ('$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$fax','$email',$discount,'" . (int) $defaultProperty . "')";
-			if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_GUEST', _JOMRES_MR_AUDIT_INSERT_GUEST, false ) ) ) trigger_error( "Unable to insert guest details, mysql db failure", E_USER_ERROR );
+			if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_GUEST', '_JOMRES_MR_AUDIT_INSERT_GUEST', false ) ) ) trigger_error( "Unable to insert guest details, mysql db failure", E_USER_ERROR );
 
 			}
 			

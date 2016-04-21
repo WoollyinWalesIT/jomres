@@ -35,6 +35,9 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 	
 try
 	{
+	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig   = $siteConfig->get();
 	
 	set_showtime( 'heavyweight_system', false );
 
@@ -68,6 +71,7 @@ try
 		}
 
 	$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
+	$jomreslang->get_language($jrConfig[ 'language_context' ]);
 	
 	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' ); // 00002 event is triggered here
 
@@ -75,8 +79,6 @@ try
 		{
 		throw new Exception( "This manager " .  jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( (int) $this->id ) . "  hasn't got any properties.");
 		}
-	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-	$jrConfig   = $siteConfig->get();
 
 	if ($jrConfig[ 'development_production' ]  != "production")
 		{
@@ -105,8 +107,6 @@ try
 		{
 		jomres_cmsspecific_setmetadata( "robots", "noindex,nofollow" );
 		}
-
-	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 
 	$MiniComponents->triggerEvent( '00003' ); //
 

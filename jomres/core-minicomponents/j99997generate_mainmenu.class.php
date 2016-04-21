@@ -144,9 +144,9 @@ class j99997generate_mainmenu
 		$output[ 'MENUITEM_LANGDROPDOWN' ]             = get_showtime( "menuitem_langdropdown" );
 
 
-		$output[ '_JOMRES_CONTROLPANEL' ] = jr_gettext( "_JOMRES_CONTROLPANEL", _JOMRES_CONTROLPANEL, false );
-		$output[ '_JOMRES_MENU_SHOW' ]    = jr_gettext( "_JOMRES_MENU_SHOW", _JOMRES_MENU_SHOW, false );
-		$output[ '_JOMRES_MENU_HIDE' ]    = jr_gettext( "_JOMRES_MENU_HIDE", _JOMRES_MENU_HIDE, false );
+		$output[ '_JOMRES_CONTROLPANEL' ] = jr_gettext( "_JOMRES_CONTROLPANEL", '_JOMRES_CONTROLPANEL', false );
+		$output[ '_JOMRES_MENU_SHOW' ]    = jr_gettext( "_JOMRES_MENU_SHOW", '_JOMRES_MENU_SHOW', false );
+		$output[ '_JOMRES_MENU_HIDE' ]    = jr_gettext( "_JOMRES_MENU_HIDE", '_JOMRES_MENU_HIDE', false );
 		
 		$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
 		
@@ -212,7 +212,7 @@ class j99997generate_mainmenu
 			$output['NAVBAR_INVERSE']= 'navbar-inverse';
 			}
 
-		$output['_JOMRES_BOOKING_NUMBER'] = jr_gettext("_JOMRES_BOOKING_NUMBER",_JOMRES_BOOKING_NUMBER,false);
+		$output['_JOMRES_BOOKING_NUMBER'] = jr_gettext("_JOMRES_BOOKING_NUMBER",'_JOMRES_BOOKING_NUMBER',false);
 		$output['TAG_SEARCH_URL'] = jomresUrl(JOMRES_SITEPAGE_URL_NOSEF . '&task=list_bookings');
 		$output['USER_FEEDBACK'] = get_showtime("user_feedback");
 

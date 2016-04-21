@@ -123,7 +123,7 @@ class jomres_suspensions
 			foreach ( $this->manager_properties as $property_uid )
 				{
 				$query = "UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = '" . (int) $property_uid . "'";
-				doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', _JOMRES_MR_AUDIT_PUBLISH_PROPERTY, false ) );
+				doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', false ) );
 				}
 			
 			//clear cache
@@ -142,9 +142,9 @@ class jomres_suspensions
 		$output     = array ();
 		$pageoutput = array ();
 
-		$subject = jr_gettext( '_JOMRES_SUSPENSIONS_SUSPENDED_EMAIL_TITLE', _JOMRES_SUSPENSIONS_SUSPENDED_EMAIL_TITLE );
-		$body    = jr_gettext( '_JOMRES_COM_CONFIRMATION_DEAR', _JOMRES_COM_CONFIRMATION_DEAR ) . $user_deets[ $this->manager_id ][ 'name' ] . ".\r\n
-		" . jr_gettext( '_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED_EMAIL', _JOMRES_SUSPENSIONS_MANAGER_SUSPENDED_EMAIL );
+		$subject = jr_gettext( '_JOMRES_SUSPENSIONS_SUSPENDED_EMAIL_TITLE', '_JOMRES_SUSPENSIONS_SUSPENDED_EMAIL_TITLE' );
+		$body    = jr_gettext( '_JOMRES_COM_CONFIRMATION_DEAR', '_JOMRES_COM_CONFIRMATION_DEAR' ) . $user_deets[ $this->manager_id ][ 'name' ] . ".\r\n
+		" . jr_gettext( '_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED_EMAIL', '_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED_EMAIL' );
 
 		if ( !jomresMailer( $jomresConfig_mailfrom, $jomresConfig_fromname, $email, $subject, $body, $mode = 0 ) ) 
 			error_logging( 'Failure in sending suspension email to user. Target address: ' . $email . ' Subject' . $subject );
@@ -162,9 +162,9 @@ class jomres_suspensions
 		$output     = array ();
 		$pageoutput = array ();
 
-		$subject = jr_gettext( '_JOMRES_SUSPENSIONS_UNSUSPENDED_EMAIL_TITLE', _JOMRES_SUSPENSIONS_UNSUSPENDED_EMAIL_TITLE );
-		$body    = jr_gettext( '_JOMRES_COM_CONFIRMATION_DEAR', _JOMRES_COM_CONFIRMATION_DEAR ) . $user_deets[ $this->manager_id ][ 'name' ] . ".\r\n
-		" . jr_gettext( '_JOMRES_SUSPENSIONS_MANAGER_UNSUSPENDED_EMAIL', _JOMRES_SUSPENSIONS_MANAGER_UNSUSPENDED_EMAIL );
+		$subject = jr_gettext( '_JOMRES_SUSPENSIONS_UNSUSPENDED_EMAIL_TITLE', '_JOMRES_SUSPENSIONS_UNSUSPENDED_EMAIL_TITLE' );
+		$body    = jr_gettext( '_JOMRES_COM_CONFIRMATION_DEAR', '_JOMRES_COM_CONFIRMATION_DEAR' ) . $user_deets[ $this->manager_id ][ 'name' ] . ".\r\n
+		" . jr_gettext( '_JOMRES_SUSPENSIONS_MANAGER_UNSUSPENDED_EMAIL', '_JOMRES_SUSPENSIONS_MANAGER_UNSUSPENDED_EMAIL' );
 
 		if ( !jomresMailer( $jomresConfig_mailfrom, $jomresConfig_fromname, $email, $subject, $body, $mode = 0 ) ) 
 			error_logging( 'Failure in sending unsuspension email to user. Target address: ' . $email . ' Subject' . $subject );

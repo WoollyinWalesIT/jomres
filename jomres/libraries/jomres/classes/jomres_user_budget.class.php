@@ -59,7 +59,7 @@ class jomres_user_budget
 		$output = array();
 		$pageoutput=array();
 		
-		$output['BUDGET'] = jr_gettext( 'GUEST_BUDGET', GUEST_BUDGET, false, false );
+		$output['BUDGET'] = jr_gettext( 'GUEST_BUDGET', 'GUEST_BUDGET', false, false );
 		$output['FIGURE'] = $this->get_budget(true);
 		
 		$prices = $this->get_price_ranges();
@@ -82,7 +82,7 @@ class jomres_user_budget
 			if ( $this->get_budget(true) != "" )
 				{
 				$r              = array ();
-				$r[ 'TITLE' ]   = jr_gettext( '_JOMRES_COM_A_RESET', _JOMRES_COM_A_RESET, false, false );
+				$r[ 'TITLE' ]   = jr_gettext( '_JOMRES_COM_A_RESET', '_JOMRES_COM_A_RESET', false, false );
 				if ( !isset($_REQUEST['ajax_search_form_name']) )
 					$r[ 'ONCLICK' ]    = 'onclick="set_budget( 0 , true , \'\')"';
 				else

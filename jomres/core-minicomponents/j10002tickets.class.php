@@ -26,15 +26,15 @@ class j10002tickets
 			return;
 			}
 		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . "&task=support_tickets", 'Support_IT.png', jr_gettext( "_JOMRES_CUSTOMCODE_SUPPORT_TICKETS", _JOMRES_CUSTOMCODE_SUPPORT_TICKETS, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", _JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP, false, false ), $external = false );
+		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . "&task=support_tickets", 'Support_IT.png', jr_gettext( "_JOMRES_CUSTOMCODE_SUPPORT_TICKETS", '_JOMRES_CUSTOMCODE_SUPPORT_TICKETS', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', false, false ), $external = false );
 		}
 
 	function touch_template_language()
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_SUPPORT_TICKETS", _JOMRES_CUSTOMCODE_SUPPORT_TICKETS );
-		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", _JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_SUPPORT_TICKETS", '_JOMRES_CUSTOMCODE_SUPPORT_TICKETS' );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP' );
 
 		foreach ( $output as $o )
 			{

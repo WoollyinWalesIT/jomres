@@ -36,7 +36,7 @@ class j06001savenote
 		$defaultProperty = getDefaultProperty();
 		$datetime        = date( "Y-m-d H-i-s" );
 
-		$auditMessage = jr_gettext( '_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE', _JOMCOMP_BOOKINGNOTES_AUDITMESSAGE, false, false );
+		$auditMessage = jr_gettext( '_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE', '_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE', false, false );
 		if ( $note_id == 0 )
 			{
 			$query   = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','$newtext','$datetime','" . (int) $defaultProperty . "')";
@@ -44,7 +44,7 @@ class j06001savenote
 			}
 		else
 			{
-			$auditMessage = jr_gettext( '_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_EDIT', _JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_EDIT, false, false );
+			$auditMessage = jr_gettext( '_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_EDIT', '_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_EDIT', false, false );
 			$query        = "UPDATE #__jomcomp_notes SET `note`='$newtext',`timestamp`='$datetime' WHERE id = '" . (int) $note_id . "' AND property_uid = '" . (int) $defaultProperty . "'";
 			doInsertSql( $query, $auditMessage );
 			}

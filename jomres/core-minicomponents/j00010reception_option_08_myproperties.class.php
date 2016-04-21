@@ -25,14 +25,14 @@ class j00010reception_option_08_myproperties
 
 			return;
 			}
-		$this->cpanelButton = jomres_mainmenu_option( jomresURL( JOMRES_SITEPAGE_URL . "&task=listyourproperties" ), 'listProperties.png', jr_gettext( '_JRPORTAL_CPANEL_LISTPROPERTIES', _JRPORTAL_CPANEL_LISTPROPERTIES, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES, false, false ), false, false );
+		$this->cpanelButton = jomres_mainmenu_option( jomresURL( JOMRES_SITEPAGE_URL . "&task=listyourproperties" ), 'listProperties.png', jr_gettext( '_JRPORTAL_CPANEL_LISTPROPERTIES', '_JRPORTAL_CPANEL_LISTPROPERTIES', false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES', false, false ), false, false );
 		}
 
 	function touch_template_language()
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES' );
 
 		foreach ( $output as $o )
 			{

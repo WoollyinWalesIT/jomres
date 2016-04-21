@@ -49,7 +49,7 @@ class j06001dashboard_cancelbooking_ajax
 		$bkg->property_uid 		= $property_uid;
 		$bkg->contract_uid 		= $contract_uid;
 		$bkg->reason	 		= "";
-		$bkg->note				= jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLED', _JOMRES_COM_MR_EB_GUEST_CANCELLED, false );
+		$bkg->note				= jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLED', '_JOMRES_COM_MR_EB_GUEST_CANCELLED', false );
 
 		//Finally let`s cancel the booking
 		$cancellationSuccessful = $bkg->cancel_booking();

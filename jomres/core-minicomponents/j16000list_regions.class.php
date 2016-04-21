@@ -28,11 +28,11 @@ class j16000list_regions
 		$editIcon = '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" alt="editicon"/>';
 		$rows     = array ();
 
-		$output[ '_JOMRES_EDIT_REGION_TITLE' ]        = jr_gettext( "_JOMRES_EDIT_REGION_TITLE", _JOMRES_EDIT_REGION_TITLE, false );
-		$output[ '_JOMRES_EDIT_REGION_ID' ]           = jr_gettext( "_JOMRES_EDIT_REGION_ID", _JOMRES_EDIT_REGION_ID, false );
-		$output[ '_JOMRES_EDIT_REGION_COUNTRYCODE' ]  = jr_gettext( "_JOMRES_EDIT_REGION_COUNTRYCODE", _JOMRES_EDIT_REGION_COUNTRYCODE, false );
-		$output[ '_JOMRES_EDIT_REGION_REGIONNAME' ]   = jr_gettext( "_JOMRES_EDIT_REGION_REGIONNAME", _JOMRES_EDIT_REGION_REGIONNAME, false );
-		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYNAME' ] = jr_gettext( "_JOMRES_EDIT_COUNTRY_COUNTRYNAME", _JOMRES_EDIT_COUNTRY_COUNTRYNAME, false );
+		$output[ '_JOMRES_EDIT_REGION_TITLE' ]        = jr_gettext( "_JOMRES_EDIT_REGION_TITLE", '_JOMRES_EDIT_REGION_TITLE', false );
+		$output[ '_JOMRES_EDIT_REGION_ID' ]           = jr_gettext( "_JOMRES_EDIT_REGION_ID", '_JOMRES_EDIT_REGION_ID', false );
+		$output[ '_JOMRES_EDIT_REGION_COUNTRYCODE' ]  = jr_gettext( "_JOMRES_EDIT_REGION_COUNTRYCODE", '_JOMRES_EDIT_REGION_COUNTRYCODE', false );
+		$output[ '_JOMRES_EDIT_REGION_REGIONNAME' ]   = jr_gettext( "_JOMRES_EDIT_REGION_REGIONNAME", '_JOMRES_EDIT_REGION_REGIONNAME', false );
+		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYNAME' ] = jr_gettext( "_JOMRES_EDIT_COUNTRY_COUNTRYNAME", '_JOMRES_EDIT_COUNTRY_COUNTRYNAME', false );
 
 		$jomres_regions = jomres_singleton_abstract::getInstance( 'jomres_regions' );
 
@@ -58,8 +58,8 @@ class j16000list_regions
 					{
 					$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 					$toolbar->newToolbar();
-					$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_region&id=' . $region[ 'id' ] ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
-					$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=delete_region&id=' . $region[ 'id' ] ), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
+					$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_region&id=' . $region[ 'id' ] ), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
+					$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=delete_region&id=' . $region[ 'id' ] ), jr_gettext( 'COMMON_DELETE', COMMON_DELETE', false ) );
 					
 					$r['EDITLINK'] = $toolbar->getToolbar();
 					}

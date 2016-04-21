@@ -30,13 +30,13 @@ class j00009user_option_05_add_your_property
 		return;
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
-		if ( $jrConfig[ 'selfRegistrationAllowed' ] == "1" ) $this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=registerProp_step1", '', jr_gettext( '_JOMRES_USER_LISTMYPROPERTY', _JOMRES_USER_LISTMYPROPERTY, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT, false, false ) );
+		if ( $jrConfig[ 'selfRegistrationAllowed' ] == "1" ) $this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=registerProp_step1", '', jr_gettext( '_JOMRES_USER_LISTMYPROPERTY', '_JOMRES_USER_LISTMYPROPERTY', false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT', false, false ) );
 		}
 
 	function touch_template_language()
 		{
 		$output    = array ();
-		$output[ ] = jr_gettext( '_JOMRES_USER_LISTMYPROPERTY', _JOMRES_USER_LISTMYPROPERTY );
+		$output[ ] = jr_gettext( '_JOMRES_USER_LISTMYPROPERTY', '_JOMRES_USER_LISTMYPROPERTY' );
 		foreach ( $output as $o )
 			{
 			echo $o;

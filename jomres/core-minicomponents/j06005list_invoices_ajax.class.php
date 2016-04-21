@@ -254,25 +254,25 @@ class j06005list_invoices_ajax
 				{
 				$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 				$jrtb = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem( 'edit', jomresURL( JOMRES_SITEPAGE_URL . '&task=view_invoice' . '&id=' . $p->id . $thisProperty ), jr_gettext( 'COMMON_VIEW', COMMON_VIEW, false ) );
+				$jrtb .= $jrtbar->toolbarItem( 'edit', jomresURL( JOMRES_SITEPAGE_URL . '&task=view_invoice' . '&id=' . $p->id . $thisProperty ), jr_gettext( 'COMMON_VIEW', 'COMMON_VIEW', false ) );
 				$r[] = $jrtb .= $jrtbar->endTable();
 				}
 			else
 				{
 				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 				$toolbar->newToolbar();
-				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=view_invoice&id=' . $p->id . $thisProperty ), jr_gettext( 'COMMON_VIEW', COMMON_VIEW, false ) );
+				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=view_invoice&id=' . $p->id . $thisProperty ), jr_gettext( 'COMMON_VIEW', 'COMMON_VIEW', false ) );
 				if ((int)$p->contract_id != 0 && (int)$p->status != 1)
 					{
 					if ($thisJRUser->userIsManager || $thisJRUser->superPropertyManager)
 						{
-						$toolbar->addSecondaryItem( 'fa fa-check', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=mark_booking_invoice_paid&id=' . $p->id . $thisProperty ), jr_gettext( '_JOMRES_INVOICE_MARKASPAID', _JOMRES_INVOICE_MARKASPAID, false ) );
-						$toolbar->addSecondaryItem( 'fa fa-pencil-square-o', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editBooking&contract_uid=' . $p->contract_id . $thisProperty ), jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKING', _JOMCOMP_MYUSER_VIEWBOOKING, false ) );
+						$toolbar->addSecondaryItem( 'fa fa-check', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=mark_booking_invoice_paid&id=' . $p->id . $thisProperty ), jr_gettext( '_JOMRES_INVOICE_MARKASPAID', '_JOMRES_INVOICE_MARKASPAID', false ) );
+						$toolbar->addSecondaryItem( 'fa fa-pencil-square-o', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editBooking&contract_uid=' . $p->contract_id . $thisProperty ), jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', false ) );
 						}
 					if ($thisJRUser->userIsRegistered && !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager)
-						$toolbar->addSecondaryItem( 'fa fa-file-text', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=muviewbooking&contract_uid=' . $p->contract_id . $thisProperty ), jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKING', _JOMCOMP_MYUSER_VIEWBOOKING, false ) );
+						$toolbar->addSecondaryItem( 'fa fa-file-text', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=muviewbooking&contract_uid=' . $p->contract_id . $thisProperty ), jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', false ) );
 					}
-				$toolbar->addSecondaryItem( 'fa fa-print', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=view_invoice&popup=1&id=' . $p->id . $thisProperty . '&tmpl='.get_showtime("tmplcomponent")), jr_gettext( 'COMMON_PRINT', COMMON_PRINT, false ) );
+				$toolbar->addSecondaryItem( 'fa fa-print', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=view_invoice&popup=1&id=' . $p->id . $thisProperty . '&tmpl='.get_showtime("tmplcomponent")), jr_gettext( 'COMMON_PRINT', 'COMMON_PRINT', false ) );
 				$r[]=$toolbar->getToolbar();
 				}
 
@@ -325,9 +325,9 @@ class j06005list_invoices_ajax
 					)
 					{
 					if (!using_bootstrap())
-						$r[] = '<a href="' . JOMRES_SITEPAGE_URL_NOSEF . '&task=list_gateways_for_invoice&invoice_id=' . $p->id . '">'.jr_gettext( '_JRPORTAL_INVOICES_PAYNOW', _JRPORTAL_INVOICES_PAYNOW, false ).'</a>';
+						$r[] = '<a href="' . JOMRES_SITEPAGE_URL_NOSEF . '&task=list_gateways_for_invoice&invoice_id=' . $p->id . '">'.jr_gettext( '_JRPORTAL_INVOICES_PAYNOW', '_JRPORTAL_INVOICES_PAYNOW', false ).'</a>';
 					else
-						$r[] = '<a href="' . JOMRES_SITEPAGE_URL_NOSEF . '&task=list_gateways_for_invoice&invoice_id=' . $p->id . '" class="btn btn-success btn-sm"><i class="fa fa-credit-card"></i> '.jr_gettext( '_JRPORTAL_INVOICES_PAYNOW', _JRPORTAL_INVOICES_PAYNOW, false ).'</a>';
+						$r[] = '<a href="' . JOMRES_SITEPAGE_URL_NOSEF . '&task=list_gateways_for_invoice&invoice_id=' . $p->id . '" class="btn btn-success btn-sm"><i class="fa fa-credit-card"></i> '.jr_gettext( '_JRPORTAL_INVOICES_PAYNOW', '_JRPORTAL_INVOICES_PAYNOW', false ).'</a>';
 					}
 				else
 					$r[] = '';

@@ -33,16 +33,16 @@ class j10501google_maps
 		$lists 							= $componentArgs[ 'lists' ];
 		$mapWeatherTempGradDropdownList = $componentArgs[ 'mapWeatherTempGradDropdownList' ];
 
-		$configurationPanel->startPanel( jr_gettext( "JOMRES_GOOGLE_MAPS", JOMRES_GOOGLE_MAPS, false ) );
+		$configurationPanel->startPanel( jr_gettext( "JOMRES_GOOGLE_MAPS", 'JOMRES_GOOGLE_MAPS', false ) );
 		
-		$configurationPanel->insertDescription(jr_gettext( 'JOMRES_GOOGLE_MAPS_INFO', JOMRES_GOOGLE_MAPS_INFO, false ));
+		$configurationPanel->insertDescription(jr_gettext( 'JOMRES_GOOGLE_MAPS_INFO', 'JOMRES_GOOGLE_MAPS_INFO', false ));
 
-		$configurationPanel->setleft( jr_gettext( 'JOMRES_GOOGLE_MAPS_POIS', JOMRES_GOOGLE_MAPS_POIS, false ) );
+		$configurationPanel->setleft( jr_gettext( 'JOMRES_GOOGLE_MAPS_POIS', 'JOMRES_GOOGLE_MAPS_POIS', false ) );
 		$configurationPanel->setmiddle( $lists[ 'gmap_pois' ] );
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 		
-		$configurationPanel->setleft( jr_gettext( 'JOMRES_GOOGLE_MAP_OPTION_TRANSIT', JOMRES_GOOGLE_MAP_OPTION_TRANSIT, false ) );
+		$configurationPanel->setleft( jr_gettext( 'JOMRES_GOOGLE_MAP_OPTION_TRANSIT', 'JOMRES_GOOGLE_MAP_OPTION_TRANSIT', false ) );
 		$configurationPanel->setmiddle( $lists[ 'gmap_layer_transit' ] );
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();

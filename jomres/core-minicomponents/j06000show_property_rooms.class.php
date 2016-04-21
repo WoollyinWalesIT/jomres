@@ -21,7 +21,7 @@ class j06000show_property_rooms
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )
 			{
-			$this->template_touchable = true;
+			$this->template_touchable = false;
 			return;
 			}
 
@@ -63,9 +63,9 @@ class j06000show_property_rooms
 				{
 				$r = array ();
 				
-				$r[ 'HEADER_ROOMFLOOR' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR, false );
-				$r[ 'HEADER_MAXPEOPLE' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE, false );
-				$r[ 'AVLCALTITLE' ] 		   = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY, false, false );
+				$r[ 'HEADER_ROOMFLOOR' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', false );
+				$r[ 'HEADER_MAXPEOPLE' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', false );
+				$r[ 'AVLCALTITLE' ] 		   = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', '_JOMRES_FRONT_AVAILABILITY', false, false );
 								
 				$r[ 'ROOMNAME' ]      = $room['room_name'];
 				$r[ 'ROOMNUMBER' ]    = stripslashes( $room['room_number'] );
@@ -117,27 +117,6 @@ class j06000show_property_rooms
 				echo $result;
 			else
 				$this->retVals = $result;
-			}
-		}
-
-
-	function touch_template_language()
-		{
-		$output = array ();
-
-		$output[ ] = jr_gettext( '_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS', _JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS );
-		$output[ ] = jr_gettext( '_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS_TITLE', _JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS_TITLE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME );
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_AVAILABILITY', _JOMRES_FRONT_AVAILABILITY );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE );
-
-		foreach ( $output as $o )
-			{
-			echo $o;
-			echo "<br/>";
 			}
 		}
 

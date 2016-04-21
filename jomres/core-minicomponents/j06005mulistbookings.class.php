@@ -59,14 +59,14 @@ class j06005mulistbookings
 				
 			//if ( count( $contracts ) > 0 ) //we`ll just display an empty table if there are no bookings.
 				//{
-				$output[ 'HARRIVAL' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL, $editable = false, $isLink = false );
-				$output[ 'HDEPARTURE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE, $editable = false, $isLink = false );
-				$output[ 'HTOTAL' ]     = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTAL', _JOMRES_AJAXFORM_BILLING_TOTAL, $editable = false, $isLink = false );
-				$output[ 'HEXTRAS' ]    = jr_gettext( '_JOMRES_AJAXFORM_BILLING_EXTRAS', _JOMRES_AJAXFORM_BILLING_EXTRAS, $editable = false, $isLink = false );
-				$output[ 'HPNAME' ]     = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME', _JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME, $editable = false, $isLink = false );
+				$output[ 'HARRIVAL' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', $editable = false, $isLink = false );
+				$output[ 'HDEPARTURE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', $editable = false, $isLink = false );
+				$output[ 'HTOTAL' ]     = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTAL', '_JOMRES_AJAXFORM_BILLING_TOTAL', $editable = false, $isLink = false );
+				$output[ 'HEXTRAS' ]    = jr_gettext( '_JOMRES_AJAXFORM_BILLING_EXTRAS', '_JOMRES_AJAXFORM_BILLING_EXTRAS', $editable = false, $isLink = false );
+				$output[ 'HPNAME' ]     = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME', '_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME', $editable = false, $isLink = false );
 
-				$output[ 'HMOREINFO' ] = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION, $editable = false, $isLink = false );
-				$output[ 'TITLE' ]     = jr_gettext( '_JOMCOMP_MYUSER_MYBOOKINGS', _JOMCOMP_MYUSER_MYBOOKINGS, $editable = false, $isLink = false );
+				$output[ 'HMOREINFO' ] = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', $editable = false, $isLink = false );
+				$output[ 'TITLE' ]     = jr_gettext( '_JOMCOMP_MYUSER_MYBOOKINGS', '_JOMCOMP_MYUSER_MYBOOKINGS', $editable = false, $isLink = false );
 				
 				if (count($contracts)>0)
 					{
@@ -97,7 +97,7 @@ class j06005mulistbookings
 						$r[ 'CONTRACT_TOTAL' ]      = output_price( $c->contract_total );
 						$r[ 'IMAGE' ]               = $jomres_media_centre_images->images ['property'][0][0]['small'];
 						$r[ 'VIEWLINK' ]            = JOMRES_SITEPAGE_URL . "&task=muviewbooking&contract_uid=" . $c->contract_uid;
-						$r[ 'VIEWLINK_TEXT' ]       = jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKING', _JOMCOMP_MYUSER_VIEWBOOKING, $editable = false, $isLink = true );
+						$r[ 'VIEWLINK_TEXT' ]       = jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', $editable = false, $isLink = true );
 						$r[ 'PROPERTYDETAILSLINK' ] = JOMRES_SITEPAGE_URL . '&task=viewproperty&property_uid=' . $c->property_uid;
 						$rows[ ]                    = $r;
 						}
@@ -123,13 +123,13 @@ class j06005mulistbookings
 		{
 		$output = array ();
 
-		$output[ 'HARRIVAL' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL );
-		$output[ 'HDEPARTURE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE );
-		$output[ 'HTOTAL' ]     = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTAL', _JOMRES_AJAXFORM_BILLING_TOTAL );
-		$output[ 'HEXTRAS' ]    = jr_gettext( '_JOMRES_AJAXFORM_BILLING_EXTRAS', _JOMRES_AJAXFORM_BILLING_EXTRAS );
-		$output[ 'HPNAME' ]     = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME', _JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME );
-		$output[ 'HMOREINFO' ]  = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION );
-		$output[ 'TITLE' ]      = jr_gettext( '_JOMCOMP_MYUSER_MYBOOKINGS', _JOMCOMP_MYUSER_MYBOOKINGS );
+		$output[ 'HARRIVAL' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL' );
+		$output[ 'HDEPARTURE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE' );
+		$output[ 'HTOTAL' ]     = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTAL', '_JOMRES_AJAXFORM_BILLING_TOTAL' );
+		$output[ 'HEXTRAS' ]    = jr_gettext( '_JOMRES_AJAXFORM_BILLING_EXTRAS', '_JOMRES_AJAXFORM_BILLING_EXTRAS' );
+		$output[ 'HPNAME' ]     = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME', '_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME' );
+		$output[ 'HMOREINFO' ]  = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION' );
+		$output[ 'TITLE' ]      = jr_gettext( '_JOMCOMP_MYUSER_MYBOOKINGS', '_JOMCOMP_MYUSER_MYBOOKINGS' );
 
 		foreach ( $output as $o )
 			{

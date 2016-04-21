@@ -28,7 +28,7 @@ class j00010reception_option_04_blackbookings
 		$property_uid = getDefaultProperty();
 		$mrConfig = getPropertySpecificSettings();
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) return;
-		$this->cpanelButton = jomres_mainmenu_option( jomresURL( JOMRES_SITEPAGE_URL . "&task=listBlackBookings" ), 'EditBlackBookings.png', jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS', _JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS, false, false ), false, true );
+		$this->cpanelButton = jomres_mainmenu_option( jomresURL( JOMRES_SITEPAGE_URL . "&task=listBlackBookings" ), 'EditBlackBookings.png', jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS', '_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS', false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS', false, false ), false, true );
 		}
 
 

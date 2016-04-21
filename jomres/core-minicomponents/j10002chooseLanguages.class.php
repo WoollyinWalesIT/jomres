@@ -30,7 +30,7 @@ class j10002chooseLanguages
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=chooseLanguages', 'United_Kingdom.png', jr_gettext( "_JOMRES_COM_CHOOSELANGUAGES", _JOMRES_COM_CHOOSELANGUAGES, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", _JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES, false, false ) );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=chooseLanguages', 'United_Kingdom.png', jr_gettext( "_JOMRES_COM_CHOOSELANGUAGES", '_JOMRES_COM_CHOOSELANGUAGES', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES', false, false ) );
 			}
 		}
 

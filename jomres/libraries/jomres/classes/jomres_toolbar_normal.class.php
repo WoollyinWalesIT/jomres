@@ -160,23 +160,23 @@ class jomres_toolbar_normal
 	function getStandardActivityImagesArray()
 		{
 		$array                  = array ();
-		$array[ 'new' ]         = array ( 'image' => 'AddItem', 'label' => jr_gettext( '_JOMRES_COM_MR_NEWTARIFF', _JOMRES_COM_MR_NEWTARIFF, false ) );
-		$array[ 'edit' ]        = array ( 'image' => 'EditItem', 'label' => jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT', _JOMRES_COM_MR_VRCT_ROOM_LINKTEXT, false ) );
-		$array[ 'cancel' ]      = array ( 'image' => 'Cancel', 'label' => jr_gettext( '_JOMRES_COM_A_CANCEL', _JOMRES_COM_A_CANCEL, false ) );
+		$array[ 'new' ]         = array ( 'image' => 'AddItem', 'label' => jr_gettext( '_JOMRES_COM_MR_NEWTARIFF', '_JOMRES_COM_MR_NEWTARIFF', false ) );
+		$array[ 'edit' ]        = array ( 'image' => 'EditItem', 'label' => jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT', '_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT', false ) );
+		$array[ 'cancel' ]      = array ( 'image' => 'Cancel', 'label' => jr_gettext( '_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL', false ) );
 		$array[ 'help' ]        = array ( 'image' => 'Symbol Help', 'label' => "Help" );
 		$array[ 'apply' ]       = array ( 'image' => 'Symbol Refresh', 'label' => "Refresh" );
 		$array[ 'information' ] = array ( 'image' => 'Symbol Information', 'label' => "Information" );
-		$array[ 'copy' ]        = array ( 'image' => 'CopyItem', 'label' => jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE', _JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE, false ) );
-		$array[ 'save' ]        = array ( 'image' => 'Save', 'label' => jr_gettext( '_JOMRES_COM_MR_SAVE', _JOMRES_COM_MR_SAVE, false ) );
-		$array[ 'delete' ]      = array ( 'image' => 'WasteBasket', 'label' => jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', _JOMRES_COM_MR_ROOM_DELETE, false ) );
-		$array[ 'publish' ]     = array ( 'image' => 'Tick', 'label' => jr_gettext( '_JOMRES_COM_MR_VRCT_UNPUBLISH', _JOMRES_COM_MR_VRCT_UNPUBLISH, false ) );
-		$array[ 'unpublish' ]   = array ( 'image' => 'Cancel', 'label' => jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', _JOMRES_COM_MR_VRCT_PUBLISH, false ) );
-		$array[ 'archive' ]     = array ( 'image' => 'ViewArchive', 'label' => jr_gettext( '_JOMRES_MR_AUDIT_ARCHIVE', _JOMRES_MR_AUDIT_ARCHIVE, false ) );
+		$array[ 'copy' ]        = array ( 'image' => 'CopyItem', 'label' => jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE', '_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE', false ) );
+		$array[ 'save' ]        = array ( 'image' => 'Save', 'label' => jr_gettext( '_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE', false ) );
+		$array[ 'delete' ]      = array ( 'image' => 'WasteBasket', 'label' => jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', '_JOMRES_COM_MR_ROOM_DELETE', false ) );
+		$array[ 'publish' ]     = array ( 'image' => 'Tick', 'label' => jr_gettext( '_JOMRES_COM_MR_VRCT_UNPUBLISH', '_JOMRES_COM_MR_VRCT_UNPUBLISH', false ) );
+		$array[ 'unpublish' ]   = array ( 'image' => 'Cancel', 'label' => jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', '_JOMRES_COM_MR_VRCT_PUBLISH', false ) );
+		$array[ 'archive' ]     = array ( 'image' => 'ViewArchive', 'label' => jr_gettext( '_JOMRES_MR_AUDIT_ARCHIVE', '_JOMRES_MR_AUDIT_ARCHIVE', false ) );
 
-		$array[ 'enterdeposit' ]  = array ( 'image' => 'enterDeposit', 'label' => jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE, $editable = false, $isLink = true ) );
-		$array[ 'editbooking' ]   = array ( 'image' => 'ContactCardEdit', 'label' => jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT', _JOMRES_COM_MR_VRCT_ROOM_LINKTEXT, false ) );
-		$array[ 'cancelbooking' ] = array ( 'image' => 'HotelReservationStop', 'label' => jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', _JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING, $editable = false, $isLink = false ) );
-		$array[ 'addservice' ]    = array ( 'image' => 'addService', 'label' => jr_gettext( '_JOMRES_COM_ADDSERVICE_TITLE', _JOMRES_COM_ADDSERVICE_TITLE, $editable = false, $isLink = false ) );
+		$array[ 'enterdeposit' ]  = array ( 'image' => 'enterDeposit', 'label' => jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', $editable = false, $isLink = true ) );
+		$array[ 'editbooking' ]   = array ( 'image' => 'ContactCardEdit', 'label' => jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT', '_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT', false ) );
+		$array[ 'cancelbooking' ] = array ( 'image' => 'HotelReservationStop', 'label' => jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', $editable = false, $isLink = false ) );
+		$array[ 'addservice' ]    = array ( 'image' => 'addService', 'label' => jr_gettext( '_JOMRES_COM_ADDSERVICE_TITLE', '_JOMRES_COM_ADDSERVICE_TITLE', $editable = false, $isLink = false ) );
 		$array[ 'printer' ]       = array ( 'image' => 'Printer', 'label' => 'Print' );
 		$array[ 'emailsend' ]     = array ( 'image' => 'EmailSend', 'label' => 'Email' );
 		$array[ 'stats' ]         = array ( 'image' => 'ChartBarTrend', 'label' => 'Stats' );
@@ -184,8 +184,8 @@ class jomres_toolbar_normal
 		$array[ 'note' ]           = array ( 'image' => 'postnote', 'label' => 'Note' );
 		$array[ 'deleteproperty' ] = array ( 'image' => 'WasteBasket', 'label' => 'Delete' );
 		
-		$array[ 'bookGuestIn' ] = array ( 'image' => 'BookGuestIn', 'label' => jr_gettext( '_JOMRES_FRONT_MR_BOOKIN_TITLE', _JOMRES_FRONT_MR_BOOKIN_TITLE, false ) );
-		$array[ 'bookGuestOut' ] = array ( 'image' => 'BookGuestOut', 'label' => jr_gettext( '_JOMRES_FRONT_MR_BOOKOUT_TITLE', _JOMRES_FRONT_MR_BOOKOUT_TITLE, false ) );
+		$array[ 'bookGuestIn' ] = array ( 'image' => 'BookGuestIn', 'label' => jr_gettext( '_JOMRES_FRONT_MR_BOOKIN_TITLE', '_JOMRES_FRONT_MR_BOOKIN_TITLE', false ) );
+		$array[ 'bookGuestOut' ] = array ( 'image' => 'BookGuestOut', 'label' => jr_gettext( '_JOMRES_FRONT_MR_BOOKOUT_TITLE', '_JOMRES_FRONT_MR_BOOKOUT_TITLE', false ) );
 
 		return $array;
 		}

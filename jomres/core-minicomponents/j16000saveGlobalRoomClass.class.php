@@ -41,7 +41,7 @@ class j16000saveGlobalRoomClass
 			$roomClassUid = doInsertSql( $query, '' );
 			$this->update_roomtype_propertytype_xref_table( $roomClassUid, $ptype_ids );
 			$c->eraseAll();
-			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listGlobalroomTypes" ) , jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', _JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT, false ) );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listGlobalroomTypes" ) , jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', false ) );
 			}
 		else
 			{
@@ -49,7 +49,7 @@ class j16000saveGlobalRoomClass
 			doInsertSql( $query, '' );
 			$this->update_roomtype_propertytype_xref_table( $roomClassUid, $ptype_ids );
 			$c->eraseAll();
-			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listGlobalroomTypes" ), jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', _JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE, false ) );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listGlobalroomTypes" ), jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', false ) );
 			}
 		}
 

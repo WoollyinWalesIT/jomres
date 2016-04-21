@@ -29,7 +29,7 @@ class j00011manager_option_03_emails
 		if ( $mrConfig[ 'is_real_estate_listing' ] == '1' )
 			return;
 
-		$this->cpanelButton = jomres_mainmenu_option( jomresURL( JOMRES_SITEPAGE_URL . '&task=list_emails' ), 'EmailSend.png', jr_gettext( "_JOMRES_EMAIL_TEMPLATES_TITLE", _JOMRES_EMAIL_TEMPLATES_TITLE, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS, false, false ) );
+		$this->cpanelButton = jomres_mainmenu_option( jomresURL( JOMRES_SITEPAGE_URL . '&task=list_emails' ), 'EmailSend.png', jr_gettext( "_JOMRES_EMAIL_TEMPLATES_TITLE", '_JOMRES_EMAIL_TEMPLATES_TITLE', false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS', false, false ) );
 		}
 
 

@@ -106,50 +106,50 @@ function get_property_price_for_display_in_lists( $property_uid )
 				else
 				$price = output_price( $pricesFromArray[ $property_uid ] * $multiplier, "", true, true );
 
-				if ( $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == "1" && $mrConfig[ 'tariffmode' ] == "1" ) $post_text = "&nbsp;" . jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK );
+				if ( $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == "1" && $mrConfig[ 'tariffmode' ] == "1" ) $post_text = "&nbsp;" . jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK' );
 				else
 					{
 					if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 						{
-						if ( $mrConfig[ 'perPersonPerNight' ] == "0" ) $post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY );
+						if ( $mrConfig[ 'perPersonPerNight' ] == "0" ) $post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY' );
 						else
-						$post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY );
+						$post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY' );
 						}
 					else
 						{
 						switch ( $mrConfig[ 'booking_form_daily_weekly_monthly' ] )
 						{
 							case "D":
-								if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $post_text = jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY );
+								if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $post_text = jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY' );
 								else
 									{
-									if ( $mrConfig[ 'perPersonPerNight' ] == "0" ) $post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', _JOMRES_FRONT_TARIFFS_PN );
+									if ( $mrConfig[ 'perPersonPerNight' ] == "0" ) $post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', '_JOMRES_FRONT_TARIFFS_PN' );
 									else
-									$post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', _JOMRES_FRONT_TARIFFS_PPPN );
+									$post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', '_JOMRES_FRONT_TARIFFS_PPPN' );
 									}
 								break;
 							case "W":
-								$post_text = jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY );
+								$post_text = jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY' );
 								break;
 							case "M":
-								$post_text = jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY );
+								$post_text = jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY' );
 								break;
 						}
 
 						}
 					}
-				$pre_text = jr_gettext( '_JOMRES_TARIFFSFROM', _JOMRES_TARIFFSFROM, false, false );
+				$pre_text = jr_gettext( '_JOMRES_TARIFFSFROM', '_JOMRES_TARIFFSFROM', false, false );
 				}
 			else
 				{
-				$pre_text  = jr_gettext( '_JOMRES_COM_MR_EXTRA_PRICE', _JOMRES_COM_MR_EXTRA_PRICE );
+				$pre_text  = jr_gettext( '_JOMRES_COM_MR_EXTRA_PRICE', '_JOMRES_COM_MR_EXTRA_PRICE' );
 				$price     = output_price( $current_property_details->real_estate_property_price, "", true, false );
 				$post_text = '';
 				}
 			}
 		else
 			{
-			$pre_text  = jr_gettext( '_JOMRES_COM_MR_EXTRA_PRICE', _JOMRES_COM_MR_EXTRA_PRICE, "", true, false );
+			$pre_text  = jr_gettext( '_JOMRES_COM_MR_EXTRA_PRICE', '_JOMRES_COM_MR_EXTRA_PRICE', "", true, false );
 			$price     = output_price( $current_property_details->real_estate_property_price );
 			$post_text = '';
 			}

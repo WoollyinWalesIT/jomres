@@ -33,12 +33,12 @@ class j16000list_reviews
 		$propertyFunctions  = new jrportal_property_functions();
 		$jomresPropertyList = $propertyFunctions->getAllJomresProperties();
 
-		$output[ '_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO' ]  = jr_gettext( '_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO', _JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO,false );
-		$output[ '_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED' ] = jr_gettext( '_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED', _JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED,false );
-		$output[ '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL' ]       = jr_gettext( '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', _JOMRES_REVIEWS_ADMIN_NUMBERTOTAL,false );
-		$output[ '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE' ]     = jr_gettext( '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE', _JOMRES_REVIEWS_REPORT_REVIEW_TITLE,false );
+		$output[ '_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO' ]  = jr_gettext( '_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO', '_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO',false );
+		$output[ '_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED' ] = jr_gettext( '_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED', '_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED',false );
+		$output[ '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL' ]       = jr_gettext( '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL',false );
+		$output[ '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE' ]     = jr_gettext( '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE', '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE',false );
 		$output[ '_JOMRES_REVIEWS' ]                         = jr_gettext( '_JOMRES_REVIEWS', _JOMRES_REVIEWS,false );
-		$output[ 'HPROPERTYNAME' ]                         	 = jr_gettext( '_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME', _JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME,false );
+		$output[ 'HPROPERTYNAME' ]                         	 = jr_gettext( '_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME', '_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME',false );
 
 		$editIcon = '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" alt="editicon" />';
 
@@ -61,7 +61,7 @@ class j16000list_reviews
 				{
 				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 				$toolbar->newToolbar();
-				$toolbar->addItem( 'fa fa-list', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_property_reviews&property_uid=' . $key ), jr_gettext( '_JOMRES_REVIEWS_CLICKTOSHOW', _JOMRES_REVIEWS_CLICKTOSHOW, false ) );
+				$toolbar->addItem( 'fa fa-list', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_property_reviews&property_uid=' . $key ), jr_gettext( '_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', false ) );
 				
 				$r['VIEWLINK'] = $toolbar->getToolbar();
 				}

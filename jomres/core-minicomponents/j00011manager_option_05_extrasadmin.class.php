@@ -28,7 +28,7 @@ class j00011manager_option_05_extrasadmin
 		$property_uid = getDefaultProperty();
 		$mrConfig = getPropertySpecificSettings( $property_uid );
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) return;
-		$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=listExtras", 'EditOptions.png', jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_EXTRAS', _JOMRES_FRONT_MR_MENU_ADMIN_EXTRAS, false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS, false, false ), false, true );
+		$this->cpanelButton = jomres_mainmenu_option( JOMRES_SITEPAGE_URL . "&task=listExtras", 'EditOptions.png', jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_EXTRAS', '_JOMRES_FRONT_MR_MENU_ADMIN_EXTRAS', false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS', false, false ), false, true );
 		}
 
 	function getRetVals()

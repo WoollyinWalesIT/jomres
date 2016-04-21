@@ -43,7 +43,7 @@ class j05019dobooking_deposit
 			$defaultValue = $currfmt->get_formatted( $tmpBookingHandler->tmpbooking[ "override_contract_deposit" ] );
 			}
 
-		$bookingFormInsert[ 'DEPOSIT_HEADER' ]     = jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', _JOMCOMP_AMEND_OVERRIDE_DEPOSIT, false );
+		$bookingFormInsert[ 'DEPOSIT_HEADER' ]     = jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', false );
 		$bookingFormInsert[ 'DEPOSIT_INPUT' ]      = '<input class="inputbox" size="12" type="text" id="' . $inputName . '" value="' . $defaultValue . '" onChange="jomresAjax_' . $newTask . '(this.value)">';
 		$bookingFormInsert[ 'DEPOSIT_AJAXSTRING' ] = '<script>
 			jomresJquery(document).ready(function() {
@@ -78,7 +78,7 @@ class j05019dobooking_deposit
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', _JOMCOMP_AMEND_OVERRIDE_DEPOSIT );
+		$output[ ] = jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT' );
 
 		foreach ( $output as $o )
 			{

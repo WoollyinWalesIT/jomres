@@ -26,7 +26,7 @@ class j16000export_definitions
 			return;
 			}
 		echo "<h2 class=\"page-header\">Export language file definitions</h2>";
-		echo "<p>" . jr_gettext( "_JOMRES_EXPORT_DEFINITIONS_INFO", _JOMRES_EXPORT_DEFINITIONS_INFO, false, false ) . "</p>";
+		echo "<p>" . jr_gettext( "_JOMRES_EXPORT_DEFINITIONS_INFO", '_JOMRES_EXPORT_DEFINITIONS_INFO', false, false ) . "</p>";
 
 		$definitions      = array ();
 		$siteConfig       = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );

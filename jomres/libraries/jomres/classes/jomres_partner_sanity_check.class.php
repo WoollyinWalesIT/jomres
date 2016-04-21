@@ -40,7 +40,7 @@ class jomres_partner_sanity_check
 		{
 		$message = $message_array['MESSAGE'];
 		$warning = "";
-		$warning .= jr_gettext( '_JOMRES_WARNINGS_DANGERWILLROBINSON', _JOMRES_WARNINGS_DANGERWILLROBINSON, false );
+		$warning .= jr_gettext( '_JOMRES_WARNINGS_DANGERWILLROBINSON', '_JOMRES_WARNINGS_DANGERWILLROBINSON', false );
 		$warning .= $message ;
 		if (isset($message_array['LINK']))
 			{
@@ -70,9 +70,9 @@ class jomres_partner_sanity_check
 			
 			if ( !$details_complete )
 				{
-				$message = jr_gettext( '_JOMRES_PARTNERS_PLEASE_COMPLETE', _JOMRES_PARTNERS_PLEASE_COMPLETE, false );
+				$message = jr_gettext( '_JOMRES_PARTNERS_PLEASE_COMPLETE', '_JOMRES_PARTNERS_PLEASE_COMPLETE', false );
 				$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_my_account');
-				$button_text = jr_gettext( '_JOMRES_MY_ACCOUNT_EDIT', _JOMRES_MY_ACCOUNT_EDIT, false );
+				$button_text = jr_gettext( '_JOMRES_MY_ACCOUNT_EDIT', '_JOMRES_MY_ACCOUNT_EDIT', false );
 
 				return $this->construct_warning( array( "MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $button_text ) );
 				}

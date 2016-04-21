@@ -39,7 +39,7 @@ class j16000edit_gateway
 		$settings = $MiniComponents->specificEvent( '10510', $this->plugin );
 		$active['active'] = array (
 			"default" => "0",
-			"setting_title" => jr_gettext('_JOMRES_STATUS_ACTIVE',_JOMRES_STATUS_ACTIVE),
+			"setting_title" => jr_gettext('_JOMRES_STATUS_ACTIVE','_JOMRES_STATUS_ACTIVE'),
 			"setting_description" => "",
 			"format" => "boolean"
 			) ;
@@ -190,8 +190,8 @@ class j16000edit_gateway
 		$index =$key;
 
 		$yesno = array();
-		$yesno[] = jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
-		$yesno[] = jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE) );
+		$yesno[] = jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO','_JOMRES_COM_MR_NO',FALSE) );
+		$yesno[] = jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES','_JOMRES_COM_MR_YES',FALSE) );
 		
 		$input = jomresHTML::selectList( $yesno, $index, 'class="inputbox" size="1"', 'value', 'text', $setting['default'] );
 		

@@ -224,15 +224,15 @@ class jomres_property_list_prices
 								$grand_total = output_price((($raw_price / $multiplier) * $this->stayDays), '');
 				
 								if ( $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == "1" && $mrConfig[ 'tariffmode' ] == "1" ) 
-									$post_text = "&nbsp;" . jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK );
+									$post_text = "&nbsp;" . jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK' );
 								else
 									{
 									if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 										{
 										if ( $mrConfig[ 'perPersonPerNight' ] == "0" ) 
-											$post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY );
+											$post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY' );
 										else
-											$post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY );
+											$post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY' );
 										}
 									else
 										{
@@ -240,35 +240,35 @@ class jomres_property_list_prices
 											{
 											case "D":
 												if ( $mrConfig[ 'wholeday_booking' ] == "1" ) 
-													$post_text = jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY );
+													$post_text = jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY' );
 												else
 													{
-													if ( $mrConfig[ 'perPersonPerNight' ] == "0" ) $post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', _JOMRES_FRONT_TARIFFS_PN );
+													if ( $mrConfig[ 'perPersonPerNight' ] == "0" ) $post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', '_JOMRES_FRONT_TARIFFS_PN' );
 													else
-														$post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', _JOMRES_FRONT_TARIFFS_PPPN );
+														$post_text = "&nbsp;" . jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', '_JOMRES_FRONT_TARIFFS_PPPN' );
 													}
 												break;
 											case "W":
-												$post_text = jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY );
+												$post_text = jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY' );
 												break;
 											case "M":
-												$post_text = jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY );
+												$post_text = jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY' );
 												break;
 											}
 										}
 									}
-								$pre_text = jr_gettext( '_JOMRES_TARIFFSFROM', _JOMRES_TARIFFSFROM, false, false );
+								$pre_text = jr_gettext( '_JOMRES_TARIFFSFROM', '_JOMRES_TARIFFSFROM', false, false );
 								}
 							else
 								{
 								$pre_text  = '';
-								$price     = jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', _JOMRES_PRICE_ON_APPLICATION, "", true, false );
+								$price     = jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', "", true, false );
 								$post_text = '';
 								}
 							}
 						else
 							{
-							$pre_text  = jr_gettext( '_JOMRES_COM_MR_EXTRA_PRICE', _JOMRES_COM_MR_EXTRA_PRICE );
+							$pre_text  = jr_gettext( '_JOMRES_COM_MR_EXTRA_PRICE', '_JOMRES_COM_MR_EXTRA_PRICE' );
 							$price     = output_price( $basic_property_details->real_estate_property_price, "", true, false );
 							$price_no_conversion = output_price( $basic_property_details->real_estate_property_price, "", false, true );
 							$post_text = '';
@@ -279,18 +279,18 @@ class jomres_property_list_prices
 						if ($basic_property_details->real_estate_property_price == 0)
 							{
 							$pre_text  = '';
-							$price     = jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', _JOMRES_PRICE_ON_APPLICATION, "", true, false );
+							$price     = jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', "", true, false );
 							$post_text = '';
 							}
 						else
 							{
-							$pre_text  = jr_gettext( '_JOMRES_COM_MR_EXTRA_PRICE', _JOMRES_COM_MR_EXTRA_PRICE, "", true, false );
+							$pre_text  = jr_gettext( '_JOMRES_COM_MR_EXTRA_PRICE', '_JOMRES_COM_MR_EXTRA_PRICE', "", true, false );
 							$price     = output_price( $basic_property_details->real_estate_property_price );
 							$price_no_conversion = output_price( $basic_property_details->real_estate_property_price, "", false, true );
 							$post_text = '';
 							}
 						}
-					if ( $price == jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', _JOMRES_PRICE_ON_APPLICATION, "", true, false ) )
+					if ( $price == jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', "", true, false ) )
 						{
 						$raw_price = -1;
 						}

@@ -31,19 +31,19 @@ class j00501suppliments
 		$lists = $componentArgs[ 'lists' ];
 		if ( $mrConfig[ 'singleRoomProperty' ] != "1" )
 			{
-			$configurationPanel->startPanel( jr_gettext( "_JOMRES_COM_A_SUPPLIMENTS", _JOMRES_COM_A_SUPPLIMENTS, false ) );
+			$configurationPanel->startPanel( jr_gettext( "_JOMRES_COM_A_SUPPLIMENTS", '_JOMRES_COM_A_SUPPLIMENTS', false ) );
 
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON", _JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON, false ) );
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON", '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON', false ) );
 			$configurationPanel->setmiddle( $lists[ 'singlePersonSuppliment' ] );
-			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_DESC", _JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_DESC", '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_DESC', false ) );
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE", _JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE, false ) );
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE", '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE', false ) );
 			$configurationPanel->setmiddle( $lists[ 'supplimentChargeIsPercentage' ] );
-			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE_DESC", _JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE_DESC", '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE_DESC', false ) );
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST", _JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST, false ) );
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST", '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST', false ) );
 			$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control"  size="5" name="cfg_singlePersonSupplimentCost" value="' . $mrConfig[ 'singlePersonSupplimentCost' ] . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();

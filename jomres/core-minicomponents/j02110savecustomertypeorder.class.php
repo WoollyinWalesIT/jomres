@@ -31,11 +31,11 @@ class j02110savecustomertypeorder
 			{
 			$query = "UPDATE  #__jomres_customertypes SET `order`='" . $val . "' WHERE id = '" . (int) $key . "' AND property_uid = '" . (int) $defaultProperty . "'";
 			//echo $query."<br>";
-			if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE', _JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE, false ) ) ) trigger_error( "Unable to customer type order, mysql db failure", E_USER_ERROR );
+			if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE', '_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE', false ) ) ) trigger_error( "Unable to customer type order, mysql db failure", E_USER_ERROR );
 			}
 		$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
 		//$jomres_messaging = new jomres_messages();
-		$jomres_messaging->set_message( jr_gettext( '_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE', _JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE, false ) );
+		$jomres_messaging->set_message( jr_gettext( '_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE', '_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE', false ) );
 
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=listCustomerTypes" ), "" );
 		}

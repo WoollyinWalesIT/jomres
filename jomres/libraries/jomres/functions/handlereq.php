@@ -484,8 +484,8 @@ if ( $field != "heartbeat" && $field != "show_log" && $field != "email_usage_che
 	if ( $bkg->getOkToBook() )
 		{
 		echo $oktobookClass;
-		echo '; populateDiv("messages","' . $bkg->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_REVIEWBOOKING', _JOMRES_FRONT_MR_REVIEWBOOKING, false, false ) ) . '"); checkSelectRoomMessage(true,"' . $disable_address . '");';
-		echo $bkg->setGuestPopupMessage( jr_gettext( '_JOMRES_FRONT_MR_REVIEWBOOKING', _JOMRES_FRONT_MR_REVIEWBOOKING, false, false ) );
+		echo '; populateDiv("messages","' . $bkg->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false ) ) . '"); checkSelectRoomMessage(true,"' . $disable_address . '");';
+		echo $bkg->setGuestPopupMessage( jr_gettext( '_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false ) );
 		echo "; enableSubmitButton(document.ajaxform.confirmbooking); "; // Added timeout because if a user clicks on this button too soon they'll get taken to the review booking before oktobook has been saved, therefore getting themselves redirected back to here
 		}
 	else
@@ -598,11 +598,11 @@ function bookingformlistRooms( $isSingleRoomProperty, &$bkg )
 
 		if ( !$isSingleRoomProperty )
 			{
-			$selected_rooms_text = '<div><h4 class="page-header">' . jr_gettext( '_JOMRES_AJAXFORM_SELECTEDROOMS', _JOMRES_AJAXFORM_SELECTEDROOMS, false, false ) . '</h4></div>';
+			$selected_rooms_text = '<div><h4 class="page-header">' . jr_gettext( '_JOMRES_AJAXFORM_SELECTEDROOMS', '_JOMRES_AJAXFORM_SELECTEDROOMS', false, false ) . '</h4></div>';
 			if ( $bkg->numberOfCurrentlySelectedRooms() > 0 ) $currently_selected = '<div>' . $bkg->listCurrentlySelectedRooms() . '</div>';
 			else
-			$currently_selected = '<div id="noroomsselected" >' . jr_gettext( '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', _JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET, false, false ) . '</div>';
-			$available_rooms_text = '<div><h4 class="page-header">' . jr_gettext( '_JOMRES_AJAXFORM_AVAILABLEROOMS', _JOMRES_AJAXFORM_AVAILABLEROOMS, false, false ) . '</h4></div><div id="rooms_listing"></div>';
+			$currently_selected = '<div id="noroomsselected" >' . jr_gettext( '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', false, false ) . '</div>';
+			$available_rooms_text = '<div><h4 class="page-header">' . jr_gettext( '_JOMRES_AJAXFORM_AVAILABLEROOMS', '_JOMRES_AJAXFORM_AVAILABLEROOMS', false, false ) . '</h4></div><div id="rooms_listing"></div>';
 
 
 			$selected_rooms_text  = $bkg->sanitise_for_eval( $selected_rooms_text );

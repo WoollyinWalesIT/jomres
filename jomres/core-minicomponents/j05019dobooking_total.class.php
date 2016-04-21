@@ -40,7 +40,7 @@ class j05019dobooking_total
 			$defaultValue = $currfmt->get_formatted( $tmpBookingHandler->tmpbooking[ "override_contract_total" ] );
 			}
 
-		$bookingFormInsert[ 'TOTAL_HEADER' ]     = jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_TOTAL', _JOMCOMP_AMEND_OVERRIDE_TOTAL );
+		$bookingFormInsert[ 'TOTAL_HEADER' ]     = jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_TOTAL', '_JOMCOMP_AMEND_OVERRIDE_TOTAL' );
 		$bookingFormInsert[ 'TOTAL_INPUT' ]      = '<input class="inputbox" size="12" type="text" id="' . $inputName . '" value="' . $defaultValue . '" onChange="jomresAjax_' . $newTask . '(this.value)">';
 		$bookingFormInsert[ 'TOTAL_AJAXSTRING' ] = '<script>
 			jomresJquery(document).ready(function() {
@@ -75,7 +75,7 @@ class j05019dobooking_total
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_TOTAL', _JOMCOMP_AMEND_OVERRIDE_TOTAL );
+		$output[ ] = jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_TOTAL', '_JOMCOMP_AMEND_OVERRIDE_TOTAL' );
 
 		foreach ( $output as $o )
 			{

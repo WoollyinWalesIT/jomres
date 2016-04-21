@@ -30,11 +30,11 @@ class j16000edit_tax_rule
 		$jomres_countries = jomres_singleton_abstract::getInstance( 'jomres_countries' );
 		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 		
-		$output[ 'PAGETITLE' ] = jr_gettext( '_JRPORTAL_TAX_RULE_EDIT', _JRPORTAL_TAX_RULE_EDIT,false );
-		$output[ '_JRPORTAL_TAXRATES_CODE' ] = jr_gettext( '_JRPORTAL_TAXRATES_CODE', _JRPORTAL_TAXRATES_CODE,false );
-		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY,false );
-		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION,false );
-		$output[ '_JRPORTAL_TAXRATES_RATE' ] = jr_gettext( '_JRPORTAL_TAXRATES_RATE', _JRPORTAL_TAXRATES_RATE,false );
+		$output[ 'PAGETITLE' ] = jr_gettext( '_JRPORTAL_TAX_RULE_EDIT', '_JRPORTAL_TAX_RULE_EDIT',false );
+		$output[ '_JRPORTAL_TAXRATES_CODE' ] = jr_gettext( '_JRPORTAL_TAXRATES_CODE', '_JRPORTAL_TAXRATES_CODE',false );
+		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',false );
+		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',false );
+		$output[ '_JRPORTAL_TAXRATES_RATE' ] = jr_gettext( '_JRPORTAL_TAXRATES_RATE', '_JRPORTAL_TAXRATES_RATE',false );
 		
 		if ($id > 0)
 			{
@@ -69,8 +69,6 @@ class j16000edit_tax_rule
 		$jrtb .= $jrtbar->toolbarItem( 'delete', JOMRES_SITEPAGE_URL_ADMIN . "&task=delete_tax_rule"  . "&no_html=1&id=" . $id, '' );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
-
-		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = JOMRES_SITEPAGE_URL_ADMIN;
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();

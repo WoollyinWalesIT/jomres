@@ -30,7 +30,7 @@ class j10002listTemplates
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=listTemplates', 'listTemplates.png', jr_gettext( "_JOMRES_COM_TEMPLATEEDITING_TITLE", _JOMRES_COM_TEMPLATEEDITING_TITLE, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS", _JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS, false, false ) );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=listTemplates', 'listTemplates.png', jr_gettext( "_JOMRES_COM_TEMPLATEEDITING_TITLE", '_JOMRES_COM_TEMPLATEEDITING_TITLE', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS', false, false ) );
 			}
 		}
 

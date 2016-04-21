@@ -45,7 +45,11 @@ class j01010listpropertys
 			$range = get_periods ( $start, $end);
 			$stayDays = count($range);
 			}
-		elseif ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']) && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '' && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] != '')
+		elseif ( 
+				isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']) && 
+				(isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '') && 
+				(isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] != '')
+				)
 			{
 				$start = JSCalConvertInputDates( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] , $siteCal = true );
 			$end = JSCalConvertInputDates( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] , $siteCal = true );
@@ -193,27 +197,27 @@ class j01010listpropertys
 				{
 				$header_output = array ();
 
-				$header_output[ 'HARRIVALDATE' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL, false );
-				$header_output[ 'HDEPARTUREDATE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE, false );
+				$header_output[ 'HARRIVALDATE' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', false );
+				$header_output[ 'HDEPARTUREDATE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', false );
 
 				if (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']))
 					$header_output[ 'ARRIVALDATE' ]   = generateDateInput( "arrivalDate",$tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] , "ad", true );
 				if (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']))
 					$header_output[ 'DEPARTUREDATE' ] = generateDateInput( "departureDate", $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'], false, true, false );
-				$header_output[ 'HSEARCH' ] = jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON );
+				$header_output[ 'HSEARCH' ] = jr_gettext( '_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON' );
 				if ( !using_bootstrap() )
-					$header_output[ 'THEBUTTON' ] = '<input type="submit" name="send" value="' . jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON, false ) . '" class="button" />';
+					$header_output[ 'THEBUTTON' ] = '<input type="submit" name="send" value="' . jr_gettext( '_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON', false ) . '" class="button" />';
 				else
-					$header_output[ 'THEBUTTON' ] = '<input type="submit" class="btn btn-primary" name="send" value="' . jr_gettext( '_JOMRES_SEARCH_BUTTON', _JOMRES_SEARCH_BUTTON, false ) . '" />';
+					$header_output[ 'THEBUTTON' ] = '<input type="submit" class="btn btn-primary" name="send" value="' . jr_gettext( '_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON', false ) . '" />';
 
 				$header_output[ 'ORDER_DROPDOWN' ] = get_showtime( "order_dropdown" );
-				$header_output[ 'CLICKTOHIDE' ]    = jr_gettext( '_JOMRES_REVIEWS_CLICKTOHIDE', _JOMRES_REVIEWS_CLICKTOHIDE, false, false );
-				$header_output[ 'CLICKTOSHOW' ]    = jr_gettext( '_JOMRES_REVIEWS_CLICKTOSHOW', _JOMRES_REVIEWS_CLICKTOSHOW, false, false );
+				$header_output[ 'CLICKTOHIDE' ]    = jr_gettext( '_JOMRES_REVIEWS_CLICKTOHIDE', '_JOMRES_REVIEWS_CLICKTOHIDE', false, false );
+				$header_output[ 'CLICKTOSHOW' ]    = jr_gettext( '_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', false, false );
 				$compare                           = array ();
 				if ( JOMRES_NOHTML != 1 || get_showtime( 'task' ) == "ajax_search_filter" )
 					{
-					$compare[ ] = array ( '_JOMRES_COMPARE' => jr_gettext( '_JOMRES_COMPARE', _JOMRES_COMPARE, false, false ), 'COMPARELINK' => '<script type="text/javascript">var compare_url = "' . jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=compare" ) . '";</script>' );
-					if ( get_showtime( 'task' ) != "show_shortlisted_properties" ) $shortlist[ ] = array ( '_JOMRES_VIEWSHORTLIST' => jr_gettext( '_JOMRES_VIEWSHORTLIST', _JOMRES_VIEWSHORTLIST, false, false ), 'SHORTLISTLINK' => jomresURL( JOMRES_SITEPAGE_URL . "&amp;task=show_shortlisted_properties" ) );
+					$compare[ ] = array ( '_JOMRES_COMPARE' => jr_gettext( '_JOMRES_COMPARE', '_JOMRES_COMPARE', false, false ), 'COMPARELINK' => '<script type="text/javascript">var compare_url = "' . jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=compare" ) . '";</script>' );
+					if ( get_showtime( 'task' ) != "show_shortlisted_properties" ) $shortlist[ ] = array ( '_JOMRES_VIEWSHORTLIST' => jr_gettext( '_JOMRES_VIEWSHORTLIST', '_JOMRES_VIEWSHORTLIST', false, false ), 'SHORTLISTLINK' => jomresURL( JOMRES_SITEPAGE_URL . "&amp;task=show_shortlisted_properties" ) );
 					}
 
 				if ( JOMRES_NOHTML != 1 && get_showtime( 'task' ) != "ajax_search_filter" )
@@ -388,10 +392,10 @@ class j01010listpropertys
 						$property_deets[ 'AVERAGE_RATING' ]    = number_format( $itemRating[ 'avg_rating' ], 1, '.', '' );
 						$property_deets[ 'NUMBER_OF_REVIEWS' ] = $itemRating[ 'counter' ];
 
-						$property_deets[ '_JOMRES_REVIEWS_AVERAGE_RATING' ] = jr_gettext( '_JOMRES_REVIEWS_AVERAGE_RATING', _JOMRES_REVIEWS_AVERAGE_RATING, false, false );
-						$property_deets[ '_JOMRES_REVIEWS_TOTAL_VOTES' ]    = jr_gettext( '_JOMRES_REVIEWS_TOTAL_VOTES', _JOMRES_REVIEWS_TOTAL_VOTES, false, false );
-						$property_deets[ '_JOMRES_REVIEWS' ]                = jr_gettext( '_JOMRES_REVIEWS', _JOMRES_REVIEWS, false, false );
-						$property_deets[ '_JOMRES_REVIEWS_CLICKTOSHOW' ]    = jr_gettext( '_JOMRES_REVIEWS_CLICKTOSHOW', _JOMRES_REVIEWS_CLICKTOSHOW, false, false );
+						$property_deets[ '_JOMRES_REVIEWS_AVERAGE_RATING' ] = jr_gettext( '_JOMRES_REVIEWS_AVERAGE_RATING', '_JOMRES_REVIEWS_AVERAGE_RATING', false, false );
+						$property_deets[ '_JOMRES_REVIEWS_TOTAL_VOTES' ]    = jr_gettext( '_JOMRES_REVIEWS_TOTAL_VOTES', '_JOMRES_REVIEWS_TOTAL_VOTES', false, false );
+						$property_deets[ '_JOMRES_REVIEWS' ]                = jr_gettext( '_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false, false );
+						$property_deets[ '_JOMRES_REVIEWS_CLICKTOSHOW' ]    = jr_gettext( '_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', false, false );
 						$property_deets[ 'COLON' ]                          = " : ";
 						$property_deets[ 'HYPHEN' ]                         = " - ";
 
@@ -431,7 +435,7 @@ class j01010listpropertys
 							}
 						else
 							{
-							$property_deets [ 'REVIEWS_SNIPPET' ] = jr_gettext( '_JOMRES_REVIEWS_NOREVIEWS', _JOMRES_REVIEWS_NOREVIEWS, false, false );
+							$property_deets [ 'REVIEWS_SNIPPET' ] = jr_gettext( '_JOMRES_REVIEWS_NOREVIEWS', '_JOMRES_REVIEWS_NOREVIEWS', false, false );
 							}
 
 						}
@@ -524,24 +528,24 @@ class j01010listpropertys
 							}
 						}
 
-					if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && !$plugin_will_provide_lowest_price && $jomres_property_list_prices->lowest_prices[$propertys_uid]['PRICE'] != jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', _JOMRES_PRICE_ON_APPLICATION, "", true, false ) )//&& $stayDays > 1)
+					if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && !$plugin_will_provide_lowest_price && $jomres_property_list_prices->lowest_prices[$propertys_uid]['PRICE'] != jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', "", true, false ) )//&& $stayDays > 1)
 						{
 						if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0)
 							$property_deets[ 'PRICE_CUMULATIVE' ] = $jomres_property_list_prices->lowest_prices[$propertys_uid]['PRICE_CUMULATIVE'];
 						else
 							$property_deets[ 'PRICE_CUMULATIVE' ] = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE' ];
 						
-						$property_deets['FOR'] =  jr_gettext( '_JOMRES_FOR', _JOMRES_FOR , false );
+						$property_deets['FOR'] =  jr_gettext( '_JOMRES_FOR', '_JOMRES_FOR' , false );
 						if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0 )
 							{
 							if ( $mrConfig[ 'wholeday_booking' ] == "1" )
-								$property_deets[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY , false );
+								$property_deets[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY' , false );
 							else
 								{
 								if ($stayDays ==1)
-									$property_deets[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_PRICINGOUTPUT_NIGHT', _JOMRES_PRICINGOUTPUT_NIGHT , false );
+									$property_deets[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_PRICINGOUTPUT_NIGHT', '_JOMRES_PRICINGOUTPUT_NIGHT' , false );
 								else
-									$property_deets[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_PRICINGOUTPUT_NIGHTS', _JOMRES_PRICINGOUTPUT_NIGHTS , false );
+									$property_deets[ 'NIGHTS_TEXT' ] = jr_gettext( '_JOMRES_PRICINGOUTPUT_NIGHTS', '_JOMRES_PRICINGOUTPUT_NIGHTS' , false );
 								}
 
 							$property_deets[ 'STAY_DAYS' ]	= $stayDays;
@@ -556,7 +560,7 @@ class j01010listpropertys
 
 					if ( array_key_exists( $propertys_uid, $lastBookedArray ) )
 						{
-						$property_deets[ 'LASTBOOKED' ]        = jr_gettext( '_JOMRES_DATEPERIOD_LATESTBOOKING', _JOMRES_DATEPERIOD_LATESTBOOKING ) . " " . $lastBookedArray[ $propertys_uid ];
+						$property_deets[ 'LASTBOOKED' ]        = jr_gettext( '_JOMRES_DATEPERIOD_LATESTBOOKING', '_JOMRES_DATEPERIOD_LATESTBOOKING' ) . " " . $lastBookedArray[ $propertys_uid ];
 						if ( !using_bootstrap() )
 							$property_deets[ 'LASTBOOKING_STYLE' ] = 'ui-state-highlight ui-corner-all';
 						else
@@ -574,29 +578,29 @@ class j01010listpropertys
 							if ( $mrConfig[ 'singleRoomProperty' ] == "1" )
 								{
 								if ( $mrConfig[ 'requireApproval' ] == "1" )
-									$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_BOOKING_CALCQUOTE', _BOOKING_CALCQUOTE, false, false );
+									$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_BOOKING_CALCQUOTE', '_BOOKING_CALCQUOTE', false, false );
 								else
-									$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', _JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY, false, false );
+									$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', false, false );
 								}
 							else
 								{
 								if ( $mrConfig[ 'requireApproval' ] == "1" )
-									$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_BOOKING_CALCQUOTE', _BOOKING_CALCQUOTE, false, false );
+									$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_BOOKING_CALCQUOTE', '_BOOKING_CALCQUOTE', false, false );
 								else
-									$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKAROOM', _JOMRES_FRONT_MR_MENU_BOOKAROOM, false, false );
+									$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKAROOM', '_JOMRES_FRONT_MR_MENU_BOOKAROOM', false, false );
 								}
-							if ( $dobooking_task != "dobooking" ) $property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', _JOMRES_FRONT_MR_MENU_CONTACTHOTEL, false, false );
+							if ( $dobooking_task != "dobooking" ) $property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', false, false );
 							}
 						else
 							{
 							$property_deets[ 'LINK' ]          = jomresURL( JOMRES_SITEPAGE_URL . "&task=contactowner&amp;selectedProperty=" . $propertys_uid );
-							$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', _JOMRES_FRONT_MR_MENU_CONTACTHOTEL, false, false );
+							$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', false, false );
 							}
 						}
 					else
 						{
 						$property_deets[ 'LINK' ]          = jomresURL( JOMRES_SITEPAGE_URL . "&task=contactowner&amp;selectedProperty=" . $propertys_uid );
-						$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACT_AGENT', _JOMRES_FRONT_MR_MENU_CONTACT_AGENT, false, false );
+						$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACT_AGENT', '_JOMRES_FRONT_MR_MENU_CONTACT_AGENT', false, false );
 						}
 
 					$property_deets[ 'PROP_NAME' ] = $current_property_details->multi_query_result[ $propertys_uid ][ 'property_name' ];
@@ -610,14 +614,14 @@ class j01010listpropertys
 
 					$property_deets[ 'LIVESITE' ]                    = get_showtime( 'live_site' );
 					$property_deets[ 'UID' ]                         = $propertys_uid;
-					$property_deets[ 'MOREINFORMATION' ]             = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION, $editable = false, true );
+					$property_deets[ 'MOREINFORMATION' ]             = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', $editable = false, true );
 					$property_deets[ 'MOREINFORMATIONLINK' ]         = jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $propertys_uid );
 					$property_deets[ 'MOREINFORMATIONLINK_AJAX' ]    = JOMRES_SITEPAGE_URL_AJAX . "&task=viewproperty&property_uid=" . $propertys_uid;
 					$property_deets[ 'MOREINFORMATIONLINK_SEFSAFE' ] = JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $propertys_uid;
 					$property_deets[ 'PROPERTYNAME' ]                = $property_deets[ 'PROP_NAME' ];
 
-					$property_deets[ '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES );
-					$property_deets[ '_JOMRES_FRONT_ROOMTYPES' ]                  = jr_gettext( '_JOMRES_FRONT_ROOMTYPES', _JOMRES_FRONT_ROOMTYPES );
+					$property_deets[ '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES' );
+					$property_deets[ '_JOMRES_FRONT_ROOMTYPES' ]                  = jr_gettext( '_JOMRES_FRONT_ROOMTYPES', '_JOMRES_FRONT_ROOMTYPES' );
 					$property_deets[ 'JS_SAFE_PROPERTYNAME' ]                     = preg_replace( '/[^A-Za-z0-9_-]+/', "", $property_deets[ 'PROP_NAME' ] );
 					$property_deets[ 'PROPERTYTOWN' ]                             = jomres_decode( $ptown );
 					$property_deets[ 'PROPERTYREGION' ]                           = jomres_decode( stripslashes( $current_property_details->multi_query_result[ $propertys_uid ][ 'property_region' ] ) );
@@ -636,17 +640,17 @@ class j01010listpropertys
 					else
 						$property_deets[ 'PROPERTYDESC' ] = $propertyDesc;
 					
-					$property_deets[ '_JOMRES_QUICK_INFO' ] = jr_gettext( '_JOMRES_QUICK_INFO', _JOMRES_QUICK_INFO, false, false );
+					$property_deets[ '_JOMRES_QUICK_INFO' ] = jr_gettext( '_JOMRES_QUICK_INFO', '_JOMRES_QUICK_INFO', false, false );
 					if (isset( $mrConfig[ 'galleryLink' ]))
 						$property_deets[ 'REMOTE_URL' ]         = $mrConfig[ 'galleryLink' ];
 					$property_deets[ 'RANDOM_IDENTIFIER' ]  = generateJomresRandomString( 10 );
-					$property_deets[ '_JOMRES_COMPARE' ]    = jr_gettext( '_JOMRES_COMPARE', _JOMRES_COMPARE, false, false );
+					$property_deets[ '_JOMRES_COMPARE' ]    = jr_gettext( '_JOMRES_COMPARE', '_JOMRES_COMPARE', false, false );
 
 					if ( !in_array( $propertys_uid, $shortlist_items ) )
 						{
 						$shortlist_output = array();
 						$shortlist_pageoutput = array();
-						$shortlist_output['TEXT']= jr_gettext( '_JOMRES_ADDTOSHORTLIST', _JOMRES_ADDTOSHORTLIST, false, false );
+						$shortlist_output['TEXT']= jr_gettext( '_JOMRES_ADDTOSHORTLIST', '_JOMRES_ADDTOSHORTLIST', false, false );
 						$shortlist_pageoutput[ ] = $shortlist_output;
 						$tmpl          = new patTemplate();
 						$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
@@ -659,7 +663,7 @@ class j01010listpropertys
 
 						$shortlist_output = array();
 						$shortlist_pageoutput = array();
-						$shortlist_output['TEXT']= jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', _JOMRES_REMOVEFROMSHORTLIST, false, false );
+						$shortlist_output['TEXT']= jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', '_JOMRES_REMOVEFROMSHORTLIST', false, false );
 						$shortlist_pageoutput[ ] = $shortlist_output;
 						$tmpl          = new patTemplate();
 						$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
@@ -694,7 +698,7 @@ class j01010listpropertys
 
 					$property_deets[ 'AGENT_LINK' ] = make_agent_link( $propertys_uid );
 
-					$property_deets[ '_JOMRES_AGENT' ] = jr_gettext( "_JOMRES_AGENT", _JOMRES_AGENT );
+					$property_deets[ '_JOMRES_AGENT' ] = jr_gettext( "_JOMRES_AGENT", '_JOMRES_AGENT' );
 
 					$property_deets[ 'STARS' ] = $starslink;
 
@@ -704,12 +708,12 @@ class j01010listpropertys
 						{
 						if ( $mrConfig[ 'requireApproval' ] == "1" || $mrConfig['visitorscanbookonline'] == "0" )
 							{
-							$property_deets[ 'REQUIRE_APPROVAL' ] = jr_gettext( '_BOOKING_ONREQUEST', _BOOKING_ONREQUEST , false );
+							$property_deets[ 'REQUIRE_APPROVAL' ] = jr_gettext( '_BOOKING_ONREQUEST', '_BOOKING_ONREQUEST' , false );
 							$property_deets[ 'REQUIRE_APPROVAL_CLASS' ] = 'booking-onrequest';
 							}
 						else
 							{
-							$property_deets[ 'REQUIRE_APPROVAL' ] = jr_gettext( '_BOOKING_INSTANT', _BOOKING_INSTANT , false );
+							$property_deets[ 'REQUIRE_APPROVAL' ] = jr_gettext( '_BOOKING_INSTANT', '_BOOKING_INSTANT' , false );
 							$property_deets[ 'REQUIRE_APPROVAL_CLASS' ] = 'booking-instant';
 							}
 						}
@@ -829,28 +833,28 @@ class j01010listpropertys
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION );
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_NORESULTS', _JOMRES_FRONT_NORESULTS );
-		$output[ ] = jr_gettext( '_PN_PREVIOUS', _PN_PREVIOUS );
-		$output[ ] = jr_gettext( '_PN_NEXT', _PN_NEXT );
-		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_SECOND', _JOMRES_DATEPERIOD_SECOND );
-		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_MINUTE', _JOMRES_DATEPERIOD_MINUTE );
-		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_DAY', _JOMRES_DATEPERIOD_DAY );
-		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_HOUR', _JOMRES_DATEPERIOD_HOUR );
-		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_WEEK', _JOMRES_DATEPERIOD_WEEK );
-		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_MONTH', _JOMRES_DATEPERIOD_MONTH );
-		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_YEAR', _JOMRES_DATEPERIOD_YEAR );
-		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_DECADE', _JOMRES_DATEPERIOD_DECADE );
-		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_S', _JOMRES_DATEPERIOD_S );
-		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_AGO', _JOMRES_DATEPERIOD_AGO );
-		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_FROMNOW', _JOMRES_DATEPERIOD_FROMNOW );
-		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_LATESTBOOKING', _JOMRES_DATEPERIOD_LATESTBOOKING );
-		$output[ ] = jr_gettext( '_JOMRES_QUICK_INFO', _JOMRES_QUICK_INFO );
-		$output[ ] = jr_gettext( '_JOMRES_COMPARE', _JOMRES_COMPARE );
+		$output[ ] = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION' );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_NORESULTS', '_JOMRES_FRONT_NORESULTS' );
+		$output[ ] = jr_gettext( '_PN_PREVIOUS', '_PN_PREVIOUS' );
+		$output[ ] = jr_gettext( '_PN_NEXT', '_PN_NEXT' );
+		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_SECOND', '_JOMRES_DATEPERIOD_SECOND' );
+		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_MINUTE', '_JOMRES_DATEPERIOD_MINUTE' );
+		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_DAY', '_JOMRES_DATEPERIOD_DAY' );
+		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_HOUR', '_JOMRES_DATEPERIOD_HOUR' );
+		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_WEEK', '_JOMRES_DATEPERIOD_WEEK' );
+		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_MONTH', '_JOMRES_DATEPERIOD_MONTH' );
+		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_YEAR', '_JOMRES_DATEPERIOD_YEAR' );
+		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_DECADE', '_JOMRES_DATEPERIOD_DECADE' );
+		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_S', '_JOMRES_DATEPERIOD_S' );
+		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_AGO', '_JOMRES_DATEPERIOD_AGO' );
+		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_FROMNOW', '_JOMRES_DATEPERIOD_FROMNOW' );
+		$output[ ] = jr_gettext( '_JOMRES_DATEPERIOD_LATESTBOOKING', '_JOMRES_DATEPERIOD_LATESTBOOKING' );
+		$output[ ] = jr_gettext( '_JOMRES_QUICK_INFO', '_JOMRES_QUICK_INFO' );
+		$output[ ] = jr_gettext( '_JOMRES_COMPARE', '_JOMRES_COMPARE' );
 
-		$output[ ] = jr_gettext( '_JOMRES_ADDTOSHORTLIST', _JOMRES_ADDTOSHORTLIST );
-		$output[ ] = jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', _JOMRES_REMOVEFROMSHORTLIST );
-		$output[ ] = jr_gettext( '_JOMRES_VIEWSHORTLIST', _JOMRES_VIEWSHORTLIST );
+		$output[ ] = jr_gettext( '_JOMRES_ADDTOSHORTLIST', '_JOMRES_ADDTOSHORTLIST' );
+		$output[ ] = jr_gettext( '_JOMRES_REMOVEFROMSHORTLIST', '_JOMRES_REMOVEFROMSHORTLIST' );
+		$output[ ] = jr_gettext( '_JOMRES_VIEWSHORTLIST', '_JOMRES_VIEWSHORTLIST' );
 
 		foreach ( $output as $o )
 			{

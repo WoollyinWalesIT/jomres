@@ -51,7 +51,7 @@ class j06001mark_booking_invoice_paid
 		$invoice->getInvoice();
 		$invoice->mark_invoice_paid();
 
-		addBookingNote( $invoice->contract_id, $property_uid, jr_gettext( '_JOMRES_INVOICE_MARKEDASPAID', _JOMRES_INVOICE_MARKEDASPAID, false, false ) );
+		addBookingNote( $invoice->contract_id, $property_uid, jr_gettext( '_JOMRES_INVOICE_MARKEDASPAID', '_JOMRES_INVOICE_MARKEDASPAID', false, false ) );
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . '&task=view_invoice&id=' . $invoice_id ), "" );
 		}
 
@@ -59,7 +59,7 @@ class j06001mark_booking_invoice_paid
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_ADMIN_TITLE', _JOMRES_COM_MR_EDITBOOKING_ADMIN_TITLE );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_ADMIN_TITLE', '_JOMRES_COM_MR_EDITBOOKING_ADMIN_TITLE' );
 
 		foreach ( $output as $o )
 			{

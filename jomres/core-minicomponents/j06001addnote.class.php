@@ -40,7 +40,7 @@ class j06001addnote
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-		$output[ 'HNEWTEXT' ]     = jr_gettext( '_JOMCOMP_BOOKINGNOTES_ADD', _JOMCOMP_BOOKINGNOTES_ADD );
+		$output[ 'HNEWTEXT' ]     = jr_gettext( '_JOMCOMP_BOOKINGNOTES_ADD', '_JOMCOMP_BOOKINGNOTES_ADD' );
 		$output[ 'CONTRACT_UID' ] = $contract_uid;
 
 		$pageoutput[ ] = $output;
@@ -55,7 +55,7 @@ class j06001addnote
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMCOMP_BOOKINGNOTES_ADD', _JOMCOMP_BOOKINGNOTES_ADD );
+		$output[ ] = jr_gettext( '_JOMCOMP_BOOKINGNOTES_ADD', '_JOMCOMP_BOOKINGNOTES_ADD' );
 
 		foreach ( $output as $o )
 			{

@@ -58,7 +58,7 @@ class j16000savePfeature
 										 ".$cat_id."
 										 )";
 			if ( doInsertSql( $query, '' ) ) 
-				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeatures" ), jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT, false ) );
+				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeatures" ), jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT', false ) );
 			}
 		else
 			{
@@ -71,7 +71,7 @@ class j16000savePfeature
 						WHERE hotel_features_uid = " . (int) $propertyFeatureUid . " 
 							AND property_uid = 0 ";
 			if ( doInsertSql( $query, '' ) ) 
-				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeatures"), jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE, false ) );
+				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeatures"), jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', false ) );
 			}
 		}
 

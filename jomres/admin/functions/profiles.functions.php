@@ -28,17 +28,17 @@ function editProfile()
 		return;
 		}
 	$yesno    = array ();
-	$yesno[ ] = jomresHTML::makeOption( '0', jr_gettext( "_JOMRES_COM_MR_NO", _JOMRES_COM_MR_NO, false ) );
-	$yesno[ ] = jomresHTML::makeOption( '1', jr_gettext( "_JOMRES_COM_MR_YES", _JOMRES_COM_MR_YES, false ) );
+	$yesno[ ] = jomresHTML::makeOption( '0', jr_gettext( "_JOMRES_COM_MR_NO", '_JOMRES_COM_MR_NO', false ) );
+	$yesno[ ] = jomresHTML::makeOption( '1', jr_gettext( "_JOMRES_COM_MR_YES", '_JOMRES_COM_MR_YES', false ) );
 
 	$accessLevels    = array ();
-	$accessLevels[ ] = jomresHTML::makeOption( '1', jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION", _JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION, false ) );
-	$accessLevels[ ] = jomresHTML::makeOption( '2', jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN", _JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN, false ) );
+	$accessLevels[ ] = jomresHTML::makeOption( '1', jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION", '_JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION', false ) );
+	$accessLevels[ ] = jomresHTML::makeOption( '2', jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN", '_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN', false ) );
 
-	$output[ 'INSTRUCTIONS' ]         = jr_gettext( "_JOMRES_PROFILEEDIT_INSTRUCTIONS", _JOMRES_PROFILEEDIT_INSTRUCTIONS, false );
-	$output[ 'HSUPERPROP' ]           = jr_gettext( "_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER", _JOMRES_COM_USERIS_SUPERPROPERTYMANAGER, false );
-	$output[ 'HACCESSLEVEL' ]         = jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL", _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL, false );
-	$output[ '_JOMRES_EDIT_PROFILE' ] = jr_gettext( "_JOMRES_EDIT_PROFILE", _JOMRES_EDIT_PROFILE, false );
+	$output[ 'INSTRUCTIONS' ]         = jr_gettext( "_JOMRES_PROFILEEDIT_INSTRUCTIONS", '_JOMRES_PROFILEEDIT_INSTRUCTIONS', false );
+	$output[ 'HSUPERPROP' ]           = jr_gettext( "_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER", '_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER', false );
+	$output[ 'HACCESSLEVEL' ]         = jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL", '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL', false );
+	$output[ '_JOMRES_EDIT_PROFILE' ] = jr_gettext( "_JOMRES_EDIT_PROFILE", '_JOMRES_EDIT_PROFILE', false );
 	
 	
 	
@@ -58,7 +58,7 @@ function editProfile()
 	$output[ 'SUPERPROP' ]      = $superPropertyManagerOutput;
 	$output[ 'ACCESSLEVEL' ]    = $accessLevelOutput;
 	$output[ 'APIKEY' ]         = $apikey;
-	$output[ 'NEWAPIKEY_LINK' ] = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=new_manager_api_key&no_html=1&id=' . $userid . '">' . jr_gettext( "", jr_gettext( "_JOMRES_APIKEY_REMAKE", _JOMRES_APIKEY_REMAKE, false ) ) . '</a>';
+	$output[ 'NEWAPIKEY_LINK' ] = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=new_manager_api_key&no_html=1&id=' . $userid . '">' . jr_gettext( "_JOMRES_APIKEY_REMAKE", '_JOMRES_APIKEY_REMAKE', false ) . '</a>';
 
 	$output[ 'ID' ] = $userid;
 
@@ -137,14 +137,14 @@ function editProfile()
 	$link   = get_showtime( 'live_site' ) . "/" . JOMRES_ADMINISTRATORDIRECTORY . "/index.php?option=com_jomres";
 	
 	$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose", '' );
-	$jrtb .= $jrtbar->customToolbarItem( 'saveProfile', $link, jr_gettext( "_JOMRES_COM_MR_SAVE", _JOMRES_COM_MR_SAVE, false ), $submitOnClick = true, $submitTask = "saveProfile", $image );
+	$jrtb .= $jrtbar->customToolbarItem( 'saveProfile', $link, jr_gettext( "_JOMRES_COM_MR_SAVE", '_JOMRES_COM_MR_SAVE', false ), $submitOnClick = true, $submitTask = "saveProfile", $image );
 	
 	$jrtb .= $jrtbar->endTable();
 	$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
 	$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ]            = JOMRES_SITEPAGE_URL_ADMIN;
-	$output[ '_JRPORTAL_PROPERTIES_PROPERTYNAME' ]    = jr_gettext( "_JRPORTAL_PROPERTIES_PROPERTYNAME", _JRPORTAL_PROPERTIES_PROPERTYNAME, false );
-	$output[ '_JOMRES_SHOWPROFILES_USERSWITHACCESS' ] = jr_gettext( "_JOMRES_SHOWPROFILES_USERSWITHACCESS", _JOMRES_SHOWPROFILES_USERSWITHACCESS, false );
+	$output[ '_JRPORTAL_PROPERTIES_PROPERTYNAME' ]    = jr_gettext( "_JRPORTAL_PROPERTIES_PROPERTYNAME", '_JRPORTAL_PROPERTIES_PROPERTYNAME', false );
+	$output[ '_JOMRES_SHOWPROFILES_USERSWITHACCESS' ] = jr_gettext( "_JOMRES_SHOWPROFILES_USERSWITHACCESS", '_JOMRES_SHOWPROFILES_USERSWITHACCESS', false );
 	$output[ 'TOTALINLISTPLUSONE' ]                   = count( $rows ) + 1;
 
 
@@ -194,9 +194,9 @@ function saveProfile()
 			$query        = "UPDATE #__jomres_managers SET `currentproperty`='".(int)$property_uid."' WHERE userid = '" . $userid . "'";
 			if ( !doInsertSql( $query, false ) ) 
 				trigger_error( "Unable to set current property, mysql db failure", E_USER_ERROR );
-			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose" ), jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose" ), jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", '_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE', false ) );
 			}
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose" ), jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose" ), jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", '_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE', false ) );
 		}
 
 
@@ -257,11 +257,11 @@ function grantMosUser()
 		
 		if ( $grantAct == "y" ) 
 			{
-			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL_ADMIN . "&task=editProfile&id=" . (int) $userid ), jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL_ADMIN . "&task=editProfile&id=" . (int) $userid ), jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", '_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE', false ) );
 			}
 		else
 			{
-			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose" ), jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", _JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE, false ) );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=managers_choose" ), jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", '_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE', false ) );
 			}
 		}
 	else

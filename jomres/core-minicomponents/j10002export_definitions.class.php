@@ -30,7 +30,7 @@ class j10002export_definitions
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=export_definitions', 'EditText.png', jr_gettext( "_JOMRES_EXPORT_DEFINITIONS", _JOMRES_EXPORT_DEFINITIONS, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", _JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES, false, false ) );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=export_definitions', 'EditText.png', jr_gettext( "_JOMRES_EXPORT_DEFINITIONS", '_JOMRES_EXPORT_DEFINITIONS', false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES', false, false ) );
 			}
 		}
 
@@ -38,7 +38,7 @@ class j10002export_definitions
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", _JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES );
+		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES' );
 
 		foreach ( $output as $o )
 			{

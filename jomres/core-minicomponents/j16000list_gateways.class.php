@@ -35,9 +35,9 @@ class j16000list_gateways
 		
 		if ( count ($gateway_plugins) > 0 )
 			{
-			$output[ '_JOMRES_COM_A_GATEWAY_ENABLED' ]	= jr_gettext( "_JOMRES_COM_A_GATEWAY_ENABLED", _JOMRES_COM_A_GATEWAY_ENABLED, false );
-			$output[ 'TOUR_ID_TAB_GATEWAYS_TITLE' ]		= jr_gettext( "_JOMRES_COM_A_GATEWAYLIST", _JOMRES_COM_A_GATEWAYLIST, false );
-			$output[ 'GATEWAYS_INSTRUCTIONS' ]			= jr_gettext( "GATEWAYS_INSTRUCTIONS", GATEWAYS_INSTRUCTIONS, false );
+			$output[ '_JOMRES_COM_A_GATEWAY_ENABLED' ]	= jr_gettext( "_JOMRES_COM_A_GATEWAY_ENABLED", '_JOMRES_COM_A_GATEWAY_ENABLED', false );
+			$output[ 'TOUR_ID_TAB_GATEWAYS_TITLE' ]		= jr_gettext( "_JOMRES_COM_A_GATEWAYLIST", '_JOMRES_COM_A_GATEWAYLIST', false );
+			$output[ 'GATEWAYS_INSTRUCTIONS' ]			= jr_gettext( "GATEWAYS_INSTRUCTIONS", 'GATEWAYS_INSTRUCTIONS', false );
 			
 			$rows = array();
 
@@ -46,9 +46,9 @@ class j16000list_gateways
 				$r = array();
 				$settings = get_plugin_settings($gateway['name'],0);
 				if ($settings['active'] =="1" )
-					$r['ACTIVE']=jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,false);
+					$r['ACTIVE']=jr_gettext('_JOMRES_COM_MR_YES','_JOMRES_COM_MR_YES',false);
 				else
-					$r['ACTIVE']=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,false);
+					$r['ACTIVE']=jr_gettext('_JOMRES_COM_MR_NO','_JOMRES_COM_MR_NO',false);
 				
 				$r['GATEWAY_NAME'] = $gateway['friendlyname'];
 				
@@ -62,7 +62,7 @@ class j16000list_gateways
 					{
 					$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 					$toolbar->newToolbar();
-					$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_gateway&plugin=' . $gateway['name'] ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
+					$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_gateway&plugin=' . $gateway['name'] ), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
 					
 					$r['EDITLINK'] = $toolbar->getToolbar();
 					}

@@ -83,7 +83,7 @@ class j99996mainmenu_buttons
 
 
 		// We need to find the dashboard category in this array, extract it then put it at the beginning.
-		$dashboard_category = jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME", _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME, false, false );
+		$dashboard_category = jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME', false, false );
 		if ( isset( $control_panel_buttons_categorised[ $dashboard_category ] ) )
 			{
 			$dashboard_category_contents = $control_panel_buttons_categorised[ $dashboard_category ];

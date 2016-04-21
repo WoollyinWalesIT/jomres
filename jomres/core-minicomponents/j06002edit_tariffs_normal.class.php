@@ -21,7 +21,7 @@ class j06002edit_tariffs_normal
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )
 			{
-			$this->template_touchable = true;return;
+			$this->template_touchable = false;return;
 			}
 
 		$mrConfig        = getPropertySpecificSettings();
@@ -123,14 +123,14 @@ class j06002edit_tariffs_normal
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-		$output[ 'PAGETITLE' ]         = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_TITLE', _JOMRES_COM_MR_LISTTARIFF_TITLE, false, false ) . " &amp; " . jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM, false, false );
-		$output[ 'HROOMCLASS' ]        = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', _JOMRES_COM_MR_EB_ROOM_CLASS_ABBV, false );
-		$output[ 'HNUMBEROFROOMS' ]    = jr_gettext( '_JOMRES_NUMBEROFROOMSAVAILABLE', _JOMRES_NUMBEROFROOMSAVAILABLE, false );
-		$output[ 'HROOMRATEPERDAY' ]   = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY, false );
-		$output[ 'HPROPERTYTYPE' ]     = jr_gettext( 'JOMRES_PROPERTYTYPE', JOMRES_PROPERTYTYPE, false );
-		$output[ 'HROOMTYPE' ]         = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMTYPE', _JOMRES_COM_MR_QUICKRES_STEP2_ROOMTYPE, false );
-		$output[ 'HMAXPEOPLE_ROOM' ]   = jr_gettext( 'JOMRES_MAXPEOPLEINROOM', JOMRES_MAXPEOPLEINROOM, false );
-		$output[ 'HMAXPEOPLE_TARIFF' ] = jr_gettext( 'JOMRES_MAXPEOPLEINBOOKING', JOMRES_MAXPEOPLEINBOOKING, false );
+		$output[ 'PAGETITLE' ]         = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_TITLE', '_JOMRES_COM_MR_LISTTARIFF_TITLE', false, false ) . " &amp; " . jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false, false );
+		$output[ 'HROOMCLASS' ]        = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', false );
+		$output[ 'HNUMBEROFROOMS' ]    = jr_gettext( '_JOMRES_NUMBEROFROOMSAVAILABLE', '_JOMRES_NUMBEROFROOMSAVAILABLE', false );
+		$output[ 'HROOMRATEPERDAY' ]   = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', false );
+		$output[ 'HPROPERTYTYPE' ]     = jr_gettext( 'JOMRES_PROPERTYTYPE', 'JOMRES_PROPERTYTYPE', false );
+		$output[ 'HROOMTYPE' ]         = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMTYPE', '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMTYPE', false );
+		$output[ 'HMAXPEOPLE_ROOM' ]   = jr_gettext( 'JOMRES_MAXPEOPLEINROOM', 'JOMRES_MAXPEOPLEINROOM', false );
+		$output[ 'HMAXPEOPLE_TARIFF' ] = jr_gettext( 'JOMRES_MAXPEOPLEINBOOKING', 'JOMRES_MAXPEOPLEINBOOKING', false );
 
 		if ( $mrConfig[ 'singleRoomProperty' ] == '0' ) ///////////////////////////////////////////////////////////// MRPs
 			{
@@ -189,9 +189,9 @@ class j06002edit_tariffs_normal
 				$type_id = $key;
 				}
 
-			if ( $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == "1" ) $output[ 'RATETEXT' ] = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK, false );
+			if ( $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == "1" ) $output[ 'RATETEXT' ] = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', false );
 			else
-			$output[ 'RATETEXT' ] = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY, false );
+			$output[ 'RATETEXT' ] = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', false );
 			$output[ 'ROOMRATEPERDAY' ] = '<input class="input-mini" type="number" name="roomrateperday" value="' . $allTariffsForRoomType[ $type_id ][ 'roomrateperday' ] . '" />';
 			$output[ 'MAX_PEOPLE' ]     = '<input class="input-mini" type="text" name="max_people" value="' . $roomTypesArray[ $type_id ][ 'max_people' ] . '" />';
 			$rows                       = array ();
@@ -216,33 +216,6 @@ class j06002edit_tariffs_normal
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $rows );
 			$tmpl->displayParsedTemplate();
-			}
-		}
-
-	function touch_template_language()
-		{
-		$output = array ();
-
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_PROPERTYS', _JOMRES_COM_MR_VRCT_TAB_PROPERTYS );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE', _JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', _JOMRES_COM_MR_EB_ROOM_CLASS_ABBV );
-		$output[ ] = jr_gettext( '_JOMRES_NUMBEROFROOMSAVAILABLE', _JOMRES_NUMBEROFROOMSAVAILABLE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY );
-		$output[ ] = jr_gettext( 'JOMRES_PROPERTYTYPE', JOMRES_PROPERTYTYPE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMTYPE', _JOMRES_COM_MR_QUICKRES_STEP2_ROOMTYPE );
-		$output[ ] = jr_gettext( 'JOMRES_MAXPEOPLEINROOM', JOMRES_MAXPEOPLEINROOM );
-		$output[ ] = jr_gettext( 'JOMRES_MAXPEOPLEINBOOKING', JOMRES_MAXPEOPLEINBOOKING );
-
-		foreach ( $output as $o )
-			{
-			echo $o;
-			echo "<br/>";
 			}
 		}
 

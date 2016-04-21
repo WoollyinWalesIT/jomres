@@ -31,16 +31,16 @@ class j04110savepropertyfeature
 		$hotel_feature_full_desc = getEscaped( jomresGetParam( $_POST, 'feature_description', "" ) );
 		if ( $propertyFeatureUid == "" )
 			{
-			$saveMessage = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT, false );
+			$saveMessage = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT', false );
 			$query       = "INSERT INTO #__jomres_hotel_features (`hotel_feature_abbv`,`hotel_feature_full_desc`,`property_uid` )VALUES ('$hotel_feature_abbv','$hotel_feature_full_desc','" . (int) $defaultProperty . "')";
-			if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_PROPERTY_FEATURE', _JOMRES_MR_AUDIT_INSERT_PROPERTY_FEATURE, false ) ) ) returnToPropertyConfig( $saveMessage );
+			if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_PROPERTY_FEATURE', '_JOMRES_MR_AUDIT_INSERT_PROPERTY_FEATURE', false ) ) ) returnToPropertyConfig( $saveMessage );
 			trigger_error( "Unable to insert into hotel features table, mysql db failure", E_USER_ERROR );
 			}
 		else
 			{
-			$saveMessage = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE, false );
+			$saveMessage = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', false );
 			$query       = "UPDATE #__jomres_hotel_features SET `hotel_feature_abbv`='$hotel_feature_abbv',`hotel_feature_full_desc`='$hotel_feature_full_desc' WHERE hotel_features_uid='" . (int) $propertyFeatureUid . "' AND property_uid = '" . (int) $defaultProperty . "'";
-			if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_PROPERTY_FEATURE', _JOMRES_MR_AUDIT_UPDATE_PROPERTY_FEATURE, false ) ) ) returnToPropertyConfig( $saveMessage );
+			if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_PROPERTY_FEATURE', '_JOMRES_MR_AUDIT_UPDATE_PROPERTY_FEATURE', false ) ) ) returnToPropertyConfig( $saveMessage );
 			trigger_error( "Unable to update hotel features table, mysql db failure", E_USER_ERROR );
 			}
 		}

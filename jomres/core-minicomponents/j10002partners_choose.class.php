@@ -30,7 +30,7 @@ class j10002partners_choose
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=partners_choose', 'partners.png', jr_gettext( "_JOMRES_PARTNERS_TITLE", _JOMRES_PARTNERS_TITLE, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT", _JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT, false, false ), false, true );
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=partners_choose', 'partners.png', jr_gettext( "_JOMRES_PARTNERS_TITLE", '_JOMRES_PARTNERS_TITLE', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT', false, false ), false, true );
 			}
 		}
 

@@ -36,7 +36,7 @@ class j06001deletenote
 			return;
 			}
 		$defaultProperty = getDefaultProperty();
-		$auditMessage    = jr_gettext( '_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_DELETE', _JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_DELETE, false, false );
+		$auditMessage    = jr_gettext( '_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_DELETE', '_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_DELETE', false, false );
 		$query           = "DELETE FROM #__jomcomp_notes WHERE `id`='" . (int) $note_id . "' AND `property_uid`='" . (int) $defaultProperty . "' LIMIT 1";
 		if ( doInsertSql( $query, $auditMessage ) )
 			{

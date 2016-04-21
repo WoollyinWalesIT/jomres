@@ -50,20 +50,20 @@ class j16000view_property_reviews
 		$output[ 'UNPUBLISH_IMAGE' ] = $unpublish_icon;
 		$output[ 'PUBLISH_IMAGE' ]   = $publish_icon;
 		$output[ 'AJAXURL' ]         = JOMRES_SITEPAGE_URL_ADMIN . "&format=raw&no_html=1";
-		$output[ 'HPROPERTYNAME' ]   = jr_gettext( '_JRPORTAL_PROPERTIES_PROPERTYNAME', _JRPORTAL_PROPERTIES_PROPERTYNAME,false );
+		$output[ 'HPROPERTYNAME' ]   = jr_gettext( '_JRPORTAL_PROPERTIES_PROPERTYNAME', '_JRPORTAL_PROPERTIES_PROPERTYNAME',false );
 		$output[ 'PROPERTY_UID' ]    = $property_uid;
 
-		$output[ '_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW' ] = jr_gettext( '_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW', _JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW,false );
-		$output[ '_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW' ] = jr_gettext( '_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW', _JOMRES_REVIEWS_ADMIN_DELETEREVEIEW,false );
-		$output[ '_JOMRES_MR_AUDIT_LISTING_USER' ]       = jr_gettext( '_JOMRES_MR_AUDIT_LISTING_USER', _JOMRES_MR_AUDIT_LISTING_USER,false );
-		$output[ '_JOMRES_REVIEWS_SUBMITTEDDATE' ]       = jr_gettext( '_JOMRES_REVIEWS_SUBMITTEDDATE', _JOMRES_REVIEWS_SUBMITTEDDATE,false );
-		$output[ '_JOMRES_REVIEWS_TITLE' ]               = jr_gettext( '_JOMRES_REVIEWS_TITLE', _JOMRES_REVIEWS_TITLE,false );
-		$output[ '_JOMRES_REVIEWS_REVIEWBODY_SAID' ]     = jr_gettext( '_JOMRES_REVIEWS_REVIEWBODY_SAID', _JOMRES_REVIEWS_REVIEWBODY_SAID,false );
-		$output[ '_JOMRES_REVIEWS_PROS' ]                = jr_gettext( '_JOMRES_REVIEWS_PROS', _JOMRES_REVIEWS_PROS,false );
-		$output[ '_JOMRES_REVIEWS_CONS' ]                = jr_gettext( '_JOMRES_REVIEWS_CONS', _JOMRES_REVIEWS_CONS,false );
-		$output[ '_JOMRES_REVIEWS_RATING' ]              = jr_gettext( '_JOMRES_REVIEWS_RATING', _JOMRES_REVIEWS_RATING,false );
-		$output[ '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE' ] = jr_gettext( '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE', _JOMRES_REVIEWS_REPORT_REVIEW_TITLE,false );
-		$output[ '_JOMRES_REVIEWS_REPORT_INSTRUCTIONS' ] = jr_gettext( '_JOMRES_REVIEWS_REPORT_INSTRUCTIONS', _JOMRES_REVIEWS_REPORT_INSTRUCTIONS,false );
+		$output[ '_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW' ] = jr_gettext( '_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW', '_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW',false );
+		$output[ '_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW' ] = jr_gettext( '_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW', '_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW',false );
+		$output[ '_JOMRES_MR_AUDIT_LISTING_USER' ]       = jr_gettext( '_JOMRES_MR_AUDIT_LISTING_USER', '_JOMRES_MR_AUDIT_LISTING_USER',false );
+		$output[ '_JOMRES_REVIEWS_SUBMITTEDDATE' ]       = jr_gettext( '_JOMRES_REVIEWS_SUBMITTEDDATE', '_JOMRES_REVIEWS_SUBMITTEDDATE',false );
+		$output[ '_JOMRES_REVIEWS_TITLE' ]               = jr_gettext( '_JOMRES_REVIEWS_TITLE', '_JOMRES_REVIEWS_TITLE',false );
+		$output[ '_JOMRES_REVIEWS_REVIEWBODY_SAID' ]     = jr_gettext( '_JOMRES_REVIEWS_REVIEWBODY_SAID', '_JOMRES_REVIEWS_REVIEWBODY_SAID',false );
+		$output[ '_JOMRES_REVIEWS_PROS' ]                = jr_gettext( '_JOMRES_REVIEWS_PROS', '_JOMRES_REVIEWS_PROS',false );
+		$output[ '_JOMRES_REVIEWS_CONS' ]                = jr_gettext( '_JOMRES_REVIEWS_CONS', '_JOMRES_REVIEWS_CONS',false );
+		$output[ '_JOMRES_REVIEWS_RATING' ]              = jr_gettext( '_JOMRES_REVIEWS_RATING', '_JOMRES_REVIEWS_RATING',false );
+		$output[ '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE' ] = jr_gettext( '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE', '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE',false );
+		$output[ '_JOMRES_REVIEWS_REPORT_INSTRUCTIONS' ] = jr_gettext( '_JOMRES_REVIEWS_REPORT_INSTRUCTIONS', '_JOMRES_REVIEWS_REPORT_INSTRUCTIONS',false );
 
 
 		foreach ( $property_reviews as $review )
@@ -87,7 +87,7 @@ class j16000view_property_reviews
 				foreach ( $review_reports as $report )
 					{
 					$report_userid = $all_users[ $report[ 'user_id' ] ][ 'username' ];
-					$r[ 'reports' ] .= jr_gettext( '_JOMRES_REVIEWS_REPORT_CREATED_BY', _JOMRES_REVIEWS_REPORT_CREATED_BY,false ) . $report_userid . " " . $report[ 'report_date' ] . "<br/>" . $report[ 'report' ];
+					$r[ 'reports' ] .= jr_gettext( '_JOMRES_REVIEWS_REPORT_CREATED_BY', '_JOMRES_REVIEWS_REPORT_CREATED_BY',false ) . $report_userid . " " . $report[ 'report_date' ] . "<br/>" . $report[ 'report' ];
 					}
 				}
 

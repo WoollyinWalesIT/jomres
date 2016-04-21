@@ -267,10 +267,10 @@ class j16000addplugin
 					$returned_error = json_decode(file_get_contents($newfilename));
 					
 					
-					$output2['_JOMRES_ERROR'] = jr_gettext( '_JOMRES_ERROR' , _JOMRES_ERROR , false, false ) ;
+					$output2['_JOMRES_ERROR'] = jr_gettext( '_JOMRES_ERROR' , '_JOMRES_ERROR' , false, false ) ;
 					$output2['MESSAGE'] = filter_var( $returned_error->message , FILTER_SANITIZE_STRING ) ;
 					$output2['PLUGIN_MANAGER_LINK'] =  JOMRES_SITEPAGE_URL_ADMIN . '&task=showplugins';
-					$output2['PLUGIN_MANAGER_TEXT'] = jr_gettext( "_JOMRES_CUSTOMCODE_PLUGINMANAGER", _JOMRES_CUSTOMCODE_PLUGINMANAGER, false, false );
+					$output2['PLUGIN_MANAGER_TEXT'] = jr_gettext( "_JOMRES_CUSTOMCODE_PLUGINMANAGER", '_JOMRES_CUSTOMCODE_PLUGINMANAGER', false, false );
 					$pageoutput2[]=$output2;
 					$tmpl = new patTemplate();
 					$tmpl->addRows( 'pageoutput', $pageoutput2 );

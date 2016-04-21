@@ -46,11 +46,11 @@ class j06002save_resource
 
 			if ( $roomUid == 0 )
 				{
-				$saveMessage      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_SAVE_INSERT', _JOMRES_COM_MR_VRCT_ROOM_SAVE_INSERT, false );
+				$saveMessage      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_SAVE_INSERT', '_JOMRES_COM_MR_VRCT_ROOM_SAVE_INSERT', false );
 				$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
 				$jomres_messaging->set_message( $saveMessage );
 				$query = "INSERT INTO #__jomres_rooms (`room_classes_uid`,`propertys_uid`,`room_features_uid`,`room_name`,`room_number`,`room_floor`,`max_people`,`singleperson_suppliment`)VALUES ('" . (int) $roomClasses . "'," . (int) $defaultProperty . ",'$featuresList','$room_name','$room_number','$room_floor','" . (int) $max_people . "','" . $singleperson_suppliment . "')";
-				if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_ROOM', _JOMRES_MR_AUDIT_INSERT_ROOM, false ) ) )
+				if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_ROOM', '_JOMRES_MR_AUDIT_INSERT_ROOM', false ) ) )
 					jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=list_resources" ), "" );
 				trigger_error( "Sql error when saving new room", E_USER_ERROR );
 				}
@@ -60,7 +60,7 @@ class j06002save_resource
 				$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
 				$jomres_messaging->set_message( $saveMessage );
 				$query = "UPDATE #__jomres_rooms SET `room_classes_uid`='$roomClasses',`room_features_uid`='$featuresList',`room_name`='$room_name',`room_number`='$room_number',`room_floor`='$room_floor',`max_people`='" . (int) $max_people . "',`singleperson_suppliment`='" . (float) $singleperson_suppliment . "' WHERE room_uid='" . (int) $roomUid . "' AND propertys_uid='" . (int) $defaultProperty . "'";
-				if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_ROOM', _JOMRES_MR_AUDIT_UPDATE_ROOM, false ) ) ) 
+				if ( doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_ROOM', '_JOMRES_MR_AUDIT_UPDATE_ROOM', false ) ) ) 
 					jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=list_resources" ), "" );
 				trigger_error( "Sql error when updating room", E_USER_ERROR );
 				}
@@ -74,13 +74,13 @@ class j06002save_resource
 				$query    = "SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $defaultProperty . "'";
 				$room_uid = doSelectSql( $query, 1 );
 				$query    = "UPDATE #__jomres_rooms SET `room_classes_uid`='$roomClass',`max_people`=" . $max_people . " WHERE room_uid='" . (int) $room_uid . "' AND propertys_uid='" . (int) $defaultProperty . "'";
-				if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_ROOM', _JOMRES_MR_AUDIT_UPDATE_ROOM, false ) ) ) trigger_error( "Sql error when updating room", E_USER_ERROR );
+				if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_ROOM', '_JOMRES_MR_AUDIT_UPDATE_ROOM', false ) ) ) trigger_error( "Sql error when updating room", E_USER_ERROR );
 
 				$query = "UPDATE #__jomres_rates SET `roomclass_uid`='$roomClass' WHERE `property_uid`=" . (int) $defaultProperty;
-				if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_TARIFF', _JOMRES_MR_AUDIT_UPDATE_TARIFF, false ) ) ) trigger_error( "Sql error when updating room", E_USER_ERROR );
+				if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_TARIFF', '_JOMRES_MR_AUDIT_UPDATE_TARIFF', false ) ) ) trigger_error( "Sql error when updating room", E_USER_ERROR );
 
 				$query = "UPDATE #__jomcomp_tarifftype_rate_xref SET `roomclass_uid`='$roomClass' WHERE `property_uid`=" . (int) $defaultProperty;
-				if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_TARIFF', _JOMRES_MR_AUDIT_UPDATE_TARIFF, false ) ) ) trigger_error( "Sql error when updating tariff type xref table", E_USER_ERROR );
+				if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_TARIFF', '_JOMRES_MR_AUDIT_UPDATE_TARIFF', false ) ) ) trigger_error( "Sql error when updating tariff type xref table", E_USER_ERROR );
 
 				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=list_resources" ), "" );
 

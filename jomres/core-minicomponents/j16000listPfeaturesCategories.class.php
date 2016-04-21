@@ -29,9 +29,9 @@ class j16000listPfeaturesCategories
 		
 		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 
-		$output['PAGETITLE'] = jr_gettext("_JOMRES_PROPERTYFEATURES_HCATEGORIES",_JOMRES_PROPERTYFEATURES_HCATEGORIES,false);
+		$output['PAGETITLE'] = jr_gettext("_JOMRES_PROPERTYFEATURES_HCATEGORIES",'_JOMRES_PROPERTYFEATURES_HCATEGORIES',false);
 
-		$output['HTITLE'] = jr_gettext("_JRPORTAL_CRATE_TITLE",_JRPORTAL_CRATE_TITLE,false);
+		$output['HTITLE'] = jr_gettext("_JRPORTAL_CRATE_TITLE",'_JRPORTAL_CRATE_TITLE',false);
 		
 		$query = "SELECT `id`, `title` FROM #__jomres_hotel_features_categories ";
 		$result = doSelectSql($query);
@@ -52,8 +52,8 @@ class j16000listPfeaturesCategories
 					{
 					$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 					$toolbar->newToolbar();
-					$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=editPfeatureCategory&id=' . $c->id ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
-					$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=deletePfeatureCategory&id=' . $c->id ), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
+					$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=editPfeatureCategory&id=' . $c->id ), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
+					$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=deletePfeatureCategory&id=' . $c->id ), jr_gettext( 'COMMON_DELETE', 'COMMON_DELETE', false ) );
 					
 					$r['EDITLINK'] = $toolbar->getToolbar();
 					}
@@ -70,7 +70,7 @@ class j16000listPfeaturesCategories
 		$image = $jrtbar->makeImageValid("/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/AddItem.png");
 		$link = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem('editPfeatureCategory',$link,$text="Add",$submitOnClick=true,$submitTask="editPfeatureCategory",$image);
-		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,jr_gettext("_JRPORTAL_CANCEL",_JRPORTAL_CANCEL,false));
+		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,jr_gettext("_JRPORTAL_CANCEL",'_JRPORTAL_CANCEL',false));
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

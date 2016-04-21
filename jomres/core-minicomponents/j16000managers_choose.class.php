@@ -40,9 +40,9 @@ class j16000managers_choose
 		$img_manager              = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/User_Agent_Male.png";
 		$img_superpropertymanager = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/User_Ninja.png";
 		$output[ 'KEY' ]          = '
-		<img src = "' . $img_reception . '"  style="border:none;">' . jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION', _JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION,false ) . '
-		<img src = "' . $img_manager . '"  style="border:none;">' . jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN', _JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN,false ) . '
-		<img src = "' . $img_superpropertymanager . '"  style="border:none;">' . jr_gettext( '_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER', _JOMRES_COM_USERIS_SUPERPROPERTYMANAGER,false ) . '
+		<img src = "' . $img_reception . '"  style="border:none;">' . jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION', '_JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION',false ) . '
+		<img src = "' . $img_manager . '"  style="border:none;">' . jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN', '_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN',false ) . '
+		<img src = "' . $img_superpropertymanager . '"  style="border:none;">' . jr_gettext( '_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER', ''_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER,false ) . '
 		';
 
 		$img_output_guest                = '<img src = "' . $img_guest . '"  style="border:none;">';
@@ -53,21 +53,21 @@ class j16000managers_choose
 
 		$output[ 'AJAXURL' ]                     = JOMRES_SITEPAGE_URL_ADMIN_AJAX . "&task=";
 		$output[ 'ADMINLIVESITE' ]               = JOMRES_SITEPAGE_URL_ADMIN . "";
-		$output[ '_JOMRES_COM_MR_SHOWPROFILES' ] = jr_gettext( '_JOMRES_COM_MR_SHOWPROFILES', _JOMRES_COM_MR_SHOWPROFILES,false );
+		$output[ '_JOMRES_COM_MR_SHOWPROFILES' ] = jr_gettext( '_JOMRES_COM_MR_SHOWPROFILES', '_JOMRES_COM_MR_SHOWPROFILES',false );
 
-		$output[ '_JOMRES_MANAGER_CHOOSE_SEARCHTITLE' ]                = jr_gettext( '_JOMRES_MANAGER_CHOOSE_SEARCHTITLE', _JOMRES_MANAGER_CHOOSE_SEARCHTITLE,false );
-		$output[ '_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS' ]        = jr_gettext( '_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', _JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS,false );
-		$output[ '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE' ]              = jr_gettext( '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', _JOMRES_MANAGER_CHOOSE_EXISTINGTITLE,false );
-		$output[ '_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS' ]      = jr_gettext( '_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS', _JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS,false );
-		$output[ 'INSTRUCTIONS' ]                                      = jr_gettext( '_JOMRES_PROFILELIST_INSTRUCTIONS', _JOMRES_PROFILELIST_INSTRUCTIONS,false );
-		$output[ 'SUSPENSIONS' ]                                       = jr_gettext( '_JOMRES_SUSPENSIONS_MANAGERLIST_INFO', _JOMRES_SUSPENSIONS_MANAGERLIST_INFO,false );
-		$output[ '_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED' ] = jr_gettext( '_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', _JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED,false );
+		$output[ '_JOMRES_MANAGER_CHOOSE_SEARCHTITLE' ]                = jr_gettext( '_JOMRES_MANAGER_CHOOSE_SEARCHTITLE', '_JOMRES_MANAGER_CHOOSE_SEARCHTITLE',false );
+		$output[ '_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS' ]        = jr_gettext( '_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', '_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS',false );
+		$output[ '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE' ]              = jr_gettext( '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE',false );
+		$output[ '_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS' ]      = jr_gettext( '_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS', '_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS',false );
+		$output[ 'INSTRUCTIONS' ]                                      = jr_gettext( '_JOMRES_PROFILELIST_INSTRUCTIONS', '_JOMRES_PROFILELIST_INSTRUCTIONS',false );
+		$output[ 'SUSPENSIONS' ]                                       = jr_gettext( '_JOMRES_SUSPENSIONS_MANAGERLIST_INFO', '_JOMRES_SUSPENSIONS_MANAGERLIST_INFO',false );
+		$output[ '_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED' ] = jr_gettext( '_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', '_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED',false );
 
-		$output[ 'HGRANTLINK' ]          = jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER', _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER,false );
-		$output[ 'HACCESSLEVEL' ]        = jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL', _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL,false );
-		$output[ 'HUSERNAME' ]           = jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_USERNAME', _JOMRES_COM_MR_ASSIGNUSER_USERNAME,false );
+		$output[ 'HGRANTLINK' ]          = jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER', '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER',false );
+		$output[ 'HACCESSLEVEL' ]        = jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL', '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL',false );
+		$output[ 'HUSERNAME' ]           = jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_USERNAME', '_JOMRES_COM_MR_ASSIGNUSER_USERNAME',false );
 		$output[ 'HNUMBEROFPROPERTIES' ] = '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/propertyTypes.png">';
-		$output[ 'HSUSPENSION' ]         = jr_gettext( '_JOMRES_SUSPENSIONS_TITLE', _JOMRES_SUSPENSIONS_TITLE,false );
+		$output[ 'HSUSPENSION' ]         = jr_gettext( '_JOMRES_SUSPENSIONS_TITLE', '_JOMRES_SUSPENSIONS_TITLE',false );
 
 		$all_users = jomres_cmsspecific_getCMSUsers();
 
@@ -119,8 +119,8 @@ class j16000managers_choose
 						{
 						$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 						$toolbar->newToolbar();
-						$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=editProfile&id=' . $cms_userid ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
-						$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=grantMosUser&userid=' . $cms_userid . '&grantAct=n' ), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
+						$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=editProfile&id=' . $cms_userid ), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
+						$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=grantMosUser&userid=' . $cms_userid . '&grantAct=n' ), jr_gettext( 'COMMON_DELETE', 'COMMON_DELETE', false ) );
 						
 						$r['LINKTEXT'] = $toolbar->getToolbar();	
 						}

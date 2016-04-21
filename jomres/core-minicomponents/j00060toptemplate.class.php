@@ -62,7 +62,7 @@ class j00060toptemplate
 			{
 			if ( $thisJRUser->userIsManager )
 				{
-				$output[ 'HACTIVE_PROPERTY' ] = jr_gettext( '_JOMRES_HSTATUS_CURRENT', _JOMRES_HSTATUS_CURRENT ).": ";
+				$output[ 'HACTIVE_PROPERTY' ] = jr_gettext( '_JOMRES_HSTATUS_CURRENT', '_JOMRES_HSTATUS_CURRENT' ).": ";
 				
 				set_showtime( "menuitem_propertyname", $output[ 'PROPERTYNAME' ] );
 
@@ -98,10 +98,10 @@ class j00060toptemplate
 			$output[ 'LOGO_RELATIVE_URL' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jrlogo.png';
 
 		$output[ 'SANITY_CHECKS' ]  = get_showtime( "sanity_check_warnings" );
-		$output[ 'NEXT' ]           = jr_gettext( '_PN_NEXT', _PN_NEXT, false, false );
-		$output[ 'PREVIOUS' ]       = jr_gettext( '_PN_PREVIOUS', _PN_PREVIOUS, false, false );
+		$output[ 'NEXT' ]           = jr_gettext( '_PN_NEXT', '_PN_NEXT', false, false );
+		$output[ 'PREVIOUS' ]       = jr_gettext( '_PN_PREVIOUS', '_PN_PREVIOUS', false, false );
 
-		$output[ 'BACKLINK' ]       = '<a href="javascript:history.go(-1)">' . jr_gettext( '_JOMRES_COM_MR_BACK', _JOMRES_COM_MR_BACK ) . '</a>';
+		$output[ 'BACKLINK' ]       = '<a href="javascript:history.go(-1)">' . jr_gettext( '_JOMRES_COM_MR_BACK', '_JOMRES_COM_MR_BACK' ) . '</a>';
 		$output[ 'LIVESITE' ]       = get_showtime( 'live_site' );
 		if (defined('JOMRESDATEPICKERLANG'))
 			$output[ 'DATEPICKERLANG' ] = JOMRESDATEPICKERLANG;
@@ -175,9 +175,9 @@ class j00060toptemplate
 	function touch_template_language()
 		{
 		$output    = array ();
-		$output[ ] = jr_gettext( '_PN_NEXT', _PN_NEXT );
-		$output[ ] = jr_gettext( '_PN_PREVIOUS', _PN_PREVIOUS );
-		$output[ ] = jr_gettext( '_JOMRES_CONVERSION_DISCLAIMER', _JOMRES_CONVERSION_DISCLAIMER );
+		$output[ ] = jr_gettext( '_PN_NEXT', '_PN_NEXT' );
+		$output[ ] = jr_gettext( '_PN_PREVIOUS', '_PN_PREVIOUS' );
+		$output[ ] = jr_gettext( '_JOMRES_CONVERSION_DISCLAIMER', '_JOMRES_CONVERSION_DISCLAIMER' );
 
 		foreach ( $output as $o )
 			{

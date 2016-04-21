@@ -184,7 +184,7 @@ try
 		//language dropdown
 		$output[ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
 
-		$output[ 'BACKTOTOP' ] = jr_gettext( 'BACKTOTOP', BACKTOTOP, false );
+		$output[ 'BACKTOTOP' ] = jr_gettext( 'BACKTOTOP', 'BACKTOTOP', false );
 
 		if ( using_bootstrap() ) 
 			$output[ 'USING_BOOTSTRAP' ] = "true";

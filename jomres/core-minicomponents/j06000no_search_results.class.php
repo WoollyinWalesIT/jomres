@@ -17,7 +17,7 @@ class j06000no_search_results
 	{
 	function __construct()
 		{
-		$pageoutput[ ] = array ( "MESSAGE" => jr_gettext( '_JOMRES_FRONT_NORESULTS', _JOMRES_FRONT_NORESULTS, $editable = true, $islink = false ) );
+		$pageoutput[ ] = array ( "MESSAGE" => jr_gettext( '_JOMRES_FRONT_NORESULTS', '_JOMRES_FRONT_NORESULTS', $editable = true, $islink = false ) );
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		$tmpl->readTemplatesFromInput( 'no_search_results.html' );

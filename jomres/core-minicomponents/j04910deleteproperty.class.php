@@ -30,7 +30,7 @@ class j04910deleteproperty {
 			$is_jintour_property =get_showtime('is_jintour_property' );
 			if (in_array($property_uid,$thisJRUser->authorisedProperties) && !JOMRES_SINGLEPROPERTY)
 		 		{
-				$saveMessage=jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETED',_JOMRES_COM_MR_PROPERTY_DELETED,FALSE);
+				$saveMessage=jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETED','_JOMRES_COM_MR_PROPERTY_DELETED',FALSE);
 				emptyDir(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS);
 				rmdir(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS);
 				dropImage($property_uid,"property",0,false);
@@ -93,19 +93,22 @@ class j04910deleteproperty {
 				}
 			else
 				{
-				trigger_error (jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS',_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS,FALSE), E_USER_ERROR);
-				echo "<script> alert('".jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS',_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS,FALSE)."'); ; </script>\n";
+				trigger_error (jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS','_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS',FALSE), E_USER_ERROR);
+				echo "<script> alert('".jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS','_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS',FALSE)."'); ; </script>\n";
 				}
 			}
 		else
 			{
+			$query="SELECT propertys_uid FROM #__jomres_propertys";
+			$propertyList = doSelectSql($query);
 			$property_uid = (int)getDefaultProperty();
-			if ($property_uid > 0)
+			
+			if ($property_uid > 0 && count($propertyList) > 1) // Count the number of properties, ensure there's at least one property in the system. Do not remove!
 				{
 				?>
 				<script type="text/javascript">
 				<!--
-				var answer = confirm ("<?php  echo jr_gettext("_JOMRES_AREYOUSURE",_JOMRES_AREYOUSURE) ?>")
+				var answer = confirm ("<?php  echo jr_gettext("_JOMRES_AREYOUSURE",'_JOMRES_AREYOUSURE') ?>")
 				if (answer)
 					window.location="<?php  echo JOMRES_SITEPAGE_URL_NOSEF.'&task=deleteProperty&property_uid='.$property_uid.'&sure=1&no_html=1'; ?>"
 				else

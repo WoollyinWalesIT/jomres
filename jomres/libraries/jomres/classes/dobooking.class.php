@@ -1031,34 +1031,34 @@ class dobooking
 					switch ( $model[ 'model' ] )
 						{
 						case '1': // Per week
-							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERWEEK', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERWEEK ) );
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERWEEK', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERWEEK' ) );
 							break;
 						case '2': // per days
-							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYS', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYS ) );
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYS', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYS' ) );
 							break;
 						case '3': // per booking
-							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERBOOKING', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERBOOKING ) );
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERBOOKING', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERBOOKING' ) );
 							break;
 						case '4': // per person per booking
-							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING ) );
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING' ) );
 							break;
 						case '5': // per person per day
-							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY ) );
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY' ) );
 							break;
 						case '6': // per person per week
-							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK ) );
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK' ) );
 							break;
 						case '7': // per person per days min days
-							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS ) );
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS' ) );
 							break;
 						case '8': // per days per room
-							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM ) );
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM' ) );
 							break;
 						case '9': // per room
-							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING', _JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING ) );
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING', '_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING' ) );
 							break;
 						case '100': // commission
-							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_COMMISSION', _JOMRES_COMMISSION ) );
+							$model_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_COMMISSION', '_JOMRES_COMMISSION' ) );
 							break;
 						}
 						
@@ -1098,14 +1098,14 @@ class dobooking
 					
 					if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 						{
-						if ( $ex->chargabledaily == "1" ) $extra_deets[ 'PERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY, false, true ) );
+						if ( $ex->chargabledaily == "1" ) $extra_deets[ 'PERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', false, true ) );
 						else
 						$extra_deets[ 'PERNIGHT' ] = "";
 						}
 					else
 						{
 						if ( $ex->chargabledaily == "1" ) 
-							$extra_deets[ 'PERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_PERDAY', _JOMRES_COM_PERDAY, false, true ) );
+							$extra_deets[ 'PERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_PERDAY', '_JOMRES_COM_PERDAY', false, true ) );
 						else
 							$extra_deets[ 'PERNIGHT' ] = "";
 						}
@@ -1157,9 +1157,9 @@ class dobooking
 							jomresHTML::integerSelectList( 01, $ex->maxquantity, 1, "quantity" . $ex->uid, 'size="1" class="input-mini"  autocomplete="off" '.$extra_quantity_dropdown_disabled.' onchange="getResponse_extrasquantity(\'extrasquantity\',this.value,' . $ex->uid . ');"', $extraDefaultQuantity, "%02d", $use_bootstrap_radios = false );
 						}
 					
-					$extra_deets[ 'AJAXFORM_EXTRAS' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS', _JOMRES_AJAXFORM_EXTRAS ) );
-					$extra_deets[ 'AJAXFORM_EXTRAS_DESC' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_DESC', _JOMRES_AJAXFORM_EXTRAS_DESC, false ) );
-					$extra_deets[ 'EXTRAS_TOTAL' ]         = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_TOTAL', _JOMRES_AJAXFORM_EXTRAS_TOTAL ) );
+					$extra_deets[ 'AJAXFORM_EXTRAS' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS', '_JOMRES_AJAXFORM_EXTRAS' ) );
+					$extra_deets[ 'AJAXFORM_EXTRAS_DESC' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_DESC', '_JOMRES_AJAXFORM_EXTRAS_DESC', false ) );
+					$extra_deets[ 'EXTRAS_TOTAL' ]         = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_TOTAL', '_JOMRES_AJAXFORM_EXTRAS_TOTAL' ) );
 
 					$extra_details[ ] = $extra_deets;
 					}
@@ -1177,7 +1177,7 @@ class dobooking
 			}
 		else
 			{
-			$extras_template = $this->sanitiseOutput( jr_gettext( '_JOMRES_EXTRAS_NOEXTRAS', _JOMRES_EXTRAS_NOEXTRAS ) );;
+			$extras_template = $this->sanitiseOutput( jr_gettext( '_JOMRES_EXTRAS_NOEXTRAS', '_JOMRES_EXTRAS_NOEXTRAS' ) );;
 			}
 		
 		return array ( "core_extras" => $extras_template );
@@ -1223,87 +1223,87 @@ class dobooking
 
 		$output = array ();
 		if ( $mrConfig[ 'wholeday_booking' ] == "1" ) 
-			$output[ 'HARRIVALDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY ) );
+			$output[ 'HARRIVALDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY' ) );
 		else
-			$output[ 'HARRIVALDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL ) );
+			$output[ 'HARRIVALDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL' ) );
 		if ( $mrConfig[ 'showdepartureinput' ] == "1" )
 			{
-			if ( $mrConfig[ 'fixedPeriodBookings' ] == '1' ) $output[ 'HDEPARTUREDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_FIXEDPRIOD1', _JOMRES_FRONT_MR_FIXEDPRIOD1 ) );
+			if ( $mrConfig[ 'fixedPeriodBookings' ] == '1' ) $output[ 'HDEPARTUREDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_FIXEDPRIOD1', '_JOMRES_FRONT_MR_FIXEDPRIOD1' ) );
 			else
 				{
 				if ( $mrConfig[ 'wholeday_booking' ] == "1" ) 
-					$output[ 'HDEPARTUREDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY ) );
+					$output[ 'HDEPARTUREDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY' ) );
 				else
-					$output[ 'HDEPARTUREDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE ) );
+					$output[ 'HDEPARTUREDATE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE' ) );
 				}
 			}
 		else
 			$output[ 'HDEPARTUREDATE' ] = "&nbsp;";
 		
-		$output[ 'BOOKINGHEADER' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_QUICKRESDESC', _JOMRES_COM_MR_QUICKRESDESC ) );
-		$output[ 'ADDRESSHEADER' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS', _JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS ) );
-		$output[ 'HEXTITLE' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_BOOKING_EXTRAS_HELP', _JOMRES_FRONT_MR_BOOKING_EXTRAS_HELP ) );
+		$output[ 'BOOKINGHEADER' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_QUICKRESDESC', '_JOMRES_COM_MR_QUICKRESDESC' ) );
+		$output[ 'ADDRESSHEADER' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS', '_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS' ) );
+		$output[ 'HEXTITLE' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_BOOKING_EXTRAS_HELP', '_JOMRES_FRONT_MR_BOOKING_EXTRAS_HELP' ) );
 
-		$output[ 'REQUIREDTEXT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_JAVASCRIPT_', _JOMRES_JAVASCRIPT_ ) );
+		$output[ 'REQUIREDTEXT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_JAVASCRIPT_', '_JOMRES_JAVASCRIPT_' ) );
 		if ( $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == "0" )
 			{
 			if ( $mrConfig[ 'wholeday_booking' ] == "1" ) 
-				$output[ 'BILLING_ROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY ) );
+				$output[ 'BILLING_ROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY' ) );
 			else
-				$output[ 'BILLING_ROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_ROOM', _JOMRES_AJAXFORM_BILLING_ROOM ) );
+				$output[ 'BILLING_ROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_ROOM', '_JOMRES_AJAXFORM_BILLING_ROOM' ) );
 			}
-		$output[ 'BILLING_ROOMTOTAL' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', _JOMRES_AJAXFORM_BILLING_ROOM_TOTAL ) );
+		$output[ 'BILLING_ROOMTOTAL' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL' ) );
 		if ( $mrConfig[ 'showExtras' ] == "1" ) 
-			$output[ 'BILLING_EXTRAS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_EXTRAS', _JOMRES_AJAXFORM_BILLING_EXTRAS ) );
+			$output[ 'BILLING_EXTRAS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_EXTRAS', '_JOMRES_AJAXFORM_BILLING_EXTRAS' ) );
 		if ( get_showtime( 'include_room_booking_functionality' ) ) 
-			$output[ 'BILLING_TAX' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_TAX', _JOMRES_AJAXFORM_BILLING_TAX ) );
+			$output[ 'BILLING_TAX' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_TAX', '_JOMRES_AJAXFORM_BILLING_TAX' ) );
 
-		$output[ 'BILLING_DISCOUNT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_DISCOUNT', _JOMRES_AJAXFORM_BILLING_DISCOUNT ) );
+		$output[ 'BILLING_DISCOUNT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_DISCOUNT', '_JOMRES_AJAXFORM_BILLING_DISCOUNT' ) );
 
-		$output[ 'BILLING_TOTAL' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTAL', _JOMRES_AJAXFORM_BILLING_TOTAL ) );
-		if ( $mrConfig[ 'chargeDepositYesNo' ] == "1" ) $output[ 'DEPOSIT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', _JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED ) );
+		$output[ 'BILLING_TOTAL' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTAL', '_JOMRES_AJAXFORM_BILLING_TOTAL' ) );
+		if ( $mrConfig[ 'chargeDepositYesNo' ] == "1" ) $output[ 'DEPOSIT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED' ) );
 		//$output['CURRENCY_SYMBOL']		=$mrConfig['currency'];
-		$output[ 'BILLING_TOTALINPARTY' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', _JOMRES_AJAXFORM_BILLING_TOTALINPARTY ) );
-		$output[ 'AJAXFORM_PARTICULARS' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_PARTICULARS', _JOMRES_AJAXFORM_PARTICULARS ) );
-		$output[ 'AJAXFORM_PARTICULARS_DESC' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_PARTICULARS_DESC', _JOMRES_AJAXFORM_PARTICULARS_DESC ) );
-		$output[ 'AJAXFORM_AVAILABLE' ]        = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_AVAILABLE', _JOMRES_AJAXFORM_AVAILABLE ) );
+		$output[ 'BILLING_TOTALINPARTY' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTALINPARTY', '_JOMRES_AJAXFORM_BILLING_TOTALINPARTY' ) );
+		$output[ 'AJAXFORM_PARTICULARS' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_PARTICULARS', '_JOMRES_AJAXFORM_PARTICULARS' ) );
+		$output[ 'AJAXFORM_PARTICULARS_DESC' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_PARTICULARS_DESC', '_JOMRES_AJAXFORM_PARTICULARS_DESC' ) );
+		$output[ 'AJAXFORM_AVAILABLE' ]        = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_AVAILABLE', '_JOMRES_AJAXFORM_AVAILABLE' ) );
 		if ($thisJRUser->is_partner)
-			$output[ 'AJAXFORM_ADDRESS' ]          = $this->sanitiseOutput( jr_gettext( '_JOMRES_PARTNERS_GUEST_ADDRESS', _JOMRES_PARTNERS_GUEST_ADDRESS ) );
+			$output[ 'AJAXFORM_ADDRESS' ]          = $this->sanitiseOutput( jr_gettext( '_JOMRES_PARTNERS_GUEST_ADDRESS', '_JOMRES_PARTNERS_GUEST_ADDRESS' ) );
 		else
-			$output[ 'AJAXFORM_ADDRESS' ]          = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ADDRESS', _JOMRES_AJAXFORM_ADDRESS ) );
-		$output[ 'AJAXFORM_ADDRESS_DESC' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ADDRESS_DESC', _JOMRES_AJAXFORM_ADDRESS_DESC, false ) );
-		$output[ 'AJAXFORM_AVAILABLEROOMS' ]   = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_AVAILABLEROOMS', _JOMRES_AJAXFORM_AVAILABLEROOMS ) );
-		$output[ 'AJAXFORM_SELECTEDROOMS' ]    = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_SELECTEDROOMS', _JOMRES_AJAXFORM_SELECTEDROOMS, false ) );
+			$output[ 'AJAXFORM_ADDRESS' ]          = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ADDRESS', '_JOMRES_AJAXFORM_ADDRESS' ) );
+		$output[ 'AJAXFORM_ADDRESS_DESC' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ADDRESS_DESC', '_JOMRES_AJAXFORM_ADDRESS_DESC', false ) );
+		$output[ 'AJAXFORM_AVAILABLEROOMS' ]   = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_AVAILABLEROOMS', '_JOMRES_AJAXFORM_AVAILABLEROOMS' ) );
+		$output[ 'AJAXFORM_SELECTEDROOMS' ]    = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_SELECTEDROOMS', '_JOMRES_AJAXFORM_SELECTEDROOMS', false ) );
 
 		if ( $mrConfig[ 'singleRoomProperty' ] == "0" )
 			{
-			$output[ 'AJAXFORM_AVAILABLEROOMS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_AVAILABLEROOMS', _JOMRES_AJAXFORM_AVAILABLEROOMS ) );
-			$output[ 'AJAXFORM_SELECTEDROOMS' ]  = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_SELECTEDROOMS', _JOMRES_AJAXFORM_SELECTEDROOMS, false ) );
-			$output[ 'AJAXFORM_AVAILABLE_DESC' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_AVAILABLE_DESC', _JOMRES_AJAXFORM_AVAILABLE_DESC, false ) );
-			$output[ 'AJAXFORM_INSTRUCTIONS' ]   = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_INSTRUCTIONS', _JOMRES_AJAXFORM_INSTRUCTIONS ) );
+			$output[ 'AJAXFORM_AVAILABLEROOMS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_AVAILABLEROOMS', '_JOMRES_AJAXFORM_AVAILABLEROOMS' ) );
+			$output[ 'AJAXFORM_SELECTEDROOMS' ]  = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_SELECTEDROOMS', '_JOMRES_AJAXFORM_SELECTEDROOMS', false ) );
+			$output[ 'AJAXFORM_AVAILABLE_DESC' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_AVAILABLE_DESC', '_JOMRES_AJAXFORM_AVAILABLE_DESC', false ) );
+			$output[ 'AJAXFORM_INSTRUCTIONS' ]   = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_INSTRUCTIONS', '_JOMRES_AJAXFORM_INSTRUCTIONS' ) );
 			}
 		else
 			{
 			$output[ 'AJAXFORM_AVAILABLEROOMS' ] = "";
 			$output[ 'AJAXFORM_SELECTEDROOMS' ]  = "";
-			$output[ 'AJAXFORM_AVAILABLE_DESC' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_AVAILABLE_DESC_SRP', _JOMRES_AJAXFORM_AVAILABLE_DESC_SRP, false ) );
-			$output[ 'AJAXFORM_INSTRUCTIONS' ]   = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_INSTRUCTIONS_SRP', _JOMRES_AJAXFORM_INSTRUCTIONS_SRP ) );
+			$output[ 'AJAXFORM_AVAILABLE_DESC' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_AVAILABLE_DESC_SRP', '_JOMRES_AJAXFORM_AVAILABLE_DESC_SRP', false ) );
+			$output[ 'AJAXFORM_INSTRUCTIONS' ]   = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_INSTRUCTIONS_SRP', '_JOMRES_AJAXFORM_INSTRUCTIONS_SRP' ) );
 			}
 
-		$output[ 'ACCOMMODATION_TOTAL' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL', _JOMRES_AJAXFORM_ACCOMMODATION_TOTAL ) ) . $tax_output;
+		$output[ 'ACCOMMODATION_TOTAL' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL', '_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL' ) ) . $tax_output;
 
 		switch ( $this->cfg_booking_form_daily_weekly_monthly )
 		{
 			case "D":
-				if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $output[ 'ACCOMMODATION_NIGHTS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS_WHOLEDAY', _JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS_WHOLEDAY ) );
+				if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $output[ 'ACCOMMODATION_NIGHTS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS_WHOLEDAY', '_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS_WHOLEDAY' ) );
 				else
-				$output[ 'ACCOMMODATION_NIGHTS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS', _JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS ) );
+				$output[ 'ACCOMMODATION_NIGHTS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS', '_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS' ) );
 				break;
 			case "W":
-				$output[ 'ACCOMMODATION_NIGHTS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS', _JOMRES_AJAXFORM_ACCOMMODATION_WEEKS ) );
+				$output[ 'ACCOMMODATION_NIGHTS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS', '_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS' ) );
 				break;
 			case "M":
-				$output[ 'ACCOMMODATION_NIGHTS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS', _JOMRES_AJAXFORM_ACCOMMODATION_MONTHS ) );
+				$output[ 'ACCOMMODATION_NIGHTS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS', '_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS' ) );
 				break;
 		}
 
@@ -1318,15 +1318,15 @@ class dobooking
 			switch ( $this->cfg_booking_form_daily_weekly_monthly )
 			{
 				case "D":
-					if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $output[ 'ACCOMMODATION_PERROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY ) );
+					if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $output[ 'ACCOMMODATION_PERROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY' ) );
 					else
-					$output[ 'ACCOMMODATION_PERROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY ) );
+					$output[ 'ACCOMMODATION_PERROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY' ) );
 					break;
 				case "W":
-					$output[ 'ACCOMMODATION_PERROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY ) );
+					$output[ 'ACCOMMODATION_PERROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY' ) );
 					break;
 				case "M":
-					$output[ 'ACCOMMODATION_PERROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY ) );
+					$output[ 'ACCOMMODATION_PERROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY' ) );
 					break;
 			}
 			}
@@ -1336,20 +1336,20 @@ class dobooking
 			switch ( $this->cfg_booking_form_daily_weekly_monthly )
 			{
 				case "D":
-					if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $output[ 'ACCOMMODATION_PERROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PERPERSON', _JOMRES_BOOKINGFORM_PERPERSON ) ) . ' ' . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY ) );
+					if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $output[ 'ACCOMMODATION_PERROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PERPERSON', '_JOMRES_BOOKINGFORM_PERPERSON' ) ) . ' ' . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY' ) );
 					else
-					$output[ 'ACCOMMODATION_PERROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PERPERSON', _JOMRES_BOOKINGFORM_PERPERSON ) ) . ' ' . $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY ) );
+					$output[ 'ACCOMMODATION_PERROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PERPERSON', '_JOMRES_BOOKINGFORM_PERPERSON' ) ) . ' ' . $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY' ) );
 					break;
 				case "W":
-					$output[ 'ACCOMMODATION_PERROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PERPERSON', _JOMRES_BOOKINGFORM_PERPERSON ) ) . ' ' . $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY ) );
+					$output[ 'ACCOMMODATION_PERROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PERPERSON', '_JOMRES_BOOKINGFORM_PERPERSON' ) ) . ' ' . $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY' ) );
 					break;
 				case "M":
-					$output[ 'ACCOMMODATION_PERROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PERPERSON', _JOMRES_BOOKINGFORM_PERPERSON ) ) . ' ' . $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY ) );
+					$output[ 'ACCOMMODATION_PERROOM' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PERPERSON', '_JOMRES_BOOKINGFORM_PERPERSON' ) ) . ' ' . $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY' ) );
 					break;
 			}
 			}
 
-		$output[ 'PRICE_SUMMARY' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_PRICE_SUMMARY', _JOMRES_AJAXFORM_PRICE_SUMMARY ) );
+		$output[ 'PRICE_SUMMARY' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_PRICE_SUMMARY', '_JOMRES_AJAXFORM_PRICE_SUMMARY' ) );
 
 		$output[ 'ERRORBACKGROUNDCOLOUR' ]    = $mrConfig[ 'inputBoxErrorBackground' ];
 		$output[ 'INPUTOKTOBOOK_BACKGROUND' ] = $mrConfig[ 'inputBoxOktobookBackground' ];
@@ -1357,40 +1357,40 @@ class dobooking
 
 		if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 			{
-			if ( $mrConfig[ 'booking_form_daily_weekly_monthly' ] == "D" ) $output[ 'STAYDAYS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY ) );
-			elseif ( $mrConfig[ 'booking_form_daily_weekly_monthly' ] == "W" ) $output[ 'STAYDAYS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS', _JOMRES_AJAXFORM_ACCOMMODATION_WEEKS ) );
+			if ( $mrConfig[ 'booking_form_daily_weekly_monthly' ] == "D" ) $output[ 'STAYDAYS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY' ) );
+			elseif ( $mrConfig[ 'booking_form_daily_weekly_monthly' ] == "W" ) $output[ 'STAYDAYS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS', '_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS' ) );
 			else
-			$output[ 'STAYDAYS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS', _JOMRES_AJAXFORM_ACCOMMODATION_MONTHS ) );
+			$output[ 'STAYDAYS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS', '_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS' ) );
 			}
 		else
 			{
-			if ( $mrConfig[ 'booking_form_daily_weekly_monthly' ] == "D" ) $output[ 'STAYDAYS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS ) );
-			elseif ( $mrConfig[ 'booking_form_daily_weekly_monthly' ] == "W" ) $output[ 'STAYDAYS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS', _JOMRES_AJAXFORM_ACCOMMODATION_WEEKS ) );
+			if ( $mrConfig[ 'booking_form_daily_weekly_monthly' ] == "D" ) $output[ 'STAYDAYS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS', '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS' ) );
+			elseif ( $mrConfig[ 'booking_form_daily_weekly_monthly' ] == "W" ) $output[ 'STAYDAYS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS', '_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS' ) );
 			else
-			$output[ 'STAYDAYS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS', _JOMRES_AJAXFORM_ACCOMMODATION_MONTHS ) );
+			$output[ 'STAYDAYS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS', '_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS' ) );
 			}
 
 		if ($mrConfig[ 'requireApproval' ] == "1" && !$thisJRUser->userIsManager)
-			$output[ 'SUBMIT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKING_ENQUIRY_REVIEW', _JOMRES_BOOKING_ENQUIRY_REVIEW, false, false ) );
+			$output[ 'SUBMIT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKING_ENQUIRY_REVIEW', '_JOMRES_BOOKING_ENQUIRY_REVIEW', false, false ) );
 		else
-			$output[ 'SUBMIT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_REVIEWBOOKING', _JOMRES_FRONT_MR_REVIEWBOOKING, false, false ) );
+			$output[ 'SUBMIT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false ) );
 			
-		$output[ 'LOOKRIGHT' ]          = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_LOOKRIGHT', _JOMRES_BOOKINGFORM_LOOKRIGHT, false, false ) );
-		$output[ 'ROOM_TOTAL_INC_TAX' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', _JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX, false, false ) );
+		$output[ 'LOOKRIGHT' ]          = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_LOOKRIGHT', '_JOMRES_BOOKINGFORM_LOOKRIGHT', false, false ) );
+		$output[ 'ROOM_TOTAL_INC_TAX' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', '_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', false, false ) );
 		if ( $this->jrConfig[ 'show_tax_in_totals_summary' ] == "1" )
 			{
-			$output[ 'ROOM_TOTAL_EX_TAX' ]    = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', _JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX, false, false ) );
-			$output[ 'ROOM_TOTAL_ACCOM_TAX' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_TAX_ACCOM', _JOMRES_AJAXFORM_BILLING_TAX_ACCOM, false, false ) );
-			$output[ 'EXTRAS_TAX' ]           = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS', _JOMRES_AJAXFORM_BILLING_TAX_EXTRAS ) );
+			$output[ 'ROOM_TOTAL_EX_TAX' ]    = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', '_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', false, false ) );
+			$output[ 'ROOM_TOTAL_ACCOM_TAX' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_TAX_ACCOM', '_JOMRES_AJAXFORM_BILLING_TAX_ACCOM', false, false ) );
+			$output[ 'EXTRAS_TAX' ]           = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS', '_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS' ) );
 			}
-		$output[ '_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM' ]         = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM', _JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM, false, false ) );
-		$output[ '_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS', _JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS, false, false ) );
-		if ( $mrConfig[ 'chargeDepositYesNo' ] == "1" ) $output[ '_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE', _JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE, false, false ) );
-		$output[ '_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER', _JOMRES_BOOKINGORM_ROOMFEATURE_FILTER, false, false ) );
+		$output[ '_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM' ]         = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM', '_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM', false, false ) );
+		$output[ '_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS', '_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS', false, false ) );
+		if ( $mrConfig[ 'chargeDepositYesNo' ] == "1" ) $output[ '_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE', '_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE', false, false ) );
+		$output[ '_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER', '_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER', false, false ) );
 
-		if ( get_showtime( 'include_room_booking_functionality' ) && $this->cfg_singlePersonSuppliment == "1" ) $output[ 'SINGLE_PERSON_SUPPLIMENT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST', _JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST ) );
+		if ( get_showtime( 'include_room_booking_functionality' ) && $this->cfg_singlePersonSuppliment == "1" ) $output[ 'SINGLE_PERSON_SUPPLIMENT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST', '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST' ) );
 
-		$output[ 'ESTIMATEWARNING' ] = $this->sanitiseOutput( jr_gettext( '_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING', _JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING ) );
+		$output[ 'ESTIMATEWARNING' ] = $this->sanitiseOutput( jr_gettext( '_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING', '_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING' ) );
 
 		return $output;
 		}
@@ -1657,7 +1657,7 @@ class dobooking
 			$this->coupon_code    = $coupon_code;
 			$this->coupon_details = array ( 'amount' => $response[ 'amount' ], 'is_percentage' => $response[ 'is_percentage' ], 'coupon_id' => $response[ 'coupon_id' ], 'booking_valid_from' => $response[ 'booking_valid_from' ], 'booking_valid_to' => $response[ 'booking_valid_to' ] );
 
-			return $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_COUPON_COUPONSAVED', _JOMRES_AJAXFORM_COUPON_COUPONSAVED ) );
+			return $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_COUPON_COUPONSAVED', '_JOMRES_AJAXFORM_COUPON_COUPONSAVED' ) );
 			}
 		else
 			{
@@ -1666,7 +1666,7 @@ class dobooking
 			$this->coupon_details        = array ();
 			$this->coupon_discount_value = "";
 
-			return $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_COUPON_COUPONNOTFOUND', _JOMRES_AJAXFORM_COUPON_COUPONNOTFOUND ) );
+			return $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_COUPON_COUPONNOTFOUND', '_JOMRES_AJAXFORM_COUPON_COUPONNOTFOUND' ) );
 			}
 		}
 
@@ -3401,20 +3401,20 @@ class dobooking
 			}
 
 		//$guest_deets['COUNTRY']=createSimpleCountriesDropdown($guest_country);
-		$guest_deets[ 'HFIRSTNAME' ] = jr_gettext( '_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME', _JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME, false );
-		$guest_deets[ 'HSURNAME' ]   = jr_gettext( '_JOMRES_FRONT_MR_DISPGUEST_SURNAME', _JOMRES_FRONT_MR_DISPGUEST_SURNAME, false );
-		$guest_deets[ 'HHOUSENO' ]   = jr_gettext( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL', _JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL, false );
-		$guest_deets[ 'HSTREET' ]    = jr_gettext( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_STREET_EXPL', _JOMRES_FRONT_MR_EB_GUEST_JOMRES_STREET_EXPL, false );
-		$guest_deets[ 'HTOWN' ]      = jr_gettext( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_TOWN_EXPL', _JOMRES_FRONT_MR_EB_GUEST_JOMRES_TOWN_EXPL, false );
-		$guest_deets[ 'HPOSTCODE' ]  = jr_gettext( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL', _JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL, false );
-		$guest_deets[ 'HREGION' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION, false );
-		$guest_deets[ 'HCOUNTRY' ]   = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY, false );
-		$guest_deets[ 'HTEL' ]       = jr_gettext( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', _JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL, false );
-		$guest_deets[ 'HMOBILE' ]    = jr_gettext( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', _JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL, false );
+		$guest_deets[ 'HFIRSTNAME' ] = jr_gettext( '_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME', '_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME', false );
+		$guest_deets[ 'HSURNAME' ]   = jr_gettext( '_JOMRES_FRONT_MR_DISPGUEST_SURNAME', '_JOMRES_FRONT_MR_DISPGUEST_SURNAME', false );
+		$guest_deets[ 'HHOUSENO' ]   = jr_gettext( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL', false );
+		$guest_deets[ 'HSTREET' ]    = jr_gettext( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_STREET_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_STREET_EXPL', false );
+		$guest_deets[ 'HTOWN' ]      = jr_gettext( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_TOWN_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_TOWN_EXPL', false );
+		$guest_deets[ 'HPOSTCODE' ]  = jr_gettext( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL', false );
+		$guest_deets[ 'HREGION' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false );
+		$guest_deets[ 'HCOUNTRY' ]   = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false );
+		$guest_deets[ 'HTEL' ]       = jr_gettext( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', false );
+		$guest_deets[ 'HMOBILE' ]    = jr_gettext( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', false );
 		if ($thisJRUser->is_partner)
-			$guest_deets[ 'HEMAIL' ]     = jr_gettext( '_JOMRES_DEBUGGING_YOUREMAIL', _JOMRES_DEBUGGING_YOUREMAIL, false );
+			$guest_deets[ 'HEMAIL' ]     = jr_gettext( '_JOMRES_DEBUGGING_YOUREMAIL', '_JOMRES_DEBUGGING_YOUREMAIL', false );
 		else
-			$guest_deets[ 'HEMAIL' ]     = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL, false );
+			$guest_deets[ 'HEMAIL' ]     = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', false );
 
 		$guest_deets[ 'EXISTINGID' ] = $guests_uid;
 		$guest_deets[ 'FIRSTNAME' ]  = $guest_firstname;
@@ -3464,7 +3464,7 @@ class dobooking
 			{
 			$ec                = array ();
 			
-			$ec[ ] = jomresHTML::makeOption( '0',  jr_gettext( '_JOMRES_CLEAR_GUEST_DETAILS' , _JOMRES_CLEAR_GUEST_DETAILS , false, false ) );
+			$ec[ ] = jomresHTML::makeOption( '0',  jr_gettext( '_JOMRES_CLEAR_GUEST_DETAILS' , '_JOMRES_CLEAR_GUEST_DETAILS' , false, false ) );
 			foreach ( $existingCustomers as $customer )
 				{
 				$ec[ ] = jomresHTML::makeOption( $customer->guests_uid, stripslashes( $customer->surname ) . ", " . stripslashes( $customer->firstname ) );
@@ -4710,12 +4710,12 @@ class dobooking
 				$this->setErrorLog( "<b>generateRoomsList:: roomAndTariffArray is empty: </b>" );
 				if ( $this->cfg_singleRoomProperty == "0" )
 					{
-					if ( count( $roomAndTariffArray ) == 0 && count( $this->requestedRoom ) == 0 ) $return_output = '<div class="ui-state-highlight">' . jr_gettext( '_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', _JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE, false ) . "</div>";
+					if ( count( $roomAndTariffArray ) == 0 && count( $this->requestedRoom ) == 0 ) $return_output = '<div class="ui-state-highlight">' . jr_gettext( '_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', '_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', false ) . "</div>";
 					else
 					$return_output = "";
 					}
 				else
-				$return_output = '<div>' . jr_gettext( '_JOMRES_SRP_WEHAVENOVACANCIES', _JOMRES_SRP_WEHAVENOVACANCIES, false, false ) . '<font color="white">~</font><div></div id="availRooms" class="ui-state-error"></div>';
+				$return_output = '<div>' . jr_gettext( '_JOMRES_SRP_WEHAVENOVACANCIES', '_JOMRES_SRP_WEHAVENOVACANCIES', false, false ) . '<font color="white">~</font><div></div id="availRooms" class="ui-state-error"></div>';
 				}
 			}
 		$this->setErrorLog( "generateRoomsList::Returning rooms list" );
@@ -4811,23 +4811,23 @@ class dobooking
 			}
 
 
-		$nor             = jr_gettext( '_JOMRES_NUMBER_OF_ROOMS', _JOMRES_NUMBER_OF_ROOMS, false, false );
-		$gpr_text        = jr_gettext( '_JOMRES_MAX_GUESTS_PER_ROOM', _JOMRES_MAX_GUESTS_PER_ROOM, false, false );
-		$rmtype_text     = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK, false, false );
-		$tariffname_text = jr_gettext( '_JOMRES_FRONT_TARIFFS_TITLE', _JOMRES_FRONT_TARIFFS_TITLE, false, false );
+		$nor             = jr_gettext( '_JOMRES_NUMBER_OF_ROOMS', '_JOMRES_NUMBER_OF_ROOMS', false, false );
+		$gpr_text        = jr_gettext( '_JOMRES_MAX_GUESTS_PER_ROOM', '_JOMRES_MAX_GUESTS_PER_ROOM', false, false );
+		$rmtype_text     = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', false, false );
+		$tariffname_text = jr_gettext( '_JOMRES_FRONT_TARIFFS_TITLE', '_JOMRES_FRONT_TARIFFS_TITLE', false, false );
 		
 		if ( $this->cfg_tariffChargesStoredWeeklyYesNo != "1" )
 			{
 			if ( $mrConfig[ 'wholeday_booking' ] == "1" )
-				$rate_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY, false, false ) );
+				$rate_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', false, false ) );
 			else
-				$rate_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY, false, false ) );
+				$rate_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', false, false ) );
 			}
 		else
-			$rate_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK, false, false ) );
+			$rate_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', false, false ) );
 
 		$gpb_text = '';
-		if ( $this->cfg_bookingform_roomlist_showmaxpeople == "1" ) $gpb_text = jr_gettext( '_JOMRES_MAX_GUESTS_PER_BOOKING', _JOMRES_MAX_GUESTS_PER_BOOKING, false, false );
+		if ( $this->cfg_bookingform_roomlist_showmaxpeople == "1" ) $gpb_text = jr_gettext( '_JOMRES_MAX_GUESTS_PER_BOOKING', '_JOMRES_MAX_GUESTS_PER_BOOKING', false, false );
 
 		// New for 6.6.6
 		$pageoutput = array ();
@@ -4851,8 +4851,8 @@ class dobooking
 			$r[ 'TARIFF_NAME_TEXT' ] = $routput[ 'tariff_title' ];
 			$r[ 'RATE_TEXT' ]        = $routput[ 'room_price_inc_tax' ];
 			$r[ 'NUMBER_OF_ROOMS' ]  = $routput[ 'number_of_rooms' ];
-			$r[ 'NUMBER_OF_ROOMS_PRE' ] = jr_gettext( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', _JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE, false, false );
-			$r[ 'NUMBER_OF_ROOMS_POST' ] = jr_gettext( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', _JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST, false, false );
+			$r[ 'NUMBER_OF_ROOMS_PRE' ] = jr_gettext( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', false, false );
+			$r[ 'NUMBER_OF_ROOMS_POST' ] = jr_gettext( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', false, false );
 
 			$rows[ ] = $r;
 			}
@@ -4949,13 +4949,13 @@ class dobooking
 			{
 			$roomStuff[ 'ICON' ]         = 'icon-plus-2';
 			$roomStuff[ 'BUTTON_CLASS' ] = 'btn-success';
-			$caption                     = sanitiseOverlibOutput( jr_gettext( '_JOMRES_AJAXFORM_CLICKHERECAPTION', _JOMRES_AJAXFORM_CLICKHERECAPTION, false, false ) );
+			$caption                     = sanitiseOverlibOutput( jr_gettext( '_JOMRES_AJAXFORM_CLICKHERECAPTION', '_JOMRES_AJAXFORM_CLICKHERECAPTION', false, false ) );
 			}
 		else
 			{
 			$roomStuff[ 'ICON' ]         = 'icon-minus-2';
 			$roomStuff[ 'BUTTON_CLASS' ] = 'btn-danger';
-			$caption                     = sanitiseOverlibOutput( jr_gettext( '_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE', _JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE, false, false ) );
+			$caption                     = sanitiseOverlibOutput( jr_gettext( '_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE', '_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE', false, false ) );
 			}
 
 		if ( $this->tariffModel == "2" && $mrConfig[ 'tariffmode' ] == "2" )
@@ -5055,14 +5055,14 @@ class dobooking
 		else
 			$roomRow[ 'FEATURES' ] = '';
 
-		$roomRow[ 'HEADER_ROOMNUMBER' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER, false, false ) );
-		$roomRow[ 'HEADER_ROOMTYPE' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE, false, false ) );
-		$roomRow[ 'HEADER_ROOMNAME' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME, false, false ) );
-		$roomRow[ 'HEADER_ROOMFLOOR' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR, false, false ) );
-		$roomRow[ 'HEADER_MAXPEOPLE' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE, false, false ) );
-		$roomRow[ 'HEADER_FEATURES' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST', _JOMRES_COM_MR_EB_ROOM_FEATURES_LIST, false, false ) );
-		$roomRow[ 'HTITLE' ]   				= $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_TITLE', _JOMRES_FRONT_TARIFFS_TITLE, false, false ) );
-		$roomRow[ 'HMOREINFO' ]   			= $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION, false, false ) );
+		$roomRow[ 'HEADER_ROOMNUMBER' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', false, false ) );
+		$roomRow[ 'HEADER_ROOMTYPE' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', false, false ) );
+		$roomRow[ 'HEADER_ROOMNAME' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', false, false ) );
+		$roomRow[ 'HEADER_ROOMFLOOR' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', false, false ) );
+		$roomRow[ 'HEADER_MAXPEOPLE' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', false, false ) );
+		$roomRow[ 'HEADER_FEATURES' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST', '_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST', false, false ) );
+		$roomRow[ 'HTITLE' ]   				= $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_TITLE', '_JOMRES_FRONT_TARIFFS_TITLE', false, false ) );
+		$roomRow[ 'HMOREINFO' ]   			= $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', false, false ) );
 
 		$roomRow[ 'ROOMUID' ]=$roomUid;
 		$roomRow[ 'ROOMNUMBER' ] = $this->sanitiseOutput( stripslashes( $room[ 'room_number' ] ) );
@@ -5092,38 +5092,38 @@ class dobooking
 		$mrConfig = $this->mrConfig;
 		$tariff   = $this->allPropertyTariffs[ $tariffUid ];
 
-		$output[ 'HTITLE' ]    = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_TITLE', _JOMRES_FRONT_TARIFFS_TITLE, false, false ) );
-		$output[ 'HDESC' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_DESC', _JOMRES_FRONT_TARIFFS_DESC, false, false ) );
-		$output[ 'HSTARTS' ]   = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_STARTS', _JOMRES_FRONT_TARIFFS_STARTS, false, false ) );
-		$output[ 'HENDS' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_ENDS', _JOMRES_FRONT_TARIFFS_ENDS, false, false ) );
-		$output[ 'HMINDAYS' ]  = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MINDAYS', _JOMRES_FRONT_TARIFFS_MINDAYS, false, false ) );
-		$output[ 'HMAXDAYS' ]  = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXDAYS', _JOMRES_FRONT_TARIFFS_MAXDAYS, false, false ) );
-		$output[ 'HMINPEEPS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MINPEEPS', _JOMRES_FRONT_TARIFFS_MINPEEPS, false, false ) );
-		$output[ 'HMAXPEEPS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXPEEPS', _JOMRES_FRONT_TARIFFS_MAXPEEPS, false, false ) );
+		$output[ 'HTITLE' ]    = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_TITLE', '_JOMRES_FRONT_TARIFFS_TITLE', false, false ) );
+		$output[ 'HDESC' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_DESC', '_JOMRES_FRONT_TARIFFS_DESC', false, false ) );
+		$output[ 'HSTARTS' ]   = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_STARTS', '_JOMRES_FRONT_TARIFFS_STARTS', false, false ) );
+		$output[ 'HENDS' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_ENDS', '_JOMRES_FRONT_TARIFFS_ENDS', false, false ) );
+		$output[ 'HMINDAYS' ]  = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MINDAYS', '_JOMRES_FRONT_TARIFFS_MINDAYS', false, false ) );
+		$output[ 'HMAXDAYS' ]  = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXDAYS', '_JOMRES_FRONT_TARIFFS_MAXDAYS', false, false ) );
+		$output[ 'HMINPEEPS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MINPEEPS', '_JOMRES_FRONT_TARIFFS_MINPEEPS', false, false ) );
+		$output[ 'HMAXPEEPS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXPEEPS', '_JOMRES_FRONT_TARIFFS_MAXPEEPS', false, false ) );
 		
 		switch ( $this->cfg_booking_form_daily_weekly_monthly )
 			{
 			case "D":
 				if ( $mrConfig[ 'wholeday_booking' ] == "1" ) 
-					$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY, false, false ) );
+					$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', false, false ) );
 				else
 					{
 					if ( $tariff[ 'ignore_pppn' ] || $this->cfg_perPersonPerNight == "0" ) 
-						$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', _JOMRES_FRONT_TARIFFS_PN, false, false ) );
+						$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', '_JOMRES_FRONT_TARIFFS_PN', false, false ) );
 					else
-						$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', _JOMRES_FRONT_TARIFFS_PPPN, false, false ) );
+						$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', '_JOMRES_FRONT_TARIFFS_PPPN', false, false ) );
 					}
 				break;
 			case "W":
-				$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK, false, false ) );
+				$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', false, false ) );
 				break;
 			case "M":
-				$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY, false, false ) );
+				$output[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', false, false ) );
 				break;
 			}
 			
-		$output[ 'HROOM_DETAILS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_HROOM_DETAILS', _JOMRES_COM_MR_EB_HROOM_DETAILS, false, false ) );
-		$output[ 'HTARIFF_DETAILS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_HTARIFF_DETAILS', _JOMRES_COM_MR_EB_HTARIFF_DETAILS, false, false ) );
+		$output[ 'HROOM_DETAILS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_HROOM_DETAILS', '_JOMRES_COM_MR_EB_HROOM_DETAILS', false, false ) );
+		$output[ 'HTARIFF_DETAILS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_HTARIFF_DETAILS', '_JOMRES_COM_MR_EB_HTARIFF_DETAILS', false, false ) );
 		
 		if ( $this->cfg_tariffmode == "2" )
 			{
@@ -5154,20 +5154,20 @@ class dobooking
 		if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 			{
 			if ( $tariff[ 'ignore_pppn' ] || $this->cfg_perPersonPerNight == "0" ) 
-				$output[ 'ROOMRATEPERDAY' ] = output_price( ( $this->cfg_ratemultiplier * $tariff[ 'roomrateperday' ] ) ) . " " . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY, false, false ) );
+				$output[ 'ROOMRATEPERDAY' ] = output_price( ( $this->cfg_ratemultiplier * $tariff[ 'roomrateperday' ] ) ) . " " . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', false, false ) );
 			else
-				$output[ 'ROOMRATEPERDAY' ] = output_price( ( $this->cfg_ratemultiplier * $tariff[ 'roomrateperday' ] ) ) . " " . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY, false, false ) );
+				$output[ 'ROOMRATEPERDAY' ] = output_price( ( $this->cfg_ratemultiplier * $tariff[ 'roomrateperday' ] ) ) . " " . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', false, false ) );
 			}
 		else
 			{
 			if ( $tariff[ 'ignore_pppn' ] || $this->cfg_perPersonPerNight == "0" ) 
-				$output[ 'ROOMRATEPERDAY' ] = output_price( ( $this->cfg_ratemultiplier * $tariff[ 'roomrateperday' ] ) ) . " " . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', _JOMRES_FRONT_TARIFFS_PN, false, false ) );
+				$output[ 'ROOMRATEPERDAY' ] = output_price( ( $this->cfg_ratemultiplier * $tariff[ 'roomrateperday' ] ) ) . " " . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', '_JOMRES_FRONT_TARIFFS_PN', false, false ) );
 			else
-					$output[ 'ROOMRATEPERDAY' ] = output_price( ( $this->cfg_ratemultiplier * $tariff[ 'roomrateperday' ] ) ) . " " . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', _JOMRES_FRONT_TARIFFS_PPPN, false, false ) );
+					$output[ 'ROOMRATEPERDAY' ] = output_price( ( $this->cfg_ratemultiplier * $tariff[ 'roomrateperday' ] ) ) . " " . $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', '_JOMRES_FRONT_TARIFFS_PPPN', false, false ) );
 			}
 
 
-		if ( $tariff[ 'allow_we' ] == "0" ) $output[ 'NOTWEEKENDS' ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_NOTWEEKEND', _JOMRES_FRONT_TARIFFS_NOTWEEKEND, false, false );
+		if ( $tariff[ 'allow_we' ] == "0" ) $output[ 'NOTWEEKENDS' ] = jr_gettext( '_JOMRES_FRONT_TARIFFS_NOTWEEKEND', '_JOMRES_FRONT_TARIFFS_NOTWEEKEND', false, false );
 
 		return $output;
 		}
@@ -5265,51 +5265,51 @@ class dobooking
 		$return_output = "";
 		if ( $this->cfg_singleRoomProperty == "1" ) return $return_output;
 
-		$tariffStuff[ 'HTITLE' ]    = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_TITLE', _JOMRES_FRONT_TARIFFS_TITLE, false, false ) );
-		$tariffStuff[ 'HDESC' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_DESC', _JOMRES_FRONT_TARIFFS_DESC, false, false ) );
-		$tariffStuff[ 'HSTARTS' ]   = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_STARTS', _JOMRES_FRONT_TARIFFS_STARTS, false, false ) );
-		$tariffStuff[ 'HENDS' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_ENDS', _JOMRES_FRONT_TARIFFS_ENDS, false, false ) );
-		$tariffStuff[ 'HMINDAYS' ]  = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MINDAYS', _JOMRES_FRONT_TARIFFS_MINDAYS, false, false ) );
-		$tariffStuff[ 'HMAXDAYS' ]  = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXDAYS', _JOMRES_FRONT_TARIFFS_MAXDAYS, false, false ) );
-		$tariffStuff[ 'HMINPEEPS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MINPEEPS', _JOMRES_FRONT_TARIFFS_MINPEEPS, false, false ) );
-		$tariffStuff[ 'HMAXPEEPS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXPEEPS', _JOMRES_FRONT_TARIFFS_MAXPEEPS, false, false ) );
+		$tariffStuff[ 'HTITLE' ]    = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_TITLE', '_JOMRES_FRONT_TARIFFS_TITLE', false, false ) );
+		$tariffStuff[ 'HDESC' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_DESC', '_JOMRES_FRONT_TARIFFS_DESC', false, false ) );
+		$tariffStuff[ 'HSTARTS' ]   = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_STARTS', '_JOMRES_FRONT_TARIFFS_STARTS', false, false ) );
+		$tariffStuff[ 'HENDS' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_ENDS', '_JOMRES_FRONT_TARIFFS_ENDS', false, false ) );
+		$tariffStuff[ 'HMINDAYS' ]  = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MINDAYS', '_JOMRES_FRONT_TARIFFS_MINDAYS', false, false ) );
+		$tariffStuff[ 'HMAXDAYS' ]  = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXDAYS', '_JOMRES_FRONT_TARIFFS_MAXDAYS', false, false ) );
+		$tariffStuff[ 'HMINPEEPS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MINPEEPS', '_JOMRES_FRONT_TARIFFS_MINPEEPS', false, false ) );
+		$tariffStuff[ 'HMAXPEEPS' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_MAXPEEPS', '_JOMRES_FRONT_TARIFFS_MAXPEEPS', false, false ) );
 		if ( $this->cfg_tariffChargesStoredWeeklyYesNo != "1" )
 			{
-			if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $tariffStuff[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY, false, false ) );
+			if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $tariffStuff[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', false, false ) );
 			else
-			$tariffStuff[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY, false, false ) );
+			$tariffStuff[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', false, false ) );
 			}
 		else
-		$tariffStuff[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', _JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK, false, false ) );
+		$tariffStuff[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', false, false ) );
 		
-		$tariffStuff[ 'HRESOURCE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK', _JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK, false, false ) );
-		$tariffStuff[ 'HBOOKNOW' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', _JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY, false, false ) );
+		$tariffStuff[ 'HRESOURCE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK', false, false ) );
+		$tariffStuff[ 'HBOOKNOW' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', false, false ) );
 		
 		switch ( $this->cfg_booking_form_daily_weekly_monthly )
 		{
 			case "D":
-				if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $tariffStuff[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', _JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY, false, false ) );
+				if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $tariffStuff[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', false, false ) );
 				else
-				$tariffStuff[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY, false, false ) );
+				$tariffStuff[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY', false, false ) );
 				break;
 			case "W":
-				$tariffStuff[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY, false, false ) );
+				$tariffStuff[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', false, false ) );
 				break;
 			case "M":
-				$tariffStuff[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY, false, false ) );
+				$tariffStuff[ 'HRATEPERNIGHT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', false, false ) );
 				break;
 		}
 
-		$roomRow[ 'HEADER_ROOMNUMBER' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER, false, false ) );
-		$roomRow[ 'HEADER_ROOMTYPE' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE, false, false ) );
-		$roomRow[ 'HEADER_ROOMNAME' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME, false, false ) );
-		$roomRow[ 'HEADER_ROOMFLOOR' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR, false, false ) );
-		$roomRow[ 'HEADER_MAXPEOPLE' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE, false, false ) );
-		$roomRow[ 'HEADER_FEATURES' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST', _JOMRES_COM_MR_EB_ROOM_FEATURES_LIST, false, false ) );
+		$roomRow[ 'HEADER_ROOMNUMBER' ]     = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', false, false ) );
+		$roomRow[ 'HEADER_ROOMTYPE' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', false, false ) );
+		$roomRow[ 'HEADER_ROOMNAME' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', false, false ) );
+		$roomRow[ 'HEADER_ROOMFLOOR' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', false, false ) );
+		$roomRow[ 'HEADER_MAXPEOPLE' ]      = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', false, false ) );
+		$roomRow[ 'HEADER_FEATURES' ]       = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST', '_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST', false, false ) );
 
 		// New for 6.6.6
-		$roomRow[ 'HEADER_IMAGE' ]    = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE', _JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE, false, false ) );
-		$roomRow[ 'HEADER_ROOMTYPE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK, false, false ) );
+		$roomRow[ 'HEADER_IMAGE' ]    = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE', '_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE', false, false ) );
+		$roomRow[ 'HEADER_ROOMTYPE' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', false, false ) );
 
 		return array_merge( $roomRow, $tariffStuff );
 
@@ -5343,7 +5343,7 @@ class dobooking
 			$this->email_usage_check( $this->email );
 			if ( !$this->email_address_can_be_used )
 				{
-				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', _JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE, false, false ) ) );
+				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', false, false ) ) );
 				}
 			}
 
@@ -5351,16 +5351,16 @@ class dobooking
 			{
 			if ( $this->mininterval == 1000 ) // Probably a tariff wasn't found
 				{
-				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_SRP_WEHAVENOVACANCIES', _JOMRES_SRP_WEHAVENOVACANCIES, false, false ) ) );
+				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_SRP_WEHAVENOVACANCIES', '_JOMRES_SRP_WEHAVENOVACANCIES', false, false ) ) );
 				$this->resetPricingOutput = true;
 				}
 
 			if ( $this->stayDays < $this->mininterval && !$amend_contract && $this->mininterval < 1000 && count( $this->requestedRoom ) == 0 )
 				{
 				$this->resetPricingOutput = true;
-				if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1_WHOLEDAY', _JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1_WHOLEDAY, false, false ) ) . ' ' . $this->mininterval . ' ' . $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', _JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2, false ) . ' ' . ( $this->stayDays - 1 ) ) );
+				if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1_WHOLEDAY', '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1_WHOLEDAY', false, false ) ) . ' ' . $this->mininterval . ' ' . $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', false ) . ' ' . ( $this->stayDays - 1 ) ) );
 				else
-				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1', _JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1, false, false ) ) . ' ' . $this->mininterval . ' ' . $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', _JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2, false ) . ' ' . $this->stayDays ) );
+				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1', '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1', false, false ) ) . ' ' . $this->mininterval . ' ' . $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', '_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', false ) . ' ' . $this->stayDays ) );
 
 				if ( $this->jrConfig[ 'useJomresMessaging' ] == '1' )
 					{
@@ -5379,7 +5379,7 @@ class dobooking
 								{
 								if ( $val > 0 )
 									{
-									if ( $this->cfg_perPersonPerNight == "1" ) $pernight = jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', _JOMRES_FRONT_TARIFFS_PPPN, false );
+									if ( $this->cfg_perPersonPerNight == "1" ) $pernight = jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', '_JOMRES_FRONT_TARIFFS_PPPN', false );
 									else
 									$pernight = jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', _JOMRES_FRONT_TARIFFS_PN, false );
 									//echo ';jomresJquery.jGrowl(\'' . jr_gettext( '_JOMRES_STAYFORAMINIMUMOF', _JOMRES_STAYFORAMINIMUMOF, false ) . " " . $key . " " . jr_gettext( '_JOMRES_NIGHTSFOR', _JOMRES_NIGHTSFOR, false ) . " " . output_price( $val ) . $pernight . '\', { life: 20000 });';
@@ -5392,9 +5392,9 @@ class dobooking
 						{
 						foreach ( $this->simple_tariff_to_date_map as $tariff )
 							{
-							if ( $this->cfg_perPersonPerNight == "1" ) $pernight = jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', _JOMRES_FRONT_TARIFFS_PPPN, false );
+							if ( $this->cfg_perPersonPerNight == "1" ) $pernight = jr_gettext( '_JOMRES_FRONT_TARIFFS_PPPN', '_JOMRES_FRONT_TARIFFS_PPPN', false );
 							else
-							$pernight = jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', _JOMRES_FRONT_TARIFFS_PN, false );
+							$pernight = jr_gettext( '_JOMRES_FRONT_TARIFFS_PN', '_JOMRES_FRONT_TARIFFS_PN', false );
 							//echo ';jomresJquery.jGrowl(\'' . jr_gettext( '_JOMRES_STAYFORAMINIMUMOF', _JOMRES_STAYFORAMINIMUMOF, false ) . " " . $tariff[ 'mindays' ] . " " . jr_gettext( '_JOMRES_NIGHTSFOR', _JOMRES_NIGHTSFOR, false ) . " " . output_price( $tariff[ 'price' ] ) . " " . $pernight . '\', { life: 20000 });';
 							}
 						}
@@ -5404,19 +5404,19 @@ class dobooking
 			if ( count( $this->requestedRoom ) == 0 && $this->getSingleRoomPropertyStatus() )
 				{
 				$this->resetPricingOutput = true;
-				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_SRP_WEHAVENOVACANCIES', _JOMRES_SRP_WEHAVENOVACANCIES, false, false ) ) );
+				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_SRP_WEHAVENOVACANCIES', '_JOMRES_SRP_WEHAVENOVACANCIES', false, false ) ) );
 				}
 
 			if ( $this->number_of_free_rooms == 0 && ( $this->currentField == "arrivalDate" || $this->currentField == "departureDate" || $this->currentField == "guesttype") )
 				{
 				$this->resetPricingOutput = true;
-				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_SRP_WEHAVENOVACANCIES', _JOMRES_SRP_WEHAVENOVACANCIES, false, false ) ) );
+				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_SRP_WEHAVENOVACANCIES', '_JOMRES_SRP_WEHAVENOVACANCIES', false, false ) ) );
 				}
 
 			if ( !$this->checkArrivalDate( $this->arrivalDate ) )
 				{
 				$this->resetPricingOutput = true;
-				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID', _JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID, false, false ) ) );
+				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID', '_JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID', false, false ) ) );
 				}
 
 			// if (!$this->checkDepartureDate($this->departureDate) )
@@ -5435,43 +5435,43 @@ class dobooking
 				if ( !$this->checkGuestVariantIdAndQty( $r[ 'id' ], $r[ 'qty' ] ) )
 					{
 					$this->resetPricingOutput = true;
-					$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT', _JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT, false, false ) ) );
+					$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT', '_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT', false, false ) ) );
 					}
 				}
 			if ( $this->total_in_party < 1 && count( $numberOfGuestTypes ) > 0 )
 				{
 				$this->resetPricingOutput = true;
-				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS', _JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS, false, false ) ) );
+				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS', '_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS', false, false ) ) );
 				}
 			if ( count( $numberOfGuestTypes ) > 0 && !$this->tariffsCanHostTotalInParty() )
 				{
 				$this->resetPricingOutput = true;
-				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS', _JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS, false, false ) ) );
+				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS', '_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS', false, false ) ) );
 				}
 			if ( $this->total_in_party < count( $this->requestedRoom ) && count( $numberOfGuestTypes ) > 0 )
 				{
 				$this->resetPricingOutput = true;
-				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', _JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS, false, false ) ) );
+				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', '_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', false, false ) ) );
 				}
 			//if ($this->total_in_party > $this->beds_available && count($result)>0 && count($this->requestedRoom ) > 0)
 			if ( $this->total_in_party > $this->beds_available && count( $numberOfGuestTypes ) > 0 )
 				{
 				$this->resetPricingOutput = true;
-				if ( $this->cfg_singleRoomProperty != "1" ) $this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS', _JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS, false, false ) ) );
+				if ( $this->cfg_singleRoomProperty != "1" ) $this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS', '_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS', false, false ) ) );
 				else
-				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_SRP_WEHAVENOVACANCIES', _JOMRES_SRP_WEHAVENOVACANCIES, false, false ) ) );
+				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_SRP_WEHAVENOVACANCIES', '_JOMRES_SRP_WEHAVENOVACANCIES', false, false ) ) );
 				}
 			if ( count( $numberOfGuestTypes ) > 0 && count( $this->requestedRoom ) > 0 && !$this->selectedRoomsCanHostTotalInParty() )
 				{
 				$this->resetPricingOutput = true;
-				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', _JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS, false, false ) ) );
+				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', '_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', false, false ) ) );
 				}
 			if ( count( $this->requestedRoom ) < 1 )
 				{
 				$this->resetPricingOutput = true;
-				if ( $this->cfg_singleRoomProperty != "1" ) $this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', _JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM, false, false ) ) );
+				if ( $this->cfg_singleRoomProperty != "1" ) $this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', '_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', false, false ) ) );
 				else
-				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_TITLE', _JOMRES_COM_MR_QUICKRES_STEP4_TITLE, false, false ) ) );
+				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_TITLE', '_JOMRES_COM_MR_QUICKRES_STEP4_TITLE', false, false ) ) );
 				}
 			}
 
@@ -5492,7 +5492,7 @@ class dobooking
 				$quantity = $quantity + $this->extrasquantities[ $extra ];
 				//$this->setPopupMessage($quantity);
 				}
-			if ( $quantity == 0 ) $this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_SELECT', _JOMRES_AJAXFORM_EXTRAS_SELECT, false, false ) ) );
+			if ( $quantity == 0 ) $this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_SELECT', '_JOMRES_AJAXFORM_EXTRAS_SELECT', false, false ) ) );
 			}
 
 		$this->setPopupMessage( "" );
@@ -5891,13 +5891,13 @@ class dobooking
 
 			$this->discounts[] = array ( "type" => "Coupon", "roomtypeabbr" => "N/A", "discountfrom" => $old_room_total, "discountto" => $this->room_total );
 
-			$fb1      = jr_gettext( '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', _JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK, false, false );
-			$fb2      = jr_gettext( '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', _JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO, false, false );
+			$fb1      = jr_gettext( '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', false, false );
+			$fb2      = jr_gettext( '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', false, false );
 			$feedback = $fb1 . output_price( $old_room_total ) . $fb2 . output_price( $this->room_total );
 			$this->setGuestPopupMessage( $feedback );
 			$this->addBookingNote( "Coupon feedback", $feedback );
 
-			$note = jr_gettext( '_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE', _JOMRES_AJAXFORM_COUPON_BOOKINGNOTE, false ) . " " . $this->coupon_id . " / " . $this->coupon_code . " / " . jr_gettext( '_JRPORTAL_COUPONS_AMOUNT', _JRPORTAL_COUPONS_AMOUNT, false ) . " " . $this->coupon_discount_value . " / ";
+			$note = jr_gettext( '_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE', '_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE', false ) . " " . $this->coupon_id . " / " . $this->coupon_code . " / " . jr_gettext( '_JRPORTAL_COUPONS_AMOUNT', '_JRPORTAL_COUPONS_AMOUNT', false ) . " " . $this->coupon_discount_value . " / ";
 			foreach ( $this->coupon_details as $k => $v )
 				{
 				$note .= $k . " - " . $v . " :: ";
@@ -5921,8 +5921,8 @@ class dobooking
 			$this->setErrorLog( "makeNightlyRoomCharges:: Percentage to remove " . $percentage_to_remove );
 			$this->setErrorLog( "makeNightlyRoomCharges:: New room value " . $this->room_total );
 			$this->echo_populate_div( $this->sanitiseOutput( '; populateDiv("personal_discount","' . output_price( $percentage_to_remove ) . '")' ) );
-			$note = jr_gettext( '_JOMRES_PERSONAL_DISCOUNT', _JOMRES_PERSONAL_DISCOUNT, false, false ) . " " . output_price( $percentage_to_remove );
-			$this->addBookingNote( jr_gettext( '_JOMRES_PERSONAL_DISCOUNT', _JOMRES_PERSONAL_DISCOUNT, false ), $note );
+			$note = jr_gettext( '_JOMRES_PERSONAL_DISCOUNT', '_JOMRES_PERSONAL_DISCOUNT', false, false ) . " " . output_price( $percentage_to_remove );
+			$this->addBookingNote( jr_gettext( '_JOMRES_PERSONAL_DISCOUNT', '_JOMRES_PERSONAL_DISCOUNT', false ), $note );
 
 			$this->discounts[] = array ( "type" => "Personal", "roomtypeabbr" => "N/A", "discountfrom" => $old_room_total, "discountto" => $this->room_total );
 			}
@@ -5948,8 +5948,8 @@ class dobooking
 				$old_room_total = $this->room_total;
 				$percentage_to_remove = ( $this->room_total / 100 ) * (int) $res->discount;
 				$this->room_total     = $this->room_total - $percentage_to_remove;
-				$note                 = jr_gettext( '_JOMRES_PARTNER_DISCOUNT', _JOMRES_PARTNER_DISCOUNT, false, false ) . " " . output_price( $percentage_to_remove );
-				$this->addBookingNote( jr_gettext( '_JOMRES_PARTNER_DISCOUNT', _JOMRES_PARTNER_DISCOUNT, false ), $note );
+				$note                 = jr_gettext( '_JOMRES_PARTNER_DISCOUNT', '_JOMRES_PARTNER_DISCOUNT', false, false ) . " " . output_price( $percentage_to_remove );
+				$this->addBookingNote( jr_gettext( '_JOMRES_PARTNER_DISCOUNT', '_JOMRES_PARTNER_DISCOUNT', false ), $note );
 				$this->setGuestPopupMessage( $note );
 				
 				$this->discounts[] = array ( "type" => "Partner", "roomtypeabbr" => "N/A", "discountfrom" => $old_room_total, "discountto" => $this->room_total );
@@ -6181,13 +6181,13 @@ class dobooking
 
 							$this->discounts[] = array ( "type" => "Coupon", "roomtypeabbr" => "N/A", "discountfrom" => $old_total, "discountto" => $tmpTotal );
 
-							$fb1      = jr_gettext( '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', _JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK, false, false );
-							$fb2      = jr_gettext( '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', _JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO, false, false );
+							$fb1      = jr_gettext( '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', false, false );
+							$fb2      = jr_gettext( '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', false, false );
 							$feedback = $fb1 . output_price( $old_total ) . $fb2 . output_price( $tmpTotal );
 							$this->setGuestPopupMessage( $feedback );
 							$this->addBookingNote( "Coupon feedback", $feedback );
 
-							$note = jr_gettext( '_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE', _JOMRES_AJAXFORM_COUPON_BOOKINGNOTE, false ) . " " . $this->coupon_id . " / " . $this->coupon_code . " / " . jr_gettext( '_JRPORTAL_COUPONS_AMOUNT', _JRPORTAL_COUPONS_AMOUNT, false ) . " " . $this->coupon_discount_value . " / ";
+							$note = jr_gettext( '_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE', '_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE', false ) . " " . $this->coupon_id . " / " . $this->coupon_code . " / " . jr_gettext( '_JRPORTAL_COUPONS_AMOUNT', '_JRPORTAL_COUPONS_AMOUNT', false ) . " " . $this->coupon_discount_value . " / ";
 							foreach ( $this->coupon_details as $k => $v )
 								{
 								$note .= $k . " - " . $v . " :: ";
@@ -6450,9 +6450,9 @@ class dobooking
 		if ( count( $numberOfGuestTypes ) == 0 ) return '';
 		if ( $this->cfg_perPersonPerNight == "0" ) return '';
 
-		$text_room        = jr_gettext( '_JOMRES_ROOMALLOCATIONS_ROOM', _JOMRES_ROOMALLOCATIONS_ROOM, false, false );
-		$text_guests      = jr_gettext( '_JOMRES_ROOMALLOCATIONS_GUESTS', _JOMRES_ROOMALLOCATIONS_GUESTS, false, false );
-		$text_information = jr_gettext( '_JOMRES_ROOMALLOCATIONS_INFORMATION', _JOMRES_ROOMALLOCATIONS_INFORMATION, false, false );
+		$text_room        = jr_gettext( '_JOMRES_ROOMALLOCATIONS_ROOM', '_JOMRES_ROOMALLOCATIONS_ROOM', false, false );
+		$text_guests      = jr_gettext( '_JOMRES_ROOMALLOCATIONS_GUESTS', '_JOMRES_ROOMALLOCATIONS_GUESTS', false, false );
+		$text_information = jr_gettext( '_JOMRES_ROOMALLOCATIONS_INFORMATION', '_JOMRES_ROOMALLOCATIONS_INFORMATION', false, false );
 
 		if ( count( $this->room_allocations ) == 0 ) return " ";
 		$output = "<table>";
@@ -6697,19 +6697,19 @@ class dobooking
 					$roomrate_foroutput      = $roomrate + ( ( $roomrate / 100 ) * $this->accommodation_tax_rate );
 					$discountedate_foroutput = $d[ 'discountedRate' ] + ( ( $d[ 'discountedRate' ] / 100 ) * $this->accommodation_tax_rate );
 					//$discountedRate=$d['discountedRate'];
-					$discountOutput .= ' ' . $roomtype_abbr . jr_gettext( '_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', _JOMCOMP_WISEPRICE_HASBEENDISCOUNTED, false ) . output_price( $roomrate_foroutput ) . jr_gettext( '_JOMCOMP_WISEPRICE_TO', _JOMCOMP_WISEPRICE_TO, false ) . output_price( $discountedate_foroutput ) . ' <br/>';
+					$discountOutput .= ' ' . $roomtype_abbr . jr_gettext( '_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', '_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', false ) . output_price( $roomrate_foroutput ) . jr_gettext( '_JOMCOMP_WISEPRICE_TO', _JOMCOMP_WISEPRICE_TO, false ) . output_price( $discountedate_foroutput ) . ' <br/>';
 					$tmpBookingHandler->updateBookingField( "wisepricediscount", $discountOutput );
 					$this->discounts[ ] = array ( "type" => "MRP", "roomtypeabbr" => $roomtype_abbr, "discountfrom" =>  $roomrate, "discountto" => $d[ 'discountedRate' ] );
 					$tmpBookingHandler->saveBookingData();
 					}
 				else
-				$tmpBookingHandler->updateBookingField( "wisepricediscount", jr_gettext( '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', _JOMCOMP_WISEPRICE_NOTDISCOUNTED, false ) );
+				$tmpBookingHandler->updateBookingField( "wisepricediscount", jr_gettext( '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false ) );
 				}
 			$tmpBookingHandler->updateBookingField( "discounts", $this->discounts );
 			}
 		else
 			{
-			$tmpBookingHandler->updateBookingField( "wisepricediscount", jr_gettext( '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', _JOMCOMP_WISEPRICE_NOTDISCOUNTED, false ) );
+			$tmpBookingHandler->updateBookingField( "wisepricediscount", jr_gettext( '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false ) );
 			$this->echo_populate_div( '; populateDiv("discount","")' );
 			}
 		$this->echo_populate_div( '; populateDiv("discount","' . $discountOutput . '")' );
@@ -7052,7 +7052,7 @@ class dobooking
 				$this->room_total     = $this->room_total - $discount;
 				$this->total_discount = $discount;
 				$this->setErrorLog( "<b>calcLastMinuteDiscount:: Room total modified to: " . $this->room_total . "</b>" );
-				$disc_txt = jr_gettext( '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', _JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1, false ) . ' ' . jr_gettext( '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2', _JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2, false ) . ': ' .output_price( $discount );
+				$disc_txt = jr_gettext( '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', false ) . ' ' . jr_gettext( '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2', _JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2, false ) . ': ' .output_price( $discount );
 				$this->echo_populate_div( '; populateDiv("discount","' . $disc_txt . '")' );
 				$tmpBookingHandler->updateBookingField( "lastminutediscount", $disc_txt );
 				$tmpBookingHandler->updateBookingField( "booking_discounted", true );
@@ -7061,14 +7061,14 @@ class dobooking
 			else
 				{
 				$this->echo_populate_div( '; populateDiv("discount","&nbsp;")' );
-				$tmpBookingHandler->updateBookingField( "lastminutediscount", jr_gettext( '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', _JOMCOMP_WISEPRICE_NOTDISCOUNTED, false ) );
+				$tmpBookingHandler->updateBookingField( "lastminutediscount", jr_gettext( '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false ) );
 				}
 			$tmpBookingHandler->updateBookingField( "discounts", $this->discounts );
 			}
 		else
 			{
 			$this->echo_populate_div( '; populateDiv("discount","&nbsp;")' );
-			$tmpBookingHandler->updateBookingField( "lastminutediscount", jr_gettext( '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', _JOMCOMP_WISEPRICE_NOTDISCOUNTED, false ) );
+			$tmpBookingHandler->updateBookingField( "lastminutediscount", jr_gettext( '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false ) );
 			}
 		$tmpBookingHandler->saveBookingData();
 		}

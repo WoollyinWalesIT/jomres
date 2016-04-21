@@ -32,8 +32,8 @@ class j02222editguest
 			{
 
 			$status = 'status=no,toolbar=20,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=400,height=400,directories=no,location=no';
-			$link   = makePopupLink( JOMRES_SITEPAGE_URL_AJAX . "&task=editCreditcard&popup=1&guestUid=$guestUid", jr_gettext( '_JOMRES_MR_CREDITCARD_EDIT', _JOMRES_MR_CREDITCARD_EDIT, false ) );
-			//$link="<a href=\"javascript:void window.open('".$link."', 'win2', '".$status."');\" title=\"\">".jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT)."</a>";
+			$link   = makePopupLink( JOMRES_SITEPAGE_URL_AJAX . "&task=editCreditcard&popup=1&guestUid=$guestUid", jr_gettext( '_JOMRES_MR_CREDITCARD_EDIT', '_JOMRES_MR_CREDITCARD_EDIT', false ) );
+			//$link="<a href=\"javascript:void window.open('".$link."', 'win2', '".$status."');\" title=\"\">".jr_gettext('_JOMRES_MR_CREDITCARD_EDIT','_JOMRES_MR_CREDITCARD_EDIT')."</a>";
 			$output[ 'CREDITCARDLINK' ] = $link;
 			$query                      = "SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,tel_fax,ccard_no,ccard_issued,ccard_expiry,ccard_iss_no,ccard_name,email,discount,vat_number,vat_number_validated,vat_number_validation_response FROM #__jomres_guests WHERE guests_uid = '" . (int) $guestUid . "'  AND property_uid = '" . (int) $defaultProperty . "'";
 			$guestData                  = doSelectSql( $query );
@@ -95,20 +95,20 @@ class j02222editguest
 			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList( 0, 100, 1, 'discount', 'class="inputbox" size="1"', 0 );
 			}
 
-		$output[ 'HFIRSTNAME' ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME', _JOMRES_COM_MR_DISPGUEST_FIRSTNAME );
-		$output[ 'HSURNAME' ]   = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_SURNAME', _JOMRES_COM_MR_DISPGUEST_SURNAME );
-		$output[ 'HHOUSE' ]     = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_HOUSE', _JOMRES_COM_MR_DISPGUEST_HOUSE );
-		$output[ 'HSTREET' ]    = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_STREET', _JOMRES_COM_MR_DISPGUEST_STREET );
-		$output[ 'HTOWN' ]      = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_TOWN', _JOMRES_COM_MR_DISPGUEST_TOWN );
-		$output[ 'HREGION' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION );
-		$output[ 'HCOUNTRY' ]   = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY );
-		$output[ 'HPOSTCODE' ]  = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_POSTCODE', _JOMRES_COM_MR_DISPGUEST_POSTCODE );
-		$output[ 'HLANDLINE' ]  = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_LANDLINE', _JOMRES_COM_MR_DISPGUEST_LANDLINE );
-		$output[ 'HMOBILE' ]    = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_MOBILE', _JOMRES_COM_MR_DISPGUEST_MOBILE );
-		$output[ 'HFAX' ]       = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FAX', _JOMRES_COM_MR_DISPGUEST_FAX );
-		$output[ 'HEMAIL' ]     = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL );
-		$output[ 'HDISCOUNT' ]  = jr_gettext( '_JOMRES_AJAXFORM_BILLING_DISCOUNT', _JOMRES_AJAXFORM_BILLING_DISCOUNT );
-		$output[ '_JOMRES_COM_YOURBUSINESS_VATNO' ] = jr_gettext( '_JOMRES_COM_YOURBUSINESS_VATNO', _JOMRES_COM_YOURBUSINESS_VATNO, false );
+		$output[ 'HFIRSTNAME' ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME', '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME' );
+		$output[ 'HSURNAME' ]   = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_SURNAME', '_JOMRES_COM_MR_DISPGUEST_SURNAME' );
+		$output[ 'HHOUSE' ]     = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_HOUSE', '_JOMRES_COM_MR_DISPGUEST_HOUSE' );
+		$output[ 'HSTREET' ]    = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_STREET', '_JOMRES_COM_MR_DISPGUEST_STREET' );
+		$output[ 'HTOWN' ]      = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_TOWN', '_JOMRES_COM_MR_DISPGUEST_TOWN' );
+		$output[ 'HREGION' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION' );
+		$output[ 'HCOUNTRY' ]   = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' );
+		$output[ 'HPOSTCODE' ]  = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_POSTCODE', '_JOMRES_COM_MR_DISPGUEST_POSTCODE' );
+		$output[ 'HLANDLINE' ]  = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_LANDLINE', '_JOMRES_COM_MR_DISPGUEST_LANDLINE' );
+		$output[ 'HMOBILE' ]    = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_MOBILE', '_JOMRES_COM_MR_DISPGUEST_MOBILE' );
+		$output[ 'HFAX' ]       = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FAX', '_JOMRES_COM_MR_DISPGUEST_FAX' );
+		$output[ 'HEMAIL' ]     = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL' );
+		$output[ 'HDISCOUNT' ]  = jr_gettext( '_JOMRES_AJAXFORM_BILLING_DISCOUNT', '_JOMRES_AJAXFORM_BILLING_DISCOUNT' );
+		$output[ '_JOMRES_COM_YOURBUSINESS_VATNO' ] = jr_gettext( '_JOMRES_COM_YOURBUSINESS_VATNO', '_JOMRES_COM_YOURBUSINESS_VATNO', false );
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
@@ -119,7 +119,7 @@ class j02222editguest
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-		$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_EDITDETAILS', _JOMRES_COM_MR_DISPGUEST_EDITDETAILS );
+		$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_EDITDETAILS', '_JOMRES_COM_MR_DISPGUEST_EDITDETAILS' );
 		$output[ 'GUESTUID' ]  = $guestUid;
 
 		$pageoutput[ ] = $output;
@@ -135,20 +135,20 @@ class j02222editguest
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMRES_MR_CREDITCARD_EDIT', _JOMRES_MR_CREDITCARD_EDIT );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME', _JOMRES_COM_MR_DISPGUEST_FIRSTNAME );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_SURNAME', _JOMRES_COM_MR_DISPGUEST_SURNAME );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_HOUSE', _JOMRES_COM_MR_DISPGUEST_HOUSE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_STREET', _JOMRES_COM_MR_DISPGUEST_STREET );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_TOWN', _JOMRES_COM_MR_DISPGUEST_TOWN );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_POSTCODE', _JOMRES_COM_MR_DISPGUEST_POSTCODE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_LANDLINE', _JOMRES_COM_MR_DISPGUEST_LANDLINE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_MOBILE', _JOMRES_COM_MR_DISPGUEST_MOBILE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FAX', _JOMRES_COM_MR_DISPGUEST_FAX );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL );
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN', _JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN );
+		$output[ ] = jr_gettext( '_JOMRES_MR_CREDITCARD_EDIT', '_JOMRES_MR_CREDITCARD_EDIT' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME', '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_SURNAME', '_JOMRES_COM_MR_DISPGUEST_SURNAME' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_HOUSE', '_JOMRES_COM_MR_DISPGUEST_HOUSE' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_STREET', '_JOMRES_COM_MR_DISPGUEST_STREET' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_TOWN', '_JOMRES_COM_MR_DISPGUEST_TOWN' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_POSTCODE', '_JOMRES_COM_MR_DISPGUEST_POSTCODE' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_LANDLINE', '_JOMRES_COM_MR_DISPGUEST_LANDLINE' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_MOBILE', '_JOMRES_COM_MR_DISPGUEST_MOBILE' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FAX', '_JOMRES_COM_MR_DISPGUEST_FAX' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL' );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN', '_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN' );
 
 		foreach ( $output as $o )
 			{

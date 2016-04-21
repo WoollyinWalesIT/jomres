@@ -33,26 +33,26 @@ class j10501reviews
 		$lists 							= $componentArgs[ 'lists' ];
 		
 						
-		$configurationPanel->startPanel( jr_gettext( "_JOMRES_REVIEWS", _JOMRES_REVIEWS, false ) );
+		$configurationPanel->startPanel( jr_gettext( "_JOMRES_REVIEWS", '_JOMRES_REVIEWS', false ) );
 
-		$configurationPanel->setleft( jr_gettext( '_JOMRES_REVIEWS_ADMIN_CONTROL', _JOMRES_REVIEWS_ADMIN_CONTROL, false ) );
+		$configurationPanel->setleft( jr_gettext( '_JOMRES_REVIEWS_ADMIN_CONTROL', '_JOMRES_REVIEWS_ADMIN_CONTROL', false ) );
 		$configurationPanel->setmiddle( $lists[ 'use_reviews' ] );
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 		
-		$configurationPanel->setleft( jr_gettext( '_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH', _JOMRES_REVIEWS_ADMIN_AUTOPUBLISH, false ) );
+		$configurationPanel->setleft( jr_gettext( '_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH', '_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH', false ) );
 		$configurationPanel->setmiddle( $lists['autopublish_reviews'] );
-		$configurationPanel->setright( jr_gettext( '_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH_DESC', _JOMRES_REVIEWS_ADMIN_AUTOPUBLISH_DESC, false ) );
+		$configurationPanel->setright( jr_gettext( '_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH_DESC', '_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH_DESC', false ) );
 		$configurationPanel->insertSetting();
 		
-		$configurationPanel->setleft( jr_gettext( '_JOMRES_REVIEWS_ADMIN_TESTMODE', _JOMRES_REVIEWS_ADMIN_TESTMODE, false ) );
+		$configurationPanel->setleft( jr_gettext( '_JOMRES_REVIEWS_ADMIN_TESTMODE', '_JOMRES_REVIEWS_ADMIN_TESTMODE', false ) );
 		$configurationPanel->setmiddle( $lists[ 'reviews_test_mode' ] );
-		$configurationPanel->setright( jr_gettext( '_JOMRES_REVIEWS_ADMIN_TESTMODE_DESC', _JOMRES_REVIEWS_ADMIN_TESTMODE_DESC, false ) );
+		$configurationPanel->setright( jr_gettext( '_JOMRES_REVIEWS_ADMIN_TESTMODE_DESC', '_JOMRES_REVIEWS_ADMIN_TESTMODE_DESC', false ) );
 		$configurationPanel->insertSetting();
 		
-		$configurationPanel->setleft( jr_gettext( '_JOMRES_REVIEWS_ADMIN_GUESTSONLY', _JOMRES_REVIEWS_ADMIN_GUESTSONLY, false ) );
+		$configurationPanel->setleft( jr_gettext( '_JOMRES_REVIEWS_ADMIN_GUESTSONLY', '_JOMRES_REVIEWS_ADMIN_GUESTSONLY', false ) );
 		$configurationPanel->setmiddle( $lists['only_guests_can_review'] );
-		$configurationPanel->setright( jr_gettext( '_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC', _JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC, false ) );
+		$configurationPanel->setright( jr_gettext( '_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC', '_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC', false ) );
 		$configurationPanel->insertSetting();
 	
 		$configurationPanel->endPanel();

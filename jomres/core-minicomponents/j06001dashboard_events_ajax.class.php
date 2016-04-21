@@ -152,13 +152,13 @@ class j06001dashboard_events_ajax {
 				if ($guests[$c->guest_uid]!='')
 					$title=$guests[$c->guest_uid];
 				else
-					$title=jr_gettext( '_JOMRES_COM_AVLCAL_BLACK_KEY', _JOMRES_COM_AVLCAL_BLACK_KEY,false );
+					$title=jr_gettext( '_JOMRES_COM_AVLCAL_BLACK_KEY', '_JOMRES_COM_AVLCAL_BLACK_KEY',false );
 
 				$description='';
 				if ($guests[$c->guest_uid]!='')
-					$description.=jr_gettext( '_JOMRES_BOOKING_NUMBER', _JOMRES_BOOKING_NUMBER,false ) . ': ' . $c->tag . '<br/>';
-				$description.=jr_gettext( '_JOMRES_HFROM', _JOMRES_HFROM,false ).': '.outputDate($c->arrival) . '<br/>';
-				$description.=jr_gettext( '_JOMRES_HTO', _JOMRES_HTO,false ).': '.outputDate($c->departure);
+					$description.=jr_gettext( '_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER',false ) . ': ' . $c->tag . '<br/>';
+				$description.=jr_gettext( '_JOMRES_HFROM', '_JOMRES_HFROM',false ).': '.outputDate($c->arrival) . '<br/>';
+				$description.=jr_gettext( '_JOMRES_HTO', '_JOMRES_HTO',false ).': '.outputDate($c->departure);
 				
 				if ((int)$resource > 0)
 					$contracts[] = array ( 

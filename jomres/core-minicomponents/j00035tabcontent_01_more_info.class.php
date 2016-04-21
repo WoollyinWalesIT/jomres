@@ -33,7 +33,7 @@ class j00035tabcontent_01_more_info
 			return;
 		
 		//property more info
-		$output['HPROPERTY_MOREINFO'] = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION, false );
+		$output['HPROPERTY_MOREINFO'] = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', false );
 		$output['PROPERTY_MOREINFO'] = $MiniComponents->specificEvent( '06000', 'show_property_moreinfo',array('output_now'=>false, 'property_uid'=>$property_uid));
 
 		$anchor        = jomres_generate_tab_anchor( $output[ 'HPROPERTY_MOREINFO' ] );

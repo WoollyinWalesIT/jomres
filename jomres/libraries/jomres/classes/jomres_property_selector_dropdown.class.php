@@ -48,7 +48,7 @@ class jomres_property_selector_dropdown
 	function curPageURL()
 		{
 		$pageURL = 'http';
-		if ($_SERVER["HTTPS"] == "on")
+		if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on")
 			{
 			$pageURL .= "s";
 			}

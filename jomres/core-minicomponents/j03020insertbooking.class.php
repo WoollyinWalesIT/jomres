@@ -506,7 +506,7 @@ class j03020insertbooking
 						
 						if ( count( $rates_uids ) > 1 ) 
 							$rates_uids = array_unique( $rates_uids );
-						jomres_audit( $cartnumber, jr_gettext( '_JOMRES_MR_AUDIT_BOOKED_ROOM', _JOMRES_MR_AUDIT_BOOKED_ROOM, false ) );
+						jomres_audit( $cartnumber, jr_gettext( '_JOMRES_MR_AUDIT_BOOKED_ROOM', '_JOMRES_MR_AUDIT_BOOKED_ROOM', false ) );
 						}
 					}
 				else
@@ -563,7 +563,7 @@ class j03020insertbooking
 					$MiniComponents->triggerEvent( '03200', $componentArgs ); // post insert booking functionality
 					}
 
-				jomres_audit( "Cart number " . $cartnumber, jr_gettext( '_JOMRES_MR_AUDIT_BOOKED_ROOM', _JOMRES_MR_AUDIT_BOOKED_ROOM, false ) );
+				jomres_audit( "Cart number " . $cartnumber, jr_gettext( '_JOMRES_MR_AUDIT_BOOKED_ROOM', '_JOMRES_MR_AUDIT_BOOKED_ROOM', false ) );
 				$this->insertBookingEventValues[ 'cartnumber' ]          = $cartnumber;
 				$this->insertBookingEventValues[ 'tempBookingDataList' ] = $tempBookingDataList;
 				$this->insertBookingEventValues[ 'guestDetails' ]        = $guestDetails;
@@ -610,7 +610,7 @@ class j03020insertbooking
 				$query = "SELECT room_uid, room_classes_uid, room_number, room_name FROM #__jomres_rooms WHERE room_uid IN (".implode(',',$rmuids).") ";
 				$result = doSelectSql($query);
 				
-				$roomNote=jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM, false ).' ';
+				$roomNote=jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false ).' ';
 				foreach ($result as $r)
 					{
 					if ($r->room_number != '')

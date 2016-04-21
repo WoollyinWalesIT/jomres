@@ -64,7 +64,7 @@ class j16000editPfeature
 			}
 		if ( $clone ) $propertyFeatureUid = 0;
 
-		$output[ 'HPROPERTY_TYPE' ] = jr_gettext( '_JOMRES_FRONT_PTYPE', _JOMRES_FRONT_PTYPE,false );
+		$output[ 'HPROPERTY_TYPE' ] = jr_gettext( '_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE',false );
 		
 		$query     = "SELECT * FROM #__jomres_ptypes";
 		$ptypeList = doSelectSql( $query );
@@ -118,20 +118,20 @@ class j16000editPfeature
 				}
 			$d->close();
 			}
-		$output[ 'PROPERTYFEATUREINFO' ] = jr_gettext( '_JOMRES_A_GLOBALPFEATURES_INFO', _JOMRES_A_GLOBALPFEATURES_INFO,false );
+		$output[ 'PROPERTYFEATUREINFO' ] = jr_gettext( '_JOMRES_A_GLOBALPFEATURES_INFO', '_JOMRES_A_GLOBALPFEATURES_INFO',false );
 		$output[ 'PROPERTYFEATUREUID' ]  = $propertyFeatureUid;
 
 		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = JOMRES_SITEPAGE_URL_ADMIN;
 
-		$output[ 'HLINKTEXT' ]                                = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK,false );
-		$output[ 'HLINKTEXTCLONE' ]                           = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE', _JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE,false );
-		$output[ 'HFEATUREABBV' ]                             = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV,false );
-		$output[ 'HFEATUREDESCRIPTION' ]                      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC,false );
+		$output[ 'HLINKTEXT' ]                                = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK',false );
+		$output[ 'HLINKTEXTCLONE' ]                           = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE', '_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE',false );
+		$output[ 'HFEATUREABBV' ]                             = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV',false );
+		$output[ 'HFEATUREDESCRIPTION' ]                      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC',false );
 		$output[ 'MOSCONFIGLIVESITE' ]                        = get_showtime( 'live_site' );
-		$output[ 'PAGETITLE' ]                                = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK,false );
-		$output[ 'BACKLINK' ]                                 = '<a href="javascript:submitbutton(\'cpanel\')">' . jr_gettext( '_JOMRES_COM_MR_BACK', _JOMRES_COM_MR_BACK,false ) . '</a>';
-		$output[ '_JOMRES_PROPERTY_TYPE_ASSIGNMENT' ] = jr_gettext( '_JOMRES_PROPERTY_TYPE_ASSIGNMENT', _JOMRES_PROPERTY_TYPE_ASSIGNMENT,false );
-		$output[ 'HIMAGE' ] = jr_gettext( '_JOMRES_A_ICON', _JOMRES_A_ICON,false );
+		$output[ 'PAGETITLE' ]                                = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK',false );
+		$output[ 'BACKLINK' ]                                 = '<a href="javascript:submitbutton(\'cpanel\')">' . jr_gettext( '_JOMRES_COM_MR_BACK', '_JOMRES_COM_MR_BACK',false ) . '</a>';
+		$output[ '_JOMRES_PROPERTY_TYPE_ASSIGNMENT' ] = jr_gettext( '_JOMRES_PROPERTY_TYPE_ASSIGNMENT', '_JOMRES_PROPERTY_TYPE_ASSIGNMENT',false );
+		$output[ 'HIMAGE' ] = jr_gettext( '_JOMRES_A_ICON', '_JOMRES_A_ICON',false );
 
 		$options = array ();
 		$options[] = jomresHTML::makeOption( 0, '' );
@@ -140,7 +140,7 @@ class j16000editPfeature
 			$options[] = jomresHTML::makeOption( $k, $v );
 			}
 		$output[ 'CATEGORY' ] = jomresHTML::selectList( $options, 'cat_id', 'class="inputbox" size="1"', 'value', 'text', $cat_id );
-		$output[ 'HCATEGORY' ] = jr_gettext( '_JOMRES_HCATEGORY', _JOMRES_HCATEGORY );
+		$output[ 'HCATEGORY' ] = jr_gettext( '_JOMRES_HCATEGORY', '_JOMRES_HCATEGORY' );
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
@@ -148,7 +148,7 @@ class j16000editPfeature
 		$link   = JOMRES_SITEPAGE_URL_ADMIN;
 		
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeatures", '' );
-		$jrtb .= $jrtbar->customToolbarItem( 'savePfeature', $link, jr_gettext( '_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,false ), $submitOnClick = true, $submitTask = "savePfeature", $image );
+		$jrtb .= $jrtbar->customToolbarItem( 'savePfeature', $link, jr_gettext( '_JOMRES_COM_MR_SAVE','_JOMRES_COM_MR_SAVE',false ), $submitOnClick = true, $submitTask = "savePfeature", $image );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 

@@ -25,7 +25,7 @@ function dropImage( $defaultProperty = 0, $imageType = "", $itemUid = "", $redir
 	$itemUid   = getEscaped( jomresGetParam( $_REQUEST, 'itemUid', 0 ) );
 
 	$defaultProperty = getDefaultProperty();
-	$saveMessage     = jr_gettext( '_JOMRES_FILE_DELETED', _JOMRES_FILE_DELETED, false );
+	$saveMessage     = jr_gettext( '_JOMRES_FILE_DELETED', '_JOMRES_FILE_DELETED', false );
 	$fileFullPath    = "";
 	$returnTask      = "editProperty&propertyUid=" . $defaultProperty;
 

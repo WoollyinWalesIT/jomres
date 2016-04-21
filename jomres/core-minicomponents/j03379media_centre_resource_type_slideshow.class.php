@@ -26,7 +26,7 @@ class j03379media_centre_resource_type_slideshow
 			return;
 			}
 		
-		$this->ret_vals = array ( "resource_type" => "slideshow" , "resource_id_required" => false , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', _JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW, false ) );
+		$this->ret_vals = array ( "resource_type" => "slideshow" , "resource_id_required" => false , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', false ) );
 		
 		}
 

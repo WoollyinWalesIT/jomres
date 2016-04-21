@@ -35,11 +35,11 @@ class j00501tariff_editing_mode
 		if ( $mrConfig[ 'is_real_estate_listing' ] != 0 )
 			return;
 
-		$configurationPanel->startPanel( jr_gettext( "JOMRES_COM_A_TARIFFMODE", JOMRES_COM_A_TARIFFMODE, false ) );
+		$configurationPanel->startPanel( jr_gettext( "JOMRES_COM_A_TARIFFMODE", 'JOMRES_COM_A_TARIFFMODE', false ) );
 		
-		$configurationPanel->setleft( jr_gettext( "JOMRES_COM_A_TARIFFMODE", JOMRES_COM_A_TARIFFMODE, false ) );
+		$configurationPanel->setleft( jr_gettext( "JOMRES_COM_A_TARIFFMODE", 'JOMRES_COM_A_TARIFFMODE', false ) );
 		$configurationPanel->setmiddle( $tariffModeDD );
-		$configurationPanel->setright( jr_gettext( "JOMRES_COM_A_TARIFFMODE_DESC", JOMRES_COM_A_TARIFFMODE_DESC, false ) );
+		$configurationPanel->setright( jr_gettext( "JOMRES_COM_A_TARIFFMODE_DESC", 'JOMRES_COM_A_TARIFFMODE_DESC', false ) );
 		$configurationPanel->insertSetting();
 		
 		$configurationPanel->endPanel();

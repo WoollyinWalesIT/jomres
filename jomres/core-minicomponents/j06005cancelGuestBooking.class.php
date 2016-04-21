@@ -63,7 +63,7 @@ class j06005cancelGuestBooking
 
 				if ( dateDiff( $interval, date( "Y/m/d" ), $booking_arrival ) > (int) $mrConfig[ 'cancellation_threashold' ] )
 					{
-					$saveMessage = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLED', _JOMRES_COM_MR_EB_GUEST_CANCELLED, false );
+					$saveMessage = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLED', '_JOMRES_COM_MR_EB_GUEST_CANCELLED', false );
 
 					$query        = "SELECT tag FROM #__jomres_contracts WHERE contract_uid = '" . (int) $contract_uid . "' AND property_uid = '" . (int) $property_uid . "'";
 					$contractData = doSelectSql( $query );
@@ -229,9 +229,9 @@ class j06005cancelGuestBooking
 			$rClass_room_class_abbv      = $rClass->room_class_abbv;
 			$rClass_room_class_full_desc = $rClass->room_class_full_desc;
 			}
-		if ( $booking_deposit_paid ) $depositPaid = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES );
+		if ( $booking_deposit_paid ) $depositPaid = jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES' );
 		else
-		$depositPaid = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO );
+		$depositPaid = jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO' );
 
 		if ( !$bookedin )
 			{
@@ -246,80 +246,80 @@ class j06005cancelGuestBooking
 		jr_import( 'jomres_content_tabs' );
 		$contentPanel = new jomres_content_tabs();
 		$contentPanel->startTabs();
-		$contentPanel->startPanel( jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL', _JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL, false ) );
+		$contentPanel->startPanel( jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL', '_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL', false ) );
 		$contentPanel->setcontent( '<table>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL', _JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL', '_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL' ) . '</td>
 				<td>' . ucfirst( $guest_firstname ) . '</td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL', _JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL', '_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL' ) . '</td>
 				<td>' . ucfirst( $guest_surname ) . '</td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL' ) . '</td>
 				<td>' . outputDate( $booking_arrival ) . '</td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE' ) . '</td>
 				<td>' . outputDate( $booking_departure ) . '</td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ', _JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ', '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ' ) . '</td>
 				<td><b>' . ucfirst( $booking_special_reqs ) . '</b></td>
 			</tr>
 		</table>' );
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();
 
-		$contentPanel->startPanel( jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', _JOMRES_COM_MR_EDITBOOKING_TAB_GUEST, false ) );
+		$contentPanel->startPanel( jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', false ) );
 		$contentPanel->setcontent( '<table>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL' ) . '</td>
 				<td>' . ucfirst( $guest_house ) . '</td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL' ) . '</td>
 				<td>' . ucfirst( $guest_street ) . '</td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL' ) . '</td>
 				<td>' . ucfirst( $guest_town ) . '</td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION' ) . '</td>
 				<td>' . ucfirst( $guest_region ) . '</td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' ) . '</td>
 				<td>' . ucfirst( $guest_country ) . '</td>
 			</tr>
 
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL' ) . '</td>
 				<td>' . strtoupper( $guest_postcode ) . '</td>
 			</tr>
 			<tr>
-			<td>' . jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_LANDLINE_EXPL ) . '</td>
+			<td>' . jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_LANDLINE_EXPL' ) . '</td>
 				<td>' . $guest_tel_landline . '</td>
 			</tr>
 				<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL' ) . '</td>
 				<td>' . $guest_tel_mobile . '</td>
 			</tr>
 		</table>' );
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();
 
-		$contentPanel->startPanel( jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM', _JOMRES_COM_MR_EDITBOOKING_TAB_ROOM, false ) );
+		$contentPanel->startPanel( jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM', '_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM', false ) );
 		$contentPanel->setcontent( '<table>' );
-		if ( $roomBooking_black_booking == "1" ) $bookingType = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK', _JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK );
-		else if ( $roomBooking_reception_booking == "1" ) $bookingType = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION', _JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION );
+		if ( $roomBooking_black_booking == "1" ) $bookingType = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK', '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK' );
+		else if ( $roomBooking_reception_booking == "1" ) $bookingType = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION', '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION' );
 		else
-		$bookingType = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET', _JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET );
+		$bookingType = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET', '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET' );
 		$contentPanel->setcontent( '
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL', _JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL', '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL' ) . '</td>
 				<td>' . $bookingType . '</td>
 			</tr>
 			<tr>
@@ -330,19 +330,19 @@ class j06005cancelGuestBooking
 			{
 			$contentPanel->setcontent( '
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_NAME', _JOMRES_COM_MR_EB_ROOM_NAME ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_NAME', '_JOMRES_COM_MR_EB_ROOM_NAME' ) . '</td>
 				<td>' . $ri[ 'rInfo_name' ] . '</td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_NUMBER', _JOMRES_COM_MR_EB_ROOM_NUMBER ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_NUMBER', '_JOMRES_COM_MR_EB_ROOM_NUMBER' ) . '</td>
 				<td>' . $ri[ 'rInfo_number' ] . '</td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_FLOOR', _JOMRES_COM_MR_EB_ROOM_FLOOR ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_FLOOR','_JOMRES_COM_MR_EB_ROOM_FLOOR' ) . '</td>
 				<td>' . $ri[ 'rInfo_room_floor' ] . '</td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE', _JOMRES_COM_MR_EB_ROOM_MAXPEOPLE ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE', '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE' ) . '</td>
 				<td>' . $ri[ 'rInfo_max_people' ] . '</td>
 			</tr>
 			<tr>' );
@@ -350,7 +350,7 @@ class j06005cancelGuestBooking
 			$query = "SELECT room_class_abbv FROM #__jomres_room_classes WHERE room_classes_uid = '" . (int) $rit . "'";
 			$type  = doSelectSql( $query, 1 );
 			$contentPanel->setcontent( '
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', _JOMRES_COM_MR_EB_ROOM_CLASS_ABBV ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV' ) . '</td>
 				<td>' . $type . '</td>
 			</tr>
 			<tr>
@@ -363,34 +363,34 @@ class j06005cancelGuestBooking
 		$contentPanel->endPanel();
 
 		$otherServiceTotal = 0.00;
-		$contentPanel->startPanel( jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT', _JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT, false ) );
+		$contentPanel->startPanel( jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT', '_JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT', false ) );
 		$contentPanel->setcontent( '<table>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID', '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID' ) . '</td>
 				<td>' . $depositPaid . '</td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', _JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED' ) . '</td>
 				<td>' . output_price( $booking_deposit_required ) . '</td>
 			</tr>
 			<tr>
-			<td>' . jr_gettext( '_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL', _JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL ) . '</td>
+			<td>' . jr_gettext( '_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL', '_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL' ) . '</td>
 				<td>' . output_price( $booking_contract_total ) . '</td>
 			</tr>
 			<tr>
-			<td>' . jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS ) . '</td>
+			<td>' . jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS', '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS' ) . '</td>
 				<td>' . count( explode( ",", $booking_date_range_string ) ) . '</td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF', '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF' ) . '</td>
 				<td>' . $booking_deposit_ref . '</td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON', _JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON', '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON' ) . '</td>
 				<td>' . output_price( $single_person_suppliment ) . '</td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_FRONT_ROOMTAX', _JOMRES_COM_FRONT_ROOMTAX ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_FRONT_ROOMTAX', '_JOMRES_COM_FRONT_ROOMTAX' ) . '</td>
 				<td>' . output_price( $tax ) . '</td>
 			</tr>
 			<tr>
@@ -398,7 +398,7 @@ class j06005cancelGuestBooking
 				<td><hr></td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', _JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES' ) . '</td>
 				<td>&nbsp;</td>
 			</tr>' );
 		foreach ( $guesttypeOutput as $type )
@@ -412,7 +412,7 @@ class j06005cancelGuestBooking
 				<td><hr></td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EXTRA_TITLE', _JOMRES_COM_MR_EXTRA_TITLE ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EXTRA_TITLE', '_JOMRES_COM_MR_EXTRA_TITLE' ) . '</td>
 				<td>&nbsp;</td>
 			</tr>' );
 		$extraOptionsArray = explode( ",", $extraOptionsList );
@@ -431,7 +431,7 @@ class j06005cancelGuestBooking
 			}
 		$contentPanel->setcontent( '
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE', _JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE', '_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE' ) . '</td>
 				<td>' . output_price( $extrasOptionsValue ) . '</td>
 			</tr>
 			<tr>
@@ -439,7 +439,7 @@ class j06005cancelGuestBooking
 				<td><hr></td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_ADDSERVICE_BOOKINGDESC', _JOMRES_COM_ADDSERVICE_BOOKINGDESC ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_ADDSERVICE_BOOKINGDESC', '_JOMRES_COM_ADDSERVICE_BOOKINGDESC' ) . '</td>
 				<td>' );
 		if ( count( $extraBillingData ) > 0 )
 			{
@@ -459,7 +459,7 @@ class j06005cancelGuestBooking
 				<td><hr></td>
 			</tr>
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL', _JOMRES_COM_INVOICE_LETTER_GRANDTOTAL ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL', '_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL' ) . '</td>
 				<td>' . output_price( $otherServiceTotal + $booking_contract_total ) . '</td>
 			</tr>' );
 		if ( $booking_deposit_paid == "1" ) $remaindertopay = ( $otherServiceTotal + $booking_contract_total ) - $booking_deposit_required;
@@ -467,73 +467,13 @@ class j06005cancelGuestBooking
 		$remaindertopay = $otherServiceTotal + $booking_contract_total;
 		$contentPanel->setcontent( '
 			<tr>
-				<td>' . jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY', _JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY ) . '</td>
+				<td>' . jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY', '_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY' ) . '</td>
 				<td><b>' . output_price( $remaindertopay ) . '</b></td>
 			</tr>
 		</table>' );
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();
 		$contentPanel->endTabs();
-		}
-
-	function touch_template_language()
-		{
-		$output = array ();
-
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE );
-		$output[ ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTAL', _JOMRES_AJAXFORM_BILLING_TOTAL );
-		$output[ ] = jr_gettext( '_JOMRES_AJAXFORM_BILLING_EXTRAS', _JOMRES_AJAXFORM_BILLING_EXTRAS );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME', _JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME );
-		$output[ ] = jr_gettext( '_JOMRES_COM_A_CLICKFORMOREINFORMATION', _JOMRES_COM_A_CLICKFORMOREINFORMATION );
-		$output[ ] = jr_gettext( '_JOMCOMP_MYUSER_VIEWBOOKING', _JOMCOMP_MYUSER_VIEWBOOKING );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL', _JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL', _JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL', _JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ', _JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', _JOMRES_COM_MR_EDITBOOKING_TAB_GUEST );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_LANDLINE_EXPL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM', _JOMRES_COM_MR_EDITBOOKING_TAB_ROOM );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK', _JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION', _JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET', _JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL', _JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_NAME', _JOMRES_COM_MR_EB_ROOM_NAME );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_NUMBER', _JOMRES_COM_MR_EB_ROOM_NUMBER );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_FLOOR', _JOMRES_COM_MR_EB_ROOM_FLOOR );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_DISABLED', _JOMRES_COM_MR_EB_ROOM_DISABLED );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE', _JOMRES_COM_MR_EB_ROOM_MAXPEOPLE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', _JOMRES_COM_MR_EB_ROOM_CLASS_ABBV );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT', _JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', _JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL', _JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF );
-		$output[ ] = jr_gettext( '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON', _JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON );
-		$output[ ] = jr_gettext( '_JOMRES_COM_FRONT_ROOMTAX', _JOMRES_COM_FRONT_ROOMTAX );
-		$output[ ] = jr_gettext( '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', _JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EXTRA_TITLE', _JOMRES_COM_MR_EXTRA_TITLE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE', _JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_ADDSERVICE_BOOKINGDESC', _JOMRES_COM_ADDSERVICE_BOOKINGDESC );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY', _JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY );
-		$output[ ] = jr_gettext( '_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL', _JOMRES_COM_INVOICE_LETTER_GRANDTOTAL );
-
-		foreach ( $output as $o )
-			{
-			echo $o;
-			echo "<br/>";
-			}
 		}
 
 	/**

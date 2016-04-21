@@ -87,7 +87,7 @@ class jomres_performance_monitor
 				$usage    = $time[ 'usage' ];
 				$norm_mem = $this->get_normalised_memory_usage( $usage );
 
-				print "<b>" . $key . " - " . $ut . " sec.</b><br/>";
+				print "<b>" . $key . ": " . $ut . " sec.</b><br/>";
 				print "Memory usage " . $norm_mem . " ( " . $usage . " )<br/>";
 				if ( isset( $last_ut ) )
 					{
@@ -128,12 +128,12 @@ class jomres_performance_monitor
 
 	private function diff_microtime( $mt_old, $mt_new )
 		{
-		list( $old_usec, $old_sec ) = explode( ' ', $mt_old );
+		/* list( $old_usec, $old_sec ) = explode( ' ', $mt_old );
 		list( $new_usec, $new_sec ) = explode( ' ', $mt_new );
 		$old_mt = ( (float) $old_usec + (float) $old_sec );
-		$new_mt = ( (float) $new_usec + (float) $new_sec );
+		$new_mt = ( (float) $new_usec + (float) $new_sec ); */
 
-		return $new_mt - $old_mt;
+		return $mt_new - $mt_old;
 		}
 
 	private function get_normalised_memory_usage( $mem_usage )

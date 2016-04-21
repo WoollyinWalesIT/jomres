@@ -46,7 +46,7 @@ class j01050x_geocoder
 		$output[ 'DISABLE_UI' ] = '';
 		if ( isset( $componentArgs[ 'disable_ui' ] ) ) $output[ 'DISABLE_UI' ] = 'disableDefaultUI: true,';
 
-		$output[ 'LATLONG_DESC' ] = jr_gettext( '_JOMRES_LATLONG_DESC', _JOMRES_LATLONG_DESC, false );
+		$output[ 'LATLONG_DESC' ] = jr_gettext( '_JOMRES_LATLONG_DESC', '_JOMRES_LATLONG_DESC', false );
 		
 		if (isset($_REQUEST['map-identifier']))
 			$output[ 'RANDOM_IDENTIFIER' ] = filter_var($_REQUEST['map_identifier'],FILTER_SANITIZE_SPECIAL_CHARS);

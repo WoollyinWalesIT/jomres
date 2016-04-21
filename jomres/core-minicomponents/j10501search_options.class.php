@@ -38,36 +38,36 @@ class j10501search_options
 
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{
-			$configurationPanel->startPanel( jr_gettext( "JOMRES_COM_A_SEARCHOPTIONSTAB", JOMRES_COM_A_SEARCHOPTIONSTAB, false ) );
+			$configurationPanel->startPanel( jr_gettext( "JOMRES_COM_A_SEARCHOPTIONSTAB", 'JOMRES_COM_A_SEARCHOPTIONSTAB', false ) );
 	
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LAYOUTS_DEFAULT', _JOMRES_COM_LAYOUTS_DEFAULT, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LAYOUTS_DEFAULT', '_JOMRES_COM_LAYOUTS_DEFAULT', false ) );
 			$configurationPanel->setmiddle( $layouts );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS', _JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS', '_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS', false ) );
 			$configurationPanel->setmiddle( $guestnumbersearchDropdownList );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS_DESC', _JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS_DESC', '_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_PROPERTYLIST_FILTERS_SHOW', _JOMRES_PROPERTYLIST_FILTERS_SHOW, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_PROPERTYLIST_FILTERS_SHOW', '_JOMRES_PROPERTYLIST_FILTERS_SHOW', false ) );
 			$configurationPanel->setmiddle( $lists[ 'show_search_order' ] );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_PROPERTYLIST_FILTERS_DEFAULT', _JOMRES_PROPERTYLIST_FILTERS_DEFAULT, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_PROPERTYLIST_FILTERS_DEFAULT', '_JOMRES_PROPERTYLIST_FILTERS_DEFAULT', false ) );
 			$configurationPanel->setmiddle( $sortArrayDropdown );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_PROPERTYLIST_FILTERS_DEFAULT_DESC', _JOMRES_PROPERTYLIST_FILTERS_DEFAULT_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_PROPERTYLIST_FILTERS_DEFAULT_DESC', '_JOMRES_PROPERTYLIST_FILTERS_DEFAULT_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_LIVE_SCROLLING', _JOMRES_LIVE_SCROLLING, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_LIVE_SCROLLING', '_JOMRES_LIVE_SCROLLING', false ) );
 			$configurationPanel->setmiddle( $lists[ 'live_scrolling_enabled' ] );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_PROPERTYLISTDESC', _JOMRES_COM_PROPERTYLISTDESC, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_PROPERTYLISTDESC', '_JOMRES_COM_PROPERTYLISTDESC', false ) );
 			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_propertyListDescriptionLimit" value="' . $jrConfig[ 'propertyListDescriptionLimit' ] . '" />' );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_PROPERTYLISTDESC_DESC', _JOMRES_COM_PROPERTYLISTDESC_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_PROPERTYLISTDESC_DESC', '_JOMRES_COM_PROPERTYLISTDESC_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
 			/* $configurationPanel->setleft( jr_gettext( '_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT', _JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT, false ) );
@@ -75,14 +75,14 @@ class j10501search_options
 			$configurationPanel->setright( jr_gettext( '_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC', _JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC, false ) );
 			$configurationPanel->insertSetting(); */
 			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_A_LISTLIMIT', _JOMRES_COM_A_LISTLIMIT, false ) );
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_A_LISTLIMIT', '_JOMRES_COM_A_LISTLIMIT', false ) );
 			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_property_list_limit" value="' . $jrConfig[ 'property_list_limit' ] . '" />' );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_A_LISTLIMIT_DESC', _JOMRES_COM_A_LISTLIMIT_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_A_LISTLIMIT_DESC', '_JOMRES_COM_A_LISTLIMIT_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( 'GUEST_BUDGET_FEATURE_SWITCH', GUEST_BUDGET_FEATURE_SWITCH, false ) );
+			$configurationPanel->setleft( jr_gettext( 'GUEST_BUDGET_FEATURE_SWITCH', 'GUEST_BUDGET_FEATURE_SWITCH', false ) );
 			$configurationPanel->setmiddle( $lists[ 'use_budget_feature' ] );
-			$configurationPanel->setright( jr_gettext( 'GUEST_BUDGET_FEATURE_SWITCH_DESC', GUEST_BUDGET_FEATURE_SWITCH_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( 'GUEST_BUDGET_FEATURE_SWITCH_DESC', 'GUEST_BUDGET_FEATURE_SWITCH_DESC', false ) );
 			$configurationPanel->insertSetting();
 		
 			$configurationPanel->endPanel();

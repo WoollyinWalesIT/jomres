@@ -67,8 +67,8 @@ class j04200editproperty
 				$output[ 'PROPERTY_NAME' ] = $current_property_details->get_property_name( $propertyUid );
 
 				$yesno                         = array ();
-				$yesno[ ]                      = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false ) );
-				$yesno[ ]                      = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false ) );
+				$yesno[ ]                      = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false ) );
+				$yesno[ ]                      = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false ) );
 				$output[ 'SUPERIOR_DROPDOWN' ] = jomresHTML::selectList( $yesno, 'superior', 'class="inputbox" size="1"', 'value', 'text', $property->superior );
 				$output[ 'HSUPERIOR' ]         = jr_gettext( 'JOMRES_SUPERIOR', JOMRES_SUPERIOR );
 
@@ -109,7 +109,7 @@ class j04200editproperty
 				$property_airports            = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS', trim($property->property_airports ), false, false );
 				$property_othertransport      = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT', trim($property->property_othertransport ), false, false );
 				if ( $property->property_policies_disclaimers == "")
-					$property_policiesdisclaimers = jr_gettext( 'DEFAULT_TERMS_AND_CONDITIONS', DEFAULT_TERMS_AND_CONDITIONS, false); 
+					$property_policiesdisclaimers = jr_gettext( 'DEFAULT_TERMS_AND_CONDITIONS', 'DEFAULT_TERMS_AND_CONDITIONS', false); 
 				else
 					$property_policiesdisclaimers = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS', trim($property->property_policies_disclaimers ), false, false );
 
@@ -164,7 +164,7 @@ class j04200editproperty
 				$output[ 'PROPERTY_DRIVING_DIRECTIONS' ]   = editorAreaText( 'property_driving_directions', $defaultText, 'property_driving_directions', $width, $height, $col, $row );
 				$output[ 'PROPERTY_AIRPORTS' ]             = editorAreaText( 'property_airports', $defaultText, 'property_airports', $width, $height, $col, $row );
 				$output[ 'PROPERTY_OTHERTRANSPORT' ]       = editorAreaText( 'property_othertransport', $defaultText, 'property_othertransport', $width, $height, $col, $row );
-				$output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = editorAreaText( 'property_policies_disclaimers', jr_gettext( 'DEFAULT_TERMS_AND_CONDITIONS', DEFAULT_TERMS_AND_CONDITIONS, false), 'property_policies_disclaimers', $width, $height, $col, $row );
+				$output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = editorAreaText( 'property_policies_disclaimers', jr_gettext( 'DEFAULT_TERMS_AND_CONDITIONS', 'DEFAULT_TERMS_AND_CONDITIONS', false), 'property_policies_disclaimers', $width, $height, $col, $row );
 				}
 			else
 				{
@@ -174,7 +174,7 @@ class j04200editproperty
 				$output[ 'PROPERTY_DRIVING_DIRECTIONS' ]   = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_driving_directions">' . $defaultText . '</textarea>';
 				$output[ 'PROPERTY_AIRPORTS' ]             = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_airports">' . $defaultText . '</textarea>';
 				$output[ 'PROPERTY_OTHERTRANSPORT' ]       = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_othertransport">' . $defaultText . '</textarea>';
-				$output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_policies_disclaimers">' . jr_gettext( 'DEFAULT_TERMS_AND_CONDITIONS', DEFAULT_TERMS_AND_CONDITIONS, false) . '</textarea>';
+				$output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = '<textarea class="inputbox form-control" cols="40" rows="3" name="property_policies_disclaimers">' . jr_gettext( 'DEFAULT_TERMS_AND_CONDITIONS', 'DEFAULT_TERMS_AND_CONDITIONS', false) . '</textarea>';
 				}
 
 			$starsDropDownList = "<select class=\"inputbox\" name=\"stars\">";
@@ -185,7 +185,7 @@ class j04200editproperty
 			$starsDropDownList .= "</select>";
 			}
 
-		$output[ 'HPROPERTY_TYPE' ]         = jr_gettext( '_JOMRES_FRONT_PTYPE', _JOMRES_FRONT_PTYPE );
+		$output[ 'HPROPERTY_TYPE' ]         = jr_gettext( '_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE' );
 		$output[ 'PROPERTY_TYPE_DROPDOWN' ] = getPropertyTypeDropdown( $ptypeid );
 		$propertyFeaturesArray              = explode( ",", $propertyFeatures );
 
@@ -292,10 +292,10 @@ class j04200editproperty
 			include_once( JPATH_ADMINISTRATOR.DS.'components'.DS.'com_multisites'.DS.'helpers'.DS.'utils.php');
 			if ( class_exists( 'MultisitesHelperUtils') && method_exists( 'MultisitesHelperUtils', 'getComboSiteIDs')) 
 				{
-				$comboSiteIDs = MultisitesHelperUtils::getComboSiteIDs( $property_site_id, 'property_site_id', jr_gettext( '_JOMRES_MULTISITES_SELECT_A_SITE', _JOMRES_MULTISITES_SELECT_A_SITE, false, false ));
+				$comboSiteIDs = MultisitesHelperUtils::getComboSiteIDs( $property_site_id, 'property_site_id', jr_gettext( '_JOMRES_MULTISITES_SELECT_A_SITE', '_JOMRES_MULTISITES_SELECT_A_SITE', false, false ));
 				if( !empty( $comboSiteIDs))
 					{
-					$multisites['LABEL'] = jr_gettext("_JOMRES_MULTISITES_MULTISITES_LABEL" , _JOMRES_MULTISITES_MULTISITES_LABEL);
+					$multisites['LABEL'] = jr_gettext("_JOMRES_MULTISITES_MULTISITES_LABEL" , '_JOMRES_MULTISITES_MULTISITES_LABEL');
 					$multisites['MULTISITES_SELECT'] = $comboSiteIDs;
 					$multi = array($multisites);
 					}
@@ -303,39 +303,39 @@ class j04200editproperty
 			}
 		
 		
-		$output[ '_JOMRES_REQUIREDFIELDS' ]   = jr_gettext( '_JOMRES_REQUIREDFIELDS', _JOMRES_REQUIREDFIELDS );
+		$output[ '_JOMRES_REQUIREDFIELDS' ]   = jr_gettext( '_JOMRES_REQUIREDFIELDS', '_JOMRES_REQUIREDFIELDS' );
 		
 		$output[ 'APIKEY' ]     = $jrConfig[ 'google_maps_api_key' ];
-		$output[ 'HCOUNTRY' ]   = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY );
-		$output[ 'HREGION' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION );
-		$output[ 'HNAME' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME );
-		$output[ 'HSTREET' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET );
-		$output[ 'HTOWN' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN );
-		$output[ 'HPOSTCODE' ]  = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE );
-		$output[ 'HTELEPHONE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE );
-		$output[ 'HFAX' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX );
-		$output[ 'HEMAIL' ]     = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL );
-		$output[ 'HSTARS' ]     = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS );
-		$output[ 'HPRICE' ]     = jr_gettext( '_JOMRES_COM_MR_EXTRA_PRICE', _JOMRES_COM_MR_EXTRA_PRICE );
+		$output[ 'HCOUNTRY' ]   = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' );
+		$output[ 'HREGION' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION' );
+		$output[ 'HNAME' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME' );
+		$output[ 'HSTREET' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET' );
+		$output[ 'HTOWN' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN' );
+		$output[ 'HPOSTCODE' ]  = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE' );
+		$output[ 'HTELEPHONE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE' );
+		$output[ 'HFAX' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX' );
+		$output[ 'HEMAIL' ]     = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL' );
+		$output[ 'HSTARS' ]     = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS' );
+		$output[ 'HPRICE' ]     = jr_gettext( '_JOMRES_COM_MR_EXTRA_PRICE', '_JOMRES_COM_MR_EXTRA_PRICE' );
 
-		$output[ 'HFEATURES' ]            = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES );
-		$output[ 'HPROPDESCRIPTION' ]     = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION );
-		$output[ 'HCHECKINTIMES' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES );
-		$output[ 'HAREAACTIVITIES' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES );
-		$output[ 'HDRIVINGDIRECTIONS' ]   = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS );
-		$output[ 'HAIRPORTS' ]            = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS );
-		$output[ 'HOTHERTRANSPORT' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT );
-		$output[ 'HPOLICIESDISCLAIMERS' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS );
+		$output[ 'HFEATURES' ]            = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES' );
+		$output[ 'HPROPDESCRIPTION' ]     = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION' );
+		$output[ 'HCHECKINTIMES' ]        = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES' );
+		$output[ 'HAREAACTIVITIES' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES' );
+		$output[ 'HDRIVINGDIRECTIONS' ]   = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS' );
+		$output[ 'HAIRPORTS' ]            = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS' );
+		$output[ 'HOTHERTRANSPORT' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT' );
+		$output[ 'HPOLICIESDISCLAIMERS' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS' );
 
 		if ( $jrConfig[ 'limit_property_country' ] == "0" ) 
-			$change_country_warning[] = array ( 'CHANGECOUNTRYWARNING' => jr_gettext( '_JOMRES_EDITPROPERTY_SELECTCOUNTRY', _JOMRES_EDITPROPERTY_SELECTCOUNTRY, false ) );
-		$output[ 'SAVEBEFOREUPLOADWARNING' ] = jr_gettext( '_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD', _JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD, false );
-		$output[ '_JOMRES_METADESCRIPTION' ] = jr_gettext( '_JOMRES_METADESCRIPTION', _JOMRES_METADESCRIPTION, false );
-		$output[ '_JOMRES_METAKEYWORDS' ]    = jr_gettext( '_JOMRES_METAKEYWORDS', _JOMRES_METAKEYWORDS, false );
-		$output[ '_JOMRES_METATITLE' ]       = jr_gettext( '_JOMRES_METATITLE', _JOMRES_METATITLE, false );
-		$output[ 'LATLONG_DESC' ]            = jr_gettext( '_JOMRES_LATLONG_DESC', _JOMRES_LATLONG_DESC, false );
-		$output[ 'HLAT' ]            		 = jr_gettext( '_JOMRES_LAT', _JOMRES_LAT, false );
-		$output[ 'HLONG' ]            		 = jr_gettext( '_JOMRES_LONG', _JOMRES_LONG, false );
+			$change_country_warning[] = array ( 'CHANGECOUNTRYWARNING' => jr_gettext( '_JOMRES_EDITPROPERTY_SELECTCOUNTRY', '_JOMRES_EDITPROPERTY_SELECTCOUNTRY', false ) );
+		$output[ 'SAVEBEFOREUPLOADWARNING' ] = jr_gettext( '_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD', '_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD', false );
+		$output[ '_JOMRES_METADESCRIPTION' ] = jr_gettext( '_JOMRES_METADESCRIPTION', '_JOMRES_METADESCRIPTION', false );
+		$output[ '_JOMRES_METAKEYWORDS' ]    = jr_gettext( '_JOMRES_METAKEYWORDS', '_JOMRES_METAKEYWORDS', false );
+		$output[ '_JOMRES_METATITLE' ]       = jr_gettext( '_JOMRES_METATITLE', '_JOMRES_METATITLE', false );
+		$output[ 'LATLONG_DESC' ]            = jr_gettext( '_JOMRES_LATLONG_DESC', '_JOMRES_LATLONG_DESC', false );
+		$output[ 'HLAT' ]            		 = jr_gettext( '_JOMRES_LAT', '_JOMRES_LAT', false );
+		$output[ 'HLONG' ]            		 = jr_gettext( '_JOMRES_LONG', '_JOMRES_LONG', false );
 
 
 		$output[ 'MOSCONFIGLIVESITE' ] = get_showtime( 'live_site' );
@@ -353,10 +353,10 @@ class j04200editproperty
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 		$output[ 'CANCEL_URL' ] = jomresURL( JOMRES_SITEPAGE_URL."&task=dashboard" );
 
-		$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_PROPERTYS', _JOMRES_COM_MR_VRCT_TAB_PROPERTYS );
+		$output[ 'PAGETITLE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_PROPERTYS', '_JOMRES_COM_MR_VRCT_TAB_PROPERTYS' );
 		$output[ 'IMAGE' ]     = $propertyImageLocation;
 
-		$approval_warning[] = array('APPROVALWARNING' => jr_gettext( '_JOMRES_EDITPROPERTY_APPROVAL_WARNING', _JOMRES_EDITPROPERTY_APPROVAL_WARNING, false ));
+		$approval_warning[] = array('APPROVALWARNING' => jr_gettext( '_JOMRES_EDITPROPERTY_APPROVAL_WARNING', '_JOMRES_EDITPROPERTY_APPROVAL_WARNING', false ));
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
@@ -379,30 +379,30 @@ class j04200editproperty
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_PTYPE', _JOMRES_FRONT_PTYPE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS );
-		$output[ ] = jr_gettext( '_JOMRES_EDITPROPERTY_SELECTCOUNTRY', _JOMRES_EDITPROPERTY_SELECTCOUNTRY );
-		$output[ ] = jr_gettext( '_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD', _JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD );
-		$output[ ] = jr_gettext( '_JOMRES_UPLOAD_IMAGE', _JOMRES_UPLOAD_IMAGE );
-		$output[ ] = jr_gettext( '_JOMRES_EDITPROPERTY_CONNOTDELETE1', _JOMRES_EDITPROPERTY_CONNOTDELETE1 );
-		$output[ ] = jr_gettext( '_JOMRES_LATLONG_DESC', _JOMRES_LATLONG_DESC );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS' );
+		$output[ ] = jr_gettext( '_JOMRES_EDITPROPERTY_SELECTCOUNTRY', '_JOMRES_EDITPROPERTY_SELECTCOUNTRY' );
+		$output[ ] = jr_gettext( '_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD', '_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD' );
+		$output[ ] = jr_gettext( '_JOMRES_UPLOAD_IMAGE', '_JOMRES_UPLOAD_IMAGE' );
+		$output[ ] = jr_gettext( '_JOMRES_EDITPROPERTY_CONNOTDELETE1', '_JOMRES_EDITPROPERTY_CONNOTDELETE1' );
+		$output[ ] = jr_gettext( '_JOMRES_LATLONG_DESC', '_JOMRES_LATLONG_DESC' );
 
 		foreach ( $output as $o )
 			{

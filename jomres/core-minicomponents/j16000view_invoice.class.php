@@ -84,7 +84,7 @@ class j16000view_invoice
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb   = $jrtbar->startTable();
 			if ($invoice->status != 1 && $invoice->raised_date != '0000-00-00 00:00:00')
-				$jrtb .= $jrtbar->toolbarItem( 'save', jomresUrl(JOMRES_SITEPAGE_URL_ADMIN . '&task=mark_invoice_paid&id=' . $invoice->id), jr_gettext( '_JOMRES_INVOICE_MARKASPAID', _JOMRES_INVOICE_MARKASPAID, false) );
+				$jrtb .= $jrtbar->toolbarItem( 'save', jomresUrl(JOMRES_SITEPAGE_URL_ADMIN . '&task=mark_invoice_paid&id=' . $invoice->id), jr_gettext( '_JOMRES_INVOICE_MARKASPAID', '_JOMRES_INVOICE_MARKASPAID', false) );
 			//$jrtb .= $jrtbar->toolbarItem( 'printer', jomresUrl(JOMRES_SITEPAGE_URL_ADMIN . '&tmpl=' .get_showtime("tmplcomponent") . '&popup=1&task=view_invoice&id=' . $invoice->id), jr_gettext( '_JOMRES_COM_INVOICE_PRINT', _JOMRES_COM_INVOICE_PRINT, false) );
 			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_invoices" ), '' );
 			$jrtb .= $jrtbar->endTable();
@@ -93,33 +93,33 @@ class j16000view_invoice
 		else
 			$output[ 'JOMRESTOOLBAR' ] = '';
 		
-		$output[ 'HBUSINESSNAME' ] = jr_gettext( '_JOMRES_COM_YOURBUSINESS_NAME', _JOMRES_COM_YOURBUSINESS_NAME );
-		$output[ 'TITLE' ]      = jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', _JOMRES_COM_MR_EDITBOOKING_TAB_GUEST );
-		$output[ 'HFIRSTNAME' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME', _JOMRES_COM_MR_VIEWBOOKINGS_SURNAME );
-		$output[ 'HSURNAME' ]   = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_SURNAME', _JOMRES_COM_MR_DISPGUEST_SURNAME );
-		$output[ 'HVATNO' ]        = jr_gettext( '_JOMRES_COM_YOURBUSINESS_VATNO', _JOMRES_COM_YOURBUSINESS_VATNO );
-		$output[ 'HHOUSENO' ]      = jr_gettext( '_JOMRES_COM_YOURBUSINESSADDRESS', _JOMRES_COM_YOURBUSINESSADDRESS );
-		$output[ 'HSTREET' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET );
-		$output[ 'HTOWN' ]         = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN );
-		$output[ 'HREGION' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION );
-		$output[ 'HCOUNTRY' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY );
-		$output[ 'HPOSTCODE' ]     = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE );
-		$output[ 'HTELEPHONE' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE );
-		$output[ 'HEMAIL' ]        = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', _JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL );
-		$output[ 'HLANDLINE' ]  = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_LANDLINE', _JOMRES_COM_MR_DISPGUEST_LANDLINE );
-		$output[ 'HMOBILE' ]    = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_MOBILE', _JOMRES_COM_MR_DISPGUEST_MOBILE );
-		$output[ 'HFAX' ]       = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FAX', _JOMRES_COM_MR_DISPGUEST_FAX );
+		$output[ 'HBUSINESSNAME' ] = jr_gettext( '_JOMRES_COM_YOURBUSINESS_NAME', '_JOMRES_COM_YOURBUSINESS_NAME' );
+		$output[ 'TITLE' ]      = jr_gettext( '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST' );
+		$output[ 'HFIRSTNAME' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME', '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME' );
+		$output[ 'HSURNAME' ]   = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_SURNAME', '_JOMRES_COM_MR_DISPGUEST_SURNAME' );
+		$output[ 'HVATNO' ]        = jr_gettext( '_JOMRES_COM_YOURBUSINESS_VATNO', '_JOMRES_COM_YOURBUSINESS_VATNO' );
+		$output[ 'HHOUSENO' ]      = jr_gettext( '_JOMRES_COM_YOURBUSINESSADDRESS','_JOMRES_COM_YOURBUSINESSADDRESS' );
+		$output[ 'HSTREET' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET' );
+		$output[ 'HTOWN' ]         = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN' );
+		$output[ 'HREGION' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION' );
+		$output[ 'HCOUNTRY' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' );
+		$output[ 'HPOSTCODE' ]     = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE' );
+		$output[ 'HTELEPHONE' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE' );
+		$output[ 'HEMAIL' ]        = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL' );
+		$output[ 'HLANDLINE' ]  = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_LANDLINE', '_JOMRES_COM_MR_DISPGUEST_LANDLINE' );
+		$output[ 'HMOBILE' ]    = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_MOBILE', '_JOMRES_COM_MR_DISPGUEST_MOBILE' );
+		$output[ 'HFAX' ]       = jr_gettext( '_JOMRES_COM_MR_DISPGUEST_FAX', '_JOMRES_COM_MR_DISPGUEST_FAX' );
 
-		$output[ 'PAGETITLE' ]     = jr_gettext( '_JOMRES_COM_INVOICE_TITLE', _JOMRES_COM_INVOICE_TITLE );
-		$output[ 'HINVOICE_TRANSACTIONS' ] = jr_gettext( '_INVOICE_TRANSACTIONS', _INVOICE_TRANSACTIONS );
-		$output[ 'HUSER' ]         = jr_gettext( '_JRPORTAL_INVOICES_USER', _JRPORTAL_INVOICES_USER );
-		$output[ 'HSTATUS' ]       = jr_gettext( '_JRPORTAL_INVOICES_STATUS', _JRPORTAL_INVOICES_STATUS );
-		$output[ 'HRAISED' ]       = jr_gettext( '_JRPORTAL_INVOICES_RAISED', _JRPORTAL_INVOICES_RAISED );
-		$output[ 'HDUE' ]          = jr_gettext( '_JRPORTAL_INVOICES_DUE', _JRPORTAL_INVOICES_DUE );
-		$output[ 'HSUBSCRIPTION' ] = jr_gettext( '_JRPORTAL_INVOICES_SUBSCRIPTION', _JRPORTAL_INVOICES_SUBSCRIPTION );
-		$output[ 'HINITTOTAL' ]    = jr_gettext( '_JRPORTAL_INVOICES_INITTOTAL', _JRPORTAL_INVOICES_INITTOTAL );
-		$output[ 'HCURRENCYCODE' ] = jr_gettext( '_JRPORTAL_INVOICES_CURRENCYCODE', _JRPORTAL_INVOICES_CURRENCYCODE );
-		$output[ 'HINVOICENO' ]    = jr_gettext( '_JOMRES_INVOICE_NUMBER', _JOMRES_INVOICE_NUMBER );
+		$output[ 'PAGETITLE' ]     = jr_gettext( '_JOMRES_COM_INVOICE_TITLE', '_JOMRES_COM_INVOICE_TITLE' );
+		$output[ 'HINVOICE_TRANSACTIONS' ] = jr_gettext( '_INVOICE_TRANSACTIONS', '_INVOICE_TRANSACTIONS' );
+		$output[ 'HUSER' ]         = jr_gettext( '_JRPORTAL_INVOICES_USER', '_JRPORTAL_INVOICES_USER' );
+		$output[ 'HSTATUS' ]       = jr_gettext( '_JRPORTAL_INVOICES_STATUS', '_JRPORTAL_INVOICES_STATUS' );
+		$output[ 'HRAISED' ]       = jr_gettext( '_JRPORTAL_INVOICES_RAISED', '_JRPORTAL_INVOICES_RAISED' );
+		$output[ 'HDUE' ]          = jr_gettext( '_JRPORTAL_INVOICES_DUE', '_JRPORTAL_INVOICES_DUE' );
+		$output[ 'HSUBSCRIPTION' ] = jr_gettext( '_JRPORTAL_INVOICES_SUBSCRIPTION', '_JRPORTAL_INVOICES_SUBSCRIPTION' );
+		$output[ 'HINITTOTAL' ]    = jr_gettext( '_JRPORTAL_INVOICES_INITTOTAL', '_JRPORTAL_INVOICES_INITTOTAL' );
+		$output[ 'HCURRENCYCODE' ] = jr_gettext( '_JRPORTAL_INVOICES_CURRENCYCODE', '_JRPORTAL_INVOICES_CURRENCYCODE' );
+		$output[ 'HINVOICENO' ]    = jr_gettext( '_JOMRES_INVOICE_NUMBER', '_JOMRES_INVOICE_NUMBER' );
 
 		$output[ 'ID' ] = $invoice->id;
 
@@ -130,19 +130,19 @@ class j16000view_invoice
 		// 3 pending
 		switch ($invoice->status) {
 			case 0 :
-				$output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_UNPAID', _JRPORTAL_INVOICES_STATUS_UNPAID );
+				$output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_UNPAID', '_JRPORTAL_INVOICES_STATUS_UNPAID');
 				break;
 			case 1 : 
-				$output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PAID', _JRPORTAL_INVOICES_STATUS_PAID );
+				$output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PAID', '_JRPORTAL_INVOICES_STATUS_PAID' );
 				break;
 			case 2 : 
-				$output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_CANCELLED', _JRPORTAL_INVOICES_STATUS_CANCELLED );
+				$output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_CANCELLED', '_JRPORTAL_INVOICES_STATUS_CANCELLED' );
 				break;
 			default :
-				$output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PENDING', _JRPORTAL_INVOICES_STATUS_PENDING,false );
+				$output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PENDING', '_JRPORTAL_INVOICES_STATUS_PENDING',false );
 		}
 
-		$output[ 'USER' ]   = jr_gettext( '_JRPORTAL_INVOICES_USER', _JRPORTAL_INVOICES_USER,false );
+		$output[ 'USER' ]   = jr_gettext( '_JRPORTAL_INVOICES_USER', '_JRPORTAL_INVOICES_USER',false );
 		$output[ 'RAISED' ] = $invoice->raised_date;
 		$output[ 'DUE' ]    = $invoice->due_date;
 		
@@ -151,19 +151,19 @@ class j16000view_invoice
 
 		$output[ 'CURRENCYCODE' ] = $invoice->currencycode;
 
-		$output[ 'LIPAGETITLE' ]              = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS', _JRPORTAL_INVOICES_LINEITEMS );
-		$output[ 'HLI_NAME' ]                 = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_NAME', _JRPORTAL_INVOICES_LINEITEMS_NAME );
-		$output[ 'HLI_DESCRIPTION' ]          = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_DESCRIPTION', _JRPORTAL_INVOICES_LINEITEMS_DESCRIPTION );
-		$output[ 'HCURRENCYCODE' ]            = jr_gettext( '_JRPORTAL_INVOICES_CURRENCYCODE', _JRPORTAL_INVOICES_CURRENCYCODE );
-		$output[ 'HLI_INIT_PRICE' ]           = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE', _JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE );
-		$output[ 'HLI_INIT_QTY' ]             = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_INIT_QTY', _JRPORTAL_INVOICES_LINEITEMS_INIT_QTY );
-		$output[ 'HLI_INIT_DISCOUNT' ]        = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_INIT_DISCOUNT', _JRPORTAL_INVOICES_LINEITEMS_INIT_DISCOUNT );
-		$output[ 'HLI_INIT_TOTAL' ]           = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_INIT_TOTAL', _JRPORTAL_INVOICES_LINEITEMS_INIT_TOTAL );
-		$output[ 'HLI_INIT_TOTAL_INCLUSIVE' ] = jr_gettext( '_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX', _JOMRES_LINEITEM_TOTAL_INCLUDINGTAX );
-		$output[ 'HLI_TAX_CODE' ]        	  = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_TAX_CODE', _JRPORTAL_INVOICES_LINEITEMS_TAX_CODE, false );
-		$output[ 'HLI_TAX_DESCRIPTION' ] 	  = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION', _JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION );
-		$output[ 'HLI_TAX_RATE' ]        	  = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', _JRPORTAL_INVOICES_LINEITEMS_TAX_RATE );
-		$output[ 'HLI_TAX_AMOUNT' ]        	  = jr_gettext( '_JOMRES_COM_FRONT_ROOMTAX', _JOMRES_COM_FRONT_ROOMTAX );
+		$output[ 'LIPAGETITLE' ]              = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS', '_JRPORTAL_INVOICES_LINEITEMS' );
+		$output[ 'HLI_NAME' ]                 = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_NAME', '_JRPORTAL_INVOICES_LINEITEMS_NAME' );
+		$output[ 'HLI_DESCRIPTION' ]          = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_DESCRIPTION', '_JRPORTAL_INVOICES_LINEITEMS_DESCRIPTION' );
+		$output[ 'HCURRENCYCODE' ]            = jr_gettext( '_JRPORTAL_INVOICES_CURRENCYCODE', '_JRPORTAL_INVOICES_CURRENCYCODE' );
+		$output[ 'HLI_INIT_PRICE' ]           = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE', '_JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE' );
+		$output[ 'HLI_INIT_QTY' ]             = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_INIT_QTY', '_JRPORTAL_INVOICES_LINEITEMS_INIT_QTY' );
+		$output[ 'HLI_INIT_DISCOUNT' ]        = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_INIT_DISCOUNT', '_JRPORTAL_INVOICES_LINEITEMS_INIT_DISCOUNT' );
+		$output[ 'HLI_INIT_TOTAL' ]           = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_INIT_TOTAL', '_JRPORTAL_INVOICES_LINEITEMS_INIT_TOTAL' );
+		$output[ 'HLI_INIT_TOTAL_INCLUSIVE' ] = jr_gettext( '_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX', '_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX' );
+		$output[ 'HLI_TAX_CODE' ]        	  = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_TAX_CODE', '_JRPORTAL_INVOICES_LINEITEMS_TAX_CODE', false );
+		$output[ 'HLI_TAX_DESCRIPTION' ] 	  = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION', '_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION' );
+		$output[ 'HLI_TAX_RATE' ]        	  = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE' );
+		$output[ 'HLI_TAX_AMOUNT' ]        	  = jr_gettext( '_JOMRES_COM_FRONT_ROOMTAX', '_JOMRES_COM_FRONT_ROOMTAX' );
 
 		if ( count( $invoice->lineitems ) > 0 )
 			{
@@ -203,9 +203,9 @@ class j16000view_invoice
 			}
 
 
-		$output[ 'JOMRES_GRANDTOTAL_TOTAL_TAX' ] = jr_gettext( 'JOMRES_GRANDTOTAL_TOTAL_TAX', JOMRES_GRANDTOTAL_TOTAL_TAX );
-		$output[ 'JOMRES_GRANDTOTAL_EX_TAX' ]    = jr_gettext( 'JOMRES_GRANDTOTAL_EX_TAX', JOMRES_GRANDTOTAL_EX_TAX );
-		$output[ 'JOMRES_GRANDTOTAL_INC_TAX' ]   = jr_gettext( 'JOMRES_GRANDTOTAL_INC_TAX', JOMRES_GRANDTOTAL_INC_TAX );
+		$output[ 'JOMRES_GRANDTOTAL_TOTAL_TAX' ] = jr_gettext( 'JOMRES_GRANDTOTAL_TOTAL_TAX', 'JOMRES_GRANDTOTAL_TOTAL_TAX' );
+		$output[ 'JOMRES_GRANDTOTAL_EX_TAX' ]    = jr_gettext( 'JOMRES_GRANDTOTAL_EX_TAX', 'JOMRES_GRANDTOTAL_EX_TAX' );
+		$output[ 'JOMRES_GRANDTOTAL_INC_TAX' ]   = jr_gettext( 'JOMRES_GRANDTOTAL_INC_TAX', 'JOMRES_GRANDTOTAL_INC_TAX' );
 
 		$output[ 'GRAND_TOTAL_INC_TAX' ] = output_price( $invoice->grand_total_inc_tax, $invoice->currencycode, false, true );
 		$output[ 'GRAND_TOTAL_EX_TAX' ]  = output_price( $invoice->grand_total_ex_tax, $invoice->currencycode, false, true );

@@ -35,11 +35,11 @@ class j00501propertydetailsoptions
 		if ( $thisJRUser->simple_configuration )
 			return;
 		
-		$configurationPanel->startPanel( jr_gettext( "PROPERTY_DETAILS_PAGE_OPTIONS", PROPERTY_DETAILS_PAGE_OPTIONS, false ) );
+		$configurationPanel->startPanel( jr_gettext( "PROPERTY_DETAILS_PAGE_OPTIONS", 'PROPERTY_DETAILS_PAGE_OPTIONS', false ) );
 		
-		$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK", _JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK, false ) );
+		$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK", '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', false ) );
 		$configurationPanel->setmiddle( '<input text="text" class="inputbox" size="5" name="cfg_facebook_page" value="' . $mrConfig[ 'facebook_page' ] . '"/>' );
-		$configurationPanel->setright( jr_gettext( "_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC", _JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC, false ) );
+		$configurationPanel->setright( jr_gettext( "_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC", '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', false ) );
 		$configurationPanel->insertSetting();
 		
 		
@@ -47,33 +47,33 @@ class j00501propertydetailsoptions
 			{
 			if ( !$thisJRUser->simple_configuration )
 				{
-				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SHOWONLYAVLCAL", _JOMRES_COM_A_SHOWONLYAVLCAL, false ) );
+				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SHOWONLYAVLCAL", '_JOMRES_COM_A_SHOWONLYAVLCAL', false ) );
 				$configurationPanel->setmiddle( $lists[ 'showOnlyAvailabilityCalendar' ] );
-				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_SHOWONLYAVLCAL_DESC", _JOMRES_COM_A_SHOWONLYAVLCAL_DESC, false ) );
+				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_SHOWONLYAVLCAL_DESC", '_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', false ) );
 				$configurationPanel->insertSetting();
 				}
 			if ( $mrConfig[ 'showOnlyAvailabilityCalendar' ] == "1" )
 				{
-				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_MONTHSTOSHOW", _JOMRES_COM_MONTHSTOSHOW, false ) );
+				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_MONTHSTOSHOW", '_JOMRES_COM_MONTHSTOSHOW', false ) );
 				$configurationPanel->setmiddle( '<input type="number" class="inputbox" size="5" name="cfg_CalendarMonthsToShow" value="' . $mrConfig[ 'CalendarMonthsToShow' ] . '"/>' );
-				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_MONTHSTOSHOW_DESC", _JOMRES_COM_MONTHSTOSHOW_DESC, false ) );
+				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_MONTHSTOSHOW_DESC", '_JOMRES_COM_MONTHSTOSHOW_DESC', false ) );
 				$configurationPanel->insertSetting();
 
-				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_MONTHS_STARTOFYEAR", _JOMRES_COM_MONTHS_STARTOFYEAR, false ) );
+				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_MONTHS_STARTOFYEAR", '_JOMRES_COM_MONTHS_STARTOFYEAR', false ) );
 				$configurationPanel->setmiddle( $lists[ 'calstartfrombeginningofyear' ] );
-				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_MONTHS_STARTOFYEAR_DESC", _JOMRES_COM_MONTHS_STARTOFYEAR_DESC, false ) );
+				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_MONTHS_STARTOFYEAR_DESC", '_JOMRES_COM_MONTHS_STARTOFYEAR_DESC', false ) );
 				$configurationPanel->insertSetting();
 				}
 			}
 
 		if ( !$thisJRUser->simple_configuration )
 			{
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE", _JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE, false ) );
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE", '_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE', false ) );
 			$configurationPanel->setmiddle( $lists[ 'showSlideshowInline' ] );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWLINK", _JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWLINK, false ) );
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWLINK", '_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWLINK', false ) );
 			$configurationPanel->setmiddle( $lists[ 'showSlideshowLink' ] );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
@@ -83,12 +83,12 @@ class j00501propertydetailsoptions
 			{
 			if ( !$thisJRUser->simple_configuration && $mrConfig[ 'singleRoomProperty' ] != "1" )
 				{
-				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS", _JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS, false ) );
+				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS", '_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', false ) );
 				$configurationPanel->setmiddle( $lists[ 'roomslistinpropertydetails' ] );
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();
 
-				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SHOWROOMSLISTLINK", _JOMRES_COM_A_SHOWROOMSLISTLINK, false ) );
+				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SHOWROOMSLISTLINK", '_JOMRES_COM_A_SHOWROOMSLISTLINK', false ) );
 				$configurationPanel->setmiddle( $lists[ 'showRoomsListingLink' ] );
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();
@@ -96,24 +96,24 @@ class j00501propertydetailsoptions
 
 			if ( !$thisJRUser->simple_configuration )
 				{
-				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR", _JOMRES_COM_A_SHOWAVILABILITY_CALENDAR, false ) );
+				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR", '_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR', false ) );
 				$configurationPanel->setmiddle( $lists[ 'showAvailabilityCalendar' ] );
-				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC", _JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC, false ) );
+				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC", '_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC', false ) );
 				$configurationPanel->insertSetting();
 
-				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE", _JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE, false ) );
+				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE", '_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE', false ) );
 				$configurationPanel->setmiddle( $lists[ 'showTariffsInline' ] );
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();
 
-				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_SHOWTARIFFSLINK", _JOMRES_COM_A_TARIFFS_SHOWTARIFFSLINK, false ) );
+				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_SHOWTARIFFSLINK", '_JOMRES_COM_A_TARIFFS_SHOWTARIFFSLINK', false ) );
 				$configurationPanel->setmiddle( $lists[ 'showTariffsLink' ] );
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();
 
-				$configurationPanel->setleft( jr_gettext( "JOMRES_COM_A_VERBOSETARIFFINTO", JOMRES_COM_A_VERBOSETARIFFINTO, false ) );
+				$configurationPanel->setleft( jr_gettext( "JOMRES_COM_A_VERBOSETARIFFINTO", 'JOMRES_COM_A_VERBOSETARIFFINTO', false ) );
 				$configurationPanel->setmiddle( $lists[ 'verbosetariffinfo' ] );
-				$configurationPanel->setright( jr_gettext( "JOMRES_COM_A_VERBOSETARIFFINTO_DESC", JOMRES_COM_A_VERBOSETARIFFINTO_DESC, false ) );
+				$configurationPanel->setright( jr_gettext( "JOMRES_COM_A_VERBOSETARIFFINTO_DESC", 'JOMRES_COM_A_VERBOSETARIFFINTO_DESC', false ) );
 				$configurationPanel->insertSetting();
 
 				}
@@ -121,14 +121,14 @@ class j00501propertydetailsoptions
 		
 		if ( !$thisJRUser->simple_configuration )
 			{
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_GALLERYLINK", _JOMRES_COM_A_GALLERYLINK, false ) );
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_GALLERYLINK", '_JOMRES_COM_A_GALLERYLINK', false ) );
 			$configurationPanel->setmiddle( '<input type="url" class="inputbox form-control"  size="50" name="cfg_galleryLink" value="' . $mrConfig[ 'galleryLink' ] . '" />' );
-			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_GALLERYLINK_DESC", _JOMRES_COM_A_GALLERYLINK_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_GALLERYLINK_DESC", '_JOMRES_COM_A_GALLERYLINK_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES", _JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES, false ) );
+			$configurationPanel->setleft( jr_gettext( "_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES", '_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES', false ) );
 			$configurationPanel->setmiddle( $lists[ 'showPfeaturesCategories' ] );
-			$configurationPanel->setright( jr_gettext( "_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC", _JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC, false ) );
+			$configurationPanel->setright( jr_gettext( "_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC", '_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', false ) );
 			$configurationPanel->insertSetting();
 			}
 

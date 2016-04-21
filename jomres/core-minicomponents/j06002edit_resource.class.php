@@ -120,14 +120,14 @@ class j06002edit_resource
 			$output[ 'FEATURES' ]     		= $featureListTxt;
 			$output[ 'SUPPLIMENT' ]   		= $singleperson_suppliment;
 
-			$output[ 'HTYPE' ]           = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE , false , false );
-			$output[ 'HNAME' ]           = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME , false , false);
-			$output[ 'HNUMBER' ]         = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER , false , false);
-			$output[ 'HFLOOR' ]          = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR , false , false);
-			$output[ 'HMAXPEOPLE' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE , false , false);
-			$output[ 'HFEATURES' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES , false , false);
-			$output[ 'HSUPPLIMENT' ]     = jr_gettext( '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON', _JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON , false , false);
-			$output[ 'SUPPLIMENT_DESC' ] = jr_gettext( '_JOMRES_COM_SPS_EDITROOM_DESC', _JOMRES_COM_SPS_EDITROOM_DESC , false , false);
+			$output[ 'HTYPE' ]           = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE' , false , false );
+			$output[ 'HNAME' ]           = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME' , false , false);
+			$output[ 'HNUMBER' ]         = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER' , false , false);
+			$output[ 'HFLOOR' ]          = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR' , false , false);
+			$output[ 'HMAXPEOPLE' ]      = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE' , false , false);
+			$output[ 'HFEATURES' ]       = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES' , false , false);
+			$output[ 'HSUPPLIMENT' ]     = jr_gettext( '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON', '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON' , false , false);
+			$output[ 'SUPPLIMENT_DESC' ] = jr_gettext( '_JOMRES_COM_SPS_EDITROOM_DESC', '_JOMRES_COM_SPS_EDITROOM_DESC' , false , false);
 
 			$output[ 'MOSCONFIGLIVESITE' ] = get_showtime( 'live_site' );
 
@@ -135,22 +135,22 @@ class j06002edit_resource
 
 			if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . $defaultProperty . "_room_" . $roomUid . ".jpg" ) )
 				{
-				$output[ 'DELETEIMAGE' ] = '<a href="' . jomresURL( JOMRES_SITEPAGE_URL . "&task=dropImage&imageType=room&itemUid=$output[ROOMUID]" ) . '">' . jr_gettext( '_JOMRES_FILE_DELETE', _JOMRES_FILE_DELETE ) . '</a>';
+				$output[ 'DELETEIMAGE' ] = '<a href="' . jomresURL( JOMRES_SITEPAGE_URL . "&task=dropImage&imageType=room&itemUid=$output[ROOMUID]" ) . '">' . jr_gettext( '_JOMRES_FILE_DELETE', '_JOMRES_FILE_DELETE' ) . '</a>';
 
 				$delimg_rows                  = array ();
 				$delimg                       = array ();
 				$delimg[ 'DELETEIMAGE_LINK' ] = jomresURL( JOMRES_SITEPAGE_URL . "&task=dropImage&imageType=room&itemUid=$output[ROOMUID]" );
-				$delimg[ 'DELETEIMAGE_TEXT' ] = jr_gettext( '_JOMRES_FILE_DELETE', _JOMRES_FILE_DELETE );
+				$delimg[ 'DELETEIMAGE_TEXT' ] = jr_gettext( '_JOMRES_FILE_DELETE', '_JOMRES_FILE_DELETE' );
 				$delimg[ 'IMAGE' ]            = $output[ 'IMAGE' ];
 				$delimg_rows[ ]               = $delimg;
 				}
 
-			$output[ 'UPLOADIMAGE' ] = jr_gettext( '_JOMRES_UPLOAD_IMAGE', _JOMRES_UPLOAD_IMAGE, false );
-			$output[ 'PAGETITLE' ]   = jr_gettext( '_JOMRES_COM_MR_EB_HROOM_DETAILS', _JOMRES_COM_MR_EB_HROOM_DETAILS,false );
+			$output[ 'UPLOADIMAGE' ] = jr_gettext( '_JOMRES_UPLOAD_IMAGE', '_JOMRES_UPLOAD_IMAGE', false );
+			$output[ 'PAGETITLE' ]   = jr_gettext( '_JOMRES_COM_MR_EB_HROOM_DETAILS', '_JOMRES_COM_MR_EB_HROOM_DETAILS',false );
 
-			$cancelText = jr_gettext( '_JOMRES_COM_A_CANCEL', _JOMRES_COM_A_CANCEL, false );
-			$deleteText = jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', _JOMRES_COM_MR_ROOM_DELETE, false );
-			$saveText   = jr_gettext( '_JOMRES_COM_MR_SAVE', _JOMRES_COM_MR_SAVE, false );
+			$cancelText = jr_gettext( '_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL', false );
+			$deleteText = jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', '_JOMRES_COM_MR_ROOM_DELETE', false );
+			$saveText   = jr_gettext( '_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE', false );
 			$jrtbar     = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb       = $jrtbar->startTable();
 			
@@ -210,9 +210,9 @@ class j06002edit_resource
 			$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'save_resource' );
 			$jrtb .= $jrtbar->endTable();
 
-			$output[ 'PAGETITLE' ]   = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV_SRP', _JOMRES_COM_MR_EB_ROOM_CLASS_ABBV_SRP );
-			$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO_SRP', _JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO_SRP );
-			$output[ '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE );
+			$output[ 'PAGETITLE' ]   = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV_SRP', '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV_SRP' );
+			$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO_SRP', '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO_SRP' );
+			$output[ '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE' );
 			$output[ 'DROPDOWNLIST' ]                              = $dropDownList;
 			$output[ 'JOMRESTOOLBAR' ]                             = $jrtb;
 			$output[ 'MAXPEOPLE_DROPDOWN' ]                        = $max_people_dropdown;
@@ -230,20 +230,20 @@ class j06002edit_resource
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_PROPERTYADMIN', _JOMRES_FRONT_MR_MENU_ADMIN_PROPERTYADMIN );
-		$output[ ] = jr_gettext( '_JOMRES_COM_A_CANCEL', _JOMRES_COM_A_CANCEL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', _JOMRES_COM_MR_ROOM_DELETE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_SAVE', _JOMRES_COM_MR_SAVE );
-		$output[ ] = jr_gettext( '_JOMRES_UPLOAD_IMAGE', _JOMRES_UPLOAD_IMAGE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', _JOMRES_COM_MR_VRCT_TAB_ROOM );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', _JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', _JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES', _JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES );
+		$output[ ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_PROPERTYADMIN', '_JOMRES_FRONT_MR_MENU_ADMIN_PROPERTYADMIN' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', '_JOMRES_COM_MR_ROOM_DELETE' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE' );
+		$output[ ] = jr_gettext( '_JOMRES_UPLOAD_IMAGE', '_JOMRES_UPLOAD_IMAGE' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES' );
 
 		foreach ( $output as $o )
 			{

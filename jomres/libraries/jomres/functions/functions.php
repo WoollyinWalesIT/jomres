@@ -164,10 +164,10 @@ function output_fatal_error($e)
 		"FILE"  => $e->getFile(),
 		"LINE"  => $e->getLine(),
 		"TRACE"  => $e->getTraceAsString(),
-		'_JOMRES_ERROR_DEBUGGING_MESSAGE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_MESSAGE", _JOMRES_ERROR_DEBUGGING_MESSAGE, false ) ,
-		'_JOMRES_ERROR_DEBUGGING_FILE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_FILE", _JOMRES_ERROR_DEBUGGING_FILE, false ) ,
-		'_JOMRES_ERROR_DEBUGGING_LINE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_LINE", _JOMRES_ERROR_DEBUGGING_LINE, false ) ,
-		'_JOMRES_ERROR_DEBUGGING_TRACE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_TRACE", _JOMRES_ERROR_DEBUGGING_TRACE, false ) ,
+		'_JOMRES_ERROR_DEBUGGING_MESSAGE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_MESSAGE", '_JOMRES_ERROR_DEBUGGING_MESSAGE', false ) ,
+		'_JOMRES_ERROR_DEBUGGING_FILE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_FILE", '_JOMRES_ERROR_DEBUGGING_FILE', false ) ,
+		'_JOMRES_ERROR_DEBUGGING_LINE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_LINE", '_JOMRES_ERROR_DEBUGGING_LINE', false ) ,
+		'_JOMRES_ERROR_DEBUGGING_TRACE'=>jr_gettext("_JOMRES_ERROR_DEBUGGING_TRACE", '_JOMRES_ERROR_DEBUGGING_TRACE', false ) ,
 		 ); 
 	
 	$output['IP_NUMBER'] = jomres_get_client_ip();
@@ -199,7 +199,7 @@ function output_fatal_error($e)
 		}
 	else
 		{
-		$pageoutput = array(array ( "_JOMRES_ERROR"=>jr_gettext("_JOMRES_ERROR", _JOMRES_ERROR, false ) , "_JOMRES_ERROR_MESSAGE"=>jr_gettext("_JOMRES_ERROR_MESSAGE", _JOMRES_ERROR_MESSAGE, false ) ));
+		$pageoutput = array(array ( "_JOMRES_ERROR"=>jr_gettext("_JOMRES_ERROR", '_JOMRES_ERROR', false ) , "_JOMRES_ERROR_MESSAGE"=>jr_gettext("_JOMRES_ERROR_MESSAGE", '_JOMRES_ERROR_MESSAGE', false ) ));
 		$tmpl		  = new patTemplate();
 		$tmpl->setRoot( $path );
 		$tmpl->readTemplatesFromInput( "error_production.html" );
@@ -371,9 +371,9 @@ function import_images_to_media_centre_directories()
 		}
 	
 	$resource_types = array();
-	$resource_types[] = array ( "resource_type" => "rooms" , "resource_id_required" => true , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', _JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM, false ) );
-	$resource_types[] = array ( "resource_type" => "slideshow" , "resource_id_required" => false , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', _JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW, false ) );
-	$resource_types[] = array ( "resource_type" => "property" , "resource_id_required" => false , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', _JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY, false ) , "notes" => jr_gettext( '_JOMRES_MEDIA_CENTRE_NOTES_CORE', _JOMRES_MEDIA_CENTRE_NOTES_CORE, false )  );
+	$resource_types[] = array ( "resource_type" => "rooms" , "resource_id_required" => true , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', false ) );
+	$resource_types[] = array ( "resource_type" => "slideshow" , "resource_id_required" => false , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', false ) );
+	$resource_types[] = array ( "resource_type" => "property" , "resource_id_required" => false , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', false ) , "notes" => jr_gettext( '_JOMRES_MEDIA_CENTRE_NOTES_CORE', '_JOMRES_MEDIA_CENTRE_NOTES_CORE', false )  );
 	
 	if (count($resource_types)>0 && count($all_propertys) > 0)
 		{
@@ -730,9 +730,9 @@ function translation_user_check()
 	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 	if ( !$thisJRUser->userIsManager || !$thisJRUser->superPropertyManager )
 		{
-		if ( using_bootstrap() ) echo '<div class="alert alert-error">' . jr_gettext( "_JOMRES_COM_NOTAMANAGER", _JOMRES_COM_NOTAMANAGER, false ) . '</div>';
+		if ( using_bootstrap() ) echo '<div class="alert alert-error">' . jr_gettext( "_JOMRES_COM_NOTAMANAGER", '_JOMRES_COM_NOTAMANAGER', false ) . '</div>';
 		else
-		echo '<div class="ui-state-error">' . jr_gettext( "_JOMRES_COM_NOTAMANAGER", _JOMRES_COM_NOTAMANAGER, false ) . '</div>';
+		echo '<div class="ui-state-error">' . jr_gettext( "_JOMRES_COM_NOTAMANAGER", '_JOMRES_COM_NOTAMANAGER', false ) . '</div>';
 
 		return false;
 		}
@@ -861,7 +861,7 @@ function jomres_mainmenu_option( $link, $image = '', $text, $path = "/JOMRES_ROO
 	$link		   = jomresURL( $link );
 	$link		   = jomresValidateUrl( $link );
 	
-	if ( $jrConfig[ 'development_production' ] == 'production' && $category == jr_gettext( "_JOMRES_SEARCH_BUTTON", _JOMRES_SEARCH_BUTTON, false, false ) )
+	if ( $jrConfig[ 'development_production' ] == 'production' && $category == jr_gettext( "_JOMRES_SEARCH_BUTTON", '_JOMRES_SEARCH_BUTTON', false, false ) )
 		{
 		return;
 		}
@@ -1035,7 +1035,7 @@ function jomres_nicetime( $date )
 		{
 		return "";
 		}
-	$periods = array ( jr_gettext( '_JOMRES_DATEPERIOD_SECOND', _JOMRES_DATEPERIOD_SECOND, false, false ), jr_gettext( '_JOMRES_DATEPERIOD_MINUTE', _JOMRES_DATEPERIOD_MINUTE, false, false ), jr_gettext( '_JOMRES_DATEPERIOD_HOUR', _JOMRES_DATEPERIOD_HOUR, false, false ), jr_gettext( '_JOMRES_DATEPERIOD_DAY', _JOMRES_DATEPERIOD_DAY, false, false ), jr_gettext( '_JOMRES_DATEPERIOD_WEEK', _JOMRES_DATEPERIOD_WEEK, false, false ), jr_gettext( '_JOMRES_DATEPERIOD_MONTH', _JOMRES_DATEPERIOD_MONTH, false, false ), jr_gettext( '_JOMRES_DATEPERIOD_YEAR', _JOMRES_DATEPERIOD_YEAR, false, false ), jr_gettext( '_JOMRES_DATEPERIOD_DECADE', _JOMRES_DATEPERIOD_DECADE, false, false ) );
+	$periods = array ( jr_gettext( '_JOMRES_DATEPERIOD_SECOND', '_JOMRES_DATEPERIOD_SECOND', false, false ), jr_gettext( '_JOMRES_DATEPERIOD_MINUTE', '_JOMRES_DATEPERIOD_MINUTE', false, false ), jr_gettext( '_JOMRES_DATEPERIOD_HOUR', '_JOMRES_DATEPERIOD_HOUR', false, false ), jr_gettext( '_JOMRES_DATEPERIOD_DAY', '_JOMRES_DATEPERIOD_DAY', false, false ), jr_gettext( '_JOMRES_DATEPERIOD_WEEK', '_JOMRES_DATEPERIOD_WEEK', false, false ), jr_gettext( '_JOMRES_DATEPERIOD_MONTH', '_JOMRES_DATEPERIOD_MONTH', false, false ), jr_gettext( '_JOMRES_DATEPERIOD_YEAR', '_JOMRES_DATEPERIOD_YEAR', false, false ), jr_gettext( '_JOMRES_DATEPERIOD_DECADE', '_JOMRES_DATEPERIOD_DECADE', false, false ) );
 	$lengths = array ( "60", "60", "24", "7", "4.35", "12", "10" );
 
 	$now	   = time();
@@ -1050,12 +1050,12 @@ function jomres_nicetime( $date )
 	if ( $now > $unix_date )
 		{
 		$difference = $now - $unix_date;
-		$tense	  = jr_gettext( '_JOMRES_DATEPERIOD_AGO', _JOMRES_DATEPERIOD_AGO, false, false );
+		$tense	  = jr_gettext( '_JOMRES_DATEPERIOD_AGO', '_JOMRES_DATEPERIOD_AGO', false, false );
 		}
 	else
 		{
 		$difference = $unix_date - $now;
-		$tense	  = jr_gettext( '_JOMRES_DATEPERIOD_FROMNOW', _JOMRES_DATEPERIOD_FROMNOW, false, false );
+		$tense	  = jr_gettext( '_JOMRES_DATEPERIOD_FROMNOW', '_JOMRES_DATEPERIOD_FROMNOW', false, false );
 		}
 
 	for ( $j = 0; $difference >= $lengths[ $j ] && $j < count( $lengths ) - 1; $j++ )
@@ -1067,7 +1067,7 @@ function jomres_nicetime( $date )
 
 	if ( $difference != 1 )
 		{
-		$periods[ $j ] .= jr_gettext( '_JOMRES_DATEPERIOD_S', _JOMRES_DATEPERIOD_S );
+		$periods[ $j ] .= jr_gettext( '_JOMRES_DATEPERIOD_S', '_JOMRES_DATEPERIOD_S' );
 		}
 
 	return "$difference $periods[$j] {$tense}";
@@ -2791,35 +2791,35 @@ function hotelSettings()
 
 	// make a standard yes/no list
 	$yesno	= array ();
-	$yesno[ ] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false ) );
-	$yesno[ ] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false ) );
+	$yesno[ ] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false ) );
+	$yesno[ ] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false ) );
 
 	if ( $mrConfig[ 'newTariffModels' ] != "1" && $mrConfig[ 'newTariffModels' ] != "2" ) // backward compatablity for pre-2.5 users who haven't yet visited General Configuration and clicked Save
 	$mrConfig[ 'newTariffModels' ] = "2";
 	$tariffModels		 = array ();
-	$tariffModels[ ]	  = jomresHTML::makeOption( 1, jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF", _JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF, false ) );
-	$tariffModels[ ]	  = jomresHTML::makeOption( 2, jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES", _JOMRES_COM_A_TARIFFS_MODEL_AVERAGES, false ) );
+	$tariffModels[ ]	  = jomresHTML::makeOption( 1, jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF", '_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF', false ) );
+	$tariffModels[ ]	  = jomresHTML::makeOption( 2, jr_gettext( "_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES", '_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES', false ) );
 	$tariffModelsDropdown = jomresHTML::selectList( $tariffModels, 'cfg_newTariffModels', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'newTariffModels' ] );
 
 	$weekDays	= array ();
-	$weekDays[ ] = jomresHTML::makeOption( 1, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_MONDAY", _JOMRES_COM_MR_WEEKDAYS_MONDAY, false ) );
-	$weekDays[ ] = jomresHTML::makeOption( 2, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_TUESDAY", _JOMRES_COM_MR_WEEKDAYS_TUESDAY, false ) );
-	$weekDays[ ] = jomresHTML::makeOption( 3, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY", _JOMRES_COM_MR_WEEKDAYS_WEDNESDAY, false ) );
-	$weekDays[ ] = jomresHTML::makeOption( 4, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_THURSDAY", _JOMRES_COM_MR_WEEKDAYS_THURSDAY, false ) );
-	$weekDays[ ] = jomresHTML::makeOption( 5, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_FRIDAY", _JOMRES_COM_MR_WEEKDAYS_FRIDAY, false ) );
-	$weekDays[ ] = jomresHTML::makeOption( 6, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", _JOMRES_COM_MR_WEEKDAYS_SATURDAY, false ) );
-	$weekDays[ ] = jomresHTML::makeOption( 0, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SUNDAY", _JOMRES_COM_MR_WEEKDAYS_SUNDAY, false ) );
+	$weekDays[ ] = jomresHTML::makeOption( 1, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_MONDAY", '_JOMRES_COM_MR_WEEKDAYS_MONDAY', false ) );
+	$weekDays[ ] = jomresHTML::makeOption( 2, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_TUESDAY", '_JOMRES_COM_MR_WEEKDAYS_TUESDAY', false ) );
+	$weekDays[ ] = jomresHTML::makeOption( 3, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY", '_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY', false ) );
+	$weekDays[ ] = jomresHTML::makeOption( 4, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_THURSDAY", '_JOMRES_COM_MR_WEEKDAYS_THURSDAY', false ) );
+	$weekDays[ ] = jomresHTML::makeOption( 5, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_FRIDAY", '_JOMRES_COM_MR_WEEKDAYS_FRIDAY', false ) );
+	$weekDays[ ] = jomresHTML::makeOption( 6, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", '_JOMRES_COM_MR_WEEKDAYS_SATURDAY', false ) );
+	$weekDays[ ] = jomresHTML::makeOption( 0, jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SUNDAY", '_JOMRES_COM_MR_WEEKDAYS_SUNDAY', false ) );
 
 	$weekendDays	= array ();
-	$weekendDays[ ] = jomresHTML::makeOption( "5", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_FRIDAY", _JOMRES_COM_MR_WEEKDAYS_FRIDAY, false ) );
-	$weekendDays[ ] = jomresHTML::makeOption( "6", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", _JOMRES_COM_MR_WEEKDAYS_SATURDAY, false ) );
-	$weekendDays[ ] = jomresHTML::makeOption( "0", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SUNDAY", _JOMRES_COM_MR_WEEKDAYS_SUNDAY, false ) );
-	$weekendDays[ ] = jomresHTML::makeOption( "4,5", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_THURSDAY", _JOMRES_COM_MR_WEEKDAYS_THURSDAY, false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_FRIDAY", _JOMRES_COM_MR_WEEKDAYS_FRIDAY, false ) );
-	$weekendDays[ ] = jomresHTML::makeOption( "4,5,6", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_THURSDAY", _JOMRES_COM_MR_WEEKDAYS_THURSDAY, false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_FRIDAY", _JOMRES_COM_MR_WEEKDAYS_FRIDAY, false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", _JOMRES_COM_MR_WEEKDAYS_SATURDAY, false ) );
-	$weekendDays[ ] = jomresHTML::makeOption( "4,5,6,0", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_THURSDAY", _JOMRES_COM_MR_WEEKDAYS_THURSDAY, false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_FRIDAY", _JOMRES_COM_MR_WEEKDAYS_FRIDAY, false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", _JOMRES_COM_MR_WEEKDAYS_SATURDAY, false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SUNDAY", _JOMRES_COM_MR_WEEKDAYS_SUNDAY, false ) );
-	$weekendDays[ ] = jomresHTML::makeOption( "5,6", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_FRIDAY", _JOMRES_COM_MR_WEEKDAYS_FRIDAY, false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", _JOMRES_COM_MR_WEEKDAYS_SATURDAY, false ) );
-	$weekendDays[ ] = jomresHTML::makeOption( "5,6,0", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_FRIDAY", _JOMRES_COM_MR_WEEKDAYS_FRIDAY, false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", _JOMRES_COM_MR_WEEKDAYS_SATURDAY, false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SUNDAY", _JOMRES_COM_MR_WEEKDAYS_SUNDAY, false ) );
-	$weekendDays[ ] = jomresHTML::makeOption( "6,0", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", _JOMRES_COM_MR_WEEKDAYS_SATURDAY, false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SUNDAY", _JOMRES_COM_MR_WEEKDAYS_SUNDAY, false ) );
+	$weekendDays[ ] = jomresHTML::makeOption( "5", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_FRIDAY", '_JOMRES_COM_MR_WEEKDAYS_FRIDAY', false ) );
+	$weekendDays[ ] = jomresHTML::makeOption( "6", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", '_JOMRES_COM_MR_WEEKDAYS_SATURDAY', false ) );
+	$weekendDays[ ] = jomresHTML::makeOption( "0", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SUNDAY", '_JOMRES_COM_MR_WEEKDAYS_SUNDAY', false ) );
+	$weekendDays[ ] = jomresHTML::makeOption( "4,5", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_THURSDAY", '_JOMRES_COM_MR_WEEKDAYS_THURSDAY', false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_FRIDAY", '_JOMRES_COM_MR_WEEKDAYS_FRIDAY', false ) );
+	$weekendDays[ ] = jomresHTML::makeOption( "4,5,6", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_THURSDAY", '_JOMRES_COM_MR_WEEKDAYS_THURSDAY', false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_FRIDAY", '_JOMRES_COM_MR_WEEKDAYS_FRIDAY', false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", '_JOMRES_COM_MR_WEEKDAYS_SATURDAY', false ) );
+	$weekendDays[ ] = jomresHTML::makeOption( "4,5,6,0", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_THURSDAY", '_JOMRES_COM_MR_WEEKDAYS_THURSDAY', false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_FRIDAY", '_JOMRES_COM_MR_WEEKDAYS_FRIDAY', false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", '_JOMRES_COM_MR_WEEKDAYS_SATURDAY', false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SUNDAY", '_JOMRES_COM_MR_WEEKDAYS_SUNDAY', false ) );
+	$weekendDays[ ] = jomresHTML::makeOption( "5,6", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_FRIDAY", '_JOMRES_COM_MR_WEEKDAYS_FRIDAY', false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", '_JOMRES_COM_MR_WEEKDAYS_SATURDAY', false ) );
+	$weekendDays[ ] = jomresHTML::makeOption( "5,6,0", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_FRIDAY", '_JOMRES_COM_MR_WEEKDAYS_FRIDAY', false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", '_JOMRES_COM_MR_WEEKDAYS_SATURDAY', false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SUNDAY", '_JOMRES_COM_MR_WEEKDAYS_SUNDAY', false ) );
+	$weekendDays[ ] = jomresHTML::makeOption( "6,0", jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SATURDAY", '_JOMRES_COM_MR_WEEKDAYS_SATURDAY', false ) . ', ' . jr_gettext( "_JOMRES_COM_MR_WEEKDAYS_SUNDAY", '_JOMRES_COM_MR_WEEKDAYS_SUNDAY', false ) );
 
 	$jsInputDateFormats	= array ();
 	$jsInputDateFormats[ ] = jomresHTML::makeOption( "%d/%m/%Y", "01/02/2006 - 1st February 2006" );
@@ -2836,18 +2836,18 @@ function hotelSettings()
 	$weekenddayDropdown		= jomresHTML::selectList( $weekendDays, 'cfg_weekenddays', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'weekenddays' ] );
 
 	$depAmounts	 = array ();
-	$depAmounts[ ]  = jomresHTML::makeOption( '0', jr_gettext( "_JOMRES_COM_CHARGING_DEPOSIT", _JOMRES_COM_CHARGING_DEPOSIT, false ) );
-	$depAmounts[ ]  = jomresHTML::makeOption( '1', jr_gettext( "_JOMRES_COM_CHARGING_FULLAMT", _JOMRES_COM_CHARGING_FULLAMT, false ) );
+	$depAmounts[ ]  = jomresHTML::makeOption( '0', jr_gettext( "_JOMRES_COM_CHARGING_DEPOSIT", '_JOMRES_COM_CHARGING_DEPOSIT', false ) );
+	$depAmounts[ ]  = jomresHTML::makeOption( '1', jr_gettext( "_JOMRES_COM_CHARGING_FULLAMT", '_JOMRES_COM_CHARGING_FULLAMT', false ) );
 	$paymentAmounts = jomresHTML::selectList( $depAmounts, 'cfg_depAmount', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'depAmount' ] );
 
 	if ( !isset( $mrConfig[ 'tariffmode' ] ) ) $mrConfig[ 'tariffmode' ] = 1;
 	$tariffMode	= array ();
-	$tariffMode[ ] = jomresHTML::makeOption( '0', jr_gettext( "JOMRES_COM_A_TARIFFMODE_NORMAL", JOMRES_COM_A_TARIFFMODE_NORMAL, false ) );
+	$tariffMode[ ] = jomresHTML::makeOption( '0', jr_gettext( "JOMRES_COM_A_TARIFFMODE_NORMAL", 'JOMRES_COM_A_TARIFFMODE_NORMAL', false ) );
 
 	if ( isset( $MiniComponents->registeredClasses[ '06002edit_tariff_micromanage' ] ) )
 		{
-		$tariffMode[ ] = jomresHTML::makeOption( '2', jr_gettext( "JOMRES_COM_A_TARIFFMODE_TARIFFTYPES", JOMRES_COM_A_TARIFFMODE_TARIFFTYPES, false ) );
-		$tariffMode[ ] = jomresHTML::makeOption( '1', jr_gettext( "JOMRES_COM_A_TARIFFMODE_ADVANCED", JOMRES_COM_A_TARIFFMODE_ADVANCED, false ) );
+		$tariffMode[ ] = jomresHTML::makeOption( '2', jr_gettext( "JOMRES_COM_A_TARIFFMODE_TARIFFTYPES", 'JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', false ) );
+		$tariffMode[ ] = jomresHTML::makeOption( '1', jr_gettext( "JOMRES_COM_A_TARIFFMODE_ADVANCED", 'JOMRES_COM_A_TARIFFMODE_ADVANCED', false ) );
 		}
 	$tariffModeDD = jomresHTML::selectList( $tariffMode, 'cfg_tariffmode', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'tariffmode' ] );
 
@@ -2858,19 +2858,19 @@ function hotelSettings()
 
 	if ( !isset( $mrConfig[ 'booking_form_rooms_list_style' ] ) ) $mrConfig[ 'booking_form_rooms_list_style' ] = "1";
 	$booking_form_rooms_list	   = array ();
-	$booking_form_rooms_list[ ]	= jomresHTML::makeOption( '1', jr_gettext( "_JOMRES_ROOMMSLIST_STYLE_CLASSIC", _JOMRES_ROOMMSLIST_STYLE_CLASSIC, false ) );
-	$booking_form_rooms_list[ ]	= jomresHTML::makeOption( '2', jr_gettext( "_JOMRES_ROOMMSLIST_STYLE_ROOMTYPES", _JOMRES_ROOMMSLIST_STYLE_ROOMTYPES, false ) );
+	$booking_form_rooms_list[ ]	= jomresHTML::makeOption( '1', jr_gettext( "_JOMRES_ROOMMSLIST_STYLE_CLASSIC", '_JOMRES_ROOMMSLIST_STYLE_CLASSIC', false ) );
+	$booking_form_rooms_list[ ]	= jomresHTML::makeOption( '2', jr_gettext( "_JOMRES_ROOMMSLIST_STYLE_ROOMTYPES", '_JOMRES_ROOMMSLIST_STYLE_ROOMTYPES', false ) );
 	$booking_form_rooms_list_style = jomresHTML::selectList( $booking_form_rooms_list, 'cfg_booking_form_rooms_list_style', 'size="1" class="inputbox"', 'value', 'text', $mrConfig[ 'booking_form_rooms_list_style' ] );
 
 	$fixedArrivalDatesRecurring = jomresHTML::integerSelectList( 01, 208, 1, 'cfg_fixedArrivalDatesRecurring', 'size="1" class="inputbox"', $mrConfig[ 'fixedArrivalDatesRecurring' ], "%02d" );
 
 	if ( !isset( $mrConfig[ 'booking_form_daily_weekly_monthly' ] ) ) $mrConfig[ 'booking_form_daily_weekly_monthly' ] = "D";
 	$pricingOutput = array ();
-	if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $pricingOutput[ ] = jomresHTML::makeOption( 'D', jr_gettext( "_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY_WHOLEDAY", _JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY_WHOLEDAY, false ) );
+	if ( $mrConfig[ 'wholeday_booking' ] == "1" ) $pricingOutput[ ] = jomresHTML::makeOption( 'D', jr_gettext( "_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY_WHOLEDAY", '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY_WHOLEDAY', false ) );
 	else
-	$pricingOutput[ ] = jomresHTML::makeOption( 'D', jr_gettext( "_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY", _JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY, false ) );
-	$pricingOutput[ ]				  = jomresHTML::makeOption( 'W', jr_gettext( "_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY", _JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY, false ) );
-	$pricingOutput[ ]				  = jomresHTML::makeOption( 'M', jr_gettext( "_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY", _JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY, false ) );
+	$pricingOutput[ ] = jomresHTML::makeOption( 'D', jr_gettext( "_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY", '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY', false ) );
+	$pricingOutput[ ]				  = jomresHTML::makeOption( 'W', jr_gettext( "_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY", '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', false ) );
+	$pricingOutput[ ]				  = jomresHTML::makeOption( 'M', jr_gettext( "_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY", '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', false ) );
 	$booking_form_daily_weekly_monthly = jomresHTML::selectList( $pricingOutput, 'cfg_booking_form_daily_weekly_monthly', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'booking_form_daily_weekly_monthly' ] );
 
 	//$lists['tariffmodel']= jomresHTML::selectList( $tariffmodels, 'cfg_tariffmodel', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['tariffmodel'] );
@@ -3002,7 +3002,7 @@ function hotelSettings()
 	?>
 
 		<form action="<?php echo JOMRES_SITEPAGE_URL_NOSEF ?>" method="post" name="adminForm">
-			<h2 class="page-header"><?php echo jr_gettext( "_JOMRES_COM_MR_GENERALCONFIGDESC", _JOMRES_COM_MR_GENERALCONFIGDESC ); ?></h2>
+			<h2 class="page-header"><?php echo jr_gettext( "_JOMRES_COM_MR_GENERALCONFIGDESC", '_JOMRES_COM_MR_GENERALCONFIGDESC' ); ?></h2>
 			<?php
 
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
@@ -3157,7 +3157,7 @@ function saveHotelSettings()
 						{
 						$query = "UPDATE #__jomres_settings SET `value`='" . $v . "' WHERE property_uid = '" . (int) $property_uid . "' and akey = '" . substr( $k, 4 ) . "'";
 						}
-					doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', _JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS, false ) );
+					doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', false ) );
 					}
 				}
 			}
@@ -3217,7 +3217,7 @@ function userHasBeenLoggedOut()
 	echo '<center><img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/Restricted.png" align="middle" border="0" />';
 	echo '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/Secured.png" align="middle" border="0" />';
 	echo '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/Restricted.png" align="middle" border="0" /></center><br />';
-	echo '<h2>' . jr_gettext( '_JOMRES_JR_NOTLOGGEDIN', _JOMRES_JR_NOTLOGGEDIN ) . '</h2>';
+	echo '<h2>' . jr_gettext( '_JOMRES_JR_NOTLOGGEDIN', '_JOMRES_JR_NOTLOGGEDIN' ) . '</h2>';
 	echo '<center><img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/Restricted.png" align="middle" border="0" />';
 	echo '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/Secured.png" align="middle" border="0" />';
 	echo '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/Restricted.png" align="middle" border="0" /></center><br />';
@@ -3268,7 +3268,7 @@ function insertInternetBooking( $jomressession = "", $depositPaid = false, $conf
 			$userIsManager = checkUserIsManager();
 			if ( $userIsManager )
 				{
-				echo jr_gettext( '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE', _JOMRES_COM_MR_BOOKINGSAVEDMESSAGE ) . "<br />";
+				echo jr_gettext( '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE', '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE' ) . "<br />";
 				$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 				$jrtb   = $jrtbar->startTable();
 				$jrtb .= $jrtbar->toolbarItem( 'editbooking', jomresURL( JOMRES_SITEPAGE_URL . "&task=editDeposit&contractUid=" . $MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ] ), '' );
@@ -3299,7 +3299,7 @@ function insertInternetBooking( $jomressession = "", $depositPaid = false, $conf
 				$MiniComponents->triggerEvent( '03030', $componentArgs ); // Booking completed message
 				if ( $userIsManager )
 					{
-					echo jr_gettext( '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE', _JOMRES_COM_MR_BOOKINGSAVEDMESSAGE ) . "<br />";
+					echo jr_gettext( '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE', '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE' ) . "<br />";
 					//echo "<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=$contract_uid")."\">".jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE)."</a>";
 					$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 					$jrtb   = $jrtbar->startTable();
@@ -3659,14 +3659,14 @@ function savePlugin( $plugin )
 				}
 			*/
 			$query = "UPDATE #__jomres_pluginsettings SET `value`='$v' WHERE prid = '" . (int) $defaultProperty . "' AND plugin = '$plugin' AND setting = '$k'";
-			doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PLUGINS_UPDATE', _JOMRES_MR_AUDIT_PLUGINS_UPDATE, false ) );
+			doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PLUGINS_UPDATE', '_JOMRES_MR_AUDIT_PLUGINS_UPDATE', false ) );
 			}
 		else
 			{
 			$query = "INSERT INTO #__jomres_pluginsettings
 				(`prid`,`plugin`,`setting`,`value`) VALUES
 				('" . (int) $defaultProperty . "','$plugin','$k','$v')";
-			doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PLUGINS_INSERT', _JOMRES_MR_AUDIT_PLUGINS_INSERT, false ) );
+			doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PLUGINS_INSERT', '_JOMRES_MR_AUDIT_PLUGINS_INSERT', false ) );
 			}
 		}
 	$tmpl = new patTemplate();
@@ -3753,7 +3753,7 @@ function filterForm( $selectname, $value, $format, $task = "" )
 	$task	   = get_showtime( 'task' );
 	$selecthtml = "\n<form action=\"\" method=\"get\" name=\"jomresFilter" . $selectname . "\"><span class=\"inputbox_wrapper\"><select class=\"inputbox\" name=\"$selectname\" onchange=\"window.open(this.options[this.selectedIndex].value,'_top')\">";
 	$selecthtml .= "\n<option value=\"" . jomresURL( JOMRES_SITEPAGE_URL . "&task=" . $task ) . "\"></option>";
-	$selecthtml .= "\n<option value=\"" . jomresURL( JOMRES_SITEPAGE_URL . "&task=" . $task ) . "\">" . jr_gettext( '_JOMRES_COM_A_RESET', _JOMRES_COM_A_RESET, false ) . "</option>";
+	$selecthtml .= "\n<option value=\"" . jomresURL( JOMRES_SITEPAGE_URL . "&task=" . $task ) . "\">" . jr_gettext( '_JOMRES_COM_A_RESET', '_JOMRES_COM_A_RESET', false ) . "</option>";
 	if ( count( $value ) > 0 )
 		{
 		foreach ( $value as $v )
@@ -3809,26 +3809,26 @@ function showLiveBookings( $contractsList, $title, $arrivaldateDropdown )
 	$output[ 'IMG_DEPARTTODAY' ] = $img_departtoday;
 	$output[ 'IMG_STILLHERE' ]   = $img_stillhere;
 
-	$output[ 'TEXT_PENDING' ]	 = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_PENDING', _JOMRES_COM_MR_VIEWBOOKINGS_PENDING );
-	$output[ 'TEXT_ARRIVETODAY' ] = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY );
-	$output[ 'TEXT_RESIDENT' ]	= $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT', _JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT );
-	$output[ 'TEXT_LATE' ]		= $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_LATE', _JOMRES_COM_MR_VIEWBOOKINGS_LATE );
-	$output[ 'TEXT_DEPARTTODAY' ] = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY );
-	$output[ 'TEXT_STILLHERE' ]   = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE', _JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE );
+	$output[ 'TEXT_PENDING' ]	 = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY' ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_PENDING', '_JOMRES_COM_MR_VIEWBOOKINGS_PENDING' );
+	$output[ 'TEXT_ARRIVETODAY' ] = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY' ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY' );
+	$output[ 'TEXT_RESIDENT' ]	= $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY' ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT', '_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT' );
+	$output[ 'TEXT_LATE' ]		= $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY' ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_LATE', '_JOMRES_COM_MR_VIEWBOOKINGS_LATE' );
+	$output[ 'TEXT_DEPARTTODAY' ] = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY' ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY' );
+	$output[ 'TEXT_STILLHERE' ]   = $mrConfig[ 'wholeday_booking' ] == "1" ? jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY' ) : jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE', '_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE' );
 
-	$output[ '_JOMRES_COM_MR_VIEWBOOKINGS_STATUS' ]  = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_STATUS', _JOMRES_COM_MR_VIEWBOOKINGS_STATUS );
-	$output[ '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME', _JOMRES_COM_MR_VIEWBOOKINGS_SURNAME );
-	$output[ '_JOMRES_COM_MR_EDITBOOKINGTITLE' ]	 = jr_gettext( '_JOMRES_COM_MR_EDITBOOKINGTITLE', _JOMRES_COM_MR_EDITBOOKINGTITLE );
-	$output[ '_JOMRES_BOOKING_NUMBER' ]			  = jr_gettext( '_JOMRES_BOOKING_NUMBER', _JOMRES_BOOKING_NUMBER, true, false );
+	$output[ '_JOMRES_COM_MR_VIEWBOOKINGS_STATUS' ]  = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_STATUS', '_JOMRES_COM_MR_VIEWBOOKINGS_STATUS' );
+	$output[ '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME', '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME' );
+	$output[ '_JOMRES_COM_MR_EDITBOOKINGTITLE' ]	 = jr_gettext( '_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE' );
+	$output[ '_JOMRES_BOOKING_NUMBER' ]			  = jr_gettext( '_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER', true, false );
 	if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 		{
-		$output[ 'ARRIVAL' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY );
-		$output[ 'DEPARTURE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY );
+		$output[ 'ARRIVAL' ]   = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY' );
+		$output[ 'DEPARTURE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY' );
 		}
 	else
 		{
-		$output[ 'ARRIVAL' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL );
-		if ( $mrConfig[ 'showdepartureinput' ] == "1" ) $output[ 'DEPARTURE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', _JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE );
+		$output[ 'ARRIVAL' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL' );
+		if ( $mrConfig[ 'showdepartureinput' ] == "1" ) $output[ 'DEPARTURE' ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE' );
 		else
 		$output[ 'DEPARTURE' ] = "&nbsp;";
 		}
@@ -3856,9 +3856,9 @@ function showLiveBookings( $contractsList, $title, $arrivaldateDropdown )
 		if ( $unixDeparture < $unixToday && $bookedIn == "1" ) $imgToShow = $img_stillhere;
 
 		$r[ 'STATE_IMAGE' ] = $imgToShow;
-		$r[ 'EDIT_LINK' ]   = '<a href="' . jomresURL( JOMRES_SITEPAGE_URL . "&task=editBooking&contract_uid=" . ( $row->contract_uid ) ) . '" class="btn btn-info"><i class="icon-edit icon-white"></i> ' . jr_gettext( '_JOMRES_COM_MR_EDITBOOKINGTITLE', _JOMRES_COM_MR_EDITBOOKINGTITLE, false ) . '</a>';
+		$r[ 'EDIT_LINK' ]   = '<a href="' . jomresURL( JOMRES_SITEPAGE_URL . "&task=editBooking&contract_uid=" . ( $row->contract_uid ) ) . '" class="btn btn-info"><i class="icon-edit icon-white"></i> ' . jr_gettext( '_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE', false ) . '</a>';
 		$r[ 'EDIT_URL' ]	= jomresURL( JOMRES_SITEPAGE_URL . "&task=editBooking&contract_uid=" . ( $row->contract_uid ) );
-		$r[ 'EDIT_TEXT' ]   = jr_gettext( '_JOMRES_COM_MR_EDITBOOKINGTITLE', _JOMRES_COM_MR_EDITBOOKINGTITLE, false );
+		$r[ 'EDIT_TEXT' ]   = jr_gettext( '_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE', false );
 
 		$r[ 'FIRSTNAME' ] = $row->firstname;
 		$r[ 'SURNAME' ]   = $row->surname;
@@ -4023,9 +4023,9 @@ function gatewayPostage( $outgoingURL, $postage, $method = "post" )
 		</script>
 	<?php
 	echo "<html>\n";
-	echo "<head><title>" . jr_gettext( 'JOMRES_PHRASE_PROCESSING', JOMRES_PHRASE_PROCESSING, false ) . "</title></head>\n";
+	echo "<head><title>" . jr_gettext( 'JOMRES_PHRASE_PROCESSING', 'JOMRES_PHRASE_PROCESSING', false ) . "</title></head>\n";
 	echo "<body onLoad=\"document.form.submit();\">\n";
-	echo "<center><h3>" . jr_gettext( 'JOMRES_PHRASE_PROCESSING', JOMRES_PHRASE_PROCESSING, false ) . "</h3></center>\n";
+	echo "<center><h3>" . jr_gettext( 'JOMRES_PHRASE_PROCESSING', 'JOMRES_PHRASE_PROCESSING', false ) . "</h3></center>\n";
 	echo "<form method=\"" . $method . "\" name=\"form\" action=\"" . $outgoingURL . "\">\n";
 	foreach ( $postage as $name => $value )
 		{
@@ -4615,10 +4615,10 @@ function invoices_makeInvoiceStatusDropdown( $selected = '0' )
 	$statusOptions  = array ();
 	$statusDropdown = "";
 	$statuses	   = array ();
-	$statuses[ 0 ]  = jr_gettext( "_JRPORTAL_INVOICES_STATUS_UNPAID", _JRPORTAL_INVOICES_STATUS_UNPAID );
-	$statuses[ 1 ]  = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PAID", _JRPORTAL_INVOICES_STATUS_PAID );
-	$statuses[ 2 ]  = jr_gettext( "_JRPORTAL_INVOICES_STATUS_CANCELLED", _JRPORTAL_INVOICES_STATUS_CANCELLED );
-	$statuses[ 3 ]  = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PENDING", _JRPORTAL_INVOICES_STATUS_PENDING );
+	$statuses[ 0 ]  = jr_gettext( "_JRPORTAL_INVOICES_STATUS_UNPAID", '_JRPORTAL_INVOICES_STATUS_UNPAID' );
+	$statuses[ 1 ]  = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PAID", '_JRPORTAL_INVOICES_STATUS_PAID' );
+	$statuses[ 2 ]  = jr_gettext( "_JRPORTAL_INVOICES_STATUS_CANCELLED", '_JRPORTAL_INVOICES_STATUS_CANCELLED' );
+	$statuses[ 3 ]  = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PENDING", '_JRPORTAL_INVOICES_STATUS_PENDING' );
 
 	foreach ( $statuses as $key => $val )
 		{
@@ -4841,8 +4841,8 @@ function editCustomText()
 	$jrtb .= $jrtbar->endTable();
 	$output[ 'JOMRESTOOLBAR' ]	 = $jrtb;
 	$output[ 'MOSCONFIGLIVESITE' ] = get_showtime( 'live_site' );
-	$output[ 'HCURRENTTEXT' ]	  = jr_gettext( "_JOMRES_COM_A_EDITING_CURRENTTEXT", _JOMRES_COM_A_EDITING_CURRENTTEXT );
-	$output[ 'HNEWTEXT' ]		  = jr_gettext( "_JOMRES_COM_A_EDITING_NEWTEXT", _JOMRES_COM_A_EDITING_NEWTEXT );
+	$output[ 'HCURRENTTEXT' ]	  = jr_gettext( "_JOMRES_COM_A_EDITING_CURRENTTEXT", '_JOMRES_COM_A_EDITING_CURRENTTEXT' );
+	$output[ 'HNEWTEXT' ]		  = jr_gettext( "_JOMRES_COM_A_EDITING_NEWTEXT", '_JOMRES_COM_A_EDITING_NEWTEXT' );
 	$output[ 'PROPERTYUID' ]	   = $property_uid;
 	$output[ 'THECONSTANT' ]	   = $theConstant;
 	$output[ 'CURRENTTEXT' ]	   = $theText;
@@ -4955,7 +4955,7 @@ function updateCustomText( $theConstant, $theValue, $audit = true, $property_uid
 		}
 	//echo $query;
 	if ( $audit ) 
-		$audit = jr_gettext( "_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT", _JOMRES_MR_AUDIT_UPDATECUSTOMTEXT );
+		$audit = jr_gettext( "_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT", '_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT' );
 
 	doInsertSql( $query, $audit );
 

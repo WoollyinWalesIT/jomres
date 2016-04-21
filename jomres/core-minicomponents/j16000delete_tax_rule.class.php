@@ -38,7 +38,7 @@ class j16000delete_tax_rule
 			}
 		else
 			{
-			echo jr_gettext( '_JRPORTAL_TAXRATES_CANNOTDELETE', _JRPORTAL_TAXRATES_CANNOTDELETE, false );
+			echo jr_gettext( '_JRPORTAL_TAXRATES_CANNOTDELETE', '_JRPORTAL_TAXRATES_CANNOTDELETE', false );
 			}
 		}
 

@@ -163,7 +163,7 @@ class j04900saveproperty
 				$apikey    = createNewAPIKey();
 				$apiclause = "`apikey`='" . $apikey . "',";
 				}
-			$saveMessage = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_UPDATE', _JOMRES_COM_MR_VRCT_PROPERTY_SAVE_UPDATE, false );
+			$saveMessage = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_UPDATE', '_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_UPDATE', false );
 
 			$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
 			$jomres_messaging->set_message( $saveMessage );
@@ -202,7 +202,7 @@ class j04900saveproperty
 				`ptype_id`='" . (int) $property_type . "',
 				`property_site_id`='".$property_site_id."'
 				WHERE propertys_uid='" . (int) $propertyUid . "'";
-			doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_PROPERTY', _JOMRES_MR_AUDIT_UPDATE_PROPERTY, false ) );
+			doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_PROPERTY', '_JOMRES_MR_AUDIT_UPDATE_PROPERTY', false ) );
 
 			updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_NAME", $property_name, true );
 			updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_STREET", $property_street, true );
@@ -223,8 +223,8 @@ class j04900saveproperty
 			if ((int)$jrConfig['automatically_approve_new_properties'] == 0 && !$thisJRUser->superPropertyManager)
 				{
 				$link = JOMRES_SITEPAGE_URL_ADMIN."&task=list_properties_awaiting_approval";
-				$subject=jr_gettext("_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT",_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT,false);
-				$message=jr_gettext("_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT",_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT,false).$link;
+				$subject=jr_gettext("_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT",'_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT',false);
+				$message=jr_gettext("_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT",'_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT',false).$link;
 				sendAdminEmail($subject,$message);
 				}
 			

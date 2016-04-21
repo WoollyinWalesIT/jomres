@@ -99,28 +99,28 @@ class j16000editGlobalroomTypes
 			}
 		//var_dump($rows);exit;
 
-		$output[ 'PROPERTYFEATUREINFO' ] = jr_gettext( '_JOMRES_A_GLOBALROOMTYPES_INFO', _JOMRES_A_GLOBALROOMTYPES_INFO,false );
+		$output[ 'PROPERTYFEATUREINFO' ] = jr_gettext( '_JOMRES_A_GLOBALROOMTYPES_INFO', '_JOMRES_A_GLOBALROOMTYPES_INFO',false );
 		$output[ 'ROOMCLASSUID' ]        = $rmTypeUid;
 
-		$output[ 'INDEX' ]                            = jr_gettext( 'JOMRES_SITEPAGE_URL_ADMIN', JOMRES_SITEPAGE_URL_ADMIN,false );
+		$output[ 'INDEX' ]                            = jr_gettext( 'JOMRES_SITEPAGE_URL_ADMIN', 'JOMRES_SITEPAGE_URL_ADMIN',false );
 		$output[ 'TASK' ]                             = 'saveGlobalRoomClass';
-		$output[ 'HLINKTEXT' ]                        = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_LINKTEXT', _JOMRES_COM_MR_VRCT_ROOMTYPES_LINKTEXT,false );
-		$output[ 'HLINKTEXTCLONE' ]                   = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE', _JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE,false );
-		$output[ 'HABBV' ]                            = jr_gettext( '_JOMRES_SEARCH_RTYPES', _JOMRES_SEARCH_RTYPES,false );
-		$output[ 'HDESC' ]                            = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_DESC', _JOMRES_COM_MR_EB_ROOM_CLASS_DESC,false );
-		$output[ 'HSRP_ONLY' ]                        = jr_gettext( 'JOMRES_COM_A_SRPONLY', JOMRES_COM_A_SRPONLY,false );
+		$output[ 'HLINKTEXT' ]                        = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_LINKTEXT', '_JOMRES_COM_MR_VRCT_ROOMTYPES_LINKTEXT',false );
+		$output[ 'HLINKTEXTCLONE' ]                   = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE', '_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE',false );
+		$output[ 'HABBV' ]                            = jr_gettext( '_JOMRES_SEARCH_RTYPES', '_JOMRES_SEARCH_RTYPES',false );
+		$output[ 'HDESC' ]                            = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_DESC', '_JOMRES_COM_MR_EB_ROOM_CLASS_DESC',false );
+		$output[ 'HSRP_ONLY' ]                        = jr_gettext( 'JOMRES_COM_A_SRPONLY', 'JOMRES_COM_A_SRPONLY',false );
 		$output[ 'MOSCONFIGLIVESITE' ]                = get_showtime( 'live_site' );
-		$output[ 'PAGETITLE' ]                        = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK,false );
-		$output[ '_JOMRES_PROPERTY_TYPE_ASSIGNMENT' ] = jr_gettext( '_JOMRES_PROPERTY_TYPE_ASSIGNMENT', _JOMRES_PROPERTY_TYPE_ASSIGNMENT,false );
-		$output[ '_JOMRES_IMAGE' ]                    = jr_gettext( '_JOMRES_IMAGE', _JOMRES_IMAGE,false );
+		$output[ 'PAGETITLE' ]                        = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK',false );
+		$output[ '_JOMRES_PROPERTY_TYPE_ASSIGNMENT' ] = jr_gettext( '_JOMRES_PROPERTY_TYPE_ASSIGNMENT', '_JOMRES_PROPERTY_TYPE_ASSIGNMENT',false );
+		$output[ '_JOMRES_IMAGE' ]                    = jr_gettext( '_JOMRES_IMAGE', '_JOMRES_IMAGE',false );
 		
-		$output[ '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD' ] = nl2br(jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD', _JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD,false ));
+		$output[ '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD' ] = nl2br(jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD', '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD',false ));
 		if ($output[ 'SRP_ONLY' ] == "0")
-			$output['MANAGEMENT_PROCESS'] =  jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', _JOMRES_PROPERTYTYPE_FLAG_HOTEL,false );
+			$output['MANAGEMENT_PROCESS'] =  jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', '_JOMRES_PROPERTYTYPE_FLAG_HOTEL',false );
 		elseif ($output[ 'SRP_ONLY' ] == "1")
-			$output['MANAGEMENT_PROCESS'] =  jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_VILLA', _JOMRES_PROPERTYTYPE_FLAG_VILLA,false );
+			$output['MANAGEMENT_PROCESS'] =  jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_VILLA', '_JOMRES_PROPERTYTYPE_FLAG_VILLA',false );
 		else
-			$output['MANAGEMENT_PROCESS'] = jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_NEITHER', _JOMRES_PROPERTYTYPE_FLAG_NEITHER,false );
+			$output['MANAGEMENT_PROCESS'] = jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_NEITHER', '_JOMRES_PROPERTYTYPE_FLAG_NEITHER',false );
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
@@ -128,11 +128,9 @@ class j16000editGlobalroomTypes
 		$link   = JOMRES_SITEPAGE_URL_ADMIN;
 		
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', JOMRES_SITEPAGE_URL_ADMIN . "&task=listGlobalroomTypes", '' );
-		$jrtb .= $jrtbar->customToolbarItem( 'saveGlobalRoomClass', $link, jr_gettext( '_JOMRES_COM_MR_SAVE', _JOMRES_COM_MR_SAVE,false ), $submitOnClick = true, $submitTask = "saveGlobalRoomClass", $image );
+		$jrtb .= $jrtbar->customToolbarItem( 'saveGlobalRoomClass', $link, jr_gettext( '_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE',false ), $submitOnClick = true, $submitTask = "saveGlobalRoomClass", $image );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
-
-		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = JOMRES_SITEPAGE_URL_ADMIN;
 
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();

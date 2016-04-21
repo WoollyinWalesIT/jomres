@@ -39,14 +39,14 @@ class j16000save_gateway
 			if ( count( $settingList ) > 0 )
 				{
 				$query = "UPDATE #__jomres_pluginsettings SET `value`='$v' WHERE prid = 0 AND plugin = '$plugin' AND setting = '$k'";
-				doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PLUGINS_UPDATE', _JOMRES_MR_AUDIT_PLUGINS_UPDATE, false ) );
+				doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PLUGINS_UPDATE', '_JOMRES_MR_AUDIT_PLUGINS_UPDATE', false ) );
 				}
 			else
 				{
 				$query = "INSERT INTO #__jomres_pluginsettings
 					(`prid`,`plugin`,`setting`,`value`) VALUES
 					(0,'$plugin','$k','$v')";
-				doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PLUGINS_INSERT', _JOMRES_MR_AUDIT_PLUGINS_INSERT, false ) );
+				doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PLUGINS_INSERT', '_JOMRES_MR_AUDIT_PLUGINS_INSERT', false ) );
 				}
 			}
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_gateways" ), '' );

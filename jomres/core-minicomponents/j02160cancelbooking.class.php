@@ -47,14 +47,14 @@ class j02160cancelbooking
 
 			if ( $booked_in != "1" )
 				{
-				$output[ 'PAGETITLE' ]  = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', _JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING );
-				$output[ 'SAVEBUTTON' ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON', _JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON, false );
-				$output[ 'HREASON' ]    = jr_gettext( '_JOMRES_JR_BLACKBOOKING_REASON', _JOMRES_JR_BLACKBOOKING_REASON );
+				$output[ 'PAGETITLE' ]  = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING' );
+				$output[ 'SAVEBUTTON' ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON', '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON', false );
+				$output[ 'HREASON' ]    = jr_gettext( '_JOMRES_JR_BLACKBOOKING_REASON', '_JOMRES_JR_BLACKBOOKING_REASON' );
 
 				$output[ 'CONTRACT_UID' ]   = $contract_uid;
-				$output[ 'HARRIVAL' ]       = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL );
-				$output[ 'HCONTRACTTOTAL' ] = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL', _JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL );
-				$output[ 'HDAYSTOARRIVAL' ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_DAYSTOARRIVAL', _JOMRES_COM_MR_EB_GUEST_DAYSTOARRIVAL );
+				$output[ 'HARRIVAL' ]       = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL' );
+				$output[ 'HCONTRACTTOTAL' ] = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL', '_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL' );
+				$output[ 'HDAYSTOARRIVAL' ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_DAYSTOARRIVAL', '_JOMRES_COM_MR_EB_GUEST_DAYSTOARRIVAL' );
 
 				$output[ 'ARRIVAL' ]       = outputDate( $arrival );
 				$output[ 'CONTRACTTOTAL' ] = output_price( $contract_total );
@@ -62,12 +62,12 @@ class j02160cancelbooking
 
 				if ( $deposit_paid == "1" )
 					{
-					$output[ 'HDEPOSITPAID' ]  = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID );
+					$output[ 'HDEPOSITPAID' ]  = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID', '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID' );
 					$output[ 'DEPOSITAMOUNT' ] = output_price( $deposit_required );
 					}
 				else
 					{
-					$output[ 'HDEPOSITPAID' ]  = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_NODEPOSIT', _JOMRES_COM_MR_EB_GUEST_CANCELLATION_NODEPOSIT );
+					$output[ 'HDEPOSITPAID' ]  = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_NODEPOSIT', '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_NODEPOSIT' );
 					$output[ 'DEPOSITAMOUNT' ] = "";
 					}
 
@@ -78,8 +78,6 @@ class j02160cancelbooking
 				$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'saveCancellation' );
 				$jrtb .= $jrtbar->endTable();
 				$output[ 'JOMRESTOOLBAR' ] = $jrtb;
-
-				$output[ 'JOMRES_SITEPAGE_URL' ] = JOMRES_SITEPAGE_URL;
 
 				$pageoutput[ ] = $output;
 
@@ -92,7 +90,7 @@ class j02160cancelbooking
 				$link   = JOMRES_SITEPAGE_URL . "&task=invoiceForm&contract_uid=" . $contract_uid;
 				}
 			else
-			echo jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN', _JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN );
+			echo jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN', '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN' );
 			}
 		else
 		trigger_error( "Error when cancelling booking, incorrect contract uid used (hack attempt?)", E_USER_ERROR );
@@ -102,13 +100,13 @@ class j02160cancelbooking
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN', _JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_NODEPOSIT', _JOMRES_COM_MR_EB_GUEST_CANCELLATION_NODEPOSIT );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID', _JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', _JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL', _JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_DAYSTOARRIVAL', _JOMRES_COM_MR_EB_GUEST_DAYSTOARRIVAL );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON', _JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN', '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_NODEPOSIT', '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_NODEPOSIT' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID', '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL', '_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_DAYSTOARRIVAL', '_JOMRES_COM_MR_EB_GUEST_DAYSTOARRIVAL' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON', '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON' );
 
 		foreach ( $output as $o )
 			{

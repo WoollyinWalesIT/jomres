@@ -133,9 +133,9 @@ class j06001dashboard_insertbooking_ajax
 			$booking_number = (string)$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ]['cartnumber'];
 			
 			$url=jomresUrl(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$contract_uid);
-			$description=jr_gettext( '_JOMRES_BOOKING_NUMBER', _JOMRES_BOOKING_NUMBER,false ) . ': ' . $booking_number . '<br/>';
-			$description.=jr_gettext( '_JOMRES_HFROM', _JOMRES_HFROM,false ).': '.outputDate($startDate) . '<br/>';
-			$description.=jr_gettext( '_JOMRES_HTO', _JOMRES_HTO,false ).': '.outputDate($endDate);
+			$description=jr_gettext( '_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER',false ) . ': ' . $booking_number . '<br/>';
+			$description.=jr_gettext( '_JOMRES_HFROM', '_JOMRES_HFROM',false ).': '.outputDate($startDate) . '<br/>';
+			$description.=jr_gettext( '_JOMRES_HTO', '_JOMRES_HTO',false ).': '.outputDate($endDate);
 			
 			$from = date("Y-m-d", strtotime($startDate))."T12:00:00";
 			$to = date("Y-m-d", strtotime($endDate))."T11:59:59";

@@ -139,14 +139,14 @@ jomresJquery(function(){
 			if ( $mrConfig[ 'visitorscanbookonline' ] == "1" && !$noshowroom && $this->showlinks && $jrConfig[ 'show_booking_form_in_property_details' ] != '1' )
 				{
 				$this->retVals .= '<tr>';
-				$this->retVals .= '<td colspan="6">' . jr_gettext( '_JOMRES_FRONT_CALENDAR_CLICKDATES', _JOMRES_FRONT_CALENDAR_CLICKDATES ) . '</td>';
+				$this->retVals .= '<td colspan="6">' . jr_gettext( '_JOMRES_FRONT_CALENDAR_CLICKDATES', '_JOMRES_FRONT_CALENDAR_CLICKDATES' ) . '</td>';
 				$this->retVals .= '</tr>';
 				}
 			$this->retVals .= '
 										<tr>
-											<td bgcolor="' . $mrConfig[ 'avlcal_inbgcolour' ] . '" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>' . jr_gettext( '_JOMRES_COM_AVLCAL_INMONTHFACE_KEY', _JOMRES_COM_AVLCAL_INMONTHFACE_KEY ) . '</td>
-											<td bgcolor="' . $mrConfig[ 'avlcal_occupiedcolour' ] . '" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>' . jr_gettext( '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', _JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY ) . '</td>
-											<td bgcolor="' . $mrConfig[ 'avlcal_provisionalcolour' ] . '" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>' . jr_gettext( '_JOMRES_COM_AVLCAL_PROVISIONALCOLOUR_KEY', _JOMRES_COM_AVLCAL_PROVISIONALCOLOUR_KEY ) . '</td>
+											<td bgcolor="' . $mrConfig[ 'avlcal_inbgcolour' ] . '" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>' . jr_gettext( '_JOMRES_COM_AVLCAL_INMONTHFACE_KEY', '_JOMRES_COM_AVLCAL_INMONTHFACE_KEY' ) . '</td>
+											<td bgcolor="' . $mrConfig[ 'avlcal_occupiedcolour' ] . '" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>' . jr_gettext( '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY' ) . '</td>
+											<td bgcolor="' . $mrConfig[ 'avlcal_provisionalcolour' ] . '" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>' . jr_gettext( '_JOMRES_COM_AVLCAL_PROVISIONALCOLOUR_KEY', '_JOMRES_COM_AVLCAL_PROVISIONALCOLOUR_KEY' ) . '</td>
 										</tr>
 									</table>
 								</td>
@@ -200,15 +200,15 @@ jomresJquery(function(){
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMRES_COM_AVLCAL_INMONTHFACE_KEY', _JOMRES_COM_AVLCAL_INMONTHFACE_KEY );
-		$output[ ] = jr_gettext( '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', _JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR );
-		$output[ ] = jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR );
+		$output[ ] = jr_gettext( '_JOMRES_COM_AVLCAL_INMONTHFACE_KEY', '_JOMRES_COM_AVLCAL_INMONTHFACE_KEY' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR' );
+		$output[ ] = jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR' );
 
 		foreach ( $output as $o )
 			{
@@ -286,37 +286,37 @@ jomresJquery(function(){
 		if ( $jrConfig[ 'calendarstartofweekday' ] == "1" )
 			{
 			$this->retVals .= "<tr class=\"availability_calendar_days\">\n<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR ) . "</font></th>\n";
+				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR' ) . "</font></th>\n";
 			$this->retVals .= "<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR ) . "</font></th>\n";
+				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR' ) . "</font></th>\n";
 			$this->retVals .= "<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR ) . "</font></th>\n";
+				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR' ) . "</font></th>\n";
 			$this->retVals .= "<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR ) . "</font></th>\n";
+				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR' ) . "</font></th>\n";
 			$this->retVals .= "<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR ) . "</font></th>\n";
+				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR' ) . "</font></th>\n";
 			$this->retVals .= "<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR ) . "</font></th>\n";
+				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR' ) . "</font></th>\n";
 			$this->retVals .= "<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR ) . "</font></th>
+				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR' ) . "</font></th>
 				\n</tr>\n";
 			}
 		else
 			{
 			$this->retVals .= "<tr class=\"availability_calendar_days\">\n<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR ) . "</font></th>\n";
+				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR' ) . "</font></th>\n";
 			$this->retVals .= "<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR ) . "</font></th>\n";
+				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR' ) . "</font></th>\n";
 			$this->retVals .= "<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR ) . "</font></th>\n";
+				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR' ) . "</font></th>\n";
 			$this->retVals .= "<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR ) . "</font></th>\n";
+				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR' ) . "</font></th>\n";
 			$this->retVals .= "<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR ) . "</font></th>\n";
+				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR' ) . "</font></th>\n";
 			$this->retVals .= "<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR ) . "</font></th>\n";
+				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR' ) . "</font></th>\n";
 			$this->retVals .= "<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR', _JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR ) . "</font></th>
+				size=\"$size\">" . jr_gettext( '_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR' ) . "</font></th>
 				\n</tr>\n";
 			}
 

@@ -52,7 +52,7 @@ class j06005muviewfavourites
 			}
 		else
 			{
-			echo jr_gettext( '_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE', _JOMCOMP_MYUSER_VIEWFAVOURITES_NONE, $editable = false, $isLink = false );
+			echo jr_gettext( '_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE', '_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE', $editable = false, $isLink = false );
 			}
 		}
 
@@ -61,10 +61,10 @@ class j06005muviewfavourites
 		{
 		$output = array ();
 
-		$output[ 'H1' ]      = jr_gettext( '_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE', _JOMCOMP_MYUSER_VIEWFAVOURITES_NONE );
-		$output[ 'HPTYPES' ] = jr_gettext( '_JOMCOMP_MYUSER_PROPERTYTYPE', _JOMCOMP_MYUSER_PROPERTYTYPE );
-		$output[ 'HPNAME' ]  = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME', _JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME );
-		$r[ 'REMOVETEXT' ]   = jr_gettext( '_JOMCOMP_MYUSER_REMOVE', _JOMCOMP_MYUSER_REMOVE );
+		$output[ 'H1' ]      = jr_gettext( '_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE', '_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE' );
+		$output[ 'HPTYPES' ] = jr_gettext( '_JOMCOMP_MYUSER_PROPERTYTYPE', '_JOMCOMP_MYUSER_PROPERTYTYPE' );
+		$output[ 'HPNAME' ]  = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME', '_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME' );
+		$r[ 'REMOVETEXT' ]   = jr_gettext( '_JOMCOMP_MYUSER_REMOVE', '_JOMCOMP_MYUSER_REMOVE' );
 		foreach ( $output as $o )
 			{
 			echo $o;

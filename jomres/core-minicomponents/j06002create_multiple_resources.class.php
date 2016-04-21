@@ -57,19 +57,19 @@ class j06002create_multiple_resources
 		$output[ 'RESOURCES_MAXGUESTS' ] = jomresHTML::integerSelectList( 1, 10, 1, "maxGuests", 'class="input-mini form-control"', '1', "" );
 		
 		$options = array();
-		$options[] = jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
-		$options[] = jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE) );
+		$options[] = jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO','_JOMRES_COM_MR_NO',FALSE) );
+		$options[] = jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES','_JOMRES_COM_MR_YES',FALSE) );
 		$output['DELETE_EXISTING_RESOURCES']=jomresHTML::selectList( $options, 'deleteExistingResources','class="inputbox form-control" size="1"', 'value', 'text', '0');
 		
-		$output[ 'HNUMBER_OF_RESOURCES' ] = jr_gettext('_JOMRES_MULTIPLE_RESOURCES_HOWMANY',_JOMRES_MULTIPLE_RESOURCES_HOWMANY,FALSE);
-		$output[ 'HRESOURCES_OF_TYPE' ] = jr_gettext('_JOMRES_MULTIPLE_RESOURCES_TYPE',_JOMRES_MULTIPLE_RESOURCES_TYPE,FALSE);
-		$output[ 'HRESOURCES_MAXGUESTS' ] = jr_gettext('_JOMRES_MULTIPLE_RESOURCES_MAXGUESTS',_JOMRES_MULTIPLE_RESOURCES_MAXGUESTS,FALSE);
-		$output[ 'HDELETE_EXISTING_RESOURCES' ] = jr_gettext('_JOMRES_MULTIPLE_RESOURCES_DELETE',_JOMRES_MULTIPLE_RESOURCES_DELETE,FALSE);
-		$output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_MULTIPLE_RESOURCES_TITLE',_JOMRES_MULTIPLE_RESOURCES_TITLE,FALSE);
+		$output[ 'HNUMBER_OF_RESOURCES' ] = jr_gettext('_JOMRES_MULTIPLE_RESOURCES_HOWMANY','_JOMRES_MULTIPLE_RESOURCES_HOWMANY',FALSE);
+		$output[ 'HRESOURCES_OF_TYPE' ] = jr_gettext('_JOMRES_MULTIPLE_RESOURCES_TYPE','_JOMRES_MULTIPLE_RESOURCES_TYPE',FALSE);
+		$output[ 'HRESOURCES_MAXGUESTS' ] = jr_gettext('_JOMRES_MULTIPLE_RESOURCES_MAXGUESTS','_JOMRES_MULTIPLE_RESOURCES_MAXGUESTS',FALSE);
+		$output[ 'HDELETE_EXISTING_RESOURCES' ] = jr_gettext('_JOMRES_MULTIPLE_RESOURCES_DELETE','_JOMRES_MULTIPLE_RESOURCES_DELETE',FALSE);
+		$output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_MULTIPLE_RESOURCES_TITLE','_JOMRES_MULTIPLE_RESOURCES_TITLE',FALSE);
 	
 		$jrtbar     = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb       = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem( 'save', '', jr_gettext('_JOMRES_MULTIPLE_RESOURCES_GENERATE',_JOMRES_MULTIPLE_RESOURCES_GENERATE,FALSE), true, 'save_multiple_resources' );
+		$jrtb .= $jrtbar->toolbarItem( 'save', '', jr_gettext('_JOMRES_MULTIPLE_RESOURCES_GENERATE','_JOMRES_MULTIPLE_RESOURCES_GENERATE',FALSE), true, 'save_multiple_resources' );
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=list_resources" ), $cancelText );
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;

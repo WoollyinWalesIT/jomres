@@ -26,7 +26,7 @@ class j10002reviews
 			return;
 			}
 		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=list_reviews', 'reviews.png', jr_gettext( "_JOMRES_REVIEWS", _JOMRES_REVIEWS, false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL", _JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL, false, false ) );
+		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=list_reviews', 'reviews.png', jr_gettext( "_JOMRES_REVIEWS", '_JOMRES_REVIEWS', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL', false, false ) );
 		}
 
 

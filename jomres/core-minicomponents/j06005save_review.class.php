@@ -74,9 +74,9 @@ class j06005save_review
 				$rating_id = $Reviews->save_review( $overall_rating, $review_title, $review_description, $pros, $cons );
 				$Reviews->save_rating_detail( $property_uid, $rating_id, $rating_1, $rating_2, $rating_3, $rating_4, $rating_5, $rating_6 );
 
-				if ( $jrConfig[ 'autopublish_reviews' ] == "1" ) $thanks = jr_gettext( '_JOMRES_REVIEWS_THANKS_FOR_REVIEW', _JOMRES_REVIEWS_THANKS_FOR_REVIEW, false, false );
+				if ( $jrConfig[ 'autopublish_reviews' ] == "1" ) $thanks = jr_gettext( '_JOMRES_REVIEWS_THANKS_FOR_REVIEW', '_JOMRES_REVIEWS_THANKS_FOR_REVIEW', false, false );
 				else
-				$thanks = jr_gettext( '_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED', _JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED, false, false );
+				$thanks = jr_gettext( '_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED', '_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED', false, false );
 
 				$saveMessage      = $thanks;
 				$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
@@ -92,7 +92,7 @@ class j06005save_review
 				}
 			else
 				{
-				echo jr_gettext( '_JOMRES_REVIEWS_CANNOTREVIEW', _JOMRES_REVIEWS_CANNOTREVIEW );
+				echo jr_gettext( '_JOMRES_REVIEWS_CANNOTREVIEW', '_JOMRES_REVIEWS_CANNOTREVIEW' );
 				}
 			}
 		}

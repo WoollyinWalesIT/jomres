@@ -26,14 +26,14 @@ class j02280mustregister
 			return;
 			}
 		// Need to create a cms specific function here, TODO
-		echo '<a href="' . jomres_cmsspecific_getregistrationlink() . '">' . jr_gettext( '_JOMRES_REGISTEREDUSERSONLYBOOK', _JOMRES_REGISTEREDUSERSONLYBOOK, false ) . '</a>';
+		echo '<a href="' . jomres_cmsspecific_getregistrationlink() . '">' . jr_gettext( '_JOMRES_REGISTEREDUSERSONLYBOOK', '_JOMRES_REGISTEREDUSERSONLYBOOK', false ) . '</a>';
 		}
 
 	function touch_template_language()
 		{
 		$output = array ();
 
-		$output[ ] = jr_gettext( '_JOMRES_REGISTEREDUSERSONLYBOOK', _JOMRES_REGISTEREDUSERSONLYBOOK );
+		$output[ ] = jr_gettext( '_JOMRES_REGISTEREDUSERSONLYBOOK', '_JOMRES_REGISTEREDUSERSONLYBOOK' );
 
 		foreach ( $output as $o )
 			{

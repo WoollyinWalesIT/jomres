@@ -195,16 +195,16 @@ class j06001listyourproperties_ajax
 				if ($thisJRUser->userIsManager && $thisJRUser->accesslevel == 2)
 					{
 					if ( !$p->published ) 
-						$jrtb .= $jrtbar->toolbarItem( 'unpublish', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty' . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', _JOMRES_COM_MR_VRCT_PUBLISH, false ) );
+						$jrtb .= $jrtbar->toolbarItem( 'unpublish', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty' . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', '_JOMRES_COM_MR_VRCT_PUBLISH', false ) );
 					else
-						$jrtb .= $jrtbar->toolbarItem( 'publish', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty'  . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_UNPUBLISH', _JOMRES_COM_MR_VRCT_UNPUBLISH, false ) );
-					$jrtb .= $jrtbar->toolbarItem( 'edit', jomresURL( JOMRES_SITEPAGE_URL . '&task=editProperty'  . '&thisProperty=' . $p->propertys_uid ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
+						$jrtb .= $jrtbar->toolbarItem( 'publish', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty'  . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_UNPUBLISH', '_JOMRES_COM_MR_VRCT_UNPUBLISH', false ) );
+					$jrtb .= $jrtbar->toolbarItem( 'edit', jomresURL( JOMRES_SITEPAGE_URL . '&task=editProperty'  . '&thisProperty=' . $p->propertys_uid ), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
 					if (count($thisJRUser->authorisedProperties) > 1)
-						$jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . '&task=deleteProperty'  . '&thisProperty=' . $p->propertys_uid ), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
+						$jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . '&task=deleteProperty'  . '&thisProperty=' . $p->propertys_uid ), jr_gettext( 'COMMON_DELETE', 'COMMON_DELETE', false ) );
 					}
 	
 				if ($p->propertys_uid != $defaultProperty)
-					$jrtb .= $jrtbar->toolbarItem( 'apply', jomresURL( JOMRES_SITEPAGE_URL . '&thisProperty=' . $p->propertys_uid ), jr_gettext( '_JOMRES_ACTION_SET_CURRENT', _JOMRES_ACTION_SET_CURRENT, false ) );
+					$jrtb .= $jrtbar->toolbarItem( 'apply', jomresURL( JOMRES_SITEPAGE_URL . '&thisProperty=' . $p->propertys_uid ), jr_gettext( '_JOMRES_ACTION_SET_CURRENT', '_JOMRES_ACTION_SET_CURRENT', false ) );
 	
 				$r[] = $jrtb .= $jrtbar->endTable();
 				}
@@ -217,27 +217,27 @@ class j06001listyourproperties_ajax
 					if ( $p->approved == 1 )
 						{
 						if ( !$p->published )
-							$toolbar->addItem( 'fa fa-times', 'btn btn-default', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty' . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', _JOMRES_COM_MR_VRCT_PUBLISH, false ) );
+							$toolbar->addItem( 'fa fa-times', 'btn btn-default', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty' . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', '_JOMRES_COM_MR_VRCT_PUBLISH', false ) );
 						else
-							$toolbar->addItem( 'fa fa-check', 'btn btn-success', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty' . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_UNPUBLISH', _JOMRES_COM_MR_VRCT_UNPUBLISH, false ) );
+							$toolbar->addItem( 'fa fa-check', 'btn btn-success', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty' . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_UNPUBLISH', '_JOMRES_COM_MR_VRCT_UNPUBLISH', false ) );
 						}
 					else
 						{
 						if ( !$p->published )
-							$toolbar->addItem( 'fa fa-times', 'btn btn-default disabled', '', 'javascript:void(0);', jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', _JOMRES_COM_MR_VRCT_PUBLISH, false ) );
+							$toolbar->addItem( 'fa fa-times', 'btn btn-default disabled', '', 'javascript:void(0);', jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', '_JOMRES_COM_MR_VRCT_PUBLISH', false ) );
 						else
-							$toolbar->addItem( 'fa fa-check', 'btn btn-success disabled', '', 'javascript:void(0);', jr_gettext( '_JOMRES_COM_MR_VRCT_UNPUBLISH', _JOMRES_COM_MR_VRCT_UNPUBLISH, false ) );
+							$toolbar->addItem( 'fa fa-check', 'btn btn-success disabled', '', 'javascript:void(0);', jr_gettext( '_JOMRES_COM_MR_VRCT_UNPUBLISH', '_JOMRES_COM_MR_VRCT_UNPUBLISH', false ) );
 						}
 					}
 				if ($p->propertys_uid != $defaultProperty)
-					$toolbar->addSecondaryItem( 'fa fa-refresh', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&thisProperty=' . $p->propertys_uid ), jr_gettext( '_JOMRES_ACTION_SET_CURRENT', _JOMRES_ACTION_SET_CURRENT, false ) );
+					$toolbar->addSecondaryItem( 'fa fa-refresh', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&thisProperty=' . $p->propertys_uid ), jr_gettext( '_JOMRES_ACTION_SET_CURRENT', '_JOMRES_ACTION_SET_CURRENT', false ) );
 				if ($thisJRUser->userIsManager && $thisJRUser->accesslevel > 1)
 					{
-					$toolbar->addSecondaryItem( 'fa fa-pencil-square-o', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editProperty' . '&thisProperty=' . $p->propertys_uid ), jr_gettext( 'COMMON_EDIT', COMMON_EDIT, false ) );
+					$toolbar->addSecondaryItem( 'fa fa-pencil-square-o', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editProperty' . '&thisProperty=' . $p->propertys_uid ), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
 					$url = jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $p->propertys_uid );
 					$toolbar->addSecondaryItem( 'fa fa-arrows-alt', '', '', $url, jr_gettext( '_JOMRES_FRONT_PREVIEW', _JOMRES_FRONT_PREVIEW, false ) );
 					if (count($thisJRUser->authorisedProperties) > 1)
-						$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=deleteProperty' . '&thisProperty=' . $p->propertys_uid ), jr_gettext( 'COMMON_DELETE', COMMON_DELETE, false ) );
+						$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=deleteProperty' . '&thisProperty=' . $p->propertys_uid ), jr_gettext( 'COMMON_DELETE', 'COMMON_DELETE', false ) );
 					}
 				$r[]=$toolbar->getToolbar();
 				}
@@ -266,17 +266,17 @@ class j06001listyourproperties_ajax
 			$r[] = $stars;
 			
 			if ((int)$p->superior == 1)
-				$r[] = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
+				$r[] = jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false );
 			else
-				$r[] = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
+				$r[] = jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false );
 			
 			$r[] = $p->lat;
 			$r[] = $p->long;
 			
 			if ((int)$p->approved == 1)
-				$r[] = jr_gettext( '_JOMRES_COM_MR_YES', _JOMRES_COM_MR_YES, false );
+				$r[] = jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false );
 			else
-				$r[] = jr_gettext( '_JOMRES_COM_MR_NO', _JOMRES_COM_MR_NO, false );
+				$r[] = jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false );
 			
 			$r[] = $p->last_changed;
 			

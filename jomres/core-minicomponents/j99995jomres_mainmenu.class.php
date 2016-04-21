@@ -37,9 +37,9 @@ class j99995jomres_mainmenu
 
 		$output                             = array ();
 		$publishedProperties                = count( get_showtime('published_properties_in_system') );
-		$output[ 'PUBLISHEDPROPERTIESTXT' ] = jr_gettext( '_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES', _JOMCOMP_MYUSER_PUBLISHEDPROPERTIES, $editable = false, $isLink = false );
+		$output[ 'PUBLISHEDPROPERTIESTXT' ] = jr_gettext( '_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES', '_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES', $editable = false, $isLink = false );
 		$output[ 'PUBLISHEDPROPERTIES' ]    = $publishedProperties;
-		$output[ 'TITLE' ]                  = jr_gettext( '_JOMCOMP_MYUSER_MENUTITLE', _JOMCOMP_MYUSER_MENUTITLE, $editable = false, $isLink = false );
+		$output[ 'TITLE' ]                  = jr_gettext( '_JOMCOMP_MYUSER_MENUTITLE', '_JOMCOMP_MYUSER_MENUTITLE', $editable = false, $isLink = false );
 
 		$rows = array ();
 		$MiniComponents->triggerEvent( '00009', $componentArgs ); //
