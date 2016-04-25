@@ -92,6 +92,8 @@ class j06002edit_tariffs_normal
 					{
 					if ( $room->room_classes_uid == $roomType->room_classes_uid )
 						{
+						if (!isset($roomTypesArray[ $roomType->room_classes_uid ][ 'counter' ]))
+							$roomTypesArray[ $roomType->room_classes_uid ][ 'counter' ] = 0;
 						$count                                                               = $roomTypesArray[ $roomType->room_classes_uid ][ 'counter' ];
 						$roomTypesArray[ $roomType->room_classes_uid ][ 'counter' ]          = $count + 1;
 						$roomTypesArray[ $roomType->room_classes_uid ][ 'existingrooms' ][ ] = $room->room_uid;
@@ -105,6 +107,8 @@ class j06002edit_tariffs_normal
 					{
 					if ( $tariff->roomclass_uid == $roomType->room_classes_uid )
 						{
+						if (!isset($allTariffsForRoomType[ $roomType->room_classes_uid ][ 'counter' ]))
+							$allTariffsForRoomType[ $roomType->room_classes_uid ][ 'counter' ] = 0;
 						$count                                                                    = $allTariffsForRoomType[ $roomType->room_classes_uid ][ 'counter' ];
 						$allTariffsForRoomType[ $roomType->room_classes_uid ][ 'counter' ]        = $count + 1;
 						$allTariffsForRoomType[ $roomType->room_classes_uid ][ 'roomrateperday' ] = $tariff->roomrateperday;
@@ -152,9 +156,28 @@ class j06002edit_tariffs_normal
 						$roomTypesArray[ $roomType->room_classes_uid ][ 'max_people' ] = 2;
 						$allTariffsForRoomType[ $roomtype_id ][ 'maxpeople' ] = 4;
 						} */
+					
+					// if $roomTypesArray[ $roomtype_id ][ 'counter' ] isn't (because prices weren't previously set for this room type then this needs to be zero
+					if (!isset($roomTypesArray[ $roomtype_id ][ 'counter' ]))
+						{
+						$roomTypesArray[ $roomtype_id ][ 'counter' ] = 0;
+						$roomTypesArray[ $roomType->room_classes_uid ][ 'max_people' ] =0;
+						$allTariffsForRoomType[ $roomType->room_classes_uid ][ 'roomrateperday' ] =0;
+						$allTariffsForRoomType[ $roomtype_id ][ 'maxpeople' ] =0;
+						$roomTypesArray[ $roomType->room_classes_uid ][ 'existingrooms' ]=array();
+						}
 						
 					$r[ 'ROOM_CLASS_ABBV' ]    = $roomtype_abbr;
-					$r[ 'ROOMNUMBERDROPDOWN' ] = jomresHTML::integerSelectList( 00, 300, 1, "numberofRooms[$roomtype_id]", 'class="input-mini"', $roomTypesArray[ $roomtype_id ][ 'counter' ], "%02d" );
+					$r[ 'ROOMNUMBERDROPDOWN' ] = jomresHTML::integerSelectList( 
+						00, 
+						300, 
+						1, 
+						"numberofRooms[$roomtype_id]", 
+						'class="input-mini"', 
+						$roomTypesArray[ $roomtype_id ][ 'counter' ], 
+						"%02d" 
+						);
+					
 					$r[ 'ROOMRATEPERDAY' ]     = '<input class="input-mini" type="number" name="roomrateperday[' . $roomtype_id . ']" value="' . $allTariffsForRoomType[ $roomType->room_classes_uid ][ 'roomrateperday' ] . '" />';
 					$r[ 'MAX_PEOPLE_ROOM' ]    = jomresHTML::integerSelectList( 00, 100, 1, "max_people[$roomtype_id]", 'class="input-mini"', $roomTypesArray[ $roomType->room_classes_uid ][ 'max_people' ], "%02d" );
 					$r[ 'MAX_PEOPLE_TARIFF' ]  = jomresHTML::integerSelectList( 01, 100, 1, "maxpeople_tariff[$roomtype_id]", 'class="input-mini"', $allTariffsForRoomType[ $roomtype_id ][ 'maxpeople' ], "%02d" );
