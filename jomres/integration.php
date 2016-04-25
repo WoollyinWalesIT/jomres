@@ -183,6 +183,9 @@ $jomres_access_control = jomres_singleton_abstract::getInstance( 'jomres_access_
 //set_error_handler( 'errorHandler' );
 jomres_parseRequest();
 
+if ($jrConfig[ 'development_production' ] == "production")
+	set_error_handler( 'errorHandler' );
+
 if ( !strstr( $scriptname, 'install_jomres.php' ) )
 	{
 	$jomres_geolocation = jomres_singleton_abstract::getInstance( 'jomres_geolocation' );
