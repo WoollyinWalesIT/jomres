@@ -13,7 +13,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j00003define_template_paths
+class j00001define_template_paths
 	{
 	function __construct( $componentArgs )
 		{
