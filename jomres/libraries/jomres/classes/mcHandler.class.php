@@ -69,7 +69,6 @@ class mcHandler
 
 	function asamodule_report()
 		{
-		global $ePointFilepath;
 		$output     = array ();
 		$pageoutput = array ();
 
@@ -141,7 +140,6 @@ class mcHandler
 
 	function touch_templates()
 		{
-		global $ePointFilepath;
 		$thisJRUser              = jomres_singleton_abstract::getInstance( 'jr_user' );
 		$mrConfig                = getPropertySpecificSettings( 0 );
 		$eventArgs               = null;
@@ -196,7 +194,7 @@ class mcHandler
 	function triggerEvent( $eventPoint, $eventArgs = null )
 		{
 		$jomres_access_control = jomres_singleton_abstract::getInstance( 'jomres_access_control' );
-		global $ePointFilepath, $eLiveSite;
+
 		$retVal       = null;
 		$eventClasses = $this->registeredClasses;
 		if ( count( $this->registeredClasses ) > 0 )
@@ -253,7 +251,6 @@ class mcHandler
 	// Calls a specific event.
 	function specificEvent( $eventPoint, $eventName, $eventArgs = null )
 		{
-		global $ePointFilepath, $eLiveSite;
 		$jomres_access_control = jomres_singleton_abstract::getInstance( 'jomres_access_control' );
 		$retVal                = null;
 		$eventClasses          = $this->registeredClasses;

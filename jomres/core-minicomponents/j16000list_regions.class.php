@@ -59,7 +59,7 @@ class j16000list_regions
 					$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 					$toolbar->newToolbar();
 					$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_region&id=' . $region[ 'id' ] ), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
-					$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=delete_region&id=' . $region[ 'id' ] ), jr_gettext( 'COMMON_DELETE', COMMON_DELETE', false ) );
+					$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=delete_region&id=' . $region[ 'id' ] ), jr_gettext( 'COMMON_DELETE', 'COMMON_DELETE', false ) );
 					
 					$r['EDITLINK'] = $toolbar->getToolbar();
 					}

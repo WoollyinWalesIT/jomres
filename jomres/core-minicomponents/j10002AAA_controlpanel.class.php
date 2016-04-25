@@ -25,7 +25,6 @@ class j10002AAA_controlpanel
 
 			return;
 			}
-		global $htmlFuncs; // We'll leave this one instance of this variable as global here because some older plugins will need it, and as this plugin's the first to be run in administrator, this should fix it
 		$htmlFuncs = jomres_singleton_abstract::getInstance( 'html_functions' );
 
 		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN, 'Desktop.png', jr_gettext( "_JOMRES_CONTROLPANEL", '_JOMRES_CONTROLPANEL', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN', false, false ) );

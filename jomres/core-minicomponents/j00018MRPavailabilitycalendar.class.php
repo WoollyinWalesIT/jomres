@@ -25,7 +25,6 @@ class  j00018MRPavailabilitycalendar
 
 			return;
 			}
-		global $noshowroom;
 		$mrConfig      = getPropertySpecificSettings();
 		$siteConfig    = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig      = $siteConfig->get();
@@ -77,7 +76,7 @@ class  j00018MRPavailabilitycalendar
 			$this->retVals .= '<td class="ui-widget-header ui-corner-all">';
 			$this->retVals .= '<table>
 										';
-			if ( $mrConfig[ 'visitorscanbookonline' ] == "1" && !$noshowroom && $this->showlinks && $jrConfig[ 'show_booking_form_in_property_details' ] != '1' )
+			if ( $mrConfig[ 'visitorscanbookonline' ] == "1" && $this->showlinks && $jrConfig[ 'show_booking_form_in_property_details' ] != '1' )
 				{
 				$this->retVals .= '<tr>';
 				$this->retVals .= '<td colspan="6">' . jr_gettext( '_JOMRES_FRONT_CALENDAR_CLICKDATES', '_JOMRES_FRONT_CALENDAR_CLICKDATES' ) . '</td>';
@@ -171,13 +170,11 @@ class  j00018MRPavailabilitycalendar
 		// Adapted from source
 		// http://www.weberdev.com/get_example-1430.html
 		// Submitted by: Whiddon James on Dec 01st 1999
-		//global $jomresConfig_locale;
-		global $noshowroom;
+
 		$mrConfig      = getPropertySpecificSettings();
 		$siteConfig    = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig      = $siteConfig->get();
 		$userIsManager = checkUserIsManager();
-		//setlocale(LC_ALL, $jomresConfig_locale);
 
 		$showOutMonthDates = false;
 		$task              = get_showtime( 'task' );
@@ -371,7 +368,7 @@ class  j00018MRPavailabilitycalendar
 					{
 					if ( $bgcolor != $outmonthface && ( $bgcolor != $pastcolour ) )
 						{
-						if ( !$noshowroom && $bgcolor != $outbgcolor && $mrConfig[ 'visitorscanbookonline' ] && $bgcolor != $this->colour_full && $this->showlinks )
+						if ( $bgcolor != $outbgcolor && $mrConfig[ 'visitorscanbookonline' ] && $bgcolor != $this->colour_full && $this->showlinks )
 							{
 							$validDayOfWeek = true;
 							if ( $mrConfig[ 'fixedArrivalDateYesNo' ] )

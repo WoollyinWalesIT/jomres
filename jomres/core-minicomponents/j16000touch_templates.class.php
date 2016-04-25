@@ -35,7 +35,7 @@ class j16000touch_templates
 		
 		if ( count( $basic_subscription_package_details->allPackages ) > 0 )
 			{
-			echo jr_gettext( '_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE','_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITL'E) . "<br/>";
+			echo jr_gettext( '_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE','_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE') . "<br/>";
 			
 			foreach ( $basic_subscription_package_details->allPackages as $package )
 				{

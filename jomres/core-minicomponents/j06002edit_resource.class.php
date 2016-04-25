@@ -133,11 +133,11 @@ class j06002edit_resource
 
 			$output[ 'IMAGE' ] = $roomImageLocation;
 
+			$delimg_rows = array ();
 			if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . $defaultProperty . "_room_" . $roomUid . ".jpg" ) )
 				{
 				$output[ 'DELETEIMAGE' ] = '<a href="' . jomresURL( JOMRES_SITEPAGE_URL . "&task=dropImage&imageType=room&itemUid=$output[ROOMUID]" ) . '">' . jr_gettext( '_JOMRES_FILE_DELETE', '_JOMRES_FILE_DELETE' ) . '</a>';
 
-				$delimg_rows                  = array ();
 				$delimg                       = array ();
 				$delimg[ 'DELETEIMAGE_LINK' ] = jomresURL( JOMRES_SITEPAGE_URL . "&task=dropImage&imageType=room&itemUid=$output[ROOMUID]" );
 				$delimg[ 'DELETEIMAGE_TEXT' ] = jr_gettext( '_JOMRES_FILE_DELETE', '_JOMRES_FILE_DELETE' );

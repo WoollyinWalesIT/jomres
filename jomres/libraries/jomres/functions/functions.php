@@ -2356,7 +2356,7 @@ function getGuestDetailsForContract( $contract_uid )
 function getCurrentBookingData( $jomressession = "" )
 	{
 	// Whilst this is a new function to construct data from session variables, we'll need to do a bunch of jiggery pokery with the nice simple data pulled from the sess vars so that the data is in a format that's understood by other functions that previously received data that had been pulled from the database
-	//global $tmpBookingHandler;
+
 	$tmpBookingHandler   = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 	$obj				 = new stdClass;
 	$tempBookingDataList = array ();
@@ -2574,7 +2574,7 @@ function error_logging( $message, $emailMessage = true )
  * Creates the request log settings, calls writexml
 #
  */
-function request_log( $loggingRequest )
+function request_log()
 	{
 	if ( LOGGINGREQUEST )
 		{
@@ -2773,8 +2773,6 @@ function sanitiseOverlibOutput( $data )
  */
 function hotelSettings()
 	{
-
-	//global $configurationPanel;
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 
 	$property_uid = (int) getDefaultProperty();
@@ -3221,11 +3219,7 @@ function userHasBeenLoggedOut()
 	echo '<center><img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/Restricted.png" align="middle" border="0" />';
 	echo '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/Secured.png" align="middle" border="0" />';
 	echo '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/Restricted.png" align="middle" border="0" /></center><br />';
-
-
-	//global $my;
-	//trigger_error ("User attempted to view restricted functionality ".serialize($my), E_USER_ERROR);
-	} // end of function
+	}
 
 
 
@@ -4128,8 +4122,10 @@ function getThumbnailForImage( $imagefullrelpath, $medium = false )
  */
 function getPropertySpecificSettings( $property_uid = null )
 	{
-	global $mrConfig;
+	$mrConfig = array();
+	
 	$propertyConfig = jomres_singleton_abstract::getInstance( 'jomres_config_property_singleton' );
+	
 	if ( $propertyConfig->property_uid == 0 ) 
 		$propertyConfig->init( $property_uid );
 

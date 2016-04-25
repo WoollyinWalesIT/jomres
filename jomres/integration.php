@@ -15,9 +15,6 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 define( '_COMPONENT_JOMRES_INTEGRATIONCALLED', '1' );
 
-global $jomresPath, $license_key, $jomresConfig_absolute_path, $MiniComponents;
-global $mrConfig, $jrConfig;
-
 if (!defined('JOMRES_ROOT_DIRECTORY'))
 	{
 	echo "Error, JOMRES_ROOT_DIRECTORY is not defined and Jomres will not run<br/>";
@@ -55,8 +52,9 @@ if ( !defined( 'JOMRESPATH_BASE' ) )
 	define( 'JOMRESPATH_BASE', $dir_path );
 	}
 
-$jomresConfig_absolute_path = substr( JOMRESPATH_BASE, 0, strlen( JOMRESPATH_BASE ) - strlen(JOMRES_ROOT_DIRECTORY) );
-define( 'JOMRESCONFIG_ABSOLUTE_PATH', $jomresConfig_absolute_path );
+define( 'JOMRESCONFIG_ABSOLUTE_PATH', substr( JOMRESPATH_BASE, 0, strlen( JOMRESPATH_BASE ) - strlen(JOMRES_ROOT_DIRECTORY) ) );
+define( 'JOMRES_SYSTEMLOG_PATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS );
+define( 'JOMRES_CSSRELPATH', JOMRES_ROOT_DIRECTORY.'/css/' );
 
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'database.php' );
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'input_filtering.php' );
@@ -65,6 +63,7 @@ require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS .
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'jr_gettext.php' );
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . 'jomres_singleton_abstract.class.php' );
 
+//this can be removed most probably, since all servers should have this by default
 if (!function_exists('json_encode')) 
 	{
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'json' . JRDS . 'JSON.php' );
@@ -92,9 +91,11 @@ if (!function_exists('json_encode'))
 
 jr_import( 'jomresHTML' );
 
-$showtime            = jomres_singleton_abstract::getInstance( 'showtime' );
+$showtime = jomres_singleton_abstract::getInstance( 'showtime' );
+
 $performance_monitor = jomres_singleton_abstract::getInstance( 'jomres_performance_monitor' );
 $performance_monitor->set_point( "pre-inclusions" );
+
 $scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "site_config.php" );
@@ -102,22 +103,19 @@ require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS .
 require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "init_config_vars.php" );
 require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_functions.php" );
 
-define( 'JOMRES_SYSTEMLOG_PATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS );
+if ( !function_exists( 'adodb_date_test_date' ) ) 
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'adodb' . JRDS . 'adodb-time.inc.php' );
 
-$jomresConfig_dbtype = 'mysql';
+if ( !class_exists( 'patTemplate' ) ) 
+	require_once( 'libraries' . JRDS . 'phptools' . JRDS . 'patTemplate.php' );
 
-if ( !function_exists( 'adodb_date_test_date' ) ) require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'adodb' . JRDS . 'adodb-time.inc.php' );
-
-if ( !class_exists( 'patTemplate' ) ) require_once( 'libraries' . JRDS . 'phptools' . JRDS . 'patTemplate.php' );
-if ( !class_exists( 'patErrorManager' ) ) require_once( 'libraries' . JRDS . 'phptools' . JRDS . 'patErrorManager.php' );
+if ( !class_exists( 'patErrorManager' ) ) 
+	require_once( 'libraries' . JRDS . 'phptools' . JRDS . 'patErrorManager.php' );
 
 
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'PHPMailer_v5.2.9' . JRDS . 'PHPMailerAutoload.php' );
 PHPMailerAutoload('phpmailer');
 PHPMailerAutoload('smtp');
-
-
-//require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomSearch.class.php');
 
 if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'code_changes' . JRDS . 'countries.php' ) ) 
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS . 'code_changes' . JRDS . 'countries.php' );
@@ -131,72 +129,59 @@ else
 
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'imagehandling.php' );
 
-
 $performance_monitor->set_point( "post-inclusions" );
 
 $siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 $jrConfig   = $siteConfig->get();
 
-if ( isset( $jrConfig[ 'loggingBooking' ] ) )
-	{
-	define( 'LOGGINGBOOKING', $jrConfig[ 'loggingBooking' ] );
-	define( 'LOGGINGGATEWAY', $jrConfig[ 'loggingGateway' ] );
-	define( 'LOGGINGSYSTEM', $jrConfig[ 'loggingSystem' ] );
-	define( 'LOGGINGREQUEST', $jrConfig[ 'loggingRequest' ] );
-	define( 'LOGGINGPORTAL', $jrConfig[ 'loggingPortal' ] );
-	}
-
-if ( !isset( $jrConfig[ 'development_production' ] ) )
-	{
-	$jrConfig[ 'development_production' ] = "production";
-	}
-
+define( 'LOGGINGBOOKING', $jrConfig[ 'loggingBooking' ] );
+define( 'LOGGINGGATEWAY', $jrConfig[ 'loggingGateway' ] );
+define( 'LOGGINGSYSTEM', $jrConfig[ 'loggingSystem' ] );
+define( 'LOGGINGREQUEST', $jrConfig[ 'loggingRequest' ] );
+define( 'LOGGINGPORTAL', $jrConfig[ 'loggingPortal' ] );
 
 if ( !defined( "AJAXCALL" ) )
 	{
 	if ( isset( $_REQUEST[ 'jrajax' ] ) )
 		{
-		if ( (int) $_REQUEST[ 'jrajax' ] == 1 ) define( 'AJAXCALL', true );
+		if ( (int) $_REQUEST[ 'jrajax' ] == 1 ) 
+			define( 'AJAXCALL', true );
 		else
-		define( 'AJAXCALL', false );
+			define( 'AJAXCALL', false );
 		}
 	else
-	define( 'AJAXCALL', false );
+		define( 'AJAXCALL', false );
 	}
 
-// loads en language file by default
-if ( $jomresConfig_lang == '' )
+// set language to en-GB by default
+if ( get_showtime( 'lang' ) && get_showtime( 'lang' ) == '' )
 	{
 	set_showtime( 'lang', 'en-GB' );
-	$jomresConfig_lang = 'en-GB';
 	}
-
-//fullscreen view setup
-$showtime->tmplcomponent = "jomres";
-$showtime->tmplcomponent_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'fullscreen_view' . JRDS . "jomres.php";
-if ( !strstr( $scriptname, 'install_jomres.php' ) )
-	jomres_cmsspecific_patchJoomlaTemplate(); //copy the management_view.php renamed to jomres.php to the joomla template dir to help with fullscreen mode
-
-require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_urls.php" );
-$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-$MiniComponents->triggerEvent( '00001' ); // Start
-
-$jomres_access_control = jomres_singleton_abstract::getInstance( 'jomres_access_control' );
-
-if ( !defined( 'JOMRES_CSSRELPATH' ) ) define( 'JOMRES_CSSRELPATH', JOMRES_ROOT_DIRECTORY.'/css/' );
-
-//set_error_handler( 'errorHandler' );
-jomres_parseRequest();
-
+	
 if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )
 	{
 	define( 'JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS );
 	define( 'JOMRES_IMAGELOCATION_RELPATH', get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/' );
 	}
 
-// In case somebody removes the above lines, we still need to set this define otherwise folks will not be able to create new properties
-if ( !defined( 'JOMRES_SINGLEPROPERTY' ) ) define( 'JOMRES_SINGLEPROPERTY', false );
+//fullscreen view setup
+set_showtime( 'tmplcomponent', 'jomres' );
+set_showtime( 'tmplcomponent_source', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'fullscreen_view' . JRDS . "jomres.php" );
 
+if ( !strstr( $scriptname, 'install_jomres.php' ) )
+	jomres_cmsspecific_patchJoomlaTemplate(); //copy the management_view.php renamed to jomres.php to the joomla template dir to help with fullscreen mode
+
+require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_urls.php" );
+
+//minicomponents triggering starts here
+$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+$MiniComponents->triggerEvent( '00001' ); // Start
+
+$jomres_access_control = jomres_singleton_abstract::getInstance( 'jomres_access_control' );
+
+//set_error_handler( 'errorHandler' );
+jomres_parseRequest();
 
 if ( !strstr( $scriptname, 'install_jomres.php' ) )
 	{
@@ -210,26 +195,19 @@ if (!isset($_REQUEST['modal_wrap']))
 	{
 	$_REQUEST['modal_wrap'] = 0;
 	}
-	
-
-if ($_REQUEST['modal_wrap'] == "1")
+elseif ($_REQUEST['modal_wrap'] == "1")
 	{
 	echo simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, 'modal_wrap_start.html' , urldecode(jomresGetParam( $_REQUEST, 'modal_title', "" )) );
 	}
-	
+
+if ( !isset( $_REQUEST[ 'no_html' ] ) ) 
+	{
+	$_REQUEST[ 'no_html' ] = 0;
+	}
 
 if (!isset($_REQUEST['task']))
+	{
 	$_REQUEST['task']='';
+	}
 
 // Stops here
-
-
-
-
-
-
- 
-
-
-
-

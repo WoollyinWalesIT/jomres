@@ -23,8 +23,6 @@ class jomres_language
 	 */
 	function __construct()
 		{
-		global $jomresConfig_lang;
-		
 		$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig          = $siteConfig->get();
 		

@@ -82,7 +82,7 @@ try
 	$jomreslang->get_language($jrConfig[ 'language_context' ]);
 
 	//Register user
-	$thisJRUser = $MiniComponents->triggerEvent( '00002' ); //TODO: is it needed in admin cpanel?
+	$MiniComponents->triggerEvent( '00002' );
 	
 	$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 	
