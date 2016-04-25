@@ -102,7 +102,6 @@ $showtime->dbtype    = $CONFIG->dbtype;
 $showtime->lang      = $jomresConfig_lang;
 $showtime->live_site = $jomresConfig_live_site;
 $showtime->offline   = $CONFIG->offline;
-$showtime->db        = $CONFIG->db;
 $showtime->sitename  = $CONFIG->sitename;
 $showtime->lifetime  = $CONFIG->lifetime;
 $showtime->MetaDesc  = $CONFIG->MetaDesc;
