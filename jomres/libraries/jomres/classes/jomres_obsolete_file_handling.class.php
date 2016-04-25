@@ -1298,6 +1298,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j10002listCustomFields.class.php' );
 		$this->add_obs_file( $this->dir_classes . 'jomres_pathway.class.php' );
 		
+		$this->add_obs_file( $this->dir_minicomponents . 'j00005define_template_paths.class.php' );
 		}
 
 	function add_obs_file( $path_and_file )
