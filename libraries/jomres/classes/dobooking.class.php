@@ -139,6 +139,8 @@ class dobooking
 		$this->setErrorLog( "Queried session data for existing booking" );
 		if ( count( $bookingDeets ) > 0 )
 			{
+			if (!isset($bookingDeets[ 'email_address_can_be_used' ]))
+				$bookingDeets[ 'email_address_can_be_used' ] = true;
 			$this->email_address_can_be_used = $bookingDeets[ 'email_address_can_be_used' ];
 			$this->rr                        = $bookingDeets[ 'requestedRoom' ];
 			$this->rate_pernight             = $bookingDeets[ 'rate_pernight' ];
@@ -150,6 +152,11 @@ class dobooking
 			//$this->coupon_id				= $bookingDeets['coupon_id'];
 			//$this->coupon					= $bookingDeets['coupon'];
 			$this->lastminute_id                   = $bookingDeets[ 'lastminute_id' ];
+			if (!isset($bookingDeets[ 'arrivalDate' ]))
+				{
+				$bookingDeets[ 'arrivalDate' ]		= "";
+				$bookingDeets[ 'departureDate' ]	= "";
+				}
 			$this->arrivalDate                     = $bookingDeets[ 'arrivalDate' ];
 			$this->departureDate                   = $bookingDeets[ 'departureDate' ];
 			$this->stayDays                        = $bookingDeets[ 'stayDays' ];
@@ -162,6 +169,7 @@ class dobooking
 			$this->deposit_required                = $bookingDeets[ 'deposit_required' ];
 			$this->contract_total                  = $bookingDeets[ 'contract_total' ];
 			$this->extrasvalue                     = $bookingDeets[ 'extrasvalue' ];
+
 			$this->extrasvalues_items              = unserialize( $bookingDeets[ 'extrasvalues_items' ] );
 			$this->third_party_extras              = unserialize( $bookingDeets[ 'third_party_extras' ] );
 			$this->third_party_extras_private_data = unserialize( $bookingDeets[ 'third_party_extras_private_data' ] );
@@ -398,6 +406,9 @@ class dobooking
 		{
 		$tmpBookingHandler    = jomres_getSingleton( 'jomres_temp_booking_handler' );
 		$bookingDeets         = $tmpBookingHandler->getBookingData();
+		if (!isset($bookingDeets[ 'show_extras' ]))
+			$bookingDeets[ 'show_extras' ] = "1";
+		
 		$this->cfg_showExtras = $bookingDeets[ 'show_extras' ];
 
 		return $bookingDeets;
@@ -525,6 +536,7 @@ class dobooking
 		
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 		$images = $jomres_media_centre_images->get_images($this->property_uid, array('rooms')); // Gets the rooms images
+
 		$room_images = $images [ 'rooms' ] ;
 
 		foreach ( $basic_room_details->rooms as $r )
@@ -703,7 +715,7 @@ class dobooking
 		if ( $MiniComponents->eventFileExistsCheck( '05060' ) )
 			{
 			$result = $MiniComponents->triggerEvent( '05060', $this );
-			if ( $result[ 'plugin_manages_fully_booked_dates' ] )
+			if ( isset($result[ 'plugin_manages_fully_booked_dates' ]) && $result[ 'plugin_manages_fully_booked_dates' ] )
 				{
 				$booked_dates = $result[ 'fully_booked_dates' ];
 				foreach ( $booked_dates as $date )
@@ -1154,7 +1166,6 @@ class dobooking
 		
 		if ( count($extra_details) > 0)
 			{
-			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			$tmpl->addRows( 'extras',$extra_details);
@@ -1416,13 +1427,16 @@ class dobooking
 		$found = false;
 		for ( $i = 0; $i <= count( $this->variancetypes ); $i++ )
 			{
-			if ( $this->variancetypes[ $i ] == $type && $this->varianceuids[ $i ] == $id )
+			if (isset($this->variancetypes[ $i ]))
 				{
-				//$this->setErrorLog("Setting variant with qty ".$qty." and value ".$val );
-				$found                    = true;
-				$this->varianceqty[ $i ]  = $qty;
-				$this->variancevals[ $i ] = $val;
-				$this->variancevals_nodiscount[ $i ] = $val_nodiscount;
+				if ( $this->variancetypes[ $i ] == $type && $this->varianceuids[ $i ] == $id )
+					{
+					//$this->setErrorLog("Setting variant with qty ".$qty." and value ".$val );
+					$found                    = true;
+					$this->varianceqty[ $i ]  = $qty;
+					$this->variancevals[ $i ] = $val;
+					$this->variancevals_nodiscount[ $i ] = $val_nodiscount;
+					}
 				}
 			}
 		if ( !$found )
@@ -1447,13 +1461,16 @@ class dobooking
 		if ( empty( $type ) || empty( $id ) ) return false;
 		for ( $i = 1; $i <= count( $this->variancetypes ); $i++ )
 			{
-			if ( $this->variancetypes[ $i ] == $type && $this->varianceuids[ $i ] == $id )
+			if (isset($this->variancetypes[$i]))
 				{
-				$qty = $this->varianceqty[ $i ];
-				$val = $this->variancevals[ $i ];
-				$val_nodiscount = $this->variancevals_nodiscount[ $i ];
+				if ( $this->variancetypes[ $i ] == $type && $this->varianceuids[ $i ] == $id )
+					{
+					$qty = $this->varianceqty[ $i ];
+					$val = $this->variancevals[ $i ];
+					$val_nodiscount = $this->variancevals_nodiscount[ $i ];
 
-				return array ( 'quantity' => $qty, 'value' => $val, 'value_nodiscount' => $val_nodiscount );
+					return array ( 'quantity' => $qty, 'value' => $val, 'value_nodiscount' => $val_nodiscount );
+					}
 				}
 			}
 
@@ -1499,7 +1516,7 @@ class dobooking
 		{
 		$this->room_feature_checkboxes        = array ();
 		$this->room_feature_filtering_enabled = false;
-		if ( count( $this->allRoomFeatures ) > 0 )
+		if ( isset($this->allRoomFeatures) && count( $this->allRoomFeatures ) > 0 )
 			{
 			$this->room_feature_filtering_enabled = true;
 
@@ -2069,12 +2086,14 @@ class dobooking
 		while( $current <= $last ) 
 			{
 			$d =  date("Y/m/d", $current);
-			if ( count($this->allBookings[ $d ]) < $totalNumberOfRooms )
+			if (isset($this->allBookings[ $d ]))
 				{
-				$arrivalDate = $d;
-				break;
+				if ( count($this->allBookings[ $d ]) < $totalNumberOfRooms )
+					{
+					$arrivalDate = $d;
+					break;
+					}
 				}
-
 			$current = strtotime("+1 day", $current);
 			}
 
@@ -2124,12 +2143,7 @@ class dobooking
 			}
 		if ( !$amend_contract )
 			{
-			if ( $unixTodaysDate > $unixArrivalDate )
-				{
-				$this->setErrorLog( "checkArrivalDate:: Arrival date check failed, unix unix todays date > unix arrivalDate. " );
 
-				return false;
-				}
 			if ( $this->cfg_limitAdvanceBookingsYesNo == 1 && ( $unixArrivalDate > $unixLatestArrivalDate ) )
 				{
 				$this->setErrorLog( "checkArrivalDate:: Arrival date check failed, limitAdvanceBooking option failing arrival date. " );
@@ -3347,6 +3361,7 @@ class dobooking
 			$guest_email        = $thisJRUser->email;
 		else
 			$guest_email        = $this->email;
+		
 		$guest_discount     = (int) $this->guest_specific_discount;
 
 
@@ -3415,7 +3430,10 @@ class dobooking
 		$guest_deets[ 'TEL' ]      = $guest_tel_landline;
 		$guest_deets[ 'MOBILE' ]   = $guest_tel_mobile;
 		$guest_deets[ 'EMAIL' ]    = $guest_email;
-		$guest_deets[ 'DISCOUNT' ] = $guest_specific_discount;
+		if (isset($guest_specific_discount))
+			$guest_deets[ 'DISCOUNT' ] = $guest_specific_discount;
+		else
+			$guest_deets[ 'DISCOUNT' ] = 0;
 
 		return $guest_deets;
 		}

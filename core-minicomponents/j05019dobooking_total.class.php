@@ -27,6 +27,8 @@ class j05019dobooking_total
 			}
 		$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
+		$this->returnValue = array();
+		
 		if ( !$thisJRUser->userIsManager ) return;
 		if ( !isset( $tmpBookingHandler->tmpbooking[ "amend_contract" ] ) ) return;
 		if ( $tmpBookingHandler->tmpbooking[ "amend_contract" ] == 0 ) return;
