@@ -121,6 +121,9 @@ class j00501propertydetailsoptions
 		
 		if ( !$thisJRUser->simple_configuration )
 			{
+			if (!isset($mrConfig[ 'galleryLink' ]))
+				$mrConfig[ 'galleryLink' ] = "";
+			
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_GALLERYLINK", '_JOMRES_COM_A_GALLERYLINK', false ) );
 			$configurationPanel->setmiddle( '<input type="url" class="inputbox form-control"  size="50" name="cfg_galleryLink" value="' . $mrConfig[ 'galleryLink' ] . '" />' );
 			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_GALLERYLINK_DESC", '_JOMRES_COM_A_GALLERYLINK_DESC', false ) );
