@@ -675,10 +675,10 @@ class dobooking
 	function get_all_tariff_types()
 		{
 		$mrConfig = $this->mrConfig;
+		$this->all_tariff_types_to_tariff_id_xref = array ();
+		$this->all_tariff_id_to_tariff_type_xref  = array ();
 		if ( $mrConfig[ 'tariffmode' ] == "2" )
 			{
-			$this->all_tariff_types_to_tariff_id_xref = array ();
-			$this->all_tariff_id_to_tariff_type_xref  = array ();
 			$query                                    = "SELECT tarifftype_id,tariff_id FROM #__jomcomp_tarifftype_rate_xref  WHERE property_uid = '$this->property_uid'";
 			$tariff_type_list                         = doSelectSql( $query );
 			if ( count( $tariff_type_list ) > 0 )
@@ -2735,9 +2735,10 @@ class dobooking
 				$num_period = number_format( ( $staydays / $num ), 2, '.', '' );
 				break;
 		}
-		//$this->setPopupMessage($num_period);
+		
 		$arr = explode( ".", $num_period );
-		if ( $arr[ 1 ] == "00" ) $num_period = $arr[ 0 ];
+		if ( isset($arr[ 1 ]) && $arr[ 1 ] == "00" ) 
+			$num_period = $arr[ 0 ];
 
 		return $num_period;
 		}
@@ -3653,7 +3654,8 @@ class dobooking
 						$remainingGuests--;
 						}
 					}
-
+				if (!isset($this->room_allocations[ $rm_id ][ 'number_allocated' ]))
+					$this->room_allocations[ $rm_id ][ 'number_allocated' ] = 0;
 				foreach ( $room_spread_array as $key => $val )
 					{
 					$tmp_arr                                                = explode( "_", $key );
@@ -4170,13 +4172,16 @@ class dobooking
 					$this->setErrorLog( "getTariffsForRoomUids:: Checking tariff id " . $rates_uid . " " );
 					if ( $datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests )
 						{
-						$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[ $rates_uid ][ 0 ];
+						$tariff_type_id = 0;
+						if (isset($this->all_tariff_id_to_tariff_type_xref[ $rates_uid ][ 0 ]))
+							$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[ $rates_uid ][ 0 ];
 						if ( !isset( $already_found_tariffs[ $tariff_type_id . " " . $room_uid ] ) && !in_array( $tariff_type_id, $filtered_out_type_type_ids ) )
 							{
 							$pass_price_check = true;
 							if ( $mrConfig[ 'tariffmode' ] == "2" ) // If tariffmode = 2, we need to finally scan $this->micromanage_tarifftype_to_date_map, to ensure that all dates have a price set
 								{
-								if ( count( $this->micromanage_tarifftype_to_date_map ) == 0 ) $pass_price_check = false;
+								if ( count( $this->micromanage_tarifftype_to_date_map ) == 0 ) 
+									$pass_price_check = false;
 								else
 									{
 									//$this->setPopupMessage( str_replace(";", " " ,serialize( $this->micromanage_tarifftype_to_date_map[$tariff_type_id] ) ) );
@@ -4685,7 +4690,7 @@ class dobooking
 						}
 					else
 						{
-						$return_output = jr_gettext( '_JOMRES_SRP_WEHAVEVACANCIES', _JOMRES_SRP_WEHAVEVACANCIES, false, false ) . '<font color="white">~</font><div id="availRooms" class="roomslist"></div>';
+						$return_output = jr_gettext( '_JOMRES_SRP_WEHAVEVACANCIES', '_JOMRES_SRP_WEHAVEVACANCIES', false, false ) . '<font color="white">~</font><div id="availRooms" class="roomslist"></div>';
 						$this->addToSelectedRooms( $result[ 'requestedRoom' ] );
 						}
 					}
@@ -4732,84 +4737,89 @@ class dobooking
 		$dropdown_output = array ();
 		// We need to strip out rooms from the available arrays if they've already
 		// been selected in conjunction with another tariff
-		if ( count( $this->requestedRoom ) > 0 )
+		if (isset($this->room_type_style_output))
 			{
-			// Parse each of the already selected rooms
-			foreach ( $this->requestedRoom as $rm )
+			if ( count( $this->requestedRoom ) > 0 )
 				{
-				$room                       = explode( "^", $rm );
-				$already_selected_tariff_id = $room[ 1 ];
-				$already_selected_room_id   = $room[ 0 ];
-				// For each of the collected tariffs, let's go thru every roomTariffOutputId
-				foreach ( $this->room_type_style_output as $tariff_id => $tariff_and_roomtypes )
+				// Parse each of the already selected rooms
+				foreach ( $this->requestedRoom as $rm )
 					{
-					// If we're not in the collected tariffs set that are the part of the already selected set
-					if ( $tariff_id != $already_selected_tariff_id )
+					$room                       = explode( "^", $rm );
+					$already_selected_tariff_id = $room[ 1 ];
+					$already_selected_room_id   = $room[ 0 ];
+					// For each of the collected tariffs, let's go thru every roomTariffOutputId
+					foreach ( $this->room_type_style_output as $tariff_id => $tariff_and_roomtypes )
 						{
-						$current_room_count = count( $tariff_and_roomtypes[ 'roomTariffOutputId' ] );
-						// Loop thru tariff_and_roomtypes['roomTariffOutputId'] and strip out all rooms that have the same
-						// id as already_selected_room_id
-						foreach ( $tariff_and_roomtypes[ 'roomTariffOutputId' ] as $key => $roomTariffOutputId )
+						// If we're not in the collected tariffs set that are the part of the already selected set
+						if ( $tariff_id != $already_selected_tariff_id )
 							{
-							$collected_room_data = explode( "^", $roomTariffOutputId );
-							$this_room_id        = $collected_room_data[ 0 ];
-							if ( $this_room_id == $already_selected_room_id )
+							$current_room_count = count( $tariff_and_roomtypes[ 'roomTariffOutputId' ] );
+							// Loop thru tariff_and_roomtypes['roomTariffOutputId'] and strip out all rooms that have the same
+							// id as already_selected_room_id
+							foreach ( $tariff_and_roomtypes[ 'roomTariffOutputId' ] as $key => $roomTariffOutputId )
 								{
-								unset( $this->room_type_style_output[ $tariff_id ][ 'roomTariffOutputId' ][ $key ] );
+								$collected_room_data = explode( "^", $roomTariffOutputId );
+								$this_room_id        = $collected_room_data[ 0 ];
+								if ( $this_room_id == $already_selected_room_id )
+									{
+									unset( $this->room_type_style_output[ $tariff_id ][ 'roomTariffOutputId' ][ $key ] );
+									}
 								}
 							}
 						}
 					}
 				}
-			}
 
-		//Fix any broken indecies
-		foreach ( $this->room_type_style_output as $tariff_id => $tariff_and_roomtypes )
-			{
-			$a_new_array = array ();
-			foreach ( $this->room_type_style_output[ $tariff_id ][ 'roomTariffOutputId' ] as $roomTariffOutputId )
+		
+
+			//Fix any broken indecies
+			foreach ( $this->room_type_style_output as $tariff_id => $tariff_and_roomtypes )
 				{
-				$a_new_array[ ] = $roomTariffOutputId;
-				}
-			$this->room_type_style_output[ $tariff_id ][ 'roomTariffOutputId' ] = $a_new_array;
-			}
-
-		ksort( $this->room_type_style_output );
-		foreach ( $this->room_type_style_output as $tariff_id => $tariff_and_roomtypes )
-			{
-			$number_of_rooms = count( $tariff_and_roomtypes[ 'roomTariffOutputId' ] );
-
-			// This allows us to set the newly generated dropdown to the chosen number (1, 2, 3 etc)
-			$already_selected_string = "";
-			foreach ( $this->requestedRoom as $rm )
-				{
-				$room                       = explode( "^", $rm );
-				$already_selected_tariff_id = $room[ 1 ];
-				if ( $already_selected_tariff_id == $tariff_id )
+				$a_new_array = array ();
+				foreach ( $this->room_type_style_output[ $tariff_id ][ 'roomTariffOutputId' ] as $roomTariffOutputId )
 					{
-					$already_selected_string .= $rm . ",";
+					$a_new_array[ ] = $roomTariffOutputId;
 					}
+				$this->room_type_style_output[ $tariff_id ][ 'roomTariffOutputId' ] = $a_new_array;
 				}
-			//
-			//$this->setPopupMessage("room_type_style_output ".$tariff_id." ".serialize($already_selected_array));
-			$room_and_tariff_outputIds_string = "";
-			$rooms_list_style_dropdown        = array ();
-			$rooms_list_style_dropdown[ ]     = jomresHTML::makeOption( "0^" . $tariff_id, sprintf( "%02d", 0 ) );
-			for ( $i = 1; $i <= $number_of_rooms; $i++ )
+
+			ksort( $this->room_type_style_output );
+			foreach ( $this->room_type_style_output as $tariff_id => $tariff_and_roomtypes )
 				{
-				$room_and_tariff_outputIds_string .= $tariff_and_roomtypes[ 'roomTariffOutputId' ][ $i - 1 ] . ",";
-				$rooms_list_style_dropdown[ ] = jomresHTML::makeOption( $room_and_tariff_outputIds_string, sprintf( "%02d", $i ) );
+				$number_of_rooms = count( $tariff_and_roomtypes[ 'roomTariffOutputId' ] );
+
+				// This allows us to set the newly generated dropdown to the chosen number (1, 2, 3 etc)
+				$already_selected_string = "";
+				foreach ( $this->requestedRoom as $rm )
+					{
+					$room                       = explode( "^", $rm );
+					$already_selected_tariff_id = $room[ 1 ];
+					if ( $already_selected_tariff_id == $tariff_id )
+						{
+						$already_selected_string .= $rm . ",";
+						}
+					}
+				//
+				//$this->setPopupMessage("room_type_style_output ".$tariff_id." ".serialize($already_selected_array));
+				$room_and_tariff_outputIds_string = "";
+				$rooms_list_style_dropdown        = array ();
+				$rooms_list_style_dropdown[ ]     = jomresHTML::makeOption( "0^" . $tariff_id, sprintf( "%02d", 0 ) );
+				for ( $i = 1; $i <= $number_of_rooms; $i++ )
+					{
+					$room_and_tariff_outputIds_string .= $tariff_and_roomtypes[ 'roomTariffOutputId' ][ $i - 1 ] . ",";
+					$rooms_list_style_dropdown[ ] = jomresHTML::makeOption( $room_and_tariff_outputIds_string, sprintf( "%02d", $i ) );
+					}
+				$dropdown_output[ $tariff_id ][ 'dropdown' ]           = jomresHTML::selectList( $rooms_list_style_dropdown, 'fred', 'class="input-mini" size="1"  autocomplete="off" onchange="getResponse_multiroom_select(\'multiroom_select\',this.value);"', 'value', 'text', $already_selected_string );
+				$dropdown_output[ $tariff_id ][ 'room_type' ]          = $tariff_and_roomtypes[ 'room_type' ];
+				$dropdown_output[ $tariff_id ][ 'tariff_title' ]       = $tariff_and_roomtypes[ 'tariff_title' ];
+				$dropdown_output[ $tariff_id ][ 'room_price_inc_tax' ] = output_price( $tariff_and_roomtypes[ 'room_price_inc_tax' ] );
+				
+				if ( $this->cfg_bookingform_roomlist_showmaxpeople == "1" )
+					$dropdown_output[ $tariff_id ][ 'max_guests_per_room' ]    = $tariff_and_roomtypes[ 'max_guests_per_room' ];
+				
+				$dropdown_output[ $tariff_id ][ 'max_guests_per_booking' ] = $tariff_and_roomtypes[ 'max_guests_per_booking' ];
+				$dropdown_output[ $tariff_id ][ 'number_of_rooms' ] = $number_of_rooms;
 				}
-			$dropdown_output[ $tariff_id ][ 'dropdown' ]           = jomresHTML::selectList( $rooms_list_style_dropdown, 'fred', 'class="input-mini" size="1"  autocomplete="off" onchange="getResponse_multiroom_select(\'multiroom_select\',this.value);"', 'value', 'text', $already_selected_string );
-			$dropdown_output[ $tariff_id ][ 'room_type' ]          = $tariff_and_roomtypes[ 'room_type' ];
-			$dropdown_output[ $tariff_id ][ 'tariff_title' ]       = $tariff_and_roomtypes[ 'tariff_title' ];
-			$dropdown_output[ $tariff_id ][ 'room_price_inc_tax' ] = output_price( $tariff_and_roomtypes[ 'room_price_inc_tax' ] );
-			
-			if ( $this->cfg_bookingform_roomlist_showmaxpeople == "1" )
-				$dropdown_output[ $tariff_id ][ 'max_guests_per_room' ]    = $tariff_and_roomtypes[ 'max_guests_per_room' ];
-			
-			$dropdown_output[ $tariff_id ][ 'max_guests_per_booking' ] = $tariff_and_roomtypes[ 'max_guests_per_booking' ];
-			$dropdown_output[ $tariff_id ][ 'number_of_rooms' ] = $number_of_rooms;
 			}
 
 
@@ -4820,7 +4830,7 @@ class dobooking
 		
 		if ( $this->cfg_tariffChargesStoredWeeklyYesNo != "1" )
 			{
-			if ( $mrConfig[ 'wholeday_booking' ] == "1" )
+			if ( $this->mrConfig[ 'wholeday_booking' ] == "1" )
 				$rate_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', false, false ) );
 			else
 				$rate_text = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', false, false ) );
@@ -4842,7 +4852,7 @@ class dobooking
 		$output[ 'HTARIFF_NAME_TEXT' ] = $tariffname_text;
 		$output[ 'HRATE_TEXT' ]        = $rate_text;
 
-
+		$rows = array();
 		foreach ( $dropdown_output as $routput )
 			{
 			$r                       = array ();
@@ -5409,12 +5419,15 @@ class dobooking
 				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_SRP_WEHAVENOVACANCIES', '_JOMRES_SRP_WEHAVENOVACANCIES', false, false ) ) );
 				}
 
-			if ( $this->number_of_free_rooms == 0 && ( $this->currentField == "arrivalDate" || $this->currentField == "departureDate" || $this->currentField == "guesttype") )
+			if (isset($this->number_of_free_rooms)) // $this->number_of_free_rooms might not be set, it depends on the "field" sent
 				{
-				$this->resetPricingOutput = true;
-				$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_SRP_WEHAVENOVACANCIES', '_JOMRES_SRP_WEHAVENOVACANCIES', false, false ) ) );
+				if ( $this->number_of_free_rooms == 0 && ( $this->currentField == "arrivalDate" || $this->currentField == "departureDate" || $this->currentField == "guesttype") )
+					{
+					$this->resetPricingOutput = true;
+					$this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_SRP_WEHAVENOVACANCIES', '_JOMRES_SRP_WEHAVENOVACANCIES', false, false ) ) );
+					}
 				}
-
+				
 			if ( !$this->checkArrivalDate( $this->arrivalDate ) )
 				{
 				$this->resetPricingOutput = true;
@@ -6133,7 +6146,7 @@ class dobooking
 				}
 			}
 		//=array('id'=>$id,'description'=>$description,'untaxed_grand_total'=>$total_value,'tax_code_id'=>$tax_code_id);
-		if ( count( $this->third_party_extras ) > 0 )
+		if ( count( $this->third_party_extras ) > 0 && $this->third_party_extras !== false)
 			{
 			foreach ( $this->third_party_extras as $plugin )
 				{
@@ -6248,7 +6261,8 @@ class dobooking
 		{
 		$totalBooking = $this->getRoomtotal();
 		$guests       = $this->getVariantsOfType( "guesttype" );
-
+		$totalNumberOfGuests = 0;
+		
 		if ( count( $this->requestedRoom ) == 0 ) // No rooms selected yet
 		return;
 		if ( count( $guests ) == 0 ) // Guest numbers not chosen/used

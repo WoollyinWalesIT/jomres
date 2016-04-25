@@ -25,9 +25,6 @@ class j05020dobooking
 
 			return;
 			}
-
-		
-
 		$property_uid = get_showtime( 'property_uid' );
 		$mrConfig     = getPropertySpecificSettings();
 		$calendar ="";
@@ -194,7 +191,7 @@ class j05020dobooking
 	 */
 	function getRetVals()
 		{
-		return $this->bookingObject;
+		return null;
 		}
 	}
 

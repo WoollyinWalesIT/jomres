@@ -113,7 +113,6 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$MiniComponents    = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 
-	$referrer       = $_SERVER[ 'HTTP_REFERER' ];
 	$backWasClicked = false;
 	if ( $tmpBookingHandler->tmpbooking[ "confirmationSeen" ] == true ) $backWasClicked = true;
 	elseif ( $thisJRUser->userIsManager == true ) $tmpBookingHandler->resetTempGuestData(); // We don't want managers coming back to the booking form with the old guest data still saved.

@@ -38,7 +38,7 @@ class j05010handlereq
 	 */
 	function getRetVals()
 		{
-		return $this->bookingObject;
+		return null;
 		}
 	}
 
