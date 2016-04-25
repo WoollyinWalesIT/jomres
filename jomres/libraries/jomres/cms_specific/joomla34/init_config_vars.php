@@ -72,6 +72,8 @@ $jomresConfig_live_site = str_replace( "/administrator", "", $jomresConfig_live_
 if ( substr( $jomresConfig_live_site, -1 ) == "/" ) $jomresConfig_live_site = substr( $jomresConfig_live_site, 0, -1 );
 
 $scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
+
+$jomresConfig_lang = 'en-GB';
 if ( !strstr( $scriptname, 'install_jomres.php' ) )
 	{
 	$jomresConfig_lang = JFactory::getLanguage()->getTag();
