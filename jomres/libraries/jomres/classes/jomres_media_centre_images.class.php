@@ -89,6 +89,9 @@ class jomres_media_centre_images
 
 			if (isset( $this->multi_query_images[$property_id]['rooms']))
 				$this->images ['rooms']=$this->multi_query_images[$property_id]['rooms'];
+			else
+				$this->images ['rooms']=array();
+			
 			foreach ( $current_property_details->rooms as $room_id)
 				{
 				if (isset($this->images['rooms']))
