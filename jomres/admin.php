@@ -17,6 +17,8 @@ ob_start( "removeBOMadmin" );
 //@ini_set( "memory_limit", "128M" );
 @ini_set( "max_execution_time", "480" );
 
+global $thisJRUser, $htmlFuncs;
+
 require_once( dirname( __FILE__ ) . '/integration.php' );
 
 try
@@ -83,6 +85,7 @@ try
 
 	//Register user
 	$MiniComponents->triggerEvent( '00002' );
+	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 	
 	$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 	
@@ -157,6 +160,8 @@ try
 
 		$pageoutput = array ();
 		$output     = array ();
+		
+		$htmlFuncs = jomres_singleton_abstract::getInstance( 'html_functions' );
 
 		//cpanel main menu
 		$MiniComponents->triggerEvent( '10002' ); // 10002 scripts build the menu options
