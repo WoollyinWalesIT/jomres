@@ -26,6 +26,7 @@ $jomresConfig_live_site = get_option( 'siteurl' );
 
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 
+$jomresConfig_lang = 'en-GB';
 if (!strstr($scriptname,'install_jomres.php'))
 	{
 	$lang = get_locale();
