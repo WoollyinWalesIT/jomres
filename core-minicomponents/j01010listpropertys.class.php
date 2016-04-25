@@ -287,7 +287,7 @@ class j01010listpropertys
 
 			$templateCounter = 1;
 
-			if ( !isset( $_REQUEST[ 'arrivalDate' ] ) )
+			if ( !isset( $_REQUEST[ 'arrivalDate' ] ) || trim($_REQUEST[ 'arrivalDate' ]) == "" )
 				{
 				if ( isset( $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] ) && $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] != "" )
 					$arrivalDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
