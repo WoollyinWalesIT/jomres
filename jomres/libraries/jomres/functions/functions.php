@@ -3524,6 +3524,8 @@ function JSCalmakeInputDates( $inputDate, $siteCal = false )
  */
 function JSCalConvertInputDates( $inputDate, $siteCal = false )
 	{
+	if ($inputDate == "")
+		return "";
 	// Lets convert the input calendar dates to Y/m/d
 	$mrConfig   = getPropertySpecificSettings();
 	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
