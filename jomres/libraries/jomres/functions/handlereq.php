@@ -436,27 +436,40 @@ if ( $field != "heartbeat" && $field != "show_log" && $field != "email_usage_che
 				}
 			$room_tax  = $bkg->getTax();
 			$extra_tax = 0.00;
-			if ( count( $bkg->extra_taxs ) > 0 )
+			if (isset($bkg->extra_taxs))
 				{
-				foreach ( $bkg->extra_taxs as $extax )
+				if ( count( $bkg->extra_taxs ) > 0 )
 					{
-					$extra_tax = $extra_tax + $extax;
+					foreach ( $bkg->extra_taxs as $extax )
+						{
+						$extra_tax = $extra_tax + $extax;
+						}
 					}
 				}
-
 			if ( $jrConfig[ 'show_tax_in_totals_summary' ] == "1" )
 				{
-				echo '; populateDiv("room_total_ex_tax","' . output_price( $bkg->room_total_ex_tax ) . '")';
-				if ( get_showtime( 'include_room_booking_functionality' ) ) echo '; populateDiv("taxtotal","' . output_price( $room_tax ) . '")';
+				if (isset($bkg->room_total_ex_tax))
+					echo '; populateDiv("room_total_ex_tax","' . output_price( $bkg->room_total_ex_tax ) . '")';
+				else
+					echo '; populateDiv("room_total_ex_tax","")';
+				if ( get_showtime( 'include_room_booking_functionality' ) ) 
+					echo '; populateDiv("taxtotal","' . output_price( $room_tax ) . '")';
 				echo '; populateDiv("extra_tax","' . output_price( $extra_tax ) . '")';
 
 				}
 			echo '; populateDiv("grandtotal","' . output_price( $bkg->getGrandTotal() ) . '")';
-
-			echo '; populateDiv("room_total_inc_tax","' . output_price( $bkg->room_total_inc_tax ) . '")';
-			if ( $mrConfig[ 'chargeDepositYesNo' ] == "1" ) echo '; populateDiv("balance","' . output_price( $bkg->getGrandTotal() - $bkg->getDeposit() ) . '")';
-			if ( $showDeposit == "1" ) echo '; populateDiv("deposit","' . output_price( $bkg->getDeposit() ) . '")';
-			if ( $bkg->singlePersonSupplimentCalculated && $bkg->cfg_singlePersonSuppliment == "1" ) echo '; populateDiv("single_suppliment","' . output_price( $bkg->getSinglePersonSuppliment() ) . '")';
+			
+			if (isset($bkg->room_total_inc_tax))
+				echo '; populateDiv("room_total_inc_tax","' . output_price( $bkg->room_total_inc_tax ) . '")';
+			else
+				echo '; populateDiv("room_total_inc_tax","")';
+			
+			if ( $mrConfig[ 'chargeDepositYesNo' ] == "1" ) 
+				echo '; populateDiv("balance","' . output_price( $bkg->getGrandTotal() - $bkg->getDeposit() ) . '")';
+			if ( $showDeposit == "1" ) 
+				echo '; populateDiv("deposit","' . output_price( $bkg->getDeposit() ) . '")';
+			if ( $bkg->singlePersonSupplimentCalculated && $bkg->cfg_singlePersonSuppliment == "1" ) 
+				echo '; populateDiv("single_suppliment","' . output_price( $bkg->getSinglePersonSuppliment() ) . '")';
 			if ( $bkg->coupon_code != "" )
 				{
 				$discount = $bkg->coupon_discount_value;
