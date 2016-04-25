@@ -33,7 +33,28 @@ class j00501businessdetails
 		$mrConfig           = getPropertySpecificSettings();
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 )
 			return;
-
+		
+		if (!isset($mrConfig['property_business_name']))
+			$mrConfig['property_business_name'] = "";
+		if (!isset($mrConfig['property_vat_number']))
+			$mrConfig['property_vat_number'] = "";
+		if (!isset($mrConfig['property_business_houseno']))
+			$mrConfig['property_business_houseno'] = "";
+		if (!isset($mrConfig['property_business_street']))
+			$mrConfig['property_business_street'] = "";
+		if (!isset($mrConfig['property_business_town']))
+			$mrConfig['property_business_town'] = "";
+		if (!isset($mrConfig['property_business_region']))
+			$mrConfig['property_business_region'] = "";
+		if (!isset($mrConfig['property_business_country']))
+			$mrConfig['property_business_country'] = "";
+		if (!isset($mrConfig['property_business_postcode']))
+			$mrConfig['property_business_postcode'] = "";
+		if (!isset($mrConfig['property_business_telephone']))
+			$mrConfig['property_business_telephone'] = "";
+		if (!isset($mrConfig['property_business_email']))
+			$mrConfig['property_business_email'] = "";
+		
 		$lists        = $componentArgs[ 'lists' ];
 		$editIconSize = $componentArgs[ 'editIconSize' ];
 		
@@ -44,7 +65,7 @@ class j00501businessdetails
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 		
-		if ($mrConfig[ 'vat_number_validated' ] =="1")
+		if (isset($mrConfig[ 'vat_number_validated' ]) && $mrConfig[ 'vat_number_validated' ] =="1")
 			{
 			$status = jr_gettext( '_JOMRES_VAT_PROPERTY_VAT_NUMBER_VALIDATED', '_JOMRES_VAT_PROPERTY_VAT_NUMBER_VALIDATED', false );
 			}
