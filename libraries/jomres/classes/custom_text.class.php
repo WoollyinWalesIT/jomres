@@ -23,9 +23,10 @@ class custom_text
 	public function __construct()
 		{
 		self::$internal_debugging 			= false;
-		$this->lang               			= get_showtime( 'lang' );
-		$this->global_custom_text 			= array();
-		$this->all_properties_custom_text 	= array();
+		$this->property_uid					= 0;
+		$this->lang							= get_showtime( 'lang' );
+		$this->global_custom_text			= array();
+		$this->all_properties_custom_text	= array();
 
 		$this->get_custom_text_for_all_properties();
 		}
