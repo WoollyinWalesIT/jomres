@@ -33,7 +33,11 @@ class j06000ajax_list_properties
 
 		$tmpBookingHandler       = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		$last_id                 = (int) $_REQUEST[ 'lastID' ];
-		$original_search_results = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
+		if (isset($tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ]))
+			$original_search_results = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
+		else
+			$original_search_results = array();
+		
 		$count                   = count( $original_search_results );
 
 		$this->resultBucket = array();
