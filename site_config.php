@@ -274,3 +274,4 @@ $jrConfig[ 'license_server_username' ]			= "";
 $jrConfig[ 'license_server_password' ]			= "";
 $jrConfig[ 'licensekey' ]						= "";
 $jrConfig[ 'update_time' ]						= "0";
+$jrConfig[ 'override_property_contact_details' ]= "0";
