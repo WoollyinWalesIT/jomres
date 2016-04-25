@@ -261,7 +261,7 @@ class j06000show_property_header
 		
 		//property agent
 		$output[ 'AGENT_LINK' ] = make_agent_link( $property_uid );
-		$output[ '_JOMRES_AGENT' ] = jr_gettext( "_JOMRES_AGENT", _JOMRES_AGENT );
+		$output[ '_JOMRES_AGENT' ] = jr_gettext( "_JOMRES_AGENT", '_JOMRES_AGENT' );
 		
 		//property buttons
 		$output[ 'DIRECT_URL' ] 	= jomresUrl(JOMRES_SITEPAGE_URL . '&task=viewproperty&property_uid='.$property_uid);
