@@ -229,7 +229,6 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	else
 	$output[ 'ISMANAGER' ] = "false";
 	$output[ 'PID' ]    = $selectedProperty;
-	$output[ 'ITEMID' ] = $Itemid;
 
 	$output[ 'RELPATH' ]   = get_showtime( 'live_site' );
 	$output[ 'AJAXURL' ]   = JOMRES_SITEPAGE_URL_AJAX;
@@ -239,6 +238,8 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$coupons              = array ();
 	$coupon_output        = array ();
 	$coupon_output_totals = array ();
+	$coupons_totals       = array ();
+	
 	if ( $bkg->use_coupons )
 		{
 		$coupon_output[ 'COUPON_TITLE' ]                 = $bkg->sanitiseOutput( jr_gettext( '_JRPORTAL_COUPONS_CODE', '_JRPORTAL_COUPONS_CODE', false, false ) );
@@ -469,6 +470,9 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	else
 		$rm = $bkg->generateRoomsList( $roomAndTariffArray );
 
+	if (!isset($output[ 'SELECTEDROOM' ]))
+		$output[ 'SELECTEDROOM' ] = '';
+	
 	if ( get_showtime( 'include_room_booking_functionality' ) )
 		{
 		$output[ 'AVAILABLEROOMS' ] = $rm;
@@ -636,13 +640,13 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		}
 
 	$bkg->initRoomFeatureFiltering();
+	$roomfeaturesHeader    = array ();
+	$roomfeatures          = array ();
 	if ( $bkg->room_feature_filtering_enabled )
 		{
 		$basic_room_details = jomres_singleton_abstract::getInstance( 'basic_room_details' );
 		$basic_room_details->get_all_rooms($selectedProperty);
-		
-		$roomfeaturesHeader    = array ();
-		$roomfeatures          = array ();
+
 		$roomfeaturesHeader[ ] = array ( "_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER" => $output[ '_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER' ] );
 		
 		foreach ( $bkg->room_feature_checkboxes as $feature )
