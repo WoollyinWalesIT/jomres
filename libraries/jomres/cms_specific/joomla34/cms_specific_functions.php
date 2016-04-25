@@ -66,7 +66,6 @@ function jomres_cmsspecific_areweinadminarea()
 
 function jomres_cmsspecific_createNewUserOnBooking()
 	{
-	global $jomresConfig_mailfrom, $jomresConfig_fromname;
 	$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
 	$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig          = $siteConfig->get();
@@ -153,7 +152,7 @@ function jomres_cmsspecific_createNewUserOnBooking()
 			$jrConfig   = $siteConfig->get();
 			if ( $jrConfig[ 'useNewusers_sendemail' ] == "1" )
 				{
-				if ( !jomresMailer( $jomresConfig_mailfrom, $jomresConfig_fromname, $guestDeets[ 'email' ], $subject, $text, $mode = 1 ) ) error_logging( 'Failure in sending registration email to guest. Target address: ' . $hotelemail . ' Subject' . $subject );
+				if ( !jomresMailer( get_showtime('mailfrom'), get_showtime('fromname'), $guestDeets[ 'email' ], $subject, $text, $mode = 1 ) ) error_logging( 'Failure in sending registration email to guest. Target address: ' . $hotelemail . ' Subject' . $subject );
 				}
 			}
 		}

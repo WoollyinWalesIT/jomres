@@ -29,7 +29,6 @@ class j03020insertbooking
 
 			return;
 			}
-		//global $jomresProccessingBookingObject;
 		$mrConfig          = getPropertySpecificSettings();
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );

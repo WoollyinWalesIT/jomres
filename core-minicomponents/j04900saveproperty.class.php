@@ -18,9 +18,6 @@ class j04900saveproperty
 	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		if ( !function_exists( 'jomres_singleton_abstract::getInstance' ) )
-		global $MiniComponents;
-		else
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )
 			{

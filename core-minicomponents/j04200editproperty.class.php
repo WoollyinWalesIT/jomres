@@ -25,8 +25,6 @@ class j04200editproperty
 
 			return;
 			}
-		//global $selectedCountry;
-
 		$thisJRUser     = jomres_singleton_abstract::getInstance( 'jr_user' );
 		$mrConfig       = getPropertySpecificSettings();
 		$siteConfig     = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
@@ -70,7 +68,7 @@ class j04200editproperty
 				$yesno[ ]                      = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false ) );
 				$yesno[ ]                      = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false ) );
 				$output[ 'SUPERIOR_DROPDOWN' ] = jomresHTML::selectList( $yesno, 'superior', 'class="inputbox" size="1"', 'value', 'text', $property->superior );
-				$output[ 'HSUPERIOR' ]         = jr_gettext( 'JOMRES_SUPERIOR', JOMRES_SUPERIOR );
+				$output[ 'HSUPERIOR' ]         = jr_gettext( 'JOMRES_SUPERIOR', 'JOMRES_SUPERIOR' );
 
 				//$output['PROPERTY_NAME']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', getEscaped($property->property_name),false,false);
 				$output[ 'PROPERTY_STREET' ]   = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_STREET', $property->property_street, false);
@@ -287,17 +285,20 @@ class j04200editproperty
 			}
 
 		$multi=array();
-		if(file_exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_multisites'.DS.'helpers'.DS.'utils.php'))
+		if (this_cms_is_joomla())
 			{
-			include_once( JPATH_ADMINISTRATOR.DS.'components'.DS.'com_multisites'.DS.'helpers'.DS.'utils.php');
-			if ( class_exists( 'MultisitesHelperUtils') && method_exists( 'MultisitesHelperUtils', 'getComboSiteIDs')) 
+			if(file_exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_multisites'.DS.'helpers'.DS.'utils.php'))
 				{
-				$comboSiteIDs = MultisitesHelperUtils::getComboSiteIDs( $property_site_id, 'property_site_id', jr_gettext( '_JOMRES_MULTISITES_SELECT_A_SITE', '_JOMRES_MULTISITES_SELECT_A_SITE', false, false ));
-				if( !empty( $comboSiteIDs))
+				include_once( JPATH_ADMINISTRATOR.DS.'components'.DS.'com_multisites'.DS.'helpers'.DS.'utils.php');
+				if ( class_exists( 'MultisitesHelperUtils') && method_exists( 'MultisitesHelperUtils', 'getComboSiteIDs')) 
 					{
-					$multisites['LABEL'] = jr_gettext("_JOMRES_MULTISITES_MULTISITES_LABEL" , '_JOMRES_MULTISITES_MULTISITES_LABEL');
-					$multisites['MULTISITES_SELECT'] = $comboSiteIDs;
-					$multi = array($multisites);
+					$comboSiteIDs = MultisitesHelperUtils::getComboSiteIDs( $property_site_id, 'property_site_id', jr_gettext( '_JOMRES_MULTISITES_SELECT_A_SITE', '_JOMRES_MULTISITES_SELECT_A_SITE', false, false ));
+					if( !empty( $comboSiteIDs))
+						{
+						$multisites['LABEL'] = jr_gettext("_JOMRES_MULTISITES_MULTISITES_LABEL" , '_JOMRES_MULTISITES_MULTISITES_LABEL');
+						$multisites['MULTISITES_SELECT'] = $comboSiteIDs;
+						$multi = array($multisites);
+						}
 					}
 				}
 			}

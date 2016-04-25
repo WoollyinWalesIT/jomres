@@ -875,20 +875,6 @@ class dobooking
 		return $this->error;
 		}
 
-	/**
-	#
-	 * Updates the debug log with a message - Depreciated
-	#
-	 */
-	function errorLogDb( $error )
-		{
-		global $database;
-		$error = $database->getEscaped( $error );
-		$query = "INSERT INTO #__jomres_errorlog (`error`) VALUES ('$error')";
-		$database->setQuery( $query );
-		$database->query();
-		}
-
 	function writeToLogfile( $text )
 		{
 		if ( LOGGINGBOOKING )
@@ -2792,8 +2778,6 @@ class dobooking
 	function outputDate( $thedate )
 		{
 		// Assumes the date $theDate comes from the system in the format yyyy/mm/dd
-		//global $jomresConfig_locale;
-		//setlocale(LC_ALL, $jomresConfig_locale);
 		$date_elements = explode( "/", $thedate );
 		$unixDate      = adodb_mktime( 0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ] );
 		if ( $this->cfg_dateFormatStyle == "1" ) $formattedDate = date( $this->cfg_cal_output, $unixDate );

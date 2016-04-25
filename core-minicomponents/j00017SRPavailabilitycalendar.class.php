@@ -25,7 +25,6 @@ class j00017SRPavailabilitycalendar
 
 			return;
 			}
-		global $noshowroom;
 		$mrConfig         = getPropertySpecificSettings();
 		$siteConfig       = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig         = $siteConfig->get();
@@ -136,7 +135,7 @@ jomresJquery(function(){
 			$this->retVals .= '<td class="ui-widget-header ui-corner-all">';
 			$this->retVals .= '<table>
 										';
-			if ( $mrConfig[ 'visitorscanbookonline' ] == "1" && !$noshowroom && $this->showlinks && $jrConfig[ 'show_booking_form_in_property_details' ] != '1' )
+			if ( $mrConfig[ 'visitorscanbookonline' ] == "1" && $this->showlinks && $jrConfig[ 'show_booking_form_in_property_details' ] != '1' )
 				{
 				$this->retVals .= '<tr>';
 				$this->retVals .= '<td colspan="6">' . jr_gettext( '_JOMRES_FRONT_CALENDAR_CLICKDATES', '_JOMRES_FRONT_CALENDAR_CLICKDATES' ) . '</td>';
@@ -226,13 +225,11 @@ jomresJquery(function(){
 		// Submitted by: Whiddon James on Dec 01st 1999
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
-		//global $jomresConfig_locale;
-		global $noshowroom;
+
 		$mrConfig      = getPropertySpecificSettings();
 		$tar           = jomresGetParam( $_REQUEST, 'tar', 0 );
 		$show_links    = jomresGetParam( $_REQUEST, 'sl', 1 );
 		$userIsManager = checkUserIsManager();
-		//setlocale(LC_ALL, $jomresConfig_locale);
 
 		$showOutMonthDates = false;
 
@@ -449,7 +446,7 @@ jomresJquery(function(){
 						if ( $mrConfig[ 'fixedArrivalDateYesNo' ] )
 							{
 							$currdow = date( "w", $currdate );
-							if ( !$noshowroom && $bgcolor != $outbgcolor )
+							if ( $bgcolor != $outbgcolor )
 								{
 								if ( $mrConfig[ 'fixedArrivalDay' ] == date( "w", $currdate ) ) if ( $mrConfig[ 'visitorscanbookonline' ] && $this->showlinks )
 									{
@@ -473,7 +470,7 @@ jomresJquery(function(){
 							}
 						else
 							{
-							if ( !$noshowroom && $bgcolor != $outbgcolor && $mrConfig[ 'visitorscanbookonline' ] && $this->showlinks )
+							if ( $bgcolor != $outbgcolor && $mrConfig[ 'visitorscanbookonline' ] && $this->showlinks )
 								{
 								$link = JOMRES_SITEPAGE_URL . '&task=dobooking&amp;selectedProperty=' . $property_uid . '&arrivalDate=' . $sqlDate2;
 								if ( !$mrConfig[ 'singleRoomProperty' ] ) $link .= '&remus=' . $roomUid;

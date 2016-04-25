@@ -112,7 +112,7 @@ class j06002list_resources
 
 			$roomFeaturesString = $room->room_features_uid;
 			$roomFeaturesArray  = explode( ",", $roomFeaturesString );
-			$listTxt .= "";
+			$listTxt = "";
 			if ( count( $roomFeaturesList ) > 0 )
 				{
 				$listTxt = "<ul>";

@@ -58,7 +58,7 @@ class j06001amendBooking
 				}
 
 			$propertyDropdown = jomresHTML::selectList( $propertyOptions, 'selectedProperty', 'class="inputbox" size="1"', 'value', 'text', $defaultProperty );
-			//if (!JOMRES_SINGLEPROPERTY)
+			
 			$output[ 'PROPERTYDROPDOWN' ] = '' . $propertyDropdown . '';
 
 			$cancelText = jr_gettext( '_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL', false );

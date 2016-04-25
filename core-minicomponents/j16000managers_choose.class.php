@@ -42,7 +42,7 @@ class j16000managers_choose
 		$output[ 'KEY' ]          = '
 		<img src = "' . $img_reception . '"  style="border:none;">' . jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION', '_JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION',false ) . '
 		<img src = "' . $img_manager . '"  style="border:none;">' . jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN', '_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN',false ) . '
-		<img src = "' . $img_superpropertymanager . '"  style="border:none;">' . jr_gettext( '_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER', ''_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER,false ) . '
+		<img src = "' . $img_superpropertymanager . '"  style="border:none;">' . jr_gettext( '_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER', '_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER',false ) . '
 		';
 
 		$img_output_guest                = '<img src = "' . $img_guest . '"  style="border:none;">';

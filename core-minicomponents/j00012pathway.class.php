@@ -41,13 +41,12 @@ class j00012pathway
 
 		if ( $tmpBookingHandler->user_settings[ 'editing_on' ] ) return;
 
-		$jomresPathway = jomres_singleton_abstract::getInstance( 'jomres_pathway' );
 		$siteConfig    = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig      = $siteConfig->get();
 
 		$popup = intval( jomresGetParam( $_REQUEST, 'popup', 0 ) );
 		$thisJRUser     = jomres_singleton_abstract::getInstance( 'jr_user' );
-		if ( $popup == 0 && !JOMRES_SINGLEPROPERTY && $numberOfPropertiesInSystem > 1 )
+		if ( $popup == 0 && $numberOfPropertiesInSystem > 1 )
 			{
 			$pathwayArray = array ();
 			$task = get_showtime( 'task' );

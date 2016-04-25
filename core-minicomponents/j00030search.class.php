@@ -17,7 +17,6 @@ class j00030search
 	{
 	function __construct( $componentArgs )
 		{
-		global $jomresSearchFormname;
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )
 			{
@@ -61,7 +60,7 @@ class j00030search
 			}
 
 		init_javascript();
-		//$runningMiniComp=false;
+
 		if ( $calledByModule == "" && isset( $_REQUEST[ 'calledByModule' ] ) )
 			{
 			$calledByModule = jomresGetParam( $_REQUEST, 'calledByModule', "" );
@@ -737,7 +736,6 @@ class j00030search
 
 		if ( $doSearch )
 			{
-			//global $numberOfPropertiesInSystem;
 			$numberOfPropertiesInSystem = get_showtime( 'numberOfPropertiesInSystem' );
 			if ( $numberOfPropertiesInSystem > 1 && !$includedInModule && !isset( $_REQUEST[ 'calledByModule' ] ) && !isset( $_REQUEST[ 'next' ] ) && get_showtime( 'task' ) == "" )
 				{
@@ -833,14 +831,14 @@ class j00030search
 		$roomTypeList = doSelectSql( $query );
 		foreach ( $roomTypeList as $rtype )
 			{
-			$output[ ] = jr_gettext( _JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION . $rtype->room_classes_uid, jomres_decode( $rtype->room_class_abbv ) );
+			$output[ ] = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION' . $rtype->room_classes_uid, jomres_decode( $rtype->room_class_abbv ) );
 			}
 
 		$query     = "SELECT id, ptype FROM #__jomres_ptypes WHERE published = '1' ORDER BY `order` ASC";
 		$ptypeList = doSelectSql( $query );
 		foreach ( $ptypeList as $ptype )
 			{
-			$output[ ] = jr_gettext( _JOMRES_CUSTOMTEXT_PROPERTYTYPE . $ptype->id, jomres_decode( $ptype->ptype ) );
+			$output[ ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . $ptype->id, jomres_decode( $ptype->ptype ) );
 			}
 		foreach ( $output as $o )
 			{

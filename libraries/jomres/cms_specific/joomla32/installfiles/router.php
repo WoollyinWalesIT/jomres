@@ -21,7 +21,7 @@ function JomresBuildRoute( &$query )
 	$route_query = $query; // We need to work within this function with the $route_query variable, not $query. It seems to be that the assignation &$query on some servers means that once the property name query further down has been run, then Joomla's $query becomes whatever the sql query was. Don't know why, and I'm not going to dig around to find out. We'll work internally on $route_query, then set $query to $route_query at the end, that seems to fix it.
 	
 	if ( !defined( '_JOMRES_INITCHECK' ) ) define( '_JOMRES_INITCHECK', 1 );
-	global $thisJRUser;
+
 	require_once( JPATH_BASE . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'integration.php' );
 	$jrConfig = getSiteSettings();
 	$segments = array ();
@@ -143,7 +143,6 @@ function JomresBuildRoute( &$query )
 function JomresParseRoute( $segments )
 	{
 	if ( !defined( '_JOMRES_INITCHECK' ) ) define( '_JOMRES_INITCHECK', 1 );
-	global $thisJRUser;
 	require_once( JPATH_BASE . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'integration.php' );
 	$vars = array ();
 	$jrConfig = getSiteSettings();
@@ -158,7 +157,7 @@ function JomresParseRoute( $segments )
 		case "dobooking":
 			require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . 'dobooking.class.php' );
 			$vars[ 'task' ] = "dobooking";
-			if ( !$thisJRUser->userIsManager ) $vars[ 'selectedProperty' ] = $segments[ 2 ];
+			$vars[ 'selectedProperty' ] = $segments[ 2 ];
 			break;
 		case $jrConfig[ 'sef_task_alias_search' ]:
 			$searchParam              = $segments[ 1 ];

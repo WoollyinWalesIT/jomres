@@ -57,9 +57,9 @@ class j16000list_invoices
 		$output[ 'HSURNAME' ]       	          = jr_gettext( "_JOMRES_FRONT_MR_DISPGUEST_SURNAME", '_JOMRES_FRONT_MR_DISPGUEST_SURNAME', false );
 		$output[ 'HSTATUS' ]                      = jr_gettext( "_JRPORTAL_INVOICES_STATUS", '_JRPORTAL_INVOICES_STATUS', false );
 		$output[ 'HRAISED' ]                      = jr_gettext( "_JRPORTAL_INVOICES_RAISED", '_JRPORTAL_INVOICES_RAISED', false );
-		$output[ 'HDUE' ]                         = jr_gettext( "_JRPORTAL_INVOICES_DUE", '''_JRPORTAL_INVOICES_DUE', false );
-		$output[ 'HPAID' ]                        = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PAID", _JRPORTAL_INVOICES_STATUS_PAID', false );
-		$output[ 'HINITTOTAL' ]                   = jr_gettext( "_JRPORTAL_INVOICES_INITTOTAL", _JRPORTAL_INVOICES_INITTOTAL', false );
+		$output[ 'HDUE' ]                         = jr_gettext( "_JRPORTAL_INVOICES_DUE", '_JRPORTAL_INVOICES_DUE', false );
+		$output[ 'HPAID' ]                        = jr_gettext( "_JRPORTAL_INVOICES_STATUS_PAID", '_JRPORTAL_INVOICES_STATUS_PAID', false );
+		$output[ 'HINITTOTAL' ]                   = jr_gettext( "_JRPORTAL_INVOICES_INITTOTAL", '_JRPORTAL_INVOICES_INITTOTAL', false );
 		$output[ 'HGRAND_TOTAL' ]                 = jr_gettext( "_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL", '_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL', false );
 		$output[ 'HFREQ' ]                        = jr_gettext( "_JRPORTAL_INVOICES_RECUR_FREQUENCY", '_JRPORTAL_INVOICES_RECUR_FREQUENCY', false );
 		$output[ 'HDOM' ]                         = jr_gettext( "_JRPORTAL_INVOICES_RECUR_DOMONTH", '_JRPORTAL_INVOICES_RECUR_DOMONTH', false );
