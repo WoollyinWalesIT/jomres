@@ -62,7 +62,7 @@
 			</div>
 			<span class="btn btn-primary" id="upload_all">
 				<i class="fa fa-upload"></i>
-				Upload all
+				{_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL}
 			</span>
 			<!--<button type="button" class="btn btn-danger delete">
 				<i class="icon-trash"></i>
@@ -192,6 +192,7 @@ jomresJquery(function () {
 				}
 			else
 				{
+				/*
 				var delete_link = '<a href="javascript:void(0);" class="btn btn-danger" onclick="delete_file(\''+file.deleteUrl+ '{URL_CONTEXT}'+'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
 				var view_link = '<a href="'+file.url+'" target="_blank" class="btn btn-primary">{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}</a>';
 
@@ -199,6 +200,11 @@ jomresJquery(function () {
 				
 				jomresJquery(data.context.children()[index])
 					.append(links);
+				*/	
+				jomresJquery(data.context.children()[index])
+					.fadeOut("normal", function() {
+						jomresJquery(this).remove();
+						});
 				
 				get_existing_images();
 				}
