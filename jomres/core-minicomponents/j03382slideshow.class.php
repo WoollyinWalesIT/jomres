@@ -30,19 +30,23 @@ class j03382slideshow
 			return;
 			}
 		
+		/* 
+		For post-image upload processing. gifbuilder has been removed, however we'll leave this in place for now to give you an idea of what it can be used for.
+		
+		
 		$defaultProperty = getDefaultProperty();
 		if (is_dir(JOMRES_IMAGELOCATION_ABSPATH . $defaultProperty . JRDS . 'gif' . JRDS))
 			{
 			emptyDir( JOMRES_IMAGELOCATION_ABSPATH . $defaultProperty . JRDS . 'gif' . JRDS );
 			rmdir ( JOMRES_IMAGELOCATION_ABSPATH . $defaultProperty . JRDS . 'gif' . JRDS );
 			}
-		$result = gif_builder( $componentArgs["property_id"] );
+		$result = gif_builder( $componentArgs["property_id"] ); */
 		}
 
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return $this->ret_vals;
+		return null;
 		}
 	}
 

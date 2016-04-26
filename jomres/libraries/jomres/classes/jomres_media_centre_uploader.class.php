@@ -465,7 +465,7 @@ class UploadHandler
 			$image_path .= $image_name_array[$i].JRDS;
 			}
 		
-		$path =  implode($bang);
+
 		$bang = explode ( "." , $image_name );
 		unset($bang[count($bang)-1]);
 		$image_name_no_extension = implode($bang);
