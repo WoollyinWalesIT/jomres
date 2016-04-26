@@ -31,7 +31,10 @@ class j03383properties
 		
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 		$jomres_media_centre_images->get_images($defaultProperty);
-		$this->ret_vals = $jomres_media_centre_images->images [$resource_type] [$resource_id];
+		if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id]))
+			$this->ret_vals = $jomres_media_centre_images->images [$resource_type] [$resource_id];
+		else
+			$this->ret_vals = array();
 		}
 
 	// This must be included in every Event/Mini-component
