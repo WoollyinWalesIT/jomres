@@ -67,6 +67,7 @@ class j06002create_multiple_resources
 		$output[ 'HDELETE_EXISTING_RESOURCES' ] = jr_gettext('_JOMRES_MULTIPLE_RESOURCES_DELETE','_JOMRES_MULTIPLE_RESOURCES_DELETE',FALSE);
 		$output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_MULTIPLE_RESOURCES_TITLE','_JOMRES_MULTIPLE_RESOURCES_TITLE',FALSE);
 	
+		$cancelText = jr_gettext( '_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL', false );
 		$jrtbar     = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb       = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem( 'save', '', jr_gettext('_JOMRES_MULTIPLE_RESOURCES_GENERATE','_JOMRES_MULTIPLE_RESOURCES_GENERATE',FALSE), true, 'save_multiple_resources' );
