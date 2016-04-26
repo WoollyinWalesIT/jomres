@@ -24,7 +24,7 @@ class j07110media_centre_upload_context_features_images
 			$this->template_touchable = false;
 			return;
 			}
-		
+		$this->ret_vals = array();
 		// We will check to see if this user can upload feature images. If we're not in the administrator area, this script shouldn't be being run
 		
 		if (this_cms_is_joomla()) // Can't be specific about the cms area when in WP because WP's sessions are the same, for both frontend and backend.

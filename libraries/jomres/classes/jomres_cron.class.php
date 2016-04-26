@@ -57,8 +57,9 @@ class jomres_cron
 				if ( $job->locked == "1" )
 					{
 					// In my sample db it seems that some jobs have become locked, and weren't unlocked for some reason. This change is intended to bypass that as they would remain locked forever.
+					$jobDue = false;
 					switch ( trim( $job->schedule ) )
-					{
+						{
 						case "M": // Every minute
 							$nextDue = $job->last_ran + 60 + $threashold;
 							if ( $this->now > $nextDue ) $jobDue = true;
@@ -80,7 +81,7 @@ class jomres_cron
 							$nextDue = $job->last_ran + (60 * 60 * 24 * 7) + $threashold;
 							if ( $this->now > $nextDue ) $jobDue = true;
 							break;
-					}
+						}
 					if ( $jobDue )
 						{
 						$lockedJobs[]=$job->id;
