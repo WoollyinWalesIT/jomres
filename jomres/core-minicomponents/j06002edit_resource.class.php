@@ -41,18 +41,21 @@ class j06002edit_resource
 			$roomUid = intval( jomresGetParam( $_REQUEST, 'roomUid', 0 ) );
 			$clone   = intval( jomresGetParam( $_REQUEST, 'clone', 0 ) );
 
-			if ( $jrConfig[ 'useGlobalRoomTypes' ] == "1" ) $roomTypeSearchParameter = "0";
+			if ( $jrConfig[ 'useGlobalRoomTypes' ] == "1" ) 
+				$roomTypeSearchParameter = "0";
 			else
-			$roomTypeSearchParameter = $defaultProperty;
+				$roomTypeSearchParameter = $defaultProperty;
+			
 			$room_features_uid    = "";
 			$room_name            = "";
 			$room_number          = "";
 			$room_floor           = "";
 			$room_classes_uid     = false;
 			$max_people           = "10";
+			$singleperson_suppliment = 0;
+			
 			if ( $roomUid )
 				{
-
 				$query    = "SELECT room_classes_uid,room_features_uid,room_name,room_number,room_floor,max_people,singleperson_suppliment FROM #__jomres_rooms WHERE  room_uid  = '" . (int) $roomUid . "' AND propertys_uid = '" . (int) $defaultProperty . "'";
 				$roomList = doSelectSql( $query );
 				foreach ( $roomList as $room )
@@ -64,9 +67,9 @@ class j06002edit_resource
 					$room_floor              = stripslashes( $room->room_floor );
 					$max_people              = $room->max_people;
 					$singleperson_suppliment = $room->singleperson_suppliment;
-
 					}
 				}
+			
 			if ( $clone ) $roomUid = 0;
 
 			$classOptions[ ] = jomresHTML::makeOption( '', "" );
