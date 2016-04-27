@@ -313,23 +313,29 @@ switch ( $field )
 			{
 			// We now need to remove all selected rooms from the $bkg->requestedRoom that are using this tariff id so that we can repopulat it with updateSelectedRoom
 			$selected_rooms     = explode( "^", $room );
-			$clearing_tariff_id = (int) $selected_rooms[ 1 ];
-			$room_id            = (int) $selected_rooms[ 0 ];
-			if ( count( $bkg->requestedRoom ) > 0 )
+			
+			if (isset($selected_rooms[ 1 ]))
 				{
-				foreach ( $bkg->requestedRoom as $index => $rm )
+				$clearing_tariff_id = (int) $selected_rooms[ 1 ];
+				
+				if ( count( $bkg->requestedRoom ) > 0 )
 					{
-					$currently_selected_rooms = explode( "^", $rm );
-					$current_tariff_id        = $currently_selected_rooms[ 1 ];
-					if ( $current_tariff_id == $clearing_tariff_id )
+					foreach ( $bkg->requestedRoom as $index => $rm )
 						{
-						//$bkg->setPopupMessage( "Removing ".$bkg->requestedRoom[$index]);
-						unset( $bkg->requestedRoom[ $index ] );
-						$room_locker->unlock_room( $currently_selected_rooms[ 0 ], $bkg->dateRangeString );
+						$currently_selected_rooms = explode( "^", $rm );
+						$current_tariff_id        = $currently_selected_rooms[ 1 ];
+						if ( $current_tariff_id == $clearing_tariff_id )
+							{
+							//$bkg->setPopupMessage( "Removing ".$bkg->requestedRoom[$index]);
+							unset( $bkg->requestedRoom[ $index ] );
+							$room_locker->unlock_room( $currently_selected_rooms[ 0 ], $bkg->dateRangeString );
+							}
 						}
 					}
 				}
-			if ( $room_id == 0 ) $bkg->checkAllGuestsAllocatedToRooms();
+			$room_id            = (int) $selected_rooms[ 0 ];
+			if ( $room_id == 0 ) 
+				$bkg->checkAllGuestsAllocatedToRooms();
 			}
 		foreach ( $room_selections as $room )
 			{
@@ -612,9 +618,12 @@ function bookingformlistRooms( $isSingleRoomProperty, &$bkg )
 		if ( !$isSingleRoomProperty )
 			{
 			$selected_rooms_text = '<div><h4 class="page-header">' . jr_gettext( '_JOMRES_AJAXFORM_SELECTEDROOMS', '_JOMRES_AJAXFORM_SELECTEDROOMS', false, false ) . '</h4></div>';
-			if ( $bkg->numberOfCurrentlySelectedRooms() > 0 ) $currently_selected = '<div>' . $bkg->listCurrentlySelectedRooms() . '</div>';
+			
+			if ( $bkg->numberOfCurrentlySelectedRooms() > 0 ) 
+				$currently_selected = '<div>' . $bkg->listCurrentlySelectedRooms() . '</div>';
 			else
-			$currently_selected = '<div id="noroomsselected" >' . jr_gettext( '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', false, false ) . '</div>';
+				$currently_selected = '<div id="noroomsselected" >' . jr_gettext( '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', false, false ) . '</div>';
+
 			$available_rooms_text = '<div><h4 class="page-header">' . jr_gettext( '_JOMRES_AJAXFORM_AVAILABLEROOMS', '_JOMRES_AJAXFORM_AVAILABLEROOMS', false, false ) . '</h4></div><div id="rooms_listing"></div>';
 
 
@@ -625,11 +634,13 @@ function bookingformlistRooms( $isSingleRoomProperty, &$bkg )
 			$output = "populateDiv('selectedRooms','" . $selected_rooms_text . $currently_selected . "');";
 			$output .= "populateDiv('availRooms','" . $available_rooms_text . "');";
 
-			if ( count( $freeRoomsArray ) > 0 ) $output .= ";jomresJquery('#availRooms').fadeIn();";
+			if ( count( $freeRoomsArray ) > 0 ) 
+				$output .= ";jomresJquery('#availRooms').fadeIn();";
 			else
-			$output .= ";jomresJquery('#availRooms').fadeOut();";
+				$output .= ";jomresJquery('#availRooms').fadeOut();";
 
-			if ( $bkg->cfg_booking_form_rooms_list_style == "1" ) echo $output;
+			if ( $bkg->cfg_booking_form_rooms_list_style == "1" ) 
+				echo $output;
 			}
 		else
 			{
