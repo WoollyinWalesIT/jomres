@@ -74,6 +74,9 @@ class jomres_generic_booking_email
 			
 			$this->data[$contract_uid]['ROOMS'] .= '; ';
 			
+			if (!isset($this->data[$contract_uid]['TARIFFS']))
+				$this->data[$contract_uid]['TARIFFS'] = '';
+			
 			$this->data[$contract_uid]['TARIFFS'] .= $rd[ 'rate_title' ] . '; ';
 			}
 		
@@ -93,6 +96,9 @@ class jomres_generic_booking_email
 		//extras details
 		foreach ( $current_contract_details->contract[$contract_uid]['extradeets'] as $extra )
 			{
+			if (!isset($this->data[$contract_uid]['EXTRAS']))
+				$this->data[$contract_uid]['EXTRAS'] = '';
+			
 			$this->data[$contract_uid]['EXTRAS'] .= $extra['name'] . ' x ' . $extra['qty'] . '; ';
 			}
 		
@@ -107,6 +113,9 @@ class jomres_generic_booking_email
 		//number of guest types
 		foreach ( $current_contract_details->contract[$contract_uid]['guesttype'] as $type )
 			{
+			if (!isset($this->data[$contract_uid]['NUMBER_OF_GUESTS']))
+				$this->data[$contract_uid]['NUMBER_OF_GUESTS'] = '';
+			
 			$this->data[$contract_uid]['NUMBER_OF_GUESTS'] .= $type[ 'title' ].' x '.$type[ 'qty' ].', ';
 			}
 		
@@ -154,6 +163,9 @@ class jomres_generic_booking_email
 			foreach ( $allCustomFields as $f )
 				{
 				$formfieldname          = $f[ 'fieldname' ] . "_" . $f[ 'uid' ];
+				if (!isset($this->data[$contract_uid]['CUSTOM_FIELDS']))
+					$this->data[$contract_uid]['CUSTOM_FIELDS'] = '';
+				
 				$this->data[$contract_uid]['CUSTOM_FIELDS'] .= jr_gettext( 'JOMRES_CUSTOMTEXT' . $f[ 'uid' ], $f[ 'description' ] ).': '.$tmpBookingHandler->tmpbooking[ $formfieldname ].'; ';
 				}
 			}
@@ -167,7 +179,10 @@ class jomres_generic_booking_email
 		$this->data[$contract_uid]['TOTAL'] = output_price( $current_contract_details->contract[$contract_uid]['contractdeets']['contract_total'] );
 		$this->data[$contract_uid]['DEPOSIT'] = output_price( $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_required'] );
 		$this->data[$contract_uid]['SPECIAL_REQUIREMENTS'] = jomres_decode($current_contract_details->contract[$contract_uid]['contractdeets']['special_reqs']);
-		$this->data[$contract_uid]['ALLOCATION_NOTE'] = $tmpBookingHandler->tmpbooking[ "booking_notes" ][ "suppliment_note" ];
+		
+		$this->data[$contract_uid]['ALLOCATION_NOTE'] = '';
+		if (isset($tmpBookingHandler->tmpbooking[ "booking_notes" ][ "suppliment_note" ]))
+			$this->data[$contract_uid]['ALLOCATION_NOTE'] = $tmpBookingHandler->tmpbooking[ "booking_notes" ][ "suppliment_note" ];
 		$this->data[$contract_uid]['BOOKING_CREATION_DATE'] = outputDate($current_contract_details->contract[$contract_uid]['contractdeets']['timestamp']);
 		
 		$this->data[$contract_uid]['REMOTE_IP'] = $_SERVER['REMOTE_ADDR'];

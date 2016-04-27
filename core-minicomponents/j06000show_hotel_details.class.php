@@ -48,7 +48,7 @@ class j06000show_hotel_details
 
 		$mrConfig = getPropertySpecificSettings($property_uid);
 		
-		if ($mrConfig['property_business_name']=='')
+		if (isset($mrConfig['property_business_name']) && $mrConfig['property_business_name']=='')
 			{
 			$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 			$basic_property_details->gather_data($property_uid);
@@ -92,17 +92,41 @@ class j06000show_hotel_details
 			$output[ 'HTELEPHONE' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE' );
 			$output[ 'HEMAIL' ]        = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL' );
 			$output[ '_JOMRES_COM_YOURBUSINESS_VATNO' ]        = jr_gettext( '_JOMRES_COM_YOURBUSINESS_VATNO', '_JOMRES_COM_YOURBUSINESS_VATNO' );
-	
-			$output[ 'BUSINESSNAME' ] = $mrConfig['property_business_name'];
-			$output[ 'HOUSENO' ]        = $mrConfig['property_business_houseno'];
-			$output[ 'STREET' ]        = $mrConfig['property_business_street'];
-			$output[ 'TOWN' ]          = $mrConfig['property_business_town'];
-			$output[ 'REGION' ]        = $mrConfig['property_business_region'];
-			$output[ 'COUNTRY' ]       = $mrConfig['property_business_country'];
-			$output[ 'POSTCODE' ]      = $mrConfig['property_business_postcode'];
-			$output[ 'TELEPHONE' ]     = $mrConfig['property_business_telephone'];
-			$output[ 'EMAIL' ]         = $mrConfig['property_business_email'];
-			$output[ 'PROPERTY_VAT_NUMBER' ] = $mrConfig['property_vat_number'];
+			
+			
+			if (!isset($mrConfig['property_business_name']))
+				$mrConfig['property_business_name'] = '';
+			if (!isset($mrConfig['property_business_houseno']))
+				$mrConfig['property_business_houseno'] = '';
+			if (!isset($mrConfig['property_business_street']))
+				$mrConfig['property_business_street'] = '';
+			if (!isset($mrConfig['property_business_town']))
+				$mrConfig['property_business_town'] = '';
+			if (!isset($mrConfig['property_business_region']))
+				$mrConfig['property_business_region'] = '';
+			if (!isset($mrConfig['property_business_country']))
+				$mrConfig['property_business_country'] = '';
+			if (!isset($mrConfig['property_business_postcode']))
+				$mrConfig['property_business_postcode'] = '';
+			if (!isset($mrConfig['property_business_telephone']))
+				$mrConfig['property_business_telephone'] = '';
+			if (!isset($mrConfig['property_business_telephone']))
+				$mrConfig['property_business_telephone'] = '';
+			if (!isset($mrConfig['property_business_email']))
+				$mrConfig['property_business_email'] = '';
+			if (!isset($mrConfig['property_vat_number']))
+				$mrConfig['property_vat_number'] = '';
+			
+			$output[ 'BUSINESSNAME' ]			= $mrConfig['property_business_name'];
+			$output[ 'HOUSENO' ]				= $mrConfig['property_business_houseno'];
+			$output[ 'STREET' ]					= $mrConfig['property_business_street'];
+			$output[ 'TOWN' ]					= $mrConfig['property_business_town'];
+			$output[ 'REGION' ]					= $mrConfig['property_business_region'];
+			$output[ 'COUNTRY' ]				= $mrConfig['property_business_country'];
+			$output[ 'POSTCODE' ]				= $mrConfig['property_business_postcode'];
+			$output[ 'TELEPHONE' ]				= $mrConfig['property_business_telephone'];
+			$output[ 'EMAIL' ]					= $mrConfig['property_business_email'];
+			$output[ 'PROPERTY_VAT_NUMBER' ]	= $mrConfig['property_vat_number'];
 	
 			$pageoutput[ ] = $output;
 			$tmpl          = new patTemplate();

@@ -4063,7 +4063,7 @@ class dobooking
 		$subtotal = 0;
 		for ( $i = 0; $i < count( $this->variancetypes ); $i++ )
 			{
-			if ( $this->variancetypes[ $i ] == 'guesttype' )
+			if ( isset($this->variancetypes[ $i ]) && $this->variancetypes[ $i ] == 'guesttype' )
 				{
 				$subtotal = $subtotal + $this->varianceqty[ $i ];
 				}

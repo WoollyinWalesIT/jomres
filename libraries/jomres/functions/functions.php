@@ -2168,6 +2168,8 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 	$mail			= new jomresPHPMailer(true);
 	try 
 		{
+		if (!isset($GLOBALS['debug']))
+			$GLOBALS['debug'] = '';
 		
 		$mail->SMTPDebug	= 2;
 		$mail->Debugoutput = function($str, $level) 
@@ -2361,6 +2363,7 @@ function getCurrentBookingData( $jomressession = "" )
 	$obj				 = new stdClass;
 	$tempBookingDataList = array ();
 	$userDeets		   = $tmpBookingHandler->getGuestData();
+	$guestDetails		 = new stdClass;
 	foreach ( $userDeets as $key => $val )
 		{
 		$guestDetails->$key = $val;
@@ -4465,7 +4468,10 @@ function makePopupLink( $link, $text, $isLocalPage = true, $width = 550, $height
 	$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=no,menubar=yes,resizable=yes,width=' . $width . ',height=' . $height . ',directories=no,location=no';
 	$format = "";
 	if ( defined( '_JOMRES_NEWJOOMLA' ) ) $format = '&tmpl='.get_showtime("tmplcomponent");
-
+	
+	$siteConfig	 = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig	   = $siteConfig->get();
+	
 	if ( $jrConfig[ 'useSSLinBookingform' ] == 1 && $_REQUEST[ 'task' ] == "editGuest" )
 		{
 		set_showtime( 'live_site', str_replace( "http://", "https://", $link ) );
