@@ -33,6 +33,7 @@ class j99999handlereq_javascript
 			
 			if (count($endrun_javascript_for_eval_by_handlereq)>0)
 				{
+				$javascript = '';
 				foreach ($endrun_javascript_for_eval_by_handlereq as $js)
 					{
 					$javascript .= $js;
@@ -49,5 +50,3 @@ class j99999handlereq_javascript
 		return null;
 		}
 	}
-
-?>
