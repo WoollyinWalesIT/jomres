@@ -69,6 +69,7 @@ class j06000contactowner
 
 		if ( $property_uid > 0)
 			{
+			set_showtime( 'last_viewed_property_uid', $property_uid );
 			if (!user_can_view_this_property($property_uid))
 				return;
 			else
@@ -277,5 +278,3 @@ class j06000contactowner
 		}
 	}
 
-
-?>
