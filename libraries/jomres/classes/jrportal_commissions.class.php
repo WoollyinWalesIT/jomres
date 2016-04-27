@@ -99,9 +99,6 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 					$this->type          = $r->type;
 					$this->value         = $r->value;
 					$this->currencycode  = $r->currencycode;
-					$this->created       = $r->created;
-					$this->archived      = $r->archived;
-					$this->archived_date = $r->archived_date;
 					$this->tax_rate      = $r->tax_rate;
 					}
 
