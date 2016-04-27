@@ -623,7 +623,7 @@ class dobooking
 		
 		foreach ($basic_room_details->all_room_features as $f)
 			{
-			$this->allFeatureDetails[ $f['room_features_uid'] ] = array ( 'room_features_uid' => $f['room_features_uid'], 'feature_description' => $f['feature_description'] , 'image' => $f['image'], 'tooltip' => $tooltip);
+			$this->allFeatureDetails[ $f['room_features_uid'] ] = array ( 'room_features_uid' => $f['room_features_uid'], 'feature_description' => $f['feature_description'] , 'image' => $f['image'], 'tooltip' => $f['tooltip']);
 			}
 		}
 
@@ -1937,6 +1937,9 @@ class dobooking
 	 */
 	function removeExtra( $extra )
 		{
+		if (!isset($this->forcedExtras)) // There aren't any, so let's just create an empty array here
+			$this->forcedExtras = array ();
+		
 		$this->setErrorLog( "removeExtra::Starting" );
 		$tmpArray      = array ();
 		$currentExtras = explode( ",", $this->extras );
@@ -1996,7 +1999,8 @@ class dobooking
 		{
 		$this->setErrorLog( "modifyExtraQuantity::Starting" );
 		$currentExtras = explode( ",", $this->extras );
-		if ( !in_array( $extra, $currentExtras ) ) return false;
+		if ( !in_array( $extraID, $currentExtras ) ) 
+			return false;
 		$this->extrasquantities[ $extraID ] = $value;
 		$this->setErrorLog( "modifyExtraQuantity::Extras quantities = " . serialize( $this->extrasquantities ) );
 		}
@@ -5052,6 +5056,9 @@ class dobooking
 		
 		$classAbbv            = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION' . $room_classes_uid, $this->allRoomClasses[ $room_classes_uid ][ 'room_class_abbv' ], false, false ) );
 		
+		$roomRow				= array();
+		$roomRow[ 'FEATURES' ]	= "";
+		
 		$roomFeatureUidsArray = explode( ",", $room_features_uid );
 		if ( $roomFeatureUidsArray )
 			{
@@ -5061,7 +5068,11 @@ class dobooking
 			$roomFeatureDescriptions = "";
 			foreach ($roomFeatureUidsArray as $f)
 				{
-				$roomRow[ 'FEATURES' ] .= $basic_room_details->all_room_features[ $f ]['tooltip'];
+				if (isset($basic_room_details->all_room_features[ $f ]['tooltip']))
+					{
+					$roomRow[ 'FEATURES' ] .= 
+						$basic_room_details->all_room_features[ $f ]['tooltip'];
+					}
 				}
 			}
 		else
@@ -5199,8 +5210,7 @@ class dobooking
 		$stayDays           = $this->stayDays;
 
 		$datesTilBooking           = $this->findDateRangeForDates( $this->today, $this->arrivalDate );
-		$roomsOfType               = array ();
-		$roomsOfType[ $room_type ] = 1;
+
 		$tariffsArray              = array ( $tariffUid );
 		$query                     = "SELECT tarifftype_id FROM #__jomcomp_tarifftype_rate_xref WHERE tariff_id IN (".implode(',',$tariffsArray).") LIMIT 1";
 		$tarifftypeids             = doSelectSql( $query );
@@ -5228,20 +5238,12 @@ class dobooking
 
 			foreach ( $rateList as $rate )
 				{
-				// $date_elements  = explode("/",$rate->validfrom);
-				// $unixValidFromDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-				// $date_elements  = explode("/",$rate->validto);
-				// $unixValidToDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-
 				$unixValidFromDate = $this->getMkTime( $rate->validfrom );
 				$unixValidToDate   = $this->getMkTime( $rate->validto );
 
 				foreach ( $dateRangeArray as $date )
 					{
 					$pass = false;
-					//$this->setErrorLog("estimate_AverageRate::Searching date ".$date.' on current tariff uid: '.$rate->rates_uid);
-					// $date_elements  = explode("/",$date);
-					// $unixDay = mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
 					$unixDay = $this->getMkTime( $date );
 					if ( count( $numberOfGuestTypes ) > 0 )
 						{
@@ -6701,25 +6703,26 @@ class dobooking
 		if ( count( $discountData ) > 0 )
 			{
 			$discountsForTmpdata = array();
-			$tmpBookingHandler->updateBookingField( array () );
+			$tmpBookingHandler->updateBookingField( 'discounts' , array () );
 			foreach ( $discountData as $d )
 				{
 				if ( $d[ 'isDiscounted' ] )
 					{
-					if ( !isset( $tmpBookingHandler->tmpbooking[ "wisepricediscount" ] ) ) $tmpBookingHandler->addNewBookingField( "wisepricediscount" );
+					if ( !isset( $tmpBookingHandler->tmpbooking[ "wisepricediscount" ] ) ) 
+						$tmpBookingHandler->addNewBookingField( "wisepricediscount" );
 					$roomtype                = $d[ 'roomType' ];
 					$roomtype_abbr           = $this->sanitiseOutput( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION' . $roomtype, $this->allRoomClasses[ $roomtype ][ 'room_class_abbv' ], false, false ) );
 					$roomrate                = $d[ 'roomrate' ];
 					$roomrate_foroutput      = $roomrate + ( ( $roomrate / 100 ) * $this->accommodation_tax_rate );
 					$discountedate_foroutput = $d[ 'discountedRate' ] + ( ( $d[ 'discountedRate' ] / 100 ) * $this->accommodation_tax_rate );
 					//$discountedRate=$d['discountedRate'];
-					$discountOutput .= ' ' . $roomtype_abbr . jr_gettext( '_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', '_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', false ) . output_price( $roomrate_foroutput ) . jr_gettext( '_JOMCOMP_WISEPRICE_TO', _JOMCOMP_WISEPRICE_TO, false ) . output_price( $discountedate_foroutput ) . ' <br/>';
+					$discountOutput .= ' ' . $roomtype_abbr . jr_gettext( '_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', '_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', false ) . output_price( $roomrate_foroutput ) . jr_gettext( '_JOMCOMP_WISEPRICE_TO', '_JOMCOMP_WISEPRICE_TO', false ) . output_price( $discountedate_foroutput ) . ' <br/>';
 					$tmpBookingHandler->updateBookingField( "wisepricediscount", $discountOutput );
 					$this->discounts[ ] = array ( "type" => "MRP", "roomtypeabbr" => $roomtype_abbr, "discountfrom" =>  $roomrate, "discountto" => $d[ 'discountedRate' ] );
 					$tmpBookingHandler->saveBookingData();
 					}
 				else
-				$tmpBookingHandler->updateBookingField( "wisepricediscount", jr_gettext( '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false ) );
+					$tmpBookingHandler->updateBookingField( "wisepricediscount", jr_gettext( '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false ) );
 				}
 			$tmpBookingHandler->updateBookingField( "discounts", $this->discounts );
 			}
@@ -6972,7 +6975,7 @@ class dobooking
 					$roomType         = $this->allPropertyTariffs[ $tariff_id ][ 'roomclass_uid' ];
 					$percentageBooked = $this->getPercentageOfRoomsBookedForRoomtype( $roomType );
 
-					$r = $this->getDiscountedRoomrate( $basic_room_rate, $percentageBooked );
+					$r = $this->getDiscountedRoomrate( $basic_room_rate, $percentageBooked  , $roomType);
 					//$this->setPopupMessage("Discount rate ".$r);
 					$old_room_rate = $basic_room_rate;
 

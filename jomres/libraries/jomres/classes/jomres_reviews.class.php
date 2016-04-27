@@ -365,7 +365,11 @@ class jomres_reviews
 			foreach ( $r as $key => $val ) $arr[ $key ] = $val;
 			$rating_id                                         = $r->rating_id;
 			$return[ 'fields' ][ $arr[ 'rating_id' ] ]         = $arr;
-			$return[ 'confirm' ][ $arr[ 'rating_id' ] ]        = $confirm[ $arr[ 'rating_id' ] ];
+			if (isset($confirm[ $arr[ 'rating_id' ] ]))
+				$return[ 'confirm' ][ $arr[ 'rating_id' ] ]        = $confirm[ $arr[ 'rating_id' ] ];
+			else
+				$return[ 'confirm' ][ $arr[ 'rating_id' ] ]        = array();
+			
 			$return[ 'rating_details' ][ $arr[ 'rating_id' ] ] = $rating_details[ $arr[ 'rating_id' ] ];
 			}
 
