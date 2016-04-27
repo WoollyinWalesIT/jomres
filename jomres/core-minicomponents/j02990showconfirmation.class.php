@@ -175,11 +175,16 @@ class j02990showconfirmation
 
 		$booking_parts[ 'EDITBOOKING' ] = jr_gettext( '_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE' );
 		$booking_parts[ 'ARRIVAL' ]     = outputDate( $bookingDeets[ 'arrivalDate' ] );
-		if ( $mrConfig[ 'showdepartureinput' ] == "1" ) $booking_parts[ 'DEPARTURE' ] = outputDate( $bookingDeets[ 'departureDate' ] );
+		
+		if ( $mrConfig[ 'showdepartureinput' ] == "1" ) 
+			$booking_parts[ 'DEPARTURE' ] = outputDate( $bookingDeets[ 'departureDate' ] );
+		
 		$booking_parts[ 'DAYSSTAYING' ] = $bookingDeets[ 'stayDays' ];
-		if ( $mrConfig[ 'roomTaxYesNo' ] == "1" || $mrConfig[ 'euroTaxYesNo' ] == "1" ) $booking_parts[ 'TAX' ] = output_price( $bookingDeets[ 'tax' ] );
+		
+		if ( $mrConfig[ 'roomTaxYesNo' ] == "1" || $mrConfig[ 'euroTaxYesNo' ] == "1" ) 
+			$booking_parts[ 'TAX' ] = output_price( $bookingDeets[ 'tax' ] );
 		else
-		$booking_parts[ 'TAX' ] = "";
+			$booking_parts[ 'TAX' ] = "";
 
 		if ( (float) $bookingDeets[ 'coupon_discount_value' ] > 0.0 )
 			{
@@ -239,7 +244,7 @@ class j02990showconfirmation
 					$room_name        = $room->room_name;
 					$room_classes_uid = $room->room_classes_uid;
 		
-					$room_info[ ] = array ( "ROOM_NAME" => $room_name, "ROOM_NUMBER" => $room->room_number, "HROOM_NAME" => jr_gettext( "_JOMRES_COM_MR_EB_ROOM_NAME","_JOMRES_COM_MR_EB_ROOM_NAME",false ), "HROOM_NUMBER" => jr_gettext( "_JOMRES_COM_MR_EB_ROOM_NUMBER" ) );
+					$room_info[ ] = array ( "ROOM_NAME" => $room_name, "ROOM_NUMBER" => $room->room_number, "HROOM_NAME" => jr_gettext( "_JOMRES_COM_MR_EB_ROOM_NAME","_JOMRES_COM_MR_EB_ROOM_NAME",false ), "HROOM_NUMBER" => jr_gettext( "_JOMRES_COM_MR_EB_ROOM_NUMBER" , "_JOMRES_COM_MR_EB_ROOM_NUMBER" ) );
 					
 
 								
@@ -283,9 +288,13 @@ class j02990showconfirmation
 				$booking_rooms[ ]       = $roomtype;
 				}
 			}
-		if ( $mrConfig[ 'singleRoomProperty' ] != "1" ) 
+		if ( $mrConfig[ 'singleRoomProperty' ] != "1" )
+			{
+			if (!isset($bookingDeets[ 'booking_notes' ][ 'suppliment_note' ]))
+				$bookingDeets[ 'booking_notes' ][ 'suppliment_note' ] = '';
+			
 			$booking_parts[ 'ALLOCATION' ] = $bookingDeets[ 'booking_notes' ][ 'suppliment_note' ];
-
+			}
 		$room_total = $bookingDeets[ 'room_total' ];
 		
 		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
@@ -393,7 +402,7 @@ class j02990showconfirmation
 			}
 
 		$third_party_extras = unserialize( $tmpBookingHandler->getBookingFieldVal( "third_party_extras" ) );
-		if ( count( $third_party_extras ) > 0 )
+		if ( count( $third_party_extras ) > 0 && $third_party_extras !== false )
 			{
 			foreach ( $third_party_extras as $plugin )
 				{
@@ -516,7 +525,7 @@ class j02990showconfirmation
 		$booking_parts[ 'ALERT' ]        = jr_gettext( '_JOMRES_CONFIRMATION_ALERT', '_JOMRES_CONFIRMATION_ALERT', false );
 
 		$site_paypal_settings = get_plugin_settings("paypal",0);
-		
+		$gatewayDeets = array();
 		if ((int)$mrConfig['requireApproval'] == 0 || $secret_key_payment )
 			{
 			if ( !$userIsManager )
@@ -593,14 +602,13 @@ class j02990showconfirmation
 			$booking_parts[ 'BOOKINGFORMURL' ]        =jomresURL(JOMRES_SITEPAGE_URL_NOSEF . '&task=amendBooking&no_html=1&contractUid=' . $amend_contractuid);
 			}
 		else
-			$booking_parts[ 'BOOKINGFORMURL' ]        = jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ].$amend_str );
+			$booking_parts[ 'BOOKINGFORMURL' ]        = jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] );
 
 		if ( isset( $MiniComponents->registeredClasses[ '06000show_cart' ] ) )
 			{
 
 			if ( ( $site_paypal_settings['override'] == "1" && $jrConfig[ 'useshoppingcart' ] == "1" ) || count( $gatewayDeets ) == 0 )
 				{
-
 				$booking_parts[ '_JOMRES_CART_OR' ]      = jr_gettext( '_JOMRES_CART_OR', '_JOMRES_CART_OR' );
 				$booking_parts[ '_JOMRES_SAVEFORLATER' ] = '<input class="fg-button ui-state-default ui-corner-all" type="submit" id="send" name="send" value="' . jr_gettext( '_JOMRES_CART_SAVEFORLATER', '_JOMRES_CART_SAVEFORLATER', false, false ) . '" class="button" onclick="return confirmation_validate(true);" />';
 				$cartoutput                              = array ();
@@ -612,6 +620,13 @@ class j02990showconfirmation
 
 		if ( get_showtime( 'include_room_booking_functionality' ) )
 			{
+			if (!isset($booking_parts[ 'FULLDESC' ]))
+				$booking_parts[ 'FULLDESC' ] = '';
+			if (!isset($booking_parts[ 'HSINGLEPERSON_COST' ]))
+				$booking_parts[ 'HSINGLEPERSON_COST' ] = '';
+			if (!isset($booking_parts[ 'SINGLEPERSON_COST' ]))
+				$booking_parts[ 'SINGLEPERSON_COST' ] = '';
+			
 			$booking_room_specific                           = array ();
 			$booking_room_specific_info                      = array ();
 			$booking_room_specific[ 'AJAXFORM_PARTICULARS' ] = $booking_parts[ 'AJAXFORM_PARTICULARS' ];
@@ -624,7 +639,7 @@ class j02990showconfirmation
 			$booking_room_specific[ 'HTOTALINPARTY' ]        = $booking_parts[ 'HTOTALINPARTY' ];
 			$booking_room_specific[ 'TOTALINPARTY' ]         = $booking_parts[ 'TOTALINPARTY' ];
 			$booking_room_specific[ 'BILLING_ROOMTOTAL' ]    = $booking_parts[ 'BILLING_ROOMTOTAL' ];
-			
+
 			
 			$booking_room_specific[ 'FULLDESC' ]             = $booking_parts[ 'FULLDESC' ];
 			$booking_room_specific[ 'ALLOCATION' ]           = $booking_parts[ 'ALLOCATION' ];

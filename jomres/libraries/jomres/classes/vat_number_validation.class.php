@@ -78,6 +78,9 @@ class vat_number_validation
 					$mrConfig                   = getPropertySpecificSettings($property_uid);
 					$current_property_details->gather_data($property_uid);
 					$this->vat_number           = $mrConfig[ 'property_vat_number' ];
+					if (!isset($mrConfig[ 'vat_number_validated' ]))
+						$mrConfig[ 'vat_number_validated' ] = false;
+					
 					$this->vat_number_validated = $mrConfig[ 'vat_number_validated' ];
 					$this->country              = $current_property_details->property_country_code;
 					

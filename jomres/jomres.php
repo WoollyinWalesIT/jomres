@@ -398,8 +398,9 @@ try
 				$result = doSelectSql($query);
 				if (count($result)==0)
 					{
-					$tmpbooking = array_map("strip_tags", $tmpBookingHandler->tmpbooking);
-					$tmpguest = array_map("strip_tags", $tmpBookingHandler->tmpguest);
+					$tmpbooking = $tmpBookingHandler->tmpbooking;
+					$tmpguest = $tmpBookingHandler->tmpguest;
+					
 					$data  = array ( 'tmpbooking' => $tmpbooking, 'tmpguest' => $tmpguest );
 					$query = "INSERT INTO #__jomres_booking_data_archive SET `data`='" . serialize( $data ) . "',`date`='" . date( 'Y-m-d H:i:s' ) . "', `tag` = '".$tag."'";
 					doInsertSql( $query, '' );
@@ -631,7 +632,7 @@ try
 					$MiniComponents->triggerEvent( '02148' ); //deleteExtra();
 				else
 					userHasBeenLoggedOut();
-				break;
+					break;
 			#########################################################################################
 			case 'archiveAudit':
 				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 

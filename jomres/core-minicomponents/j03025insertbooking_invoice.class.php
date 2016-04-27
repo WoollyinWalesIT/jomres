@@ -220,7 +220,7 @@ class j03025insertbooking_invoice
 				}
 
 			//3rd party extras like Jintour tours
-			if ( count( $third_party_extras ) > 0 )
+			if ( count( $third_party_extras ) > 0 && $third_party_extras !== false)
 				{
 				foreach ( $third_party_extras as $plugin )
 					{
@@ -241,7 +241,7 @@ class j03025insertbooking_invoice
 				}
 
 			//Additional line items created by other plugins
-			if ( count( $additional_line_items ) > 0 )
+			if ( count( $additional_line_items ) > 0  && $additional_line_items !== false )
 				{
 				foreach ( $additional_line_items as $plugin )
 					{

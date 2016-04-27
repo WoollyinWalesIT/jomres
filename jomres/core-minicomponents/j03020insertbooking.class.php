@@ -255,6 +255,7 @@ class j03020insertbooking
 				}
 			else
 				{
+				$secret_key_payment = false;
 				$new_user_id = jomres_cmsspecific_createNewUserOnBooking();
 
 				$guests_uid = insertGuestDeets( get_showtime( 'jomressession' ) );
@@ -347,8 +348,7 @@ class j03020insertbooking
 					if ( count( $discount ) > 0 )
 						{
 						$discount_details = "";
-						$discount = array_map("strip_tags", $discount);
-						
+
 						foreach ( $discount as $d )
 							{
 							$discount_details .= serialize( $d );

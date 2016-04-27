@@ -46,7 +46,7 @@ class j03000amendBooking
 	 */
 	function getRetVals()
 		{
-		return $this->returnValue;
+		return null;
 		}
 	}
 

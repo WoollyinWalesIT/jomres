@@ -78,7 +78,6 @@ class j06005show_guest_details
 				$output[ 'POSTCODE' ]  = $data->postcode;
 				$output[ 'LANDLINE' ]  = $data->tel_landline;
 				$output[ 'MOBILE' ]    = $data->tel_mobile;
-				$output[ 'FAX' ]       = $data->tel_fax;
 				$output[ 'EMAIL' ]     = $data->email;
 				$vat_output[0][ 'VAT_NUMBER' ]     = $data->vat_number;
 				}

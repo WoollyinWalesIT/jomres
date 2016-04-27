@@ -198,7 +198,8 @@ class j06005view_invoice
 		$output[ 'HLI_TAX_DESCRIPTION' ] 	  = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION', '_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION' );
 		$output[ 'HLI_TAX_RATE' ]        	  = jr_gettext( '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE' );
 		$output[ 'HLI_TAX_AMOUNT' ]        	  = jr_gettext( '_JOMRES_COM_FRONT_ROOMTAX', '_JOMRES_COM_FRONT_ROOMTAX' );
-
+		
+		$immediate_pay               = array ();
 		if ( (int)$invoice->status == 3 )
 			{
 			if ( 
@@ -208,7 +209,6 @@ class j06005view_invoice
 				{ 
 				//TODO clean this up and display gateway images or something
 				$ip                          = array ();
-				$immediate_pay               = array ();
 				$ip[ 'IMMEDIATE' ]           = jr_gettext( '_JRPORTAL_INVOICES_PAYNOW_DESC', '_JRPORTAL_INVOICES_PAYNOW_DESC' );
 				$ip[ 'PAYNOW' ]           	 = jr_gettext( '_JRPORTAL_INVOICES_PAYNOW', '_JRPORTAL_INVOICES_PAYNOW' );
 				$ip[ 'INV_ID' ]              = $invoice->id;
