@@ -3658,13 +3658,14 @@ class dobooking
 						$remainingGuests--;
 						}
 					}
-				if (!isset($this->room_allocations[ $rm_id ][ 'number_allocated' ]))
-					$this->room_allocations[ $rm_id ][ 'number_allocated' ] = 0;
+				
 				foreach ( $room_spread_array as $key => $val )
 					{
 					$tmp_arr                                                = explode( "_", $key );
 					$room_index                                             = $tmp_arr[ 0 ];
 					$rm_id                                                  = $tmp_arr[ 1 ];
+					if (!isset($this->room_allocations[ $rm_id ][ 'number_allocated' ]))
+						$this->room_allocations[ $rm_id ][ 'number_allocated' ] = 0;
 					$this->room_allocations[ $rm_id ][ 'number_allocated' ] = $this->room_allocations[ $rm_id ][ 'number_allocated' ] + $val;
 					}
 
@@ -3841,34 +3842,36 @@ class dobooking
 	function listCurrentlySelectedRooms()
 		{
 		$return_output = "";
-		$this->setErrorLog( "listCurrentlySelectedRooms::Requested rooms: " . gettype( $this->requestedRoom ) );
+		//if ( $this->cfg_booking_form_rooms_list_style == "1" )
+		//	{
+			$this->setErrorLog( "listCurrentlySelectedRooms::Requested rooms: " . gettype( $this->requestedRoom ) );
 
-		if ( !empty( $this->requestedRoom ) )
-			{
-			$return_output        = '<div id="roombuttoncontainer_selected2"><div id="roombutton_selected">';
-			$tariff_headers_array = $this->makeTariffHeaders();
-			foreach ( $this->requestedRoom as $rr )
+			if ( !empty( $this->requestedRoom ) )
 				{
-				$currentUids          = explode( "^", $rr );
-				$result               = $this->makeRoomTariffDetails( $currentUids[ 0 ], $currentUids[ 1 ] );
-				$roomTariffOutputId   = $result[ 'requestedRoom' ];
-				$roomTariffOutputText = $result[ 'roomandtariffinfo' ];
-				$roomDeets[ ]         = $this->makeRoomOverlibdata( $currentUids[ 0 ], $currentUids[ 1 ], $roomTariffOutputId, $roomTariffOutputText, true );
+				$return_output        = '<div id="roombuttoncontainer_selected2"><div id="roombutton_selected">';
+				$tariff_headers_array = $this->makeTariffHeaders();
+				foreach ( $this->requestedRoom as $rr )
+					{
+					$currentUids          = explode( "^", $rr );
+					$result               = $this->makeRoomTariffDetails( $currentUids[ 0 ], $currentUids[ 1 ] );
+					$roomTariffOutputId   = $result[ 'requestedRoom' ];
+					$roomTariffOutputText = $result[ 'roomandtariffinfo' ];
+					$roomDeets[ ]         = $this->makeRoomOverlibdata( $currentUids[ 0 ], $currentUids[ 1 ], $roomTariffOutputId, $roomTariffOutputText, true );
+					}
+				$pageoutput = array ();
+
+				$pageoutput[ ] = $tariff_headers_array;
+				$tmpl          = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->addRows( 'pageoutput', $pageoutput );
+				$tmpl->addRows( 'rows', $roomDeets );
+				$tmpl->readTemplatesFromInput( 'booking_form_classic_roomslist_selected.html' );
+				$template_output = $tmpl->getParsedTemplate();
+				$return_output .= $template_output;
+
+				$return_output .= '</div></div>';
 				}
-			$pageoutput = array ();
-
-			$pageoutput[ ] = $tariff_headers_array;
-			$tmpl          = new patTemplate();
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-			$tmpl->addRows( 'pageoutput', $pageoutput );
-			$tmpl->addRows( 'rows', $roomDeets );
-			$tmpl->readTemplatesFromInput( 'booking_form_classic_roomslist_selected.html' );
-			$template_output = $tmpl->getParsedTemplate();
-			$return_output .= $template_output;
-
-			$return_output .= '</div></div>';
-			}
-
+		//	}
 		return $return_output;
 		}
 
@@ -4774,8 +4777,6 @@ class dobooking
 					}
 				}
 
-		
-
 			//Fix any broken indecies
 			foreach ( $this->room_type_style_output as $tariff_id => $tariff_and_roomtypes )
 				{
@@ -4990,21 +4991,6 @@ class dobooking
 		$roomStuff[ 'ROOM_IMAGE' ]      = $this->allPropertyRooms [ $roomUid ] [ 'small_room_image' ];
 		$roomStuff[ 'ROOM_IMAGE_MEDIUM' ]      = $this->allPropertyRooms [ $roomUid ] [ 'medium_room_image' ];
 
-		/*
-		This code is for generating the rooms slideshow in the popup, but it will not trigger currently. Disabled for now but left in-situ for when we decide to revisit this
-		$images = get_images(); // Gets the property images
-		$room_images = $images [ 'rooms' ] [ $roomUid ] ;
-
-		$MiniComponents     = jomres_getSingleton( 'mcHandler' );
-		$result = $MiniComponents->specificEvent( '01060', 'slideshow' , array( "images" => $room_images ) );
-		$roomStuff[ 'SLIDESHOW' ] = $result ['slideshow'];
-		*/
-		
-		if ( $this->cfg_booking_form_rooms_list_style == "1" )
-			{
-			return array_merge( $roomStuff, $tariffStuff );
-			}
-
 		if ( $this->cfg_booking_form_rooms_list_style == "2" )
 			{
 			$this->rooms_list_style_roomstariffs[ $tariffUid ] = array ( "room_type_id" => $tariffStuff[ 'TARIFF_ROOMTYPE' ], "room_id" => $roomUid, "tariff_id" => $tariffUid, "roomTariffOutputId" => $roomTariffOutputId, "tariffStuff" => $tariffStuff, "roomStuff" => $roomStuff );
@@ -5025,6 +5011,7 @@ class dobooking
 					}
 				}
 			}
+		return array_merge( $roomStuff, $tariffStuff );
 		}
 
 	function calculateRoomPriceIncVat( $price )

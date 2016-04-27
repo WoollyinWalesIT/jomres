@@ -447,6 +447,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$freeRoomsArray           = $bkg->checkPeopleNumbers( $freeRoomsArray );
 	$roomAndTariffArray       = $bkg->getTariffsForRoomUids( $freeRoomsArray );
 
+	$rm = '';
 	if ( $mrConfig[ 'singleRoomProperty' ] == "0" )
 		{
 		if ( $mrConfig[ 'booking_form_rooms_list_style' ] == "1" )
