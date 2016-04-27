@@ -270,6 +270,7 @@ class jomres_property_list_prices
 							{
 							$pre_text  = jr_gettext( '_JOMRES_COM_MR_EXTRA_PRICE', '_JOMRES_COM_MR_EXTRA_PRICE' );
 							$price     = output_price( $basic_property_details->real_estate_property_price, "", true, false );
+							$raw_price = $basic_property_details->real_estate_property_price;
 							$price_no_conversion = output_price( $basic_property_details->real_estate_property_price, "", false, true );
 							$post_text = '';
 							}
@@ -286,6 +287,7 @@ class jomres_property_list_prices
 							{
 							$pre_text  = jr_gettext( '_JOMRES_COM_MR_EXTRA_PRICE', '_JOMRES_COM_MR_EXTRA_PRICE', "", true, false );
 							$price     = output_price( $basic_property_details->real_estate_property_price );
+							$raw_price = $basic_property_details->real_estate_property_price;
 							$price_no_conversion = output_price( $basic_property_details->real_estate_property_price, "", false, true );
 							$post_text = '';
 							}
@@ -293,6 +295,7 @@ class jomres_property_list_prices
 					if ( $price == jr_gettext( '_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', "", true, false ) )
 						{
 						$raw_price = -1;
+						$price_no_conversion = -1;
 						}
 					$this->lowest_prices[$property_uid]=array ( "PRE_TEXT" => $pre_text, "PRICE" => $price, "POST_TEXT" => $post_text , "RAW_PRICE" => $raw_price , "PRICE_NOCONVERSION" => $price_no_conversion, "PRICE_CUMULATIVE" => $grand_total);
 					}
