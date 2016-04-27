@@ -25,11 +25,15 @@ class j00011manager_option_15_preview
 
 			return;
 			}
+		$this->cpanelButton = '';
+		
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
+		$defaultProperty = getDefaultProperty();
+		
 		if ( $jrConfig[ 'is_single_property_installation' ] == "0" ) 
 			{
-			$url = jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . get_showtime('property_uid') );
+			$url = jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $defaultProperty );
 			$this->cpanelButton = jomres_mainmenu_option( $url, 'Preview.png', jr_gettext( '_JOMRES_FRONT_PREVIEW', '_JOMRES_FRONT_PREVIEW', false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES', false, false ) );
 			}
 		else

@@ -18,7 +18,13 @@ class j00035tabcontent_04_availability_calendar
 	function __construct( $componentArgs )
 		{
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch ){$this->template_touchable = false;return;}
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
+			return;
+			}
+		
+		$this->retVals = '';
 		
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
 		$mrConfig     = getPropertySpecificSettings( $property_uid );

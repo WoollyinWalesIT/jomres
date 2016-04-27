@@ -24,6 +24,8 @@ class j00035tabcontent_06_extras
 
 			return;
 			}
+		$this->retVals = '';
+		
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
 
