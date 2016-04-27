@@ -41,18 +41,24 @@ function doSelectSql( $query, $mode = false )
 				{
 				throw new Exception("Database error more than one result returned. One expected. Stop.");
 				}
-			if ( count( $jomres_db->result[0] ) == 0 )
+			
+			if ( $num == 1 )
 				{
-				return false;
+				if ( count( $jomres_db->result[0] ) == 0 )
+					{
+					return false;
+					}
+				else
+					{
+					foreach ( $jomres_db->result[0] as $k => $v )
+						{
+						$result[ $k ] = $v;
+						}
+					return $result;
+					}
 				}
 			else
-				{
-				foreach ( $jomres_db->result[0] as $k => $v )
-					{
-					$result[ $k ] = $v;
-					}
-				return $result;
-				}
+				return false;
 			break;
 		default:
 			return $jomres_db->result;

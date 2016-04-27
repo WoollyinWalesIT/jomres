@@ -310,7 +310,7 @@ class jomres_sanity_check
 				{
 				$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 				$current_property_details->gather_data( get_showtime( "property_uid" ) );
-				if ( is_null($current_property_details->rooms) )
+				if ( !isset($current_property_details->rooms) )
 					{
 					$message = jr_gettext( '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', false );
 					$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_resource');
@@ -331,7 +331,7 @@ class jomres_sanity_check
 				$current_property_details->gather_data( get_showtime( "property_uid" ) );
 				foreach ($current_property_details->room_types as $rt)
 					{
-					if (is_null($rt['abbv']) )
+					if (!isset($rt['abbv']) )
 						{
 						$message = jr_gettext( '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', false );
 						$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=edit_resource');
@@ -351,7 +351,7 @@ class jomres_sanity_check
 				{
 				$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 				$current_property_details->gather_data( get_showtime( "property_uid" ) );
-				if ( is_null($current_property_details->rooms) )
+				if ( !isset($current_property_details->rooms) )
 					{
 					$message = jr_gettext( '_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK', '_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK', false );
 					if ($this->mrConfig['tariffmode'] == 0 )

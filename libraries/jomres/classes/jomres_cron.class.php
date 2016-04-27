@@ -347,7 +347,7 @@ class jomres_cron
 			}
 		else
 			{
-			$this->debug[ ] = "Could not add " . (string) $job[ 'job_name' ] . " as it already exists ";
+			$this->debug[ ] = "Could not add " . (string) $jobName . " as it already exists ";
 
 			return false;
 			}

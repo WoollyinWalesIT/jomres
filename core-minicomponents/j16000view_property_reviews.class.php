@@ -29,9 +29,10 @@ class j16000view_property_reviews
 		$pageoutput = array ();
 		$rows       = array ();
 
-		$property_uid = $componentArgs[ 'property_uid' ];
-
-		if ( is_null( $property_uid ) ) $property_uid = jomresGetParam( $_REQUEST, 'property_uid', 0 );
+		if (isset($componentArgs[ 'property_uid' ]))
+			$property_uid = $componentArgs[ 'property_uid' ];
+		else
+			$property_uid = jomresGetParam( $_REQUEST, 'property_uid', 0 );
 
 		$output[ 'PROPERTY_NAME' ] = getPropertyName( $property_uid );
 

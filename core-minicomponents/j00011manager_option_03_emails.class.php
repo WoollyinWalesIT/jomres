@@ -25,6 +25,7 @@ class j00011manager_option_03_emails
 			}
 		$property_uid=getDefaultProperty();
 		$mrConfig=getPropertySpecificSettings($property_uid);
+		$this->cpanelButton = '';
 		
 		if ( $mrConfig[ 'is_real_estate_listing' ] == '1' )
 			return;

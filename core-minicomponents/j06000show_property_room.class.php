@@ -87,7 +87,10 @@ class j06000show_property_room
 			
 			foreach ($roomFeatureUidsArray as $f)
 				{
-				$output[ 'ROOM_FEATURES' ] .= $basic_room_details->all_room_features[ $f ]['tooltip'];
+				if ($f != '')
+					{
+					$output[ 'ROOM_FEATURES' ] .= $basic_room_details->all_room_features[ $f ]['tooltip'];
+					}
 				}
 
 			$output[ 'RANDOM_IDENTIFIER' ]  = generateJomresRandomString( 10 );
@@ -131,6 +134,6 @@ class j06000show_property_room
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return $this->retVals;
+		return null;
 		}
 	}

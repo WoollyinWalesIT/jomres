@@ -157,15 +157,16 @@ class j01010listpropertys
 					$tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ] = $shortlist_items;
 					}
 				}
-			$layout_template = $property_list_layouts[ $layout ][ "layout" ];
+			
+			if (isset($property_list_layouts[ $layout ][ "layout" ]))
+				$layout_template = $property_list_layouts[ $layout ][ "layout" ];
+			else
+				$layout_template = "list_properties.html";
 
-			if ( is_null( $property_list_layouts[ $layout ][ "path" ] ) )
+			if ( !isset( $property_list_layouts[ $layout ][ "path" ] ) )
 				$layout_path_to_template = JOMRES_TEMPLATEPATH_FRONTEND;
 			else
 				$layout_path_to_template = $property_list_layouts[ $layout ][ "path" ];
-
-			if ( is_null( $layout_template ) )
-				$layout_template = "list_properties.html";
 
 			if ($live_scrolling_enabled)
 				jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.livequery.js" );
@@ -213,11 +214,14 @@ class j01010listpropertys
 				$header_output[ 'ORDER_DROPDOWN' ] = get_showtime( "order_dropdown" );
 				$header_output[ 'CLICKTOHIDE' ]    = jr_gettext( '_JOMRES_REVIEWS_CLICKTOHIDE', '_JOMRES_REVIEWS_CLICKTOHIDE', false, false );
 				$header_output[ 'CLICKTOSHOW' ]    = jr_gettext( '_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', false, false );
-				$compare                           = array ();
+				
+				$compare = array ();
+				$shortlist = array();
 				if ( JOMRES_NOHTML != 1 || get_showtime( 'task' ) == "ajax_search_filter" )
 					{
-					$compare[ ] = array ( '_JOMRES_COMPARE' => jr_gettext( '_JOMRES_COMPARE', '_JOMRES_COMPARE', false, false ), 'COMPARELINK' => '<script type="text/javascript">var compare_url = "' . jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=compare" ) . '";</script>' );
-					if ( get_showtime( 'task' ) != "show_shortlisted_properties" ) $shortlist[ ] = array ( '_JOMRES_VIEWSHORTLIST' => jr_gettext( '_JOMRES_VIEWSHORTLIST', '_JOMRES_VIEWSHORTLIST', false, false ), 'SHORTLISTLINK' => jomresURL( JOMRES_SITEPAGE_URL . "&amp;task=show_shortlisted_properties" ) );
+					$compare[] = array ( '_JOMRES_COMPARE' => jr_gettext( '_JOMRES_COMPARE', '_JOMRES_COMPARE', false, false ), 'COMPARELINK' => '<script type="text/javascript">var compare_url = "' . jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=compare" ) . '";</script>' );
+					if ( get_showtime( 'task' ) != "show_shortlisted_properties" ) 
+						$shortlist[] = array ( '_JOMRES_VIEWSHORTLIST' => jr_gettext( '_JOMRES_VIEWSHORTLIST', '_JOMRES_VIEWSHORTLIST', false, false ), 'SHORTLISTLINK' => jomresURL( JOMRES_SITEPAGE_URL . "&amp;task=show_shortlisted_properties" ) );
 					}
 
 				if ( JOMRES_NOHTML != 1 && get_showtime( 'task' ) != "ajax_search_filter" )

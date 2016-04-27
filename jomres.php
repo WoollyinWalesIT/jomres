@@ -337,7 +337,8 @@ try
 	$MiniComponents->triggerEvent( '00012', $componentArgs ); // Optional other stuff to do before switch is done.
 
 	//TDO remove this when all jrConfig var will have default values in site_config.php
-	if ( !isset( $jrConfig[ 'errorChecking' ] ) ) $jrConfig[ 'errorChecking' ] = 0;
+	if ( !isset( $jrConfig[ 'errorChecking' ] ) ) 
+		$jrConfig[ 'errorChecking' ] = 0;
 
 	//handle tasks
 	if ( get_showtime( 'numberOfPropertiesInSystem' ) > 0 )
@@ -812,9 +813,6 @@ try
 				break;
 			} //end switch
 
-		$jomres_language_definitions = jomres_singleton_abstract::getInstance( 'jomres_language_definitions' );
-		$jomres_language_definitions->reset_lang_and_property_type();
-
 		if ( !$no_html )
 			{
 			$MiniComponents->triggerEvent( '00061' ); // Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
@@ -827,6 +825,9 @@ try
 		else
 			echo "Error, no properties installed. Before you can use Jomres you need to have at least 1 property installed, this is achieved by running <a href=\"" . get_showtime( 'live_site' ) . "/install_jomres.php\"></a>install_jomres.php.";
 		}
+	
+	$jomres_language_definitions = jomres_singleton_abstract::getInstance( 'jomres_language_definitions' );
+	$jomres_language_definitions->reset_lang_and_property_type();
 
 	//trigger 99994 event
 	$MiniComponents->triggerEvent( '99994' );
@@ -901,12 +902,15 @@ try
 catch (Exception $e) 
 	{
 	$MiniComponents->triggerEvent( '99994' );
+	
 	$performance_monitor->set_point( "pre-menu generation" );
 	if ( !defined( 'JOMRES_NOHTML' ) && !isset( $_REQUEST[ 'popup' ] ) ) // Generate the main menu
 		{
 		$MiniComponents->triggerEvent( '99995' );
 		}
 	$performance_monitor->set_point( "post-menu generation" );
+	
+	$componentArgs = array();
 	$MiniComponents->triggerEvent( '99999', $componentArgs ); // Optional end run scripts
 	
 	output_fatal_error( $e );

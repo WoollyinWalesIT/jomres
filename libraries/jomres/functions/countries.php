@@ -19,15 +19,20 @@ function getSimpleCountry( $selectedCountry )
 	$jomres_countries = jomres_singleton_abstract::getInstance( 'jomres_countries' );
 	$countries        = $jomres_countries->countries;
 	$countryCodes     = array ();
+	$countryName	  = false;
+	
 	foreach ( $countries as $country )
 		{
 		$code                  = $country[ 'countrycode' ];
 		$countryCodes[ $code ] = $country[ 'countryname' ];
 		}
+	
 	$selectedCountry = strtoupper( $selectedCountry );
+	
 	foreach ( $countryCodes as $k => $v )
 		{
-		if ( $k == $selectedCountry ) $countryName = $v;
+		if ( $k == $selectedCountry ) 
+			$countryName = $v;
 		}
 
 	return $countryName;

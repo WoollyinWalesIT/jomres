@@ -22,7 +22,7 @@ class j99994user_feedback
 		if ( $MiniComponents->template_touch )
 			{$this->template_touchable = false;return;}
 		
-		if ( !defined( 'JOMRES_NOHTML' ) )
+		if ( !defined( 'JOMRES_NOHTML' ) || JOMRES_NOHTML == 0 )
 			{
 			$output = array ();
 			jr_import( 'jomres_user_feedback' );

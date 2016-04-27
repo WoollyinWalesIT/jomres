@@ -87,7 +87,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 			{
 			global $post;
 			
-			$language = get_bloginfo( 'language' );
+			$language = str_replace("_","-",get_locale());
 
 			if ( strstr(strtolower($post->post_content), "[jomres:".strtolower($language)."]") )
 			{
@@ -115,7 +115,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 			{
 			global $post;
 			
-			$language = get_bloginfo( 'language' );
+			$language = str_replace("_","-",get_locale());
 
 			if ($this->contents == '')
 				{

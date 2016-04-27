@@ -25,7 +25,7 @@ class j00006sanity_checks
 
 			return;
 			}
-		if ( !defined( 'JOMRES_NOHTML' ) )
+		if ( !defined( 'JOMRES_NOHTML' ) || JOMRES_NOHTML == 0)
 			{
 			$thisJRUser  = jomres_singleton_abstract::getInstance( 'jr_user' );
 			$accessLevel = $thisJRUser->accesslevel;

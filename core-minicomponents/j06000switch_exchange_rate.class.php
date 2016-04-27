@@ -28,7 +28,8 @@ class j06000switch_exchange_rate
 		$tmpBookingHandler     = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 		$current_exchange_rate = jomresGetParam( $_REQUEST, 'currency_code', "" );
 		if ( $current_exchange_rate != "" ) $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = $current_exchange_rate;
-		if ( is_null( $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] ) ) $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = "GBP";
+		if ( !isset( $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] ) ) 
+			$tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = "GBP";
 		jr_import( 'jomres_currency_conversion' );
 		$conversion = new jomres_currency_conversion();
 		if ( !$conversion->check_currency_code_valid( $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] ) ) $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = "GBP";

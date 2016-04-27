@@ -319,7 +319,7 @@ function jomres_cmsspecific_getCMS_users_admin_userdetails_by_id( $id )
 	}
 
 // As per the function name
-function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids( $id )
+function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids()
 	{
 	$db = JFactory::getDbo();
 	$query = $db->getQuery(true);

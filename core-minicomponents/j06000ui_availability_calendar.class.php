@@ -49,9 +49,12 @@ class j06000ui_availability_calendar
 			$output_now = $componentArgs[ 'output_now' ];
 		else
 			$output_now = true;
+		
+		$mrConfig = getPropertySpecificSettings( $property_uid );
 
 		if ( get_showtime( 'is_jintour_property' ) )
 			{
+			$this->numberOfRoomsInProperty = 0; //TODO: count number of tours in property instead
 			$booked_dates           = $MiniComponents->specificEvent( '05060', 'jintour', array ( 'property_uid' => $property_uid, 'start' => true, 'end' => true ) );
 			$booking_array_elements = $booked_dates[ 'fully_booked_dates' ];
 			// We need to convert these to object, as this is an adaptation of the following condition where the db is queried
@@ -67,8 +70,6 @@ class j06000ui_availability_calendar
 			{
 			$query                         = "SELECT COUNT(room_uid) FROM #__jomres_rooms WHERE propertys_uid = " . (int) $property_uid . " ";
 			$this->numberOfRoomsInProperty = (int) doSelectSql( $query,1 );
-
-			$mrConfig = getPropertySpecificSettings( $property_uid );
 
 			$firstDayOfTheCurrentMonth = date( "Y/m/d", strtotime( date( 'm' ) . '/01/' . date( 'Y' ) . ' 00:00:00' ) );
 			$query                     = "SELECT date FROM #__jomres_room_bookings WHERE property_uid = " . (int) $property_uid . " AND DATE_FORMAT(`date`, '%Y/%m/%d') >= DATE_FORMAT('" . $firstDayOfTheCurrentMonth . "', '%Y/%m/%d') ";

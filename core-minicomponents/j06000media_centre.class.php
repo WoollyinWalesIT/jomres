@@ -50,7 +50,7 @@ class j06000media_centre
 
 			foreach ( $resource_types as $type)
 				{
-				if ($type['name'] != '')
+				if (isset($type['name']) && $type['name'] != '')
 					{
 					$resource_type_options[ ] = jomresHTML::makeOption( $type['resource_type'], $type['name'] );
 					if (isset($type['notes']))

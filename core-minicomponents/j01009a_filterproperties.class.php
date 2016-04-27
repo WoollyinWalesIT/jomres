@@ -29,7 +29,7 @@ class j01009a_filterproperties
 		$jrConfig   = $siteConfig->get();
 
 		$data_only = false;
-		if ( JOMRES_NOHTML == 1 ) $data_only = true;
+		if ( defined('JOMRES_NOHTML') && JOMRES_NOHTML == 1 ) $data_only = true;
 		if ( isset( $_REQUEST[ 'dataonly' ] ) ) $data_only = true;
 		$propertys_uids = $componentArgs[ 'propertys_uids' ];
 

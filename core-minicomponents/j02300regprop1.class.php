@@ -61,7 +61,7 @@ class j02300regprop1 {
 		$output['MANAGEMENTPROCESS_DESC']= jr_gettext('_JOMRES_PROPERTYMANAGEMENTPROCESS_DESC','_JOMRES_PROPERTYMANAGEMENTPROCESS_DESC',false);
 		
 		$output['HPROPERTY_TYPE']=jr_gettext('_JOMRES_FRONT_PTYPE','_JOMRES_FRONT_PTYPE',false);
-		$output['PROPERTY_TYPE_DROPDOWN']=getPropertyTypeDropdown($ptypeid , true );
+		$output['PROPERTY_TYPE_DROPDOWN']=getPropertyTypeDropdown('' , true );
  
 		$MiniComponents->triggerEvent('02299');
 		$property_management_process = array();

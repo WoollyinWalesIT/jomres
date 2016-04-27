@@ -40,7 +40,7 @@ class jomres_language_definitions
 
 	function set_property_type( $ptype = '' )
 		{
-		if ( $ptype == '' ) 
+		if ( is_null($ptype) || $ptype == '' ) 
 			$ptype = $this->default_ptype;
 
 		$this->ptype = $ptype;

@@ -27,14 +27,20 @@ class j00010reception_option_03_dobooking
 			}
 		$property_uid = getDefaultProperty();
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
-		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) return;
+		$this->cpanelButton = '';
+		
+		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) 
+			return;
 
 		$siteConfig                = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig                  = $siteConfig->get();
+		
 		$output[ 'BOOKAROOMLINK' ] = JOMRES_SITEPAGE_URL . "&task=dobooking";
-		if ( $jrConfig[ 'useSSLinBookingform' ] == "1" ) $link = jomresURL( $output[ 'BOOKAROOMLINK' ], 1 );
+		
+		if ( $jrConfig[ 'useSSLinBookingform' ] == "1" ) 
+			$link = jomresURL( $output[ 'BOOKAROOMLINK' ], 1 );
 		else
-		$link = jomresURL( $output[ 'BOOKAROOMLINK' ] );
+			$link = jomresURL( $output[ 'BOOKAROOMLINK' ] );
 
 		$this->cpanelButton = jomres_mainmenu_option( $link, 'NewBooking.png', jr_gettext( '_JOMRES_HNEW_BOOKING', '_JOMRES_HNEW_BOOKING', false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS', false, false ) );
 		}

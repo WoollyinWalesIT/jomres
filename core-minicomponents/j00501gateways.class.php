@@ -64,7 +64,7 @@ class j00501gateways
 
 			foreach ( $outputArray as $gateway_name=>$gw )
 				{
-				if ( is_null ($settingArray[$gateway_name] ) || $settingArray[$gateway_name]['override'] != "1")
+				if ( !isset($settingArray[$gateway_name] ) || $settingArray[$gateway_name]['override'] != "1")
 					{
 					$configurationPanel->setleft( $gw[ 'button' ] );
 					$configurationPanel->setmiddle( $gw[ 'link' ] );

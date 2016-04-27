@@ -297,7 +297,7 @@ function jomres_cmsspecific_getCMS_users_admin_userdetails_by_id( $id )
 	}
 
 // As per the function name
-function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids( $id )
+function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids()
 	{
 	$users    = array ();
 	$query    = "SELECT id,user_login,user_email FROM #__users WHERE `sendEmail`=1";

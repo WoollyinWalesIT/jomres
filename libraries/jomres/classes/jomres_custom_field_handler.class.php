@@ -65,7 +65,7 @@ class jomres_custom_field_handler
 		if ( ($ptype_id > 0) && (count($this->custom_fields)>0) )
 			{
 			$this->custom_fields_by_ptype_id[ $ptype_id ] = get_showtime( 'custom_field_handler_fields'.$ptype_id );
-			if ( is_null( $this->custom_fields_by_ptype_id[ $ptype_id ] ) )
+			if ( !isset( $this->custom_fields_by_ptype_id[ $ptype_id ] ) )
 				{
 				$query  = "SELECT uid,fieldname,default_value,description,required,ptype_xref FROM #__jomres_custom_fields";
 				$fields = doSelectSql( $query );
