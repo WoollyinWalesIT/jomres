@@ -560,6 +560,10 @@ class j01010listpropertys
 							$property_deets[ 'STAY_DAYS' ]	= '';
 							}
 						}
+					elseif ( $mrConfig[ 'is_real_estate_listing' ] == 1 )
+						{
+						$property_deets[ 'PRICE_CUMULATIVE' ] = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE' ];
+						}
 					//end total price
 
 					if ( array_key_exists( $propertys_uid, $lastBookedArray ) )

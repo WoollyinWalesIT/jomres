@@ -274,9 +274,10 @@ class basic_property_details
 			{
 			if ( (int) $b != 0 ) $propertyFeaturesArray[ ] = (int) $b;
 			}
+		
+		$this->features=array();
 		if (count($propertyFeaturesArray)>0)
 			{
-			$this->features=array();
 			foreach($propertyFeaturesArray as $f)
 				{
 				$this->features[$f]['abbv'] = $this->all_property_features[$f]['abbv'];
@@ -355,9 +356,40 @@ class basic_property_details
 
 		if ( count( $property_uids ) > 0 )
 			{
-			$query = "SELECT `propertys_uid`,`property_name`,`property_street`,`property_town`,`property_postcode`,`property_region`,`property_country`,`property_tel`,`property_fax`,`property_email`,`published`,`ptype_id`,
-`stars`,`superior`,`lat`,`long`,`metatitle`,`metadescription`,`metakeywords`,`property_features`,`property_mappinglink`,`property_key`,`property_description`,`property_checkin_times`,`property_area_activities`,`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`apikey`,`approved` FROM #__jomres_propertys WHERE propertys_uid IN (" . implode(',',$property_uids) .") ";
-
+			$query = "SELECT 
+							`propertys_uid`,
+							`property_name`,
+							`property_street`,
+							`property_town`,
+							`property_postcode`,
+							`property_region`,
+							`property_country`,
+							`property_tel`,
+							`property_fax`,
+							`property_email`,
+							`published`,
+							`ptype_id`,
+							`stars`,
+							`superior`,
+							`lat`,
+							`long`,
+							`metatitle`,
+							`metadescription`,
+							`metakeywords`,
+							`property_features`,
+							`property_mappinglink`,
+							`property_key`,
+							`property_description`,
+							`property_checkin_times`,
+							`property_area_activities`,
+							`property_driving_directions`,
+							`property_airports`,
+							`property_othertransport`,
+							`property_policies_disclaimers`,
+							`apikey`,
+							`approved` 
+						FROM #__jomres_propertys 
+						WHERE propertys_uid IN (" . implode(',',$property_uids) .") ";
 			$propertyData = doSelectSql( $query );
 
 			$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
@@ -387,7 +419,7 @@ class basic_property_details
 					$this->multi_query_result[ $data->propertys_uid ][ 'property_region_id' ] = $data->property_region;
 					}
 				else
-				$this->multi_query_result[ $data->propertys_uid ][ 'property_region' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_REGION', $data->property_region, $editable, false );
+					$this->multi_query_result[ $data->propertys_uid ][ 'property_region' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_REGION', $data->property_region, $editable, false );
 
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_country' ]      = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_COUNTRY', getSimpleCountry( $data->property_country ), $editable, false );
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_country_code' ] = $data->property_country;
