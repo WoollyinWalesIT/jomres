@@ -28,10 +28,7 @@ $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 
 $jomresConfig_lang = 'en-GB';
 if (!strstr($scriptname,'install_jomres.php'))
-	{
-	$lang = get_locale();
-	$jomresConfig_lang = str_replace("_","-",$lang);
-	}
+	$jomresConfig_lang = str_replace("_","-",get_locale());
 
 $showtime = jomres_getSingleton('showtime');
 

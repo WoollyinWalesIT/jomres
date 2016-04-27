@@ -22,7 +22,7 @@ $ssllink = str_replace( "https://", "http://", get_showtime( 'live_site' ) );
 define( 'JOMRES_ADMINISTRATORDIRECTORY', "wp-admin" );
 
 //let`s find if we have some language set
-$currentBlogLang = get_bloginfo( 'language' );
+$currentBlogLang = str_replace("_","-",get_locale());
 
 $keyword = "[jomres:".strtolower($currentBlogLang)."]";
 

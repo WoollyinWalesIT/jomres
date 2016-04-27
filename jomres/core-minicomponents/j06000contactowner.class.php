@@ -27,6 +27,8 @@ class j06000contactowner
 			}
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
+		
+		$this->ret_vals = '';
 
 		$use_recaptcha = false;
 		if ( $jrConfig[ 'recaptcha_public_key' ] != "" && $jrConfig[ 'recaptcha_private_key' ] != "" ) 

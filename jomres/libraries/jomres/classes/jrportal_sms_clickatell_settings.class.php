@@ -19,7 +19,7 @@ class jrportal_sms_clickatell_settings
 	function __construct()
 		{
 		$this->sms_clickatellConfigOptions               = array ();
-		$this->sms_clickatellConfigOptions[ 'active' ]   = "";
+		$this->sms_clickatellConfigOptions[ 'active' ]   = "0";
 		$this->sms_clickatellConfigOptions[ 'api_id' ]   = "";
 		$this->sms_clickatellConfigOptions[ 'username' ] = "";
 		$this->sms_clickatellConfigOptions[ 'password' ] = "";

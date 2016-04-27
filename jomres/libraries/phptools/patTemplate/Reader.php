@@ -1342,7 +1342,7 @@ class patTemplate_Reader extends patTemplate_Module
 		$pos = $cnt - 1;
 		while ( $pos >= 0 )
 			{
-			if ( $this->_tmplStack[ $pos ][ 'type' ] != 'tmpl' )
+			if ( isset($this->_tmplStack[ $pos ][ 'type' ]) && $this->_tmplStack[ $pos ][ 'type' ] != 'tmpl' )
 				{
 				$pos--;
 				continue;
@@ -1426,7 +1426,9 @@ class patTemplate_Reader extends patTemplate_Module
 
 		if ( $key === null )
 			{
-
+			if (!isset($this->_tmplStack[ $pos ][ $property ]))
+				$this->_tmplStack[ $pos ][ $property ] = array();
+			
 			if ( !in_array( $value, $this->_tmplStack[ $pos ][ $property ] ) )
 				{
 				array_push( $this->_tmplStack[ $pos ][ $property ], $value );

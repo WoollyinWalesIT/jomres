@@ -234,14 +234,23 @@ class basic_property_details
 			$this->approved                      = $this->multi_query_result[ $this->property_uid ][ 'approved' ];
 
 			$this->accommodation_tax_rate		 = $this->multi_query_result[ $this->property_uid ][ 'accommodation_tax_rate' ];
+			
 			if (isset($this->multi_query_result[ $this->property_uid ][ 'room_types' ]))
 				$this->room_types                    = $this->multi_query_result[ $this->property_uid ][ 'room_types' ];
+			else
+				$this->room_types                    = array();
 			
 			if (isset($this->multi_query_result[ $this->property_uid ][ 'rooms' ]))
 				{
 				$this->rooms                         = $this->multi_query_result[ $this->property_uid ][ 'rooms' ];
 				$this->rooms_by_type                 = $this->multi_query_result[ $this->property_uid ][ 'rooms_by_type' ];
 				$this->rooms_max_people              = $this->multi_query_result[ $this->property_uid ][ 'rooms_max_people' ];
+				}
+			else
+				{
+				$this->rooms                         = array();
+				$this->rooms_by_type                 = array();
+				$this->rooms_max_people              = array();	
 				}
 			}
 
@@ -352,6 +361,11 @@ class basic_property_details
 			$propertyData = doSelectSql( $query );
 
 			$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
+			
+			//save the original property uid and type so we can reset this after we`re done
+			$original_property_uid = get_showtime( 'property_uid' );
+			$original_property_type = get_showtime( 'property_type' );
+			
 			foreach ( $propertyData as $data )
 				{
 				set_showtime( 'property_uid', $data->propertys_uid );
@@ -433,6 +447,10 @@ class basic_property_details
 				$cfgcode  = $mrConfig[ 'accommodation_tax_code' ];
 				$this->multi_query_result[ $id ][ 'accommodation_tax_rate' ] = (float) $jrportal_taxrate->taxrates[ $cfgcode ][ 'rate' ];
 				}
+			
+			//set back the initial property type and property uid
+			set_showtime( 'property_uid', $original_property_uid );
+			set_showtime( 'property_type', $original_property_type );
 			}
 
 		return $this->multi_query_result;

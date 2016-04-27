@@ -51,6 +51,7 @@ class j06000show_property_rooms
 		$basic_room_details->get_all_rooms($property_uid);
 		
 		$output = array();
+		$this->retVals = '';
 
 		if ( count( $basic_room_details->rooms ) > 0 )
 			{

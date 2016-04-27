@@ -27,7 +27,11 @@ class j00011manager_option_04_guesttypeadmin
 			}
 		$property_uid = getDefaultProperty();
 		$mrConfig = getPropertySpecificSettings( $property_uid );
-		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) return;
+		$this->cpanelButton = '';
+		
+		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) 
+			return;
+		
 		$this->cpanelButton = jomres_mainmenu_option( jomresURL( JOMRES_SITEPAGE_URL . "&task=listCustomerTypes" ), 'EditGuestTypes.png', jr_gettext( '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS', false, false ), false, true );
 		}
 

@@ -33,7 +33,9 @@ class j06000ajax_shortlist
 		
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		
-		$shortlist_items   = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
+		$shortlist_items = array();
+		if (isset($tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ]))
+			$shortlist_items   = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
 		
 		if ( ( get_showtime( 'this_property_published' ) && !in_array( $property_uid, $shortlist_items ) ) )
 			{

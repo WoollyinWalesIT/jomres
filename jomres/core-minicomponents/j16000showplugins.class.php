@@ -483,7 +483,7 @@ class j16000showplugins
 
 			if ( $key_validation->shop_status == "OPEN" && !$developer_user )
 				{
-				if (!is_null($rp[ 'price' ]))
+				if (isset($rp[ 'price' ]))
 					{
 					if ( !array_key_exists( $rp[ 'name' ], $current_licenses ) )
 						{

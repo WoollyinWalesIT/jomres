@@ -24,8 +24,9 @@ class j06001dashboard
 			}
 		$ePointFilepath = get_showtime('ePointFilepath');
 		
-		$property_uid = $componentArgs[ 'property_uid' ];
-		if ( is_null( $property_uid ) ) 
+		if (isset($componentArgs[ 'property_uid' ]))
+			$property_uid = $componentArgs[ 'property_uid' ];
+		else
 			$property_uid = getDefaultProperty();
 		
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );

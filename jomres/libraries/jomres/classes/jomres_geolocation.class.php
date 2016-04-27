@@ -43,9 +43,10 @@ class jomres_geolocation
 		{
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
-		if ( !is_null( $jrConfig[ 'geolocation_api_key' ] ) && $jrConfig[ 'geolocation_api_key' ] != "" ) $this->api_key = $jrConfig[ 'geolocation_api_key' ];
+		if ( isset( $jrConfig[ 'geolocation_api_key' ] ) && $jrConfig[ 'geolocation_api_key' ] != "" ) 
+			$this->api_key = $jrConfig[ 'geolocation_api_key' ];
 		else
-		$this->api_key = '';
+			$this->api_key = '';
 		$this->determine_user_location();
 		}
 

@@ -52,7 +52,7 @@ function output_price( $value, $currencycode = "", $do_conversion = true, $zeroO
 	jr_import( 'jomres_currency_conversion' );
 	$conversion        = new jomres_currency_conversion();
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-	if ( is_null( $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] ) )
+	if ( !isset( $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] ) )
 		{
 		$jomres_geolocation = jomres_singleton_abstract::getInstance( 'jomres_geolocation' );
 		$jomres_geolocation->auto_set_user_currency_code();
