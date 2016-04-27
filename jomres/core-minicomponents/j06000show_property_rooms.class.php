@@ -84,7 +84,8 @@ class j06000show_property_rooms
 					{
 					foreach ($roomFeatureUidsArray as $f)
 						{
-						$r[ 'ROOM_FEATURES' ] .= $basic_room_details->all_room_features[ $f ]['tooltip'];
+						if (isset($basic_room_details->all_room_features[ $f ]['tooltip']))
+							$r[ 'ROOM_FEATURES' ] .= $basic_room_details->all_room_features[ $f ]['tooltip'];
 						}
 					}
 				$r[ 'RANDOM_IDENTIFIER' ]  = generateJomresRandomString( 10 );
