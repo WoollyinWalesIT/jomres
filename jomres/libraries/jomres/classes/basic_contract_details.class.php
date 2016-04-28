@@ -244,8 +244,11 @@ class basic_contract_details
 		$room_and_tariff_info = explode( ",", $this->contract[$contract_uid]['contractdeets']['rooms_tariffs'] );
 		foreach ( $room_and_tariff_info as $e )
 			{
-			$rt = explode( "^", $e );
-			$tariffs[] = $rt[ 1 ];
+			if ($e != '')
+				{
+				$rt = explode( "^", $e );
+				$tariffs[] = $rt[ 1 ];
+				}
 			}
 
 		if ( count($tariffs) > 0 && $room_and_tariff_info != array ( 0 => "" ) )

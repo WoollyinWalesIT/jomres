@@ -33,6 +33,7 @@ class j06005view_invoice
 		$pageoutput    			= array();
 		$rows          			= array();
 		$transaction_rows		= array();
+		$this->retVals			= '';
 
 		if ( isset( $componentArgs[ 'internal_call' ] ) && $componentArgs[ 'internal_call' ] == true ) // This plugin is being called by another script, typically the emailer functionality, therefore we'll bypass the access checking further down
 			{

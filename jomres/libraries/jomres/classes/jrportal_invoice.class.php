@@ -135,9 +135,8 @@ class jrportal_invoice
 		$this->lineitem['init_qty']       = $line_item_data[ 'init_qty' ];
 		$this->lineitem['init_discount']  = $line_item_data[ 'init_discount' ];
 		
-		if (!isset($line_item_data[ 'is_payment' ]))
-			$line_item_data[ 'is_payment' ] = 0;
-		$this->lineitem['is_payment']	  = (int)$line_item_data[ 'is_payment' ];
+		if (isset($line_item_data[ 'is_payment' ]))
+			$this->lineitem['is_payment']	  = (int)$line_item_data[ 'is_payment' ];
 
 		$this->lineitem['inv_id'] = $this->id;
 

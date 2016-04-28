@@ -33,6 +33,9 @@ class jomres_sanity_check
 
 	function do_sanity_checks()
 		{
+		if ( get_showtime( 'no_html' ) == 1 || get_showtime( 'popup' ) == 1 || AJAXCALL) 
+			return;
+		
 		$thisJRUser			= jomres_singleton_abstract::getInstance( 'jr_user' );
 		if ( $thisJRUser->userIsManager )
 			{

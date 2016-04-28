@@ -20,7 +20,7 @@ class jomres_user_feedback
 	{
 	function __construct( $autorun = true )
 		{
-		if ( get_showtime( 'no_html' ) == 1 || get_showtime( 'popup' ) == 1 ) 
+		if ( get_showtime( 'no_html' ) == 1 || get_showtime( 'popup' ) == 1 || AJAXCALL) 
 			return "";
 		if ( $autorun )
 			{
@@ -34,6 +34,9 @@ class jomres_user_feedback
 
 	function generate_messages()
 		{
+		if ( get_showtime( 'no_html' ) == 1 || get_showtime( 'popup' ) == 1 || AJAXCALL) 
+			return "";
+		
 		if ( count(get_showtime('user_feedback_messages'))>0 )
 			{
 			$messages = get_showtime('user_feedback_messages') ;

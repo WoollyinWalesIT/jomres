@@ -231,6 +231,6 @@ class j16000view_invoice
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return $this->retVals;
+		return null;
 		}
 	}

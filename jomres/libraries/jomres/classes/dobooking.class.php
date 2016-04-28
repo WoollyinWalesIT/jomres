@@ -1854,7 +1854,7 @@ class dobooking
 
 			if ( $current != false )
 				{
-				if ( $ct->maximum >= (int) $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0] && (int) $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0] > 0 )
+				if ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0]) && $ct->maximum >= (int) $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0] && (int) $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0] > 0 )
 					$defNo = (int) $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0] ;
 				else
 					$defNo = $current[ 'quantity' ];
@@ -4100,7 +4100,11 @@ class dobooking
 	function getTariffsForRoomUidByClass( $room_uid )
 		{
 		$result   = array ();
-		$roomType = $this->allPropertyRooms[ $room_uid ][ 'room_classes_uid' ];
+		
+		if (isset($this->allPropertyRooms[ $room_uid ][ 'room_classes_uid' ]))
+			$roomType = $this->allPropertyRooms[ $room_uid ][ 'room_classes_uid' ];
+		else
+			$roomType = 0;
 		//$this->setErrorLog("getTariffsForRoomUidByClass::allPropertyRooms ".serialize($this->allPropertyRooms[$room_uid]));
 		//$this->setErrorLog("getTariffsForRoomUidByClass::allPropertyTariffs ".serialize($this->allPropertyTariffs));
 		foreach ( $this->allPropertyTariffs as $t )
@@ -4538,13 +4542,16 @@ class dobooking
 				// We'll build a map of the dates in this booking, cross referenced to the tariff uids, and the prices
 				foreach ( $all_associated_tariff_ids as $t_id )
 					{
-					$tariff_info = $this->allPropertyTariffs[ $t_id ];
-					if ( isset( $tariff_info[ 'tariff_dates' ] ) )
+					if (isset($this->allPropertyTariffs[ $t_id ]))
 						{
-						$dates = $tariff_info[ 'tariff_dates' ];
-						foreach ( $dates as $d )
+						$tariff_info = $this->allPropertyTariffs[ $t_id ];
+						if ( isset( $tariff_info[ 'tariff_dates' ] ) )
 							{
-							if ( in_array( $d, $dateRangeArray ) && isset( $tariff_info[ 'roomrateperday' ] ) ) $this->micromanage_tarifftype_to_date_map[ $tariff_type_id ][ $d ] = array ( "price" => $tariff_info[ 'roomrateperday' ], "mindays" => $tariff_info[ 'mindays' ], "rates_uid" => $tariff_info[ 'rates_uid' ], "tariff_type_id" => $tariff_type_id );
+							$dates = $tariff_info[ 'tariff_dates' ];
+							foreach ( $dates as $d )
+								{
+								if ( in_array( $d, $dateRangeArray ) && isset( $tariff_info[ 'roomrateperday' ] ) ) $this->micromanage_tarifftype_to_date_map[ $tariff_type_id ][ $d ] = array ( "price" => $tariff_info[ 'roomrateperday' ], "mindays" => $tariff_info[ 'mindays' ], "rates_uid" => $tariff_info[ 'rates_uid' ], "tariff_type_id" => $tariff_type_id );
+								}
 							}
 						}
 					}
@@ -5493,7 +5500,8 @@ class dobooking
 			$extrasArray = explode( ",", $this->extras );
 			foreach ( $extrasArray as $extra )
 				{
-				$quantity = $quantity + $this->extrasquantities[ $extra ];
+				if ($extra != '')
+					$quantity = $quantity + $this->extrasquantities[ $extra ];
 				//$this->setPopupMessage($quantity);
 				}
 			if ( $quantity == 0 ) $this->setMonitoring( $this->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_SELECT', '_JOMRES_AJAXFORM_EXTRAS_SELECT', false, false ) ) );
@@ -6145,7 +6153,11 @@ class dobooking
 					if ( (int) $tpextra[ 'tax_code_id' ] > 0 )
 						{
 						$tax_rate_id = $tpextra[ 'tax_code_id' ];
-						$rate        = $this->taxrates[ $tax_rate_id ][ 'rate' ];
+						
+						if (isset($this->taxrates[ $tax_rate_id ][ 'rate' ]))
+							$rate        = $this->taxrates[ $tax_rate_id ][ 'rate' ];
+						else
+							$rate = 0;
 						$this->setErrorLog( "calcExtras Third party: rate is: " . $rate );
 						
 						//Coupon discount
@@ -7046,7 +7058,7 @@ class dobooking
 		{
 		$mrConfig          = $this->mrConfig;
 		$tmpBookingHandler = jomres_getSingleton( 'jomres_temp_booking_handler' );
-		if ( $mrConfig[ 'lastminuteactive' ] == '1' )
+		if ( isset($mrConfig[ 'lastminuteactive' ]) && $mrConfig[ 'lastminuteactive' ] == '1' )
 			{
 			$datesTilBooking    = $this->findDateRangeForDates( $this->today, $this->arrivalDate );
 			$lastminutediscount = (int) $mrConfig[ 'lastminutediscount' ];
@@ -7058,7 +7070,7 @@ class dobooking
 				$this->room_total     = $this->room_total - $discount;
 				$this->total_discount = $discount;
 				$this->setErrorLog( "<b>calcLastMinuteDiscount:: Room total modified to: " . $this->room_total . "</b>" );
-				$disc_txt = jr_gettext( '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', false ) . ' ' . jr_gettext( '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2', _JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2, false ) . ': ' .output_price( $discount );
+				$disc_txt = jr_gettext( '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', false ) . ' ' . jr_gettext( '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2', '_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2', false ) . ': ' .output_price( $discount );
 				$this->echo_populate_div( '; populateDiv("discount","' . $disc_txt . '")' );
 				$tmpBookingHandler->updateBookingField( "lastminutediscount", $disc_txt );
 				$tmpBookingHandler->updateBookingField( "booking_discounted", true );
