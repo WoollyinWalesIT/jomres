@@ -62,22 +62,25 @@ class jomres_generic_booking_email
 
 		//selected rooms/resources and tariff details
 		$this->data[$contract_uid]['ROOMS'] = '';
-		foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd)
+		if (isset($current_contract_details->contract[$contract_uid]['roomdeets']))
 			{
-			$this->data[$contract_uid]['ROOMS'] .= $current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'];
-			
-			if ($rd[ 'room_name' ] != '')
-				$this->data[$contract_uid]['ROOMS'] .= ' - ' . $rd[ 'room_name' ];
-			
-			if ($rd[ 'room_number' ] != '')
-				$this->data[$contract_uid]['ROOMS'] .= ' - ' . $rd[ 'room_number' ];
-			
-			$this->data[$contract_uid]['ROOMS'] .= '; ';
-			
-			if (!isset($this->data[$contract_uid]['TARIFFS']))
-				$this->data[$contract_uid]['TARIFFS'] = '';
-			
-			$this->data[$contract_uid]['TARIFFS'] .= $rd[ 'rate_title' ] . '; ';
+			foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd)
+				{
+				$this->data[$contract_uid]['ROOMS'] .= $current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'];
+				
+				if ($rd[ 'room_name' ] != '')
+					$this->data[$contract_uid]['ROOMS'] .= ' - ' . $rd[ 'room_name' ];
+				
+				if ($rd[ 'room_number' ] != '')
+					$this->data[$contract_uid]['ROOMS'] .= ' - ' . $rd[ 'room_number' ];
+				
+				$this->data[$contract_uid]['ROOMS'] .= '; ';
+				
+				if (!isset($this->data[$contract_uid]['TARIFFS']))
+					$this->data[$contract_uid]['TARIFFS'] = '';
+				
+				$this->data[$contract_uid]['TARIFFS'] .= $rd[ 'rate_title' ] . '; ';
+				}
 			}
 		
 		//guest details
@@ -94,12 +97,15 @@ class jomres_generic_booking_email
 		$this->data[$contract_uid]['EMAIL'] = $current_contract_details->contract[$contract_uid]['guestdeets']['email'];
 		
 		//extras details
-		foreach ( $current_contract_details->contract[$contract_uid]['extradeets'] as $extra )
+		if (isset($current_contract_details->contract[$contract_uid]['extradeets']))
 			{
-			if (!isset($this->data[$contract_uid]['EXTRAS']))
-				$this->data[$contract_uid]['EXTRAS'] = '';
-			
-			$this->data[$contract_uid]['EXTRAS'] .= $extra['name'] . ' x ' . $extra['qty'] . '; ';
+			foreach ( $current_contract_details->contract[$contract_uid]['extradeets'] as $extra )
+				{
+				if (!isset($this->data[$contract_uid]['EXTRAS']))
+					$this->data[$contract_uid]['EXTRAS'] = '';
+				
+				$this->data[$contract_uid]['EXTRAS'] .= $extra['name'] . ' x ' . $extra['qty'] . '; ';
+				}
 			}
 		
 		//links
@@ -111,16 +117,22 @@ class jomres_generic_booking_email
 			}
 		
 		//number of guest types
-		foreach ( $current_contract_details->contract[$contract_uid]['guesttype'] as $type )
+		if (isset($current_contract_details->contract[$contract_uid]['guesttype']))
 			{
-			if (!isset($this->data[$contract_uid]['NUMBER_OF_GUESTS']))
-				$this->data[$contract_uid]['NUMBER_OF_GUESTS'] = '';
-			
-			$this->data[$contract_uid]['NUMBER_OF_GUESTS'] .= $type[ 'title' ].' x '.$type[ 'qty' ].', ';
+			foreach ( $current_contract_details->contract[$contract_uid]['guesttype'] as $type )
+				{
+				if (!isset($this->data[$contract_uid]['NUMBER_OF_GUESTS']))
+					$this->data[$contract_uid]['NUMBER_OF_GUESTS'] = '';
+				
+				$this->data[$contract_uid]['NUMBER_OF_GUESTS'] .= $type[ 'title' ].' x '.$type[ 'qty' ].', ';
+				}
 			}
 		
 		//invoice printout
-		$invoice_id = $MiniComponents->miniComponentData[ '03025' ][ 'insertbooking_invoice' ][ 'invoice_id' ];
+		$invoice_id = 0;
+		
+		if (isset($MiniComponents->miniComponentData[ '03025' ][ 'insertbooking_invoice' ][ 'invoice_id' ]))
+			$invoice_id = (int)$MiniComponents->miniComponentData[ '03025' ][ 'insertbooking_invoice' ][ 'invoice_id' ];
 		
 		if ((int)$invoice_id == 0)
 			{
@@ -160,13 +172,12 @@ class jomres_generic_booking_email
 		
 		if ( count( $allCustomFields ) > 0 )
 			{
+			$this->data[$contract_uid]['CUSTOM_FIELDS'] = '';
 			foreach ( $allCustomFields as $f )
 				{
 				$formfieldname          = $f[ 'fieldname' ] . "_" . $f[ 'uid' ];
-				if (!isset($this->data[$contract_uid]['CUSTOM_FIELDS']))
-					$this->data[$contract_uid]['CUSTOM_FIELDS'] = '';
-				
-				$this->data[$contract_uid]['CUSTOM_FIELDS'] .= jr_gettext( 'JOMRES_CUSTOMTEXT' . $f[ 'uid' ], $f[ 'description' ] ).': '.$tmpBookingHandler->tmpbooking[ $formfieldname ].'; ';
+				if (isset($tmpBookingHandler->tmpbooking[ $formfieldname ]))
+					$this->data[$contract_uid]['CUSTOM_FIELDS'] .= jr_gettext( 'JOMRES_CUSTOMTEXT' . $f[ 'uid' ], $f[ 'description' ] ).': '.$tmpBookingHandler->tmpbooking[ $formfieldname ].'; ';
 				}
 			}
 		

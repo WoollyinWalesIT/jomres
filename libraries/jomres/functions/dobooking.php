@@ -692,8 +692,13 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$pageoutput[ ] = $output;
 	$tmpl          = new patTemplate();
 
-	if ( $mrConfig[ 'booking_form_rooms_list_style' ] == "1" ) $tmpl->addRows( 'classic_rooms_list', $classic_rooms_list_output );
-	if ( $mrConfig[ 'booking_form_rooms_list_style' ] == "2" ) $tmpl->addRows( 'roomtype_dropdown_list', $roomtype_dropdown_list_output );
+	if ( get_showtime( 'include_room_booking_functionality' ) )
+		{
+		if ( $mrConfig[ 'booking_form_rooms_list_style' ] == "1" ) 
+			$tmpl->addRows( 'classic_rooms_list', $classic_rooms_list_output );
+		if ( $mrConfig[ 'booking_form_rooms_list_style' ] == "2" ) 
+			$tmpl->addRows( 'roomtype_dropdown_list', $roomtype_dropdown_list_output );
+		}
 
 	$tmpl->addRows( 'rooms_list_accommodation_panel_output', $rooms_list_accommodation_panel_output );
 	$tmpl->addRows( 'coupons', $coupons );

@@ -44,6 +44,7 @@ class j02260editbooking
 		
 		//check if the booking can be approved or not
 		$can_be_approved = true;
+		$approval_msg = array();
 		if ((int)$current_contract_details->contract[$contract_uid]['contractdeets']['approved'] == 0)
 			{	
 			$rooms_tariffs = $current_contract_details->contract[$contract_uid]['contractdeets']['rooms_tariffs'];
@@ -67,8 +68,6 @@ class j02260editbooking
 			
 			$query = substr_replace( $query, "", -4 );
 			$result = doSelectSql( $query );
-			
-			$approval_msg = array();
 			
 			if ( count( $result ) > 0 )
 				{
@@ -177,7 +176,7 @@ class j02260editbooking
 						}
 					}
 
-				if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['booking_deposit_paid'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 )
+				if ( (int)$current_contract_details->contract[$contract_uid]['contractdeets']['deposit_paid'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 )
 					{
 					$jrtb .= $jrtbar->toolbarItem( 'enterdeposit', jomresURL( JOMRES_SITEPAGE_URL . "&task=editDeposit&contractUid=".$contract_uid ), '' );
 					}
@@ -214,7 +213,7 @@ class j02260editbooking
 				$notesLink = JOMRES_SITEPAGE_URL . '&task=addnote&contract_uid=' . $contract_uid;
 				$jrtb .= $jrtbar->toolbarItem( 'note', $notesLink, jr_gettext( '_JOMCOMP_BOOKINGNOTES_ADD', '_JOMCOMP_BOOKINGNOTES_ADD', $editable = false, $isLink = false ) );
 				
-				if ((int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 && isset($MiniComponents->registeredClasses['00005jomres_ical']))
+				if (get_showtime( 'include_room_booking_functionality' ) && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 && isset($MiniComponents->registeredClasses['00005jomres_ical']))
 					{
 					$output[ 'ICAL_EXPORT' ] = jr_gettext( '_JOMRES_ICAL_EVENT', '_JOMRES_ICAL_EVENT', $editable = false, $isLink = true );
 					$link = JOMRES_SITEPAGE_URL . '&task=ical_export_contract&contract_uid=' . $contract_uid .'&property_uid='.$defaultProperty;
@@ -280,18 +279,23 @@ class j02260editbooking
 			$output[ 'NUM_NIGHTS' ] = count( explode( ",", $current_contract_details->contract[$contract_uid]['contractdeets']['date_range_string'] ) );
 			}
 		
-		foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd)
+		if (isset($current_contract_details->contract[$contract_uid]['roomdeets']))
 			{
-			$roomBooking_black_booking = $rd['black_booking'];
-			$roomBooking_reception_booking = $rd['reception_booking'];
-			}
+			foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd)
+				{
+				$roomBooking_black_booking = $rd['black_booking'];
+				$roomBooking_reception_booking = $rd['reception_booking'];
+				}
 			
-		if ( (int)$roomBooking_black_booking == 1 ) 
-			$bookingType = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK', '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK' );
-		elseif ( (int)$roomBooking_reception_booking == 1 ) 
-			$bookingType = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION', '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION' );
+			if ( (int)$roomBooking_black_booking == 1 ) 
+				$bookingType = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK', '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK' );
+			elseif ( (int)$roomBooking_reception_booking == 1 ) 
+				$bookingType = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION', '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION' );
+			else
+				$bookingType = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET', '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET' );
+			}
 		else
-			$bookingType = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET', '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET' );
+			$bookingType = '';
 				
 		$output[ '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL' ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL', '_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL' );
 		$output[ 'BOOKINGTYPE' ] = $bookingType;
@@ -312,11 +316,11 @@ class j02260editbooking
 		$output     = array ();
 		$pageoutput = array ();
 		
+		$guest_type_rows = array ();
 		if ( get_showtime( 'include_room_booking_functionality' ) )
 			{
 			$output[ '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES' ] = jr_gettext( '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES' );
-			
-			$guest_type_rows = array ();
+
 			foreach ( $current_contract_details->contract[$contract_uid]['guesttype'] as $type )
 				{
 				$r = array ();
@@ -433,36 +437,39 @@ class j02260editbooking
 		
 		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 
-		foreach ( $current_contract_details->contract[$contract_uid]['extradeets'] as $extra )
+		if (isset($current_contract_details->contract[$contract_uid]['extradeets']))
 			{
-			$r = array ();
-			$quantity = $extra['qty'];
-			$price    = $extra['price'];
-			if ( $mrConfig[ 'prices_inclusive' ] == "0" )
+			foreach ( $current_contract_details->contract[$contract_uid]['extradeets'] as $extra )
 				{
-				$tax_rate_id = (int) $extra['tax_rate'];
-				$jrportal_taxrate->gather_data($tax_rate_id);
-				$taxrate = (float)$jrportal_taxrate->rate;
-				$tax = ( $price / 100 ) * $taxrate;
-				$inc_price = $price + $tax;
+				$r = array ();
+				$quantity = $extra['qty'];
+				$price    = $extra['price'];
+				if ( $mrConfig[ 'prices_inclusive' ] == "0" )
+					{
+					$tax_rate_id = (int) $extra['tax_rate'];
+					$jrportal_taxrate->gather_data($tax_rate_id);
+					$taxrate = (float)$jrportal_taxrate->rate;
+					$tax = ( $price / 100 ) * $taxrate;
+					$inc_price = $price + $tax;
+					}
+				else
+					$inc_price = $price;
+
+				$extra_tax_output = "";
+				if ( $taxrate > 0 ) 
+					$extra_tax_output = $taxrate;
+
+				$r[ 'EXTRA_NAME' ]            = $extra['name'];
+				$r[ 'EXTRA_INCLUSIVE_PRICE' ] = output_price( $inc_price );
+				$r[ 'EXTRA_TAX' ]             = $extra_tax_output;
+				$r[ 'EXTRA_QUANTITY' ]        = $quantity;
+				$extras_rows[ ]               = $r;
 				}
-			else
-				$inc_price = $price;
-
-			$extra_tax_output = "";
-			if ( $taxrate > 0 ) 
-				$extra_tax_output = $taxrate;
-
-			$r[ 'EXTRA_NAME' ]            = $extra['name'];
-			$r[ 'EXTRA_INCLUSIVE_PRICE' ] = output_price( $inc_price );
-			$r[ 'EXTRA_TAX' ]             = $extra_tax_output;
-			$r[ 'EXTRA_QUANTITY' ]        = $quantity;
-			$extras_rows[ ]               = $r;
 			}
 
 		$other_services_rows = array ();
 		$otherServiceTotal   = 0.00;
-		if ( count( $current_contract_details->contract[$contract_uid]['extraservice'] ) > 0 )
+		if ( isset( $current_contract_details->contract[$contract_uid]['extraservice'] ) )
 			{
 			foreach ( $current_contract_details->contract[$contract_uid]['extraservice'] as $e )
 				{

@@ -192,6 +192,8 @@ class j02990showconfirmation
 			$booking_parts[ 'COUPON_DISCOUNT_VALUE' ] = output_price( $bookingDeets[ 'coupon_discount_value' ] );
 			}
 
+		$booking_parts[ 'DISCOUNT' ] = '';
+		$booking_parts[ 'BGCOLOUR' ] = '';
 		if ( $bookingDeets[ 'booking_discounted' ] == true )
 			{
 			if ( $mrConfig[ 'singleRoomProperty' ] == 1 )
@@ -288,6 +290,8 @@ class j02990showconfirmation
 				$booking_rooms[ ]       = $roomtype;
 				}
 			}
+		
+		$booking_parts[ 'ALLOCATION' ] = '';
 		if ( $mrConfig[ 'singleRoomProperty' ] != "1" )
 			{
 			if (!isset($bookingDeets[ 'booking_notes' ][ 'suppliment_note' ]))
@@ -309,7 +313,7 @@ class j02990showconfirmation
 
 		$booking_parts[ 'ROOMTOTAL' ] = output_price( $room_total );
 
-
+		$booking_extras = array();
 		if ( $mrConfig[ 'showExtras' ] == "1" )
 			{
 			$extras           = $bookingDeets[ 'extras' ];
@@ -656,15 +660,21 @@ class j02990showconfirmation
 		$booking_particulars[ ] = $booking_parts;
 		$tmpl                   = new patTemplate();
 		
-		$tmpl->addRows( 'mrp_room_details', $mrp_room_details );
-		$tmpl->addRows( 'room_info', $room_info );
+		if (get_showtime( 'include_room_booking_functionality' ))
+			{
+			if ($mrConfig[ 'singleRoomProperty' ] == 0)
+				{
+				$tmpl->addRows( 'mrp_room_details', $mrp_room_details );
+				$tmpl->addRows( 'room_info', $room_info );
+				$tmpl->addRows( 'booking_rooms', $booking_rooms );
+				}
+			$tmpl->addRows( 'booking_room_specific_info', $booking_room_specific_info );
+			}
 		
 		$tmpl->addRows( 'customfields', $customFields );
-		$tmpl->addRows( 'booking_room_specific_info', $booking_room_specific_info );
 		$tmpl->addRows( 'booking_particulars', $booking_particulars );
 		$tmpl->addRows( 'booking_extras', $booking_extras );
 		$tmpl->addRows( 'booking_extratext', $extrastext );
-		$tmpl->addRows( 'booking_rooms', $booking_rooms );
 		
 		$tmpl->addRows( 'cartoutput', $cartoutput );
 		if ( isset( $gatewayDeets ) && count( $gatewayDeets ) > 0 )

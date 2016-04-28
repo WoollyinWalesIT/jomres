@@ -113,7 +113,7 @@ class j03020insertbooking
 					// The extras quantites is passed with ALL extra uids and default quanties. At this point we will strip out the extra uid that weren't actually selected before adding the serialized extras quantities to the db
 					$tmpextrasquantities = array ();
 					$currentExtras       = explode( ",", $extras );
-					if ( count( $currentExtras ) > 0 )
+					if ( count( $currentExtras ) > 0 && is_array($extrasquantities))
 						{
 						foreach ( $extrasquantities as $id => $quan )
 							{
@@ -127,11 +127,10 @@ class j03020insertbooking
 					else
 					$extrasquantities = "";
 
+					$discount_details = "";
 					if ( count( $discount ) > 0 )
 						{
 						$discount = array_map("strip_tags", $discount);
-						$discount_details = "";
-						
 						foreach ( $discount as $d )
 							{
 							$discount_details .= serialize( $d );
@@ -199,13 +198,13 @@ class j03020insertbooking
 				$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . RemoveXSS( "Amend booking - contract updated " . $amend_contractuid ) . "','$dt','" . (int) $property_uid . "')";
 				doInsertSql( $query, "" );
 
+				$rates_uids     = array ();
 				if ( get_showtime( 'include_room_booking_functionality' ) )
 					{
 					// Delete exisiting room booking - may be the same but easier to delete and insert
 					$query = "DELETE FROM #__jomres_room_bookings WHERE contract_uid = '$amend_contractuid'";
 					if ( !doInsertSql( $query, "" ) ) trigger_error( "Unable to delete from room bookings table, mysql db failure", E_USER_ERROR );
 
-					$rates_uids     = array ();
 					$dateRangeArray = explode( ",", $dateRangeString );
 					for ( $i = 0, $n = count( $dateRangeArray ); $i < $n; $i++ )
 						{
@@ -327,7 +326,7 @@ class j03020insertbooking
 					// The extras quantites is passed with ALL extra uids and default quanties. At this point we will strip out the extra uid that weren't actually selected before adding the serialized extras quantities to the db
 					$tmpextrasquantities = array ();
 					$currentExtras       = explode( ",", $extras );
-					if ( count( $currentExtras ) > 0 )
+					if ( count( $currentExtras ) > 0 && is_array($extrasquantities))
 						{
 						foreach ( $extrasquantities as $id => $quan )
 							{
@@ -345,10 +344,9 @@ class j03020insertbooking
 					if ( $resource == "1" ) 
 						$depositPaid = 1;
 
+					$discount_details = "";
 					if ( count( $discount ) > 0 )
 						{
-						$discount_details = "";
-
 						foreach ( $discount as $d )
 							{
 							$discount_details .= serialize( $d );
@@ -461,11 +459,11 @@ class j03020insertbooking
 						$this->insertSuccessful = false;
 						}
 
+					$rates_uids     = array ();
 					if ( get_showtime( 'include_room_booking_functionality' ) )
 						{
 						if ( (int)$mrConfig['requireApproval'] == 0 || ( (int)$mrConfig['requireApproval'] == 1 && $thisJRUser->userIsManager ) || $secret_key_payment )
 							{
-							$rates_uids     = array ();
 							$dateRangeArray = explode( ",", $dateRangeString );
 							for ( $i = 0, $n = count( $dateRangeArray ); $i < $n; $i++ )
 								{
@@ -540,7 +538,7 @@ class j03020insertbooking
 				$componentArgs[ 'extrasValue' ]         = $extrasValue;
 				$componentArgs[ 'room_total' ]          = $room_total;
 				$componentArgs[ 'rates_uids' ]          = $rates_uids;
-				$componentArgs[ 'requestedRoom' ]       = $roomsRequested;
+				$componentArgs[ 'requestedRoom' ]       = $requestedRoom;
 				$componentArgs[ 'contract_uid' ]        = $contract_uid;
 				$componentArgs[ 'specialReqs' ]         = $specialReqs;
 				$componentArgs[ 'extras' ]              = $extras;
@@ -572,7 +570,7 @@ class j03020insertbooking
 				$this->insertBookingEventValues[ 'departureDate' ]       = $departureDate;
 				$this->insertBookingEventValues[ 'contract_total' ]      = $contract_total;
 				$this->insertBookingEventValues[ 'rates_uids' ]          = $rates_uids;
-				$this->insertBookingEventValues[ 'requestedRoom' ]       = $roomsRequested;
+				$this->insertBookingEventValues[ 'requestedRoom' ]       = $requestedRoom;
 				$this->insertBookingEventValues[ 'contract_uid' ]        = $contract_uid;
 
 				$this->insertBookingEventValues[ 'insertSuccessful' ] = $this->insertSuccessful;

@@ -30,8 +30,8 @@ function jr_get_defined( $constant, $default = '' )
 		$jomres_language_definitions->set_language( get_showtime( 'lang' ) );
 		$jomres_language_definitions->set_property_type( get_showtime( 'property_type' ) );
 		$result = $jomres_language_definitions->get_defined( $constant );
-		
-		if ( !$result && $default != '' ) 
+
+		if ( $result === false && $default != '' ) 
 			$result = $default;
 
 		return $result;
