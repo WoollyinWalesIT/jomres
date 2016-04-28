@@ -5307,8 +5307,10 @@ function jomresAccessControlSanityCheck()
 				{
 				$pattern = substr( $key, 0, 5 );
 
-				if ( $jomres_access_control->limit_to_menus_only && in_array( $pattern, $menu_patterns ) && !in_array( $pattern, $uncontrollable_patterns ) ) $controllable[ $key ] = $val;
-				elseif ( !in_array( $pattern, $uncontrollable_patterns ) && !$jomres_access_control->limit_to_menus_only ) $controllable[ $key ] = $val;
+				if ( $jomres_access_control->limit_to_menus_only && in_array( $pattern, $menu_patterns ) && !in_array( $pattern, $uncontrollable_patterns ) ) 
+					$controllable[ $key ] = $val;
+				elseif ( !in_array( $pattern, $uncontrollable_patterns ) && !$jomres_access_control->limit_to_menus_only ) 
+					$controllable[ $key ] = $val;
 				}
 			}
 		// Next we'll find how many minicomponents actually have settings in the access control table
@@ -5338,10 +5340,13 @@ function jomresAccessControlSanityCheck()
 
 		// Now that we've tidied up possible stray minicomps, we can compare the count, and if it doesn't marry up, we'll trigger a warning.
 		$jomres_access_control->recount_controlled_scripts();
-		if ( count( $jomres_access_control->controlled ) == count( $controllable ) ) $pass = true;
+		if ( count( $jomres_access_control->controlled ) == count( $controllable ) ) 
+			$pass = true;
 		}
-	else $pass = true;
+	else 
+		$pass = true;
 
 	// April 15 2016 This feature isn't currently used however we'll keep it available in case it becomes useful again.
-	// return array ( "result" => $pass, "message" => jr_gettext( _JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING, '_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING', false ) . " Controlled " . count( $jomres_access_control->controlled ) . " Controllable " . count( $controllable ) );
+	//return array ( "result" => $pass, "message" => jr_gettext( '_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING', '_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING', false ) . " Controlled " . count( $jomres_access_control->controlled ) . " Controllable " . count( $controllable ) );
+	return array ( "result" => $pass, "message" => '' );
 	}

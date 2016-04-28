@@ -48,9 +48,10 @@ class j10004generate_control_panel
 				if ( $r[ 'disabled' ] )
 					{
 					$r[ 'link' ] = '#';
-					if ( !using_bootstrap() ) $r[ 'disabled_class' ] = 'ui-state-error ui-state-disabled';
+					if ( !using_bootstrap() ) 
+						$r[ 'disabled_class' ] = 'ui-state-error ui-state-disabled';
 					else
-					$r[ 'disabled_class' ] = 'disabled';
+						$r[ 'disabled_class' ] = 'disabled';
 					}
 
 				if ( get_showtime( "task" ) != "addplugin" )
@@ -97,6 +98,12 @@ class j10004generate_control_panel
 						$r[ 'ACTIVE' ] = "";
 						}
 					}
+				elseif (get_showtime('task') == '')
+					{
+					$r[ 'ACTIVE' ] = "active";
+					$output[ 'COLLAPSE_IN' ] = "in";
+					}
+				
 				$rows[ ] = $r;
 				}
 
