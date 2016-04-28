@@ -47,8 +47,10 @@ class j07020showplugins
 		
 		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "remote_plugins_data.php") )
 			{
-			
-			$query_string = "http://plugins.jomres4.net/index.php?r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS;
+			include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'jomres_config.php' );
+			$current_version = $mrConfig[ 'version' ];
+		
+			$query_string = "http://plugins.jomres4.net/index.php?r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS. "&jomresver=" . $current_version;
 			$curl_handle = curl_init();
 			curl_setopt( $curl_handle, CURLOPT_URL, $query_string );
 			curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
@@ -123,15 +125,13 @@ class j07020showplugins
 
 				if ( $remote_version > $local_version ) 
 					$count++;
-				//$local_version=$installed_plugins[$plugin_name]['version'];
+
 				}
 			if ( $count > 0 ) 
 				{
 				$this->retVals = array ( "red" => $count );
 				}
 			}
-
-
 		}
 
 
