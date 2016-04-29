@@ -23,6 +23,7 @@ class j06000show_property_extras
 			$this->template_touchable = true;
 			return;
 			}
+		$this->retVals = null;
 
 		if (isset($componentArgs[ 'property_uid' ]))
 			$property_uid = (int) $componentArgs[ 'property_uid' ];
@@ -37,8 +38,6 @@ class j06000show_property_extras
 			$output_now = $componentArgs['output_now'];
 		else
 			$output_now = true;
-	
-		$this->retVals = null;
 
 		$mrConfig = getPropertySpecificSettings( $property_uid );
 

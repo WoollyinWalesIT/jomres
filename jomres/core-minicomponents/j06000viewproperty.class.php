@@ -109,7 +109,6 @@ class j06000viewproperty
 		$mappinglink   = array ();
 		$bookinglink   = array ();
 		$roomslistlink = array ();
-		$output_now    = "&op=1";
 		
 		//tariffs link
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
@@ -117,7 +116,7 @@ class j06000viewproperty
 			if ( $mrConfig[ 'showTariffsInline' ] == "1" )
 				{
 				$link            = array ();
-				$link[ 'LINK' ]  = jomresURL( JOMRES_SITEPAGE_URL . "&task=showTariffs&property_uid=$property_uid" . $output_now );
+				$link[ 'LINK' ]  = jomresURL( JOMRES_SITEPAGE_URL . "&task=show_property_tariffs&property_uid=$property_uid" );
 				$link [ 'TEXT' ] = jr_gettext( '_JOMRES_FRONT_TARIFFS', '_JOMRES_FRONT_TARIFFS', false, false );
 				$tariffslink[ ]  = $link;
 				}

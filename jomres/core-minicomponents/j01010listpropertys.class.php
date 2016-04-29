@@ -886,54 +886,57 @@ class j01010listpropertys
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 
 		$selections = '';
-		foreach ( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections'] as $key=>$val)
+		if (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']))
 			{
-			switch ($key )
+			foreach ( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections'] as $key=>$val)
 				{
-				case 'stars':
-					foreach ($val as $v)
-						$selections .= "&stars[]=".$v;
-					break;
-				case 'pricerange_value_from':
-					$selections .= "&pricerange_value_from=".$val;
-					break;
-				case 'pricerange_value_to':
-					$selections .= "&pricerange_value_to=".$val;
-					break;
-				case 'feature_uids':
-					foreach ($val as $v)
-						$selections .= "&feature_uids[]=".$v;
-					break;
-				case 'countries':
-					foreach ($val as $v)
-						$selections .= "&countries[]=".$v;
-					break;
-				case 'regions':
-					foreach ($val as $v)
-						$selections .= "&regions[]=".$v;
-					break;
-				case 'towns':
-					foreach ($val as $v)
-						$selections .= "&towns[]=".$v;
-					break;
-				case 'room_type_uids':
-					foreach ($val as $v)
-						$selections .= "&room_type_uids[]=".$v;
-					break;
-				case 'property_type_uids':
-					foreach ($val as $v)
-						$selections .= "&property_type_uids[]=".$v;
-					break;
-				case 'guestnumbers':
-					foreach ($val as $v)
-						$selections .= "&guestnumbers[]=".$v;
-					break;
-				case 'arrivalDate':
-					$selections .= "&arrivalDate=".$val;
-					break;
-				case 'departureDate':
-					$selections .= "&departureDate=".$val;
-					break;
+				switch ($key )
+					{
+					case 'stars':
+						foreach ($val as $v)
+							$selections .= "&stars[]=".$v;
+						break;
+					case 'pricerange_value_from':
+						$selections .= "&pricerange_value_from=".$val;
+						break;
+					case 'pricerange_value_to':
+						$selections .= "&pricerange_value_to=".$val;
+						break;
+					case 'feature_uids':
+						foreach ($val as $v)
+							$selections .= "&feature_uids[]=".$v;
+						break;
+					case 'countries':
+						foreach ($val as $v)
+							$selections .= "&countries[]=".$v;
+						break;
+					case 'regions':
+						foreach ($val as $v)
+							$selections .= "&regions[]=".$v;
+						break;
+					case 'towns':
+						foreach ($val as $v)
+							$selections .= "&towns[]=".$v;
+						break;
+					case 'room_type_uids':
+						foreach ($val as $v)
+							$selections .= "&room_type_uids[]=".$v;
+						break;
+					case 'property_type_uids':
+						foreach ($val as $v)
+							$selections .= "&property_type_uids[]=".$v;
+						break;
+					case 'guestnumbers':
+						foreach ($val as $v)
+							$selections .= "&guestnumbers[]=".$v;
+						break;
+					case 'arrivalDate':
+						$selections .= "&arrivalDate=".$val;
+						break;
+					case 'departureDate':
+						$selections .= "&departureDate=".$val;
+						break;
+					}
 				}
 			}
 		

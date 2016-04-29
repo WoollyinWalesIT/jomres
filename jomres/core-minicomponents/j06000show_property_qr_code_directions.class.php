@@ -23,7 +23,8 @@ class j06000show_property_qr_code_directions
 			$this->template_touchable = false;
 			return;
 			}
-
+		$this->retVals = '';
+		
 		if (isset($componentArgs[ 'property_uid' ]))
 			$property_uid = (int) $componentArgs[ 'property_uid' ];
 		elseif ( isset ( $_REQUEST['property_uid'] ))
