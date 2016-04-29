@@ -1373,7 +1373,7 @@ function get_plugin_settings( $plugin, $prop_id = 0 )
 	// This function is exclusively for gateway plugins
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	$gw_configuration_script = '00509'.$plugin;
-	if (count($MiniComponents->registeredClasses[$gw_configuration_script]) == 0) // Let's check to see that the gateway hasn't been uninstalled. It's possible that the settings exist, but the gateway code itself doesn't.
+	if (isset($MiniComponents->registeredClasses[$gw_configuration_script]) && count($MiniComponents->registeredClasses[$gw_configuration_script]) == 0) // Let's check to see that the gateway hasn't been uninstalled. It's possible that the settings exist, but the gateway code itself doesn't.
 		{
 		return false; // Can't "throw" an error here, any failure needs to be handled by the calling function/method
 		}

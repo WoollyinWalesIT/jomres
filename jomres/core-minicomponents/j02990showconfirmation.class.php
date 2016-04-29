@@ -608,6 +608,7 @@ class j02990showconfirmation
 		else
 			$booking_parts[ 'BOOKINGFORMURL' ]        = jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] );
 
+		$cartoutput = array ();
 		if ( isset( $MiniComponents->registeredClasses[ '06000show_cart' ] ) )
 			{
 
@@ -615,7 +616,6 @@ class j02990showconfirmation
 				{
 				$booking_parts[ '_JOMRES_CART_OR' ]      = jr_gettext( '_JOMRES_CART_OR', '_JOMRES_CART_OR' );
 				$booking_parts[ '_JOMRES_SAVEFORLATER' ] = '<input class="fg-button ui-state-default ui-corner-all" type="submit" id="send" name="send" value="' . jr_gettext( '_JOMRES_CART_SAVEFORLATER', '_JOMRES_CART_SAVEFORLATER', false, false ) . '" class="button" onclick="return confirmation_validate(true);" />';
-				$cartoutput                              = array ();
 				$cartoutput[ ]                           = array ( "_JOMRES_SAVEFORLATER" => jr_gettext( '_JOMRES_CART_SAVEFORLATER', '_JOMRES_CART_SAVEFORLATER', false, false ), "_JOMRES_CART_OR" => $booking_parts[ '_JOMRES_CART_OR' ] );
 
 				}

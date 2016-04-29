@@ -64,10 +64,10 @@ class j01009a_filterproperties
 					if ( is_numeric( $r->property_region ) )
 						{
 						$jomres_regions     = jomres_singleton_abstract::getInstance( 'jomres_regions' );
-						$r->property_region = jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $r->property_region, $jomres_regions->regions[ $r->property_region ][ 'regionname' ], $editable, false );
+						$r->property_region = jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $r->property_region, $jomres_regions->regions[ $r->property_region ][ 'regionname' ], false );
 						}
 					else
-					$r->property_region = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_REGION', $r->property_region, $editable, false );
+					$r->property_region = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_REGION', $r->property_region, false );
 					}
 
 				function cmp( $a, $b )

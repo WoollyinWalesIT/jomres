@@ -53,13 +53,17 @@ class j99997generate_mainmenu
 			foreach ( $buts as $key => $val )
 				{
 				$old_task = '';
+				$id = '';
 				$elements = str_replace( "&amp;", "&", $val[ 'link' ] );
 				$bits     = explode( "&", $elements );
 				foreach ( $bits as $bobs )
 					{
 					$bob = explode( "=", $bobs );
-					$old_task = '&attempted_task=' . $bob[ 1 ];
-					$id = $bob[ 1 ];
+					if (isset($bob[ 1 ]))
+						{
+						$old_task = '&attempted_task=' . $bob[ 1 ];
+						$id = $bob[ 1 ];
+						}
 					}
 
 				$r               = $val;

@@ -66,14 +66,19 @@ if (!class_exists('JomresRouter'))
 				$component = JComponentHelper::getComponent( 'com_jomres' );
 				$items     = $menu->getItems( 'component_id', $component->id );
 				}
-		
+			
 			if ( isset( $route_query[ 'property_uid' ] ) || isset( $route_query[ 'selectedProperty' ] ) )
 				{
 				if ( isset( $route_query[ 'selectedProperty' ] ) ) 
 					$pid = $route_query[ 'selectedProperty' ];
-				else
+				elseif (isset($route_query[ 'property_uid' ]))
 					$pid = $route_query[ 'property_uid' ];
+				}
+			else
+				$pid = getDefaultProperty();
 		
+			if ($pid > 0)
+				{
 				$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 				$basic_property_details->get_property_name( $pid );
 				if ( isset( $basic_property_details->property_names[ $pid ] ) ) 
@@ -84,53 +89,56 @@ if (!class_exists('JomresRouter'))
 					$property_name = doSelectSql( $sql, 1 );
 					}
 				}
+			else
+				$property_name = '';
 			
-			if (isset($route_query[ 'task' ]))
+			if (isset($route_query[ 'task' ]) && $route_query[ 'task' ] != '')
 				{
 				switch ( $route_query[ 'task' ] )
 					{
 					case 'viewproperty':
-						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$route_query[ 'property_uid' ];
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$pid;
 						$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext('COMMON_VIEW', 'COMMON_VIEW', false));
 						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
 						if ( isset( $route_query[ 'property_uid' ] ) ) unset( $route_query[ 'property_uid' ] );
 						break;
 					case 'dobooking':
-						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$route_query[ 'selectedProperty' ];
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$pid;
 						$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', false));
 						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
 						if ( isset( $route_query[ 'selectedProperty' ] ) ) unset( $route_query[ 'selectedProperty' ] );
 						break;
 					case 'show_property_tariffs':
-						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$route_query[ 'property_uid' ];
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$pid;
 						$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE', '_JOMRES_COM_MR_LISTTARIFF_TITLE', false));
 						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
 						if ( isset( $route_query[ 'property_uid' ] ) ) unset( $route_query[ 'property_uid' ] );
 						break;
 					case 'show_property_slideshow':
-						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$route_query[ 'property_uid' ];
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$pid;
 						$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_FRONT_SLIDESHOW', '_JOMRES_FRONT_SLIDESHOW', false));
 						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
 						if ( isset( $route_query[ 'property_uid' ] ) ) unset( $route_query[ 'property_uid' ] );
 						break;
 					case 'show_property_rooms':
-						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$route_query[ 'property_uid' ];
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$pid;
 						$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false));
 						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
 						if ( isset( $route_query[ 'property_uid' ] ) ) unset( $route_query[ 'property_uid' ] );
 						break;
 					case 'contactowner':
-						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$route_query[ 'selectedProperty' ];
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$pid;
 						$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', false));
 						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
 						if ( isset( $route_query[ 'selectedProperty' ] ) ) unset( $route_query[ 'selectedProperty' ] );
 						break;
 					}
 				}
+			
 			if ( isset( $route_query[ 'calledByModule' ] ) )
 				{
 				$segments[0] = '';
-				$segments[ ] = $jrConfig[ 'sef_task_alias_search' ];
+				$segments[1] = $jrConfig[ 'sef_task_alias_search' ];
 				if ( isset( $route_query[ 'town' ] ) )
 					{
 					$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false ) );
@@ -184,13 +192,16 @@ if (!class_exists('JomresRouter'))
 					$vars[ 'selectedProperty' ] = substr($segments[ 0 ], -1, strrpos($segments[ 0 ], '-'));
 					break;
 				case $jrConfig[ 'sef_task_alias_search' ]:
-					$searchParam              = $segments[ 1 ];
+					$searchParam              = $segments[ 2 ];
 					$vars[ 'send' ]           = "Search";
 					$vars[ 'calledByModule' ] = 'mod_jomsearch_m0';
-					if ( $searchParam == jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false ) ) ) $searchParam = 'town';
-					if ( $searchParam == jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false ) ) ) $searchParam = 'country';
-					if ( $searchParam == jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false ) ) ) $searchParam = 'region';
-					$vars[ $searchParam ] = jomres_cmsspecific_stringURLSafe( $segments[ 2 ] );
+					if ( $searchParam == jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false ) ) ) 
+						$searchParam = 'town';
+					if ( $searchParam == jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false ) ) ) 
+						$searchParam = 'country';
+					if ( $searchParam == jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false ) ) ) 
+						$searchParam = 'region';
+					$vars[ $searchParam ] = $segments[ 3 ];
 					break;
 				case jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE', '_JOMRES_COM_MR_LISTTARIFF_TITLE', false)):
 					$vars[ 'task' ]         = "show_property_tariffs";
