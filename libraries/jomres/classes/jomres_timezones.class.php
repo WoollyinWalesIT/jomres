@@ -20,6 +20,7 @@ class jomres_timezones
 	function __construct()
 		{
 		$this->check_timezone_change();
+		$this->default_timezone = 'UTC';
 		if ( _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35")
 			{
 			$CONFIG                 = new JConfig();

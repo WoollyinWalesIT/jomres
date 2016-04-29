@@ -34,6 +34,7 @@ class j01025showtariffs
 		$current_property_details->gather_data($property_uid);
 
 		$output_now = (bool) jomresGetParam( $_REQUEST, 'op', false );
+		$this->retVals = '';
 
 		$ccodes                      = currencyCodesArray();
 		$query                       = "SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,

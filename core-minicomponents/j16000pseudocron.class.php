@@ -109,6 +109,12 @@ class j16000pseudocron
 		{
 		$defaultProperty = "0";
 		$cronConfigOptions = array ();
+		
+		$cronConfigOptions[ 'displaylogging' ] = '0';
+		$cronConfigOptions[ 'logging' ] = '0';
+		$cronConfigOptions[ 'verbose' ] = '0';
+		$cronConfigOptions[ 'method' ] = 'Minicomponent';
+		
 		$query             = "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '" . (int) $defaultProperty . "' AND plugin = '$plugin'";
 		$settingList       = doSelectSql( $query );
 

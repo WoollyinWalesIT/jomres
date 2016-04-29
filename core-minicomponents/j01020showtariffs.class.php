@@ -26,7 +26,10 @@ class j01020showtariffs
 			return;
 			}
 		$mrConfig = getPropertySpecificSettings();
-		if ( $mrConfig[ 'verbosetariffinfo' ] == "0" ) $this->retVals = $MiniComponents->triggerEvent( '01025' ); //
+		$this->retVals = '';
+		
+		if ( $mrConfig[ 'verbosetariffinfo' ] == "0" ) 
+			$this->retVals = $MiniComponents->triggerEvent( '01025' ); //
 		else
 			{
 			//$showheader=$componentArgs['showheader'];

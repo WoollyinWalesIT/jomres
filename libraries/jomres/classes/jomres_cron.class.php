@@ -95,11 +95,20 @@ class jomres_cron
 
 	function getcronconfig()
 		{
+		$this->config[ 'displaylogging' ] = '0';
+		$this->config[ 'logging' ] = '0';
+		$this->config[ 'verbose' ] = '0';
+		$this->config[ 'method' ] = 'Minicomponent';
+		
 		$query       = "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = 0 AND plugin = 'jomcompcronjobs'";
 		$settingList = doSelectSql( $query );
-		foreach ( $settingList as $s )
+		
+		if (count($settingList) > 0)
 			{
-			$this->config[ $s->setting ] = $s->value;
+			foreach ( $settingList as $s )
+				{
+				$this->config[ $s->setting ] = $s->value;
+				}
 			}
 		}
 

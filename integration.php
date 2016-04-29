@@ -203,11 +203,13 @@ elseif ($_REQUEST['modal_wrap'] == "1")
 	echo simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, 'modal_wrap_start.html' , urldecode(jomresGetParam( $_REQUEST, 'modal_title', "" )) );
 	}
 
+//TODO may not be needed
 if ( !isset( $_REQUEST[ 'no_html' ] ) ) 
 	{
 	$_REQUEST[ 'no_html' ] = 0;
 	}
 
+//TODO may not be needed
 if (!isset($_REQUEST['task']))
 	{
 	$_REQUEST['task']='';

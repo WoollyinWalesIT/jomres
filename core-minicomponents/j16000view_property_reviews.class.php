@@ -39,10 +39,19 @@ class j16000view_property_reviews
 		jr_import( 'jomres_reviews' );
 		$Reviews          = new jomres_reviews();
 		$all_reviews      = $Reviews->get_all_reviews_index_by_property_uid();
-		$property_reviews = $all_reviews[ $property_uid ];
-		$all_reports      = $Reviews->get_all_reports_index_by_rating_id();
-
-		$all_users = jomres_cmsspecific_getCMSUsers();
+		
+		if (is_array($all_reviews) && count($all_reviews) > 0)
+			{
+			$property_reviews = $all_reviews[ $property_uid ];
+			$all_reports      = $Reviews->get_all_reports_index_by_rating_id();
+			$all_users = jomres_cmsspecific_getCMSUsers();
+			}
+		else
+			{
+			$property_reviews = array();
+			$all_reports      = array();
+			$all_users 		  = array();
+			}
 
 		$unpublish_icon = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/Tick.png";
 		$publish_icon   = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/Cancel.png";
