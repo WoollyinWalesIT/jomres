@@ -287,9 +287,9 @@ class j04200editproperty
 		$multi=array();
 		if (this_cms_is_joomla())
 			{
-			if(file_exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_multisites'.DS.'helpers'.DS.'utils.php'))
+			if(file_exists(JPATH_ADMINISTRATOR.JRDS.'components'.JRDS.'com_multisites'.JRDS.'helpers'.JRDS.'utils.php'))
 				{
-				include_once( JPATH_ADMINISTRATOR.DS.'components'.DS.'com_multisites'.DS.'helpers'.DS.'utils.php');
+				include_once( JPATH_ADMINISTRATOR.JRDS.'components'.JRDS.'com_multisites'.JRDS.'helpers'.JRDS.'utils.php');
 				if ( class_exists( 'MultisitesHelperUtils') && method_exists( 'MultisitesHelperUtils', 'getComboSiteIDs')) 
 					{
 					$comboSiteIDs = MultisitesHelperUtils::getComboSiteIDs( $property_site_id, 'property_site_id', jr_gettext( '_JOMRES_MULTISITES_SELECT_A_SITE', '_JOMRES_MULTISITES_SELECT_A_SITE', false, false ));

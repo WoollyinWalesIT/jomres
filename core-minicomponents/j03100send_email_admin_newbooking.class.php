@@ -45,6 +45,9 @@ class j03100send_email_admin_newbooking
 			return;
 
 		$site_paypal_settings = get_plugin_settings("paypal",0);
+		
+		if (!isset($site_paypal_settings[ 'override' ]) || !isset($site_paypal_settings[ 'paypalemail' ]))
+			return;
 
 		if ( $site_paypal_settings[ 'override' ] != "1" ) // The property paypal settings aren't overridden, so we'll not bother sending this email
 			return;
