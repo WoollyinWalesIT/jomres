@@ -211,7 +211,9 @@ $jrConfig = ' . var_export($jrConfig, true) . ';
 				if ( !$tablesFound )
 					{
 					// The site settings table doesn't exist yet, we'll dump out for now.
-					return false;
+					//return false;
+					//we`re installing Jomres for the first time
+					$this->config = $tempConfigArr;
 					}
 				}
 	

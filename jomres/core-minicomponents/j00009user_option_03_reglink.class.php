@@ -27,13 +27,13 @@ class j00009user_option_03_reglink
 			}
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 
-		if ( !$thisJRUser->userIsRegistered ) $this->cpanelButton = jomres_mainmenu_option( jomres_cmsspecific_getregistrationlink(), '', jr_gettext( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_REGISTRATION', "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_REGISTRATION", false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT', false, false ) );
+		if ( !$thisJRUser->userIsRegistered ) $this->cpanelButton = jomres_mainmenu_option( jomres_cmsspecific_getregistrationlink(), '', jr_gettext( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_REGISTRATION', "Register", false, false ), null, jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT", '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT', false, false ) );
 		}
 
 	function touch_template_language()
 		{
 		$output    = array ();
-		$output[ ] = jr_gettext( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_REGISTRATION', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_REGISTRATION' );
+		$output[ ] = jr_gettext( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_REGISTRATION', 'Register' );
 
 		foreach ( $output as $o )
 			{

@@ -34,6 +34,8 @@ class j10501a_misc
 		$bootstrap_ver_dropdown 	= $componentArgs[ 'bootstrap_ver_dropdown' ];
 		$jqueryUIthemesDropdownList = $componentArgs[ 'jqueryUIthemesDropdownList' ];
 		$language_context_dropdown 	= $componentArgs[ 'language_context_dropdown' ];
+		$support_key_is_trial_license = '';
+		$renewal_link = '';
 		
 		if ( trim($jrConfig['licensekey']) != "")
 			{
@@ -51,7 +53,6 @@ class j10501a_misc
 					{
 					$support_key_message = '<p class="alert alert-success">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS','_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS',false,false).'</p>';
 					}
-				$renewal_link = '';
 				}
 			else
 				{
@@ -64,8 +65,6 @@ class j10501a_misc
 
 			if ( $jomres_check_support_key->is_trial_license=="1")
 				$support_key_is_trial_license = '<span class="badge badge-warning">Trial license</span> ';
-			else
-				$support_key_is_trial_license = '';
 			}
 		else
 			{

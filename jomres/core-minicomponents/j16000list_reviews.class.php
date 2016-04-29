@@ -37,7 +37,7 @@ class j16000list_reviews
 		$output[ '_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED' ] = jr_gettext( '_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED', '_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED',false );
 		$output[ '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL' ]       = jr_gettext( '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL',false );
 		$output[ '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE' ]     = jr_gettext( '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE', '_JOMRES_REVIEWS_REPORT_REVIEW_TITLE',false );
-		$output[ '_JOMRES_REVIEWS' ]                         = jr_gettext( '_JOMRES_REVIEWS', _JOMRES_REVIEWS,false );
+		$output[ '_JOMRES_REVIEWS' ]                         = jr_gettext( '_JOMRES_REVIEWS', '_JOMRES_REVIEWS',false );
 		$output[ 'HPROPERTYNAME' ]                         	 = jr_gettext( '_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME', '_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME',false );
 
 		$editIcon = '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" alt="editicon" />';

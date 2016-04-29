@@ -106,8 +106,13 @@ class basic_property_details
 		//check if we`re getting property names for all properties in the system
 		sort($property_uids);
 		$all_properties_in_system=get_showtime('all_properties_in_system');
-		sort($all_properties_in_system);
-		$diff=array_diff($all_properties_in_system, $property_uids);
+		if (is_array($all_properties_in_system))
+			{
+			sort($all_properties_in_system);
+			$diff=array_diff($all_properties_in_system, $property_uids);
+			}
+		else
+			$diff=array();
 		
 		//check if property names are cached
 		$cached_property_names=$c->isCached('all_property_names_in_system');
@@ -419,7 +424,10 @@ class basic_property_details
 					$this->multi_query_result[ $data->propertys_uid ][ 'property_region_id' ] = $data->property_region;
 					}
 				else
+					{
 					$this->multi_query_result[ $data->propertys_uid ][ 'property_region' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_REGION', $data->property_region, $editable, false );
+					$this->multi_query_result[ $data->propertys_uid ][ 'property_region_id' ] = 0;
+					}
 
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_country' ]      = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_COUNTRY', getSimpleCountry( $data->property_country ), $editable, false );
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_country_code' ] = $data->property_country;

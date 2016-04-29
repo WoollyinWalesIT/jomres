@@ -137,13 +137,11 @@ try
 	set_showtime( 'jomressession', $jomressession );
 
 	//set some showtimes we`ll need later
+	$plugin  = jomresGetParam( $_REQUEST, 'plugin', "" );
 	$popup   = intval( jomresGetParam( $_REQUEST, 'popup', 0 ) );
 	$no_html = (int) jomresGetParam( $_REQUEST, 'no_html', 0 );
-	$plugin  = jomresGetParam( $_REQUEST, 'plugin', "" );
-	$task    = jomresGetParam( $_REQUEST, 'task', "" );
-	$Itemid  = intval( jomresGetParam( $_REQUEST, 'Itemid', 0 ) );
+	$task    = str_replace( "&#60;x&#62;", "", jomresGetParam( $_REQUEST, 'task', "" ));
 
-	$task = str_replace( "&#60;x&#62;", "", $task );
 	set_showtime( 'task', $task );
 	set_showtime( 'no_html', $no_html );
 	set_showtime( 'popup', $popup );
@@ -229,27 +227,7 @@ try
 	//get the current property uid if set
 	$property_uid = (int)detect_property_uid();
 
-	// Getting the property specific settings TODO: remove all and keep just $mrConfig = getPropertySpecificSettings( $property_uid ) , the detect_property_uid() function already does this to find the property_uid
-	/* if ( 
-		( isset( $property_uid ) && !empty( $property_uid ) ) || 
-		( isset( $selectedProperty ) && !empty( $selectedProperty ) ) || 
-		( isset( $defaultProperty ) && $defaultProperty != "%" ) 
-		)
-		{
-		if ( !empty( $property_uid ) )
-			{
-			$a = 0;
-			}
-		else if ( !empty( $selectedProperty ) )
-			{
-			$property_uid = (int) $selectedProperty;
-			}
-		else
-			{
-			$property_uid = (int) $defaultProperty;
-			} */
-		$mrConfig = getPropertySpecificSettings( $property_uid );
-		//}
+	$mrConfig = getPropertySpecificSettings( $property_uid );
 
 	if ( $property_uid > 0 )
 		{
@@ -500,7 +478,7 @@ try
 				if ( $thisJRUser->userIsRegistered || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02300' );
 				else
-					echo jr_gettext( '_JOMRES_REGISTRATION_NOTALLOWED', _JOMRES_REGISTRATION_NOTALLOWED, false );
+					echo jr_gettext( '_JOMRES_REGISTRATION_NOTALLOWED', '_JOMRES_REGISTRATION_NOTALLOWED', false );
 				break;
 			#########################################################################################
 			case 'registerProp_step3':
@@ -785,7 +763,7 @@ try
 					elseif ( $MiniComponents->eventSpecificlyExistsCheck( '06005', get_showtime( 'task' ) ) ) 
 						$MiniComponents->specificEvent( '06005', get_showtime( 'task' ) );
 					else 
-						no_task_set();
+						no_task_set($property_uid);
 					}
 				else
 					{
@@ -809,7 +787,7 @@ try
 					else if ( $MiniComponents->eventSpecificlyExistsCheck( '06005', get_showtime( 'task' ) ) && $thisJRUser->userIsRegistered ) // Registered only user tasks
 						$MiniComponents->specificEvent( '06005', get_showtime( 'task' ) ); // Custom task
 					else 
-						no_task_set();
+						no_task_set($property_uid);
 					}
 				break;
 			} //end switch
@@ -919,7 +897,7 @@ catch (Exception $e)
 
 // Script stops here
 
-function no_task_set()
+function no_task_set($property_uid = 0)
 	{
 	$thisJRUser     = jomres_singleton_abstract::getInstance( 'jr_user' );
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -928,7 +906,6 @@ function no_task_set()
 	
 	if ( ( isset( $_REQUEST[ 'calledByModule' ] ) || isset( $_REQUEST[ 'plistpage' ] ) ) && $thisJRUser->userIsManager )
 		{
-		$jomresPathway->addItem( "Search", "listProperties", "" );
 		jomresShowSearch();
 		}
 	else
@@ -941,12 +918,10 @@ function no_task_set()
 			}
 		elseif ( get_showtime( 'numberOfPropertiesInSystem' ) == 1 && $jrConfig[ 'is_single_property_installation' ] == "0" )
 			{
-			//$MiniComponents->triggerEvent('0013');  // Show dashboard
-			property_header( $property_uid );
 			set_showtime( 'task', "viewproperty" );
 			$componentArgs                   = array ();
 			$componentArgs[ 'property_uid' ] = $property_uid;
-			$MiniComponents->triggerEvent( '00016', $componentArgs );
+			$MiniComponents->specificEvent( '06000', 'viewproperty', $componentArgs );
 			}
 		elseif ( $jrConfig[ 'is_single_property_installation' ] == "1" )
 			{

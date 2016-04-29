@@ -204,15 +204,15 @@ class basic_room_details
 				if ($r->image != '')
 					{
 					$feature_image = JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmfeatures/'.stripslashes($r->image);
-					$this->all_room_features[ $r->room_features_uid ][ 'image' ] = $feature_image;
 					}
 				else
 					{
 					if (isset($jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['small']))
 						{
 						$feature_image = $jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['small'];
-						$this->all_room_features[ $r->room_features_uid ][ 'image' ] = $feature_image;
 						}
+					
+					$this->all_room_features[ $r->room_features_uid ][ 'image' ] = $feature_image;
 					}
 				
 				$feature_image = str_replace(get_showtime('live_site').'/','',$feature_image);

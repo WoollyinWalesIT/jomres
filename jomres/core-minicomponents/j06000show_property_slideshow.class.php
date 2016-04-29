@@ -36,6 +36,7 @@ class j06000show_property_slideshow
 			$output_now = true;
 
 		$output = array();
+		$this->retVals = '';
 		
 		$result = $MiniComponents->specificEvent( '01060', 'slideshow' , array( "property_uid" => $property_uid ) );
 		$output[ 'SLIDESHOW' ] = $result ['slideshow'];

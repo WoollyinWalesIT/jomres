@@ -633,7 +633,11 @@ function find_region_name( $region_id )
 	return $region_id;
 
 	$jomres_regions = jomres_singleton_abstract::getInstance( 'jomres_regions' );
-	return $jomres_regions->regions[$region_id]['regionname'];
+	
+	if (isset($jomres_regions->regions[$region_id]['regionname']))
+		return $jomres_regions->regions[$region_id]['regionname'];
+	else
+		return false;
 	}
 
 function find_region_id( $region )

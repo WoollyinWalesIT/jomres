@@ -307,6 +307,8 @@ class j01010listpropertys
 			$featured_properties = get_showtime( "featured_properties" );
 			if ( count( $featured_properties ) > 0 ) // only store the featured properties if their count is > 0. That's because featured properties are only set in non-ajax calls. If it's an ajax called, we don't want to set the featured properties to null
 				$tmpBookingHandler->tmpsearch_data[ 'featured_properties' ] = $featured_properties;
+			else
+				$tmpBookingHandler->tmpsearch_data[ 'featured_properties' ] = array();
 
 			if ($jrConfig['use_budget_feature'] == "1" && using_bootstrap() )
 				{

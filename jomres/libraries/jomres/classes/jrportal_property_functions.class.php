@@ -38,7 +38,7 @@ class jrportal_property_functions // Functions supplied as a class so that they 
 					$property_region = jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $r->property_region, $jomres_regions->regions[ $r->property_region ][ 'regionname' ], true, false );
 					}
 				else
-				$property_region = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_REGION' . $r->property_region, $r->property_region, $editable, false );
+				$property_region = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_REGION' . $r->property_region, $r->property_region, false );
 				$retResult[ $r->propertys_uid ][ 'id' ]                = $r->propertys_uid;
 				$retResult[ $r->propertys_uid ][ 'property_name' ]     = stripslashes( $r->property_name );
 				$retResult[ $r->propertys_uid ][ 'property_street' ]   = stripslashes( $r->property_street );

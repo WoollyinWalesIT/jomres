@@ -78,7 +78,7 @@ if ( !class_exists( 'booking' ) )
 
 			if ( $dateValue == "" ) 
 				$dateValue = date( "Y/m/d" );
-			$dateValue = JSCalmakeInputDates( $dateValue, $siteConfig );
+			$dateValue = JSCalmakeInputDates( $dateValue );
 
 			$dateFormat = $this->cfg_cal_input;
 			$dateFormat = strtolower( str_replace( "%", "", $dateFormat ) ); // For the new jquery calendar, we'll strip out the % symbols. This should mean that we don't need to force upgraders to reset their settings.
@@ -123,7 +123,7 @@ if ( !class_exists( 'booking' ) )
 				}
 
 			$amend_contract = $tmpBookingHandler->getBookingFieldVal( "amend_contract" );
-			$output .= '<script type="text/javascript">
+			$output = '<script type="text/javascript">
 			jomresJquery(function() {
 				jomresJquery("#' . $uniqueID . '").datepicker( {
 					dateFormat: "' . $dateFormat . '",';
