@@ -69,6 +69,9 @@ class j16000edit_gateway
 				case 'html':
 						$results[] = $this->get_snippet_html($key , $setting );
 					break;
+				case 'select':
+						$results[] = $this->get_snippet_select($key , $setting );
+					break;
 				default:
 				}
 			}
@@ -209,6 +212,37 @@ class j16000edit_gateway
 		$tmpl->readTemplatesFromInput( 'edit_gateway_snippet_bool.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		return $tmpl->getParsedTemplate();
+		}
+		
+	function get_snippet_select($key , $setting)
+		{
+		if ( isset($setting['options']) && is_array($setting['options']) )
+			{
+			$index =$key;
+
+			$options = array();
+			foreach ($setting['options'] as $selection => $text)
+				{
+				$options[] = jomresHTML::makeOption( $selection, $text );
+				}
+
+			$input = jomresHTML::selectList( $options, $index, 'class="inputbox" size="1"', 'value', 'text', $setting['default'] );
+			
+			$output = array();
+			$pageoutput = array();
+			
+			$output['INPUT_NAME'] = $index;
+			$output['SWITCH'] = $input;
+			$output['TITLE'] = $setting['setting_title'];
+			$output['DESCRIPTION'] = $setting['setting_description'];
+			
+			$pageoutput[ ] = $output;
+			$tmpl          = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+			$tmpl->readTemplatesFromInput( 'edit_gateway_snippet_select.html' );
+			$tmpl->addRows( 'pageoutput', $pageoutput );
+			return $tmpl->getParsedTemplate();
+			}
 		}
 		
 	// This must be included in every Event/Mini-component
