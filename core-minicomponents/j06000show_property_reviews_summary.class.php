@@ -23,6 +23,7 @@ class j06000show_property_reviews_summary
 			$this->template_touchable = false;
 			return;
 			}
+		$this->retVals = '';
 		
 		$siteConfig			= jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig			= $siteConfig->get();

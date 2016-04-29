@@ -21,6 +21,8 @@ class j06000show_property_rooms_slideshow
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch ){$this->template_touchable = true;return;}
 
+		$this->retVals = '';
+		
 		if (isset($componentArgs[ 'property_uid' ]))
 			$property_uid = (int) $componentArgs[ 'property_uid' ];
 		elseif ( isset ( $_REQUEST['property_uid'] ))

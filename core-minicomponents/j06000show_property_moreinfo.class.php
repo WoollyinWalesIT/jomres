@@ -26,6 +26,7 @@ class j06000show_property_moreinfo
 			return;
 			}
 		$output = array ();
+		$this->retVals = '';
 		
 		if (isset($componentArgs[ 'property_uid' ]))
 			$property_uid = (int) $componentArgs[ 'property_uid' ];

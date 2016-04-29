@@ -21,6 +21,8 @@ class j06000show_property_slideshow
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch ){$this->template_touchable = false;return;}
 
+		$this->retVals = '';
+		
 		if (isset($componentArgs[ 'property_uid' ]))
 			$property_uid = (int) $componentArgs[ 'property_uid' ];
 		elseif ( isset ( $_REQUEST['property_uid'] ))
@@ -36,7 +38,6 @@ class j06000show_property_slideshow
 			$output_now = true;
 
 		$output = array();
-		$this->retVals = '';
 		
 		$result = $MiniComponents->specificEvent( '01060', 'slideshow' , array( "property_uid" => $property_uid ) );
 		$output[ 'SLIDESHOW' ] = $result ['slideshow'];

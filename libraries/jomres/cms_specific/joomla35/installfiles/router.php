@@ -10,11 +10,11 @@
  **/
 
 defined( '_JEXEC' ) or die( '' );
-jimport( 'joomla.filter.output' );
 
-if ( !defined( '_JOMRES_INITCHECK' ) ) define( '_JOMRES_INITCHECK', 1 );
+if ( !defined( '_JOMRES_INITCHECK' ) ) 
+	define( '_JOMRES_INITCHECK', 1 );
+
 require_once (dirname(__FILE__).'/../../jomres_root.php');
-
 require_once( JPATH_BASE . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'integration.php' );
 
 if (!class_exists('JomresRouter'))
@@ -54,7 +54,9 @@ if (!class_exists('JomresRouter'))
 			static $items;
 			$route_query = $query; // We need to work within this function with the $route_query variable, not $query. It seems to be that the assignation &$query on some servers means that once the property name query further down has been run, then Joomla's $query becomes whatever the sql query was. Don't know why, and I'm not going to dig around to find out. We'll work internally on $route_query, then set $query to $route_query at the end, that seems to fix it.
 
-			$jrConfig = getSiteSettings();
+			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+			$jrConfig   = $siteConfig->get();
+
 			$segments = array ();
 		
 			$menu = JFactory::getApplication()->getMenu();
@@ -64,9 +66,6 @@ if (!class_exists('JomresRouter'))
 				$component = JComponentHelper::getComponent( 'com_jomres' );
 				$items     = $menu->getItems( 'component_id', $component->id );
 				}
-		
-			// if ($route_query['task'] == "dobooking" && isset($route_query['remus']) )
-			// return array();
 		
 			if ( isset( $route_query[ 'property_uid' ] ) || isset( $route_query[ 'selectedProperty' ] ) )
 				{
@@ -91,59 +90,46 @@ if (!class_exists('JomresRouter'))
 				switch ( $route_query[ 'task' ] )
 					{
 					case 'viewproperty':
-						$segments[ ] = $route_query[ 'task' ];
-						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) );
-						$segments[ ] = $route_query[ 'property_uid' ];
-						//$segments[ ] = $route_query[ 'lang' ];
-						//if ( isset( $route_query[ 'lang' ] ) ) unset( $route_query[ 'lang' ] );
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$route_query[ 'property_uid' ];
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext('COMMON_VIEW', 'COMMON_VIEW', false));
 						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
 						if ( isset( $route_query[ 'property_uid' ] ) ) unset( $route_query[ 'property_uid' ] );
 						break;
 					case 'dobooking':
-						$segments[ ] = "dobooking";
-						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) );
-						$segments[ ] = $route_query[ 'selectedProperty' ];
-						//$segments[ ] = $route_query[ 'lang' ];
-						//if ( isset( $route_query[ 'lang' ] ) ) unset( $route_query[ 'lang' ] );
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$route_query[ 'selectedProperty' ];
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', false));
 						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
 						if ( isset( $route_query[ 'selectedProperty' ] ) ) unset( $route_query[ 'selectedProperty' ] );
 						break;
-					case 'showTariffs':
-						$segments[ ] = $route_query[ 'task' ];
-						$segments[ ] = $route_query[ 'property_uid' ];
-						$segments[ ] = $route_query[ 'op' ];
-						//$segments[ ] = $route_query[ 'lang' ];
-						//if ( isset( $route_query[ 'lang' ] ) ) unset( $route_query[ 'lang' ] );
+					case 'show_property_tariffs':
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$route_query[ 'property_uid' ];
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE', '_JOMRES_COM_MR_LISTTARIFF_TITLE', false));
 						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
 						if ( isset( $route_query[ 'property_uid' ] ) ) unset( $route_query[ 'property_uid' ] );
-						if ( isset( $route_query[ 'op' ] ) ) unset( $route_query[ 'op' ] );
 						break;
-					case 'slideshow':
-						$segments[ ] = $route_query[ 'task' ];
-						$segments[ ] = $route_query[ 'property_uid' ];
-						$segments[ ] = $route_query[ 'op' ];
-						//$segments[ ] = $route_query[ 'lang' ];
-						//if ( isset( $route_query[ 'lang' ] ) ) unset( $route_query[ 'lang' ] );
+					case 'show_property_slideshow':
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$route_query[ 'property_uid' ];
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_FRONT_SLIDESHOW', '_JOMRES_FRONT_SLIDESHOW', false));
 						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
 						if ( isset( $route_query[ 'property_uid' ] ) ) unset( $route_query[ 'property_uid' ] );
-						if ( isset( $route_query[ 'op' ] ) ) unset( $route_query[ 'op' ] );
-						if ( isset( $route_query[ 'popup' ] ) ) unset( $route_query[ 'popup' ] );
 						break;
-					case 'showRoomsListing':
-						$segments[ ] = $route_query[ 'task' ];
-						$segments[ ] = $route_query[ 'property_uid' ];
-						$segments[ ] = $route_query[ 'op' ];
-						//$segments[ ] = $route_query[ 'lang' ];
-						//if ( isset( $route_query[ 'lang' ] ) ) unset( $route_query[ 'lang' ] );
+					case 'show_property_rooms':
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$route_query[ 'property_uid' ];
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false));
 						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
 						if ( isset( $route_query[ 'property_uid' ] ) ) unset( $route_query[ 'property_uid' ] );
-						if ( isset( $route_query[ 'op' ] ) ) unset( $route_query[ 'op' ] );
-						if ( isset( $route_query[ 'popup' ] ) ) unset( $route_query[ 'popup' ] );
+						break;
+					case 'contactowner':
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jomres_decode( $property_name ) ).'-'.$route_query[ 'selectedProperty' ];
+						$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', false));
+						if ( isset( $route_query[ 'task' ] ) ) unset( $route_query[ 'task' ] );
+						if ( isset( $route_query[ 'selectedProperty' ] ) ) unset( $route_query[ 'selectedProperty' ] );
 						break;
 					}
 				}
 			if ( isset( $route_query[ 'calledByModule' ] ) )
 				{
+				$segments[0] = '';
 				$segments[ ] = $jrConfig[ 'sef_task_alias_search' ];
 				if ( isset( $route_query[ 'town' ] ) )
 					{
@@ -177,24 +163,25 @@ if (!class_exists('JomresRouter'))
 		
 		function JomresParseRoute( $segments )
 			{
-			if ( !defined( '_JOMRES_INITCHECK' ) ) define( '_JOMRES_INITCHECK', 1 );
+			if ( !defined( '_JOMRES_INITCHECK' ) ) 
+				define( '_JOMRES_INITCHECK', 1 );
 			
 			require_once( JPATH_BASE . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'integration.php' );
 			
 			$vars = array ();
-			$jrConfig = getSiteSettings();
 			
-			switch ( $segments[ 0 ] )
-			{
-				case 'viewproperty':
-		
+			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+			$jrConfig   = $siteConfig->get();
+			
+			switch ( $segments[ 1 ] )
+				{
+				case jomres_cmsspecific_stringURLSafe( jr_gettext('COMMON_VIEW', 'COMMON_VIEW', false)):
 					$vars[ 'task' ]         = "viewproperty";
-					$vars[ 'property_uid' ] = $segments[ 2 ];
+					$vars[ 'property_uid' ] = substr($segments[ 0 ], -1, strrpos($segments[ 0 ], '-'));
 					break;
-				case "dobooking":
-					require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'classes' . JRDS . 'dobooking.class.php' );
+				case jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', false)):
 					$vars[ 'task' ] = "dobooking";
-					$vars[ 'selectedProperty' ] = $segments[ 2 ];
+					$vars[ 'selectedProperty' ] = substr($segments[ 0 ], -1, strrpos($segments[ 0 ], '-'));
 					break;
 				case $jrConfig[ 'sef_task_alias_search' ]:
 					$searchParam              = $segments[ 1 ];
@@ -205,23 +192,31 @@ if (!class_exists('JomresRouter'))
 					if ( $searchParam == jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false ) ) ) $searchParam = 'region';
 					$vars[ $searchParam ] = jomres_cmsspecific_stringURLSafe( $segments[ 2 ] );
 					break;
-				case 'showTariffs':
-					$vars[ 'task' ]         = "showTariffs";
-					$vars[ 'property_uid' ] = $segments[ 1 ];
-					$vars[ 'op' ]           = $segments[ 2 ];
+				case jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE', '_JOMRES_COM_MR_LISTTARIFF_TITLE', false)):
+					$vars[ 'task' ]         = "show_property_tariffs";
+					$vars[ 'property_uid' ] = substr($segments[ 0 ], -1, strrpos($segments[ 0 ], '-'));
 					break;
-				case 'slideshow':
-					$vars[ 'task' ]         = "slideshow";
-					$vars[ 'property_uid' ] = $segments[ 1 ];
-					$vars[ 'op' ]           = $segments[ 2 ];
+				case jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_FRONT_SLIDESHOW', '_JOMRES_FRONT_SLIDESHOW', false)):
+					$vars[ 'task' ]         = "show_property_slideshow";
+					$vars[ 'property_uid' ] = substr($segments[ 0 ], -1, strrpos($segments[ 0 ], '-'));
 					break;
-				case 'showRoomsListing':
-					$vars[ 'task' ]         = "showRoomsListing";
-					$vars[ 'property_uid' ] = $segments[ 1 ];
-					$vars[ 'op' ]           = $segments[ 2 ];
+				case jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false)):
+					$vars[ 'task' ]         = "show_property_rooms";
+					$vars[ 'property_uid' ] = substr($segments[ 0 ], -1, strrpos($segments[ 0 ], '-'));
 					break;
-			}
-		
+				case jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', false)):
+					$vars[ 'task' ]         	= "contactowner";
+					$vars[ 'selectedProperty' ] = substr($segments[ 0 ], -1, strrpos($segments[ 0 ], '-'));
+					break;
+				}
+
+			//set the request vars back to jinput for later use
+			$jinput = JFactory::getApplication()->input;
+			foreach ($vars as $k=>$v)
+				{
+				$jinput->set($k, $v);
+				}
+			
 			return $vars;
 			}
 		

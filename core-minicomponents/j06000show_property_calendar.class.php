@@ -21,6 +21,8 @@ class j06000show_property_calendar
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch ){$this->template_touchable = false;return;}
 
+		$this->retVals = '';
+		
 		$property_uid = (int) jomresGetParam( $_REQUEST, 'property_uid', '' );
 		if (isset($componentArgs ['property_uid']))
 			{
