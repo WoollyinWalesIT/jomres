@@ -70,7 +70,7 @@ class jomres_check_support_key
 		$request  = "request=get_license_numbers_for_user&username=" . $this->license_server_username . "&password=" . $this->license_server_password;
 		$response = query_shop( $request );
 
-		if ( $response->success )
+		if ( !is_null($response) && $response->success )
 			{
 			foreach ( $response->licenses as $license )
 				{
