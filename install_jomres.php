@@ -41,8 +41,8 @@ if ( $version < 5.3 )
 define( '_JOMRES_INITCHECK', 1 );
 define( '_JEXEC', 1 );
 
-@ini_set( "display_errors", 1 );
-@ini_set( 'error_reporting', E_ALL );
+@ini_set( "display_errors", 0 );
+@ini_set( 'error_reporting', E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED );
 
 if ( jomres_create_location_file() )
 	{
