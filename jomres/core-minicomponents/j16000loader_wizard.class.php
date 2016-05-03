@@ -71,6 +71,6 @@ class j16000loader_wizard
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return $this->retVals;
+		return null;
 		}
 	}

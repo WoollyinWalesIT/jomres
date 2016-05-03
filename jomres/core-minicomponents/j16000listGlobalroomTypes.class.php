@@ -73,7 +73,8 @@ class j16000listGlobalroomTypes
 					{
 					foreach ( $rtxrefList[$roomtype->room_classes_uid] as $ptype )
 						{
-						$selected_ptype_rows .= $all_ptypes[ $ptype ] . " ";
+						if (isset($all_ptypes[ $ptype ]))
+							$selected_ptype_rows .= $all_ptypes[ $ptype ] . " ";
 						}
 					}
 				}
