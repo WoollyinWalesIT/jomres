@@ -37,8 +37,11 @@ class j00005asamodule_report_tasks
 			}
 
 		$property_uid      = $property_uids[ 0 ];
-		$csv_property_uids = implode( ",", $property_uids );
-		$csv_three_ids     = implode( ",", array ( $property_uids[ 0 ], $property_uids[ 1 ], $property_uids[ 2 ] ) );
+		
+		if (count($property_uids) < 3)
+			$csv_three_ids     = implode( ",", array ( '1', '2', '3' ) );
+		else
+			$csv_three_ids     = implode( ",", array ( $property_uids[ 0 ], $property_uids[ 1 ], $property_uids[ 2 ] ) );
 
 		$showtime = jomres_singleton_abstract::getInstance( 'showtime' );
 

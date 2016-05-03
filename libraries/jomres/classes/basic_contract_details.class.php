@@ -303,6 +303,8 @@ class basic_contract_details
 					}
 				}
 			}
+		else
+			$this->contract[$contract_uid]['guesttype'] = array();
 		
 		//optional extras
 		$extras_rows       = array ();
@@ -338,6 +340,8 @@ class basic_contract_details
 					}
 				}
 			}
+		else
+			$this->contract[$contract_uid]['extradeets'] = array();
 
 		//booking notes
 		$query = "SELECT 
@@ -357,6 +361,8 @@ class basic_contract_details
 				$this->contract[$contract_uid]['notedeets'][$note->id]['note'] = $note->note;
 				}
 			}
+		else
+			$this->contract[$contract_uid]['notedeets'] = array();
 
 		return true;
 		}

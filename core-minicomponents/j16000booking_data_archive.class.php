@@ -49,8 +49,10 @@ class j16000booking_data_archive
 
 				foreach ( $data_arrays[ 'tmpbooking' ] as $key => $val )
 					{
-
-					$popup_content .= "<b>" . $key . "</b> : " . str_replace( '"', '', $val ) . " ::: ";
+					if (is_array($val))
+						$popup_content .= "<b>" . $key . "</b> : " . serialize($val) . " ::: ";
+					else
+						$popup_content .= "<b>" . $key . "</b> : " . str_replace( '"', '', $val ) . " ::: ";
 					}
 				foreach ( $data_arrays[ 'tmpguest' ] as $key => $val )
 					{
