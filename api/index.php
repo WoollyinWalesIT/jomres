@@ -29,6 +29,8 @@ require 'classes/validate_scope.class.php';
 require 'classes/response.class.php';
 require 'classes/call.class.php';
 require 'classes/call_self.class.php';
+require 'classes/all_api_features.class.php';
+
 
 
 try
@@ -49,6 +51,9 @@ try
 			)
 		);
 
+	$api_features	= new all_api_features();
+	$features_files	= $api_features->get();
+
 	Flight::register( 'validate_scope', 'validate_scope' , array( $scopes));
 	Flight::register( 'request_response', 'response' );
 
@@ -56,6 +61,7 @@ try
 	Flight::set("user_id" , $token['user_id']);
 	Flight::set("scopes" , explode("," , $token['scope']));
 	Flight::set("dbprefix" , $CONFIG->dbprefix);
+	Flight::set("features_files" , $features_files);
 
 	//$request = Flight::request();
 	//Flight::set("original_call" , $request->url);
