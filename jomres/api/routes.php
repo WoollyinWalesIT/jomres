@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 $request = Flight::request();
 $bang = explode("/" , $request->url);
-$filename = filter_var($$bang[1], FILTER_SANITIZE_STRING);
+$filename = filter_var($bang[1], FILTER_SANITIZE_STRING);
 
 $features_files = Flight::get("features_files");
 if (!in_array($filename.".php" , $features_files ))
