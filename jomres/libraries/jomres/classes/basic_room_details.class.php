@@ -103,7 +103,7 @@ class basic_room_details
 		}
 	
 	//Get room details
-	function get_room( $room_uid )
+	function get_room( $room_uid = 0)
 		{
 		if ($room_uid == 0 )
 			{
@@ -221,6 +221,34 @@ class basic_room_details
 			}
 		
 		return true;
+		}
+	
+	//Get property uid for room uid
+	function get_property_uid_for_room_uid( $room_uid = 0 )
+		{
+		if ($room_uid == 0 )
+			{
+			throw new Exception( "Error: Room uid not set.");
+			}
+		
+		if ( is_array($this->rooms) && array_key_exists( $room_uid, $this->rooms ) )
+			{
+			$this->property_uid = $this->rooms[$room_uid]['propertys_uid'];
+			return $this->property_uid;
+			}
+
+		$query = "SELECT 
+						`propertys_uid` 
+					FROM #__jomres_rooms 
+					WHERE `room_uid` = " . (int) $room_uid;
+		$result = doSelectSql( $query,1 );
+		
+		if ( (int)$result < 1 )
+			return false;
+		
+		$this->property_uid = (int)$result;
+
+		return $this->property_uid;
 		}
 	
 	}

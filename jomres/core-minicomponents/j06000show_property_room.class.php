@@ -33,9 +33,29 @@ class j06000show_property_room
 			return;
 
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
-		
-		//get all room details
 		$basic_room_details = jomres_singleton_abstract::getInstance( 'basic_room_details' );
+		
+		//get the property uid for this room uid so we can perform various checks first
+		$property_uid = $basic_room_details->get_property_uid_for_room_uid($room_uid);
+		
+		if ((int)$property_uid < 1)
+			return;
+		
+		//set the property uid showtime since we don`t have any yet. This will help with custom text for this property.
+		set_showtime('property_uid', $property_uid);
+		
+		$mrConfig = getPropertySpecificSettings($property_uid);
+		
+		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$current_property_details->gather_data( $property_uid );
+		
+		if (!user_can_view_this_property($property_uid))
+			return;
+		
+		//show property header
+		property_header( $property_uid );
+		
+		//get room details
 		$basic_room_details->get_room($room_uid);
 		
 		$output = array();
@@ -43,18 +63,6 @@ class j06000show_property_room
 
 		if ( count( $basic_room_details->room ) > 0 )
 			{
-			$property_uid = $basic_room_details->room['propertys_uid'];
-		
-			if (!user_can_view_this_property($property_uid))
-				return;
-			
-			$mrConfig = getPropertySpecificSettings($property_uid);
-			
-			property_header( $property_uid );
-			
-			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-			$current_property_details->gather_data( $property_uid );
-			
 			//get room and room feature images
 			$jomres_media_centre_images->get_images($property_uid, array('rooms','room_features'));
 		
