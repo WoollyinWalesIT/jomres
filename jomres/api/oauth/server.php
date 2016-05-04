@@ -1,17 +1,38 @@
 <?php
 
-define( '_JEXEC', 1 );
-require_once( realpath(dirname(__FILE__) . '../../../../') . DIRECTORY_SEPARATOR . 'configuration.php' );
-$CONFIG = new JConfig();
 
-$dbtype		= $CONFIG->dbtype;
-$db			= $CONFIG->db;
-$host		= $CONFIG->host;
-$dbprefix	= $CONFIG->dbprefix;
-$dsn		= 'mysql:dbname='.$db.';host='.$host ;
-$username	= $CONFIG->user;
-$password	= $CONFIG->password;
+if (file_exists(realpath(dirname(__FILE__) . '../../../../') . DIRECTORY_SEPARATOR . 'configuration.php'))
+{
+	define( '_JEXEC', 1 );
+	require_once( realpath(dirname(__FILE__) . '../../../../') . DIRECTORY_SEPARATOR . 'configuration.php' );
+	$CONFIG = new JConfig();
 
+	$db			= $CONFIG->db;
+	$host		= $CONFIG->host;
+	$dbprefix	= $CONFIG->dbprefix;
+	$dsn		= 'mysql:dbname='.$db.';host='.$host ;
+	$username	= $CONFIG->user;
+	$password	= $CONFIG->password;
+	}
+elseif ( file_exists( realpath(dirname(__FILE__) . '../../../../') . DIRECTORY_SEPARATOR . 'wp-config.php' ))
+	{
+	require_once( realpath(dirname(__FILE__) . '../../../../') . DIRECTORY_SEPARATOR . 'wp-config.php' );
+	$showtime->db				= DB_NAME;
+	$showtime->user				= DB_USER;
+	$showtime->password			= DB_PASSWORD;
+	$showtime->host				= DB_HOST;
+	
+	global $table_prefix; //wp global
+	$dbprefix			= $table_prefix ;
+
+	$db			= DB_NAME;
+	$host		= DB_HOST;
+
+	$dsn		= 'mysql:dbname='.$db.';host='.$host ;
+	$username	= DB_USER;
+	$password	= DB_PASSWORD;
+	}
+else die(); // No findie el config file!
 
 $tables = array (
 	'client_table' => $dbprefix.'jomres_oauth_clients',

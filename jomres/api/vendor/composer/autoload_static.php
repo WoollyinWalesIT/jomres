@@ -11,9 +11,36 @@ class ComposerStaticInit457db29743aa5639708c30e362163059
         '5b7d984aab5ae919d3362ad9588977eb' => __DIR__ . '/..' . '/mikecao/flight/flight/Flight.php',
     );
 
+    public static $prefixLengthsPsr4 = array (
+        'M' => 
+        array (
+            'Monolog\\' => 8,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'Psr\\Log\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/psr/log',
+            ),
+        ),
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit457db29743aa5639708c30e362163059::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit457db29743aa5639708c30e362163059::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit457db29743aa5639708c30e362163059::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

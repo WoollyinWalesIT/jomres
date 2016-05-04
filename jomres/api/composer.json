@@ -1,5 +1,6 @@
 {
     "require": {
-        "mikecao/flight": "^1.2"
+        "mikecao/flight": "^1.2",
+        "monolog/monolog": "^1.19"
     }
 }
