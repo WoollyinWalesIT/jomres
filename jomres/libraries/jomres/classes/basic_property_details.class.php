@@ -64,7 +64,18 @@ class basic_property_details
 		if (isset($this->$setting))
 			return $this->$setting;
 		else
-			throw new Exception("Setting doesn't exist ".$setting, 2);
+			{
+			$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+			$jrConfig          = $siteConfig->get();
+			if ($jrConfig['development_production'] == 'development')
+				{
+				throw new Exception("Setting doesn't exist ".$setting, 2);
+				}
+			else
+				{
+				return null;
+				}
+			}
 		}
 
 	public function get_property_name( $property_uid = 0, $editable = true )
