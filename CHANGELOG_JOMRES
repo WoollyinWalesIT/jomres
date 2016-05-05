@@ -4,7 +4,7 @@
 
 <span class="label label-success">Feature</span> Added new API handling functionality to the core, which is designed to allow 3rd party platforms to communicate with Jomres to add, view, update and remove data remotely. Use of this new functionalty requires the API Core plugin, which allows registered users to create their own API Client keys. Once those keys have been created then Clients can access specially written functionality which is available from API Feature plugins, which are currently under development.
 
-<span class="label label-warning">Change</span> Changed how errors are handled and viewed. This has resulted in considerable changes to Jomres Core and it's plugins to bring them up to spec. Among other things, this has resulted in subtle reworkings to how language strings are handled.
+<span class="label label-warning">Change</span> Changed how errors are handled and viewed. This has resulted in considerable changes to Jomres Core and it's plugins to improve performance. Among other things, this has resulted in subtle reworkings to how language strings are handled.
 
 <h3>Jomres 9.7.3 11/04/2016</h3>
 
