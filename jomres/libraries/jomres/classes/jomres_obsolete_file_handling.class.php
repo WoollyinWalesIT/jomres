@@ -1342,6 +1342,9 @@ class jomres_obsolete_file_handling
 					{
 					$template = 'obsolete_files_delete_success.html';
 					}
+				else
+					$template = 'obsolete_files_delete_failure.html';
+				
 				$this->number_of_files_require_deletion++;
 
 				$pageoutput[ ] = $output;
@@ -1374,6 +1377,9 @@ class jomres_obsolete_file_handling
 					{
 					$template = 'obsolete_files_delete_success.html';
 					}
+				else
+					$template = 'obsolete_files_delete_failure.html';
+				
 				$this->number_of_files_require_deletion++;
 
 				$pageoutput[ ] = $output;
