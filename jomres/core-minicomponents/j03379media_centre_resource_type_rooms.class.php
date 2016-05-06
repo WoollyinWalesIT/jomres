@@ -28,6 +28,10 @@ class j03379media_centre_resource_type_rooms
 		$defaultProperty = getDefaultProperty();
 		$mrConfig = getPropertySpecificSettings( $defaultProperty );
 		$this->ret_vals = array();
+		if (!isset($mrConfig[ 'singleRoomProperty' ]))
+			$mrConfig[ 'singleRoomProperty' ] ="0";
+		if (!isset($mrConfig[ 'is_real_estate_listing' ]))
+			$mrConfig[ 'is_real_estate_listing' ] ="0";
 		
 		if ($mrConfig[ 'singleRoomProperty' ] != "1" && $mrConfig['is_real_estate_listing'] != "1" )
 			{
