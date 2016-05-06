@@ -6186,12 +6186,12 @@ class dobooking
 								if ( $this->coupon_details[ 'is_percentage' ] == "1" )
 									{
 									$this->coupon_discount_value = ( $tmpTotal / 100 ) * (float) $this->coupon_details[ 'amount' ];
-									$tmpTotal            = ( $tmpTotal - $this->coupon_discount_value ) + $non_discountable_room_total;
+									$tmpTotal            = $tmpTotal - $this->coupon_discount_value;
 									}
 								else
 									{
 									$this->coupon_discount_value = (float) $this->coupon_details[ 'amount' ];
-									$tmpTotal            = ( $discountable_room_total - $this->coupon_discount_value ) + $tmpTotal;
+									$tmpTotal            = $tmpTotal - $this->coupon_discount_value;
 									}
 								}
 
