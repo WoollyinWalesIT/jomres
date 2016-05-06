@@ -102,7 +102,10 @@ class j10004generate_control_panel
 					{
 					$r[ 'ACTIVE' ] = "active";
 					$output[ 'COLLAPSE_IN' ] = "in";
+					$r[ 'BADGES' ] = '';
 					}
+				else
+					$r[ 'BADGES' ] = '';
 				
 				$rows[ ] = $r;
 				}
