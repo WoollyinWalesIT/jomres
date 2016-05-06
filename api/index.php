@@ -37,6 +37,8 @@ else
 if (!defined('_JOMRES_INITCHECK'))
 	define('_JOMRES_INITCHECK', 1 );
 
+define('API_STARTED', true );
+
 $token = $server->getAccessTokenData(OAuth2\Request::createFromGlobals());
 $scopes = explode("," , $token['scope']);
 
@@ -46,7 +48,7 @@ require 'classes/response.class.php';
 require 'classes/call.class.php';
 require 'classes/call_self.class.php';
 require 'classes/all_api_features.class.php';
-require 'classes/jomres_framework.class.php';
+require '../framework.php';
 
 try
 	{
