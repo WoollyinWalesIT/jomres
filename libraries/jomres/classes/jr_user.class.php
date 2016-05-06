@@ -73,8 +73,10 @@ class jr_user
 		$this->vat_number_validated			= '';
 		$this->vat_number_validation_response= '';
 		
-
-		$this->id = jomres_cmsspecific_getcurrentusers_id();
+		if (class_exists("Flight"))
+			Flight::get("user_id");
+		else
+			$this->id = jomres_cmsspecific_getcurrentusers_id();
 
 		if ( $this->id > 0 && $this->id != 0 && !is_null( $this->id ) )
 			{

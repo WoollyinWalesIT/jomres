@@ -33,18 +33,20 @@ else
 	$logger->addInfo(TRANSACTION_ID.' Received a token which sent '.$request);
 	require_once __DIR__.'/oauth/resource.php';
 	}
- 
+
 if (!defined('_JOMRES_INITCHECK'))
 	define('_JOMRES_INITCHECK', 1 );
 
 $token = $server->getAccessTokenData(OAuth2\Request::createFromGlobals());
 $scopes = explode("," , $token['scope']);
 
+
 require 'classes/validate_scope.class.php';
 require 'classes/response.class.php';
 require 'classes/call.class.php';
 require 'classes/call_self.class.php';
 require 'classes/all_api_features.class.php';
+require 'classes/jomres_framework.class.php';
 
 try
 	{
@@ -75,10 +77,14 @@ try
 	Flight::set("scopes" , explode("," , $token['scope']));
 	Flight::set("dbprefix" , $CONFIG->dbprefix);
 	Flight::set("features_files" , $features_files);
+	
+/* $request = Flight::request();
+var_dump($request); */
 
 	require "routes.php";
-	
+
 	Flight::start();
+
 	}
 catch(Exception $e) 
 	{
