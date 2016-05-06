@@ -300,6 +300,7 @@ class j16000showplugins
 		$externalPluginTypes = array ( "component", "module", "mambot" );
 
 		$jomresdotnet_plugins = array ();
+		$jomresdotnet_apiplugins = array ();
 
 		$plugins_needing_upgrading = array ();
 		
@@ -549,14 +550,23 @@ class j16000showplugins
 
 			$r[ 'STYLE' ] = $style;
 			
-			if (  $rp[ 'retired' ] && array_key_exists( $rp[ 'name' ], $installed_plugins ) )
-				$jomresdotnet_plugins[ ] = $r;
-			elseif( !$rp[ 'retired' ] )
-				$jomresdotnet_plugins[ ] = $r;
+			if ( substr($rp[ 'name' ],0 , 4 ) != "api_")
+				{
+				if (  $rp[ 'retired' ] && array_key_exists( $rp[ 'name' ], $installed_plugins ) )
+					$jomresdotnet_plugins[ ] = $r;
+				elseif( !$rp[ 'retired' ] )
+					$jomresdotnet_plugins[ ] = $r;
+				}
+			else
+				{
+				if (  $rp[ 'retired' ] && array_key_exists( $rp[ 'name' ], $installed_plugins ) )
+					$jomresdotnet_apiplugins[ ] = $r;
+				elseif( !$rp[ 'retired' ] )
+					$jomresdotnet_apiplugins[ ] = $r;
+				}
 			}
 
-		// We'll move retired plugins to the top of the list
-
+		// We'll move retired core plugins to the top of the list
 		if (count($retired_plugins)>0)
 			{
 			$count = count($jomresdotnet_plugins);
@@ -567,6 +577,21 @@ class j16000showplugins
 					$move = $jomresdotnet_plugins[$i];
 					unset($jomresdotnet_plugins[$i]);
 					array_unshift($jomresdotnet_plugins , $move );
+					}
+				}
+			}
+		
+		// We'll move retired api plugins to the top of the list
+		if (count($retired_plugins)>0)
+			{
+			$count = count($jomresdotnet_apiplugins);
+			for ($i=0;$i<$count;$i++)
+				{
+				if ( in_array( $jomresdotnet_apiplugins[$i]['PLUGIN_NAME'] , $retired_plugins ) )
+					{
+					$move = $jomresdotnet_apiplugins[$i];
+					unset($jomresdotnet_apiplugins[$i]);
+					array_unshift($jomresdotnet_apiplugins , $move );
 					}
 				}
 			}
@@ -586,6 +611,7 @@ class j16000showplugins
 			$tmpl->addRows( 'bronze_users', $bronze_users );
 		$tmpl->addRows( 'thirdpartyplugins', $thirdpartyplugins );
 		$tmpl->addRows( 'jomresdotnet_plugins', $jomresdotnet_plugins );
+		$tmpl->addRows( 'jomresdotnet_apiplugins', $jomresdotnet_apiplugins );
 		$tmpl->addRows( 'plugins_require_upgrade', $plugins_require_upgrade );
 
 		$tmpl->readTemplatesFromInput( 'plugin_manager.html' );
