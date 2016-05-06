@@ -35,20 +35,19 @@ else
 	}
 
 if (!defined('_JOMRES_INITCHECK'))
-	define('_JOMRES_INITCHECK', 1 );
+define('_JOMRES_INITCHECK', 1 );
 
 define('API_STARTED', true );
 
 $token = $server->getAccessTokenData(OAuth2\Request::createFromGlobals());
 $scopes = explode("," , $token['scope']);
 
-
 require 'classes/validate_scope.class.php';
 require 'classes/response.class.php';
 require 'classes/call.class.php';
 require 'classes/call_self.class.php';
 require 'classes/all_api_features.class.php';
-require '../framework.php';
+
 
 try
 	{

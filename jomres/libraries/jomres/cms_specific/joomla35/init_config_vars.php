@@ -71,6 +71,11 @@ $jomresConfig_live_site = str_replace( "/administrator/", "", $jomresConfig_live
 $jomresConfig_live_site = str_replace( "/administrator", "", $jomresConfig_live_site );
 if ( substr( $jomresConfig_live_site, -1 ) == "/" ) $jomresConfig_live_site = substr( $jomresConfig_live_site, 0, -1 );
 
+if (defined('API_STARTED'))
+	{
+	$jomresConfig_live_site = str_replace("/jomres/api" , "" , $jomresConfig_live_site );
+	}
+
 $scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 
 $jomresConfig_lang = 'en-GB';

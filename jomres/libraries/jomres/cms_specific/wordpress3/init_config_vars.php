@@ -23,6 +23,10 @@ else
 	$no_html = 0;
 
 $jomresConfig_live_site = get_option( 'siteurl' );
+if (defined('API_STARTED'))
+	{
+	$jomresConfig_live_site = str_replace("/jomres/api" , "" , $jomresConfig_live_site );
+	}
 
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 
