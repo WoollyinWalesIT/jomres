@@ -17,6 +17,13 @@ use Monolog\Handler\StreamHandler;
 // create a log channel
 define("TRANSACTION_ID" , time() );
 define("PRODUCTION" , false ); // Set this to true in a production environment
+define("JOMRES_API_CMS_ROOT" ,dirname(dirname(dirname(__FILE__))));
+define("JOMRES_API_JOMRES_ROOT" ,dirname(dirname(__FILE__)) );
+
+if (!PRODUCTION)
+	{
+	ini_set('display_errors', '1');
+	}
 
 $logger = new Logger('api');
 $logger->pushHandler(new StreamHandler('../temp/monolog/jomres_api.log', Logger::DEBUG));
@@ -36,7 +43,7 @@ else
 
 if (!defined('_JOMRES_INITCHECK'))
 define('_JOMRES_INITCHECK', 1 );
-
+	
 define('API_STARTED', true );
 
 $token = $server->getAccessTokenData(OAuth2\Request::createFromGlobals());
