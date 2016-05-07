@@ -31,6 +31,12 @@ class j16000addplugin
 		define ( "JOMRES_INSTALLER", 1 );
 		$thirdparty = jomresGetParam( $_REQUEST, 'thirdparty', false );
 
+		if (!class_exists('ZipArchive'))
+			{
+			$error_messsage[ "ERROR" ] = "Error, ZipArchive not available on this server. Please ask your hosts to rebuild PHP with --enable-zip";
+			echo $error_messsage[ "ERROR" ];
+			return;
+			}
 		$pluginName = jomresGetParam( $_REQUEST, 'plugin', '' );
 		if ( isset( $componentArgs[ 'plugin' ] ) ) 
 			$pluginName = $componentArgs[ 'plugin' ];
