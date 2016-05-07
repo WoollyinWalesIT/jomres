@@ -20,8 +20,8 @@ class all_api_features
 	public function __construct() 
 		{
 		$this->api_feature_files = array();
-		$this->get_all_api_features(__DIR__ .'../../../'.'core-plugins'.DIRECTORY_SEPARATOR);
-		$this->get_all_api_features(__DIR__ .'../../../'.'remote_plugins'.DIRECTORY_SEPARATOR);
+		$this->get_all_api_features(JOMRES_API_JOMRES_ROOT .DIRECTORY_SEPARATOR . 'core-plugins'.DIRECTORY_SEPARATOR);
+		$this->get_all_api_features(JOMRES_API_JOMRES_ROOT . DIRECTORY_SEPARATOR . 'remote_plugins'.DIRECTORY_SEPARATOR);
 		
 		}
 	
@@ -53,9 +53,9 @@ class all_api_features
 						if ($method_dir === '.' or $method_dir === '..'or $method_dir === 'language') 
 							continue;
 
-						if (is_dir($path . '\\' . $plugin .'\\' . $method_dir)) 
+						if (is_dir($path . DIRECTORY_SEPARATOR . $plugin .DIRECTORY_SEPARATOR . $method_dir)) 
 							{
-							$files = scandir($path . '\\' . $plugin .'\\' . $method_dir);
+							$files = scandir($path . DIRECTORY_SEPARATOR . $plugin .DIRECTORY_SEPARATOR . $method_dir);
 							foreach ($files as $file)
 								{
 								if ($file != '.' && $file != '..')

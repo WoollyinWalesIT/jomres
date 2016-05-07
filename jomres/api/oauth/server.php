@@ -1,10 +1,10 @@
 <?php
 
-
-if (file_exists(realpath(dirname(__FILE__) . '../../../../') . DIRECTORY_SEPARATOR . 'configuration.php'))
-{
+if (file_exists(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'configuration.php'))
+	{
 	define( '_JEXEC', 1 );
-	require_once( realpath(dirname(__FILE__) . '../../../../') . DIRECTORY_SEPARATOR . 'configuration.php' );
+	require_once(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'configuration.php');
+
 	$CONFIG = new JConfig();
 
 	$db			= $CONFIG->db;
@@ -14,9 +14,9 @@ if (file_exists(realpath(dirname(__FILE__) . '../../../../') . DIRECTORY_SEPARAT
 	$username	= $CONFIG->user;
 	$password	= $CONFIG->password;
 	}
-elseif ( file_exists( realpath(dirname(__FILE__) . '../../../../') . DIRECTORY_SEPARATOR . 'wp-config.php' ))
+elseif ( file_exists(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'wp-config.php' ))
 	{
-	require_once( realpath(dirname(__FILE__) . '../../../../') . DIRECTORY_SEPARATOR . 'wp-config.php' );
+	require_once( JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'wp-config.php' );
 	$showtime->db				= DB_NAME;
 	$showtime->user				= DB_USER;
 	$showtime->password			= DB_PASSWORD;
@@ -32,7 +32,11 @@ elseif ( file_exists( realpath(dirname(__FILE__) . '../../../../') . DIRECTORY_S
 	$username	= DB_USER;
 	$password	= DB_PASSWORD;
 	}
-else die(); // No findie el config file!
+else 
+	{
+	die(json_encode("Cant find configuration file.")); // No findie el config file!
+	}
+
 
 $tables = array (
 	'client_table' => $dbprefix.'jomres_oauth_clients',
