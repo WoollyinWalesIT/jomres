@@ -50,7 +50,7 @@ class jomres_user_feedback
 
 	function construct_message( $message_array )
 		{
-
+		$button = '';
 		if (isset($message_array['LINK']))
 			{
 			$pageoutput	= array();
