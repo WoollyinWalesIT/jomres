@@ -34,6 +34,7 @@ class j16000jomres_news
 			$output_now = true;
 		
 		$output     = array ();
+		$news_rows = array ();
 		$pageoutput = array ();
 		
 		if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "news.php"))
@@ -67,10 +68,9 @@ class j16000jomres_news
 			}
 		
 		if ( empty( $buffer ) ) 
-			$output[ 'LATEST_JOMRES_VERSION' ] .= "Sorry, could not get latest Jomres news, is there a firewall or slow internet connection preventing communication with http://updates.jomres4.net ?<p>";
+			$output[ 'LATEST_JOMRES_VERSION' ] = "Sorry, could not get latest Jomres news, is there a firewall or slow internet connection preventing communication with http://updates.jomres4.net ?<p>";
 		else
 			{
-			$news_rows = array ();
 			$news      = json_decode( $buffer );
 			$counter = 0;
 			foreach ( $news as $row )
