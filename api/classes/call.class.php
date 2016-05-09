@@ -21,7 +21,7 @@ class call
 	
 	public function call_server( $options )
 		{
-			if ( count ($options) == 0 )
+		if ( count ($options) == 0 )
 			throw new Exception("Error, no request elements set ");
 		
 		$server		= $options['server'];
@@ -60,6 +60,9 @@ class call
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
 		$result=curl_exec ($ch);
 		$status = curl_getinfo($ch); 
+		$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		//if ($response_code != 200 && $response_code != 204)
+			
 		return array ("result" => $result , "status" => $status );
 		}
 	}
