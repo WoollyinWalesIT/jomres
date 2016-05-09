@@ -47,10 +47,12 @@ define('_JOMRES_INITCHECK', 1 );
 define('API_STARTED', true );
 
 $token = $server->getAccessTokenData(OAuth2\Request::createFromGlobals());
+
+
 $scopes = explode("," , $token['scope']);
 
 require 'classes/validate_scope.class.php';
-require 'classes/response.class.php';
+require 'classes/validate_property_access.class.php';
 require 'classes/call.class.php';
 require 'classes/call_self.class.php';
 require 'classes/all_api_features.class.php';
@@ -78,16 +80,12 @@ try
 	$features_files	= $api_features->get();
 
 	Flight::register( 'validate_scope', 'validate_scope' , array( $scopes));
-	Flight::register( 'request_response', 'response' );
 
 	Flight::set("token" , $token);
 	Flight::set("user_id" , $token['user_id']);
 	Flight::set("scopes" , explode("," , $token['scope']));
 	Flight::set("dbprefix" , $CONFIG->dbprefix);
 	Flight::set("features_files" , $features_files);
-	
-/* $request = Flight::request();
-var_dump($request); */
 
 	require "routes.php";
 
@@ -98,7 +96,17 @@ catch(Exception $e)
 	{
 	$response = Flight::request_response();
 	$backtrace = debug_backtrace();
-	$response->set('success', false );
-	$response->set('data', $e->getMessage() );
 	echo json_encode($response);
+	}
+
+
+function validate_property_uid($property_uid = '')
+	{
+	if ($property_uid == 0)
+		return false;
+	
+	$users_properties = get_self($call = 'properties/all');
+	if (!in_array ($property_uid , $users_properties ) )
+		return false;
+	return true;
 	}

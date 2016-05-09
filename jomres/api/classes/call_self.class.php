@@ -48,7 +48,4 @@ class call_self
 		$response = $call->call_server ($options);
 		return $response['result'];
 		}
-		
-
-	
 	}
