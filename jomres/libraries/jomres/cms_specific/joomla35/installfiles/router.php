@@ -185,11 +185,11 @@ if (!class_exists('JomresRouter'))
 				{
 				case jomres_cmsspecific_stringURLSafe( jr_gettext('COMMON_VIEW', 'COMMON_VIEW', false)):
 					$vars[ 'task' ]         = "viewproperty";
-					$vars[ 'property_uid' ] = substr($segments[ 0 ], -1, strrpos($segments[ 0 ], '-'));
+					$vars[ 'property_uid' ] = substr($segments[ 0 ], strrpos($segments[ 0 ], '-') + 1);
 					break;
 				case jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', false)):
 					$vars[ 'task' ] = "dobooking";
-					$vars[ 'selectedProperty' ] = substr($segments[ 0 ], -1, strrpos($segments[ 0 ], '-'));
+					$vars[ 'selectedProperty' ] = substr($segments[ 0 ], strrpos($segments[ 0 ], '-') + 1);
 					break;
 				case $jrConfig[ 'sef_task_alias_search' ]:
 					$searchParam              = $segments[ 2 ];
@@ -205,19 +205,19 @@ if (!class_exists('JomresRouter'))
 					break;
 				case jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE', '_JOMRES_COM_MR_LISTTARIFF_TITLE', false)):
 					$vars[ 'task' ]         = "show_property_tariffs";
-					$vars[ 'property_uid' ] = substr($segments[ 0 ], -1, strrpos($segments[ 0 ], '-'));
+					$vars[ 'property_uid' ] = substr($segments[ 0 ], strrpos($segments[ 0 ], '-') + 1);
 					break;
 				case jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_FRONT_SLIDESHOW', '_JOMRES_FRONT_SLIDESHOW', false)):
 					$vars[ 'task' ]         = "show_property_slideshow";
-					$vars[ 'property_uid' ] = substr($segments[ 0 ], -1, strrpos($segments[ 0 ], '-'));
+					$vars[ 'property_uid' ] = substr($segments[ 0 ], strrpos($segments[ 0 ], '-') + 1);
 					break;
 				case jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false)):
 					$vars[ 'task' ]         = "show_property_rooms";
-					$vars[ 'property_uid' ] = substr($segments[ 0 ], -1, strrpos($segments[ 0 ], '-'));
+					$vars[ 'property_uid' ] = substr($segments[ 0 ], strrpos($segments[ 0 ], '-') + 1);
 					break;
 				case jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', false)):
 					$vars[ 'task' ]         	= "contactowner";
-					$vars[ 'selectedProperty' ] = substr($segments[ 0 ], -1, strrpos($segments[ 0 ], '-'));
+					$vars[ 'selectedProperty' ] = substr($segments[ 0 ], strrpos($segments[ 0 ], '-') + 1);
 					break;
 				}
 
