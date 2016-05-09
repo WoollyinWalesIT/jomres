@@ -14,15 +14,15 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class j06001dashboard_events_ajax {
-	function __construct()
+	function __construct($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
-		{
+			{
 			$this->template_touchable=false; return;
 			}
-		
+		$this->retVals = null;
 		$property_uid = jomresGetParam($_GET, 'property_uid', 0);
 		if ( $property_uid == 0 )
 			$property_uid = getDefaultProperty();
@@ -32,6 +32,10 @@ class j06001dashboard_events_ajax {
 		
 		$mrConfig = getPropertySpecificSettings( $property_uid );
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 1 ) return;
+		
+		$output_now = true;
+		if (isset($componentArgs[ 'output_now' ]))
+			$output_now = (bool)$componentArgs[ 'output_now' ];
 		
 		$contracts=array();
 		$guest_uids=array();
@@ -181,11 +185,14 @@ class j06001dashboard_events_ajax {
 			$contracts = array();
 			}
 		
-		echo json_encode($contracts);
+		if ( $output_now )
+			echo json_encode($contracts);
+		else
+			$this->retVals = json_encode($contracts);
 		}
 	
 	function getRetVals()
 		{
-		return null;
+		return $this->retVals;
 		}
 	}
