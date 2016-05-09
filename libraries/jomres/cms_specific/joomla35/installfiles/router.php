@@ -137,8 +137,7 @@ if (!class_exists('JomresRouter'))
 			
 			if ( isset( $route_query[ 'calledByModule' ] ) )
 				{
-				$segments[0] = '';
-				$segments[1] = $jrConfig[ 'sef_task_alias_search' ];
+				$segments[ ] = $jrConfig[ 'sef_task_alias_search' ];
 				if ( isset( $route_query[ 'town' ] ) )
 					{
 					$segments[ ] = jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false ) );
@@ -191,17 +190,23 @@ if (!class_exists('JomresRouter'))
 					$vars[ 'task' ] = "dobooking";
 					$vars[ 'selectedProperty' ] = substr($segments[ 0 ], strrpos($segments[ 0 ], '-') + 1);
 					break;
-				case $jrConfig[ 'sef_task_alias_search' ]:
-					$searchParam              = $segments[ 2 ];
+				case jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false ) ):
+					$searchParam              = $segments[ 1 ];
 					$vars[ 'send' ]           = "Search";
 					$vars[ 'calledByModule' ] = 'mod_jomsearch_m0';
-					if ( $searchParam == jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false ) ) ) 
-						$searchParam = 'town';
-					if ( $searchParam == jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false ) ) ) 
-						$searchParam = 'country';
-					if ( $searchParam == jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false ) ) ) 
-						$searchParam = 'region';
-					$vars[ $searchParam ] = $segments[ 3 ];
+					$vars[ 'town' ] = $segments[ 2 ];
+					break;
+				case jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false ) ):
+					$searchParam              = $segments[ 1 ];
+					$vars[ 'send' ]           = "Search";
+					$vars[ 'calledByModule' ] = 'mod_jomsearch_m0';
+					$vars[ 'region' ] = $segments[ 2 ];
+					break;
+				case jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false ) ):
+					$searchParam              = $segments[ 1 ];
+					$vars[ 'send' ]           = "Search";
+					$vars[ 'calledByModule' ] = 'mod_jomsearch_m0';
+					$vars[ 'country' ] = $segments[ 2 ];
 					break;
 				case jomres_cmsspecific_stringURLSafe( jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE', '_JOMRES_COM_MR_LISTTARIFF_TITLE', false)):
 					$vars[ 'task' ]         = "show_property_tariffs";
