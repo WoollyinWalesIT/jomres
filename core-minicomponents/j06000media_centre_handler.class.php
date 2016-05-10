@@ -49,8 +49,11 @@ class j06000media_centre_handler
 		$all_types = array();
 		foreach ($resource_types as $type)
 			{
-			$all_types[ $type['resource_type'] ] = $type ;
-			$acceptable_resouce_types[] = $type['resource_type'];
+			if (isset($type['resource_type']))
+				{
+				$all_types[ $type['resource_type'] ] = $type ;
+				$acceptable_resouce_types[] = $type['resource_type'];
+				}
 			}
 		
 		$resource_type = (string) jomresGetParam( $_REQUEST, 'resource_type', 'property' );
