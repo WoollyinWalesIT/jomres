@@ -240,7 +240,7 @@ class jomres_sanity_check
 			{
 			if ( !get_showtime( 'include_room_booking_functionality' ) ) return "";
 			$ignore_on_tasks = array ( 'propertyadmin', 'editTariff', 'saveTariff','edit_tariff_micromanage', 'list_tariffs_micromanage', 'list_tariffs_advanced', 'edit_tariff_advanced' , 'edit_tariffs_normal');
-			if ( !in_array( get_showtime( 'task' ), $ignore_on_tasks ) && $this->mrConfig[ 'tariffmode' ] !="0")
+			if ( !in_array( get_showtime( 'task' ), $ignore_on_tasks ))
 				{
 				$query  = "SELECT `rates_uid` FROM `#__jomres_rates` where property_uid = " . (int) $this->property_uid . "";
 				$result = doSelectSql( $query );
@@ -307,7 +307,7 @@ class jomres_sanity_check
 		
 	function check_srp_room_exists()
 		{
-		if ( $this->mrConfig[ 'is_real_estate_listing' ] =="0" )
+		if ( $this->mrConfig[ 'is_real_estate_listing' ] =="0" && $this->mrConfig[ 'tariffmode' ] !="0")
 			{
 			if (get_showtime("task") != "edit_resource")
 				{
@@ -326,7 +326,7 @@ class jomres_sanity_check
 		
 	function check_srp_room_type_set()
 		{
-		if ( $this->mrConfig[ 'is_real_estate_listing' ] =="0" )
+		if ( $this->mrConfig[ 'is_real_estate_listing' ] =="0" && $this->mrConfig[ 'tariffmode' ] !="0")
 			{
 			if (get_showtime("task") != "edit_resource")
 				{
