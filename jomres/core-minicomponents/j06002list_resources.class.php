@@ -102,7 +102,11 @@ class j06002list_resources
 				$r['BUTTONS']=$toolbar->getToolbar();
 				}
 
-			$r[ 'ROOM_TYPE' ]   = $current_property_details->room_types[$room->room_classes_uid]['abbv'];
+			if ((int)$room->room_classes_uid > 0 && isset($current_property_details->room_types[$room->room_classes_uid]['abbv']))
+				$r[ 'ROOM_TYPE' ]   = $current_property_details->room_types[$room->room_classes_uid]['abbv'];
+			else
+				$r[ 'ROOM_TYPE' ]   = '';
+			
 			$r[ 'ROOM_NAME' ]   = stripslashes( jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE' . $room->room_uid, stripslashes( $room->room_name ) ) );
 			$r[ 'ROOM_NUMBER' ] = $room->room_number;
 			$r[ 'ROOM_FLOOR' ]  = $room->room_floor;

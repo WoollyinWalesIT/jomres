@@ -131,7 +131,7 @@ class j06002edit_tariffs_normal
 		$output[ 'HROOMCLASS' ]        = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', false );
 		$output[ 'HNUMBEROFROOMS' ]    = jr_gettext( '_JOMRES_NUMBEROFROOMSAVAILABLE', '_JOMRES_NUMBEROFROOMSAVAILABLE', false );
 		$output[ 'HROOMRATEPERDAY' ]   = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', false );
-		$output[ 'HPROPERTYTYPE' ]     = jr_gettext( 'JOMRES_PROPERTYTYPE', 'JOMRES_PROPERTYTYPE', false );
+		$output[ 'HPROPERTYTYPE' ]     = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', false );
 		$output[ 'HROOMTYPE' ]         = jr_gettext( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMTYPE', '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMTYPE', false );
 		$output[ 'HMAXPEOPLE_ROOM' ]   = jr_gettext( 'JOMRES_MAXPEOPLEINROOM', 'JOMRES_MAXPEOPLEINROOM', false );
 		$output[ 'HMAXPEOPLE_TARIFF' ] = jr_gettext( 'JOMRES_MAXPEOPLEINBOOKING', 'JOMRES_MAXPEOPLEINBOOKING', false );
@@ -206,17 +206,29 @@ class j06002edit_tariffs_normal
 			}
 		else //////////////////////////////////////////////////////////////////////////////// SRPs
 			{
-
+			$type_id = '';
+			$roomrateperday = '';
+			$max_people = '';
+			
 			foreach ( $roomTypesArray as $key => $val )
 				{
 				$type_id = $key;
 				}
+			
+			if (isset($allTariffsForRoomType[ $type_id ][ 'roomrateperday' ]))
+				$roomrateperday = $allTariffsForRoomType[ $type_id ][ 'roomrateperday' ];
+			
+			if (isset($roomTypesArray[ $type_id ][ 'max_people' ]))
+				$max_people = $roomTypesArray[ $type_id ][ 'max_people' ];
 
-			if ( $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == "1" ) $output[ 'RATETEXT' ] = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', false );
+			if ( $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == "1" ) 
+				$output[ 'RATETEXT' ] = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', false );
 			else
-			$output[ 'RATETEXT' ] = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', false );
-			$output[ 'ROOMRATEPERDAY' ] = '<input class="input-mini" type="number" name="roomrateperday" value="' . $allTariffsForRoomType[ $type_id ][ 'roomrateperday' ] . '" />';
-			$output[ 'MAX_PEOPLE' ]     = '<input class="input-mini" type="text" name="max_people" value="' . $roomTypesArray[ $type_id ][ 'max_people' ] . '" />';
+				$output[ 'RATETEXT' ] = jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY', false );
+			
+			$output[ 'ROOMRATEPERDAY' ] = '<input class="input-mini" type="number" name="roomrateperday" value="' . $roomrateperday . '" />';
+			$output[ 'MAX_PEOPLE' ]     = '<input class="input-mini" type="text" name="max_people" value="' . $max_people . '" />';
+			
 			$rows                       = array ();
 			foreach ( $roomsClassList as $roomType ) // First we need to gather some information about tariffs & rooms
 				{
