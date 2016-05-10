@@ -17,11 +17,6 @@ if (file_exists(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'configuration.php'))
 elseif ( file_exists(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'wp-config.php' ))
 	{
 	require_once( JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'wp-config.php' );
-	$showtime->db				= DB_NAME;
-	$showtime->user				= DB_USER;
-	$showtime->password			= DB_PASSWORD;
-	$showtime->host				= DB_HOST;
-	
 	global $table_prefix; //wp global
 	$dbprefix			= $table_prefix ;
 
@@ -37,17 +32,22 @@ else
 	die(json_encode("Cant find configuration file.")); // No findie el config file!
 	}
 
+define("JOMRES_API_DB_NAME",$db);
+define("JOMRES_API_DB_HOST",$host);
+define("JOMRES_API_DB_USERNAME",$username);
+define("JOMRES_API_DB_PASSWORD",$password);
+define("JOMRES_API_DB_DB_PREFIX",$dbprefix);
 
 $tables = array (
-	'client_table' => $dbprefix.'jomres_oauth_clients',
-	'access_token_table' => $dbprefix.'jomres_oauth_access_tokens',
-	'refresh_token_table' => $dbprefix.'jomres_oauth_refresh_tokens',
-	'code_table' => $dbprefix.'jomres_oauth_authorization_codes',
-	'user_table' => $dbprefix.'jomres_oauth_users',
-	'jwt_table'  => $dbprefix.'jomres_oauth_jwt',
-	// 'jti_table'  => $dbprefix.'jomres_oauth_jti', // We don't use this
-	'scope_table'  => $dbprefix.'jomres_oauth_scopes',
-	//'public_key_table'  => $dbprefix.'oauth_public_keys', // We don't use this
+	'client_table' => JOMRES_API_DB_DB_PREFIX.'jomres_oauth_clients',
+	'access_token_table' => JOMRES_API_DB_DB_PREFIX.'jomres_oauth_access_tokens',
+	'refresh_token_table' => JOMRES_API_DB_DB_PREFIX.'jomres_oauth_refresh_tokens',
+	'code_table' => JOMRES_API_DB_DB_PREFIX.'jomres_oauth_authorization_codes',
+	// 'user_table' => JOMRES_API_DB_DB_PREFIX.'jomres_oauth_users', // We don't use this
+	// 'jwt_table'  => JOMRES_API_DB_DB_PREFIX.'jomres_oauth_jwt',  // We don't use this
+	// 'jti_table'  => JOMRES_API_DB_DB_PREFIX.'jomres_oauth_jti', // We don't use this
+	// 'scope_table'  => JOMRES_API_DB_DB_PREFIX.'jomres_oauth_scopes',  // We don't use this
+	//'public_key_table'  => JOMRES_API_DB_DB_PREFIX.'oauth_public_keys', // We don't use this
 	);
 
 $existing_tables = array();
