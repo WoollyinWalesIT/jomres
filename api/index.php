@@ -60,15 +60,14 @@ require 'classes/all_api_features.class.php';
 
 try
 	{
-	$CONFIG = new JConfig();
-	$dsn		= 'mysql:dbname='.$CONFIG->db.';host='.$CONFIG->host ;
+	$dsn		= 'mysql:dbname='.JOMRES_API_DB_NAME.';host='.JOMRES_API_DB_HOST ;
 	Flight::register(
 		'db', 
 		'PDO', 
 		array(
 			$dsn, 
-			$CONFIG->user, 
-			$CONFIG->password , 
+			JOMRES_API_DB_USERNAME, 
+			JOMRES_API_DB_PASSWORD, 
 			array(
 				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 				PDO::ATTR_EMULATE_PREPARES => false
@@ -84,7 +83,7 @@ try
 	Flight::set("token" , $token);
 	Flight::set("user_id" , $token['user_id']);
 	Flight::set("scopes" , explode("," , $token['scope']));
-	Flight::set("dbprefix" , $CONFIG->dbprefix);
+	Flight::set("dbprefix" , JOMRES_API_DB_DB_PREFIX);
 	Flight::set("features_files" , $features_files);
 
 	require "routes.php";
