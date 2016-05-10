@@ -28,7 +28,7 @@ class j04910deleteproperty {
 			{
 			$property_uid=(int)getDefaultProperty();
 			$is_jintour_property =get_showtime('is_jintour_property' );
-			if (in_array($property_uid,$thisJRUser->authorisedProperties) && !JOMRES_SINGLEPROPERTY)
+			if (in_array($property_uid,$thisJRUser->authorisedProperties) && count($thisJRUser->authorisedProperties) > 1)
 		 		{
 				$saveMessage=jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETED','_JOMRES_COM_MR_PROPERTY_DELETED',FALSE);
 				emptyDir(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS);
@@ -99,11 +99,9 @@ class j04910deleteproperty {
 			}
 		else
 			{
-			$query="SELECT propertys_uid FROM #__jomres_propertys";
-			$propertyList = doSelectSql($query);
 			$property_uid = (int)getDefaultProperty();
 			
-			if ($property_uid > 0 && count($propertyList) > 1) // Count the number of properties, ensure there's at least one property in the system. Do not remove!
+			if ($property_uid > 0) // Count the number of properties, ensure there's at least one property in the system. Do not remove!
 				{
 				?>
 				<script type="text/javascript">
