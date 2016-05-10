@@ -78,8 +78,6 @@ try
 	$api_features	= new all_api_features();
 	$features_files	= $api_features->get();
 
-	Flight::register( 'validate_scope', 'validate_scope' , array( $scopes));
-
 	Flight::set("token" , $token);
 	Flight::set("user_id" , $token['user_id']);
 	Flight::set("scopes" , explode("," , $token['scope']));

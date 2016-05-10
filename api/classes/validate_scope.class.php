@@ -17,13 +17,13 @@ class validate_scope
 	{
 	public function __construct($user_scopes) 
 		{
-		$this->user_scopes =$user_scopes;
 		}
 	
-	public function validate($scope)
+	public static function validate($scope)
 		{
+		$scopes = Flight::get("scopes");
 		$scope_valid = false;
-		if (in_array($scope , $this->user_scopes ) || $this->user_scopes[0] == "*" )
+		if (in_array($scope , $scopes ) || $scopes[0] == "*" )
 			$scope_valid = true;
 		else
 			Flight::halt(403, 'Client not allowed to access this feature : '.$scope);
