@@ -36,6 +36,10 @@ class j06002edit_resource
 		$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$basic_property_details->gather_data( $defaultProperty );
 		
+		$cancelText = jr_gettext( '_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL', false );
+		$deleteText = jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', '_JOMRES_COM_MR_ROOM_DELETE', false );
+		$saveText   = jr_gettext( '_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE', false );
+		
 		if ( $mrConfig[ 'singleRoomProperty' ] == "0" )
 			{
 			$roomUid = intval( jomresGetParam( $_REQUEST, 'roomUid', 0 ) );
@@ -151,9 +155,6 @@ class j06002edit_resource
 			$output[ 'UPLOADIMAGE' ] = jr_gettext( '_JOMRES_UPLOAD_IMAGE', '_JOMRES_UPLOAD_IMAGE', false );
 			$output[ 'PAGETITLE' ]   = jr_gettext( '_JOMRES_COM_MR_EB_HROOM_DETAILS', '_JOMRES_COM_MR_EB_HROOM_DETAILS',false );
 
-			$cancelText = jr_gettext( '_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL', false );
-			$deleteText = jr_gettext( '_JOMRES_COM_MR_ROOM_DELETE', '_JOMRES_COM_MR_ROOM_DELETE', false );
-			$saveText   = jr_gettext( '_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE', false );
 			$jrtbar     = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb       = $jrtbar->startTable();
 			
@@ -213,8 +214,8 @@ class j06002edit_resource
 			$jrtb .= $jrtbar->toolbarItem( 'save', '', $saveText, true, 'save_resource' );
 			$jrtb .= $jrtbar->endTable();
 
-			$output[ 'PAGETITLE' ]   = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV_SRP', '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV_SRP' );
-			$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO' ]    = jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO_SRP', '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO_SRP' );
+			$output[ 'PAGETITLE' ]   = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV' );
+			$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO' ]    = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV' );
 			$output[ '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE' ] = jr_gettext( '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE' );
 			$output[ 'DROPDOWNLIST' ]                              = $dropDownList;
 			$output[ 'JOMRESTOOLBAR' ]                             = $jrtb;
