@@ -300,7 +300,7 @@ function jomres_cmsspecific_getCMS_users_admin_userdetails_by_id( $id )
 function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids()
 	{
 	$users    = array ();
-	$query    = "SELECT id,user_login,user_email FROM #__users WHERE `sendEmail`=1";
+	$query    = "SELECT a.id, a.user_login, a.user_email FROM #__users a LEFT JOIN #__usermeta b ON a.id = b.user_id WHERE b.meta_key = 'wp_user_level' AND b.meta_value >= 10 ";
 	$userList = doSelectSql( $query );
 	if ( count( $userList ) > 0 )
 		{
