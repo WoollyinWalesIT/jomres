@@ -46,7 +46,7 @@ $tables = array (
 	// 'user_table' => JOMRES_API_DB_DB_PREFIX.'jomres_oauth_users', // We don't use this
 	// 'jwt_table'  => JOMRES_API_DB_DB_PREFIX.'jomres_oauth_jwt',  // We don't use this
 	// 'jti_table'  => JOMRES_API_DB_DB_PREFIX.'jomres_oauth_jti', // We don't use this
-	// 'scope_table'  => JOMRES_API_DB_DB_PREFIX.'jomres_oauth_scopes',  // We don't use this
+	'scope_table'  => JOMRES_API_DB_DB_PREFIX.'jomres_oauth_scopes',  // We don't use this, but the OAuth2 class does
 	//'public_key_table'  => JOMRES_API_DB_DB_PREFIX.'oauth_public_keys', // We don't use this
 	);
 
