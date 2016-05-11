@@ -1,3 +1,29 @@
+<h3>Jomres 9.8.-2 11/05/2016</h3>
+
+<span class="label label-warning">Change</span> Added a condition so that we can show an error if an obsolete file couldn't be deleted.
+<span class="label label-warning">Change</span> Moved API Core plugins to own tab
+<span class="label label-warning">Change</span> Added ability to call Jomres framework via a class so that we can use existing functionality in the API, if required.
+<span class="label label-warning">Change</span> Modified booking engine so that non-room based Jintour properties can also use coupons.
+<span class="label label-warning">Change</span> Added a check for ZipArchive to Add Plugin script.
+<span class="label label-warning">Change</span> Improved how paths are determined by API.
+<span class="label label-warning">Change</span> Improved jr_user class to ensure that user id is set, means we can use more minicomponents (API/framework related)
+<span class="label label-warning">Change</span> j06001dashboard_events_ajax.class.php modified to add output_now to component args, allows me to call the minicomponent in the API for easy use of the data it throws together.
+<span class="label label-warning">Change</span> Modified API routes handling to allow for many more files in api features.
+<span class="label label-warning">Change</span> Added a new class to validate property access through the db, instead of going through a new api call.
+<span class="label label-warning">Change</span> Added a new call api class to Jomres core classes.
+<span class="label label-warning">Change</span> Modified wording in edit resources scripts to make associating with room types more logical.
+<span class="label label-warning">Change</span> Improved layout of BS2 create new property form.
+<span class="label label-warning">Change</span> Improved delete property functionality, minor performance improvement.
+<span class="label label-warning">Change</span> Improved sanity checks for tariffs.
+<span class="label label-warning">Change</span> Changed how the validate scopes class is called.
+
+<span class="label label-info">Wordpress</span> Improved a cms specific function for finding admin user's ids.
+
+<span class="label label-important label-danger">Fix</span> Fixed a notice in media centre handler
+<span class="label label-important label-danger">Fix</span> Fixed a minor bug where badges would show in control panel menu option when they shouldn't.
+<span class="label label-important label-danger">Fix</span> Improved new router.php for Joomla functionality, older was giving bad results for more numbers in property uid.
+<span class="label label-important label-danger">Fix</span> Tweaked news class to fix notices when couldn't get the latest version.
+
 <h3>Jomres 9.8.-3 05/05/2016</h3>
 
 <span class="label label-important label-danger">Alpha release</span> Be aware that this is an Alpha release of Jomres, so it is *not* considered ready for Production websites. Only install this version if you want to work with new functionality and help with testing updates.
