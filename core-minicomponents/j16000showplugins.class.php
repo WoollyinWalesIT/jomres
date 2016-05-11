@@ -40,11 +40,11 @@ class j16000showplugins
 			return;
 			}
 
-		include( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'jomres_config.php' );
+		include( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'jomres_config.php' );
 		$this_jomres_version = explode( ".", $mrConfig[ 'version' ] );
 
 		$installed_plugins   = array ();
-		$jrePath             = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS;
+		$jrePath             = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'remote_plugins' . JRDS;
 		$third_party_plugins = array ();
 		if ( !is_dir( $jrePath ) )
 			{
@@ -56,7 +56,7 @@ class j16000showplugins
 				}
 			}
 
-		$jrcPath             = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
+		$jrcPath             = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
 		$third_party_plugins = array ();
 		if ( !is_dir( $jrcPath ) )
 			{
@@ -187,7 +187,7 @@ class j16000showplugins
 						$encoded = false;
 						$fa_icon = '';
 						// Let's read the first line of the plugin info file
-						$line = fgets(fopen($jrcPath . $entry . JRDS . "plugin_info.php ", 'r'));
+						$line = fgets(fopen($jrcPath . $entry . JRDS . "plugin_info.php", 'r'));
 						$result = substr($line, 0, 13);
 						if ($result == "<?php //004fb")
 							{
