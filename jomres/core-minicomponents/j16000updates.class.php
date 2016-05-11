@@ -33,6 +33,12 @@ class j16000updates
 			$jomresConfig_offline = $CONFIG->offline;
 			}
 		
+		if (!class_exists('ZipArchive'))
+			{
+			$error_messsage[ "ERROR" ] = "Error, ZipArchive not available on this server. Please ask your hosts to rebuild PHP with --enable-zip";
+			echo $error_messsage[ "ERROR" ];
+			return;
+			}
 		// This is just to improve the user's experience. Users can remove this and attempt to upgrade, but then their Quickstart Only installation's plugins may not work with the newer version of Jomres.
 		jr_import( 'jomres_check_support_key' );
 		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=showplugins" );
@@ -196,8 +202,6 @@ class j16000updates
 				curl_exec( $curl_handle );
 				curl_close( $curl_handle );
 				fclose( $out );
-				curl_close( $curl_handle );
-				fclose( $out );
 
 				if ( file_exists( $newfilename ) && filesize( $newfilename ) > 0 ) echo "Got it<br />";
 				else
@@ -206,17 +210,18 @@ class j16000updates
 
 					return;
 					}
-				require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "dUnzip2.inc.php" );
+					
+				$zip = new ZipArchive;
+				$res = $zip->open($newfilename);
 
-				$zip = new dUnzip2( $newfilename );
-				// Activate debug
-				$zip->debug = $this->debugging;
 				// Unzip all the contents of the zipped file to this folder
-				$zip->getList();
-				if ( mkdir( $this->updateFolder . JRDS . "unpacked" ) )
+				if ( mkdir( $this->updateFolder . JRDS . "unpacked" ) && $res === TRUE )
 					{
-					$zip->unZipAll( $this->updateFolder . JRDS . "unpacked" );
-					if ( !$this->test_download ) $this->dirmv( $this->updateFolder . JRDS . "unpacked" . JRDS, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS, $this->overwriteAllowed, $funcloc = "/" );
+					$zip->extractTo($this->updateFolder . JRDS . "unpacked");
+					$zip->close();
+					
+					if ( !$this->test_download ) 
+						$this->dirmv( $this->updateFolder . JRDS . "unpacked" . JRDS, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS, $this->overwriteAllowed, $funcloc = "/" );
 
 					echo "Completed upgrade. Please ensure that you visit <a href=\"" . get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
 
