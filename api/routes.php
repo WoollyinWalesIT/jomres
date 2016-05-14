@@ -22,7 +22,7 @@ if (isset($bang[3]))
 	$sub_filename = $filename."_".filter_var($bang[3], FILTER_SANITIZE_STRING);
 $features_files = Flight::get("features_files");
 
-if (!in_array($filename.".php" , $features_files ))
+if (!in_array($filename.".php" , $features_files ) && !in_array($sub_filename.".php" , $features_files ) )
 	Flight::halt(404, 'Request not allowed');
 
 if ( file_exists( JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'core-plugins'.DIRECTORY_SEPARATOR."api_feature_".$filename.DIRECTORY_SEPARATOR.$request->method .DIRECTORY_SEPARATOR. $sub_filename.".php" ) )
