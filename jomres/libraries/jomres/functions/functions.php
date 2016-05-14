@@ -2737,6 +2737,7 @@ function writexml( $logfile, $rootelement, $entry, $newlines )
 	
 function jomresRedirect($url, $msg = '', $code = 302)
 	{
+	$MiniComponents->triggerEvent( '08000', $componentArgs ); // Optional, post run items that *must* be run ( watchers ).
     if (strncmp('cli', PHP_SAPI, 3) !== 0)
 		{
 		if (headers_sent() !== true)
