@@ -73,8 +73,17 @@ class j06002save_resource
 				{
 				$query    = "SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $defaultProperty . "'";
 				$room_uid = doSelectSql( $query, 1 );
-				$query    = "UPDATE #__jomres_rooms SET `room_classes_uid`='$roomClass',`max_people`=" . $max_people . " WHERE room_uid='" . (int) $room_uid . "' AND propertys_uid='" . (int) $defaultProperty . "'";
-				if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_ROOM', '_JOMRES_MR_AUDIT_UPDATE_ROOM', false ) ) ) trigger_error( "Sql error when updating room", E_USER_ERROR );
+				
+				if ($room_uid > 0)
+					{
+					$query    = "UPDATE #__jomres_rooms SET `room_classes_uid`='$roomClass',`max_people`=" . $max_people . " WHERE room_uid='" . (int) $room_uid . "' AND propertys_uid='" . (int) $defaultProperty . "'";
+					if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_ROOM', '_JOMRES_MR_AUDIT_UPDATE_ROOM', false ) ) ) trigger_error( "Sql error when updating room", E_USER_ERROR );
+					}
+				else
+					{
+					$query = "INSERT INTO #__jomres_rooms (`room_classes_uid`,`propertys_uid`,`max_people`) VALUES (".$roomClass.", ".$defaultProperty.", ".$max_people.")";
+					if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_ROOM', '_JOMRES_MR_AUDIT_UPDATE_ROOM', false ) ) ) trigger_error( "Sql error when inserting room", E_USER_ERROR );
+					}
 
 				$query = "UPDATE #__jomres_rates SET `roomclass_uid`='$roomClass' WHERE `property_uid`=" . (int) $defaultProperty;
 				if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_TARIFF', '_JOMRES_MR_AUDIT_UPDATE_TARIFF', false ) ) ) trigger_error( "Sql error when updating room", E_USER_ERROR );
