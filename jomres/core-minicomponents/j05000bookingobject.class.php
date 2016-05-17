@@ -168,9 +168,9 @@ if ( !class_exists( 'booking' ) )
 			if ( $fieldName == "arrivalDate" ) 
 				{
 				$output .= ',beforeShowDay: isAvailable';
-				$output .= ', onClose: function() {
-							' . $onclose . '
-						}';
+				
+				if ($onclose != '')
+					$output .= ', onClose: function() { ' . $onclose . ' }';
 				}
 
 			$output .= '} );
