@@ -2,7 +2,8 @@
 
 if (file_exists(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'configuration.php'))
 	{
-	define( '_JEXEC', 1 );
+	if (!defined('_JEXEC'))
+		define( '_JEXEC', 1 );
 	require_once(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'configuration.php');
 
 	$CONFIG = new JConfig();
@@ -83,7 +84,9 @@ $storage = new OAuth2\Storage\Pdo(array('dsn' => $dsn, 'username' => $username, 
 
 
 // Pass a storage object or array of storage objects to the OAuth2 server class
-$server = new OAuth2\Server($storage  );
+$server = new OAuth2\Server($storage , array(
+    'allow_implicit' => true,
+));
 
 // Add the "Client Credentials" grant type (it is the simplest of the grant types)
 $server->addGrantType(new OAuth2\GrantType\ClientCredentials($storage));
