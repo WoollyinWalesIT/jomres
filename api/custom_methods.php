@@ -23,12 +23,12 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 			->send();
 	});
 	
-	Flight::map('halt', function($code = 200, $message = '') {
-		logging::log_message(' Halted run '.$code.' and contents '.$message);
-		$json = ($encode) ? json_encode($data) : $data;
+ 	Flight::map('halt', function($code = 200, $message = '') {
+		$message = ' Halted run '.$code.' with message '.$message;
+		logging::log_message($message);
 		Flight::response()
-          ->status($code)
+            ->status($code)
             ->write($message)
             ->send();
-	});
+	}); 
 	
