@@ -222,6 +222,7 @@ class jomres_language
 		$langs[ 'ja-JP' ] = "日本語";
 		$langs[ 'uk-UA' ] = "Український";
 		$langs[ 'fa-IR' ] = "فارسی";
+		$langs[ 'az-AZ' ] = "Azərbaycan dili";
 		
 
 		$language_plugins = get_showtime( 'language_plugins' );
@@ -298,6 +299,7 @@ class jomres_language
 		$langs[ 'ja' ] = 'ja-JP';
 		$langs[ 'uk' ] = 'uk-UA';
 		$langs[ 'fa' ] = 'fa-IR';
+		$langs[ 'az' ] = 'az-AZ';
 		return $langs;
 		}
 	
@@ -338,6 +340,7 @@ class jomres_language
 		$langs[ 'ja-JP' ] = "ja";
 		$langs[ 'uk-UA' ] = "uk";
 		$langs[ 'fa-IR' ] = "fa";
+		$langs[ 'az-AZ' ] = "az";
 
 		$language_plugins = get_showtime( 'language_plugins' );
 		if ( count( $language_plugins ) > 0 )
