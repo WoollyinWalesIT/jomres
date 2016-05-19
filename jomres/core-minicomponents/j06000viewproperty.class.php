@@ -272,7 +272,12 @@ class j06000viewproperty
 							
 							$content                                       = $tabs[ 'TAB_CONTENT' ];
 							$title                                         = $tabs[ 'TAB_TITLE' ];
-							$tab_id                                        = $tabs[ 'TAB_TITLE' ];
+							
+							if (isset($tabs[ 'TAB_ID' ]))
+								$tab_id                                    = $tabs[ 'TAB_ID' ];
+							else
+								$tab_id                                    = $tabs[ 'TAB_TITLE' ];
+							
 							$tab_titles[ ]                                 = array ( "TAB_ANCHOR" => $tabs[ 'TAB_ANCHOR' ], "TAB_TITLE" => $title, "ACTIVE" => $tab_class, "TAB_ID" => $tab_id );
 							$tab_contents[ ]                               = array ( "TAB_CONTENT" => $content, "TAB_TITLE" => $title, "TAB_ANCHOR" => $tabs[ 'TAB_ANCHOR' ], "ACTIVE" => $tab_class );
 							$output[ strtoupper( $key . "_tabtitle" ) ]    = $title;
