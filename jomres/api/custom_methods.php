@@ -24,8 +24,8 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 	});
 	
  	Flight::map('halt', function($code = 200, $message = '') {
-		$message = ' Halted run '.$code.' with message '.$message;
-		logging::log_message($message);
+		$log = ' Halted run '.$code.' with message '.$message;
+		logging::log_message($log);
 		Flight::response()
             ->status($code)
             ->write($message)
