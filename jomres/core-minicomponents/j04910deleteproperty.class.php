@@ -38,47 +38,52 @@ class j04910deleteproperty {
 				$subject=_JOMRES_MR_AUDIT_DELETE_PROPERTY.$property_name;
 				//sendAdminEmail(getPropertyName($property_uid),$saveMessage);
 
-				$query="DELETE FROM #__jomres_customertypes WHERE property_uid = '".$property_uid."' LIMIT 10000";
+				$query="DELETE FROM #__jomres_customertypes WHERE `property_uid` = ".$property_uid." LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_extraservices WHERE property_uid = '".$property_uid."' LIMIT 10000";
+				$query="DELETE FROM #__jomres_extraservices WHERE `property_uid` = ".$property_uid." LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_contracts WHERE property_uid = '".$property_uid."' LIMIT 10000";
+				$query="DELETE FROM #__jomres_contracts WHERE `property_uid` = ".$property_uid." LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_rates WHERE property_uid = '".$property_uid."' LIMIT 10000";
+				$query="DELETE FROM #__jomres_rates WHERE `property_uid` = ".$property_uid." LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_room_bookings WHERE property_uid = '".$property_uid."' LIMIT 10000";
+				$query="DELETE FROM #__jomcomp_tarifftype_rate_xref WHERE `property_uid` = ".$property_uid." LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_room_classes WHERE property_uid = '".$property_uid."' LIMIT 10000";
+				$query="DELETE FROM #__jomres_room_bookings WHERE `property_uid` = ".$property_uid." LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_rooms WHERE propertys_uid = '".$property_uid."' LIMIT 10000";
+				$query="DELETE FROM #__jomres_room_classes WHERE `property_uid` = ".$property_uid." LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_room_features WHERE property_uid = '".$property_uid."' LIMIT 10000";
+				$query="DELETE FROM #__jomres_rooms WHERE `propertys_uid` = ".$property_uid." LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_hotel_features WHERE property_uid = '".$property_uid."' LIMIT 10000";
+				$query="DELETE FROM #__jomres_room_features WHERE `property_uid` = ".$property_uid." LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_pluginsettings WHERE prid = '".$property_uid."' LIMIT 10000";
+				$query="DELETE FROM #__jomres_hotel_features WHERE `property_uid` = ".$property_uid." LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_settings WHERE property_uid = '".$property_uid."' LIMIT 10000";
+				$query="DELETE FROM #__jomres_pluginsettings WHERE `prid` = ".$property_uid." LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_custom_text WHERE property_uid = '".$property_uid."' LIMIT 10000";
+				$query="DELETE FROM #__jomres_settings WHERE `property_uid` = ".$property_uid." LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_pcounter WHERE p_uid = '".$property_uid."' LIMIT 10000";
+				$query="DELETE FROM #__jomres_custom_text WHERE `property_uid` = ".$property_uid." LIMIT 10000";
 				doInsertSql($query,'');
-				$query="DELETE FROM #__jomres_managers_propertys_xref WHERE property_uid = '".$property_uid."' LIMIT 10000";
+				$query="DELETE FROM #__jomres_pcounter WHERE `p_uid` = ".$property_uid." LIMIT 10000";
 				doInsertSql($query,'');
+				$query="DELETE FROM #__jomres_managers_propertys_xref WHERE `property_uid` = ".$property_uid." LIMIT 10000";
+				doInsertSql($query,'');
+				$query="DELETE FROM #__jomresportal_properties_crates_xref WHERE `property_id` = ".$property_uid." LIMIT 10000";
+				doInsertSql($query,'');
+				
 				if ( $is_jintour_property )
 					{
-					$query="DELETE FROM #__jomres_jintour_profiles WHERE property_uid = '".$property_uid."' LIMIT 10000";
+					$query="DELETE FROM #__jomres_jintour_profiles WHERE `property_uid` = ".$property_uid." LIMIT 10000";
 					doInsertSql($query,'');
-					$query="DELETE FROM #__jomres_jintour_properties WHERE property_uid = '".$property_uid."' LIMIT 10000";
+					$query="DELETE FROM #__jomres_jintour_properties WHERE `property_uid` = ".$property_uid." LIMIT 10000";
 					doInsertSql($query,'');
-					$query="DELETE FROM #__jomres_jintour_tours WHERE property_uid = '".$property_uid."' LIMIT 10000";
+					$query="DELETE FROM #__jomres_jintour_tours WHERE `property_uid` = ".$property_uid." LIMIT 10000";
 					doInsertSql($query,'');
-					$query="DELETE FROM #__jomres_jintour_tour_bookings WHERE property_id = '".$property_uid."' LIMIT 10000";
+					$query="DELETE FROM #__jomres_jintour_tour_bookings WHERE `property_id` = ".$property_uid." LIMIT 10000";
 					doInsertSql($query,'');
 					}
 				
-				$query="DELETE FROM #__jomres_propertys WHERE propertys_uid = '".$property_uid."' LIMIT 1";
+				$query="DELETE FROM #__jomres_propertys WHERE `propertys_uid` = ".$property_uid." LIMIT 1";
 				$result = doInsertSql($query);
 
 				$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
@@ -122,17 +127,9 @@ class j04910deleteproperty {
 			}
 		}
 
-	/**
-	#
-	 * Must be included in every mini-component
-	#
-	 * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
-	#
-	 */
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
 		return null;
 		}
 	}
-?>

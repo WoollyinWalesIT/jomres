@@ -76,13 +76,12 @@ class j06002edit_resource
 			
 			if ( $clone ) $roomUid = 0;
 
-			$classOptions[ ] = jomresHTML::makeOption( '', "" );
 			foreach ( $basic_property_details->this_property_room_classes as $key => $roomClass )
 				{
 				if (!is_null($roomClass))
 					$classOptions[ ] = jomresHTML::makeOption( $key, $roomClass[ 'abbv' ] );
 				}
-			$classDropDownList      = jomresHTML::selectList( $classOptions, 'roomClasses', 'class="inputbox" size="1"', 'value', 'text', $room_classes_uid );
+			$classDropDownList = jomresHTML::selectList( $classOptions, 'roomClasses', 'class="inputbox" size="1"', 'value', 'text', $room_classes_uid );
 			
 			$ptype_id = $basic_property_details->ptype_id;
 
@@ -189,7 +188,7 @@ class j06002edit_resource
 								FROM #__jomres_room_classes a 
 								CROSS JOIN #__jomres_roomtypes_propertytypes_xref b 
 								ON a.room_classes_uid = b.roomtype_id 
-								WHERE a.property_uid = 0 AND a.srp_only = 1 AND b.propertytype_id = ".$basic_property_details->ptype_id." 
+								WHERE a.property_uid = 0 AND b.propertytype_id = ".$basic_property_details->ptype_id." 
 								ORDER BY room_class_abbv ";
 			$roomClasses  = doSelectSql( $query );
 			

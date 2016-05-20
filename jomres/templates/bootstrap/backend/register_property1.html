@@ -44,69 +44,57 @@
 		});
 	//-->
 </script>
-	<div id="tour_target_registration_1"></div>
-	<p>{REGISTRATION_INSTRUCTIONS_STEP1}</p>
-	<div class="alert alert-info">
-		<p>{MANAGEMENTPROCESS_DESC}
-		<ul>
-			<patTemplate:tmpl name="rows">
-				<li>{DESCRIPTION}</li>
-			</patTemplate:tmpl>
-		</ul>
-		</p>
-	</div>
-	<form action="{JOMRES_SITEPAGE_URL_NOSEF}&task=registerProp_step3" method="post" name="regForm" class="form-horizontal">
-		<fieldset>
-			
-			<div class="control-group">
-				<label class="control-label" for="xyz">{HCOUNTRY}</label><div id="tour_target_registration_1_country"></div>
 
-				<div class="controls">
-					{COUNTRIESDROPDOWN}
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="region">{HREGION}</label>
+<div id="tour_target_registration_1"></div>
 
-				<div class="controls">
-					{REGIONDROPDOWN}
-				</div>
-			</div>
-			
-			<div class="control-group">
-				<label class="control-label" for="property_name">{HNAME}</label>
-				<div class="controls">
-					<input id="property_name" name="property_name" type="text" value="{PROPERTY_NAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_PROPERTYNAME}"/>
-				</div>
-			</div>
+<h2 class="page-header">{PAGETITLE}</h2>
 
-			<div class="control-group">
-				<label class="control-label" for="property_email">{HEMAIL}</label>
-				<div class="controls">
-					<input id="property_email" name="property_email" type="email" value="{PROPERTY_EMAIL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_EMAIL}"/>
-				</div>
-			</div>
-	
-			<div class="control-group">
-				<label class="control-label" for="propertyType">{HPROPERTY_TYPE}</label><div id="tour_target_registration_1_property_type"></div>
-				<div class="controls">
-					{PROPERTY_TYPE_DROPDOWN}
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="management_process">{MANAGEMENTPROCESS}</label><div id="tour_target_registration_1_process"></div>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}&task=registerProp_step3" method="post" name="regForm" class="form-horizontal">
+	<fieldset>
+		
+		<div class="control-group">
+			<label class="control-label" for="xyz">{HCOUNTRY}</label><div id="tour_target_registration_1_country"></div>
 
-				<div class="controls">
-					{REALESTATEDROPDOWN}
-				</div>
+			<div class="controls">
+				{COUNTRIESDROPDOWN}
 			</div>
-			<div class="form-actions">
-				<div class="">
-					<a href="{JOMRES_SITEPAGE_URL}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
-					<button type="button" class="btn btn-primary" onclick="validatePropertyRegistration();">{COMMON_NEXT} <i class="icon-arrow-right icon-white"></i></button>
-				</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="region">{HREGION}</label>
+
+			<div class="controls">
+				{REGIONDROPDOWN}
 			</div>
-			<input type="hidden" name="task" value="registerProp_step3"/>
-		</fieldset>
-	</form>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="propertyType">{HPROPERTY_TYPE}</label><div id="tour_target_registration_1_property_type"></div>
+			<div class="controls">
+				{PROPERTY_TYPE_DROPDOWN}
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="property_name">{HNAME}</label>
+			<div class="controls">
+				<input id="property_name" name="property_name" type="text" value="{PROPERTY_NAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_PROPERTYNAME}"/>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="property_email">{HEMAIL}</label>
+			<div class="controls">
+				<input id="property_email" name="property_email" type="email" value="{PROPERTY_EMAIL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_EMAIL}"/>
+			</div>
+		</div>
+
+		<div class="form-actions">
+			<div class="">
+				<a href="{JOMRES_SITEPAGE_URL}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
+				<button type="button" class="btn btn-primary" onclick="validatePropertyRegistration();">{COMMON_NEXT} <i class="icon-arrow-right icon-white"></i></button>
+			</div>
+		</div>
+		<input type="hidden" name="task" value="registerProp_step3"/>
+	</fieldset>
+</form>
 </patTemplate:tmpl>

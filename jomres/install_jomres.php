@@ -392,7 +392,6 @@ function doTableUpdates()
 	if ( !checkManagerSuspendedColExists() ) alterManagerSuspendedCol();
 	if ( !checkInvoicesIsCommisionColExists() ) alterInvoicesIsCommisionCol();
 	if ( !checkGuestProfileTableExists() ) createGuestProfileTable();
-	if ( !checkPropertyUIDInOrphanLineItemsColExists() ) alterPropertyUIDInOrphanLineItemsCol();
 	//if ( !checkExtraServicesTableExists() ) createExtraServicesTable(); // Disabled in Jomres 8.1
 	if ( !checkExtraServicesTaxColExists() ) alterExtraServicesTaxCol();
 
@@ -464,7 +463,53 @@ function doTableUpdates()
 	if ( !checkContractsReferrerColExists() ) alterContractsReferrerCol();
 	if ( !checkPtypesMrpsrpFlagColExists() ) alterPtypesMrpsrpFlagCol();
 	
+	if ( checkRtypesSrpOnlyFlagColExists() ) dropRtypesSrpOnlyFlagCol();
+	
+	drop_orphan_line_items_table();
+	removeCronJob('invoice');
+	
 	updateSiteSettings ( "update_time" , time() );
+	}
+
+function removeCronJob( $job = '' )
+	{
+	if ($job == '')
+		return;
+	
+	jr_import( 'jomres_cron' );
+	$cron = new jomres_cron();
+	$cron->removeJob("invoice");
+	}
+
+function drop_orphan_line_items_table()
+	{
+	$query = "DROP TABLE IF EXISTS `#__jomresportal_orphan_lineitems` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to drop #__jomresportal_orphan_lineitems table", "danger" );
+		}
+	}
+
+function checkRtypesSrpOnlyFlagColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_room_classes LIKE 'srp_only'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
+
+function dropRtypesSrpOnlyFlagCol()
+	{
+	output_message ( "Editing __jomres_room_classes table dropping srp_only column");
+	$query = "ALTER TABLE #__jomres_room_classes DROP COLUMN `srp_only` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to drop __jomres_room_classes srp_only column", "danger" );
+		}
 	}
 
 function alterPtypesMrpsrpFlagCol()
@@ -1250,8 +1295,6 @@ function checkLineitemsInitqtyColFloat()
 			{
 			$query = 'ALTER TABLE #__jomresportal_lineitems MODIFY init_qty FLOAT';
 			$result = doInsertSql($query);
-			$query = 'ALTER TABLE #__jomresportal_orphan_lineitems MODIFY init_qty FLOAT NOT NULL default \'0.00\'';
-			$result = doInsertSql($query);
 			}
 		}
 	}
@@ -1978,29 +2021,6 @@ function checkExtraServicesTableExists()
 
 	return false;
 	} */
-
-
-function checkPropertyUIDInOrphanLineItemsColExists()
-	{
-	$query  = "SHOW COLUMNS FROM #__jomresportal_orphan_lineitems  LIKE 'property_uid'";
-	$result = doSelectSql( $query );
-	if ( count( $result ) > 0 )
-		{
-		return true;
-		}
-
-	return false;
-	}
-
-function alterPropertyUIDInOrphanLineItemsCol()
-	{
-	output_message ( "Editing __jomresportal_orphan_lineitems table adding property_uid column");
-	$query = "ALTER TABLE `#__jomresportal_orphan_lineitems` ADD `property_uid` INT NULL DEFAULT '0' ";
-	if ( !doInsertSql( $query, '' ) )
-		{
-		output_message ( "Error, unable to add __jomresportal_orphan_lineitems property_uid", "danger" );
-		}
-	}
 
 function createGuestProfileTable()
 	{
@@ -2743,7 +2763,6 @@ function installCronjobs()
 	jr_import( 'jomres_cron' );
 	$cron = new jomres_cron();
 	$cron->addJob( "optimise", "D", "" );
-	$cron->addJob( "invoice", "D", "" );
 	$cron->addJob( "exchangerates", "D", "" );
 	$cron->addJob( "error_logs_cleanup", "D", "" );
 	}
@@ -3143,23 +3162,6 @@ function createJomresTables()
 		payment_ref varchar(100) NOT NULL default '',
 		notes text,
 		PRIMARY KEY  (id)
-	)";
-	doInsertSql( $query, "" );
-
-	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_orphan_lineitems` (
-		`id` int(11) NOT NULL auto_increment,
-		`cms_user_id` int(11) NOT NULL default '0',
-		`name` varchar(255) ,
-		`description` varchar(255) ,
-		`init_price` float default '0',
-		`init_qty` float  NOT NULL default '0.00',
-		`init_discount` float default '0',
-		`recur_price` float default '0',
-		`recur_qty` int(11) default '0',
-		`recur_discount` float default '0',
-		`tax_code_id` int(11),
-		`property_uid` INT NULL DEFAULT '0',
-		PRIMARY KEY  (`id`)
 	)";
 	doInsertSql( $query, "" );
 
@@ -3700,8 +3702,7 @@ function createJomresTables()
 		`room_class_abbv` VARCHAR(255) NULL,
 		`room_class_full_desc` VARCHAR(255) NULL,
 		`image` TEXT NULL,
-		`property_uid` VARCHAR(11),
-		`srp_only` BOOL,
+		`property_uid` VARCHAR(11)
 		PRIMARY KEY(`room_classes_uid`)
 		) ";
 	if ( !doInsertSql( $query ) )
@@ -4153,32 +4154,32 @@ function insertSampleData()
 	$result = doInsertSql( "INSERT INTO `#__jomres_room_features` ( `room_features_uid` , `feature_description`,`property_uid` )VALUES ('1', 'En-suite Bathroom','1'), ('2', 'Tea & Coffee Making facilities','1')", "" );
 
 
-	$result = doInsertSql( "INSERT INTO `#__jomres_room_classes` (`room_classes_uid`, `room_class_abbv`, `room_class_full_desc`, `image`, `property_uid`, `srp_only`) VALUES
-			(1, 'Room Double beds', '', 'double.png', '0', 0),
-			(2, 'Room Twin beds', '', 'twin.png', '0', 0),
-			(3, 'Room Single', '', 'single.png', '0', 0),
-			(4, 'Room 4 Poster bed', '', 'fourposter.png', '0', 0),
-			(5, '1 Bedroom', '', '1bedroom.png', '0', 1),
-			(6, '2 Bedrooms', '', '2bedrooms.png', '0', 1),
-			(7, '3 Bedrooms', '', '3bedrooms.png', '0', 1),
-			(8, '4 Bedrooms', '', '4bedrooms.png', '0', 1),
-			(9, '5 Bedrooms', '', '5bedrooms.png', '0', 1),
-			(10, '6+ Bedrooms', '', '6plusbedrooms.png', '0', 1),
-			(11, 'Tent pitch 1 person ', '', 'camping_1bivi_pitch.png', '0', 0),
-			(12, 'Tent pitch 2 person ', '', 'camping_2_man_tent_pitch.png', '0', 0),
-			(13, 'Tent pitch 3 person ', '', 'camping_3_man_tent_pitch.png', '0', 0),
-			(14, 'Tent pitch 4 person ', '', 'camping_4_man_tent_pitch.png', '0', 0),
-			(15, 'Tent pitch 6+ person', '', 'camping_6_man_tent_pitch.png', '0', 0),
-			(16, 'Car rental Hatchback', '', 'car_rental_hatchback.png', '0', 0),
-			(17, 'Car rental Luxury', '', 'car_rental_luxury.png', '0', 0),
-			(18, 'Car rental People Ca', '', 'car_rental_peoplecarrier.png', '0', 0),
-			(19, 'Car rental Saloon', '', 'car_rental_saloon.png', '0', 0),
-			(20, 'Car rental Sportscar', '', 'car_rental_sportscar.png', '0', 0),
-			(21, 'Tent pitch Caravan', '', 'camping_caravan_pitch.png', '0', 0),
-			(22, 'Yacht 2 berth', '', 'yacht_2_berth.png', '0', 0),
-			(23, 'Yacht 4 berth', '', 'yacht_4_berth.png', '0', 0),
-			(24, 'Yacht 6 berth', '', 'yacht_6_berth.png', '0', 0),
-			(25, 'Yacht 8+ berth', '', 'yacht_8_berth.png', '0', 0)
+	$result = doInsertSql( "INSERT INTO `#__jomres_room_classes` (`room_classes_uid`, `room_class_abbv`, `room_class_full_desc`, `image`, `property_uid`) VALUES
+			(1, 'Room Double beds', '', 'double.png', 0),
+			(2, 'Room Twin beds', '', 'twin.png', 0),
+			(3, 'Room Single', '', 'single.png', 0),
+			(4, 'Room 4 Poster bed', '', 'fourposter.png', 0),
+			(5, '1 Bedroom', '', '1bedroom.png', 0),
+			(6, '2 Bedrooms', '', '2bedrooms.png', 0),
+			(7, '3 Bedrooms', '', '3bedrooms.png', 0),
+			(8, '4 Bedrooms', '', '4bedrooms.png', 0),
+			(9, '5 Bedrooms', '', '5bedrooms.png', 0),
+			(10, '6+ Bedrooms', '', '6plusbedrooms.png', 0),
+			(11, 'Tent pitch 1 person ', '', 'camping_1bivi_pitch.png', 0),
+			(12, 'Tent pitch 2 person ', '', 'camping_2_man_tent_pitch.png', 0),
+			(13, 'Tent pitch 3 person ', '', 'camping_3_man_tent_pitch.png', 0),
+			(14, 'Tent pitch 4 person ', '', 'camping_4_man_tent_pitch.png', 0),
+			(15, 'Tent pitch 6+ person', '', 'camping_6_man_tent_pitch.png', 0),
+			(16, 'Car rental Hatchback', '', 'car_rental_hatchback.png', 0),
+			(17, 'Car rental Luxury', '', 'car_rental_luxury.png', 0),
+			(18, 'Car rental People Ca', '', 'car_rental_peoplecarrier.png', 0),
+			(19, 'Car rental Saloon', '', 'car_rental_saloon.png', 0),
+			(20, 'Car rental Sportscar', '', 'car_rental_sportscar.png', 0),
+			(21, 'Tent pitch Caravan', '', 'camping_caravan_pitch.png', 0),
+			(22, 'Yacht 2 berth', '', 'yacht_2_berth.png', 0),
+			(23, 'Yacht 4 berth', '', 'yacht_4_berth.png', 0),
+			(24, 'Yacht 6 berth', '', 'yacht_6_berth.png', 0),
+			(25, 'Yacht 8+ berth', '', 'yacht_8_berth.png', 0)
 			" );
 
 
@@ -5147,26 +5148,6 @@ function addNewTables()
 		payment_ref varchar(100) NOT NULL default '',
 		notes text,
 		PRIMARY KEY  (id)
-	)";
-	if ( !doInsertSql( $query ) )
-		{
-		output_message (  "Failed to run query: " . $query , "danger" );
-		}
-
-	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_orphan_lineitems` (
-		`id` int(11) NOT NULL auto_increment,
-		`cms_user_id` int(11) NOT NULL default '0',
-		`name` varchar(20),
-		`description` varchar(255),
-		`init_price` float NOT NULL default '0',
-		`init_qty` float  NOT NULL default '0.00',
-		`init_discount` float NOT NULL default '0',
-		`recur_price` float NOT NULL default '0',
-		`recur_qty` int(11) NOT NULL default '0',
-		`recur_discount` float NOT NULL default '0',
-		`tax_code_id` int(11),
-		`property_uid` INT NULL DEFAULT '0',
-		PRIMARY KEY  (`id`)
 	)";
 	if ( !doInsertSql( $query ) )
 		{

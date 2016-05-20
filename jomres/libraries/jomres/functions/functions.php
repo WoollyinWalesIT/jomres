@@ -3076,19 +3076,6 @@ function saveHotelSettings()
 	
 	$property_uid = (int) getDefaultProperty();
 	$mrConfig	 = getPropertySpecificSettings( $property_uid );
-
-	//$updateText="";
-
-	//check if the property MRP/SRP has changed
-	$mrpsrpChange = false;
-	if ( isset($_POST[ 'oldsetting_cfg_singleRoomProperty' ]) && isset($_POST[ 'cfg_singleRoomProperty' ]) && $_POST[ 'oldsetting_cfg_singleRoomProperty' ] != $_POST[ 'cfg_singleRoomProperty' ] )
-		{
-		echo "Deleting all tariffs and rooms";
-		removeAllPropertyTariffs( $property_uid );
-		removeAllPropertyEnhanceTariffsXref( $property_uid );
-		removeAllPropertyRooms( $property_uid );
-		$mrpsrpChange = true;
-		}
 	
 	$tariffmodeChange = false;
 	if ( $_POST[ 'oldsetting_cfg_tariffmode' ] == "1" && $_POST[ 'cfg_tariffmode' ] == "2" ) // Advanced  -> micromanage
@@ -3168,15 +3155,7 @@ function saveHotelSettings()
 		$validation->save_subject($type = "property", array( "property_uid"=>$property_uid ) );
 		}
 	
-	if ( $mrpsrpChange )
-		{
-		if (isset($_POST[ 'cfg_tariffmode' ]) && $_POST[ 'cfg_tariffmode' ] != "0" )
-			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=edit_resource" ), '' );
-		else
-			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=edit_tariffs_normal" ), '' );
-		}
-	else
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=business_settings&property_uid=$property_uid" ), '' );
+	jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=business_settings&property_uid=$property_uid" ), '' );
 	}
 
 function removeAllPropertyEnhanceTariffsXref( $property_uid )
@@ -3705,29 +3684,39 @@ function listGateways()
  * Shows the dropdown for selecting the property type in the edit property function
 #
  */
-function getPropertyTypeDropdown( $propertyType = "" , $all = false )
+function getPropertyTypeDropdown( $propertyType = "" , $extended = false )
 	{
-	$query = "SELECT `mrp_srp_flag` FROM #__jomres_ptypes WHERE id = '" . (int) $propertyType . "' ";
-	$mrp_srp = (int)doSelectSql( $query , 1 );
-	$clause = '';
-	if (!$all)
-		{
-		if ($mrp_srp == 0)
-			$clause = " mrp_srp_flag = 0 OR mrp_srp_flag = 2 AND ";
-		if ($mrp_srp == 1)
-			$clause = " mrp_srp_flag = 1 OR mrp_srp_flag = 2 AND";
-		if ($mrp_srp == 2)
-			$clause = " mrp_srp_flag = 0 OR mrp_srp_flag = 1 OR mrp_srp_flag = 2 AND";
-		if ($mrp_srp == 3)
-			$clause = " mrp_srp_flag = 3 AND";
-		}
+	$jomres_property_types = jomres_singleton_abstract::getInstance( 'jomres_property_types' );
+	$jomres_property_types->get_all_property_types();
 	
-	$query     = "SELECT id , ptype FROM #__jomres_ptypes  WHERE " . $clause . " published = 1 ";
-	$ptypeList = doSelectSql( $query );
 	$ptypeOptions = array ();
-	foreach($ptypeList as $ptype)
+	foreach($jomres_property_types->property_types as $p)
 		{
-		$ptypeOptions[] = jomresHTML::makeOption( $ptype->id, jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $ptype->id, $ptype->ptype, false, false ) );
+		$ptype = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $p['id'], $p['ptype'], false );
+		
+		if ($extended)
+			{
+			switch( $p['mrp_srp_flag'] )
+				{
+				case 1:
+					$ptype .= ' - ' . jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_VILLA', '_JOMRES_PROPERTYTYPE_FLAG_VILLA',false );
+					break;
+				case 2:
+					$ptype .= ' - ' . jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_BOTH', '_JOMRES_PROPERTYTYPE_FLAG_BOTH',false );
+					break;
+				case 3:
+					$ptype .= ' - ' . jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_TOURS', '_JOMRES_PROPERTYTYPE_FLAG_TOURS',false );
+					break;
+				case 4:
+					$ptype .= ' - ' . jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_REALESTATE', '_JOMRES_PROPERTYTYPE_FLAG_REALESTATE',false );
+					break;
+				default:
+					$ptype .= ' - ' . jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', '_JOMRES_PROPERTYTYPE_FLAG_HOTEL',false );
+					break;
+				}
+			}
+
+		$ptypeOptions[] = jomresHTML::makeOption( $p['id'], $ptype );
 		}
 
 	$ptypeDropDownList = jomresHTML::selectList( $ptypeOptions, 'propertyType', 'class="inputbox" size="1"', 'value', 'text', $propertyType );

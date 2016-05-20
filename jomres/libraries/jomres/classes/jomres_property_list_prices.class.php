@@ -221,7 +221,10 @@ class jomres_property_list_prices
 									}
 								
 								//grand total including extras
-								$grand_total = output_price((($raw_price / $multiplier) * $this->stayDays), '');
+								if ( (int)$mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == 1 && (int)$mrConfig[ 'tariffmode' ] == 1)
+									$grand_total = output_price(((($raw_price / 7) / $multiplier) * $this->stayDays), '');
+								else
+									$grand_total = output_price((($raw_price / $multiplier) * $this->stayDays), '');
 				
 								if ( $mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == "1" && $mrConfig[ 'tariffmode' ] == "1" ) 
 									$post_text = "&nbsp;" . jr_gettext( '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK' );

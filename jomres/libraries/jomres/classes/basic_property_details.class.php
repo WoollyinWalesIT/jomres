@@ -271,13 +271,13 @@ class basic_property_details
 			}
 
 		$mrConfig = getPropertySpecificSettings( $this->property_uid );
-		$mrConfig[ 'singleRoomProperty' ] == '0' ? $srp_only = 0 : $srp_only = 1;
 		
+		//get all room types assigned to this property type
 		if ( !isset( $this->this_property_room_classes ) )
 			{
 			$this->this_property_room_classes = array ();
-			$query                            = "SELECT a.roomtype_id FROM #__jomres_roomtypes_propertytypes_xref a, #__jomres_room_classes b WHERE a.propertytype_id = " . (int) $this->ptype_id . " AND (a.roomtype_id = b.room_classes_uid AND b.srp_only = " . (int)$srp_only . " )";
-			$roomtypes                        = doSelectSql( $query );
+			$query = "SELECT a.roomtype_id FROM #__jomres_roomtypes_propertytypes_xref a, #__jomres_room_classes b WHERE a.propertytype_id = " . (int) $this->ptype_id . " AND a.roomtype_id = b.room_classes_uid ";
+			$roomtypes = doSelectSql( $query );
 			foreach ( $roomtypes as $roomClass )
 				{
 				$this->this_property_room_classes[ (int) $roomClass->roomtype_id ] = $this->classAbbvs[ $roomClass->roomtype_id ];
@@ -513,7 +513,6 @@ class basic_property_details
 		$this->classAbbvs     = array ();
 		$this->all_room_types = array ();
 		$this->roomtypes_propertytypes_xref = array ();
-		$room_type_ids        = array ();
 		
 		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 		$all_room_types_details=$c->retrieve('all_room_types_details');
@@ -526,32 +525,28 @@ class basic_property_details
 			}
 		else
 			{
-			$query                = "SELECT `room_classes_uid`,`room_class_abbv`,`room_class_full_desc`,`image`,`srp_only` FROM #__jomres_room_classes WHERE property_uid = 0 ";
-			$roomtypes            = doSelectSql( $query );
-			if ( count( $roomtypes ) > 0 )
+			$jomres_room_types = jomres_singleton_abstract::getInstance( 'jomres_room_types' );
+			$jomres_room_types->get_all_room_types();
+
+			if ( count( $jomres_room_types->room_types ) > 0 )
 				{
-				foreach ( $roomtypes as $rt )
+				foreach ( $jomres_room_types->room_types as $rt )
 					{
-					$this->all_room_types[ $rt->room_classes_uid ][ 'room_classes_uid' ] = $rt->room_classes_uid;
-					$this->all_room_types[ $rt->room_classes_uid ][ 'room_class_abbv' ]  = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV' . (int) $rt->room_classes_uid, stripslashes( $rt->room_class_abbv ), false, false );;
-					$this->all_room_types[ $rt->room_classes_uid ][ 'room_class_full_desc' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC' . (int) $rt->room_classes_uid, stripslashes( $rt->room_class_full_desc ), false, false );
-					$this->all_room_types[ $rt->room_classes_uid ][ 'image' ]                = $rt->image;
-					$this->all_room_types[ $rt->room_classes_uid ][ 'srp_only' ]             = $rt->srp_only;
-					$room_type_ids[ ]                                                        = $rt->room_classes_uid;
+					$this->all_room_types[ $rt['room_classes_uid'] ][ 'room_classes_uid' ] 		= $rt['room_classes_uid'];
+					$this->all_room_types[ $rt['room_classes_uid'] ][ 'room_class_abbv' ]  		= jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV' .$rt['room_classes_uid'], stripslashes( $rt['room_class_abbv'] ), false );
+					$this->all_room_types[ $rt['room_classes_uid'] ][ 'room_class_full_desc' ] 	= jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.$rt['room_classes_uid'], stripslashes( $rt['room_class_full_desc']), false);
+					$this->all_room_types[ $rt['room_classes_uid'] ][ 'image' ]                	= $rt['image'];
 	
 					// To a degree, this is a duplication of effort, however we don't know if other scripts are using the $this->classAbbvs variable, so we'll reuse this code from the previous gather_data method.
-					$this->classAbbvs[ (int) $rt->room_classes_uid ][ 'abbv' ]  = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV' . (int) $rt->room_classes_uid, stripslashes( $rt->room_class_abbv ), false, false );
-					$this->classAbbvs[ (int) $rt->room_classes_uid ][ 'desc' ]  = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC' . (int) $rt->room_classes_uid, stripslashes( $rt->room_class_full_desc ), false, false );
-					$this->classAbbvs[ (int) $rt->room_classes_uid ][ 'image' ] = $rt->image;
+					$this->classAbbvs[ $rt['room_classes_uid'] ][ 'abbv' ]  = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV' . $rt['room_classes_uid'], stripslashes( $rt['room_class_abbv'] ), false );
+					$this->classAbbvs[ $rt['room_classes_uid'] ][ 'desc' ]  = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC' . $rt['room_classes_uid'], stripslashes( $rt['room_class_full_desc'] ), false);
+					$this->classAbbvs[ $rt['room_classes_uid'] ][ 'image' ] = $rt['image'];
 					}
 				}
-	
-			$query                              = "SELECT roomtype_id,propertytype_id FROM #__jomres_roomtypes_propertytypes_xref";
-			$roomtypes                          = doSelectSql( $query );
-			foreach ( $roomtypes as $roomClass )
-				{
-				$this->roomtypes_propertytypes_xref[ (int) $roomClass->propertytype_id ] = $this->classAbbvs[ $roomClass->roomtype_id ];
-				}
+			
+			//each property type with it`s assigned room types.
+			$this->roomtypes_propertytypes_xref = $jomres_room_types->all_ptype_rtype_xrefs;
+			
 			$c->store('all_room_types_details',array('all_room_types'=>$this->all_room_types,'classAbbvs'=>$this->classAbbvs,'roomtypes_propertytypes_xref'=>$this->roomtypes_propertytypes_xref));
 			}	
 		}
@@ -572,14 +567,15 @@ class basic_property_details
 			}
 		else
 			{
-			$query                          = "SELECT id,ptype,ptype_desc FROM #__jomres_ptypes WHERE published = 1 ";
-			$propertytypes                  = doSelectSql( $query );
-			if ( count( $propertytypes ) > 0 )
+			$jomres_property_types = jomres_singleton_abstract::getInstance( 'jomres_property_types' );
+			$jomres_property_types->get_all_property_types();
+			
+			if ( count( $jomres_property_types->property_types ) > 0 )
 				{
-				foreach ( $propertytypes as $pt )
+				foreach ( $jomres_property_types->property_types as $pt )
 					{
-					$this->all_property_types[ $pt->id ]       = $pt->ptype_desc;
-					$this->all_property_type_titles[ $pt->id ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $pt->id, $pt->ptype, false, false );
+					$this->all_property_types[ $pt['id'] ]       = $pt['ptype_desc'];
+					$this->all_property_type_titles[ $pt['id'] ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $pt['id'], $pt['ptype'], false, false );
 					}
 				}
 			$c->store('all_property_types_details',array('all_property_types'=>$this->all_property_types,'all_property_type_titles'=>$this->all_property_type_titles));
