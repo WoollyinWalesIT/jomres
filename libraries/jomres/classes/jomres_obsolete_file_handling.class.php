@@ -68,6 +68,7 @@ class jomres_obsolete_file_handling
 		$this->dir_components               = JOMRESCONFIG_ABSOLUTE_PATH  . 'components' . JRDS . 'com_jomres' . JRDS;
 		$this->dir_core_plugins             = JOMRESCONFIG_ABSOLUTE_PATH  . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
 		$this->dir_admin             		= JOMRESCONFIG_ABSOLUTE_PATH  . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS;
+		$this->dir_admin_functions     		= JOMRESCONFIG_ABSOLUTE_PATH  . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS;
 		}
 
 	function ready_to_go()
@@ -1299,6 +1300,17 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_classes . 'jomres_pathway.class.php' );
 		
 		$this->add_obs_file( $this->dir_minicomponents . 'j00005define_template_paths.class.php' );
+		
+		$this->add_obs_file( $this->dir_minicomponents . 'j00005define_template_paths.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000listPropertyTypes.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j10002listPropertyTypes.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000editGlobalroomTypes_management_process.class.php' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'management_process.html' );
+		$this->add_obs_file( $this->dir_admin_functions . 'propertytypes.functions.php' );
+		$this->add_obs_file( $this->dir_admin_functions . 'roomtypes.functions.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j02299regprop1_realestate.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j02299regprop1_a_roombookings.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06000cron_invoice.class.php' );
 		}
 
 	function add_obs_file( $path_and_file )

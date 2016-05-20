@@ -44,14 +44,6 @@ class j00501booking_settings
 		
 		if ( !$thisJRUser->simple_configuration )
 			{
-			if (!get_showtime('is_jintour_property'))
-				{
-				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_SINGLEROOMPROPERTY", '_JOMRES_COM_A_SINGLEROOMPROPERTY', false ) );
-				$configurationPanel->setmiddle( $lists[ 'singleRoomProperty' ] );
-				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_SINGLEROOMPROPERTY_DESC", '_JOMRES_COM_A_SINGLEROOMPROPERTY_DESC', false ) );
-				$configurationPanel->insertSetting();
-				}
-			
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_VISITORSCANBOOKONLINE", '_JOMRES_COM_A_VISITORSCANBOOKONLINE', false ) );
 			$configurationPanel->setmiddle( $lists[ 'visitorscanbookonline' ] );
 			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC", '_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC', false ) );

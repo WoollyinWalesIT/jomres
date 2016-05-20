@@ -32,38 +32,9 @@ try
 	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig   = $siteConfig->get();
 	
-	//get all properties in system. TODO: add this stuff to a new class
-	set_showtime( 'heavyweight_system', false );
-
-	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
-	$all_property_uids=$c->retrieve('all_property_uids');
-
-	if ($all_property_uids)
-		{
-		set_showtime( 'numberOfPropertiesInSystem', count($all_property_uids['all_propertys']) );
-		set_showtime( 'all_properties_in_system', $all_property_uids['all_propertys'] );
-		set_showtime( 'published_properties_in_system', $all_property_uids['all_published_propertys'] );
-		}
-	else
-		{
-		$query                      = "SELECT propertys_uid,published FROM #__jomres_propertys";
-		$countproperties            = doSelectSql( $query );
-		$numberOfPropertiesInSystem = count( $countproperties );
-		if ( $numberOfPropertiesInSystem > 200 ) 
-			set_showtime( 'heavyweight_system', true );
-		set_showtime( 'numberOfPropertiesInSystem', $numberOfPropertiesInSystem );
-		$all_propertys           = array ();
-		$all_published_propertys = array ();
-		foreach ( $countproperties as $p )
-			{
-			$all_propertys[ ] = $p->propertys_uid;
-			if ( $p->published == "1" ) $all_published_propertys[ ] = $p->propertys_uid;
-			}
-		set_showtime( 'all_properties_in_system', $all_propertys );
-		set_showtime( 'published_properties_in_system', $all_published_propertys );
-		
-		$c->store('all_property_uids',array('all_propertys'=>$all_propertys,'all_published_propertys'=>$all_published_propertys));
-		}
+	//get all properties in system.
+	$jomres_properties = jomres_singleton_abstract::getInstance( 'jomres_properties' );
+	$jomres_properties->get_all_properties();
 
 	//language object - load default language file/context 
 	$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );

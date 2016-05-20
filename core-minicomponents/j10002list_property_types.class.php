@@ -13,7 +13,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j16000deleteGlobalroomTypes
+class j10002list_property_types
 	{
 	function __construct()
 		{
@@ -22,32 +22,21 @@ class j16000deleteGlobalroomTypes
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
 			return;
 			}
-
-		$idarray = jomresGetParam( $_POST, 'idarray', array () );
 		
-		if ( count( $idarray ) == 0 )
-			return;
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
 		
-		$jomres_room_types = jomres_singleton_abstract::getInstance( 'jomres_room_types' );
-		$success = $jomres_room_types->delete_room_type($idarray);
+		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
 		
-		if ($success)
-			$save_message = jr_gettext( '_JOMRES_COM_MR_ROOMCLASS_DELETED', '_JOMRES_COM_MR_ROOMCLASS_DELETED', false );
-		else
-			$save_message = "Unable to delete room type. It may still be used by some properties.";
-		
-		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
-		$c->eraseAll();
-		
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listGlobalroomTypes" ), $save_message );
+		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=list_property_types', 'propertyTypes.png', jr_gettext( "_JOMRES_COM_PTYPES_LIST_TITLE", '_JOMRES_COM_PTYPES_LIST_TITLE', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE', false, false ) );
 		}
+
 
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return null;
+		return $this->cpanelButton;
 		}
 	}

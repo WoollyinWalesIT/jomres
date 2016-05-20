@@ -46,16 +46,8 @@
 </script>
 
 <div id="tour_target_registration_1"></div>
-<p>{REGISTRATION_INSTRUCTIONS_STEP1}</p>
 
-<div class="alert alert-info">
-	<p>{MANAGEMENTPROCESS_DESC}</p>
-	<ul>
-		<patTemplate:tmpl name="rows">
-			<li>{DESCRIPTION}</li>
-		</patTemplate:tmpl>
-	</ul>
-</div>
+<h2 class="page-header">{PAGETITLE}</h2>
 
 <form action="{JOMRES_SITEPAGE_URL_NOSEF}&task=registerProp_step3" method="post" name="regForm" class="form-horizontal" role="form">
 	<div class="form-group">
@@ -68,6 +60,13 @@
 		<label class="col-md-2 control-label" for="region">{HREGION}</label>
 		<div class="col-md-10">
 			<div id="region_dropdown">{REGIONDROPDOWN}</div>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="propertyType">{HPROPERTY_TYPE}</label>
+		<div class="col-md-10">
+			{PROPERTY_TYPE_DROPDOWN}
 		</div>
 	</div>
 	
@@ -84,19 +83,7 @@
 			<input id="property_email" name="property_email" type="email" value="{PROPERTY_EMAIL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_EMAIL}"/>
 		</div>
 	</div>
-	
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="propertyType">{HPROPERTY_TYPE}</label>
-		<div class="col-md-10">
-			{PROPERTY_TYPE_DROPDOWN}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="management_process">{MANAGEMENTPROCESS}</label>
-		<div class="col-md-10">
-			{REALESTATEDROPDOWN}
-		</div>
-	</div>
+
 	<div class="form-actions">
 		<div class="col-md-10 col-md-offset-2">
 			<button type="button" class="btn btn-primary" onclick="validatePropertyRegistration();"><i class="fa fa-arrow-right"></i> {COMMON_NEXT}</button>

@@ -13,7 +13,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j16000saveGlobalRoomClass
+class j16000save_property_type
 	{
 	function __construct()
 		{
@@ -25,20 +25,21 @@ class j16000saveGlobalRoomClass
 			return;
 			}
 		
-		$jomres_room_types = jomres_singleton_abstract::getInstance( 'jomres_room_types' );
-
-		$jomres_room_types->room_type['room_classes_uid']       = (int)jomresGetParam( $_POST, 'roomClassUid', 0 );
-		$jomres_room_types->room_type['room_class_abbv']      	= jomresGetParam( $_POST, 'room_class_abbv', "" );
-		$jomres_room_types->room_type['room_class_full_desc'] 	= jomresGetParam( $_POST, 'room_class_full_desc', "" );
-		$jomres_room_types->room_type['ptype_xref']            	= jomresGetParam( $_POST, 'ptype_ids', array () );
-		$jomres_room_types->room_type['image']                	= jomresGetParam( $_POST, 'image', "" );
+		$jomres_property_types = jomres_singleton_abstract::getInstance( 'jomres_property_types' );
 		
-		$jomres_room_types->save_room_type();
+		$jomres_property_types->property_type					= array();
+		$jomres_property_types->property_type['id'] 			= (int)jomresGetParam( $_POST, 'id', 0 );
+		$jomres_property_types->property_type['ptype']			= jomresGetParam( $_POST, 'ptype', '' );
+		$jomres_property_types->property_type['ptype_desc']		= strtolower( jomresGetParam( $_POST, 'ptype_desc', '' ) );
+		$jomres_property_types->property_type['ptype_desc']		= preg_replace( '/[^A-Za-z0-9_-]+/', "", $jomres_property_types->property_type['ptype_desc'] );
+		$jomres_property_types->property_type['mrp_srp_flag']	= (int)jomresGetParam( $_POST, 'mrp_srp_flag', 0 );
+		
+		$jomres_property_types->save_property_type();
 		
 		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 		$c->eraseAll();
-		
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listGlobalroomTypes" ) , jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', false ) );
+			
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_property_types" ), jr_gettext( "_JOMRES_COM_PTYPES_SAVED", '_JOMRES_COM_PTYPES_SAVED', false ) );
 		}
 
 	// This must be included in every Event/Mini-component

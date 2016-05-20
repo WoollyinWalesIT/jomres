@@ -13,7 +13,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j16000saveGlobalRoomClass
+class j16000delete_property_type
 	{
 	function __construct()
 		{
@@ -24,21 +24,24 @@ class j16000saveGlobalRoomClass
 			$this->template_touchable = false;
 			return;
 			}
-		
-		$jomres_room_types = jomres_singleton_abstract::getInstance( 'jomres_room_types' );
 
-		$jomres_room_types->room_type['room_classes_uid']       = (int)jomresGetParam( $_POST, 'roomClassUid', 0 );
-		$jomres_room_types->room_type['room_class_abbv']      	= jomresGetParam( $_POST, 'room_class_abbv', "" );
-		$jomres_room_types->room_type['room_class_full_desc'] 	= jomresGetParam( $_POST, 'room_class_full_desc', "" );
-		$jomres_room_types->room_type['ptype_xref']            	= jomresGetParam( $_POST, 'ptype_ids', array () );
-		$jomres_room_types->room_type['image']                	= jomresGetParam( $_POST, 'image', "" );
+		$idarray = jomresGetParam( $_POST, 'idarray', array () );
 		
-		$jomres_room_types->save_room_type();
+		if ( count( $idarray ) == 0 )
+			return;
+		
+		$jomres_property_types = jomres_singleton_abstract::getInstance( 'jomres_property_types' );
+		$success = $jomres_property_types->delete_property_type($idarray);
+		
+		if ($success)
+			$save_message = jr_gettext( "_JOMRES_COM_PTYPES_DELETED", '_JOMRES_COM_PTYPES_DELETED', false );
+		else
+			$save_message = "Unable to delete property type. It may still be used by some properties.";
 		
 		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 		$c->eraseAll();
 		
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listGlobalroomTypes" ) , jr_gettext( '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', false ) );
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_property_types" ), $save_message );
 		}
 
 	// This must be included in every Event/Mini-component
