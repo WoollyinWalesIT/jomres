@@ -1056,7 +1056,7 @@ jr_define( '_JOMRES_COM_A_CRON_DESC', 'Pseudocron информации, соде
 jr_define( '_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Установлено cron minicomponents. Для выполнения индивидуального задания используйте ссылку, указанную ниже. Обратите внимание, что задачи cron не производит никакой продукции, так что Вы не увидите никакой информации на страницу. Вместо этого, смотрите журнал заданий ниже.' );
 global $jomresConfig_secret;
 jr_define( '_JOMRES_COM_A_CRON_METHOD', 'Способ' );
-jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', "Если у вас нет доступа к cron рабочих мест, установить этот Minicomponent, в противном случае создать cron и запустить его<br /> <i>curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . $jomresConfig_secret . "> /dev/null</i> " );
+jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', "Если у вас нет доступа к cron рабочих мест, установить этот Minicomponent, в противном случае создать cron и запустить его<br /> <i>curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . get_showtime("secret") . "> /dev/null</i> " );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING', 'Отображение журнала в браузере' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING_DESC', 'Работает только если указан метод Minicomponent.' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGINGENABLED', 'Ведение журнала включено' );
@@ -1178,7 +1178,7 @@ jr_define( '_JRPORTAL_SMS_CLICKATELL_INSTRUCTIONS', "
 Если вы еще не вошли в свой аккаунт, то вы должны сделать это в http://www.clickatell.com/login.php<br/>
 * Выбрать \"Manage my Products\" в верхнем меню.<br/>
 * Выберите API интерфейс Тип подключения который вы хотите использовать (HTTP API) из выпадающего меню ('Add Connection').<br/>
-* Заполните форму. Make sure that you enter the locked IP(the IP of this server), set Callback to HTTP POST. You'll need to set the IP callback to " . $jomresConfig_live_site . "/index.php?option=com_jomres&task=sms_clickatell_callback and a userid and password.<br/>
+* Заполните форму. Make sure that you enter the locked IP(the IP of this server), set Callback to HTTP POST. You'll need to set the IP callback to " .get_showtime("live_site") . "/index.php?option=com_jomres&task=sms_clickatell_callback and a userid and password.<br/>
 If you register more than one API connection, the description name you enter for each must be unique - you cannot have multiple APIs with the same name.<br/>
 После успешного заполнения формы, ваши данные авторизации будут отображаться, в том числе каждого соединения соответствует уникальный идентификатор API (api_id). Эти идентификационные данные требуются при подключении к шлюз clickatell для отправки сообщения.<br/>
 <br/>
