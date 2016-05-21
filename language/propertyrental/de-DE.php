@@ -1103,7 +1103,7 @@ jr_define( '_JOMRES_COM_A_CRON_DESC', 'Pseudocron-Job Information. Die Pseudocro
 jr_define( '_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Installierte cron Minicomponenten. Zum Start eines individuellen cron job einen der unten spezifizierten Links benützen. Die cron jobs produzieren keinerlei Ausgaben und es sind keine Informationen auf der Seite sichtbar. In den unten stehenden logs können die Daten überprüft werden.' );
 global $jomresConfig_secret;
 jr_define( '_JOMRES_COM_A_CRON_METHOD', 'Methode' );
-jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', 'Falls Sie keine Cronjobs auf dem Server ausführen können auf Minikomponente stellen, andernfalls erstellen Sie einen Cronjob und geben Sie folgendes an:<br /> <i>curl -s ' . JOMRES_SITEPAGE_URL_AJAX . '&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=' . $jomresConfig_secret . '> /dev/null</i> ' );
+jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', 'Falls Sie keine Cronjobs auf dem Server ausführen können auf Minikomponente stellen, andernfalls erstellen Sie einen Cronjob und geben Sie folgendes an:<br /> <i>curl -s ' . JOMRES_SITEPAGE_URL_AJAX . '&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=' . get_showtime("secret") . '> /dev/null</i> ' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING', 'Zeige logging im Browser' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING_DESC', 'Funktioniert nur, wenn auf Minikomponente gestellt ist.' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGINGENABLED', 'Logging aktiviert' );
@@ -1161,7 +1161,7 @@ jr_define( '_JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE', 'Paypal' );
 jr_define( '_JRPORTAL_INVOICES_PAYPAL_SETTINGS_CURRENCYCODE', 'Währungscode (z.B. EUR)' );
 jr_define( '_JRPORTAL_INVOICES_PAYPAL_SETTINGS_USESANDBOX', 'Sandbox benutzten?' );
 jr_define( '_JRPORTAL_INVOICES_PAYPAL_SETTINGS_PAYPALEMAIL', 'Meine Paypal E-Mail Adresse' );
-jr_define( '_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES', 'Hinweis: Bei Verwendung von PayPal müssen Sie in Ihrem PayPal-Konto das Autoreturn deaktivieren (Profile/Website Payment Preferences), und die IPN (Profile/Instant Payment Notification Preferences) auf die URL:<br/><b>&nbsp;' . $jomresConfig_live_site . '/index.php?option=com_jomres&task=completebk&Itemid=' . $jrConfig[ 'jomresItemid' ] . '&no_html=1' );
+jr_define( '_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES', 'Hinweis: Bei Verwendung von PayPal müssen Sie in Ihrem PayPal-Konto das Autoreturn deaktivieren (Profile/Website Payment Preferences), und die IPN (Profile/Instant Payment Notification Preferences) auf die URL:<br/><b>&nbsp;' .get_showtime("live_site") . '/index.php?option=com_jomres&task=completebk&Itemid=' . $jrConfig[ 'jomresItemid' ] . '&no_html=1' );
 jr_define( '_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY', 'Diese Rechnung ist fällig. Bitte klicken Sie auf den Knopf, um zu PayPal weitergeleitet zu werden.' );
 jr_define( '_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE', 'Jomres Standard-Gateway-Einstellungen überschreiben?' );
 jr_define( '_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE_DESC', 'Wenn die Einstellungen paypal Option auf Yes gesetzt wurde dann sind folgende Einstellungen gültig: Die allgemeine Konfiguration in der Gateway-Einstellungen wird nicht mehr angezeigt und wenn eine Buchung erfolgt wird die in der allgemeinen Konfiguration eingetragene Paypal E-Mail verwendet.' );
@@ -1225,7 +1225,7 @@ After successfully submitting the form you will automatically be logged into you
 If you are not already logged into your account, then you must do so at http://www.clickatell.com/login.php<br/>
 * Select "Manage my Products" from the top menu.<br/>
 * Select the API connection type you wish to use (HTTP API) from the drop down menu ("Add Connection").<br/>
-* Complete the form. Make sure that you enter the locked IP(the IP of this server), set Callback to HTTP POST. You\'ll need to set the IP callback to ' . $jomresConfig_live_site . '/index.php?option=com_jomres&task=sms_clickatell_callback and a userid and password.<br/>
+* Complete the form. Make sure that you enter the locked IP(the IP of this server), set Callback to HTTP POST. You\'ll need to set the IP callback to ' .get_showtime("live_site") . '/index.php?option=com_jomres&task=sms_clickatell_callback and a userid and password.<br/>
 If you register more than one API connection, the description name you enter for each must be unique - you cannot have multiple APIs with the same name.<br/>
 After successfully submitting the form, your authentication details will be displayed, including each connection\'s unique API ID (api_id). These authentication details are required when connecting to the Clickatell gateway to send a message.<br/>
 <br/>

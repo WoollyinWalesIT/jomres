@@ -1034,7 +1034,7 @@ jr_define( '_JOMRES_COM_A_CRON_DESC', 'Informação de <i>Pseudocron job</i>. A 
 jr_define( '_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Minicomponentes <i>cron</i> instalados. para correr um <i>cron job</i> use as ligações especificadas abaixo. Note que os <i>cron jobs</i> não produzem nenhuma saída, portanto não verá nenhuma informação na página. Em seu lugar, refira-se à listagem <i>cron job</i> abaixo.' );
 global $jomresConfig_secret;
 jr_define( '_JOMRES_COM_A_CRON_METHOD', 'Método' );
-jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', "Se não triver acesso a <i>cron jobs</i>, defina este como minicomponente; caso contrário, crie um <i>cron job</i> e instrua-o para executar<br /> <i>curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . $jomresConfig_secret . "> /dev/null</i> " );
+jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', "Se não triver acesso a <i>cron jobs</i>, defina este como minicomponente; caso contrário, crie um <i>cron job</i> e instrua-o para executar<br /> <i>curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . get_showtime("secret") . "> /dev/null</i> " );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING', 'Mostrar o <i>logging</i> no browser' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING_DESC', 'Só funciona se o método estiver definido como minicomponente.' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGINGENABLED', '<i>Logging</i> activado' );
@@ -1174,7 +1174,7 @@ Depois de ter enviado com êxito o formulário, será automaticamente ligado à 
 Se ainda não estiver ligado á sua conta, deve fazê-lo em http://www.clickatell.com/login.php<br/>
 * Seleccione \"Gerir os meus produtos\" no menu de topo.<br/>
 * Seleccione o tipo de ligação API a usar (API HTTP) no menu <i>dropdown</i> ('Add Connection').<br/>
-* Complete o formulário. Assegure-se que introduziu o <i>locked IP</i>(o IP do seu servidor), defina <i>Callback</i> para HTTP POST. Precisa de definir o <i>IP callback</i> para " . $jomresConfig_live_site . "/index.php?option=com_jomres&task=sms_clickatell_callback e id de utilizador e password.<br/>
+* Complete o formulário. Assegure-se que introduziu o <i>locked IP</i>(o IP do seu servidor), defina <i>Callback</i> para HTTP POST. Precisa de definir o <i>IP callback</i> para " .get_showtime("live_site") . "/index.php?option=com_jomres&task=sms_clickatell_callback e id de utilizador e password.<br/>
 Se tiver mais do que uma ligação API registada, o nome descritivo que introduazir para cada uma deve ser único - não pode ter várias APIs com o mesmo nome.<br/>
 Depois de enviar com sucesso o formulário, serão mostrados os pormenores da sua autenticação, incluindo o ID API (api_id) de cada ligação. Estes pormenores são necessários quando se ligar ao gateway Clickatell para enviar uma mensagem.<br/>
 <br/>

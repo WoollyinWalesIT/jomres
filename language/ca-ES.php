@@ -1053,7 +1053,7 @@ jr_define( '_JOMRES_COM_A_CRON_DESC', 'Pseudocron informació del treball. La fu
 jr_define( '_JOMRES_COM_A_CRON_IMMEDIATERUN', "Instal·lat minicomponents cron. Per a executar una tasca de cron individual utilitzi els enllaços que s'especifiquen a continuació. Tingui en compte que el cron jobs no produeix ningún resultat pel que no veurà ninguna informació en la pàgina. En canvi, es refereix a les anotacions de treball referides a continuació." );
 global $jomresConfig_secret;
 jr_define( '_JOMRES_COM_A_CRON_METHOD', 'Mètode' );
-jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', "Si vostè no té accés a cron jobs, activi aquest minicomponent, del contrari crei una tasca programada i dígali que s'executi<br /> <i>curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . $jomresConfig_secret . "> /dev/null</i> " );
+jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', "Si vostè no té accés a cron jobs, activi aquest minicomponent, del contrari crei una tasca programada i dígali que s'executi<br /> <i>curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . get_showtime("secret") . "> /dev/null</i> " );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING', 'Mostrar el registre en el navegador' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING_DESC', "Només funciona si el mètode s'estableix en minicomponent." );
 jr_define( '_JOMRES_COM_A_CRON_LOGGINGENABLED', 'Registre habilitat' );
@@ -1174,7 +1174,7 @@ Un cop superat amb èxit l'enviament del formulari automàticament ingressarà e
 Si no està ja connectat al seu compte, ha de fer-ho en <br/> http://www.clickatell.com/login.php
 * Seleccioni\"Administrar els meus productes\" en el menú superior. <br/>
 * Seleccioni el tipus de connexió de la API que desitgi utilitzar (API HTTP) del menú desplegable ('Add Connection'). <br/>
-* Completar el formulari. Asseguri's de que introdueix la IP bloquejada (la IP d'aquest servidor), ajustar Callback a HTTP POST. Haurà d'establir la devolució de trucada IP " . $JomresConfig_live_site . "/index.php?option=com_jomres&task=sms_clickatell_callback i un identificador d'usuari i contrasenya. <br/>
+* Completar el formulari. Asseguri's de que introdueix la IP bloquejada (la IP d'aquest servidor), ajustar Callback a HTTP POST. Haurà d'establir la devolució de trucada IP " .get_showtime("live_site") . "/index.php?option=com_jomres&task=sms_clickatell_callback i un identificador d'usuari i contrasenya. <br/>
 Si es registra més d'una connexió de la API, el nom de la descripció que ha introduït per a cada un ha de ser únic - no es pot tenir múltiples APIs amb el mateix nom <br/>.
 Després d'enviar el formulari, les seves dades d'autenticació es mostraràn, incluïda la identificació única de cada connexió de la API (api_id). Aquestes dades d'autenticació es requereixen quan es connecta a la pasarel·la Clickatell per a enviar un missatge. <br/>
 <br/>

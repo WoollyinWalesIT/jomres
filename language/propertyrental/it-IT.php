@@ -1066,7 +1066,7 @@ jr_define( '_JOMRES_COM_A_CRON_DESC', 'Informazioni Pseudocron job. La funzional
 jr_define( '_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Minicomponenti cron installati. Per eseguire un cron job individuale usa il link specificato sotto. Nota che i cron jobs non producono nessun output quindi non vedrai nessuna informazione sulla pagina. Fanno riferimento invece al log dei job sotto.' );
 global $jomresConfig_secret;
 jr_define( '_JOMRES_COM_A_CRON_METHOD', 'Metodo' );
-jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', "Se non hai accesso ai cron jobs, Imposta questo come Minicomponente, altrimenti crea un cron job e fallo girare<br /> <i>curl -s http://" . JOMRES_SITEPAGE_URL_ADMIN . "&task=cronjobs&no_html=1&secret=" . $jomresConfig_secret . "> /dev/null</i> " );
+jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', "Se non hai accesso ai cron jobs, Imposta questo come Minicomponente, altrimenti crea un cron job e fallo girare<br /> <i>curl -s http://" . JOMRES_SITEPAGE_URL_ADMIN . "&task=cronjobs&no_html=1&secret=" . get_showtime("secret") . "> /dev/null</i> " );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING', 'Visualizza logging sul browser' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING_DESC', 'Funziona solo se il metodo &egrave; impostato su Minicomponente.' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGINGENABLED', 'Logging abilitato' );
@@ -1188,7 +1188,7 @@ Dopo esserti autenticato con successo inviando il modulo avrai automaticamente a
 Se hai ancora acceduto al tuo account, devi farlo su  http://www.clickatell.com/login.php<br/>
 * Seleziona \"Manage my Products\" dal menu in alto.<br/>
 * Seleziona il tipo di connessione API che desideri utilizzare (HTTP API) dal menu a tendina ('Add Connection').<br/>
-* Completa il modulo. Assicurati di aver inserito il locked IP(IP di questo server), imposta Callback to HTTP POST. Devi impostare IP callback to " . $jomresConfig_live_site . "/index.php?option=com_jomres&task=sms_clickatell_callback il nome utente e la password.<br/>
+* Completa il modulo. Assicurati di aver inserito il locked IP(IP di questo server), imposta Callback to HTTP POST. Devi impostare IP callback to " .get_showtime("live_site") . "/index.php?option=com_jomres&task=sms_clickatell_callback il nome utente e la password.<br/>
 Se registri piu di una connessione API, il nome della descrizione che inserisci per ognuna deve essere unico - Non puoi avere API multiple con lo stesso nome.<br/>
 Dopo aver inviato il modulo con successo, i tuoi dettagli di autenticazione saranno visualizzati, compresi tutti gli API ID delle connessioni impostate (api_id). Questi dettagli di autenticazione sono necessari durante la connessione al gateway Clickatell per spedire un messaggio.<br/>
 <br/>
