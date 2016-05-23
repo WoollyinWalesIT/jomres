@@ -32,9 +32,9 @@ $info = phpversion();
 $v_arr = explode( "-", $info );
 $version = (float) $v_arr[ 0 ];
 
-if ( $version < 5.3 )
+if ( $version < 5.4 )
 	{
-	output_message ("Oops, it looks like you're running a version of PHP lower than 5.3. Jomres requires at least PHP5.3 and will not run on earlier versions" , "danger" );
+	output_message ("Oops, it looks like you're running a version of PHP lower than 5.4. Jomres requires at least PHP5.4 and will not run on earlier versions" , "danger" );
 	$functionChecksPassed = false;
 	}
 
