@@ -1,3 +1,19 @@
+<h3>Jomres 9.8.-1 23/05/2016</h3>
+
+<span class="label label-success">Feature</span> Refactored Property Types and Room Type functionality, Now Property types determine which room types a property can have ( as before, but better ).
+
+<span class="label label-warning">Change</span> Changed the minimum version that Jomres installer will run on to PHP 5.4.
+<span class="label label-warning">Change</span> Azabaijani language file added to system. Thanks Hooman.
+<span class="label label-warning">Change</span> Show plugins improved to warn of empty plugin data from remote server.
+<span class="label label-warning">Change</span> Added a 08000 trigger before redirect to allow watchers to run on redirect.
+<span class="label label-warning">Change</span> Added custom methods & logging of replies to API calls.
+
+<span class="label label-important label-danger">Fix</span> Modified booking form date picker to resolve an issue where fixed period dropdowns caused a javascript error.
+<span class="label label-important label-danger">Fix</span> Fixed an issue that would occasionally prevent the maps from showing.
+<span class="label label-important label-danger">Fix</span> Modified Bootstrap 2 show property extras template to span the entire page instead of half.
+<span class="label label-important label-danger">Fix</span> Fixed a bug with unzip path being wrong, and changed to use the built-in php zip archive when extracting Jomres.
+<span class="label label-important label-danger">Fix</span> Fixed variables in show plugins that added an extraneous / to the path.
+
 <h3>Jomres 9.8.-2 11/05/2016</h3>
 
 <span class="label label-warning">Change</span> Added a condition so that we can show an error if an obsolete file couldn't be deleted.
