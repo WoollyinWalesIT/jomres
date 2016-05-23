@@ -2707,38 +2707,12 @@ function writexml( $logfile, $rootelement, $entry, $newlines )
  * Redirects to $url
 #
  */
-/* function jomresRedirect( $url, $msg = '' )
-	{
-	// msg depreciated now as we're using growl for feedback after redirect, however we'll leave it in-situ in case we want it back again sometime in the future.
-	$MiniComponents =jomres_getSingleton('mcHandler');
-	$MiniComponents->triggerEvent( '99994' );
-	
-	$url = str_replace( "&amp;", "&", $url );
 
- 	jr_import( 'browser_detect' );
-	$b	   = new browser_detect();
-	$browser = $b->getBrowser();
-
-	if ( $browser == "Internet Explorer" ) 
-		{
-		echo '<script>document.location.href=\'' . $url . '\';</script>';
-		}
-	elseif ( $browser == "Safari" ) // Webkit
-		{
-		echo '<meta http-equiv="refresh" content="0; url=' . $url . '"
-			/>';
-		}
-	else
-		{
-		header( 'Location: ' . $url, true );
-		} 
-	exit;
-	} */
 	
 function jomresRedirect($url, $msg = '', $code = 302)
 	{
 	$MiniComponents =jomres_getSingleton('mcHandler');
-	$MiniComponents->triggerEvent( '08000', $componentArgs ); // Optional, post run items that *must* be run ( watchers ).
+	$MiniComponents->triggerEvent( '08000' ); // Optional, post run items that *must* be run ( watchers ).
     if (strncmp('cli', PHP_SAPI, 3) !== 0)
 		{
 		if (headers_sent() !== true)
