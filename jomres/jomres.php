@@ -221,6 +221,9 @@ try
 		
 		//property type to be used for property type specific language files
 		$propertytype = $current_property_details->property_type;
+		
+		//since we have a property uid, we also have a property type id, so let`s set a showtime
+		set_showtime('property_type', $current_property_details->ptype_id);
 		}
 	else
 		{
