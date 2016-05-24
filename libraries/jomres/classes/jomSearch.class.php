@@ -67,7 +67,43 @@ class jomSearch
 			
 			if ( isset($vals[ 'moduleclass_sfx' ]))
 				$moduleclass_sfx = $vals[ 'moduleclass_sfx' ];
-
+			
+			if (!isset($vals[ 'useCols' ]))
+				$vals[ 'useCols' ] = false;
+			if (!isset($vals[ 'featurecols' ]))
+				$vals[ 'featurecols' ] = false;
+			if (!isset($vals[ 'geosearchtype' ]))
+				$vals[ 'geosearchtype' ] = 0; // 0 none 1 Town 2 Region 3 Country
+			if (!isset($vals[ 'propertyname' ]))
+				$vals[ 'propertyname' ] = false;
+			if (!isset($vals[ 'ptype' ]))
+				$vals[ 'ptype' ] = false;
+			if (!isset($vals[ 'room_type' ]))
+				$vals[ 'room_type' ] = false;
+			if (!isset($vals[ 'features' ]))
+				$vals[ 'features' ] = false;
+			if (!isset($vals[ 'description' ]))
+				$vals[ 'description' ] = false;
+			if (!isset($vals[ 'availability' ]))
+				$vals[ 'availability' ] = false;
+			if (!isset($vals[ 'guestnumber' ]))
+				$vals[ 'guestnumber' ] = false;
+			if (!isset($vals[ 'stars' ]))
+				$vals[ 'stars' ] = false;
+			
+			if (!isset($vals[ 'geosearch_dropdown' ]))
+				$vals[ 'geosearch_dropdown' ] = false;
+			if (!isset($vals[ 'propertyname_dropdown' ]))
+				$vals[ 'propertyname_dropdown' ] = false;
+			if (!isset($vals[ 'ptype_dropdown' ]))
+				$vals[ 'ptype_dropdown' ] = false;
+			if (!isset($vals[ 'room_type_dropdown' ]))
+				$vals[ 'room_type_dropdown' ] = false;
+			if (!isset($vals[ 'features_dropdown' ]))
+				$vals[ 'features_dropdown' ] = false;
+			if (!isset($vals[ 'priceranges' ]))
+				$vals[ 'priceranges' ] = false;
+			
 			$useCols       = $vals[ 'useCols' ];
 			$featurecols   = $vals[ 'featurecols' ];
 			$geosearchtype = $vals[ 'geosearchtype' ];
