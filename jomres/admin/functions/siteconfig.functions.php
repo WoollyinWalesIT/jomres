@@ -331,6 +331,8 @@ function showSiteConfig()
 	$lists[ 'load_font_awesome' ]              = jomresHTML::selectList( $yesno, 'cfg_load_font_awesome', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'load_font_awesome' ] );
 	$lists[ 'override_property_contact_details' ] = jomresHTML::selectList( $yesno, 'cfg_override_property_contact_details', 'class="inputbox" size="1"', 'value', 'text', (int)$jrConfig[ 'override_property_contact_details' ] );
 	
+	$lists[ 'currency_symbol_swap' ] = jomresHTML::selectList( $yesno, 'cfg_currency_symbol_swap', 'class="inputbox" size="1"', 'value', 'text', (int)$jrConfig[ 'currency_symbol_swap' ] );
+	
 	$componentArgs = array ();
 	$componentArgs[ 'lists' ]							= $lists;
 	$componentArgs[ 'jsInputFormatDropdownList' ]		= $jsInputFormatDropdownList;
