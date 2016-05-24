@@ -235,12 +235,14 @@ class j16000addplugin
 			{
 			if ( $user_allowed_to_download )
 				{
-				if ( !mkdir( $remote_pluginsDirPath . $pluginName . JRDS ) )
+				if (!is_dir($remote_pluginsDirPath . $pluginName . JRDS))
 					{
-					$error_messsage[ "ERROR" ] = "Couldn't make the folder " . $remote_pluginsDirPath . $pluginName . JRDS . " so quitting.";
-					if ( $autoupgrade ) return false;
+					if ( !mkdir( $remote_pluginsDirPath . $pluginName . JRDS ) )
+						{
+						$error_messsage[ "ERROR" ] = "Couldn't make the folder " . $remote_pluginsDirPath . $pluginName . JRDS . " so quitting.";
+						if ( $autoupgrade ) return false;
+						}
 					}
-
 				$progress_messages[ ] = array ( "MESSAGE" => "Attempting download of " . $pluginName . "" );
 				$newfilename          = $updateDirPath . $pluginName . ".vnw";
 
