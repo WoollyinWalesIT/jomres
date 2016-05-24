@@ -3702,7 +3702,7 @@ function createJomresTables()
 		`room_class_abbv` VARCHAR(255) NULL,
 		`room_class_full_desc` VARCHAR(255) NULL,
 		`image` TEXT NULL,
-		`property_uid` VARCHAR(11)
+		`property_uid` VARCHAR(11), 
 		PRIMARY KEY(`room_classes_uid`)
 		) ";
 	if ( !doInsertSql( $query ) )
