@@ -1,3 +1,19 @@
+<h3>Jomres 9.8.-1.1 24/05/2016</h3>
+
+<span class="label label-warning">Change</span> Add site managers to swap currencies in site config, same as can be done in frontend config.
+<span class="label label-warning">Change</span> Modified Normal mode tariff saving so that tariffs are saved with tariff type cross referencing, just like micromanage tariffs.
+<span class="label label-warning">Change</span> Modified template handling so that override directories can have property type specific template files.
+<span class="label label-warning">Change</span> Resized superior image slightly.
+<span class="label label-warning">Change</span> Tweaked date output functionality to remove strtotime.
+<span class="label label-warning">Change</span> Tidied up module and mambot installation functionality.
+
+<span class="label label-important label-danger">Fix</span> Resolved a notice level issue in booking engine.
+<span class="label label-important label-danger">Fix</span> Resolved notice level issues in J3.5 jomres_cmsspecific_getSearchModuleParameters
+<span class="label label-important label-danger">Fix</span> Resolved some notice level issues in jomSearch.class.php
+<span class="label label-important label-danger">Fix</span> Fixed an issue introduced by removing srp column.
+<span class="label label-important label-danger">Fix</span> Added a check to the plugin installer to ensure we're not trying to re-create a directory.
+
+
 <h3>Jomres 9.8.-1 23/05/2016</h3>
 
 <span class="label label-success">Feature</span> Refactored Property Types and Room Type functionality, Now Property types determine which room types a property can have ( as before, but better ).
