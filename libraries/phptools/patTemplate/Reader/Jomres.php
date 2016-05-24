@@ -29,49 +29,23 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 		if ( !$override_template )
 			{
 			$custom_paths = get_showtime( 'custom_paths' );
+			
 			if ( array_key_exists( $templatename, $custom_paths ) )
 				{
 				$default_root = $custom_paths[ $templatename ];
-				$content      = file_get_contents( $default_root . JRDS . $templatename );
 				}
 			else
 				{
-				$default_root     = $this->_options[ 'root' ][ '__default' ];
-				$custom_templates = jomres_singleton_abstract::getInstance( 'jomres_custom_template_handler' );
-				if ( $templatename != "srch.html" && $templatename != "index.html" )
-					{
-					$property_uid = (int) get_showtime( 'property_uid' );
-					//echo $templatename." - ".$property_uid."<br/>";
-					if ( $property_uid > 0 )
-						{
-						$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-						//$current_property_details->property_uid = $property_uid;
-						$current_property_details->gather_data( $property_uid );
-						$property_type = $current_property_details->ptype_id;
-						}
-					else
-						{
-						$property_type = 0;
-						}
-					if ( file_exists( $custom_templates->default_template_files_folder . JRDS . $templatename ) && !isset( $_REQUEST[ 'nocustomtemplate' ] ) ) // One security flag to ensure that the template's valid, and one to allow us to disable customised templates via the url if desired.
-						{
-						$content = $custom_templates->getTemplateData( $templatename, $property_type );
-						}
-					else
-						{
-						$content = file_get_contents( $default_root . JRDS . $templatename );
-						}
-					}
-				else
-					{
-					$content = file_get_contents( $default_root . JRDS . $templatename );
-					}
+				$default_root = $this->_options[ 'root' ][ '__default' ];
 				}
+			
+			$content = file_get_contents( $default_root . JRDS . $templatename );
 			}
 		else
 			{
 			$content = $override_template;
 			}
+		
 		$templates = $this->parseString( $content );
 
 		return $templates;
@@ -81,10 +55,13 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 		{
 		$override_path = false;
 		
+		$ptype_id = (int)get_showtime('property_type');
+		
 		if (this_cms_is_joomla())
 			{
 			$app = JFactory::getApplication();
 			$joomla_templateName = $app->getTemplate('template')->template;
+			
 			if (jomres_cmsspecific_areweinadminarea())
 				{
 				$override_path = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ADMINISTRATORDIRECTORY . JRDS . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'com_jomres';
@@ -93,7 +70,15 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 				{
 				$override_path = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'com_jomres';
 				}
+			
+			//ptype specific override_path
+			if ( $ptype_id > 0 )
+				{
+				if ( file_exists($override_path . JRDS . $ptype_id . JRDS . $jomres_template_name) )
+					$override_path = $override_path . JRDS . $ptype_id;
+				}
 
+			//jomsearch modules overrides
 			if (strpos($jomres_template_name,'mod_jomsearch_m') !== false)
 				{
 				$arr = explode(".", $jomres_template_name); 
@@ -107,14 +92,21 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 			{
 			$override_path = get_template_directory() . JRDS . 'html' . JRDS . 'com_jomres';
 
-			if (strpos($jomres_template_name,'mod_jomsearch_m') !== false)
+			//ptype specific override_path
+			if ( $ptype_id > 0 )
+				{
+				if ( file_exists($override_path . JRDS . $ptype_id . JRDS . $jomres_template_name) )
+					$override_path = $override_path . JRDS . $ptype_id;
+				}
+
+			/* if (strpos($jomres_template_name,'mod_jomsearch_m') !== false)
 				{
 				$arr = explode(".", $jomres_template_name); 
 				$name = $arr[0];
 				
 				if ( file_exists(get_template_directory() . JRDS . 'html' . JRDS . $name . JRDS . $jomres_template_name) )
 					$override_path = get_template_directory() . JRDS . 'html' . JRDS . $name;
-				}
+				} */
 			}
 			
 		if ($override_path != '' && is_dir($override_path))
@@ -137,5 +129,3 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 		}
 	
 	}
-
-?>
