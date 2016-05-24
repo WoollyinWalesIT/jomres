@@ -55,7 +55,7 @@ class j06002save_normalmode_tariffs
 			$roomrateperday = convert_entered_price_into_safe_float( jomresGetParam( $_POST, 'roomrateperday', "" ) );
 			$roomtype       = intval( jomresGetParam( $_POST, 'roomtype', "" ) );
 			$max_people     = intval( jomresGetParam( $_POST, 'max_people', "" ) );
-			//var_dump($_POST);exit;
+
 			$query     = "SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $defaultProperty . "'";
 			$roomsList = doSelectSql( $query );
 			if ( count( $roomsList ) == 0 )
@@ -88,8 +88,14 @@ class j06002save_normalmode_tariffs
 				$query  = "UPDATE #__jomres_rooms SET `max_people`='" . (int) $max_people . "',`room_classes_uid`='" . (int) $roomtype . "' WHERE `room_uid`='" . (int) $room_uid . "'";
 				$result = doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_ROOM', '_JOMRES_MR_AUDIT_UPDATE_ROOM', false ) );
 				}
+			
 			$query  = "DELETE FROM #__jomres_rates WHERE property_uid = '" . (int) $defaultProperty . "'";
 			$result = doInsertSql( $query, "" );
+			$query  = "DELETE FROM #__jomcomp_tarifftypes WHERE property_uid = " . (int) $defaultProperty ;
+			$result = doInsertSql( $query, "" );
+			$query  = "DELETE FROM #__jomcomp_tarifftype_rate_xref WHERE property_uid = " . (int) $defaultProperty ;
+			$result = doInsertSql( $query, "" );
+			
 			$query  = "INSERT INTO #__jomres_rates (
 				`rate_title`,
 				`rate_description`,
@@ -127,7 +133,21 @@ class j06002save_normalmode_tariffs
 				'$validto_ts',
 				'" . (int) $defaultProperty . "'
 				)";
-			doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_TARIFF', '_JOMRES_MR_AUDIT_INSERT_TARIFF', false ) );
+			$new_tariff_id = doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_TARIFF', '_JOMRES_MR_AUDIT_INSERT_TARIFF', false ) );
+			
+			$query="INSERT INTO #__jomcomp_tarifftypes (`name`,`description`,`property_uid`) VALUES ('$rate_title','$tarifftypedesc','".(int)$defaultProperty."')";
+			$tarifftypeid=doInsertSql($query,'');
+			
+			$query="INSERT INTO #__jomcomp_tarifftype_rate_xref (`tarifftype_id`,`tariff_id`,`roomclass_uid`,`property_uid`) VALUES (
+				".$tarifftypeid.",
+				".$new_tariff_id.",
+				".(int) $roomtype.",
+				".(int) $defaultProperty."
+				)";
+			
+			doInsertSql($query,''); 
+			
+		
 			}
 		else //////////////////////////////////////////////////////////////////////////////////////////////////////// MRP
 			{
@@ -163,11 +183,16 @@ class j06002save_normalmode_tariffs
 				$roomsAndRateData[ $key ][ 'max_people_intariff' ] = intval( $max_peopleTariffArray[ $key ] );
 				}
 
+			$query  = "DELETE FROM #__jomcomp_tarifftypes WHERE property_uid = " . (int) $defaultProperty ;
+			$result = doInsertSql( $query, "" );
+	
+			$query  = "DELETE FROM #__jomcomp_tarifftype_rate_xref WHERE property_uid = " . (int) $defaultProperty ;
+			$result = doInsertSql( $query, "" );
+			
 			// We could probably do this in the previous loop, but keeping it outside makes it a little easier to follow
 
 			foreach ( $roomsAndRateData as $d )
 				{
-
 				$revisedExistingRooms         = $d[ 'existingrooms' ]; // We will add or remove room uids to this array so that we can update max people after adding/removing rooms
 				$validRoomTypesForProperty[ ] = $d[ 'roomtype_uid' ];
 				if ( $d[ 'numberOfRooms' ] > count( $d[ 'existingrooms' ] ) ) // Let's add some rooms
@@ -214,7 +239,7 @@ class j06002save_normalmode_tariffs
 							'$room_floor',
 							'" . (int) $d[ 'max_people' ] . "'
 						)";
-						//var_dump($query);echo "<br>";
+
 						$result = doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_ROOM', '_JOMRES_MR_AUDIT_INSERT_ROOM', false ) );
 						if ( $result ) $revisedExistingRooms[ ] = $result;
 						$nextRoomNumber++;
@@ -243,6 +268,9 @@ class j06002save_normalmode_tariffs
 				// This will take care of the possibility that there are multiple tariffs for a given room type (for example if somebody's changed from Advanced to Normal mode). Multiple tariffs for a room type is very difficult to manage in Normal mode so we will stick with only having one tariff for each room type.
 				$query  = "DELETE FROM #__jomres_rates WHERE property_uid = '" . (int) $defaultProperty . "' AND roomclass_uid = '" . (int) $d[ 'roomtype_uid' ] . "' ";
 				$result = doInsertSql( $query, "" );
+				
+				
+				
 				if ( $d[ 'numberOfRooms' ] > 0 )
 					{
 					$query = "INSERT INTO #__jomres_rates (
@@ -282,8 +310,20 @@ class j06002save_normalmode_tariffs
 						'$validto_ts',
 						'" . (int) $defaultProperty . "'
 						)";
-					//echo $query;exit;
-					doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_TARIFF', '_JOMRES_MR_AUDIT_INSERT_TARIFF', false ) );
+
+					$new_tariff_id = doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_INSERT_TARIFF', '_JOMRES_MR_AUDIT_INSERT_TARIFF', false ) );
+					
+					$query="INSERT INTO #__jomcomp_tarifftypes (`name`,`description`,`property_uid`) VALUES ('$rate_title','$rate_description','".(int)$defaultProperty."')";
+					$tarifftypeid=doInsertSql($query,'');
+					
+					$query="INSERT INTO #__jomcomp_tarifftype_rate_xref (`tarifftype_id`,`tariff_id`,`roomclass_uid`,`property_uid`) VALUES (
+						".$tarifftypeid.",
+						".$new_tariff_id.",
+						".(int) $d[ 'roomtype_uid' ].",
+						".(int) $defaultProperty."
+						)";
+					
+					doInsertSql($query,''); 
 					}
 				}
 
