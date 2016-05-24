@@ -6653,7 +6653,7 @@ class dobooking
 				$tmpRate          = $this->allPropertyTariffs[ $t ][ 'roomrateperday' ];
 				$roomType         = $this->allPropertyTariffs[ $t ][ 'roomclass_uid' ];
 				$percentageBooked = $this->getPercentageOfRoomsBookedForRoomtype( $roomType );
-				$rate             = $this->getDiscountedRoomrate( $tmpRate, $percentageBooked, $roomType );
+				$rate             = $this->getDiscountedRoomrate( $tmpRate, $percentageBooked );
 				$isDiscounted     = false;
 				if ( $rate < $tmpRate )
 					{
@@ -6766,7 +6766,7 @@ class dobooking
 		return $percentageBooked;
 		}
 
-	function getDiscountedRoomrate( $roomrate, $percentagebooked, $roomType )
+	function getDiscountedRoomrate( $roomrate, $percentagebooked )
 		{
 		$mrConfig = $this->mrConfig;
 		$this->setErrorLog( "getDiscountedRoomrate:: Started" );
@@ -6774,7 +6774,7 @@ class dobooking
 		if ( !isset( $mrConfig[ 'wiseprice25discount' ] ) || empty( $mrConfig[ 'wiseprice25discount' ] ) ) $mrConfig[ 'wiseprice25discount' ] = '20';
 		if ( !isset( $mrConfig[ 'wiseprice50discount' ] ) || empty( $mrConfig[ 'wiseprice50discount' ] ) ) $mrConfig[ 'wiseprice50discount' ] = '10';
 		if ( !isset( $mrConfig[ 'wiseprice75discount' ] ) || empty( $mrConfig[ 'wiseprice75discount' ] ) ) $mrConfig[ 'wiseprice75discount' ] = '5';
-		$this->setErrorLog( "getDiscountedRoomrate:: room rate: $roomrate percentagebooked: $percentagebooked room type: $roomType" );
+		$this->setErrorLog( "getDiscountedRoomrate:: room rate: $roomrate percentagebooked: $percentagebooked" );
 		if ( $percentagebooked <= 75 )
 			{
 			if ( $percentagebooked <= 75 && $percentagebooked > 50 ) $discountPercentage = (float) $mrConfig[ 'wiseprice75discount' ];
@@ -6974,7 +6974,7 @@ class dobooking
 					$roomType         = $this->allPropertyTariffs[ $tariff_id ][ 'roomclass_uid' ];
 					$percentageBooked = $this->getPercentageOfRoomsBookedForRoomtype( $roomType );
 
-					$r = $this->getDiscountedRoomrate( $basic_room_rate, $percentageBooked  , $roomType);
+					$r = $this->getDiscountedRoomrate( $basic_room_rate, $percentageBooked  );
 					//$this->setPopupMessage("Discount rate ".$r);
 					$old_room_rate = $basic_room_rate;
 
