@@ -34,7 +34,7 @@ function jomres_cmsspecific_output_date( $date, $format = false )
 	if ( !$format ) 
 		$format = JText::_( 'DATE_FORMAT_LC' );
 	
-	$result = JHtml::date( strtotime( $date ) , $format, $usertimezone = false);
+	$result = JHtml::date( $date , $format, $usertimezone = false);
 
 	return $result;
 	}
@@ -81,8 +81,7 @@ function jomres_cmsspecific_createNewUserOnBooking()
 		//If the email address already exists in the system, we'll not bother carrying on, just return this user's "mos_id"
 		$query    = "SELECT `id` FROM #__users WHERE `email` = '" . $guestDeets[ 'email' ] . "' LIMIT 1";
 		$existing = doSelectSql( $query, 1 );
-		if ( $existing ) 
-			return $existing;
+		if ( $existing ) return $existing;
 
 		$valid = false;
 		while ( !$valid )
@@ -91,8 +90,7 @@ function jomres_cmsspecific_createNewUserOnBooking()
 			$username = strtolower( preg_replace( '/[^A-Za-z0-9_-]+/', "", $username ) );
 			$query    = "SELECT `id` FROM #__users WHERE `username` = '" . $username . "'";
 			$users    = doSelectSql( $query );
-			if ( count( $users ) == 0 ) 
-				$valid = true;
+			if ( count( $users ) == 0 ) $valid = true;
 			}
 		$name     = $guestDeets[ 'firstname' ] . " " . $guestDeets[ 'surname' ];
 		$usertype = "Registered";
@@ -370,10 +368,7 @@ function jomres_cmsspecific_getSearchModuleParameters( $moduleName = "" )
 					$dat = explode( ":", $str );
 
 					$key = $dat[ 0 ];
-					if (isset($dat[ 1 ]))
-						$val = $dat[ 1 ];
-					else
-						$val = '';
+					$val = $dat[ 1 ];
 					if ( strlen( $key ) > 0 )
 						{
 						$k = str_replace( '"', '', $key );
