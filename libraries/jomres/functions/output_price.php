@@ -45,9 +45,15 @@ function output_price( $value, $currencycode = "", $do_conversion = true, $zeroO
 		}
 
 	jr_import( "currency_codes" );
-	if ( $jrConfig[ 'useGlobalCurrency' ] == "1" ) 
+	if (!isset($jrConfig['currency_symbol_swap']))
+		$jrConfig['currency_symbol_swap'] = "0";
+	
+	if ( $jrConfig[ 'useGlobalCurrency' ] == "1" )
+		{
 		$currencycode = $jrConfig[ 'globalCurrencyCode' ];
-
+		$mrConfig['currency_symbol_swap'] = $jrConfig[ 'currency_symbol_swap' ];
+		}
+		
 	$converted_output_price = '';
 	jr_import( 'jomres_currency_conversion' );
 	$conversion        = new jomres_currency_conversion();

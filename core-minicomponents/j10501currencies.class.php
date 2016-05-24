@@ -51,6 +51,11 @@ class j10501currencies
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 		
+		$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_TARIFFS_SWAP", '_JOMRES_COM_A_TARIFFS_SWAP', false ) );
+		$configurationPanel->setmiddle( $lists[ 'currency_symbol_swap' ] );
+		$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_TARIFFS_SWAP_DESC", '_JOMRES_COM_A_TARIFFS_SWAP_DESC', false ) );
+		$configurationPanel->insertSetting();
+			
 		$configurationPanel->setleft( jr_gettext( '_JOMRES_CONVERSION_TITLE', '_JOMRES_CONVERSION_TITLE', false ) );
 		$configurationPanel->setmiddle( $lists['use_conversion_feature'] );
 		$configurationPanel->setright( jr_gettext( '_JOMRES_CONVERSION_TITLE_DESC', '_JOMRES_CONVERSION_TITLE_DESC', false ) );
