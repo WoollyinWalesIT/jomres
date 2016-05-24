@@ -175,7 +175,13 @@ class j06002edit_tariffs_normal
 					$roomTypesArray[ $roomtype_id ][ 'counter' ], 
 					"%02d" 
 					);
-				
+				if (!isset($allTariffsForRoomType[ $roomType->room_classes_uid ][ 'roomrateperday' ]))
+					{
+					$allTariffsForRoomType[ $roomType->room_classes_uid ][ 'roomrateperday' ]	= 0;
+					$roomTypesArray[ $roomType->room_classes_uid ][ 'max_people' ]				= 2;
+					$allTariffsForRoomType[ $roomtype_id ][ 'maxpeople' ]						= 4;
+					}
+					
 				$r[ 'ROOMRATEPERDAY' ]     = '<input class="input-mini" type="number" name="roomrateperday[' . $roomtype_id . ']" value="' . $allTariffsForRoomType[ $roomType->room_classes_uid ][ 'roomrateperday' ] . '" />';
 				$r[ 'MAX_PEOPLE_ROOM' ]    = jomresHTML::integerSelectList( 00, 100, 1, "max_people[$roomtype_id]", 'class="input-mini"', $roomTypesArray[ $roomType->room_classes_uid ][ 'max_people' ], "%02d" );
 				$r[ 'MAX_PEOPLE_TARIFF' ]  = jomresHTML::integerSelectList( 01, 100, 1, "maxpeople_tariff[$roomtype_id]", 'class="input-mini"', $allTariffsForRoomType[ $roomtype_id ][ 'maxpeople' ], "%02d" );
