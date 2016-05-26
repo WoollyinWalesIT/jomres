@@ -84,15 +84,11 @@ class j06000show_property_header
 		//property image
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 		$jomres_media_centre_images->get_images($property_uid, array('property'));
-		$output[ 'IMAGELARGE' ]  = $jomres_media_centre_images->multi_query_images ['noimage-large'];
-		$output[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->multi_query_images ['noimage-medium'];
-		$output[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->multi_query_images ['noimage-small'];
-		if (isset($jomres_media_centre_images->images ['property'][0][0]['large']))
-			{
-			$output[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images ['property'][0][0]['large'];
-			$output[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images ['property'][0][0]['medium'];
-			$output[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images ['property'][0][0]['small'];
-			}
+		
+		$output[ 'IMAGELARGE' ]  = $jomres_media_centre_images->images ['property'][0][0]['large'];
+		$output[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images ['property'][0][0]['medium'];
+		$output[ 'IMAGETHUMB' ]  = $jomres_media_centre_images->images ['property'][0][0]['small'];
+
 		//property features
 		$output['FEATURES']		= $MiniComponents->specificEvent( '06000', 'show_property_features',array('output_now'=>false, 'property_uid'=>$property_uid , 'show_feature_categories'=>false));
 		

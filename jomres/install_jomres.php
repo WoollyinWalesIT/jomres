@@ -466,6 +466,7 @@ function doTableUpdates()
 	if ( checkRtypesSrpOnlyFlagColExists() ) dropRtypesSrpOnlyFlagCol();
 	
 	drop_orphan_line_items_table();
+	drop_room_images_table();
 	removeCronJob('invoice');
 	
 	updateSiteSettings ( "update_time" , time() );
@@ -487,6 +488,15 @@ function drop_orphan_line_items_table()
 	if ( !doInsertSql( $query, '' ) )
 		{
 		output_message ( "Error, unable to drop #__jomresportal_orphan_lineitems table", "danger" );
+		}
+	}
+
+function drop_room_images_table()
+	{
+	$query = "DROP TABLE IF EXISTS `#__jomres_room_images` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to drop #__jomres_room_images table", "danger" );
 		}
 	}
 
@@ -3527,18 +3537,6 @@ function createJomresTables()
 		output_message (  "Failed to run query: " . $query , "danger" );
 		}
 
-	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_room_images` (
-		`uid` int(11) auto_increment,
-		`roomid` int( 11 ),
-		`filelocation` text,
-		`property_uid` VARCHAR(11),
-		PRIMARY KEY	(`uid`)
-		) ";
-	if ( !doInsertSql( $query ) )
-		{
-		output_message (  "Failed to run query: " . $query , "danger" );
-		}
-
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_extraservices` (
 		`extraservice_uid` int(11) auto_increment,
 		`service_description` VARCHAR(255),
@@ -4013,9 +4011,6 @@ function insertSampleData()
 
 
 	$result = doInsertSql( "delete FROM `#__jomres_settings`", "" );
-
-
-	$result = doInsertSql( "delete FROM `#__jomres_room_images`", "" );
 
 
 	$result = doInsertSql( "delete FROM `#__jomres_extraservices`", "" );

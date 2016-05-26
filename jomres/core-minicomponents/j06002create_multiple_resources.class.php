@@ -23,34 +23,38 @@ class j06002create_multiple_resources
 			{
 			$this->template_touchable = false; return;
 			}
-
-		$mrConfig        = getPropertySpecificSettings();
+		
 		$siteConfig      = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig        = $siteConfig->get();
-		$defaultProperty = getDefaultProperty();
-		$output          = array ();
 		
-		if ($mrConfig[ 'singleRoomProperty' ] == '1' || $mrConfig[ 'is_real_estate_listing' ] == '1' )
+		$defaultProperty = getDefaultProperty();
+
+		$mrConfig        = getPropertySpecificSettings();
+
+		$output          = array ();
+		$pageoutput      = array ();
+		
+		if ($mrConfig[ 'singleRoomProperty' ] == '1' || $mrConfig[ 'is_real_estate_listing' ] == '1' || get_showtime('is_jintour_property' ) )
 			return;
 			
 		$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$basic_property_details->gather_data( $defaultProperty );
-		$property_type_id   = $basic_property_details->ptype_id;
-		
-		$room_classes_array = array();
-		$output['RESOURCES_OF_TYPE']='';
-		
-		if (count($basic_property_details->this_property_room_classes)>0)
+
+		$output['RESOURCES_OF_TYPE']='';		
+		if ( count($basic_property_details->this_property_room_classes) > 0 )
 			{
-			$dropDownList ='<select class="inputbox form-control" name="resourcesType">';
-			foreach ( $basic_property_details->this_property_room_classes as $key=>$val )
+			$classOptions = array();
+			foreach ( $basic_property_details->this_property_room_classes as $key => $roomClass )
 				{
-				$room_classes_uid = $key;
-				$room_class_abbv = $val['abbv'];
-				$dropDownList .= "<option value=\"".$room_classes_uid."\">".$room_class_abbv."</option>";
+				if (!is_null($roomClass))
+					$classOptions[] = jomresHTML::makeOption( $key, $roomClass[ 'abbv' ] );
 				}
-			$dropDownList.="</select>";
-			$output['RESOURCES_OF_TYPE']=$dropDownList;
+			$output['RESOURCES_OF_TYPE'] = jomresHTML::selectList( $classOptions, 'resourcesType', 'class="inputbox" size="1"', 'value', 'text', false );
+			}
+		else
+			{
+			echo "This property type doesn`t have any room types assigned yet. Please assign some room types to this property type.";
+			return;
 			}
 		
 		$output[ 'NUMBER_OF_RESOURCES' ] = jomresHTML::integerSelectList( 1, 100, 1, "numberOfResources", 'class="input-mini form-control"', '1', "" );
@@ -75,8 +79,8 @@ class j06002create_multiple_resources
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-		$pageoutput[ ] = $output;
-		$tmpl          = new patTemplate();
+		$pageoutput[] = $output;
+		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
 		$tmpl->readTemplatesFromInput( 'create_multiple_resources.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );

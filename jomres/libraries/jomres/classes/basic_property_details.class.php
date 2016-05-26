@@ -273,14 +273,16 @@ class basic_property_details
 		$mrConfig = getPropertySpecificSettings( $this->property_uid );
 		
 		//get all room types assigned to this property type
+		$jomres_room_types = jomres_singleton_abstract::getInstance( 'jomres_room_types' );
+		$jomres_room_types->get_all_room_types();
+		
 		if ( !isset( $this->this_property_room_classes ) )
 			{
-			$this->this_property_room_classes = array ();
-			$query = "SELECT a.roomtype_id FROM #__jomres_roomtypes_propertytypes_xref a, #__jomres_room_classes b WHERE a.propertytype_id = " . (int) $this->ptype_id . " AND a.roomtype_id = b.room_classes_uid ";
-			$roomtypes = doSelectSql( $query );
-			foreach ( $roomtypes as $roomClass )
+			$this->this_property_room_classes = array();
+			
+			foreach ($jomres_room_types->all_ptype_rtype_xrefs[$this->ptype_id] as $rtype)
 				{
-				$this->this_property_room_classes[ (int) $roomClass->roomtype_id ] = $this->classAbbvs[ $roomClass->roomtype_id ];
+				$this->this_property_room_classes[ $rtype ] = $this->classAbbvs[ $rtype ];
 				}
 			}
 

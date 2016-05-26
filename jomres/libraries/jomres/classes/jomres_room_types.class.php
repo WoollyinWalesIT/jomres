@@ -32,6 +32,17 @@ class jomres_room_types
 		$this->room_type['room_class_full_desc']   	= '';		// resource type description - not used
 		$this->room_type['image']    				= '';		// resource type icon path
 		$this->room_type['ptype_xref'] 				= array();	// property types that this room type is assigned to
+		
+		//retrieve room types data from cache, if available
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$room_types_data = $c->retrieve('room_types_data');
+		
+		if ( $room_types_data !== false )
+			{
+			$this->room_types = $room_types_data['room_types'];
+			$this->all_rtype_ptype_xrefs = $room_types_data['all_rtype_ptype_xrefs'];
+			$this->all_ptype_rtype_xrefs = $room_types_data['all_ptype_rtype_xrefs'];
+			}
 		}
 
 	public static function getInstance()
@@ -47,12 +58,14 @@ class jomres_room_types
 	// Get all room types details
 	function get_all_room_types()
 		{
-		if ( is_array( $this->room_types ) ) //already executed, but there are no property types created yet, so the array is empty
+		if ( is_array( $this->room_types ) ) //already executed, but there are no room types created yet, so the array is empty, or the data is retreived from cache
 			{
 			return true;
 			}
 		else
 			$this->room_types = array();
+		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 		
 		//get the room type property type xrefs
 		$this->get_xrefs();
@@ -76,6 +89,13 @@ class jomres_room_types
 				$this->room_types[$r->room_classes_uid]['ptype_xref']    	= $this->all_rtype_ptype_xrefs[$r->room_classes_uid];
 			else
 				$this->room_types[$r->room_classes_uid]['ptype_xref']    	= array();
+			
+			$c->store('room_types_data', array (
+												'room_types'=>$this->room_types, 
+												'all_rtype_ptype_xrefs'=>$this->all_rtype_ptype_xrefs, 
+												'all_ptype_rtype_xrefs'=>$this->all_ptype_rtype_xrefs
+												)
+					);
 			}
 		
 		return true;
