@@ -1,69 +1,48 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<h2>{PAGETITLE}</h2>
+<h2>{PAGETITLE}</h2>
 
-	<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm">
-		{JOMRESTOOLBAR}
-		<table width="100%" border="0" class="ui-widget-content ui-corner-all">
-			<tr>
-				<td width="30%">{HTYPE}</td>
-				<td>{TYPEDROPDOWN}</td>
-			</tr>
-			<tr>
-				<td>{HNAME}</td>
-				<td><input class="inputbox" type="text" name="room_name" value="{ROOMNAME}"/></td>
-			</tr>
-			<tr>
-				<td>{HNUMBER}</td>
-				<td><input class="inputbox" type="text" size="4" name="room_number" value="{ROOMNUMBER}"/></td>
-			</tr>
-			<tr>
-				<td>{HFLOOR}</td>
-				<td><input class="inputbox" type="text" size="4" name="room_floor" value="{ROOMFLOOR}"/></td>
-			</tr>
-			<tr>
-				<td>{HMAXPEOPLE}</td>
-				<td>{MAXPEOPLE_DROPDOWN}</td>
-			</tr>
-			<tr>
-				<td>{HSUPPLIMENT}*</td>
-				<td>{CURRENCY}<input class="inputbox" type="text" size="4" name="singleperson_suppliment" value="{SUPPLIMENT}"/></td>
-			</tr>
-			<tr>
-				<td colspan="2">*{SUPPLIMENT_DESC}</td>
-			</tr>
-		</table>
-		<br/>
-		<table width="100%" border="0" class="ui-widget-content ui-corner-all">
-			<tr>
-				<td><h3>{HFEATURES}</h3></td>
-			</tr>
-			<tr>
-				<td>{FEATURES}</td>
-			</tr>
-		</table>
-		<input type="hidden" name="no_html" value="1" />
-		<input type="hidden" name="roomUid" value="{ROOMUID}"/>
-		<input type="hidden" name="task" value="save_resource"/>
-	</form>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm">
+	{JOMRESTOOLBAR}
+	<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+		<tr>
+			<td width="30%">{HTYPE}</td>
+			<td>{TYPEDROPDOWN}</td>
+		</tr>
+		<tr>
+			<td>{HNAME}</td>
+			<td><input class="inputbox" type="text" name="room_name" value="{ROOMNAME}"/></td>
+		</tr>
+		<tr>
+			<td>{HNUMBER}</td>
+			<td><input class="inputbox" type="text" size="4" name="room_number" value="{ROOMNUMBER}"/></td>
+		</tr>
+		<tr>
+			<td>{HFLOOR}</td>
+			<td><input class="inputbox" type="text" size="4" name="room_floor" value="{ROOMFLOOR}"/></td>
+		</tr>
+		<tr>
+			<td>{HMAXPEOPLE}</td>
+			<td>{MAXPEOPLE_DROPDOWN}</td>
+		</tr>
+		<tr>
+			<td>{HSUPPLIMENT}*</td>
+			<td>{CURRENCY}<input class="inputbox" type="text" size="4" name="singleperson_suppliment" value="{SUPPLIMENT}"/></td>
+		</tr>
+		<tr>
+			<td colspan="2">*{SUPPLIMENT_DESC}</td>
+		</tr>
+	</table>
 	<br/>
-	<patTemplate:comment>
-	<form enctype="multipart/form-data" action="{JOMRES_SITEPAGE_URL}&amp;task=uploadRoomImage" method="post"
-		  name="upload">
-		<table width="100%" border="0" class="ui-widget-content ui-corner-all">
-			<tr>
-				<td colspan="2"><h3>{UPLOADIMAGE}</h3></td>
-			</tr>
-			<tr>
-				<td width="30%"><input type='file' name='image'/></td>
-				<td><input type="submit" value="{UPLOADIMAGE}" class="fg-button ui-state-default ui-corner-all"></td>
-			</tr>
-			<tr>
-				<td>{DELETEIMAGE}</td>
-				<td>{IMAGE}</td>
-			</tr>
-		</table>
-		<input type="hidden" name="no_html" value="1" />
-		<input type="hidden" name="roomUid" value="{ROOMUID}"/>
-	</form>
-	</patTemplate:comment>
+	<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+		<tr>
+			<td><h3>{HFEATURES}</h3></td>
+		</tr>
+		<tr>
+			<td>{FEATURES}</td>
+		</tr>
+	</table>
+	<input type="hidden" name="no_html" value="1" />
+	<input type="hidden" name="roomUid" value="{ROOMUID}"/>
+	<input type="hidden" name="task" value="save_resource"/>
+</form>
 </patTemplate:tmpl>

@@ -36,35 +36,27 @@ class j06001dashboard_resources_ajax {
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$current_property_details->gather_data($property_uid);
 		
-		$rooms=array();
-		$result=array();
+		$basic_room_details = jomres_singleton_abstract::getInstance( 'basic_room_details' );
+		$basic_room_details->get_all_rooms($property_uid);
 		
-		$query = "SELECT 
-						a.room_uid, 
-						a.room_classes_uid, 
-						a.room_name, 
-						a.room_number 
-					FROM #__jomres_rooms AS a 
-					WHERE a.propertys_uid = " . (int) $property_uid . " 
-					ORDER BY a.room_number, a.room_name , a.room_classes_uid ";
-		$roomsList = doSelectSql( $query );
+		$rooms=array();
 	
-		foreach ( $roomsList as $r )
+		foreach ( $basic_room_details->rooms as $r )
 			{
 			$name = '';
 			if ( $mrConfig[ 'singleRoomProperty' ] == 0 )
 				{
-				if ($r->room_number != '')
-					$name .= $r->room_number.' - ';
-				if ($r->room_name != '')
-					$name .= $r->room_name.' - ';
+				if ( $r['room_number'] != '' )
+					$name .= $r['room_number'] . ' - ';
+				if ( $r['room_name'] != '' )
+					$name .= $r['room_name'].' - ';
 				}
-			$name .= $current_property_details->all_room_types[ $r->room_classes_uid ][ 'room_class_abbv' ];
+			$name .= $current_property_details->all_room_types[ $r['room_classes_uid'] ][ 'room_class_abbv' ];
 			
 			$rooms[] = array ( 
-							'id' => $r->room_uid, 
+							'id' => $r['room_uid'], 
 							'title' => $name,
-							'itemtype' => $current_property_details->all_room_types[ $r->room_classes_uid ][ 'room_class_abbv' ]
+							'itemtype' => $current_property_details->all_room_types[ $r['room_classes_uid'] ][ 'room_class_abbv' ]
 							);
 			}
 		

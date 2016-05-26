@@ -23,77 +23,23 @@ class j06002save_multiple_resources
 			{
 			$this->template_touchable = false; return;
 			}
-		$mrConfig = getPropertySpecificSettings();
+		
 		$defaultProperty = getDefaultProperty();
-
-		$numberOfResources = intval(jomresGetParam( $_POST, 'numberOfResources', '1' ));
-		$resourcesType = intval(jomresGetParam( $_POST, 'resourcesType', '' ));
-		$maxGuests = intval(jomresGetParam( $_POST, 'maxGuests', '1' ));
-		$deleteExistingResources = intval(jomresGetParam( $_POST, 'deleteExistingResources', '0' ));
 		
+		$mrConfig = getPropertySpecificSettings();
+
+		jr_import( 'jrportal_rooms' );
+		$jrportal_rooms = new jrportal_rooms();
 		
-		if ( $resourcesType > 0 )
-			{
-			if ($deleteExistingResources == 1 )
-				{
-				$query = "DELETE FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $defaultProperty . "' ";
-				doInsertSql( $query, "" );
-				}
-			
-			// We need to find the next room number available to us
-			$query = "SELECT room_number FROM #__jomres_rooms WHERE propertys_uid = '" . (int) $defaultProperty . "' ORDER BY room_number ";
-			$roomnumberList = doSelectSql( $query );
-			if ( count( $roomnumberList ) > 0 )
-				{
-				$roomNumbers = array ();
-				foreach ( $roomnumberList as $n )
-					{
-					$roomNumbers[ ] = (int) $n->room_number;
-					}
-				sort( $roomNumbers );
-				$nextRoomNumber = end( $roomNumbers ) + 1;
-				}
-			else
-				$nextRoomNumber = 1;
-					
-			$query = "INSERT INTO #__jomres_rooms (
-										`room_classes_uid`,
-										`propertys_uid`,
-										`room_features_uid`,
-										`room_name`,
-										`room_number`,
-										`room_floor`,
-										`max_people`
-										)
-									VALUES ";
-			
-			for ( $i = 1; $i <= $numberOfResources; $i++ )
-				{
-				if ( $nextRoomNumber < 10 ) 
-					$nextRoomNumberStr = "0" . (string) $nextRoomNumber;
-				else
-					$nextRoomNumberStr = (string) $nextRoomNumber;
-
-				$query .="(
-						'" . $resourcesType . "',
-						 " . (int) $defaultProperty . ",
-						'',
-						'',
-						'" . $nextRoomNumberStr . "',
-						'',
-						'" . $maxGuests . "'
-						),";
-				$nextRoomNumber++;
-				}
-			
-			$query = rtrim($query, ",");
-			
-			if ( !doInsertSql( $query, "" ) ) trigger_error( "Sql error when generating multiple resources ", E_USER_ERROR );
-
-			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=list_resources" ), "" );
-			}
-		else
-			trigger_error( "Room class uid not set", E_USER_ERROR );
+		$jrportal_rooms->rooms_generator['propertys_uid'] 			= (int)$defaultProperty;
+		$jrportal_rooms->rooms_generator['number_of_rooms'] 		= (int)jomresGetParam( $_POST, 'numberOfResources', 0 );
+		$jrportal_rooms->rooms_generator['room_classes_uid'] 		= (int)jomresGetParam( $_POST, 'resourcesType', 0 );
+		$jrportal_rooms->rooms_generator['max_people'] 				= (int)jomresGetParam( $_POST, 'maxGuests', 0 );
+		$jrportal_rooms->rooms_generator['delete_existing_rooms'] 	= (bool)jomresGetParam( $_POST, 'deleteExistingResources', false );
+		
+		$jrportal_rooms->commit_new_rooms();
+		
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=list_resources" ), "" );
 		}
 
 	// This must be included in every Event/Mini-component
