@@ -342,12 +342,10 @@ class jomres_properties
 		
 		//approval and published status
 		$this->approved 			= 1;
-		$this->published 			= 1;
 		
 		if ( (int)$jrConfig['automatically_approve_new_properties'] == 0 && !$thisJRUser->superPropertyManager )
 			{
 			$this->approved = 0;
-			$this->published = 0;
 			}
 
 		//update property
@@ -371,7 +369,6 @@ class jomres_properties
 						`property_airports` = '".$this->property_airports."',
 						`property_othertransport` = '".$this->property_othertransport."',
 						`property_policies_disclaimers` = '".$this->property_policies_disclaimers."',
-						`published` = " . (int)$this->published . ",
 						`lat` = '".$this->lat."',
 						`long` = '".$this->long."',
 						`metatitle` = '".$this->metatitle."',
@@ -403,6 +400,8 @@ class jomres_properties
 		updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE", $this->metatitle, true );
 		updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION", $this->metadescription, true );
 		updateCustomText( "_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS", $this->metakeywords, true );
+		
+		return true;
 		}
 	
 	private function check_mrp_srp_flags_match($ptype_id1 = 0, $ptype_id2 = 0)
