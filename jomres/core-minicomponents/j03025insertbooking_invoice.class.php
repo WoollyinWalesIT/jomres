@@ -71,7 +71,8 @@ class j03025insertbooking_invoice
 		$guests_by_room_array_index = 0;
 		foreach ($room_allocations as $k)
 			{
-			$guests_by_room[] = $k['number_allocated']; 
+			if (isset($k['number_allocated']))
+				$guests_by_room[] = $k['number_allocated']; 
 			}
 
 		if ( $resource == "1" ) 
