@@ -13,9 +13,11 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-	Flight::map('json', function($data, $code = 200, $encode = true, $charset = 'utf-8') {
+	Flight::map('json', function($response_name , $data, $code = 200, $encode = true, $charset = 'utf-8') {
 		logging::log_message(' Replied with code '.$code.' and contents '.json_encode($data));
-		$json = ($encode) ? json_encode($data) : $data;
+		$response = new stdClass;
+		$response->data[$response_name]=$data;
+		$json=json_encode($response);
 		Flight::response()
 			->status($code)
 			->header('Content-Type', 'application/json; charset='.$charset)
@@ -26,6 +28,8 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  	Flight::map('halt', function($code = 200, $message = '') {
 		$log = ' Halted run '.$code.' with message '.$message;
 		logging::log_message($log);
+		$response = new stdClass;
+		$response->messsage=$message;
 		Flight::response()
             ->status($code)
             ->write($message)
