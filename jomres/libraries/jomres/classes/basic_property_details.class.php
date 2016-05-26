@@ -280,9 +280,12 @@ class basic_property_details
 			{
 			$this->this_property_room_classes = array();
 			
-			foreach ($jomres_room_types->all_ptype_rtype_xrefs[$this->ptype_id] as $rtype)
+			if ( isset($jomres_room_types->all_ptype_rtype_xrefs[$this->ptype_id]) )
 				{
-				$this->this_property_room_classes[ $rtype ] = $this->classAbbvs[ $rtype ];
+				foreach ($jomres_room_types->all_ptype_rtype_xrefs[$this->ptype_id] as $rtype)
+					{
+					$this->this_property_room_classes[ $rtype ] = $this->classAbbvs[ $rtype ];
+					}
 				}
 			}
 
