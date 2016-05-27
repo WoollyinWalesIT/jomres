@@ -27,14 +27,12 @@ require 'classes/logging.class.php';
 if (isset($_POST['grant_type']) && isset($_POST['grant_type']) == 'client_credentials')
 	{
 	$client_id = filter_var($_POST['client_id'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH );
-	//$logger->addInfo('Received a token request from '.$client_id);
 	logging::log_message('Received a token request from '.$client_id);
 	require_once __DIR__.'/oauth/token.php';
 	}
 else
 	{
 	$request = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-	//$logger->addInfo(TRANSACTION_ID.' Received a token which sent '.$request);
 	logging::log_message(' Received a token which sent '.$request);
 	require_once __DIR__.'/oauth/resource.php';
 	}
