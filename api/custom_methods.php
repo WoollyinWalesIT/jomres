@@ -17,6 +17,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 		logging::log_message(' Replied with code '.$code.' and contents '.json_encode($data));
 		$response = new stdClass;
 		$response->data[$response_name]=$data;
+		$response->meta["code"]=$code;
 		$json=json_encode($response);
 		Flight::response()
 			->status($code)
@@ -29,10 +30,12 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 		$log = ' Halted run '.$code.' with message '.$message;
 		logging::log_message($log);
 		$response = new stdClass;
-		$response->messsage=$message;
+		$response->meta["code"]=$code;
+		$response->meta["error_message"]=$message;
+		$json=json_encode($response);
 		Flight::response()
             ->status($code)
-            ->write($message)
+            ->write($json)
             ->send();
 	}); 
 	
