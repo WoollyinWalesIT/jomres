@@ -436,7 +436,7 @@ class jomres_properties
 			return false;
 		}
 	
-	private function delete_rooms_tariffs_settings()
+	private function delete_rooms_tariffs_settings( $delete_rooms = true, $delete_tariffs = true, $delete_settings = true )
 		{
 		if ( $this->propertys_uid == 0 )
 			{
@@ -444,38 +444,47 @@ class jomres_properties
 			}
 
 		//delete rooms
-		$query="DELETE FROM #__jomres_rooms WHERE `propertys_uid` = ".(int)$this->propertys_uid." LIMIT 10000";
-		if ( !doInsertSql($query,'') )
+		if ( $delete_rooms )
 			{
-			throw new Exception ("Error: Could not delete from rooms table.");
-			}
-		
-		//delete room features
-		$query="DELETE FROM #__jomres_room_features WHERE `property_uid` = ".(int)$this->propertys_uid." LIMIT 10000";
-		if ( !doInsertSql($query,'') )
-			{
-			throw new Exception ("Error: Could not delete from room features table.");
+			$query="DELETE FROM #__jomres_rooms WHERE `propertys_uid` = ".(int)$this->propertys_uid." LIMIT 10000";
+			if ( !doInsertSql($query,'') )
+				{
+				throw new Exception ("Error: Could not delete from rooms table.");
+				}
+			
+			//delete room features
+			$query="DELETE FROM #__jomres_room_features WHERE `property_uid` = ".(int)$this->propertys_uid." LIMIT 10000";
+			if ( !doInsertSql($query,'') )
+				{
+				throw new Exception ("Error: Could not delete from room features table.");
+				}
 			}
 
 		//delete tariffs
-		$query="DELETE FROM #__jomres_rates WHERE `property_uid` = ".(int)$this->propertys_uid." LIMIT 10000";
-		if ( !doInsertSql($query,'') )
+		if ( $delete_tariffs )
 			{
-			throw new Exception ("Error: Could not delete from rates table.");
-			}
-		
-		//delete tarifftype xrefs
-		$query="DELETE FROM #__jomcomp_tarifftype_rate_xref WHERE `property_uid` = ".(int)$this->propertys_uid." LIMIT 10000";
-		if ( !doInsertSql($query,'') )
-			{
-			throw new Exception ("Error: Could not delete from tarifftype xref table.");
+			$query="DELETE FROM #__jomres_rates WHERE `property_uid` = ".(int)$this->propertys_uid." LIMIT 10000";
+			if ( !doInsertSql($query,'') )
+				{
+				throw new Exception ("Error: Could not delete from rates table.");
+				}
+			
+			//delete tarifftype xrefs
+			$query="DELETE FROM #__jomcomp_tarifftype_rate_xref WHERE `property_uid` = ".(int)$this->propertys_uid." LIMIT 10000";
+			if ( !doInsertSql($query,'') )
+				{
+				throw new Exception ("Error: Could not delete from tarifftype xref table.");
+				}
 			}
 		
 		//delete property settings
-		$query="DELETE FROM #__jomres_settings WHERE `property_uid` = ".(int)$this->propertys_uid." LIMIT 10000";
-		if ( !doInsertSql($query,'') )
+		if ( $delete_settings )
 			{
-			throw new Exception ("Error: Could not delete from settings table.");
+			$query="DELETE FROM #__jomres_settings WHERE `property_uid` = ".(int)$this->propertys_uid." LIMIT 10000";
+			if ( !doInsertSql($query,'') )
+				{
+				throw new Exception ("Error: Could not delete from settings table.");
+				}
 			}
 		
 		return true;
