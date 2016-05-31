@@ -49,7 +49,7 @@ try
 	//TODO: here we can add a query to automatically remove the manager that has 0 properties
 	if (count($thisJRUser->authorisedProperties)==0 && $thisJRUser->userIsManager)
 		{
-		throw new Exception( "This manager " .  jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( (int) $this->id ) . "  hasn't got any properties.");
+		throw new Exception( "This manager " .  jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( (int) $thisJRUser->id ) . "  hasn't got any properties.");
 		}
 
 	//jomres timezones - mostly unused with an exception
