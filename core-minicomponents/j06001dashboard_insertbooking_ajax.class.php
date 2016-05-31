@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j06001dashboard_insertbooking_ajax 
 	{
-	function __construct()
+	function __construct($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
@@ -24,12 +24,19 @@ class j06001dashboard_insertbooking_ajax
 			$this->template_touchable=false; return;
 			}
 		
+		$output_now = true;
+		if (isset($componentArgs[ 'output_now' ]))
+			$output_now = (bool)$componentArgs[ 'output_now' ];
+		
+		$this->retVals = false;
+		
 		$property_uid = jomresGetParam($_GET, 'property_uid', 0);
 		if ( $property_uid == 0 )
 			$property_uid = getDefaultProperty();
 		
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-		if ( !in_array( $property_uid, $thisJRUser->authorisedProperties ) ) return;
+		if ( !in_array( $property_uid, $thisJRUser->authorisedProperties ) ) 
+			return;
 		
 		$insertSuccessful = false;
 		
@@ -48,6 +55,25 @@ class j06001dashboard_insertbooking_ajax
 		$room_uid				= (int)jomresGetParam($_GET,'room_uid','0');
 		$startDate 				= jomresGetParam($_GET,'start','');
 		$endDate 				= jomresGetParam($_GET,'end','');
+		if ($startDate == '')
+			{
+			$insertMessage="Error: An empty start date was sent  ";
+			if ( $output_now )
+				echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
+			else
+				$this->retVals = array("insertStatus"=>0,"insertMessage"=>$insertMessage);
+			return;
+			}
+		if ($endDate == '')
+			{
+			$insertMessage="Error: An empty end date was sent : ";
+			if ( $output_now )
+				echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
+			else
+				$this->retVals = array("insertStatus"=>0,"insertMessage"=>$insertMessage);
+			return;
+			}
+		
 		$arrivalDate 			= date("Y/m/d", strtotime($startDate));
 		$departureDate			= date("Y/m/d", strtotime($endDate));
 		if ((int)$mrConfig[ 'wholeday_booking' ] == '0')
@@ -73,7 +99,10 @@ class j06001dashboard_insertbooking_ajax
 		if ($room_uid == 0)
 			{
 			$insertMessage="Error: Room uid not set. Exitting.";
-			echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
+			if ( $output_now )
+				echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
+			else
+				$this->retVals = array("insertStatus"=>0,"insertMessage"=>$insertMessage);
 			return;
 			}
 
@@ -82,7 +111,10 @@ class j06001dashboard_insertbooking_ajax
 		if (count($bookingsList)>0)
 			{
 			$insertMessage="Error: Room already booked. Exitting.";
-			echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
+			if ( $output_now )
+				echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
+			else
+				$this->retVals = array("insertStatus"=>0,"insertMessage"=>$insertMessage);
 			return;
 			}
 		
@@ -123,10 +155,11 @@ class j06001dashboard_insertbooking_ajax
 
 		//Finally let`s insert the new booking
 		$insertSuccessful = $bkg->create_booking();
-		
+		var_dump($insertSuccessful);exit;
 		//Dsiplay the new booking on the dashboard
 		if ($insertSuccessful === true)
 			{
+		
 			$contract_uid = (string)$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ]['contract_uid'];
 			set_showtime("new_booking_number",$booking_number);
 			set_showtime("new_booking_id",$contract_uid);
@@ -196,13 +229,22 @@ class j06001dashboard_insertbooking_ajax
 			
 			//clean the buffer from any other output (other echos, for example if emails sending failed) and echo just the json
 			ob_clean();
-			echo json_encode($new_contract);
+			
+			if ( $output_now )
+				echo json_encode($new_contract);
+			else
+				$this->retVals = $new_contract;
+			
 			return;
 			}
 		else
 			{
 			$insertMessage = $insertSuccessful;
-			echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
+			
+			if ( $output_now )
+				echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
+			else
+				$this->retVals = array("insertStatus"=>0,"insertMessage"=>$insertMessage);
 			return;
 			}
 		}
@@ -210,6 +252,6 @@ class j06001dashboard_insertbooking_ajax
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return null;
+		return $this->retVals;
 		}
 	}
