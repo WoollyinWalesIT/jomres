@@ -3200,7 +3200,9 @@ function insertGuestDeets( $jomressession )
 
 	$xCustomers = $tmpBookingHandler->getGuestData();
 
-	$guests_uid			= (int) $xCustomers[ 'guests_uid' ];
+	if (isset($xCustomers[ 'guests_uid' ]))
+		$guests_uid			= (int) $xCustomers[ 'guests_uid' ];
+
 	$mos_userid			= (int) $xCustomers[ 'mos_userid' ];
 	$existing_id		= (int) $xCustomers[ 'existing_id' ];
 	$email				= $xCustomers[ 'email' ];
