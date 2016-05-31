@@ -7,7 +7,7 @@
 * @copyright	2005-2013 Vince Wooll
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
 * @Polska adaptacja Patryk Doering - http://www.rekinet.pl - kontakt@rekinet.pl
-* @Aktualizacja wersji językowej z 22-02-2016r.
+* @Aktualizacja wersji językowej z 27-05-2016r.
 **/
 
 ##################################################################
@@ -1068,7 +1068,8 @@ jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN','Ręczne uruchamianie zadań crona k
 jr_define('_JOMRES_COM_A_CRON_METHOD','Metoda');
 jr_define('_JOMRES_COM_A_CRON_METHOD_DESC',"Jeśli nie masz dostępu do crona, ustaw funkcję uruchamiania cyklicznych zadań wbudowanych w Jomres. W przeciwnym razie ustaw uruchamianie zadań przez Twojego crona na serwerze.
 	<br />
-	<i>curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . get_showtime("secret") . "> /dev/null</i>");
+	<i>curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . get_showtime("secret") . "> /dev/null</i>");
+
 
 jr_define('_JOMRES_COM_A_CRON_LOGGING','Wyświetlanie logowania w przeglądarce');
 jr_define('_JOMRES_COM_A_CRON_LOGGING_DESC','Działa tylko jeśli metoda jest ustawiona na System Jomres.');
@@ -1243,6 +1244,7 @@ jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7',"Aby zobaczyć listę do
 jr_define('_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR',"Niestety, nie można opublikować tej oferty, osiągnięto maksymalną liczbę dostępnych ilości ofert w Twoim abonamencie.");
 jr_define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED',"Dziękujemy za zamówienie abonamentu. <a href='".JOMRES_SITEPAGE_URL."&task=registerProp_step1'>Kliknij tutaj, aby kontynuować.</a>");
 jr_define('_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE',"Z przykrością informujemy, że nie zdecydowałeś się zapisać w naszym serwisie. Daj nam znać, jeśli istnieje jakikolwiek sposób, w który możemy Ci pomóc.");
+
 jr_define('_JRPORTAL_SUBSCRIPTIONS_USE',"Obsługa abonamentów");
 jr_define('_JOMRES_COM_NEWUSER','Utwórz nowego użytkownika');
 jr_define('_JOMRES_COM_NEWUSER_DESC','Utwórz nowe konto użytkownika.');
@@ -2548,4 +2550,15 @@ jr_define('_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE','Bootstrap nie jest włączony!'
 jr_define('_JOMRES_BOOTSTRAP_OFF_WARNING','Uwaga: Nie masz włączonego Bootstrap w konfiguracji Jomres w zakładce Różne, aby włączyć <i>niektóre</i> funkcje Jomres. Aktualnie używasz starych szablonów opartych na jQuery UI, jednak te nie są wspierane już od kilku lat. Wszystkie obecnie rozwijane i ulepszane szablony Jomres (pliki układu graficznego) wykonane są w oparciu o Bootstrap 3. Aby uzyskać najlepsze wrażenia z Jomres radzimy zainstalować motyw oparty o Bootstrap 3 w WordPress i Joomla. Gdy już to zrobisz możesz włączyć szablony Jomres w konfiguracji komponentu.');
 jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS','Klucz wsparcia jest ważny. Zauważ, że ta licencja nie zezwala na pobieranie dodatków.');
 jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS_PLUGIN_MANAGER','Twoja licencja nie pozwala na pobieranie dodatków.');
-jr_define( '_JOMRES_DASHBOARD_DRAG_TRASH', 'Drag bookings to this area to cancel them' );jr_define( '_JOMRES_LAT', 'Lat (nn.nnnn)' );jr_define( '_JOMRES_LONG', 'Long (nn.nnnn)' );jr_define( '_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] ) otherwise you will not be able to access Jomres from the site frontend to manage your properties and bookings.' );jr_define( '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Most properties in Jomres have a rental management process. Hotels/B&Bs/Pensions rent out individual rooms, and cottages/villas/apartments rent out the entire property. This is invisible to the property manager, but for them to be able to create tariffs for their property you must first add room types that are appropriate for the property type.For example, A hotel property type would normally need several room types ( double rooms, single rooms and twins ) whereas a villa can only have one room type, e.g. 2 Bedrooms, 5 bedrooms.It is possible to create room types for properties like Tours. This allows customers to search for properties like tours only, but the Property manager will not create tariffs for this property type, so the Management Process is not relevant to them.');jr_define( "_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES", "What management process will this room type be for?" );jr_define( "_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES_DESC", "Is the room type for a hotel type property, or a villa type property?" );jr_define( '_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Click to add new room types' );jr_define( "_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES", "Warning, you have one or more property types with no room types. Properties need room types so that property managers can create tariffs." );jr_define( "_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LIST_ROOM_TYPES", "Use the New button above to create new Room Types." );jr_define( "_JOMRES_PROPERTYTYPE_FLAG_TOURS", "Tours" );jr_define( "_JOMRES_PROPERTYTYPE_FLAG_REALESTATE", "No bookings/Real estate ( simple listing )" );
+jr_define('_JOMRES_DASHBOARD_DRAG_TRASH','Przeciągnij rezerwację by ją odwołać');
+jr_define('_JOMRES_LAT','Szerokość (nn.nnnn)');
+jr_define('_JOMRES_LONG','Długość (nn.nnnn)');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT','Prosimy upewnić się, że WordPress stworzył strony zawierające shortcode [jomres:xx-XX], (gdzie xx-XX jest kodem języka witryny, na przykład [jomres:en-GB]). Jeśli taki plik językowy nie istnieje nie będzie można uzyskać dostępu do funkcji Jomres na froncie serwisu takich jak zarządzanie ofertami i rezerwacjami.');
+jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES','Większość nieruchomości w Jomres posiada możliwość wypożyczania jako proces zarządzania. Hotele/pensjonaty umożliwiają wynajęcie np. pokoju jako jednej z dostępnych wielu opcji. Domy/mieszkania to oferty gdzie wynajmuje się całość danej oferty (cały dom lub całe mieszkanie). Nie jest to rzecz widoczna na pierwszy rzut oka dla sprzedawcy. Jednak by sprzedawca miał możliwość stworzenia cenników dla swojej oferty należy stworzyć odpowiednie dla danego typu oferty przedmioty rezerwacji.<br />Np. w hotelu dostępne będą pokoje w kilku wariantach (pokoje dwuosobowe, pokoje jednoosobowe i trzyosobowe), natomiast dom będzie posiadał tylko jeden typ przedmiotu rezerwacji np. 2 sypialnie, 5 sypialni.<br />Możliwe jest tworzenie przedmiotów rezerwacji jako np. wycieczki. Dzięki temu klienci mogą zapoznać się z ich szczegółami. Jednak sprzedawca nie będzie musiał stworzyć cenników w sposób jaki robi się to w przypadku np. hoteli, nie będzie dostępny specyficzny sposób zarządzania ofertą.');
+jr_define("_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES","Jaki proces zarządzania będzie dostępny dla tego typu przedmiotu rezerwacji?");
+jr_define("_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES_DESC","Jest to przedmiot rezerwacji dla oferty typu hotel czy mieszkanie?");
+jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT','Kliknij i dodaj nowy przedmiot rezerwacji');
+jr_define("_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES","Uwaga, masz jeden lub więcej typów ofert bez przypisanych przedmiotów rezerwacji. Konieczne jest powiązanie typów ofert z przedmiotami rezerwacji, aby sprzedawcy mogli utworzyć dla nich cenniki.");
+jr_define("_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LIST_ROOM_TYPES","Użyj przycisku powyżej, aby stworzyć nowy rodzaj przedmiotu rezerwacji.");
+jr_define("_JOMRES_PROPERTYTYPE_FLAG_TOURS","Wycieczki");
+jr_define("_JOMRES_PROPERTYTYPE_FLAG_REALESTATE","Nie rezerwacje/Oferty (proste aukcje)");
