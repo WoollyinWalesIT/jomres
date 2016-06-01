@@ -639,7 +639,8 @@ class j03020insertbooking
 					foreach ( $allCustomFields as $f )
 						{
 						$formfieldname = $f[ 'fieldname' ] . "_" . $f[ 'uid' ];
-						$note .= $f[ 'description' ] . " " . $tmpBookingHandler->tmpbooking[ $formfieldname ] . "<br/>";
+						if (isset($tmpBookingHandler->tmpbooking[ $formfieldname ]))
+							$note .= $f[ 'description' ] . " " . $tmpBookingHandler->tmpbooking[ $formfieldname ] . "<br/>";
 						}
 					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . $note . "','$dt','" . (int) $property_uid . "')";
 					doInsertSql( $query, "" );

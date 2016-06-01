@@ -69,10 +69,13 @@ class j03025insertbooking_invoice
 		//we`ll need this if wise price is enabled and we charge per person per night
 		$guests_by_room = array();
 		$guests_by_room_array_index = 0;
-		foreach ($room_allocations as $k)
+		if ( $room_allocations != '' )
 			{
-			if (isset($k['number_allocated']))
-				$guests_by_room[] = $k['number_allocated']; 
+			foreach ($room_allocations as $k)
+				{
+				if (isset($k['number_allocated']))
+					$guests_by_room[] = $k['number_allocated']; 
+				}
 			}
 
 		if ( $resource == "1" ) 
