@@ -264,7 +264,8 @@ class basic_contract_details
 			foreach ( $room_and_tariff_info as $e )
 				{
 				$rt = explode( "^", $e );
-				$this->contract[$contract_uid]['roomdeets'][$rt[0]]['rate_title'] = jomres_decode($tariffNames[$rt[1]]);
+				if ( isset($tariffNames[$rt[1]]) )
+					$this->contract[$contract_uid]['roomdeets'][$rt[0]]['rate_title'] = jomres_decode($tariffNames[$rt[1]]);
 				}
 			}
 		
