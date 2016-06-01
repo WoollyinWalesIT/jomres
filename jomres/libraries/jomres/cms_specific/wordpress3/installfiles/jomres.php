@@ -89,8 +89,8 @@ if ( ! class_exists( 'wp_jomres' ) )
 			
 			$language = str_replace("_","-",get_locale());
 
-			if ( strstr(strtolower($post->post_content), "[jomres:".strtolower($language)."]") )
-			{
+			if ( is_object($post) && strstr(strtolower($post->post_content), "[jomres:".strtolower($language)."]") )
+				{
 				if ($this->contents != '')
 					$content = '<div id="asamodule_search_results">'.$this->contents.'</div>';
 				else
@@ -117,7 +117,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 			
 			$language = str_replace("_","-",get_locale());
 
-			if ($this->contents == '')
+			if ($this->contents == '' && is_object($post) )
 				{
 				//check if we are on a [jomres:xx-XX] post
 				if ( strstr(strtolower($post->post_content), "[jomres:".strtolower($language)."]") )
