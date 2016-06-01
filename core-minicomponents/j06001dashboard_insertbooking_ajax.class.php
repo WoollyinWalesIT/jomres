@@ -155,7 +155,7 @@ class j06001dashboard_insertbooking_ajax
 
 		//Finally let`s insert the new booking
 		$insertSuccessful = $bkg->create_booking();
-		var_dump($insertSuccessful);exit;
+
 		//Dsiplay the new booking on the dashboard
 		if ($insertSuccessful === true)
 			{
