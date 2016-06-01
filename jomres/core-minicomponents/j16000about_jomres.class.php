@@ -45,7 +45,7 @@ class j16000about_jomres
 		<p>As the number of feature requests grew Vince knew that he would need to dedicate more time to the project and in July 2005 Jomres was formally released as a commercial project. Since then Jomres has become one of Mambo and now Joomla\'s longest running projects, having survived various versions of Mambo, then Joomla 1.0, 1.5, 1.6, 1.7, 2.5 and 3.</p>
 		<p>Jomres further stamps it\'s reputation of being the CMS\'s booking system of choice by adding Wordpress to the list of CMS that it can be installed in.</p>
 		<p>Over the years it has seen many new evolutions and features, the primary of these being Jomres\' unique and exceptionally powerful "Minicomponent" system. This functionality allows us (and you) to replace core functionality without modifying any core files, and indeed to run applications that exist within the Jomres framework (for example, the Auction House plugin).</p>
-		<p>In addition to this, Jomres offers more unique features such as it\'s powerful "editing mode", which gives us the opportunity to create unique strings for each property on the system, and different language files for different property types. </p>
+		<p>In addition to this, Jomres offers more unique features such as it\'s powerful "REST API", which allows you to open up your Jomres system to the outside world, supplying functionality and features to mobile apps and remote web services.</p>
 		<p>We are very proud of Jomres, and hope that you enjoy working on it as much as we continue to enjoy working with our users. If you have a support license, you can get support for the system through our ticket system at <a href="https://tickets.jomres.net" target="_blank">tickets.jomres.net</a>.
 		</div></div>
 		';
