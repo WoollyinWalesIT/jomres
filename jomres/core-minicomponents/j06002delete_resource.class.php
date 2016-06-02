@@ -38,7 +38,7 @@ class j06002delete_resource
 		$jrportal_rooms->room_uid = $roomUid;
 		$jrportal_rooms->propertys_uid = $defaultProperty;
 		
-		$success = $jrportal_rooms->delete_room($roomUid);
+		$success = $jrportal_rooms->delete_room();
 		
 		if ($success)
 			$save_message = jr_gettext( '_JOMRES_COM_MR_ROOM_DELETED', '_JOMRES_COM_MR_ROOM_DELETED', false );

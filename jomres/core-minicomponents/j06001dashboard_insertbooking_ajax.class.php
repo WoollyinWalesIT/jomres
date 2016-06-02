@@ -24,10 +24,6 @@ class j06001dashboard_insertbooking_ajax
 			$this->template_touchable=false; return;
 			}
 		
-		$output_now = true;
-		if (isset($componentArgs[ 'output_now' ]))
-			$output_now = (bool)$componentArgs[ 'output_now' ];
-		
 		$this->retVals = false;
 		
 		$property_uid = jomresGetParam($_GET, 'property_uid', 0);
@@ -58,19 +54,13 @@ class j06001dashboard_insertbooking_ajax
 		if ($startDate == '')
 			{
 			$insertMessage="Error: An empty start date was sent  ";
-			if ( $output_now )
-				echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
-			else
-				$this->retVals = array("insertStatus"=>0,"insertMessage"=>$insertMessage);
+			echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
 			return;
 			}
 		if ($endDate == '')
 			{
 			$insertMessage="Error: An empty end date was sent : ";
-			if ( $output_now )
-				echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
-			else
-				$this->retVals = array("insertStatus"=>0,"insertMessage"=>$insertMessage);
+			echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
 			return;
 			}
 		
@@ -99,10 +89,7 @@ class j06001dashboard_insertbooking_ajax
 		if ($room_uid == 0)
 			{
 			$insertMessage="Error: Room uid not set. Exitting.";
-			if ( $output_now )
-				echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
-			else
-				$this->retVals = array("insertStatus"=>0,"insertMessage"=>$insertMessage);
+			echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
 			return;
 			}
 
@@ -111,10 +98,7 @@ class j06001dashboard_insertbooking_ajax
 		if (count($bookingsList)>0)
 			{
 			$insertMessage="Error: Room already booked. Exitting.";
-			if ( $output_now )
-				echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
-			else
-				$this->retVals = array("insertStatus"=>0,"insertMessage"=>$insertMessage);
+			echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
 			return;
 			}
 		
@@ -159,7 +143,6 @@ class j06001dashboard_insertbooking_ajax
 		//Dsiplay the new booking on the dashboard
 		if ($insertSuccessful === true)
 			{
-		
 			$contract_uid = (string)$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ]['contract_uid'];
 			set_showtime("new_booking_number",$booking_number);
 			set_showtime("new_booking_id",$contract_uid);
@@ -230,10 +213,7 @@ class j06001dashboard_insertbooking_ajax
 			//clean the buffer from any other output (other echos, for example if emails sending failed) and echo just the json
 			ob_clean();
 			
-			if ( $output_now )
-				echo json_encode($new_contract);
-			else
-				$this->retVals = $new_contract;
+			echo json_encode($new_contract);
 			
 			return;
 			}
@@ -241,10 +221,8 @@ class j06001dashboard_insertbooking_ajax
 			{
 			$insertMessage = $insertSuccessful;
 			
-			if ( $output_now )
-				echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
-			else
-				$this->retVals = array("insertStatus"=>0,"insertMessage"=>$insertMessage);
+			echo json_encode(array("insertStatus"=>0,"insertMessage"=>$insertMessage));
+
 			return;
 			}
 		}
