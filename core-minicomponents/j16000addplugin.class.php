@@ -316,9 +316,22 @@ class j16000addplugin
 
 			$zip = new ZipArchive;
 			$res = $zip->open($newfilename);
+			
 			if ($res === TRUE) 
 				{
-				$zip->extractTo($updateDirPath . "unpacked");
+				if (! $thirdparty)
+					$zip->extractTo($updateDirPath . "unpacked");
+				else // Historically, plugins have been zipped differently than Jomres plugins, so we'll need to unzip the files in 3rd party plugins, then move them up one dir, rather than force plugin devs to change how their files are zipped.
+					{
+					$zip->extractTo($updateDirPath . "unpacked");
+
+					// Identify directories
+					$source = $updateDirPath . "unpacked".JRDS.$pluginName.JRDS;
+					$destination = $updateDirPath . "unpacked".JRDS;
+					
+					dirmv( $source , $destination);
+					rmdir( $source );
+					}
 				$zip->close();
 				} 
 			else 
