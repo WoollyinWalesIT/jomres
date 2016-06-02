@@ -44,7 +44,7 @@ function load_cms_environment()
 		{
 		define('WP_USE_THEMES', false);
 		/** Loads the WordPress Environment */
-		require ( dirname(__FILE__) . '/../wp-load.php');
+		require_once ( dirname(__FILE__) . '/../wp-load.php');
 		}
 	
 	return true;
@@ -62,6 +62,9 @@ function load_jomres_environment()
 
 	//user object
 	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+	
+	//include room booking functionality showtime, default true
+	set_showtime( 'include_room_booking_functionality', true );
 	
 	//booking object
 	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
