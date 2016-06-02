@@ -976,16 +976,18 @@ class jomSearch
 				$propertyHasFreeRooms = false;
 				$available_rooms = array();
 				$max_capacity = 0;
+				$roomsList = array();
 				// Then we find their rooms
 				// $query="SELECT room_uid,room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property."'";
 				// $roomsList=doSelectSql($query);
 
-				$roomsList = $all_property_rooms[ (int) $property ];
+				if (isset($all_property_rooms[ (int) $property ]))
+					$roomsList = $all_property_rooms[ (int) $property ];
 
 				foreach ( $roomsList as $room )
 					{
 					$ok = true;
-					if ( $_REQUEST[ 'room_type' ] != $this->searchAll )
+					if ( isset($_REQUEST[ 'room_type' ]) && $_REQUEST[ 'room_type' ] != $this->searchAll )
 						{
 						if ( !empty( $_REQUEST[ 'room_type' ] ) && $room[ 'room_classes_uid' ] != $this->filter[ 'room_type' ] ) 
 							$ok = false;
@@ -996,7 +998,7 @@ class jomSearch
 						// $query="SELECT room_uid FROM #__jomres_room_bookings WHERE room_uid = '".(int)$room->room_uid."' AND property_uid ='".(int)$property."'  AND (".$st.")";
 						// $datesList=doSelectSql($query);
 
-						if ( !in_array( $room[ 'room_uid' ], $all_property_bookings[ $property ] ) ) 
+						if ( !isset($all_property_bookings[ $property ]) || (isset($all_property_bookings[ $property ]) && !in_array( $room[ 'room_uid' ], $all_property_bookings[ $property ]) ) ) 
 							{
 							$propertyHasFreeRooms = true;
 							$available_rooms[$room[ 'room_uid' ]] = $room;
@@ -1013,7 +1015,7 @@ class jomSearch
 						$max_capacity += $r['max_people'];
 						}
 
-					if ((int)$this->filter[ 'guestnumber' ] == 0)
+					if (!isset($this->filter[ 'guestnumber' ]) || (isset($this->filter[ 'guestnumber' ]) && (int)$this->filter[ 'guestnumber' ] == 0) )
 						$total_in_party = 1;
 					
 					if ($total_in_party <= $max_capacity)
