@@ -47,7 +47,7 @@ class j16000managers_find
 			$result_array = array ();
 			$count        = count( $results );
 
-			for ( $i = 0; $i <= $count; $i++ )
+			for ( $i = 0; $i < $count; $i++ )
 				{
 				if ( $results[ $i ][ 'username' ] !== null && !in_array( $results[ $i ][ 'id' ], $existing_managers ) ) $result_array[ ] = $results[ $i ][ 'username' ];
 				}
