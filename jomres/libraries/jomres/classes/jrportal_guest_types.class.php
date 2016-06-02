@@ -109,8 +109,6 @@ class jrportal_guest_types
 						`is_percentage` = ". (int)$this->is_percentage . ",
 						`posneg` = ". (int)$this->posneg . ",
 						`variance` = " . (int)$this->variance . ",
-						`published` = " . (int)$this->published . ",
-						`order` = " . (int)$this->order . ",
 						`is_child` = " . (int)$this->is_child . " 
 					WHERE `id` = " . (int)$this->id . " 
 						AND `property_uid` = " . (int)$this->property_uid;
