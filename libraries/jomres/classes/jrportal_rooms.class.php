@@ -45,6 +45,11 @@ class jrportal_rooms
 	//Save new room
 	function commit_new_room()
 		{
+		if ( $this->room_uid > 0 )
+			{
+			throw new Exception( "Error: Room uid already set. Are you sure you`re creating a new room?");
+			}
+			
 		if ( $this->room_classes_uid == 0 )
 			{
 			throw new Exception( "Error: Room type id not set.");
