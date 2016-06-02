@@ -354,7 +354,7 @@ function findDateRangeForDates( $d1, $d2 )
 
 function findDaysForDates( $d1, $d2 )
 	{
-	$diff = dateDiff( '', $d1, $d2 );
+	$diff = dateDiff( 'd', $d1, $d2 );
 
 	return $diff;
 	}
@@ -3918,15 +3918,24 @@ function gatewayPostage( $outgoingURL, $postage, $method = "post" )
  * Works out the difference between two dates in days
 #
  */
-function dateDiff( $interval, $first_date, $second_date )
+function dateDiff( $interval = "d", $first_date, $second_date )
 	{
-	$first_date_ex  = explode( "/", $first_date );
-	$second_date_ex = explode( "/", $second_date );
-	$fd			 = gregoriantojd( $first_date_ex[ 1 ], $first_date_ex[ 2 ], $first_date_ex[ 0 ] );
-	$sd			 = gregoriantojd( $second_date_ex[ 1 ], $second_date_ex[ 2 ], $second_date_ex[ 0 ] );
-	$days		   = $sd - $fd;
+	$datetime1 = new DateTime($first_date);
+	$datetime2 = new DateTime($second_date);
+	$diff = $datetime1->diff($datetime2);
 
-	return $days;
+	switch ($interval)
+		{
+		case "d":
+			return $diff->days;
+			break;
+		case "w":
+			return $diff->weeks;
+			break;
+		default:
+			return $diff->days;
+			break;
+		}
 	}
 
 
@@ -4948,29 +4957,6 @@ function getSiteSettings()
 
 	return $jrConfig;
 	}
-
-
-/**
-#
- * Alternative function for gregoriantojd
-#
- */
-if ( !function_exists( 'gregoriantojd' ) )
-	{
-	function gregoriantojd( $m, $d, $y )
-		{
-		$y = $m == 1 || $m == 2 ? --$y : $y;
-		$m = $m == 1 || $m == 2 ? $m + 12 : $m;
-		$a = intval( $y / 100 );
-		$b = intval( $a / 4 );
-		$c = 2 - $a + $b;
-		$e = intval( 365.25 * ( $y + 4716 ) );
-		$f = intval( 30.6001 * ( $m + 1 ) );
-
-		return $c + $d + $e + $f - 1524.5 + 0.5;
-		}
-	}
-
 
 /**
 #

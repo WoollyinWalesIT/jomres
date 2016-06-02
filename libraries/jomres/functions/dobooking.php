@@ -319,7 +319,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		//dates
 		$arrivalDate = $bkg->initArrivalDate();
 		
-		$dateDiff = abs($bkg->dateDiff($today, $thisdate));
+		$dateDiff = abs(dateDiff("d", $today, $thisdate));
 
 		if ( $thisdate && $dateDiff >= $bkg->cfg_mindaysbeforearrival )
 			{

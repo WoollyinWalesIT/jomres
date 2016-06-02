@@ -150,7 +150,7 @@ class jomres_property_list_prices
 						}
 					}
 				
-				$this->stayDays = $this->dateDiff( $this->arrivalDate, $this->departureDate );
+				$this->stayDays = dateDiff( "d", $this->arrivalDate, $this->departureDate );
 				
 				$clause="";
 				if (!$lowest_ever)
@@ -305,18 +305,6 @@ class jomres_property_list_prices
 				}
 			}
 		return $this->lowest_prices;
-		}
-	
-	function dateDiff( $first_date, $second_date )
-		{
-		$first_date_ex  = explode( "/", $first_date );
-		$second_date_ex = explode( "/", $second_date );
-		$fd             = gregoriantojd( $first_date_ex[ 1 ], $first_date_ex[ 2 ], $first_date_ex[ 0 ] );
-		$sd             = gregoriantojd( $second_date_ex[ 1 ], $second_date_ex[ 2 ], $second_date_ex[ 0 ] );
-
-		$days = $sd - $fd;
-
-		return $days;
 		}
 
 	}

@@ -2184,7 +2184,7 @@ class dobooking
 			$amend_contract    = $tmpBookingHandler->getBookingFieldVal( "amend_contract" );
 			if ( $amend_contract && $this->stayDays == "" )
 				{
-				$this->stayDays = $this->dateDiff( $tmpBookingHandler->tmpbooking[ 'amend_contract_arrival' ], $tmpBookingHandler->tmpbooking[ 'amend_contract_departure' ] );
+				$this->stayDays = dateDiff( "d", $tmpBookingHandler->tmpbooking[ 'amend_contract_arrival' ], $tmpBookingHandler->tmpbooking[ 'amend_contract_departure' ] );
 				}
 
 			$departureDate = $this->getFixedPeriodDepartureDate( $this->stayDays );
@@ -2668,7 +2668,7 @@ class dobooking
 	 */
 	function findDaysForDates( $d1, $d2 )
 		{
-		$diff = $this->dateDiff( $d1, $d2 );
+		$diff = dateDiff( "d", $d1, $d2 );
 
 		return $diff;
 		}
@@ -2703,12 +2703,12 @@ class dobooking
 		$mrConfig = $this->mrConfig;
 		if ( $mrConfig[ 'wholeday_booking' ] == "1" )
 			{
-			if ( $this->cfg_fixedPeriodBookings == "1" ) $this->stayDays = $this->dateDiff( $this->arrivalDate, $this->departureDate );
+			if ( $this->cfg_fixedPeriodBookings == "1" ) $this->stayDays = dateDiff( "d", $this->arrivalDate, $this->departureDate );
 			else
-			$this->stayDays = $this->dateDiff( $this->arrivalDate, $this->departureDate ) + 1;
+			$this->stayDays = dateDiff( "d", $this->arrivalDate, $this->departureDate ) + 1;
 			}
 		else
-		$this->stayDays = $this->dateDiff( $this->arrivalDate, $this->departureDate );
+		$this->stayDays = dateDiff( "d", $this->arrivalDate, $this->departureDate );
 		$this->setErrorLog( "setStayDays::" . $this->stayDays );
 		}
 
@@ -2767,25 +2767,6 @@ class dobooking
 				break;
 		}
 		return $num_period;
-		}
-
-	/**
-	#
-	 * Find the number of days between date 1 & date 2, used by the setStayDays method
-	#
-	 */
-	function dateDiff( $first_date, $second_date )
-		{
-		//$this->setErrorLog("dateDiff:: First date ".$first_date." Second date ".$second_date);
-		$first_date_ex  = explode( "/", $first_date );
-		$second_date_ex = explode( "/", $second_date );
-		$fd             = gregoriantojd( $first_date_ex[ 1 ], $first_date_ex[ 2 ], $first_date_ex[ 0 ] );
-		$sd             = gregoriantojd( $second_date_ex[ 1 ], $second_date_ex[ 2 ], $second_date_ex[ 0 ] );
-
-		$days = $sd - $fd;
-
-		//$this->setErrorLog("dateDiff::Date difference: ".$days);
-		return $days;
 		}
 
 
