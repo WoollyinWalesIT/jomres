@@ -29,6 +29,15 @@ class jomres_property_types
 		$this->property_type['published']    = 1;					// published
 		$this->property_type['order']        = 0;					// order
 		$this->property_type['mrp_srp_flag'] = 0;					// what will guests book: rooms in the property or the property itself
+		
+		//retrieve property types data from cache, if available
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$property_types_data = $c->retrieve('property_types_data');
+		
+		if ( $property_types_data !== false )
+			{
+			$this->property_types = $property_types_data['property_types'];
+			}
 		}
 
 	public static function getInstance()
@@ -57,6 +66,8 @@ class jomres_property_types
 		else
 			$this->property_types = array();
 		
+		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		
 		$query = "SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag` FROM #__jomres_ptypes ORDER BY `order` ASC";
 		$result = doSelectSql( $query );
 		
@@ -74,6 +85,8 @@ class jomres_property_types
 			$this->property_types[$r->id]['order']        = (int)$r->order;			// order
 			$this->property_types[$r->id]['mrp_srp_flag'] = (int)$r->mrp_srp_flag;	// what will guests book: rooms in the property or the property itself
 			}
+		
+		$c->store('property_types_data', array ( 'property_types'=>$this->property_types ) );
 		
 		return true;
 		}
