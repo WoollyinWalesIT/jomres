@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: Jomres
+	Plugin Name: Jomres
 Plugin URI: http://www.jomres.net
 Description: The complete hotel booking system for Wordpress!
 Author: Vince Wooll
-Version: 9.8.-1
+Version: 9.8.0
 Author URI: http://www.jomres.net/
 */
 defined('WPINC') or die;

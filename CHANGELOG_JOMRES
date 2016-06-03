@@ -1,3 +1,44 @@
+
+<h3>Jomres 9.8.0 03/06/2016</h3>
+
+<span class="label label-success">Feature</span> This version introduces our new REST API functionality, which securely exposes the Jomres system to remote services. A new tab in the plugin manager will show all API related plugins.
+<span class="label label-success">Feature</span> Much functionality moved into standalone classes. Both modernises some of the codebase, and gets functionality ready for introduction of a new Booking Engine later this year.
+<span class="label label-success">Feature</span> Property type/room type handling updated to make it easier for managers to create both types and associate them with each other without errors when creating tariffs. Reduces the need to site admins to understand subtle nuances of how Jomres works internally.
+<span class="label label-success">Feature</span> Error handling updated significantly.
+
+
+<span class="label label-warning">Change</span> Removed "published" flag from proprety creation process in new properties class.
+<span class="label label-warning">Change</span> Updated media centre images class to ensure that fallback images are always available.
+<span class="label label-warning">Change</span> Improved system to make further use of new room types class.
+<span class="label label-warning">Change</span> Added new "rooms" class.
+<span class="label label-warning">Change</span> Removed default images from scripts as the media centre images class now offers fallback images properly.
+<span class="label label-warning">Change</span> Dropped a redundant table.
+<span class="label label-warning">Change</span> Performance enhancements to basic_property_details.class.php
+<span class="label label-warning">Change</span> Modified response, data is now returned in an object->data and will reduce the number of response codes that a third party developer needs to respond to. Both clarifies and simplifies the response condition handling.
+<span class="label label-warning">Change</span> Updated how normal mode tariffs are saved.
+<span class="label label-warning">Change</span> Obsoleted several files.
+<span class="label label-warning">Change</span> Modified API to ensure that all validated responses are returned in an envelope.
+<span class="label label-warning">Change</span> Polish lang file updated, many thanks Patryk.
+<span class="label label-warning">Change</span> Added ability to output_now or later to dashboard_insertbooking_ajax script.
+<span class="label label-warning">Change</span> Added shortcodes documentation to Help section.
+<span class="label label-warning">Change</span> Jomres about page updated.
+<span class="label label-warning">Change</span> Added a require once for minor performance improvements.
+<span class="label label-warning">Change</span> Guest type functionality updated to use new classes.
+<span class="label label-warning">Change</span> Updated functionality to remove the need for gregoriantojd, fixed a couple of notices, and consolidated date diff functionality.
+<span class="label label-warning">Change</span> Added caching to property types class.
+<span class="label label-warning">Change</span> Changed Warning word to Todo in sanity checks, because that's less scary for managers.
+
+<span class="label label-important label-danger">Fix</span> Modified invoice entering script to account for a notice level change.
+<span class="label label-important label-danger">Fix</span> Fixed a notice on jintour properties.
+<span class="label label-important label-danger">Fix</span> Removed a reference to $this that shouldn't have been there, replaced with thisJRUser.
+<span class="label label-important label-danger">Fix</span> Added a check for an index before attempting to use it.
+<span class="label label-important label-danger">Fix</span> Fixed some notice level issues that appear in the API on Wordpress.
+<span class="label label-important label-danger">Fix</span> Updated functionality in add plugin script to ensure that 3rd party plugins can be installed.
+<span class="label label-important label-danger">Fix</span> Tweaked the find manager script to fix a notice.
+<span class="label label-important label-danger">Fix</span> Fixed a problem with room types class caching.
+<span class="label label-important label-danger">Fix</span> Added a small tweak to jomres/classes/jomres_check_support_key.class.php to ensure closed Shop is handled without notice level errors.
+
+
 <h3>Jomres 9.8.-1.1 24/05/2016</h3>
 
 <span class="label label-warning">Change</span> Add site managers to swap currencies in site config, same as can be done in frontend config.
