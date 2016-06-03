@@ -89,14 +89,14 @@ class jomres_room_types
 				$this->room_types[$r->room_classes_uid]['ptype_xref']    	= $this->all_rtype_ptype_xrefs[$r->room_classes_uid];
 			else
 				$this->room_types[$r->room_classes_uid]['ptype_xref']    	= array();
-			
-			$c->store('room_types_data', array (
-												'room_types'=>$this->room_types, 
-												'all_rtype_ptype_xrefs'=>$this->all_rtype_ptype_xrefs, 
-												'all_ptype_rtype_xrefs'=>$this->all_ptype_rtype_xrefs
-												)
-					);
 			}
+		
+		$c->store('room_types_data', array (
+											'room_types'=>$this->room_types, 
+											'all_rtype_ptype_xrefs'=>$this->all_rtype_ptype_xrefs, 
+											'all_ptype_rtype_xrefs'=>$this->all_ptype_rtype_xrefs
+											)
+				);
 		
 		return true;
 		}
