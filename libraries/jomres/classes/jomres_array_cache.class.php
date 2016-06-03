@@ -69,7 +69,7 @@ class jomres_array_cache {
 		$jrConfig           = $siteConfig->get();
 		if (!isset($jrConfig[ 'useArrayCaching' ]))
 			{
-			$jrConfig[ 'useArrayCaching' ] = false;
+			$jrConfig[ 'useArrayCaching' ] = '0';
 			}
 		$this->_useCaching  = (bool)$jrConfig[ 'useArrayCaching' ];
 		if (true === isset($config)) 
