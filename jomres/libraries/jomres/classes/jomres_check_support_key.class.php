@@ -55,7 +55,10 @@ class jomres_check_support_key
 		{
 		$request  = "request=shop_status";
 		$response = query_shop( $request );
-		$this->shop_status = $response->status;
+		if ( is_object($response))
+			$this->shop_status = $response->status;
+		else
+			$this->shop_status = "CLOSED";
 		}
 	
 	function remove_plugin_licenses_file()
