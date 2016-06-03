@@ -1185,7 +1185,7 @@ jr_define( '_JOMRES_COM_FAUXHEADERS_DESC', 'Set this to Yes if you are having pr
 jr_define( '_JOMRES_MANAGER_SHOWINVOICE', 'Show invoice' );
 jr_define( '_JOMRES_MANAGER_SHOWINVOICES', 'Show invoices' );
 jr_define( '_JOMRES_USER_LISTMYPROPERTY', 'Add my property to this site' );
-jr_define( '_JOMRES_WARNINGS_DANGERWILLROBINSON', 'Warning : ' );
+jr_define( '_JOMRES_WARNINGS_DANGERWILLROBINSON', 'Todo : ' );
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_FREEBIENOTES', "You can have one free package on the system if you wish, by creating a package and setting both the trial amount and the full amount to 0.00" );
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID', "Sorry, but that package ID is not recognised." );
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE', "Sorry, you are already subscribed to a free package, you cannot subscribe to that package again." );
