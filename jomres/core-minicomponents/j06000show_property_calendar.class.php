@@ -30,7 +30,10 @@ class j06000show_property_calendar
 			}
 		
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
-
+		
+		if (!isset($componentArgs['output_now']))
+			$componentArgs['output_now'] = true;
+		
 		if (!user_can_view_this_property($property_uid))
 			return;
 		
@@ -44,13 +47,16 @@ class j06000show_property_calendar
 			{
 			if ( $mrConfig[ 'singleRoomProperty' ] == 1 )
 				{
-				$MiniComponents->specificEvent( '06000', 'srp_calendar', array('output_now'=>true, 'property_uid'=>$property_uid ) );
+				$result = $MiniComponents->specificEvent( '06000', 'srp_calendar', array('output_now'=>$componentArgs['output_now'], 'property_uid'=>$property_uid ) );
 				}
 			else
 				{
-				$MiniComponents->specificEvent( '06000', 'mrp_calendar', array('output_now'=>true, 'property_uid'=>$property_uid ) );
+				$result = $MiniComponents->specificEvent( '06000', 'mrp_calendar', array('output_now'=>$componentArgs['output_now'], 'property_uid'=>$property_uid ) );
 				}
 			}
+		
+		if ($componentArgs['output_now'] == false )
+			$this->retVals = $result;
 		}
 
 
