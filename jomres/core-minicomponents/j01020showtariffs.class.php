@@ -33,7 +33,12 @@ class j01020showtariffs
 		else
 			{
 			//$showheader=$componentArgs['showheader'];
-			$property_uid             = get_showtime( 'property_uid' );
+			if (isset($componentArgs[ 'property_uid' ]))
+				$property_uid = (int) $componentArgs[ 'property_uid' ];
+			elseif ( isset ( $_REQUEST['property_uid'] ))
+				$property_uid = (int) $_REQUEST['property_uid'];
+			else return;
+		
 			$siteConfig               = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 			$jrConfig                 = $siteConfig->get();
 			$mrConfig                 = getPropertySpecificSettings( $property_uid );
