@@ -506,6 +506,7 @@ class jomSearch
 		$property_ors = $this->ors;
 		if ( !empty( $this->filter[ 'region' ] ) && $property_ors )
 			{
+			$filter = $this->filter[ 'region' ];
 			if ( $filter != '%' )
 				{
 				$this->filter[ 'region' ] = jomres_cmsspecific_stringURLSafe( $this->filter[ 'region' ] );
