@@ -81,24 +81,29 @@ function load_jomres_environment()
 	//load property type specific language file
 	if ($property_uid > 0)
 		{
+		set_showtime( 'property_uid', $property_uid );
+		
 		$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 		$current_property_details->gather_data($property_uid);
-		$propertytype=$current_property_details->property_type;
-		$jomreslang->get_language($propertytype);
+		
+		set_showtime('property_type', $current_property_details->ptype_id);
+		set_showtime( 'this_property_published', $current_property_details->published );
+
+		$jomreslang->get_language($current_property_details->property_type);
 		}
 
-	$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
+	$customTextObj = jomres_singleton_abstract::getInstance('custom_text');
 
 	jr_import( 'jomres_currency_exchange_rates' );
 	$exchange_rates = new jomres_currency_exchange_rates( "GBP" );
 
-	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+	$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 	$MiniComponents->triggerEvent('00003'); // 
 	init_javascript(); // 00004 is triggered in this function now.
 	$MiniComponents->triggerEvent('00005');
-	$componentArgs=array();
+	$componentArgs = array();
 	$MiniComponents->triggerEvent('99999',$componentArgs); // Javascript and CSS caching handling is needed 
-	$componentArgs=array();
+	$componentArgs = array();
 	
 	return true;
 	}
