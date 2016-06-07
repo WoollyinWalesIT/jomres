@@ -166,9 +166,9 @@ class jomres_generic_booking_email
 		//custom fields
 		$ptype_id = $current_property_details->ptype_id;
 		$custom_field_output = array ();
-		jr_import( 'jomres_custom_field_handler' );
-		$custom_fields   = new jomres_custom_field_handler();
-		$allCustomFields = $custom_fields->getAllCustomFieldsByPtypeId($ptype_id);
+		
+		$jomres_custom_field_handler = jomres_singleton_abstract::getInstance('jomres_custom_field_handler');
+		$allCustomFields = $jomres_custom_field_handler->getAllCustomFieldsByPtypeId($ptype_id);
 		
 		if ( count( $allCustomFields ) > 0 )
 			{

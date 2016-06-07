@@ -234,10 +234,10 @@ class jomres_temp_booking_handler
 			$hash = sha1( $this->part );
 			$this->sessionfile = $this->session_directory . $hash . ".txt";
 	
-			jr_import( 'jomres_custom_field_handler' );
-			$custom_fields   = new jomres_custom_field_handler();
-			$allCustomFields = $custom_fields->getAllCustomFields();
-			$this->initCustomFields( $allCustomFields );
+			$jomres_custom_field_handler = jomres_singleton_abstract::getInstance('jomres_custom_field_handler');
+			$jomres_custom_field_handler->get_all_custom_fields();
+
+			$this->initCustomFields( $jomres_custom_field_handler->custom_fields );
 	
 			$this->session_jomres_start();
 			}

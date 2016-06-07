@@ -134,9 +134,8 @@ class j02990showconfirmation
 
 		$ptype_id = $current_property_details->ptype_id;
 		
-		jr_import( 'jomres_custom_field_handler' );
-		$custom_fields   = new jomres_custom_field_handler();
-		$allCustomFields = $custom_fields->getAllCustomFieldsByPtypeId($ptype_id);
+		$jomres_custom_field_handler = jomres_singleton_abstract::getInstance('jomres_custom_field_handler');
+		$allCustomFields = $jomres_custom_field_handler->getAllCustomFieldsByPtypeId($ptype_id);
 	
 		$customFields    = array ();
 		if ( count( $allCustomFields ) > 0 && !$secret_key_payment)
