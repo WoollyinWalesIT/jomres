@@ -626,13 +626,12 @@ class j03020insertbooking
 			//insert custom fields notes
 			if (!$secret_key_payment)
 				{
-				jr_import( 'jomres_custom_field_handler' );
-				$custom_fields   = new jomres_custom_field_handler();
-	
 				$current_property_details->gather_data($property_uid);
 				$ptype_id = $current_property_details->ptype_id;
 				
-				$allCustomFields = $custom_fields->getAllCustomFieldsByPtypeId($ptype_id);
+				$jomres_custom_field_handler = jomres_singleton_abstract::getInstance('jomres_custom_field_handler');
+				$allCustomFields = $jomres_custom_field_handler->getAllCustomFieldsByPtypeId($ptype_id);
+
 				if ( count( $allCustomFields ) > 0 )
 					{
 					$note = "";
