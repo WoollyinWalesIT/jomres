@@ -14,9 +14,9 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 if (file_exists(dirname(__FILE__).'/../jomres_root.php'))
-		require_once (dirname(__FILE__).'/../jomres_root.php');
-	else 
-		die();
+	require_once (dirname(__FILE__).'/../jomres_root.php');
+else 
+	die();
 	
 if (defined('API_STARTED'))
 	{
@@ -46,6 +46,8 @@ function load_cms_environment()
 		/** Loads the WordPress Environment */
 		require_once ( dirname(__FILE__) . '/../wp-load.php');
 		}
+	else
+		die("Could not detect CMS. Exitting.");
 	
 	return true;
 	}
@@ -61,32 +63,32 @@ function load_jomres_environment()
 	$jomreslang->get_language($jrConfig[ 'language_context' ]);
 
 	//user object
-	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+	$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 	
 	//include room booking functionality showtime, default true
 	set_showtime( 'include_room_booking_functionality', true );
 	
 	//booking object
-	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
-	if (is_null($tmpBookingHandler->jomressession) || $tmpBookingHandler->jomressession == '')
+	if ( is_null($tmpBookingHandler->jomressession) || $tmpBookingHandler->jomressession == '' )
 		{
 		$tmpBookingHandler->initBookingSession(get_showtime('jomressession'));
-		$jomressession  = $tmpBookingHandler->getJomressession();
+		$jomressession = $tmpBookingHandler->getJomressession();
 		set_showtime( 'jomressession', $jomressession );
 		}
 
 	$property_uid = detect_property_uid();
-	
+
 	//load property type specific language file
-	if ($property_uid > 0)
+	if ( $property_uid > 0 )
 		{
 		set_showtime( 'property_uid', $property_uid );
 		
 		$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 		$current_property_details->gather_data($property_uid);
 		
-		set_showtime('property_type', $current_property_details->ptype_id);
+		set_showtime( 'property_type', $current_property_details->ptype_id );
 		set_showtime( 'this_property_published', $current_property_details->published );
 
 		$jomreslang->get_language($current_property_details->property_type);
