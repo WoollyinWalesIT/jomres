@@ -1,3 +1,15 @@
+<h3>Jomres 9.8.1 08/06/2016</h3>
+
+<span class="label label-warning">Change</span> Modified show property calendar script so that output now can be passed to it and script can return the calendar if required.
+<span class="label label-warning">Change</span> Simplified logic in jomres_media_centre_images
+<span class="label label-warning">Change</span> Added more showtime settings to framework.php script.
+<span class="label label-warning">Change</span> Custom Field functionality improved for performance.
+<span class="label label-warning">Change</span> Modified framework to exit if we can't find the current CMS.
+<span class="label label-warning">Change</span> Improved checks for tariffs so that they don't trigger a database error ( dobooking )
+<span class="label label-warning">Change</span> Improved basic_contract_details class.
+
+<span class="label label-important label-danger">Fix</span> Fixed a bug in jomSearch that prevented some searching by all regions.
+<span class="label label-important label-danger">Fix</span> Fixed issue when showtime pui isn't set on non-jomres pages.
 
 <h3>Jomres 9.8.0 03/06/2016</h3>
 
