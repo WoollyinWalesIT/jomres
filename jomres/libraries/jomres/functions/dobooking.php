@@ -154,6 +154,16 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 	$current_property_details->gather_data($selectedProperty);
 	
+	if ( get_showtime( 'include_room_booking_functionality' ) )
+		{
+		$query  = "SELECT `rates_uid` FROM `#__jomres_rates` where property_uid = " . (int) $selectedProperty . "";
+		$result = doSelectSql( $query );
+		if ( count( $result ) == 0 )
+			{
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=contactowner&amp;selectedProperty=".$selectedProperty."&amp;arrivalDate=".$thisdate ) );
+			}
+		}
+	
 	$MiniComponents->triggerEvent( '00102' ); // First-form generation
 	$bkg                      = $MiniComponents->triggerEvent( '05000' ); // Create the booking object
 	
@@ -509,11 +519,12 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	else
 	$output[ 'JOMRES_ROOMSLISTENABLED' ] = "false";
 
+	jr_import( 'jomres_custom_field_handler' );
+	$custom_fields   = new jomres_custom_field_handler();
+
 	$ptype_id = $current_property_details->ptype_id;
 	
-	$jomres_custom_field_handler = jomres_singleton_abstract::getInstance('jomres_custom_field_handler');
-	$allCustomFields = $jomres_custom_field_handler->getAllCustomFieldsByPtypeId($ptype_id);
-		
+	$allCustomFields = $custom_fields->getAllCustomFieldsByPtypeId($ptype_id);
 	$customFields = array();
 	if ( count( $allCustomFields ) > 0 )
 		{
