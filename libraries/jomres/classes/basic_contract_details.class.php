@@ -253,7 +253,7 @@ class basic_contract_details
 
 		if ( count($tariffs) > 0 && $room_and_tariff_info != array ( 0 => "" ) )
 			{
-			$query = "SELECT rates_uid,rate_title FROM #__jomres_rates WHERE rates_uid IN (" . implode(',',$tariffs) .") ";
+			$query = "SELECT `rates_uid`,`rate_title` FROM #__jomres_rates WHERE `rates_uid` IN (" . implode(',',$tariffs) .") ";
 			$tariff_names = doSelectSql( $query );
 			
 			foreach ($tariff_names as $t)
@@ -266,6 +266,8 @@ class basic_contract_details
 				$rt = explode( "^", $e );
 				if ( isset($tariffNames[$rt[1]]) )
 					$this->contract[$contract_uid]['roomdeets'][$rt[0]]['rate_title'] = jomres_decode($tariffNames[$rt[1]]);
+				else
+					$this->contract[$contract_uid]['roomdeets'][$rt[0]]['rate_title'] = '';
 				}
 			}
 		
