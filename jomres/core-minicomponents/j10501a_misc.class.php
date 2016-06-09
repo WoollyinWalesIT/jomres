@@ -100,13 +100,10 @@ class j10501a_misc
 			$configurationPanel->insertSetting();
 			}
 		
-		/*
-		Not currently enabled 23/11/2015
-		$configurationPanel->setleft( jr_gettext( _JOMRES_TRACKING_ENABLE, '_JOMRES_TRACKING_ENABLE', false ) );
+		$configurationPanel->setleft( jr_gettext( '_JOMRES_TRACKING_ENABLE', '_JOMRES_TRACKING_ENABLE', false ) );
 		$configurationPanel->setmiddle( $lists[ 'send_tracking_data' ] );
-		$configurationPanel->setright( jr_gettext( _JOMRES_TRACKING_ENABLE_DESC, '_JOMRES_TRACKING_ENABLE_DESC', false ) );
+		$configurationPanel->setright( jr_gettext( '_JOMRES_TRACKING_ENABLE_DESC', '_JOMRES_TRACKING_ENABLE_DESC', false ) );
 		$configurationPanel->insertSetting();
-		*/
 		
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 ) 
 			{

@@ -2781,7 +2781,7 @@ jr_define( '_JOMRES_INVOICE_MARKASPENDING', 'Mark invoice as pending' );
 jr_define( '_JOMRES_INVOICE_MARKEDASPENDING', 'Invoice marked as pending' );
 
 jr_define( '_JOMRES_TRACKING_ENABLE', 'Send anonymous tracking data?' );
-jr_define( '_JOMRES_TRACKING_ENABLE_DESC', 'Set this option to Yes to send anonymous tracking data to Jomres.net to help us understand better how you use the system.' );
+jr_define( '_JOMRES_TRACKING_ENABLE_DESC', 'Select Yes to send anonymous tracking data to Jomres.net to help us understand better how you use the system.' );
 
 jr_define( '_JOMRES_PARTNERS_PLEASE_COMPLETE', 'Please ensure that your details have been completed on the Edit My Account page before attempting to make bookings on behalf of your clients.' );
 jr_define( '_JOMRES_PARTNERS_GUEST_ADDRESS', "Guest's contact details" );
