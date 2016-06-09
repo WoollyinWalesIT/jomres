@@ -260,7 +260,9 @@ try
 	$MiniComponents->triggerEvent( '99999', $componentArgs );
 	$componentArgs = array ();
 
-	
+	//jomres usage reporting
+	jr_import("jomres_usage_reporting");
+	$tracking = new jomres_usage_reporting();
 	
 	endrun();
 	}
