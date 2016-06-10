@@ -1161,7 +1161,7 @@ jr_define( '_JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE', 'Paypal' );
 jr_define( '_JRPORTAL_INVOICES_PAYPAL_SETTINGS_CURRENCYCODE', 'Währungscode (z.B. EUR)' );
 jr_define( '_JRPORTAL_INVOICES_PAYPAL_SETTINGS_USESANDBOX', 'Sandbox benutzten?' );
 jr_define( '_JRPORTAL_INVOICES_PAYPAL_SETTINGS_PAYPALEMAIL', 'Meine Paypal E-Mail Adresse' );
-jr_define( '_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES', 'Hinweis: Bei Verwendung von PayPal müssen Sie in Ihrem PayPal-Konto das Autoreturn deaktivieren (Profile/Website Payment Preferences), und die IPN (Profile/Instant Payment Notification Preferences) auf die URL:<br/><b>&nbsp;' .get_showtime("live_site") . '/index.php?option=com_jomres&task=completebk&Itemid=' . $jrConfig[ 'jomresItemid' ] . '&no_html=1' );
+jr_define( '_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES', 'Hinweis: Bei Verwendung von PayPal müssen Sie in Ihrem PayPal-Konto das Autoreturn deaktivieren (Profile/Website Payment Preferences), und die IPN (Profile/Instant Payment Notification Preferences) auf die URL:<br/><b>&nbsp;' . JOMRES_SITEPAGE_URL_AJAX . "&task=completebk" );
 jr_define( '_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY', 'Diese Rechnung ist fällig. Bitte klicken Sie auf den Knopf, um zu PayPal weitergeleitet zu werden.' );
 jr_define( '_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE', 'Jomres Standard-Gateway-Einstellungen überschreiben?' );
 jr_define( '_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE_DESC', 'Wenn die Einstellungen paypal Option auf Yes gesetzt wurde dann sind folgende Einstellungen gültig: Die allgemeine Konfiguration in der Gateway-Einstellungen wird nicht mehr angezeigt und wenn eine Buchung erfolgt wird die in der allgemeinen Konfiguration eingetragene Paypal E-Mail verwendet.' );
