@@ -1,3 +1,14 @@
+<h3>Jomres 9.8.2 13/06/2016</h3>
+
+<span class="label label-success">Feature</span> Added functionality that allows us to anonymously track usage information of Jomres. Must be manually enabled by Site Admin ( Opt-in, not Opt-out ).
+
+<span class="label label-important label-danger">Fix</span> German language file fixed to remove a need for jr_config that isn't required.
+<span class="label label-important label-danger">Fix</span> Significantly rewrote language file handling as it's started to give users problems in recent versions.
+<span class="label label-important label-danger">Fix</span> Fixed issues with router causing problems with not routing properly.
+<span class="label label-important label-danger">Fix</span> Fixed a typo in obsolete file handling RE old pclzip library.
+<span class="label label-important label-danger">Fix</span> Added a tweak to basic property details to ensure that older installations html in property details is properly decoded.
+
+
 <h3>Jomres 9.8.1 08/06/2016</h3>
 
 <span class="label label-warning">Change</span> Modified show property calendar script so that output now can be passed to it and script can return the calendar if required.
