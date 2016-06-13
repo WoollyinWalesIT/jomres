@@ -30,10 +30,12 @@ class jomres_language
 			{
 			$jomresConfig_lang = (string) RemoveXSS( jomresGetParam( $_GET, 'jomreslang', "" ) );
 			}
-		else
+		elseif ( !defined('AUTO_UPGRADE') )
 			{
 			$jomresConfig_lang = (string) RemoveXSS( jomres_cmsspecific_getcmslang() );
 			}
+		else
+			$jomresConfig_lang = 'en-GB';
 
 		$langfile_crossref         = $this->define_langfile_to_languages_array();
 		$this->datepicker_crossref = $this->define_langfile_to_datepicker_files_array();
