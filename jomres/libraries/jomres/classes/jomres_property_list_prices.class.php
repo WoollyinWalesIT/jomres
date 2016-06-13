@@ -74,6 +74,11 @@ class jomres_property_list_prices
 		if ( count( $property_uids ) > 0 )
 			{
 			$property_uids_to_query=array();
+			
+			//save the original property uid and type so we can reset this after we`re done
+			$original_property_uid = get_showtime( 'property_uid' );
+			$original_property_type = get_showtime( 'property_type' );
+			
 			foreach ($property_uids as $property_uid)
 				{
 				$plugin_will_provide_lowest_price = false;
@@ -169,7 +174,7 @@ class jomres_property_list_prices
 					
 					set_showtime( 'property_uid', $property_uid );
 					set_showtime( 'property_type', $basic_property_details->multi_query_result[ $property_uid ]['property_type'] );
-					$customTextObj->get_custom_text_for_property( $property_uid );
+
 					$basic_property_details->gather_data( $property_uid );
 					
 					$mrConfig       = getPropertySpecificSettings( $property_uid );
@@ -303,8 +308,12 @@ class jomres_property_list_prices
 					$this->lowest_prices[$property_uid]=array ( "PRE_TEXT" => $pre_text, "PRICE" => $price, "POST_TEXT" => $post_text , "RAW_PRICE" => $raw_price , "PRICE_NOCONVERSION" => $price_no_conversion, "PRICE_CUMULATIVE" => $grand_total);
 					}
 				}
+			
+			//set back the initial property type and property uid
+			set_showtime( 'property_uid', $original_property_uid );
+			set_showtime( 'property_type', $original_property_type );
 			}
+			
 		return $this->lowest_prices;
 		}
-
 	}

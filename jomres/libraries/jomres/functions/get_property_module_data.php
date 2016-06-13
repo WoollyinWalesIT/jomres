@@ -22,11 +22,6 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 	//$property_uid_array = array(1,12,43,14);
 	//add_gmaps_source();
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-	if ( !defined( '_JOMRES_COM_MR_SHOWPROFILES' ) )
-		{
-		$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
-		$jomreslang->get_language();
-		}
 
 	$return_data = array ();
 	$animationDelay = 0;
@@ -40,7 +35,6 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 	$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
 	$jomres_media_centre_images->get_images_multi($property_uid_array, array('property'));
 
-	$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 	foreach ( $property_uid_array as $property_uid )
 		{
 		if ( $property_uid > 0 )
@@ -50,9 +44,8 @@ function get_property_module_data( $property_uid_array, $alt_template_path = '',
 
 			$current_property_details->gather_data( $property_uid );
 
-			set_showtime( 'property_type', $current_property_details->property_type );
 			set_showtime( 'property_uid', $property_uid );
-			$customTextObj->get_custom_text_for_property( $property_uid );
+			set_showtime( 'property_type', $current_property_details->property_type );
 			
 			$jomres_media_centre_images->get_images($property_uid, array('property'));
 

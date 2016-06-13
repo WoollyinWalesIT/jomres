@@ -170,11 +170,20 @@ class j06000viewproperty
 
 			$link[ 'LINK' ] = $url;
 
-			if ( $mrConfig[ 'requireApproval' ] == "1" )
-				$link[ 'TEXT' ] = jr_gettext( '_BOOKING_CALCQUOTE', '_BOOKING_CALCQUOTE', false, false );
+			if ( $mrConfig[ 'singleRoomProperty' ] == "1" )
+				{
+				if ( $mrConfig[ 'requireApproval' ] == "1" )
+					$link[ 'TEXT' ] = jr_gettext( '_BOOKING_CALCQUOTE', '_BOOKING_CALCQUOTE', false );
+				else
+					$link[ 'TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', '_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', false );
+				}
 			else
-				$link[ 'TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKAROOM', '_JOMRES_FRONT_MR_MENU_BOOKAROOM', false, false );
-								
+				{
+				if ( $mrConfig[ 'requireApproval' ] == "1" )
+					$link[ 'TEXT' ] = jr_gettext( '_BOOKING_CALCQUOTE', '_BOOKING_CALCQUOTE', false );
+				else
+					$link[ 'TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_BOOKAROOM', '_JOMRES_FRONT_MR_MENU_BOOKAROOM', false );
+				}
 
 			$bookinglink[ ] = $link;
 			}

@@ -26,21 +26,12 @@ class j16000listPfeatures
 			return;
 			}
 		$editIcon             = '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" />';
-		$query                = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid,ptype_xref,cat_id FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
+		$query                = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid,ptype_xref,cat_id FROM #__jomres_hotel_features WHERE property_uid = 0 ORDER BY hotel_feature_abbv ";
 		$propertyFeaturesList = doSelectSql( $query );
 		$rows                 = array ();
 
-		$ptypes    = array ();
-		$query      = "SELECT id,ptype FROM #__jomres_ptypes";
-		$ptypeList  = doSelectSql( $query );
-		$all_ptypes = array ();
-		if ( count( $ptypeList ) > 0 )
-			{
-			foreach ( $ptypeList as $ptype )
-				{
-				$all_ptypes[ $ptype->id ] = $ptype->ptype;
-				}
-			}
+		$jomres_property_types = jomres_singleton_abstract::getInstance( 'jomres_property_types' );
+		$jomres_property_types->get_all_property_types();
 		
 		$all_categories = array();
 		$query      = "SELECT id,title FROM #__jomres_hotel_features_categories";
@@ -69,17 +60,17 @@ class j16000listPfeatures
 			{
 			if (!is_numeric($propertyFeature->ptype_xref))
 				{
-				$ptype_xref=unserialize($propertyFeature->ptype_xref);
+				$ptype_xref = unserialize($propertyFeature->ptype_xref);
 				$selected_ptype_rows = "";
 				foreach ( $ptype_xref as $ptype )
 					{
-					$selected_ptype_rows .= $all_ptypes[ $ptype ] . ", ";
+					$selected_ptype_rows .= $jomres_property_types->property_types[ $ptype ]['ptype'] . ", ";
 					}
 				}
 			else //for backward compatibility
 				{
-				if (isset($all_ptypes[$propertyFeature->ptype_xref]))
-					$selected_ptype_rows = $all_ptypes[$propertyFeature->ptype_xref];
+				if (isset($jomres_property_types->property_types[$propertyFeature->ptype_xref]['ptype']))
+					$selected_ptype_rows = $jomres_property_types->property_types[$propertyFeature->ptype_xref]['ptype'];
 				}
 			
 			$r[ 'CHECKBOX' ]            = '<input type="checkbox" id="cb' . count( $rows ) . '" name="idarray[]" value="' . $propertyFeature->hotel_features_uid . '" onClick="jomres_isChecked(this.checked);">';

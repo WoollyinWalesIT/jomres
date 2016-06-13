@@ -1169,54 +1169,35 @@ function detect_property_uid()
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 	$thisJRUser		= jomres_singleton_abstract::getInstance( 'jr_user' );
 	
+	$property_uid = 0;
+	
 	$defaultProperty = getDefaultProperty();
 	
 	if ( isset( $_REQUEST[ 'selectedProperty' ] ) ) 
 		$property_uid = intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
-	else
+	
+	if ( isset( $_REQUEST[ 'property_uid' ] ) ) 
 		$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 
 	// Finding the property uid
 	$numberOfPropertiesInSystem = (int) get_showtime( 'numberOfPropertiesInSystem');
-	$all_properties_in_system=get_showtime( 'all_properties_in_system' );
+	$all_properties_in_system = get_showtime( 'all_properties_in_system' );
 
 	if ( $numberOfPropertiesInSystem == 1 )
 		{
-		if ( !$thisJRUser->userIsManager )
-			{
-			foreach ( $all_properties_in_system as $prop )
-				{
-				$property_uid = (int) $prop;
-				}
-			}
-		else
-			{
-			$parray = array ();
-			foreach ( $all_properties_in_system as $prop )
-				{
-				$parray[ ] = (int) $prop;
-				}
-			if ( in_array( $defaultProperty, $parray ) ) 
-				$property_uid = $defaultProperty;
-			else
-				$property_uid = $parray[ 0 ];
-			}
+		$property_uid = $all_properties_in_system[ 0 ];
 		}
-	elseif ( $thisJRUser->userIsManager ) 
+	
+	//TODO remove this, but too much stuff depends on it at the moment..
+	if ( $thisJRUser->userIsManager ) 
 		$property_uid = $defaultProperty;
 
 	if ( get_showtime( 'task' ) == "showRoomDetails" )
 		{
-		$roomUid  = jomresGetParam( $_REQUEST, 'roomUid', 0 );
-		$query	= "SELECT propertys_uid FROM #__jomres_rooms WHERE  room_uid  = '" . (int) $roomUid . "'";
-		$roomList = doSelectSql( $query );
-		if ( count( $roomList ) > 0 )
-			{
-			foreach ( $roomList as $room )
-				{
-				$property_uid = (int) $room->propertys_uid;
-				}
-			}
+		$roomUid  = (int)jomresGetParam( $_REQUEST, 'roomUid', 0 );
+		
+		$basic_room_details = jomres_singleton_abstract::getInstance( 'basic_room_details' );
+		$property_uid = $basic_room_details->get_property_uid_for_room_uid( $roomUid );
 		}
 
 	if ( ( get_showtime( 'task' ) == "handlereq" || get_showtime( 'task' ) == "completebk" || get_showtime( 'task' ) == "processpayment" ) && !$thisJRUser->userIsManager )
@@ -1234,11 +1215,9 @@ function detect_property_uid()
 			$tmpBookingHandler->saveBookingData();
 			}
 		}
-		
 
 	// Finish finding the property uid
 	return $property_uid;
-
 	}
 
 // Return "NA" if no gateway is configured for this property. The calling script will process payment without attempting to call a gateway (IE simply enter the booking)
@@ -4974,9 +4953,7 @@ function checkUserIsManager()
 function getDefaultProperty()
 	{
 	$thisJRUser	  = jomres_singleton_abstract::getInstance( 'jr_user' );
-	$defaultProperty = $thisJRUser->currentproperty;
-
-	return (int) $defaultProperty;
+	return (int)$thisJRUser->currentproperty;
 	}
 
 function jomresURL( $link, $ssl = 2 )

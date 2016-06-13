@@ -21,7 +21,6 @@ class j06000ajax_shortlist
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
 			return;
 			}
 		
@@ -37,7 +36,7 @@ class j06000ajax_shortlist
 		if (isset($tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ]))
 			$shortlist_items   = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
 		
-		if ( ( get_showtime( 'this_property_published' ) && !in_array( $property_uid, $shortlist_items ) ) )
+		if ( !in_array( $property_uid, $shortlist_items ) )
 			{
 			$shortlist_items[ ]                                     = $property_uid;
 			$tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ] = $shortlist_items;

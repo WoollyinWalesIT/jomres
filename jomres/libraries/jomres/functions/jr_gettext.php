@@ -17,8 +17,6 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 function jr_define( $constant, $string )
 	{
 	$jomres_language_definitions = jomres_singleton_abstract::getInstance( 'jomres_language_definitions' );
-	$jomres_language_definitions->set_language( get_showtime( 'lang' ) );
-	$jomres_language_definitions->set_property_type( get_showtime( 'property_type' ) );
 	$jomres_language_definitions->define( $constant, $string );
 	}
 
@@ -27,8 +25,6 @@ function jr_get_defined( $constant, $default = '' )
 	if ( !defined( $constant ) )
 		{
 		$jomres_language_definitions = jomres_singleton_abstract::getInstance( 'jomres_language_definitions' );
-		$jomres_language_definitions->set_language( get_showtime( 'lang' ) );
-		$jomres_language_definitions->set_property_type( get_showtime( 'property_type' ) );
 		$result = $jomres_language_definitions->get_defined( $constant );
 
 		if ( $result === false && $default != '' ) 
@@ -42,16 +38,20 @@ function jr_get_defined( $constant, $default = '' )
 
 function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false )
 	{
+	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig   = $siteConfig->get();
+	
 	if (!jomres_cmsspecific_areweinadminarea())
 		$property_uid = (int) get_showtime( 'property_uid' );
 	else
 		$property_uid = 0;
 
-	$customTextObj   = jomres_singleton_abstract::getInstance( 'custom_text' );
-	$customTextArray = $customTextObj->get_custom_text();
+	$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-	if ( get_showtime( "jr_user_ready" ) ) // If jr_user isn't ready yet, calling jomres_singleton_abstract::getInstance('jr_user') will cause php to stop due to recursion, so we'll check that jr_user's been set up before we do anything else
+	
+	// If jr_user isn't ready yet, calling jomres_singleton_abstract::getInstance('jr_user') will cause php to stop due to recursion, so we'll check that jr_user's been set up before we do anything else
+	if ( get_showtime( "jr_user_ready" ) )
 		{
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 
@@ -69,9 +69,6 @@ function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false 
 	else
 		$tmpBookingHandler->user_settings[ 'editing_on' ] = false;
 	
-	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-	$jrConfig   = $siteConfig->get();
-	
 	if ( isset( $thisJRUser->accesslevel ) ) 
 		$accessLevel = $thisJRUser->accesslevel;
 	else
@@ -81,19 +78,18 @@ function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false 
 	if ( get_showtime( 'task' ) == "editCustomTextAll" ) 
 		$br = "<br />";
 	
-	if ( count( $customTextArray ) > 0 )
+	if ( isset( $customTextObj->global_custom_text[$theConstant] ) )
 		{
-		if ( array_key_exists( $theConstant, $customTextArray ) )
-			{
-			$theText = stripslashes( $customTextArray[ $theConstant ] );
-			}
-		else
-			{
-			$theText = jr_get_defined( $theConstant, $theValue );
-			}
+		$theText = stripslashes( $customTextObj->global_custom_text[$theConstant] );
+		}
+	elseif ( isset( $customTextObj->all_properties_custom_text[$property_uid][$theConstant] ) )
+		{
+		$theText = stripslashes( $customTextObj->all_properties_custom_text[$property_uid][$theConstant] );
 		}
 	else
+		{
 		$theText = jr_get_defined( $theConstant, $theValue );
+		}
 
 	if ( isset($thisJRUser->userIsManager) && $thisJRUser->userIsManager )
 		{

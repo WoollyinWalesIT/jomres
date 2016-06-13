@@ -21,13 +21,16 @@ class j06000module_popup
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
 			return;
 			}
+		
 		//add_gmaps_source();
+		
 		$property_uid = (int) jomresGetParam( $_REQUEST, "id", 0 );
 		if ( $property_uid == 0 )
 			$property_uid = (int) jomresGetParam( $_REQUEST, "property_uid", 0 );
+		
+		$mrConfig = getPropertySpecificSettings( $property_uid );
 		
 		$result = '';
 		$output = array ();
@@ -84,12 +87,10 @@ class j06000module_popup
 			$MiniComponents->specificEvent( '01050', 'x_geocoder', $componentArgs );
 			$output[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
 
-			$pageoutput = array ( $output );
-			$tmpl       = new patTemplate();
+			$pageoutput[] = $output;
+			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
-			if ( count( $roomtypes ) > 0 ) $tmpl->addRows( 'room_types', $roomtypes );
-			if ( count( $featureList ) > 0 ) $tmpl->addRows( 'property_features', $featureList );
 			$tmpl->readTemplatesFromInput( 'module_popup_contents.html' );
 
 			$result = $tmpl->getParsedTemplate();

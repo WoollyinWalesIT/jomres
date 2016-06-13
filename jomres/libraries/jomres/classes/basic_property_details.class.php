@@ -93,9 +93,9 @@ class basic_property_details
 	public function get_property_name_multi( $property_uids = array (), $database_obj = false )
 		{
 		//return false if there are no property uids in the array/object
-		if ( count( $property_uids ) == 0 ) return false;
-
-		$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
+		if ( count( $property_uids ) == 0 ) 
+			return false;
+		
 		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 
 		//change $property_uids object to array
@@ -159,7 +159,7 @@ class basic_property_details
 	
 			if (count($property_uids) > 0)
 				{
-				$query          = "SELECT property_name,propertys_uid FROM #__jomres_propertys WHERE propertys_uid IN (" . implode(',',$property_uids) .") ";
+				$query          = "SELECT `propertys_uid`, `property_name`, `ptype_id` FROM #__jomres_propertys WHERE `propertys_uid` IN (" . implode(',',$property_uids) .") ";
 				$property_names = doSelectSql( $query );
 				if ( !get_showtime( 'heavyweight_system' ) )
 					{
@@ -167,14 +167,15 @@ class basic_property_details
 						{
 						// We need to set showtime here otherwise the jr_gettext function won't know which property's info we're looking for
 						set_showtime( 'property_uid', $p->propertys_uid );
-						$this->property_names[ $p->propertys_uid ]              = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $p->property_name, false, false );
+						
+						$this->property_names[ $p->propertys_uid ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $p->property_name, false );
 						}
 					}
 				else
 					{
 					foreach ( $property_names as $p )
 						{
-						$this->property_names[ $p->propertys_uid ]              = $p->property_name;
+						$this->property_names[ $p->propertys_uid ] = $p->property_name;
 						}
 					}
 				}
@@ -183,7 +184,8 @@ class basic_property_details
 				{
 				$c->store('all_property_names_in_system',$this->property_names);
 				}
-			
+
+			//set back the initial property uid
 			set_showtime( 'property_uid', $original_property_uid );
 			
 			$performance_monitor->set_point( "post-property name multi" );
@@ -412,8 +414,6 @@ class basic_property_details
 						FROM #__jomres_propertys 
 						WHERE propertys_uid IN (" . implode(',',$property_uids) .") ";
 			$propertyData = doSelectSql( $query );
-
-			$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 			
 			//save the original property uid and type so we can reset this after we`re done
 			$original_property_uid = get_showtime( 'property_uid' );
@@ -424,8 +424,6 @@ class basic_property_details
 				set_showtime( 'property_uid', $data->propertys_uid );
 				set_showtime( 'property_type', $this->all_property_types[ (int) $data->ptype_id ] );
 
-				$customTextObj->get_custom_text_for_property( $data->propertys_uid );
-				
 				$countryname = getSimpleCountry( $data->property_country );
 				
 				$this->multi_query_result[ $data->propertys_uid ][ 'propertys_uid' ]     = $data->propertys_uid;
@@ -461,9 +459,9 @@ class basic_property_details
 
 				$this->multi_query_result[ $data->propertys_uid ][ 'lat' ]                        = $data->lat;
 				$this->multi_query_result[ $data->propertys_uid ][ 'long' ]                       = $data->long;
-				$this->multi_query_result[ $data->propertys_uid ][ 'metatitle' ]                  = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE', $data->metatitle, false, false );
-				$this->multi_query_result[ $data->propertys_uid ][ 'metadescription' ]            = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION', $data->metadescription, false, false );
-				$this->multi_query_result[ $data->propertys_uid ][ 'metakeywords' ]               = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS', $data->metakeywords, false, false );
+				$this->multi_query_result[ $data->propertys_uid ][ 'metatitle' ]                  = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE', $data->metatitle, false );
+				$this->multi_query_result[ $data->propertys_uid ][ 'metadescription' ]            = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION', $data->metadescription, false );
+				$this->multi_query_result[ $data->propertys_uid ][ 'metakeywords' ]               = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS', $data->metakeywords, false );
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_features' ]          = $data->property_features;
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_mappinglink' ]       = $data->property_mappinglink;
 				$this->multi_query_result[ $data->propertys_uid ][ 'real_estate_property_price' ] = $data->property_key;
@@ -580,7 +578,7 @@ class basic_property_details
 				foreach ( $jomres_property_types->property_types as $pt )
 					{
 					$this->all_property_types[ $pt['id'] ]       = $pt['ptype_desc'];
-					$this->all_property_type_titles[ $pt['id'] ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $pt['id'], $pt['ptype'], false, false );
+					$this->all_property_type_titles[ $pt['id'] ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $pt['id'], $pt['ptype'], false );
 					}
 				}
 			$c->store('all_property_types_details',array('all_property_types'=>$this->all_property_types,'all_property_type_titles'=>$this->all_property_type_titles));

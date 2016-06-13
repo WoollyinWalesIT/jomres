@@ -15,7 +15,7 @@ if ( !defined( '_JOMRES_INITCHECK' ) )
 	define( '_JOMRES_INITCHECK', 1 );
 
 require_once (dirname(__FILE__).'/../../jomres_root.php');
-require_once( JPATH_BASE . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'integration.php' );
+require_once( JPATH_BASE . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'framework.php' );
 
 if (!class_exists('JomresRouter'))
 	{
@@ -170,11 +170,6 @@ if (!class_exists('JomresRouter'))
 		
 		function JomresParseRoute( $segments )
 			{
-			if ( !defined( '_JOMRES_INITCHECK' ) ) 
-				define( '_JOMRES_INITCHECK', 1 );
-			
-			require_once( JPATH_BASE . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'integration.php' );
-			
 			$vars = array ();
 			
 			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
@@ -235,7 +230,6 @@ if (!class_exists('JomresRouter'))
 			
 			return $vars;
 			}
-		
 		}
 	}
 

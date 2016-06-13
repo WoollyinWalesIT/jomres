@@ -26,26 +26,33 @@ class j00002usermanagement
 			return;
 			}
 
+		//jr_user is not ready yet
 		set_showtime( "jr_user_ready", false );
+		
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-		if ( $thisJRUser->userIsManager == true && !jomres_cmsspecific_areweinadminarea())
+		
+		if ( $thisJRUser->userIsManager && !jomres_cmsspecific_areweinadminarea())
 			$thisJRUser->check_currentproperty();
-		$thisProperty = trim( jomresGetParam( $_REQUEST, 'thisProperty', 0 ) );
-		if ( in_array( $thisProperty, $thisJRUser->authorisedProperties ) && $thisProperty != $thisJRUser->currentproperty )
+		
+		$thisProperty = intval( jomresGetParam( $_REQUEST, 'thisProperty', 0 ) );
+		
+		if ( $thisProperty > 0 && $thisJRUser->userIsManager && in_array( $thisProperty, $thisJRUser->authorisedProperties ) && $thisProperty != $thisJRUser->currentproperty )
 			{
-			if ( $thisJRUser->userIsManager == true && $thisProperty > 0 )
-				{
-				$thisJRUser->set_currentproperty( $thisProperty );
-				}
+			$thisJRUser->set_currentproperty( $thisProperty );
 			}
+		
 		if ( $thisJRUser->currentproperty == 0 && $thisJRUser->userIsManager ) 
 			$thisJRUser->setToAnyAuthorisedProperty();
+		
+		//TODO: may not be needed
 		$this->userObject = $thisJRUser;
+		
+		//jr_user is now ready
 		set_showtime( "jr_user_ready", true );
 		
+		//partners TODO: move to jr_user class as new access level
 		if ( $thisJRUser->id > 0)
 			{
-			
 			jr_import('jomres_partners');
 			$partners = new jomres_partners();
 			$thisJRUser->is_partner = $partners->is_this_cms_user_a_partner($thisJRUser->id);
@@ -53,17 +60,9 @@ class j00002usermanagement
 			
 		}
 
-	/**
-	#
-	 * Must be included in every mini-component
-	#
-	 * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
-	#
-	 */
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
 		return $this->userObject;
 		}
 	}
-?>

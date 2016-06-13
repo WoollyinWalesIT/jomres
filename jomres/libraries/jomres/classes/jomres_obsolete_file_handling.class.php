@@ -1294,7 +1294,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j03410upload_resource_image.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j03350drop_image.class.php' );
 		
-		$this->add_obs_file( $this->dir_libraries . 'pclzip' . JRDS );
+		$this->add_obs_dir( $this->dir_libraries . 'pclzip' . JRDS );
 		$this->add_obs_file( $this->dir_libraries . 'dUnzip2.inc.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j10002listCustomFields.class.php' );
 		$this->add_obs_file( $this->dir_classes . 'jomres_pathway.class.php' );
@@ -1317,6 +1317,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_dir( $this->dir_javascript . 'codemirror-2.34' . JRDS );
 		$this->add_obs_file( $this->dir_minicomponents . 'j02110savecustomertypeorder.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j02112publishcustomertype.class.php' );
+		$this->add_obs_file( $this->dir_admin_functions . 'propertyfeatures.functions.php' );
 		}
 
 	function add_obs_file( $path_and_file )
