@@ -38,7 +38,7 @@ class jomres_usage_reporting
 				$task = get_showtime("task");
 				
 				require_once(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'piwik' . JRDS . 'PiwikTracker.php');
-				$tracker = new PiwikTracker( $idSite = 6 );
+				$tracker = new PiwikTracker( $idSite = 7 );
 				
 				$tracker->setUserAgent( "Jomres Core" );
 				 $tracker->setUrl( "http://jomres.app.tracking" ); // Anonymises your call to the Jomres API. We don't want your personal details, or to track you individually. This tracking is purely to help us to understand how Jomres is used, popular features and how many users are using free v full licenses. The tracking software anonymises calls to unique ids, including IP numbers so we can't even see those.
