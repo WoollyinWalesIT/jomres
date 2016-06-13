@@ -466,13 +466,13 @@ class basic_property_details
 				$this->multi_query_result[ $data->propertys_uid ][ 'property_mappinglink' ]       = $data->property_mappinglink;
 				$this->multi_query_result[ $data->propertys_uid ][ 'real_estate_property_price' ] = $data->property_key;
 
-				$this->multi_query_result[ $data->propertys_uid ][ 'property_description' ]          = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', $data->property_description, $editable, false );
-				$this->multi_query_result[ $data->propertys_uid ][ 'property_checkin_times' ]        = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES', $data->property_checkin_times, $editable, false );
-				$this->multi_query_result[ $data->propertys_uid ][ 'property_area_activities' ]      = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES', $data->property_area_activities, $editable, false );
-				$this->multi_query_result[ $data->propertys_uid ][ 'property_driving_directions' ]   = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS', $data->property_driving_directions, $editable, false );
-				$this->multi_query_result[ $data->propertys_uid ][ 'property_airports' ]             = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS', $data->property_airports, $editable, false );
-				$this->multi_query_result[ $data->propertys_uid ][ 'property_othertransport' ]       = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT', $data->property_othertransport, $editable, false );
-				$this->multi_query_result[ $data->propertys_uid ][ 'property_policies_disclaimers' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS', $data->property_policies_disclaimers, $editable, false );
+				$this->multi_query_result[ $data->propertys_uid ][ 'property_description' ]          = jomres_decode(jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', $data->property_description, $editable, false ));
+				$this->multi_query_result[ $data->propertys_uid ][ 'property_checkin_times' ]        = jomres_decode(jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES', $data->property_checkin_times, $editable, false ));
+				$this->multi_query_result[ $data->propertys_uid ][ 'property_area_activities' ]      = jomres_decode(jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES', $data->property_area_activities, $editable, false ));
+				$this->multi_query_result[ $data->propertys_uid ][ 'property_driving_directions' ]   = jomres_decode(jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS', $data->property_driving_directions, $editable, false ));
+				$this->multi_query_result[ $data->propertys_uid ][ 'property_airports' ]             = jomres_decode(jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS', $data->property_airports, $editable, false ));
+				$this->multi_query_result[ $data->propertys_uid ][ 'property_othertransport' ]       = jomres_decode(jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT', $data->property_othertransport, $editable, false ));
+				$this->multi_query_result[ $data->propertys_uid ][ 'property_policies_disclaimers' ] = jomres_decode(jr_gettext( '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS', $data->property_policies_disclaimers, $editable, false ));
 				$this->multi_query_result[ $data->propertys_uid ][ 'apikey' ]                        = $data->apikey;
 				$this->multi_query_result[ $data->propertys_uid ][ 'approved' ]                      = (bool) $data->approved;
 				
