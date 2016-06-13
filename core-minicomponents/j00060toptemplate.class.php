@@ -32,8 +32,8 @@ class j00060toptemplate
 		$thisJRUser        	= jomres_singleton_abstract::getInstance( 'jr_user' );
 		$management_view   	= jomresGetParam( $_REQUEST, 'tmpl', false );
 		$popup			   	= intval( jomresGetParam( $_REQUEST, 'popup', 0 ) );
-		$tz         	   	= $componentArgs[ 'tz' ];
-		$jomreslang 		= $componentArgs[ 'jomreslang' ];
+		//$tz         	   	= $componentArgs[ 'tz' ];
+		//$jomreslang 		= jomres_singleton_abstract::getInstance( 'jomres_language' );
 
 		if ( AJAXCALL || $popup == 1 )
 			return;
@@ -106,8 +106,8 @@ class j00060toptemplate
 		if (defined('JOMRESDATEPICKERLANG'))
 			$output[ 'DATEPICKERLANG' ] = JOMRESDATEPICKERLANG;
 		
-		$lang_dropdown = array();
-		/* if ($jrConfig[ 'showLangDropdown' ] == '1')
+		/* $lang_dropdown = array();
+		if ($jrConfig[ 'showLangDropdown' ] == '1')
 			{
 			$lang_dropdown[ ][ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
 			set_showtime( "menuitem_langdropdown", $lang_dropdown[ 0 ][ 'LANGDROPDOWN' ] );
@@ -164,7 +164,7 @@ class j00060toptemplate
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'messages', $messaging );
 		//$tmpl->addRows( 'timezone_dropdown', $timezone_dropdown );
-		$tmpl->addRows( 'lang_dropdown', $lang_dropdown );
+		//$tmpl->addRows( 'lang_dropdown', $lang_dropdown );
 		if ( $result )
 			$tmpl->addRows( 'editing_dropdown', $editing_dropdown );
 		$tmpl->displayParsedTemplate();

@@ -18,15 +18,20 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 function get_property_price_for_display_in_lists( $property_uid )
 	{
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+	
 	$mrConfig       = getPropertySpecificSettings( $property_uid );
+	
 	set_showtime( 'property_uid', $property_uid );
-	$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
-	$customTextObj->get_custom_text_for_property( $property_uid );
+
 	$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 	$current_property_details->gather_data( $property_uid );
+	
 	$plugin_will_provide_lowest_price = false;
+	
 	$MiniComponents->triggerEvent( '07015', array ( 'property_uid' => $property_uid ) ); // Optional
+	
 	$mcOutput = $MiniComponents->getAllEventPointsData( '07015' );
+	
 	if ( count( $mcOutput ) > 0 )
 		{
 		foreach ( $mcOutput as $key => $val )

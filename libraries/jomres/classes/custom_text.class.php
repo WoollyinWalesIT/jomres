@@ -18,12 +18,9 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 class custom_text
 	{
 	private static $configInstance;
-	private static $internal_debugging;
 
 	public function __construct()
 		{
-		self::$internal_debugging 			= false;
-		$this->property_uid					= 0;
 		$this->lang							= get_showtime( 'lang' );
 		$this->global_custom_text			= array();
 		$this->all_properties_custom_text	= array();
@@ -69,11 +66,14 @@ class custom_text
 			{
 			if ( count( $this->all_properties_custom_text ) == 0 || count( $this->global_custom_text ) == 0)
 				{
-				if ( $this->lang != '' ) $clause = "WHERE language = '" . $this->lang . "'";
 				$this->all_properties_custom_text = array ();
 				$this->global_custom_text         = array ();
-				$query                            = "SELECT constant,customtext,language,property_uid FROM #__jomres_custom_text $clause ";
-				$customTextList                   = doSelectSql( $query );
+				
+				if ( $this->lang != '' ) 
+					$clause = "WHERE `language` = '" . $this->lang . "'";
+				
+				$query = "SELECT `constant` AS language_constant, `customtext`, `language`, `property_uid` FROM #__jomres_custom_text $clause ";
+				$customTextList = doSelectSql( $query );
 	
 				if ( count( $customTextList ) )
 					{
@@ -81,7 +81,8 @@ class custom_text
 	
 					foreach ( $customTextList as $text )
 						{
-						$theConstant = str_replace( "sc<x>ript", "script", $text->constant );
+						$theConstant = str_replace( "sc<x>ript", "script", $text->language_constant );
+						
 						if ($text->property_uid == 0) //it`s a global custom text
 							$this->global_custom_text[ $theConstant ] = stripslashes( $text->customtext );
 						else //it`s a property specific custom text
@@ -93,34 +94,13 @@ class custom_text
 				$c->store('custom_text_cache',array('global_custom_text'=>$this->global_custom_text,'all_properties_custom_text'=>$this->all_properties_custom_text));
 				}
 			}
+		
+		return true;
 		}
 
-	function get_custom_text_for_property( $property_uid = 0)
+	//we`ll keep this here because it`s used in various places..
+	function get_custom_text_for_property( $property_uid = 0 )
 		{
-		if ( (int)$property_uid > 0 ) 
-			$this->property_uid = $property_uid;
-
-		if ( isset( $this->global_custom_text ) && $this->property_uid > 0)
-			{
-			$current_custom_text = $this->global_custom_text;
-
-			if ( (int) $this->property_uid > 0 && isset( $this->all_properties_custom_text[ $this->property_uid ] ) ) 
-				$current_custom_text = array_merge( $this->all_properties_custom_text[ $this->property_uid ],$this->global_custom_text );
-			elseif ( isset( $this->all_properties_custom_text[ $this->property_uid ] ) ) 
-				$current_custom_text = $this->all_properties_custom_text[ $this->property_uid ];
-			}
-		else
-			$current_custom_text = $this->global_custom_text;
-
-		return $current_custom_text;
-		}
-
-
-	function get_custom_text()
-		{
-		$this->property_uid = (int)get_showtime( 'property_uid' );
-		$result             = $this->get_custom_text_for_property( $this->property_uid );
-
-		return $result;
+		return true;
 		}
 	}

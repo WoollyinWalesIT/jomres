@@ -9,28 +9,18 @@
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
-
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 class jomres_language
 	{
-	/**
-	#
-	 * Constructor for the jomres_booking object, sets a bunch of variables, finds configuration settings & gets the current state of the booking from the tmpbooking table
-	#
-	 */
 	function __construct()
 		{
-		$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig          = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
 		
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-		
-		// We'll specifically set the post and get routines here so that we don't end up saving the cookie/cms specific code every time if the cookie's the container for the lang.
-		$this->showLangDropdown = $jrConfig[ 'showLangDropdown' ];
-		$administrator_area     = jomres_cmsspecific_areweinadminarea();
 
 		if ( isset( $_POST[ 'jomreslang' ] ) )
 			{
@@ -54,42 +44,75 @@ class jomres_language
 		$tmpBookingHandler->tmplang[ 'jomreslang' ] = $jomresConfig_lang;
 
 		jomres_cmsspecific_setlanguage( $jomresConfig_lang );
-		$this->lang = $jomresConfig_lang;
-		//system_log( 'Lang is finally set to ' . $jomresConfig_lang  . " for task ".$_REQUEST['task']);
 		
+		$this->lang = $jomresConfig_lang;
+		
+		//set lang showtime, eg: en-GB
 		set_showtime( 'lang', $jomresConfig_lang );
 		
+		//set lang shortcode showtime, eg: en
 		$this->shortcodes = $this->get_shortcodes();
-		$key = array_search($jomresConfig_lang,$this->shortcodes); 
+		$key = array_search( $jomresConfig_lang, $this->shortcodes ); 
 		set_showtime( 'lang_shortcode', $key );
 		
+		//load default/context language file
+		$this->get_language();
 		}
 
-	function get_language( $propertytype = "" )
+	function get_language( $property_type = "" )
 		{
-		if ( $propertytype != "" && file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $propertytype ) . JRDS . $this->lang . '.php' ) )
+		//load the property type specific language file. If it doesn`t exist, do nothing, so the default language strings will be used
+		if ( $property_type != "" )
 			{
-			require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $propertytype ) . JRDS . $this->lang . '.php' );
+			if ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $property_type ) . JRDS . $this->lang . '.php' ) )
+				{
+				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $property_type ) . JRDS . $this->lang . '.php' );
+				return true;
+				}
+			elseif ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $property_type ) . JRDS . 'en-GB.php' ) )
+				{
+				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $property_type ) . JRDS . 'en-GB.php' );
+				return true;
+				}
+			else
+				return false;
 			}
 		else
 			{
 			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 			$jrConfig = $siteConfig->get();
 			
-			if ( $jrConfig[ 'language_context' ] != "" && file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . $this->lang . '.php' ) ) 
-				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . $this->lang . '.php' );
-			elseif ( $jrConfig[ 'language_context' ] != "" && file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . 'en-GB.php' ) ) 
-				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . 'en-GB.php' );
-			elseif ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' ) )
-				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' );
-			else
+			//load language context language file if no property type specific language file found above
+			if ( $jrConfig[ 'language_context' ] != "" ) 
 				{
-				if ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . 'en-GB.php' ) )
+				if ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . $this->lang . '.php' ) )
 					{
-					require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . 'en-GB.php' );
-					} //else no language file available... don't include it either...
+					require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . $this->lang . '.php' );
+					return true;
+					}
+				elseif ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . 'en-GB.php' ) )
+					{
+					require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $jrConfig[ 'language_context' ] . JRDS . 'en-GB.php' );
+					return true;
+					}
 				}
+			
+			//if still nothing found, load the default language file
+			if ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' ) )
+				{
+				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' );
+				return true;
+				}
+			elseif ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . 'en-GB.php' ) )
+				{
+				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . 'en-GB.php' );
+				return true;
+				}
+			else
+				return false;
 			}
+		
+		return false;
 		}
 
 	function get_current_lang_files()

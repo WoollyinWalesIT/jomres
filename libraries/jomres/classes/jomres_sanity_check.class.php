@@ -120,7 +120,7 @@ class jomres_sanity_check
 		{
 		if (get_showtime("task") != "jintour")
 			{
-			$tours = jintour_get_all_tours(get_showtime( "property_uid" ));
+			$tours = jintour_get_all_tours($this->property_uid);
 			$future_tours = array();
 			$today = date("Y/m/d");
 			foreach ( $tours as $tour )
@@ -148,7 +148,7 @@ class jomres_sanity_check
 		if (get_showtime("task") != "editProperty")
 			{
 			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-			$current_property_details->gather_data( get_showtime( "property_uid" ) );
+			$current_property_details->gather_data( $this->property_uid );
 			if (
 				$current_property_details->property_street == "" || 
 				$current_property_details->property_town == "" || 
@@ -172,9 +172,9 @@ class jomres_sanity_check
 		if (get_showtime("task") != "media_centre")
 			{
 			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-			$current_property_details->gather_data( get_showtime( "property_uid" ) );
+			$current_property_details->gather_data( $this->property_uid );
 			$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
-			$jomres_media_centre_images->get_images( get_showtime( "property_uid" ), array('property'));
+			$jomres_media_centre_images->get_images( $this->property_uid, array('property'));
 			$noimage = get_showtime( 'live_site' ) . "/".JOMRES_ROOT_DIRECTORY."/images/noimage.gif";
 			if ( !isset($jomres_media_centre_images->images['property'][0][0]['large']) || $jomres_media_centre_images->images['property'][0][0]['large'] == $noimage )
 				{
@@ -190,7 +190,7 @@ class jomres_sanity_check
 	function check_approved()
 		{
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-		$current_property_details->gather_data( get_showtime( "property_uid" ) );
+		$current_property_details->gather_data( $this->property_uid );
 		if ( !$current_property_details->approved )
 			{
 			$message = jr_gettext( '_JOMRES_APPROVALS_NOT_APPROVED_YET', '_JOMRES_APPROVALS_NOT_APPROVED_YET', false );
@@ -202,7 +202,7 @@ class jomres_sanity_check
 	function check_suspended()
 		{
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-		$published  = get_showtime( 'this_property_published' );
+		
 		if ( $thisJRUser->userIsSuspended )
 			{
 			$message = jr_gettext( '_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED', '_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED', false );
@@ -251,9 +251,8 @@ class jomres_sanity_check
 						$message = jr_gettext( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', false );
 					else
 						$message = jr_gettext( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS_SRP', '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS_SRP', false );
-					
-					$property_uid=getDefaultProperty();
-					$mrConfig=getPropertySpecificSettings($property_uid);
+
+					$mrConfig=getPropertySpecificSettings( $this->property_uid );
 
 					if ($mrConfig['tariffmode']=='0')
 						{
@@ -294,11 +293,14 @@ class jomres_sanity_check
 	function check_published()
 		{
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-		$published  = get_showtime( 'this_property_published' );
-		if ( isset( $published ) && $published != "1" && $thisJRUser->userIsManager )
+		
+		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$current_property_details->gather_data( $this->property_uid );
+		
+		if ( $current_property_details->published != 1 && $thisJRUser->userIsManager )
 			{
 			$message = jr_gettext( '_JOMRES_SANITY_CHECK_NOT_PUBLISHED', '_JOMRES_SANITY_CHECK_NOT_PUBLISHED', false );
-			$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty&property_uid=' . get_showtime('property_uid'));
+			$link = jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty&property_uid=' . $this->property_uid );
 			$button_text = jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', '_JOMRES_COM_MR_VRCT_PUBLISH', false );
 
 			return $this->construct_warning( array( "MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $button_text ) );
@@ -312,7 +314,7 @@ class jomres_sanity_check
 			if (get_showtime("task") != "edit_resource")
 				{
 				$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-				$current_property_details->gather_data( get_showtime( "property_uid" ) );
+				$current_property_details->gather_data( $this->property_uid );
 				if ( !isset($current_property_details->rooms) )
 					{
 					$message = jr_gettext( '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', false );
@@ -331,7 +333,7 @@ class jomres_sanity_check
 			if (get_showtime("task") != "edit_resource")
 				{
 				$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-				$current_property_details->gather_data( get_showtime( "property_uid" ) );
+				$current_property_details->gather_data( $this->property_uid );
 				foreach ($current_property_details->room_types as $rt)
 					{
 					if (!isset($rt['abbv']) )
@@ -353,7 +355,7 @@ class jomres_sanity_check
 			if (get_showtime("task") != "edit_resource")
 				{
 				$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-				$current_property_details->gather_data( get_showtime( "property_uid" ) );
+				$current_property_details->gather_data( $this->property_uid );
 				if ( !isset($current_property_details->rooms) )
 					{
 					$message = jr_gettext( '_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK', '_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK', false );

@@ -15,7 +15,6 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 ob_start( "removeBOM" );
 
-//@ini_set( "memory_limit", "128M" );
 @ini_set( "max_execution_time", "480" );
 
 // Added X-Clacks Overhead. If you're a fan of Sir Terry, leave it in. If you're not, take it out
@@ -32,13 +31,22 @@ try
 	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig   = $siteConfig->get();
 	
+	//performace monitorning start
+	$performance_monitor = jomres_singleton_abstract::getInstance( 'jomres_performance_monitor' );
+	if ( $jrConfig[ 'errorChecking' ] == "1" ) 
+		$performance_monitor->switch_on();
+	else
+		$performance_monitor->switch_off();
+	
 	//get all properties in system.
 	$jomres_properties = jomres_singleton_abstract::getInstance( 'jomres_properties' );
 	$jomres_properties->get_all_properties();
-
-	//language object - load default language file/context 
-	$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
-	$jomreslang->get_language($jrConfig[ 'language_context' ]);
+	
+	//language object - load default language file for context
+	$jomres_language = jomres_singleton_abstract::getInstance( 'jomres_language' );
+	
+	//custom text object - load all custom text
+	$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 	
 	//trigger 00002 event
 	$MiniComponents->triggerEvent( '00002' );
@@ -47,7 +55,7 @@ try
 	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 
 	//TODO: here we can add a query to automatically remove the manager that has 0 properties
-	if (count($thisJRUser->authorisedProperties)==0 && $thisJRUser->userIsManager)
+	if ( count($thisJRUser->authorisedProperties) == 0 && $thisJRUser->userIsManager )
 		{
 		throw new Exception( "This manager " .  jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( (int) $thisJRUser->id ) . "  hasn't got any properties.");
 		}
@@ -55,14 +63,6 @@ try
 	//jomres timezones - mostly unused with an exception
 	jr_import( 'jomres_timezones' );
 	$tz = new jomres_timezones();
-
-	//performace monitorning start
-	$performance_monitor = jomres_singleton_abstract::getInstance( 'jomres_performance_monitor' );
-	
-	if ( $jrConfig[ 'errorChecking' ] == "1" ) 
-		$performance_monitor->switch_on();
-	else
-		$performance_monitor->switch_off();
 
 	//set jomres in wrapped mode to be ready for iframes
 	if ( isset( $_REQUEST[ 'is_wrapped' ] ) && $_REQUEST[ 'is_wrapped' ] == "1")
@@ -82,12 +82,6 @@ try
 
 	//trigger 00003 event
 	$MiniComponents->triggerEvent( '00003' ); //
-
-	if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )
-		{
-		define( 'JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS );
-		define( 'JOMRES_IMAGELOCATION_RELPATH', get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/' );
-		}
 
 	//jomres cron object
 	$cron = jomres_singleton_abstract::getInstance( 'jomres_cron' );
@@ -131,7 +125,6 @@ try
 		{
 		$defaultProperty 	= (int) $thisJRUser->currentproperty;
 		$accessLevel   		= $thisJRUser->accesslevel;
-		$usersProperty 		= $thisJRUser->defaultproperty;
 		
 		if ( !$thisJRUser->userIsManager && $thisJRUser->userIsRegistered )
 			{
@@ -196,7 +189,10 @@ try
 		}
 
 	//get the current property uid if set
-	$property_uid = (int)detect_property_uid();
+	if ( !AJAXCALL )
+		$property_uid = (int)detect_property_uid();
+	else
+		$property_uid = 0;
 
 	$mrConfig = getPropertySpecificSettings( $property_uid );
 
@@ -207,9 +203,6 @@ try
 		//basci property details object
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$current_property_details->gather_data($property_uid);
-
-		$published = $current_property_details->published;
-		set_showtime( 'this_property_published', $published );
 		
 		if ( get_showtime( 'task' ) == "viewproperty" )
 			{
@@ -219,44 +212,25 @@ try
 		
 		$tmpBookingHandler->saveBookingData();
 		
-		//property type to be used for property type specific language files
-		$propertytype = $current_property_details->property_type;
+		//since we have a property uid, we also have a property type, so let`s set a showtime
+		set_showtime( 'property_type', $current_property_details->property_type );
 		
-		//since we have a property uid, we also have a property type id, so let`s set a showtime
-		set_showtime('property_type', $current_property_details->ptype_id);
-		}
-	else
-		{
-		if (isset($tmpBookingHandler->user_settings[ 'last_viewed_property_uid' ]))
-			set_showtime( 'last_viewed_property_uid', (int)$tmpBookingHandler->user_settings[ 'last_viewed_property_uid' ] );
+		//load property type specific language file if $property_type is set
+		$jomres_language->get_language( $current_property_details->property_type );
 		
-		$propertytype = '';
-		}	
-
-	//$performance_monitor->set_point("pre-lang file inclusion");
-
-	//load property type specific language file if $property_type is set
-	if ($propertytype != '')
-		$jomreslang->get_language( $propertytype );
-	
-	//custom text object
-	$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
-	$customTextObj->get_custom_text_for_all_properties();
-	$customTextObj->get_custom_text_for_property( $property_uid );
-
-	if ( $property_uid > 0 )
-		{
 		//sanity checks
-		if ( !$thisJRUser->userIsManager && $published == 0 && $task != "" )
+		if ( !$thisJRUser->userIsManager && $current_property_details->published == 0 && get_showtime( 'task' ) != "" )
 			{
 			if ( !AJAXCALL )
 				{
 				jr_import( 'jomres_sanity_check' );
 				$warning = new jomres_sanity_check( false );
 				echo $warning->construct_warning( jr_gettext( '_JOMRES_PROPERTYNOTOUBLISHED', _JOMRES_PROPERTYNOTOUBLISHED, false ) );
-				unset( $property_uid );
+				$property_uid = 0;
 				$task = "";
-				set_showtime( 'task', "" );
+				set_showtime( 'task', '' );
+				set_showtime( 'property_type', '' );
+				set_showtime( 'property_uid', 0 );
 				}
 			}
 		
@@ -267,9 +241,15 @@ try
 			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL ), "" );
 			}
 		}
+	else
+		{
+		if (isset($tmpBookingHandler->user_settings[ 'last_viewed_property_uid' ]))
+			set_showtime( 'last_viewed_property_uid', (int)$tmpBookingHandler->user_settings[ 'last_viewed_property_uid' ] );
+		}
 
 	//add javascript to head
-	init_javascript();
+	if ( !AJAXCALL )
+		init_javascript();
 	
 	//TODO find a better place 
 	set_showtime( 'include_room_booking_functionality', true );
@@ -281,7 +261,7 @@ try
 	$MiniComponents->triggerEvent( '00006' );
 
 	//trigger 00060 event. Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
-	$MiniComponents->triggerEvent( '00060', array ( 'tz' => $tz, 'jomreslang' => $jomreslang ) );
+	$MiniComponents->triggerEvent( '00060', array ( 'tz' => $tz ) );
 
 	//trigger 00012 event
 	$componentArgs = array ();
@@ -778,7 +758,8 @@ try
 		else
 			echo "Error, no properties installed. Before you can use Jomres you need to have at least 1 property installed, this is achieved by running <a href=\"" . get_showtime( 'live_site' ) . "/install_jomres.php\"></a>install_jomres.php.";
 		}
-	
+
+	//reset language and property type
 	$jomres_language_definitions = jomres_singleton_abstract::getInstance( 'jomres_language_definitions' );
 	$jomres_language_definitions->reset_lang_and_property_type();
 

@@ -19,22 +19,30 @@ class jomres_language_definitions
 
 	function __construct()
 		{
-		$siteConfig             = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig               = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
 		
 		if ($jrConfig[ 'language_context' ] != '')
 			$this->ptype = $jrConfig[ 'language_context' ];
 		else
 			$this->ptype = 0;
 		
-		$this->default_lang     = get_showtime( 'lang' );
+		if ( get_showtime( 'lang' ) != '' )
+			$this->lang = get_showtime( 'lang' );
+		else
+			$this->lang = 'en-GB';
+		
+		$this->default_lang 	= $this->lang;
 		$this->default_ptype	= $this->ptype;
+		
 		$this->definitions      = array ();
-		$this->lang             = get_showtime( 'lang' );
 		}
 
 	function set_language( $lang = 'en-GB' )
 		{
+		if ( is_null($lang) || $lang == '' )
+			$lang = $this->default_lang;
+		
 		$this->lang = $lang;
 		}
 
@@ -53,23 +61,17 @@ class jomres_language_definitions
 
 	function get_defined( $constant )
 		{
+		$this->set_property_type( get_showtime('property_type') );
+		
 		if ( !array_key_exists( $this->ptype, $this->definitions ) )
 			{
-			if ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $this->ptype ) . JRDS . $this->lang . '.php' ) )
-				{
-				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . strtolower( $this->ptype ) . JRDS . $this->lang . '.php' );
-				}
-			elseif ( file_exists( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' ) ) //in case there is no language_context set and the property type specific language dir was manually deleted
-				{
-				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . $this->lang . '.php' );
-				}
-			else
-				require_once( JOMRESPATH_BASE . JRDS . 'language' . JRDS . 'en-GB.php' );
+			$jomres_language = jomres_singleton_abstract::getInstance( 'jomres_language' );
+			$jomres_language->get_language( $this->ptype );
 			}
-
+		
 		if ( isset( $this->definitions[ $this->ptype ][ $constant ] ) ) 
 			return $this->definitions[ $this->ptype ][ $constant ];
-		elseif (isset($this->definitions[ $this->default_ptype ][ $constant ]))
+		elseif ( isset( $this->definitions[ $this->default_ptype ][ $constant ] ) ) 
 			return $this->definitions[ $this->default_ptype ][ $constant ];
 		else
 			return false;

@@ -28,7 +28,6 @@ class j00030search
 		$siteConfig    = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig      = $siteConfig->get();
 		$option        = jomresGetParam( $_REQUEST, 'option', "" );
-		$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 
 		$data_only = false;
 		if ( isset( $_REQUEST[ 'dataonly' ] ) ) $data_only = true;
@@ -55,11 +54,7 @@ class j00030search
 			$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
 			$tmpBookingHandler->initBookingSession();
 			$showSearchOptions = true;
-			$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
-			$jomreslang->get_language();
 			}
-
-		init_javascript();
 
 		if ( $calledByModule == "" && isset( $_REQUEST[ 'calledByModule' ] ) )
 			{
@@ -75,8 +70,6 @@ class j00030search
 			}
 
 		$calledByModule = getEscaped( $calledByModule );
-
-		$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 
 		$infoIcon   = "/".JOMRES_ROOT_DIRECTORY."/images/information.png";
 		$output     = array ();

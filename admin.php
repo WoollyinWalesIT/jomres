@@ -9,31 +9,30 @@
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
-
+##################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
-defined( '_JOMRES_INITCHECK_ADMIN' ) or die( 'Admin Access to this file is not allowed.' );
+defined( '_JOMRES_INITCHECK_ADMIN' ) or die( '' );
+##################################################################
 
 ob_start( "removeBOMadmin" );
-//@ini_set( "memory_limit", "128M" );
+
 @ini_set( "max_execution_time", "480" );
 
+//TODO: remove these too
 global $thisJRUser, $htmlFuncs;
 
 require_once( dirname( __FILE__ ) . '/integration.php' );
 
 try
 	{
+	//minicomponents object
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-	$siteConfig     = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-	$jrConfig       = $siteConfig->get();
-
-	if ($jrConfig[ 'development_production' ]  != "production")
-		{
-		@ini_set( "display_errors", 1 );
-		@ini_set('error_reporting', E_ALL);
-		//@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
-		}
-
+	
+	//site config object
+	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig   = $siteConfig->get();
+	
+	//performance monitor
 	$performance_monitor = jomres_singleton_abstract::getInstance( 'jomres_performance_monitor' );
 	if ( $jrConfig[ 'errorChecking' ] == "1" ) 
 		$performance_monitor->switch_on();
@@ -43,33 +42,29 @@ try
 	//get all properties in system.
 	$jomres_properties = jomres_singleton_abstract::getInstance( 'jomres_properties' );
 	$jomres_properties->get_all_properties();
-		
-	//image paths
-	if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )
-		{
-		define( 'JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS );
-		define( 'JOMRES_IMAGELOCATION_RELPATH', get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/' );
-		}
 	
-	//language
-	$jomreslang = jomres_singleton_abstract::getInstance( 'jomres_language' );
-	$jomreslang->get_language($jrConfig[ 'language_context' ]);
-
-	//Register user
-	$MiniComponents->triggerEvent( '00002' );
-	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+	//language object - load default language file for context
+	$jomres_language = jomres_singleton_abstract::getInstance( 'jomres_language' );
 	
+	//custom text object
 	$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 	
+	//override language with the jomres one, if selected from the jomres language dropdown
 	if ( isset( $_REQUEST[ 'jomreslang' ] ) )
 		{
 		$lang_switcher_lang = jomresGetParam( $_REQUEST, 'jomreslang', '' );
-		if ( array_key_exists( $lang_switcher_lang, $jomreslang->datepicker_crossref ) )
+		if ( array_key_exists( $lang_switcher_lang, $jomres_language->datepicker_crossref ) )
 			{
 			set_showtime( 'lang', $lang_switcher_lang );
 			$customTextObj->reset_current_lang( $lang_switcher_lang );
 			}
 		}
+
+	//trigger 00002 event
+	$MiniComponents->triggerEvent( '00002' );
+	
+	//user object
+	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 
 	//input filtering
 	$MiniComponents->triggerEvent( '00003' );
@@ -106,18 +101,17 @@ try
 
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'jomresxml.functions.php' );
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'siteconfig.functions.php' );
-	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'propertyfeatures.functions.php' );
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'profiles.functions.php' );
 
+	//add javascript to head
+	if ( !AJAXCALL )
+		init_javascript();
+	
 	//00005 trigger point
 	$MiniComponents->triggerEvent( '00005' );
 	
 	if ( !AJAXCALL )
 		{
-		init_javascript();
-		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig   = $siteConfig->get();
-	
 		// Dates back to Jomres v4. Could be removed, but we'll leave it in for those users upgrading from v4, as v4 spanned two years
 		if ( is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'plugins' ) )
 			{
@@ -157,7 +151,7 @@ try
 			}
 
 		//language dropdown
-		$output[ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
+		$output[ 'LANGDROPDOWN' ] = $jomres_language->get_languageselection_dropdown();
 
 		$output[ 'BACKTOTOP' ] = jr_gettext( 'BACKTOTOP', 'BACKTOTOP', false );
 
@@ -260,26 +254,13 @@ try
 	$MiniComponents->triggerEvent( '99999', $componentArgs );
 	$componentArgs = array ();
 
-	//jomres usage reporting
-	jr_import("jomres_usage_reporting");
-	$tracking = new jomres_usage_reporting();
-	
+	//done
 	endrun();
 	}
 catch (Exception $e) 
 	{
-	// https://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CCAQFjAAahUKEwjJhIOt_JvIAhXLVhQKHQ7fAMk&url=https%3A%2F%2Fgithub.com%2Ftedious%2FJShrink%2Fissues%2F39&usg=AFQjCNHDDIZ655USiRRgv9k5DWnVTbbIhg&sig2=mIDxMyB2jfvvnzEmpxIBjA&bvm=bv.103627116,d.d24&cad=rja
-	if (strpos($e->getMessage(),'Unclosed regex pattern at position') !== false) // 29/09/2015 There's an un-fixed bug in Jshrink that causes this error, so we'll need to switch off javascript minification and try again
-		{
-		saveSiteConfig( array ( 'javascript_caching_enabled' => "0" ) );
-		sendAdminEmail( "Jomres detected an error.", "Jomres detected an error in javascript minification and javascript caching was automatically switched off. There is currently no known fix for this issue so you will need to leave it switched off for now.");
-		$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-		jomresRedirect($url);
-		}
-
 	output_fatal_error( $e );
 	}
-
 
 if ( defined( "JOMRES_RETURNDATA" ) )
 	{
