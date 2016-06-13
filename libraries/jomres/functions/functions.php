@@ -3899,22 +3899,30 @@ function gatewayPostage( $outgoingURL, $postage, $method = "post" )
  */
 function dateDiff( $interval = "d", $first_date, $second_date )
 	{
-	$datetime1 = new DateTime($first_date);
-	$datetime2 = new DateTime($second_date);
-	$diff = $datetime1->diff($datetime2);
-
-	switch ($interval)
+	$a = explode('/', $first_date);
+	$b = explode('/', $second_date);
+	
+	if ( checkdate($a[1], $a[2], $a[0]) && checkdate($b[1], $b[2], $b[0]) )
 		{
-		case "d":
-			return $diff->days;
-			break;
-		case "w":
-			return $diff->weeks;
-			break;
-		default:
-			return $diff->days;
-			break;
+		$datetime1 = new DateTime($first_date);
+		$datetime2 = new DateTime($second_date);
+		$diff = $datetime1->diff($datetime2);
+
+		switch ($interval)
+			{
+			case "d":
+				return $diff->days;
+				break;
+			case "w":
+				return $diff->weeks;
+				break;
+			default:
+				return $diff->days;
+				break;
+			}
 		}
+	
+	return 1;
 	}
 
 
