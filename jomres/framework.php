@@ -90,10 +90,7 @@ function load_jomres_environment()
 	jr_import( 'jomres_currency_exchange_rates' );
 	$exchange_rates = new jomres_currency_exchange_rates( "GBP" );
 
-	if ( !AJAXCALL )
-		$property_uid = (int)detect_property_uid();
-	else
-		$property_uid = 0;
+	$property_uid = (int)detect_property_uid();
 
 	//load property type specific language file
 	if ( $property_uid > 0 )

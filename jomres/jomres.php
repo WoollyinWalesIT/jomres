@@ -189,10 +189,7 @@ try
 		}
 
 	//get the current property uid if set
-	if ( !AJAXCALL )
-		$property_uid = (int)detect_property_uid();
-	else
-		$property_uid = 0;
+	$property_uid = (int)detect_property_uid();
 
 	$mrConfig = getPropertySpecificSettings( $property_uid );
 
