@@ -468,6 +468,7 @@ function doTableUpdates()
 	drop_orphan_line_items_table();
 	drop_room_images_table();
 	removeCronJob('invoice');
+	removeCronJob('optimise');
 	
 	updateSiteSettings ( "update_time" , time() );
 	}
@@ -479,7 +480,7 @@ function removeCronJob( $job = '' )
 	
 	jr_import( 'jomres_cron' );
 	$cron = new jomres_cron();
-	$cron->removeJob("invoice");
+	$cron->removeJob($job);
 	}
 
 function drop_orphan_line_items_table()
@@ -2772,7 +2773,6 @@ function installCronjobs()
 	//output_message ( "Installing cron jobs<br/>";
 	jr_import( 'jomres_cron' );
 	$cron = new jomres_cron();
-	$cron->addJob( "optimise", "D", "" );
 	$cron->addJob( "exchangerates", "D", "" );
 	$cron->addJob( "error_logs_cleanup", "D", "" );
 	}
