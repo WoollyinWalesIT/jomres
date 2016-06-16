@@ -111,7 +111,7 @@ class j06000viewproperty
 		$roomslistlink = array ();
 		
 		//tariffs link
-		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
+		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 && !get_showtime('is_jintour_property' ))
 			{
 			if ( $mrConfig[ 'showTariffsInline' ] == "1" )
 				{
