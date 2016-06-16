@@ -56,9 +56,6 @@ class jomres_language
 		$this->shortcodes = $this->get_shortcodes();
 		$key = array_search( $jomresConfig_lang, $this->shortcodes ); 
 		set_showtime( 'lang_shortcode', $key );
-		
-		//load default/context language file
-		$this->get_language();
 		}
 
 	function get_language( $property_type = "" )
