@@ -359,7 +359,7 @@ class jomres_properties
 						`property_tel` = '".$this->property_tel."',
 						`property_fax` = '".$this->property_fax."',
 						`property_email` = '".$this->property_email."',
-						`property_features` = '".$this->property_features."',
+						`property_features` = ',".$this->property_features.",',
 						`property_key` = '".(string)$this->price."',
 						`property_mappinglink` = '".$this->property_mappinglink."',
 						`property_description` = '".$this->property_description."',
