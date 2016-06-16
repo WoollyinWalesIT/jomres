@@ -1318,6 +1318,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j02110savecustomertypeorder.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j02112publishcustomertype.class.php' );
 		$this->add_obs_file( $this->dir_admin_functions . 'propertyfeatures.functions.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j06000cron_optimise.class.php' );
 		}
 
 	function add_obs_file( $path_and_file )
