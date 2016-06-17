@@ -1056,7 +1056,7 @@ jr_define( '_JOMRES_COM_A_CRON_DESC', 'Pseudocron информации, соде
 jr_define( '_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Установлено cron minicomponents. Для выполнения индивидуального задания используйте ссылку, указанную ниже. Обратите внимание, что задачи cron не производит никакой продукции, так что Вы не увидите никакой информации на страницу. Вместо этого, смотрите журнал заданий ниже.' );
 global $jomresConfig_secret;
 jr_define( '_JOMRES_COM_A_CRON_METHOD', 'Способ' );
-jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', "Если у вас нет доступа к cron рабочих мест, установить этот Minicomponent, в противном случае создать cron и запустить его<br /> <i>curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . get_showtime("secret") . "> /dev/null</i> " );
+jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', "Если у вас нет доступа к cron рабочих мест, установить этот Minicomponent, в противном случае создать cron и запустить его<br /> <i>curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . base64_encode(get_showtime("secret")) . "> /dev/null</i> " );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING', 'Отображение журнала в браузере' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING_DESC', 'Работает только если указан метод Minicomponent.' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGINGENABLED', 'Ведение журнала включено' );

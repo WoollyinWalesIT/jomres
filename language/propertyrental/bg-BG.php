@@ -1036,7 +1036,7 @@ jr_define( '_JOMRES_COM_A_CRON_DESC', 'Тази функционалност е 
 jr_define( '_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Да се използва от системния администратор.' );
 global $jomresConfig_secret;
 jr_define( '_JOMRES_COM_A_CRON_METHOD', 'Метод' );
-jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', "Да се използва от системния администратор<br /> <i>curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . get_showtime("secret") . "> /dev/null</i> " );
+jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', "Да се използва от системния администратор<br /> <i>curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . base64_encode(get_showtime("secret")) . "> /dev/null</i> " );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING', 'Логване в браузера' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING_DESC', 'Да се използва от системния администратор.' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGINGENABLED', 'Логването е активирано' );
