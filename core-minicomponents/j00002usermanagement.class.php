@@ -51,7 +51,7 @@ class j00002usermanagement
 		set_showtime( "jr_user_ready", true );
 		
 		//partners TODO: move to jr_user class as new access level
-		if ( $thisJRUser->id > 0)
+		if ( $thisJRUser->id > 0 && !jomres_cmsspecific_areweinadminarea())
 			{
 			jr_import('jomres_partners');
 			$partners = new jomres_partners();

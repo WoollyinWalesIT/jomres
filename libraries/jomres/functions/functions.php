@@ -1189,7 +1189,7 @@ function detect_property_uid()
 		}
 	
 	//TODO remove this, but too much stuff depends on it at the moment..
-	if ( $thisJRUser->userIsManager ) 
+	if ( $thisJRUser->userIsManager && !jomres_cmsspecific_areweinadminarea() ) 
 		$property_uid = $defaultProperty;
 
 	if ( get_showtime( 'task' ) == "showRoomDetails" )
