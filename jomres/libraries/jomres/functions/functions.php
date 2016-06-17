@@ -4668,7 +4668,8 @@ function this_cms_is_joomla()
 		_JOMRES_DETECTED_CMS != "joomla32"  && 
 		_JOMRES_DETECTED_CMS != "joomla33"  && 
 		_JOMRES_DETECTED_CMS != "joomla34"  &&
-		_JOMRES_DETECTED_CMS != "joomla35"
+		_JOMRES_DETECTED_CMS != "joomla35"  &&
+		_JOMRES_DETECTED_CMS != "joomla36"
 		) return false;
 
 	return true;
