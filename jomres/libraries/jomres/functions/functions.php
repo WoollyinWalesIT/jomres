@@ -229,7 +229,7 @@ function getCurrentUrl($full = true)
 
 function this_cms_is_wordpress()
 	{
-	if ( _JOMRES_DETECTED_CMS != "wordpress3" )
+	if ( _JOMRES_DETECTED_CMS != "wordpress" )
 		{
 		return false;
 		}
@@ -773,7 +773,7 @@ function using_bootstrap()
 
 	if ( !isset( $jrConfig[ 'use_bootstrap_in_frontend' ] ) )
 		{
-		if ( _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35")
+		if ( _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35" || _JOMRES_DETECTED_CMS == "joomla36")
 			{
 			$jrConfig[ 'use_bootstrap_in_frontend' ] = "1";
 			}
