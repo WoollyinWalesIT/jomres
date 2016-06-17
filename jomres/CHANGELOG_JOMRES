@@ -1,3 +1,17 @@
+<h3>Jomres 9.8.3 17/06/2016</h3>
+
+<span class="label label-warning">Change</span> Removed optimise cron job from repository.
+<span class="label label-warning">Change</span> Added property name to admin notification email RE approval.
+<span class="label label-warning">Change</span> Changed how languages are pulled into framework.
+<span class="label label-warning">Change</span> Added a check to view property to ensure that tariffs link isn't shown for Jintour properties.
+<span class="label label-warning">Change</span> Improved jomres_properties.class.php, allows us to search on properties even when the first feature doesn't have text.
+<span class="label label-warning">Change</span> Added initial changes for Joomla 3.6.
+<span class="label label-warning">Change</span> Renamed library for Wordpress CMS bridging from wordpress3 to wordpress, as it's more accurate.
+<span class="label label-warning">Change</span> Added link to ASAModule pages to Help section.
+
+<span class="label label-important label-danger">Fix</span>Resolved an issue with media centre extras and room feature images.
+<span class="label label-important label-danger">Fix</span>Corrected how "secret" is output for use by cronjobs.
+
 <h3>Jomres 9.8.2 13/06/2016</h3>
 
 <span class="label label-success">Feature</span> Added functionality that allows us to anonymously track usage information of Jomres. Must be manually enabled by Site Admin ( Opt-in, not Opt-out ).
