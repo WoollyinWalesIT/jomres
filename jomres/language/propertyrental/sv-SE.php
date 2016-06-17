@@ -1036,7 +1036,7 @@ jr_define( '_JOMRES_COM_A_CRON_DESC', 'Pseudo periodisk uppdragsinformation. Pse
 jr_define( '_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Installerat periodisk plugin. För att köra ett enskilt periodiskt uppdrag använd länkarna nedan. Observera att pseudo periodiska uppdrag inte returnerar något så du kommer inte att se någon information på sidan. Istället, se uppdragsloggen nedan.' );
 global $jomresConfig_secret;
 jr_define( '_JOMRES_COM_A_CRON_METHOD', 'Metod' );
-jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', "Om du inte har tillgång till periodiska uppdrag, sätt detta på Plugin, skapa annars ett periodiskt uppdrag och kör den<br /> <i>curl -s" . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . get_showtime("secret") . "> /dev/null</i>" );
+jr_define( '_JOMRES_COM_A_CRON_METHOD_DESC', "Om du inte har tillgång till periodiska uppdrag, sätt detta på Plugin, skapa annars ett periodiskt uppdrag och kör den<br /> <i>curl -s" . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . base64_encode(get_showtime("secret")) . "> /dev/null</i>" );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING', 'Visa loggar i webbläsaren' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGING_DESC', 'Fungerar bara om metoden är satt på Plugin.' );
 jr_define( '_JOMRES_COM_A_CRON_LOGGINGENABLED', 'Loggning aktiverat' );

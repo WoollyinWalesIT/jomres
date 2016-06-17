@@ -1006,7 +1006,7 @@ jr_define("_JOMRES_COM_A_CRON_TITLE","クロン・ジョブの設定とログ");
 jr_define("_JOMRES_COM_A_CRON_DESC","スード・コロン・ジョブ情報：本機能は、請求書とコミッションのハンドラーに必要です。");
 jr_define("_JOMRES_COM_A_CRON_IMMEDIATERUN","インストールされているクロンのミニコンポーネント：特定なクロン・ジョブの実行は、以下のリンクを利用ください。クロン・ジョブは出力がないので、そのページに何も表示されません。ジョッブの結果は以下のジョブのログに参照して下さい。");
 jr_define("_JOMRES_COM_A_CRON_METHOD","メソッド");
-jr_define("_JOMRES_COM_A_CRON_METHOD_DESC","クロン・ジョブにアクセスがない場合には、「ミニコンポーネント」に設定して下さい。アクセスがある場合には、クロン・ジョッブを作成し実行してください。<br /> curl -s http://ドメイン名.jp/index.php?option=com_jomres&tmpl=component&format=raw&jrajax=1&Itemid=472&lang=en&task=cronjobs&tmpl=component&no_html=1&secret=D1MV44V7gWOiTAo1> /dev/null");
+jr_define("_JOMRES_COM_A_CRON_METHOD_DESC","クロン・ジョブにアクセスがない場合には、「ミニコンポーネント」に設定して下さい。アクセスがある場合には、クロン・ジョッブを作成し実行してください。<br /> <i>curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret=" . base64_encode(get_showtime("secret")) . "> /dev/null</i>");
 jr_define("_JOMRES_COM_A_CRON_LOGGING","ブラウザーでロッグを表示する");
 jr_define("_JOMRES_COM_A_CRON_LOGGING_DESC","メソドが「ミニ・コンポーネント」に設定している限り実行されます。");
 jr_define("_JOMRES_COM_A_CRON_LOGGINGENABLED","ログイングしますか");
