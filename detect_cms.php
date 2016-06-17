@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php') ) 
 	{ 
-	define("_JOMRES_DETECTED_CMS","wordpress3"); 
+	define("_JOMRES_DETECTED_CMS","wordpress"); 
 	define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS); 
 	} 
 
@@ -63,6 +63,11 @@ if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'libraries' . JRDS . 'cms'
 	if ( $vshort_version == '3.5' )
 		{
 		define( "_JOMRES_DETECTED_CMS", "joomla35" );
+		define( "_JOMRES_DETECTED_CMS_SPECIFIC_FILES", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "jomres" . JRDS . "cms_specific" . JRDS . _JOMRES_DETECTED_CMS . JRDS );
+		}
+	if ( $vshort_version == '3.6' )
+		{
+		define( "_JOMRES_DETECTED_CMS", "joomla36" );
 		define( "_JOMRES_DETECTED_CMS_SPECIFIC_FILES", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "libraries" . JRDS . "jomres" . JRDS . "cms_specific" . JRDS . _JOMRES_DETECTED_CMS . JRDS );
 		}
 	}

@@ -508,14 +508,6 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_javascript . 'jquery.selectCombo1.2.6.js' );
 		$this->add_obs_file( $this->dir_javascript . 'jquery.jgrowl.js.1.2.0' );
 
-		$this->add_obs_file( $this->dir_libraries . JOMRES_ROOT_DIRECTORY . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'cms_specific_functions.php' );
-		$this->add_obs_file( $this->dir_libraries . JOMRES_ROOT_DIRECTORY . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'cms_specific_installation.php' );
-		$this->add_obs_file( $this->dir_libraries . JOMRES_ROOT_DIRECTORY . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'cms_specific_pre_installation.php' );
-		$this->add_obs_file( $this->dir_libraries . JOMRES_ROOT_DIRECTORY . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'cms_specific_upgrade.php' );
-		$this->add_obs_file( $this->dir_libraries . JOMRES_ROOT_DIRECTORY . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'cms_specific_urls.php' );
-		$this->add_obs_file( $this->dir_libraries . JOMRES_ROOT_DIRECTORY . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'index.html' );
-		$this->add_obs_file( $this->dir_libraries . JOMRES_ROOT_DIRECTORY . JRDS . 'cms_specific' . JRDS . 'wordpress' . JRDS . 'init_config_vars.php' );
-
 		$this->add_obs_file( $this->dir_templates_administrator . 'jomres_cpanel.php' );
 		$this->add_obs_file( $this->dir_javascript . 'tablepaginator.js' );
 		$this->add_obs_file( $this->dir_javascript . 'tablesort.js' );
@@ -762,7 +754,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . JRDS . 'confirmation_letter.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . JRDS . 'confirmation_letter.html' );
 
-		if ( _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35") 
+		if ( _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35" || _JOMRES_DETECTED_CMS == "joomla36") 
 			$this->add_obs_file( $this->dir_components_administrator . 'admin.jomres.php' );
 
 		if (is_dir($this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'jomressa'))
@@ -1319,6 +1311,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j02112publishcustomertype.class.php' );
 		$this->add_obs_file( $this->dir_admin_functions . 'propertyfeatures.functions.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j06000cron_optimise.class.php' );
+		
+		$this->add_obs_dir( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'wordpress3' . JRDS );
 		}
 
 	function add_obs_file( $path_and_file )
