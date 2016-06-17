@@ -417,8 +417,12 @@ class j02990showconfirmation
 						{
 						$tax_rate_id = $tpextra[ 'tax_code_id' ];
 						$rate        = (float) $jrportal_taxrate->taxrates[ $tax_rate_id ][ 'rate' ];
-						$thisTax     = ( $tmpTotal / 100 ) * $rate;
-						$tmpTotal    = $tmpTotal + $thisTax;
+						
+						if ( $mrConfig['prices_inclusive'] == 0 && $rate > 0 )
+							{
+							$thisTax     = ( $tmpTotal / 100 ) * $rate;
+							$tmpTotal    = $tmpTotal + $thisTax;
+							}
 						}
 					$extra_parts[ 'NAME' ]  = $tpextra[ 'description' ];
 					$extra_parts[ 'PRICE' ] = output_price( $tmpTotal );

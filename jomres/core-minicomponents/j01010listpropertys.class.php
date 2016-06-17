@@ -438,7 +438,7 @@ class j01010listpropertys
 
 							$tmpl          = new patTemplate();
 							$tmpl->addRows( 'property_reviews', $property_reviews );
-							$tmpl->setRoot( $layout_path_to_template );
+							$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 							$tmpl->readTemplatesFromInput( 'list_properties_reviews_snippet.html' );
 							$property_deets [ 'REVIEWS_SNIPPET' ] = $tmpl->getParsedTemplate();
 							}
