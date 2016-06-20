@@ -55,13 +55,6 @@ else
 
 $siteConfig->set_setting( "jomresItemid", $jomresItemid );
 
-$disable_cache = false;
-
-if ( isset( $_REQUEST[ "task" ] ) )
-	{
-	if ( $_REQUEST[ "task" ] == "handlereq" ) $disable_cache = true;
-	}
-
 $index = "index.php";
 $tmpl  = "";
 if ( !isset( $_GET[ 'tmpl' ] ) ) $_GET[ 'tmpl' ] = false;
@@ -69,14 +62,14 @@ if ( !isset( $_GET[ 'tmpl' ] ) ) $_GET[ 'tmpl' ] = false;
 if ( !isset($jrConfig[ 'isInIframe' ]))
 	$jrConfig[ 'isInIframe' ] = "0";
 
-if ( ( $jrConfig[ 'isInIframe' ] == (bool) "1" || $_GET[ 'tmpl' ] == get_showtime("tmplcomponent") ) && !isset( $_REQUEST[ 'nofollowtmpl' ] ) && !jomres_cmsspecific_areweinadminarea() )
+if ( ( $jrConfig[ 'isInIframe' ] == "1" || $_GET[ 'tmpl' ] == get_showtime("tmplcomponent") ) && !isset( $_REQUEST[ 'nofollowtmpl' ] ) && !jomres_cmsspecific_areweinadminarea() )
 	{
-	$index = "index.php";
 	$tmpl = '&tmpl='.get_showtime("tmplcomponent");
 	define( "JOMRES_WRAPPED", 1 );
 	if (!isset($_REQUEST['tmpl']))
 		{
 		$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."&tmpl=jomres";
+		var_dump($url);
 		jomresRedirect($url);
 		}
 	}
