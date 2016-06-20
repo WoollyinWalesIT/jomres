@@ -195,7 +195,7 @@ if (!class_exists('JomresRouter'))
 					$searchParam              = $segments[ 1 ];
 					$vars[ 'send' ]           = "Search";
 					$vars[ 'calledByModule' ] = 'mod_jomsearch_m0';
-					$vars[ 'region' ] = $segments[ 2 ];
+					$vars[ 'region' ] = find_region_id($segments[ 2 ]);
 					break;
 				case jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false ) ):
 					$searchParam              = $segments[ 1 ];
