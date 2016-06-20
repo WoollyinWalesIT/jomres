@@ -15,7 +15,7 @@ if ( !defined( '_JOMRES_INITCHECK' ) )
 	define( '_JOMRES_INITCHECK', 1 );
 
 require_once (dirname(__FILE__).'/../../jomres_root.php');
-require_once( JPATH_BASE . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'integration.php' );
+require_once( JPATH_BASE . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'framework.php' );
 
 if (!class_exists('JomresRouter'))
 	{
@@ -170,11 +170,6 @@ if (!class_exists('JomresRouter'))
 		
 		function JomresParseRoute( $segments )
 			{
-			if ( !defined( '_JOMRES_INITCHECK' ) ) 
-				define( '_JOMRES_INITCHECK', 1 );
-			
-			require_once( JPATH_BASE . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'integration.php' );
-			
 			$vars = array ();
 			
 			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
@@ -200,7 +195,7 @@ if (!class_exists('JomresRouter'))
 					$searchParam              = $segments[ 1 ];
 					$vars[ 'send' ]           = "Search";
 					$vars[ 'calledByModule' ] = 'mod_jomsearch_m0';
-					$vars[ 'region' ] = $segments[ 2 ];
+					$vars[ 'region' ] = find_region_id($segments[ 2 ]);
 					break;
 				case jomres_cmsspecific_stringURLSafe( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false ) ):
 					$searchParam              = $segments[ 1 ];
@@ -235,7 +230,6 @@ if (!class_exists('JomresRouter'))
 			
 			return $vars;
 			}
-		
 		}
 	}
 
