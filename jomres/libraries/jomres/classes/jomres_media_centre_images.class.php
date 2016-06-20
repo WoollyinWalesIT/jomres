@@ -168,7 +168,11 @@ class jomres_media_centre_images
 		$temp_array = array ();
 		foreach ( $property_uids as $id )
 			{
-			if ( !array_key_exists( $id, $this->multi_query_images ) ) $temp_array[ ] = $id;
+			foreach ( $requested_types as $t )
+				{
+				if ( !array_key_exists( $id[$t], $this->multi_query_images ) ) 
+					$temp_array[ ] = $id;
+				}
 			}
 		$property_uids = $temp_array;
 		unset ( $temp_array );
@@ -185,7 +189,7 @@ class jomres_media_centre_images
 				$all_types = array();
 				foreach ($resource_types as $type)
 					{
-					if (is_array($type) && isset($type['resource_type']))
+					if (is_array($type) && isset($type['resource_type']) && in_array($type['resource_type'], $requested_types))
 						$all_types[] = $type['resource_type'];
 					}
 				}
