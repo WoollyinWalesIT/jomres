@@ -332,7 +332,9 @@ try
 					$tmpguest = $tmpBookingHandler->tmpguest;
 					
 					$data  = array ( 'tmpbooking' => $tmpbooking, 'tmpguest' => $tmpguest );
-					$query = "INSERT INTO #__jomres_booking_data_archive SET `data`='" . serialize( $data ) . "',`date`='" . date( 'Y-m-d H:i:s' ) . "', `tag` = '".$tag."'";
+					$data = str_replace("'", "''", serialize( $data ));
+					
+					$query = "INSERT INTO #__jomres_booking_data_archive SET `data`='" . $data . "',`date`='" . date( 'Y-m-d H:i:s' ) . "', `tag` = '".$tag."'";
 					doInsertSql( $query, '' );
 					}
 				
