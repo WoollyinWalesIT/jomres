@@ -1,6 +1,18 @@
 <?php
 // no direct access
 defined('_JEXEC') or die;
+
+if (!defined('_JOMRES_INITCHECK'))
+		define( '_JOMRES_INITCHECK', 1 );
+
+	require_once (dirname(__FILE__).'/../../jomres_root.php');
+			
+	if (file_exists(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/core-plugins/alternative_init/alt_init.php'))
+		{
+		require_once(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/core-plugins/alternative_init/alt_init.php');
+		}
+	else
+		echo "Error: Alternative Init plugin is not installed.";
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>">
