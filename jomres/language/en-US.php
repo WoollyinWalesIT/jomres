@@ -2822,3 +2822,5 @@ jr_define( "_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LIST_ROOM_TYPES", "Use the
 jr_define( "_JOMRES_PROPERTYTYPE_FLAG_TOURS", "Tours" );
 jr_define( "_JOMRES_PROPERTYTYPE_FLAG_REALESTATE", "No bookings/Real estate ( simple listing )" );
 
+jr_define( '_JOMRES_TRACKING_ENABLE', 'Send anonymous tracking data?' );
+jr_define( '_JOMRES_TRACKING_ENABLE_DESC', 'Select Yes to send anonymous tracking data to Jomres.net to help us understand better how you use the system.' );
