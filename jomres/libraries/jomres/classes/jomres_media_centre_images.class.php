@@ -170,7 +170,7 @@ class jomres_media_centre_images
 			{
 			foreach ( $requested_types as $t )
 				{
-				if ( !array_key_exists( $id[$t], $this->multi_query_images ) ) 
+				if ( !isset( $this->multi_query_images[$id][$t] ) ) 
 					$temp_array[ ] = $id;
 				}
 			}
