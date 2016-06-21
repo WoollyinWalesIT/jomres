@@ -201,7 +201,7 @@ function output_fatal_error($e)
 		{
 		$pageoutput = array(array ( "_JOMRES_ERROR"=>jr_gettext("_JOMRES_ERROR", '_JOMRES_ERROR', false ) , "_JOMRES_ERROR_MESSAGE"=>jr_gettext("_JOMRES_ERROR_MESSAGE", '_JOMRES_ERROR_MESSAGE', false ) ));
 		$tmpl		  = new patTemplate();
-		$tmpl->setRoot( $path );
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		$tmpl->readTemplatesFromInput( "error_production.html" );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		echo $tmpl->getParsedTemplate();
