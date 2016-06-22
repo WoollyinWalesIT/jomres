@@ -1389,21 +1389,24 @@ function prepPropertyTypeSearch()
 	$r[ 'ptype_desc' ] = $searchAll;
 	$result[ ]         = $r;
 	
-	$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-	$ptypeIds=$basic_property_details->all_property_types;
-	$allPtypeTitles=$basic_property_details->all_property_type_titles;
-
-	foreach ( $ptypeIds as $ptypeid=>$ptype )
+	$jomres_property_types = jomres_singleton_abstract::getInstance( 'jomres_property_types' );
+	$jomres_property_types->get_all_property_types();
+		
+	if ( count( $jomres_property_types->property_types ) > 0 )
 		{
-		$r                 = array ();
-		$r[ 'id' ]         = $ptypeid;
-		$r[ 'ptype' ]      = $allPtypeTitles[$ptypeid];
-		$r[ 'ptype_desc' ] = $ptype;
-		//this query is executed in a foreach just to count properties of each property type in the system, it`s too heavy. is it needed somewhere?
-		//$query             = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND ptype_id = '" . (int) $r[ 'id' ] . "'";
-		//$number            = doSelectSql( $query );
-		//$r[ 'number' ]     = count( $number );
-		$result[ ]         = $r;
+		foreach ( $jomres_property_types->property_types as $pt )
+			{
+			$r                 = array ();
+			
+			if ( $pt['published'] == 1 )
+				{
+				$r[ 'id' ]         = $pt['id'];
+				$r[ 'ptype' ]      = $pt['ptype'];
+				$r[ 'ptype_desc' ] = $pt['ptype_desc'];
+
+				$result[ ]         = $r;
+				}
+			}
 		}
 
 	//var_dump($result);exit;
