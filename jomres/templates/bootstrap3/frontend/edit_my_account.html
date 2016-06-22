@@ -11,15 +11,6 @@
 			});
 		});
 
-	jomresJquery.validator.setDefaults({
-		highlight: function (input) {
-			jomresJquery(input).addClass("ui-state-highlight");
-		},
-		unhighlight: function (input) {
-			jomresJquery(input).removeClass("ui-state-highlight");
-		}
-	});
-
 	jomresJquery(document).ready(function () {
 		jomresJquery("#reviewForm").validate({
 			rules: {
@@ -48,6 +39,16 @@
 				form.submit();
 			},
 		});
+		
+		jomresJquery.validator.setDefaults({
+			highlight: function (input) {
+				jomresJquery(input).addClass("alert alert-warning");
+			},
+			unhighlight: function (input) {
+				jomresJquery(input).removeClass("alert alert-warning");
+			}
+		});
+		
 		jomresJquery("#messageBox").hide();
 	});
 	//-->
