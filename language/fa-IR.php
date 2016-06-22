@@ -184,7 +184,7 @@ jr_define("_JOMRES_FRONT_MR_BOOKIN_NOGUESTSDUEIN","مهمانی امروز وا�
 jr_define("_JOMRES_FRONT_MR_BOOKOUT_TITLE","مهمان خارج شد");
 jr_define("_JOMRES_FRONT_MR_BOOKOUT_NOGUESTSDUEOUT","مهمانی امروز خارج نمی شود");
 jr_define("_JOMRES_COM_A_SUPPLIMENTS","supplements");
-jr_define("_JOMRES_COM_A_TARIFFS","تعرفه و ملک پول");
+jr_define("_JOMRES_COM_A_TARIFFS","تعرفه و واحد پول");
 jr_define("_JOMRES_COM_A_DISCOUNTS","تخفیف");
 jr_define("_JOMRES_COM_A_JOMRES_FILE_UPLOADS","ارسال فایل");
 jr_define("_JOMRES_COM_A_CURRENT_SETTINGS","تنظیمات جاری");
@@ -218,7 +218,7 @@ jr_define("_JOMRES_COM_ADDSERVICE_TOTALVALUE","بها کل موارد دیگر")
 jr_define("_JOMRES_COM_ADDSERVICE_SAVEMESSAGE","مورد به فاکتور اضافه شد");
 jr_define("_JOMRES_UPLOAD_IMAGE","ارسال تصویر");
 jr_define("_JOMRES_FILE_UPLOAD","ارسال فایل");
-jr_define("_JOMRES_FILE_ERROR_TYPE","شما فقط اجازه ارسال این نوع فایل را دارید:\n");
+jr_define("_JOMRES_FILE_ERROR_TYPE","\n:شما فقط اجازه ارسال این نوع فایل را دارید");
 jr_define("_JOMRES_FILE_ERROR_EMPTY","لطفا فایل را برای ارسال انتخاب کنید");
 jr_define("_JOMRES_FILE_ERROR_NAME","نام فایل باید فقط از حروف و عدد بدون فاصله تشکیل شده باشد");
 jr_define("_JOMRES_FILE_ERROR_SIZE","سایز فایل بیشتر از سایز تعریف شده است");
@@ -305,12 +305,12 @@ jr_define("_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR","آیا روزهای قابل
 jr_define("_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC","این گزینه را بر روی بله قرار دهید اگر میخواهید روزهای قابل رزرو نمایش داده شود");
 jr_define("_JOMRES_FRONT_AVAILABILITY","قابل ارائه");
 jr_define("_JOMRES_FRONT_CALENDAR_CLICKDATES","بر روی یک روز خالی کلیک کنید و فرم رزرو را مشاهده کنید");
-jr_define("_JOMRES_FRONT_BLACKBOOKING","Black bookings");
-jr_define("_JOMRES_FRONT_BLACKBOOKING_NEW","New Black booking");
+jr_define("_JOMRES_FRONT_BLACKBOOKING","روزهای خارج از سرویس");
+jr_define("_JOMRES_FRONT_BLACKBOOKING_NEW","تعریف روزهای جدید برای از سرویس خارج کردن ملک");
 jr_define("_JOMRES_FRONT_DELETEGUEST","حذف مهمان");
 jr_define("_JOMRES_FRONT_DELETEGUEST_GUESTDELETED","مهمان حذف شد");
 jr_define("_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST","قادر به حذف این مهمان نیستید، رزرو دیگری برای ان مهمان وجود دارد");
-jr_define("_JOMRES_COM_INVOICE_ACTUALROOMCOST","قیمت واقعی:");
+jr_define("_JOMRES_COM_INVOICE_ACTUALROOMCOST",":قیمت واقعی");
 jr_define("_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING","مناسب افراد سیگاری");
 jr_define("_JOMRES_FRONT_ROOMSMOKING_EITHER","امکان کشیدن سیگار وجود دارد");
 jr_define("_JOMRES_COM_CALENDAROUTPUT","فرمت خروجی تقویم");
@@ -370,8 +370,8 @@ jr_define("_JOMRES_MR_AUDIT_INSERT_EXTRA","ایجاد اضافه");
 jr_define("_JOMRES_MR_AUDIT_UPDATE_EXTRA","بروزرسانی اضافه");
 jr_define("_JOMRES_MR_AUDIT_DELETE_EXTRA","حذف اضافه");
 jr_define("_JOMRES_MR_AUDIT_PUBLISH_EXTRA","انتشار اضافه");
-jr_define("_JOMRES_MR_AUDIT_BLACKBOOKING","ایجاد لیست سیاه");
-jr_define("_JOMRES_MR_AUDIT_BLACKBOOKING_DELETE","حذف لیست سیاه");
+jr_define("_JOMRES_MR_AUDIT_BLACKBOOKING","ایجاد زمان مسدود");
+jr_define("_JOMRES_MR_AUDIT_BLACKBOOKING_DELETE","حذف زمان مسدود");
 jr_define("_JOMRES_COM_MR_EXTRA_TITLE","موارد اضافه");
 jr_define("_JOMRES_COM_MR_EXTRA_DESC","توضیحات");
 jr_define("_JOMRES_COM_MR_EXTRA_NAME","نام");
@@ -383,29 +383,29 @@ jr_define("_JOMRES_FRONT_MR_MENU_ADMIN_EXTRAS","مدیریت موارد اضاف
 jr_define("_JOMRES_COM_A_EXTRAS","آیا موارد اضافه در هنگام رزرو نمایش داده شود؟");
 jr_define("_JOMRES_COM_A_EXTRAS_DESC","اگر میخواهید موارد اضافه در هنگام رزرو نمایش داده شود این گزینه را انتخاب کنید");
 jr_define("_JOMRES_FRONT_MR_BOOKING_EXTRAS_HELP","موارد اضافه قابل انتخاب");
-jr_define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_BBSTARTS","تاریخ شروع لیست سیاه");
+jr_define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_BBSTARTS","تاریخ شروع زمان مسدود");
 jr_define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_BBSERVICERESUMES","تاریخ شروع مجدد فعالیت");
-jr_define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS","لیست سیاه");
+jr_define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS","زمان مسدود");
 jr_define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_STAGE2_ERROR","مشکل در انجام رزرو، یک یا چند ملک خالی نیست");
-jr_define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_ROOMSSUBJECT","ملک در لیست سیاه قرار دارد");
-jr_define("_JOMRES_COM_MR_BLACKBOOKINGS_VIEWBLACKBOOKING","نمایش لیست سیاه");
-jr_define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_NOBBOOKINGS","لیست سیاهی برای نمایش وجود ندارد");
+jr_define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_ROOMSSUBJECT","ملک در زمان مسدود قرار دارد");
+jr_define("_JOMRES_COM_MR_BLACKBOOKINGS_VIEWBLACKBOOKING","نمایش زمان مسدود");
+jr_define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_NOBBOOKINGS","زمان مسدودی برای نمایش وجود ندارد");
 jr_define("_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS","تعداد ستاره ها");
 jr_define("_JOMRES_COM_A_SMOKING","نمایش گزینه های مربوط به دخانیات");
 jr_define("_JOMRES_COM_A_SMOKING_DESC","اگر میخواهید گزینه های مربوط به دخانیات نمایش داده شود این را انتخاب کنید");
 jr_define("_JOMRES_COM_A_RESET","تنظیم مجدد");
-jr_define("_JOMRES_COM_A_PAYPAL_CANCELLED","رزرو کنسل شد");
-jr_define("_JOMRES_FRONT_MR_SEARCH_HERE","جستجو کنید برای:");
+jr_define("_JOMRES_COM_A_PAYPAL_CANCELLED","رزرو لغو شد");
+jr_define("_JOMRES_FRONT_MR_SEARCH_HERE",":جستجو کنید برای");
 jr_define("_JOMRES_COM_A_SMOKING_OPTION","گزینه پیش فرض برای دخانیات");
-jr_define("_JOMRES_COM_A_CURRENCYSYMBOL","علامت ملک پول");
+jr_define("_JOMRES_COM_A_CURRENCYSYMBOL","علامت واحد پول");
 jr_define("_JOMRES_COM_A_CURRENCYSYMBOL_DESC","Eg &amp;pound; Please note that you should use the HTML entities code for the required symbol. For a list of these entities please visit w3schools");
-jr_define("_JOMRES_COM_A_CURRENCYCODE","کد ملک پول");
-jr_define("_JOMRES_COM_A_CURRENCYCODE_DESC","Eg GBP. This is used in the email to the customer confirming their booking.");
+jr_define("_JOMRES_COM_A_CURRENCYCODE","کد واحد پول");
+jr_define("_JOMRES_COM_A_CURRENCYCODE_DESC","Eg GBP. این کد در ایمیل تایید نهایی که برای مشتری ارسال میشود استفاده میشود");
 jr_define("_JOMRES_COM_A_CLICKFORMOREINFORMATION","توضیحات بیشتر");
 jr_define("_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO","محدود سازی فاصله رزرو تا اقامت");
 jr_define("_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC","اگر میخواهید فاصله زمان رزرو تا امروز را محدود کنید این گزینه را انتخاب کنید، در صورت انتخاب فاصله بیشتر، تاریخ امروز به صورت پیشفرض نمایش داده میشود");
-jr_define("_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS","تعداد روزهایی مورد نظر برای محدود کردن رزرو تا اقامت:");
-jr_define("_JOMRES_COM_A_TAX_WARNING","NOTE: It is not recommended that you set both of the following options to Yes, you should use only one of the two tax calculations available to you.");
+jr_define("_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS",":تعداد روزهایی مورد نظر برای محدود کردن رزرو تا اقامت");
+jr_define("_JOMRES_COM_A_TAX_WARNING","NOTE: بهتر است هر دو این حالت های مالیات را انتخاب نکنید و فقط یکی از آنها که مناسب کسب و کار شما است انتخاب شود");
 jr_define("_JOMRES_COM_FRONT_ROOMTAX","مالیات");
 jr_define("_JOMRES_COM_A_ROOMTAX","مالیات ملک");
 jr_define("_JOMRES_COM_A_ROOMTAX_DESC","Designed for the American market. These are the resource tax amounts that will be charged to the guest. You can charge a combination and/or of fixed and percentage figures. Note that these taxes are only applied to the cost of the resource.");
@@ -454,7 +454,7 @@ jr_define("_JOMRES_COM_MONTHSTOSHOW","ماه های تقویم");
 jr_define("_JOMRES_COM_MONTHSTOSHOW_DESC","در قسمت در دسترس بودن ملک چند ماه در تقویم نمایش داده شود");
 jr_define("_JOMRES_INVOICE_SIGNEDONBEHALFOF","امضا از طرف");
 jr_define("_JOMRES_COM_A_GATEWAYLIST","درگاه");
-jr_define("_JOMRES_COM_A_CANCEL","کنسل");
+jr_define("_JOMRES_COM_A_CANCEL","لغو");
 jr_define("_JOMRES_FRONT_BLACKBOOKING_DESC","Select the dates that you want to apply the black bookings for. When you have selected the appropriate dates, click the \"apply\" button to re-check availability. <br/> 
 <br/> 
 Choose the room(s) you wish to take out of service. <br>If a resource does not have a check mark against it, it cannot be included in the black booking until any outstanding bookings have been completed/cancelled.<br/>");
@@ -474,15 +474,15 @@ jr_define("_JOMRES_MR_AUDIT_CREDITCARD_UPDATED","کارت بانکی به روز
 jr_define("_JOMRES_MR_CREDITCARD_EDIT","ویرایش کارت بانکی");
 jr_define("_JOMRES_COM_A_EDITICON","ویرایش اندازه آیکن");
 jr_define("_JOMRES_JR_A_IMAGEHANDLING_BATCHUPLOAD","ارسال تصاویر چند تایی");
-jr_define("_JOMRES_JR_A_IMAGEHANDLING_IMAGESALREADYINDIR","Images already in directory");
+jr_define("_JOMRES_JR_A_IMAGEHANDLING_IMAGESALREADYINDIR","تصویر از قبل در پوشه موجود است");
 jr_define("_JOMRES_COM_A_SLIDESHOWS","اسلاید");
 jr_define("_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWLINK","نمایش لینک به اسلاید؟");
 jr_define("_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE","در توضیحات ملک، اسلاید نمایش داده شود؟");
 jr_define("_JOMRES_COM_A_SLIDESHOW_THUMBSIZE","عرض نمایه برای اسلاید");
 jr_define("_JOMRES_FRONT_SLIDESHOW","اسلاید");
-jr_define("_JOMRES_COM_A_SLIDESHOWS_NOIMAGES","<br />Sorry, no images available for this business. Please upload some images using the batch upload feature if you wish to use the slideshow feature.");
+jr_define("_JOMRES_COM_A_SLIDESHOWS_NOIMAGES","<br />متاسفانه تصویری برای این ملک وجود ندارد، در صورت تمایل برای استفاده از اسلایدها تصویر ارسال کنید");
 jr_define("_JOMRES_COM_A_TARIFFS_SHOWTARIFFSLINK","نمایش لینک به تعرفه ها؟");
-jr_define("_JOMRES_COM_A_POPUPSALLOWED","Popups allowed?");
+jr_define("_JOMRES_COM_A_POPUPSALLOWED","اجازه نمایش به پاپ آپ داده شود ؟");
 jr_define("_JOMRES_COM_A_POPUPSALLOWED_DESC","If set to no, then links that normally would have opened in a pop will open inline instead.");
 jr_define("_JOMRES_FRONT_IMAGEUPLOADS","ارسال تصاویر برای اسلاید");
 jr_define("_JOMRES_A_TABS_MISC","متفرقه");
@@ -510,7 +510,7 @@ jr_define("_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF","تعرفه های خالص
 jr_define("_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES","میانگین");
 jr_define("_JOMRES_COM_A_TARIFFS_MODEL","مدل تعرفه دلخواه خود را انتخاب کنید");
 jr_define("_JOMRES_COM_A_TARIFFS_MODEL_DESC","شما 2 انتخاب برای محاسبه تعرفه دارید، نوع اول تعرفه خالص است که به صورت بها مشخص برای کل روزها محاسبه میشود. نوع دوم تعرفه میانگین است که توسط سایت بر اساس قیمت روزهای مختلف محاسبه میشود");
-jr_define("_JOMRES_COM_A_SHOWDEPARTUREINPUT","Show departure date input?");
+jr_define("_JOMRES_COM_A_SHOWDEPARTUREINPUT","گزینه وارد کردن تاریخ خروج نمایش داده شود ؟");
 jr_define("_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC","Set this to No if you don't want to show the departure date input box. Only use this if you know what you're doing, as the departure date in bookings will always be set to the day after the arrival date.");
 jr_define("_JOMRES_COM_PROPERTYLISTDESC","Description limit");
 jr_define("_JOMRES_COM_PROPERTYLISTDESC_DESC","This limits the number of characters shown in the business listing when drawing from the business description.");
@@ -539,7 +539,7 @@ jr_define("_JOMRES_NUMBEROFROOMSAVAILABLE","تعداد ملکهای در دست�
 jr_define("_JOMRES_BACKTOPROPERTYDETAILSLINK","بازگشت به توضیحات");
 jr_define("_JOMRES_FRONT_ROOMTYPES","نوع اتاق");
 jr_define("_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT","محدوده جستجو");
-jr_define("_JOMRES_SHOWGOOGLECURRENCYLINKS","لینک تبدیل ملک پول در تعرفه نمایش داده شود؟");
+jr_define("_JOMRES_SHOWGOOGLECURRENCYLINKS","لینک تبدیل واحد پول در تعرفه نمایش داده شود؟");
 jr_define("_JOMRES_CURRENCYCONVERSIONTEXT","نرخ تبدیل");
 jr_define("_JOMRES_COM_ALLOWHTMLEDITOR","به کاربران اجازه ویرایش با نرم افزارهای ویرایش اچ تی ام ال داده شود؟");
 jr_define("_JOMRES_AJAXFORM_INSTRUCTIONS","برای رزرو از این فرم استفاده کنید، در پایان اگر اطلاعات وارد شده کافی بود کلید ثبت فعال میشود");
@@ -556,13 +556,13 @@ jr_define("_JOMRES_AJAXFORM_ADDRESS","اطلاعات شما");
 jr_define("_JOMRES_AJAXFORM_ADDRESS_DESC","لطفا اطلاعات خود را وارد کنید، مواردی که با ستاره مشخص شده اند الزامی هستند");
 jr_define("_JOMRES_AJAXFORM_AVAILABLEROOMS","ملک های در دسترس");
 jr_define("_JOMRES_AJAXFORM_SELECTEDROOMS","ملک های انتخاب شده");
-jr_define("_JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE","نزدیکترین زمان ورود :");
+jr_define("_JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE",":نزدیکترین زمان ورود ");
 jr_define("_JOMRES_AJAXFORM_BILLING_ROOM","برای هر شب");
 jr_define("_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL","اتاق");
 jr_define("_JOMRES_AJAXFORM_BILLING_EXTRAS","اضافه");
 jr_define("_JOMRES_AJAXFORM_BILLING_TAX","مالیات");
 jr_define("_JOMRES_AJAXFORM_BILLING_DISCOUNT","تخفیف");
-jr_define("_JOMRES_AJAXFORM_BILLING_TOTAL","بها کل با حساب مالیات:");
+jr_define("_JOMRES_AJAXFORM_BILLING_TOTAL",":بها کل با حساب مالیات");
 jr_define("_JOMRES_AJAXFORM_BILLING_TOTALINPARTY","مهمانان");
 jr_define("_JOMRES_AJAXFORM_CLICKHERECAPTION","اضافه کردن به لیست شما");
 jr_define("_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE","حذف کردن از لیست شما");
@@ -606,7 +606,7 @@ jr_define("_JOMRES_REGISTEREDUSERSONLYBOOK","برای رزرو باید در س�
 jr_define("_JOMRES_COM_AVLCAL_CURRENTBOOKINGFONT","رنگ فونت برای لینکها به رزرو فعلی");
 jr_define("_JOMRES_COM_AVLCAL_WEEKENDBORDER","حاشیه تعطیلات آخر هفته");
 jr_define("_JOMRES_COM_AVLCAL_BOOKING_KEY","رزرو انجام شد");
-jr_define("_JOMRES_COM_AVLCAL_BLACK_KEY","لیست سیاه");
+jr_define("_JOMRES_COM_AVLCAL_BLACK_KEY","زمان مسدود");
 jr_define("_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP","رند کردن بها بیعانه");
 jr_define("_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT","بیعانه دریافت شود");
 jr_define("_JOMRES_COM_A_TARIFFPRICESAREWEEKLY","تعرفه ها به صورت هفتگی باشد");
@@ -638,7 +638,7 @@ jr_define("_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE","شماره تلف�
 jr_define("_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE","شماره موبایل الزامیست");
 jr_define("_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL","پست الکترونیکی الزامیست");
 jr_define("_JOMRES_BOOKINGFORM_MONITORING_EMAIL_INVALID","پست الکترونیکی معتبر نیست");
-jr_define("_JOMRES_BOOKINGFORM_MONITORING_CANNOT_VALIDATE_EMAIL","Unable to validate email domain");
+jr_define("_JOMRES_BOOKINGFORM_MONITORING_CANNOT_VALIDATE_EMAIL","میزبان پست الکترونیک شما نا مشخص است");
 jr_define("_JOMRES_SRP_WEHAVEVACANCIES","جای خالی داریم!");
 jr_define("_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET","هیچ اتاقی انتخاب نشده");
 jr_define("_JOMRES_BOOKING_NUMBER","شماره رزرو");
@@ -653,9 +653,9 @@ jr_define("_JOMRES_SRP_WEHAVENOVACANCIES","در این زمان جای خالی 
 jr_define("_JOMRES_BOOKITNOW","همین حالا رزرو کنید");
 jr_define("_JOMRES_COM_JRCONFIG_GLOBALEDITING","Global editing mode?");
 jr_define("_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC","Take care with this function. If set to Yes, then the editing mode will affect the custom text for ALL businesses in the system for the constant you are editing.");
-jr_define("_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO","ملک پول مشترک");
-jr_define("_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC","اگر میخواهید تمامی کاربران از ملک پول مشترک استفاده کنند این گزینه را انتخاب کنید (e.g. & # 8 3 6 4 ;)");
-jr_define("_JOMRES_COM_JRCONFIG_GLOBALCURRENCY","نوع ملک پول مشترک");
+jr_define("_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO","واحد پول مشترک");
+jr_define("_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC","اگر میخواهید تمامی کاربران از واحد پول مشترک استفاده کنند این گزینه را انتخاب کنید (e.g. & # 8 3 6 4 ;)");
+jr_define("_JOMRES_COM_JRCONFIG_GLOBALCURRENCY","نوع واحد پول مشترک");
 jr_define("_JOMRES_COM_JRCONFIG_ISWRAPPED","Component wrapped");
 jr_define("_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC","Set this to Yes if the component is wrapped so that module and header areas are not to be seen");
 jr_define("_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER","ابر مدیر کسب و کار");
@@ -692,7 +692,7 @@ jr_define("_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION","تغیی�
 jr_define("_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS","بروزرسانی اطلاعات ملک");
 jr_define("_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR","متاسفانه یک یا چند قسمت آدرس اشتباه است");
 jr_define("_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE","عکس");
-jr_define("_JOMRES_CURRENCYFORMAT","ملک پول");
+jr_define("_JOMRES_CURRENCYFORMAT","واحد پول");
 jr_define("_JOMRES_MANAGEROPTIONSASIMAGES","Show Managers's options as images");
 jr_define("JOMRES_COM_A_SEARCHOPTIONSTAB","تنظیمات جستجو");
 jr_define("JOMRES_COM_A_AVAILABLELOGS","گزارش ها");
@@ -792,7 +792,7 @@ jr_define("_JRPORTAL_CPANEL_PATETITLE","بها کمیسیون");
 jr_define("_JRPORTAL_CRATE_TITLE","عنوان");
 jr_define("_JRPORTAL_CRATE_TYPE","نوع");
 jr_define("_JRPORTAL_CRATE_VALUE","بها کمیسیون");
-jr_define("_JRPORTAL_CRATE_CURRENCYCODE","کد ملک پول");
+jr_define("_JRPORTAL_CRATE_CURRENCYCODE","کد واحد پول");
 jr_define("_JRPORTAL_CPANEL_LISTPROPERTIES","لیست ملکها");
 jr_define("_JRPORTAL_PROPERTIES_PROPERTYNAME","نام ملک");
 jr_define("_JRPORTAL_PROPERTIES_PROPERTYADDRESS","آدرس ملک");
@@ -921,7 +921,7 @@ jr_define("_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING","برای هر ن�
 jr_define("_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY","برای هر نفر در هر روز");
 jr_define("_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK","برای هر نفر در هر هفته");
 jr_define("_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS","برای هر روز");
-jr_define("_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM","Per days X resources selected");
+jr_define("_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM","برای هر روز  مل X ک انتخاب شده");
 jr_define("_JOMRES_REGISTRYREBUILD","Rebuild minicomponent registry");
 jr_define("_JOMRES_REGISTRYREBUILD_NOTES","Normally the Jomres plugin registry is rebuilt automatically whenever you view the plugin manager and add or remove a plugin, however it's possible that you cannot use these features for some reason, therefore you can use this function to rebuild the registry manually. If you have access to the Plugin Manager and Upgrades feature then it's unlikely that you will need to use this function. You will need to rebuild the plugin registry whenever you add a new mini-component and didn't use the Plugin Manager to add it.");
 jr_define("_JOMRES_REGISTRYREBUILD_SUCCESS","Registry rebuilt successfully");
@@ -1018,7 +1018,7 @@ jr_define("_JRPORTAL_TAXRATES_RATE","نرخ");
 jr_define("_JRPORTAL_INVOICES_TITLE","فاکتورها");
 jr_define("_JRPORTAL_INVOICES_STATUS_UNPAID","پرداخت نشده");
 jr_define("_JRPORTAL_INVOICES_STATUS_PAID","پرداخت شده");
-jr_define("_JRPORTAL_INVOICES_STATUS_CANCELLED","کنسل شده");
+jr_define("_JRPORTAL_INVOICES_STATUS_CANCELLED","لغو شده");
 jr_define("_JRPORTAL_INVOICES_STATUS_PENDING","در انتظار");
 jr_define("_JRPORTAL_INVOICES_USER","کاربر");
 jr_define("_JRPORTAL_INVOICES_STATUS","وضعیت");
@@ -1029,7 +1029,7 @@ jr_define("_JRPORTAL_INVOICES_INITTOTAL","Outstanding total");
 jr_define("_JRPORTAL_INVOICES_RECUR_TOTAL","Recurring total");
 jr_define("_JRPORTAL_INVOICES_RECUR_FREQUENCY","Recurring frequency");
 jr_define("_JRPORTAL_INVOICES_RECUR_DOMONTH","Recurring day of month");
-jr_define("_JRPORTAL_INVOICES_CURRENCYCODE","ملک پول");
+jr_define("_JRPORTAL_INVOICES_CURRENCYCODE","واحد پول");
 jr_define("_JRPORTAL_INVOICES_LINEITEMS","ردیف");
 jr_define("_JRPORTAL_INVOICES_LINEITEMS_NAME","نام");
 jr_define("_JRPORTAL_INVOICES_LINEITEMS_DESCRIPTION","توضیحات");
@@ -1076,8 +1076,8 @@ jr_define("_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN","منوی زبان نمای
 jr_define("_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS","Booked out and Cancelled bookings");
 jr_define("_JRPORTAL_NEWUSER_DEAR","گرامی");
 jr_define("_JRPORTAL_NEWUSER_THANKYOU","از ثبت نام شما متشکریم");
-jr_define("_JRPORTAL_NEWUSER_USERNAME","نام کاربری شما:");
-jr_define("_JRPORTAL_NEWUSER_PASSWORD","کلمه عبور شما:");
+jr_define("_JRPORTAL_NEWUSER_USERNAME",":نام کاربری شما");
+jr_define("_JRPORTAL_NEWUSER_PASSWORD",":کلمه عبور شما");
 jr_define("_JRPORTAL_NEWUSER_LOG_IN","برای مشاهده و رزرو وارد شوید");
 jr_define("_JOMRES_MR_AUDIT_UPDATE_COUPON","کوپن ذخیره شد");
 jr_define("_JOMRES_MR_AUDIT_DELETE_COUPON","کوپن حذف شد");
@@ -1091,19 +1091,18 @@ jr_define("_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER","Notification mob
 jr_define("_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER_DESC","Please use the format 'Country code, mobile number'. For example a UK based mobile number would be something like '447979123456'. Leave this blank if you don't want any notification emails sent to your mobile phone.");
 jr_define("_JRPORTAL_SMS_CLICKATELL_TABTITLE","SMS");
 jr_define("_JRPORTAL_SMS_CLICKATELL_INSTRUCTIONS","Obviously, you cannot use/test this gateway from localhost, you'll need to do that on a 'live' server.
-<b>Obviously, you cannot use/test this gateway from localhost, you'll need to do that on a 'live' server.</b>
 <br/>
 <br/>
 In order to use the Clickatell gateway you need a Clickatell account and at least one registered connection (API sub-product instance) between your application and our gateway. Each connection
 method is known as a sub-product. Here's how:<br/>
 <br/>
-<b>Step 1 - register for a Clickatell account</b><br/>
+Step 1 - register for a Clickatell account<br/>
 If you do not already have a Clickatell account, you need to register for one as per below. Otherwise proceed to Step 2.<br/>
 * Go to http://www.clickatell.com/products/sms_gateway.php, and choose the appropriate API subproduct (connection method) you wish to use ( Clickatell Central (API) )<br/>
 * Click on the registration hyperlink.<br/>
 * Fill out the registration form.<br/>
 After successfully submitting the form you will automatically be logged into your new account and taken to a page where you can add your chosen API connection.<br/>
-<b>Step 2 - add a registered API connection (sub-product)</b><br/>
+Step 2 - add a registered API connection (sub-product)<br/>
 If you are not already logged into your account, then you must do so at http://www.clickatell.com/login.php<br/>
 * Select \"Manage my Products\" from the top menu.<br/>
 * Select the API connection type you wish to use (HTTP API) from the drop down menu ('Add Connection').<br/>
@@ -1288,18 +1287,18 @@ jr_define("_JOMRES_MICROMANAGE_TARIFFDEFAULT","تعرفه پیش فرض");
 jr_define("_JOMRES_MICROMANAGE_TARIFFDEFAULT_DESC","تعرفه جدید");
 jr_define("_JOMRES_MICROMANAGE_YEARSTOSHOW","انتخاب سال برای نمایش");
 jr_define("_JOMRES_MICROMANAGE_YEARSTOSHOW_DESC","Defines the number of years to show when editing a micromanage tariff");
-jr_define("_JRPORTAL_MONTHS_LONG_0","فروردین");
-jr_define("_JRPORTAL_MONTHS_LONG_1","اردیبهشت");
-jr_define("_JRPORTAL_MONTHS_LONG_2","خرداد");
-jr_define("_JRPORTAL_MONTHS_LONG_3","تیر");
-jr_define("_JRPORTAL_MONTHS_LONG_4","مرداد");
-jr_define("_JRPORTAL_MONTHS_LONG_5","شهریور");
-jr_define("_JRPORTAL_MONTHS_LONG_6","مهر");
-jr_define("_JRPORTAL_MONTHS_LONG_7","آبان");
-jr_define("_JRPORTAL_MONTHS_LONG_8","آذر");
-jr_define("_JRPORTAL_MONTHS_LONG_9","دی");
-jr_define("_JRPORTAL_MONTHS_LONG_10","بهمن");
-jr_define("_JRPORTAL_MONTHS_LONG_11","اسفند");
+jr_define("_JRPORTAL_MONTHS_LONG_0","ژانویه");
+jr_define("_JRPORTAL_MONTHS_LONG_1","فوریه");
+jr_define("_JRPORTAL_MONTHS_LONG_2","مارس");
+jr_define("_JRPORTAL_MONTHS_LONG_3","آوریل");
+jr_define("_JRPORTAL_MONTHS_LONG_4","مه");
+jr_define("_JRPORTAL_MONTHS_LONG_5","ژوئن");
+jr_define("_JRPORTAL_MONTHS_LONG_6","ژوئیه");
+jr_define("_JRPORTAL_MONTHS_LONG_7","اوت");
+jr_define("_JRPORTAL_MONTHS_LONG_8","سپتامبر");
+jr_define("_JRPORTAL_MONTHS_LONG_9","اکتبر");
+jr_define("_JRPORTAL_MONTHS_LONG_10","نوامبر");
+jr_define("_JRPORTAL_MONTHS_LONG_11","دسامبر");
 jr_define("_JOMRES_PROPERTYMANAGEMENTPROCESS","فرآیند مدیریت کسب و کار");
 jr_define("_JOMRES_PROPERTYMANAGEMENTPROCESS_DESC","بر اساس نوع لیستینگ مورد نظر شما، فرآیندهای مدیریتی مختلفی وجود دارند");
 jr_define("_JOMRES_PROPERTYMANAGEMENTPROCESS_RENTAL","اجاره");
@@ -1397,14 +1396,14 @@ jr_define("_JOMRES_CONFIG_JQUERY_UI_CSS","Load Jomres jQuery UI CSS library?");
 jr_define("_JOMRES_CONFIG_JQUERY_UI_CSS_DESC","Set this to No to disable only the jquery UI CSS file.");
 jr_define("_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX","مبلغ کل به همراه مالیات");
 jr_define("_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY","ملک تعلیق شده");
-jr_define("_JOMRES_CONVERSION_TITLE","از امکان تبدیل ملک پول استفاده شود؟");
+jr_define("_JOMRES_CONVERSION_TITLE","از امکان تبدیل واحد پول استفاده شود؟");
 jr_define("_JOMRES_CONVERSION_TITLE_DESC","Use the Jomres online conversion functionality. This will offer a conversion dropdown to frontend users, where they will be able to choose a currency that they wish to see prices offered in. Price output is adjusted to show the converted price followed by the property's 'native' price in brackets.");
 jr_define("_JOMRES_CONVERSION_DISCLAIMER","We have used our best efforts to obtain the most accurate and timely exchange rates that we can. Our online currency conversion feature is a service provided for informational purposes only and is not intended to provide exact figures. Accordingly, we do not guarantee the accuracy of the exchange rates. Using this feature, you are deemed to have agreed that any reliance on or use of the rate conversion feature shall be entirely at your own risk.");
 jr_define("_JOMRES_JAVASCRIPT_CACHING_TITLE","Use javascript caching?");
 jr_define("_JOMRES_JAVASCRIPT_CACHING_DESC","Choose whether or not to use the Jomres Javascript caching feature. Works on most servers, but not on all. If you're having problems with javascript errors that are reported as 'unterminated string literal' in (for example) Firebug, you should set this to No.");
 jr_define("_JOMRES_HISTORIC_GUESTS_SHOW","مهمانان قبلی و فعلی را در لیست نمایش بده");
 jr_define("_JOMRES_HISTORIC_GUESTS_NOSHOW","فقط مهمانان فعلی را نمایش بده");
-jr_define("_JOMRES_CURRENCYCONVERSION_TAB","تبدیل ملک پول/کد ملک پول");
+jr_define("_JOMRES_CURRENCYCONVERSION_TAB","تبدیل واحد پول/کد واحد پول");
 jr_define("_JOMRES_IP_DETECTION_API_KEY_TITLE","IP Detection API Key");
 jr_define("_JOMRES_IP_DETECTION_API_KEY_DESC","To automatically set the currency code dropdown Jomres is able to use a free service called IPinfoDB to detect the visitor's country, however you need to register for an API key at IPinfoDB first.");
 jr_define("_JOMRES_DEBUGGING_TAB","Debugging");
@@ -1587,7 +1586,7 @@ jr_define("_JOMRES_COOKIEPOLICY_TITLE","Cookie Policy");
 jr_define("_JOMRES_COOKIEPOLICY_DESC","EU Legislation requires that all websites that use cookies request permission from site visitors to store cookies.
 <br/>
 Jomres uses the host CMS's cookie to construct it's own session file where information about the user's search results and other activities can be saved, to make the user's visit more pleasant. Whilst we believe that normal Jomres functionality is probably covered by provisions in the legislation defined as 'such storage or access is strictly necessary to provide an information society service requested by the subscriber or user' (see http://www.ico.gov.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies.aspx) we have included this feature to give you the ability to prevent users from accessing pages other than search pages in the event that the user does not allow their cookie to be used in this way. <br/>
-If enabled Jomres will show an 'opt-in' link where users can choose to have the cookie which is stored for them used in this way. If they do not choose to opt-in then Jomres will only show them some basic pages (like the properties details, show favourites, search results etc). 
+If enabled Jomres will show an 'opt-in' link where users can choose to have the cookie which is stored for them used in this way. If they do not choose to opt-in then Jomres will only show them some basic pages (like the properties details, show shortlist, search results etc). 
 <br/>
 Set this option to Yes to enact this policy.");
 jr_define("_JOMRES_COOKIEPOLICY_1","Important: Cookie Policy");
@@ -2003,7 +2002,7 @@ jr_define("_JOMRES_STATUS_PAID","پرداخت شده");
 jr_define("_JOMRES_STATUS_NOTPAID","پرداخت نشده");
 jr_define("_JOMRES_STATUS_CHECKEDOUT","تسویه حساب کرده");
 jr_define("_JOMRES_STATUS_ACTIVE","فعال");
-jr_define("_JOMRES_STATUS_CANCELLED","کنسل شده");
+jr_define("_JOMRES_STATUS_CANCELLED","لغو شده");
 jr_define("_JOMRES_STATUS_PUBLISHED","منتشر شده");
 jr_define("_JOMRES_STATUS_NOT_PUBLISHED","منتشر نشده");
 jr_define("_JOMRES_STATUS_PROVISIONAL","رزرو موقت");
@@ -2123,18 +2122,18 @@ jr_define("_JOMRES_CONFIG_SHOW_OVERLAY","آیا قیمت پوشانده شود؟
 jr_define("_JOMRES_CONFIG_SHOW_OVERLAY_DESC","In the property list it is possible to show a cumulative price over the property image, use this setting to switch that display off. The cumulative price is calculated from the dates entered in the ajax search composite plugin.");
 jr_define("_JOMRES_LIVE_SCROLLING","Use Live Scrolling/Infinate Scrolling in property list?");
 jr_define("_JOMRES_ONLINE_PARTNERS","Partners");
-jr_define("_JRPORTAL_MONTHS_SHORT_0","فروردین");
-jr_define("_JRPORTAL_MONTHS_SHORT_1","اردیبهشت");
-jr_define("_JRPORTAL_MONTHS_SHORT_2","خرداد");
-jr_define("_JRPORTAL_MONTHS_SHORT_3","تیر");
-jr_define("_JRPORTAL_MONTHS_SHORT_4","مرداد");
-jr_define("_JRPORTAL_MONTHS_SHORT_5","شهریور");
-jr_define("_JRPORTAL_MONTHS_SHORT_6","مهر");
-jr_define("_JRPORTAL_MONTHS_SHORT_7","آبان");
-jr_define("_JRPORTAL_MONTHS_SHORT_8","آذر");
-jr_define("_JRPORTAL_MONTHS_SHORT_9","دی");
-jr_define("_JRPORTAL_MONTHS_SHORT_10","بهمن");
-jr_define("_JRPORTAL_MONTHS_SHORT_11","اسفند");
+jr_define("_JRPORTAL_MONTHS_SHORT_0","ژانویه");
+jr_define("_JRPORTAL_MONTHS_SHORT_1","فوریه");
+jr_define("_JRPORTAL_MONTHS_SHORT_2","مارس");
+jr_define("_JRPORTAL_MONTHS_SHORT_3","آوریل");
+jr_define("_JRPORTAL_MONTHS_SHORT_4","مه");
+jr_define("_JRPORTAL_MONTHS_SHORT_5","ژوئن");
+jr_define("_JRPORTAL_MONTHS_SHORT_6","ژوئیه");
+jr_define("_JRPORTAL_MONTHS_SHORT_7","اوت");
+jr_define("_JRPORTAL_MONTHS_SHORT_8","سپتامبر");
+jr_define("_JRPORTAL_MONTHS_SHORT_9","اکتبر");
+jr_define("_JRPORTAL_MONTHS_SHORT_10","نوامبر");
+jr_define("_JRPORTAL_MONTHS_SHORT_11","دسامبر");
 jr_define("DATATABLES_SEMPTYTABLE","اطلاعاتی در جدول وجود ندارد");
 jr_define("DATATABLES_SINFO","Showing _START_ to _END_ of _TOTAL_ entries");
 jr_define("DATATABLES_SINFOEMPTY","Showing 0 to 0 of 0 entries");
@@ -2323,25 +2322,17 @@ jr_define( "_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS_DESC", "If this option is 
 jr_define( "_JOMRES_EDITPROPERTY_APPROVAL_WARNING", "Changes made to listing details require site admin verification. If you save new details, your listing will be unpublished and pending site admin approval before being visible again to site visitors. You won`t be able to receive online bookings while your listing is unpublished and pending approval.");
 
 
-
 jr_define( '_JOMRES_BOOKING_ENQUIRY_REVIEW', 'Review booking request' );
 jr_define( '_JOMRES_BOOKING_ENQUIRY_CONFIRM', 'Confirm booking request' );
 jr_define( '_JOMRES_BOOKING_ENQUIRY_AMEND', 'Amend booking request' );
 
+
 jr_define( '_JOMRES_INVOICE_MARKASPENDING', 'Mark invoice as pending' );
 jr_define( '_JOMRES_INVOICE_MARKEDASPENDING', 'Invoice marked as pending' );
-
-jr_define( '_JOMRES_TRACKING_ENABLE', 'Send anonymous tracking data?' );
-jr_define( '_JOMRES_TRACKING_ENABLE_DESC', 'Select Yes to send anonymous tracking data to Jomres.net to help us understand better how you use the system.' );
-
-jr_define( '_JOMRES_PARTNERS_PLEASE_COMPLETE', 'Please ensure that your details have been completed on the Edit My Account page before attempting to make bookings on behalf of your clients.' );
-jr_define( '_JOMRES_PARTNERS_GUEST_ADDRESS', "Guest's contact details" );
-jr_define( '_JOMRES_CLEAR_GUEST_DETAILS', " -- New Guest -- " );
 
 jr_define( '_JOMRES_CHARTS', 'Charts' );
 jr_define( '_JOMRES_CHARTS_SELECT', 'Select chart...' );
 jr_define( '_JOMRES_CHART_BOOKINGS_DESC', 'Income by year/month' );
-
 
 jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK", "Ok, let's get started. First you need to create some rooms for this property." );
 jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK", "Create some rooms now" );
