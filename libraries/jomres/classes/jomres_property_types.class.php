@@ -79,7 +79,7 @@ class jomres_property_types
 		foreach ( $result as $r )
 			{
 			$this->property_types[$r->id]['id']           = (int)$r->id;			// property type id
-			$this->property_types[$r->id]['ptype']        = $r->ptype;				// property type name; TODO: make it use jr_gettext
+			$this->property_types[$r->id]['ptype']        = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $r->id, $r->ptype, false ); // property type name;
 			$this->property_types[$r->id]['ptype_desc']   = $r->ptype_desc;			// property type specific language file dir name
 			$this->property_types[$r->id]['published']    = (int)$r->published;		// published
 			$this->property_types[$r->id]['order']        = (int)$r->order;			// order
@@ -114,7 +114,7 @@ class jomres_property_types
 		foreach ( $result as $r )
 			{
 			$this->property_type['id']           = (int)$r->id;				// property type id
-			$this->property_type['ptype']        = $r->ptype;				// property type name; TODO: make it use jr_gettext
+			$this->property_type['ptype']        = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $r->id, $r->ptype, false ); // property type name; 
 			$this->property_type['ptype_desc']   = $r->ptype_desc;			// property type specific language file dir name
 			$this->property_type['published']    = (int)$r->published;		// published
 			$this->property_type['order']        = (int)$r->order;			// order

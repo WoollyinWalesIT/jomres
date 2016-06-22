@@ -560,28 +560,16 @@ class basic_property_details
 		$this->all_property_types       = array ();
 		$this->all_property_type_titles = array ();
 		
-		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
-		$all_property_types_details=$c->retrieve('all_property_types_details');
-		
-		if (true===is_array($all_property_types_details))
-			{
-			$this->all_property_types       = $all_property_types_details['all_property_types'];
-			$this->all_property_type_titles = $all_property_types_details['all_property_type_titles'];
-			}
-		else
-			{
-			$jomres_property_types = jomres_singleton_abstract::getInstance( 'jomres_property_types' );
-			$jomres_property_types->get_all_property_types();
+		$jomres_property_types = jomres_singleton_abstract::getInstance( 'jomres_property_types' );
+		$jomres_property_types->get_all_property_types();
 			
-			if ( count( $jomres_property_types->property_types ) > 0 )
+		if ( count( $jomres_property_types->property_types ) > 0 )
+			{
+			foreach ( $jomres_property_types->property_types as $pt )
 				{
-				foreach ( $jomres_property_types->property_types as $pt )
-					{
-					$this->all_property_types[ $pt['id'] ]       = $pt['ptype_desc'];
-					$this->all_property_type_titles[ $pt['id'] ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $pt['id'], $pt['ptype'], false );
-					}
+				$this->all_property_types[ $pt['id'] ]       = $pt['ptype_desc'];
+				$this->all_property_type_titles[ $pt['id'] ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $pt['id'], $pt['ptype'], false );
 				}
-			$c->store('all_property_types_details',array('all_property_types'=>$this->all_property_types,'all_property_type_titles'=>$this->all_property_type_titles));
 			}
 		}
 	
