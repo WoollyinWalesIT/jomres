@@ -122,7 +122,7 @@ class j06000show_property_header
 
 		//Facebook meta data
 		$short_property_description =  jomres_decode(jr_substr( strip_tags(  $current_property_details->property_description  ), 0, 200 )) . '...';
-		jomres_cmsspecific_addcustomtag( '<meta property="og:url" content="' . jomres_cmsspecific_currenturl() . '" />' );
+		jomres_cmsspecific_addcustomtag( '<meta property="og:url" content="' . jomresUrl(JOMRES_SITEPAGE_URL_NOSEF . '&task=viewproperty&property_uid='.$property_uid) . '" />' );
 		jomres_cmsspecific_addcustomtag( '<meta property="og:type" content="article" />' );
 		jomres_cmsspecific_addcustomtag( '<meta property="og:title" content="' . jomres_decode($current_property_details->property_name) . '" />' );
 		jomres_cmsspecific_addcustomtag( '<meta property="og:description" content="' . $short_property_description . '" />' );
