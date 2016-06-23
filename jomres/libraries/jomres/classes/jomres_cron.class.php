@@ -27,7 +27,7 @@ class jomres_cron
 		$this->verboselog      = $this->config[ 'verbose' ];
 		$this->method          = $this->config[ 'method' ];
 		$this->now             = time();
-		$this->lastRan         = 0.0;
+		$this->lastRan         = 0;
 		$this->allJobs         = array ();
 		$this->allUnlockedJobs = array ();
 		$this->dueJobs         = array ();
@@ -53,7 +53,7 @@ class jomres_cron
 			{
 			foreach ( $this->dbJobs as $job )
 				{
-				$this->allJobs[ ] = array ( 'id' => $job->id, 'job_name' => $job->job, 'schedule' => $job->schedule, 'last_ran' => $job->last_ran, 'parameters' => $job->parameters );
+				$this->allJobs[ ] = array ( 'id' => $job->id, 'job_name' => $job->job, 'schedule' => $job->schedule, 'last_ran' => (int)$job->last_ran, 'parameters' => $job->parameters );
 				if ( $job->locked == "1" )
 					{
 					// In my sample db it seems that some jobs have become locked, and weren't unlocked for some reason. This change is intended to bypass that as they would remain locked forever.
@@ -61,24 +61,24 @@ class jomres_cron
 					switch ( trim( $job->schedule ) )
 						{
 						case "M": // Every minute
-							$nextDue = $job->last_ran + 60 + $threashold;
+							$nextDue = (int)$job->last_ran + 60 + $threashold;
 							if ( $this->now > $nextDue ) $jobDue = true;
 							break;
 						case "QH": // Every 15 mins
-							$nextDue = $job->last_ran + (60 * 15) + $threashold;
+							$nextDue = (int)$job->last_ran + (60 * 15) + $threashold;
 							if ( $this->now > $nextDue ) $jobDue = true;
 							break;
 						case "H": // Every hour
-							$nextDue = $job->last_ran + (60 * 60) + $threashold;
+							$nextDue = (int)$job->last_ran + (60 * 60) + $threashold;
 							if ( $this->now > $nextDue ) $jobDue = true;
 							break;
 						case "D": // Every day
-							$nextDue = $job->last_ran + (60 * 60 * 24) + $threashold;
+							$nextDue = (int)$job->last_ran + (60 * 60 * 24) + $threashold;
 							if ( $this->now > $nextDue ) $jobDue = true;
 							break;
 						case "W": // Every week
 						default:
-							$nextDue = $job->last_ran + (60 * 60 * 24 * 7) + $threashold;
+							$nextDue = (int)$job->last_ran + (60 * 60 * 24 * 7) + $threashold;
 							if ( $this->now > $nextDue ) $jobDue = true;
 							break;
 						}
@@ -135,8 +135,8 @@ class jomres_cron
 			{
 			foreach ( $this->dbJobs as $job )
 				{
-				$this->allJobs[ ] = array ( 'id' => $job->id, 'job_name' => $job->job, 'schedule' => $job->schedule, 'last_ran' => $job->last_ran, 'parameters' => $job->parameters );
-				if ( $job->locked == "0" ) $this->allUnlockedJobs[ ] = array ( 'id' => $job->id, 'job_name' => $job->job, 'schedule' => $job->schedule, 'last_ran' => $job->last_ran, 'parameters' => $job->parameters );
+				$this->allJobs[ ] = array ( 'id' => $job->id, 'job_name' => $job->job, 'schedule' => $job->schedule, 'last_ran' => (int)$job->last_ran, 'parameters' => $job->parameters );
+				if ( $job->locked == "0" ) $this->allUnlockedJobs[ ] = array ( 'id' => $job->id, 'job_name' => $job->job, 'schedule' => $job->schedule, 'last_ran' => (int)$job->last_ran, 'parameters' => $job->parameters );
 				}
 			}
 		else
