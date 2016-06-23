@@ -143,7 +143,10 @@ function jomresGetParam( $request, $element, $def = null, $mask = '' ) // variab
 	// if SEF enabled in joomla, we need to get the vars from jinput
 	
 	//vars that we`ve made SEF in router.php and are not available in $_REQUEST anymore
-	$sef_vars = array('task', 'property_uid', 'selectedProperty', 'town', 'region', 'country', 'calledByModule', 'send');
+	if ( !isset( $_REQUEST[ 'calledByModule' ] ) )
+		$sef_vars = array('task', 'property_uid', 'selectedProperty', 'town', 'region', 'country', 'calledByModule', 'send');
+	else
+		$sef_vars = array();
 	
 	if ( !jomres_cmsspecific_areweinadminarea() && this_cms_is_joomla() && get_showtime('sef') == '1' && !AJAXCALL && !defined('AUTO_UPGRADE') && in_array($element, $sef_vars) )
 		{
