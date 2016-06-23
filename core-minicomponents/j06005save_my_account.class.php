@@ -89,7 +89,7 @@ class j06005save_my_account
 				mkdir( JOMRES_IMAGELOCATION_ABSPATH . 'userimages' );
 
 			$uploadedImage = $_FILES[ 'image' ][ 'name' ];
-			$filename      = split( "\.", $_FILES[ 'image' ][ 'name' ] );
+			$filename      = explode( ".", $_FILES[ 'image' ][ 'name' ] );
 			$numExtensions = ( count( $filename ) ) - 1;
 			$fileExt       = $filename[ $numExtensions ];
 			$newFileName   = "userimage_" . (int) $thisJRUser->id . "." . $fileExt;
