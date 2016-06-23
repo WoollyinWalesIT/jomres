@@ -59,6 +59,9 @@ class j06005edit_my_account
 			{
 			if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . 'userimages' . JRDS . "userimage_" . (int) $thisJRUser->id . ".jpg" ) ) 
 				$output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH . 'userimages/userimage_' . (int) $thisJRUser->id . '_thumbnail.jpg';
+			
+			if ( file_exists( JOMRES_IMAGELOCATION_ABSPATH . 'userimages' . JRDS . "userimage_" . (int) $thisJRUser->id . ".jpeg" ) ) 
+				$output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH . 'userimages/userimage_' . (int) $thisJRUser->id . '_thumbnail.jpeg';
 
 			if ( $thisJRUser->profile_id > 0 )
 				{

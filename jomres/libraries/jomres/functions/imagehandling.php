@@ -165,7 +165,7 @@ function uploadImageFromPost( $formelement = null, $newName = null, $saveToPath 
 
 				// We've managed to do the upload of the image, let's now use the same functionality to create the thumbnail. Everything's worked so far so there's no need to perform the same checks so this should be much simpler.
 				$ok_to_delete         = true;
-				$filename             = split( "\.", $newName );
+				$filename             = explode( ".", $newName );
 				$numExtensions        = ( count( $filename ) ) - 1;
 				$fileExt              = $filename[ $numExtensions ];
 				$filename             = $filename[ 0 ];
