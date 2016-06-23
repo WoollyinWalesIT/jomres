@@ -1,3 +1,25 @@
+<h3>Jomres 9.8.4 23/06/2016</h3>
+
+<span class="label label-warning">Change</span> Minor improvement to language handling in admin area.
+<span class="label label-warning">Change</span> Performance improvements in admin area.
+<span class="label label-warning">Change</span> List properties modified to improve paths.
+<span class="label label-warning">Change</span> Show confirmation improved to calculate taxes for 3rd party plugin prices.
+<span class="label label-warning">Change</span> Cleaned up cache related settings for Joomla cms_specific_urls.php
+<span class="label label-warning">Change</span> Added checks for alt init plugin to Jomres fullscreen script.
+<span class="label label-warning">Change</span> Changed how router.php finds region ids.
+<span class="label label-warning">Change</span> Modified how an array element is checked to be empty in media centre images class.
+<span class="label label-warning">Change</span> Farsi language file updated, thanks SorooshT.
+<span class="label label-warning">Change</span> Property type related changes so that only published property types will show in the property type search dropdown.
+<span class="label label-warning">Change</span> Modified property header og:url to point directly at the property details page.
+<span class="label label-warning">Change</span> Replaced split with explode as split isn't available in php7.
+
+<span class="label label-important label-danger">Fix</span> Fixed bug caused by apostrophes in currency conversion tooltip.
+<span class="label label-important label-danger">Fix</span> Resolved an issue in media centre images when not logged in.
+<span class="label label-important label-danger">Fix</span> Fixed a faulty path in functions.php error reporting.
+<span class="label label-important label-danger">Fix</span> Added some missing language strings to en-US.php
+<span class="label label-important label-danger">Fix</span> Resolved an edge-case issue where bookings might not show up in the dashboard due to notices.
+<span class="label label-important label-danger">Fix</span> Fixed a javascript error on edit_my_account.html page.
+
 <h3>Jomres 9.8.3 17/06/2016</h3>
 
 <span class="label label-warning">Change</span> Removed optimise cron job from repository.
@@ -9,8 +31,8 @@
 <span class="label label-warning">Change</span> Renamed library for Wordpress CMS bridging from wordpress3 to wordpress, as it's more accurate.
 <span class="label label-warning">Change</span> Added link to ASAModule pages to Help section.
 
-<span class="label label-important label-danger">Fix</span>Resolved an issue with media centre extras and room feature images.
-<span class="label label-important label-danger">Fix</span>Corrected how "secret" is output for use by cronjobs.
+<span class="label label-important label-danger">Fix</span> Resolved an issue with media centre extras and room feature images.
+<span class="label label-important label-danger">Fix</span> Corrected how "secret" is output for use by cronjobs.
 
 <h3>Jomres 9.8.2 13/06/2016</h3>
 
