@@ -5112,7 +5112,7 @@ function suhosin_get_max_vars_test()
 	if ( $max_vars != 0 && $max_vars <= 512 ) // The default is 512 on most installations with the suhosin patch
 		{
 		$highlight = ( using_bootstrap() ? "alert" : "ui-state-highlight" );
-		$response  = "<div class='" . $highlight . "'>Please note that PHP setups with the suhosin patch installed will have a default limit of 512 characters for get parameters. Although bad practice, most browsers (including IE) supports URLs up to around 2000 characters, while Apache has a default of 8000. To add support for long parameters with suhosin, add suhosin.get.max_value_length = <limit> in php.ini";
+		$response  = "<div class='" . $highlight . "'>Please note that PHP setups with the suhosin patch installed will have a default limit of 512 characters for get parameters. Although bad practice, most browsers (including IE) supports URLs up to around 2000 characters, while Apache has a default of 8000. To add support for long parameters with suhosin, add suhosin.get.max_value_length = <limit> in php.ini</div>";
 		}
 
 	return $response;
