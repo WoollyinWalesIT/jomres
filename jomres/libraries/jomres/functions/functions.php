@@ -3902,6 +3902,9 @@ function dateDiff( $interval = "d", $first_date, $second_date )
 	$a = explode('/', $first_date);
 	$b = explode('/', $second_date);
 	
+	if ( strlen($a[0]) < 4 || strlen($b[0]) < 4 )
+		return 1;
+	
 	if ( checkdate($a[1], $a[2], $a[0]) && checkdate($b[1], $b[2], $b[0]) )
 		{
 		$datetime1 = new DateTime($first_date);
