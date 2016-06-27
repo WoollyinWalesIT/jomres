@@ -7,9 +7,9 @@ if (!defined('_JOMRES_INITCHECK'))
 
 	require_once (dirname(__FILE__).'/../../jomres_root.php');
 			
-	if (file_exists(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/core-plugins/alternative_init/alt_init.php'))
+	if (file_exists(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/framework.php'))
 		{
-		require_once(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/core-plugins/alternative_init/alt_init.php');
+		require_once(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/framework.php');
 		}
 	else
 		echo "Error: Alternative Init plugin is not installed.";
