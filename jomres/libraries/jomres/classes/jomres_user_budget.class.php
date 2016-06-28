@@ -77,7 +77,7 @@ class jomres_user_budget
 			}
 
 		$rows = array ();
-		if ( ( JOMRES_NOHTML != 1 || get_showtime( 'task' ) == "ajax_search_filter" ) )
+		if ( ( ( defined('JOMRES_NOHTML') && JOMRES_NOHTML == 0 ) || get_showtime( 'task' ) == "ajax_search_filter" ) )
 			{
 			if ( $this->get_budget(true) != "" )
 				{

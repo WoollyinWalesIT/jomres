@@ -73,7 +73,7 @@ class j01010listpropertys
 
 		$layout_rows = array ();
 		$all_layouts = array ();
-		if ( ( JOMRES_NOHTML != 1 || get_showtime( 'task' ) == "ajax_search_filter" ) && count( $property_list_layouts ) > 1 )
+		if ( ( ( defined('JOMRES_NOHTML') && JOMRES_NOHTML == 0 ) || get_showtime( 'task' ) == "ajax_search_filter" ) && count( $property_list_layouts ) > 1 )
 			{
 			foreach ( $property_list_layouts as $key => $layouts )
 				{
@@ -220,14 +220,14 @@ class j01010listpropertys
 				
 				$compare = array ();
 				$shortlist = array();
-				if ( JOMRES_NOHTML != 1 || get_showtime( 'task' ) == "ajax_search_filter" )
+				if ( ( defined('JOMRES_NOHTML') && JOMRES_NOHTML == 0 ) || get_showtime( 'task' ) == "ajax_search_filter" )
 					{
 					$compare[] = array ( '_JOMRES_COMPARE' => jr_gettext( '_JOMRES_COMPARE', '_JOMRES_COMPARE', false ), 'COMPARELINK' => '<script type="text/javascript">var compare_url = "' . jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=compare" ) . '";</script>' );
 					if ( get_showtime( 'task' ) != "show_shortlisted_properties" ) 
 						$shortlist[] = array ( '_JOMRES_VIEWSHORTLIST' => jr_gettext( '_JOMRES_VIEWSHORTLIST', '_JOMRES_VIEWSHORTLIST', false ), 'SHORTLISTLINK' => jomresURL( JOMRES_SITEPAGE_URL . "&task=show_shortlisted_properties" ) );
 					}
 
-				if ( JOMRES_NOHTML != 1 && get_showtime( 'task' ) != "ajax_search_filter" )
+				if ( defined('JOMRES_NOHTML') && JOMRES_NOHTML == 0 && get_showtime( 'task' ) != "ajax_search_filter" )
 					{
 					$output[ 'JOMRES_SITEPAGE_URL_AJAX' ] = "<script type=\"text/javascript\"> var live_site_ajax = '" . JOMRES_SITEPAGE_URL_AJAX . "'; </script>";
 					}
