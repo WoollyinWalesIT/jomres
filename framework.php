@@ -60,6 +60,10 @@ function load_jomres_environment()
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig   = $siteConfig->get();
 	
+	//get all properties in system.
+	$jomres_properties = jomres_singleton_abstract::getInstance( 'jomres_properties' );
+	$jomres_properties->get_all_properties();
+	
 	//language object - load default language file for context
 	$jomres_language = jomres_singleton_abstract::getInstance( 'jomres_language' );
 	$jomres_language->get_language();
