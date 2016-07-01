@@ -8,6 +8,6 @@ $server->handleTokenRequest(OAuth2\Request::createFromGlobals())->send();
 $response = $server->getResponse();
 if ($response->getStatusCode() != 200)
 	{
-	logging::log_message($client_id." attempted to login but failed. Reason : ".$response->getParameter('error_description') , "WARNING" );
+	logging::log_message($client_id." attempted to login but failed. Reason : ".$response->getParameter('error_description') , "API" , "WARNING" );
 	}
 die();

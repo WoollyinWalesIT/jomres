@@ -21,9 +21,10 @@ ob_start( "removeBOM" );
 header("X-Clacks-Overhead: GNU Terry Pratchett");
 
 require_once( dirname( __FILE__ ) . '/integration.php' );
-	
+
 try
 	{
+	logging::log_message('Jomres started' , "Core" );
 	//minicomponents object
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	
@@ -91,9 +92,6 @@ try
 		$cron->triggerJobs();
 		$cron->displayDebug();
 		}
-
-	//TODO
-	request_log();
 
 	//temp booking handler object, init jomres session
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
@@ -321,6 +319,7 @@ try
 				break;
 			#########################################################################################
 			case 'processpayment':
+				request_log();
 				$tag = set_booking_number();
 				$plugin = jomres_validate_gateway_plugin();
 
@@ -753,6 +752,7 @@ try
 		}
 	else
 		{
+		logging::log_message('Error, no properties installed' , "Core" , "EMERGENCY" );
 		if ( $MiniComponents->eventSpecificlyExistsCheck( '06000', get_showtime( 'task' ) ) ) 
 			$MiniComponents->specificEvent( '06000', get_showtime( 'task' ) );
 		else

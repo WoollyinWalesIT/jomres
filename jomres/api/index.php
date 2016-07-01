@@ -16,6 +16,26 @@ define("PRODUCTION" , false ); // Set this to true in a production environment
 define("JOMRES_API_CMS_ROOT" ,dirname(dirname(dirname(__FILE__))));
 define("JOMRES_API_JOMRES_ROOT" ,dirname(dirname(__FILE__)) );
 
+if (!defined('_JOMRES_INITCHECK'))
+	define('_JOMRES_INITCHECK', 1 );
+
+if (isset($_SERVER['HTTP_ORIGIN'])) 
+	{  
+	header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");  
+	header('Access-Control-Allow-Credentials: true');  
+	header('Access-Control-Max-Age: 86400');   
+	}
+ 
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') 
+	{
+	if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))  
+		header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");  
+ 	if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))  
+		header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");  
+	}
+
+date_default_timezone_set('UTC');
+
 if (!PRODUCTION)
 	{
 	ini_set('display_errors', '1');
@@ -24,7 +44,7 @@ if (!PRODUCTION)
 require 'vendor/autoload.php';
 require 'classes/logging.class.php';
 
-if (isset($_POST['grant_type']) && isset($_POST['grant_type']) == 'client_credentials')
+if (isset($_POST['grant_type']) && $_POST['grant_type'] == 'client_credentials')
 	{
 	$client_id = filter_var($_POST['client_id'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH );
 	logging::log_message('Received a token request from '.$client_id);
@@ -91,18 +111,4 @@ catch(Exception $e)
 	$backtrace = debug_backtrace();
 	echo json_encode($response);
 	}
-
-
-/* function validate_property_uid($property_uid = '')
-	{
-	if ($property_uid == 0)
-		return false;
-	
-	$users_properties = get_self($call = 'properties/all');
-	if (!in_array ($property_uid , $users_properties ) )
-		return false;
-	return true;
-	} */
-	
-
 
