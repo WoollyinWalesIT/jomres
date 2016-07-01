@@ -26,20 +26,27 @@ class j00012managelogs
 			return;
 			}
 
+		// Log file rotation
+		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig   = $siteConfig->get();
+		if (!isset($jrConfig['log_path']))
+			$jrConfig['log_path'] = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS .'temp' . JRDS . 'monolog';
+		$log_file = "application.log";
+		
 		$maxFileSize           = 1024 * 1024;
-		$logFiles              = array ( 'system' => 'jomres_system_log.xml', 'request' => 'jomres_request_log.xml', 'gateway' => 'jomres_gateway_log.xml', 'booking' => 'jomres_booking_log.xml', 'error' => 'jomres_error_log.xml', 'jrportalquery' => 'jrportalquery_log.xml' );
-		$jomres_systemLog_path = JOMRES_SYSTEMLOG_PATH;
-		foreach ( $logFiles as $file )
+
+		if ( file_exists( $jrConfig['log_path'] . JRDS . $log_file ) )
 			{
-			//echo $jomres_systemLog_path.$file;exit;
-			if ( file_exists( $jomres_systemLog_path . "/" . $file ) )
+			$size = filesize( ( $jrConfig['log_path'] . JRDS . $log_file ) );
+			if ( $size > $maxFileSize )
 				{
-				$size = filesize( $jomres_systemLog_path . "/" . $file );
-				if ( $size > $maxFileSize )
-					{
-					$newFileName = date( "U" ) . '_' . $file;
-					rename( $jomres_systemLog_path . "/" . $file, $jomres_systemLog_path . "/" . $newFileName );
-					}
+				$newFileName = date( "U" ) . '_' . $log_file.'.zip';
+				$zip = new ZipArchive;
+				$zip->open($jrConfig['log_path'].JRDS.$newFileName, ZipArchive::CREATE);
+				$zip->addFile($jrConfig['log_path'] . JRDS . $log_file , $log_file);
+				$zip->close();
+				
+				unlink( $jrConfig['log_path'] . JRDS . $log_file);
 				}
 			}
 		}

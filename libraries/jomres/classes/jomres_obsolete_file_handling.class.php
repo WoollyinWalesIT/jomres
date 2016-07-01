@@ -1313,6 +1313,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j06000cron_optimise.class.php' );
 		
 		$this->add_obs_dir( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'wordpress3' . JRDS );
+
+		$this->add_obs_file( $this->dir_admin_functions . 'jomresxml.functions.php' );
 		}
 
 	function add_obs_file( $path_and_file )

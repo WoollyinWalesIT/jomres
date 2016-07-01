@@ -891,9 +891,7 @@ class dobooking
 		{
 		if ( LOGGINGBOOKING )
 			{
-			$logfile = JOMRES_SYSTEMLOG_PATH . 'jomres_booking_log.xml';
-			$log     = "<![CDATA[" . $text . "]]>";
-			writexml( $logfile, "bookinglog", "bookinglogentry", $log );
+			logging::log_message($message , "Dobooking" , "DEBUG" );
 			}
 		}
 

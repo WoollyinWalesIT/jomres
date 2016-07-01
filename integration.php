@@ -15,6 +15,8 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 define( '_COMPONENT_JOMRES_INTEGRATIONCALLED', '1' );
 
+define("TRANSACTION_ID" , time() );
+
 if (!defined('JOMRES_ROOT_DIRECTORY'))
 	{
 	echo "Error, JOMRES_ROOT_DIRECTORY is not defined and Jomres will not run<br/>";
@@ -139,6 +141,9 @@ define( 'LOGGINGGATEWAY', $jrConfig[ 'loggingGateway' ] );
 define( 'LOGGINGSYSTEM', $jrConfig[ 'loggingSystem' ] );
 define( 'LOGGINGREQUEST', $jrConfig[ 'loggingRequest' ] );
 define( 'LOGGINGPORTAL', $jrConfig[ 'loggingPortal' ] );
+
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'autoload.php' );
+require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'classes' . JRDS . 'logging.class.php' );
 
 if ( !defined( "AJAXCALL" ) )
 	{

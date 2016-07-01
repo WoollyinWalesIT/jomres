@@ -25,7 +25,7 @@ class j06000invoice_payment_receive
 
 			return;
 			}
-		
+		request_log();
 		$payment_reference	= intval(  jomresGetParam( $_REQUEST, 'payment_reference', 0 ) );
 
 		jr_import("jrportal_payment_reference");
