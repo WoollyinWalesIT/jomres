@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j10501debugging
 	{
-	function __construct( $componentArgs )
+		function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -45,8 +45,7 @@ class j10501debugging
 			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_CONFIG_LOG_LOCATION', '_JOMRES_CONFIG_LOG_LOCATION', false ) );
 			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_log_path" value="' . $jrConfig[ 'log_path' ] . '" />' );
-			
-			$configurationPanel->setright( jr_gettext( '_JOMRES_CONFIG_LOG_LOCATION_DESC', '_JOMRES_CONFIG_LOG_LOCATION_DESC', false ) );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_CONFIG_LOG_LOCATION_DESC', '_JOMRES_CONFIG_LOG_LOCATION_DESC', false )." ".jr_gettext( '_JOMRES_CONFIG_LOG_LOCATION_RECOMMENDED', '_JOMRES_CONFIG_LOG_LOCATION_RECOMMENDED', false ).dirname(dirname(dirname(dirname(__FILE__)))).'/monolog/' );
 			$configurationPanel->insertSetting();
 
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_SAFEMODE', '_JOMRES_SAFEMODE', false ) );
