@@ -43,6 +43,12 @@ class j10501debugging
 			$configurationPanel->setright( jr_gettext( '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_CONFIG_LOG_LOCATION', '_JOMRES_CONFIG_LOG_LOCATION', false ) );
+			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_log_path" value="' . $jrConfig[ 'log_path' ] . '" />' );
+			
+			$configurationPanel->setright( jr_gettext( '_JOMRES_CONFIG_LOG_LOCATION_DESC', '_JOMRES_CONFIG_LOG_LOCATION_DESC', false ) );
+			$configurationPanel->insertSetting();
+
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_SAFEMODE', '_JOMRES_SAFEMODE', false ) );
 			$configurationPanel->setmiddle( $lists[ 'safe_mode' ] );
 			$configurationPanel->setright( jr_gettext( '_JOMRES_SAFEMODE_DESC', '_JOMRES_SAFEMODE_DESC', false ) );
@@ -58,7 +64,9 @@ class j10501debugging
 			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_DUMPTEMPLATEDATA_DESC', '_JOMRES_COM_DUMPTEMPLATEDATA_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->insertDescription(jr_gettext( '_JOMRES_COM_LOGGING_WARNING', '_JOMRES_COM_LOGGING_WARNING', false ));
+			
+			
+			/* $configurationPanel->insertDescription(jr_gettext( '_JOMRES_COM_LOGGING_WARNING', '_JOMRES_COM_LOGGING_WARNING', false ));
 			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_BOOKING', '_JOMRES_COM_LOGGING_BOOKING', false ) );
 			$configurationPanel->setmiddle( $lists[ 'loggingBooking' ] );
@@ -83,7 +91,7 @@ class j10501debugging
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_JRPORTAL', '_JOMRES_COM_LOGGING_JRPORTAL', false ) );
 			$configurationPanel->setmiddle( $lists[ 'loggingPortal' ] );
 			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+			$configurationPanel->insertSetting(); */
 		
 			$configurationPanel->endPanel();
 			}

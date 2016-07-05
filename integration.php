@@ -15,7 +15,8 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 define( '_COMPONENT_JOMRES_INTEGRATIONCALLED', '1' );
 
-define("TRANSACTION_ID" , time() );
+if (!defined("TRANSACTION_ID")) // TRANSACTION_ID is used by the logger class to allow us to track single calls through the system
+	define("TRANSACTION_ID" , time() );
 
 if (!defined('JOMRES_ROOT_DIRECTORY'))
 	{
@@ -142,8 +143,24 @@ define( 'LOGGINGSYSTEM', $jrConfig[ 'loggingSystem' ] );
 define( 'LOGGINGREQUEST', $jrConfig[ 'loggingRequest' ] );
 define( 'LOGGINGPORTAL', $jrConfig[ 'loggingPortal' ] );
 
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'autoload.php' );
-require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'classes' . JRDS . 'logging.class.php' );
+// We can't use the api's vendor autoloader, it breaks Joomla's autoloader. We have to manually include the files we need instead.
+if (!defined('JOMRES_API_CMS_ROOT')) // The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
+	{
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Logger.php' );
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Processor' . JRDS . 'WebProcessor.php' );
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Formatter' . JRDS . 'FormatterInterface.php' );
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Formatter' . JRDS . 'NormalizerFormatter.php' );
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Formatter' . JRDS . 'LineFormatter.php' );
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Handler' . JRDS . 'HandlerInterface.php' );
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Handler' . JRDS . 'AbstractHandler.php' );
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Handler' . JRDS . 'AbstractProcessingHandler.php' );
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Handler' . JRDS . 'AbstractSyslogHandler.php' );
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Handler' . JRDS . 'SyslogHandler.php' );
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Handler' . JRDS . 'AbstractProcessingHandler.php' );
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Handler' . JRDS . 'StreamHandler.php' );
+	
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'classes' . JRDS . 'logging.class.php' );
+	}
 
 if ( !defined( "AJAXCALL" ) )
 	{

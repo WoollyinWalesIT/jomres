@@ -25,7 +25,8 @@ class j10002listLogs
 
 			return;
 			}
-			
+		
+		$this->cpanelButton = '';
 		return; // Temporarily disabled until we have a new log file parser.
 			
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
