@@ -837,8 +837,11 @@ function add_gmaps_source()
 		if ( $jrConfig[ 'gmap_layer_panoramio' ] == "1" ) $libraries .= 'panoramio';
 
 		if ( $libraries != '' ) $libraries = '&libraries=' . $libraries;
+		
+		if ( $jrConfig[ 'google_maps_api_key' ] != '' )
+			$apikey = '&key='.$jrConfig[ 'google_maps_api_key' ];
 
-		jomres_cmsspecific_addheaddata('javascript' , 'https://maps.googleapis.com/maps/api/js?v=3&language=' . $shortcode . $libraries , '&foo=bar', $includeVersion = false );
+		jomres_cmsspecific_addheaddata('javascript' , 'https://maps.googleapis.com/maps/api/js?v=3&language=' . $shortcode . $libraries . $apikey, '&foo=bar', $includeVersion = false );
 		}
 	}
 

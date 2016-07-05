@@ -163,10 +163,10 @@ class j10501a_misc
 			$configurationPanel->setright( jr_gettext( '_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', '_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			/* $configurationPanel->setleft( jr_gettext( 'JOMRES_COM_A_MAPSKEY', JOMRES_COM_A_MAPSKEY, false ) );
+			$configurationPanel->setleft( jr_gettext( 'JOMRES_COM_A_MAPSKEY', 'JOMRES_COM_A_MAPSKEY', false ) );
 			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_google_maps_api_key" value="' . $jrConfig[ 'google_maps_api_key' ] . '" />' );
-			$configurationPanel->setright( jr_gettext( 'JOMRES_COM_A_MAPSKEY_DESC', JOMRES_COM_A_MAPSKEY_DESC, false ) );
-			$configurationPanel->insertSetting(); */
+			$configurationPanel->setright( jr_gettext( 'JOMRES_COM_A_MAPSKEY_DESC', 'JOMRES_COM_A_MAPSKEY_DESC', false ) );
+			$configurationPanel->insertSetting();
 			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_ALLOWHTMLEDITOR', '_JOMRES_COM_ALLOWHTMLEDITOR', false ) );
 			$configurationPanel->setmiddle( $lists[ 'allowHTMLeditor' ] );
