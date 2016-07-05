@@ -217,5 +217,6 @@ $jrConfig = array (
   'override_property_contact_tel' => '',
   'override_property_contact_fax' => '',
   'currency_symbol_swap' => '0',
-  'send_tracking_data' => '0'
+  'send_tracking_data' => '0',
+  'log_path' => ''
 );

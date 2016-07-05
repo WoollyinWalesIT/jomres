@@ -36,7 +36,10 @@ class j10001control_panel
 		
 		//Usage reporting setting
 		$output['USAGE_REPORTING']			= $MiniComponents->specificEvent( '16000', 'usage_reporting_request' , array ("output_now"=>false, "show_as_panel"=>true) );
-
+		
+		// Logfile location warning
+		$output['LOGFILE_LOCATION_WARNING']	= $MiniComponents->specificEvent( '16000', 'log_location_setting_warning' , array ("output_now"=>false, "show_as_panel"=>true) );
+		
 		//list properties
 		$output['PROPERTIES_TABLE']			= $MiniComponents->specificEvent( '16000', 'listproperties' , array ("output_now"=>false, "show_as_panel"=>true) );
 		

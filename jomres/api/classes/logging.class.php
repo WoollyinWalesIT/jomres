@@ -11,7 +11,8 @@
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
-use Monolog\Handler\RotatingFileHandler;
+use Monolog\Handler\SyslogHandler;
+use Monolog\Formatter\LineFormatter;
 
 class logging 
 	{
@@ -36,15 +37,24 @@ class logging
 				$username =  $user[$thisJRUser->id];
 			}
 
-		if (!isset($jrConfig['log_path']))
+		if ( !isset($jrConfig['log_path']) || $jrConfig['log_path'] == '' )
 			$jrConfig['log_path'] = dirname(dirname(dirname(__FILE__)) ).'/temp/monolog/';
 		
 		$log_file = "application.log";
 
+		$formatter = new LineFormatter( "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n" );
+		
 		$logger = new Logger($channel);
 		$logger->pushProcessor(new \Monolog\Processor\WebProcessor);
 		$logger->pushHandler(new StreamHandler($jrConfig['log_path'].$log_file, Logger::DEBUG));
-		
+
+		$syslogHandler = new SyslogHandler(
+			'jomres', 'local0', Logger::INFO
+		);
+
+		$syslogHandler->setFormatter($formatter);
+
+		$logger->pushHandler($syslogHandler);
 		$logger->pushProcessor(function ($record) {
 			$record['extra']['transaction_id'] = TRANSACTION_ID; // Transaction id is used to identify the caller ( microtime ) so that we can associate logs with actions
 			return $record;
