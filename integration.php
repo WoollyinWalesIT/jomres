@@ -146,6 +146,7 @@ define( 'LOGGINGPORTAL', $jrConfig[ 'loggingPortal' ] );
 // We can't use the api's vendor autoloader, it breaks Joomla's autoloader. We have to manually include the files we need instead.
 if (!defined('JOMRES_API_CMS_ROOT')) // The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
 	{
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'psr' . JRDS . 'log' . JRDS . 'Psr' . JRDS . 'Log' . JRDS . 'LoggerInterface.php' );
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Logger.php' );
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Processor' . JRDS . 'WebProcessor.php' );
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Formatter' . JRDS . 'FormatterInterface.php' );
