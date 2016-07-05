@@ -813,7 +813,7 @@ jr_define( '_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' ha sigut descomptat de  ' )
 jr_define( '_JOMCOMP_WISEPRICE_TO', ' a ' );
 jr_define( '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', " Preu d'habitació no descomptat " );
 jr_define( 'JOMRES_COM_A_MAPSKEY', 'Google maps API key' );
-jr_define( 'JOMRES_COM_A_MAPSKEY_DESC', 'Pots obtenir google maps API key desde <a href="http://www.google.com/apis/maps/signup.html" target="_blank">Google maps</a>. Un cop tingui introduït el seu map key aquí, Jomres mostrar el mapa en la seva pàgina de detall de la propietat.' );
+jr_define( 'JOMRES_COM_A_MAPSKEY_DESC', 'Pots obtenir google maps API key desde <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Un cop tingui introduït el seu map key aquí, Jomres mostrar el mapa en la seva pàgina de detall de la propietat.' );
 jr_define( 'JOMRES_COM_A_USE_SSL', 'Utilitzar SSL en sistema de reserves?' );
 jr_define( 'JOMRES_COM_A_USE_SSL_DESC', "Ha d'estar segur de que disposa d'un certificat SSL vàlid per a " );
 jr_define( '_JOMCOMP_LASTMINUTE_CPANEL', 'Últim minut' );
@@ -2876,3 +2876,5 @@ jr_define( "_JOMRES_CONFIG_LOG_LOCATION_DESC", "Jomres logs system activity by d
 jr_define( "_JOMRES_CONFIG_LOG_LOCATION_WARNING", "Jomres logs detailed information about your system, including api keys, system paths, gateway and guest information, all of which should not be visible to the rest of the internet. Your System Log path is not set, so system logs are currently being saved to the /jomres/temp/monolog directory, which is not secure. Please visit Site Configuration -> Debugging and set a path in your filesystem that's outsite of the web root. If in doubt, please contact your web hosts as they will be able to advise you." );
 
 jr_define( "_JOMRES_CONFIG_LOG_LOCATION_RECOMMENDED", "If your CMS is installed in the root directory of your website, then a suitable location would be " );
+
+jr_define( "_JOMRES_CONFIG_GMAP_KEY_WARNING", "You do not have a Google Maps key set. Due to recent changes in Google maps, all new sites will need an API key to be able to use Google map's features. Please <a href='http://www.jomres.net/manual/site-managers-guide/14-getting-started/338-google-maps-api-key' target='_blank'>see our manual page on how to create an API key</a> and save the key in Jomres." );

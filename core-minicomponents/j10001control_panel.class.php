@@ -40,6 +40,9 @@ class j10001control_panel
 		// Logfile location warning
 		$output['LOGFILE_LOCATION_WARNING']	= $MiniComponents->specificEvent( '16000', 'log_location_setting_warning' , array ("output_now"=>false, "show_as_panel"=>true) );
 		
+		// Logfile location warning
+		$output['GMAPS_KEY_WARNING']	= $MiniComponents->specificEvent( '16000', 'gmaps_key_warning' , array ("output_now"=>false, "show_as_panel"=>true) );
+		
 		//list properties
 		$output['PROPERTIES_TABLE']			= $MiniComponents->specificEvent( '16000', 'listproperties' , array ("output_now"=>false, "show_as_panel"=>true) );
 		

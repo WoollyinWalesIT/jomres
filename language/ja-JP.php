@@ -770,7 +770,7 @@ jr_define("_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED","割引前の価格：");
 jr_define("_JOMCOMP_WISEPRICE_TO","割引後の価格：");
 jr_define("_JOMCOMP_WISEPRICE_NOTDISCOUNTED","ダイナミック割引は適応されていません。");
 jr_define("JOMRES_COM_A_MAPSKEY","Google Maps のAPIキー");
-jr_define("JOMRES_COM_A_MAPSKEY_DESC","google mapsのAPIキーをgoogleのデベロップメントHPから得ることができます。ここにキーを入力したら、地図が事業・プロパティ情報ページに表示されます。");
+jr_define( 'JOMRES_COM_A_MAPSKEY_DESC', 'You can get a google maps API key from <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Google maps</a>. Once you have input your map key here, Jomres will show the map in your Property Details page.' );
 jr_define("JOMRES_COM_A_USE_SSL","予約フォームにSSLを利用しますか?");
 jr_define("JOMRES_COM_A_USE_SSL_DESC","有効のSSL証明書を入手する必要があります。");
 jr_define("_JOMCOMP_LASTMINUTE_CPANEL","ギリギリ割");
@@ -2812,3 +2812,5 @@ jr_define( "_JOMRES_CONFIG_LOG_LOCATION_DESC", "Jomres logs system activity by d
 jr_define( "_JOMRES_CONFIG_LOG_LOCATION_WARNING", "Jomres logs detailed information about your system, including api keys, system paths, gateway and guest information, all of which should not be visible to the rest of the internet. Your System Log path is not set, so system logs are currently being saved to the /jomres/temp/monolog directory, which is not secure. Please visit Site Configuration -> Debugging and set a path in your filesystem that's outsite of the web root. If in doubt, please contact your web hosts as they will be able to advise you." );
 
 jr_define( "_JOMRES_CONFIG_LOG_LOCATION_RECOMMENDED", "If your CMS is installed in the root directory of your website, then a suitable location would be " );
+
+jr_define( "_JOMRES_CONFIG_GMAP_KEY_WARNING", "You do not have a Google Maps key set. Due to recent changes in Google maps, all new sites will need an API key to be able to use Google map's features. Please <a href='http://www.jomres.net/manual/site-managers-guide/14-getting-started/338-google-maps-api-key' target='_blank'>see our manual page on how to create an API key</a> and save the key in Jomres." );
