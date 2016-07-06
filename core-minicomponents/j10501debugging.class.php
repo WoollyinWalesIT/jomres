@@ -62,36 +62,7 @@ class j10501debugging
 			$configurationPanel->setmiddle( $lists[ 'dumpTemplate' ] );
 			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_DUMPTEMPLATEDATA_DESC', '_JOMRES_COM_DUMPTEMPLATEDATA_DESC', false ) );
 			$configurationPanel->insertSetting();
-			
-			
-			
-			/* $configurationPanel->insertDescription(jr_gettext( '_JOMRES_COM_LOGGING_WARNING', '_JOMRES_COM_LOGGING_WARNING', false ));
-			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_BOOKING', '_JOMRES_COM_LOGGING_BOOKING', false ) );
-			$configurationPanel->setmiddle( $lists[ 'loggingBooking' ] );
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_GATEWAY', '_JOMRES_COM_LOGGING_GATEWAY', false ) );
-			$configurationPanel->setmiddle( $lists[ 'loggingGateway' ] );
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_SYSTEM', '_JOMRES_COM_LOGGING_SYSTEM', false ) );
-			$configurationPanel->setmiddle( $lists[ 'loggingSystem' ] );
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_REQUEST', '_JOMRES_COM_LOGGING_REQUEST', false ) );
-			$configurationPanel->setmiddle( $lists[ 'loggingRequest' ] );
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_LOGGING_JRPORTAL', '_JOMRES_COM_LOGGING_JRPORTAL', false ) );
-			$configurationPanel->setmiddle( $lists[ 'loggingPortal' ] );
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting(); */
-		
+
 			$configurationPanel->endPanel();
 			}
 		}
