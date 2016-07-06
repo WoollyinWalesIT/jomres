@@ -115,12 +115,6 @@ function showSiteConfig()
 	$lists[ 'sef_search_url_town' ]           = jomresHTML::selectList( $yesno, 'cfg_sef_search_url_town', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_search_url_town' ] );
 	$lists[ 'sef_search_url_ptype' ]          = jomresHTML::selectList( $yesno, 'cfg_sef_search_url_ptype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_search_url_ptype' ] );
 
-	$lists[ 'loggingBooking' ] = jomresHTML::selectList( $yesno, 'cfg_loggingBooking', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'loggingBooking' ] );
-	$lists[ 'loggingGateway' ] = jomresHTML::selectList( $yesno, 'cfg_loggingGateway', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'loggingGateway' ] );
-	$lists[ 'loggingSystem' ]  = jomresHTML::selectList( $yesno, 'cfg_loggingSystem', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'loggingSystem' ] );
-	$lists[ 'loggingRequest' ] = jomresHTML::selectList( $yesno, 'cfg_loggingRequest', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'loggingRequest' ] );
-	$lists[ 'loggingPortal' ]  = jomresHTML::selectList( $yesno, 'cfg_loggingPortal', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'loggingPortal' ] );
-
 	$lists[ 'show_booking_form_in_property_details' ] = jomresHTML::selectList( $yesno, 'cfg_show_booking_form_in_property_details', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_booking_form_in_property_details' ] );
 
 	$geosearchList         = array ();
