@@ -27,30 +27,25 @@ class j00012managelogs
 			}
 
 		// Log file rotation
-		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig   = $siteConfig->get();
-		if (!isset($jrConfig['log_path']) || $jrConfig['log_path'] =='' )
-			$jrConfig['log_path'] = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS .'logs' ;
-
 		$maxFileSize           = 1024 * 1024;
 
-		$log_files = scandir($jrConfig['log_path']);
+		$log_files = scandir(JOMRES_SYSTEMLOG_PATH);
 		
 		foreach ($log_files as $log_file)
 			{
 			$bang = explode(".",$log_file);
 			if ( isset($bang[2]) && $bang[2] == "log" )
 				{
-				$size = filesize( ( $jrConfig['log_path'] . JRDS . $log_file ) );
+				$size = filesize( ( JOMRES_SYSTEMLOG_PATH . $log_file ) );
 				if ( $size > $maxFileSize )
 					{
 					$newFileName = date( "U" ) . '_' . $log_file.'.zip';
 					$zip = new ZipArchive;
-					$zip->open($jrConfig['log_path'].JRDS.$newFileName, ZipArchive::CREATE);
-					$zip->addFile($jrConfig['log_path'] . JRDS . $log_file , $log_file);
+					$zip->open(JOMRES_SYSTEMLOG_PATH . $newFileName, ZipArchive::CREATE);
+					$zip->addFile(JOMRES_SYSTEMLOG_PATH  . $log_file , $log_file);
 					$zip->close();
 					
-					unlink( $jrConfig['log_path'] . JRDS . $log_file);
+					unlink( JOMRES_SYSTEMLOG_PATH . $log_file);
 					}
 				}
 			}

@@ -182,16 +182,14 @@ function output_fatal_error($e)
 	$tmpl->addRows( 'pageoutput', $pageoutput );
 	$error_html = $tmpl->getParsedTemplate();
 
-	$log_path = JOMRES_SYSTEMLOG_PATH . "error_logs";
-	
-	if ( !is_dir( $log_path ) )
+	if ( !is_dir( JOMRES_SYSTEMLOG_PATH ) )
 		{
-		mkdir ( $log_path );
+		mkdir ( JOMRES_SYSTEMLOG_PATH );
 		}
 	
 	$filename = generateJomresRandomString( 30 ).".html";
 	
-	file_put_contents (  $log_path . JRDS . $filename , $error_html );
+	file_put_contents (  JOMRES_SYSTEMLOG_PATH. $filename , $error_html );
 
 	if ($jrConfig['development_production'] == 'development')
 		{
