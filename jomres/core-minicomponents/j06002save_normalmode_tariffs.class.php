@@ -357,7 +357,7 @@ class j06002save_normalmode_tariffs
 					}
 				}
 			}
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=edit_tariffs_normal" ), "" );
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=edit_tariffs_normal" ), "Normal tariff editing mode saved." );
 		}
 
 
