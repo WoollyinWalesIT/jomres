@@ -2522,7 +2522,7 @@ function gateway_log( $message )
  */
 function jomresRedirect($url, $msg = '', $code = 302)
 	{
-	logging::log_message($msg , "Core" , "INFO" );
+	logging::log_message($msg , "Core" , "DEBUG" );
 	$MiniComponents =jomres_getSingleton('mcHandler');
 	$MiniComponents->triggerEvent( '08000' ); // Optional, post run items that *must* be run ( watchers ).
     if (strncmp('cli', PHP_SAPI, 3) !== 0)
@@ -5061,6 +5061,22 @@ function plugin_check()
 		}
 
 	return $messages;
+	}
+	
+function gmaps_apikey_check()
+	{
+	$message  = '';
+	$highlight = ( using_bootstrap() ? "alert alert-warning" : "ui-state-highlight" );
+	
+	$siteConfig          = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig            = $siteConfig->get();
+
+	if ( !isset($jrConfig['google_maps_api_key']) || $jrConfig['google_maps_api_key'] == '' )
+		{
+		$message = '<div class="' . $highlight . '">'.jr_gettext("_JOMRES_CONFIG_GMAP_KEY_WARNING","_JOMRES_CONFIG_GMAP_KEY_WARNING",false).'</div>';
+		}
+
+	return $message;
 	}
 
 function jomresAccessControlSanityCheck()
