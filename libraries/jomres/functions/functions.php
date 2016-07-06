@@ -812,7 +812,7 @@ function add_gmaps_source()
 	if ( defined('JOMRES_NOHTML') && JOMRES_NOHTML == "1")
 		return true;
 	
-	if ( !defined( 'GMAPS_SOURCE_ADDED' ) && !AJAXCALL == "1")
+	if ( !defined( 'GMAPS_SOURCE_ADDED' ) && !AJAXCALL )
 		{
 		define( 'GMAPS_SOURCE_ADDED', 1 );
 
@@ -838,6 +838,7 @@ function add_gmaps_source()
 
 		if ( $libraries != '' ) $libraries = '&libraries=' . $libraries;
 		
+		$apikey = '';
 		if ( $jrConfig[ 'google_maps_api_key' ] != '' )
 			$apikey = '&key='.$jrConfig[ 'google_maps_api_key' ];
 
