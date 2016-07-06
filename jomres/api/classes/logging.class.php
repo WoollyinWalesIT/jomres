@@ -20,7 +20,7 @@ class logging
 		{
 		}
 
-	public static function log_message ( $message  , $channel = "api" , $level = "DEBUG" )
+	public static function log_message ( $message  , $channel = "Core" , $level = "DEBUG" )
 		{
 		$username = "Unknown";
 		if (!defined('JOMRESCONFIG_ABSOLUTE_PATH')) // For performance reasons the API doesn't include the rest of the framework unless called in an API Feature. As a result, we'll check here to see if a core system path is set. If it's not, we'll call configuration.php directly instead of using the framework to include it
