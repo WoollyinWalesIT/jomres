@@ -2521,7 +2521,7 @@ function gateway_log( $message )
  */
 function jomresRedirect($url, $msg = '', $code = 302)
 	{
-	logging::log_message($msg , "Core" , "DEBUG" );
+	logging::log_message($msg , "Core" , "INFO" );
 	$MiniComponents =jomres_getSingleton('mcHandler');
 	$MiniComponents->triggerEvent( '08000' ); // Optional, post run items that *must* be run ( watchers ).
     if (strncmp('cli', PHP_SAPI, 3) !== 0)
