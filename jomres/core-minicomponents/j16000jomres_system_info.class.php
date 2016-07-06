@@ -129,8 +129,11 @@ class j16000jomres_system_info
 		$output['CAPTERRA_REVIEW_SITE_URL'] = 'http://www.capterra.com/reservations-software/reviews/134469/Jomres/Woollyinwales%20IT/new';
 		$output['CAPTERRA_REVIEW_SITE_TEXT'] = 'Capterra';
 		
-		// Logfile location warning
+		// Google maps api key warning
 		$output['GMAPS_KEY_WARNING'] = gmaps_apikey_check();
+		
+		// Logfile location warning
+		$output['LOGFILE_LOCATION_WARNING'] = logs_path_check();
 		
 		// Property type checks //
 		// We have a situation where a property type needs to be cross-referenced with room types, this check will ascertain if any property types are missing room types

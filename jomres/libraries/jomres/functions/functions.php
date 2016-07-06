@@ -5079,6 +5079,22 @@ function gmaps_apikey_check()
 	return $message;
 	}
 
+function logs_path_check()
+	{
+	$message  = '';
+	$highlight = ( using_bootstrap() ? "alert alert-warning" : "ui-state-highlight" );
+	
+	$siteConfig          = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig            = $siteConfig->get();
+
+	if ( !isset($jrConfig['log_path']) || $jrConfig['log_path'] == '' )
+		{
+		$message = '<div class="' . $highlight . '">'.jr_gettext("_JOMRES_CONFIG_LOG_LOCATION_WARNING","_JOMRES_CONFIG_LOG_LOCATION_WARNING",false).'</div>';
+		}
+
+	return $message;
+	}
+
 function jomresAccessControlSanityCheck()
 	{
 	$pass       = false;
