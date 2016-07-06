@@ -38,7 +38,7 @@ class logging
 			}
 
 		if ( !isset($jrConfig['log_path']) || $jrConfig['log_path'] == '' )
-			$jrConfig['log_path'] = dirname(dirname(dirname(__FILE__)) ).'/temp/monolog/';
+			$jrConfig['log_path'] = dirname(dirname(dirname(__FILE__)) ).'/logs/';
 		
 		$log_file = "application.log";
 
@@ -66,7 +66,10 @@ class logging
 			{
 			default:
 			case 'DEBUG':
-				$logger->addDebug($message , $context ); // Detailed debug information.
+				if ( $jrConfig['development_production'] == "development" )
+					{
+					$logger->addDebug($message , $context ); // Detailed debug information.
+					}
 				break;
 			case 'INFO':
 				$logger->addInfo($message , $context ); // Interesting events. Examples: User logs in, SQL logs.

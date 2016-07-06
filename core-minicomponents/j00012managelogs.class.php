@@ -30,7 +30,7 @@ class j00012managelogs
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		if (!isset($jrConfig['log_path']))
-			$jrConfig['log_path'] = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS .'temp' . JRDS . 'monolog';
+			$jrConfig['log_path'] = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS .'logs' ;
 		$log_file = "application.log";
 		
 		$maxFileSize           = 1024 * 1024;
