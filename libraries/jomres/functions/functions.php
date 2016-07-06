@@ -16,6 +16,14 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries'.JRDS.'http_build_url.php');
 
+function fix_path($path = '')
+	{
+	$path = rtrim($path, '/');
+	$path = rtrim($path, '\\');
+	$path = $path . '/';
+	
+	return $path;
+	}
 
 function set_user_feedback_message ( $message = "", $css_class = "info" , $link = false, $link_message =false  )
 	{
