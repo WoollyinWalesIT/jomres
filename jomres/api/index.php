@@ -47,13 +47,13 @@ require 'classes/logging.class.php';
 if (isset($_POST['grant_type']) && $_POST['grant_type'] == 'client_credentials')
 	{
 	$client_id = filter_var($_POST['client_id'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH );
-	logging::log_message('Received a token request from '.$client_id);
+	logging::log_message('Received a token request from '.$client_id , "API" , "INFO" );
 	require_once __DIR__.'/oauth/token.php';
 	}
 else
 	{
 	$request = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-	logging::log_message(' Received a token which sent '.$request);
+	logging::log_message(' Received a token which sent '.$request , "API" , "INFO");
 	require_once __DIR__.'/oauth/resource.php';
 	}
 
