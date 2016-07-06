@@ -866,7 +866,7 @@ class dobooking
 	 */
 	function setErrorLog( $errorText )
 		{
-		if ( LOGGINGBOOKING ) $this->error .= $errorText . " <br/> ";
+		$this->error .= $errorText . " <br/> ";
 		}
 
 	function setErrorLogFirst( $title )
@@ -889,10 +889,7 @@ class dobooking
 
 	function writeToLogfile( $text )
 		{
-		if ( LOGGINGBOOKING )
-			{
-			logging::log_message($message , "Dobooking" , "DEBUG" );
-			}
+		logging::log_message($text , "Dobooking" , "DEBUG" );
 		}
 
 	function getGrowlMessages()
