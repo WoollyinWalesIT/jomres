@@ -35,23 +35,31 @@ if ( !defined( 'JOMRESPATH_BASE' ) )
 		$detect_os = strtoupper( $_SERVER[ "SERVER_SOFTWARE" ] ); // converted to uppercase
 		$isWin32   = strpos( $detect_os, "WIN32" );
 		$IIS       = strpos( $detect_os, "IIS" );
+		
 		if ( isset( $_SERVER[ "SERVER_SIGNATURE" ] ) )
 			{
 			$signature = strtoupper( $_SERVER[ "SERVER_SIGNATURE" ] );
 			$apacheSig = strpos( $signature, "APACHE" );
 			}
+		
 		$dir = dirname( realpath( __FILE__ ) );
-		if ( strpos( $dir, ":\\" ) ) define( "JRDS", "\\" );
+		
+		if ( strpos( $dir, ":\\" ) ) 
+			define( "JRDS", "\\" );
 		else
 			{
-			if ( $isWin32 === false || $apacheSig == true ) define( "JRDS", "/" );
+			if ( $isWin32 === false || $apacheSig == true ) 
+				define( "JRDS", "/" );
 			else
-			define( "JRDS", "\\" );
+				define( "JRDS", "\\" );
 			}
 		}
-	if ( isset( $_SERVER[ 'SCRIPT_FILENAME' ] ) ) $dir_path = str_replace( $_SERVER[ 'SCRIPT_FILENAME' ], "", dirname( realpath( __FILE__ ) ) );
+	
+	if ( isset( $_SERVER[ 'SCRIPT_FILENAME' ] ) ) 
+		$dir_path = str_replace( $_SERVER[ 'SCRIPT_FILENAME' ], "", dirname( realpath( __FILE__ ) ) );
 	else
-	$dir_path = str_replace( $_SERVER[ 'SCRIPT_NAME' ], "", dirname( realpath( __FILE__ ) ) );
+		$dir_path = str_replace( $_SERVER[ 'SCRIPT_NAME' ], "", dirname( realpath( __FILE__ ) ) );
+	
 	define( 'JOMRESPATH_BASE', $dir_path );
 	}
 
@@ -136,9 +144,10 @@ $performance_monitor->set_point( "post-inclusions" );
 $siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 $jrConfig   = $siteConfig->get();
 
-if (!isset($jrConfig['log_path']) || $jrConfig['log_path'] =='' )
+if ( !isset($jrConfig['log_path']) || $jrConfig['log_path'] == '' )
 	$jrConfig['log_path'] = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS .'logs' .JRDS  ;
-define( 'JOMRES_SYSTEMLOG_PATH', $jrConfig['log_path'] );
+
+define( 'JOMRES_SYSTEMLOG_PATH', fix_path($jrConfig['log_path']) );
 
 // We can't use the api's vendor autoloader, it breaks Joomla's autoloader. We have to manually include the files we need instead.
 if (!defined('JOMRES_API_CMS_ROOT')) // The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
@@ -179,7 +188,7 @@ if ( get_showtime( 'lang' ) && get_showtime( 'lang' ) == '' )
 	set_showtime( 'lang', 'en-GB' );
 	}
 	
-	if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )
+if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )
 	{
 	define( 'JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS );
 	define( 'JOMRES_IMAGELOCATION_RELPATH', get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/' );
