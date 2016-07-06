@@ -1,3 +1,19 @@
+<h3>Jomres 9.8.5 06/07/2016</h3>
+
+<span class="label label-warning">Change</span> Older Jomres logging retired in favour of monolog logging, introduced in 9.8.
+<span class="label label-warning">Change</span> CORS support added to API
+<span class="label label-warning">Change</span> Re-added Gmaps API key settings as it looks like Google are re-introducing them.
+<span class="label label-warning">Change</span> Modified how we figure out some settings for router to help with searching by town names.
+<span class="label label-warning">Change</span> Ensured that job->last_ran from cron jobs is set to an integer, because Rod's a weirdo.
+<span class="label label-warning">Change</span> Modified date diff function so that years with 3 characters aren't parsed as valid dates.
+<span class="label label-warning">Change</span> Modified fullscreen_view/jomres.php to require framework instead of alt init.
+<span class="label label-warning">Change</span> Modified framework.php as occasionally if we're not on a Jomres page the all properties variable isn't set, so added it here.
+
+<span class="label label-important label-danger">Fix</span> Closed a div in the suhosin check.
+<span class="label label-important label-danger">Fix</span> Fixed some notices that appear related to user budget.
+<span class="label label-important label-danger">Fix</span> Polish lang files converted back to utf8.
+
+
 <h3>Jomres 9.8.4 23/06/2016</h3>
 
 <span class="label label-warning">Change</span> Minor improvement to language handling in admin area.
