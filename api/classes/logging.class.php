@@ -37,16 +37,13 @@ class logging
 				$username =  $user[$thisJRUser->id];
 			}
 
-		if ( !isset($jrConfig['log_path']) || $jrConfig['log_path'] == '' )
-			$jrConfig['log_path'] = dirname(dirname(dirname(__FILE__)) ).'/logs/';
-		
 		$log_file = str_replace(" ","_",$channel).".application.log";
 
 		$formatter = new LineFormatter( "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n" );
-		
+
 		$logger = new Logger($channel);
 		$logger->pushProcessor(new \Monolog\Processor\WebProcessor);
-		$logger->pushHandler(new StreamHandler($jrConfig['log_path'].$log_file, Logger::DEBUG));
+		$logger->pushHandler(new StreamHandler(JOMRES_SYSTEMLOG_PATH.$log_file, Logger::DEBUG));
 
 		$syslogHandler = new SyslogHandler(
 			'jomres', 'local0', Logger::INFO

@@ -56,7 +56,6 @@ if ( !defined( 'JOMRESPATH_BASE' ) )
 	}
 
 define( 'JOMRESCONFIG_ABSOLUTE_PATH', substr( JOMRESPATH_BASE, 0, strlen( JOMRESPATH_BASE ) - strlen(JOMRES_ROOT_DIRECTORY) ) );
-define( 'JOMRES_SYSTEMLOG_PATH', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS );
 define( 'JOMRES_CSSRELPATH', JOMRES_ROOT_DIRECTORY.'/css/' );
 
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'jomres' . JRDS . 'functions' . JRDS . 'database.php' );
@@ -137,11 +136,9 @@ $performance_monitor->set_point( "post-inclusions" );
 $siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 $jrConfig   = $siteConfig->get();
 
-define( 'LOGGINGBOOKING', $jrConfig[ 'loggingBooking' ] );
-define( 'LOGGINGGATEWAY', $jrConfig[ 'loggingGateway' ] );
-define( 'LOGGINGSYSTEM', $jrConfig[ 'loggingSystem' ] );
-define( 'LOGGINGREQUEST', $jrConfig[ 'loggingRequest' ] );
-define( 'LOGGINGPORTAL', $jrConfig[ 'loggingPortal' ] );
+if (!isset($jrConfig['log_path']) || $jrConfig['log_path'] =='' )
+	$jrConfig['log_path'] = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS .'logs' .JRDS  ;
+define( 'JOMRES_SYSTEMLOG_PATH', $jrConfig['log_path'] );
 
 // We can't use the api's vendor autoloader, it breaks Joomla's autoloader. We have to manually include the files we need instead.
 if (!defined('JOMRES_API_CMS_ROOT')) // The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
@@ -182,7 +179,7 @@ if ( get_showtime( 'lang' ) && get_showtime( 'lang' ) == '' )
 	set_showtime( 'lang', 'en-GB' );
 	}
 	
-if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )
+	if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )
 	{
 	define( 'JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS );
 	define( 'JOMRES_IMAGELOCATION_RELPATH', get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/' );
