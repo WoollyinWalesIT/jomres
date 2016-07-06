@@ -39,6 +39,11 @@ class logging
 
 		if ( !isset($jrConfig['log_path']) || $jrConfig['log_path'] == '' )
 			$jrConfig['log_path'] = dirname(dirname(dirname(__FILE__)) ).'/logs/';
+		
+		$jrConfig['log_path'] = rtrim($jrConfig['log_path'], '/');
+		$jrConfig['log_path'] = rtrim($jrConfig['log_path'], '\\');
+		$jrConfig['log_path'] .= '/';
+		
 		$log_file = str_replace(" ","_",$channel).".application.log";
 
 		$formatter = new LineFormatter( "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n" );
