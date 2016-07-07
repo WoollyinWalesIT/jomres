@@ -35,10 +35,11 @@ class minicomponent_registry
 		$this->remote_plugin_directory    	= JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS;
 		$this->registry_file        		= JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "registry.php";
 		$this->now                  		= time();
-		$this->original_filesize    		= @filesize( $this->registry_file ); // @to prevent notices when the file doesn't exist at all
-		$this->registeredClasses        	= array();
-		$this->miniComponentDirectories 	= array();
-		$this->new_filesize = 0;
+		
+		if (file_exists($this->registry_file))
+			$this->original_filesize    		= @filesize( $this->registry_file ); // @to prevent notices when the file doesn't exist at all
+		else
+			$this->original_filesize			= 0;
 			
 		$scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 		if ( !strstr( $scriptname, 'install_jomres.php' ) )
