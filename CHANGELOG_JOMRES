@@ -1,3 +1,8 @@
+<h3>Jomres 9.8.6 07/07/2016</h3>
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue where installer wouldn't redirect properly, giving the impression that the upgrade had failed ( it hadn't, but the lack of redirection gave that impression ).
+
+
 <h3>Jomres 9.8.5 06/07/2016</h3>
 
 <span class="label label-warning">Change</span> Older Jomres logging retired in favour of monolog logging, introduced in 9.8.
