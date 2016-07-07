@@ -9,6 +9,8 @@
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
+date_default_timezone_set('UTC');
+ 
 if ( isset( $_REQUEST[ 'autoupgrade' ] ) ) 
 	{
 	define( 'AUTO_UPGRADE', true );
@@ -41,7 +43,7 @@ if ( $version < 5.4 )
 define( '_JOMRES_INITCHECK', 1 );
 define( '_JEXEC', 1 );
 
-@ini_set( "display_errors", 0 );
+@ini_set( "display_errors", 1 );
 @ini_set( 'error_reporting', E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED );
 
 if ( jomres_create_location_file() )
@@ -2831,7 +2833,18 @@ function updateMrConfig()
 
 function updatePluginSettings()
 	{
-	include( 'site_config.php' );
+	// Pseudocron settings
+	$pluginConfig[ 'jomcompcronjobs' ][ 'method' ]         = 'Minicomponent';
+	$pluginConfig[ 'jomcompcronjobs' ][ 'displaylogging' ] = '0';
+	$pluginConfig[ 'jomcompcronjobs' ][ 'logging' ]        = '0';
+	$pluginConfig[ 'jomcompcronjobs' ][ 'verbose' ]        = '0';
+
+	// Invoices backend paypal settings
+	$pluginConfig[ 'backend_paypal_settings' ][ 'usesandbox' ]   = '1';
+	$pluginConfig[ 'backend_paypal_settings' ][ 'currencycode' ] = 'EUR';
+	$pluginConfig[ 'backend_paypal_settings' ][ 'email' ]        = '';
+	$pluginConfig[ 'backend_paypal_settings' ][ 'override' ]     = '0';
+	
 	$tempConfigArr = $pluginConfig;
 	$pluginConfig  = array ();
 	$query         = "SELECT plugin,setting,value FROM #__jomres_pluginsettings WHERE prid = 0";
@@ -5043,7 +5056,7 @@ function insertPluginSettings()
 	output_message ( "Inserting new plugin settings if required.");
 
 	// Pseudocron settings
-	$pluginConfig[ 'jomcompcronjobs' ][ 'method' ]         = '0';
+	$pluginConfig[ 'jomcompcronjobs' ][ 'method' ]         = 'Minicomponent';
 	$pluginConfig[ 'jomcompcronjobs' ][ 'displaylogging' ] = '0';
 	$pluginConfig[ 'jomcompcronjobs' ][ 'logging' ]        = '0';
 	$pluginConfig[ 'jomcompcronjobs' ][ 'verbose' ]        = '0';
@@ -6588,8 +6601,8 @@ function showCompletedText()
 
 function jomres_installer_get_admin_url()
 	{
-	list( $path, $args ) = explode( "?", $_SERVER[ 'REQUEST_URI' ] );
-	$_URI = explode( "/", $path );
+	$path = explode( "?", $_SERVER[ 'REQUEST_URI' ] );
+	$_URI = explode( "/", $path[0] );
 
 	array_shift( $_URI );
 	$_URI = array_slice( $_URI, 0, count( $_URI ) - 2 );

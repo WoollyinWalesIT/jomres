@@ -31,10 +31,16 @@ class logging
 			{
 			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 			$jrConfig   = $siteConfig->get();
-			$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
-			$user = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( $thisJRUser->id );
-			if (count($user) > 0 )
-				$username =  $user[$thisJRUser->id];
+			$scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
+			if ( !strstr( $scriptname, 'install_jomres.php' ) )
+				{
+				$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
+				$user = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( $thisJRUser->id );
+				if (count($user) > 0 )
+					$username =  $user[$thisJRUser->id];
+				}
+			else
+				$username = "Installer";
 			}
 
 		if ( !isset($jrConfig['log_path']) || $jrConfig['log_path'] == '' )
@@ -52,13 +58,23 @@ class logging
 		$logger->pushProcessor(new \Monolog\Processor\WebProcessor);
 		$logger->pushHandler(new StreamHandler($jrConfig['log_path'].$log_file, Logger::DEBUG));
 
-		$syslogHandler = new SyslogHandler(
-			'jomres', 'local0', Logger::INFO
-		);
+		$syslog_disabled = true;
+		$disabled = explode(',', ini_get('disable_functions'));
+		if (!in_array(' openlog', $disabled) && !in_array('openlog', $disabled)  && !in_array(' syslog', $disabled)  && !in_array('syslog', $disabled))
+			{
+			$syslog_disabled = false;
+			}
+  
+		if (!$syslog_disabled)
+			{
+			$syslogHandler = new SyslogHandler(
+				'jomres', LOG_USER, Logger::INFO
+				);
+			$syslogHandler->setFormatter($formatter);
+			$logger->pushHandler($syslogHandler);
+			}
 
-		$syslogHandler->setFormatter($formatter);
-
-		$logger->pushHandler($syslogHandler);
+		
 		$logger->pushProcessor(function ($record) {
 			$record['extra']['transaction_id'] = TRANSACTION_ID; // Transaction id is used to identify the caller ( microtime ) so that we can associate logs with actions
 			return $record;
