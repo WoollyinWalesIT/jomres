@@ -25,29 +25,36 @@ class minicomponent_registry
 
 	function __construct( $force_reload_allowed = false )
 		{
+		$this->registeredClasses          	= array ();
+		$this->miniComponentDirectories   	= array ();
+		$this->eventPoints                	= array ();
+		$this->new_filesize               	= 0;
+		$this->nonOverridableEventClasses 	= array ();
+		$this->error_detected            	= false;
+		$this->unWantedFolderContents     	= array ( '.', '..', 'cvs', '.svn', 'registry.php' );
+		$this->remote_plugin_directory    	= JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS;
+		$this->registry_file        		= JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "registry.php";
+		$this->now                  		= time();
+		$this->original_filesize    		= @filesize( $this->registry_file ); // @to prevent notices when the file doesn't exist at all
+		$this->registeredClasses        	= array();
+		$this->miniComponentDirectories 	= array();
+		$this->new_filesize = 0;
+			
 		$scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
 		if ( !strstr( $scriptname, 'install_jomres.php' ) )
 			{
-			$this->registeredClasses          = array ();
-			$this->miniComponentDirectories   = array ();
-			$this->eventPoints                = array ();
-			$this->new_filesize               = 0;
-			$this->nonOverridableEventClasses = array ();
-			$this->error_detected             = false;
-			$this->unWantedFolderContents     = array ( '.', '..', 'cvs', '.svn', 'registry.php' );
-			$this->remote_plugin_directory    = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS;
 			if ( !is_dir( $this->remote_plugin_directory ) )
 				{
 				mkdir( $this->remote_plugin_directory );
 				}
-			$this->registry_file        = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "registry.php";
-			$this->now                  = time();
+			
 			$this->force_reload_allowed = $force_reload_allowed;
-			$this->original_filesize    = @filesize( $this->registry_file ); // @to prevent notices when the file doesn't exist at all
+			
 			if ( !file_exists( $this->registry_file ) )
 				{
 				$this->regenerate_registry();
 				}
+			
 			require_once( $this->registry_file );
 			jr_import( 'jomres_mc_registry' );
 			$registry                       = new jomres_mc_registry();
