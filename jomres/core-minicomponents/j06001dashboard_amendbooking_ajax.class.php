@@ -59,7 +59,6 @@ class j06001dashboard_amendbooking_ajax
 		$bkg->room_uid 					= $room_uid;
 		$bkg->new_room_uid 				= $new_room_uid;
 		$bkg->this_contract_room_uids	= $this_contract_room_uids;
-		$bkg->event_resized				= $event_resized;
 		$bkg->note 						= '';
 		$bkg->arrival 					= date("Y/m/d", strtotime(jomresGetParam($_GET,'event_start','')));
 		$bkg->departure 				= date("Y/m/d", strtotime(jomresGetParam($_GET,'event_end','')));

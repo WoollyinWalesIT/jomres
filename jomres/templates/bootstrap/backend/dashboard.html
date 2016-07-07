@@ -193,14 +193,6 @@ jomresJquery(document).ready(function() {
 		resourceRender: function(resourceObj, labelTds, bodyTds) {
 			// this is triggered when the resource is rendered, just like eventRender
 		},
-		eventDrop: function( event, delta, revertFunc, jsEvent, ui, view ) {
-			jomresJquery(this).popover('hide');
-			revertFunc();
-		},
-		eventResize: function( event, delta, revertFunc, jsEvent, ui, view ) {
-			jomresJquery(this).popover('hide');
-			revertFunc();
-		},
 		eventClick: function ( event, jsEvent, view )  {
 			return null;
 		},

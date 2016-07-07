@@ -197,13 +197,6 @@ jomresJquery(document).ready(function() {
 			jomresJquery(this).popover('hide');
 			revertFunc();
 		},
-		eventResize: function( event, delta, revertFunc, jsEvent, ui, view ) {
-			jomresJquery(this).popover('hide');
-			revertFunc();
-		},
-		eventClick: function ( event, jsEvent, view )  {
-			return null;
-		},
 		eventRender: function( event, element, view ) {
 			// this is triggered when the event is rendered
 			jomresJquery(element).addTouch();
