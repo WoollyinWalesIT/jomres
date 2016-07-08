@@ -24,7 +24,10 @@ class jomres_currency_conversion
 		if (is_array(get_showtime( 'temp_exchangerate_data' )))
 			$this->rates = get_showtime( 'temp_exchangerate_data' );
 		else
+			{
 			$this->rates = array();
+			$this->rates[ "GBP" ] = array();
+			}
 		}
 
 	function this_code_can_be_converted( $target_code )
@@ -78,7 +81,11 @@ class jomres_currency_conversion
 			{
 			$output = array();
 			$pageoutput = array();
-			$output['FIRST'] = $rows[$base]["TEXT"];
+			
+			$output['FIRST'] = '';
+			if (isset($rows[$base]["TEXT"]))
+				$output['FIRST'] = $rows[$base]["TEXT"];
+			
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
