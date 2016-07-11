@@ -269,6 +269,7 @@ try
 		$jrConfig[ 'errorChecking' ] = 0;
 
 	//handle tasks
+	logging::log_message('Starting task '.get_showtime( 'task' ) , "Core" );
 	if ( get_showtime( 'numberOfPropertiesInSystem' ) > 0 )
 		{
 		switch ( get_showtime( 'task' ) )
