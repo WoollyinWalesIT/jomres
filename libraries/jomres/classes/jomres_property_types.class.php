@@ -208,6 +208,11 @@ class jomres_property_types
 		
 		if ( $this->property_type['id'] > 0 )
 			{
+			if ( $published == 0 && $this->ptype_is_used( $this->property_type['id'] ) )
+				{
+				return false;
+				}
+			
 			$query = "UPDATE #__jomres_ptypes SET `published` = ".$published." WHERE id = ".$this->property_type['id'];
 		
 			if ( doInsertSql( $query, false ) )
@@ -215,6 +220,23 @@ class jomres_property_types
 			else
 				throw new Exception( "Error: Publishing property type failed.");
 			}
+		else
+			return false;
+		}
+	
+	//check if a property type is used by some property in the system
+	function ptype_is_used( $id = 0 )
+		{
+		if ( $id == 0 )
+			{
+			throw new Exception( "Error: Property type id not set.");
+			}
+		
+		$query  = "SELECT `ptype_id` FROM #__jomres_propertys WHERE `ptype_id` = " . (int)$id;
+		$result = doSelectSql( $query );
+		
+		if ( count( $result ) > 0 )
+			return true;
 		else
 			return false;
 		}
