@@ -3487,31 +3487,34 @@ function getPropertyTypeDropdown( $propertyType = "" , $extended = false )
 	$ptypeOptions = array ();
 	foreach($jomres_property_types->property_types as $p)
 		{
-		$ptype = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $p['id'], $p['ptype'], false );
-		
-		if ($extended)
+		if ( $p['published'] == 1 )
 			{
-			switch( $p['mrp_srp_flag'] )
+			$ptype = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $p['id'], $p['ptype'], false );
+			
+			if ($extended)
 				{
-				case 1:
-					$ptype .= ' - ' . jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_VILLA', '_JOMRES_PROPERTYTYPE_FLAG_VILLA',false );
-					break;
-				case 2:
-					$ptype .= ' - ' . jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_BOTH', '_JOMRES_PROPERTYTYPE_FLAG_BOTH',false );
-					break;
-				case 3:
-					$ptype .= ' - ' . jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_TOURS', '_JOMRES_PROPERTYTYPE_FLAG_TOURS',false );
-					break;
-				case 4:
-					$ptype .= ' - ' . jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_REALESTATE', '_JOMRES_PROPERTYTYPE_FLAG_REALESTATE',false );
-					break;
-				default:
-					$ptype .= ' - ' . jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', '_JOMRES_PROPERTYTYPE_FLAG_HOTEL',false );
-					break;
+				switch( $p['mrp_srp_flag'] )
+					{
+					case 1:
+						$ptype .= ' - ' . jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_VILLA', '_JOMRES_PROPERTYTYPE_FLAG_VILLA',false );
+						break;
+					case 2:
+						$ptype .= ' - ' . jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_BOTH', '_JOMRES_PROPERTYTYPE_FLAG_BOTH',false );
+						break;
+					case 3:
+						$ptype .= ' - ' . jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_TOURS', '_JOMRES_PROPERTYTYPE_FLAG_TOURS',false );
+						break;
+					case 4:
+						$ptype .= ' - ' . jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_REALESTATE', '_JOMRES_PROPERTYTYPE_FLAG_REALESTATE',false );
+						break;
+					default:
+						$ptype .= ' - ' . jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', '_JOMRES_PROPERTYTYPE_FLAG_HOTEL',false );
+						break;
+					}
 				}
-			}
 
-		$ptypeOptions[] = jomresHTML::makeOption( $p['id'], $ptype );
+			$ptypeOptions[] = jomresHTML::makeOption( $p['id'], $ptype );
+			}
 		}
 
 	$ptypeDropDownList = jomresHTML::selectList( $ptypeOptions, 'propertyType', 'class="inputbox" size="1"', 'value', 'text', $propertyType );
