@@ -2017,6 +2017,7 @@ Allows us to work independantly of Joomla or Mambo's emailers
 
 function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mode = 1, $attachments = array () , $debugging = true )
 	{
+	logging::log_message('Sending email from '.$from." to ".$to. " subject ".$subject , "Core" );
 	$jomresConfig_smtpauth = get_showtime( 'smtpauth' );
 	$jomresConfig_smtphost = get_showtime( 'smtphost' );
 	$jomresConfig_smtppass = get_showtime( 'smtppass' );
