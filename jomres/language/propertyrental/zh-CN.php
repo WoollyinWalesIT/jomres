@@ -2876,3 +2876,5 @@ jr_define( "_JOMRES_CONFIG_LOG_LOCATION_WARNING", "Jomres logs detailed informat
 jr_define( "_JOMRES_CONFIG_LOG_LOCATION_RECOMMENDED", "If your CMS is installed in the root directory of your website, then a suitable location would be " );
 
 jr_define( "_JOMRES_CONFIG_GMAP_KEY_WARNING", "You do not have a Google Maps key set. Due to recent changes in Google maps, all new sites will need an API key to be able to use Google map's features. Please <a href='http://www.jomres.net/manual/site-managers-guide/14-getting-started/338-google-maps-api-key' target='_blank'>see our manual page on how to create an API key</a> and save the key in Jomres." );
+
+jr_define( "JOMRES_GOOGLE_MAP_STYLE", "Google map colour scheme" );

@@ -31,12 +31,24 @@ class j10501google_maps
 
 		$configurationPanel 			= $componentArgs[ 'configurationPanel' ];
 		$lists 							= $componentArgs[ 'lists' ];
-		$mapWeatherTempGradDropdownList = $componentArgs[ 'mapWeatherTempGradDropdownList' ];
+		$map_styles_dropdown 			= $componentArgs[ 'map_styles_dropdown' ];
+
+		
 
 		$configurationPanel->startPanel( jr_gettext( "JOMRES_GOOGLE_MAPS", 'JOMRES_GOOGLE_MAPS', false ) );
 		
 		$configurationPanel->insertDescription(jr_gettext( 'JOMRES_GOOGLE_MAPS_INFO', 'JOMRES_GOOGLE_MAPS_INFO', false ));
 
+		$configurationPanel->setleft( jr_gettext( 'JOMRES_COM_A_MAPSKEY', 'JOMRES_COM_A_MAPSKEY', false ) );
+		$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_google_maps_api_key" value="' . $jrConfig[ 'google_maps_api_key' ] . '" />' );
+		$configurationPanel->setright( jr_gettext( 'JOMRES_COM_A_MAPSKEY_DESC', 'JOMRES_COM_A_MAPSKEY_DESC', false ) );
+		$configurationPanel->insertSetting();
+			
+		$configurationPanel->setleft( jr_gettext( 'JOMRES_GOOGLE_MAP_STYLE', 'JOMRES_GOOGLE_MAP_STYLE', false ) );
+		$configurationPanel->setmiddle( $map_styles_dropdown );
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
+		
 		$configurationPanel->setleft( jr_gettext( 'JOMRES_GOOGLE_MAPS_POIS', 'JOMRES_GOOGLE_MAPS_POIS', false ) );
 		$configurationPanel->setmiddle( $lists[ 'gmap_pois' ] );
 		$configurationPanel->setright();
