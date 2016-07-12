@@ -327,6 +327,15 @@ function showSiteConfig()
 	
 	$lists[ 'currency_symbol_swap' ] = jomresHTML::selectList( $yesno, 'cfg_currency_symbol_swap', 'class="inputbox" size="1"', 'value', 'text', (int)$jrConfig[ 'currency_symbol_swap' ] );
 	
+	$map_styles = array();
+	$map_style_files = get_map_styles();
+	foreach ( $map_style_files as $style_file )
+		{
+		$map_styles[ ] = jomresHTML::makeOption( $style_file, $style_file );
+		}
+	$map_styles_dropdown = jomresHTML::selectList( $map_styles, 'cfg_map_style', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'map_style' ] );
+	
+	
 	$componentArgs = array ();
 	$componentArgs[ 'lists' ]							= $lists;
 	$componentArgs[ 'jsInputFormatDropdownList' ]		= $jsInputFormatDropdownList;
@@ -344,6 +353,7 @@ function showSiteConfig()
 	$componentArgs[ 'production_development_dropdown' ]	= $production_development_dropdown;
 	$componentArgs[ 'navbar_location_dropdown' ]		= $navbar_location_dropdown;
 	$componentArgs[ 'bootstrap_ver_dropdown' ]			= $bootstrap_ver_dropdown;
+	$componentArgs[ 'map_styles_dropdown' ]				= $map_styles_dropdown;
 	
 	ob_start();
 	?>
@@ -493,3 +503,18 @@ function searchCSSThemesDirForCSSFiles()
 	return $cssFiles;
 	}
 
+function get_map_styles()
+	{
+	$map_style_dir = JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS .'map_styles' . JRDS;
+	$styles = array();
+	foreach (new DirectoryIterator($map_style_dir) as $file) 
+		{
+		if ($file->isFile()) 
+			{
+			$bang = explode("." , $file->getfilename() );
+			$styles[] = $bang[0];
+			}
+		}
+	natsort($styles);
+	return $styles;
+	}

@@ -43,6 +43,8 @@ class j01050x_geocoder
 		$output     = array ();
 		$pageoutput = array ();
 
+		$output['MAP_STYLE'] = file_get_contents ( JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS .'map_styles' . JRDS . $jrConfig['map_style'].'.style' );
+		
 		$output[ 'DISABLE_UI' ] = '';
 		if ( isset( $componentArgs[ 'disable_ui' ] ) ) $output[ 'DISABLE_UI' ] = 'disableDefaultUI: true,';
 
