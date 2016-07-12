@@ -45,7 +45,7 @@ class j10501business_details
 			$configurationPanel->insertDescription(jr_gettext( '_JOMRES_COM_YOURBUSINESS_INSTRUCTIONS', '_JOMRES_COM_YOURBUSINESS_INSTRUCTIONS', false ));
 	
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_YOURBUSINESS_NAME', '_JOMRES_COM_YOURBUSINESS_NAME', false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_business_name" value="' . $jrConfig[ 'business_name' ] . '" />' );
+			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_business_name" value="' . jomres_decode($jrConfig[ 'business_name' ]) . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
@@ -55,17 +55,17 @@ class j10501business_details
 			$configurationPanel->insertSetting();
 			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_YOURBUSINESSADDRESS', '_JOMRES_COM_YOURBUSINESSADDRESS', false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_business_address" value="' . $jrConfig[ 'business_address' ] . '" />' );
+			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_business_address" value="' . jomres_decode($jrConfig[ 'business_address' ]) . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET', false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_business_street" value="' . $jrConfig[ 'business_street' ] . '" />' );
+			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_business_street" value="' . jomres_decode($jrConfig[ 'business_street' ]) . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_business_town" value="' . $jrConfig[ 'business_town' ] . '" />' );
+			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_business_town" value="' . jomres_decode($jrConfig[ 'business_town' ]) . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
@@ -80,17 +80,17 @@ class j10501business_details
 			$configurationPanel->insertSetting();
 			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE', false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_business_postcode" value="' . $jrConfig[ 'business_postcode' ] . '" />' );
+			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_business_postcode" value="' . jomres_decode($jrConfig[ 'business_postcode' ]) . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_business_telephone" value="' . $jrConfig[ 'business_telephone' ] . '" />' );
+			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_business_telephone" value="' . jomres_decode($jrConfig[ 'business_telephone' ]) . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', false ) );
-			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_business_email" value="' . $jrConfig[ 'business_email' ] . '" />' );
+			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_business_email" value="' . jomres_decode($jrConfig[ 'business_email' ]) . '" />' );
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 		

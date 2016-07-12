@@ -61,7 +61,7 @@ class j00501businessdetails
 		$configurationPanel->startPanel( jr_gettext( '_JOMRES_COM_YOURBUSINESS', '_JOMRES_COM_YOURBUSINESS', false ) );
 		
 		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_YOURBUSINESS_NAME', '_JOMRES_COM_YOURBUSINESS_NAME', false ) );
-		$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control" size="50" name="cfg_property_business_name" value="'.$mrConfig['property_business_name'].'" />');
+		$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control" size="50" name="cfg_property_business_name" value="'.jomres_decode($mrConfig['property_business_name']).'" />');
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 		
@@ -79,42 +79,42 @@ class j00501businessdetails
 		$configurationPanel->insertSetting();
 		
 		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_YOURBUSINESSADDRESS', '_JOMRES_COM_YOURBUSINESSADDRESS', false ) );
-		$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control" size="50" name="cfg_property_business_houseno" value="'.$mrConfig['property_business_houseno'].'" />');
+		$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control" size="50" name="cfg_property_business_houseno" value="'.jomres_decode($mrConfig['property_business_houseno']).'" />');
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 		
 		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET', false ) );
-		$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control" size="50" name="cfg_property_business_street" value="'.$mrConfig['property_business_street'].'" />');
+		$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control" size="50" name="cfg_property_business_street" value="'.jomres_decode($mrConfig['property_business_street']).'" />');
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 		
 		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false ) );
-		$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control" size="50" name="cfg_property_business_town" value="'.$mrConfig['property_business_town'].'" />');
+		$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control" size="50" name="cfg_property_business_town" value="'.jomres_decode($mrConfig['property_business_town']).'" />');
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 		
 		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false ) );
-		$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control" size="50" name="cfg_property_business_region" value="'.$mrConfig['property_business_region'].'" />');
+		$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control" size="50" name="cfg_property_business_region" value="'.jomres_decode($mrConfig['property_business_region']).'" />');
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 		
 		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false ) );
-		$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control" size="50" name="cfg_property_business_country" value="'.$mrConfig['property_business_country'].'" />');
+		$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control" size="50" name="cfg_property_business_country" value="'.jomres_decode($mrConfig['property_business_country']).'" />');
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 		
 		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE', false ) );
-		$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control" size="50" name="cfg_property_business_postcode" value="'.$mrConfig['property_business_postcode'].'" />');
+		$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control" size="50" name="cfg_property_business_postcode" value="'.jomres_decode($mrConfig['property_business_postcode']).'" />');
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 		
 		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', false ) );
-		$configurationPanel->setmiddle( '<input type="tel" class="inputbox form-control" size="50" name="cfg_property_business_telephone" value="'.$mrConfig['property_business_telephone'].'" />');
+		$configurationPanel->setmiddle( '<input type="tel" class="inputbox form-control" size="50" name="cfg_property_business_telephone" value="'.jomres_decode($mrConfig['property_business_telephone']).'" />');
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 		
 		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', false ) );
-		$configurationPanel->setmiddle( '<input type="email" class="inputbox form-control" size="50" name="cfg_property_business_email" value="'.$mrConfig['property_business_email'].'" />');
+		$configurationPanel->setmiddle( '<input type="email" class="inputbox form-control" size="50" name="cfg_property_business_email" value="'.jomres_decode($mrConfig['property_business_email']).'" />');
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 
