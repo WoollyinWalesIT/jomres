@@ -271,6 +271,10 @@ class basic_property_details
 				$this->rooms_max_people              = array();	
 				}
 			}
+		else
+			{
+			throw new Exception("Property uid doesn`t exist", 2);
+			}
 
 		$mrConfig = getPropertySpecificSettings( $this->property_uid );
 		
@@ -495,11 +499,11 @@ class basic_property_details
 				$this->multi_query_result[ $room->propertys_uid ][ 'rooms_max_people' ][ $room->room_classes_uid ][$room->room_uid] = $room->max_people;
 				}
 
-			foreach ( $property_uids as $id )
+			foreach ( $propertyData as $d )
 				{
-				$mrConfig = getPropertySpecificSettings( $id );
+				$mrConfig = getPropertySpecificSettings( $d->propertys_uid );
 				$cfgcode  = $mrConfig[ 'accommodation_tax_code' ];
-				$this->multi_query_result[ $id ][ 'accommodation_tax_rate' ] = (float) $jrportal_taxrate->taxrates[ $cfgcode ][ 'rate' ];
+				$this->multi_query_result[ $d->propertys_uid ][ 'accommodation_tax_rate' ] = (float) $jrportal_taxrate->taxrates[ $cfgcode ][ 'rate' ];
 				}
 			
 			//set back the initial property type and property uid
