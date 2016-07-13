@@ -1226,6 +1226,11 @@ function detect_property_uid()
 			}
 		}
 
+	// For property uids that don't exist
+	$all_property_uids = get_showtime( 'all_properties_in_system' );
+	if (!in_array($property_uid,$all_property_uids))
+		$property_uid = 0;
+	
 	// Finish finding the property uid
 	return $property_uid;
 	}
