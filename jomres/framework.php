@@ -96,6 +96,8 @@ function load_jomres_environment()
 	$exchange_rates = new jomres_currency_exchange_rates( "GBP" );
 
 	$property_uid = (int)detect_property_uid();
+	
+	$mrConfig = getPropertySpecificSettings( $property_uid );
 
 	//load property type specific language file
 	if ( $property_uid > 0 )
