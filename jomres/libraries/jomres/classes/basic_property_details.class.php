@@ -204,7 +204,7 @@ class basic_property_details
 		
 		$this->property_uid = (int) $property_uid;
 		
-		if ( $this->property_uid === 0 )
+		if ( $this->property_uid == 0 )
 			{
 			throw new Exception("Property uid not set", 2);
 			}
