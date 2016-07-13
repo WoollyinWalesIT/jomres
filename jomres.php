@@ -221,7 +221,7 @@ try
 				{
 				jr_import( 'jomres_sanity_check' );
 				$warning = new jomres_sanity_check( false );
-				echo $warning->construct_warning( jr_gettext( '_JOMRES_PROPERTYNOTOUBLISHED', _JOMRES_PROPERTYNOTOUBLISHED, false ) );
+				echo $warning->construct_warning( jr_gettext( '_JOMRES_PROPERTYNOTOUBLISHED', '_JOMRES_PROPERTYNOTOUBLISHED', false ) );
 				$property_uid = 0;
 				$task = "";
 				set_showtime( 'task', '' );
