@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 $mrConfig = array (
-  'version' => '9.8.6',
+  'version' => '9.8.7',
   'newTariffModels' => '2',
   'singlePersonSuppliment' => '0',
   'singlePersonSupplimentCost' => '10',
