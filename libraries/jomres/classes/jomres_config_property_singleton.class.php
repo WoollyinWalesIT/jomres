@@ -64,9 +64,7 @@ class jomres_config_property_singleton
 
 	public function init( $property_uid )
 		{
-		if ( $property_uid > 0 ) return $this->load_property_config( $property_uid );
-		else
-		return false;
+		return $this->load_property_config( $property_uid );
 		}
 
 	public function load_property_config( $property_uid )
@@ -99,7 +97,10 @@ class jomres_config_property_singleton
 			return $this->property_config;
 			}
 		else
-			return false;
+			{
+			$this->property_config = $this->default_config;
+			return $this->default_config;
+			}
 		}
 
 	private function get_all_property_settings()
