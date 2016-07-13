@@ -1,3 +1,24 @@
+<h3>Jomres 9.8.6 13/07/2016</h3>
+
+<span class="label label-success">Feature</span> New feature : Google map styles
+
+<span class="label label-warning">Change</span> Added logging to email function.
+<span class="label label-warning">Change</span> Added a check to ensure that unpublished property types aren't offered in edit property page.
+<span class="label label-warning">Change</span> Ensured that we cannot unpublish a property type if there are properties assigned to it.
+<span class="label label-warning">Change</span> Updated how jquery is added to site scripts to adjust to a new change in J3.6.
+<span class="label label-warning">Change</span> Added additional checks to ensure fatal error is thrown if property uid is incorrect in basic_property_details class.
+<span class="label label-warning">Change</span> Modified detect_property_uid function to ensure that detected id actually exist in system.
+<span class="label label-warning">Change</span> Modified pathway script to ouput nothing if property uid isn't set.
+<span class="label label-warning">Change</span> Improved property singleton so that if we can't get property specific settings then we'll fall-back to the default settings cleanly.
+<span class="label label-warning">Change</span> Added mrconfig call to framework.php
+<span class="label label-warning">Change</span> Changed how we check for property uid in basic property details to ensure that the correct error is thrown. A script should never get to this point, if it does then a hard exit/error report is the most appropriate way of responding to this current setting.
+
+<span class="label label-important label-danger">Fix</span> Fixed notices that might appear if currency conversion hasn't taken place because of no API key.
+<span class="label label-important label-danger">Fix</span> Resolved an issue with ampersands in Business details input fields.
+<span class="label label-important label-danger">Fix</span> Resolved notice relating to not published text strings.
+
+
+
 <h3>Jomres 9.8.6 07/07/2016</h3>
 
 <span class="label label-important label-danger">Fix</span> Fixed an issue where installer wouldn't redirect properly, giving the impression that the upgrade had failed ( it hadn't, but the lack of redirection gave that impression ).
