@@ -1237,7 +1237,7 @@ jr_define( '_JOMRES_COM_NEWUSER_DESC', 'Create new user account on unregistered 
 jr_define( '_JOMRES_CLICKTOREGISTER', 'Click here to register your property' );
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE', "Active subscriptions" );
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_GATEWAYSUBSCRIPTIONID', "Gateway subscription id" );
-jr_define( '_JRPORTAL_NEWUSER_SUBJECT', "Thank you for your booking - new user details follow" );
+jr_define( '_JRPORTAL_NEWUSER_SUBJECT', "New user details " );
 jr_define( '_JOMRES_LATLONG_DESC', "Use your mouse to move around the map, and drag the pointer to the location of your property to set the latitude and longitude." );
 jr_define( '_JOMRES_CONTROLPANEL', 'Control Panel' );
 jr_define( '_JOMRES_COM_FAUXHEADERS', 'Output Jomres javascript headers into the body of the html?' );
