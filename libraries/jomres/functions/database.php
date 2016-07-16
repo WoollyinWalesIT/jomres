@@ -101,21 +101,5 @@ function doInsertSql( $query, $op = "", $ignoreErrors = false )
 
 function jomres_audit( $query, $op = "" )
 	{
-	return; // Disabled audit logging. It's unloved, nobody uses it that we're aware of.
-	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-	$jrConfig   = $siteConfig->get();
-	
-	if ( $jrConfig[ 'disableAudit' ] != "1" )
-		{
-		$ipstuff         = getEscaped( $_SERVER[ 'REMOTE_ADDR' ] );
-		$id              = $thisJRUser->userid;
-		$defaultProperty = getDefaultProperty();
-		$noquotesquery   = str_replace( "'", " ", $query . " :IP: " . $ipstuff );
-		$noquotesquery   = str_replace( "`", " ", $noquotesquery );
-		$urldquery       = htmlentities( $noquotesquery );
-		$query           = "INSERT INTO #__jomres_audit (date,time,owner,op,args,property_uid) VALUES (NOW(),NOW(),'$id','$op','$urldquery','
-" . (int) $defaultProperty . "')";
-		doInsertSql( $query, '' );
-		}
+	logging::log_message($query , "Core" , "DEBUG" );
 	}
