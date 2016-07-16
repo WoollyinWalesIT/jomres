@@ -100,7 +100,7 @@ function jomres_cmsspecific_createNewUserOnBooking()
 			return $existing;
 			}
 
-		$valid = false;
+/* 		$valid = false;
 		while ( !$valid )
 			{
 			$username = $guestDeets[ 'firstname' ] . "_" . $guestDeets[ 'surname' ] . rand( 0, 1000 );
@@ -111,12 +111,12 @@ function jomres_cmsspecific_createNewUserOnBooking()
 				{
 				$valid = true;
 				}
-			}
+			} */
 		
 		$name	= $guestDeets[ 'firstname' ] . " " . $guestDeets[ 'surname' ];
 
 		$userdata = array(
-			'user_login'		=>  $username,
+			'user_login'		=> $guestDeets[ 'email' ],
 			'user_pass'			=> generateJomresRandomString( 10 ),
 			'user_email'		=> $guestDeets[ 'email' ],
 			'user_nicename'		=> $name
@@ -136,7 +136,7 @@ function jomres_cmsspecific_createNewUserOnBooking()
 
 			$text = jr_gettext( '_JRPORTAL_NEWUSER_DEAR', '_JRPORTAL_NEWUSER_DEAR', false, false ) . " " . stripslashes( $guestDeets[ 'firstname' ] ) . " " . stripslashes( $guestDeets[ 'surname' ] ) . " <br />";
 			$text .= jr_gettext( '_JRPORTAL_NEWUSER_THANKYOU', '_JRPORTAL_NEWUSER_THANKYOU', false, false ) . " <br />";
-			$text .= jr_gettext( '_JRPORTAL_NEWUSER_USERNAME', '_JRPORTAL_NEWUSER_USERNAME', false, false ) . " " . $username . " <br />";
+			$text .= jr_gettext( '_JRPORTAL_NEWUSER_USERNAME', '_JRPORTAL_NEWUSER_USERNAME', false, false ) . " " . $guestDeets[ 'email' ] . " <br />";
 			$text .= jr_gettext( '_JRPORTAL_NEWUSER_PASSWORD', '_JRPORTAL_NEWUSER_PASSWORD', false, false ) . " " . $userdata['user_pass'] . " <br />";
 			$text .= jr_gettext( '_JRPORTAL_NEWUSER_LOG_IN', '_JRPORTAL_NEWUSER_LOG_IN', false, false ) . " " . get_showtime( 'live_site' ) . "<br />";
 

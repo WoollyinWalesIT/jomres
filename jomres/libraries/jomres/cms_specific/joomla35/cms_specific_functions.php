@@ -83,7 +83,7 @@ function jomres_cmsspecific_createNewUserOnBooking()
 		$existing = doSelectSql( $query, 1 );
 		if ( $existing ) return $existing;
 
-		$valid = false;
+/* 		$valid = false;
 		while ( !$valid )
 			{
 			$username = $guestDeets[ 'firstname' ] . "_" . $guestDeets[ 'surname' ] . rand( 0, 1000 );
@@ -91,7 +91,7 @@ function jomres_cmsspecific_createNewUserOnBooking()
 			$query    = "SELECT `id` FROM #__users WHERE `username` = '" . $username . "'";
 			$users    = doSelectSql( $query );
 			if ( count( $users ) == 0 ) $valid = true;
-			}
+			} */
 		$name     = $guestDeets[ 'firstname' ] . " " . $guestDeets[ 'surname' ];
 		$usertype = "Registered";
 		$block    = "0";
@@ -109,7 +109,7 @@ function jomres_cmsspecific_createNewUserOnBooking()
 			`params`
 			) VALUES (
 			'" . $name . "',
-			'" . $username . "',
+			'" . $guestDeets[ 'email' ] . "',
 			'" . $guestDeets[ 'email' ] . "',
 			'" . $encryptedPassword . "',
 			'" . date( 'Y-m-d H:i:s' ) . "',
@@ -143,7 +143,7 @@ function jomres_cmsspecific_createNewUserOnBooking()
 
 			$text = jr_gettext( '_JRPORTAL_NEWUSER_DEAR', '_JRPORTAL_NEWUSER_DEAR', false, false ) . " " . stripslashes( $guestDeets[ 'firstname' ] ) . " " . stripslashes( $guestDeets[ 'surname' ] ) . " <br />";
 			$text .= jr_gettext( '_JRPORTAL_NEWUSER_THANKYOU', '_JRPORTAL_NEWUSER_THANKYOU', false, false ) . " <br />";
-			$text .= jr_gettext( '_JRPORTAL_NEWUSER_USERNAME', '_JRPORTAL_NEWUSER_USERNAME', false, false ) . " " . $username . " <br />";
+			$text .= jr_gettext( '_JRPORTAL_NEWUSER_USERNAME', '_JRPORTAL_NEWUSER_USERNAME', false, false ) . " " . $guestDeets[ 'email' ] . " <br />";
 			$text .= jr_gettext( '_JRPORTAL_NEWUSER_PASSWORD', '_JRPORTAL_NEWUSER_PASSWORD', false, false ) . " " . $password . " <br />";
 			$text .= jr_gettext( '_JRPORTAL_NEWUSER_LOG_IN', '_JRPORTAL_NEWUSER_LOG_IN', false, false ) . " " . get_showtime( 'live_site' ) . "<br />";
 
