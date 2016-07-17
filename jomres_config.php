@@ -152,4 +152,5 @@ $mrConfig = array (
   'defaultSmokingOption' => '2',
   'showSmoking' => '0',
   'useOnlinepayment' => '0',
+  'minimum_deposit_percentage' => '0'
 );

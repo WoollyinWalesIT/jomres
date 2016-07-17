@@ -35,16 +35,19 @@ class j10501booking_form
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
 			{				
 			$configurationPanel->startPanel( jr_gettext( "_JOMRES_PATHWAY_BOOKINGFORM", '_JOMRES_PATHWAY_BOOKINGFORM', false ) );
-	
+			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS', '_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS', false ) );
 			$configurationPanel->setmiddle( $lists['show_booking_form_in_property_details'] );
 			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC', '_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
-			/*$configurationPanel->setleft( jr_gettext( '_JOMRES_BOOKINGORM_MODALPOPUP', _JOMRES_BOOKINGORM_MODALPOPUP, false ) );
-			$configurationPanel->setmiddle( $lists['booking_form_modal_popup'] );
-			$configurationPanel->setright( jr_gettext( '_JOMRES_BOOKINGORM_MODALPOPUP_DESC', _JOMRES_BOOKINGORM_MODALPOPUP_DESC, false ) );
-			$configurationPanel->insertSetting();*/
+			if (!isset($jrConfig[ 'minimum_deposit_percentage' ]))
+				$jrConfig[ 'minimum_deposit_percentage' ] = 0;
+			
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_CONFIG_MINIMUM_DEPOSIT', '_JOMRES_CONFIG_MINIMUM_DEPOSIT', false ) );
+			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_minimum_deposit_percentage" value="' . $jrConfig[ 'minimum_deposit_percentage' ] . '" />' );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_CONFIG_MINIMUM_DEPOSIT_DESC', '_JOMRES_CONFIG_MINIMUM_DEPOSIT_DESC', false ) );
+			$configurationPanel->insertSetting();
 			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_BOOKINGORM_TAX_OUTPUT', '_JOMRES_BOOKINGORM_TAX_OUTPUT', false ) );
 			$configurationPanel->setmiddle( $lists['show_tax_in_totals_summary'] );
