@@ -322,6 +322,7 @@ try
 			case 'processpayment':
 				request_log();
 				$tag = set_booking_number();
+
 				$plugin = jomres_validate_gateway_plugin();
 
 				$query = "SELECT id FROM #__jomres_booking_data_archive WHERE `tag` = '".$tag."'";
@@ -350,9 +351,9 @@ try
 
 				if ( $plugin != "NA" )
 					{
-					$query = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = " . (int) $property_uid . " AND `plugin` = '" . (string) $plugin . "' AND setting = 'active' AND value = '1'";
+					$query = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE (prid = " . (int) $property_uid . " OR prid = 0)  AND `plugin` = '" . (string) $plugin . "' AND setting = 'active' AND value = '1'";
 					$gatewayDeets = doSelectSql( $query );
-					
+
 					if ( count( $gatewayDeets ) > 0 || $paypal_settings->paypalConfigOptions[ 'override' ] == "1" )
 						{
 						if ( $paypal_settings->paypalConfigOptions[ 'override' ] == "1" ) 
@@ -363,7 +364,7 @@ try
 						
 						if ( $MiniComponents->eventFileLocate( '00600', $plugin ) ) 
 							$interruptOutgoingFile = 'j00600' . $plugin . '.class.php';
-						
+
 						$outgoingFile = 'j00605' . $plugin . '.class.php';
 
 						if ( $interruptOutgoingFile && $interrupted == 0 ) 

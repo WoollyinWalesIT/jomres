@@ -32,7 +32,10 @@ class j00501gateways
 		$paypal_settings    = jomres_singleton_abstract::getInstance( 'jrportal_paypal_settings' );
 		$paypal_settings->get_paypal_settings();
 
-		if ( $paypal_settings->paypalConfigOptions[ 'override' ] == "0" )
+		$MiniComponents->triggerEvent( '00509', $componentArgs );
+		$outputArray = $MiniComponents->miniComponentData[ '00509' ];
+	
+		if ( $paypal_settings->paypalConfigOptions[ 'override' ] == "0" && !is_null($outputArray) )
 			{
 			$lists        = $componentArgs[ 'lists' ];
 			$gatewayNames = $componentArgs[ 'gatewayNames' ];
@@ -44,10 +47,6 @@ class j00501gateways
 			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_GATEWAY_ENABLED", '_JOMRES_COM_A_GATEWAY_ENABLED', false ) );
 			$configurationPanel->insertSetting();
 
-			$MiniComponents->triggerEvent( '00509', $componentArgs );
-
-			$outputArray = $MiniComponents->miniComponentData[ '00509' ];
-			
 			$settingArray = array();
 			foreach ( $outputArray as $gateway_name=>$gw )
 				{

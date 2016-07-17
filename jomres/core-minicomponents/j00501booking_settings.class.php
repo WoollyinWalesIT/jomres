@@ -228,14 +228,20 @@ class j00501booking_settings
 		
 		if ( $mrConfig[ 'is_real_estate_listing' ] == 0 )
 			{
+			if (!isset($jrConfig[ 'minimum_deposit_percentage' ]))
+				$jrConfig[ 'minimum_deposit_percentage' ] = 0;
+			
 			$configurationPanel->insertHeading(jr_gettext( '_JOMRES_HDEPOSITS', '_JOMRES_HDEPOSITS', false ));
 		
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT", '_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT', false ) );
-			$configurationPanel->setmiddle( $lists[ 'chargeDepositYesNo' ] );
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-
-			if (!get_showtime('is_jintour_property'))
+			if ( (int)$jrConfig[ 'minimum_deposit_percentage' ] == 0)
+				{
+				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT", '_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT', false ) );
+				$configurationPanel->setmiddle( $lists[ 'chargeDepositYesNo' ] );
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
+				}
+			
+			if (!get_showtime('is_jintour_property') && (int)$jrConfig[ 'minimum_deposit_percentage' ] == 0 )
 				{
 				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST", '_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST', false ) );
 				$configurationPanel->setmiddle( $lists[ 'depositIsOneNight' ] );
@@ -243,14 +249,22 @@ class j00501booking_settings
 				$configurationPanel->insertSetting();
 				}
 
-			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE", '_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE', false ) );
-			$configurationPanel->setmiddle( $lists[ 'depositIsPercentage' ] );
-			$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC", '_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC', false ) );
-			$configurationPanel->insertSetting();
-
+			if ( (int)$jrConfig[ 'minimum_deposit_percentage' ] == 0)
+				{
+				$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE", '_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE', false ) );
+				$configurationPanel->setmiddle( $lists[ 'depositIsPercentage' ] );
+				$configurationPanel->setright( jr_gettext( "_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC", '_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC', false ) );
+				$configurationPanel->insertSetting();
+				}
+			
+			$minimum_deposit_message = '';
+			if ( (int)$jrConfig[ 'minimum_deposit_percentage' ] > 0)
+				{
+				$minimum_deposit_message =  jr_gettext( "_JOMRES_CONFIG_MINIMUM_DEPOSIT_SETTING", '_JOMRES_CONFIG_MINIMUM_DEPOSIT_SETTING', false ) .(int)$jrConfig[ 'minimum_deposit_percentage' ]."%";
+				}
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_VALUE", '_JOMRES_COM_A_DEPOSIT_VALUE', false ) );
 			$configurationPanel->setmiddle( '<input type="number" class="inputbox form-control"  size="5" name="cfg_depositValue" value="' . $mrConfig[ 'depositValue' ] . '" />' );
-			$configurationPanel->setright();
+			$configurationPanel->setright($minimum_deposit_message);
 			$configurationPanel->insertSetting();
 
 			$configurationPanel->setleft( jr_gettext( "_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE", '_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE', false ) );

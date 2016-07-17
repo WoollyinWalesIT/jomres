@@ -418,7 +418,7 @@ function import_images_to_media_centre_directories()
 					}
 				if (!is_dir ($base_path . "property" . JRDS .  "0" . JRDS . "medium"))
 					{
-					mkdir ($base_path . "property" . JRDS .  "0" . JRDS . "medium");
+						mkdir ($base_path . "property" . JRDS .  "0" . JRDS . "medium");
 					}
 			
 			// Let's start with the property image
@@ -1257,7 +1257,18 @@ function jomres_validate_gateway_plugin()
 		$query		= "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = " . (int) $property_uid . " AND setting = 'active' AND value = '1'";
 		$all_gateways = doSelectSql( $query );
 		if ( count($all_gateways) == 0 )
-			return "NA";
+			{
+			$query		= "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = 0 AND setting = 'active' AND value = '1'";
+			$all_gateways = doSelectSql( $query );
+			if ( count($all_gateways) == 0 )
+				{
+				return "NA";
+				}
+			else
+				{
+				$property_uid =0;
+				}
+			}
 
 		if ( !isset( $_REQUEST[ 'plugin' ] ) || $_REQUEST[ 'plugin' ] == "" )
 			{
@@ -1279,7 +1290,11 @@ function jomres_validate_gateway_plugin()
 					}
 				}
 
-			if ( count($installed_gateways) > 0 ) // Gateways are installed. There's at least one configured gateway for this property, but it's not in $_REQUEST, so this is likely an attempt to bypass the gateway scripts
+			if ( 
+				count($installed_gateways) > 0 && 
+					(!isset( $_REQUEST[ 'plugin' ] ) || 
+					$_REQUEST[ 'plugin' ] == "")   
+				) // Gateways are installed. There's at least one configured gateway for this property, but it's not in $_REQUEST, so this is likely an attempt to bypass the gateway scripts
 				{
 				gateway_log( "Error, gateway name not sent, probable hack attempt" );
 				trigger_error( "Error, gateway name not sent, probable hack attempt", E_USER_ERROR );
@@ -2872,6 +2887,9 @@ function saveHotelSettings()
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	$MiniComponents->triggerEvent( '00502', array() ); // This trigger allows plugins to check saves, for example to prevent future changes to a setting once it's been made.
 	
+	$siteConfig         = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig           = $siteConfig->get();
+	
 	$property_uid = (int) getDefaultProperty();
 	$mrConfig	 = getPropertySpecificSettings( $property_uid );
 	
@@ -2903,6 +2921,23 @@ function saveHotelSettings()
 		}
 	if ( $_POST[ 'oldsetting_cfg_tariffmode' ] == "0" && $_POST[ 'cfg_tariffmode' ] != "0" ) $tariffmodeChange = true;
 
+	
+	// If the minimum deposit percentage setting is set, then these options cannot be altered, instead we will force them so that Deposits are always charged, the "deposit is one night's value" setting cannot be used, and of course we'll force the Deposit is Percentage setting to true
+	if (!isset($jrConfig[ 'minimum_deposit_percentage' ]))
+		$jrConfig[ 'minimum_deposit_percentage' ] = 0;
+	
+	if ( (int) $jrConfig[ 'minimum_deposit_percentage' ] > 0 )
+		{
+		$_POST[ 'cfg_chargeDepositYesNo' ] = 1;
+		$_POST[ 'cfg_depositIsOneNight' ] = 0;
+		$_POST[ 'cfg_depositIsPercentage' ] = 1;
+		
+		if ( (int) $_POST[ 'cfg_depositValue' ] < $jrConfig[ 'minimum_deposit_percentage' ] )
+			{
+			$_POST[ 'cfg_depositValue' ] = (int)$jrConfig[ 'minimum_deposit_percentage' ];
+			}
+		}
+	
 	foreach ( $_POST as $k => $v )
 		{
 		if ( strpos( $k, 'cfg_' ) === 0 && $k != "cfg_jomres_licensekey" )
