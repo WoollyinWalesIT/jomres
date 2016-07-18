@@ -25,6 +25,8 @@ class j06002chart_bookings
 			return;
 			}
 		
+		$this->retVals = null;
+		
 		$property_uid = getDefaultProperty();
 		
 		if (isset($componentArgs[ 'output_now' ]))
@@ -125,6 +127,6 @@ class j06002chart_bookings
 
 	function getRetVals()
 		{
-		return null;
+		return $this->retVals;
 		}
 	}
