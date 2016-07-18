@@ -271,10 +271,10 @@ class basic_property_details
 				$this->rooms_max_people              = array();	
 				}
 			}
-		else
+		/* else
 			{
 			throw new Exception("Property uid doesn`t exist", 2);
-			}
+			} */
 
 		$mrConfig = getPropertySpecificSettings( $this->property_uid );
 		
