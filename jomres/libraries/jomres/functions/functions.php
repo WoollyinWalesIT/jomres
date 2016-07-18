@@ -2507,6 +2507,7 @@ function error_logging( $message, $emailMessage = true )
  */
 function request_log()
 	{
+	$log = '';
 	if ( count( $_REQUEST ) > 0 )
 		{
 		$log .= "";
