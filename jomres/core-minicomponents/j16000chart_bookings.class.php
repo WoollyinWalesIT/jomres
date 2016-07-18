@@ -25,6 +25,8 @@ class j16000chart_bookings
 			return;
 			}
 		
+		$this->retVals = null;
+		
 		if (isset($componentArgs[ 'output_now' ]))
 			$output_now = $componentArgs[ 'output_now' ];
 		else
