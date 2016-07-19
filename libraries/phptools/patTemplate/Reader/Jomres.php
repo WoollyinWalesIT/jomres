@@ -55,7 +55,7 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 		{
 		$override_path = false;
 		
-		$ptype_id = (int)get_showtime('property_type');
+		$ptype_id = (int)get_showtime('ptype_id');
 		
 		if (this_cms_is_joomla())
 			{

@@ -210,6 +210,7 @@ try
 		
 		//since we have a property uid, we also have a property type, so let`s set a showtime
 		set_showtime( 'property_type', $current_property_details->property_type );
+		set_showtime( 'ptype_id', $current_property_details->ptype_id );
 		
 		//load property type specific language file if $property_type is set
 		$jomres_language->get_language( $current_property_details->property_type );
@@ -368,9 +369,9 @@ try
 						$outgoingFile = 'j00605' . $plugin . '.class.php';
 
 						if ( $interruptOutgoingFile && $interrupted == 0 ) 
-							$MiniComponents->specificEvent( '00600', $plugin, array ( 'bookingdata' => $bookingdata, 'property_uid' => $property_uid ) ); //Interrupt outgoing
+							$MiniComponents->specificEvent( '00600', $plugin, array ( 'bookingdata' => $bookingdata, 'property_uid' => $property_uid, 'guestdata' => $guestdata ) ); //Interrupt outgoing
 						else
-							$MiniComponents->specificEvent( '00605', $plugin, array ( 'bookingdata' => $bookingdata, 'property_uid' => $property_uid ) ); //outgoing
+							$MiniComponents->specificEvent( '00605', $plugin, array ( 'bookingdata' => $bookingdata, 'property_uid' => $property_uid, 'guestdata' => $guestdata ) ); //outgoing
 						}
 					else
 						{
