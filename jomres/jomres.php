@@ -368,9 +368,9 @@ try
 						$outgoingFile = 'j00605' . $plugin . '.class.php';
 
 						if ( $interruptOutgoingFile && $interrupted == 0 ) 
-							$MiniComponents->specificEvent( '00600', $plugin, array ( 'bookingdata' => $bookingdata, 'property_uid' => $property_uid, 'guestdata' => $guestdata ) ); //Interrupt outgoing
+							$MiniComponents->specificEvent( '00600', $plugin, array ( 'bookingdata' => $bookingdata, 'property_uid' => $property_uid ) ); //Interrupt outgoing
 						else
-							$MiniComponents->specificEvent( '00605', $plugin, array ( 'bookingdata' => $bookingdata, 'property_uid' => $property_uid, 'guestdata' => $guestdata ) ); //outgoing
+							$MiniComponents->specificEvent( '00605', $plugin, array ( 'bookingdata' => $bookingdata, 'property_uid' => $property_uid ) ); //outgoing
 						}
 					else
 						{
