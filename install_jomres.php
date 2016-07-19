@@ -2973,7 +2973,6 @@ function copyImages()
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'canoeing.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'canoeing.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'camping_area.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'camping_area.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'campfire.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'campfire.png' );
-	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'board_walk.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'board_walk.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'bird_hide.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'bird_hide.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'beach.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'beach.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'icons' . JRDS . 'beach2.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . 'pfeatures' . JRDS . 'beach2.png' );
@@ -4277,22 +4276,23 @@ function insertSampleData()
 	doInsertSql( $query, "" );
 	
 	// 
-	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'  );
-	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' );
-	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' . JRDS . '0' );
-	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' . JRDS . '0' . JRDS . 'medium' );
-	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' . JRDS . '0' . JRDS . 'thumbnail' );
-	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' );
-	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '1' );
-	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '1' . JRDS . 'medium' );
-	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '1' . JRDS . 'thumbnail' );
-	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '2' );
-	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '2' . JRDS . 'medium' );
-	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '2' . JRDS . 'thumbnail' );
-	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'slideshow' );
-	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'slideshow' . JRDS . '0' );
-	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'slideshow' . JRDS . '0' . JRDS . 'medium' );
-	mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'slideshow' . JRDS . '0' . JRDS . 'thumbnail' );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages'  );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'  );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' . JRDS . '0' );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' . JRDS . '0' . JRDS . 'medium' );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' . JRDS . '0' . JRDS . 'thumbnail' );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '1' );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '1' . JRDS . 'medium' );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '1' . JRDS . 'thumbnail' );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '2' );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '2' . JRDS . 'medium' );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'rooms' . JRDS . '2' . JRDS . 'thumbnail' );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'slideshow' );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'slideshow' . JRDS . '0' );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'slideshow' . JRDS . '0' . JRDS . 'medium' );
+	jr_installer_mkdir (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'slideshow' . JRDS . '0' . JRDS . 'thumbnail' );
 	
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'jrhouse.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' . JRDS . '0' . JRDS . 'jrhouse.png' );
 	$result = copy( JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'images' . JRDS . 'jrhouse.png', JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS . '1'. JRDS . 'property' . JRDS . '0' . JRDS . 'medium' . JRDS . 'jrhouse.png' );
@@ -4308,7 +4308,12 @@ function insertSampleData()
 	
 	}
 
-
+function jr_installer_mkdir( $dir ) 
+	{
+	if (!is_dir( $dir ) )
+		mkdir (  $dir );
+	}
+	
 function checkIfNewIndexRequired()
 	{
 	$searchString = "KEY `property_uid`";
