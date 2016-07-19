@@ -109,6 +109,7 @@ function load_jomres_environment()
 
 		//since we have a property uid, we also have a property type, so let`s set a showtime
 		set_showtime( 'property_type', $current_property_details->property_type );
+		set_showtime( 'ptype_id', $current_property_details->ptype_id );
 		
 		//load property type specific language file if $property_type is set
 		$jomres_language->get_language( $current_property_details->property_type );
