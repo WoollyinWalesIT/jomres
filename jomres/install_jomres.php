@@ -6373,7 +6373,10 @@ function insert_pfeature_categories()
 
 function include_location_file()
 	{
-	require_once ('../jomres_root.php');
+	if (file_exists('../jomres_root.php'))
+		require_once ('../jomres_root.php');
+	else
+		define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
 	}
 	
 function jomres_create_location_file()
@@ -6390,10 +6393,12 @@ if (!defined(\'JOMRES_ROOT_DIRECTORY\'))
 	define ( \'JOMRES_ROOT_DIRECTORY\' , "'.$dir.'" ) ;
 	}
 ';
-	if ( !file_put_contents ( '../jomres_root.php' , $location ) )
+	if ( !@file_put_contents ( '../jomres_root.php' , $location ) )
 		{
-		output_message ("Error, unable to create jomres_root.php in your CMS's root directory. Please create it manually with the following contents : <br/> ".nl2br (htmlentities($location)) , "danger" );
-		return false;
+		// No longer going to return False, instead we'll do define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ; in the integration script if we can't make this file.
+		return true;
+		//output_message ("Error, unable to create jomres_root.php in your CMS's root directory. Please create it manually with the following contents : <br/> ".nl2br (htmlentities($location)) , "danger" );
+		//return false;
 		}
 	else
 		{

@@ -194,10 +194,10 @@ class j06000compare
 		else // Oh, the naughty little tinker, they've removed all properties from their list, we'll just send them back to the search results
 			{
 			$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-			$MiniComponents->triggerEvent( '01004', $componentArgs ); // optional
-			$MiniComponents->triggerEvent( '01005', $componentArgs ); // optional
-			$MiniComponents->triggerEvent( '01006', $componentArgs ); // optional
-			$MiniComponents->triggerEvent( '01007', $componentArgs ); // optional
+			$MiniComponents->triggerEvent( '01004'  ); // optional
+			$MiniComponents->triggerEvent( '01005'  ); // optional
+			$MiniComponents->triggerEvent( '01006'  ); // optional
+			$MiniComponents->triggerEvent( '01007'  ); // optional
 			$componentArgs[ 'propertys_uid' ] = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
 			$MiniComponents->triggerEvent( '01010', $componentArgs ); // listPropertys
 			}

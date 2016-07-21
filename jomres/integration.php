@@ -20,10 +20,7 @@ if (!defined("TRANSACTION_ID")) // TRANSACTION_ID is used by the logger class to
 
 if (!defined('JOMRES_ROOT_DIRECTORY'))
 	{
-	echo "Error, JOMRES_ROOT_DIRECTORY is not defined and Jomres will not run<br/>";
-	$backtrace = debug_backtrace();
-	echo "It looks like <strong>".$backtrace[1][ 'file' ]."</strong> is the culprit. It should be calling jomres_root.php and it isn't. ";
-	exit;
+	define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
 	}
 
 if ( !defined( 'JOMRESPATH_BASE' ) )
@@ -213,6 +210,11 @@ jomres_parseRequest();
 
 if ($jrConfig[ 'development_production' ] == "production")
 	set_error_handler( 'errorHandler' );
+else
+	{
+	error_reporting(-1);
+	ini_set('display_errors', 'On');
+	}
 
 if ( !strstr( $scriptname, 'install_jomres.php' ) )
 	{
