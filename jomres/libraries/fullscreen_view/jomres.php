@@ -3,16 +3,22 @@
 defined('_JEXEC') or die;
 
 if (!defined('_JOMRES_INITCHECK'))
-		define( '_JOMRES_INITCHECK', 1 );
+	define( '_JOMRES_INITCHECK', 1 );
 
-	require_once (dirname(__FILE__).'/../../jomres_root.php');
-			
-	if (file_exists(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/framework.php'))
-		{
-		require_once(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/framework.php');
-		}
+if (!defined('JOMRES_ROOT_DIRECTORY'))
+	{
+	if (file_exists(dirname(__FILE__).'/../../jomres_root.php'))
+		require_once (dirname(__FILE__).'/../../jomres_root.php');
 	else
-		echo "Error: Alternative Init plugin is not installed.";
+		define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
+	}
+		
+if (file_exists(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/framework.php'))
+	{
+	require_once(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/framework.php');
+	}
+else
+	echo "Error: Alternative Init plugin is not installed.";
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>">

@@ -19,9 +19,12 @@ if (!defined("TRANSACTION_ID")) // TRANSACTION_ID is used by the logger class to
 	define("TRANSACTION_ID" , time() );
 
 if (!defined('JOMRES_ROOT_DIRECTORY'))
-	{
-	define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
-	}
+    {
+    if (file_exists(dirname(__FILE__).'/../jomres_root.php'))
+        require_once (dirname(__FILE__).'/../jomres_root.php');
+    else
+        define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
+    }
 
 if ( !defined( 'JOMRESPATH_BASE' ) )
 	{

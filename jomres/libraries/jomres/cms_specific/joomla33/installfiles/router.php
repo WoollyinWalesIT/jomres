@@ -13,7 +13,14 @@ defined( '_JEXEC' ) or die( '' );
 jimport( 'joomla.filter.output' );
 
 define( '_JOMRES_INITCHECK', 1 );
-require_once (dirname(__FILE__).'/../../jomres_root.php');
+
+if (!defined('JOMRES_ROOT_DIRECTORY'))
+    {
+    if (file_exists(dirname(__FILE__).'/../../jomres_root.php'))
+        require_once (dirname(__FILE__).'/../../jomres_root.php');
+    else
+        define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
+    }
 
 function JomresBuildRoute( &$query )
 	{

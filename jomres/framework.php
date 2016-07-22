@@ -13,10 +13,13 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-if (file_exists(dirname(__FILE__).'/../jomres_root.php'))
-	require_once (dirname(__FILE__).'/../jomres_root.php');
-else 
-	die();
+if (!defined('JOMRES_ROOT_DIRECTORY'))
+    {
+    if (file_exists(dirname(__FILE__).'/../jomres_root.php'))
+        require_once (dirname(__FILE__).'/../jomres_root.php');
+    else
+        define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
+    }
 	
 if (defined('API_STARTED'))
 	{

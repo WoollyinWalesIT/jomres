@@ -6373,10 +6373,14 @@ function insert_pfeature_categories()
 
 function include_location_file()
 	{
-	if (file_exists('../jomres_root.php'))
-		require_once ('../jomres_root.php');
-	else
-		define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
+	if (!defined('JOMRES_ROOT_DIRECTORY'))
+		{
+		if (file_exists(dirname(__FILE__).'/../jomres_root.php'))
+			require_once (dirname(__FILE__).'/../jomres_root.php');
+		else
+			define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
+		}
+	return true;
 	}
 	
 function jomres_create_location_file()
