@@ -7,8 +7,13 @@ if (!defined('_JOMRES_INITCHECK'))
 if (!defined('_JOMRES_INITCHECK_ADMIN'))
 	define('_JOMRES_INITCHECK_ADMIN', 1 );
 
-if ( file_exists(dirname(__FILE__).'/../../../jomres_root.php') ) 
-	require_once (dirname(__FILE__).'/../../../jomres_root.php');
+if (!defined('JOMRES_ROOT_DIRECTORY'))
+    {
+    if (file_exists(dirname(__FILE__).'/../../../jomres_root.php'))
+        require_once (dirname(__FILE__).'/../../../jomres_root.php');
+    else
+        define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
+    }
 
 if (!jomres_check_if_jomres_installed())
 	{
