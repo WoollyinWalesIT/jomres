@@ -12,6 +12,7 @@
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogHandler;
+use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Formatter\LineFormatter;
 
 class logging 
@@ -64,12 +65,36 @@ class logging
 			{
 			$syslog_disabled = false;
 			}
-  
+
 		if (!$syslog_disabled)
 			{
-			$syslogHandler = new SyslogHandler(
-				'jomres', LOG_USER, Logger::INFO
-				);
+			if ($jrConfig[ 'development_production' ] == "development") 
+				$level  = Logger::DEBUG;
+			else
+				$level  = Logger::INFO;
+			
+			if ( 
+				!isset($jrConfig['syslog_host']) || 
+				trim($jrConfig['syslog_host']) =="" || 
+				!isset($jrConfig['syslog_port']) || 
+				trim($jrConfig['syslog_port']) =="" 
+				)
+				{
+				$syslogHandler = new SyslogHandler(
+					'jomres', 
+					LOG_USER, 
+					$level
+					);	
+				}
+			else
+				{
+				$syslogHandler = new SyslogUdpHandler( 
+					(string)$jrConfig['syslog_host'] ,
+					(int)$jrConfig['syslog_port'] ,
+					LOG_USER, 
+					$level
+					);
+				}
 			$syslogHandler->setFormatter($formatter);
 			$logger->pushHandler($syslogHandler);
 			}

@@ -214,5 +214,7 @@ $jrConfig = array (
   'currency_symbol_swap' => '0',
   'send_tracking_data' => '0',
   'log_path' => '',
-  'map_style' => 'ultralight'
+  'map_style' => 'ultralight',
+  'syslog_host' => "",
+  'syslog_port' => ""
 );
