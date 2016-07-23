@@ -162,7 +162,10 @@ if (!defined('JOMRES_API_CMS_ROOT')) // The API includes the logger class. As th
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Handler' . JRDS . 'AbstractHandler.php' );
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Handler' . JRDS . 'AbstractProcessingHandler.php' );
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Handler' . JRDS . 'AbstractSyslogHandler.php' );
+	
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Handler' . JRDS . 'SyslogUdpHandler.php' );
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Handler' . JRDS . 'SyslogHandler.php' );
+	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Handler' . JRDS . 'SyslogUdp' . JRDS . 'UdpSocket.php' );
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Handler' . JRDS . 'AbstractProcessingHandler.php' );
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'api' . JRDS . 'vendor' . JRDS . 'monolog' . JRDS . 'monolog' . JRDS . 'src' . JRDS . 'Monolog' . JRDS . 'Handler' . JRDS . 'StreamHandler.php' );
 	
