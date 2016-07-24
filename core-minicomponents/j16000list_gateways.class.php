@@ -45,7 +45,7 @@ class j16000list_gateways
 				{
 				$r = array();
 				$settings = get_plugin_settings($gateway['name'],0);
-				if ($settings['active'] =="1" )
+				if ( isset($settings['active']) && $settings['active'] =="1" )
 					$r['ACTIVE']=jr_gettext('_JOMRES_COM_MR_YES','_JOMRES_COM_MR_YES',false);
 				else
 					$r['ACTIVE']=jr_gettext('_JOMRES_COM_MR_NO','_JOMRES_COM_MR_NO',false);

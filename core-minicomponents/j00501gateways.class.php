@@ -34,11 +34,10 @@ class j00501gateways
 
 		$MiniComponents->triggerEvent( '00509', $componentArgs );
 		$outputArray = $MiniComponents->miniComponentData[ '00509' ];
-	
+
 		if ( $paypal_settings->paypalConfigOptions[ 'override' ] == "0" && !is_null($outputArray) )
 			{
 			$lists        = $componentArgs[ 'lists' ];
-			$gatewayNames = $componentArgs[ 'gatewayNames' ];
 
 			$configurationPanel->startPanel( jr_gettext( "_JOMRES_COM_A_GATEWAYLIST", '_JOMRES_COM_A_GATEWAYLIST', false ) );
 
@@ -63,11 +62,21 @@ class j00501gateways
 
 			foreach ( $outputArray as $gateway_name=>$gw )
 				{
+				if (!isset($settingArray[$gateway_name]['override']))
+					$settingArray[$gateway_name]['override'] = 0;
+				
 				if ( !isset($settingArray[$gateway_name] ) || $settingArray[$gateway_name]['override'] != "1")
 					{
 					$configurationPanel->setleft( $gw[ 'button' ] );
 					$configurationPanel->setmiddle( $gw[ 'link' ] );
 					$configurationPanel->setright( $gw[ 'active' ] );
+					$configurationPanel->insertSetting();
+					}
+				elseif (isset($gw[ 'custom_output' ]) )
+					{
+					$configurationPanel->setleft(  );
+					$configurationPanel->setmiddle( $gw[ 'custom_output' ] );
+					$configurationPanel->setright(  );
 					$configurationPanel->insertSetting();
 					}
 				}
