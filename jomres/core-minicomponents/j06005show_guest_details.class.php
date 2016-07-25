@@ -25,6 +25,7 @@ class j06005show_guest_details
 
 			return;
 			}
+		$this->retVals = '';
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		if ( !$thisJRUser->userIsRegistered ) return;
 
