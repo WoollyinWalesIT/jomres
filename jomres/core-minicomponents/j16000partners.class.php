@@ -30,16 +30,6 @@ class j16000partners
 		$output['TITLE']="Our Partners";
 		$output['INTRO']="Here you can find a list of our partners. These are businesses who also offer plugins for Jomres, extra to those already available in the Jomres Plugin Manager.";
 		
-		
-		$partners = array();
-		$partners ['jomres_extras'] = array (
-			"name"=>"Jomres Extras", 
-			"intro"=>"Jomres Extras have been working on Jomres for many years now, and have produced many excellent plugins for Jomres.",
-			"plugin_list_url"=>"http://www.jomres-extras.com/jomres-extras.com.php",
-			"image"=>"jomres-extras.com.png",
-			"link"=>"http://www.jomres-extras.com"
-			);
-		
 		$partners ['jomres_plugins'] = array (
 			"name"=>"Jomres Plugins", 
 			"intro"=>"Rodrigo is very active in the Jomres.net forums, many users have benefited from his helpfulness and skills over the years. He produces his own plugins for Jomres, but his main focus is custom coding for individual projects.",
