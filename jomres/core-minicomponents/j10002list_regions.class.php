@@ -25,6 +25,7 @@ class j10002list_regions
 
 			return;
 			}
+		$this->cpanelButton ='';
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
