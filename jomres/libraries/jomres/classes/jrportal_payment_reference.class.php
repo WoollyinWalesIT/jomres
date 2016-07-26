@@ -29,7 +29,7 @@ class jrportal_payment_reference
 		try
 			{
 			$this->payment_reference = doInsertSql($query);
-			return $payment_reference;
+			return $this->payment_reference;
 			}
 		catch (Exception $e) 
 			{
@@ -131,6 +131,7 @@ class jrportal_payment_reference
 			$invoice_data['currencycode']		= $invoice->currencycode;
 			$invoice_data['balance']			= $invoice->balance;
 			$invoice_data['line_items']			= $invoice->lineitems;
+			$invoice_data['property_uid']		= $invoice->property_uid;
 			
 			if ($booking_number)
 				$invoice_data['booking_number']		= $booking_number;
