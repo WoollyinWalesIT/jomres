@@ -568,32 +568,37 @@ class j02990showconfirmation
 						$counter                               = 1;
 						foreach ( $gatewayDeets as $gateway )
 							{
-							$gw = array();
-							$checked = "";
-							if ( $counter == 1 ) $checked = "checked";
-							$result = $MiniComponents->specificEvent( '03108', $gateway->plugin, null );
+							$gateway_existance_minicomponent = '00509'.$gateway->plugin;
 							
-							if ( count( $result ) > 1 )
+							if ( isset( $MiniComponents->registeredClasses[ $gateway_existance_minicomponent ] ) )
 								{
-								$gw[ 'GWNAME' ] = $result[ 'gatewayname' ];
-								$tmpgatewaydir  = $result[ 'filepath' ];
+								$gw = array();
+								$checked = "";
+								if ( $counter == 1 ) $checked = "checked";
+								$result = $MiniComponents->specificEvent( '03108', $gateway->plugin, null );
+								
+								if ( count( $result ) > 1 )
+									{
+									$gw[ 'GWNAME' ] = $result[ 'gatewayname' ];
+									$tmpgatewaydir  = $result[ 'filepath' ];
+									}
+								else
+									{
+									$gw[ 'GWNAME' ] = $gateway->plugin;
+									$tmpgatewaydir  = $result;
+									}
+								$gw[ 'GWINPUT' ] = '<input type="radio" name="plugin" value="' . $gateway->plugin . '" ' . $checked . ' /> ' . $gw[ 'GWNAME' ];
+								$gatewaydir      = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' ).'/', $tmpgatewaydir );
+								$gatewaydir      = str_replace( '\\', '/', $gatewaydir );
+								$gw[ 'GWIMAGE' ] = '<img src="' . $gatewaydir . 'j00510' . $gateway->plugin . '.gif" border="0">';
+								
+								$gw_configuration_script = '00509'.$gateway->plugin;
+								if (count($MiniComponents->registeredClasses[$gw_configuration_script]) > 0) // Let's check that the site manager hasn't uninstalled the plugin. If count == 0, then they have, we don't want to attempt to show this gateway
+									{
+									$gateways[ ]     = $gw;
+									}
+								$counter++;
 								}
-							else
-								{
-								$gw[ 'GWNAME' ] = $gateway->plugin;
-								$tmpgatewaydir  = $result;
-								}
-							$gw[ 'GWINPUT' ] = '<input type="radio" name="plugin" value="' . $gateway->plugin . '" ' . $checked . ' /> ' . $gw[ 'GWNAME' ];
-							$gatewaydir      = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' ).'/', $tmpgatewaydir );
-							$gatewaydir      = str_replace( '\\', '/', $gatewaydir );
-							$gw[ 'GWIMAGE' ] = '<img src="' . $gatewaydir . 'j00510' . $gateway->plugin . '.gif" border="0">';
-							
-							$gw_configuration_script = '00509'.$gateway->plugin;
-							if (count($MiniComponents->registeredClasses[$gw_configuration_script]) > 0) // Let's check that the site manager hasn't uninstalled the plugin. If count == 0, then they have, we don't want to attempt to show this gateway
-								{
-								$gateways[ ]     = $gw;
-								}
-							$counter++;
 							}
 						}
 					}
