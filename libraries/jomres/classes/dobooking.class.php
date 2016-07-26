@@ -2093,6 +2093,11 @@ class dobooking
 					break;
 					}
 				}
+			else
+				{
+				$arrivalDate = $d;
+				break;
+				}
 			$current = strtotime("+1 day", $current);
 			}
 
