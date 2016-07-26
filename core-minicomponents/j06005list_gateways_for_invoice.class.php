@@ -58,7 +58,7 @@ class j06005list_gateways_for_invoice
 				{
 				$settings = get_plugin_settings($gateway['name'],$invoice->property_uid);
 				
-				if ($settings['active'] == "1")
+				if (isset($settings['active']) && $settings['active'] == "1")
 					{
 					$r = $gateway;
 					$r['LINK'] = JOMRES_SITEPAGE_URL."&task=invoice_payment_send&gateway=".$gateway['name']."&invoice_id=".$this->invoice_id;
