@@ -335,6 +335,8 @@ function showSiteConfig()
 		}
 	$map_styles_dropdown = jomresHTML::selectList( $map_styles, 'cfg_map_style', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'map_style' ] );
 	
+	$lists[ 'sendErrorEmails' ] = jomresHTML::selectList( $yesno, 'cfg_sendErrorEmails', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sendErrorEmails' ] );
+	
 	
 	$componentArgs = array ();
 	$componentArgs[ 'lists' ]							= $lists;

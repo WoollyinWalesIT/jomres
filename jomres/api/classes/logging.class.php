@@ -68,11 +68,6 @@ class logging
 
 		if (!$syslog_disabled)
 			{
-			if ($jrConfig[ 'development_production' ] == "development") 
-				$level  = Logger::DEBUG;
-			else
-				$level  = Logger::INFO;
-			
 			if ( 
 				!isset($jrConfig['syslog_host']) || 
 				trim($jrConfig['syslog_host']) =="" || 
@@ -83,8 +78,8 @@ class logging
 				$syslogHandler = new SyslogHandler(
 					'jomres', 
 					LOG_USER, 
-					$level
-					);	
+					"Logger::".$level
+					);
 				}
 			else
 				{
@@ -92,7 +87,7 @@ class logging
 					(string)$jrConfig['syslog_host'] ,
 					(int)$jrConfig['syslog_port'] ,
 					LOG_USER, 
-					$level
+					"Logger::".$level
 					);
 				}
 			$syslogHandler->setFormatter($formatter);

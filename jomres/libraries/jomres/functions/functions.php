@@ -217,7 +217,12 @@ function output_fatal_error($e)
 	$error_html
 	;
 	
-	sendAdminEmail( "Error logged ".$output['MESSAGE'], $url);
+	if ( $jrConfig[ 'sendErrorEmails' ] == '1' )
+		sendAdminEmail( "Error logged ".$output['MESSAGE'], $url);
+	
+	
+	logging::log_message( "Error logged ".$output['MESSAGE']." ".$url , "Core" , "ERROR" );
+	
 	}
 
 function getCurrentUrl($full = true) 

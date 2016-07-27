@@ -43,11 +43,18 @@ class j10501debugging
 			$configurationPanel->setright( jr_gettext( '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_SEND_ERROR_EMAIL', '_JOMRES_SEND_ERROR_EMAIL', false ) );
+			$configurationPanel->setmiddle( $lists[ 'sendErrorEmails' ] );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_SEND_ERROR_EMAIL_DESC', '_JOMRES_SEND_ERROR_EMAIL_DESC', false ) );
+			$configurationPanel->insertSetting();
+			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_CONFIG_LOG_LOCATION', '_JOMRES_CONFIG_LOG_LOCATION', false ) );
 			$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_log_path" value="' . $jrConfig[ 'log_path' ] . '" />' );
 			$configurationPanel->setright( jr_gettext( '_JOMRES_CONFIG_LOG_LOCATION_DESC', '_JOMRES_CONFIG_LOG_LOCATION_DESC', false )." ".jr_gettext( '_JOMRES_CONFIG_LOG_LOCATION_RECOMMENDED', '_JOMRES_CONFIG_LOG_LOCATION_RECOMMENDED', false ).dirname(dirname(dirname(dirname(__FILE__)))).JRDS.'monolog' );
 			$configurationPanel->insertSetting();
 
+
+			
 			$syslog_disabled = true;
 			$disabled = explode(',', ini_get('disable_functions'));
 			if (!in_array(' openlog', $disabled) && !in_array('openlog', $disabled)  && !in_array(' syslog', $disabled)  && !in_array('syslog', $disabled))
@@ -75,6 +82,7 @@ class j10501debugging
 				$configurationPanel->setright( );
 				$configurationPanel->insertSetting();
 				}
+			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_SAFEMODE', '_JOMRES_SAFEMODE', false ) );
 			$configurationPanel->setmiddle( $lists[ 'safe_mode' ] );
 			$configurationPanel->setright( jr_gettext( '_JOMRES_SAFEMODE_DESC', '_JOMRES_SAFEMODE_DESC', false ) );
