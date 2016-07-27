@@ -149,7 +149,18 @@ class j16000addplugin
 				}
 			}
 
+		if ( !is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'updates' ) )
+			{
+			if ( !mkdir( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'updates' ) ) 
+				{
+				$error_messsage[ "ERROR" ] = "Couldn't make the folder " . JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'updates' . " so quitting.";
+				echo $error_messsage[ "ERROR" ];
+				return;
+				}
+			}
+			
 		$updateDirPath = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'updates' . JRDS . $pluginName . JRDS;
+
 
 		if ( is_dir( $updateDirPath ) )
 			{
