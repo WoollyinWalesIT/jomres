@@ -76,15 +76,7 @@ class j06005mulistbookings
 					$counter = 0;
 					foreach ( $contracts as $c )
 						{
-						$mrConfig = getPropertySpecificSettings( $c->property_uid );
 						$jomres_media_centre_images->get_images($c->property_uid, array('property'));
-	
-						$counter++;
-						if ( $counter % 2 ) $r[ 'STYLE' ] = "odd";
-						else
-						$r[ 'STYLE' ] = "even";
-						$currfmt  = jomres_singleton_abstract::getInstance( 'jomres_currency_format' );
-						$currency = $mrConfig[ 'currency' ];
 	
 						$basic_property_details->gather_data( $c->property_uid );
 	
