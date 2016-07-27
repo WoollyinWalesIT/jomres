@@ -147,10 +147,10 @@ class j06005muviewbooking
 			if ( is_numeric( $guest->county ) )
 				{
 				$jomres_regions        = jomres_singleton_abstract::getInstance( 'jomres_regions' );
-				$guest_region = jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $guest->county, $jomres_regions->regions[ $guest->county ][ 'regionname' ], $editable, false );
+				$guest_region = jr_gettext( "_JOMRES_CUSTOMTEXT_REGIONS_" . $guest->county, $jomres_regions->regions[ $guest->county ][ 'regionname' ], false, false );
 				}
 			else
-				$guest_region = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_REGION' . $guest->county, $guest->county, $editable, false );
+				$guest_region = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_REGION' . $guest->county, $guest->county, false, false );
 			$guest_country      = getSimpleCountry($guest->country);
 			$guest_postcode     = $guest->postcode;
 			$guest_tel_landline = $guest->tel_landline;
@@ -170,6 +170,7 @@ class j06005muviewbooking
 
 		foreach ( $bookingData as $booking )
 			{
+			$mrConfig = getPropertySpecificSettings( $booking->property_uid );
 			$booking_tag              = $booking->tag;
 			$booking_contract_uid     = $booking->contract_uid;
 			$booking_arrival          = $booking->arrival;
@@ -235,11 +236,12 @@ class j06005muviewbooking
 			$rClass_room_class_abbv      = $rClass->room_class_abbv;
 			$rClass_room_class_full_desc = $rClass->room_class_full_desc;
 			}
-		if ( $booking_deposit_paid ) $depositPaid = jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES' );
+		if ( $booking_deposit_paid ) 
+			$depositPaid = jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES' );
 		else
-		$depositPaid = jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO' );
+			$depositPaid = jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO' );
 
-		if ( !$bookedin && dateDiff( $interval, date( "Y/m/d" ), $booking_arrival ) > (int) $mrConfig[ 'cancellation_threashold' ] && (int)$booking_cancelled == 0)
+		if ( !$bookedin && dateDiff( "d", date( "Y/m/d" ), $booking_arrival ) > (int) $mrConfig[ 'cancellation_threashold' ] && (int)$booking_cancelled == 0)
 			{
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb   = $jrtbar->startTable();
