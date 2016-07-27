@@ -215,6 +215,7 @@ $jrConfig = array (
   'send_tracking_data' => '0',
   'log_path' => '',
   'map_style' => 'ultralight',
-  'syslog_host' => "",
-  'syslog_port' => ""
+  'syslog_host' => '',
+  'syslog_port' => '',
+  'sendErrorEmails' => '0'
 );
