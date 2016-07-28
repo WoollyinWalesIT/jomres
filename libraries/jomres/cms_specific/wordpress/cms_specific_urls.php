@@ -147,7 +147,7 @@ define( "JOMRES_SITEPAGE_URL_ADMIN", get_showtime( 'live_site' ) . "/wp-admin/ad
 define( "JOMRES_SITEPAGE_URL_ADMIN_AJAX", get_showtime( 'live_site' ) . "/wp-admin/admin-ajax.php?action=jomres/trigger.php&no_html=1&jrajax=1&jr_wp_source=admin&option=com_jomres" . $tmpl . $lang . $lang_param);
 
 if ( get_option('permalink_structure') != '' )
-	define( "JOMRES_SITEPAGE_URL", $index . "?option=com_jomres&page_id=" . $jomresItemid . $tmpl . $lang );
+	define( "JOMRES_SITEPAGE_URL", "?option=com_jomres&page_id=" . $jomresItemid . $tmpl . $lang );
 else
 	define( "JOMRES_SITEPAGE_URL", get_showtime( 'live_site' ) . "/" . $index . "?option=com_jomres&page_id=" . $jomresItemid . $tmpl . $lang );
 		
