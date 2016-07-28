@@ -24,7 +24,7 @@ require_once( dirname( __FILE__ ) . '/integration.php' );
 
 try
 	{
-	logging::log_message('Jomres started' , "Core" );
+	logging::log_message('Jomres started' , "Core" , "INFO" );
 	//minicomponents object
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	
