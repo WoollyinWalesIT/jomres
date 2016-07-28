@@ -53,6 +53,9 @@ class logging
 		
 		$log_file = str_replace(" ","_",$channel).".application.log";
 
+		if ($jrConfig[ 'development_production' ] == "production" && $level == "DEBUG") // In Production, we don't want to see DEBUG level stuff.
+			return;
+
 		$formatter = new LineFormatter( "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n" );
 
 		$logger = new Logger($channel);
