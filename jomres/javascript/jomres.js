@@ -9,6 +9,8 @@ function Block_Error() {
 	return true;
 };
 
+var jr_deferred = jomresJquery.Deferred();
+
 jomresJquery(function () {
 	jomresJquery(".jomres_bt_tooltip_features").tipsy({html: true, fade: true, gravity: jomresJquery.fn.tipsy.autoNS, delayOut: 100});
 });
@@ -624,7 +626,7 @@ function getResponse_guest() {
 
 	if (result) {
 		var addressString = firstname + "~" + surname + "~" + house + "~" + street + "~" + town + "~" + region + "~" + postcode + "~" + country + "~" + tel_landline + "~" + tel_mobile + "~" + eemail;
-		jomresJquery.get(url, { field: 'addressstring', 'value': addressString },
+		jr_deferred = jomresJquery.get(url, { field: 'addressstring', 'value': addressString },
 			function (data) {
 				eval(data);
 				show_log("addressstring");
@@ -926,7 +928,7 @@ function dobooking_validate() {
 	if (checkaddressfields()) {
 		getResponse_guest();
 		document.ajaxform.confirmbooking.disabled = true;
-		setTimeout('submitBooking()', 2000);
+		jomresJquery.when(jr_deferred).done(function() {submitBooking()});
 	}
 };
 

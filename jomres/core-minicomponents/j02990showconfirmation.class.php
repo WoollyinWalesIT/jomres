@@ -75,7 +75,7 @@ class j02990showconfirmation
 
 		$tmpBookingHandler->saveBookingData();
 		
-		if ( !isset($_REQUEST['sk']))
+		/* if ( !isset($_REQUEST['sk']))
 			{
 			$tmpBookingHandler->updateGuestField( 'firstname', jomresGetParam( $_POST, 'firstname', '' ) );
 			$tmpBookingHandler->updateGuestField( 'surname', jomresGetParam( $_POST, 'surname', '' ) );
@@ -89,7 +89,7 @@ class j02990showconfirmation
 			$tmpBookingHandler->updateGuestField( 'tel_landline', jomresGetParam( $_POST, 'tel_landline', '' ) );
 			if ( !$thisJRUser->userIsRegistered ) 
 				$tmpBookingHandler->updateGuestField( 'email', jomresGetParam( $_POST, 'eemail', '' ) );
-			}
+			} */
 
 		$currfmt = jomres_singleton_abstract::getInstance( 'jomres_currency_format' );
 
