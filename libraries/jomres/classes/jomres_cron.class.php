@@ -277,6 +277,9 @@ class jomres_cron
 					else
 						$request = $livesite . "&task=cron_" . $job[ 'job_name' ] . "&secret=" . $jomresConfig_secret;
 
+					logging::log_message('Starting curl call to '.$request , "Curl" , "DEBUG" );
+					$logging_time_start = microtime(true);
+				
 					$ch      = curl_init();
 					curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 					curl_setopt( $ch, CURLOPT_USERAGENT, 'Jomres' );
@@ -288,6 +291,12 @@ class jomres_cron
 					curl_setopt( $ch, CURLOPT_HTTPHEADER, array ( 'Content-Type: text/html; charset=utf-8' ) );
 					$curl_output = curl_exec( $ch );
 					curl_close( $ch );
+					
+					$logging_time_end = microtime(true);
+					$logging_time = $logging_time_end - $logging_time_start;
+					logging::log_message('Curl call took '.$logging_time. " seconds " , "Curl" , "DEBUG" );
+				
+					
 					$this->debug[ ] = "Triggered " . (string) $job[ 'job_name' ] . " at " . strftime( "%H:%M %d/%m/%Y", $this->now );
 					$lockedJobs[]=$job[ 'id' ];
 					}

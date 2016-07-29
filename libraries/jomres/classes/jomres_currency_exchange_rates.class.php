@@ -167,16 +167,23 @@ class jomres_currency_exchange_rates
 	function get_openexchangerates_rates()
 		{
 		$url = 'http://openexchangerates.org/api/latest.json?app_id='.$this->app_id;
-		if ( !$this->feature_enabled ) return;
-
+		if ( !$this->feature_enabled ) 
+			return;
+		
+		logging::log_message('Starting curl call to '.$url , "Curl" , "DEBUG" );
+		$logging_time_start = microtime(true);
+		
 		$c   = curl_init( $url );
 		curl_setopt( $c, CURLOPT_HEADER, 0 );
 		curl_setopt( $c, CURLOPT_USERAGENT, 'Jomres' );
 		curl_setopt( $c, CURLOPT_RETURNTRANSFER, 1 );
 		curl_setopt( $c, CURLOPT_TIMEOUT, 2000 );
 		$json = curl_exec( $c );
-
 		curl_close( $c );
+		
+		$logging_time_end = microtime(true);
+		$logging_time = $logging_time_end - $logging_time_start;
+		logging::log_message('Curl call took '.$logging_time. " seconds " , "Curl" , "DEBUG" );
 		
 		$result = json_decode($json);
 		

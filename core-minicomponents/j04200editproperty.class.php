@@ -106,6 +106,9 @@ class j04200editproperty
 			{
 			$url = "https://maps-api-ssl.google.com/maps/api/geocode/json?address=" . urlencode( $current_property_details->property_name ) . "," . urlencode( $current_property_details->property_street ) . "," . urlencode( $current_property_details->property_town ) . "," . urlencode( $current_property_details->property_region ) . "," . urlencode( $selectedCountry ) ;
 			
+			logging::log_message('Starting curl call to '.$url , "Curl" , "DEBUG" );
+			$logging_time_start = microtime(true);
+			
 			$curl_handle = curl_init();
 			curl_setopt( $curl_handle, CURLOPT_URL, $url );
 			curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 2 );
@@ -113,6 +116,10 @@ class j04200editproperty
 			curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
 			$response = trim( curl_exec( $curl_handle ) );
 			curl_close( $curl_handle );
+			
+			$logging_time_end = microtime(true);
+			$logging_time = $logging_time_end - $logging_time_start;
+			logging::log_message('Curl call took '.$logging_time. " seconds " , "Curl" , "DEBUG" );
 			
 			$decoded = json_decode( $response );
 			if ( isset( $decoded->results[ 0 ]->geometry->location->lat ) )

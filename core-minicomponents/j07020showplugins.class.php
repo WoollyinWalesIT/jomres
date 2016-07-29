@@ -51,6 +51,10 @@ class j07020showplugins
 			$current_version = $mrConfig[ 'version' ];
 		
 			$query_string = "http://plugins.jomres4.net/index.php?r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS. "&jomresver=" . $current_version;
+			
+			logging::log_message('Starting curl call to '.$query_string , "Curl" , "DEBUG" );
+			$logging_time_start = microtime(true);
+			
 			$curl_handle = curl_init();
 			curl_setopt( $curl_handle, CURLOPT_URL, $query_string );
 			curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
@@ -60,6 +64,9 @@ class j07020showplugins
 			$remote_plugins_data = curl_exec( $curl_handle );
 			curl_close( $curl_handle ); 
 			
+			$logging_time_end = microtime(true);
+			$logging_time = $logging_time_end - $logging_time_start;
+			logging::log_message('Curl call took '.$logging_time. " seconds " , "Curl" , "DEBUG" );
 			
 			// Uncomment this to show all updates, including beta plugins.
 			//$remote_plugins_data = queryUpdateServer( "", "r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS  );

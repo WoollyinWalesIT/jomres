@@ -78,13 +78,22 @@ class j16000partners
 			{
 			foreach ($partners as $key=>$p)
 				{
+				$url = $p['plugin_list_url'];
+				logging::log_message('Starting curl call to '.$url , "Curl" , "DEBUG" );
+				$logging_time_start = microtime(true);
+			
 				$curl_handle = curl_init();
-				curl_setopt( $curl_handle, CURLOPT_URL, $p['plugin_list_url'] );
+				curl_setopt( $curl_handle, CURLOPT_URL, $url );
 				curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 2 );
 				curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
 				curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, 1 );
 				$response = curl_exec( $curl_handle );
 				curl_close( $curl_handle );
+				
+				$logging_time_end = microtime(true);
+				$logging_time = $logging_time_end - $logging_time_start;
+				logging::log_message('Curl call took '.$logging_time. " seconds " , "Curl" , "DEBUG" );
+				
 				$partner_plugins = json_decode( $response , true );
 
 				if (count($partner_plugins)>0)
