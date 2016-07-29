@@ -31,15 +31,13 @@ class j16000view_log_file
 		$jrConfig   = $siteConfig->get();
 		
 		if ( !isset($jrConfig['log_path']) || $jrConfig['log_path'] == '' )
-			$jrConfig['log_path'] = dirname(dirname(dirname(__FILE__)) ).'/logs/';
-		
-		$jrConfig['log_path'] = rtrim($jrConfig['log_path'], '/');
-		$jrConfig['log_path'] = rtrim($jrConfig['log_path'], '\\');
-		$jrConfig['log_path'] .= JRDS;
+			$jrConfig['log_path'] = dirname(__FILE__) .'/../logs/';
+
+		$jrConfig['log_path'] = fix_path($jrConfig['log_path']);
 		
 		if (is_file($jrConfig['log_path'].$filename))
 			{
-			echo file_get_contents($jrConfig['log_path'].$filename);
+			echo nl2br(file_get_contents($jrConfig['log_path'].$filename));
 			}
 		}
 

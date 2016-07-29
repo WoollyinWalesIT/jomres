@@ -2,13 +2,13 @@
 	<script type="text/javascript">
 		<!--
 		jomresJquery(document).ready(function () {
-			make_datatable('list_error_logs', '{PAGETITLE}', '{LIVESITE}');
+			make_datatable('{TABLE_NAME}', '{PAGETITLE}', '{LIVESITE}');
 		});
 		//-->
 	</script>
 	<h2 class="page-header">{PAGETITLE}</h2>
 		{JOMRESTOOLBAR}
-		<table id="list_error_logs" width="100%" class="table table-striped">
+		<table id="{TABLE_NAME}" width="100%" class="table table-striped">
 			<thead>
 			<tr>
 				<th>{_JOMRES_ERROR_DEBUGGING_FILE}</th>
