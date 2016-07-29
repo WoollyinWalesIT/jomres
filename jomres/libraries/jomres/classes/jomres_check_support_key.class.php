@@ -47,7 +47,7 @@ class jomres_check_support_key
 				$this->remote_get_all_user_plugin_licenses();
 				$this->get_user_plugin_licenses();
 				} */
-				
+			$this->shop_status = "CLOSED";
 			$this->check_license_key(  );
 			}
 		}
