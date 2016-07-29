@@ -120,13 +120,6 @@ class j16000list_error_logs
 			$error_rows[ ] = $r;
 			}
 
-		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
-		$jrtb   = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL_ADMIN ), '' );
-
-		$jrtb .= $jrtbar->endTable();
-		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
-
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
