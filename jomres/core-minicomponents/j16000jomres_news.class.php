@@ -53,14 +53,23 @@ class j16000jomres_news
 		
 		if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "news.php") )
 			{
+			$url = "http://updates.jomres4.net/news.php";
+			logging::log_message('Starting curl call to '.$url , "Curl" , "DEBUG" );
+			$logging_time_start = microtime(true);
+			
 			$curl_handle = curl_init();
-			curl_setopt( $curl_handle, CURLOPT_URL, "http://updates.jomres4.net/news.php" );
+			curl_setopt( $curl_handle, CURLOPT_URL, $url );
 			curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
 			curl_setopt( $curl_handle, CURLOPT_TIMEOUT, 8 );
 			curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 2 );
 			curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, 1 );
 			$buffer = curl_exec( $curl_handle );
 			curl_close( $curl_handle );
+			
+			$logging_time_end = microtime(true);
+			$logging_time = $logging_time_end - $logging_time_start;
+			logging::log_message('Curl call took '.$logging_time. " seconds " , "Curl" , "DEBUG" );
+			
 			if ($buffer != "")
 				{
 				file_put_contents( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "news.php",$buffer);

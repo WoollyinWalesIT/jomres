@@ -1035,14 +1035,22 @@ function admins_first_run( $manual_trigger = false )
 		return "Error, CURL not enabled on this server.";
 	else
 		{
+		$url = 'http://license-server.jomres.net/shop/index.php?' . $request;
+		logging::log_message('Starting curl call to '.$url , "Curl" , "DEBUG" );
+		$logging_time_start = microtime(true);
+		
 		$curl_handle = curl_init();
-		curl_setopt( $curl_handle, CURLOPT_URL, 'http://license-server.jomres.net/shop/index.php?' . $request );
+		curl_setopt( $curl_handle, CURLOPT_URL, $url );
 		curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 2 );
 		curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
 		curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, 1 );
 		$response = curl_exec( $curl_handle );
 		curl_close( $curl_handle );
 
+		$logging_time_end = microtime(true);
+		$logging_time = $logging_time_end - $logging_time_start;
+		logging::log_message('Curl call took '.$logging_time. " seconds " , "Curl" , "DEBUG" );
+		
 		return json_decode( $response );
 		}
 	}
@@ -1860,14 +1868,23 @@ function queryUpdateServer( $script, $queryString, $serverType = "plugin" )
 		}
 	else
 		{
+		$url = $updateServer . "/" . $script . "?" . $queryString . "&jomresver=" . $current_version ."&hostname=".get_showtime('live_site');
+		logging::log_message('Starting curl call to '.$url , "Curl" , "DEBUG" );
+		$logging_time_start = microtime(true);
+		
 		$curl_handle = curl_init();
-		curl_setopt( $curl_handle, CURLOPT_URL, $updateServer . "/" . $script . "?" . $queryString . "&jomresver=" . $current_version ."&hostname=".get_showtime('live_site'));
+		curl_setopt( $curl_handle, CURLOPT_URL, $url);
 		curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 2 );
 		//curl_setopt( $curl_handle, CURLOPT_TIMEOUT, 10 ); // If the plugin server/internet connection is slow and this is enabled an empty plugin list will be returned.
 		curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
 		curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, 1 );
 		$response = trim( curl_exec( $curl_handle ) );
 		curl_close( $curl_handle );
+		
+		$logging_time_end = microtime(true);
+		$logging_time = $logging_time_end - $logging_time_start;
+		logging::log_message('Curl call took '.$logging_time. " seconds " , "Curl" , "DEBUG" );
+		
 		}
 
 	return $response;
@@ -4997,14 +5014,23 @@ function get_latest_jomres_version()
 		
 	if ( function_exists( "curl_init" ) && !file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "latest_version.php") )
 		{
+		$url = "http://updates.jomres4.net/versions.php";
+		logging::log_message('Starting curl call to '.$url , "Curl" , "DEBUG" );
+		$logging_time_start = microtime(true);
+		
 		$curl_handle = curl_init();
-		curl_setopt( $curl_handle, CURLOPT_URL, "http://updates.jomres4.net/versions.php" );
+		curl_setopt( $curl_handle, CURLOPT_URL, $url );
 		curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
 		curl_setopt( $curl_handle, CURLOPT_TIMEOUT, 8 );
 		curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 2 );
 		curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, 1 );
 		$buffer = curl_exec( $curl_handle );
 		curl_close( $curl_handle );
+		
+		$logging_time_end = microtime(true);
+		$logging_time = $logging_time_end - $logging_time_start;
+		logging::log_message('Curl call took '.$logging_time. " seconds " , "Curl" , "DEBUG" );
+		
 		if ($buffer != "")
 			{
 			$latest_jomres_version = explode( ".", $buffer );

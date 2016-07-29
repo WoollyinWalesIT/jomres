@@ -263,6 +263,9 @@ class j16000addplugin
 
 				$queryServer = "http://plugins.jomres4.net/index.php?r=gp&cms=" . _JOMRES_DETECTED_CMS . "&vnw=1&key=" . $key_to_send . $p . "&jomresver=" . $mrConfig[ 'version' ]."&hostname=".get_showtime('live_site');
 
+				logging::log_message('Starting curl call to '.$query_string , "Curl" , "DEBUG" );
+				$logging_time_start = microtime(true);
+			
 				$progress_messages[ ] = array ( "MESSAGE" => $queryServer );
 
 				$curl_handle = curl_init( $queryServer );
@@ -278,7 +281,12 @@ class j16000addplugin
 				curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
 				$result			= curl_exec( $curl_handle );
 				$content_type	= curl_getinfo($curl_handle, CURLINFO_CONTENT_TYPE);
-
+				curl_close( $curl_handle ); 
+				
+				$logging_time_end = microtime(true);
+				$logging_time = $logging_time_end - $logging_time_start;
+				logging::log_message('Curl call took '.$logging_time. " seconds " , "Curl" , "DEBUG" );
+			
 				if ($content_type == "text/html")
 					{
 					$output2 = array();
@@ -301,7 +309,6 @@ class j16000addplugin
 					rmdir( $updateDirPath . "unpacked" );
 					return;
 					}
-				curl_close( $curl_handle );
 				fclose( $file_handle );
 				}
 			else

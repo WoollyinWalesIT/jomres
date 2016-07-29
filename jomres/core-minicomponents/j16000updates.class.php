@@ -194,6 +194,11 @@ class j16000updates
 					print "Couldn't create new file $newfilename. Possible file permission problem?<br/>";
 					exit;
 					}
+					
+				
+				logging::log_message('Starting curl call to '.$updateFile , "Curl" , "DEBUG" );
+				$logging_time_start = microtime(true);
+				
 				$curl_handle = curl_init( $updateFile );
 				curl_setopt( $curl_handle, CURLOPT_FILE, $out );
 				curl_setopt( $curl_handle, CURLOPT_USERAGENT, 'Jomres' );
@@ -201,6 +206,11 @@ class j16000updates
 				curl_setopt( $curl_handle, CURLOPT_URL, $updateFile );
 				curl_exec( $curl_handle );
 				curl_close( $curl_handle );
+				
+				$logging_time_end = microtime(true);
+				$logging_time = $logging_time_end - $logging_time_start;
+				logging::log_message('Curl call took '.$logging_time. " seconds " , "Curl" , "DEBUG" );
+				
 				fclose( $out );
 
 				if ( file_exists( $newfilename ) && filesize( $newfilename ) > 0 ) echo "Got it<br />";
