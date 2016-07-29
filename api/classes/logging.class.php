@@ -80,8 +80,7 @@ class logging
 				{
 				$syslogHandler = new SyslogHandler(
 					'jomres', 
-					LOG_USER, 
-					"Logger::".$level
+					LOG_USER
 					);
 				}
 			else
@@ -89,8 +88,7 @@ class logging
 				$syslogHandler = new SyslogUdpHandler( 
 					(string)$jrConfig['syslog_host'] ,
 					(int)$jrConfig['syslog_port'] ,
-					LOG_USER, 
-					"Logger::".$level
+					LOG_USER
 					);
 				}
 			$output = "%channel%.%level_name%: %message%";
