@@ -49,7 +49,7 @@ class logging
 		
 		$jrConfig['log_path'] = rtrim($jrConfig['log_path'], '/');
 		$jrConfig['log_path'] = rtrim($jrConfig['log_path'], '\\');
-		$jrConfig['log_path'] .= '/';
+		$jrConfig['log_path'] .= JRDS;
 		
 		$log_file = str_replace(" ","_",$channel).".application.log";
 
@@ -93,10 +93,11 @@ class logging
 					"Logger::".$level
 					);
 				}
-			$syslogHandler->setFormatter($formatter);
+			$output = "%channel%.%level_name%: %message%";
+			$syslog_formatter = new LineFormatter($output);
+			$syslogHandler->setFormatter($syslog_formatter);
 			$logger->pushHandler($syslogHandler);
 			}
-
 		
 		$logger->pushProcessor(function ($record) {
 			$record['extra']['transaction_id'] = TRANSACTION_ID; // Transaction id is used to identify the caller ( microtime ) so that we can associate logs with actions
