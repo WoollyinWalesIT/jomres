@@ -33,6 +33,7 @@ class jomres_check_support_key
 		
 		if ( function_exists( "curl_init" ) )
 			{
+			/* 
 			$this->get_shop_status();
 			
 			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
@@ -45,7 +46,7 @@ class jomres_check_support_key
 				$this->user_plugin_license_temp_file_name = "user_plugin_licenses.php";
 				$this->remote_get_all_user_plugin_licenses();
 				$this->get_user_plugin_licenses();
-				}
+				} */
 				
 			$this->check_license_key(  );
 			}
