@@ -28,14 +28,12 @@ class j16000list_error_logs
 		$jrConfig   = $siteConfig->get();
 		
 		if ( !isset($jrConfig['log_path']) || $jrConfig['log_path'] == '' )
-			$jrConfig['log_path'] = dirname(dirname(dirname(__FILE__)) ).'/logs/';
+			$jrConfig['log_path'] = dirname(__FILE__) .'/../logs/';
+
+		$jrConfig['log_path'] = fix_path($jrConfig['log_path']);
 		
-		$jrConfig['log_path'] = rtrim($jrConfig['log_path'], '/');
-		$jrConfig['log_path'] = rtrim($jrConfig['log_path'], '\\');
-		$jrConfig['log_path'] .= JRDS;
-		
-		$this->log_files = array();
-		$this->error_log_files = array();
+		$system_log_files = array();
+		$error_log_files = array();
 		if (is_dir($jrConfig['log_path'])) 
 			{
 			$files = scandir($jrConfig['log_path']);
@@ -44,14 +42,14 @@ class j16000list_error_logs
 				if ($file != '.' && $file != '..')
 					{
 					$bang = explode(".",$file);
+					$mtime = filemtime($jrConfig['log_path'].$file);
 					if ( isset($bang[2]) && $bang[2] == "log" &&  !isset($bang[3]))
 						{
-						$this->log_files[] = $file;
+						$system_log_files[$mtime] = array ("filename" => $file , "mtime" => $mtime  );;
 						}
 					elseif( isset($bang[1]) && $bang[1] == "html" )
 						{
 						$interval = strtotime('-2 weeks');
-						$mtime = filemtime($jrConfig['log_path'].$file);
 						if ($mtime <= $interval )
 							{
 							// echo "pretending to delete ".$file."<br>";
@@ -59,32 +57,33 @@ class j16000list_error_logs
 							}
 						else
 							{
-							$contents = file_get_contents($jrConfig['log_path'].$file);
-							$this->error_log_files[$mtime] = array ("filename" => $file , "mtime" => $mtime , "contents" => $contents );
+							$error_log_files[$mtime] = array ("filename" => $file , "mtime" => $mtime  );
 							}
 						}
 					}
 				}
 			}
 		
-		ksort($this->error_log_files);
+		ksort($error_log_files);
 		
 		$output     = array ();
 		$pageoutput = array ();
-		$rows       = array ();
-
+		$error_rows       = array ();
+		$system_rows       = array ();
+		
+		$output['TABLE_NAME']= "system_rows";
+		
 		$output[ 'PAGETITLE' ]						= jr_gettext( 'JOMRES_COM_A_AVAILABLELOGS', 'JOMRES_COM_A_AVAILABLELOGS',false );
 		$output[ '_JOMRES_ERROR_DEBUGGING_FILE' ]	= jr_gettext( '_JOMRES_ERROR_DEBUGGING_FILE', '_JOMRES_ERROR_DEBUGGING_FILE',false );
 		$output[ '_JOMRES_MR_AUDIT_LISTING_DATE' ]	= jr_gettext( '_JOMRES_MR_AUDIT_LISTING_DATE', '_JOMRES_MR_AUDIT_LISTING_DATE',false );
 		
-		foreach ( $this->error_log_files as $file )
+		foreach ( $system_log_files as $file )
 			{
 			$r				= array ();
 			$r[ 'FILENAME' ]		= $file['filename'];
 			$r[ 'CREATED' ]			= date("Y/m/d H:i:s" , $file['mtime']);
-			$r[ 'CONTENTS' ]		= $file['contents'];
-			
-			$rows[ ] = $r;
+
+			$system_rows[ ] = $r;
 			}
 
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
@@ -99,9 +98,42 @@ class j16000list_error_logs
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->readTemplatesFromInput( 'list_error_logs.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'rows', $rows );
+		$tmpl->addRows( 'rows', $system_rows );
 		$tmpl->displayParsedTemplate();
 		
+		
+		$output     = array ();
+		$pageoutput = array ();
+		
+		$output[ 'PAGETITLE' ]						= jr_gettext( 'JOMRES_COM_A_AVAILABLELOGS', 'JOMRES_COM_A_AVAILABLELOGS',false );
+		$output[ '_JOMRES_ERROR_DEBUGGING_FILE' ]	= jr_gettext( '_JOMRES_ERROR_DEBUGGING_FILE', '_JOMRES_ERROR_DEBUGGING_FILE',false );
+		$output[ '_JOMRES_MR_AUDIT_LISTING_DATE' ]	= jr_gettext( '_JOMRES_MR_AUDIT_LISTING_DATE', '_JOMRES_MR_AUDIT_LISTING_DATE',false );
+		
+		$output['TABLE_NAME']= "error_rows";
+		
+		foreach ( $error_log_files as $file )
+			{
+			$r				= array ();
+			$r[ 'FILENAME' ]		= $file['filename'];
+			$r[ 'CREATED' ]			= date("Y/m/d H:i:s" , $file['mtime']);
+
+			$error_rows[ ] = $r;
+			}
+
+		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
+		$jrtb   = $jrtbar->startTable();
+		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL_ADMIN ), '' );
+
+		$jrtb .= $jrtbar->endTable();
+		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
+
+		$pageoutput[ ] = $output;
+		$tmpl          = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+		$tmpl->readTemplatesFromInput( 'list_error_logs.html' );
+		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->addRows( 'rows', $error_rows );
+		$tmpl->displayParsedTemplate();
 		}
 
 		
