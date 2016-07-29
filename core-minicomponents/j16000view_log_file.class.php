@@ -13,46 +13,39 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j10002listLogs
+class j16000view_log_file
 	{
-	function __construct()
+	function __construct( $componentArgs )
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )
 			{
-			$this->template_touchable = true;
-
+			$this->template_touchable = false;
 			return;
 			}
+
+		$filename	= (string) jomresGetParam( $_REQUEST, 'filename', '' );
 		
-		$this->cpanelButton = '';
-			
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
-		if ( $jrConfig[ 'advanced_site_config' ] == 1 )
+		
+		if ( !isset($jrConfig['log_path']) || $jrConfig['log_path'] == '' )
+			$jrConfig['log_path'] = dirname(dirname(dirname(__FILE__)) ).'/logs/';
+		
+		$jrConfig['log_path'] = rtrim($jrConfig['log_path'], '/');
+		$jrConfig['log_path'] = rtrim($jrConfig['log_path'], '\\');
+		$jrConfig['log_path'] .= JRDS;
+		
+		if (is_file($jrConfig['log_path'].$filename))
 			{
-			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=list_error_logs', 'logs.png', jr_gettext( "JOMRES_COM_A_AVAILABLELOGS", 'JOMRES_COM_A_AVAILABLELOGS', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS', false, false ) );
-			}
-		}
-
-	function touch_template_language()
-		{
-		$output = array ();
-
-		$output[ ] = jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS' );
-
-		foreach ( $output as $o )
-			{
-			echo $o;
-			echo "<br/>";
+			echo file_get_contents($jrConfig['log_path'].$filename);
 			}
 		}
 
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return $this->cpanelButton;
+		return null;
 		}
 	}
