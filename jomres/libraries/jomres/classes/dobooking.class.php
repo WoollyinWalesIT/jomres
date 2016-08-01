@@ -525,6 +525,10 @@ class dobooking
 			{
 			$tmpBookingHandler->tmpbooking[ "thirdparty_vars" ] = $this->thirdparty_vars;
 			}
+		
+		//store the new search dates
+		$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]           = $this->arrivalDate;
+		$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = $this->departureDate;
 
 		$tmpBookingHandler->saveBookingData();
 		}
