@@ -6603,7 +6603,7 @@ function showCompletedText()
 		output_message ( 'Please remember, to configure your property you need to log into the frontend as the administrator user, you cannot configure propertys via the administrator area.', "warning");
 		}
 		
-	if ( ERRORS_SHOWN_NO_REDIRECT != 1 )
+	if ( !defined('ERRORS_SHOWN_NO_REDIRECT') )
 		{
 		output_message ( '<script>
 			setTimeout(function() {
