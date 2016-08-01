@@ -1970,7 +1970,6 @@ jr_define( "JOMRES_NON_REGISTERED_USER", "No usuario registrado" );
 
 jr_define( "JOMRES_JQUERY18_2", "Usar Jquery 2.x?" );
 jr_define( "JOMRES_JQUERY18_2_DESC", "JQuery 2.x es más rápido que las implementaciones anteriores de jQuery, sin embargo, carece de ciertas cosas como $ .browser y soporte para IE6 / 7/8 o más navegadores Firefox y Safari. Si usted está viendo errores de javascript en su página, o si su plantilla / otros plugins (como presentaciones de diapositivas) utilizan versiones anteriores de jQuery, entonces debería establecer esta opción en No. ");
-Google Translate for Business:Translator ToolkitWebsite TranslatorGlobal Market Finder
 
 
 jr_define( "JOMRES_SUPERIOR", "Superior" );
@@ -2024,7 +2023,7 @@ jr_define( "_JOMRES_VIES_VATCHECK_INCORRECT_VALIDATED", "Felicitaciones. Hemos s
 jr_define( "_JOMRES_VIES_VATCHECK_INCORRECT_NUMBERNOTENTERED", "No se ha introducido Número de IVA" );
 jr_define( "_JOMRES_TAX_RULES_LIST", "normas fiscales lista" );
 jr_define( "_JOMRES_TAX_RULE", "norma fiscal" );
-jr_define( "_JOMRES_TAX_RULE_INFO", "Las normas fiscales se utilizan para establecer normas fiscales distintas para las diferentes regiones. Estas normas fiscales afectan a la persona que realiza la reserva, si están registrados, iniciado la sesión y han editado su cuenta utilizando el \ "editar mi cuenta \" página. El propósito de estas reglas es para dar cabida a agentes de reserva en aquellas áreas que están exentas de IVA, es posible que usted no necesita crear muchas reglas, o ninguna en absoluto." );
+jr_define( "_JOMRES_TAX_RULE_INFO", "Las normas fiscales se utilizan para establecer normas fiscales distintas para las diferentes regiones. Estas normas fiscales afectan a la persona que realiza la reserva, si están registrados, iniciado la sesión y han editado su cuenta utilizando el \"editar mi cuenta \" página. El propósito de estas reglas es para dar cabida a agentes de reserva en aquellas áreas que están exentas de IVA, es posible que usted no necesita crear muchas reglas, o ninguna en absoluto." );
 jr_define( "_JOMRES_TAX_RATES_IMPORT", "las tasas de impuestos de importación" );
 jr_define( "_JOMRES_TAX_RATES_IMPORT_INFO", "Podemos importar los tipos impositivos de la UE para que, si lo desea. Tenga en cuenta, si se utiliza esta función, entonces todas sus tasas de impuestos existentes serán eliminados." );
 jr_define( "_JRPORTAL_TAX_RULE_EDIT", "Editar norma fiscal" );
@@ -2038,7 +2037,7 @@ jr_define( '_JRPORTAL_INVOICES_SUBSCRIPTION_PROFILE_ERROR_EXPL', "Usted no parec
 
 
 jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT", "Producción o Desarrollo?" );
-jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC", "Si se establece esta opción para el Desarrollo vamos a permitir que el informe de errores, de lo contrario cuando se establece en la producción que se apaga. Si esto es un servidor activo, se recomienda que se establece esta opción a \ "la producción \". ");
+jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC", "Si se establece esta opción para el Desarrollo vamos a permitir que el informe de errores, de lo contrario cuando se establece en la producción que se apaga. Si esto es un servidor activo, se recomienda que se establece esta opción a \"la producción \". ");
 
 jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION", "Producción" );
 jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT", "Desarrollo" );
@@ -2069,7 +2068,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_CLEAR',"Limpiar lista");
 jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP',"Arrastrar y soltar archivos aquí");
 
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS',"Seleccione el recurso que desea cargar imágenes para. Si puede subir imágenes para recursos individuales (por ejemplo, habitaciones) se le dará un segundo menú desplegable para elegir el recurso específico. ");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS',"El tamaño máximo de archivo para la carga es ". Jomres_formatBytes ($ jrConfig [ 'fileSize']).". Sólo se permiten imágenes JPG y PNG. ");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS',"El tamaño máximo de archivo para la carga es ". jomres_formatBytes ($jrConfig [ 'fileSize']).". Sólo se permiten imágenes JPG y PNG. ");
 jr_define ('_ JOMRES_MEDIA_CENTRE_NOTES_CORE', "Si a subir varias imágenes como el \" imagen característica principal \"éstos serán utilizados en las imágenes Lista de propiedades. Presentación de diapositivas se mostrará en la página de detalles de la propiedad.");
 
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW',"Ver su imagen");
@@ -2210,7 +2209,7 @@ jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_TITLE' , "creación de propiedad, 
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_CONTENT' , "La creación de una nueva propiedad es un proceso de dos pasos. En esta primera página que podrá seleccionar el país y la región de su propiedad, seleccione su tipo de propiedad, y el proceso que va a utilizar para su gestión." );
 
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_COUNTRY_TITLE' , "país propiedad." );
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_COUNTRY_CONTENT' , "Aquí usted seleccione su país de propiedad de una lista desplegable. Tan pronto como se selecciona el país volverá a cargar la página y usted será capaz de elegir la región para la propiedad ". );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_COUNTRY_CONTENT' , "Aquí usted seleccione su país de propiedad de una lista desplegable. Tan pronto como se selecciona el país volverá a cargar la página y usted será capaz de elegir la región para la propiedad." );
 
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROPERTY_TYPE_TITLE' , "El tipo de propiedad." );
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROPERTY_TYPE_CONTENT' , "A partir de esta lista desplegable elija su tipo de propiedad. Puede ser algo así como una villa o un apartamento si usted está alquilando toda la propiedad, o si usted está alquilando habitaciones en la propiedad, entonces es probable que elegir hotel o alojamiento y desayuno." );
@@ -2511,7 +2510,7 @@ jr_define('_JOMRES_SHOW_POWEREDBY',"Show the Powered by Jomres link in the Jomre
 
 jr_define('GUEST_BUDGET',"Presupuesto");
 jr_define('GUEST_BUDGET_FEATURE_SWITCH',"Utiliza la función de Presupuesto?");
-jr_define('GUEST_BUDGET_FEATURE_SWITCH_DESC',"Sólo sitios bootstrap! La función del presupuesto es una característica de la lista de propiedades que un cliente puede utilizar para resaltar para ellos las propiedades que su precio por noche está bajo una cierta figura. La característica tiene algunas limitaciones ya que podría no ser apropiada para algunos sitios que usan muchas divisas diferentes. Tenga en cuenta, si usted está usando esto y la Listados plugin, su clase de lista de embalaje ofrecido se cambia automáticamente a "Panel-primaria" cuando se muestra la lista de propiedades.");
+jr_define('GUEST_BUDGET_FEATURE_SWITCH_DESC',"Sólo sitios bootstrap! La función del presupuesto es una característica de la lista de propiedades que un cliente puede utilizar para resaltar para ellos las propiedades que su precio por noche está bajo una cierta figura. La característica tiene algunas limitaciones ya que podría no ser apropiada para algunos sitios que usan muchas divisas diferentes. Tenga en cuenta, si usted está usando esto y la Listados plugin, su clase de lista de embalaje ofrecido se cambia automáticamente a \"Panel-primaria\" cuando se muestra la lista de propiedades.");
 
 jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', 'Nombre: ' );
 
@@ -2872,7 +2871,7 @@ jr_define( "_JOMRES_CONFIG_GMAP_KEY_WARNING", "No es necesario que un conjunto c
 jr_define( "JOMRES_GOOGLE_MAP_STYLE", "esquema de colores Google" );
 
 jr_define( "JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_TITLE", "Bien, vamos a empezar a añadir su propiedad a la página web. Tenemos que recoger un poco de información acerca de su propiedad aquí. Esto nos permitirá configurar el esqueleto de su propiedad. Una vez hecho esto, a continuación, se le guiará a través de la adición de estancias, los precios y las imágenes." );
-jr_define( "JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1", "El tipo de propiedad que ayuda a definir cómo se va a reservar la propiedad, por ejemplo, con los hoteles que \ "\" vender sólo una o dos habitaciones a la vez, mientras que con villas que ofrece todo el edificio." );
+jr_define( "JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1", "El tipo de propiedad que ayuda a definir cómo se va a reservar la propiedad, por ejemplo, con los hoteles que vender sólo una o dos habitaciones a la vez, mientras que con villas que ofrece todo el edificio." );
 jr_define( "JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2", "Tenga en cuenta que la dirección de correo electrónico no tiene por qué ser el mismo que el que se utilizó cuando se registró su cuenta. Esto le permite tener diferentes direcciones para diferentes propiedades." );
 
 jr_define( "_JOMRES_CONFIG_MINIMUM_DEPOSIT", "Depósito mínimo" );
