@@ -201,14 +201,16 @@ if ( _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33" |
 		}
 	}
 
-if ( $folderChecksPassed && $functionChecksPassed && ACTION != "Migration" )
+if ( $folderChecksPassed && $functionChecksPassed )
 	{
 	$trashtables                 = jomresGetParam( $_POST, 'trashtables', 0, 'integer' );
 	$manual_install_confirmation = jomresGetParam( $_POST, 'manual_install_confirmation', "" );
 	if ( !AUTO_UPGRADE )
 		{
-		if ( $manual_install_confirmation == "install" ) define( 'ACTION', "Install" );
-		if ( $manual_install_confirmation == "upgrade" ) define( 'ACTION', "Upgrade" );
+		if ( $manual_install_confirmation == "install" ) 
+			define( 'ACTION', "Install" );
+		if ( $manual_install_confirmation == "upgrade" ) 
+			define( 'ACTION', "Upgrade" );
 		}
 	else
 		{
@@ -218,14 +220,16 @@ if ( $folderChecksPassed && $functionChecksPassed && ACTION != "Migration" )
 
 	if ( $_POST[ 'go' ] != "GO!" && $trashtables < 1 )
 		{
-		if ( !AUTO_UPGRADE ) proceed();
+		if ( !AUTO_UPGRADE ) 
+			proceed();
 		}
 	else
 		{
 		if ( $trashtables == 1 ) trashTables();
 		else
 			{
-			if ( !defined( "ACTION" ) ) checkPropertyTableExists();
+			if ( !defined( "ACTION" ) ) 
+				checkPropertyTableExists();
 
 			if ( ACTION == "Install" ) // Installing
 				{
@@ -249,8 +253,6 @@ if ( $folderChecksPassed && $functionChecksPassed && ACTION != "Migration" )
 				}
 			elseif ( ACTION == "Upgrade" ) // Upgrading
 				{
-
-				define( 'ACTION', "Upgrade" );
 				jr_import( 'minicomponent_registry' );
 				$registry = new minicomponent_registry( true );
 				$registry->regenerate_registry();
