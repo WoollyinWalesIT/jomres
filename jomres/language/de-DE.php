@@ -1588,11 +1588,11 @@ jr_define( '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', 'Unveröffentlichte Unterkunft
 
 // v5.2
 jr_define( '_JOMRES_CONVERSION_TITLE', "Umwandlungsfunktion verwenden" );
-jr_define( '_JOMRES_CONVERSION_TITLE_DESC', "Verwenden Sie die Jomres Online-Conversion-Funktionalität. Dies wird eine Konvertierung Dropdown bieten Benutzern Frontend, wo sie in der Lage sein wird, eine Währung zu wählen, die sie wollen, um Preise zu sehen angeboten in. Preis Ausgabe eingestellt wird, um die umgerechnete Preis von der Unterkunft gefolgt zu zeigen, die "native" Preis in Klammern." );
+jr_define( '_JOMRES_CONVERSION_TITLE_DESC', "Verwenden Sie die Jomres Online-Conversion-Funktionalität. Dies wird eine Konvertierung Dropdown bieten Benutzern Frontend, wo sie in der Lage sein wird, eine Währung zu wählen, die sie wollen, um Preise zu sehen angeboten in. Preis Ausgabe eingestellt wird, um die umgerechnete Preis von der Unterkunft gefolgt zu zeigen, die \"native\" Preis in Klammern." );
 jr_define( '_JOMRES_CONVERSION_DISCLAIMER', "Wir haben unsere besten Bemühungen verwendet, um die genaueste und rechtzeitige Wechselkurse zu erhalten, die wir können. Unser Online-Währungsumsrechnung Merkmal ist eine Dienstleistung zu Informationszwecken zur Verfügung gestellt und ist nicht beabsichtigt, genaue Zahlen zu liefern. Dementsprechend können wir nicht garantieren, die Richtigkeit der Wechselkurse . Mit dieser Funktion sind Sie als vereinbart, dass jedes Vertrauen auf oder die Verwendung der Funktion Ratenkonvertierung erfolgt auf eigenes Risiko vollständig sein
 ." );
 jr_define( '_JOMRES_JAVASCRIPT_CACHING_TITLE', "Verwenden Sie Javascript-Caching?" );
-jr_define( '_JOMRES_JAVASCRIPT_CACHING_DESC', "Wählen Sie, ob die Jomres Javascript-Cache-Funktion zu verwenden. Funktioniert auf den meisten Servern, aber nicht auf alle. Wenn Sie Probleme mit JavaScript-Fehler aufweisen, die als "ungekündigten Stringliteral 'berichtet in (zum Beispiel) Firebug, sollten Sie dies auf Nein. " );
+jr_define( '_JOMRES_JAVASCRIPT_CACHING_DESC', "Wählen Sie, ob die Jomres Javascript-Cache-Funktion zu verwenden. Funktioniert auf den meisten Servern, aber nicht auf alle. Wenn Sie Probleme mit JavaScript-Fehler aufweisen, die als 'unterminated string literal' berichtet in (zum Beispiel) Firebug, sollten Sie dies auf Nein. " );
 
 // 5.2.1
 jr_define( '_JOMRES_HISTORIC_GUESTS_SHOW', "Liste alte und aktuelle Gäste" );
@@ -1601,7 +1601,7 @@ jr_define( '_JOMRES_HISTORIC_GUESTS_NOSHOW', "Nur aktuelle Gäste" );
 // 5.3.1
 jr_define( '_JOMRES_CURRENCYCONVERSION_TAB', 'Währungsumrechnung/Währungscodes' );
 jr_define( '_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP Erkennung API Key' );
-jr_define( '_JOMRES_IP_DETECTION_API_KEY_DESC', 'Um automatisch den Währungscode Drop-Down-Set Jomres der Lage ist, einen kostenlosen Service zu nutzen IPinfoDB rief der Besucher \ 's Land zu erfassen, jedoch müssen Sie für einen API-Schlüssel zu registrieren unter <a href = "http://ipinfodb.com/register .php "target =" _ blank "> IPinfoDB </a> zuerst.' );
+jr_define( '_JOMRES_IP_DETECTION_API_KEY_DESC', 'Um automatisch den Währungscode Drop-Down-Set Jomres der Lage ist, einen kostenlosen Service zu nutzen IPinfoDB rief der Besuchers Land zu erfassen, jedoch müssen Sie für einen API-Schlüssel zu registrieren unter <a href = "http://ipinfodb.com/register .php "target =" _ blank "> IPinfoDB </a> zuerst.' );
 jr_define( '_JOMRES_DEBUGGING_TAB', 'Fehlerbeseitigung' );
 jr_define( '_JOMRES_BOOKINGORM_MODALPOPUP', 'Zeigen Sie das Buchungsformular in einem modalen Popup?' );
 jr_define( '_JOMRES_BOOKINGORM_MODALPOPUP_DESC', 'Wenn die Option zum Buchungsformular in den Objektdetails zeigen auf Nein festgelegt ist, dann, wenn das Buchungsformular Seite geöffnet Jomres kann das Buchungsformular in einem modalen Popup zeigen. Auf diese Weise können Sie viel mehr Informationen in das Buchungsformular zu schließen, ohne den Kunden zu überwältigen, indem Sie auf dem Bildschirm zu viele Elemente, die (wie sie hinter dem Popup versteckt sind)' );
@@ -1633,7 +1633,7 @@ jr_define( '_JOMRES_DATEPERIOD_AGO', 'erfolgt' );
 jr_define( '_JOMRES_DATEPERIOD_FROMNOW', 'ab jetzt' );
 
 jr_define( '_JOMRES_WHOLEDAY_TITLE', 'Buchungen sind für den ganzen Tag?' );
-jr_define( '_JOMRES_WHOLEDAY_DESC', 'Durch die System Buchungen Ressourcen aus der Nacht Standard, so eine Buchung aus dem ersten Januar' . Datum( "Y", strtotime( "nächstes Jahr" ) ) . ' bis zum 2. Januar ' . Datum( "Y", strtotime( "nächstes Jahr" ) ) . ' deckt nur eine Nacht.Wenn Sie diese Option auf Ja, aber gesetzt ist, dann wird die Buchung ganze Tage decken statt, so dass eine Buchung an diesen Tagen an beiden Tagen abdecken würde und würde der Kunde für zwei Tage in Rechnung gestellt werden.' );
+jr_define( '_JOMRES_WHOLEDAY_DESC', 'Durch die System Buchungen Ressourcen aus der Nacht Standard, so eine Buchung aus dem ersten Januar' . date( "Y", strtotime( "next year" ) ) . ' bis zum 2. Januar ' . date( "Y", strtotime( "next year" ) ) . ' deckt nur eine Nacht.Wenn Sie diese Option auf Ja, aber gesetzt ist, dann wird die Buchung ganze Tage decken statt, so dass eine Buchung an diesen Tagen an beiden Tagen abdecken würde und würde der Kunde für zwei Tage in Rechnung gestellt werden.' );
 jr_define( '_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', 'Pro Tag' );
 jr_define( '_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', 'Pro Person pro Tag' );
 jr_define( '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY', 'Abholen' );
@@ -1825,7 +1825,7 @@ jr_define( '_JOMRES_COOKIEPOLICY_TITLE', "Cookie-Richtlinien" );
 jr_define( '_JOMRES_COOKIEPOLICY_DESC', "EU-Gesetzgebung verlangt, dass alle Websites, die Cookies Anfrage Erlaubnis von Website-Besucher verwenden Cookies zu speichern.
 <br/>
 Jomres verwendet das Cookie des Host-CMS auf seine eigene Session-Datei aufzubauen, wo Informationen über die Suchergebnisse des Benutzers und andere Aktivitäten gespeichert werden können, um den Besuch des Benutzers machen angenehmere.Während wir glauben, dass normale Jomres Funktionalität wahrscheinlich durch Bestimmungen in den Rechtsvorschriften fallen definiert als <i>'solche Speicherung oder dem Zugang nicht unbedingt erforderlich ist ein Dienst der Informationsgesellschaft durch den Teilnehmer oder Nutzer verlangt, um'</i> (sehen http://www.ico.gov.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies.aspx) Wir haben diese Funktion enthalten, um Ihnen die Möglichkeit zu geben, den Benutzern zu verhindern, dass andere Seiten als Suchseiten im Falle, dass der Benutzer den Zugriff nicht erlaubt, ihre Cookie auf diese Weise verwendet werden,. <br/>
-Wenn diese Option aktiviert Jomres wird ein "beitreten" Link zeigen, wo Benutzer können wählen, das Cookie zu haben, die für sie in dieser Weise verwendet gespeichert wird. Wenn sie wählen, um zu zeigen, sie nicht Opt-in dann Jomres werden nur einige grundlegende Seiten (wie die Eigenschaften Details anzeigen, Suchergebnisse , etc.). 
+Wenn diese Option aktiviert Jomres wird ein \"beitreten\" Link zeigen, wo Benutzer können wählen, das Cookie zu haben, die für sie in dieser Weise verwendet gespeichert wird. Wenn sie wählen, um zu zeigen, sie nicht Opt-in dann Jomres werden nur einige grundlegende Seiten (wie die Eigenschaften Details anzeigen, Suchergebnisse , etc.). 
 <br/>
 Setzen Sie diese Option auf Ja, diese Politik zu verordnen." );
 
