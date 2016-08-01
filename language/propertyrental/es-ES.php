@@ -196,13 +196,6 @@ jr_define( '_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', 'Móvil' );
 jr_define( '_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', 'No hay habitaciones disponibles capaces de satisfacer los parámetros especificados' );
 jr_define( '_JOMRES_FRONT_MR_BOOKINGMADE', '<center>Gracias por hacer su reserva con nosotros. Esperamos que usted goce de su permanencia.<br><br> <b>Por favor, note que esto es sólo una  reserva preliminar, y no será confirmada hasta que usted reciba su email de confirmación por nuestra parte.</center>' );
 
-
-
-
-
-
-
-
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_TITLE', 'Entrada de huésped ' );
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_SELECTBUTTON', 'Seleccionar huésped ' );
 jr_define( '_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN', 'Huésped entrada' );
@@ -227,26 +220,10 @@ jr_define( '_JOMRES_COM_A_TARIFFS_PER_DESC', 'Escoja "Sí" si usted quiere cargo
 jr_define( '_JOMRES_COM_A_UPLOADS_FILESIZE', 'Tamaño de la carpeta' );
 jr_define( '_JOMRES_COM_A_UPLOADS_FILESIZE_DESC', 'Max. Tamaño de carpeta en Kilobytes' );
 jr_define( '_JOMRES_FRONT_MR_BOOKED', 'Reservado' );
-
-
-
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', 'Detalles de la reserva ' );
-
-
-
-
-
-
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_BINDINGCONTRACT', 'Se le recuerda a que una reserva es un contrato legalmente obligatorio, si por alguna razón usted tiene que cancelar o acortar su reserva entonces será aún responsable de pagar la cantidad completa.' );
-
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_CANCELLATIONCHARGES_INTRO', '<i>La cancelación y el acortamiento se cargan a su cuenta</i> Si usted cancela sus vacaciones, la cancelación debe ser confirmada por escrito. Los cargos por cancelación son:' );
-
-
-
-
 jr_define( '_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_ARRIVALDATETO14DAYS', 'La fecha de la llegada a 14 días' );
-
-
 jr_define( '_JOMRES_COM_CONFIRMATION_PRINT', 'Imprima la carta de confirmación' );
 jr_define( '_JOMRES_COM_INVOICE_TITLE', 'Impresión de la factura' );
 jr_define( '_JOMRES_COM_INVOICE_STAYNIGHTS', 'Número de noches: ' );
@@ -357,11 +334,6 @@ jr_define( '_JOMRES_FRONT_DELETEGUEST', 'Borrar huésped' );
 jr_define( '_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', 'Huésped borrado' );
 jr_define( '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', 'Incapaz de borrar a este huésped ya que tiene reservas abiertas. Cancele las reservas y pruebe otra vez.' );
 jr_define( '_JOMRES_COM_INVOICE_ACTUALROOMCOST', 'Costo actual de la habitación: ' );
-
-
-
-
-
 
 jr_define( '_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING', 'Fumar' );
 jr_define( '_JOMRES_FRONT_ROOMSMOKING_EITHER', 'No importa' );
@@ -540,7 +512,7 @@ jr_define( '_JOMRES_A_TABS_MISC', 'Misceláneo' );
 jr_define( '_JOMRES_A', 'Configuración de la página' );
 jr_define( '_JOMRES_A_GLOBALPFEATURES', 'Utilice las características globales de la propiedad' );
 jr_define( '_JOMRES_A_GLOBALPFEATURES_DESC', 'Ponga esto a Sí si usted quiere forzar a todas las propiedades a utilizar sólo las características de propiedad definidas por el webmaster.' );
-jr_define( '_JOMRES_A_GLOBALPFEATURES_INFO', 'To assign an image to this feature you first need to upload your business feature images to the /'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/ folder. ' );
+jr_define( '_JOMRES_A_GLOBALPFEATURES_INFO', 'Para asignar una imagen a esta característica, primero tiene que subir sus imágenes a la característica de negocios /'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/ folder. ' );
 jr_define( '_JOMRES_A_ICON', 'Icono' );
 jr_define( '_JOMRES_A_GLOBAL_SEARCHOPTION', 'Escoja el plugin de la búsqueda que usted desee utilizar.' );
 jr_define( '_JOMRES_FRONT_NORESULTS', '<b>Lo siento, su búsqueda no devolvió resultados. Modifique por favor su búsqueda y pruebe otra vez.</b>' );
@@ -1138,9 +1110,7 @@ jr_define( '_JOMRES_COM_CHOOSELANGUAGES', 'Elegir idioma' );
 jr_define( '_JOMRES_COM_CHOOSELANGUAGES_INFO', 'Elija las opciones de idioma que se muestra en el menú desplegable' );
 jr_define( '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN', '¿Mostrar el menú desplegable de selección de idioma?' );
 jr_define( '_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS', 'Reservas anticipadas y reservas canceladas' );
-/*
-* @ignore
-*/
+
 jr_define( '_JRPORTAL_NEWUSER_DEAR', "Estimado/a" );
 jr_define( '_JRPORTAL_NEWUSER_THANKYOU', "Gracias por registrarse " );
 jr_define( '_JRPORTAL_NEWUSER_USERNAME', "Su nombre de usuario es : " );
@@ -1148,7 +1118,7 @@ jr_define( '_JRPORTAL_NEWUSER_PASSWORD', "Su contraseña es : " );
 jr_define( '_JRPORTAL_NEWUSER_LOG_IN', "Por favor inicie sesión para ver su reservas " );
 jr_define( '_JOMRES_MR_AUDIT_UPDATE_COUPON', 'Cupón guardado' );
 jr_define( '_JOMRES_MR_AUDIT_DELETE_COUPON', 'Cupón borrado' );
-// Not used yet
+
 jr_define( '_JOMRES_COM_GROWL', 'Usar mensajería Jomres' );
 jr_define( '_JOMRES_COM_GROWL_DESC', 'Muchas actualizaciones proporcionan retroalimentación en forma de un mensaje de javascript cuando se vuelve a cargar la página, utilice esta opción para habilitar/deshabilitar esta característica.' );
 jr_define( '_JRPORTAL_SMS_CLICKATELL_TITLE', "Jomres -> Clickatell SMS" );
@@ -1229,7 +1199,7 @@ jr_define( '_JOMRES_CLICKTOREGISTER', 'Haga clic aquí para registrar su propied
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE', "Suscripciones activas" );
 jr_define( '_JRPORTAL_SUBSCRIPTIONS_GATEWAYSUBSCRIPTIONID', "Id de suscripción Pasarela" );
 jr_define( '_JRPORTAL_NEWUSER_SUBJECT', "Gracias por su reserva - siga nuevos detalles de usuario" );
-jr_define( '_JOMRES_LATLONG_DESC', "Use your mouse to move around the map, and drag the pointer to the location of your property to set the latitude and longitude." );
+jr_define( '_JOMRES_LATLONG_DESC', "Utilizar el ratón para moverse por el mapa y arrastre el puntero a la ubicación de su propiedad para establecer la latitud y longitud." );
 jr_define( '_JOMRES_CONTROLPANEL', 'Panel de control' );
 jr_define( '_JOMRES_COM_FAUXHEADERS', '¿Salida Jomres encabezados Javascript en el cuerpo del html?' );
 jr_define( '_JOMRES_COM_FAUXHEADERS_DESC', 'Ponga esto a Sí, si usted está teniendo problemas con mootools y Jomres\'s jQuery en conflicto en el IE. Esto obligará a Jomres a llamar las salidas del Javascript dentro del cuerpo de la página en lugar de la zona del HEAD, que no es HTML válido, sin embargo, parece resolver el probema con jQuery y Mootools en conflicto entre sí.' );
@@ -1863,7 +1833,7 @@ jr_define( 'COMMON_COPY', "Copiar" );
 
 
 jr_define( '_JOMRES_BOOTSTRAPSWITCH_INFO', "Joomla 3 iincluye el bootstrap de twitter por defecto,y Jomres tiene plantillas y funcionalidades que usarán estas plantillas. Por defecto si usa Homres en joomla 3 pude aún optar por usar las plantillas Bootstrap de Jomres y sus funcionalidades, sin embargo por defecto estas opciones están marcadas como NO." );
-jr_define( '_JOMRES_BOOTSTRAPSWITCH_FRONTEND', "Use Jomres Bootstrap templates in the frontend?" );
+jr_define( '_JOMRES_BOOTSTRAPSWITCH_FRONTEND', "Jomres utilizar plantillas de archivos de inicio en la interfaz?" );
 jr_define( '_JOMRES_BOOTSTRAPSWITCH_ADMINISTRATOR', "Use Jomres Bootstrap templates in the administrator area?" );
 
 jr_define( '_JOMRES_ALTERNATIVE_SEARCH_RESULTS', "Aqui están algunas alternativas que quizás quiera considerar." );
@@ -1982,559 +1952,579 @@ jr_define( "_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT", "Felicidades, su propiedad
 jr_define( "_JOMRES_REGION_TRANSLATION_SWITCH_TITLE", "Los nombres de las regiones son traducibles" );
 jr_define( "_JOMRES_REGION_TRANSLATION_SWITCH_DESC", "A menos que tenga un servidor muy rápido le aconsejamos dejar marcado esta opción como NO. Debido a el amplio número de nombres de regiones, la traducción de dichos nombres ocupa una gran cantidad de memorios que puede ralentizar sus resultados de búsqueda." );
 
-jr_define( "_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT", "Guest booked out." );
+jr_define( "_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT", "Invitado reservado." );
 
-jr_define( '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', 'Sorry, that email address is already in use. If this is your email address, please ensure you have logged in before attempting to book.' );
+jr_define( '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', 'Lo sentimos, dirección de correo electrónico que ya está en uso. Si esta es tu dirección de correo electrónico, por favor asegúrese de que se haya conectado antes de intentar reservar.' );
 
-jr_define( "JOMRES_TAPTOCALL", "Tap to call" );
+jr_define( "JOMRES_TAPTOCALL", "Toque para llamar" );
 
-jr_define( "JOMRES_NEWREVIEW_SUBJECT", "New review for " );
-jr_define( "JOMRES_NEWREVIEW_MESSAGE", "A new review has been left for " );
-jr_define( "JOMRES_NEWREPORT_SUBJECT", "New Report" );
-jr_define( "JOMRES_NEWREPORT_MESSAGE", "A review has been reported for " );
+jr_define( "JOMRES_NEWREVIEW_SUBJECT", "Un nuevo comentario sobre
+Google Translate for Business:Translator ToolkitWebsite TranslatorGlobal Market Finder
+All languages Sort  
+Your Phrasebook is empty. Click the star under a  " );
+jr_define( "JOMRES_NEWREVIEW_MESSAGE", "Una nueva revisión se ha dejado para " );
+jr_define( "JOMRES_NEWREPORT_SUBJECT", "Nuevo reporte" );
+jr_define( "JOMRES_NEWREPORT_MESSAGE", "Una revisión se ha informado de  " );
 
-jr_define( "JOMRES_NON_REGISTERED_USER", "Non registered user" );
+jr_define( "JOMRES_NON_REGISTERED_USER", "No usuario registrado" );
 
-jr_define( "JOMRES_JQUERY18_2", "Use Jquery 2.x?" );
-jr_define( "JOMRES_JQUERY18_2_DESC", "Jquery 2.x is faster than previous implementations of jQuery, however it lacks certain things like $.browser and support for IE6/7/8 and older Firefox and Safari browsers. If you're seeing javascript errors on your page, or if your template/other plugins (like slideshows) use older versions of jQuery then you should set this option to No. " );
+jr_define( "JOMRES_JQUERY18_2", "Usar Jquery 2.x?" );
+jr_define( "JOMRES_JQUERY18_2_DESC", "JQuery 2.x es más rápido que las implementaciones anteriores de jQuery, sin embargo, carece de ciertas cosas como $ .browser y soporte para IE6 / 7/8 o más navegadores Firefox y Safari. Si usted está viendo errores de javascript en su página, o si su plantilla / otros plugins (como presentaciones de diapositivas) utilizan versiones anteriores de jQuery, entonces debería establecer esta opción en No. ");
+Google Translate for Business:Translator ToolkitWebsite TranslatorGlobal Market Finder
+
 
 jr_define( "JOMRES_SUPERIOR", "Superior" );
 jr_define( "JOMRES_SUPERIOR_S", "(S)" );
 
-jr_define( "JOMRES_GRANDTOTAL_EX_TAX", "Grand total (ex tax) : " );
-jr_define( "JOMRES_GRANDTOTAL_INC_TAX", "Grand total (inc tax) : " );
-jr_define( "JOMRES_GRANDTOTAL_TOTAL_TAX", "Total tax : " );
+jr_define( "JOMRES_GRANDTOTAL_EX_TAX", "Total general (ex tax) : " );
+jr_define( "JOMRES_GRANDTOTAL_INC_TAX", "Total general (IVA incluído) : " );
+jr_define( "JOMRES_GRANDTOTAL_TOTAL_TAX", "Total impuestos : " );
 
-jr_define( "JOMRES_RECAPTCHA_INSTRUCTIONS_VISUAL", "Type the two words: " );
-jr_define( "JOMRES_RECAPTCHA_INSTRUCTIONS_AUDIO", "Enter what you hear: " );
-jr_define( "JOMRES_RECAPTCHA_PLAY_AGAIN", "Replay the audio track " );
-jr_define( "JOMRES_RECAPTCHA_CANT_HEAR_THIS", "Download the track in MP3 format" );
-jr_define( "JOMRES_RECAPTCHA_VISUAL_CHALLENGE", "Visual mode" );
-jr_define( "JOMRES_RECAPTCHA_AUDIO_CHALLENGE", "Audio mode" );
-jr_define( "JOMRES_RECAPTCHA_REFRESH_BTN", "Refresh" );
-jr_define( "JOMRES_RECAPTCHA_HELP_BTN", "Help" );
-jr_define( "JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN", "Sorry, that was incorrect. Please try again." );
+jr_define( "JOMRES_RECAPTCHA_INSTRUCTIONS_VISUAL", "Escribe las dos palabras: " );
+jr_define( "JOMRES_RECAPTCHA_INSTRUCTIONS_AUDIO", "
+Introduce lo que se escucha: " );
+jr_define( "JOMRES_RECAPTCHA_PLAY_AGAIN", "Reproducir la pista de audio " );
+jr_define( "JOMRES_RECAPTCHA_CANT_HEAR_THIS", "Descargar la canción en formato MP3" );
+jr_define( "JOMRES_RECAPTCHA_VISUAL_CHALLENGE", "modo visual" );
+jr_define( "JOMRES_RECAPTCHA_AUDIO_CHALLENGE", "modo de audio" );
+jr_define( "JOMRES_RECAPTCHA_REFRESH_BTN", "Refrescar" );
+jr_define( "JOMRES_RECAPTCHA_HELP_BTN", "Ayuda" );
+jr_define( "JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN", "Lo siento, fue incorrecta. Por favor, inténtelo de nuevo." );
 
 
-jr_define( "JOMRES_GOOGLE_MAPS", "Google map options" );
-jr_define( "JOMRES_GOOGLE_MAPS_INFO", "These layer options are mainly specific to maps in property lists and the property details page. If enabled, only the Weather layer will be shown in the extended maps plugin as including too many options on a larger map makes it extremely slow." );
-jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER", "Use weather layer?" );
-jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER_GRAD", "Fahrenheit or Celcius? " );
-jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS", "Celcius" );
+jr_define( "JOMRES_GOOGLE_MAPS", "opciones de mapa de Google" );
+jr_define( "JOMRES_GOOGLE_MAPS_INFO", "Estas opciones de capa son principalmente específicos de mapas en las listas de propiedades y la página de detalles de la propiedad. Si está activado, se mostrará sólo la capa Tiempo en el plugin mapas extendida que incluye demasiadas opciones en un mapa más grande hace que sea extremadamente lento." );
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER", "Usar capa clima?" );
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER_GRAD", "Fahrenheit o Celsius? " );
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS", "Celsius" );
 jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT", "Fahrenheit" );
 
-jr_define( "JOMRES_GOOGLE_MAP_OPTION_PANORAMIO", "Use Panoramio layer?" );
-jr_define( "JOMRES_GOOGLE_MAP_OPTION_TRANSIT", "Use transit layer?" );
-jr_define( "JOMRES_GOOGLE_MAP_OPTION_TRAFFIC", "Use traffic layer?" );
-jr_define( "JOMRES_GOOGLE_MAP_OPTION_BICYCLING", "Use bicycling layer?" );
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_PANORAMIO", "Usar capa panorámica?" );
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_TRANSIT", "capa de paso utilizada?" );
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_TRAFFIC", "Utilice capa de tráfico?" );
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_BICYCLING", "Utilice capa de montar en bicicleta?" );
 
-jr_define( "JOMRES_GOOGLE_MAPS_POIS", "Enable Gmap Points of Interest (including possibly your competitors)?" );
-
-
-jr_define( "_JOMRES_METAKEYWORDS", "Meta Keywords" );
-
-jr_define( "_JOMRES_PLEASE_PRINT", "Please print this email and present it on your arrival." );
-jr_define( "_JOMRES_OFFICE_USE_ONLY", "Office use only" );
-jr_define( "_JOMRES_SCAN_FOR_DIRECTIONS", "Scan this code into your phone to get directions to us." );
+jr_define( "JOMRES_GOOGLE_MAPS_POIS", "Habilitar Gmap puntos de interés (incluyendo posiblemente sus competidores)?" );
 
 
-jr_define( "_JOMRES_VAT_FEATURE_ENABLE", "Use the built in VIES VAT validation feature?" );
-jr_define( "_JOMRES_VAT_FEATURE_ENABLE", "New in Jomres 7.3 is a feature which allows business owners and guests who have valid VAT numbers to enter their details and not have VAT applied to their invoices where appropriate. This feature is intended to be used by EU based property managers." );
+jr_define( "_JOMRES_META KEYWORDS", "
+Palabras clave Meta" );
 
-jr_define( "_JOMRES_VIES_VATCHECK_INCORRECT_SYNTAX", "The VAT number you entered doesn't appear to be correct. You should have something like this: BE805670816B01" );
-jr_define( "_JOMRES_VIES_VATCHECK_INCORRECT_COULDNOTVALIDATE", "Invalid VAT Number. Please check the validity of your VAT Number with the Europa VAT Number validation webservice (VIES)" );
-jr_define( "_JOMRES_VIES_VATCHECK_INCORRECT_VALIDATED", "Congratulations. We were able to validate your VAT number." );
-jr_define( "_JOMRES_VIES_VATCHECK_INCORRECT_NUMBERNOTENTERED", "VAT number wasn't entered." );
-jr_define( "_JOMRES_TAX_RULES_LIST", "List tax rules" );
-jr_define( "_JOMRES_TAX_RULE", "Tax rule" );
-jr_define( "_JOMRES_TAX_RULE_INFO", "Tax rules are used to establish different tax rules for different regions. These tax rules affect the person making the booking, if they are registered, logged in and have edited their account using the \"edit my account\" page. The purpose of these rules is to accommodate bookers in those areas who are VAT exempt, you may find that you do not need to create many rules, if any at all." );
-jr_define( "_JOMRES_TAX_RATES_IMPORT", "Import tax rates" );
-jr_define( "_JOMRES_TAX_RATES_IMPORT_INFO", "We can import tax rates for the EU for you, if you wish. Note, if you use this feature then all of your existing Tax Rates will be removed." );
-jr_define( "_JRPORTAL_TAX_RULE_EDIT", "Edit tax rule" );
-jr_define( "_JOMRES_VAT_PROPERTY_NUMBER", "The VAT number for this property." );
-jr_define( "_JOMRES_VAT_PROPERTY_NUMBER_DESC", "Please enter the VAT number for this property." );
-jr_define( "_JOMRES_VAT_PROPERTY_VAT_NUMBER_VALIDATED", "VAT number validated." );
-jr_define( "_JOMRES_VAT_PROPERTY_VAT_NUMBER_NOT_VALIDATED", "VAT number not validated." );
-jr_define( "_JOMRES_COM_YOURBUSINESS_INSTRUCTIONS", "Business details entered here will be used on commission and subscriptions invoices." );
-
-jr_define( '_JRPORTAL_INVOICES_SUBSCRIPTION_PROFILE_ERROR_EXPL', "You don't seem to have filled in your account details yet. To list your property on the site, we need you to complete your account details before we can go further." );
+jr_define( "_JOMRES_PLEASE_PRINT", "Favor de imprimir este correo electrónico y presentarlo a su llegada." );
+jr_define( "_JOMRES_OFFICE_USE_ONLY", "Sólo para uso de oficina" );
+jr_define( "_JOMRES_SCAN_FOR_DIRECTIONS", "Escanear este código en su teléfono para obtener direcciones para nosotros." );
 
 
-jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT", "Production or Development?" );
-jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC", "If you set this option to Development we will enable error reporting, otherwise when set to Production that will be switched off. If this is a live server we recommend that you set this option to \"production\"." );
-jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION", "Production" );
-jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT", "Development" );
+jr_define( "_JOMRES_VAT_FEATURE_ENABLE", "Utilizar el construido en función de validación de IVA VIES?" );
+jr_define( "_JOMRES_VAT_FEATURE_ENABLE", "Nuevo en Jomres 7.3 es una característica que permite a los propietarios de negocios y huéspedes que tienen los números de IVA válido para entrar en sus detalles y no tener el IVA aplicado a sus facturas en su caso. Esta característica está diseñada para ser utilizada por los administradores de propiedades establecidos en la UE." );
+
+jr_define( "_JOMRES_VIES_VATCHECK_INCORRECT_SYNTAX", "El número de IVA que ha especificado no parece ser correcta. Usted debe tener algo como esto: BE805670816B01 ");
+jr_define( "_JOMRES_VIES_VATCHECK_INCORRECT_COULDNOTVALIDATE", "Número de IVA válido. Por favor, compruebe la validez de su IVA número con el número de IVA servicio de validación web Europa (VIES) ");
+jr_define( "_JOMRES_VIES_VATCHECK_INCORRECT_VALIDATED", "Felicitaciones. Hemos sido capaces de validar su número de IVA." );
+jr_define( "_JOMRES_VIES_VATCHECK_INCORRECT_NUMBERNOTENTERED", "No se ha introducido Número de IVA" );
+jr_define( "_JOMRES_TAX_RULES_LIST", "normas fiscales lista" );
+jr_define( "_JOMRES_TAX_RULE", "norma fiscal" );
+jr_define( "_JOMRES_TAX_RULE_INFO", "Las normas fiscales se utilizan para establecer normas fiscales distintas para las diferentes regiones. Estas normas fiscales afectan a la persona que realiza la reserva, si están registrados, iniciado la sesión y han editado su cuenta utilizando el \ "editar mi cuenta \" página. El propósito de estas reglas es para dar cabida a agentes de reserva en aquellas áreas que están exentas de IVA, es posible que usted no necesita crear muchas reglas, o ninguna en absoluto." );
+jr_define( "_JOMRES_TAX_RATES_IMPORT", "las tasas de impuestos de importación" );
+jr_define( "_JOMRES_TAX_RATES_IMPORT_INFO", "Podemos importar los tipos impositivos de la UE para que, si lo desea. Tenga en cuenta, si se utiliza esta función, entonces todas sus tasas de impuestos existentes serán eliminados." );
+jr_define( "_JRPORTAL_TAX_RULE_EDIT", "Editar norma fiscal" );
+jr_define( "_JOMRES_VAT_PROPERTY_NUMBER", "El número de IVA para esta propiedad." );
+jr_define( "_JOMRES_VAT_PROPERTY_NUMBER_DESC", "Por favor, introduzca el número de IVA para esta propiedad." );
+jr_define( "_JOMRES_VAT_PROPERTY_VAT_NUMBER_VALIDATED", "validación Número de IVA." );
+jr_define( "_JOMRES_VAT_PROPERTY_VAT_NUMBER_NOT_VALIDATED", "Número de IVA no validado." );
+jr_define( "_JOMRES_COM_YOURBUSINESS_INSTRUCTIONS", "Detalles del negocio aquí introducidos serán utilizados en la comisión y suscripciones facturas. ");
+
+jr_define( '_JRPORTAL_INVOICES_SUBSCRIPTION_PROFILE_ERROR_EXPL', "Usted no parece haber rellenado detalles de su cuenta todavía. Para mostrar su propiedad en el sitio, necesitamos que complete sus datos de cuenta antes de que podamos ir más allá." );
+
+
+jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT", "Producción o Desarrollo?" );
+jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC", "Si se establece esta opción para el Desarrollo vamos a permitir que el informe de errores, de lo contrario cuando se establece en la producción que se apaga. Si esto es un servidor activo, se recomienda que se establece esta opción a \ "la producción \". ");
+
+jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION", "Producción" );
+jr_define( "_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT", "Desarrollo" );
 
 //v7.3.3
-jr_define( '_JOMRES_COM_MR_EB_HROOM_DETAILS', 'Resource details' );
-jr_define( '_JOMRES_COM_MR_EB_HTARIFF_DETAILS', 'Tariff details' );
-jr_define( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', 'Only' );
-jr_define( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'left!' );
-jr_define( '_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'Resource feature' );
-jr_define( '_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'Unable to remove this resource feature, it is assigned to a resource. Remove the feature from this resource and retry.' );
+jr_define( '_JOMRES_COM_MR_EB_HROOM_DETAILS', 'detalles de recursos' );
+jr_define( '_JOMRES_COM_MR_EB_HTARIFF_DETAILS', 'datos de la tarifa' );
+jr_define( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', 'Solamente' );
+jr_define( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'quedado!' );
+jr_define( '_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'función de recursos' );
+jr_define( '_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'No se puede eliminar esta función de recursos, se le asigna a un recurso. Quitar la característica de este recurso y vuelva a intentar. ' );
 
 // v7.4
 $siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 $jrConfig   = $siteConfig->get();
 
-jr_define('_JOMRES_MEDIA_CENTRE_TITLE',"Media Centre");
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY',"Property image upload service");
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD',"Add images");
+jr_define('_JOMRES_MEDIA_CENTRE_TITLE',"Centro de Medios");
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY',"Propiedad de servicio de carga de imágenes");
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD',"
+Add images
 
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM',"Room images");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY',"Property main image");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW',"Slideshow images");
-jr_define('_JOMRES_MEDIA_CENTRE_CLEAR',"Clear list");
-jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP',"Drag & Drop files here");
+Añadir imágenes");
 
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS',"Choose the resource you want to upload images for. If you can upload images for individual resources (e.g. rooms) you will be given a second dropdown to choose the specific resource. ");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS',"The maximum file size for uploads is ". jomres_formatBytes($jrConfig[ 'fileSize' ]) . ". Only JPG and PNG images are allowed.");
-jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE',"If you upload multiple images as the \"Main property image\" these will be used in the Property List . Slideshow images will be shown on the property details page.");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM',"las imágenes de las habitaciones");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY',"imagen principal de la propiedad");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW',"imágenes de presentación de diapositivas");
+jr_define('_JOMRES_MEDIA_CENTRE_CLEAR',"Limpiar lista");
+jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP',"Arrastrar y soltar archivos aquí");
 
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW',"View your image");
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE',"Delete image");
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD',"Upload image");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS',"Seleccione el recurso que desea cargar imágenes para. Si puede subir imágenes para recursos individuales (por ejemplo, habitaciones) se le dará un segundo menú desplegable para elegir el recurso específico. ");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS',"El tamaño máximo de archivo para la carga es ". Jomres_formatBytes ($ jrConfig [ 'fileSize']).". Sólo se permiten imágenes JPG y PNG. ");
+jr_define ('_ JOMRES_MEDIA_CENTRE_NOTES_CORE', "Si a subir varias imágenes como el \" imagen característica principal \"éstos serán utilizados en las imágenes Lista de propiedades. Presentación de diapositivas se mostrará en la página de detalles de la propiedad.");
 
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES',"Feature and Room type images");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOMTYPE_IMAGES',"Room types icons");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY_FEATURES',"Property feature icons");
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW',"Ver su imagen");
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE',"Eliminar Imagen");
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD',"Cargar imagen");
 
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL',"Upload all files");
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES',"De características y tarifas Tipo de imágenes");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOMTYPE_IMAGES',"Tipos de habitación iconos");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY_FEATURES',"los iconos de funciones de Propiedad");
+
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL',"Subir todos los archivos");
 
 $MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 
-jr_define('END_TOUR' , "Close" );
+jr_define('END_TOUR' , "Cerca" );
 
-jr_define('TOUR_ID_TOUR_TARGET_MAIN_MENU_TITLE' , "Welcome to your Property" );
-jr_define('TOUR_ID_TOUR_TARGET_MAIN_MENU_CONTENT' , "Welcome to your Dashboard. This is your Main Menu. To view your property as your guests will see it, click on Properties, then Preview." );
+jr_define('TOUR_ID_TOUR_TARGET_MAIN_MENU_TITLE' , "Bienvenido a su de Propiedad" );
+jr_define('TOUR_ID_TOUR_TARGET_MAIN_MENU_CONTENT' , "Bienvenido a su tablero de instrumentos. Este es el menú principal. Para ver su propiedad como sus invitados lo verán, haga clic en Propiedades y, a continuación, en Vista previa." );
 
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_NAME_TITLE' , "This is your property name" );
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_NAME_CONTENT' , "Whenever you are logged in as a property manager, you will always have an Active property, the name of which you can see here. This is the property you are working on. Please remember that you can only work on one property at a time, you can't have two tabs open in your browser and work on two different properties simultaneously." );
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_NAME_TITLE' , "Este es el nombre de la propiedad" );
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_NAME_CONTENT' , "Cada vez que se inicia la sesión como un administrador de propiedades, siempre tendrá una propiedad activa, el nombre de los cuales se puede ver aquí. Esta es la propiedad que se está trabajando. Por favor, recuerde que sólo puede trabajar en una propiedad a la vez, no se puede tener dos pestañas abiertas en el navegador y el trabajo en dos propiedades diferentes al mismo tiempo. ");
 
-jr_define('TOUR_ID_TOUR_TARGET_TIMEZONE_DROPDOWN_TITLE' , "This is the timezone dropdown selector." );
-jr_define('TOUR_ID_TOUR_TARGET_TIMEZONE_DROPDOWN_CONTENT' , "This is useful if you are in a different timezone to your server. It helps to keep your midnight and the server's midnight in sync." );
+jr_define('TOUR_ID_TOUR_TARGET_TIMEZONE_DROPDOWN_TITLE' , "Este es el selector de zona horaria desplegable." );
+jr_define('TOUR_ID_TOUR_TARGET_TIMEZONE_DROPDOWN_CONTENT' , "Esto es útil si usted está en una zona horaria diferente a su servidor. Ayuda a mantener la media noche y la medianoche del servidor de sincronización." );
 
-jr_define('TOUR_ID_TOUR_TARGET_LANG_DROPDOWN_TITLE' , "This is the language selector." );
-jr_define('TOUR_ID_TOUR_TARGET_LANG_DROPDOWN_CONTENT' , "You can change your current language by using this selector. This is useful if you want your property description to be available in several languages. You can go to the Property Details page and enter the description in language A, then use this selector to change to language B. Now, if you go to the Property Details setting page you can enter your description in language B." );
+jr_define('TOUR_ID_TOUR_TARGET_LANG_DROPDOWN_TITLE' , "Esta es la selección de idiomas." );
+jr_define('TOUR_ID_TOUR_TARGET_LANG_DROPDOWN_CONTENT' , "Puede cambiar el idioma actual utilizando este selector. Esto es útil si desea que su descripción de la propiedad esté disponible en varios idiomas. Usted puede ir a la página de Detalles de la propiedad y entrar en la descripción en la lengua A, a continuación, utilizar este selector para cambiar a la lengua B. Ahora, si vas a la página Detalles de la propiedad ajuste que puede introducir su descripción en la lengua B." );
 
-jr_define('TOUR_ID_TOUR_TARGET_EDITING_MODE_DROPDOWN_TITLE' , "This is the Editing Mode selector." );
-jr_define('TOUR_ID_TOUR_TARGET_EDITING_MODE_DROPDOWN_CONTENT' , "You can customise the labels on this page by switching on the Editing Mode. Once enabled labels that you can customise will have a dotted underline. Click that text and you will see a popup where you can enter the new text. This also works for different languages, so you can change the label in language A, then switch to language B and change the text again to something that suits your taste." );
+jr_define('TOUR_ID_TOUR_TARGET_EDITING_MODE_DROPDOWN_TITLE' , "Este es el selector de modo de edición." );
+jr_define('TOUR_ID_TOUR_TARGET_EDITING_MODE_DROPDOWN_CONTENT' , "Puede personalizar las etiquetas en esta página poniendo en marcha el modo de edición. Una vez habilitado etiquetas que se pueden personalizar tendrá un subrayado de puntos. Haga clic en ese texto y verá una ventana emergente en la que puede introducir el nuevo texto. Esto también funciona para diferentes idiomas, por lo que puede cambiar la etiqueta en la lengua A, luego cambiar a la lengua B y cambiar el texto de nuevo a algo que se adapte a su gusto." );
 
-jr_define('TOUR_ID_TOUR_TARGET_CONTENT_TITLE' , "This is content area." );
-jr_define('TOUR_ID_TOUR_TARGET_CONTENT_CONTENT' , "In this area you will see the page that you are working on. In the dashboard you will see a calendar which shows which rooms have been booked out and the period the bookings span. Click a date to create a new Quick Booking, or drag with the mouse to select more than one day." );
+jr_define('TOUR_ID_TOUR_TARGET_CONTENT_TITLE' , "Esta es el área de contenido." );
+jr_define('TOUR_ID_TOUR_TARGET_CONTENT_CONTENT' , "En esta zona se verá la página que se está trabajando. En el tablero de instrumentos verá un calendario que muestra qué habitaciones han sido reservadas y el período de la duración de las reservas. Haga clic en una fecha para crear un nuevo Sofortbuchung, o arrastre con el ratón para seleccionar más de un día." );
 
-jr_define('TOUR_ID_TOUR_TARGET_SWITCHER_ACTIVE_PROPERTY_INITIALS_TITLE' , "Active property switch page." );
-jr_define('TOUR_ID_TOUR_TARGET_SWITCHER_ACTIVE_PROPERTY_INITIALS_CONTENT' , "You can change your active property by selecting the first letter from the name of the property below. When you do, you'll be given a list of all the properties you have rights to manage." );
+jr_define('TOUR_ID_TOUR_TARGET_SWITCHER_ACTIVE_PROPERTY_INITIALS_TITLE' , "página activa el interruptor propiedad." );
+jr_define('TOUR_ID_TOUR_TARGET_SWITCHER_ACTIVE_PROPERTY_INITIALS_CONTENT' , "Puede cambiar su propiedad activa al seleccionar la primera letra del nombre de la propiedad a continuación. Cuando lo hace, se le dará una lista de todas las propiedades que tiene el derecho de manejar. ");
 
-jr_define('TOUR_ID_FOUND_PROPERTIES_TITLE' , "This is where your property names will show." );
-jr_define('TOUR_ID_FOUND_PROPERTIES_CONTENT' , "Once you've clicked a property initial, your properties will show in this area. Click on a property name to switch to that property. This page is useful if you have to manage a lot of properties." );
 
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_HEADER_TITLE' , "This is your property header." );
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_HEADER_CONTENT' , "This is shown on every guest facing page for your property. It shows your property name, the number of stars (if any), an optional link to another website, and a QR code. The code allows your guests to use their smart phone to get location details to your address." );
+jr_define('TOUR_ID_FOUND_PROPERTIES_TITLE' , "Aquí es donde sus nombres de propiedades se mostrarán." );
+jr_define('TOUR_ID_FOUND_PROPERTIES_CONTENT' , "Una vez que haya hecho clic en una propiedad inicial, sus propiedades se mostrarán en esta área. Haga clic en un nombre de propiedad para cambiar a esa propiedad. Esta página es útil si tiene que manejar una gran cantidad de propiedades. ");
 
-jr_define('TOUR_ID_GALLERYWRAPPER_TITLE' , "Your photo gallery." );
-jr_define('TOUR_ID_GALLERYWRAPPER_CONTENT' , "This is the slideshow area. You can upload photographs through the Media Centre page under the Settings -> Media Centre menu option." );
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_HEADER_TITLE' , "Este es el encabezado de la propiedad." );
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_HEADER_CONTENT' , "Esto se muestra en la página de cada huésped frente de su propiedad. Muestra su nombre de la propiedad, el número de estrellas (si lo hay), un enlace opcional a otro sitio web, y un código QR. El código permite a sus huéspedes que utilizan su teléfono inteligente para obtener detalles de la ubicación de su dirección." );
 
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_BUTTONS_TITLE' , "Main buttons." );
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_BUTTONS_CONTENT' , "Which buttons are shown here depends on which options you have chosen in the Property Details tab under Settings -> Property Configuration." );
+jr_define('TOUR_ID_GALLERYWRAPPER_TITLE' , "Su galería de fotos." );
+jr_define('TOUR_ID_GALLERYWRAPPER_CONTENT' , "Esta es el área de presentación. Puedes subir fotografías a través de la página del Centro de Prensa en la configuración -> opción de menú Centro de Medios." );
 
-jr_define('TOUR_ID_TOUR_TARGET_INLINE_CALENDAR_TITLE' , "Inline Calendar." );
-jr_define('TOUR_ID_TOUR_TARGET_INLINE_CALENDAR_CONTENT' , "Using this calendar your guests can see, at a glance, how busy you are on a certain date and whether or not there are any vacancies. They can also click the arrows above the calendar to change the month viewed in that calendar." );
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_BUTTONS_TITLE' , "Botones principales." );
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_BUTTONS_CONTENT' , "Qué botones se muestran aquí depende de las opciones que haya elegido en la pestaña Detalles de la propiedad en Configuración -> Configuración de propiedades." );
 
-jr_define('TOUR_ID_TOUR_TARGET_ROOMS_LIST_TITLE' , "Rooms list tab" );
-jr_define('TOUR_ID_TOUR_TARGET_ROOMS_LIST_CONTENT' , "Here you can see all rooms, and the availability of each room if you click on the availability button." );
+jr_define('TOUR_ID_TOUR_TARGET_INLINE_CALENDAR_TITLE' , "Calendario en línea." );
+jr_define('TOUR_ID_TOUR_TARGET_INLINE_CALENDAR_CONTENT' , "El uso de este calendario a sus invitados pueden ver, a simple vista, lo ocupado que está en una fecha determinada y si hay o no alguna vacante. También puede hacer clic en las flechas arriba del calendario para cambiar el mes se ve en ese calendario." );
 
-jr_define('TOUR_ID_TOUR_TARGET_REVIEWS_LIST_TITLE' , "Reviews list." );
-jr_define('TOUR_ID_TOUR_TARGET_REVIEWS_LIST_CONTENT' , "Under this tab are all of the reviews that have been left for your property. Only users who have been booked through the system can post a review of your property." );
+jr_define('TOUR_ID_TOUR_TARGET_ROOMS_LIST_TITLE' , "Ficha Lista de habitaciones" );
+jr_define('TOUR_ID_TOUR_TARGET_ROOMS_LIST_CONTENT' , "Aquí puede ver todas las habitaciones, y la disponibilidad de cada habitación si se hace clic en el botón de la disponibilidad." );
 
-jr_define('TOUR_ID_MAPTAB_TITLE' , "Map tab." );
-jr_define('TOUR_ID_MAPTAB_CONTENT' , "Under this tab your guests can see your property in a zoomable map." );
+jr_define('TOUR_ID_TOUR_TARGET_REVIEWS_LIST_TITLE' , "Opiniones lista." );
+jr_define('TOUR_ID_TOUR_TARGET_REVIEWS_LIST_CONTENT' , "Bajo esta pestaña son todos los comentarios que se han dejado para su propiedad. Sólo los usuarios que han reservado por el sistema pueden publicar una revisión de su propiedad." );
 
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_MOREINFO_TITLE' , "More Information tab." );
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_MOREINFO_CONTENT' , "Under Settings -> Property details you can enter information about your property that might be of interest to your guests, like Check in times, Area activities, Driving directions, Airports, Other transport & Policies & disclaimers. Once entered, that information can be seen under this tab." );
+jr_define('TOUR_ID_MAPTAB_TITLE' , "pestaña de mapa." );
+jr_define('TOUR_ID_MAPTAB_CONTENT' , "Bajo esta pestaña sus invitados pueden ver su propiedad en un mapa ampliable." );
 
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_BOOKING_FORM_TITLE' , "Booking Form." );
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_BOOKING_FORM_CONTENT' , "Your guests can either go to a separate page, or they can use the booking form in this tab." );
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_MOREINFO_TITLE' , "Más ficha Información." );
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_MOREINFO_CONTENT' , "En Configuración -> Detalles del alojamiento puede introducir información sobre su propiedad que pueda ser de interés para sus clientes, como horario de entrada, las actividades de la zona, rutas, aeropuertos, Otros tipos de transporte y Políticas y reclamaciones. Una vez introducido, esa información puede ser vista en esta pestaña." );
 
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_MAIN_DETAILS_TITLE' , "Main Property Details." );
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_MAIN_DETAILS_CONTENT' , "Under Settings -> Property details you can fill a form called Property description. This is the tab that's always opened first when a guest visits your property on this site so you should try to add some text that will immediately grab their attention." );
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_BOOKING_FORM_TITLE' , "Formulario de reserva." );
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_BOOKING_FORM_CONTENT' , "Sus huéspedes deben ir a una página separada, o pueden utilizar el formulario de reserva en esta ficha." );
 
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_TARIFFS_TITLE' , "All current and future tariffs" );
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_TARIFFS_CONTENT' , "This is a list of all current and future tariffs. You can change the look of the list by going into Settings -> Property Configuration and clicking on the Property details tab. Change the setting of the Verbose tariff info option." );
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_MAIN_DETAILS_TITLE' , "Detalles de la propiedad principal." );
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_MAIN_DETAILS_CONTENT' , "En Configuración -> Detalles de propiedad que pueden llenar un formulario denominado Descripción de la vivienda. Esta es la pestaña que siempre está abierto por primera vez cuando un huésped visitas a su propiedad en este sitio por lo que debe tratar de añadir un poco de texto que se agarra de inmediato su atención." );
 
-jr_define('TOUR_ID_TOUR_TARGET_LOCAL_EVENTS_TITLE' , "Local Events." );
-jr_define('TOUR_ID_TOUR_TARGET_LOCAL_EVENTS_CONTENT' , "If there are any events occurring local to your property they will show in this list. It is used for things like festivals, markets etc. Events that occur on specific dates." );
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_TARIFFS_TITLE' , "Todas las tarifas actuales y futuras" );
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_DETAILS_TARIFFS_CONTENT' , "Esta es una lista de todas las tarifas actuales y futuras. Puede cambiar el aspecto de la lista por entrar en Configuración -> Configuración de propiedades y hacer clic en la pestaña Detalles de la propiedad. Cambie el ajuste de la opción de información de tarifas detallado." );
 
-jr_define('TOUR_ID_TOUR_TARGET_LOCAL_ATTRACTIONS_TITLE' , "Local Attractions." );
-jr_define('TOUR_ID_TOUR_TARGET_LOCAL_ATTRACTIONS_CONTENT' , "If there are any attractions near to you, like museums or amusement parks they will be listed here." );
+jr_define('TOUR_ID_TOUR_TARGET_LOCAL_EVENTS_TITLE' , "Eventos locales." );
+jr_define('TOUR_ID_TOUR_TARGET_LOCAL_EVENTS_CONTENT' , "Si hay algunos eventos que ocurren local de su propiedad que se muestran en esta lista. Se utiliza para cosas como festivales, mercados, etc. Eventos que se producen en fechas específicas." );
 
-jr_define('TOUR_ID_JOMRES_AUCTION_HOUSE_CONTENT_BODY_TITLE' , "Available Auctions." );
-jr_define('TOUR_ID_JOMRES_AUCTION_HOUSE_CONTENT_BODY_CONTENT' , "If your property has any dates available for auction, then those auctions will be shown here. Auctions are a useful way of driving business to your property during quieter periods." );
+jr_define('TOUR_ID_TOUR_TARGET_LOCAL_ATTRACTIONS_TITLE' , "Lugares de interés." );
+jr_define('TOUR_ID_TOUR_TARGET_LOCAL_ATTRACTIONS_CONTENT' , "Si hay algún atracciones cerca de vosotros, como museos o parques de atracciones que se enumeran aquí." );
 
-jr_define('TOUR_ID_TAB_BOOKINGROOMS_TITLE' , "Booking configuration." );
-jr_define('TOUR_ID_TAB_BOOKINGROOMS_CONTENT' , "On this tab you can configure parts of how your booking form works. If you rent out rooms in a property, such as in a hotel or B&B then you can configure things like the rooms list style." );
+jr_define('TOUR_ID_JOMRES_AUCTION_HOUSE_CONTENT_BODY_TITLE' , "Subastas disponibles." );
+jr_define('TOUR_ID_JOMRES_AUCTION_HOUSE_CONTENT_BODY_CONTENT' , "Si su propiedad tiene ninguna fecha para la subasta, a continuación, se muestra aquí esas subastas. Las subastas son una forma útil de la conducción de negocios a su propiedad durante períodos de silencio.
+" );
 
-jr_define('TOUR_ID_TAB_YOURBUSINESSDETAILS_TITLE' , "Your Business details." );
-jr_define('TOUR_ID_TAB_YOURBUSINESSDETAILS_CONTENT' , "Here you enter your business's address and VAT number if you have it. These details will be shown on the invoices your guests will see, and any invoices generated by the site for you." );
+jr_define('TOUR_ID_TAB_BOOKINGROOMS_TITLE' , "Reserva de configuración." );
+jr_define('TOUR_ID_TAB_BOOKINGROOMS_CONTENT' , "En esta pestaña se pueden configurar partes de cómo funciona el formulario de reserva. Si usted alquila habitaciones en una propiedad, como en un hotel o B & B a continuación, puede configurar cosas como el estilo de lista de salas.
+" );
 
-jr_define('TOUR_ID_TAB_EXTERNALLINK_TITLE' , "External links." );
-jr_define('TOUR_ID_TAB_EXTERNALLINK_CONTENT' , "You can add a link to another site here." );
+jr_define('TOUR_ID_TAB_YOURBUSINESSDETAILS_TITLE' , "
+Los detalles de su empresariales." );
+jr_define('TOUR_ID_TAB_YOURBUSINESSDETAILS_CONTENT' , "Aquí se introduce la dirección y el número de IVA de su empresa si lo tiene. Estos detalles se mostrarán en las facturas a sus invitados verán, y todas las facturas generadas por el sitio para usted." );
 
-jr_define('TOUR_ID_TAB_GATEWAYS_TITLE' , "Gateways." );
-jr_define('TOUR_ID_TAB_GATEWAYS_CONTENT' , "Gateways are the term used to describe payment services. If you have an account with one of the gateway services shown in this tab you can enter your account details in this tab to take payments online." );
+jr_define('TOUR_ID_TAB_EXTERNALLINK_TITLE' , "enlaces externos." );
+jr_define('TOUR_ID_TAB_EXTERNALLINK_CONTENT' , "Se puede añadir un enlace a otro sitio aquí." );
 
-jr_define('TOUR_ID_TAB_MISC_TITLE' , "Miscellaneous ." );
-jr_define('TOUR_ID_TAB_MISC_CONTENT' , "This tab is for settings that don't fit into any other tab." );
+jr_define('TOUR_ID_TAB_GATEWAYS_TITLE' , "de servicios de pago" );
+jr_define('TOUR_ID_TAB_GATEWAYS_CONTENT' , "de servicos de pago son el término usado para describir los servicios de pago. Si usted tiene una cuenta con uno de los servicios de pasarela que se muestran en esta ficha, puede entrar en detalles de su cuenta en esta ficha para aceptar pagos en línea
+." );
 
-jr_define('TOUR_ID_TAB_PROPERTYDETAILS_TITLE' , "Property details page settings." );
-jr_define('TOUR_ID_TAB_PROPERTYDETAILS_CONTENT' , "This tab allows you to modify various options as they're shown on your Property Details page (Go to the Jomres Main Menu -> Dashboard -> Preview to see that page)." );
+jr_define('TOUR_ID_TAB_MISC_TITLE' , "Misceláneo ." );
+jr_define('TOUR_ID_TAB_MISC_CONTENT' , "Esta ficha es para los valores que no encajan en ninguna otra pestaña." );
 
-jr_define('TOUR_ID_TAB_REQUIRED_TITLE' , "Required items in the booking form." );
-jr_define('TOUR_ID_TAB_REQUIRED_CONTENT' , "This tab allows you to set which items in the booking form that are required or optional." );
+jr_define('TOUR_ID_TAB_PROPERTYDETAILS_TITLE' , "Configuración de la página de propiedad detalles." );
+jr_define('TOUR_ID_TAB_PROPERTYDETAILS_CONTENT' , "Esta pestaña le permite modificar diversas opciones a medida que se muestran en la página de Detalles de la propiedad (Ir al Menú Principal Jomres -> Panel de Control -> Vista previa para ver la página)." );
 
-jr_define('TOUR_ID_TAB_SRPS_TITLE' , "Villa/Apartment specific settings." );
-jr_define('TOUR_ID_TAB_SRPS_CONTENT' , "This tab offers settings that are often used by villas and apartments. Any property where you're renting out the entire property, rather than rooms in a property individually. That said, these settings can be used by both villa and hotel type properties." );
+jr_define('TOUR_ID_TAB_REQUIRED_TITLE' , "Los elementos obligatorios en el formulario de reserva." );
+jr_define('TOUR_ID_TAB_REQUIRED_CONTENT' , "Esta ficha le permite establecer qué elementos de la central de reservas que son necesarios u opcionales." );
 
-jr_define('TOUR_ID_TAB_SUPPLEMENTS_TITLE' , "Single Person Supplements." );
-jr_define('TOUR_ID_TAB_SUPPLEMENTS_CONTENT' , "Single person supplements are charges that are added to a booking if a room that can cater for two only holds on individual." );
+jr_define('TOUR_ID_TAB_SRPS_TITLE' , "ajustes específicos Villa / Apartamento." );
+jr_define('TOUR_ID_TAB_SRPS_CONTENT' , "Esta pestaña ofrece ajustes que a menudo son utilizados por villas y apartamentos. Cualquier propiedad donde está el alquiler de toda la propiedad, en lugar de habitaciones en una propiedad individual. Dicho esto, estos ajustes pueden ser usados tanto por propiedades de tipo villa y hoteles." );
 
-jr_define('TOUR_ID_TAB_TARIFFSCURRENCY_TITLE' , "Tariffs" );
-jr_define('TOUR_ID_TAB_TARIFFSCURRENCY_CONTENT' , "On this page you can configure how tariffs and deposits are calculated." );
+jr_define('TOUR_ID_TAB_SUPPLEMENTS_TITLE' , "Suplementos una sola persona." );
+jr_define('TOUR_ID_TAB_SUPPLEMENTS_CONTENT' , "suplementos por persona sola son los cargos que se agregan a una reserva si una habitación que puede atender a dos sólo se aferra individual." );
 
-jr_define('TOUR_ID_TAB_TOURISTTAX_TITLE' , "Tourist Tax." );
-jr_define('TOUR_ID_TAB_TOURISTTAX_CONTENT' , "If your country or city charges tourist taxes, you can configure them here." );
+jr_define('TOUR_ID_TAB_TARIFFSCURRENCY_TITLE' , "tarifas" );
+jr_define('TOUR_ID_TAB_TARIFFSCURRENCY_CONTENT' , "En esta página puede configurar cómo se calculan las tarifas y depósitos." );
 
-jr_define('TOUR_ID_TAB_MICROMANAGE_TITLE' , "Micromanage settings." );
-jr_define('TOUR_ID_TAB_MICROMANAGE_CONTENT' , "Micromange tariff editing mode specific settings." );
+jr_define('TOUR_ID_TAB_TOURISTTAX_TITLE' , "Impuesto turístico." );
+jr_define('TOUR_ID_TAB_TOURISTTAX_CONTENT' , "Si los impuestos en su país o ciudad cargas turísticas, puede configurar aquí." );
 
-jr_define('TOUR_ID_TAB_WISEPRICE_TITLE' , "Wise Price settings." );
-jr_define('TOUR_ID_TAB_WISEPRICE_CONTENT' , "This tab allows you to enable and configure your room prices dynamically, giving you the ability to offer discounted room prices if occupancy when the booking is made is low." );
+jr_define('TOUR_ID_TAB_MICROMANAGE_TITLE' , "Microgestionar ajustes." );
+jr_define('TOUR_ID_TAB_MICROMANAGE_CONTENT' , "Microgestión de la configuración específica del modo de edición de tarifa." );
 
-jr_define('TOUR_ID_TOUR_TARGET_FRONTEND_LIST_PROPERTIES_TITLE' , "Your properties." );
-jr_define('TOUR_ID_TOUR_TARGET_FRONTEND_LIST_PROPERTIES_CONTENT' , "This page shows you a list of the properties you are authorised to manage. On the left you can easily see if they're published or not. The property name is also a link, if you click on that link you will immediately switch your active property to that property. " );
+jr_define('TOUR_ID_TAB_WISEPRICE_TITLE' , "ajustes en cuanto a precio." );
+jr_define('TOUR_ID_TAB_WISEPRICE_CONTENT' , "Esta pestaña le permite activar y configurar sus precios de las habitaciones de forma dinámica, que le da la capacidad de ofrecer precios de habitación descontadas de ocupación cuando la reserva se realiza es baja." );
+
+jr_define('TOUR_ID_TOUR_TARGET_FRONTEND_LIST_PROPERTIES_TITLE' , "Sus propiedades." );
+jr_define('TOUR_ID_TOUR_TARGET_FRONTEND_LIST_PROPERTIES_CONTENT' , "Esta página muestra una lista de las propiedades a los que puedes manejar. A la izquierda se puede ver fácilmente si se publican o no. El nombre de la propiedad es también un enlace, si hace clic en ese enlace va a cambiar inmediatamente su propiedad activa a esa propiedad. " );
 
 jr_define('TOUR_ID_TOUR_TARGET_TABLE_TOOLS_TITLE' , "The table." ); 
-jr_define('TOUR_ID_TOUR_TARGET_TABLE_TOOLS_CONTENT' , "Your data is presented as a table layout. On the left is a dropdown that allows you to change the number of items shown on each page. Next you have a number of buttons that allow you to export the data in the table to your local device. You can 1. Copy the data into your clipboard. 2. Export the data as a CSV (Comma seperated values). 3. Export in a format suitable for use in Excel. 4. Allows you to export the data as a PDF file and 5 Print, which will switch the layout so that you can print the data. Finally, on the far right, is an input field where you can search for a particular row or rows easily. Above each column there are titles, if you click on the title you can cause the column to be sorted, either ascending or descending, according to that column's contents." );
+jr_define('TOUR_ID_TOUR_TARGET_TABLE_TOOLS_CONTENT' , "Sus datos se presenta como un diseño de tabla. A la izquierda hay un menú desplegable que le permite cambiar el número de elementos que se muestran en cada página. A continuación tienes una serie de botones que le permite exportar los datos de la tabla en el dispositivo local. 1. Usted puede copiar los datos en el portapapeles. 2. Exportar los datos como un archivo CSV (valores separados por comas). 3. exportación en un formato adecuado para su uso en Excel. 4. Le permite exportar los datos como un archivo PDF y 5 de impresión, que cambiará la disposición para que pueda imprimir los datos. Por último, en el extremo derecho, es un campo de entrada donde se puede buscar una fila o filas determinadas fácilmente. Por encima de cada columna hay títulos, si hace clic en el título que puede causar la columna que desee ordenar, ascendente o descendente, de acuerdo con el contenido de esa columna.
+" );
 
-jr_define('TOUR_ID_TOUR_TARGET_FRONTEND_LIST_PROPERTIES_TITLE' , "Your properties." );
-jr_define('TOUR_ID_TOUR_TARGET_FRONTEND_LIST_PROPERTIES_CONTENT' , "This page shows you a list of the properties you are authorised to manage. On the left you can easily see if they're published or not. The property name is also a link, if you click on that link you will immediately switch your active property to that property. " );
+jr_define('TOUR_ID_TOUR_TARGET_FRONTEND_LIST_PROPERTIES_TITLE' , "Sus propiedades." );
+jr_define('TOUR_ID_TOUR_TARGET_FRONTEND_LIST_PROPERTIES_CONTENT' , "Esta página muestra una lista de las propiedades a los que puedes manejar. A la izquierda se puede ver fácilmente si se publican o no. El nombre de la propiedad es también un enlace, si hace clic en ese enlace va a cambiar inmediatamente su propiedad activa a esa propiedad. " );
 
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_TITLE' , "Property creation, step 1." );
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_CONTENT' , "Creating a new property is a two step process. On this first page you will select the country and region of your property, select it's property type, and the process you will use to manage it." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_TITLE' , "creación de propiedad, el paso 1." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_CONTENT' , "La creación de una nueva propiedad es un proceso de dos pasos. En esta primera página que podrá seleccionar el país y la región de su propiedad, seleccione su tipo de propiedad, y el proceso que va a utilizar para su gestión." );
 
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_COUNTRY_TITLE' , "Property country." );
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_COUNTRY_CONTENT' , "Here you will select your property country from a dropdown list. As soon as you select the country the page will reload and you will be able to choose the region for the property." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_COUNTRY_TITLE' , "país propiedad." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_COUNTRY_CONTENT' , "Aquí usted seleccione su país de propiedad de una lista desplegable. Tan pronto como se selecciona el país volverá a cargar la página y usted será capaz de elegir la región para la propiedad ". );
 
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROPERTY_TYPE_TITLE' , "The property type." );
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROPERTY_TYPE_CONTENT' , "From this dropdown please choose your type of property. It can be something like a villa or an apartment if you're renting out the entire property, or if you're renting out rooms in the property then you would probably choose hotel or bed and breakfast." );
-
-if (isset( $MiniComponents->registeredClasses['00001jintour_start']))
-	{
-	jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROCESS_TITLE' , "Management process." );
-	jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROCESS_CONTENT' , "The management process is about how your property will be used by visitors on the site. If you are renting out a property, or rooms in the property then you would choose Rental. If you want to offer tours/finite resource booking (for example skis) that are booked on the same booking form, then you would still choose this option. If you're offering tours/finite resources only without rooms then choose the Tours option. If you are not offering any kind of rental functionality and are only adding the property for information purposes, then choose Real Estate." );
-	}
-else
-	{
-	jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROCESS_TITLE' , "Management process." );
-	jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROCESS_CONTENT' , "The management process is about how your property will be used by visitors on the site. If you are renting out a property, or rooms in the property then you would choose Rental. If you are not offering any kind of rental functionality and are only adding the property for information purposes, then choose Real Estate." );
-	}
-
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_TITLE' , "Property creation step 2." );
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_CONTENT' , "You can now start entering information about your property. Don't worry about images for now, you can upload them later through Settings -> Media Centre." );
-
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_MRPSRP_TITLE' , "MRP or SRP." );
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_MRPSRP_CONTENT' , "Configuration options differ depending on if you are renting out rooms in a property, or the property itself. Select MRP if you are offering rooms, select SRP if you are offering the entire property. If it's an SRP you'll be given a new dropdown where you can select the number of rooms the property offers. You will need to choose one of those options." );
-
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_NAME_ADDRESS_TITLE' , "Property name & address." );
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_NAME_ADDRESS_CONTENT' , "Please enter the property name and address in the following fields." );
-
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_STARS_TITLE' , "Number of stars." );
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_STARS_CONTENT' , "If your property has been awarded a number of stars based on a recognised standard, select the number from the dropdown. Some countries have rating by a single public standard — Belgium, Denmark, Greece, Italy, Malta, Netherlands, Portugal, Spain and Hungary have laws defining the hotel rating. In Germany, Austria and Switzerland, the rating is defined by the respective hotel industry association using a five-star system — the German classifications are Tourist (*), Standard (**), Comfort (***), First Class (****) and Luxury (*****), with the mark Superior to flag extras beyond the minimum defined in the standard." );
-
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_LATLONG_TITLE' , "Mapping location." );
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_LATLONG_CONTENT' , "On your property details page you will see a map. You configure your property's location here using either the latitude and longitude inputs or by dragging and dropping the marker in the map itself." );
-
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_FEATURES_TITLE' , "Property features." );
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_FEATURES_CONTENT' , "Select the features that are applicable to your property. These features are used in the site's search functionality, so it's important that these accurately reflect your property." );
-
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_DESCRIPTION_TITLE' , "Information about your property." );
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_DESCRIPTION_CONTENT' , "You have a number of fields here where you can enter informaton about your property. The Property Description will appear on the first tab on your Property Details/Preview page, so you need to put your attention grabbing text here." );
-
-
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_POLICIES_TITLE' , "Policies and Disclaimers." );
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_POLICIES_CONTENT' , "This is where you should put your properties policies, such as cancellation charges etc. When the guest goes through the booking form, before they can complete the booking they are forced to accept your terms and have the option to click a link which will show the property's terms. When they click that link, the information entered into this input is shown in a small window." );
-
-jr_define('TOUR_ID_TOUR_TARGET_LISTALL_BOOKINGS_TITLE' , "List all bookings." );
-jr_define('TOUR_ID_TOUR_TARGET_LISTALL_BOOKINGS_CONTENT' , "On this page you will see all bookings, regardless of whether or not a deposit has been paid. Click the Edit icon to the left of the booking to view the booking details page." );
-
-jr_define('TOUR_ID_TOUR_TARGET_LISTNEW_BOOKINGS_TITLE' , "List new bookings." );
-jr_define('TOUR_ID_TOUR_TARGET_LISTNEW_BOOKINGS_CONTENT' , "This page shows a list of all new bookings, that is, booking where a deposit hasn't yet been paid for the booking. Click the Edit icon to the left of the booking to view the booking details page." );
-
-jr_define('TOUR_ID_TOUR_TARGET_LISTOLD_BOOKINGS_TITLE' , "List old bookings." );
-jr_define('TOUR_ID_TOUR_TARGET_LISTOLD_BOOKINGS_CONTENT' , "This page lists all historic bookings, that is, bookings that have either been cancelled or the guest has been booked out. Click the Edit icon to the left of the booking to see that booking's information." );
-
-jr_define('TOUR_ID_TOUR_TARGET_LIST_GUESTS_TITLE' , "List guests." );
-jr_define('TOUR_ID_TOUR_TARGET_LIST_GUESTS_CONTENT' , "The page allows you to list all guests for your currently active property. By default only guests who are or will be guests are listed, however you can choose historic guests from a dropdown to include guests who have been booked out or have cancelled their bookings as well as current guests." );
-
-jr_define('TOUR_ID_TOUR_TARGET_BOOKING_OVERRIDES_TITLE' , "Overrides." );
-jr_define('TOUR_ID_TOUR_TARGET_BOOKING_OVERRIDES_CONTENT' , "The overrides here are only available to managers of the property, guests cannot see or use them. They allow you to override both the final room price of the booking (optional extras are not included in this override, they're still charged at full price) and the value of the deposit required." );
-
-jr_define('TOUR_ID_TOUR_TARGET_BOOKING_COUPONS_TITLE' , "Coupons." );
-jr_define('TOUR_ID_TOUR_TARGET_BOOKING_COUPONS_CONTENT' , "If you have created some coupon codes for this property, this input will be available and guests can enter the coupon codes here to get discounts on the value of their room booking." );
-
-jr_define('TOUR_ID_TOUR_TARGET_BOOKING_PARTICULARS_TITLE' , "Particulars." );
-jr_define('TOUR_ID_TOUR_TARGET_BOOKING_PARTICULARS_CONTENT' , "Changing any of these options will cause the rooms list to change, because the list is re-evaluated based on the length of the booking and other variables. If you have created some guest types, then the booker will be able to change the number of guests for the booking here too." );
-
-jr_define('TOUR_ID_TOUR_TARGET_BOOKING_ROOM_FEATURES_TITLE' , "Room features filter." );
-jr_define('TOUR_ID_TOUR_TARGET_BOOKING_ROOM_FEATURES_CONTENT' , "If you have configured the property to use the Classic Rooms list, guests can choose the specific room that they'd like to book, rather than simply a room of a certain type. This is more popular with up-market properties. The rooms list has clickable images which when clicked will popup more information about that individual room. An additional bonus of this layout is that if you have created some room features and marked a room as having a certain feature, then the booker can use the room features to filter through the available rooms to ensure that they're getting exactly what they want. Note, you can modify the number of rooms of each type that are shown in the room list through the Settings -> Property Configuration -> Booking rooms tab, by changing the Available rooms/tariff limit option. This will then show a smaller list of rooms to the guest, but as a property manager you will still see the full list of rooms." );
-
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROPERTY_TYPE_TITLE' , "El tipo de propiedad." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROPERTY_TYPE_CONTENT' , "A partir de esta lista desplegable elija su tipo de propiedad. Puede ser algo así como una villa o un apartamento si usted está alquilando toda la propiedad, o si usted está alquilando habitaciones en la propiedad, entonces es probable que elegir hotel o alojamiento y desayuno." );
 
 if (isset( $MiniComponents->registeredClasses['00001jintour_start']))
 	{
-	jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_TITLE' , "Optional extras." );
-	jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_CONTENT' , "You can create two types of optional extras which will show here. The first type is a basic optional extra, which can be created according to several different models, e.g. Per Night, Per Person, Per Person Per Night etc. These are useful for when you want guests to add extras to the booking, but these items aren't finite resources. So, for example you could add Bunch of Flowers on Arrival, or Airport Transfer. The other type of extra is configured from the Tour/Activity Profiles Management menu option under Settings, and is used to create items with finite resources. Typically this is used for things like local tours to museums and other sites. In short, any kind of resource where there's only a few spaces available on a given date." );
+	jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROCESS_TITLE' , "Proceso de gestión" );
+	jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROCESS_CONTENT' , "El proceso de gestión es acerca de cómo su propiedad va a ser utilizado por los visitantes en el sitio. Si usted alquila una propiedad, o habitaciones de la propiedad, entonces usted elegiría Alquiler. Si desea ofrecer visitas / reserva recurso finito (por ejemplo, esquís) que se reservan en el mismo formulario de reserva, entonces todavía se elija esta opción. Si usted está ofreciendo tours / recursos finitos sólo sin habitaciones a continuación, elija la opción de Tours. Si no está ofreciendo ningún tipo de funcionalidad de alquiler y está agregando sólo la propiedad con fines de información, a continuación, elija los inmuebles." );
 	}
 else
 	{
-	jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_TITLE' , "Optional extras." );
-	jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_CONTENT' , "You can create optional extras which will show here. They can be created according to several different models, e.g. Per Night, Per Person, Per Person Per Night etc. These are useful for when you want guests to add extras to the booking, but these items aren't finite resources. So, for example you could add Bunch of Flowers on Arrival, or Airport Transfer." );
+	jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROCESS_TITLE' , "Proceso de gestión." );
+	jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROCESS_CONTENT' , "El proceso de gestión es acerca de cómo su propiedad va a ser utilizado por los visitantes en el sitio. Si usted alquila una propiedad, o habitaciones de la propiedad, entonces usted elegiría Alquiler. Si no está ofreciendo ningún tipo de funcionalidad de alquiler y está agregando sólo la propiedad con fines de información, a continuación, elija los inmuebles." );
+	}
+
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_TITLE' , "paso de creación de la Propiedad 2." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_CONTENT' , "Ahora puede comenzar a introducir información sobre su propiedad. No se preocupe de imágenes por ahora, puede subirlos posteriormente a través de Ajustes -> Centro de Prensa." );
+
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_MRPSRP_TITLE' , "MRP y SRP." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_MRPSRP_CONTENT' , "Las opciones de configuración son diferentes dependiendo de si usted está alquilando habitaciones en una propiedad, o la propiedad en sí. Seleccione MRP si usted está ofreciendo habitaciones, seleccione SRP si usted está ofreciendo todo el establecimiento. Si se trata de una SRP se le dará un nuevo desplegable donde puede seleccionar el número de habitaciones que ofrece la propiedad. Usted tendrá que elegir una de estas opciones." );
+
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_NAME_ADDRESS_TITLE' , "nombre de la propiedad y dirección." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_NAME_ADDRESS_CONTENT' , "Por favor, introduzca el nombre de la propiedad y la dirección en los siguientes campos." );
+
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_STARS_TITLE' , "Número de estrellas." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_STARS_CONTENT' , "Si su propiedad ha recibido un número de estrellas basado en un estándar reconocido, seleccione el número de la lista desplegable. Algunos países tienen una clasificación por un único estándar público - Bélgica, Dinamarca, Grecia, Italia, Malta, Países Bajos, Portugal, España y Hungría tienen leyes que definen la categoría del establecimiento. En Alemania, Austria y Suiza, la calificación está definido por la asociación de la industria de hotel respectiva usando un sistema de cinco estrellas - las clasificaciones son alemanes de Turismo (*), Standard (**), Comfort (***), la primera clase (* ***) y de lujo (*****), con la marca superior a los extras bandera más allá del mínimo definido en el estándar.
+" );
+
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_LATLONG_TITLE' , "Mapeo de ubicación." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_LATLONG_CONTENT' , "En su página de detalles de la propiedad va a ver un mapa. Se configura la ubicación de su propiedad aquí usando las entradas de latitud y longitud o arrastrando y soltando el marcador en el propio mapa." );
+
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_FEATURES_TITLE' , "Caracteristicas de la propiedad." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_FEATURES_CONTENT' , "Seleccione las características que son aplicables a su propiedad. Estas características se utilizan en la funcionalidad de búsqueda del sitio, por lo que es importante que estos reflejan con precisión su propiedad." );
+
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_DESCRIPTION_TITLE' , "Información sobre su propiedad." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_DESCRIPTION_CONTENT' , "Usted tiene un número de campos aquí donde se puede introducir informaton acerca de su propiedad. La descripción de la propiedad aparecerá en la primera pestaña en su página Detalles de la propiedad / Vista previa, por lo que necesita para poner el texto que atraiga la atención aquí." );
+
+
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_POLICIES_TITLE' , "Políticas y renuncias." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_POLICIES_CONTENT' , "Aquí es donde se debe poner sus propiedades políticas, tales como gastos de cancelación, etc. Cuando el invitado pasa a través de la central de reservas, antes de que puedan completar la reserva se ven obligados a aceptar los términos y tienen la opción de hacer clic en un enlace que mostrará el términos de propiedad. Cuando hacen clic en ese enlace, la información introducida en esta entrada se muestra en una ventana pequeña." );
+
+jr_define('TOUR_ID_TOUR_TARGET_LISTALL_BOOKINGS_TITLE' , "Listar todas las reservas." );
+jr_define('TOUR_ID_TOUR_TARGET_LISTALL_BOOKINGS_CONTENT' , "En esta página podrás ver todas las reservas, independientemente de si es o no un depósito ha sido pagado. Haga clic en el icono Editar situado a la izquierda de la reserva para ver la página detalles de la reserva." );
+
+jr_define('TOUR_ID_TOUR_TARGET_LISTNEW_BOOKINGS_TITLE' , "Enumerar las nuevas reservas." );
+jr_define('TOUR_ID_TOUR_TARGET_LISTNEW_BOOKINGS_CONTENT' , "Esta página muestra una lista de todas las nuevas reservas, es decir, donde un depósito de reserva aún no ha sido pagado por la reserva. Haga clic en el icono Editar situado a la izquierda de la reserva para ver la página detalles de la reserva." );
+
+jr_define('TOUR_ID_TOUR_TARGET_LISTOLD_BOOKINGS_TITLE' , "Enumerar las reservas viejas." );
+jr_define('TOUR_ID_TOUR_TARGET_LISTOLD_BOOKINGS_CONTENT' , "Esta página muestra todas las reservas históricas, es decir, las reservas que, o bien han sido cancelados o el invitado ha sido reservado. Haga clic en el icono Editar situado a la izquierda de la reserva para ver la información de esa reserva." );
+
+jr_define('TOUR_ID_TOUR_TARGET_LIST_GUESTS_TITLE' , "Lista de los huéspedes." );
+jr_define('TOUR_ID_TOUR_TARGET_LIST_GUESTS_CONTENT' , "La página le permite listar todos los huéspedes para su propiedad actualmente activo. Por defecto sólo los clientes que están o estarán invitados se enumeran, sin embargo se pueden elegir a huéspedes históricos desde un menú desplegable para incluir a los clientes que se han reservado o hayan cancelado sus reservas, así como invitados actuales." );
+
+jr_define('TOUR_ID_TOUR_TARGET_BOOKING_OVERRIDES_TITLE' , "Anulaciones." );
+jr_define('TOUR_ID_TOUR_TARGET_BOOKING_OVERRIDES_CONTENT' , "Las anulaciones aquí sólo están disponibles para los administradores de la propiedad, los clientes no pueden ver o no los utilizan. Ellos le permiten anular tanto el precio final de la habitación de la reserva (accesorio opcional no están incluidos en este aumento de presupuesto, que todavía están cargadas en el precio completo) y el valor del depósito requerido." );
+
+jr_define('TOUR_ID_TOUR_TARGET_BOOKING_COUPONS_TITLE' , "Cupones." );
+jr_define('TOUR_ID_TOUR_TARGET_BOOKING_COUPONS_CONTENT' , "Si ha creado algunos bonos de descuento para esta propiedad, esta entrada estará disponible y los huéspedes pueden introducir los códigos de cupones para obtener descuentos en el valor de la reserva habitación." );
+
+jr_define('TOUR_ID_TOUR_TARGET_BOOKING_PARTICULARS_TITLE' , "Informe detallado." );
+jr_define('TOUR_ID_TOUR_TARGET_BOOKING_PARTICULARS_CONTENT' , "Cambios en cualquiera de estas opciones hará que se enumeran los cuartos de cambiar, porque la lista se vuelve a evaluar en base a la longitud de la reserva y otras variables. Si ha creado algunos tipos de huéspedes, entonces el Booker será capaz de cambiar el número de invitados para la reserva aquí también." );
+
+jr_define('TOUR_ID_TOUR_TARGET_BOOKING_ROOM_FEATURES_TITLE' , "Habitación con filtro." );
+jr_define('TOUR_ID_TOUR_TARGET_BOOKING_ROOM_FEATURES_CONTENT' , "Si ha configurado la propiedad para utilizar la lista de habitaciones clásicas, los huéspedes pueden elegir la habitación específica que les gustaría reservar, en lugar de simplemente una habitación de un determinado tipo. Esto es más popular entre las propiedades de alta gama. La lista de las habitaciones tiene imágenes se puede hacer clic, que cuando se hace clic popup más información acerca de la habitación individual. Una ventaja adicional de este diseño es que si ha creado algunas de las características de las habitaciones y marcado una habitación que tienen una determinada característica, entonces el Booker puede utilizar las características de la habitación para filtrar a través de las habitaciones disponibles para garantizar que se van a obtener exactamente lo que quieren . Tenga en cuenta, puede modificar el número de habitaciones de cada tipo que se muestran en la lista de la sala a través de la configuración -> Configuración de la Propiedad -> pestaña salas de reserva, cambiando la opción / límite de habitaciones disponibles tarifa. Esto le mostrará una lista más pequeña de las habitaciones para el huésped, sino como un administrador de propiedades que todavía verá la lista completa de las habitaciones." );
+
+
+if (isset( $MiniComponents->registeredClasses['00001jintour_start']))
+	{
+	jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_TITLE' , "Extras opcionales." );
+	jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_CONTENT' , "Se pueden crear dos tipos de extras opcionales que se mostrarán aquí. El primer tipo es un extra opcional de base, que puede ser creada de acuerdo con varios modelos diferentes, por ejemplo, Por noche, por persona, por persona por noche, etc. Estos son útiles para cuando se desea invitados a añadir extras a la reserva, pero estos elementos no son recursos finitos. Así, por ejemplo, se podría añadir Ramo de flores a la llegada, o el traslado al aeropuerto. El otro tipo de extra se configura a partir de la opción de menú Tour / Actividad de Gestión de Perfiles en Configuración, y se utiliza para crear elementos con recursos finitos. Habitualmente esto se usa para cosas como excursiones locales a museos y otros sitios. En definitiva, cualquier tipo de recurso donde sólo hay unos pocos espacios disponibles en una fecha determinada." );
+	}
+else
+	{
+	jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_TITLE' , "Extras opcionales." );
+	jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_CONTENT' , "Puede crear los accesorios opcionales que se mostrarán aquí. Pueden ser creados de acuerdo con varios modelos diferentes, por ejemplo, Por noche, por persona, por persona por noche, etc. Estos son útiles para cuando se desea invitados a añadir extras a la reserva, pero estos elementos no son recursos finitos. Así, por ejemplo, se podría añadir Ramo de flores a la llegada, o Transferencia Aeropuerto." );
 	}
 	
 
-jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXISTING_GUESTS_TITLE' , "Existing guests." );
-jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXISTING_GUESTS_CONTENT' , "If you already have some guests entered you can choose them by selecting their name in a dropdown that appears here. This saves you having to add their details time and again. If you regularly make bookings on behalf of the same guests, you should always use this dropdown to select them otherwise you'll end up creating multiple guests with the same names if you enter their details manually every time." );
+jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXISTING_GUESTS_TITLE' , "clientes existentes." );
+jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXISTING_GUESTS_CONTENT' , "Si ya tiene algunos invitados entraron en ellas se puede elegir seleccionando su nombre en una lista desplegable que aparece aquí. Esto le ahorra tener que añadir su información una y otra vez. Si realiza regularmente las reservas en nombre de los mismos invitados, siempre se debe utilizar esta lista desplegable para seleccionar de lo contrario va a terminar la creación de múltiples clientes con los mismos nombres si introduce sus datos manualmente cada vez.
+" );
 
-jr_define('TOUR_ID_TOUR_TARGET_BOOKING_REQUIRED_TITLE' , "Guest details." );
-jr_define('TOUR_ID_TOUR_TARGET_BOOKING_REQUIRED_CONTENT' , "If you'd like to change which fields you require to be filled by a guest, you can go to the Settings -> Property Configuration -> Required tab." );
+jr_define('TOUR_ID_TOUR_TARGET_BOOKING_REQUIRED_TITLE' , "Detalles del huésped." );
+jr_define('TOUR_ID_TOUR_TARGET_BOOKING_REQUIRED_CONTENT' , "Si desea cambiar los campos que necesita ser llenado por un huésped, se puede ir a la Configuración -> Configuración de la Propiedad -> ficha deseada." );
 
-jr_define('TOUR_ID_TOUR_TARGET_LIST_BLACKBOOKINGS_TITLE' , "Black bookings." );
-jr_define('TOUR_ID_TOUR_TARGET_LIST_BLACKBOOKINGS_CONTENT' , "Black bookings are booking that have been made by the hotel but not always for a specific guest. They may be because the hotel is on it's annual holiday, or because a room is closed for refurbishment." );
+jr_define('TOUR_ID_TOUR_TARGET_LIST_BLACKBOOKINGS_TITLE' , "reservas negros." );
+jr_define('TOUR_ID_TOUR_TARGET_LIST_BLACKBOOKINGS_CONTENT' , "las reservas son negros de reserva que han sido formuladas por el hotel, pero no siempre de un huésped específico. Pueden ser porque el hotel está en que es vacaciones anuales, o porque una habitación estará cerrado por reformas." );
 
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_REALESTATE_DESCRIPTION_TITLE' , "Information about your property." );
-jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_REALESTATE_DESCRIPTION_CONTENT' , "The Property Description will appear on the first tab on your Property Details/Preview page, so you need to put your attention grabbing text here." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_REALESTATE_DESCRIPTION_TITLE' , "Información sobre su propiedad." );
+jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_2_REALESTATE_DESCRIPTION_CONTENT' , "a descripción de la propiedad aparecerá en la primera pestaña en su página Detalles de la propiedad / Vista previa, por lo que necesita para poner el texto que atraiga la atención aquí." );
 
-jr_define('TOUR_ID_TOUR_TARGET_LISTTARIFFS_NORMAL_MRP_TITLE' , "Normal mode tariffs." );
-jr_define('TOUR_ID_TOUR_TARGET_LISTTARIFFS_NORMAL_MRP_CONTENT' , "This is the simplest way you can enter room prices. Choose the number of rooms of a given type, the price for the rooms, the number of guests that the room can accommodate and the total number of people you are prepared to entertain in a booking and click Save. The prices then will be set for the next ten years. If you'd like more control over the prices, then please change your tariff editing mode to Advanced or Micromanage." );
+jr_define('TOUR_ID_TOUR_TARGET_LISTTARIFFS_NORMAL_MRP_TITLE' , "las tarifas de modo normal." );
+jr_define('TOUR_ID_TOUR_TARGET_LISTTARIFFS_NORMAL_MRP_CONTENT' , "Esta es la forma más simple puede introducir precios de la habitación. Seleccione el número de habitaciones de un tipo dado, el precio de las habitaciones, el número de invitados que la habitación tiene capacidad y el número total de personas que están dispuestos a entretener en una reserva y haga clic en Guardar. Los precios a continuación, se pueden establecer para los próximos diez años. Si desea más control sobre los precios, por favor, cambie su modo de edición avanzada o arancel a la microgestión." );
 
-jr_define('TOUR_ID_TOUR_TARGET_LISTTARIFFS_NORMAL_SRP_TITLE' , "Normal mode tariffs." );
-jr_define('TOUR_ID_TOUR_TARGET_LISTTARIFFS_NORMAL_SRP_CONTENT' , "This is the simplest way you can enter room prices. Choose your property type, enter the price and the maximum number of people in a booking and click Save. The prices then will be set for the next ten years. If you'd like more control over the prices, then please change your tariff editing mode to Advanced or Micromanage." );
+jr_define('TOUR_ID_TOUR_TARGET_LISTTARIFFS_NORMAL_SRP_TITLE' , "las tarifas de modo normal." );
+jr_define('TOUR_ID_TOUR_TARGET_LISTTARIFFS_NORMAL_SRP_CONTENT' , "Esta es la forma más simple puede introducir precios de la habitación. Elija su tipo de propiedad, introduzca el precio y el número máximo de personas en una reserva y haga clic en Guardar. Los precios a continuación, se pueden establecer para los próximos diez años. Si desea más control sobre los precios, por favor, cambie su modo de edición avanzada o arancel a la microgestión." );
 
-jr_define('TOUR_ID_TOUR_TARGET_ROOMSANDTARIFFS_MRP_TITLE' , "Rooms and Tariffs." );
-jr_define('TOUR_ID_TOUR_TARGET_ROOMSANDTARIFFS_MRP_CONTENT' , "On this page you can edit Rooms, Tariffs and Room Features. There are three tabs which allow you to edit the individual items. Before you start editing rooms or tariffs, you will need to understand that there is a relationship between Rooms, Room Types and Tariffs. In the booking form, when you see a room type dropdown or a click button to select a room, what's happening is that you are actually selecting a combination of room and tariff. This approach allows you to create different tariffs for the same room/room types, so for example you can create one tariff for Bed and Breakfast, and a second tariff for Bed, Breakfast + evening meal. Rooms can have individual room features. If your rooms list is set to Classic, then your guests can use the Room Features to filter rooms in the booking form to find a room with a particular set of characteristics that they want." );
+jr_define('TOUR_ID_TOUR_TARGET_ROOMSANDTARIFFS_MRP_TITLE' , "Habitaciones y Tarifas." );
+jr_define('TOUR_ID_TOUR_TARGET_ROOMSANDTARIFFS_MRP_CONTENT' , "En esta página se puede editar habitaciones, tarifas y Características de la habitación. Hay tres pestañas que le permiten editar los elementos individuales. Antes de empezar a editar las habitaciones o los aranceles, tendrá que entender que existe una relación entre las habitaciones, Tipos de habitaciones y tarifas. En el formulario de reserva, cuando vea una lista desplegable el tipo de habitación o un clic de botón para seleccionar una habitación, lo que sucede es que en realidad se está seleccionando una combinación de habitación y tarifa. Este enfoque le permite crear diferentes tarifas para los mismos tipos de habitación / habitaciones, así que por ejemplo, puede crear una tarifa para cama y desayuno, y una segunda tarifa de cama, desayuno y cena. Las habitaciones pueden tener características de las habitaciones individuales. Si la lista de sus habitaciones está configurado en Classic, a continuación, sus huéspedes pueden utilizar las Características de la habitación para filtrar habitaciones en el formulario de reserva para encontrar una habitación con un conjunto particular de características que ellos quieren." );
 
-jr_define('TOUR_ID_TOUR_TARGET_ROOMSANDTARIFFS_SRP_TITLE' , "Rooms and Tariffs." );
-jr_define('TOUR_ID_TOUR_TARGET_ROOMSANDTARIFFS_SRP_CONTENT' , "On this page you can edit your property type and your tariffs." );
+jr_define('TOUR_ID_TOUR_TARGET_ROOMSANDTARIFFS_SRP_TITLE' , "Habitaciones y Tarifas." );
+jr_define('TOUR_ID_TOUR_TARGET_ROOMSANDTARIFFS_SRP_CONTENT' , "En esta página se puede editar el tipo de propiedad y sus tarifas." );
 
-jr_define('TOUR_ID_TOUR_TARGET_GUEST_TYPES_TITLE' , "Guest types." );
-jr_define('TOUR_ID_TOUR_TARGET_GUEST_TYPES_CONTENT' , "Guest types are an important part of your settings if you plan to charge per person per night, or simply because you need to know how many people you will be accommodating. You can create any guest type you like, for example Adults, Teenagers and Children. Guest types can be configured to cost more or less than the base rate (the rate you enter into the tariffs page) by either a flat rate, or a percentage. That way you can configure different prices for different types of guests. If you're not charging Per Person Per Night, then you can leave the settings to their defaults when you create the guest type." );
+jr_define('TOUR_ID_TOUR_TARGET_GUEST_TYPES_TITLE' , "tipos de clientes." );
+jr_define('TOUR_ID_TOUR_TARGET_GUEST_TYPES_CONTENT' , "ipos de huéspedes son una parte importante de la configuración si va a cobrar por persona por noche, o simplemente porque necesitan saber cuántas personas va a ser complaciente. Se puede crear cualquier tipo de invitados que te gusta, por ejemplo, adultos, jóvenes y niños. tipos de clientes se pueden configurar para costar más o menos de la tasa básica (la tasa se entra en la página de tarifas) ya sea por una tarifa fija o un porcentaje. De esta forma puede configurar diferentes precios para diferentes tipos de clientes. Si usted no está de carga por persona por noche, a continuación, puede dejar los ajustes a sus valores predeterminados cuando se crea el tipo de huéspedes." );
 
-jr_define('TOUR_ID_TOUR_TARGET_COUPONS_TITLE' , "Coupons." );
-jr_define('TOUR_ID_TOUR_TARGET_COUPONS_CONTENT' , "Coupon codes are a useful method of building repeat business, or to pull in new custom. When you create a new coupon code, the system will automatically generate a random code for you, but you don't need to use that if you want, you can create your own code. When you create the coupon code, you can either assign it to a guest, or not. Codes that are not assigned to specific guests can be used by anybody, so those codes should be used on marketing materials. You can also define the dates between when the code should be used, and the dates that the booking must be on for the code to take effect. Once a coupon code has been created you will have the option to view a printable list of coupon codes, making it easy to hand codes out to guests or potential guests. They can then scan the QR code on the printout into their mobile phone/tablet PC. The code will take them direct to the booking form with the discount code already applied." );
 
-jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_TITLE' , "Optional extras." );
-jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_CONTENT' , "Optional extras are extra items that can be added to a booking. These are items that not constrained by limited availability, so there's no resource management associated with them. When you create an optional extra you are able to choose a variety of settings, for example the maximum number of them that can be added to a booking, and whether or not the extra should be Forced. By this, we mean if it's automatically selected in the booking form, and the guest cannot unselect it. This is useful for mandatory payments like towels or a cleaning fee. Additionally, you will need to choose a Model, which means how payments will be calculated for the extra. If you want a single charge to be applied (for example, for a bottle of champagne to be available on arrival) then you would set the model to Per Booking. If, however you wanted to charge for something for each day, then you would choose the Per Day option." );
+jr_define('TOUR_ID_TOUR_TARGET_COUPONS_TITLE' , "Cupones." );
+jr_define('TOUR_ID_TOUR_TARGET_COUPONS_CONTENT' , "ódigo de descuento son un método útil de negocio de la construcción de repetición, o para tirar de nuevo encargo. Cuando se crea un nuevo código de cupón, el sistema generará automáticamente un código al azar para usted, pero usted no necesitará utilizar que si lo desea, puede crear su propio código. Cuando se crea el código de cupón, puede asignarla a un cliente, o no. Los códigos que no están asignadas a clientes específicos pueden ser utilizados por cualquier persona, por lo que esos códigos se deben utilizar en materiales de marketing. También puede definir las fechas entre cuándo debe utilizarse el código, y las fechas en que la reserva debe estar encendido para que el código tenga efecto. Una vez que un código de cupón ha sido creado tendrá la opción de ver una lista imprimible de código promocional, por lo que es fácil de entregar los códigos a los invitados o huéspedes potenciales. A continuación, puede escanear el código QR en la imagen impresa en su PC móvil teléfono / tableta. El código les llevará directamente a la central de reservas con el código de descuento ya aplicado." );
 
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_TITLE' , "Media Centre." );
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_CONTENT' , "The Media Centre allows you to easily upload images of your property. By default you can upload a main property image (in fact, you can upload more, but only the first in the list will be used), an unlimited number of images to be shown in the slideshow, and an unlimited number of images for each room." . jr_gettext("_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS",'_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS',false) );
+jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_TITLE' , "Extras opcionales." );
+jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_CONTENT' , "extras opcionales son elementos adicionales que se pueden agregar a una reserva. Estos son los elementos que no limitados por la disponibilidad limitada, así que no hay gestión de los recursos asociados con ellos. Cuando se crea un extra opcional que son capaces de elegir una variedad de configuraciones, por ejemplo, el número máximo de los que se puede añadir a una reserva, y si es o no el extra debe ser forzado. Por esto, queremos decir si se selecciona automáticamente en el formulario de reserva, y el invitado no se puede anular la selección de la misma. Esto es útil para los pagos obligatorios como toallas o un suplemento de limpieza. Además, tendrá que elegir un modelo, lo que significa cómo se calcularán los pagos por los extras. Si quieres una sola carga a aplicar (por ejemplo, por una botella de champán para estar disponible a la llegada), entonces debería definir el modelo para cada reserva. Si, por el que quería cobrar por algo para cada día, a continuación, se elija la opción por día." );
 
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_TITLE' , "Resource picker." );
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_CONTENT' , "This is the resource picker. It allows you to choose what sort of resource you're uploading images for (e.g. Slideshow images or rooms) and if it's a room, then after you choose Rooms you'll be given the option to select which room you want to upload images for in another dropdown, next to it. This allows you to upload multiple images for each individual room, if you wish. Note, room image uploading only applies to properties like Hotels, B&Bs etc. Villas and Apartments will not have this option." );
+jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_TITLE' , "Centro de Medios." );
+jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_CONTENT' , "El Centro de Medios le permite subir fácilmente imágenes de su propiedad. Por defecto se puede subir una imagen principal propiedad (de hecho, se puede subir más, pero sólo el primero de la lista será utilizada), un número ilimitado de imágenes que se muestra en la presentación, y un número ilimitado de imágenes para cada habitación." . jr_gettext("_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS",'_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS',false) );
 
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_EXISTINGIMAGES_TITLE' , "Existing images." );
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_EXISTINGIMAGES_CONTENT' , "This column shows the images that have already been uploaded. You can choose then to either view the image, or delete it. Every time you change the resource time this column is updated to show the images for that particular resource." );
+jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_TITLE' , "selector de recursos." );
+jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_CONTENT' , "Este es el selector de recursos. Se le permite elegir qué tipo de recurso que va a subir imágenes (por ejemplo, para la presentación de imágenes o habitaciones) y si se trata de una habitación, a continuación, después de elegir habitaciones se le dará la opción de seleccionar qué habitación que desea cargar imágenes de en otro desplegable, al lado de él. Esto le permite subir varias imágenes para cada habitación individual, si así lo desea. Nota, imagen Sitio de la carga sólo se aplica a propiedades como hoteles, pensiones, etc. villas y apartamentos no tendrán esta opción." );
 
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_UPLOADCONTROLS_TITLE' , "Upload controls." );
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_UPLOADCONTROLS_CONTENT' , "You have several controls here. You can use the Add Images button to choose the images you want to upload, or you can drag and drop images into the box underneath. The Clear button clears the list of images ready for uploading. Once you've selected the images for upload, you can either upload them individually, or all at once." );
+jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_EXISTINGIMAGES_TITLE' , "imágenes existentes." );
+jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_EXISTINGIMAGES_CONTENT' , "Esta columna muestra las imágenes que ya se han cargado. Usted puede elegir a continuación para visualizar en la imagen, o eliminarlo. Cada vez que se cambia la hora de recursos esta columna se actualiza para mostrar las imágenes de ese recurso en particular." );
 
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_SELECTEDIMAGES_TITLE' , "Selected images." );
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_SELECTEDIMAGES_CONTENT' , "This column shows the images that are ready for upload, or that you've uploaded since you visited this page. " );
+jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_UPLOADCONTROLS_TITLE' , "controles de subida." );
+jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_UPLOADCONTROLS_CONTENT' , "iene varios controles aquí. Puede utilizar el botón de añadir imágenes a elegir las imágenes que desea cargar, o puede arrastrar y soltar imágenes en el cuadro de debajo. El botón Borrar borra la lista de imágenes listas para la carga. Una vez que haya seleccionado las imágenes para la carga, puede cargar de forma individual, o todos a la vez." );
 
-jr_define('TOUR_ID_TOUR_TARGET_END_TITLE' , "Finished!" );
-jr_define('TOUR_ID_TOUR_TARGET_END_CONTENT' , "That's the end of this page's help information. If you have any futher questions, please do not hesitate to contact us. " );
+jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_SELECTEDIMAGES_TITLE' , "Las imágenes seleccionadas." );
+jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_SELECTEDIMAGES_CONTENT' , "Esta columna muestra las imágenes que están listos para la carga, o que ha subido desde que visitó esta página. " );
 
-jr_define('PRODUCT_TOUR_PAGE_INFORMATION' , "HELP" );
+jr_define('TOUR_ID_TOUR_TARGET_END_TITLE' , "Terminado!" );
+jr_define('TOUR_ID_TOUR_TARGET_END_CONTENT' , "Ese es el final de la información de ayuda de esta página. Si usted tiene alguna pregunta, por favor no dude en ponerse en contacto con nosotros. " );
+
+jr_define('PRODUCT_TOUR_PAGE_INFORMATION' , "AYUDA" );
 
 //8.0
 jr_define('COMMON_PREV' , "Prev" );
-jr_define('COMMON_MORE' , "More" );
-jr_define('_JOMRES_DASHBOARD_TODAY' , "Today" );
-jr_define('_JOMRES_DASHBOARD_YEAR' , "Year" );
-jr_define('_JOMRES_DASHBOARD_MONTH' , "Month" );
-jr_define('_JOMRES_DASHBOARD_WEEK' , "Week" );
-jr_define('_JOMRES_DASHBOARD_DAY' , "Day" );
-jr_define('_JOMRES_HLEGEND' , "Legend" );
-jr_define('_JOMRES_HFILTER' , "Filter" );
-jr_define('_JOMRES_HFROM' , "From" );
-jr_define('_JOMRES_HTO' , "To" );
-jr_define('_JOMRES_HNEW_BOOKING' , "New booking" );
-jr_define('_JOMRES_HSTATUS_DEPOSIT' , "Deposit status" );
-jr_define('_JOMRES_HSTATUS_GUEST' , "Guest status" );
-jr_define('_JOMRES_HSTATUS_BOOKING' , "Booking status" );
-jr_define('_JOMRES_HSTATUS_PUBLISHING' , "Publishing status" );
-jr_define('_JOMRES_HSTATUS_INVOICE' , "Invoice status" );
-jr_define('_JOMRES_HSTATUS_INVOICE_TYPE' , "Invoice type" );
-jr_define('_JOMRES_HSTATUS_APPROVED' , "Approved" );
-jr_define('_JOMRES_HSTATUS_CURRENT' , "Current business" );
-jr_define('_JOMRES_HSTATUS_SHOW_BOOKINGS_FOR' , "Show bookings for" );
-jr_define('_JOMRES_HSTATUS_SHOW_INVOICES_FOR' , "Show invoices for" );
-jr_define('_JOMRES_STATUS_ANY' , "Any" );
-jr_define('_JOMRES_STATUS_PAID' , "Paid" );
-jr_define('_JOMRES_STATUS_NOTPAID' , "Not paid" );
-jr_define('_JOMRES_STATUS_CHECKEDOUT' , "Checked out" );
-jr_define('_JOMRES_STATUS_ACTIVE' , "Active" );
-jr_define('_JOMRES_STATUS_CANCELLED' , "Cancelled" );
-jr_define('_JOMRES_STATUS_PUBLISHED' , "Published" );
-jr_define('_JOMRES_STATUS_NOT_PUBLISHED' , "Not published" );
-jr_define('_JOMRES_STATUS_PROVISIONAL' , "Provisional booking" );
-jr_define('_JOMRES_STATUS_CONFIRMED' , "Confirmed booking" );
-jr_define('_JOMRES_STATUS_GUEST_BOOKINGS_ACTIVE' , "Guests with active bookings" );
-jr_define('_JOMRES_STATUS_GUEST_BOOKINGS_PAST' , "Guests with past bookings" );
-jr_define('_JOMRES_STATUS_BOOKINGS' , "Bookings" );
-jr_define('_JOMRES_STATUS_SUBSCRIPTIONS' , "Subscriptions" );
-jr_define('_JOMRES_STATUS_COMMISSIONS' , "Commissions" );
-jr_define('_JOMRES_STATUS_ALL_PROPERTIES' , "All my businesses" );
-jr_define('_JOMRES_ACTION_SET_CURRENT' , "Set as current" );
-jr_define('_JOMRES_ACTION_CHECKIN' , "Check in" );
-jr_define('_JOMRES_ACTION_CHECKOUT' , "Check out" );
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS", "bookings" );
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES", "properties" );
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_GUESTS", "guests" );
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_MANAGER_REPORTS", "reports" );
-jr_define( "_JOMRES_HLIST_GUESTS", "Guests" );
-jr_define( "_JOMRES_HLIST_GUESTS_MENU", "List guests" );
-jr_define( "_JOMRES_HLIST_INVOICES_MENU", "List invoices" );
-jr_define( "_JOMRES_HLIST_PROPERTIES", "Businesses" );
-jr_define( "_JOMRES_HQUICK_BOOKING", "Quick booking" );
-jr_define( "_JOMRES_HDATE_OF_BOOKING", "Date of booking" );
-jr_define( "_JOMRES_HTWO_WEEKS", "Two weeks" );
-jr_define( "_JOMRES_BOOKING_CANCELLATION_WARNING", "This booking will be cancelled. Press OK to cancel the booking." );
-jr_define( "_JOMRES_HOVERVIEW_CHECKINS", "Today checkins" );
-jr_define( "_JOMRES_HOVERVIEW_CHECKOUTS", "Today checkouts" );
-jr_define( "_JOMRES_HOVERVIEW_CURRENT_RESIDENTS", "Current residents" );
+jr_define('COMMON_MORE' , "Más" );
+jr_define('_JOMRES_DASHBOARD_TODAY' , "Hoy" );
+jr_define('_JOMRES_DASHBOARD_YEAR' , "Año" );
+jr_define('_JOMRES_DASHBOARD_MONTH' , "Mes" );
+jr_define('_JOMRES_DASHBOARD_WEEK' , "Semana" );
+jr_define('_JOMRES_DASHBOARD_DAY' , "Día" );
+jr_define('_JOMRES_HLEGEND' , "Leyenda" );
+jr_define('_JOMRES_HFILTER' , "Filtrar" );
+jr_define('_JOMRES_HFROM' , "De" );
+jr_define('_JOMRES_HTO' , "A" );
+jr_define('_JOMRES_HNEW_BOOKING' , "Nueva reserva" );
+jr_define('_JOMRES_HSTATUS_DEPOSIT' , "estado fuerte" );
+jr_define('_JOMRES_HSTATUS_GUEST' , "condición de invitado" );
+jr_define('_JOMRES_HSTATUS_BOOKING' , "Estado de la reservación" );
+jr_define('_JOMRES_HSTATUS_PUBLISHING' , "estado de publicación" );
+jr_define('_JOMRES_HSTATUS_INVOICE' , "estado de la factura" );
+jr_define('_JOMRES_HSTATUS_INVOICE_TYPE' , "tipo de factura" );
+jr_define('_JOMRES_HSTATUS_APPROVED' , "Aprobado" );
+jr_define('_JOMRES_HSTATUS_CURRENT' , "negocio actual" );
+jr_define('_JOMRES_HSTATUS_SHOW_BOOKINGS_FOR' , "Mostrar reservas para" );
+jr_define('_JOMRES_HSTATUS_SHOW_INVOICES_FOR' , "Mostrar facturas de" );
+jr_define('_JOMRES_STATUS_ANY' , "Alguna" );
+jr_define('_JOMRES_STATUS_PAID' , "Pagado" );
+jr_define('_JOMRES_STATUS_NOTPAID' , "No pagado" );
+jr_define('_JOMRES_STATUS_CHECKEDOUT' , "Controlado" );
+jr_define('_JOMRES_STATUS_ACTIVE' , "Activo" );
+jr_define('_JOMRES_STATUS_CANCELLED' , "Cancelado" );
+jr_define('_JOMRES_STATUS_PUBLISHED' , "Publicado" );
+jr_define('_JOMRES_STATUS_NOT_PUBLISHED' , "No publicado" );
+jr_define('_JOMRES_STATUS_PROVISIONAL' , "reserva provisional" );
+jr_define('_JOMRES_STATUS_CONFIRMED' , "reserva confirmada" );
+jr_define('_JOMRES_STATUS_GUEST_BOOKINGS_ACTIVE' , "Los huéspedes con reservas activas" );
+jr_define('_JOMRES_STATUS_GUEST_BOOKINGS_PAST' , "Los huéspedes con reservas anteriores" );
+jr_define('_JOMRES_STATUS_BOOKINGS' , "reservas" );
+jr_define('_JOMRES_STATUS_SUBSCRIPTIONS' , "Suscripciones" );
+jr_define('_JOMRES_STATUS_COMMISSIONS' , "comisiones" );
+jr_define('_JOMRES_STATUS_ALL_PROPERTIES' , "Todos mis negocios" );
+jr_define('_JOMRES_ACTION_SET_CURRENT' , "Establecer como actual" );
+jr_define('_JOMRES_ACTION_CHECKIN' , "Registrarse" );
+jr_define('_JOMRES_ACTION_CHECKOUT' , "Revisa" );
+jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOKINGS", "reservas" );
+jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES", "propiedades" );
+jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_GUESTS", "los huéspedes" );
+jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_MANAGER_REPORTS", "informes" );
+jr_define( "_JOMRES_HLIST_GUESTS", "Los huéspedes" );
+jr_define( "_JOMRES_HLIST_GUESTS_MENU", "Lista de los huéspedes" );
+jr_define( "_JOMRES_HLIST_INVOICES_MENU", "Lista de facturas" );
+jr_define( "_JOMRES_HLIST_PROPERTIES", "empresas" );
+jr_define( "_JOMRES_HQUICK_BOOKING", "reserva rápida" );
+jr_define( "_JOMRES_HDATE_OF_BOOKING", "Fecha de la reserva" );
+jr_define( "_JOMRES_HTWO_WEEKS", "Dos semanas" );
+jr_define( "_JOMRES_BOOKING_CANCELLATION_WARNING", "Esta reserva será cancelada. Pulse OK para cancelar la reserva." );
+jr_define( "_JOMRES_HOVERVIEW_CHECKINS", "compra de registro Hoy" );
+jr_define( "_JOMRES_HOVERVIEW_CHECKOUTS", "Hoy en día las cajas" );
+jr_define( "_JOMRES_HOVERVIEW_CURRENT_RESIDENTS", "Los residentes actuales" );
 
-jr_define( "_JOMRES_BOOTSTRAP_LOCATION_CONFIG_TAB", "Navigation bar settings" );
-jr_define( "_JOMRES_BOOTSTRAP_LOCATION", "Navigation bar location" );
-jr_define( "_JOMRES_BOOTSTRAP_LOCATION_DEFAULT", "Default (content area)" );
-jr_define( "_JOMRES_BOOTSTRAP_LOCATION_TOP", "Fixed to top" );
-jr_define( "_JOMRES_BOOTSTRAP_LOCATION_BOTTOM", "Fixed to bottom" );
-jr_define( "_JOMRES_BOOTSTRAP_LOCATION_INVERSE", "Inverted navbar (colour change)" );
-jr_define( "_JOMRES_BOOKING_NUMBER", "Booking number" );
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION_CONFIG_TAB", "configuración de la barra de navegación" );
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION", "ubicación barra de navegación" );
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION_DEFAULT", "Predeterminado (área de contenido)" );
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION_TOP", "Fijo al principio" );
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION_BOTTOM", "Fija a la parte inferior" );
+jr_define( "_JOMRES_BOOTSTRAP_LOCATION_INVERSE", "navbar invertida (cambio de color)" );
+jr_define( "_JOMRES_BOOKING_NUMBER", "Número de reserva" );
 
-jr_define('_JOMRES_HSTATUS_SHOW_GUESTS_FOR' , "Show guests for" );
+jr_define('_JOMRES_HSTATUS_SHOW_GUESTS_FOR' , "Mostrar huéspedes para" );
 
-jr_define('_JOMRES_BOOTSTRAP_VERSION' , "Bootstrap version" );
-jr_define('_JOMRES_BOOTSTRAP_VERSION_DESC' , "Currently only applies to the frontend. This option allows you to choose whether or not to use Jomres templates that are compatible with Bootstrap 2 or Bootstrap 3. Unless you are sure that your template works with Bootstrap 3 then we recommend you leave this set to Bootstrap 2." );
+jr_define('_JOMRES_BOOTSTRAP_VERSION' , "versión de arranque" );
+jr_define('_JOMRES_BOOTSTRAP_VERSION_DESC' , "En la actualidad sólo se aplica a la interfaz. Esta opción le permite elegir si desea o no utilizar las plantillas jomres que son compatibles con Bootstrap 2 o Bootstrap 3. A menos que esté seguro de que su plantilla trabaja con Bootstrap 3 a continuación, se recomienda dejar este conjunto para arrancar 2." );
 
-jr_define('_JOMRES_HSTATUS_SHOW_GUESTS_FOR' , "Show guests for" );
-jr_define('_JOMRES_HFIXED_PERIODS' , "Fixed periods" );
-jr_define('_JOMRES_HDEPOSITS' , "Deposits" );
-jr_define('_JOMRES_HBOOKING_FORM' , "Booking form" );
-jr_define('_JOMRES_HREQUIRED_FIELDS' , "Required fields" );
+jr_define('_JOMRES_HSTATUS_SHOW_GUESTS_FOR' , "Mostrar huéspedes para" );
+jr_define('_JOMRES_HFIXED_PERIODS' , "períodos fijos" );
+jr_define('_JOMRES_HDEPOSITS' , "depósitos" );
+jr_define('_JOMRES_HBOOKING_FORM' , "Formulario de reserva" );
+jr_define('_JOMRES_HREQUIRED_FIELDS' , "Campos requeridos" );
 
 jr_define('COMMON_PLACEHOLDER_FIRSTNAME' , "Tom" );
 jr_define('COMMON_PLACEHOLDER_SURNAME' , "Smith" );
 jr_define('COMMON_PLACEHOLDER_HOUSENUMBER' , "110" );
-jr_define('COMMON_PLACEHOLDER_STREET' , "My Street" );
-jr_define('COMMON_PLACEHOLDER_TOWN' , "My Town" );
+jr_define('COMMON_PLACEHOLDER_STREET' , "Mi calle" );
+jr_define('COMMON_PLACEHOLDER_TOWN' , "Mi ciudad" );
 jr_define('COMMON_PLACEHOLDER_LANDLINE' , "00000 000000" );
 jr_define('COMMON_PLACEHOLDER_MOBILE' , "00000 000000" );
-jr_define('COMMON_PLACEHOLDER_PROPERTYNAME' , "My Hotel" );
+jr_define('COMMON_PLACEHOLDER_PROPERTYNAME' , "Mi hotel" );
 jr_define('COMMON_PLACEHOLDER_POSTCODE' , "XXNN NNXX" );
 jr_define('COMMON_PLACEHOLDER_EMAIL' , "example@address.com" );
 
-jr_define('EXTENDED_CONFIGURATION' , "Extended Configuration" );
-jr_define('SIMPLE_CONFIGURATION' , "Simple Configuration" );
+jr_define('EXTENDED_CONFIGURATION' , "Configuración extendida" );
+jr_define('SIMPLE_CONFIGURATION' , "Configuración sencilla" );
  
-jr_define('_JOMRES_HRESOURCE_FEATURES' , "Resource features" );
-jr_define('_JOMRES_HRESOURCE_TYPE' , "Resource type" );
- jr_define('_JOMRES_HEDIT_GUEST_TYPE' , "Edit guest type" );
-jr_define('_JOMRES_HEDIT_COUPON' , "Edit coupon" );
-jr_define('_JOMRES_HEDIT_EXTRA' , "Edit extra" );
-jr_define('_JOMRES_MULTIPLE_RESOURCES_TITLE' , "Create multiple resources" );
-jr_define('_JOMRES_MULTIPLE_RESOURCES_GENERATE' , "Generate resources" );
-jr_define('_JOMRES_MULTIPLE_RESOURCES_HOWMANY' , "How many resources?" );
-jr_define('_JOMRES_MULTIPLE_RESOURCES_TYPE' , "Resources type" );
-jr_define('_JOMRES_MULTIPLE_RESOURCES_MAXGUESTS' , "Max guests per resource" );
-jr_define('_JOMRES_MULTIPLE_RESOURCES_DELETE' , "Delete all existing resources?" );
-jr_define( '_JOMRES_COM_ADVANCED_SITE_CONFIG_WARNING', 'Please note, you are currently viewing the administrator area with Advanced Site Config set to No. If you want to see more options please set Site Configuration -> Misc -> Advanced Site Config to Yes.' );
+jr_define('_JOMRES_HRESOURCE_FEATURES' , "características de recursos" );
+jr_define('_JOMRES_HRESOURCE_TYPE' , "Tipo de recurso" );
+ jr_define('_JOMRES_HEDIT_GUEST_TYPE' , "Editar tipo de invitados" );
+jr_define('_JOMRES_HEDIT_COUPON' , "Editar cupón" );
+jr_define('_JOMRES_HEDIT_EXTRA' , "editar adicional" );
+jr_define('_JOMRES_MULTIPLE_RESOURCES_TITLE' , "Crear varios recursos" );
+jr_define('_JOMRES_MULTIPLE_RESOURCES_GENERATE' , "generar recursos" );
+jr_define('_JOMRES_MULTIPLE_RESOURCES_HOWMANY' , "¿Cuántos recursos?" );
+jr_define('_JOMRES_MULTIPLE_RESOURCES_TYPE' , "tipo de recursos" );
+jr_define('_JOMRES_MULTIPLE_RESOURCES_MAXGUESTS' , "Número máximo de huéspedes por recurso" );
+jr_define('_JOMRES_MULTIPLE_RESOURCES_DELETE' , "Eliminar todos los recursos existentes?" );
+jr_define( '_JOMRES_COM_ADVANCED_SITE_CONFIG_WARNING', 'Tenga en cuenta, que está viendo actualmente el área del administrador del sitio con Advanced Config establecido en No. Si usted quiere ver más opciones, por favor fijan Sitio Configuración -> Varios -> Avanzado Sitio Config para Sí.' );
 
-jr_define('TOUR_ID_TAB_BOOKINGFORM_TITLE' , "Booking configuration." );
-jr_define('TOUR_ID_TAB_BOOKINGFORM_CONTENT' , "On this tab you can configure the look and feel of the booking form." );
+jr_define('TOUR_ID_TAB_BOOKINGFORM_TITLE' , "configuración de reserva." );
+jr_define('TOUR_ID_TAB_BOOKINGFORM_CONTENT' , "En esta ficha puede configurar la apariencia del formulario de reserva." );
 
-jr_define('TOUR_ID_TAB_BOOKINGS_TITLE' , "Bookings." );
-jr_define('TOUR_ID_TAB_BOOKINGS_CONTENT' , "This tab allows you to modify how bookings are treated, plus various other settings." );
+jr_define('TOUR_ID_TAB_BOOKINGS_TITLE' , "reservas." );
+jr_define('TOUR_ID_TAB_BOOKINGS_CONTENT' , "Este registro le permite modificar cómo se tratan las reservas, además de varios otros ajustes." );
 
-jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_TOP_TITLE' , "Edit Guest." );
-jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_TOP_CONTENT' , "Here you can edit a guest's address details. Please note that any changes you make here will only be reflected in this record. If the guest has made bookings on other properties, these changes will not appear on those other properties." );
+jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_TOP_TITLE' , "Editar huéspedes." );
+jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_TOP_CONTENT' , "Aquí puede editar detalles de la dirección de un huésped. Tenga en cuenta que cualquier cambio que haga aquí sólo se reflejan en este registro. Si el cliente ha hecho reservas en otras propiedades, estos cambios no van a aparecer en esas otras propiedades." );
 
-jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_VAT_TITLE' , "VAT." );
-jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_VAT_CONTENT' , "If a VAT number is entered here then it will be shown on the guest's invoice." );
+jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_VAT_TITLE' , "IVA." );
+jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_VAT_CONTENT' , "Si se introduce aquí un número de IVA a continuación, se mostrará en la factura del huésped." );
 
-jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_TITLE' , "Discount." );
-jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_CONTENT' , "You can choose to give this guest an automatic discount which will be applied whenever they make a booking." );
+jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_TITLE' , "Descuento." );
+jr_define('TOUR_ID_TOUR_TARGET_EDIT_GUEST_DISCOUNT_CONTENT' , "Usted puede optar por dar este invitado un descuento automático que se aplicará cada vez que hacen una reserva." );
 
 
 jr_define('DATATABLES_SINFO' , "Showing _START_ to _END_ of _TOTAL_ entries" );
 
-jr_define('_JOMRES_BOOKING_INQUIRY_HAPPROVAL',"Approval");
-jr_define('_JOMRES_BOOKING_REJECT_INQUIRY',"Reject booking inquiry");
-jr_define('_JOMRES_BOOKING_APPROVE_INQUIRY',"Approve booking inquiry");
-jr_define('_JOMRES_STATUS_APPROVED',"Approved");
-jr_define('_JOMRES_STATUS_REJECTED',"Rejected");
-jr_define('_JOMRES_STATUS_INQUIRY',"Inquiry");
+jr_define('_JOMRES_BOOKING_INQUIRY_HAPPROVAL',"Aprobación");
+jr_define('_JOMRES_BOOKING_REJECT_INQUIRY',"Rechazar solicitud de reserva");
+jr_define('_JOMRES_BOOKING_APPROVE_INQUIRY',"Aprobar solicitud de reserva");
+jr_define('_JOMRES_STATUS_APPROVED',"Aprobado");
+jr_define('_JOMRES_STATUS_REJECTED',"Rechazado");
+jr_define('_JOMRES_STATUS_INQUIRY',"Investigación");
 
-jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_TITLE',"Bookings require approval or availability confirmation?");
-jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_DESC', "If set to yes, when a booking is made, it will not show up on the availability calendars (and other guests can still book those days and resource) until the property manager accepts/confirms availability for the booking. Once confirmed, booking is inserted as provisional (if doesn`t override other bookings; other guests can`t book the same dates anymore) and an email is sent to the customer to make the payment.");
+jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_TITLE',"Las reservas requieren la aprobación o la confirmación de la disponibilidad?");
+jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_DESC', "Si se establece en sí, cuando se hace la reserva, no va a aparecer en los calendarios de disponibilidad (y otros huéspedes todavía puede reservar esos días y de recursos) hasta que el administrador de la propiedad acepta / confirma la disponibilidad para la reserva. Una vez confirmada, la reserva se inserta como provisional (si doesn `t de anulación otras reservas; otros huéspedes` t reserve las mismas fechas más) y un correo electrónico se envía al cliente para realizar el pago.");
 
 jr_define('_JOMRES_ERROR',"Error");
-jr_define('_JOMRES_ERROR_MESSAGE',"Sorry! An error occured while trying to process this function. It has been reported for you and we will look into it.");
+jr_define('_JOMRES_ERROR_MESSAGE',"¡Lo siento! Se produjo un error al intentar procesar esta función. Se ha reportado para usted y vamos a ver en él.");
 
-jr_define('_JOMRES_ERROR_DEBUGGING_MESSAGE',"Message");
-jr_define('_JOMRES_ERROR_DEBUGGING_FILE',"File");
-jr_define('_JOMRES_ERROR_DEBUGGING_LINE',"Line");
-jr_define('_JOMRES_ERROR_DEBUGGING_TRACE',"Trace");
-
-
-jr_define('_JOMRES_EMAIL_TEMPLATES_TITLE',"Email templates");
-jr_define('_JOMRES_EMAIL_TEMPLATES_EDIT',"Edit email template");
-jr_define('_JOMRES_EMAIL_TEMPLATES_SUBJECT',"Email subject");
-jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Email text");
-jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Email type");
-jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Email name");
-jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Email description");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Please see this page for help customizing the emails and a list of the available output: <a href=\"http://manual.jomres.net/email_templates.html\" target=\"_blank\">Email Templates Help</a>");
-jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Site Admin New Booking Email");
-jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Email sent to the site admin when a new booking is made, if the global Paypal gateway is enabled");
-jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Hotel New Booking Email");
-jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC',"Email sent to property owner when a new booking is made");
-jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILNAME',"Guest New Booking Email");
-jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILDESC',"Email sent to guest when a new booking is made");
-jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME',"Guest Confirmation Letter");
-jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC',"Printable letter or email that can be sent manually by the property owner to confirm a booking");
+jr_define('_JOMRES_ERROR_DEBUGGING_MESSAGE',"Mensaje");
+jr_define('_JOMRES_ERROR_DEBUGGING_FILE',"Archivo");
+jr_define('_JOMRES_ERROR_DEBUGGING_LINE',"Línea");
+jr_define('_JOMRES_ERROR_DEBUGGING_TRACE',"Rastro");
 
 
-jr_define('_JOMRES_CAN_BE_APPROVED',"This booking can be approved. All selected resources are available for the selected dates.");
-jr_define('_JOMRES_CANT_BE_APPROVED',"This booking can`t be approved because some of the resources are already booked for the selected dates. You`ll need to amend the booking first.");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TITLE',"Plantillas de correo electrónico");
+jr_define('_JOMRES_EMAIL_TEMPLATES_EDIT',"Editar plantilla de correo electrónico");
+jr_define('_JOMRES_EMAIL_TEMPLATES_SUBJECT',"Asunto del email");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"texto del correo electrónico");
+jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"tipo de correo electrónico");
+jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"nombre Correo");
+jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Descripción de correo electrónico");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Por favor, consulte esta página para obtener ayuda personalización de los mensajes de correo electrónico y una lista de la salida disponibles: <a href=\"http://manual.jomres.net/email_templates.html\" target=\"_blank\"> Plantillas de Correo Electrónico Ayuda < / a>");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Administrador del sitio Nueva reservas E-mail");
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Correo electrónico enviado al administrador del sitio cuando se hace una nueva reserva, si la puerta de enlace de Paypal mundial está habilitado");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Hotel New reservas E-mail");
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC',"Correo electrónico enviado al dueño de la propiedad cuando se hace una nueva reserva");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILNAME',"Invitado Nuevo reservas E-mail");
+jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILDESC',"Correo electrónico enviado a los huéspedes cuando se hace una nueva reserva");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME',"Carta de Confirmación de invitados");
+jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC',"carta para imprimir o correo electrónico que se pueden enviar de forma manual por el dueño de la propiedad para confirmar la reserva");
+
+
+jr_define('_JOMRES_CAN_BE_APPROVED',"Esta reserva puede ser aprobado. Todos los recursos seleccionados están disponibles para las fechas seleccionadas.");
+jr_define('_JOMRES_CANT_BE_APPROVED',"Esta reserva puede `t ser aprobado debido a que algunos de los recursos que ya están reservadas para las fechas seleccionadas. Tendrá que modificar la reserva primera.");
 
 jr_define('_JOMRES_SHOW_POWEREDBY',"Show the Powered by Jomres link in the Jomres footer.");
 
 
-jr_define('GUEST_BUDGET',"Budget");
-jr_define('GUEST_BUDGET_FEATURE_SWITCH',"Use Budget feature?");
-jr_define('GUEST_BUDGET_FEATURE_SWITCH_DESC',"Bootstrapped sites only! The Budget feature is a feature of the property list that a guest can use to highlight for them properties who's price per night is under a certain figure. The feature has some limitations in that it might not be appropriate for some sites that use many different currencies. Note, if you're using this and the Featured Listings plugin, your featured listing wrapping class is automatically changed to 'panel-primary' when the property list is shown.");
+jr_define('GUEST_BUDGET',"Presupuesto");
+jr_define('GUEST_BUDGET_FEATURE_SWITCH',"Utiliza la función de Presupuesto?");
+jr_define('GUEST_BUDGET_FEATURE_SWITCH_DESC',"Sólo sitios bootstrap! La función del presupuesto es una característica de la lista de propiedades que un cliente puede utilizar para resaltar para ellos las propiedades que su precio por noche está bajo una cierta figura. La característica tiene algunas limitaciones ya que podría no ser apropiada para algunos sitios que usan muchas divisas diferentes. Tenga en cuenta, si usted está usando esto y la Listados plugin, su clase de lista de embalaje ofrecido se cambia automáticamente a "Panel-primaria" cuando se muestra la lista de propiedades.");
 
-jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', 'Name: ' );
+jr_define( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', 'Nombre: ' );
 
 
-jr_define( '_JOMRES_FOR', 'For' );
-jr_define( '_JOMRES_PRICINGOUTPUT_NIGHT', 'night' );
-jr_define( '_JOMRES_PRICINGOUTPUT_NIGHTS', 'nights' );
-jr_define( '_JOMRES_CONFIG_SHOW_OVERLAY', 'Show price overlay' );
-jr_define( '_JOMRES_CONFIG_SHOW_OVERLAY_DESC', 'In the property list it is possible to show a cumulative price over the property image, use this setting to switch that display off. The cumulative price is calculated from the dates entered in the ajax search composite plugin.' );
+jr_define( '_JOMRES_FOR', 'para' );
+jr_define( '_JOMRES_PRICINGOUTPUT_NIGHT', 'noche' );
+jr_define( '_JOMRES_PRICINGOUTPUT_NIGHTS', 'noches' );
+jr_define( '_JOMRES_CONFIG_SHOW_OVERLAY', 'superposición demostración del precio' );
+jr_define( '_JOMRES_CONFIG_SHOW_OVERLAY_DESC', 'En la lista de propiedades es posible mostrar un precio acumulado de la imagen sobre la propiedad, utilice este ajuste para cambiar que la pantalla apagada. El precio acumulado se calcula a partir de las fechas introducidas en el plugin de búsqueda compuesta ajax.' );
 
-jr_define( '_JOMRES_LIVE_SCROLLING', 'Use Live Scrolling/Infinate Scrolling in property list?' );
+jr_define( '_JOMRES_LIVE_SCROLLING', 'Uso vivo Desplazamiento / Desplazamiento infinito en la lista de propiedades?' );
 
-jr_define( "_JOMRES_ONLINE_PARTNERS", "Partners" );
+jr_define( "_JOMRES_ONLINE_PARTNERS", "Fogonadura" );
 
 jr_define( '_JRPORTAL_MONTHS_SHORT_0', 'Jan' );
 jr_define( '_JRPORTAL_MONTHS_SHORT_1', 'Feb' );
@@ -2569,321 +2559,326 @@ jr_define('DATATABLES_SSORTASCENDING'	, ": Activar para ordenar la columna de ma
 jr_define('DATATABLES_SSORTDESCENDING'	, ": Activar para ordenar la columna de manera descendente" );
 
 
-jr_define('DATATABLES_SHOWHIDE'	, "Change columns" );
+jr_define('DATATABLES_SHOWHIDE'	, "modificar columnas" );
 
-jr_define( '_BOOKING_ONREQUEST', 'Booking on request' );
-jr_define( '_BOOKING_INSTANT', 'Instant booking' );
+jr_define( '_BOOKING_ONREQUEST', 'Reserva bajo pedido' );
+jr_define( '_BOOKING_INSTANT', 'reserva al instante' );
 
-jr_define( '_JOMRES_COM_FONTAWESOME', 'Include Font Awesome icon set?' );
-jr_define( '_JOMRES_COM_FONTAWESOME_DESC', 'Set this to Yes if your template does not include Font Awesome.' );
+jr_define( '_JOMRES_COM_FONTAWESOME', 'Incluir fuentes icono conjunto impresionante?' );
+jr_define( '_JOMRES_COM_FONTAWESOME_DESC', 'Ajuste este parámetro en Sí si su plantilla no incluye fuente impresionante.' );
 
-jr_define( '_BOOKING_CALCQUOTE', 'Request booking' );
+jr_define( '_BOOKING_CALCQUOTE', 'solicitud de reserva' );
 
-jr_define('_JOMRES_COM_CONFIRMATION_DEAR', 'Dear ');
+jr_define('_JOMRES_COM_CONFIRMATION_DEAR', 'querido ');
 
-jr_define('_JOMRES_MULTISITES_SELECT_A_SITE', 'Select a site');
-jr_define('_JOMRES_MULTISITES_MULTISITES_LABEL', 'Site id');
+jr_define('_JOMRES_MULTISITES_SELECT_A_SITE', 'Seleccionar un sitio');
+jr_define('_JOMRES_MULTISITES_MULTISITES_LABEL', 'Identificación del sitio');
 
-jr_define('_JOMRES_IS_EU_COUNTRY', 'EU Country?');
+jr_define('_JOMRES_IS_EU_COUNTRY', 'país de la UE?');
 
-jr_define('_JOMRES_WORD_CACHING', 'Caching');
-
-
-jr_define('_JOMRES_WORD_PATTEMPLATE_CACHING', 'Use patTemplates Caching?');
-
-jr_define( '_JOMRES_HLASTCHANGED', 'Last changed' );
-
-jr_define('_JOMRES_HOTEL_CANCELBOOKING_EMAILNAME',"Hotel Booking Cancellation Email");
-jr_define('_JOMRES_HOTEL_CANCELBOOKING_EMAILDESC',"Email sent to the property owner when a new booking is cancelled");
-jr_define('_JOMRES_GUEST_CANCELBOOKING_EMAILNAME',"Guest Booking Cancellation Email");
-jr_define('_JOMRES_GUEST_CANCELBOOKING_EMAILDESC',"Email sent to guest when a new booking is cancelled");
-
-jr_define('_JOMRES_TEST_EMAIL_SEND',"Send test email");
-jr_define('_JOMRES_TEST_EMAIL_SUBJECT',"Test email");
-jr_define('_JOMRES_TEST_EMAIL_CONTENT',"This is a test email from your booking system.");
-jr_define('_JOMRES_TEST_EMAIL_RESULT_SUCCESS',"Test email sent successfully");
-jr_define('_JOMRES_TEST_EMAIL_RESULT_FAILURE',"Test email was not sent");
+jr_define('_JOMRES_WORD_CACHING', 'El almacenamiento en caché');
 
 
-jr_define('_INVOICE_TRANSACTIONS',"Transactions");
+jr_define('_JOMRES_WORD_PATTEMPLATE_CACHING', 'Uso patTemplates almacenamiento en caché?');
 
-jr_define('_OPENEXCHANGE_API',"Open Exchange Rates API key");
-jr_define('_OPENEXCHANGE_API_DESC','To convert prices between services you will need an Open Exchange Rates API key. You MUST have an API key to display prices correctly in Jomres, however you can register for a free key at https://openexchangerates.org/signup/free (hourly updates, 1000 requests/month - no HTTPS, email support or advanced features). Jomres downloads exchange rates once a day so as long as you use the key on only a handful of sites, you\'re unlikely to exceed these limits. Previous to Jomres 8.3 we used an older, undocumented Yahoo feature however have discovered that using this feature is in contradiction of Yahoo\'s Terms and Conditions. As a result we have to assume that the feature may disappear at some point in the future, hence the change to using Open Exchange Rates.');
+jr_define( '_JOMRES_HLASTCHANGED', 'Último cambio' );
 
-jr_define('_JOMRES_COMMISSION',"Commission");
-jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS',"If you upload multiple images for individual optional extras, only the first image will be used.");
-jr_define( '_JRPORTAL_INVOICES_PAYNOW', "Pay now" );
-jr_define( '_JRPORTAL_INVOICES_PAYNOW_DESC', "This invoice in now due. Please click the button to select the payment method." );
-jr_define('_JOMRES_EXTRAS_TEMPLATE',"Here's a list of some of the great things you can purchase while making a booking at this property. ");
+jr_define('_JOMRES_HOTEL_CANCELBOOKING_EMAILNAME',"Reserva de Hoteles de cancelación por correo electrónico");
+jr_define('_JOMRES_HOTEL_CANCELBOOKING_EMAILDESC',"Correo electrónico enviado al dueño de la propiedad, cuando una nueva reserva se cancela");
+jr_define('_JOMRES_GUEST_CANCELBOOKING_EMAILNAME',"Huéspedes de cancelación de reserva por correo electrónico");
+jr_define('_JOMRES_GUEST_CANCELBOOKING_EMAILDESC',"Correo electrónico enviado a los huéspedes cuando una nueva reserva se cancela");
 
-jr_define( '_ASSIGN_COMMISSION_RATES', 'Assign commission rates' );
-
-
-jr_define( 'GATEWAYS_INSTRUCTIONS', 'On this page you can configure any installed gateways. These options allow you to take payments for any Commission or Subscription invoices. Frontend settings can only be overridden by Paypal, all other gateways will need to be configured via the Property Configuration -> Gateways tab, however if a gateway appears in this list then it should be capable of processing both Booking deposit payments and invoice payments.' );
-jr_define( 'EXTRAS_INCLUDE_IN_PROPERTYDETAILS', 'Show in property details page?' );
-
-jr_define( 'PROPERTY_DETAILS_PAGE_OPTIONS', 'Property Details page settings' );
-
-jr_define( '_JOMRES_HLIST_PROPERTIES_WARNING', 'Property management in Jomres is made only from the site frontend cpanel. On this page you`ll be able to list all properties in the system, so you can assign commission rates and approve/unapprove them (if these features are enabled). To create a new property, edit existing ones, manage bookings or any other property/bookings related tasks, you`ll have to login to the site frontend and go to the Jomres default page. There you`ll see the Jomres frontend cpanel.' );
+jr_define('_JOMRES_TEST_EMAIL_SEND',"Enviar correo electrónico de prueba");
+jr_define('_JOMRES_TEST_EMAIL_SUBJECT',"correo electrónico de prueba");
+jr_define('_JOMRES_TEST_EMAIL_CONTENT',"Este es un mensaje de prueba desde su sistema de reservas.");
+jr_define('_JOMRES_TEST_EMAIL_RESULT_SUCCESS',"Prueba de correo electrónico enviado con éxito");
+jr_define('_JOMRES_TEST_EMAIL_RESULT_FAILURE',"Prueba de correo electrónico no se ha enviado");
 
 
-jr_define( 'PROPERTY_STATS_SALES', 'Sales' );
-jr_define( 'PROPERTY_STATS_SALES_DESC', 'This is when bookings were taken' );
+jr_define('_INVOICE_TRANSACTIONS',"Actas");
 
-jr_define( 'PROPERTY_STATS_BOOKINGS_DAYS', 'Bookings (days)' );
-jr_define( 'PROPERTY_STATS_BOOKINGS_DAYS_DESC', 'Booking dates start and number of days.' );
+jr_define('_OPENEXCHANGE_API',"Abrir Cotizaciones clave de API");
+jr_define('_OPENEXCHANGE_API_DESC','Para convertir los precios entre los servicios que necesitará una clave de API abierta Tasa de cambio. Usted debe tener una clave de API para visualizar los precios correctamente en Jomres, sin embargo, puede registrarse para obtener una clave gratuita en https://openexchangerates.org/signup/free (actualizaciones cada hora, 1000 peticiones / mes - sin HTTPS, soporte de correo electrónico o funciones avanzadas ). tipos de cambio jomres descargas una vez al día por lo que el tiempo que se utiliza la tecla de sólo un puñado de sitios, que son poco probable que supere estos límites. Anterior a Jomres 8.3 se utilizó una, indocumentado característica mayores Yahoo Sin embargo han descubierto que el uso de esta función está en contradicción con Yahoos Términos y Condiciones. Como resultado tenemos que asumir que la característica puede desaparecer en algún momento en el futuro, de ahí el cambio al uso Abiertas Tipo de Cambio.');
 
-jr_define( 'PROPERTY_STATS_ROOM_BOOKINGS_DAYS', 'Bookings (rooms x days)' );
-jr_define( 'PROPERTY_STATS_ROOM_BOOKINGS_DAYS_DESC', 'Number of rooms booked out in a certain month.' );
+jr_define('_JOMRES_COMMISSION',"Comisión");
+jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS',"Si a subir varias imágenes de los accesorios opcionales individuales, sólo se utilizará la primera imagen.");
+jr_define( '_JRPORTAL_INVOICES_PAYNOW', "Pague ahora" );
+jr_define( '_JRPORTAL_INVOICES_PAYNOW_DESC', "Esta factura se debe ahora. Por favor, haga clic en el botón para seleccionar el método de pago." );
+jr_define('_JOMRES_EXTRAS_TEMPLATE',"He aquí una lista de algunas de las grandes cosas que usted puede comprar al hacer una reserva en esta propiedad. ");
 
-jr_define( '_MEDIA_CENTRE_RESOURCE_FEATURES_ICONS', 'Room feature icons' );
-
-
-jr_define( '_JOMRES_PROPERTYFEATURES_HCATEGORIES', 'Business Features Categories' );
-jr_define( '_JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT', 'Edit Business Feature Category' );
-jr_define( '_JOMRES_HCATEGORY', 'Category' );
-jr_define( '_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES', 'Show business features separated into categories?' );
-jr_define( '_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', 'Set this to YES to separate the property features into categories. This option affects only the property features displayed on the property details page. All other pages will display them without splitting them into categories.' );
-
-jr_define( '_JOMRES_ACTION_UNDO_CHECKIN', 'Undo checkin' );
-jr_define( '_JOMRES_ACTION_UNDO_CHECKOUT', 'Undo checkout' );
-
-jr_define( '_JOMRES_STATUS_UNISSUED', 'Unissued' );
-
-jr_define( 'DEFAULT_TERMS_AND_CONDITIONS', 'These Terms and Conditions clarify The Owner\'s obligations to The Renter, The Renter\'s obligations to The Owner, and in the very unlikely event of any disputes, will be used as the basis for any resolution. Please read them carefully before confirming your booking.
-
-Check-In: From [Time] / Check-Out: By [Time] (High Season Weekly Rentals)
-
-For Low Season Weekend and Mid-Week Rentals an earlier Check-In and later Check-out may be possible (usually In from [Time] and out by [Time])
-
-Acceptance of these Terms & Conditions binds a contract between the following two parties:
-
-The Rental Applicant (The Renter) and The Property Owner (The Owner)
-
- 
-
- 1. Party Members
-
-All persons listed on the Rental Agreement or added subsequently by The Renter will be bound by the terms of this agreement. Occupancy of the property is restricted to those names listed on the Agreement or added subsequently by The Renter.   The Rental Applicant is considered to be the Lead Renter and will assume full responsibility for all members of the Rental Group throughout the rental period.   Information or instructions relating to this rental will be communicated to the Rental Applicant only and not to any third-party member of the Rental Group.
-
-2. Payments
-
-A Reservation will be confirmed by The Owner once the application has been approved and initial or full payment has been processed.   For reservations of one week or more, if the reservation is made 45 days or more before the rental commences, an initial rental deposit payment of [X%] of the rental fee will be due at the time of booking. If a reservation is made less than 45 days before the rental commences, or the reservation is less than a full week’s duration, the full rental fee must be paid at the time of booking. In the event of a reservation not being accepted by The Owner, all fees paid will be refunded immediately. Any booking made within 10 days of the start of the rental period must be paid in full by credit card via PayPal, certified check or money order at the time of booking. No reservation may commence without full payment being cleared.
-
-Once a reservation is received and accepted by The Owner, The Renter is liable for payment of the balance of the rental fee 45 days before occupation of the property. Non-payment by the due date will be treated as a cancellation and the deposit will be forfeited.
+jr_define( '_ASSIGN_COMMISSION_RATES', 'Asignar las tasas de comisión' );
 
 
-3. Cancellation Policy & Changing a Booking
+jr_define( 'GATEWAYS_INSTRUCTIONS', 'En esta página se puede configurar ninguna pasarelas instaladas. Estas opciones le permiten tomar el pago de ningún tipo de comisión de suscripción o facturas. frontend ajustes sólo pueden ser anulados por Paypal, tendrán que ser configurado a través de la configuración de la propiedad todas las demás puertas de enlace -> pestaña pasarelas, sin embargo, si una puerta de enlace aparece en esta lista, entonces debería ser capaz de procesar tanto los pagos de depósito de reserva y pagos de facturas.' );
+jr_define( 'EXTRAS_INCLUDE_IN_PROPERTYDETAILS', 'Mostrar en página de detalles de la propiedad?' );
 
-Once a reservation has been accepted and confirmed, a cancellation can only be made in accordance with the terms below:
+jr_define( 'PROPERTY_DETAILS_PAGE_OPTIONS', 'configuración de la página Detalles de la propiedad' );
 
-- If the period of rental can be re-booked, a refund for the period re-rented or the part thereof, less a cancellation fee of [Amount]  will be issued.
+jr_define( '_JOMRES_HLIST_PROPERTIES_WARNING', 'gestión de la propiedad en Jomres se hace sólo desde el cpanel sitio frontend. En esta página usted `ll ser capaz de enumerar todas las propiedades en el sistema, lo que puede asignar tasas de comisión y aprobar / anular la aprobación (si se habilitan estas características). Para crear una nueva propiedad, editar los ya existentes, administrar las reservas o cualquier tipo de reservas de propiedad / tareas relacionadas, `ll tiene que iniciar sesión en la interfaz web y vaya a la página por defecto Jomres. No le ll ver la interfaz de cPanel Jomres.' );
 
-- If any part of the rental period cannot be re-booked, the Renter will forfeit all monies paid for that period.
 
- 4. Occupancy of the Property
+jr_define( 'PROPERTY_STATS_SALES', 'Ventas' );
+jr_define( 'PROPERTY_STATS_SALES_DESC', 'Esto es cuando se tomaron las reservas' );
 
-Regardless of the published maximum number of persons a property can accomodate, the number of guests occupying the Property is strictly limited to those named on the Rental Agreement or any subsequent amendment notified in writing to The Owner. The stated and agreed occupancy figure includes all persons irrespective of age, day and overnight guests.
+jr_define( 'PROPERTY_STATS_BOOKINGS_DAYS', 'Reservas (días)' );
+jr_define( 'PROPERTY_STATS_BOOKINGS_DAYS_DESC', 'Fechas de la reserva de inicio y número de días.' );
 
-Exceeding the number of stated and agreed persons will result in immediate eviction without refund, or a $100 per guest per night charge at the discretion of The Owner.
+jr_define( 'PROPERTY_STATS_ROOM_BOOKINGS_DAYS', '(Salas de reservas x días)' );
+jr_define( 'PROPERTY_STATS_ROOM_BOOKINGS_DAYS_DESC', 'Número de habitaciones reservadas a cabo en un determinado mes.' );
 
- 5. Condition of the Property
+jr_define( '_MEDIA_CENTRE_RESOURCE_FEATURES_ICONS', 'los iconos de funciones de habitaciones' );
 
-The Property will have been inspected prior to occupation and therefore The Renter undertakes to:
 
-- Notify The Owner immediately with regard to any damage and/or maintenance issues that require attention.
+jr_define( '_JOMRES_PROPERTYFEATURES_HCATEGORIES', 'Características de negocio Categorías' );
+jr_define( '_JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT', 'Editar negocios Característica Categoría' );
+jr_define( '_JOMRES_HCATEGORY', 'Categoría' );
+jr_define( '_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES', 'características del mundo del espectáculo separados en categorías?' );
+jr_define( '_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', 'Establecer como Sí para separar las funciones de propiedad en categorías. Esta opción sólo afecta a las características de la propiedad que se muestran en la página de detalles de la propiedad. Todas las demás páginas se mostrarlos sin necesidad de dividirlos en categorías.' );
 
-- Keep the Property and all furniture, fixtures, fittings, chattels and effects in or about the Property in the same state of repair and condition as found at the commencement of the Rental.
+jr_define( '_JOMRES_ACTION_UNDO_CHECKIN', 'Deshacer el registro' );
+jr_define( '_JOMRES_ACTION_UNDO_CHECKOUT', 'deshacer desprotección' );
+
+jr_define( '_JOMRES_STATUS_UNISSUED', 'no emitidas' );
+
+jr_define( 'DEFAULT_TERMS_AND_CONDITIONS', 'Estos Términos y Condiciones aclarar las obligaciones de los propietarios para el contratante, las obligaciones inquilinos para el propietario, y en el caso muy improbable de que cualquier disputa, se utilizarán como base para cualquier resolución. Por favor, lea con cuidado antes de confirmar su reserva
+.
+
+Entrada: A partir de [hora] / Salida: Antes de [hora] (temporada alta alquiler semanal)
+
+Para fin de semana Temporada baja y media-alquiler de semana anterior un registro de entrada y salida más tarde puede ser posible (por lo general a partir de las [hora] y por [hora])
+
+La aceptación de estos Términos y Condiciones se une un contrato entre las dos partes siguientes:
+
+El Alquiler Solicitante (el arrendatario) y el propietario de la propiedad (el propietario)
 
  
 
-- Where a cleaning service is provided; The Renter shall follow the departure instructions provided by The Owner.
+ 1. Los miembros del partido
 
-- Where a cleaning service is not provided; The Renter shall leave the Property in the same state of cleanliness and general order in which it was found. Failure to do so to the satisfaction of The Owner will result in a damage/cleaning charge being levied.
+Todas las personas que figuran en el contrato de alquiler o añadidas posteriormente por el arrendatario se consideran obligados por los términos de este acuerdo. Ocupación de la propiedad se limita a los nombres que figuran en el Acuerdo o añadidas posteriormente por el arrendatario. El solicitante de alquiler se considera que es el arrendatario plomo y asumirá la plena responsabilidad de todos los miembros del Grupo de Alquiler durante todo el período de alquiler. Información o instrucciones relacionadas con el alquiler serán comunicadas a solamente y no el solicitante Alquiler a cualquier miembro de terceros del Grupo de Alquiler.
 
-6. Use of Telephone and Internet Services
+2. pagos
 
-Where a telephone is provided as part of the rental, The Renter must charge all long-distance telephone calls to either a credit/phone card or call collect, unless advised otherwise. Where internet services are provided, there may be download restrictions and a charge may be levied if these are exceeded. It is The Renter\'s responsibility to check for restrictions on an internet device before commencing any download.
+Una reserva será confirmada por el propietario una vez que la solicitud ha sido aprobada y el pago inicial o total ha sido procesado. Para reservas de una semana o más, si la reserva se realiza 45 días o más antes del inicio del alquiler, un pago inicial de depósito de alquiler del [X%] del importe del alquiler será debido en el momento de efectuar la reserva. Si la reserva se realiza con menos de 45 días antes del inicio del alquiler, o la reserva es inferior a la duración de una semana, el precio del alquiler debe ser pagado en el momento de efectuar la reserva. En el caso de una reserva no ser aceptado por el propietario, todas las cuotas pagadas serán devueltas inmediatamente. Cualquier reserva hecha dentro de los 10 días del inicio del período de alquiler debe ser pagado en su totalidad con tarjeta de crédito a través de PayPal, cheque certificado o giro postal en el momento de efectuar la reserva. Ninguna reserva puede comenzar sin el pago total que es despejado.
 
- 7. Pets
+Una vez que se recibe una reserva y aceptada por el propietario, el arrendatario es responsable del pago del saldo de la cuota de alquiler 45 días antes de la ocupación de la propiedad. La falta de pago en la fecha debida será tratada como una cancelación y el depósito se perderá.
 
-One dog is permitted [indicate any restrictions]. All evidence of pet occupation must be removed from the Property and grounds at the end of the rental period. Pets are not permitted on any item of furniture, including beds, and evidence of pet hair on furniture and bedding may incur additional cleaning charges.
+3. Condiciones de cancelación y cambio de una reserva
 
-OR
+Una vez que una reserva ha sido aceptada y confirmada, una cancelación sólo puede hacerse de acuerdo con los términos siguientes:
 
-Pets are strictly prohibited at this property. Any evidence of pet occupation will result in a forfeit of the damage deposit in its entirety.
+- Si el período de alquiler puede ser re-reservado, un reembolso por el período de re-alquilados o la parte del mismo, menos una cuota de cancelación de [Cantidad] será emitido.
 
-The Owner accepts no responsibility for any allergic reaction or other conditions arising from occupancy of the property. The designation of “No Pets” does not indicate there have not been pets at the property at some time.
+- Si cualquier parte del período de alquiler no puede ser re-reservado, el inquilino perderá todo el dinero pagado por ese período.
 
-8. Smoking
+ 4.Ocupación de la propiedad
 
-Smoking is not permitted in or around the immediate vicinity of the property.
+Independientemente del número máximo de personas publicado una propiedad puede acomodar, el número de personas que ocupan la propiedad se limita estrictamente a los nombrados en el contrato de alquiler o cualquier modificación posterior notificado por escrito al propietario. La cifra de ocupación establecidos y acordados incluye todas las personas independientemente de su edad, el día y huéspedes durante la noche.
 
-9. Property  Access During Winter Months
+Exceder el número de personas expuestas y acordados supondrá la expulsión inmediata sin reembolso, o $ 100 por persona por noche de cargo a discreción del propietario.
 
-The Property is  offered for rental during the winter months and has road access and receives a snow clearance service from [indicate municipal or private contractor]. However, Renters are advised that following any major snowfall, snow plough providers are contracted to clear local roads in a predetermined order. Consequently, plowing at a property may be delayed for several hours or, in severe storm conditions, days. In the unlikely event that a Renter is unable to leave a property on the planned departure date, the Renter will not be liable for any additional accommodation charges. Conversely, should a lack of snow clearance prevent a Renter from reaching a property, the Renter will receive a refund of the rental fee for the day(s) the property was inaccessible. However, The Owner will be held responsible for any losses, additional expenses or penalties incurred as a result of being unable to arrive at or leave a property on time due to a lack of snow clearance. Renters are also reminded to ensure that they and their vehicles are suitably prepared and equipped for driving in the wintry conditions likely to be encountered during their visit to the Property.
+ 5.Condición de la Propiedad
 
-10.   Equipment and Facilities Provided
+La propiedad habrá sido inspeccionado antes de su ocupación y, por tanto, el arrendatario se compromete a:
 
-Equipment and facilities are provided at the discretion of The Owner and whilst every attempt is made to ensure that such equipment is in working order for the duration of the rental period, should a breakdown or some other situation occur that renders non-essential element unusable, the Owner does not take responsibility for replacing or refunding The Renter for the lack of use of these equipment or facilities. The equipment and facilities referred to include (but are not exclusive to) such items as watercraft, motors, televisions, VCRs/DVDs, hot tubs, saunas and Jacuzzis.
+- Notificar al propietario inmediatamente con respecto a cualquier asunto daños y / o de mantenimiento que requieren atención.
 
+- Mantener la propiedad y todos los muebles, accesorios, accesorios, muebles y efectos en o sobre la propiedad en el mismo estado de reparación y condiciones como se encuentra en el comienzo del alquiler.
+
+ 
+
+- Cuando se proporciona un servicio de limpieza; El arrendatario deberá seguir las instrucciones de salida proporcionados por el propietario.
+
+- Si no se proporciona un servicio de limpieza; El arrendatario deberá dejar la propiedad en el mismo estado de limpieza y orden general en el que se encontró. De no hacerlo, a satisfacción del Titular dará lugar a un cargo de daños / limpieza que se perciba.
+
+6.El uso del teléfono e Internet Servicios
+
+Cuando un teléfono se proporciona como parte del alquiler, el arrendatario debe cargar todas las llamadas telefónicas de larga distancia a una tarjeta de crédito o por teléfono o llamar por cobrar, salvo disposición en contrario. Donde se proporcionan los servicios de Internet, puede haber restricciones de descarga y un cargo puede realizarse si se superan. Es responsabilidad inquilinos para comprobar si hay restricciones en un dispositivo de Internet antes de iniciar ninguna descarga.
+
+ 7. Mascotas
+se permite un perro [indicar las restricciones]. Todas las pruebas de la ocupación mascota debe ser retirado de la propiedad y los jardines al final del período de alquiler. No se permiten mascotas en cualquier elemento del mobiliario, incluyendo camas, y la evidencia de pelo de las mascotas en los muebles y ropa de cama puede incurrir en cargos adicionales de limpieza.
+
+O
+
+Mascotas están estrictamente prohibidos en esta propiedad. Cualquier evidencia de ocupación mascota se traducirá en una pérdida de la fianza en su totalidad.
+
+El propietario acepta ninguna responsabilidad por cualquier reacción alérgica u otras condiciones que surgen de la ocupación de la propiedad. La designación de "no mascotas" no indica que no ha habido animales domésticos en la propiedad en algún momento.
+
+8.De fumar
+
+No está permitido fumar en o alrededor de la vecindad inmediata de la propiedad.
+
+9.Acceso a la propiedad durante los meses de invierno
+
+La propiedad se ofrece para el alquiler durante los meses de invierno y tiene acceso por carretera y recibe un servicio de limpieza de nieve a partir de [indicar contratista municipal o privada]. Sin embargo, se aconseja a inquilinos que seguir cualquiera de las nevadas importante, los proveedores quitanieves son contratados para despejar las carreteras locales en un orden predeterminado. En consecuencia, el arado en una propiedad puede retrasarse durante varias horas, o en condiciones de temporal muy duro, días. En el caso improbable de que un inquilino es incapaz de salir de una propiedad en la fecha prevista de salida, el inquilino no será responsable de los gastos de alojamiento adicionales. Por el contrario, se debe a la falta de limpieza de nieve impedir que un arrendatario llegue a una propiedad, el inquilino recibirá un reembolso de la cuota de alquiler para el día (s) de la propiedad era inaccesible. Sin embargo, el propietario será responsable por cualquier pérdida, gastos o penalizaciones adicionales incurridos como resultado de no poder llegar a una propiedad o salir a tiempo debido a la falta de limpieza de nieve. Los inquilinos también se recuerda para garantizar que ellos y sus vehículos son adecuadamente preparado y equipado para la conducción en las condiciones invernales que puedan presentarse durante su visita a la propiedad.
+
+10.   Equipos e instalaciones que ofrece
+
+Equipos e instalaciones se proporcionan a discreción del propietario y mientras se hace todo lo posible para garantizar que dicho equipo está en buenas condiciones para la duración del período de alquiler, en caso de avería o de alguna otra situación ocurrir que rinde elemento no esencial inservible, el propietario no se hace responsable de la sustitución o el reembolso del arrendatario por la falta de uso de estos equipos o instalaciones. El equipo y las instalaciones se hace referencia incluyen (pero no son exclusivos) artículos tales como embarcaciones, motores, televisores, reproductores de video / DVD, bañeras de hidromasaje, saunas y jacuzzis
  
 
-The Renter must report any inoperative or defective equipment to The Owner promptly! The Owner will make every reasonable effort to have repairs made as soon as possible; however, there are limited service contractors in [Your Area]. While every attempt will be made to ensure that all the advertised equipment and appliances are in working order at the commencement of a rental period, no reduction of rent; rebate; or refund will be issued for a mechanical failure of air conditioning, dishwasher, washer, dryer, TV or other appliances.
+El cliente debe informar de cualquier equipo inoperativo o defectuoso al propietario a la brevedad! El propietario hará todo esfuerzo razonable para hacer las reparaciones tan pronto como sea posible; Sin embargo, hay contratistas de servicio limitado en [su área]. Aunque se hará todo lo posible para asegurarse de que todo el equipo se anuncia y aparatos están en funcionamiento al comienzo de un periodo de alquiler, sin reducción de la renta; reembolso; o el reembolso será emitido por un fallo mecánico de aire acondicionado, lavavajillas, lavadora, secadora, televisión u otros aparatos.
 
- 11.   Refunds
+ 11.   Los reembolsos
+Si un desglose debe ocurrir a elementos fundamentales, tales como sistemas de agua, tuberías y sistemas eléctricos y los electrodomésticos como la estufa o en el refrigerador, se hará todo lo posible para reparar o sustituir, o un reembolso correspondiente se hará por las molestias causadas. Esto no se aplica a un colapso del sistema causado por el mal uso, tales como bloqueos de tuberías causados por el uso inadecuado de las instalaciones sanitarias.
 
-If a breakdown should occur to fundamental elements such as water systems, plumbing and electrical systems, and major appliances such as stove or refrigerator, every effort will be made to repair or replace, or an appropriate refund will be made for the inconvenience caused. This does not apply to system breakdown caused by misuse, such as plumbing blockages caused by inappropriate use of sanitary facilities.
+El propietario no se hace responsable, ni proporcionará un reembolso, por cualquier interrupción de los servicios eléctricos causados por las condiciones meteorológicas u otras circunstancias fuera de su control. Del mismo modo, no habrá reembolsos por las inclemencias del tiempo, los cambios en los niveles de agua, las condiciones en las propiedades vecinas, o cualquier daño al proporcionado por los elementos naturales del lugar como los insectos voladores o la población animal.
 
-The Owner is not liable, nor will provide a refund, for any stoppage of electrical services caused by extreme weather or other circumstances beyond his control.   Similarly, there will be no refunds for inclement weather, changes in water levels, conditions at neighboring properties, or any nuisance afforded by the natural elements of the location such as flying insects or the animal population.
+12.Otras condiciones de la reserva
 
-12. Other Conditions of Booking
-
-The Renter shall abide by these Terms and Conditions of Rental and any other instructions contained in the individual Cottage Guide and any additional information and instructions as shall be supplied in the Property or by The Owner.
-
+El arrendatario deberá cumplir con estos términos y condiciones de alquiler y todas las demás instrucciones contenidas en la Guía individuo Cottage y cualquier información adicional e instrucciones que se suministra en la propiedad o por el propietario.
  
-
-LIMITATIONS OF LIABILITY: The Renter represents, warrants, acknowledges and agrees with The Owner that he/she will use the Property and its facilities in accordance with The Terms and Conditions above and the Information provided and that he/she does so at his/her own risk and that he/she indemnifies and saves The Owner harmless from any personal injury, sickness or death, loss or damage, however caused, to person or property of The Renter, his/her family, or guests, before during or after the time of occupancy. Further, he/she accepts full responsibility for the use of the Property and any recreational equipment such as boats and motors, etc. and agree to pay for any damage of said equipment, other than for normal wear and tear. The Renter further acknowledges he/she is responsible for ensuring all Boating Regulations are observed, including having required safety equipment in the watercraft, as well as meeting current Operator Competency Requirements.
+LIMITACIONES DE RESPONSABILIDAD: El arrendatario declara, garantiza, acepta y acuerda con el propietario que él o ella va a utilizar la propiedad y sus instalaciones de acuerdo con los términos y condiciones mencionados anteriormente y la información proporcionada y que él o ella lo hace a su propio riesgo y que él o ella indemniza y ahorra el propietario frente a cualquier daño personal, enfermedad o muerte, pérdida o daño, sin importar la causa, a persona o propiedad del arrendatario, su familia o invitados, antes, durante o después de la el tiempo de ocupación. Además, él o ella acepta toda la responsabilidad por el uso de la propiedad y cualquier equipo de recreo tales como barcos, motores, etc., y se compromete a pagar por los daños de dicho equipo, que no sea para uso y desgaste normal. El arrendatario reconoce además que él o ella es responsable de asegurar que se cumplen las Regulaciones de la navegación, incluyendo el tener el equipo de seguridad requerido en el arte de agua, así como el cumplimiento de requisitos de las competencias del operador actuales.
 
 ' );
 
 
-jr_define( '_JOMRES_NUMBER_OF_BEDROOMS', 'Bedrooms' );
+jr_define( '_JOMRES_NUMBER_OF_BEDROOMS', 'dormitorios' );
 
-jr_define( '_JOMRES_SUPPORTKEY_DESC_VALID', 'Your download and support key is valid, you will be able to download plugins via the plugin manager.' );
-jr_define( '_JOMRES_SUPPORTKEY_DESC_INVALID', 'Your download and support key is NOT valid, you will be NOT able to download plugins via the plugin manager.' );
+jr_define( '_JOMRES_SUPPORTKEY_DESC_VALID', 'El proceso de descarga y el apoyo clave es válida, usted será capaz de descargar plugins a través del administrador de plugins.' );
+jr_define( '_JOMRES_SUPPORTKEY_DESC_INVALID', 'El proceso de descarga y la clave de apoyo no es válida, no será capaz de descargar plugins a través del administrador de plugins.' );
 
-jr_define( '_JOMRES_SRP_RESOURCE_TYPE', 'Sub-type' );
-jr_define( '_JOMRES_SRP_RESOURCE_TYPE_EXPLANATION', 'You must choose a sub-type before you can create tariffs for this property.' );
-jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK", "You haven't yet set your property sub-type. This is where you define it as something like a 5 bedroom villa or 4 bedroom cottage and it helps guests who are searching to refine their searches." );
-jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK", "Give your property a sub-type" );
-
-
-jr_define( "_JOMRES_EMAIL_TEMPLATES_TITLE", "Email templates" );
+jr_define( '_JOMRES_SRP_RESOURCE_TYPE', 'subtipo' );
+jr_define( '_JOMRES_SRP_RESOURCE_TYPE_EXPLANATION', 'Debe elegir un subtipo antes de poder crear las tarifas para esta propiedad.' );
+jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK", "Aún no se ha establecido su propiedad subtipo. Aquí es donde usted lo define como algo parecido a una villa de 5 dormitorios y 4 dormitorios casa y que le ayuda a los clientes que están buscando para refinar sus búsquedas." );
+jr_define( "_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK", "Dar a su propiedad un subtipo" );
 
 
-jr_define( "_JOMRES_CONTACT_SETTINGS", "Contact settings" );
-jr_define( "_JOMRES_CONTACT_SETTINGS_DESC", "From here you can override all properties contact details (email, phone, fax) so all communication with guests will be sent to you and not to the property owners." );
-jr_define( "_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS", "Override listings contact details?");
-jr_define( "_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS_DESC", "If this option is set to Yes then property email addresses and phone numbers will be replaced with the ones set in this tab. This forces all communications to be sent to your nominated email address ensuring that the guest and property owner can't bypass the booking engine and the commission charges that will result. It also means that whenever a property's description is changed the property will be set to Unapproved (if the approvals feature is enabled) and you will need to manually check the description to ensure that the managers hasn't entered telephone or email details into the text fields before approving it again." );
-jr_define( "_JOMRES_EDITPROPERTY_APPROVAL_WARNING", "Changes made to listing details require site admin verification. If you save new details, your listing will be unpublished and pending site admin approval before being visible again to site visitors. You won`t be able to receive online bookings while your listing is unpublished and pending approval.");
+jr_define( "_JOMRES_EMAIL_TEMPLATES_TITLE", "Plantillas de correo electrónico" );
 
 
-jr_define( '_JOMRES_BOOKING_ENQUIRY_REVIEW', 'Review booking request' );
-jr_define( '_JOMRES_BOOKING_ENQUIRY_CONFIRM', 'Confirm booking request' );
-jr_define( '_JOMRES_BOOKING_ENQUIRY_AMEND', 'Amend booking request' );
+jr_define( "_JOMRES_CONTACT_SETTINGS", "ajustes de los contactos" );
+jr_define( "_JOMRES_CONTACT_SETTINGS_DESC", "Desde aquí se puede anular todos los detalles propiedades de contacto (correo electrónico, teléfono, fax) por lo que toda la comunicación con los clientes será enviado a usted y no a los dueños de propiedades." );
+jr_define( "_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS", "Invalidar los datos de contacto listados?");
+jr_define( "_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS_DESC", "Si esta opción se establece en Sí y direcciones de correo electrónico y números de teléfono de propiedad serán reemplazadas con las que figuran en esta ficha. Esto obliga a que todas las comunicaciones que se envíen a su dirección de correo electrónico nominado asegurar que el huésped y el dueño de la propiedad no se pueden pasar por alto el motor de reservas y los gastos de comisión que resultarán. También significa que cada vez que se cambia una descripción de la propiedad del inmueble se ajustará a No aprobado (si las aprobaciones función está habilitada) y tendrá que comprobar manualmente la descripción para asegurarse de que los gerentes no han entrado teléfono o correo electrónico detalles en los campos de texto antes de aprobar de nuevo
+." );
+jr_define( "_JOMRES_EDITPROPERTY_APPROVAL_WARNING", "Los cambios realizados en detalles del anuncio requieren la verificación del sitio de administración. Si guarda los nuevos detalles, su perfil será la aprobación del sitio de administración inéditos y de espera antes de que sea visible de nuevo para los visitantes del sitio. Usted `t sea capaz de recibir reservas en línea, mientras que su perfil es inédita ya la espera de aprobación.");
 
 
-jr_define( '_JOMRES_INVOICE_MARKASPENDING', 'Mark invoice as pending' );
-jr_define( '_JOMRES_INVOICE_MARKEDASPENDING', 'Invoice marked as pending' );
-
-jr_define( '_JOMRES_CHARTS', 'Charts' );
-jr_define( '_JOMRES_CHARTS_SELECT', 'Select chart...' );
-jr_define( '_JOMRES_CHART_BOOKINGS_DESC', 'Income by year/month' );
-
-jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK", "Ok, let's get started. First you need to create some rooms for this property." );
-jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK", "Create some rooms now" );
-
-jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK", "Research has proven that properties with lots of high quality images generate more views. Upload a main image and some slideshow pictures to improve your chances of getting bookings." );
-jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK_LINK", "Upload an image" );
-
-jr_define( "_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK", "Create some tariffs" );
-
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG", "What will guests book?" );
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_DESC", "Is this property type a hotel type property, where you rent out rooms in the property, or a villa type property, where you rent out the whole property in one booking? " );
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_HOTEL", "Rooms in the property" );
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_VILLA", "The entire property" );
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_NEITHER", "Other (Tours/Realestate)" );
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_BOTH", "Both" ); // This is an interim setting that gives backward compatability for existing users who won't yet have updated their property types. It won't be selectable 
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD", "What will guests book?" );
-
-jr_define( "_JOMRES_ADDRESS_SANITY_CHECK", "You'll need to complete your address details so that your guests can find you when they come to stay." );
-jr_define( "_JOMRES_ADDRESS_SANITY_CHECK_LINK", "Update your address" );
+jr_define( '_JOMRES_BOOKING_ENQUIRY_REVIEW', 'solicitud de revisión de reserva' );
+jr_define( '_JOMRES_BOOKING_ENQUIRY_CONFIRM', 'Confirmar solicitud de reserva' );
+jr_define( '_JOMRES_BOOKING_ENQUIRY_AMEND', 'Modificar solicitud de reserva' );
 
 
-jr_define( "_JOMRES_FIELDS_HIGHLIGHTED_ARE_REQUIRED", "Oops, it looks like you might have forgotten to complete all the fields." );
+jr_define( '_JOMRES_INVOICE_MARKASPENDING', 'Marcos factura como pendiente' );
+jr_define( '_JOMRES_INVOICE_MARKEDASPENDING', 'Factura aparece como pendiente' );
 
-jr_define( "_JOMRES_MANAGER_HAS_NO_PROPERTIES", "Error, this user is configured as a manager but has not been assigned to any properties" );
+jr_define( '_JOMRES_TRACKING_ENABLE', 'Enviar datos de seguimiento anónimo?' );
+jr_define( '_JOMRES_TRACKING_ENABLE_DESC', 'Seleccione Sí para enviar datos de seguimiento anónimos para Jomres.net para ayudarnos a entender mejor cómo se utiliza el sistema de.' );
 
-jr_define( "_JOMRES_CONTANT_US", "Contact us" );
+jr_define( '_JOMRES_PARTNERS_PLEASE_COMPLETE', 'Por favor asegúrese de que sus datos se han completado en la página Editar mi cuenta antes de intentar hacer reservas en nombre de sus clientes.' );
+jr_define( '_JOMRES_PARTNERS_GUEST_ADDRESS', "los datos de contacto de los huéspedes" );
+jr_define( '_JOMRES_CLEAR_GUEST_DETAILS', " -- nueva huéspedes -- " );
 
-
-jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_TITLE", "Welcome to your new online listing for " );
-jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_1", "Hi, and welcome to your new property on " );
-jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_2", "You recently added a new property to our website, and we'd like to welcome you to the family." );
-jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_3", "You can see your new dashboard " );
-jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT", " here " );
-jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_4", "Once you've setup your property you can see how it looks to site visitors by visiting " );
-jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_4_LINKTEXT", " your front page." );
-jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_5", "(it's not published, so site visitors can't see it yet)." );
-jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_6", "At the top of the page you'll see a number of messages. The buttons next to these messages will guide you to the pages you need to visit to set up your property on our site. Once you've performed each of these tasks it'll be much easier for visitors on our site to find your property and make bookings online." );
-jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_7", "If you have any questions at all, please " );
-jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_7_LINKTEXT", "contact us" );
-jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_8", "and we'll be delighted to answer all your questions." );
-jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_BYEBYE", "All the best, our team at " );
+jr_define( '_JOMRES_CHARTS', 'Gráficas' );
+jr_define( '_JOMRES_CHARTS_SELECT', 'Seleccionar tabla...' );
+jr_define( '_JOMRES_CHART_BOOKINGS_DESC', 'El ingreso por año / mes' );
 
 
-jr_define( "_JOMRES_JINTOUR_SANITY_CHECK", "You don't seem to have any tours to sell. Create a tour profile, then use the Generate button to create some tours." );
-jr_define( "_JOMRES_JINTOUR_SANITY_CHECK_LINK", "Let's create some tours!" );
+jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK", "Ok, vamos a empezar. En primer lugar es necesario crear algunas habitaciones de esta propiedad." );
+jr_define( "_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK", "Crear algunas habitaciones ahora" );
 
-jr_define( '_JOMRES_COM_A_TARIFFS_SWAP', 'Swap currency symbol location' );
-jr_define( '_JOMRES_COM_A_TARIFFS_SWAP_DESC', 'Use this option to move the currency symbol from behind of, to in front of the price figure, or vice versa.' );
+jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK", "La investigación ha demostrado que las propiedades con un montón de imágenes de alta calidad generan más puntos de vista. Sube una imagen principal y algunas diapositivas imágenes para mejorar sus posibilidades de conseguir reservas." );
+jr_define( "_JOMRES_IMAGES_EXIST_SANITY_CHECK_LINK", "Subir una imagen" );
+
+jr_define( "_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK", "Crear algunas tarifas" );
+
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG", "Lo que se reserva los huéspedes?" );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_DESC", "Esta propiedad se escriba una propiedad tipo, donde alquilar habitaciones en la propiedad, o un tipo chalet, donde usted alquila toda la propiedad en una reserva? " );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_HOTEL", "Las habitaciones de la propiedad" );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_VILLA", "Toda la propiedad" );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_NEITHER", "Otros (Tours / Inmobiliaria)" );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_BOTH", "Ambos" ); // This is an interim setting that gives backward compatability for existing users who won't yet have updated their property types. It won't be selectable 
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD", "Lo que se reserva los huéspedes?" );
+
+jr_define( "_JOMRES_ADDRESS_SANITY_CHECK", "Tendrá que completar detalles de su dirección para que sus clientes pueden encontrar que cuando vienen para quedarse." );
+jr_define( "_JOMRES_ADDRESS_SANITY_CHECK_LINK", "Actualizar su dirección" );
+
+
+jr_define( "_JOMRES_FIELDS_HIGHLIGHTED_ARE_REQUIRED", "Vaya, parece que se le haya olvidado para completar todos los campos." );
+
+jr_define( "_JOMRES_MANAGER_HAS_NO_PROPERTIES", "Error, este usuario está configurado como un gerente, pero no se ha asignado a las propiedades" );
+
+jr_define( "_JOMRES_CONTANT_US", "Contáctenos" );
+
+
+jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_TITLE", "Bienvenido a su nueva lista en línea de " );
+jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_1", "Hola y bienvenido a su nueva propiedad en" );
+jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_2", "Ha agregado recientemente una nueva propiedad en nuestro sitio web, y nos gustaría darle la bienvenida a la familia." );
+jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_3", "Se puede ver el nuevo tablero de instrumentos " );
+jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT", " aquí " );
+jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_4", "Una vez que haya establecido su propiedad se puede ver cómo se ve a los visitantes del sitio visitando" );
+jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_4_LINKTEXT", " su portada." );
+jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_5", "(No se publica, por lo que los visitantes del sitio no puede verlo aún)." );
+jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_6", "En la parte superior de la página, verá una serie de mensajes. Los botones junto a estos mensajes que guiarán a las páginas que necesita para visitar a establecer su propiedad en nuestro sitio. Una vez que haya realizado cada una de estas tareas que va a ser mucho más fácil para los visitantes en nuestro sitio para encontrar su propiedad y hacer reservas en línea.
+" );
+jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_7", "Si tiene alguna pregunta, por favor " );
+jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_7_LINKTEXT", "Contáctenos" );
+jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_8", "y estaremos encantados de responder a todas sus preguntas." );
+jr_define( "_JOMRES_NEW_PROPERTY_WELCOME_BYEBYE", "Todo lo mejor, nuestro equipo en " );
+
+
+jr_define( "_JOMRES_JINTOUR_SANITY_CHECK", "Usted no parece tener ninguna excursión para vender. Crear un perfil de recorrido, a continuación, utilice el botón Generar para crear algunas excursiones." );
+jr_define( "_JOMRES_JINTOUR_SANITY_CHECK_LINK", "Vamos a crear algunas excursiones!" );
+
+jr_define( '_JOMRES_COM_A_TARIFFS_SWAP', 'De Permuta de ubicación símbolo de moneda' );
+jr_define( '_JOMRES_COM_A_TARIFFS_SWAP_DESC', 'Utilice esta opción para mover el símbolo de moneda de detrás de, al frente de la figura precio, o viceversa.' );
 
 jr_define( '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', 'Facebook' );
-jr_define( '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', 'Enter your facebook page id, for example "jomres". Leave this blank to show nothing. Do not enter https://www.facebooking.com or anything else.' );
+jr_define( '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', 'Introduzca su página de facebook de la identificación, por ejemplo "jomres". Dejar en blanco para mostrar nada. No entrar en https://www.facebooking.com o cualquier otra cosa.' );
 
-jr_define( 'COMMON_DOWNLOAD', 'Download' );
+jr_define( 'COMMON_DOWNLOAD', 'Descargar' );
 
-jr_define( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS_SRP', 'Next you will need to add some tariffs. These are your basic prices.' );
-jr_define( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV_SRP', 'Property sub-type' );
-jr_define( '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO_SRP', 'Property sub-type' );
+jr_define( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS_SRP', 'A continuación, tendrá que añadir algunas tarifas. Estos son sus precios básicos.' );
+jr_define( '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV_SRP', 'Propiedad subtipo' );
+jr_define( '_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO_SRP', 'Propiedad subtipo' );
 
-jr_define( '_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE', 'Bootstrap is not enabled!' );
+jr_define( '_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE', 'Bootstrap no está activado!' );
 
-jr_define( '_JOMRES_BOOTSTRAP_OFF_WARNING', 'Warning, you do not have Bootstrap enabled in Jomres Site Configuration -> Misc tab. To provide <i>some</i> functionality Jomres is currently using it\'s old, jQuery UI based templates, however these have not been worked on in several years. All current development and improvements of Jomres templates ( layout files ) are made to it\'s Bootstrap 3 template files. To get the best out of Jomres we recommend you install a Bootstrap 3 based theme for Wordpress or Joomla. Once you have done that you can enable Jomres\' Bootstrap templates in Site Configuration.' );
+jr_define( '_JOMRES_BOOTSTRAP_OFF_WARNING', 'Advertencia, no tiene Bootstrap habilitada en Configuración del sitio Jomres -> pestaña Misc. Para proporcionar <i> algunos </ i> Jomres funcionalidad está utilizando sus plantillas antiguas, basadas jQuery UI, sin embargo, estos no han sido trabajados en varios años. Todo el desarrollo y la mejora de las plantillas jomres (archivos de diseño actual) se hacen para sus archivos de plantilla Bootstrap 3. Para sacar el máximo partido de Jomres le recomendamos que instale un tema basado Bootstrap 3 para Wordpress o Joomla. Una vez que haya hecho que puede habilitar las plantillas Jomres Bootstrap en Configuración del sitio.' );
 
-jr_define( '_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Your support key is valid. Note that this license does not allow plugin downloads.' );
-jr_define( '_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS_PLUGIN_MANAGER', 'Your license does not support plugin downloads.' );
+jr_define( '_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Su clave de soporte es válido. Tenga en cuenta que esta licencia no permite descargas de plugins.' );
+jr_define( '_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS_PLUGIN_MANAGER', 'Su licencia no es compatible con descargas de plugins.' );
 
 
-jr_define( '_JOMRES_DASHBOARD_DRAG_TRASH', 'Drag bookings to this area to cancel them' );
+jr_define( '_JOMRES_DASHBOARD_DRAG_TRASH', 'Arrastre reservas a esta área de cancelarlos' );
 jr_define( '_JOMRES_LAT', 'Lat (nn.nnnn)' );
 jr_define( '_JOMRES_LONG', 'Long (nn.nnnn)' );
 
-jr_define( '_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] ) otherwise you will not be able to access Jomres from the site frontend to manage your properties and bookings.' );
-jr_define( '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Before you can create a room type, we need to know if it's for a hotel type property, or a villa type property.");
+jr_define( '_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Por favor asegúrese de que ha creado un WordPress página que contiene el [jomres: XX-XX] código corto (donde xx-XX es el código de idioma del sitio, por ejemplo [jomres: es]) de lo contrario no será capaz de acceder a Jomres desde la interfaz web para administrar sus propiedades y reservas.' );
+jr_define( '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Antes de crear un tipo de habitación, lo que necesitamos saber si se trata de una propiedad tipo, o un tipo bien chalet.");
 
-jr_define( "_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES", "What management process will this room type be for?" );
-jr_define( "_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES_DESC", "Is the room type for a hotel type property, or a villa type property?" );
-jr_define( '_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Click to add new room types' );
-jr_define( "_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES", "Warning, you have one or more property types with no room types. Properties need room types so that property managers can create tariffs." );
-jr_define( "_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LIST_ROOM_TYPES", "Use the New button above to create new Room Types." );
+jr_define( "_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES", "¿Qué proceso de gestión va a ser este tipo de habitación para?" );
+jr_define( "_JOMRES_MANAGEMENT_PROCESS_ROOM_TYPES_DESC", "Es el tipo de habitación para una propiedad tipo, o un tipo bien chalet?" );
+jr_define( '_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Haga clic para añadir nuevos tipos de habitación' );
+jr_define( "_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES", "Advertencia, que tiene uno o más tipos de propiedad que no tienen tipos de habitación. Propiedades necesitan tipos de habitaciones para que los administradores de propiedades pueden crear tarifas." );
+jr_define( "_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LIST_ROOM_TYPES", "Utilice el botón Nuevo anteriores para crear nuevos tipos de habitación." );
 
 
 jr_define( "_JOMRES_PROPERTYTYPE_FLAG_TOURS", "Tours" );
-jr_define( "_JOMRES_PROPERTYTYPE_FLAG_REALESTATE", "No bookings/Real estate ( simple listing )" );
+jr_define( "_JOMRES_PROPERTYTYPE_FLAG_REALESTATE", "No se hacen reservas / inmobiliaria (simple enumeración)" );
 
 
-jr_define( "_JOMRES_CONFIG_LOG_LOCATION", "Log file location" );
-jr_define( "_JOMRES_CONFIG_LOG_LOCATION_DESC", "Jomres logs system activity by default to the ".JOMRES_SYSTEMLOG_PATH." location. As this file may contain sensitive information ( api keys, system paths, gateway information, guest information) we strongly recommend that you change this path to one above your web document root. If you don't understand what this means, please ask your web hosts for advice as they'll know your file system." );
+jr_define( "_JOMRES_CONFIG_LOG_LOCATION", "Ingrese la ubicación del archivo" );
+jr_define( "_JOMRES_CONFIG_LOG_LOCATION_DESC", "Jomres registra la actividad del sistema por defecto para el ".JOMRES_SYSTEMLOG_PATH." ubicación. Como este archivo puede contener información sensible (claves de la API, las rutas del sistema, información de puerta de enlace, información de los invitados) se recomienda encarecidamente que cambie este camino a uno por encima de la raíz del servidor. Si usted no entiende lo que esto significa, por favor preguntar a sus anfitriones de la tela de asesoramiento, ya que se conoce su sistema de archivos." );
 
-jr_define( "_JOMRES_CONFIG_LOG_LOCATION_WARNING", "Jomres logs detailed information about your system, including api keys, system paths, gateway and guest information, all of which should not be visible to the rest of the internet. Your System Log path is not set, so system logs are currently being saved to the ".JOMRES_SYSTEMLOG_PATH." directory, which is not ideal. Please visit Site Configuration -> Debugging and set a path in your filesystem that's outsite of the web root. If in doubt, please contact your web hosts as they will be able to advise you." );
+jr_define( "_JOMRES_CONFIG_LOG_LOCATION_WARNING", "Jomres registros detallados información sobre su sistema, incluyendo claves de la API, las rutas del sistema, la puerta de enlace e información de invitados, todos los cuales no deben ser visibles para el resto de Internet. Su ruta de registro del sistema no está configurado, por lo que los registros del sistema actualmente se están guardando en la ".JOMRES_SYSTEMLOG_PATH." directorio, que no es ideal. Por favor, visite Configuración del sitio -> Depuración y establecer una ruta en el sistema de archivos que es OutSite de la raíz web. En caso de duda, póngase en contacto con sus anfitriones de la tela, ya que será capaz de aconsejarle." );
 
-jr_define( "_JOMRES_CONFIG_LOG_LOCATION_RECOMMENDED", "If your CMS is installed in the root directory of your website, then a suitable location would be " );
+jr_define( "_JOMRES_CONFIG_LOG_LOCATION_RECOMMENDED", "Si sus KMS está instalado en el directorio raíz de su sitio web, a continuación, una ubicación adecuada podría ser" );
 
-jr_define( "_JOMRES_CONFIG_GMAP_KEY_WARNING", "You do not have a Google Maps key set. Due to recent changes in Google maps, all new sites will need an API key to be able to use Google map's features. Please <a href='http://www.jomres.net/manual/site-managers-guide/14-getting-started/338-google-maps-api-key' target='_blank'>see our manual page on how to create an API key</a> and save the key in Jomres." );
+jr_define( "_JOMRES_CONFIG_GMAP_KEY_WARNING", "No es necesario que un conjunto clave de Google Maps. Debido a los recientes cambios en los mapas de Google, todos los sitios nuevos se necesita una clave de API para poder utilizar las funciones de Google mapa. Por favor, <a href='http://www.jomres.net/manual/site-managers-guide/14-getting-started/338-google-maps-api-key' target='_blank'> ver nuestra página del manual sobre cómo crear una clave de API </a> y guardar la llave en Jomres
+." );
 
-jr_define( "JOMRES_GOOGLE_MAP_STYLE", "Google map colour scheme" );
+jr_define( "JOMRES_GOOGLE_MAP_STYLE", "esquema de colores Google" );
 
-jr_define( "JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_TITLE", "Right, let's start adding your property to the website. We need to collect a little information about your property here. This will allow us to set up the bare bones of your property. Once that's done, then you'll be guided through adding rooms, prices and images." );
-jr_define( "JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1", "The property type helps you to define how the property will be booked, for example with hotels you \"sell\" just one or two rooms at a time, whereas with villas you offer the entire property." );
-jr_define( "JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2", "Note that the email address doesn't need to be the same as the one you used when registering your account. This allows you to have different addresses for different properties." );
+jr_define( "JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_TITLE", "Bien, vamos a empezar a añadir su propiedad a la página web. Tenemos que recoger un poco de información acerca de su propiedad aquí. Esto nos permitirá configurar el esqueleto de su propiedad. Una vez hecho esto, a continuación, se le guiará a través de la adición de estancias, los precios y las imágenes." );
+jr_define( "JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1", "El tipo de propiedad que ayuda a definir cómo se va a reservar la propiedad, por ejemplo, con los hoteles que \ "\" vender sólo una o dos habitaciones a la vez, mientras que con villas que ofrece todo el edificio." );
+jr_define( "JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2", "Tenga en cuenta que la dirección de correo electrónico no tiene por qué ser el mismo que el que se utilizó cuando se registró su cuenta. Esto le permite tener diferentes direcciones para diferentes propiedades." );
 
-jr_define( "_JOMRES_CONFIG_MINIMUM_DEPOSIT", "Minimum Deposit" );
+jr_define( "_JOMRES_CONFIG_MINIMUM_DEPOSIT", "Depósito mínimo" );
 jr_define( "_JOMRES_CONFIG_MINIMUM_DEPOSIT_DESC", "You can configure the minimum deposit amount to be charged. If you do, then the \"Deposit required is cost of the first night?\" & \"Deposit required is percentage?\" settings in Property Configuration cannot be configured, instead all deposit values are a percentage and must be at least the figure you define here." );
 
-jr_define( "_JOMRES_CONFIG_MINIMUM_DEPOSIT_SETTING", "This figure cannot be less than " );
-
+jr_define( "_JOMRES_CONFIG_MINIMUM_DEPOSIT_SETTING", "Esta cifra no puede ser inferior a " );
 jr_define( "_JOMRES_CONFIG_LOG_SYSLOG_HOST", "Syslog host" );
 jr_define( "_JOMRES_CONFIG_LOG_SYSLOG_PORT", "Syslog Port" );
 jr_define( "_JOMRES_CONFIG_LOG_SYSLOG_HOST_DESC", "If you want to send system logging messages to a syslog server, you can set the Hostname or IP ( e.g. 192.168.0.2) and port (e.g. 514) here. Note, if the site is set to 'Development' then DEBUG messages will be sent. If set to 'Production' then only INFO level and higher messages will be sent. To disable logging to the remote server, empty the host and port fields.");
