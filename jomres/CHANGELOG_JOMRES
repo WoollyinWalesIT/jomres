@@ -1,4 +1,38 @@
-<h3>Jomres 9.8.6 13/07/2016</h3>
+<h3>Jomres 9.8.8 01/08/2016</h3>
+
+<span class="label label-success">Feature</span> Added an option to disable sending emails to managers on errors, expanded notes regarding logging.
+<span class="label label-success">Feature</span> Added the ability for Jomres to send logging information to a remote syslog server.
+<span class="label label-success">Feature</span> Added functionality to list log files.
+
+<span class="label label-warning">Change</span> Turkish language file added to system, many thanks Sarper
+<span class="label label-warning">Change</span> Spanish, Italian and German language files updated.
+<span class="label label-warning">Change</span> Tweaked the new user language string sent when a user is created on booking to be function agnostic. Allows us to use the feature for other things.
+<span class="label label-warning">Change</span> User creation process, typically used when non-registered users create bookings, changed to use email addresses instead of trying to create usernames based on the guest's names. This is because the regex used to determine the username fails to work properly on non-latin alphabets.
+<span class="label label-warning">Change</span> Previous database audit messages are now saved to logs.
+<span class="label label-warning">Change</span> Added some friendly notes to property creation.
+<span class="label label-warning">Change</span> Modified how gateway plugins are validated to allow another plugin to work differently while still maintaining security.
+<span class="label label-warning">Change</span> Added a new Site Configuration setting that allows a site manager to configure a Minimum Deposit amount. This is required because if commission is charged by you and a third party, then the deposit cannot be less than your commission + third party's commission.
+<span class="label label-warning">Change</span> Commented a "throw" because spiders are causing error emails to be sent.
+<span class="label label-warning">Change</span> Removed some redundant data from a call to process payments.
+<span class="label label-warning">Change</span> Improved installer to test for dirs before attempting to create them.
+<span class="label label-warning">Change</span> Modified the installer so that failure to create jomres_root.php isn't fatal. It's a silly thing, created to satisfy the Wordpress directory managers, but many servers don't like you to create files in the root for whatever reasons. 
+<span class="label label-warning">Change</span> Added old-style router file for users who prefer the pre-9.8.0 urls ( Google love ).
+<span class="label label-warning">Change</span> Modified gateway configuration functionality to allow custom code.
+<span class="label label-warning">Change</span> Jomres Extras removed from list of our partners as we are integrating their plugins into our own library.
+<span class="label label-warning">Change</span> Added a check to ensure that a gateway hasn't been uninstalled before attempting to show it in the booking confirmation page.
+<span class="label label-warning">Change</span> Added property uid to data returned by the payment reference class.
+<span class="label label-warning">Change</span> Added logging for common curl functionality.
+<span class="label label-warning">Change</span> Updated the booking engine to store arrival/departure dates for further use by modules etc.
+
+<span class="label label-important label-danger">Fix</span> Fixed front and backend Bookings charts.
+<span class="label label-important label-danger">Fix</span> Fixed a notice when generating log files.
+<span class="label label-important label-danger">Fix</span> Fixed a bug in property type specific templating.
+<span class="label label-important label-danger">Fix</span> Improved booking engine, some arrival dates from calendar links were being set incorrectly due to a notice fix in the 9.8.
+<span class="label label-important label-danger">Fix</span> Resolved a notice in j06005list_gateways_for_invoice.class.php
+<span class="label label-important label-danger">Fix</span> Modified how guest details are saved from the booking form to work around an issue where if polylang and permalinks were in use, guest details might not be saved to the temp booking data.
+
+
+<h3>Jomres 9.8.7 13/07/2016</h3>
 
 <span class="label label-success">Feature</span> New feature : Google map styles
 
