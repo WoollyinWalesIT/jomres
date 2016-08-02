@@ -232,10 +232,13 @@ if ( ! class_exists( 'wp_jomres' ) )
 		function payments_redirect_canonical($redirect_url, $requested_url)
 			{
 			if (
-				$_REQUEST['task']== "completebk" || 
-				$_REQUEST['task']== "processpayment" || 
-				$_REQUEST['task']== "confirmbooking"|| 
-				$_REQUEST['task']== "invoice_payment_receive"
+				isset($_REQUEST['task']) &&
+					(
+					$_REQUEST['task']== "completebk" || 
+					$_REQUEST['task']== "processpayment" || 
+					$_REQUEST['task']== "confirmbooking"|| 
+					$_REQUEST['task']== "invoice_payment_receive"
+					)
 				) 
 				{
 				return $requested_url;
