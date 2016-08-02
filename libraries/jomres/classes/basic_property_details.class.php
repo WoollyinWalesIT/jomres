@@ -290,7 +290,8 @@ class basic_property_details
 				{
 				foreach ($jomres_room_types->all_ptype_rtype_xrefs[$this->ptype_id] as $rtype)
 					{
-					$this->this_property_room_classes[ $rtype ] = $this->classAbbvs[ $rtype ];
+					if (isset($this->classAbbvs[ $rtype ]))
+						$this->this_property_room_classes[ $rtype ] = $this->classAbbvs[ $rtype ];
 					}
 				}
 			}
@@ -503,6 +504,7 @@ class basic_property_details
 				{
 				$mrConfig = getPropertySpecificSettings( $d->propertys_uid );
 				$cfgcode  = $mrConfig[ 'accommodation_tax_code' ];
+
 				$this->multi_query_result[ $d->propertys_uid ][ 'accommodation_tax_rate' ] = (float) $jrportal_taxrate->taxrates[ $cfgcode ][ 'rate' ];
 				}
 			
