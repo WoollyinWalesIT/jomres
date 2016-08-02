@@ -217,5 +217,6 @@ $jrConfig = array (
   'map_style' => 'ultralight',
   'syslog_host' => '',
   'syslog_port' => '',
-  'sendErrorEmails' => '0'
+  'sendErrorEmails' => '0',
+  'minimum_deposit_percentage' => "20"
 );
