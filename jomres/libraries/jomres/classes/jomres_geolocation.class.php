@@ -67,10 +67,10 @@ class jomres_geolocation
 				$tmpBookingHandler->user_settings[ 'geolocated_country' ] = $this->detected_country;
 				}
 			else
-			$tmpBookingHandler->user_settings[ 'geolocated_country' ] = $this->detected_country;
+				$tmpBookingHandler->user_settings[ 'geolocated_country' ] = $this->detected_country;
 			}
 		else
-		$tmpBookingHandler->user_settings[ 'geolocated_country' ] = $this->detected_country;
+			$tmpBookingHandler->user_settings[ 'geolocated_country' ] = $this->detected_country;
 		}
 
 	public function auto_set_user_currency_code()
@@ -79,7 +79,11 @@ class jomres_geolocation
 		jr_import( 'currency_codes' );
 		$currency_codes                  = new currency_codes();
 		$country_codes_to_currency_codes = $currency_codes->country_codes_to_currency_codes;
-		$currency_code                   = $country_codes_to_currency_codes[ $this->detected_country ];
+		if (isset($country_codes_to_currency_codes[ $this->detected_country ]))
+			$currency_code                   = $country_codes_to_currency_codes[ $this->detected_country ];
+		else
+			$currency_code                   = "EUR";
+		
 		jr_import( 'jomres_currency_conversion' );
 		$conversion = new jomres_currency_conversion();
 		if ( $conversion->this_code_can_be_converted( $currency_code ) ) 
