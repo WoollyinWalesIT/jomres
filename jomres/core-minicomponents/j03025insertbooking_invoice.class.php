@@ -128,7 +128,7 @@ class j03025insertbooking_invoice
 			if ( get_showtime( 'include_room_booking_functionality' ) )
 				{
 				$line_items[] = array ( 'tax_code_id' => (int) $mrConfig[ 'accommodation_tax_code' ], 
-										'name' => jr_gettext( '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', false, false ) ,
+										'name' => '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL',
 										'description' => '('.outputDate($arrivalDate).' - '.outputDate($departureDate).')', 
 										'init_price' => $room_total_nodiscount, 
 										'init_qty' => 1, 
@@ -140,7 +140,7 @@ class j03025insertbooking_invoice
 			if ( $depositPaid )
 				{
 				$line_items[] = array ( 'tax_code_id' => 0, 
-									   'name' =>   jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', false, false ) ,
+									   'name' => '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',
 									   'description' => '', 
 									   'init_price' => 0-$deposit_required, 
 									   'init_qty' => 1, 
@@ -169,7 +169,7 @@ class j03025insertbooking_invoice
 			if ( $single_person_suppliment > 0 )
 				{
 				$line_items[] = array ( 'tax_code_id' => (int) $mrConfig[ 'accommodation_tax_code' ], 
-										'name' =>  jr_gettext( '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST', '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST', false, false ),
+										'name' => '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST',
 										'description' => '', 
 										'init_price' => $single_person_suppliment, 
 										'init_qty' => 1, 
@@ -214,7 +214,7 @@ class j03025insertbooking_invoice
 						}
 				
 					$line_items[] = array ( 'tax_code_id' => $theExtras->tax_rate, 
-						'name' => jr_gettext( '_JOMRES_CUSTOMTEXT_EXTRANAME'.(string)$extraUid,  $theExtras->name, false ) , 
+						'name' => '_JOMRES_CUSTOMTEXT_EXTRANAME'.(string)$extraUid, 
 						'description' => '', 
 						'init_price' => $extra_price, 
 						'init_qty' => $quantities, 
@@ -268,7 +268,7 @@ class j03025insertbooking_invoice
 		else //contract total is overridden by the manager
 			{
 			$line_items[] = array ( 'tax_code_id' => (int) $mrConfig[ 'accommodation_tax_code' ], 
-									'name' =>  jr_gettext( '_JOMRES_AJAXFORM_BILLING_TOTAL', '_JOMRES_AJAXFORM_BILLING_TOTAL', false, false ) ,
+									'name' =>  '_JOMRES_AJAXFORM_BILLING_TOTAL',
 									'description' => '', 
 									'init_price' => number_format( $new_contract_total, 2, '.', '' ), 
 									'init_qty' => 1, 
@@ -335,7 +335,7 @@ class j03025insertbooking_invoice
 				{
 				//Deposit line item
 				$deposit_paid_line_item_data = array ( 'tax_code_id' => 0, 
-													  'name' =>  jr_gettext( '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', false, false ) , 
+													  'name' => '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', 
 													  'description' => '', 
 													  'init_price' => 0-$deposit_required, 
 													  'init_qty' => 1, 
