@@ -190,7 +190,6 @@ function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $inc
 	if (!class_exists("wp_jomres"))
 		return;
 	$wp_jomres = wp_jomres::getInstance();
-
 	
 	$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig     = $siteConfig->get();
@@ -208,12 +207,12 @@ function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $inc
 		{
 		case "javascript":
 			if ( strpos($filename, 'jquery-1.8.2.js') || strpos($filename, 'jquery-2.0.3.js') )
-				$wp_jomres->js[] = array('jquery', $js, $version);
-			else
-				$wp_jomres->js[] = array($filename, $js, $version);
+				$filename = 'jquery';
+			$wp_jomres->js[$filename] = array($js, $version);
 			break;
 		case "css":
-			$wp_jomres->css[] = array($filename, '/'.$path.$filename, $version);
+			$css = '/'.$path.$filename;
+			$wp_jomres->css[$filename] = array($css, $version);
 			break;
 		default:
 
