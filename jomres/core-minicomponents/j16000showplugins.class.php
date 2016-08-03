@@ -374,7 +374,7 @@ class j16000showplugins
 				$r[ 'INSTALL_LINK' ] = JOMRES_SITEPAGE_URL_ADMIN . '&task=addplugin&plugin=' . $n;
 				$r[ 'INSTALL_TEXT' ] = $installAction;
 				}
-			if (isset($installed_plugins[ $plugin_name ]))
+			if (isset($installed_plugins[ $plugin_name ]['encoded_icon']))
 				$r['ENCODED_ICON'] = $installed_plugins[ $plugin_name ] ['encoded_icon'];
 			else
 				$r['ENCODED_ICON'] ='';
