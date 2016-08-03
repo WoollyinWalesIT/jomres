@@ -184,23 +184,23 @@ if ( ! class_exists( 'wp_jomres' ) )
 			{
 			if (count($this->js)>0)
 				{
-				foreach ($this->js as $js)
+				foreach ($this->js as $js_filename => $js )
 					{
-					if (strpos($js['1'], 'jomres.js'))
-						wp_register_script($js['0'], $js['1'], array("jquery"), $js['2']);
+					if (strpos($js['0'], 'jomres.js'))
+						wp_register_script($js_filename, $js['0'], array("jquery"), $js['1']);
 					else
-						wp_register_script($js['0'], $js['1'], array("jquery"), $js['2'], true);
-					wp_enqueue_script($js['0']);
+						wp_register_script($js_filename, $js['0'], array("jquery"), $js['1'], true);
+					wp_enqueue_script($js_filename);
 					}
 				$this->js = array();
 				}
 			
 			if (count($this->css)>0)
 				{
-				foreach ($this->css as $css)
+				foreach ($this->css as $css_filename => $css)
 					{
-					wp_register_style($css['0'], $css['1'], array(), $css['2']);
-					wp_enqueue_style($css['0']);
+					wp_register_style($css_filename, $css['0'], array(), $css['1']);
+					wp_enqueue_style($css_filename);
 					}
 				$this->css = array();
 				}
