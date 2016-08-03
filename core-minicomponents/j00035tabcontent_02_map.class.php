@@ -25,6 +25,7 @@ class j00035tabcontent_02_map
 			return;
 			}
 
+		$this->retVals ='';
 		$property_uid = (int) $componentArgs[ 'property_uid' ];
 		$mrConfig     = getPropertySpecificSettings( $property_uid );
 
