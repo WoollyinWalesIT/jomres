@@ -684,9 +684,10 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 		$manager_pricing[ ] = array ( '_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL' => jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', '_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', false, false ), '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT' => jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', false, false ), '_JOMCOMP_AMEND_OVERRIDE_SAVE' => jr_gettext( '_JOMCOMP_AMEND_OVERRIDE_SAVE', '_JOMCOMP_AMEND_OVERRIDE_SAVE', false, false ) );
 		}
 
+	$tax_totals                   = array ();
 	if ( $jrConfig[ 'show_tax_in_totals_summary' ] == "1" )
 		{
-		$tax_totals                   = array ();
+		
 		$tt                           = array ();
 		$tt[ 'ROOM_TOTAL_EX_TAX' ]    = $output[ 'ROOM_TOTAL_EX_TAX' ];
 		$tt[ 'ROOM_TOTAL_INC_TAX' ]   = $output[ 'ROOM_TOTAL_INC_TAX' ];
