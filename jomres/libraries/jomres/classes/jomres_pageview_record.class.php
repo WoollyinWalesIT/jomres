@@ -85,7 +85,10 @@ class jomres_pageview_record
 	function set_country_code()
 		{
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-		return $tmpBookingHandler->user_settings['geolocated_country'];
+		if (isset($tmpBookingHandler->user_settings['geolocated_country']))
+			return $tmpBookingHandler->user_settings['geolocated_country'];
+		else
+			return "";
 		}
 		
 	function set_user_id()
