@@ -24,6 +24,7 @@ class j00011manager_option_09_newproperty {
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
+		$this->cpanelButton='';
 		if ($jrConfig['is_single_property_installation'] == "0")
 			{
 			if ( $jrConfig['selfRegistrationAllowed']=='1' || $thisJRUser->superPropertyManager)
