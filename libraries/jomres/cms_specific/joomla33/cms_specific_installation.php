@@ -42,21 +42,7 @@ if ( $folderChecksPassed )
 		mkdir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS );
 		}
 
-
-	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "index.html", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "index.html" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "index.html to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "index.html
-			automatically, please do this manually through FTP</h1><br/>";
-
-	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "index.html", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "index.html" ) ) echo "<h1>Error, unable to copy " . JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "index.html to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "index.html
-			automatically, please do this manually through FTP</h1><br/>";
-
-	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "admin.jomres.php", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "jomres.php" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "admin.jomres.php to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "jomres.php
-			automatically, please do this manually through FTP</h1><br/>";
-
-	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "jomres.xml", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "jomres.xml" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "jomres.xml to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "jomres.xml
-			automatically, please do this manually through FTP</h1><br/>";
-
-	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "uninstall.jomres.php", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "uninstall.jomres.php" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "uninstall.jomres.php to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "uninstall.jomres.php
-			automatically, please do this manually through FTP</h1><br/>";
+	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "admin.jomres.php", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "jomres.php" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "admin.jomres.php to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "jomres.php automatically, please do this manually through FTP</h1><br/>";
 
 	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "jomres.php", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "jomres.php" ) ) echo "<h1>Error, unable to copy " . JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "jomres.php to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "jomres.php
 			automatically, please do this manually through FTP</h1><br/>";
@@ -78,11 +64,13 @@ if ( $folderChecksPassed )
 	
 	if ( !copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "propertytypes.xml", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "propertytypes.xml" ) ) echo "<h1>Error, unable to copy " . _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "propertytypes.xml to " . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS . "views" . JRDS . "default" . JRDS . "tmpl" . JRDS . "propertytypes.xml
 			automatically, please do this manually through FTP</h1><br/>";
+			
+
 	}
 
 
 // Looking to see if Jomres is already installed in Joomla. If it is, we'll simply return true as there's nothing else to do
-$query  = "SELECT name FROM #__extensions WHERE `name` = 'com_jomres'";
+$query  = "SELECT `element` FROM #__extensions WHERE `element` = 'com_jomres' ";
 $result = doSelectSql( $query );
 if ( count( $result ) == 1 )
 	{
@@ -111,31 +99,36 @@ $component_id = doInsertSql( $query, "" );
 
 if ( $component_id )
 	{
-	$query   = "SELECT max(rgt) FROM #__menu";
-	$highest = (int) doSelectSql( $query, 1 );
-	$lft     = $highest + 1;
-	$rgt     = $highest + 2;
+	$query = "SELECT title FROM #__menu WHERE `link` = 'index.php?option=com_jomres' LIMIT 1";
+	$result = doSelectSql ( $query );
+	if (count($result)<1)
+		{
+		$query   = "SELECT max(rgt) FROM #__menu";
+		$highest = (int) doSelectSql( $query, 1 );
+		$lft     = $highest + 1;
+		$rgt     = $highest + 2;
 
-	$query = "INSERT INTO #__menu (
-			`menutype`,`title`,`alias`,`note`,
-			`path`,`link`,`type`,`published`,
-			`parent_id`,`level`,`component_id`,
-			`checked_out`,`checked_out_time`,`browserNav`,`access`,
-			`img`,`template_style_id`,`params`,`lft`,
-			`rgt`,`home`,`language`,`client_id`
-			) VALUES (
-			'main','Jomres','Jomres','Jomres',
-			'','index.php?option=com_jomres','component',1,
-			1,1," . $component_id . ",
-			0,'0000-00-00 00:00:00',0,1,
-			'class:component',0,'',
-			" . $lft . "," . $rgt . ",0,'*',1
-			)";
+		$query = "INSERT INTO #__menu (
+				`menutype`,`title`,`alias`,`note`,
+				`path`,`link`,`type`,`published`,
+				`parent_id`,`level`,`component_id`,
+				`checked_out`,`checked_out_time`,`browserNav`,`access`,
+				`img`,`template_style_id`,`params`,`lft`,
+				`rgt`,`home`,`language`,`client_id`
+				) VALUES (
+				'main','Jomres','Jomres','Jomres',
+				'','index.php?option=com_jomres','component',1,
+				1,1," . $component_id . ",
+				0,'0000-00-00 00:00:00',0,1,
+				'class:component',0,'',
+				" . $lft . "," . $rgt . ",0,'*',1
+				)";
 
-	$result = doInsertSql( $query, "" );
+		$result = doInsertSql( $query, "" );
+		}
 	}
 else
-echo "Unable to create main Jomres admin menu option<br>";
+	echo "Unable to create main Jomres admin menu option<br>";
 
 // Don't need to run this again if the table's already populated
 $query = "SELECT userid FROM #__jomres_managers LIMIT 2";
