@@ -218,7 +218,7 @@ if ( $folderChecksPassed && $functionChecksPassed )
 		define( 'ACTION', "Upgrade" );
 		}
 
-	if ( $_POST[ 'go' ] != "GO >>" && $trashtables < 1 )
+	if ( !isset($_POST[ 'go' ]) ||  ($_POST[ 'go' ] != "GO >>" && $trashtables < 1 ))
 		{
 		if ( !AUTO_UPGRADE ) 
 			proceed();
@@ -3050,10 +3050,12 @@ function checkPropertyTableExists()
 			{
 			if ( strstr( $r->$string, $jomresConfig_dbprefix . 'jomres_propertys' ) )
 				{
-				define( 'ACTION', "Upgrade" );
+				if ( !defined( 'ACTION' ) )
+					define( 'ACTION', "Upgrade" );
 				}
 			}
-		define( 'ACTION', "Install" );
+		if ( !defined( 'ACTION' ) )
+			define( 'ACTION', "Install" );
 		}
 	}
 
