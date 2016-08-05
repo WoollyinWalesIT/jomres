@@ -37,6 +37,8 @@ class j03020insertbooking
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		
+		$secret_key_payment = false;
+						
 		$depositPaid       = $componentArgs[ 'depositPaid' ];
 		if ( isset( $componentArgs[ 'usejomressessionasCartid' ] ) ) 
 			$usejomressessionasCartid = $componentArgs[ 'usejomressessionasCartid' ];
@@ -106,7 +108,6 @@ class j03020insertbooking
 					$extrasquantities         = $tempBookingData->extrasquantities;
 					$extrasValue              = $tempBookingData->extrasvalue;
 					$specialReqs              = addslashes( $tempBookingData->error_log );
-					$discount                 = $tempBookingData->discount;
 					$room_total               = $tempBookingData->room_total;
 					$tax                      = $tempBookingData->tax;
 
@@ -126,16 +127,6 @@ class j03020insertbooking
 						}
 					else
 					$extrasquantities = "";
-
-					$discount_details = "";
-					if ( count( $discount ) > 0 )
-						{
-						$discount = array_map("strip_tags", $discount);
-						foreach ( $discount as $d )
-							{
-							$discount_details .= serialize( $d );
-							}
-						}
 
 					// Let's get our guest type data
 					$tmpArray      = array ();
@@ -181,9 +172,8 @@ class j03020insertbooking
 					`extrasvalue`				= '$extrasValue',
 					`tax`						= '$tax',
 					`room_total`				= '$room_total',
-					`discount`					= '$discount',
 					`currency_code` 			= '$ccode',
-					`discount_details` 			= '$discount_details',
+					`discount_details` 			= '".serialize($tempBookingData->discounts)."',
 					`approved`		 			= '1'
 					WHERE contract_uid = '$amend_contractuid'";
 
@@ -195,7 +185,7 @@ class j03020insertbooking
 
 				jomres_audit( get_showtime( 'jomressession' ), "Amend booking - contract updated " . $amend_contractuid );
 				$dt    = date( "Y-m-d H:i:s" );
-				$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . RemoveXSS( "Amend booking - contract updated " . $amend_contractuid ) . "','$dt','" . (int) $property_uid . "')";
+				$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $amend_contractuid . "','" . RemoveXSS( "Amend booking - contract updated " . $amend_contractuid ) . "','$dt','" . (int) $property_uid . "')";
 				doInsertSql( $query, "" );
 
 				$rates_uids     = array ();
@@ -254,7 +244,6 @@ class j03020insertbooking
 				}
 			else
 				{
-				$secret_key_payment = false;
 				$new_user_id = jomres_cmsspecific_createNewUserOnBooking();
 
 				$guests_uid = insertGuestDeets( get_showtime( 'jomressession' ) );
@@ -582,7 +571,7 @@ class j03020insertbooking
 					system_log( "j03020insertbooking :: Booking insert failed " );
 				}
 
-			if (!$secret_key_payment)
+			if (!$secret_key_payment && $amend_contractuid ==0 )
 				{
 				$bookingNotes = $tempBookingData->booking_notes;
 				foreach ( $bookingNotes as $k => $v )
@@ -624,7 +613,7 @@ class j03020insertbooking
 				}
 
 			//insert custom fields notes
-			if (!$secret_key_payment)
+			if (!$secret_key_payment && $amend_contractuid ==0 )
 				{
 				$current_property_details->gather_data($property_uid);
 				$ptype_id = $current_property_details->ptype_id;

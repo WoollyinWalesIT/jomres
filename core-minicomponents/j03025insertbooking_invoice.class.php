@@ -33,7 +33,9 @@ class j03025insertbooking_invoice
 		$thisJRUser		   = jomres_singleton_abstract::getInstance( 'jr_user' );
 		
 		$this->results     = array ();
-		$contract_uid      = $componentArgs[ 'contract_uid' ];
+		if (isset($componentArgs[ 'contract_uid' ]))
+			$contract_uid      = $componentArgs[ 'contract_uid' ];
+		if (isset($componentArgs[ 'secret_key_payment' ]))
 		$secret_key_payment= $componentArgs[ 'secret_key_payment' ];
 
 		if ( isset( $tmpBookingHandler->tmpbooking[ "amend_contract" ] ) )

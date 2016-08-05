@@ -937,7 +937,8 @@ class dobooking
 	function setGuestPopupMessage( $message )
 		{
 		$msg = $this->sanitiseOutput( $message );
-		if ( $_REQUEST[ 'field' ] != "property_uid_check" ) $this->growlmessages[ 'guest_feedback' ] = $msg;
+		if ( isset($_REQUEST[ 'field' ]) && $_REQUEST[ 'field' ] != "property_uid_check" ) 
+			$this->growlmessages[ 'guest_feedback' ] = $msg;
 		}
 
 	function echo_populate_div( $message )
