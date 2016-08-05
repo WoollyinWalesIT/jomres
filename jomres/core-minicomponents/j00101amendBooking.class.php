@@ -156,7 +156,8 @@ class j00101amendBooking
 						if ( (int)$c->coupon_id > 0 )
 							{
 							$tmpBookingHandler->tmpbooking[ "coupon_id" ]                = (int) $c->coupon_id;
-							$tmpBookingHandler->tmpbooking[ "coupon" ]                   = (string) $c->coupon;
+							if (isset($c->coupon))
+								$tmpBookingHandler->tmpbooking[ "coupon" ]                   = (string) $c->coupon;
 							}
 						else
 							{

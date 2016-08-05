@@ -112,7 +112,23 @@ class jomres_database
 		
 		$this->db_prefix = get_showtime( 'dbprefix' );
 		}
-
+	
+	
+	function close()
+		{
+		switch($this->dbtype) 
+			{
+			case "mysqli" :
+				mysqli_close($this->link);
+				break;
+			case "pdomysql" :
+				$this->PDOdb = null;
+				break;
+			default:
+				break;
+			}
+		}
+	
 	function query()
 		{
 		switch($this->dbtype) 
