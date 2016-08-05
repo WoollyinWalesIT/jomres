@@ -1,3 +1,17 @@
+<h3>Jomres 9.8.9 05/08/2016</h3>
+
+<span class="label label-success">Feature</span> Updated Jomres to offer Joomla installer updating.
+
+<span class="label label-warning">Change</span> Added booking balance output to emails.
+<span class="label label-warning">Change</span> Added a default setting for minimum deposit.
+<span class="label label-warning">Change</span> Added a default option to set currency code if it can't be found when trying to detect a user's country.
+<span class="label label-warning">Change</span> Modified how extra names are saved so that they can be translated.
+
+<span class="label label-important label-danger">Fix</span> Fixed some notices in basic property details caused by a property not having rooms or accommodation tax set.
+<span class="label label-important label-danger">Fix</span> Resolved an issue with js not being loaded if only jomres shortcodes is installed (and not jomres search widget too).
+<span class="label label-important label-danger">Fix</span> Resolved a number of notices.
+
+
 <h3>Jomres 9.8.8 01/08/2016</h3>
 
 <span class="label label-success">Feature</span> Added an option to disable sending emails to managers on errors, expanded notes regarding logging.
