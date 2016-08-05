@@ -122,7 +122,7 @@ class j00101amendBooking
 						$tmpBookingHandler->tmpbooking[ "arrivalDate" ]              = (string) $c->arrival;
 						$tmpBookingHandler->tmpbooking[ "departureDate" ]            = (string) $c->departure;
 						$tmpBookingHandler->tmpbooking[ "stayDays" ]                 = "";
-						$tmpBookingHandler->tmpbooking[ "dateRangeString" ]          = (string) $c->dateRangeString;
+						$tmpBookingHandler->tmpbooking[ "dateRangeString" ]          = (string) $c->date_range_string;
 						$tmpBookingHandler->tmpbooking[ "guests_uid" ]               = (int) $c->guest_uid;
 						$tmpBookingHandler->tmpbooking[ "property_uid" ]             = (int) $selectedProperty;
 						$tmpBookingHandler->tmpbooking[ "rates_uid" ]                = "";
@@ -150,18 +150,28 @@ class j00101amendBooking
 					else
 						{
 						//Same property so carry over all possible fields
+
 						$tmpBookingHandler->tmpbooking[ "requestedRoom" ]            = "";
 						$tmpBookingHandler->tmpbooking[ "rate_pernight" ]            = "";
-						$tmpBookingHandler->tmpbooking[ "coupon_id" ]                = (int) $c->coupon_id;
-						$tmpBookingHandler->tmpbooking[ "coupon" ]                   = (string) $c->coupon;
+						if ( (int)$c->coupon_id > 0 )
+							{
+							$tmpBookingHandler->tmpbooking[ "coupon_id" ]                = (int) $c->coupon_id;
+							$tmpBookingHandler->tmpbooking[ "coupon" ]                   = (string) $c->coupon;
+							}
+						else
+							{
+							$tmpBookingHandler->tmpbooking[ "coupon_id" ]                = "";
+							$tmpBookingHandler->tmpbooking[ "coupon" ]                   = "";
+							}
+						
 						$tmpBookingHandler->tmpbooking[ "lastminute_id" ]            = "";
 						$tmpBookingHandler->tmpbooking[ "arrivalDate" ]              = (string) $c->arrival;
 						$tmpBookingHandler->tmpbooking[ "departureDate" ]            = (string) $c->departure;
 						$tmpBookingHandler->tmpbooking[ "stayDays" ]                 = ""; //hbw
-						$tmpBookingHandler->tmpbooking[ "dateRangeString" ]          = (string) $c->dateRangeString;
+						$tmpBookingHandler->tmpbooking[ "dateRangeString" ]          = (string) $c->date_range_string;
 						$tmpBookingHandler->tmpbooking[ "guests_uid" ]               = (int) $c->guest_uid;
 						$tmpBookingHandler->tmpbooking[ "property_uid" ]             = (int) $selectedProperty;
-						$tmpBookingHandler->tmpbooking[ "rates_uid" ]                = $this->rates_uid;
+						$tmpBookingHandler->tmpbooking[ "rates_uid" ]                = $c->rates_uid;
 						$tmpBookingHandler->tmpbooking[ "resource" ]                 = "";
 						$tmpBookingHandler->tmpbooking[ "single_person_suppliment" ] = (float) $c->single_person_suppliment;
 						$tmpBookingHandler->tmpbooking[ "deposit_required" ]         = (int) $c->deposit_required;
