@@ -45,10 +45,14 @@ class jomres_currency_exchange_rates
 		$current_rates = $this->get_exchange_rates();
 
 		$update_exchange_rates = false;
-		if ( !$this->exchange_rate_file_exists() ) $update_exchange_rates = true;
-		elseif ( $this->exchange_rate_file_expired() ) $update_exchange_rates = true;
-		elseif ( $this->update_now ) $update_exchange_rates = true;
-		elseif ( count( $current_rates->rates ) == 0 ) $update_exchange_rates = true;
+		if ( !$this->exchange_rate_file_exists() ) 
+			$update_exchange_rates = true;
+		elseif ( $this->exchange_rate_file_expired() ) 
+			$update_exchange_rates = true;
+		elseif ( $this->update_now ) 
+			$update_exchange_rates = true;
+		elseif ( count( $current_rates->rates ) == 0 ) 
+			$update_exchange_rates = true;
 
 		if ( $update_exchange_rates )
 			{
@@ -70,6 +74,7 @@ class jomres_currency_exchange_rates
 			{
 			require_once( $this->exchange_rate_classfile );
 			$rates = new jomres_currency_exchange_rates_temp_data();
+
 			set_showtime( 'temp_exchangerate_data', $rates->rates );
 
 			return $rates;
@@ -110,6 +115,12 @@ class jomres_currency_exchange_rates
 		$currency_codes      = $currency_code_class->codes;
 		ignore_user_abort( true ); // Should stop a user from visiting another page when we're getting the exchange rates. At some point, it might be wiser to encourage managers to set this as a cron job.
 		$json           = $this->get_openexchangerates_rates();
+		if (is_null($json))
+			{
+			$message = "After reading exchange rate file, the json variable is found to be NULL. The most likely cause is either CURL not working/firewalled, or the API isn't set/is wrong.";
+			logging::log_message('Jomres started' , "Core" , "ERROR" );
+			return;
+			}
 
 		// We can safely assume that there's a GBP exchange rate (at least, for the forseeable future. If there isn't, then the world has probably been invaded by aliens and exchange rates in Jomres is the least of our problems. Rule Britannia and all that. )
 		$GBP_rate = $json->GBP;
@@ -186,8 +197,17 @@ class jomres_currency_exchange_rates
 		logging::log_message('Curl call took '.$logging_time. " seconds " , "Curl" , "DEBUG" );
 		
 		$result = json_decode($json);
-		
-		return $result->rates;
+		if (is_null($result) || ( isset($result->error) && $result->error == true ) )
+			{
+			if (is_null($result) )
+				$message = "After reading exchange rate file, the json variable is found to be NULL. The most likely cause is either CURL not working/firewalled, or the API isn't set/is wrong.";
+			else
+				$message = $result->description;
+			logging::log_message($message , "Core" , "ERROR" );
+			return null ;
+			}
+		else
+			return $result->rates;
 		
 		}
 	
