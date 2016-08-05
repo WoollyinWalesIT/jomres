@@ -214,11 +214,11 @@ if ( $folderChecksPassed && $functionChecksPassed )
 		}
 	else
 		{
-		$_POST[ 'go' ] = "GO!";
+		$_POST[ 'go' ] = "GO >>";
 		define( 'ACTION', "Upgrade" );
 		}
 
-	if ( $_POST[ 'go' ] != "GO!" && $trashtables < 1 )
+	if ( $_POST[ 'go' ] != "GO >>" && $trashtables < 1 )
 		{
 		if ( !AUTO_UPGRADE ) 
 			proceed();
@@ -6530,19 +6530,21 @@ function showTop()
 	else
 		$current1=' class="current"';
 	?>
-	<div>
-		<img src="http://www.jomres.net/images/jomres.png" class="img-rounded"/>
+	
+	<p>&nbsp;</p>
+	
+	<img src="http://www.jomres.net/images/jomres.png" class="img-responsive"/>
+	
+	<p>&nbsp;</p>
+	
+	<h2 class="page-header">Installation/upgrade stage</h2>
+
+	<div class="visible-desktop steps">
+		<a><span>Download Jomres</span></a>
+		<a <?php echo $current1;?>><span>Prepare installation</span></a>
+		<a <?php echo $current2;?>><span>Complete installation</span></a>
 	</div>
-	<div class="jumbotron">
-		<h2>Installation/upgrade stage</h2>
-	</div>
-	<div class="well">
-		<div class="visible-desktop steps">
-			<a><span>Download Jomres</span></a>
-			<a <?php echo $current1;?>><span>Prepare installation</span></a>
-			<a <?php echo $current2;?>><span>Complete installation</span></a>
-		</div>
-	</div>
+	<p>&nbsp;</p>
 	<?php
 	}
 
@@ -6557,27 +6559,23 @@ function proceed()
 		$akeeba_backup_url = 'https://www.akeebabackup.com/products/akeeba-backup-wordpress.html';
 	
 	?>
-		<form action="" method="post" name="adminForm">
-			<div class="jumbotron">
-				<p>Press the GO button when you are ready to proceed with installation/upgrade</p>
-				<input type="submit" name="go" value="GO!" class="btn btn-primary btn-large">
-			</div>
-		</form>
-
 		<div class="alert alert-warning">
-		You should always perform a backup before installing or upgrading Jomres (or, in fact any plugin), in the unlikely event that something goes wrong. <br/><br/> If you haven't yet backed up we recommend that you consider installing <a href="<?php echo $akeeba_backup_url?>" target="_blank">Akeeba backup</a>
+		You should always perform a backup before installing or upgrading Jomres (or, in fact any plugin), in the unlikely event that something goes wrong. If you haven't yet backed up we recommend that you consider installing <a href="<?php echo $akeeba_backup_url?>" target="_blank">Akeeba backup</a>
 		</div>
 		
-		<hr>
-		
 		<form action="" method="post" name="adminForm">
-			<h3>Remove Jomres tables</h3>
+			<p>Press the GO button when you are ready to proceed with installation/upgrade</p>
+			<input type="submit" name="go" value="GO >>" class="btn btn-success btn-lg" />
+		</form>
+
+		<h3 class="page-header">Remove Jomres tables</h3>
+		<div class="alert alert-danger">Please, do not use this button unless you're sure you want to remove all your current Jomres tables. This action is only recoverable by restoring a database backup. </div>
+		<form action="" method="post" name="adminForm">
 			<input type="hidden" name="option" value="com_jomres"/>
 			<input type="hidden" name="trashtables" value="1"/>
-			<input type="submit" value="Remove Jomres Tables" class="btn btn-danger">
+			<input type="submit" value="Remove Jomres Tables" class="btn btn-danger btn-sm"/>
 		</form>
-		<div class="alert alert-danger">Please, do not use this button unless you're sure you want to remove all your current Jomres tables. This action is only recoverable by restoring a database backup. </div>
-	<br>
+	
 	<?php
 	}
 
@@ -6607,11 +6605,14 @@ function showCompletedText()
 		
 	if ( !defined('ERRORS_SHOWN_NO_REDIRECT') )
 		{
-		output_message ( '<script>
-			setTimeout(function() {
-			window.location.href = "' . $administrator_url . '";
-			}, 5000);
-			</script>');
+		?>
+		<script type="text/javascript">
+		setTimeout(function() {
+		parent.jQuery('#jomres-installation-modal').modal('hide');
+		parent.window.location.href = "<?php echo $administrator_url ?>";
+		}, 5000);
+		</script>
+		<?php
 		}
 	}
 

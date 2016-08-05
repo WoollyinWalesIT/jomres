@@ -114,5 +114,3 @@ class jomres_pageview_record
 	
 
 	}
-
-?>
