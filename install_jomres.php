@@ -29,6 +29,7 @@ else
 $functionChecksPassed = true;
 $folderChecksPassed = true;
 
+error_reporting(E_ERROR);
 
 $info = phpversion();
 $v_arr = explode( "-", $info );
@@ -941,7 +942,7 @@ function save_configuration_file()
 		output_message ( "Saving new configuration.php file which stores the site settings", "info" );
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$tmpConfig = $siteConfig->get();
-		
+		$tmpConfig['development_production'] = 'production';
 		if (!file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php', 
 '<?php
 ##################################################################
@@ -6336,7 +6337,7 @@ function updateSiteSettings ( $k , $v )
 		$tmpConfig = $siteConfig->get();
 		
 		$tmpConfig[$k] = (string)$v;
-		
+		$tmpConfig['development_production'] = 'production';
 		if (!file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php', 
 '<?php
 ##################################################################
