@@ -83,6 +83,7 @@ class j03020insertbooking
 				{
 				set_showtime ("booking_amended",false);
 				$amend_contract = 0;
+				$amend_contractuid = 0;
 				}
 
 			if ( $amend_contract && $amend_contractuid != 0 && $userIsManager )
