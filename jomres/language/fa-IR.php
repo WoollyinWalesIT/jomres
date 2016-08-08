@@ -2099,7 +2099,7 @@ jr_define("_JOMRES_EMAIL_TEMPLATES_TEXT","متن ایمیل");
 jr_define("_JOMRES_EMAIL_TEMPLATES_TYPE","نوع ایمیل");
 jr_define("_JOMRES_EMAIL_TEMPLATES_NAME","نام ایمیل");
 jr_define("_JOMRES_EMAIL_TEMPLATES_DESC","توضیحات ایمیل");
-jr_define("_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS","Please see this page for help customizing the emails and a list of the available output: Email Templates Help");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Please see this page for help customizing the emails and a list of the available output: <a href=\"http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates\" target=\"_blank\">Email Templates Help</a>");
 jr_define("_JOMRES_ADMIN_NEWBOOKING_EMAILNAME","ایمیل رزرو جدید برای مدیر رزرواسیون");
 jr_define("_JOMRES_ADMIN_NEWBOOKING_EMAILDESC","استفاده کنید، برای هر رزرو یک ایمیل به مدیر رزرواسیون ارسال خواهد شد global paypal gateway در صورتی که از ");
 jr_define("_JOMRES_HOTEL_NEWBOOKING_EMAILNAME","ایمیل رزرو جدید برای هتل");

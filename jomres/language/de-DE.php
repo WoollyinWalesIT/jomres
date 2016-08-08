@@ -2549,7 +2549,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Email text");
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"E-Mail-Typ");
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Email name");
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"E-Mail Beschreibung");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Bitte sehen Sie diese Seite für Hilfe, um die E-Mails und eine Liste der verfügbaren Ausgabe Customizing: <a href=\"http://manual.jomres.net/email_templates.html\" target=\"_blank\">Email Templates Help</a>");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Bitte sehen Sie diese Seite für Hilfe, um die E-Mails und eine Liste der verfügbaren Ausgabe Customizing: <a href=\"http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates\" target=\"_blank\">Email Templates Help</a>");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Site Admin Neue Buchung per E-Mail");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"E-Mail gesendet an den Site-Administrator, wenn eine neue Buchung erfolgt, wenn die globale Paypal Gateway aktiviert ist");
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Hotel New Buchung per E-Mail");

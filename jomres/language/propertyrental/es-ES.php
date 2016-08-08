@@ -2491,7 +2491,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"texto del correo electrónico");
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"tipo de correo electrónico");
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"nombre Correo");
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Descripción de correo electrónico");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Por favor, consulte esta página para obtener ayuda personalización de los mensajes de correo electrónico y una lista de la salida disponibles: <a href=\"http://manual.jomres.net/email_templates.html\" target=\"_blank\"> Plantillas de Correo Electrónico Ayuda < / a>");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Por favor, consulte esta página para obtener ayuda personalización de los mensajes de correo electrónico y una lista de la salida disponibles: <a href=\"http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates\" target=\"_blank\"> Plantillas de Correo Electrónico Ayuda < / a>");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Administrador del sitio Nueva reservas E-mail");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Correo electrónico enviado al administrador del sitio cuando se hace una nueva reserva, si la puerta de enlace de Paypal mundial está habilitado");
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Hotel New reservas E-mail");

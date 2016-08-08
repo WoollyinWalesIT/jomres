@@ -2502,7 +2502,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Email текст");
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Email тип");
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Email имя");
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Email описание");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Пожалуйста, посмотрите эту страницу для помощи Настройка электронной почты и список доступных продукции: <a href=\"http://manual.jomres.net/email_templates.html\" target=\"_blank\">Email Templates Help</a>");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Пожалуйста, посмотрите эту страницу для помощи Настройка электронной почты и список доступных продукции: <a href=\"http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates\" target=\"_blank\">Email Templates Help</a>");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Отправлять письмо администратору при новом бронировании Email");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"E-mail отправлено администратору сайта, когда новый заказ сделан, если глобальная шлюз Paypal включен");
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Новый заказ бронирования отелю Email");

@@ -2430,7 +2430,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"E-posta metni");
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"E-posta türü");
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"E-posta adı");
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"E-posta açıklaması");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Please see this page for help customizing the emails and a list of the available output: <a href=\"http://manual.jomres.net/email_templates.html\" target=\"_blank\">Email Templates Help</a>");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Please see this page for help customizing the emails and a list of the available output: <a href=\"http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates\" target=\"_blank\">Email Templates Help</a>");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Site Admin Yeni Kitap E-posta");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Email sent to the site admin when a new booking is made, if the global Paypal gateway is enabled");
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Hotel New Booking Email");

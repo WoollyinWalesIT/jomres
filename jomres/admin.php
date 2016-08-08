@@ -133,6 +133,9 @@ try
 		$MiniComponents->triggerEvent( '10003' ); // 10003 builds the menu arrays
 		$output[ 'CONTROL_PANEL_MENU' ] = $MiniComponents->miniComponentData[ '10004' ][ 'generate_control_panel' ]; // 10004 Builds the actual menu items
 
+		//frequently asked questions
+		$output['FAQ_PANE']					= $MiniComponents->specificEvent( '16000', 'faq_pane' , array ("output_now"=>false) );
+		
 		//obsolete files warnings
 		$ouput[ 'OBSOLETE_FILES_WARNINGS' ] = '';
 		jr_import( 'jomres_obsolete_file_handling' );

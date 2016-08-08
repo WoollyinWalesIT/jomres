@@ -54,7 +54,7 @@ class j10001control_panel
 		
 		//bookings chart
 		$output['BOOKINGS_CHART']			= $MiniComponents->specificEvent( '16000', 'chart_bookings' , array ("output_now"=>false) );
-		
+
 		//commissions chart
 		$output['COMMISSIONS_CHART'] = '';
 		if (isset($MiniComponents->registeredClasses['16000chart_commission']) && (int)$jrConfig['use_commission'] == 1)
