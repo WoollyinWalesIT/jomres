@@ -27,7 +27,10 @@ class j02222editguest
 			}
 		$guestUid        = intval( jomresGetParam( $_REQUEST, 'guestUid', 0 ) );
 		$defaultProperty = getDefaultProperty();
-
+		
+		$vat_validation = array();
+		$output = array();
+		
 		if ( $guestUid != 0 )
 			{
 
@@ -66,7 +69,6 @@ class j02222editguest
 					$validation_success    = $validation->vat_number_validation_response;
 					if (strlen($validation_success)>0)
 						{
-						$vat_validation = array();
 						$vat_validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] =$validation_success;
 						if ($validation->vat_number_validated)
 							{
@@ -89,7 +91,6 @@ class j02222editguest
 			}
 		else
 			{
-			$vat_validation = array();
 			$output[ 'REGION' ]    = setupRegions( "GB" );
 			$output[ 'COUNTRY' ]  = createSimpleCountriesDropdown( "GB" );
 			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList( 0, 100, 1, 'discount', 'class="inputbox" size="1"', 0 );
