@@ -56,7 +56,7 @@ if (count($user_ids)>0)
 	$super_admin_ids = array();
 	foreach ($user_ids as $user)
 		{
-		echo $user->ID."<Br>";
+		//echo $user->id."<br />";
 		if ( is_super_admin( $user->id ) )
 			{
 			$super_admin_ids[] =  array("username" => $user->user_login, "id"=> $user->id );
