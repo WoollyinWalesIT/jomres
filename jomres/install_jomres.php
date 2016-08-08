@@ -219,7 +219,7 @@ if ( $folderChecksPassed && $functionChecksPassed )
 		define( 'ACTION', "Upgrade" );
 		}
 
-	if ( !isset($_POST[ 'go' ]) ||  ($_POST[ 'go' ] != "GO >>" && $trashtables < 1 ))
+	if ( (!isset($_POST[ 'go' ]) || $_POST[ 'go' ] != "GO >>") && $trashtables < 1 )
 		{
 		if ( !AUTO_UPGRADE ) 
 			proceed();
@@ -4166,93 +4166,79 @@ function insertSampleData()
 	$result = doInsertSql( "INSERT INTO `#__jomres_room_features` ( `room_features_uid` , `feature_description`,`property_uid` )VALUES ('1', 'En-suite Bathroom','1'), ('2', 'Tea & Coffee Making facilities','1')", "" );
 
 
-	$result = doInsertSql( "INSERT INTO `#__jomres_room_classes` (`room_classes_uid`, `room_class_abbv`, `room_class_full_desc`, `image`, `property_uid`) VALUES
-			(1, 'Room Double beds', '', 'double.png', 0),
-			(2, 'Room Twin beds', '', 'twin.png', 0),
-			(3, 'Room Single', '', 'single.png', 0),
-			(4, 'Room 4 Poster bed', '', 'fourposter.png', 0),
-			(5, '1 Bedroom', '', '1bedroom.png', 0),
-			(6, '2 Bedrooms', '', '2bedrooms.png', 0),
-			(7, '3 Bedrooms', '', '3bedrooms.png', 0),
-			(8, '4 Bedrooms', '', '4bedrooms.png', 0),
-			(9, '5 Bedrooms', '', '5bedrooms.png', 0),
-			(10, '6+ Bedrooms', '', '6plusbedrooms.png', 0),
-			(11, 'Tent pitch 1 person ', '', 'camping_1bivi_pitch.png', 0),
-			(12, 'Tent pitch 2 person ', '', 'camping_2_man_tent_pitch.png', 0),
-			(13, 'Tent pitch 3 person ', '', 'camping_3_man_tent_pitch.png', 0),
-			(14, 'Tent pitch 4 person ', '', 'camping_4_man_tent_pitch.png', 0),
-			(15, 'Tent pitch 6+ person', '', 'camping_6_man_tent_pitch.png', 0),
-			(16, 'Car rental Hatchback', '', 'car_rental_hatchback.png', 0),
-			(17, 'Car rental Luxury', '', 'car_rental_luxury.png', 0),
-			(18, 'Car rental People Ca', '', 'car_rental_peoplecarrier.png', 0),
-			(19, 'Car rental Saloon', '', 'car_rental_saloon.png', 0),
-			(20, 'Car rental Sportscar', '', 'car_rental_sportscar.png', 0),
-			(21, 'Tent pitch Caravan', '', 'camping_caravan_pitch.png', 0),
-			(22, 'Yacht 2 berth', '', 'yacht_2_berth.png', 0),
-			(23, 'Yacht 4 berth', '', 'yacht_4_berth.png', 0),
-			(24, 'Yacht 6 berth', '', 'yacht_6_berth.png', 0),
-			(25, 'Yacht 8+ berth', '', 'yacht_8_berth.png', 0)
+	$result = doInsertSql( "INSERT INTO `wp_jomres_room_classes` (`room_classes_uid`, `room_class_abbv`, `room_class_full_desc`, `image`, `property_uid`) VALUES
+								(1, 'Room Double beds', '', 'double.png', '0'),
+								(2, 'Room Twin beds', '', 'twin.png', '0'),
+								(3, 'Room Single', '', 'single.png', '0'),
+								(4, 'Room 4 Poster bed', '', 'fourposter.png', '0'),
+								(5, '1 Bedroom', '', '1bedroom.png', '0'),
+								(6, '2 Bedrooms', '', '2bedrooms.png', '0'),
+								(7, '3 Bedrooms', '', '3bedrooms.png', '0'),
+								(8, '4 Bedrooms', '', '4bedrooms.png', '0'),
+								(9, '5 Bedrooms', '', '5bedrooms.png', '0'),
+								(10, '6+ Bedrooms', '', '6plusbedrooms.png', '0'),
+								(11, 'Tent pitch 1 person ', '', 'camping_1bivi_pitch.png', '0'),
+								(12, 'Tent pitch 2 person ', '', 'camping_2_man_tent_pitch.png', '0'),
+								(13, 'Tent pitch 3 person ', '', 'camping_3_man_tent_pitch.png', '0'),
+								(14, 'Tent pitch 4 person ', '', 'camping_4_man_tent_pitch.png', '0'),
+								(15, 'Tent pitch 6+ person', '', 'camping_6_man_tent_pitch.png', '0'),
+								(16, 'Car rental Hatchback', '', 'car_rental_hatchback.png', '0'),
+								(17, 'Car rental Luxury', '', 'car_rental_luxury.png', '0'),
+								(18, 'Car rental Minivan', '', 'car_rental_peoplecarrier.png', '0'),
+								(19, 'Car rental Saloon', '', 'car_rental_saloon.png', '0'),
+								(20, 'Car rental Sportscar', '', 'car_rental_sportscar.png', '0'),
+								(21, 'Tent pitch Caravan', '', 'camping_caravan_pitch.png', '0'),
+								(22, 'Yacht 2 berth', '', 'yacht_2_berth.png', '0'),
+								(23, 'Yacht 4 berth', '', 'yacht_4_berth.png', '0'),
+								(24, 'Yacht 6 berth', '', 'yacht_6_berth.png', '0'),
+								(25, 'Yacht 8+ berth', '', 'yacht_8_berth.png', '0')
 			" );
 
 
 	// Hotel/Village cross reference
-	$result = doInsertSql( "INSERT INTO `#__jomres_roomtypes_propertytypes_xref` (`id`, `roomtype_id`, `propertytype_id`) VALUES
-			(1, 4, 1),
-			(2, 1, 1),
-			(3, 3, 1),
-			(4, 2, 1),
-			(5, 5, 7),
-			(6, 6, 7),
-			(7, 7, 7),
-			(8, 8, 7),
-			(9, 9, 7),
-			(10, 10, 7),
-			(11, 5, 12),
-			(12, 6, 12),
-			(13, 7, 12),
-			(14, 8, 12),
-			(15, 9, 12),
-			(23, 16, 3),
-			(24, 17, 3),
-			(25, 18, 3),
-			(26, 19, 3),
-			(27, 20, 3),
-			(28, 11, 4),
-			(29, 12, 4),
-			(30, 13, 4),
-			(31, 14, 4),
-			(32, 15, 4),
-			(33, 21, 4),
-			(34, 22, 2),
-			(35, 23, 2),
-			(36, 24, 2),
-			(37, 25, 2),
-			(38, 4, 6),
-			(39, 1, 6),
-			(40, 3, 6),
-			(41, 2, 6),
-			(42, 5, 8),
-			(43, 6, 8),
-			(44, 7, 8),
-			(45, 8, 8),
-			(46, 9, 8),
-			(47, 10, 8),
-			(48, 5, 9),
-			(49, 6, 9),
-			(50, 7, 9),
-			(51, 8, 9),
-			(52, 9, 9),
-			(53, 10, 9),
-			(54, 16, 10),
-			(55, 17, 10),
-			(56, 18, 10),
-			(57, 19, 10),
-			(58, 20, 10),
-			(59, 22, 11),
-			(60, 23, 11),
-			(61, 24, 11),
-			(62, 25, 11)
-			;" );
+	$result = doInsertSql( "INSERT INTO `wp_jomres_roomtypes_propertytypes_xref` (`id`, `roomtype_id`, `propertytype_id`) VALUES
+								(1, 11, 4),
+								(2, 12, 4),
+								(3, 13, 4),
+								(4, 14, 4),
+								(5, 15, 4),
+								(6, 21, 4),
+								(7, 24, 2),
+								(8, 25, 2),
+								(9, 16, 3),
+								(10, 17, 3),
+								(11, 19, 3),
+								(12, 20, 3),
+								(13, 22, 2),
+								(14, 23, 2),
+								(15, 18, 3),
+								(16, 4, 1),
+								(17, 4, 5),
+								(18, 1, 1),
+								(19, 1, 5),
+								(20, 3, 1),
+								(21, 3, 5),
+								(22, 2, 1),
+								(23, 2, 5),
+								(24, 5, 6),
+								(25, 5, 7),
+								(26, 5, 8),
+								(27, 6, 6),
+								(28, 6, 7),
+								(29, 6, 8),
+								(30, 7, 6),
+								(31, 7, 7),
+								(32, 7, 8),
+								(33, 8, 6),
+								(34, 8, 7),
+								(35, 8, 8),
+								(36, 9, 6),
+								(37, 9, 7),
+								(38, 9, 8),
+								(39, 10, 6),
+								(40, 10, 7),
+								(41, 10, 8)
+			" );
 
 	//$result=doInsertSql("INSERT INTO `#__jomres_room_classes` ( `room_classes_uid` , `room_class_abbv` , `room_class_full_desc`,`property_uid`,`image` )VALUES ('3', 'D/B', 'Double Bed','0','/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/double.png'), ('4', 'T/B', 'Twin Beds','0','/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/twin.png')","");
 
@@ -4268,14 +4254,18 @@ function insertSampleData()
 
 	$result = doInsertSql( "INSERT INTO `#__jomres_guests` ( `guests_uid` , `contracts_contract_uid` , `mos_userid` , `firstname` , `surname` , `house` , `street` , `town` , `county`,`postcode` , `tel_landline` , `tel_mobile` , `tel_fax` , `preferences` , `car_regno` , `ccard_no` , `ccard_issued` , `ccard_expiry` , `ccard_iss_no` , `ccard_name`,`property_uid`,`email` )VALUES ('1', '0', NULL , 'Major', 'Gowen', 'Watery Fowls', 'a Street', 'a Region','a Town','XXNN NXX', '01000 123456', '01777 123456', '01000 654321','A newspaper with uptodate cricket scores', '', '' , '', '','','','1','example@example.com')", "" );
 
-	$result = doInsertSql( "INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` ,`mrp_srp_flag` )  VALUES ('1', 'Hotel', 'propertyrental', '1' , 0 )", "" );
-	$result = doInsertSql( "INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` ,`mrp_srp_flag`  ) VALUES ('4', 'Camp Site', 'campsite', '1' , 0 )", "" );
-	$result = doInsertSql( "INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` ,`mrp_srp_flag`  ) VALUES ('5', 'Tours', 'tours', '1' , 3 )", "" );
-	$result = doInsertSql( "INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` ,`mrp_srp_flag`  ) VALUES ('6', 'B&B', 'propertyrental', '1' , 0 )", "" );
-	$result = doInsertSql( "INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` ,`mrp_srp_flag`  ) VALUES ('7', 'Villa', 'propertyrental', '1' , 1 )", "" );
-	$result = doInsertSql( "INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` ,`mrp_srp_flag`  ) VALUES ('8', 'Cottage', 'propertyrental', '1' , 1 )", "" );
-	$result = doInsertSql( "INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` ,`mrp_srp_flag`  ) VALUES ('9', 'Apartment', 'propertyrental', '1' , 1 )", "" );
-	$result = doInsertSql( "INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` ,`mrp_srp_flag`  ) VALUES ('12', 'For sale', 'propertyrental', '1' , 3 )", "" );
+	$result = doInsertSql( "INSERT INTO `wp_jomres_ptypes` (`id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag`) VALUES
+								(1, 'Hotel', 'propertyrental', 1, 0, 0),
+								(2, 'Yacht', 'yacht', 1, 0, 1),
+								(3, 'Car', 'car', 1, 0, 1),
+								(4, 'Camp Site', 'campsite', 1, 0, 0),
+								(5, 'Bed and Breakfast', 'propertyrental', 1, 0, 0),
+								(6, 'Villa', 'propertyrental', 1, 0, 1),
+								(7, 'Apartment', 'propertyrental', 1, 0, 1),
+								(8, 'Cottage', 'propertyrental', 1, 0, 1),
+								(9, 'Tour', 'tour', 1, 0, 3),
+								(10, 'For Sale', 'realestate', 1, 0, 4)
+						", "" );
 
 	$query = "INSERT INTO `#__jomresportal_taxrates` (`id`, `code`, `description`, `rate`) VALUES (1, '01', 'VAT', 20)";
 	doInsertSql( $query, "" );
@@ -6576,7 +6566,7 @@ function proceed()
 		<form action="" method="post" name="adminForm">
 			<input type="hidden" name="option" value="com_jomres"/>
 			<input type="hidden" name="trashtables" value="1"/>
-			<input type="submit" value="Remove Jomres Tables" class="btn btn-danger btn-sm"/>
+			<input type="submit" name="remove_tables" value="Remove Jomres Tables" class="btn btn-danger btn-sm"/>
 		</form>
 	
 	<?php
