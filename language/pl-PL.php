@@ -2297,7 +2297,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Treść e-mail");
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Rodzaj");
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Nazwa");
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Opis");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Na tej stronie możesz zmienić treść oraz szablon tej wiadomości e-mail.");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Please see this page for help customizing the emails and a list of the available output: <a href=\"http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates\" target=\"_blank\">Email Templates Help</a>");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Administrator - Nowa rezerwacja");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Wiadomość e-mail wysyłana do administratora witryny po dokonaniu przez klienta nowej rezerwacji, jeśli włączona jest bramka PayPal.");
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Sprzedawca - Nowa rezerwacja");

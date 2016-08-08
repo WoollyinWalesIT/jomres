@@ -2435,7 +2435,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Emailテキスト");
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Emailタイプ");
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Email名");
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Email説明");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"メールのカスタム テンプレート作成は、<a href=\"http://manual.jomres.net/email_templates.html\" target=\"_blank\">Email Templates Help</a>に参照ください");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"メールのカスタム テンプレート作成は、<a href=\"http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates\" target=\"_blank\">Email Templates Help</a>に参照ください");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"サイト アドミンへの新規予約メール");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"グローバルpaypalゲートウエーが有効の場合、新規予約が入った際にサイトのアドミニストレーターへ送信されるメールです。");
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"ホテルへの新規予約メール");
