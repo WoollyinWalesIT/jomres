@@ -47,7 +47,6 @@ else
 	
 function jr_wp_trigger_frontend()
 	{
-
 	require_once( ABSPATH . JOMRES_ROOT_DIRECTORY.'/jomres.php' );
 	if ( isset($_REQUEST['jrajax']) && (int)$_REQUEST['jrajax'] == 1 ) // If it's an ajax called, we need to die when Jomres has done it's stuff
 		{
@@ -74,9 +73,29 @@ function jr_wp_trigger_admin()
 function jomres_check_if_jomres_installed()
 	{
 	$jomres_installed = false;
+		
 	if ( defined ( 'JOMRES_ROOT_DIRECTORY' ) && file_exists( ABSPATH . JOMRES_ROOT_DIRECTORY.'/jomres.php' ) )
 		{
-		$jomres_installed = true;
+		$current_jomres_version = get_jomres_current_version();
+		$wp_jomres_plugin_data = get_plugin_data(dirname(__FILE__).'/jomres.php', false, false);
+		
+		if ( isset($wp_jomres_plugin_data['Version']) )
+			$wp_jomres_plugin_version = $wp_jomres_plugin_data['Version'];
+		else
+			$wp_jomres_plugin_version = 0;
+
+		if ( $current_jomres_version != $wp_jomres_plugin_version )
+			{
+			$jomres_installed = false;
+			}
+		else
+			{
+			$jomres_installed = true;
+			}
+		}
+	
+	if ( $jomres_installed )
+		{
 		if ( file_exists(dirname(__FILE__).'/jomres_webinstall.php' ) ) 
 			unlink(dirname(__FILE__).'/jomres_webinstall.php');
 		}
@@ -86,7 +105,7 @@ function jomres_check_if_jomres_installed()
 
 function output_jomres_not_installed_message()
 	{
-	$dir_path = dirname(__FILE__) ;
+	$dir_path = dirname(__FILE__);
 	copy(
 		$dir_path.'/jomres_webinstall.php' , 
 		ABSPATH.'/jomres_webinstall.php'
@@ -103,5 +122,4 @@ function output_jomres_not_installed_message()
 		{
 		wp_redirect(site_url()."/jomres_webinstall.php");
 		}
-	
 	}
