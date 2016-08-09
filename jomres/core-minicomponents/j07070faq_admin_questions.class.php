@@ -41,9 +41,15 @@ class j07070faq_admin_questions
 			"answer" => jr_gettext("_JOMRES_FAQ_ADMIN_ANSWER_INTRODUCTION_USERSADD","_JOMRES_FAQ_ADMIN_ANSWER_INTRODUCTION_USERSADD",false)
 			);
 
+
 		$faq_questions ['_JOMRES_FAQ_ADMIN_CATEGORY_PROPERTIES'][] = array (
 			"question" => jr_gettext("_JOMRES_FAQ_ADMIN_QUESTION_ADDPROPERTIES","_JOMRES_FAQ_ADMIN_QUESTION_ADDPROPERTIES",false),
 			"answer" => jr_gettext("_JOMRES_FAQ_ADMIN_ANSWER_ADDPROPERTIES","_JOMRES_FAQ_ADMIN_ANSWER_ADDPROPERTIES",false)
+			);
+		
+		$faq_questions ['_JOMRES_FAQ_ADMIN_CATEGORY_PROPERTIES'][] = array (
+			"question" => jr_gettext("_JOMRES_FAQ_ADMIN_QUESTION_PROPERTIES_NUMBER","_JOMRES_FAQ_ADMIN_QUESTION_PROPERTIES_NUMBER",false),
+			"answer" => jr_gettext("_JOMRES_FAQ_ADMIN_ANSWER_PROPERTIES_NUMBER","_JOMRES_FAQ_ADMIN_ANSWER_PROPERTIES_NUMBER",false)
 			);
 		
 		$faq_questions ['_JOMRES_FAQ_ADMIN_CATEGORY_PROPERTIES'][] = array (
@@ -61,6 +67,17 @@ class j07070faq_admin_questions
 			"answer" => jr_gettext("_JOMRES_FAQ_ADMIN_ANSWER_EMAILTEMPLATES","_JOMRES_FAQ_ADMIN_ANSWER_EMAILTEMPLATES",false)
 			);
 		
+		$faq_questions ['_JOMRES_FAQ_ADMIN_CATEGORY_PROPERTIES'][] = array (
+			"question" => jr_gettext("_JOMRES_FAQ_ADMIN_QUESTION_CURRENCIES_SETUP","_JOMRES_FAQ_ADMIN_QUESTION_CURRENCIES_SETUP",false),
+			"answer" => jr_gettext("_JOMRES_FAQ_ADMIN_ANSWER_CURRENCIES_SETUP","_JOMRES_FAQ_ADMIN_ANSWER_CURRENCIES_SETUP",false)
+			);
+		
+		$faq_questions ['_JOMRES_FAQ_ADMIN_CATEGORY_PROPERTIES'][] = array (
+			"question" => jr_gettext("_JOMRES_FAQ_ADMIN_QUESTION_CURRENCIES","_JOMRES_FAQ_ADMIN_QUESTION_CURRENCIES",false),
+			"answer" => jr_gettext("_JOMRES_FAQ_ADMIN_ANSWER_CURRENCIES","_JOMRES_FAQ_ADMIN_ANSWER_CURRENCIES",false)
+			);
+		
+
 		$faq_questions ['_JOMRES_FAQ_ADMIN_CATEGORY_PAYMENTS'][] = array (
 			"question" => jr_gettext("_JOMRES_FAQ_ADMIN_QUESTION_TAKEPAYMENTS","_JOMRES_FAQ_ADMIN_QUESTION_TAKEPAYMENTS",false),
 			"answer" => jr_gettext("_JOMRES_FAQ_ADMIN_ANSWER_TAKEPAYMENTS","_JOMRES_FAQ_ADMIN_ANSWER_TAKEPAYMENTS",false)
@@ -101,8 +118,7 @@ class j07070faq_admin_questions
 			"answer" => jr_gettext("_JOMRES_FAQ_ADMIN_ANSWER_PURCHASINGJOMRES_SOFTWARELICENSE","_JOMRES_FAQ_ADMIN_ANSWER_PURCHASINGJOMRES_SOFTWARELICENSE",false)
 			);
 		
-		
-		
+
 		
 		
 		set_showtime("faq_questions" , $faq_questions );
