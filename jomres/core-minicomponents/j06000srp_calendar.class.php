@@ -184,7 +184,7 @@ class j06000srp_calendar
 				{
 				
 				$class = "normal-day";
-				$link = JOMRES_SITEPAGE_URL . '&task=dobooking&amp;selectedProperty=' . $property_uid . '&arrivalDate=' .JSCalmakeInputDates(date("Y/m/d",$currdate));
+				$link = JOMRES_SITEPAGE_URL . '&task=dobooking&amp;selectedProperty=' . $property_uid . '&pdetails_cal=1&arrivalDate=' .date("Y/m/d",$currdate);
 				$fmt = date( "Y", $currdate )."/". date( "m", $currdate )."/". date( "d", $currdate );
 				if ( in_array ( $fmt , $this->booked_dates) )
 					{
