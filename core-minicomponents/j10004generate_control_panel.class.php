@@ -59,7 +59,7 @@ class j10004generate_control_panel
 					$r[ 'BADGES' ]             = '';
 					$bang                      = explode( "task=", $r[ 'link' ] );
 					if (!isset($bang[ 1 ]))
-						$bang[ 1 ] = 0;
+						$bang[ 1 ] = 'notask';
 					$items_requiring_attention = get_number_of_items_requiring_attention_for_menu_option( $bang[ 1 ] );
 					if ( count( $items_requiring_attention ) > 0 )
 						{
