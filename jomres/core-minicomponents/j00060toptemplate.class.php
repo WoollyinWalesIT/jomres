@@ -135,6 +135,8 @@ class j00060toptemplate
 			$output[ 'CURRENT_PROPERTY_STYLE' ] = "display:none;";
 			}
 		
+		$output['FAQ_PANE']					= $MiniComponents->specificEvent( '06000', 'faq_pane' , array ("output_now"=>false) );
+
 		$messaging = array ();
 
 		$jomres_messaging = jomres_singleton_abstract::getInstance( 'jomres_messages' );
