@@ -27,31 +27,15 @@ class j07020list_reviews
 			}
 
 		$jomresPropertyList = get_showtime('published_properties_in_system');
-
-		jr_import( 'jomres_reviews' );
-		$Reviews                 = new jomres_reviews();
-		$all_reviews             = $Reviews->get_all_reviews_index_by_property_uid();
-		$all_reports             = $Reviews->get_all_reports_index_by_rating_id();
-		$total_number_of_reports = count( $all_reports );
-
+		
 		$unpublished_count = 0;
 		$report_count      = 0;
+		
+		$query = "SELECT count(`report_id`) AS report_count FROM #__jomres_reviews_reports";
+		$report_count = (int)doSelectSql($query, 1);
 
-		foreach ( $jomresPropertyList as $property_uid )
-			{
-			foreach ( $all_reviews as $property_reviews )
-				{
-				foreach ( $property_reviews as $review )
-					{
-					$rating_id = $review[ 'rating_id' ];
-					if ( $review[ 'property_uid' ] == $property_uid )
-						{
-						if ( isset( $all_reports[ $rating_id ] ) ) $report_count = count( $all_reports[ $rating_id ] );
-						if ( $review[ 'published' ] == 0 ) $unpublished_count++;
-						}
-					}
-				}
-			}
+		$query = "SELECT count(`published`) AS unpublished_count FROM #__jomres_reviews_ratings WHERE `published` = 0 ";
+		$unpublished_count = (int)doSelectSql($query, 1);
 
 		$this->retVals = array ( "red" => $report_count, "orange" => $unpublished_count );
 		}
