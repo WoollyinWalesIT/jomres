@@ -253,7 +253,7 @@ class basic_contract_details
 
 		if ( count($tariffs) > 0 && $room_and_tariff_info != array ( 0 => "" ) )
 			{
-			$query = "SELECT `rates_uid`,`rate_title` FROM #__jomres_rates WHERE `rates_uid` IN (" . implode(',',$tariffs) .") ";
+			$query = "SELECT `rates_uid`,`rate_title` FROM #__jomres_rates WHERE `rates_uid` IN (" . jomres_implode($tariffs) .") ";
 			$tariff_names = doSelectSql( $query );
 			
 			foreach ($tariff_names as $t)
@@ -286,7 +286,7 @@ class basic_contract_details
 		
 		if ( count($guesttype_ids) > 0 )
 			{
-			$query = "SELECT `id`, `type` FROM #__jomres_customertypes WHERE id IN (" . implode(',',$guesttype_ids) . ") ";
+			$query = "SELECT `id`, `type` FROM #__jomres_customertypes WHERE id IN (" . jomres_implode($guesttype_ids) . ") ";
 			$guesttype_titles = doSelectSql( $query );
 			
 			foreach ($guesttype_titles as $g)
@@ -329,7 +329,7 @@ class basic_contract_details
 								price,
 								tax_rate 
 							FROM #__jomres_extras 
-							WHERE property_uid = '" . (int) $defaultProperty . "' AND uid IN (" . implode(',',$extraOptionsArray) . ") 
+							WHERE property_uid = '" . (int) $defaultProperty . "' AND uid IN (" . jomres_implode($extraOptionsArray) . ") 
 							ORDER BY name ";
 				$extrasList = doSelectSql( $query );
 				

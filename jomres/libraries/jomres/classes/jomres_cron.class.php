@@ -217,7 +217,7 @@ class jomres_cron
 		if (count($jobIds)>0)
 			{
 			if ( $this->verboselog ) $this->debug[ ] = "Locking " . count($jobIds) . " jobs";
-			$query = "UPDATE #__jomcomp_cron SET `locked`= 1 WHERE `id` IN (".implode(',',$jobIds).") ";
+			$query = "UPDATE #__jomcomp_cron SET `locked`= 1 WHERE `id` IN (".jomres_implode($jobIds).") ";
 			if ( !doInsertSql( $query, "" ) )
 				{
 				$this->debug[ ] = "Failed to lock jobs ";
@@ -232,7 +232,7 @@ class jomres_cron
 		if (count($jobIds)>0)
 			{
 			if ( $this->verboselog ) $this->debug[ ] = "Unlocking " . count($jobIds) . " jobs";
-			$query = "UPDATE #__jomcomp_cron SET `locked`= 0 WHERE `id` IN (".implode(',',$jobIds).") ";
+			$query = "UPDATE #__jomcomp_cron SET `locked`= 0 WHERE `id` IN (".jomres_implode($jobIds).") ";
 			if ( !doInsertSql( $query, "" ) )
 				{
 				$this->debug[ ] = "Failed to unlock jobs ";
@@ -315,7 +315,7 @@ class jomres_cron
 			{
 			if ( $this->verboselog ) 
 				$this->debug[ ] = "Updating jobs last rans";
-			$query= "UPDATE #__jomcomp_cron SET `last_ran` = " . $this->now . " WHERE `id` IN (" . implode(",",$jobIds) . ")";
+			$query= "UPDATE #__jomcomp_cron SET `last_ran` = " . $this->now . " WHERE `id` IN (" . jomres_implode($jobIds) . ")";
 			if ( !doInsertSql( $query, "" ) )
 				{
 				$this->debug[ ] = "Failed to update last ran times";

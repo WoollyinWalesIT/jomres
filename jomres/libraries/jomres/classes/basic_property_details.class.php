@@ -159,7 +159,7 @@ class basic_property_details
 	
 			if (count($property_uids) > 0)
 				{
-				$query          = "SELECT `propertys_uid`, `property_name`, `ptype_id` FROM #__jomres_propertys WHERE `propertys_uid` IN (" . implode(',',$property_uids) .") ";
+				$query          = "SELECT `propertys_uid`, `property_name`, `ptype_id` FROM #__jomres_propertys WHERE `propertys_uid` IN (" . jomres_implode($property_uids) .") ";
 				$property_names = doSelectSql( $query );
 				if ( !get_showtime( 'heavyweight_system' ) )
 					{
@@ -417,7 +417,7 @@ class basic_property_details
 							`apikey`,
 							`approved` 
 						FROM #__jomres_propertys 
-						WHERE propertys_uid IN (" . implode(',',$property_uids) .") ";
+						WHERE propertys_uid IN (" . jomres_implode($property_uids) .") ";
 			$propertyData = doSelectSql( $query );
 			
 			//save the original property uid and type so we can reset this after we`re done
@@ -485,7 +485,7 @@ class basic_property_details
 				}
 
 			$temp_rooms = array ();
-			$query      = "SELECT `room_uid`,`room_classes_uid`,`propertys_uid`,`max_people` FROM #__jomres_rooms WHERE propertys_uid IN (" . implode(',',$property_uids) .") ";
+			$query      = "SELECT `room_uid`,`room_classes_uid`,`propertys_uid`,`max_people` FROM #__jomres_rooms WHERE propertys_uid IN (" . jomres_implode($property_uids) .") ";
 			$rooms      = doSelectSql( $query );
 			foreach ( $rooms as $room )
 				{

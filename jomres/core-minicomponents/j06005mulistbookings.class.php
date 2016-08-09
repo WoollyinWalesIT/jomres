@@ -51,7 +51,7 @@ class j06005mulistbookings
 					$allGuestUids[ ] = $g->guests_uid;
 					}
 
-				$query = "SELECT * FROM #__jomres_contracts WHERE guest_uid IN (".implode(',',$allGuestUids).") AND cancelled = 0 ORDER BY tag";
+				$query = "SELECT * FROM #__jomres_contracts WHERE guest_uid IN (".jomres_implode($allGuestUids).") AND cancelled = 0 ORDER BY tag";
 				$contracts = doSelectSql( $query );
 				}
 			else

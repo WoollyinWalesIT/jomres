@@ -307,7 +307,7 @@ class j01010listpropertys
 
 				// Last booked
 				$lastBookedArray = array ();
-				$query           = "SELECT `property_uid`, max(`timestamp`) AS ts FROM #__jomres_contracts WHERE `property_uid` IN (" . implode(',',$propertysToShow) . ") AND `timestamp` IS NOT NULL GROUP BY `property_uid` ";
+				$query           = "SELECT `property_uid`, max(`timestamp`) AS ts FROM #__jomres_contracts WHERE `property_uid` IN (" . jomres_implode($propertysToShow) . ") AND `timestamp` IS NOT NULL GROUP BY `property_uid` ";
 				$result          = doSelectSql( $query );
 				if ( count( $result ) > 0 )
 					{

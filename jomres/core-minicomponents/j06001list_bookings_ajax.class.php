@@ -105,7 +105,7 @@ class j06001list_bookings_ajax
 		 * Prefilter
 		 */
 		if ($show_all == 1)
-			$clause = "WHERE a.property_uid IN (" . implode( ',',$thisJRUser->authorisedProperties ) . ") AND a.tag IS NOT NULL ";
+			$clause = "WHERE a.property_uid IN (" . jomres_implode( $thisJRUser->authorisedProperties ) . ") AND a.tag IS NOT NULL ";
 		else
 			$clause = "WHERE a.property_uid = '".(int)$defaultProperty."' AND a.tag IS NOT NULL ";
 		

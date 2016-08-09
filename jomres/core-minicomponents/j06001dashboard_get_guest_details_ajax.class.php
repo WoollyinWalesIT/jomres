@@ -58,7 +58,7 @@ class j06001dashboard_get_guest_details_ajax
 						`tel_mobile`,
 						`email`
 					FROM #__jomres_guests 
-					WHERE `property_uid` IN (" . implode( ',',$thisJRUser->authorisedProperties ) . ") 
+					WHERE `property_uid` IN (" . jomres_implode( $thisJRUser->authorisedProperties ) . ") 
 						AND `guests_uid` = ".(int)$existing_id."  
 					LIMIT 1 ";
 		$guestDeets = doSelectSql( $query,2 );

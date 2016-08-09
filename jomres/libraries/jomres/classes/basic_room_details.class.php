@@ -178,7 +178,7 @@ class basic_room_details
 						`ptype_xref`, 
 						`image` 
 					FROM #__jomres_room_features 
-					WHERE `room_features_uid` IN (".implode(',',$room_feature_uids).") 
+					WHERE `room_features_uid` IN (".jomres_implode($room_feature_uids).") 
 					";
 		$result = doSelectSql( $query );
 		

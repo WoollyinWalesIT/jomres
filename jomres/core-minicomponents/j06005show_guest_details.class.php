@@ -34,7 +34,7 @@ class j06005show_guest_details
 		if ( $thisJRUser->userIsManager )
 			{
 			$property_uid = getDefaultProperty();
-			$query        = "SELECT guests_uid FROM #__jomres_guests WHERE guests_uid = '" . (int) $guestUid . "' AND property_uid IN (" . implode(',',$thisJRUser->authorisedProperties) . ") ";
+			$query        = "SELECT guests_uid FROM #__jomres_guests WHERE guests_uid = '" . (int) $guestUid . "' AND property_uid IN (" . jomres_implode($thisJRUser->authorisedProperties) . ") ";
 			$result       = doSelectSql( $query );
 			if ( count( $result ) < 1 || count( $result ) > 1 )
 				{

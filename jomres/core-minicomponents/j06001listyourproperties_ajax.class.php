@@ -93,7 +93,7 @@ class j06001listyourproperties_ajax
 		/*
 		 * Property uids clause
 		 */
-		$clause = "WHERE propertys_uid IN (" . implode( ',',$thisJRUser->authorisedProperties ) . ") ";
+		$clause = "WHERE propertys_uid IN (" . jomres_implode( $thisJRUser->authorisedProperties ) . ") ";
 		
 		//published status
 		if ($published == 1)

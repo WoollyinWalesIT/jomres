@@ -61,7 +61,7 @@ class j04900saveproperty
 		$jomres_properties->ptype_id     		= jomresGetParam( $_POST, 'propertyType', 0 );
 		$jomres_properties->stars    			= jomresGetParam( $_POST, 'stars', 0 );
 		$jomres_properties->superior 			= jomresGetParam( $_POST, 'superior', 0 );
-		$jomres_properties->property_features 	= implode( ",", jomresGetParam( $_POST, 'pid', array() ) );
+		$jomres_properties->property_features 	= jomres_implode( jomresGetParam( $_POST, 'pid', array() ) );
 		
 		//property country
 		if ( $jrConfig[ 'limit_property_country' ] == "0" ) 

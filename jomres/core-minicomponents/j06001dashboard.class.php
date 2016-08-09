@@ -216,7 +216,7 @@ class j06001dashboard
 						`surname`,
 						`firstname`  
 					FROM #__jomres_guests 
-					WHERE `property_uid` IN (" . implode( ',',$thisJRUser->authorisedProperties ) . ")  
+					WHERE `property_uid` IN (" . jomres_implode( $thisJRUser->authorisedProperties ) . ")  
 					ORDER BY surname";
 		$existingCustomers = doSelectSql( $query );
 		

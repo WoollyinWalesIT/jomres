@@ -951,7 +951,7 @@ class jomSearch
 				}
 			$propertiesWithFreeRoomsArray = array ();
 
-			$query              = "SELECT propertys_uid, room_uid, room_classes_uid, max_people FROM #__jomres_rooms WHERE propertys_uid IN (" . implode(',',end( $this->propertys_uid )) .") ";
+			$query              = "SELECT propertys_uid, room_uid, room_classes_uid, max_people FROM #__jomres_rooms WHERE propertys_uid IN (" . jomres_implode(end( $this->propertys_uid )) .") ";
 			$roomsLists         = doSelectSql( $query );
 			if ( count( $roomsLists ) > 0 )
 				{
@@ -961,7 +961,7 @@ class jomSearch
 					}
 				}
 
-			$query                 = "SELECT property_uid,room_uid,`date` FROM #__jomres_room_bookings WHERE property_uid IN (" . implode(',',end( $this->propertys_uid )) .") AND `date` IN ('".implode('\',\'',$dateRangeArray)."') ";
+			$query                 = "SELECT property_uid,room_uid,`date` FROM #__jomres_room_bookings WHERE property_uid IN (" . jomres_implode(end( $this->propertys_uid )) .") AND `date` IN (".jomres_implode($dateRangeArray,false).") ";
 			$datesList             = doSelectSql( $query );
 			if ( count( $datesList ) > 0 )
 				{

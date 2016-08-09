@@ -51,13 +51,13 @@ class j01009a_filterproperties
 				break;
 			#########################################################################################
 			case '2':
-				$query = "SELECT propertys_uid, property_name FROM #__jomres_propertys WHERE propertys_uid IN (".implode(',',$propertys_uids).") ORDER BY property_name";
+				$query = "SELECT propertys_uid, property_name FROM #__jomres_propertys WHERE propertys_uid IN (".jomres_implode($propertys_uids).") ORDER BY property_name";
 				$uids  = doSelectSql( $query );
 				foreach ( $uids as $u ) $this->propertys_uids[ ] = $u->propertys_uid;
 				break;
 			#########################################################################################
 			case '3':
-				$query   = "SELECT propertys_uid, property_region FROM #__jomres_propertys WHERE propertys_uid IN (".implode(',',$propertys_uids).") ";
+				$query   = "SELECT propertys_uid, property_region FROM #__jomres_propertys WHERE propertys_uid IN (".jomres_implode($propertys_uids).") ";
 				$regions = doSelectSql( $query );
 				foreach ( $regions as $r )
 					{
@@ -81,20 +81,20 @@ class j01009a_filterproperties
 				break;
 			#########################################################################################
 			case '4':
-				$query = "SELECT propertys_uid, property_town FROM #__jomres_propertys WHERE propertys_uid IN (".implode(',',$propertys_uids).") ORDER BY property_town";
+				$query = "SELECT propertys_uid, property_town FROM #__jomres_propertys WHERE propertys_uid IN (".jomres_implode($propertys_uids).") ORDER BY property_town";
 				$uids  = doSelectSql( $query );
 				foreach ( $uids as $u ) $this->propertys_uids[ ] = $u->propertys_uid;
 				break;
 			#########################################################################################
 			case '5':
-				$query = "SELECT propertys_uid, stars FROM #__jomres_propertys WHERE propertys_uid IN (".implode(',',$propertys_uids).") ORDER BY stars DESC";
+				$query = "SELECT propertys_uid, stars FROM #__jomres_propertys WHERE propertys_uid IN (".jomres_implode($propertys_uids).") ORDER BY stars DESC";
 				$uids  = doSelectSql( $query );
 				foreach ( $uids as $u ) $this->propertys_uids[ ] = $u->propertys_uid;
 				break;
 			#########################################################################################
 			// Many thanks Derek B from Adonis Media Ltd
 			case '6':
-				$query = "SELECT p.propertys_uid, rr.roomrateperday FROM #__jomres_propertys AS p LEFT JOIN #__jomres_rates AS rr ON p.propertys_uid = rr.property_uid WHERE propertys_uid IN (".implode(',',$propertys_uids).") ORDER BY rr.roomrateperday ASC";
+				$query = "SELECT p.propertys_uid, rr.roomrateperday FROM #__jomres_propertys AS p LEFT JOIN #__jomres_rates AS rr ON p.propertys_uid = rr.property_uid WHERE propertys_uid IN (".jomres_implode($propertys_uids).") ORDER BY rr.roomrateperday ASC";
 				$uids  = doSelectSql( $query );
 				foreach ( $uids as $u )
 					{
@@ -105,7 +105,7 @@ class j01009a_filterproperties
 			#########################################################################################
 			// Many thanks Derek B from Adonis Media Ltd
 			case '7':
-				$query = "SELECT p.propertys_uid, rr.roomrateperday FROM #__jomres_propertys AS p LEFT JOIN #__jomres_rates AS rr ON p.propertys_uid = rr.property_uid WHERE propertys_uid IN (".implode(',',$propertys_uids).") ORDER BY rr.roomrateperday DESC";
+				$query = "SELECT p.propertys_uid, rr.roomrateperday FROM #__jomres_propertys AS p LEFT JOIN #__jomres_rates AS rr ON p.propertys_uid = rr.property_uid WHERE propertys_uid IN (".jomres_implode($propertys_uids).") ORDER BY rr.roomrateperday DESC";
 				$uids  = doSelectSql( $query );
 				foreach ( $uids as $u ) $this->propertys_uids[ ] = $u->propertys_uid;
 				break;
