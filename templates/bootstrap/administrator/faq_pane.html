@@ -1,5 +1,10 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
+<style type="text/css">
+#FAQModal.modal.fade.in {top:5%;}
+#FAQModal.modal {left:5%;margin-left:0;width:90%}
+#FAQModal .modal-body {max-height:700px;}
+</style>
 
 <style>
 .modal-body {
@@ -10,35 +15,26 @@
 }
 </style>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FAQModal">
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#FAQModal">
 {_JOMRES_FAQ}
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="FAQModal" tabindex="-1" role="dialog" aria-labelledby="FAQModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="{COMMON_CLOSE}"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="FAQModalLabel">{_JOMRES_FAQ}</h4>
-      </div>
-      <div class="modal-body">
-        <div class="panel-group" id="accordion">
-		<patTemplate:tmpl name="questions">
-			{CATEGORY}
-		</patTemplate:tmpl>
+<div class="modal modal-lg hide fade" id="FAQModal" tabindex="-1" role="dialog" aria-labelledby="FAQModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="{COMMON_CLOSE}"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="FAQModalLabel">{_JOMRES_FAQ}</h4>
+			</div>
+			<div class="modal-body">
+				<div class="panel-group" id="FAQaccordion">
+					<patTemplate:tmpl name="questions">
+					{CATEGORY}
+					</patTemplate:tmpl>
+				</div>
+			</div>
 		</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">{COMMON_CLOSE}</button>
-      </div>
-    </div>
-  </div>
-
+	</div>
 </div>
-
-
-
-
-
 </patTemplate:tmpl>
