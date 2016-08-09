@@ -42,6 +42,8 @@ class logging
 				$username = "Installer";
 			}
 
+		$message = $username." ".$message;
+		
 		if ( !isset($jrConfig['log_path']) || $jrConfig['log_path'] == '' )
 			$jrConfig['log_path'] = dirname(dirname(dirname(__FILE__)) ).'/logs/';
 		
@@ -100,7 +102,7 @@ class logging
 			return $record;
 			});
 		
-		$context = array ( "username"=>$username );
+		$context = array (  );
 		
 		switch ( $level )
 			{
