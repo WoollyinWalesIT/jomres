@@ -626,10 +626,18 @@ function get_number_of_items_requiring_attention_for_menu_option( $task )
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	if ( jomres_cmsspecific_areweinadminarea() )
 		{
-		if ( $MiniComponents->eventSpecificlyExistsCheck( "07020", $task ) ) 
-			return $MiniComponents->specificEvent( '07020', $task );
-		else
-			return array();
+		if (!defined("MENU_BADGES") )
+			{
+			if ( $MiniComponents->eventSpecificlyExistsCheck( "07020", $task ) ) 
+				{
+				define( "MENU_BADGES" , $MiniComponents->specificEvent( '07020', $task ) );
+				}
+			else
+				{
+				define( "MENU_BADGES" , array() );
+				}
+			}
+		return MENU_BADGES;
 		}
 	elseif ( $MiniComponents->eventSpecificlyExistsCheck( "07030", $task ) ) 
 		return $MiniComponents->specificEvent( '07030', $task );
