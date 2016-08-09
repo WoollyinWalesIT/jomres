@@ -24,7 +24,6 @@ require_once( dirname( __FILE__ ) . '/integration.php' );
 
 try
 	{
-	logging::log_message('Jomres started' , "Core" , "INFO" );
 	//minicomponents object
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	
@@ -56,6 +55,8 @@ try
 	//user object
 	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 
+	logging::log_message('Jomres started' , "Core" , "INFO" );
+		
 	//TODO: here we can add a query to automatically remove the manager that has 0 properties
 	if ( count($thisJRUser->authorisedProperties) == 0 && $thisJRUser->userIsManager )
 		{
@@ -69,7 +70,7 @@ try
 	//set jomres in wrapped mode to be ready for iframes
 	if ( isset( $_REQUEST[ 'is_wrapped' ] ) && $_REQUEST[ 'is_wrapped' ] == "1")
 		{
-		$jrConfig[ 'isInIframe' ] = "1";
+			$jrConfig[ 'isInIframe' ] = "1";
 		}
 
 	//TODO: remove this when all jrConfig values have a default in site_settings.php
