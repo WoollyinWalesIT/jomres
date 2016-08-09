@@ -2655,7 +2655,7 @@ jr_define('_JOMRES_TEST_EMAIL_RESULT_FAILURE',"Test-E-Mail wurde nicht gesendet"
 jr_define('_INVOICE_TRANSACTIONS',"Transaktionen");
 
 jr_define('_OPENEXCHANGE_API',"Offene Wechselkurse API-Schlüssel");
-jr_define('_OPENEXCHANGE_API_DESC','Zur Umrechnung Preise zwischen den Diensten finden Sie eine Open-Wechselkurse API-Schlüssel benötigen. Sie müssen einen API-Schlüssel haben die Preise in Jomres korrekt angezeigt werden, Sie können jedoch für einen kostenlosen Schlüssel registrieren Sie sich unter https://openexchangerates.org/signup/free (stündliche Updates, 1000 requests/month - no HTTPS, E-Mail-Support oder erweiterte Funktionen). Jomres Downloads Wechselkurse einmal täglich so lange, wie Sie sich auf nur eine Handvoll von Websites, um den Schlüssel verwenden, Sie sind unwahrscheinlich, diese Grenzen zu überschreiten. Vorherige 8,3 bis jomres verwendeten wir eine ältere,undokumentierte Yahoo Feature jedoch haben entdeckt, dass die Verwendung dieser Funktion ist im Widerspruch zu Yahoos Geschäftsbedingungen.Als Ergebnis müssen wir davon ausgehen, dass die Funktion zu einem bestimmten Zeitpunkt in der Zukunft verschwinden,damit der Wechsel zu öffnen Wechselkursen.');
+jr_define('_OPENEXCHANGE_API_DESC','Zur Umrechnung Preise zwischen den Diensten finden Sie eine Open-Wechselkurse API-Schlüssel benötigen. Sie müssen einen API-Schlüssel haben die Preise in Jomres korrekt angezeigt werden, Sie können jedoch für einen kostenlosen Schlüssel registrieren Sie sich unter <a href="https://openexchangerates.org/signup/free" _target="_blank">register for a free key</a> (stündliche Updates, 1000 requests/month - no HTTPS, E-Mail-Support oder erweiterte Funktionen). Jomres Downloads Wechselkurse einmal täglich so lange, wie Sie sich auf nur eine Handvoll von Websites, um den Schlüssel verwenden, Sie sind unwahrscheinlich, diese Grenzen zu überschreiten. Vorherige 8,3 bis jomres verwendeten wir eine ältere,undokumentierte Yahoo Feature jedoch haben entdeckt, dass die Verwendung dieser Funktion ist im Widerspruch zu Yahoos Geschäftsbedingungen.Als Ergebnis müssen wir davon ausgehen, dass die Funktion zu einem bestimmten Zeitpunkt in der Zukunft verschwinden,damit der Wechsel zu öffnen Wechselkursen.');
 
 jr_define('_JOMRES_COMMISSION',"Kommission");
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS',"Wenn Sie mehrere Bilder für die individuelle Sonderausstattungen laden, nur das erste Bild verwendet werden.");
@@ -3052,4 +3052,30 @@ jr_define( "_JOMRES_FAQ_MANAGER_ANSWER_MEDIACENTRE_SLIDESHOW", "Slideshow images
 
 jr_define( "_JOMRES_FAQ_MANAGER_QUESTION_MEDIACENTRE_EXTRAS", "How do I upload Extras Images?" );
 jr_define( "_JOMRES_FAQ_MANAGER_ANSWER_MEDIACENTRE_EXTRAS", "Similar to the rooms and room features, you need to create an Extra first. Once that's done, you can select Extras in the top dropdown. When you've done that, you need to select the name of the Extra from the dropdown list below. When the name is selected you can upload one or more images for that Extra." );
+
+
+jr_define( "_JOMRES_FAQ_ADMIN_QUESTION_CURRENCIES_SETUP", "How do I setup currency symbols?" );
+jr_define( "_JOMRES_FAQ_ADMIN_ANSWER_CURRENCIES_SETUP", "You don't. All currency symbols are already stored in the system, and it's up to property managers to select the currency that's right for them in the Property Configuration page." );
+
+jr_define( "_JOMRES_FAQ_ADMIN_QUESTION_CURRENCIES", "How do I enable multiple currencies?" );
+jr_define( "_JOMRES_FAQ_ADMIN_ANSWER_CURRENCIES", "Jomres has functionality to convert prices from one currency to another automatically. First you need to visit the Site Configuration > Currency Conversion tab. In there you will find links to two online services. The first service, once the API has been saved, allows Jomres to download currency conversion data once a day. The second enables IP based geolocation for users. Request a free API key from each service. With these two services combined, Jomres can detect the user's local currency, and display prices of properties in both the guest's local currency, plus the hotel's own currency. If you don't setup these API keys then Jomres will default to the Euro currency symbol. If you want you can set a global currency code. This means that property managers will not be able to select any other currencies, however potential guests will still see prices in thier own local currency unless they've used the currency switcher feature to change the currency that prices are displayed in. " );
+
+jr_define( "_JOMRES_FAQ_MANAGER_QUESTION_LANGUAGES", "How do I save descriptions in multiple languages?" );
+jr_define( "_JOMRES_FAQ_MANAGER_ANSWER_LANGUAGES", "To save descriptions in multiple languages, first visit the Settings > Property Details page. Save the description for your property there. Next, change the language that you're viewing the site in. Now go to the Settings Property Details page again, and save the details again. So, if the site is capable of showing both English and Spanish (or any other) languages, you would select English, enter the description in English then click Save. Next, change your current language to Spanish, then save the new Spanish description. This works for all inputs on that page." );
+
+
+jr_define( "_JOMRES_FAQ_ADMIN_QUESTION_PROPERTIES_NUMBER", "How many properties can I list?" );
+jr_define( "_JOMRES_FAQ_ADMIN_ANSWER_PROPERTIES_NUMBER", "There's no coded limit to the number of properties that you can list, the only limitation is in the physical limitation of the server itself. If it's a server with many other accounts on then resources will be limited, if, on the other hand it's a dedicated or virtual dedicated server, then you will be able to list many more properties." );
+
+jr_define( "_JOMRES_FAQ_MANAGER_QUESTION_OTHERPROPERTIES", "Can I modify other properties on this site?" );
+jr_define( "_JOMRES_FAQ_MANAGER_ANSWER_OTHERPROPERTIES", "No, you cannot. You can only administer properties you have created or been assigned to as a property manager." );
+
+jr_define( "_JOMRES_FAQ_MANAGER_QUESTION_OTHERPROPERTIES_SUPER", "Can I modify other properties on this site?" );
+jr_define( "_JOMRES_FAQ_MANAGER_ANSWER_OTHERPROPERTIES_SUPER", "Yes you can, you're a Super Property Manager and can modify any properties shown in the List Properties page." );
+
+jr_define( "_JOMRES_FAQ_MANAGER_QUESTION_GUESTTYPES", "What are Guest Types/How do I change per person per night?" );
+jr_define( "_JOMRES_FAQ_MANAGER_ANSWER_GUESTTYPES", "In Settings > Property Configuration > Tariffs and Currencies tab, you can decided whether you want to charge per person per night. If you charge per person per night, you will need to create one or more guest types. You can create a simple guest type, where you just give them a description ( e.g. 'Persons' ), or you can create several different guest types, for example 'Adults' and 'Children under 10'. For the children, if you want to offer a discount of 50% then you'd set 'Is percentage' to Yes, and the Variance value to 50. Rooms have base rates, this setting allows you to adjust the price of the room based on the guest type." );
+
+jr_define( "_JOMRES_FAQ_MANAGER_QUESTION_ROOMFEATURES", "What are Room Features?" );
+jr_define( "_JOMRES_FAQ_MANAGER_ANSWER_ROOMFEATURES", "Room features are things that make the room stand out. They can be something simple like Tea and Coffee making facilities, or they can be things that really make the room rise above the others, like 'Views over the bay'. Once you have created a Room Feature, you can upload images for that feature in the Media Centre. These room features can be viewed on the room availability page, and if you've configured your property to show the Classic Rooms list style ( where guests can selected exactly which room they want to book ) then they can use the room features to filter ooms shown in the booking form." );
 

@@ -27,6 +27,7 @@ class j07060faq_manager_questions
 			}
 		
 		$mrConfig           = getPropertySpecificSettings();
+		$thisJRUser=jomres_getSingleton('jr_user');
 		
 		$faq_questions = get_showtime("faq_questions");
 		
@@ -49,6 +50,11 @@ class j07060faq_manager_questions
 				"question" => jr_gettext("_JOMRES_FAQ_MANAGER_QUESTION_ADDROOMS_MRP","_JOMRES_FAQ_MANAGER_QUESTION_ADDROOMS_MRP",false),
 				"answer" => jr_gettext("_JOMRES_FAQ_MANAGER_ANSWER_ADDROOMS_MRP","_JOMRES_FAQ_MANAGER_ANSWER_ADDROOMS_MRP",false),
 				);
+				
+			$faq_questions ['_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY'][] = array (
+				"question" => jr_gettext("_JOMRES_FAQ_MANAGER_QUESTION_ROOMFEATURES","_JOMRES_FAQ_MANAGER_QUESTION_ROOMFEATURES",false),
+				"answer" => jr_gettext("_JOMRES_FAQ_MANAGER_ANSWER_ROOMFEATURES","_JOMRES_FAQ_MANAGER_ANSWER_ROOMFEATURES",false),
+				);
 			}
 
 		$faq_questions ['_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY'][] = array (
@@ -60,6 +66,28 @@ class j07060faq_manager_questions
 			"question" => jr_gettext("_JOMRES_FAQ_MANAGER_QUESTION_EXTRAS","_JOMRES_FAQ_MANAGER_QUESTION_EXTRAS",false),
 			"answer" => jr_gettext("_JOMRES_FAQ_MANAGER_ANSWER_EXTRAS","_JOMRES_FAQ_MANAGER_ANSWER_EXTRAS",false),
 			);
+		
+		$faq_questions ['_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY'][] = array (
+			"question" => jr_gettext("_JOMRES_FAQ_MANAGER_QUESTION_LANGUAGES","_JOMRES_FAQ_MANAGER_QUESTION_LANGUAGES",false),
+			"answer" => jr_gettext("_JOMRES_FAQ_MANAGER_ANSWER_LANGUAGES","_JOMRES_FAQ_MANAGER_ANSWER_LANGUAGES",false),
+			);
+			
+		if ( $thisJRUser->superPropertyManager)
+			{
+			$faq_questions ['_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY'][] = array (
+				"question" => jr_gettext("_JOMRES_FAQ_MANAGER_QUESTION_OTHERPROPERTIES_SUPER","_JOMRES_FAQ_MANAGER_QUESTION_OTHERPROPERTIES_SUPER",false),
+				"answer" => jr_gettext("_JOMRES_FAQ_MANAGER_ANSWER_OTHERPROPERTIES_SUPER","_JOMRES_FAQ_MANAGER_ANSWER_OTHERPROPERTIES_SUPER",false),
+			);
+			}
+		else
+			{
+			$faq_questions ['_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY'][] = array (
+				"question" => jr_gettext("_JOMRES_FAQ_MANAGER_QUESTION_OTHERPROPERTIES","_JOMRES_FAQ_MANAGER_QUESTION_OTHERPROPERTIES",false),
+				"answer" => jr_gettext("_JOMRES_FAQ_MANAGER_ANSWER_OTHERPROPERTIES","_JOMRES_FAQ_MANAGER_ANSWER_OTHERPROPERTIES",false),
+			);
+			}
+		
+		
 		
 		$faq_questions ['_JOMRES_FAQ_ADMIN_CATEGORY_PAYMENTS'][] = array (
 			"question" => jr_gettext("_JOMRES_FAQ_MANAGER_QUESTION_PAYMENTS","_JOMRES_FAQ_MANAGER_QUESTION_PAYMENTS",false),
@@ -86,6 +114,11 @@ class j07060faq_manager_questions
 			"answer" => jr_gettext("_JOMRES_FAQ_MANAGER_ANSWER_BOOKINGS_BLACK","_JOMRES_FAQ_MANAGER_ANSWER_BOOKINGS_BLACK",false),
 			);
 			
+		$faq_questions ['_JOMRES_FAQ_MANAGER_CATEGORY_BOOKINGS'][] = array (
+			"question" => jr_gettext("_JOMRES_FAQ_MANAGER_QUESTION_GUESTTYPES","_JOMRES_FAQ_MANAGER_QUESTION_GUESTTYPES",false),
+			"answer" => jr_gettext("_JOMRES_FAQ_MANAGER_ANSWER_GUESTTYPES","_JOMRES_FAQ_MANAGER_ANSWER_GUESTTYPES",false),
+			);
+		
 		$faq_questions ['_JOMRES_FAQ_MANAGER_CATEGORY_IMAGES'][] = array (
 			"question" => jr_gettext("_JOMRES_FAQ_MANAGER_QUESTION_MEDIACENTRE_INTRO","_JOMRES_FAQ_MANAGER_QUESTION_MEDIACENTRE_INTRO",false),
 			"answer" => jr_gettext("_JOMRES_FAQ_MANAGER_ANSWER_MEDIACENTRE_INTRO","_JOMRES_FAQ_MANAGER_ANSWER_MEDIACENTRE_INTRO",false),
@@ -115,6 +148,7 @@ class j07060faq_manager_questions
 			"question" => jr_gettext("_JOMRES_FAQ_MANAGER_QUESTION_MEDIACENTRE_EXTRAS","_JOMRES_FAQ_MANAGER_QUESTION_MEDIACENTRE_EXTRAS",false),
 			"answer" => jr_gettext("_JOMRES_FAQ_MANAGER_ANSWER_MEDIACENTRE_EXTRAS","_JOMRES_FAQ_MANAGER_ANSWER_MEDIACENTRE_EXTRAS",false),
 			);
+			
 			
 		set_showtime("faq_questions" , $faq_questions );
 		}
