@@ -36,7 +36,7 @@ function set_user_feedback_message ( $message = "", $css_class = "info" , $link 
 		{
 		$messages_array[] = array ("MESSAGE" => $message , "LINK" => $link , "BUTTON_TEXT" => $link_message , "CSS_CLASS" => $css_class);
 		}
-	set_showtime("user_feedback_messages" , $messages_array);
+		set_showtime("user_feedback_messages" , $messages_array);
 	}
 
 
@@ -626,18 +626,10 @@ function get_number_of_items_requiring_attention_for_menu_option( $task )
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	if ( jomres_cmsspecific_areweinadminarea() )
 		{
-		if (!defined("MENU_BADGES") )
-			{
-			if ( $MiniComponents->eventSpecificlyExistsCheck( "07020", $task ) ) 
-				{
-				define( "MENU_BADGES" , $MiniComponents->specificEvent( '07020', $task ) );
-				}
-			else
-				{
-				define( "MENU_BADGES" , array() );
-				}
-			}
-		return MENU_BADGES;
+		if ( $MiniComponents->eventSpecificlyExistsCheck( "07020", $task ) ) 
+			return $MiniComponents->specificEvent( '07020', $task );
+		else
+			return array();
 		}
 	elseif ( $MiniComponents->eventSpecificlyExistsCheck( "07030", $task ) ) 
 		return $MiniComponents->specificEvent( '07030', $task );
