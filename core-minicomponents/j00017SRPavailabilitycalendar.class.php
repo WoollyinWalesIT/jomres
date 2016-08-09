@@ -334,7 +334,7 @@ jomresJquery(function(){
 			$currdate = mktime( 0, 0, 0, date( "m", $startdate ), date( "d", $startdate ) + $i, date( "Y", $startdate ) );
 			}
 
-		$query    = "SELECT contract_uid,black_booking,`date` FROM #__jomres_room_bookings WHERE room_uid = '" . (int) $roomUid . "' AND `date` IN ('" . implode('\',\'',$sqlDates) ."') ";
+		$query    = "SELECT contract_uid,black_booking,`date` FROM #__jomres_room_bookings WHERE room_uid = '" . (int) $roomUid . "' AND `date` IN ( ".jomres_implode($sqlDates, false)." ) ";
 		$roomList = doSelectSql( $query );
 		$booking_start_dates = array();
 		$booking_end_dates = array();

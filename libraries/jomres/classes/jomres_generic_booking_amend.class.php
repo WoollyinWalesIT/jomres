@@ -174,7 +174,7 @@ class jomres_generic_booking_amend
 				$new_room_and_tariff_info[] = $k.'^'.$v;
 				}
 			
-			$rooms_tariffs = implode(',', $new_room_and_tariff_info);
+			$rooms_tariffs = jomres_implode($new_room_and_tariff_info);
 			
 			if ($clause != "")
 				$clause .= ", ";
@@ -301,7 +301,7 @@ class jomres_generic_booking_amend
 		//let`s check availability for the room uids in this_contract_room_uids
 		if (!$this->event_resized)
 			{
-			$clause = " `date` IN ('".implode('\',\'',$this->date_range_array)."')";
+			$clause = " `date` IN (".jomres_implode($this->date_range_array,false).")";
 			}
 		else
 			{
@@ -314,13 +314,13 @@ class jomres_generic_booking_amend
 				}
 
 			if (count($booked_dates_diff) > 0)
-				$clause = " `date` IN ('".implode('\',\'',$booked_dates_diff)."')";
+				$clause = " `date` IN (".jomres_implode($booked_dates_diff, false).")";
 			else
 				throw new Exception("Something went wrong.");
 			}
 		
 		$query = "SELECT `room_bookings_uid` FROM #__jomres_room_bookings 
-						WHERE `room_uid` IN (".implode(',',$this->this_contract_room_uids).")  
+						WHERE `room_uid` IN (".jomres_implode($this->this_contract_room_uids).")  
 						AND $clause 
 						AND `contract_uid` != ".(int)$this->contract_uid." ";
 

@@ -84,7 +84,7 @@ class j06000mrp_calendar
 		$contracts = array();
 		$booked_dates = array();
 		
-		$query	= "SELECT `date`,`contract_uid` FROM #__jomres_room_bookings WHERE room_uid IN ('" . implode('\',\'',$room_uids) ."')";
+		$query	= "SELECT `date`,`contract_uid` FROM #__jomres_room_bookings WHERE room_uid IN (" . jomres_implode($room_uids) .")";
 		$room_bookings = doSelectSql( $query );
 		foreach ( $room_bookings as $b)
 			{

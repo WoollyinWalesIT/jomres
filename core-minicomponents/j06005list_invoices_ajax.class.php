@@ -104,7 +104,7 @@ class j06005list_invoices_ajax
 		elseif ($thisJRUser->userIsManager)
 			{
 			if ($show_all == 1)
-				$clause = "WHERE a.property_uid IN (0," . implode( ',',$thisJRUser->authorisedProperties ) . ") AND ";
+				$clause = "WHERE a.property_uid IN (0," . jomres_implode( $thisJRUser->authorisedProperties ) . ") AND ";
 			else
 				$clause = "WHERE ( a.property_uid = 0 OR a.property_uid = ".(int)$defaultProperty." ) AND ";
 			}

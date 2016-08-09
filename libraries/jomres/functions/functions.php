@@ -16,6 +16,25 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries'.JRDS.'http_build_url.php');
 
+function jomres_implode( $elements = array() , $integers = true )
+	{
+	$txt = "";
+	$count = count($elements);
+	
+	for ($i = 0, $n = $count; $i < $n; $i++)
+		{
+		if ( $integers )
+			$txt .= (int)$elements[$i];
+		else
+			$txt .= "'".$elements[$i]."'";
+		
+		if ( $i < count($elements) - 1 )
+			$txt .= ",";
+		}
+	
+	return $txt;
+	}
+
 function fix_path($path = '')
 	{
 	$path = rtrim($path, '/');
@@ -3639,7 +3658,7 @@ function showLiveBookings( $contractsList, $title, $arrivaldateDropdown )
 		$contract_ids[ ] = $c->contract_uid;
 		}
 
-	$query		= "SELECT * FROM #__jomres_contracts WHERE property_uid = '" . (int) $defaultProperty . "' AND contract_uid IN (" . implode(',',$contract_ids) .") ";
+	$query		= "SELECT * FROM #__jomres_contracts WHERE property_uid = '" . (int) $defaultProperty . "' AND contract_uid IN (" . jomres_implode($contract_ids) .") ";
 	$booking_data = doSelectSql( $query );
 
 	$output					  = array ();

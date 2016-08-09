@@ -101,7 +101,7 @@ class jomres_suspensions
 
 		if ( count( $this->manager_properties ) > 0 )
 			{
-			$query = "UPDATE #__jomres_propertys SET `published`=0 WHERE propertys_uid IN (".implode(',',$this->manager_properties).") ";
+			$query = "UPDATE #__jomres_propertys SET `published`=0 WHERE propertys_uid IN (".jomres_implode($this->manager_properties).") ";
 			$result = doInsertSql( $query, '' );
 			
 			//clear cache

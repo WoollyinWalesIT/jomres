@@ -94,7 +94,7 @@ class j06001listguests_ajax
 		 * Prefilter
 		 */
 		if ($show_all == 1)
-			$clause = "WHERE a.property_uid IN (" . implode( ',',$thisJRUser->authorisedProperties ) . ") ";
+			$clause = "WHERE a.property_uid IN (" . jomres_implode( $thisJRUser->authorisedProperties ) . ") ";
 		else
 			$clause = "WHERE a.property_uid = '".$defaultProperty."' ";
 		

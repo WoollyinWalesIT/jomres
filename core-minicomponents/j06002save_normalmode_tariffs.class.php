@@ -261,7 +261,7 @@ class j06002save_normalmode_tariffs
 				if ( count( $revisedExistingRooms ) > 0 )
 					{
 					// Now we can update the revisedExistingRooms array with max_people
-					$query = "UPDATE #__jomres_rooms SET `max_people`='" . (int) $d[ 'max_people' ] . "' WHERE room_uid IN (".implode(',',$revisedExistingRooms).") ";
+					$query = "UPDATE #__jomres_rooms SET `max_people`='" . (int) $d[ 'max_people' ] . "' WHERE room_uid IN (".jomres_implode($revisedExistingRooms).") ";
 					doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_DELETE_ROOM', '_JOMRES_MR_AUDIT_DELETE_ROOM', false ) );
 					}
 				// And finally delete the old tariff(s) and add the new one

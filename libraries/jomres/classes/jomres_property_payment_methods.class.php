@@ -59,7 +59,7 @@ class jomres_property_payment_methods
 			
 		if (count($property_uids) > 0)
 			{			
-			$query = "SELECT id,prid,plugin FROM #__jomres_pluginsettings WHERE setting = 'active' AND value = '1' AND prid IN (" . implode(',',$property_uids) .") ";
+			$query = "SELECT id,prid,plugin FROM #__jomres_pluginsettings WHERE setting = 'active' AND value = '1' AND prid IN (" . jomres_implode($property_uids) .") ";
 			$propertyData = doSelectSql( $query );
 
 			foreach ( $propertyData as $data )

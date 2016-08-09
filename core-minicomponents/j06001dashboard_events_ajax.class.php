@@ -100,7 +100,7 @@ class j06001dashboard_events_ajax {
 				}
 			if ( count( $guest_uids ) > 0 )
 				{			
-				$query = "SELECT guests_uid,firstname,surname FROM #__jomres_guests WHERE guests_uid IN (".implode(',',$guest_uids).") ";
+				$query = "SELECT guests_uid,firstname,surname FROM #__jomres_guests WHERE guests_uid IN (".jomres_implode($guest_uids).") ";
 				$guestsList = doSelectSql( $query );
 
 				foreach ( $guestsList as $g )

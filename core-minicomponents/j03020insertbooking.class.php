@@ -594,7 +594,7 @@ class j03020insertbooking
 					$rm = explode( "^", $roomsRequested );
 					$rmuids[] = $rm[ 0 ];
 					}
-				$query = "SELECT room_uid, room_classes_uid, room_number, room_name FROM #__jomres_rooms WHERE room_uid IN (".implode(',',$rmuids).") ";
+				$query = "SELECT room_uid, room_classes_uid, room_number, room_name FROM #__jomres_rooms WHERE room_uid IN (".jomres_implode($rmuids).") ";
 				$result = doSelectSql($query);
 				
 				$roomNote=jr_gettext( '_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false ).' ';

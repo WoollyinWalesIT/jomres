@@ -97,7 +97,7 @@ class j06000srp_calendar
 
 		if ( count($contracts) > 0)
 			{
-			$query		= "SELECT `arrival`,`departure` FROM #__jomres_contracts WHERE `contract_uid` IN ('" . implode('\',\'',$contracts) ."')";
+			$query		= "SELECT `arrival`,`departure` FROM #__jomres_contracts WHERE `contract_uid` IN (" . jomres_implode($contracts) .")";
 			$contractList = doSelectSql( $query );
 
 			foreach ( $contractList as $contract )

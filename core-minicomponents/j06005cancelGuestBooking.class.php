@@ -46,7 +46,7 @@ class j06005cancelGuestBooking
 					$allGuestUids[ ] = $g->guests_uid;
 					}
 				}
-			$query = "SELECT * FROM #__jomres_contracts WHERE contract_uid = '" . (int) $contract_uid . "' AND guest_uid IN (".implode(',',$allGuestUids).") ";
+			$query = "SELECT * FROM #__jomres_contracts WHERE contract_uid = '" . (int) $contract_uid . "' AND guest_uid IN (".jomres_implode($allGuestUids).") ";
 
 			$bookingData = doSelectSql( $query );
 			if ( count( $bookingData ) == 1 )

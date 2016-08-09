@@ -633,7 +633,7 @@ class dobooking
 
 	function getAllRoomClasses()
 		{
-		$query       = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes WHERE room_classes_uid IN (".implode(',',$this->allRoomClassIds).") ";
+		$query       = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes WHERE room_classes_uid IN (".jomres_implode($this->allRoomClassIds).") ";
 		$roomClasses = doSelectSql( $query );
 		foreach ( $roomClasses as $c )
 			{
@@ -664,9 +664,9 @@ class dobooking
 		$amend_contract    = $tmpBookingHandler->getBookingFieldVal( "amend_contract" );
 		$amend_contractuid = $tmpBookingHandler->getBookingFieldVal( "amend_contractuid" );
 		if ( !$amend_contract ) 
-			$query = "SELECT room_uid,date FROM #__jomres_room_bookings WHERE property_uid = '$this->property_uid' AND room_uid IN (".implode(',',$this->allPropertyRoomUids).") ";
+			$query = "SELECT room_uid,date FROM #__jomres_room_bookings WHERE property_uid = '$this->property_uid' AND room_uid IN (".jomres_implode($this->allPropertyRoomUids).") ";
 		else
-			$query = "SELECT room_uid,date FROM #__jomres_room_bookings WHERE property_uid = '$this->property_uid' AND contract_uid != '$amend_contractuid' AND room_uid IN (".implode(',',$this->allPropertyRoomUids).") ";
+			$query = "SELECT room_uid,date FROM #__jomres_room_bookings WHERE property_uid = '$this->property_uid' AND contract_uid != '$amend_contractuid' AND room_uid IN (".jomres_implode($this->allPropertyRoomUids).") ";
 		$bookings = doSelectSql( $query );
 		foreach ( $bookings as $c )
 			{
@@ -2284,7 +2284,7 @@ class dobooking
 					{
 					if ( !isset( $this->fixedDaysArrivaldateDropdown_checkdates ) )
 						{
-						$query                                         = "SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE `date` IN ('".implode('\',\'',$dateRangeArray)."') AND property_uid = '$this->property_uid'";
+						$query                                         = "SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE `date` IN (".jomres_implode($dateRangeArray, false).") AND property_uid = '$this->property_uid'";
 						$datelist                                      = doSelectSql( $query );
 						$this->fixedDaysArrivaldateDropdown_checkdates = $datelist;
 						}
@@ -3114,7 +3114,7 @@ class dobooking
 			{
 			if ( $thisJRUser->userIsManager )
 				{
-				$query  = "SELECT guests_uid,mos_userid,firstname,surname,house,street,town,county ,country,postcode,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE guests_uid = '$id' AND property_uid IN (".implode(',',$thisJRUser->authorisedProperties).") LIMIT 1";
+				$query  = "SELECT guests_uid,mos_userid,firstname,surname,house,street,town,county ,country,postcode,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE guests_uid = '$id' AND property_uid IN (".jomres_implode($thisJRUser->authorisedProperties).") LIMIT 1";
 				}
 			else
 				{
@@ -3449,7 +3449,7 @@ class dobooking
 			}
 		elseif ($thisJRUser->userIsManager)
 			{
-			$query             = "SELECT guests_uid,surname, firstname, house, street,town,county FROM #__jomres_guests WHERE property_uid IN (".implode(',',$thisJRUser->authorisedProperties).") ORDER BY surname";
+			$query             = "SELECT guests_uid,surname, firstname, house, street,town,county FROM #__jomres_guests WHERE property_uid IN (".jomres_implode($thisJRUser->authorisedProperties).") ORDER BY surname";
 			$existingCustomers = doSelectSql( $query );
 			}
 
@@ -5192,7 +5192,7 @@ class dobooking
 		$datesTilBooking           = $this->findDateRangeForDates( $this->today, $this->arrivalDate );
 
 		$tariffsArray              = array ( $tariffUid );
-		$query                     = "SELECT tarifftype_id FROM #__jomcomp_tarifftype_rate_xref WHERE tariff_id IN (".implode(',',$tariffsArray).") LIMIT 1";
+		$query                     = "SELECT tarifftype_id FROM #__jomcomp_tarifftype_rate_xref WHERE tariff_id IN (".jomres_implode($tariffsArray).") LIMIT 1";
 		$tarifftypeids             = doSelectSql( $query );
 
 		if ( count( $tarifftypeids ) > 0 ) // Micromanage mode tariffs

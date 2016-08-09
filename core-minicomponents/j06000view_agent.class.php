@@ -149,7 +149,7 @@ class j06000view_agent
 				}
 			
 			$gOr = genericOr($property_uids , "propertys_uid");
-			$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE approved = 1 AND `published` = 1 AND propertys_uid IN (".implode(',',$property_uids).") ";
+			$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE approved = 1 AND `published` = 1 AND propertys_uid IN (".jomres_implode($property_uids).") ";
 			$result = doSelectSql($query);
 
 			$property_uids = array ();

@@ -56,7 +56,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 
 	function getCratesByIdArray( $idArray )
 		{
-		$clause = "WHERE id IN (" . implode(',',$idArray) .")";
+		$clause = "WHERE id IN (" . jomres_implode($idArray) .")";
 		$this->crates = $this->getCrates( $clause );
 
 		return $this->crates;
@@ -205,7 +205,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 				{
 				if ( count($id) > 0 )
 					{
-					$clause = "id IN (" . implode(',',$id) .") ";
+					$clause = "id IN (" . jomres_implode($id) .") ";
 					}
 				}
 			elseif ( (int)$id > 0 )

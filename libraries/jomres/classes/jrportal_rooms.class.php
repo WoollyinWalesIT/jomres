@@ -77,7 +77,7 @@ class jrportal_rooms
 							(
 							" . (int) $this->room_classes_uid . ",
 							" . (int) $this->propertys_uid . ",
-							'". implode(',',$this->room_features_uid) . "',
+							'". jomres_implode($this->room_features_uid) . "',
 							'". $this->room_name . "',
 							'". $this->room_number . "',
 							'". $this->room_floor . "',
@@ -120,7 +120,7 @@ class jrportal_rooms
 		$query = "UPDATE #__jomres_rooms 
 					SET 
 						`room_classes_uid` = ".(int)$this->room_classes_uid.",
-						`room_features_uid` = '".implode(',',$this->room_features_uid)."',
+						`room_features_uid` = '".jomres_implode($this->room_features_uid)."',
 						`room_name` = '".$this->room_name."',
 						`room_number` = '".$this->room_number."',
 						`room_floor` = '".$this->room_floor."',

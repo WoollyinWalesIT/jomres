@@ -229,7 +229,7 @@ class j02990showconfirmation
 		
 			if (count($rmids) > 0)
 				{
-				$query         = "SELECT room_number,room_name,room_classes_uid FROM #__jomres_rooms WHERE room_uid IN (".implode(',',$rmids).") ORDER BY room_classes_uid";
+				$query         = "SELECT room_number,room_name,room_classes_uid FROM #__jomres_rooms WHERE room_uid IN (".jomres_implode($rmids).") ORDER BY room_classes_uid";
 				$roomList      = doSelectSql( $query );
 				$roomNumber    = "";
 				$room_name     = "";
