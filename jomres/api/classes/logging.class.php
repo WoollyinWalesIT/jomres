@@ -36,9 +36,7 @@ class logging
 			if ( !strstr( $scriptname, 'install_jomres.php' ) )
 				{
 				$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
-				$user = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( $thisJRUser->id );
-				if (count($user) > 0 )
-					$username =  $user[$thisJRUser->id];
+				$username =  $thisJRUser->username;
 				}
 			else
 				$username = "Installer";
@@ -49,7 +47,7 @@ class logging
 		
 		$jrConfig['log_path'] = rtrim($jrConfig['log_path'], '/');
 		$jrConfig['log_path'] = rtrim($jrConfig['log_path'], '\\');
-		$jrConfig['log_path'] .= JRDS;
+		$jrConfig['log_path'] .= DIRECTORY_SEPARATOR;
 		
 		$log_file = str_replace(" ","_",$channel).".application.log";
 
