@@ -413,7 +413,7 @@ class j02990showconfirmation
 					{
 					$extra_parts = array ();
 					$tmpTotal    = (float) $tpextra[ 'untaxed_grand_total' ];
-					if ( (int) $tpextra[ 'tax_code_id' ] > 0 )
+					/* if ( (int) $tpextra[ 'tax_code_id' ] > 0 )
 						{
 						$tax_rate_id = $tpextra[ 'tax_code_id' ];
 						$rate        = (float) $jrportal_taxrate->taxrates[ $tax_rate_id ][ 'rate' ];
@@ -423,7 +423,7 @@ class j02990showconfirmation
 							$thisTax     = ( $tmpTotal / 100 ) * $rate;
 							$tmpTotal    = $tmpTotal + $thisTax;
 							}
-						}
+						} */
 					$extra_parts[ 'NAME' ]  = $tpextra[ 'description' ];
 					$extra_parts[ 'PRICE' ] = output_price( $tmpTotal );
 					$booking_extras[ ]      = $extra_parts;
