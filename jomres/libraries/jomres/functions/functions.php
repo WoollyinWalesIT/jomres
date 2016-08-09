@@ -931,6 +931,7 @@ function admins_first_run( $manual_trigger = false )
 			touch( $logfile );
 			$count = 0;
 			}
+		
 		if ( !$manual_trigger )
 			{
 			echo '<div  class="modal" tabindex="-1" role="dialog" id="first_run" style="display:none" title="Welcome to Jomres, Joomla\'s favourite hotel booking system">';

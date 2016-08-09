@@ -3,14 +3,11 @@
 	<patTemplate:tmpl name="rows">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" data-toggle="collapse" href="#collapse{COUNTER}">
-				<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#FAQaccordion" data-toggle="collapse" href="#collapse{COUNTER}">
 					{QUESTION}
-					
-					<div class="pull-right">
+					<span class="pull-right">
 						<i class="fa fa-angle-double-down" aria-hidden="true"></i>
-					</div>
-				</h4>
+					</span>
 				</a>
 			</div>
 			<div id="collapse{COUNTER}" class="panel-collapse collapse">
