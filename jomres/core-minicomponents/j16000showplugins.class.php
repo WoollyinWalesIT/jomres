@@ -104,7 +104,7 @@ class j16000showplugins
 			}
 		else
 			{
-			if ( count($key_validation->plugin_licenses) > 0 )
+			if ( isset($key_validation->plugin_licenses) && count($key_validation->plugin_licenses) > 0 )
 				{
 				foreach ($key_validation->plugin_licenses as $key=>$val)
 					{
