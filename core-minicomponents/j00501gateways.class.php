@@ -33,7 +33,9 @@ class j00501gateways
 		$paypal_settings->get_paypal_settings();
 
 		$MiniComponents->triggerEvent( '00509', $componentArgs );
-		$outputArray = $MiniComponents->miniComponentData[ '00509' ];
+		
+		if (isset($MiniComponents->miniComponentData[ '00509' ]))
+			$outputArray = $MiniComponents->miniComponentData[ '00509' ];
 
 		if ( $paypal_settings->paypalConfigOptions[ 'override' ] == "0" && !is_null($outputArray) )
 			{
