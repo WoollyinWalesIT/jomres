@@ -13,31 +13,52 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j07080faq_guest_questions
+class j06000faq
 	{
-	function __construct()
+	function __construct($componentArgs)
 		{
-		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
 			return;
 			}
+		
+		$this->retVals = '';
+
+		if (isset($componentArgs[ 'output_now' ]))
+			$output_now = $componentArgs[ 'output_now' ];
+		else
+			$output_now = true;
 
 		$kb = jomres_singleton_abstract::getInstance( 'jomres_knowledgebase' );
 		
-		//dummy faq
-		$kb->guest_faq['_JOMRES_FAQ_GUEST_CATEGORY_SOMETHING'][] = array (
-			"question" => jr_gettext("_JOMRES_FAQ_GUEST_QUESTION_SOMEQUESTION","_JOMRES_FAQ_GUEST_QUESTION_SOMEQUESTION",false),
-			"answer" => jr_gettext("_JOMRES_FAQ_GUEST_ANSWER_SOMEANSWER","_JOMRES_FAQ_GUEST_ANSWER_SOMEANSWER",false),
-			);
+		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+		
+		if ( $thisJRUser->userIsManager )
+			{
+			if ( $output_now )
+				{
+				echo $kb->get_manager_faq();
+				exit;
+				}
+			else
+				$this->retVals = $kb->get_manager_faq();
+			}
+		else
+			{
+			if ( $output_now )
+				{
+				echo $kb->get_guest_faq();
+				exit;
+				}
+			else
+				$this->retVals = $kb->get_guest_faq();
+			}
 		}
 
-	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return null;
+		return $this->retVals;
 		}
 	}

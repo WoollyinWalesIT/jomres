@@ -28,7 +28,13 @@ width: auto;
 		</blockquote>
 	</noscript>
 
-	<h2 id="tour_target_property_name" style="{CURRENT_PROPERTY_STYLE}">{HACTIVE_PROPERTY}{PROPERTYNAME}<span class="small pull-right">{FAQ_PANE}{MANAGEMENT_VIEW_DROPDOWN}</span></h2>
+	<h2 id="tour_target_property_name" style="{CURRENT_PROPERTY_STYLE}">
+		{HACTIVE_PROPERTY}{PROPERTYNAME}
+		<span class="small pull-right">
+			<a href="#FAQModal" ajax_task="faq" data-toggle="modal" faq-modal-title="{_JOMRES_FAQ}" random_identifier="FAQModal" class="btn btn-primary hidden-xs hidden-sm"><i class="fa fa-question-circle"></i> {_JOMRES_FAQ}</a>
+			{MANAGEMENT_VIEW_DROPDOWN}
+		</span>
+	</h2>
 	<div class="row">
 		<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
 			<div class="col-md-6" id="tour_target_editing_mode_dropdown">
@@ -55,4 +61,6 @@ width: auto;
 	</patTemplate:tmpl>
 
 	<div id="tour_target_content"></div>
+	
+	<div class="modal fade" id="FAQModal"></div>
 </patTemplate:tmpl>
