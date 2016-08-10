@@ -6,43 +6,51 @@ max-width: 350px;
 width: auto;
 }
 </style>
-	<div id="jomres_alternate_menu_position"></div>
-	<!-- available if required by a plugin -->
-	<div id="jomres_content_area">
-		<noscript>
-			<blockquote>
-				<p><font size="3" color="#FF0000"><b>You do not have JavaScript enabled.</b></font><br/>
-					<font size="2" color="#000080">The functionality of this site requires the use of JavaScript so
-						please enable before continuing. For assistance in enabling JavaScript, please contact the
-						webmaster.</font></p>
-			</blockquote>
-		</noscript>
-		<div class="">
-			<h2 id="tour_target_property_name" style="{CURRENT_PROPERTY_STYLE}">{HACTIVE_PROPERTY}{PROPERTYNAME}<span class="small pull-right">{FAQ_PANE} {MANAGEMENT_VIEW_DROPDOWN}</span></h2>
-			<div class="row-fluid">
-				<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
-					<div class="span6" id="tour_target_editing_mode_dropdown">
-						{EDITING_MODE_DROPDOWN}
-					</div>
-				</patTemplate:tmpl>
-				<!--<patTemplate:tmpl name="timezone_dropdown" type="simpleCondition" requiredVars="timezoneblurb">
-					<div class="span4" id="tour_target_timezone_dropdown">
-						{TIMEZONEBLURB}
-						{TIMEZONE_DROPDOWN}
-					</div>
-				</patTemplate:tmpl>-->
-				<patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
-					<div class="span6" id="tour_target_lang_dropdown">
-						{LANGDROPDOWN}
-					</div>
-				</patTemplate:tmpl>
-			</div>
+<div id="jomres_alternate_menu_position"></div>
+<!-- available if required by a plugin -->
+<div id="jomres_content_area">
+	<noscript>
+		<blockquote>
+			<p><font size="3" color="#FF0000"><b>You do not have JavaScript enabled.</b></font><br/>
+				<font size="2" color="#000080">The functionality of this site requires the use of JavaScript so
+					please enable before continuing. For assistance in enabling JavaScript, please contact the
+					webmaster.</font></p>
+		</blockquote>
+	</noscript>
+	<div class="">
+		<h2 id="tour_target_property_name" style="{CURRENT_PROPERTY_STYLE}">
+			{HACTIVE_PROPERTY}{PROPERTYNAME}
+			<span class="small pull-right">
+				<a href="#FAQModal" ajax_task="faq" data-toggle="modal" faq-modal-title="{_JOMRES_FAQ}" random_identifier="FAQModal" class="btn btn-primary hidden-phone hidden-tablet"><i class="fa fa-question-circle"></i> {_JOMRES_FAQ}</a>
+				{MANAGEMENT_VIEW_DROPDOWN}
+			</span>
+		</h2>
+		<div class="row-fluid">
+			<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
+				<div class="span6" id="tour_target_editing_mode_dropdown">
+					{EDITING_MODE_DROPDOWN}
+				</div>
+			</patTemplate:tmpl>
+			<!--<patTemplate:tmpl name="timezone_dropdown" type="simpleCondition" requiredVars="timezoneblurb">
+				<div class="span4" id="tour_target_timezone_dropdown">
+					{TIMEZONEBLURB}
+					{TIMEZONE_DROPDOWN}
+				</div>
+			</patTemplate:tmpl>-->
+			<patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
+				<div class="span6" id="tour_target_lang_dropdown">
+					{LANGDROPDOWN}
+				</div>
+			</patTemplate:tmpl>
 		</div>
-		<div class="clearfix"></div>
-		{SANITY_CHECKS}
-		<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
-			<div class="alert alert-warning">{MESSAGE}</div>
-		</patTemplate:tmpl>
+	</div>
+	<div class="clearfix"></div>
+	{SANITY_CHECKS}
+	<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
+		<div class="alert alert-warning">{MESSAGE}</div>
+	</patTemplate:tmpl>
 
-<div id="tour_target_content"></div>
+	<div id="tour_target_content"></div>
+	
+	<div class="modal hide fade" id="FAQModal"></div>
 </patTemplate:tmpl>

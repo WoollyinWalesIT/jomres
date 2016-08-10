@@ -135,7 +135,7 @@ class j00060toptemplate
 			$output[ 'CURRENT_PROPERTY_STYLE' ] = "display:none;";
 			}
 		
-		$output['FAQ_PANE']					= $MiniComponents->specificEvent( '06000', 'faq_pane' , array ("output_now"=>false) );
+		$output['_JOMRES_FAQ'] = jr_gettext( "_JOMRES_FAQ", "_JOMRES_FAQ" , false );
 
 		$messaging = array ();
 

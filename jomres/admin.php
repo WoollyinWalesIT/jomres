@@ -137,7 +137,7 @@ try
 		$output[ 'CONTROL_PANEL_MENU' ] = $MiniComponents->miniComponentData[ '10004' ][ 'generate_control_panel' ]; // 10004 Builds the actual menu items
 
 		//frequently asked questions
-		$output['FAQ_PANE']					= $MiniComponents->specificEvent( '16000', 'faq_pane' , array ("output_now"=>false) );
+		$output['_JOMRES_FAQ'] = jr_gettext( "_JOMRES_FAQ", "_JOMRES_FAQ" , false );
 		
 		//obsolete files warnings
 		$ouput[ 'OBSOLETE_FILES_WARNINGS' ] = '';
