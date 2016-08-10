@@ -1,5 +1,10 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
+<style type="text/css">
+#jomres_bootstrap_wrapper .modal.fade.in {top:5%;}
+#jomres_bootstrap_wrapper .modal {left:15%;margin-left:0;width:70%}
+#jomres_bootstrap_wrapper .modal .modal-body {max-height:700px; position: relative; overflow-y: auto;}
+</style>
 
 <div id="jomres_bootstrap_wrapper">
 	{SUBSCRIPTION_WARNING}
@@ -32,7 +37,7 @@
 		</div>
 		<div class="clearfix"></div>
 	</div>
-	<div class="modal hide fade" id="FAQModal"></div>
+	<div class="modal modal-lg hide fade" id="FAQModal"></div>
 	{LICENSE_WARNING}
 	{BOOTSTRAP_WARNING}
 	<div class="row-fluid">
