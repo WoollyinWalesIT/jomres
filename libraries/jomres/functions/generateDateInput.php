@@ -39,6 +39,10 @@ function generateDateInput( $fieldName, $dateValue='', $myID = false, $siteConfi
 		set_showtime( 'departure_date_unique_id', $uniqueID . "_XXX" );
 		
 		//var_dump( $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'], $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'], $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ], $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ]);exit;
+		if (!isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]))
+			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] = '';
+		if (!isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ]))
+			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = '';
 		
 		if (
 			(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] == '' ) &&
