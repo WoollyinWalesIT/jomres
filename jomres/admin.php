@@ -200,7 +200,7 @@ try
 		SetCookie( "periodoption", $periodoption, time() + 60 * 60 );
 		}
 
-	admins_first_run();
+	// admins_first_run();
 
 	//task
 	switch ( get_showtime( 'task' ) )
