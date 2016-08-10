@@ -946,13 +946,15 @@ function admins_first_run( $manual_trigger = false )
 
 			}
 		else
-		echo '<div id = "first_run" title="Welcome to Jomres, Joomla\'s favourite hotel booking system">';
+			echo '<div id = "first_run" title="Welcome to Jomres, Joomla\'s favourite hotel booking system">';
 
-		if ( !using_bootstrap() ) $class = "ui-state-highlight";
+		if ( !using_bootstrap() ) 
+			$class = "ui-state-highlight";
 		else
-		$class = "alert";
+			$class = "alert";
 
-		if ( !$manual_trigger ) echo '<p class="' . $class . '">This appears to be the first time you\'ve used Jomres* so here is a little reading material you will probably want to look at.</p>';
+		if ( !$manual_trigger ) 
+			echo '<p class="' . $class . '">This appears to be the first time you\'ve used Jomres* so here is a little reading material you will probably want to look at.</p>';
 
 		if ( !using_bootstrap() )
 			{
