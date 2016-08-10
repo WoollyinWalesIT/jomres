@@ -186,7 +186,7 @@ class j00004a_init_javascript_css_files
 				if (jomres_bootstrap_version() == "3" && !jomres_cmsspecific_areweinadminarea() )
 					$tail = "_bs3";
 				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/x-editable/bootstrap-editable/js/","bootstrap-editable".$tail.".min.js");
-				$css_files[]= array(  JOMRES_ROOT_DIRECTORY."/javascript/x-editable/bootstrap-editable/css/", "bootstrap-editable".$tail.".css");
+				$css_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/x-editable/bootstrap-editable/css/", "bootstrap-editable".$tail.".css");
 				}
 			}
 		
@@ -202,25 +202,11 @@ class j00004a_init_javascript_css_files
 			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "jquery.fileupload-validate.js");
 			$javascript_files[]= array(JOMRES_ROOT_DIRECTORY."/javascript/media_centre/", "tmpl.min.js");
 			}
-			
-			
-		/* if ( 
-			using_bootstrap() && 
-			!jomres_cmsspecific_areweinadminarea() &&
-			( $thisJRUser->userIsManager ) ||
-			( $thisJRUser->userIsRegistered && get_showtime("task") == 'registerProp_step1' ) ||
-			( $thisJRUser->userIsRegistered && get_showtime("task") == 'registerProp_step2' )
-			)
-			{
-			if ( $_GET[ 'tmpl' ] == get_showtime("tmplcomponent") )
-				{
-				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/',"bootstrap-tour-standalone.js");
-				}
-			else
-				{
-				$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "bootstrap-tour.js");
-				}
-			}*/
+		
+		//galleria js and css files TODO: find a better solution
+		$javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/slideshow_themes/classic/', "galleria-1.4.2.min.js" );
+		$javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/slideshow_themes/classic/', "galleria.classic.min.js" );
+		$css_files[] = array( JOMRES_ROOT_DIRECTORY.'/javascript/slideshow_themes/classic/', 'galleria.classic.css' );
 		
 		$ls = jomresGetDomain();
 		if ( stristr( $ls, ".xn--", $ls ) && !jomres_cmsspecific_areweinadminarea() ) // We check to see if we're in the admin area because our one and only client with an umlat in the domain name has found that the redirect function doesn't work in the administrator area if the domain's been converted.
