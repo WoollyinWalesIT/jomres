@@ -241,6 +241,11 @@ class j10501a_misc
 			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_FONTAWESOME_DESC', '_JOMRES_COM_FONTAWESOME_DESC', false ) );
 			$configurationPanel->insertSetting();
 			
+			$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_CACHING', '_JOMRES_COM_CACHING', false ) );
+			$configurationPanel->setmiddle( $lists[ 'useArrayCaching' ] );
+			$configurationPanel->setright( jr_gettext( '_JOMRES_COM_CACHING_DESC', '_JOMRES_COM_CACHING_DESC', false ) );
+			$configurationPanel->insertSetting();
+			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_SHOW_POWEREDBY', '_JOMRES_SHOW_POWEREDBY', false ) );
 			$configurationPanel->setmiddle( $lists[ 'show_powered_by' ] );
 			$configurationPanel->setright();

@@ -230,12 +230,6 @@ class patTemplate
 		$this->setType( $type );
 		$this->applyInputFilter( 'ShortModifiers' );
 		$this->current_template_files = array ();
-		
-		$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig     = $siteConfig->get();
-		
-		if ( $jrConfig['pattemplate_caching_enabled']=="1" )
-			$this->useTemplateCache( 'Jomres' );
 		}
 
 	/**

@@ -261,7 +261,6 @@ function showSiteConfig()
 	$lists[ 'alternate_smtp_authentication' ]       = jomresHTML::selectList( $yesno, 'cfg_alternate_smtp_authentication', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'alternate_smtp_authentication' ] );
 	$lists[ 'alternate_mainmenu' ]                  = jomresHTML::selectList( $yesno, 'cfg_alternate_mainmenu', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'alternate_mainmenu' ] );
 	$lists[ 'full_access_control' ]                 = jomresHTML::selectList( $yesno, 'cfg_full_access_control', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'full_access_control' ] );
-	$lists[ 'pattemplate_caching_enabled' ]         = jomresHTML::selectList( $yesno, 'cfg_pattemplate_caching_enabled', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'pattemplate_caching_enabled' ] );
 	$lists[ 'safe_mode' ]                           = jomresHTML::selectList( $yesno, 'cfg_safe_mode', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'safe_mode' ] );
 	$lists[ 'use_jomres_own_editor' ]               = jomresHTML::selectList( $yesno, 'cfg_use_jomres_own_editor', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_jomres_own_editor' ] );
 	$lists[ 'property_details_in_tabs' ]            = jomresHTML::selectList( $yesno, 'cfg_property_details_in_tabs', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'property_details_in_tabs' ] );

@@ -199,7 +199,6 @@ $jrConfig = array (
   'show_cumulative_price_overlay' => '1',
   'live_scrolling_enabled' => '1',
   'load_font_awesome' => '0',
-  'pattemplate_caching_enabled' => '0',
   'licensekey' => '',
   'openexchangerates_api_key' => '',
   'subscriptionPackagePriceIncludesTax' => '1',
