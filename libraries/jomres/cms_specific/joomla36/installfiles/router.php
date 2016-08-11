@@ -22,7 +22,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY'))
         define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
     }
 
-require_once( JPATH_BASE . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'framework.php' );
+require_once( dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'framework.php' );
 
 if (!class_exists('JomresRouter'))
 	{
