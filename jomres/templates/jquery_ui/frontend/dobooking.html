@@ -73,76 +73,83 @@
 		jomresJquery('#ajaxform').attr('novalidate', 'novalidate'); // Disable html5 validation
 
 		jomresJquery('#ajaxform').validate(
-				{
-					onkeyup: false,
-					ignore: ".ignore",
-					rules: {
-						firstname: {
-							minlength: 1,
-							required: {VALIDATION_FIRSTNAME}
-						},
-						surname: {
-							minlength: 1,
-							required: {VALIDATION_SURNAME}
-						},
-						house: {
-							minlength: 1,
-							required: {VALIDATION_HOUSENO}
-						},
-						street: {
-							minlength: 1,
-							required: {VALIDATION_STREET}
-						},
-						town: {
-							minlength: 1,
-							required: {VALIDATION_TOWN}
-						},
-						postcode: {
-							minlength: 1,
-							required: {VALIDATION_POSTCODE}
-						},
-						tel_landline: {
-							minlength: 1,
-							required: {VALIDATION_LANDLINE}
-						},
-						tel_mobile: {
-							minlength: 1,
-							required: {VALIDATION_CELLMOBILE}
-						},
-						eemail: {
-							email: true,
-							required: {VALIDATION_EMAIL},
-							remote: {
-								url: ajaxurl + '&task=handlereq',
-								type: "get",
-								data: {
-									field: 'email_usage_check',
-									value: function () {
-										return jomresJquery('#ajaxform :input[name="eemail"]').val();
-									},
-									property_uid_check: function () {
-										return jomresJquery('#booking_form_property_uid').val();
-									},
-								}
-							}
+			{
+			rules: {
+				firstname: {
+					minlength: 1,
+					required: {VALIDATION_FIRSTNAME}
+				},
+				surname: {
+					minlength: 1,
+					required: {VALIDATION_SURNAME}
+				},
+				house: {
+					minlength: 1,
+					required: {VALIDATION_HOUSENO}
+				},
+				street: {
+					minlength: 1,
+					required: {VALIDATION_STREET}
+				},
+				town: {
+					minlength: 1,
+					required: {VALIDATION_TOWN}
+				},
+				postcode: {
+					minlength: 1,
+					required: {VALIDATION_POSTCODE}
+				},
+				tel_landline: {
+					minlength: 1,
+					required: {VALIDATION_LANDLINE}
+				},
+				tel_mobile: {
+					minlength: 1,
+					required: {VALIDATION_CELLMOBILE}
+				},
+				eemail: {
+					email: true,
+					required: {VALIDATION_EMAIL},
+					remote: {
+						url: ajaxurl + '&task=handlereq',
+						type: "get",
+						data: {
+							field: 'email_usage_check',
+							value: function () {
+								return jomresJquery('#ajaxform :input[name="eemail"]').val();
+							},
+							property_uid_check: function () {
+								return jomresJquery('#booking_form_property_uid').val();
+							},
 						}
-						{CUSTOMFIELD_JAVASCRIPT}
-
-					},
-
-					messages: {
-						eemail: { remote: "{EMAIL_ALREADY_INUSE}" }
-					},
-
-					highlight: function (label) {
-						jomresJquery(label).closest('.inputbox').addClass('error');
-					},
-					success: function (label) {
-						label
-								.text('OK!').addClass('valid')
-								.closest('.inputbox').addClass('success');
 					}
-				});
+				}
+				{CUSTOMFIELD_JAVASCRIPT}
+
+			},
+
+			messages: {
+				firstname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME}",
+				surname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME}",
+				house: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO}",
+				street: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET}",
+				town: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN}",
+				postcode: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE}",
+				tel_landline: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE}",
+				tel_mobile: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE}",
+				eemail: { 
+					required: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL}",
+					remote: "{EMAIL_ALREADY_INUSE}" 
+					}
+				},
+
+			highlight: function (label) {
+				jomresJquery(label).closest('.form-group').removeClass('has-success').addClass('has-error');
+			},
+			success: function (label) {
+				jomresJquery(label).closest('.form-group').removeClass('has-error').addClass('has-success');
+			}
+		});
 
 		{MODAL}
 		jomresJquery.jheartbeat.set({
