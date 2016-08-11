@@ -218,5 +218,5 @@ $jrConfig = array (
   'syslog_host' => '',
   'syslog_port' => '',
   'sendErrorEmails' => '0',
-  'minimum_deposit_percentage' => "20"
+  'minimum_deposit_percentage' => ""
 );
