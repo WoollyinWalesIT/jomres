@@ -1,104 +1,80 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
-	<!--
-	function validateContactForm() {
-		valid = true;
-		missingfields = "";
-		document.regForm.guest_name.className = "inputbox";
-		document.regForm.guest_email.className = "inputbox";
-		document.regForm.enquiry.className = "inputbox";
-		document.regForm.hncaptcha_private_key.className = "inputbox";
+<!--
 
-		if (document.regForm.guest_name.value == "") {
-			document.regForm.guest_name.className = "alert alert-error";
-			valid = false;
-		}
-		if (document.regForm.enquiry.value == "") {
-			document.regForm.enquiry.className = "alert alert-error";
-			valid = false;
-		}
-		if (document.regForm.hncaptcha_private_key.value == "") {
-			document.regForm.hncaptcha_private_key.className = "alert alert-error";
-			valid = false;
-		}
+var RecaptchaOptions = {
+	custom_translations: {
+		instructions_visual: "{JOMRES_RECAPTCHA_INSTRUCTIONS_VISUAL}",
+		instructions_audio: "{JOMRES_RECAPTCHA_INSTRUCTIONS_AUDIO}",
+		play_again: "{JOMRES_RECAPTCHA_PLAY_AGAIN}",
+		cant_hear_this: "{JOMRES_RECAPTCHA_CANT_HEAR_THIS}",
+		visual_challenge: "{JOMRES_RECAPTCHA_VISUAL_CHALLENGE}",
+		audio_challenge: "{JOMRES_RECAPTCHA_AUDIO_CHALLENGE}",
+		refresh_btn: "{JOMRES_RECAPTCHA_REFRESH_BTN}",
+		help_btn: "{JOMRES_RECAPTCHA_HELP_BTN}",
+		incorrect_try_again: "{JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN}",
+	},
+	lang: 'en', // Unavailable while writing this code (just for audio challenge)
+	theme: 'clean' //can be changed to 'red','white','blackglass'
+};
 
-		var emailID = document.regForm.guest_email
-		if ((emailID.value == null) || (emailID.value == "")) {
-			document.regForm.guest_email.className = "alert alert-error";
-			emailID.focus()
-			valid = false;
-		}
-		else {
-			if (echeck(emailID.value) == false) {
-				document.regForm.guest_email.className = "alert alert-error";
-				emailID.value = ""
-				emailID.focus()
-				valid = false;
-			}
-		}
-		if (valid) {
-			document.regForm.action = "index.php?option=com_jomres&task=contactowner"
-			document.regForm.submit()
-		}
-		else {
-			alert("{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2}");
+
+jomresJquery.validator.setDefaults({
+	highlight: function(element) {
+		jomresJquery(element).closest('.form-group').addClass('has-error');
+	},
+	unhighlight: function(element) {
+		jomresJquery(element).closest('.form-group').removeClass('has-error');
+	},
+	errorElement: 'span',
+	errorClass: 'help-block',
+	errorPlacement: function(error, element) {
+		if(element.parent('.input-group').length) {
+			error.insertAfter(element.parent());
+		} else {
+			error.insertAfter(element);
 		}
 	}
-	/**
-	 * DHTML email validation script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
-	 */
-	function echeck(str) {
-		var at = "@"
-		var dot = "."
-		var lat = str.indexOf(at)
-		var lstr = str.length
-		var ldot = str.indexOf(dot)
-		if (str.indexOf(at) == -1) {
-			alert("Invalid E-mail ID")
-			return false
-		}
-		if (str.indexOf(at) == -1 || str.indexOf(at) == 0 || str.indexOf(at) == lstr) {
-			alert("Invalid E-mail ID");
-			return false;
-		}
-		if (str.indexOf(dot) == -1 || str.indexOf(dot) == 0 || str.indexOf(dot) == lstr) {
-			alert("Invalid E-mail ID")
-			return false
-		}
-		if (str.indexOf(at, (lat + 1)) != -1) {
-			alert("Invalid E-mail ID")
-			return false
-		}
-		if (str.substring(lat - 1, lat) == dot || str.substring(lat + 1, lat + 2) == dot) {
-			alert("Invalid E-mail ID")
-			return false
-		}
-		if (str.indexOf(dot, (lat + 2)) == -1) {
-			alert("Invalid E-mail ID")
-			return false
-		}
-		if (str.indexOf(" ") != -1) {
-			alert("Invalid E-mail ID")
-			return false
-		}
-		return true
-	}
+});
 
-	var RecaptchaOptions = {
-		custom_translations: {
-			instructions_visual: "{JOMRES_RECAPTCHA_INSTRUCTIONS_VISUAL}",
-			instructions_audio: "{JOMRES_RECAPTCHA_INSTRUCTIONS_AUDIO}",
-			play_again: "{JOMRES_RECAPTCHA_PLAY_AGAIN}",
-			cant_hear_this: "{JOMRES_RECAPTCHA_CANT_HEAR_THIS}",
-			visual_challenge: "{JOMRES_RECAPTCHA_VISUAL_CHALLENGE}",
-			audio_challenge: "{JOMRES_RECAPTCHA_AUDIO_CHALLENGE}",
-			refresh_btn: "{JOMRES_RECAPTCHA_REFRESH_BTN}",
-			help_btn: "{JOMRES_RECAPTCHA_HELP_BTN}",
-			incorrect_try_again: "{JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN}",
+jQuery.extend(jQuery.validator.messages, {
+  required: "{_JOMRES_REQUIREDFIELDS}"
+})
+
+jomresJquery().ready(function() {
+	jomresJquery('#regForm').validate({
+		rules: {
+			guest_name: {
+				minlength: 3,
+				maxlength: 15,
+				required: true
+			},
+			enquiry: {
+				minlength: 3,
+				maxlength: 15,
+				required: true
+			},
+			guest_email: {
+				required: true,
+				email: true,
+				minlength: 5,
+				maxlength: 100
+			},
+			
+			
 		},
-		lang: 'en', // Unavailable while writing this code (just for audio challenge)
-		theme: 'clean' //can be changed to 'red','white','blackglass'
-	};
+		highlight: function(element) {
+			jomresJquery(element).closest('.form-group').addClass('has-error');
+		},
+		unhighlight: function(element) {
+			jomresJquery(element).closest('.form-group').removeClass('has-error');
+		},
+		success: function (label) {
+			label
+				.closest('.form-group').addClass('has-success');
+		}
+	});
+});
 	//-->
 </script>
 
@@ -106,7 +82,7 @@
 
 <p>{SUBJECT}</p>
 
-<form name="regForm" action="{JOMRES_SITEPAGE_URL_NOSEF}&task=contactowner" method="POST" class="form-horizontal" role="form">
+<form id="regForm" name="contact_form" action="{JOMRES_SITEPAGE_URL_NOSEF}&task=contactowner" method="POST" class="form-horizontal" role="form">
 	<div class="form-group">
 		<label class="col-md-2 control-label" for="guest_name">{HNAME}</label>
 		<div class="col-md-10">
