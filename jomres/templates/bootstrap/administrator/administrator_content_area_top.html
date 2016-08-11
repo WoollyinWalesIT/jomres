@@ -1,9 +1,12 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
 <style type="text/css">
-#jomres_bootstrap_wrapper .modal.fade.in {top:5%;}
-#jomres_bootstrap_wrapper .modal {left:15%;margin-left:0;width:70%}
-#jomres_bootstrap_wrapper .modal .modal-body {max-height:700px; position: relative; overflow-y: auto;}
+@media (min-width: 768px) {
+	#jomres_bootstrap_wrapper .modal.fade.in {top:5%;}
+	#jomres_bootstrap_wrapper .modal {left:15%;margin-left:0;width:70%}
+	#jomres_bootstrap_wrapper .modal .modal-body {max-height:700px;}
+	}
+#jomres_bootstrap_wrapper .modal .modal-body {position: relative; overflow-y: auto;}
 </style>
 
 <div id="jomres_bootstrap_wrapper">

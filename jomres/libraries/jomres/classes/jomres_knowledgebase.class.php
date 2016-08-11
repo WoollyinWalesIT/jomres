@@ -112,7 +112,12 @@ class jomres_knowledgebase
 
 			$pageoutput[ ] = $output;
 			$tmpl = new patTemplate();
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			
+			if ( jomres_cmsspecific_areweinadminarea() )
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+			else
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $rows );
 			$tmpl->readTemplatesFromInput( 'faq_questions.html' );
@@ -127,7 +132,12 @@ class jomres_knowledgebase
 		
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		
+		if ( jomres_cmsspecific_areweinadminarea() )
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+		else
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'questions', $category_rows );
 		$tmpl->readTemplatesFromInput( 'faq_pane.html' );
