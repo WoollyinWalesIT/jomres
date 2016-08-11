@@ -311,9 +311,10 @@ class dobooking
 
 		if ( !isset( $mrConfig[ 'auto_detect_country_for_booking_form' ] ) ) $mrConfig[ 'auto_detect_country_for_booking_form' ] = "1";
 
-		if ( $mrConfig[ 'auto_detect_country_for_booking_form' ] == "1" ) $this->cfg_defaultcountry = $tmpBookingHandler->user_settings[ 'geolocated_country' ];
+		if ( $mrConfig[ 'auto_detect_country_for_booking_form' ] == "1" && isset($tmpBookingHandler->user_settings[ 'geolocated_country' ]) ) 
+			$this->cfg_defaultcountry = $tmpBookingHandler->user_settings[ 'geolocated_country' ];
 		else
-		$this->cfg_defaultcountry = $mrConfig[ 'defaultcountry' ];
+			$this->cfg_defaultcountry = $mrConfig[ 'defaultcountry' ];
 
 		//if ($this->booker_class == "100")
 		//	$this->cfg_minimuminterval						= 1;
@@ -1388,6 +1389,19 @@ class dobooking
 		if ( get_showtime( 'include_room_booking_functionality' ) && $this->cfg_singlePersonSuppliment == "1" ) $output[ 'SINGLE_PERSON_SUPPLIMENT' ] = $this->sanitiseOutput( jr_gettext( '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST', '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST' ) );
 
 		$output[ 'ESTIMATEWARNING' ] = $this->sanitiseOutput( jr_gettext( '_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING', '_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING' ) );
+
+		$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME' ]	= $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME', false, false ) );
+		$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME' ]	= $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME', false, false ) );
+		$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO' ]	= $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO', false, false ) );
+		$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET' ]	= $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET', false, false ) );
+		$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN' ]	= $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN', false, false ) );
+		$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION' ]	= $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION', false, false ) );
+		$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE' ]	= $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE', false, false ) );
+		$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_COUNTRY' ]	= $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_COUNTRY', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_COUNTRY', false, false ) );
+		$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE' ]	= $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE', false, false ) );
+		$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE' ]	= $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE', false, false ) );
+		$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL' ]	= $this->sanitiseOutput( jr_gettext( '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL', false, false ) );
+
 
 		return $output;
 		}
