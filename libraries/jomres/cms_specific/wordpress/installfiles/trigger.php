@@ -21,6 +21,11 @@ if (!jomres_check_if_jomres_installed())
 	}
 else
 	{
+	trigger_jomres();
+	}
+	
+function trigger_jomres()
+	{
 	if (isset($_REQUEST['jr_wp_source']))
 		{
 		if ($_REQUEST['jr_wp_source'] == "admin")
@@ -44,7 +49,7 @@ else
 			}
 		}
 	}
-	
+
 function jr_wp_trigger_frontend()
 	{
 	require_once( ABSPATH . JOMRES_ROOT_DIRECTORY.'/jomres.php' );
@@ -106,20 +111,26 @@ function jomres_check_if_jomres_installed()
 function output_jomres_not_installed_message()
 	{
 	$dir_path = dirname(__FILE__);
-	copy(
-		$dir_path.'/jomres_webinstall.php' , 
-		ABSPATH.'/jomres_webinstall.php'
-		);
 	
-	unlink($dir_path.'/jomres_webinstall.php');
-
-	if (!file_exists(ABSPATH.'/jomres_webinstall.php') )
+	if ( file_exists($dir_path . '/jomres_webinstall.php' ) )
 		{
-		echo 'Error, couldn\'t copy '.$dir_path.'/jomres_webinstall.php to '.ABSPATH.'/jomres_webinstall.php <br/>';
-		echo 'Please use ftp to copy the file to '.ABSPATH.' then run it manually.';
+		copy(
+			$dir_path.'/jomres_webinstall.php' , 
+			ABSPATH.'/jomres_webinstall.php'
+			);
+		
+		unlink($dir_path.'/jomres_webinstall.php');
+		
+		if (!file_exists(ABSPATH.'/jomres_webinstall.php') )
+			{
+			echo 'Error, couldn\'t copy '.$dir_path.'/jomres_webinstall.php to '.ABSPATH.'/jomres_webinstall.php <br/>';
+			echo 'Please use ftp to copy the file to '.ABSPATH.' then run it manually.';
+			}
+		else
+			{
+			wp_redirect(site_url()."/jomres_webinstall.php");
+			}
 		}
 	else
-		{
-		wp_redirect(site_url()."/jomres_webinstall.php");
-		}
+		trigger_jomres();
 	}
