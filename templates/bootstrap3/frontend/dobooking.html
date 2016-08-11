@@ -73,7 +73,6 @@
 
 		jomresJquery('#ajaxform').validate(
 				{
-					ignore: ".ignore",
 					rules: {
 						firstname: {
 							minlength: 1,
@@ -123,22 +122,30 @@
 									},
 								}
 							}
+						},
+					messages: {
+						firstname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME}",
+						surname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME}",
+						house: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO}",
+						street: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET}",
+						town: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN}",
+						postcode: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE}",
+						tel_landline: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE}",
+						tel_mobile: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE}",
+						eemail: { 
+							required: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL}",
+							remote: "{EMAIL_ALREADY_INUSE}" 
+							}
 						}
 						{CUSTOMFIELD_JAVASCRIPT}
-
-					},
-
-					messages: {
-						eemail: { remote: "{EMAIL_ALREADY_INUSE}" }
 					},
 
 					highlight: function (label) {
-						jomresJquery(label).closest('.form-group').addClass('error');
+						jomresJquery(label).closest('.form-group').addClass('has-error');
 					},
 					success: function (label) {
 						label
-								.text('OK!').addClass('valid')
-								.closest('.form-group').addClass('success');
+							.closest('.form-group').addClass('has-success');
 					}
 				});
 

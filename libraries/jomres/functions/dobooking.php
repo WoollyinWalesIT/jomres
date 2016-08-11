@@ -314,7 +314,7 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 			}
 		if ($guest['REGION'] == '')
 			{
-			if ( $mrConfig[ 'auto_detect_country_for_booking_form' ] == "1" ) 
+			if ( $mrConfig[ 'auto_detect_country_for_booking_form' ] == "1" && isset( $tmpBookingHandler->user_settings[ 'geolocated_country' ]) ) 
 				{
 				$bkg->setGuest_country( $tmpBookingHandler->user_settings[ 'geolocated_country' ] );
 				}
