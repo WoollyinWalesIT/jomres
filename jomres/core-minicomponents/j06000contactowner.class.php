@@ -125,7 +125,10 @@ class j06000contactowner
 		$output[ 'JOMRES_RECAPTCHA_HELP_BTN' ]            = jr_gettext( 'JOMRES_RECAPTCHA_HELP_BTN', 'JOMRES_RECAPTCHA_HELP_BTN', false, false );
 		$output[ 'JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN' ] = jr_gettext( 'JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN', 'JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN', false, false );
 
-		if ( $use_recaptcha )
+		
+		$output[ '_JOMRES_REQUIREDFIELDS' ] = jr_gettext( '_JOMRES_REQUIREDFIELDS', '_JOMRES_REQUIREDFIELDS', false, false );
+		
+		if ( $use_recaptcha && $output[ 'GUEST_NAME' ] != "" && $output[ 'SUBJECT' ]!= "" && $output[ 'GUEST_EMAIL' ] != ""  )
 			{
 			$challenge = '';
 			
@@ -137,10 +140,18 @@ class j06000contactowner
 			if ( $challenge != "" )
 				{
 				if ($version == "V1")
-					$resp = recaptcha_check_answer( $jrConfig[ 'recaptcha_private_key' ], $_SERVER[ "REMOTE_ADDR" ], jomresGetParam( $_POST, 'recaptcha_challenge_field', '' ), jomresGetParam( $_POST, 'recaptcha_response_field', '' ) );
+					$resp = recaptcha_check_answer( 
+						$jrConfig[ 'recaptcha_private_key' ], 
+						$_SERVER[ "REMOTE_ADDR" ], 
+						jomresGetParam( $_POST, 'recaptcha_challenge_field', '' ), 
+						jomresGetParam( $_POST, 'recaptcha_response_field', '' ) 
+						);
 				elseif ($version == "V2")
 					{
-					$resp = $recaptcha->verify( $_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+					$resp = $recaptcha->verify( 
+						$_POST['g-recaptcha-response'], 
+						$_SERVER['REMOTE_ADDR']
+						);
 					$resp->is_valid = $resp->isSuccess();
 					}
 				}
