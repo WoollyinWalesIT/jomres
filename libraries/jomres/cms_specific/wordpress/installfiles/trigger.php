@@ -81,7 +81,9 @@ function jomres_check_if_jomres_installed()
 		
 	if ( defined ( 'JOMRES_ROOT_DIRECTORY' ) && file_exists( ABSPATH . JOMRES_ROOT_DIRECTORY.'/jomres.php' ) )
 		{
-		$current_jomres_version = get_jomres_current_version();
+		include(  ABSPATH . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'jomres_config.php' );
+		$current_jomres_version = $mrConfig[ 'version' ];
+	
 		$wp_jomres_plugin_data = JOMRES_WP_PLUGIN_VERSION;
 		
 		if ( isset($wp_jomres_plugin_data['Version']) )
