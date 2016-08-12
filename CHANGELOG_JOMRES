@@ -1,3 +1,29 @@
+<h3>Jomres 9.8.10 11/08/2016</h3>
+
+<span class="label label-success">Feature</span> Added a FAQ to the administrator area.
+<span class="label label-success">Feature</span> Added manager area FAQ.
+<span class="label label-success">Feature</span> Modified Wordpress updating so that using the WP system to upgrade Jomres will trigger the web installer at the appropriate time.
+
+<span class="label label-warning">Change</span> Improved sample property data and logic to ensure that the Trash Tables feature can be used in the installer.
+<span class="label label-warning">Change</span> Modified error reporting level in installer.
+<span class="label label-warning">Change</span> Ensured calls to 07020 ( menu badges ) are done only once.
+<span class="label label-warning">Change</span> Resolved a duplicate call problem in cpanel.
+<span class="label label-warning">Change</span> Modified logging class to reduce the number of queries.
+<span class="label label-warning">Change</span> Added logging to admin.php
+<span class="label label-warning">Change</span> Changed the point that logging is starts so that we can include the username where available.
+<span class="label label-warning">Change</span> Added a new implode function that gives us more control over input validation.
+<span class="label label-warning">Change</span> Improved contact owner script to use new validation js.
+<span class="label label-warning">Change</span> Improved booking form input validation responses.
+<span class="label label-warning">Change</span> Set the minimum_deposit_percentage default to 0. Thanks Ally.
+<span class="label label-warning">Change</span> Removed and disabled pattemplate caching feature settings, as they don't play nicely with template overrides, specifically property type or property uid specific templates.
+
+<span class="label label-important label-danger">Fix</span> Fixed a notice in insert booking script.
+<span class="label label-important label-danger">Fix</span> Fixed a notice in editguest script.
+<span class="label label-important label-danger">Fix</span> Resolved an issue where third party extras could show tax twice.
+<span class="label label-important label-danger">Fix</span> Fixed an issue where wrong date set in booking form when availability calendar links clicked.
+<span class="label label-important label-danger">Fix</span> Updated router.php to resolve an issue when JCH installed.
+
+
 <h3>Jomres 9.8.9 05/08/2016</h3>
 
 <span class="label label-success">Feature</span> Updated Jomres to offer Joomla installer updating.
