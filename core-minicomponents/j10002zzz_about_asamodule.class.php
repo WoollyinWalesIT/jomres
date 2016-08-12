@@ -27,7 +27,10 @@ class j10002zzz_about_asamodule
 			}
 		$htmlFuncs = jomres_singleton_abstract::getInstance( 'html_functions' );
 
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . "&task=about_asamodule", 'jrhouse.png', jr_gettext( "ASAModule", 'ASAModule', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', false, false ) );
+		$this->cpanelButton = '';
+		
+		if ( this_cms_is_joomla() )
+			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . "&task=about_asamodule", 'jrhouse.png', jr_gettext( "ASAModule", 'ASAModule', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', false, false ) );
 		}
 
 	function touch_template_language()
