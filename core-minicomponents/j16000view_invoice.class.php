@@ -72,7 +72,6 @@ class j16000view_invoice
 				$output[ 'POSTCODE' ]  	= $data->postcode;
 				$output[ 'LANDLINE' ]  	= $data->tel_landline;
 				$output[ 'MOBILE' ]    	= $data->tel_mobile;
-				$output[ 'FAX' ]       	= $data->tel_fax;
 				$output[ 'EMAIL' ]     	= $data->email;
 				$output[ 'VATNO' ]		= $data->vat_number;
 				}
