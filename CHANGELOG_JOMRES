@@ -22,7 +22,7 @@
 <span class="label label-important label-danger">Fix</span> Resolved an issue where third party extras could show tax twice.
 <span class="label label-important label-danger">Fix</span> Fixed an issue where wrong date set in booking form when availability calendar links clicked.
 <span class="label label-important label-danger">Fix</span> Updated router.php to resolve an issue when JCH installed.
-
+<span class="label label-important label-danger">Fix</span> Fixed a problem with the Wordpress trigger script that requires a new version.
 
 <h3>Jomres 9.8.9 05/08/2016</h3>
 
