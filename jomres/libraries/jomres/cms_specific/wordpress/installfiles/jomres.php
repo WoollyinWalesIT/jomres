@@ -9,6 +9,8 @@ Author URI: http://www.jomres.net/
 */
 defined('WPINC') or die;
 
+define('JOMRES_WP_PLUGIN_VERSION', '9.8.10');
+
 if ( ! class_exists( 'wp_jomres' ) ) 
 	{
 	class wp_jomres
