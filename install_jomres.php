@@ -44,6 +44,8 @@ if ( $version < 5.4 )
 define( '_JOMRES_INITCHECK', 1 );
 define( '_JEXEC', 1 );
 
+define( 'JOMRES_TEMPLATEPATH_FRONTEND', 'BLANK' ); // Just to prevent a notice
+
 @ini_set( "display_errors", 1 );
 @ini_set( 'error_reporting', E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED );
 
