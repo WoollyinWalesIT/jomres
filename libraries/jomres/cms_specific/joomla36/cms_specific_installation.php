@@ -71,6 +71,29 @@ if ( $folderChecksPassed )
 
 	}
 
+// Don't need to run this again if the table's already populated
+$query = "SELECT userid FROM #__jomres_managers LIMIT 2";
+$existing_users = doSelectSql ( $query );
+if ( count ( $existing_users ) > 0 )
+	return;
+
+$query         = "SELECT user_id FROM #__user_usergroup_map WHERE group_id = 8 LIMIT 1";
+$admin_user_id = (int) doSelectSql( $query, 1 );
+
+$admin_user = jomres_cmsspecific_getCMS_users_admin_userdetails_by_id( $admin_user_id );
+$admin_user = $admin_user[ $admin_user_id ];
+
+echo "Making <i>" . $admin_user[ 'username' ] . "</i> a super property manager<br>";
+$query  = "INSERT INTO #__jomres_managers
+(`userid`,`username`,`property_uid`,`access_level`,`currentproperty`,`pu`)
+VALUES
+($admin_user_id,'" . $admin_user[ 'username' ] . "','0','2','1','1')";
+$result = doInsertSql( $query, "" );
+
+if ( $result ) 
+	echo "Inserted " . $admin_user[ 'username' ] . " as manager<br>";
+else
+	echo "Could not create " . $admin_user[ 'username' ] . " as manager<br>";
 
 // Looking to see if Jomres is already installed in Joomla. If it is, we'll simply return true as there's nothing else to do
 $query  = "SELECT `element` FROM #__extensions WHERE `element` = 'com_jomres' ";
@@ -132,26 +155,3 @@ if ( $component_id )
 	}
 else
 	echo "Unable to create main Jomres admin menu option<br>";
-
-// Don't need to run this again if the table's already populated
-$query = "SELECT userid FROM #__jomres_managers LIMIT 2";
-$existing_users = doSelectSql ( $query );
-if ( count ( $existing_users ) > 0 )
-	return;
-
-$query         = "SELECT user_id FROM #__user_usergroup_map WHERE group_id = 8 LIMIT 1";
-$admin_user_id = (int) doSelectSql( $query, 1 );
-
-$admin_user = jomres_cmsspecific_getCMS_users_admin_userdetails_by_id( $admin_user_id );
-$admin_user = $admin_user[ $admin_user_id ];
-
-echo "Making <i>" . $admin_user[ 'username' ] . "</i> a super property manager<br>";
-$query  = "INSERT INTO #__jomres_managers
-(`userid`,`username`,`property_uid`,`access_level`,`currentproperty`,`pu`)
-VALUES
-($admin_user_id,'" . $admin_user[ 'username' ] . "','0','2','1','1')";
-$result = doInsertSql( $query, "" );
-
-if ( $result ) echo "Inserted " . $admin_user[ 'username' ] . " as manager<br>";
-else
-echo "Could not create " . $admin_user[ 'username' ] . " as manager<br>";
