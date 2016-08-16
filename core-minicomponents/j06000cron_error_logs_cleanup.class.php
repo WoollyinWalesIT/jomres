@@ -29,14 +29,14 @@ class j06000cron_error_logs_cleanup
 
 		if ( $secret == $jomresConfig_secret )
 			{
-			$log_path = JOMRES_SYSTEMLOG_PATH . "error_logs";
+			$log_path = JOMRES_SYSTEMLOG_PATH;
 			$files = scandir_getfiles( $log_path );
 	
 			if ( count( $files ) > 0 )
 				{
 				foreach ( $files as $f )
 					{
-					if ( time() - filemtime($log_path . JRDS . $f) >= 30*24*60*60) // 30 days
+					if ( $f != '.htaccess' && $f != 'web.config' && time() - filemtime($log_path . JRDS . $f) >= 30*24*60*60) // 30 days
 						{
 						unlink( $log_path . "/" . $f );
 						}
