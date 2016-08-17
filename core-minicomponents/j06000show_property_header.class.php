@@ -315,7 +315,10 @@ class j06000show_property_header
 		$tmpl->readTemplatesFromInput( 'property_header.html' );
 		$tmpl->displayParsedTemplate();
 		
-		$MiniComponents->triggerEvent( '01070' ); // Optional post header display
+		if (!isset($componentArgs) || count($component_args) == 0 )
+			$componentArgs = array( 'property_uid' => $property_uid );
+		
+		$MiniComponents->triggerEvent( '01070' , $componentArgs ); // Optional post header display
 		}
 
 	// This must be included in every Event/Mini-component
