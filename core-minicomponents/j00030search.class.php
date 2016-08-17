@@ -792,7 +792,7 @@ class j00030search
 				$stmpl->displayParsedTemplate();
 				}
 			}
-		if ( $doSearch && !isset( $_GET[ 'srchOnly' ] ) ) $sch->jomSearch_showresults();
+		if ( $doSearch && !isset( $_REQUEST[ 'srchOnly' ] ) ) $sch->jomSearch_showresults();
 		unset ( $sch );
 		}
 
