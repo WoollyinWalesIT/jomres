@@ -19,19 +19,25 @@ require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS .
 function jomres_implode( $elements = array() , $integers = true )
 	{
 	$txt = "";
+	$i = 1;
 	$count = count($elements);
-	
-	for ($i = 0, $n = $count; $i < $n; $i++)
+
+	if ( $count == 0 )
+		return "''";
+
+	foreach ( $elements as $element )
 		{
 		if ( $integers )
-			$txt .= (int)$elements[$i];
+			$txt .= (int)$element;
 		else
-			$txt .= "'".$elements[$i]."'";
-		
-		if ( $i < count($elements) - 1 )
+			$txt .= "'".$element."'";
+
+		if ( $i < $count )
 			$txt .= ",";
+		
+		$i++;
 		}
-	
+
 	return $txt;
 	}
 
