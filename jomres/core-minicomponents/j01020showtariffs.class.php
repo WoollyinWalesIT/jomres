@@ -32,7 +32,6 @@ class j01020showtariffs
 			$this->retVals = $MiniComponents->triggerEvent( '01025' ); //
 		else
 			{
-			//$showheader=$componentArgs['showheader'];
 			if (isset($componentArgs[ 'property_uid' ]))
 				$property_uid = (int) $componentArgs[ 'property_uid' ];
 			elseif ( isset ( $_REQUEST['property_uid'] ))
@@ -45,7 +44,6 @@ class j01020showtariffs
 			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 			$pop                      = jomresGetParam( $_REQUEST, 'popup', '0' );
 			$ccodes                   = currencyCodesArray();
-			if ( $showheader ) property_header( $property_uid );
 
 			if ( $pop != "1" )
 				{
