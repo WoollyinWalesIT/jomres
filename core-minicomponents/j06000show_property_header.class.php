@@ -315,7 +315,7 @@ class j06000show_property_header
 		$tmpl->readTemplatesFromInput( 'property_header.html' );
 		$tmpl->displayParsedTemplate();
 		
-		if (!isset($componentArgs) || count($component_args) == 0 )
+		if (!isset($componentArgs) || count($componentArgs) == 0 )
 			$componentArgs = array( 'property_uid' => $property_uid );
 		
 		$MiniComponents->triggerEvent( '01070' , $componentArgs ); // Optional post header display
