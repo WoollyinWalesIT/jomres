@@ -162,7 +162,7 @@ function showSiteConfig()
 			$language_context[ ] = jomresHTML::makeOption( $desc, $desc );
 			}
 		}
-	$language_context_dropdown = jomresHTML::selectList( $language_context, 'cfg_language_context', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'language_context' ] );
+	$language_context_dropdown = jomresHTML::selectList( $language_context, 'cfg_language_context', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'language_context' ], false );
 
 	$filtering_level          = array ();
 	$filtering_level[ ]       = jomresHTML::makeOption( 'weak', jr_gettext( '_JOMRES_INPUTFILTERING_LEVEL_WEAK', '_JOMRES_INPUTFILTERING_LEVEL_WEAK', false ) );
