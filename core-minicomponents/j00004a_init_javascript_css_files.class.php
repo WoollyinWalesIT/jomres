@@ -216,6 +216,12 @@ class j00004a_init_javascript_css_files
 			$ls  = $IDN->decode( $ls );
 			}
 
+
+		jr_import("javascript_cache");
+		$cache = new javascript_cache();
+		$cache->cache_javascript($javascript_files);
+		$javascript_files = $cache->get_files();
+
 		//now let`s add the js and css in the head
 		foreach ( $javascript_files as $file)
 			{
