@@ -356,7 +356,8 @@ class jomres_sanity_check
 				{
 				$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 				$current_property_details->gather_data( $this->property_uid );
-				if ( !isset($current_property_details->rooms) )
+				if ( !isset($current_property_details->rooms) || count($current_property_details->rooms) ==0 )
+					
 					{
 					$message = jr_gettext( '_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK', '_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK', false );
 					if ($this->mrConfig['tariffmode'] == 0 )
