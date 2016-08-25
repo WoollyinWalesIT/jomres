@@ -69,6 +69,7 @@ class custom_text
 				$this->all_properties_custom_text = array ();
 				$this->global_custom_text         = array ();
 				
+				$clause = "";
 				if ( $this->lang != '' ) 
 					$clause = "WHERE `language` = '" . $this->lang . "'";
 				
