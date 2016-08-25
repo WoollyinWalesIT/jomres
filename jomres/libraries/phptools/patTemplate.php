@@ -2639,6 +2639,9 @@ class patTemplate
 				$match = str_replace("&amp;","&",$match);
 				$bang = explode (" ",$match);
 				$our_task = $bang[1];
+				if (!isset($bang[2]))
+					$bang[2] = "";
+				
 				$arguments = $bang[2];
 
 				if ($arguments!='')
