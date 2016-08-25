@@ -29,9 +29,13 @@ jomresJquery.fn.fadeThenSlideToggle = function (speed, easing, callback) {
 function toggle_button_class(id) {
 	var isActive = jomresJquery(id).hasClass('active');
 	if (isActive)
+		{
 		jomresJquery(id).removeClass('active btn-success');
+		}
 	else
+		{
 		jomresJquery(id).addClass('active btn-success');
+		}
 }
 
 function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
@@ -42,10 +46,14 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 		bServerSide = true;
 		}
 	if (typeof showTools === 'undefined')
+		{
 		showTableTools = true;
+		}
 	else
+		{
 		showTableTools = showTools;
-
+		}
+		
 	if (showTableTools)
 		{
 		if (jomres_template_version == "bootstrap3"){
@@ -171,7 +179,7 @@ function dataTableSetHiddenColumns(table_id, column_ids)
 				this.visible(true,false);
 				jomresJquery( this.header() ).removeClass( 'none' );
 				}
-			} );
+			});
 		}
 	oTable.responsive.rebuild();
 	oTable.responsive.recalc();
@@ -231,12 +239,15 @@ function bind_data_toggle() {
 			
 			e.preventDefault();
 			
-			if (task == 'show_property_reviews')
+			if (task == 'show_property_reviews') {
 				ajax_url = property_reviews_ajax_url + property_uid;
-			else if (task == 'faq')
+				}
+			else if (task == 'faq'){
 				ajax_url = live_site_ajax + '&task=faq';
-			else
+				}
+			else{
 				ajax_url = module_pop_ajax_url + property_uid;
+				}
 			
 			jomresJquery.get(ajax_url , function (data) {
 				if (jomres_template_version = "bootstrap3"){
@@ -246,12 +257,15 @@ function bind_data_toggle() {
 					result = '<div class="modal-header"><button type="button" class="close" data-dismiss="modal">x</button><h4>' + modal_title + '</h4></div><div class="modal-body">' + data + '</div>';
 					}
 				
-				if (task == 'show_property_reviews')
+				if (task == 'show_property_reviews') {
 					jomresJquery('#property_reviews' + random_identifier).html(result);
-				else if (task == 'faq')
+					}
+				else if (task == 'faq') {
 					jomresJquery('#FAQModal').html(result);
-				else
+					}
+				else {
 					jomresJquery('#module_' + random_identifier + '_popup').html(result);
+					}
 				
 				jomresJquery(".jomres_bt_tooltip_features").tipsy({html: true, fade: true, gravity: 'sw', delayOut: 100});
 			});
@@ -360,7 +374,9 @@ function generic_reload(field, val) {
 };
 
 function insertParam(sourceUrl, parameterName, parameterValue, replaceDuplicates) {
-	if ((sourceUrl == null) || (sourceUrl.length == 0)) sourceUrl = document.location.href;
+	if ((sourceUrl == null) || (sourceUrl.length == 0)) {
+		sourceUrl = document.location.href;
+		}
 	var urlParts = sourceUrl.split("?");
 	var newQueryString = "";
 	if (urlParts.length > 1) {
@@ -368,18 +384,22 @@ function insertParam(sourceUrl, parameterName, parameterValue, replaceDuplicates
 		for (var i = 0; (i < parameters.length); i++) {
 			var parameterParts = parameters[i].split("=");
 			if (!(replaceDuplicates && parameterParts[0] == parameterName)) {
-				if (newQueryString == "")
+				if (newQueryString == "") {
 					newQueryString = "?";
-				else
+					}
+				else {
 					newQueryString += "&";
+					}
 				newQueryString += parameterParts[0] + "=" + parameterParts[1];
 			}
 		}
 	}
-	if (newQueryString == "")
+	if (newQueryString == "") {
 		newQueryString = "?";
-	else
+		}
+	else {
 		newQueryString += "&";
+		}
 	newQueryString += parameterName + "=" + parameterValue;
 
 	return urlParts[0] + newQueryString;
@@ -395,10 +415,10 @@ function populateDiv(div_id, content) {
 function jomres_isChecked(ischecked) {
 	if (ischecked == true) {
 		document.adminForm.boxchecked.value++;
-	}
+		}
 	else {
 		document.adminForm.boxchecked.value--;
-	}
+		}
 };
 
 function jomres_checkAll(n) {
@@ -431,8 +451,9 @@ function jomres_submitbutton(pressbutton) {
 };
 
 function disableSubmitButton(button) {
-	if (typeof button.disabled != 'undefined')
+	if (typeof button.disabled != 'undefined') {
 		button.disabled = true;
+		}
 	else if (!button.buttonDisabled) {
 		button.oldValue = button.value;
 		button.oldOnclick = button.onclick;
@@ -444,8 +465,9 @@ function disableSubmitButton(button) {
 };
 
 function enableSubmitButton(button) {
-	if (typeof button.disabled != 'undefined')
+	if (typeof button.disabled != 'undefined') {
 		button.disabled = false;
+		}
 	else if (button.buttonDisabled) {
 		button.value = button.oldValue;
 		button.onclick = button.oldOnclick;
@@ -687,16 +709,18 @@ function ShowRoomsList() {
 
 function buildSelected(string) {
 	if (string != undefined) {
-		if (string.length > 0)
+		if (string.length > 0) {
 			populateDiv("selectedRooms", string);
+			}
 		//document.getElementById("selectedRooms").innerHTML = string;
 	}
 };
 
 function buildAvailable(string) {
 	if (string != undefined) {
-		if (string.length > 0)
+		if (string.length > 0) {
 			populateDiv("availRooms", string);
+			}
 		//document.getElementById("availRooms").innerHTML = string;
 	}
 };
@@ -704,17 +728,20 @@ function buildAvailable(string) {
 function checkSelectRoomMessage(oktobook, disable_address) {
 	if (!oktobook) {
 		if (rooms_list_enabled) {
-			if (show_extras == true)
+			if (show_extras == true) {
 				jomresJquery("#extrascontainer").delay(800).fadeTo("slow", 0.1);
-			if (disable_address)
+				}
+			if (disable_address) {
 				jomresJquery("#bookingform_address").delay(800).slideUp("slow");
+				}
 			jomresJquery("#bookingform_footer").delay(800).fadeTo("slow", 0.1);
 			jomresJquery("#accommodation_container").delay(800).fadeTo("slow", 0.1);
 		}
 	}
 	else {
-		if (show_extras == true)
+		if (show_extras == true) {
 			jomresJquery("#extrascontainer").delay(800).fadeTo("slow", 1);
+			}
 		jomresJquery("#bookingform_address").delay(800).slideDown("slow");
 		jomresJquery("#bookingform_footer").delay(800).fadeTo("slow", 1);
 		jomresJquery("#accommodation_container").delay(800).fadeTo("slow", 1);
@@ -776,22 +803,22 @@ function ajaxADate(arrivalDate, dformat) {
 
 	if (dformat == "%d/%m/%Y") {
 		dd = fday + "/" + fmonth + "/" + String(d.getFullYear())
-	}
+		}
 	if (dformat == "%Y/%m/%d") {
 		dd = String(d.getFullYear()) + "/" + fmonth + "/" + fday
-	}
+		}
 	if (dformat == "%m/%d/%Y") {
 		dd = fmonth + "/" + fday + "/" + String(d.getFullYear())
-	}
+		}
 	if (dformat == "%d-%m-%Y") {
 		dd = fday + "-" + fmonth + "-" + String(d.getFullYear())
-	}
+		}
 	if (dformat == "%Y-%m-%d") {
 		dd = String(d.getFullYear()) + "-" + fmonth + "-" + fday
-	}
+		}
 	if (dformat == "%m-%d-%Y") {
 		dd = fmonth + "-" + fday + "-" + String(d.getFullYear())
-	}
+		}
 
 
 	var one_day = 1000 * 60 * 60 * 24;
@@ -806,43 +833,43 @@ function jomres_split_date(date, dformat) {
 		day = dateArray[0]
 		mon = dateArray[1]
 		year = dateArray[2]
-	}
+		}
 	if (dformat == "%Y/%m/%d") {
 		dateArray = date.split("/")
 		day = dateArray[2]
 		mon = dateArray[1]
 		year = dateArray[0]
-	}
+		}
 	if (dformat == "%m/%d/%Y") {
 		dateArray = date.split("/")
 		day = dateArray[1]
 		mon = dateArray[0]
 		year = dateArray[2]
-	}
+		}
 	if (dformat == "%d-%m-%Y") {
 		dateArray = date.split("-")
 		day = dateArray[0]
 		mon = dateArray[1]
 		year = dateArray[2]
-	}
+		}
 	if (dformat == "%Y-%m-%d") {
 		dateArray = date.split("-")
 		day = dateArray[2]
 		mon = dateArray[1]
 		year = dateArray[0]
-	}
+		}
 	if (dformat == "%m-%d-%Y") {
 		dateArray = date.split("-")
 		day = dateArray[1]
 		mon = dateArray[0]
 		year = dateArray[2]
-	}
+		}
 	if (dformat == "%d.%m.%Y") {
 		dateArray = date.split(".")
 		day = dateArray[0]
 		mon = dateArray[1]
 		year = dateArray[2]
-	}
+		}
 	return  [ day, mon , year ];
 };
 ///////////////////////////////////////
@@ -883,58 +910,58 @@ function checkaddressfields() {
 	if (validation_firstname && firstname.length == 0) {
 		setInputFillToErrorColour("#firstname");
 		pass = false;
-	}
+		}
 	if (validation_surname && surname.length == 0) {
 		setInputFillToErrorColour("#surname");
 		pass = false;
-	}
+		}
 	if (validation_houseno && house.length == 0) {
 		setInputFillToErrorColour("#house");
 		pass = false;
-	}
+		}
 	if (validation_street && street.length == 0) {
 		setInputFillToErrorColour("#street");
 		pass = false;
-	}
+		}
 	if (validation_town && town.length == 0) {
 		setInputFillToErrorColour("#town");
 		pass = false;
-	}
+		}
 	if (validation_postcode && postcode.length == 0) {
 		setInputFillToErrorColour("#postcode");
 		pass = false;
-	}
+		}
 	if (validation_country && country.length == 0) {
 		setInputFillToErrorColour("#country");
 		pass = false;
-	}
+		}
 	if (validation_landline && tel_landline.length == 0) {
 		setInputFillToErrorColour("#tel_landline");
 		pass = false;
-	}
+		}
 	if (validation_cellmobile && tel_mobile.length == 0) {
 		setInputFillToErrorColour("#tel_mobile");
 		pass = false;
-	}
+		}
 
 
 	if (validation_email && eemail.length == 0) {
 		setInputFillToErrorColour("#eemail");
 		pass = false;
-	}
+		}
 
 	if (validation_email && !echeck(eemail)) {
 		setInputFillToErrorColour("#eemail");
 		pass = false;
-	}
+		}
 	if (!pass) {
 		jomresJquery('div.recheckaddress').show();
 		return false;
-	}
+		}
 	else {
 		enableSubmitButton(document.ajaxform.confirmbooking);
 		return true;
-	}
+		}
 };
 
 function dobooking_validate() {
@@ -942,37 +969,43 @@ function dobooking_validate() {
 		getResponse_guest();
 		document.ajaxform.confirmbooking.disabled = true;
 		jomresJquery.when(jr_deferred).done(function() {submitBooking()});
-	}
-};
+		}
+	};
 
 function submitBooking() {
 	document.ajaxform.action = livesite;
 	document.ajaxform.submit(document.ajaxform.confirmbooking.disabled = true);
-};
+	};
 
 function setInputFillToOkColour(field) {
 	jomresJquery(field).addClass(success_class);
-};
+	};
 
 function setInputFillToErrorColour(field) {
 	jomresJquery(field).addClass(error_class);
-};
+	};
 
 function submitenter(myfield, e) {
 	var keycode;
-	if (window.event) keycode = window.event.keyCode;
-	else if (e) keycode = e.which;
+	if (window.event) {
+		keycode = window.event.keyCode;
+		}
+	else if (e) {
+		keycode = e.which;
+		}
 	else return true;
 	if (!document.ajaxform.confirmbooking.disabled) {
 		if (keycode == 13) {
 			document.ajaxform.submit();
 			return false;
 		}
-		else
+		else {
 			return true;
+			}
 	}
-	else
+	else {
 		return true;
+		}
 };
 
 /**
@@ -987,43 +1020,43 @@ function echeck(str) {
 	var ldot = str.indexOf(dot)
 	if (strlen == 0) {
 		return false
-	}
+		}
 	if (str.indexOf(at) == -1) {
 		//alert("Invalid E-mail ID")
 		return false
-	}
+		}
 	if (str.indexOf(at) == -1 || str.indexOf(at) == 0 || str.indexOf(at) == lstr) {
 		//alert("Invalid E-mail ID");
 		return false;
-	}
+		}
 	if (str.indexOf(dot) == -1 || str.indexOf(dot) == 0 || str.indexOf(dot) == lstr) {
 		//alert("Invalid E-mail ID")
 		return false
-	}
+		}
 	if (str.indexOf(at, (lat + 1)) != -1) {
 		//alert("Invalid E-mail ID")
 		return false
-	}
+		}
 	if (str.substring(lat - 1, lat) == dot || str.substring(lat + 1, lat + 2) == dot) {
 		//alert("Invalid E-mail ID")
 		return false
-	}
+		}
 	if (str.indexOf(dot, (lat + 2)) == -1) {
 		//alert("Invalid E-mail ID")
 		return false
-	}
+		}
 	if (str.indexOf(" ") != -1) {
 		//alert("Invalid E-mail ID")
 		return false
-	}
+		}
 	return true
 };
 
 function createGraph(labels, values, type, legend, thediv) {
 	var graph = new BAR_GRAPH(type);
-	if (thediv.length == 0)
+	if (thediv.length == 0){
 		thediv = 'divGraph';
-
+		}
 	graph.legend = legend;
 	graph.values = values;
 	graph.labels = labels;
@@ -1072,10 +1105,10 @@ function toggle_review_div(uid, property_name) {
 function shortlist(property_uid, show_label) {
 	if (typeof show_label !== 'undefined' && show_label != '') {
 		a = parseInt(show_label);
-	}
+		}
 	else {
 		a = 0;
-	}
+		}
 	jomresJquery.get(live_site_ajax + "&task=ajax_shortlist&property_uid=" + property_uid + "&show_label=" + a, function (data) {
 		jomresJquery('#shortlist_' + property_uid).html(data);
 	});
@@ -1083,10 +1116,12 @@ function shortlist(property_uid, show_label) {
 
 function set_budget(budget_price , reload , formname ) {
 	jomresJquery.get(live_site_ajax + "&task=ajax_budget&budget_figure="+budget_price, function (data) {
-		if (reload)
+		if (reload){
 			location.reload();
-		else
+			}
+		else {
 			submit_search(formname);
+			}
 	});
 }
 
@@ -1172,13 +1207,13 @@ jomresJquery.jheartbeat = {
 	set: function (options, onbeatfunction) {
 		if (this.timeoutobj.id > -1) {
 			clearTimeout(this.timeoutobj);
-		}
+			}
 		if (options) {
 			jomresJquery.extend(this.options, options);
-		}
+			}
 		if (onbeatfunction) {
 			this.beatfunction = onbeatfunction;
-		}
+			}
 		// Add the HeartBeatDIV to the page
 		jomresJquery("body").append("<div id=\"" + this.options.div_id + "\" style=\"display: none;\"></div>");
 		this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
