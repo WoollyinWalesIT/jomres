@@ -279,6 +279,7 @@ class j01010listpropertys
 			else
 				$tmpBookingHandler->tmpsearch_data[ 'featured_properties' ] = array();
 
+			$guest_budget = '';
 			if ($jrConfig['use_budget_feature'] == "1" && using_bootstrap() )
 				{
 				$guest_budget = $budget->get_budget();
