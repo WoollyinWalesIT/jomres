@@ -53,7 +53,10 @@ class j16000listGlobalroomTypes
 					{
 					foreach ( $r['ptype_xref'] as $k )
 						{
-						$selected_ptype_rows .= $jomres_property_types->property_types[$k]['ptype'] . " ";
+						if (isset($jomres_property_types->property_types[$k]))
+							{
+							$selected_ptype_rows .= $jomres_property_types->property_types[$k]['ptype'] . " ";
+							}
 						}
 					}
 				

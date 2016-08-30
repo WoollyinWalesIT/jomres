@@ -427,14 +427,16 @@ function dobooking( $selectedProperty, $thisdate = false, $remus )
 	$exx				= $bkg->makeThirdPartyExtras( $selectedProperty );
 	$third_party_extras = $exx[ 'third_party_extras' ];
 
+	$extrasHeader                     = array ();
+	$extrasH                          = array ();
+	
 	if ( (count( $extra_details ) > 0 || count( $third_party_extras ) > 0) && $mrConfig[ 'showExtras' ] == "1")
 		{
 		$output[ 'EXTRAS_INFO' ] = '<img border="0" style="vertical-align:top;" src="' . get_showtime( 'live_site' ) . '/components/com_jomres/images/info.png" />';
 		$output[ 'AJAXFORM_EXTRAS' ]      = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS', '_JOMRES_AJAXFORM_EXTRAS' ) );
 		$output[ 'AJAXFORM_EXTRAS_DESC' ] = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_DESC', '_JOMRES_AJAXFORM_EXTRAS_DESC', false ) );
 		$output[ 'EXTRAS_TOTAL' ]         = $bkg->sanitiseOutput( jr_gettext( '_JOMRES_AJAXFORM_EXTRAS_TOTAL', '_JOMRES_AJAXFORM_EXTRAS_TOTAL' ) );
-		$extrasHeader                     = array ();
-		$extrasH                          = array ();
+
 		$extrasH[ 'EXTRAS_TOTAL' ]        = $output[ 'EXTRAS_TOTAL' ];
 		$extrasH [ 'EXTRAS_HEADER' ]      = $output[ 'AJAXFORM_EXTRAS_DESC' ];
 		$extrasHeader[ ]                  = $extrasH;

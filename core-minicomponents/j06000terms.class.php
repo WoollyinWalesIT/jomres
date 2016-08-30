@@ -18,7 +18,8 @@ class j06000terms
 	function __construct($componentArgs)
 		{
 		$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
-
+		$this->retVals = '';
+		
 		$userIsManager = checkUserIsManager();
 
 		$query        = "SELECT property_policies_disclaimers FROM #__jomres_propertys WHERE propertys_uid = '" . $property_uid . "' LIMIT 1";
