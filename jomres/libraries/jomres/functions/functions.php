@@ -2087,7 +2087,7 @@ Allows us to work independantly of Joomla or Mambo's emailers
 
 function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mode = 1, $attachments = array () , $debugging = true )
 	{
-	logging::log_message('Sending email from '.$from." to ".$to. " subject ".$subject , "Core" );
+	logging::log_message('Sending email from '.$from." to ".$to. " subject ".$subject , "Mailer" );
 	$jomresConfig_smtpauth = get_showtime( 'smtpauth' );
 	$jomresConfig_smtphost = get_showtime( 'smtphost' );
 	$jomresConfig_smtppass = get_showtime( 'smtppass' );
@@ -2257,6 +2257,8 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 			if ( strlen( $to ) > 0 ) $mail->AddAddress( $to );
 			}
 		$mail->Send();
+		logging::log_message('Email sent successfully ' , "Mailer" );
+		
 		}
 	catch (jomres_phpmailerException $e) 
 		{
