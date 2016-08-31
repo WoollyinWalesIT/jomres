@@ -49,13 +49,13 @@ class j16000ajax_send_test_email
 			ob_start();
 			
 			$success = jomresMailer( 
-				$jrConfig[ 'default_from_address' ], 
-				$booking_email_details->data[$contract_uid]['PROPERTY_NAME'],
+				$siteConfig->get_setting ( "default_from_address" ), 
+				"TEST EMAIL",
 				jomresGetParam( $_REQUEST, 'test_email_address', "" ),
 				 jr_gettext( '_JOMRES_TEST_EMAIL_SUBJECT', '_JOMRES_TEST_EMAIL_SUBJECT', false ),
 				 jr_gettext( '_JOMRES_TEST_EMAIL_CONTENT', '_JOMRES_TEST_EMAIL_CONTENT', false ),
 				$mode = 1,
-				true
+				array()
 				);
 			$contents = ob_get_contents();
 			ob_end_clean();
