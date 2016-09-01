@@ -2025,7 +2025,7 @@ class dobooking
 		//if ($id == 0) return false;
 		//if ( (float) $total_value ==0.00)
 		//	return false;
-		$this->third_party_extras[ $plugin ][ $id ] = array ( 'id' => $id, 'description' => $description, 'untaxed_grand_total' => (float) $total_value );
+		$this->third_party_extras[ $plugin ][ $id ] = array ( 'id' => $id, 'description' => jr_gettext('_JINTOUR_TOUR_TITLE_CUSTOM_TEXT'.$id,$description,false,false), 'untaxed_grand_total' => (float) $total_value );
 		if ( $tax_code_id > 0 ) $this->third_party_extras[ $plugin ][ $id ][ 'tax_code_id' ] = $tax_code_id;
 		}
 
