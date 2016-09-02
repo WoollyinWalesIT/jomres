@@ -36,13 +36,14 @@ class logging
 			if ( !strstr( $scriptname, 'install_jomres.php' ) )
 				{
 				$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
-				$username =  $thisJRUser->username;
+				if ($thisJRUser->username !== false )
+					$username =  $thisJRUser->username;
 				}
 			else
 				$username = "Installer";
 			}
 
-		$message = $username." ".$message;
+		
 		
 		if ( !isset($jrConfig['log_path']) || $jrConfig['log_path'] == '' )
 			$jrConfig['log_path'] = dirname(dirname(dirname(__FILE__)) ).'/logs/';
@@ -53,14 +54,36 @@ class logging
 		
 		$log_file = str_replace(" ","_",$channel).".application.log";
 
+		
 		if ($jrConfig[ 'development_production' ] == "production" && $level == "DEBUG") // In Production, we don't want to see DEBUG level stuff.
 			return;
 
-		$formatter = new LineFormatter( "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n" );
+		$url = '';
+		if (isset($_SERVER['REQUEST_URI'])) 
+			{
+			$full = true;
+			$parse = parse_url(
+				(isset($_SERVER['HTTPS']) && strcasecmp($_SERVER['HTTPS'], 'off') ? 'https://' : 'http://') .
+				(isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : (isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '')) . (($full) ? $_SERVER['REQUEST_URI'] : null)
+			);
+			$parse['port'] = $_SERVER["SERVER_PORT"]; // Setup protocol for sure (80 is default)
+			$url = http_build_url('', $parse);
+			$url = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED);
+			}
+		
+		$message = $username." ~~ ".session_id()." ~~ ".$url ." ~~ ".$message ;
+		
+		
+		$formatter = new LineFormatter( "%datetime% ~~ %channel%.%level_name%: ~~ %message% ~~ %context% ~~ %extra% ::::: \n" );
 
+		$stream_handler = new StreamHandler($jrConfig['log_path'].$log_file, Logger::DEBUG);
+		$stream_handler->setFormatter($formatter);
+		
 		$logger = new Logger($channel);
 		$logger->pushProcessor(new \Monolog\Processor\WebProcessor);
-		$logger->pushHandler(new StreamHandler($jrConfig['log_path'].$log_file, Logger::DEBUG));
+		$logger->pushHandler(
+			$stream_handler
+			);
 
 		$syslog_disabled = true;
 		$disabled = explode(',', ini_get('disable_functions'));

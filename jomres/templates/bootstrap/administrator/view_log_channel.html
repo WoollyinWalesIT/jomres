@@ -1,0 +1,39 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+	<!--
+	jomresJquery(document).ready(function () {
+		make_datatable('view_log_channel', '{PAGETITLE}', '{LIVESITE}');
+	});
+	//-->
+</script>
+<h2 class="page-header">{PAGETITLE}</h2>
+<table id="view_log_channel" width="100%" class="table table-striped">
+	<thead>
+		<tr>
+			<th>Date time</th>
+			<th>Channel</th>
+			<th>Username</th>
+			<th>SESSION</th>
+			<th>URL</th>
+			<th>CONTEXT</th>
+			<th>EXTRA</th>
+			<th>MESSAGE</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr class="{ROWCLASS}">
+			<td>{DATETIME}</td>
+			<td>{CHANNEL}</td>
+			<td>{USERNAME}</td>
+			<td>{SESSION}</td>
+			<td>{URL}</td>
+			<td>{CONTEXT}</td>
+			<td>{EXTRA}</td>
+			<td>{MESSAGE}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+
+</patTemplate:tmpl>
