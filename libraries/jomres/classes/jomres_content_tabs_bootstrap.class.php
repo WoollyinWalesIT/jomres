@@ -66,8 +66,10 @@ class jomres_content_tabs_bootstrap
 			$active = 'active';
 			set_showtime( 'first_tab_active', true );
 			}
-		$anchor = preg_replace( '/[^A-Za-z0-9_-]+/', "", $tabpage );
-		if ( strlen( $anchor ) == 0 ) $anchor = generateJomresRandomString( 10 );
+		
+		//$anchor = preg_replace( '/[^A-Za-z0-9_-]+/', "", $tabpage );
+		//if ( strlen( $anchor ) == 0 ) // Do not re-enable this line. We need a random string here as phrases like "reservas" can appear in multiple places in the page, making individual tabs unable to show.
+			$anchor = generateJomresRandomString( 10 );
 		$tabCookieString     = "";
 		$this->panelNames[ ] = $anchor;
 		$this->paneLink[ ]   = '<li class="' . $active . '"><div id="tab_'.$anchor.'"></div><a href="#' . $anchor . '" data-toggle="tab">' . $tabpage . '</a></li>
