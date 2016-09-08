@@ -4168,7 +4168,7 @@ function insertSampleData()
 	$result = doInsertSql( "INSERT INTO `#__jomres_room_features` ( `room_features_uid` , `feature_description`,`property_uid` )VALUES ('1', 'En-suite Bathroom','1'), ('2', 'Tea & Coffee Making facilities','1')", "" );
 
 
-	$result = doInsertSql( "INSERT INTO `wp_jomres_room_classes` (`room_classes_uid`, `room_class_abbv`, `room_class_full_desc`, `image`, `property_uid`) VALUES
+	$result = doInsertSql( "INSERT INTO `#__jomres_room_classes` (`room_classes_uid`, `room_class_abbv`, `room_class_full_desc`, `image`, `property_uid`) VALUES
 								(1, 'Room Double beds', '', 'double.png', '0'),
 								(2, 'Room Twin beds', '', 'twin.png', '0'),
 								(3, 'Room Single', '', 'single.png', '0'),
@@ -4198,7 +4198,7 @@ function insertSampleData()
 
 
 	// Hotel/Village cross reference
-	$result = doInsertSql( "INSERT INTO `wp_jomres_roomtypes_propertytypes_xref` (`id`, `roomtype_id`, `propertytype_id`) VALUES
+	$result = doInsertSql( "INSERT INTO `#__jomres_roomtypes_propertytypes_xref` (`id`, `roomtype_id`, `propertytype_id`) VALUES
 								(1, 11, 4),
 								(2, 12, 4),
 								(3, 13, 4),
@@ -4256,7 +4256,7 @@ function insertSampleData()
 
 	$result = doInsertSql( "INSERT INTO `#__jomres_guests` ( `guests_uid` , `contracts_contract_uid` , `mos_userid` , `firstname` , `surname` , `house` , `street` , `town` , `county`,`postcode` , `tel_landline` , `tel_mobile` , `tel_fax` , `preferences` , `car_regno` , `ccard_no` , `ccard_issued` , `ccard_expiry` , `ccard_iss_no` , `ccard_name`,`property_uid`,`email` )VALUES ('1', '0', NULL , 'Major', 'Gowen', 'Watery Fowls', 'a Street', 'a Region','a Town','XXNN NXX', '01000 123456', '01777 123456', '01000 654321','A newspaper with uptodate cricket scores', '', '' , '', '','','','1','example@example.com')", "" );
 
-	$result = doInsertSql( "INSERT INTO `wp_jomres_ptypes` (`id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag`) VALUES
+	$result = doInsertSql( "INSERT INTO `#__jomres_ptypes` (`id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag`) VALUES
 								(1, 'Hotel', 'propertyrental', 1, 0, 0),
 								(2, 'Yacht', 'yacht', 1, 0, 1),
 								(3, 'Car', 'car', 1, 0, 1),
