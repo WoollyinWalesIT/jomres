@@ -542,7 +542,7 @@ function import_images_to_media_centre_directories()
 								mkdir ($base_path . "rooms" . JRDS . $resource_id);
 								}
 							if (!is_dir ($base_path . "rooms" . JRDS . $resource_id . JRDS . "thumbnail"))
-								{
+							{
 								mkdir ($base_path . "rooms" . JRDS . $resource_id . JRDS . "thumbnail");
 								}
 							if (!is_dir ($base_path . "rooms" . JRDS . $resource_id . JRDS . "medium"))
@@ -1292,6 +1292,9 @@ function jomres_validate_gateway_plugin()
 	
 	if ( ((int)$mrConfig['requireApproval'] == 0 || $tmpBookingHandler->tmpbooking['secret_key_payment'] ) )
 		{
+		if ( !isset( $settings['override']))
+			$settings['override'] = "0";
+			 
 		if ( $settings[ 'override' ] == "1" ) 
 			return "paypal";
 		
