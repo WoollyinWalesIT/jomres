@@ -540,6 +540,9 @@ class j02990showconfirmation
 				$gateway_output = array();
 				$gwo = array();
 				
+				if ( !isset( $site_paypal_settings['override']))
+					 $site_paypal_settings['override'] = "0";
+				
 				if ( $site_paypal_settings['override'] == "1" && count($MiniComponents->registeredClasses['00509paypal']) > 0 )
 					{
 					$gateways = array ();
@@ -555,7 +558,7 @@ class j02990showconfirmation
 					$gatewaylist  = array ();
 					$query        = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = '" . (int) $property_uid . "' AND setting = 'active' AND value = '1'";
 					$gatewayDeets = doSelectSql( $query );
-					
+					$gateways = array ();
 					if ( count( $gatewayDeets ) == 0 )
 						{
 						$query        = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = 0 AND setting = 'active' AND value = '1'";
@@ -564,7 +567,7 @@ class j02990showconfirmation
 					
 					if ( count( $gatewayDeets ) > 0 )
 						{
-						$gateways = array ();
+						
 						$counter                               = 1;
 						foreach ( $gatewayDeets as $gateway )
 							{
