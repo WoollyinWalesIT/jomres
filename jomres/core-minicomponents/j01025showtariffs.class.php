@@ -26,6 +26,8 @@ class j01025showtariffs
 			return;
 			}
 		
+		$this->retVals = '';
+		
 		if (isset($componentArgs[ 'property_uid' ]))
 			$property_uid = (int) $componentArgs[ 'property_uid' ];
 		elseif ( isset ( $_REQUEST['property_uid'] ))
