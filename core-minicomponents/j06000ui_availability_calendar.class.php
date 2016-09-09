@@ -225,9 +225,19 @@ class j06000ui_availability_calendar
 					"minDate": 0,
 					firstDay: '. ($jrConfig[ 'calendarstartofweekday' ] -1) .',
 					beforeShowDay: highlightDays_' . $random_identifier . ',
-					onSelect: function(){
-						var selected = jomresJquery( this ).val() ;
-						window.location = booking_form_url_' . $random_identifier . '+selected;
+					onSelect: function (date, el) {
+						var day  = el.selectedDay,
+							mon  = el.selectedMonth,
+							year = el.selectedYear;
+
+						var el = jomresJquery(el.dpDiv).find(\'[data-year="\'+year+\'"][data-month="\'+mon+\'"]\').filter(function() {
+							return jomresJquery(this).find(\'a\').text().trim() == day;
+						});
+						if ( el.hasClass("calendar_background_full") ) {
+							return true;
+						} else {
+							window.location = booking_form_url_' . $random_identifier . '+date;
+							}
 						}
 					});
 				});
