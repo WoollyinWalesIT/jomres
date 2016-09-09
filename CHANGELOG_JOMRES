@@ -1,3 +1,31 @@
+<h3>Jomres 9.8.11 09/09/2016</h3>
+
+<span class="label label-warning">Change</span> At Rod's request, added componentArgs to optional trigger at the end of show_property_header script.
+<span class="label label-warning">Change</span> Modified which variable is checked in j00030search.class.php to help Rod out.
+<span class="label label-warning">Change</span> Updated log file viewing to use table tools.
+<span class="label label-warning">Change</span> 15 char limit in contact owner form upped to 150 characters.
+<span class="label label-warning">Change</span> Added translatable Jintour descriptions
+<span class="label label-warning">Change</span> Updated log file viewing to use table tools.
+<span class="label label-warning">Change</span> Updated Russian language file, thanks Dmitry.
+<span class="label label-warning">Change</span> Added info class to plugin description text
+<span class="label label-warning">Change</span> Updated Turkish Lira currency to TRY from TRL
+<span class="label label-warning">Change</span> Refactored a new function that didn't work when array keys were not consecutive.
+<span class="label label-warning">Change</span> Improved modal display behaviour in BS2.
+<span class="label label-warning">Change</span> Updated cron log to clean up old log files > 30 days old.
+<span class="label label-warning">Change</span> Changed the order in which users are created on new installations.
+<span class="label label-warning">Change</span> Modified list booking ajax script so that Black Bookings aren't included in the list.
+<span class="label label-warning">Change</span> Small tweak to ensure sites with just one language type don't try to render the language context dropdown like switches.
+<span class="label label-warning">Change</span> Improved sanity checks so that rooms are always set as todo if required.
+<span class="label label-warning">Change</span> Ensured all if statements are wrapped in curly braces in jomres.js
+<span class="label label-warning">Change</span> Added logging to mailer and a quick check to warn that the To address hasn't been set to test email sending script.
+<span class="label label-warning">Change</span> Modified mailer to send log messsages to Mailer context in logging.
+<span class="label label-warning">Change</span> Added a check to see if a definition has already been set in Wordpress jomres.php
+<span class="label label-warning">Change</span> Improved a query in show confirmation regarding how it finds gateways.
+
+<span class="label label-important label-danger">Fix</span> Fixed a notice that appears when shortcodes are used in templates and there's no second argument.
+<span class="label label-important label-danger">Fix</span> Modified how tabs are shown (property config) so that they use random ids instead of language strings. The tab id must be unique otherwise the tab contents will not show.
+<span class="label label-important label-danger">Fix</span> Fixed issues where wrong table prefix was used in the installer to create sample data.
+
 <h3>Jomres 9.8.10 11/08/2016</h3>
 
 <span class="label label-success">Feature</span> Added a FAQ to the administrator area.
