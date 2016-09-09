@@ -561,7 +561,7 @@ class j02990showconfirmation
 					$gateways = array ();
 					if ( count( $gatewayDeets ) == 0 )
 						{
-						$query        = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = 0 AND setting = 'active' AND value = '1'";
+						$query        = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = 0 AND `plugin` != 'paypal' AND setting = 'active' AND value = '1'";
 						$gatewayDeets = doSelectSql( $query );
 						}
 					
