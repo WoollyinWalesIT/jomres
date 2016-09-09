@@ -22,7 +22,7 @@ class javascript_cache
 		{
 		$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig          = $siteConfig->get();
-		
+		$this->feature_enabled = false;
 		$this->javascript_files = array();
 		
 		$this->temp_dir_abs	=  JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . 'javascript' . JRDS ;
@@ -55,7 +55,7 @@ class javascript_cache
 		$hash = md5($contents);
 
 		$file_creation_success = false;
-		if ( $jrConfig['development_production'] != 'development' )
+		if ( $jrConfig['development_production'] != 'development' && $this->feature_enabled )
 			$file_creation_success = $this->create_file($this->temp_dir_abs , $hash.".js" , $contents );
 		
 		if ( $file_creation_success )
