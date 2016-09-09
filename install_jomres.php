@@ -236,13 +236,13 @@ if ( $folderChecksPassed && $functionChecksPassed )
 
 			if ( ACTION == "Install" ) // Installing
 				{
-				output_message ( "Creating Jomres tables if they don't already exist.");
+				//output_message ( "Creating Jomres tables if they don't already exist.");
 				createJomresTables();
-				output_message ( "Inserting sample data");
+				//output_message ( "Inserting sample data");
 				insertSampleData();
-				output_message ( "Importing configuration settings to database");
+				//output_message ( "Importing configuration settings to database");
 				importSettings( 0 );
-				output_message ( "Creating images folders<br>" );
+				//output_message ( "Creating images folders<br>" );
 				copyImages();
 
 				insertPortalTables();
@@ -259,7 +259,7 @@ if ( $folderChecksPassed && $functionChecksPassed )
 				jr_import( 'minicomponent_registry' );
 				$registry = new minicomponent_registry( true );
 				$registry->regenerate_registry();
-				output_message ( "Data already installed, no need to re-create it");
+				//output_message ( "Data already installed, no need to re-create it");
 				doTableUpdates();
 				
 				updateImages();
@@ -342,7 +342,7 @@ function updateImages()
 				if ( !file_exists( JOMRES_IMAGELOCATION_ABSPATH . $dir . JRDS . $main_filename ) )
 					{
 					unlink( JOMRES_IMAGELOCATION_ABSPATH . $dir . JRDS . $small_image );
-					output_message ( "Deleting " . JOMRES_IMAGELOCATION_ABSPATH . $dir . JRDS . $small_image );
+					//output_message ( "Deleting " . JOMRES_IMAGELOCATION_ABSPATH . $dir . JRDS . $small_image );
 					unset( $small_images_array[ $key ] );
 					}
 				}
@@ -352,7 +352,7 @@ function updateImages()
 				if ( !file_exists( JOMRES_IMAGELOCATION_ABSPATH . $dir . JRDS . $main_filename ) )
 					{
 					unlink( JOMRES_IMAGELOCATION_ABSPATH . $dir . JRDS . $medium_image );
-					output_message ( "Deleting " . JOMRES_IMAGELOCATION_ABSPATH . $dir . JRDS . $medium_image );
+					//output_message ( "Deleting " . JOMRES_IMAGELOCATION_ABSPATH . $dir . JRDS . $medium_image );
 					unset( $medium_images_array[ $key ] );
 					}
 				}
@@ -522,7 +522,7 @@ function checkRtypesSrpOnlyFlagColExists()
 
 function dropRtypesSrpOnlyFlagCol()
 	{
-	output_message ( "Editing __jomres_room_classes table dropping srp_only column");
+	//output_message ( "Editing __jomres_room_classes table dropping srp_only column");
 	$query = "ALTER TABLE #__jomres_room_classes DROP COLUMN `srp_only` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -532,7 +532,7 @@ function dropRtypesSrpOnlyFlagCol()
 
 function alterPtypesMrpsrpFlagCol()
 	{
-	output_message ( "Editing __jomres_ptypes table adding mrp_srp_flag column");
+	//output_message ( "Editing __jomres_ptypes table adding mrp_srp_flag column");
 	$query = "ALTER TABLE `#__jomres_ptypes` ADD `mrp_srp_flag` TINYINT DEFAULT '2' AFTER `order`";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -554,7 +554,7 @@ function checkPtypesMrpsrpFlagColExists()
 
 function alterContractsReferrerCol()
 	{
-	output_message ( "Editing __jomres_contracts table adding referrer column");
+	//output_message ( "Editing __jomres_contracts table adding referrer column");
 	$query = "ALTER TABLE `#__jomres_contracts` ADD `referrer` varchar( 255 ) DEFAULT 'Jomres' AFTER `last_changed` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -577,7 +577,7 @@ function checkContractsReferrerColExists()
 	
 function createPageviewsTable()
 	{
-	output_message ( "Creating pageviews table");
+	//output_message ( "Creating pageviews table");
 	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_pageviews` (
 	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`task` varchar( 255 ) default NULL ,
@@ -614,7 +614,7 @@ function checkPageviewsTableExists()
 
 function alterExtrasLimitedtoroomtypeCol()
 	{
-	output_message ( "Editing __jomres_extras table adding limited_to_room_type column");
+	//output_message ( "Editing __jomres_extras table adding limited_to_room_type column");
 	$query = "ALTER TABLE `#__jomres_extras` ADD `limited_to_room_type` INT(11) NOT NULL DEFAULT 0 NOT NULL AFTER `include_in_property_lists`";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -637,7 +637,7 @@ function checkExtrasLimitedtoroomtypeColExists()
 
 function alterGuestsPartnerIdCol()
 	{
-	output_message ( "Editing __jomres_guests table adding partner_id columns");
+	//output_message ( "Editing __jomres_guests table adding partner_id columns");
 	$query = "ALTER TABLE `#__jomres_guests` ADD `partner_id` INT(11) NOT NULL DEFAULT 0 NOT NULL AFTER `vat_number_validation_response` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -659,7 +659,7 @@ function checkGuestsPartnerIdColExists()
 	
 function createPartnerBookingsTable()
 	{
-	output_message ( "Creating _jomres_partner_bookings table");
+	//output_message ( "Creating _jomres_partner_bookings table");
 	$query  = "CREATE TABLE IF NOT EXISTS `#__jomres_partner_bookings` (
 		`id` INT(11) auto_increment,
 		`contract_uid` INT(11) NOT NULL DEFAULT 0,
@@ -702,7 +702,7 @@ function checkExtraservicesQtyColExists()
 
 function alterExtraservicesQtyCol()
 	{
-	output_message ( "Editing __jomres_extraservices table adding services_qty column");
+	//output_message ( "Editing __jomres_extraservices table adding services_qty column");
 	$query = "ALTER TABLE #__jomres_extraservices ADD `service_qty` FLOAT NOT NULL DEFAULT 1 AFTER `tax_code` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -724,7 +724,7 @@ function checkRoomSmokingColExists()
 
 function alterRoomsSmokingCol()
 	{
-	output_message ( "Editing __jomres_rooms table dropping smoking, room_disabled_access columns");
+	//output_message ( "Editing __jomres_rooms table dropping smoking, room_disabled_access columns");
 	$query = "ALTER TABLE #__jomres_rooms DROP COLUMN `smoking`, DROP COLUMN `room_disabled_access` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -746,7 +746,7 @@ function checkContractsSmokingColExists()
 
 function alterContractsSmokingCol()
 	{
-	output_message ( "Editing __jomres_contracts table dropping smoking column");
+	//output_message ( "Editing __jomres_contracts table dropping smoking column");
 	$query = "ALTER TABLE #__jomres_contracts DROP COLUMN `smoking` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -771,7 +771,7 @@ function checkPfeaturesCategoriesTableExists()
 
 function createPfeaturesCategoriesTable()
 	{
-	output_message ( "Creating jomres_hotel_features_categories table");
+	//output_message ( "Creating jomres_hotel_features_categories table");
 	$query  = "CREATE TABLE IF NOT EXISTS `#__jomres_hotel_features_categories` (
 		`id` int(11) auto_increment,
 		`title`  varchar(255) NOT NULL DEFAULT 0,
@@ -802,7 +802,7 @@ function checkPfeaturesCategoryColExists()
 
 function alterPfeaturesCategoryCol()
 	{
-	output_message ( "Editing __jomres_hotel_features table adding cat_id column");
+	//output_message ( "Editing __jomres_hotel_features table adding cat_id column");
 	$query = "ALTER TABLE #__jomres_hotel_features ADD `cat_id` INT(11) NOT NULL DEFAULT 0 AFTER `ptype_xref` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -823,7 +823,7 @@ function checkRfeaturesImageColExists()
 
 function alterRfeaturesImageCol()
 	{
-	output_message ( "Editing __jomres_room_features table adding image column");
+	//output_message ( "Editing __jomres_room_features table adding image column");
 	$query = "ALTER TABLE `#__jomres_room_features` ADD `image` VARCHAR(255) NULL DEFAULT NULL AFTER `ptype_xref`";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -833,7 +833,7 @@ function alterRfeaturesImageCol()
 
 function alterExtrasIncludeinlistsCol()
 	{
-	output_message ( "Editing __jomres_extras table adding include_in_property_lists column");
+	//output_message ( "Editing __jomres_extras table adding include_in_property_lists column");
 	$query = "ALTER TABLE `#__jomres_extras` ADD `include_in_property_lists` BOOL NOT NULL DEFAULT '1' AFTER `room_classes_uid`";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -888,7 +888,7 @@ function checkExtrasValidfromColExists()
 
 function createInvoicePaymentXrefTable()
 	{
-	output_message ( "Creating jomres_invoice_payment_ref table");
+	//output_message ( "Creating jomres_invoice_payment_ref table");
 	$query  = "CREATE TABLE IF NOT EXISTS `#__jomres_invoice_payment_ref` (
 		`id` int(11) auto_increment,
 		`invoice_id`  int(11),
@@ -927,7 +927,7 @@ function move_license_key_to_site_settings()
 		$license_key = doSelectSql($query,1);
 		if (trim($license_key) != "")
 			{
-			output_message ( "Moving license key from settings table to site settings", "info" );
+			//output_message ( "Moving license key from settings table to site settings", "info" );
 			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 			$siteConfig->insert_new_setting( "licensekey" , $license_key );
 			// now this query will remove the license key from jomres_settings
@@ -941,7 +941,7 @@ function save_configuration_file()
 	{
 	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php'))
 		{
-		output_message ( "Saving new configuration.php file which stores the site settings", "info" );
+		//output_message ( "Saving new configuration.php file which stores the site settings", "info" );
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$tmpConfig = $siteConfig->get();
 		$tmpConfig['development_production'] = 'production';
@@ -995,7 +995,7 @@ function checkLineitemsIspaymentColExists()
 
 function alterLineitemsIspaymentCol()
 	{
-	output_message ( "Editing __jomresportal_lineitems table adding is_payment column");
+	//output_message ( "Editing __jomresportal_lineitems table adding is_payment column");
 	$query = "ALTER TABLE `#__jomresportal_lineitems` ADD `is_payment`  TINYINT(1) DEFAULT 0 NOT NULL";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1008,7 +1008,7 @@ function alterLineitemsIspaymentCol()
 
 function alterPropertysLastchangedCol()
 	{
-	output_message ( "Editing __jomres_propertys table adding last_changed column");
+	//output_message ( "Editing __jomres_propertys table adding last_changed column");
 	$query = "ALTER TABLE `#__jomres_propertys` ADD `last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1031,7 +1031,7 @@ function checkPropertysLastchangedColExists()
 
 function alterContractsLastchangedCol()
 	{
-	output_message ( "Editing __jomres_contracts table adding last_changed column");
+	//output_message ( "Editing __jomres_contracts table adding last_changed column");
 	$query = "ALTER TABLE `#__jomres_contracts` ADD `last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1053,7 +1053,7 @@ function checkContractsLastchangedColExists()
 
 function alterManagerLastactiveCol()
 	{
-	output_message ( "Editing __jomres_managers table adding last_active column");
+	//output_message ( "Editing __jomres_managers table adding last_active column");
 	$query = "ALTER TABLE `#__jomres_managers` ADD `last_active` datetime default NULL AFTER `users_timezone` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1076,7 +1076,7 @@ function checkManagerLastactiveColExists()
 
 function alterTaxratesEUCol()
 	{
-	output_message ( "Editing __jomresportal_taxrates table adding is_eu_country column");
+	//output_message ( "Editing __jomresportal_taxrates table adding is_eu_country column");
 	$query = "ALTER TABLE `#__jomresportal_taxrates` ADD `is_eu_country` BOOL NOT NULL DEFAULT '0' AFTER `rate` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1099,7 +1099,7 @@ function checkTaxratesEUColExists()
 
 function alterPropertysSiteIdCol()
 	{
-	output_message ( "Editing __jomres_propertys table adding property_site_id column");
+	//output_message ( "Editing __jomres_propertys table adding property_site_id column");
 	$query = "ALTER TABLE `#__jomres_propertys` ADD `property_site_id` varchar(255) NULL AFTER `approved` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1122,7 +1122,7 @@ function checkPropertysSiteIdColExists()
 
 function alterContractsLang()
 	{
-	output_message ( "Editing __jomres_contracts table adding booking_language column");
+	//output_message ( "Editing __jomres_contracts table adding booking_language column");
 	$query = "ALTER TABLE `#__jomres_contracts` ADD `booking_language` CHAR(5) NOT NULL DEFAULT 'en-GB' AFTER `secret_key_used` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1157,7 +1157,7 @@ function checkCustomertypesIsChildColExists()
 	
 function alterCustomertypesIsChildCol()
 	{
-	output_message ( "Editing __jomres_customertypes table adding is_child column");
+	//output_message ( "Editing __jomres_customertypes table adding is_child column");
 	$query = "ALTER TABLE `#__jomres_customertypes` ADD `is_child` BOOL NULL DEFAULT '0' AFTER `order` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1214,7 +1214,7 @@ function renameExtraServicesTable()
 	$query  = "RENAME TABLE `#__jomres_temp` TO `#__jomres_extraservices`";
 	$result = doSelectSql( $query );
 	
-	output_message ( "Renamed `#__jomres_extraServices to #__jomres_extraservices");
+	//output_message ( "Renamed `#__jomres_extraServices to #__jomres_extraservices");
 	
 	}
 
@@ -1244,7 +1244,7 @@ function checkExtraServicesTableNeedsRenaming()
 
 function alterBookingdataarchiveContractid()
 	{
-	output_message ( "Editing __jomres_booking_data_archive table adding contract_uid column");
+	//output_message ( "Editing __jomres_booking_data_archive table adding contract_uid column");
 	$query = "ALTER TABLE `#__jomres_booking_data_archive` ADD `contract_uid` INT DEFAULT 0 NOT NULL AFTER `date` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1271,7 +1271,7 @@ function checkBookingdataarchiveContractidColExists()
 
 function alterContractsBookingdataarchiveCol()
 	{
-	output_message ( "Editing __jomres_contracts table adding booking_data_archive_id column");
+	//output_message ( "Editing __jomres_contracts table adding booking_data_archive_id column");
 	$query = "ALTER TABLE `#__jomres_contracts` ADD `booking_data_archive_id` INT DEFAULT '0' NOT NULL AFTER `approved` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1321,7 +1321,7 @@ function checkLineitemsInitqtyColFloat()
 
 function alterContractsApproved()
 	{
-	output_message ( "Editing __jomres_contracts table adding approved column");
+	//output_message ( "Editing __jomres_contracts table adding approved column");
 	$query = "ALTER TABLE `#__jomres_contracts` ADD `approved` TINYINT( 1 ) DEFAULT 1 NOT NULL AFTER `channel_manager_booking` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1344,7 +1344,7 @@ function checkContractsApprovedColExists()
 	
 function alterTarifftypesDescriptionCol()
 	{
-	output_message ( "Editing __jomcomp_tarifftypes table adding description column");
+	//output_message ( "Editing __jomcomp_tarifftypes table adding description column");
 	$query = "ALTER TABLE `#__jomcomp_tarifftypes` ADD `description` VARCHAR(3000) DEFAULT NULL AFTER `name` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1366,7 +1366,7 @@ function checkTarifftypesDescriptionColExists()
 
 function alterManagerSimpleconfigCol()
 	{
-	output_message ( "Editing __jomres_managers table adding simple_configuration column");
+	//output_message ( "Editing __jomres_managers table adding simple_configuration column");
 	$query = "ALTER TABLE `#__jomres_managers` ADD `simple_configuration` tinyint( 1 ) default 1 AFTER `suspended` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1388,7 +1388,7 @@ function checkManagerSimpleconfigColExists()
 
 function alterContractsChannelManagerBookingCol()
 	{
-	output_message ( "Editing __jomres_contracts table adding channel_manager_booking column");
+	//output_message ( "Editing __jomres_contracts table adding channel_manager_booking column");
 	$query = "ALTER TABLE `#__jomres_contracts` ADD `channel_manager_booking` BOOL NOT NULL DEFAULT '0' AFTER `invoice_uid` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1422,7 +1422,7 @@ function checkPTypeXrefColExists()
 
 function alterPTypeXrefCol()
 	{
-	output_message ( "Editing __jomres_hotel_features table renaming ptype_id column");
+	//output_message ( "Editing __jomres_hotel_features table renaming ptype_id column");
 	$query = "ALTER TABLE `#__jomres_hotel_features` CHANGE COLUMN ptype_id ptype_xref text NULL DEFAULT NULL";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1477,7 +1477,7 @@ function checkCratesTaxRateColExists()
 
 function alterCratesTaxRateCol()
 	{
-	output_message ( "Editing __jomresportal_c_rates table adding tax_rate column");
+	//output_message ( "Editing __jomresportal_c_rates table adding tax_rate column");
 	$query = "ALTER TABLE `#__jomresportal_c_rates` ADD `tax_rate` INT NULL DEFAULT '1' AFTER `archived_date` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1499,7 +1499,7 @@ function checkInvoicesVATFlagColExists()
 
 function alterInvoicesVATFlagCol()
 	{
-	output_message ( "Editing __jomresportal_invoices table adding vat_will_be_charged column");
+	//output_message ( "Editing __jomresportal_invoices table adding vat_will_be_charged column");
 	$query = "ALTER TABLE `#__jomresportal_invoices` ADD `vat_will_be_charged` BOOL NOT NULL DEFAULT '1' AFTER `is_commission` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1509,7 +1509,7 @@ function alterInvoicesVATFlagCol()
 
 function createTaxRulesTable()
 	{
-	output_message ( "Creating jomres_tax_rules table");
+	//output_message ( "Creating jomres_tax_rules table");
 	$query  = "CREATE TABLE IF NOT EXISTS `#__jomres_tax_rules` (
 		`id` int(11) auto_increment,
 		`tax_rate_id`  int(11),
@@ -1541,7 +1541,7 @@ function checkTaxRulesTableExists()
 
 function alterGuestsVatcodeCol()
 	{
-	output_message ( "Editing __jomres_guests table adding vat_number/vat_number_validated columns");
+	//output_message ( "Editing __jomres_guests table adding vat_number/vat_number_validated columns");
 	$query = "ALTER TABLE `#__jomres_guests` ADD `vat_number` CHAR (25) DEFAULT '' NOT NULL AFTER `discount` "; // Most I could find was up to possibly 15 chars. Adding 10 to be on the safe side.
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1591,7 +1591,7 @@ function checkGuestsVatcodeColExists()
 
 function alterPropertysMetakeywordsCol()
 	{
-	output_message ( "Editing __jomres_propertys table adding metakeywords column");
+	//output_message ( "Editing __jomres_propertys table adding metakeywords column");
 	$query = "ALTER TABLE `#__jomres_propertys` ADD `metakeywords` TEXT NULL AFTER `metadescription` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1614,7 +1614,7 @@ function checkPropertysMetakeywordsColExists()
 
 function alterPropertysSuperiorCol()
 	{
-	output_message ( "Editing __jomres_propertys table adding superior column");
+	//output_message ( "Editing __jomres_propertys table adding superior column");
 	$query = "ALTER TABLE `#__jomres_propertys` ADD `superior` TINYINT( 1 ) DEFAULT '0' NOT NULL AFTER `stars` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1637,7 +1637,7 @@ function checkPropertysSuperiorColExists()
 
 function alterPropertysApprovedCol()
 	{
-	output_message ( "Editing __jomres_propertys table adding approved column");
+	//output_message ( "Editing __jomres_propertys table adding approved column");
 	$query = "ALTER TABLE `#__jomres_propertys` ADD `approved`  BOOL NOT NULL DEFAULT '1' AFTER `timestamp` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1736,7 +1736,7 @@ function installer_find_region_id( $region )
 
 function alterCustomtemplatesPtypeidCol()
 	{
-	output_message ( "Editing __jomres_custom_templates table adding ptype_id column");
+	//output_message ( "Editing __jomres_custom_templates table adding ptype_id column");
 	$query = "ALTER TABLE `#__jomres_custom_templates` ADD `ptype_id` INT( 11 ) DEFAULT '0' NOT NULL AFTER `value` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1758,7 +1758,7 @@ function checkCustomtemplatesPtypeidColExists()
 
 function createCountriesTable()
 	{
-	output_message ( "Creating _jomres_countries table");
+	//output_message ( "Creating _jomres_countries table");
 	$query  = "CREATE TABLE IF NOT EXISTS `#__jomres_countries` (
 		`id` int(11) auto_increment,
 		`countrycode` VARCHAR(2),
@@ -1771,7 +1771,7 @@ function createCountriesTable()
 		output_message ( "Error creating table table _jomres_countries ", "danger" );
 		}
 
-	output_message ( "Creating _jomres_regions table");
+	//output_message ( "Creating _jomres_regions table");
 	$query  = "CREATE TABLE IF NOT EXISTS `#__jomres_regions` (
 		`id` int(11) auto_increment,
 		`countrycode` VARCHAR(2),
@@ -1814,7 +1814,7 @@ function checkExtraServicesTaxtax_codeColExists()
 
 function alterExtraServicesTaxtax_codeCol()
 	{
-	output_message ( "Editing __jomres_extraservices table adding tax_code column");
+	//output_message ( "Editing __jomres_extraservices table adding tax_code column");
 	$query = "ALTER TABLE `#__jomres_extraservices` ADD `tax_code` CHAR (10) DEFAULT '0' ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1836,7 +1836,7 @@ function checkInvoicesGuestidColExists()
 
 function alterInvoicesGuestidCol()
 	{
-	output_message ( "Editing __jomresportal_invoices table adding guest_id column");
+	//output_message ( "Editing __jomresportal_invoices table adding guest_id column");
 	$query = "ALTER TABLE `#__jomresportal_invoices` ADD `guest_id` int(11) NOT NULL DEFAULT '0' AFTER `cms_user_id` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1846,7 +1846,7 @@ function alterInvoicesGuestidCol()
 
 function createAccessControlTable()
 	{
-	output_message ( "Creating __jomres_access_control table");
+	//output_message ( "Creating __jomres_access_control table");
 	$query  = "CREATE TABLE IF NOT EXISTS `#__jomres_access_control` (
 		`id` int(11) auto_increment,
 		`scriptname` VARCHAR(255),
@@ -1877,7 +1877,7 @@ function checkAccessControlTableExists()
 
 function alterPtypesOrderCol()
 	{
-	output_message ( "Editing __jomres_ptypes table adding order column");
+	//output_message ( "Editing __jomres_ptypes table adding order column");
 	$query = "ALTER TABLE `#__jomres_ptypes` ADD `order` INT NULL DEFAULT '0' AFTER `published`";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1900,7 +1900,7 @@ function checkPtypesOrderColExists()
 
 function alterExtrasAutoSelectCol()
 	{
-	output_message ( "Editing __jomres_extras table adding auto_select column");
+	//output_message ( "Editing __jomres_extras table adding auto_select column");
 	$query = "ALTER TABLE `#__jomres_extras` ADD `auto_select` INT NULL DEFAULT '0' AFTER `price`";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1935,7 +1935,7 @@ function checkLineitemsInclusiveColExists()
 
 function alterLineitemsInclusiveCol()
 	{
-	output_message ( "Editing __jomresportal_lineitems table adding init_total_inclusive column");
+	//output_message ( "Editing __jomresportal_lineitems table adding init_total_inclusive column");
 	$query = "ALTER TABLE `#__jomresportal_lineitems` ADD `init_total_inclusive` float NOT NULL default '0' AFTER `init_total`";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1957,7 +1957,7 @@ function checkCouponsBookingValidColsExists()
 
 function alterCouponsBookingValidCols()
 	{
-	output_message ( "Editing __jomres_coupons table adding booking_valid_from column");
+	//output_message ( "Editing __jomres_coupons table adding booking_valid_from column");
 	$query = "ALTER TABLE `#__jomres_coupons` ADD `booking_valid_from` DATE AFTER rooms_only ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -1993,7 +1993,7 @@ function checkExtraServicesTaxColExists()
 
 function alterExtraServicesTaxCol()
 	{
-	output_message ( "Editing __jomres_extraservices table adding tax_rate_val column");
+	//output_message ( "Editing __jomres_extraservices table adding tax_rate_val column");
 	$query = "ALTER TABLE `#__jomres_extraservices` ADD `tax_rate_val` CHAR (10) DEFAULT '0' ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -2042,7 +2042,7 @@ function checkExtraServicesTableExists()
 
 function createGuestProfileTable()
 	{
-	output_message ( "Creating _jomres_guest_profile table");
+	//output_message ( "Creating _jomres_guest_profile table");
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_guest_profile` (
 		`id` int(11) NOT NULL auto_increment,
 		`cms_user_id` VARCHAR(255) NULL,
@@ -2107,7 +2107,7 @@ function checkInvoicesIsCommisionColExists()
 
 function alterInvoicesIsCommisionCol()
 	{
-	output_message ( "Editing __jomresportal_invoices table adding is_commission column");
+	//output_message ( "Editing __jomresportal_invoices table adding is_commission column");
 	$query = "ALTER TABLE `#__jomresportal_invoices` ADD `is_commission` INT NULL DEFAULT '0' ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -2117,7 +2117,7 @@ function alterInvoicesIsCommisionCol()
 
 function alterManagerSuspendedCol()
 	{
-	output_message ( "Editing __jomres_managers table adding suspended column");
+	//output_message ( "Editing __jomres_managers table adding suspended column");
 	$query = "ALTER TABLE `#__jomres_managers` ADD `suspended` tinyint( 1 ) default 0 AFTER `apikey` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -2140,7 +2140,7 @@ function checkManagerSuspendedColExists()
 
 function createPartnerTables()
 	{
-	output_message ( "Creating __jomres_partners table");
+	//output_message ( "Creating __jomres_partners table");
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_partners` (
 		`id` int(11) NOT NULL auto_increment,
 		`cms_userid` int(11),
@@ -2151,7 +2151,7 @@ function createPartnerTables()
 		output_message ( "Error, unable to add __jomres_partners table", "danger" );
 		}
 
-	output_message ( "Creating __jomres_partners_discounts table");
+	//output_message ( "Creating __jomres_partners_discounts table");
 	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_partners_discounts` (
 	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`partner_id` int(11),
@@ -2185,7 +2185,7 @@ function checkPartnerTablesExist()
 
 function alterManagerTimezoneCol()
 	{
-	output_message ( "Editing __jomres_managers table adding users_timezone column");
+	//output_message ( "Editing __jomres_managers table adding users_timezone column");
 	$query = "ALTER TABLE `#__jomres_managers` ADD `users_timezone` CHAR(100) DEFAULT 'Europe/Berlin' AFTER `apikey` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -2207,7 +2207,7 @@ function checkManagerTimezoneColExists()
 
 function createRoomtypePropertytypeXrefTable()
 	{
-	output_message ( "Creating room type/property type xref table");
+	//output_message ( "Creating room type/property type xref table");
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_roomtypes_propertytypes_xref` (
 		`id` int(11) NOT NULL auto_increment,
 		`roomtype_id` int(11),
@@ -2237,7 +2237,7 @@ function checkRoomtypePropertytypeXrefTableExists()
 
 function createBookingdataArchiveTable()
 	{
-	output_message ( "Creating booking data archive tables");
+	//output_message ( "Creating booking data archive tables");
 	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_booking_data_archive` (
 	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`data` text,
@@ -2270,7 +2270,7 @@ function checkBookingdataArchiveTableExists()
 
 function createReviewDetailTable()
 	{
-	output_message ( "Creating review detail tables");
+	//output_message ( "Creating review detail tables");
 	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_ratings_detail` (
 	`detail_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`item_id` int( 11 ) default NULL ,
@@ -2301,7 +2301,7 @@ function checkReviewDetailTableExists()
 
 function createReviewsTables()
 	{
-	output_message ( "Creating reviews tables");
+	//output_message ( "Creating reviews tables");
 	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_ratings` (
 	`rating_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`item_id` int( 11 ) default NULL ,
@@ -2373,7 +2373,7 @@ function checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled()
 
 function alterGuestsDiscountCol()
 	{
-	output_message ( "Editing __jomres_guests table adding discount column");
+	//output_message ( "Editing __jomres_guests table adding discount column");
 	$query = "ALTER TABLE `#__jomres_guests` ADD `discount` INT( 11 ) DEFAULT '0' NOT NULL AFTER `email` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -2395,7 +2395,7 @@ function checkGuestsDiscountColExists()
 
 function alterContractsInvoice()
 	{
-	output_message ( "Editing __jomres_contracts table adding invoice_uid column");
+	//output_message ( "Editing __jomres_contracts table adding invoice_uid column");
 	$query = "ALTER TABLE `#__jomres_contracts` ADD `invoice_uid` INT( 11 ) DEFAULT '0' NOT NULL AFTER `bookedout_timestamp` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -2417,7 +2417,7 @@ function checkContractsInvoiceColExists()
 
 function alterPfeaturesPtypeidCol()
 	{
-	output_message ( "Editing __jomres_hotel_features table adding ptype_id column");
+	//output_message ( "Editing __jomres_hotel_features table adding ptype_id column");
 	$query = "ALTER TABLE `#__jomres_hotel_features` ADD `ptype_id` INT( 11 ) DEFAULT '0' NOT NULL AFTER `property_uid` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -2447,7 +2447,7 @@ function checkPfeaturesPtypeidColExists()
 
 function alterSubscribersSubscriptionPackageIdCol()
 	{
-	output_message ( "Editing __jomresportal_subscriptions table adding package_id column");
+	//output_message ( "Editing __jomresportal_subscriptions table adding package_id column");
 	$query = "ALTER TABLE `#__jomresportal_subscriptions` ADD `package_id` INT NULL DEFAULT '0' AFTER `gateway_subscription_id` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -2457,77 +2457,77 @@ function alterSubscribersSubscriptionPackageIdCol()
 	
 function doV9subscriptionUpdates()
 	{
-	output_message ( "Dropping __jomresportal_subscribers table ");
+	//output_message ( "Dropping __jomresportal_subscribers table ");
 	$query = "DROP TABLE IF EXISTS `#__jomresportal_subscribers` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
 		output_message ( "Error, unable to drop __jomresportal_subscribers table", "danger" );
 		}
 	
-	output_message ( "Editing __jomresportal_subscriptions table dropping gateway_subscription_id, name, description, frequency, trial_period, trial_amount, full_amount, rooms_limit, property_limit columns");
+	//output_message ( "Editing __jomresportal_subscriptions table dropping gateway_subscription_id, name, description, frequency, trial_period, trial_amount, full_amount, rooms_limit, property_limit columns");
 	$query = "ALTER TABLE `#__jomresportal_subscriptions` DROP COLUMN `gateway_subscription_id`, DROP COLUMN `name`, DROP COLUMN `description`, DROP COLUMN `frequency`, DROP COLUMN `trial_period`, DROP COLUMN `trial_amount`, DROP COLUMN `full_amount`, DROP COLUMN `rooms_limit`, DROP COLUMN `property_limit` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
 		output_message ( "Error, unable to drop gateway_subscription_id, name, description, frequency, trial_period, trial_amount, full_amount, rooms_limit, property_limit columns from the __jomresportal_subscriptions table", "danger" );
 		}
 
-	output_message ( "Editing __jomresportal_subscriptions table adding expiration_date column");
+	//output_message ( "Editing __jomresportal_subscriptions table adding expiration_date column");
 	$query = "ALTER TABLE `#__jomresportal_subscriptions` ADD `expiration_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `raised_date` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
 		output_message ( "Error, unable to add __jomresportal_subscriptions expiration_date column", "danger" );
 		}
 	
-	output_message ( "Editing __jomresportal_subscriptions table adding invoice_id column");
+	//output_message ( "Editing __jomresportal_subscriptions table adding invoice_id column");
 	$query = "ALTER TABLE `#__jomresportal_subscriptions` ADD `invoice_id` INT(11) NOT NULL DEFAULT '0' AFTER `expiration_date` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
 		output_message ( "Error, unable to add __jomresportal_subscriptions invoice_id column", "danger" );
 		}
 	
-	output_message ( "Editing __jomresportal_subscriptions_packages table dropping trial_amount, trial_period, rooms_limit, property_limit columns");
+	//output_message ( "Editing __jomresportal_subscriptions_packages table dropping trial_amount, trial_period, rooms_limit, property_limit columns");
 	$query = "ALTER TABLE `#__jomresportal_subscriptions_packages` DROP COLUMN `trial_amount`, DROP COLUMN `trial_period`, DROP COLUMN `rooms_limit`, DROP COLUMN `property_limit` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
 		output_message ( "Error, unable to drop trial_amount, trial_period, rooms_limit, property_limit columns from the __jomresportal_subscriptions_packages table", "danger" );
 		}
 	
-	output_message ( "Editing __jomresportal_subscriptions_packages table adding currencycode column");
+	//output_message ( "Editing __jomresportal_subscriptions_packages table adding currencycode column");
 	$query = "ALTER TABLE `#__jomresportal_subscriptions_packages` ADD `currencycode` VARCHAR(11) NOT NULL DEFAULT 'GBP' AFTER `tax_code_id` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
 		output_message ( "Error, unable to add __jomresportal_subscriptions_packages currencycode column", "danger" );
 		}
 	
-	output_message ( "Editing __jomresportal_subscriptions_packages table adding renewal_price column");
+	//output_message ( "Editing __jomresportal_subscriptions_packages table adding renewal_price column");
 	$query = "ALTER TABLE `#__jomresportal_subscriptions_packages` ADD `renewal_price` FLOAT AFTER `currencycode` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
 		output_message ( "Error, unable to add __jomresportal_subscriptions_packages renewal_price column", "danger" );
 		}
 	
-	output_message ( "Editing __jomresportal_subscriptions_packages table adding params column");
+	//output_message ( "Editing __jomresportal_subscriptions_packages table adding params column");
 	$query = "ALTER TABLE `#__jomresportal_subscriptions_packages` ADD `params` TEXT AFTER `renewal_price` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
 		output_message ( "Error, unable to add __jomresportal_subscriptions_packages params column", "danger" );
 		}
 	
-	output_message ( "Changing frequency column in __jomresportal_subscriptions_packages table to int(5) default 365");
+	//output_message ( "Changing frequency column in __jomresportal_subscriptions_packages table to int(5) default 365");
 	$query = "ALTER TABLE `#__jomresportal_subscriptions_packages` MODIFY `frequency` INT(5) NOT NULL DEFAULT '365' ";
 	if ( !doInsertSql( $query, '' ) )
 		{
 		output_message ( "Error, unable to change frequency column in __jomresportal_subscriptions_packages to int(5)", "danger" );
 		}
 	
-	output_message ( "Changing raised_date column in __jomresportal_subscriptions table to DATETIME NOT NULL DEFAULT 0000-00-00 00:00:00 ");
+	//output_message ( "Changing raised_date column in __jomresportal_subscriptions table to DATETIME NOT NULL DEFAULT 0000-00-00 00:00:00 ");
 	$query = "ALTER TABLE `#__jomresportal_subscriptions` MODIFY `raised_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ";
 	if ( !doInsertSql( $query, '' ) )
 		{
 		output_message ( "Error, unable to change raised_date column in __jomresportal_subscriptions to DATETIME NOT NULL DEFAULT 0000-00-00 00:00:00", "danger" );
 		}
 
-	output_message ( "Altering table __jomresportal_subscriptions, creating new expiration_date index if necessary");
+	//output_message ( "Altering table __jomresportal_subscriptions, creating new expiration_date index if necessary");
 	$query = "SHOW INDEX FROM `#__jomresportal_subscriptions` WHERE Key_name = 'expiration_date' ";
 	$indexExists = doSelectSql( $query );
 	if (count($indexExists) < 1)
@@ -2539,7 +2539,7 @@ function doV9subscriptionUpdates()
 			}
 		}
 	
-	output_message ( "Altering table __jomresportal_subscriptions, creating new status index if necessary");
+	//output_message ( "Altering table __jomresportal_subscriptions, creating new status index if necessary");
 	$query = "SHOW INDEX FROM `#__jomresportal_subscriptions` WHERE Key_name = 'status' ";
 	$indexExists = doSelectSql( $query );
 	if (count($indexExists) < 1)
@@ -2551,7 +2551,7 @@ function doV9subscriptionUpdates()
 			}
 		}
 	
-	output_message ( "Altering table __jomresportal_subscriptions, creating new cms_user_id index if necessary");
+	//output_message ( "Altering table __jomresportal_subscriptions, creating new cms_user_id index if necessary");
 	$query = "SHOW INDEX FROM `#__jomresportal_subscriptions` WHERE Key_name = 'cms_user_id' ";
 	$indexExists = doSelectSql( $query );
 	if (count($indexExists) < 1)
@@ -2590,7 +2590,7 @@ function checkSubscriptionExpirationDateColExists()
 
 function alterExtrasTaxrateCol()
 	{
-	output_message ( "Editing __jomres_extras table adding tax_rate column");
+	//output_message ( "Editing __jomres_extras table adding tax_rate column");
 	$query = "ALTER TABLE `#__jomres_extras` ADD `tax_rate` INT NULL DEFAULT '0' AFTER `price` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -2665,7 +2665,7 @@ function checkSubscriptionsTablesExist()
 
 function alterCustomTemplatesTimestampCol()
 	{
-	output_message ( "Editing __jomres_custom_templates table adding last_edited column");
+	//output_message ( "Editing __jomres_custom_templates table adding last_edited column");
 	$query = "ALTER TABLE `#__jomres_custom_templates` ADD `last_edited` DATETIME AFTER `value` ";
 	if ( !doInsertSql( $query, '' ) ) output_message ( "Error, unable to add __jomres_custom_templates last_edited", "danger" );
 	}
@@ -2686,7 +2686,7 @@ function checkCustomTemplatesTimestampColExists()
 
 function alterPropertysTimestampCol()
 	{
-	output_message ( "Editing __jomres_propertys table adding timestamp column");
+	//output_message ( "Editing __jomres_propertys table adding timestamp column");
 	$query = "ALTER TABLE `#__jomres_propertys` ADD `timestamp` DATETIME AFTER `metadescription` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -2766,7 +2766,7 @@ function checkInvoicesPropertyuidColExists()
 
 function alterInvoicesPropertyuidCol()
 	{
-	output_message ( "Editing __jomresportal_invoices table adding property_uid column");
+	//output_message ( "Editing __jomresportal_invoices table adding property_uid column");
 	$query = "ALTER TABLE `#__jomresportal_invoices` ADD `property_uid` INT NULL DEFAULT '0' ";
 	if ( !doInsertSql( $query, '' ) )
 		{
@@ -4325,7 +4325,7 @@ function checkIfNewIndexRequired()
 
 function createExtraIndexs()
 	{
-	output_message ( "Altering tables, creating new indexes if necessary");
+	//output_message ( "Altering tables, creating new indexes if necessary");
 	
 	$query = "SHOW INDEX FROM `#__jomres_guest_profile` WHERE Key_name = 'cms_user_id' ";
 	$indexExists = doSelectSql( $query );
@@ -4741,7 +4741,7 @@ function jomres_migrate()
 		exit;
 		}
 
-	output_message ( "<b>Migration under way. Once completed, please check for any errors and if everything looks ok you can go to your administrator area.</b><br/> Remember that this migrator will not import any of your remote plugins as all the plugins need to be checked before they can be passed as working in v4. If you have any Jomres modules installed you must uninstall them using the Joomla extension manager (back up any copies of srch.html you may have customised before doing this) then use the Jomres Plugin manager to install updated versions of those modules.");
+	//output_message ( "<b>Migration under way. Once completed, please check for any errors and if everything looks ok you can go to your administrator area.</b><br/> Remember that this migrator will not import any of your remote plugins as all the plugins need to be checked before they can be passed as working in v4. If you have any Jomres modules installed you must uninstall them using the Joomla extension manager (back up any copies of srch.html you may have customised before doing this) then use the Jomres Plugin manager to install updated versions of those modules.");
 	define( OLD_IMAGES_PATH, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'images' . JRDS . 'stories' . JRDS .JOMRES_ROOT_DIRECTORY. JRDS );
 	define( NEW_IMAGES_PATH, JOMRESCONFIG_ABSOLUTE_PATH . JRDS .JOMRES_ROOT_DIRECTORY. JRDS . 'uploadedimages' . JRDS );
 
@@ -4804,7 +4804,7 @@ function componentsIntegrationExists()
 
 function updateRoomTypeImagePaths()
 	{
-	output_message ( "Updating room type image paths in the __jomres_room_classes table.");
+	//output_message ( "Updating room type image paths in the __jomres_room_classes table.");
 
 	$query  = "SELECT * FROM #__jomres_room_classes";
 	$result = doSelectSql( $query );
@@ -4823,7 +4823,7 @@ function updateRoomTypeImagePaths()
 
 function updatePropertyFeaturePaths()
 	{
-	output_message ( "Updating property feature image paths in the __jomres_hotel_features table.");
+	//output_message ( "Updating property feature image paths in the __jomres_hotel_features table.");
 
 	$query  = "SELECT * FROM #__jomres_hotel_features";
 	$result = doSelectSql( $query );
@@ -4859,7 +4859,7 @@ function basicTemplatesExist()
 // Table changes
 function alterTables()
 	{
-	output_message ( "Altering tables.");
+	//output_message ( "Altering tables.");
 
 
 	//output_message (  "Editing __jomres_extras table adding maxquantity column");
@@ -4935,7 +4935,7 @@ function alterTariffsTimeStampCols()
 
 function dropOldTables()
 	{
-	output_message ( "Dropping old tables.");
+	//output_message ( "Dropping old tables.");
 
 
 	//output_message (  "Dropping __jomres_tmpguests table");
@@ -4977,7 +4977,7 @@ function dropOldTables()
 
 function resetMRConfigSettings()
 	{
-	output_message ( "Resetting some mrConfig values to the Jomres v4 defaults.");
+	//output_message ( "Resetting some mrConfig values to the Jomres v4 defaults.");
 
 	$mrConfig = array ();
 
@@ -4988,7 +4988,7 @@ function resetMRConfigSettings()
 	foreach ( $mrConfig as $key => $val )
 		{
 		$query = "UPDATE #__jomres_settings SET `value`='" . $val . "' WHERE `akey` = '" . $key . "'";
-		output_message ( "Updating $key to $val");
+		//output_message ( "Updating $key to $val");
 
 		$result = doInsertSql( $query, '' );
 		}
@@ -4997,7 +4997,7 @@ function resetMRConfigSettings()
 
 function resetJRConfigSettings()
 	{
-	output_message ( "Resetting some jrConfig values to the Jomres v4 defaults.");
+	//output_message ( "Resetting some jrConfig values to the Jomres v4 defaults.");
 
 	$jrConfig = array ();
 
@@ -5009,7 +5009,7 @@ function resetJRConfigSettings()
 	foreach ( $jrConfig as $key => $val )
 		{
 		$query = "UPDATE #__jomres_site_settings SET `value`='" . $val . "' WHERE `akey` = '" . $key . "'";
-		output_message ( "Updating $key to $val");
+		//output_message ( "Updating $key to $val");
 
 		$result = doInsertSql( $query, '' );
 		}
@@ -5019,7 +5019,7 @@ function resetJRConfigSettings()
 function insertNewJRConfigSettings()
 	{
 
-	output_message ( "Inserting new site settings");
+	//output_message ( "Inserting new site settings");
 
 
 	$jrConfig[ 'property_list_limit' ]                     = '5';
@@ -5047,7 +5047,7 @@ function insertNewJRConfigSettings()
 	foreach ( $jrConfig as $key => $val )
 		{
 		$query = "INSERT INTO #__jomres_site_settings (`value`,`akey`) VALUES ('" . $val . "','" . $key . "')";
-		output_message ( "Setting $key to $val");
+		//output_message ( "Setting $key to $val");
 
 		$result = doInsertSql( $query, '' );
 		}
@@ -5055,7 +5055,7 @@ function insertNewJRConfigSettings()
 
 function insertPluginSettings()
 	{
-	output_message ( "Inserting new plugin settings if required.");
+	//output_message ( "Inserting new plugin settings if required.");
 
 	// Pseudocron settings
 	$pluginConfig[ 'jomcompcronjobs' ][ 'method' ]         = 'Minicomponent';
@@ -5099,7 +5099,7 @@ function insertPluginSettings()
 // Added tables
 function addNewTables()
 	{
-	output_message ( "Adding new tables if required.");
+	//output_message ( "Adding new tables if required.");
 
 
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_coupons` (
@@ -5332,7 +5332,7 @@ function addNewTables()
 
 function removepreV4JomresFiles()
 	{
-	if ( !AUTO_UPGRADE ) output_message ( "Removing old /components/com_jomres and /administrator/components/com_jomres files." );
+	//if ( !AUTO_UPGRADE ) output_message ( "Removing old /components/com_jomres and /administrator/components/com_jomres files." );
 
 	emptyDir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS );
 	emptyDir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "components" . JRDS . "com_jomres" . JRDS );
@@ -5340,7 +5340,7 @@ function removepreV4JomresFiles()
 
 function reinstallJomresJoomlaFiles()
 	{
-	if ( !AUTO_UPGRADE ) output_message ( "Copying Jomres v4 /components/com_jomres and /administrator/components/com_jomres files." );
+	//if ( !AUTO_UPGRADE ) output_message ( "Copying Jomres v4 /components/com_jomres and /administrator/components/com_jomres files." );
 	$result = copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "admin.jomres.php", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "admin.jomres.php" );
 	$result = copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "jomres.xml", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "jomres.xml" );
 	$result = copy( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "installfiles" . JRDS . "uninstall.jomres.php", JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "components" . JRDS . "com_jomres" . JRDS . "uninstall.jomres.php" );
@@ -5349,7 +5349,7 @@ function reinstallJomresJoomlaFiles()
 
 function copyImagesToNewPath()
 	{
-	if ( !AUTO_UPGRADE ) output_message ( "Copying image files from " . OLD_IMAGES_PATH . " to " . NEW_IMAGES_PATH );
+	//if ( !AUTO_UPGRADE ) output_message ( "Copying image files from " . OLD_IMAGES_PATH . " to " . NEW_IMAGES_PATH );
 	$result = dircopy( OLD_IMAGES_PATH, NEW_IMAGES_PATH );
 	}
 
@@ -6324,7 +6324,7 @@ function updateSiteSettings ( $k , $v )
 		}
 	else
 		{
-		output_message ( "Updating configuration.php ".$k." = ".$v, "info" );
+		//output_message ( "Updating configuration.php ".$k." = ".$v, "info" );
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$tmpConfig = $siteConfig->get();
 		
@@ -6581,7 +6581,7 @@ function showCompletedText()
 
 	$administrator_url=jomres_installer_get_admin_url();
 	
-	output_message ( 'Thank you for installing Jomres. You may now go to your CMS\'s administrator area and configure Jomres' , "success");
+	output_message ( 'Thank you for installing Jomres. We will now redirect you to your Jomres control panel' , "success");
 	
 	if (ACTION != "Upgrade")
 		{
