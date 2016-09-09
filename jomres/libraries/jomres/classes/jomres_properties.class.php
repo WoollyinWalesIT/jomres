@@ -76,11 +76,20 @@ class jomres_properties
 	function get_all_properties()
 		{
 		set_showtime( 'heavyweight_system', false );
+		
+		$all_property_uids = get_showtime( 'all_properties_in_system' );
 
-		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
-		$all_property_uids = $c->retrieve('all_property_uids');
+		if ( $all_property_uids )
+			{
+			return true;
+			}
+		else
+			{
+			$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+			$all_property_uids = $c->retrieve('all_property_uids');
+			}
 
-		if ($all_property_uids)
+		if ( $all_property_uids )
 			{
 			$numberOfPropertiesInSystem = count( $all_property_uids['all_propertys'] );
 			
@@ -119,6 +128,8 @@ class jomres_properties
 			
 			$c->store('all_property_uids',array('all_propertys'=>$all_propertys,'all_published_propertys'=>$all_published_propertys));
 			}
+		
+		return true;
 		}
 	
 	function commit_new_property()
