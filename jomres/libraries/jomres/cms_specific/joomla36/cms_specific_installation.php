@@ -83,17 +83,17 @@ $admin_user_id = (int) doSelectSql( $query, 1 );
 $admin_user = jomres_cmsspecific_getCMS_users_admin_userdetails_by_id( $admin_user_id );
 $admin_user = $admin_user[ $admin_user_id ];
 
-echo "Making <i>" . $admin_user[ 'username' ] . "</i> a super property manager<br>";
+//echo "Making <i>" . $admin_user[ 'username' ] . "</i> a super property manager<br>";
 $query  = "INSERT INTO #__jomres_managers
 (`userid`,`username`,`property_uid`,`access_level`,`currentproperty`,`pu`)
 VALUES
 ($admin_user_id,'" . $admin_user[ 'username' ] . "','0','2','1','1')";
 $result = doInsertSql( $query, "" );
 
-if ( $result ) 
+/* if ( $result ) 
 	echo "Inserted " . $admin_user[ 'username' ] . " as manager<br>";
 else
-	echo "Could not create " . $admin_user[ 'username' ] . " as manager<br>";
+	echo "Could not create " . $admin_user[ 'username' ] . " as manager<br>"; */
 
 // Looking to see if Jomres is already installed in Joomla. If it is, we'll simply return true as there's nothing else to do
 $query  = "SELECT `element` FROM #__extensions WHERE `element` = 'com_jomres' ";
