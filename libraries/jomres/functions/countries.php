@@ -85,6 +85,8 @@ function createSimpleCountriesDropdown( $selectedCountry = "" ,$input_name = "gu
 		$code                  = $country[ 'countrycode' ];
 		$countryCodes[ $code ] = $country[ 'countryname' ];
 		}
+
+	$thecountryCodes = array();
 	foreach ( $countryCodes as $k => $v )
 		{
 		$thecountryCodes[ ] = jomresHTML::makeOption( $k, $v );
@@ -107,6 +109,7 @@ function limitCountriesDropdown()
 		$countryCodes[ $code ] = $country[ 'countryname' ];
 		}
 	asort( $countryCodes );
+	$thecountryCodes = array();
 	foreach ( $countryCodes as $k => $v )
 		{
 		$thecountryCodes[ ] = jomresHTML::makeOption( $k, $v );
