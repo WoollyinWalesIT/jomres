@@ -139,6 +139,9 @@ try
 		//frequently asked questions
 		$output['_JOMRES_FAQ'] = jr_gettext( "_JOMRES_FAQ", "_JOMRES_FAQ" , false );
 		
+		//manage properties button
+		$output['HMANAGE_PROPERTIES'] = jr_gettext( "_JOMRES_MANAGE_PROPERTIES", "_JOMRES_MANAGE_PROPERTIES" , false );
+		
 		//obsolete files warnings
 		$ouput[ 'OBSOLETE_FILES_WARNINGS' ] = '';
 		jr_import( 'jomres_obsolete_file_handling' );
