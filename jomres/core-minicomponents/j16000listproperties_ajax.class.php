@@ -196,7 +196,7 @@ class j16000listproperties_ajax
 				{
 				$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 				$jrtb = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem( 'preview', jomresURL( JOMRES_SITEPAGE_URL_NOSEF . '&task=dashboard'  . '&thisProperty=' . $p->propertys_uid . "&tmpl=" . get_showtime('tmplcomponent') ), jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', false ) );
+				$jrtb .= $jrtbar->toolbarItem( 'preview', jomresURL( JOMRES_SITEPAGE_URL_NOSEF . '&task=dashboard'  . '&thisProperty=' . $p->propertys_uid ), jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', false ) );
 				$r[] = $jrtb .= $jrtbar->endTable();
 				}
 			else 
@@ -204,7 +204,7 @@ class j16000listproperties_ajax
 				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 				$toolbar->newToolbar();
 
-				$url = jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=dashboard&thisProperty=" . $p->propertys_uid . "&tmpl=" . get_showtime('tmplcomponent') );
+				$url = jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=dashboard&thisProperty=" . $p->propertys_uid );
 				$toolbar->addItem( 'fa fa-tachometer', 'btn btn-info', '', $url, jr_gettext( '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', false ), false, 'target="_blank"' );
 				$toolbar->addSecondaryItem( 'fa fa-tachometer', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_property_reviews&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false ) );
 				
