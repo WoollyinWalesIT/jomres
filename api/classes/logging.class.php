@@ -27,6 +27,15 @@ class logging
 		if (!defined('JOMRESCONFIG_ABSOLUTE_PATH')) // For performance reasons the API doesn't include the rest of the framework unless called in an API Feature. As a result, we'll check here to see if a core system path is set. If it's not, we'll call configuration.php directly instead of using the framework to include it
 			{
 			include( '../configuration.php');
+			if (!defined('JOMRES_ROOT_DIRECTORY'))
+				{
+				if (file_exists(dirname(__FILE__).'/../../jomres_root.php'))
+					require_once (dirname(__FILE__).'/../../jomres_root.php');
+				else
+					define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
+				}
+			
+			require_once( '../../' . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'libraries'.DIRECTORY_SEPARATOR.'http_build_url.php');
 			}
 		else
 			{
