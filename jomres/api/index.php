@@ -44,8 +44,11 @@ if (!PRODUCTION)
 require 'vendor/autoload.php';
 require 'classes/logging.class.php';
 
-if (isset($_POST['grant_type']) && $_POST['grant_type'] == 'client_credentials')
+if (isset($_POST['grant_type']) && ( $_POST['grant_type'] == 'client_credentials' ||  $_POST['grant_type'] == 'authorization_code') )
 	{
+	if (!isset($_POST['client_id']))
+		$_POST['client_id'] = '';
+	
 	$client_id = filter_var($_POST['client_id'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH );
 	logging::log_message('Received a token request from '.$client_id , "API" , "INFO" );
 	require_once __DIR__.'/oauth/token.php';
