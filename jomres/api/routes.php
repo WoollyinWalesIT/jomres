@@ -16,7 +16,16 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 $request = Flight::request();
 
 $bang = explode("/" , $request->url);
-$filename = filter_var($bang[1], FILTER_SANITIZE_STRING);
+if (strpos($bang[1], "?") !== false) // Has the client appended the token to the url? If so, we'll detect it here and figure out the filename based on explode
+	{
+	$pop = explode ( "?" , $bang[1] );
+	$filename = $pop[0];
+	}
+else
+	{
+	$filename = filter_var($bang[1], FILTER_SANITIZE_STRING);
+	}
+
 $sub_filename = '';
 if (isset($bang[3]))
 	$sub_filename = $filename."_".filter_var($bang[3], FILTER_SANITIZE_STRING);
