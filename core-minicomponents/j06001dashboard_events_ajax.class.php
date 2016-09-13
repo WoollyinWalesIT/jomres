@@ -141,7 +141,8 @@ class j06001dashboard_events_ajax {
 				if ( $unixDeparture > $unixToday && $c->booked_in == "1" ) $imgToShow = $img_resident;
 				if ( $unixDeparture < $unixToday && $c->booked_in == "1" ) $imgToShow = $img_stillhere;
 				if ( $c->bookedout == "1" ) $imgToShow = $img_bookedout;
-				if ($c->tag == '') $imgToShow = $img_black;
+				if ((int)$c->black_booking == 1)
+					$imgToShow = $img_black;
 				
 				//the guest is still here even if the departure date has passed, so let`s adjust the event size. If it overlaps with other booking, it will be clearly visible in the dashboard. Receptionists can then amend bookings.
 				if ($imgToShow == $img_stillhere)
