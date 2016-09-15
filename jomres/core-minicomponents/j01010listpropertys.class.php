@@ -40,7 +40,7 @@ class j01010listpropertys
 
 		$stayDays = 1;
 
-		if ( $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] != '' && $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] )
+		if (  isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ])&& $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] != '' && $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] )
 			{
 			$start = $tmpBookingHandler->tmpsearch_data['jomsearch_availability'];
 			$end = $tmpBookingHandler->tmpsearch_data['jomsearch_availability_departure'];
