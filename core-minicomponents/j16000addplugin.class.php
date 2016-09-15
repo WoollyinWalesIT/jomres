@@ -261,7 +261,7 @@ class j16000addplugin
 				if ( isset( $_REQUEST[ 'plugin' ] ) ) 
 					$p = "&plugin=" . $pluginName;
 
-				$queryServer = "http://plugins.jomres4.net/index.php?r=gp&cms=" . _JOMRES_DETECTED_CMS . "&vnw=1&key=" . $key_to_send . $p . "&jomresver=" . $mrConfig[ 'version' ]."&hostname=".get_showtime('live_site')."php_version=".$php_version;
+				$queryServer = "http://plugins.jomres4.net/index.php?r=gp&cms=" . _JOMRES_DETECTED_CMS . "&vnw=1&key=" . $key_to_send . $p . "&jomresver=" . $mrConfig[ 'version' ]."&hostname=".get_showtime('live_site')."&php_version=".$php_version;
 
 				logging::log_message('Starting curl call to '.$queryServer , "Curl" , "DEBUG" );
 				$logging_time_start = microtime(true);
