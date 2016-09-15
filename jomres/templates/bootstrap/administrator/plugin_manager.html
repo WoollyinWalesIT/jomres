@@ -2,11 +2,15 @@
 	<script type="text/javascript">
 		<!--
 		var plugins_to_upgrade = '{PLUGINS_TO_UPGRADE}';
+		var all_installed_plugins = '{INSTALLED_PLUGINS}';
+		
 		var ajax_url = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}';
 		
-		function upgrade_core_plugins(){
+		
+		
+		function block_interface()	{
 			jomresJquery.blockUI({ 
-			message: '<h3>Upgrading plugins, please wait, this may take a few minutes depending on internet speed.</h3><br/> The page will reload when the plugins have been updated, but it is important that you do not interrupt the process.',
+			message: '<h3>Upgrading plugins, please wait, this may take a few minutes depending on internet speed.</h3>Currently updating : <div id="plugin_name_being_updated" class="bg-success" ></div><br/> The page will reload when the plugins have been updated, but it is important that you do not interrupt the process.',
 			baseZ: 1030,
 			css: { 
 				border: 'none', 
@@ -14,17 +18,28 @@
 				backgroundColor: '#000', 
 				'-webkit-border-radius': '10px', 
 				'-moz-border-radius': '10px', 
-				opacity: .5, 
+				opacity: .8, 
 				color: '#fff' 
 			} });
-			
-			
-			if (plugins_to_upgrade.length ){
+		};
+		
+		function upgrade_core_plugins(){
+			upgrade_plugins(plugins_to_upgrade);
+		}
+		
+		function reinstall_all_plugins(){
+			upgrade_plugins(all_installed_plugins);
+		}
+		
+		function upgrade_plugins(plugins_array){
+			block_interface();
+			if (plugins_array.length ){
 				setTimeout(function(){
-					plugins = plugins_to_upgrade.split(",");
+					plugins = plugins_array.split(",");
 					for (var i = 0, l = plugins.length; i < l; i++) {
 						plugin = plugins[i];
 						if (plugin != '') {
+							jomresJquery( "#plugin_name_being_updated" ).html( plugin );
 							jomresJquery.ajax({ url: '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=addplugin&plugin=' + plugin + '&autoupgrade=1', success: function (data) {
 								//console.log(data);
 							}, async: false
@@ -229,7 +244,9 @@
 		<patTemplate:tmpl name="plugins_require_upgrade" type="simpleCondition" requiredVars="upgrade_text">
 			<a href="javascript:void(0);" onclick="upgrade_core_plugins();" id="upgrade_core_plugins" class="btn btn-primary btn-large">{UPGRADE_TEXT}</a>
 		</patTemplate:tmpl>
-	
+		
+		<a href="javascript:void(0);" onclick="reinstall_all_plugins();" id="reinstall_all_plugins" class="btn btn-default btn-large">Reinstall all installed plugins</a>
+		
 		</div>
 		<div class="span3">
 			<h3 class="page-header">Legend</h3>

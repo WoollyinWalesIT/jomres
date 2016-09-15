@@ -308,6 +308,7 @@ class j16000showplugins
 		$jomresdotnet_apiplugins = array ();
 
 		$plugins_needing_upgrading = array ();
+		$all_installed_plugins = array ();
 		
 		$button_disabled_text = "";
 		if (!$this->key_valid)
@@ -354,6 +355,7 @@ class j16000showplugins
 				$installAction         = $reinstall_text;
 				$row_class             = 'ui-state-success';
 
+				$all_installed_plugins[] = $plugin_name;
 				if ( $rp[ 'version' ] > $installed_plugins[ $plugin_name ][ 'version' ] )
 					{
 					$plugins_needing_upgrading[ ] = $plugin_name;
@@ -497,7 +499,7 @@ class j16000showplugins
 							{
 							$rp[ 'price' ] = 0.00;
 							}
-						if ($rp[ 'price' ] == 0.00)
+							if ($rp[ 'price' ] == 0.00)
 							{
 							$shop_btnclass = 'info';
 							$text = "Free!";
@@ -601,6 +603,7 @@ class j16000showplugins
 				}
 			}
 		
+		$output[ 'INSTALLED_PLUGINS' ] = implode( ",", $all_installed_plugins );
 		$output[ 'PLUGINS_TO_UPGRADE' ] = implode( ",", $plugins_needing_upgrading );
 		
 		if ( $this->key_valid ) 
