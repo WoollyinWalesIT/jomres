@@ -537,6 +537,7 @@ class j16000addplugin
 
 		if ( !$autoupgrade )
 			{
+			
 			if ( $plugin_installed_successfully )
 				{
 				$success = array ();
