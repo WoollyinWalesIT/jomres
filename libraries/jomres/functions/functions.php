@@ -1728,8 +1728,8 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 				}
 
 			//echo "Moving contents of ".$module_xml_source." to ".$module_target."<br/>";
-			$module_xml_move_result = dirmv( $module_xml_source, $module_target, true, $funcloc = "/" );
-			$module_move_result	 = dirmv( $module_source, $module_target, true, $funcloc = "/" );
+			$module_xml_move_result = dirmv( $module_xml_source, $module_target, true, $funcloc = JRDS );
+			$module_move_result	 = dirmv( $module_source, $module_target, true, $funcloc = JRDS );
 			
 			if ( $module_move_result[ 'success' ] && $module_xml_move_result[ 'success' ] ) 
 				return true;
@@ -1749,7 +1749,7 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 					}
 				else
 					{
-					$mambot_source	 = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_mambot_folder . JRDS;
+					$mambot_source	 = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS ;
 					$mambot_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name;
 					}
 				}
@@ -1758,7 +1758,6 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 				$mambot_source	 = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "remote_plugins" . JRDS . $plugin_name . JRDS . $remote_plugin_mambot_folder . JRDS;
 				$mambot_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "remote_plugins" . JRDS . $plugin_name;
 				}
-
 
 			$mambot_target = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "plugins" . JRDS . $mambot_type . JRDS . $plugin_name;
 
