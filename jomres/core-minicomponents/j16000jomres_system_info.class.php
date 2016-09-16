@@ -60,7 +60,7 @@ class j16000jomres_system_info
 		
 		if ( empty( $latest_version ) ) 
 			{
-			$output[ 'LATEST_JOMRES_VERSION' ] .= "Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ?<p>";
+			$output[ 'LATEST_JOMRES_VERSION' ] = "Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ? Alternatively, please check that CURL is enabled on this webserver<p>";
 			}
 		else
 			{
