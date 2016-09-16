@@ -80,63 +80,66 @@ class j07020showplugins
 		
 
 		$rp_array = json_decode( $remote_plugins_data );
-		foreach ( $rp_array as $rp )
+		if (count($rp_array)>0)
 			{
-			$remote_plugins[ trim( jomres_sanitise_string( @$rp->name ) ) ] = array ( "name" => trim( jomres_sanitise_string( @$rp->name ) ), "version" => (float) @$rp->version );
-			}
-
-		$installed_plugins = array ();
-		$jrcPath           = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
-		$files             = scandir( $jrcPath );
-		$d                 = @dir( $jrcPath );
-		if ( $d )
-			{
-			while ( false !== ( $entry = $d->read() ) )
+			foreach ( $rp_array as $rp )
 				{
-				$filename = $entry;
+				$remote_plugins[ trim( jomres_sanitise_string( @$rp->name ) ) ] = array ( "name" => trim( jomres_sanitise_string( @$rp->name ) ), "version" => (float) @$rp->version );
+				}
 
-				if ( substr( $entry, 0, 1 ) != '.' )
+			$installed_plugins = array ();
+			$jrcPath           = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
+			$files             = scandir( $jrcPath );
+			$d                 = @dir( $jrcPath );
+			if ( $d )
+				{
+				while ( false !== ( $entry = $d->read() ) )
 					{
-					if ( file_exists( $jrcPath . $entry . JRDS . "plugin_info.php" ) )
+					$filename = $entry;
+
+					if ( substr( $entry, 0, 1 ) != '.' )
 						{
-						include_once( $jrcPath . $entry . JRDS . "plugin_info.php" );
-						$cname = "plugin_info_" . $entry;
-						if ( class_exists( $cname ) )
+						if ( file_exists( $jrcPath . $entry . JRDS . "plugin_info.php" ) )
 							{
-							$info                                       = new $cname();
-							$installed_plugins[ $info->data[ 'name' ] ] = $info->data;
+							include_once( $jrcPath . $entry . JRDS . "plugin_info.php" );
+							$cname = "plugin_info_" . $entry;
+							if ( class_exists( $cname ) )
+								{
+								$info                                       = new $cname();
+								$installed_plugins[ $info->data[ 'name' ] ] = $info->data;
+								}
 							}
 						}
 					}
-				}
 
-			$tmp = array ();
-			foreach ( $installed_plugins as $key => $val )
-				{
-				if ( array_key_exists( $key, $remote_plugins ) )
+				$tmp = array ();
+				foreach ( $installed_plugins as $key => $val )
 					{
-					$tmp[ $key ] = $val;
+					if ( array_key_exists( $key, $remote_plugins ) )
+						{
+						$tmp[ $key ] = $val;
+						}
 					}
+				$installed_plugins = $tmp;
 				}
-			$installed_plugins = $tmp;
-			}
 
-		if ( count( $installed_plugins ) > 0 )
-			{
-			$count = 0;
-			foreach ( $installed_plugins as $ip )
+			if ( count( $installed_plugins ) > 0 )
 				{
-				$pluginname     = $ip[ 'name' ];
-				$local_version  = $ip[ 'version' ];
-				$remote_version = $remote_plugins[ $pluginname ][ 'version' ];
+				$count = 0;
+				foreach ( $installed_plugins as $ip )
+					{
+					$pluginname     = $ip[ 'name' ];
+					$local_version  = $ip[ 'version' ];
+					$remote_version = $remote_plugins[ $pluginname ][ 'version' ];
 
-				if ( $remote_version > $local_version ) 
-					$count++;
+					if ( $remote_version > $local_version ) 
+						$count++;
 
-				}
-			if ( $count > 0 ) 
-				{
-				$this->retVals = array ( "red" => $count );
+					}
+				if ( $count > 0 ) 
+					{
+					$this->retVals = array ( "red" => $count );
+					}
 				}
 			}
 		}
