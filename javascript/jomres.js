@@ -1234,3 +1234,10 @@ jomresJquery.jheartbeat = {
 		this.beatfunction();
 	}
 };
+
+function jomres_print(div_class) {
+	jomresJquery('body').css('visibility','hidden');
+	jomresJquery('.'+div_class).css('visibility','visible');
+	window.print();
+	jomresJquery('body').css('visibility','visible');
+}
