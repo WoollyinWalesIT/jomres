@@ -1235,9 +1235,9 @@ jomresJquery.jheartbeat = {
 	}
 };
 
-function jomres_print(div_class) {
+function jomres_print(div) {
 	jomresJquery('body').css('visibility','hidden');
-	jomresJquery('.'+div_class).css('visibility','visible');
+	jomresJquery(div).css('visibility','visible');
 	window.print();
 	jomresJquery('body').css('visibility','visible');
 }
