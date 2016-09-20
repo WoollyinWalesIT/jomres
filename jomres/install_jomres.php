@@ -471,6 +471,7 @@ function doTableUpdates()
 	if ( !checkPtypesMrpsrpFlagColExists() ) alterPtypesMrpsrpFlagCol();
 	
 	if ( checkRtypesSrpOnlyFlagColExists() ) dropRtypesSrpOnlyFlagCol();
+	if ( !checkPropertysPermitColExists() ) alterPropertysPermitCol();
 	
 	drop_orphan_line_items_table();
 	drop_room_images_table();
@@ -478,6 +479,27 @@ function doTableUpdates()
 	removeCronJob('optimise');
 	
 	updateSiteSettings ( "update_time" , time() );
+	}
+
+function alterPropertysPermitCol()
+	{
+	//output_message ( "Editing __jomres_propertys table adding permit_number column");
+	$query = "ALTER TABLE `#__jomres_propertys` ADD `permit_number` varchar( 255 ) DEFAULT '' ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to add __jomres_propertys permit_number", "danger" );
+		}
+	}
+
+function checkPropertysPermitColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_propertys LIKE 'permit_number'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+	return false;
 	}
 
 function removeCronJob( $job = '' )
@@ -1014,7 +1036,6 @@ function alterPropertysLastchangedCol()
 		{
 		output_message ( "Error, unable to add __jomres_propertys last_changed", "danger" );
 		}
-		
 	}
 
 function checkPropertysLastchangedColExists()
@@ -3837,6 +3858,7 @@ function createJomresTables()
 		`approved`  BOOL NOT NULL DEFAULT '1',
 		`property_site_id` VARCHAR( 255 ) NULL,
 		`last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		`permit_number` varchar( 255 ) DEFAULT '',
 		PRIMARY KEY(`propertys_uid`)
 		) ";
 	if ( !doInsertSql( $query ) )

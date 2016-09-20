@@ -4,6 +4,9 @@
 			<td width="80%">
 				<address>
 					<div class="property-title"><h2><span itemprop="name">{PROPERTY_NAME}</span>{STARS} {SUPERIOR}</h2></div>
+					<patTemplate:tmpl name="permit" type="simpleCondition" requiredVars="permit_number">
+						<p class="label label-info">{_JOMRES_PERMIT_NUMBER_TITLE} {PERMIT_NUMBER}</p>
+					</patTemplate:tmpl>
 					<div>
 						<span itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
 							<span itemprop="street-address" style="display:inline ">{STREET}</span>,

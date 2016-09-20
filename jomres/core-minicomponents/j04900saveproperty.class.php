@@ -33,7 +33,7 @@ class j04900saveproperty
 
 		$property_uid = intval( jomresGetParam( $_POST, 'property_uid', 0 ) );
 
-		if ( $property_uid > 0 && !in_array( $property_uid, $jrConfig->authorisedProperties ) ) 
+		if ( $property_uid > 0 && !in_array( $property_uid, $thisJRUser->authorisedProperties ) ) 
 			$property_uid = getDefaultProperty();
 		
 		if ( $jrConfig[ 'selfRegistrationAllowed' ] == "0" && $property_uid == 0 ) 
@@ -62,6 +62,7 @@ class j04900saveproperty
 		$jomres_properties->stars    			= jomresGetParam( $_POST, 'stars', 0 );
 		$jomres_properties->superior 			= jomresGetParam( $_POST, 'superior', 0 );
 		$jomres_properties->property_features 	= jomres_implode( jomresGetParam( $_POST, 'pid', array() ) );
+		$jomres_properties->permit_number		= jomresGetParam( $_POST, 'permit_number', '' );
 		
 		//property country
 		if ( $jrConfig[ 'limit_property_country' ] == "0" ) 

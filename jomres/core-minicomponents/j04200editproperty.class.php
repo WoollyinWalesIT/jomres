@@ -63,7 +63,8 @@ class j04200editproperty
 		$output[ 'METAKEYWORDS' ]    	= $current_property_details->metakeywords;
 		$output[ 'APIKEY' ]     		= $jrConfig[ 'google_maps_api_key' ];
 		$output[ 'PROPERTYUID' ]       	= $property_uid;
-		
+		$output[ 'PERMIT_NUMBER' ]    	= $current_property_details->permit_number;
+
 		//property region and country
 		$selectedCountry = jomresGetParam( $_REQUEST, 'selectedCountry', "" );
 		if ( $selectedCountry == "" )
@@ -298,6 +299,8 @@ class j04200editproperty
 		$output[ 'LATLONG_DESC' ]           = jr_gettext( '_JOMRES_LATLONG_DESC', '_JOMRES_LATLONG_DESC', false );
 		$output[ 'HLAT' ]            		= jr_gettext( '_JOMRES_LAT', '_JOMRES_LAT', false );
 		$output[ 'HLONG' ]            		= jr_gettext( '_JOMRES_LONG', '_JOMRES_LONG', false );
+		$output[ '_JOMRES_PERMIT_NUMBER_TITLE' ]= jr_gettext( '_JOMRES_PERMIT_NUMBER_TITLE', '_JOMRES_PERMIT_NUMBER_TITLE', false );
+		$output[ '_JOMRES_PERMIT_NUMBER_DESCRIPTION' ]= jr_gettext( '_JOMRES_PERMIT_NUMBER_DESCRIPTION', '_JOMRES_PERMIT_NUMBER_DESCRIPTION', false );
 		
 		if ( $jrConfig[ 'limit_property_country' ] == "0" ) 
 			$change_country_warning[] = array ( 'CHANGECOUNTRYWARNING' => jr_gettext( '_JOMRES_EDITPROPERTY_SELECTCOUNTRY', '_JOMRES_EDITPROPERTY_SELECTCOUNTRY', false ) );
