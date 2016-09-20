@@ -5193,6 +5193,38 @@ function gmaps_apikey_check()
 	return $message;
 	}
 
+function ipinfodb_apikey_check()
+	{
+	$message  = '';
+	$highlight = ( using_bootstrap() ? "alert alert-warning" : "ui-state-highlight" );
+	
+	$siteConfig          = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig            = $siteConfig->get();
+
+	if ( !isset($jrConfig['geolocation_api_key']) || $jrConfig['geolocation_api_key'] == '' )
+		{
+		$message = '<div class="' . $highlight . '">'.jr_gettext("_JOMRES_CONFIG_IPINFODB_KEY_WARNING","_JOMRES_CONFIG_IPINFODB_KEY_WARNING",false).'</div>';
+		}
+
+	return $message;
+	}
+
+function openexchangerates_apikey_check()
+	{
+	$message  = '';
+	$highlight = ( using_bootstrap() ? "alert alert-warning" : "ui-state-highlight" );
+	
+	$siteConfig          = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+	$jrConfig            = $siteConfig->get();
+
+	if ( !isset($jrConfig['openexchangerates_api_key']) || $jrConfig['openexchangerates_api_key'] == '' )
+		{
+		$message = '<div class="' . $highlight . '">'.jr_gettext("_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING","_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING",false).'</div>';
+		}
+
+	return $message;
+	}
+
 function logs_path_check()
 	{
 	$message  = '';
