@@ -70,6 +70,7 @@ class jomres_properties
 		//$this->timestamp 						= date("Y/m/d H:i:s");
 		$this->approved 						= 0;
 		$this->property_site_id 				= '';
+		$this->permit_number 				= '';
 		}
 	
 	//Get all properties in the system
@@ -390,8 +391,10 @@ class jomres_properties
 						`superior` = ".(int)$this->superior.",
 						" . $apiclause . "
 						`ptype_id` = ".(int)$this->ptype_id.",
-						`property_site_id` = '".$this->property_site_id."'
+						`property_site_id` = '".$this->property_site_id."',
+						`permit_number` = '".$this->permit_number."'
 					WHERE `propertys_uid` = " . (int)$this->propertys_uid;
+
 		if ( !doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_UPDATE_PROPERTY', '_JOMRES_MR_AUDIT_UPDATE_PROPERTY', false ) ) )
 			{
 			throw new Exception ("Error: Property update intert failed.");

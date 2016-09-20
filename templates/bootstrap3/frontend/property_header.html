@@ -43,6 +43,9 @@ function navigate(lat, lng) {
 				</div>
 				<div class="col-md-10">
 					<h1 id="tour_target_property_header">{PROPERTY_NAME} <span>{STARS} {SUPERIOR}</span></h1>
+					<patTemplate:tmpl name="permit" type="simpleCondition" requiredVars="permit_number">
+						<p class="label label-info">{_JOMRES_PERMIT_NUMBER_TITLE} {PERMIT_NUMBER}</p>
+					</patTemplate:tmpl>
 					<div class="row">
 						<div class="col-md-8">
 							<address>

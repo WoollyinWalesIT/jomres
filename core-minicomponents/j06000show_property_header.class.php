@@ -140,6 +140,13 @@ class j06000show_property_header
 		$output[ 'TELEPHONE' ]     = $current_property_details->property_tel;
 		$output[ 'FAX' ]           = $current_property_details->property_fax;
 		
+		$permit = array();
+		if ($current_property_details->permit_number != "")
+			{
+			$permit[0][ 'PERMIT_NUMBER' ] = $current_property_details->permit_number;
+			$permit[0][ '_JOMRES_PERMIT_NUMBER_TITLE' ]= jr_gettext( '_JOMRES_PERMIT_NUMBER_TITLE', '_JOMRES_PERMIT_NUMBER_TITLE', false );
+			}
+
 		$output['PROPERTY_LAT']=$current_property_details->lat;
 		$output['PROPERTY_LONG']=$current_property_details->long;
 		$output['SHORT_PROPERTY_DESCRIPTION']= $short_property_description;
@@ -312,6 +319,8 @@ class j06000show_property_header
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'reviews_link', $reviews_link );
 		$tmpl->addRows( 'bookinglink', $bookinglink );
+		$tmpl->addRows( 'permit', $permit );
+		
 		$tmpl->readTemplatesFromInput( 'property_header.html' );
 		$tmpl->displayParsedTemplate();
 		
