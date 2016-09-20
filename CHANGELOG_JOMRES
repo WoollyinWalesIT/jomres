@@ -1,3 +1,19 @@
+<h3>Jomres 9.8.12 20/09/2016</h3>
+
+<span class="label label-success">Feature</span> Added permit number to Property Details fields for users in those countries that must show a permit/registration number.
+
+<span class="label label-warning">Change</span> Added a Reinstall all plugins button for users upgrading from Trial to Full versions.
+<span class="label label-warning">Change</span> Tweaked API routing allowing clients to send the token in the url.
+<span class="label label-warning">Change</span> Changed the manage properties icon to a building.
+<span class="label label-warning">Change</span> Tweaked addplugin to ensure php version is sent when requesting plugins.
+<span class="label label-warning">Change</span> Tweaked a path used when installing mambots.
+<span class="label label-warning">Change</span> Added a new javascript function that allows printing of individual divs.
+<span class="label label-warning">Change</span> Added API key checks.
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue in API where a request for a function could throw a fatal error.
+<span class="label label-important label-danger">Fix</span> Made some API changes so that if a variable isn't empty it doesn't fire a notice.
+<span class="label label-important label-danger">Fix</span> Fixed an issue where Black bookings weren't labelled in black in the dashboard.
+
 <h3>Jomres 9.8.11 09/09/2016</h3>
 
 <span class="label label-warning">Change</span> At Rod's request, added componentArgs to optional trigger at the end of show_property_header script.
