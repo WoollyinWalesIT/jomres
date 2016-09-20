@@ -24,7 +24,7 @@ class j16000jomres_system_info
 			$this->template_touchable = false;
 			return;
 			}
-		
+
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 		
@@ -132,6 +132,10 @@ class j16000jomres_system_info
 		// Google maps api key warning
 		$output['GMAPS_KEY_WARNING'] = gmaps_apikey_check();
 		
+		$output['IPINFODB_KEY_WARNING'] = ipinfodb_apikey_check();
+		
+		$output['OPENEXCHANGERATES_KEY_WARNING'] = openexchangerates_apikey_check();
+
 		// Logfile location warning
 		$output['LOGFILE_LOCATION_WARNING'] = logs_path_check();
 		
