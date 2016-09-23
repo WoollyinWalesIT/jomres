@@ -216,11 +216,6 @@ class j10501a_misc
 			$configurationPanel->setright( jr_gettext( '_JOMRES_ACCESS_CONTROL_CONFIG_DESC', '_JOMRES_ACCESS_CONTROL_CONFIG_DESC', false ) );
 			$configurationPanel->insertSetting();*/
 			
-			$configurationPanel->setleft( jr_gettext( 'JOMRES_JQUERY18_2', 'JOMRES_JQUERY18_2', false ) );
-			$configurationPanel->setmiddle( $lists[ 'jquery18_2_switch' ] );
-			$configurationPanel->setright( jr_gettext( 'JOMRES_JQUERY18_2_DESC', 'JOMRES_JQUERY18_2_DESC', false ) );
-			$configurationPanel->insertSetting();
-			
 			$configurationPanel->setleft( jr_gettext( '_JOMRES_CONFIG_JQUERY', '_JOMRES_CONFIG_JQUERY', false ) );
 			$configurationPanel->setmiddle( $lists[ 'load_jquery' ] );
 			$configurationPanel->setright( jr_gettext( '_JOMRES_CONFIG_JQUERY_DESC', '_JOMRES_CONFIG_JQUERY_DESC', false ) );

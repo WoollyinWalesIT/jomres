@@ -180,7 +180,6 @@ $jrConfig = array (
   'recaptcha_public_key' => '',
   'recaptcha_private_key' => '',
   'use_bootstrap_in_admin' => '0',
-  'jquery18_2_switch' => '0',
   'gmap_pois' => '0',
   'gmap_layer_weather' => '1',
   'gmap_layer_panoramio' => '0',

@@ -754,7 +754,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_templates_jqueryui_backend . JRDS . 'confirmation_letter.html' );
 		$this->add_obs_file( $this->dir_templates_bootstrap_backend . JRDS . 'confirmation_letter.html' );
 
-		if ( _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35" || _JOMRES_DETECTED_CMS == "joomla36") 
+		if ( this_cms_is_joomla() ) 
 			$this->add_obs_file( $this->dir_components_administrator . 'admin.jomres.php' );
 
 		if (is_dir($this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'jomressa'))
@@ -1317,6 +1317,15 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_admin_functions . 'jomresxml.functions.php' );
 		
 		$this->add_obs_file( $this->dir_minicomponents . 'j10501caching.class.php' );
+		
+		$this->add_obs_dir( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'joomla15' . JRDS );
+		$this->add_obs_dir( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'joomla25' . JRDS );
+		$this->add_obs_dir( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'joomla32' . JRDS );
+		$this->add_obs_dir( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'joomla33' . JRDS );
+		$this->add_obs_dir( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'joomla34' . JRDS );
+		$this->add_obs_dir( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'joomla35' . JRDS );
+		$this->add_obs_dir( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'joomla36' . JRDS );
+		$this->add_obs_file( $this->dir_javascript . 'jquery-2.0.3.js' );
 		}
 
 	function add_obs_file( $path_and_file )

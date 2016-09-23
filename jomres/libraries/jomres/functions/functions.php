@@ -809,7 +809,7 @@ function using_bootstrap()
 
 	if ( !isset( $jrConfig[ 'use_bootstrap_in_frontend' ] ) )
 		{
-		if ( _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35" || _JOMRES_DETECTED_CMS == "joomla36")
+		if ( this_cms_is_joomla() )
 			{
 			$jrConfig[ 'use_bootstrap_in_frontend' ] = "1";
 			}
@@ -1742,16 +1742,8 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 
 			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . 'plugin_info.php' ) )
 				{
-				if ( _JOMRES_DETECTED_CMS == "joomla15" )
-					{
-					$mambot_source	 = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . "b" . JRDS;
-					$mambot_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . "xml" . JRDS . "1.5" . JRDS;
-					}
-				else
-					{
-					$mambot_source	 = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS ;
-					$mambot_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name;
-					}
+				$mambot_source	 = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS ;
+				$mambot_xml_source = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name;
 				}
 			else
 				{
@@ -4679,19 +4671,10 @@ function scandir_getfiles_recursive( $directory, $recursive = true, $listDirs = 
 
 function this_cms_is_joomla()
 	{
-	if ( 
-		_JOMRES_DETECTED_CMS != "joomla15" && 
-		_JOMRES_DETECTED_CMS != "joomla16" && 
-		_JOMRES_DETECTED_CMS != "joomla17" && 
-		_JOMRES_DETECTED_CMS != "joomla25" && 
-		_JOMRES_DETECTED_CMS != "joomla30" && 
-		_JOMRES_DETECTED_CMS != "joomla31" && 
-		_JOMRES_DETECTED_CMS != "joomla32"  && 
-		_JOMRES_DETECTED_CMS != "joomla33"  && 
-		_JOMRES_DETECTED_CMS != "joomla34"  &&
-		_JOMRES_DETECTED_CMS != "joomla35"  &&
-		_JOMRES_DETECTED_CMS != "joomla36"
-		) return false;
+	if ( _JOMRES_DETECTED_CMS != "joomla3" ) 
+		{
+		return false;
+		}
 
 	return true;
 	}

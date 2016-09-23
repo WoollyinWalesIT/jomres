@@ -29,9 +29,7 @@ class j00012pathway
 			return;
 		
 		$numberOfPropertiesInSystem = get_showtime( 'numberOfPropertiesInSystem' );
-		
-		if ( _JOMRES_DETECTED_CMS == "joomla15" ) // J1.5 pathways are not supported
-			return;
+
 		if ( AJAXCALL ) 
 			return;
 
