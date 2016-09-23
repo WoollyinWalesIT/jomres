@@ -2493,7 +2493,7 @@ function doV9subscriptionUpdates()
 		}
 
 	//output_message ( "Editing __jomresportal_subscriptions table adding expiration_date column");
-	$query = "ALTER TABLE `#__jomresportal_subscriptions` ADD `expiration_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `raised_date` ";
+	$query = "ALTER TABLE `#__jomresportal_subscriptions` ADD `expiration_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01' AFTER `raised_date` ";
 	if ( !doInsertSql( $query, '' ) )
 		{
 		output_message ( "Error, unable to add __jomresportal_subscriptions expiration_date column", "danger" );
@@ -2541,11 +2541,11 @@ function doV9subscriptionUpdates()
 		output_message ( "Error, unable to change frequency column in __jomresportal_subscriptions_packages to int(5)", "danger" );
 		}
 	
-	//output_message ( "Changing raised_date column in __jomresportal_subscriptions table to DATETIME NOT NULL DEFAULT 0000-00-00 00:00:00 ");
-	$query = "ALTER TABLE `#__jomresportal_subscriptions` MODIFY `raised_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ";
+	//output_message ( "Changing raised_date column in __jomresportal_subscriptions table to DATETIME NOT NULL DEFAULT 1970-01-01 00:00:01 ");
+	$query = "ALTER TABLE `#__jomresportal_subscriptions` MODIFY `raised_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01' ";
 	if ( !doInsertSql( $query, '' ) )
 		{
-		output_message ( "Error, unable to change raised_date column in __jomresportal_subscriptions to DATETIME NOT NULL DEFAULT 0000-00-00 00:00:00", "danger" );
+		output_message ( "Error, unable to change raised_date column in __jomresportal_subscriptions to DATETIME NOT NULL DEFAULT 1970-01-01 00:00:01", "danger" );
 		}
 
 	//output_message ( "Altering table __jomresportal_subscriptions, creating new expiration_date index if necessary");
@@ -2662,8 +2662,8 @@ function createSubscriptionsTables()
 	`cms_user_id` int(11) NOT NULL DEFAULT '0',
 	`package_id` INT NULL DEFAULT '0',
 	`status` SMALLINT NOT NULL DEFAULT '0',
-	`raised_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-	`expiration_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	`raised_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
+	`expiration_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
 	`invoice_id` int(11) NOT NULL DEFAULT '0'
 	)";
 	doInsertSql( $query, "" );
@@ -3888,8 +3888,8 @@ function createJomresTables()
 	`cms_user_id` int(11) NOT NULL DEFAULT '0',
 	`package_id` INT NULL DEFAULT '0',
 	`status` SMALLINT NOT NULL DEFAULT '0',
-	`raised_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-	`expiration_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	`raised_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
+	`expiration_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
 	`invoice_id` int(11) NOT NULL DEFAULT '0'
 	)";
 	if ( !doInsertSql( $query ) )
@@ -4084,7 +4084,7 @@ function insertSampleData()
 
 	$result = doInsertSql( "delete FROM `#__jomres_propertys`", "" );
 
-	$result = doInsertSql( "INSERT INTO `#__jomresportal_c_rates` VALUES (1,'default',2,10,'GBP','2009-05-04 13:07:51',0,'0000-00-00 00:00:00',1)", "" );
+	$result = doInsertSql( "INSERT INTO `#__jomresportal_c_rates` VALUES (1,'default',2,10,'GBP','2009-05-04 13:07:51',0,'1970-01-01 00:00:01',1)", "" );
 
 	$result = doInsertSql( "INSERT INTO `#__jomres_hotel_features` (`hotel_features_uid`, `hotel_feature_abbv`, `hotel_feature_full_desc`, `image`, `property_uid`, `ptype_xref`) VALUES
 			(3, 'Airport', 'Close to the airport', 'airport_nearby.png', '0', 0),

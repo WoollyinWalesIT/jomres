@@ -116,7 +116,7 @@ $query = "INSERT INTO #__extensions	(
 	'1','1','1','0',
 	'{\"name\":\"Jomres\",\"type\":\"component\",\"creationDate\":\"2005-03-18\",\"author\":\"Vince Wooll\",\"copyright\":\"(C) 2005 - 2011 Vince Wooll. All rights reserved.\t\",\"authorEmail\":\"sales@jomres.net\",\"authorUrl\":\"www.jomres.net\",\"version\":\"7\",\"description\":\"Jomres\",\"group\":\"\"}',
 	'{}','','',
-	'0','0000-00-00 00:00:00','0','0'
+	'0','1970-01-01 00:00:01','0','0'
 	)
 	";
 
@@ -145,7 +145,7 @@ if ( $component_id )
 				'main','Jomres','Jomres','Jomres',
 				'','index.php?option=com_jomres','component',1,
 				1,1," . $component_id . ",
-				0,'0000-00-00 00:00:00',0,1,
+				0,'1970-01-01 00:00:01',0,1,
 				'class:component',0,'',
 				" . $lft . "," . $rgt . ",0,'*',1
 				)";

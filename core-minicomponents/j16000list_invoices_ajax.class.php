@@ -98,7 +98,7 @@ class j16000list_invoices_ajax
 			{
 			if ($invoice_type == 3)
 				{
-				$clause .= "( a.raised_date = '0000-00-00 00:00:00')";
+				$clause .= "( a.raised_date <= '1970-01-01 00:00:01')";
 				}
 			else
 				$clause .= "( DATE_FORMAT(a.raised_date, '%Y/%m/%d') BETWEEN DATE_FORMAT('" . $startDate . "', '%Y/%m/%d') AND DATE_FORMAT('" . $endDate . "', '%Y/%m/%d') ) ";
@@ -220,7 +220,7 @@ class j16000list_invoices_ajax
 				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 				$toolbar->newToolbar();
 				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_invoice&id=' . $p->id ), jr_gettext( 'COMMON_VIEW', 'COMMON_VIEW', false ) );
-				if ( $p->status != 1 && $p->raised_date != '0000-00-00 00:00:00')
+				if ( $p->status != 1 && $p->raised_date > '1970-01-01 00:00:01')
 					$toolbar->addSecondaryItem( 'fa fa-usd', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=mark_invoice_paid&id=' . $p->id ), jr_gettext( '_JOMRES_INVOICE_MARKASPAID', '_JOMRES_INVOICE_MARKASPAID', false ) );
 				//$toolbar->addSecondaryItem( 'fa fa-print', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_invoice&popup=1&id=' . $p->id . '&tmpl='.get_showtime("tmplcomponent")), jr_gettext( 'COMMON_PRINT', COMMON_PRINT, false ) );
 				$r[]=$toolbar->getToolbar();

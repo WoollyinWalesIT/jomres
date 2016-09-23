@@ -997,7 +997,7 @@ class dobooking
 				$validfrom_ts	= strtotime($ex->validfrom);
 				$validto_ts		= strtotime($ex->validto);
 				
-				if ( $ex->validfrom != "0000-00-00 00:00:00" && !is_null($ex->validfrom) && $ex->validfrom != "1999-11-30 00:00:00") // takes into account older optional extras
+				if ( $ex->validfrom > '1970-01-01 00:00:01' && !is_null($ex->validfrom) && $ex->validfrom != "1999-11-30 00:00:00") // takes into account older optional extras
 					{
 					if ( ! (($arrival_ts >= $validfrom_ts) && ($arrival_ts <= $validto_ts)) )
 						{

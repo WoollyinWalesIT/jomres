@@ -29,7 +29,7 @@ class jrportal_invoice
 		$this->status           = 0;
 		$this->raised_date      = date( 'Y-m-d H:i:s' );
 		$this->due_date         = $this->raised_date;
-		$this->paid             = '0000-00-00 00:00:00';
+		$this->paid             = '1970-01-01 00:00:01';
 		$this->subscription     = 0;
 		$this->init_total       = 0.00;
 		$this->currencycode     = "GBP";
@@ -818,7 +818,7 @@ class jrportal_invoice
 			}
 
 		$this->status = 3;
-		$this->paid = '0000-00-00 00:00:00';
+		$this->paid = '1970-01-01 00:00:01';
 		
 		$this->commitUpdateInvoice();
 		}
@@ -837,7 +837,7 @@ class jrportal_invoice
 		$result = doInsertSql( $query, "" );
 		
 		$this->status = 0;
-		$this->paid = '0000-00-00 00:00:00';
+		$this->paid = '1970-01-01 00:00:01';
 		
 		$this->commitUpdateInvoice();
 		}
@@ -867,7 +867,7 @@ class jrportal_invoice
 
 		$this->raised_date      = date( 'Y-m-d H:i:s' );
 		$this->due_date         = $this->raised_date;
-		$this->paid = '0000-00-00 00:00:00';
+		$this->paid = '1970-01-01 00:00:01';
 		
 		$this->commitUpdateInvoice();
 		}
