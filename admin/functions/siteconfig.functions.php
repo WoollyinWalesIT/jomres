@@ -288,10 +288,6 @@ function showSiteConfig()
 		$jrConfig[ 'navbar_inverse' ] = 0;
 	
 	$lists[ 'navbar_inverse' ]            = jomresHTML::selectList( $yesno, 'cfg_navbar_inverse', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'navbar_inverse' ] );
-	
-	if ( !isset( $jrConfig[ 'jquery18_2_switch' ] ) ) $jrConfig[ 'jquery18_2_switch' ] = 0; // By default the 19_2 switch will be set to No, so that jq 1.8 will be loaded.
-
-	$lists[ 'jquery18_2_switch' ] = jomresHTML::selectList( $yesno, 'cfg_jquery18_2_switch', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'jquery18_2_switch' ] );
 
 	if ( !isset( $jrConfig[ 'automatically_approve_new_properties' ] ) ) $jrConfig[ 'automatically_approve_new_properties' ] = "1";
 
@@ -301,7 +297,7 @@ function showSiteConfig()
 
 	if ( !isset( $jrConfig[ 'use_bootstrap_in_frontend' ] ) )
 		{
-		if ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" || _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35"  || _JOMRES_DETECTED_CMS == "joomla36" )
+		if ( this_cms_is_joomla() )
 			{
 			$jrConfig[ 'use_bootstrap_in_frontend' ] = "1";
 			}

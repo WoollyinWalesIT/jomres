@@ -83,37 +83,13 @@ class j00004a_init_javascript_css_files
 			jomres_cmsspecific_addheaddata( "css", $themePath, $filename );
 			//$css_files[]= array( $themePath, $filename);
 			}
-
-		
-		if ( !isset( $jrConfig[ 'jquery18_2_switch' ] ) )
-			{
-			$jrConfig[ 'jquery18_2_switch' ] = 0; // By default the 19_2 switch will be set to No, so that jq 1.8 will be loaded.
-			}
-		
-		
-		if ( $jrConfig[ 'jquery18_2_switch' ] == "1" ) 
-			{
-			if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery' ] == "1" && !$management_view ) )
-				{
-				if ( _JOMRES_DETECTED_CMS == "joomla25" )
-					$javascript_files[]= array( JOMRES_ROOT_DIRECTORY."/javascript/", 'jquery-2.0.3.js');
-				}
-			}
-		else
-			{
-			if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery' ] == "1" && !$management_view ) )
-				{
-				if ( _JOMRES_DETECTED_CMS == "joomla25" )
-					$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery-1.11.1.js');
-				}
-			}
 			
 		if ( jomres_cmsspecific_areweinadminarea() || ( $jrConfig[ 'load_jquery_ui' ] == "1" && !$management_view ) )
 			{
 			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery-ui.js");
 			}
 		
-		if ( jomres_cmsspecific_areweinadminarea() && (this_cms_is_wordpress() || _JOMRES_DETECTED_CMS == "joomla25") )
+		if ( jomres_cmsspecific_areweinadminarea() && this_cms_is_wordpress() )
 			{
 			$css_files[] = array( JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/css/', 'jomres_bootstrap_wrapper.css' );
 			$javascript_files[]= array( JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'bootstrap-modal.js' );

@@ -480,7 +480,7 @@ class j16000addplugin
 
 					if ( isset($plugin_class->data[ 'type' ]) && ($plugin_class->data[ 'type' ] == "mambot" || $plugin_class->data[ 'type' ] == "module" || $plugin_class->data[ 'type' ] == "widget") )
 						{
-						if ( _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla32" || _JOMRES_DETECTED_CMS == "wordpress" || _JOMRES_DETECTED_CMS == "joomla33"  || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35" || _JOMRES_DETECTED_CMS == "joomla36")
+						if ( this_cms_is_joomla() || this_cms_is_wordpress() )
 							{
 							if ( !$autoupgrade )
 								{

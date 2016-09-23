@@ -190,7 +190,7 @@ if ( !is_dir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS .
 	}
 
 // Have to do this automatically otherwise Jomres will never run when upgrading from v2.5 to v3.x of joomla
-if ( _JOMRES_DETECTED_CMS == "joomla32"  || _JOMRES_DETECTED_CMS == "joomla33" || _JOMRES_DETECTED_CMS == "joomla34" || _JOMRES_DETECTED_CMS == "joomla35" || _JOMRES_DETECTED_CMS == "joomla36")
+if ( this_cms_is_joomla() )
 	{
 	$result = true;
 	if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ADMINISTRATORDIRECTORY . JRDS . 'components' . JRDS . 'com_jomres' . JRDS . 'admin.jomres.php' ) )
@@ -434,9 +434,6 @@ function doTableUpdates()
 	if ( !checkBookingdataarchiveContractidColExists() ) alterBookingdataarchiveContractid();
 	
 	if ( !checkContractsLangColExists() ) alterContractsLang();
-	
-	if ( _JOMRES_DETECTED_CMS == "joomla15" ) 
-		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 		
 	if ( !checkPropertysSiteIdColExists() ) alterPropertysSiteIdCol();
 	if ( !checkTaxratesEUColExists() ) alterTaxratesEUCol();
