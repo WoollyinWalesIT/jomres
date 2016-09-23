@@ -59,8 +59,8 @@ class jrportal_subscriptions
 		$this->subscription['cms_user_id']		= 0;
 		$this->subscription['package_id']		= 0;
 		$this->subscription['status']			= 0;
-		$this->subscription['raised_date']		= '0000-00-00 00:00:00';
-		$this->subscription['expiration_date']	= '0000-00-00 00:00:00';
+		$this->subscription['raised_date']		= '1970-01-01 00:00:01';
+		$this->subscription['expiration_date']	= '1970-01-01 00:00:01';
 		$this->subscription['invoice_id']		= 0;
 		
 		//subscribers

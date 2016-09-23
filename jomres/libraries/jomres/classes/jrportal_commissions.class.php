@@ -286,7 +286,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 		if ( (int)$manager_id == 0 )
 			return false;
 		
-		$query = "SELECT id FROM #__jomresportal_invoices WHERE cms_user_id = ".(int)$manager_id." AND `is_commission` = 1 AND `raised_date` = '0000-00-00 00:00:00' ";
+		$query = "SELECT id FROM #__jomresportal_invoices WHERE cms_user_id = ".(int)$manager_id." AND `is_commission` = 1 AND `raised_date` <= '1970-01-01 00:00:01' ";
 		$invoice_id = doSelectSql( $query, 1 );
 		
 		if ((int)$invoice_id > 0)
@@ -309,8 +309,8 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 		$invoice->id 			= 0;
 		$invoice->cms_user_id 	= $manager_id;
 		$invoice->status		= 3; //pending
-		$invoice->raised_date 	= '0000-00-00 00:00:00';
-		$invoice->due_date 		= '0000-00-00 00:00:00';
+		$invoice->raised_date 	= '1970-01-01 00:00:01';
+		$invoice->due_date 		= '1970-01-01 00:00:01';
 		$invoice->currencycode 	= $currencycode;
 		$invoice->is_commission = 1;
 		

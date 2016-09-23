@@ -82,7 +82,7 @@ class j16000view_invoice
 			{
 			$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 			$jrtb   = $jrtbar->startTable();
-			if ($invoice->status != 1 && $invoice->raised_date != '0000-00-00 00:00:00')
+			if ($invoice->status != 1 && $invoice->raised_date > '1970-01-01 00:00:01')
 				$jrtb .= $jrtbar->toolbarItem( 'save', jomresUrl(JOMRES_SITEPAGE_URL_ADMIN . '&task=mark_invoice_paid&id=' . $invoice->id), jr_gettext( '_JOMRES_INVOICE_MARKASPAID', '_JOMRES_INVOICE_MARKASPAID', false) );
 			//$jrtb .= $jrtbar->toolbarItem( 'printer', jomresUrl(JOMRES_SITEPAGE_URL_ADMIN . '&tmpl=' .get_showtime("tmplcomponent") . '&popup=1&task=view_invoice&id=' . $invoice->id), jr_gettext( '_JOMRES_COM_INVOICE_PRINT', _JOMRES_COM_INVOICE_PRINT, false) );
 			$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_invoices" ), '' );
