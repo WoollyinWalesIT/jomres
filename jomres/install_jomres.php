@@ -470,12 +470,29 @@ function doTableUpdates()
 	if ( checkRtypesSrpOnlyFlagColExists() ) dropRtypesSrpOnlyFlagCol();
 	if ( !checkPropertysPermitColExists() ) alterPropertysPermitCol();
 	
+	change_default_date_value_for_subscriptions_table();
+	
 	drop_orphan_line_items_table();
 	drop_room_images_table();
 	removeCronJob('invoice');
 	removeCronJob('optimise');
 	
 	updateSiteSettings ( "update_time" , time() );
+	}
+
+function change_default_date_value_for_subscriptions_table()
+	{
+	$query = "ALTER TABLE `#__jomresportal_subscriptions` MODIFY COLUMN `raised_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01' ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to modify __jomresportal_subscriptions raised_date column default value", "danger" );
+		}
+	
+	$query = "ALTER TABLE `#__jomresportal_subscriptions` MODIFY COLUMN `expiration_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01' ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to modify __jomresportal_subscriptions expiration_date column default value", "danger" );
+		}
 	}
 
 function alterPropertysPermitCol()
