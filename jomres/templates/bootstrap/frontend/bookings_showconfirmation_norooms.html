@@ -4,10 +4,10 @@
 	function confirmation_validate(usecart) {
 		if (document.bookingForm.agreecheck.checked) {
 			if (usecart) {
-				document.bookingForm.action = "{PROCESSURL_SAVETOCART}";
+				jomresJquery('#jomres_task').val("{PROCESSURL_SAVETOCART}");
 			}
 			else {
-				document.bookingForm.action = "{PROCESSURL}";
+				jomresJquery('#jomres_task').val("{PROCESSURL}");
 			}
 
 			return true;
@@ -24,7 +24,7 @@
 </script>
 <p>{HEADER}</p>
 
-<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="bookingForm" class="form-horizontal" onsubmit="send.disabled = true; return true;">
+<form action="" method="post" name="bookingForm" class="form-horizontal" onsubmit="send.disabled = true; return true;">
 <div class="row-fluid">
 	<div class="span6 well">
 		<h3 class="page-header">{AJAXFORM_PARTICULARS}</h3>
@@ -204,5 +204,7 @@
 			   onclick="return confirmation_validate(true);"/>
 	</patTemplate:tmpl>
 </div>
+
+<input type="hidden" name="task" id="jomres_task" value="" />
 </form>
 </patTemplate:tmpl>

@@ -613,8 +613,8 @@ class j02990showconfirmation
 				}
 			}
 
-		$booking_parts[ 'PROCESSURL' ]            = jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=processpayment" );
-		$booking_parts[ 'PROCESSURL_SAVETOCART' ] = jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=save_booking_to_cart" );
+		$booking_parts[ 'PROCESSURL' ]            = "processpayment";
+		$booking_parts[ 'PROCESSURL_SAVETOCART' ] = "save_booking_to_cart";
 		
 		if ($amend_contract)
 			{
