@@ -4,10 +4,10 @@
 		function confirmation_validate(usecart) {
 			if (document.bookingForm.agreecheck.checked) {
 				if (usecart) {
-					document.bookingForm.action = "{PROCESSURL_SAVETOCART}";
+					jomresJquery('#jomres_task').val("{PROCESSURL_SAVETOCART}");
 				}
 				else {
-					document.bookingForm.action = "{PROCESSURL}";
+					jomresJquery('#jomres_task').val("{PROCESSURL}");
 				}
 
 				return true;
@@ -24,7 +24,7 @@
 	</script>
 	<p>{HEADER}</p>
 
-	<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="bookingForm" onsubmit="send.disabled = true; return true;">
+	<form action="" method="post" name="bookingForm" onsubmit="send.disabled = true; return true;">
 		<table width="100%" border="0" class="ui-widget-content ui-corner-all">
 			<tr>
 				<th colspan="2" class="ui-state-default">{AJAXFORM_PARTICULARS}</th>
@@ -186,5 +186,7 @@
 				</td>
 			</tr>
 		</table>
+	
+	<input type="hidden" name="task" id="jomres_task" value="" />
 	</form>
 </patTemplate:tmpl>
