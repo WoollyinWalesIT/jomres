@@ -56,123 +56,114 @@ class jomres_media_centre_images
 		return $this->$setting;
 		}
 	
-	function get_images($property_id = null, $types = array() )
+	function get_images( $property_id = null )
 		{
+		$this->images = array();
+		
 		if ($property_id == null)
 			{
 			$property_id = get_showtime("property_uid");
 			}
 		
-		//property images
-		if (count($types)==0 || in_array('property',$types))
+		if ( $property_id == 0 )
 			{
-			if (!isset( $this->multi_query_images[$property_id]['property']))
-				{
-				$this->get_images_multi( $property_id, array('property') );
-				}
-			if (isset( $this->multi_query_images[$property_id]['property']))
-				$this->images ['property']=$this->multi_query_images[$property_id]['property'];
-			else //there are no images
-				{
-				$this->images ['property'][0][] = array ( 
-														"large" =>  $this->multi_query_images[ 'noimage-large' ] ,
-														"medium" => $this->multi_query_images[ 'noimage-medium' ] ,
-														"small" => $this->multi_query_images[ 'noimage-small' ] 
-														);
-				}
+			return;
+			}
+		
+		//get all images for this property id
+		if ( !isset( $this->multi_query_images[$property_id]) )
+			{
+			$this->get_images_multi( $property_id );
+			}
+		
+		//property images
+		$this->images['property'] = array();
+
+		if ( isset($this->multi_query_images[$property_id]['property']) )
+			{
+			$this->images['property'] = $this->multi_query_images[$property_id]['property'];
+			}
+		else
+			{
+			$this->images ['property'][0][] = array ( 
+													"large" =>  $this->multi_query_images[ 'noimage-large' ] ,
+													"medium" => $this->multi_query_images[ 'noimage-medium' ] ,
+													"small" => $this->multi_query_images[ 'noimage-small' ] 
+													);
 			}
 
-		//room images
-		if (count($types)==0 || in_array('rooms',$types))
-			{
-			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-			$current_property_details->gather_data( $property_id );
-			if (!isset( $this->multi_query_images[$property_id]['rooms']))
-				{
-				$this->get_images_multi( $property_id, array('rooms') );
-				}
 
-			if (isset( $this->multi_query_images[$property_id]['rooms']))
-				$this->images ['rooms']=$this->multi_query_images[$property_id]['rooms'];
-			else
-				$this->images ['rooms']=array();
-			
-			foreach ( $current_property_details->rooms as $room_id)
+		//room images
+		$this->images['rooms'] = array();
+		
+		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$current_property_details->gather_data( $property_id );
+		
+		if ( isset($this->multi_query_images[$property_id]['rooms']) )
+			{
+			$this->images['rooms'] = $this->multi_query_images[$property_id]['rooms'];
+			}
+		
+		foreach ( $current_property_details->rooms as $room_id)
+			{
+			if ( !array_key_exists($room_id, $this->images['rooms']) )
 				{
-				if (isset($this->images['rooms']))
-					{
-					if (!array_key_exists($room_id,$this->images['rooms']))
-						{
-						$this->images [ 'rooms' ] [ $room_id ] [] = array ( 
-							"large" =>  $this->multi_query_images[ 'noimage-large' ] ,
-							"medium" =>  $this->multi_query_images[ 'noimage-medium' ] ,
-							"small" =>  $this->multi_query_images[ 'noimage-small' ] 
-							);
-						}
-					}
+				$this->images[ 'rooms' ] [ $room_id ] [] = array ( 
+					"large" =>  $this->multi_query_images[ 'noimage-large' ] ,
+					"medium" =>  $this->multi_query_images[ 'noimage-medium' ] ,
+					"small" =>  $this->multi_query_images[ 'noimage-small' ] 
+					);
 				}
 			}
 		
 		//slideshow images
-		if (count($types)==0 || in_array('slideshow',$types))
+		$this->images['slideshow'] = array();
+		
+		if ( isset($this->multi_query_images[$property_id]['slideshow']) )
 			{
-			if (!isset( $this->multi_query_images[$property_id]['slideshow']))
-				{
-				$this->get_images_multi( $property_id, array('slideshow') );
-				}
-			if (isset( $this->multi_query_images[$property_id]['slideshow']))
-				$this->images ['slideshow'] = $this->multi_query_images[$property_id]['slideshow'];
-			else //there are no images
-				{
-				$this->images ['slideshow'][0][] = array ( 
-														"large" =>  $this->multi_query_images[ 'noimage-large' ] ,
-														"medium" => $this->multi_query_images[ 'noimage-medium' ] ,
-														"small" => $this->multi_query_images[ 'noimage-small' ] 
-														);
-				}
+			$this->images['slideshow'] = $this->multi_query_images[$property_id]['slideshow'];
+			}
+		else
+			{
+			$this->images ['slideshow'][0][] = array ( 
+													"large" =>  $this->multi_query_images[ 'noimage-large' ] ,
+													"medium" => $this->multi_query_images[ 'noimage-medium' ] ,
+													"small" => $this->multi_query_images[ 'noimage-small' ] 
+													);
 			}
 
 		//room features images
-		if (count($types)==0 || in_array('room_features',$types))
+		$this->images['room_features'] = array();
+		
+		if ( isset($this->multi_query_images[$property_id]['room_features']) )
 			{
-			if (!isset( $this->multi_query_images[$property_id]['room_features']))
-				{
-				$this->get_images_multi( $property_id, array('room_features') );
-				}
-			if (isset( $this->multi_query_images[$property_id]['room_features']))
-				$this->images ['room_features']=$this->multi_query_images[$property_id]['room_features'];
+			$this->images['room_features'] = $this->multi_query_images[$property_id]['room_features'];
 			}
 		
 		//extras images
-		if (count($types)==0 || in_array('extras',$types))
+		$this->images['extras'] = array();
+		
+		if ( isset($this->multi_query_images[$property_id]['extras']) )
 			{
-			if (!isset( $this->multi_query_images[$property_id]['extras']))
-				{
-				$this->get_images_multi( $property_id, array('extras') );
-				}
-			if (isset( $this->multi_query_images[$property_id]['extras']))
-				$this->images ['extras']=$this->multi_query_images[$property_id]['extras'];
+			$this->images['extras'] = $this->multi_query_images[$property_id]['extras'];
 			}
 		
 		return $this->images;
 		}
 
 
-	function get_images_multi( $property_uids, $requested_types = array() )
+	function get_images_multi( $property_uids )
 		{
 		// As we're going to let this function work on both single and multiple lists of property uids, we'll cast property_ids to an array if it isn't one already
-		if (!is_array($property_uids))
+		if ( !is_array($property_uids) )
 			$property_uids = array($property_uids);
 		
-		// First we need to extract those uids that are not already in the $this->images var, this (may) reduce the number of scandirs we need to execute
+		// First we need to extract those uids that are not already in the $this->multi_query_images var, this (may) reduce the number of scandirs we need to execute
 		$temp_array = array ();
 		foreach ( $property_uids as $id )
 			{
-			foreach ( $requested_types as $t )
-				{
-				if ( !isset( $this->multi_query_images[$id][$t] ) ) 
-					$temp_array[ ] = $id;
-				}
+			if ( !isset( $this->multi_query_images[$id] ) ) 
+				$temp_array[] = $id;
 			}
 		$property_uids = $temp_array;
 		unset ( $temp_array );
@@ -189,7 +180,7 @@ class jomres_media_centre_images
 				$all_types = array();
 				foreach ($resource_types as $type)
 					{
-					if (is_array($type) && isset($type['resource_type']) && in_array($type['resource_type'], $requested_types))
+					if ( is_array($type) && isset($type['resource_type']) )
 						$all_types[] = $type['resource_type'];
 					}
 				}
@@ -198,15 +189,16 @@ class jomres_media_centre_images
 				{
 				foreach ($property_uids as $property_id)
 					{
+					$this->multi_query_images[$property_id] = array();
+					
 					$base_path = JOMRES_IMAGELOCATION_ABSPATH . $property_id . JRDS;
 					$rel_path  = JOMRES_IMAGELOCATION_RELPATH . $property_id . "/" ;
-					
 					
 					$dir_contents = scandir_getdirectories( $base_path );
 						
 					foreach ($dir_contents as $dir)
 						{
-						if (in_array($dir,$all_types))
+						if ( in_array($dir, $all_types) )
 							{
 							$sub_directories = scandir_getdirectories( $base_path . $dir . JRDS );
 							if (count($sub_directories)>0)
