@@ -20,8 +20,15 @@ class j06001dashboard
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch )
 			{
-			$this->template_touchable = false; return;
+			$this->template_touchable = false; 
+			$this->shortcode_data = array (
+					"task" => "dashboard",
+					"arguments" => array (),
+					"info" => "_JOMRES_SHORTCODES_06001DASHBOARD",
+				);
+			return;
 			}
+		
 		$ePointFilepath = get_showtime('ePointFilepath');
 		
 		if (isset($componentArgs[ 'property_uid' ]))

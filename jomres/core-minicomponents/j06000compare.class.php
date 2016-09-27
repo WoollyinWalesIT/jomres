@@ -21,9 +21,20 @@ class j06000compare
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
+			$this->shortcode_data = array (
+					"task" => "compare",
+					"arguments" => array ( 0 => 
+						array (
+							"argument" => "property_uids",
+							"arg_info" => "_JOMRES_SHORTCODES_06000COMPARE_ARG_PROPERTY_UIDS",
+							"arg_example" => "12,8,7",
+							)
+						),
+					"info" => "_JOMRES_SHORTCODES_06000COMPARE",
+				);
 			return;
 			}
+		
 		//add_gmaps_source();
 		$property_uids = jomresGetParam( $_REQUEST, "property_uids", '' );
 
