@@ -17,6 +17,12 @@ class j06000no_search_results
 	{
 	function __construct()
 		{
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false; 
+			return;
+			}
 		$pageoutput[ ] = array ( "MESSAGE" => jr_gettext( '_JOMRES_FRONT_NORESULTS', '_JOMRES_FRONT_NORESULTS', $editable = true, $islink = false ) );
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );

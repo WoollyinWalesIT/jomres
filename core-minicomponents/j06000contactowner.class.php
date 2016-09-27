@@ -22,7 +22,17 @@ class j06000contactowner
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = true;
-
+			$this->shortcode_data = array (
+				"task" => "contactowner",
+				"info" => "_JOMRES_SHORTCODES_06000CONTACTOWNER",
+				"arguments" => array ( 0 => 
+					array (
+						"argument" => "property_uid",
+						"arg_info" => "_JOMRES_SHORTCODES_06000CONTACTOWNER_ARG_PROPERTY_UID",
+						"arg_example" => "18",
+						)
+					)
+				);
 			return;
 			}
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );

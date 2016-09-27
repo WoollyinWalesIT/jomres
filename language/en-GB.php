@@ -3044,3 +3044,26 @@ jr_define( "_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING", "You do not have an O
 
 jr_define( "_JOMRES_PERMIT_NUMBER_TITLE", "Permit number" );
 jr_define( "_JOMRES_PERMIT_NUMBER_DESCRIPTION", "Some countries legislate that you must display a permit number for your property. If you have such a number, enter it here and it will be added to the property header section." );
+
+jr_define( '_JOMRES_SHORTCODES', "Shortcodes" );
+
+jr_define( 'SHORTCODE_TRIGGER', "Trigger" );
+jr_define( 'SHORTCODE_TASK', "Task" );
+jr_define( 'SHORTCODE_DESCRIPTION', "Description" );
+jr_define( 'SHORTCODE_ARGUMENTS', "Arguments" );
+jr_define( 'SHORTCODE_EXAMPLE', "Example" );
+
+
+jr_define( '_JOMRES_SHORTCODES_06001DASHBOARD', "This is the property dashboard script which displays the users bookings." );
+
+jr_define( '_JOMRES_SHORTCODES_06000COMPARE', "This script allows the user to compare several properties against each other, up to a maximum of 3 properties." );
+jr_define( '_JOMRES_SHORTCODES_06000COMPARE_ARG_PROPERTY_UIDS', "A comma separated list of property uids, eg. 12,8,7" );
+
+jr_define( '_JOMRES_SHORTCODES_06000CONTACTOWNER', "Builds the contact owner form. " );
+jr_define( '_JOMRES_SHORTCODES_06000CONTACTOWNER_ARG_PROPERTY_UID', "Pass the property uid of the property to be contacted. Pass 0 (zero) to instead contact site admin. " );
+
+jr_define( '_JOMRES_SHORTCODES_06000IMMEDIATEPAY', "Builds a link to pay an invoice via Paypal. Typically used by Property owners paying subscriptions." );
+jr_define( '_JOMRES_SHORTCODES_06000IMMEDIATEPAY_ARG_ID', "ID is the id of the invoice. User must be registered and logged in to be able to see this invoice." );
+
+jr_define( '_JOMRES_SHORTCODES_06001LOGOUT', "Immediately logs the user out if they're logged into the CMS." );
+

@@ -122,6 +122,8 @@ class minicomponent_registry
 				unlink( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . $file );
 				}
 			}
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		$MiniComponents->build_shortcodes();
 		}
 		
 	function save_registry_file()

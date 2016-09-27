@@ -144,9 +144,6 @@ class mcHandler
 		$mrConfig                = getPropertySpecificSettings( 0 );
 		$eventArgs               = null;
 		$mrConfig[ 'editingOn' ] = "1";
-		//var_dump($thisJRUser);exit;
-		//if ($thisJRUser->superPropertyManager)
-		//	{
 		$eventClasses         = $this->registeredClasses;
 		$this->template_touch = true;
 		echo jr_gettext( '_JOMRES_CUSTOMTEXT_TOUCHTEMPLATES', "This feature allows you to edit language text for any template configured to allow you to edit text. You will be editing the default text for every property and saving that text to the database. HTML code is not allowed. To change the language that the text is saved for, change the default language in the Site Settings -> Misc tab. Click on a line to edit the text." );
@@ -185,11 +182,46 @@ class mcHandler
 				unset( $e );
 				}
 			}
-		//	}
-
-
 		}
 
+	function build_shortcodes()
+		{
+		$eventClasses			= $this->registeredClasses;
+		$this->template_touch	= true;
+		$eventArgs				= null;
+		$shortcode_data			= array();
+		foreach ( $eventClasses as $eClass )
+			{
+			$ePointFilepath = $eClass[ 'filepath' ];
+			set_showtime( 'ePointFilepath', $eClass[ 'filepath' ] );
+			$classFileSuffix = '.class.php';
+			$filename        = 'j' . $eClass[ 'eventPoint' ] . $eClass[ 'eventName' ] . $classFileSuffix;
+			if ( file_exists( $eClass[ 'filepath' ] . $filename ) )
+				{
+				include_once( $eClass[ 'filepath' ] . $filename );
+				$event     = new stdClass;
+				$ePoint    = $eClass[ 'eventPoint' ];
+				if ( $ePoint == "06000" ||  $ePoint == "06001" ||  $ePoint == "06002" ||  $ePoint == "06005" )
+					{
+					$eName     = $eClass[ 'eventName' ];
+					$eLiveSite = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' )."/", $eClass[ 'filepath' ] );
+					$eLiveSite = str_replace( JRDS, "/", $eLiveSite );
+					set_showtime( 'eLiveSite', $eLiveSite );
+					$event = 'j' . $ePoint . $eName;
+					$e     = new $event( $eventArgs );
+					if ( isset( $e->shortcode_data ) )
+						{
+						$shortcode_data[$ePoint][] = $e->shortcode_data;
+						}
+					}
+				unset( $e );
+				}
+			}
+
+		file_put_contents ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "shortcodes.serialized" , serialize($shortcode_data) );
+		}
+	
+	
 	// Acutally calls the triggered event.
 	function triggerEvent( $eventPoint, $eventArgs = null )
 		{
