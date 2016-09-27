@@ -482,16 +482,10 @@ function doTableUpdates()
 
 function change_default_date_value_for_subscriptions_table()
 	{
-	$query = "ALTER TABLE `#__jomresportal_subscriptions` MODIFY COLUMN `raised_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01' ";
+	$query = "ALTER TABLE `#__jomresportal_subscriptions` MODIFY COLUMN `raised_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01', MODIFY COLUMN `expiration_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01' ";
 	if ( !doInsertSql( $query, '' ) )
 		{
-		output_message ( "Error, unable to modify __jomresportal_subscriptions raised_date column default value", "danger" );
-		}
-	
-	$query = "ALTER TABLE `#__jomresportal_subscriptions` MODIFY COLUMN `expiration_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01' ";
-	if ( !doInsertSql( $query, '' ) )
-		{
-		output_message ( "Error, unable to modify __jomresportal_subscriptions expiration_date column default value", "danger" );
+		output_message ( "Error, unable to modify __jomresportal_subscriptions raised_date and expiration_date columns default value", "danger" );
 		}
 	}
 
