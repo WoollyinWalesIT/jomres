@@ -22,6 +22,17 @@ class j06000show_property_room
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = true;
+			$this->shortcode_data = array (
+				"task" => "show_property_room",
+				"info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM",
+				"arguments" => array ( 0 => 
+					array (
+						"argument" => "id",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_ARG_PROPERTY_UID",
+						"arg_example" => "1",
+						)
+					)
+				);
 			return;
 			}
 
@@ -53,7 +64,7 @@ class j06000show_property_room
 			return;
 		
 		//show property header
-		property_header( $property_uid );
+		//property_header( $property_uid );
 		
 		//get room details
 		$basic_room_details->get_room($room_uid);

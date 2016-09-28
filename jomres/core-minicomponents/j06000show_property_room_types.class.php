@@ -21,6 +21,17 @@ class j06000show_property_room_types
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
+			$this->shortcode_data = array (
+				"task" => "show_property_room_types",
+				"info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPES",
+				"arguments" => array ( 0 => 
+					array (
+						"argument" => "property_uid",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPES_ARG_PROPERTY_UID",
+						"arg_example" => "1",
+						)
+					)
+				);
 			return;
 			}
 		$this->retVals = '';
@@ -51,9 +62,25 @@ class j06000show_property_room_types
 			
 			foreach ( $basic_property_details->room_types as $key=>$val )
 				{
-				$room_type[ 'ROOM_TYPE' ] = jomres_makeTooltip( $basic_property_details->this_property_room_classes,  $basic_property_details->this_property_room_classes[$key]['abbv'],  $basic_property_details->this_property_room_classes[$key]['desc'], JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'. $basic_property_details->this_property_room_classes[$key]['image'], "", "room_type", array () );
-				$room_type[ 'ROOM_TYPE_TEXT' ] = $basic_property_details->this_property_room_classes[$key]['abbv'];
-				$room_type[ 'ROOM_TYPE_COUNTER' ] = count($basic_property_details->rooms_by_type[$key]);
+				$room_type[ 'ROOM_TYPE' ] = '';
+				$room_type[ 'ROOM_TYPE_TEXT' ] = '';
+				$room_type[ 'ROOM_TYPE_COUNTER' ] = 0;
+				if (isset($basic_property_details->this_property_room_classes[$key]))
+					{
+					$room_type[ 'ROOM_TYPE' ] = 
+						jomres_makeTooltip( 
+							$basic_property_details->this_property_room_classes,  
+							$basic_property_details->this_property_room_classes[$key]['abbv'],  
+							$basic_property_details->this_property_room_classes[$key]['desc'], 
+							JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'. $basic_property_details->this_property_room_classes[$key]['image'], 
+							"", 
+							"room_type", 
+							array () 
+							);
+					$room_type[ 'ROOM_TYPE_TEXT' ] = $basic_property_details->this_property_room_classes[$key]['abbv'];
+					$room_type[ 'ROOM_TYPE_COUNTER' ] = count($basic_property_details->rooms_by_type[$key]);
+					}
+				
 				
 				$room_types[] = $room_type;
 				}

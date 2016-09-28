@@ -19,7 +19,32 @@ class j06000show_property_calendar
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch ){$this->template_touchable = false;return;}
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
+			$this->shortcode_data = array (
+				"task" => "show_property_calendar",
+				"info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_CALENDAR",
+				"arguments" => array ( 
+					array (
+						"argument" => "property_uid",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_CALENDAR_ARG_PROPERTY_UID",
+						"arg_example" => "1",
+						),
+					array (
+						"argument" => "months_to_show",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_CALENDAR_ARG_MONTHS_TO_SHOW",
+						"arg_example" => "4",
+						),
+					array (
+						"argument" => "show_just_month",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_CALENDAR_ARG_SHOW_JUST_MONTH",
+						"arg_example" => "1",
+						)
+					)
+				);
+			return;
+			}
 
 		$this->retVals = '';
 		

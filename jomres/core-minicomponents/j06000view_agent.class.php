@@ -22,7 +22,22 @@ class j06000view_agent
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
+			$this->shortcode_data = array (
+				"task" => "view_agent",
+				"info" => "_JOMRES_SHORTCODES_06000VIEW_AGENT",
+				"arguments" => array (
+					array (
+						"argument" => "property_uid",
+						"arg_info" => "_JOMRES_SHORTCODES_06000VIEW_AGENT_ARG_PROPERTY_UID",
+						"arg_example" => "1",
+						),
+					array (
+						"argument" => "id",
+						"arg_info" => "_JOMRES_SHORTCODES_06000VIEW_AGENT_ARG_ID",
+						"arg_example" => "1",
+						)
+					)
+				);
 			return;
 			}
 		$MiniComponents->triggerEvent( '01004', $componentArgs ); // optional

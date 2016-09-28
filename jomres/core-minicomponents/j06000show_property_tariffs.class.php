@@ -22,6 +22,17 @@ class j06000show_property_tariffs
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
+			$this->shortcode_data = array (
+				"task" => "show_property_tariffs",
+				"info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_TARIFFS",
+				"arguments" => array ( 0 => 
+					array (
+						"argument" => "property_uid",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_TARIFFS_ARG_PROPERTY_UID",
+						"arg_example" => "1",
+						)
+					)
+				);
 			return;
 			}
 		$this->retVals = '';
@@ -39,8 +50,8 @@ class j06000show_property_tariffs
 		if (isset($componentArgs[ 'output_now' ]))
 			$output_now = (bool)$componentArgs[ 'output_now' ];
 		
-		if ($output_now)
-			property_header( $property_uid );
+		//if ($output_now)
+		//	property_header( $property_uid );
 		
 		$output = array();
 

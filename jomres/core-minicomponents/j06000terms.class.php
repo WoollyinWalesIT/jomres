@@ -17,6 +17,23 @@ class j06000terms
 	{
 	function __construct($componentArgs)
 		{
+		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
+			$this->shortcode_data = array (
+				"task" => "terms",
+				"info" => "_JOMRES_SHORTCODES_06000TERMS",
+				"arguments" => array ( 0 => 
+					array (
+						"argument" => "property_uid",
+						"arg_info" => "_JOMRES_SHORTCODES_06000TERMS_ARG_PROPERTY_UID",
+						"arg_example" => "1",
+						)
+					)
+				);
+			return;
+			}
 		$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 		$this->retVals = '';
 		

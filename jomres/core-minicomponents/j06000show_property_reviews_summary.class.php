@@ -21,6 +21,17 @@ class j06000show_property_reviews_summary
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
+			$this->shortcode_data = array (
+				"task" => "show_property_reviews_summary",
+				"info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_REVIEWS_SUMMARY",
+				"arguments" => array ( 0 => 
+					array (
+						"argument" => "property_uid",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_REVIEWS_SUMMARY_ARG_PROPERTY_UID",
+						"arg_example" => "1",
+						)
+					)
+				);
 			return;
 			}
 		$this->retVals = '';

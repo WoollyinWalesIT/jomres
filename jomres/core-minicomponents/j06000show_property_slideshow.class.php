@@ -19,8 +19,22 @@ class j06000show_property_slideshow
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch ){$this->template_touchable = false;return;}
-
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
+			$this->shortcode_data = array (
+				"task" => "show_property_slideshow",
+				"info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_SLIDESHOW",
+				"arguments" => array ( 0 => 
+					array (
+						"argument" => "property_uid",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_SLIDESHOW_ARG_PROPERTY_UID",
+						"arg_example" => "1",
+						)
+					)
+				);
+			return;
+			}
 		$this->retVals = '';
 		
 		if (isset($componentArgs[ 'property_uid' ]))

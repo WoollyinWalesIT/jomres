@@ -22,17 +22,6 @@ class j06000immediatepay
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-			$this->shortcode_data = array (
-				"task" => "immediatepay",
-				"info" => "_JOMRES_SHORTCODES_06000IMMEDIATEPAY",
-				"arguments" => array ( 0 => 
-					array (
-						"argument" => "id",
-						"arg_info" => "_JOMRES_SHORTCODES_06000IMMEDIATEPAY_ARG_ID",
-						"arg_example" => "27",
-						)
-					)
-				);
 			return;
 			}
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
