@@ -29,6 +29,7 @@ class j16000showplugins
 			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=purchase_plugins' . $username . $password . $items ), "" );
 			exit;
 			}
+
 		$registry = new minicomponent_registry( true );
 		$registry->regenerate_registry();
 		jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "shop.js" );
@@ -37,7 +38,6 @@ class j16000showplugins
 			{
 			$this->template_touchable = false;
 
-			return;
 			}
 
 		include( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'jomres_config.php' );

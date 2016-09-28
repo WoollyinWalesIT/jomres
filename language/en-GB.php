@@ -3047,6 +3047,8 @@ jr_define( "_JOMRES_PERMIT_NUMBER_DESCRIPTION", "Some countries legislate that y
 
 jr_define( '_JOMRES_SHORTCODES', "Shortcodes" );
 
+jr_define( '_JOMRES_SHORTCODES_TRIGGERS', "Different triggers determine who can see the script's output. 06000 triggers can be viewed by anybody. 06001 by receptionists and managers, 06002 managers only, and 06005 are for any registered, logged in user." );
+
 jr_define( 'SHORTCODE_TRIGGER', "Trigger" );
 jr_define( 'SHORTCODE_TASK', "Task" );
 jr_define( 'SHORTCODE_DESCRIPTION', "Description" );
