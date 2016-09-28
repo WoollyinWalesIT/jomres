@@ -45,7 +45,7 @@ class jomres_temp_booking_handler
 
 		$this->sessionfile	 = '';
 		$this->timeout = (int) $jrConfig[ 'lifetime' ];
-		$this->session_directory = JOMRESPATH_BASE . JRDS . "sessions" . JRDS;
+		$this->session_directory = JOMRES_SESSION_ABSPATH;
 		
 		if ( !is_dir( $this->session_directory ) )
 			{
@@ -265,7 +265,6 @@ class jomres_temp_booking_handler
 			$data = array ( 'tmpbooking' => $this->tmpbooking, 'cart_data' => $this->cart_data, 'tmpguest' => $this->tmpguest, 'tmpsearch_data' => $this->tmpsearch_data, 'tmplang' => $this->tmplang, 'user_settings' => $this->user_settings );
 			file_put_contents( $this->sessionfile, serialize( $data ) );
 			}
-		$this->_remove_old_jomres_sessions();
 		}
 
 	function close_jomres_session()
@@ -273,34 +272,6 @@ class jomres_temp_booking_handler
 		$data = array ( 'tmpbooking' => $this->tmpbooking, 'cart_data' => $this->cart_data, 'tmpguest' => $this->tmpguest, 'tmpsearch_data' => $this->tmpsearch_data, 'tmplang' => $this->tmplang, 'user_settings' => $this->user_settings );
 		if ( $this->sessionfile != '' ) // In certain circumstances the session file might not have been created (typically administrator area functionality)
 		file_put_contents( $this->sessionfile, serialize( $data ) );
-		}
-
-	function _remove_old_jomres_sessions()
-		{
-		$d    = @dir( $this->session_directory );
-		$docs = array ();
-		if ( $d )
-			{
-			while ( false !== ( $entry = $d->read() ) )
-				{
-				$filename = $entry;
-				if ( is_file( $this->session_directory . $filename ) && substr( $entry, 0, 1 ) != '.' && strtolower( $entry ) !== 'cvs' )
-					{
-					$docs[ ] = $filename;
-					}
-				}
-			$d->close();
-			if ( count( $docs ) > 0 )
-				{
-				foreach ( $docs as $f )
-					{
-					$last_modified    = filemtime( $this->session_directory .JRDS . $f );
-					$seconds_timediff = time() - $last_modified;
-					//echo $seconds_timediff;
-					if ( $seconds_timediff > $this->timeout ) unlink( $this->session_directory . JRDS . $f );
-					}
-				}
-			}
 		}
 
 	function getJomressession()

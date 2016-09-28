@@ -477,6 +477,8 @@ function doTableUpdates()
 	removeCronJob('invoice');
 	removeCronJob('optimise');
 	
+	addCronJob('session_files_cleanup', 'D', '');
+	
 	updateSiteSettings ( "update_time" , time() );
 	}
 
@@ -518,6 +520,16 @@ function removeCronJob( $job = '' )
 	jr_import( 'jomres_cron' );
 	$cron = new jomres_cron();
 	$cron->removeJob($job);
+	}
+
+function addCronJob( $job = '', $schedule = 'D', $params = '' )
+	{
+	if ($job == '')
+		return;
+	
+	jr_import( 'jomres_cron' );
+	$cron = new jomres_cron();
+	$cron->addJob( $job, $schedule, $params );
 	}
 
 function drop_orphan_line_items_table()

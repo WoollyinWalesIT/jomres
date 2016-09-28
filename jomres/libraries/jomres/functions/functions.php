@@ -4641,15 +4641,15 @@ function scandir_getfiles_recursive( $directory, $recursive = true, $listDirs = 
 				}
 			if ( !$skip && !$skipByExclude )
 				{
-				if ( is_dir( $directory . DIRECTORY_SEPARATOR . $file ) )
+				if ( is_dir( $directory . $file ) )
 					{
 					if ( $recursive )
 						{
-						$arrayItems = array_merge( $arrayItems, scandir_getfiles_recursive( $directory . DIRECTORY_SEPARATOR . $file, $recursive, $listDirs, $listFiles, $exclude ) );
+						$arrayItems = array_merge( $arrayItems, scandir_getfiles_recursive( $directory . $file, $recursive, $listDirs, $listFiles, $exclude ) );
 						}
 					if ( $listDirs )
 						{
-						$file		  = $directory . DIRECTORY_SEPARATOR . $file;
+						$file		  = $directory . $file;
 						$arrayItems[ ] = $file;
 						}
 					}
@@ -4657,7 +4657,7 @@ function scandir_getfiles_recursive( $directory, $recursive = true, $listDirs = 
 					{
 					if ( $listFiles )
 						{
-						$file		  = $directory . DIRECTORY_SEPARATOR . $file;
+						$file		  = $directory . $file;
 						$arrayItems[ ] = $file;
 						}
 					}
