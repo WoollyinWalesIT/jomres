@@ -21,11 +21,6 @@ class j06000logout
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-			$this->shortcode_data = array (
-					"task" => "logout",
-					"arguments" => array (),
-					"info" => "_JOMRES_SHORTCODES_06001LOGOUT",
-				);
 			return;
 			}
 

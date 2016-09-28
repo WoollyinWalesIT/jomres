@@ -28,6 +28,9 @@ class j16000asamodule_report
 		$parser = new shortcode_parser();
 		$shortcodes = $parser->shortcodes;
 		
+		$jomres_language = jomres_singleton_abstract::getInstance( 'jomres_language' );
+		$jomres_language->get_language("shortcodes");
+	
 		$output		=array();
 		$rows		=array();
 		$pageoutput	=array();
@@ -103,8 +106,8 @@ class j16000asamodule_report
 							{
 							$r['EXAMPLE'] = '{jomres '.$r['TASK'].' '.$arg_str.'}';
 							}
-						
-						
+						$r['EXAMPLE'] = str_replace("&","&amp;", $r['EXAMPLE']);
+
 						$rows[]=$r;
 						}
 					}

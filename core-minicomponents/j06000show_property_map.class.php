@@ -22,6 +22,17 @@ class j06000show_property_map
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
+			$this->shortcode_data = array (
+				"task" => "show_property_map",
+				"info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_MAP",
+				"arguments" => array ( 0 => 
+					array (
+						"argument" => "property_uid",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_MAP_ARG_PROPERTY_UID",
+						"arg_example" => "1",
+						)
+					)
+				);
 
 			return;
 			}

@@ -21,15 +21,33 @@ class j06000ui_availability_calendar
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
+			$this->shortcode_data = array (
+				"task" => "ui_availability_calendar",
+				"info" => "_JOMRES_SHORTCODES_06000UI_AVAILABILITY_CALENDAR",
+				"arguments" => array (
+					array (
+						"argument" => "property_uid",
+						"arg_info" => "_JOMRES_SHORTCODES_06000UI_AVAILABILITY_CALENDAR_ARG_PROPERTY_UID",
+						"arg_example" => "1",
+						),
+					array (
+						"argument" => "noshowlegend",
+						"arg_info" => "_JOMRES_SHORTCODES_06000UI_AVAILABILITY_CALENDAR_ARG_NOSHOWLEGEND",
+						"arg_example" => "1",
+						)
+					)
+				);
 			return;
 			}
-		
+		$this->retVals = '';
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 
 		$show_legend = true;
-		if ( (isset($componentArgs[ 'noshowlegend' ]) && $componentArgs[ 'noshowlegend' ] == "1") || (isset($_REQUEST[ 'noshowlegend' ]) && $_REQUEST[ 'noshowlegend' ] == "1") ) 
+		if ( 
+			(isset($componentArgs[ 'noshowlegend' ]) && $componentArgs[ 'noshowlegend' ] == "1") || 
+			(isset($_REQUEST[ 'noshowlegend' ]) && $_REQUEST[ 'noshowlegend' ] == "1") 
+			) 
 			$show_legend = false;
 
 		if (isset($componentArgs[ 'property_uid' ]))

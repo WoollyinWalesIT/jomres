@@ -22,7 +22,17 @@ class j06000show_property_moreinfo
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
+			$this->shortcode_data = array (
+				"task" => "show_property_moreinfo",
+				"info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_MOREINFO",
+				"arguments" => array ( 0 => 
+					array (
+						"argument" => "property_uid",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SHOW_PROPERTY_MOREINFO_ARG_PROPERTY_UID",
+						"arg_example" => "1",
+						)
+					)
+				);
 			return;
 			}
 		$output = array ();

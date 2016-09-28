@@ -22,7 +22,17 @@ class j06000show_hotel_details
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
+			$this->shortcode_data = array (
+				"task" => "show_hotel_details",
+				"info" => "_JOMRES_SHORTCODES_06000SHOW_HOTEL_DETAILS",
+				"arguments" => array ( 0 => 
+					array (
+						"argument" => "property_uid",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SHOW_HOTEL_DETAILS_ARG_PROPERTY_UID",
+						"arg_example" => "5",
+						)
+					)
+				);
 			return;
 			}
 		$output = array ();

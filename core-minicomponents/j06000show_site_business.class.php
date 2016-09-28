@@ -22,9 +22,19 @@ class j06000show_site_business
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
+			$this->shortcode_data = array (
+				"task" => "show_site_business",
+				"info" => "_JOMRES_SHORTCODES_06000SHOW_SITE_BUSINESS",
+				"arguments" => array ()
+				);
 			return;
 			}
+		$this->retVals ='';
+		
+		$output_now = true;
+		if (isset($componentArgs[ 'output_now' ]))
+			$output_now = (bool)$componentArgs[ 'output_now' ];
+		
 		$output     = array ();
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
@@ -56,7 +66,12 @@ class j06000show_site_business
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		$tmpl->readTemplatesFromInput( 'show_business_details.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$this->retVals = $tmpl->getParsedTemplate();
+		$result = $tmpl->getParsedTemplate();
+		
+		if ($output_now )
+			echo $result;
+		else
+			$this->retVals = $result;
 		}
 
 

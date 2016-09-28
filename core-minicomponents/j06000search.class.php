@@ -21,7 +21,62 @@ class j06000search
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
-
+			$this->shortcode_data = array (
+				"task" => "search",
+				"info" => "_JOMRES_SHORTCODES_06000SEARCH",
+				"arguments" => array (
+					array (
+						"argument" => "country",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SEARCH_ARG_COUNTRY",
+						"arg_example" => "GB"
+						),
+					array (
+						"argument" => "region",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SEARCH_ARG_REGION",
+						"arg_example" => "1111"
+						),
+					array (
+						"argument" => "town",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SEARCH_ARG_TOWN",
+						"arg_example" => "Torquay"
+						),
+					array (
+						"argument" => "feature_uids",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SEARCH_ARG_FEATURE_UIDS",
+						"arg_example" => "[32,3,5]"
+						),
+					array (
+						"argument" => "room_type",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SEARCH_ARG_ROOM_TYPE",
+						"arg_example" => "2"
+						),
+					array (
+						"argument" => "ptype",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SEARCH_ARG_PTYPE",
+						"arg_example" => "1"
+						),
+					array (
+						"argument" => "priceranges",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SEARCH_ARG_PRICERANGES",
+						"arg_example" => "100-200"
+						),
+					array (
+						"argument" => "guestnumber",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SEARCH_ARG_GUESTNUMBER",
+						"arg_example" => "1"
+						),
+					array (
+						"argument" => "stars",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SEARCH_ARG_STARS",
+						"arg_example" => "4"
+						),
+					array (
+						"argument" => "arrivalDate",
+						"arg_info" => "_JOMRES_SHORTCODES_06000SEARCH_ARG_ARRIVALDATE",
+						"arg_example" => date("Y/m/d", strtotime(date("Y/m/d")."+1 day"))
+						)
+					)
+				);
 			return;
 			}
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
