@@ -40,6 +40,7 @@ class j16000asamodule_report
 			$output[ 'SHORTCODE_DESCRIPTION' ]	= jr_gettext( 'SHORTCODE_DESCRIPTION', 'SHORTCODE_DESCRIPTION',false );
 			$output[ 'SHORTCODE_ARGUMENTS' ]	= jr_gettext( 'SHORTCODE_ARGUMENTS', 'SHORTCODE_ARGUMENTS',false );
 			$output[ 'SHORTCODE_EXAMPLE' ]		= jr_gettext( 'SHORTCODE_EXAMPLE', 'SHORTCODE_EXAMPLE',false );
+			$output[ '_JOMRES_SHORTCODES_TRIGGERS' ]= jr_gettext( '_JOMRES_SHORTCODES_TRIGGERS', '_JOMRES_SHORTCODES_TRIGGERS',false );
 			
 			$rows=array();
 			foreach ($shortcodes as $key=>$trigger )
@@ -84,9 +85,9 @@ class j16000asamodule_report
 						$arg_str = '';
 						if (count($arguments) > 0 )
 							{
-							foreach ($arguments as $key=>$example)
+							foreach ($arguments as $parameter=>$example)
 								{
-								$arg_str .= '&'.$key.'='.$example;
+								$arg_str .= '&'.$parameter.'='.$example;
 								}
 							
 							if ( this_cms_is_wordpress() )
