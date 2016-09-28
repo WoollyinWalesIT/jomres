@@ -70,6 +70,9 @@ class jomres_media_centre_images
 			return;
 			}
 		
+		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$current_property_details->gather_data( $property_id );
+		
 		//get all images for this property id
 		if ( !isset( $this->multi_query_images[$property_id]) )
 			{
@@ -79,11 +82,7 @@ class jomres_media_centre_images
 		//property images
 		$this->images['property'] = array();
 
-		if ( isset($this->multi_query_images[$property_id]['property']) )
-			{
-			$this->images['property'] = $this->multi_query_images[$property_id]['property'];
-			}
-		else
+		if ( !isset($this->multi_query_images[$property_id]['property']) )
 			{
 			$this->images ['property'][0][] = array ( 
 													"large" =>  $this->multi_query_images[ 'noimage-large' ] ,
@@ -96,34 +95,10 @@ class jomres_media_centre_images
 		//room images
 		$this->images['rooms'] = array();
 		
-		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-		$current_property_details->gather_data( $property_id );
-		
-		if ( isset($this->multi_query_images[$property_id]['rooms']) )
-			{
-			$this->images['rooms'] = $this->multi_query_images[$property_id]['rooms'];
-			}
-		
-		foreach ( $current_property_details->rooms as $room_id)
-			{
-			if ( !array_key_exists($room_id, $this->images['rooms']) )
-				{
-				$this->images[ 'rooms' ] [ $room_id ] [] = array ( 
-					"large" =>  $this->multi_query_images[ 'noimage-large' ] ,
-					"medium" =>  $this->multi_query_images[ 'noimage-medium' ] ,
-					"small" =>  $this->multi_query_images[ 'noimage-small' ] 
-					);
-				}
-			}
-		
 		//slideshow images
 		$this->images['slideshow'] = array();
 		
-		if ( isset($this->multi_query_images[$property_id]['slideshow']) )
-			{
-			$this->images['slideshow'] = $this->multi_query_images[$property_id]['slideshow'];
-			}
-		else
+		if ( !isset($this->multi_query_images[$property_id]['slideshow']) )
 			{
 			$this->images ['slideshow'][0][] = array ( 
 													"large" =>  $this->multi_query_images[ 'noimage-large' ] ,
@@ -135,17 +110,26 @@ class jomres_media_centre_images
 		//room features images
 		$this->images['room_features'] = array();
 		
-		if ( isset($this->multi_query_images[$property_id]['room_features']) )
-			{
-			$this->images['room_features'] = $this->multi_query_images[$property_id]['room_features'];
-			}
-		
 		//extras images
 		$this->images['extras'] = array();
 		
-		if ( isset($this->multi_query_images[$property_id]['extras']) )
+		//populate the images array
+		foreach ( $this->multi_query_images[$property_id] as $k => $v )
 			{
-			$this->images['extras'] = $this->multi_query_images[$property_id]['extras'];
+			$this->images[ $k ] = $v;				
+			}
+		
+		//add default images for each room if no other images are set
+		foreach ( $current_property_details->rooms as $room_id)
+			{
+			if ( !array_key_exists($room_id, $this->images[ 'rooms' ]) )
+				{
+				$this->images[ 'rooms' ] [ $room_id ] [0] = array ( 
+					"large" =>  $this->multi_query_images[ 'noimage-large' ] ,
+					"medium" =>  $this->multi_query_images[ 'noimage-medium' ] ,
+					"small" =>  $this->multi_query_images[ 'noimage-small' ] 
+					);
+				}
 			}
 		
 		return $this->images;
