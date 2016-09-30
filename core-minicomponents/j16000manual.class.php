@@ -42,7 +42,7 @@ class j16000manual
 			<div class="' . $class . '" style="width:100%;">
 			<div style="' . $style . '">
 			<div class="alert alert-info">Congratulations, you\'ve found the manual! You\'re the kind of user who appreciates the time and effort it\'s taken to write the documentation and by way of thanks we\'d like to offer you this 5% discount code you can use on your next Jomres purchase. Just use the code <strong>DocLover</strong> when at the Jomres checkout page.</div>
-			<iframe src="https://www.jomres.net/manual/" width="100%" height="3000" id="tickets" marginheight="0" frameborder="0">You need to enable frames in your browser to view this content.</iframe> 
+			<a href="https://www.jomres.net/manual/" target="_blank" class="btn btn-primary">Manual</a>
 			</div></div>
 			';
 		}
