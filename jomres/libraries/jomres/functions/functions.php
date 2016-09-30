@@ -4645,7 +4645,7 @@ function scandir_getfiles_recursive( $directory, $recursive = true, $listDirs = 
 					{
 					if ( $recursive )
 						{
-						$arrayItems = array_merge( $arrayItems, scandir_getfiles_recursive( $directory . $file, $recursive, $listDirs, $listFiles, $exclude ) );
+						$arrayItems = array_merge( $arrayItems, scandir_getfiles_recursive( $directory . $file . DIRECTORY_SEPARATOR , $recursive, $listDirs, $listFiles, $exclude ) );
 						}
 					if ( $listDirs )
 						{
