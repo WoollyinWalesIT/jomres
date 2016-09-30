@@ -30,7 +30,7 @@ class j10002asamodule_report
 		
 		$this->cpanelButton = null;
 
-		if ($jrConfig[ 'advanced_site_config' ] == "1" && !this_cms_is_wordpress() )
+		if ($jrConfig[ 'advanced_site_config' ] == "1" )
 			{
 			$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
 			$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . '&task=asamodule_report', 'EditText.png', jr_gettext( "_JOMRES_SHORTCODES", '_JOMRES_SHORTCODES', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS', false, false ) );

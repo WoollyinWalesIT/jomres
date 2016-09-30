@@ -41,8 +41,7 @@ class j16000about_shortcodes
 		<div class="' . $class . '" style="width:100%;">
 		<div style="' . $style . '">
 		<div class="alert alert-info">To use shortcodes, you will need to install the Jomres Shortcodes plugin in the Jomres plugin manager. You do not <i>need</i> to use shortcodes to access Jomres via the frontend, shortcodes are often used for outputting modules or widgets in certain sections to suit your own tastes.</div>
-		<iframe src="http://www.jomres.net/manual/developers-guide/305-shortcodes" width="100%" height="3000" id="tickets" marginheight="0" frameborder="0">You need to enable frames in your browser to view this content.</iframe> 
-		
+		<a href="http://www.jomres.net/manual/developers-guide/305-shortcodes" target="_blank" class="btn btn-primary">Manual page<a/>
 		
 		
 		</div></div>
