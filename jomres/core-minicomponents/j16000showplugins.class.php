@@ -72,19 +72,19 @@ class j16000showplugins
 		$key_validation  = new jomres_check_support_key( JOMRES_SITEPAGE_URL_ADMIN . "&task=showplugins" );
 		$this->key_valid = $key_validation->key_valid;
 
-		if($key_validation->is_trial_license =="1" && !extension_loaded("IonCube Loader")) 
-			{     
+		if($key_validation->is_trial_license =="1" && !extension_loaded("IonCube Loader") && trim($key_validation->key_hash) != "" )
+			{
 			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN . "&task=loader_wizard" );
 			}
-			
+
 		if($key_validation->is_trial_license =="1")
 			{
-			if (function_exists('ioncube_loader_version')) 
+			if (function_exists('ioncube_loader_version'))
 				{
 				$ioncubeVersion = ioncube_loader_version();
 				$ioncubeMajorVersion = (int)substr($ioncubeVersion, 0, strpos($ioncubeVersion, '.'));
 				$ioncubeMinorVersion = (int)substr($ioncubeVersion, strpos($ioncubeVersion, '.')+1);
-				if ($ioncubeMajorVersion < 5 || ($ioncubeMajorVersion == 0 && $ioncubeMinorVersion < 21 )) 
+				if ($ioncubeMajorVersion < 5 || ($ioncubeMajorVersion == 0 && $ioncubeMinorVersion < 21 ))
 					{
 					echo "<p class='alert alert-warning'>Uh oh, Ioncube loaders are installed, however they may be too old to run these scripts.</p><p>Please visit <a href='http://www.ioncube.com/loaders.php' target='_blank'>Ioncube's website</a> to download the most current versions of the loader wizard. This will walk you through installing the loaders. Alternatively, ask your hosts for help.</p>";
 					return;
@@ -98,7 +98,7 @@ class j16000showplugins
 
 		$current_licenses = array ();
 
-		if ( $this->key_valid ) 
+		if ( $this->key_valid )
 			{
 			$developer_user = true;
 			}
@@ -125,23 +125,23 @@ class j16000showplugins
 		foreach ( $rp_array as $rp )
 			{
 			$price_known = true;
-			if ( !isset( $rp->price ) ) 
+			if ( !isset( $rp->price ) )
 				$price_known = false;
 
-			$remote_plugins[trim( jomres_sanitise_string( @$rp->name ) ) ] = array ( 
-					"name" => trim( jomres_sanitise_string( @$rp->name ) ), 
-					"version" => (float) @$rp->version, 
-					"lastupdate" => jomres_sanitise_string( @$rp->lastupdate ), 
-					"description" => jomres_sanitise_string( @$rp->description ), 
-					"type" => jomres_sanitise_string( @$rp->type ), 
-					"min_jomres_ver" => jomres_sanitise_string( @$rp->min_jomres_ver ), 
-					"price" => @$rp->price, 
-					"manual_link" => jomres_sanitise_string( @$rp->manual_link ), 
-					"change_log" => jomres_sanitise_string( @$rp->change_log ), 
-					"highlight" => jomres_sanitise_string( @$rp->highlight ), 
-					"image" => jomres_sanitise_string( @$rp->image ), 
+			$remote_plugins[trim( jomres_sanitise_string( @$rp->name ) ) ] = array (
+					"name" => trim( jomres_sanitise_string( @$rp->name ) ),
+					"version" => (float) @$rp->version,
+					"lastupdate" => jomres_sanitise_string( @$rp->lastupdate ),
+					"description" => jomres_sanitise_string( @$rp->description ),
+					"type" => jomres_sanitise_string( @$rp->type ),
+					"min_jomres_ver" => jomres_sanitise_string( @$rp->min_jomres_ver ),
+					"price" => @$rp->price,
+					"manual_link" => jomres_sanitise_string( @$rp->manual_link ),
+					"change_log" => jomres_sanitise_string( @$rp->change_log ),
+					"highlight" => jomres_sanitise_string( @$rp->highlight ),
+					"image" => jomres_sanitise_string( @$rp->image ),
 					"demo_url" => addslashes( @$rp->demo_url ),
-					"retired" => (bool) @$rp->retired  
+					"retired" => (bool) @$rp->retired
 				);
 			}
 
@@ -201,11 +201,11 @@ class j16000showplugins
 							$info = new $cname();
 							// When developing it's easy to incorrectly rename a plugin info.php file. Uncomment the next line and run showplugins again to see which was the last plugin info that was called correctly before the script crashed
 							// echo $cname."<br/>";
-							
+
 							$info->data['encoded'] = $encoded; // This is used later on to indicate if the plugin is encoded.
 							$info->data['encoded_icon'] = $fa_icon; // This is used later on to indicate if the plugin is encoded.
 							$installed_plugins[ $info->data[ 'name' ] ] = $info->data;
-							
+
 							}
 						}
 					}
@@ -252,7 +252,7 @@ class j16000showplugins
 			{
 			if (!isset($tpp[ 'type' ]))
 				$tpp[ 'type' ] = "Unknown";
-			
+
 			$type              = $tpp[ 'type' ];
 			$n                 = $tpp[ 'name' ];
 			$row_class         = 'availablefordownload';
@@ -275,14 +275,14 @@ class j16000showplugins
 			$r[ 'ROWCLASS' ]      = $row_class;
 			$r[ 'NAME' ]          = $tpp[ 'name' ];
 			$r[ 'LOCALVERSION' ]  = $local_version;
-			
+
 			if (!isset($tpp[ 'authoremail' ]))
 				$tpp[ 'authoremail' ] = "Unknown";
 			if (!isset($tpp[ 'author' ]))
 				$tpp[ 'author' ] = "Unknown";
 			if (!isset($tpp[ 'description' ]))
 				$tpp[ 'description' ] = "Unknown";
-			
+
 			$r[ 'DESCRIPTION' ]   = stripslashes( $tpp[ 'description' ] );
 			$r[ 'AUTHOR' ]        = stripslashes( $tpp[ 'author' ] );
 			$r[ 'AUTHOREMAIL' ]   = stripslashes( $tpp[ 'authoremail' ] );
@@ -294,7 +294,7 @@ class j16000showplugins
 
 		////////////////////////////////////////////////////// Remote plugins
 		$span = 12;
-		if ( $developer_user ) 
+		if ( $developer_user )
 			$span = 11;
 		$output[ 'SPAN' ] = $span;
 
@@ -309,7 +309,7 @@ class j16000showplugins
 
 		$plugins_needing_upgrading = array ();
 		$all_installed_plugins = array ();
-		
+
 		$button_disabled_text = "";
 		if (!$this->key_valid)
 			{
@@ -322,9 +322,9 @@ class j16000showplugins
 				$button_disabled_text = " ui-state-disabled ";
 				}
 			}
-		
+
 		$retired_plugins = array();
-		
+
 		$output[ 'HPLUGINPRICE' ] = '';
 		if ( !$developer_user && $key_validation->shop_status == "OPEN" )
 			{
@@ -337,9 +337,9 @@ class j16000showplugins
 
 			$type        = $rp[ 'type' ];
 			$plugin_name = $rp[ 'name' ];
-			if ( $developer_user ) 
+			if ( $developer_user )
 				$n = $rp[ 'name' ];
-			elseif ( array_key_exists( $plugin_name, $current_licenses ) ) 
+			elseif ( array_key_exists( $plugin_name, $current_licenses ) )
 				$n = $plugin_name . "&plugin_key=" . $current_licenses[ $plugin_name ];
 			else
 				$n = $rp[ 'name' ];
@@ -380,7 +380,7 @@ class j16000showplugins
 				$r['ENCODED_ICON'] = $installed_plugins[ $plugin_name ] ['encoded_icon'];
 			else
 				$r['ENCODED_ICON'] ='';
-			
+
 			$r[ 'UNINSTALL_LINK' ] = '';
 			$r[ 'UNINSTALL_TEXT' ] = '';
 			$r[ 'UNINSTALL' ]      = '';
@@ -397,7 +397,7 @@ class j16000showplugins
 				$local_version = $installed_plugins[ $plugin_name ][ 'version' ];
 			else
 				$local_version ='';
-			
+
 			if ( !array_key_exists( $plugin_name, $installed_plugins ) ) $local_version = "N/A";
 
 			$style = "";
@@ -442,7 +442,7 @@ class j16000showplugins
 				$r[ 'HIGHLIGHT' ] = $rp[ 'highlight' ];
 				$r[ 'HIGHLIGHT_CLASS' ] = 'alert alert-warning';
 				}
-			
+
 			$readable_name        = ucwords( " " . str_replace( "_", " ", $rp[ 'name' ] ) );
 			$r[ 'READABLE_NAME' ] = $readable_name;
 
@@ -471,12 +471,12 @@ class j16000showplugins
 			else
 				$condition = 0;
 
-			if ( $condition == 1 ) 
+			if ( $condition == 1 )
 				$r[ 'LATERVERSION' ] = "";
 
 			if ( $condition == 1 && ( array_key_exists( $rp[ 'name' ], $current_licenses ) || $developer_user ) )
 				{
-				if ( using_bootstrap() ) 
+				if ( using_bootstrap() )
 					{
 					$r[ 'INSTALL' ] = '<a href="' . $r[ 'INSTALL_LINK' ] . '" class="btn btn-primary"  >' . $r[ 'INSTALL_TEXT' ] . '</a>';
 					}
@@ -522,14 +522,14 @@ class j16000showplugins
 				else
 					{
 					$r[ 'ADD_TO_CART_BUTTON' ] = "Not for sale" ;
-					
+
 					}
 				}
 			else
 				{
 				$r[ 'ADD_TO_CART_BUTTON' ] = "" ;
 				}
-				
+
 
 			if ( using_bootstrap() )
 				{
@@ -556,7 +556,7 @@ class j16000showplugins
 			$r[ 'ROWCLASS' ] = $row_class;
 
 			$r[ 'STYLE' ] = $style;
-			
+
 			if ( substr($rp[ 'name' ],0 , 4 ) != "api_")
 				{
 				if (  $rp[ 'retired' ] && array_key_exists( $rp[ 'name' ], $installed_plugins ) )
@@ -587,7 +587,7 @@ class j16000showplugins
 					}
 				}
 			}
-		
+
 		// We'll move retired api plugins to the top of the list
 		if (count($retired_plugins)>0)
 			{
@@ -602,15 +602,22 @@ class j16000showplugins
 					}
 				}
 			}
-		
+
 		$output[ 'INSTALLED_PLUGINS' ] = implode( ",", $all_installed_plugins );
 		$output[ 'PLUGINS_TO_UPGRADE' ] = implode( ",", $plugins_needing_upgrading );
-		
-		if ( $this->key_valid ) 
+
+		if ( $this->key_valid )
 			$plugins_require_upgrade[ ][ 'upgrade_text' ] = 'Upgrade all Core plugins. You must upgrade Jomres first before upgrading plugins.';
-		
+
 		if (!isset($plugins_require_upgrade))
 			$plugins_require_upgrade = array();
+
+		$plugins_reinstall = array();
+		if ($this->key_valid)
+			{
+			$plugins_reinstall[]['REINSTALL_TEXT'] = 'Reinstall all installed plugins';
+			}
+
 		$pageoutput[ ] = $output;
 		$tmpl          = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
@@ -621,6 +628,7 @@ class j16000showplugins
 		$tmpl->addRows( 'jomresdotnet_plugins', $jomresdotnet_plugins );
 		$tmpl->addRows( 'jomresdotnet_apiplugins', $jomresdotnet_apiplugins );
 		$tmpl->addRows( 'plugins_require_upgrade', $plugins_require_upgrade );
+		$tmpl->addRows( 'reinstall_plugins', $plugins_reinstall );
 
 		$tmpl->readTemplatesFromInput( 'plugin_manager.html' );
 		$tmpl->displayParsedTemplate();

@@ -1326,6 +1326,9 @@ class jomres_obsolete_file_handling
 		$this->add_obs_dir( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'joomla35' . JRDS );
 		$this->add_obs_dir( $this->dir_libraries . 'jomres' . JRDS . 'cms_specific' . JRDS . 'joomla36' . JRDS );
 		$this->add_obs_file( $this->dir_javascript . 'jquery-2.0.3.js' );
+		
+		$this->add_obs_file( $this->dir_minicomponents . 'j10002zzz_about_asamodule.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000about_asamodule.class.php' );
 		}
 
 	function add_obs_file( $path_and_file )
