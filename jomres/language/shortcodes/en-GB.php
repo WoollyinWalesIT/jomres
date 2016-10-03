@@ -120,3 +120,9 @@ jr_define( '_JOMRES_SHORTCODES_06000ASAMODULE_SPECIFIC_PROPERTIES', "Displays a 
 jr_define( '_JOMRES_SHORTCODES_06000ASAMODULE_SPECIFIC_PROPERTIES_ARG_ASAMODULE_SP_UIDS', "The property ids of the properties you want to show." );
 jr_define( '_JOMRES_SHORTCODES_06000ASAMODULE_SPECIFIC_PROPERTIES_ARG_ASAMODULE_SP_VERTICAL', "Set to 1 to show the modules optimised for a vertical widget/module position." );
 
+jr_define( '_JOMRES_SHORTCODES_06000EXCHANGE_RATE_CONVERSION_SELECTOR', "Displays the currency selection dropdown." );
+jr_define( '_JOMRES_SHORTCODES_06000EXCHANGE_RATE_CONVERSION_SELECTOR_ARG_ALTERNATE_TEMPLATE', "Enable/disable the alternate template output. This output is intended for use in Bootstrap toolbars." );
+
+jr_define( '_JOMRES_SHORTCODES_06000SHOW_CART', "Displays the Shopping Cart page." );
+
+jr_define( '_JOMRES_SHORTCODES_06000SHOW_CART_MODULE', "Displays the Shopping Cart module/widget." );

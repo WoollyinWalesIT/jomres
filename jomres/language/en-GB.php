@@ -3047,9 +3047,9 @@ jr_define( "_JOMRES_PERMIT_NUMBER_DESCRIPTION", "Some countries legislate that y
 
 jr_define( '_JOMRES_SHORTCODES', "Shortcodes" );
 
-jr_define( '_JOMRES_SHORTCODES_TRIGGERS', "Different triggers determine who can see the script's output. 06000 triggers can be viewed by anybody. 06001 by receptionists and managers, 06002 managers only, and 06005 are for any registered, logged in user. <br/>Joomla specific : Thes plg_content_jomres_asamodule_mambot plugin MUST be installed and enabled for these shortcodes to work. <br/>Wordpress specific, you must ensure that the 'Jomres Shortcodes' plugin is enabled. These can be found in the Jomres Plugin Manager." );
+jr_define( '_JOMRES_SHORTCODES_INFO_JOOMLA', "The <strong>plg_content_jomres_asamodule_mambot</strong> plugin MUST be installed and enabled for these shortcodes to work. This can be found in the Jomres Plugin Manager. If this site was built using one of the Quickstarts then it's probably already installed." );
+jr_define( '_JOMRES_SHORTCODES_INFO_WORDPRESS', "You must ensure that the <strong>'Jomres Shortcodes'</strong> plugin is enabled. This can be found in the Jomres Plugin Manager. If this site was built using one of the Quickstarts then it's probably already installed." );
 
-jr_define( 'SHORTCODE_TRIGGER', "Trigger" );
 jr_define( 'SHORTCODE_TASK', "Task" );
 jr_define( 'SHORTCODE_DESCRIPTION', "Description" );
 jr_define( 'SHORTCODE_ARGUMENTS', "Arguments" );
