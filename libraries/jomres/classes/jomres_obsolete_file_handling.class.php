@@ -1329,6 +1329,8 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file( $this->dir_minicomponents . 'j10002zzz_about_asamodule.class.php' );
 		$this->add_obs_file( $this->dir_minicomponents . 'j16000about_asamodule.class.php' );
+
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'asamodule_report.html' );
 		}
 
 	function add_obs_file( $path_and_file )

@@ -18,12 +18,14 @@ class j16000asamodule_report
 	function __construct()
 		{
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		
 		if ( $MiniComponents->template_touch )
 			{
 			$this->template_touchable = false;
 
 			return;
 			}
+			
 		jr_import("shortcode_parser");
 		$parser = new shortcode_parser();
 		$shortcodes = $parser->shortcodes;
@@ -43,8 +45,12 @@ class j16000asamodule_report
 			$output[ 'SHORTCODE_DESCRIPTION' ]	= jr_gettext( 'SHORTCODE_DESCRIPTION', 'SHORTCODE_DESCRIPTION',false );
 			$output[ 'SHORTCODE_ARGUMENTS' ]	= jr_gettext( 'SHORTCODE_ARGUMENTS', 'SHORTCODE_ARGUMENTS',false );
 			$output[ 'SHORTCODE_EXAMPLE' ]		= jr_gettext( 'SHORTCODE_EXAMPLE', 'SHORTCODE_EXAMPLE',false );
-			$output[ '_JOMRES_SHORTCODES_TRIGGERS' ]= jr_gettext( '_JOMRES_SHORTCODES_TRIGGERS', '_JOMRES_SHORTCODES_TRIGGERS',false );
 			
+			if ( this_cms_is_wordpress() )
+				$output[ 'INFO' ]= jr_gettext( '_JOMRES_SHORTCODES_INFO_WORDPRESS', '_JOMRES_SHORTCODES_INFO_WORDPRESS',false );
+			else
+				$output[ 'INFO' ]= jr_gettext( '_JOMRES_SHORTCODES_INFO_JOOMLA', '_JOMRES_SHORTCODES_INFO_JOOMLA',false );
+		
 			$rows=array();
 			foreach ($shortcodes as $key=>$trigger )
 				{
@@ -128,6 +134,10 @@ class j16000asamodule_report
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $rows );
 			$tmpl->displayParsedTemplate();
+			}
+		else
+			{
+			echo "Error, shortcodes cannot be displayed. Try rebuilding the registry then come back to this page.";
 			}
 		}
 
