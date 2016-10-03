@@ -1,3 +1,24 @@
+<h3>Jomres 9.8.13 03/10/2016</h3>
+
+<span class="label label-success">Feature</span> Added functionality that allows us to dynamically add shortcode data to the system, passed directly from minicomponents. 
+<span class="label label-success">Feature</span> Repurposed ASAModule report to output information about shortcodes. 
+<span class="label label-success">Feature</span> Added a shortcode parser that can return shortcode data.
+
+
+<span class="label label-warning">Change</span> Updated help pages in admin area. New security protocols on jomres.net pages were preventing help pages from showing in iframes.
+<span class="label label-warning">Change</span> Improved plugin manager to only show the reinstall button when the key is valid.
+<span class="label label-warning">Change</span> Removed some redundant help scripts as they're no longer needed.
+<span class="label label-warning">Change</span> Added a number of changes to get around the Mysql 5.7 Strict NO_ZERO_DATES limitation.
+<span class="label label-warning">Change</span> Removed Joomla3.x specific versions of library files, which were created back in 2012 in anticipation of more significant version changes given Joomla's past history of significant backward compatability changes. As J3.x is now much more B/C friendly these are no longer required. The downside is that anybody running a very old version of J3.x might have problems running Jomres, but in this day and age it's trivially easy to upgrade Joomla.
+<span class="label label-warning">Change</span> Added changes relating to how we cleanup sessions.
+<span class="label label-warning">Change</span> Improved and simplified the media centre class.
+<span class="label label-warning">Change</span> Tweaked how directories are built on recursive directory scans.
+
+<span class="label label-important label-danger">Fix</span> Fix intermittent 404 error in wp when submitting a booking.
+<span class="label label-important label-danger">Fix</span> Fixed a bug where the media centre could find the wrong images for a property, consolidated how directories are scanned ( modest performance improvement ).
+<span class="label label-important label-danger">Fix</span> Changed how two columns are modified during upgrade so that they don't throw mysql errors.
+
+
 <h3>Jomres 9.8.12 20/09/2016</h3>
 
 <span class="label label-success">Feature</span> Added permit number to Property Details fields for users in those countries that must show a permit/registration number.
