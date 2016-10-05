@@ -18,8 +18,12 @@ class j16000showplugins
 	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		jr_import( 'minicomponent_registry' );
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+		if ( $MiniComponents->template_touch )
+			{
+			$this->template_touchable = false;
+			return;
+			}
 
 		if ( isset( $_REQUEST[ 'purchase' ] ) )
 			{
@@ -30,15 +34,11 @@ class j16000showplugins
 			exit;
 			}
 
-		$registry = new minicomponent_registry( true );
-		$registry->regenerate_registry();
+		$registry = jomres_singleton_abstract::getInstance( 'minicomponent_registry' );
+		$registry->regenerate_registry(true);
+		
 		jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "shop.js" );
 		jomres_cmsspecific_addheaddata( "javascript", JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.blockUI.js" );
-		if ( $MiniComponents->template_touch )
-			{
-			$this->template_touchable = false;
-
-			}
 
 		include( JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . 'jomres_config.php' );
 		$this_jomres_version = explode( ".", $mrConfig[ 'version' ] );

@@ -120,11 +120,5 @@ class jomres_singleton_abstract
 
 function jomres_getSingleton( $class, $args = array () )
 	{
-	static $results;
-	if ( !isset( $results[ $class ] ) )
-		{
-		$results[ $class ] = jomres_singleton_abstract::getInstance( $class, $args );
-		}
-
-	return $results[ $class ];
+	return jomres_singleton_abstract::getInstance( $class, $args );
 	}

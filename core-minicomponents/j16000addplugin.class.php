@@ -562,9 +562,9 @@ class j16000addplugin
 					}
 				}
 
-			jr_import( 'minicomponent_registry' );
-			$registry = new minicomponent_registry( false );
+			$registry = jomres_singleton_abstract::getInstance( 'minicomponent_registry' );
 			$registry->regenerate_registry();
+	
 			emptyDir( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'cache' . JRDS );
 
 			$pageoutput[ ]     = $output;

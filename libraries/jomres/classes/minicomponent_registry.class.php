@@ -22,8 +22,9 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  */
 class minicomponent_registry
 	{
-
-	function __construct( $force_reload_allowed = false )
+	private static $configInstance;
+	
+	function __construct()
 		{
 		$this->registeredClasses          	= array ();
 		$this->miniComponentDirectories   	= array ();
@@ -32,88 +33,92 @@ class minicomponent_registry
 		$this->nonOverridableEventClasses 	= array ();
 		$this->error_detected            	= false;
 		$this->unWantedFolderContents     	= array ( '.', '..', 'cvs', '.svn', 'registry.php' );
-		$this->remote_plugin_directory    	= JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS;
+		$this->temp_directory    			= JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS;
 		$this->registry_file        		= JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "registry.php";
-		$this->now                  		= time();
 		
 		if (file_exists($this->registry_file))
 			$this->original_filesize    		= @filesize( $this->registry_file ); // @to prevent notices when the file doesn't exist at all
 		else
 			$this->original_filesize			= 0;
 			
-		$scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
-		if ( !strstr( $scriptname, 'install_jomres.php' ) )
+		if ( !defined('AUTO_UPGRADE') )
 			{
-			if ( !is_dir( $this->remote_plugin_directory ) )
+			if ( !is_dir( $this->temp_directory ) )
 				{
-				mkdir( $this->remote_plugin_directory );
+				mkdir( $this->temp_directory );
 				}
-			
-			$this->force_reload_allowed = $force_reload_allowed;
 			
 			if ( !file_exists( $this->registry_file ) )
 				{
 				$this->regenerate_registry();
+				$this->new_filesize = filesize( $this->registry_file );
 				}
 			
 			require_once( $this->registry_file );
 			jr_import( 'jomres_mc_registry' );
 			$registry                       = new jomres_mc_registry();
-			$lastGenerated                  = $registry->mcRegistry_now;
+			
 			$this->registeredClasses        = unserialize( $registry->mcRegistry_registry_serialized );
 			$this->miniComponentDirectories = unserialize( $registry->miniComponentDirectories );
+			
 			unset( $registry );
-
-			$this->new_filesize = filesize( $this->registry_file );
 			}
+		}
+	
+	public static function getInstance()
+		{
+		if ( !self::$configInstance )
+			{
+			self::$configInstance = new minicomponent_registry();
+			}
+
+		return self::$configInstance;
 		}
 
 	function get_registered_classes()
 		{
 		return $this->registeredClasses;
-		unset ( $this->registeredClasses );
 		}
 
 	function get_minicomponent_directories()
 		{
 		return $this->miniComponentDirectories;
-		unset ( $this->miniComponentDirectories );
 		}
 
-	function regenerate_registry()
+	function regenerate_registry( $force_reload_allowed = false )
 		{
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
+		
 		if ( !isset( $jrConfig[ 'safe_mode' ] ) ) 
 			$jrConfig[ 'safe_mode' ] = "0";
 
-		$this->registeredClasses = array ();
+		$this->registeredClasses 		= array();
+		$this->miniComponentDirectories = array();
+		
 		$this->getMiniComponentCoreClasses();
 		$this->getMiniComponentCMSSpecificClasses();
+		
 		if ( $jrConfig[ 'safe_mode' ] == "0" )
 			{
 			$this->getMiniCorePluginsClasses();
 			$this->getMiniComponentRemoteClasses();
 		
-			$scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
-			if ( !strstr( $scriptname, 'install_jomres.php' ) )
+			if ( !defined('AUTO_UPGRADE') )
 				$this->getMiniComponentCmsTemplateClasses();
 			}
 
 		asort( $this->registeredClasses );
+		
 		$this->save_registry_file();
-		if ( $this->original_filesize != $this->new_filesize && $this->force_reload_allowed )
-			{
-			echo "<script>alert('Reloading current page as minicomponents registry has changed');</script>";
-			echo "<script>window.location.reload()</script>";
-			}
+		
+		$this->new_filesize = filesize( $this->registry_file );
 		
 		//clear cache
 		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 		$c->eraseAll();
 		
 		//delete js files in /jomres/temp dir
-		
 		if (isset($_REQUEST['task']) && $_REQUEST['task'] == "rebuildregistry")
 			{
 			$javascript_files_in_temp_dir = scandir_getfiles( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS, $extension = "js" );
@@ -122,8 +127,20 @@ class minicomponent_registry
 				unlink( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . $file );
 				}
 			}
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		$MiniComponents->build_shortcodes();
+		
+		//rebuild the shortcodes list
+		if ( !defined('AUTO_UPGRADE') )
+			{
+			$shortcode_parser = jomres_singleton_abstract::getInstance( 'shortcode_parser' );
+			$shortcode_parser->build_shortcodes( $force = true );
+			}
+		
+		//reload page if registry changed
+		if ( $this->original_filesize != $this->new_filesize && $force_reload_allowed )
+			{
+			echo "<script>alert('Reloading current page as minicomponents registry has changed');</script>";
+			echo "<script>window.location.reload();</script>";
+			}
 		}
 		
 	function save_registry_file()
@@ -159,14 +176,14 @@ class jomres_mc_registry
 	}
 ";
 		$nowVar                         = '
-		$this->mcRegistry_now=' . $this->now . ';';
+		$this->mcRegistry_now=' . time() . ';';
 		$registryVar                    = '
 		$this->mcRegistry_registry_serialized=\'' . $registered_classes . '\';';
 		$directoryVar                   = '
 		$this->miniComponentDirectories=\'' . $directories . '\';';
 		$fileText                       = $safety_string . $class_structure_start . $nowVar . $registryVar . $directoryVar . $class_structure_end;
-		$scriptname                     = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
-		if ( !strstr( $scriptname, 'install_jomres.php' ) )
+		
+		if ( !defined('AUTO_UPGRADE') )
 			{
 			$fp = fopen( $this->registry_file, 'w' );
 			fwrite( $fp, $fileText );

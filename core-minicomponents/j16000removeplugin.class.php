@@ -30,8 +30,7 @@ class j16000removeplugin
 		if ( $pluginName == "subsc<x>riptions" ) $pluginName = "subscriptions";
 		if ( !dropPlugin( $pluginName ) ) echo "Plugin could not be removed";
 
-		jr_import( 'minicomponent_registry' );
-		$registry = new minicomponent_registry( false );
+		$registry = jomres_singleton_abstract::getInstance( 'minicomponent_registry' );
 		$registry->regenerate_registry();
 
 		if ( !$debugging ) jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=showplugins#" . $pluginName ) );
