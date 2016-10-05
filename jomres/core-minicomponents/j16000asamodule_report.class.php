@@ -26,9 +26,8 @@ class j16000asamodule_report
 			return;
 			}
 			
-		jr_import("shortcode_parser");
-		$parser = new shortcode_parser();
-		$shortcodes = $parser->shortcodes;
+		$shortcode_parser = jomres_singleton_abstract::getInstance( 'shortcode_parser' );
+		$shortcode_parser->get_shortcodes();
 		
 		$jomres_language = jomres_singleton_abstract::getInstance( 'jomres_language' );
 		$jomres_language->get_language("shortcodes");
@@ -37,7 +36,7 @@ class j16000asamodule_report
 		$rows		=array();
 		$pageoutput	=array();
 		
-		if (count($shortcodes)>0)
+		if ( is_array($shortcode_parser->shortcodes) )
 			{
 			$output[ 'PAGETITLE' ]				= jr_gettext( '_JOMRES_SHORTCODES', '_JOMRES_SHORTCODES',false );
 			$output[ 'SHORTCODE_TRIGGER' ]		= jr_gettext( 'SHORTCODE_TRIGGER', 'SHORTCODE_TRIGGER',false );
@@ -52,7 +51,7 @@ class j16000asamodule_report
 				$output[ 'INFO' ]= jr_gettext( '_JOMRES_SHORTCODES_INFO_JOOMLA', '_JOMRES_SHORTCODES_INFO_JOOMLA',false );
 		
 			$rows=array();
-			foreach ($shortcodes as $key=>$trigger )
+			foreach ($shortcode_parser->shortcodes as $key=>$trigger )
 				{
 				if (count($trigger)>0)
 					{

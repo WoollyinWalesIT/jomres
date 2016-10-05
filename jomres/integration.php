@@ -107,8 +107,6 @@ $showtime = jomres_singleton_abstract::getInstance( 'showtime' );
 $performance_monitor = jomres_singleton_abstract::getInstance( 'jomres_performance_monitor' );
 $performance_monitor->set_point( "pre-inclusions" );
 
-$scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
-
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "site_config.php" );
 require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "detect_cms.php" );
 require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "init_config_vars.php" );
@@ -202,14 +200,17 @@ if ( !defined( 'JOMRES_IMAGELOCATION_ABSPATH' ) )
 set_showtime( 'tmplcomponent', 'jomres' );
 set_showtime( 'tmplcomponent_source', JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'libraries' . JRDS . 'fullscreen_view' . JRDS . "jomres.php" );
 
-if ( !strstr( $scriptname, 'install_jomres.php' ) )
+if ( !defined('AUTO_UPGRADE') )
 	jomres_cmsspecific_patchJoomlaTemplate(); //copy the management_view.php renamed to jomres.php to the joomla template dir to help with fullscreen mode
 
 require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_urls.php" );
 
 //minicomponents triggering starts here
-$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-$MiniComponents->triggerEvent( '00001' ); // Start
+if ( !defined('AUTO_UPGRADE') )
+	{
+	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+	$MiniComponents->triggerEvent( '00001' ); // Start
+	}
 
 $jomres_access_control = jomres_singleton_abstract::getInstance( 'jomres_access_control' );
 
@@ -223,7 +224,7 @@ else
 	ini_set('display_errors', 'On');
 	}
 
-if ( !strstr( $scriptname, 'install_jomres.php' ) )
+if ( !defined('AUTO_UPGRADE') )
 	{
 	$jomres_geolocation = jomres_singleton_abstract::getInstance( 'jomres_geolocation' );
 	$jomres_geolocation->auto_set_user_currency_code();

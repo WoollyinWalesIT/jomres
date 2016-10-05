@@ -26,8 +26,7 @@ class j16000rebuildregistry
 			return;
 			}
 
-		jr_import( 'minicomponent_registry' );
-		$registry = new minicomponent_registry( true );
+		$registry = jomres_singleton_abstract::getInstance( 'minicomponent_registry' );
 		$registry->regenerate_registry();
 
 		if ( !using_bootstrap() )

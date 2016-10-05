@@ -256,9 +256,9 @@ if ( $folderChecksPassed && $functionChecksPassed )
 				}
 			elseif ( ACTION == "Upgrade" ) // Upgrading
 				{
-				jr_import( 'minicomponent_registry' );
-				$registry = new minicomponent_registry( true );
+				$registry = jomres_singleton_abstract::getInstance( 'minicomponent_registry' );
 				$registry->regenerate_registry();
+				
 				//output_message ( "Data already installed, no need to re-create it");
 				doTableUpdates();
 				

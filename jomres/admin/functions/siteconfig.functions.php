@@ -443,8 +443,7 @@ $jrConfig = ' . var_export($tmpConfig, true) . ';
 		}
 
 	//cleanup
-	jr_import( 'minicomponent_registry' );
-	$registry = new minicomponent_registry( false );
+	$registry = jomres_singleton_abstract::getInstance( 'minicomponent_registry' );
 	$registry->regenerate_registry();
 	
 	$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );

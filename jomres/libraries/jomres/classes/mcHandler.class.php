@@ -22,13 +22,13 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  */
 class mcHandler
 	{
-
+	private static $configInstance;
+	
 	function __construct()
 		{
-		$this->registeredClasses = array ();
-		$scriptname              = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
-		if ( strstr( $scriptname, 'install_jomres.php' ) ) 
+		if ( defined('AUTO_UPGRADE') )
 			return;
+		
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig   = $siteConfig->get();
 
@@ -37,9 +37,11 @@ class mcHandler
 		$this->template_touch           = false;
 		$this->log                      = array ();
 		$this->logging_enbled           = false;
+		
 		if ( isset( $jrConfig[ 'errorChecking' ] ) )
 			{
-			if ( $jrConfig[ 'errorChecking' ] == "1" ) $this->logging_enbled = true;
+			if ( $jrConfig[ 'errorChecking' ] == "1" ) 
+				$this->logging_enbled = true;
 			}
 
 		$this->currentEvent = "";
@@ -53,89 +55,30 @@ class mcHandler
 				exit;
 				}
 			}
-
-		jr_import( 'minicomponent_registry' );
-		$registry                       = new minicomponent_registry();
+	
+		$registry = jomres_singleton_abstract::getInstance( 'minicomponent_registry' );
+		
 		$this->registeredClasses        = $registry->get_registered_classes();
 		$this->miniComponentDirectories = $registry->get_minicomponent_directories();
-		$startPath                      = $registry->registeredClasses[ "00001start" ][ "filepath" ];
+		
+		$startPath = $registry->registeredClasses[ "00001start" ][ "filepath" ];
 		if ( !file_exists( $startPath . "j00001start.class.php" ) )
 			{
 			$registry->regenerate_registry();
+			
 			$this->registeredClasses        = $registry->get_registered_classes();
 			$this->miniComponentDirectories = $registry->get_minicomponent_directories();
 			}
 		}
-
-	function asamodule_report()
+	
+	public static function getInstance()
 		{
-		$output     = array ();
-		$pageoutput = array ();
-
-		$thisJRUser              = jomres_singleton_abstract::getInstance( 'jr_user' );
-		$mrConfig                = getPropertySpecificSettings( 0 );
-		$eventArgs               = null;
-		$mrConfig[ 'editingOn' ] = "1";
-
-		$eventClasses         = $this->registeredClasses;
-		$this->template_touch = true;
-		$output[ 'INFO' ]     = jr_gettext( '_JOMRES_ASAMODULE_REPORT_INFO', "This feature lists some minicomponents that could be called by the Jomres ASAModule Joomla module, or indeed directly through a menu option that was manually added. Additionally, you could call them via an iframe on a remote site. To include the output in an iframe you'd use the URL as provided here (manually modifying the property ids etc to suit your own requirements), but then if you click any links all subsequent pages will also be shown without headers, modules etc, so you'd be advised to add 'nofollowtmpl' to the url so that any subsequent links in that output do not also include '&tmpl=".get_showtime("tmplcomponent")."'. To show all headers, simply use the link without '&tmpl=".get_showtime("tmplcomponent")."' in the url.<br/>",false );
-
-		$rows = array ();
-
-		$asamodule_plugin_information = get_showtime( 'asamodule_plugin_information' );
-
-		foreach ( $eventClasses as $eClass )
+		if ( !self::$configInstance )
 			{
-			$ePointFilepath = $eClass[ 'filepath' ];
-			set_showtime( 'ePointFilepath', $eClass[ 'filepath' ] );
-			$classFileSuffix = '.class.php';
-			$filename        = 'j' . $eClass[ 'eventPoint' ] . $eClass[ 'eventName' ] . $classFileSuffix;
-			if ( file_exists( $eClass[ 'filepath' ] . $filename ) )
-				{
-				include_once( $eClass[ 'filepath' ] . $filename );
-				if ( $this->logging_enbled ) $this->log[ ] = $eClass[ 'filepath' ] . $filename;
-				$event     = new stdClass;
-				$ePoint    = $eClass[ 'eventPoint' ];
-				$eName     = $eClass[ 'eventName' ];
-				$eLiveSite = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' )."/", $eClass[ 'filepath' ] );
-				$eLiveSite = str_replace( JRDS, "/", $eLiveSite );
-				set_showtime( 'eLiveSite', $eLiveSite );
-				$event = 'j' . $ePoint . $eName;
-				$e     = new $event( $eventArgs );
-				if ( array_key_exists( $event, $asamodule_plugin_information ) )
-					{
-					$r            = array ();
-					$r[ 'EVENT' ] = $event;
-					$r[ 'TASK' ]  = $asamodule_plugin_information[ $event ][ 'asamodule_task' ];
-					$r[ 'INFO' ]  = $asamodule_plugin_information[ $event ][ 'asamodule_info' ];
-					$example_link = $asamodule_plugin_information[ $event ][ 'asamodule_example_link' ];
-					$manual_link  = $asamodule_plugin_information[ $event ][ 'asamodule_manual_link' ];
-					if ( using_bootstrap() )
-						{
-						if ( $asamodule_plugin_information[ $event ][ 'asamodule_example_link' ] != "" ) $r[ 'EXAMPLE_LINK' ] = '<a href="' . $example_link . '" class="btn" target="_blank">Example link</a>';
-						if ( $asamodule_plugin_information[ $event ][ 'asamodule_manual_link' ] != "" ) $r[ 'MANUAL_LINK' ] = '<a href="' . $manual_link . '" class="btn" target="_blank">Manual link</a>';
-						}
-					else
-						{
-						if ( $asamodule_plugin_information[ $event ][ 'asamodule_example_link' ] != "" ) $r[ 'EXAMPLE_LINK' ] = '<a href="' . $example_link . '" target="_blank">Example link</a>';
-						if ( $asamodule_plugin_information[ $event ][ 'asamodule_manual_link' ] != "" ) $r[ 'MANUAL_LINK' ] = '<a href="' . $manual_link . '" target="_blank">Manual link</a>';
-						}
-					$rows[ ] = $r;
-					}
-
-				unset( $e );
-				}
-
+			self::$configInstance = new mcHandler();
 			}
 
-		$pageoutput[ ] = $output;
-		$tmpl          = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'rows', $rows );
-		$tmpl->readTemplatesFromInput( 'asamodule_report.html' );
-		$tmpl->displayParsedTemplate();
+		return self::$configInstance;
 		}
 
 	function touch_templates()
@@ -183,44 +126,6 @@ class mcHandler
 				}
 			}
 		}
-
-	function build_shortcodes()
-		{
-		$eventClasses			= $this->registeredClasses;
-		$this->template_touch	= true;
-		$eventArgs				= null;
-		$shortcode_data			= array();
-		foreach ( $eventClasses as $eClass )
-			{
-			$ePointFilepath = $eClass[ 'filepath' ];
-			set_showtime( 'ePointFilepath', $eClass[ 'filepath' ] );
-			$classFileSuffix = '.class.php';
-			$filename        = 'j' . $eClass[ 'eventPoint' ] . $eClass[ 'eventName' ] . $classFileSuffix;
-			if ( file_exists( $eClass[ 'filepath' ] . $filename ) )
-				{
-				include_once( $eClass[ 'filepath' ] . $filename );
-				$event     = new stdClass;
-				$ePoint    = $eClass[ 'eventPoint' ];
-				if ( $ePoint == "06000" ||  $ePoint == "06001" ||  $ePoint == "06002" ||  $ePoint == "06005" )
-					{
-					$eName     = $eClass[ 'eventName' ];
-					$eLiveSite = str_replace( JOMRESCONFIG_ABSOLUTE_PATH, get_showtime( 'live_site' )."/", $eClass[ 'filepath' ] );
-					$eLiveSite = str_replace( JRDS, "/", $eLiveSite );
-					set_showtime( 'eLiveSite', $eLiveSite );
-					$event = 'j' . $ePoint . $eName;
-					$e     = new $event( $eventArgs );
-					if ( isset( $e->shortcode_data ) )
-						{
-						$shortcode_data[$ePoint][] = $e->shortcode_data;
-						}
-					}
-				unset( $e );
-				}
-			}
-
-		file_put_contents ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "shortcodes.serialized" , serialize($shortcode_data) );
-		}
-	
 	
 	// Acutally calls the triggered event.
 	function triggerEvent( $eventPoint, $eventArgs = null )
@@ -405,5 +310,3 @@ class mcHandler
 		return $this->miniComponentData[ $ePoint ][ $eName ];
 		}
 	}
-
-?>

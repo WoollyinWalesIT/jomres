@@ -16,8 +16,27 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class shortcode_parser
 	{
-	function __construct( )
+	private static $configInstance;
+	
+	public function __construct()
 		{
+		$this->shortcodes = false;
+		}
+
+	public static function getInstance()
+		{
+		if ( !self::$configInstance )
+			{
+			self::$configInstance = new shortcode_parser();
+			}
+
+		return self::$configInstance;
+		}
+	
+	function get_shortcodes()
+		{
+		$this->build_shortcodes();
+		
 		if ( file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "shortcodes.serialized" ) )
 			{
 			$shortcode_data = file_get_contents (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "shortcodes.serialized" );
@@ -25,13 +44,55 @@ class shortcode_parser
 			}
 		else
 			{
-			throw new Exception("Error, the shortcodes file does not exist. Try rebuilding the registry before requesting this data.");
+			throw new Exception("Error, the shortcodes file couldn`t be created.");
 			}
-
-		return $this->shortcodes;
 		}
 
+	function build_shortcodes( $force = false )
+		{
+		if ( !file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "shortcodes.serialized" ) || $force )
+			{
+			$this->shortcodes = array();
+			
+			$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+			$MiniComponents->template_touch	= true;
+			
+			$eventArgs = null;
+			
+			foreach ( $MiniComponents->registeredClasses as $eClass )
+				{
+				$classFileSuffix = '.class.php';
+				$filename        = 'j' . $eClass[ 'eventPoint' ] . $eClass[ 'eventName' ] . $classFileSuffix;
+				
+				if ( file_exists( $eClass[ 'filepath' ] . $filename ) )
+					{
+					$ePoint    = $eClass[ 'eventPoint' ];
+					
+					if ( $ePoint == "06000" ||  $ePoint == "06001" ||  $ePoint == "06002" ||  $ePoint == "06005" )
+						{
+						$eName = $eClass[ 'eventName' ];
+						$event = 'j' . $ePoint . $eName;
+						
+						include_once( $eClass[ 'filepath' ] . $filename );
+						
+						$e     = new $event( $eventArgs );
+						
+						if ( isset( $e->shortcode_data ) )
+							{
+							$this->shortcodes[$ePoint][] = $e->shortcode_data;
+							}
+						
+						unset( $e );
+						}
+					}
+				}
+			
+			file_put_contents ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "shortcodes.serialized" , serialize($this->shortcodes) );
+			
+			$MiniComponents->template_touch	= false;
+			}
+		
+		return true;
+		}
 
 	}
-
-?>
