@@ -1,3 +1,7 @@
+<h3>Jomres 9.8.14 05/10/2016</h3>
+
+<span class="label label-important label-danger">Fix</span> Improved how we access some singletons to resolve some people's intermittent performance problems.
+
 <h3>Jomres 9.8.13 03/10/2016</h3>
 
 <span class="label label-success">Feature</span> Added functionality that allows us to dynamically add shortcode data to the system, passed directly from minicomponents. 
