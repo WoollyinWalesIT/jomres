@@ -75,6 +75,67 @@ class j02990showconfirmation
 
 		$tmpBookingHandler->saveBookingData();
 		
+		$bookingDeets = gettempBookingdata();
+		
+		$guestList                    = $tmpBookingHandler->getGuestData();
+		
+/* 		if ( $mrConfig[ 'bookingform_requiredfields_name' ] == "1" && trim($guestList[ 'firstname' ]) =="" )
+			{
+			logging::log_message('Address string bookingform_requiredfields_name is a required field but passed data was incomplete' , "Core" , "ERROR" );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
+			}
+		if ( $mrConfig[ 'bookingform_requiredfields_surname' ] == "1" && trim($guestList[ 'surname' ]) =="" )
+			{
+			logging::log_message('Address string bookingform_requiredfields_surname is a required field but passed data was incomplete' , "Core" , "ERROR" );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
+			}
+		if ( $mrConfig[ 'bookingform_requiredfields_houseno' ] == "1" && trim($guestList[ 'house' ]) =="" )
+			{
+			logging::log_message('Address string bookingform_requiredfields_houseno is a required field but passed data was incomplete' , "Core" , "ERROR" );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
+			}
+		if ( $mrConfig[ 'bookingform_requiredfields_street' ] == "1" && trim($guestList[ 'street' ]) =="" )
+			{
+			logging::log_message('Address string bookingform_requiredfields_street is a required field but passed data was incomplete' , "Core" , "ERROR" );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
+			}
+		if ( $mrConfig[ 'bookingform_requiredfields_town' ] == "1" && trim($guestList[ 'town' ]) =="" )
+			{
+			logging::log_message('Address string bookingform_requiredfields_town is a required field but passed data was incomplete' , "Core" , "ERROR" );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
+			}
+		if ( $mrConfig[ 'bookingform_requiredfields_region' ] == "1" && trim($guestList[ 'region' ]) =="" )
+			{
+			logging::log_message('Address string bookingform_requiredfields_region is a required field but passed data was incomplete' , "Core" , "ERROR" );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
+			}
+		if ( $mrConfig[ 'bookingform_requiredfields_postcode' ] == "1" && trim($guestList[ 'postcode' ]) =="" )
+			{
+			logging::log_message('Address string bookingform_requiredfields_postcode is a required field but passed data was incomplete' , "Core" , "ERROR" );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
+			}
+		if ( $mrConfig[ 'bookingform_requiredfields_country' ] == "1" && trim($guestList[ 'country' ]) =="" )
+			{
+			logging::log_message('Address string bookingform_requiredfields_country is a required field but passed data was incomplete' , "Core" , "ERROR" );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
+			}
+		if ( $mrConfig[ 'bookingform_requiredfields_tel' ] == "1" && trim($guestList[ 'tel_landline' ]) =="" )
+			{
+			logging::log_message('Address string bookingform_requiredfields_tel is a required field but passed data was incomplete' , "Core" , "ERROR" );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
+			}
+		if ( $mrConfig[ 'bookingform_requiredfields_mobile' ] == "1" && trim($guestList[ 'tel_mobile' ]) =="" )
+			{
+			logging::log_message('Address string bookingform_requiredfields_mobile is a required field but passed data was incomplete' , "Core" , "ERROR" );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
+			}
+		if ( $mrConfig[ 'bookingform_requiredfields_email' ] == "1" && trim($guestList[ 'email' ]) =="" )
+			{
+			logging::log_message('Address string bookingform_requiredfields_email is a required field but passed data was incomplete' , "Core" , "ERROR" );
+			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
+			} */
+			
+
 		/* if ( !isset($_REQUEST['sk']))
 			{
 			$tmpBookingHandler->updateGuestField( 'firstname', jomresGetParam( $_POST, 'firstname', '' ) );
@@ -98,7 +159,7 @@ class j02990showconfirmation
 
 		$userIsManager = checkUserIsManager();
 
-		$bookingDeets = gettempBookingdata();
+		
 		$tag          = $bookingDeets[ 'tag' ];
 		$property_uid = (int)$bookingDeets[ 'property_uid' ];
 		
@@ -474,7 +535,7 @@ class j02990showconfirmation
 			$booking_parts[ 'HSPECIAL_REQUIREMENTS' ] = jr_gettext( '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ', '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ' );
 			$booking_parts[ 'SPECIAL_REQUIREMENTS' ]  = getEscaped( jomresGetParam( $_POST, 'specialReqs', "" ) );
 			}
-		$guestList                    = $tmpBookingHandler->getGuestData();
+		
 		$booking_parts[ 'FIRSTNAME' ] = $guestList[ 'firstname' ];
 		$booking_parts[ 'SURNAME' ]   = $guestList[ 'surname' ];
 		$booking_parts[ 'HOUSENO' ]   = $guestList[ 'house' ];
