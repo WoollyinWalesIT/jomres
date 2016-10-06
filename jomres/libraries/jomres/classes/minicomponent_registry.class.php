@@ -54,14 +54,8 @@ class minicomponent_registry
 				$this->new_filesize = filesize( $this->registry_file );
 				}
 			
-			require_once( $this->registry_file );
-			jr_import( 'jomres_mc_registry' );
-			$registry                       = new jomres_mc_registry();
-			
-			$this->registeredClasses        = unserialize( $registry->mcRegistry_registry_serialized );
-			$this->miniComponentDirectories = unserialize( $registry->miniComponentDirectories );
-			
-			unset( $registry );
+			//this loads the registry items in $this->registeredClasses and $this->miniComponentDirectories
+			include_once( $this->registry_file );
 			}
 		}
 	
@@ -156,42 +150,21 @@ class minicomponent_registry
 				}
 			$existed = true;
 			}
-
-
-		$safety_string                  = "<?php
-// ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
-// ################################################################
-		";
-		$registered_classes             = serialize( $this->registeredClasses );
-		$this->miniComponentDirectories = array_unique( $this->miniComponentDirectories );
-		$directories                    = serialize( $this->miniComponentDirectories );
-		$class_structure_start          = "
-class jomres_mc_registry
-	{
-	function __construct()
-		{";
-		$class_structure_end            = "
-		}
-	}
-";
-		$nowVar                         = '
-		$this->mcRegistry_now=' . time() . ';';
-		$registryVar                    = '
-		$this->mcRegistry_registry_serialized=\'' . $registered_classes . '\';';
-		$directoryVar                   = '
-		$this->miniComponentDirectories=\'' . $directories . '\';';
-		$fileText                       = $safety_string . $class_structure_start . $nowVar . $registryVar . $directoryVar . $class_structure_end;
 		
-		if ( !defined('AUTO_UPGRADE') )
+		$this->miniComponentDirectories = array_unique( $this->miniComponentDirectories );
+		
+		if (!file_put_contents($this->registry_file, 
+'<?php
+##################################################################
+defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
+##################################################################
+
+$this->registeredClasses = ' . var_export($this->registeredClasses, true) . ';
+$this->miniComponentDirectories = ' . var_export($this->miniComponentDirectories, true) . ';
+'))
 			{
-			$fp = fopen( $this->registry_file, 'w' );
-			fwrite( $fp, $fileText );
-			if ( !fclose( $fp ) )
-				{
-				$this->error_detected = true;
-				error_logging( "Could not save minicomponent registry file :: " . $this->registry_file );
-				}
+			trigger_error('ERROR: '. $this->registry_file .' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
+			exit;
 			}
 		}
 
@@ -204,7 +177,7 @@ class jomres_mc_registry
 		if ( this_cms_is_joomla() )
 			{
 			$db = JFactory::getDBO();
-			$query = "SELECT template FROM #__template_styles WHERE client_id = 0 AND home = 1";
+			$query = "SELECT `template` FROM #__template_styles WHERE `client_id` = 0 AND `home` = 1";
 			$db->setQuery($query);
 			$templateName = $db->loadResult();
 	
