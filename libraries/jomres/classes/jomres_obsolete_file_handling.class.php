@@ -1401,7 +1401,8 @@ class jomres_obsolete_file_handling
 			$tmpl->addRows( 'rows', $rows );
 			$result = $tmpl->getParsedTemplate();
 
-			$registry = jomres_singleton_abstract::getInstance( 'minicomponent_registry' );
+			jr_import( 'minicomponent_registry' );
+			$registry = new minicomponent_registry( true );
 			$registry->regenerate_registry();
 
 			return $result;

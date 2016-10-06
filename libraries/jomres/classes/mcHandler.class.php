@@ -57,18 +57,14 @@ class mcHandler
 			}
 	
 		$registry = jomres_singleton_abstract::getInstance( 'minicomponent_registry' );
+
+		if ( !isset( $registry->registeredClasses[ "00001start" ][ "filepath" ] ) )
+			{
+			$registry->regenerate_registry();
+			}
 		
 		$this->registeredClasses        = $registry->get_registered_classes();
 		$this->miniComponentDirectories = $registry->get_minicomponent_directories();
-		
-		$startPath = $registry->registeredClasses[ "00001start" ][ "filepath" ];
-		if ( !file_exists( $startPath . "j00001start.class.php" ) )
-			{
-			$registry->regenerate_registry();
-			
-			$this->registeredClasses        = $registry->get_registered_classes();
-			$this->miniComponentDirectories = $registry->get_minicomponent_directories();
-			}
 		}
 	
 	public static function getInstance()
@@ -175,7 +171,7 @@ class mcHandler
 						}
 					else
 						{
-						// system_log( "Access control prevented system from running " . $eClass[ 'eventPoint' ] . $eClass[ 'eventName' ] );
+						system_log( "Access control prevented system from running " . $eClass[ 'eventPoint' ] . $eClass[ 'eventName' ] );
 						}
 					}
 				}
