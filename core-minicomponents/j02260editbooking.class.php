@@ -74,7 +74,7 @@ class j02260editbooking
 				$can_be_approved = false;
 				
 				if (using_bootstrap())
-					$approval_msg['CLASS'] = "alert alert-error";
+					$approval_msg['CLASS'] = "alert alert-error alert-danger";
 				else
 					$approval_msg['CLASS'] = "ui-state-error";
 				
