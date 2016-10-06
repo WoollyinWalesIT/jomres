@@ -80,7 +80,7 @@ class logging
 			$url = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED);
 			}
 		
-		$message = $username." ~~ ".session_id()." ~~ ".$url ." ~~ ".$message ;
+		$message = $username." ~~ ".$message." ~~ ".session_id()." ~~ ".$url ;
 		
 		
 		$formatter = new LineFormatter( "%datetime% ~~ %channel%.%level_name%: ~~ %message% ~~ %context% ~~ %extra% ::::: \n" );

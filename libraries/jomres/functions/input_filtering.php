@@ -136,9 +136,21 @@ function RemoveXSS( $val )
 
 function jomresGetParam( $request, $element, $def = null, $mask = '' ) // variable type not used, we'll cast the variable type depending on the default ($def) that's passed to the function
 	{
+	
 	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig   = $siteConfig->get();
-
+	
+	$enable_input_cache = true;
+	
+	if ($enable_input_cache)
+		{
+		$purified_inputs_cache = jomres_singleton_abstract::getInstance( 'purified_inputs_cache' );
+		if ( $purified_inputs_cache->is_cached ( $request , $element ) )
+			{
+			return $purified_inputs_cache->get_cache( $request , $element );
+			}
+		}
+		
 	// If the array element is set, we'll set $dirty to that, otherwise we'll simply return the default
 	// if SEF enabled in joomla, we need to get the vars from jinput
 	
@@ -250,12 +262,20 @@ function jomresGetParam( $request, $element, $def = null, $mask = '' ) // variab
 			
 			break;
 		}
-
+	if ($enable_input_cache)
+		{
+		$purified_inputs_cache->set_cache( $request , $element , $clean );
+		}
+	
 	return $clean;
 	}
 
 function jomres_sanitise_string( $dirty )
 	{
+	if ( $dirty == "" ) // No need to call purifier if there's noting to purify
+		return '';
+	
+	logging::log_message('HTML purifier called for string '.$dirty , "Core" , "DEBUG" );
 	$html_purifier = jomres_singleton_abstract::getInstance( 'jomres_input_filter_singleton' );
 	$dirty         = jomres_remove_HTML( $dirty ); // Strip out any html
 	$dirty         = $html_purifier->purify( $dirty );
@@ -266,6 +286,7 @@ function jomres_sanitise_string( $dirty )
 
 function jomres_purify_html( $dirty )
 	{
+	logging::log_message('HTML purifier called' , "Core" , "DEBUG" );
 	$html_purifier = jomres_singleton_abstract::getInstance( 'jomres_input_filter_singleton' );
 	$dirty         = $html_purifier->purify( $dirty, $allow_html = true );
 	$dirty         = str_replace("&amp;","&",$dirty);  // Without this ampersands will be double encoded
