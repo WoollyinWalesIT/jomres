@@ -67,6 +67,13 @@ class j02150addservicetobill
 			$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 			$jrportal_taxrate->gather_data($taxrate);
 			$tax_value = (float)$jrportal_taxrate->rate;
+			
+			//if prices are set to gross, we need to convert $service_value to the nett amount, so it can be used as initial price in the invoice
+			if ( $mrConfig['prices_inclusive'] == '1' )
+				{
+				$divisor = ( $tax_value / 100 ) + 1;
+				$service_value = $service_value / $divisor ;
+				}
 
 			if ( $contract_uid && $service_description)
 				{
