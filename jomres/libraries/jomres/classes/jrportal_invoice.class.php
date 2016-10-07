@@ -147,8 +147,8 @@ class jrportal_invoice
 
 		if ($this->vat_will_be_charged)
 			{
-			$init_total_tax = number_format( $i_total / 100 * $this->lineitem['tax_rate'], 2, '.', '' );
-			//$init_total_tax = substr(number_format($i_total / 100 * $this->lineitem['tax_rate'], 3, '.', ''), 0, -1);  // possible solution to rounding issues, awaiting testing
+			//$init_total_tax = number_format( $i_total / 100 * $this->lineitem['tax_rate'], 2, '.', '' );
+			$init_total_tax = substr(number_format($i_total / 100 * $this->lineitem['tax_rate'], 3, '.', ''), 0, -1);  // possible solution to rounding issues, awaiting testing
 			}
 		else
 			{
@@ -239,8 +239,8 @@ class jrportal_invoice
 		
 		if ($this->vat_will_be_charged)
 			{
-			$init_total_tax = number_format( $i_total / 100 * $this->lineitem['tax_rate'], 2, '.', '' );
-			//$init_total_tax = substr(number_format($i_total / 100 * $this->lineitem['tax_rate'], 3, '.', ''), 0, -1); // possible solution to rounding issues, awaiting testing
+			//$init_total_tax = number_format( $i_total / 100 * $this->lineitem['tax_rate'], 2, '.', '' );
+			$init_total_tax = substr(number_format($i_total / 100 * $this->lineitem['tax_rate'], 3, '.', ''), 0, -1); // possible solution to rounding issues, awaiting testing
 			}
 		else
 			{
