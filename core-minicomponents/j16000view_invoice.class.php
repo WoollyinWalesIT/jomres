@@ -129,15 +129,19 @@ class j16000view_invoice
 		// 3 pending
 		switch ($invoice->status) {
 			case 0 :
-				$output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_UNPAID', '_JRPORTAL_INVOICES_STATUS_UNPAID');
+				$output[ 'LABEL_CLASS' ] = 'label-red';
+				$output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_UNPAID', '_JRPORTAL_INVOICES_STATUS_UNPAID' );
 				break;
-			case 1 : 
+			case 1 :
+				$output[ 'LABEL_CLASS' ] = 'label-green';
 				$output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PAID', '_JRPORTAL_INVOICES_STATUS_PAID' );
 				break;
-			case 2 : 
+			case 2 :
+				$output[ 'LABEL_CLASS' ] = 'label-black';
 				$output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_CANCELLED', '_JRPORTAL_INVOICES_STATUS_CANCELLED' );
 				break;
 			default :
+				$output[ 'LABEL_CLASS' ] = 'label-orange';
 				$output[ 'STATUS' ] = jr_gettext( '_JRPORTAL_INVOICES_STATUS_PENDING', '_JRPORTAL_INVOICES_STATUS_PENDING',false );
 		}
 
