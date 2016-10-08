@@ -54,12 +54,14 @@ class jomres_database
 			// Deactivate
 			@set_magic_quotes_runtime( false );
 			}
+		
 		$this->system_tables = array ();
 		$this->error         = null;
 		$this->stmt			 = null;
 		$this->result		 = null;
-		$showtime            = jomres_singleton_abstract::getInstance( 'showtime' );
+		
 		$this->dbtype        = get_showtime( 'dbtype' );
+		$this->db_prefix	 = get_showtime( 'dbprefix' );
 		
 		if ((string)$this->dbtype == '')
 			$this->dbtype = 'mysqli';
@@ -67,6 +69,14 @@ class jomres_database
 		if (defined( 'AUTO_UPGRADE'))
 			$this->dbtype = 'mysqli';
 		
+		if ( !this_cms_is_wordpress() )
+			{
+			$this->_init();
+			}
+		}
+	
+	function _init()
+		{
 		switch($this->dbtype) 
 			{
 			case "mysqli" :
@@ -109,10 +119,7 @@ class jomres_database
 			default:
 				break;
 			}
-		
-		$this->db_prefix = get_showtime( 'dbprefix' );
 		}
-	
 	
 	function close()
 		{
@@ -131,81 +138,122 @@ class jomres_database
 	
 	function query()
 		{
-		switch($this->dbtype) 
+		if ( this_cms_is_wordpress() )
 			{
-			case "mysqli" :
-				$this->result = mysqli_query( $this->link, $this->query );
-				break;
-			case "mysql" :
-				$this->result = mysql_query( $this->query );
-				break;
-			case "pdomysql" :
-				try  {
-					$this->result = $this->PDOdb->exec( $this->query );
-					}
-				catch(PDOException $e) 
-					{
-					output_fatal_error( $e );
-					}
-				break;
-			default:
-				break;
-			}
-		
-		if ( $this->result !== false )
-			{
-			$this->last_id = false;
-
-			switch($this->dbtype) 
+			global $wpdb;
+			
+			$this->result = $wpdb->query( $this->query );
+			
+			if ( $this->result !== false )
 				{
-				case "mysqli" :
-					$last_id = mysqli_insert_id( $this->link );
-					break;
-				case "mysql" :
-					$last_id = mysql_insert_id();
-					break;
-				case "pdomysql" :
-					$last_id = $this->PDOdb->lastInsertId();
-					break;
-				default:
-					break;
+				$this->last_id = false;
+				
+				if ( $wpdb->insert_id > 0 )
+					$this->last_id = $wpdb->insert_id;
+				
+				if ((int)$this->result == 0)
+					return true;
+				else
+					return $this->result;
+				}
+			else
+				{
+				if ( $wpdb->last_error !== '' )
+					{
+					$this->error = $wpdb->last_result;
+					}
 				}
 			
-			if ( $last_id > 0 )
-				$this->last_id = $last_id;
-
-			if ((int)$this->result == 0)
-				return true;
-			else
-				return $this->result;
+			return false;
 			}
 		else
 			{
 			switch($this->dbtype) 
 				{
 				case "mysqli" :
-					$this->error = mysqli_error( $this->link );
+					$this->result = mysqli_query( $this->link, $this->query );
 					break;
 				case "mysql" :
-					$this->error = mysql_error();
+					$this->result = mysql_query( $this->query );
 					break;
 				case "pdomysql" :
-					$this->error = $this->PDOdb->errorInfo();
+					try  {
+						$this->result = $this->PDOdb->exec( $this->query );
+						}
+					catch(PDOException $e) 
+						{
+						output_fatal_error( $e );
+						}
 					break;
 				default:
 					break;
 				}
+			
+			if ( $this->result !== false )
+				{
+				$this->last_id = false;
 
-			return false;
+				switch($this->dbtype) 
+					{
+					case "mysqli" :
+						$last_id = mysqli_insert_id( $this->link );
+						break;
+					case "mysql" :
+						$last_id = mysql_insert_id();
+						break;
+					case "pdomysql" :
+						$last_id = $this->PDOdb->lastInsertId();
+						break;
+					default:
+						break;
+					}
+				
+				if ( $last_id > 0 )
+					$this->last_id = $last_id;
+
+				if ((int)$this->result == 0)
+					return true;
+				else
+					return $this->result;
+				}
+			else
+				{
+				switch($this->dbtype) 
+					{
+					case "mysqli" :
+						$this->error = mysqli_error( $this->link );
+						break;
+					case "mysql" :
+						$this->error = mysql_error();
+						break;
+					case "pdomysql" :
+						$this->error = $this->PDOdb->errorInfo();
+						break;
+					default:
+						break;
+					}
+
+				return false;
+				}
 			}
 		}
 
 	function setQuery( $query )
 		{
-		$performance_monitor = jomres_singleton_abstract::getInstance( 'jomres_performance_monitor' );
-		$performance_monitor->set_sqlquery_log( "" . whereCalled() . " <br/>" . $query . "<br/>" );
-		$q = str_replace( "#__", $this->db_prefix, $query );
-		$this->query = $q;
+		if ( this_cms_is_wordpress() )
+			{
+			global $wpdb;
+			
+			$q = str_replace( "#__", "{$wpdb->prefix}", $query );
+			$this->query = $q;
+			}
+		else
+			{
+			$performance_monitor = jomres_singleton_abstract::getInstance( 'jomres_performance_monitor' );
+			$performance_monitor->set_sqlquery_log( "" . whereCalled() . " <br/>" . $query . "<br/>" );
+			$q = str_replace( "#__", $this->db_prefix, $query );
+			$this->query = $q;
+			}
 		}
 
 	function loadObjectList()
@@ -218,51 +266,60 @@ class jomres_database
 		$this->stmt = null;
 		$this->result = array();
 		
-		switch($this->dbtype) 
+		if ( this_cms_is_wordpress() )
 			{
-			case "mysqli" :
-				$this->stmt = mysqli_query( $this->link, $this->query );
-				break;
-			case "mysql" :
-				$this->stmt = mysql_query( $this->query );
-				break;
-			case "pdomysql" :
-				try {
-					$this->stmt = $this->PDOdb->query( $this->query, PDO::FETCH_OBJ);
-					}
-				catch(PDOException $e) 
-					{
-					output_fatal_error( $e );
-					}
-				break;
-			default:
-				break;
+			global $wpdb;
+			
+			$this->result = $wpdb->get_results( $this->query, OBJECT );
 			}
-		
-		if ( $this->stmt )
+		else
 			{
 			switch($this->dbtype) 
 				{
 				case "mysqli" :
-					while ( $row = mysqli_fetch_object( $this->stmt ) )
-						{
-						$this->result[] = $row;
-						}
-					mysqli_free_result( $this->stmt );
+					$this->stmt = mysqli_query( $this->link, $this->query );
 					break;
 				case "mysql" :
-					while ( $row = mysql_fetch_object( $this->stmt ) )
-						{
-						$this->result[] = $row;
-						}
-					mysql_free_result( $this->stmt );
+					$this->stmt = mysql_query( $this->query );
 					break;
 				case "pdomysql" :
-					$this->result = $this->stmt->fetchAll(PDO::FETCH_OBJ);
-					$this->stmt->closeCursor();
+					try {
+						$this->stmt = $this->PDOdb->query( $this->query, PDO::FETCH_OBJ);
+						}
+					catch(PDOException $e) 
+						{
+						output_fatal_error( $e );
+						}
 					break;
 				default:
 					break;
+				}
+			
+			if ( $this->stmt )
+				{
+				switch($this->dbtype) 
+					{
+					case "mysqli" :
+						while ( $row = mysqli_fetch_object( $this->stmt ) )
+							{
+							$this->result[] = $row;
+							}
+						mysqli_free_result( $this->stmt );
+						break;
+					case "mysql" :
+						while ( $row = mysql_fetch_object( $this->stmt ) )
+							{
+							$this->result[] = $row;
+							}
+						mysql_free_result( $this->stmt );
+						break;
+					case "pdomysql" :
+						$this->result = $this->stmt->fetchAll(PDO::FETCH_OBJ);
+						$this->stmt->closeCursor();
+						break;
+					default:
+						break;
+					}
 				}
 			}
 

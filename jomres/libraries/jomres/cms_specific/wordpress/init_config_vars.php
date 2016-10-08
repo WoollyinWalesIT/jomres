@@ -47,8 +47,8 @@ $showtime->password			= DB_PASSWORD;
 $showtime->host				= DB_HOST;
 $showtime->secret			= AUTH_SALT;
 
-global $table_prefix; //wp global
-$showtime->dbprefix			= $table_prefix ;
+global $wpdb; //wp global
+$showtime->dbprefix			= $wpdb->prefix ;
 
 $showtime->sitename			= get_option( 'blogname' );
 $showtime->mailer     		= 'mail';

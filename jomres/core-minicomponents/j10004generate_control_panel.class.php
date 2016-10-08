@@ -98,7 +98,7 @@ class j10004generate_control_panel
 						$r[ 'ACTIVE' ] = "";
 						}
 					}
-				elseif (get_showtime('task') == '')
+				elseif (get_showtime('task') == '' && !$val[ 'external' ])
 					{
 					$r[ 'ACTIVE' ] = "active";
 					$output[ 'COLLAPSE_IN' ] = "in";

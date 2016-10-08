@@ -82,9 +82,9 @@ function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false 
 		{
 		$theText = stripslashes( $customTextObj->global_custom_text[$theConstant] );
 		}
-	elseif ( isset( $customTextObj->all_properties_custom_text[$property_uid][$theConstant] ) )
+	elseif ( isset( $customTextObj->properties_custom_text[$property_uid][$theConstant] ) )
 		{
-		$theText = stripslashes( $customTextObj->all_properties_custom_text[$property_uid][$theConstant] );
+		$theText = stripslashes( $customTextObj->properties_custom_text[$property_uid][$theConstant] );
 		}
 	else
 		{

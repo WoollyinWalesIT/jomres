@@ -9,17 +9,16 @@
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
-
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-
 function doSelectSql( $query, $mode = false )
 	{
-	$jomres_db      = jomres_singleton_abstract::getInstance( 'jomres_database' );
-	$jomres_db->setQuery( "/*qc=on*//*qc_ttl=5*/".$query );
+	$jomres_db = jomres_singleton_abstract::getInstance( 'jomres_database' );
+	$jomres_db->setQuery( $query );
 	$jomres_db->loadObjectList();
+	
 	$num = count( $jomres_db->result );
 	
 	switch ( $mode )
@@ -66,15 +65,12 @@ function doSelectSql( $query, $mode = false )
 		}
 	}
 
-
+// Called doInsertSql, the title is not quite correct as this function also handles updates and deletes
+// We'll use the lack of text in $op as a way of indicating that we don't want this operation logged
+// This way we can call the audit directly from the insert internet booking function
+// rather than logging EVERYTHING that's done by the function.
 function doInsertSql( $query, $op = "", $ignoreErrors = false )
 	{
-	$siteConfig     = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-	$jrConfig       = $siteConfig->get();
-	// Called doInsertSql, the title is not quite correct as this function also handles updates and deletes
-	// We'll use the lack of text in $op as a way of indicating that we don't want this operation logged
-	// This way we can call the audit directly from the insert internet booking function
-	// rather than logging EVERYTHING that's done by the function.
 	$jomres_db = jomres_singleton_abstract::getInstance( 'jomres_database' );
 	$jomres_db->setQuery( $query );
 	
@@ -97,9 +93,4 @@ function doInsertSql( $query, $op = "", $ignoreErrors = false )
 		else
 			return true;
 		}
-	}
-
-function jomres_audit( $query, $op = "" )
-	{
-	logging::log_message($query , "Core" , "DEBUG" );
 	}

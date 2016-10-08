@@ -19,12 +19,10 @@ class basic_property_details
 	// Store the single instance of Database
 	private static $configInstance;
 	private static $internal_debugging;
-	private static $property_data;
 
 	public function __construct()
 		{
 		self::$internal_debugging   = false;
-		self::$property_data        = array ();
 		$this->multi_query_result   = array ();
 		$this->property_names 		= array();
 		$this->property_uid			= 0;
@@ -97,6 +95,7 @@ class basic_property_details
 			return false;
 		
 		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
+		$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 
 		//change $property_uids object to array
 		if ( $database_obj )
@@ -163,6 +162,9 @@ class basic_property_details
 				$property_names = doSelectSql( $query );
 				if ( !get_showtime( 'heavyweight_system' ) )
 					{
+					//get custom text for these properties
+					$customTextObj->gather_data($property_uids);
+					
 					foreach ( $property_names as $p )
 						{
 						// We need to set showtime here otherwise the jr_gettext function won't know which property's info we're looking for
@@ -383,6 +385,7 @@ class basic_property_details
 		$property_uids = $temp_array;
 		unset ( $temp_array );
 
+		$customTextObj = jomres_singleton_abstract::getInstance( 'custom_text' );
 		$jrportal_taxrate = jomres_singleton_abstract::getInstance( 'jrportal_taxrate' );
 
 		if ( count( $property_uids ) > 0 )
@@ -423,6 +426,9 @@ class basic_property_details
 						FROM #__jomres_propertys 
 						WHERE propertys_uid IN (" . jomres_implode($property_uids) .") ";
 			$propertyData = doSelectSql( $query );
+			
+			//get custom text for these properties
+			$customTextObj->gather_data($property_uids);
 			
 			//save the original property uid and type so we can reset this after we`re done
 			$original_property_uid = get_showtime( 'property_uid' );

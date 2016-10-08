@@ -26,7 +26,7 @@ class j10002my_account
 			return;
 			}
 		$htmlFuncs          = jomres_singleton_abstract::getInstance( 'html_functions' );
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . "&task=my_account", 'Help.png', jr_gettext( "_JOMRES_CUSTOMCODE_MYACCOUNTONLINE", '_JOMRES_CUSTOMCODE_MYACCOUNTONLINE', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', false, false ), $external = false );
+		$this->cpanelButton = $htmlFuncs->cpanelButton( "https://license-server.jomres.net/index.php", 'Help.png', jr_gettext( "_JOMRES_CUSTOMCODE_MYACCOUNTONLINE", '_JOMRES_CUSTOMCODE_MYACCOUNTONLINE', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', false, false ), $external = true );
 		}
 
 	function touch_template_language()
