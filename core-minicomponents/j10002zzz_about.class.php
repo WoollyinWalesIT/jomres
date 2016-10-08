@@ -27,7 +27,7 @@ class j10002zzz_about
 			}
 		$htmlFuncs = jomres_singleton_abstract::getInstance( 'html_functions' );
 
-		$this->cpanelButton = $htmlFuncs->cpanelButton( JOMRES_SITEPAGE_URL_ADMIN . "&task=about_jomres", 'jrhouse.png', jr_gettext( "_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES", '_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', false, false ) );
+		$this->cpanelButton = $htmlFuncs->cpanelButton( "http://www.jomres.net/manual/developers-guide/60-jomres-manual/intro/344-about-jomres", 'jrhouse.png', jr_gettext( "_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES", '_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES', false, false ), "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", '_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', false, false ), $external = true );
 		}
 
 	function touch_template_language()

@@ -21,6 +21,7 @@ class shortcode_parser
 	public function __construct()
 		{
 		$this->shortcodes = false;
+		$this->shortcodes_file = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "shortcodes.php";
 		}
 
 	public static function getInstance()
@@ -37,10 +38,9 @@ class shortcode_parser
 		{
 		$this->build_shortcodes();
 		
-		if ( file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "shortcodes.serialized" ) )
+		if ( file_exists ( $this->shortcodes_file ) )
 			{
-			$shortcode_data = file_get_contents (  JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "shortcodes.serialized" );
-			$this->shortcodes = unserialize($shortcode_data);
+			include_once( $this->shortcodes_file );
 			}
 		else
 			{
@@ -50,7 +50,7 @@ class shortcode_parser
 
 	function build_shortcodes( $force = false )
 		{
-		if ( !file_exists ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "shortcodes.serialized" ) || $force )
+		if ( !file_exists ( $this->shortcodes_file ) || $force )
 			{
 			$this->shortcodes = array();
 			
@@ -87,7 +87,18 @@ class shortcode_parser
 					}
 				}
 			
-			file_put_contents ( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "temp" . JRDS . "shortcodes.serialized" , serialize($this->shortcodes) );
+			if (!file_put_contents($this->shortcodes_file, 
+'<?php
+##################################################################
+defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
+##################################################################
+
+$this->shortcodes = ' . var_export($this->shortcodes, true) . ';
+'))
+			{
+			trigger_error('ERROR: '. $this->shortcodes_file .' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
+			exit;
+			}
 			
 			$MiniComponents->template_touch	= false;
 			}

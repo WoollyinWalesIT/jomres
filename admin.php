@@ -208,15 +208,6 @@ try
 	//task
 	switch ( get_showtime( 'task' ) )
 		{
-		case "convertCustomTextAll":
-			convertCustomTextAll();
-			break;
-		case "changeUserHotel":
-			changeUserHotel( $option );
-			break;
-		case "changeUserAccessLevel":
-			changeUserAccessLevel();
-			break;
 		case "listMosUsers":
 			$MiniComponents->specificEvent( '16000', 'managers_choose' );
 			break;
@@ -228,9 +219,6 @@ try
 			break;
 		case "grantMosUser":
 			grantMosUser( $option );
-			break;
-		case "publishPfeature":
-			publishPfeature();
 			break;
 		case 'cpanel':
 		default:
@@ -261,7 +249,6 @@ try
 
 	$componentArgs = array ();
 	$MiniComponents->triggerEvent( '99999', $componentArgs );
-	$componentArgs = array ();
 
 	//done
 	endrun();
@@ -281,6 +268,7 @@ if ( defined( "JOMRES_RETURNDATA" ) )
 	}
 else
 	ob_end_flush();
+
 
 // Jomres 4.7.8 strips BOM from all areas of the output, not just the beginning.
 function removeBOMadmin( $str = "" )

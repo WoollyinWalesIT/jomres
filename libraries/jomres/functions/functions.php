@@ -2591,6 +2591,16 @@ function gateway_log( $message )
 
 /**
 #
+ *  Audit log
+#
+ */
+function jomres_audit( $query, $op = "" )
+	{
+	logging::log_message($query , "Audit" , "INFO" );
+	}
+
+/**
+#
  * Redirects to $url
 #
  */
@@ -5290,3 +5300,4 @@ function jomresAccessControlSanityCheck()
 	//return array ( "result" => $pass, "message" => jr_gettext( '_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING', '_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING', false ) . " Controlled " . count( $jomres_access_control->controlled ) . " Controllable " . count( $controllable ) );
 	return array ( "result" => $pass, "message" => '' );
 	}
+

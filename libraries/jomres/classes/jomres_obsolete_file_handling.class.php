@@ -1290,6 +1290,12 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j16000about_asamodule.class.php' );
 
 		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'asamodule_report.html' );
+		
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000manual.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000my_account.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000support_tickets.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000about_jomres.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000about_shortcodes.class.php' );
 		}
 
 	function add_obs_file( $path_and_file )
