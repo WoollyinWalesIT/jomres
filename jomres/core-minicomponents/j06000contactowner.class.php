@@ -117,10 +117,18 @@ class j06000contactowner
 			$output[ 'GUEST_EMAIL' ] = $tmpBookingHandler->tmpguest[ 'email' ];
 		else
 			$output[ 'GUEST_EMAIL' ] = "";
+		
+		if ( isset( $_REQUEST[ 'guest_phone' ] ) ) 
+			$output[ 'GUEST_PHONE' ] = jomresGetParam( $_REQUEST, 'guest_phone', '' );
+		else if ( isset( $tmpBookingHandler->tmpguest[ 'tel_mobile' ] ) ) 
+			$output[ 'GUEST_PHONE' ] = $tmpBookingHandler->tmpguest[ 'tel_mobile' ];
+		else
+			$output[ 'GUEST_PHONE' ] = "";
 
 		$output[ 'HEMAIL' ]   = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL' );
 		$output[ 'HNAME' ]    = jr_gettext( '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME' );
 		$output[ 'HENQUIRY' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_ENQUIRY', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_ENQUIRY' );
+		$output[ 'HPHONE' ] = jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL' );
 
 		$output[ 'JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2' ]        = jr_gettext( '_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2', '_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2', false, false );
 		$output[ 'JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2_BUTTON' ] = jr_gettext( '_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2', '_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2', false, false );
@@ -189,6 +197,7 @@ class j06000contactowner
 			$subject            = jr_gettext( "_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT", '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT', false ) . " " . $output[ 'GUEST_NAME' ] . " " . jr_gettext( "_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING", '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING', false ) . " " . $current_property_details->property_name;
 			$output[ 'THANKS' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS' );
 			$output[ 'ENQUIRY' ] .= '<br />Email: ' . $output[ 'GUEST_EMAIL' ];
+			$output[ 'ENQUIRY' ] .= '<br />' . jr_gettext( '_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL' ) . ': ' . $output[ 'GUEST_PHONE' ];
 			
 			if ( $property_uid > 0 )
 				$target_email = $current_property_details->property_email;
