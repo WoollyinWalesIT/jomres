@@ -31,7 +31,7 @@ if ( !strstr( $scriptname, 'install_jomres.php' ) )
 	{
 	$jomresItemid =0;
 
-	$query = "SELECT `ID` FROM #__posts WHERE LOWER(`post_content`) LIKE '%".$keyword."%' AND `post_parent` = 0 AND `post_status` = 'publish' LIMIT 1";
+	$query = "SELECT `ID` FROM #__posts WHERE LOWER(`post_content`) LIKE '%".$keyword."%' AND `post_status` = 'publish' AND `post_type` = 'page' LIMIT 1";
 	$itemQueryRes = (int)doSelectSql( $query,1 );
 
 	$itemIdFound=false;

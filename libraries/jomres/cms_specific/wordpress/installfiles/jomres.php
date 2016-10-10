@@ -4,17 +4,17 @@ Plugin Name: Jomres
 Plugin URI: http://www.jomres.net
 Description: The complete hotel booking system for Wordpress!
 Author: Vince Wooll
-Version: 9.8.14
+Version: 9.8.15
 Author URI: http://www.jomres.net/
 */
 defined('WPINC') or die;
 
 if (!defined("JOMRES_WP_PLUGIN_VERSION"))
-	define('JOMRES_WP_PLUGIN_VERSION', '9.8.14');
+	define('JOMRES_WP_PLUGIN_VERSION', '9.8.15');
 
-if ( ! class_exists( 'wp_jomres' ) ) 
+if ( ! class_exists( 'WP_Jomres' ) ) 
 	{
-	class wp_jomres
+	class WP_Jomres
 		{
 		private static $configInstance = false;
 		
@@ -32,7 +32,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 			{
 			if ( !self::$configInstance )
 				{
-				self::$configInstance = new wp_jomres();
+				self::$configInstance = new WP_Jomres();
 				}
 	
 			return self::$configInstance;
@@ -40,52 +40,77 @@ if ( ! class_exists( 'wp_jomres' ) )
 		
 		function _init()
 			{
-			add_action( 'admin_menu', array($this,'register_my_custom_menu_page') );
-
 			add_action('wp', array($this,'frontend_trigger_jomres'), 1);
-				
-			if (is_admin() && isset($_REQUEST['page']) && $_REQUEST['page'] == "jomres/jomres.php" )
-				{
-				if (!defined('_JOMRES_INITCHECK_ADMIN'))
-					define('_JOMRES_INITCHECK_ADMIN', 1 );
-
-				add_action('init', array($this,'admin_trigger_jomres'), 1);
-				}
-				
-			add_action('wp_logout',	array($this,'jomres_wp_end_session'));
 			add_action('wp_login', array($this,'jomres_wp_end_session'));
-
-			add_shortcode( 'jomres', array($this,'frontend_trigger_jomres') );
-				
-			add_filter('the_content', array($this,'asamodule_search_results') );
+			add_action('wp_logout',	array($this,'jomres_wp_end_session'));
+			add_filter('the_content', array($this,'asamodule_search_results'));
 			add_filter('wp_title', array($this,'set_jomres_meta_title'), 10, 2);
-
-			if (is_admin())
+			add_filter('redirect_canonical', array($this,'payments_redirect_canonical'), 10, 2);
+			
+			//if &popup=1 is in $_REQUEST we'll disable all widgets, but leave the keys intact so that you don't get the "please activate a widget" message
+			if ( isset($_REQUEST['popup']) && (int)$_REQUEST['popup'] == 1 )
 				{
+				add_filter( 'sidebars_widgets', array($this,'disable_all_widgets') );
+				}
+			
+			//fullscreen view
+			if( isset( $_GET['tmpl']) && $_GET['tmpl'] == 'jomres' )
+				{
+				add_filter( 'template_include', array($this,'jomres_fullscreen_view') );
+				}
+
+			//admin stuff
+			if ( is_admin() )
+				{
+				add_action( 'admin_menu', array($this,'register_jomres_admin_menu') );
+
 				if (isset($_REQUEST['page']) && $_REQUEST['page'] == "jomres/jomres.php")
 					{
-					add_action( 'wp_ajax_nopriv_'.$_REQUEST['page'], array($this,'jomres_wp_ajax') );
+					if (!defined('_JOMRES_INITCHECK_ADMIN'))
+						define('_JOMRES_INITCHECK_ADMIN', 1 );
+
+					add_action('init', array($this,'admin_trigger_jomres'), 1);
 					add_action( 'wp_ajax_'.$_REQUEST['page'], array($this,'jomres_wp_ajax') );
 					}
 				
 				if (isset($_REQUEST['action']) && $_REQUEST['action'] == "jomres/trigger.php")
 					{
-					add_action( 'wp_ajax_nopriv_'.$_REQUEST['action'], array($this,'jomres_wp_ajax') );
 					add_action( 'wp_ajax_'.$_REQUEST['action'], array($this,'jomres_wp_ajax') );
 					}
 				}
-			
-			add_filter('redirect_canonical', array($this,'payments_redirect_canonical'), 10, 2);
-			
-			// If &popup=1 is in $_REQUEST we'll disable all widgets, but leave the keys intact so that you don't get the "please activate a widget" message
-			add_filter( 'sidebars_widgets', array(&$this,'disable_all_widgets') );
-			
-			//fullscreen view
-			add_filter( 'template_include', array($this,'jomres_fullscreen_view') );
-			
-			//add_filter( 'wp_footer', array($this,'add_jomres_js_css') );
 			}
 			
+		static function activate_handler()
+			{
+			global $wpdb;
+			
+			$currentBlogLang = str_replace("_","-",get_locale());
+			$keyword = "[jomres:" . $currentBlogLang . "]";
+			
+			$result = $wpdb->get_results( "SELECT `ID` FROM {$wpdb->posts} WHERE LOWER(`post_content`) LIKE '%".strtolower($keyword)."%' AND `post_status` = 'publish' AND `post_type` = 'page' LIMIT 1", OBJECT );
+			
+			if ( !$result )
+				{
+				$postarr = array(
+					'comment_status' => 'closed',
+					'ping_status' => 'closed',
+					'post_title' => 'Bookings',
+					'post_content' => $keyword,
+					'post_status' => 'publish',
+					'post_type' => 'page'
+					);
+				
+				wp_insert_post( $postarr );
+				}
+			
+			return true;
+			}
+			
+		static function deactivate_handler()
+			{
+			return true;
+			}
+
 		function asamodule_search_results($content) 
 			{
 			global $post;
@@ -108,13 +133,13 @@ if ( ! class_exists( 'wp_jomres' ) )
 			return $content;    
 			}
 		
-		function register_my_custom_menu_page()
+		function register_jomres_admin_menu()
 			{
 			add_menu_page( 'Jomres admin', 'Jomres', 'manage_options', 'jomres/jomres.php', '', '', 6 );
 			}
 		
 		// Shortcode [jomres:xx-XX] xx-XX is the language code
-		function frontend_trigger_jomres($content)
+		function frontend_trigger_jomres()
 			{
 			global $post;
 			
@@ -142,14 +167,14 @@ if ( ! class_exists( 'wp_jomres' ) )
 					}
 				}
 
-			return $content;
+			return true;
 			}
 		
 		function admin_trigger_jomres()
 			{
-			//check if we are on the jomres admin page
 			if ($this->contents == '')
 				{
+				//check if we are on the jomres admin page
 				if (isset($_GET['page']) && $_GET['page'] == "jomres/jomres.php" )
 					{
 					ob_start();
@@ -164,6 +189,8 @@ if ( ! class_exists( 'wp_jomres' ) )
 					ob_end_clean();
 					}
 				}
+			
+			return true;
 			}
 			
 		function jomres_wp_end_session() 
@@ -173,13 +200,11 @@ if ( ! class_exists( 'wp_jomres' ) )
 	
 		function disable_all_widgets( $sidebars_widgets ) 
 			{
-			if ( isset($_REQUEST['popup']) && (int)$_REQUEST['popup'] == 1 )
+			foreach ( $sidebars_widgets as $key=>$widget)
 				{
-				foreach ( $sidebars_widgets as $key=>$widget)
-					{
-					$sidebars_widgets[$key] =array( false );
-					}
+				$sidebars_widgets[$key] =array( false );
 				}
+
 			return $sidebars_widgets;
 			}
 		
@@ -193,8 +218,10 @@ if ( ! class_exists( 'wp_jomres' ) )
 						wp_register_script($js_filename, $js['0'], array("jquery"), $js['1']);
 					else
 						wp_register_script($js_filename, $js['0'], array("jquery"), $js['1'], true);
+					
 					wp_enqueue_script($js_filename);
 					}
+				
 				$this->js = array();
 				}
 			
@@ -205,6 +232,7 @@ if ( ! class_exists( 'wp_jomres' ) )
 					wp_register_style($css_filename, $css['0'], array(), $css['1']);
 					wp_enqueue_style($css_filename);
 					}
+				
 				$this->css = array();
 				}
 			}
@@ -212,15 +240,16 @@ if ( ! class_exists( 'wp_jomres' ) )
 		function set_jomres_meta_title($title, $id = null)
 			{
 			if ($this->metatitle != '')
+				{
 				$title = ucfirst(trim($this->metatitle)).' ';
+				}
 			
 			return $title;
 			}
 		
 		function jomres_fullscreen_view($template)
 			{
-			if( isset( $_GET['tmpl']) && $_GET['tmpl'] == 'jomres' )
-				$template = ABSPATH . 'jomres/libraries/fullscreen_view/wp-fullscreen.php';
+			$template = ABSPATH . 'jomres/libraries/fullscreen_view/wp-fullscreen.php';
 
 			return $template;
 			}
@@ -254,7 +283,10 @@ if ( ! class_exists( 'wp_jomres' ) )
 		}
 	}
 
-$wp_jomres = wp_jomres::getInstance();
+$wp_jomres = WP_Jomres::getInstance();
+
+register_activation_hook( __FILE__, array('WP_Jomres','activate_handler') );
+register_deactivation_hook( __FILE__, array('WP_Jomres','deactivate_handler') );
 
 if (isset($_GET['page']) && $_GET['page'] == "jomres/jomres.php" )
 	echo $wp_jomres->contents;
