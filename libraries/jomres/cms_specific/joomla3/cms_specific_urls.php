@@ -69,7 +69,6 @@ if ( ( $jrConfig[ 'isInIframe' ] == "1" || $_GET[ 'tmpl' ] == get_showtime("tmpl
 	if (!isset($_REQUEST['tmpl']))
 		{
 		$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."&tmpl=jomres";
-		var_dump($url);
 		jomresRedirect($url);
 		}
 	}
