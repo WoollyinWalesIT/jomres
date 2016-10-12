@@ -146,11 +146,14 @@ class basic_property_details
 			$temp_array = array ();
 			foreach ( $property_uids as $id )
 				{
-				if ( !array_key_exists( $id, $this->multi_query_result ) ) 
-					$temp_array[ ] = $id;
+				if ( !array_key_exists( $id, $this->multi_query_result ) && !isset($this->property_names[ $id ]) ) 
+					$temp_array[] = $id;
 				else
 					{
-					$this->property_names[ $id ]              = $this->multi_query_result[$id]['property_name'];
+					if ( isset($this->multi_query_result[$id]['property_name']) )
+						{
+						$this->property_names[ $id ] = $this->multi_query_result[$id]['property_name'];
+						}
 					}
 				}
 			$property_uids = $temp_array;
