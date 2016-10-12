@@ -244,6 +244,9 @@ class jomres_database
 			{
 			global $wpdb;
 			
+			$performance_monitor = jomres_singleton_abstract::getInstance( 'jomres_performance_monitor' );
+			$performance_monitor->set_sqlquery_log( "" . whereCalled() . " <br/>" . $query . "<br/>" );
+			
 			$q = str_replace( "#__", "{$wpdb->prefix}", $query );
 			$this->query = $q;
 			}
@@ -251,6 +254,7 @@ class jomres_database
 			{
 			$performance_monitor = jomres_singleton_abstract::getInstance( 'jomres_performance_monitor' );
 			$performance_monitor->set_sqlquery_log( "" . whereCalled() . " <br/>" . $query . "<br/>" );
+			
 			$q = str_replace( "#__", $this->db_prefix, $query );
 			$this->query = $q;
 			}
