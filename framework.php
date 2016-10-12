@@ -30,7 +30,10 @@ if (defined('API_STARTED'))
 require_once(dirname(__FILE__).'/integration.php');
 
 //jomres framework
-load_jomres_environment();
+if ( !jomres_cmsspecific_areweinadminarea() )
+	{
+	load_jomres_environment();
+	}
 	
 function load_cms_environment()
 	{
