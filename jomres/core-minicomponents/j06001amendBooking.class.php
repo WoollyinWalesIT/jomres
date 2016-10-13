@@ -39,11 +39,15 @@ class j06001amendBooking
 		if ( $contract_uid > 0 )
 			{
 			$tmpArray = array ();
-			foreach ( $thisJRUser->authorisedPropertyDetails as $key => $val )
+			
+			$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+			$basic_property_details->get_property_name_multi( $thisJRUser->authorisedProperties );
+			
+			foreach ( $thisJRUser->authorisedProperties as $p )
 				{
 				$obj                = new stdClass();
-				$obj->propertys_uid = $key;
-				$obj->property_name = $val[ 'property_name' ];
+				$obj->propertys_uid = $p;
+				$obj->property_name = $basic_property_details->property_names[$p];
 				$tmpArray[ ]        = $obj;
 				}
 			$propertysList = $tmpArray;

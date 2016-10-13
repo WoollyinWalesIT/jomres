@@ -19,6 +19,10 @@ class jomres_property_selector_dropdown
 	function get_dropdown()
 		{
 		$thisJRUser	= jomres_singleton_abstract::getInstance( 'jr_user' );
+		
+		$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$basic_property_details->get_property_name_multi( $thisJRUser->authorisedProperties );
+			
 		$currentProperty = getDefaultProperty();
 		$output=array();
 		$pageoutput=array();
@@ -26,9 +30,9 @@ class jomres_property_selector_dropdown
 		$curPageUrl = $this->curPageUrl();
 
 		$properties = array();
-		foreach ($thisJRUser->authorisedPropertyDetails as $property_uid=>$property)
+		foreach ($thisJRUser->authorisedProperties as $p)
 			{
-			$properties[$property_uid] = $property['property_name'];
+			$properties[$p] = $basic_property_details->property_names[$p];
 			}
 		
 		natcasesort($properties);

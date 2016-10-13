@@ -44,8 +44,7 @@ class jr_user
 		$this->defaultproperty              = false;
 		$this->currentproperty              = false;
 		$this->last_active                  = false;
-		$this->authorisedProperties         = array ();
-		$this->authorisedPropertyDetails    = array ();
+		$this->authorisedProperties         = array();
 		$this->superPropertyManager         = false;
 		$this->superPropertyManagersAreGods = true; // Change this to false to prevent super property managers from having rights to ALL properties
 		$this->userIsRegistered             = false;
@@ -182,15 +181,6 @@ class jr_user
 						$jomres_properties->get_all_properties();
 
 						$this->authorisedProperties = get_showtime('all_properties_in_system');
-						
-						if ( count( $this->authorisedProperties ) > 0 )
-							{
-							$basic_property_details->get_property_name_multi( $this->authorisedProperties );
-							foreach ( $this->authorisedProperties as $p )
-								{
-								$this->authorisedPropertyDetails[ $p ] = array ( 'property_name' => $basic_property_details->property_names[$p] );
-								}
-							}
 						}
 					else //this user is a manager or receptionist and has access only to it`s own  properties
 						{
@@ -207,23 +197,15 @@ class jr_user
 								}
 							}
 
-						if ( count( $this->authorisedProperties ) > 0 )
-							{
-							$basic_property_details->get_property_name_multi( $this->authorisedProperties );
-							foreach ( $this->authorisedProperties as $p )
-								{
-								$this->authorisedPropertyDetails[ $p ] = array ( 'property_name' => $basic_property_details->property_names[$p] );
-								}
-							}
-						elseif ( !defined( '_JOMRES_INITCHECK_ADMIN' ) )
+						if ( empty($this->authorisedProperties) && !defined( '_JOMRES_INITCHECK_ADMIN' ) )
 							{
 							$this->reset_manager_to_non_manager();
 							}
 						}
 					
-					if ( count($this->authorisedProperties)>0)
+					if ( !empty($this->authorisedProperties) )
 						{
-						if (!in_array( $this->currentproperty, $this->authorisedProperties ))
+						if ( !in_array( $this->currentproperty, $this->authorisedProperties ) )
 							{
 							$this->currentproperty = $this->setToAnyAuthorisedProperty();
 							}
@@ -238,7 +220,7 @@ class jr_user
 				$this->accesslevel          = false;
 				$this->defaultproperty      = false;
 				$this->currentproperty      = false;
-				$this->authorisedProperties = array ();
+				$this->authorisedProperties = array();
 				}
 			}
 		else
@@ -254,8 +236,7 @@ class jr_user
 		$this->defaultproperty              = false;
 		$this->currentproperty              = false;
 		$this->last_active                  = false;
-		$this->authorisedProperties         = array ();
-		$this->authorisedPropertyDetails    = array ();
+		$this->authorisedProperties         = array();
 		$this->superPropertyManager         = false;
 		$this->jomres_manager_id = 0;
 		$this->userIsSuspended				= false;
@@ -335,7 +316,7 @@ class jr_user
 	 */
 	function setToAnyAuthorisedProperty()
 		{
-		if ( count( $this->authorisedProperties ) > 0 )
+		if ( !empty( $this->authorisedProperties ) )
 			{
 			if ( $this->authorisedProperties[ 0 ] > 0 )
 				{
