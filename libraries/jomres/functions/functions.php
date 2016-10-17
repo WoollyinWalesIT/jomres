@@ -2620,7 +2620,7 @@ function jomresRedirect($url, $msg = '', $code = 302)
 			
 			header('Location: ' . $url, true, (preg_match('~^30[1237]$~', $code) > 0) ? $code : 302);
 			}
-		
+		doDBClose();
 		exit();
 		}
 	}

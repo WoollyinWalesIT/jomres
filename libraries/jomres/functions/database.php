@@ -94,3 +94,9 @@ function doInsertSql( $query, $op = "", $ignoreErrors = false )
 			return true;
 		}
 	}
+
+function doDBClose()
+	{
+	$jomres_db = jomres_singleton_abstract::getInstance( 'jomres_database' );
+	$jomres_db->close();
+	}
