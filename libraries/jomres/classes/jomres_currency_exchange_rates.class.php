@@ -118,14 +118,13 @@ class jomres_currency_exchange_rates
 		if (is_null($json))
 			{
 			$message = "After reading exchange rate file, the json variable is found to be NULL. The most likely cause is either CURL not working/firewalled, or the API isn't set/is wrong.";
-			logging::log_message('Jomres started' , "Core" , "ERROR" );
+			logging::log_message($message , "Core" , "ERROR" );
 			return;
 			}
 
 		// We can safely assume that there's a GBP exchange rate (at least, for the forseeable future. If there isn't, then the world has probably been invaded by aliens and exchange rates in Jomres is the least of our problems. Rule Britannia and all that. )
 		$GBP_rate = $json->GBP;
 
-		
 		foreach ( $currency_codes as $k=>$v )
 			{
 			if (isset($json->$k) && $k != "GBP" )
@@ -136,14 +135,24 @@ class jomres_currency_exchange_rates
 				$this->rates[ $base_code ][ $code ] = $rate;
 				}
 			}
+		
+		// If, for whatever reason, the exchange rates ended up null ( because of duff data being returned? )
+		if ( count( $this->rates ) == 0 )
+			{
+			$this->rates[ "GBP" ][ "GBP" ] = 1;
+			}
+		
 		ignore_user_abort( false );
 		}
 
 	function save_rates()
 		{
-		if ( !$this->feature_enabled ) return;
+		if ( !$this->feature_enabled ) 
+			return;
 
-		if ( count( $this->rates ) == 0 ) return false;
+		if ( count( $this->rates ) == 0 ) 
+			return false;
+		
 		$lines = '$this->rates = array();
 		';
 		$this->rates[ $this->base_code ][ $this->base_code ] = 1;
@@ -191,10 +200,12 @@ class jomres_currency_exchange_rates
 		curl_setopt( $c, CURLOPT_TIMEOUT, 2000 );
 		$json = curl_exec( $c );
 		curl_close( $c );
-		
+
 		$logging_time_end = microtime(true);
 		$logging_time = $logging_time_end - $logging_time_start;
 		logging::log_message('Curl call took '.$logging_time. " seconds " , "Curl" , "DEBUG" );
+		
+		logging::log_message("Exchange rate request received ".$json , "Core" , "INFO" );
 		
 		$result = json_decode($json);
 		if (is_null($result) || ( isset($result->error) && $result->error == true ) )
