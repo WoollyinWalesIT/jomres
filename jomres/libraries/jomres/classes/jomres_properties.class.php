@@ -47,7 +47,7 @@ class jomres_properties
 		$this->property_tel 					= '';
 		$this->property_fax 					= '';
 		$this->property_email 					= '';
-		$this->property_features 				= '';
+		$this->property_features 				= array();
 		$this->property_mappinglink 			= '';
 		$this->property_description 			= '';
 		$this->property_checkin_times 			= '';
@@ -359,6 +359,15 @@ class jomres_properties
 			{
 			$this->approved = 0;
 			}
+		
+		if ( !empty($this->property_features) )
+			{
+			$property_features = ','.jomres_implode($this->property_features).',';
+			}
+		else
+			{
+			$property_features = '';
+			}
 
 		//update property
 		$query = "UPDATE #__jomres_propertys SET
@@ -371,7 +380,7 @@ class jomres_properties
 						`property_tel` = '".$this->property_tel."',
 						`property_fax` = '".$this->property_fax."',
 						`property_email` = '".$this->property_email."',
-						`property_features` = ',".$this->property_features.",',
+						`property_features` = '".$property_features."',
 						`property_key` = '".(string)$this->price."',
 						`property_mappinglink` = '".$this->property_mappinglink."',
 						`property_description` = '".$this->property_description."',
