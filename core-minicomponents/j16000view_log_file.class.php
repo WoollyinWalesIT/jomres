@@ -88,9 +88,9 @@ class j16000view_log_file
 						$r['DATETIME']	= $content_array[0];
 						$r['CHANNEL']	= $content_array[1];
 						$r['USERNAME']	= $content_array[2];
-						$r['SESSION']	= $content_array[3];
-						$r['URL']		= $content_array[4];
-						$r['MESSAGE']	= jomres_purify_html($content_array[5]);
+						$r['SESSION']	= $content_array[4];
+						$r['URL']		= $content_array[5];
+						$r['MESSAGE']	= jomres_purify_html($content_array[3]);
 						$r['CONTEXT']	= $content_array[6];
 						$r['EXTRA']		= $content_array[7];
 						if ($session != "" && $r['SESSION'] == $session )
