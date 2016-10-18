@@ -476,6 +476,7 @@ function doTableUpdates()
 	drop_room_images_table();
 	removeCronJob('invoice');
 	removeCronJob('optimise');
+	removeCronJob('exchangerates');
 	
 	addCronJob('session_files_cleanup', 'D', '');
 	
@@ -2784,7 +2785,6 @@ function installCronjobs()
 	//output_message ( "Installing cron jobs<br/>";
 	jr_import( 'jomres_cron' );
 	$cron = new jomres_cron();
-	$cron->addJob( "exchangerates", "D", "" );
 	$cron->addJob( "error_logs_cleanup", "D", "" );
 	}
 

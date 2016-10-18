@@ -1298,6 +1298,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_minicomponents . 'j16000about_shortcodes.class.php' );
 		
 		$this->add_obs_file( $this->dir_classes . 'jomres_pageview_record.class.php' );
+		
+		$this->add_obs_file( $this->dir_minicomponents . 'j06000cron_exchangerates.class.php' );
 		}
 
 	function add_obs_file( $path_and_file )
