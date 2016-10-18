@@ -123,17 +123,22 @@ class jomres_database
 	
 	function close()
 		{
-		switch($this->dbtype) 
+		if ( !this_cms_is_wordpress() )
 			{
-			case "mysqli" :
-				mysqli_close($this->link);
-				break;
-			case "pdomysql" :
-				$this->PDOdb = null;
-				break;
-			default:
-				break;
+			switch($this->dbtype) 
+				{
+				case "mysqli" :
+					mysqli_close($this->link);
+					break;
+				case "pdomysql" :
+					$this->PDOdb = null;
+					break;
+				default:
+					break;
+				}
 			}
+		
+		return true;
 		}
 	
 	function query()
