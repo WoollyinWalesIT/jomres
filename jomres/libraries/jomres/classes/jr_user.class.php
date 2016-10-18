@@ -35,215 +35,67 @@ class jr_user
 
 	public function __construct()
 		{
-		self::$internal_debugging           = false;
-		$this->id                           = 0;
-		$this->userid                       = false;
-		$this->username                     = false;
-		$this->userIsManager                = false;
-		$this->accesslevel                  = false;
-		$this->defaultproperty              = false;
-		$this->currentproperty              = false;
-		$this->last_active                  = false;
-		$this->authorisedProperties         = array();
-		$this->superPropertyManager         = false;
-		$this->superPropertyManagersAreGods = true; // Change this to false to prevent super property managers from having rights to ALL properties
-		$this->userIsRegistered             = false;
-		//$this->users_timezone				= "America/Lima";
-		$this->jomres_manager_id = 0;
-		$this->userIsSuspended				= false;
-		$this->simple_configuration			= false;
+		self::$internal_debugging 				= false;
 		
-		//user profile details
-		$this->profile_id					= 0;
-		$this->cms_user_id					= 0;
-		$this->firstname					= '';
-		$this->surname						= '';
-		$this->house						= '';
-		$this->street						= '';
-		$this->town							= '';
-		$this->region						= '';
-		$this->postcode						= '';
-		$this->country						= '';
-		$this->email						= '';
-		$this->tel_landline					= '';
-		$this->tel_mobile					= '';
-		$this->tel_fax						= '';
-		$this->vat_number					= '';
-		$this->vat_number_validated			= '';
-		$this->vat_number_validation_response= '';
+		$this->superPropertyManagersAreGods 	= true; 			//Change this to false to prevent super property managers from having rights to ALL properties
+
+		//jomres user role
+		$this->jomres_manager_id 				= 0;				//user/manager id in the _jomres_managers table
+		$this->id                           	= 0;				//cms user id TODO: remove duplicate from the entire codebase
+		$this->userid                       	= false; 			//cms user id TODO: remove duplicate from the entire codebase
+		$this->username                     	= false; 			//logged in user`s username
+		$this->accesslevel                  	= false;			//user access level
+		$this->currentproperty              	= false;			//user`s current property
+		$this->last_active                  	= false;			//last active
+		$this->authorisedProperties         	= array();			//array of properties that this user has access to
+		//$this->users_timezone					= "America/Lima";	//user timezone - not used anymore
+		$this->simple_configuration				= false;			//simple configuration true/false
+		$this->userIsSuspended					= false;			//user is suspended true/false
 		
-		if (class_exists("Flight"))
+		$this->userIsRegistered             	= false;			//user is registered true/false
+		$this->userIsManager                	= false;			//user is manaager true/false TODO: separate this for receptionists to userIsReceptionist
+		$this->superPropertyManager         	= false;			//user is super property manager true/false
+		//$this->userIsReceptionist				= false;			//user is receptionist true/false TODO: add support for receptionists in jr_user
+		//$this->userIsPartner					= false;			//user is partner true/false TODO: add support for partners in jr_user
+		//$this->userIsAgency					= false;			//user is travel agency true/false TODO: add support for travel agencies
+		//$this->userIsHousekeeper				= false;			//user is housekeeper true/false TODO: add support for housekeeping
+		//$this->userIsMaintenance				= false;			//user is maintenance staff true/false TODO: add support for maintenance staff
+		
+		//user profile details (for any logged in user)
+		$this->profile_id						= 0;
+		$this->cms_user_id						= 0;
+		$this->firstname						= '';
+		$this->surname							= '';
+		$this->house							= '';
+		$this->street							= '';
+		$this->town								= '';
+		$this->region							= '';
+		$this->postcode							= '';
+		$this->country							= '';
+		$this->email							= '';
+		$this->tel_landline						= '';
+		$this->tel_mobile						= '';
+		$this->tel_fax							= '';
+		$this->vat_number						= '';
+		$this->vat_number_validated				= '';
+		$this->vat_number_validation_response 	= '';
+		
+		if ( class_exists("Flight") )
 			$this->id = Flight::get("user_id");
 		else
 			$this->id = jomres_cmsspecific_getcurrentusers_id();
 
-		if ( $this->id > 0 && $this->id != 0 && !is_null( $this->id ) )
+		if ( $this->id > 0 )
 			{
 			$this->userIsRegistered = true;
 			
-			$query = "SELECT
-							`id`,
-							`cms_user_id`,
-							`firstname`,
-							`surname`,
-							`house`,
-							`street`,
-							`town`,
-							`county`,
-							`country`,
-							`postcode`,
-							`tel_landline`,
-							`tel_mobile`,
-							`tel_fax`,
-							`email`,
-							`vat_number`,
-							`vat_number_validated`,
-							`vat_number_validation_response` 
-						FROM #__jomres_guest_profile 
-						WHERE `cms_user_id` = " . (int) $this->id . " 
-						LIMIT 1 ";
-			$userProfile = doSelectSql($query);
+			//get user profile details
+			$this->get_user_profile();
 			
-			if ( count( $userProfile ) > 0 )
-				{
-				foreach ( $userProfile as $p )
-					{
-					//profile details
-					$this->profile_id 						= $p->id;
-					$this->cms_user_id 						= $p->cms_user_id;
-					$this->firstname 						= $p->firstname;
-					$this->surname 							= $p->surname;
-					$this->house 							= $p->house;
-					$this->street 							= $p->street;
-					$this->town 							= $p->town;
-					$this->region 							= $p->county;
-					$this->country 							= $p->country;
-					$this->postcode 						= $p->postcode;
-					$this->tel_landline 					= $p->tel_landline;
-					$this->tel_mobile 						= $p->tel_mobile;
-					$this->tel_fax 							= $p->tel_fax;
-					$this->email 							= $p->email;
-					$this->vat_number 						= $p->vat_number;
-					$this->vat_number_validated 			= $p->vat_number_validated;
-					$this->vat_number_validation_response 	= $p->vat_number_validation_response;
-					}
-				}
-
-			$query = "SELECT 
-							`manager_uid`,
-							`userid`,
-							`username`,
-							`property_uid`,
-							`access_level`,
-							`currentproperty`,
-							`pu`,
-							`suspended`,
-							`users_timezone`,
-							`simple_configuration`,
-							`last_active` 
-						FROM #__jomres_managers 
-						WHERE `userid` = " . (int) $this->id . " 
-						LIMIT 1 ";
-			$authorisedUsers = doSelectSql( $query );
-
-			if ( count( $authorisedUsers ) > 0 )
-				{
-				$this->userIsManager = true;
-
-				foreach ( $authorisedUsers as $authUser )
-					{
-					$this->userid          					= $authUser->userid;
-					$this->username        					= $authUser->username;
-					$this->accesslevel    					= $authUser->access_level;
-					$this->defaultproperty 					= $authUser->currentproperty;
-					$this->currentproperty 					= $authUser->currentproperty;
-					$this->jomres_manager_id 				= $authUser->manager_uid;
-					
-					if ( isset( $authUser->users_timezone ) ) 
-						$this->users_timezone 				= $authUser->users_timezone;
-					
-					if ( $authUser->suspended == "1" ) 
-						$this->userIsSuspended 				= true;
-					
-					if ( $authUser->simple_configuration == "1" ) 
-						$this->simple_configuration 		= true;
-					
-					$this->last_active 						= $authUser->last_active;
-					
-					$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-
-					if ( $authUser->pu == "1" ) //this user is a super property manager and has access to all properties
-						{
-						$this->superPropertyManager = true;
-						
-						//get all properties in system.
-						$jomres_properties = jomres_singleton_abstract::getInstance( 'jomres_properties' );
-						$jomres_properties->get_all_properties();
-
-						$this->authorisedProperties = get_showtime('all_properties_in_system');
-						}
-					else //this user is a manager or receptionist and has access only to it`s own  properties
-						{
-						$this->superPropertyManager = false;
-
-						$query = "SELECT property_uid FROM #__jomres_managers_propertys_xref WHERE manager_id = " . (int) $this->id;
-						$managersToPropertyList = doSelectSql( $query );
-
-						if (count($managersToPropertyList) > 0)
-							{
-							foreach ( $managersToPropertyList as $x )
-								{
-								$this->authorisedProperties[] = $x->property_uid;
-								}
-							}
-
-						if ( empty($this->authorisedProperties) && !defined( '_JOMRES_INITCHECK_ADMIN' ) )
-							{
-							$this->reset_manager_to_non_manager();
-							}
-						}
-					
-					if ( !empty($this->authorisedProperties) )
-						{
-						if ( !in_array( $this->currentproperty, $this->authorisedProperties ) )
-							{
-							$this->currentproperty = $this->setToAnyAuthorisedProperty();
-							}
-						}
-					}
-				}
-			else
-				{
-				$this->userid               = false;
-				$this->username             = false;
-				$this->userIsManager        = false;
-				$this->accesslevel          = false;
-				$this->defaultproperty      = false;
-				$this->currentproperty      = false;
-				$this->authorisedProperties = array();
-				}
-			}
-		else
-			{
-			$this->userIsManager=false;
+			//get user role details
+			$this->get_user_role();
 			}
 		}
-	
-	private function reset_manager_to_non_manager() // We can't throw an error here, otherwise the whole MiniComponents variable isn't created and all sorts of wonderful things might happen, so instead we'll just reset the user so that they don't have any access rights to properties
-		{
-		$this->userIsManager                = false;
-		$this->accesslevel                  = false;
-		$this->defaultproperty              = false;
-		$this->currentproperty              = false;
-		$this->last_active                  = false;
-		$this->authorisedProperties         = array();
-		$this->superPropertyManager         = false;
-		$this->jomres_manager_id = 0;
-		$this->userIsSuspended				= false;
-		$this->simple_configuration			= false;
-		set_user_feedback_message ( jr_gettext("_JOMRES_MANAGER_HAS_NO_PROPERTIES", '_JOMRES_MANAGER_HAS_NO_PROPERTIES' , false, false) , "danger");
-		}
-	
 	
 	public static function getInstance()
 		{
@@ -275,7 +127,194 @@ class jr_user
 
 		return null;
 		}
+	
+	/**
+	#
+	 * Get user profile details for the logged in user
+	#
+	 */
+	function get_user_profile()
+		{
+		if ( $this->id == 0 )
+			{
+			throw new Exception( "Error: Can`t get user profile for cms user id 0");
+			}
+		
+		$query = "SELECT
+						`id`,
+						`cms_user_id`,
+						`firstname`,
+						`surname`,
+						`house`,
+						`street`,
+						`town`,
+						`county`,
+						`country`,
+						`postcode`,
+						`tel_landline`,
+						`tel_mobile`,
+						`tel_fax`,
+						`email`,
+						`vat_number`,
+						`vat_number_validated`,
+						`vat_number_validation_response` 
+					FROM #__jomres_guest_profile 
+					WHERE `cms_user_id` = " . (int) $this->id . " 
+					LIMIT 1 ";
+		$result = doSelectSql($query);
+		
+		if ( !empty($result) )
+			{
+			foreach ( $result as $r )
+				{
+				$this->profile_id 						= $r->id;
+				$this->cms_user_id 						= $r->cms_user_id;
+				$this->firstname 						= $r->firstname;
+				$this->surname 							= $r->surname;
+				$this->house 							= $r->house;
+				$this->street 							= $r->street;
+				$this->town 							= $r->town;
+				$this->region 							= $r->county;
+				$this->country 							= $r->country;
+				$this->postcode 						= $r->postcode;
+				$this->tel_landline 					= $r->tel_landline;
+				$this->tel_mobile 						= $r->tel_mobile;
+				$this->tel_fax 							= $r->tel_fax;
+				$this->email 							= $r->email;
+				$this->vat_number 						= $r->vat_number;
+				$this->vat_number_validated 			= $r->vat_number_validated;
+				$this->vat_number_validation_response 	= $r->vat_number_validation_response;
+				}
+			}
+		
+		return true;
+		}
+	
+	/**
+	#
+	 * Get user role for the logged in user
+	#
+	 */
+	function get_user_role()
+		{
+		if ( $this->id == 0 )
+			{
+			throw new Exception( "Error: Can`t get user role for cms user id 0");
+			}
 
+		$query = "SELECT 
+						`manager_uid`,
+						`userid`,
+						`access_level`,
+						`currentproperty`,
+						`pu`,
+						`suspended`,
+						`users_timezone`,
+						`simple_configuration`,
+						`last_active` 
+					FROM #__jomres_managers 
+					WHERE `userid` = " . (int) $this->id . " 
+					LIMIT 1 ";
+		$result = doSelectSql( $query );
+
+		if ( !empty($result) )
+			{
+			$this->userIsManager = true;
+
+			foreach ( $result as $r )
+				{
+				$this->userid          					= $r->userid;
+				$this->accesslevel    					= $r->access_level;
+				$this->currentproperty 					= $r->currentproperty;
+				$this->jomres_manager_id 				= $r->manager_uid;
+				
+				$this->username        					= jomres_cmsspecific_getcurrentusers_username();
+				
+				/* if ( isset( $r->users_timezone ) ) 
+					{
+					$this->users_timezone 				= $r->users_timezone;
+					} */
+				
+				if ( $r->suspended == 1 ) 
+					{
+					$this->userIsSuspended 				= true;
+					}
+				
+				if ( $r->simple_configuration == 1 ) 
+					{
+					$this->simple_configuration 		= true;
+					}
+				
+				$this->last_active 						= $r->last_active;
+
+				if ( $r->pu == 1 ) //this user is a super property manager and has access to all properties
+					{
+					$this->superPropertyManager = true;
+					
+					//get all properties in system.
+					$jomres_properties = jomres_singleton_abstract::getInstance( 'jomres_properties' );
+					$jomres_properties->get_all_properties();
+
+					$this->authorisedProperties = get_showtime('all_properties_in_system');
+					}
+				else //this user is a manager or receptionist and has access only to it`s own properties
+					{
+					$this->superPropertyManager = false;
+
+					$query = "SELECT `property_uid` FROM #__jomres_managers_propertys_xref WHERE `manager_id` = " . (int) $this->id;
+					$managersToPropertyList = doSelectSql( $query );
+
+					if ( !empty($managersToPropertyList) )
+						{
+						foreach ( $managersToPropertyList as $x )
+							{
+							$this->authorisedProperties[] = $x->property_uid;
+							}
+						}
+
+					if ( empty($this->authorisedProperties) && !defined( '_JOMRES_INITCHECK_ADMIN' ) )
+						{
+						// We can't throw an error here, otherwise the whole MiniComponents variable isn't created and all sorts of wonderful things might happen, so instead we'll just reset the user so that they don't have any access rights to properties
+						// TODO: silently remove the manager user role from this user
+						$this->reset_manager_to_non_manager();
+						}
+					}
+				
+				if ( !empty($this->authorisedProperties) )
+					{
+					if ( !in_array( $this->currentproperty, $this->authorisedProperties ) )
+						{
+						$this->currentproperty = $this->setToAnyAuthorisedProperty();
+						
+						$this->set_currentproperty( $this->currentproperty );
+						}
+					}
+				}
+			}
+		
+		return true;
+		}
+
+	/**
+	#
+	 * Reset manager to non manager
+	#
+	 */
+	private function reset_manager_to_non_manager()
+		{
+		$this->accesslevel                  = false;
+		$this->currentproperty              = false;
+		$this->last_active                  = false;
+		$this->authorisedProperties         = array();
+		$this->jomres_manager_id 			= 0;
+		$this->simple_configuration			= false;
+		
+		$this->userIsManager                = false;
+		$this->superPropertyManager         = false;
+		$this->userIsSuspended				= false;
+
+		set_user_feedback_message( jr_gettext("_JOMRES_MANAGER_HAS_NO_PROPERTIES", '_JOMRES_MANAGER_HAS_NO_PROPERTIES' , false, false) , "danger");
+		}
 
 	/**
 	#
@@ -284,7 +323,7 @@ class jr_user
 	 */
 	function check_currentproperty()
 		{
-		$query         = "SELECT propertys_uid FROM #__jomres_propertys WHERE propertys_uid = " . (int) $this->currentproperty . " ";
+		$query = "SELECT `propertys_uid` FROM #__jomres_propertys WHERE `propertys_uid` = " . (int) $this->currentproperty;
 		$propertycount = doSelectSql( $query );
 		if ( count( $propertycount ) == 0 )
 			{
@@ -302,9 +341,13 @@ class jr_user
 
 		if ( in_array( $currentProperty, $this->authorisedProperties ) )
 			{
-			$query = "UPDATE #__jomres_managers SET `currentproperty`=".(int)$currentProperty." WHERE userid = " . (int) $this->id . " ";
+			$query = "UPDATE #__jomres_managers SET `currentproperty`=" . (int)$currentProperty . " WHERE `userid` = " . (int) $this->id;
+			
 			if ( !doInsertSql( $query, false ) ) 
+				{
 				trigger_error( "Unable to set current property, mysql db failure", E_USER_ERROR );
+				}
+			
 			$this->currentproperty = $currentProperty;
 			}
 		}
@@ -318,18 +361,9 @@ class jr_user
 		{
 		if ( !empty( $this->authorisedProperties ) )
 			{
-			if ( $this->authorisedProperties[ 0 ] > 0 )
-				{
-				$this->set_currentproperty( $this->authorisedProperties[ 0 ] );
-
-				return $this->authorisedProperties[ 0 ];
-				}
-			else
-				{
-				$this->set_currentproperty( $this->authorisedProperties[ 1 ] );
-
-				return $this->authorisedProperties[ 1 ];
-				}
+			reset( $this->authorisedProperties );
+			
+			return current( $this->authorisedProperties );
 			}
 		elseif ( !defined( '_JOMRES_INITCHECK_ADMIN' ) )
 			{
