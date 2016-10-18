@@ -130,7 +130,7 @@ class mcHandler
 
 		$retVal       = null;
 		$eventClasses = $this->registeredClasses;
-		if ( count( $this->registeredClasses ) > 0 )
+		if ( !empty( $this->registeredClasses ) )
 			{
 			foreach ( $eventClasses as $eClass )
 				{
@@ -187,7 +187,7 @@ class mcHandler
 		$jomres_access_control = jomres_singleton_abstract::getInstance( 'jomres_access_control' );
 		$retVal                = null;
 		$eventClasses          = $this->registeredClasses;
-		if ( count( $this->registeredClasses ) > 0 )
+		if ( !empty( $this->registeredClasses ) )
 			{
 			foreach ( $eventClasses as $eClass )
 				{
@@ -234,7 +234,7 @@ class mcHandler
 	function eventFileExistsCheck( $eventPoint )
 		{
 		$eventClasses = $this->registeredClasses;
-		if ( count( $this->registeredClasses ) > 0 )
+		if ( !empty( $this->registeredClasses ) )
 			{
 			foreach ( $eventClasses as $eClass )
 				{
@@ -252,7 +252,7 @@ class mcHandler
 	function eventSpecificlyExistsCheck( $eventPoint, $eventName )
 		{
 		$eventClasses = $this->registeredClasses;
-		if ( count( $this->registeredClasses ) > 0 )
+		if ( !empty( $this->registeredClasses ) )
 			{
 			foreach ( $eventClasses as $eClass )
 				{
@@ -271,7 +271,7 @@ class mcHandler
 	function eventFileLocate( $eventPoint, $eventName )
 		{
 		$eventClasses = $this->registeredClasses;
-		if ( count( $this->registeredClasses ) > 0 )
+		if ( !empty( $this->registeredClasses ) )
 			{
 			foreach ( $eventClasses as $eClass )
 				{
@@ -290,7 +290,7 @@ class mcHandler
 		$retVal = array ();
 		if (isset($this->miniComponentData[ $ePoint ]))
 			{
-			if ( count( $this->miniComponentData[ $ePoint ] ) > 0 )
+			if ( !empty( $this->miniComponentData[ $ePoint ] ) )
 				{
 				foreach ( $this->miniComponentData[ $ePoint ] as $key => $val )
 					{
