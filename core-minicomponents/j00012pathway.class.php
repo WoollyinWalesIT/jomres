@@ -52,7 +52,7 @@ class j00012pathway
 			$property_uid = $componentArgs[ 'property_uid' ];
 			if ( $thisJRUser->userIsManager ) 
 				{
-				$property_uid = (int) $thisJRUser->defaultproperty;
+				$property_uid = (int) $thisJRUser->currentproperty;
 				}
 			
 			if ($property_uid > 0)
@@ -134,5 +134,3 @@ class j00012pathway
 		return null;
 		}
 	}
-
-?>

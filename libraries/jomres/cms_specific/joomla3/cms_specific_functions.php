@@ -205,6 +205,15 @@ function jomres_cmsspecific_getcurrentusers_id()
 	return $id;
 	}
 
+function jomres_cmsspecific_getcurrentusers_username()
+	{
+	$username   = '';
+	$user = JFactory::getUser();
+	$username   = $user->get( 'username' );
+
+	return $username;
+	}
+
 function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $includeVersion = true )
 	{
 	if ( $filename == "" ) return;
@@ -518,4 +527,26 @@ function jomres_cmsspecific_getcmslang()
 	{
 	return JFactory::getLanguage()->getTag();
 	}
+
+// Returns an indexed array of the CMS's users where username matches a searched string
+function jomres_cmsspecific_find_cms_users( $search_term = '' )
+	{
+	$clause = '';
+	$users  = array ();
 	
+	if ( $search_term != '' )
+		$clause = "WHERE LOWER(`username`) LIKE '%" . mb_strtolower($search_term) . "%'";
+
+	$query    = "SELECT `id`, `name`, `username`, `email` FROM #__users ". $clause;
+	$userList = doSelectSql( $query );
+	
+	if ( count( $userList ) > 0 )
+		{
+		foreach ( $userList as $u )
+			{
+			$users[ $u->id ] = array ( "id" => $u->id, "username" => $u->username, "email" => $u->email );
+			}
+		}
+
+	return $users;
+	}

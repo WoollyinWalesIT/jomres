@@ -180,8 +180,16 @@ function jomres_cmsspecific_getcurrentusers_id()
 	{
 	$id=0;
 	$user = wp_get_current_user();
-	$id=$user->get('ID');
+	$id = $user->get('ID');
 	return $id;
+	}
+
+function jomres_cmsspecific_getcurrentusers_username()
+	{
+	$username = '';
+	$user = wp_get_current_user();
+	$username = $user->get('user_login');
+	return $username;
 	}
 
 function jomres_cmsspecific_addheaddata( $type, $path = "", $filename = "", $includeVersion = true )
@@ -381,53 +389,21 @@ function jomres_cmsspecific_getCMSUsers( $cms_user_id = 0 )
 function jomres_cmsspecific_makeSEF_URL( $link )
 	{
 	return $link;
-	// jimport( 'joomla.application.helper' );
-	// if ( class_exists( 'JRoute' ) )
-		// {
-		// $link = JRoute::_( $link, $xhtml = true );
-		// }
-	// $link = jomres_decode( $link );
-
-	// return stripslashes( $link );
 	}
 
 function jomres_cmsspecific_parseByBots( $str )
 	{
 	return $str;
-/* 	$limitstart = 0;
-	$params     = '';
-	$dispatcher =& JDispatcher::getInstance();
-	JPluginHelper::importPlugin( 'content' );
-	$obj       = new stdClass;
-	$obj->text = $str;
-	$output    = $dispatcher->trigger( 'onContentPrepare', array ( 'onContentPrepare', &$obj, & $params, $limitstart ) );
-	$output    = $obj->text;
-
-	return $output; */
 	}
 
 function jomres_cmsspecific_stringURLSafe( $str ) // Used for making SEF urls for Joomla's router. Don't yet have equivallent code for WP
 	{
 	return $str;
-/* 	$scriptname = str_replace( "/", "", $_SERVER[ 'PHP_SELF' ] );
-	if ( !strstr( $scriptname, 'install_jomres.php' ) )
-		{
-		$config = JFactory::getConfig();
-		if ( $config->get( 'unicodeslugs' ) == '1' ) $str = JFilterOutput::stringURLUnicodeSlug( $str );
-		else
-		$str = JFilterOutput::stringURLSafe( $str );
-
-		return $str;
-		}
-	else
-	return null; */
 	}
 
 function jomres_cmsspecific_addcustomtag( $data )
 	{
-/* 	$data     = jomres_decode( $data );
-	$document =& JFactory::getDocument();
-	$document->addCustomTag( $data ); */
+	return true;
 	}
 
 function jomres_cmsspecific_currenturl()
@@ -438,34 +414,34 @@ function jomres_cmsspecific_currenturl()
 function jomres_cmsspecific_patchJoomlaTemplate($force = false)
 	{
 	// Don't need this in WP
-/* 	$app = JFactory::getApplication();
-	$templateName = $app->getTemplate('template')->template;
-	$tmplcomponent = get_showtime("tmplcomponent");
-	$tmplcomponent_source = get_showtime("tmplcomponent_source");
-	
-	if (jomres_cmsspecific_areweinadminarea())
-		{
-		if ($force || !file_exists(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "templates" . JRDS . $templateName . JRDS . $tmplcomponent . '.php'))
-			{
-			if ( !copy( $tmplcomponent_source, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . "templates" . JRDS . $templateName . JRDS . $tmplcomponent . '.php' ) ) 
-				echo '<p class="alert alert-error">Error, unable to copy ' . $tmplcomponent_source .' to ' . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "administrator" . JRDS . 'templates' . JRDS . $templateName . JRDS . $tmplcomponent . '.php automatically, please do this manually through FTP</p><br/>';
-			return true;
-			}
-		}
-	else
-		{
-		if ($force || !file_exists(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "templates" . JRDS . $templateName . JRDS . $tmplcomponent . '.php'))
-			{
-			if ( !copy( $tmplcomponent_source, JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "templates" . JRDS . $templateName . JRDS . $tmplcomponent . '.php' ) ) 
-				echo '<p class="alert alert-error">Error, unable to copy ' . $tmplcomponent_source .' to ' . JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'templates' . JRDS . $templateName . JRDS . $tmplcomponent . '.php automatically, please do this manually through FTP</p><br/>';
-			return true;
-			}
-		}
-	return false; */
+	return true;
 	}
 
 // Get the cms language
 function jomres_cmsspecific_getcmslang()
 	{
 	return get_bloginfo( 'language' );
+	}
+
+// Returns an indexed array of the CMS's users where username matches a searched string
+function jomres_cmsspecific_find_cms_users( $search_term = '' )
+	{
+	$clause = '';
+	$users  = array ();
+	
+	if ( $search_term != '' )
+		$clause = "WHERE LOWER(`user_login`) LIKE '%" . mb_strtolower($search_term) . "%'";
+
+	$query    = "SELECT `id`, `user_nicename`, `user_login`, `user_email` FROM #__users " . $clause;
+	$userList = doSelectSql( $query );
+	
+	if ( count( $userList ) > 0 )
+		{
+		foreach ( $userList as $u )
+			{
+			$users[ $u->id ] = array ( "id" => $u->id, "username" => $u->user_login, "email" => $u->user_email );
+			}
+		}
+
+	return $users;
 	}
