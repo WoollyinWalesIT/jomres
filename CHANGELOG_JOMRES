@@ -1,3 +1,35 @@
+
+<span class="label label-warning">Change</span> Added filesystem integrity check feature.
+
+<span class="label label-warning">Change</span> Improved caching of geolocation caching, seems our performance problems were caused by throttling by the remote service.
+<span class="label label-warning">Change</span> Added a new input filter results cache for testing. 
+<span class="label label-warning">Change</span> Added further speed improvements to registry. Also made the registry readable. We just include_once, no more unserialize on each page load.
+<span class="label label-warning">Change</span> Added small change to get property names multi so that even without caching the query won`t be executed more times on the same page for the same property uids
+<span class="label label-warning">Change</span> Modified how property names are found. Performance improvement.
+<span class="label label-warning">Change</span> Modified functionality so that on redirect we explicitly close database connections. All the documentation says we shouldn't need to, but this is a test to see if we can reduce the number of connections left open.
+<span class="label label-warning">Change</span> Replaced scandir with more efficient home-rolled function.
+<span class="label label-warning">Change</span> Improved an estimate generation method in the booking engine, major speed improvement for properties with many tariffs.
+Changed how we checked to see if an array is empty, instead of counting. Minor performance boost.
+
+<span class="label label-warning">Change</span> Added phone number to Contact Owner form.
+<span class="label label-warning">Change</span> Added alert-danger for BS3 users in edit booking script.
+<span class="label label-warning">Change</span> Updated add service to bill function so that if the prices are set to gross option is set, then the price is initially figured to nett before being added.
+<span class="label label-warning">Change</span> Added a change to the invoice class to see if it helps resolve some rounding issues.
+<span class="label label-warning">Change</span> Added colours to invoice labels status.
+<span class="label label-warning">Change</span> Improved English language API key directions to provide urls to servers.
+<span class="label label-warning">Change</span> Improved layout of log file information.
+<span class="label label-warning">Change</span> Modified exchange rate handling functionality so that if we can't d/l data, we still build a partial file. This prevents various parts of the system re-trying to rebuild this data, we'll just have to accept that for today, we can't convert prices. When the system tries again the next day, more complete data should be available.
+<span class="label label-warning">Change</span> Added code to die if the call is a heartbeat call from the booking engine then just die, further processing is pointless.
+
+
+<span class="label label-important label-danger">Fix</span> Changed booking engine so that if deposit required is first night then tax is properly included in the price.
+<span class="label label-important label-danger">Fix</span> Resolved a problem with editing properties in WP
+<span class="label label-important label-danger">Fix</span> Added a change to how property features are saved in the db as it was affecting property cloning.
+
+<span class="label label-info">Wordpress</span> Added Wordpress functionality that creates a new page with jomres:xx-XX if it doesn't already exist. Negates the need for managers to add pages manually.
+<span class="label label-info">Wordpress</span> Added calls to jomres/classes/jomres_database.class.php so that we can monitor WP DB usage.
+<span class="label label-info">Wordpress</span> Check if we are in admin area...so that in wp it won`t happen that the framework.php is loaded (because of wp plugins which use actions like 'init' which are available also in admin area - this doesn`t happen on joomla) and does the queries/stuff instead of admin.php.
+
 <h3>Jomres 9.8.14 05/10/2016</h3>
 
 <span class="label label-important label-danger">Fix</span> Improved how we access some singletons to resolve some people's intermittent performance problems.
