@@ -14,16 +14,16 @@
 			<thead>
 			<tr>
 				<th>{INTEGRITY_CHECK_FILENAME}</th>
-				<th>{INTEGRITY_CHECK_LOCALHASH}</th>
-				<th>{INTEGRITY_CHECK_BUILDHASH}</th>
+				<!--<th>{INTEGRITY_CHECK_LOCALHASH}</th>
+				<th>{INTEGRITY_CHECK_BUILDHASH}</th>-->
 			</tr>
 			</thead>
 			<tbody>
 			<patTemplate:tmpl name="rows">
 				<tr class="alert {HASH_CLASS}">
-					<td><a href="https://jomres.trac.cloudforge.com/Jomres_core_v4/browser/jomres/{FILENAME}" target="_blank">{FILENAME}</a></td>
-					<td>{LOCAL_HASH}</td>
-					<td>{HASH}</td>
+					<td><a href="https://jomres.trac.cloudforge.com/Jomres_core_v4/browser/jomres/{FILENAME}" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a> {FILENAME}</td>
+					<!--<td>{LOCAL_HASH}</td>
+					<td>{HASH}</td>-->
 				</tr>
 			</patTemplate:tmpl>
 			</tbody>
