@@ -2956,3 +2956,11 @@ jr_define( 'SHORTCODE_TASK', "Task" );
 jr_define( 'SHORTCODE_DESCRIPTION', "Description" );
 jr_define( 'SHORTCODE_ARGUMENTS', "Arguments" );
 jr_define( 'SHORTCODE_EXAMPLE', "Example" );
+
+jr_define( 'INTEGRITY_CHECK', "Filesystem Integrity Check" );
+jr_define( 'INTEGRITY_CHECK_DESC', "This feature allows you to check that the filesystem matches that supplied in the current version of Jomres. This is useful in ensuring that all files were updated correctly after installation/upgrade" );
+jr_define( 'INTEGRITY_CHECK_FILENAME', "Filesystem Integrity Check" );
+jr_define( 'INTEGRITY_CHECK_LOCALHASH', "Local hash" );
+jr_define( 'INTEGRITY_CHECK_BUILDHASH', "Version hash" );
+jr_define( 'INTEGRITY_CHECK_NOPROBLEMS', "Awesome! No problems were found." );
+
