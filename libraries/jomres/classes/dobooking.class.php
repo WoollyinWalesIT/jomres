@@ -4550,7 +4550,8 @@ class dobooking
 							$dates = $tariff_info[ 'tariff_dates' ];
 							foreach ( $dates as $d )
 								{
-								if ( in_array( $d, $dateRangeArray ) && isset( $tariff_info[ 'roomrateperday' ] ) ) $this->micromanage_tarifftype_to_date_map[ $tariff_type_id ][ $d ] = array ( "price" => $tariff_info[ 'roomrateperday' ], "mindays" => $tariff_info[ 'mindays' ], "rates_uid" => $tariff_info[ 'rates_uid' ], "tariff_type_id" => $tariff_type_id );
+								if ( in_array( $d, $dateRangeArray ) && isset( $tariff_info[ 'roomrateperday' ] ) ) 
+									$this->micromanage_tarifftype_to_date_map[ $tariff_type_id ][ $d ] = array ( "price" => $tariff_info[ 'roomrateperday' ], "mindays" => $tariff_info[ 'mindays' ], "rates_uid" => $tariff_info[ 'rates_uid' ], "tariff_type_id" => $tariff_type_id );
 								}
 							}
 						}
@@ -4564,7 +4565,8 @@ class dobooking
 					$dates = $tariff_info[ 'tariff_dates' ];
 					foreach ( $dates as $d )
 						{
-						if ( in_array( $d, $dateRangeArray ) && isset( $tariff_info[ 'roomrateperday' ] ) ) $this->simple_tariff_to_date_map[ $tariff_uid ] = array ( "price" => $tariff_info[ 'roomrateperday' ], "mindays" => $tariff_info[ 'mindays' ], "rates_uid" => $tariff_info[ 'rates_uid' ] );
+						if ( in_array( $d, $dateRangeArray ) && isset( $tariff_info[ 'roomrateperday' ] ) ) 
+							$this->simple_tariff_to_date_map[ $tariff_uid ] = array ( "price" => $tariff_info[ 'roomrateperday' ], "mindays" => $tariff_info[ 'mindays' ], "rates_uid" => $tariff_info[ 'rates_uid' ] );
 						}
 					}
 				}
@@ -4986,7 +4988,7 @@ class dobooking
 			{
 			$tariffStuff[ 'RATEPERNIGHT' ] = $this->estimate_AverageRate( $roomUid, $tariffUid );
 			}
-
+		
 		$room_price_inc_tax                                                 = $this->calculateRoomPriceIncVat( $tariffStuff[ 'RATEPERNIGHT' ] );
 		$this->room_type_style_output[ $tariffUid ][ 'room_price_inc_tax' ] = $room_price_inc_tax;
 
@@ -5205,24 +5207,24 @@ class dobooking
 
 		$datesTilBooking           = $this->findDateRangeForDates( $this->today, $this->arrivalDate );
 
-		$tariffsArray              = array ( $tariffUid );
-		$query                     = "SELECT tarifftype_id FROM #__jomcomp_tarifftype_rate_xref WHERE tariff_id IN (".jomres_implode($tariffsArray).") LIMIT 1";
-		$tarifftypeids             = doSelectSql( $query );
+		$tariff_type_id = (int)$this->all_tariff_id_to_tariff_type_xref[$tariffUid][0];
 
-		if ( count( $tarifftypeids ) > 0 ) // Micromanage mode tariffs
+		if ( $tariff_type_id > 0 ) // Micromanage mode tariffs
 			{
-			$this->build_tariff_to_date_map();
-			foreach ( $tarifftypeids as $t )
-				{
-				$dates            = $this->micromanage_tarifftype_to_date_map[ $t->tarifftype_id ];
-				$cumulative_price = 0.00;
-				foreach ( $dateRangeArray as $date )
-					{
-					$cumulative_price += $dates[ $date ][ 'price' ];
-					}
+			if (!isset($this->micromanage_tarifftype_to_date_map))
+				$this->build_tariff_to_date_map();
 
-				$total = $cumulative_price;
-				}
+			$dates            = $this->micromanage_tarifftype_to_date_map[ $tariff_type_id ];
+
+			$cumulative_price = 0.00;
+			$num_dates = count($dateRangeArray);
+			for ( $i = 0; $i < $num_dates; $i++ )
+				{
+				$date = $dateRangeArray[$i];
+				$cumulative_price += $dates[$date][ 'price' ];
+				} 
+
+			$total = $cumulative_price;
 			}
 		else
 			{
