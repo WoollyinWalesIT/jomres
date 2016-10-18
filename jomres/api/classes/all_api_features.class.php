@@ -32,7 +32,7 @@ class all_api_features
 	
 	private function get_all_api_features($path)
 		{
-		$core_plugins_dir_contents = scandir($path);
+		$core_plugins_dir_contents = scandir_getfiles($path);
 		$api_feature_directories = array();
 		
 		foreach ($core_plugins_dir_contents as $directory )
@@ -45,7 +45,7 @@ class all_api_features
 			{
 			foreach ($api_feature_directories as $plugin)
 				{
-				$plugin_dir_contents = scandir($path.DIRECTORY_SEPARATOR.$plugin);
+				$plugin_dir_contents = scandir_getfiles($path.DIRECTORY_SEPARATOR.$plugin);
 				if (count($plugin_dir_contents) > 0)
 					{
 					foreach ($plugin_dir_contents as $method_dir)
@@ -55,7 +55,7 @@ class all_api_features
 
 						if (is_dir($path . DIRECTORY_SEPARATOR . $plugin .DIRECTORY_SEPARATOR . $method_dir)) 
 							{
-							$files = scandir($path . DIRECTORY_SEPARATOR . $plugin .DIRECTORY_SEPARATOR . $method_dir);
+							$files = scandir_getfiles($path . DIRECTORY_SEPARATOR . $plugin .DIRECTORY_SEPARATOR . $method_dir);
 							foreach ($files as $file)
 								{
 								if ($file != '.' && $file != '..')

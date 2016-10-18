@@ -4585,13 +4585,36 @@ function parseFloat( $ptString )
 	return $result;
 	}
 
+function get_directory_contents($dir)  // Replacement for scandir which seems to be causing system slowdowns
+	{
+	if (is_dir($dir)) 
+		{
+		if ($handle = opendir($dir)) 
+			{
+			$files = array();
+			while (false !== ($file = readdir($handle))) 
+				{
+				$files[] = $file;
+				}
+			closedir($handle);
+			if (is_array($files)) 
+				sort($files);
+
+			return $files;
+			}
+		else return false;
+		}
+	else return false;
+	}
+
+
 
 function scandir_getdirectories( $path )
 	{
 	$data = array ();
 	if (is_dir($path))
 		{
-		foreach ( scandir( $path ) as $dir )
+		foreach ( get_directory_contents( $path ) as $dir )
 			{
 			if ( is_dir( $path . $dir ) )
 				{
@@ -4610,7 +4633,7 @@ function scandir_getfiles( $path, $extension = false )
 	$data = array ();
 	if (is_dir($path))
 		{
-		foreach ( scandir( $path ) as $file )
+		foreach ( get_directory_contents( $path ) as $file )
 			{
 			if ( is_file( $path . JRDS . $file ) )
 				{
@@ -4626,7 +4649,6 @@ function scandir_getfiles( $path, $extension = false )
 				}
 			}
 		}
-	
 	return $data;
 	}
 
