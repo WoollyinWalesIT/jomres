@@ -3090,7 +3090,7 @@ jr_define( 'SHORTCODE_ARGUMENTS', "Arguments" );
 jr_define( 'SHORTCODE_EXAMPLE', "Example" );
 
 jr_define( 'INTEGRITY_CHECK', "Filesystem Integrity Check" );
-jr_define( 'INTEGRITY_CHECK_DESC', "This feature allows you to check that the filesystem matches that supplied in the current version of Jomres. This is useful in ensuring that all files were updated correctly after installation/upgrade. Files in Red are missing, files in Orange exist but are different from those supplied in the current build." );
+jr_define( 'INTEGRITY_CHECK_DESC', "This feature allows you to check that the filesystem matches that supplied in the current version of Jomres. This is useful in ensuring that all files were updated correctly after installation/upgrade. Files in Red are missing, files in Orange exist but are different from those supplied in the current build. Only fiiles that are potential problems will be listed here." );
 jr_define( 'INTEGRITY_CHECK_FILENAME', "Filesystem Integrity Check" );
 jr_define( 'INTEGRITY_CHECK_LOCALHASH', "Local hash" );
 jr_define( 'INTEGRITY_CHECK_BUILDHASH', "Version hash" );
