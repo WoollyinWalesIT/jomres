@@ -13,6 +13,14 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 ##################################################################
 
+if (isset($_REQUEST['task']) && isset($_REQUEST['field'])) // Booking engine heartbeat is used to keep the session alive, but doesn't do anything else. We'll kill it dead right off the bat.
+	{
+	if ( $_REQUEST['task'] == "handlereq" && $_REQUEST['field'] == "heartbeat" )
+		{
+		die();
+		}
+	}
+
 ob_start( 'removeBOM' );
 
 @ini_set( "max_execution_time", "480" );
@@ -21,6 +29,8 @@ ob_start( 'removeBOM' );
 header("X-Clacks-Overhead: GNU Terry Pratchett");
 
 require_once( dirname( __FILE__ ) . '/integration.php' );
+
+
 
 try
 	{
