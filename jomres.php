@@ -820,6 +820,10 @@ try
 
 	//done
 	endrun();
+	if ( AJAXCALL )
+		{
+		doDBClose();
+		}
 	
 	//jomres page views - huge resource eater
 	jr_import("jomres_pageview_record");

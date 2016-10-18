@@ -36,7 +36,7 @@ class j16000list_error_logs
 		$error_log_files = array();
 		if (is_dir($jrConfig['log_path'])) 
 			{
-			$files = scandir($jrConfig['log_path']);
+			$files = scandir_getfiles($jrConfig['log_path']);
 			foreach ($files as $file)
 				{
 				if ($file != '.' && $file != '..')

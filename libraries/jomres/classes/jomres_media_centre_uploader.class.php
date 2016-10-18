@@ -316,7 +316,7 @@ class UploadHandler
         }
         return array_values(array_filter(array_map(
             array($this, $iteration_method),
-            scandir($upload_dir)
+            scandir_getfiles($upload_dir)
         )));
     }
 

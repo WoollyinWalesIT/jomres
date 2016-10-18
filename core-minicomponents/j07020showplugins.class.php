@@ -89,7 +89,7 @@ class j07020showplugins
 
 			$installed_plugins = array ();
 			$jrcPath           = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'core-plugins' . JRDS;
-			$files             = scandir( $jrcPath );
+			$files             = scandir_getfiles( $jrcPath );
 			$d                 = @dir( $jrcPath );
 			if ( $d )
 				{

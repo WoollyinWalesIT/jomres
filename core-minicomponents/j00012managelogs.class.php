@@ -29,7 +29,7 @@ class j00012managelogs
 		// Log file rotation
 		$maxFileSize           = 1024 * 1024;
 
-		$log_files = scandir(JOMRES_SYSTEMLOG_PATH);
+		$log_files = scandir_getfiles(JOMRES_SYSTEMLOG_PATH);
 		
 		foreach ($log_files as $log_file)
 			{
