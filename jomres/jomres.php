@@ -835,10 +835,6 @@ try
 		doDBClose();
 		}
 	
-	//jomres page views - huge resource eater
-	jr_import("jomres_pageview_record");
-	$jomres_pageview_record = new jomres_pageview_record();
-	
 	//mostly not used these days
 	if ( defined( "JOMRES_RETURNDATA" ) )
 		{
