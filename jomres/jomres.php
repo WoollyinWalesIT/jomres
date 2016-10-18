@@ -127,8 +127,7 @@ try
 		define ( "JOMRES_NOHTML", 0 );
 
 	//currency conversion object
-	jr_import( 'jomres_currency_exchange_rates' );
-	$exchange_rates = new jomres_currency_exchange_rates( "GBP" );
+	$jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance( 'jomres_currency_exchange_rates' );
 
 	//if this cms user has booked in the past and doesn`t have profile details saved yet, we`ll update his profile details aautomatically based on his guest details from one of the previous bookings he`s made
 	if ( get_showtime( 'task' ) != "error" )

@@ -98,8 +98,7 @@ function load_jomres_environment()
 		}
 	
 	//currency exchange rates
-	jr_import( 'jomres_currency_exchange_rates' );
-	$exchange_rates = new jomres_currency_exchange_rates( "GBP" );
+	$jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance( 'jomres_currency_exchange_rates' );
 
 	$property_uid = (int)detect_property_uid();
 	

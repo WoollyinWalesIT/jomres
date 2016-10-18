@@ -21,8 +21,10 @@ class jomres_currency_conversion
 		{
 		$jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance( 'jomres_currency_exchange_rates' );
 		
-		if (is_array(get_showtime( 'temp_exchangerate_data' )))
-			$this->rates = get_showtime( 'temp_exchangerate_data' );
+		if ( !empty($jomres_currency_exchange_rates->rates) )
+			{
+			$this->rates = $jomres_currency_exchange_rates->rates;
+			}
 		else
 			{
 			$this->rates = array();
@@ -111,5 +113,3 @@ class jomres_currency_conversion
 		return $valid;
 		}
 	}
-
-?>
