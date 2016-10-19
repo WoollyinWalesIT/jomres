@@ -77,13 +77,12 @@ function jomres_cmsspecific_areweinadminarea()
 	}
 
 
-function jomres_cmsspecific_createNewUserOnBooking()
+function jomres_cmsspecific_createNewUser()
 	{
 	$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
 	$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig          = $siteConfig->get();
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-	if ( $jrConfig[ 'useNewusers' ] == "0" ) return -1;
 
 	$id = $thisJRUser->id;
 
@@ -122,10 +121,10 @@ function jomres_cmsspecific_createNewUserOnBooking()
 			'user_nicename'		=> $name
 			);
 
-		$user_id = wp_insert_user( $userdata ) ;
+		$id = wp_insert_user( $userdata ) ;
 
 		//On success
-		if( !is_wp_error($user_id) ) 
+		if( !is_wp_error($id) ) 
 			{
 			//$thisJRUser->userIsRegistered=true; // Disabled as this setting would be incorrect during the booking phase. We want newly created users to have their details recorded by the insertGuestDeets function in insertbookings
 			$thisJRUser->id = $id;

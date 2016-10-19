@@ -63,13 +63,12 @@ function jomres_cmsspecific_areweinadminarea()
 	}
 
 
-function jomres_cmsspecific_createNewUserOnBooking()
+function jomres_cmsspecific_createNewUser()
 	{
 	$thisJRUser        = jomres_singleton_abstract::getInstance( 'jr_user' );
 	$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig          = $siteConfig->get();
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-	if ( $jrConfig[ 'useNewusers' ] == "0" ) return -1;
 
 	$id = $thisJRUser->id;
 
