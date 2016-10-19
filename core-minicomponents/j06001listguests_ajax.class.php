@@ -125,10 +125,7 @@ class j06001listguests_ajax
 						a.email, 
 						a.vat_number, 
 						a.discount,
-						a.property_uid,
-						b.guest_uid, 
-						b.cancelled,
-						b.bookedout 
+						a.property_uid 
 					FROM #__jomres_guests a 
 						LEFT JOIN #__jomres_contracts b ON a.guests_uid = b.guest_uid " 
 					. $clause 
