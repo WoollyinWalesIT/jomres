@@ -245,7 +245,10 @@ class j03020insertbooking
 				}
 			else
 				{
-				$new_user_id = jomres_cmsspecific_createNewUserOnBooking();
+				$new_user_id = 0;
+				
+				if ( $jrConfig[ 'useNewusers' ] == "1" )
+					$new_user_id = jomres_cmsspecific_createNewUser();
 
 				$guests_uid = insertGuestDeets( get_showtime( 'jomressession' ) );
 
