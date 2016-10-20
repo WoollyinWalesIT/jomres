@@ -17,9 +17,7 @@
 			return false;
 		}
 	}
-	function editbooking() {
-		document.bookingForm.action = "{BOOKINGFORMURL}";
-	}
+
 	//-->
 </script>
 <p>{HEADER}</p>
@@ -241,7 +239,7 @@
 		{AMENDTEXT}
 	</div>
 	<div class="span3">
-		<input id="amend" type="submit" value="{AMEND}" class="btn btn-info" onclick="editbooking();"/>
+		<a href="{BOOKINGFORMURL}"  class="btn btn-default">{AMEND}</a>
 	</div>
 </div>
 <p>&nbsp;</p>

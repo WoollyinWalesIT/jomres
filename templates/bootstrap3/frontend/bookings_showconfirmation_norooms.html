@@ -17,9 +17,7 @@
 			return false;
 		}
 	}
-	function editbooking() {
-		document.bookingForm.action = "{BOOKINGFORMURL}";
-	}
+
 	function agreeAlert() {
 		if (document.bookingForm.agreecheck.checked) {
 			jomresJquery('#agreealert').removeClass('alert-warning').addClass('alert-success');
@@ -126,8 +124,7 @@
 <div class="row">
 	<div class="col-md-12" align="center">
 		<p>{AMENDTEXT}</p>
-		<input id="amend" type="submit" value="{AMEND}" class="btn btn-default" onclick="editbooking();"/>
-		<p>&nbsp;</p>
+		<a href="{BOOKINGFORMURL}"  class="btn btn-default">{AMEND}</a>
 	</div>
 </div>
 
