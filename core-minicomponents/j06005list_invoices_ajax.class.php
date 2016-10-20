@@ -178,12 +178,11 @@ class j06005list_invoices_ajax
 					a.is_commission, 
 					GROUP_CONCAT(DISTINCT b.name SEPARATOR '<br>') AS line_items, 
 					SUM( CASE WHEN b.init_total_inclusive < 0 THEN 0 ELSE b.init_total_inclusive END ) AS grand_total, 
-					d.guest_uid, 
 					d.tag,
 					d.currency_code,
 					d.approved,
-					CASE WHEN (a.subscription = 1 OR a.is_commission = 1) THEN e.firstname ELSE c.firstname END AS firstname, 
-					CASE WHEN (a.subscription = 1 OR a.is_commission = 1) THEN e.surname ELSE c.surname END AS surname  
+					( CASE WHEN a.subscription = 1 OR a.is_commission = 1 THEN e.firstname ELSE c.firstname END ) AS firstname, 
+					( CASE WHEN a.subscription = 1 OR a.is_commission = 1 THEN e.surname ELSE c.surname END ) AS surname  
 				FROM #__jomresportal_invoices a 
 					JOIN #__jomresportal_lineitems b ON a.id = b.inv_id 
 					LEFT JOIN #__jomres_contracts d ON a.id = d.invoice_uid 
