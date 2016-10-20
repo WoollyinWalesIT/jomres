@@ -127,6 +127,7 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 				},
 				{
 					"extend": "excel",
+					"title": pagetitle,
 					"charset": "utf16le",
 					"exportOptions": {
 						"columns": ':visible'
