@@ -2188,7 +2188,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body, $mod
 		
 		$mail->CharSet  = 'UTF-8';
 		$mail->FromName = $jomresConfig_sitename;
-		$mail->Subject  = $subject;
+		$mail->Subject  = str_replace("&#39;","'",$subject);
 		$mail->Port	 = $jomresConfig_smtpport;
 
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
