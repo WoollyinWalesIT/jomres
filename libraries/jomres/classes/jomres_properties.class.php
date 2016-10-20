@@ -323,7 +323,7 @@ class jomres_properties
 		
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		
-		//check if the new property type allows booking rooms in the property, the property itself or neigher (tour/real estate), so we can delete all rooms and tariffs
+		//check if the new property type allows booking rooms in the property, the property itself or neither (tour/real estate), so we can delete all rooms and tariffs
 		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 		$current_property_details->gather_data($this->propertys_uid);
 
