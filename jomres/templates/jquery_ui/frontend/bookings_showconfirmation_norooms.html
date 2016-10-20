@@ -17,9 +17,7 @@
 				return false;
 			}
 		}
-		function editbooking() {
-			document.bookingForm.action = "{BOOKINGFORMURL}";
-		}
+
 		//-->
 	</script>
 	<p>{HEADER}</p>
@@ -144,9 +142,7 @@
 					<input name="agreecheck" type="checkbox"/>{TERMSPRETEXT}&nbsp;{TERMS}
 				</td>
 				<td style="text-align:right;">
-					<input type="submit" id="send" name="send" value="{THEBUTTON}"
-						   class="fg-button ui-state-default ui-corner-all"
-						   onclick="return confirmation_validate(false);"/>
+					<a href="{BOOKINGFORMURL}" class="fg-button ui-state-default ui-corner-all">{AMEND}</a>
 				</td>
 			</tr>
 			<tr>
