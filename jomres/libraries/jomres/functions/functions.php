@@ -5003,7 +5003,7 @@ function getDefaultProperty()
 
 function jomresURL( $link, $ssl = 2 )
 	{
-	$link = str_replace( "&amp;", '&', $link );
+	
 	
 	$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 	$jrConfig   = $siteConfig->get();
@@ -5012,6 +5012,7 @@ function jomresURL( $link, $ssl = 2 )
 		{
 		$link = jomres_cmsspecific_makeSEF_URL( $link );
 		}
+	$link = str_replace( "&amp;", '&', $link );
 	return $link;
 	}
 
