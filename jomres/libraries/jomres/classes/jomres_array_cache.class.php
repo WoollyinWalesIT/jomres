@@ -72,6 +72,12 @@ class jomres_array_cache {
 			$jrConfig[ 'useArrayCaching' ] = '0';
 			}
 		$this->_useCaching  = (bool)$jrConfig[ 'useArrayCaching' ];
+		
+		if ( !$this->_useCaching )
+			{
+			return false;
+			}
+
 		if (true === isset($config)) 
 			{
 			if (is_string($config)) 
@@ -403,17 +409,7 @@ class jomres_array_cache {
 	public function get_cache_lang()
 		{
 		$cache_lang=get_showtime('lang');
-		if (jomres_cmsspecific_areweinadminarea())
-			{
-			if ( isset( $_POST[ 'jomreslang' ] ) )
-				{
-				$cache_lang = (string) RemoveXSS( jomresGetParam( $_POST, 'jomreslang', "" ) );
-				}
-			elseif ( isset( $_GET[ 'jomreslang' ] ) )
-				{
-				$cache_lang = (string) RemoveXSS( jomresGetParam( $_GET, 'jomreslang', "" ) );
-				}
-			}
+
 		return $cache_lang;
 		}
 
