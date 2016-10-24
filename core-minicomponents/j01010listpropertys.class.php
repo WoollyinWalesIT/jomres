@@ -618,8 +618,12 @@ class j01010listpropertys
 						$property_deets[ 'LINK' ]          = jomresURL( JOMRES_SITEPAGE_URL . "&task=contactowner&selectedProperty=" . $propertys_uid );
 						$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext( '_JOMRES_FRONT_MR_MENU_CONTACT_AGENT', '_JOMRES_FRONT_MR_MENU_CONTACT_AGENT', false );
 						}
-
-					$property_deets[ 'PROP_NAME' ] = $current_property_details->multi_query_result[ $propertys_uid ][ 'property_name' ];
+						
+					if (strlen($current_property_details->multi_query_result[ $propertys_uid ][ 'property_name' ]) > 24 && $layout=="tile" )
+						$property_deets[ 'PROP_NAME' ] = jr_substr( $current_property_details->multi_query_result[ $propertys_uid ][ 'property_name' ], 0, 23 ) . "&hellip;";
+					else
+						$property_deets[ 'PROP_NAME' ] = $current_property_details->multi_query_result[ $propertys_uid ][ 'property_name' ];
+					
 					$property_deets[ 'LAT' ]       = $current_property_details->multi_query_result[ $propertys_uid ][ 'lat' ];
 					$property_deets[ 'LONG' ]      = $current_property_details->multi_query_result[ $propertys_uid ][ 'long' ];
 					$property_deets[ 'PROP_STREET' ]   = stripslashes( $current_property_details->multi_query_result[ $propertys_uid ][ 'property_street' ] );
