@@ -1112,7 +1112,7 @@ function prepGeographicSearch()
 																			AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' 
 																			AND b.language = '".$lang."')
 									WHERE a.published = '1' 
-									ORDER BY a.property_country,a.property_region,property_town DESC ";
+									ORDER BY a.property_country,a.property_region,property_town ";
 		$propertyLocations    = doSelectSql( $query );
 		$allPropertyLocations = array ();
 		foreach ( $propertyLocations as $location )
