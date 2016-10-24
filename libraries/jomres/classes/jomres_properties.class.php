@@ -70,65 +70,46 @@ class jomres_properties
 		//$this->timestamp 						= date("Y/m/d H:i:s");
 		$this->approved 						= 0;
 		$this->property_site_id 				= '';
-		$this->permit_number 				= '';
+		$this->permit_number 					= '';
+		
+		$this->all_property_uids				= false;
 		}
 	
 	//Get all properties in the system
 	function get_all_properties()
 		{
-		set_showtime( 'heavyweight_system', false );
-		
-		$all_property_uids = get_showtime( 'all_properties_in_system' );
-
-		if ( $all_property_uids )
+		if ( is_array($this->all_property_uids) )
 			{
 			return true;
 			}
-		else
+		
+		set_showtime( 'heavyweight_system', false );
+
+		$query = "SELECT `propertys_uid`, `published` FROM #__jomres_propertys";
+		$result = doSelectSql( $query );
+		
+		$numberOfPropertiesInSystem = count( $result );
+		
+		if ( $numberOfPropertiesInSystem > 200 ) 
+			set_showtime( 'heavyweight_system', true );
+		
+		set_showtime( 'numberOfPropertiesInSystem', $numberOfPropertiesInSystem );
+		
+		$all_propertys           = array ();
+		$all_published_propertys = array ();
+		
+		foreach ( $result as $r )
 			{
-			$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
-			$all_property_uids = $c->retrieve('all_property_uids');
+			$all_propertys[] = $r->propertys_uid;
+			
+			if ( $r->published == "1" ) 
+				$all_published_propertys[ ] = $r->propertys_uid;
 			}
 
-		if ( $all_property_uids )
-			{
-			$numberOfPropertiesInSystem = count( $all_property_uids['all_propertys'] );
-			
-			if ( $numberOfPropertiesInSystem > 200 ) 
-				set_showtime( 'heavyweight_system', true );
-			
-			set_showtime( 'numberOfPropertiesInSystem', $numberOfPropertiesInSystem );
-			set_showtime( 'all_properties_in_system', $all_property_uids['all_propertys'] );
-			set_showtime( 'published_properties_in_system', $all_property_uids['all_published_propertys'] );
-			}
-		else
-			{
-			$query = "SELECT `propertys_uid`, `published` FROM #__jomres_propertys";
-			$result = doSelectSql( $query );
-			
-			$numberOfPropertiesInSystem = count( $result );
-			
-			if ( $numberOfPropertiesInSystem > 200 ) 
-				set_showtime( 'heavyweight_system', true );
-			
-			set_showtime( 'numberOfPropertiesInSystem', $numberOfPropertiesInSystem );
-			
-			$all_propertys           = array ();
-			$all_published_propertys = array ();
-			
-			foreach ( $result as $r )
-				{
-				$all_propertys[] = $r->propertys_uid;
-				
-				if ( $r->published == "1" ) 
-					$all_published_propertys[ ] = $r->propertys_uid;
-				}
-
-			set_showtime( 'all_properties_in_system', $all_propertys );
-			set_showtime( 'published_properties_in_system', $all_published_propertys );
-			
-			$c->store('all_property_uids',array('all_propertys'=>$all_propertys,'all_published_propertys'=>$all_published_propertys));
-			}
+		set_showtime( 'all_properties_in_system', $all_propertys );
+		set_showtime( 'published_properties_in_system', $all_published_propertys );
+		
+		$this->all_property_uids = array( 'all_propertys' => $all_propertys, 'all_published_propertys' => $all_published_propertys );
 		
 		return true;
 		}
