@@ -22,8 +22,6 @@ if (!defined('JOMRES_ROOT_DIRECTORY'))
         define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
     }
 
-require_once( dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'framework.php' );
-
 if (!class_exists('JomresRouter'))
 	{
 	class JomresRouter extends JComponentRouterBase
@@ -59,7 +57,10 @@ if (!class_exists('JomresRouter'))
 		function JomresBuildRoute( &$query )
 			{
 			static $items;
+			
 			$route_query = $query; // We need to work within this function with the $route_query variable, not $query. It seems to be that the assignation &$query on some servers means that once the property name query further down has been run, then Joomla's $query becomes whatever the sql query was. Don't know why, and I'm not going to dig around to find out. We'll work internally on $route_query, then set $query to $route_query at the end, that seems to fix it.
+			
+			require_once( dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'framework.php' );
 
 			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 			$jrConfig   = $siteConfig->get();
@@ -178,6 +179,8 @@ if (!class_exists('JomresRouter'))
 		function JomresParseRoute( $segments )
 			{
 			$vars = array ();
+			
+			require_once( dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'framework.php' );
 			
 			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 			$jrConfig   = $siteConfig->get();
