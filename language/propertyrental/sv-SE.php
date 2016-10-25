@@ -3,7 +3,7 @@
  * Core file Swedish transltion
  *
  * @author Christer Toivonen <christer_1@hotmail.com>
- * @version Jomres 9
+ * @version Jomres 9.8.16
  * @package Jomres
  * @copyright (this translation) 2013 Christer Toivonen
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.

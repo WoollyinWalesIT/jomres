@@ -1,11 +1,13 @@
 ﻿<?php
 /**
-* Core file
-* @author Vince Wooll <sales@jomres.net>
-* @version Jomres 9
-* @package Jomres
-* @copyright	2005-2013 Vince Wooll
-* Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
+ * Core file
+ *
+ * @author Vince Wooll <sales@jomres.net>
+ * @version Jomres 9.8.16
+ * @package Jomres
+ * @copyright	2005-2016 Vince Wooll
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
+
 * @Polska adaptacja Patryk Doering - http://www.rekinet.pl - kontakt@rekinet.pl
 * @Aktualizacja wersji językowej z 07-10-2016r.
 **/
