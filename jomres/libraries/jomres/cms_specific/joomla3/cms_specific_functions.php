@@ -106,6 +106,8 @@ function jomres_cmsspecific_createNewUser()
 			`email`,
 			`password`,
 			`registerDate`,
+			`lastvisitDate`,
+			`lastResetTime`,
 			`params`
 			) VALUES (
 			'" . $name . "',
@@ -113,6 +115,8 @@ function jomres_cmsspecific_createNewUser()
 			'" . $guestDeets[ 'email' ] . "',
 			'" . $encryptedPassword . "',
 			'" . date( 'Y-m-d H:i:s' ) . "',
+			'" . date( 'Y-m-d H:i:s' ) . "',
+			'" . date( 'Y-m-d H:i:s' ) . "',3
 			'{}'
 			) ";
 		$id    = doInsertSql( $query );
