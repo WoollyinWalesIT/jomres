@@ -1,5 +1,23 @@
+<h3>Jomres 9.8.16 25/10/2016</h3>
 
-<span class="label label-warning">Change</span> Added filesystem integrity check feature.
+<span class="label label-warning">Change</span> Removed exchange rates cron script as it's no longer required.
+<span class="label label-warning">Change</span> Made the exchange rates class a singleton.
+<span class="label label-warning">Change</span> Modified list guests ajax script to account for mysql strict ONLY_FULL_GROUP_BY settings.
+<span class="label label-warning">Change</span> Tweaked a query in list invoices ajax script to resolve some mysql notices.
+<span class="label label-warning">Change</span> Added a tweak to decode apostrophes to their proper form in email subjects.
+<span class="label label-warning">Change</span> Tweaked tabletools handling so that when clicking on xls link the page name is used when naming the file.
+<span class="label label-warning">Change</span> Booking confirmation page updated, amend booking element changed from a submit button to a link. It doesn't need to be a submit form, and it's recently stopped redirecting back to the booking form.
+<span class="label label-warning">Change</span> Tweaked a search query that sorts properties in descending order. Removed that ordering.
+<span class="label label-warning">Change</span> Added trimming to property names in photo view only to preserve photo view page layout.
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue with Leohtian templates not showing modules on front page. It was caused by an incorrectly merged PR in Joomla breaking B/C
+<span class="label label-important label-danger">Fix</span> Modified how new CMS users are created, fixes a problem with WP.
+<span class="label label-important label-danger">Fix</span> Removed caching from property uids, solves a language switcher problem in admin cpanel
+<span class="label label-important label-danger">Fix</span> Testing a tweak to jomresURL function. Joomla 3.6.3 routing has changed how urls are returned, causing issues with various forms being built incorrectly.
+
+<h3>Jomres 9.8.15 18/10/2016</h3>
+
+<span class="label label-success">Feature</span> Added filesystem integrity check feature.
 
 <span class="label label-warning">Change</span> Improved caching of geolocation caching, seems our performance problems were caused by throttling by the remote service.
 <span class="label label-warning">Change</span> Added a new input filter results cache for testing. 
