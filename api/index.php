@@ -9,7 +9,6 @@
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
-
 // create a log channel
 define("TRANSACTION_ID" , time() );
 define("PRODUCTION" , false ); // Set this to true in a production environment
