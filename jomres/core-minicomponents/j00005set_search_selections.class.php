@@ -168,5 +168,3 @@ class j00005set_search_selections
 		return null;
 		}
 	}
-
-?>

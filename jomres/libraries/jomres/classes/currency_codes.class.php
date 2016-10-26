@@ -81,6 +81,3 @@ class currency_codes
 		return $this->symbols[ $code ];
 		}
 	}
-
-
-?>

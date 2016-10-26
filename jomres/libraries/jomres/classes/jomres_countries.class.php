@@ -58,6 +58,3 @@ class jomres_countries
 		}
 
 	}
-
-
-?>

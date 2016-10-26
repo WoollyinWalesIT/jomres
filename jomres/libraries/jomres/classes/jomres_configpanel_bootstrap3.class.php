@@ -110,5 +110,3 @@ class jomres_configpanel_bootstrap3 extends jomres_content_tabs
 		$this->right = $val;
 		}
 	}
-
-?>

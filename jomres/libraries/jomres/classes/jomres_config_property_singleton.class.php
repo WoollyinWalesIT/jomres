@@ -150,5 +150,3 @@ class jomres_config_property_singleton
 			}
 		}
 	}
-
-?>

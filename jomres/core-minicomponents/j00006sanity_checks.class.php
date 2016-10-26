@@ -74,5 +74,3 @@ class j00006sanity_checks
 		return null;
 		}
 	}
-
-?>

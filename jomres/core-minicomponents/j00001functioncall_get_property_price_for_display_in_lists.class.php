@@ -35,5 +35,3 @@ class j00001functioncall_get_property_price_for_display_in_lists
 		return null;
 		}
 	}
-
-?>

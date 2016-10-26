@@ -131,6 +131,3 @@ class jomres_content_tabs_normal
 		$this->content .= $val;
 		}
 	}
-
-
-?>

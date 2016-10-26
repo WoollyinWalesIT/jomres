@@ -126,5 +126,3 @@ class jomresHTML
 		return jomresHTML::selectList( $arry, $name, $attribs, 'value', 'text', $selected, $use_bootstrap_radios );
 		}
 	}
-
-?>

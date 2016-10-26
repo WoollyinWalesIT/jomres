@@ -235,5 +235,3 @@ class jomres_access_control
 		}
 
 	}
-
-?>

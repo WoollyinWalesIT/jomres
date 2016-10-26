@@ -114,5 +114,3 @@ class jomres_cart
 		return array ( "contract_total" => $this->contract_total, "deposit_required" => $this->deposit_required );
 		}
 	}
-
-?>
