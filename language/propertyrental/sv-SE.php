@@ -1,8 +1,8 @@
 <?php
 /**
- * Core file Swedish transltion
+ * Core file
  *
- * @author Christer Toivonen <christer_1@hotmail.com>
+ * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 9.8.16
  * @package Jomres
  * @copyright	2005-2016 Vince Wooll
