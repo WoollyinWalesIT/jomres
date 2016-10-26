@@ -35,5 +35,3 @@ class j00001functioncall_get_property_module_data
 		return null;
 		}
 	}
-
-?>

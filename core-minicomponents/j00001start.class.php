@@ -41,5 +41,3 @@ class j00001start
 		return null;
 		}
 	}
-
-?>

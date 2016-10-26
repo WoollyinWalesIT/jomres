@@ -81,5 +81,3 @@ class j00001define_template_paths
 		return null;
 		}
 	}
-
-?>

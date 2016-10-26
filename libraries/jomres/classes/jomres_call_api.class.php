@@ -124,5 +124,3 @@ class jomres_call_api
 		}
 	
 	}
-
-?>

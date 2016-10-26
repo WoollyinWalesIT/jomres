@@ -45,5 +45,3 @@ class html_functions
 		';
 		}
 	}
-
-?>

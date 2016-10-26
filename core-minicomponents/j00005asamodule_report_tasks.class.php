@@ -121,5 +121,3 @@ class j00005asamodule_report_tasks
 		return null;
 		}
 	}
-
-?>

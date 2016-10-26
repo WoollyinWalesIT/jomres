@@ -76,5 +76,3 @@ class j00005x_create_misc_common_strings
 		return null;
 		}
 	}
-
-?>

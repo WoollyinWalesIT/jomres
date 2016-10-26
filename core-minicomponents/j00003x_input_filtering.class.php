@@ -59,5 +59,3 @@ class j00003x_input_filtering
 		return null;
 		}
 	}
-
-?>

@@ -34,5 +34,3 @@ class j00001functioncall_generateDateInput
 		return null;
 		}
 	}
-
-?>

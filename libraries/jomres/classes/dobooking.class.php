@@ -7239,5 +7239,3 @@ class dobooking
 		return $this->email_address_can_be_used;
 		}
 	}
-
-?>

@@ -134,6 +134,3 @@ class jomres_content_tabs_bootstrap
 		$this->content .= $val;
 		}
 	}
-
-
-?>
