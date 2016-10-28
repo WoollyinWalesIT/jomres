@@ -20,8 +20,9 @@ if ( ! class_exists( 'WP_Jomres' ) )
 		
 		public function __construct()
 			{
-			$this->js = array ();
-			$this->css = array ();
+			$this->js = array();
+			$this->css = array();
+			$this->custom_meta = array();
 			$this->contents = '';
 			$this->metatitle = '';
 			
@@ -43,6 +44,7 @@ if ( ! class_exists( 'WP_Jomres' ) )
 			add_action('wp', array($this,'frontend_trigger_jomres'), 1);
 			add_action('wp_login', array($this,'jomres_wp_end_session'));
 			add_action('wp_logout',	array($this,'jomres_wp_end_session'));
+			add_action('wp_head',array($this,'jomres_add_custom_meta'));
 			add_filter('the_content', array($this,'asamodule_search_results'));
 			add_filter('wp_title', array($this,'set_jomres_meta_title'), 10, 2);
 			add_filter('redirect_canonical', array($this,'payments_redirect_canonical'), 10, 2);
@@ -245,6 +247,23 @@ if ( ! class_exists( 'WP_Jomres' ) )
 				}
 			
 			return $title;
+			}
+		
+		function jomres_add_custom_meta()
+			{
+			if ( empty($this->custom_meta) )
+				{
+				return true;
+				}
+			
+			echo PHP_EOL;
+			
+			foreach ( $this->custom_meta as $meta )
+				{
+				echo $meta . PHP_EOL;
+				}
+			
+			return true;
 			}
 		
 		function jomres_fullscreen_view($template)
