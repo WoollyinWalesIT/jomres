@@ -402,6 +402,16 @@ function jomres_cmsspecific_stringURLSafe( $str ) // Used for making SEF urls fo
 
 function jomres_cmsspecific_addcustomtag( $data )
 	{
+	if ( trim($data) == "" ) 
+		return;
+	
+	if (!class_exists("wp_jomres"))
+		return;
+	
+	$wp_jomres = wp_jomres::getInstance();
+	
+	$wp_jomres->custom_meta[] = trim($data);
+	
 	return true;
 	}
 
