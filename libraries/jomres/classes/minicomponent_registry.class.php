@@ -185,7 +185,7 @@ $this->miniComponentDirectories = ' . var_export($this->miniComponentDirectories
 			}
 		elseif ( this_cms_is_wordpress() )
 			{
-			$jrePath = get_template_directory() . JRDS . 'html' . JRDS . 'com_jomres' . JRDS ;
+			$jrePath = get_stylesheet_directory() . JRDS . 'html' . JRDS . 'com_jomres' . JRDS ;
 			}
 		else
 			return;
