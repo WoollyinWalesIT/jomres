@@ -22,14 +22,18 @@ class jomres_property_types
 		{
 		$this->property_types = false;
 		
-		$this->property_type 				 = array();
-		$this->property_type['id']           = 0;					// new property type id default
-		$this->property_type['ptype']        = '';					// property type name; TODO: make it use jr_gettext
-		$this->property_type['ptype_desc']   = '';					// property type specific language file dir name
-		$this->property_type['published']    = 1;					// published
-		$this->property_type['order']        = 0;					// order
-		$this->property_type['mrp_srp_flag'] = 0;					// what will guests book: rooms in the property or the property itself
+		$this->property_type 					= array();
+		$this->property_type['id']				= 0;					// new property type id default
+		$this->property_type['ptype']			= '';					// property type name; TODO: make it use jr_gettext
+		$this->property_type['ptype_desc']		= '';					// property type specific language file dir name
+		$this->property_type['published']		= 1;					// published
+		$this->property_type['order']			= 0;					// order
+		$this->property_type['mrp_srp_flag']	= 0;					// what will guests book: rooms in the property or the property itself
+		$this->property_type['marker']			= '';					// Google map marker
 		
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
+		$this->property_type['marker_image'] = get_showtime( 'live_site' ) . '/' . JOMRES_ROOT_DIRECTORY . '/images/' . $jomres_media_centre_images->multi_query_images['noimage-small'];
+
 		//retrieve property types data from cache, if available
 		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 		$property_types_data = $c->retrieve('property_types_data');
@@ -68,7 +72,7 @@ class jomres_property_types
 		
 		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
 		
-		$query = "SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag` FROM #__jomres_ptypes ORDER BY `order` ASC";
+		$query = "SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag` , `marker` FROM #__jomres_ptypes ORDER BY `order` ASC";
 		$result = doSelectSql( $query );
 		
 		if ( count($result) < 1 )
@@ -78,14 +82,26 @@ class jomres_property_types
 
 		foreach ( $result as $r )
 			{
-			$this->property_types[$r->id]['id']           = (int)$r->id;			// property type id
-			$this->property_types[$r->id]['ptype']        = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $r->id, $r->ptype, false ); // property type name;
-			$this->property_types[$r->id]['ptype_desc']   = $r->ptype_desc;			// property type specific language file dir name
-			$this->property_types[$r->id]['published']    = (int)$r->published;		// published
-			$this->property_types[$r->id]['order']        = (int)$r->order;			// order
-			$this->property_types[$r->id]['mrp_srp_flag'] = (int)$r->mrp_srp_flag;	// what will guests book: rooms in the property or the property itself
+			$this->property_types[$r->id]['id']				= (int)$r->id;				// property type id
+			$this->property_types[$r->id]['ptype']			= jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $r->id, $r->ptype, false ); // property type name;
+			$this->property_types[$r->id]['ptype_desc']		= $r->ptype_desc;			// property type specific language file dir name
+			$this->property_types[$r->id]['published']		= (int)$r->published;		// published
+			$this->property_types[$r->id]['order']			= (int)$r->order;			// order
+			$this->property_types[$r->id]['mrp_srp_flag']	= (int)$r->mrp_srp_flag;	// what will guests book: rooms in the property or the property itself
+			$this->property_types[$r->id]['marker']			= $r->marker;				// Google maps marker
+			if ( 
+				is_dir(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS . 'markers' ) && 
+				is_file(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS . 'markers' . JRDS . $this->property_types[$r->id]['marker']) 
+				)
+				{
+				$this->property_types[$r->id]['marker_image'] =  get_showtime( 'live_site' ) . '/' . JOMRES_ROOT_DIRECTORY . '/uploadedimages/markers/'.$this->property_types[$r->id]['marker'];
+				}
+			elseif ( is_file(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'images' . JRDS . 'markers' . JRDS . $this->property_types[$r->id]['marker'] ) )
+				{
+				$this->property_types[$r->id]['marker_image'] =  get_showtime( 'live_site' ) . '/' . JOMRES_ROOT_DIRECTORY . '/images/markers/'.$this->property_types[$r->id]['marker'];
+				}
 			}
-		
+
 		$c->store('property_types_data', array ( 'property_types'=>$this->property_types ) );
 		
 		return true;
@@ -105,7 +121,7 @@ class jomres_property_types
 			return true;
 			}
 
-		$query = "SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag` FROM #__jomres_ptypes WHERE `id` = " . (int)$id;
+		$query = "SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag` , `marker` FROM #__jomres_ptypes WHERE `id` = " . (int)$id;
 		$result = doSelectSql( $query );
 		
 		if ( count( $result ) < 1 )
@@ -113,12 +129,25 @@ class jomres_property_types
 		
 		foreach ( $result as $r )
 			{
-			$this->property_type['id']           = (int)$r->id;				// property type id
-			$this->property_type['ptype']        = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $r->id, $r->ptype, false ); // property type name; 
-			$this->property_type['ptype_desc']   = $r->ptype_desc;			// property type specific language file dir name
-			$this->property_type['published']    = (int)$r->published;		// published
-			$this->property_type['order']        = (int)$r->order;			// order
-			$this->property_type['mrp_srp_flag'] = (int)$r->mrp_srp_flag;	// what will guests book: rooms in the property or the property itself
+			$this->property_type['id']				= (int)$r->id;				// property type id
+			$this->property_type['ptype']			= jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTYTYPE' . (int) $r->id, $r->ptype, false ); // property type name; 
+			$this->property_type['ptype_desc']		= $r->ptype_desc;			// property type specific language file dir name
+			$this->property_type['published']		= (int)$r->published;		// published
+			$this->property_type['order']			= (int)$r->order;			// order
+			$this->property_type['mrp_srp_flag']	= (int)$r->mrp_srp_flag;	// what will guests book: rooms in the property or the property itself
+			$this->property_type['marker']			= $r->marker;				// Google maps marker
+
+			if ( 
+				is_dir(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS . 'markers' ) && 
+				is_file(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'uploadedimages' . JRDS . 'markers' . JRDS . $this->property_type['marker']) 
+				)
+				{
+				$this->property_type['marker_image'] =  get_showtime( 'live_site' ) . '/' . JOMRES_ROOT_DIRECTORY . '/uploadedimages/markers/'.$this->property_type['marker'];
+				}
+			elseif ( JOMRESCONFIG_ABSOLUTE_PATH .  JOMRES_ROOT_DIRECTORY . JRDS . 'images' . JRDS . 'markers' . JRDS . $this->property_types['marker'] )
+				{
+				$this->property_type['marker_image'] =  get_showtime( 'live_site' ) . '/' . JOMRES_ROOT_DIRECTORY . '/images/markers/'.$this->property_type['marker'];
+				}
 			}
 
 		return true;
@@ -141,20 +170,23 @@ class jomres_property_types
 						SET 
 							`ptype` 		= '".$this->property_type['ptype']."',
 							`ptype_desc` 	= '".$this->property_type['ptype_desc']."', 
-							`mrp_srp_flag` 	= ".$this->property_type['mrp_srp_flag']." 
+							`mrp_srp_flag` 	= ".$this->property_type['mrp_srp_flag']." ,
+							`marker` 		= '".$this->property_type['marker']."'
 						WHERE id = " . (int)$this->property_type['id'];
 		else
 			$query = "INSERT INTO #__jomres_ptypes 
 								(
 								`ptype`,
 								`ptype_desc` ,
-								`mrp_srp_flag`
+								`mrp_srp_flag`,
+								`marker`
 								) 
 							VALUES 
 								(
 								'".$this->property_type['ptype']."',
 								'".$this->property_type['ptype_desc']."', 
-								".$this->property_type['mrp_srp_flag']."
+								".$this->property_type['mrp_srp_flag'].",
+								".$this->property_type['marker']."
 								)
 								";
 		

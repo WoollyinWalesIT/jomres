@@ -39,6 +39,22 @@
 			</div>
 		</div>
 	
+		<div class="control-group">
+			<label class="control-label" for="property_type_marker">{_JOMRES_PROPERTYTYPE_MARKER}</label>
+
+			<div class="controls">
+				<div class="radio-inline">
+					<label>
+						<patTemplate:tmpl name="markers" unusedvars="strip">
+						<input type="radio" name="marker" value="{IMAGE}" {CHECKED} ><img src="{FULLPATH}" />
+						</patTemplate:tmpl>
+					</label>
+				</div>
+			</div>
+		</div>
+	
+	
+	
 		<input type="hidden" name="id" value="{ID}"/>
 		<input type="hidden" name="option" value="com_jomres"/>
 		<input type="hidden" name="task" value="save_property_type"/>

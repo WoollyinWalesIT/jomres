@@ -472,6 +472,8 @@ function doTableUpdates()
 	
 	change_default_date_value_for_subscriptions_table();
 	
+	if ( !checkPtypesMarkerColExists() ) alterPtypesMarkerCol();
+	
 	drop_orphan_line_items_table();
 	drop_room_images_table();
 	removeCronJob('invoice');
@@ -481,6 +483,28 @@ function doTableUpdates()
 	addCronJob('session_files_cleanup', 'D', '');
 	
 	updateSiteSettings ( "update_time" , time() );
+	}
+
+function alterPtypesMarkerCol()
+	{
+	//output_message ( "Editing __jomres_ptypes table adding marker column");
+	$query = "ALTER TABLE `#__jomres_ptypes` ADD `marker` varchar( 255 ) DEFAULT 'free-map-marker-icon-red.png' AFTER `mrp_srp_flag`";
+	if ( !doInsertSql( $query, '' ) )
+		{ 
+		output_message ( "Error, unable to add __jomres_ptypes marker", "danger" );
+		}
+	}
+
+function checkPtypesMarkerColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_ptypes LIKE 'marker'";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
 	}
 
 function change_default_date_value_for_subscriptions_table()
@@ -3475,6 +3499,7 @@ function createJomresTables()
 		`published` TINYINT DEFAULT '1',
 		`order` INT NULL DEFAULT '0',
 		`mrp_srp_flag` TINYINT DEFAULT '2',
+		`marker` varchar( 255 ) DEFAULT 'free-map-marker-icon-red.png',
 		PRIMARY KEY (`id`)
 		) ";
 	if ( !doInsertSql( $query ) )

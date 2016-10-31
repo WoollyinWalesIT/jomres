@@ -3133,3 +3133,5 @@ jr_define( 'INTEGRITY_CHECK_LOCALHASH', "Local hash" );
 jr_define( 'INTEGRITY_CHECK_BUILDHASH', "Version hash" );
 jr_define( 'INTEGRITY_CHECK_NOPROBLEMS', "Awesome! No problems were found." );
 
+
+jr_define('_JOMRES_PROPERTYTYPE_MARKER',"Google maps marker");

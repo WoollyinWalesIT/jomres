@@ -35,6 +35,7 @@ class j16000list_property_types
 		$output[ '_JOMRES_ORDER' ]				 					= jr_gettext( '_JOMRES_ORDER', '_JOMRES_ORDER',false );
 		$output[ '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD' ]			= jr_gettext( '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD', '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD',false );
 		$output[ '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES' ]	= jr_gettext( '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES',false );
+		$output[ '_JOMRES_PROPERTYTYPE_MARKER' ]					= jr_gettext( "_JOMRES_PROPERTYTYPE_MARKER", '_JOMRES_PROPERTYTYPE_MARKER', false );
 		
 		//get all property type details
 		$jomres_property_types = jomres_singleton_abstract::getInstance( 'jomres_property_types' );
@@ -56,7 +57,8 @@ class j16000list_property_types
 			$r[ 'PTYPEDESC' ] 		= $p[ 'ptype_desc' ];
 			$r[ 'PUBLISHURL' ]		= jomresUrl( JOMRES_SITEPAGE_URL_ADMIN . "&task=publish_property_type&id=" . $p[ 'id' ] );
 			$r[ 'ORDER' ]			= $p['order'];
-			
+			$r[ 'MARKER_IMAGE' ]	= $p['marker_image'];
+
 			if ( $p['published'] == 1 ) 
 				$r[ 'PUBLISHIMAGE' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Tick.png';
 			else

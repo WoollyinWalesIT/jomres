@@ -55,8 +55,9 @@ class j01050x_geocoder
 		else
 			$output[ 'RANDOM_IDENTIFIER' ] = generateJomresRandomString( 10 );
 		
-		$output[ 'MAP_WIDTH' ]         = 300;
-		$output[ 'MAP_HEIGHT' ]        = 300;
+		$output[ 'MAP_WIDTH' ]			= 300;
+		$output[ 'MAP_HEIGHT' ]			= 300;
+		$output[ 'MARKER_PATH' ]		= '';
 		if ( isset( $componentArgs[ 'width' ] ) )
 			{
 			$output[ 'MAP_WIDTH' ]  = (int) $componentArgs[ 'width' ];
@@ -73,6 +74,11 @@ class j01050x_geocoder
 			$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
 			$current_property_details->gather_data($property_uid);
 
+			$jomres_property_types = jomres_singleton_abstract::getInstance( 'jomres_property_types' );
+			$jomres_property_types->get_property_type($current_property_details->ptype_id);
+			
+			$output[ 'marker_image'] = $jomres_property_types->property_type['marker_image'];
+			
 			$propertyData[ 'lat' ]  = $current_property_details->multi_query_result[ $property_uid ][ 'lat' ];
 			$propertyData[ 'long' ] = $current_property_details->multi_query_result[ $property_uid ][ 'long' ];
 			
