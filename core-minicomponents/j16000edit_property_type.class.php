@@ -40,14 +40,34 @@ class j16000edit_property_type
 		$output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] 			= jr_gettext( "JOMRES_SITEPAGE_URL_ADMIN", 'JOMRES_SITEPAGE_URL_ADMIN', false );
 		$output[ '_JOMRES_PROPERTYTYPE_FLAG' ]			= jr_gettext( "_JOMRES_PROPERTYTYPE_FLAG", '_JOMRES_PROPERTYTYPE_FLAG', false );
 		$output[ '_JOMRES_PROPERTYTYPE_FLAG_DESC' ]		= jr_gettext( "_JOMRES_PROPERTYTYPE_FLAG_DESC", '_JOMRES_PROPERTYTYPE_FLAG_DESC', false );
+		$output[ '_JOMRES_PROPERTYTYPE_MARKER' ]		= jr_gettext( "_JOMRES_PROPERTYTYPE_MARKER", '_JOMRES_PROPERTYTYPE_MARKER', false );
 		
 		//get property type details by id
 		$jomres_property_types = jomres_singleton_abstract::getInstance( 'jomres_property_types' );
 		$jomres_property_types->get_property_type($id);
+				
 
 		if ( !is_array($jomres_property_types->property_type) )
 			return;
 		
+		$default_markers = scandir_getfiles( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'images' . JRDS . 'markers' );
+		
+		$map_markers		= jomres_singleton_abstract::getInstance( 'map_markers' );
+		$marker_images		= $map_markers->gatherData ();
+
+		$markers = array();
+		foreach ( $marker_images as $image )
+			{
+			$r = array();
+			$r['IMAGE'] = $image['IMAGE'];
+			$r['FULLPATH'] = $image['FULLPATH'];
+			$r['CHECKED'] = '';
+			if ($image['IMAGE'] == $jomres_property_types->property_type['marker'] )
+				$r['CHECKED'] = 'checked';
+			
+			$markers[]=$r;
+			}
+
 		$output[ 'PTYPE' ]		= $jomres_property_types->property_type['ptype'];
 		$output[ 'PTYPE_DESC' ]	= $jomres_property_types->property_type['ptype_desc'];
 		
@@ -86,6 +106,7 @@ class j16000edit_property_type
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->readTemplatesFromInput( 'edit_property_type.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->addRows( 'markers', $markers );
 		$tmpl->displayParsedTemplate();
 		}
 

@@ -24,7 +24,7 @@ class j16000save_property_type
 			$this->template_touchable = false;
 			return;
 			}
-		
+
 		$jomres_property_types = jomres_singleton_abstract::getInstance( 'jomres_property_types' );
 		
 		$jomres_property_types->property_type					= array();
@@ -33,6 +33,7 @@ class j16000save_property_type
 		$jomres_property_types->property_type['ptype_desc']		= strtolower( jomresGetParam( $_POST, 'ptype_desc', '' ) );
 		$jomres_property_types->property_type['ptype_desc']		= preg_replace( '/[^A-Za-z0-9_-]+/', "", $jomres_property_types->property_type['ptype_desc'] );
 		$jomres_property_types->property_type['mrp_srp_flag']	= (int)jomresGetParam( $_POST, 'mrp_srp_flag', 0 );
+		$jomres_property_types->property_type['marker']			= jomresGetParam( $_POST, 'marker', '' );
 		
 		$jomres_property_types->save_property_type();
 		

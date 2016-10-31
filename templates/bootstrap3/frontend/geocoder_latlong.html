@@ -30,7 +30,10 @@ function init_map_{RANDOM_IDENTIFIER}()
 	
 	map = new google.maps.Map(document.getElementById("map_{RANDOM_IDENTIFIER}"),
 		options_{RANDOM_IDENTIFIER});
+		
+	var property_image = '{MARKER_IMAGE}';
 	var marker = new google.maps.Marker({
+		icon: property_image,
 		position: latLng{DRAGABLE}
 		});
 	marker.setMap(map);
