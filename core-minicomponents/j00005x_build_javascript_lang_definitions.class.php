@@ -80,6 +80,8 @@ class j00005x_build_javascript_lang_definitions
 			var dataTables_sSortDescending	= "'. jr_gettext( 'DATATABLES_SSORTDESCENDING', 'DATATABLES_SSORTDESCENDING', false ).'";
 			var dataTables_showhide			= "'. jr_gettext( 'DATATABLES_SHOWHIDE', 'DATATABLES_SHOWHIDE', false ).'";
 
+			var jomres_javascript_readmore = "' . jr_gettext( '_JOMRES_JAVASCRIPT_READMORE', '_JOMRES_JAVASCRIPT_READMORE', false ).'";
+			var jomres_javascript_readless = "' . jr_gettext( '_JOMRES_JAVASCRIPT_READLESS', '_JOMRES_JAVASCRIPT_READLESS', false ).'";
 			';
 			
 		if (get_showtime('property_uid') > 0)
