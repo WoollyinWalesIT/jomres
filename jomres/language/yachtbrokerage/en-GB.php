@@ -3121,3 +3121,6 @@ jr_define( 'INTEGRITY_CHECK_NOPROBLEMS', "Awesome! No problems were found." );
 
 
 jr_define('_JOMRES_PROPERTYTYPE_MARKER',"Google maps marker");
+
+jr_define( '_JOMRES_JAVASCRIPT_READMORE', 'Read more' );
+jr_define( '_JOMRES_JAVASCRIPT_READLESS', 'Read less' );
