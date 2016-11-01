@@ -4,21 +4,23 @@
 <patTemplate:tmpl name="pageoutput">
 
 	</div> <!-- closes the jomres_content_area div -->
-	<div id="tour_target_end"></div>
+
+<div id='ajax_loader' style="position: fixed; left: 50%; top: 50%; display: none; z-index:999">
+    <i class="fa fa-spinner fa-spin fa-5x" aria-hidden="true"></i>
+
+</div>
 
 	<script type="text/javascript">
 		<!--
 		/* Switches the cursor to the waiting cursor whenever jquery's ajax functionality kicks in. Nice way to give the user some feedback that something's happening in a non-intrusive way */
 		jomresJquery(document).ready(function () {
 			jomresJquery("#loader").bind("ajaxSend",function () {
-				document.getElementsByTagName("BODY")[0].style.cursor = 'wait';
+				jomresJquery("#ajax_loader").show();
 				jomresJquery(this).fadeIn();
 			}).bind("ajaxStop",function () {
-						document.getElementsByTagName("BODY")[0].style.cursor = 'auto';
-						jomresJquery(this).fadeOut();
+						jomresJquery("#ajax_loader").fadeOut(500);
 					}).bind("ajaxError", function () {
-						document.getElementsByTagName("BODY")[0].style.cursor = 'auto';
-						jomresJquery(this).fadeOut();
+						jomresJquery("#ajax_loader").fadeOut(500);
 					});
 		});
 		//-->
