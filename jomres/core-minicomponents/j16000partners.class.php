@@ -67,7 +67,7 @@ class j16000partners
 			"intro"=>"Say hello to our new partners Deligence.",
 			"plugin_list_url"=>"http://www.deligence.com/deligence.com.php",
 			"image"=>"deligence.png",
-			"link"=>"hhttp://www.deligence.com/"
+			"link"=>"http://www.deligence.com/"
 			);
 			
 			
