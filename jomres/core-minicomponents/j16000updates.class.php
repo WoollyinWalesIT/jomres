@@ -25,6 +25,12 @@ class j16000updates
 			return;
 			}
 		
+		if ( !this_cms_is_wordpress() )
+			{
+			jomresRedirect( jomresURL( get_showtime( 'live_site' ) . "/administrator/index.php?option=com_installer&view=update" ), '' );
+			return;
+			}
+		
 		$jomresConfig_offline = true;
 		
 		if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'includes' . JRDS . 'defines.php' ) )
