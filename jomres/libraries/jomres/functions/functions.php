@@ -1679,8 +1679,17 @@ function install_external_plugin( $plugin_name, $plugin_type, $mambot_type = '',
 	switch ( $plugin_type )
 		{
 		case 'widget': // Wordpress widgets
-			$widget_source	 = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS;
+			if ( file_exists( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS . 'plugin_info.php' ) )
+				{
+				$widget_source   = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "core-plugins" . JRDS . $plugin_name . JRDS;
+				}
+			else
+				{
+				$widget_source   = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . "remote_plugins" . JRDS . $plugin_name . JRDS;
+				}
+			
 			$widget_target = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . "wp-content" . JRDS . "plugins" . JRDS . $plugin_name;
+
 			if ( !test_and_make_directory( $widget_target ) )
 				{
 				error_logging( "Error, unable to write to " . $widget_target . " Please ensure that the parent path is writable by the web server " );
