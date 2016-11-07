@@ -373,7 +373,8 @@ function jomres_cmsspecific_getCMSUsers( $cms_user_id = 0 )
 
 function jomres_cmsspecific_makeSEF_URL( $link )
 	{
-	return $link;
+	//for now we don`t have wp router like in joomla to convert a non permalink to permalink url.
+	return esc_url_raw( $link );
 	}
 
 function jomres_cmsspecific_parseByBots( $str )
@@ -381,9 +382,9 @@ function jomres_cmsspecific_parseByBots( $str )
 	return $str;
 	}
 
-function jomres_cmsspecific_stringURLSafe( $str ) // Used for making SEF urls for Joomla's router. Don't yet have equivallent code for WP
+function jomres_cmsspecific_stringURLSafe( $str )
 	{
-	return $str;
+	return sanitize_title($str);
 	}
 
 function jomres_cmsspecific_addcustomtag( $data )
