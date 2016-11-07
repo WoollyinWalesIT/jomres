@@ -23,6 +23,10 @@ else
 	showTop();
 	}
 
+// Set this to "development" to prevent the installer from setting the site to production and therefore deleting this file on run.
+define ("PROD_DEV" , "production");
+// define ("PROD_DEV" , "development");
+	
 // Useful for testing installer changes, uncomment to prevent redirection after run
 // define ( "ERRORS_SHOWN_NO_REDIRECT" , 1 );
 
@@ -256,8 +260,23 @@ if ( $folderChecksPassed && $functionChecksPassed )
 				}
 			elseif ( ACTION == "Upgrade" ) // Upgrading
 				{
+				$registry = jomres_singleton_abstract::getInstance( 'minicomponent_registry' );
+				$registry->regenerate_registry();
+				
+				$javascript_files_in_temp_dir = scandir_getfiles( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS, $extension = "js" );
+				foreach ( $javascript_files_in_temp_dir as $file )
+					{
+					unlink( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . $file );
+					}
+			
 				//output_message ( "Data already installed, no need to re-create it");
 				doTableUpdates();
+				
+				removeCronJob('invoice');
+				removeCronJob('optimise');
+				removeCronJob('exchangerates');
+				
+				addCronJob('session_files_cleanup', 'D', '');
 				
 				updateImages();
 
@@ -269,11 +288,11 @@ if ( $folderChecksPassed && $functionChecksPassed )
 				require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_upgrade.php" );
 				showCompletedText();
 				}
-			$registry = jomres_singleton_abstract::getInstance( 'minicomponent_registry' );
-			$registry->regenerate_registry();
+				
 			track_installation_upgrade();
 			updateMrConfig();
 			updatePluginSettings();
+			
 			installCronjobs();
 			createExtraIndexs();
 			}
@@ -281,8 +300,11 @@ if ( $folderChecksPassed && $functionChecksPassed )
 	}
 
 if ( !AUTO_UPGRADE ) showfooter();
-if ( AUTO_UPGRADE ) jomresRedirect( jomres_installer_get_admin_url() );
-
+if (  PROD_DEV == "production" )
+	{
+	if ( AUTO_UPGRADE ) 
+		jomresRedirect( jomres_installer_get_admin_url() );
+	}
 
 
 // This function added to help us to understand installation success/failure to see if there are any changes needed to improve the behaviour of the installer. 
@@ -475,11 +497,7 @@ function doTableUpdates()
 	
 	drop_orphan_line_items_table();
 	drop_room_images_table();
-	removeCronJob('invoice');
-	removeCronJob('optimise');
-	removeCronJob('exchangerates');
-	
-	addCronJob('session_files_cleanup', 'D', '');
+
 	
 	updateSiteSettings ( "update_time" , time() );
 	}
@@ -973,7 +991,7 @@ function save_configuration_file()
 		//output_message ( "Saving new configuration.php file which stores the site settings", "info" );
 		$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$tmpConfig = $siteConfig->get();
-		$tmpConfig['development_production'] = 'production';
+		$tmpConfig['development_production'] = PROD_DEV;
 		if (!file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php', 
 '<?php
 ##################################################################
@@ -6357,7 +6375,7 @@ function updateSiteSettings ( $k , $v )
 		$tmpConfig = $siteConfig->get();
 		
 		$tmpConfig[$k] = (string)$v;
-		$tmpConfig['development_production'] = 'production';
+		$tmpConfig['development_production'] = PROD_DEV;
 		if (!file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'configuration.php', 
 '<?php
 ##################################################################
@@ -6605,8 +6623,6 @@ function proceed()
 
 function showCompletedText()
 	{
-
-
 	$administrator_url=jomres_installer_get_admin_url();
 	
 	output_message ( 'Thank you for installing Jomres. We will now redirect you to your Jomres control panel' , "success");
@@ -6626,7 +6642,7 @@ function showCompletedText()
 		output_message ( 'Please remember, to configure your property you need to log into the frontend as the administrator user, you cannot configure propertys via the administrator area.', "warning");
 		}
 		
-	if ( !defined('ERRORS_SHOWN_NO_REDIRECT') )
+	if ( !defined('ERRORS_SHOWN_NO_REDIRECT') && PROD_DEV == "production" )
 		{
 		?>
 		<script type="text/javascript">
