@@ -123,13 +123,28 @@ class jomres_cron
 	function getAllJobs()
 		{
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
+
 		$allJobs        = array ();
-		foreach ( $MiniComponents->registeredClasses as $key => $val )
+		if ( isset ($MiniComponents->registeredClasses) && !empty( $MiniComponents->registeredClasses) )
 			{
-			if ( substr( $key, 0, 10 ) == "06000cron_" ) $allJobs[ ] = $key;
+			foreach ( $MiniComponents->registeredClasses as $key => $val )
+				{
+				if ( substr( $key, 0, 10 ) == "06000cron_" ) $allJobs[ ] = $key;
+				}
 			}
-		// $query="SELECT id,job,schedule,last_ran,parameters,locked FROM #__jomcomp_cron";
-		// $allJobs=doSelectSql($query);
+		else // It's an upgrade, we can't rely on the $MiniComponents class being populated
+			{
+			$query="SELECT id,job,schedule,last_ran,parameters,locked FROM #__jomcomp_cron";
+			$jobsList=doSelectSql($query);
+			if ( count ($jobsList) > 0 )
+				{
+				foreach ( $jobsList as $job)
+					{
+					$allJobs[ ] = '06000cron_'.$job->job;
+				
+					}
+				}
+			}
 
 		if ( count( $this->dbJobs ) > 0 )
 			{
@@ -140,7 +155,7 @@ class jomres_cron
 				}
 			}
 		else
-		$this->debug[ ] = "<b>No jobs in database!</b>";
+			$this->debug[ ] = "<b>No jobs in database!</b>";
 		}
 
 	function findDueJobs()
