@@ -3107,3 +3107,12 @@ jr_define('_JOMRES_PROPERTYTYPE_MARKER',"Google maps marker");
 
 jr_define( '_JOMRES_JAVASCRIPT_READMORE', 'Read more' );
 jr_define( '_JOMRES_JAVASCRIPT_READLESS', 'Read less' );
+jr_define('_JOMRES_TOURIST_TAX_TITLE',"Tourist tax");
+
+jr_define('_JOMRES_TOURIST_TAX_TAXRATE',"Tourist tax rate");
+jr_define('_JOMRES_TOURIST_TAX_TAXRATE_DESC',"Set the tourist tax rate. The tourist tax is only calculated after the initial booking is generated, and is added to the booking confirmation page, in the extra services box.");
+jr_define('_JOMRES_TOURIST_TAX_PERCENTAGE_YESNO',"Is percentage?");
+jr_define('_JOMRES_TOURIST_TAX_PERCENTAGE_YESNO_DESC',"Set this to Yes if the tax is a percentage or No if it's a flat fee.");
+jr_define('_JOMRES_TOURIST_TAX_WHOLEBOOKING_YESNO',"Affects the entire booking value?");
+jr_define('_JOMRES_TOURIST_TAX_WHOLEBOOKING_YESNO_DESC',"Set this to Yes if the tax is to cover the entire value of the booking, so it is a percentage of both the accommodation plus any extras, or No if it is only calculated based only on the value of the accommodation total. If the option 'Is Percentage' above is set to No, then this option is ignored.");
+jr_define('_JOMRES_TOURIST_TAX_NOTE',"Please be aware that a tourist tax will be added to this booking. You will be able to see the tax on the review booking page.");

@@ -31,9 +31,40 @@ class j05000bookingobject
 		$bkg                 = new booking();
 		$this->bookingObject = $bkg;
 		$bk                  = $this->bookingObject;
-		if ( strlen( $bk->error_code ) > 0 ) $this->bookingObject = null;
+		if ( strlen( $bk->error_code ) > 0 ) 
+			$this->bookingObject = null;
 		else
-		unset( $bk );
+			unset( $bk );
+		
+		if (!AJAXCALL)
+			{
+			$mrConfig=getPropertySpecificSettings();
+			$bkg=new booking();
+			$bkg->suppress_output = true;
+			$this->bookingObject=$bkg;
+			$bk=$this->bookingObject;
+			if (strlen($bk->error_code)>0)
+				$this->bookingObject=null;
+			else
+				unset($bk);
+			
+			$bkg->remove_third_party_extra("tourist_tax",0);
+			$bkg->resetTotals();
+			
+			$bkg->generateBilling();
+			$bkg->storeBookingDetails();
+			
+			if (!isset($mrConfig['tourist_tax']))
+				$mrConfig['tourist_tax'] = "0";
+				
+			if ((float)$mrConfig['tourist_tax'] > 0 )
+				{
+				if (using_bootstrap())
+					echo '<p class="alert">'.jr_gettext('_JOMRES_TOURIST_TAX_NOTE','_JOMRES_TOURIST_TAX_NOTE').'</p>';
+				else
+					echo '<p class="ui-state-highlight">'.jr_gettext('_JOMRES_TOURIST_TAX_NOTE','_JOMRES_TOURIST_TAX_NOTE').'</p>';
+				}
+			}
 		}
 
 	// This must be included in every Event/Mini-component

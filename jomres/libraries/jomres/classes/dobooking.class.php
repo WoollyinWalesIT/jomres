@@ -6152,7 +6152,7 @@ class dobooking
 				foreach ( $plugin as $tpextra )
 					{
 					$tmpTotal = (float) $tpextra[ 'untaxed_grand_total' ];
-					if ( (int) $tpextra[ 'tax_code_id' ] > 0 )
+					if ( isset($tpextra[ 'tax_code_id' ]) && (int) $tpextra[ 'tax_code_id' ] > 0 )
 						{
 						$tax_rate_id = $tpextra[ 'tax_code_id' ];
 						
