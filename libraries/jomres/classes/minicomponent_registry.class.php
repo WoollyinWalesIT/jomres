@@ -113,14 +113,14 @@ class minicomponent_registry
 		$c->eraseAll();
 		
 		//delete js files in /jomres/temp dir
-		if (isset($_REQUEST['task']) && $_REQUEST['task'] == "rebuildregistry")
-			{
+		//if (isset($_REQUEST['task']) && $_REQUEST['task'] == "rebuildregistry")
+		//	{
 			$javascript_files_in_temp_dir = scandir_getfiles( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS, $extension = "js" );
 			foreach ( $javascript_files_in_temp_dir as $file )
 				{
 				unlink( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . $file );
 				}
-			}
+		//	}
 		
 		//rebuild the shortcodes list
 		if ( !defined('AUTO_UPGRADE') )
