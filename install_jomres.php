@@ -256,9 +256,6 @@ if ( $folderChecksPassed && $functionChecksPassed )
 				}
 			elseif ( ACTION == "Upgrade" ) // Upgrading
 				{
-				$registry = jomres_singleton_abstract::getInstance( 'minicomponent_registry' );
-				$registry->regenerate_registry();
-				
 				//output_message ( "Data already installed, no need to re-create it");
 				doTableUpdates();
 				
@@ -272,6 +269,8 @@ if ( $folderChecksPassed && $functionChecksPassed )
 				require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_upgrade.php" );
 				showCompletedText();
 				}
+			$registry = jomres_singleton_abstract::getInstance( 'minicomponent_registry' );
+			$registry->regenerate_registry();
 			track_installation_upgrade();
 			updateMrConfig();
 			updatePluginSettings();
