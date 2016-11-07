@@ -124,8 +124,9 @@ class jomres_cron
 		{
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 
-		$allJobs        = array ();
-		if ( isset ($MiniComponents->registeredClasses) && !empty( $MiniComponents->registeredClasses) )
+		$allJobs = array ();
+		
+		if ( !defined('AUTO_UPGRADE') && isset($MiniComponents->registeredClasses) && !empty($MiniComponents->registeredClasses) )
 			{
 			foreach ( $MiniComponents->registeredClasses as $key => $val )
 				{
@@ -134,24 +135,28 @@ class jomres_cron
 			}
 		else // It's an upgrade, we can't rely on the $MiniComponents class being populated
 			{
-			$query="SELECT id,job,schedule,last_ran,parameters,locked FROM #__jomcomp_cron";
-			$jobsList=doSelectSql($query);
-			if ( count ($jobsList) > 0 )
+			$query = "SELECT id,job,schedule,last_ran,parameters,locked FROM #__jomcomp_cron";
+			$jobsList = doSelectSql($query);
+			
+			if ( !empty($jobsList) )
 				{
 				foreach ( $jobsList as $job)
 					{
 					$allJobs[ ] = '06000cron_'.$job->job;
-				
 					}
 				}
 			}
 
-		if ( count( $this->dbJobs ) > 0 )
+		if ( !empty( $this->dbJobs ) )
 			{
 			foreach ( $this->dbJobs as $job )
 				{
 				$this->allJobs[ ] = array ( 'id' => $job->id, 'job_name' => $job->job, 'schedule' => $job->schedule, 'last_ran' => (int)$job->last_ran, 'parameters' => $job->parameters );
-				if ( $job->locked == "0" ) $this->allUnlockedJobs[ ] = array ( 'id' => $job->id, 'job_name' => $job->job, 'schedule' => $job->schedule, 'last_ran' => (int)$job->last_ran, 'parameters' => $job->parameters );
+				
+				if ( $job->locked == "0" ) 
+					{
+					$this->allUnlockedJobs[ ] = array ( 'id' => $job->id, 'job_name' => $job->job, 'schedule' => $job->schedule, 'last_ran' => (int)$job->last_ran, 'parameters' => $job->parameters );
+					}
 				}
 			}
 		else
