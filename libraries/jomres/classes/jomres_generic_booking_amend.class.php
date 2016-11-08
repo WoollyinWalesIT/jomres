@@ -149,31 +149,35 @@ class jomres_generic_booking_amend
 		$query = "SELECT `rooms_tariffs` FROM #__jomres_contracts WHERE `contract_uid` = ".(int)$this->contract_uid." ";
 		$result = doSelectSql( $query,1 );
 		
-		if ( $result )
+		if ( $result && $result != "'" )
 			{
 			$room_and_tariff_info = explode( ",", $result );
 			foreach ( $room_and_tariff_info as $e )
 				{
 				$rt = explode( "^", $e );
-				$pairs[$rt[ 0 ]] = $rt[ 1 ];
+				if (isset($rt[ 1 ]))
+					$pairs[$rt[ 0 ]] = $rt[ 1 ];
 				}
-			
-			foreach ($pairs as $k=>$v)
+				
+			$new_room_and_tariff_info = array();
+			if (empty($pairs))
 				{
-				if ($k == $this->room_uid)
+				foreach ($pairs as $k=>$v)
 					{
-					unset($pairs[$k]);
-					$new_pairs[$this->new_room_uid] = $v;
+					if ($k == $this->room_uid)
+						{
+						unset($pairs[$k]);
+						$new_pairs[$this->new_room_uid] = $v;
+						}
+					else
+						$new_pairs[$k] = $v;
 					}
-				else
-					$new_pairs[$k] = $v;
+				
+				foreach ($new_pairs as $k=>$v)
+					{
+					$new_room_and_tariff_info[] = $k.'^'.$v;
+					}
 				}
-			
-			foreach ($new_pairs as $k=>$v)
-				{
-				$new_room_and_tariff_info[] = $k.'^'.$v;
-				}
-			
 			$rooms_tariffs = jomres_implode($new_room_and_tariff_info);
 			
 			if ($clause != "")
