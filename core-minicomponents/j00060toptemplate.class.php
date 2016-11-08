@@ -151,6 +151,8 @@ class j00060toptemplate
 				}
 			}
 
+		$output[ 'DEVICE_TYPE' ] = trim(get_showtime ("device_type"));
+		
 		if ( using_bootstrap() ) 
 			$output[ 'USING_BOOTSTRAP' ] = "true";
 		else

@@ -166,11 +166,10 @@ jomresJquery(document).ready(function() {
 			var y1 = ofs.top;
 			var y2 = ofs.top + trashEl.outerHeight(true);
 
-			if (jsEvent.pageX >= x1 && jsEvent.pageX<= x2 && jsEvent.pageY>= y1 && jsEvent.pageY <= y2) 
+			if (jsEvent.pageX >= x1 && jsEvent.pageX<= x2 && jsEvent.pageY>= y1 && jsEvent.pageY <= y2 && jomres_device_type == "desktop") 
 				{
 				calendar.fullCalendar( 'removeEvents', event.id );
-				//if (confirm('{CANCELLATION_WARNING}')) 
-					//{
+
 					jomresJquery('#jomres_dashboard{PROPERTY_UID}').block();
 					jomresJquery.ajax({
 						type: 'GET',
@@ -193,7 +192,7 @@ jomresJquery(document).ready(function() {
 								}
 							}
 						});
-					//}
+
 				}
 		},
 		eventDrop: function ( event, delta, revertFunc, jsEvent, ui, view ) {
@@ -227,8 +226,8 @@ jomresJquery(document).ready(function() {
 				end = eventEnd.format('YYYY/MM/DD');
 				}
 
-			//if (confirm('{AMEND_WARNING}')) 
-				//{
+			if (jomres_device_type == "desktop") 
+				{
 				jomresJquery('#jomres_dashboard{PROPERTY_UID}').block();
 				jomresJquery.ajax({
 					type: 'GET',
@@ -265,11 +264,11 @@ jomresJquery(document).ready(function() {
 							}
 						}
 					});
-				//}
-			//else
-				//{
-				//revertFunc();
-				//}
+				}
+			else
+				{
+				revertFunc();
+				}
 		},
 		eventResize: function ( event, delta, revertFunc, jsEvent, ui, view ) {
 			eventStart = jomresJquery.fullCalendar.moment(event.start);
@@ -302,8 +301,8 @@ jomresJquery(document).ready(function() {
 				end = eventEnd.format('YYYY/MM/DD');
 				}
 
-			//if (confirm('{AMEND_WARNING}')) 
-				//{
+			if (jomres_device_type == "desktop") 
+				{
 				jomresJquery('#jomres_dashboard{PROPERTY_UID}').block();
 				jomresJquery.ajax({
 					type: 'GET',
@@ -340,11 +339,11 @@ jomresJquery(document).ready(function() {
 							}
 						}
 					});
-				//}
-			//else
-				//{
-				//revertFunc();
-				//}
+				}
+			else
+				{
+				revertFunc();
+				}
 		},
 		loading: function( isLoading, view ) {
 			if (isLoading === false)
