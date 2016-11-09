@@ -114,6 +114,7 @@ class j16000showplugins
 				}
 			}
 
+		
 		$remote_plugins_data = queryUpdateServer( "", "r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS . "&key=" . $key_validation->key_hash );
 
 		$rp_array = json_decode( $remote_plugins_data );
@@ -226,6 +227,23 @@ class j16000showplugins
 
 		$output[ 'PAGETITLE' ] = 'Jomres Plugin Manager';
 
+		if ( $jrConfig[ 'licensekey' ] == "" )
+			{
+			$output['LICENSE_MESSAGE'] = jr_gettext( 'NO_LICENSE_MESSAGE', 'NO_LICENSE_MESSAGE',false );
+			$output['LICENSE_MESSAGE_CLASS'] = 'danger';
+			
+			}
+		elseif (!$this->key_valid)
+			{
+			$output['LICENSE_MESSAGE'] = jr_gettext( 'INVALID_LICENSE_MESSAGE', 'INVALID_LICENSE_MESSAGE',false );
+			$output['LICENSE_MESSAGE_CLASS'] = 'danger';
+			}
+		else
+			{
+			$output['LICENSE_MESSAGE'] = jr_gettext( 'VALID_LICENSE_MESSAGE', 'VALID_LICENSE_MESSAGE',false );
+			$output['LICENSE_MESSAGE_CLASS'] = 'success';
+			}
+		
 		$bronze_users = array ();
 		if ( !$developer_user )
 			{

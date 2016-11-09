@@ -62,7 +62,6 @@
 		//-->
 	</script>
 
-	{LICENSE_WARNING}
 	<h2 class="page-header">{PAGETITLE}</h2>
 	<style>
 	.modal-body {
@@ -251,6 +250,10 @@
 		<patTemplate:tmpl name="reinstall_plugins" type="simpleCondition" requiredVars="reinstall_text">
 		<a href="javascript:void(0);" onclick="reinstall_all_plugins();" id="reinstall_all_plugins" class="btn btn-default btn-large">{REINSTALL_TEXT}</a>
 		</patTemplate:tmpl>
+		
+		<p class="alert alert-{LICENSE_MESSAGE_CLASS}">
+			{LICENSE_MESSAGE}
+		</p>
 		
 		</div>
 		<div class="span3">
