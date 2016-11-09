@@ -57,8 +57,11 @@ class j16000list_property_types
 			$r[ 'PTYPEDESC' ] 		= $p[ 'ptype_desc' ];
 			$r[ 'PUBLISHURL' ]		= jomresUrl( JOMRES_SITEPAGE_URL_ADMIN . "&task=publish_property_type&id=" . $p[ 'id' ] );
 			$r[ 'ORDER' ]			= $p['order'];
-			$r[ 'MARKER_IMAGE' ]	= $p['marker_image'];
-
+			if ( isset($p['marker_image']))
+				$r[ 'MARKER_IMAGE' ]	= $p['marker_image'];
+			else
+				$r[ 'MARKER_IMAGE' ]	=  get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/noimage_small.gif';
+			
 			if ( $p['published'] == 1 ) 
 				$r[ 'PUBLISHIMAGE' ] = get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Tick.png';
 			else
