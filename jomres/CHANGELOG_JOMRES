@@ -1,4 +1,4 @@
-<h3>Jomres 9.8.17 xx/11/2016</h3>
+<h3>Jomres 9.8.17 04/11/2016</h3>
 
 <span class="label label-success">Feature</span> Added functionality to allow different map markers. Allows us to assign different map markers for different property types and for them to show ( naturally ) on the extended maps map.
 <span class="label label-success">Feature</span> Added a longtext class and appropriate javascript so that tab contents can be limited to N characters.
