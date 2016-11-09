@@ -207,6 +207,8 @@ $license_data->is_trial_license = "'.$license_data->is_trial_license.'";
 			if ( $license_data->license_valid == true ) 
 				$this->key_valid = true;
 			$this->allows_plugins		= $license_data->allows_plugins;
+			if ($license_data->is_trial_license == "Unknown" )
+				$license_data->is_trial_license = false;
 			$this->is_trial_license		= (bool)$license_data->is_trial_license;
 			}
 		}
