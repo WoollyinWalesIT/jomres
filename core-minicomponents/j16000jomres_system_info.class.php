@@ -86,7 +86,7 @@ class j16000jomres_system_info
 			}
 
 		//recommended plugins not installed warning
-		$output[ 'PLUGIN_CHECK' ] = plugin_check();
+		//$output[ 'PLUGIN_CHECK' ] = plugin_check();
 		
 		//license key not entered warning
 		if ( trim( $jrConfig['licensekey'] ) == "" )
