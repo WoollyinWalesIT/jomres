@@ -120,6 +120,10 @@ class j06000show_property_header
 			{
 			jomres_cmsspecific_setmetadata( 'description', jomres_purify_html( $current_property_details->metadescription ) );
 			}
+		else
+			{
+			jomres_cmsspecific_setmetadata( 'description', jomres_purify_html( $current_property_details->property_description ) );
+			}
 		
 		if ( strlen( $current_property_details->metakeywords ) > 0 ) 
 			{
