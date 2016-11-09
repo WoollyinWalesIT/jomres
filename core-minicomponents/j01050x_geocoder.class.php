@@ -77,7 +77,9 @@ class j01050x_geocoder
 			$jomres_property_types = jomres_singleton_abstract::getInstance( 'jomres_property_types' );
 			$jomres_property_types->get_property_type($current_property_details->ptype_id);
 			
-			$output[ 'marker_image'] = $jomres_property_types->property_type['marker_image'];
+			if (isset($jomres_property_types->property_type['marker_image']))
+				$output[ 'marker_image'] = $jomres_property_types->property_type['marker_image'];
+
 			
 			$propertyData[ 'lat' ]  = $current_property_details->multi_query_result[ $property_uid ][ 'lat' ];
 			$propertyData[ 'long' ] = $current_property_details->multi_query_result[ $property_uid ][ 'long' ];
