@@ -26,6 +26,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY'))
         define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
     }
 
+
 if ( !defined( 'JOMRESPATH_BASE' ) )
 	{
 	if ( !defined( 'JRDS' ) )
