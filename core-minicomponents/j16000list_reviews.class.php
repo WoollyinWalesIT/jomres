@@ -29,9 +29,12 @@ class j16000list_reviews
 		$pageoutput = array ();
 		$rows       = array ();
 
-		jr_import( 'jrportal_property_functions' );
-		$propertyFunctions  = new jrportal_property_functions();
-		$jomresPropertyList = $propertyFunctions->getAllJomresProperties();
+		//get all properties in system
+		$all_properties_in_system = get_showtime('all_properties_in_system');
+		
+		//get all property names
+		$basic_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
+		$basic_property_details->get_property_name_multi( $all_properties_in_system );
 
 		$output[ '_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO' ]  = jr_gettext( '_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO', '_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO',false );
 		$output[ '_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED' ] = jr_gettext( '_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED', '_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED',false );
@@ -48,20 +51,20 @@ class j16000list_reviews
 		$all_reports             = $Reviews->get_all_reports_index_by_rating_id();
 		$total_number_of_reports = count( $all_reports );
 
-		foreach ( $jomresPropertyList as $key => $val )
+		foreach ( $all_properties_in_system as $property_uid )
 			{
 			$r                   = array ();
-			$r[ 'PROPERTYNAME' ] = $val[ 'property_name' ];
+			$r[ 'PROPERTYNAME' ] = $basic_property_details->property_names[$property_uid];
 			
 			if (!using_bootstrap())
 				{
-				$r[ 'VIEWLINK' ]     = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=view_property_reviews&property_uid=' . (int) $key . '">' . $editIcon . '</a>';
+				$r[ 'VIEWLINK' ]     = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=view_property_reviews&property_uid=' . (int) $property_uid . '">' . $editIcon . '</a>';
 				}
 			else
 				{
 				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 				$toolbar->newToolbar();
-				$toolbar->addItem( 'fa fa-list', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_property_reviews&property_uid=' . $key ), jr_gettext( '_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', false ) );
+				$toolbar->addItem( 'fa fa-list', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_property_reviews&property_uid=' . $property_uid ), jr_gettext( '_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', false ) );
 				
 				$r['VIEWLINK'] = $toolbar->getToolbar();
 				}
@@ -74,7 +77,7 @@ class j16000list_reviews
 				foreach ( $property_reviews as $review )
 					{
 					$rating_id = $review[ 'rating_id' ];
-					if ( $review[ 'property_uid' ] == $key )
+					if ( $review[ 'property_uid' ] == $property_uid )
 						{
 						if ( isset( $all_reports[ $rating_id ] ) ) $report_count = count( $all_reports[ $rating_id ] );
 						$review_count++;
