@@ -1,3 +1,25 @@
+<h3>Jomres 9.8.18 11/11/2016</h3>
+
+<span class="label label-warning">Change</span> Resolved an issue where cron jobs were throwing notices on installation/upgrade.
+<span class="label label-warning">Change</span> Modified the registry class to remove javascript caches whenever the registry is rebuilt.
+<span class="label label-warning">Change</span> Added performance improvements to list reviews script in admin area.
+<span class="label label-warning">Change</span> Added functionality that detects the type of device, if device is not a desktop then drag and dropping of bookings isn't allowed. Fat fingered souls rejoice!
+
+<span class="label label-warning">Change</span> Tourist tax plugin code added to the core of the system.
+<span class="label label-warning">Change</span> Added tweaks to WP url handling to avoid some wp redirectsion from non-sef to sef urls
+<span class="label label-warning">Change</span> Added minor tweaks to cron class for layout and checking if a variable is empty.
+<span class="label label-warning">Change</span> Fixed a couple of notices that can show in the dashboard if a booking is moved into a room where there are no tariffs for said room's type.
+<span class="label label-warning">Change</span> Modified property header to use the property description in the meta data if meta data isn't set. 
+<span class="label label-warning">Change</span> Added a couple of tweaks to new marker related functionality that allows for how handling of deleted markers is handled.
+<span class="label label-warning">Change</span> Updated control panel welcome language strings.
+<span class="label label-warning">Change</span> Show Profiles page renamed to Property Managers ( Administrator area page ).
+<span class="label label-warning">Change</span> Minor layout tweak to control panel message output.
+<span class="label label-warning">Change</span> Updated the key check to correctly return false if a key's state can't always be determined.
+<span class="label label-warning">Change</span> Added a license status message to the plugin manager.
+<span class="label label-warning">Change</span> Removed plugin check from sys info script.
+<span class="label label-warning">Change</span> Added an option to have a blank commission rate to the commission rate dropdown.
+
+
 <h3>Jomres 9.8.17 04/11/2016</h3>
 
 <span class="label label-success">Feature</span> Added functionality to allow different map markers. Allows us to assign different map markers for different property types and for them to show ( naturally ) on the extended maps map.
