@@ -18,91 +18,81 @@ class jomres_suspensions
 	{
 	function __construct()
 		{
-		$this->manager_id 						= 0; // This is the userid in #__jomres_managers. It corresponds with the CMS user's id
-		$this->jomres_system_manager_id 		= 0; // This is the manager_uid in #__jomres_managers
-		$this->manger_is_suspended				= false;
-		$this->manager_properties				= array ();
-		$this->suspended_manager_denied_tasks	= array ( 'publishProperty' );
+		$this->cms_user_id 						= 0; 							// This is the userid in #__jomres_managers. It corresponds with the CMS user's id
+		$this->id 								= 0; 							// This is the manager_uid in #__jomres_managers
+		$this->authorised_properties			= array();						// properties that this manager has access to
+		
+		$this->suspended_manager_denied_tasks	= array( 
+														'publishProperty',
+														'dobooking',
+														'list_bookings',
+														'editBooking'
+														); 						// blocked tasks for suspended managers
 		}
 
-
-	function suspended_manager_denied_task( $task = '' )
+	//gets the userid(cms user id) and sets the id (manager_uid)
+	function set_manager_id( $cms_user_id = 0 )
 		{
-		if ($task != '')
+		if ( $cms_user_id == 0 )
 			{
-			if ( in_array( $task, $this->suspended_manager_denied_tasks ) ) 
-				return true;
+			return false;
 			}
 
-		return false;
-		}
-
-	function set_manager_id( $id )
-		{
-		$this->manager_id = (int) $id;
+		$this->cms_user_id = (int)$cms_user_id;
 		
-		$query = "SELECT `manager_uid` FROM #__jomres_managers WHERE userid = " . (int) $id . " LIMIT 1";
-		$this->jomres_system_manager_id = doSelectSql( $query, 1 );
-
-		$this->manger_is_suspended = $this->is_manager_suspended( $id );
+		$jomres_users = jomres_singleton_abstract::getInstance('jomres_users');
 		
-		$query = "SELECT property_uid FROM #__jomres_managers_propertys_xref  WHERE manager_id = '" . (int) $this->manager_id . "'";
-		$managersToPropertyList = doSelectSql( $query );
-		
-		if ( count( $managersToPropertyList ) > 0 )
+		if ( $jomres_users->get_user( $this->cms_user_id ) )
 			{
-			foreach ( $managersToPropertyList as $x )
-				{
-				$this->manager_properties[ ] = $x->property_uid;
-				}
+			$this->id = $jomres_users->id;
+			$this->authorised_properties = $jomres_users->authorised_properties;
 			}
 		}
 
-	function is_manager_suspended( $id = null )
-		{
-		if ( !isset( $id ) ) 
-			$id = $this->manager_id;
-		
-		$query = "SELECT `suspended` FROM #__jomres_managers WHERE userid = " . (int) $id . " LIMIT 1";
-		$state = doSelectSql( $query, 1 );
-		
-		if ( $state == "1" ) 
-			return true;
-
-		return false;
-		}
-
+	//suspend the user
 	function suspend_manager()
 		{
-		if ( $this->manager_id == 0 ) 
+		if ( $this->id == 0 )
+			{
 			return false;
+			}
 		
-		$query = "UPDATE #__jomres_managers SET `suspended`=1 WHERE userid =" . $this->manager_id;
-		$result = doInsertSql( $query, '' );
+		$query = "UPDATE #__jomres_managers SET `suspended` = 1 WHERE `manager_uid` = " . $this->id;
+		doInsertSql( $query, '' );
 		
 		$this->email_suspension_to_manager();
+		
+		return true;
 		}
 
+	//unsuspend the user
 	function unsuspend_manager()
 		{
-		if ( $this->manager_id == 0 ) 
+		if ( $this->id == 0 ) 
+			{
 			return false;
+			}
 		
-		$query = "UPDATE #__jomres_managers SET `suspended`=0 WHERE userid =" . $this->manager_id;
-		$result = doInsertSql( $query, '' );
+		$query = "UPDATE #__jomres_managers SET `suspended` = 0 WHERE `manager_uid` = " . $this->id;
+		doInsertSql( $query, '' );
 		
 		$this->email_unsuspension_to_manager();
+		
+		return true;
 		}
 
+	//unpublish the suspended user properties
 	function unpublish_managers_properties()
 		{
-		if ( $this->manager_id == 0 ) 
-			return false;
-
-		if ( count( $this->manager_properties ) > 0 )
+		if ( $this->id == 0 ) 
 			{
-			$query = "UPDATE #__jomres_propertys SET `published`=0 WHERE propertys_uid IN (".jomres_implode($this->manager_properties).") ";
-			$result = doInsertSql( $query, '' );
+			return false;
+			}
+
+		if ( !empty( $this->authorised_properties ) )
+			{
+			$query = "UPDATE #__jomres_propertys SET `published` = 0 WHERE `propertys_uid` IN (" . jomres_implode( $this->authorised_properties ) . ") AND `published` = 1 ";
+			doInsertSql( $query, '' );
 			
 			//clear cache
 			$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
@@ -110,21 +100,19 @@ class jomres_suspensions
 			}
 		}
 
+	//publish the unsuspended user properties
+	//maybe this shouldn`t be done automatically, as this will also publish whatever test properties the manager may have..
 	function publish_managers_properties()
 		{
-		if ( $this->manager_id == 0 ) 
-			return false;
-		
-		if ( count( $this->manager_properties ) > 0 )
+		if ( $this->id == 0 ) 
 			{
-			$siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-			$jrConfig = $siteConfig->get();
-			
-			foreach ( $this->manager_properties as $property_uid )
-				{
-				$query = "UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = '" . (int) $property_uid . "'";
-				doInsertSql( $query, jr_gettext( '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', false ) );
-				}
+			return false;
+			}
+
+		if ( !empty( $this->authorised_properties ) )
+			{
+			$query = "UPDATE #__jomres_propertys SET `published` = 1 WHERE `propertys_uid` IN (" . jomres_implode( $this->authorised_properties ) . ") AND `published` = 0 ";
+			doInsertSql( $query, '' );
 			
 			//clear cache
 			$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
@@ -132,18 +120,19 @@ class jomres_suspensions
 			}
 		}
 
+	//send email to user that his account has been suspended
 	function email_suspension_to_manager()
 		{
 		$jomresConfig_mailfrom = get_showtime( 'mailfrom' );
 		$jomresConfig_fromname = get_showtime( 'fromname' );
 
-		$user_deets = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( $this->manager_id );
-		$email      = $user_deets[ $this->manager_id ][ "email" ];
+		$user_deets = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( $this->cms_user_id );
+		$email      = $user_deets[ $this->cms_user_id ][ "email" ];
 		$output     = array ();
 		$pageoutput = array ();
 
 		$subject = jr_gettext( '_JOMRES_SUSPENSIONS_SUSPENDED_EMAIL_TITLE', '_JOMRES_SUSPENSIONS_SUSPENDED_EMAIL_TITLE' );
-		$body    = jr_gettext( '_JOMRES_COM_CONFIRMATION_DEAR', '_JOMRES_COM_CONFIRMATION_DEAR' ) . $user_deets[ $this->manager_id ][ 'name' ] . ".\r\n
+		$body    = jr_gettext( '_JOMRES_COM_CONFIRMATION_DEAR', '_JOMRES_COM_CONFIRMATION_DEAR' ) . $user_deets[ $this->cms_user_id ][ 'name' ] . ".\r\n
 		" . jr_gettext( '_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED_EMAIL', '_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED_EMAIL' );
 
 		if ( !jomresMailer( $jomresConfig_mailfrom, $jomresConfig_fromname, $email, $subject, $body, $mode = 0 ) ) 
@@ -152,18 +141,19 @@ class jomres_suspensions
 		sendAdminEmail( $subject, $body );
 		}
 
+	//send email to user that his account has been unsuspended
 	function email_unsuspension_to_manager()
 		{
 		$jomresConfig_mailfrom = get_showtime( 'mailfrom' );
 		$jomresConfig_fromname = get_showtime( 'fromname' );
 
-		$user_deets = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( $this->manager_id );
-		$email      = $user_deets[ $this->manager_id ][ "email" ];
+		$user_deets = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id( $this->cms_user_id );
+		$email      = $user_deets[ $this->cms_user_id ][ "email" ];
 		$output     = array ();
 		$pageoutput = array ();
 
 		$subject = jr_gettext( '_JOMRES_SUSPENSIONS_UNSUSPENDED_EMAIL_TITLE', '_JOMRES_SUSPENSIONS_UNSUSPENDED_EMAIL_TITLE' );
-		$body    = jr_gettext( '_JOMRES_COM_CONFIRMATION_DEAR', '_JOMRES_COM_CONFIRMATION_DEAR' ) . $user_deets[ $this->manager_id ][ 'name' ] . ".\r\n
+		$body    = jr_gettext( '_JOMRES_COM_CONFIRMATION_DEAR', '_JOMRES_COM_CONFIRMATION_DEAR' ) . $user_deets[ $this->cms_user_id ][ 'name' ] . ".\r\n
 		" . jr_gettext( '_JOMRES_SUSPENSIONS_MANAGER_UNSUSPENDED_EMAIL', '_JOMRES_SUSPENSIONS_MANAGER_UNSUSPENDED_EMAIL' );
 
 		if ( !jomresMailer( $jomresConfig_mailfrom, $jomresConfig_fromname, $email, $subject, $body, $mode = 0 ) ) 
@@ -171,5 +161,18 @@ class jomres_suspensions
 
 		sendAdminEmail( $subject, $body );
 		}
+	
+	//checks if this suspended user has has the rights to access this task
+	function suspended_manager_denied_task( $task = '' )
+		{
+		if ($task != '')
+			{
+			if ( in_array( $task, $this->suspended_manager_denied_tasks ) )
+				{
+				return true;
+				}
+			}
 
+		return false;
+		}
 	}

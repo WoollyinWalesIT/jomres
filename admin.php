@@ -25,7 +25,6 @@ require_once( dirname( __FILE__ ) . '/integration.php' );
 
 try
 	{
-
 	//minicomponents object
 	$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 	
@@ -92,7 +91,11 @@ try
 	$task = jomresGetParam( $_REQUEST, 'task', "" );
 	$task = str_replace( "&#60;x&#62;", "", $task );
 	set_showtime( 'task', $task );
+	
+	//currency conversion object
+	$jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance( 'jomres_currency_exchange_rates' );
 
+	//clean up temp js files if we`re saving the site config
 	if ( $task == "save_site_settings" )
 		{
 		// We're going to silently delete any .js files in the temp dir. This is a basic cleanup, if a server's moved from A to B or an upgrade changes something then we'll delete .js files that might cause problems if they're wrong. Any .js files that don't exist are automatically recreated so this will ensure that the js remains fresh.
@@ -104,7 +107,6 @@ try
 		}
 
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'siteconfig.functions.php' );
-	require_once( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'admin' . JRDS . 'functions' . JRDS . 'profiles.functions.php' );
 
 	//add javascript to head
 	if ( !AJAXCALL )
@@ -183,7 +185,7 @@ try
 
 		//output top area
 		$pageoutput[ ] = $output;
-		$tmpl          = new patTemplate();
+		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->readTemplatesFromInput( 'administrator_content_area_top.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
@@ -208,27 +210,15 @@ try
 	//task
 	switch ( get_showtime( 'task' ) )
 		{
-		case "listMosUsers":
-			$MiniComponents->specificEvent( '16000', 'managers_choose' );
-			break;
-		case "editProfile":
-			editProfile();
-			break;
-		case "saveProfile":
-			saveProfile();
-			break;
-		case "grantMosUser":
-			grantMosUser( $option );
-			break;
 		case 'cpanel':
 		default:
 			if ( $MiniComponents->eventSpecificlyExistsCheck( '16000', get_showtime( 'task' ) ) )
 				{
-				$MiniComponents->specificEvent( '16000', get_showtime( 'task' ) ); // Custom task
+				$MiniComponents->specificEvent( '16000', get_showtime( 'task' ) ); // task exists, execute it
 				}
 			else
 				{
-				$MiniComponents->triggerEvent( '10001' );
+				$MiniComponents->triggerEvent( '10001' ); //task doesn`t exist, go to cpanel frontpage
 				}
 			break;
 		}
@@ -239,8 +229,8 @@ try
 		$performance_monitor->set_point( "end run" );
 		$performance_monitor->output_report();
 	
-		$pageoutput[ ] = $output;
-		$tmpl          = new patTemplate();
+		$pageoutput[] = $output;
+		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->readTemplatesFromInput( 'administrator_content_area_bottom.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );

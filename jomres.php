@@ -30,8 +30,6 @@ header("X-Clacks-Overhead: GNU Terry Pratchett");
 
 require_once( dirname( __FILE__ ) . '/integration.php' );
 
-
-
 try
 	{
 	//minicomponents object
@@ -133,7 +131,6 @@ try
 	if ( get_showtime( 'task' ) != "error" )
 		{
 		$defaultProperty 	= (int) $thisJRUser->currentproperty;
-		$accessLevel   		= $thisJRUser->accesslevel;
 		
 		if ( !$thisJRUser->userIsManager && $thisJRUser->userIsRegistered )
 			{
@@ -177,14 +174,17 @@ try
 		}
 	else
 		{
-		$thisJRUser                       = new stdClass;
-		$thisJRUser->userid               = false;
-		$thisJRUser->username             = false;
-		$thisJRUser->userIsManager        = false;
-		$thisJRUser->accesslevel          = false;
-		$thisJRUser->defaultproperty      = false;
-		$thisJRUser->currentproperty      = false;
-		$thisJRUser->authorisedProperties = array ();
+		$thisJRUser                       	= new stdClass;
+		$thisJRUser->jomres_manager_id 		= 0;
+		$thisJRUser->userid               	= 0;
+		$thisJRUser->username             	= '';
+		$thisJRUser->accesslevel          	= 0;
+		$thisJRUser->currentproperty      	= 0;
+		$thisJRUser->authorisedProperties 	= array();
+		$thisJRUser->userIsSuspended		= false;
+		$thisJRUser->userIsRegistered       = false;
+		$thisJRUser->userIsManager        	= false;
+		$thisJRUser->superPropertyMaager  	= false;
 		}
 
 	//handle suspended managers
@@ -399,42 +399,42 @@ try
 				break;
 			#########################################################################################
 			case 'saveCustomerTypeOrder':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02110' );
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'publishCustomerType':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02112' ); //publishCustomerType();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'listCustomerTypes':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02114' ); //listCustomerTypes();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'editCustomerType':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02116' ); //editCustomerType();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'saveCustomerType':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02118' ); //saveCustomerType();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'deleteCustomerType':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02120' ); //deleteCustomerType();
 				else
 					userHasBeenLoggedOut();
@@ -453,210 +453,210 @@ try
 				break;
 			#########################################################################################
 			case 'editGateway':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->specificEvent( '00510', $plugin );
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'savePlugin':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '03310' );
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'publishProperty':
-			if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+			if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '03340' );
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'editCustomText':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '03360' );
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'saveCustomText':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '03370' );
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'editProperty':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '04200' ); //
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'deleteProperty':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '04910' ); //
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'saveProperty':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '04900' ); //
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'listBlackBookings':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02130' ); //listBlackBookings();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'newBlackBooking':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02134' ); //newBlackBooking();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'viewBlackBooking':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02132' ); //viewBlackBooking();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'saveBBooking':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02136' ); //saveBBooking();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'deleteBlackBooking':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02138' ); //deleteBlackBooking();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'publishExtra':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02140' ); //publishExtra();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'listExtras':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02142' ); //listExtras();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'editExtra':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02144' ); //editExtra();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'saveExtra':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02146' ); // saveExtra();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'deleteExtra':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02148' ); //deleteExtra();
 				else
 					userHasBeenLoggedOut();
 					break;
 			#########################################################################################
 			case 'archiveAudit':
-				if ( ( $thisJRUser->userIsManager && $accessLevel == 2 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02252' ); //archiveAudit();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'addServiceToBill':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02150' ); //addServiceToBill();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'invoiceForm':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02192' ); //invoiceForm();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'saveCancellation':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02162' ); //saveCancellation();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'cancelBooking':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02160' ); //cancelBooking();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'editBooking':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02260' ); //editBooking();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'listguests':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02220' ); //listGuests();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'editGuest':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02222' ); //editGuest();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'saveGuest':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02224' ); //saveGuest();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'deleteGuest':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02226' ); //deleteGuest();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'editDeposit':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02200' ); //editDeposit();
 				else
 					userHasBeenLoggedOut();
 				break;
 			#########################################################################################
 			case 'saveDeposit':
-				if ( ( $thisJRUser->userIsManager && $accessLevel >= 1 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
+				if ( ( $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50 ) || $jrConfig[ 'full_access_control' ] == "1" ) 
 					$MiniComponents->triggerEvent( '02202' ); //saveDeposit();
 				else
 					userHasBeenLoggedOut();
@@ -748,7 +748,7 @@ try
 							$MiniComponents->specificEvent( '06001', get_showtime( 'task' ) );
 							}
 						}
-					elseif ( $MiniComponents->eventSpecificlyExistsCheck( '06002', get_showtime( 'task' ) ) && $thisJRUser->userIsManager && $accessLevel == 2 ) // Manager only tasks
+					elseif ( $MiniComponents->eventSpecificlyExistsCheck( '06002', get_showtime( 'task' ) ) && $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50 ) // Manager only tasks (higher than receptionist)
 						$MiniComponents->specificEvent( '06002', get_showtime( 'task' ) ); // Custom task
 					else if ( $MiniComponents->eventSpecificlyExistsCheck( '06005', get_showtime( 'task' ) ) && $thisJRUser->userIsRegistered ) // Registered only user tasks
 						$MiniComponents->specificEvent( '06005', get_showtime( 'task' ) ); // Custom task

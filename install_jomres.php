@@ -26,7 +26,7 @@ else
 // Set this to "development" to prevent the installer from setting the site to production and therefore deleting this file on run.
 define ("PROD_DEV" , "production");
 // define ("PROD_DEV" , "development");
-	
+
 // Useful for testing installer changes, uncomment to prevent redirection after run
 // define ( "ERRORS_SHOWN_NO_REDIRECT" , 1 );
 
@@ -268,7 +268,7 @@ if ( $folderChecksPassed && $functionChecksPassed )
 					{
 					unlink( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'temp' . JRDS . $file );
 					}
-			
+
 				//output_message ( "Data already installed, no need to re-create it");
 				doTableUpdates();
 				
@@ -288,11 +288,9 @@ if ( $folderChecksPassed && $functionChecksPassed )
 				require_once( _JOMRES_DETECTED_CMS_SPECIFIC_FILES . "cms_specific_upgrade.php" );
 				showCompletedText();
 				}
-				
 			track_installation_upgrade();
 			updateMrConfig();
 			updatePluginSettings();
-			
 			installCronjobs();
 			createExtraIndexs();
 			}
@@ -305,6 +303,7 @@ if (  PROD_DEV == "production" )
 	if ( AUTO_UPGRADE ) 
 		jomresRedirect( jomres_installer_get_admin_url() );
 	}
+
 
 
 // This function added to help us to understand installation success/failure to see if there are any changes needed to improve the behaviour of the installer. 
@@ -491,15 +490,73 @@ function doTableUpdates()
 	if ( checkRtypesSrpOnlyFlagColExists() ) dropRtypesSrpOnlyFlagCol();
 	if ( !checkPropertysPermitColExists() ) alterPropertysPermitCol();
 	
+	if ( checkManagersUsernameColExists() ) doUserRolesUpdates();
+	
 	change_default_date_value_for_subscriptions_table();
 	
 	if ( !checkPtypesMarkerColExists() ) alterPtypesMarkerCol();
 	
 	drop_orphan_line_items_table();
 	drop_room_images_table();
-
 	
 	updateSiteSettings ( "update_time" , time() );
+	}
+
+function checkManagersUsernameColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_managers LIKE 'username' ";
+	$result = doSelectSql( $query );
+	if ( count( $result ) > 0 )
+		{
+		return true;
+		}
+
+	return false;
+	}
+
+function doUserRolesUpdates()
+	{
+	//output_message ( "Updating user role for super property managers");
+	$query = "UPDATE #__jomres_managers SET `access_level` = 90 WHERE `pu` = 1 ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to update super property manager access level", "danger" );
+		}
+	
+	//output_message ( "Updating user role for property managers");
+	$query = "UPDATE #__jomres_managers SET `access_level` = 70 WHERE `access_level` = 2 ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to update property manager access level", "danger" );
+		}
+	
+	//output_message ( "Updating user role for receptionist");
+	$query = "UPDATE #__jomres_managers SET `access_level` = 50 WHERE `access_level` = 1 ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to update receptionist access level", "danger" );
+		}
+
+	//output_message ( "Editing __jomres_managers table dropping property uid column");
+	$query = "ALTER TABLE #__jomres_managers DROP COLUMN `property_uid` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to drop property uid column from __jomres_managers table", "danger" );
+		}
+	
+	//output_message ( "Editing __jomres_managers table dropping username column");
+	$query = "ALTER TABLE #__jomres_managers DROP COLUMN `username` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to drop username column from __jomres_managers table", "danger" );
+		}
+	
+	//output_message ( "Editing __jomres_managers table dropping property uid column");
+	$query = "ALTER TABLE #__jomres_managers DROP COLUMN `pu` ";
+	if ( !doInsertSql( $query, '' ) )
+		{
+		output_message ( "Error, unable to drop pu column from __jomres_managers table", "danger" );
+		}
 	}
 
 function alterPtypesMarkerCol()
@@ -3831,11 +3888,8 @@ function createJomresTables()
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_managers` (
 		`manager_uid` int(11) NOT NULL auto_increment,
 		`userid` int(11),
-		`username` VARCHAR(255),
-		`property_uid` int(11),
 		`access_level` int(2),
 		`currentproperty` INT( 11 ) DEFAULT '0' NOT NULL,
-		`pu` INT( 1 ) DEFAULT '0',
 		`apikey` CHAR( 255 ) NULL DEFAULT NULL,
 		`suspended` tinyint( 1 ) default 0,
 		`simple_configuration` tinyint( 1 ) default 1,
@@ -4664,6 +4718,18 @@ function createExtraIndexs()
 	if (count($indexExists) < 1)
 		{
 		$query = "ALTER TABLE `#__jomres_settings` ADD INDEX property_uid ( property_uid ) ";
+		if ( !doInsertSql( $query ) )
+			{
+			output_message (  "Failed to run query: " . $query , "danger" );
+			}
+		}
+	
+	//output_message ( "Altering table __jomres_managers, creating new userid index if necessary");
+	$query = "SHOW INDEX FROM `#__jomres_managers` WHERE Key_name = 'userid' ";
+	$indexExists = doSelectSql( $query );
+	if (count($indexExists) < 1)
+		{
+		$query = "ALTER TABLE `#__jomres_managers` ADD INDEX userid ( userid ) ";
 		if ( !doInsertSql( $query ) )
 			{
 			output_message (  "Failed to run query: " . $query , "danger" );
@@ -6623,6 +6689,8 @@ function proceed()
 
 function showCompletedText()
 	{
+
+
 	$administrator_url=jomres_installer_get_admin_url();
 	
 	output_message ( 'Thank you for installing Jomres. We will now redirect you to your Jomres control panel' , "success");

@@ -1300,6 +1300,17 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file( $this->dir_classes . 'jomres_pageview_record.class.php' );
 		
 		$this->add_obs_file( $this->dir_minicomponents . 'j06000cron_exchangerates.class.php' );
+		
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000property_manager_unsuspend.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000property_manager_suspend.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000managers_choose.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000managers_find.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000new_manager_api_key.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j16000edit_manager.class.php' );
+		$this->add_obs_file( $this->dir_minicomponents . 'j10002listMosUsers.class.php' );
+		$this->add_obs_file( $this->dir_admin_functions . 'profiles.functions.php' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'managers_choose.html' );
+		$this->add_obs_file( $this->dir_templates_bootstrap_administrator . 'edit_profile.html' );
 		}
 
 	function add_obs_file( $path_and_file )

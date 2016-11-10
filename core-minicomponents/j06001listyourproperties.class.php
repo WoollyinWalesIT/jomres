@@ -60,7 +60,7 @@ class j06001listyourproperties
 		$output[ 'HLASTCHANGED' ] 		= jr_gettext( '_JOMRES_HLASTCHANGED', '_JOMRES_HLASTCHANGED', false );
 		$output[ 'HLEGEND' ] 			= jr_gettext( "_JOMRES_HLEGEND", '_JOMRES_HLEGEND', false );
 		
-		if ($thisJRUser->accesslevel == 2)
+		if ( $thisJRUser->accesslevel > 50 ) //higher than receptionist
 			{
 			$r=array();
 			$r['HNEW_PROPERTY']= jr_gettext( '_JOMRES_COM_MR_NEWPROPERTY', '_JOMRES_COM_MR_NEWPROPERTY', false );
