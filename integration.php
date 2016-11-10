@@ -13,7 +13,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-// This script is mainly used for bootstrapping Jomres.
+// This script is mainly used for bootstrapping Jomres. It's old code, but it checks out.
 
 define( '_COMPONENT_JOMRES_INTEGRATIONCALLED', '1' );
 
