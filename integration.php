@@ -13,6 +13,8 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+// This script is mainly used for bootstrapping Jomres.
+
 define( '_COMPONENT_JOMRES_INTEGRATIONCALLED', '1' );
 
 if (!defined("TRANSACTION_ID")) // TRANSACTION_ID is used by the logger class to allow us to track single calls through the system
