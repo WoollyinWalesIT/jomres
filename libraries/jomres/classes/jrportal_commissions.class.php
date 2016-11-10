@@ -231,6 +231,11 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 		$options = array ();
 		$js		 = "";
 		
+		if ( (int)$selected == 0 )
+			{
+			$options[] = jomresHTML::makeOption( '0', '-' );
+			}
+
 		foreach ( $this->crates as $v )
 			{
 			$options[] = jomresHTML::makeOption( $v[ 'id' ], $v[ 'title' ] );
