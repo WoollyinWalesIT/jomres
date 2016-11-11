@@ -1,6 +1,9 @@
-/core-plugins
+core-plugins
+uploadedimages
+temp
+sessions
+cache
+remote-plugins
+updates
 /logs/Core.application.log
-/sessions
-/temp
-/uploadedimages
 /configuration.php
