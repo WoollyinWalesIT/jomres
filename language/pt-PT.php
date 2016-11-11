@@ -3,7 +3,7 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.8.17
+ * @version Jomres 9.8.18
  * @package Jomres
  * @copyright	2005-2016 Vince Wooll
  * Translated to pt-PT by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 17Set2010 - www.marioliveira.net - Updated 21Jun2011 for ver 5.1
