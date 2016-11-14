@@ -122,13 +122,13 @@ class j06005list_invoices_ajax
 				$clause .= "AND ( a.contract_id != 0 AND a.subscription = 0 AND a.is_commission = 0 ) ";
 				break;
 			case 2:
-				if ($thisJRUser->userIsManager && $thisJRUser->accesslevel > 1)
+				if ( $thisJRUser->accesslevel > 50 ) //higher than receptionist
 					$clause .= "AND ( a.is_commission = 1 AND a.cms_user_id = ".(int)$thisJRUser->id." ) ";
 				else
 					$clause .= "AND ( a.subscription = 0 AND a.is_commission = 0 ) ";
 				break;
 			case 3:
-				if ($thisJRUser->accesslevel != 1)
+				if ($thisJRUser->userIsRegistered && $thisJRUser->accesslevel != 50) //user is registered but other than receptionist
 					$clause .= "AND ( a.subscription = 1 AND a.cms_user_id = ".(int)$thisJRUser->id." ) ";
 				else
 					$clause .= "AND ( a.subscription = 0 AND a.is_commission = 0 ) ";
@@ -136,7 +136,7 @@ class j06005list_invoices_ajax
 			default:
 				if ($thisJRUser->userIsRegistered && !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager)
 					$clause .= "AND a.cms_user_id = ".(int)$thisJRUser->id." ";
-				if ($thisJRUser->accesslevel == 1)
+				if ($thisJRUser->accesslevel == 50) //user is receptionist
 					$clause .= "AND ( a.subscription = 0 AND a.is_commission = 0 ) ";
 				else
 					$clause .= "AND ( a.subscription = 0 OR ( a.subscription = 1 AND a.cms_user_id = ".(int)$thisJRUser->id." ) ) AND ( a.is_commission = 0 OR ( a.is_commission = 1 AND a.cms_user_id = ".(int)$thisJRUser->id." ) ) ";

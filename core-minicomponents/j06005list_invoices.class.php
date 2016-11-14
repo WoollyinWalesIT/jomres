@@ -99,11 +99,11 @@ class j06005list_invoices
 		$options = array ();
 		$options[] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_FRONT_ROOMSMOKING_EITHER', '_JOMRES_FRONT_ROOMSMOKING_EITHER', false ) );
 		$options[] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_STATUS_BOOKINGS', '_JOMRES_STATUS_BOOKINGS', false ) );
-		if ($thisJRUser->userIsManager && $thisJRUser->accesslevel > 1)
+		if ( $thisJRUser->accesslevel > 50 ) //higher than receptionist
 			{
 			$options[] = jomresHTML::makeOption( '2', jr_gettext( '_JOMRES_STATUS_COMMISSIONS', '_JOMRES_STATUS_COMMISSIONS', false ) );
 			}
-		if ($thisJRUser->userIsRegistered && $thisJRUser->accesslevel != 1)
+		if ( $thisJRUser->userIsRegistered && $thisJRUser->accesslevel != 50 ) //user is registered but other than receptionist
 			$options[] = jomresHTML::makeOption( '3', jr_gettext( '_JOMRES_STATUS_SUBSCRIPTIONS', '_JOMRES_STATUS_SUBSCRIPTIONS', false ) );
 		$output['INVOICE_TYPE'] = jomresHTML::selectList( $options, 'invoice_type','class="inputbox" size="1"', 'value', 'text', $invoice_type);
 		

@@ -28,9 +28,8 @@ class j00006sanity_checks
 		if ( !defined( 'JOMRES_NOHTML' ) || JOMRES_NOHTML == 0)
 			{
 			$thisJRUser  = jomres_singleton_abstract::getInstance( 'jr_user' );
-			$accessLevel = $thisJRUser->accesslevel;
 
-			if ( $thisJRUser->accesslevel == 2 )
+			if ( $thisJRUser->accesslevel > 50 ) //higher than receptionist
 				{
 				$output = array ();
 				jr_import( 'jomres_sanity_check' );

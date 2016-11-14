@@ -65,7 +65,7 @@ class j99995jomres_mainmenu
 				}
 			set_showtime( 'jomres_mainmenu_reception_options', $rows );
 
-			if ( $thisJRUser->accesslevel == "2" )
+			if ( $thisJRUser->accesslevel > 50 ) //higher than receptionist
 				{
 				$rows = array ();
 				$MiniComponents->triggerEvent( '00011', $componentArgs ); //
