@@ -519,7 +519,10 @@ class basic_property_details
 				$mrConfig = getPropertySpecificSettings( $d->propertys_uid );
 				$cfgcode  = $mrConfig[ 'accommodation_tax_code' ];
 
-				$this->multi_query_result[ $d->propertys_uid ][ 'accommodation_tax_rate' ] = (float) $jrportal_taxrate->taxrates[ $cfgcode ][ 'rate' ];
+				if ( isset($jrportal_taxrate->taxrates[ $cfgcode ][ 'rate' ]) )
+					$this->multi_query_result[ $d->propertys_uid ][ 'accommodation_tax_rate' ] = (float) $jrportal_taxrate->taxrates[ $cfgcode ][ 'rate' ];
+				else
+					$this->multi_query_result[ $d->propertys_uid ][ 'accommodation_tax_rate' ] = 0.00;
 				}
 			
 			//set back the initial property type and property uid
