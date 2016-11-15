@@ -80,7 +80,7 @@ class j06002edit_resource
             //room features TODO: build a class for room features
             $ptype_id = $basic_property_details->ptype_id;
 
-            if ($roomUid > 0 || $clone == 1) {
+            if ($roomUid > 0) {
                 $roomFeaturesArray = explode(',', $room_features_uid);
             } else {
                 $roomFeaturesArray = array();
