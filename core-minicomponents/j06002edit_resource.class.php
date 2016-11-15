@@ -36,10 +36,6 @@ class j06002edit_resource
         $roomUid = (int) jomresGetParam($_REQUEST, 'roomUid', 0);
         $clone = (int) jomresGetParam($_REQUEST, 'clone', 0);
 
-        if ($clone > 0) {
-            $roomUid = 0;
-        }
-
         $output = array();
         $pageoutput = array();
         $max_max_people = 100;
@@ -84,7 +80,7 @@ class j06002edit_resource
             //room features TODO: build a class for room features
             $ptype_id = $basic_property_details->ptype_id;
 
-            if ($roomUid > 0) {
+            if ($roomUid > 0 || $clone == 1) {
                 $roomFeaturesArray = explode(',', $room_features_uid);
             } else {
                 $roomFeaturesArray = array();
@@ -113,7 +109,6 @@ class j06002edit_resource
 
             $output[ 'MAXPEOPLE_DROPDOWN' ] = jomresHTML::integerSelectList(1, $max_max_people, 1, 'max_people', '', $max_people);
 
-            $output[ 'ROOMUID' ] = $roomUid;
             $output[ 'ROOMNAME' ] = $room_name;
             $output[ 'ROOMNUMBER' ] = $room_number;
             $output[ 'ROOMFLOOR' ] = $room_floor;
@@ -130,6 +125,12 @@ class j06002edit_resource
             $output[ 'HSUPPLIMENT' ] = jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON', '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON', false, false);
             $output[ 'SUPPLIMENT_DESC' ] = jr_gettext('_JOMRES_COM_SPS_EDITROOM_DESC', '_JOMRES_COM_SPS_EDITROOM_DESC', false, false);
             $output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_MR_EB_HROOM_DETAILS', '_JOMRES_COM_MR_EB_HROOM_DETAILS', false);
+			
+			if ($clone > 0) {
+				$output[ 'ROOMUID' ] = 0;
+			} else {
+				$output[ 'ROOMUID' ] = $roomUid;
+			}
 
             $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
             $jrtb = $jrtbar->startTable();
@@ -164,7 +165,11 @@ class j06002edit_resource
 
             $output[ 'MAXPEOPLE_DROPDOWN' ] = jomresHTML::integerSelectList(1, $max_max_people, 1, 'max_people', '', $max_people);
 
-            $output[ 'ROOMUID' ] = $roomUid;
+			if ($clone > 0) {
+				$output[ 'ROOMUID' ] = 0;
+			} else {
+				$output[ 'ROOMUID' ] = $roomUid;
+			}
 
             $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
             $jrtb = $jrtbar->startTable();
