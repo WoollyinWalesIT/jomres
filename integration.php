@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 /**
  * Core file.
@@ -512,4 +511,3 @@ if (!isset($_REQUEST['task'])) {
 }
 
 // Stops here
->>>>>>> mala73-patch-1
