@@ -1,91 +1,87 @@
 <?php
 /**
- * Core file
+ * Core file.
  *
  * @author Vince Wooll <sales@jomres.net>
+ *
  * @version Jomres 9.8.18
- * @package Jomres
+ *
  * @copyright	2005-2016 Vince Wooll
- * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 class j16000list_countries
-	{
-	function __construct()
-		{
-		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch )
-			{
-			$this->template_touchable = false;
+{
+    public function __construct()
+    {
+        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+        if ($MiniComponents->template_touch) {
+            $this->template_touchable = false;
 
-			return;
-			}
-		$editIcon   = '<img src="' . get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" alt="editicon"/>';
-		$rows       = array ();
-		$output     = array ();
-		$pageoutput = array ();
+            return;
+        }
+        $editIcon = '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" alt="editicon"/>';
+        $rows = array();
+        $output = array();
+        $pageoutput = array();
 
+        $output[ '_JOMRES_EDIT_COUNTRY_TITLE' ] = jr_gettext('_JOMRES_EDIT_COUNTRY_TITLE', '_JOMRES_EDIT_COUNTRY_TITLE', false);
+        $output[ '_JOMRES_EDIT_COUNTRY_ID' ] = jr_gettext('_JOMRES_EDIT_COUNTRY_ID', '_JOMRES_EDIT_COUNTRY_ID', false);
+        $output[ '_JOMRES_EDIT_COUNTRY_COUNTRYCODE' ] = jr_gettext('_JOMRES_EDIT_COUNTRY_COUNTRYCODE', '_JOMRES_EDIT_COUNTRY_COUNTRYCODE', false);
+        $output[ '_JOMRES_EDIT_COUNTRY_COUNTRYNAME' ] = jr_gettext('_JOMRES_EDIT_COUNTRY_COUNTRYNAME', '_JOMRES_EDIT_COUNTRY_COUNTRYNAME', false);
 
-		$output[ '_JOMRES_EDIT_COUNTRY_TITLE' ]       = jr_gettext( "_JOMRES_EDIT_COUNTRY_TITLE", '_JOMRES_EDIT_COUNTRY_TITLE', false );
-		$output[ '_JOMRES_EDIT_COUNTRY_ID' ]          = jr_gettext( "_JOMRES_EDIT_COUNTRY_ID", '_JOMRES_EDIT_COUNTRY_ID', false );
-		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYCODE' ] = jr_gettext( "_JOMRES_EDIT_COUNTRY_COUNTRYCODE", '_JOMRES_EDIT_COUNTRY_COUNTRYCODE', false );
-		$output[ '_JOMRES_EDIT_COUNTRY_COUNTRYNAME' ] = jr_gettext( "_JOMRES_EDIT_COUNTRY_COUNTRYNAME", '_JOMRES_EDIT_COUNTRY_COUNTRYNAME', false );
+        $jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
 
-		$jomres_countries = jomres_singleton_abstract::getInstance( 'jomres_countries' );
+        if (count($jomres_countries->countries) == 0) {
+            $countryList = import_countries();
+        } else {
+            $countryList = $jomres_countries->get_countries();
+        }
 
-		if ( count( $jomres_countries->countries ) == 0 ) $countryList = import_countries();
-		else
-		$countryList = $jomres_countries->get_countries();
+        foreach ($countryList as $countrycode => $country) {
+            $r = array();
+            $r[ 'COUNTRYNAME' ] = $country[ 'countryname' ];
+            $r[ 'COUNTRYCODE' ] = $country[ 'countrycode' ];
 
-		foreach ( $countryList as $countrycode => $country )
-			{
-			$r                  = array ();
-			$r[ 'COUNTRYNAME' ] = $country[ 'countryname' ];
-			$r[ 'COUNTRYCODE' ] = $country[ 'countrycode' ];
-			
-			if (!using_bootstrap())
-				{
-				$r[ 'EDITLINK' ]    = '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_country&id=' . $country[ 'id' ] . '">' . $editIcon . '</a>';
-				}
-			else
-				{
-				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
-				$toolbar->newToolbar();
-				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=edit_country&id=' . $country[ 'id' ] ), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
-				$toolbar->addSecondaryItem( 'fa fa-trash-o', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=delete_country&id=' . $country[ 'id' ] ), jr_gettext( 'COMMON_DELETE', 'COMMON_DELETE', false ) );
-				
-				$r['EDITLINK'] = $toolbar->getToolbar();
-				}
-			
-			$rows[ ]            = $r;
-			}
+            if (!using_bootstrap()) {
+                $r[ 'EDITLINK' ] = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_country&id='.$country[ 'id' ].'">'.$editIcon.'</a>';
+            } else {
+                $toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
+                $toolbar->newToolbar();
+                $toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_country&id='.$country[ 'id' ]), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
+                $toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=delete_country&id='.$country[ 'id' ]), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
 
-		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
-		$jrtb   = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL_ADMIN ), '' );
-		$jrtb .= $jrtbar->toolbarItem( 'new', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=edit_country" ), '' );
-		
-		$jrtb .= $jrtbar->endTable();
-		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
+                $r['EDITLINK'] = $toolbar->getToolbar();
+            }
 
-		$pageoutput[ ] = $output;
-		$tmpl          = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-		$tmpl->readTemplatesFromInput( 'list_countries.html' );
-		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'rows', $rows );
-		$tmpl->displayParsedTemplate();
-		}
+            $rows[ ] = $r;
+        }
 
+        $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
+        $jrtb = $jrtbar->startTable();
+        $jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL_ADMIN), '');
+        $jrtb .= $jrtbar->toolbarItem('new', jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_country'), '');
 
-	// This must be included in every Event/Mini-component
-	function getRetVals()
-		{
-		return null;
-		}
-	}
+        $jrtb .= $jrtbar->endTable();
+        $output[ 'JOMRESTOOLBAR' ] = $jrtb;
+
+        $pageoutput[ ] = $output;
+        $tmpl = new patTemplate();
+        $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+        $tmpl->readTemplatesFromInput('list_countries.html');
+        $tmpl->addRows('pageoutput', $pageoutput);
+        $tmpl->addRows('rows', $rows);
+        $tmpl->displayParsedTemplate();
+    }
+
+    // This must be included in every Event/Mini-component
+    public function getRetVals()
+    {
+        return null;
+    }
+}

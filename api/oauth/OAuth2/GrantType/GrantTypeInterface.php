@@ -7,7 +7,7 @@ use OAuth2\RequestInterface;
 use OAuth2\ResponseInterface;
 
 /**
- * Interface for all OAuth2 Grant Types
+ * Interface for all OAuth2 Grant Types.
  */
 interface GrantTypeInterface
 {

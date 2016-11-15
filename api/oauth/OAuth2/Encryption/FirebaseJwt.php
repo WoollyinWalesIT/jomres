@@ -4,6 +4,7 @@ namespace OAuth2\Encryption;
 
 /**
  * Bridge file to use the firebase/php-jwt package for JWT encoding and decoding.
+ *
  * @author Francis Chuang <francis.chuang@gmail.com>
  */
 class FirebaseJwt implements EncryptionInterface
@@ -29,7 +30,7 @@ class FirebaseJwt implements EncryptionInterface
                 $key = null;
             }
 
-            return (array)\JWT::decode($jwt, $key, $allowedAlgorithms);
+            return (array) \JWT::decode($jwt, $key, $allowedAlgorithms);
         } catch (\Exception $e) {
             return false;
         }

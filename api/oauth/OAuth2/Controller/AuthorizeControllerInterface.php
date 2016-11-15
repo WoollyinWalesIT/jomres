@@ -9,7 +9,7 @@ use OAuth2\ResponseInterface;
  *  This controller is called when a user should be authorized
  *  by an authorization server.  As OAuth2 does not handle
  *  authorization directly, this controller ensures the request is valid, but
- *  requires the application to determine the value of $is_authorized
+ *  requires the application to determine the value of $is_authorized.
  *
  *  ex:
  *  > $user_id = $this->somehowDetermineUserId();
@@ -21,7 +21,6 @@ use OAuth2\ResponseInterface;
  *  >     $is_authorized,
  *  >     $user_id);
  *  > $response->send();
- *
  */
 interface AuthorizeControllerInterface
 {
@@ -31,6 +30,7 @@ interface AuthorizeControllerInterface
      * and the "implicit" mechanism exclusively supports 'token'.
      *
      * @var string
+     *
      * @see http://tools.ietf.org/html/rfc6749#section-4.1.1
      * @see http://tools.ietf.org/html/rfc6749#section-4.2.1
      */

@@ -1,87 +1,83 @@
 <?php
 /**
- * Core file
+ * Core file.
  *
  * @author Vince Wooll <sales@jomres.net>
+ *
  * @version Jomres 9.8.18
- * @package Jomres
+ *
  * @copyright	2005-2016 Vince Wooll
- * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 class j06000show_shortlisted_properties
-	{
-	function __construct()
-		{
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch )
-			{
-			$this->template_touchable = true;
+{
+    public function __construct()
+    {
+        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+        if ($MiniComponents->template_touch) {
+            $this->template_touchable = true;
 
-			return;
-			}
-		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-		$tmpBookingHandler       = jomres_singleton_abstract::getInstance( 'jomres_temp_booking_handler' );
-		
-		$original_search_results = array();
-		if (isset($tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ]))
-			$original_search_results = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
-		
-		$shortlist_items = array();
-		if (isset($tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ]))
-		$shortlist_items         = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
-		
-		if ( $thisJRUser->userIsRegistered )
-			{
-			$query  = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE `my_id` = '" . (int) $thisJRUser->id . "'";
-			$propys = doSelectSql( $query );
-			if ( count( $propys ) > 0 )
-				{
-				foreach ($propys as $p)
-					{
-					if ( !in_array($p->property_uid , $shortlist_items))
-						{
-						$shortlist_items[]=(int)$p->property_uid;
-						}
-					}
-				}
-			}
+            return;
+        }
+        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+        $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
-		if ( count( $shortlist_items ) > 0 )
-			{
-			$componentArgs = array();
-			$MiniComponents->triggerEvent( '01004', $componentArgs ); // optional
-			$MiniComponents->triggerEvent( '01005', $componentArgs ); // optional
-			$MiniComponents->triggerEvent( '01006', $componentArgs ); // optional
-			$MiniComponents->triggerEvent( '01007', $componentArgs ); // optional
-			$componentArgs[ 'propertys_uid' ]          = $shortlist_items;
-			$componentArgs[ 'live_scrolling_enabled' ] = true;
-			$MiniComponents->triggerEvent( '01010', $componentArgs ); // listPropertys
-			//$tmpBookingHandler->tmpsearch_data['ajax_list_search_results'] = $original_search_results;
-			}
-		else
-		echo jr_gettext( "_JOMRES_NOTHINGINSHORTLIST", '_JOMRES_NOTHINGINSHORTLIST', false, false );;
-		}
+        $original_search_results = array();
+        if (isset($tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ])) {
+            $original_search_results = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
+        }
 
-	function touch_template_language()
-		{
-		$output = array ();
+        $shortlist_items = array();
+        if (isset($tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ])) {
+            $shortlist_items = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
+        }
 
-		$output[ ] = jr_gettext( "_JOMRES_NOTHINGINSHORTLIST", '_JOMRES_NOTHINGINSHORTLIST' );
+        if ($thisJRUser->userIsRegistered) {
+            $query = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE `my_id` = '".(int) $thisJRUser->id."'";
+            $propys = doSelectSql($query);
+            if (count($propys) > 0) {
+                foreach ($propys as $p) {
+                    if (!in_array($p->property_uid, $shortlist_items)) {
+                        $shortlist_items[] = (int) $p->property_uid;
+                    }
+                }
+            }
+        }
 
-		foreach ( $output as $o )
-			{
-			echo $o;
-			echo "<br/>";
-			}
-		}
+        if (count($shortlist_items) > 0) {
+            $componentArgs = array();
+            $MiniComponents->triggerEvent('01004', $componentArgs); // optional
+            $MiniComponents->triggerEvent('01005', $componentArgs); // optional
+            $MiniComponents->triggerEvent('01006', $componentArgs); // optional
+            $MiniComponents->triggerEvent('01007', $componentArgs); // optional
+            $componentArgs[ 'propertys_uid' ] = $shortlist_items;
+            $componentArgs[ 'live_scrolling_enabled' ] = true;
+            $MiniComponents->triggerEvent('01010', $componentArgs); // listPropertys
+            //$tmpBookingHandler->tmpsearch_data['ajax_list_search_results'] = $original_search_results;
+        } else {
+            echo jr_gettext('_JOMRES_NOTHINGINSHORTLIST', '_JOMRES_NOTHINGINSHORTLIST', false, false);
+        }
+    }
 
-	function getRetVals()
-		{
-		return null;
-		}
-	}
+    public function touch_template_language()
+    {
+        $output = array();
+
+        $output[ ] = jr_gettext('_JOMRES_NOTHINGINSHORTLIST', '_JOMRES_NOTHINGINSHORTLIST');
+
+        foreach ($output as $o) {
+            echo $o;
+            echo '<br/>';
+        }
+    }
+
+    public function getRetVals()
+    {
+        return null;
+    }
+}

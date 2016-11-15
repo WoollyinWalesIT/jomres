@@ -16,7 +16,6 @@ use OAuth2\ResponseInterface;
  *  >     die();
  *  > }
  *  > return json_encode($resource); // valid token!  Send the stuff!
- *
  */
 interface ResourceControllerInterface
 {

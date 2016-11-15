@@ -88,10 +88,10 @@ class AuthorizeController extends BaseAuthorizeController implements AuthorizeCo
      * and whether the openid scope was requested.
      *
      * @param $request_scope
-     *  A space-separated string of scopes.
+     *  A space-separated string of scopes
      *
      * @return
-     *   TRUE if an id token is needed, FALSE otherwise.
+     *   TRUE if an id token is needed, FALSE otherwise
      */
     public function needsIdToken($request_scope)
     {

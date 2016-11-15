@@ -1,83 +1,78 @@
 <?php
 /**
- * Core file
+ * Core file.
  *
  * @author Vince Wooll <sales@jomres.net>
+ *
  * @version Jomres 9.8.18
- * @package Jomres
+ *
  * @copyright	2005-2016 Vince Wooll
- * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 class j06002list_emails
-	{
-	function __construct()
-		{
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch )
-			{
-			$this->template_touchable = false;
+{
+    public function __construct()
+    {
+        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+        if ($MiniComponents->template_touch) {
+            $this->template_touchable = false;
 
-			return;
-			}
-		
-		$ePointFilepath=get_showtime('ePointFilepath');
-		$defaultProperty=getDefaultProperty();
+            return;
+        }
 
-		$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
-		
-		$output = array();
-		$rows=array();
-		
-		$output['PAGETITLE']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_TITLE', '_JOMRES_EMAIL_TEMPLATES_TITLE', false);
-		$output['HEMAIL_TYPE']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_TYPE', '_JOMRES_EMAIL_TEMPLATES_TYPE', false);
-		$output['HEMAIL_NAME']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_NAME', '_JOMRES_EMAIL_TEMPLATES_NAME', false);
-		$output['HEMAIL_DESC']=jr_gettext('_JOMRES_EMAIL_TEMPLATES_DESC', '_JOMRES_EMAIL_TEMPLATES_DESC', false);
-		
-		$MiniComponents->triggerEvent( '03150' );
+        $ePointFilepath = get_showtime('ePointFilepath');
+        $defaultProperty = getDefaultProperty();
 
-		foreach ($MiniComponents->miniComponentData[ '03150' ] as $t)
-			{
-			$r=array();
-			$r['EMAIL_TYPE']=$t['type'];
-			$r['EMAIL_NAME']=$t['name'];
-			$r['EMAIL_DESC']=$t['desc'];
-			
-			if (!using_bootstrap())
-				{
-				$jrtbar =jomres_getSingleton('jomres_toolbar');
-				$jrtb  = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=edit_email&email_type=".$t['type'] ),'');
-				$jrtb .= $jrtbar->endTable();
-				$r['EDITLINK']=$jrtb;
-				}
-			else
-				{
-				$toolbar->newToolbar();
-				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL .'&task=edit_email&email_type='.$t['type'] ), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
-				$r['EDITLINK']=$toolbar->getToolbar();
-				}
+        $toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
 
-			$rows[]=$r;
-			}
-		
-		$pageoutput[]=$output;
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-		$tmpl->readTemplatesFromInput( 'list_emails.html' );
-		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'rows', $rows );
-		$tmpl->displayParsedTemplate();
-		}
+        $output = array();
+        $rows = array();
 
+        $output['PAGETITLE'] = jr_gettext('_JOMRES_EMAIL_TEMPLATES_TITLE', '_JOMRES_EMAIL_TEMPLATES_TITLE', false);
+        $output['HEMAIL_TYPE'] = jr_gettext('_JOMRES_EMAIL_TEMPLATES_TYPE', '_JOMRES_EMAIL_TEMPLATES_TYPE', false);
+        $output['HEMAIL_NAME'] = jr_gettext('_JOMRES_EMAIL_TEMPLATES_NAME', '_JOMRES_EMAIL_TEMPLATES_NAME', false);
+        $output['HEMAIL_DESC'] = jr_gettext('_JOMRES_EMAIL_TEMPLATES_DESC', '_JOMRES_EMAIL_TEMPLATES_DESC', false);
 
-	// This must be included in every Event/Mini-component
-	function getRetVals()
-		{
-		return null;
-		}
-	}
+        $MiniComponents->triggerEvent('03150');
+
+        foreach ($MiniComponents->miniComponentData[ '03150' ] as $t) {
+            $r = array();
+            $r['EMAIL_TYPE'] = $t['type'];
+            $r['EMAIL_NAME'] = $t['name'];
+            $r['EMAIL_DESC'] = $t['desc'];
+
+            if (!using_bootstrap()) {
+                $jrtbar = jomres_getSingleton('jomres_toolbar');
+                $jrtb = $jrtbar->startTable();
+                $jrtb .= $jrtbar->toolbarItem('edit', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_email&email_type='.$t['type']), '');
+                $jrtb .= $jrtbar->endTable();
+                $r['EDITLINK'] = $jrtb;
+            } else {
+                $toolbar->newToolbar();
+                $toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_email&email_type='.$t['type']), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
+                $r['EDITLINK'] = $toolbar->getToolbar();
+            }
+
+            $rows[] = $r;
+        }
+
+        $pageoutput[] = $output;
+        $tmpl = new patTemplate();
+        $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
+        $tmpl->readTemplatesFromInput('list_emails.html');
+        $tmpl->addRows('pageoutput', $pageoutput);
+        $tmpl->addRows('rows', $rows);
+        $tmpl->displayParsedTemplate();
+    }
+
+    // This must be included in every Event/Mini-component
+    public function getRetVals()
+    {
+        return null;
+    }
+}

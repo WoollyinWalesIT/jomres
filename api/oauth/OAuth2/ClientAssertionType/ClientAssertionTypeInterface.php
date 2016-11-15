@@ -6,7 +6,7 @@ use OAuth2\RequestInterface;
 use OAuth2\ResponseInterface;
 
 /**
- * Interface for all OAuth2 Client Assertion Types
+ * Interface for all OAuth2 Client Assertion Types.
  */
 interface ClientAssertionTypeInterface
 {
