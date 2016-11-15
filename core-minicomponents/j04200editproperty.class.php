@@ -180,56 +180,28 @@ class j04200editproperty
 
         $counter = 0;
         foreach ($current_property_details->all_property_features as $k => $v) {
-            if (!is_numeric($v['ptype_xref'])) {
-                $ptype_xref = unserialize($v['ptype_xref']);
+            if (in_array($current_property_details->ptype_id, $v['ptype_xref'])) {
+				$r = array();
+				$r[ 'ischecked' ] = '';
 
-                if (in_array($current_property_details->ptype_id, $ptype_xref)) {
-                    $r = array();
-                    $r[ 'ischecked' ] = '';
+				$r[ 'PID' ] = $k;
 
-                    $r[ 'PID' ] = $k;
+				if (in_array($k, $propertyFeaturesArray)) {
+					$r[ 'ischecked' ] = 'checked';
+				}
 
-                    if (in_array($k, $propertyFeaturesArray)) {
-                        $r[ 'ischecked' ] = 'checked';
-                    }
+				$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int) $k, stripslashes($v['abbv']), false, false);
+				$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int) $k, stripslashes($v['desc']), false, false);
+				$r[ 'FEATURE' ] = jomres_makeTooltip($feature_abbv, $feature_abbv, $feature_desc, JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$v['image'], '', 'property_feature', array());
 
-                    $feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int) $k, stripslashes($v['abbv']), false, false);
-                    $feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int) $k, stripslashes($v['desc']), false, false);
-                    $r[ 'FEATURE' ] = jomres_makeTooltip($feature_abbv, $feature_abbv, $feature_desc, JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$v['image'], '', 'property_feature', array());
+				$r[ 'BR' ] = '';
+				if ($counter == 8) {
+					$r[ 'BR' ] = '<br />';
+					$counter = 0;
+				}
 
-                    $r[ 'BR' ] = '';
-                    if ($counter == 8) {
-                        $r[ 'BR' ] = '<br />';
-                        $counter = 0;
-                    }
-
-                    ++$counter;
-                    $globalPfeatures[] = $r;
-                }
-            } else { //for backward compatibility
-                if ($current_property_details->ptype_id == $v['ptype_xref'] || $v['ptype_xref'] == 0) {
-                    $r = array();
-                    $r[ 'ischecked' ] = '';
-
-                    $r[ 'PID' ] = $k;
-
-                    if (in_array($k, $propertyFeaturesArray)) {
-                        $r[ 'ischecked' ] = 'checked';
-                    }
-
-                    $feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int) $k, stripslashes($v['abbv']), false, false);
-                    $feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int) $k, stripslashes($v['desc']), false, false);
-                    $r[ 'FEATURE' ] = jomres_makeTooltip($feature_abbv, $feature_abbv, $feature_desc, JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$v['image'], '', 'property_feature', array());
-
-                    $r[ 'BR' ] = '';
-                    if ($counter == 8) {
-                        $r[ 'BR' ] = '<br />';
-                        $counter = 0;
-                    }
-
-                    ++$counter;
-                    $globalPfeatures[] = $r;
-                }
+				++$counter;
+				$globalPfeatures[] = $r;
             }
         }
 

@@ -26,55 +26,33 @@ class j16000savePfeature
             return;
         }
 
-        $propertyFeatureUid = jomresGetParam($_POST, 'propertyFeatureUid', 0);
-        $hotel_feature_abbv = jomresGetParam($_POST, 'feature_abbv', '');
-        $hotel_feature_full_desc = jomresGetParam($_POST, 'feature_description', '');
-        $ptype_ids = jomresGetParam($_POST, 'ptype_ids', array());
-        $image = jomresGetParam($_POST, 'image', '');
-        $cat_id = (int) jomresGetParam($_POST, 'cat_id', 0);
-
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
+		$jomres_property_features = jomres_singleton_abstract::getInstance('jomres_property_features');
+		
+        $jomres_property_features->id = (int)jomresGetParam($_POST, 'id', 0);
+        $jomres_property_features->abbv = jomresGetParam($_POST, 'feature_abbv', '');
+        $jomres_property_features->desc = jomresGetParam($_POST, 'feature_description', '');
+        $jomres_property_features->ptype_xref = jomresGetParam($_POST, 'ptype_ids', array());
+        $jomres_property_features->image = jomresGetParam($_POST, 'image', '');
+        $jomres_property_features->cat_id = (int) jomresGetParam($_POST, 'cat_id', 0);
+		
+		if ($jomres_property_features->abbv != '') {
+			if ($jomres_property_features->id == 0) {
+				$jomres_property_features->commit_new_property_feature();
+			} else {
+				$jomres_property_features->commit_update_property_feature();
+			}
+		} else {
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=editPfeature&id=' . $jomres_property_features->id), '');
+		}
+		
+		$c = jomres_singleton_abstract::getInstance('jomres_array_cache');
         $c->eraseAll();
-
-        if (empty($propertyFeatureUid)) {
-            $query = "INSERT INTO #__jomres_hotel_features 
-										(
-										 `hotel_feature_abbv`,
-										 `hotel_feature_full_desc`,
-										 `image`,
-										 `property_uid`,
-										 `ptype_xref`,
-										 `cat_id` 
-										 ) 
-										VALUES 
-										(
-										 '$hotel_feature_abbv',
-										 '$hotel_feature_full_desc',
-										 '$image',
-										 '0',
-										 '".serialize($ptype_ids)."',
-										 ".$cat_id.'
-										 )';
-            if (doInsertSql($query, '')) {
-                jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeatures'), jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT', false));
-            }
-        } else {
-            $query = "UPDATE #__jomres_hotel_features SET 
-							`image` = '$image',
-							`hotel_feature_abbv` = '$hotel_feature_abbv',
-							`hotel_feature_full_desc` = '$hotel_feature_full_desc',
-							`ptype_xref` = '".serialize($ptype_ids)."',
-							`cat_id` = ".(int) $cat_id.' 
-						WHERE hotel_features_uid = ' .(int) $propertyFeatureUid.' 
-							AND property_uid = 0 ';
-            if (doInsertSql($query, '')) {
-                jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeatures'), jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', false));
-            }
-        }
+		
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeatures'), jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', false));
     }
 
     // This must be included in every Event/Mini-component
-    public function getRetVals()
+	public function getRetVals()
     {
         return null;
     }

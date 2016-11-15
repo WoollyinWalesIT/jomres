@@ -26,27 +26,25 @@ class j16000savePfeatureCategory
             return;
         }
 
-        $id = jomresGetParam($_POST, 'id', 0);
-        $title = jomresGetParam($_POST, 'title', '');
+		$jomres_property_features_categories = jomres_singleton_abstract::getInstance('jomres_property_features_categories');
+		
+        $jomres_property_features_categories->id = (int)jomresGetParam($_POST, 'id', 0);
+        $jomres_property_features_categories->title = jomresGetParam($_POST, 'title', '');
+		
+		if ($jomres_property_features_categories->title != '') {
+			if ($jomres_property_features_categories->id > 0) {
+				$jomres_property_features_categories->commit_update_property_features_category();
+			} else {
+				$jomres_property_features_categories->commit_new_property_features_category();
+			}
+		} else {
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=editPfeatureCategory'), 'Please enter a category title');
+		}
 
         $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
         $c->eraseAll();
 
-        if ($title != '') {
-            if ($id == 0) {
-                $query = "INSERT INTO #__jomres_hotel_features_categories (`title`) VALUES ('$title') ";
-                if (doInsertSql($query, '')) {
-                    jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), '');
-                }
-            } else {
-                $query = "UPDATE #__jomres_hotel_features_categories SET `title`='$title' WHERE id = ".(int) $id;
-                if (doInsertSql($query, '')) {
-                    jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), '');
-                }
-            }
-        } else {
-            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=editPfeatureCategory'), 'Please enter a category title');
-        }
+        jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), '');
     }
 
     // This must be included in every Event/Mini-component

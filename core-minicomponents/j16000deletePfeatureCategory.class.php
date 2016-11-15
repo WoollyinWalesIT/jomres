@@ -26,27 +26,22 @@ class j16000deletePfeatureCategory
             return;
         }
 
-        $id = jomresGetParam($_REQUEST, 'id', 0);
+		$jomres_property_features_categories = jomres_singleton_abstract::getInstance('jomres_property_features_categories');
+		
+        $jomres_property_features_categories->id = (int)jomresGetParam($_REQUEST, 'id', 0);
 
-        if ($id > 0) {
-            // First we need to check that the category isn't used for any property feature
-            $query = 'SELECT cat_id FROM #__jomres_hotel_features WHERE `cat_id` = '.(int) $id;
-            $result = doSelectSql($query);
-
-            if (count($result) < 1) {
-                $query = 'DELETE FROM #__jomres_hotel_features_categories WHERE id = '.(int) $id;
-                doInsertSql($query, '');
-
-                $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-                $c->eraseAll();
-
-                jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), 'Category deleted');
-            } else {
-                jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), 'Category is still assigned to some property features');
-            }
-        } else {
-            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), '');
-        }
+        if ($jomres_property_features_categories->id > 0) {
+			if ($jomres_property_features_categories->delete_property_features_category()) {
+				$c = jomres_singleton_abstract::getInstance('jomres_array_cache');
+				$c->eraseAll();
+				
+				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), 'Category deleted');
+			} else {
+				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), 'Could not delete category, it may still be assigned to some property features');
+			}
+		}
+		
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), '');
     }
 
     // This must be included in every Event/Mini-component

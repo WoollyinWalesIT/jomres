@@ -103,7 +103,7 @@ class j06000show_property_features
                     $pageoutput = array();
 
                     if ($k > 0) {
-                        $output[ 'HFEATURES' ] = $basic_property_details->all_property_features_categories[$k];
+                        $output[ 'HFEATURES' ] = $v[0]['cat_title'];
                     } else {
                         $output[ 'HFEATURES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', false);
                     }

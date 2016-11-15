@@ -25,41 +25,31 @@ class j16000listPfeaturesCategories
 
             return;
         }
-
-        $ePointFilepath = get_showtime('ePointFilepath');
-        $editIcon = '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" />';
-
-        $jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
+		
+		$output = array();
+		$rows = array();
+		$pageoutput = array();
+		
+		$jomres_property_features_categories = jomres_singleton_abstract::getInstance('jomres_property_features_categories');
+		$jomres_property_features_categories->get_all_property_features_categories();
 
         $output['PAGETITLE'] = jr_gettext('_JOMRES_PROPERTYFEATURES_HCATEGORIES', '_JOMRES_PROPERTYFEATURES_HCATEGORIES', false);
+		$output['HTITLE'] = jr_gettext('_JRPORTAL_CRATE_TITLE', '_JRPORTAL_CRATE_TITLE', false);
 
-        $output['HTITLE'] = jr_gettext('_JRPORTAL_CRATE_TITLE', '_JRPORTAL_CRATE_TITLE', false);
+        foreach ($jomres_property_features_categories->property_features_categories as $c) {
+			$r = array();
 
-        $query = 'SELECT `id`, `title` FROM #__jomres_hotel_features_categories ';
-        $result = doSelectSql($query);
+			$r['TITLE'] = $c['title'];
+			$r['ID'] = $c['id'];
+			
+			$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
+			$toolbar->newToolbar();
+			$toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=editPfeatureCategory&id='.$c['id']), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
+			$toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=deletePfeatureCategory&id='.$c['id']), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
 
-        $rows = array();
+			$r['EDITLINK'] = $toolbar->getToolbar();
 
-        if (count($result) > 0) {
-            foreach ($result as $c) {
-                $r = array();
-
-                if (!using_bootstrap()) {
-                    $r['EDITLINK'] = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editPfeatureCategory&id='.$c->id.'">'.$editIcon.'</a>';
-                } else {
-                    $toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
-                    $toolbar->newToolbar();
-                    $toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=editPfeatureCategory&id='.$c->id), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
-                    $toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=deletePfeatureCategory&id='.$c->id), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
-
-                    $r['EDITLINK'] = $toolbar->getToolbar();
-                }
-
-                $r['TITLE'] = $c->title;
-                $r['ID'] = $c->id;
-
-                $rows[] = $r;
-            }
+			$rows[] = $r;
         }
 
         $jrtbar = jomres_getSingleton('jomres_toolbar');

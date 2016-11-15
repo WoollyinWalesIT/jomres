@@ -25,23 +25,20 @@ class j16000editPfeatureCategory
 
             return;
         }
-
-        $id = jomresGetParam($_REQUEST, 'id', 0);
-
-        $output[ 'ID' ] = $id;
-        $output[ 'TITLE' ] = '';
+		
+		$output = array();
+		$pageoutput = array();
+		
+		$jomres_property_features_categories = jomres_singleton_abstract::getInstance('jomres_property_features_categories');
+		
+        $id = (int)jomresGetParam($_REQUEST, 'id', 0);
 
         if ($id > 0) {
-            $query = 'SELECT `id`, `title` FROM #__jomres_hotel_features_categories WHERE `id` = '.(int) $id;
-            $result = doSelectSql($query);
-
-            if (count($result) > 0) {
-                foreach ($result as $r) {
-                    $output[ 'ID' ] = stripslashes($r->id);
-                    $output[ 'TITLE' ] = stripslashes($r->title);
-                }
-            }
-        }
+			$jomres_property_features_categories->get_property_features_category($id);
+		}
+        
+		$output[ 'ID' ] = $jomres_property_features_categories->id;
+        $output[ 'TITLE' ] = $jomres_property_features_categories->title;
 
         $output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT', '_JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT', false);
         $output[ 'HTITLE' ] = jr_gettext('_JRPORTAL_CRATE_TITLE', '_JRPORTAL_CRATE_TITLE', false);
@@ -56,7 +53,6 @@ class j16000editPfeatureCategory
         $jrtb .= $jrtbar->endTable();
         $output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-        $pageoutput = array();
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);

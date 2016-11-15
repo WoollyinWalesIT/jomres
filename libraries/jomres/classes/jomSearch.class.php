@@ -1092,7 +1092,6 @@ function prepFeatureSearch()
         $searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
 
         $basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-        $propertyFeaturesList = $basic_property_details->all_property_features;
 
         // Added to speed up listing of features. Finds all property features against published propertys and creates a unique array of the feature uids. This way we can still have our list of features but not include any that are not assigned to any properties
 
@@ -1116,7 +1115,7 @@ function prepFeatureSearch()
         $r[ 'ptype_xref' ] = '';
         $result[ ] = $r;
 
-        foreach ($propertyFeaturesList as $propertyFeatureId => $feature) {
+        foreach ($basic_property_details->all_property_features as $propertyFeatureId => $feature) {
             if (in_array($propertyFeatureId, $uniqueFeatures)) {
                 $r = array();
                 $r[ 'id' ] = $propertyFeatureId;

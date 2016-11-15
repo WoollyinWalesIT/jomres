@@ -89,7 +89,7 @@ class jomres_property_features
 					}
 				else //backward compatibility for when only one ptype id could be assigned
 					{
-					$this->property_features[$r->hotel_features_uid]['ptype_xref']	= array( (int)$r->ptype_xref );			// property types xref unserialized
+					$this->property_features[$r->hotel_features_uid]['ptype_xref']	= array( (int)$r->ptype_xref );			// property types xref
 					}
 				}
 			else
@@ -308,7 +308,7 @@ class jomres_property_features
 	function get_all_property_features_images()
 		{
 		$abspath  = JOMRES_IMAGELOCATION_ABSPATH . 'pfeatures' . JRDS;
-		$relpath  = JOMRES_IMAGELOCATION_RELPATH . 'pfeatures' . JRDS;
+		$relpath  = JOMRES_IMAGELOCATION_RELPATH . 'pfeatures/';
 		
 		$images = array();
 		
