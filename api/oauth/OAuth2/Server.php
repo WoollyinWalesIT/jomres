@@ -34,14 +34,15 @@ use OAuth2\Storage\JwtAccessToken as JwtAccessTokenStorage;
 use OAuth2\Storage\JwtAccessTokenInterface;
 
 /**
-* Server class for OAuth2
-* This class serves as a convience class which wraps the other Controller classes
-*
-* @see OAuth2\Controller\ResourceController
-* @see OAuth2\Controller\AuthorizeController
-* @see OAuth2\Controller\TokenController
-*/
-class Server implements ResourceControllerInterface,
+ * Server class for OAuth2
+ * This class serves as a convience class which wraps the other Controller classes.
+ *
+ * @see OAuth2\Controller\ResourceController
+ * @see OAuth2\Controller\AuthorizeController
+ * @see OAuth2\Controller\TokenController
+ */
+class Server implements
+ResourceControllerInterface,
     AuthorizeControllerInterface,
     TokenControllerInterface,
     UserInfoControllerInterface
@@ -108,19 +109,19 @@ class Server implements ResourceControllerInterface,
 
         // merge all config values.  These get passed to our controller objects
         $this->config = array_merge(array(
-            'use_jwt_access_tokens'        => false,
+            'use_jwt_access_tokens' => false,
             'store_encrypted_token_string' => true,
-            'use_openid_connect'       => false,
-            'id_lifetime'              => 3600,
-            'access_lifetime'          => 3600,
-            'www_realm'                => 'Service',
-            'token_param_name'         => 'access_token',
+            'use_openid_connect' => false,
+            'id_lifetime' => 3600,
+            'access_lifetime' => 3600,
+            'www_realm' => 'Service',
+            'token_param_name' => 'access_token',
             'token_bearer_header_name' => 'Bearer',
-            'enforce_state'            => true,
+            'enforce_state' => true,
             'require_exact_redirect_uri' => true,
-            'allow_implicit'           => false,
+            'allow_implicit' => false,
             'allow_credentials_in_request_body' => true,
-            'allow_public_clients'     => true,
+            'allow_public_clients' => true,
             'always_issue_new_refresh_token' => false,
             'unset_refresh_token_after_use' => true,
         ), $config);
@@ -179,7 +180,7 @@ class Server implements ResourceControllerInterface,
     }
 
     /**
-     * every getter deserves a setter
+     * every getter deserves a setter.
      */
     public function setAuthorizeController(AuthorizeControllerInterface $authorizeController)
     {
@@ -187,7 +188,7 @@ class Server implements ResourceControllerInterface,
     }
 
     /**
-     * every getter deserves a setter
+     * every getter deserves a setter.
      */
     public function setTokenController(TokenControllerInterface $tokenController)
     {
@@ -195,7 +196,7 @@ class Server implements ResourceControllerInterface,
     }
 
     /**
-     * every getter deserves a setter
+     * every getter deserves a setter.
      */
     public function setResourceController(ResourceControllerInterface $resourceController)
     {
@@ -203,7 +204,7 @@ class Server implements ResourceControllerInterface,
     }
 
     /**
-     * every getter deserves a setter
+     * every getter deserves a setter.
      */
     public function setUserInfoController(UserInfoControllerInterface $userInfoController)
     {
@@ -216,7 +217,6 @@ class Server implements ResourceControllerInterface,
      *
      * @param $request - OAuth2\RequestInterface
      * Request object to grant access token
-     *
      * @param $response - OAuth2\ResponseInterface
      * Response object containing error messages (failure) or user claims (success)
      *
@@ -240,7 +240,6 @@ class Server implements ResourceControllerInterface,
      *
      * @param $request - OAuth2\RequestInterface
      * Request object to grant access token
-     *
      * @param $response - OAuth2\ResponseInterface
      * Response object containing error messages (failure) or access token (success)
      *
@@ -271,12 +270,13 @@ class Server implements ResourceControllerInterface,
 
     /**
      * Handle a revoke token request
-     * This would be called from the "/revoke" endpoint as defined in the draft Token Revocation spec
+     * This would be called from the "/revoke" endpoint as defined in the draft Token Revocation spec.
      *
      * @see https://tools.ietf.org/html/rfc7009#section-2
      *
-     * @param RequestInterface $request
+     * @param RequestInterface  $request
      * @param ResponseInterface $response
+     *
      * @return Response|ResponseInterface
      */
     public function handleRevokeRequest(RequestInterface $request, ResponseInterface $response = null)
@@ -305,9 +305,9 @@ class Server implements ResourceControllerInterface,
      * - scope: (optional) The scope of the resource request expressed as a
      * list of space-delimited strings.
      * - state: (optional) An opaque value used by the client to maintain
-     * state between the request and callback.
+     * state between the request and callback
      * @param $is_authorized
-     * TRUE or FALSE depending on whether the user authorized the access.
+     * TRUE or FALSE depending on whether the user authorized the access
      * @param $user_id
      * Identifier of user who authorized the client
      *
@@ -335,7 +335,7 @@ class Server implements ResourceControllerInterface,
      *
      * @return
      * The authorization parameters so the authorization server can prompt
-     * the user for approval if valid.
+     * the user for approval if valid
      *
      * @see http://tools.ietf.org/html/rfc6749#section-4.1.1
      * @see http://tools.ietf.org/html/rfc6749#section-10.12
@@ -381,7 +381,7 @@ class Server implements ResourceControllerInterface,
     }
 
     /**
-     * Set a storage object for the server
+     * Set a storage object for the server.
      *
      * @param $storage
      * An object implementing one of the Storage interfaces
@@ -463,7 +463,7 @@ class Server implements ResourceControllerInterface,
     }
 
     /**
-     * every getter deserves a setter
+     * every getter deserves a setter.
      */
     public function setScopeUtil($scopeUtil)
     {
@@ -639,7 +639,7 @@ class Server implements ResourceControllerInterface,
         }
 
         if (count($grantTypes) == 0) {
-            throw new \LogicException("Unable to build default grant types - You must supply an array of grant_types in the constructor");
+            throw new \LogicException('Unable to build default grant types - You must supply an array of grant_types in the constructor');
         }
 
         return $grantTypes;
@@ -677,7 +677,7 @@ class Server implements ResourceControllerInterface,
     }
 
     /**
-     * For Resource Controller
+     * For Resource Controller.
      */
     protected function createDefaultJwtAccessTokenStorage()
     {
@@ -693,7 +693,7 @@ class Server implements ResourceControllerInterface,
     }
 
     /**
-     * For Authorize and Token Controllers
+     * For Authorize and Token Controllers.
      */
     protected function createDefaultJwtAccessTokenResponseType()
     {
@@ -728,7 +728,7 @@ class Server implements ResourceControllerInterface,
         }
 
         $config = array_intersect_key($this->config, array_flip(explode(' ', 'access_lifetime refresh_token_lifetime')));
-        $config['token_type'] = $this->tokenType ? $this->tokenType->getTokenType() :  $this->getDefaultTokenType()->getTokenType();
+        $config['token_type'] = $this->tokenType ? $this->tokenType->getTokenType() : $this->getDefaultTokenType()->getTokenType();
 
         return new AccessToken($this->storages['access_token'], $refreshStorage, $config);
     }

@@ -6,8 +6,8 @@ use OAuth2\Storage\Memory;
 use OAuth2\Storage\ScopeInterface as ScopeStorageInterface;
 
 /**
-* @see OAuth2\ScopeInterface
-*/
+ * @see OAuth2\ScopeInterface
+ */
 class Scope implements ScopeInterface
 {
     protected $storage;
@@ -33,11 +33,11 @@ class Scope implements ScopeInterface
      * Check if everything in required scope is contained in available scope.
      *
      * @param $required_scope
-     * A space-separated string of scopes.
+     * A space-separated string of scopes
      *
      * @return
      * TRUE if everything in required scope is contained in available scope,
-     * and FALSE if it isn't.
+     * and FALSE if it isn't
      *
      * @see http://tools.ietf.org/html/rfc6749#section-7
      *
@@ -48,17 +48,17 @@ class Scope implements ScopeInterface
         $required_scope = explode(' ', trim($required_scope));
         $available_scope = explode(' ', trim($available_scope));
 
-        return (count(array_diff($required_scope, $available_scope)) == 0);
+        return count(array_diff($required_scope, $available_scope)) == 0;
     }
 
     /**
      * Check if the provided scope exists in storage.
      *
      * @param $scope
-     * A space-separated string of scopes.
+     * A space-separated string of scopes
      *
      * @return
-     * TRUE if it exists, FALSE otherwise.
+     * TRUE if it exists, FALSE otherwise
      */
     public function scopeExists($scope)
     {
@@ -94,7 +94,7 @@ class Scope implements ScopeInterface
      * 'openid', offline_access'.
      *
      * @return
-     * An array of reserved scopes.
+     * An array of reserved scopes
      */
     public function getReservedScopes()
     {

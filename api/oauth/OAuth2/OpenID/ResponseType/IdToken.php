@@ -42,9 +42,9 @@ class IdToken implements IdTokenInterface
         $userClaims = $this->userClaimsStorage->getUserClaims($user_id, $params['scope']);
 
         $id_token = $this->createIdToken($params['client_id'], $userInfo, $params['nonce'], $userClaims, null);
-        $result["fragment"] = array('id_token' => $id_token);
+        $result['fragment'] = array('id_token' => $id_token);
         if (isset($params['state'])) {
-            $result["fragment"]["state"] = $params['state'];
+            $result['fragment']['state'] = $params['state'];
         }
 
         return array($params['redirect_uri'], $result);
@@ -56,12 +56,12 @@ class IdToken implements IdTokenInterface
         list($user_id, $auth_time) = $this->getUserIdAndAuthTime($userInfo);
 
         $token = array(
-            'iss'        => $this->config['issuer'],
-            'sub'        => $user_id,
-            'aud'        => $client_id,
-            'iat'        => time(),
-            'exp'        => time() + $this->config['id_lifetime'],
-            'auth_time'  => $auth_time,
+            'iss' => $this->config['issuer'],
+            'sub' => $user_id,
+            'aud' => $client_id,
+            'iat' => time(),
+            'exp' => time() + $this->config['id_lifetime'],
+            'auth_time' => $auth_time,
         );
 
         if ($nonce) {
@@ -83,7 +83,7 @@ class IdToken implements IdTokenInterface
     {
         // maps HS256 and RS256 to sha256, etc.
         $algorithm = $this->publicKeyStorage->getEncryptionAlgorithm($client_id);
-        $hash_algorithm = 'sha' . substr($algorithm, 2);
+        $hash_algorithm = 'sha'.substr($algorithm, 2);
         $hash = hash($hash_algorithm, $access_token, true);
         $at_hash = substr($hash, 0, strlen($hash) / 2);
 

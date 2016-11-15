@@ -1,16 +1,17 @@
 <?php
 /**
- * Core file
+ * Core file.
  *
  * @author Vince Wooll <sales@jomres.net>
+ *
  * @version Jomres 9.8.18
- * @package Jomres
+ *
  * @copyright	2005-2016 Vince Wooll
- * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 class jomres_pagination
@@ -27,10 +28,10 @@ class jomres_pagination
     protected $nextText = 'Next';
 
     /**
-     * @param int $totalItems The total number of items.
-     * @param int $itemsPerPage The number of items per page.
-     * @param int $currentPage The current page number.
-     * @param string $urlPattern A URL for each page, with (:num) as a placeholder for the page number. Ex. '/foo/page/(:num)'
+     * @param int    $totalItems   The total number of items
+     * @param int    $itemsPerPage The number of items per page
+     * @param int    $currentPage  The current page number
+     * @param string $urlPattern   A URL for each page, with (:num) as a placeholder for the page number. Ex. '/foo/page/(:num)'
      */
     public function __construct($totalItems, $itemsPerPage, $currentPage, $urlPattern = '')
     {
@@ -44,12 +45,13 @@ class jomres_pagination
 
     protected function updateNumPages()
     {
-        $this->numPages = ($this->itemsPerPage == 0 ? 0 : (int) ceil($this->totalItems/$this->itemsPerPage));
+        $this->numPages = ($this->itemsPerPage == 0 ? 0 : (int) ceil($this->totalItems / $this->itemsPerPage));
     }
 
     /**
      * @param int $maxPagesToShow
-     * @throws \InvalidArgumentException if $maxPagesToShow is less than 3.
+     *
+     * @throws \InvalidArgumentException if $maxPagesToShow is less than 3
      */
     public function setMaxPagesToShow($maxPagesToShow)
     {
@@ -143,6 +145,7 @@ class jomres_pagination
 
     /**
      * @param int $pageNum
+     *
      * @return string
      */
     public function getPageUrl($pageNum)
@@ -214,7 +217,7 @@ class jomres_pagination
         }
 
         if ($this->numPages <= $this->maxPagesToShow) {
-            for ($i = 1; $i <= $this->numPages; $i++) {
+            for ($i = 1; $i <= $this->numPages; ++$i) {
                 $pages[] = $this->createPage($i, $i == $this->currentPage);
             }
         } else {
@@ -227,17 +230,21 @@ class jomres_pagination
             } else {
                 $slidingStart = $this->currentPage - $numAdjacents;
             }
-            if ($slidingStart < 2) $slidingStart = 2;
+            if ($slidingStart < 2) {
+                $slidingStart = 2;
+            }
 
             $slidingEnd = $slidingStart + $this->maxPagesToShow - 3;
-            if ($slidingEnd >= $this->numPages) $slidingEnd = $this->numPages - 1;
+            if ($slidingEnd >= $this->numPages) {
+                $slidingEnd = $this->numPages - 1;
+            }
 
             // Build the list of pages.
             $pages[] = $this->createPage(1, $this->currentPage == 1);
             if ($slidingStart > 2) {
                 $pages[] = $this->createPageEllipsis();
             }
-            for ($i = $slidingStart; $i <= $slidingEnd; $i++) {
+            for ($i = $slidingStart; $i <= $slidingEnd; ++$i) {
                 $pages[] = $this->createPage($i, $i == $this->currentPage);
             }
             if ($slidingEnd < $this->numPages - 1) {
@@ -246,17 +253,16 @@ class jomres_pagination
             $pages[] = $this->createPage($this->numPages, $this->currentPage == $this->numPages);
         }
 
-
         return $pages;
     }
-
 
     /**
      * Create a page data structure.
      *
-     * @param int $pageNum
+     * @param int  $pageNum
      * @param bool $isCurrent
-     * @return Array
+     *
+     * @return array
      */
     protected function createPage($pageNum, $isCurrent = false)
     {
@@ -292,19 +298,19 @@ class jomres_pagination
 
         $html = '<ul class="pagination">';
         if ($this->getPrevUrl()) {
-            $html .= '<li><a href="' . $this->getPrevUrl() . '">&laquo; '. $this->previousText .'</a></li>';
+            $html .= '<li><a href="'.$this->getPrevUrl().'">&laquo; '.$this->previousText.'</a></li>';
         }
 
         foreach ($this->getPages() as $page) {
             if ($page['url']) {
-                $html .= '<li' . ($page['isCurrent'] ? ' class="active"' : '') . '><a href="' . $page['url'] . '">' . $page['num'] . '</a></li>';
+                $html .= '<li'.($page['isCurrent'] ? ' class="active"' : '').'><a href="'.$page['url'].'">'.$page['num'].'</a></li>';
             } else {
-                $html .= '<li class="disabled"><span>' . $page['num'] . '</span></li>';
+                $html .= '<li class="disabled"><span>'.$page['num'].'</span></li>';
             }
         }
 
         if ($this->getNextUrl()) {
-            $html .= '<li><a href="' . $this->getNextUrl() . '">'. $this->nextText .' &raquo;</a></li>';
+            $html .= '<li><a href="'.$this->getNextUrl().'">'.$this->nextText.' &raquo;</a></li>';
         }
         $html .= '</ul>';
 
@@ -345,12 +351,14 @@ class jomres_pagination
     public function setPreviousText($text)
     {
         $this->previousText = $text;
+
         return $this;
     }
 
     public function setNextText($text)
     {
         $this->nextText = $text;
+
         return $this;
     }
 }

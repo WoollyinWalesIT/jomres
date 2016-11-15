@@ -1,6 +1,3 @@
 <?php
 
-define('RESPONSE',"");
-
-
-
+define('RESPONSE', '');

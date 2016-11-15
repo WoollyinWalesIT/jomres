@@ -4,6 +4,7 @@ namespace OAuth2\Encryption;
 
 /**
  * @link https://github.com/F21/jwt
+ *
  * @author F21
  */
 class Jwt implements EncryptionInterface
@@ -14,7 +15,7 @@ class Jwt implements EncryptionInterface
 
         $segments = array(
             $this->urlSafeB64Encode(json_encode($header)),
-            $this->urlSafeB64Encode(json_encode($payload))
+            $this->urlSafeB64Encode(json_encode($payload)),
         );
 
         $signing_input = implode('.', $segments);
@@ -80,7 +81,7 @@ class Jwt implements EncryptionInterface
                 );
 
             case 'RS256':
-                return openssl_verify($input, $signature, $key, defined('OPENSSL_ALGO_SHA256') ? OPENSSL_ALGO_SHA256 : 'sha256')  === 1;
+                return openssl_verify($input, $signature, $key, defined('OPENSSL_ALGO_SHA256') ? OPENSSL_ALGO_SHA256 : 'sha256') === 1;
 
             case 'RS384':
                 return @openssl_verify($input, $signature, $key, defined('OPENSSL_ALGO_SHA384') ? OPENSSL_ALGO_SHA384 : 'sha384') === 1;
@@ -89,7 +90,7 @@ class Jwt implements EncryptionInterface
                 return @openssl_verify($input, $signature, $key, defined('OPENSSL_ALGO_SHA512') ? OPENSSL_ALGO_SHA512 : 'sha512') === 1;
 
             default:
-                throw new \InvalidArgumentException("Unsupported or invalid signing algorithm.");
+                throw new \InvalidArgumentException('Unsupported or invalid signing algorithm.');
         }
     }
 
@@ -115,14 +116,14 @@ class Jwt implements EncryptionInterface
                 return $this->generateRSASignature($input, $key, defined('OPENSSL_ALGO_SHA512') ? OPENSSL_ALGO_SHA512 : 'sha512');
 
             default:
-                throw new \Exception("Unsupported or invalid signing algorithm.");
+                throw new \Exception('Unsupported or invalid signing algorithm.');
         }
     }
 
     private function generateRSASignature($input, $key, $algo)
     {
         if (!openssl_sign($input, $signature, $key, $algo)) {
-            throw new \Exception("Unable to sign data.");
+            throw new \Exception('Unable to sign data.');
         }
 
         return $signature;
@@ -148,7 +149,7 @@ class Jwt implements EncryptionInterface
     }
 
     /**
-     * Override to create a custom header
+     * Override to create a custom header.
      */
     protected function generateJwtHeader($payload, $algorithm)
     {
@@ -164,7 +165,7 @@ class Jwt implements EncryptionInterface
             return hash_equals($a, $b);
         }
         $diff = strlen($a) ^ strlen($b);
-        for ($i = 0; $i < strlen($a) && $i < strlen($b); $i++) {
+        for ($i = 0; $i < strlen($a) && $i < strlen($b); ++$i) {
             $diff |= ord($a[$i]) ^ ord($b[$i]);
         }
 

@@ -4,7 +4,7 @@ namespace OAuth2\Storage;
 
 /**
  * Implement this interface to specify where the OAuth2 Server
- * should get/save access tokens
+ * should get/save access tokens.
  *
  * @author Brent Shaffer <bshafs at gmail dot com>
  */
@@ -16,7 +16,7 @@ interface AccessTokenInterface
      * We need to retrieve access token data as we create and verify tokens.
      *
      * @param $oauth_token
-     * oauth_token to be check with.
+     * oauth_token to be check with
      *
      * @return
      * An associative array as below, and return NULL if the supplied oauth_token
@@ -25,7 +25,7 @@ interface AccessTokenInterface
      * - client_id: (optional) Stored client identifier.
      * - user_id: (optional) Stored user identifier.
      * - scope: (optional) Stored scope values in space-separated string.
-     * - id_token: (optional) Stored id_token (if "use_openid_connect" is true).
+     * - id_token: (optional) Stored id_token (if "use_openid_connect" is true)
      *
      * @ingroup oauth2_section_7
      */
@@ -36,17 +36,17 @@ interface AccessTokenInterface
      *
      * We need to store access token data as we create and verify tokens.
      *
-     * @param $oauth_token    oauth_token to be stored.
-     * @param $client_id      client identifier to be stored.
-     * @param $user_id        user identifier to be stored.
-     * @param int    $expires expiration to be stored as a Unix timestamp.
-     * @param string $scope   OPTIONAL Scopes to be stored in space-separated string.
+     * @param $oauth_token    oauth_token to be stored
+     * @param $client_id      client identifier to be stored
+     * @param $user_id        user identifier to be stored
+     * @param int    $expires expiration to be stored as a Unix timestamp
+     * @param string $scope   OPTIONAL Scopes to be stored in space-separated string
      *
      * @ingroup oauth2_section_4
      */
     public function setAccessToken($oauth_token, $client_id, $user_id, $expires, $scope = null);
 
-    /**
+    /*
      * Expire an access token.
      *
      * This is not explicitly required in the spec, but if defined in a draft RFC for token

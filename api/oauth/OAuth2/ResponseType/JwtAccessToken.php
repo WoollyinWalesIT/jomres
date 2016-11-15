@@ -10,7 +10,6 @@ use OAuth2\Storage\PublicKeyInterface;
 use OAuth2\Storage\Memory;
 
 /**
- *
  * @author Brent Shaffer <bshafs at gmail dot com>
  */
 class JwtAccessToken extends AccessToken
@@ -29,7 +28,7 @@ class JwtAccessToken extends AccessToken
         $this->publicKeyStorage = $publicKeyStorage;
         $config = array_merge(array(
             'store_encrypted_token_string' => true,
-            'issuer' => ''
+            'issuer' => '',
         ), $config);
         if (is_null($tokenStorage)) {
             // a pass-thru, so we can call the parent constructor
@@ -46,11 +45,11 @@ class JwtAccessToken extends AccessToken
      * Handle the creation of access token, also issue refresh token if supported / desirable.
      *
      * @param $client_id
-     * Client identifier related to the access token.
+     * Client identifier related to the access token
      * @param $user_id
      * User ID associated with the access token
      * @param $scope
-     * (optional) Scopes to be stored in space-separated string.
+     * (optional) Scopes to be stored in space-separated string
      * @param bool $includeRefreshToken
      *                                  If true, a new refresh_token will be added to the response
      *
@@ -63,15 +62,15 @@ class JwtAccessToken extends AccessToken
         $expires = time() + $this->config['access_lifetime'];
         $id = $this->generateAccessToken();
         $jwtAccessToken = array(
-            'id'         => $id, // for BC (see #591)
-            'jti'        => $id,
-            'iss'        => $this->config['issuer'],
-            'aud'        => $client_id,
-            'sub'        => $user_id,
-            'exp'        => $expires,
-            'iat'        => time(),
+            'id' => $id, // for BC (see #591)
+            'jti' => $id,
+            'iss' => $this->config['issuer'],
+            'aud' => $client_id,
+            'sub' => $user_id,
+            'exp' => $expires,
+            'iat' => time(),
             'token_type' => $this->config['token_type'],
-            'scope'      => $scope
+            'scope' => $scope,
         );
 
         /*
@@ -92,7 +91,7 @@ class JwtAccessToken extends AccessToken
             'access_token' => $access_token,
             'expires_in' => $this->config['access_lifetime'],
             'token_type' => $this->config['token_type'],
-            'scope' => $scope
+            'scope' => $scope,
         );
 
         /*
@@ -117,7 +116,7 @@ class JwtAccessToken extends AccessToken
     protected function encodeToken(array $token, $client_id = null)
     {
         $private_key = $this->publicKeyStorage->getPrivateKey($client_id);
-        $algorithm   = $this->publicKeyStorage->getEncryptionAlgorithm($client_id);
+        $algorithm = $this->publicKeyStorage->getEncryptionAlgorithm($client_id);
 
         return $this->encryptionUtil->encode($token, $private_key, $algorithm);
     }

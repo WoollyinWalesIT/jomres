@@ -188,7 +188,6 @@ class Response implements ResponseInterface
         }
 
         throw new \InvalidArgumentException(sprintf('The format %s is not supported', $format));
-
     }
 
     public function send($format = 'json')
@@ -225,13 +224,13 @@ class Response implements ResponseInterface
         if (!is_null($errorUri)) {
             if (strlen($errorUri) > 0 && $errorUri[0] == '#') {
                 // we are referencing an oauth bookmark (for brevity)
-                $errorUri = 'http://tools.ietf.org/html/rfc6749' . $errorUri;
+                $errorUri = 'http://tools.ietf.org/html/rfc6749'.$errorUri;
             }
             $parameters['error_uri'] = $errorUri;
         }
 
         $httpHeaders = array(
-            'Cache-Control' => 'no-store'
+            'Cache-Control' => 'no-store',
         );
 
         $this->setStatusCode($statusCode);
@@ -265,10 +264,10 @@ class Response implements ResponseInterface
             // add parameters to URL redirection
             $parts = parse_url($url);
             $sep = isset($parts['query']) && count($parts['query']) > 0 ? '&' : '?';
-            $url .= $sep . http_build_query($this->parameters);
+            $url .= $sep.http_build_query($this->parameters);
         }
 
-        $this->addHttpHeaders(array('Location' =>  $url));
+        $this->addHttpHeaders(array('Location' => $url));
 
         if (!$this->isRedirection()) {
             throw new \InvalidArgumentException(sprintf('The HTTP status code is not a redirect ("%s" given).', $statusCode));
@@ -277,7 +276,7 @@ class Response implements ResponseInterface
 
     // http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
     /**
-     * @return Boolean
+     * @return bool
      *
      * @api
      */
@@ -287,7 +286,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @return Boolean
+     * @return bool
      *
      * @api
      */
@@ -297,7 +296,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @return Boolean
+     * @return bool
      *
      * @api
      */
@@ -307,7 +306,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @return Boolean
+     * @return bool
      *
      * @api
      */
@@ -317,7 +316,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @return Boolean
+     * @return bool
      *
      * @api
      */
@@ -327,7 +326,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @return Boolean
+     * @return bool
      *
      * @api
      */
