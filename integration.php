@@ -76,7 +76,10 @@ require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'librari
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'jr_gettext.php';
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_singleton_abstract.class.php';
 
-require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'MobileDetect'.JRDS.'Mobile_Detect.php';
+if (!class_exists('Mobile_Detect')) {
+    require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'MobileDetect'.JRDS.'Mobile_Detect.php';
+}
+
 $detect = new Mobile_Detect();
 set_showtime('device_type', ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'desktop'));
 
