@@ -1,0 +1,45 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<patTemplate:comment>
+ * @version Jomres 9.8.18
+</patTemplate:comment>
+<script type="text/javascript">
+jomresJquery(document).ready(function () {
+	make_datatable('jomres_users', '{_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE}', '{LIVESITE}');
+});
+</script>
+
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<input type="hidden" name="option" value="com_jomres"/>
+<input type="hidden" name="task" value="edit_user"/>
+</form>
+
+<h2 class="page-header">{_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE}</h2>
+
+<table id="jomres_users" width="100%" class="table table-striped">
+	<thead>
+	<tr>
+		<th>{COMMON_EDIT}</th>
+		<th>{HUSERNAME}</th>
+		<th>API KEY</th>
+		<th>{_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED}</th>
+	</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="linktext">
+		<tr>
+			<td>{LINKTEXT}</td>
+			<td><label class="label {LABEL_CLASS}">{USERNAME}</label></td>
+			<td>{API_KEY}</label></td>
+			<td>{NUMBEROFPROPERTIES}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+<h5>{HLEGEND}</h5>
+<span class="label label-gray">No user role</span>
+<span class="label label-teal">Receptionist</span>
+<span class="label label-blue">Property Manager</span>
+<span class="label label-purple">Super Property Manager</span>
+<span class="label label-red">Suspended</span>
+</patTemplate:tmpl>
