@@ -28,6 +28,8 @@ class j99995jomres_mainmenu
 
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
+         $this->ret_vals = '';
+         
         if (AJAXCALL == true) {
             return;
         }
@@ -91,7 +93,7 @@ class j99995jomres_mainmenu
                 set_showtime('jomres_mainmenu_manager_options', $rows);
             }
         }
-        $MiniComponents->triggerEvent('99996'); // New Jomres Mainmenu
+        $this->ret_vals = $MiniComponents->triggerEvent('99996'); // New Jomres Mainmenu
     }
 
 /**
@@ -102,6 +104,6 @@ class j99995jomres_mainmenu
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return null;
+        return $this->ret_vals;
     }
 }

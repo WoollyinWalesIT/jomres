@@ -815,7 +815,7 @@ try {
 
     if (defined('JOMRES_NOHTML') && JOMRES_NOHTML != 1 && !isset($_REQUEST[ 'popup' ])) {
         //trigger 99995 event
-        $MiniComponents->triggerEvent('99995');
+        echo $MiniComponents->triggerEvent('99995');
     }
 
     $performance_monitor->set_point('post-menu generation');
@@ -878,7 +878,7 @@ try {
 
     $performance_monitor->set_point('pre-menu generation');
     if (!defined('JOMRES_NOHTML') && !isset($_REQUEST[ 'popup' ])) { // Generate the main menu
-        $MiniComponents->triggerEvent('99995');
+        echo $MiniComponents->triggerEvent('99995');
     }
     $performance_monitor->set_point('post-menu generation');
 

@@ -25,6 +25,9 @@ class j99996mainmenu_buttons
 
             return;
         }
+        
+        $this->ret_vals = '';
+        
         $jomres_mainmenu_thirdparty_options = get_showtime('jomres_mainmenu_thirdparty_options');
         $jomres_mainmenu_reception_options = get_showtime('jomres_mainmenu_reception_options');
         $jomres_mainmenu_manager_options = get_showtime('jomres_mainmenu_manager_options');
@@ -83,7 +86,8 @@ class j99996mainmenu_buttons
         $management_view = jomresGetParam($_REQUEST, 'tmpl', false);
 
         if (count($control_panel_buttons_categorised) > 0) {
-            $MiniComponents->triggerEvent('99997', array('jomres_mainmenu_buttons_categorised' => $control_panel_buttons_categorised, 'management_view' => $management_view));
+            $this->ret_vals = $MiniComponents->triggerEvent('99997', array('jomres_mainmenu_buttons_categorised' => $control_panel_buttons_categorised, 'management_view' => $management_view));
+            
         }
     }
 
@@ -95,6 +99,6 @@ class j99996mainmenu_buttons
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return null;
+        return $this->ret_vals;
     }
 }

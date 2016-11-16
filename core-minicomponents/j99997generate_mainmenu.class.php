@@ -222,7 +222,6 @@ class j99997generate_mainmenu
         $tmpl->addRows('pageoutput', $pageoutput);
         //$tmpl->addRows( 'help', $help );
         $this->ret_vals = $tmpl->getParsedTemplate();
-        echo $this->ret_vals;
     }
 
     public function getRetVals()
