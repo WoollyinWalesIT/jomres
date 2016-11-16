@@ -171,10 +171,10 @@ class jomres_property_types
 								(
 								'".$this->property_type['ptype']."',
 								'".$this->property_type['ptype_desc']."', 
-								".$this->property_type['mrp_srp_flag'].',
-								'.$this->property_type['marker'].'
+								".$this->property_type['mrp_srp_flag'].",
+								'".$this->property_type['marker']."'
 								)
-								';
+								";
         }
 
         if (doInsertSql($query, false)) {
