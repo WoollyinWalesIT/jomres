@@ -14,52 +14,44 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-function getSimpleCountry($selectedCountry)
+function getSimpleCountry($selectedCountry = '')
 {
+	if ($selectedCountry == '') {
+		return false;
+	}
+
     $jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
-    $countries = $jomres_countries->countries;
-    $countryCodes = array();
-    $countryName = false;
-
-    foreach ($countries as $country) {
-        $code = $country[ 'countrycode' ];
-        $countryCodes[ $code ] = $country[ 'countryname' ];
-    }
-
+	
     $selectedCountry = strtoupper($selectedCountry);
 
-    foreach ($countryCodes as $k => $v) {
-        if ($k == $selectedCountry) {
-            $countryName = $v;
-        }
-    }
-
-    return $countryName;
+	if (isset($jomres_countries->countries[$selectedCountry]['countryname'])) {
+		return $jomres_countries->countries[$selectedCountry]['countryname'];
+	}
+	
+	return false;
 }
 
 function configCountries()
 {
     $mrConfig = getPropertySpecificSettings();
-    if (!isset($mrConfig[ 'defaultcountry' ]) || empty($mrConfig[ 'defaultcountry' ])) {
+    
+	if (!isset($mrConfig[ 'defaultcountry' ]) || empty($mrConfig[ 'defaultcountry' ])) {
         $tmpBookingHandler = jomres_getSingleton('jomres_temp_booking_handler');
         $selectedCountry = $tmpBookingHandler->user_settings[ 'geolocated_country' ];
     } else {
         $selectedCountry = $mrConfig[ 'defaultcountry' ];
     }
-    $selectedCountry = strtoupper($selectedCountry);
-    //$countryNames=countryNameArray();
+    
+	$selectedCountry = strtoupper($selectedCountry);
+	
     $jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
-    $countries = $jomres_countries->countries;
-    $countryCodes = array();
-    foreach ($countries as $country) {
-        $code = $country[ 'countrycode' ];
-        $countryCodes[ $code ] = $country[ 'countryname' ];
+
+    $options = array();
+    foreach ($jomres_countries->countries as $country) {
+		$options[] = jomresHTML::makeOption($country['countrycode'], $country['countryname']);
     }
-    asort($countryCodes);
-    foreach ($countryCodes as $k => $v) {
-        $thecountryCodes[ ] = jomresHTML::makeOption($k, $v);
-    }
-    $countryDropdown = jomresHTML::selectList($thecountryCodes, 'cfg_defaultcountry', 'class="inputbox"', 'value', 'text', $selectedCountry);
+
+    $countryDropdown = jomresHTML::selectList($options, 'cfg_defaultcountry', 'class="inputbox"', 'value', 'text', $selectedCountry);
 
     return $countryDropdown;
 }
@@ -67,24 +59,21 @@ function configCountries()
 function createSimpleCountriesDropdown($selectedCountry = '', $input_name = 'guest_country')
 {
     $mrConfig = getPropertySpecificSettings();
-    if (!isset($selectedCountry) || $selectedCountry == '') {
+    
+	if (!isset($selectedCountry) || $selectedCountry == '') {
         $selectedCountry = $mrConfig[ 'defaultcountry' ];
     }
-    $selectedCountry = strtoupper($selectedCountry);
-    //$countryNames=countryNameArray();
+    
+	$selectedCountry = strtoupper($selectedCountry);
+	
     $jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
-    $countries = $jomres_countries->countries;
-    $countryCodes = array();
-    foreach ($countries as $country) {
-        $code = $country[ 'countrycode' ];
-        $countryCodes[ $code ] = $country[ 'countryname' ];
+
+    $options = array();
+    foreach ($jomres_countries->countries as $country) {
+		$options[] = jomresHTML::makeOption($country['countrycode'], $country['countryname']);
     }
 
-    $thecountryCodes = array();
-    foreach ($countryCodes as $k => $v) {
-        $thecountryCodes[ ] = jomresHTML::makeOption($k, $v);
-    }
-    $countryDropdown = jomresHTML::selectList($thecountryCodes, $input_name, '', 'value', 'text', $selectedCountry);
+    $countryDropdown = jomresHTML::selectList($options, $input_name, '', 'value', 'text', $selectedCountry);
 
     return $countryDropdown;
 }
@@ -93,50 +82,45 @@ function limitCountriesDropdown()
 {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
+    
+	$selectedCountry = strtoupper($selectedCountry);
+	
     $jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
-    $countries = $jomres_countries->countries;
-    $countryCodes = array();
-    foreach ($countries as $country) {
-        $code = $country[ 'countrycode' ];
-        $countryCodes[ $code ] = $country[ 'countryname' ];
+
+    $options = array();
+    foreach ($jomres_countries->countries as $country) {
+		$options[] = jomresHTML::makeOption($country['countrycode'], $country['countryname']);
     }
-    asort($countryCodes);
-    $thecountryCodes = array();
-    foreach ($countryCodes as $k => $v) {
-        $thecountryCodes[ ] = jomresHTML::makeOption($k, $v);
-    }
-    $countryDropdown = jomresHTML::selectList($thecountryCodes, 'cfg_limit_property_country_country', 'class="inputbox" ', 'value', 'text', $jrConfig[ 'limit_property_country_country' ]);
+	
+    $countryDropdown = jomresHTML::selectList($options, 'cfg_limit_property_country_country', 'class="inputbox" ', 'value', 'text', $jrConfig[ 'limit_property_country_country' ]);
 
     return $countryDropdown;
 }
 
 function createCountriesDropdown($selectedCountry, $input_name = 'country', $include_onchange = true)
 {
+	$selectedCountry = strtoupper($selectedCountry);
+	
     $jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
-    $countries = $jomres_countries->countries;
-    $countryCodes = array();
-    foreach ($countries as $country) {
-        $code = $country[ 'countrycode' ];
-        $countryCodes[ $code ] = $country[ 'countryname' ];
-    }
-    asort($countryCodes);
+
     $countryDropdown = '<select id="'.$input_name.'" name="'.$input_name.'" class="form-control" ';
-    if ($include_onchange) {
+    
+	if ($include_onchange) {
         $countryDropdown .= 'onchange="OnChange(this.form.'.$input_name.')">';
     } else {
         $countryDropdown .= '>';
     }
-
-    foreach ($countryCodes as $k => $v) {
-        $loopedCountry = $v;
-        if ($selectedCountry != '' && $selectedCountry == $k) {
+	
+	foreach ($jomres_countries->countries as $country) {
+		if ($selectedCountry != '' && $selectedCountry == $country['countrycode']) {
             $selected = 'selected';
         } else {
             $selected = '';
         }
-        $countryDropdown .= '<option value="'.$k.'" '.$selected.' >'.$loopedCountry.'</option>';
+		$countryDropdown .= '<option value="'.$country['countrycode'].'" '.$selected.' >'.$country['countryname'].'</option>';
     }
-    $countryDropdown .= '</select>';
+	
+	$countryDropdown .= '</select>';
 
     return $countryDropdown;
 }
@@ -233,7 +217,8 @@ function old_countryCodesArray($translate = true)
 function import_countries()
 {
     $jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
-    if (count($jomres_countries->countries) == 0) {
+    
+	if (empty($jomres_countries->countries)) {
         $query = '
 			INSERT INTO #__jomres_countries 
 			(countrycode,countryname) 
@@ -245,20 +230,21 @@ function import_countries()
         foreach ($countries as $countrycode => $countryname) {
             $rows .= '(\''.$countrycode.'\',\''.filter_var($countryname, FILTER_SANITIZE_SPECIAL_CHARS).'\'),';
         }
-        $rows = substr($rows, 0, strlen($rows) - 1).';';
+        $rows = rtrim($rows, -1);
         $result = doInsertSql($query.$rows, '');
 
-        $jomres_countries->countries = array();
-        $new_countries = $jomres_countries->get_countries();
+        $jomres_countries->countries = false;
+        $jomres_countries->get_countries();
 
-        return $new_countries;
+        return true;
     }
 }
 
 function import_regions()
 {
-    $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-    if (count($jomres_regions->regions) == 0) {
+	$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+
+    if (empty($jomres_regions->regions)) {
         $query = '
 			INSERT INTO #__jomres_regions 
 			(countrycode,regionname) 
@@ -273,12 +259,13 @@ function import_regions()
                 $rows .= '(\''.$countrycode.'\',\''.filter_var($region, FILTER_SANITIZE_SPECIAL_CHARS).'\'),';
             }
         }
-        $rows = substr($rows, 0, strlen($rows) - 1).';';
-        $result = doInsertSql($query.$rows, '');
+        $rows = rtrim($rows, -1);
+        
+		$result = doInsertSql($query.$rows, '');
 
-        $jomres_regions->regions = array();
-        $new_regions = $jomres_regions->get_regions();
-
-        return $new_regions;
+		$jomres_regions->regions = false;
+		$jomres_regions->get_regions();
+		
+        return true;
     }
 }
