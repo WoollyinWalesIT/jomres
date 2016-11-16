@@ -117,7 +117,7 @@ function jomres_cmsspecific_createNewUser()
 			'" .$encryptedPassword."',
 			'" .date('Y-m-d H:i:s')."',
 			'" .date('Y-m-d H:i:s')."',
-			'" .date('Y-m-d H:i:s')."',3
+			'" .date('Y-m-d H:i:s')."',
 			'{}'
 			) ";
         $id = doInsertSql($query);
