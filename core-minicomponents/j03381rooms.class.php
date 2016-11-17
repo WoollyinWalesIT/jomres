@@ -37,10 +37,10 @@ class j03381rooms
         if (count($roomsList) > 0) {
             $resource_options = array();
             foreach ($roomsList as $room) {
-                $resource_options[ ] = jomresHTML::makeOption($room->room_uid, $room->room_number.' '.$room->room_name);
+                $resource_options[ ] = jomresHTML::makeOption($room->room_uid, jr_gettext('_JOMRES_COM_MR_EB_ROOM_NUMBER', '_JOMRES_COM_MR_EB_ROOM_NUMBER', false)." ".$room->room_number.' '.$room->room_name);
             }
             $use_bootstrap_radios = false;
-            $dropdown = jomresHTML::selectList($resource_options, 'resource_id', ' autocomplete="off" class="inputbox" size="1" ', 'value', 'text', '', $use_bootstrap_radios);
+            $dropdown = jomresHTML::selectList($resource_options, 'resource_id', ' autocomplete="off" class="btn btn-success btn-lg" size="1" ', 'value', 'text', '', $use_bootstrap_radios);
         }
 
         $this->ret_vals = $dropdown;

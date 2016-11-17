@@ -44,6 +44,9 @@ class j06000media_centre
         $result = $MiniComponents->triggerEvent($upload_context [ 'resource_type_gathering_trigger' ]);
         $resource_types = $MiniComponents->miniComponentData[ $upload_context [ 'resource_type_gathering_trigger' ] ];
 
+        $notes = array();
+        $preview_links = array();
+        
         if (count($resource_types) > 0) {
             $resource_type_options = array();
 
@@ -53,28 +56,44 @@ class j06000media_centre
                     if (isset($type['notes'])) {
                         $notes[] = array('NOTE' => $type['notes']);
                     }
+                if (isset( $type['preview_link'])) {
+                    $preview_links[] = array('RESOURCE_TYPE' => $type['resource_type'] , 'PREVIEW_LINK' => $type['preview_link']);
+                    }
                 }
             }
             $javascript = 'onchange="get_resource_ids_for_resource_type(this.value);"';
 
-            $output['RESOURCE_TYPE_OPTIONS'] = jomresHTML::selectList($resource_type_options, 'resource_types', ' autocomplete="off" class="inputbox" size="1" '.$javascript.'', 'value', 'text', '', false);
+            $output['RESOURCE_TYPE_OPTIONS'] = jomresHTML::selectList($resource_type_options, 'resource_types', ' autocomplete="off" class="btn btn-primary btn-lg" size="1" '.$javascript.'', 'value', 'text', '', false);
 
-            $output['_JOMRES_MEDIA_CENTRE_BUTTON_ADD'] = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', '_JOMRES_MEDIA_CENTRE_BUTTON_ADD', false);
-            $output['MAX_WIDTH'] = $jrConfig[ 'maxwidth' ];
-            $output['TITLE'] = jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false);
-            $output['UPLOAD_CONTEXT_TITLE'] = $upload_context [ 'upload_context_title' ];
-            $output['_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS'] = jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', false);
-            $output['_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS'] = jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', false);
-            $output['_JOMRES_MEDIA_CENTRE_CLEAR'] = jr_gettext('_JOMRES_MEDIA_CENTRE_CLEAR', '_JOMRES_MEDIA_CENTRE_CLEAR', false);
-            $output['_JOMRES_MEDIA_CENTRE_DRAGNDROP'] = jr_gettext('_JOMRES_MEDIA_CENTRE_DRAGNDROP', '_JOMRES_MEDIA_CENTRE_DRAGNDROP', false);
-            $output['_JOMRES_MEDIA_CENTRE_BUTTON_DELETE'] = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', '_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', false);
-            $output['_JOMRES_MEDIA_CENTRE_BUTTON_VIEW'] = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', '_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', false);
-            $output['_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD'] = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD', '_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD', false);
-            $output['URL_CONTEXT'] = $upload_context [ 'url_context' ];
-            $output['ALLOWED_FILE_TYPES'] = $upload_context [ 'allowed_file_types' ];
-            $output['_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL'] = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL', '_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL', false);
-            $output['HUPLOAD_FORM'] = jr_gettext('_JOMRES_UPLOAD_IMAGE', '_JOMRES_UPLOAD_IMAGE', false);
+            $output['_JOMRES_MEDIA_CENTRE_BUTTON_ADD']                      = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', '_JOMRES_MEDIA_CENTRE_BUTTON_ADD', false);
+            $output['MAX_WIDTH']                                            = $jrConfig[ 'maxwidth' ];
+            $output['TITLE']                                                = jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false);
+            $output['UPLOAD_CONTEXT_TITLE']                                 = $upload_context [ 'upload_context_title' ];
+            $output['_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS']     = jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', false);
+            $output['_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS']           = jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', false);
+            $output['_JOMRES_MEDIA_CENTRE_CLEAR']                           = jr_gettext('_JOMRES_MEDIA_CENTRE_CLEAR', '_JOMRES_MEDIA_CENTRE_CLEAR', false);
+            $output['_JOMRES_MEDIA_CENTRE_DRAGNDROP']                       = jr_gettext('_JOMRES_MEDIA_CENTRE_DRAGNDROP', '_JOMRES_MEDIA_CENTRE_DRAGNDROP', false);
+            $output['_JOMRES_MEDIA_CENTRE_BUTTON_DELETE']                   = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', '_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', false);
+            $output['_JOMRES_MEDIA_CENTRE_BUTTON_VIEW']                     = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', '_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', false);
+            $output['_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD']                   = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD', '_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD', false);
+            $output['URL_CONTEXT']                                          = $upload_context [ 'url_context' ];
+            $output['ALLOWED_FILE_TYPES']                                   = $upload_context [ 'allowed_file_types' ];
+            $output['_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL']               = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL', '_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL', false);
+            $output['HUPLOAD_FORM']                                         = jr_gettext('_JOMRES_UPLOAD_IMAGE', '_JOMRES_UPLOAD_IMAGE', false);
+            
+            $output['_JOMRES_FRONT_PREVIEW']                                = jr_gettext('_JOMRES_FRONT_PREVIEW', '_JOMRES_FRONT_PREVIEW', false);
+            
+            $property_uid = getDefaultProperty();
+            $mrConfig = getPropertySpecificSettings($property_uid);
 
+             if ($mrConfig[ 'singleRoomProperty' ] == '1' ){
+                $output['_JOMRES_MEDIA_CENTRE_INSTRUCTIONS']                    = jr_gettext('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_SRP', '_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_SRP', false);
+            } else {
+                $output['_JOMRES_MEDIA_CENTRE_INSTRUCTIONS']                    = jr_gettext('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_MRP', '_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_MRP', false);
+            }
+
+            $output['DEFAULT_PREVIEW_LINK']                                = JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_header&property_uid='.$property_uid;
+            
             if (!jomres_cmsspecific_areweinadminarea()) {
                 $output['AJAX_URL'] = JOMRES_SITEPAGE_URL_AJAX;
             } else {
@@ -93,6 +112,7 @@ class j06000media_centre
             $tmpl->readTemplatesFromInput('media_centre_main.html');
             $tmpl->addRows('pageoutput', $pageoutput);
             $tmpl->addRows('notes', $notes);
+            $tmpl->addRows('preview_links', $preview_links);
             $tmpl->displayParsedTemplate();
         } else {
             echo 'Error, no resource types can be found in the resource types array in the media centre. The 03379 scripts must be missing';

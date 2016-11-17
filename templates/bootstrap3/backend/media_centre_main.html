@@ -29,10 +29,11 @@
     transition: all 0.3s ease-out;
     opacity: 1;
 }
+
 </style>
 <h2 class="page-header">{TITLE} ({UPLOAD_CONTEXT_TITLE})</h2>
 <div id="tour_target_mediacentre_introduction"></div>
-
+<p class="alert alert-info">{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS}</p>
 <patTemplate:tmpl name="notes" unusedvars="strip" type="simpleCondition" requiredVars="note">
 <p class="alert alert-warning">
 	{NOTE}
@@ -40,10 +41,20 @@
 </patTemplate:tmpl>
 
 <div class="row">
+    <div class="col-md-10">
+    
+        <p>{RESOURCE_TYPE_OPTIONS} <span id="resource_id_dropdown"><input type="hidden" id="resource_id" value="" /></span></p>
+    </div>
+    <div class="col-md-2">
+        <a href="{DEFAULT_PREVIEW_LINK}" data-remote="false" data-toggle="modal" data-target="#previewModal" class="btn btn-default btn-lg" id="image_preview_button">
+            <i class="fa fa-link" aria-hidden="true"></i>
+           {_JOMRES_FRONT_PREVIEW}
+        </a>
+    </div>
+</div>
+
+<div class="row">
 	<div class="col-md-7">
-		<div id="tour_target_mediacentre_resourcepicker"></div>
-		<p>{RESOURCE_TYPE_OPTIONS} <span id="resource_id_dropdown"><input type="hidden" id="resource_id" value="" /></span></p>
-		<div id="tour_target_mediacentre_existingimages"></div>
 		<div id="existing_images"></div>
 	</div>
 	<div class="col-md-5">
@@ -88,6 +99,9 @@
 
 <script>
 var ajax_url = "{AJAX_URL}";
+<patTemplate:tmpl name="preview_links" unusedvars="strip" type="simpleCondition" requiredVars="resource_type">
+var preview_link_{RESOURCE_TYPE} = '{PREVIEW_LINK}';
+</patTemplate:tmpl>
 
 jomresJquery(function () {
     'use strict';
@@ -292,10 +306,25 @@ function get_existing_images()
 			populateDiv ( 'existing_images' , data );
 			jomresJquery('#existing_images').slideDown();
 		});
+    var link = window['preview_link_'+resource_type];
+    if( typeof link !== 'undefined' ) {
+        jomresJquery('#image_preview_button').show("slow");
+        jomresJquery('#preview_modal_body').html('<i class="fa fa-spinner fa-spin fa-5x" aria-hidden="true"></i> ');
+        jomresJquery("#image_preview_button").attr("href", link);
+        }
+    else {
+        jomresJquery('#image_preview_button').hide("slow");
+        }
 	}
 	
 jomresJquery(document).ready(function () {
 	get_existing_images();
+    
+    // Fill modal with content from link href
+    jomresJquery("#previewModal").on("show.bs.modal", function(e) {
+        var link = jomresJquery(e.relatedTarget);
+        jomresJquery(this).find(".modal-body").load(link.attr("href"));
+        });
 	});
 </script>
 
@@ -378,4 +407,22 @@ jomresJquery(document).ready(function () {
     </tr>
 {% } %}
 </script>
+
+
+<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="COMMON_CLOSE"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="previewModalLabel">{_JOMRES_FRONT_PREVIEW}</h4>
+      </div>
+      <div class="modal-body" id="preview_modal_body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{COMMON_CLOSE}</button>
+      </div>
+    </div>
+  </div>
+</div>
 </patTemplate:tmpl>

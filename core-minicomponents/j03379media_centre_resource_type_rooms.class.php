@@ -35,8 +35,11 @@ class j03379media_centre_resource_type_rooms
             $mrConfig[ 'is_real_estate_listing' ] = '0';
         }
 
+        $property_uid = getDefaultProperty();
+        $preview_link                                = JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_rooms&property_uid='.$property_uid;
+            
         if ($mrConfig[ 'singleRoomProperty' ] != '1' && $mrConfig['is_real_estate_listing'] != '1') {
-            $this->ret_vals = array('resource_type' => 'rooms', 'resource_id_required' => true, 'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', false));
+            $this->ret_vals = array('resource_type' => 'rooms', 'resource_id_required' => true, 'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', false) , 'preview_link'=>$preview_link );
 
             if (!AJAXCALL && !defined('MEDIACENTRE_ROOMJS')) {
                 define('MEDIACENTRE_ROOMJS', 1);

@@ -26,7 +26,9 @@ class j03379media_centre_resource_type_slideshow
             return;
         }
 
-        $this->ret_vals = array('resource_type' => 'slideshow', 'resource_id_required' => false, 'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', false));
+        $property_uid = getDefaultProperty();
+        $preview_link                                = JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_slideshow&property_uid='.$property_uid;
+        $this->ret_vals = array('resource_type' => 'slideshow', 'resource_id_required' => false, 'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', false) , 'preview_link'=>$preview_link );
     }
 
     // This must be included in every Event/Mini-component
