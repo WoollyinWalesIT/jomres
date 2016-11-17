@@ -1,4 +1,5 @@
-<?php/**
+<?php
+/**
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
