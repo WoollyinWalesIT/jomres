@@ -521,3 +521,14 @@ function jomres_cmsspecific_find_cms_users($search_term = '')
 
     return $users;
 }
+
+function jomres_cmsspecific_getUsername($user_id = 0) {
+	if ($user_id == 0) {
+		return;
+	}
+	
+	$query = 'SELECT `username` FROM #__users WHERE `id` = '.(int)$user_id.' LIMIT 1';
+    $result = doSelectSql($query,1);
+	
+	return $result;
+}
