@@ -3,8 +3,8 @@
 </patTemplate:comment>
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <div id="{RANDOM_ID}">
-	<div class="well well-small clearfix">
-		<div class="row">
+	
+		<div class="row" style="padding:5px">
 			<div class="col-md-4">
 				<img src="{IMAGE_REL_SMALL}" alt="{FILENAME}" class="img-responsive"/>
 			</div>
@@ -16,6 +16,7 @@
 				<a class="btn btn-danger" onclick="delete_file('{DELETE_URL}' , '{RANDOM_ID}')" href="javascript:void(0);" title="{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}"><i class="fa fa-trash-o"></i> <!--{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}--></a>
 			</div>
 		</div>
-	</div>
+
 </div>
+<hr/>
 </patTemplate:tmpl>

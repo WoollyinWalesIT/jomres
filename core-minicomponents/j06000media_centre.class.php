@@ -82,6 +82,21 @@ class j06000media_centre
             $output['HUPLOAD_FORM']                                         = jr_gettext('_JOMRES_UPLOAD_IMAGE', '_JOMRES_UPLOAD_IMAGE', false);
             
             $output['_JOMRES_FRONT_PREVIEW']                                = jr_gettext('_JOMRES_FRONT_PREVIEW', '_JOMRES_FRONT_PREVIEW', false);
+            $output['_JOMRES_MEDIA_CENTRE_RESOURCE']                        = jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE', '_JOMRES_MEDIA_CENTRE_RESOURCE', false);
+            $output['_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC']               = jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', '_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', false);
+            $output['_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_GENERIC']            = jr_gettext('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_GENERIC', '_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_GENERIC', false);
+            $output['_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_PREVIEW']            = jr_gettext('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_PREVIEW', '_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_PREVIEW', false);
+            $output['_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_LIMITATIONS']        = jr_gettext('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_LIMITATIONS', '_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_LIMITATIONS', false);
+            $output['_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_PRE'] = jr_gettext('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_PRE', '_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_PRE', false);
+            $output['_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_POST'] = jr_gettext('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_POST', '_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_POST', false);
+            $output['_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_PRE']       = jr_gettext('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_PRE', '_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_PRE', false);
+            $output['_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_POST']      = jr_gettext('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_POST', '_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_POST', false);
+            $output['_JOMRES_COM_A_UPLOADS_FILESIZE']                       = jr_gettext('_JOMRES_COM_A_UPLOADS_FILESIZE', '_JOMRES_COM_A_UPLOADS_FILESIZE', false);
+            $output['_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED']       = jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', '_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', false);
+            
+            
+            $output['MAX_UPLOAD_SIZE']                                      = $this->filesize_formatted($this->file_upload_max_size());
+            $output['WIDTH_PIXELS']                                         = $jrConfig[ 'maxwidth' ];
             
             $property_uid = getDefaultProperty();
             $mrConfig = getPropertySpecificSettings($property_uid);
@@ -119,6 +134,59 @@ class j06000media_centre
         }
     }
 
+    
+    // Returns a file size limit in bytes based on the PHP upload_max_filesize
+    // and post_max_size
+    function file_upload_max_size() {
+      static $max_size = -1;
+
+        if ($max_size < 0) {
+            // Start with post_max_size.
+            $max_size = $this->parse_size(ini_get('post_max_size'));
+
+            // If upload_max_size is less, then reduce. Except if upload_max_size is
+            // zero, which indicates no limit.
+            $upload_max = $this->parse_size(ini_get('upload_max_filesize'));
+            if ($upload_max > 0 && $upload_max < $max_size) {
+                $max_size = $upload_max;
+            }
+        }
+        return $max_size;
+    }
+
+    function parse_size($size) {
+        $unit = preg_replace('/[^bkmgtpezy]/i', '', $size); // Remove the non-unit characters from the size.
+        $size = preg_replace('/[^0-9\.]/', '', $size); // Remove the non-numeric characters from the size.
+        if ($unit) {
+            // Find the position of the unit in the ordered string which is the power of magnitude to multiply a kilobyte by.
+            return round($size * pow(1024, stripos('bkmgtpezy', $unit[0])));
+        }
+        else {
+            return round($size);
+        }
+    }
+    
+   /**
+ * Formats filesize in human readable way.
+ *
+ * @param file $file
+ * @return string Formatted Filesize, e.g. "113.24 MB".
+ */
+    function filesize_formatted($bytes) {
+        if ($bytes >= 1073741824) {
+            return number_format($bytes / 1073741824, 2) . ' GB';
+        } elseif ($bytes >= 1048576) {
+            return number_format($bytes / 1048576, 2) . ' MB';
+        } elseif ($bytes >= 1024) {
+            return number_format($bytes / 1024, 2) . ' KB';
+        } elseif ($bytes > 1) {
+            return $bytes . ' bytes';
+        } elseif ($bytes == 1) {
+            return '1 byte';
+        } else {
+            return '0 bytes';
+        }
+    }
 /**
  * Must be included in every mini-component.
  #

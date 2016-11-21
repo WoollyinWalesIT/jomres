@@ -30,31 +30,44 @@
     opacity: 1;
 }
 
-</style>
-<h2 class="page-header">{TITLE} ({UPLOAD_CONTEXT_TITLE})</h2>
-<div id="tour_target_mediacentre_introduction"></div>
-<p class="alert alert-info">{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS}</p>
-<patTemplate:tmpl name="notes" unusedvars="strip" type="simpleCondition" requiredVars="note">
-<p class="alert alert-warning">
-	{NOTE}
-</p>
-</patTemplate:tmpl>
+.popover{
+    min-width: 300px ! important;
+    }
 
-<div class="row">
-    <div class="col-md-10">
-    
-        <p>{RESOURCE_TYPE_OPTIONS} <span id="resource_id_dropdown"><input type="hidden" id="resource_id" value="" /></span></p>
+</style>
+
+<h2 class="page-header">{TITLE} ({UPLOAD_CONTEXT_TITLE})</h2>
+<p class="alert alert-info">{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS}</p>
+<p>{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_GENERIC}</p>
+
+<hr/>
+
+<div class="panel {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
+	<div class="panel-heading">
+        <h2 class="panel-title">{_JOMRES_MEDIA_CENTRE_RESOURCE}</h2> 
     </div>
-    <div class="col-md-2">
-        <a href="{DEFAULT_PREVIEW_LINK}" data-remote="false" data-toggle="modal" data-target="#previewModal" class="btn btn-default btn-lg" id="image_preview_button">
-            <i class="fa fa-link" aria-hidden="true"></i>
-           {_JOMRES_FRONT_PREVIEW}
-        </a>
+    <div class="panel-body">
+        <div class="col-md-10">
+             <p>{RESOURCE_TYPE_OPTIONS} <span id="resource_id_dropdown"><input type="hidden" id="resource_id" value="" /></span></p>
+        </div>
+        <div class="col-md-2">
+            <a href="{DEFAULT_PREVIEW_LINK}" data-remote="false" data-toggle="modal" data-target="#previewModal" class="btn btn-default btn-lg" id="image_preview_button">
+                <i class="fa fa-link" aria-hidden="true"></i>
+               {_JOMRES_FRONT_PREVIEW}
+            </a>
+            <button type="button" class="btn btn-info" data-toggle="popover" title="{_JOMRES_FRONT_PREVIEW}" data-trigger="focus" data-content="{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_PREVIEW}"><i class="fa fa-info" aria-hidden="true"></i></button>
+        </div>
+    </div>
+	<div class="panel-footer">
+        <patTemplate:tmpl name="notes" unusedvars="strip" type="simpleCondition" requiredVars="note">
+            <button type="button" class="btn btn-info" data-toggle="popover" title="" data-trigger="focus" data-content='{NOTE}'><i class="fa fa-info" aria-hidden="true"></i></button>
+        </patTemplate:tmpl>
     </div>
 </div>
 
 <div class="row">
-	<div class="col-md-7">
+	<div class="col-md-7 well well-small clearfix">
+        <h4>{_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED}</h4>
 		<div id="existing_images"></div>
 	</div>
 	<div class="col-md-5">
@@ -62,7 +75,10 @@
 			<div id="tour_target_mediacentre_uploadcontrols"></div>
 			<div id="tour_target_mediacentre_selectedimages"></div>
 
-			<div class="page-header"><h4>{HUPLOAD_FORM}</h4></div>
+			<div class="page-header">
+                <h4>{HUPLOAD_FORM}</h4>
+            </div>
+           
 			<!-- The fileinput-button span is used to style the file input field as button -->
 			<span class="btn btn-success fileinput-button">
 				<i class="fa fa-plus"></i>
@@ -78,6 +94,8 @@
 				<i class="fa fa-upload"></i>
 				{_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL}
 			</span>
+            
+             <button type="button" class="btn btn-info" data-toggle="popover" title="{_JOMRES_COM_A_UPLOADS_FILESIZE}" data-trigger="focus" data-content="{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_PRE}{MAX_UPLOAD_SIZE}{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_POST}<br/>{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_LIMITATIONS} {_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_PRE}{WIDTH_PIXELS} {_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_POST}"><i class="fa fa-info" aria-hidden="true"></i></button>
 			<!--<button type="button" class="btn btn-danger delete">
 				<i class="icon-trash"></i>
 				<span>Delete</span>
@@ -243,7 +261,7 @@ jomresJquery(function () {
 function get_resource_ids_for_resource_type(resource_type)
 	{
 	hide_uploaded();
-	jomresJquery('#existing_images').slideUp();
+	jomresJquery('#existing_images').fadeOut();
 	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax{URL_CONTEXT}&resource_type=' + resource_type,
 		function (data) {
 			if (data != '')
@@ -259,7 +277,7 @@ function get_resource_ids_for_resource_type(resource_type)
 	}
 	
 jomresJquery( "#clearbutton" ).click(function() {
-	jomresJquery("#files").slideUp();
+	jomresJquery("#files").fadeOut();
 	jomresJquery('#files').html('');
 	});
 
@@ -269,7 +287,7 @@ function hide_uploaded()
 		{
 		if ( jomresJquery(this).hasClass('uploaded') )
 			{
-			jomresJquery(this).slideUp();
+			jomresJquery(this).fadeOut();
 			jomresJquery(this).html('');
 			}
 		});
@@ -282,7 +300,7 @@ function delete_file(url , id )
 		if (data != '')
 			{
 			get_existing_images();
-			jomresJquery("#"+id).slideUp();
+			jomresJquery("#"+id).fadeOut();
 			jomresJquery("#"+id).html('');
 			}
 		});
@@ -296,7 +314,7 @@ jomresJquery('#upload_all').click(function () {
 	
 function get_existing_images()
 	{
-	jomresJquery('#existing_images').slideUp();
+	jomresJquery('#existing_images').fadeOut();
 	var resource_type = jomresJquery('#resource_types').val();
 	var resource_id = jomresJquery('#resource_id').val();
 	if (resource_id == '')
@@ -304,7 +322,7 @@ function get_existing_images()
 	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax_existing_images{URL_CONTEXT}&resource_type=' + resource_type+'&resource_id='+resource_id,
 		function (data) {
 			populateDiv ( 'existing_images' , data );
-			jomresJquery('#existing_images').slideDown();
+			jomresJquery('#existing_images').fadeIn();
 		});
     var link = window['preview_link_'+resource_type];
     if( typeof link !== 'undefined' ) {
@@ -318,6 +336,10 @@ function get_existing_images()
 	}
 	
 jomresJquery(document).ready(function () {
+
+  jomresJquery('[data-toggle="popover"]').popover()
+
+
 	get_existing_images();
     
     // Fill modal with content from link href
