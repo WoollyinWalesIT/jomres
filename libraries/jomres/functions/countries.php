@@ -82,8 +82,6 @@ function limitCountriesDropdown()
 {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
-    
-	$selectedCountry = strtoupper($selectedCountry);
 	
     $jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
 
