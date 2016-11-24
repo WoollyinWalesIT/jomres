@@ -105,5 +105,5 @@ try {
 } catch (Exception $e) {
     $response = Flight::request_response();
     $backtrace = debug_backtrace();
-    echo json_encode($response);
+    logging::log_message(json_encode($response), 'API', 'ERROR');
 }
