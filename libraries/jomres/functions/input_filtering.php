@@ -211,7 +211,7 @@ function jomresGetParam($request, $element, $def = null, $mask = '') // variable
 
             if (in_array($element, $allowed_inputs)) {
                 if ($jrConfig[ 'input_filtering' ] != 'weak') {
-                    $clean = jomres_purify_html($dirty);
+                    $clean = jomres_purify_html($dirty );
 
                     if (strstr($clean, '&#39;;') || strstr($clean, '&#34;;') || strstr($clean, 'Jzs=') || strstr($clean, 'Ijs=') || strstr($clean, '&quot;;') || strstr($clean, 'EMBED SRC')) { // '; "; '; (base64) "; (base64)
                         throw new Exception('Error, illegal use of Javascript');
@@ -250,18 +250,20 @@ function jomres_sanitise_string($dirty)
     $dirty = $html_purifier->purify($dirty);
     $dirty = str_replace('&amp;', '&', $dirty); // Without this ampersands will be double encoded
     $clean = filter_var($dirty, FILTER_SANITIZE_SPECIAL_CHARS);
-
+    $clean = str_replace("&#13;&#10;" , "\n" , $clean); // This allows us to safely restore linebreaks
     return $clean;
 }
 
 function jomres_purify_html($dirty)
 {
+
     logging::log_message('HTML purifier called', 'Core', 'DEBUG');
     $html_purifier = jomres_singleton_abstract::getInstance('jomres_input_filter_singleton');
     $dirty = $html_purifier->purify($dirty, $allow_html = true);
+    
     $dirty = str_replace('&amp;', '&', $dirty);  // Without this ampersands will be double encoded
     $clean = filter_var($dirty, FILTER_SANITIZE_SPECIAL_CHARS);
-
+    $clean = str_replace("&#13;&#10;" , "\n" , $clean); // This allows us to safely restore linebreaks
     return $clean;
 }
 
@@ -278,7 +280,9 @@ function jomres_remove_HTML($s, $keep = 'p|br', $expand = 'script|style|noframes
 {
     //prep the string
     $s = ' '.$s;
-
+    
+    $s = str_replace ( array("<br />" , "<br/>") , "\n" , $s);
+    
      //initialize keep tag logic
     if (strlen($keep) > 0) {
         $k = explode('|', $keep);
@@ -323,11 +327,13 @@ function jomres_remove_HTML($s, $keep = 'p|br', $expand = 'script|style|noframes
     }
 
      //finalize keep tag
-    for ($i = 0; $i < count($k); ++$i) {
-        $s = str_replace('[{('.$k[ $i ], '<'.$k[ $i ], $s);
-        $s = str_replace('[{(/'.$k[ $i ], '</'.$k[ $i ], $s);
+    if (isset($k)) {
+        for ($i = 0; $i < count($k); ++$i) {
+            $s = str_replace('[{('.$k[ $i ], '<'.$k[ $i ], $s);
+            $s = str_replace('[{(/'.$k[ $i ], '</'.$k[ $i ], $s);
+        }
     }
-
+        
     return trim($s);
 }
 
