@@ -269,7 +269,7 @@ class j16000updates
         $mod_array = array();
         $dirlist = opendir($dir);
         while ($file = readdir($dirlist)) {
-            if ($file != '.' && $file != '..') {
+            if ($file != '.' && $file != '..' && $file != '.git') {
                 $newpath = $dir.'/'.$file;
                 if ($getWritablesFiles) {
                     if (is_file($newpath) && is_writable($newpath)) {
