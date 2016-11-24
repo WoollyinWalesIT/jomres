@@ -360,7 +360,7 @@ class jrportal_invoice
 						`inv_id`,
 						`is_payment`
 					FROM #__jomresportal_lineitems 
-					WHERE `id` = $this->lineitem['id'] 
+					WHERE `id` = ".(int)$this->lineitem['id']." 
 						AND `inv_id` = $this->id
 					LIMIT 1";
 
