@@ -1,0 +1,39 @@
+{
+  "name": "simple-cmeditor",
+  "version": "1.11.4",
+  "description": "A markdown editor forked from simplemde (https://simplemde.com/), removed spell checker and use commonmark parser with more options.",
+  "keywords": [
+    "embeddable",
+    "markdown",
+    "editor",
+    "javascript",
+    "wysiwyg"
+  ],
+  "homepage": "https://github.com/JoshOY/simple-commonmark-markdown-editor",
+  "main": "dist/simplemde.min.js",
+  "license": "MIT",
+  "dependencies": {
+    "codemirror": "*",
+    "commonmark": "*"
+  },
+  "devDependencies": {
+    "browserify": "*",
+    "debug": "*",
+    "eslint": "*",
+    "gulp": "*",
+    "gulp-clean-css": "*",
+    "gulp-concat": "*",
+    "gulp-debug": "*",
+    "gulp-eslint": "*",
+    "gulp-header": "*",
+    "gulp-jsbeautifier": "*",
+    "gulp-rename": "*",
+    "gulp-uglify": "*",
+    "vinyl-buffer": "*",
+    "vinyl-source-stream": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JoshOY/simple-commonmark-markdown-editor"
+  }
+}

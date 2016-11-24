@@ -66,32 +66,35 @@ class j06000show_property_moreinfo
         $output[ 'HOTHERTRANSPORT' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT');
         $output[ 'HPOLICIESDISCLAIMERS' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS');
 
-        $output[ 'CHECKINTIMES' ] = jomres_cmsspecific_parseByBots($current_property_details->property_checkin_times);
+        jr_import('jomres_markdown');
+        $jomres_markdown = new jomres_markdown();
+        
+        $output[ 'CHECKINTIMES' ] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_checkin_times));
         if (empty($output[ 'CHECKINTIMES' ])) {
             $output[ 'HCHECKINTIMES' ] = '';
         }
 
-        $output[ 'AREAACTIVITIES' ] = jomres_cmsspecific_parseByBots($current_property_details->property_area_activities);
+        $output[ 'AREAACTIVITIES' ] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_area_activities));
         if (empty($output[ 'AREAACTIVITIES' ])) {
             $output[ 'HAREAACTIVITIES' ] = '';
         }
 
-        $output[ 'DRIVINGDIRECTIONS' ] = jomres_cmsspecific_parseByBots($current_property_details->property_driving_directions);
+        $output[ 'DRIVINGDIRECTIONS' ] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_driving_directions));
         if (empty($output[ 'DRIVINGDIRECTIONS' ])) {
             $output[ 'HDRIVINGDIRECTIONS' ] = '';
         }
 
-        $output[ 'AIRPORTS' ] = jomres_cmsspecific_parseByBots($current_property_details->property_airports);
+        $output[ 'AIRPORTS' ] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_airports));
         if (empty($output[ 'AIRPORTS' ])) {
             $output[ 'HAIRPORTS' ] = '';
         }
 
-        $output[ 'OTHERTRANSPORT' ] = jomres_cmsspecific_parseByBots($current_property_details->property_othertransport);
+        $output[ 'OTHERTRANSPORT' ] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_othertransport));
         if (empty($output[ 'OTHERTRANSPORT' ])) {
             $output[ 'HOTHERTRANSPORT' ] = '';
         }
 
-        $output[ 'POLICIESDISCLAIMERS' ] = jomres_cmsspecific_parseByBots($current_property_details->property_policies_disclaimers);
+        $output[ 'POLICIESDISCLAIMERS' ] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_policies_disclaimers));
         if (empty($output[ 'POLICIESDISCLAIMERS' ])) {
             $output[ 'HPOLICIESDISCLAIMERS' ] = '';
         }

@@ -58,8 +58,15 @@ class j06000show_property_description
 
         $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
         $current_property_details->gather_data($property_uid);
-
-        $output['PROPERTY_DESCRIPTION'] = jomres_cmsspecific_parseByBots($current_property_details->property_description);
+        
+        jr_import('jomres_markdown');
+        $jomres_markdown = new jomres_markdown();
+        
+        $property_description = $current_property_details->property_description;
+        $property_description = $jomres_markdown->get_markdown($property_description);
+        $property_description = jomres_cmsspecific_parseByBots($property_description);
+        
+        $output['PROPERTY_DESCRIPTION'] = jomres_cmsspecific_parseByBots( $property_description);
 
         $pageoutput = array($output);
         $tmpl = new patTemplate();
