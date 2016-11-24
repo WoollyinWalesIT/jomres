@@ -43,6 +43,8 @@ class jomres_countries
                     $this->countries[ strtoupper($country->countrycode) ] = array('id' => $country->id, 'countrycode' => strtoupper($country->countrycode), 'countryname' => jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRIES_'.$country->id, $country->countryname, false, false));
                 }
             }
+			
+			unset($result);
             
 			$c->store('countries', $this->countries);
         }
