@@ -195,8 +195,8 @@ class jomres_access_control
 		$thisJRUser   = jomres_singleton_abstract::getInstance( 'jr_user' );
 		if ( $thisJRUser->id == 0 ) $access_level = "anybody";
 		elseif ( $thisJRUser->id > 0 && !$thisJRUser->userIsManager ) $access_level = "registered";
-		elseif ( $thisJRUser->userIsManager && $thisJRUser->accesslevel == "1" && !$thisJRUser->superPropertyManager ) $access_level = "reception";
-		elseif ( $thisJRUser->userIsManager && $thisJRUser->accesslevel == "2" && !$thisJRUser->superPropertyManager ) $access_level = "manager";
+		elseif ( $thisJRUser->userIsManager && $thisJRUser->accesslevel == 50 && !$thisJRUser->superPropertyManager ) $access_level = "reception";
+		elseif ( $thisJRUser->userIsManager && $thisJRUser->accesslevel == 70 && !$thisJRUser->superPropertyManager ) $access_level = "manager";
 		elseif ( $thisJRUser->superPropertyManager ) $access_level = "supermanager";
 
 		return $access_level;

@@ -2396,97 +2396,75 @@ function gettempBookingdata()
 
 /**
 #
- * Adds a property uid to the current managers list of properties
-#
- */
-function addPropertyUidToUsersProperties( $property_uid )
-	{
-	$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-	if ( !in_array( $property_uid, $thisJRUser->authorisedProperties ) )
-		{
-		$query = "INSERT INTO #__jomres_managers_propertys_xref (`manager_id`,`property_uid`) VALUES ('" . (int) $thisJRUser->userid . "','" . (int) $property_uid . "')";
-		doInsertSql( $query, '' );
-		}
-	}
-
-/**
-#
- * Adds a property uid to the manager's current list of properties
-#
- */
-function addPropertyUidToManagersProperties( $manager_id, $property_uid )
-	{
-	$managersPropertys = array ();
-	$query			 = "SELECT property_uid FROM #__jomres_managers_propertys_xref WHERE manager_id = '" . (int) $manager_id . "'";
-	$result			= doSelectSql( $query );
-	foreach ( $result as $r )
-		{
-		$managersPropertys[ ] = $r->property_uid;
-		}
-	if ( $property_uid > 0 )
-		{
-		$managersPropertys[ ] = $property_uid;
-		updateManagerIdToPropertyXrefTable( $manager_id, $managersPropertys );
-		}
-	}
-
-/**
-#
  * Inserts the property manager/property uid into the xref table. Receives a property uid array which is a list of the users current properties and updates the xref table to that effect
- * If the $property_uidArray is empty then the manager will loose all access to properties, so ensure that $property_uidArray contains all of the current properties that the manager has rights to before passing data to this function
+ * If the $property_uids is empty then the manager will loose all access to properties, so ensure that $property_uids contains all of the current properties that the manager has rights to before passing data to this function
 #
  */
-function updateManagerIdToPropertyXrefTable( $manager_id, $property_uidArray, $setCurrentPropertyToFirst = true )
+function updateManagerIdToPropertyXrefTable( $cms_user_id = 0, $property_uids = array() )
 	{
-	$query				  = "SELECT property_uid FROM #__jomres_managers_propertys_xref  WHERE manager_id = '" . (int) $manager_id . "'";
-	$managersToPropertyList = doSelectSql( $query );
-	$currentProperties	  = array ();
-	if ( count( $managersToPropertyList ) > 0 )
+	if ( $cms_user_id == 0 )
 		{
-		foreach ( $managersToPropertyList as $x )
+		throw new Exception( "Error: manager id not set");
+		}
+	
+	$currentProperties 			= array ();
+	$propertiesToBeRemovedArray = array ();
+	$propertiesToBeAddedArray 	= array ();
+	
+	$query = "SELECT `property_uid` FROM #__jomres_managers_propertys_xref  WHERE `manager_id` = " . (int)$cms_user_id;
+	$result = doSelectSql( $query );
+	
+	if ( !empty( $result ) )
+		{
+		foreach ( $result as $r )
 			{
-			$currentProperties[ ] = $x->property_uid;
+			$currentProperties[] = $r->property_uid;
 			}
 		}
-	$propertiesToBeRemovedArray = array ();
-	foreach ( $currentProperties as $p )
+	
+	foreach ( $currentProperties as $c )
 		{
-		if ( !in_array( $p, $property_uidArray ) ) $propertiesToBeRemovedArray[ ] = $p;
+		if ( !in_array( $c, $property_uids ) ) 
+			{
+			$propertiesToBeRemovedArray[ ] = $c;
+			}
 		}
-	$propertiesToBeAddedArray = array ();
-	foreach ( $property_uidArray as $p )
+	
+	foreach ( $property_uids as $p )
 		{
-		if ( !in_array( $p, $currentProperties ) ) $propertiesToBeAddedArray[ ] = $p;
+		if ( !in_array( $p, $currentProperties ) ) 
+			{
+			$propertiesToBeAddedArray[] = $p;
+			}
 		}
 
-	if ( count( $propertiesToBeRemovedArray ) > 0 )
+	if ( !empty( $propertiesToBeRemovedArray ) )
 		{
-		foreach ( $propertiesToBeRemovedArray as $p )
+		$query = "DELETE FROM #__jomres_managers_propertys_xref WHERE `manager_id` = " . (int) $cms_user_id . " AND `property_uid` IN (" . jomres_implode($propertiesToBeRemovedArray) . ") ";
+		if ( !doInsertSql( $query, '' ) )
 			{
-			$query = "DELETE FROM #__jomres_managers_propertys_xref WHERE manager_id = '" . (int) $manager_id . "' AND property_uid = '" . (int) $p . "' ";
-			doInsertSql( $query, '' );
+			throw new Exception( "Error: Deleting user`s unassigned properties failed");
 			}
 		}
-	if ( count( $propertiesToBeAddedArray ) > 0 )
+
+	if ( !empty( $propertiesToBeAddedArray ) )
 		{
+		$query = "INSERT INTO #__jomres_managers_propertys_xref (`manager_id`,`property_uid`) VALUES ";
+		
 		foreach ( $propertiesToBeAddedArray as $p )
 			{
-			$query = "INSERT INTO #__jomres_managers_propertys_xref (`manager_id`,`property_uid`) VALUES ('" . (int) $manager_id . "','" . (int) $p . "')";
-			doInsertSql( $query, '' );
+			$query .= "(" . (int) $cms_user_id . "," . (int) $p . "),";
 			}
-		}
-	if ( $setCurrentPropertyToFirst )
-		{
-		$query				  = "SELECT property_uid FROM #__jomres_managers_propertys_xref  WHERE manager_id = '" . (int) $manager_id . "'";
-		$managersToPropertyList = doSelectSql( $query );
-		$currentProperties	  = array ();
-		foreach ( $managersToPropertyList as $x )
+		
+		$query = rtrim($query, ',');
+		
+		if ( !doInsertSql( $query, '' ) )
 			{
-			$currentProperties[ ] = $x->property_uid;
+			throw new Exception( "Error: Inserting user`s assigned properties failed");
 			}
-		$query = "UPDATE #__jomres_managers SET `currentproperty`='$currentProperties[0]' WHERE userid = '" . (int) $manager_id . "'";
-		doInsertSql( $query, '' );
 		}
+	
+	return true;
 	}
 
 /**

@@ -61,18 +61,13 @@ function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false 
 		if ( !$thisJRUser->userIsManager ) 
 			$tmpBookingHandler->user_settings[ 'editing_on' ] = false;
 
-		if ( $thisJRUser->userIsManager && $thisJRUser->accesslevel < 2 ) 
+		if ( $thisJRUser->userIsManager && $thisJRUser->accesslevel <= 50 ) //receptionist or lower 
 			$tmpBookingHandler->user_settings[ 'editing_on' ] = false;
 
 		$editing = $tmpBookingHandler->user_settings[ 'editing_on' ];
 		}
 	else
 		$tmpBookingHandler->user_settings[ 'editing_on' ] = false;
-	
-	if ( isset( $thisJRUser->accesslevel ) ) 
-		$accessLevel = $thisJRUser->accesslevel;
-	else
-		$accessLevel = 0;
 
 	$br = "";
 	if ( get_showtime( 'task' ) == "editCustomTextAll" ) 
@@ -109,7 +104,7 @@ function jr_gettext( $theConstant, $theValue, $okToEdit = true, $isLink = false 
 
 		$theText = jomres_decode( $theText );
 
-		if ( $thisJRUser->userIsManager && ( $editing || ( $jrConfig[ 'editingModeAffectsAllProperties' ] == "1" && $thisJRUser->superPropertyManager == true ) ) && $okToEdit && ( $accessLevel == 2 ) )
+		if ( $thisJRUser->userIsManager && ( $editing || ( $jrConfig[ 'editingModeAffectsAllProperties' ] == "1" && $thisJRUser->superPropertyManager ) ) && $okToEdit && ( $thisJRUser->accesslevel > 50 ) ) 
 			{
 			if ( strlen( trim( $theText ) ) == 0 || strtolower( trim( $theText ) ) == "<span></span>" || strtolower( trim( $theText ) ) == "<span> </span>" || strtolower( trim( $theText ) ) == "<span>  </span>" ) 
 				$theText = "";

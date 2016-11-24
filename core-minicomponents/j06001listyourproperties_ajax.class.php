@@ -192,7 +192,7 @@ class j06001listyourproperties_ajax
 				{
 				$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 				$jrtb = $jrtbar->startTable();
-				if ($thisJRUser->userIsManager && $thisJRUser->accesslevel == 2)
+				if ( $thisJRUser->accesslevel > 50 ) //higher than receptionist
 					{
 					if ( !$p->published ) 
 						$jrtb .= $jrtbar->toolbarItem( 'unpublish', jomresURL( JOMRES_SITEPAGE_URL . '&task=publishProperty' . '&property_uid=' . $p->propertys_uid ), jr_gettext( '_JOMRES_COM_MR_VRCT_PUBLISH', '_JOMRES_COM_MR_VRCT_PUBLISH', false ) );
@@ -212,7 +212,7 @@ class j06001listyourproperties_ajax
 				{
 				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
 				$toolbar->newToolbar();
-				if ($thisJRUser->accesslevel == 2)
+				if ( $thisJRUser->accesslevel > 50 ) //higher than receptionist
 					{
 					if ( $p->approved == 1 )
 						{
@@ -231,7 +231,7 @@ class j06001listyourproperties_ajax
 					}
 				if ($p->propertys_uid != $defaultProperty)
 					$toolbar->addSecondaryItem( 'fa fa-refresh', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&thisProperty=' . $p->propertys_uid ), jr_gettext( '_JOMRES_ACTION_SET_CURRENT', '_JOMRES_ACTION_SET_CURRENT', false ) );
-				if ($thisJRUser->userIsManager && $thisJRUser->accesslevel > 1)
+				if ( $thisJRUser->accesslevel > 50 ) //higher than receptionist
 					{
 					$toolbar->addSecondaryItem( 'fa fa-pencil-square-o', '', '', jomresURL( JOMRES_SITEPAGE_URL . '&task=editProperty' . '&thisProperty=' . $p->propertys_uid ), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
 					$url = jomresURL( JOMRES_SITEPAGE_URL . "&task=viewproperty&property_uid=" . $p->propertys_uid );

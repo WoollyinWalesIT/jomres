@@ -14,15 +14,20 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-
 /**
 #
- * Manages the jomres user's access rights
+ * Manages the current user's access rights
 #
  *
  * @package Jomres
 #
  */
+ 
+//Access levels
+//50: receptionist
+//70: property manager
+//90: super property manager
+
 class jr_user
 	{
 	/**
@@ -37,29 +42,29 @@ class jr_user
 		{
 		self::$internal_debugging 				= false;
 		
-		$this->superPropertyManagersAreGods 	= true; 			//Change this to false to prevent super property managers from having rights to ALL properties
+		$this->superPropertyManagersAreGods 	= true; 					//Change this to false to prevent super property managers from having rights to ALL properties
 
 		//jomres user role
-		$this->jomres_manager_id 				= 0;				//user/manager id in the _jomres_managers table
-		$this->id                           	= 0;				//cms user id TODO: remove duplicate from the entire codebase
-		$this->userid                       	= false; 			//cms user id TODO: remove duplicate from the entire codebase
-		$this->username                     	= false; 			//logged in user`s username
-		$this->accesslevel                  	= false;			//user access level
-		$this->currentproperty              	= false;			//user`s current property
-		$this->last_active                  	= false;			//last active
-		$this->authorisedProperties         	= array();			//array of properties that this user has access to
-		//$this->users_timezone					= "America/Lima";	//user timezone - not used anymore
-		$this->simple_configuration				= false;			//simple configuration true/false
-		$this->userIsSuspended					= false;			//user is suspended true/false
+		$this->jomres_manager_id 				= 0;						//user/manager id in the _jomres_managers table
+		$this->id                           	= 0;						//cms user id TODO: remove duplicate from the entire codebase
+		$this->userid                       	= 0; 						//cms user id TODO: remove duplicate from the entire codebase
+		$this->username                     	= ''; 						//logged in user`s username
+		$this->accesslevel                  	= 0;						//user access level
+		$this->currentproperty              	= 0;						//user`s current property
+		$this->last_active                  	= '1970-01-01 00:00:01';	//last active
+		$this->authorisedProperties         	= array();					//array of properties that this user has access to
+		//$this->users_timezone					= "America/Lima";			//user timezone - not used anymore
+		$this->simple_configuration				= false;					//simple configuration true/false
+		$this->userIsSuspended					= false;					//user is suspended true/false
 		
-		$this->userIsRegistered             	= false;			//user is registered true/false
-		$this->userIsManager                	= false;			//user is manaager true/false TODO: separate this for receptionists to userIsReceptionist
-		$this->superPropertyManager         	= false;			//user is super property manager true/false
-		//$this->userIsReceptionist				= false;			//user is receptionist true/false TODO: add support for receptionists in jr_user
-		//$this->userIsPartner					= false;			//user is partner true/false TODO: add support for partners in jr_user
-		//$this->userIsAgency					= false;			//user is travel agency true/false TODO: add support for travel agencies
-		//$this->userIsHousekeeper				= false;			//user is housekeeper true/false TODO: add support for housekeeping
-		//$this->userIsMaintenance				= false;			//user is maintenance staff true/false TODO: add support for maintenance staff
+		$this->userIsRegistered             	= false;					//user is registered true/false
+		$this->userIsManager                	= false;					//user is manaager true/false TODO: separate this for receptionists to userIsReceptionist
+		$this->superPropertyManager         	= false;					//user is super property manager true/false
+		//$this->userIsReceptionist				= false;					//user is receptionist true/false
+		//$this->userIsPartner					= false;					//user is partner true/false TODO: add support for partners in jr_user
+		//$this->userIsAgency					= false;					//user is travel agency true/false TODO: add support for travel agencies
+		//$this->userIsHousekeeper				= false;					//user is housekeeper true/false TODO: add support for housekeeping
+		//$this->userIsMaintenance				= false;					//user is maintenance staff true/false TODO: add support for maintenance staff
 		
 		//user profile details (for any logged in user)
 		$this->profile_id						= 0;
@@ -114,7 +119,11 @@ class jr_user
 
 	public function __set( $setting, $value )
 		{
-		if ( self::$internal_debugging ) echo "Setting " . $setting . " to " . $value . " <br>";
+		if ( self::$internal_debugging ) 
+			{
+			echo "Setting " . $setting . " to " . $value . " <br>";
+			}
+		
 		$this->$setting = $value;
 
 		return true;
@@ -122,8 +131,15 @@ class jr_user
 
 	public function __get( $setting )
 		{
-		if ( self::$internal_debugging ) echo "Getting " . $setting . " which is " . $this->$setting . "<br>";
-		if ( isset( $this->$setting ) ) return $this->$setting;
+		if ( self::$internal_debugging ) 
+			{
+			echo "Getting " . $setting . " which is " . $this->$setting . "<br>";
+			}
+
+		if ( isset( $this->$setting ) ) 
+			{
+			return $this->$setting;
+			}
 
 		return null;
 		}
@@ -207,7 +223,6 @@ class jr_user
 						`userid`,
 						`access_level`,
 						`currentproperty`,
-						`pu`,
 						`suspended`,
 						`users_timezone`,
 						`simple_configuration`,
@@ -219,35 +234,30 @@ class jr_user
 
 		if ( !empty($result) )
 			{
+			//TODO: change this to a function that checks the access level
 			$this->userIsManager = true;
-
+			
 			foreach ( $result as $r )
 				{
+				$this->jomres_manager_id 				= $r->manager_uid;
 				$this->userid          					= $r->userid;
 				$this->accesslevel    					= $r->access_level;
 				$this->currentproperty 					= $r->currentproperty;
-				$this->jomres_manager_id 				= $r->manager_uid;
-				
 				$this->username        					= jomres_cmsspecific_getcurrentusers_username();
+				$this->userIsSuspended 					= (bool)$r->suspended;
+				$this->simple_configuration 			= (bool)$r->simple_configuration;
+				
+				if ( isset( $r->last_active ) ) 
+					{
+					$this->last_active 					= $r->last_active;
+					}
 				
 				/* if ( isset( $r->users_timezone ) ) 
 					{
 					$this->users_timezone 				= $r->users_timezone;
 					} */
-				
-				if ( $r->suspended == 1 ) 
-					{
-					$this->userIsSuspended 				= true;
-					}
-				
-				if ( $r->simple_configuration == 1 ) 
-					{
-					$this->simple_configuration 		= true;
-					}
-				
-				$this->last_active 						= $r->last_active;
 
-				if ( $r->pu == 1 ) //this user is a super property manager and has access to all properties
+				if ( $this->accesslevel >= 90 ) //this user is a super property manager (or even higher) and has access to all properties
 					{
 					$this->superPropertyManager = true;
 					
@@ -257,7 +267,7 @@ class jr_user
 
 					$this->authorisedProperties = get_showtime('all_properties_in_system');
 					}
-				else //this user is a manager or receptionist and has access only to it`s own properties
+				else //this user has access only to it`s own properties
 					{
 					$this->superPropertyManager = false;
 
@@ -302,9 +312,9 @@ class jr_user
 	 */
 	private function reset_manager_to_non_manager()
 		{
-		$this->accesslevel                  = false;
-		$this->currentproperty              = false;
-		$this->last_active                  = false;
+		$this->accesslevel                  = 0;
+		$this->currentproperty              = 0;
+		$this->last_active                  = '1970-01-01 00:00:01';
 		$this->authorisedProperties         = array();
 		$this->jomres_manager_id 			= 0;
 		$this->simple_configuration			= false;
@@ -323,9 +333,9 @@ class jr_user
 	 */
 	function check_currentproperty()
 		{
-		$query = "SELECT `propertys_uid` FROM #__jomres_propertys WHERE `propertys_uid` = " . (int) $this->currentproperty;
-		$propertycount = doSelectSql( $query );
-		if ( count( $propertycount ) == 0 )
+		$query = "SELECT `propertys_uid` FROM #__jomres_propertys WHERE `propertys_uid` = " . (int) $this->currentproperty . " LIMIT 1";
+		$result = doSelectSql( $query, 1 );
+		if ( (int)$result == 0 )
 			{
 			$this->setToAnyAuthorisedProperty(); // The super admin's current property is unset. Let's find the first property uid in the database & set to that.
 			}
@@ -369,5 +379,32 @@ class jr_user
 			{
 			trigger_error( "Unable to reassign a manager to any existing, authorised property. Either last property in database has been deleted, or this manager has rights to no properties.", E_USER_ERROR );
 			}
+		}
+	
+	//checks if the current user is a super property manager
+	function is_super_property_manager()
+		{
+		if ( $this->accesslevel == 90 )
+			return true;
+		
+		return false;
+		}
+
+	//checks if the current user is a property manager
+	function is_property_manager()
+		{
+		if ( $this->accesslevel == 70 )
+			return true;
+		
+		return false;
+		}
+	
+	//checks if the current user is a receptionist
+	function is_receptionist()
+		{
+		if ( $this->accesslevel == 50 )
+			return true;
+		
+		return false;
 		}
 	}
