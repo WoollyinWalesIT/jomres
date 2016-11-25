@@ -26,15 +26,13 @@ class j07020list_reviews
             return;
         }
 
-        $jomresPropertyList = get_showtime('published_properties_in_system');
-
-        $unpublished_count = 0;
+		$unpublished_count = 0;
         $report_count = 0;
 
-        $query = 'SELECT count(`report_id`) AS report_count FROM #__jomres_reviews_reports';
+        $query = 'SELECT COUNT(`report_id`) AS report_count FROM #__jomres_reviews_reports';
         $report_count = (int) doSelectSql($query, 1);
 
-        $query = 'SELECT count(`published`) AS unpublished_count FROM #__jomres_reviews_ratings WHERE `published` = 0 ';
+        $query = 'SELECT COUNT(`published`) AS unpublished_count FROM #__jomres_reviews_ratings WHERE `published` = 0 ';
         $unpublished_count = (int) doSelectSql($query, 1);
 
         $this->retVals = array('red' => $report_count, 'orange' => $unpublished_count);

@@ -100,17 +100,23 @@ class j10501business_details
     {
         ?>
 <script type="text/javascript">
-<!--
-jomresJquery(function(){
+jomresJquery(document).ready(function () {
 	jomresJquery("#cfg_business_country").change(function(){
-		var selectedValue = jomresJquery(this).find(":selected").val();
-		clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue+"&input_name=cfg_business_region";
-		jomresJquery.get(live_site_ajax + clause, function (data) {
-			populateDiv("business_region_div",data);
+		var selectedValue = jomresJquery(this).val();
+		jomresJquery.ajax({
+			type: 'GET',
+			url: live_site_ajax + '&task=get_region_dropdown_for_country_code',
+			data: {
+				country: selectedValue,
+				input_name: 'cfg_business_region'
+				},
+			success: function(data)
+				{
+				populateDiv("business_region_div",data);
+				}
 			});
 		});
 	});
-//-->
 </script>
 		<?php
 

@@ -26,12 +26,12 @@ class j00501businessdetails
             return;
         }
 
-        $configurationPanel = $componentArgs[ 'configurationPanel' ];
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
-        $mrConfig = getPropertySpecificSettings();
-        if ($mrConfig[ 'is_real_estate_listing' ] == 1) {
+        
+		$mrConfig = getPropertySpecificSettings();
+        
+		if ($mrConfig[ 'is_real_estate_listing' ] == 1) {
             return;
         }
 
@@ -66,6 +66,7 @@ class j00501businessdetails
             $mrConfig['property_business_email'] = '';
         }
 
+		$configurationPanel = $componentArgs[ 'configurationPanel' ];
         $lists = $componentArgs[ 'lists' ];
         $editIconSize = $componentArgs[ 'editIconSize' ];
 

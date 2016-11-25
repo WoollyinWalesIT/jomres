@@ -60,6 +60,8 @@ class jomres_regions
                     }
                 }
             }
+			
+			unset($result);
             
 			$c->store('regions', $this->regions);
         }

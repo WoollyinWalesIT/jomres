@@ -288,7 +288,7 @@ class jrportal_invoice
 						`is_commission`,
 						`vat_will_be_charged`
 					FROM #__jomresportal_invoices 
-					WHERE `id`= $this->id 
+					WHERE `id`= " . (int)$this->id . " 
 					LIMIT 1";
 
         $result = doSelectSql($query);
@@ -356,8 +356,8 @@ class jrportal_invoice
 						`inv_id`,
 						`is_payment`
 					FROM #__jomresportal_lineitems 
-					WHERE `id` = $this->lineitem['id'] 
-						AND `inv_id` = $this->id
+					WHERE `id` = " . (int)$this->lineitem['id'] . " 
+						AND `inv_id` = " . (int)$this->id . "
 					LIMIT 1";
 
         $result = doSelectSql($query);
@@ -392,6 +392,8 @@ class jrportal_invoice
                 return false;
             }
         }
+		
+		return false;
     }
 
     //Insert a new invoice with no line items
@@ -533,7 +535,7 @@ class jrportal_invoice
 						`property_uid` 		= '.(int) $this->property_uid.',
 						`is_commission`		= '.(int) $this->is_commission.',
 						`vat_will_be_charged` = '.(int) $this->vat_will_be_charged."
-					WHERE `id`= $this->id ";
+					WHERE `id`= " . (int)$this->id;
 
         return doInsertSql($query, '');
     }
@@ -565,7 +567,7 @@ class jrportal_invoice
 						`tax_rate` 				= ".$this->lineitem['tax_rate'].',
 						`inv_id` 				= ' .(int) $this->id.',
 						`is_payment`			= ' .(int) $this->lineitem['is_payment'].'
-					WHERE `id`=' .(int) $this->lineitem['id'];
+					WHERE `id`=' .(int)$this->lineitem['id'];
 
         return doInsertSql($query, '');
     }
@@ -856,7 +858,7 @@ class jrportal_invoice
             return false;
         }
 
-        $query = 'SELECT SUM(init_total_inclusive) FROM #__jomresportal_lineitems WHERE inv_id = '.(int) $this->id;
+        $query = 'SELECT SUM(init_total_inclusive) FROM #__jomresportal_lineitems WHERE inv_id = '.(int)$this->id;
 
         return doSelectSql($query, 1);
     }
