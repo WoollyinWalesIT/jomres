@@ -161,21 +161,5 @@
 	<input type="hidden" name="task" value="saveProperty"/>
 	{TOOLBAR2}
 </form>
-<patTemplate:comment>
-<h3>{UPLOADIMAGE}</h3>
-<p class="ui-state-highlight">{SAVEBEFOREUPLOADWARNING}</p>
-<form enctype="multipart/form-data" action="{JOMRES_SITEPAGE_URL}&task=uploadPropertyImage" method="post">
-	<table class="ui-widget-content ui-corner-all" border="0" width="100%">
-		<tr>
-			<td width="30%"><input type='file' name='image'/></td>
-			<td><input type="submit" value="{UPLOADIMAGE}" class="fg-button ui-state-default ui-corner-all"/></td>
-		</tr>
-		<tr>
-			<td>{DELETEIMAGE}</td>
-			<td>{IMAGE}</td>
-		</tr>
-	</table>
-	<input type="hidden" name="no_html" value="1" />
-</form>
-</patTemplate:comment>
+{SIMPLEMDE_JAVASCRIPT}
 </patTemplate:tmpl>

@@ -250,33 +250,5 @@
 	<input type="hidden" name="task" value="saveProperty"/>
 	<!--{TOOLBAR2}-->
 </form>
-<patTemplate:comment>
-<h3 class="page-header">{UPLOADIMAGE}</h3>
-<p class="alert alert-info">{SAVEBEFOREUPLOADWARNING}</p>
-<form enctype="multipart/form-data" action="{JOMRES_SITEPAGE_URL}&task=uploadPropertyImage" method="post"
-	  class="form-horizontal">
-	<fieldset>
-		<div class="control-group">
-			<label class="control-label" for="image">Image</label>
-
-			<div class="controls">
-				<input type='file' name='image'/>
-			</div>
-		</div>
-		<div class="form-actions">
-			<input name="upload_button" type="submit" value="{UPLOADIMAGE}" class="btn btn-primary"/>
-		</div>
-	</fieldset>
-</form>
-<patTemplate:tmpl name="delimg_rows" type="simpleCondition" requiredVars="deleteimage_link">
-	<div class="row-fluid">
-		<div class="span3">
-			<a href="{DELETEIMAGE_LINK}" class="btn btn-danger"><i class="icon-trash icon-white"></i> {DELETEIMAGE_TEXT}</a>
-		</div>
-		<div class="span9">
-			{IMAGE}
-		</div>
-	</div>
-</patTemplate:tmpl>
-</patTemplate:comment>
+{SIMPLEMDE_JAVASCRIPT}
 </patTemplate:tmpl>

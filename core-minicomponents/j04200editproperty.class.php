@@ -162,13 +162,32 @@ class j04200editproperty
             $output[ 'PROPERTY_OTHERTRANSPORT' ] = editorAreaText('property_othertransport', $current_property_details->property_othertransport, 'property_othertransport', $width, $height, $col, $row);
             $output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = editorAreaText('property_policies_disclaimers', $property_policies_disclaimers, 'property_policies_disclaimers', $width, $height, $col, $row);
         } else {
-            $output[ 'PROPERTY_DESCRIPTION' ] = '<textarea class="inputbox form-control" cols="70" rows="5" name="property_description">'.$current_property_details->property_description.'</textarea>';
-            $output[ 'PROPERTY_CHECKIN_TIMES' ] = '<textarea class="inputbox form-control" cols="70" rows="5" name="property_checkin_times">'.$current_property_details->property_checkin_times.'</textarea>';
-            $output[ 'PROPERTY_AREA_ACTIVITIES' ] = '<textarea class="inputbox form-control" cols="70" rows="5" name="property_area_activities">'.$current_property_details->property_area_activities.'</textarea>';
-            $output[ 'PROPERTY_DRIVING_DIRECTIONS' ] = '<textarea class="inputbox form-control" cols="70" rows="5" name="property_driving_directions">'.$current_property_details->property_driving_directions.'</textarea>';
-            $output[ 'PROPERTY_AIRPORTS' ] = '<textarea class="inputbox form-control" cols="70" rows="5" name="property_airports">'.$current_property_details->property_airports.'</textarea>';
-            $output[ 'PROPERTY_OTHERTRANSPORT' ] = '<textarea class="inputbox form-control" cols="70" rows="5" name="property_othertransport">'.$current_property_details->property_othertransport.'</textarea>';
-            $output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = '<textarea class="inputbox form-control" cols="70" rows="5" name="property_policies_disclaimers">'.$property_policies_disclaimers.'</textarea>';
+            
+            
+            jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/libraries/simpleMDE/dist/', 'simplemde.min.js');
+            jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/libraries/simpleMDE/dist/', 'simplemde.min.css');
+            $output['SIMPLEMDE_JAVASCRIPT'] = '
+                <script>
+                var buttons =  ["bold", "italic", "heading",  "quote" , "strikethrough" , "|" , "unordered-list" , "ordered-list" , "clean-block" , "image" , "table" , "horizontal-rule" , "|", "preview" , "|" , "guide" ];
+                var simplemde = new SimpleMDE({ element: document.getElementById("property_description") ,toolbar: buttons, });
+                var simplemde = new SimpleMDE({ element: document.getElementById("property_checkin_times") ,toolbar: buttons, });
+                var simplemde = new SimpleMDE({ element: document.getElementById("property_area_activities") ,toolbar: buttons, });
+                var simplemde = new SimpleMDE({ element: document.getElementById("property_driving_directions") ,toolbar: buttons, });
+                var simplemde = new SimpleMDE({ element: document.getElementById("property_airports") ,toolbar: buttons, });
+                var simplemde = new SimpleMDE({ element: document.getElementById("property_othertransport") ,toolbar: buttons, });
+                var simplemde = new SimpleMDE({ element: document.getElementById("property_policies_disclaimers") ,toolbar: buttons, });
+                </script>';
+            
+            
+            $output[ 'MARKDOWN_BUTTON' ] = $MiniComponents->specificEvent('06000', 'show_markdown_modal', array('output_now' => false));
+            
+            $output[ 'PROPERTY_DESCRIPTION' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_description" name="property_description">'.jomres_remove_HTML($current_property_details->property_description , '').'</textarea>';
+            $output[ 'PROPERTY_CHECKIN_TIMES' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_checkin_times" name="property_checkin_times">'.jomres_remove_HTML($current_property_details->property_checkin_times , '').'</textarea>';
+            $output[ 'PROPERTY_AREA_ACTIVITIES' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_area_activities" name="property_area_activities">'.jomres_remove_HTML($current_property_details->property_area_activities , '').'</textarea>';
+            $output[ 'PROPERTY_DRIVING_DIRECTIONS' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_driving_directions" name="property_driving_directions">'.jomres_remove_HTML($current_property_details->property_driving_directions , '').'</textarea>';
+            $output[ 'PROPERTY_AIRPORTS' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_airports" name="property_airports">'.jomres_remove_HTML($current_property_details->property_airports , '').'</textarea>';
+            $output[ 'PROPERTY_OTHERTRANSPORT' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_othertransport" name="property_othertransport">'.jomres_remove_HTML($current_property_details->property_othertransport , '').'</textarea>';
+            $output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="property_policies_disclaimers" name="property_policies_disclaimers">'.jomres_remove_HTML($property_policies_disclaimers , '').'</textarea>';
         }
 
         //property type dropdown (extended version, with explanation about what will guests book in this property)
@@ -256,6 +275,8 @@ class j04200editproperty
         if ($jrConfig[ 'limit_property_country' ] == '0') {
             $change_country_warning[] = array('CHANGECOUNTRYWARNING' => jr_gettext('_JOMRES_EDITPROPERTY_SELECTCOUNTRY', '_JOMRES_EDITPROPERTY_SELECTCOUNTRY', false));
         }
+
+
 
         //toolbar
         $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');

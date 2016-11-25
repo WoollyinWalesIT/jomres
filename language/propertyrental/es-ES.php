@@ -3105,3 +3105,27 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE', "Choose the resource you want to uplo
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', "Specific resource");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', "Images already uploaded for this resource");
 
+
+jr_define('_JOMRES_MARKDOWN_TITLE', 'Text formatting');
+jr_define('_JOMRES_MARKDOWN_DESC', 'You can enter text here using simple Markdown formatting. You don\'t need to know any HTML, just use the buttons to make the information look like you want, or format text according to these examples.');
+jr_define('_JOMRES_MARKDOWN_EMPHASIS', 'Emphasis');
+jr_define('_JOMRES_MARKDOWN_BOLD', 'bold');
+jr_define('_JOMRES_MARKDOWN_ITALICS', 'italics');
+jr_define('_JOMRES_MARKDOWN_STRIKETHROUGH', 'strikethrough');
+jr_define('_JOMRES_MARKDOWN_HEADERS', "Headers");
+jr_define('_JOMRES_MARKDOWN_BIGHEADER', 'Big header');
+jr_define('_JOMRES_MARKDOWN_MEDIUMHEADER', "Medium header");
+jr_define('_JOMRES_MARKDOWN_SMALLHEADER', 'Small header');
+jr_define('_JOMRES_MARKDOWN_TINYHEADER', 'Tiny header');
+jr_define('_JOMRES_MARKDOWN_LISTS', "Lists");
+jr_define('_JOMRES_MARKDOWN_GENERICLISTITEM', 'Generic list item');
+jr_define('_JOMRES_MARKDOWN_NUMBEREDLISTITEM', 'Numbered list item');
+jr_define('_JOMRES_MARKDOWN_LINKS', 'Links');
+jr_define('_JOMRES_MARKDOWN_LINKSTEXT', 'Text to display');
+jr_define('_JOMRES_MARKDOWN_QUOTES', 'Quotes');
+jr_define('_JOMRES_MARKDOWN_THISISAQUOTE', 'This is a quote.');
+jr_define('_JOMRES_MARKDOWN_QUOTEMULTIPLE', 'It can span multiple lines!');
+jr_define('_JOMRES_MARKDOWN_IMAGES', 'Images');
+jr_define('_JOMRES_MARKDOWN_TABLE', 'Tables');
+jr_define('_JOMRES_MARKDOWN_COLUMN', 'Column');
+
