@@ -285,7 +285,7 @@ class j16000showplugins
 
         $install_text = 'Install';
         $reinstall_text = 'Reinstall';
-        $upgrade_text = 'Upgrade';
+        $upgrade_text = 'Update';
         $uninstall_text = 'Uninstall';
         $externalPluginTypes = array('component', 'module', 'mambot');
 
