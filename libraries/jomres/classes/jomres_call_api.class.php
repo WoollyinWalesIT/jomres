@@ -42,8 +42,9 @@ class jomres_call_api
     }
 
     private function init() {
+        // If the user is registered, we'll create a new API client and secret for that user if needed. That way, any calls done to the API will be traceable back to that user.
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        if ( $thisJRUser->id > 0 ) { // The user's registered, we first need to init the manager. If the manager doesn't have an api client id/secret we'll create one for them.
+        if ( $thisJRUser->accesslevel > 1 ) { // The user's registered or greater
             $auth_deets = $this->init_manager();
             $client_id = $auth_deets['client_id'];
             $client_secret = $auth_deets['client_secret'];
@@ -70,7 +71,7 @@ class jomres_call_api
             }
         }
     }
-    
+
     private function init_manager() {
         // We need to see if there's a user in the database, if there's not we'll create them. 
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
