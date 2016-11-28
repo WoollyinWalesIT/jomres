@@ -1,70 +1,68 @@
 <?php
 /**
- * Core file
+ * Core file.
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.8.18
- * @package Jomres
+ *
+ * @version Jomres 9.8.19
+ *
  * @copyright	2005-2016 Vince Wooll
- * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 class j16000export_definitions
-	{
-	function __construct()
-		{
-		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch )
-			{
-			$this->template_touchable = false;
+{
+    public function __construct()
+    {
+        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+        if ($MiniComponents->template_touch) {
+            $this->template_touchable = false;
 
-			return;
-			}
-		echo "<h2 class=\"page-header\">Export language file definitions</h2>";
-		echo "<p>" . jr_gettext( "_JOMRES_EXPORT_DEFINITIONS_INFO", '_JOMRES_EXPORT_DEFINITIONS_INFO', false, false ) . "</p>";
+            return;
+        }
+        echo '<h2 class="page-header">Export language file definitions</h2>';
+        echo '<p>'.jr_gettext('_JOMRES_EXPORT_DEFINITIONS_INFO', '_JOMRES_EXPORT_DEFINITIONS_INFO', false, false).'</p>';
 
-		$definitions      = array ();
-		$siteConfig       = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig         = $siteConfig->get();
-		
-		if ($jrConfig[ 'language_context' ] != '')
-			$language_context = $jrConfig[ 'language_context' ];
-		else
-			$language_context = 0;
+        $definitions = array();
+        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
 
-		$jomres_language_definitions = jomres_singleton_abstract::getInstance( 'jomres_language_definitions' );
+        if ($jrConfig[ 'language_context' ] != '') {
+            $language_context = $jrConfig[ 'language_context' ];
+        } else {
+            $language_context = 0;
+        }
 
-		foreach ($jomres_language_definitions->definitions[ $language_context ] as $const => $def )
-			{
-			$definitions[ $const ] = jr_gettext( $const, $def, false );
-			}
+        $jomres_language_definitions = jomres_singleton_abstract::getInstance('jomres_language_definitions');
 
-		$output_string = '
+        foreach ($jomres_language_definitions->definitions[ $language_context ] as $const => $def) {
+            $definitions[ $const ] = jr_gettext($const, $def, false);
+        }
+
+        $output_string = '
 <?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
 ';
-		foreach ( $definitions as $const => $string )
-			{
-			str_replace( "\'", "'", $string );
-			$string = filter_var( $string, FILTER_SANITIZE_SPECIAL_CHARS );
-			$output_string .= 'jr_define("' . $const . '","' . $string . '");
+        foreach ($definitions as $const => $string) {
+            str_replace("\'", "'", $string);
+            $string = filter_var($string, FILTER_SANITIZE_SPECIAL_CHARS);
+            $output_string .= 'jr_define("'.$const.'","'.$string.'");
 ';
-			}
+        }
 
-		echo '<textarea style="width: 100%;height: 900px;" >' . $output_string . '</textarea>';
-		}
+        echo '<textarea style="width: 100%;height: 900px;" >'.$output_string.'</textarea>';
+    }
 
-
-	// This must be included in every Event/Mini-component
-	function getRetVals()
-		{
-		return null;
-		}
-	}
+    // This must be included in every Event/Mini-component
+    public function getRetVals()
+    {
+        return null;
+    }
+}

@@ -1,5 +1,5 @@
 <patTemplate:comment>
- * @version Jomres 9.8.18
+ * @version Jomres 9.8.19
 </patTemplate:comment>
 <patTemplate:tmpl name="pageoutput">
 <script type="text/javascript">
@@ -7,11 +7,10 @@
 	// Moves the menu to the content/component area (above the Jomres output), however that will be overriden by navbar-fixed-bottom or navbar-fixed-top
 	jomresJquery(document).ready(function () {
 		var $content = jomresJquery('#jomres-menu-pinned').html();
-		jomresJquery('#jomres_alternate_menu_position').html($content);
+		jomresJquery('#{MENU_LOCATION}').html($content);
 		jomresJquery('#jomres-menu-pinned').empty(); // making sure that the old div doesn't have the accordion applied to it.
 	});
 	var jomres_task = "{TASK}";
-	{TOUR_LABELS}
 	//-->
 </script>
 

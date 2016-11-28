@@ -5,7 +5,6 @@ namespace OAuth2\ResponseType;
 use OAuth2\Storage\AuthorizationCodeInterface as AuthorizationCodeStorageInterface;
 
 /**
- *
  * @author Brent Shaffer <bshafs at gmail dot com>
  */
 class AuthorizationCode implements AuthorizationCodeInterface
@@ -47,9 +46,9 @@ class AuthorizationCode implements AuthorizationCodeInterface
      * User ID associated with the authorization code
      * @param $redirect_uri
      * An absolute URI to which the authorization server will redirect the
-     * user-agent to when the end-user authorization step is completed.
+     * user-agent to when the end-user authorization step is completed
      * @param $scope
-     * (optional) Scopes to be stored in space-separated string.
+     * (optional) Scopes to be stored in space-separated string
      *
      * @see http://tools.ietf.org/html/rfc6749#section-4
      * @ingroup oauth2_section_4
@@ -78,7 +77,7 @@ class AuthorizationCode implements AuthorizationCodeInterface
      * other auth code generation schemes.
      *
      * @return
-     * An unique auth code.
+     * An unique auth code
      *
      * @ingroup oauth2_section_4
      */
@@ -90,9 +89,9 @@ class AuthorizationCode implements AuthorizationCodeInterface
         } elseif (function_exists('openssl_random_pseudo_bytes')) {
             $randomData = openssl_random_pseudo_bytes(100);
         } elseif (@file_exists('/dev/urandom')) { // Get 100 bytes of random data
-            $randomData = file_get_contents('/dev/urandom', false, null, 0, 100) . uniqid(mt_rand(), true);
+            $randomData = file_get_contents('/dev/urandom', false, null, 0, 100).uniqid(mt_rand(), true);
         } else {
-            $randomData = mt_rand() . mt_rand() . mt_rand() . mt_rand() . microtime(true) . uniqid(mt_rand(), true);
+            $randomData = mt_rand().mt_rand().mt_rand().mt_rand().microtime(true).uniqid(mt_rand(), true);
         }
 
         return substr(hash('sha512', $randomData), 0, $tokenLen);

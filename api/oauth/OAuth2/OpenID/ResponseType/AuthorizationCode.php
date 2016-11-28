@@ -6,7 +6,6 @@ use OAuth2\ResponseType\AuthorizationCode as BaseAuthorizationCode;
 use OAuth2\OpenID\Storage\AuthorizationCodeInterface as AuthorizationCodeStorageInterface;
 
 /**
- *
  * @author Brent Shaffer <bshafs at gmail dot com>
  */
 class AuthorizationCode extends BaseAuthorizationCode implements AuthorizationCodeInterface
@@ -41,11 +40,11 @@ class AuthorizationCode extends BaseAuthorizationCode implements AuthorizationCo
      * User ID associated with the authorization code
      * @param $redirect_uri
      * An absolute URI to which the authorization server will redirect the
-     * user-agent to when the end-user authorization step is completed.
+     * user-agent to when the end-user authorization step is completed
      * @param $scope
-     * (optional) Scopes to be stored in space-separated string.
+     * (optional) Scopes to be stored in space-separated string
      * @param $id_token
-     * (optional) The OpenID Connect id_token.
+     * (optional) The OpenID Connect id_token
      *
      * @see http://tools.ietf.org/html/rfc6749#section-4
      * @ingroup oauth2_section_4

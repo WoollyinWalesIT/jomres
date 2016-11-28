@@ -6,7 +6,6 @@ use OAuth2\GrantType\AuthorizationCode as BaseAuthorizationCode;
 use OAuth2\ResponseType\AccessTokenInterface;
 
 /**
- *
  * @author Brent Shaffer <bshafs at gmail dot com>
  */
 class AuthorizationCode extends BaseAuthorizationCode

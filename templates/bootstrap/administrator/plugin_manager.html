@@ -1,5 +1,5 @@
 <patTemplate:comment>
- * @version Jomres 9.8.18
+ * @version Jomres 9.8.19
 </patTemplate:comment>
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<script type="text/javascript">
@@ -243,6 +243,10 @@
 		<div id="hidden_inputs"  class="hide"></div>
 		</patTemplate:tmpl>
 		
+		<p class="alert alert-{LICENSE_MESSAGE_CLASS}">
+			{LICENSE_MESSAGE}
+		</p>
+		
 		<patTemplate:tmpl name="plugins_require_upgrade" type="simpleCondition" requiredVars="upgrade_text">
 		<a href="javascript:void(0);" onclick="upgrade_core_plugins();" id="upgrade_core_plugins" class="btn btn-primary btn-large">{UPGRADE_TEXT}</a>
 		</patTemplate:tmpl>
@@ -250,10 +254,6 @@
 		<patTemplate:tmpl name="reinstall_plugins" type="simpleCondition" requiredVars="reinstall_text">
 		<a href="javascript:void(0);" onclick="reinstall_all_plugins();" id="reinstall_all_plugins" class="btn btn-default btn-large">{REINSTALL_TEXT}</a>
 		</patTemplate:tmpl>
-		
-		<p class="alert alert-{LICENSE_MESSAGE_CLASS}">
-			{LICENSE_MESSAGE}
-		</p>
 		
 		</div>
 		<div class="span3">

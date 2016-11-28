@@ -54,7 +54,7 @@ class TokenController implements TokenControllerInterface
             $response->addHttpHeaders(array(
                 'Cache-Control' => 'no-store',
                 'Pragma' => 'no-cache',
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
             ));
         }
     }
@@ -85,7 +85,7 @@ class TokenController implements TokenControllerInterface
             return null;
         }
 
-        /**
+        /*
          * Determine grant type from request
          * and validate the request for that grant type
          */
@@ -104,7 +104,7 @@ class TokenController implements TokenControllerInterface
 
         $grantType = $this->grantTypes[$grantTypeIdentifier];
 
-        /**
+        /*
          * Retrieve the client information from the request
          * ClientAssertionTypes allow for grant types which also assert the client data
          * in which case ClientAssertion is handled in the validateRequest method
@@ -119,7 +119,7 @@ class TokenController implements TokenControllerInterface
             $clientId = $this->clientAssertionType->getClientId();
         }
 
-        /**
+        /*
          * Retrieve the grant type information from the request
          * The GrantTypeInterface object handles all validation
          * If the object is an instance of ClientAssertionTypeInterface,
@@ -140,7 +140,7 @@ class TokenController implements TokenControllerInterface
             }
         }
 
-        /**
+        /*
          * Validate the client can use the requested grant type
          */
         if (!$this->clientStorage->checkRestrictedGrantType($clientId, $grantTypeIdentifier)) {
@@ -150,7 +150,7 @@ class TokenController implements TokenControllerInterface
         }
 
         /**
-         * Validate the scope of the token
+         * Validate the scope of the token.
          *
          * requestedScope - the scope specified in the token request
          * availableScope - the scope associated with the grant type
@@ -159,7 +159,6 @@ class TokenController implements TokenControllerInterface
          *
          * @see http://tools.ietf.org/html/rfc6749#section-3.3
          */
-
         $requestedScope = $this->scopeUtil->getScopeFromRequest($request);
         $availableScope = $grantType->getScope();
 
@@ -206,7 +205,7 @@ class TokenController implements TokenControllerInterface
     }
 
     /**
-     * addGrantType
+     * addGrantType.
      *
      * @param grantType - OAuth2\GrantTypeInterface
      * the grant type to add for the specified identifier
@@ -231,15 +230,16 @@ class TokenController implements TokenControllerInterface
     }
 
     /**
-     * Revoke a refresh or access token. Returns true on success and when tokens are invalid
+     * Revoke a refresh or access token. Returns true on success and when tokens are invalid.
      *
      * Note: invalid tokens do not cause an error response since the client
      * cannot handle such an error in a reasonable way.  Moreover, the
      * purpose of the revocation request, invalidating the particular token,
      * is already achieved.
      *
-     * @param RequestInterface $request
+     * @param RequestInterface  $request
      * @param ResponseInterface $response
+     *
      * @return bool|null
      */
     public function revokeToken(RequestInterface $request, ResponseInterface $response)

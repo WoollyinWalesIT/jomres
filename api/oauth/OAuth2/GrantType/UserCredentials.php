@@ -8,7 +8,6 @@ use OAuth2\RequestInterface;
 use OAuth2\ResponseInterface;
 
 /**
- *
  * @author Brent Shaffer <bshafs at gmail dot com>
  */
 class UserCredentials implements GrantTypeInterface
@@ -32,19 +31,19 @@ class UserCredentials implements GrantTypeInterface
 
     public function validateRequest(RequestInterface $request, ResponseInterface $response)
     {
-        if (!$request->request("password") || !$request->request("username")) {
+        if (!$request->request('password') || !$request->request('username')) {
             $response->setError(400, 'invalid_request', 'Missing parameters: "username" and "password" required');
 
             return null;
         }
 
-        if (!$this->storage->checkUserCredentials($request->request("username"), $request->request("password"))) {
+        if (!$this->storage->checkUserCredentials($request->request('username'), $request->request('password'))) {
             $response->setError(401, 'invalid_grant', 'Invalid username and password combination');
 
             return null;
         }
 
-        $userInfo = $this->storage->getUserDetails($request->request("username"));
+        $userInfo = $this->storage->getUserDetails($request->request('username'));
 
         if (empty($userInfo)) {
             $response->setError(400, 'invalid_grant', 'Unable to retrieve user information');
@@ -53,7 +52,7 @@ class UserCredentials implements GrantTypeInterface
         }
 
         if (!isset($userInfo['user_id'])) {
-            throw new \LogicException("you must set the user_id on the array returned by getUserDetails");
+            throw new \LogicException('you must set the user_id on the array returned by getUserDetails');
         }
 
         $this->userInfo = $userInfo;

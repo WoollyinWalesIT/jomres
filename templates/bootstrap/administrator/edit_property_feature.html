@@ -1,65 +1,64 @@
 <patTemplate:comment>
- * @version Jomres 9.8.18
+ * @version Jomres 9.8.19
 </patTemplate:comment>
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<h2 class="page-header">{PAGETITLE}</h2>
-	<p>{PROPERTYFEATUREINFO}</p>
-	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
-		{JOMRESTOOLBAR}
-		<fieldset>
-			<div class="control-group">
-				<label class="control-label" for="name">{HFEATUREABBV}</label>
+<h2 class="page-header">{PAGETITLE}</h2>
+<p>{PROPERTYFEATUREINFO}</p>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+	{JOMRESTOOLBAR}
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="name">{HFEATUREABBV}</label>
 
-				<div class="controls">
-					<input type="text" name="feature_abbv" value="{FEATURE_ABBV}" class="input-large"/>
-				</div>
+			<div class="controls">
+				<input type="text" name="feature_abbv" value="{FEATURE_ABBV}" class="input-large"/>
 			</div>
+		</div>
 
-			<div class="control-group">
-				<label class="control-label" for="name">{HFEATUREDESCRIPTION}</label>
+		<div class="control-group">
+			<label class="control-label" for="name">{HFEATUREDESCRIPTION}</label>
 
-				<div class="controls">
-					<input type="text" name="feature_description" value="{FEATURE_DESCRIPTION}" class="input-large"/>
-				</div>
+			<div class="controls">
+				<input type="text" name="feature_description" value="{FEATURE_DESCRIPTION}" class="input-large"/>
 			</div>
+		</div>
 
-			<div class="control-group">
-				<label class="control-label" for="name">{_JOMRES_PROPERTY_TYPE_ASSIGNMENT}</label>
+		<div class="control-group">
+			<label class="control-label" for="name">{_JOMRES_PROPERTY_TYPE_ASSIGNMENT}</label>
+	
+			<div class="controls">
+				<patTemplate:tmpl name="all_ptype_rows" type="simpleCondition" requiredVars="propertytype_id">
+					<label class="checkbox">
+						<input type="checkbox" name="ptype_ids[]" value="{PROPERTYTYPE_ID}" {CHECKED} />
+						{PROPERTYTYPE_DESC}
+					</label>
+				</patTemplate:tmpl>
+			</div>
+		</div>
 		
-				<div class="controls">
-					<patTemplate:tmpl name="all_ptype_rows" type="simpleCondition" requiredVars="propertytype_id">
-						<label class="checkbox">
-							<input type="checkbox" name="ptype_ids[]" value="{PROPERTYTYPE_ID}" {CHECKED} />
-							{PROPERTYTYPE_DESC}
-						</label>
-					</patTemplate:tmpl>
-				</div>
+		<div class="control-group">
+			<label class="control-label" for="cat_id">{HCATEGORY}</label>
+	
+			<div class="controls">
+				{CATEGORY}
 			</div>
-			
-			<div class="control-group">
-				<label class="control-label" for="cat_id">{HCATEGORY}</label>
-		
-				<div class="controls">
-					{CATEGORY}
-				</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="name">{HIMAGE}</label>
+
+			<div class="controls">
+				<patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="image">
+					<span style="white-space:nowrap;"><input type="radio" name="image" value="{IMAGEPATH}" {ISCHECKED}/><img src="{IMAGE}" width="25" height="25"/></span>
+				</patTemplate:tmpl>
 			</div>
+		</div>
 
-			<div class="control-group">
-				<label class="control-label" for="name">{HIMAGE}</label>
-
-				<div class="controls">
-					<patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="image">
-                        <span style="white-space:nowrap;"><input type="radio" name="image" value="{IMAGEPATH}" {ISCHECKED}/><img
-						src="{IMAGE}"  width="25" height="25"/></span>
-					</patTemplate:tmpl>
-				</div>
-			</div>
-
-			<input type="hidden" name="propertyFeatureUid" value="{PROPERTYFEATUREUID}">
-			<input type="hidden" name="property_uid" value="{PROPERTYUID}"/>
-			<input type="hidden" name="Itemid" value="{ITEMID}"/>
-			<input type="hidden" name="option" value="com_jomres"/>
-			<input type="hidden" name="task" value="savePropertyFeature"/>
-		</fieldset>
-	</form>
+		<input type="hidden" name="id" value="{PROPERTYFEATUREUID}">
+		<input type="hidden" name="property_uid" value="{PROPERTYUID}"/>
+		<input type="hidden" name="Itemid" value="{ITEMID}"/>
+		<input type="hidden" name="option" value="com_jomres"/>
+		<input type="hidden" name="task" value="savePropertyFeature"/>
+	</fieldset>
+</form>
 </patTemplate:tmpl>

@@ -1,47 +1,49 @@
 <?php
 /**
- * Core file
+ * Core file.
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.8.18
- * @package Jomres
+ *
+ * @version Jomres 9.8.19
+ *
  * @copyright	2005-2016 Vince Wooll
- * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 class j03379media_centre_resource_type_rooms
-	{
-	function __construct( $componentArgs )
-		{
-		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch )
-			{
-			$this->template_touchable = false;
+{
+    public function __construct($componentArgs)
+    {
+        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+        if ($MiniComponents->template_touch) {
+            $this->template_touchable = false;
 
-			return;
-			}
-		$defaultProperty = getDefaultProperty();
-		$mrConfig = getPropertySpecificSettings( $defaultProperty );
-		$this->ret_vals = array();
-		if (!isset($mrConfig[ 'singleRoomProperty' ]))
-			$mrConfig[ 'singleRoomProperty' ] ="0";
-		if (!isset($mrConfig[ 'is_real_estate_listing' ]))
-			$mrConfig[ 'is_real_estate_listing' ] ="0";
-		
-		if ($mrConfig[ 'singleRoomProperty' ] != "1" && $mrConfig['is_real_estate_listing'] != "1" )
-			{
-			$this->ret_vals = array ( "resource_type" => "rooms" , "resource_id_required" => true , "name" => jr_gettext( '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', false ) );
-			
-			
-			if ( !AJAXCALL && !defined("MEDIACENTRE_ROOMJS") )
-				{
-				define ("MEDIACENTRE_ROOMJS",1);
-				echo '
+            return;
+        }
+        $defaultProperty = getDefaultProperty();
+        $mrConfig = getPropertySpecificSettings($defaultProperty);
+        $this->ret_vals = array();
+        if (!isset($mrConfig[ 'singleRoomProperty' ])) {
+            $mrConfig[ 'singleRoomProperty' ] = '0';
+        }
+        if (!isset($mrConfig[ 'is_real_estate_listing' ])) {
+            $mrConfig[ 'is_real_estate_listing' ] = '0';
+        }
+
+        $property_uid = getDefaultProperty();
+        $preview_link                                = JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_rooms&property_uid='.$property_uid;
+            
+        if ($mrConfig[ 'singleRoomProperty' ] != '1' && $mrConfig['is_real_estate_listing'] != '1') {
+            $this->ret_vals = array('resource_type' => 'rooms', 'resource_id_required' => true, 'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', false) , 'preview_link'=>$preview_link );
+
+            if (!AJAXCALL && !defined('MEDIACENTRE_ROOMJS')) {
+                define('MEDIACENTRE_ROOMJS', 1);
+                echo '
 				<script>
 				jomresJquery(function () {
 					jomresJquery("#resource_id_dropdown").change(function () {
@@ -50,15 +52,13 @@ class j03379media_centre_resource_type_rooms
 					});
 				</script>
 				';
-				}
-			}
-		}
+            }
+        }
+    }
 
-	// This must be included in every Event/Mini-component
-	function getRetVals()
-		{
-		return $this->ret_vals;
-		}
-	}
-
-?>
+    // This must be included in every Event/Mini-component
+    public function getRetVals()
+    {
+        return $this->ret_vals;
+    }
+}

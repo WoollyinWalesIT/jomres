@@ -6,7 +6,7 @@ use OAuth2\OpenID\Storage\UserClaimsInterface;
 use OAuth2\OpenID\Storage\AuthorizationCodeInterface as OpenIDAuthorizationCodeInterface;
 
 /**
- * Simple PDO storage for all storage types
+ * Simple PDO storage for all storage types.
  *
  * NOTE: This class is meant to get users started
  * quickly. If your application requires further
@@ -63,10 +63,10 @@ class Pdo implements
             'refresh_token_table' => 'oauth_refresh_tokens',
             'code_table' => 'oauth_authorization_codes',
             'user_table' => 'oauth_users',
-            'jwt_table'  => 'oauth_jwt',
-            'jti_table'  => 'oauth_jti',
-            'scope_table'  => 'oauth_scopes',
-            'public_key_table'  => 'oauth_public_keys',
+            'jwt_table' => 'oauth_jwt',
+            'jti_table' => 'oauth_jti',
+            'scope_table' => 'oauth_scopes',
+            'public_key_table' => 'oauth_public_keys',
         ), $config);
     }
 
@@ -327,7 +327,7 @@ class Pdo implements
 
         // the default behavior is to use "username" as the user_id
         return array_merge(array(
-            'user_id' => $username
+            'user_id' => $username,
         ), $userInfo);
     }
 
@@ -460,7 +460,7 @@ class Pdo implements
     }
 
     /**
-     * DDL to create OAuth2 database and tables for PDO storage
+     * DDL to create OAuth2 database and tables for PDO storage.
      *
      * @see https://github.com/dsquier/oauth2-server-php-mysql
      */
