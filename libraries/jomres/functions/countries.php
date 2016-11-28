@@ -228,7 +228,7 @@ function import_countries()
         foreach ($countries as $countrycode => $countryname) {
             $rows .= '(\''.$countrycode.'\',\''.filter_var($countryname, FILTER_SANITIZE_SPECIAL_CHARS).'\'),';
         }
-        $rows = rtrim($rows, -1);
+        $rows = rtrim($rows, ',');
         $result = doInsertSql($query.$rows, '');
 
         $jomres_countries->countries = false;
@@ -257,7 +257,7 @@ function import_regions()
                 $rows .= '(\''.$countrycode.'\',\''.filter_var($region, FILTER_SANITIZE_SPECIAL_CHARS).'\'),';
             }
         }
-        $rows = rtrim($rows, -1);
+        $rows = rtrim($rows, ',');
         
 		$result = doInsertSql($query.$rows, '');
 
