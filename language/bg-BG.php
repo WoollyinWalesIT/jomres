@@ -1373,7 +1373,7 @@ jr_define('_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE_DESC', 'За агенц�
 
 jr_define('JOMRES_COM_A_MINIMALCONFIG_DESC', 'Да се избира от системния администратор.');
 jr_define('_JOMRES_AJAXFORM_EXTRAS_SELECT', 'Изберете опция за резервацията');
-jr_define('_JOMRES_COM_ALLOWHTMLEDITOR_DESC', 'Да се избира от системния администратор.');
+jr_define('_JOMRES_COM_ALLOWHTMLEDITOR_DESC', "<p>If this option is set to Yes, then managers will be able to see the html editor provided with the CMS, and enter HTML into the description. This is a potential security risk as there is a possibility that they can introduce unwanted HTML or Javascript. Additionally, if they enter poorly formatted HTML the page design could become compromised. It's better to leave this option set to No wherever possible.</p><p>If all managers are trusted users (e.g. yourself) then you can leave it set to Yes and you modify the different HTML tags that they are allowed to enter in the Input Filtering tab in Site Configuration.</p><p>If, on the other hand, you're using Jomres as a portal where you invite users to add and administer their own properties then this isn't the ideal configuration. Instead you should leave this option set to No. With it set to No managers will instead see a markdown editor that they can use to enter basic formatting which should be sufficient for the majority of users.</p>");
 jr_define('_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT', 'Системата в сайта');
 jr_define('_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW', 'Системата на цял екран');
 jr_define('_JOMRES_COM_TIMEZONE_SWITCHER', 'Показвай часова зона?');
