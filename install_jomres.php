@@ -21,8 +21,8 @@ if (isset($_REQUEST[ 'autoupgrade' ])) {
 }
 
 // Set this to "development" to prevent the installer from setting the site to production and therefore deleting this file on run.
-//define('PROD_DEV', 'production');
- define ("PROD_DEV" , "development");
+define('PROD_DEV', 'production');
+// define ("PROD_DEV" , "development");
 
 // Useful for testing installer changes, uncomment to prevent redirection after run
 // define ( "ERRORS_SHOWN_NO_REDIRECT" , 1 );
