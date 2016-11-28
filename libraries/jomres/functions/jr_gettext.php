@@ -95,9 +95,11 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
             }
         }
 
-        if ($jrConfig[ 'allowHTMLeditor' ] != '1') {
+        // Disabled in 9.8.19. This version introduces Markdown for non-super-managers. As a result we want super managers to continue using HTML if they want.
+        // This switch makes things confusing, as disabling the html editors will prevent html in language files from being used.
+        /* if ($jrConfig[ 'allowHTMLeditor' ] != '1') {
             $theText = jomres_remove_HTML($theText);
-        }
+        } */
 
         $theText = jomres_decode($theText);
 
