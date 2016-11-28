@@ -64,7 +64,7 @@ class jomres_database
             $this->dbtype = 'mysqli';
         }
 
-        if (!this_cms_is_wordpress()) {
+        if (!this_cms_is_wordpress() || defined('AUTO_UPGRADE')) {
             $this->_init();
         }
     }
@@ -115,7 +115,7 @@ class jomres_database
 
     public function close()
     {
-        if (!this_cms_is_wordpress()) {
+        if (!this_cms_is_wordpress() || defined('AUTO_UPGRADE')) {
             switch ($this->dbtype) {
                 case 'mysqli':
                     mysqli_close($this->link);
@@ -133,7 +133,7 @@ class jomres_database
 
     public function query()
     {
-        if (this_cms_is_wordpress()) {
+        if (this_cms_is_wordpress() && !defined('AUTO_UPGRADE')) {
             global $wpdb;
 
             $this->result = $wpdb->query($this->query);
@@ -224,7 +224,7 @@ class jomres_database
 
     public function setQuery($query)
     {
-        if (this_cms_is_wordpress()) {
+        if (this_cms_is_wordpress() && !defined('AUTO_UPGRADE')) {
             global $wpdb;
 
             $performance_monitor = jomres_singleton_abstract::getInstance('jomres_performance_monitor');
@@ -250,7 +250,7 @@ class jomres_database
         $this->stmt = null;
         $this->result = array();
 
-        if (this_cms_is_wordpress()) {
+        if (this_cms_is_wordpress() && !defined('AUTO_UPGRADE')) {
             global $wpdb;
 
             $this->result = $wpdb->get_results($this->query, OBJECT);
