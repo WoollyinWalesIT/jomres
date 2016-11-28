@@ -62,11 +62,7 @@ class j06000show_property_description
         jr_import('jomres_markdown');
         $jomres_markdown = new jomres_markdown();
         
-        $property_description = $current_property_details->property_description;
-        $property_description = $jomres_markdown->get_markdown($property_description);
-        $property_description = jomres_cmsspecific_parseByBots($property_description);
-        
-        $output['PROPERTY_DESCRIPTION'] = jomres_cmsspecific_parseByBots( $property_description);
+        $output['PROPERTY_DESCRIPTION'] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_description));
 
         $pageoutput = array($output);
         $tmpl = new patTemplate();
