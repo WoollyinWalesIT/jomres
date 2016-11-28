@@ -56,6 +56,7 @@ class j16000edit_user
 
 		$output = array();
 		$pageoutput = array();
+		$rows = array();
 		
 		//get all properties in system
 		$all_properties_in_system = get_showtime('all_properties_in_system');
