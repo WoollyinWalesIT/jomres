@@ -41,28 +41,57 @@ class jomres_call_api
         trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
     }
 
-    private function init()
-    {
-        $MiniComponents = jomres_getSingleton('mcHandler');
-        if (isset($MiniComponents->registeredClasses['06005oauth'])) {
+    private function init() {
+        // If the user is registered, we'll create a new API client and secret for that user if needed. That way, any calls done to the API will be traceable back to that user.
+        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+        if ( $thisJRUser->accesslevel > 1 ) { // The user's registered or greater
+            $auth_deets = $this->init_manager();
+            $client_id = $auth_deets['client_id'];
+            $client_secret = $auth_deets['client_secret'];
+        } else {
             $query = "SELECT client_id,client_secret FROM #__jomres_oauth_clients WHERE client_id = 'system' LIMIT 1";
             $result = doSelectSql($query, 2);
             if (count($result) == 2) {
                 $client_id = $result['client_id'];
                 $client_secret = $result['client_secret'];
             }
+        }
+
+        $MiniComponents = jomres_getSingleton('mcHandler');
+        if (isset($MiniComponents->registeredClasses['06005oauth']) && isset($client_secret) && trim($client_secret) != '' ) {
             $this->server = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/';
             $data = array('grant_type' => 'client_credentials', 'client_id' => $client_id, 'client_secret' => $client_secret);
             $token_request = $this->query_api('POST', '/', $data);
             $response = json_decode($token_request['response']);
+
             if (isset($response->access_token)) {
                 $this->token = $response->access_token;
+            } else {
+                throw new Exception($response->error_description);
             }
         }
     }
 
-    public function send_request($method = '', $request = '', $data = array())
-    {
+    private function init_manager() {
+        // We need to see if there's a user in the database, if there's not we'll create them. 
+        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+        $query = "SELECT client_id,scope FROM #__jomres_oauth_clients WHERE client_id = '".$thisJRUser->username."' LIMIT 1";
+        $result = doSelectSql($query);
+        if (count($result) == 0) {
+            $query = "INSERT INTO #__jomres_oauth_clients 
+                (`client_id`,`client_secret`,`redirect_uri`,`grant_types`,`scope`,`user_id`) 
+                VALUES 
+                ('".$thisJRUser->username."','".createNewAPIKey()."','',null,'*',".$thisJRUser->id.")";
+            if (!doInsertSql($query, jr_gettext('_OAUTH_CREATED', '_OAUTH_CREATED', false))) {
+               throw new Exception('Unable to update oauth client details, mysql db failure');
+            }
+        }
+        $query = "SELECT client_secret FROM #__jomres_oauth_clients WHERE client_id = '".$thisJRUser->username."' LIMIT 1";
+        $client_secret = doSelectSql($query, 1);
+        return array ( "client_id" => $thisJRUser->username ,"client_secret" => $client_secret );
+    }
+
+    public function send_request($method = '', $request = '', $data = array()) {
         if ($this->token != '') {
             $response = $this->query_api($method, $request, $data);
             if ($response['response_code'] == '200' || $response['response_code'] == '204') {
@@ -71,7 +100,7 @@ class jomres_call_api
                 throw new Exception('Call to API resulted in response code '.$response['response_code'].' and message '.$response['response']);
             }
         } else {
-            throw new Exception('Could not call API as token not setup. Is the API Core installed? If not, install the API Core plugin and visit the App Key Management page at least once to setup the System user. You can find the App Key page under My Account when logged into the fronend of Jomres.');
+            throw new Exception('Could not call API as token not setup. Is the API Core installed?');
         }
     }
 
