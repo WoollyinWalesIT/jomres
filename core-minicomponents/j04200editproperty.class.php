@@ -162,21 +162,22 @@ class j04200editproperty
             $output[ 'PROPERTY_OTHERTRANSPORT' ] = editorAreaText('property_othertransport', $current_property_details->property_othertransport, 'property_othertransport', $width, $height, $col, $row);
             $output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = editorAreaText('property_policies_disclaimers', $property_policies_disclaimers, 'property_policies_disclaimers', $width, $height, $col, $row);
         } else {
-            
-            
             jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/libraries/simpleMDE/dist/', 'simplemde.min.js');
             jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/libraries/simpleMDE/dist/', 'simplemde.min.css');
-            $output['SIMPLEMDE_JAVASCRIPT'] = '
-                <script>
-                var buttons =  ["bold", "italic", "heading",  "quote" , "strikethrough" , "|" , "unordered-list" , "ordered-list" , "clean-block" , "image" , "table" , "horizontal-rule" , "|", "preview" ];
-                var simplemde = new SimpleMDE({ element: document.getElementById("property_description") ,toolbar: buttons, });
-                var simplemde = new SimpleMDE({ element: document.getElementById("property_checkin_times") ,toolbar: buttons, });
-                var simplemde = new SimpleMDE({ element: document.getElementById("property_area_activities") ,toolbar: buttons, });
-                var simplemde = new SimpleMDE({ element: document.getElementById("property_driving_directions") ,toolbar: buttons, });
-                var simplemde = new SimpleMDE({ element: document.getElementById("property_airports") ,toolbar: buttons, });
-                var simplemde = new SimpleMDE({ element: document.getElementById("property_othertransport") ,toolbar: buttons, });
-                var simplemde = new SimpleMDE({ element: document.getElementById("property_policies_disclaimers") ,toolbar: buttons, });
-                </script>';
+            
+			$output['SIMPLEMDE_JAVASCRIPT'] = '
+				<script type="text/javascript">
+				jomresJquery(document).ready(function () {
+					var buttons =  ["bold", "italic", "heading",  "quote" , "strikethrough" , "|" , "unordered-list" , "ordered-list" , "clean-block" , "image" , "table" , "horizontal-rule" , "|", "preview" ];
+					var simplemde = new SimpleMDE({ element: document.getElementById("property_description") ,toolbar: buttons, });
+					var simplemde = new SimpleMDE({ element: document.getElementById("property_checkin_times") ,toolbar: buttons, });
+					var simplemde = new SimpleMDE({ element: document.getElementById("property_area_activities") ,toolbar: buttons, });
+					var simplemde = new SimpleMDE({ element: document.getElementById("property_driving_directions") ,toolbar: buttons, });
+					var simplemde = new SimpleMDE({ element: document.getElementById("property_airports") ,toolbar: buttons, });
+					var simplemde = new SimpleMDE({ element: document.getElementById("property_othertransport") ,toolbar: buttons, });
+					var simplemde = new SimpleMDE({ element: document.getElementById("property_policies_disclaimers") ,toolbar: buttons, });
+				});
+				</script>';
             
             
             $output[ 'MARKDOWN_BUTTON' ] = $MiniComponents->specificEvent('06000', 'show_markdown_modal', array('output_now' => false));
