@@ -121,7 +121,10 @@ class j16000edit_user
 		$output[ '_JOMRES_SHOWPROFILES_USERSWITHACCESS' ] 	= jr_gettext( "_JOMRES_SHOWPROFILES_USERSWITHACCESS", '_JOMRES_SHOWPROFILES_USERSWITHACCESS', false );
 		$output[ 'HACCESSLEVEL' ]							= jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL", '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL', false );
 		$output[ 'HUSERNAME' ]	 							= jr_gettext( "_JOMRES_MR_AUDIT_LISTING_USER", '_JOMRES_MR_AUDIT_LISTING_USER', false );
-		$output[ 'HUSERNAME_DESC' ]							= jr_gettext( '_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', '_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', false );
+        if ( $id == 0 )
+            $output[ 'HUSERNAME_DESC' ]							= jr_gettext( '_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', '_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', false );
+        else
+            $output[ 'HUSERNAME_DESC' ]							= '';
 		$output[ 'PAGETITLE' ]	 							= jr_gettext( "_JOMRES_EDIT_PROFILE", '_JOMRES_EDIT_PROFILE', false );
 		
 		$output['ID'] 				= $id;
