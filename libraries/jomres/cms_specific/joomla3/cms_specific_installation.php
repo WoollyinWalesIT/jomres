@@ -95,9 +95,9 @@ $admin_user = $admin_user[ $admin_user_id ];
 
 //echo "Making <i>" . $admin_user[ 'username' ] . "</i> a super property manager<br>";
 $query = "INSERT INTO #__jomres_managers
-(`userid`,`username`,`property_uid`,`access_level`,`currentproperty`,`pu`)
+(`userid`,`access_level`,`currentproperty`)
 VALUES
-($admin_user_id,'".$admin_user[ 'username' ]."','0','2','1','1')";
+(".$admin_user[ 'id' ].",90,1)";
 $result = doInsertSql($query, '');
 
 /* if ( $result )

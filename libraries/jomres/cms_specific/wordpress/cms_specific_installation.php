@@ -56,10 +56,10 @@ if (count($user_ids) > 0) {
     if (count($super_admin_ids) > 0) {
         foreach ($super_admin_ids as $admin_user) {
             echo 'Making <i>'.$admin_user[ 'username' ].'</i> a super property manager<br>';
-            $query = 'INSERT INTO #__jomres_managers
-			(`userid`,`username`,`property_uid`,`access_level`,`currentproperty`,`pu`)
+            $query = "INSERT INTO #__jomres_managers
+				(`userid`,`access_level`,`currentproperty`)
 			VALUES
-			('.$admin_user[ 'id' ].",'".$admin_user[ 'username' ]."','0','2','1','1')";
+				(".$admin_user[ 'id' ].",90,1)";
             $result = doInsertSql($query, '');
         }
     }
