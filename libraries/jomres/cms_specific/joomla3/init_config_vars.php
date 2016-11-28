@@ -112,4 +112,3 @@ $showtime->caching = $CONFIG->caching;
 $showtime->cachetime = $CONFIG->cachetime;
 $showtime->offset = $CONFIG->offset;
 $showtime->sef = $CONFIG->sef;
-$showtime->gzip = $CONFIG->gzip;

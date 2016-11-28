@@ -58,7 +58,6 @@ $showtime->smtpuser = get_option('mailserver_login');
 $showtime->smtppass = get_option('mailserver_pass');
 $showtime->smtphost = get_option('mailserver_url');
 $showtime->smtpport = get_option('mailserver_port');
-$showtime->gzip = get_option('gzipcompression');
 
 if (get_option('permalink_structure') != '') {
     $showtime->sef = '1';  // Sef urls are enabled.
