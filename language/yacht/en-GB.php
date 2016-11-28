@@ -1418,7 +1418,7 @@ jr_define('_JOMRES_DATA_ARCHIVE_TITLE', 'Rental data archive');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE_DESC', 'The rental data archive is a raw dump of rental information captured after the confirm rental button is clicked. Hover over a date to see the raw data dump. The information is stored in the XXX__jomres_rental_data_archive table.');
 jr_define('_JOMRES_MY_ACCOUNT_EDIT', 'Edit account');
 jr_define('_JOMRES_MANAGER_CHOOSE_SEARCHTITLE', 'Search users');
-jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', 'Enter a few characters from their username to search for a user.<br/> When you select a user you will automatically add them as a Manager and you will be taken to the next page where you can assign yachts and access rights to the user.');
+jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', 'To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of.');
 jr_define('_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', 'Existing managers');
 jr_define('_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS', 'Choose a manager to be taken to the manager administration page.');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER', 'Sleeps');

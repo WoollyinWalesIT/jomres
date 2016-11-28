@@ -1411,7 +1411,7 @@ jr_define('_JOMRES_DATA_ARCHIVE_TITLE', 'ارشيف بيانات الحجز');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE_DESC', 'أرشيف البيانات الحجز هو تفريغ الخام للمعلومات الحجز الملتقطة بعد النقر فوق الزر تأكيد الحجز. تحوم فوق موعد لرؤية تفريغ البيانات الخام. يتم تخزين المعلومات في الجدول XXX__jomres_booking_data_archive.');
 jr_define('_JOMRES_MY_ACCOUNT_EDIT', 'تحرير الحساب');
 jr_define('_JOMRES_MANAGER_CHOOSE_SEARCHTITLE', 'بحث المستخدمين');
-jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', 'إدخال أحرف قليلة من اسم المستخدم الخاص بهم للبحث عن المستخدم. <br/> إذا عند تحديد المستخدم الذي سوف تضاف تلقائيا لهم كمدير، وسوف يتم نقلك إلى الصفحة التالية حيث يمكنك تعيين الفنادق وحقوق الوصول إلى المستخدم .');
+jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', 'To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of.');
 jr_define('_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', 'المدراء الحاليين');
 jr_define('_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS', 'اختر المدير للذهاب للصفحة الخاصة به');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER', 'البحث بواسط رقم الضيف');

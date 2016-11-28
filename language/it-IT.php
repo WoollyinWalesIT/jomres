@@ -1455,7 +1455,7 @@ jr_define('_JOMRES_DATA_ARCHIVE_TITLE', 'archivio di dati di prenotazione');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE_DESC', "L'archivio dei dati di prenotazione è un dump raw di prenotazione informazioni acquisite dopo che il pulsante di prenotazione di conferma viene cliccato. Passa il mouse sopra una data per vedere il dump di dati grezzi. Le informazioni sono memorizzate nella tabella XXX__jomres_booking_data_archive.");
 jr_define('_JOMRES_MY_ACCOUNT_EDIT', 'Modifica account');
 jr_define('_JOMRES_MANAGER_CHOOSE_SEARCHTITLE', 'Cerca utenti');
-jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', "Inserisci un paio di personaggi dal loro nome utente per cercare un utente.<br/> Quando si seleziona un utente si metterà automaticamente in aggiungere come Manager e sarete portati alla pagina successiva in cui è possibile assegnare proprietà e diritti di accesso per l'utente.");
+jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', "To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of.");
 jr_define('_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', 'i gestori esistenti');
 jr_define('_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS', 'Scegliere un responsabile da prendere alla pagina di direttore amministrazione.');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER', 'Posti letto');

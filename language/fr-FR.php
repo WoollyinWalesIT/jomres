@@ -1440,7 +1440,7 @@ jr_define('_JOMRES_DATA_ARCHIVE_TITLE', 'Archive de données de réservations');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE_DESC', 'Cet archive est le résultat brut d\'information de réservations capturtée après que le bouton confirmer r´serve a été actionné. Détenez la souris sure une date pour voir les données. Cette information est gardée dans la table XXX__jomres_booking_data_archive.');
 jr_define('_JOMRES_MY_ACCOUNT_EDIT', 'Éditer compte');
 jr_define('_JOMRES_MANAGER_CHOOSE_SEARCHTITLE', 'Rechercher utilisateurs');
-jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', 'Introduisez quelques charactères du nom d\'utilisateur pour la recherche.<br/> Quand vous sélectionez un utilisateur vous l\'ajouterez automatiquement comme Gérant et vous serez dirigé(e) vers la page suivante où vous pourrez imputer des propriétés et droits d\'accès à l\'utilisateur.');
+jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', 'To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of.');
 jr_define('_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', 'Gérants existants');
 jr_define('_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS', 'Choisissez un gérant pour être dirigé(e) vers la page d\'administration.');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER', 'Recherche par nombre d\'hôtes');

@@ -1441,7 +1441,7 @@ jr_define('_JOMRES_DATA_ARCHIVE_TITLE', 'Arxiu de dades de Reserves');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE_DESC', "L'arxiu de reserva de dades és un volcat de la informació de la reserva, la informació és capturada després de confirmar la reserva fent clic. Passi el ratolí sobre una data per veure el volcat de les dades en brut. La informació és emagatzemada en la taula XXX__jomres_booking_data_archive.");
 jr_define('_JOMRES_MY_ACCOUNT_EDIT', 'Editar compte');
 jr_define('_JOMRES_MANAGER_CHOOSE_SEARCHTITLE', 'Cerca usuaris');
-jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', "Introdueixi alguns caràcters del seu nom d'usuari per a la cerca d'un usuari. <br/> Quan es selecciona un usuari vostè automàticament pot afegir-los com Administradors i se'l portaà a la pàgina següent on pot assignar propietats i drets d'accés per a tal usuari .");
+jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', "To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of.");
 jr_define('_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', 'Actuals Administradors');
 jr_define('_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS', "Escollit un Administrador per a ser portat a la pàgina d'administració del gestor.");
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER', "Buscar per número d'hostes");
