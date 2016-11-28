@@ -168,7 +168,7 @@ class j04200editproperty
             jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/libraries/simpleMDE/dist/', 'simplemde.min.css');
             $output['SIMPLEMDE_JAVASCRIPT'] = '
                 <script>
-                var buttons =  ["bold", "italic", "heading",  "quote" , "strikethrough" , "|" , "unordered-list" , "ordered-list" , "clean-block" , "image" , "table" , "horizontal-rule" , "|", "preview" , "|" , "guide" ];
+                var buttons =  ["bold", "italic", "heading",  "quote" , "strikethrough" , "|" , "unordered-list" , "ordered-list" , "clean-block" , "image" , "table" , "horizontal-rule" , "|", "preview" ];
                 var simplemde = new SimpleMDE({ element: document.getElementById("property_description") ,toolbar: buttons, });
                 var simplemde = new SimpleMDE({ element: document.getElementById("property_checkin_times") ,toolbar: buttons, });
                 var simplemde = new SimpleMDE({ element: document.getElementById("property_area_activities") ,toolbar: buttons, });
