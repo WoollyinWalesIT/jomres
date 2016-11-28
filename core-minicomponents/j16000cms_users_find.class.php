@@ -31,7 +31,7 @@ class j16000cms_users_find
 		$existing_managers = array ();
 		
 		//get all jomres user ids
-		$query = "SELECT `manager_uid` AS cms_user_id FROM #__jomres_managers";
+		$query = "SELECT `userid` AS cms_user_id FROM #__jomres_managers";
 		$result = doSelectSql( $query );
 		
 		foreach ( $result as $r )
