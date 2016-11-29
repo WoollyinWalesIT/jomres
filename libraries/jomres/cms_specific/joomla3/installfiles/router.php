@@ -163,7 +163,7 @@ if (!class_exists('JomresRouter')) {
             }
 
             if (isset($route_query[ 'calledByModule' ])) {
-                $segments[ ] = $jrConfig[ 'sef_task_alias_search' ];
+                $segments[ ] = jr_gettext( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', false );
                 if (isset($route_query[ 'town' ])) {
                     $segments[ ] = jomres_cmsspecific_stringURLSafe(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false));
                     $segments[ ] = jomres_cmsspecific_stringURLSafe($route_query[ 'town' ]);
