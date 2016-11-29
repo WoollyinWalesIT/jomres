@@ -216,4 +216,5 @@ $jrConfig = array(
   'syslog_port' => '',
   'sendErrorEmails' => '0',
   'minimum_deposit_percentage' => '',
+  'plist_images_as_slideshow' => '1'
 );

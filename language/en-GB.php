@@ -3097,4 +3097,5 @@ jr_define('_JOMRES_MARKDOWN_IMAGES', 'Images');
 jr_define('_JOMRES_MARKDOWN_TABLE', 'Tables');
 jr_define('_JOMRES_MARKDOWN_COLUMN', 'Column');
 
-
+jr_define('GUEST_BUDGET_FEATURE_SWITCH', 'Show property images as slideshow in property list?');
+jr_define('_JOMRES_MARKDOWN_COLUMN', 'If set to yes, a slideshow of property main images will be displayed. If set to no, then the first property main image will be displayed.');

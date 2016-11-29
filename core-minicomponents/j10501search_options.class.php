@@ -82,6 +82,11 @@ class j10501search_options
             $configurationPanel->setmiddle($lists[ 'use_budget_feature' ]);
             $configurationPanel->setright(jr_gettext('GUEST_BUDGET_FEATURE_SWITCH_DESC', 'GUEST_BUDGET_FEATURE_SWITCH_DESC', false));
             $configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft(jr_gettext('PROPERTYLIST_IMAGES_AS_SLIDESHOW', 'PROPERTYLIST_IMAGES_AS_SLIDESHOW', false));
+            $configurationPanel->setmiddle($lists[ 'plist_images_as_slideshow' ]);
+            $configurationPanel->setright(jr_gettext('PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC', 'PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC', false));
+            $configurationPanel->insertSetting();
 
             $configurationPanel->endPanel();
         }

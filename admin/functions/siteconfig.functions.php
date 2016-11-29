@@ -334,6 +334,7 @@ function showSiteConfig()
     $map_styles_dropdown = jomresHTML::selectList($map_styles, 'cfg_map_style', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'map_style' ]);
 
     $lists[ 'sendErrorEmails' ] = jomresHTML::selectList($yesno, 'cfg_sendErrorEmails', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sendErrorEmails' ]);
+	$lists[ 'plist_images_as_slideshow' ] = jomresHTML::selectList($yesno, 'cfg_plist_images_as_slideshow', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'plist_images_as_slideshow' ]);
 
     $componentArgs = array();
     $componentArgs[ 'lists' ] = $lists;

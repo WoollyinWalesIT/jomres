@@ -53,6 +53,9 @@ class j06000show_property_main_image
         } else {
             $output_now = true;
         }
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
 
         $output = array();
         $imagesArray = array();
@@ -62,18 +65,22 @@ class j06000show_property_main_image
 
         $imagesArray = $jomres_media_centre_images->images['property'][0];
 
-        $slideshowArgs = array();
-        $slideshowArgs['property_uid'] = $property_uid;
-        $slideshowArgs['height'] = 0.60;
-        $slideshowArgs['lightbox'] = 'false';
-        $slideshowArgs['autoplay'] = 'false';
-        $slideshowArgs['thumbnails'] = 'false';
-        $slideshowArgs['transition'] = 'fade';
-        $slideshowArgs['showcounter'] = 'false';
-        $slideshowArgs['link_to_property_details'] = true;
-        $slideshowArgs['images'] = $imagesArray;
-        $result = $MiniComponents->specificEvent('01060', 'slideshow', $slideshowArgs);
-        $output[ 'SLIDESHOW' ] = $result['slideshow'];
+		if ($jrConfig['plist_images_as_slideshow']) {
+			$slideshowArgs = array();
+			$slideshowArgs['property_uid'] = $property_uid;
+			$slideshowArgs['height'] = 0.60;
+			$slideshowArgs['lightbox'] = 'false';
+			$slideshowArgs['autoplay'] = 'false';
+			$slideshowArgs['thumbnails'] = 'false';
+			$slideshowArgs['transition'] = 'fade';
+			$slideshowArgs['showcounter'] = 'false';
+			$slideshowArgs['link_to_property_details'] = true;
+			$slideshowArgs['images'] = $imagesArray;
+			$result = $MiniComponents->specificEvent('01060', 'slideshow', $slideshowArgs);
+			$output[ 'SLIDESHOW' ] = $result['slideshow'];
+		} else {
+			$output[ 'SLIDESHOW' ] = '<img src="'.$jomres_media_centre_images->images['property'][0][0]['medium'].'" class="responsive img-responsive" alt="property image"/>';
+		}
 
         $pageoutput = array();
         $pageoutput[] = $output;
