@@ -258,19 +258,17 @@ class jomres_properties
             $ufuncs = new jrportal_user_functions();
             $userdeets = $ufuncs->getJoomlaUserDetailsForJoomlaId($thisJRUser->id);
 
-            $query = 'INSERT INTO #__jomres_managers 
+            $query = "INSERT INTO #__jomres_managers 
 								(
 								`userid`,
-								`username`,
-								`property_uid`,
-								`access_level`
+								`access_level`,
+								`currentproperty`
 								) 
 							VALUES 
 								(
-								'.(int) $userdeets['id'].", 
-								'".$userdeets['username']."', 
-								'".(int) $this->propertys_uid."', 
-								'2'
+								".(int)$userdeets['id'].", 
+								90, 
+								".(int) $this->propertys_uid."
 								)";
             if (!doInsertSql($query, jr_gettext('_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY', '_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY'))) {
                 throw new Exception('Error: New manager insert failed.');
