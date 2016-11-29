@@ -267,7 +267,7 @@ class jomres_properties
 							VALUES 
 								(
 								".(int)$userdeets['id'].", 
-								90, 
+								70, 
 								".(int) $this->propertys_uid."
 								)";
             if (!doInsertSql($query, jr_gettext('_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY', '_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY'))) {
