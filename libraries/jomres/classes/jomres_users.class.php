@@ -312,4 +312,31 @@ class jomres_users
 		
 		return true;
 		}
+	
+	// Will find all manager ids for a property id. Note, only returns managers who are not Super Property Managers
+    public function getManagerIdsForProperty($property_uid = 0, $notIncludingSuperManagers = false)
+	{
+		if ( $property_uid == 0 )
+			{
+			throw new Exception( "Error: Property uid not set");
+			}
+
+        $usersArray = array();
+        
+		$query = 'SELECT a.id, a.manager_id FROM #__jomres_managers_propertys_xref a, #__jomres_managers b WHERE a.property_uid = '.(int) $property_uid.' ';
+
+        if ($notIncludingSuperManagers) {
+            $query .= ' AND ( a.manager_id = b.userid AND b.access_level < 90 ) ';
+        }
+
+        $result = doSelectSql($query);
+        
+		if (!empty($result)) {
+            foreach ($result as $r) {
+                $usersArray[ $r->id ][ 'manager_id' ] = $r->manager_id;
+            }
+        }
+
+        return $usersArray;
 	}
+}

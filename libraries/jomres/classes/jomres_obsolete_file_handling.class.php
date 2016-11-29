@@ -1304,6 +1304,8 @@ class jomres_obsolete_file_handling
         $this->add_obs_file($this->dir_admin_functions.'profiles.functions.php');
         $this->add_obs_file($this->dir_templates_bootstrap_administrator.'managers_choose.html');
         $this->add_obs_file($this->dir_templates_bootstrap_administrator.'edit_profile.html');
+		
+		$this->add_obs_file($this->dir_classes.'jrportal_user_functions.class.php');
     }
 
     public function add_obs_file($path_and_file)

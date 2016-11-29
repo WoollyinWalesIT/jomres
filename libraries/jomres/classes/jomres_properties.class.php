@@ -254,10 +254,6 @@ class jomres_properties
 
         //insert new manager
         if (!$thisJRUser->userIsManager) {
-            jr_import('jrportal_user_functions');
-            $ufuncs = new jrportal_user_functions();
-            $userdeets = $ufuncs->getJoomlaUserDetailsForJoomlaId($thisJRUser->id);
-
             $query = "INSERT INTO #__jomres_managers 
 								(
 								`userid`,
@@ -266,7 +262,7 @@ class jomres_properties
 								) 
 							VALUES 
 								(
-								".(int)$userdeets['id'].", 
+								".(int)$thisJRUser->id.", 
 								70, 
 								".(int) $this->propertys_uid."
 								)";

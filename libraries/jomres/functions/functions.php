@@ -1132,50 +1132,6 @@ function get_booking_number()
     return (int) $tmpBookingHandler->tmpbooking[ 'booking_number' ];
 }
 
-function get_all_super_property_managers()
-{
-    $super_property_managers = array();
-    $query = 'SELECT * FROM #__jomres_managers WHERE pu = 1';
-    $result = doSelectSql($query);
-    if (count($result) > 0) {
-        foreach ($result as $r) {
-            $super_property_managers[ $r->userid ][ 'manager_uid' ] = $r->manager_uid;
-            $super_property_managers[ $r->userid ][ 'userid' ] = $r->userid;
-            $super_property_managers[ $r->userid ][ 'username' ] = $r->username;
-            $super_property_managers[ $r->userid ][ 'access_level' ] = $r->access_level;
-            $super_property_managers[ $r->userid ][ 'currentproperty' ] = $r->currentproperty;
-            $super_property_managers[ $r->userid ][ 'pu' ] = $r->pu;
-            $super_property_managers[ $r->userid ][ 'apikey' ] = $r->apikey;
-            $super_property_managers[ $r->userid ][ 'suspended' ] = $r->suspended;
-            $super_property_managers[ $r->userid ][ 'users_timezone' ] = $r->users_timezone;
-        }
-    }
-
-    return $super_property_managers;
-}
-
-function get_all_suspended_managers()
-{
-    $suspended_managers = array();
-    $query = 'SELECT * FROM #__jomres_managers WHERE suspended = 1';
-    $result = doSelectSql($query);
-    if (count($result) > 0) {
-        foreach ($result as $r) {
-            $suspended_managers[ $r->userid ][ 'manager_uid' ] = $r->manager_uid;
-            $suspended_managers[ $r->userid ][ 'userid' ] = $r->userid;
-            $suspended_managers[ $r->userid ][ 'username' ] = $r->username;
-            $suspended_managers[ $r->userid ][ 'access_level' ] = $r->access_level;
-            $suspended_managers[ $r->userid ][ 'currentproperty' ] = $r->currentproperty;
-            $suspended_managers[ $r->userid ][ 'pu' ] = $r->pu;
-            $suspended_managers[ $r->userid ][ 'apikey' ] = $r->apikey;
-            $suspended_managers[ $r->userid ][ 'suspended' ] = $r->suspended;
-            $suspended_managers[ $r->userid ][ 'users_timezone' ] = $r->users_timezone;
-        }
-    }
-
-    return $suspended_managers;
-}
-
 function detect_property_uid()
 {
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
