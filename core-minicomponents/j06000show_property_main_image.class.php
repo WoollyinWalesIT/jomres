@@ -79,7 +79,7 @@ class j06000show_property_main_image
 			$result = $MiniComponents->specificEvent('01060', 'slideshow', $slideshowArgs);
 			$output[ 'SLIDESHOW' ] = $result['slideshow'];
 		} else {
-			$output[ 'SLIDESHOW' ] = '<img src="'.$jomres_media_centre_images->images['property'][0][0]['medium'].'" class="responsive img-responsive" alt="property image"/>';
+			$output[ 'SLIDESHOW' ] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid).'"><img src="'.$jomres_media_centre_images->images['property'][0][0]['medium'].'" class="responsive img-responsive" alt="property image"/></a>';
 		}
 
         $pageoutput = array();
