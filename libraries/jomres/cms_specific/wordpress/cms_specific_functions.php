@@ -432,3 +432,13 @@ function jomres_cmsspecific_getUsername($user_id = 0) {
 	
 	return $result;
 }
+
+function jomres_cmsspecific_getCmsUserProfileLink($cms_user_id = 0) {
+	if ($cms_user_id == 0) {
+		return '#';
+	}
+	
+	$url = get_admin_url('', 'user-edit.php?user_id=' . $cms_user_id, 'admin');
+	
+	return $url;
+}

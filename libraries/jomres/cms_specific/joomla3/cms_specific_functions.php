@@ -532,3 +532,13 @@ function jomres_cmsspecific_getUsername($user_id = 0) {
 	
 	return $result;
 }
+
+function jomres_cmsspecific_getCmsUserProfileLink($cms_user_id = 0) {
+	if ($cms_user_id == 0) {
+		return '#';
+	}
+	
+	$url = JURI::base().'index.php?option=com_users&view=user&layout=edit&id='.$cms_user_id;
+	
+	return $url;
+}
