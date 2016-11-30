@@ -49,9 +49,6 @@ class j10001control_panel
         $output['JOMRES_SYSTEM_INFO'] = $MiniComponents->specificEvent('16000', 'jomres_system_info', array('output_now' => false));
 
         //jomres writability check
-        $output['JOMRES_WRITABILITY_CHECK'] = $MiniComponents->specificEvent('16000', 'jomres_writability_check', array('output_now' => false));
-
-        //jomres writability check
         $output['JOMRES_OVERVIEW'] = $MiniComponents->specificEvent('16000', 'jomres_overview', array('output_now' => false));
 
         //bookings chart
