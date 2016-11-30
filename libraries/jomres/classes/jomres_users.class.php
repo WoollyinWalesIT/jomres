@@ -91,7 +91,10 @@ class jomres_users
 				$this->users[(int)$r->userid]['simple_configuration'] 	= (int)$r->simple_configuration;
 				$this->users[(int)$r->userid]['last_active'] 			= $r->last_active;
 
-				$this->users[(int)$r->userid]['username'] 				= $this->all_cms_users[ $r->userid ][ 'username' ];
+				if (isset($this->all_cms_users[ $r->userid ][ 'username' ]))
+					$this->users[(int)$r->userid]['username'] 			= $this->all_cms_users[ $r->userid ][ 'username' ];
+				else
+					$this->users[(int)$r->userid]['username'] 			= '';
 				
 				$this->users[(int)$r->userid]['authorised_properties'] 	= array(); //we`ll later get the authorised properties for each manager to save doing a query for each
 				}
@@ -152,7 +155,10 @@ class jomres_users
 					$this->simple_configuration 	= (int)$r->simple_configuration;
 					$this->last_active				= $r->last_active;
 
-					$this->username 				= $this->all_cms_users[ $r->userid ][ 'username' ];
+					if (isset($this->all_cms_users[ $r->userid ][ 'username' ]))
+						$this->username 			= $this->all_cms_users[ $r->userid ][ 'username' ];
+					else
+						$this->username 			= '';
 					
 					$this->authorised_properties 	= array(); //we`ll later get the authorised properties for each manager to save doing a query for each
 					}
