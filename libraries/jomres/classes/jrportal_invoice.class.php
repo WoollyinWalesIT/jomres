@@ -205,7 +205,7 @@ class jrportal_invoice
         $this->commitUpdateInvoice();
     }
 
-    // Note to self, this method is used by 16000save_invoice, it is not redundant
+    //Update line item, not currently used. It`ll stay here for now, just in case we`ll add invoice editing features in the future
     public function update_line_item($line_item_data)
     {
         //We;re expecting to see the id,  init_qty, init_discount

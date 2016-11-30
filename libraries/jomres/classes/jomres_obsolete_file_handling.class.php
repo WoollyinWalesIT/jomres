@@ -1306,6 +1306,24 @@ class jomres_obsolete_file_handling
         $this->add_obs_file($this->dir_templates_bootstrap_administrator.'edit_profile.html');
 		
 		$this->add_obs_file($this->dir_classes.'jrportal_user_functions.class.php');
+		
+		$this->add_obs_file($this->dir_minicomponents.'j03360edit_custom_text.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j03370save_custom_text.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j02234canceleditcreditcard.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j04040editroomtype.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j04050saveroomtype.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j04060deleteroomtype.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j04100editpropertyfeature.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j04110savepropertyfeature.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j04120deletepropertyfeature.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j16000additemtobill.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j16000clearLog.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j16000showLog.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j16000edit_invoice.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j16000save_invoice.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j16000listLogs.class.php');
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'new_invoice.html');
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'edit_invoice.html');
     }
 
     public function add_obs_file($path_and_file)
