@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.19
+ * @version Jomres 9.8.20
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -47,9 +47,6 @@ class j10001control_panel
 
         //jomres system info
         $output['JOMRES_SYSTEM_INFO'] = $MiniComponents->specificEvent('16000', 'jomres_system_info', array('output_now' => false));
-
-        //jomres writability check
-        $output['JOMRES_WRITABILITY_CHECK'] = $MiniComponents->specificEvent('16000', 'jomres_writability_check', array('output_now' => false));
 
         //jomres writability check
         $output['JOMRES_OVERVIEW'] = $MiniComponents->specificEvent('16000', 'jomres_overview', array('output_now' => false));

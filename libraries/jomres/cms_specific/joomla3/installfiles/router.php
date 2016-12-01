@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.19
+ * @version Jomres 9.8.20
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -163,7 +163,7 @@ if (!class_exists('JomresRouter')) {
             }
 
             if (isset($route_query[ 'calledByModule' ])) {
-                $segments[ ] = $jrConfig[ 'sef_task_alias_search' ];
+                $segments[ ] = jr_gettext( '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', false );
                 if (isset($route_query[ 'town' ])) {
                     $segments[ ] = jomres_cmsspecific_stringURLSafe(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false));
                     $segments[ ] = jomres_cmsspecific_stringURLSafe($route_query[ 'town' ]);

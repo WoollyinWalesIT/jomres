@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.19
+ * @version Jomres 9.8.20
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1130,50 +1130,6 @@ function get_booking_number()
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
     return (int) $tmpBookingHandler->tmpbooking[ 'booking_number' ];
-}
-
-function get_all_super_property_managers()
-{
-    $super_property_managers = array();
-    $query = 'SELECT * FROM #__jomres_managers WHERE pu = 1';
-    $result = doSelectSql($query);
-    if (count($result) > 0) {
-        foreach ($result as $r) {
-            $super_property_managers[ $r->userid ][ 'manager_uid' ] = $r->manager_uid;
-            $super_property_managers[ $r->userid ][ 'userid' ] = $r->userid;
-            $super_property_managers[ $r->userid ][ 'username' ] = $r->username;
-            $super_property_managers[ $r->userid ][ 'access_level' ] = $r->access_level;
-            $super_property_managers[ $r->userid ][ 'currentproperty' ] = $r->currentproperty;
-            $super_property_managers[ $r->userid ][ 'pu' ] = $r->pu;
-            $super_property_managers[ $r->userid ][ 'apikey' ] = $r->apikey;
-            $super_property_managers[ $r->userid ][ 'suspended' ] = $r->suspended;
-            $super_property_managers[ $r->userid ][ 'users_timezone' ] = $r->users_timezone;
-        }
-    }
-
-    return $super_property_managers;
-}
-
-function get_all_suspended_managers()
-{
-    $suspended_managers = array();
-    $query = 'SELECT * FROM #__jomres_managers WHERE suspended = 1';
-    $result = doSelectSql($query);
-    if (count($result) > 0) {
-        foreach ($result as $r) {
-            $suspended_managers[ $r->userid ][ 'manager_uid' ] = $r->manager_uid;
-            $suspended_managers[ $r->userid ][ 'userid' ] = $r->userid;
-            $suspended_managers[ $r->userid ][ 'username' ] = $r->username;
-            $suspended_managers[ $r->userid ][ 'access_level' ] = $r->access_level;
-            $suspended_managers[ $r->userid ][ 'currentproperty' ] = $r->currentproperty;
-            $suspended_managers[ $r->userid ][ 'pu' ] = $r->pu;
-            $suspended_managers[ $r->userid ][ 'apikey' ] = $r->apikey;
-            $suspended_managers[ $r->userid ][ 'suspended' ] = $r->suspended;
-            $suspended_managers[ $r->userid ][ 'users_timezone' ] = $r->users_timezone;
-        }
-    }
-
-    return $suspended_managers;
 }
 
 function detect_property_uid()
@@ -4328,101 +4284,6 @@ function this_cms_is_joomla()
 //----------------------------------------
 //-T E X T	M O D I F I C A T I O N	 ----
 //----------------------------------------
-
-function editCustomText()
-{
-    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-    $jrConfig = $siteConfig->get();
-    $theConstant = jomresGetParam($_REQUEST, 'theConstant', '');
-    $defaultText = jomresGetParam($_REQUEST, 'defaultText', '', _MOS_ALLOWHTML);
-    $property_uid = (int) getDefaultProperty();
-    $query = "SELECT customtext FROM #__jomres_custom_text WHERE constant = '$theConstant' and property_uid = '0' AND language = '".get_showtime('lang')."'";
-    $customTextList = doSelectSql($query);
-    $theText = false;
-    if (count($customTextList)) {
-        foreach ($customTextList as $text) {
-            $theText = stripslashes($text->customtext);
-        }
-    }
-    $query = "SELECT customtext FROM #__jomres_custom_text WHERE constant = '$theConstant' and property_uid = '".(int) $property_uid."' AND language = '".get_showtime('lang')."'";
-    $textList = doSelectSql($query);
-    if (count($textList) == 1) {
-        foreach ($textList as $text) {
-            $theText = stripslashes($text->customtext);
-        }
-    }
-    if (!$theText) {
-        $theText = urldecode($defaultText);
-    }
-
-    if (strlen($theText) == 0) {
-        $theText = stripslashes(constant($theConstant));
-    }
-    $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
-    $jrtb = $jrtbar->startTable();
-    $jrtb .= $jrtbar->toolbarItem('cancel', 'javascript:window.close();', '');
-    if ($jrConfig[ 'allowHTMLeditor' ] != '2' && $jrConfig[ 'allowHTMLeditor' ] != '3') {
-        $jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'saveCustomText');
-    }
-    $jrtb .= $jrtbar->endTable();
-    $output[ 'JOMRESTOOLBAR' ] = $jrtb;
-    $output[ 'MOSCONFIGLIVESITE' ] = get_showtime('live_site');
-    $output[ 'HCURRENTTEXT' ] = jr_gettext('_JOMRES_COM_A_EDITING_CURRENTTEXT', '_JOMRES_COM_A_EDITING_CURRENTTEXT');
-    $output[ 'HNEWTEXT' ] = jr_gettext('_JOMRES_COM_A_EDITING_NEWTEXT', '_JOMRES_COM_A_EDITING_NEWTEXT');
-    $output[ 'PROPERTYUID' ] = $property_uid;
-    $output[ 'THECONSTANT' ] = $theConstant;
-    $output[ 'CURRENTTEXT' ] = $theText;
-    if ($jrConfig[ 'allowHTMLeditor' ] == '1' || $jrConfig[ 'allowHTMLeditor' ] == '2' || $jrConfig[ 'allowHTMLeditor' ] == '3') {
-        if ($jrConfig[ 'allowHTMLeditor' ] == '1') {
-            $width = '450';
-            $height = '250';
-            $col = '20';
-            $row = '10';
-            $tmpTxt = editorAreaText('newtext', stripslashes($theText), 'newtext', $width, $height, $col, $row);
-        }
-        if ($jrConfig[ 'allowHTMLeditor' ] == '2' || $jrConfig[ 'allowHTMLeditor' ] == '3') {
-            $tmpTxt = flashArea('newtext', stripslashes($theText));
-        }
-    } else {
-        $tmpTxt = '<textarea class="inputbox" cols="40" rows="6" name="newtext">'.$theText.'</textarea>';
-    }
-
-    $output[ 'NEWTEXT' ] = $tmpTxt;
-
-    $pageoutput[ ] = $output;
-
-    $tmpl = new patTemplate();
-    $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
-    $tmpl->readTemplatesFromInput('edit_custom_text.html');
-    $tmpl->addRows('pageoutput', $pageoutput);
-    $tmpl->displayParsedTemplate();
-}
-
-function saveCustomText()
-{
-    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-    $jrConfig = $siteConfig->get();
-    $property_uid = (int) getDefaultProperty();
-    if ($jrConfig[ 'allowHTMLeditor' ] == '1') {
-        $customText = jomresGetParam($_POST, 'newtext', '', _MOS_ALLOWHTML);
-        $theConstant = jomresGetParam($_POST, 'theConstant', '');
-    } else {
-        $customText = jomresGetParam($_POST, 'newtext', '', 'string');
-        $theConstant = jomresGetParam($_POST, 'theConstant', '');
-    }
-    // Not currently used, but put into place if I decide that people are translating Yes to No in error too often
-    //if ($theConstant == "_JOMRES_COM_MR_YES" || $theConstant == "_JOMRES_COM_MR_NO")
-    //	return;
-    $result = updateCustomText($theConstant, $customText, true, $property_uid);
-    if ($result) {
-        $tmpl = new patTemplate();
-        $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
-        $tmpl->readTemplatesFromInput('save_custom_text.html');
-        $tmpl->displayParsedTemplate();
-    } else {
-        echo 'Error, no data to save';
-    }
-}
 
 function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null)
 {

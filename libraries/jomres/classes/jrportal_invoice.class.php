@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.19
+ * @version Jomres 9.8.20
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -205,7 +205,7 @@ class jrportal_invoice
         $this->commitUpdateInvoice();
     }
 
-    // Note to self, this method is used by 16000save_invoice, it is not redundant
+    //Update line item, not currently used. It`ll stay here for now, just in case we`ll add invoice editing features in the future
     public function update_line_item($line_item_data)
     {
         //We;re expecting to see the id,  init_qty, init_discount

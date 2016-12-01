@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.19
+ * @version Jomres 9.8.20
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -91,7 +91,10 @@ class jomres_users
 				$this->users[(int)$r->userid]['simple_configuration'] 	= (int)$r->simple_configuration;
 				$this->users[(int)$r->userid]['last_active'] 			= $r->last_active;
 
-				$this->users[(int)$r->userid]['username'] 				= $this->all_cms_users[ $r->userid ][ 'username' ];
+				if (isset($this->all_cms_users[ $r->userid ][ 'username' ]))
+					$this->users[(int)$r->userid]['username'] 			= $this->all_cms_users[ $r->userid ][ 'username' ];
+				else
+					$this->users[(int)$r->userid]['username'] 			= '';
 				
 				$this->users[(int)$r->userid]['authorised_properties'] 	= array(); //we`ll later get the authorised properties for each manager to save doing a query for each
 				}
@@ -152,7 +155,10 @@ class jomres_users
 					$this->simple_configuration 	= (int)$r->simple_configuration;
 					$this->last_active				= $r->last_active;
 
-					$this->username 				= $this->all_cms_users[ $r->userid ][ 'username' ];
+					if (isset($this->all_cms_users[ $r->userid ][ 'username' ]))
+						$this->username 			= $this->all_cms_users[ $r->userid ][ 'username' ];
+					else
+						$this->username 			= '';
 					
 					$this->authorised_properties 	= array(); //we`ll later get the authorised properties for each manager to save doing a query for each
 					}
@@ -312,4 +318,31 @@ class jomres_users
 		
 		return true;
 		}
+	
+	// Will find all manager ids for a property id. Note, only returns managers who are not Super Property Managers
+    public function getManagerIdsForProperty($property_uid = 0, $notIncludingSuperManagers = false)
+	{
+		if ( $property_uid == 0 )
+			{
+			throw new Exception( "Error: Property uid not set");
+			}
+
+        $usersArray = array();
+        
+		$query = 'SELECT a.id, a.manager_id FROM #__jomres_managers_propertys_xref a, #__jomres_managers b WHERE a.property_uid = '.(int) $property_uid.' ';
+
+        if ($notIncludingSuperManagers) {
+            $query .= ' AND ( a.manager_id = b.userid AND b.access_level < 90 ) ';
+        }
+
+        $result = doSelectSql($query);
+        
+		if (!empty($result)) {
+            foreach ($result as $r) {
+                $usersArray[ $r->id ][ 'manager_id' ] = $r->manager_id;
+            }
+        }
+
+        return $usersArray;
 	}
+}

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.19
+ * @version Jomres 9.8.20
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -41,6 +41,7 @@ class j16000edit_user
 			$username				= $jomres_users->username;
 			$disabled 				= 'disabled="disabled"';
 			$new_api_key_link 		= '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=generate_user_api_key&cms_user_id=' . $cms_user_id . '" class="btn btn-default">' . jr_gettext( "_JOMRES_APIKEY_REMAKE", '_JOMRES_APIKEY_REMAKE', false ) . '</a>';
+			$cms_user_profile_link	= '<a href="' . jomres_cmsspecific_getCmsUserProfileLink($jomres_users->id) . '" class="btn btn-default" target="_blank">' . jr_gettext( "EDIT_CMS_USER", 'EDIT_CMS_USER', false ) . '</a>';
 			}
 		else
 			{
@@ -53,6 +54,7 @@ class j16000edit_user
 			$username 				= '';
 			$disabled 				= '';
 			$new_api_key_link 		= '';
+			$cms_user_profile_link	= '';
 			}
 
 		$output = array();
@@ -128,12 +130,13 @@ class j16000edit_user
             $output[ 'HUSERNAME_DESC' ]							= '';
 		$output[ 'PAGETITLE' ]	 							= jr_gettext( "_JOMRES_EDIT_PROFILE", '_JOMRES_EDIT_PROFILE', false );
 		
-		$output['ID'] 				= $id;
-		$output['CMS_USER_ID'] 		= $cms_user_id;
-		$output['USERNAME'] 		= $username;
-		$output['API_KEY'] 			= $apikey;
-		$output['DISABLED'] 		= $disabled;
-		$output['NEWAPIKEY_LINK'] 	= $new_api_key_link;
+		$output['ID'] 					= $id;
+		$output['CMS_USER_ID'] 			= $cms_user_id;
+		$output['USERNAME'] 			= $username;
+		$output['API_KEY'] 				= $apikey;
+		$output['DISABLED'] 			= $disabled;
+		$output['NEWAPIKEY_LINK'] 		= $new_api_key_link;
+		$output['USER_PROFILE_LINK']	= $cms_user_profile_link;
 		
 		$output[ 'TOTALINLISTPLUSONE' ] = count( $rows ) + 1;
 		

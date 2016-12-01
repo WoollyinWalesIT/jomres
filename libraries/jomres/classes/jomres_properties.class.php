@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.19
+ * @version Jomres 9.8.20
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -254,27 +254,14 @@ class jomres_properties
 
         //insert new manager
         if (!$thisJRUser->userIsManager) {
-            jr_import('jrportal_user_functions');
-            $ufuncs = new jrportal_user_functions();
-            $userdeets = $ufuncs->getJoomlaUserDetailsForJoomlaId($thisJRUser->id);
-
-            $query = 'INSERT INTO #__jomres_managers 
-								(
-								`userid`,
-								`username`,
-								`property_uid`,
-								`access_level`
-								) 
-							VALUES 
-								(
-								'.(int) $userdeets['id'].", 
-								'".$userdeets['username']."', 
-								'".(int) $this->propertys_uid."', 
-								'2'
-								)";
-            if (!doInsertSql($query, jr_gettext('_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY', '_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY'))) {
-                throw new Exception('Error: New manager insert failed.');
-            }
+            $jomres_users = jomres_singleton_abstract::getInstance('jomres_users');
+			
+			$jomres_users->cms_user_id = (int)$thisJRUser->id;
+			$jomres_users->access_level = 70;
+			$jomres_users->currentproperty = (int)$this->propertys_uid;
+			$jomres_users->apikey = createNewAPIKey();
+			
+			$jomres_users->commit_new_user();
         }
 
         //update authorised properties for this (new) manager

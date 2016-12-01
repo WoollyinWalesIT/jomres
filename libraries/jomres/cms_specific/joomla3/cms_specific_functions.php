@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.19
+ * @version Jomres 9.8.20
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -531,4 +531,14 @@ function jomres_cmsspecific_getUsername($user_id = 0) {
     $result = doSelectSql($query,1);
 	
 	return $result;
+}
+
+function jomres_cmsspecific_getCmsUserProfileLink($cms_user_id = 0) {
+	if ($cms_user_id == 0) {
+		return '#';
+	}
+	
+	$url = JURI::base().'index.php?option=com_users&view=user&layout=edit&id='.$cms_user_id;
+	
+	return $url;
 }

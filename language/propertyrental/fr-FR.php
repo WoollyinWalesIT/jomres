@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.19stable
+ * @version Jomres 9.8.20stable
  *
  * @copyright	2005-2016 Vince Wooll
  * Translated to fr-FR by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 14Oct2010 - www.marioliveira.net. Updated 21-Jun2011 for version 5 stable
@@ -3034,3 +3034,8 @@ jr_define('_JOMRES_MARKDOWN_IMAGES', 'Images');
 jr_define('_JOMRES_MARKDOWN_TABLE', 'Tables');
 jr_define('_JOMRES_MARKDOWN_COLUMN', 'Column');
 
+
+jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW', 'Show property images as slideshow in property list?');
+jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC', 'If set to yes, a slideshow of property main images will be displayed. If set to no, then the first property main image will be displayed.');
+
+jr_define('EDIT_CMS_USER', 'Edit CMS user');

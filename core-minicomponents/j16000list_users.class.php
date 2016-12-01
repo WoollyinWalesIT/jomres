@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.19
+ * @version Jomres 9.8.20
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -68,6 +68,11 @@ class j16000list_users
 				$r[ 'LABEL_CLASS' ] = 'label-red';
 				}
 			
+			if ( $u['username'] == '' ) 
+				{
+				$r[ 'LABEL_CLASS' ] = 'label-orange';
+				}
+			
 			if ( $u['access_level'] > 0 )
 				{
 				$toolbar = jomres_singleton_abstract::getInstance( 'jomresItemToolbar' );
@@ -93,7 +98,11 @@ class j16000list_users
 			else
 				$r[ 'LINKTEXT' ] = "";
 
-			$r[ 'USERNAME' ]           = $u['username'];
+			if ($u['username'] != '')
+				$r[ 'USERNAME' ]       = $u['username'];
+			else
+				$r[ 'USERNAME' ]       = '-';
+			
 			$r[ 'NUMBEROFPROPERTIES' ] = count($u['authorised_properties']);
 			$r[ 'API_KEY' ] 		   = $u['apikey'];
 			

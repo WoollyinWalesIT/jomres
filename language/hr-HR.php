@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.19
+ * @version Jomres 9.8.20
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -3140,3 +3140,8 @@ jr_define('_JOMRES_MARKDOWN_IMAGES', 'Images');
 jr_define('_JOMRES_MARKDOWN_TABLE', 'Tables');
 jr_define('_JOMRES_MARKDOWN_COLUMN', 'Column');
 
+
+jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW', 'Show property images as slideshow in property list?');
+jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC', 'If set to yes, a slideshow of property main images will be displayed. If set to no, then the first property main image will be displayed.');
+
+jr_define('EDIT_CMS_USER', 'Edit CMS user');

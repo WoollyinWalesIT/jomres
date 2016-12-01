@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.19
+ * @version Jomres 9.8.20
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -467,22 +467,6 @@ try {
                 }
                 break;
             //########################################################################################
-            case 'editCustomText':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('03360');
-                } else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'saveCustomText':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('03370');
-                } else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
             case 'editProperty':
                 if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
                     $MiniComponents->triggerEvent('04200');
@@ -597,28 +581,10 @@ try {
                 }
                     break;
             //########################################################################################
-            case 'archiveAudit':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02252');
-                } //archiveAudit();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
             case 'addServiceToBill':
                 if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
                     $MiniComponents->triggerEvent('02150');
                 } //addServiceToBill();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'invoiceForm':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02192');
-                } //invoiceForm();
                 else {
                     userHasBeenLoggedOut();
                 }
@@ -713,11 +679,6 @@ try {
                 } else {
                     userHasBeenLoggedOut();
                 }
-                break;
-            //########################################################################################
-            case 'showTariffs':
-                property_header($property_uid);
-                $MiniComponents->triggerEvent('01020'); //showTariffs();
                 break;
             //########################################################################################
             case 'listProperties':
