@@ -1,3 +1,12 @@
+<h3>Jomres 9.8.20 01/12/2016</h3>
+
+<span class="label label-warning">Change</span> Writability check panel removed as it`s not useful anymore 
+<span class="label label-warning">Change</span> Added a link next to the username input on the edit profiles page to edit the cms user profile
+<span class="label label-warning">Change</span> Improved managers listing so deleted users from the cms that still have access rights to jomres will be marked with an orange label
+<span class="label label-warning">Change</span> Removed some very old obsolete files 
+
+<span class="label label-important label-danger">Fix</span> Fixed a bug where registered users can't create a new property because their access level was set to the wrong value.
+
 <h3>Jomres 9.8.19 28/11/2016</h3>
 
 <span class="label label-success">Feature</span> Added Markdown handling functionality to Jomres. 
