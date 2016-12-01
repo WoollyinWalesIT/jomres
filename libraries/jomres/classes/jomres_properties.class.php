@@ -254,21 +254,14 @@ class jomres_properties
 
         //insert new manager
         if (!$thisJRUser->userIsManager) {
-            $query = "INSERT INTO #__jomres_managers 
-								(
-								`userid`,
-								`access_level`,
-								`currentproperty`
-								) 
-							VALUES 
-								(
-								".(int)$thisJRUser->id.", 
-								70, 
-								".(int) $this->propertys_uid."
-								)";
-            if (!doInsertSql($query, jr_gettext('_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY', '_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY'))) {
-                throw new Exception('Error: New manager insert failed.');
-            }
+            $jomres_users = jomres_singleton_abstract::getInstance('jomres_users');
+			
+			$jomres_users->cms_user_id = (int)$thisJRUser->id;
+			$jomres_users->access_level = 70;
+			$jomres_users->currentproperty = (int)$this->propertys_uid;
+			$jomres_users->apikey = createNewAPIKey();
+			
+			$jomres_users->commit_new_user();
         }
 
         //update authorised properties for this (new) manager
