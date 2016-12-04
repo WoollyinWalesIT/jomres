@@ -98,6 +98,7 @@ jomresJquery(document).ready(function() {
 		eventStartEditable: true,
 		eventOverlap: false,
 		selectOverlap: false,
+		longPressDelay: 1500,
 		header: {
 			left: '',
 			center: '',
@@ -202,7 +203,6 @@ jomresJquery(document).ready(function() {
 		},
 		eventRender: function( event, element, view ) {
 			// this is triggered when the event is rendered
-			jomresJquery(element).addTouch();
 			element.popover({
 				delay: { show: 500, hide: 100 },
 				placement: 'top',
@@ -229,33 +229,33 @@ jomresJquery(document).ready(function() {
 			var y1 = ofs.top;
 			var y2 = ofs.top + trashEl.outerHeight(true);
 
-			if (jsEvent.pageX >= x1 && jsEvent.pageX<= x2 && jsEvent.pageY>= y1 && jsEvent.pageY <= y2 && jomres_device_type == "desktop") 
+			//TODO: we need a confirmation alert here
+			if (jsEvent.pageX >= x1 && jsEvent.pageX<= x2 && jsEvent.pageY>= y1 && jsEvent.pageY <= y2) 
 				{
 				calendar.fullCalendar( 'removeEvents', event.id );
 
-					jomresJquery('#jomres_dashboard{PROPERTY_UID}').block();
-					jomresJquery.ajax({
-						type: 'GET',
-						url: live_site_ajax + '&task=dashboard_cancelbooking_ajax',
-						data: {
-							contract_uid: event.contract_uid
-							},
-						success: function(data)
+				jomresJquery('#jomres_dashboard{PROPERTY_UID}').block();
+				jomresJquery.ajax({
+					type: 'GET',
+					url: live_site_ajax + '&task=dashboard_cancelbooking_ajax',
+					data: {
+						contract_uid: event.contract_uid
+						},
+					success: function(data)
+						{
+						var cancellation_status = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);
+						if (cancellation_status.insertStatus == 1)
 							{
-							var cancellation_status = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);
-							if (cancellation_status.insertStatus == 1)
-								{
-								calendar.fullCalendar( 'refetchEvents' );
-								}
-							else
-								{
-								alert( cancellation_status.insertMessage );
-								revertFunc();
-								jomresJquery('#jomres_dashboard{PROPERTY_UID}').unblock();
-								}
+							calendar.fullCalendar( 'refetchEvents' );
 							}
-						});
-
+						else
+							{
+							alert( cancellation_status.insertMessage );
+							revertFunc();
+							jomresJquery('#jomres_dashboard{PROPERTY_UID}').unblock();
+							}
+						}
+					});
 				}
 		},
 		eventDrop: function ( event, delta, revertFunc, jsEvent, ui, view ) {
@@ -290,8 +290,8 @@ jomresJquery(document).ready(function() {
 				eventEnd.add(1, 'day');
 				end = eventEnd.format('YYYY/MM/DD');
 				}
-			if (jomres_device_type == "desktop") 
-				{
+			//if (jomres_device_type == "desktop") 
+				//{
 				jomresJquery('#jomres_dashboard{PROPERTY_UID}').block();
 				jomresJquery.ajax({
 					type: 'GET',
@@ -328,11 +328,11 @@ jomresJquery(document).ready(function() {
 							}
 						}
 					});
-				}
-			else
-				{
-				revertFunc();
-				}
+				//}
+			//else
+				//{
+				//revertFunc();
+				//}
 		},
 		eventResize: function ( event, delta, revertFunc, jsEvent, ui, view ) {
 			jomresJquery(this).popover('hide');
@@ -367,8 +367,8 @@ jomresJquery(document).ready(function() {
 				end = eventEnd.format('YYYY/MM/DD');
 				}
 
-			if (jomres_device_type == "desktop") 
-				{
+			//if (jomres_device_type == "desktop") 
+				//{
 				jomresJquery('#jomres_dashboard{PROPERTY_UID}').block();
 				jomresJquery.ajax({
 					type: 'GET',
@@ -405,11 +405,11 @@ jomresJquery(document).ready(function() {
 							}
 						}
 					});
-				}
-			else
-				{
-				revertFunc();
-				}
+				//}
+			//else
+				//{
+				//revertFunc();
+				//}
 		},
 		loading: function( isLoading, view ) {
 			if (isLoading === false)

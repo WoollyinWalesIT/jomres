@@ -58,7 +58,6 @@ class j06001dashboard
         jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'fullcalendar.min.js');
         jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'lang-all.js');
         jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'scheduler.min.js');
-        jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'jquery.ui.touch.js');
         jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery.blockUI.js');
         jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'fullcalendar.min.css');
         jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'scheduler.min.css');
