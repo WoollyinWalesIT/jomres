@@ -176,6 +176,7 @@ class j06000compare
             }
 
             $i = 0;
+            $features = array();
             foreach ($featuresArray as $feature_id => $feature) {
                 if (in_array($feature_id, $all_used_features)) {
                     if ($i % 2) {
