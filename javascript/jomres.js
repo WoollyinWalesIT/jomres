@@ -2,28 +2,34 @@ if ('undefined' != typeof(jQuery)) {
 	var jomresJquery = jQuery.noConflict();
 };
 
-jomresJquery.ajaxSetup({ cache: false });
-
-if (navigator.appName == 'Microsoft Internet Explorer') window.onerror = Block_Error;
-function Block_Error() {
-	return true;
-};
-
+//vars
 var jr_deferred = jomresJquery.Deferred();
+var killScroll = false; // IMPORTANT
+var last_scrolled_id = 0;
 
-jomresJquery(function () {
+jomresJquery(document).ready(function () {
+	jomresJquery.ajaxSetup({ cache: false });
+
+	if (navigator.appName == 'Microsoft Internet Explorer') {
+		window.onerror = Block_Error;
+	}
+
 	jomresJquery(".jomres_bt_tooltip_features").tipsy({html: true, fade: true, gravity: jomresJquery.fn.tipsy.autoNS, delayOut: 100});
+
+	jomresJquery.fn.fadeThenSlideToggle = function (speed, easing, callback) {
+		if (this.is(":hidden")) {
+			// temp disabled, we'll use fade in/out for now as sliding doesn't work on ipad
+			//return this.slideDown(speed, easing).fadeTo(speed, 1, easing, callback);
+			return this.fadeIn();
+		} else {
+			//return this.fadeTo(speed, 0, easing).slideUp(speed, easing, callback);
+			return this.fadeOut();
+		}
+	}
 });
 
-jomresJquery.fn.fadeThenSlideToggle = function (speed, easing, callback) {
-	if (this.is(":hidden")) {
-		// temp disabled, we'll use fade in/out for now as sliding doesn't work on ipad
-		//return this.slideDown(speed, easing).fadeTo(speed, 1, easing, callback);
-		return this.fadeIn();
-	} else {
-		//return this.fadeTo(speed, 0, easing).slideUp(speed, easing, callback);
-		return this.fadeOut();
-	}
+function Block_Error() {
+	return true;
 };
 
 function toggle_button_class(id) {
@@ -311,7 +317,9 @@ function module_popup(random_identifier, property_uid) {
 	});
 }
 
-jomresJquery(function () {
+jomresJquery(document).ready(function () {
+	if (jomres_template_version != 'jquery_ui') {return false};
+	
 	//all hover and click logic for buttons
 	jomresJquery(".fg-button:not(.ui-state-disabled)")
 		.hover(
@@ -1126,8 +1134,6 @@ function set_budget(budget_price , reload , formname ) {
 	});
 }
 
-var killScroll = false; // IMPORTANT
-var last_scrolled_id = 0;
 function lastAddedLiveFunc() {
 	if (live_scrolling_enabled) {
 		id = jomresJquery(".jomres_property_list_propertywrapper:last").attr("id");
@@ -1164,10 +1170,7 @@ jomresJquery(document).ready(function () {
 			}
 		}
 	});
-});
 
-
-jomresJquery(document).ready(function () {
 	jomresJquery("input[type=checkbox][name=compare]").click(function () {
 		var bol = jomresJquery("input[type=checkbox][name=compare]:checked").length >= 3;
 		jomresJquery("input[type=checkbox][name=compare]").not(":checked").attr("disabled", bol);
@@ -1194,47 +1197,49 @@ function trigger_comparison(form) {
  * jHeartbeat 0.3.0
  * (C)Alex Richards - http://www.ajtrichards.co.uk/
  */
-jomresJquery.jheartbeat = {
-	options: {
-		url: "heartbeat_default.asp",
-		delay: 10000,
-		div_id: "test_div"
-	},
-	beatfunction: function () {
-	},
-	timeoutobj: {
-		id: -1
-	},
-	set: function (options, onbeatfunction) {
-		if (this.timeoutobj.id > -1) {
-			clearTimeout(this.timeoutobj);
-			}
-		if (options) {
-			jomresJquery.extend(this.options, options);
-			}
-		if (onbeatfunction) {
-			this.beatfunction = onbeatfunction;
-			}
-		// Add the HeartBeatDIV to the page
-		jomresJquery("body").append("<div id=\"" + this.options.div_id + "\" style=\"display: none;\"></div>");
-		this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
-	},
-	beat: function () {
-		jomresJquery.ajax({
-			url: this.options.url,
-			dataType: "html",
-			type: "GET",
-			error: function (e) {
-				jomresJquery('#' + jomresJquery.jheartbeat.options.div_id).append("");
-			},
-			success: function (data) {
-				jomresJquery('#' + jomresJquery.jheartbeat.options.div_id).html(data);
-			}
-		});
-		this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
-		this.beatfunction();
-	}
-};
+jomresJquery(document).ready(function () {
+	jomresJquery.jheartbeat = {
+		options: {
+			url: "heartbeat_default.asp",
+			delay: 10000,
+			div_id: "test_div"
+		},
+		beatfunction: function () {
+		},
+		timeoutobj: {
+			id: -1
+		},
+		set: function (options, onbeatfunction) {
+			if (this.timeoutobj.id > -1) {
+				clearTimeout(this.timeoutobj);
+				}
+			if (options) {
+				jomresJquery.extend(this.options, options);
+				}
+			if (onbeatfunction) {
+				this.beatfunction = onbeatfunction;
+				}
+			// Add the HeartBeatDIV to the page
+			jomresJquery("body").append("<div id=\"" + this.options.div_id + "\" style=\"display: none;\"></div>");
+			this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
+		},
+		beat: function () {
+			jomresJquery.ajax({
+				url: this.options.url,
+				dataType: "html",
+				type: "GET",
+				error: function (e) {
+					jomresJquery('#' + jomresJquery.jheartbeat.options.div_id).append("");
+				},
+				success: function (data) {
+					jomresJquery('#' + jomresJquery.jheartbeat.options.div_id).html(data);
+				}
+			});
+			this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
+			this.beatfunction();
+		}
+	};
+});
 
 function jomres_print(div) {
 	jomresJquery('body').css('visibility','hidden');
