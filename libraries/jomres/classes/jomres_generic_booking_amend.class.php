@@ -135,10 +135,10 @@ class jomres_generic_booking_amend
         }
 
         //get the contract room^tariff pairs
-        $query = 'SELECT `rooms_tariffs` FROM #__jomres_contracts WHERE `contract_uid` = '.(int) $this->contract_uid.' ';
+        $query = 'SELECT `rooms_tariffs` FROM #__jomres_contracts WHERE `contract_uid` = '.(int) $this->contract_uid;
         $result = doSelectSql($query, 1);
 
-        if ($result && $result != "'") {
+        if (!empty($result)) {
             $room_and_tariff_info = explode(',', $result);
             foreach ($room_and_tariff_info as $e) {
                 $rt = explode('^', $e);
@@ -148,7 +148,7 @@ class jomres_generic_booking_amend
             }
 
             $new_room_and_tariff_info = array();
-            if (empty($pairs)) {
+            if (!empty($pairs)) {
                 foreach ($pairs as $k => $v) {
                     if ($k == $this->room_uid) {
                         unset($pairs[$k]);
@@ -162,7 +162,7 @@ class jomres_generic_booking_amend
                     $new_room_and_tariff_info[] = $k.'^'.$v;
                 }
             }
-            $rooms_tariffs = jomres_implode($new_room_and_tariff_info);
+            $rooms_tariffs = implode(',',$new_room_and_tariff_info);
 
             if ($clause != '') {
                 $clause .= ', ';
