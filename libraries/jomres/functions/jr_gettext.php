@@ -101,7 +101,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
             $theText = jomres_remove_HTML($theText);
         } */
 
-        $theText = jomres_decode($theText);
+        
 
         if ($thisJRUser->userIsManager && ($editing || ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager)) && $okToEdit && ($thisJRUser->accesslevel > 50)) {
             if (strlen(trim($theText)) == 0 || strtolower(trim($theText)) == '<span></span>' || strtolower(trim($theText)) == '<span> </span>' || strtolower(trim($theText)) == '<span>  </span>') {
@@ -134,5 +134,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
         }
     }
 
+    $theText = jomres_decode($theText);
+    
     return $theText;
 }
