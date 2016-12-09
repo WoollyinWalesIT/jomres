@@ -515,7 +515,7 @@ class j02260editbooking
         foreach ($current_contract_details->contract[$contract_uid]['notedeets'] as $n) {
             $r = array();
             $r[ 'NOTE' ] = $n['note'];
-            $r[ 'DATETIME' ] = $n['timestamp'];
+            $r[ 'DATETIME' ] = outputDate($n['timestamp']);
             $r[ 'EDITLINK' ] = JOMRES_SITEPAGE_URL_NOSEF.'&task=editnote&note_id='.$n['id'].'&contract_uid='.(int) $contract_uid;
             $r[ 'EDITTEXT' ] = jr_gettext('_JOMCOMP_BOOKINGNOTES_EDIT', '_JOMCOMP_BOOKINGNOTES_EDIT', $editable = false, $isLink = true);
             $r[ 'DELETELINK' ] = JOMRES_SITEPAGE_URL_NOSEF.'&task=deletenote&note_id='.$n['id'].'&contract_uid='.$contract_uid;
