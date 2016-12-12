@@ -123,7 +123,7 @@ class jrportal_invoice
         $jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
 
         if ($jrportal_taxrate->gather_data($line_item_data[ 'tax_code_id' ])) {
-            $this->lineitem['tax_rate'] = (float) $jrportal_taxrate->rate;
+            $this->lineitem['tax_rate'] = $jrportal_taxrate->rate;
             $this->lineitem['tax_code'] = $jrportal_taxrate->code;
             $this->lineitem['tax_description'] = $jrportal_taxrate->description;
         } else {
@@ -144,21 +144,19 @@ class jrportal_invoice
 
         $this->lineitem['inv_id'] = $this->id;
 
-        $i_total = ((float) $this->lineitem['init_price'] * (float) $this->lineitem['init_qty']) + (float) $this->lineitem['init_discount'];
-        $i_total = number_format($i_total, 2, '.', '');
-
-        $this->lineitem['init_total'] = $i_total;
+        $i_total = ($this->lineitem['init_price'] * $this->lineitem['init_qty']) + $this->lineitem['init_discount'];
+		
+        $this->lineitem['init_total'] = number_format($i_total, 2, '.', '');
 
         if ($this->vat_will_be_charged) {
-            $init_total_tax = number_format( round($i_total / 100 * $this->lineitem['tax_rate'],5), 2, '.', '' );
-            //$init_total_tax = substr(number_format($i_total / 100 * $this->lineitem['tax_rate'], 3, '.', ''), 0, -1);  // possible solution to rounding issues, awaiting testing
+            $init_total_tax = $this->lineitem['tax_rate'] * ($i_total / 100);
         } else {
             $init_total_tax = 0;
         }
 
-        $this->lineitem['init_total_inclusive'] = $i_total + $init_total_tax;
+        $this->lineitem['init_total_inclusive'] = number_format($i_total + $init_total_tax, 2, '.', '');
 
-        $this->init_total = $this->init_total + $this->lineitem['init_total_inclusive'];
+        $this->init_total = number_format($this->init_total + $i_total + $init_total_tax, 2, '.', '');
 
         //insert the new line item
         $this->commitLineItem();
@@ -234,20 +232,19 @@ class jrportal_invoice
         $this->lineitem['init_discount'] = $line_item_data[ 'init_discount' ];
         $this->lineitem['is_payment'] = (int) $line_item_data[ 'is_payment' ];
 
-        $i_total = ((float) $this->lineitem['init_price'] * (float) $this->lineitem['init_qty']) - (float) $this->lineitem['init_discount'];
-
-        $this->lineitem['init_total'] = $i_total;
+        $i_total = ($this->lineitem['init_price'] * $this->lineitem['init_qty']) - $this->lineitem['init_discount'];
+		
+		$this->lineitem['init_total'] = number_format($i_total, 2, '.', '');
 
         if ($this->vat_will_be_charged) {
-            $init_total_tax = number_format( round($i_total / 100 * $this->lineitem['tax_rate'],5), 2, '.', '' );
-            //$init_total_tax = substr(number_format($i_total / 100 * $this->lineitem['tax_rate'], 3, '.', ''), 0, -1); // possible solution to rounding issues, awaiting testing
+            $init_total_tax = $this->lineitem['tax_rate'] * ($i_total / 100);
         } else {
             $init_total_tax = 0;
         }
 
-        $this->lineitem['init_total_inclusive'] = $i_total + $init_total_tax;
+        $this->lineitem['init_total_inclusive'] = number_format($i_total + $init_total_tax, 2, '.', '');
 
-        $this->init_total = $this->init_total + $this->lineitem['init_total_inclusive'];
+        $this->init_total = number_format($this->init_total + $i_total + $init_total_tax, 2, '.', '');
 
         $this->commitUpdateLineItem();
     }
