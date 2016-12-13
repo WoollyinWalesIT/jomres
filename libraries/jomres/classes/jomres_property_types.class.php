@@ -222,7 +222,7 @@ class jomres_property_types
         }
 
         if ($this->property_type['id'] > 0) {
-            if ($published == 0 && $this->ptype_is_used($this->property_type['id'])) {
+            if ($published == 0 && !$this->ptype_is_used($this->property_type['id'])) {
                 return false;
             }
 
