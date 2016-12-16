@@ -84,6 +84,8 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
     } else {
         $theText = jr_get_defined($theConstant, $theValue);
     }
+	
+	$theText = jomres_decode($theText);
 
     if (isset($thisJRUser->userIsManager) && $thisJRUser->userIsManager) {
         if (isset($_REQUEST[ 'task' ]) && jomres_cmsspecific_areweinadminarea()) {
@@ -100,8 +102,6 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
         /* if ($jrConfig[ 'allowHTMLeditor' ] != '1') {
             $theText = jomres_remove_HTML($theText);
         } */
-
-        
 
         if ($thisJRUser->userIsManager && ($editing || ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager)) && $okToEdit && ($thisJRUser->accesslevel > 50)) {
             if (strlen(trim($theText)) == 0 || strtolower(trim($theText)) == '<span></span>' || strtolower(trim($theText)) == '<span> </span>' || strtolower(trim($theText)) == '<span>  </span>') {
@@ -133,8 +133,6 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
             }
         }
     }
-
-    $theText = jomres_decode($theText);
     
     return $theText;
 }
