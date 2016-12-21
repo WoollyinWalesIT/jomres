@@ -261,7 +261,12 @@ class j02990showconfirmation
         $requestedrooms = $bookingDeets[ 'requestedRoom' ];
         $rooms = explode(',', $requestedrooms);
         $booking_parts[ 'NUMROOMS' ] = count($rooms);
-
+        
+        if ( $booking_parts[ 'NUMROOMS' ] == 0 && get_showtime('include_room_booking_functionality') ) {
+            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$bookingDeets[ 'property_uid' ]), '');
+        }
+        
+        
         foreach ($rooms as $r) {
             $rm = explode('^', $r);
             if ($rm[ 0 ] != '') {

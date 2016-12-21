@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
     Flight::map('json', function ($response_name, $data, $code = 200, $encode = true, $charset = 'utf-8') {
-        logging::log_message(' Replied with code '.$code.' and contents '.json_encode($data), 'API', 'INFO');
+        logging::log_message(' Replied with code '.$code, 'API', 'INFO' , ' Replied with code '.$code.' and contents'.json_encode($data));
         $response = new stdClass();
         $response->data[$response_name] = $data;
         $response->meta['code'] = $code;
