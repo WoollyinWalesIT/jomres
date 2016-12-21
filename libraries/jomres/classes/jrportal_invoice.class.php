@@ -439,7 +439,16 @@ class jrportal_invoice
 
             if ((int) $invoice_id > 0) {
                 $this->id = (int) $invoice_id;
-
+                
+                $webhook_notification                               = new stdClass();
+                $webhook_notification->webhook_event                = 'invoice_added';
+                $webhook_notification->webhook_event_description    = 'Logs when an invoice is added.';
+                $webhook_notification->webhook_event_plugin         = 'core';
+                $webhook_notification->data                         = new stdClass();
+                $webhook_notification->data->property_uid           = $this->property_uid;
+                $webhook_notification->data->invoice_uid            = $this->id;
+                add_webhook_notification($webhook_notification);
+            
                 return true;
             } else {
                 error_logging('ID of Invoice could not be found after apparent successful insert');
@@ -497,7 +506,16 @@ class jrportal_invoice
 
             if ((int) $lineitem_id > 0) {
                 $this->lineitem['id'] = (int) $lineitem_id;
-
+                
+                $webhook_notification                               = new stdClass();
+                $webhook_notification->webhook_event                = 'invoice_updated';
+                $webhook_notification->webhook_event_description    = 'Logs when an invoice is updated.';
+                $webhook_notification->webhook_event_plugin         = 'core';
+                $webhook_notification->data                         = new stdClass();
+                $webhook_notification->data->property_uid           = $this->property_uid;
+                $webhook_notification->data->invoice_uid            = $this->id;
+                add_webhook_notification($webhook_notification);
+            
                 return true;
             } else {
                 error_logging('ID of Line Item could not be found after apparent successful insert');
@@ -537,6 +555,15 @@ class jrportal_invoice
 						`vat_will_be_charged` = '.(int) $this->vat_will_be_charged."
 					WHERE `id`= " . (int)$this->id;
 
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'invoice_updated';
+        $webhook_notification->webhook_event_description    = 'Logs when an invoice is updated.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->property_uid;
+        $webhook_notification->data->invoice_uid            = $this->id;
+        add_webhook_notification($webhook_notification);
+                
         return doInsertSql($query, '');
     }
 
@@ -569,6 +596,15 @@ class jrportal_invoice
 						`is_payment`			= ' .(int) $this->lineitem['is_payment'].'
 					WHERE `id`=' .(int)$this->lineitem['id'];
 
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'invoice_updated';
+        $webhook_notification->webhook_event_description    = 'Logs when an invoice is updated.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->property_uid;
+        $webhook_notification->data->invoice_uid            = $this->id;
+        add_webhook_notification($webhook_notification);
+        
         return doInsertSql($query, '');
     }
 
@@ -583,6 +619,15 @@ class jrportal_invoice
 
         $query = 'DELETE FROM #__jomresportal_lineitems WHERE `id` = '.$line_item_id;
 
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'invoice_updated';
+        $webhook_notification->webhook_event_description    = 'Logs when an invoice is updated.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->property_uid;
+        $webhook_notification->data->invoice_uid            = $this->id;
+        add_webhook_notification($webhook_notification);
+        
         return doInsertSql($query, '');
     }
 

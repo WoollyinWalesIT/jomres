@@ -137,6 +137,15 @@ class jomres_reviews
 			';
         $result = doInsertSql($query, '');
         if ($result) {
+            
+            $webhook_notification                               = new stdClass();
+            $webhook_notification->webhook_event                = 'review_save';
+            $webhook_notification->webhook_event_description    = 'Logs when a review is added.';
+            $webhook_notification->webhook_event_plugin         = 'core';
+            $webhook_notification->data                         = new stdClass();
+            $webhook_notification->data->rating_id              = $result;
+            add_webhook_notification($webhook_notification);
+            
             return $result;
         }
 
@@ -177,6 +186,15 @@ class jomres_reviews
                 $query = 'DELETE FROM #__jomres_reviews_ratings_detail WHERE `rating_id`='.(int) $rating_id.'';
                 $result = doInsertSql($query, '');
                 if ($result) {
+                    
+                    $webhook_notification                               = new stdClass();
+                    $webhook_notification->webhook_event                = 'review_delete';
+                    $webhook_notification->webhook_event_description    = 'Logs when a review is added.';
+                    $webhook_notification->webhook_event_plugin         = 'core';
+                    $webhook_notification->data                         = new stdClass();
+                    $webhook_notification->data->rating_id              = $rating_id;
+                    add_webhook_notification($webhook_notification);
+            
                     return true;
                 }
             }
@@ -190,6 +208,13 @@ class jomres_reviews
         $query = 'UPDATE #__jomres_reviews_ratings SET published = 1 WHERE rating_id = '.$rating_id;
         $result = doInsertSql($query, '');
         if ($result) {
+            $webhook_notification                               = new stdClass();
+            $webhook_notification->webhook_event                = 'review_publish';
+            $webhook_notification->webhook_event_description    = 'Logs when a review is added.';
+            $webhook_notification->webhook_event_plugin         = 'core';
+            $webhook_notification->data                         = new stdClass();
+            $webhook_notification->data->rating_id              = $rating_id;
+            add_webhook_notification($webhook_notification);
             return true;
         } else {
             return false;
@@ -201,6 +226,13 @@ class jomres_reviews
         $query = 'UPDATE #__jomres_reviews_ratings SET published = 0 WHERE rating_id = '.$rating_id;
         $result = doInsertSql($query, '');
         if ($result) {
+            $webhook_notification                               = new stdClass();
+            $webhook_notification->webhook_event                = 'review_unpublish';
+            $webhook_notification->webhook_event_description    = 'Logs when a review is added.';
+            $webhook_notification->webhook_event_plugin         = 'core';
+            $webhook_notification->data                         = new stdClass();
+            $webhook_notification->data->rating_id              = $rating_id;
+            add_webhook_notification($webhook_notification);
             return true;
         } else {
             return false;

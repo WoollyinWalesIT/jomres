@@ -94,6 +94,14 @@ class j04910deleteproperty
                 $jomres_messaging = jomres_getSingleton('jomres_messages');
                 $jomres_messaging->set_message($saveMessage);
 
+                $webhook_notification                               = new stdClass();
+                $webhook_notification->webhook_event                = 'property_delete';
+                $webhook_notification->webhook_event_description    = 'Logs when a property is deleted.';
+                $webhook_notification->webhook_event_plugin         = 'core';
+                $webhook_notification->data                         = new stdClass();
+                $webhook_notification->data->property_uid           = $property_uid;
+                add_webhook_notification($webhook_notification);
+        
                 jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=listyourproperties&thisProperty='.$resetProperty, ''));
             } else {
                 trigger_error(jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS', '_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS', false), E_USER_ERROR);

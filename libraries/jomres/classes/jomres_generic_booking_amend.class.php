@@ -237,6 +237,15 @@ class jomres_generic_booking_amend
             }
         }
 
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'amend_booking';
+        $webhook_notification->webhook_event_description    = 'Logs when a booking is modified.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->property_uid;
+        $webhook_notification->data->contract_uid           = $this->contract_uid;
+        add_webhook_notification($webhook_notification);
+        
         return true;
     }
 

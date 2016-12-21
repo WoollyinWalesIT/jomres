@@ -91,6 +91,15 @@ class jrportal_rooms
             $this->update_tariffs($this->propertys_uid);
         }
 
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'room_added';
+        $webhook_notification->webhook_event_description    = 'Logs when a room is added.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->propertys_uid;
+        $webhook_notification->data->room_uid               = $this->room_uid;
+        add_webhook_notification($webhook_notification);
+        
         return true;
     }
 
@@ -131,6 +140,15 @@ class jrportal_rooms
             $this->update_tariffs($this->propertys_uid);
         }
 
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'room_updated';
+        $webhook_notification->webhook_event_description    = 'Logs when a room is updated.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->propertys_uid;
+        $webhook_notification->data->room_uid               = $this->room_uid;
+        add_webhook_notification($webhook_notification);
+        
         return true;
     }
 
@@ -169,7 +187,16 @@ class jrportal_rooms
             if (!doInsertSql($query, jr_gettext('_JOMRES_COM_MR_ROOM_DELETED', '_JOMRES_COM_MR_ROOM_DELETED', false))) {
                 throw new Exception('Error: Delete room failed.');
             }
-
+            
+            $webhook_notification                               = new stdClass();
+            $webhook_notification->webhook_event                = 'room_updated';
+            $webhook_notification->webhook_event_description    = 'Logs when a room is deleted.';
+            $webhook_notification->webhook_event_plugin         = 'core';
+            $webhook_notification->data                         = new stdClass();
+            $webhook_notification->data->property_uid           = $this->propertys_uid;
+            $webhook_notification->data->room_uid               = $this->room_uid;
+            add_webhook_notification($webhook_notification);
+            
             return true;
         } else {
             return false;
@@ -278,7 +305,15 @@ class jrportal_rooms
         if (!doInsertSql($query, '')) {
             throw new Exception('Error: Could not mass generate rooms.');
         }
-
+        
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'rooms_multiple_added';
+        $webhook_notification->webhook_event_description    = 'Logs when mulitiple rooms are added.  Because multiple rooms have been added, the remote service is advised to completely refresh their rooms list.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->rooms_generator['propertys_uid'];
+        add_webhook_notification($webhook_notification);
+        
         return true;
     }
 }

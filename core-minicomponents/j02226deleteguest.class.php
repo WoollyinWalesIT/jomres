@@ -57,6 +57,16 @@ class j02226deleteguest
             if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_DELETE_GUEST', '_JOMRES_MR_AUDIT_DELETE_GUEST', false))) {
                 trigger_error(jr_gettext('_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', false), E_USER_ERROR);
             }
+            
+            $webhook_notification                               = new stdClass();
+            $webhook_notification->webhook_event                = 'guest_delete';
+            $webhook_notification->webhook_event_description    = 'Logs when a guest is deleted.';
+            $webhook_notification->webhook_event_plugin         = 'core';
+            $webhook_notification->data                         = new stdClass();
+            $webhook_notification->data->guest_id               = $guestUid;
+            $webhook_notification->data->property_uid           = $defaultProperty;
+            add_webhook_notification($webhook_notification);
+            
             jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=listguests'), $saveMessage);
         } else {
             echo jr_gettext('_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', false);

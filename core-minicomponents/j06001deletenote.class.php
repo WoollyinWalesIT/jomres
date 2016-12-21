@@ -40,6 +40,16 @@ class j06001deletenote
         $auditMessage = jr_gettext('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_DELETE', '_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_DELETE', false, false);
         $query = "DELETE FROM #__jomcomp_notes WHERE `id`='".(int) $note_id."' AND `property_uid`='".(int) $defaultProperty."' LIMIT 1";
         if (doInsertSql($query, $auditMessage)) {
+            
+            $webhook_notification                           = new stdClass();
+            $webhook_notification->webhook_event            = 'booking_note_delete';
+            $webhook_notification->webhook_event_description = 'Logs when booking notes are deleted.';
+            $webhook_notification->data                     = new stdClass();
+            $webhook_notification->data->contract_uid       = $contract_uid;
+            $webhook_notification->data->property_uid       = $defaultProperty;
+            $webhook_notification->data->note_id            = $note_id;
+            add_webhook_notification($webhook_notification);
+            
             jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contract_uid"), '');
         } else {
             echo 'Error deleting note';

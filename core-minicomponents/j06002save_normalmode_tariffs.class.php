@@ -328,6 +328,23 @@ class j06002save_normalmode_tariffs
                 }
             }
         }
+        
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'rooms_multiple_added';
+        $webhook_notification->webhook_event_description    = 'Logs when mulitiple rooms may have been added. Because multiple rooms have been added, the remote service is advised to completely refresh their rooms list.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $defaultProperty;
+        add_webhook_notification($webhook_notification);
+            
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'tariffs_updated';
+        $webhook_notification->webhook_event_description    = 'Logs when tariffs updated.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $defaultProperty;
+        add_webhook_notification($webhook_notification);
+            
         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_tariffs_normal'), 'Normal tariff editing mode saved.');
     }
 

@@ -46,6 +46,15 @@ class j06002delete_resource
         } else {
             $save_message = jr_gettext('_JOMRES_COM_MR_ROOM_UNABLETODELETE', '_JOMRES_COM_MR_ROOM_UNABLETODELETE', false);
         }
+        
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'room_deleted';
+        $webhook_notification->webhook_event_description    = 'Logs when a room is deleted.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $defaultProperty;
+        $webhook_notification->data->room_uid               = $roomUid;
+        add_webhook_notification($webhook_notification);
 
         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_resources'), $save_message);
     }
