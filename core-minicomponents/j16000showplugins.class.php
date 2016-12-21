@@ -303,6 +303,7 @@ class j16000showplugins
 
         $jomresdotnet_plugins = array();
         $jomresdotnet_apiplugins = array();
+		$jomresdotnet_webhooksplugins = array();
 
         $plugins_needing_upgrading = array();
         $all_installed_plugins = array();
@@ -528,17 +529,23 @@ class j16000showplugins
 
             $r[ 'STYLE' ] = $style;
 
-            if (substr($rp[ 'name' ], 0, 4) != 'api_') {
-                if ($rp[ 'retired' ] && array_key_exists($rp[ 'name' ], $installed_plugins)) {
-                    $jomresdotnet_plugins[ ] = $r;
+            if (substr($rp[ 'name' ], 0, 4) == 'api_') {
+				if ($rp[ 'retired' ] && array_key_exists($rp[ 'name' ], $installed_plugins)) {
+                    $jomresdotnet_apiplugins[ ] = $r;
                 } elseif (!$rp[ 'retired' ]) {
-                    $jomresdotnet_plugins[ ] = $r;
+                    $jomresdotnet_apiplugins[ ] = $r;
+                }
+			} elseif (substr($rp[ 'name' ], 0, 9) == 'webhooks_') {
+				if ($rp[ 'retired' ] && array_key_exists($rp[ 'name' ], $installed_plugins)) {
+                    $jomresdotnet_webhooksplugins[ ] = $r;
+                } elseif (!$rp[ 'retired' ]) {
+                    $jomresdotnet_webhooksplugins[ ] = $r;
                 }
             } else {
-                if ($rp[ 'retired' ] && array_key_exists($rp[ 'name' ], $installed_plugins)) {
-                    $jomresdotnet_apiplugins[ ] = $r;
+                 if ($rp[ 'retired' ] && array_key_exists($rp[ 'name' ], $installed_plugins)) {
+                    $jomresdotnet_plugins[ ] = $r;
                 } elseif (!$rp[ 'retired' ]) {
-                    $jomresdotnet_apiplugins[ ] = $r;
+                    $jomresdotnet_plugins[ ] = $r;
                 }
             }
         }
@@ -563,6 +570,18 @@ class j16000showplugins
                     $move = $jomresdotnet_apiplugins[$i];
                     unset($jomresdotnet_apiplugins[$i]);
                     array_unshift($jomresdotnet_apiplugins, $move);
+                }
+            }
+        }
+		
+		// We'll move retired webhooks plugins to the top of the list
+        if (count($retired_plugins) > 0) {
+            $count = count($jomresdotnet_webhooksplugins);
+            for ($i = 0; $i < $count; ++$i) {
+                if (in_array($jomresdotnet_webhooksplugins[$i]['PLUGIN_NAME'], $retired_plugins)) {
+                    $move = $jomresdotnet_webhooksplugins[$i];
+                    unset($jomresdotnet_webhooksplugins[$i]);
+                    array_unshift($jomresdotnet_webhooksplugins, $move);
                 }
             }
         }
@@ -594,6 +613,7 @@ class j16000showplugins
         $tmpl->addRows('thirdpartyplugins', $thirdpartyplugins);
         $tmpl->addRows('jomresdotnet_plugins', $jomresdotnet_plugins);
         $tmpl->addRows('jomresdotnet_apiplugins', $jomresdotnet_apiplugins);
+		$tmpl->addRows('jomresdotnet_webhooksplugins', $jomresdotnet_webhooksplugins);
         $tmpl->addRows('plugins_require_upgrade', $plugins_require_upgrade);
         $tmpl->addRows('reinstall_plugins', $plugins_reinstall);
 

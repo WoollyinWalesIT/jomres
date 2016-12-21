@@ -302,6 +302,7 @@
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#coreplugins" data-toggle="tab">Core plugins</a></li>
 			<li><a href="#apiplugins" data-toggle="tab">Core API plugins</a></li>
+			<li><a href="#webhooksplugins" data-toggle="tab">Webhooks plugins</a></li>
 			<li><a href="#3rdpplugins" data-toggle="tab">Third party plugins</a></li>
 			<li><a href="#install3rdpplugin" data-toggle="tab">Install third party plugin</a></li>
 		</ul>
@@ -380,6 +381,70 @@
 						<th>{HPLUGINPRICE}</th>
 					</tr>
 					<patTemplate:tmpl name="jomresdotnet_apiplugins" unusedvars="strip">
+					<tr>
+						<td class="{ROWCLASS}"><a name="{PLUGIN_NAME}"></a>{STRONG1}{READABLE_NAME}{STRONG2}</td>
+						<!--<td><a href="#" class="thumbnail"><img src="{IMAGE}" alt=""></a></td>-->
+						<td>
+							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal_trigger_{PLUGIN_NAME}">{ENCODED_ICON} More info</button>
+						</td>
+						<td>{INSTALL} {LATERVERSION}</td>
+						<td>{UNINSTALL}</td>
+						<td>{ADD_TO_CART_BUTTON}</td>
+					</tr>
+					<!-- Modal -->
+					<div id="modal_trigger_{PLUGIN_NAME}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h3 id="myModalLabel">{READABLE_NAME}</h3>
+						</div>
+						<div class="modal-body">
+							<div class="row-fluid">
+								<div class="span6">
+									<img src="{IMAGE}" class="img-responsive" alt="{READABLE_NAME}"/>
+								</div>
+								<div class="span6">
+									<div class="alert alert-info">
+										<p>Minimum Jomres version {MIN_JOMRES_VER}</p>
+										<p>Your Version {LOCAL_VER}</p>
+										<p>Current Version {REMOTE_VER}</p>
+										<p>Last updated {LASTUPDATE}</p>
+										<p>
+											<a href="{MANUAL_LINK}" target="_blank" class="{MANUAL_CLASS}">{MANUAL_TEXT}</a>
+											<a href="{DEMO_LINK}" target="_blank" class="{DEMO_CLASS}">{DEMO_TEXT}</a>
+										</p>
+									</div>
+								</div>
+							</div>
+							<p>{PLUGIN_DESC}</p>
+							<p class="{HIGHLIGHT_CLASS}">{HIGHLIGHT}</p>
+							<button type="button" class="btn" data-toggle="collapse" data-target="#collapse_{PLUGIN_NAME}">
+								Changelog
+							</button>
+							<div id="collapse_{PLUGIN_NAME}" class="collapse">
+								<div class="row-fluid">
+									<div class="span12">
+										<p class="muted">{CHANGELOG}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+					</patTemplate:tmpl>
+				</table>
+			</div>
+			<div class="tab-pane" id="webhooksplugins">
+				<table width="100%" class="table table-hover ">
+					<tr>
+						<th>Name</th>
+						<th></th>
+						<th>Add/reinstall/upgrade plugin</th>
+						<th>Remove plugin</th>
+						<th>{HPLUGINPRICE}</th>
+					</tr>
+					<patTemplate:tmpl name="jomresdotnet_webhooksplugins" unusedvars="strip">
 					<tr>
 						<td class="{ROWCLASS}"><a name="{PLUGIN_NAME}"></a>{STRONG1}{READABLE_NAME}{STRONG2}</td>
 						<!--<td><a href="#" class="thumbnail"><img src="{IMAGE}" alt=""></a></td>-->
