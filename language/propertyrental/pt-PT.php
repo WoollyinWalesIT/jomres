@@ -1452,7 +1452,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Número de propr
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Carregar a biblioteca Jomres jQuery?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'Pode definir NÃO se tiver um tema que utilize jquery. Isto PODE resolver alguns problemas de conflitos jquery nalguns temas, mas não em todos.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Se utiliza o Joomfish, deve definir como NÃO, e utilizar o selector de idioma Joomfish. Este selector está sempre activo na ára de administração porque é necessário quando se utiliza a característica de Tradução de Etiquetas.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'São automaticamente criadas imagens de referência (<i>thumbnails</i>) para as imagens carregadas.');
 // 4.7.1
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', 'Larg. máx. imagens de referência (px).');
@@ -1699,7 +1699,7 @@ jr_define('_JOMRES_FOUNDPROPERTIES', 'Properties found');
 jr_define('_JOMRES_REGISTRATION_STEP_1_OF_2', 'Add your property : Step 1 of 2');
 jr_define('_JOMRES_REGISTRATION_STEP_2_OF_2', 'Add your property : Step 2 of 2');
 
-jr_define('_JOMRES_MYPROPERTIES', 'My properties');
+jr_define('_JOMRES_MYPROPERTIES', 'My businesses');
 
 jr_define('_JOMRES_CART_TITLE', 'My proposed bookings');
 jr_define('_JOMRES_CART_INFO', 'Note, these bookings have not been saved yet. If you log out or your session expires they will be lost. Remember to confirm your bookings!');

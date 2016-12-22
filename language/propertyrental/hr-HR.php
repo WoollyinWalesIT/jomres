@@ -708,8 +708,8 @@ jr_define('_JOMRES_SEARCH_BUTTON', 'Traži');
 jr_define('_JOMRES_SEARCH_DESCRIPTION_INFO', 'Upišite riječ koju tražite i pritisnite dugme.');
 jr_define('_JOMRES_SEARCH_DESCRIPTION_LABEL', 'Traži riječ/i): ');
 jr_define('_JOMRES_SEARCH_AVL_INFO', 'Molimo vas upišite datum vašeg dolaska i odlaska, te kliknite na Traži da biste dobili popis slobodnih objekata u traženom razdoblju');
-jr_define('_JOMRES_SEARCH_PTYPES', 'Prikaži prema vrsti.');
-jr_define('_JOMRES_SEARCH_RTYPES', 'Prikaži prema vrsti sobe.');
+jr_define('_JOMRES_SEARCH_PTYPES', 'Prikaži prema vrsti');
+jr_define('_JOMRES_SEARCH_RTYPES', 'Prikaži prema vrsti sobe');
 jr_define('_JOMRES_SORTORDER_DEFAULT', 'Zadano');
 jr_define('_JOMRES_SORTORDER_PROPERTYNAME', 'Ime');
 jr_define('_JOMRES_SORTORDER_PROPERTYREGION', 'Županija/Regija');
@@ -1231,7 +1231,7 @@ jr_define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID', 'Sorry, but t
 jr_define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE', 'Sorry, you are already subscribed to a free package, you cannot subscribe to that package again.');
 jr_define('_JRPORTAL_SUBSCRIPTIONS_STATUS_EXPL', ' Status <b>0:</b> Pending payment <b>1:</b> Created <b>2:</b> Cancelled <b>3:</b> End of Term');
 jr_define('_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS', 'My Account');
-jr_define('_JOMRES_COM_YOURBUSINESS', 'Your company details');
+jr_define('_JOMRES_COM_YOURBUSINESS', 'Your business details');
 jr_define('_JOMRES_COM_YOURBUSINESS_NAME', 'business name');
 jr_define('_JOMRES_COM_YOURBUSINESS_VATNO', 'VAT number');
 jr_define('_JOMRES_COM_YOURBUSINESSADDRESS', 'Building number');
@@ -1455,7 +1455,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Number of proper
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Load Jomres jQuery library?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'You can set this to NO if you have a template that uses jquery. This MAY resolve jquery conflict issues on some templates, but not all.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'If you use Joomfish, you should set this to No, and use Joomfish\'s language switcher. The switcher is always enabled in the administrator area because it is needed when you use the Label Translations feature.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Thumbnails are created automatically for uploaded images.');
 
 // 4.7.1
@@ -1500,6 +1500,7 @@ jr_define('_JOMRES_BOOKINGFORM_PERPERSON', 'Per person');
 
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS', 'week(s) at ');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS', 'month(s) at ');
+
 // 4.7.7
 
 jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS', 'How should the search option for people numbers work?');
@@ -1507,6 +1508,7 @@ jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS_DESC', 'Affects all searc
 jr_define('_JOMRES_PAYPAL_REDIRECTMESSAGE', 'Please wait, your order is being processed and you will be redirected to the Paypal website.');
 jr_define('_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED', 'If you are not automatically redirected to Paypal within 5 seconds...');
 jr_define('_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE', 'Click Here');
+
 // 4.7.8
 
 jr_define('_JRPORTAL_COUPONS_BOOKING_VALIDFROM', 'Booking valid from');
@@ -1715,7 +1717,15 @@ jr_define('_JOMRES_FOUNDPROPERTIES', 'Properties found');
 jr_define('_JOMRES_REGISTRATION_STEP_1_OF_2', 'Add your property : Step 1 of 2');
 jr_define('_JOMRES_REGISTRATION_STEP_2_OF_2', 'Add your property : Step 2 of 2');
 
-jr_define('_JOMRES_MYPROPERTIES', 'My properties');
+jr_define('_JOMRES_MYPROPERTIES', 'My businesses');
+
+jr_define('_JOMRES_CART_TITLE', 'My proposed bookings');
+jr_define('_JOMRES_CART_INFO', 'Note, these bookings have not been saved yet. If you log out or your session expires they will be lost. Remember to confirm your bookings!');
+jr_define('_JOMRES_CART_CONFIRM_BOOKINGS', 'Confirm booking(s)');
+jr_define('_JOMRES_CART_OR', ' or ');
+jr_define('_JOMRES_CART_SAVEFORLATER', 'Save for later');
+jr_define('_JOMRES_CART_NOBOOKINGS_SAVED', 'You don\'t have any bookings saved yet.');
+jr_define('_JOMRES_CART_VIEWCART', 'View cart');
 
 jr_define('_JOMRES_CART_TITLE', 'My proposed bookings');
 jr_define('_JOMRES_CART_INFO', 'Note, these bookings have not been saved yet. If you log out or your session expires they will be lost. Remember to confirm your bookings!');
@@ -2004,10 +2014,6 @@ jr_define('JOMRES_GOOGLE_MAP_OPTION_BICYCLING', 'Use bicycling layer?');
 jr_define('JOMRES_GOOGLE_MAPS_POIS', 'Enable Gmap Points of Interest (including possibly your competitors)?');
 
 jr_define('_JOMRES_METAKEYWORDS', 'Meta Keywords');
-
-jr_define('_JOMRES_PLEASE_PRINT', 'Please print this email and present it on your arrival.');
-jr_define('_JOMRES_OFFICE_USE_ONLY', 'Office use only');
-jr_define('_JOMRES_SCAN_FOR_DIRECTIONS', 'Scan this code into your phone to get directions to us.');
 
 jr_define('_JOMRES_PLEASE_PRINT', 'Please print this email and present it on your arrival.');
 jr_define('_JOMRES_OFFICE_USE_ONLY', 'Office use only');
@@ -2481,6 +2487,7 @@ jr_define('_JOMRES_CANT_BE_APPROVED', 'This booking can`t be approved because so
 jr_define('_JOMRES_SHOW_POWEREDBY', 'Show the Powered by Jomres link in the Jomres footer.');
 
 jr_define('GUEST_BUDGET', 'Budget');
+
 jr_define('GUEST_BUDGET_FEATURE_SWITCH', 'Use Budget feature?');
 jr_define('GUEST_BUDGET_FEATURE_SWITCH_DESC', "Bootstrapped sites only! The Budget feature is a feature of the property list that a guest can use to highlight for them properties who's price per night is under a certain figure. The feature has some limitations in that it might not be appropriate for some sites that use many different currencies. Note, if you're using this and the Featured Listings plugin, your featured listing wrapping class is automatically changed to 'panel-primary' when the property list is shown.");
 
@@ -2727,6 +2734,13 @@ jr_define('_JOMRES_BOOKING_ENQUIRY_AMEND', 'Amend booking request');
 
 jr_define('_JOMRES_INVOICE_MARKASPENDING', 'Mark invoice as pending');
 jr_define('_JOMRES_INVOICE_MARKEDASPENDING', 'Invoice marked as pending');
+
+jr_define('_JOMRES_TRACKING_ENABLE', 'Send anonymous tracking data?');
+jr_define('_JOMRES_TRACKING_ENABLE_DESC', 'Select Yes to send anonymous tracking data to Jomres.net to help us understand better how you use the system.');
+
+jr_define('_JOMRES_PARTNERS_PLEASE_COMPLETE', 'Please ensure that your details have been completed on the Edit My Account page before attempting to make bookings on behalf of your clients.');
+jr_define('_JOMRES_PARTNERS_GUEST_ADDRESS', "Guest's contact details");
+jr_define('_JOMRES_CLEAR_GUEST_DETAILS', ' -- New Guest -- ');
 
 jr_define('_JOMRES_CHARTS', 'Charts');
 jr_define('_JOMRES_CHARTS_SELECT', 'Select chart...');

@@ -1425,7 +1425,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'عدد المن�
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'تحميل Jomres jQuery مكتبة?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'يمكنك تعيين هذا بلا إذا كان لديك قالب يستخدم جي كويري. وهذا قد حل قضايا الصراع جي كويري على بعض القوالب، ولكن ليس كل شيء.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'إذا كنت تستخدم Joomfish، يجب تعيين هذا إلى لا، واستخدام اللغة Joomfish التحويل. يتم دوما تمكين وحدات التحويل المسؤول في المنطقة لأن هناك حاجة عند استخدام ميزة تسمية الترجمات.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'يتم إنشاء الصور المصغرة للصور تلقائيا التي تم تحميلها.');
 // 4.7.1
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', 'عرض الصور المصغرة الصغيرة أقصى (بكسل).');

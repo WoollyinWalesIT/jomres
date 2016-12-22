@@ -541,7 +541,7 @@ jr_define('_JOMRES_COM_MR_VRCT_PUBLISH', 'تفعيل');
 jr_define('_JOMRES_COM_MR_VRCT_UNPUBLISH', 'غير مفعله');
 jr_define('_JOMRES_A_GLOBALROOMTYPES', 'إستخدام نوع الوحدات العالمية');
 jr_define('_JOMRES_A_GLOBALROOMTYPES_DESC', 'Set this to Yes if you want to force all businesses to use only the resource/business types defined by the webmaster. You need to set this to Yes if you intend to allow searching via resource/business types.');
-jr_define('_JOMRES_A_GLOBALROOMTYPES_INFO', 'To assign an image to this resource/business type you first need to upload your resource/business type images to the /images/stories/jomres/rmtypes/ folder. ');
+jr_define('_JOMRES_A_GLOBALROOMTYPES_INFO', 'To assign an image to this resource/business type you first need to upload your resource/business type images to the /images/stories/'.JOMRES_ROOT_DIRECTORY.'/rmtypes/ folder. ');
 jr_define('_JOMRES_COM_INPUTERROR_BACKGROUND', 'ادخال لون خلفية خاطئ');
 jr_define('_JOMRES_COM_CONFIGCOUNTRIES', 'البلد الإفتراضي في نموذج الحجز');
 jr_define('_JOMRES_JAVASCRIPT_', 'الحقول المحددة باللون الأحمر حقول إلزامية ');
@@ -1425,7 +1425,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'عدد المن�
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'تحميل Jomres jQuery مكتبة?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'يمكنك تعيين هذا بلا إذا كان لديك قالب يستخدم جي كويري. وهذا قد حل قضايا الصراع جي كويري على بعض القوالب، ولكن ليس كل شيء.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'إذا كنت تستخدم Joomfish، يجب تعيين هذا إلى لا، واستخدام اللغة Joomfish التحويل. يتم دوما تمكين وحدات التحويل المسؤول في المنطقة لأن هناك حاجة عند استخدام ميزة تسمية الترجمات.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'يتم إنشاء الصور المصغرة للصور تلقائيا التي تم تحميلها.');
 // 4.7.1
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', 'عرض الصور المصغرة الصغيرة أقصى (بكسل).');

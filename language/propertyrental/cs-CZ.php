@@ -762,10 +762,10 @@ jr_define('_JOMCOMP_WISEPRICE_ACTIVE', 'Aktivní');
 jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC', 'Tento plugin vám umožní nastavovat ceny pokojů dynamicky.');
 jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC_FULL', 'Většina firem se přepočítává ceny pokojů na základě počtu pokojů na požadovaného typu, které jsou k dispozici k určitému datu. To jim umožňuje nabízet slevy na ten druh pokoje, který není obsazen po určitou dobu s cílem zvýšit obsazenost. Povolení a konfigurace tohoto pluginu umožňuje nastavovat ceny pokojů v závislosti na počtu místností vybraného typu pokoje, které jsou k dispozici v kapacitě na daný den. Počet dnů odstupu definuje počet dnů před příjezdem, ve kterých můsí být pokoje volné. Procento znamená relativní počet pokojů z celku, které musí být volné, aby byla uvedá sleva uplatněna.');
 jr_define('_JOMCOMP_WISEPRICE_THREASHOLD', 'Počet do příjezdu');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE10', 'Procento obsazených pokojů 10%');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE25', 'Procento obsazených pokojů 25%');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE50', 'Procento obsazených pokojů 50%');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE75', 'Procento obsazených pokojů 75%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE10', 'Procento obsazených pokojů  10%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE25', 'Procento obsazených pokojů  25%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE50', 'Procento obsazených pokojů  50%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE75', 'Procento obsazených pokojů  75%');
 jr_define('_JOMCOMP_WISEPRICE_DISCOUNT', 'Sleva %');
 jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', ' byla slevněna z původní ceny ');
 jr_define('_JOMCOMP_WISEPRICE_TO', ' na ');
@@ -1428,7 +1428,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Number of proper
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Load Jomres jQuery library?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'You can set this to NO if you have a template that uses jquery. This MAY resolve jquery conflict issues on some templates, but not all.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'If you use Joomfish, you should set this to No, and use Joomfish\'s language switcher. The switcher is always enabled in the administrator area because it is needed when you use the Label Translations feature.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Thumbnails are created automatically for uploaded images.');
 
 // 4.7.1
@@ -1689,7 +1689,7 @@ jr_define('_JOMRES_FOUNDPROPERTIES', 'Properties found');
 jr_define('_JOMRES_REGISTRATION_STEP_1_OF_2', 'Add your property : Step 1 of 2');
 jr_define('_JOMRES_REGISTRATION_STEP_2_OF_2', 'Add your property : Step 2 of 2');
 
-jr_define('_JOMRES_MYPROPERTIES', 'My properties');
+jr_define('_JOMRES_MYPROPERTIES', 'My businesses');
 
 jr_define('_JOMRES_CART_TITLE', 'My proposed bookings');
 jr_define('_JOMRES_CART_INFO', 'Note, these bookings have not been saved yet. If you log out or your session expires they will be lost. Remember to confirm your bookings!');
@@ -2382,7 +2382,6 @@ jr_define('SIMPLE_CONFIGURATION', 'Simple Configuration');
 
 jr_define('_JOMRES_HRESOURCE_FEATURES', 'Resource features');
 jr_define('_JOMRES_HRESOURCE_TYPE', 'Resource type');
-
  jr_define('_JOMRES_HEDIT_GUEST_TYPE', 'Edit guest type');
 jr_define('_JOMRES_HEDIT_COUPON', 'Edit coupon');
 jr_define('_JOMRES_HEDIT_EXTRA', 'Edit extra');

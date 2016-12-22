@@ -1454,7 +1454,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Nombre de propri
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Charger bibliothèque Jomres jQuery?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'Vous pouvez choisir Non si vous avez un thème qui utilise jquery. Ceci PEUT résoudre quelques problèmes de conflits jquery dans quelques thèmes, mais pas dans tous les cas.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Si vous utilisez Joomfish, vous devrez choisir Non, et utiliser les commutateurs de langues Joomfish. Ce commutateur est toujours actif dans la zone d\'administration, car il est nécéssaire si on utilise la charactéristique de Traduction d\'Étiquettes.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Les images de référence sont automatiquement crées pour toutes les images chargées.');
 // 4.7.1
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', 'Largeur max. d\'image de référence (px).');

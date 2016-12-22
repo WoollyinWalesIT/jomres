@@ -9,6 +9,7 @@
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
+
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
@@ -1450,7 +1451,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Número de propi
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', '¿Cargar Jomres jQuery library?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'Puede establecer esto a NO si usted tiene una plantilla que utiliza jQuery. Esto puede resolver los problemas de conflicto jquery en algunas plantillas, pero no todos.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Si utiliza Joomfish, debe establecerse a No, y usar  el selector de idiomas de Joomfish. El conmutador siempre está habilitado en el área del administrador, ya que se necesita cuando se utiliza la función de etiquetas de traducciones.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Las miniaturas se crean automáticamente para las imágenes cargadas.');
 
 // 4.7.1
@@ -2571,7 +2572,7 @@ jr_define('_JOMRES_TEST_EMAIL_RESULT_FAILURE', 'Prueba de correo electrónico no
 jr_define('_INVOICE_TRANSACTIONS', 'Actas');
 
 jr_define('_OPENEXCHANGE_API', 'Abrir Cotizaciones clave de API');
-jr_define('_OPENEXCHANGE_API_DESC', 'Para convertir los precios entre los servicios que necesitará una clave de API abierta Tasa de cambio. Usted debe tener una clave de API para visualizar los precios correctamente en Jomres, sin embargo, puede registrarse para obtener una clave gratuita en <a href="https://openexchangerates.org/signup/free" _target="_blank">register for a free key</a> (actualizaciones cada hora, 1000 peticiones / mes - sin HTTPS, soporte de correo electrónico o funciones avanzadas ). tipos de cambio jomres descargas una vez al día por lo que el tiempo que se utiliza la tecla de sólo un puñado de sitios, que son poco probable que supere estos límites. Anterior a Jomres 8.3 se utilizó una, indocumentado característica mayores Yahoo Sin embargo han descubierto que el uso de esta función está en contradicción con Yahoos Términos y Condiciones. Como resultado tenemos que asumir que la característica puede desaparecer en algún momento en el futuro, de ahí el cambio al uso Abiertas Tipo de Cambio.');
+jr_define('_OPENEXCHANGE_API_DESC', 'Para convertir los precios entre los servicios que necesitará una clave de API abierta Tasa de cambio. Usted debe tener una clave de API para visualizar los precios correctamente en Jomres, sin embargo, puede registrarse para obtener una clave gratuita en <a href="https://openexchangerates.org/signup/free" _target="_blank">register for a free key</a>  (actualizaciones cada hora, 1000 peticiones / mes - sin HTTPS, soporte de correo electrónico o funciones avanzadas ). tipos de cambio jomres descargas una vez al día por lo que el tiempo que se utiliza la tecla de sólo un puñado de sitios, que son poco probable que supere estos límites. Anterior a Jomres 8.3 se utilizó una, indocumentado característica mayores Yahoo Sin embargo han descubierto que el uso de esta función está en contradicción con Yahoos Términos y Condiciones. Como resultado tenemos que asumir que la característica puede desaparecer en algún momento en el futuro, de ahí el cambio al uso Abiertas Tipo de Cambio.');
 
 jr_define('_JOMRES_COMMISSION', 'Comisión');
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS', 'Si a subir varias imágenes de los accesorios opcionales individuales, sólo se utilizará la primera imagen.');

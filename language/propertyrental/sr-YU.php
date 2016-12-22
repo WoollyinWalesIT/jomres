@@ -788,7 +788,7 @@ jr_define('_JOMCOMP_WISEPRICE_ACTIVE', 'Active');
 jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC', 'This plugin allows you to enable and configure your room prices dynamically.');
 jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC_FULL', 'Most businesses will recalculate room prices based on the number of rooms of a required type that are available on a given date. This allows them to offer discounts on a room type that isn\'t busy during a given period with the aim of attracting business that might otherwise be missed.<br/>Enabling and configuring this plugin allows you to offer adjustable pricing based on the number of rooms of a selected type are available in the property on a given day.<br/> The days threashold defines the number of days that the arrival date must be within before room prices are adjusted by this feature, then the percentages options allow you to configure the percentage of rooms that can be available before a given discount is applied.');
 jr_define('_JOMCOMP_WISEPRICE_THREASHOLD', 'Threashold (number of days between arrival date and today)');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE10', 'Percentage rooms occupied  10%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE10', 'Percentage rooms occupied 10%');
 jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE25', 'Percentage rooms occupied 25%');
 jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE50', 'Percentage rooms occupied 50%');
 jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE75', 'Percentage rooms occupied 75%');
@@ -1238,7 +1238,7 @@ jr_define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID', 'Sorry, but t
 jr_define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE', 'Sorry, you are already subscribed to a free package, you cannot subscribe to that package again.');
 jr_define('_JRPORTAL_SUBSCRIPTIONS_STATUS_EXPL', ' Status <b>0:</b> Pending payment <b>1:</b> Created <b>2:</b> Cancelled <b>3:</b> End of Term');
 jr_define('_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS', 'My Account');
-jr_define('_JOMRES_COM_YOURBUSINESS', 'Your company details');
+jr_define('_JOMRES_COM_YOURBUSINESS', 'Your business details');
 jr_define('_JOMRES_COM_YOURBUSINESS_NAME', 'business name');
 jr_define('_JOMRES_COM_YOURBUSINESS_VATNO', 'VAT number');
 jr_define('_JOMRES_COM_YOURBUSINESSADDRESS', 'Building number');
@@ -1464,7 +1464,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Number of proper
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Load Jomres jQuery library?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'You can set this to NO if you have a template that uses jquery. This MAY resolve jquery conflict issues on some templates, but not all.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'If you use Joomfish, you should set this to No, and use Joomfish\'s language switcher. The switcher is always enabled in the administrator area because it is needed when you use the Label Translations feature.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Thumbnails are created automatically for uploaded images.');
 
 // 4.7.1
@@ -1488,7 +1488,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'This thr
 
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', 'Language context');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Use this option to change the site\'s language context. This feature allows Jomres to use labels that are appropriate for your current focus, so if your focus is as a Yacht Brokerage, then changing the context will allow Jomres to present labels from a different language file. For example, if you set the context to "Yacht Brokerage" then Jomres will first find the current language, then search the /'.JOMRES_ROOT_DIRECTORY.'/languages directory for a sub-directory called "yachtbrokerage". If the file exists for the current language then that file will be used. If not, then Jomres will search for an english language file in that same directory. If that can\'t be found, Jomres will use the language file for the currently selected language in the /'.JOMRES_ROOT_DIRECTORY.'/languages directory.');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Use this option to change the site\'s language context. This feature allows Jomres to use labels that are appropriate for your current focus, so if your focus is as a Yacht Brokerage, then changing the context will allow Jomres to present labels from a different language file. For example, if you set the context to "Yacht Brokerage" then Jomres will first find the current language, then search the /jomres/languages directory for a sub-directory called "yachtbrokerage". If the file exists for the current language then that file will be used. If not, then Jomres will search for an english language file in that same directory. If that can\'t be found, Jomres will use the language file for the currently selected language in the /jomres/languages directory.');
 
 // 4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Advanced site config');
@@ -1725,7 +1725,7 @@ jr_define('_JOMRES_FOUNDPROPERTIES', 'Properties found');
 jr_define('_JOMRES_REGISTRATION_STEP_1_OF_2', 'Add your property : Step 1 of 2');
 jr_define('_JOMRES_REGISTRATION_STEP_2_OF_2', 'Add your property : Step 2 of 2');
 
-jr_define('_JOMRES_MYPROPERTIES', 'My properties');
+jr_define('_JOMRES_MYPROPERTIES', 'My businesses');
 
 jr_define('_JOMRES_CART_TITLE', 'My proposed bookings');
 jr_define('_JOMRES_CART_INFO', 'Note, these bookings have not been saved yet. If you log out or your session expires they will be lost. Remember to confirm your bookings!');
