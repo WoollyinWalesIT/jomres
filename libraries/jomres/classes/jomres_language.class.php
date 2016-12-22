@@ -27,6 +27,8 @@ class jomres_language
             $jomresConfig_lang = (string) RemoveXSS(jomresGetParam($_POST, 'jomreslang', ''));
         } elseif (isset($_GET[ 'jomreslang' ])) {
             $jomresConfig_lang = (string) RemoveXSS(jomresGetParam($_GET, 'jomreslang', ''));
+		} elseif (isset($_REQUEST[ 'jomreslang' ])) {
+            $jomresConfig_lang = (string) RemoveXSS(jomresGetParam($_REQUEST, 'jomreslang', ''));
         } elseif (!defined('AUTO_UPGRADE')) {
             $jomresConfig_lang = (string) RemoveXSS(jomres_cmsspecific_getcmslang());
         } else {

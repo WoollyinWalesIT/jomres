@@ -51,15 +51,6 @@ try {
     //custom text object
     $customTextObj = jomres_singleton_abstract::getInstance('custom_text');
 
-    //override language with the jomres one, if selected from the jomres language dropdown
-    if (isset($_REQUEST[ 'jomreslang' ])) {
-        $lang_switcher_lang = jomresGetParam($_REQUEST, 'jomreslang', '');
-        if (array_key_exists($lang_switcher_lang, $jomres_language->datepicker_crossref)) {
-            set_showtime('lang', $lang_switcher_lang);
-            $customTextObj->reset_current_lang($lang_switcher_lang);
-        }
-    }
-
     //trigger 00002 event
     $MiniComponents->triggerEvent('00002');
 
