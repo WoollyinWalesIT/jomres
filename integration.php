@@ -132,7 +132,7 @@ if (!class_exists('patErrorManager')) {
     require_once 'libraries'.JRDS.'phptools'.JRDS.'patErrorManager.php';
 }
 
-require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'PHPMailer_v5.2.9'.JRDS.'PHPMailerAutoload.php';
+require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'PHPMailer-v5.2.19'.JRDS.'PHPMailerAutoload.php';
 PHPMailerAutoload('phpmailer');
 PHPMailerAutoload('smtp');
 

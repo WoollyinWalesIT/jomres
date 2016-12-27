@@ -1326,6 +1326,9 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'new_invoice.html');
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'edit_invoice.html');
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'jomres_writability_check.html');
+        
+        $this->add_obs_dir($this->dir_libraries.'PHPMailer_v5.2.9'.JRDS);
+        
     }
 
     public function add_obs_file($path_and_file)
