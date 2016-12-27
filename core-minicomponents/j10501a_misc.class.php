@@ -166,9 +166,9 @@ class j10501a_misc
             $configurationPanel->setright();
             $configurationPanel->insertSetting();
 
-            $configurationPanel->setleft( jr_gettext( _JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN, '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN', false ) );
+            $configurationPanel->setleft( jr_gettext( '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN', '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN', false ) );
             $configurationPanel->setmiddle( $lists[ 'showLangDropdown' ] );
-            $configurationPanel->setright( jr_gettext( _JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC, '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', false ) );
+            $configurationPanel->setright( jr_gettext( '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', false ) );
             $configurationPanel->insertSetting();
 
             $configurationPanel->setleft(jr_gettext('JOMRES_COM_A_MINIMALCONFIG', 'JOMRES_COM_A_MINIMALCONFIG', false));
