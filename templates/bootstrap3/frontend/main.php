@@ -1,5 +1,5 @@
 <patTemplate:comment>
- * @version Jomres 9.8.22
+ * @version Jomres 9.8.23
 </patTemplate:comment>
 <?php
 $xmlstr = <<<'XML'
