@@ -179,6 +179,8 @@ if (this_cms_is_joomla()) {
     }
 }
 
+require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'output_filters.php';
+
 if ($folderChecksPassed && $functionChecksPassed) {
     $trashtables = jomresGetParam($_POST, 'trashtables', 0, 'integer');
     $manual_install_confirmation = jomresGetParam($_POST, 'manual_install_confirmation', '');
