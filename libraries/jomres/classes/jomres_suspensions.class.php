@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -88,6 +88,17 @@ class jomres_suspensions
             $query = 'UPDATE #__jomres_propertys SET `published` = 0 WHERE `propertys_uid` IN ('.jomres_implode($this->authorised_properties).') AND `published` = 1 ';
             doInsertSql($query, '');
 
+            foreach ( $this->authorised_properties as $property_uid ) {
+                $webhook_notification                               = new stdClass();
+                $webhook_notification->webhook_event                = 'property_unpublished';
+                $webhook_notification->webhook_event_description    = 'Logs when a property is unpublished.';
+                $webhook_notification->webhook_event_plugin         = 'core';
+                $webhook_notification->data                         = new stdClass();
+                $webhook_notification->data->property_uid           = $property_uid;
+                add_webhook_notification($webhook_notification);
+            }
+
+                        
             //clear cache
             $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
             $c->eraseAll();
@@ -105,6 +116,16 @@ class jomres_suspensions
         if (!empty($this->authorised_properties)) {
             $query = 'UPDATE #__jomres_propertys SET `published` = 1 WHERE `propertys_uid` IN ('.jomres_implode($this->authorised_properties).') AND `published` = 0 ';
             doInsertSql($query, '');
+
+            foreach ( $this->authorised_properties as $property_uid ) {
+                $webhook_notification                               = new stdClass();
+                $webhook_notification->webhook_event                = 'property_published';
+                $webhook_notification->webhook_event_description    = 'Logs when a property is published.';
+                $webhook_notification->webhook_event_plugin         = 'core';
+                $webhook_notification->data                         = new stdClass();
+                $webhook_notification->data->property_uid           = $property_uid;
+                add_webhook_notification($webhook_notification);
+            }
 
             //clear cache
             $c = jomres_singleton_abstract::getInstance('jomres_array_cache');

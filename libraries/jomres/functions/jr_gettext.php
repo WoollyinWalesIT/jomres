@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -84,6 +84,8 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
     } else {
         $theText = jr_get_defined($theConstant, $theValue);
     }
+	
+	$theText = jomres_decode($theText);
 
     if (isset($thisJRUser->userIsManager) && $thisJRUser->userIsManager) {
         if (isset($_REQUEST[ 'task' ]) && jomres_cmsspecific_areweinadminarea()) {
@@ -100,8 +102,6 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
         /* if ($jrConfig[ 'allowHTMLeditor' ] != '1') {
             $theText = jomres_remove_HTML($theText);
         } */
-
-        $theText = jomres_decode($theText);
 
         if ($thisJRUser->userIsManager && ($editing || ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager)) && $okToEdit && ($thisJRUser->accesslevel > 50)) {
             if (strlen(trim($theText)) == 0 || strtolower(trim($theText)) == '<span></span>' || strtolower(trim($theText)) == '<span> </span>' || strtolower(trim($theText)) == '<span>  </span>') {
@@ -133,6 +133,6 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
             }
         }
     }
-
+    
     return $theText;
 }

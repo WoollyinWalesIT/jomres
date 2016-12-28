@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1430,7 +1430,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Naktsmītņu ska
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Load Jomres jQuery library?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'You can set this to NO if you have a template that uses jquery. This MAY resolve jquery conflict issues on some templates, but not all.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'If you use Joomfish, you should set this to No, and use Joomfish\'s language switcher. The switcher is always enabled in the administrator area because it is needed when you use the Label Translations feature.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Thumbnails are created automatically for uploaded images.');
 
 // 4.7.1
@@ -2695,6 +2695,13 @@ jr_define('_JOMRES_BOOKING_ENQUIRY_AMEND', 'Amend booking request');
 
 jr_define('_JOMRES_INVOICE_MARKASPENDING', 'Mark invoice as pending');
 jr_define('_JOMRES_INVOICE_MARKEDASPENDING', 'Invoice marked as pending');
+
+jr_define('_JOMRES_TRACKING_ENABLE', 'Send anonymous tracking data?');
+jr_define('_JOMRES_TRACKING_ENABLE_DESC', 'Select Yes to send anonymous tracking data to Jomres.net to help us understand better how you use the system.');
+
+jr_define('_JOMRES_PARTNERS_PLEASE_COMPLETE', 'Please ensure that your details have been completed on the Edit My Account page before attempting to make bookings on behalf of your clients.');
+jr_define('_JOMRES_PARTNERS_GUEST_ADDRESS', "Guest's contact details");
+jr_define('_JOMRES_CLEAR_GUEST_DETAILS', ' -- New Guest -- ');
 
 jr_define('_JOMRES_CHARTS', 'Charts');
 jr_define('_JOMRES_CHARTS_SELECT', 'Select chart...');

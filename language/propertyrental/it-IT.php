@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1470,7 +1470,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Numero di propri
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Caricare la libreria jQuery Jomres?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'È possibile impostare questo su NO se si dispone di un modello che utilizza jQuery. Questo può risolvere i problemi di conflitto jQuery su alcuni modelli, ma non tutti.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', "Se si utilizza Joomfish, è necessario impostare questo su No, e utilizzato Joomfish\'s lingua switcher. L'interruttore è sempre attivo nella zona di amministratore, perché è necessaria quando si utilizza la funzione Etichetta Translations.");
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', "Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.");
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Le miniature vengono creati automaticamente per le immagini caricate.');
 
 // 4.7.1

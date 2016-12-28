@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -15,6 +15,30 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'http_build_url.php';
+
+/*
+
+This function allows a script writer to add webhook notifications dynamically. 
+If the collection script variable is set, then the none/basic/oauth authmethod processors will use a collection script that goes by the name of collector_$collection_script_name.php , e.g. collector_dashboard.php
+Otherwise the processor will attempt to use the contents of the object's $data variable instead.
+
+Example call to this function :
+
+$webhook_notification = new stdClass();
+$webhook_notification->webhook_event = 'completebk';
+$webhook_notification->collection_script = 'completebk';                    // Optional. If set then a collection script will be called instead of using the data variable
+$webhook_notification->data = new stdClass();                               // Optional, dependant on collection_script value
+$webhook_notification->data->contract_uid = $contract_uid;                  // Optional, dependant on collection_script value
+add_webhook_notification($webhook_notification);
+*/
+
+function add_webhook_notification($contents)
+{
+    $webhook_messages = get_showtime('webhook_messages');
+    $webhook_messages[] = $contents;
+    set_showtime('webhook_messages', $webhook_messages);
+}
+
 
 function jomres_implode($elements = array(), $integers = true)
 {
@@ -2086,6 +2110,16 @@ function addBookingNote($contract_uid, $property_uid, $message)
         $query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int) $contract_uid."','".RemoveXSS($message)."','$dt','".(int) $property_uid."')";
         $result = doInsertSql($query, '');
 
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'booking_note_save';
+        $webhook_notification->webhook_event_description    = 'Logs when booking notes are added/edited.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->contract_uid           = $contract_uid;
+        $webhook_notification->data->property_uid           = $property_uid;
+        $webhook_notification->data->note_id                = $result;
+        add_webhook_notification($webhook_notification);
+        
         return $result;
     } else {
         return false;
@@ -2706,6 +2740,7 @@ function saveHotelSettings()
         }
     }
 
+    $update_count = 0;
     foreach ($_POST as $k => $v) {
         if (strpos($k, 'cfg_') === 0 && $k != 'cfg_jomres_licensekey') {
             $v = jomresGetParam($_POST, $k, '');
@@ -2730,11 +2765,22 @@ function saveHotelSettings()
                         $query = "UPDATE #__jomres_settings SET `value`='".$v."' WHERE property_uid = '".(int) $property_uid."' and akey = '".substr($k, 4)."'";
                     }
                     doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', false));
+                    $update_count ++;
                 }
             }
         }
     }
 
+    if ( $update_count > 0 ) {
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'property_settings_updated';
+        $webhook_notification->webhook_event_description    = 'Logs when property settings are updated.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $property_uid;
+        add_webhook_notification($webhook_notification);
+    }
+            
     $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
     $c->eraseAll();
 

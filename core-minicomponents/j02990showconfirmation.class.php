@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -261,7 +261,12 @@ class j02990showconfirmation
         $requestedrooms = $bookingDeets[ 'requestedRoom' ];
         $rooms = explode(',', $requestedrooms);
         $booking_parts[ 'NUMROOMS' ] = count($rooms);
-
+        
+        if ( $booking_parts[ 'NUMROOMS' ] == 0 && get_showtime('include_room_booking_functionality') ) {
+            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$bookingDeets[ 'property_uid' ]), '');
+        }
+        
+        
         foreach ($rooms as $r) {
             $rm = explode('^', $r);
             if ($rm[ 0 ] != '') {

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1326,6 +1326,9 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'new_invoice.html');
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'edit_invoice.html');
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'jomres_writability_check.html');
+        
+        $this->add_obs_dir($this->dir_libraries.'PHPMailer_v5.2.9'.JRDS);
+        
     }
 
     public function add_obs_file($path_and_file)

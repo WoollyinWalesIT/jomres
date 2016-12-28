@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -69,10 +69,10 @@ class jomres_property_types
 
         $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
 
-        $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag` , `marker` FROM #__jomres_ptypes ORDER BY `order` ASC';
+        $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag`, `marker` FROM #__jomres_ptypes ORDER BY `order` ASC';
         $result = doSelectSql($query);
 
-        if (count($result) < 1) {
+        if (empty($result)) {
             return false;
         }
 
@@ -112,10 +112,10 @@ class jomres_property_types
             return true;
         }
 
-        $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag` , `marker` FROM #__jomres_ptypes WHERE `id` = '.(int) $id;
+        $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag`, `marker` FROM #__jomres_ptypes WHERE `id` = '.(int) $id;
         $result = doSelectSql($query);
 
-        if (count($result) < 1) {
+        if (empty($result)) {
             return false;
         }
 
@@ -190,13 +190,13 @@ class jomres_property_types
         $success = true;
 
         foreach ($ids as $id) {
-            $query = 'SELECT ptype_id FROM #__jomres_propertys WHERE ptype_id = '.(int) $id;
+            $query = 'SELECT `ptype_id` FROM #__jomres_propertys WHERE `ptype_id` = '.(int) $id;
             $result = doSelectSql($query);
 
-            if (count($result) > 0) {
+            if (!empty($result)) {
                 $success = false;
             } else {
-                $query = "DELETE FROM #__jomres_ptypes WHERE id = '".(int) $id."'";
+                $query = "DELETE FROM #__jomres_ptypes WHERE `id` = ".(int) $id;
                 if (!doInsertSql($query, false)) {
                     $success = false;
                 }
@@ -216,17 +216,17 @@ class jomres_property_types
         $this->get_property_type($id);
 
         if ($this->property_type['published'] == 0) {
-            $published = 1;
+            $publish = 1;
         } else {
-            $published = 0;
+            $publish = 0;
         }
 
         if ($this->property_type['id'] > 0) {
-            if ($published == 0 && $this->ptype_is_used($this->property_type['id'])) {
+            if ($publish == 0 && $this->ptype_is_used($this->property_type['id'])) {
                 return false;
             }
 
-            $query = 'UPDATE #__jomres_ptypes SET `published` = '.$published.' WHERE id = '.$this->property_type['id'];
+            $query = 'UPDATE #__jomres_ptypes SET `published` = '.$publish.' WHERE `id` = '.$this->property_type['id'];
 
             if (doInsertSql($query, false)) {
                 return true;
@@ -248,7 +248,7 @@ class jomres_property_types
         $query = 'SELECT `ptype_id` FROM #__jomres_propertys WHERE `ptype_id` = '.(int) $id;
         $result = doSelectSql($query);
 
-        if (count($result) > 0) {
+        if (!empty($result)) {
             return true;
         } else {
             return false;
@@ -277,7 +277,7 @@ class jomres_property_types
         }
 
         //build warning
-        if (count($property_types_requiring_attention) > 0) {
+        if (!empty($property_types_requiring_attention)) {
             $o = array();
             $po = array();
             $rws = array();

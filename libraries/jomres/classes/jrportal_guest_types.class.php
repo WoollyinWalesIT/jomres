@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -77,7 +77,16 @@ class jrportal_guest_types
 							' .(int) $this->is_child.' 
 							)';
         $this->id = doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_INSERT_CUSTOMERTYPE', '_JOMRES_MR_AUDIT_INSERT_CUSTOMERTYPE', false));
-
+        
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'guest_type_added';
+        $webhook_notification->webhook_event_description    = 'Logs when guest types added.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->property_uid;
+        $webhook_notification->data->guest_type_uid         = $this->id;
+        add_webhook_notification($webhook_notification);
+        
         if (!$this->id) {
             throw new Exception('Error: New guest type insert failed.');
         }
@@ -111,7 +120,16 @@ class jrportal_guest_types
         if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_UPDATE_CUSTOMERTYPE', '_JOMRES_MR_AUDIT_UPDATE_CUSTOMERTYPE', false))) {
             throw new Exception('Error: Guest type update intert failed.');
         }
-
+        
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'guest_type_updated';
+        $webhook_notification->webhook_event_description    = 'Logs when guest types updated.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->property_uid;
+        $webhook_notification->data->guest_type_uid         = $this->id;
+        add_webhook_notification($webhook_notification);
+        
         return true;
     }
 
@@ -131,6 +149,15 @@ class jrportal_guest_types
             throw new Exception('Error: Delete guest type failed.');
         }
 
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'guest_type_deleted';
+        $webhook_notification->webhook_event_description    = 'Logs when guest type deleted.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->property_uid;
+        $webhook_notification->data->guest_type_uid         = $this->id;
+        add_webhook_notification($webhook_notification);
+        
         return true;
     }
 
@@ -151,6 +178,7 @@ class jrportal_guest_types
         if ($result) {
             $published = (int) $result[0]->published;
 
+            
             if ($published == 0) {
                 $published = 1;
             } else {
@@ -161,7 +189,7 @@ class jrportal_guest_types
             if (!doInsertSql($query, '')) {
                 throw new Exception('Error: Publish/unpublish guest type failed.');
             }
-
+ 
             return true;
         } else {
             return false;

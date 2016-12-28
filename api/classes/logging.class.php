@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -12,8 +12,17 @@
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogHandler;
+
 use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Formatter\LineFormatter;
+
+use Monolog\Handler\HandlerInterface;
+use Monolog\Handler\AbstractProcessingHandler;
+use Monolog\Handler\BrowserConsoleHandler;
+use Monolog\Processor\WebProcessor;
+
+require_once(dirname(__DIR__).DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'monolog'.DIRECTORY_SEPARATOR.'monolog'.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'Monolog'.DIRECTORY_SEPARATOR.'Handler'.DIRECTORY_SEPARATOR.'BrowserConsoleHandler.php');
+
 
 class logging
 {
@@ -21,7 +30,7 @@ class logging
     {
     }
 
-    public static function log_message($message, $channel = 'Core', $level = 'DEBUG')
+    public static function log_message($message, $channel = 'Core', $level = 'DEBUG' , $further_info_dump = '')
     {
         $username = 'Unknown';
         if (!defined('JOMRESCONFIG_ABSOLUTE_PATH')) { // For performance reasons the API doesn't include the rest of the framework unless called in an API Feature. As a result, we'll check here to see if a core system path is set. If it's not, we'll call configuration.php directly instead of using the framework to include it
@@ -75,13 +84,25 @@ class logging
             $url = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED);
         }
 
-        $message = $username.' ~~ '.$message.' ~~ '.session_id().' ~~ '.$url;
+        
 
         $formatter = new LineFormatter("%datetime% ~~ %channel%.%level_name%: ~~ %message% ~~ %context% ~~ %extra% ::::: \n");
 
         $stream_handler = new StreamHandler($jrConfig['log_path'].$log_file, Logger::DEBUG);
         $stream_handler->setFormatter($formatter);
 
+        if ( defined('AJAXCALL') && !AJAXCALL ) {
+        if ($jrConfig['development_production'] == 'development' ) {
+            $logger = new Logger($channel);
+            $logger->pushProcessor(new \Monolog\Processor\WebProcessor); // pushing the web server preprocessor
+            $browserHandler = new \Monolog\Handler\BrowserConsoleHandler(\Monolog\Logger::DEBUG);
+            $logger->pushHandler($browserHandler);
+            $logger->addDebug($message, array ("info_dump" => $further_info_dump) );
+            $logger->debug($message);
+        }
+        }
+        
+        $message = $username.' ~~ '.$message.' ~~ '.session_id().' ~~ '.$url;
         $logger = new Logger($channel);
         $logger->pushProcessor(new \Monolog\Processor\WebProcessor());
         $logger->pushHandler(
@@ -123,7 +144,8 @@ class logging
             return $record;
         });
 
-        $context = array();
+
+        $context = array( 'info_dump' => $further_info_dump);
 
         switch ($level) {
             default:
@@ -154,5 +176,6 @@ class logging
                 $logger->addEmergency($message, $context); //Emergency: system is unusable.
                 break;
             }
+
     }
 }

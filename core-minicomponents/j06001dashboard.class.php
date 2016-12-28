@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -58,7 +58,6 @@ class j06001dashboard
         jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'fullcalendar.min.js');
         jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'lang-all.js');
         jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'scheduler.min.js');
-        jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'jquery.ui.touch.js');
         jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery.blockUI.js');
         jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'fullcalendar.min.css');
         jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'scheduler.min.css');
@@ -215,6 +214,20 @@ class j06001dashboard
         $tmpl->addRows('rows', $rows);
         $tmpl->readTemplatesFromInput('dashboard.html');
         $tmpl->displayParsedTemplate();
+        
+        if ($jrConfig[ 'development_production' ] == 'development') {
+            /* Development messages for sending webhook calls */
+            /* $webhook_notification = new stdClass();
+            $webhook_notification->webhook_event = 'dashboard_viewed';
+            $webhook_notification->collection_script = 'dashboard';
+            add_webhook_notification($webhook_notification); */
+            
+            $webhook_notification = new stdClass();
+            $webhook_notification->webhook_event = 'dashboard_viewed';
+            $webhook_notification->data = new stdClass();
+            $webhook_notification->data->message = "Dashboard viewed : Data sourced";
+            add_webhook_notification($webhook_notification);
+        }
     }
 
     public function getExistingGuestsDropdown($property_uid = 0)

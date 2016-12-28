@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1505,7 +1505,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Anzahl der Unter
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Lade Jomres jQuery Bibliothek?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'Sie können dies auf NEIN setzten, wenn Sie eine Vorlage (Template) verwenden die jquery verwendet. Dies KÖNNTE jquery Konflikte bei einigen Vorlagen lösen, aber nicht bei allen.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Wenn Sie Joomfish verwenden, sollten Sie diese Option auf NEIN setzten und stattdessen den „Joomfish Language Switcher“ verwenden. Der Umschalter ist im Administrator-Bereich immer aktiviert, da er benötigt wird, wenn die Funktion der Label Übersetzungen benutzt wird.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Vorschaubilder von hochgeladenen Bildern werden automatisch erstellt.');
 
 // 4.7.1
@@ -2611,7 +2611,7 @@ jr_define('_JOMRES_TEST_EMAIL_RESULT_FAILURE', 'Test-E-Mail wurde nicht gesendet
 jr_define('_INVOICE_TRANSACTIONS', 'Transaktionen');
 
 jr_define('_OPENEXCHANGE_API', 'Offene Wechselkurse API-Schlüssel');
-jr_define('_OPENEXCHANGE_API_DESC', 'Zur Umrechnung Preise zwischen den Diensten finden Sie eine Open-Wechselkurse API-Schlüssel benötigen. Sie müssen einen API-Schlüssel haben die Preise in Jomres korrekt angezeigt werden, Sie können jedoch für einen kostenlosen Schlüssel registrieren Sie sich unter <a href="https://openexchangerates.org/signup/free" _target="_blank">register for a free key</a> (stündliche Updates, 1000 requests/month - no HTTPS, E-Mail-Support oder erweiterte Funktionen). Jomres Downloads Wechselkurse einmal täglich so lange, wie Sie sich auf nur eine Handvoll von Websites, um den Schlüssel verwenden, Sie sind unwahrscheinlich, diese Grenzen zu überschreiten. Vorherige 8,3 bis jomres verwendeten wir eine ältere,undokumentierte Yahoo Feature jedoch haben entdeckt, dass die Verwendung dieser Funktion ist im Widerspruch zu Yahoos Geschäftsbedingungen.Als Ergebnis müssen wir davon ausgehen, dass die Funktion zu einem bestimmten Zeitpunkt in der Zukunft verschwinden,damit der Wechsel zu öffnen Wechselkursen.');
+jr_define('_OPENEXCHANGE_API_DESC', 'Zur Umrechnung Preise zwischen den Diensten finden Sie eine Open-Wechselkurse API-Schlüssel benötigen. Sie müssen einen API-Schlüssel haben die Preise in Jomres korrekt angezeigt werden, Sie können jedoch für einen kostenlosen Schlüssel registrieren Sie sich unter <a href="https://openexchangerates.org/signup/free" _target="_blank">register for a free key</a>  (stündliche Updates, 1000 requests/month - no HTTPS, E-Mail-Support oder erweiterte Funktionen). Jomres Downloads Wechselkurse einmal täglich so lange, wie Sie sich auf nur eine Handvoll von Websites, um den Schlüssel verwenden, Sie sind unwahrscheinlich, diese Grenzen zu überschreiten. Vorherige 8,3 bis jomres verwendeten wir eine ältere,undokumentierte Yahoo Feature jedoch haben entdeckt, dass die Verwendung dieser Funktion ist im Widerspruch zu Yahoos Geschäftsbedingungen.Als Ergebnis müssen wir davon ausgehen, dass die Funktion zu einem bestimmten Zeitpunkt in der Zukunft verschwinden,damit der Wechsel zu öffnen Wechselkursen.');
 
 jr_define('_JOMRES_COMMISSION', 'Kommission');
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS', 'Wenn Sie mehrere Bilder für die individuelle Sonderausstattungen laden, nur das erste Bild verwendet werden.');

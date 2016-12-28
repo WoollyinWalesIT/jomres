@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -515,7 +515,7 @@ class j02260editbooking
         foreach ($current_contract_details->contract[$contract_uid]['notedeets'] as $n) {
             $r = array();
             $r[ 'NOTE' ] = $n['note'];
-            $r[ 'DATETIME' ] = $n['timestamp'];
+            $r[ 'DATETIME' ] = outputDate($n['timestamp']);
             $r[ 'EDITLINK' ] = JOMRES_SITEPAGE_URL_NOSEF.'&task=editnote&note_id='.$n['id'].'&contract_uid='.(int) $contract_uid;
             $r[ 'EDITTEXT' ] = jr_gettext('_JOMCOMP_BOOKINGNOTES_EDIT', '_JOMCOMP_BOOKINGNOTES_EDIT', $editable = false, $isLink = true);
             $r[ 'DELETELINK' ] = JOMRES_SITEPAGE_URL_NOSEF.'&task=deletenote&note_id='.$n['id'].'&contract_uid='.$contract_uid;

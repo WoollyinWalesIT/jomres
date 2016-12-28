@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -176,6 +176,7 @@ class j06000compare
             }
 
             $i = 0;
+            $features = array();
             foreach ($featuresArray as $feature_id => $feature) {
                 if (in_array($feature_id, $all_used_features)) {
                     if ($i % 2) {

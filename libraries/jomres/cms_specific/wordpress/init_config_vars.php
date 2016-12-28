@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -58,7 +58,8 @@ $showtime->smtpuser = get_option('mailserver_login');
 $showtime->smtppass = get_option('mailserver_pass');
 $showtime->smtphost = get_option('mailserver_url');
 $showtime->smtpport = get_option('mailserver_port');
-$showtime->gzip = get_option('gzipcompression');
+//$showtime->gzip = get_option('gzipcompression');
+$showtime->gzip = '0'; //this is not used in wp
 
 if (get_option('permalink_structure') != '') {
     $showtime->sef = '1';  // Sef urls are enabled.

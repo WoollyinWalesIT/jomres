@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -50,15 +50,6 @@ try {
 
     //custom text object
     $customTextObj = jomres_singleton_abstract::getInstance('custom_text');
-
-    //override language with the jomres one, if selected from the jomres language dropdown
-    if (isset($_REQUEST[ 'jomreslang' ])) {
-        $lang_switcher_lang = jomresGetParam($_REQUEST, 'jomreslang', '');
-        if (array_key_exists($lang_switcher_lang, $jomres_language->datepicker_crossref)) {
-            set_showtime('lang', $lang_switcher_lang);
-            $customTextObj->reset_current_lang($lang_switcher_lang);
-        }
-    }
 
     //trigger 00002 event
     $MiniComponents->triggerEvent('00002');

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21stable
+ * @version Jomres 9.8.22stable
  *
  * @copyright	2005-2016 Vince Wooll
  * Translated to fr-FR by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 14Oct2010 - www.marioliveira.net. Updated 21-Jun2011 for version 5 stable
@@ -1045,7 +1045,7 @@ jr_define('_JOMRES_COM_A_CRON_DESC', 'Information de travail Pseudocron. La fonc
 jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Minicomposants <i>cron</i> installés. Pour un travail automatique individuel, utilisez les liens ci-dessous. Remarquez que les travaux automatiques (<i>cron jobs</i>) ne produisent aucune sortie de données, donc vous ne verrez pas aucune information sur la page. Référez-vous par contre à la liste de travaux ci-dessous.');
 global $jomresConfig_secret;
 jr_define('_JOMRES_COM_A_CRON_METHOD', 'Méthode');
-jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', "Si vous n'avez pas accès aux travaux automatiques, définissez ceci comme minicomposant, autrement créez un travail automatique (<i>cron job</i>) et préparez-le pour exécuter <br /> <i>curl -s ".JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl='.get_showtime('tmplcomponent').'&no_html=1&secret='.base64_encode(get_showtime('secret')).'> /dev/null</i>');
+jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', "Si vous n\'avez pas accès aux travaux automatiques, définissez ceci comme minicomposant, autrement créez un travail automatique (<i>cron job</i>) et préparez-le pour exécuter <br /> <i>curl -s ".JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl='.get_showtime('tmplcomponent').'&no_html=1&secret='.base64_encode(get_showtime('secret')).'> /dev/null</i> ');
 jr_define('_JOMRES_COM_A_CRON_LOGGING', 'Montrer <i>logging</i> dans le <i>browser</i>');
 jr_define('_JOMRES_COM_A_CRON_LOGGING_DESC', 'Fonctionne seulement si la méthode est définie comme minicomposant.');
 jr_define('_JOMRES_COM_A_CRON_LOGGINGENABLED', 'Logging activé');
@@ -1454,7 +1454,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Nombre de propri
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Charger bibliothèque Jomres jQuery?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'Vous pouvez choisir Non si vous avez un thème qui utilise jquery. Ceci PEUT résoudre quelques problèmes de conflits jquery dans quelques thèmes, mais pas dans tous les cas.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Si vous utilisez Joomfish, vous devrez choisir Non, et utiliser les commutateurs de langues Joomfish. Ce commutateur est toujours actif dans la zone d\'administration, car il est nécéssaire si on utilise la charactéristique de Traduction d\'Étiquettes.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Les images de référence sont automatiquement crées pour toutes les images chargées.');
 // 4.7.1
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', 'Largeur max. d\'image de référence (px).');
@@ -1842,19 +1842,19 @@ jr_define('_JOMRES_LASTEDITED_WARNING_72', "Jomres utilise des templates pour co
 Lorsque vous personnalisez un template vous avez la possibilité de faire la/les personnalisation spécifique à tous les types de propriétés ou à un type propriété spécifique. Par exemple, le plugin module Random NGM utilise le template de basic_module_output.html pour construire la mise en page. Ainsi, vous pouvez créer des personnalisations différentes du modèle basic_module_output.html pour les types de propriété.
 <br/>
 <br/>
-Si un template n'a pas été modifié avant, vous pouvez créer une nouvelle personnalisation de ce template en sélectionnant l'option nouveau à côté d'elle. Lorsque vous cliquez sur nouveau, une nouvelle page s'ouvre où vous pouvez modifier ce template. L'original du template est stocké dans le répertoire: /".JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend . Lorsque vous cliquez sur enregistrer, votre/vos personnalisations sont enregistrées dans la base de données et lorsque Jomres utilise ce modèle, il utilisera la balise stockée dans la base de données, et pas celui du template dans le répertoire: /'.JOMRES_ROOT_DIRECTORY."/templates/xxx/frontend .
+Si un template n'a pas été modifié avant, vous pouvez créer une nouvelle personnalisation de ce template en sélectionnant l'option nouveau à côté d'elle. Lorsque vous cliquez sur nouveau, une nouvelle page s'ouvre où vous pouvez modifier ce template. L'original du template est stocké dans le répertoire: /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend . Lorsque vous cliquez sur enregistrer, votre/vos personnalisations sont enregistrées dans la base de données et lorsque Jomres utilise ce modèle, il utilisera la balise stockée dans la base de données, et pas celui du template dans le répertoire: /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend .
 <br/>
 Cela garantit que les personnalisations de templates ne sont pas remplacées lorsque vous mettez à niveau votre installation Jomres.
 <br/>
 <br/>
 Une fois qu'un template a été personnalisé, vous avez plus d'options. Vous pouvez créer une nouvelle copie du template original (voir ci-dessus), vous pouvez copier une personnalisation pour une nouvelle personnalisation du template, par exemple Si vous avez déjà personnalisé basic_module_output.html de l'hôtel, vous pouvez copier cette personnalisation pour faire une nouvelle personnalisation pour un nouveau type de propriété, comme les voitures.
 <br/>
-Vous pouvez modifier une personnalisation existante, ou vous pouvez la supprimer. Lorsque vous supprimez une personnalisation; et qu'une autre personnalisation de ce template n'existe pas Jomres utilisera l'original du template qui est dans le répertoire:  /".JOMRES_ROOT_DIRECTORY."/templates/xxx/frontend. Ceci est utile si vous avez modifié un template, mais que les changements que vous avez faits ne vous plaisent pas. Vous pouvez supprimer les personnalisations et recommencer à partir du template original.
+Vous pouvez modifier une personnalisation existante, ou vous pouvez la supprimer. Lorsque vous supprimez une personnalisation; et qu'une autre personnalisation de ce template n'existe pas Jomres utilisera l'original du template qui est dans le répertoire:  /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend. Ceci est utile si vous avez modifié un template, mais que les changements que vous avez faits ne vous plaisent pas. Vous pouvez supprimer les personnalisations et recommencer à partir du template original.
 <br/>
 <br/>
 Jomres est en constante évolution et les templates de base sont souvent mis à jour ou modifiés. Si vous utilisez la fonctionnalité de modification de modèle ces modèles de template mis à jour n'écrasera pas vos personnalisations, mais cela peut aussi signifier que vos personnalisations ne peuvent pas utiliser les nouvelles fonctionnalités dans les modèles de base mis à jour. Comme nous n'avons aucun moyen d'analyse de vos personnalisations, vous pouvez ou pas bénéficier de ces changements.
 <br/>
-La fonctionnalité de modification de template se basera sur les dernières dates de modification des fichiers prevenant du répertoire: /".JOMRES_ROOT_DIRECTORY."/templates/xxx/frontend et s'il détecte que la date de dernière modification du fichier modèle est plus récent que le modèle que vous avez enregistré dans la base de données Jomres vous avertit. Vous ne seraz pas obligé de mettre a jour vos personnalisation du template cependant, pour pouvoir bénéficier de la misa à jour vous devriez adapter votre personnalisation au template d'origine mis à jour"); // Updated template editing information to correspond with changes to 7.2.0 and it's template editing changes related to property type templates
+La fonctionnalité de modification de template se basera sur les dernières dates de modification des fichiers prevenant du répertoire: /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend et s'il détecte que la date de dernière modification du fichier modèle est plus récent que le modèle que vous avez enregistré dans la base de données Jomres vous avertit. Vous ne seraz pas obligé de mettre a jour vos personnalisation du template cependant, pour pouvoir bénéficier de la misa à jour vous devriez adapter votre personnalisation au template d'origine mis à jour"); // Updated template editing information to correspond with changes to 7.2.0 and it's template editing changes related to property type templates
 jr_define('_JOMRES_STAYFORAMINIMUMOF', 'Séjour pour un minimum de');
 jr_define('_JOMRES_NIGHTSFOR', ' nuits pour ');
 jr_define('_JOMRES_PROPERTYLIST_IMAGESASGIFS', "Liste d'imagesde la propriété, affiche la liste de images GIF de la propriété; si le diaporama est disponible.");
@@ -2640,6 +2640,13 @@ jr_define('_JOMRES_BOOKING_ENQUIRY_AMEND', 'Amend booking request');
 
 jr_define('_JOMRES_INVOICE_MARKASPENDING', 'Mark invoice as pending');
 jr_define('_JOMRES_INVOICE_MARKEDASPENDING', 'Invoice marked as pending');
+
+jr_define('_JOMRES_TRACKING_ENABLE', 'Send anonymous tracking data?');
+jr_define('_JOMRES_TRACKING_ENABLE_DESC', 'Select Yes to send anonymous tracking data to Jomres.net to help us understand better how you use the system.');
+
+jr_define('_JOMRES_PARTNERS_PLEASE_COMPLETE', 'Please ensure that your details have been completed on the Edit My Account page before attempting to make bookings on behalf of your clients.');
+jr_define('_JOMRES_PARTNERS_GUEST_ADDRESS', "Guest's contact details");
+jr_define('_JOMRES_CLEAR_GUEST_DETAILS', ' -- New Guest -- ');
 
 jr_define('_JOMRES_CHARTS', 'Charts');
 jr_define('_JOMRES_CHARTS_SELECT', 'Select chart...');

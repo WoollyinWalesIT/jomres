@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -58,7 +58,9 @@ class j02224saveguest
             $jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
             $jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_INSERT_GUEST', '_JOMRES_MR_AUDIT_INSERT_GUEST', false));
             $query = "INSERT INTO #__jomres_guests (`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`tel_fax`,`email`,`discount`,`property_uid`)VALUES ('$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$fax','$email',$discount,'".(int) $defaultProperty."')";
-            if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_INSERT_GUEST', '_JOMRES_MR_AUDIT_INSERT_GUEST', false))) {
+            $guests_uid = doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_INSERT_GUEST', '_JOMRES_MR_AUDIT_INSERT_GUEST', false));
+            
+            if (!$guests_uid) {
                 trigger_error('Unable to insert guest details, mysql db failure', E_USER_ERROR);
             }
         }
@@ -71,6 +73,15 @@ class j02224saveguest
             $validation->save_subject('guest_registered_byguest_id', array('property_uid' => $defaultProperty, 'guest_id' => $guests_uid));
         }
 
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'guest_save';
+        $webhook_notification->webhook_event_description    = 'Logs when a guest\'s details are added/updated.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->guest_id               = $guests_uid;
+        $webhook_notification->data->property_uid           = $defaultProperty;
+        add_webhook_notification($webhook_notification);
+            
         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=listguests'));
     }
 

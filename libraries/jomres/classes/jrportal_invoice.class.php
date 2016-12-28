@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.22
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -123,7 +123,7 @@ class jrportal_invoice
         $jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
 
         if ($jrportal_taxrate->gather_data($line_item_data[ 'tax_code_id' ])) {
-            $this->lineitem['tax_rate'] = (float) $jrportal_taxrate->rate;
+            $this->lineitem['tax_rate'] = $jrportal_taxrate->rate;
             $this->lineitem['tax_code'] = $jrportal_taxrate->code;
             $this->lineitem['tax_description'] = $jrportal_taxrate->description;
         } else {
@@ -144,21 +144,19 @@ class jrportal_invoice
 
         $this->lineitem['inv_id'] = $this->id;
 
-        $i_total = ((float) $this->lineitem['init_price'] * (float) $this->lineitem['init_qty']) + (float) $this->lineitem['init_discount'];
-        $i_total = number_format($i_total, 2, '.', '');
-
-        $this->lineitem['init_total'] = $i_total;
+        $i_total = ($this->lineitem['init_price'] * $this->lineitem['init_qty']) + $this->lineitem['init_discount'];
+		
+        $this->lineitem['init_total'] = number_format($i_total, 2, '.', '');
 
         if ($this->vat_will_be_charged) {
-            //$init_total_tax = number_format( $i_total / 100 * $this->lineitem['tax_rate'], 2, '.', '' );
-            $init_total_tax = substr(number_format($i_total / 100 * $this->lineitem['tax_rate'], 3, '.', ''), 0, -1);  // possible solution to rounding issues, awaiting testing
+            $init_total_tax = $this->lineitem['tax_rate'] * ($i_total / 100);
         } else {
             $init_total_tax = 0;
         }
 
-        $this->lineitem['init_total_inclusive'] = $i_total + $init_total_tax;
+        $this->lineitem['init_total_inclusive'] = number_format($i_total + $init_total_tax, 2, '.', '');
 
-        $this->init_total = $this->init_total + $this->lineitem['init_total_inclusive'];
+        $this->init_total = number_format($this->init_total + $i_total + $init_total_tax, 2, '.', '');
 
         //insert the new line item
         $this->commitLineItem();
@@ -234,20 +232,19 @@ class jrportal_invoice
         $this->lineitem['init_discount'] = $line_item_data[ 'init_discount' ];
         $this->lineitem['is_payment'] = (int) $line_item_data[ 'is_payment' ];
 
-        $i_total = ((float) $this->lineitem['init_price'] * (float) $this->lineitem['init_qty']) - (float) $this->lineitem['init_discount'];
-
-        $this->lineitem['init_total'] = $i_total;
+        $i_total = ($this->lineitem['init_price'] * $this->lineitem['init_qty']) - $this->lineitem['init_discount'];
+		
+		$this->lineitem['init_total'] = number_format($i_total, 2, '.', '');
 
         if ($this->vat_will_be_charged) {
-            //$init_total_tax = number_format( $i_total / 100 * $this->lineitem['tax_rate'], 2, '.', '' );
-            $init_total_tax = substr(number_format($i_total / 100 * $this->lineitem['tax_rate'], 3, '.', ''), 0, -1); // possible solution to rounding issues, awaiting testing
+            $init_total_tax = $this->lineitem['tax_rate'] * ($i_total / 100);
         } else {
             $init_total_tax = 0;
         }
 
-        $this->lineitem['init_total_inclusive'] = $i_total + $init_total_tax;
+        $this->lineitem['init_total_inclusive'] = number_format($i_total + $init_total_tax, 2, '.', '');
 
-        $this->init_total = $this->init_total + $this->lineitem['init_total_inclusive'];
+        $this->init_total = number_format($this->init_total + $i_total + $init_total_tax, 2, '.', '');
 
         $this->commitUpdateLineItem();
     }
@@ -439,7 +436,16 @@ class jrportal_invoice
 
             if ((int) $invoice_id > 0) {
                 $this->id = (int) $invoice_id;
-
+                
+                $webhook_notification                               = new stdClass();
+                $webhook_notification->webhook_event                = 'invoice_added';
+                $webhook_notification->webhook_event_description    = 'Logs when an invoice is added.';
+                $webhook_notification->webhook_event_plugin         = 'core';
+                $webhook_notification->data                         = new stdClass();
+                $webhook_notification->data->property_uid           = $this->property_uid;
+                $webhook_notification->data->invoice_uid            = $this->id;
+                add_webhook_notification($webhook_notification);
+            
                 return true;
             } else {
                 error_logging('ID of Invoice could not be found after apparent successful insert');
@@ -497,7 +503,16 @@ class jrportal_invoice
 
             if ((int) $lineitem_id > 0) {
                 $this->lineitem['id'] = (int) $lineitem_id;
-
+                
+                $webhook_notification                               = new stdClass();
+                $webhook_notification->webhook_event                = 'invoice_updated';
+                $webhook_notification->webhook_event_description    = 'Logs when an invoice is updated.';
+                $webhook_notification->webhook_event_plugin         = 'core';
+                $webhook_notification->data                         = new stdClass();
+                $webhook_notification->data->property_uid           = $this->property_uid;
+                $webhook_notification->data->invoice_uid            = $this->id;
+                add_webhook_notification($webhook_notification);
+            
                 return true;
             } else {
                 error_logging('ID of Line Item could not be found after apparent successful insert');
@@ -537,6 +552,15 @@ class jrportal_invoice
 						`vat_will_be_charged` = '.(int) $this->vat_will_be_charged."
 					WHERE `id`= " . (int)$this->id;
 
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'invoice_updated';
+        $webhook_notification->webhook_event_description    = 'Logs when an invoice is updated.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->property_uid;
+        $webhook_notification->data->invoice_uid            = $this->id;
+        add_webhook_notification($webhook_notification);
+                
         return doInsertSql($query, '');
     }
 
@@ -569,6 +593,15 @@ class jrportal_invoice
 						`is_payment`			= ' .(int) $this->lineitem['is_payment'].'
 					WHERE `id`=' .(int)$this->lineitem['id'];
 
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'invoice_updated';
+        $webhook_notification->webhook_event_description    = 'Logs when an invoice is updated.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->property_uid;
+        $webhook_notification->data->invoice_uid            = $this->id;
+        add_webhook_notification($webhook_notification);
+        
         return doInsertSql($query, '');
     }
 
@@ -583,6 +616,15 @@ class jrportal_invoice
 
         $query = 'DELETE FROM #__jomresportal_lineitems WHERE `id` = '.$line_item_id;
 
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'invoice_updated';
+        $webhook_notification->webhook_event_description    = 'Logs when an invoice is updated.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->property_uid;
+        $webhook_notification->data->invoice_uid            = $this->id;
+        add_webhook_notification($webhook_notification);
+        
         return doInsertSql($query, '');
     }
 
