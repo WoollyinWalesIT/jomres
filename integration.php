@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.23
+ * @version Jomres 9.8.24
  *
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -132,7 +132,7 @@ if (!class_exists('patErrorManager')) {
     require_once 'libraries'.JRDS.'phptools'.JRDS.'patErrorManager.php';
 }
 
-require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'PHPMailer-v5.2.19'.JRDS.'PHPMailerAutoload.php';
+require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'PHPMailer-5.2.21'.JRDS.'PHPMailerAutoload.php';
 PHPMailerAutoload('phpmailer');
 PHPMailerAutoload('smtp');
 
