@@ -238,7 +238,7 @@ class jomres_generic_booking_amend
         }
 
         $webhook_notification                               = new stdClass();
-        $webhook_notification->webhook_event                = 'amend_booking';
+        $webhook_notification->webhook_event                = 'booking_amend';
         $webhook_notification->webhook_event_description    = 'Logs when a booking is modified.';
         $webhook_notification->webhook_event_plugin         = 'core';
         $webhook_notification->data                         = new stdClass();
