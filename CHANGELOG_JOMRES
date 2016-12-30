@@ -1,3 +1,11 @@
+<h3>Jomres 9.8.24 27/12/2016</h3>
+
+<span class="label label-important label-danger">Fix</span> PHPMailer 5.2.19 was found to have it's own vulnerability, eventually resulting in PHPMailer 5.2.21, so Jomres has been updated with this version.
+
+<h3>Jomres 9.8.23 27/12/2016</h3>
+
+<span class="label label-important label-danger">Fix</span> Fixed a bug in the installer.
+
 <h3>Jomres 9.8.22 27/12/2016</h3>
 
 
