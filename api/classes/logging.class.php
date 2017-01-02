@@ -91,7 +91,7 @@ class logging
         $stream_handler = new StreamHandler($jrConfig['log_path'].$log_file, Logger::DEBUG);
         $stream_handler->setFormatter($formatter);
 
-        if ( defined('AJAXCALL') && !AJAXCALL ) {
+        if ( defined('AJAXCALL') && !AJAXCALL && !defined("API_STARTED") ) {
         if ($jrConfig['development_production'] == 'development' ) {
             $logger = new Logger($channel);
             $logger->pushProcessor(new \Monolog\Processor\WebProcessor); // pushing the web server preprocessor
