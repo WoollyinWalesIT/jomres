@@ -59,7 +59,7 @@ class j02226deleteguest
             }
             
             $webhook_notification                               = new stdClass();
-            $webhook_notification->webhook_event                = 'guest_delete';
+            $webhook_notification->webhook_event                = 'guest_deleted';
             $webhook_notification->webhook_event_description    = 'Logs when a guest is deleted.';
             $webhook_notification->webhook_event_plugin         = 'core';
             $webhook_notification->data                         = new stdClass();

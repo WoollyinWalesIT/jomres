@@ -95,7 +95,7 @@ class j04910deleteproperty
                 $jomres_messaging->set_message($saveMessage);
 
                 $webhook_notification                               = new stdClass();
-                $webhook_notification->webhook_event                = 'property_delete';
+                $webhook_notification->webhook_event                = 'property_deleted';
                 $webhook_notification->webhook_event_description    = 'Logs when a property is deleted.';
                 $webhook_notification->webhook_event_plugin         = 'core';
                 $webhook_notification->data                         = new stdClass();

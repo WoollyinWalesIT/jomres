@@ -131,7 +131,7 @@ class jomres_generic_booking_cancel
         }
 
         $webhook_notification                               = new stdClass();
-        $webhook_notification->webhook_event                = 'booking_cancel';
+        $webhook_notification->webhook_event                = 'booking_cancelled';
         $webhook_notification->webhook_event_description    = 'Logs when a booking is cancelled.';
         $webhook_notification->webhook_event_plugin         = 'core';
         $webhook_notification->data                         = new stdClass();

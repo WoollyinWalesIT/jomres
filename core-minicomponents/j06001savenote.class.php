@@ -59,7 +59,7 @@ class j06001savenote
 
         if ($contract_uid) {
             $webhook_notification                               = new stdClass();
-            $webhook_notification->webhook_event                = 'booking_note_save';
+            $webhook_notification->webhook_event                = 'booking_note_saved';
             $webhook_notification->webhook_event_description    = 'Logs when booking notes are added/edited.';
             $webhook_notification->webhook_event_plugin         = 'core';
             $webhook_notification->data                         = new stdClass();

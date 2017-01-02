@@ -42,7 +42,7 @@ class j06001deletenote
         if (doInsertSql($query, $auditMessage)) {
             
             $webhook_notification                           = new stdClass();
-            $webhook_notification->webhook_event            = 'booking_note_delete';
+            $webhook_notification->webhook_event            = 'booking_note_deleted';
             $webhook_notification->webhook_event_description = 'Logs when booking notes are deleted.';
             $webhook_notification->data                     = new stdClass();
             $webhook_notification->data->contract_uid       = $contract_uid;

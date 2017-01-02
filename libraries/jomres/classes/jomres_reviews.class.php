@@ -139,7 +139,7 @@ class jomres_reviews
         if ($result) {
             
             $webhook_notification                               = new stdClass();
-            $webhook_notification->webhook_event                = 'review_save';
+            $webhook_notification->webhook_event                = 'review_saved';
             $webhook_notification->webhook_event_description    = 'Logs when a review is added.';
             $webhook_notification->webhook_event_plugin         = 'core';
             $webhook_notification->data                         = new stdClass();
@@ -188,7 +188,7 @@ class jomres_reviews
                 if ($result) {
                     
                     $webhook_notification                               = new stdClass();
-                    $webhook_notification->webhook_event                = 'review_delete';
+                    $webhook_notification->webhook_event                = 'review_deleted';
                     $webhook_notification->webhook_event_description    = 'Logs when a review is added.';
                     $webhook_notification->webhook_event_plugin         = 'core';
                     $webhook_notification->data                         = new stdClass();
@@ -209,7 +209,7 @@ class jomres_reviews
         $result = doInsertSql($query, '');
         if ($result) {
             $webhook_notification                               = new stdClass();
-            $webhook_notification->webhook_event                = 'review_publish';
+            $webhook_notification->webhook_event                = 'review_published';
             $webhook_notification->webhook_event_description    = 'Logs when a review is added.';
             $webhook_notification->webhook_event_plugin         = 'core';
             $webhook_notification->data                         = new stdClass();
@@ -227,7 +227,7 @@ class jomres_reviews
         $result = doInsertSql($query, '');
         if ($result) {
             $webhook_notification                               = new stdClass();
-            $webhook_notification->webhook_event                = 'review_unpublish';
+            $webhook_notification->webhook_event                = 'review_unpublished';
             $webhook_notification->webhook_event_description    = 'Logs when a review is added.';
             $webhook_notification->webhook_event_plugin         = 'core';
             $webhook_notification->data                         = new stdClass();

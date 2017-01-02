@@ -74,7 +74,7 @@ class j02224saveguest
         }
 
         $webhook_notification                               = new stdClass();
-        $webhook_notification->webhook_event                = 'guest_save';
+        $webhook_notification->webhook_event                = 'guest_saved';
         $webhook_notification->webhook_event_description    = 'Logs when a guest\'s details are added/updated.';
         $webhook_notification->webhook_event_plugin         = 'core';
         $webhook_notification->data                         = new stdClass();

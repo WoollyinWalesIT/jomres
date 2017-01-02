@@ -253,7 +253,7 @@ class jomres_properties
             }
             
         $webhook_notification                               = new stdClass();
-        $webhook_notification->webhook_event                = 'property_add';
+        $webhook_notification->webhook_event                = 'property_added';
         $webhook_notification->webhook_event_description    = 'Logs when a property is added.';
         $webhook_notification->webhook_event_plugin         = 'core';
         $webhook_notification->data                         = new stdClass();
@@ -385,8 +385,8 @@ class jomres_properties
         updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS', $this->metakeywords, true);
 
         $webhook_notification                           = new stdClass();
-        $webhook_notification->webhook_event                     = 'update_property';
-        $webhook_notification->webhook_event_description         = 'Logs when a property is added.';
+        $webhook_notification->webhook_event                     = 'property_saved';
+        $webhook_notification->webhook_event_description         = 'Logs when a property is updated.';
         $webhook_notification->data                     = new stdClass();
         $webhook_notification->data->property_uid       = $this->propertys_uid;
         add_webhook_notification($webhook_notification);

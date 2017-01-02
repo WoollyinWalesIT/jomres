@@ -8,10 +8,10 @@
 
 <h3>Jomres 9.8.22 27/12/2016</h3>
 
+<span class="label label-important label-danger">Fix</span> PHP Mailer library updated to 5.2.19 from 5.2.9 due to critical remote code execution bug in previous versions
 
 <span class="label label-success">Feature</span> Added webhook functionality, specifically code to generate webhooks, that the Webhook Core would fire.
 <span class="label label-success">Feature</span> Updated the dashboard js to have proper built in touch devices support.
-<span class="label label-success">Feature</span> PHP Mailer library updated to 5.2.19 from 5.2.9 due to critical remote code execution bug in previous versions
 <span class="label label-success">Feature</span> Improved logging, logs now sent to browser console and modified logging class so that further information can be sent to an extra field, which offers cleaner log views.
 
 <span class="label label-warning">Change</span> Properly format the date in the booking notes tab

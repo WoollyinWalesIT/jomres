@@ -825,6 +825,15 @@ class jrportal_invoice
         }
 
         $this->commitUpdateInvoice();
+        
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'invoice_paid';
+        $webhook_notification->webhook_event_description    = 'Logs when an invoice is marked as paid.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->property_uid;
+        $webhook_notification->data->invoice_uid            = $this->id;
+        add_webhook_notification($webhook_notification);
     }
 
     //Mark an invoice as pending
@@ -840,6 +849,15 @@ class jrportal_invoice
         $this->paid = '1970-01-01 00:00:01';
 
         $this->commitUpdateInvoice();
+        
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'invoice_pending';
+        $webhook_notification->webhook_event_description    = 'Logs when an invoice is marked as pending.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->property_uid;
+        $webhook_notification->data->invoice_uid            = $this->id;
+        add_webhook_notification($webhook_notification);
     }
 
     //Mark an invoice as unpaid
@@ -859,6 +877,15 @@ class jrportal_invoice
         $this->paid = '1970-01-01 00:00:01';
 
         $this->commitUpdateInvoice();
+        
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'invoice_unpaid';
+        $webhook_notification->webhook_event_description    = 'Logs when an invoice is marked as unpaid.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->property_uid;
+        $webhook_notification->data->invoice_uid            = $this->id;
+        add_webhook_notification($webhook_notification);
     }
 
     //Mark an invoice as cancelled
@@ -873,6 +900,15 @@ class jrportal_invoice
         $this->status = 2;
 
         $this->commitUpdateInvoice();
+        
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'invoice_cancelled';
+        $webhook_notification->webhook_event_description    = 'Logs when an invoice is marked as cancelled.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->property_uid;
+        $webhook_notification->data->invoice_uid            = $this->id;
+        add_webhook_notification($webhook_notification);
     }
 
     //Mark an invoice as issued
@@ -889,6 +925,15 @@ class jrportal_invoice
         $this->paid = '1970-01-01 00:00:01';
 
         $this->commitUpdateInvoice();
+        
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'invoice_issued';
+        $webhook_notification->webhook_event_description    = 'Logs when an invoice is marked as issued.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->property_uid;
+        $webhook_notification->data->invoice_uid            = $this->id;
+        add_webhook_notification($webhook_notification);
     }
 
     //Get the line items balance

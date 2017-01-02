@@ -41,7 +41,7 @@ class j02202savedeposit
             }
             
             $webhook_notification                               = new stdClass();
-            $webhook_notification->webhook_event                = 'deposit_save';
+            $webhook_notification->webhook_event                = 'deposit_saved';
             $webhook_notification->webhook_event_description    = 'Logs when deposit is added to a booking.';
             $webhook_notification->webhook_event_plugin         = 'core';
             $webhook_notification->data                         = new stdClass();
