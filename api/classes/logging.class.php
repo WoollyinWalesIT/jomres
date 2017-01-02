@@ -92,14 +92,14 @@ class logging
         $stream_handler->setFormatter($formatter);
 
         if ( defined('AJAXCALL') && !AJAXCALL && !defined("API_STARTED") ) {
-        if ($jrConfig['development_production'] == 'development' ) {
-            $logger = new Logger($channel);
-            $logger->pushProcessor(new \Monolog\Processor\WebProcessor); // pushing the web server preprocessor
-            $browserHandler = new \Monolog\Handler\BrowserConsoleHandler(\Monolog\Logger::DEBUG);
-            $logger->pushHandler($browserHandler);
-            $logger->addDebug($message, array ("info_dump" => $further_info_dump) );
-            $logger->debug($message);
-        }
+            if ($jrConfig['development_production'] == 'development' ) {
+                $logger = new Logger($channel);
+                $logger->pushProcessor(new \Monolog\Processor\WebProcessor); // pushing the web server preprocessor
+                $browserHandler = new \Monolog\Handler\BrowserConsoleHandler(\Monolog\Logger::DEBUG);
+                $logger->pushHandler($browserHandler);
+                $logger->addDebug($message, array ("info_dump" => $further_info_dump) );
+                $logger->debug($message);
+            }
         }
         
         $message = $username.' ~~ '.$message.' ~~ '.session_id().' ~~ '.$url;

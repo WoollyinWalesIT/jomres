@@ -41,8 +41,30 @@ if (!PRODUCTION) {
     ini_set('display_errors', '1');
 }
 
+
+
 require 'vendor/autoload.php';
 require 'classes/logging.class.php';
+
+// Currently disabled as not setup right now to test this.
+/* require_once(JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'configuration.php');
+if (!isset($jrConfig['api_force_ssl']))
+    $jrConfig['api_force_ssl'] = true;
+else
+    $jrConfig['api_force_ssl'] = (bool) $jrConfig['api_force_ssl'] ;
+
+$https = false;
+if (isset($_SERVER['SERVER_PORT']) && // nginx
+        ($_SERVER['SERVER_PORT'] === '443')) {
+    $https = true;
+} else if ( !isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on') { // Apache & IIS
+    $https = false;
+}
+    
+if ( $https == false && $jrConfig['api_force_ssl'] == true ) {
+    Flight::halt( "403" ,"You cannot access this API via a non-encrypted url");
+} */
+
 
 if (isset($_POST['grant_type']) && ($_POST['grant_type'] == 'client_credentials' || $_POST['grant_type'] == 'authorization_code')) {
     if (!isset($_POST['client_id'])) {
