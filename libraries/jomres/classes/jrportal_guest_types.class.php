@@ -79,7 +79,7 @@ class jrportal_guest_types
         $this->id = doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_INSERT_CUSTOMERTYPE', '_JOMRES_MR_AUDIT_INSERT_CUSTOMERTYPE', false));
         
         $webhook_notification                               = new stdClass();
-        $webhook_notification->webhook_event                = 'guest_type_added';
+        $webhook_notification->webhook_event                = 'guest_type_saved';
         $webhook_notification->webhook_event_description    = 'Logs when guest types added.';
         $webhook_notification->webhook_event_plugin         = 'core';
         $webhook_notification->data                         = new stdClass();
@@ -122,7 +122,7 @@ class jrportal_guest_types
         }
         
         $webhook_notification                               = new stdClass();
-        $webhook_notification->webhook_event                = 'guest_type_updated';
+        $webhook_notification->webhook_event                = 'guest_type_saved';
         $webhook_notification->webhook_event_description    = 'Logs when guest types updated.';
         $webhook_notification->webhook_event_plugin         = 'core';
         $webhook_notification->data                         = new stdClass();
