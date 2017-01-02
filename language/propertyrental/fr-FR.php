@@ -6,7 +6,7 @@
  *
  * @version Jomres 9.8.24stable
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Translated to fr-FR by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 14Oct2010 - www.marioliveira.net. Updated 21-Jun2011 for version 5 stable
  * Continued translation to fr-FR by Vincent Vermeille, Fribourg, Switzerland, 11-03-2013 2010 for version 7.2.12
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
