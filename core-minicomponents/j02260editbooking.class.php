@@ -404,6 +404,8 @@ class j02260editbooking
 
         $extras_rows = array();
 
+		$taxrate = 0;
+		
         $jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
 
         if (isset($current_contract_details->contract[$contract_uid]['extradeets'])) {
