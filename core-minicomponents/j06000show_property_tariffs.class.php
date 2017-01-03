@@ -59,12 +59,12 @@ class j06000show_property_tariffs
 
         $output = array();
 
-        $MiniComponents->specificEvent('01020', 'showtariffs', $componentArgs);
+        $MiniComponents->specificEvent('01025', 'showtariffs', $componentArgs);
 
         if ($output_now) {
-            echo $MiniComponents->miniComponentData[ '01020' ][ 'showtariffs' ];
+            echo $MiniComponents->miniComponentData[ '01025' ][ 'showtariffs' ];
         } else {
-            $this->retVals = $MiniComponents->miniComponentData[ '01020' ][ 'showtariffs' ];
+            $this->retVals = $MiniComponents->miniComponentData[ '01025' ][ 'showtariffs' ];
         }
     }
 
