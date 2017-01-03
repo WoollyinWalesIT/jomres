@@ -21,6 +21,7 @@ class basic_invoice_details
     public function __construct()
     {
         $this->invoice = array();
+        $this->status_note = '0 - unpaid , 1 - paid , 2 - cancelled , 3 - pending ';
     }
 
     public static function getInstance()
