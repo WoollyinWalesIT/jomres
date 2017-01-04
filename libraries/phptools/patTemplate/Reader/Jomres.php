@@ -30,7 +30,7 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 			{
 			$custom_paths = get_showtime( 'custom_paths' );
 			
-			if ( array_key_exists( $templatename, $custom_paths ) )
+			if ( is_array($custom_paths) && array_key_exists( $templatename, $custom_paths ) )
 				{
 				$default_root = $custom_paths[ $templatename ];
 				}
@@ -113,6 +113,7 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 			{
 			if (is_file( $override_path . JRDS . $jomres_template_name ) )
 				{
+				set_showtime('override_path_'.$jomres_template_name, $override_path);
 				return file_get_contents( $override_path . JRDS . $jomres_template_name );
 				}
 			else

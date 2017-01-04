@@ -2722,7 +2722,18 @@ class patTemplate
 					$alert = 'danger';
 					break;
 				}
-			$file_output = $this->_options[ 'root' ]['__default'].JRDS.$filename;
+
+			if (get_showtime('override_path_'.$filename))
+				$file_output = get_showtime('override_path_'.$filename).JRDS.$filename;
+			else
+				{
+				$custom_paths = get_showtime( 'custom_paths' );
+				
+				if ( is_array($custom_paths) && array_key_exists( $filename, $custom_paths ) )
+					$file_output = $custom_paths[ $filename ].JRDS.$filename;
+				else
+					$file_output = $this->_options[ 'root' ]['__default'].JRDS.$filename;
+				}
 			
 			foreach ( $this->_vars as $key=>$val)
 				{
