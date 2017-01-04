@@ -864,7 +864,7 @@ if (!class_exists('jomresPHPMailer'))
          * @param string $kind One of 'to', 'cc', 'bcc', or 'ReplyTo'
          * @param string $address The email address to send, resp. to reply to
          * @param string $name
-         * @throws phpmailerException
+         * @throws jomres_phpmailerException
          * @return boolean true on success, false if address already used or invalid in some way
          * @access protected
          */
@@ -878,7 +878,7 @@ if (!class_exists('jomresPHPMailer'))
                 $this->setError($error_message);
                 $this->edebug($error_message);
                 if ($this->exceptions) {
-                    throw new phpmailerException($error_message);
+                    throw new jomres_phpmailerException($error_message);
                 }
                 return false;
             }
@@ -908,7 +908,7 @@ if (!class_exists('jomresPHPMailer'))
          * @param string $kind One of 'to', 'cc', 'bcc', or 'ReplyTo'
          * @param string $address The email address to send, resp. to reply to
          * @param string $name
-         * @throws phpmailerException
+         * @throws jomres_phpmailerException
          * @return boolean true on success, false if address already used or invalid in some way
          * @access protected
          */
@@ -919,7 +919,7 @@ if (!class_exists('jomresPHPMailer'))
                 $this->setError($error_message);
                 $this->edebug($error_message);
                 if ($this->exceptions) {
-                    throw new phpmailerException($error_message);
+                    throw new jomres_phpmailerException($error_message);
                 }
                 return false;
             }
@@ -928,7 +928,7 @@ if (!class_exists('jomresPHPMailer'))
                 $this->setError($error_message);
                 $this->edebug($error_message);
                 if ($this->exceptions) {
-                    throw new phpmailerException($error_message);
+                    throw new jomres_phpmailerException($error_message);
                 }
                 return false;
             }
@@ -1007,7 +1007,7 @@ if (!class_exists('jomresPHPMailer'))
          * @param string $address
          * @param string $name
          * @param boolean $auto Whether to also set the Sender address, defaults to true
-         * @throws phpmailerException
+         * @throws jomres_phpmailerException
          * @return boolean
          */
         public function setFrom($address, $name = '', $auto = true)
@@ -1022,7 +1022,7 @@ if (!class_exists('jomresPHPMailer'))
                 $this->setError($error_message);
                 $this->edebug($error_message);
                 if ($this->exceptions) {
-                    throw new phpmailerException($error_message);
+                    throw new jomres_phpmailerException($error_message);
                 }
                 return false;
             }
@@ -1203,7 +1203,7 @@ if (!class_exists('jomresPHPMailer'))
         /**
          * Create a message and send it.
          * Uses the sending method specified by $Mailer.
-         * @throws phpmailerException
+         * @throws jomres_phpmailerException
          * @return boolean false on error - See the ErrorInfo property for details of the error.
          */
         public function send()
@@ -1213,7 +1213,7 @@ if (!class_exists('jomresPHPMailer'))
                     return false;
                 }
                 return $this->postSend();
-            } catch (phpmailerException $exc) {
+            } catch (jomres_phpmailerException $exc) {
                 $this->mailHeader = '';
                 $this->setError($exc->getMessage());
                 if ($this->exceptions) {
@@ -1225,7 +1225,7 @@ if (!class_exists('jomresPHPMailer'))
 
         /**
          * Prepare a message for sending.
-         * @throws phpmailerException
+         * @throws jomres_phpmailerException
          * @return boolean
          */
         public function preSend()
@@ -1240,7 +1240,7 @@ if (!class_exists('jomresPHPMailer'))
                     call_user_func_array(array($this, 'addAnAddress'), $params);
                 }
                 if ((count($this->to) + count($this->cc) + count($this->bcc)) < 1) {
-                    throw new phpmailerException($this->lang('provide_address'), self::STOP_CRITICAL);
+                    throw new jomres_phpmailerException($this->lang('provide_address'), self::STOP_CRITICAL);
                 }
 
                 // Validate From, Sender, and ConfirmReadingTo addresses
@@ -1255,7 +1255,7 @@ if (!class_exists('jomresPHPMailer'))
                         $this->setError($error_message);
                         $this->edebug($error_message);
                         if ($this->exceptions) {
-                            throw new phpmailerException($error_message);
+                            throw new jomres_phpmailerException($error_message);
                         }
                         return false;
                     }
@@ -1269,7 +1269,7 @@ if (!class_exists('jomresPHPMailer'))
                 $this->setMessageType();
                 // Refuse to send an empty message unless we are specifically allowing it
                 if (!$this->AllowEmpty and empty($this->Body)) {
-                    throw new phpmailerException($this->lang('empty_message'), self::STOP_CRITICAL);
+                    throw new jomres_phpmailerException($this->lang('empty_message'), self::STOP_CRITICAL);
                 }
 
                 // Create body before headers in case body makes changes to headers (e.g. altering transfer encoding)
@@ -1310,7 +1310,7 @@ if (!class_exists('jomresPHPMailer'))
                         str_replace("\r\n", "\n", $header_dkim) . self::CRLF;
                 }
                 return true;
-            } catch (phpmailerException $exc) {
+            } catch (jomres_phpmailerException $exc) {
                 $this->setError($exc->getMessage());
                 if ($this->exceptions) {
                     throw $exc;
@@ -1322,7 +1322,7 @@ if (!class_exists('jomresPHPMailer'))
         /**
          * Actually send a message.
          * Send the email via the selected mechanism
-         * @throws phpmailerException
+         * @throws jomres_phpmailerException
          * @return boolean
          */
         public function postSend()
@@ -1345,7 +1345,7 @@ if (!class_exists('jomresPHPMailer'))
 
                         return $this->mailSend($this->MIMEHeader, $this->MIMEBody);
                 }
-            } catch (phpmailerException $exc) {
+            } catch (jomres_phpmailerException $exc) {
                 $this->setError($exc->getMessage());
                 $this->edebug($exc->getMessage());
                 if ($this->exceptions) {
@@ -1360,7 +1360,7 @@ if (!class_exists('jomresPHPMailer'))
          * @param string $header The message headers
          * @param string $body The message body
          * @see PHPMailer::$Sendmail
-         * @throws phpmailerException
+         * @throws jomres_phpmailerException
          * @access protected
          * @return boolean
          */
@@ -1387,7 +1387,7 @@ if (!class_exists('jomresPHPMailer'))
             if ($this->SingleTo) {
                 foreach ($this->SingleToArray as $toAddr) {
                     if (!@$mail = popen($sendmail, 'w')) {
-                        throw new phpmailerException($this->lang('execute') . $this->Sendmail, self::STOP_CRITICAL);
+                        throw new jomres_phpmailerException($this->lang('execute') . $this->Sendmail, self::STOP_CRITICAL);
                     }
                     fputs($mail, 'To: ' . $toAddr . "\n");
                     fputs($mail, $header);
@@ -1403,12 +1403,12 @@ if (!class_exists('jomresPHPMailer'))
                         $this->From
                     );
                     if ($result != 0) {
-                        throw new phpmailerException($this->lang('execute') . $this->Sendmail, self::STOP_CRITICAL);
+                        throw new jomres_phpmailerException($this->lang('execute') . $this->Sendmail, self::STOP_CRITICAL);
                     }
                 }
             } else {
                 if (!@$mail = popen($sendmail, 'w')) {
-                    throw new phpmailerException($this->lang('execute') . $this->Sendmail, self::STOP_CRITICAL);
+                    throw new jomres_phpmailerException($this->lang('execute') . $this->Sendmail, self::STOP_CRITICAL);
                 }
                 fputs($mail, $header);
                 fputs($mail, $body);
@@ -1423,7 +1423,7 @@ if (!class_exists('jomresPHPMailer'))
                     $this->From
                 );
                 if ($result != 0) {
-                    throw new phpmailerException($this->lang('execute') . $this->Sendmail, self::STOP_CRITICAL);
+                    throw new jomres_phpmailerException($this->lang('execute') . $this->Sendmail, self::STOP_CRITICAL);
                 }
             }
             return true;
@@ -1468,7 +1468,7 @@ if (!class_exists('jomresPHPMailer'))
          * @param string $header The message headers
          * @param string $body The message body
          * @link http://www.php.net/manual/en/book.mail.php
-         * @throws phpmailerException
+         * @throws jomres_phpmailerException
          * @access protected
          * @return boolean
          */
@@ -1506,7 +1506,7 @@ if (!class_exists('jomresPHPMailer'))
                 ini_set('sendmail_from', $old_from);
             }
             if (!$result) {
-                throw new phpmailerException($this->lang('instantiate'), self::STOP_CRITICAL);
+                throw new jomres_phpmailerException($this->lang('instantiate'), self::STOP_CRITICAL);
             }
             return true;
         }
@@ -1531,7 +1531,7 @@ if (!class_exists('jomresPHPMailer'))
          * @see PHPMailer::getSMTPInstance() to use a different class.
          * @param string $header The message headers
          * @param string $body The message body
-         * @throws phpmailerException
+         * @throws jomres_phpmailerException
          * @uses SMTP
          * @access protected
          * @return boolean
@@ -1540,7 +1540,7 @@ if (!class_exists('jomresPHPMailer'))
         {
             $bad_rcpt = array();
             if (!$this->smtpConnect($this->SMTPOptions)) {
-                throw new phpmailerException($this->lang('smtp_connect_failed'), self::STOP_CRITICAL);
+                throw new jomres_phpmailerException($this->lang('smtp_connect_failed'), self::STOP_CRITICAL);
             }
             if (!empty($this->Sender) and $this->validateAddress($this->Sender)) {
                 $smtp_from = $this->Sender;
@@ -1549,7 +1549,7 @@ if (!class_exists('jomresPHPMailer'))
             }
             if (!$this->smtp->mail($smtp_from)) {
                 $this->setError($this->lang('from_failed') . $smtp_from . ' : ' . implode(',', $this->smtp->getError()));
-                throw new phpmailerException($this->ErrorInfo, self::STOP_CRITICAL);
+                throw new jomres_phpmailerException($this->ErrorInfo, self::STOP_CRITICAL);
             }
 
             // Attempt to send to all recipients
@@ -1568,7 +1568,7 @@ if (!class_exists('jomresPHPMailer'))
 
             // Only send the DATA command if we have viable recipients
             if ((count($this->all_recipients) > count($bad_rcpt)) and !$this->smtp->data($header . $body)) {
-                throw new phpmailerException($this->lang('data_not_accepted'), self::STOP_CRITICAL);
+                throw new jomres_phpmailerException($this->lang('data_not_accepted'), self::STOP_CRITICAL);
             }
             if ($this->SMTPKeepAlive) {
                 $this->smtp->reset();
@@ -1582,7 +1582,7 @@ if (!class_exists('jomresPHPMailer'))
                 foreach ($bad_rcpt as $bad) {
                     $errstr .= $bad['to'] . ': ' . $bad['error'];
                 }
-                throw new phpmailerException(
+                throw new jomres_phpmailerException(
                     $this->lang('recipients_failed') . $errstr,
                     self::STOP_CONTINUE
                 );
@@ -1596,7 +1596,7 @@ if (!class_exists('jomresPHPMailer'))
          * @param array $options An array of options compatible with stream_context_create()
          * @uses SMTP
          * @access public
-         * @throws phpmailerException
+         * @throws jomres_phpmailerException
          * @return boolean
          */
         public function smtpConnect($options = null)
@@ -1650,7 +1650,7 @@ if (!class_exists('jomresPHPMailer'))
                 if ('tls' === $secure or 'ssl' === $secure) {
                     //Check for an OpenSSL constant rather than using extension_loaded, which is sometimes disabled
                     if (!$sslext) {
-                        throw new phpmailerException($this->lang('extension_missing').'openssl', self::STOP_CRITICAL);
+                        throw new jomres_phpmailerException($this->lang('extension_missing').'openssl', self::STOP_CRITICAL);
                     }
                 }
                 $host = $hostinfo[3];
@@ -1677,7 +1677,7 @@ if (!class_exists('jomresPHPMailer'))
                         }
                         if ($tls) {
                             if (!$this->smtp->startTLS()) {
-                                throw new phpmailerException($this->lang('connect_host'));
+                                throw new jomres_phpmailerException($this->lang('connect_host'));
                             }
                             // We must resend EHLO after TLS negotiation
                             $this->smtp->hello($hello);
@@ -1691,11 +1691,11 @@ if (!class_exists('jomresPHPMailer'))
                                 $this->Workstation
                             )
                             ) {
-                                throw new phpmailerException($this->lang('authenticate'));
+                                throw new jomres_phpmailerException($this->lang('authenticate'));
                             }
                         }
                         return true;
-                    } catch (phpmailerException $exc) {
+                    } catch (jomres_phpmailerException $exc) {
                         $lastexception = $exc;
                         $this->edebug($exc->getMessage());
                         // We must have connected, but then failed TLS or Auth, so close connection nicely
@@ -2192,7 +2192,7 @@ if (!class_exists('jomresPHPMailer'))
          * Assemble the message body.
          * Returns an empty string on failure.
          * @access public
-         * @throws phpmailerException
+         * @throws jomres_phpmailerException
          * @return string The assembled message body
          */
         public function createBody()
@@ -2349,12 +2349,12 @@ if (!class_exists('jomresPHPMailer'))
             } elseif ($this->sign_key_file) {
                 try {
                     if (!defined('PKCS7_TEXT')) {
-                        throw new phpmailerException($this->lang('extension_missing') . 'openssl');
+                        throw new jomres_phpmailerException($this->lang('extension_missing') . 'openssl');
                     }
                     // @TODO would be nice to use php://temp streams here, but need to wrap for PHP < 5.1
                     $file = tempnam(sys_get_temp_dir(), 'mail');
                     if (false === file_put_contents($file, $body)) {
-                        throw new phpmailerException($this->lang('signing') . ' Could not write temp file');
+                        throw new jomres_phpmailerException($this->lang('signing') . ' Could not write temp file');
                     }
                     $signed = tempnam(sys_get_temp_dir(), 'signed');
                     //Workaround for PHP bug https://bugs.php.net/bug.php?id=69197
@@ -2388,9 +2388,9 @@ if (!class_exists('jomresPHPMailer'))
                     } else {
                         @unlink($file);
                         @unlink($signed);
-                        throw new phpmailerException($this->lang('signing') . openssl_error_string());
+                        throw new jomres_phpmailerException($this->lang('signing') . openssl_error_string());
                     }
-                } catch (phpmailerException $exc) {
+                } catch (jomres_phpmailerException $exc) {
                     $body = '';
                     if ($this->exceptions) {
                         throw $exc;
@@ -2500,14 +2500,14 @@ if (!class_exists('jomresPHPMailer'))
          * @param string $encoding File encoding (see $Encoding).
          * @param string $type File extension (MIME) type.
          * @param string $disposition Disposition to use
-         * @throws phpmailerException
+         * @throws jomres_phpmailerException
          * @return boolean
          */
         public function addAttachment($path, $name = '', $encoding = 'base64', $type = '', $disposition = 'attachment')
         {
             try {
                 if (!@is_file($path)) {
-                    throw new phpmailerException($this->lang('file_access') . $path, self::STOP_CONTINUE);
+                    throw new jomres_phpmailerException($this->lang('file_access') . $path, self::STOP_CONTINUE);
                 }
 
                 // If a MIME type is not specified, try to work it out from the file name
@@ -2531,7 +2531,7 @@ if (!class_exists('jomresPHPMailer'))
                     7 => 0
                 );
 
-            } catch (phpmailerException $exc) {
+            } catch (jomres_phpmailerException $exc) {
                 $this->setError($exc->getMessage());
                 $this->edebug($exc->getMessage());
                 if ($this->exceptions) {
@@ -2680,7 +2680,7 @@ if (!class_exists('jomresPHPMailer'))
          * Returns an empty string on failure.
          * @param string $path The full path to the file
          * @param string $encoding The encoding to use; one of 'base64', '7bit', '8bit', 'binary', 'quoted-printable'
-         * @throws phpmailerException
+         * @throws jomres_phpmailerException
          * @access protected
          * @return string
          */
@@ -2688,7 +2688,7 @@ if (!class_exists('jomresPHPMailer'))
         {
             try {
                 if (!is_readable($path)) {
-                    throw new phpmailerException($this->lang('file_open') . $path, self::STOP_CONTINUE);
+                    throw new jomres_phpmailerException($this->lang('file_open') . $path, self::STOP_CONTINUE);
                 }
                 $magic_quotes = get_magic_quotes_runtime();
                 if ($magic_quotes) {
@@ -3759,14 +3759,14 @@ if (!class_exists('jomresPHPMailer'))
          * Generate a DKIM signature.
          * @access public
          * @param string $signHeader
-         * @throws phpmailerException
+         * @throws jomres_phpmailerException
          * @return string The DKIM signature value
          */
         public function DKIM_Sign($signHeader)
         {
             if (!defined('PKCS7_TEXT')) {
                 if ($this->exceptions) {
-                    throw new phpmailerException($this->lang('extension_missing') . 'openssl');
+                    throw new jomres_phpmailerException($this->lang('extension_missing') . 'openssl');
                 }
                 return '';
             }
