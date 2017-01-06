@@ -25,6 +25,7 @@ class jomres_reviews
         $this->ip = $this->processString($_SERVER[ 'REMOTE_ADDR' ]);
         $this->userid = $thisJRUser->id;
         $this->property_uid = 0;
+        $this->review_fields_note = "Field 1 Hospitality , Field 2 Location , Field 3 Cleanliness , Field 4 Accommodation , Field 5 Value for money , Field 6 Services ";
     }
 
     public function this_user_can_report()
@@ -136,14 +137,15 @@ class jomres_reviews
 			published = " .$published.'
 			';
         $result = doInsertSql($query, '');
-        if ($result) {
+        if ($result>0) {
             
             $webhook_notification                               = new stdClass();
             $webhook_notification->webhook_event                = 'review_saved';
             $webhook_notification->webhook_event_description    = 'Logs when a review is added.';
             $webhook_notification->webhook_event_plugin         = 'core';
             $webhook_notification->data                         = new stdClass();
-            $webhook_notification->data->rating_id              = $result;
+            $webhook_notification->data->property_uid           = $this->property_uid;
+            $webhook_notification->data->review_uid             = $result;
             add_webhook_notification($webhook_notification);
             
             return $result;
@@ -192,7 +194,8 @@ class jomres_reviews
                     $webhook_notification->webhook_event_description    = 'Logs when a review is added.';
                     $webhook_notification->webhook_event_plugin         = 'core';
                     $webhook_notification->data                         = new stdClass();
-                    $webhook_notification->data->rating_id              = $rating_id;
+                    $webhook_notification->data->property_uid           = $this->property_uid;
+                    $webhook_notification->data->review_uid             = $rating_id;
                     add_webhook_notification($webhook_notification);
             
                     return true;
@@ -213,7 +216,8 @@ class jomres_reviews
             $webhook_notification->webhook_event_description    = 'Logs when a review is added.';
             $webhook_notification->webhook_event_plugin         = 'core';
             $webhook_notification->data                         = new stdClass();
-            $webhook_notification->data->rating_id              = $rating_id;
+            $webhook_notification->data->property_uid           = $this->property_uid;
+            $webhook_notification->data->review_uid              = $rating_id;
             add_webhook_notification($webhook_notification);
             return true;
         } else {
@@ -231,7 +235,8 @@ class jomres_reviews
             $webhook_notification->webhook_event_description    = 'Logs when a review is added.';
             $webhook_notification->webhook_event_plugin         = 'core';
             $webhook_notification->data                         = new stdClass();
-            $webhook_notification->data->rating_id              = $rating_id;
+            $webhook_notification->data->property_uid           = $this->property_uid;
+            $webhook_notification->data->review_uid              = $rating_id;
             add_webhook_notification($webhook_notification);
             return true;
         } else {
