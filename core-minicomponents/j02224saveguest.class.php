@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.24
+ * @version Jomres 9.8.25
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -74,7 +74,7 @@ class j02224saveguest
         }
 
         $webhook_notification                               = new stdClass();
-        $webhook_notification->webhook_event                = 'guest_save';
+        $webhook_notification->webhook_event                = 'guest_saved';
         $webhook_notification->webhook_event_description    = 'Logs when a guest\'s details are added/updated.';
         $webhook_notification->webhook_event_plugin         = 'core';
         $webhook_notification->data                         = new stdClass();

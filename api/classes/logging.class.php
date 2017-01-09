@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.24
+ * @version Jomres 9.8.25
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 use Monolog\Logger;
@@ -91,15 +91,15 @@ class logging
         $stream_handler = new StreamHandler($jrConfig['log_path'].$log_file, Logger::DEBUG);
         $stream_handler->setFormatter($formatter);
 
-        if ( defined('AJAXCALL') && !AJAXCALL ) {
-        if ($jrConfig['development_production'] == 'development' ) {
-            $logger = new Logger($channel);
-            $logger->pushProcessor(new \Monolog\Processor\WebProcessor); // pushing the web server preprocessor
-            $browserHandler = new \Monolog\Handler\BrowserConsoleHandler(\Monolog\Logger::DEBUG);
-            $logger->pushHandler($browserHandler);
-            $logger->addDebug($message, array ("info_dump" => $further_info_dump) );
-            $logger->debug($message);
-        }
+        if ( defined('AJAXCALL') && !AJAXCALL && !defined("API_STARTED") ) {
+            if ($jrConfig['development_production'] == 'development' ) {
+                $logger = new Logger($channel);
+                $logger->pushProcessor(new \Monolog\Processor\WebProcessor); // pushing the web server preprocessor
+                $browserHandler = new \Monolog\Handler\BrowserConsoleHandler(\Monolog\Logger::DEBUG);
+                $logger->pushHandler($browserHandler);
+                $logger->addDebug($message, array ("info_dump" => $further_info_dump) );
+                $logger->debug($message);
+            }
         }
         
         $message = $username.' ~~ '.$message.' ~~ '.session_id().' ~~ '.$url;

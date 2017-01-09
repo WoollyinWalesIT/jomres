@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.24
+ * @version Jomres 9.8.25
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -21,6 +21,7 @@ class basic_invoice_details
     public function __construct()
     {
         $this->invoice = array();
+        $this->status_note = '0 - unpaid , 1 - paid , 2 - cancelled , 3 - pending ';
     }
 
     public static function getInstance()

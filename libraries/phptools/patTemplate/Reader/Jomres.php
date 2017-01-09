@@ -6,9 +6,9 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.8.24
+ * @version Jomres 9.8.25
  * @package Jomres
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 
@@ -30,7 +30,7 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 			{
 			$custom_paths = get_showtime( 'custom_paths' );
 			
-			if ( array_key_exists( $templatename, $custom_paths ) )
+			if ( is_array($custom_paths) && array_key_exists( $templatename, $custom_paths ) )
 				{
 				$default_root = $custom_paths[ $templatename ];
 				}
@@ -113,6 +113,7 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 			{
 			if (is_file( $override_path . JRDS . $jomres_template_name ) )
 				{
+				set_showtime('override_path_'.$jomres_template_name, $override_path);
 				return file_get_contents( $override_path . JRDS . $jomres_template_name );
 				}
 			else

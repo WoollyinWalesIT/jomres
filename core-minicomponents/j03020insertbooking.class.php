@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.24
+ * @version Jomres 9.8.25
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -236,13 +236,14 @@ class j03020insertbooking
                 
                 
                 $webhook_notification                               = new stdClass();
-                $webhook_notification->webhook_event                = 'booking_modify';
+                $webhook_notification->webhook_event                = 'booking_modified';
                 $webhook_notification->webhook_event_description    = 'Logs when a booking is modified.';
                 $webhook_notification->webhook_event_plugin         = 'core';
                 $webhook_notification->data                         = new stdClass();
                 $webhook_notification->data->property_uid           = $property_uid;
                 $webhook_notification->data->contract_uid           = $contract_uid;
                 add_webhook_notification($webhook_notification);
+                
             } else {
                 $new_user_id = 0;
 
@@ -539,13 +540,14 @@ class j03020insertbooking
                 }
                 
                 $webhook_notification                               = new stdClass();
-                $webhook_notification->webhook_event                = 'booking_add';
-                $webhook_notification->webhook_event_description    = 'Logs when a booking is add.';
+                $webhook_notification->webhook_event                = 'booking_added';
+                $webhook_notification->webhook_event_description    = 'Logs when a booking is added.';
                 $webhook_notification->webhook_event_plugin         = 'core';
                 $webhook_notification->data                         = new stdClass();
                 $webhook_notification->data->property_uid           = $property_uid;
                 $webhook_notification->data->contract_uid           = $contract_uid;
                 add_webhook_notification($webhook_notification);
+                
             }
 
             if (!$secret_key_payment && $amend_contractuid == 0) {

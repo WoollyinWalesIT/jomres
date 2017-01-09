@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.24
+ * @version Jomres 9.8.25
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -21,15 +21,6 @@ require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'librari
 This function allows a script writer to add webhook notifications dynamically. 
 If the collection script variable is set, then the none/basic/oauth authmethod processors will use a collection script that goes by the name of collector_$collection_script_name.php , e.g. collector_dashboard.php
 Otherwise the processor will attempt to use the contents of the object's $data variable instead.
-
-Example call to this function :
-
-$webhook_notification = new stdClass();
-$webhook_notification->webhook_event = 'completebk';
-$webhook_notification->collection_script = 'completebk';                    // Optional. If set then a collection script will be called instead of using the data variable
-$webhook_notification->data = new stdClass();                               // Optional, dependant on collection_script value
-$webhook_notification->data->contract_uid = $contract_uid;                  // Optional, dependant on collection_script value
-add_webhook_notification($webhook_notification);
 */
 
 function add_webhook_notification($contents)
@@ -2111,7 +2102,7 @@ function addBookingNote($contract_uid, $property_uid, $message)
         $result = doInsertSql($query, '');
 
         $webhook_notification                               = new stdClass();
-        $webhook_notification->webhook_event                = 'booking_note_save';
+        $webhook_notification->webhook_event                = 'booking_note_saved';
         $webhook_notification->webhook_event_description    = 'Logs when booking notes are added/edited.';
         $webhook_notification->webhook_event_plugin         = 'core';
         $webhook_notification->data                         = new stdClass();

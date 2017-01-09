@@ -3,11 +3,11 @@
     <name>com_jomres</name>
     <author>Vince Wooll</author>
     <creationDate>October 2016</creationDate>
-    <copyright>Copyright (C) 2005-2016 Vince Wooll. All rights reserved.</copyright>
+    <copyright>Copyright (C) 2005-2017 Vince Wooll. All rights reserved.</copyright>
     <license>GPL2 and MIT</license>
     <authorEmail>sales@jomres.net</authorEmail>
     <authorUrl>https://www.jomres.net</authorUrl>
-    <version>9.8.24</version>
+    <version>9.8.25</version>
     <description>Jomres - Complete Online Booking and Property Management Solution</description>
 	
 	<scriptfile>script.php</scriptfile>

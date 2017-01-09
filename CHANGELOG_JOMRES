@@ -1,9 +1,33 @@
+<h3>Jomres 9.8.25 09/01/2017</h3>
+
+<span class="label label-warning">Change</span> Modified a variety of webhook names for consistency.
+<span class="label label-warning">Change</span> Added a tweak to logging to ensure that browser console notification messages aren't attempted if the call is an API call.
+<span class="label label-warning">Change</span> Removed a duplicate definition
+<span class="label label-warning">Change</span> Added some ( disabled ) checks for ssl. Strictly speaking the site admin should force api access to go via ssl, I'll leave this in place for now while I consider whether it should be added.
+<span class="label label-warning">Change</span> Added a note to basic invoice details for use by remote services that might need an aide-memoire for what each invoice status means.
+<span class="label label-warning">Change</span> Improved patTemplate dump to show the override path when a cms template override is used
+<span class="label label-warning">Change</span> Reviews class. Improved webhook calls to include property uid.
+<span class="label label-warning">Change</span> Reviews class. Added note regarding "fields" and their meaning which can then be passed back by API scripts.
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue in property access class for api as new user role changes broke it :(
+<span class="label label-important label-danger">Fix</span> Solved a problem related to room type in the verbose tariff details
+<span class="label label-important label-danger">Fix</span> Solved a js error on the dashboard
+<span class="label label-important label-danger">Fix</span> Changed phpmailer to use jomres_phpmailerException class
+
+<h3>Jomres 9.8.24 27/12/2016</h3>
+
+<span class="label label-important label-danger">Fix</span> PHPMailer 5.2.19 was found to have it's own vulnerability, eventually resulting in PHPMailer 5.2.21, so Jomres has been updated with this version.
+
+<h3>Jomres 9.8.23 27/12/2016</h3>
+
+<span class="label label-important label-danger">Fix</span> Fixed a bug in the installer.
+
 <h3>Jomres 9.8.22 27/12/2016</h3>
 
+<span class="label label-important label-danger">Fix</span> PHP Mailer library updated to 5.2.19 from 5.2.9 due to critical remote code execution bug in previous versions
 
 <span class="label label-success">Feature</span> Added webhook functionality, specifically code to generate webhooks, that the Webhook Core would fire.
 <span class="label label-success">Feature</span> Updated the dashboard js to have proper built in touch devices support.
-<span class="label label-success">Feature</span> PHP Mailer library updated to 5.2.19 from 5.2.9 due to critical remote code execution bug in previous versions
 <span class="label label-success">Feature</span> Improved logging, logs now sent to browser console and modified logging class so that further information can be sent to an extra field, which offers cleaner log views.
 
 <span class="label label-warning">Change</span> Properly format the date in the booking notes tab
