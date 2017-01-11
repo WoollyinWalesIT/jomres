@@ -4113,17 +4113,6 @@ function sendAdminEmail($subject, $message, $send_post = false)
     }
 }
 
-function makeJsGraphOutput($graphLabels, $graphValues, $type, $legend, $div = 'divGraph')
-{
-    $graphParams = '
-	<script language="JavaScript"> <!--
-	jomresJquery(document).ready(function() {createGraph("' .$graphLabels.'","'.$graphValues.'","'.$type.'","'.$legend.'","'.$div.'")});
-	//--> </script>
-	';
-
-    return $graphParams;
-}
-
 function getMonthName($monthNo)
 {
     $monthNo = intval($monthNo);
