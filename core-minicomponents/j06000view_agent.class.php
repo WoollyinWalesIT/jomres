@@ -57,7 +57,7 @@ class j06000view_agent
             $property_manager_xref = build_property_manager_xref_array();
         }
 
-        if (isset($componentArgs['property_uid']) || $_REQUEST['property_uid']) {
+        if (isset($componentArgs['property_uid']) || isset($_REQUEST['property_uid'])) {
             if (isset($componentArgs['property_uid'])) {
                 $property_uid = (int) $componentArgs['property_uid'];
             } elseif (isset($_REQUEST['property_uid'])) {
