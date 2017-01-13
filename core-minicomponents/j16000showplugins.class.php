@@ -195,7 +195,7 @@ class j16000showplugins
 
         $encoded_count = 0;
         foreach ($installed_plugins as $key=>$val) {
-            if ($installed_plugins[$key]['encoded'] == true){
+            if (isset($installed_plugins[$key]['encoded']) && $installed_plugins[$key]['encoded'] == true){
                 $encoded_count++;
             }
         }
