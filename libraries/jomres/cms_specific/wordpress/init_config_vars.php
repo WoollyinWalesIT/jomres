@@ -58,6 +58,8 @@ $showtime->smtpuser = get_option('mailserver_login');
 $showtime->smtppass = get_option('mailserver_pass');
 $showtime->smtphost = get_option('mailserver_url');
 $showtime->smtpport = get_option('mailserver_port');
+$showtime->smtpauth = 0;
+$showtime->smtpsecure = '';
 //$showtime->gzip = get_option('gzipcompression');
 $showtime->gzip = '0'; //this is not used in wp
 
