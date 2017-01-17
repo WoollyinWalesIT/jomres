@@ -92,7 +92,8 @@ class j06000show_property_features
                 $propertyFeatures = array();
                 $features_template = '';
 
-                foreach ($basic_property_details->features as $f) {
+                foreach ($basic_property_details->features as $feature_id=>$f) {
+                    $f['feature_uid']=$feature_id;
                     $propertyFeatures[$f['cat_id']][] = $f;
                 }
 
@@ -109,7 +110,8 @@ class j06000show_property_features
                     }
 
                     foreach ($v as $f) {
-                        $pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$f[ 'image' ], '', 'property_feature', array());
+                        $url = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&task=search&calledByModule=mod_jomsearch_m0&feature_uids='.$f['feature_uid'].'&feature_name='.$f[ 'abbv' ]);
+                        $pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$f[ 'image' ], '', 'property_feature', array() , $url);
                         $pFeatures[] = $pFeature;
                     }
 

@@ -24,7 +24,7 @@ class jomres_tooltips
         $this->divs = array();
     }
 
-    public function generate_tooltip($div, $hover_title, $hover_content, $div_content, $class, $type, $type_arguments, $url)
+    public function generate_tooltip($div, $hover_title, $hover_content, $div_content, $class, $type, $type_arguments, $url = '#')
     {
         $hover_content = filter_var($hover_content, FILTER_SANITIZE_SPECIAL_CHARS);
         $keeplooking = true;
@@ -119,6 +119,7 @@ class jomres_tooltips
                     $output = array();
                     $pageoutput = array();
 
+                    $output[ 'URL' ] = $url;    
                     $output[ 'TITLE' ] = $hover_title;
                     $output[ 'DESCRIPTION' ] = $hover_content;
                     $output[ 'IMAGE' ] = $div_content;
@@ -140,6 +141,7 @@ class jomres_tooltips
                 }
                 break;
             case 'property_feature':
+                
                 if (!isset($type_arguments[ 'use_javascript' ])) {
                     $type_arguments[ 'use_javascript' ] = true;
                 }
@@ -148,6 +150,7 @@ class jomres_tooltips
                     $output = array();
                     $pageoutput = array();
 
+                    $output[ 'URL' ] = $url;    
                     $output[ 'TITLE' ] = $hover_title;
                     $output[ 'DESCRIPTION' ] = $hover_content;
                     $output[ 'IMAGE' ] = $div_content;

@@ -68,6 +68,7 @@ class j06000show_property_room_types
                 $room_type[ 'ROOM_TYPE_TEXT' ] = '';
                 $room_type[ 'ROOM_TYPE_COUNTER' ] = 0;
                 if (isset($basic_property_details->this_property_room_classes[$key])) {
+                    $url = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&task=search&calledByModule=mod_jomsearch_m0&room_type='.$key.'&room_type_name='.$basic_property_details->this_property_room_classes[$key]['abbv']);
                     $room_type[ 'ROOM_TYPE' ] =
                         jomres_makeTooltip(
                             $basic_property_details->this_property_room_classes,
@@ -76,7 +77,8 @@ class j06000show_property_room_types
                             JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$basic_property_details->this_property_room_classes[$key]['image'],
                             '',
                             'room_type',
-                            array()
+                            array(),
+                            $url
                             );
                     $room_type[ 'ROOM_TYPE_TEXT' ] = $basic_property_details->this_property_room_classes[$key]['abbv'];
                     $room_type[ 'ROOM_TYPE_COUNTER' ] = count($basic_property_details->rooms_by_type[$key]);
