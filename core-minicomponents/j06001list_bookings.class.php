@@ -88,6 +88,7 @@ class j06001list_bookings
         $output[ 'HTIMESTAMP' ] = jr_gettext('_JOMRES_HDATE_OF_BOOKING', '_JOMRES_HDATE_OF_BOOKING', false);
         $output[ 'HAPPROVED' ] = jr_gettext('_JOMRES_BOOKING_INQUIRY_HAPPROVAL', '_JOMRES_BOOKING_INQUIRY_HAPPROVAL', false);
         $output[ 'HLASTCHANGED' ] = jr_gettext('_JOMRES_HLASTCHANGED', '_JOMRES_HLASTCHANGED', false);
+		$output[ 'HMADE_BY' ] = jr_gettext('BOOKING_MADE_BY', 'BOOKING_MADE_BY', false);
         $output[ 'HLEGEND' ] = jr_gettext('_JOMRES_HLEGEND', '_JOMRES_HLEGEND', false);
 
         if (get_showtime('task') == 'list_bookings') {
