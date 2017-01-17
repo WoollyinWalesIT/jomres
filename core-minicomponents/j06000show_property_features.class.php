@@ -70,8 +70,9 @@ class j06000show_property_features
 
                 $output[ 'HFEATURES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', false);
 
-                foreach ($basic_property_details->features as $f) {
-                    $pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$f[ 'image' ], '', 'property_feature', array());
+                foreach ($basic_property_details->features as $feature_id=>$f) {
+                    $url = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&task=search&calledByModule=mod_jomsearch_m0&feature_uids='.$feature_id.'&feature_name='.$f[ 'abbv' ]);
+                    $pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$f[ 'image' ], '', 'property_feature', array() , $url);
                     $pFeatures[] = $pFeature;
                 }
 
