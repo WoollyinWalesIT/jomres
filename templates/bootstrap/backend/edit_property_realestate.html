@@ -13,12 +13,15 @@
 
 	<script language="javascript">
 		<!--
-		function OnChange(dropdown) {
-			var myindex = dropdown.selectedIndex
-			var baseURL = "{JOMRES_SITEPAGE_URL}&task=editProperty"
-			top.location.href = baseURL + "&propertyUid={PROPERTYUID}&selectedCountry=" + dropdown.options[myindex].value;
-			return true;
-		}
+		jomresJquery(function(){
+			jomresJquery("#country").change(function(){
+				var selectedValue = jomresJquery(this).find(":selected").val();
+				clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+				jomresJquery.get(live_site_ajax + clause, function (data) {
+					populateDiv("property_region",data);
+					});
+				});
+			});
 		//-->
 	</script>
 
@@ -38,14 +41,14 @@
 			<label class="control-label" for="xyz">{HCOUNTRY}</label>
 
 			<div class="controls">
-				{COUNTRIESDROPDOWN}
+				{AJAX_COUNTRIESDROPDOWN}
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="region">{HREGION}</label>
 
-			<div class="controls">
-				{REGIONDROPDOWN}
+			<div class="controls" id="property_region">
+				{AJAX_REGIONDROPDOWN}
 			</div>
 		</div>
 		<div class="control-group">
