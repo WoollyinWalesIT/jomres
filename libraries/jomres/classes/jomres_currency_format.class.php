@@ -64,7 +64,17 @@ class jomres_currency_format
      */
     public function get_formatted($number)
     {
+        /* Bitcoin, for example, can have prices like .007, which number_format will render as 0.00, so if the number is lower than .009 then we'll need to output the price as is, instead of using number_format */
         $retData = '';
+        if ( $number < 1 ) {
+            $s = number_format($number, 8);
+            for($i=0; $i<8-2; $i++) {
+                if (substr($s, -1) == '0')
+                    $s = substr($s, 0, -1);
+                }
+            return $s;
+            }
+        
         switch ($this->cformat) {
             case '1':
                 $retData = number_format($number, 2, ',', '.');
