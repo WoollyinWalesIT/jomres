@@ -48,7 +48,7 @@ class jrportal_guest_types
             throw new Exception('Error: Property uid not set.');
         }
 
-        $query = 'INSERT INTO #__jomres_customertypes 
+        $query = "INSERT INTO #__jomres_customertypes 
 							(
 							`id`,
 							`type`,
@@ -64,21 +64,25 @@ class jrportal_guest_types
 							)
 						VALUES 
 							(
-							' .(int) $this->id.",
-							'" .$this->type."',
+							" .(int) $this->id.",
+							'".$this->type."',
 							'".$this->notes."',
-							".(int) $this->maximum.',
-							'.(int) $this->is_percentage.',
-							'.(int) $this->posneg.',
-							' .(int) $this->variance.',
-							' .(int) $this->published.', 
-							' .(int) $this->property_uid.',
-							' .(int) $this->order.',
-							' .(int) $this->is_child.' 
-							)';
+							".(int) $this->maximum.",
+							".(int) $this->is_percentage.",
+							".(int) $this->posneg.",
+							".(int) $this->variance.",
+							".(int) $this->published.", 
+							".(int) $this->property_uid.",
+							".(int) $this->order.",
+							".(int) $this->is_child." 
+							)";
         $this->id = doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_INSERT_CUSTOMERTYPE', '_JOMRES_MR_AUDIT_INSERT_CUSTOMERTYPE', false));
         
-        $webhook_notification                               = new stdClass();
+        if (!$this->id) {
+            throw new Exception('Error: New guest type insert failed.');
+        }
+		
+		$webhook_notification                               = new stdClass();
         $webhook_notification->webhook_event                = 'guest_type_saved';
         $webhook_notification->webhook_event_description    = 'Logs when guest types added.';
         $webhook_notification->webhook_event_plugin         = 'core';
@@ -86,10 +90,6 @@ class jrportal_guest_types
         $webhook_notification->data->property_uid           = $this->property_uid;
         $webhook_notification->data->guest_type_uid         = $this->id;
         add_webhook_notification($webhook_notification);
-        
-        if (!$this->id) {
-            throw new Exception('Error: New guest type insert failed.');
-        }
 
         return true;
     }
@@ -109,13 +109,13 @@ class jrportal_guest_types
 					SET 
 						`type` = '" .$this->type."',
 						`notes` = '".$this->notes."',
-						`maximum` = ".(int) $this->maximum.',
-						`is_percentage` = '.(int) $this->is_percentage.',
-						`posneg` = '.(int) $this->posneg.',
-						`variance` = ' .(int) $this->variance.',
-						`is_child` = ' .(int) $this->is_child.' 
-					WHERE `id` = ' .(int) $this->id.' 
-						AND `property_uid` = ' .(int) $this->property_uid;
+						`maximum` = ".(int)$this->maximum.",
+						`is_percentage` = ".(int)$this->is_percentage.",
+						`posneg` = ".(int)$this->posneg.",
+						`variance` = ".(int)$this->variance.",
+						`is_child` = ".(int)$this->is_child." 
+					WHERE `id` = ".(int)$this->id." 
+						AND `property_uid` = ".(int)$this->property_uid;
 
         if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_UPDATE_CUSTOMERTYPE', '_JOMRES_MR_AUDIT_UPDATE_CUSTOMERTYPE', false))) {
             throw new Exception('Error: Guest type update intert failed.');
