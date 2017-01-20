@@ -78,7 +78,11 @@ class jrportal_guest_types
 							)";
         $this->id = doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_INSERT_CUSTOMERTYPE', '_JOMRES_MR_AUDIT_INSERT_CUSTOMERTYPE', false));
         
-        $webhook_notification                               = new stdClass();
+        if (!$this->id) {
+            throw new Exception('Error: New guest type insert failed.');
+        }
+		
+		$webhook_notification                               = new stdClass();
         $webhook_notification->webhook_event                = 'guest_type_saved';
         $webhook_notification->webhook_event_description    = 'Logs when guest types added.';
         $webhook_notification->webhook_event_plugin         = 'core';
@@ -86,10 +90,6 @@ class jrportal_guest_types
         $webhook_notification->data->property_uid           = $this->property_uid;
         $webhook_notification->data->guest_type_uid         = $this->id;
         add_webhook_notification($webhook_notification);
-        
-        if (!$this->id) {
-            throw new Exception('Error: New guest type insert failed.');
-        }
 
         return true;
     }
