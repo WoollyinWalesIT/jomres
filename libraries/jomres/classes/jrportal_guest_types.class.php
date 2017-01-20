@@ -23,9 +23,7 @@ class jrportal_guest_types
 
     public function init_guest_type()
     {
-		$this->guest_type = false;
-		
-        $this->id = 0;        // guest type id
+		$this->id = 0;        // guest type id
         $this->type = '';        // guest type name
         $this->notes = '';        // guest type notes - internal notes, not visible in the frontend
         $this->maximum = '10';        // maximum number of this guest type
@@ -50,12 +48,6 @@ class jrportal_guest_types
             throw new Exception('Error: Property uid not set.');
         }
 
-        if (is_array($this->guest_type)) {
-            return true;
-        }
-
-        $this->guest_type = array();
-
         $query = "SELECT
 					`id`,
 					`type`,
@@ -77,17 +69,17 @@ class jrportal_guest_types
         }
 
         foreach ($result as $r) {
-            $this->guest_type['id'] = (int) $r->id;
-            $this->guest_type['type'] = jr_gettext('_JOMRES_CUSTOMTEXT_GUESTTYPE'.$r->id, stripslashes($r->type));
-            $this->guest_type['notes'] = jr_gettext('_JOMRES_CUSTOMTEXT_GUESTNOTES'.$r->id, stripslashes($r->notes));
-            $this->guest_type['maximum'] = (int) $r->maximum;
-            $this->guest_type['is_percentage'] = (int) $r->is_percentage;
-            $this->guest_type['posneg'] = (int) $r->posneg;
-            $this->guest_type['variance'] = (float) $r->variance;
-            $this->guest_type['published'] = (int) $r->published;
-            $this->guest_type['property_uid'] = (int) $r->property_uid;
-            $this->guest_type['order'] = (int) $r->order;
-            $this->guest_type['is_child'] = (int) $r->is_child;
+            $this->id = (int) $r->id;
+            $this->type = jr_gettext('_JOMRES_CUSTOMTEXT_GUESTTYPE'.$r->id, stripslashes($r->type));
+            $this->notes = jr_gettext('_JOMRES_CUSTOMTEXT_GUESTNOTES'.$r->id, stripslashes($r->notes));
+            $this->maximum = (int) $r->maximum;
+            $this->is_percentage = (int) $r->is_percentage;
+            $this->posneg = (int) $r->posneg;
+            $this->variance = (float) $r->variance;
+            $this->published = (int) $r->published;
+            $this->property_uid = (int) $r->property_uid;
+            $this->order = (int) $r->order;
+            $this->is_child = (int) $r->is_child;
         }
 
         return true;
