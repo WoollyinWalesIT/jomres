@@ -20,7 +20,7 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 	{
 	var $_name = 'Jomres';
 
-	function readTemplates( $templatename )
+	function readTemplates( $templatename = '', $options = array() )
 		{
 		$override_template = false;
 		if ( !isset( $_REQUEST[ 'nocustomtemplate' ] ) )
