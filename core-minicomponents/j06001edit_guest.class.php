@@ -49,19 +49,13 @@ class j06001edit_guest
 			$output[ 'LANDLINE' ] = $jrportal_guests->tel_landline;
 			$output[ 'MOBILE' ] = $jrportal_guests->tel_mobile;
 			$output[ 'EMAIL' ] = $jrportal_guests->email;
+			$output[ 'VAT_NUMBER' ] = $jrportal_guests->vat_number;
 			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList(0, 99, 1, 'discount', 'class="inputbox" size="1"', $jrportal_guests->discount);
 
-			/* jr_import('vat_number_validation');
-			$validation = new vat_number_validation();
-			$validation->get_subject('guest_registered_byguest_id', array('property_uid' => $defaultProperty, 'guest_id' => $id));
-
-			$output[ 'VAT_NUMBER' ] = $validation->vat_number;
-			$output[ 'VAT_NUMBER_VALIDATED' ] = $validation->vat_number_validated;
-
-			$validation_success = $validation->vat_number_validation_response;
-			if (strlen($validation_success) > 0) {
-				$vat_validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] = $validation_success;
-				if ($validation->vat_number_validated) {
+			//validation message
+			if (trim($jrportal_guests->vat_number_validation_response) != '') {
+				$vat_validation[0][ 'VAT_NUMBER_VALIDATION_STATUS'] = $jrportal_guests->vat_number_validation_response;
+				if ($jrportal_guests->vat_number_validated) {
 					if (using_bootstrap()) {
 						$vat_validation[0][ 'VALIDATION_CLASS'] = 'alert-success';
 					} else {
@@ -69,12 +63,12 @@ class j06001edit_guest
 					}
 				} else {
 					if (using_bootstrap()) {
-						$vat_validation[0][ 'VALIDATION_CLASS'] = 'alert-error';
+						$vat_validation[0][ 'VALIDATION_CLASS'] = 'alert-error alert-danger';
 					} else {
 						$vat_validation[0][ 'VALIDATION_CLASS'] = 'ui-state-error ';
 					}
 				}
-			} */
+			}
         } else {
 			$id = 0;
             $output[ 'REGION' ] = setupRegions('GB');

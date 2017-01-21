@@ -1,18 +1,16 @@
-
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="JavaScript" type="text/javascript">
-	<!--
-	
-	jomresJquery(function(){
-		jomresJquery("#guest_country").change(function(){
-			var selectedValue = jomresJquery(this).find(":selected").val();
-			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
-			jomresJquery.get(live_site_ajax + clause, function (data) {
-				populateDiv("guest_region_div",data);
-				});
+<!--
+jomresJquery(function(){
+	jomresJquery("#guest_country").change(function(){
+		var selectedValue = jomresJquery(this).find(":selected").val();
+		clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+		jomresJquery.get(live_site_ajax + clause, function (data) {
+			populateDiv("guest_region_div",data);
 			});
 		});
-		//-->
+	});
+//-->
 </script>
 
 <h2 class="page-header">{PAGETITLE}</h2>

@@ -51,14 +51,6 @@ class j06001save_guest
 			$jrportal_guests->commit_update_guest();
 		else
 			$jrportal_guests->commit_new_guest();
-
-        // Guests will not always be associated with a CMS user, so we need a mechanism that checks and validates a VAT number, without necessarily saving those details to a system wide user
-        /* if (trim($vat_number) != '') {
-            jr_import('vat_number_validation');
-            $validation = new vat_number_validation();
-            $response = $validation->vies_check($vat_number);
-            $validation->save_subject('guest_registered_byguest_id', array('property_uid' => $defaultProperty, 'guest_id' => $guests_uid));
-        } */
             
         jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests"), 'Guest saved' );
     }
