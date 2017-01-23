@@ -171,7 +171,7 @@ class j02990showconfirmation
         property_header($property_uid);
 
         if (!$bookingDeets[ 'ok_to_book' ]) {
-            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$bookingDeets[ 'property_uid' ]), '');
+            jomresRedirect(get_booking_link(jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$bookingDeets[ 'property_uid' ])), '');
         }
 
         $this->accommodation_tax_rate = 0.0;
@@ -205,7 +205,7 @@ class j02990showconfirmation
                 $fielddata[ 'VALUE' ] = jomresGetParam($_POST, $formfieldname, '');
 
                 if ($required == '1' && strlen($_POST[ $formfieldname ]) == 0) {
-                    jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$bookingDeets[ 'property_uid' ]), '');
+                    jomresRedirect(get_booking_link(jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$bookingDeets[ 'property_uid' ])), '');
                 }
 
                 $customFields[ ] = $fielddata;
@@ -263,7 +263,7 @@ class j02990showconfirmation
         $booking_parts[ 'NUMROOMS' ] = count($rooms);
         
         if ( $booking_parts[ 'NUMROOMS' ] == 0 && get_showtime('include_room_booking_functionality') ) {
-            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$bookingDeets[ 'property_uid' ]), '');
+            jomresRedirect(get_booking_link(jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$bookingDeets[ 'property_uid' ])), '');
         }
         
         
@@ -649,7 +649,7 @@ class j02990showconfirmation
             $amend_contractuid = $tmpBookingHandler->getBookingFieldVal('amend_contractuid');
             $booking_parts[ 'BOOKINGFORMURL' ] = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=amendBooking&no_html=1&contractUid='.$amend_contractuid);
         } else {
-            $booking_parts[ 'BOOKINGFORMURL' ] = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=dobooking&selectedProperty='.$bookingDeets[ 'property_uid' ]);
+            $booking_parts[ 'BOOKINGFORMURL' ] = get_booking_link(jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=dobooking&selectedProperty='.$bookingDeets[ 'property_uid' ]));
         }
 
         $cartoutput = array();

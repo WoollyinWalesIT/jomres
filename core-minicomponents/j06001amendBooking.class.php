@@ -51,7 +51,7 @@ class j06001amendBooking
             }
             $propertysList = $tmpArray;
             if (count($propertysList == 1)) {
-                jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&amend=1&contractuid='.$contract_uid.'&selectedProperty='.$defaultProperty));
+                jomresRedirect(get_booking_link(jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&amend=1&contractuid='.$contract_uid.'&selectedProperty='.$defaultProperty)));
             }
             $counter = 0;
             foreach ($propertysList as $property) {

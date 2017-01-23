@@ -97,7 +97,7 @@ class j06001list_bookings
 
         //buttons
         $output['HNEW_BOOKING'] = jr_gettext('_JOMRES_HNEW_BOOKING', '_JOMRES_HNEW_BOOKING', false);
-        $output['NEW_BOOKING_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$defaultProperty);
+        $output['NEW_BOOKING_URL'] = get_booking_link(jomresUrl(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$defaultProperty));
         $output['HBLACK_BOOKINGS'] = jr_gettext('_JOMRES_FRONT_BLACKBOOKING', '_JOMRES_FRONT_BLACKBOOKING', false);
         $output['BLACK_BOOKINGS_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=listBlackBookings');
         $output['HSIMPLE_BOOKING'] = jr_gettext('_JOMRES_HQUICK_BOOKING', '_JOMRES_HQUICK_BOOKING', false);

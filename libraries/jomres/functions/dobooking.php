@@ -33,7 +33,7 @@ if (
     (int) $_REQUEST[ 'selectedProperty' ] > 0 &&
     $thisJRUser->currentproperty != (int) $_REQUEST[ 'selectedProperty' ]) {
     $thisJRUser->set_currentproperty((int) $_REQUEST[ 'selectedProperty' ]);
-    jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."task=dobooking&selectedProperty=$selectedProperty"), '');
+    jomresRedirect(get_booking_link(jomresURL(JOMRES_SITEPAGE_URL."task=dobooking&selectedProperty=$selectedProperty")), '');
 }
 
 $selectedProperty = $property_uid;
