@@ -14,9 +14,9 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j00010reception_option_06_newguest
+class j06001delete_guest
 {
-    public function __construct($componentArgs)
+    public function __construct()
     {
         // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -25,20 +25,24 @@ class j00010reception_option_06_newguest
 
             return;
         }
-        $property_uid = getDefaultProperty();
-        $mrConfig = getPropertySpecificSettings($property_uid);
-        $this->cpanelButton = '';
-
-        if ($mrConfig[ 'is_real_estate_listing' ] == 1) {
-            return;
+        $id = jomresGetParam($_REQUEST, 'id', 0);
+        $defaultProperty = getDefaultProperty();
+        
+		jr_import( 'jrportal_guests' );
+		$jrportal_guests = new jrportal_guests();
+		$jrportal_guests->id = $id;
+		$jrportal_guests->property_uid = $defaultProperty;
+		
+		if ($jrportal_guests->delete_guest()) {
+            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=listguests'), jr_gettext('_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', '_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', false));
+        } else {
+            echo jr_gettext('_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', false);
         }
-
-        $this->cpanelButton = jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_guest'), 'guestEdit.png', jr_gettext('_JOMRES_COM_MR_NEWGUEST', '_JOMRES_COM_MR_NEWGUEST', false, false), null, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_GUESTS', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_GUESTS', false, false));
     }
 
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return $this->cpanelButton;
+        return null;
     }
 }
