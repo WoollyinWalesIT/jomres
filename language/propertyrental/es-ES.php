@@ -1979,8 +1979,7 @@ jr_define('JOMRES_GRANDTOTAL_INC_TAX', 'Total general (IVA incluído) : ');
 jr_define('JOMRES_GRANDTOTAL_TOTAL_TAX', 'Total impuestos : ');
 
 jr_define('JOMRES_RECAPTCHA_INSTRUCTIONS_VISUAL', 'Escribe las dos palabras: ');
-jr_define('JOMRES_RECAPTCHA_INSTRUCTIONS_AUDIO', '
-Introduce lo que se escucha: ');
+jr_define('JOMRES_RECAPTCHA_INSTRUCTIONS_AUDIO', 'Introduce lo que se escucha: ');
 jr_define('JOMRES_RECAPTCHA_PLAY_AGAIN', 'Reproducir la pista de audio ');
 jr_define('JOMRES_RECAPTCHA_CANT_HEAR_THIS', 'Descargar la canción en formato MP3');
 jr_define('JOMRES_RECAPTCHA_VISUAL_CHALLENGE', 'modo visual');
