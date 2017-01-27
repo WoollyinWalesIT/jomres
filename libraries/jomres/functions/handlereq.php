@@ -109,6 +109,7 @@ switch ($field) {
         break;
     case 'addressstring':
         $ajrq = 'ajrq:::addressstring';
+        $value = str_replace( "&#38;#39;", "'", $value ); // Apostrophes sent by ajax will be mangled, we need to unmangle them then santise them properly.
         $addressString = explode('~', $value);
         $firstname = $addressString[ 0 ];
         $surname = $addressString[ 1 ];
