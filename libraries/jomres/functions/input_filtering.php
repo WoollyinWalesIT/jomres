@@ -148,7 +148,7 @@ function jomresGetParam($request, $element, $def = null, $mask = '') // variable
 
     if (!jomres_cmsspecific_areweinadminarea() && this_cms_is_joomla() && get_showtime('sef') == '1' && !AJAXCALL && !defined('AUTO_UPGRADE') && in_array($element, $sef_vars)) {
         $jinput = JFactory::getApplication()->input;
-        $dirty = $jinput->get($element, $def);
+        $dirty = $jinput->get($element, $def, 'STRING');
     } elseif (isset($request[ $element ])) {
         $dirty = $request[ $element ];
     } else {
