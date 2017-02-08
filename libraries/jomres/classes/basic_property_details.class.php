@@ -410,7 +410,8 @@ class basic_property_details
 
             foreach ($propertyData as $data) {
                 set_showtime('property_uid', $data->propertys_uid);
-                set_showtime('property_type', $this->all_property_types[ (int) $data->ptype_id ]);
+                if ( isset($this->all_property_types[ (int) $data->ptype_id ] ) )
+                    set_showtime('property_type', $this->all_property_types[ (int) $data->ptype_id ]);
 
                 $countryname = getSimpleCountry($data->property_country);
 
@@ -435,9 +436,12 @@ class basic_property_details
                 $this->multi_query_result[ $data->propertys_uid ][ 'property_fax' ] = $data->property_fax;
                 $this->multi_query_result[ $data->propertys_uid ][ 'property_email' ] = $data->property_email;
                 $this->multi_query_result[ $data->propertys_uid ][ 'published' ] = (int) $data->published;
-                $this->multi_query_result[ $data->propertys_uid ][ 'ptype_id' ] = (int) $data->ptype_id;
-                $this->multi_query_result[ $data->propertys_uid ][ 'property_type' ] = $this->all_property_types[ (int) $data->ptype_id ];
-                $this->multi_query_result[ $data->propertys_uid ][ 'property_type_title' ] = $this->all_property_type_titles[ (int) $data->ptype_id ];
+                
+                    $this->multi_query_result[ $data->propertys_uid ][ 'ptype_id' ] = (int) $data->ptype_id;
+                if ( isset($this->all_property_types[ (int) $data->ptype_id ])) {
+                    $this->multi_query_result[ $data->propertys_uid ][ 'property_type' ] = $this->all_property_types[ (int) $data->ptype_id ];
+                    $this->multi_query_result[ $data->propertys_uid ][ 'property_type_title' ] = $this->all_property_type_titles[ (int) $data->ptype_id ];
+                    }
 
                 $this->multi_query_result[ $data->propertys_uid ][ 'stars' ] = (int) $data->stars;
                 $this->multi_query_result[ $data->propertys_uid ][ 'superior' ] = (int) $data->superior;
