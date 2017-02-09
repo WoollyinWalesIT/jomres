@@ -1123,7 +1123,7 @@ function get_booking_number()
 {
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
-    return (int) $tmpBookingHandler->tmpbooking[ 'booking_number' ];
+    return $tmpBookingHandler->tmpbooking[ 'booking_number' ];
 }
 
 function detect_property_uid()
