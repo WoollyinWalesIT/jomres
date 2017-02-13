@@ -4603,7 +4603,13 @@ class dobooking
                 }
             }
         }
-
+		
+		if (using_bootstrap() && jomres_bootstrap_version() == '3') {
+            $endrun_javascript_for_eval_by_handlereq = get_showtime('endrun_javascript_for_eval_by_handlereq');
+            $endrun_javascript_for_eval_by_handlereq[$roomUid.'_'.$tariffUid] = ';jomresJquery(document).ready(function(){if (jomresJquery(\'body > #roomdetails'.$roomUid.'_'.$tariffUid.'\').length < 1){jomresJquery(\'#roomdetails'.$roomUid.'_'.$tariffUid.'\').appendTo("body");}else{jomresJquery(\'body > #roomdetails'.$roomUid.'_'.$tariffUid.'\').replaceWith(jomresJquery(\'#roomdetails'.$roomUid.'_'.$tariffUid.'\'));};jomresJquery(\'.jomres_bt_tooltip_features\').tipsy({html: true, fade: true, gravity: \'sw\', delayOut: 100});});';
+            set_showtime('endrun_javascript_for_eval_by_handlereq', $endrun_javascript_for_eval_by_handlereq);
+        }
+		
         return array_merge($roomStuff, $tariffStuff);
     }
 
@@ -4669,12 +4675,6 @@ class dobooking
         $roomRow[ 'ROOMFLOOR' ] = $this->sanitiseOutput(stripslashes($room[ 'room_floor' ]));
         $roomRow[ 'MAXPEOPLE_INROOM' ] = $this->sanitiseOutput($room[ 'max_people' ]);
 
-        if (using_bootstrap() && jomres_bootstrap_version() == '3') {
-            $endrun_javascript_for_eval_by_handlereq = get_showtime('endrun_javascript_for_eval_by_handlereq');
-            $endrun_javascript_for_eval_by_handlereq[$roomUid] = ';jomresJquery(document).ready(function(){if (jomresJquery(\'body > #roomdetails'.$roomUid.'\').length < 1){jomresJquery(\'#roomdetails'.$roomUid.'\').appendTo("body");}else{jomresJquery(\'body > #roomdetails'.$roomUid.'\').replaceWith(jomresJquery(\'#roomdetails'.$roomUid.'\'));};jomresJquery(\'.jomres_bt_tooltip_features\').tipsy({html: true, fade: true, gravity: \'sw\', delayOut: 100});});';
-            set_showtime('endrun_javascript_for_eval_by_handlereq', $endrun_javascript_for_eval_by_handlereq);
-        }
-
         return $roomRow;
     }
 
@@ -4685,6 +4685,8 @@ class dobooking
     {
         $mrConfig = $this->mrConfig;
         $tariff = $this->allPropertyTariffs[ $tariffUid ];
+		
+		$output[ 'TARIFFUID' ] = $tariffUid;
 
         $output[ 'HTITLE' ] = $this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE', '_JOMRES_FRONT_TARIFFS_TITLE', false, false));
         $output[ 'HDESC' ] = $this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_DESC', '_JOMRES_FRONT_TARIFFS_DESC', false, false));

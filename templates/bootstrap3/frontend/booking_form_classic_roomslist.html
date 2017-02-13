@@ -1,19 +1,18 @@
-
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
 <patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="roomtype">
 <div class="well well-small">
 	<div class="row">
 		<div class="col-md-2">
-			<a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal" class="thumbnail"><img src="{ROOM_IMAGE}" alt="room image" class="img-responsive" /></a>
+			<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-toggle="modal" class="thumbnail"><img src="{ROOM_IMAGE}" alt="room image" class="img-responsive" /></a>
 		</div>
 		<div class="col-md-4">
-			<h4 class=""><a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal">{ROOMTYPE}</a></h4>
+			<h4 class=""><a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-toggle="modal">{ROOMTYPE}</a></h4>
 			<p>
 				{HEADER_MAXPEOPLE}: {MAXPEOPLE_INROOM}<br />
 				{HTITLE}: {TITLE}<br />
 				{HDESC}: {DESC}<br />
-				<a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal" class="hidden-phone hidden-tablet">{HMOREINFO}...</a>
+				<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-toggle="modal" class="hidden-phone hidden-tablet">{HMOREINFO}...</a>
 			</p>
 		</div>
 		<div class="col-md-3">
@@ -29,17 +28,19 @@
 		</div>
 	</div>
 </div>
-<script>
-   jomresJquery(document).ready(function(){
-	 jomresJquery('#roomdetails{ROOMUID}').appendTo("body");
-	});
+
+<script type="text/javascript">
+jomresJquery(document).ready(function(){
+	jomresJquery('#roomdetails{ROOMUID}_{TARIFFUID}').appendTo("body");
+});
 </script>	
-<div id="roomdetails{ROOMUID}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{ROOMUID}" aria-hidden="true">
+
+<div id="roomdetails{ROOMUID}_{TARIFFUID}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{ROOMUID}_{TARIFFUID}" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h3 id="myModalLabel{ROOMUID}">{ROOMTYPE}</h3>
+				<h3 id="myModalLabel{ROOMUID}_{TARIFFUID}">{ROOMTYPE}</h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">
