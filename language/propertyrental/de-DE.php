@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.25
+ * @version Jomres 9.8.26
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2346,9 +2346,6 @@ jr_define('TOUR_ID_TOUR_TARGET_COUPONS_CONTENT', 'Gutscheincodes sind eine nütz
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_TITLE', 'Optionale Extras.');
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_CONTENT', 'Sonderausstattungen sind zusätzliche Elemente, die zu einer Buchung hinzugefügt werden können,.Dies sind Elemente, die nicht durch die begrenzte Verfügbarkeit eingeschränkt, so gibt es keine Ressourcenverwaltung mit ihnen verbundenen.Wenn Sie ein optionales Extra schaffen, sind Sie in der Lage eine Vielzahl von Einstellungen zu wählen, zum Beispiel von ihnen die maximale Anzahl dieser kann zu einer Buchung hinzugefügt werden, und ob die zusätzliche sollte gezwungen. Dadurch, wir meinen, wenn sie automatisch in das Buchungsformular ausgewählt ist, und der Gast kann es nicht deaktivieren. Dies ist nützlich für die obligatorischen Zahlungen wie Handtücher oder eine Reinigungsgebühr. zusätzlich, Sie müssen ein Modell zu wählen,, was bedeutet, wie Zahlungen für die extra berechnet werden. Wenn Sie eine einzelne Gebühr werden soll angewendet (beispielsweise, für eine Flasche Champagner bei der Ankunft zur Verfügung stehen) dann würden Sie das Modell pro Buchung eingestellt. ob, jedoch wollte Sie etwas für jeden Tag in Rechnung, dann würden Sie die pro Tag Option wählen.');
 
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_TITLE', 'Medienzentrum.');
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_CONTENT', 'Das Medienzentrum ermöglicht Ihnen die einfache Bilder Ihrer Immobilie laden. Standardmäßig können Sie eine Haupteigenschaft Bild hochladen (eigentlich, Sie können mehr laden,aber nur die erste in der Liste verwendet werden), eine unbegrenzte Anzahl von Bildern in der Diashow gezeigt werden, und eine unbegrenzte Anzahl von Bildern für jedes Zimmer.'.jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', false));
-
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_TITLE', 'Ressourcen Picker.');
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_CONTENT', 'Dies ist der Ressourcen Kommissionierer. Es ermöglicht Ihnen, zu wählen, welche Art von Ressource, die Sie Bilder hochladen für(e.g.Diashow Bilder oder Zimmer) und wenn es einen Raum, dann, nachdem Sie Zimmer wählen, wird Ihnen die Möglichkeit gegeben werden, um auszuwählen, welche Zimmer Sie Bilder in einem anderen Dropdown hochladen möchten, Daneben. Auf diese Weise können Sie mehrere Bilder für jeden einzelnen Raum hochladen,wenn Sie wünschen. beachten, Zimmer Bild-Upload gilt nur in Form von Hotels zu Immobilien, B&Bs etc.Villen und Wohnungen nicht über diese Option.');
 
@@ -3176,3 +3173,8 @@ jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW', 'Show property images as slideshow
 jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC', 'If set to yes, a slideshow of property main images will be displayed. If set to no, then the first property main image will be displayed.');
 
 jr_define('EDIT_CMS_USER', 'Edit CMS user');
+
+jr_define('BOOKING_MADE_BY', 'Booking made by');
+
+jr_define('_JOMRES_ROUTER_FEATURES', 'Amenities');
+jr_define('_JOMRES_ROUTER_ROOMTYPES', 'Room Types');

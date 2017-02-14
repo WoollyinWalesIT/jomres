@@ -24,8 +24,10 @@
  * @author Chris Ryan
  * @author Marcus Bointon <phpmailer@synchromedia.co.uk>
  */
-class SMTP
+if (!class_exists('jomresSMTP'))
 {
+	class jomresSMTP
+	{
     /**
      * The PHPMailer SMTP version number.
      * @var string
@@ -1246,4 +1248,5 @@ class SMTP
 
 		return false;
     }
+}
 }

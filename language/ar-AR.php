@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.25
+ * @version Jomres 9.8.26
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2294,9 +2294,6 @@ jr_define('TOUR_ID_TOUR_TARGET_COUPONS_CONTENT', 'Los códigos de cupones son un
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_TITLE', 'Extras opcionales.');
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_CONTENT', 'Extras opcionales son ítems que pueden ser añadidos a la reserva. Estos ítems no tienen disponibilidad limitada, por lo que no hay admistración de recursos asociada a ellos. Cuando creas un extra opcional, puedes elegir una variedad de ajustes, como por ejemplo el número máximo de extras que se pueden agregar a una reserva, y si debe ser o no obligatorio. Esto es útil para pagos obligatorios o un cargo especial que se debe aplicar, por ejemplo una botella de champaña a la llegada, etc. En este caso, debes seleccionar el modo Por Reserva. Si por el contrario quieres cargar algo diario, debes elegir la opción Por Día.');
 
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_TITLE', 'Centro Multimedia.');
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_CONTENT', 'El centro Multimedia permite subir imágenes facilmente. Por defecto puedes subir una imagen principal (de hecho, puedes subir más, pero únicamente la primera de ellas se usará), un número ilimitado para ser mostradas en la galería, y un número ilimitado para cada habitación.'.jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', false));
-
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_TITLE', 'Selector de recurso.');
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_CONTENT', 'Permite elegir para qué tipo de recurso estás subiendo imágenes. Por ejemplo para la galería o imágenes de habitaciones, y en este último caso, luego de seleccionar habitaciones, podrás elegir a cual habitación quieres subir imágenes en otro desplegable. Esto te permite subir múltiples imágenes para cada habitación individual, si quieres. La subida de imágenes para habitación está disponible únicamente para propiedades como Hoteles y B&B. Villas y Apartamentos no tienen esta opción.');
 
@@ -3123,3 +3120,8 @@ jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW', 'Show property images as slideshow
 jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC', 'If set to yes, a slideshow of property main images will be displayed. If set to no, then the first property main image will be displayed.');
 
 jr_define('EDIT_CMS_USER', 'Edit CMS user');
+
+jr_define('BOOKING_MADE_BY', 'Booking made by');
+
+jr_define('_JOMRES_ROUTER_FEATURES', 'Amenities');
+jr_define('_JOMRES_ROUTER_ROOMTYPES', 'Room Types');

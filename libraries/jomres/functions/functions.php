@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.25
+ * @version Jomres 9.8.26
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1119,32 +1119,11 @@ function get_remote_ip_number()
     return (int) $bang[ 0 ].'.'.(int) $bang[ 1 ].'.'.(int) $bang[ 2 ].'.'.(int) $bang[ 3 ];
 }
 
-function set_booking_number()
-{
-    $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-    if (!isset($tmpBookingHandler->tmpbooking[ 'booking_number' ]) || trim($tmpBookingHandler->tmpbooking[ 'booking_number' ]) == '' || $tmpBookingHandler->tmpbooking[ 'booking_number' ] == 0) {
-        $keeplooking = true;
-        while ($keeplooking):
-            $cartnumber = mt_rand(10000000, 99999999);
-        $query = "SELECT contract_uid FROM #__jomres_contracts WHERE tag = '".$cartnumber."' LIMIT 1";
-        $bklist = doSelectSql($query);
-        if (count($bklist) == 0) {
-            $keeplooking = false;
-        }
-        endwhile;
-        $tmpBookingHandler->tmpbooking[ 'booking_number' ] = $cartnumber;
-    } else {
-        $cartnumber = $tmpBookingHandler->tmpbooking[ 'booking_number' ];
-    }
-
-    return $cartnumber;
-}
-
 function get_booking_number()
 {
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
-    return (int) $tmpBookingHandler->tmpbooking[ 'booking_number' ];
+    return $tmpBookingHandler->tmpbooking[ 'booking_number' ];
 }
 
 function detect_property_uid()
@@ -1922,12 +1901,6 @@ Allows us to work independantly of Joomla or Mambo's emailers
 function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode = 1, $attachments = array(), $debugging = true)
 {
     logging::log_message('Sending email from '.$from.' to '.$to.' subject '.$subject, 'Mailer');
-    $jomresConfig_smtpauth = get_showtime('smtpauth');
-    $jomresConfig_smtphost = get_showtime('smtphost');
-    $jomresConfig_smtppass = get_showtime('smtppass');
-    $jomresConfig_smtpuser = get_showtime('smtpuser');
-    $jomresConfig_smtpport = get_showtime('smtpport');
-    $jomresConfig_mailer = get_showtime('mailer');
 
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
@@ -1976,57 +1949,17 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
             }
         }
     }
-    $mail = new jomresPHPMailer(true);
-    try {
+    
+	$mail = new jomresPHPMailer(true);
+    
+	try {
         if (!isset($GLOBALS['debug'])) {
             $GLOBALS['debug'] = '';
         }
 
-        $mail->SMTPDebug = 2;
-        $mail->Debugoutput = function ($str, $level) {
-            $GLOBALS['debug'] .= "$level: $str<br/>";
-        };
-
-        $mail->Timeout = 300;
-
-        if ($mode == 1) {
-            $mail->IsHTML(true);
-        }
-        $mail->Mailer = $jomresConfig_mailer;
-
-        $body = preg_replace("[\\\]", '', $body);
-
-        if ($mode == 1 && !strstr($body, '<meta http-equiv="Content-Type" content="text/html; utf-8" />')) {
-            //$body = preg_replace( '@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>', $body );
-        }
-
-        if (get_showtime('smtpauth') == '1') {
-            $mail->SMTPAuth = '1';
-        }
-        // Need to change this before release?
-        if (get_showtime('mailer') == 'smtp') {
-            $mail->IsSMTP(); // telling the class to use SMTP
-            $mail->Username = $jomresConfig_smtpuser;
-            $mail->Password = $jomresConfig_smtppass;
-        }
-
-        $mail->Host = $jomresConfig_smtphost;
-        if ($jrConfig[ 'default_from_address' ] != '') {
-            $mail->From = $jrConfig[ 'default_from_address' ];
-        } else {
-            $mail->From = $from;
-        }
-
-        $mail->CharSet = 'UTF-8';
-        $mail->FromName = $jomresConfig_sitename;
-        $mail->Subject = str_replace('&#39;', "'", $subject);
-        $mail->Port = $jomresConfig_smtpport;
-
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
-
         if ($jrConfig[ 'alternate_smtp_use_settings' ] == '1') {
             $mail->Mailer = 'smtp';
+			$mail->IsSMTP(); // telling the class to use SMTP
             $mail->Host = trim($jrConfig[ 'alternate_smtp_host' ]);
             $mail->Port = trim($jrConfig[ 'alternate_smtp_port' ]);
             $mail->SMTPSecure = trim($jrConfig[ 'alternate_smtp_protocol' ]);
@@ -2042,8 +1975,46 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
             $mail->Username = trim(get_showtime('smtpuser'));
             $mail->Password = trim(get_showtime('smtppass'));
         }
+		
+		$mail->SMTPDebug = 2;
+        $mail->Debugoutput = function ($str, $level) {
+            $GLOBALS['debug'] .= "$level: $str<br/>";
+        };
 
-        //	$mail->AltBody		= "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+        $mail->Timeout = 300;
+		
+		$mail->SMTPAutoTLS = false;
+		
+		//not recommended, but it`s here for cases when certificates are self signed. Some hosting providers still do this..
+		$mail->SMTPOptions = array(
+		'ssl' => array(
+			'verify_peer' => false,
+			'verify_peer_name' => false,
+			'allow_self_signed' => true
+			)
+		);
+
+        if ($mode == 1) {
+            $mail->IsHTML(true);
+        }
+
+        $body = preg_replace("[\\\]", '', $body);
+
+        //if ($mode == 1 && !strstr($body, '<meta http-equiv="Content-Type" content="text/html; utf-8" />')) {
+            //$body = preg_replace( '@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>', $body );
+        //}
+
+        if ($jrConfig[ 'default_from_address' ] != '') {
+            $mail->From = $jrConfig[ 'default_from_address' ];
+        } else {
+            $mail->From = $from;
+        }
+		
+		$mail->CharSet = 'UTF-8';
+        $mail->FromName = $jomresConfig_sitename;
+        $mail->Subject = str_replace('&#39;', "'", $subject);
+
+        //$mail->AltBody		= "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 
         if (count($attachments) > 0) {
             foreach ($attachments as $attachment) {
@@ -4111,17 +4082,6 @@ function sendAdminEmail($subject, $message, $send_post = false)
     foreach ($admins as $admin) {
         jomresMailer($jomresConfig_mailfrom, $jomresConfig_fromname, $admin[ 'email' ], $subject, $message);
     }
-}
-
-function makeJsGraphOutput($graphLabels, $graphValues, $type, $legend, $div = 'divGraph')
-{
-    $graphParams = '
-	<script language="JavaScript"> <!--
-	jomresJquery(document).ready(function() {createGraph("' .$graphLabels.'","'.$graphValues.'","'.$type.'","'.$legend.'","'.$div.'")});
-	//--> </script>
-	';
-
-    return $graphParams;
 }
 
 function getMonthName($monthNo)

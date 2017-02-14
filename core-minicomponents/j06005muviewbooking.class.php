@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.25
+ * @version Jomres 9.8.26
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -251,14 +251,6 @@ class j06005muviewbooking
         $contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL', '_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL', false));
         $contentPanel->setcontent('<table>
 			<tr>
-				<td>' .jr_gettext('_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL', '_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL').'</td>
-				<td>' .ucfirst($guest_firstname).'</td>
-			</tr>
-			<tr>
-				<td>' .jr_gettext('_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL', '_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL').'</td>
-				<td>' .ucfirst($guest_surname).'</td>
-			</tr>
-			<tr>
 				<td>' .jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL').'</td>
 				<td>' .outputDate($booking_arrival).'</td>
 			</tr>
@@ -276,6 +268,14 @@ class j06005muviewbooking
 
         $contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', false));
         $contentPanel->setcontent('<table>
+			<tr>
+				<td>' .jr_gettext('_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL', '_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL').'</td>
+				<td>' .ucfirst($guest_firstname).'</td>
+			</tr>
+			<tr>
+				<td>' .jr_gettext('_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL', '_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL').'</td>
+				<td>' .ucfirst($guest_surname).'</td>
+			</tr>
 			<tr>
 				<td>' .jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL').'</td>
 				<td>' .ucfirst($guest_house).'</td>

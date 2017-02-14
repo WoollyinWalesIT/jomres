@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.25
+ * @version Jomres 9.8.26
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -437,18 +437,18 @@ class dobooking
         $this->writeToLogfile("<font color='grey'>".serialize($tmpBookingHandler->tmpguest).'</font>');
 
         $tmpBookingHandler->tmpguest[ 'mos_userid' ] = $this->mos_userid;
-        $tmpBookingHandler->tmpguest[ 'existing_id' ] = getEscaped($this->existing_id);
-        $tmpBookingHandler->tmpguest[ 'firstname' ] = getEscaped($this->firstname);
-        $tmpBookingHandler->tmpguest[ 'surname' ] = getEscaped($this->surname);
-        $tmpBookingHandler->tmpguest[ 'house' ] = getEscaped($this->house);
-        $tmpBookingHandler->tmpguest[ 'street' ] = getEscaped($this->street);
-        $tmpBookingHandler->tmpguest[ 'town' ] = getEscaped($this->town);
-        $tmpBookingHandler->tmpguest[ 'region' ] = getEscaped($this->region);
-        $tmpBookingHandler->tmpguest[ 'country' ] = getEscaped($this->country);
-        $tmpBookingHandler->tmpguest[ 'postcode' ] = getEscaped($this->postcode);
-        $tmpBookingHandler->tmpguest[ 'tel_landline' ] = getEscaped($this->tel_landline);
-        $tmpBookingHandler->tmpguest[ 'tel_mobile' ] = getEscaped($this->tel_mobile);
-        $tmpBookingHandler->tmpguest[ 'email' ] = getEscaped($this->email);
+        $tmpBookingHandler->tmpguest[ 'existing_id' ] = (int)$this->existing_id;
+        $tmpBookingHandler->tmpguest[ 'firstname' ] = $this->firstname;
+        $tmpBookingHandler->tmpguest[ 'surname' ] = $this->surname;
+        $tmpBookingHandler->tmpguest[ 'house' ] = $this->house;
+        $tmpBookingHandler->tmpguest[ 'street' ] = $this->street;
+        $tmpBookingHandler->tmpguest[ 'town' ] = $this->town;
+        $tmpBookingHandler->tmpguest[ 'region' ] = $this->region;
+        $tmpBookingHandler->tmpguest[ 'country' ] = $this->country;
+        $tmpBookingHandler->tmpguest[ 'postcode' ] = $this->postcode;
+        $tmpBookingHandler->tmpguest[ 'tel_landline' ] = $this->tel_landline;
+        $tmpBookingHandler->tmpguest[ 'tel_mobile' ] = $this->tel_mobile;
+        $tmpBookingHandler->tmpguest[ 'email' ] = $this->email;
         $tmpBookingHandler->tmpguest[ 'discount' ] = getEscaped($this->guest_specific_discount);
 
         $tmpBookingHandler->saveGuestData();
@@ -4603,7 +4603,13 @@ class dobooking
                 }
             }
         }
-
+		
+		if (using_bootstrap() && jomres_bootstrap_version() == '3') {
+            $endrun_javascript_for_eval_by_handlereq = get_showtime('endrun_javascript_for_eval_by_handlereq');
+            $endrun_javascript_for_eval_by_handlereq[$roomUid.'_'.$tariffUid] = ';jomresJquery(document).ready(function(){if (jomresJquery(\'body > #roomdetails'.$roomUid.'_'.$tariffUid.'\').length < 1){jomresJquery(\'#roomdetails'.$roomUid.'_'.$tariffUid.'\').appendTo("body");}else{jomresJquery(\'body > #roomdetails'.$roomUid.'_'.$tariffUid.'\').replaceWith(jomresJquery(\'#roomdetails'.$roomUid.'_'.$tariffUid.'\'));};jomresJquery(\'.jomres_bt_tooltip_features\').tipsy({html: true, fade: true, gravity: \'sw\', delayOut: 100});});';
+            set_showtime('endrun_javascript_for_eval_by_handlereq', $endrun_javascript_for_eval_by_handlereq);
+        }
+		
         return array_merge($roomStuff, $tariffStuff);
     }
 
@@ -4669,12 +4675,6 @@ class dobooking
         $roomRow[ 'ROOMFLOOR' ] = $this->sanitiseOutput(stripslashes($room[ 'room_floor' ]));
         $roomRow[ 'MAXPEOPLE_INROOM' ] = $this->sanitiseOutput($room[ 'max_people' ]);
 
-        if (using_bootstrap() && jomres_bootstrap_version() == '3') {
-            $endrun_javascript_for_eval_by_handlereq = get_showtime('endrun_javascript_for_eval_by_handlereq');
-            $endrun_javascript_for_eval_by_handlereq[$roomUid] = ';jomresJquery(document).ready(function(){if (jomresJquery(\'body > #roomdetails'.$roomUid.'\').length < 1){jomresJquery(\'#roomdetails'.$roomUid.'\').appendTo("body");}else{jomresJquery(\'body > #roomdetails'.$roomUid.'\').replaceWith(jomresJquery(\'#roomdetails'.$roomUid.'\'));};jomresJquery(\'.jomres_bt_tooltip_features\').tipsy({html: true, fade: true, gravity: \'sw\', delayOut: 100});});';
-            set_showtime('endrun_javascript_for_eval_by_handlereq', $endrun_javascript_for_eval_by_handlereq);
-        }
-
         return $roomRow;
     }
 
@@ -4685,6 +4685,8 @@ class dobooking
     {
         $mrConfig = $this->mrConfig;
         $tariff = $this->allPropertyTariffs[ $tariffUid ];
+		
+		$output[ 'TARIFFUID' ] = $tariffUid;
 
         $output[ 'HTITLE' ] = $this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE', '_JOMRES_FRONT_TARIFFS_TITLE', false, false));
         $output[ 'HDESC' ] = $this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_DESC', '_JOMRES_FRONT_TARIFFS_DESC', false, false));

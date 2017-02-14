@@ -2,6 +2,10 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
 var jomres_device_type			= "{DEVICE_TYPE}";
+
+jomresJquery(document).ready(function(){
+	jomresJquery('#FAQModal').appendTo("body");
+});
 </script>
 <style type="text/css">
 	#jomres_status {

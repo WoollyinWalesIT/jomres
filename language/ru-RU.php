@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.25
+ * @version Jomres 9.8.26
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2298,9 +2298,6 @@ jr_define('TOUR_ID_TOUR_TARGET_COUPONS_CONTENT', 'Купон - коды поле
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_TITLE', 'Дополнительное оборудование.');
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_CONTENT', 'Дополнительное оборудование, услуги, элементы, которые могут быть добавлены к бронирования. Это предметы, услуги которые не ограничеваются, поэтому нет управления ресурсами, связанных с ними. Когда вы создаете дополнительное оборудование вы можете выбрать различные параметры, например, максимальное количество из них, которые могут быть добавлены к бронирования, и является ли или нет лишними, или должны быть принудительными. При этом, мы имеем в виду, если он автоматически выбирается в форме бронирования, и Гость не может снять его. Это полезно для обязательных платежей вроде полотенец или уборку. Кроме того, вам нужно будет выбрать модель, которая означает, как платежи будут рассчитываться за лишние. Если вы хотите одного варианта должен быть применен (например, для бутылки шампанского, чтобы быть доступны по прибытии), то вы установите модель для всего бронирования. Если вы хотете взимать плату за что-то на каждый день, тогда вы выбрали бы в день вариант.');
 
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_TITLE', 'Медиа-Центр');
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_CONTENT', 'Медиа-центр позволяет легко загружать изображения вашей недвижимости. По умолчанию вы можете загрузить основные изображения недвижимости (фактически, вы можете загрузить больше, но только первый в списке будет использоваться), неограниченное количество изображений, которые будут показаны в слайд-шоу, и неограниченное число изображений для каждого помещения.'.jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', false));
-
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_TITLE', 'Выбора ресурсов.');
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_CONTENT', 'Это средство выбора ресурсов. Это позволяет выбрать, какого рода ресурс вы загружаете изображения (например, слайд-шоу изображений или номера) и если это Номер, то после выбора номера вам будет предоставлена возможность выбрать, в какую комнату вы хотите загрузить изображения в другом выпадающем списке, рядом с ним. Это позволяет Вам загружать несколько изображений для каждого отдельного помещения, если вы пожелаете. Обратите внимание, номер изображения загружать только касается свойств, таких как отели, пансионаты и т. д. Виллы и апартаменты не имеют эту опцию.');
 
@@ -3129,3 +3126,8 @@ jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW', 'Show property images as slideshow
 jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC', 'If set to yes, a slideshow of property main images will be displayed. If set to no, then the first property main image will be displayed.');
 
 jr_define('EDIT_CMS_USER', 'Edit CMS user');
+
+jr_define('BOOKING_MADE_BY', 'Booking made by');
+
+jr_define('_JOMRES_ROUTER_FEATURES', 'Amenities');
+jr_define('_JOMRES_ROUTER_ROOMTYPES', 'Room Types');

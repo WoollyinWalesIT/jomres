@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.25
+ * @version Jomres 9.8.26
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -23,7 +23,7 @@ class jrportal_guest_types
 
     public function init_guest_type()
     {
-        $this->id = 0;        // guest type id
+		$this->id = 0;        // guest type id
         $this->type = '';        // guest type name
         $this->notes = '';        // guest type notes - internal notes, not visible in the frontend
         $this->maximum = '10';        // maximum number of this guest type
@@ -35,6 +35,54 @@ class jrportal_guest_types
         $this->order = 0;        // order of guest type dropdowns on the booking form
         $this->is_child = 0;        // this guest type is a child - used on channel managers
         //$this->xref 			= array();	// TODO: not used yet for global guest types - guest type property type xref
+    }
+	
+	//Get guest type details by guest type id
+    public function get_guest_type()
+    {
+        if ($this->id == 0) {
+            throw new Exception('Error: Guest type id not set.');
+        }
+		
+		if ($this->property_uid == 0) {
+            throw new Exception('Error: Property uid not set.');
+        }
+
+        $query = "SELECT
+					`id`,
+					`type`,
+					`notes`,
+					`maximum`,
+					`is_percentage`,
+					`posneg`,
+					`variance`,
+					`published`,
+					`property_uid`,
+					`order`,
+					`is_child` 
+				FROM `#__jomres_customertypes` 
+				WHERE `id` = ".(int) $this->id." AND `property_uid` = ".(int)$this->property_uid;
+        $result = doSelectSql($query);
+
+        if (count($result) < 1) {
+            return false;
+        }
+
+        foreach ($result as $r) {
+            $this->id = (int) $r->id;
+            $this->type = jr_gettext('_JOMRES_CUSTOMTEXT_GUESTTYPE'.$r->id, stripslashes($r->type));
+            $this->notes = jr_gettext('_JOMRES_CUSTOMTEXT_GUESTNOTES'.$r->id, stripslashes($r->notes));
+            $this->maximum = (int) $r->maximum;
+            $this->is_percentage = (int) $r->is_percentage;
+            $this->posneg = (int) $r->posneg;
+            $this->variance = (float) $r->variance;
+            $this->published = (int) $r->published;
+            $this->property_uid = (int) $r->property_uid;
+            $this->order = (int) $r->order;
+            $this->is_child = (int) $r->is_child;
+        }
+
+        return true;
     }
 
     //Save new guest type
@@ -48,7 +96,7 @@ class jrportal_guest_types
             throw new Exception('Error: Property uid not set.');
         }
 
-        $query = 'INSERT INTO #__jomres_customertypes 
+        $query = "INSERT INTO #__jomres_customertypes 
 							(
 							`id`,
 							`type`,
@@ -64,21 +112,25 @@ class jrportal_guest_types
 							)
 						VALUES 
 							(
-							' .(int) $this->id.",
-							'" .$this->type."',
+							" .(int) $this->id.",
+							'".$this->type."',
 							'".$this->notes."',
-							".(int) $this->maximum.',
-							'.(int) $this->is_percentage.',
-							'.(int) $this->posneg.',
-							' .(int) $this->variance.',
-							' .(int) $this->published.', 
-							' .(int) $this->property_uid.',
-							' .(int) $this->order.',
-							' .(int) $this->is_child.' 
-							)';
+							".(int) $this->maximum.",
+							".(int) $this->is_percentage.",
+							".(int) $this->posneg.",
+							".(int) $this->variance.",
+							".(int) $this->published.", 
+							".(int) $this->property_uid.",
+							".(int) $this->order.",
+							".(int) $this->is_child." 
+							)";
         $this->id = doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_INSERT_CUSTOMERTYPE', '_JOMRES_MR_AUDIT_INSERT_CUSTOMERTYPE', false));
         
-        $webhook_notification                               = new stdClass();
+        if (!$this->id) {
+            throw new Exception('Error: New guest type insert failed.');
+        }
+		
+		$webhook_notification                               = new stdClass();
         $webhook_notification->webhook_event                = 'guest_type_saved';
         $webhook_notification->webhook_event_description    = 'Logs when guest types added.';
         $webhook_notification->webhook_event_plugin         = 'core';
@@ -86,10 +138,6 @@ class jrportal_guest_types
         $webhook_notification->data->property_uid           = $this->property_uid;
         $webhook_notification->data->guest_type_uid         = $this->id;
         add_webhook_notification($webhook_notification);
-        
-        if (!$this->id) {
-            throw new Exception('Error: New guest type insert failed.');
-        }
 
         return true;
     }
@@ -109,13 +157,13 @@ class jrportal_guest_types
 					SET 
 						`type` = '" .$this->type."',
 						`notes` = '".$this->notes."',
-						`maximum` = ".(int) $this->maximum.',
-						`is_percentage` = '.(int) $this->is_percentage.',
-						`posneg` = '.(int) $this->posneg.',
-						`variance` = ' .(int) $this->variance.',
-						`is_child` = ' .(int) $this->is_child.' 
-					WHERE `id` = ' .(int) $this->id.' 
-						AND `property_uid` = ' .(int) $this->property_uid;
+						`maximum` = ".(int)$this->maximum.",
+						`is_percentage` = ".(int)$this->is_percentage.",
+						`posneg` = ".(int)$this->posneg.",
+						`variance` = ".(int)$this->variance.",
+						`is_child` = ".(int)$this->is_child." 
+					WHERE `id` = ".(int)$this->id." 
+						AND `property_uid` = ".(int)$this->property_uid;
 
         if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_UPDATE_CUSTOMERTYPE', '_JOMRES_MR_AUDIT_UPDATE_CUSTOMERTYPE', false))) {
             throw new Exception('Error: Guest type update intert failed.');

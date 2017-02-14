@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.25
+ * @version Jomres 9.8.26
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -114,7 +114,28 @@ class jomSearch
             if (!isset($vals[ 'priceranges' ])) {
                 $vals[ 'priceranges' ] = false;
             }
+            
+            /* 
+            The purpose is to allow us to add searchable urls without forcing the user to modify the configuration.php manually.
 
+            Bit of a hack, but this class is so old but yet robust, I can't see it changing now.
+            The called by module m0 is supposed to be set in Site Config integrated search, which was originally designed to offer a search "module" in the property list page. That was abandoned at some point
+            however the m0 tage wasn't. Unfortunately, the various settings in site config are now missing, so it's not possible to configurationally enable them ( and that's a good thing, less options = less confusion), so instead we'll do that here.
+            This *soley* enables searching on various arrays, *if* they're populated. It will inevitably add some queries, but only if calledbymodule is set to m0
+
+            */
+            if ( $calledByModule == 'mod_jomsearch_m0' ){
+                $vals[ 'propertyname' ] = true;
+                $vals[ 'ptype' ]        = true;
+                $vals[ 'room_type' ]    = true;
+                $vals[ 'features' ]     = true;
+                $vals[ 'description' ]  = true;
+                $vals[ 'availability' ] = true;
+                $vals[ 'guestnumber' ]  = true;
+                $vals[ 'stars' ]        = true;
+                $vals[ 'priceranges' ]  = true;
+                }
+            
             $useCols = $vals[ 'useCols' ];
             $featurecols = $vals[ 'featurecols' ];
             $geosearchtype = $vals[ 'geosearchtype' ];

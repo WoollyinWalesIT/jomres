@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.25
+ * @version Jomres 9.8.26
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -180,13 +180,14 @@ class j06000ui_availability_calendar
             $full_output .= '];';
         }
 
+        $url = get_booking_link(JOMRES_SITEPAGE_URL_NOSEF.'&task=dobooking&pdetails_cal=1&selectedProperty='.$property_uid.'&arrivalDate=');
         $inline_calendar = '
 			<script>
 			' .$quarter_output.'
 			' .$half_output.'
 			' .$threequarter_output.'
 			' .$full_output.'
-			var booking_form_url_' .$random_identifier.' = "'.JOMRES_SITEPAGE_URL_NOSEF.'&task=dobooking&pdetails_cal=1&selectedProperty='.$property_uid.'&arrivalDate=";
+			var booking_form_url_' .$random_identifier.' = "'.$url.'";
 			
 			function highlightDays_' .$random_identifier.'(date)
 				{

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.25
+ * @version Jomres 9.8.26
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1331,6 +1331,10 @@ class jomres_obsolete_file_handling
         $this->add_obs_dir($this->dir_libraries.'PHPMailer-v5.2.19'.JRDS);
 		
 		$this->add_obs_file($this->dir_minicomponents.'j01020showtariffs.class.php');
+		
+		$this->add_obs_file($this->dir_minicomponents.'j02222editguest.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j02224saveguest.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j02226deleteguest.class.php');
     }
 
     public function add_obs_file($path_and_file)

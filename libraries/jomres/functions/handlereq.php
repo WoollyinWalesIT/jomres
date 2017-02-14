@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.25
+ * @version Jomres 9.8.26
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -109,6 +109,7 @@ switch ($field) {
         break;
     case 'addressstring':
         $ajrq = 'ajrq:::addressstring';
+        $value = str_replace( "&#38;#39;", "'", $value ); // Apostrophes sent by ajax will be mangled, we need to unmangle them then santise them properly.
         $addressString = explode('~', $value);
         $firstname = $addressString[ 0 ];
         $surname = $addressString[ 1 ];

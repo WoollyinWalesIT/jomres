@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.25
+ * @version Jomres 9.8.26
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -169,7 +169,7 @@ class j01010listpropertys
                 if (isset($_REQUEST[ 'arrivalDate' ])) {
                     $arrival_clause = '&arrivalDate='.$_REQUEST[ 'arrivalDate' ].'&departureDate='.$_REQUEST[ 'departureDate' ]; // There's no need for these elements to be sanitised, as we're just redirecting again to a new url, these items will be sanitised at that point.
                 }
-                jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$propertys_uids[ 0 ].$arrival_clause), '');
+                jomresRedirect(get_booking_link(jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$propertys_uids[ 0 ].$arrival_clause)), '');
             }
 
             if (!isset($jrConfig['use_budget_feature'])) {
@@ -547,7 +547,7 @@ class j01010listpropertys
 
                     if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
                         if ($mrConfig[ 'visitorscanbookonline' ] == '1') {
-                            $property_deets[ 'LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task='.$dobooking_task.'&selectedProperty='.$propertys_uid);
+                            $property_deets[ 'LINK' ] = get_booking_link(jomresURL(JOMRES_SITEPAGE_URL.'&task='.$dobooking_task.'&selectedProperty='.$propertys_uid));
 
                             if ($mrConfig[ 'singleRoomProperty' ] == '1') {
                                 if ($mrConfig[ 'requireApproval' ] == '1') {

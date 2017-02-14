@@ -45,22 +45,25 @@ a.fc-event, .fc-event-draggable {
 	font-style:italic;
 	background:#f5f5f5;
 }
-#jrCalendarTrash .jr-calendar-trash {
-	background:#f5f5f5;
-	border: 2px dashed #ccc;
-	color:#999;
-	height:50px;
-	text-align:center;
-	margin-top:25px;
-	font-size:36px;
-	width:100%;
-	padding-top:4px;
-	white-space:nowrap;
-	line-height:1;
+#jrCalendarTrash.jr-calendar-trash {
+	box-shadow: 0 8px 6px -6px grey;
+	background: rgba(218, 49, 75, 0.55);
+	border: 1px dashed #e0e0e1;
+	color: #fafafa;
+	height: 50px;
+	text-align: center;
+	margin-right: 20px;
+	font-size: 36px;
+	width: 22%;
+	padding: 5px 10px;
+	white-space: nowrap;
+	line-height: 1;
+	float: right;
 }
-#jrCalendarTrash .jr-calendar-trash span {
+#jrCalendarTrash.jr-calendar-trash span {
 	font-size:13px;
 	vertical-align:middle;
+	text-align:center;
 }
 .blockUI h1 {
 	font-size:16px;
@@ -535,6 +538,8 @@ jomresJquery(document).ready(function() {
 				});
 			});
 		});
+	
+	jomresJquery("#blackBookingForm").appendTo("body");
 	});
 
 function reset_region_dropdown() {
@@ -581,10 +586,10 @@ function reset_booking_modal() {
 
 <div id="jomres_dashboard{PROPERTY_UID}"></div>
 
-<div id="jrCalendarTrash" class="row-fluid">
+<div class="row-fluid">
 	<div class="span12">
-		<div class="jr-calendar-trash">
-			<i class="fa fa-trash"></i> <span>{HDRAG_TRASH}</span>
+		<div id="jrCalendarTrash" class="jr-calendar-trash">
+			<i class="fa fa-trash"></i> <span class="hidden-phone>{HDRAG_TRASH}</span>
 		</div>
 	</div>
 </div>

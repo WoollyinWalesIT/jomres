@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.25
+ * @version Jomres 9.8.26
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -621,33 +621,6 @@ try {
                 if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
                     $MiniComponents->triggerEvent('02220');
                 } //listGuests();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'editGuest':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02222');
-                } //editGuest();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'saveGuest':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02224');
-                } //saveGuest();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'deleteGuest':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02226');
-                } //deleteGuest();
                 else {
                     userHasBeenLoggedOut();
                 }

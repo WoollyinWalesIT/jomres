@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.25
+ * @version Jomres 9.8.26
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -77,7 +77,7 @@ class j06001dashboard
         $output['DAY'] = jr_gettext('_JOMRES_DASHBOARD_DAY', '_JOMRES_DASHBOARD_DAY', false);
         $output['YEAR'] = jr_gettext('_JOMRES_DASHBOARD_YEAR', '_JOMRES_DASHBOARD_YEAR', false);
         $output['HNEW_BOOKING'] = jr_gettext('_JOMRES_HNEW_BOOKING', '_JOMRES_HNEW_BOOKING', false);
-        $output['NEW_BOOKING_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$property_uid);
+        $output['NEW_BOOKING_URL'] = get_booking_link(jomresUrl(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$property_uid));
         $output['HBLACK_BOOKINGS'] = jr_gettext('_JOMRES_FRONT_BLACKBOOKING', '_JOMRES_FRONT_BLACKBOOKING', false);
         $output['BLACK_BOOKINGS_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=listBlackBookings');
 
