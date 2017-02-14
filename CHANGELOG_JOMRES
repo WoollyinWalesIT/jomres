@@ -1,3 +1,37 @@
+<h3>Jomres 9.8.26 14/02/2017</h3>
+
+<span class="label label-warning">Change</span> Removed some unused functions
+<span class="label label-warning">Change</span> Modified the BS3 contact owner form so that name limit is increased to 50 characters.
+<span class="label label-warning">Change</span> Updated the jomresMailer function to solve a problem when emails not being sent if ssl certificates are self signed by hosting providers.
+<span class="label label-warning">Change</span> Added a column in list bookings to display who made the booking
+<span class="label label-warning">Change</span> Added code to automatically enable searching on various options if search module is set to jomSearch_m0. This is because they can only be enabled through editing configuration.php, as the settings in site config no longer exist.
+<span class="label label-warning">Change</span> Modified dashboard to improve layout of the drag to trash sliding panel.
+<span class="label label-warning">Change</span> Modified tooltip functionality so that urls can be passed to the output templates. Allows setting of search urls for room types and property features.
+<span class="label label-warning">Change</span> Added search urls to non-categorised property features.
+<span class="label label-warning">Change</span> Added joomla router functionality for room types and property features search urls
+<span class="label label-warning">Change</span> Added ajax countries/regions dropdowns for real estate edit property pages
+<span class="label label-warning">Change</span> Added bitcoin to exchange rates conversions that can be offered.
+<span class="label label-warning">Change</span> Added a define for jomres temp dir
+<span class="label label-warning">Change</span> Tweaked media centre so that some popups show to the left of the button instead of the right, better for smaller screens.
+<span class="label label-warning">Change</span> Modified the webhook position on saving new guest type
+<span class="label label-warning">Change</span> Added a new function that, in the core of Jomres, simply returns the booking link page. It does, however, allow us to override the url to the booking page programmatically through plugins if desired.
+<span class="label label-warning">Change</span> Completely rewritten the guest handling functionality
+<span class="label label-warning">Change</span> Made the cancellation threshold option available to jintour properties too
+<span class="label label-warning">Change</span> Tweaked the default visible columns in list bookings to have the "booking made by" hidden by default and the "approved" column visible by default
+<span class="label label-warning">Change</span> Changed the way we use JInput to filter request vars when sef enabled
+<span class="label label-warning">Change</span> Added support for overriding the set_booking_number function
+<span class="label label-warning">Change</span> Partners page updated in Jomres admin area.
+<span class="label label-warning">Change</span> Moved the guest firstname and surname to the guest details tab in registered users view booking page
+<span class="label label-warning">Change</span> Removed the int casting of the booking number, to allow custom booking numbers to use chars too.
+<span class="label label-warning">Change</span> Updated the currency code for Ugandan Schilling
+
+<span class="label label-important label-danger">Fix</span> Spanish language file updated to resolve a javascript issues that a carriage return can cause.
+<span class="label label-important label-danger">Fix</span> Discovered that guest details passed through the form which contained an apostrophe are getting mangled, so we unmangle them then sanitise them properly before passing them to the booking engine.
+<span class="label label-important label-danger">Fix</span> Fixed duplicate images showing in old BS2 tooltips.
+<span class="label label-important label-danger">Fix</span> Solved a problem with modals on the booking form being behind backdrop on specific room-tariff configurations
+
+<span class="label label-info">Wordpress</span>  Solved a mailer problem on WP when class SMTP already exists
+
 <h3>Jomres 9.8.25 09/01/2017</h3>
 
 <span class="label label-warning">Change</span> Modified a variety of webhook names for consistency.
