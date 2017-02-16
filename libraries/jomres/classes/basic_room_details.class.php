@@ -64,7 +64,7 @@ class basic_room_details
 						`singleperson_suppliment`
 					FROM #__jomres_rooms 
 					WHERE `propertys_uid` = ' .(int) $property_uid.' 
-					ORDER BY room_number, room_name
+					ORDER BY LENGTH(room_number), room_number, room_name
 					';
         $result = doSelectSql($query);
 
