@@ -169,7 +169,7 @@ class j01010listpropertys
                 if (isset($_REQUEST[ 'arrivalDate' ])) {
                     $arrival_clause = '&arrivalDate='.$_REQUEST[ 'arrivalDate' ].'&departureDate='.$_REQUEST[ 'departureDate' ]; // There's no need for these elements to be sanitised, as we're just redirecting again to a new url, these items will be sanitised at that point.
                 }
-                jomresRedirect(get_booking_link(jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$propertys_uids[ 0 ].$arrival_clause)), '');
+                jomresRedirect(get_booking_url($propertys_uids[ 0 ]).$arrival_clause, '');
             }
 
             if (!isset($jrConfig['use_budget_feature'])) {
@@ -334,11 +334,6 @@ class j01010listpropertys
                         $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
                         $tmpl->readTemplatesFromInput('list_properties_gateways_snippet.html');
                         $property_deets['GATEWAYS'] = $tmpl->getParsedTemplate();
-                    }
-
-                    $dobooking_task = 'dobooking';
-                    if ($mrConfig[ 'registeredUsersOnlyCanBook' ] == '1' && $thisJRUser->id == 0) {
-                        $dobooking_task = 'contactowner';
                     }
 
                     $featureList = array();
@@ -547,7 +542,7 @@ class j01010listpropertys
 
                     if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
                         if ($mrConfig[ 'visitorscanbookonline' ] == '1') {
-                            $property_deets[ 'LINK' ] = get_booking_link(jomresURL(JOMRES_SITEPAGE_URL.'&task='.$dobooking_task.'&selectedProperty='.$propertys_uid));
+                            $property_deets[ 'LINK' ] = get_booking_url($propertys_uid);
 
                             if ($mrConfig[ 'singleRoomProperty' ] == '1') {
                                 if ($mrConfig[ 'requireApproval' ] == '1') {
@@ -561,9 +556,6 @@ class j01010listpropertys
                                 } else {
                                     $property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM', '_JOMRES_FRONT_MR_MENU_BOOKAROOM', false);
                                 }
-                            }
-                            if ($dobooking_task != 'dobooking') {
-                                $property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', false);
                             }
                         } else {
                             $property_deets[ 'LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=contactowner&selectedProperty='.$propertys_uid);
@@ -591,9 +583,9 @@ class j01010listpropertys
                     $property_deets[ 'LIVESITE' ] = get_showtime('live_site');
                     $property_deets[ 'UID' ] = $propertys_uid;
                     $property_deets[ 'MOREINFORMATION' ] = jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', $editable = false, true);
-                    $property_deets[ 'MOREINFORMATIONLINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$propertys_uid);
-                    $property_deets[ 'MOREINFORMATIONLINK_AJAX' ] = JOMRES_SITEPAGE_URL_AJAX.'&task=viewproperty&property_uid='.$propertys_uid;
-                    $property_deets[ 'MOREINFORMATIONLINK_SEFSAFE' ] = JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$propertys_uid;
+                    $property_deets[ 'MOREINFORMATIONLINK' ] = get_property_details_url($propertys_uid);
+                    $property_deets[ 'MOREINFORMATIONLINK_AJAX' ] = get_property_details_url($propertys_uid,'ajax');
+                    $property_deets[ 'MOREINFORMATIONLINK_SEFSAFE' ] = get_property_details_url($propertys_uid,'sefsafe');
                     $property_deets[ 'PROPERTYNAME' ] = $property_deets[ 'PROP_NAME' ];
 
                     $property_deets[ '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES');

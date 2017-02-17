@@ -36,7 +36,7 @@ class j00010reception_option_03_dobooking
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 
-        $output[ 'BOOKAROOMLINK' ] = get_booking_link(JOMRES_SITEPAGE_URL.'&task=dobooking');
+        $output[ 'BOOKAROOMLINK' ] = get_booking_url($property_uid);
 
         if ($jrConfig[ 'useSSLinBookingform' ] == '1') {
             $link = jomresURL($output[ 'BOOKAROOMLINK' ], 1);

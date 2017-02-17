@@ -86,7 +86,7 @@ class j06005mulistbookings
                     $r[ 'IMAGE' ] = $jomres_media_centre_images->images ['property'][0][0]['small'];
                     $r[ 'VIEWLINK' ] = JOMRES_SITEPAGE_URL.'&task=muviewbooking&contract_uid='.$c->contract_uid;
                     $r[ 'VIEWLINK_TEXT' ] = jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', $editable = false, $isLink = true);
-                    $r[ 'PROPERTYDETAILSLINK' ] = JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$c->property_uid;
+                    $r[ 'PROPERTYDETAILSLINK' ] = get_property_details_url($c->property_uid);
                     $rows[ ] = $r;
                 }
             }

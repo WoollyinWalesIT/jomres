@@ -62,7 +62,7 @@ $bkg->currentField = $field;
 /* $property_uid_check = jomresGetParam( $_GET, 'property_uid_check', 0 );
  if ( $property_uid_check != $pid )
     {
-    $url = JOMRES_SITEPAGE_URL_NOSEF . "&task=dobooking&amp;selectedProperty=$pid";
+    $url = get_booking_url($pid);
     echo '; window.location.replace("' . $url . '"); ';
     exit;
     } */

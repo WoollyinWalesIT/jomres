@@ -92,7 +92,6 @@ $jrConfig = array(
   'useJomresMessaging' => '1',
   'useSubscriptions' => '0',
   'useNewusers' => '0',
-  'jomresItemid' => 0,
   'outputHeadersInline' => '0',
   'lifetime' => '18000',
   'business_name' => 'BLANK',

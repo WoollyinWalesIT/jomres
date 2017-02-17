@@ -126,7 +126,7 @@ class j01060slideshow
                 $r[ 'IMAGE' ] = $imagesArray[ $i ][ 'large' ];
 
                 if ($link_to_property_details && (int) $componentArgs[ 'property_uid' ] > 0) {
-                    $r[ 'LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.(int) $componentArgs[ 'property_uid' ]);
+                    $r[ 'LINK' ] = get_property_details_url((int)$componentArgs[ 'property_uid' ], 'sefsafe');
                 } else {
                     $r[ 'LINK' ] = '';
                 }

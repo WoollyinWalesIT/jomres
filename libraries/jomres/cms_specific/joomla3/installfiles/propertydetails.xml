@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+        <view title="component=com_jomres">
+                <message>Property uid</message>
+        </view>
+	<!-- Add fields to the request variables for the layout. -->
+	<fields name="request">
+		<fieldset name="request">
+		
+			<field name="selected_property" type="sql" default="1" label="Select a property uid" query="SELECT propertys_uid AS value, property_name AS selected_property FROM #__jomres_propertys WHERE published = '1' ORDER BY propertys_uid" />
+			
+		</fieldset>
+		
+	</fields>
+</metadata>

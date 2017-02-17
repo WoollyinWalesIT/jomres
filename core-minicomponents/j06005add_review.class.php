@@ -81,7 +81,7 @@ class j06005add_review
                 $output[ '_JOMRES_REVIEWS_CONS' ] = jr_gettext('_JOMRES_REVIEWS_CONS', '_JOMRES_REVIEWS_CONS', false, false);
                 $output[ '_JOMRES_REVIEWS_ADD_REVIEW' ] = jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW', '_JOMRES_REVIEWS_ADD_REVIEW', false, false);
                 $output[ '_JOMRES_REVIEWS_COMPLETEALLFIELDS' ] = jr_gettext('_JOMRES_REVIEWS_COMPLETEALLFIELDS', '_JOMRES_REVIEWS_COMPLETEALLFIELDS', false, false);
-                $output[ 'JOMRES_SITEPAGE_URL' ] = JOMRES_SITEPAGE_URL;
+                $output[ 'PROPERTY_DETAILS_URL' ] = get_property_details_url($property_uid);
                 $output[ 'PROPERTY_UID' ] = $property_uid;
                 $output[ '_JOMRES_COM_A_CANCEL' ] = jr_gettext('_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL', false);
                 $pageoutput[ ] = $output;

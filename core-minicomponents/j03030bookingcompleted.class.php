@@ -34,17 +34,16 @@ class j03030bookingcompleted
         $save_deets = array();
         $save_details = array();
 
-        //$save_deets['LIVESITE']=JOMRES_SITEPAGE_URL;
-
-        $save_deets[ 'RETURN_URL' ] = JOMRES_SITEPAGE_URL;
-
         if (defined('_JR_GATEWAY_AFTERWORD')) {
             $save_deets[ 'JR_GATEWAY_AFTERWORD' ] = jr_gettext('_JR_GATEWAY_AFTERWORD', '_JR_GATEWAY_AFTERWORD');
         }
         $save_deets[ 'SAVEDMESSAGE' ] = jr_gettext('_JOMRES_FRONT_MR_BOOKINGMADE', '_JOMRES_FRONT_MR_BOOKINGMADE');
         $save_deets[ 'PROPERTYUID' ] = $property_uid;
+		
+		$save_deets[ 'PROPERTY_DETAILS_URL' ] = get_showtime('livesite');
+        $save_deets[ 'BACKTOPROPERTY' ] = jr_gettext('_JOMRES_BACKTOPROPERTYDETAILSLINK', '_JOMRES_BACKTOPROPERTYDETAILSLINK');
         if ($jrConfig[ 'is_single_property_installation' ] != '1') {
-            $save_deets[ 'BACKTOPROPERTY' ] = jr_gettext('_JOMRES_BACKTOPROPERTYDETAILSLINK', '_JOMRES_BACKTOPROPERTYDETAILSLINK');
+			$save_deets[ 'PROPERTY_DETAILS_URL' ] = get_property_details_url($property_uid);
         }
         $save_details[ ] = $save_deets;
         property_header($property_uid);

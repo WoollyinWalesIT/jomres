@@ -162,6 +162,18 @@ if (!class_exists('JomresRouter')) {
                         break;
                 }
             }
+			
+			//for when we have joomla menus created for property details pages
+			if (isset($route_query[ 'layout' ]) && $route_query[ 'layout' ] == 'propertydetails') {
+				unset($route_query[ 'layout' ]);
+
+				if (isset($route_query[ 'view' ])) {
+					unset($route_query[ 'view' ]);
+				}
+				if (isset($route_query[ 'selected_property' ])) {
+					unset($route_query[ 'selected_property' ]);
+				}
+			}
 
 			//search urls
             if (isset($route_query[ 'calledByModule' ])) {

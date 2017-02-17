@@ -41,7 +41,7 @@ class j04901email_property_welcome_message
         $output['_JOMRES_NEW_PROPERTY_WELCOME_3_LINK'] = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=dashboard&thisProperty='.$property_uid);
         $output['_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT'] = jr_gettext('_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT', '_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT', false, false);
         $output['_JOMRES_NEW_PROPERTY_WELCOME_4'] = jr_gettext('_JOMRES_NEW_PROPERTY_WELCOME_4', '_JOMRES_NEW_PROPERTY_WELCOME_4', false, false);
-        $output['_JOMRES_NEW_PROPERTY_WELCOME_4_LINK'] = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=viewproperty&property_uid='.$property_uid);
+        $output['_JOMRES_NEW_PROPERTY_WELCOME_4_LINK'] = get_property_details_url($property_uid,'nosef');
         $output['_JOMRES_NEW_PROPERTY_WELCOME_4_LINKTEXT'] = jr_gettext('_JOMRES_NEW_PROPERTY_WELCOME_4_LINKTEXT', '_JOMRES_NEW_PROPERTY_WELCOME_4_LINKTEXT', false, false);
         $output['_JOMRES_NEW_PROPERTY_WELCOME_5'] = jr_gettext('_JOMRES_NEW_PROPERTY_WELCOME_5', '_JOMRES_NEW_PROPERTY_WELCOME_5', false, false);
         $output['_JOMRES_NEW_PROPERTY_WELCOME_6'] = jr_gettext('_JOMRES_NEW_PROPERTY_WELCOME_6', '_JOMRES_NEW_PROPERTY_WELCOME_6', false, false);

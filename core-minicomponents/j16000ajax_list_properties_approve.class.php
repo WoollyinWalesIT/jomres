@@ -46,7 +46,7 @@ class j16000ajax_list_properties_approve
         $jomresConfig_mailfrom = get_showtime('mailfrom');
         $jomresConfig_fromname = get_showtime('fromname');
 
-        $link = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=viewproperty&property_uid='.$property_uid);
+        $link = get_property_details_url($property_uid,'nosef');
 
         switch ($approved) {
             case 1:

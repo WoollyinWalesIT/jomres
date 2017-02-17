@@ -23,33 +23,19 @@ if (strstr($scriptname, 'install_jomres.php')) {
 $ssllink = str_replace('https://', 'http://', get_showtime('live_site'));
 define('JOMRES_ADMINISTRATORDIRECTORY', 'administrator');
 
-$scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
-if (!strstr($scriptname, 'install_jomres.php')) {
-    $query = "SELECT id,language FROM #__menu WHERE published = 1 AND link LIKE 'index.php?option=com_jomres&view=default' ";
-    $itemQueryRes = doSelectSql($query);
+//detect jomres itemId
+$jomresItemid = 0;
 
-    $itemIdFound = false;
-    foreach ($itemQueryRes as $item) {
-        if ($item->language == get_showtime('lang')) {
-            $itemIdFound = true;
-            $jomresItemid = $item->id;
-        } elseif (!$itemIdFound && $item->language == '*') {
-            $itemIdFound = true;
-            $jomresItemid = $item->id;
-        }
-    }
-    if (!$itemIdFound) {
-        if (isset($jrConfig[ 'jomresItemid' ])) {
-            $jomresItemid = $jrConfig[ 'jomresItemid' ];
-        } else {
-            $jomresItemid = 0;
-        }
-    }
-} else {
-    $jomresItemid = 0; //should only kick in on install
+if (!strstr($scriptname, 'install_jomres.php')) {
+	$app = JFactory::getApplication(); 
+	$menu = $app->getMenu();
+	$menuItem = $menu->getItems( 'link', 'index.php?option=com_jomres&view=default', $firstonly = true );
+	if ($menuItem) {
+		$jomresItemid = (int)$menuItem->id;
+	}
 }
 
-$siteConfig->set_setting('jomresItemid', $jomresItemid);
+set_showtime('jomresItemid', $jomresItemid);
 
 $index = 'index.php';
 $tmpl = '';

@@ -43,7 +43,7 @@ class j06000module_popup
             $output[ 'PROPERTY_UID' ] = $property_uid;
             $output[ 'RANDOM_IDENTIFIER' ] = generateJomresRandomString(10);
             $output[ 'MOREINFORMATION' ] = jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', $editable = false, true);
-            $output[ 'MOREINFORMATIONLINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid);
+            $output[ 'MOREINFORMATIONLINK' ] = get_property_details_url($property_uid);
 
             //property description
             $output['PROPERTY_DESCRIPTION'] = $MiniComponents->specificEvent('06000', 'show_property_description', array('output_now' => false, 'property_uid' => $property_uid));

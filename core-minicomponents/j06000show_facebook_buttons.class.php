@@ -50,7 +50,7 @@ class j06000show_facebook_buttons
         $output = array();
         $pageoutput = array();
 
-        $output['DIRECT_URL'] = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid);
+        $output['DIRECT_URL'] = get_property_details_url($property_uid);
 
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();

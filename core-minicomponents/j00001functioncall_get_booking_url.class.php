@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j00001functioncall_get_booking_link
+class j00001functioncall_get_booking_url
 {
     public function __construct()
     {
@@ -25,7 +25,7 @@ class j00001functioncall_get_booking_link
 
             return;
         }
-        require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'get_booking_link.php';
+        require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'get_booking_url.php';
     }
 
     public function getRetVals()

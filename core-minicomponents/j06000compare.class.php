@@ -157,7 +157,7 @@ class j06000compare
                 }
 
                 $r[ 'LIVE_SITE' ] = get_showtime('live_site');
-                $r[ 'MOREINFORMATIONLINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid);
+                $r[ 'MOREINFORMATIONLINK' ] = get_property_details_url($property_uid);
                 $r[ 'MOREINFORMATION' ] = jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', $editable = false, true);
                 $r[ 'RANDOM_IDENTIFIER' ] = generateJomresRandomString(10);
                 $ptype = $property[ 'ptype_id' ];

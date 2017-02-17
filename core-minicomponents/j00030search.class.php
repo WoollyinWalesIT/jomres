@@ -84,10 +84,10 @@ class j00030search
         $sch = new jomSearch($calledByModule, $includedInModule);
         $sch->searchAll = $searchAll;
         $searchOptions = $sch->searchOptions;
-        $h = '<input type="hidden" name="calledByModule" value="'.$sch->calledByModule.'"/><input type="hidden" name="Itemid" value="'.$jrConfig[ 'jomresItemid' ].'"/>';
+        $h = '<input type="hidden" name="calledByModule" value="'.$sch->calledByModule.'"/><input type="hidden" name="Itemid" value="'.get_showtime('jomresItemid').'"/>';
 
         if (this_cms_is_wordpress()) {
-            $h = '<input type="hidden" name="calledByModule" value="'.$sch->calledByModule.'"/><input type="hidden" name="page_id" value="'.$jrConfig[ 'jomresItemid' ].'"/>';
+            $h = '<input type="hidden" name="calledByModule" value="'.$sch->calledByModule.'"/><input type="hidden" name="page_id" value="'.get_showtime('jomresItemid').'"/>';
         }
 
         $output[ 'HIDDEN' ] = $h;
@@ -340,7 +340,7 @@ class j00030search
                     $r = '';
                     foreach ($sch->prep[ 'propertyname' ] as $property) {
                         // you need to use special chars here otherwise the url will not work for non latin searches
-                        $l = htmlspecialchars(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property[ 'puid' ]);
+                        $l = htmlspecialchars(get_property_details_url($property[ 'puid' ], 'sefsafe'));
                         $link = jomresURL($l);
                         $link = jomresValidateUrl($link);
                         $r .= '<a href="'.$link.'">'.jomres_decode($property[ 'pn' ]).'</a>&nbsp;';
@@ -666,7 +666,7 @@ class j00030search
                     $links = array();
                     foreach ($sch->prep[ 'propertyname' ] as $p) {
                         if ($p[ 'pn' ] == $sch->filter[ 'propertyname' ]) {
-                            $links[] = htmlspecialchars(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$p[ 'puid' ]);
+                            $links[] = htmlspecialchars(get_property_details_url($p[ 'puid' ], 'sefsafe'));
                         }
                     }
                     if (count($links) == 1) {

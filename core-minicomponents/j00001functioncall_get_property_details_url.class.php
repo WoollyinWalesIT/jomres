@@ -14,9 +14,9 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j00011manager_option_15_preview
+class j00001functioncall_get_property_details_url
 {
-    public function __construct($componentArgs)
+    public function __construct()
     {
         // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -25,23 +25,11 @@ class j00011manager_option_15_preview
 
             return;
         }
-        $this->cpanelButton = '';
-
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
-        $defaultProperty = getDefaultProperty();
-
-        if ($jrConfig[ 'is_single_property_installation' ] == '0') {
-            $url = get_property_details_url($defaultProperty);
-            $this->cpanelButton = jomres_mainmenu_option($url, 'Preview.png', jr_gettext('_JOMRES_FRONT_PREVIEW', '_JOMRES_FRONT_PREVIEW', false, false), null, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES', false, false));
-        } else {
-            $this->cpanelButton = '';
-        }
+        require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'get_property_details_url.php';
     }
 
-    // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return $this->cpanelButton;
+        return null;
     }
 }

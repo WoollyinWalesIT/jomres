@@ -77,7 +77,7 @@ class j06001dashboard
         $output['DAY'] = jr_gettext('_JOMRES_DASHBOARD_DAY', '_JOMRES_DASHBOARD_DAY', false);
         $output['YEAR'] = jr_gettext('_JOMRES_DASHBOARD_YEAR', '_JOMRES_DASHBOARD_YEAR', false);
         $output['HNEW_BOOKING'] = jr_gettext('_JOMRES_HNEW_BOOKING', '_JOMRES_HNEW_BOOKING', false);
-        $output['NEW_BOOKING_URL'] = get_booking_link(jomresUrl(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$property_uid));
+        $output['NEW_BOOKING_URL'] = get_booking_url($property_uid);
         $output['HBLACK_BOOKINGS'] = jr_gettext('_JOMRES_FRONT_BLACKBOOKING', '_JOMRES_FRONT_BLACKBOOKING', false);
         $output['BLACK_BOOKINGS_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=listBlackBookings');
 

@@ -139,6 +139,8 @@ class j06000contactowner
         $output[ 'JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN' ] = jr_gettext('JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN', 'JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN', false, false);
 
         $output[ '_JOMRES_REQUIREDFIELDS' ] = jr_gettext('_JOMRES_REQUIREDFIELDS', '_JOMRES_REQUIREDFIELDS', false, false);
+		
+		$output[ 'PROPERTY_DETAILS_URL' ] = get_property_details_url(get_showtime('last_viewed_property_uid'));
 
         if ($use_recaptcha && $output[ 'GUEST_NAME' ] != '' && $output[ 'SUBJECT' ] != '' && $output[ 'GUEST_EMAIL' ] != '') {
             $challenge = '';

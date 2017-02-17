@@ -16,21 +16,31 @@ if (!defined('_JOMRES_INITCHECK')) {
 }
 
 if (isset($_REQUEST ['layout'])) {
-    $_REQUEST ['task'] = 'search';
-    $_REQUEST ['calledByModule'] = 'mod_jomsearch_m0';
 
     switch ($_REQUEST ['layout']) {
         case 'countries':
+			$_REQUEST ['task'] = 'search';
+			$_REQUEST ['calledByModule'] = 'mod_jomsearch_m0';
             $_REQUEST ['country'] = $_REQUEST ['selected_country'];
             break;
         case 'regions':
+			$_REQUEST ['task'] = 'search';
+			$_REQUEST ['calledByModule'] = 'mod_jomsearch_m0';
             $_REQUEST ['region'] = $_REQUEST ['selected_region'];
             break;
         case 'towns':
+			$_REQUEST ['task'] = 'search';
+			$_REQUEST ['calledByModule'] = 'mod_jomsearch_m0';
             $_REQUEST ['town'] = $_REQUEST ['selected_town'];
             break;
         case 'propertytypes':
+			$_REQUEST ['task'] = 'search';
+			$_REQUEST ['calledByModule'] = 'mod_jomsearch_m0';
             $_REQUEST ['ptype'] = $_REQUEST ['selected_ptype'];
+            break;
+		case 'propertydetails':
+			$_REQUEST ['task'] = 'viewproperty';
+            $_REQUEST ['property_uid'] = $_REQUEST ['selected_property'];
             break;
         default:
             break;
