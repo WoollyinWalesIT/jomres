@@ -503,7 +503,7 @@ class j02990showconfirmation
         }
         $booking_parts[ 'TOTALINPARTY' ] = $bookingDeets[ 'total_in_party' ];
 
-        if ((int) $bookingDeets[ 'single_person_suppliment' ] > 0) {
+        if ($bookingDeets[ 'single_person_suppliment' ] != 0) {
             $booking_parts[ 'HSINGLEPERSON_COST' ] = jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST', '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST');
             $booking_parts[ 'SINGLEPERSON_COST' ] = output_price($bookingDeets[ 'single_person_suppliment' ]);
         }
