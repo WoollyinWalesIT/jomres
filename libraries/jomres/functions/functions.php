@@ -871,7 +871,7 @@ function add_gmaps_source()
             $apikey = '&key='.$jrConfig[ 'google_maps_api_key' ];
         }
 
-        jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3&language='.$shortcode.$libraries.$apikey, '&foo=bar', $includeVersion = false);
+        jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3&language='.$shortcode.$libraries.$apikey, '&foo=bar', $includeVersion = false, $async = true);
     }
 }
 

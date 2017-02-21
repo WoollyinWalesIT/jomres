@@ -209,7 +209,7 @@ function jomres_cmsspecific_getcurrentusers_username()
     return $username;
 }
 
-function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $includeVersion = true)
+function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $includeVersion = true, $async = false)
 {
     if ($filename == '') {
         return;
@@ -236,7 +236,10 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
     switch ($type) {
         case 'javascript':
             //JHTML::script( $path . $filename, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
-            $doc->addScript($data);
+            if ($async)
+				$doc->addScript($data,"text/javascript",false,true);
+			else
+				$doc->addScript($data);
             break;
         case 'css':
             //JHTML::stylesheet( $path . $filename, array (), false, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
