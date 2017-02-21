@@ -149,7 +149,6 @@ class jomres_sanity_check
                 $current_property_details->property_street == '' ||
                 $current_property_details->property_town == '' ||
                 $current_property_details->property_postcode == '' ||
-                $current_property_details->property_region_id == '' ||
                 $current_property_details->property_country_code == '' ||
                 $current_property_details->property_tel == ''
                 ) {
