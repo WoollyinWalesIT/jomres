@@ -178,10 +178,10 @@ class j06000mrp_calendar
                 if ($percentage_booked > 0 && $percentage_booked <= 25) {
                     $class = 'jomres-calendar-booking-occupied-quarter';
                 }
-                if ($percentage_booked > 26 && $percentage_booked <= 50) {
+                if ($percentage_booked > 25 && $percentage_booked <= 50) {
                     $class = 'jomres-calendar-booking-occupied-half';
                 }
-                if ($percentage_booked > 51 && $percentage_booked < 100) {
+                if ($percentage_booked > 50 && $percentage_booked < 100) {
                     $class = 'jomres-calendar-booking-occupied-threequarter';
                 }
                 if ($percentage_booked == 100) {
