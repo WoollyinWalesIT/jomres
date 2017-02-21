@@ -16,7 +16,10 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 
 $scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
 
-require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php';
+//TODO: we don`t need this, wp is already loaded
+/* if (!defined('WPINC')) {
+	require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php';
+} */
 
 if (isset($_REQUEST[ 'no_html' ])) {
     $no_html = (int) $_REQUEST[ 'no_html' ];
@@ -43,13 +46,13 @@ $showtime->error_reporting = 0;
 $showtime->lang = $jomresConfig_lang;
 $showtime->live_site = $jomresConfig_live_site;
 $showtime->offline = false;
-$showtime->db = DB_NAME;
-$showtime->user = DB_USER;
-$showtime->password = DB_PASSWORD;
-$showtime->host = DB_HOST;
-$showtime->secret = AUTH_SALT;
 
 global $wpdb; //wp global
+$showtime->db = $wpdb->dbname;
+$showtime->user = $wpdb->dbuser;
+$showtime->password = $wpdb->dbpassword;
+$showtime->host = $wpdb->dbhost;
+$showtime->secret = AUTH_SALT;
 $showtime->dbprefix = $wpdb->prefix;
 
 $showtime->sitename = get_option('blogname');

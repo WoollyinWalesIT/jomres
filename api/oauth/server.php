@@ -20,16 +20,30 @@ if (file_exists(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'configuration.php')) {
     $username = $CONFIG->user;
     $password = $CONFIG->password;
 } elseif (file_exists(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'wp-config.php')) {
-    require_once JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'wp-config.php';
-    global $table_prefix; //wp global
-    $dbprefix = $table_prefix;
+    $db_details = array();
+	$wp_config_file = file(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'wp-config.php');
+	$settings = array('DB_NAME','DB_USER','DB_PASSWORD','DB_HOST');
+	
+	foreach ( $wp_config_file as $line ) {
+		$matches = array();
+		if (preg_match('/define\(\'(.*?)\',\s*\'(.*)\'\);/i', $line, $matches)) {
+			$name=$matches[1];
+			$value=$matches[2];
+			if(in_array( $name, $settings ))
+				$db_details[$name]= $value;
+		}
+		if (strpos($line, '$table_prefix') !== false) {
+			$dbprefix = explode(' = ',$line)[1];
+			$dbprefix = str_replace('\'', '', $dbprefix);
+			$dbprefix = trim(str_replace(';', '', $dbprefix));
+		}
+	}
 
-    $db = DB_NAME;
-    $host = DB_HOST;
-
+    $db = $db_details['DB_NAME'];
+    $host = $db_details['DB_HOST'];
     $dsn = 'mysql:dbname='.$db.';host='.$host;
-    $username = DB_USER;
-    $password = DB_PASSWORD;
+    $username = $db_details['DB_USER'];
+    $password = $db_details['DB_PASSWORD'];
 } else {
     die(json_encode('Cant find configuration file.')); // No findie el config file!
 }

@@ -43,7 +43,7 @@ function load_cms_environment()
 
         /* Create the Application */
         $app = JFactory::getApplication('site');
-    } elseif (file_exists(dirname(__FILE__).'/../wp-config.php')) {
+    } elseif (!defined('WPINC') && file_exists(dirname(__FILE__).'/../wp-load.php')) {
         define('WP_USE_THEMES', false);
         /** Loads the WordPress Environment */
         require_once dirname(__FILE__).'/../wp-load.php';
