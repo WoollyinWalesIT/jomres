@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j06005review_confirm
+class j06000review_confirm
 {
     public function __construct()
     {
@@ -35,32 +35,23 @@ class j06005review_confirm
 
             jr_import('jomres_reviews');
             $Reviews = new jomres_reviews();
-            $this_user_can_review = $Reviews->this_user_can_review();
-            if ($this_user_can_review) {
-                $property_uid = $Reviews->get_property_uid_for_rating_id($rating_id);
-                if ($property_uid == 0) { // This definately isn't right. Just return without doing anything else.
-                return;
-                }
-                $Reviews->property_uid = $property_uid;
 
-                if ($Reviews->checkConfirmUniqueIp($rating_id) != 0) {
-                    echo '0';
+			$property_uid = $Reviews->get_property_uid_for_rating_id($rating_id);
+			
+			if ($property_uid == 0) { // This definately isn't right. Just return without doing anything else.
+				return;
+			}
+			
+			$Reviews->property_uid = $property_uid;
 
-                    return;
-                }
-                if ($Reviews->checkConfirmUniqueUser($rating_id) != 0) {
-                    echo '0';
+			if ($Reviews->checkConfirmUniqueIp($rating_id) != 0) {
+				echo '0';
+				return;
+			}
 
-                    return;
-                }
-                $Reviews->save_confirmation($rating_id, $state);
-                echo '1';
-
-                return;
-            }
-            echo '2';
-
-            return;
+			$Reviews->save_confirmation($rating_id, $state);
+			echo '1';
+			return;
         }
     }
 

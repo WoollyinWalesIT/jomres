@@ -1339,6 +1339,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j06005report_review.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00001functioncall_get_booking_link.class.php');
 		$this->add_obs_file($this->dir_functions.'get_booking_link.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06005review_confirm.class.php');
     }
 
     public function add_obs_file($path_and_file)
