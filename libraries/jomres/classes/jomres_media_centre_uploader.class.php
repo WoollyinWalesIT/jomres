@@ -390,9 +390,9 @@ class UploadHandler
         if ($scale >= 1) {
             if ($file_path !== $new_file_path) {
                 copy($file_path, $new_file_path);
-                if ($type == 'png') {
+                /* if ($type == 'png') {
                     $this->final_image_name = $this->convert_png_to_jpg($new_file_path);
-                }
+                } */
 
                 return true;
             }
@@ -467,13 +467,13 @@ class UploadHandler
         // Free up memory (imagedestroy does not delete files):
 
         // Vince added to convert PNG files to jpgs. The gif creator cannot use png files when making gifs, so we'll convert the uploaded image to a jpg file
-        if ($type == 'png') {
+        /* if ($type == 'png') {
             $this->final_image_name = $this->convert_png_to_jpg($new_file_path);
-        } else {
+        } else { */
             $image_name_array = explode(JRDS, $new_file_path);
             $image_name = $image_name_array[count($image_name_array) - 1];
             $this->final_image_name = $image_name;
-        }
+        //}
 
         imagedestroy($src_img);
         imagedestroy($new_img);
@@ -891,9 +891,9 @@ class UploadHandler
 
         // We have to put this at the end because the functionality that resizes images to create thumbnails requires the original file to do it. We can only resize the original after that's been done.
         $type = strtolower(substr(strrchr($file_path, '.'), 1));
-        if ($type == 'png') {
+        /* if ($type == 'png') {
             $file->final_image_name = $this->convert_png_to_jpg($file_path);
-        }
+        } */
 
         return $file;
     }
