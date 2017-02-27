@@ -125,7 +125,15 @@ try {
 
     Flight::start();
 } catch (Exception $e) {
-    $response = Flight::request_response();
+    if ($e->getMessage() != '' ) {
+        $response = $e->getMessage();
+        if (!PRODUCTION)
+            echo json_encode($response);
+        }
+    else {
+        $response = Flight::request_response();
+        }
+    
     $backtrace = debug_backtrace();
     logging::log_message(json_encode($response), 'API', 'ERROR');
 }
