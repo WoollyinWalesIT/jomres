@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j03379media_centre_resource_type_property
+class j03383rooms
 {
     public function __construct($componentArgs)
     {
@@ -26,10 +26,17 @@ class j03379media_centre_resource_type_property
             return;
         }
 
-        $property_uid = getDefaultProperty();
-        $preview_link                                = JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_header&property_uid='.$property_uid;
-        
-        $this->ret_vals = array('resource_type' => 'property', 'resource_id_required' => false, 'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', false), 'notes' => jr_gettext('_JOMRES_MEDIA_CENTRE_NOTES_CORE', '_JOMRES_MEDIA_CENTRE_NOTES_CORE', false) , 'preview_link'=>$preview_link );
+        $defaultProperty = getDefaultProperty();
+        $resource_type = jomresGetParam($_REQUEST, 'resource_type', '');
+        $resource_id = jomresGetParam($_REQUEST, 'resource_id', '0');
+
+        $jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+        $jomres_media_centre_images->get_images($defaultProperty);
+        if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id])) {
+            $this->ret_vals = $jomres_media_centre_images->images [$resource_type] [$resource_id];
+        } else {
+            $this->ret_vals = array();
+        }
     }
 
     // This must be included in every Event/Mini-component

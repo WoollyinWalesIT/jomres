@@ -26,7 +26,7 @@ class j00011manager_option_05_media_centre
             return;
         }
 
-        $this->cpanelButton = jomres_mainmenu_option(JOMRES_SITEPAGE_URL.'&task=media_centre&upload_context=properties', 'Picture.png', jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false, false), null, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS', false, false), false, false);
+        $this->cpanelButton = jomres_mainmenu_option(JOMRES_SITEPAGE_URL.'&task=media_centre', 'Picture.png', jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false, false), null, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS', false, false), false, false);
     }
 
     // This must be included in every Event/Mini-component

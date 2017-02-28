@@ -25,9 +25,6 @@ class j06000media_centre_resources_ajax_existing_images
 
             return;
         }
-        // Let's the appropriate upload context details
-        $MiniComponents->triggerEvent('07100');
-        $upload_context = get_showtime('upload_context');
 
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
         if (!$thisJRUser->userIsManager) {
@@ -35,18 +32,27 @@ class j06000media_centre_resources_ajax_existing_images
         }
 
         $resource_type = jomresGetParam($_REQUEST, 'resource_type', '');
-        $resource_id = jomresGetParam($_REQUEST, 'resource_id', 0);
-
-        $images = $MiniComponents->specificEvent($upload_context ['get_existing_images_trigger'], $upload_context [ 'context' ]);
+        $resource_id = jomresGetParam($_REQUEST, 'resource_id', '0');
+		
+		//if resource type is empty, return
+		if ($resource_type == '')
+			return;
+		
+		//get_existing_images_trigger
+		if (jomres_cmsspecific_areweinadminarea()) {
+			$images = $MiniComponents->specificEvent('11040', $resource_type);
+		} else {
+			$images = $MiniComponents->specificEvent('03383', $resource_type);
+		}
 
         if (!jomres_cmsspecific_areweinadminarea()) {
-            $delete_url = JOMRES_SITEPAGE_URL_AJAX.'&task=media_centre_handler'.$upload_context['url_context'].'&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&filename=';
+            $delete_url = JOMRES_SITEPAGE_URL_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&filename=';
         } else {
-            $delete_url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=media_centre_handler'.$upload_context['url_context'].'&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&filename=';
+            $delete_url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&filename=';
         }
 
         $image_result = '';
-        if (count($images) > 0) {
+        if (!empty($images)) {
             foreach ($images as $image) {
                 $image_name_array = explode('/', $image['large']);
                 $image_name = $image_name_array[count($image_name_array) - 1];
@@ -108,11 +114,6 @@ class j06000media_centre_resources_ajax_existing_images
         }
     }
 
-/**
- * Must be included in every mini-component.
- #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {

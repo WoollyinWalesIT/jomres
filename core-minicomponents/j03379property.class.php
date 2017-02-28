@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j06000media_centre_resources_ajax
+class j03379property
 {
     public function __construct($componentArgs)
     {
@@ -26,35 +26,23 @@ class j06000media_centre_resources_ajax
             return;
         }
 
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        if (!$thisJRUser->userIsManager) {
-            return;
-        }
-
-        $defaultProperty = getDefaultProperty();
-        $resource_type = jomresGetParam($_REQUEST, 'resource_type', '');
-		
-		//if resource type is empty, return
-		if ($resource_type == '')
-			return;
-
-		//resource_id_gathering_trigger
-		if (jomres_cmsspecific_areweinadminarea()) {
-			if ($MiniComponents->eventSpecificlyExistsCheck('11020', $resource_type)) {
-				$result = $MiniComponents->specificEvent('11020', $resource_type);
-				echo $result;
-			}
-		} else {
-			if ($MiniComponents->eventSpecificlyExistsCheck('03381', $resource_type)) {
-				$result = $MiniComponents->specificEvent('03381', $resource_type);
-				echo $result;
-			}
-		}
+        $property_uid = getDefaultProperty();
+        $preview_link = JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_header&property_uid='.$property_uid;
+        
+        $this->ret_vals = array(
+								'resource_type' => 'property', 
+								'resource_id_required' => true, 
+								'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', false),
+								'upload_root_abs_path' => JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS,
+								'upload_root_rel_path' => JOMRES_IMAGELOCATION_RELPATH.$property_uid.'/',
+								'notes' => jr_gettext('_JOMRES_MEDIA_CENTRE_NOTES_CORE', '_JOMRES_MEDIA_CENTRE_NOTES_CORE', false), 
+								'preview_link' => $preview_link
+								);
     }
 
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return null;
+        return $this->ret_vals;
     }
 }

@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j03383properties
+class j11040rmtypes
 {
     public function __construct($componentArgs)
     {
@@ -25,17 +25,31 @@ class j03383properties
 
             return;
         }
-
-        $defaultProperty = getDefaultProperty();
+		
+		$this->ret_vals = array();
+		
         $resource_type = jomresGetParam($_REQUEST, 'resource_type', '');
-        $resource_id = jomresGetParam($_REQUEST, 'resource_id', 0);
 
-        $jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
-        $jomres_media_centre_images->get_images($defaultProperty);
-        if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id])) {
-            $this->ret_vals = $jomres_media_centre_images->images [$resource_type] [$resource_id];
-        } else {
-            $this->ret_vals = array();
+        $files = scandir_getfiles(JOMRES_IMAGELOCATION_ABSPATH.$resource_type.JRDS);
+
+		if (!empty($files)) {
+            foreach ($files as $file) {
+                $large = JOMRES_IMAGELOCATION_RELPATH.$resource_type.'/'.$file;
+                $medium = JOMRES_IMAGELOCATION_RELPATH.$resource_type.'/'.$file;
+                $thumbnail = JOMRES_IMAGELOCATION_RELPATH.$resource_type.'/'.$file;
+                if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$resource_type.JRDS.'medium'.JRDS.$file)) {
+                    $medium = JOMRES_IMAGELOCATION_RELPATH.$resource_type.'/medium/'.$file;
+                }
+                if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$resource_type.JRDS.'thumbnail'.JRDS.$file)) {
+                    $thumbnail = JOMRES_IMAGELOCATION_RELPATH.$resource_type.'/thumbnail/'.$file;
+                }
+
+                $this->ret_vals[] = array(
+                    'large' => $large,
+                    'medium' => $medium,
+                    'small' => $thumbnail,
+                    );
+            }
         }
     }
 

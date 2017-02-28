@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j06000media_centre_resources_ajax
+class j03383property
 {
     public function __construct($componentArgs)
     {
@@ -26,35 +26,22 @@ class j06000media_centre_resources_ajax
             return;
         }
 
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        if (!$thisJRUser->userIsManager) {
-            return;
-        }
-
         $defaultProperty = getDefaultProperty();
         $resource_type = jomresGetParam($_REQUEST, 'resource_type', '');
-		
-		//if resource type is empty, return
-		if ($resource_type == '')
-			return;
+        $resource_id = jomresGetParam($_REQUEST, 'resource_id', '0');
 
-		//resource_id_gathering_trigger
-		if (jomres_cmsspecific_areweinadminarea()) {
-			if ($MiniComponents->eventSpecificlyExistsCheck('11020', $resource_type)) {
-				$result = $MiniComponents->specificEvent('11020', $resource_type);
-				echo $result;
-			}
-		} else {
-			if ($MiniComponents->eventSpecificlyExistsCheck('03381', $resource_type)) {
-				$result = $MiniComponents->specificEvent('03381', $resource_type);
-				echo $result;
-			}
-		}
+        $jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+        $jomres_media_centre_images->get_images($defaultProperty);
+        if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id])) {
+            $this->ret_vals = $jomres_media_centre_images->images [$resource_type] [$resource_id];
+        } else {
+            $this->ret_vals = array();
+        }
     }
 
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return null;
+        return $this->ret_vals;
     }
 }

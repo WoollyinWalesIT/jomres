@@ -31,23 +31,24 @@ class j06000media_centre
             return;
         }
 
-        // Let's the appropriate upload context details
-        $MiniComponents->triggerEvent('07100');  // As the upload context is relevant to neither the frontend or backend, it is numbered in the 07000s
-        $upload_context = get_showtime('upload_context');
-
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 
         $output = array();
         $pageoutput = array();
 
-        $result = $MiniComponents->triggerEvent($upload_context [ 'resource_type_gathering_trigger' ]);
-        $resource_types = $MiniComponents->miniComponentData[ $upload_context [ 'resource_type_gathering_trigger' ] ];
+		if (jomres_cmsspecific_areweinadminarea()) {
+			$result = $MiniComponents->triggerEvent('11010');
+			$resource_types = $MiniComponents->miniComponentData[ '11010' ];
+		} else {
+			$result = $MiniComponents->triggerEvent('03379');
+			$resource_types = $MiniComponents->miniComponentData[ '03379' ];
+		}
 
         $notes = array();
         $preview_links = array();
         
-        if (count($resource_types) > 0) {
+        if (!empty($resource_types)) {
             $resource_type_options = array();
 
             foreach ($resource_types as $type) {
@@ -66,9 +67,7 @@ class j06000media_centre
             $output['RESOURCE_TYPE_OPTIONS'] = jomresHTML::selectList($resource_type_options, 'resource_types', ' autocomplete="off" class="btn btn-primary btn-lg" size="1" '.$javascript.'', 'value', 'text', '', false);
 
             $output['_JOMRES_MEDIA_CENTRE_BUTTON_ADD']                      = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', '_JOMRES_MEDIA_CENTRE_BUTTON_ADD', false);
-            $output['MAX_WIDTH']                                            = $jrConfig[ 'maxwidth' ];
             $output['TITLE']                                                = jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false);
-            $output['UPLOAD_CONTEXT_TITLE']                                 = $upload_context [ 'upload_context_title' ];
             $output['_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS']     = jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', false);
             $output['_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS']           = jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', false);
             $output['_JOMRES_MEDIA_CENTRE_CLEAR']                           = jr_gettext('_JOMRES_MEDIA_CENTRE_CLEAR', '_JOMRES_MEDIA_CENTRE_CLEAR', false);
@@ -76,11 +75,8 @@ class j06000media_centre
             $output['_JOMRES_MEDIA_CENTRE_BUTTON_DELETE']                   = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', '_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', false);
             $output['_JOMRES_MEDIA_CENTRE_BUTTON_VIEW']                     = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', '_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', false);
             $output['_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD']                   = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD', '_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD', false);
-            $output['URL_CONTEXT']                                          = $upload_context [ 'url_context' ];
-            $output['ALLOWED_FILE_TYPES']                                   = $upload_context [ 'allowed_file_types' ];
             $output['_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL']               = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL', '_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL', false);
             $output['HUPLOAD_FORM']                                         = jr_gettext('_JOMRES_UPLOAD_IMAGE', '_JOMRES_UPLOAD_IMAGE', false);
-            
             $output['_JOMRES_FRONT_PREVIEW']                                = jr_gettext('_JOMRES_FRONT_PREVIEW', '_JOMRES_FRONT_PREVIEW', false);
             $output['_JOMRES_MEDIA_CENTRE_RESOURCE']                        = jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE', '_JOMRES_MEDIA_CENTRE_RESOURCE', false);
             $output['_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC']               = jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', '_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', false);
@@ -94,7 +90,8 @@ class j06000media_centre
             $output['_JOMRES_COM_A_UPLOADS_FILESIZE']                       = jr_gettext('_JOMRES_COM_A_UPLOADS_FILESIZE', '_JOMRES_COM_A_UPLOADS_FILESIZE', false);
             $output['_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED']       = jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', '_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', false);
             
-            
+			$output['MAX_WIDTH']                                            = $jrConfig[ 'maxwidth' ];
+            $output['ALLOWED_FILE_TYPES']                                   = '(jpe?g|png)';
             $output['MAX_UPLOAD_SIZE']                                      = $this->filesize_formatted($this->file_upload_max_size());
             $output['WIDTH_PIXELS']                                         = $jrConfig[ 'maxwidth' ];
             
@@ -102,9 +99,9 @@ class j06000media_centre
             $mrConfig = getPropertySpecificSettings($property_uid);
 
              if ($mrConfig[ 'singleRoomProperty' ] == '1' ){
-                $output['_JOMRES_MEDIA_CENTRE_INSTRUCTIONS']                    = jr_gettext('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_SRP', '_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_SRP', false);
+                $output['_JOMRES_MEDIA_CENTRE_INSTRUCTIONS']               = jr_gettext('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_SRP', '_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_SRP', false);
             } else {
-                $output['_JOMRES_MEDIA_CENTRE_INSTRUCTIONS']                    = jr_gettext('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_MRP', '_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_MRP', false);
+                $output['_JOMRES_MEDIA_CENTRE_INSTRUCTIONS']               = jr_gettext('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_MRP', '_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_MRP', false);
             }
 
             $output['DEFAULT_PREVIEW_LINK']                                = JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_header&property_uid='.$property_uid;

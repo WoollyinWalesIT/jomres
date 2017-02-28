@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j11010media_centre_feature_images_propertyfeatures
+class j11010pfeatures
 {
     public function __construct($componentArgs)
     {
@@ -26,7 +26,14 @@ class j11010media_centre_feature_images_propertyfeatures
             return;
         }
 
-        $this->ret_vals = array('resource_type' => 'pfeatures', 'resource_id_required' => false, 'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY_FEATURES', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY_FEATURES', false), 'notes' => '');
+        $this->ret_vals = array(
+								'resource_type' => 'pfeatures', 
+								'resource_id_required' => false, 
+								'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY_FEATURES', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY_FEATURES', false),
+								'upload_root_abs_path' => JOMRES_IMAGELOCATION_ABSPATH,
+								'upload_root_rel_path' => JOMRES_IMAGELOCATION_RELPATH,
+								'notes' => ''
+								);
     }
 
     // This must be included in every Event/Mini-component

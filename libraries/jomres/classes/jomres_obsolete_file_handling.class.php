@@ -1340,6 +1340,18 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j00001functioncall_get_booking_link.class.php');
 		$this->add_obs_file($this->dir_functions.'get_booking_link.php');
 		$this->add_obs_file($this->dir_minicomponents.'j06005review_confirm.class.php');
+		
+		$this->add_obs_file($this->dir_minicomponents.'j10002media_centre_features_images.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j11010media_centre_feature_images_propertyfeatures.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j11040features_images.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j07110media_centre_upload_context_features_images.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j11010media_centre_feature_images_roomtypes.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j03379media_centre_resource_type_property.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j07110media_centre_upload_context_properties.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j03383properties.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j07100media_centre_uploader_contexts.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j03379media_centre_resource_type_rooms.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j03379media_centre_resource_type_slideshow.class.php');
     }
 
     public function add_obs_file($path_and_file)

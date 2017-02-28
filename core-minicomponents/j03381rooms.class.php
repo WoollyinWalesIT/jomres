@@ -29,12 +29,14 @@ class j03381rooms
         if (!$thisJRUser->userIsManager) {
             return;
         }
-        $dropdown = '';
-        $defaultProperty = getDefaultProperty();
+        
+		$dropdown = '';
+        
+		$defaultProperty = getDefaultProperty();
 
         $query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,max_people FROM #__jomres_rooms WHERE propertys_uid = '".(int) $defaultProperty."' ORDER BY room_number,room_name";
         $roomsList = doSelectSql($query);
-        if (count($roomsList) > 0) {
+        if (!empty($roomsList)) {
             $resource_options = array();
             foreach ($roomsList as $room) {
                 $resource_options[ ] = jomresHTML::makeOption($room->room_uid, jr_gettext('_JOMRES_COM_MR_EB_ROOM_NUMBER', '_JOMRES_COM_MR_EB_ROOM_NUMBER', false)." ".$room->room_number.' '.$room->room_name);
