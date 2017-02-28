@@ -4201,7 +4201,7 @@ function scandir_getdirectories($path)
             }
         }
     }
-echo "scandir_getdirectories executed for ".$path.'<br>';
+	//echo "scandir_getdirectories executed for ".$path.'<br>';
     return $data;
 }
 
@@ -4225,7 +4225,7 @@ function scandir_getfiles($path, $extension = false)
             }
         }
     }
-echo "scandir_getfiles executed for ".$path.'<br>';
+	//echo "scandir_getfiles executed for ".$path.'<br>';
     return $data;
 }
 
