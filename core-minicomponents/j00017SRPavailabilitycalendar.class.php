@@ -450,7 +450,7 @@ jomresJquery(function(){
                             if ($bgcolor != $outbgcolor) {
                                 if ($mrConfig[ 'fixedArrivalDay' ] == date('w', $currdate)) {
                                     if ($mrConfig[ 'visitorscanbookonline' ] && $this->showlinks) {
-                                        $link = get_booking_url($property_uid).'&arrivalDate='.$sqlDate2);
+                                        $link = get_booking_url($property_uid).'&arrivalDate='.$sqlDate2;
                                         if (!$mrConfig[ 'singleRoomProperty' ]) {
                                             $link .= '&remus='.$roomUid;
                                         }
@@ -474,7 +474,7 @@ jomresJquery(function(){
                             }
                         } else {
                             if ($bgcolor != $outbgcolor && $mrConfig[ 'visitorscanbookonline' ] && $this->showlinks) {
-                                $link = get_booking_url($property_uid).'&arrivalDate='.$sqlDate2);
+                                $link = get_booking_url($property_uid).'&arrivalDate='.$sqlDate2;
                                 if (!$mrConfig[ 'singleRoomProperty' ]) {
                                     $link .= '&remus='.$roomUid;
                                 }
