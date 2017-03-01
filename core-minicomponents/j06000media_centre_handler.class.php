@@ -59,15 +59,6 @@ class j06000media_centre_handler
         if (empty($resource_types)) { // Do nowt.
             return;
         }
-		
-        $acceptable_resouce_types = array();
-        $all_types = array();
-        foreach ($resource_types as $type) {
-            if (isset($type['resource_type'])) {
-                $all_types[ $type['resource_type'] ] = $type;
-                $acceptable_resouce_types[] = $type['resource_type'];
-            }
-        }
 
         $resource_type = jomresGetParam($_REQUEST, 'resource_type', '');
         $resource_id = jomresGetParam($_REQUEST, 'resource_id', '0');
@@ -81,19 +72,19 @@ class j06000media_centre_handler
 			$resource_id = '0';
 
 		// A security check to ensure that the user's not trying to pass a resource type that we can't handle
-        if (!in_array($resource_type, $acceptable_resouce_types)) { // The resource type isn't recognised, let's get the hell outta Dodge.
+        if (!array_key_exists($resource_type, $resource_types)) { // The resource type isn't recognised, let's get the hell outta Dodge.
             return;
         }
 		
-		$id_required = $all_types [$resource_type] [ 'resource_id_required' ];
+		$id_required = $resource_types [$resource_type] [ 'resource_id_required' ];
 		
 		//set image upload paths
 		if ($id_required) {
-			$this->abs_path = $all_types [$resource_type] ['upload_root_abs_path'].$resource_type.JRDS.$resource_id.JRDS;
-			$this->rel_path = $all_types [$resource_type] ['upload_root_rel_path'].$resource_type.'/'.$resource_id.'/';
+			$this->abs_path = $resource_types [$resource_type] ['upload_root_abs_path'].$resource_type.JRDS.$resource_id.JRDS;
+			$this->rel_path = $resource_types [$resource_type] ['upload_root_rel_path'].$resource_type.'/'.$resource_id.'/';
 		} else {
-			$this->abs_path = $all_types [$resource_type] ['upload_root_abs_path'].$resource_type.JRDS;
-			$this->rel_path = $all_types [$resource_type] ['upload_root_rel_path'].$resource_type.'/';
+			$this->abs_path = $resource_types [$resource_type] ['upload_root_abs_path'].$resource_type.JRDS;
+			$this->rel_path = $resource_types [$resource_type] ['upload_root_rel_path'].$resource_type.'/';
 		}
 
         if (isset($_GET['delete']) && $_GET['delete'] == '1') {
