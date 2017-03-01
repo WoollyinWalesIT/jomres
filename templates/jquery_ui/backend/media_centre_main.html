@@ -278,8 +278,9 @@ function get_existing_images()
 	jomresJquery('#existing_images').slideUp();
 	var resource_type = jomresJquery('#resource_types').val();
 	var resource_id = jomresJquery('#resource_id').val();
-	if (resource_id == '')
+	if (resource_id == '') {
 		resource_id=0;
+		}
 	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax_existing_images&resource_type=' + resource_type+'&resource_id='+resource_id,
 		function (data) {
 			populateDiv ( 'existing_images' , data );
