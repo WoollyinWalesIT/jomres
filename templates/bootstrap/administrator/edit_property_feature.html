@@ -46,8 +46,8 @@
 			<label class="control-label" for="name">{HIMAGE}</label>
 
 			<div class="controls">
-				<patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="image">
-					<span style="white-space:nowrap;"><input type="radio" name="image" value="{IMAGEPATH}" {ISCHECKED}/><img src="{IMAGE}" width="25" height="25"/></span>
+				<patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="image_filename">
+					<span style="white-space:nowrap;"><input type="radio" name="image" value="{IMAGE_FILENAME}" {ISCHECKED}/><img src="{IMAGE_SRC}" width="25" height="25"/></span>
 				</patTemplate:tmpl>
 			</div>
 		</div>

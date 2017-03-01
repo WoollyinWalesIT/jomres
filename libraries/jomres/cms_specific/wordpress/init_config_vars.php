@@ -16,10 +16,9 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 
 $scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
 
-//TODO: we don`t need this, wp is already loaded
-/* if (!defined('WPINC')) {
+if (!defined('WPINC')) {
 	require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php';
-} */
+}
 
 if (isset($_REQUEST[ 'no_html' ])) {
     $no_html = (int) $_REQUEST[ 'no_html' ];

@@ -273,4 +273,24 @@ class jomres_room_types
 
         return true;
     }
+	
+	function get_all_room_type_images()
+	{
+		$images = array();
+		
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+		$jomres_media_centre_images->get_site_images('rmtypes');
+		
+		foreach ($jomres_media_centre_images->site_images['rmtypes'] as $image) 
+			{
+			$r = array();
+			
+			$r[ 'IMAGE_FILENAME' ] = substr($image['large'], strrpos($image['large'], '/') + 1);
+			$r[ 'IMAGE_SRC' ]  = $image['large'];
+			
+			$images[] = $r;
+			}
+
+		return $images;
+	}
 }
