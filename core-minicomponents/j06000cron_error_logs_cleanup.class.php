@@ -26,15 +26,34 @@ class j06000cron_error_logs_cleanup
         }
         $jomresConfig_secret = get_showtime('secret');
         $secret = base64_decode(jomresGetParam($_REQUEST, 'secret', ''));
+		
+		$maxFileSize = 1024 * 1024;
 
         if ($secret == $jomresConfig_secret) {
             $log_path = JOMRES_SYSTEMLOG_PATH;
             $files = scandir_getfiles($log_path);
 
-            if (count($files) > 0) {
+            if (!empty($files)) {
                 foreach ($files as $f) {
-                    if ($f != '.htaccess' && $f != 'web.config' && time() - filemtime($log_path.JRDS.$f) >= 30 * 24 * 60 * 60) { // 30 days
-                        unlink($log_path.'/'.$f);
+					
+					//zip logs bigger than 1MB
+					$bang = explode('.', $f);
+					if (isset($bang[2]) && $bang[2] == 'log') {
+						$size = filesize(($log_path.$f));
+						if ($size > $maxFileSize) {
+							$newFileName = date('U').'_'.$f.'.zip';
+							$zip = new ZipArchive();
+							$zip->open($log_path.$newFileName, ZipArchive::CREATE);
+							$zip->addFile($log_path.$f, $f);
+							$zip->close();
+
+							unlink($log_path.$f);
+						}
+					}
+					
+					//delete files older than a month
+                    if ($f != '.htaccess' && $f != 'web.config' && time() - filemtime($log_path.$f) >= 30 * 24 * 60 * 60) { // 30 days
+                        unlink($log_path.$f);
                     }
                 }
             }
