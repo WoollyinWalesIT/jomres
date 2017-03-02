@@ -124,7 +124,7 @@ class jomSearch
             This *soley* enables searching on various arrays, *if* they're populated. It will inevitably add some queries, but only if calledbymodule is set to m0
 
             */
-            if ( $calledByModule == 'mod_jomsearch_m0' ){
+            if ( $calledByModule == 'mod_jomsearch_m0' && !this_cms_is_wordpress() ){
                 $vals[ 'propertyname' ] = true;
                 $vals[ 'ptype' ]        = true;
                 $vals[ 'room_type' ]    = true;
