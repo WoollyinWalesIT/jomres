@@ -32,7 +32,7 @@ class javascript_cache
             }
         }
 
-        $this->clean_tmp_dir();
+        //$this->clean_tmp_dir();
     }
 
     public function cache_javascript($javascript_files)

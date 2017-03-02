@@ -244,6 +244,7 @@ if ($folderChecksPassed && $functionChecksPassed) {
                 removeCronJob('exchangerates');
 
                 addCronJob('session_files_cleanup', 'D', '');
+				addCronJob('geolocation_cleanup', 'D', '');
 
                 updateImages();
 
