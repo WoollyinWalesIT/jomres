@@ -1352,6 +1352,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j07100media_centre_uploader_contexts.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j03379media_centre_resource_type_rooms.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j03379media_centre_resource_type_slideshow.class.php');
+		$this->add_obs_file($this->dir_classes.'map_markers.class.php');
     }
 
     public function add_obs_file($path_and_file)
