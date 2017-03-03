@@ -17,7 +17,18 @@ defined('_JOMRES_INITCHECK') or die('');
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'http_build_url.php';
 
 /*
+A simple function to pull the contract uid based on the booking number
+*/
 
+function get_contract_uid_for_tag($tag) 
+{
+    $tag = filter_var($tag, FILTER_SANITIZE_SPECIAL_CHARS);
+    $query="SELECT `contract_uid` FROM #__jomres_contracts WHERE `tag`= ".$tag;
+	$contract_uid = doSelectSql($query , 1 );
+    return $contract_uid;
+    }
+    
+/*
 This function allows a script writer to add webhook notifications dynamically. 
 If the collection script variable is set, then the none/basic/oauth authmethod processors will use a collection script that goes by the name of collector_$collection_script_name.php , e.g. collector_dashboard.php
 Otherwise the processor will attempt to use the contents of the object's $data variable instead.
