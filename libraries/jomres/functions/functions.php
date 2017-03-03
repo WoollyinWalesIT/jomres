@@ -22,8 +22,8 @@ A simple function to pull the contract uid based on the booking number
 
 function get_contract_uid_for_tag($tag) 
 {
-    $tag = filter_var($tag, FILTER_SANITIZE_SPECIAL_CHARS);
-    $query="SELECT `contract_uid` FROM #__jomres_contracts WHERE `tag`= ".$tag;
+    $tag = trim(filter_var($tag, FILTER_SANITIZE_SPECIAL_CHARS));
+    $query="SELECT `contract_uid` FROM #__jomres_contracts WHERE `tag`= '".$tag."'";
 	$contract_uid = doSelectSql($query , 1 );
     return $contract_uid;
     }
