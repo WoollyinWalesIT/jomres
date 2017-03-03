@@ -345,10 +345,11 @@ function doTableUpdates()
 {
 
     // Might not need this, commented out for now
-    if (checkExtraServicesTableNeedsRenaming()) {
+    // Disabled 03/02/2017
+    /* if (checkExtraServicesTableNeedsRenaming()) {
         renameExtraServicesTable();
     }
-
+ */
     update_property_features_images_paths();
     update_room_type_images_paths();
 
