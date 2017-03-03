@@ -202,6 +202,13 @@ class j06001dashboard
         }
 
         $output['CURRENCY_CODE'] = $currencycode;
+		
+		//check if site is RTL
+		if (jomres_cmsspecific_isRtl()) {
+			$output['IS_RTL'] = 'true';
+		} else {
+			$output['IS_RTL'] = 'false';
+		}
 
         //existing guests dropdown
         $output['HEXISTING_GUESTS_DROPDOWN'] = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', false);

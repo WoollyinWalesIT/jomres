@@ -545,3 +545,10 @@ function jomres_cmsspecific_getCmsUserProfileLink($cms_user_id = 0) {
 	
 	return $url;
 }
+
+function jomres_cmsspecific_isRtl($cms_user_id = 0) {
+	$language = JFactory::getLanguage();
+	$isRtl = $language->isRtl();
+	
+	return $isRtl;
+}
