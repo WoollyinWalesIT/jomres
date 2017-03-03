@@ -1,3 +1,29 @@
+<h3>Jomres 9.8.27 03/03/2017</h3>
+
+<span class="label label-warning">Change</span> Added support for overriding the property details url and improved the booking form url function. 
+<span class="label label-warning">Change</span> Added support to create jomres joomla menus that point to property details page. This will allow us not to have duplicate urls when a joomla menu item is created for a property details page. In this case, the joomla url will be used, not the jomres default one. Also, allows us to have specific joomla modules assigned only to this property details page.
+<span class="label label-warning">Change</span> Tweaked the media centre uploader to allow both jpg and png files to be uploaded. Previously png files would be converted to jpg files, now they're left as pngs, which preserves their transparency.
+
+<span class="label label-warning">Change</span> Small tweak to allow single person supplement to be a negative value too.
+<span class="label label-warning">Change</span> Improved sorting by room number on the dashboard.
+<span class="label label-warning">Change</span> Made the google maps api load in async mode. Thanks Rod.
+<span class="label label-warning">Change</span> Adjusted the occupancy percentages in the mrp calendar.
+<span class="label label-warning">Change</span> Changed reviews agree/disagree buttons to be available for not logged in users too.
+<span class="label label-warning">Change</span> Updated copyright year at the bottom of the admin cpanel.
+<span class="label label-warning">Change</span> Changed how api handles exceptions ( makes development easier )
+<span class="label label-warning">Change</span> Updated media centre to remove upload contexts and simplify things for 3rd party developers.
+<span class="label label-warning">Change</span> Commented some obsolete js caching code that was causing a scandir on each page load.
+<span class="label label-warning">Change</span> Added a new media centre feature that gets images uploaded by admins (site images) so plugins don`t need specific code to scan those dirs.
+<span class="label label-warning">Change</span> Removed the map markers obsolete class.
+<span class="label label-warning">Change</span> Moved the code that handles zipping logs bigger then 1M to the logs cleanup cron job, so it won`t run on each page load but only once per day.
+<span class="label label-warning">Change</span> Made the geolocation files cleanup a cron job that runs daily and empties the geolocation dir.
+
+<span class="label label-important label-danger">Fix</span> Fixed the dashboard trash broken layout in bootstrap 2 templates.
+<span class="label label-important label-danger">Fix</span> Fixed a typo that was causing a fatal error in the srp calendar.
+<span class="label label-important label-danger">Fix</span> Tweaked sanity check messages to not take region into account when warning the user about missing property data, because some countries don`t have regions.
+<span class="label label-important label-danger">Fix</span> Solved a problem related to api language in WP.
+<span class="label label-important label-danger">Fix</span> Changed how m0 enabled search options are handled on WP
+
 <h3>Jomres 9.8.26 14/02/2017</h3>
 
 <span class="label label-warning">Change</span> Removed some unused functions
