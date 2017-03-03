@@ -12,7 +12,7 @@
 
 // create a log channel
 define('TRANSACTION_ID', time());
-define('PRODUCTION', false); // Set this to true in a production environment
+
 define('JOMRES_API_CMS_ROOT', dirname(dirname(dirname(__FILE__))));
 define('JOMRES_API_JOMRES_ROOT', dirname(dirname(__FILE__)));
 
@@ -36,12 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 date_default_timezone_set('UTC');
-
-if (!PRODUCTION) {
-    ini_set('display_errors', '1');
-}
-
-
 
 require 'vendor/autoload.php';
 require 'classes/logging.class.php';
@@ -79,6 +73,11 @@ if (isset($_POST['grant_type']) && ($_POST['grant_type'] == 'client_credentials'
     logging::log_message(' Received a token which sent '.$request, 'API', 'INFO');
     require_once __DIR__.'/oauth/resource.php';
 }
+
+if (!PRODUCTION) {
+    ini_set('display_errors', '1');
+}
+
 
 if (!defined('_JOMRES_INITCHECK')) {
     define('_JOMRES_INITCHECK', 1);
