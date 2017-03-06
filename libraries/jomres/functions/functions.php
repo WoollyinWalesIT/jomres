@@ -1204,76 +1204,27 @@ function jomres_validate_gateway_plugin()
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
     if ($thisJRUser->userIsManager) {
         return 'NA';
-    }
-
-    $property_uid = get_showtime('property_uid');
-    $settings = get_plugin_settings('paypal', $property_uid);
-
-    $mrConfig = getPropertySpecificSettings();
+        }
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-
-    if (((int) $mrConfig['requireApproval'] == 0 || $tmpBookingHandler->tmpbooking['secret_key_payment'])) {
-        if (!isset($settings['override'])) {
-            $settings['override'] = '0';
+    $property_uid = get_showtime('property_uid');
+    
+    if (!isset($_REQUEST[ 'plugin' ])) {
+        $plugin = $tmpBookingHandler->tmpbooking[ 'gateway' ];
+        } 
+    else {
+        $plugin = jomresGetParam($_REQUEST, 'plugin', '');
+        $tmpBookingHandler->tmpbooking[ 'gateway' ] = $plugin;
         }
+        
+    jr_import("gateway_plugin_settings");
+    $plugin_settings = new gateway_plugin_settings();
+    $plugin_settings->get_settings_for_property_uid( $property_uid );
 
-
-        $query = 'SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = '.(int) $property_uid." AND setting = 'active' AND value = '1'";
-        $all_gateways = doSelectSql($query);
-        if (count($all_gateways) == 0) {
-            $query = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = 0 AND setting = 'active' AND value = '1'";
-            $all_gateways = doSelectSql($query);
-            if (count($all_gateways) == 0) {
-                return 'NA';
-            } else {
-                $property_uid = 0;
-            }
+    if (!$plugin_settings->gateway_settings[$plugin]['active']) {
+        gateway_log("Error, gateway passed either doesn't exist, or is not active, probable hack attempt");
+        trigger_error("Error, gateway passed either doesn't exist, or is not active, probable hack attempt", E_USER_ERROR);
+        die();
         }
-
-        if (!isset($_REQUEST[ 'plugin' ]) || $_REQUEST[ 'plugin' ] == '') {
-            $query = 'SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = '.(int) $property_uid." AND setting = 'active' AND value = '1'";
-            $configured_gateways = doSelectSql($query);
-            $number_of_configured_gateways = count($configured_gateways);
-            if ($number_of_configured_gateways == 0) {  // No gateways are configured for this property,
-                return 'NA';
-            }
-
-            $installed_gateways = array();
-            foreach ($configured_gateways as $gateway) {
-                $gateway_config_file = '00509'.$gateway->plugin;
-                if (count($MiniComponents->registeredClasses[$gateway_config_file]) > 0) {
-                    $installed_gateways[] = $gateway->plugin;
-                }
-            }
-
-            if (
-                count($installed_gateways) > 0 &&
-                    (!isset($_REQUEST[ 'plugin' ]) ||
-                    $_REQUEST[ 'plugin' ] == '')
-                ) { // Gateways are installed. There's at least one configured gateway for this property, but it's not in $_REQUEST, so this is likely an attempt to bypass the gateway scripts
-                gateway_log('Error, gateway name not sent, probable hack attempt');
-                trigger_error('Error, gateway name not sent, probable hack attempt', E_USER_ERROR);
-                die();
-            } else {
-                return 'NA';
-            }
-        }
-        if (!isset($_REQUEST[ 'plugin' ])) {
-            $plugin = $tmpBookingHandler->tmpbooking[ 'gateway' ];
-        } else {
-            $plugin = jomresGetParam($_REQUEST, 'plugin', '');
-            $tmpBookingHandler->tmpbooking[ 'gateway' ] = $plugin;
-        }
-        $query = 'SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = '.(int) $property_uid." AND `plugin` = '".(string) $plugin."' AND setting = 'active' AND value = '1'";
-        $gatewayDeets = doSelectSql($query);
-        if (count($gatewayDeets) != 1) {
-            gateway_log("Error, gateway passed either doesn't exist, or is not active, probable hack attempt");
-            trigger_error("Error, gateway passed either doesn't exist, or is not active, probable hack attempt", E_USER_ERROR);
-            die();
-        }
-    } else {
-        $plugin = 'NA';
-    }
 
     return $plugin;
 }

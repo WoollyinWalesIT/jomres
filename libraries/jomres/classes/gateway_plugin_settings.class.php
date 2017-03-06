@@ -102,9 +102,16 @@ class gateway_plugin_settings
                     if (isset($gateway_array[$gateway]['balance_payments_supported']) && $gateway_array[$gateway]['balance_payments_supported'] == "1") {
                         $balance_payments_supported = true;
                         }
-
+                    
+                    
+                    
                     $this->gateway_settings[$gateway]['balance_payments_supported'] = $balance_payments_supported;
                     $this->gateway_settings[$gateway]['config_links'] = array("button" => $gateway_array[$gateway]['button'] , "link" => $gateway_array[$gateway]['link'] );
+                    }
+                foreach ($gateway_array as $gw_name => $gw ) { // Some gateways ( currently, only Stripe but potential is for others too ) will not have an "active" setting as they're per manager, not per property. If the 00509 script responds with a connected setting then we'll set the gateway as active.
+                    if (isset($gw['connected']) && $gw['connected'] == true ) {
+                        $this->gateway_settings[$gw_name]['active'] = true;
+                        }
                     }
                 }
             }
