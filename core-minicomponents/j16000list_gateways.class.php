@@ -41,11 +41,26 @@ class j16000list_gateways
             $output[ 'GATEWAYS_INSTRUCTIONS' ] = jr_gettext('GATEWAYS_INSTRUCTIONS', 'GATEWAYS_INSTRUCTIONS', false);
 
             $rows = array();
+            
+            $gateway_names = array();
+            foreach ($gateway_plugins as $gw ) {
+                $gateway_names[] = $gw['name'];
+                }
+            $global_gateway_settings = array();
+                
+            $query = "SELECT `plugin`,`setting`,`value` FROM #__jomres_pluginsettings WHERE `plugin` IN ( ".jomres_implode($gateway_names, false).' ) AND prid = 0';
+            $plugin_settings = doSelectSql($query);
 
+            if (!empty($plugin_settings)) {
+                foreach ($plugin_settings as $setting ) {
+                    $global_gateway_settings[$setting->plugin][$setting->setting] = $setting->value;
+                    }
+                }
+ 
             foreach ($gateway_plugins as $gateway) {
                 $r = array();
-                $settings = get_plugin_settings($gateway['name'], 0);
-                if (isset($settings['active']) && $settings['active'] == '1') {
+                $gateway_name = $gateway['name'];
+                if (isset($global_gateway_settings[$gateway_name]['active']) && $global_gateway_settings[$gateway_name]['active'] == '1') {
                     $r['ACTIVE'] = jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false);
                 } else {
                     $r['ACTIVE'] = jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false);

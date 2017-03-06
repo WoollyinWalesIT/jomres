@@ -46,6 +46,10 @@ class j06005list_gateways_for_invoice
             }
         }
 
+        jr_import("gateway_plugin_settings");
+        $plugin_settings = new gateway_plugin_settings();
+        $plugin_settings->get_settings_for_property_uid( $invoice->property_uid );
+        
         $MiniComponents->triggerEvent('10509', array('invoice_id' => $this->invoice_id));
         $mcOutput = $MiniComponents->getAllEventPointsData('10509');
         if (count($mcOutput) > 0) {
@@ -54,13 +58,17 @@ class j06005list_gateways_for_invoice
 
             $rows = array();
             foreach ($mcOutput as $gateway) {
-                $settings = get_plugin_settings($gateway['name'], $invoice->property_uid);
+                $gateway_name =$gateway['name'];
 
-                if (isset($settings['active']) && $settings['active'] == '1') {
-                    $r = $gateway;
-                    $r['LINK'] = JOMRES_SITEPAGE_URL.'&task=invoice_payment_send&gateway='.$gateway['name'].'&invoice_id='.$this->invoice_id;
-                    $r['PAYNOW'] = jr_gettext('_JRPORTAL_INVOICES_PAYNOW', '_JRPORTAL_INVOICES_PAYNOW', false);
-                    $rows[] = $r;
+                if ($plugin_settings->gateway_settings[$gateway_name] ['balance_payments_supported'] == true ) {
+                    $settings = get_plugin_settings($gateway['name'], $invoice->property_uid);
+
+                    if (isset($settings['active']) && $settings['active'] == '1') {
+                        $r = $gateway;
+                        $r['LINK'] = JOMRES_SITEPAGE_URL.'&task=invoice_payment_send&gateway='.$gateway['name'].'&invoice_id='.$this->invoice_id;
+                        $r['PAYNOW'] = jr_gettext('_JRPORTAL_INVOICES_PAYNOW', '_JRPORTAL_INVOICES_PAYNOW', false);
+                        $rows[] = $r;
+                    }
                 }
             }
             if (count($rows) > 0) {
@@ -88,6 +96,6 @@ class j06005list_gateways_for_invoice
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return $this->retVals;
+        return null;
     }
 }

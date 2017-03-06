@@ -31,17 +31,16 @@ class j00501gateways
             return;
         }
         $configurationPanel = $componentArgs[ 'configurationPanel' ];
-        $paypal_settings = jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
-        $paypal_settings->get_paypal_settings();
 
-        $MiniComponents->triggerEvent('00509', $componentArgs);
+        jr_import("gateway_plugin_settings");
+        $plugin_settings = new gateway_plugin_settings();
+        $gateway_settings = $plugin_settings->get_settings_for_property_uid( get_showtime('property_uid') );
 
-        if (isset($MiniComponents->miniComponentData[ '00509' ])) {
-            $outputArray = $MiniComponents->miniComponentData[ '00509' ];
-        }
+        if (empty($gateway_settings)) { // No gateways installed
+            return;
+            }
 
-        if ($paypal_settings->paypalConfigOptions[ 'override' ] == '0' && !is_null($outputArray)) {
-            $lists = $componentArgs[ 'lists' ];
+        $lists = $componentArgs[ 'lists' ];
 
             $configurationPanel->startPanel(jr_gettext('_JOMRES_COM_A_GATEWAYLIST', '_JOMRES_COM_A_GATEWAYLIST', false));
 
@@ -50,36 +49,30 @@ class j00501gateways
             $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_GATEWAY_ENABLED', '_JOMRES_COM_A_GATEWAY_ENABLED', false));
             $configurationPanel->insertSetting();
 
-            $settingArray = array();
-            foreach ($outputArray as $gateway_name => $gw) {
-                $query = "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = 0 AND plugin = '".$gateway_name."' ";
-                $settingsList = doSelectSql($query);
-                if (count($settingsList) > 0) {
-                    foreach ($settingsList as $set) {
-                        $settingArray[$gateway_name][ $set->setting ] = trim($set->value);
+            foreach ($gateway_settings as $gateway_name => $gw) {
+                if (!isset($plugin_settings->gateway_settings[$gateway_name]['override'])) {
+                    $plugin_settings->gateway_settings[$gateway_name]['override'] = 0;
+                    }
+
+                if ( $plugin_settings->gateway_settings[$gateway_name]['override'] != '1') {
+                    $configurationPanel->setleft($gw['config_links'][ 'button' ]);
+                    $configurationPanel->setmiddle($gw['config_links'][ 'link' ]);
+                    
+                    /* if ($gw['balance_payments_supported'] == true )
+                        $balances = jr_gettext('GATWAYS_BALANCE_PAYMENTS','GATWAYS_BALANCE_PAYMENTS',false)." : ".(jr_gettext('_JOMRES_COM_MR_YES','_JOMRES_COM_MR_YES',false));
+                    else
+                        $balances = jr_gettext('GATWAYS_BALANCE_PAYMENTS','GATWAYS_BALANCE_PAYMENTS',false)." : ".(jr_gettext('_JOMRES_COM_MR_NO','_JOMRES_COM_MR_NO',false)); */
+                    
+                    if ( $gw[ 'active' ] == "1" )
+                        $configurationPanel->setright(jr_gettext('_JOMRES_COM_MR_YES','_JOMRES_COM_MR_YES',false));
+                    else
+                        $configurationPanel->setright(jr_gettext('_JOMRES_COM_MR_NO','_JOMRES_COM_MR_NO',false));
+             
+                    $configurationPanel->insertSetting();
                     }
                 }
-            }
-
-            foreach ($outputArray as $gateway_name => $gw) {
-                if (!isset($settingArray[$gateway_name]['override'])) {
-                    $settingArray[$gateway_name]['override'] = 0;
-                }
-
-                if (!isset($settingArray[$gateway_name]) || $settingArray[$gateway_name]['override'] != '1') {
-                    $configurationPanel->setleft($gw[ 'button' ]);
-                    $configurationPanel->setmiddle($gw[ 'link' ]);
-                    $configurationPanel->setright($gw[ 'active' ]);
-                    $configurationPanel->insertSetting();
-                } elseif (isset($gw[ 'custom_output' ])) {
-                    $configurationPanel->setleft();
-                    $configurationPanel->setmiddle($gw[ 'custom_output' ]);
-                    $configurationPanel->setright();
-                    $configurationPanel->insertSetting();
-                }
-            }
             $configurationPanel->endPanel();
-        }
+
     }
 
 /**

@@ -1217,9 +1217,6 @@ function jomres_validate_gateway_plugin()
             $settings['override'] = '0';
         }
 
-        if ($settings[ 'override' ] == '1') {
-            return 'paypal';
-        }
 
         $query = 'SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = '.(int) $property_uid." AND setting = 'active' AND value = '1'";
         $all_gateways = doSelectSql($query);
@@ -1349,42 +1346,12 @@ function get_plugin_settings($plugin, $prop_id = 0)
             }
         }
     }
+    
+    jr_import("gateway_plugin_settings");
+    $plugin_settings = new gateway_plugin_settings();
+    $plugin_settings->get_settings_for_property_uid( $property_uid );
 
-    $query = "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = 0 AND plugin = '".$plugin."' ";
-    $settingsList = doSelectSql($query);
-    foreach ($settingsList as $set) {
-        $settingArray[ $set->setting ] = trim($set->value);
-    }
-
-    if (isset($settingArray['override']) && $settingArray['override'] == '0') {
-        $query = "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '".(int) $property_uid."' AND plugin = '".$plugin."' ";
-        $settingsList = doSelectSql($query);
-        foreach ($settingsList as $set) {
-            $settingArray[ $set->setting ] = trim($set->value);
-        }
-    }
-
-    if ($plugin == 'paypal') {
-        $paypal_settings = jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
-        $paypal_settings->get_paypal_settings();
-
-        if ($paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
-            $settingArray[ 'usesandbox' ] = trim($paypal_settings->paypalConfigOptions[ 'usesandbox' ]);
-            $settingArray[ 'currencycode' ] = trim($paypal_settings->paypalConfigOptions[ 'currencycode' ]);
-            $settingArray[ 'paypalemail' ] = trim($paypal_settings->paypalConfigOptions[ 'paypalemail' ]);
-            $settingArray[ 'pendingok' ] = '0';
-            $settingArray[ 'receiveIPNemail' ] = '1';
-            $settingArray[ 'override' ] = trim($paypal_settings->paypalConfigOptions[ 'override' ]);
-
-            $settingArray[ 'client_id' ] = trim($paypal_settings->paypalConfigOptions[ 'client_id' ]);
-            $settingArray[ 'secret' ] = trim($paypal_settings->paypalConfigOptions[ 'secret' ]);
-            $settingArray[ 'client_id_sandbox' ] = trim($paypal_settings->paypalConfigOptions[ 'client_id_sandbox' ]);
-            $settingArray[ 'secret_sandbox' ] = trim($paypal_settings->paypalConfigOptions[ 'secret_sandbox' ]);
-            $settingArray[ 'active' ] = trim($paypal_settings->paypalConfigOptions[ 'active' ]);
-        }
-    }
-
-    return $settingArray;
+    return $plugin_settings->gateway_settings[$plugin];
 }
 
 function jr_import($class)

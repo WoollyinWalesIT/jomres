@@ -19,6 +19,7 @@ class jrportal_paypal_settings
     public function __construct()
     {
         $this->paypalConfigOptions = array();
+        $this->paypalConfigOptions[ 'active' ] = '0';
         $this->paypalConfigOptions[ 'usesandbox' ] = '1';
         $this->paypalConfigOptions[ 'currencycode' ] = 'EUR';
         $this->paypalConfigOptions[ 'email' ] = '';
