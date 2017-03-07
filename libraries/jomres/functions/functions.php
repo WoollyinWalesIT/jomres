@@ -17,6 +17,26 @@ defined('_JOMRES_INITCHECK') or die('');
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'http_build_url.php';
 
 /*
+A simple function to get the marker rel path
+*/
+
+function get_marker_src($marker_image = '') 
+{
+	if ($marker_image == '')
+		return '';
+	
+	if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.$marker_image)) {
+		$result = JOMRES_IMAGELOCATION_RELPATH.'markers/'.$marker_image;
+	} elseif (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-blue.png')) {
+		$result = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/markers/free-map-marker-icon-blue.png';
+	} else {
+		$result = '';
+	}
+	
+	return $result;
+}
+	
+/*
 A simple function to pull the contract uid based on the booking number
 */
 
@@ -26,7 +46,7 @@ function get_contract_uid_for_tag($tag)
     $query="SELECT `contract_uid` FROM #__jomres_contracts WHERE `tag`= '".$tag."'";
 	$contract_uid = doSelectSql($query , 1 );
     return $contract_uid;
-    }
+}
     
 /*
 This function allows a script writer to add webhook notifications dynamically. 

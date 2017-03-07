@@ -84,14 +84,8 @@ class jomres_property_types
             $this->property_types[$r->id]['order'] = (int) $r->order;            // order
             $this->property_types[$r->id]['mrp_srp_flag'] = (int) $r->mrp_srp_flag;    // what will guests book: rooms in the property or the property itself
             $this->property_types[$r->id]['marker'] = $r->marker;                // Google maps marker
-            if (
-                is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.'markers') &&
-                is_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.'markers'.JRDS.$this->property_types[$r->id]['marker'])
-                ) {
-                $this->property_types[$r->id]['marker_image'] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/markers/'.$this->property_types[$r->id]['marker'];
-            } elseif (is_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.$this->property_types[$r->id]['marker'])) {
-                $this->property_types[$r->id]['marker_image'] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/markers/'.$this->property_types[$r->id]['marker'];
-            }
+           
+			$this->property_types[$r->id]['marker_image'] = get_marker_src($this->property_types[$r->id]['marker']);
         }
 
         $c->store('property_types_data', array('property_types' => $this->property_types));
