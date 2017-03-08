@@ -1,5 +1,6 @@
-<h3>Jomres 9.8.27 03/03/2017</h3>
+<h3>Jomres 9.8.27 08/03/2017</h3>
 
+<span class="label label-warning">Change</span> Refactored gateway handling to, among other things, ensure that paypal override setting doesn't override all other gateways.
 <span class="label label-warning">Change</span> Added support for overriding the property details url and improved the booking form url function. 
 <span class="label label-warning">Change</span> Added support to create jomres joomla menus that point to property details page. This will allow us not to have duplicate urls when a joomla menu item is created for a property details page. In this case, the joomla url will be used, not the jomres default one. Also, allows us to have specific joomla modules assigned only to this property details page.
 <span class="label label-warning">Change</span> Tweaked the media centre uploader to allow both jpg and png files to be uploaded. Previously png files would be converted to jpg files, now they're left as pngs, which preserves their transparency.
@@ -17,6 +18,13 @@
 <span class="label label-warning">Change</span> Removed the map markers obsolete class.
 <span class="label label-warning">Change</span> Moved the code that handles zipping logs bigger then 1M to the logs cleanup cron job, so it won`t run on each page load but only once per day.
 <span class="label label-warning">Change</span> Made the geolocation files cleanup a cron job that runs daily and empties the geolocation dir.
+<span class="label label-warning">Change</span> Changed how debug mode is set in Joomla/Wordpress API.
+<span class="label label-warning">Change</span> Disabled a check in the installer for extraservices table name, it's been long enough now.
+<span class="label label-warning">Change</span> Added RTL auto detection to dashboard
+<span class="label label-warning">Change</span> Added a simple function to search for a contract uid based on the booking number.
+<span class="label label-warning">Change</span> Added a function to get a map marker src
+<span class="label label-warning">Change</span> Some aesthetics tweaks to dates on invoices
+<span class="label label-warning">Change</span> Improved guest's view of bookings to cope with empty property uids.
 
 <span class="label label-important label-danger">Fix</span> Fixed the dashboard trash broken layout in bootstrap 2 templates.
 <span class="label label-important label-danger">Fix</span> Fixed a typo that was causing a fatal error in the srp calendar.
