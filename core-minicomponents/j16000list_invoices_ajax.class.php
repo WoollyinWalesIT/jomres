@@ -236,9 +236,21 @@ class j16000list_invoices_ajax
             }
             $r[] = substr($translated_line_items, 0, -4);
 
-            $r[] = $p->raised_date;
-            $r[] = $p->due_date;
-            $r[] = $p->paid;
+            if ($p->raised_date != '1970-01-01 00:00:01')
+				$r[] = $p->raised_date;
+			else
+				$r[] = '';
+			
+			if ($p->due_date != '1970-01-01 00:00:01')
+				$r[] = $p->due_date;
+			else
+				$r[] = '';
+			
+            if ($p->paid != '1970-01-01 00:00:01')
+				$r[] = $p->paid;
+			else
+				$r[] = '';
+			
             $r[] = output_price($p->grand_total, $p->currencycode);
             $r[] = output_price($p->init_total, $p->currencycode);
 
