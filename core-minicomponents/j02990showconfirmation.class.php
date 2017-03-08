@@ -579,68 +579,54 @@ class j02990showconfirmation
                 $gateway_output = array();
                 $gwo = array();
 
-                if (!isset($site_paypal_settings['override'])) {
-                    $site_paypal_settings['override'] = '0';
-                }
+                jr_import("gateway_plugin_settings");
+                $plugin_settings = new gateway_plugin_settings();
+                $plugin_settings->get_settings_for_property_uid( $property_uid );
 
-                if ($site_paypal_settings['override'] == '1' && count($MiniComponents->registeredClasses['00509paypal']) > 0) {
-                    $gateways = array();
-                    $gw = array();
-                    $gw[ 'GWNAME' ] = 'Paypal';
-                    $gw[ 'GWINPUT' ] = '<input type="radio" name="plugin" value="paypal" checked /> Paypal ';
-                    $gw[ 'GWIMAGE' ] = '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/core-plugins/core_gateway_paypal/j00510paypal.gif" border="0">';
-                    $gatewayDeets = array(1); // Further down we'll check that $gatewayDeets is set to decide if we show the output
-                    $gateways[ ] = $gw;
-                } else {
-                    $gatewaylist = array();
-                    $query = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = '".(int) $property_uid."' AND setting = 'active' AND value = '1'";
-                    $gatewayDeets = doSelectSql($query);
-                    $gateways = array();
-                    if (count($gatewayDeets) == 0) {
-                        $query = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = 0 AND `plugin` != 'paypal' AND setting = 'active' AND value = '1'";
-                        $gatewayDeets = doSelectSql($query);
-                    }
-
-                    if (count($gatewayDeets) > 0) {
-                        $counter = 1;
-                        foreach ($gatewayDeets as $gateway) {
-                            $gateway_existance_minicomponent = '00509'.$gateway->plugin;
-
-                            if (isset($MiniComponents->registeredClasses[ $gateway_existance_minicomponent ])) {
-                                $gw = array();
-                                $checked = '';
-                                if ($counter == 1) {
-                                    $checked = 'checked';
+                $gateways = array();
+                
+                if (!empty($plugin_settings->gateway_settings) ) {
+                    $counter = 1;
+                    foreach ($plugin_settings->gateway_settings as $gateway_name => $gateway) {
+                        if (!isset($gateway['active'])) {
+                            $gateway['active'] = 0;
+                            }
+                        if ($gateway['active'] == 1 ) {
+                            $gw = array();
+                            $checked = '';
+                            if ($counter == 1) {
+                                $checked = 'checked';
                                 }
-                                $result = $MiniComponents->specificEvent('03108', $gateway->plugin, null);
+                            $result = $MiniComponents->specificEvent('03108', $gateway_name, null);
 
-                                if (count($result) > 1) {
+                            if (count($result) > 1) {
                                     $gw[ 'GWNAME' ] = $result[ 'gatewayname' ];
                                     $tmpgatewaydir = $result[ 'filepath' ];
                                 } else {
-                                    $gw[ 'GWNAME' ] = $gateway->plugin;
+                                    $gw[ 'GWNAME' ] = $gateway_name;
                                     $tmpgatewaydir = $result;
-                                }
-                                $gw[ 'GWINPUT' ] = '<input type="radio" name="plugin" value="'.$gateway->plugin.'" '.$checked.' /> '.$gw[ 'GWNAME' ];
+                                    }
+                                $gw[ 'GWNAME_INTERNAL' ] = $gateway_name;
+                                $gw[ 'GWINPUT' ] = '<input type="radio" id="'.$gateway_name.'" name="plugin" value="'.$gateway_name.'" '.$checked.' /> '.$gw[ 'GWNAME' ];
                                 $gatewaydir = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $tmpgatewaydir);
                                 $gatewaydir = str_replace('\\', '/', $gatewaydir);
-                                $gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway->plugin.'.gif" border="0">';
+                                $gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.gif" border="0">';
 
-                                $gw_configuration_script = '00509'.$gateway->plugin;
+                                $gw_configuration_script = '00509'.$gateway_name;
                                 if (count($MiniComponents->registeredClasses[$gw_configuration_script]) > 0) { // Let's check that the site manager hasn't uninstalled the plugin. If count == 0, then they have, we don't want to attempt to show this gateway
                                     $gateways[ ] = $gw;
-                                }
+                                    }
                                 ++$counter;
                             }
                         }
                     }
-                }
+
                 if (count($gateways) > 0) {
                     $gwo[ 'GATEWAYCHOICEINTRO' ] = jr_gettext('_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', '_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE');
                     $gateway_output[] = $gwo;
+                    }
                 }
             }
-        }
 
         $booking_parts[ 'PROCESSURL' ] = 'processpayment';
         $booking_parts[ 'PROCESSURL_SAVETOCART' ] = 'save_booking_to_cart';
@@ -716,7 +702,7 @@ class j02990showconfirmation
         $tmpl->addRows('booking_extratext', $extrastext);
 
         $tmpl->addRows('cartoutput', $cartoutput);
-        if (isset($gatewayDeets) && count($gatewayDeets) > 0) {
+        if (count($gateways) > 0) {
             $tmpl->addRows('gateway_output', $gateway_output);
             $tmpl->addRows('gateways', $gateways);
         }

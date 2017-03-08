@@ -72,22 +72,24 @@ class j06005mulistbookings
 
                 $counter = 0;
                 foreach ($contracts as $c) {
-                    $jomres_media_centre_images->get_images($c->property_uid, array('property'));
+                    if ($c->property_uid > 0 ) {
+                        $jomres_media_centre_images->get_images($c->property_uid, array('property'));
 
-                    $basic_property_details->gather_data($c->property_uid);
+                        $basic_property_details->gather_data($c->property_uid);
 
-                    $r[ 'PROPERTYNAME' ] = getPropertyName($c->property_uid);
+                        $r[ 'PROPERTYNAME' ] = getPropertyName($c->property_uid);
 
-                    $r[ 'ARRIVAL' ] = outputDate($c->arrival);
-                    $r[ 'DEPARTURE' ] = outputDate($c->departure);
-                    $r[ 'lastchanged' ] = $c->timestamp;
-                    $r[ 'EXTRASVALUE' ] = output_price($c->extrasvalue);
-                    $r[ 'CONTRACT_TOTAL' ] = output_price($c->contract_total);
-                    $r[ 'IMAGE' ] = $jomres_media_centre_images->images ['property'][0][0]['small'];
-                    $r[ 'VIEWLINK' ] = JOMRES_SITEPAGE_URL.'&task=muviewbooking&contract_uid='.$c->contract_uid;
-                    $r[ 'VIEWLINK_TEXT' ] = jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', $editable = false, $isLink = true);
-                    $r[ 'PROPERTYDETAILSLINK' ] = get_property_details_url($c->property_uid);
-                    $rows[ ] = $r;
+                        $r[ 'ARRIVAL' ] = outputDate($c->arrival);
+                        $r[ 'DEPARTURE' ] = outputDate($c->departure);
+                        $r[ 'lastchanged' ] = $c->timestamp;
+                        $r[ 'EXTRASVALUE' ] = output_price($c->extrasvalue);
+                        $r[ 'CONTRACT_TOTAL' ] = output_price($c->contract_total);
+                        $r[ 'IMAGE' ] = $jomres_media_centre_images->images ['property'][0][0]['small'];
+                        $r[ 'VIEWLINK' ] = JOMRES_SITEPAGE_URL.'&task=muviewbooking&contract_uid='.$c->contract_uid;
+                        $r[ 'VIEWLINK_TEXT' ] = jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', $editable = false, $isLink = true);
+                        $r[ 'PROPERTYDETAILSLINK' ] = get_property_details_url($c->property_uid);
+                        $rows[ ] = $r;
+                    }
                 }
             }
 

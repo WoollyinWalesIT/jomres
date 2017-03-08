@@ -244,6 +244,7 @@ function output_fatal_error($e)
     //$link =  "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     $cleaned_link = jomres_sanitise_string($link);
 
+    if (is_object($e)) {
     $output = array(
         'URL' => $cleaned_link,
         'MESSAGE' => $e->getMessage(),
@@ -255,6 +256,10 @@ function output_fatal_error($e)
         '_JOMRES_ERROR_DEBUGGING_LINE' => jr_gettext('_JOMRES_ERROR_DEBUGGING_LINE', '_JOMRES_ERROR_DEBUGGING_LINE', false),
         '_JOMRES_ERROR_DEBUGGING_TRACE' => jr_gettext('_JOMRES_ERROR_DEBUGGING_TRACE', '_JOMRES_ERROR_DEBUGGING_TRACE', false),
          );
+    }
+    else {
+        $output = array('MESSAGE' => $e);
+    }
 
     $output['IP_NUMBER'] = jomres_get_client_ip();
 
@@ -1224,79 +1229,27 @@ function jomres_validate_gateway_plugin()
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
     if ($thisJRUser->userIsManager) {
         return 'NA';
-    }
-
-    $property_uid = get_showtime('property_uid');
-    $settings = get_plugin_settings('paypal', $property_uid);
-
-    $mrConfig = getPropertySpecificSettings();
+        }
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-
-    if (((int) $mrConfig['requireApproval'] == 0 || $tmpBookingHandler->tmpbooking['secret_key_payment'])) {
-        if (!isset($settings['override'])) {
-            $settings['override'] = '0';
+    $property_uid = get_showtime('property_uid');
+    
+    if (!isset($_REQUEST[ 'plugin' ])) {
+        $plugin = $tmpBookingHandler->tmpbooking[ 'gateway' ];
+        } 
+    else {
+        $plugin = jomresGetParam($_REQUEST, 'plugin', '');
+        $tmpBookingHandler->tmpbooking[ 'gateway' ] = $plugin;
         }
+        
+    jr_import("gateway_plugin_settings");
+    $plugin_settings = new gateway_plugin_settings();
+    $plugin_settings->get_settings_for_property_uid( $property_uid );
 
-        if ($settings[ 'override' ] == '1') {
-            return 'paypal';
+    if (!$plugin_settings->gateway_settings[$plugin]['active']) {
+        gateway_log("Error, gateway passed either doesn't exist, or is not active, probable hack attempt");
+        trigger_error("Error, gateway passed either doesn't exist, or is not active, probable hack attempt", E_USER_ERROR);
+        die();
         }
-
-        $query = 'SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = '.(int) $property_uid." AND setting = 'active' AND value = '1'";
-        $all_gateways = doSelectSql($query);
-        if (count($all_gateways) == 0) {
-            $query = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = 0 AND setting = 'active' AND value = '1'";
-            $all_gateways = doSelectSql($query);
-            if (count($all_gateways) == 0) {
-                return 'NA';
-            } else {
-                $property_uid = 0;
-            }
-        }
-
-        if (!isset($_REQUEST[ 'plugin' ]) || $_REQUEST[ 'plugin' ] == '') {
-            $query = 'SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = '.(int) $property_uid." AND setting = 'active' AND value = '1'";
-            $configured_gateways = doSelectSql($query);
-            $number_of_configured_gateways = count($configured_gateways);
-            if ($number_of_configured_gateways == 0) {  // No gateways are configured for this property,
-                return 'NA';
-            }
-
-            $installed_gateways = array();
-            foreach ($configured_gateways as $gateway) {
-                $gateway_config_file = '00509'.$gateway->plugin;
-                if (count($MiniComponents->registeredClasses[$gateway_config_file]) > 0) {
-                    $installed_gateways[] = $gateway->plugin;
-                }
-            }
-
-            if (
-                count($installed_gateways) > 0 &&
-                    (!isset($_REQUEST[ 'plugin' ]) ||
-                    $_REQUEST[ 'plugin' ] == '')
-                ) { // Gateways are installed. There's at least one configured gateway for this property, but it's not in $_REQUEST, so this is likely an attempt to bypass the gateway scripts
-                gateway_log('Error, gateway name not sent, probable hack attempt');
-                trigger_error('Error, gateway name not sent, probable hack attempt', E_USER_ERROR);
-                die();
-            } else {
-                return 'NA';
-            }
-        }
-        if (!isset($_REQUEST[ 'plugin' ])) {
-            $plugin = $tmpBookingHandler->tmpbooking[ 'gateway' ];
-        } else {
-            $plugin = jomresGetParam($_REQUEST, 'plugin', '');
-            $tmpBookingHandler->tmpbooking[ 'gateway' ] = $plugin;
-        }
-        $query = 'SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = '.(int) $property_uid." AND `plugin` = '".(string) $plugin."' AND setting = 'active' AND value = '1'";
-        $gatewayDeets = doSelectSql($query);
-        if (count($gatewayDeets) != 1) {
-            gateway_log("Error, gateway passed either doesn't exist, or is not active, probable hack attempt");
-            trigger_error("Error, gateway passed either doesn't exist, or is not active, probable hack attempt", E_USER_ERROR);
-            die();
-        }
-    } else {
-        $plugin = 'NA';
-    }
 
     return $plugin;
 }
@@ -1369,42 +1322,12 @@ function get_plugin_settings($plugin, $prop_id = 0)
             }
         }
     }
+    
+    jr_import("gateway_plugin_settings");
+    $plugin_settings = new gateway_plugin_settings();
+    $plugin_settings->get_settings_for_property_uid( $property_uid );
 
-    $query = "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = 0 AND plugin = '".$plugin."' ";
-    $settingsList = doSelectSql($query);
-    foreach ($settingsList as $set) {
-        $settingArray[ $set->setting ] = trim($set->value);
-    }
-
-    if (isset($settingArray['override']) && $settingArray['override'] == '0') {
-        $query = "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '".(int) $property_uid."' AND plugin = '".$plugin."' ";
-        $settingsList = doSelectSql($query);
-        foreach ($settingsList as $set) {
-            $settingArray[ $set->setting ] = trim($set->value);
-        }
-    }
-
-    if ($plugin == 'paypal') {
-        $paypal_settings = jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
-        $paypal_settings->get_paypal_settings();
-
-        if ($paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
-            $settingArray[ 'usesandbox' ] = trim($paypal_settings->paypalConfigOptions[ 'usesandbox' ]);
-            $settingArray[ 'currencycode' ] = trim($paypal_settings->paypalConfigOptions[ 'currencycode' ]);
-            $settingArray[ 'paypalemail' ] = trim($paypal_settings->paypalConfigOptions[ 'paypalemail' ]);
-            $settingArray[ 'pendingok' ] = '0';
-            $settingArray[ 'receiveIPNemail' ] = '1';
-            $settingArray[ 'override' ] = trim($paypal_settings->paypalConfigOptions[ 'override' ]);
-
-            $settingArray[ 'client_id' ] = trim($paypal_settings->paypalConfigOptions[ 'client_id' ]);
-            $settingArray[ 'secret' ] = trim($paypal_settings->paypalConfigOptions[ 'secret' ]);
-            $settingArray[ 'client_id_sandbox' ] = trim($paypal_settings->paypalConfigOptions[ 'client_id_sandbox' ]);
-            $settingArray[ 'secret_sandbox' ] = trim($paypal_settings->paypalConfigOptions[ 'secret_sandbox' ]);
-            $settingArray[ 'active' ] = trim($paypal_settings->paypalConfigOptions[ 'active' ]);
-        }
-    }
-
-    return $settingArray;
+    return $plugin_settings->gateway_settings[$plugin];
 }
 
 function jr_import($class)
