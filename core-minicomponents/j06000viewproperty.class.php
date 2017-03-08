@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -66,7 +66,7 @@ class j06000viewproperty
 
         if ($thisJRUser->userIsManager && in_array($property_uid, $thisJRUser->authorisedProperties) && $property_uid != $thisJRUser->currentproperty) {
             $thisJRUser->set_currentproperty($property_uid);
-            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid), '');
+            jomresRedirect(get_property_details_url($property_uid), '');
         }
 
         //property clicks counter
@@ -158,7 +158,7 @@ class j06000viewproperty
         //booking link
         if ($mrConfig[ 'visitorscanbookonline' ] == '1' && $jrConfig[ 'show_booking_form_in_property_details' ] != '1' && $mrConfig[ 'is_real_estate_listing' ] == 0) {
             $link = array();
-            $url = get_booking_link(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=$property_uid");
+            $url = get_booking_url($property_uid);
             if ((($mrConfig[ 'fixedArrivalDateYesNo' ] == '1' || $mrConfig[ 'fixedPeriodBookings' ] == '1')) && !isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ])) { // We'll add an invalid arrival date if the fixed arrival date setting is set to Yes. This way we can force the booking engine to see the arrival date is wrong and it'll rebuild the available rooms list, which it doesn't if the date is correct when coming from the Book a room link.
             $url .= '&amp;arrivalDate=2009-01-01';
             }
@@ -215,7 +215,7 @@ class j06000viewproperty
 
         //print link
         $output[ 'PRINT_ICON' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Printer.png';
-        $output[ 'PRINT_LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&jr_printable=1&popup=1&tmpl='.get_showtime('tmplcomponent').'&property_uid='.$property_uid);
+        $output[ 'PRINT_LINK' ] = jomresURL(get_property_details_url($property_uid,'sefsafe').'&jr_printable=1&popup=1&tmpl='.get_showtime('tmplcomponent'));
         //Property details buttons/links end
 
         //real estate property price

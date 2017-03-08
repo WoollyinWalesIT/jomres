@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -14,9 +14,9 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j03379media_centre_resource_type_property
+class j00001functioncall_get_property_details_url
 {
-    public function __construct($componentArgs)
+    public function __construct()
     {
         // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -25,16 +25,11 @@ class j03379media_centre_resource_type_property
 
             return;
         }
-
-        $property_uid = getDefaultProperty();
-        $preview_link                                = JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_header&property_uid='.$property_uid;
-        
-        $this->ret_vals = array('resource_type' => 'property', 'resource_id_required' => false, 'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', false), 'notes' => jr_gettext('_JOMRES_MEDIA_CENTRE_NOTES_CORE', '_JOMRES_MEDIA_CENTRE_NOTES_CORE', false) , 'preview_link'=>$preview_link );
+        require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'get_property_details_url.php';
     }
 
-    // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return $this->ret_vals;
+        return null;
     }
 }

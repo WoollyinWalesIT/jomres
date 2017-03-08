@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -70,12 +70,12 @@ class j16000editPfeature
 		}
 
 		//feature images
-		$images = $jomres_property_features->get_all_property_features_images($id);
+		$images = $jomres_property_features->get_all_property_features_images();
 		
 		foreach ($images as $i) {
 			$i[ 'ISCHECKED' ] = '';
 			
-			if ( $i[ 'IMAGEPATH' ] == $image ) {
+			if ( $i[ 'IMAGE_FILENAME' ] == $image ) {
 				$i[ 'ISCHECKED' ] = 'checked';
 			}
 			

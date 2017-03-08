@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -59,26 +59,20 @@ class j16000editGlobalroomTypes
 
         $image = $jomres_room_types->room_type['image'];
 
-        $d = @dir(JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS);
-
-        $docs = array();
-        $rows = array();
-        if ($d) {
-            while (false !== ($entry = $d->read())) {
-                $filename = $entry;
-                if (is_file(JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.$filename) && substr($entry, 0, 1) != '.' && strtolower($entry) !== 'cvs') {
-                    $docs = array();
-                    $docs[ 'ISCHECKED' ] = '';
-                    $docs[ 'IMAGEPATH' ] = $filename;
-                    $docs[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$filename;
-                    if (isset($image) && $docs[ 'IMAGEPATH' ] == $image) {
-                        $docs[ 'ISCHECKED' ] = 'checked';
-                    }
-                    $rows[ ] = $docs;
-                }
-            }
-            $d->close();
-        }
+        //room type icons
+		$images = $jomres_room_types->get_all_room_type_images();
+		
+		$rows = array();
+		
+		foreach ($images as $i) {
+			$i[ 'ISCHECKED' ] = '';
+			
+			if ( $i[ 'IMAGE_FILENAME' ] == $image ) {
+				$i[ 'ISCHECKED' ] = 'checked';
+			}
+			
+			$rows[] = $i;
+		}
 
         $output[ 'PROPERTYFEATUREINFO' ] = jr_gettext('_JOMRES_A_GLOBALROOMTYPES_INFO', '_JOMRES_A_GLOBALROOMTYPES_INFO', false);
         $output[ 'HLINKTEXT' ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_LINKTEXT', '_JOMRES_COM_MR_VRCT_ROOMTYPES_LINKTEXT', false);

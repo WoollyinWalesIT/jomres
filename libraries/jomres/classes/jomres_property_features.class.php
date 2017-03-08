@@ -3,7 +3,7 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  * @package Jomres
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -307,32 +307,21 @@ class jomres_property_features
 	
 	function get_all_property_features_images()
 		{
-		$abspath  = JOMRES_IMAGELOCATION_ABSPATH . 'pfeatures' . JRDS;
-		$relpath  = JOMRES_IMAGELOCATION_RELPATH . 'pfeatures/';
-		
 		$images = array();
 		
-		$d = @dir( $abspath );
-
-		if ( $d )
-			{
-			while ( false !== ( $entry = $d->read() ) )
-				{
-				$filename = $entry;
-				
-				if ( is_file( $abspath . $filename ) && substr( $entry, 0, 1 ) != '.' && strtolower( $entry ) !== 'cvs' )
-					{
-					$r = array ();
-
-					$r[ 'IMAGEPATH' ] = $filename;
-					$r[ 'IMAGE' ]     = $relpath . $filename;
-
-					$images[] = $r;
-					}
-				}
-			$d->close();
-			}
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+		$jomres_media_centre_images->get_site_images('pfeatures');
 		
+		foreach ($jomres_media_centre_images->site_images['pfeatures'] as $image) 
+			{
+			$r = array();
+			
+			$r[ 'IMAGE_FILENAME' ] = substr($image['large'], strrpos($image['large'], '/') + 1);
+			$r[ 'IMAGE_SRC' ]  = $image['large'];
+			
+			$images[] = $r;
+			}
+
 		return $images;
 		}
 	}

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -107,7 +107,7 @@ class jomres_generic_booking_email
         }
 
         //links
-        $this->data[$contract_uid]['LINK_TO_PROPERTY'] = '<a href="'.JOMRES_SITEPAGE_URL_NOSEF.'&task=viewproperty&property_uid='.$property_uid.'">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE', false, false).'</a>';
+        $this->data[$contract_uid]['LINK_TO_PROPERTY'] = '<a href="'.get_property_details_url($property_uid,'nosef').'">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE', false, false).'</a>';
 
         if (!$thisJRUser->userIsManager && $thisJRUser->userIsRegistered) {
             $this->data[$contract_uid]['LINK_TO_BOOKING'] = '<a href="'.JOMRES_SITEPAGE_URL_NOSEF.'&task=muviewbooking&contract_uid='.$contract_uid.'">'.jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', false, false).'</a>';

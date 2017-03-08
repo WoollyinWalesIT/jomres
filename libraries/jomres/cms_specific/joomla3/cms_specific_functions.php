@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -209,7 +209,7 @@ function jomres_cmsspecific_getcurrentusers_username()
     return $username;
 }
 
-function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $includeVersion = true)
+function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $includeVersion = true, $async = false)
 {
     if ($filename == '') {
         return;
@@ -236,7 +236,10 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
     switch ($type) {
         case 'javascript':
             //JHTML::script( $path . $filename, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
-            $doc->addScript($data);
+            if ($async)
+				$doc->addScript($data,"text/javascript",false,true);
+			else
+				$doc->addScript($data);
             break;
         case 'css':
             //JHTML::stylesheet( $path . $filename, array (), false, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
@@ -541,4 +544,11 @@ function jomres_cmsspecific_getCmsUserProfileLink($cms_user_id = 0) {
 	$url = JURI::base().'index.php?option=com_users&view=user&layout=edit&id='.$cms_user_id;
 	
 	return $url;
+}
+
+function jomres_cmsspecific_isRtl($cms_user_id = 0) {
+	$language = JFactory::getLanguage();
+	$isRtl = $language->isRtl();
+	
+	return $isRtl;
 }

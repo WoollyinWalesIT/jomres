@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -124,7 +124,7 @@ class jomSearch
             This *soley* enables searching on various arrays, *if* they're populated. It will inevitably add some queries, but only if calledbymodule is set to m0
 
             */
-            if ( $calledByModule == 'mod_jomsearch_m0' ){
+            if ( $calledByModule == 'mod_jomsearch_m0' && !this_cms_is_wordpress() ){
                 $vals[ 'propertyname' ] = true;
                 $vals[ 'ptype' ]        = true;
                 $vals[ 'room_type' ]    = true;

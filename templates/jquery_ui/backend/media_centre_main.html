@@ -27,7 +27,7 @@ border-color:#333;
     opacity: 1;
 }
 </style>
-<h2>{TITLE} ({UPLOAD_CONTEXT_TITLE})</h2>
+<h2>{TITLE}</h2>
 <p>{_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS}</p>
 <patTemplate:tmpl name="notes" type="simpleCondition" requiredVars="note">
 <div class="ui-state-default">
@@ -91,7 +91,7 @@ var ajax_url = "{AJAX_URL}";
 jomresJquery(function () {
     'use strict';
     // Change this to the location of your server-side upload handler:
-    var url = ajax_url + '&task=media_centre_handler{URL_CONTEXT}',
+    var url = ajax_url + '&task=media_centre_handler',
         uploadButton = jomresJquery('<button/>')
             .addClass('fg-button ui-state-default ui-corner-all start')
             .prop('disabled', true)
@@ -194,7 +194,7 @@ jomresJquery(function () {
 				}
 			else
 				{
-				var delete_link = '<a href="javascript:void(0);" class="fg-button ui-state-default ui-corner-all" onclick="delete_file(\''+file.deleteUrl + '{URL_CONTEXT}'+'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
+				var delete_link = '<a href="javascript:void(0);" class="fg-button ui-state-default ui-corner-all" onclick="delete_file(\''+file.deleteUrl +'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
 				var view_link = '<a href="'+file.url+'" target="_blank" class="fg-button ui-state-default ui-priority-primary ui-corner-all">{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}</a>';
 
 				var links = view_link + " " + delete_link;
@@ -223,7 +223,7 @@ function get_resource_ids_for_resource_type(resource_type)
 	{
 	hide_uploaded();
 	jomresJquery('#existing_images').slideUp();
-	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax{URL_CONTEXT}&resource_type=' + resource_type,
+	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax&resource_type=' + resource_type,
 		function (data) {
 			if (data != '')
 				{
@@ -278,9 +278,10 @@ function get_existing_images()
 	jomresJquery('#existing_images').slideUp();
 	var resource_type = jomresJquery('#resource_types').val();
 	var resource_id = jomresJquery('#resource_id').val();
-	if (resource_id == '')
+	if (resource_id == '') {
 		resource_id=0;
-	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax_existing_images{URL_CONTEXT}&resource_type=' + resource_type+'&resource_id='+resource_id,
+		}
+	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax_existing_images&resource_type=' + resource_type+'&resource_id='+resource_id,
 		function (data) {
 			populateDiv ( 'existing_images' , data );
 			jomresJquery('#existing_images').slideDown();
@@ -288,7 +289,7 @@ function get_existing_images()
 	}
 	
 jomresJquery(document).ready(function () {
-	get_existing_images();
+	get_resource_ids_for_resource_type(jomresJquery('#resource_types').val());
 	});
 </script>
 </patTemplate:tmpl>

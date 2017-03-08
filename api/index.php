@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -12,7 +12,7 @@
 
 // create a log channel
 define('TRANSACTION_ID', time());
-define('PRODUCTION', false); // Set this to true in a production environment
+
 define('JOMRES_API_CMS_ROOT', dirname(dirname(dirname(__FILE__))));
 define('JOMRES_API_JOMRES_ROOT', dirname(dirname(__FILE__)));
 
@@ -36,12 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 date_default_timezone_set('UTC');
-
-if (!PRODUCTION) {
-    ini_set('display_errors', '1');
-}
-
-
 
 require 'vendor/autoload.php';
 require 'classes/logging.class.php';
@@ -79,6 +73,11 @@ if (isset($_POST['grant_type']) && ($_POST['grant_type'] == 'client_credentials'
     logging::log_message(' Received a token which sent '.$request, 'API', 'INFO');
     require_once __DIR__.'/oauth/resource.php';
 }
+
+if (!PRODUCTION) {
+    ini_set('display_errors', '1');
+}
+
 
 if (!defined('_JOMRES_INITCHECK')) {
     define('_JOMRES_INITCHECK', 1);
@@ -125,7 +124,15 @@ try {
 
     Flight::start();
 } catch (Exception $e) {
-    $response = Flight::request_response();
+    if ($e->getMessage() != '' ) {
+        $response = $e->getMessage();
+        if (!PRODUCTION)
+            echo json_encode($response);
+        }
+    else {
+        $response = Flight::request_response();
+        }
+    
     $backtrace = debug_backtrace();
     logging::log_message(json_encode($response), 'API', 'ERROR');
 }

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -76,6 +76,10 @@ if ($folderChecksPassed) {
 
     if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'propertytypes.xml', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'propertytypes.xml')) {
         echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'propertytypes.xml to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'propertytypes.xml
+			automatically, please do this manually through FTP</h1><br/>';
+    }
+	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'propertydetails.xml', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'propertydetails.xml')) {
+        echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'propertydetails.xml to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'propertydetails.xml
 			automatically, please do this manually through FTP</h1><br/>';
     }
 }

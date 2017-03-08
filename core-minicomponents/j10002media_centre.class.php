@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j10002media_centre_features_images
+class j10002media_centre
 {
     public function __construct()
     {
@@ -28,9 +28,9 @@ class j10002media_centre_features_images
         $this->cpanelButton = '';
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
-        if ($jrConfig[ 'advanced_site_config' ] == 1) {
+        if ($jrConfig[ 'advanced_site_config' ] == '1') {
             $htmlFuncs = jomres_singleton_abstract::getInstance('html_functions');
-            $this->cpanelButton = $htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=media_centre&upload_context=features_images', 'Picture.png', jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false, false), '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/', jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE', false, false));
+            $this->cpanelButton = $htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=media_centre', 'Picture.png', jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false, false), '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/', jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE', false, false));
         }
     }
 

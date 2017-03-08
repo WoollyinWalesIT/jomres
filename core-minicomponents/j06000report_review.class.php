@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -39,6 +39,8 @@ class j06000report_review
                 $output[ '_JOMRES_REVIEWS_SUBMIT' ] = jr_gettext('_JOMRES_REVIEWS_SUBMIT', '_JOMRES_REVIEWS_SUBMIT', false, false);
                 $output[ '_JOMRES_REVIEWS_REPORT_REVIEW_ERROR' ] = jr_gettext('_JOMRES_REVIEWS_REPORT_REVIEW_ERROR', '_JOMRES_REVIEWS_REPORT_REVIEW_ERROR', false, false);
                 $output[ 'JOMRES_COM_A_MESSAGE' ] = jr_gettext('JOMRES_COM_A_MESSAGE', 'JOMRES_COM_A_MESSAGE', false, false);
+				
+				$output[ 'PROPERTY_DETAILS_URL' ] = get_property_details_url(get_showtime('last_viewed_property_uid'));
 
                 $output[ 'RATING_ID' ] = $rating_id;
 

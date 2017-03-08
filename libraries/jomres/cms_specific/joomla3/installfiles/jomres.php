@@ -4,7 +4,7 @@
 *
 * @author Vince Wooll <sales@jomres.net>
 *
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  *
 * @copyright	2005-2013 Vince Wooll
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,21 +16,31 @@ if (!defined('_JOMRES_INITCHECK')) {
 }
 
 if (isset($_REQUEST ['layout'])) {
-    $_REQUEST ['task'] = 'search';
-    $_REQUEST ['calledByModule'] = 'mod_jomsearch_m0';
 
     switch ($_REQUEST ['layout']) {
         case 'countries':
+			$_REQUEST ['task'] = 'search';
+			$_REQUEST ['calledByModule'] = 'mod_jomsearch_m0';
             $_REQUEST ['country'] = $_REQUEST ['selected_country'];
             break;
         case 'regions':
+			$_REQUEST ['task'] = 'search';
+			$_REQUEST ['calledByModule'] = 'mod_jomsearch_m0';
             $_REQUEST ['region'] = $_REQUEST ['selected_region'];
             break;
         case 'towns':
+			$_REQUEST ['task'] = 'search';
+			$_REQUEST ['calledByModule'] = 'mod_jomsearch_m0';
             $_REQUEST ['town'] = $_REQUEST ['selected_town'];
             break;
         case 'propertytypes':
+			$_REQUEST ['task'] = 'search';
+			$_REQUEST ['calledByModule'] = 'mod_jomsearch_m0';
             $_REQUEST ['ptype'] = $_REQUEST ['selected_ptype'];
+            break;
+		case 'propertydetails':
+			$_REQUEST ['task'] = 'viewproperty';
+            $_REQUEST ['property_uid'] = $_REQUEST ['selected_property'];
             break;
         default:
             break;

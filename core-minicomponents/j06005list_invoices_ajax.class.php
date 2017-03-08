@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -299,9 +299,21 @@ class j06005list_invoices_ajax
             }
             $r[] = substr($translated_line_items, 0, -4);
 
-            $r[] = $p->raised_date;
-            $r[] = $p->due_date;
-            $r[] = $p->paid;
+			if ($p->raised_date != '1970-01-01 00:00:01')
+				$r[] = $p->raised_date;
+			else
+				$r[] = '';
+			
+			if ($p->due_date != '1970-01-01 00:00:01')
+				$r[] = $p->due_date;
+			else
+				$r[] = '';
+			
+            if ($p->paid != '1970-01-01 00:00:01')
+				$r[] = $p->paid;
+			else
+				$r[] = '';
+			
             $r[] = output_price($p->grand_total, $p->currencycode);
             $r[] = output_price($p->init_total, $p->currencycode);
 

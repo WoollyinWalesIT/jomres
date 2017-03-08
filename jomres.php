@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -337,17 +337,17 @@ try {
                     $plugin = 'NA';
                 }
 
-                $paypal_settings = jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
-                $paypal_settings->get_paypal_settings();
+                //$paypal_settings = jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
+                //$paypal_settings->get_paypal_settings();
 
                 if ($plugin != 'NA') {
                     $query = 'SELECT id,plugin FROM #__jomres_pluginsettings WHERE (prid = '.(int) $property_uid." OR prid = 0)  AND `plugin` = '".(string) $plugin."' AND setting = 'active' AND value = '1'";
                     $gatewayDeets = doSelectSql($query);
 
                     if (count($gatewayDeets) > 0 || $paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
-                        if ($paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
+/*                         if ($paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
                             $plugin = 'paypal';
-                        }
+                        } */
 
                         $interrupted = intval(jomresGetParam($_POST, 'interrupted', 0));
                         $interruptOutgoingFile = false;

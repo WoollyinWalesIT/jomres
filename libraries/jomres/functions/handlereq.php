@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -62,7 +62,7 @@ $bkg->currentField = $field;
 /* $property_uid_check = jomresGetParam( $_GET, 'property_uid_check', 0 );
  if ( $property_uid_check != $pid )
     {
-    $url = JOMRES_SITEPAGE_URL_NOSEF . "&task=dobooking&amp;selectedProperty=$pid";
+    $url = get_booking_url($pid);
     echo '; window.location.replace("' . $url . '"); ';
     exit;
     } */

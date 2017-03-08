@@ -28,7 +28,7 @@
     opacity: 1;
 }
 </style>
-<h2 class="page-header">{TITLE} ({UPLOAD_CONTEXT_TITLE})</h2>
+<h2 class="page-header">{TITLE}</h2>
 <div id="tour_target_mediacentre_introduction"></div>
 
 <patTemplate:tmpl name="notes" unusedvars="strip" type="simpleCondition" requiredVars="note">
@@ -90,7 +90,7 @@ var ajax_url = "{AJAX_URL}";
 jomresJquery(function () {
     'use strict';
     // Change this to the location of your server-side upload handler:
-    var url = ajax_url + '&task=media_centre_handler{URL_CONTEXT}',
+    var url = ajax_url + '&task=media_centre_handler',
         uploadButton = jomresJquery('<button/>')
             .addClass('btn btn-primary start')
             .prop('disabled', true)
@@ -177,14 +177,14 @@ jomresJquery(function () {
             progress + '%'
         );
     }).on('fileuploaddone', function (e, data) {
-		jomresJquery.each(data.result.files, function (index, file) {
+		jomresJquery.each(data.files, function (index, file) {
 			jomresJquery(data.context.children()[index]).attr('id', file.random_id);
 			jomresJquery('#'+file.random_id).parent().addClass('uploaded');
 			jomresJquery('#'+file.random_id).addClass('alert alert-success');
 			jomresJquery('#progress .bar').css( 'width', '0%' );
 			if (file.hasOwnProperty ('error'))
 				{
-				jomresJquery.each(data.result.files, function (index, file) {
+				jomresJquery.each(data.files, function (index, file) {
 				var error = '<div class="alert alert-error">' + file.error + '</div>';
 				jomresJquery(data.context.children()[index])
 					.append('<br>')
@@ -193,7 +193,7 @@ jomresJquery(function () {
 				}
 			else
 				{
-				var delete_link = '<a href="javascript:void(0);" class="btn btn-danger" onclick="delete_file(\''+file.deleteUrl+ '{URL_CONTEXT}'+'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
+				var delete_link = '<a href="javascript:void(0);" class="btn btn-danger" onclick="delete_file(\''+file.deleteUrl+'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
 				var view_link = '<a href="'+file.url+'" target="_blank" class="btn btn-primary">{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}</a>';
 
 				var links = view_link + " " + delete_link;
@@ -207,7 +207,7 @@ jomresJquery(function () {
 			});
 		
     }).on('fileuploadfail', function (e, data) { // This doesn't seem to work, moved to up a few lines
-        jomresJquery.each(data.result.files, function (index, file) {
+        jomresJquery.each(data.files, function (index, file) {
             var error = jomresJquery('<span/>').text(file.error);
             jomresJquery(data.context.children()[index])
                 .append('<br>')
@@ -222,7 +222,7 @@ function get_resource_ids_for_resource_type(resource_type)
 	{
 	hide_uploaded();
 	jomresJquery('#existing_images').slideUp();
-	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax{URL_CONTEXT}&resource_type=' + resource_type,
+	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax&resource_type=' + resource_type,
 		function (data) {
 			if (data != '')
 				{
@@ -277,9 +277,10 @@ function get_existing_images()
 	jomresJquery('#existing_images').slideUp();
 	var resource_type = jomresJquery('#resource_types').val();
 	var resource_id = jomresJquery('#resource_id').val();
-	if (resource_id == '')
+	if (resource_id == '') {
 		resource_id=0;
-	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax_existing_images{URL_CONTEXT}&resource_type=' + resource_type+'&resource_id='+resource_id,
+		}
+	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax_existing_images&resource_type=' + resource_type+'&resource_id='+resource_id,
 		function (data) {
 			populateDiv ( 'existing_images' , data );
 			jomresJquery('#existing_images').slideDown();
@@ -287,7 +288,7 @@ function get_existing_images()
 	}
 	
 jomresJquery(document).ready(function () {
-	get_existing_images();
+	get_resource_ids_for_resource_type(jomresJquery('#resource_types').val());
 	});
 </script>
 

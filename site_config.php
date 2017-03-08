@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.26
+ * @version Jomres 9.8.27
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -92,7 +92,6 @@ $jrConfig = array(
   'useJomresMessaging' => '1',
   'useSubscriptions' => '0',
   'useNewusers' => '0',
-  'jomresItemid' => 0,
   'outputHeadersInline' => '0',
   'lifetime' => '18000',
   'business_name' => 'BLANK',
