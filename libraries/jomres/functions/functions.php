@@ -224,6 +224,7 @@ function output_fatal_error($e)
     //$link =  "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     $cleaned_link = jomres_sanitise_string($link);
 
+    if (is_object($e)) {
     $output = array(
         'URL' => $cleaned_link,
         'MESSAGE' => $e->getMessage(),
@@ -235,6 +236,10 @@ function output_fatal_error($e)
         '_JOMRES_ERROR_DEBUGGING_LINE' => jr_gettext('_JOMRES_ERROR_DEBUGGING_LINE', '_JOMRES_ERROR_DEBUGGING_LINE', false),
         '_JOMRES_ERROR_DEBUGGING_TRACE' => jr_gettext('_JOMRES_ERROR_DEBUGGING_TRACE', '_JOMRES_ERROR_DEBUGGING_TRACE', false),
          );
+    }
+    else {
+        $output = array('MESSAGE' => $e);
+    }
 
     $output['IP_NUMBER'] = jomres_get_client_ip();
 
