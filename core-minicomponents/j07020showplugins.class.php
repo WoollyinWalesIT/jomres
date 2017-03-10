@@ -29,18 +29,19 @@ class j07020showplugins
         $this->retVals = array();
 
         $remote_plugins = array();
+		$installed_plugins = array();
 
-        if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'remote_plugins_data.php')) {
-            $last_modified = filemtime(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'remote_plugins_data.php');
+        if (file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
+            $last_modified = filemtime(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
             $seconds_timediff = time() - $last_modified;
             if ($seconds_timediff > 3600) {
-                unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'remote_plugins_data.php');
+                unlink(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
             } else {
-                $remote_plugins_data = file_get_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'remote_plugins_data.php');
+                $remote_plugins_data = file_get_contents(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
             }
         }
 
-        if (function_exists('curl_init') && !file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'remote_plugins_data.php')) {
+        if (function_exists('curl_init') && !file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
             include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php';
             $current_version = $mrConfig[ 'version' ];
 
@@ -66,51 +67,64 @@ class j07020showplugins
             //$remote_plugins_data = queryUpdateServer( "", "r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS  );
 
             if ($remote_plugins_data != '') {
-                file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'remote_plugins_data.php', $remote_plugins_data);
+                file_put_contents(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php', $remote_plugins_data);
             }
         }
 
-        $rp_array = json_decode($remote_plugins_data);
-        if (count($rp_array) > 0) {
-            foreach ($rp_array as $rp) {
-                $remote_plugins[ trim(jomres_sanitise_string(@$rp->name)) ] = array('name' => trim(jomres_sanitise_string(@$rp->name)), 'version' => (float) @$rp->version);
-            }
+        $remote_plugins = json_decode($remote_plugins_data);
 
-            $installed_plugins = array();
-            $jrcPath = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
-            $files = scandir_getfiles($jrcPath);
-            $d = @dir($jrcPath);
-            if ($d) {
-                while (false !== ($entry = $d->read())) {
-                    $filename = $entry;
+        if (!empty($remote_plugins)) {
+			
+			if (file_exists(JOMRES_TEMP_ABSPATH.'installed_plugins_data.php')) {
+				$last_modified = filemtime(JOMRES_TEMP_ABSPATH.'installed_plugins_data.php');
+				$seconds_timediff = time() - $last_modified;
+				if ($seconds_timediff > 3600) {
+					unlink(JOMRES_TEMP_ABSPATH.'installed_plugins_data.php');
+				} else {
+					$installed_plugins = json_decode(file_get_contents(JOMRES_TEMP_ABSPATH.'installed_plugins_data.php'));
+				}
+			}
 
-                    if (substr($entry, 0, 1) != '.') {
-                        if (file_exists($jrcPath.$entry.JRDS.'plugin_info.php')) {
-                            include_once $jrcPath.$entry.JRDS.'plugin_info.php';
-                            $cname = 'plugin_info_'.$entry;
-                            if (class_exists($cname)) {
-                                $info = new $cname();
-                                $installed_plugins[ $info->data[ 'name' ] ] = $info->data;
-                            }
-                        }
-                    }
-                }
+			if (!file_exists(JOMRES_TEMP_ABSPATH.'installed_plugins_data.php')) {
+				$jrcPath = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
+				$files = scandir_getfiles($jrcPath);
+				$d = @dir($jrcPath);
+				if ($d) {
+					while (false !== ($entry = $d->read())) {
+						$filename = $entry;
 
-                $tmp = array();
-                foreach ($installed_plugins as $key => $val) {
-                    if (array_key_exists($key, $remote_plugins)) {
-                        $tmp[ $key ] = $val;
-                    }
-                }
-                $installed_plugins = $tmp;
-            }
+						if (substr($entry, 0, 1) != '.') {
+							if (file_exists($jrcPath.$entry.JRDS.'plugin_info.php')) {
+								include_once $jrcPath.$entry.JRDS.'plugin_info.php';
+								$cname = 'plugin_info_'.$entry;
+								if (class_exists($cname)) {
+									$info = new $cname();
+									$installed_plugins[ $info->data[ 'name' ] ] = $info->data;
+								}
+							}
+						}
+					}
 
-            if (count($installed_plugins) > 0) {
+					$tmp = new stdClass();
+					foreach ($installed_plugins as $key => $val) {
+						if (isset($remote_plugins->$key)) {
+							$tmp->$key = (object)$val;
+						}
+					}
+					$installed_plugins = $tmp;
+					
+					if ($installed_plugins != '') {
+						file_put_contents(JOMRES_TEMP_ABSPATH.'installed_plugins_data.php', json_encode($installed_plugins));
+					}
+				}
+			}
+
+            if (!empty($installed_plugins)) {
                 $count = 0;
                 foreach ($installed_plugins as $ip) {
-                    $pluginname = $ip[ 'name' ];
-                    $local_version = $ip[ 'version' ];
-                    $remote_version = $remote_plugins[ $pluginname ][ 'version' ];
+                    $pluginname = $ip->name;
+                    $local_version = $ip->version;
+                    $remote_version = $remote_plugins->$pluginname->version;
 
                     if ($remote_version > $local_version) {
                         $count++;
