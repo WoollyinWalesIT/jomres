@@ -186,18 +186,18 @@ class j06001dashboard_events_ajax
 
                 if ((int) $resource > 0) {
                     $contracts[] = array(
-                                        'id' => $id,
-                                        'resourceId' => $resource,
-                                        'start' => $start,
-                                        'end' => $end,
-                                        'title' => $title,
-                                        'url' => $url,
-                                        'className' => $imgToShow,
-                                        'description' => $description,
-                                        'contract_uid' => $c->contract_uid,
-                                        'room_uid' => $c->room_uid,
-                                        'this_contract_room_uids' => $room_uids[$c->contract_uid],
-                                        );
+										'id' => $id,
+										'resourceId' => $resource,
+										'start' => $start,
+										'end' => $end,
+										'title' => $title,
+										'url' => $url,
+										'className' => $imgToShow,
+										'description' => $description,
+										'contract_uid' => $c->contract_uid,
+										'room_uid' => $c->room_uid,
+										'this_contract_room_uids' => $room_uids[$c->contract_uid],
+										);
                 }
             }
         } else {
