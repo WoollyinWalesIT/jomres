@@ -59,6 +59,7 @@ function add_webhook_notification($contents)
     $webhook_messages = get_showtime('webhook_messages');
     $webhook_messages[] = $contents;
     set_showtime('webhook_messages', $webhook_messages);
+    logging::log_message('Webhook notification set '.$contents->webhook_event, 'Core', 'DEBUG' , serialize($contents) );
 }
 
 
