@@ -539,14 +539,16 @@ class j03020insertbooking
                     system_log('j03020insertbooking :: Booking insert failed ');
                 }
                 
-                $webhook_notification                               = new stdClass();
-                $webhook_notification->webhook_event                = 'booking_added';
-                $webhook_notification->webhook_event_description    = 'Logs when a booking is added.';
-                $webhook_notification->webhook_event_plugin         = 'core';
-                $webhook_notification->data                         = new stdClass();
-                $webhook_notification->data->property_uid           = $property_uid;
-                $webhook_notification->data->contract_uid           = $contract_uid;
-                add_webhook_notification($webhook_notification);
+				if ($approved == 1) {
+					$webhook_notification                               = new stdClass();
+					$webhook_notification->webhook_event                = 'booking_added';
+					$webhook_notification->webhook_event_description    = 'Logs when a booking is added.';
+					$webhook_notification->webhook_event_plugin         = 'core';
+					$webhook_notification->data                         = new stdClass();
+					$webhook_notification->data->property_uid           = $property_uid;
+					$webhook_notification->data->contract_uid           = $contract_uid;
+					add_webhook_notification($webhook_notification);
+				}
                 
             }
 
