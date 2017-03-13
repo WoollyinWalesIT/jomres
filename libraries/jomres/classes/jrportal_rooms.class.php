@@ -58,6 +58,12 @@ class jrportal_rooms
         }
 
         $mrConfig = getPropertySpecificSettings($this->propertys_uid);
+		
+		if (!empty($this->room_features_uid)) {
+			$room_features = jomres_implode($this->room_features_uid);
+		} else {
+			$room_features = '';
+		}
 
         $query = 'INSERT INTO #__jomres_rooms 
 							(
@@ -119,11 +125,17 @@ class jrportal_rooms
         }
 
         $mrConfig = getPropertySpecificSettings($this->propertys_uid);
+		
+		if (!empty($this->room_features_uid)) {
+			$room_features = jomres_implode($this->room_features_uid);
+		} else {
+			$room_features = '';
+		}
 
         $query = 'UPDATE #__jomres_rooms 
 					SET 
 						`room_classes_uid` = '.(int) $this->room_classes_uid.",
-						`room_features_uid` = '".jomres_implode($this->room_features_uid)."',
+						`room_features_uid` = '".$room_features."',
 						`room_name` = '".$this->room_name."',
 						`room_number` = '".$this->room_number."',
 						`room_floor` = '".$this->room_floor."',
