@@ -1233,6 +1233,12 @@ function jomres_validate_gateway_plugin()
         }
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
     $property_uid = get_showtime('property_uid');
+	
+	$mrConfig = getPropertySpecificSettings($property_uid);
+	
+	if ($mrConfig[ 'requireApproval' ] == '1' && !$tmpBookingHandler->tmpbooking[ 'secret_key_payment' ]) {
+		return "NA";
+	}
     
     if (!isset($_REQUEST[ 'plugin' ])) {
         $plugin = $tmpBookingHandler->tmpbooking[ 'gateway' ];
