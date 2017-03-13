@@ -79,11 +79,16 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 
     if (isset($customTextObj->global_custom_text[$theConstant])) {
         $theText = stripslashes($customTextObj->global_custom_text[$theConstant]);
-    } elseif (isset($customTextObj->properties_custom_text[$property_uid][$theConstant])) {
-        $theText = stripslashes($customTextObj->properties_custom_text[$property_uid][$theConstant]);
     } else {
-        $theText = jr_get_defined($theConstant, $theValue);
-    }
+		if (!isset($customTextObj->properties_custom_text[$property_uid])) {
+			$customTextObj->get_custom_text_for_property($property_uid);
+		}
+		if (isset($customTextObj->properties_custom_text[$property_uid][$theConstant])) {
+			$theText = stripslashes($customTextObj->properties_custom_text[$property_uid][$theConstant]);
+		} else {
+			$theText = jr_get_defined($theConstant, $theValue);
+		}
+	}
 	
 	$theText = jomres_decode($theText);
 
