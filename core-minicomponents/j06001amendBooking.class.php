@@ -51,7 +51,7 @@ class j06001amendBooking
             }
             $propertysList = $tmpArray;
             if (count($propertysList == 1)) {
-                jomresRedirect(get_booking_url($defaultProperty).'&amend=1&contractuid='.$contract_uid, '');
+                jomresRedirect(get_booking_url($defaultProperty,'nosef').'&amend=1&contractuid='.$contract_uid, '');
             }
             $counter = 0;
             foreach ($propertysList as $property) {
