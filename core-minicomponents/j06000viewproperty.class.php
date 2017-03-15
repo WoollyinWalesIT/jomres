@@ -215,7 +215,7 @@ class j06000viewproperty
 
         //print link
         $output[ 'PRINT_ICON' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Printer.png';
-        $output[ 'PRINT_LINK' ] = jomresURL(get_property_details_url($property_uid,'sefsafe').'&jr_printable=1&popup=1&tmpl='.get_showtime('tmplcomponent'));
+        $output[ 'PRINT_LINK' ] = jomresURL(get_property_details_url($property_uid,'sefsafe','&jr_printable=1&popup=1&tmpl='.get_showtime('tmplcomponent')));
         //Property details buttons/links end
 
         //real estate property price

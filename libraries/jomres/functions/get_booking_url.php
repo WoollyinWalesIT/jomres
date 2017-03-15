@@ -21,22 +21,22 @@ defined('_JOMRES_INITCHECK') or die('');
 // sefsafe: sef url not passed through jomresURL function
 // ajax: ajax safe url
 
-function get_booking_url($property_uid = 0, $type = 'sef') {
+function get_booking_url($property_uid = 0, $type = 'sef', $params = '') {
     switch($type) {
 		case 'sef':
-			$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$property_uid);
+			$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$property_uid.$params);
 			break;
 		case 'nosef':
-			$url = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=dobooking&selectedProperty='.$property_uid);
+			$url = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=dobooking&selectedProperty='.$property_uid.$params);
 			break;
 		case 'sefsafe':
-			$url = JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$property_uid;
+			$url = JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$property_uid.$params;
 			break;
 		case 'ajax':
-			$url = JOMRES_SITEPAGE_URL_AJAX.'&task=dobooking&selectedProperty='.$property_uid;
+			$url = JOMRES_SITEPAGE_URL_AJAX.'&task=dobooking&selectedProperty='.$property_uid.$params;
 			break;
 		default:
-			$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$property_uid);
+			$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$property_uid.$params);
 			break;
 	}
     return $url;

@@ -166,7 +166,7 @@ class j06000mrp_calendar
             $this->retVals .= '<tr>';
             for ($c = 0; $c < 7; ++$c) {
                 $class = 'normal-day';
-                $link = get_booking_url($property_uid).'&pdetails_cal=1&arrivalDate='.date('Y/m/d', $currdate);
+                $link = get_booking_url($property_uid, '', '&pdetails_cal=1&arrivalDate='.date('Y/m/d', $currdate));
                 $fmt = date('Y', $currdate).'/'.date('m', $currdate).'/'.date('d', $currdate);
 
                 if (!isset($this->booked_dates[$fmt])) {

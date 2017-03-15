@@ -399,7 +399,7 @@ class j00018MRPavailabilitycalendar
                             }
 
                             if ($validDayOfWeek) {
-                                $link = get_booking_url($property_uid).'&arrivalDate='.$sqlDate2;
+                                $link = get_booking_url($property_uid, '', '&arrivalDate='.$sqlDate2);
                                 if (!$mrConfig[ 'singleRoomProperty' ]) {
                                     $link .= '&remus='.$roomUid;
                                 }

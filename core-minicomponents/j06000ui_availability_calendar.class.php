@@ -180,7 +180,7 @@ class j06000ui_availability_calendar
             $full_output .= '];';
         }
 
-		$url = get_booking_url($property_uid,'nosef').'&pdetails_cal=1&arrivalDate=';
+		$url = get_booking_url($property_uid,'','&pdetails_cal=1&arrivalDate=');
         $inline_calendar = '
 			<script>
 			' .$quarter_output.'

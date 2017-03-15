@@ -169,7 +169,7 @@ class j01010listpropertys
                 if (isset($_REQUEST[ 'arrivalDate' ])) {
                     $arrival_clause = '&arrivalDate='.$_REQUEST[ 'arrivalDate' ].'&departureDate='.$_REQUEST[ 'departureDate' ]; // There's no need for these elements to be sanitised, as we're just redirecting again to a new url, these items will be sanitised at that point.
                 }
-                jomresRedirect(get_booking_url($propertys_uids[ 0 ]).$arrival_clause, '');
+                jomresRedirect(get_booking_url($propertys_uids[ 0 ], '', $arrival_clause), '');
             }
 
             if (!isset($jrConfig['use_budget_feature'])) {
