@@ -126,7 +126,7 @@ class j01060slideshow
                 $r[ 'IMAGE' ] = $imagesArray[ $i ][ 'large' ];
 
                 if ($link_to_property_details && (int) $componentArgs[ 'property_uid' ] > 0) {
-                    $r[ 'LINK' ] = get_property_details_url((int)$componentArgs[ 'property_uid' ], 'sefsafe');
+                    $r[ 'LINK' ] = get_property_details_url((int)$componentArgs[ 'property_uid' ]);
                 } else {
                     $r[ 'LINK' ] = '';
                 }
