@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.27
+ * @version Jomres 9.8.28
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -153,7 +153,7 @@ class j06002save_normalmode_tariffs
                 $roomsAndRateData[ $key ][ 'roomtype_uid' ] = intval($key);
                 $roomsAndRateData[ $key ][ 'numberOfRooms' ] = intval($val);
                 $roomsAndRateData[ $key ][ 'roomrateperday' ] = floatval($roomrateperdayArray[ $key ]);
-                if (strlen($existingroomsArray[ $key ]) > 0) {
+                if (isset($existingroomsArray[ $key ]) && strlen($existingroomsArray[ $key ]) > 0) {
                     $ex = explode(',', $existingroomsArray[ $key ]);
                     // As we haven't validated the array through jomresGetParam (which automatically sets arrays to integers whereas this is an array containing an array) we'll run through it quickly here, ensuring that all values are integers.
                     $tmpArr = array();

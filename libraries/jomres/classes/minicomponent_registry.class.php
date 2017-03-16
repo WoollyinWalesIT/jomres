@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.27
+ * @version Jomres 9.8.28
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -29,8 +29,8 @@ class minicomponent_registry
         $this->nonOverridableEventClasses = array();
         $this->error_detected = false;
         $this->unWantedFolderContents = array('.', '..', 'cvs', '.svn', 'registry.php');
-        $this->temp_directory = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS;
-        $this->registry_file = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'registry.php';
+        $this->temp_directory = JOMRES_TEMP_ABSPATH;
+        $this->registry_file = JOMRES_TEMP_ABSPATH.'registry.php';
 
         if (file_exists($this->registry_file)) {
             $this->original_filesize = @filesize($this->registry_file);
@@ -109,11 +109,19 @@ class minicomponent_registry
 
         //delete js files in /jomres/temp dir
         if (isset($_REQUEST['task']) && $_REQUEST['task'] == 'rebuildregistry') {
-            $javascript_files_in_temp_dir = scandir_getfiles(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS, $extension = 'js');
+            $javascript_files_in_temp_dir = scandir_getfiles(JOMRES_TEMP_ABSPATH, $extension = 'js');
             foreach ($javascript_files_in_temp_dir as $file) {
-                unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.$file);
+                unlink(JOMRES_TEMP_ABSPATH.$file);
             }
         }
+		
+		//delete installed and remote plugins cached lists
+		if (file_exists(JOMRES_TEMP_ABSPATH.'installed_plugins_data.php')) {
+			unlink(JOMRES_TEMP_ABSPATH.'installed_plugins_data.php');
+		}
+		if (file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
+			unlink(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
+		}
 
         //rebuild the shortcodes list
         if (!defined('AUTO_UPGRADE')) {

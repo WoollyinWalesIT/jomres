@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.27
+ * @version Jomres 9.8.28
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -574,7 +574,9 @@ class j02990showconfirmation
 
         $site_paypal_settings = get_plugin_settings('paypal', 0);
         $gatewayDeets = array();
-        if ((int) $mrConfig['requireApproval'] == 0 || $secret_key_payment) {
+		$gateways = array();
+		
+        if ((int)$mrConfig['requireApproval'] == 0 || $secret_key_payment) {
             if (!$userIsManager) {
                 $gateway_output = array();
                 $gwo = array();
@@ -582,8 +584,6 @@ class j02990showconfirmation
                 jr_import("gateway_plugin_settings");
                 $plugin_settings = new gateway_plugin_settings();
                 $plugin_settings->get_settings_for_property_uid( $property_uid );
-
-                $gateways = array();
                 
                 if (!empty($plugin_settings->gateway_settings) ) {
                     $counter = 1;

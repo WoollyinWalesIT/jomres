@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.27
+ * @version Jomres 9.8.28
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,22 +21,22 @@ defined('_JOMRES_INITCHECK') or die('');
 // sefsafe: sef url not passed through jomresURL function
 // ajax: ajax safe url
 
-function get_property_details_url($property_uid = 0, $type = 'sef') {
+function get_property_details_url($property_uid = 0, $type = 'sef', $params = '') {
 	switch($type) {
 		case 'sef':
-			$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid);
+			$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid.$params);
 			break;
 		case 'nosef':
-			$url = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=viewproperty&property_uid='.$property_uid);
+			$url = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=viewproperty&property_uid='.$property_uid.$params);
 			break;
 		case 'sefsafe':
-			$url = JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid;
+			$url = JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid.$params;
 			break;
 		case 'ajax':
-			$url = JOMRES_SITEPAGE_URL_AJAX.'&task=viewproperty&property_uid='.$property_uid;
+			$url = JOMRES_SITEPAGE_URL_AJAX.'&task=viewproperty&property_uid='.$property_uid.$params;
 			break;
 		default:
-			$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid);
+			$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid.$params);
 			break;
 	}
 	

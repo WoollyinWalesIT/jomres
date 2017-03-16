@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.27
+ * @version Jomres 9.8.28
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -169,7 +169,7 @@ class j01010listpropertys
                 if (isset($_REQUEST[ 'arrivalDate' ])) {
                     $arrival_clause = '&arrivalDate='.$_REQUEST[ 'arrivalDate' ].'&departureDate='.$_REQUEST[ 'departureDate' ]; // There's no need for these elements to be sanitised, as we're just redirecting again to a new url, these items will be sanitised at that point.
                 }
-                jomresRedirect(get_booking_url($propertys_uids[ 0 ]).$arrival_clause, '');
+                jomresRedirect(get_booking_url($propertys_uids[ 0 ], '', $arrival_clause), '');
             }
 
             if (!isset($jrConfig['use_budget_feature'])) {

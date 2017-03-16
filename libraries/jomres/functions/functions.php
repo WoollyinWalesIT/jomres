@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.27
+ * @version Jomres 9.8.28
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -59,6 +59,7 @@ function add_webhook_notification($contents)
     $webhook_messages = get_showtime('webhook_messages');
     $webhook_messages[] = $contents;
     set_showtime('webhook_messages', $webhook_messages);
+    logging::log_message('Webhook notification set '.$contents->webhook_event, 'Core', 'DEBUG' , serialize($contents) );
 }
 
 
@@ -1232,6 +1233,12 @@ function jomres_validate_gateway_plugin()
         }
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
     $property_uid = get_showtime('property_uid');
+	
+	$mrConfig = getPropertySpecificSettings($property_uid);
+	
+	if ($mrConfig[ 'requireApproval' ] == '1' && !$tmpBookingHandler->tmpbooking[ 'secret_key_payment' ]) {
+		return "NA";
+	}
     
     if (!isset($_REQUEST[ 'plugin' ])) {
         $plugin = $tmpBookingHandler->tmpbooking[ 'gateway' ];

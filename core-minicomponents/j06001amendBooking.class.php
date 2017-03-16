@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.27
+ * @version Jomres 9.8.28
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -51,7 +51,7 @@ class j06001amendBooking
             }
             $propertysList = $tmpArray;
             if (count($propertysList == 1)) {
-                jomresRedirect(get_booking_url($defaultProperty).'&amend=1&contractuid='.$contract_uid, '');
+                jomresRedirect(get_booking_url($defaultProperty,'', '&amend=1&contractuid='.$contract_uid), '');
             }
             $counter = 0;
             foreach ($propertysList as $property) {
