@@ -6293,7 +6293,9 @@ class dobooking
 
                     $unixValidFromDate = $this->getMkTime($rate->validfrom);
                     $unixValidToDate = $this->getMkTime($rate->validto);
-
+		
+		    $dowcheck = $this->filter_tariffs_dowcheck( $rate );
+			
                     foreach ($dateRangeArray as $date) {
                         $pass = false;
                         $this->setErrorLog('setAverageRate::Searching date '.$date.' on current tariff uid: '.$rate->rates_uid);
@@ -6301,14 +6303,17 @@ class dobooking
                         // $unixDay = mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
                         $unixDay = $this->getMkTime($date);
                         if (count($numberOfGuestTypes) > 0) {
-                            if ($unixDay <= $unixValidToDate && $unixDay >= $unixValidFromDate && ($stayDays >= $rate->mindays && $stayDays <= $rate->maxdays) && ($this->total_in_party >= $rate->minpeople && $this->total_in_party <= $rate->maxpeople)) {
+                            if ($dowcheck && $unixDay <= $unixValidToDate && $unixDay >= $unixValidFromDate && ($stayDays >= $rate->mindays && $stayDays <= $rate->maxdays) && ($this->total_in_party >= $rate->minpeople && $this->total_in_party <= $rate->maxpeople)) {
                                 $pass = true;
                             }
                         } else {
-                            if ($unixDay <= $unixValidToDate && $unixDay >= $unixValidFromDate && ($stayDays >= $rate->mindays && $stayDays <= $rate->maxdays)) {
+                            if ($dowcheck && $unixDay <= $unixValidToDate && $unixDay >= $unixValidFromDate && ($stayDays >= $rate->mindays && $stayDays <= $rate->maxdays)) {
                                 $pass = true;
                             }
                         }
+			$dowcheck = $this->filter_tariffs_dowcheck( $rate );                
+                        $pass = $dowcheck && $pass?true:false;
+			    
                         if ($pass) {
                             if (count($datesTilBooking) <= $wisepricethreshold && $mrConfig[ 'wisepriceactive' ] == '1') {
                                 $tmpRate = $rate->roomrateperday;
