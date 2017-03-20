@@ -572,7 +572,6 @@ class j02990showconfirmation
         $booking_parts[ 'TERMSTEXT' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', false);
         $booking_parts[ 'ALERT' ] = jr_gettext('_JOMRES_CONFIRMATION_ALERT', '_JOMRES_CONFIRMATION_ALERT', false);
 
-        $site_paypal_settings = get_plugin_settings('paypal', 0);
         $gatewayDeets = array();
 		$gateways = array();
 		
@@ -640,7 +639,8 @@ class j02990showconfirmation
 
         $cartoutput = array();
         if (isset($MiniComponents->registeredClasses[ '06000show_cart' ])) {
-            if (($site_paypal_settings['override'] == '1' && $jrConfig[ 'useshoppingcart' ] == '1') || count($gatewayDeets) == 0) {
+            $site_paypal_settings = get_plugin_settings('paypal', 0);
+            if ( (isset($site_paypal_settings['override']) && $site_paypal_settings['override'] == '1' && $jrConfig[ 'useshoppingcart' ] == '1') || count($gatewayDeets) == 0) {
                 $booking_parts[ '_JOMRES_CART_OR' ] = jr_gettext('_JOMRES_CART_OR', '_JOMRES_CART_OR');
                 $booking_parts[ '_JOMRES_SAVEFORLATER' ] = '<input class="fg-button ui-state-default ui-corner-all" type="submit" id="send" name="send" value="'.jr_gettext('_JOMRES_CART_SAVEFORLATER', '_JOMRES_CART_SAVEFORLATER', false, false).'" class="button" onclick="return confirmation_validate(true);" />';
                 $cartoutput[ ] = array('_JOMRES_SAVEFORLATER' => jr_gettext('_JOMRES_CART_SAVEFORLATER', '_JOMRES_CART_SAVEFORLATER', false, false), '_JOMRES_CART_OR' => $booking_parts[ '_JOMRES_CART_OR' ]);
