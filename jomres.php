@@ -14,6 +14,9 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
+ignore_user_abort(true);
+set_time_limit(0);
+
 if (isset($_REQUEST['task']) && isset($_REQUEST['field'])) { // Booking engine heartbeat is used to keep the session alive, but doesn't do anything else. We'll kill it dead right off the bat.
     if ($_REQUEST['task'] == 'handlereq' && $_REQUEST['field'] == 'heartbeat') {
         die();
