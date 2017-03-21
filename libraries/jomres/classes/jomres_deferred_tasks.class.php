@@ -31,7 +31,11 @@ class jomres_deferred_tasks {
         if ( is_file($this->queued_tasks_dir.$payload_source) ) {
 			$file_contents = file_get_contents($this->queued_tasks_dir.$payload_source);
 			$result = $this->process_trigger($file_contents);
-            unlink($this->queued_tasks_dir.$payload_source);
+			$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+			$jrConfig          = $siteConfig->get();
+			if ($jrConfig['development_production'] != 'development') {
+                 unlink($this->queued_tasks_dir.$payload_source);
+            }
 		}
     }
 
