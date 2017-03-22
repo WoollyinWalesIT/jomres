@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 class jomres_deferred_tasks {
     public function __construct( ) 
 	{
-        $this->queued_tasks_dir = JOMRES_TEMP_ABSPATH.JRDS.'queued_tasks'.JRDS;
+        $this->queued_tasks_dir = JOMRES_TEMP_ABSPATH.JRDS.'deferred_tasks'.JRDS;
 		
 		$this->file_identifier = '';
 		
@@ -60,7 +60,8 @@ class jomres_deferred_tasks {
 		} else {
 			$MiniComponents->triggerEvent($message_contents->trigger_number , $message_contents->payload );
 		}
-	
+	}
+    
 	public function construct_background_message( $trigger_number = '', $minicomponent = '', $payload = '' )  {
 		if ($trigger_number == '' ) {
 			throw new Exception('Error: trigger number not set ');
@@ -107,11 +108,5 @@ class jomres_deferred_tasks {
          curl_close( $curl );
         logging::log_message("Sent deferred message ".$this->file_identifier." to ".$url , 'Core', 'DEBUG' , serialize($result)  );
      }
-
-    // Todo clean up messages
-    
-    
-    
-	}
     
 }
