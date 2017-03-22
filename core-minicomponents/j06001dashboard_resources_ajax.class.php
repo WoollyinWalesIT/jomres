@@ -60,7 +60,12 @@ class j06001dashboard_resources_ajax
                 }
             }
             $name .= $current_property_details->all_room_types[ $r['room_classes_uid'] ][ 'room_class_abbv' ];
-
+			$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+			$jrConfig          = $siteConfig->get();
+			if ($jrConfig['development_production'] == 'development') {
+                $name .= " UID ".$r['room_uid'];
+            }
+            
             $rooms[] = array(
                             'id' => $r['room_uid'],
                             'title' => $name,
