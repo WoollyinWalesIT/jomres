@@ -53,9 +53,7 @@ if (!strstr($scriptname, 'install_jomres.php')) {
     $jomresItemid = 0; //should only kick in on install
 }
 
-set_showtime('itemid', $jomresItemid);
-
-$siteConfig->set_setting('jomresItemid', $jomresItemid);
+set_showtime('jomresItemid', $jomresItemid);
 
 $disable_cache = false;
 
