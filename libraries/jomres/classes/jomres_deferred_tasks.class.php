@@ -48,17 +48,19 @@ class jomres_deferred_tasks {
 		if (!isset($message_contents->payload)) {
             throw new Exception('Error: Received message with no payload');
         }
-
+        
+        $complete_message = array ( "payload" => $message_contents->payload , "task" => $message_contents->task );
+        
         if (isset($messsage_contents->minicomponent) && $messsage_contents->minicomponent != '' ) {
             if ( $MiniComponents->eventSpecificlyExistsCheck( $message_contents->trigger_number, $messsage_contents->minicomponent  ) ) {
                 logging::log_message("Starting call to minicomponent ".$message_contents->trigger_number.$messsage_contents->minicomponent , 'Core', 'DEBUG' , $message_contents->payload );
-                $MiniComponents->specificEvent($message_contents->trigger_number, $messsage_contents->minicomponent, $message_contents->payload  );
+                $MiniComponents->specificEvent($message_contents->trigger_number, $messsage_contents->minicomponent, $complete_message );
             }
             else {
                 logging::log_message("Failed to find ".$message_contents->trigger_number.$messsage_contents->minicomponent, 'Core', 'WARNING');
             }
 		} else {
-			$MiniComponents->triggerEvent($message_contents->trigger_number , $message_contents->payload );
+			$MiniComponents->triggerEvent($message_contents->trigger_number , $complete_message );
 		}
 	}
     
@@ -77,6 +79,8 @@ class jomres_deferred_tasks {
 		$message = new stdClass();
 		$message->trigger_number = $trigger_number;
 		$message->minicomponent = $minicomponent;
+        $message->task = get_showtime('task'); // For example, the Beds24 plugin will not want to create bookings if they're from import functionality, therefore we need to allow the called script to filter out webhook actions based on tasks
+        
 		$message->payload = $payload;
 		if ( file_put_contents( $this->queued_tasks_dir.$randomstring, serialize($message) ) ) {
 			$this->file_identifier = $randomstring;
@@ -84,8 +88,8 @@ class jomres_deferred_tasks {
 		else {
 			throw new Exception('Error: failed to create '.$this->queued_tasks_dir.$randomstring);
 		}
-		
 	}
+    
     // The dispatcher will receive a trigger, which is a minicomponent trigger *number*, an optional specific event , and the payload string. The string can contain anything required, xml, json, it doesn´t matter as the minicomponent called will use that information as it sees fit.
     public function dispatch_mesage(){
 		if ( $this->file_identifier == '' ) {
