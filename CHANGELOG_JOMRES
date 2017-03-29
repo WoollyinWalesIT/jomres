@@ -1,3 +1,23 @@
+<h3>Jomres 9.8.29 29/03/2017</h3>
+
+<span class="label label-success">Feature</span> Added new deferred task handling functionality.
+<span class="label label-success">Feature</span> Added a new feature to allow each manager to set an external booking url if they want to use a 3rd party website for booking.
+
+<span class="label label-warning">Change</span> Made the slideshow property details url to be a sef url
+<span class="label label-warning">Change</span> Added backtracing to debug level logging.
+<span class="label label-warning">Change</span> Added a number of changes that resolve hack warnings for users with no gateways installed.
+<span class="label label-warning">Change</span> Added a booking management class to help us with various booking related tasks like guests checkin, checkout, etc.
+<span class="label label-warning">Change</span> Added code to prevent calls to site being able to prevent further processing by dint of, for example, timing out. This allows us to implement deferred message handling functionality.
+<span class="label label-warning">Change</span> Added code to show room uids in dashboard if set to development mode.
+<span class="label label-warning">Change</span> Moved the Cancellation Threashold setting in a more appropriate position in property configuration
+<span class="label label-warning">Change</span> Turkish language file updated.
+
+<span class="label label-important label-danger">Fix</span> Solved some minor layout problems in Media Centre
+<span class="label label-important label-danger">Fix</span> Solved some minor problems with some text when editing mode was enabled
+
+<span class="label label-info">Wordpress</span> Solved a problem with the search on WP caused by a typo in the variable name when setting the jomres page_id
+
+
 <h3>Jomres 9.8.28 16/03/2017</h3>
 
 <span class="label label-warning">Change</span> Updated the insertbooking webhook booking_added to be triggered only if the booking is approved or doesn`t require approval.
