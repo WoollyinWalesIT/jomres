@@ -1,20 +1,19 @@
 
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <div id="{RANDOM_ID}">
-	
-		<div class="row" style="padding:5px">
+	<div class="well well-small clearfix">
+		<div class="row">
 			<div class="col-md-4">
 				<img src="{IMAGE_REL_SMALL}" alt="{FILENAME}" class="img-responsive"/>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-5">
 				<h5>{FILENAME}</h5>
 			</div>
-			<div class="col-md-4" align="right">
-				<!-- Removed for 0/8/19 as we now have the preview option<a class="btn btn-primary" target="_blank" href="{IMAGE_REL_LARGE}" title="{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}"><i class="fa fa-search-plus"></i> {_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}</a> -->
+			<div class="col-md-3" align="right">
+				<a class="btn btn-primary" target="_blank" href="{IMAGE_REL_LARGE}" title="{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}"><i class="fa fa-search-plus"></i> <!--{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}--></a>
 				<a class="btn btn-danger" onclick="delete_file('{DELETE_URL}' , '{RANDOM_ID}')" href="javascript:void(0);" title="{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}"><i class="fa fa-trash-o"></i> <!--{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}--></a>
 			</div>
 		</div>
-
+	</div>
 </div>
-<hr/>
 </patTemplate:tmpl>

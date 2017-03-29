@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.28
+ * @version Jomres 9.8.29
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -714,7 +714,7 @@ class j00030search
         }
         if ($showButton == true) {
             $output[ 'SEARCHBLURB' ] = jr_gettext('_JOMRES_FRONT_MR_SEARCH_HERE', '_JOMRES_FRONT_MR_SEARCH_HERE');
-            $output[ 'HSEARCH' ] = jr_gettext('_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON');
+            $output[ 'HSEARCH' ] = jr_gettext('_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON',false);
 
             if (!using_bootstrap()) {
                 $output[ 'THEBUTTON' ] = '<input type="submit" name="send" value="'.jr_gettext('_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON', false).'" class="button" />';

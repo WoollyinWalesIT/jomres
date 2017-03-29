@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.28
+ * @version Jomres 9.8.29
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -144,13 +144,20 @@ class logging
             return $record;
         });
 
-
-        $context = array( 'info_dump' => $further_info_dump);
+        $trace = '';
+        if ( $level == 'DEBUG') {
+            $backtrace = debug_backtrace();
+            $trace = "<br/> File ".$backtrace[1]['file']." Line ".$backtrace[1]['line']. " Function ".$backtrace[1]['function']."<br/> ";
+            $trace .= " File ".$backtrace[2]['file']." Line ".$backtrace[2]['line']. " Function ".$backtrace[2]['function']."<br/> ";
+            $trace .= " File ".$backtrace[3]['file']." Line ".$backtrace[3]['line']. " Function ".$backtrace[3]['function']."<br/> "; 
+        }
+        $context = array( 'info_dump' => $further_info_dump.$trace);
 
         switch ($level) {
             default:
             case 'DEBUG':
                 if ($jrConfig['development_production'] == 'development') {
+
                     $logger->addDebug($message, $context); // Detailed debug information.
                 }
                 break;

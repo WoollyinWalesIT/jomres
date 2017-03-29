@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.28
+ * @version Jomres 9.8.29
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -102,7 +102,7 @@ class j16000jomres_system_info
         //wordpress Page with [jomres:xx-XX] not created yet
         $output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = '';
         $output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = '';
-        if (this_cms_is_wordpress() && (int) get_showtime('itemid') == 0) {
+        if (this_cms_is_wordpress() && (int) get_showtime('jomresItemid') == 0) {
             $output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = (using_bootstrap() ? 'alert alert-error' : 'ui-state-error');
             $output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = jr_gettext('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'JOMRES_DEFAULT_SHORTCODE_ALERT', false);
         }

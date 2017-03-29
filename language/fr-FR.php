@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.28stable
+ * @version Jomres 9.8.29stable
  *
  * @copyright	2005-2017 Vince Wooll
  * Translated to fr-FR by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 14Oct2010 - www.marioliveira.net. Updated 21-Jun2011 for version 5 stable
@@ -3048,3 +3048,6 @@ jr_define('BOOKING_MADE_BY', 'Booking made by');
 
 jr_define('_JOMRES_ROUTER_FEATURES', 'Amenities');
 jr_define('_JOMRES_ROUTER_ROOMTYPES', 'Room Types');
+
+jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL', 'External booking form URL');
+jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', 'Here you can set an external URL if you want to use a 3rd party website for making bookings. All jomres booking buttons will point to this URL. Leave this field blank if you want to use the Jomres booking form.');

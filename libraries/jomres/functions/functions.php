@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.28
+ * @version Jomres 9.8.29
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1231,6 +1231,18 @@ function jomres_validate_gateway_plugin()
     if ($thisJRUser->userIsManager) {
         return 'NA';
         }
+    
+    $installed_gateway_plugins = array();
+    foreach ($MiniComponents->registeredClasses as $event ) {
+        if ($event['eventPoint'] == "00509" ) {
+            $installed_gateway_plugins[] = $event['eventName'];
+        }
+    }
+   // No gateways are installed
+    if ( empty($installed_gateway_plugins) ) {
+        return 'NA';
+    }
+    
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
     $property_uid = get_showtime('property_uid');
 	
@@ -1240,7 +1252,7 @@ function jomres_validate_gateway_plugin()
 		return "NA";
 	}
     
-    if (!isset($_REQUEST[ 'plugin' ])) {
+    if ( !isset($_REQUEST[ 'plugin' ]) && isset($tmpBookingHandler->tmpbooking[ 'gateway' ]) ) {
         $plugin = $tmpBookingHandler->tmpbooking[ 'gateway' ];
         } 
     else {
@@ -1251,6 +1263,10 @@ function jomres_validate_gateway_plugin()
     jr_import("gateway_plugin_settings");
     $plugin_settings = new gateway_plugin_settings();
     $plugin_settings->get_settings_for_property_uid( $property_uid );
+    
+    if (!isset($plugin_settings->gateway_settings[$plugin]) ) { // Gateway has no settings
+        return 'NA';
+    }
 
     if (!$plugin_settings->gateway_settings[$plugin]['active']) {
         gateway_log("Error, gateway passed either doesn't exist, or is not active, probable hack attempt");
@@ -1308,6 +1324,9 @@ function get_plugin_settings($plugin, $prop_id = 0)
     // This function is exclusively for gateway plugins
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
     $gw_configuration_script = '00509'.$plugin;
+    if (!isset($MiniComponents->registeredClasses[$gw_configuration_script])) {
+        return false; // Gateway isn´t installed
+    }
     if (isset($MiniComponents->registeredClasses[$gw_configuration_script]) && count($MiniComponents->registeredClasses[$gw_configuration_script]) == 0) { // Let's check to see that the gateway hasn't been uninstalled. It's possible that the settings exist, but the gateway code itself doesn't.
         return false; // Can't "throw" an error here, any failure needs to be handled by the calling function/method
     }
@@ -1333,6 +1352,7 @@ function get_plugin_settings($plugin, $prop_id = 0)
     jr_import("gateway_plugin_settings");
     $plugin_settings = new gateway_plugin_settings();
     $plugin_settings->get_settings_for_property_uid( $property_uid );
+
 
     return $plugin_settings->gateway_settings[$plugin];
 }
