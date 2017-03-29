@@ -3100,3 +3100,6 @@ jr_define('BOOKING_MADE_BY', 'Rezervasyonu yapan');
 
 jr_define('_JOMRES_ROUTER_FEATURES', 'Kolaylıklar');
 jr_define('_JOMRES_ROUTER_ROOMTYPES', 'Oda tipleri');
+
+jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL', 'External booking form URL');
+jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', 'Here you can set an external URL if you want to use a 3rd party website for making bookings. All jomres booking buttons will point to this URL. Leave this field blank if you want to use the Jomres booking form.');
