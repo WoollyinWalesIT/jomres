@@ -135,17 +135,16 @@ class j06000viewproperty
         if (isset($mrConfig[ 'galleryLink' ]) && $mrConfig[ 'galleryLink' ] != '') {
             $link = array();
 
-            if (function_exists('filter_var')) {
-                $mrConfig[ 'galleryLink' ] = filter_var($mrConfig[ 'galleryLink' ], FILTER_SANITIZE_URL);
-            } else {
-                $mrConfig[ 'galleryLink' ] = jomresURL($mrConfig[ 'galleryLink' ]);
-            }
+            $mrConfig[ 'galleryLink' ] = filter_var($mrConfig[ 'galleryLink' ], FILTER_SANITIZE_URL);
 
-            $link[ 'GALLERYLINK' ] = preg_replace("
-				#((http|https|ftp)://(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie", "'<a href=\"$1\" target=\"_blank\" class=\"fg-button ui-state-default ui-corner-all\">$3</a>$4'", $mrConfig[ 'galleryLink' ]);
+            $link[ 'GALLERYLINK' ] = preg_replace_callback("
+				#((http|https|ftp)://(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#i", 
+				function($m) {return "'<a href=\"$m[1]\" target=\"_blank\" class=\"fg-button ui-state-default ui-corner-all\">$m[3]</a>$m[4]'";}, 
+				$mrConfig[ 'galleryLink' ]);
             $gallerylink[ ] = $link;
         }
-        if (!empty($mappinglink)) {
+        
+		/* if (!empty($mappinglink)) {
             $link = array();
 
             if (filter_var($mappinglink, FILTER_VALIDATE_URL) === true) {
@@ -153,7 +152,7 @@ class j06000viewproperty
                 $link [ 'TEXT' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', false, false);
                 $mappinglink[ ] = $link;
             }
-        }
+        } */
 
         //booking link
         if ($mrConfig[ 'visitorscanbookonline' ] == '1' && $jrConfig[ 'show_booking_form_in_property_details' ] != '1' && $mrConfig[ 'is_real_estate_listing' ] == 0) {
