@@ -1,61 +1,55 @@
 <?php
 /**
- * Core file
+ * Core file.
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.8.18
- * @package Jomres
+ *
+ * @version Jomres 9.8.21
+ *
  * @copyright	2005-2016 Vince Wooll
- * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 class j16000savePfeatureCategory
-	{
-	function __construct()
-		{
-		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch )
-			{
-			$this->template_touchable = false;
+{
+    public function __construct()
+    {
+        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+        if ($MiniComponents->template_touch) {
+            $this->template_touchable = false;
 
-			return;
-			}
+            return;
+        }
 
-		$id      = jomresGetParam( $_POST, 'id', 0 );
-		$title   = jomresGetParam( $_POST, 'title', "" );
+		$jomres_property_features_categories = jomres_singleton_abstract::getInstance('jomres_property_features_categories');
 		
-		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
-		$c->eraseAll();
+        $jomres_property_features_categories->id = (int)jomresGetParam($_POST, 'id', 0);
+        $jomres_property_features_categories->title = jomresGetParam($_POST, 'title', '');
 		
-		if ($title != "")
-			{
-			if ( $id == 0 )
-				{
-				$query = "INSERT INTO #__jomres_hotel_features_categories (`title`) VALUES ('$title') ";
-				if ( doInsertSql( $query, '' ) ) 
-					jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeaturesCategories" ), '');
-				}
-			else
-				{
-				$query = "UPDATE #__jomres_hotel_features_categories SET `title`='$title' WHERE id = " . (int)$id;
-				if ( doInsertSql( $query, '' ) ) 
-					jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=listPfeaturesCategories"), '' );
-				}
+		if ($jomres_property_features_categories->title != '') {
+			if ($jomres_property_features_categories->id > 0) {
+				$jomres_property_features_categories->commit_update_property_features_category();
+			} else {
+				$jomres_property_features_categories->commit_new_property_features_category();
 			}
-		else
-			{
-			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=editPfeatureCategory"), 'Please enter a category title' );
-			}
+		} else {
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=editPfeatureCategory'), 'Please enter a category title');
 		}
 
-	// This must be included in every Event/Mini-component
-	function getRetVals()
-		{
-		return null;
-		}
-	}
+        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
+        $c->eraseAll();
+
+        jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), '');
+    }
+
+    // This must be included in every Event/Mini-component
+    public function getRetVals()
+    {
+        return null;
+    }
+}

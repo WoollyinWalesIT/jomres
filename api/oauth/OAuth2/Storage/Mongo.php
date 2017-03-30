@@ -5,7 +5,7 @@ namespace OAuth2\Storage;
 use OAuth2\OpenID\Storage\AuthorizationCodeInterface as OpenIDAuthorizationCodeInterface;
 
 /**
- * Simple MongoDB storage for all storage types
+ * Simple MongoDB storage for all storage types.
  *
  * NOTE: This class is meant to get users started
  * quickly. If your application requires further
@@ -16,7 +16,8 @@ use OAuth2\OpenID\Storage\AuthorizationCodeInterface as OpenIDAuthorizationCodeI
  *
  * @author Julien Chaumond <chaumond@gmail.com>
  */
-class Mongo implements AuthorizationCodeInterface,
+class Mongo implements
+AuthorizationCodeInterface,
     AccessTokenInterface,
     ClientCredentialsInterface,
     UserCredentialsInterface,
@@ -90,20 +91,20 @@ class Mongo implements AuthorizationCodeInterface,
                 array('client_id' => $client_id),
                 array('$set' => array(
                     'client_secret' => $client_secret,
-                    'redirect_uri'  => $redirect_uri,
-                    'grant_types'   => $grant_types,
-                    'scope'         => $scope,
-                    'user_id'       => $user_id,
+                    'redirect_uri' => $redirect_uri,
+                    'grant_types' => $grant_types,
+                    'scope' => $scope,
+                    'user_id' => $user_id,
                 ))
             );
         } else {
             $client = array(
-                'client_id'     => $client_id,
+                'client_id' => $client_id,
                 'client_secret' => $client_secret,
-                'redirect_uri'  => $redirect_uri,
-                'grant_types'   => $grant_types,
-                'scope'         => $scope,
-                'user_id'       => $user_id,
+                'redirect_uri' => $redirect_uri,
+                'grant_types' => $grant_types,
+                'scope' => $scope,
+                'user_id' => $user_id,
             );
             $this->collection('client_table')->insert($client);
         }
@@ -142,7 +143,7 @@ class Mongo implements AuthorizationCodeInterface,
                     'client_id' => $client_id,
                     'expires' => $expires,
                     'user_id' => $user_id,
-                    'scope' => $scope
+                    'scope' => $scope,
                 ))
             );
         } else {
@@ -151,7 +152,7 @@ class Mongo implements AuthorizationCodeInterface,
                 'client_id' => $client_id,
                 'expires' => $expires,
                 'user_id' => $user_id,
-                'scope' => $scope
+                'scope' => $scope,
             );
             $this->collection('access_token_table')->insert($token);
         }
@@ -163,7 +164,6 @@ class Mongo implements AuthorizationCodeInterface,
     {
         $this->collection('access_token_table')->remove(array('access_token' => $access_token));
     }
-
 
     /* AuthorizationCodeInterface */
     public function getAuthorizationCode($code)
@@ -245,7 +245,7 @@ class Mongo implements AuthorizationCodeInterface,
             'client_id' => $client_id,
             'user_id' => $user_id,
             'expires' => $expires,
-            'scope' => $scope
+            'scope' => $scope,
         );
         $this->collection('refresh_token_table')->insert($token);
 
@@ -280,7 +280,7 @@ class Mongo implements AuthorizationCodeInterface,
                 array('$set' => array(
                     'password' => $password,
                     'first_name' => $firstName,
-                    'last_name' => $lastName
+                    'last_name' => $lastName,
                 ))
             );
         } else {
@@ -288,7 +288,7 @@ class Mongo implements AuthorizationCodeInterface,
                 'username' => $username,
                 'password' => $password,
                 'first_name' => $firstName,
-                'last_name' => $lastName
+                'last_name' => $lastName,
             );
             $this->collection('user_table')->insert($user);
         }
@@ -300,7 +300,7 @@ class Mongo implements AuthorizationCodeInterface,
     {
         $result = $this->collection('jwt_table')->findOne(array(
             'client_id' => $client_id,
-            'subject' => $subject
+            'subject' => $subject,
         ));
 
         return is_null($result) ? false : $result['key'];

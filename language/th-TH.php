@@ -1,8 +1,9 @@
-<?php/**
+<?php
+/**
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.8.18
+ * @version Jomres 9.8.21
  * @package Jomres
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -1390,7 +1391,7 @@ jr_define( "_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE", "Realestate/simple li
 jr_define( "_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE_DESC", "Choose the real estate option if you are not offering any booking functionality at all, (eg. A business/item for sale)" );
 jr_define( "JOMRES_COM_A_MINIMALCONFIG_DESC", "Set this to Yes to reduce the number of options available to business managers in the General Configuration section. This is useful if you do not want business managers to play around with too many settings, instead you can edit jomres_config.php to define default business options." );
 jr_define( "_JOMRES_AJAXFORM_EXTRAS_SELECT", "Please select an option for your booking" );
-jr_define( "_JOMRES_COM_ALLOWHTMLEDITOR_DESC", "Switches on html editors in business details editing page. Additionally, if this is set to No, then all html except p and br is stripped from all entered and displayed text." );
+jr_define( "_JOMRES_COM_ALLOWHTMLEDITOR_DESC", "<p>If this option is set to Yes, then managers will be able to see the html editor provided with the CMS, and enter HTML into the description. This is a potential security risk as there is a possibility that they can introduce unwanted HTML or Javascript. Additionally, if they enter poorly formatted HTML the page design could become compromised. It's better to leave this option set to No wherever possible.</p><p>If all managers are trusted users (e.g. yourself) then you can leave it set to Yes and you modify the different HTML tags that they are allowed to enter in the Input Filtering tab in Site Configuration.</p><p>If, on the other hand, you're using Jomres as a portal where you invite users to add and administer their own properties then this isn't the ideal configuration. Instead you should leave this option set to No. With it set to No managers will instead see a markdown editor that they can use to enter basic formatting which should be sufficient for the majority of users.</p>" );
 jr_define( "_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT", "Fullscreen view" );
 jr_define( "_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW", "Normal view" );
 jr_define( "_JOMRES_COM_TIMEZONE_SWITCHER", "Show the timezone switcher in the business manager's toolbar?" );
@@ -1416,7 +1417,7 @@ jr_define( "_JOMRES_DATA_ARCHIVE_TITLE", "Booking data archive" );
 jr_define( "_JOMRES_DATA_ARCHIVE_TITLE_DESC", "The booking data archive is a raw dump of booking information captured after the confirm booking button is clicked. Hover over a date to see the raw data dump. The information is stored in the XXX__jomres_booking_data_archive table." );
 jr_define( "_JOMRES_MY_ACCOUNT_EDIT", "แก้ไขบัญชี" );
 jr_define( "_JOMRES_MANAGER_CHOOSE_SEARCHTITLE", "Search users" );
-jr_define( "_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS", "Enter a few characters from their username to search for a user.<br/> When you select a user you will automatically add them as a Manager and you will be taken to the next page where you can assign businesses and access rights to the user." );
+jr_define( "_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS", "To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of." );
 jr_define( "_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE", "Existing managers" );
 jr_define( "_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS", "Choose a manager to be taken to the manager administration page." );
 jr_define( "_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER", "ค้นหาแขก" );
@@ -2995,3 +2996,59 @@ jr_define('NO_LICENSE_MESSAGE',"You have not saved a license number in Site Conf
 jr_define('INVALID_LICENSE_MESSAGE',"You seem to be using a license number that's invalid or has expired. Once you have a valid license key saved then you'll be able to install any plugins that are listed as Core plugins.");
 jr_define('VALID_LICENSE_MESSAGE',"Congratulations, you're using a valid license number and can install Core plugins through the Jomres plugin manager.");
 
+
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_MRP', 'This page allows you to upload images for your property and the things you offer. It has one main button, and a second button that allows you to select specific resources to upload images for. So, the Main property image and the Slideshow will only show one button but if you have created any e.g. Optional Extras or Rooms, then you will see a second button where you can upload images for those specific resources.');
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_SRP', 'This page allows you to upload images for your property and the things you offer. It has one main button, and a second button that allows you to select specific resources to upload images for. So, the Main property image and the Slideshow will only show one button but if you have created any Optional Extras then you will see a second button where you can upload images for those specific resources.');
+
+
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_GENERIC', "<ol>
+  <li>First choose the image(s) you'd like to upload by clicking Add Image or using Drag and Drop. These will appear in the column on the right hand side.</li>
+  <li>Above this area, use the \"Choose the resource\" button to choose which resource you want to upload images for. You may be offered the option to choose a specific resource underneath. </li>
+  <li> Once you've chosen a resource you can then click the Upload Image button under an image to associate it with that resource. Once an image has been uploaded, it will disappear from the column on the right hand site, and appear in the left.</li>
+  <li>Use the Trash button next to existing images to remove images you no longer want to be shown.</li>
+  <li>You can change the order that files are shown in the slideshow by renaming them before uploading them, as they are displayed in pages in alphabetical order.</li>
+</ol>
+ ");
+
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_PREVIEW', "Next to the Resource button, you may see a Preview button. If you click on this you will see a popup that shows you how the currently uploaded images will look in a page. This helps to give you an idea of how the images will look to your customers.");
+
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_LIMITATIONS', "There is no limit to the number of images you can upload. Images are automatically resized when they are uploaded. You can only upload JPG and PNG files.");
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_PRE', "Ideally any images you upload would be at least ");
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_POST', " pixels wide, otherwise they may look fuzzy after they've been uploaded.");
+
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_PRE', "Any images you upload cannot be more than ");
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_POST', " in size.");
+
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE', "Choose the resource you want to upload images for");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', "Specific resource");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', "Images already uploaded for this resource");
+
+
+jr_define('_JOMRES_MARKDOWN_TITLE', 'Text formatting');
+jr_define('_JOMRES_MARKDOWN_DESC', 'You can enter text here using simple Markdown formatting. You don\'t need to know any HTML, just use the buttons to make the information look like you want, or format text according to these examples.');
+jr_define('_JOMRES_MARKDOWN_EMPHASIS', 'Emphasis');
+jr_define('_JOMRES_MARKDOWN_BOLD', 'bold');
+jr_define('_JOMRES_MARKDOWN_ITALICS', 'italics');
+jr_define('_JOMRES_MARKDOWN_STRIKETHROUGH', 'strikethrough');
+jr_define('_JOMRES_MARKDOWN_HEADERS', "Headers");
+jr_define('_JOMRES_MARKDOWN_BIGHEADER', 'Big header');
+jr_define('_JOMRES_MARKDOWN_MEDIUMHEADER', "Medium header");
+jr_define('_JOMRES_MARKDOWN_SMALLHEADER', 'Small header');
+jr_define('_JOMRES_MARKDOWN_TINYHEADER', 'Tiny header');
+jr_define('_JOMRES_MARKDOWN_LISTS', "Lists");
+jr_define('_JOMRES_MARKDOWN_GENERICLISTITEM', 'Generic list item');
+jr_define('_JOMRES_MARKDOWN_NUMBEREDLISTITEM', 'Numbered list item');
+jr_define('_JOMRES_MARKDOWN_LINKS', 'Links');
+jr_define('_JOMRES_MARKDOWN_LINKSTEXT', 'Text to display');
+jr_define('_JOMRES_MARKDOWN_QUOTES', 'Quotes');
+jr_define('_JOMRES_MARKDOWN_THISISAQUOTE', 'This is a quote.');
+jr_define('_JOMRES_MARKDOWN_QUOTEMULTIPLE', 'It can span multiple lines!');
+jr_define('_JOMRES_MARKDOWN_IMAGES', 'Images');
+jr_define('_JOMRES_MARKDOWN_TABLE', 'Tables');
+jr_define('_JOMRES_MARKDOWN_COLUMN', 'Column');
+
+
+jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW', 'Show property images as slideshow in property list?');
+jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC', 'If set to yes, a slideshow of property main images will be displayed. If set to no, then the first property main image will be displayed.');
+
+jr_define('EDIT_CMS_USER', 'Edit CMS user');

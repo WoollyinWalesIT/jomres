@@ -1,5 +1,5 @@
 <patTemplate:comment>
- * @version Jomres 9.8.18
+ * @version Jomres 9.8.21
 </patTemplate:comment>
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <style>
@@ -34,8 +34,6 @@
                     this.findByName(element.name).addClass(errorClass).removeClass(validClass);
                 } else {
                     jomresJquery(element).closest('.form-group').removeClass('has-success has-feedback').addClass('has-error has-feedback');
-                    jomresJquery(element).closest('.form-group').find('i.fa').remove();
-                    jomresJquery(element).closest('.form-group').append('<i class="fa fa-exclamation fa-lg form-control-feedback"></i>');
                 }
             },
             unhighlight: function (element, errorClass, validClass) {
@@ -43,8 +41,6 @@
                     this.findByName(element.name).removeClass(errorClass).addClass(validClass);
                 } else {
                     jomresJquery(element).closest('.form-group').removeClass('has-error has-feedback').addClass('has-success has-feedback');
-                    jomresJquery(element).closest('.form-group').find('i.fa').remove();
-                    jomresJquery(element).closest('.form-group').append('<i class="fa fa-check fa-lg form-control-feedback"></i>');
                 }
             }
         });
@@ -228,6 +224,7 @@
 		</div>
 	</div>
 	<div class="clearfix"></div>
+    {MARKDOWN_BUTTON}
 	<div class="form-group">
 		<label class="col-md-2 control-label" for="property_description">{HPROPDESCRIPTION}</label><div id="tour_target_registration_2_description"></div>
 		<div class="col-md-10">
@@ -305,4 +302,6 @@
 	<input type="hidden" name="property_uid" value="{PROPERTYUID}"/>
 	<input type="hidden" name="task" value="saveProperty"/>
 </form>
+
+{SIMPLEMDE_JAVASCRIPT}
 </patTemplate:tmpl>

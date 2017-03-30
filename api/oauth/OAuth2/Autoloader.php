@@ -3,7 +3,7 @@
 namespace OAuth2;
 
 /**
- * Autoloads OAuth2 classes
+ * Autoloads OAuth2 classes.
  *
  * @author    Brent Shaffer <bshafs at gmail dot com>
  * @license   MIT License
@@ -31,9 +31,9 @@ class Autoloader
     /**
      * Handles autoloading of classes.
      *
-     * @param string $class A class name.
+     * @param string $class A class name
      *
-     * @return boolean Returns true if the class has been loaded
+     * @return bool Returns true if the class has been loaded
      */
     public function autoload($class)
     {

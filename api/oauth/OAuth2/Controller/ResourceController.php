@@ -45,12 +45,12 @@ class ResourceController implements ResourceControllerInterface
             return false;
         }
 
-        /**
+        /*
          * Check scope, if provided
          * If token doesn't have a scope, it's null/empty, or it's insufficient, then throw 403
          * @see http://tools.ietf.org/html/rfc6750#section-3.1
          */
-        if ($scope && (!isset($token["scope"]) || !$token["scope"] || !$this->scopeUtil->checkScope($scope, $token["scope"]))) {
+        if ($scope && (!isset($token['scope']) || !$token['scope'] || !$this->scopeUtil->checkScope($scope, $token['scope']))) {
             $response->setError(403, 'insufficient_scope', 'The request requires higher privileges than provided by the access token');
             $response->addHttpHeaders(array(
                 'WWW-Authenticate' => sprintf('%s realm="%s", scope="%s", error="%s", error_description="%s"',
@@ -59,7 +59,7 @@ class ResourceController implements ResourceControllerInterface
                     $scope,
                     $response->getParameter('error'),
                     $response->getParameter('error_description')
-                )
+                ),
             ));
 
             return false;
@@ -80,9 +80,9 @@ class ResourceController implements ResourceControllerInterface
             // Check token expiration (expires is a mandatory paramter)
             if (!$token = $this->tokenStorage->getAccessToken($token_param)) {
                 $response->setError(401, 'invalid_token', 'The access token provided is invalid');
-            } elseif (!isset($token["expires"]) || !isset($token["client_id"])) {
+            } elseif (!isset($token['expires']) || !isset($token['client_id'])) {
                 $response->setError(401, 'malformed_token', 'Malformed token (missing "expires")');
-            } elseif (time() > $token["expires"]) {
+            } elseif (time() > $token['expires']) {
                 $response->setError(401, 'expired_token', 'The access token provided has expired');
             } else {
                 return $token;

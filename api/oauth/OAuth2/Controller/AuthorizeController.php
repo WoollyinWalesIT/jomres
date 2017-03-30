@@ -45,7 +45,7 @@ class AuthorizeController implements AuthorizeControllerInterface
         $this->responseTypes = $responseTypes;
         $this->config = array_merge(array(
             'allow_implicit' => false,
-            'enforce_state'  => true,
+            'enforce_state' => true,
             'require_exact_redirect_uri' => true,
             'redirect_status_code' => 302,
         ), $config);
@@ -70,7 +70,7 @@ class AuthorizeController implements AuthorizeControllerInterface
 
         // If no redirect_uri is passed in the request, use client's registered one
         if (empty($this->redirect_uri)) {
-            $clientData              = $this->clientStorage->getClientDetails($this->client_id);
+            $clientData = $this->clientStorage->getClientDetails($this->client_id);
             $registered_redirect_uri = $clientData['redirect_uri'];
         }
 
@@ -116,10 +116,10 @@ class AuthorizeController implements AuthorizeControllerInterface
     {
         // @TODO: we should be explicit with this in the future
         $params = array(
-            'scope'         => $this->scope,
-            'state'         => $this->state,
-            'client_id'     => $this->client_id,
-            'redirect_uri'  => $this->redirect_uri,
+            'scope' => $this->scope,
+            'state' => $this->state,
+            'client_id' => $this->client_id,
+            'redirect_uri' => $this->redirect_uri,
             'response_type' => $this->response_type,
         );
 
@@ -131,7 +131,7 @@ class AuthorizeController implements AuthorizeControllerInterface
         // Make sure a valid client id was supplied (we can not redirect because we were unable to verify the URI)
         if (!$client_id = $request->query('client_id', $request->request('client_id'))) {
             // We don't have a good URI to use
-            $response->setError(400, 'invalid_client', "No client id supplied");
+            $response->setError(400, 'invalid_client', 'No client id supplied');
 
             return false;
         }
@@ -263,11 +263,11 @@ class AuthorizeController implements AuthorizeControllerInterface
         }
 
         // save the input data and return true
-        $this->scope         = $requestedScope;
-        $this->state         = $state;
-        $this->client_id     = $client_id;
+        $this->scope = $requestedScope;
+        $this->state = $state;
+        $this->client_id = $client_id;
         // Only save the SUPPLIED redirect URI (@see http://tools.ietf.org/html/rfc6749#section-4.1.3)
-        $this->redirect_uri  = $supplied_redirect_uri;
+        $this->redirect_uri = $supplied_redirect_uri;
         $this->response_type = $response_type;
 
         return true;
@@ -276,11 +276,11 @@ class AuthorizeController implements AuthorizeControllerInterface
     /**
      * Build the absolute URI based on supplied URI and parameters.
      *
-     * @param $uri    An absolute URI.
-     * @param $params Parameters to be append as GET.
+     * @param $uri    An absolute URI
+     * @param $params Parameters to be append as GET
      *
      * @return
-     * An absolute URI with supplied parameters.
+     * An absolute URI with supplied parameters
      *
      * @ingroup oauth2_section_4
      */
@@ -291,7 +291,7 @@ class AuthorizeController implements AuthorizeControllerInterface
         // Add our params to the parsed uri
         foreach ($params as $k => $v) {
             if (isset($parse_url[$k])) {
-                $parse_url[$k] .= "&" . http_build_query($v, '', '&');
+                $parse_url[$k] .= '&'.http_build_query($v, '', '&');
             } else {
                 $parse_url[$k] = http_build_query($v, '', '&');
             }
@@ -299,14 +299,14 @@ class AuthorizeController implements AuthorizeControllerInterface
 
         // Put humpty dumpty back together
         return
-            ((isset($parse_url["scheme"])) ? $parse_url["scheme"] . "://" : "")
-            . ((isset($parse_url["user"])) ? $parse_url["user"]
-            . ((isset($parse_url["pass"])) ? ":" . $parse_url["pass"] : "") . "@" : "")
-            . ((isset($parse_url["host"])) ? $parse_url["host"] : "")
-            . ((isset($parse_url["port"])) ? ":" . $parse_url["port"] : "")
-            . ((isset($parse_url["path"])) ? $parse_url["path"] : "")
-            . ((isset($parse_url["query"]) && !empty($parse_url['query'])) ? "?" . $parse_url["query"] : "")
-            . ((isset($parse_url["fragment"])) ? "#" . $parse_url["fragment"] : "")
+            ((isset($parse_url['scheme'])) ? $parse_url['scheme'].'://' : '')
+            .((isset($parse_url['user'])) ? $parse_url['user']
+            .((isset($parse_url['pass'])) ? ':'.$parse_url['pass'] : '').'@' : '')
+            .((isset($parse_url['host'])) ? $parse_url['host'] : '')
+            .((isset($parse_url['port'])) ? ':'.$parse_url['port'] : '')
+            .((isset($parse_url['path'])) ? $parse_url['path'] : '')
+            .((isset($parse_url['query']) && !empty($parse_url['query'])) ? '?'.$parse_url['query'] : '')
+            .((isset($parse_url['fragment'])) ? '#'.$parse_url['fragment'] : '')
         ;
     }
 
@@ -319,7 +319,7 @@ class AuthorizeController implements AuthorizeControllerInterface
     }
 
     /**
-     * Internal method for validating redirect URI supplied
+     * Internal method for validating redirect URI supplied.
      *
      * @param string $inputUri            The submitted URI to be validated
      * @param string $registeredUriString The allowed URI(s) to validate against.  Can be a space-delimited string of URIs to
@@ -358,9 +358,8 @@ class AuthorizeController implements AuthorizeControllerInterface
     }
 
     /**
-     * Convenience methods to access the parameters derived from the validated request
+     * Convenience methods to access the parameters derived from the validated request.
      */
-
     public function getScope()
     {
         return $this->scope;

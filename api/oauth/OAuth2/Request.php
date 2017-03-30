@@ -5,7 +5,7 @@ namespace OAuth2;
 /**
  * OAuth2\Request
  * This class is taken from the Symfony2 Framework and is part of the Symfony package.
- * See Symfony\Component\HttpFoundation\Request (https://github.com/symfony/symfony)
+ * See Symfony\Component\HttpFoundation\Request (https://github.com/symfony/symfony).
  */
 class Request implements RequestInterface
 {
@@ -94,9 +94,9 @@ class Request implements RequestInterface
     /**
      * Returns the request body content.
      *
-     * @param Boolean $asResource If true, a resource will be returned
+     * @param bool $asResource If true, a resource will be returned
      *
-     * @return string|resource The request body content or a resource to read the body stream.
+     * @return string|resource The request body content or a resource to read the body stream
      */
     public function getContent($asResource = false)
     {

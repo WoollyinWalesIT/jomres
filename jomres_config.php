@@ -1,20 +1,21 @@
 <?php
 /**
- * Core file
+ * Core file.
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.8.18
- * @package Jomres
+ *
+ * @version Jomres 9.8.21
+ *
  * @copyright	2005-2016 Vince Wooll
- * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
- 
+
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-$mrConfig = array (
-  'version' => '9.8.18',
+$mrConfig = array(
+  'version' => '9.8.21',
   'newTariffModels' => '2',
   'singlePersonSuppliment' => '0',
   'singlePersonSupplimentCost' => '10',
@@ -150,5 +151,5 @@ $mrConfig = array (
   'defaultSmokingOption' => '2',
   'showSmoking' => '0',
   'useOnlinepayment' => '0',
-  'minimum_deposit_percentage' => '0'
+  'minimum_deposit_percentage' => '0',
 );

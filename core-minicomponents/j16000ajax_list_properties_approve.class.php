@@ -1,73 +1,75 @@
 <?php
 /**
- * Core file
+ * Core file.
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.8.18
- * @package Jomres
+ *
+ * @version Jomres 9.8.21
+ *
  * @copyright	2005-2016 Vince Wooll
- * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( '' );
+defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 class j16000ajax_list_properties_approve
-	{
-	function __construct()
-		{
-		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
-		if ( $MiniComponents->template_touch )
-			{
-			$this->template_touchable = false;
+{
+    public function __construct()
+    {
+        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+        if ($MiniComponents->template_touch) {
+            $this->template_touchable = false;
 
-			return;
-			}
+            return;
+        }
 
-		$property_uid = (int)jomresGetParam( $_REQUEST, 'property_uid', 0 );
-		$approved = (int)jomresGetParam( $_REQUEST, 'approved', 0 );
-		$unpublish = "";
-		
-		if ($approved == 0)
-			$unpublish = ", `published` = 0";
+        $property_uid = (int) jomresGetParam($_REQUEST, 'property_uid', 0);
+        $approved = (int) jomresGetParam($_REQUEST, 'approved', 0);
+        $unpublish = '';
 
-		$query  = "UPDATE #__jomres_propertys SET `approved`= ".$approved." ".$unpublish." WHERE `propertys_uid` = " . (int) $property_uid;
-		$result = doInsertSql( $query );
-		
-		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
-		$c->eraseAll();
+        if ($approved == 0) {
+            $unpublish = ', `published` = 0';
+        }
 
-		$current_property_details = jomres_singleton_abstract::getInstance( 'basic_property_details' );
-		$current_property_details->gather_data( $property_uid );
+        $query = 'UPDATE #__jomres_propertys SET `approved`= '.$approved.' '.$unpublish.' WHERE `propertys_uid` = '.(int) $property_uid;
+        $result = doInsertSql($query);
 
-		$jomresConfig_mailfrom = get_showtime( 'mailfrom' );
-		$jomresConfig_fromname = get_showtime( 'fromname' );
+        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
+        $c->eraseAll();
 
-		$link = jomresURL( JOMRES_SITEPAGE_URL_NOSEF . "&task=viewproperty&property_uid=" . $property_uid );
+        $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+        $current_property_details->gather_data($property_uid);
 
-		switch($approved) {
-			case 1:
-				if ( !jomresMailer( $jomresConfig_mailfrom, $jomresConfig_fromname, $current_property_details->property_email, jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT','_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT',false ), jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT','_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT',false ) . $link, $mode = 1 ) )
-					error_logging( 'Failure in sending approval email to hotel. Target address: ' . $current_property_details->property_email . ' Subject ' . jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT','_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT',false ) );
-				break;
-			case 0:
-				if ( !jomresMailer( $jomresConfig_mailfrom, $jomresConfig_fromname, $current_property_details->property_email, jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT','_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT',false ), jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT','_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT',false ) . $link, $mode = 1 ) )
-					error_logging( 'Failure in sending unapproval email to hotel. Target address: ' . $current_property_details->property_email . ' Subject ' . jr_gettext( '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT','_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT',false ) );
-				break;
-			default:
-				break;
-			}
-		
-		echo "Approval status changed to ".$approved;
-		exit;
-		}
+        $jomresConfig_mailfrom = get_showtime('mailfrom');
+        $jomresConfig_fromname = get_showtime('fromname');
 
+        $link = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=viewproperty&property_uid='.$property_uid);
 
-	// This must be included in every Event/Mini-component
-	function getRetVals()
-		{
-		return null;
-		}
-	}
+        switch ($approved) {
+            case 1:
+                if (!jomresMailer($jomresConfig_mailfrom, $jomresConfig_fromname, $current_property_details->property_email, jr_gettext('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT', '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT', false), jr_gettext('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT', '_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT', false).$link, $mode = 1)) {
+                    error_logging('Failure in sending approval email to hotel. Target address: '.$current_property_details->property_email.' Subject '.jr_gettext('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT', '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT', false));
+                }
+                break;
+            case 0:
+                if (!jomresMailer($jomresConfig_mailfrom, $jomresConfig_fromname, $current_property_details->property_email, jr_gettext('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT', '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT', false), jr_gettext('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT', '_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT', false).$link, $mode = 1)) {
+                    error_logging('Failure in sending unapproval email to hotel. Target address: '.$current_property_details->property_email.' Subject '.jr_gettext('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT', '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT', false));
+                }
+                break;
+            default:
+                break;
+            }
+
+        echo 'Approval status changed to '.$approved;
+        exit;
+    }
+
+    // This must be included in every Event/Mini-component
+    public function getRetVals()
+    {
+        return null;
+    }
+}

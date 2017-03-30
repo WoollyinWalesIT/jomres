@@ -8,7 +8,6 @@ use OAuth2\RequestInterface;
 use OAuth2\ResponseInterface;
 
 /**
- *
  * @author Brent Shaffer <bshafs at gmail dot com>
  */
 class RefreshToken implements GrantTypeInterface
@@ -32,7 +31,7 @@ class RefreshToken implements GrantTypeInterface
     {
         $this->config = array_merge(array(
             'always_issue_new_refresh_token' => false,
-            'unset_refresh_token_after_use' => true
+            'unset_refresh_token_after_use' => true,
         ), $config);
 
         // to preserve B.C. with v1.6
@@ -52,19 +51,19 @@ class RefreshToken implements GrantTypeInterface
 
     public function validateRequest(RequestInterface $request, ResponseInterface $response)
     {
-        if (!$request->request("refresh_token")) {
+        if (!$request->request('refresh_token')) {
             $response->setError(400, 'invalid_request', 'Missing parameter: "refresh_token" is required');
 
             return null;
         }
 
-        if (!$refreshToken = $this->storage->getRefreshToken($request->request("refresh_token"))) {
+        if (!$refreshToken = $this->storage->getRefreshToken($request->request('refresh_token'))) {
             $response->setError(400, 'invalid_grant', 'Invalid refresh token');
 
             return null;
         }
 
-        if ($refreshToken['expires'] > 0 && $refreshToken["expires"] < time()) {
+        if ($refreshToken['expires'] > 0 && $refreshToken['expires'] < time()) {
             $response->setError(400, 'invalid_grant', 'Refresh token has expired');
 
             return null;

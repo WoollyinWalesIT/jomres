@@ -1,3 +1,44 @@
+<h3>Jomres 9.8.20 01/12/2016</h3>
+
+<span class="label label-warning">Change</span> Writability check panel removed as it`s not useful anymore 
+<span class="label label-warning">Change</span> Added a link next to the username input on the edit profiles page to edit the cms user profile
+<span class="label label-warning">Change</span> Improved managers listing so deleted users from the cms that still have access rights to jomres will be marked with an orange label
+<span class="label label-warning">Change</span> Removed some very old obsolete files 
+
+<span class="label label-important label-danger">Fix</span> Fixed a bug where registered users can't create a new property because their access level was set to the wrong value.
+
+<h3>Jomres 9.8.19 28/11/2016</h3>
+
+<span class="label label-success">Feature</span> Added Markdown handling functionality to Jomres. 
+This allows non-super property managers to format text in a simple way without being able to add html to the page. Allowing property managers to enter html in property decriptions is fraught with danger ( Cross site scripting being the main worry), which is why we've always defaulted to the most stringent settings on a default installation. This isn't very friendly for new users, however, or property managers that want to apply some formatting but the site has left the Input Filtering setting to Paranoid. Markdown handling allows non-super managers to add basic formatting to text inputs ( for example Property Details, Checkin times ) without sacrificing security. Two new libraries have been added, one to display a Markdown editor in the Edit Property page ( relevant inputs ) called SimpleMDE and a second ( Parsedown )to parse text before it's output to the page. 
+
+<span class="label label-success">Feature</span> Improved the Media Centre.
+Made media centre drop down buttons larger and gave the primary and secondary dropdowns their own classes to make them stand out more.
+Rooms list added "room" text next to number.
+Removed old image link from the images list, instead resource types are able to offer a "Preview" link, which, if available will show an example of the resource in property page inside a modal.
+Added additional instructions to give clarity for the usage of the buttons.
+
+<span class="label label-success">Feature</span> Added functionality to allow us to show the main menu in selected locations. 
+This allows us to show the Jomres main menu in other places ( See Shortcodes info page ). It doesn't disable the menu from displaying in the Jomres content area, however.
+
+<span class="label label-warning">Change</span> Jomres Core files updated to use PSR2 coding standards.
+<span class="label label-warning">Change</span> Show plugins, Upgrade button renamed to Update.
+<span class="label label-warning">Change</span> Modified input filtering to preserve line breaks in text that's saved to the database. Related to Markdown.
+<span class="label label-warning">Change</span> API updated to log an error instead of output it.
+<span class="label label-warning">Change</span> Added cms specific function to get username by id.
+<span class="label label-warning">Change</span> Modified the license message position in plugin manager.
+<span class="label label-warning">Change</span> Minor language file tweak for th-TH.
+<span class="label label-warning">Change</span> Added new property features classes.
+<span class="label label-warning">Change</span> Completely rebuilt Jomres user roles. Receptionist access level changed from 1 -> 50, manager 2->70, super property manager was having access level 2 and pu set to 1, now it`s 90. Provides scope for future improvements.
+
+<span class="label label-important label-danger">Fix</span> Fixed a typo that prevented us from adding new users in Joomla when making a booking.
+<span class="label label-important label-danger">Fix</span> Resolved an issue with users being unable to add new property types.
+<span class="label label-important label-danger">Fix</span> Modified call to Mobile_Detect class, to check that the class doesn't already exist ( other extensions use the same class, so this could cause conflicts ).
+<span class="label label-important label-danger">Fix</span> Modified contact owner so that the template has it's own version of placeholders that don't have javascript that will cause confusion if the editing mode is enabled.
+<span class="label label-important label-danger">Fix</span> Fixed a query that was failing in some cases, thanks Rod ( Invoices class ).
+<span class="label label-important label-danger">Fix</span> Solved resource/room cloning problem.
+<span class="label label-important label-danger">Fix</span> Fixed a notice for users that deleted all tax rates.
+
 <h3>Jomres 9.8.18 11/11/2016</h3>
 
 <span class="label label-warning">Change</span> Resolved an issue where cron jobs were throwing notices on installation/upgrade.

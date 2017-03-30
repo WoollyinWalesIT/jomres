@@ -1,0 +1,81 @@
+<patTemplate:comment>
+ * @version Jomres 9.8.21
+</patTemplate:comment>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  <i class="fa fa-indent" aria-hidden="true"></i> {_JOMRES_MARKDOWN_TITLE}
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{_JOMRES_MARKDOWN_TITLE}</h4>
+      </div>
+      <div class="modal-body">
+        <p>{_JOMRES_MARKDOWN_DESC}</p>
+
+        <h4>{_JOMRES_MARKDOWN_EMPHASIS}</h4>
+        <pre>
+        **<strong>{_JOMRES_MARKDOWN_BOLD}</strong>**
+        *<em>{_JOMRES_MARKDOWN_ITALICS}</em>*
+        ~~<strike>{_JOMRES_MARKDOWN_STRIKETHROUGH}</strike>~~</pre>
+
+        <h4>{_JOMRES_MARKDOWN_HEADERS}</h4>
+        <pre>
+        # {_JOMRES_MARKDOWN_BIGHEADER}
+        ## {_JOMRES_MARKDOWN_MEDIUMHEADER}
+        ### {_JOMRES_MARKDOWN_SMALLHEADER}
+        #### {_JOMRES_MARKDOWN_TINYHEADER}</pre>
+
+        <h4>{_JOMRES_MARKDOWN_LISTS}</h4>
+        <pre>
+        * {_JOMRES_MARKDOWN_GENERICLISTITEM}
+        * {_JOMRES_MARKDOWN_GENERICLISTITEM}
+        * {_JOMRES_MARKDOWN_GENERICLISTITEM}
+
+        1. {_JOMRES_MARKDOWN_NUMBEREDLISTITEM}
+        2. {_JOMRES_MARKDOWN_NUMBEREDLISTITEM}
+        3. {_JOMRES_MARKDOWN_NUMBEREDLISTITEM}</pre>
+
+        <h4>{_JOMRES_MARKDOWN_LINKS}</h4>
+        <pre>
+        [{_JOMRES_MARKDOWN_LINKSTEXT}](http://www.example.com)</pre>
+
+        <h4>{_JOMRES_MARKDOWN_QUOTES}</h4>
+        <pre>
+        > {_JOMRES_MARKDOWN_THISISAQUOTE}
+        > {_JOMRES_MARKDOWN_QUOTEMULTIPLE}</pre>
+
+        <h4>{_JOMRES_MARKDOWN_IMAGES}</h4>
+        <pre>
+        ![](http://www.example.com/image.jpg)</pre>
+
+        <h4>{_JOMRES_MARKDOWN_TABLE}</h4>
+        <pre>
+        | {_JOMRES_MARKDOWN_COLUMN} 1 | {_JOMRES_MARKDOWN_COLUMN} 2 | {_JOMRES_MARKDOWN_COLUMN} 3 |
+        | -------- | -------- | -------- |
+        | John     | Doe      | Male     |
+        | Mary     | Smith    | Female   |
+
+        <em>Or without aligning the columns...</em>
+
+        | {_JOMRES_MARKDOWN_COLUMN} 1 | {_JOMRES_MARKDOWN_COLUMN} 2 | {_JOMRES_MARKDOWN_COLUMN} 3 |
+        | -------- | -------- | -------- |
+        | John | Doe | Male |
+        | Mary | Smith | Female |
+        </pre>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{COMMON_CLOSE}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</patTemplate:tmpl>

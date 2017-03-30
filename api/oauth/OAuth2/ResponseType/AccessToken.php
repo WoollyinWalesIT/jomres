@@ -6,7 +6,6 @@ use OAuth2\Storage\AccessTokenInterface as AccessTokenStorageInterface;
 use OAuth2\Storage\RefreshTokenInterface;
 
 /**
- *
  * @author Brent Shaffer <bshafs at gmail dot com>
  */
 class AccessToken implements AccessTokenInterface
@@ -33,8 +32,8 @@ class AccessToken implements AccessTokenInterface
         $this->refreshStorage = $refreshStorage;
 
         $this->config = array_merge(array(
-            'token_type'             => 'bearer',
-            'access_lifetime'        => 3600,
+            'token_type' => 'bearer',
+            'access_lifetime' => 3600,
             'refresh_token_lifetime' => 1209600,
         ), $config);
     }
@@ -52,10 +51,10 @@ class AccessToken implements AccessTokenInterface
          * @see http://tools.ietf.org/html/rfc6749#section-4.2.2
          */
         $includeRefreshToken = false;
-        $result["fragment"] = $this->createAccessToken($params['client_id'], $user_id, $params['scope'], $includeRefreshToken);
+        $result['fragment'] = $this->createAccessToken($params['client_id'], $user_id, $params['scope'], $includeRefreshToken);
 
         if (isset($params['state'])) {
-            $result["fragment"]["state"] = $params['state'];
+            $result['fragment']['state'] = $params['state'];
         }
 
         return array($params['redirect_uri'], $result);
@@ -64,9 +63,9 @@ class AccessToken implements AccessTokenInterface
     /**
      * Handle the creation of access token, also issue refresh token if supported / desirable.
      *
-     * @param $client_id                client identifier related to the access token.
+     * @param $client_id                client identifier related to the access token
      * @param $user_id                  user ID associated with the access token
-     * @param $scope                    OPTIONAL scopes to be stored in space-separated string.
+     * @param $scope                    OPTIONAL scopes to be stored in space-separated string
      * @param bool $includeRefreshToken if true, a new refresh_token will be added to the response
      *
      * @see http://tools.ietf.org/html/rfc6749#section-5
@@ -75,13 +74,13 @@ class AccessToken implements AccessTokenInterface
     public function createAccessToken($client_id, $user_id, $scope = null, $includeRefreshToken = true)
     {
         $token = array(
-            "access_token" => $this->generateAccessToken(),
-            "expires_in" => $this->config['access_lifetime'],
-            "token_type" => $this->config['token_type'],
-            "scope" => $scope
+            'access_token' => $this->generateAccessToken(),
+            'expires_in' => $this->config['access_lifetime'],
+            'token_type' => $this->config['token_type'],
+            'scope' => $scope,
         );
 
-        $this->tokenStorage->setAccessToken($token["access_token"], $client_id, $user_id, $this->config['access_lifetime'] ? time() + $this->config['access_lifetime'] : null, $scope);
+        $this->tokenStorage->setAccessToken($token['access_token'], $client_id, $user_id, $this->config['access_lifetime'] ? time() + $this->config['access_lifetime'] : null, $scope);
 
         /*
          * Issue a refresh token also, if we support them
@@ -90,7 +89,7 @@ class AccessToken implements AccessTokenInterface
          * is supplied in the constructor
          */
         if ($includeRefreshToken && $this->refreshStorage) {
-            $token["refresh_token"] = $this->generateRefreshToken();
+            $token['refresh_token'] = $this->generateRefreshToken();
             $expires = 0;
             if ($this->config['refresh_token_lifetime'] > 0) {
                 $expires = time() + $this->config['refresh_token_lifetime'];
@@ -108,7 +107,7 @@ class AccessToken implements AccessTokenInterface
      * other access token generation schemes.
      *
      * @return
-     * An unique access token.
+     * An unique access token
      *
      * @ingroup oauth2_section_4
      */
@@ -133,21 +132,22 @@ class AccessToken implements AccessTokenInterface
             }
         }
         // Last resort which you probably should just get rid of:
-        $randomData = mt_rand() . mt_rand() . mt_rand() . mt_rand() . microtime(true) . uniqid(mt_rand(), true);
+        $randomData = mt_rand().mt_rand().mt_rand().mt_rand().microtime(true).uniqid(mt_rand(), true);
 
         return substr(hash('sha512', $randomData), 0, 40);
     }
 
     /**
-     * Generates an unique refresh token
+     * Generates an unique refresh token.
      *
      * Implementing classes may want to override this function to implement
      * other refresh token generation schemes.
      *
      * @return
-     * An unique refresh.
+     * An unique refresh
      *
      * @ingroup oauth2_section_4
+     *
      * @see OAuth2::generateAccessToken()
      */
     protected function generateRefreshToken()
@@ -158,11 +158,12 @@ class AccessToken implements AccessTokenInterface
     /**
      * Handle the revoking of refresh tokens, and access tokens if supported / desirable
      * RFC7009 specifies that "If the server is unable to locate the token using
-     * the given hint, it MUST extend its search across all of its supported token types"
+     * the given hint, it MUST extend its search across all of its supported token types".
      *
      * @param $token
      * @param null $tokenTypeHint
-     * @return boolean
+     *
+     * @return bool
      */
     public function revokeToken($token, $tokenTypeHint = null)
     {
@@ -172,7 +173,7 @@ class AccessToken implements AccessTokenInterface
             }
         }
 
-        /** @TODO remove in v2 */
+        /* @TODO remove in v2 */
         if (!method_exists($this->tokenStorage, 'unsetAccessToken')) {
             throw new \RuntimeException(
                 sprintf('Token storage %s must implement unsetAccessToken method', get_class($this->tokenStorage)
@@ -181,7 +182,7 @@ class AccessToken implements AccessTokenInterface
 
         $revoked = $this->tokenStorage->unsetAccessToken($token);
 
-        // if a typehint is supplied and fails, try other storages 
+        // if a typehint is supplied and fails, try other storages
         // @see https://tools.ietf.org/html/rfc7009#section-2.1
         if (!$revoked && $tokenTypeHint != 'refresh_token') {
             if ($this->refreshStorage) {
