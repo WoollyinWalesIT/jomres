@@ -30,7 +30,7 @@ class jrportal_rooms
         $this->room_name = '';        // room name
         $this->room_number = '';        // room number
         $this->room_floor = '';        // room floor
-        $this->max_people = '';        // room`s max guests
+        $this->max_people = 1;        // room`s max guests
         $this->singleperson_suppliment = '';        // single person suppliment
 
         //multiple rooms creation
@@ -233,7 +233,7 @@ class jrportal_rooms
             return false;
         }
 
-        $query = 'SELECT `room_bookings_uid` FROM #__jomres_room_bookings WHERE `room_uid` = '.(int) $this->room_uid.' AND property_uid = '.(int) $this->propertys_uid." AND DATE_FORMAT(`date`, '%Y/%m/%d') >= DATE_FORMAT('".date('Y/m/d')."', '%Y/%m/%d') ";
+        $query = 'SELECT `room_bookings_uid` FROM #__jomres_room_bookings WHERE `room_uid` = '.(int)$this->room_uid.' AND property_uid = '.(int)$this->propertys_uid." AND DATE_FORMAT(`date`, '%Y/%m/%d') >= DATE_FORMAT('".date('Y/m/d')."', '%Y/%m/%d') LIMIT 1";
         $result = doSelectSql($query);
 
         if (count($result) > 0) {

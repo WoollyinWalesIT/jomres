@@ -128,29 +128,29 @@ class basic_rate_details
 		}
 		
 		foreach ($result as $r) {
-			$this->multi_query_rates[$r->property_uid][$r->roomclass_uid][$r->tarifftype_id][$r->rates_uid] = array(
-				'rates_uid' => $r->rates_uid,
+			$this->multi_query_rates[(int)$r->property_uid][(int)$r->roomclass_uid][(int)$r->tarifftype_id][(int)$r->rates_uid] = array(
+				'rates_uid' => (int)$r->rates_uid,
 				'rate_title' => jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID'.$r->tarifftype_id, stripslashes($r->name)),
 				'rate_description' => $r->description,
 				'validfrom' => $r->validfrom,
 				'validto' => $r->validto,
 				'roomrateperday' => $r->roomrateperday,
-				'mindays' => $r->mindays,
-				'maxdays' => $r->maxdays,
-				'minpeople' => $r->minpeople,
-				'maxpeople' => $r->maxpeople,
-				'roomclass_uid' => $r->roomclass_uid,
-				'ignore_pppn' => $r->ignore_pppn,
-				'allow_ph' => $r->allow_ph,
-				'allow_we' => $r->allow_we,
-				'weekendonly' => $r->weekendonly,
-				'validfrom_ts' => $r->validfrom_ts,
-				'validto_ts' => $r->validto_ts,
-				'dayofweek' => $r->dayofweek,
-				'minrooms_alreadyselected' => $r->minrooms_alreadyselected,
-				'maxrooms_alreadyselected' => $r->maxrooms_alreadyselected,
-				'property_uid' => $r->property_uid,
-				'tarifftype_id' => $r->tarifftype_id
+				'mindays' => (int)$r->mindays,
+				'maxdays' => (int)$r->maxdays,
+				'minpeople' => (int)$r->minpeople,
+				'maxpeople' => (int)$r->maxpeople,
+				'roomclass_uid' => (int)$r->roomclass_uid,
+				'ignore_pppn' => (int)$r->ignore_pppn,
+				'allow_ph' => (int)$r->allow_ph,
+				'allow_we' => (int)$r->allow_we,
+				'weekendonly' => (int)$r->weekendonly,
+				'validfrom_ts' => (int)$r->validfrom_ts,
+				'validto_ts' => (int)$r->validto_ts,
+				'dayofweek' => (int)$r->dayofweek,
+				'minrooms_alreadyselected' => (int)$r->minrooms_alreadyselected,
+				'maxrooms_alreadyselected' => (int)$r->maxrooms_alreadyselected,
+				'property_uid' => (int)$r->property_uid,
+				'tarifftype_id' => (int)$r->tarifftype_id
 				);
 		}
 

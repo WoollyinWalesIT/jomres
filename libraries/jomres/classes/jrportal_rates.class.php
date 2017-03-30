@@ -33,20 +33,20 @@ class jrportal_rates
 		$this->rates_defaults = array();
 		$this->rates_defaults['rate_title'] 				= 'Tariff';
 		$this->rates_defaults['rate_description'] 			= '';
-		$this->rates_defaults['validfrom'] 					= '';
-		$this->rates_defaults['validto'] 					= '';
+		$this->rates_defaults['validfrom'] 					= date("Y/m/d");
+		$this->rates_defaults['validto'] 					= date("Y/m/d");
 		$this->rates_defaults['roomrateperday'] 			= 100.55;
 		$this->rates_defaults['mindays'] 					= 1;
 		$this->rates_defaults['maxdays'] 					= 365;
 		$this->rates_defaults['minpeople'] 					= 1;
 		$this->rates_defaults['maxpeople']					= 100;
 		$this->rates_defaults['roomclass_uid'] 				= 0;
-		$this->rates_defaults['ignore_pppn'] 				= 1;
+		$this->rates_defaults['ignore_pppn'] 				= 0;
 		$this->rates_defaults['allow_ph'] 					= 1;
 		$this->rates_defaults['allow_we'] 					= 1;
 		$this->rates_defaults['weekendonly'] 				= 0;
-		$this->rates_defaults['validfrom_ts'] 				= '';
-		$this->rates_defaults['validto_ts'] 				= '';
+		$this->rates_defaults['validfrom_ts'] 				= date("Y-m-d");
+		$this->rates_defaults['validto_ts'] 				= date("Y-m-d");
 		$this->rates_defaults['dayofweek'] 					= 7;
 		$this->rates_defaults['minrooms_alreadyselected'] 	= 0;
 		$this->rates_defaults['maxrooms_alreadyselected'] 	= 100;
@@ -118,7 +118,7 @@ class jrportal_rates
 			throw new Exception('Error: this tarifftype doesn`t have any tariff_id, so tariffs are not configured properly. Please create the tariffs again.');
 		} else {
 			foreach ($result as $r) {
-				$this->rates[$this->tarifftype_id][$r->tariff_id]['rates_uid'] = $r->tariff_id;
+				$this->rates[$this->tarifftype_id][(int)$r->tariff_id]['rates_uid'] = (int)$r->tariff_id;
 			}
 		}
 
@@ -403,8 +403,9 @@ class jrportal_rates
 		}
 		
 		//update the tarifftype rates xref
-		if ($this->update_tarifftype_rate_xref())
+		if ($this->update_tarifftype_rate_xref()) {
 			return true;
+		}
 		
 		return false;
 	}
@@ -553,4 +554,251 @@ class jrportal_rates
 		
 		return true;
     }
+	
+	//this function is used only for Advanced and Normal tariff editing modes and it`s assumed that each rate uid will have it`s own tarifftype id
+	//only Micromanage has more rate uids for the same tarifftype id
+	public function get_tarifftype_id($rates_uid = 0)
+	{
+		if ($this->property_uid == 0) {
+            throw new Exception('Error: Property uid not set.');
+        }
+		
+		if ($rates_uid == 0) {
+            throw new Exception('Error: Rate uid not set.');
+        }
+
+		//get tarifftype id TODO: remove this, we already have this data in _jomres_rates table..
+		$query = "SELECT `tarifftype_id` FROM #__jomcomp_tarifftype_rate_xref WHERE `tariff_id` = ".(int)$rates_uid." AND `property_uid` = ".(int)$this->property_uid;
+		$tarifftype_id = (int)doSelectSql($query,1);
+
+		if ($tarifftype_id == 0) {
+			$tarifftype_id = $this->create_tarifftype($rates_uid);
+		}
+		
+		return $tarifftype_id;
+	}
+	
+	//create tarifftype for existing rate uid (used for Advanced and Normal mode tariff saved a long time ago..)
+	private function create_tarifftype($rates_uid = 0)
+	{
+		if ($this->property_uid == 0) {
+            throw new Exception('Error: Property uid not set.');
+        }
+		
+		if ($rates_uid == 0) {
+            throw new Exception('Error: Rate uid not set.');
+        }
+		
+		$id = 0;
+		
+		//get tariff name and description
+		$query = "SELECT `rate_title`, `rate_description`, `roomclass_uid` FROM #__jomres_rates WHERE `rates_uid` = ".(int)$rates_uid." AND `property_uid` = ".(int)$this->property_uid;
+		$result = doSelectSql($query,2);
+		
+		if (empty($result)) {
+			throw new Exception('Error: Could not get tariff details for rate uid.');
+		}
+
+		//create new tarifftype
+		$query = "INSERT INTO #__jomcomp_tarifftypes 
+							(
+							`name`,
+							`description`,
+							`property_uid`
+							) 
+						VALUES 
+							(
+							'".$result['rate_title']."',
+							'".$result['rate_description']."',
+							".(int)$this->property_uid."
+							)";
+		$id = doInsertSql($query,'');
+		
+		if (!$id) {
+			throw new Exception('Error: Could not insert automatically generated tarifftype.');
+		}
+		
+		//create new tarifftype rate xref
+		$query = "INSERT INTO #__jomcomp_tarifftype_rate_xref 
+						(
+						`tarifftype_id`,
+						`tariff_id`,
+						`roomclass_uid`,
+						`property_uid`
+						) 
+					VALUES 
+						(
+						".(int)$id.",
+						".(int)$rates_uid.",
+						".(int)$result['roomclass_uid'].",
+						".(int)$this->property_uid."
+						)";
+		if (!doInsertSql($query,'')) {
+			throw new Exception('Error: Could not insert automatically generated tarifftype rate xref.');
+		}
+		
+		return (int)$id;
+	}
+	
+	/*
+	* Legacy functions
+	*/
+	//Save legacy tariff (advanced and normal modes)
+    public function save_rate_legacy()
+    {
+		if ($this->property_uid == 0) {
+            throw new Exception('Error: Property uid not set.');
+        }
+		
+		//insert or update the tarifftype details
+		$this->update_tarifftype_details();
+		
+		if ($this->rates_uid > 0) {
+			$this->update_rate_legacy();
+		} else {
+			$this->insert_new_rate_legacy();
+		}
+	
+		//webhook notification
+		$webhook_notification                               = new stdClass();
+		$webhook_notification->webhook_event                = 'tariffs_updated';
+		$webhook_notification->webhook_event_description    = 'Logs when tariffs updated.';
+		$webhook_notification->webhook_event_plugin         = 'advanced_micromanage_tariff_editing_modes';
+		$webhook_notification->data                         = new stdClass();
+		$webhook_notification->data->property_uid           = $this->property_uid;
+		add_webhook_notification($webhook_notification);
+	
+		return true;
+    }
+	
+	//insert new rates/tariffs legacy mode
+	private function insert_new_rate_legacy()
+	{
+		if ($this->property_uid == 0) {
+            throw new Exception('Error: Property uid not set.');
+        }
+		
+		if ($this->tarifftype_id == 0) {
+            throw new Exception('Error: Tarifftype id not set.');
+        }
+		
+		if ($this->rates_uid > 0) {
+            throw new Exception('Error: Are you sure you`re creating a new tariff?');
+        }
+		
+		$this->validfrom_ts = str_replace("/","-",$this->validfrom);
+		$this->validto_ts = str_replace("/","-",$this->validto);
+		
+		$query = "INSERT INTO #__jomres_rates 
+						(
+						`rate_title`,
+						`rate_description`,
+						`validfrom`,
+						`validto`,
+						`roomrateperday`,
+						`mindays`,
+						`maxdays`,
+						`minpeople`,
+						`maxpeople`,
+						`roomclass_uid`,
+						`ignore_pppn`,
+						`allow_ph`,
+						`allow_we`,
+						`weekendonly`,
+						`dayofweek`,
+						`minrooms_alreadyselected`,
+						`maxrooms_alreadyselected`,
+						`validfrom_ts`,
+						`validto_ts`,
+						`property_uid`
+						)
+					VALUES 
+						(
+						'".$this->rate_title."',
+						'".$this->rate_description."',
+						'".$this->validfrom."',
+						'".$this->validto."',
+						".$this->roomrateperday.",
+						".(int)$this->mindays.",
+						".(int)$this->maxdays.",
+						".(int)$this->minpeople.",
+						".(int)$this->maxpeople.",
+						".(int)$this->roomclass_uid.",
+						".(int)$this->ignore_pppn.",
+						".(int)$this->allow_ph.",
+						".(int)$this->allow_we.",
+						".(int)$this->weekendonly.",
+						".(int)$this->dayofweek.",
+						".(int)$this->minrooms_alreadyselected.",
+						".(int)$this->maxrooms_alreadyselected.",
+						'".$this->validfrom_ts."',
+						'".$this->validto_ts."',
+						".(int)$this->property_uid."
+						)";
+		
+		$new_rate_uid = doInsertSql($query,'');
+		
+		if (!$new_rate_uid) {
+			throw new Exception('Error: Inserting new tariff failed.');
+		} else {
+			$this->new_rates_uids[] = (int)$new_rate_uid;
+		}
+		
+		//update the tarifftype rates xref
+		if ($this->update_tarifftype_rate_xref()) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	//update rates/tariffs legacy mode
+	private function update_rate_legacy()
+	{
+		if ($this->property_uid == 0) {
+            throw new Exception('Error: Property uid not set.');
+        }
+		
+		if ($this->tarifftype_id == 0) {
+            throw new Exception('Error: Tarifftype id not set.');
+        }
+		
+		if ($this->rates_uid == 0) {
+            throw new Exception('Error: Are you sure you`re updatring an existing tariff?');
+        }
+		
+		$this->validfrom_ts = str_replace("/","-",$this->validfrom);
+		$this->validto_ts = str_replace("/","-",$this->validto);
+		
+		$query = "UPDATE #__jomres_rates SET
+						`rate_title` = '".$this->rate_title."',
+						`rate_description` = '".$this->rate_description."',
+						`validfrom` = '".$this->validfrom."',
+						`validto` = '".$this->validto."',
+						`roomrateperday` = ".$this->roomrateperday.",
+						`mindays` = ".(int)$this->mindays.",
+						`maxdays` = ".(int)$this->maxdays.",
+						`minpeople` = ".(int)$this->minpeople.",
+						`maxpeople` = ".(int)$this->maxpeople.",
+						`roomclass_uid` = ".(int)$this->roomclass_uid.",
+						`ignore_pppn` = ".(int)$this->ignore_pppn.",
+						`allow_ph` = ".(int)$this->allow_ph.",
+						`allow_we` = ".(int)$this->allow_we.",
+						`weekendonly` = ".(int)$this->weekendonly.",
+						`dayofweek` = ".(int)$this->dayofweek.",
+						`minrooms_alreadyselected` = ".(int)$this->minrooms_alreadyselected.",
+						`maxrooms_alreadyselected` = ".(int)$this->maxrooms_alreadyselected.",
+						`validfrom_ts` = '".$this->validfrom_ts."',
+						`validto_ts` = '".$this->validto_ts."'
+					WHERE
+						`rates_uid` = ".(int)$this->rates_uid."
+					AND
+						`property_uid` = ".(int)$this->property_uid;
+		
+		if (!doInsertSql($query,'')) {
+			throw new Exception('Error: Unable to update tariff details in legacy mode.');
+		}
+
+		return true;
+	}
 }

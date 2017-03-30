@@ -45,6 +45,11 @@ class j06002edit_tariffs_normal
 		$basic_rate_details = jomres_singleton_abstract::getInstance( 'basic_rate_details' );
 		$basic_rate_details->get_rates($defaultProperty);
 
+		//we need the jrrportal_rates object to create a tarifftype id if none exists for the existing rate uids
+		jr_import('jrportal_rates');
+		$jrportal_rates = new jrportal_rates();
+		$jrportal_rates->property_uid = $defaultProperty;
+
         $output = array();
 		$rows = array();
         $pageoutput = array();
@@ -62,13 +67,16 @@ class j06002edit_tariffs_normal
             $jomres_properties->delete_rooms_tariffs_settings(true, true, false);
             $basic_rate_details->rates = array();
         }
-		
-		//get room uids of each room type
+
+		//get existing rooms and tariffs data we need
+		//normal mode created just one rates_uid and one tarifftype_id for each room type, there can`t be more for the same room type.
 		foreach ($basic_property_details->this_property_room_classes as $k => $v) {
 			$existing_rooms[ $k ][ 'room_uids' ] = array();
 			$existing_rooms[ $k ][ 'max_people' ] = 1;
+			$existing_tariffs[ $k ][ 'rates_uid' ] = 0;
 			$existing_tariffs[ $k ][ 'roomrateperday' ] = 0.00;
 			$existing_tariffs[ $k ][ 'maxpeople_tariff' ] = 1;
+			$existing_tariffs[ $k ][ 'tarifftype_id' ] = 0;
 			
 			if (!empty($basic_room_details->rooms)) {
                 foreach ($basic_room_details->rooms as $room) {
@@ -86,6 +94,15 @@ class j06002edit_tariffs_normal
 				foreach ($basic_rate_details->rates[$k] as $tarifftype_id) {
 					foreach ($tarifftype_id as $rate) {
 						if ($rate['roomclass_uid'] == $k) {
+							$existing_tariffs[ $k ][ 'rates_uid' ] = $rate['rates_uid'];
+							
+							//check if this rate has a tarifftype created, if not, automatically create one
+							if ($rate['tarifftype_id'] == 0 && $rate['rates_uid'] > 0) {
+								$existing_tariffs[ $k ][ 'tarifftype_id' ] = $jrportal_rates->get_tarifftype_id($rate['rates_uid']);
+							} else {
+								$existing_tariffs[ $k ][ 'tarifftype_id' ] = $rate['tarifftype_id'];
+							}
+							
 							if ($existing_tariffs[ $k ][ 'roomrateperday' ] < $rate['roomrateperday']) {
 								$existing_tariffs[ $k ][ 'roomrateperday' ] = $rate['roomrateperday'];
 							}
@@ -99,12 +116,14 @@ class j06002edit_tariffs_normal
 			}
 		}
 		
+		//toolbar
 		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
         $jrtb = $jrtbar->startTable();
         $jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'save_normalmode_tariffs');
         $jrtb .= $jrtbar->endTable();
         $output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
+		//labels
         $output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE', '_JOMRES_COM_MR_LISTTARIFF_TITLE', false).' &amp; '.jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false);
         $output[ 'HROOMCLASS' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', false);
         $output[ 'HNUMBEROFROOMS' ] = jr_gettext('_JOMRES_NUMBEROFROOMSAVAILABLE', '_JOMRES_NUMBEROFROOMSAVAILABLE', false);
@@ -128,10 +147,9 @@ class j06002edit_tariffs_normal
                 $rw[ 'MAX_PEOPLE_ROOM' ] = jomresHTML::integerSelectList(01, 100, 1, "max_people[$roomtype_id]", 'class="input-mini"', $existing_rooms[ $roomtype_id ][ 'max_people' ], '%02d');
                 $rw[ 'MAX_PEOPLE_TARIFF' ] = jomresHTML::integerSelectList(01, 100, 1, "maxpeople_tariff[$roomtype_id]", 'class="input-mini"', $existing_tariffs[ $roomtype_id ][ 'maxpeople_tariff' ], '%02d');
 
-                $rw[ 'existingrooms' ] = '';
-                if ($this_roomtype_count > 0) {
-                    $rw[ 'existingrooms' ] = '<input type="hidden" name="existingrooms['.$roomtype_id.']" value="'.implode(',', $existing_rooms[ $roomtype_id ][ 'room_uids' ]).'" />';
-                }
+                $rw[ 'EXISTINGROOMS' ] = '<input type="hidden" name="existingrooms['.$roomtype_id.']" value="'.implode(',', $existing_rooms[ $roomtype_id ][ 'room_uids' ]).'" />';
+				$rw[ 'TARIFFTYPEID' ] = '<input type="hidden" name="tarifftypeid['.$roomtype_id.']" value="'.$existing_tariffs[ $roomtype_id ][ 'tarifftype_id' ].'" />';
+				$rw[ 'RATESUID' ] = '<input type="hidden" name="rates_uid['.$roomtype_id.']" value="'.$existing_tariffs[ $roomtype_id ][ 'rates_uid' ].'" />';
 
                 $rows[] = $rw;
 			}
@@ -144,23 +162,38 @@ class j06002edit_tariffs_normal
             $tmpl->addRows('rows', $rows);
             $tmpl->displayParsedTemplate();
 		} else { //SRPs
+			$room_uid = 0;
 			$selected_roomtype_id = 0;
             $roomrateperday = 0;
             $max_people = 100;
+			$rates_uid = 0;
+			$tarifftype_id = 0;
 
             if (!empty($basic_room_details->rooms)) {
                 foreach ($basic_room_details->rooms as $r) {
                     $selected_roomtype_id = $room['room_classes_uid'];
                 }
             }
-
-            if (isset($existing_tariffs[ $selected_roomtype_id ][ 'roomrateperday' ])) {
-                $roomrateperday = $existing_tariffs[ $selected_roomtype_id ][ 'roomrateperday' ];
-            }
-
-            if (isset($existing_rooms[ $selected_roomtype_id ][ 'max_people' ])) {
+			
+			if (isset($existing_rooms[ $selected_roomtype_id ][ 'max_people' ])) {
                 $max_people = $existing_rooms[ $selected_roomtype_id ][ 'max_people' ];
             }
+			
+			if (isset($existing_tariffs[ $selected_roomtype_id ][ 'rates_uid' ])) {
+                $rates_uid = $existing_tariffs[ $selected_roomtype_id ][ 'rates_uid' ];
+            }
+			
+			if (isset($existing_tariffs[ $selected_roomtype_id ][ 'tarifftype_id' ])) {
+                $tarifftype_id = $existing_tariffs[ $selected_roomtype_id ][ 'tarifftype_id' ];
+            }
+			
+			if (isset($existing_tariffs[ $selected_roomtype_id ][ 'roomrateperday' ])) {
+                $roomrateperday = $existing_tariffs[ $selected_roomtype_id ][ 'roomrateperday' ];
+            }
+			
+			if (isset($existing_rooms[ $selected_roomtype_id ][ 'room_uids' ]) && !empty($existing_rooms[ $selected_roomtype_id ][ 'room_uids' ])) {
+				$room_uid = $existing_rooms[ $selected_roomtype_id ][ 'room_uids' ][0];
+			}
 
             if ($mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == '1') {
                 $output[ 'RATETEXT' ] = jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', false);
@@ -184,6 +217,10 @@ class j06002edit_tariffs_normal
 
                 $rows[] = $rw;
             }
+			
+			$output['ROOMUID'] = $room_uid;
+			$output['RATESUID'] = $rates_uid;
+			$output['TARIFFTYPEID'] = $tarifftype_id;
 
             $pageoutput[] = $output;
             $tmpl = new patTemplate();
