@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -88,6 +88,7 @@ class j06001list_bookings
         $output[ 'HTIMESTAMP' ] = jr_gettext('_JOMRES_HDATE_OF_BOOKING', '_JOMRES_HDATE_OF_BOOKING', false);
         $output[ 'HAPPROVED' ] = jr_gettext('_JOMRES_BOOKING_INQUIRY_HAPPROVAL', '_JOMRES_BOOKING_INQUIRY_HAPPROVAL', false);
         $output[ 'HLASTCHANGED' ] = jr_gettext('_JOMRES_HLASTCHANGED', '_JOMRES_HLASTCHANGED', false);
+		$output[ 'HMADE_BY' ] = jr_gettext('BOOKING_MADE_BY', 'BOOKING_MADE_BY', false);
         $output[ 'HLEGEND' ] = jr_gettext('_JOMRES_HLEGEND', '_JOMRES_HLEGEND', false);
 
         if (get_showtime('task') == 'list_bookings') {
@@ -96,7 +97,7 @@ class j06001list_bookings
 
         //buttons
         $output['HNEW_BOOKING'] = jr_gettext('_JOMRES_HNEW_BOOKING', '_JOMRES_HNEW_BOOKING', false);
-        $output['NEW_BOOKING_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$defaultProperty);
+        $output['NEW_BOOKING_URL'] = get_booking_url($defaultProperty);
         $output['HBLACK_BOOKINGS'] = jr_gettext('_JOMRES_FRONT_BLACKBOOKING', '_JOMRES_FRONT_BLACKBOOKING', false);
         $output['BLACK_BOOKINGS_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=listBlackBookings');
         $output['HSIMPLE_BOOKING'] = jr_gettext('_JOMRES_HQUICK_BOOKING', '_JOMRES_HQUICK_BOOKING', false);

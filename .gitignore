@@ -9,3 +9,4 @@ updates
 /logs/Core.application.log
 /libraries/htmlpurifier/htmlpurifier-4.4.0-standalone/standalone/HTMLPurifier/DefinitionCache/Serializer/HTML/4.7.0,bd08c5afbc77123dbd4e9e026a723c450e9f844b,1.ser
 /libraries/htmlpurifier/htmlpurifier-4.4.0-standalone/standalone/HTMLPurifier/DefinitionCache/Serializer/HTML/4.7.0,ee98de84bba0e89f429f7bb3712cc721ffc14f60,1.ser
+/remote_plugins

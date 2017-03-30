@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
     Flight::map('json', function ($response_name, $data, $code = 200, $encode = true, $charset = 'utf-8') {
-        logging::log_message(' Replied with code '.$code.' and contents '.json_encode($data), 'API', 'INFO');
+        logging::log_message(' Replied with code '.$code, 'API', 'INFO' , ' Replied with code '.$code.' and contents'.json_encode($data));
         $response = new stdClass();
         $response->data[$response_name] = $data;
         $response->meta['code'] = $code;

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -1457,7 +1457,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Número de propi
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', '¿Cargar Jomres jQuery library?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'Puede establecer esto a NO si usted tiene una plantilla que utiliza jQuery. Esto puede resolver los problemas de conflicto jquery en algunas plantillas, pero no todos.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Si utiliza Joomfish, debe establecerse a No, y usar  el selector de idiomas de Joomfish. El conmutador siempre está habilitado en el área del administrador, ya que se necesita cuando se utiliza la función de etiquetas de traducciones.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Las miniaturas se crean automáticamente para las imágenes cargadas.');
 
 // 4.7.1
@@ -2294,9 +2294,6 @@ jr_define('TOUR_ID_TOUR_TARGET_COUPONS_CONTENT', 'Los códigos de cupones son un
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_TITLE', 'Extras opcionales.');
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_CONTENT', 'Extras opcionales son ítems que pueden ser añadidos a la reserva. Estos ítems no tienen disponibilidad limitada, por lo que no hay admistración de recursos asociada a ellos. Cuando creas un extra opcional, puedes elegir una variedad de ajustes, como por ejemplo el número máximo de extras que se pueden agregar a una reserva, y si debe ser o no obligatorio. Esto es útil para pagos obligatorios o un cargo especial que se debe aplicar, por ejemplo una botella de champaña a la llegada, etc. En este caso, debes seleccionar el modo Por Reserva. Si por el contrario quieres cargar algo diario, debes elegir la opción Por Día.');
 
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_TITLE', 'Centro Multimedia.');
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_CONTENT', 'El centro Multimedia permite subir imágenes facilmente. Por defecto puedes subir una imagen principal (de hecho, puedes subir más, pero únicamente la primera de ellas se usará), un número ilimitado para ser mostradas en la galería, y un número ilimitado para cada habitación.'.jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', false));
-
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_TITLE', 'Selector de recurso.');
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_CONTENT', 'Permite elegir para qué tipo de recurso estás subiendo imágenes. Por ejemplo para la galería o imágenes de habitaciones, y en este último caso, luego de seleccionar habitaciones, podrás elegir a cual habitación quieres subir imágenes en otro desplegable. Esto te permite subir múltiples imágenes para cada habitación individual, si quieres. La subida de imágenes para habitación está disponible únicamente para propiedades como Hoteles y B&B. Villas y Apartamentos no tienen esta opción.');
 
@@ -3123,3 +3120,11 @@ jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW', 'Show property images as slideshow
 jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC', 'If set to yes, a slideshow of property main images will be displayed. If set to no, then the first property main image will be displayed.');
 
 jr_define('EDIT_CMS_USER', 'Edit CMS user');
+
+jr_define('BOOKING_MADE_BY', 'Booking made by');
+
+jr_define('_JOMRES_ROUTER_FEATURES', 'Amenities');
+jr_define('_JOMRES_ROUTER_ROOMTYPES', 'Room Types');
+
+jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL', 'External booking form URL');
+jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', 'Here you can set an external URL if you want to use a 3rd party website for making bookings. All jomres booking buttons will point to this URL. Leave this field blank if you want to use the Jomres booking form.');

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -85,7 +85,7 @@ class j06005save_review
                 $message = jr_gettext('JOMRES_NEWREVIEW_MESSAGE', 'JOMRES_NEWREVIEW_MESSAGE', false).' '.$property_name.'  '.JOMRES_SITEPAGE_URL_ADMIN.'&task=view_property_reviews&property_uid='.(int) $property_uid.' <br/><br/>';
                 sendAdminEmail($subject, $message);
 
-                jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&ja=1&property_uid='.$property_uid), '');
+                jomresRedirect(get_property_details_url($property_uid), '');
                 exit;
             } else {
                 echo jr_gettext('_JOMRES_REVIEWS_CANNOTREVIEW', '_JOMRES_REVIEWS_CANNOTREVIEW');

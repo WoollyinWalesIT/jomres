@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -231,6 +231,7 @@ class jomres_properties
 								'".$singleRoomProperty."'
 								)";
 
+
             if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', false))) {
                 throw new Exception('Error: singleRoomProperty setting insert failed.');
             }
@@ -250,6 +251,14 @@ class jomres_properties
             if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', false))) {
                 throw new Exception('Error: is_real_estate_listing setting insert failed.');
             }
+            
+        $webhook_notification                               = new stdClass();
+        $webhook_notification->webhook_event                = 'property_added';
+        $webhook_notification->webhook_event_description    = 'Logs when a property is added.';
+        $webhook_notification->webhook_event_plugin         = 'core';
+        $webhook_notification->data                         = new stdClass();
+        $webhook_notification->data->property_uid           = $this->propertys_uid;
+        add_webhook_notification($webhook_notification);
         }
 
         //insert new manager
@@ -375,6 +384,13 @@ class jomres_properties
         updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION', $this->metadescription, true);
         updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS', $this->metakeywords, true);
 
+        $webhook_notification                           = new stdClass();
+        $webhook_notification->webhook_event                     = 'property_saved';
+        $webhook_notification->webhook_event_description         = 'Logs when a property is updated.';
+        $webhook_notification->data                     = new stdClass();
+        $webhook_notification->data->property_uid       = $this->propertys_uid;
+        add_webhook_notification($webhook_notification);
+        
         return true;
     }
 

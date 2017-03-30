@@ -2,28 +2,34 @@ if ('undefined' != typeof(jQuery)) {
 	var jomresJquery = jQuery.noConflict();
 };
 
-jomresJquery.ajaxSetup({ cache: false });
-
-if (navigator.appName == 'Microsoft Internet Explorer') window.onerror = Block_Error;
-function Block_Error() {
-	return true;
-};
-
+//vars
 var jr_deferred = jomresJquery.Deferred();
+var killScroll = false; // IMPORTANT
+var last_scrolled_id = 0;
 
-jomresJquery(function () {
+jomresJquery(document).ready(function () {
+	jomresJquery.ajaxSetup({ cache: false });
+
+	if (navigator.appName == 'Microsoft Internet Explorer') {
+		window.onerror = Block_Error;
+	}
+
 	jomresJquery(".jomres_bt_tooltip_features").tipsy({html: true, fade: true, gravity: jomresJquery.fn.tipsy.autoNS, delayOut: 100});
+
+	jomresJquery.fn.fadeThenSlideToggle = function (speed, easing, callback) {
+		if (this.is(":hidden")) {
+			// temp disabled, we'll use fade in/out for now as sliding doesn't work on ipad
+			//return this.slideDown(speed, easing).fadeTo(speed, 1, easing, callback);
+			return this.fadeIn();
+		} else {
+			//return this.fadeTo(speed, 0, easing).slideUp(speed, easing, callback);
+			return this.fadeOut();
+		}
+	}
 });
 
-jomresJquery.fn.fadeThenSlideToggle = function (speed, easing, callback) {
-	if (this.is(":hidden")) {
-		// temp disabled, we'll use fade in/out for now as sliding doesn't work on ipad
-		//return this.slideDown(speed, easing).fadeTo(speed, 1, easing, callback);
-		return this.fadeIn();
-	} else {
-		//return this.fadeTo(speed, 0, easing).slideUp(speed, easing, callback);
-		return this.fadeOut();
-	}
+function Block_Error() {
+	return true;
 };
 
 function toggle_button_class(id) {
@@ -311,10 +317,12 @@ function module_popup(random_identifier, property_uid) {
 	});
 }
 
-jomresJquery(function () {
+jomresJquery(document).ready(function () {
+	if (jomres_template_version != 'jquery_ui') {return false};
+	
 	//all hover and click logic for buttons
 	jomresJquery(".fg-button:not(.ui-state-disabled)")
-		.hover(
+	.hover(
 		function () {
 			jomresJquery(this).addClass("ui-state-hover");
 		},
@@ -322,20 +330,20 @@ jomresJquery(function () {
 			jomresJquery(this).removeClass("ui-state-hover");
 		}
 	)
-		.mousedown(function () {
-			jomresJquery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
-			if (jomresJquery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active')) {
-				jomresJquery(this).removeClass("ui-state-active");
-			}
-			else {
-				jomresJquery(this).addClass("ui-state-active");
-			}
-		})
-		.mouseup(function () {
-			if (!jomresJquery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button')) {
-				jomresJquery(this).removeClass("ui-state-active");
-			}
-		});
+	.mousedown(function () {
+		jomresJquery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+		if (jomresJquery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active')) {
+			jomresJquery(this).removeClass("ui-state-active");
+		}
+		else {
+			jomresJquery(this).addClass("ui-state-active");
+		}
+	})
+	.mouseup(function () {
+		if (!jomresJquery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button')) {
+			jomresJquery(this).removeClass("ui-state-active");
+		}
+	});
 });
 
 
@@ -348,7 +356,6 @@ function quick_info(uid) {
 };
 
 function isAvailable(date) {
-
 	var dateAsString = date.getFullYear().toString() + "-" + (date.getMonth() + 1).toString() + "-" + date.getDate();
 	var result = jomresJquery.inArray(dateAsString, bookedDays) == -1 ? [true] : [false];
 	return result
@@ -377,7 +384,7 @@ function generic_reload(field, val) {
 function insertParam(sourceUrl, parameterName, parameterValue, replaceDuplicates) {
 	if ((sourceUrl == null) || (sourceUrl.length == 0)) {
 		sourceUrl = document.location.href;
-		}
+	}
 	var urlParts = sourceUrl.split("?");
 	var newQueryString = "";
 	if (urlParts.length > 1) {
@@ -618,7 +625,6 @@ function getResponse_extrasquantity(field, value, theId) {
 	);
 };
 
-
 function getResponse(field, value) {
 	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
 	jomresJquery.get(ajaxurl + '&task=handlereq&property_uid_check=' + form_property_uid + '', { field: field, 'value': value },
@@ -650,15 +656,15 @@ function getResponse_guest() {
 	var region = jomresJquery('#region').val();
 	var postcode = jomresJquery('#postcode').val();
 	var exists = document.ajaxform.country;
-	if (exists != null)
+	if (exists != null) {
 		var country = document.ajaxform.country[document.ajaxform.country.selectedIndex].value;
+	}
 	var tel_landline = jomresJquery('#tel_landline').val();
 	var tel_mobile = jomresJquery('#tel_mobile').val();
 	var eemail = jomresJquery('#eemail').val();
 
 	url = ajaxurl + '&task=handlereq&property_uid_check=' + form_property_uid + '';
 	result = checkaddressfields();
-
 
 	if (result) {
 		var addressString = firstname + "~" + surname + "~" + house + "~" + street + "~" + town + "~" + region + "~" + postcode + "~" + country + "~" + tel_landline + "~" + tel_mobile + "~" + eemail;
@@ -749,26 +755,6 @@ function checkSelectRoomMessage(oktobook, disable_address) {
 	}
 };
 
-// (function($) {
-// $.fn.customFadeIn = function(speed, callback) {
-// $(this).fadeIn(speed, function() {
-// if(jomresJquery.browser.msie)
-// $(this).get(0).style.removeAttribute('filter');
-// if(callback != undefined)
-// callback();
-// });
-// };
-// $.fn.customFadeOut = function(speed, callback) {
-// $(this).fadeOut(speed, function() {
-// if(jomresJquery.browser.msie)
-// $(this).get(0).style.removeAttribute('filter');
-// if(callback != undefined)
-// callback();
-// });
-// };
-// })(jomresJquery);
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //	 Departure date adjustment stuff
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -820,7 +806,6 @@ function ajaxADate(arrivalDate, dformat) {
 	if (dformat == "%m-%d-%Y") {
 		dd = fmonth + "-" + fday + "-" + String(d.getFullYear())
 		}
-
 
 	var one_day = 1000 * 60 * 60 * 24;
 	var difference = Math.ceil((d.getTime() - currentDepartureDated.getTime()) / (one_day)) + mininterval;
@@ -944,13 +929,10 @@ function checkaddressfields() {
 		setInputFillToErrorColour("#tel_mobile");
 		pass = false;
 		}
-
-
 	if (validation_email && eemail.length == 0) {
 		setInputFillToErrorColour("#eemail");
 		pass = false;
 		}
-
 	if (validation_email && !echeck(eemail)) {
 		setInputFillToErrorColour("#eemail");
 		pass = false;
@@ -958,11 +940,11 @@ function checkaddressfields() {
 	if (!pass) {
 		jomresJquery('div.recheckaddress').show();
 		return false;
-		}
+	}
 	else {
 		enableSubmitButton(document.ajaxform.confirmbooking);
 		return true;
-		}
+	}
 };
 
 function dobooking_validate() {
@@ -1006,7 +988,7 @@ function submitenter(myfield, e) {
 	}
 	else {
 		return true;
-		}
+	}
 };
 
 /**
@@ -1053,34 +1035,6 @@ function echeck(str) {
 	return true
 };
 
-function createGraph(labels, values, type, legend, thediv) {
-	var graph = new BAR_GRAPH(type);
-	if (thediv.length == 0){
-		thediv = 'divGraph';
-		}
-	graph.legend = legend;
-	graph.values = values;
-	graph.labels = labels;
-	graph.showValues = 2;
-	graph.barWidth = 10;
-	graph.labelSize = 12;
-	graph.absValuesSize = 12;
-	graph.percValuesSize = 12;
-	graph.graphPadding = 5;
-	graph.graphBGColor = "#E8EAEE";
-	graph.graphBorder = "1px solid #913638";
-	graph.barColors = "#913638";
-	graph.barBGColor = "#F1F3F5";
-	graph.barBorder = "2px outset white";
-	graph.labelColor = "#FFFFFF";
-	graph.labelBGColor = "#913638";
-	graph.labelBorder = "2px groove white";
-	graph.absValuesColor = "#000000";
-	graph.absValuesBGColor = "#FFFFFF";
-	graph.absValuesBorder = "2px groove white";
-	document.getElementById(thediv).innerHTML = graph.create();
-}
-
 /* list_properties.js */
 function toggle_review_div(uid, property_name) {
 	div_id = "#property_reviews" + uid;
@@ -1119,15 +1073,13 @@ function set_budget(budget_price , reload , formname ) {
 	jomresJquery.get(live_site_ajax + "&task=ajax_budget&budget_figure="+budget_price, function (data) {
 		if (reload){
 			location.reload();
-			}
+		}
 		else {
 			submit_search(formname);
-			}
+		}
 	});
 }
 
-var killScroll = false; // IMPORTANT
-var last_scrolled_id = 0;
 function lastAddedLiveFunc() {
 	if (live_scrolling_enabled) {
 		id = jomresJquery(".jomres_property_list_propertywrapper:last").attr("id");
@@ -1164,10 +1116,7 @@ jomresJquery(document).ready(function () {
 			}
 		}
 	});
-});
 
-
-jomresJquery(document).ready(function () {
 	jomresJquery("input[type=checkbox][name=compare]").click(function () {
 		var bol = jomresJquery("input[type=checkbox][name=compare]:checked").length >= 3;
 		jomresJquery("input[type=checkbox][name=compare]").not(":checked").attr("disabled", bol);
@@ -1194,47 +1143,49 @@ function trigger_comparison(form) {
  * jHeartbeat 0.3.0
  * (C)Alex Richards - http://www.ajtrichards.co.uk/
  */
-jomresJquery.jheartbeat = {
-	options: {
-		url: "heartbeat_default.asp",
-		delay: 10000,
-		div_id: "test_div"
-	},
-	beatfunction: function () {
-	},
-	timeoutobj: {
-		id: -1
-	},
-	set: function (options, onbeatfunction) {
-		if (this.timeoutobj.id > -1) {
-			clearTimeout(this.timeoutobj);
-			}
-		if (options) {
-			jomresJquery.extend(this.options, options);
-			}
-		if (onbeatfunction) {
-			this.beatfunction = onbeatfunction;
-			}
-		// Add the HeartBeatDIV to the page
-		jomresJquery("body").append("<div id=\"" + this.options.div_id + "\" style=\"display: none;\"></div>");
-		this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
-	},
-	beat: function () {
-		jomresJquery.ajax({
-			url: this.options.url,
-			dataType: "html",
-			type: "GET",
-			error: function (e) {
-				jomresJquery('#' + jomresJquery.jheartbeat.options.div_id).append("");
-			},
-			success: function (data) {
-				jomresJquery('#' + jomresJquery.jheartbeat.options.div_id).html(data);
-			}
-		});
-		this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
-		this.beatfunction();
-	}
-};
+jomresJquery(document).ready(function () {
+	jomresJquery.jheartbeat = {
+		options: {
+			url: "heartbeat_default.asp",
+			delay: 10000,
+			div_id: "test_div"
+		},
+		beatfunction: function () {
+		},
+		timeoutobj: {
+			id: -1
+		},
+		set: function (options, onbeatfunction) {
+			if (this.timeoutobj.id > -1) {
+				clearTimeout(this.timeoutobj);
+				}
+			if (options) {
+				jomresJquery.extend(this.options, options);
+				}
+			if (onbeatfunction) {
+				this.beatfunction = onbeatfunction;
+				}
+			// Add the HeartBeatDIV to the page
+			jomresJquery("body").append("<div id=\"" + this.options.div_id + "\" style=\"display: none;\"></div>");
+			this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
+		},
+		beat: function () {
+			jomresJquery.ajax({
+				url: this.options.url,
+				dataType: "html",
+				type: "GET",
+				error: function (e) {
+					jomresJquery('#' + jomresJquery.jheartbeat.options.div_id).append("");
+				},
+				success: function (data) {
+					jomresJquery('#' + jomresJquery.jheartbeat.options.div_id).html(data);
+				}
+			});
+			this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
+			this.beatfunction();
+		}
+	};
+});
 
 function jomres_print(div) {
 	jomresJquery('body').css('visibility','hidden');
@@ -1397,5 +1348,5 @@ function jomres_print(div) {
 
 jomresJquery(document).ready(function() {
 	jomresJquery(".long_text").shorten({showChars: 200});
- });
+});
  

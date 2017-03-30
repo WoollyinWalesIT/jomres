@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -62,7 +62,7 @@ $bkg->currentField = $field;
 /* $property_uid_check = jomresGetParam( $_GET, 'property_uid_check', 0 );
  if ( $property_uid_check != $pid )
     {
-    $url = JOMRES_SITEPAGE_URL_NOSEF . "&task=dobooking&amp;selectedProperty=$pid";
+    $url = get_booking_url($pid);
     echo '; window.location.replace("' . $url . '"); ';
     exit;
     } */
@@ -109,6 +109,7 @@ switch ($field) {
         break;
     case 'addressstring':
         $ajrq = 'ajrq:::addressstring';
+        $value = str_replace( "&#38;#39;", "'", $value ); // Apostrophes sent by ajax will be mangled, we need to unmangle them then santise them properly.
         $addressString = explode('~', $value);
         $firstname = $addressString[ 0 ];
         $surname = $addressString[ 1 ];

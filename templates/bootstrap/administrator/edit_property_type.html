@@ -1,6 +1,4 @@
-<patTemplate:comment>
- * @version Jomres 9.8.21
-</patTemplate:comment>
+
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <h2 class="page-header">{PAGETITLE}</h2>
 
@@ -46,7 +44,7 @@
 				<div class="radio-inline">
 					<label>
 						<patTemplate:tmpl name="markers" unusedvars="strip">
-						<input type="radio" name="marker" value="{IMAGE}" {CHECKED} ><img src="{FULLPATH}" />
+						<input type="radio" name="marker" value="{IMAGE_FILENAME}" {ISCHECKED} ><img src="{IMAGE_SRC}" />
 						</patTemplate:tmpl>
 					</label>
 				</div>

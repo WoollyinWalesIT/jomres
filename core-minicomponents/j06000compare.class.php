@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -157,7 +157,7 @@ class j06000compare
                 }
 
                 $r[ 'LIVE_SITE' ] = get_showtime('live_site');
-                $r[ 'MOREINFORMATIONLINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid);
+                $r[ 'MOREINFORMATIONLINK' ] = get_property_details_url($property_uid);
                 $r[ 'MOREINFORMATION' ] = jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', $editable = false, true);
                 $r[ 'RANDOM_IDENTIFIER' ] = generateJomresRandomString(10);
                 $ptype = $property[ 'ptype_id' ];
@@ -176,6 +176,7 @@ class j06000compare
             }
 
             $i = 0;
+            $features = array();
             foreach ($featuresArray as $feature_id => $feature) {
                 if (in_array($feature_id, $all_used_features)) {
                     if ($i % 2) {

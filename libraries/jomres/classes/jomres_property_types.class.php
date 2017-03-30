@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -69,10 +69,10 @@ class jomres_property_types
 
         $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
 
-        $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag` , `marker` FROM #__jomres_ptypes ORDER BY `order` ASC';
+        $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag`, `marker` FROM #__jomres_ptypes ORDER BY `order` ASC';
         $result = doSelectSql($query);
 
-        if (count($result) < 1) {
+        if (empty($result)) {
             return false;
         }
 
@@ -84,14 +84,8 @@ class jomres_property_types
             $this->property_types[$r->id]['order'] = (int) $r->order;            // order
             $this->property_types[$r->id]['mrp_srp_flag'] = (int) $r->mrp_srp_flag;    // what will guests book: rooms in the property or the property itself
             $this->property_types[$r->id]['marker'] = $r->marker;                // Google maps marker
-            if (
-                is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.'markers') &&
-                is_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.'markers'.JRDS.$this->property_types[$r->id]['marker'])
-                ) {
-                $this->property_types[$r->id]['marker_image'] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/markers/'.$this->property_types[$r->id]['marker'];
-            } elseif (is_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.$this->property_types[$r->id]['marker'])) {
-                $this->property_types[$r->id]['marker_image'] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/markers/'.$this->property_types[$r->id]['marker'];
-            }
+           
+			$this->property_types[$r->id]['marker_image'] = get_marker_src($this->property_types[$r->id]['marker']);
         }
 
         $c->store('property_types_data', array('property_types' => $this->property_types));
@@ -112,10 +106,10 @@ class jomres_property_types
             return true;
         }
 
-        $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag` , `marker` FROM #__jomres_ptypes WHERE `id` = '.(int) $id;
+        $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag`, `marker` FROM #__jomres_ptypes WHERE `id` = '.(int) $id;
         $result = doSelectSql($query);
 
-        if (count($result) < 1) {
+        if (empty($result)) {
             return false;
         }
 
@@ -190,13 +184,13 @@ class jomres_property_types
         $success = true;
 
         foreach ($ids as $id) {
-            $query = 'SELECT ptype_id FROM #__jomres_propertys WHERE ptype_id = '.(int) $id;
+            $query = 'SELECT `ptype_id` FROM #__jomres_propertys WHERE `ptype_id` = '.(int) $id;
             $result = doSelectSql($query);
 
-            if (count($result) > 0) {
+            if (!empty($result)) {
                 $success = false;
             } else {
-                $query = "DELETE FROM #__jomres_ptypes WHERE id = '".(int) $id."'";
+                $query = "DELETE FROM #__jomres_ptypes WHERE `id` = ".(int) $id;
                 if (!doInsertSql($query, false)) {
                     $success = false;
                 }
@@ -216,17 +210,17 @@ class jomres_property_types
         $this->get_property_type($id);
 
         if ($this->property_type['published'] == 0) {
-            $published = 1;
+            $publish = 1;
         } else {
-            $published = 0;
+            $publish = 0;
         }
 
         if ($this->property_type['id'] > 0) {
-            if ($published == 0 && $this->ptype_is_used($this->property_type['id'])) {
+            if ($publish == 0 && $this->ptype_is_used($this->property_type['id'])) {
                 return false;
             }
 
-            $query = 'UPDATE #__jomres_ptypes SET `published` = '.$published.' WHERE id = '.$this->property_type['id'];
+            $query = 'UPDATE #__jomres_ptypes SET `published` = '.$publish.' WHERE `id` = '.$this->property_type['id'];
 
             if (doInsertSql($query, false)) {
                 return true;
@@ -248,7 +242,7 @@ class jomres_property_types
         $query = 'SELECT `ptype_id` FROM #__jomres_propertys WHERE `ptype_id` = '.(int) $id;
         $result = doSelectSql($query);
 
-        if (count($result) > 0) {
+        if (!empty($result)) {
             return true;
         } else {
             return false;
@@ -277,7 +271,7 @@ class jomres_property_types
         }
 
         //build warning
-        if (count($property_types_requiring_attention) > 0) {
+        if (!empty($property_types_requiring_attention)) {
             $o = array();
             $po = array();
             $rws = array();
@@ -315,4 +309,24 @@ class jomres_property_types
             return '';
         }
     }
+	
+	function get_all_property_type_images()
+	{
+		$images = array();
+		
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+		$jomres_media_centre_images->get_site_images('markers');
+		
+		foreach ($jomres_media_centre_images->site_images['markers'] as $image) 
+			{
+			$r = array();
+			
+			$r[ 'IMAGE_FILENAME' ] = substr($image['large'], strrpos($image['large'], '/') + 1);
+			$r[ 'IMAGE_SRC' ]  = $image['large'];
+			
+			$images[] = $r;
+			}
+
+		return $images;
+	}
 }

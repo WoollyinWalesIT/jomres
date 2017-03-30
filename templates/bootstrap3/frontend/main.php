@@ -1,6 +1,4 @@
-<patTemplate:comment>
- * @version Jomres 9.8.21
-</patTemplate:comment>
+
 <?php
 $xmlstr = <<<'XML'
 <?xml version='1.0' encoding="utf-8" standalone='yes'?>

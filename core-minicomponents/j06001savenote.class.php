@@ -4,15 +4,22 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+
+/*
+	** Webhook Details | savenote
+	** Description | Add a webhook note with the property uid, contract uid and note contents.
+	** Data | savenote , contract_uid , property uid, note contents , userid , username
+	** Notes | 
+*/
 
 class j06001savenote
 {
@@ -51,6 +58,16 @@ class j06001savenote
         $contract_uid = doSelectSql($query, 1);
 
         if ($contract_uid) {
+            $webhook_notification                               = new stdClass();
+            $webhook_notification->webhook_event                = 'booking_note_saved';
+            $webhook_notification->webhook_event_description    = 'Logs when booking notes are added/edited.';
+            $webhook_notification->webhook_event_plugin         = 'core';
+            $webhook_notification->data                         = new stdClass();
+            $webhook_notification->data->contract_uid           = $contract_uid;
+            $webhook_notification->data->property_uid           = $defaultProperty;
+            $webhook_notification->data->note_id                = $note_id;
+            add_webhook_notification($webhook_notification);
+
             jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$contract_uid));
         } else {
             echo 'Error saving note';

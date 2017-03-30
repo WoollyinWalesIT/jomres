@@ -4,15 +4,18 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
+
+ignore_user_abort(true);
+set_time_limit(0);
 
 if (isset($_REQUEST['task']) && isset($_REQUEST['field'])) { // Booking engine heartbeat is used to keep the session alive, but doesn't do anything else. We'll kill it dead right off the bat.
     if ($_REQUEST['task'] == 'handlereq' && $_REQUEST['field'] == 'heartbeat') {
@@ -62,7 +65,7 @@ try {
     //user object
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
-    logging::log_message('Jomres started', 'Core', 'INFO');
+    // logging::log_message('Jomres started', 'Core', 'INFO');
 
     //TODO: here we can add a query to automatically remove the manager that has 0 properties
     if (count($thisJRUser->authorisedProperties) == 0 && $thisJRUser->userIsManager) {
@@ -265,7 +268,7 @@ try {
     }
 
     //handle tasks
-    logging::log_message('Starting task '.get_showtime('task'), 'Core');
+    //logging::log_message('Starting task '.get_showtime('task'), 'Core');
     if (get_showtime('numberOfPropertiesInSystem') > 0) {
         switch (get_showtime('task')) {
             //########################################################################################
@@ -337,17 +340,17 @@ try {
                     $plugin = 'NA';
                 }
 
-                $paypal_settings = jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
-                $paypal_settings->get_paypal_settings();
+                //$paypal_settings = jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
+                //$paypal_settings->get_paypal_settings();
 
                 if ($plugin != 'NA') {
                     $query = 'SELECT id,plugin FROM #__jomres_pluginsettings WHERE (prid = '.(int) $property_uid." OR prid = 0)  AND `plugin` = '".(string) $plugin."' AND setting = 'active' AND value = '1'";
                     $gatewayDeets = doSelectSql($query);
 
                     if (count($gatewayDeets) > 0 || $paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
-                        if ($paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
+/*                         if ($paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
                             $plugin = 'paypal';
-                        }
+                        } */
 
                         $interrupted = intval(jomresGetParam($_POST, 'interrupted', 0));
                         $interruptOutgoingFile = false;
@@ -621,33 +624,6 @@ try {
                 if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
                     $MiniComponents->triggerEvent('02220');
                 } //listGuests();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'editGuest':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02222');
-                } //editGuest();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'saveGuest':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02224');
-                } //saveGuest();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'deleteGuest':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02226');
-                } //deleteGuest();
                 else {
                     userHasBeenLoggedOut();
                 }

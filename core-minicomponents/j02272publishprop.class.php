@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -54,6 +54,15 @@ class j02272publishprop
                     if (doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', false))) {
                         $MiniComponents->triggerEvent('02274'); // Optional trigger after property unpublished
                         $jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', false));
+                        
+                        $webhook_notification                               = new stdClass();
+                        $webhook_notification->webhook_event                = 'property_unpublished';
+                        $webhook_notification->webhook_event_description    = 'Logs when a property is unpublished.';
+                        $webhook_notification->webhook_event_plugin         = 'core';
+                        $webhook_notification->data                         = new stdClass();
+                        $webhook_notification->data->property_uid           = $defaultProperty;
+                        add_webhook_notification($webhook_notification);
+                        
                         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=listyourproperties'), '');
                     }
                 } else {
@@ -61,6 +70,15 @@ class j02272publishprop
                     if (doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', false))) {
                         $MiniComponents->triggerEvent('02273'); // Optional trigger after property published
                         $jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', false));
+                        
+                        $webhook_notification                               = new stdClass();
+                        $webhook_notification->webhook_event                = 'property_published';
+                        $webhook_notification->webhook_event_description    = 'Logs when a property is published.';
+                        $webhook_notification->webhook_event_plugin         = 'core';
+                        $webhook_notification->data                         = new stdClass();
+                        $webhook_notification->data->property_uid           = $defaultProperty;
+                        add_webhook_notification($webhook_notification);
+                        
                         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=listyourproperties'), '');
                     }
                 }

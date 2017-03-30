@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -33,7 +33,7 @@ if (
     (int) $_REQUEST[ 'selectedProperty' ] > 0 &&
     $thisJRUser->currentproperty != (int) $_REQUEST[ 'selectedProperty' ]) {
     $thisJRUser->set_currentproperty((int) $_REQUEST[ 'selectedProperty' ]);
-    jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."task=dobooking&selectedProperty=$selectedProperty"), '');
+    jomresRedirect(get_booking_url($selectedProperty), '');
 }
 
 $selectedProperty = $property_uid;
@@ -544,7 +544,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
         $output[ 'HIDDENSTYLE' ] = 'style="display:none;"';
 
         $output[ 'OPENBOOKINGOFRM_BUTTON' ] = '<a href="javascript:open_booking_form();" class="fg-button ui-state-default ui-corner-all">'.$output[ '_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM' ].'</a>';
-        $output[ 'BUTTON_BACK_TO_PROPERTY_DETAILS' ] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$selectedProperty).'" class="fg-button ui-state-default ui-corner-all">'.$output[ '_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS' ].'</a>';
+        $output[ 'BUTTON_BACK_TO_PROPERTY_DETAILS' ] = '<a href="'.get_property_details_url($selectedProperty).'" class="fg-button ui-state-default ui-corner-all">'.$output[ '_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS' ].'</a>';
     }
 
     $output[ 'PANELPOSITION' ] = (int) $jrConfig[ 'booking_form_totalspanel_position' ];

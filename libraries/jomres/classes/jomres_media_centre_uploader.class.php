@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -390,9 +390,9 @@ class UploadHandler
         if ($scale >= 1) {
             if ($file_path !== $new_file_path) {
                 copy($file_path, $new_file_path);
-                if ($type == 'png') {
+                /* if ($type == 'png') {
                     $this->final_image_name = $this->convert_png_to_jpg($new_file_path);
-                }
+                } */
 
                 return true;
             }
@@ -467,13 +467,13 @@ class UploadHandler
         // Free up memory (imagedestroy does not delete files):
 
         // Vince added to convert PNG files to jpgs. The gif creator cannot use png files when making gifs, so we'll convert the uploaded image to a jpg file
-        if ($type == 'png') {
+        /* if ($type == 'png') {
             $this->final_image_name = $this->convert_png_to_jpg($new_file_path);
-        } else {
+        } else { */
             $image_name_array = explode(JRDS, $new_file_path);
             $image_name = $image_name_array[count($image_name_array) - 1];
             $this->final_image_name = $image_name;
-        }
+        //}
 
         imagedestroy($src_img);
         imagedestroy($new_img);
@@ -891,9 +891,9 @@ class UploadHandler
 
         // We have to put this at the end because the functionality that resizes images to create thumbnails requires the original file to do it. We can only resize the original after that's been done.
         $type = strtolower(substr(strrchr($file_path, '.'), 1));
-        if ($type == 'png') {
+        /* if ($type == 'png') {
             $file->final_image_name = $this->convert_png_to_jpg($file_path);
-        }
+        } */
 
         return $file;
     }
@@ -938,9 +938,8 @@ class UploadHandler
         // Vince
         // Because we've (possibly) renamed pngs to jpgs, we'll need to str replace the response's contents with the final image name
         foreach ($content['files'] as $key => $val) {
-            $resource_type = (string) jomresGetParam($_REQUEST, 'resource_type', 'property');
-            $resource_id = (int) jomresGetParam($_REQUEST, 'resource_id', 0);
-            $url_context = (int) jomresGetParam($_REQUEST, 'upload_context', 'property');
+            $resource_type = (string) jomresGetParam($_REQUEST, 'resource_type', '');
+            $resource_id = (int) jomresGetParam($_REQUEST, 'resource_id', '0');
 
             $content['files'][$key]->name = str_replace($this->original_file_name, $this->final_image_name, $content['files'][$key]->name);
             $content['files'][$key]->type = 'image/jpeg';
@@ -949,13 +948,11 @@ class UploadHandler
             $content['files'][$key]->thumbnailUrl = str_replace($this->original_file_name, '/'.$this->final_image_name, $content['files'][$key]->thumbnailUrl);
             $content['files'][$key]->random_id = generateJomresRandomString(10);
 
-            if (!isset($this->url_context)) {
-                if (!jomres_cmsspecific_areweinadminarea()) {
-                    $content['files'][$key]->deleteUrl = JOMRES_SITEPAGE_URL_AJAX.'&task=media_centre_handler'.$url_context.'&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&filename='.$this->final_image_name;
-                } else {
-                    $content['files'][$key]->deleteUrl = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=media_centre_handler'.$url_context.'&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&filename='.$this->final_image_name;
-                }
-            }
+            if (!jomres_cmsspecific_areweinadminarea()) {
+				$content['files'][$key]->deleteUrl = JOMRES_SITEPAGE_URL_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&filename='.$this->final_image_name;
+			} else {
+				$content['files'][$key]->deleteUrl = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&filename='.$this->final_image_name;
+			}
 
 /* 			$content['files'][$key]->resource_type  = $resource_type;
             $content['files'][$key]->resource_id    = $resource_id;

@@ -1,40 +1,55 @@
 /*!
- * FullCalendar Scheduler v1.2.1
+ * FullCalendar Scheduler v1.3.3
  * Docs & License: http://fullcalendar.io/scheduler/
- * (c) 2015 Adam Shaw
+ * (c) 2016 Adam Shaw
  */
 
 /* TODO: break this file up */
 
-/* Scroll Pane
+/* Scroller
 --------------------------------------------------------------------------------------------------*/
 
-.fc-scrollpane {
+.fc-scroller-clip {
 	overflow: hidden; /* for clipping scrollbars */
 	position: relative; /* so things like scrollfollowers can attach to this */
 }
 
-.fc-scrollpane-inner {
-	overflow: hidden; /* for clipping inner content */
+/* supresses rendering of native scrollbars */
+/* on .fc-scroller */
+.fc-no-scrollbars {
+	background: rgba(255, 255, 255, 0); /* hack for dynamic DOM nodes (in Chrome OSX at least) */
+}
+.fc-no-scrollbars::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+}
+
+.fc-scroller-canvas {
 	position: relative; /* origin for bg */
 	box-sizing: border-box; /* so that padding (for gutter) will be part of height */
 	min-height: 100%;
 }
 
-.fc-scrollpane-inner > .fc-bg {
+.fc-scroller-canvas > .fc-bg {
 	z-index: 1; /* make default? */
 }
 
-.fc-scrollpane-inner > .fc-content {
+.fc-scroller-canvas > .fc-content {
 	z-index: 2; /* make default? */
 	position: relative; /* origin for inner content */
+	border-style: solid;
+	border-width: 0;
 }
 
-.fc-no-scrollbars::-webkit-scrollbar { /* might be applied to scrollpane-scroller */
-	/* supresses rendering of native scrollbars */
-	width: 0;
-	height: 0;
+/* for themed, hard to get the border-color, so just forget it (REVISIT) */
+.ui-widget .fc-scroller-canvas > .fc-content {
+	border-color: transparent;
 }
+
+.fc-scroller-canvas.fc-gutter-left > .fc-content { border-left-width: 1px; margin-left: -1px }
+.fc-scroller-canvas.fc-gutter-right > .fc-content { border-right-width: 1px; margin-right: -1px }
+.fc-scroller-canvas.fc-gutter-top > .fc-content { border-top-width: 1px; margin-top: -1px }
+.fc-scroller-canvas.fc-gutter-bottom > .fc-content { border-bottom-width: 1px; margin-bottom: -1px }
 
 
 /* View Structure
@@ -61,21 +76,25 @@
 	background-image: none;
 }
 
-.fc-scrolled .fc-head .fc-scrollpane {
+.fc-scrolled .fc-head .fc-scroller {
 	z-index: 2; /* so drop shadow will go above body panes */
 }
 
-.fc-timeline.fc-scrolled .fc-head .fc-scrollpane {
+.fc-timeline.fc-scrolled .fc-head .fc-scroller {
 	box-shadow: 0 3px 4px rgba(0,0,0,0.075);
 }
 
-.fc-timeline .fc-body .fc-scrollpane {
+.fc-timeline .fc-body .fc-scroller {
 	z-index: 1;
 }
 
-.fc-timeline .fc-scrollpane-inner > .fc-content,
-.fc-timeline .fc-scrollpane-inner > .fc-bg {
-	margin: -1px;
+/*
+on all tables that expand to the edges, kill the outer border,
+because the container elements take care of it
+*/
+.fc-timeline .fc-scroller-canvas > div > table,
+.fc-timeline .fc-scroller-canvas > div > div > table {
+	border-style: hidden;
 }
 
 
@@ -222,14 +241,15 @@ tr.fc-collapsed > td > div {
 }
 
 .fc-resource-area .fc-icon { /* the expander and spacers before the expander */
+	width: 1em; /* ensure constant width, esp for empty icons */
 	font-size: .9em;
 	vertical-align: middle;
-	margin-top: -2%;
+	margin-top: -1%;
 }
 
 .fc-resource-area .fc-expander {
 	cursor: pointer;
-	color: #666;
+	color: #666; /* for the icon within */
 }
 
 
@@ -418,8 +438,8 @@ tr.fc-collapsed > td > div {
 	padding: 0 1px;
 }
 
-.fc-timeline-event .fc-resizer:after {
-	width: 1px; /* activate! */
+.fc-timeline-event.fc-selected .fc-bg {
+	display: none; /* hide semi-white background, to appear darker */
 }
 
 

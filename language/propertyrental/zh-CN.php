@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -514,7 +514,7 @@ jr_define('_JOMRES_A_TABS_MISC', '杂项');
 jr_define('_JOMRES_A', '站点设置');
 jr_define('_JOMRES_A_GLOBALPFEATURES', '使用全局寓所特点');
 jr_define('_JOMRES_A_GLOBALPFEATURES_DESC', '设此为是表示您想让所有寓所特点均显示为同一内容，该内容为站点管理员提前设定.');
-jr_define('_JOMRES_A_GLOBALPFEATURES_INFO', 'To assign an image to this feature you first need to upload your business feature images to the /'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/ folder. ');
+jr_define('_JOMRES_A_GLOBALPFEATURES_INFO', '如果您想为此特点设定一幅图片,您需要首先上传图盘至 /images/stories/jomres/pfeatures/ 文件夹. ');
 jr_define('_JOMRES_A_ICON', '标识');
 jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION', '选择搜索插件来使用.');
 jr_define('_JOMRES_FRONT_NORESULTS', '<b>抱歉, 没有结果可供参考. 请重新输入关键词来搜索.</b>');
@@ -708,8 +708,8 @@ jr_define('_JOMRES_SEARCH_BUTTON', '搜索');
 jr_define('_JOMRES_SEARCH_DESCRIPTION_INFO', '输入想要查找的关键词并按搜索按钮.');
 jr_define('_JOMRES_SEARCH_DESCRIPTION_LABEL', '搜索词(s): ');
 jr_define('_JOMRES_SEARCH_AVL_INFO', '请输入您打算抵达的日期和离店的日期,点选搜索看看哪些寓所可以提供满足你要求的服务.');
-jr_define('_JOMRES_SEARCH_PTYPES', '根据寓所类型显示所有寓所.');
-jr_define('_JOMRES_SEARCH_RTYPES', '根据房间类型显示所有寓所.');
+jr_define('_JOMRES_SEARCH_PTYPES', '根据寓所类型显示所有寓所');
+jr_define('_JOMRES_SEARCH_RTYPES', '根据房间类型显示所有寓所');
 jr_define('_JOMRES_SORTORDER_DEFAULT', '默认');
 jr_define('_JOMRES_SORTORDER_PROPERTYNAME', '寓所名称');
 jr_define('_JOMRES_SORTORDER_PROPERTYREGION', '寓所所在省/直辖市');
@@ -870,12 +870,12 @@ jr_define('_JOMRES_COM_EMAILERRORS_DESC', "设此为是表明当一个错误log�
 jr_define('_JOMRES_COM_ISTHISANMRP', '这个寓所是酒店/床位和早餐/旅客寓所/退休金? ');
 jr_define('_JOMRES_COM_ISTHISANMRP_DESC', '设置选项的不同取决于您是想提供一个寓所里面的房间服务还是寓所本身旅居服务.设此为是表明您想提供房间服务,设此为否表明您想提供整个寓所的旅居服务. ');
 // Jomres v3.0.6
-jr_define('_JOMRES_COM_JOMRESEMAILCHECK', 'Use Jomres email address checker? ');
-jr_define('_JOMRES_COM_JOMRESEMAILCHECK_DESC', 'Enforces a stricter check on emails sent. Some secure web servers will throw a 500 internal error if you try to send an email to a non-existant email address. Switching this on allows us to use checkdnsrr features of php before attempting to send an email, preventing these 500 errors. ');
+jr_define('_JOMRES_COM_JOMRESEMAILCHECK', '使用Jomres电子邮件地址检查？ ');
+jr_define('_JOMRES_COM_JOMRESEMAILCHECK_DESC', '强制执行严格的检查发送的电子邮件。一些安全Web服务器将抛出一个500内部错误，如果您尝试到一个不存在的电子邮件地址发送一封电子邮件。开关允许我们之前使用的PHP的checkdnsrr功能，试图发送一封电子邮件，以防止这些500错误。 ');
 // Jomres v3.1
-jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL', 'Accommodation Total');
-jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS', 'night(s) at');
-jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM', 'per room ');
+jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL', '住宿共');
+jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS', '晚');
+jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM', '每间房');
 jr_define('_JOMRES_AJAXFORM_EXTRAS_TOTAL', 'Enhance Your Stay Total ');
 jr_define('_JOMRES_AJAXFORM_PRICE_SUMMARY', 'Price Summary ');
 jr_define('_JOMRES_CONFIRMATION_ALERT', 'Please read and agree to ');
@@ -1231,7 +1231,7 @@ jr_define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID', 'Sorry, but t
 jr_define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE', 'Sorry, you are already subscribed to a free package, you cannot subscribe to that package again.');
 jr_define('_JRPORTAL_SUBSCRIPTIONS_STATUS_EXPL', ' Status <b>0:</b> Pending payment <b>1:</b> Created <b>2:</b> Cancelled <b>3:</b> End of Term');
 jr_define('_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS', 'My Account');
-jr_define('_JOMRES_COM_YOURBUSINESS', 'Your company details');
+jr_define('_JOMRES_COM_YOURBUSINESS', 'Your business details');
 jr_define('_JOMRES_COM_YOURBUSINESS_NAME', 'business name');
 jr_define('_JOMRES_COM_YOURBUSINESS_VATNO', 'VAT number');
 jr_define('_JOMRES_COM_YOURBUSINESSADDRESS', 'Building number');
@@ -1456,7 +1456,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Number of proper
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Load Jomres jQuery library?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'You can set this to NO if you have a template that uses jquery. This MAY resolve jquery conflict issues on some templates, but not all.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'If you use Joomfish, you should set this to No, and use Joomfish\'s language switcher. The switcher is always enabled in the administrator area because it is needed when you use the Label Translations feature.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Thumbnails are created automatically for uploaded images.');
 
 // 4.7.1
@@ -1717,7 +1717,7 @@ jr_define('_JOMRES_FOUNDPROPERTIES', 'Properties found');
 jr_define('_JOMRES_REGISTRATION_STEP_1_OF_2', 'Add your property : Step 1 of 2');
 jr_define('_JOMRES_REGISTRATION_STEP_2_OF_2', 'Add your property : Step 2 of 2');
 
-jr_define('_JOMRES_MYPROPERTIES', 'My properties');
+jr_define('_JOMRES_MYPROPERTIES', 'My businesses');
 
 jr_define('_JOMRES_CART_TITLE', 'My proposed bookings');
 jr_define('_JOMRES_CART_INFO', 'Note, these bookings have not been saved yet. If you log out or your session expires they will be lost. Remember to confirm your bookings!');
@@ -2296,9 +2296,6 @@ jr_define('TOUR_ID_TOUR_TARGET_COUPONS_CONTENT', "Coupon codes are a useful meth
 
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_TITLE', 'Optional extras.');
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_CONTENT', "Optional extras are extra items that can be added to a booking. These are items that not constrained by limited availability, so there's no resource management associated with them. When you create an optional extra you are able to choose a variety of settings, for example the maximum number of them that can be added to a booking, and whether or not the extra should be Forced. By this, we mean if it's automatically selected in the booking form, and the guest cannot unselect it. This is useful for mandatory payments like towels or a cleaning fee. Additionally, you will need to choose a Model, which means how payments will be calculated for the extra. If you want a single charge to be applied (for example, for a bottle of champagne to be available on arrival) then you would set the model to Per Booking. If, however you wanted to charge for something for each day, then you would choose the Per Day option.");
-
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_TITLE', 'Media Centre.');
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_CONTENT', 'The Media Centre allows you to easily upload images of your property. By default you can upload a main property image (in fact, you can upload more, but only the first in the list will be used), an unlimited number of images to be shown in the slideshow, and an unlimited number of images for each room.'.jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', false));
 
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_TITLE', 'Resource picker.');
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_CONTENT', "This is the resource picker. It allows you to choose what sort of resource you're uploading images for (e.g. Slideshow images or rooms) and if it's a room, then after you choose Rooms you'll be given the option to select which room you want to upload images for in another dropdown, next to it. This allows you to upload multiple images for each individual room, if you wish. Note, room image uploading only applies to properties like Hotels, B&Bs etc. Villas and Apartments will not have this option.");
@@ -3128,3 +3125,11 @@ jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW', 'Show property images as slideshow
 jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC', 'If set to yes, a slideshow of property main images will be displayed. If set to no, then the first property main image will be displayed.');
 
 jr_define('EDIT_CMS_USER', 'Edit CMS user');
+
+jr_define('BOOKING_MADE_BY', 'Booking made by');
+
+jr_define('_JOMRES_ROUTER_FEATURES', 'Amenities');
+jr_define('_JOMRES_ROUTER_ROOMTYPES', 'Room Types');
+
+jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL', 'External booking form URL');
+jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', 'Here you can set an external URL if you want to use a 3rd party website for making bookings. All jomres booking buttons will point to this URL. Leave this field blank if you want to use the Jomres booking form.');

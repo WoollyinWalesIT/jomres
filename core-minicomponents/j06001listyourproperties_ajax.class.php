@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -224,7 +224,7 @@ class j06001listyourproperties_ajax
                 }
                 if ($thisJRUser->accesslevel > 50) { //higher than receptionist
                     $toolbar->addSecondaryItem('fa fa-pencil-square-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=editProperty'.'&thisProperty='.$p->propertys_uid), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
-                    $url = jomresURL(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$p->propertys_uid);
+                    $url = get_property_details_url($p->propertys_uid);
                     $toolbar->addSecondaryItem('fa fa-arrows-alt', '', '', $url, jr_gettext('_JOMRES_FRONT_PREVIEW', '_JOMRES_FRONT_PREVIEW', false));
                     if (count($thisJRUser->authorisedProperties) > 1) {
                         $toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=deleteProperty'.'&thisProperty='.$p->propertys_uid), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));

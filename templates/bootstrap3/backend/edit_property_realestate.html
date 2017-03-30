@@ -1,6 +1,4 @@
-<patTemplate:comment>
- * @version Jomres 9.8.21
-</patTemplate:comment>
+
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <style>
 .REmail {
@@ -15,12 +13,15 @@
 
 <script language="javascript">
 	<!--
-	function OnChange(dropdown) {
-		var myindex = dropdown.selectedIndex
-		var baseURL = "{JOMRES_SITEPAGE_URL}&task=editProperty"
-		top.location.href = baseURL + "&propertyUid={PROPERTYUID}&selectedCountry=" + dropdown.options[myindex].value;
-		return true;
-	}
+	jomresJquery(function(){
+		jomresJquery("#country").change(function(){
+			var selectedValue = jomresJquery(this).find(":selected").val();
+			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+			jomresJquery.get(live_site_ajax + clause, function (data) {
+				populateDiv("property_region",data);
+				});
+			});
+		});
 	//-->
 </script>
 
@@ -38,13 +39,13 @@
 	<div class="form-group">
 		<label class="col-md-2 control-label" for="xyz">{HCOUNTRY}</label>
 		<div class="col-md-10">
-			{COUNTRIESDROPDOWN}
+			{AJAX_COUNTRIESDROPDOWN}
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-md-2 control-label" for="region">{HREGION}</label>
-		<div class="col-md-10">
-			{REGIONDROPDOWN}
+		<div class="col-md-10" id="property_region">
+			{AJAX_REGIONDROPDOWN}
 		</div>
 	</div>
 	<div class="form-group">

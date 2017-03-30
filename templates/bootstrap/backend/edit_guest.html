@@ -1,132 +1,128 @@
-<patTemplate:comment>
- * @version Jomres 9.8.21
-</patTemplate:comment>
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<script language="JavaScript" type="text/javascript">
-		<!--
-		
-		jomresJquery(function(){
-			jomresJquery("#guest_country").change(function(){
-				var selectedValue = jomresJquery(this).find(":selected").val();
-				clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
-				jomresJquery.get(live_site_ajax + clause, function (data) {
-					populateDiv("guest_region_div",data);
-					});
-				});
+<script language="JavaScript" type="text/javascript">
+<!--
+jomresJquery(function(){
+	jomresJquery("#guest_country").change(function(){
+		var selectedValue = jomresJquery(this).find(":selected").val();
+		clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+		jomresJquery.get(live_site_ajax + clause, function (data) {
+			populateDiv("guest_region_div",data);
 			});
-			//-->
-	</script>
-	<h2 class="page-header">{PAGETITLE}</h2>
-	<div id="tour_target_edit_guest_top"></div>
-	<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal">
-		<fieldset>
-			<div class="control-group">
-				<label class="control-label" for="firstname">{HFIRSTNAME}</label>
+		});
+	});
+	//-->
+</script>
+<h2 class="page-header">{PAGETITLE}</h2>
+<div id="tour_target_edit_guest_top"></div>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal">
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="firstname">{HFIRSTNAME}</label>
 
-				<div class="controls">
-					<input id="firstname" name="firstname" type="text" value="{FIRSTNAME}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="firstname" name="firstname" type="text" value="{FIRSTNAME}" class="required "/>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="surname">{HSURNAME}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="surname">{HSURNAME}</label>
 
-				<div class="controls">
-					<input id="surname" name="surname" type="text" value="{SURNAME}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="surname" name="surname" type="text" value="{SURNAME}" class="required "/>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="house">{HHOUSE}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="house">{HHOUSE}</label>
 
-				<div class="controls">
-					<input id="house" name="house" type="text" value="{HOUSE}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="house" name="house" type="text" value="{HOUSE}" class="required "/>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="street">{HSTREET}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="street">{HSTREET}</label>
 
-				<div class="controls">
-					<input id="street" name="street" type="text" value="{STREET}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="street" name="street" type="text" value="{STREET}" class="required "/>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="town">{HTOWN}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="town">{HTOWN}</label>
 
-				<div class="controls">
-					<input id="town" name="town" type="text" value="{TOWN}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="town" name="town" type="text" value="{TOWN}" class="required "/>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="postcode">{HPOSTCODE}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="postcode">{HPOSTCODE}</label>
 
-				<div class="controls">
-					<input id="postcode" name="postcode" type="text" value="{POSTCODE}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="postcode" name="postcode" type="text" value="{POSTCODE}" class="required "/>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="region">{HREGION}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="region">{HREGION}</label>
 
-				<div class="controls">
-					<div id="guest_region_div">{REGION}</div>
-				</div>
+			<div class="controls">
+				<div id="guest_region_div">{REGION}</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="guest_country">{HCOUNTRY}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="guest_country">{HCOUNTRY}</label>
 
-				<div class="controls">
-					{COUNTRY}
-				</div>
+			<div class="controls">
+				{COUNTRY}
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="landline">{HLANDLINE}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="landline">{HLANDLINE}</label>
 
-				<div class="controls">
-					<input id="landline" name="landline" type="text" value="{LANDLINE}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="landline" name="landline" type="text" value="{LANDLINE}" class="required "/>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="mobile">{HMOBILE}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="mobile">{HMOBILE}</label>
 
-				<div class="controls">
-					<input id="mobile" name="mobile" type="text" value="{MOBILE}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="mobile" name="mobile" type="text" value="{MOBILE}" class="required "/>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="email">{HEMAIL}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="email">{HEMAIL}</label>
 
-				<div class="controls">
-					<input id="email" name="email" type="text" value="{EMAIL}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="email" name="email" type="text" value="{EMAIL}" class="required "/>
 			</div>
-			<div id="tour_target_edit_guest_vat"></div>
-			<div class="control-group">
-				<label class="control-label" for="vat_number">{_JOMRES_COM_YOURBUSINESS_VATNO}</label>
-				<div class="controls">
-					<input id="vat_number" name="vat_number" type="text" value="{VAT_NUMBER}"/>
-					<patTemplate:tmpl name="validation" type="simpleCondition" requiredVars="validation_class">
-					<span class="help-block">
-						<div class="alert {VALIDATION_CLASS}">
-							{VAT_NUMBER_VALIDATION_STATUS}
-						</div>
-					</span>
-					</patTemplate:tmpl>
-				</div>
-			</div>
-			<div id="tour_target_edit_guest_discount"></div>
-			<div class="control-group">
-				<label class="control-label" for="discount">{HDISCOUNT}</label>
-
-				<div class="controls">
-					<div class="input-append">
-						{DISCOUNT}(%)
+		</div>
+		<div id="tour_target_edit_guest_vat"></div>
+		<div class="control-group">
+			<label class="control-label" for="vat_number">{_JOMRES_COM_YOURBUSINESS_VATNO}</label>
+			<div class="controls">
+				<input id="vat_number" name="vat_number" type="text" value="{VAT_NUMBER}"/>
+				<patTemplate:tmpl name="validation" type="simpleCondition" requiredVars="validation_class">
+				<span class="help-block">
+					<div class="alert {VALIDATION_CLASS}">
+						{VAT_NUMBER_VALIDATION_STATUS}
 					</div>
+				</span>
+				</patTemplate:tmpl>
+			</div>
+		</div>
+		<div id="tour_target_edit_guest_discount"></div>
+		<div class="control-group">
+			<label class="control-label" for="discount">{HDISCOUNT}</label>
+
+			<div class="controls">
+				<div class="input-append">
+					{DISCOUNT}(%)
 				</div>
 			</div>
-			<div class="form-actions">
-				{JOMRESTOOLBAR}
-			</div>
-			<input type="hidden" name="guestUid" value="{GUESTUID}"/>
-			<input type="hidden" name="task" value="saveGuest"/>
-			<input type="hidden" name="no_html" value="1"/>
-		</fieldset>
-	</form>
+		</div>
+		<div class="form-actions">
+			{JOMRESTOOLBAR}
+		</div>
+		<input type="hidden" name="id" value="{GUESTUID}"/>
+		<input type="hidden" name="task" value="save_guest"/>
+		<input type="hidden" name="no_html" value="1"/>
+	</fieldset>
+</form>
 </patTemplate:tmpl>

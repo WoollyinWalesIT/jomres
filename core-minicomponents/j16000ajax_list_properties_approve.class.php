@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -46,7 +46,7 @@ class j16000ajax_list_properties_approve
         $jomresConfig_mailfrom = get_showtime('mailfrom');
         $jomresConfig_fromname = get_showtime('fromname');
 
-        $link = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=viewproperty&property_uid='.$property_uid);
+        $link = get_property_details_url($property_uid,'nosef');
 
         switch ($approved) {
             case 1:

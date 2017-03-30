@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -1457,7 +1457,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Количест
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Загрузка Jomres jQuery library?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'Вы можете установить Нет, если у вас есть шаблон, который использует JQuery. Это может решить конфликтные вопросы JQuery на некоторых шаблонов, но не все.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Если вы используете Joomfish, вы должны установить значение "нет", и использовать Joomfish переключатель языков. Переключатель всегда включен в качестве администратора, потому что это требуется, когда вы используете метку переводы характеристик.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Минатюры автоматически создаются при загрузке изображений.');
 
 // 4.7.1
@@ -2298,9 +2298,6 @@ jr_define('TOUR_ID_TOUR_TARGET_COUPONS_CONTENT', 'Купон - коды поле
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_TITLE', 'Дополнительное оборудование.');
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_CONTENT', 'Дополнительное оборудование, услуги, элементы, которые могут быть добавлены к бронирования. Это предметы, услуги которые не ограничеваются, поэтому нет управления ресурсами, связанных с ними. Когда вы создаете дополнительное оборудование вы можете выбрать различные параметры, например, максимальное количество из них, которые могут быть добавлены к бронирования, и является ли или нет лишними, или должны быть принудительными. При этом, мы имеем в виду, если он автоматически выбирается в форме бронирования, и Гость не может снять его. Это полезно для обязательных платежей вроде полотенец или уборку. Кроме того, вам нужно будет выбрать модель, которая означает, как платежи будут рассчитываться за лишние. Если вы хотите одного варианта должен быть применен (например, для бутылки шампанского, чтобы быть доступны по прибытии), то вы установите модель для всего бронирования. Если вы хотете взимать плату за что-то на каждый день, тогда вы выбрали бы в день вариант.');
 
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_TITLE', 'Медиа-Центр');
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_CONTENT', 'Медиа-центр позволяет легко загружать изображения вашей недвижимости. По умолчанию вы можете загрузить основные изображения недвижимости (фактически, вы можете загрузить больше, но только первый в списке будет использоваться), неограниченное количество изображений, которые будут показаны в слайд-шоу, и неограниченное число изображений для каждого помещения.'.jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', false));
-
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_TITLE', 'Выбора ресурсов.');
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_CONTENT', 'Это средство выбора ресурсов. Это позволяет выбрать, какого рода ресурс вы загружаете изображения (например, слайд-шоу изображений или номера) и если это Номер, то после выбора номера вам будет предоставлена возможность выбрать, в какую комнату вы хотите загрузить изображения в другом выпадающем списке, рядом с ним. Это позволяет Вам загружать несколько изображений для каждого отдельного помещения, если вы пожелаете. Обратите внимание, номер изображения загружать только касается свойств, таких как отели, пансионаты и т. д. Виллы и апартаменты не имеют эту опцию.');
 
@@ -3129,3 +3126,11 @@ jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW', 'Show property images as slideshow
 jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC', 'If set to yes, a slideshow of property main images will be displayed. If set to no, then the first property main image will be displayed.');
 
 jr_define('EDIT_CMS_USER', 'Edit CMS user');
+
+jr_define('BOOKING_MADE_BY', 'Booking made by');
+
+jr_define('_JOMRES_ROUTER_FEATURES', 'Amenities');
+jr_define('_JOMRES_ROUTER_ROOMTYPES', 'Room Types');
+
+jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL', 'External booking form URL');
+jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', 'Here you can set an external URL if you want to use a 3rd party website for making bookings. All jomres booking buttons will point to this URL. Leave this field blank if you want to use the Jomres booking form.');

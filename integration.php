@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -68,6 +68,7 @@ if (!defined('JOMRESPATH_BASE')) {
 define('JOMRESCONFIG_ABSOLUTE_PATH', substr(JOMRESPATH_BASE, 0, strlen(JOMRESPATH_BASE) - strlen(JOMRES_ROOT_DIRECTORY)));
 define('JOMRES_CSSRELPATH', JOMRES_ROOT_DIRECTORY.'/css/');
 define('JOMRES_SESSION_ABSPATH', JOMRESPATH_BASE.JRDS.'sessions'.JRDS);
+define('JOMRES_TEMP_ABSPATH', JOMRESPATH_BASE.JRDS.'temp'.JRDS);
 
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'database.php';
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'input_filtering.php';
@@ -132,7 +133,7 @@ if (!class_exists('patErrorManager')) {
     require_once 'libraries'.JRDS.'phptools'.JRDS.'patErrorManager.php';
 }
 
-require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'PHPMailer_v5.2.9'.JRDS.'PHPMailerAutoload.php';
+require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'PHPMailer-5.2.21'.JRDS.'PHPMailerAutoload.php';
 PHPMailerAutoload('phpmailer');
 PHPMailerAutoload('smtp');
 

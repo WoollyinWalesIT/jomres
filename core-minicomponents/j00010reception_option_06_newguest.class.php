@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -33,7 +33,7 @@ class j00010reception_option_06_newguest
             return;
         }
 
-        $this->cpanelButton = jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL.'&task=editGuest'), 'guestEdit.png', jr_gettext('_JOMRES_COM_MR_NEWGUEST', '_JOMRES_COM_MR_NEWGUEST', false, false), null, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_GUESTS', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_GUESTS', false, false));
+        $this->cpanelButton = jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_guest'), 'guestEdit.png', jr_gettext('_JOMRES_COM_MR_NEWGUEST', '_JOMRES_COM_MR_NEWGUEST', false, false), null, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_GUESTS', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_GUESTS', false, false));
     }
 
     // This must be included in every Event/Mini-component

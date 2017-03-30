@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -27,7 +27,7 @@ class j00011manager_option_12_deleteproperty
         }
         $this->cpanelButton = false;
         $thisJRUser = jomres_getSingleton('jr_user');
-        if ($thisJRUser->superPropertyManager) {
+        if ($thisJRUser->accesslevel >= 70) {
             $this->cpanelButton = jomres_mainmenu_option(JOMRES_SITEPAGE_URL.'&task=deleteProperty', 'WasteBasket.png', jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE', '_JOMRES_COM_MR_PROPERTY_DELETE', false, false), null, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PROPERTIES', false, false), false);
         }
     }

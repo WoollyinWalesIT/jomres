@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -58,7 +58,6 @@ class j06001dashboard
         jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'fullcalendar.min.js');
         jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'lang-all.js');
         jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'scheduler.min.js');
-        jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'jquery.ui.touch.js');
         jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery.blockUI.js');
         jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'fullcalendar.min.css');
         jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'scheduler.min.css');
@@ -78,7 +77,7 @@ class j06001dashboard
         $output['DAY'] = jr_gettext('_JOMRES_DASHBOARD_DAY', '_JOMRES_DASHBOARD_DAY', false);
         $output['YEAR'] = jr_gettext('_JOMRES_DASHBOARD_YEAR', '_JOMRES_DASHBOARD_YEAR', false);
         $output['HNEW_BOOKING'] = jr_gettext('_JOMRES_HNEW_BOOKING', '_JOMRES_HNEW_BOOKING', false);
-        $output['NEW_BOOKING_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$property_uid);
+        $output['NEW_BOOKING_URL'] = get_booking_url($property_uid);
         $output['HBLACK_BOOKINGS'] = jr_gettext('_JOMRES_FRONT_BLACKBOOKING', '_JOMRES_FRONT_BLACKBOOKING', false);
         $output['BLACK_BOOKINGS_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=listBlackBookings');
 
@@ -203,6 +202,13 @@ class j06001dashboard
         }
 
         $output['CURRENCY_CODE'] = $currencycode;
+		
+		//check if site is RTL
+		if (jomres_cmsspecific_isRtl()) {
+			$output['IS_RTL'] = 'true';
+		} else {
+			$output['IS_RTL'] = 'false';
+		}
 
         //existing guests dropdown
         $output['HEXISTING_GUESTS_DROPDOWN'] = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', false);
@@ -215,6 +221,7 @@ class j06001dashboard
         $tmpl->addRows('rows', $rows);
         $tmpl->readTemplatesFromInput('dashboard.html');
         $tmpl->displayParsedTemplate();
+        
     }
 
     public function getExistingGuestsDropdown($property_uid = 0)

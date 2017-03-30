@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -75,6 +75,8 @@ class custom_text
         foreach ($property_uids as $uid) {
             if (!isset($this->properties_custom_text[$uid])) {
                 $tmp_array[] = $uid;
+				//we`ll define this here, so even if empty, we know that we`ve gone through this property uid before
+				$this->properties_custom_text[$uid] = array();
             }
         }
         $property_uids = $tmp_array;
@@ -108,6 +110,14 @@ class custom_text
     //Legacy function: we`ll keep it here because it`s used in various places
     public function get_custom_text_for_property($property_uid = 0)
     {
+		if ($property_uid == 0)
+			return true;
+		
+		if (isset($this->properties_custom_text[ $property_uid ]))
+			return true;
+		else
+			$this->gather_data(array($property_uid));
+		
         return true;
     }
 }

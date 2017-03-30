@@ -1,6 +1,4 @@
-<patTemplate:comment>
- * @version Jomres 9.8.21
-</patTemplate:comment>
+
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
 <!--
@@ -49,7 +47,7 @@ jomresJquery().ready(function() {
 		rules: {
 			guest_name: {
 				minlength: 3,
-				maxlength: 15,
+				maxlength: 50,
 				required: true
 			},
 			enquiry: {
@@ -118,7 +116,7 @@ jomresJquery().ready(function() {
 	<div class="form-actions">
 		<div class="col-md-offset-2 col-md-10">
 			<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> {COMMON_SEND}</button>
-			<a href="{JOMRES_SITEPAGE_URL_NOSEF}&task=viewproperty&property_uid={COMMON_LAST_VIEWED_PROPERTY_UID}" class="btn btn-default"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
+			<a href="{PROPERTY_DETAILS_URL}" class="btn btn-default"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
 		</div>
 	</div>
 	<input type="hidden" name="property_uid" value="{PROPERTY_UID}"/>

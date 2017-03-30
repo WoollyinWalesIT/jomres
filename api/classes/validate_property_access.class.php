@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -25,10 +25,10 @@ class validate_property_access
         $scopes = Flight::get('scopes');
         $conn = Flight::db();
 
-        $stmt = $conn->prepare('SELECT pu FROM '.Flight::get('dbprefix').'jomres_managers WHERE userid = :id');
+        $stmt = $conn->prepare('SELECT access_level FROM '.Flight::get('dbprefix').'jomres_managers WHERE userid = :id');
         $stmt->execute(['id' => Flight::get('user_id')]);
         $user = $stmt->fetch();
-        if ($user['pu'] == '1' || $scopes[0] == '*') { // User is a super property manager or the system user
+        if ($user['access_level'] >= 90 || $scopes[0] == '*') { // User is a super property manager or the system user
             $stmt = $conn->query('SELECT propertys_uid FROM '.Flight::get('dbprefix').'jomres_propertys ORDER BY propertys_uid');
             $property_uids = array();
             while ($row = $stmt->fetch()) {

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -127,7 +127,7 @@ class j06000show_property_header
 
         //Facebook meta data
         $short_property_description = jomres_decode(jr_substr(strip_tags($current_property_details->property_description), 0, 200)).'...';
-        jomres_cmsspecific_addcustomtag('<meta property="og:url" content="'.jomresUrl(JOMRES_SITEPAGE_URL_NOSEF.'&task=viewproperty&property_uid='.$property_uid).'" />');
+        jomres_cmsspecific_addcustomtag('<meta property="og:url" content="'.get_property_details_url($property_uid, 'nosef').'" />');
         jomres_cmsspecific_addcustomtag('<meta property="og:type" content="article" />');
         jomres_cmsspecific_addcustomtag('<meta property="og:title" content="'.jomres_decode($current_property_details->property_name).'" />');
         jomres_cmsspecific_addcustomtag('<meta property="og:description" content="'.$short_property_description.'" />');
@@ -261,7 +261,7 @@ class j06000show_property_header
         $output[ '_JOMRES_AGENT' ] = jr_gettext('_JOMRES_AGENT', '_JOMRES_AGENT');
 
         //property buttons
-        $output[ 'DIRECT_URL' ] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid);
+        $output[ 'DIRECT_URL' ] = get_property_details_url($property_uid);
         $output[ 'CONTACT_LINK' ] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=contactowner&selectedProperty='.$property_uid);
         $output[ 'HCONTACT' ] = jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL');
         $output[ 'SHORTLIST_LINK' ] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_shortlisted_properties');
@@ -273,7 +273,7 @@ class j06000show_property_header
 
         if ($mrConfig[ 'visitorscanbookonline' ] == '1' && $jrConfig[ 'show_booking_form_in_property_details' ] != '1' && $mrConfig[ 'is_real_estate_listing' ] == 0) {
             $link = array();
-            $url = JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$property_uid;
+            $url = get_booking_url($property_uid);
             if ((($mrConfig[ 'fixedArrivalDateYesNo' ] == '1' || $mrConfig[ 'fixedPeriodBookings' ] == '1')) && !isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ])) { // We'll add an invalid arrival date if the fixed arrival date setting is set to Yes. This way we can force the booking engine to see the arrival date is wrong and it'll rebuild the available rooms list, which it doesn't if the date is correct when coming from the Book a room link.
             $url .= '&arrivalDate=2009-01-01';
             }

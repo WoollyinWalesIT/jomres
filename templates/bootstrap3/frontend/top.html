@@ -1,6 +1,4 @@
-<patTemplate:comment>
- * @version Jomres 9.8.21
-</patTemplate:comment>
+
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
@@ -14,6 +12,10 @@
 	}(document, 'script', 'facebook-jssdk'));
 	
 var jomres_device_type			= "{DEVICE_TYPE}";
+
+jomresJquery(document).ready(function(){
+	jomresJquery('#FAQModal').appendTo("body");
+});
 </script>
 	
 <style type="text/css">

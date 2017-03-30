@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -161,7 +161,7 @@ class j03025insertbooking_invoice
                 }*/
 
             //Single Person Supplement line item
-            if ($single_person_suppliment > 0) {
+            if ($single_person_suppliment != 0) {
                 $line_items[] = array('tax_code_id' => (int) $mrConfig[ 'accommodation_tax_code' ],
                                         'name' => '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST',
                                         'description' => '',

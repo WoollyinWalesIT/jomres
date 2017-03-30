@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
 * @Polska adaptacja Patryk Doering - http://www.rekinet.pl - kontakt@rekinet.pl
 * @Aktualizacja wersji językowej z 07-10-2016r.
@@ -1497,7 +1497,7 @@ jr_define('_JRPORTAL_INVOICES_COMMISSION_TITLE', 'Faktury prowizyjne');
 jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Liczba ofert');
 jr_define('_JOMRES_CONFIG_JQUERY', 'Obciążenie Jomres biblioteki jQuery');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'Można ustawić na Nie jeśli masz szablon, który używa jQuery. Może to rozwiązać problemy z jQuery i konflikty na niektórych szablonach, ale nie wszystkie.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Jeśli używasz JoomFish, należy ustawić na Nie, i używać JoomFish Language Switcher. Przełącznik jest zawsze włączony w obszarze administratora, ponieważ jest on potrzebny w przypadku korzystania z funkcji Tłumaczenia Label.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Miniatury są tworzone automatycznie dla przesyłanych zdjęć.');
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', 'Małe miniaturki (szerokość maks px)');
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH_DESC', 'Małe miniaturki są używane w wykazie ofert, podczas gdy średnie miniatury są używane w nagłówku ofert.');
@@ -2156,8 +2156,6 @@ jr_define('TOUR_ID_TOUR_TARGET_COUPONS_CONTENT', 'Kody rabatowe są dobrym sposo
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_TITLE', 'Opcje dodatkowe.');
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_CONTENT', 'Dla oferty można utworzyć opcje dodatkowe. Może to być dodatkowy produkt, usługa z wykorzystaniem modeli obliczania ceny takich jak np. za noc, za osobę, za dobę, od osoby itp. Jest to przydatna opcja jeśli chcesz pozwolić klientom na dodawanie na etapie składania rezerwacji opcjonalnych dodatków, które nie są limitowane (np. bukiet kwiatów w dniu przyjazdu do hotelu lub transfer z lotniska etc). Opcje te nie są limitowane, nie ma więc możliwości zarządzania ich ilościami. W trakcie definiowania opcji dodatkowych możesz skonfigurować między innymi to jaka może być maksymalna ilość dodatkowych opcji X w rezerwacji klienta, czy opcja dodatkowa ma być automatycznie wybrana bez możliwości odznaczenia jej przez klienta (funkcja przydatna w przypadku obowiązkowych płatności np. ręczniki w hotelu lub sprzątanie etc). Następnie należy zdefiniować to w jaki sposób ma zostać obliczona cena i płatność pobrana od klienta. Możesz np. pobrać jednorazową opłatę za butelkę szam		pana czekającą na klienta w dniu przyjazdu do hotelu, lub pobierać płatności w oparciu o inne dostępne modele, których ilość pozwala w maksymalnie dowolny sposób dostosowywać ceny opcji dodatkowych.');
 
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_TITLE', 'Centrum mediów.');
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_CONTENT', 'Centrum mediów pozwala na dodanie do oferty zdjęć. Można przesłać zdjęcie główne oferty (można przesłać dowolną liczbę zdjęć jednak jako zdjęcie główne oferty zostanie wykorzystane zdjęcie przesłane jako pierwsze), dowolną liczbę zdjęć można dodać również do slajdu oraz zasobów(w tym przypadku dostępne dla klientów będą wszystkie dodane zdjęcia.'.jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', false));
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_TITLE', 'Przełączanie zasobów.');
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_CONTENT', 'Opcja ta pozwala określić w jakim miejscu użyte mają zostać przesłane zdjęcia (np. czy jest to pokaz slajdów na stronie oferty czy zasób). Jeśli wybierzesz, że miejscem docelowym zdjęć ma być zasób, na liście obok wyświetlone zostaną wszystkie zasoby jakie dostępne są w danej ofercie, wybierz ten, co do którego chcesz przetransferować zdjęcia na serwer. Możesz przesłać dowolną ilość zdjęć do każdego z zasobów. Możliwość przesyłania zdjęć dla poszczególnych zasobówdostępna jest dla ofert typu hotel. W przypadku ofert takich jak dom czy apartament funkcja nie będzie dostępna.');
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_EXISTINGIMAGES_TITLE', 'Dodane zdjęcia.');
@@ -2794,3 +2792,11 @@ jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW', 'Show property images as slideshow
 jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC', 'If set to yes, a slideshow of property main images will be displayed. If set to no, then the first property main image will be displayed.');
 
 jr_define('EDIT_CMS_USER', 'Edit CMS user');
+
+jr_define('BOOKING_MADE_BY', 'Booking made by');
+
+jr_define('_JOMRES_ROUTER_FEATURES', 'Amenities');
+jr_define('_JOMRES_ROUTER_ROOMTYPES', 'Room Types');
+
+jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL', 'External booking form URL');
+jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', 'Here you can set an external URL if you want to use a 3rd party website for making bookings. All jomres booking buttons will point to this URL. Leave this field blank if you want to use the Jomres booking form.');

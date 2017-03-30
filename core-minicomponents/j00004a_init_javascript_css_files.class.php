@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -188,10 +188,10 @@ class j00004a_init_javascript_css_files
             $ls = $IDN->decode($ls);
         }
 
-        jr_import('javascript_cache');
+        /* jr_import('javascript_cache');
         $cache = new javascript_cache();
         $cache->cache_javascript($javascript_files);
-        $javascript_files = $cache->get_files();
+        $javascript_files = $cache->get_files(); */
 
         //now let`s add the js and css in the head
         foreach ($javascript_files as $file) {

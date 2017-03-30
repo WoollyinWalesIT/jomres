@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -44,17 +44,17 @@ class j01025showtariffs
         $current_property_details->gather_data($property_uid);
 
         $output_now = (bool) jomresGetParam($_REQUEST, 'op', false);
-        $this->retVals = '';
-
-        $ccodes = currencyCodesArray();
-        $query = 'SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
+        
+		$this->retVals = '';
+		$tariff_deets = array();
+        $output = array();
+        
+		$query = 'SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
 			`roomrateperday`,`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
 			`ignore_pppn`,`allow_ph`,`allow_we`
 			FROM #__jomres_rates WHERE property_uid = ' .$property_uid.' ORDER BY rate_title,roomclass_uid,validto';
         $tariffsList = doSelectSql($query);
-        $google_deets = array();
-        $tariff_deets = array();
-        $output = array();
+
         $output[ 'HTITLE' ] = jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE', '_JOMRES_FRONT_TARIFFS_TITLE');
         $output[ 'HDESC' ] = jr_gettext('_JOMRES_FRONT_TARIFFS_DESC', '_JOMRES_FRONT_TARIFFS_DESC');
         $output[ 'HROOMTYPE' ] = jr_gettext('_JOMRES_FRONT_TARIFFS_ROOMTYPE', '_JOMRES_FRONT_TARIFFS_ROOMTYPE');
@@ -64,18 +64,19 @@ class j01025showtariffs
         $output[ 'HMAXDAYS' ] = jr_gettext('_JOMRES_FRONT_TARIFFS_MAXDAYS', '_JOMRES_FRONT_TARIFFS_MAXDAYS');
         $output[ 'HMINPEEPS' ] = jr_gettext('_JOMRES_FRONT_TARIFFS_MINPEEPS', '_JOMRES_FRONT_TARIFFS_MINPEEPS');
         $output[ 'HMAXPEEPS' ] = jr_gettext('_JOMRES_FRONT_TARIFFS_MAXPEEPS', '_JOMRES_FRONT_TARIFFS_MAXPEEPS');
-        $output[ 'CONVERSIONBLURB' ] = jr_gettext('_JOMRES_CURRENCYCONVERSIONTEXT', '_JOMRES_CURRENCYCONVERSIONTEXT');
 
-        $query = 'SELECT tarifftype_id,tariff_id  FROM #__jomcomp_tarifftype_rate_xref  WHERE property_uid = '.(int) $property_uid;
+        $query = 'SELECT `tarifftype_id`,`tariff_id`  FROM #__jomcomp_tarifftype_rate_xref  WHERE `property_uid` = '.(int) $property_uid;
         $result = doSelectSql($query);
-        $tariff_tarifftypes_xref = array();
-        if (count($result) > 0) {
+        
+		$tariff_tarifftypes_xref = array();
+        
+		if (!empty($result)) {
             foreach ($result as $r) {
                 $tariff_tarifftypes_xref[ $r->tariff_id ] = $r->tarifftype_id;
             }
         }
 
-        if (count($tariffsList) > 0) {
+        if (!empty($tariffsList)) {
             $today = date('Y/m/d');
             $date_elements = explode('/', $today);
             $unixTodaysDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
@@ -90,13 +91,24 @@ class j01025showtariffs
 
                 if ($unixTodaysDate < $unixValidto) {
                     $r = array();
+					
+					$r[ 'HTITLE' ] 		= jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE', '_JOMRES_FRONT_TARIFFS_TITLE');
+					$r[ 'HDESC' ] 		= jr_gettext('_JOMRES_FRONT_TARIFFS_DESC', '_JOMRES_FRONT_TARIFFS_DESC');
+					$r[ 'HROOMTYPE' ] 	= jr_gettext('_JOMRES_FRONT_TARIFFS_ROOMTYPE', '_JOMRES_FRONT_TARIFFS_ROOMTYPE');
+					$r[ 'HSTARTS' ] 	= jr_gettext('_JOMRES_FRONT_TARIFFS_STARTS', '_JOMRES_FRONT_TARIFFS_STARTS');
+					$r[ 'HENDS' ] 		= jr_gettext('_JOMRES_FRONT_TARIFFS_ENDS', '_JOMRES_FRONT_TARIFFS_ENDS');
+					$r[ 'HMINDAYS' ] 	= jr_gettext('_JOMRES_FRONT_TARIFFS_MINDAYS', '_JOMRES_FRONT_TARIFFS_MINDAYS');
+					$r[ 'HMAXDAYS' ] 	= jr_gettext('_JOMRES_FRONT_TARIFFS_MAXDAYS', '_JOMRES_FRONT_TARIFFS_MAXDAYS');
+					$r[ 'HMINPEEPS' ] 	= jr_gettext('_JOMRES_FRONT_TARIFFS_MINPEEPS', '_JOMRES_FRONT_TARIFFS_MINPEEPS');
+					$r[ 'HMAXPEEPS' ] 	= jr_gettext('_JOMRES_FRONT_TARIFFS_MAXPEEPS', '_JOMRES_FRONT_TARIFFS_MAXPEEPS');
 
                     if (isset($tariff_tarifftypes_xref[ $tariff->rates_uid ])) {
                         $r[ 'TITLE' ] = jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID'.$tariff_tarifftypes_xref[ $tariff->rates_uid ], stripslashes($tariff->rate_title));
                     } else {
                         $r[ 'TITLE' ] = jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE'.$tariff->rates_uid, stripslashes($tariff->rate_title));
                     }
-                    $r[ 'DESC' ] = jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFDESC'.$tariff->rates_uid, stripslashes($tariff->rate_description));
+                    
+					$r[ 'DESC' ] = jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFDESC'.$tariff->rates_uid, stripslashes($tariff->rate_description));
                     $r[ 'ROOMCLASSABBV' ] = $current_property_details->room_types[$tariff->roomclass_uid]['abbv'];
                     $r[ 'ROOMCLASSFULLDESC' ] = $current_property_details->room_types[$tariff->roomclass_uid]['desc'];
                     $r[ 'MINPEOPLE' ] = $tariff->minpeople;
@@ -107,6 +119,9 @@ class j01025showtariffs
 
                     $r[ 'MINDAYS' ] = $tariff->mindays;
                     $r[ 'MAXDAYS' ] = $tariff->maxdays;
+					
+					$r[ 'MINPEOPLE' ] = $tariff->minpeople;
+                    $r[ 'MAXPEOPLE' ] = $tariff->maxpeople;
 
                     if (empty($mrConfig[ 'ratemultiplier' ])) {
                         $mrConfig[ 'ratemultiplier' ] = 1;
@@ -197,6 +212,7 @@ class j01025showtariffs
 
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->addRows('show_tariffs', $tariff_deets);
+
         $mcOutput = $MiniComponents->getAllEventPointsData('01020');
         if (count($mcOutput) > 0) {
             foreach ($mcOutput as $key => $val) {
@@ -204,8 +220,14 @@ class j01025showtariffs
             }
         }
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-        $tmpl->readTemplatesFromInput('te_show_tariffs.html');
-        $result = '';
+		
+		if ($mrConfig[ 'verbosetariffinfo' ] == '0') {
+			$tmpl->readTemplatesFromInput('te_show_tariffs.html');
+		} else {
+			$tmpl->readTemplatesFromInput('show_tariffs.html');
+		}
+        
+		$result = '';
 
         if ($output_now) {
             $tmpl->displayParsedTemplate();

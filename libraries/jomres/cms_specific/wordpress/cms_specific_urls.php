@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -53,9 +53,7 @@ if (!strstr($scriptname, 'install_jomres.php')) {
     $jomresItemid = 0; //should only kick in on install
 }
 
-set_showtime('itemid', $jomresItemid);
-
-$siteConfig->set_setting('jomresItemid', $jomresItemid);
+set_showtime('jomresItemid', $jomresItemid);
 
 $disable_cache = false;
 
@@ -118,23 +116,24 @@ if ($lang != '') {
     $lang = '&lang='.substr($lang, 0, 2);
 }
 
-// For administrator area Jomres lang switching
+//Jomres specific lang switching
 $lang_param = '';
 if (isset($_REQUEST[ 'jomreslang' ])) {
-    $jomreslang = jomres_singleton_abstract::getInstance('jomres_language');
-    if (array_key_exists($_REQUEST[ 'jomreslang' ], $jomreslang->datepicker_crossref)) {
-        $lang_param .= '&jomreslang='.jomresGetParam($_REQUEST, 'jomreslang', '');
+	$jomreslang = jomresGetParam($_REQUEST, 'jomreslang', '');
+    $jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
+    if ($jomreslang != '' && array_key_exists($jomreslang, $jomres_language->datepicker_crossref)) {
+        $lang_param = '&jomreslang='.$jomreslang;
     }
 }
 
-define('JOMRES_SITEPAGE_URL_NOSEF', get_showtime('live_site').'/index.php?option=com_jomres&page_id='.$jomresItemid.$tmpl.$lang);
-define('JOMRES_SITEPAGE_URL_AJAX', get_showtime('live_site').'/index.php?action=jomres/trigger.php&no_html=1&jrajax=1&jr_wp_source=frontend&option=com_jomres&page_id='.$jomresItemid.$tmpl.$lang);
+define('JOMRES_SITEPAGE_URL_NOSEF', get_showtime('live_site').'/index.php?option=com_jomres&page_id='.$jomresItemid.$tmpl.$lang.$lang_param);
+define('JOMRES_SITEPAGE_URL_AJAX', get_showtime('live_site').'/index.php?action=jomres/trigger.php&no_html=1&jrajax=1&jr_wp_source=frontend&option=com_jomres&page_id='.$jomresItemid.$tmpl.$lang.$lang_param);
 
 define('JOMRES_SITEPAGE_URL_ADMIN', get_showtime('live_site').'/wp-admin/admin.php?page=jomres/jomres.php&jr_wp_source=admin&option=com_jomres'.$tmpl.$lang.$lang_param);
 define('JOMRES_SITEPAGE_URL_ADMIN_AJAX', get_showtime('live_site').'/wp-admin/admin-ajax.php?action=jomres/trigger.php&no_html=1&jrajax=1&jr_wp_source=admin&option=com_jomres'.$tmpl.$lang.$lang_param);
 
 if (get_showtime('sef') == '1') {
-    define('JOMRES_SITEPAGE_URL', get_permalink($jomresItemid).'?option=com_jomres'.$tmpl.$lang);
+    define('JOMRES_SITEPAGE_URL', get_permalink($jomresItemid).'?option=com_jomres'.$tmpl.$lang.$lang_param);
 } else {
-    define('JOMRES_SITEPAGE_URL', get_showtime('live_site').'/index.php?option=com_jomres&page_id='.$jomresItemid.$tmpl.$lang);
+    define('JOMRES_SITEPAGE_URL', get_showtime('live_site').'/index.php?option=com_jomres&page_id='.$jomresItemid.$tmpl.$lang.$lang_param);
 }

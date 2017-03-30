@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -68,6 +68,7 @@ class j06000show_property_room_types
                 $room_type[ 'ROOM_TYPE_TEXT' ] = '';
                 $room_type[ 'ROOM_TYPE_COUNTER' ] = 0;
                 if (isset($basic_property_details->this_property_room_classes[$key])) {
+                    $url = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&room_type='.$key);
                     $room_type[ 'ROOM_TYPE' ] =
                         jomres_makeTooltip(
                             $basic_property_details->this_property_room_classes,
@@ -76,7 +77,8 @@ class j06000show_property_room_types
                             JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$basic_property_details->this_property_room_classes[$key]['image'],
                             '',
                             'room_type',
-                            array()
+                            array(),
+                            $url
                             );
                     $room_type[ 'ROOM_TYPE_TEXT' ] = $basic_property_details->this_property_room_classes[$key]['abbv'];
                     $room_type[ 'ROOM_TYPE_COUNTER' ] = count($basic_property_details->rooms_by_type[$key]);

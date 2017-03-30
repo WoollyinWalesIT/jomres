@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -1451,7 +1451,7 @@ jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Número de propi
 // 4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', '¿Cargar Jomres jQuery library?');
 jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'Puede establecer esto a NO si usted tiene una plantilla que utiliza jQuery. Esto puede resolver los problemas de conflicto jquery en algunas plantillas, pero no todos.');
-jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Si utiliza Joomfish, debe establecerse a No, y usar  el selector de idiomas de Joomfish. El conmutador siempre está habilitado en el área del administrador, ya que se necesita cuando se utiliza la función de etiquetas de traducciones.');
+jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC', 'Las miniaturas se crean automáticamente para las imágenes cargadas.');
 
 // 4.7.1
@@ -1979,8 +1979,7 @@ jr_define('JOMRES_GRANDTOTAL_INC_TAX', 'Total general (IVA incluído) : ');
 jr_define('JOMRES_GRANDTOTAL_TOTAL_TAX', 'Total impuestos : ');
 
 jr_define('JOMRES_RECAPTCHA_INSTRUCTIONS_VISUAL', 'Escribe las dos palabras: ');
-jr_define('JOMRES_RECAPTCHA_INSTRUCTIONS_AUDIO', '
-Introduce lo que se escucha: ');
+jr_define('JOMRES_RECAPTCHA_INSTRUCTIONS_AUDIO', 'Introduce lo que se escucha: ');
 jr_define('JOMRES_RECAPTCHA_PLAY_AGAIN', 'Reproducir la pista de audio ');
 jr_define('JOMRES_RECAPTCHA_CANT_HEAR_THIS', 'Descargar la canción en formato MP3');
 jr_define('JOMRES_RECAPTCHA_VISUAL_CHALLENGE', 'modo visual');
@@ -2306,9 +2305,6 @@ jr_define('TOUR_ID_TOUR_TARGET_COUPONS_CONTENT', 'ódigo de descuento son un mé
 
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_TITLE', 'Extras opcionales.');
 jr_define('TOUR_ID_TOUR_TARGET_EXTRAS_CONTENT', 'extras opcionales son elementos adicionales que se pueden agregar a una reserva. Estos son los elementos que no limitados por la disponibilidad limitada, así que no hay gestión de los recursos asociados con ellos. Cuando se crea un extra opcional que son capaces de elegir una variedad de configuraciones, por ejemplo, el número máximo de los que se puede añadir a una reserva, y si es o no el extra debe ser forzado. Por esto, queremos decir si se selecciona automáticamente en el formulario de reserva, y el invitado no se puede anular la selección de la misma. Esto es útil para los pagos obligatorios como toallas o un suplemento de limpieza. Además, tendrá que elegir un modelo, lo que significa cómo se calcularán los pagos por los extras. Si quieres una sola carga a aplicar (por ejemplo, por una botella de champán para estar disponible a la llegada), entonces debería definir el modelo para cada reserva. Si, por el que quería cobrar por algo para cada día, a continuación, se elija la opción por día.');
-
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_TITLE', 'Centro de Medios.');
-jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_INTRODUCTION_CONTENT', 'El Centro de Medios le permite subir fácilmente imágenes de su propiedad. Por defecto se puede subir una imagen principal propiedad (de hecho, se puede subir más, pero sólo el primero de la lista será utilizada), un número ilimitado de imágenes que se muestra en la presentación, y un número ilimitado de imágenes para cada habitación.'.jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', false));
 
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_TITLE', 'selector de recursos.');
 jr_define('TOUR_ID_TOUR_TARGET_MEDIACENTRE_RESOURCEPICKER_CONTENT', 'Este es el selector de recursos. Se le permite elegir qué tipo de recurso que va a subir imágenes (por ejemplo, para la presentación de imágenes o habitaciones) y si se trata de una habitación, a continuación, después de elegir habitaciones se le dará la opción de seleccionar qué habitación que desea cargar imágenes de en otro desplegable, al lado de él. Esto le permite subir varias imágenes para cada habitación individual, si así lo desea. Nota, imagen Sitio de la carga sólo se aplica a propiedades como hoteles, pensiones, etc. villas y apartamentos no tendrán esta opción.');
@@ -3135,3 +3131,11 @@ jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW', 'Show property images as slideshow
 jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC', 'If set to yes, a slideshow of property main images will be displayed. If set to no, then the first property main image will be displayed.');
 
 jr_define('EDIT_CMS_USER', 'Edit CMS user');
+
+jr_define('BOOKING_MADE_BY', 'Booking made by');
+
+jr_define('_JOMRES_ROUTER_FEATURES', 'Amenities');
+jr_define('_JOMRES_ROUTER_ROOMTYPES', 'Room Types');
+
+jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL', 'External booking form URL');
+jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', 'Here you can set an external URL if you want to use a 3rd party website for making bookings. All jomres booking buttons will point to this URL. Leave this field blank if you want to use the Jomres booking form.');

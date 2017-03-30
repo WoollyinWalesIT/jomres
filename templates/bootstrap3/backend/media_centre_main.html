@@ -1,6 +1,4 @@
-<patTemplate:comment>
- * @version Jomres 9.8.21
-</patTemplate:comment>
+
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <style>
 #dropzone {
@@ -36,15 +34,15 @@
 
 </style>
 
-<h2 class="page-header">{TITLE} ({UPLOAD_CONTEXT_TITLE})</h2>
+<h2 class="page-header">{TITLE}</h2>
 <p class="alert alert-info">{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS}</p>
 <p>{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_GENERIC}</p>
 
 <hr/>
 
-<div class="panel {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
+<div class="panel panel-default">
 	<div class="panel-heading">
-        <h2 class="panel-title">{_JOMRES_MEDIA_CENTRE_RESOURCE}</h2> 
+        <h2 class="panel-title">{_JOMRES_MEDIA_CENTRE_RESOURCE}</h2>
     </div>
     <div class="panel-body">
         <div class="col-md-10">
@@ -55,7 +53,7 @@
                 <i class="fa fa-link" aria-hidden="true"></i>
                {_JOMRES_FRONT_PREVIEW}
             </a>
-            <button type="button" class="btn btn-info" data-toggle="popover" title="{_JOMRES_FRONT_PREVIEW}" data-trigger="focus" data-content="{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_PREVIEW}"><i class="fa fa-info" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-info" data-toggle="popover" data-placement="left" title="{_JOMRES_FRONT_PREVIEW}" data-trigger="focus" data-content="{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_PREVIEW}"><i class="fa fa-info" aria-hidden="true"></i></button>
         </div>
     </div>
 	<div class="panel-footer">
@@ -66,8 +64,10 @@
 </div>
 
 <div class="row">
-	<div class="col-md-7 well well-small clearfix">
-        <h4>{_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED}</h4>
+	<div class="col-md-7">
+		<div class="page-header">
+			<h4>{_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED}</h4>
+		</div>
 		<div id="existing_images"></div>
 	</div>
 	<div class="col-md-5">
@@ -95,7 +95,7 @@
 				{_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL}
 			</span>
             
-             <button type="button" class="btn btn-info" data-toggle="popover" title="{_JOMRES_COM_A_UPLOADS_FILESIZE}" data-trigger="focus" data-content="{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_PRE}{MAX_UPLOAD_SIZE}{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_POST}<br/>{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_LIMITATIONS} {_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_PRE}{WIDTH_PIXELS} {_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_POST}"><i class="fa fa-info" aria-hidden="true"></i></button>
+             <button type="button" class="btn btn-info" data-toggle="popover" data-placement="left" title="{_JOMRES_COM_A_UPLOADS_FILESIZE}" data-trigger="focus" data-content="{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_PRE}{MAX_UPLOAD_SIZE}{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_POST} {_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_LIMITATIONS} {_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_PRE}{WIDTH_PIXELS} {_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_POST}"><i class="fa fa-info" aria-hidden="true"></i></button>
 			<!--<button type="button" class="btn btn-danger delete">
 				<i class="icon-trash"></i>
 				<span>Delete</span>
@@ -124,7 +124,7 @@ var preview_link_{RESOURCE_TYPE} = '{PREVIEW_LINK}';
 jomresJquery(function () {
     'use strict';
     // Change this to the location of your server-side upload handler:
-    var url = ajax_url + '&task=media_centre_handler{URL_CONTEXT}',
+    var url = ajax_url + '&task=media_centre_handler',
         uploadButton = jomresJquery('<button/>')
             .addClass('btn btn-primary start')
             .prop('disabled', true)
@@ -228,7 +228,7 @@ jomresJquery(function () {
 			else
 				{
 				/*
-				var delete_link = '<a href="javascript:void(0);" class="btn btn-danger" onclick="delete_file(\''+file.deleteUrl+ '{URL_CONTEXT}'+'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
+				var delete_link = '<a href="javascript:void(0);" class="btn btn-danger" onclick="delete_file(\''+file.deleteUrl+'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
 				var view_link = '<a href="'+file.url+'" target="_blank" class="btn btn-primary">{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}</a>';
 
 				var links = view_link + " " + delete_link;
@@ -262,7 +262,7 @@ function get_resource_ids_for_resource_type(resource_type)
 	{
 	hide_uploaded();
 	jomresJquery('#existing_images').fadeOut();
-	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax{URL_CONTEXT}&resource_type=' + resource_type,
+	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax&resource_type=' + resource_type,
 		function (data) {
 			if (data != '')
 				{
@@ -317,9 +317,10 @@ function get_existing_images()
 	jomresJquery('#existing_images').fadeOut();
 	var resource_type = jomresJquery('#resource_types').val();
 	var resource_id = jomresJquery('#resource_id').val();
-	if (resource_id == '')
+	if (resource_id == '') {
 		resource_id=0;
-	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax_existing_images{URL_CONTEXT}&resource_type=' + resource_type+'&resource_id='+resource_id,
+		}
+	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax_existing_images&resource_type=' + resource_type+'&resource_id='+resource_id,
 		function (data) {
 			populateDiv ( 'existing_images' , data );
 			jomresJquery('#existing_images').fadeIn();
@@ -339,8 +340,7 @@ jomresJquery(document).ready(function () {
 
   jomresJquery('[data-toggle="popover"]').popover()
 
-
-	get_existing_images();
+	get_resource_ids_for_resource_type(jomresJquery('#resource_types').val());
     
     // Fill modal with content from link href
     jomresJquery("#previewModal").on("show.bs.modal", function(e) {

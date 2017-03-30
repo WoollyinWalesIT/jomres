@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -186,18 +186,18 @@ class j06001dashboard_events_ajax
 
                 if ((int) $resource > 0) {
                     $contracts[] = array(
-                                        'id' => $id,
-                                        'resourceId' => $resource,
-                                        'start' => $start,
-                                        'end' => $end,
-                                        'title' => $title,
-                                        'url' => $url,
-                                        'className' => $imgToShow,
-                                        'description' => $description,
-                                        'contract_uid' => $c->contract_uid,
-                                        'room_uid' => $c->room_uid,
-                                        'this_contract_room_uids' => $room_uids[$c->contract_uid],
-                                        );
+										'id' => $id,
+										'resourceId' => $resource,
+										'start' => $start,
+										'end' => $end,
+										'title' => $title,
+										'url' => $url,
+										'className' => $imgToShow,
+										'description' => $description,
+										'contract_uid' => $c->contract_uid,
+										'room_uid' => $c->room_uid,
+										'this_contract_room_uids' => $room_uids[$c->contract_uid],
+										);
                 }
             }
         } else {

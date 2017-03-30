@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -166,7 +166,7 @@ class j06000mrp_calendar
             $this->retVals .= '<tr>';
             for ($c = 0; $c < 7; ++$c) {
                 $class = 'normal-day';
-                $link = JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$property_uid.'&pdetails_cal=1&arrivalDate='.date('Y/m/d', $currdate);
+                $link = get_booking_url($property_uid, '', '&pdetails_cal=1&arrivalDate='.date('Y/m/d', $currdate));
                 $fmt = date('Y', $currdate).'/'.date('m', $currdate).'/'.date('d', $currdate);
 
                 if (!isset($this->booked_dates[$fmt])) {
@@ -178,10 +178,10 @@ class j06000mrp_calendar
                 if ($percentage_booked > 0 && $percentage_booked <= 25) {
                     $class = 'jomres-calendar-booking-occupied-quarter';
                 }
-                if ($percentage_booked > 26 && $percentage_booked <= 50) {
+                if ($percentage_booked > 25 && $percentage_booked <= 50) {
                     $class = 'jomres-calendar-booking-occupied-half';
                 }
-                if ($percentage_booked > 51 && $percentage_booked < 100) {
+                if ($percentage_booked > 50 && $percentage_booked < 100) {
                     $class = 'jomres-calendar-booking-occupied-threequarter';
                 }
                 if ($percentage_booked == 100) {

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -23,7 +23,10 @@ class jomres_media_centre_images
     {
         self::$configInstance = false;
         $this->images = array();
+		$this->site_images = array();
+		
         $this->multi_query_images = array();
+		$this->multi_query_site_images = array();
 
         $this->multi_query_images [ 'noimage-large' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage.gif';
         $this->multi_query_images [ 'noimage-medium' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage.gif';
@@ -125,6 +128,21 @@ class jomres_media_centre_images
 
         return $this->images;
     }
+	
+	//get images uploaded by admins (pfeatures, rmtypes, rmfeatures, markers, towns and other 3rd party resource types)
+	public function get_site_images( $type = '' )
+    {
+        if ($type == '') {
+            return;
+        }
+
+        //get all images of this type
+        if (!isset($this->multi_query_site_images[$type])) {
+            $this->get_site_images_multi($type);
+        }
+
+        return $this->site_images;
+    }
 
     public function get_images_multi($property_uids)
     {
@@ -143,60 +161,127 @@ class jomres_media_centre_images
         $property_uids = $temp_array;
         unset($temp_array);
 
-        if (count($property_uids) > 0) {
+        if (!empty($property_uids)) {
             $MiniComponents = jomres_getSingleton('mcHandler');
             $MiniComponents->triggerEvent('03379');
             $resource_types = $MiniComponents->miniComponentData['03379'];
 
             // This section will find all images uploaded by the new media centre's functionality
-            if (count($resource_types) > 0) {
-                $all_types = array();
-                foreach ($resource_types as $type) {
-                    if (is_array($type) && isset($type['resource_type'])) {
-                        $all_types[] = $type['resource_type'];
-                    }
-                }
+            if (empty($resource_types)) {
+               return false;
             }
 
-            if (count($all_types) > 0) {
-                foreach ($property_uids as $property_id) {
-                    $this->multi_query_images[$property_id] = array();
+			foreach ($property_uids as $property_id) {
+				$this->multi_query_images[$property_id] = array();
 
-                    $base_path = JOMRES_IMAGELOCATION_ABSPATH.$property_id.JRDS;
-                    $rel_path = JOMRES_IMAGELOCATION_RELPATH.$property_id.'/';
+				$base_path = JOMRES_IMAGELOCATION_ABSPATH.$property_id.JRDS;
+				$rel_path = JOMRES_IMAGELOCATION_RELPATH.$property_id.'/';
 
-                    $dir_contents = scandir_getdirectories($base_path);
+				$dir_contents = scandir_getdirectories($base_path);
 
-                    foreach ($dir_contents as $dir) {
-                        if (in_array($dir, $all_types)) {
-                            $sub_directories = scandir_getdirectories($base_path.$dir.JRDS);
-                            if (count($sub_directories) > 0) {
-                                foreach ($sub_directories as $resouce_id) {
-                                    $resource_images = scandir_getfiles($base_path.$dir.JRDS.$resouce_id.JRDS);
+				foreach ($dir_contents as $dir) {
+					if (array_key_exists($dir, $resource_types)) {
+						$sub_directories = scandir_getdirectories($base_path.$dir.JRDS);
+						if (!empty($sub_directories)) {
+							foreach ($sub_directories as $resouce_id) {
+								$resource_images = scandir_getfiles($base_path.$dir.JRDS.$resouce_id.JRDS);
 
-                                    if (count($resource_images) > 0) {
-                                        foreach ($resource_images as $image) {
-                                            $this->multi_query_images [ $property_id ] [ $dir ] [ $resouce_id ] [] = array(
-                                                'large' => $rel_path.$dir.'/'.$resouce_id.'/'.$image,
-                                                'medium' => $rel_path.$dir.'/'.$resouce_id.'/medium/'.$image,
-                                                'small' => $rel_path.$dir.'/'.$resouce_id.'/thumbnail/'.$image,
-                                                );
-                                        }
-                                    } else { //the dir is empty
-                                        $this->multi_query_images [ $property_id ][ $dir ] [ $resouce_id ] [] = array(
-                                                'large' => $this->multi_query_images[ 'noimage-large' ],
-                                                'medium' => $this->multi_query_images[ 'noimage-medium' ],
-                                                'small' => $this->multi_query_images[ 'noimage-small' ],
-                                                );
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+								if (!empty($resource_images)) {
+									foreach ($resource_images as $image) {
+										$this->multi_query_images [ $property_id ] [ $dir ] [ $resouce_id ] [] = array(
+											'large' => $rel_path.$dir.'/'.$resouce_id.'/'.$image,
+											'medium' => $rel_path.$dir.'/'.$resouce_id.'/medium/'.$image,
+											'small' => $rel_path.$dir.'/'.$resouce_id.'/thumbnail/'.$image,
+											);
+									}
+								} else { //the dir is empty
+									$this->multi_query_images [ $property_id ][ $dir ] [ $resouce_id ] [] = array(
+											'large' => $this->multi_query_images[ 'noimage-large' ],
+											'medium' => $this->multi_query_images[ 'noimage-medium' ],
+											'small' => $this->multi_query_images[ 'noimage-small' ],
+											);
+								}
+							}
+						}
+					}
+				}
+			}
         }
 
         return $this->multi_query_images;
+    }
+	
+	//this scans for site images like pfeatures, rmtypes and other 3rd party images
+	public function get_site_images_multi($type = '')
+    {
+		if ($type == '') {
+			return false;
+		}
+		
+        // First we need to extract those uids that are not already in the $this->multi_query_images var, this (may) reduce the number of scandirs we need to execute
+        if (isset($this->multi_query_site_images[$type])) {
+            return true;
+        }
+
+		$MiniComponents = jomres_getSingleton('mcHandler');
+		$MiniComponents->triggerEvent('11010');
+		$resource_types = $MiniComponents->miniComponentData['11010'];
+		
+		if (empty($resource_types))
+			return false;
+
+		//security check
+		if (!array_key_exists($type, $resource_types)) {
+			return false;
+		}
+
+		$this->site_images[$type] = array();
+
+		$base_path = $resource_types[$type]['upload_root_abs_path'].$type.JRDS;
+		$rel_path = $resource_types[$type]['upload_root_rel_path'].$type.'/';
+
+		if ($resource_types[$type]['resource_id_required']) {
+			$dir_contents = scandir_getdirectories($base_path);
+
+			foreach ($dir_contents as $resouce_id) {
+				$resource_images = scandir_getfiles($base_path.$resouce_id.JRDS);
+
+				if (!empty($resource_images)) {
+					foreach ($resource_images as $image) {
+						$this->site_images [ $type ] [ $resouce_id ] [] = array(
+							'large' => $rel_path.$resouce_id.'/'.$image,
+							'medium' => $rel_path.$resouce_id.'/medium/'.$image,
+							'small' => $rel_path.$resouce_id.'/thumbnail/'.$image,
+							);
+					}
+				} else { //the dir is empty
+					$this->site_images [ $type ] [ $resouce_id ] [] = array(
+							'large' => $this->multi_query_images[ 'noimage-large' ],
+							'medium' => $this->multi_query_images[ 'noimage-medium' ],
+							'small' => $this->multi_query_images[ 'noimage-small' ],
+							);
+				}
+			}
+		} else {
+			$resource_images = scandir_getfiles($base_path);
+
+			if (!empty($resource_images)) {
+				foreach ($resource_images as $image) {
+					$this->site_images [ $type ] [] = array(
+						'large' => $rel_path.$image,
+						'medium' => $rel_path.'medium/'.$image,
+						'small' => $rel_path.'thumbnail/'.$image,
+						);
+				}
+			} else { //the dir is empty
+				$this->site_images [ $type ] [] = array(
+						'large' => $this->multi_query_images[ 'noimage-large' ],
+						'medium' => $this->multi_query_images[ 'noimage-medium' ],
+						'small' => $this->multi_query_images[ 'noimage-small' ],
+						);
+			}
+		}
+
+        return $this->site_images;
     }
 }

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -450,7 +450,7 @@ jomresJquery(function(){
                             if ($bgcolor != $outbgcolor) {
                                 if ($mrConfig[ 'fixedArrivalDay' ] == date('w', $currdate)) {
                                     if ($mrConfig[ 'visitorscanbookonline' ] && $this->showlinks) {
-                                        $link = JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
+                                        $link = get_booking_url($property_uid, '', '&arrivalDate='.$sqlDate2);
                                         if (!$mrConfig[ 'singleRoomProperty' ]) {
                                             $link .= '&remus='.$roomUid;
                                         }
@@ -474,7 +474,7 @@ jomresJquery(function(){
                             }
                         } else {
                             if ($bgcolor != $outbgcolor && $mrConfig[ 'visitorscanbookonline' ] && $this->showlinks) {
-                                $link = JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
+                                $link = get_booking_url($property_uid, '', '&arrivalDate='.$sqlDate2);
                                 if (!$mrConfig[ 'singleRoomProperty' ]) {
                                     $link .= '&remus='.$roomUid;
                                 }

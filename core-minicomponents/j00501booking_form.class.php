@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -38,8 +38,19 @@ class j00501booking_form
         $weekenddayDropdown = $componentArgs[ 'weekenddayDropdown' ];
         $booking_form_rooms_list_style = $componentArgs[ 'booking_form_rooms_list_style' ];
         $booking_form_daily_weekly_monthly = $componentArgs[ 'booking_form_daily_weekly_monthly' ];
+		
+		if (!isset($mrConfig[ 'externalBookingFormUrl' ])) {
+			$mrConfig[ 'externalBookingFormUrl' ] = '';
+		}
 
         $configurationPanel->startPanel(jr_gettext('_JOMRES_HBOOKING_FORM', '_JOMRES_HBOOKING_FORM', false));
+		
+		if (!$thisJRUser->simple_configuration) {
+			$configurationPanel->setleft(jr_gettext('_JOMRES_BOOKING_FORM_EXTERNAL_URL', '_JOMRES_BOOKING_FORM_EXTERNAL_URL', false));
+            $configurationPanel->setmiddle('<input type="url" class="inputbox form-control"  size="50" name="cfg_externalBookingFormUrl" value="'.$mrConfig[ 'externalBookingFormUrl' ].'" />');
+            $configurationPanel->setright(jr_gettext('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', '_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', false));
+            $configurationPanel->insertSetting();
+		}
 
         if (($jrConfig[ 'minimalconfiguration' ] != '1' || $thisJRUser->superPropertyManager) && $mrConfig[ 'singleRoomProperty' ] != '1') {
             $configurationPanel->setleft(jr_gettext('_JOMRES_ROOMMSLIST_STYLE', '_JOMRES_ROOMMSLIST_STYLE', false));

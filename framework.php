@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -43,7 +43,7 @@ function load_cms_environment()
 
         /* Create the Application */
         $app = JFactory::getApplication('site');
-    } elseif (file_exists(dirname(__FILE__).'/../wp-config.php')) {
+    } elseif (!defined('WPINC') && file_exists(dirname(__FILE__).'/../wp-load.php')) {
         define('WP_USE_THEMES', false);
         /** Loads the WordPress Environment */
         require_once dirname(__FILE__).'/../wp-load.php';

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -148,7 +148,7 @@ function jomresGetParam($request, $element, $def = null, $mask = '') // variable
 
     if (!jomres_cmsspecific_areweinadminarea() && this_cms_is_joomla() && get_showtime('sef') == '1' && !AJAXCALL && !defined('AUTO_UPGRADE') && in_array($element, $sef_vars)) {
         $jinput = JFactory::getApplication()->input;
-        $dirty = $jinput->get($element, $def);
+        $dirty = $jinput->get($element, $def, 'STRING');
     } elseif (isset($request[ $element ])) {
         $dirty = $request[ $element ];
     } else {
@@ -244,7 +244,7 @@ function jomres_sanitise_string($dirty)
         return '';
     }
 
-    logging::log_message('HTML purifier called for string '.$dirty, 'Core', 'DEBUG');
+    //logging::log_message('HTML purifier called for string '.$dirty, 'Core', 'DEBUG');
     $html_purifier = jomres_singleton_abstract::getInstance('jomres_input_filter_singleton');
     $dirty = jomres_remove_HTML($dirty); // Strip out any html
     $dirty = $html_purifier->purify($dirty);
@@ -257,7 +257,7 @@ function jomres_sanitise_string($dirty)
 function jomres_purify_html($dirty)
 {
 
-    logging::log_message('HTML purifier called', 'Core', 'DEBUG');
+    //logging::log_message('HTML purifier called', 'Core', 'DEBUG');
     $html_purifier = jomres_singleton_abstract::getInstance('jomres_input_filter_singleton');
     $dirty = $html_purifier->purify($dirty, $allow_html = true);
     

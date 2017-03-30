@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -193,6 +193,18 @@ class j16000showplugins
             }
         }
 
+        $encoded_count = 0;
+        foreach ($installed_plugins as $key=>$val) {
+            if (isset($installed_plugins[$key]['encoded']) && $installed_plugins[$key]['encoded'] == true){
+                $encoded_count++;
+            }
+        }
+        
+        $encoded_on_full_license = array();
+        if  ( $key_validation->is_trial_license == false && $encoded_count > 0 ) {
+            $encoded_on_full_license[]['ENCODING_WARNING'] = "You have a number plugins installed that are encoded, but you are using a Full license. If you do not reinstall these plugins, when your license expires you'll no longer be able to use them. Please use the 'Reinstall all installed plugins' button to ensure that the plugins installed are the unencoded versions.";
+        }
+        
         $output = array();
         $pageoutput = array();
         //////////////////////////////////////////////////////
@@ -291,6 +303,7 @@ class j16000showplugins
 
         $jomresdotnet_plugins = array();
         $jomresdotnet_apiplugins = array();
+		$jomresdotnet_webhooksplugins = array();
 
         $plugins_needing_upgrading = array();
         $all_installed_plugins = array();
@@ -516,17 +529,23 @@ class j16000showplugins
 
             $r[ 'STYLE' ] = $style;
 
-            if (substr($rp[ 'name' ], 0, 4) != 'api_') {
-                if ($rp[ 'retired' ] && array_key_exists($rp[ 'name' ], $installed_plugins)) {
-                    $jomresdotnet_plugins[ ] = $r;
+            if (substr($rp[ 'name' ], 0, 4) == 'api_') {
+				if ($rp[ 'retired' ] && array_key_exists($rp[ 'name' ], $installed_plugins)) {
+                    $jomresdotnet_apiplugins[ ] = $r;
                 } elseif (!$rp[ 'retired' ]) {
-                    $jomresdotnet_plugins[ ] = $r;
+                    $jomresdotnet_apiplugins[ ] = $r;
+                }
+			} elseif (substr($rp[ 'name' ], 0, 9) == 'webhooks_') {
+				if ($rp[ 'retired' ] && array_key_exists($rp[ 'name' ], $installed_plugins)) {
+                    $jomresdotnet_webhooksplugins[ ] = $r;
+                } elseif (!$rp[ 'retired' ]) {
+                    $jomresdotnet_webhooksplugins[ ] = $r;
                 }
             } else {
-                if ($rp[ 'retired' ] && array_key_exists($rp[ 'name' ], $installed_plugins)) {
-                    $jomresdotnet_apiplugins[ ] = $r;
+                 if ($rp[ 'retired' ] && array_key_exists($rp[ 'name' ], $installed_plugins)) {
+                    $jomresdotnet_plugins[ ] = $r;
                 } elseif (!$rp[ 'retired' ]) {
-                    $jomresdotnet_apiplugins[ ] = $r;
+                    $jomresdotnet_plugins[ ] = $r;
                 }
             }
         }
@@ -554,6 +573,18 @@ class j16000showplugins
                 }
             }
         }
+		
+		// We'll move retired webhooks plugins to the top of the list
+        if (count($retired_plugins) > 0) {
+            $count = count($jomresdotnet_webhooksplugins);
+            for ($i = 0; $i < $count; ++$i) {
+                if (in_array($jomresdotnet_webhooksplugins[$i]['PLUGIN_NAME'], $retired_plugins)) {
+                    $move = $jomresdotnet_webhooksplugins[$i];
+                    unset($jomresdotnet_webhooksplugins[$i]);
+                    array_unshift($jomresdotnet_webhooksplugins, $move);
+                }
+            }
+        }
 
         $output[ 'INSTALLED_PLUGINS' ] = implode(',', $all_installed_plugins);
         $output[ 'PLUGINS_TO_UPGRADE' ] = implode(',', $plugins_needing_upgrading);
@@ -578,9 +609,11 @@ class j16000showplugins
         if ($key_validation->shop_status == 'OPEN') {
             $tmpl->addRows('bronze_users', $bronze_users);
         }
+        $tmpl->addRows('encoded_on_full_license', $encoded_on_full_license);
         $tmpl->addRows('thirdpartyplugins', $thirdpartyplugins);
         $tmpl->addRows('jomresdotnet_plugins', $jomresdotnet_plugins);
         $tmpl->addRows('jomresdotnet_apiplugins', $jomresdotnet_apiplugins);
+		$tmpl->addRows('jomresdotnet_webhooksplugins', $jomresdotnet_webhooksplugins);
         $tmpl->addRows('plugins_require_upgrade', $plugins_require_upgrade);
         $tmpl->addRows('reinstall_plugins', $plugins_reinstall);
 

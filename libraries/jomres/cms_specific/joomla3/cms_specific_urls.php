@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -23,33 +23,19 @@ if (strstr($scriptname, 'install_jomres.php')) {
 $ssllink = str_replace('https://', 'http://', get_showtime('live_site'));
 define('JOMRES_ADMINISTRATORDIRECTORY', 'administrator');
 
-$scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
-if (!strstr($scriptname, 'install_jomres.php')) {
-    $query = "SELECT id,language FROM #__menu WHERE published = 1 AND link LIKE 'index.php?option=com_jomres&view=default' ";
-    $itemQueryRes = doSelectSql($query);
+//detect jomres itemId
+$jomresItemid = 0;
 
-    $itemIdFound = false;
-    foreach ($itemQueryRes as $item) {
-        if ($item->language == get_showtime('lang')) {
-            $itemIdFound = true;
-            $jomresItemid = $item->id;
-        } elseif (!$itemIdFound && $item->language == '*') {
-            $itemIdFound = true;
-            $jomresItemid = $item->id;
-        }
-    }
-    if (!$itemIdFound) {
-        if (isset($jrConfig[ 'jomresItemid' ])) {
-            $jomresItemid = $jrConfig[ 'jomresItemid' ];
-        } else {
-            $jomresItemid = 0;
-        }
-    }
-} else {
-    $jomresItemid = 0; //should only kick in on install
+if (!strstr($scriptname, 'install_jomres.php')) {
+	$app = JFactory::getApplication(); 
+	$menu = $app->getMenu();
+	$menuItem = $menu->getItems( 'link', 'index.php?option=com_jomres&view=default', $firstonly = true );
+	if ($menuItem) {
+		$jomresItemid = (int)$menuItem->id;
+	}
 }
 
-$siteConfig->set_setting('jomresItemid', $jomresItemid);
+set_showtime('jomresItemid', $jomresItemid);
 
 $index = 'index.php';
 $tmpl = '';
@@ -99,27 +85,28 @@ if (isset($_REQUEST[ 'topoff' ])) {
 }
 
 $lang = substr(get_showtime('lang'), 0, 2);
-// For administrator area Jomres lang switching
+//Jomres specific lang switching
 $lang_param = '';
 if (isset($_REQUEST[ 'jomreslang' ])) {
-    $jomreslang = jomres_singleton_abstract::getInstance('jomres_language');
-    if (array_key_exists($_REQUEST[ 'jomreslang' ], $jomreslang->datepicker_crossref)) {
-        $lang_param .= '&jomreslang='.jomresGetParam($_REQUEST, 'jomreslang', '');
+	$jomreslang = jomresGetParam($_REQUEST, 'jomreslang', '');
+    $jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
+    if ($jomreslang != '' && array_key_exists($jomreslang, $jomres_language->datepicker_crossref)) {
+        $lang_param = '&jomreslang='.$jomreslang;
     }
 }
 
-define('JOMRES_SITEPAGE_URL_NOSEF', get_showtime('live_site').'/index.php?option=com_jomres&Itemid='.$jomresItemid.'&lang='.$lang.$tmpl);
-define('JOMRES_SITEPAGE_URL_AJAX', get_showtime('live_site').'/'.'index.php?option=com_jomres&no_html=1&jrajax=1&Itemid='.$jomresItemid.'&lang='.$lang.$tmpl);
+define('JOMRES_SITEPAGE_URL_NOSEF', get_showtime('live_site').'/index.php?option=com_jomres&Itemid='.$jomresItemid.'&lang='.$lang.$tmpl.$lang_param);
+define('JOMRES_SITEPAGE_URL_AJAX', get_showtime('live_site').'/'.'index.php?option=com_jomres&no_html=1&jrajax=1&Itemid='.$jomresItemid.'&lang='.$lang.$tmpl.$lang_param);
 define('JOMRES_SITEPAGE_URL_ADMIN', get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY.'/index.php?option=com_jomres'.$tmpl.$lang_param);
 define('JOMRES_SITEPAGE_URL_ADMIN_AJAX', get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY.'/index.php?option=com_jomres&no_html=1&jrajax=1'.$lang_param.$tmpl);
 
 if (class_exists('JFactory')) {
     $config = JFactory::getConfig();
     if ($config->get('sef') == '1') {
-        define('JOMRES_SITEPAGE_URL', $index.'?option=com_jomres&Itemid='.$jomresItemid.$tmpl.'&lang='.$lang);
+        define('JOMRES_SITEPAGE_URL', $index.'?option=com_jomres&Itemid='.$jomresItemid.$tmpl.'&lang='.$lang.$lang_param);
     } else {
-        define('JOMRES_SITEPAGE_URL', get_showtime('live_site').'/'.$index.'?option=com_jomres&Itemid='.$jomresItemid.$tmpl.'&lang='.$lang);
+        define('JOMRES_SITEPAGE_URL', get_showtime('live_site').'/'.$index.'?option=com_jomres&Itemid='.$jomresItemid.$tmpl.'&lang='.$lang.$lang_param);
     }
 } else {
-    define('JOMRES_SITEPAGE_URL', get_showtime('live_site').'/'.$index.'?option=com_jomres&Itemid='.$jomresItemid.$tmpl.'&lang='.$lang);
+    define('JOMRES_SITEPAGE_URL', get_showtime('live_site').'/'.$index.'?option=com_jomres&Itemid='.$jomresItemid.$tmpl.'&lang='.$lang.$lang_param);
 }

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -57,7 +57,7 @@ class j06000view_agent
             $property_manager_xref = build_property_manager_xref_array();
         }
 
-        if (isset($componentArgs['property_uid']) || $_REQUEST['property_uid']) {
+        if (isset($componentArgs['property_uid']) || isset($_REQUEST['property_uid'])) {
             if (isset($componentArgs['property_uid'])) {
                 $property_uid = (int) $componentArgs['property_uid'];
             } elseif (isset($_REQUEST['property_uid'])) {

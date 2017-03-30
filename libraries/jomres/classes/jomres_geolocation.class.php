@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -23,13 +23,12 @@ class jomres_geolocation
         $this->config = array();
         $this->detected_country = 'DE';
 
-        $this->temp_dir_abs = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'geolocation'.JRDS;
+        $this->temp_dir_abs = JOMRES_TEMP_ABSPATH.'geolocation'.JRDS;
         if (!is_dir($this->temp_dir_abs)) {
             if (!@mkdir($this->temp_dir_abs)) {
                 throw new Exception('Error, unable to make directory '.$this->temp_dir_abs." automatically. Please create the directory manually and ensure that it's writable by the web server");
             }
         }
-        $this->clean_tmp_dir();
         $this->init();
     }
 
@@ -110,18 +109,6 @@ class jomres_geolocation
             $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = $currency_code;
         } else {
             $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = 'EUR';
-        }
-    }
-
-    public function clean_tmp_dir()
-    {
-        $files = scandir_getfiles($this->temp_dir_abs);
-        if (count($files) > 0) {
-            foreach ($files as $f) {
-                if (time() - filemtime($this->temp_dir_abs.JRDS.$f) >= 24 * 60 * 60) { // 1 day
-                    unlink($this->temp_dir_abs.'/'.$f);
-                }
-            }
         }
     }
 }

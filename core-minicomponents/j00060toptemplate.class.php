@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -36,7 +36,7 @@ class j00060toptemplate
         $management_view = jomresGetParam($_REQUEST, 'tmpl', false);
         $popup = intval(jomresGetParam($_REQUEST, 'popup', 0));
         //$tz         	   	= $componentArgs[ 'tz' ];
-        //$jomreslang 		= jomres_singleton_abstract::getInstance( 'jomres_language' );
+        $jomreslang 		= jomres_singleton_abstract::getInstance( 'jomres_language' );
 
         if (AJAXCALL || $popup == 1) {
             return;
@@ -108,12 +108,12 @@ class j00060toptemplate
             $output[ 'DATEPICKERLANG' ] = JOMRESDATEPICKERLANG;
         }
 
-        /* $lang_dropdown = array();
+        $lang_dropdown = array();
         if ($jrConfig[ 'showLangDropdown' ] == '1')
             {
             $lang_dropdown[ ][ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
             set_showtime( "menuitem_langdropdown", $lang_dropdown[ 0 ][ 'LANGDROPDOWN' ] );
-            } */
+            }
 
         if ($thisJRUser->userIsManager) {
             if (!get_showtime('heavyweight_system') && $management_view && using_bootstrap()) {
@@ -164,7 +164,7 @@ class j00060toptemplate
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->addRows('messages', $messaging);
         //$tmpl->addRows( 'timezone_dropdown', $timezone_dropdown );
-        //$tmpl->addRows( 'lang_dropdown', $lang_dropdown );
+        $tmpl->addRows( 'lang_dropdown', $lang_dropdown );
         if ($result) {
             $tmpl->addRows('editing_dropdown', $editing_dropdown);
         }

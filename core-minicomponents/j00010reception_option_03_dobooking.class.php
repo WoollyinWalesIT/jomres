@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -36,7 +36,7 @@ class j00010reception_option_03_dobooking
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 
-        $output[ 'BOOKAROOMLINK' ] = JOMRES_SITEPAGE_URL.'&task=dobooking';
+        $output[ 'BOOKAROOMLINK' ] = get_booking_url($property_uid);
 
         if ($jrConfig[ 'useSSLinBookingform' ] == '1') {
             $link = jomresURL($output[ 'BOOKAROOMLINK' ], 1);

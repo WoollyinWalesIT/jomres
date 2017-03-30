@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -16,7 +16,9 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 
 $scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
 
-require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php';
+if (!defined('WPINC')) {
+	require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php';
+}
 
 if (isset($_REQUEST[ 'no_html' ])) {
     $no_html = (int) $_REQUEST[ 'no_html' ];
@@ -43,13 +45,13 @@ $showtime->error_reporting = 0;
 $showtime->lang = $jomresConfig_lang;
 $showtime->live_site = $jomresConfig_live_site;
 $showtime->offline = false;
-$showtime->db = DB_NAME;
-$showtime->user = DB_USER;
-$showtime->password = DB_PASSWORD;
-$showtime->host = DB_HOST;
-$showtime->secret = AUTH_SALT;
 
 global $wpdb; //wp global
+$showtime->db = $wpdb->dbname;
+$showtime->user = $wpdb->dbuser;
+$showtime->password = $wpdb->dbpassword;
+$showtime->host = $wpdb->dbhost;
+$showtime->secret = AUTH_SALT;
 $showtime->dbprefix = $wpdb->prefix;
 
 $showtime->sitename = get_option('blogname');
@@ -58,7 +60,10 @@ $showtime->smtpuser = get_option('mailserver_login');
 $showtime->smtppass = get_option('mailserver_pass');
 $showtime->smtphost = get_option('mailserver_url');
 $showtime->smtpport = get_option('mailserver_port');
-$showtime->gzip = get_option('gzipcompression');
+$showtime->smtpauth = 0;
+$showtime->smtpsecure = '';
+//$showtime->gzip = get_option('gzipcompression');
+$showtime->gzip = '0'; //this is not used in wp
 
 if (get_option('permalink_structure') != '') {
     $showtime->sef = '1';  // Sef urls are enabled.

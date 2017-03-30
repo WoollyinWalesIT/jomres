@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.21
+ * @version Jomres 9.8.29
  *
- * @copyright	2005-2016 Vince Wooll
+ * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 date_default_timezone_set('UTC');
@@ -179,6 +179,8 @@ if (this_cms_is_joomla()) {
     }
 }
 
+require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'output_filters.php';
+
 if ($folderChecksPassed && $functionChecksPassed) {
     $trashtables = jomresGetParam($_POST, 'trashtables', 0, 'integer');
     $manual_install_confirmation = jomresGetParam($_POST, 'manual_install_confirmation', '');
@@ -242,6 +244,7 @@ if ($folderChecksPassed && $functionChecksPassed) {
                 removeCronJob('exchangerates');
 
                 addCronJob('session_files_cleanup', 'D', '');
+				addCronJob('geolocation_cleanup', 'D', '');
 
                 updateImages();
 
@@ -342,10 +345,11 @@ function doTableUpdates()
 {
 
     // Might not need this, commented out for now
-    if (checkExtraServicesTableNeedsRenaming()) {
+    // Disabled 03/02/2017
+    /* if (checkExtraServicesTableNeedsRenaming()) {
         renameExtraServicesTable();
     }
-
+ */
     update_property_features_images_paths();
     update_room_type_images_paths();
 
@@ -591,6 +595,7 @@ function doTableUpdates()
         alterPtypesMarkerCol();
     }
 
+	copy_default_property_type_markers();
     drop_orphan_line_items_table();
     drop_room_images_table();
     add_api_tables();
@@ -598,6 +603,49 @@ function doTableUpdates()
     
 }
 
+function copy_default_property_type_markers() {
+	$passed = true;
+	if (!is_dir(JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS)) {
+		if (!@mkdir(JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS)) {
+			 output_message("Error, unable to make folder ".JOMRES_IMAGELOCATION_ABSPATH."markers".JRDS." automatically therefore cannot copy the default property type markers. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
+			$passed = false;
+		}
+	}
+	
+	if ($passed) {
+		if (!copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-blue.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-blue.png')) {
+			output_message("Error, unable to copy marker image", 'danger');
+		}
+		
+		if (!copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-blue-darker.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-blue-darker.png')) {
+			output_message("Error, unable to copy marker image", 'danger');
+		}
+		
+		if (!copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-dark.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-dark.png')) {
+			output_message("Error, unable to copy marker image", 'danger');
+		}
+		
+		if (!copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-green.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-green.png')) {
+			output_message("Error, unable to copy marker image", 'danger');
+		}
+		
+		if (!copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-green-darker.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-green-darker.png')) {
+			output_message("Error, unable to copy marker image", 'danger');
+		}
+		
+		if (!copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-orange.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-orange.png')) {
+			output_message("Error, unable to copy marker image", 'danger');
+		}
+		
+		if (!copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-pink.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-pink.png')) {
+			output_message("Error, unable to copy marker image", 'danger');
+		}
+		
+		if (!copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-red.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-red.png')) {
+			output_message("Error, unable to copy marker image", 'danger');
+		}
+	}
+}
 
 function add_api_tables() {
     $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_clients (
