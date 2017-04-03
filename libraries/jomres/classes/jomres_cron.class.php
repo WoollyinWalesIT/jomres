@@ -274,34 +274,17 @@ class jomres_cron
                     $livesite = JOMRES_SITEPAGE_URL_AJAX;
                 }
 
-                //set the port depending on http/https
-                if (strpos($livesite, 'https://') !== false) {
-                    $curl_port = 443;
-                } else {
-                    $curl_port = 80;
-                }
-
                 foreach ($this->dueJobs as $job) {
                     if (this_cms_is_wordpress()) {
-                        $request = $livesite.'&task=cron_'.$job[ 'job_name' ].'&secret='.$jomresConfig_secret;
+                        $url = $livesite.'&task=cron_'.$job[ 'job_name' ].'&secret='.$jomresConfig_secret;
                     } else {
-                        $request = $livesite.'&task=cron_'.$job[ 'job_name' ].'&secret='.$jomresConfig_secret;
+                        $url = $livesite.'&task=cron_'.$job[ 'job_name' ].'&secret='.$jomresConfig_secret;
                     }
 
-                    logging::log_message('Starting curl call to '.$request, 'Curl', 'DEBUG');
+                    logging::log_message('Starting curl call to '.$url, 'Curl', 'DEBUG');
                     $logging_time_start = microtime(true);
 
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_USERAGENT, 'Jomres');
-                    curl_setopt($ch, CURLOPT_URL, $request);
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'XGET');
-                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-                    curl_setopt($ch, CURLOPT_PORT, $curl_port);
-                    curl_setopt($ch, CURLOPT_TIMEOUT, 480);
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: text/html; charset=utf-8'));
-                    $curl_output = curl_exec($ch);
-                    curl_close($ch);
+					jomres_async_request("GET", $url, 0, array());
 
                     $logging_time_end = microtime(true);
                     $logging_time = $logging_time_end - $logging_time_start;
