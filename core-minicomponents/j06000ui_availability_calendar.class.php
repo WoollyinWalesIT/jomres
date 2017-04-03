@@ -180,7 +180,7 @@ class j06000ui_availability_calendar
             $full_output .= '];';
         }
 
-		$url = get_booking_url($property_uid,'','&pdetails_cal=1&arrivalDate=');
+		$url = get_booking_url($property_uid,'','&pdetails_cal=1');
         $inline_calendar = '
 			<script>
 			' .$quarter_output.'
@@ -245,7 +245,7 @@ class j06000ui_availability_calendar
 						if ( el.hasClass("calendar_background_full") ) {
 							return true;
 						} else {
-							window.location = booking_form_url_' .$random_identifier.'+date;
+                            window.location = booking_form_url_' .$random_identifier.'+\'&arrivalDate=\'+date;
 							}
 						}
 					});
