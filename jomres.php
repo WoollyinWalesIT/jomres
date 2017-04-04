@@ -65,8 +65,6 @@ try {
     //user object
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
-    // logging::log_message('Jomres started', 'Core', 'INFO');
-
     //TODO: here we can add a query to automatically remove the manager that has 0 properties
     if (count($thisJRUser->authorisedProperties) == 0 && $thisJRUser->userIsManager) {
         throw new Exception('This manager '.jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id((int) $thisJRUser->id)."  hasn't got any properties.");
@@ -267,7 +265,6 @@ try {
     }
 
     //handle tasks
-    //logging::log_message('Starting task '.get_showtime('task'), 'Core');
     if (get_showtime('numberOfPropertiesInSystem') > 0) {
         switch (get_showtime('task')) {
             //########################################################################################
