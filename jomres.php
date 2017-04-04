@@ -98,7 +98,6 @@ try {
     $cron = jomres_singleton_abstract::getInstance('jomres_cron');
     if ($cron->method == 'Minicomponent' && !AJAXCALL) {
         $cron->triggerJobs();
-        $cron->displayDebug();
     }
 
     //temp booking handler object, init jomres session

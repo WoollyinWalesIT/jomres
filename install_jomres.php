@@ -598,9 +598,17 @@ function doTableUpdates()
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
     drop_room_images_table();
+	drop_cronlog_table();
     add_api_tables();
     updateSiteSettings('update_time', time());
     
+}
+
+function drop_cronlog_table() {
+	$query = 'DROP TABLE IF EXISTS `#__jomcomp_cronlog` ';
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to drop #__jomcomp_cronlog table', 'danger');
+    }
 }
 
 function copy_default_property_type_markers() {
@@ -2902,12 +2910,6 @@ function updateMrConfig()
 
 function updatePluginSettings()
 {
-    // Pseudocron settings
-    $pluginConfig[ 'jomcompcronjobs' ][ 'method' ] = 'Minicomponent';
-    $pluginConfig[ 'jomcompcronjobs' ][ 'displaylogging' ] = '0';
-    $pluginConfig[ 'jomcompcronjobs' ][ 'logging' ] = '0';
-    $pluginConfig[ 'jomcompcronjobs' ][ 'verbose' ] = '0';
-
     // Invoices backend paypal settings
     $pluginConfig[ 'backend_paypal_settings' ][ 'usesandbox' ] = '1';
     $pluginConfig[ 'backend_paypal_settings' ][ 'currencycode' ] = 'EUR';
@@ -3302,17 +3304,6 @@ function createJomresTables()
 		PRIMARY KEY ( `id` )
 		);
 		";
-    if (!doInsertSql($query)) {
-        output_message('Failed to run query: '.$query, 'danger');
-    }
-
-    $query = '
-	CREATE TABLE IF NOT EXISTS `#__jomcomp_cronlog` (
-		`id` int NOT NULL AUTO_INCREMENT ,
-		`log_details` text null,
-		PRIMARY KEY ( `id` )
-		);
-	';
     if (!doInsertSql($query)) {
         output_message('Failed to run query: '.$query, 'danger');
     }
@@ -5121,16 +5112,6 @@ function addNewTables()
 		`locked` BOOL NOT NULL DEFAULT '0',
 		PRIMARY KEY ( `id` )
 		);";
-    if (!doInsertSql($query)) {
-        output_message('Failed to run query: '.$query, 'danger');
-    }
-
-    $query = '
-	CREATE TABLE IF NOT EXISTS `#__jomcomp_cronlog` (
-		`id` int NOT NULL AUTO_INCREMENT ,
-		`log_details` text null,
-		PRIMARY KEY ( `id` )
-		);';
     if (!doInsertSql($query)) {
         output_message('Failed to run query: '.$query, 'danger');
     }

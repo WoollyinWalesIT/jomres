@@ -56,6 +56,9 @@ function jomres_async_request($type = "GET", $url = "", $port = '', $post_data =
 	$disabled_functions = explode(',', @ini_get('disable_functions'));
 
 	if (function_exists('fsockopen') && !in_array('fsockopen', $disabled_functions)) { //we`ll use an async socket
+		logging::log_message('Starting socket to '.$url, 'Socket', 'DEBUG');
+        $logging_time_start = microtime(true);
+	
 		$fp = fsockopen($parts['host'], $port, $errno, $errstr, 30);
 
 		$out = $type." ".$parts['path'].'?'.$parts['query']." HTTP/1.1\r\n";
@@ -69,10 +72,20 @@ function jomres_async_request($type = "GET", $url = "", $port = '', $post_data =
 
 		fwrite($fp, $out);
 		fclose($fp);
-	} else { //we`ll use curl
+		
+		$logging_time_end = microtime(true);
+		$logging_time = $logging_time_end - $logging_time_start;
+		logging::log_message('Socket call took '.$logging_time.' seconds ', 'Socket', 'DEBUG');
+		
+		return true;
+	} elseif (function_exists('curl_init')) { //we`ll use curl if enabled
+		//we`ll use a custom GET here so that domains with non latin chars will be handled properly
 		if ($type == "GET") {
 			$type = "XGET";
 		}
+		
+		logging::log_message('Starting curl call to '.$url, 'Curl', 'DEBUG');
+        $logging_time_start = microtime(true);
 		
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -90,9 +103,17 @@ function jomres_async_request($type = "GET", $url = "", $port = '', $post_data =
 		}
 		$curl_output = curl_exec($ch);
 		curl_close($ch);
+		
+		$logging_time_end = microtime(true);
+		$logging_time = $logging_time_end - $logging_time_start;
+		logging::log_message('Curl call took '.$logging_time.' seconds ', 'Curl', 'DEBUG');
+		
+		return true;
+	} else {
+		return false;
 	}
 	
-	return true;
+	return false;
 }
 
 /*

@@ -1354,6 +1354,10 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j03379media_centre_resource_type_slideshow.class.php');
 		$this->add_obs_file($this->dir_classes.'map_markers.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00012managelogs.class.php');
+		
+		$this->add_obs_file($this->dir_minicomponents.'j10002pseudocron.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j16000pseudocron.class.php');
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'cron.html');
     }
 
     public function add_obs_file($path_and_file)
