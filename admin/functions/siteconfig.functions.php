@@ -336,6 +336,11 @@ function showSiteConfig()
     $lists[ 'sendErrorEmails' ] = jomresHTML::selectList($yesno, 'cfg_sendErrorEmails', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sendErrorEmails' ]);
 	$lists[ 'plist_images_as_slideshow' ] = jomresHTML::selectList($yesno, 'cfg_plist_images_as_slideshow', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'plist_images_as_slideshow' ]);
 
+	$method = array();
+	$method[ ] = jomresHTML::makeOption('Minicomponent', 'Minicomponent');
+	$method[ ] = jomresHTML::makeOption('Cron', 'Cron job');
+	$lists[ 'cron_method' ] = jomresHTML::selectList($method, 'method', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'cron_method' ]);
+
     $componentArgs = array();
     $componentArgs[ 'lists' ] = $lists;
     $componentArgs[ 'jsInputFormatDropdownList' ] = $jsInputFormatDropdownList;

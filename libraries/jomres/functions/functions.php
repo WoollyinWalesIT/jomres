@@ -17,6 +17,106 @@ defined('_JOMRES_INITCHECK') or die('');
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'http_build_url.php';
 
 /*
+A function that makes an async POST or GET request using sockets
+*/
+
+function jomres_async_request($type = "GET", $url = "", $port = '', $post_data = array())
+{
+	$post_string = "";
+	
+	//check if url is empty
+	if ($url == "") {
+		return false;
+	}
+	
+	//if this is a POST, then we must have some post data in the array
+	if ($type == "POST" && empty($post_data)) {
+		return false;
+	}
+	
+	//generate the post string
+	if (!empty($post_data)) {
+		$post_string = http_build_query($post_data);
+	}
+	
+	//set the port depending on http/https if no specific value is passed
+	if ((int)$port == 0) {
+		if (strpos($url, 'https://') !== false) {
+			$port = 443;
+		} else {
+			$port = 80;
+		}
+	} else {
+		$port = (int)$port;
+	}
+	
+	$parts = parse_url($url);
+	
+	//get the functions disabled in php.ini
+	$disabled_functions = explode(',', @ini_get('disable_functions'));
+
+	if (function_exists('fsockopen') && !in_array('fsockopen', $disabled_functions)) { //we`ll use an async socket
+		logging::log_message('Starting socket to '.$url, 'Socket', 'DEBUG');
+        $logging_time_start = microtime(true);
+	
+		$fp = fsockopen($parts['host'], $port, $errno, $errstr, 30);
+
+		$out = $type." ".$parts['path'].'?'.$parts['query']." HTTP/1.1\r\n";
+		$out.= "Host: ".$parts['host']."\r\n";
+		$out.= "Content-Type: application/x-www-form-urlencoded\r\n";
+		$out.= "Content-Length: ".strlen($post_string)."\r\n";
+		$out.= "Connection: Close\r\n\r\n";
+		if ($type == "POST" && $post_string != "") {
+			$out.= $post_string;
+		}
+
+		fwrite($fp, $out);
+		fclose($fp);
+		
+		$logging_time_end = microtime(true);
+		$logging_time = $logging_time_end - $logging_time_start;
+		logging::log_message('Socket call took '.$logging_time.' seconds ', 'Socket', 'DEBUG');
+		
+		return true;
+	} elseif (function_exists('curl_init')) { //we`ll use curl if enabled
+		//we`ll use a custom GET here so that domains with non latin chars will be handled properly
+		if ($type == "GET") {
+			$type = "XGET";
+		}
+		
+		logging::log_message('Starting curl call to '.$url, 'Curl', 'DEBUG');
+        $logging_time_start = microtime(true);
+		
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Jomres');
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $type);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($ch, CURLOPT_PORT, $port);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 480);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded; charset=utf-8'));
+		
+		if ($type == "POST") {
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post_string);
+		}
+		$curl_output = curl_exec($ch);
+		curl_close($ch);
+		
+		$logging_time_end = microtime(true);
+		$logging_time = $logging_time_end - $logging_time_start;
+		logging::log_message('Curl call took '.$logging_time.' seconds ', 'Curl', 'DEBUG');
+		
+		return true;
+	} else {
+		return false;
+	}
+	
+	return false;
+}
+
+/*
 A simple function to get the marker rel path
 */
 

@@ -27,7 +27,11 @@ if (file_exists(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/framework.ph
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<?php
     foreach ($this->_scripts as $k => $v) {
-        if (strpos($k, '/'.JOMRES_ROOT_DIRECTORY.'/') === false && strpos($k, 'maps.googleapis') === false) {
+        if (strpos($k, '/'.JOMRES_ROOT_DIRECTORY.'/') === false && 
+			strpos($k, 'maps.googleapis') === false &&
+			strpos($k, 'tinymce') === false &&
+			strpos($k, 'core.js') === false
+			) {
             unset($this->_scripts[$k]);
         }
     }

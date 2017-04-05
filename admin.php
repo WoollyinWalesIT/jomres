@@ -57,8 +57,6 @@ try {
     //user object
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
-    logging::log_message('Jomres admin started', 'Core', 'INFO');
-
     //input filtering
     $MiniComponents->triggerEvent('00003');
 
@@ -66,7 +64,6 @@ try {
     $cron = jomres_singleton_abstract::getInstance('jomres_cron');
     if ($cron->method == 'Minicomponent' && !AJAXCALL) {
         $cron->triggerJobs();
-        $cron->displayDebug();
     }
 
     //session

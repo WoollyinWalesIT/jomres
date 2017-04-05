@@ -215,5 +215,6 @@ $jrConfig = array(
   'syslog_port' => '',
   'sendErrorEmails' => '0',
   'minimum_deposit_percentage' => '',
-  'plist_images_as_slideshow' => '1'
+  'plist_images_as_slideshow' => '1',
+  'cron_method' => 'Minicomponent'
 );
