@@ -48,7 +48,10 @@ class j16000listPfeatures
             $selected_ptype_rows = '';
             
 			foreach ($f['ptype_xref'] as $ptype_id) {
-				$selected_ptype_rows .= $jomres_property_types->property_types[ $ptype_id ]['ptype'].', ';
+                if (isset($jomres_property_types->property_types[ $ptype_id ]['ptype'])) {
+                    $selected_ptype_rows .= $jomres_property_types->property_types[ $ptype_id ]['ptype'].', ';
+                }
+				
 			}
 
 			$r[ 'PROPERTYFEATUREUID' ] = $f['id'];
