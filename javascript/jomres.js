@@ -297,7 +297,6 @@ function module_popup(random_identifier, property_uid) {
 	}
 
 	jomresJquery('#module_' + random_identifier + '_popup').dialog({
-		resizable: false,
 		height: modal_popup_height,
 		width: modal_popup_width,
 		modal: true,
@@ -1039,7 +1038,6 @@ function echeck(str) {
 function toggle_review_div(uid, property_name) {
 	div_id = "#property_reviews" + uid;
 	jomresJquery(div_id).dialog({
-		resizable: false,
 		height: 500,
 		width: 800,
 		modal: true,
