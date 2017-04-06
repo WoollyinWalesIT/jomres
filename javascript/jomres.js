@@ -774,7 +774,7 @@ function ajaxADate(arrivalDate, dformat) {
 	year = split_dates[2];
 
 	var d = new Date(year, mon - 1, day);
-	with (d) setDate(getDate() + mininterval);
+	d.setDate(d.getDate() + mininterval);
 
 	sday = String(d.getDate());
 	smonth = String(d.getMonth() + 1);
