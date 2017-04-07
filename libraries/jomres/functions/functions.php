@@ -16,6 +16,11 @@ defined('_JOMRES_INITCHECK') or die('');
 
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'http_build_url.php';
 
+function jomres_getSingleton($class, $args = array())
+{
+    return jomres_singleton_abstract::getInstance($class, $args);
+}
+
 /*
 A function that makes an async POST or GET request using sockets
 */
@@ -1448,98 +1453,71 @@ function get_plugin_settings($plugin, $prop_id = 0)
 
 function jr_import($class)
 {
-    if (class_exists('j00001start')) { // Wont init properly if we call this any time sooner than when j00001start has been set up
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        $plugin_directories = $MiniComponents->miniComponentDirectories;
-    } else {
-        $plugin_directories = false;
-    }
-    if (!class_exists($class)) {
-        if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php')) {
-            require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php';
-        } else {
-            search_core_and_remote_dirs_for_classfiles();
-            $classes = get_showtime('plugin_classes_paths');
-            if (isset($classes[ $class ]) && file_exists($classes[ $class ][ 'path' ].$class.'.class.php')) {
-                require_once $classes[ $class ][ 'path' ].$class.'.class.php';
-            } else {
-                if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php')) {
-                    require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php';
-                } else {
-                    if ($plugin_directories) {
-                        foreach ($plugin_directories as $directory) {
-                            if (file_exists($directory.$class.'.class.php')) {
-                                require_once $directory.$class.'.class.php';
-                            }
-                        }
-                        if (!class_exists($class)) { // We'll echo and exit here. Assuming that we're a developer we'll want to see on the page that the class doesn't exist, rather than have an error triggered. Addition of this also means that the following trigger_error will never kick in if any plugins are installed
-                            echo 'Error, class '.$class." doesn't exist.";
-                            exit;
-                        }
-                    } else {
-                        trigger_error('Error, class file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php'." doesn't exist");
-                    }
-                }
-            }
-        }
-    }
+	if (class_exists($class)) {
+		return true;
+	}
+	
+	$plugin_paths = get_showtime('plugin_paths');
+	
+	//we don`t have the paths yet, let`s scan all core and remote plugins dirs
+	if (!$plugin_paths) {
+		$plugin_paths = search_core_and_remote_dirs_for_classfiles();
+	}
+
+	//first check custom code dir
+	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php')) {
+		require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php';
+		
+		return true;
+	}
+	
+	//check core and remote plugins dirs
+	foreach ($plugin_paths as $path) {
+		if (file_exists($path.$class.'.class.php')) {
+			require_once $path.$class.'.class.php';
+			return true;
+		}
+	}
+	
+	//last place to check is jomres core classes dir
+	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php')) {
+		require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php';
+		return true;
+	}
+	
+	//class doesn`t exist so we`ll echo a message and exit
+	echo 'Error, class '.$class." doesn't exist.";
+	exit;
 }
 
 function search_core_and_remote_dirs_for_classfiles()
 {
-    $classes = get_showtime('plugin_classes_paths');
-    if (is_null($classes)) {
-        $core_plugins_directories = array();
-        $remote_plugin_directories = array();
-        $core_plugins_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
-        $remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS;
+    $plugin_paths = array();
+	
+	$core_plugins_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
+	$remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS;
 
-        if (is_dir($core_plugins_directory)) {
-            $d = @dir($core_plugins_directory);
-            while (false !== ($entry = $d->read())) {
-                if (substr($entry, 0, 1) != '.') {
-                    $core_plugins_directories[ ] = $core_plugins_directory.$entry.JRDS;
-                }
-            }
-        }
+	if (is_dir($core_plugins_directory)) {
+		$d = @dir($core_plugins_directory);
+		while (false !== ($entry = $d->read())) {
+			if (substr($entry, 0, 1) != '.') {
+				$plugin_paths[ ] = $core_plugins_directory.$entry.JRDS;
+			}
+		}
+	}
 
-        if (is_dir($remote_plugin_directory)) {
-            $d = @dir($remote_plugin_directory);
-            while (false !== ($entry = $d->read())) {
-                if (substr($entry, 0, 1) != '.') {
-                    $remote_plugin_directories[ ] = $remote_plugin_directory.$entry.JRDS;
-                }
-            }
-        }
-
-        $all_directories = array_merge($core_plugins_directories, $remote_plugin_directories);
-
-        $classes = array();
-        foreach ($all_directories as $directory) {
-            $d = @dir($directory);
-            if ($d) {
-                while (false !== ($entry = $d->read())) {
-                    $filename = $entry;
-                    if (substr($entry, 0, 1) != '.') {
-                        if (strstr($entry, '.class.php')) {
-                            if (strlen($filename) > 8) {
-                                $strippedName = str_replace('.', '', $filename);
-                                $strippedName = substr($strippedName, 0, -8);
-                            } else {
-                                $strippedName = $filename;
-                            }
-                            $classfileEventPoint = substr($strippedName, 1, 5);
-                            if (!is_numeric($classfileEventPoint)) {
-                                $classes[ $strippedName ] = array('path' => $directory, 'class' => $strippedName);
-                            }
-                        }
-                    }
-                }
-                $d->close();
-            }
-        }
-        set_showtime('plugin_classes_paths', $classes);
-    }
+	if (is_dir($remote_plugin_directory)) {
+		$d = @dir($remote_plugin_directory);
+		while (false !== ($entry = $d->read())) {
+			if (substr($entry, 0, 1) != '.') {
+				$plugin_paths[ ] = $remote_plugin_directory.$entry.JRDS;
+			}
+		}
+	}
+	
+	set_showtime('plugin_paths', $plugin_paths);
+	
+	return $plugin_paths;
 }
 
 function jomresValidateUrl($url)

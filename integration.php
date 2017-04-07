@@ -102,8 +102,6 @@ if (!function_exists('json_encode')) {
     }
 }
 
-jr_import('jomresHTML');
-
 $showtime = jomres_singleton_abstract::getInstance('showtime');
 
 $performance_monitor = jomres_singleton_abstract::getInstance('jomres_performance_monitor');
@@ -246,5 +244,8 @@ if (!isset($_REQUEST[ 'no_html' ])) {
 if (!isset($_REQUEST['task'])) {
     $_REQUEST['task'] = '';
 }
+
+//TODO find a better place, maybe jomres.php and framework.php
+$jomresHTML = jomres_singleton_abstract::getInstance('jomresHTML');
 
 // Stops here
