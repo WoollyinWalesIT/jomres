@@ -38,6 +38,23 @@ class jomres_singleton_abstract
 			return self::$_instances[ $class ];
 		}
 		
+		//include the list of classes from plugin dirs
+		if (file_exists(JOMRES_TEMP_ABSPATH.'registry_classes.php')) {
+			include JOMRES_TEMP_ABSPATH.'registry_classes.php';
+		} else {
+			//we don`t have the paths yet, let`s scan all core and remote plugins dirs
+			$classes = search_core_and_remote_dirs_for_classfiles();
+		}
+		
+		//check core and remote plugins dirs
+		if (isset($classes[$class])) {
+			require_once $classes[$class].$class.'.class.php';
+			
+			self::$_instances[ $class ] = new $class($arg1);
+		
+			return self::$_instances[ $class ];
+		}
+		
 		//last place to check is jomres core classes dir
 		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php')) {
 			require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php';

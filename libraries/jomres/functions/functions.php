@@ -1456,13 +1456,6 @@ function jr_import($class)
 	if (class_exists($class)) {
 		return true;
 	}
-	
-	$plugin_paths = get_showtime('plugin_paths');
-	
-	//we don`t have the paths yet, let`s scan all core and remote plugins dirs
-	if (!$plugin_paths) {
-		$plugin_paths = search_core_and_remote_dirs_for_classfiles();
-	}
 
 	//first check custom code dir
 	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php')) {
@@ -1471,12 +1464,18 @@ function jr_import($class)
 		return true;
 	}
 	
+	//include the list of classes from plugin dirs
+	if (file_exists(JOMRES_TEMP_ABSPATH.'registry_classes.php')) {
+		include JOMRES_TEMP_ABSPATH.'registry_classes.php';
+	} else {
+		//we don`t have the paths yet, let`s scan all core and remote plugins dirs
+		$classes = search_core_and_remote_dirs_for_classfiles();
+	}
+
 	//check core and remote plugins dirs
-	foreach ($plugin_paths as $path) {
-		if (file_exists($path.$class.'.class.php')) {
-			require_once $path.$class.'.class.php';
-			return true;
-		}
+	if (isset($classes[$class])) {
+		require_once $classes[$class].$class.'.class.php';
+		return true;
 	}
 	
 	//last place to check is jomres core classes dir
@@ -1493,9 +1492,10 @@ function jr_import($class)
 function search_core_and_remote_dirs_for_classfiles()
 {
     $plugin_paths = array();
-	
+
 	$core_plugins_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
 	$remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS;
+	$classes_tmp_file = JOMRES_TEMP_ABSPATH.'registry_classes.php';
 
 	if (is_dir($core_plugins_directory)) {
 		$d = @dir($core_plugins_directory);
@@ -1515,9 +1515,43 @@ function search_core_and_remote_dirs_for_classfiles()
 		}
 	}
 	
-	set_showtime('plugin_paths', $plugin_paths);
+	foreach ($plugin_paths as $directory) {
+		$d = @dir($directory);
+		if ($d) {
+			while (false !== ($entry = $d->read())) {
+				$filename = $entry;
+				if (substr($entry, 0, 1) != '.') {
+					if (strstr($entry, '.class.php')) {
+						if (strlen($filename) > 8) {
+							$strippedName = str_replace('.', '', $filename);
+							$strippedName = substr($strippedName, 0, -8);
+						} else {
+							$strippedName = $filename;
+						}
+						$classfileEventPoint = substr($strippedName, 1, 5);
+						if (!is_numeric($classfileEventPoint)) {
+							$classes[ $strippedName ] = $directory;
+						}
+					}
+				}
+			}
+			$d->close();
+		}
+	}
 	
-	return $plugin_paths;
+	if (!file_put_contents($classes_tmp_file,
+'<?php
+##################################################################
+defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
+##################################################################
+
+$classes = ' .var_export($classes, true).';
+')) {
+		trigger_error('ERROR: '.$classes_tmp_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
+		exit;
+	}
+	
+	return $classes;
 }
 
 function jomresValidateUrl($url)
