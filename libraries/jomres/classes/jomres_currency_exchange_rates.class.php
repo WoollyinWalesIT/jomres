@@ -95,8 +95,7 @@ class jomres_currency_exchange_rates
 
         $this->rates = array();
 
-        jr_import('currency_codes');
-        $currency_codes = new currency_codes();
+        $currency_codes = jomres_singleton_abstract::getInstance('currency_codes');
 
         ignore_user_abort(true); // Should stop a user from visiting another page when we're getting the exchange rates. At some point, it might be wiser to encourage managers to set this as a cron job.
 

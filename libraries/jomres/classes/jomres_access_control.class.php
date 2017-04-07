@@ -48,6 +48,42 @@ class jomres_access_control
 
         $this->init();
     }
+	
+	public static function getInstance()
+    {
+        if (!self::$configInstance) {
+            self::$configInstance = new self();
+        }
+
+        return self::$configInstance;
+    }
+
+    public function __clone()
+    {
+        trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
+    }
+
+    public function __set($setting, $value)
+    {
+        if (self::$internal_debugging) {
+            echo 'Setting '.$setting.' to '.$value.' <br>';
+        }
+        $this->$setting = $value;
+
+        return true;
+    }
+
+    public function __get($setting)
+    {
+        if (self::$internal_debugging) {
+            echo 'Getting '.$setting.' which is '.$this->$setting.'<br>';
+        }
+        if (isset($this->$setting)) {
+            return $this->$setting;
+        }
+
+        return null;
+    }
 
     public function remove_minicomp_from_access_control_table($minicomp)
     {
@@ -212,41 +248,5 @@ class jomres_access_control
         }
 
         return $access_level;
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new showtime();
-        }
-
-        return self::$configInstance;
-    }
-
-    public function __clone()
-    {
-        trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
-    }
-
-    public function __set($setting, $value)
-    {
-        if (self::$internal_debugging) {
-            echo 'Setting '.$setting.' to '.$value.' <br>';
-        }
-        $this->$setting = $value;
-
-        return true;
-    }
-
-    public function __get($setting)
-    {
-        if (self::$internal_debugging) {
-            echo 'Getting '.$setting.' which is '.$this->$setting.'<br>';
-        }
-        if (isset($this->$setting)) {
-            return $this->$setting;
-        }
-
-        return null;
     }
 }

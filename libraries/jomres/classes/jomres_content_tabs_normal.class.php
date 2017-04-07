@@ -22,6 +22,8 @@ defined('_JOMRES_INITCHECK') or die('');
  */
 class jomres_content_tabs_normal
 {
+	private static $configInstance;
+
     /**
      * Constructor.
      */
@@ -33,6 +35,15 @@ class jomres_content_tabs_normal
         $this->panelNames = array();
         $this->randomString = '';
         $this->useCookies = false;
+    }
+	
+	public static function getInstance()
+    {
+        if (!self::$configInstance) {
+            self::$configInstance = new self();
+        }
+
+        return self::$configInstance;
     }
 
     /**

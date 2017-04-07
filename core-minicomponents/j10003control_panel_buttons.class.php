@@ -25,11 +25,11 @@ class j10003control_panel_buttons
 
             return;
         }
-
-        $control_panel_buttons = get_showtime('control_panel_buttons');
+		
+		$control_panel_buttons = jomres_singleton_abstract::getInstance('html_functions');
 
         $control_panel_buttons_categorised = array();
-        foreach ($control_panel_buttons as $button) {
+        foreach ($control_panel_buttons->buttons as $button) {
             if (!isset($button[ 'order' ])) {
                 $button[ 'order' ] = 0;
             }
@@ -38,7 +38,8 @@ class j10003control_panel_buttons
             $order = $button[ 'order' ];
             $control_panel_buttons_categorised[ $category ][ ] = $button;
         }
-        ksort($control_panel_buttons_categorised);
+        
+		ksort($control_panel_buttons_categorised);
 
         // We need to find the dashboard category in this array, extract it then put it at the beginning.
         $dashboard_category = jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN', false, false);
@@ -53,11 +54,6 @@ class j10003control_panel_buttons
         $MiniComponents->triggerEvent('10004', array('control_panel_buttons_categorised' => $control_panel_buttons_categorised));
     }
 
-/**
- * Must be included in every mini-component.
- #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {

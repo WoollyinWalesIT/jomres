@@ -16,37 +16,53 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_editing_mode
 {
-    /**
-     * Constructor for the jomres_booking object, sets a bunch of variables, finds configuration settings & gets the current state of the booking from the tmpbooking table.
-     */
+	private static $configInstance;
+
     public function __construct()
     {
-        $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-        // We'll specifically set the post and get routines here so that we don't end up saving the cookie/cms specific code every time if the cookie's the container for the lang.
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
+		
+        $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+
+        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+        
         $this->editing_allowed = true;
-        if (!isset($tmpBookingHandler->user_settings[ 'editing_on' ])) {
+        
+		if (!isset($tmpBookingHandler->user_settings[ 'editing_on' ])) {
             $tmpBookingHandler->user_settings[ 'editing_on' ] = false;
         }
-        if (!$thisJRUser->userIsManager) {
+        
+		if (!$thisJRUser->userIsManager) {
             $this->editing_allowed = false;
             $tmpBookingHandler->user_settings[ 'editing_on' ] = false;
         }
-        if ($thisJRUser->userIsManager && $thisJRUser->accesslevel <= 50) { //receptionist or lower
+        
+		if ($thisJRUser->userIsManager && $thisJRUser->accesslevel <= 50) { //receptionist or lower
             $this->editing_allowed = false;
             $tmpBookingHandler->user_settings[ 'editing_on' ] = false;
         }
-        if ($jrConfig[ 'minimalconfiguration' ] == '1' && !$thisJRUser->superPropertyManager) {
+        
+		if ($jrConfig[ 'minimalconfiguration' ] == '1' && !$thisJRUser->superPropertyManager) {
             $this->editing_allowed = false;
             $tmpBookingHandler->user_settings[ 'editing_on' ] = false;
         }
-        if ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager) {
+        
+		if ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager) {
             $this->editing_allowed = true;
             $tmpBookingHandler->user_settings[ 'editing_on' ] = true;
         }
-        $this->editing = $tmpBookingHandler->user_settings[ 'editing_on' ];
+        
+		$this->editing = $tmpBookingHandler->user_settings[ 'editing_on' ];
+    }
+	
+	public static function getInstance()
+    {
+        if (!self::$configInstance) {
+            self::$configInstance = new self();
+        }
+
+        return self::$configInstance;
     }
 
     public function switch_mode_on()
@@ -56,6 +72,8 @@ class jomres_editing_mode
         }
         $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
         $tmpBookingHandler->user_settings[ 'editing_on' ] = true;
+		
+		$this->editing = true;
     }
 
     public function switch_mode_off()
@@ -65,6 +83,8 @@ class jomres_editing_mode
         }
         $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
         $tmpBookingHandler->user_settings[ 'editing_on' ] = false;
+		
+		$this->editing = false;
     }
 
     public function make_editing_mode_dropdown()

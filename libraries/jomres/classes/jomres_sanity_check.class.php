@@ -21,8 +21,10 @@ class jomres_sanity_check
         if (get_showtime('no_html') == 1 || get_showtime('popup') == 1 || AJAXCALL) {
             return;
         }
+		
+		$this->warnings = '';
+		
         if ($autorun) {
-            $this->warnings = '';
             $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
             $this->jrConfig = $siteConfig->get();
             $this->mrConfig = getPropertySpecificSettings();

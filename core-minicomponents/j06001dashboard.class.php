@@ -187,8 +187,6 @@ class j06001dashboard
         $output['BOOKED_IN'] = jomresHTML::selectList($options, 'booked_in', 'class="inputbox span12" size="1"', 'value', 'text', '2');
 
         //get the currency code
-        jr_import('currency_codes');
-
         if (!isset($mrConfig[ 'property_currencycode' ])) { // for v4.5 converting the old currencyCode value to property_currencycode
             $mrConfig[ 'property_currencycode' ] = $mrConfig[ 'currencyCode' ];
         }

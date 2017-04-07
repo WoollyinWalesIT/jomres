@@ -16,18 +16,27 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_regions
 {
+	private static $configInstance;
+	
     public function __construct()
     {
         $this->regions = false;
-        $this->get_regions();
+        
+		$this->get_regions();
+    }
+	
+	public static function getInstance()
+    {
+        if (!self::$configInstance) {
+            self::$configInstance = new self();
+        }
+
+        return self::$configInstance;
     }
 
     public function get_regions()
     {
-        $performance_monitor = jomres_singleton_abstract::getInstance('jomres_performance_monitor');
-        $performance_monitor->set_point("Setting up regions. Let's ensure we're not doing this more than once.");
-
-		if (is_array($this->regions)) {
+        if (is_array($this->regions)) {
 			return true;
 		}
 		
@@ -36,12 +45,9 @@ class jomres_regions
         $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
 
         if ($c->isCached('regions')) {
-            $performance_monitor->set_point('Setting regions from cache.');
             $this->regions = $c->retrieve('regions');
         } else {
-            $performance_monitor->set_point('Setting regions from db.');
-            
-			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+            $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
             $jrConfig = $siteConfig->get();
             
 			if (!isset($jrConfig[ 'region_names_are_translatable' ])) {
@@ -65,8 +71,6 @@ class jomres_regions
             
 			$c->store('regions', $this->regions);
         }
-
-        $performance_monitor->set_point('Region generation done.');
 
         return true;
     }

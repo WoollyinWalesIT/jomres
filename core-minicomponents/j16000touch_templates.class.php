@@ -29,9 +29,6 @@ class j16000touch_templates
         }
         echo '<h2>'.jr_gettext('_JOMRES_TOUCHTEMPLATES', '_JOMRES_TOUCHTEMPLATES', false).'</h2>';
         echo '<br/><h3>'.get_showtime('lang').'</h3><br/>';
-        // $jomreslang = $jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
-        // echo $jomreslang->get_languageselection_dropdown();
-        // echo "<hr>";
 
         $basic_subscription_package_details = jomres_singleton_abstract::getInstance('basic_subscription_package_details');
 

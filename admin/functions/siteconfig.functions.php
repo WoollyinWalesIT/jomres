@@ -145,9 +145,8 @@ function showSiteConfig()
     $guestnumbersearchList[ ] = jomresHTML::makeOption('greaterthan', '>=');
     $guestnumbersearchDropdownList = jomresHTML::selectList($guestnumbersearchList, 'cfg_guestnumbersearch', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'guestnumbersearch' ]);
 
-    jr_import('currency_codes');
-    $c_codes = new currency_codes($jrConfig[ 'globalCurrencyCode' ], true);
-    $currency_codes_dropdown = $c_codes->makeCodesDropdown();
+    $currency_codes = jomres_singleton_abstract::getInstance('currency_codes');
+    $currency_codes_dropdown = $currency_codes->makeCodesDropdown($jrConfig[ 'globalCurrencyCode' ], true);
 
     $language_context = array();
     $ptype_descs = array();

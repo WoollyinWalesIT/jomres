@@ -16,8 +16,20 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class html_functions
 {
+	private static $configInstance;
+	
     public function __construct()
     {
+		$this->buttons = array();
+    }
+	
+	public static function getInstance()
+    {
+        if (!self::$configInstance) {
+            self::$configInstance = new self();
+        }
+
+        return self::$configInstance;
     }
 
     public function cpanelButton($link, $image, $text, $path = 'JOMRES_ROOT_DIRECTORY/images/jomresimages/small/', $category = null, $external = false, $disabled = false)
@@ -25,9 +37,8 @@ class html_functions
         if (!isset($category)) {
             $category = 'misc';
         }
-        $control_panel_buttons = get_showtime('control_panel_buttons');
-
-        if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.$image)) {
+        
+		if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.$image)) {
             if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'jomresimages'.JRDS.'small'.JRDS.$image)) {
                 $path = get_showtime('eLiveSite').$image;
             } else {
@@ -37,14 +48,11 @@ class html_functions
             $path = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/'.$image;
         }
 
-        $control_panel_buttons[ ] = array('link' => $link, 'image' => $image, 'menu_name' => $text, 'image_path' => $path, 'category' => $category, 'external' => $external, 'disabled' => $disabled);
-        set_showtime('control_panel_buttons', $control_panel_buttons);
+        $this->buttons[] = array('link' => $link, 'image' => $image, 'menu_name' => $text, 'image_path' => $path, 'category' => $category, 'external' => $external, 'disabled' => $disabled);
     }
 
     public function cpanelInfoRow($text, $info)
     {
-        return '
-			<span>' .$text.' : '.$info.'</span>
-		';
+        return '<span>' .$text.' : '.$info.'</span>';
     }
 }

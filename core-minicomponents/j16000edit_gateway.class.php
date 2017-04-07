@@ -170,15 +170,14 @@ class j16000edit_gateway
     {
         $index = $key;
 
-        $c_codes = new currency_codes($setting['default']);
-        $c_codes->input_name = $index;
-        $dropdown = $c_codes->makeCodesDropdown();
+        $currency_codes = jomres_singleton_abstract::getInstance('currency_codes');
+		$currency_codes_dropdown = $currency_codes->makeCodesDropdown('', false, $index);
 
         $output = array();
         $pageoutput = array();
 
         $output['INPUT_NAME'] = $index;
-        $output['SWITCH'] = $dropdown;
+        $output['SWITCH'] = $currency_codes_dropdown;
         $output['TITLE'] = $setting['setting_title'];
         $output['DESCRIPTION'] = $setting['setting_description'];
 

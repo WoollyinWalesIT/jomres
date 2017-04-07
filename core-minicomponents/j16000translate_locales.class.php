@@ -29,9 +29,6 @@ class j16000translate_locales
         }
         echo '<h2>'.jr_gettext('_JOMRES_TOUCHTEMPLATES', '_JOMRES_TOUCHTEMPLATES', false).'</h2>';
         echo '<br/><h3>'.get_showtime('lang').'</h3><br/>';
-        // $jomreslang = $jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
-        // echo $jomreslang->get_languageselection_dropdown();
-        // echo "<hr>";
 
         $output = array();
 
