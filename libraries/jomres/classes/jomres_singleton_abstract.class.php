@@ -38,13 +38,7 @@ class jomres_singleton_abstract
 			return self::$_instances[ $class ];
 		}
 		
-		//include the list of classes from plugin dirs
-		if (file_exists(JOMRES_TEMP_ABSPATH.'registry_classes.php')) {
-			include JOMRES_TEMP_ABSPATH.'registry_classes.php';
-		} else {
-			//we don`t have the paths yet, let`s scan all core and remote plugins dirs
-			$classes = search_core_and_remote_dirs_for_classfiles();
-		}
+		global $classes;
 		
 		//check core and remote plugins dirs
 		if (isset($classes[$class])) {

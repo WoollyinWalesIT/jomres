@@ -102,6 +102,15 @@ if (!function_exists('json_encode')) {
     }
 }
 
+//include the classes registry file and make $classes a global variable to be easily accessible, so we`ll avoid calling include() more times
+//TODO make the classes registry a class
+global $classes;
+if (file_exists(JOMRES_TEMP_ABSPATH.'registry_classes.php')) {
+	include_once JOMRES_TEMP_ABSPATH.'registry_classes.php';
+} else {
+	$classes = search_core_and_remote_dirs_for_classfiles();
+}
+
 $showtime = jomres_singleton_abstract::getInstance('showtime');
 
 $performance_monitor = jomres_singleton_abstract::getInstance('jomres_performance_monitor');

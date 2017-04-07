@@ -1464,13 +1464,7 @@ function jr_import($class)
 		return true;
 	}
 	
-	//include the list of classes from plugin dirs
-	if (file_exists(JOMRES_TEMP_ABSPATH.'registry_classes.php')) {
-		include JOMRES_TEMP_ABSPATH.'registry_classes.php';
-	} else {
-		//we don`t have the paths yet, let`s scan all core and remote plugins dirs
-		$classes = search_core_and_remote_dirs_for_classfiles();
-	}
+	global $classes;
 
 	//check core and remote plugins dirs
 	if (isset($classes[$class])) {
@@ -1491,6 +1485,8 @@ function jr_import($class)
 
 function search_core_and_remote_dirs_for_classfiles()
 {
+	global $classes;
+	
     $plugin_paths = array();
 
 	$core_plugins_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
