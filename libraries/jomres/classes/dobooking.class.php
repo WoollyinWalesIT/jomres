@@ -5638,7 +5638,50 @@ class dobooking
             foreach ($this->third_party_extras as $plugin) {
                 foreach ($plugin as $tpextra) {
                     $tmpTotal = (float) $tpextra[ 'untaxed_grand_total' ];
-                    if (isset($tpextra[ 'tax_code_id' ]) && (int) $tpextra[ 'tax_code_id' ] > 0) {
+					
+					//Coupon discount
+					if ($this->coupon_code != '' && get_showtime('is_jintour_property')) {
+						$old_total = $tmpTotal;
+						$dateRangeArray = explode(',', $this->dateRangeString);
+						$canonical_date_range_array = array();
+						foreach ($dateRangeArray as $d) {
+							$canonical_date_range_array[ ] = str_replace('/', '-', $d);
+						}
+						$coupon_range = $this->coupon_booking_date_ranges($this->coupon_details[ 'booking_valid_from' ], $this->coupon_details[ 'booking_valid_to' ]);
+						$number_of_times_coupon_is_valid_for_booking_date_range = 0;
+						foreach ($canonical_date_range_array as $date) {
+							if (in_array($date, $coupon_range)) {
+								++$number_of_times_coupon_is_valid_for_booking_date_range;
+							}
+						}
+
+						$this->coupon_discount_value = 0.00;
+						if ($number_of_times_coupon_is_valid_for_booking_date_range > 0) {
+							if ($this->coupon_details[ 'is_percentage' ] == '1') {
+								$this->coupon_discount_value = ($tmpTotal / 100) * (float) $this->coupon_details[ 'amount' ];
+								$tmpTotal = $tmpTotal - $this->coupon_discount_value;
+							} else {
+								$this->coupon_discount_value = (float) $this->coupon_details[ 'amount' ];
+								$tmpTotal = $tmpTotal - $this->coupon_discount_value;
+							}
+						}
+
+						$this->discounts[] = array('type' => 'Coupon', 'roomtypeabbr' => 'N/A', 'discountfrom' => $old_total, 'discountto' => $tmpTotal);
+
+						$fb1 = jr_gettext('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', false, false);
+						$fb2 = jr_gettext('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', false, false);
+						$feedback = $fb1.output_price($old_total).$fb2.output_price($tmpTotal);
+						$this->setGuestPopupMessage($feedback);
+						$this->addBookingNote('Coupon feedback', $feedback);
+
+						$note = jr_gettext('_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE', '_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE', false).' '.$this->coupon_id.' / '.$this->coupon_code.' / '.jr_gettext('_JRPORTAL_COUPONS_AMOUNT', '_JRPORTAL_COUPONS_AMOUNT', false).' '.$this->coupon_discount_value.' / ';
+						foreach ($this->coupon_details as $k => $v) {
+							$note .= $k.' - '.$v.' :: ';
+						}
+						$this->addBookingNote('Coupon', $note);
+					}
+					
+					if (isset($tpextra[ 'tax_code_id' ]) && (int) $tpextra[ 'tax_code_id' ] > 0) {
                         $tax_rate_id = $tpextra[ 'tax_code_id' ];
 
                         if (isset($this->taxrates[ $tax_rate_id ][ 'rate' ])) {
@@ -5647,48 +5690,6 @@ class dobooking
                             $rate = 0;
                         }
                         $this->setErrorLog('calcExtras Third party: rate is: '.$rate);
-
-                        //Coupon discount
-                        if ($this->coupon_code != '' && get_showtime('is_jintour_property')) {
-                            $old_total = $tmpTotal;
-                            $dateRangeArray = explode(',', $this->dateRangeString);
-                            $canonical_date_range_array = array();
-                            foreach ($dateRangeArray as $d) {
-                                $canonical_date_range_array[ ] = str_replace('/', '-', $d);
-                            }
-                            $coupon_range = $this->coupon_booking_date_ranges($this->coupon_details[ 'booking_valid_from' ], $this->coupon_details[ 'booking_valid_to' ]);
-                            $number_of_times_coupon_is_valid_for_booking_date_range = 0;
-                            foreach ($canonical_date_range_array as $date) {
-                                if (in_array($date, $coupon_range)) {
-                                    ++$number_of_times_coupon_is_valid_for_booking_date_range;
-                                }
-                            }
-
-                            $this->coupon_discount_value = 0.00;
-                            if ($number_of_times_coupon_is_valid_for_booking_date_range > 0) {
-                                if ($this->coupon_details[ 'is_percentage' ] == '1') {
-                                    $this->coupon_discount_value = ($tmpTotal / 100) * (float) $this->coupon_details[ 'amount' ];
-                                    $tmpTotal = $tmpTotal - $this->coupon_discount_value;
-                                } else {
-                                    $this->coupon_discount_value = (float) $this->coupon_details[ 'amount' ];
-                                    $tmpTotal = $tmpTotal - $this->coupon_discount_value;
-                                }
-                            }
-
-                            $this->discounts[] = array('type' => 'Coupon', 'roomtypeabbr' => 'N/A', 'discountfrom' => $old_total, 'discountto' => $tmpTotal);
-
-                            $fb1 = jr_gettext('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', false, false);
-                            $fb2 = jr_gettext('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', false, false);
-                            $feedback = $fb1.output_price($old_total).$fb2.output_price($tmpTotal);
-                            $this->setGuestPopupMessage($feedback);
-                            $this->addBookingNote('Coupon feedback', $feedback);
-
-                            $note = jr_gettext('_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE', '_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE', false).' '.$this->coupon_id.' / '.$this->coupon_code.' / '.jr_gettext('_JRPORTAL_COUPONS_AMOUNT', '_JRPORTAL_COUPONS_AMOUNT', false).' '.$this->coupon_discount_value.' / ';
-                            foreach ($this->coupon_details as $k => $v) {
-                                $note .= $k.' - '.$v.' :: ';
-                            }
-                            $this->addBookingNote('Coupon', $note);
-                        }
 
                         $thisTax = ($tmpTotal / 100) * $rate;
                         $this->extra_taxs[ ] = $thisTax;

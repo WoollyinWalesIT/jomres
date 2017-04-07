@@ -257,7 +257,7 @@ function bind_data_toggle() {
 				}
 			
 			jomresJquery.get(ajax_url , function (data) {
-				if (jomres_template_version = "bootstrap3"){
+				if (jomres_template_version == "bootstrap3"){
 					result = '<div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">x</button><h4>' + modal_title + '</h4></div><div class="modal-body">' + data + '</div></div></div>';
 					}
 				else {
@@ -297,7 +297,6 @@ function module_popup(random_identifier, property_uid) {
 	}
 
 	jomresJquery('#module_' + random_identifier + '_popup').dialog({
-		resizable: false,
 		height: modal_popup_height,
 		width: modal_popup_width,
 		modal: true,
@@ -775,7 +774,7 @@ function ajaxADate(arrivalDate, dformat) {
 	year = split_dates[2];
 
 	var d = new Date(year, mon - 1, day);
-	with (d) setDate(getDate() + mininterval);
+	d.setDate(d.getDate() + mininterval);
 
 	sday = String(d.getDate());
 	smonth = String(d.getMonth() + 1);
@@ -1039,7 +1038,6 @@ function echeck(str) {
 function toggle_review_div(uid, property_name) {
 	div_id = "#property_reviews" + uid;
 	jomresJquery(div_id).dialog({
-		resizable: false,
 		height: 500,
 		width: 800,
 		modal: true,

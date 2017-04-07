@@ -217,11 +217,21 @@ class j03025insertbooking_invoice
                         if (!isset($tpe[ 'tax_code_id' ])) {
                             $tpe[ 'tax_code_id' ] = 0;
                         }
+						
+						//strange array key name..we need to get the price without tax no matter what
+						$third_party_extra_price = $tpe[ 'untaxed_grand_total' ];
+						
+						if ($jrportal_taxrate->gather_data($tpe[ 'tax_code_id' ])) {
+							$rate = (float) $jrportal_taxrate->rate;
+							$divisor = ($rate / 100) + 1;
+							$nett_price = $tpe[ 'untaxed_grand_total' ] / $divisor;
+							$third_party_extra_price = $nett_price;
+						}
 
                         $line_items[] = array('tax_code_id' => $tpe[ 'tax_code_id' ],
                                                 'name' => $tpe[ 'description' ],
                                                 'description' => $tpe[ 'description' ],
-                                                'init_price' => $tpe[ 'untaxed_grand_total' ],
+                                                'init_price' => $third_party_extra_price,
                                                 'init_qty' => 1,
                                                 'init_discount' => 0,
                                                 );
