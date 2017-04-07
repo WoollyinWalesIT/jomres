@@ -18,7 +18,7 @@ class jomres_usage_reporting
 {
     public function __construct($displayLog = false)
     {
-        // return; // This feature isn't currently in use, for now we'll just return back out and do nothing.
+        return; // This feature isn't currently in use, for now we'll just return back out and do nothing.
         if (!AJAXCALL) {
             $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
             $jrConfig = $siteConfig->get();
