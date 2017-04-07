@@ -25,7 +25,7 @@ class jomres_temp_booking_handler
     /**
      * Constructor. Sets the default variables.
      */
-    private static $configInstance = false;
+    private static $configInstance;
 
     public function __construct()
     {

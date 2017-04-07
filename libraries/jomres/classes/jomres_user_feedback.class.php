@@ -15,32 +15,25 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 // A class for providing feedback to all users
-
+//not currently used in any way
 class jomres_user_feedback
 {
-    public function __construct($autorun = true)
+	private static $configInstance;
+
+    public function __construct()
     {
-        if (get_showtime('no_html') == 1 || get_showtime('popup') == 1 || AJAXCALL) {
-            return '';
-        }
-        if ($autorun) {
-            $this->messages = '';
-            $this->css_classes_danger = 'danger';
-            $this->css_classes_warning = 'warning';
-            $this->css_classes_successs = 'success';
-            $this->css_classes_info = 'info';
-        }
+        $this->user_feedback_messages = array();
+        $this->messages = '';
+		$this->css_classes_danger = 'danger';
+		$this->css_classes_warning = 'warning';
+		$this->css_classes_successs = 'success';
+		$this->css_classes_info = 'info';
     }
 
     public function generate_messages()
     {
-        if (get_showtime('no_html') == 1 || get_showtime('popup') == 1 || AJAXCALL) {
-            return '';
-        }
-
-        if (count(get_showtime('user_feedback_messages')) > 0) {
-            $messages = get_showtime('user_feedback_messages');
-            foreach ($messages as $message) {
+        if (!empty($this->user_feedback_messages)) {
+            foreach ($this->user_feedback_messages as $message) {
                 $this->messages .= $this->construct_message($message);
             }
         }
@@ -94,6 +87,6 @@ class jomres_user_feedback
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
         $tmpl->readTemplatesFromInput('user_feedback_pane.html');
 
-        return $tmpl->getParsedTemplate();
+        $this->user_feedback_messages[] = $tmpl->getParsedTemplate();
     }
 }

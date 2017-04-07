@@ -16,11 +16,27 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomresItemToolbar
 {
+	private static $configInstance;
+
+    public function __construct()
+    {
+        $this->newToolbar();
+    }
+
     public function newToolbar()
     {
         $this->toolbar = '';
         $this->items = array();
         $this->secondaryItems = array();
+    }
+	
+	public static function getInstance()
+    {
+        if (!self::$configInstance) {
+            self::$configInstance = new self();
+        }
+
+        return self::$configInstance;
     }
 
     public function addItem($icon, $buttonClass, $task, $link, $title, $submitOnClick = false, $otherParams = '')

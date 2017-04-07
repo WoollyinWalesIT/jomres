@@ -21,7 +21,6 @@ class jomres_property_list_prices
 
     public function __construct()
     {
-        self::$configInstance = false;
         $this->lowest_prices = array();
         $this->stayDays = array();
         $this->today = date('Y/m/d');

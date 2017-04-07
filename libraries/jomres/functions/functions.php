@@ -199,17 +199,6 @@ function fix_path($path = '')
     return $path;
 }
 
-function set_user_feedback_message($message = '', $css_class = 'info', $link = false, $link_message = false)
-{
-    $messages_array = get_showtime('user_feedback_messages');
-    if (!$link) {
-        $messages_array[] = array('MESSAGE' => $message, 'CSS_CLASS' => $css_class);
-    } else {
-        $messages_array[] = array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $link_message, 'CSS_CLASS' => $css_class);
-    }
-    set_showtime('user_feedback_messages', $messages_array);
-}
-
 // http://www.maurits.vdschee.nl/php_hide_email/
 function jomres_hide_email($email)
 {
@@ -1467,20 +1456,20 @@ function jr_import($class)
     }
     if (!class_exists($class)) {
         if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php')) {
-            $result = require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php';
+            require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php';
         } else {
             search_core_and_remote_dirs_for_classfiles();
             $classes = get_showtime('plugin_classes_paths');
             if (isset($classes[ $class ]) && file_exists($classes[ $class ][ 'path' ].$class.'.class.php')) {
-                $result = require_once $classes[ $class ][ 'path' ].$class.'.class.php';
+                require_once $classes[ $class ][ 'path' ].$class.'.class.php';
             } else {
                 if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php')) {
-                    $result = require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php';
+                    require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php';
                 } else {
                     if ($plugin_directories) {
                         foreach ($plugin_directories as $directory) {
                             if (file_exists($directory.$class.'.class.php')) {
-                                $result = require_once $directory.$class.'.class.php';
+                                require_once $directory.$class.'.class.php';
                             }
                         }
                         if (!class_exists($class)) { // We'll echo and exit here. Assuming that we're a developer we'll want to see on the page that the class doesn't exist, rather than have an error triggered. Addition of this also means that the following trigger_error will never kick in if any plugins are installed

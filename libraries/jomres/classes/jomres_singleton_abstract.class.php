@@ -26,7 +26,7 @@ class jomres_singleton_abstract
     {
         if (!isset(self::$_instances[ $class ])) {
             if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php')) {
-                $result = require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php';
+                require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php';
                 self::$_instances[ $class ] = new $class($arg1);
             } else {
                 $classfilefound = false;
@@ -47,7 +47,7 @@ class jomres_singleton_abstract
                         foreach ($docs as $doc) {
                             $listdir = $jrePath.$doc.JRDS;
                             if (file_exists($listdir.$class.'.class.php')) {
-                                $result = require_once $listdir.$class.'.class.php';
+                                require_once $listdir.$class.'.class.php';
                                 self::$_instances[ $class ] = new $class($arg1);
                                 $classfilefound = true;
                             }
@@ -72,7 +72,7 @@ class jomres_singleton_abstract
                             foreach ($docs as $doc) {
                                 $listdir = $jrePath.$doc.JRDS;
                                 if (file_exists($listdir.$class.'.class.php')) {
-                                    $result = require_once $listdir.$class.'.class.php';
+                                    require_once $listdir.$class.'.class.php';
                                     self::$_instances[ $class ] = new $class($arg1);
                                     $classfilefound = true;
                                 }
@@ -82,7 +82,7 @@ class jomres_singleton_abstract
                 }
 
                 if (!$classfilefound && file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php')) {
-                    $result = require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php';
+                    require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php';
                     self::$_instances[ $class ] = new $class($arg1);
                     $classfilefound = true;
                 }
