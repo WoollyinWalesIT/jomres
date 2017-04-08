@@ -2458,7 +2458,6 @@ function hotelSettings()
     $componentArgs = array();
     $componentArgs[ 'mrConfig' ] = $mrConfig;
     $MiniComponents->triggerEvent('0500', $componentArgs); // Generate configuration options. Optional
-    $gatewayNames = listGateways();
 
     // the default view
     $lists = array();
