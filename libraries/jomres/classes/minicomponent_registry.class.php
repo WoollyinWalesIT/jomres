@@ -108,7 +108,7 @@ class minicomponent_registry
         $c->eraseAll();
 
         //delete js files in /jomres/temp dir
-        if (isset($_REQUEST['task']) && $_REQUEST['task'] == 'rebuildregistry') {
+        if (isset($_REQUEST['task']) && ($_REQUEST['task'] == 'rebuildregistry' || $_REQUEST['task'] == 'save_site_settings')) {
             $javascript_files_in_temp_dir = scandir_getfiles(JOMRES_TEMP_ABSPATH, $extension = 'js');
             foreach ($javascript_files_in_temp_dir as $file) {
                 unlink(JOMRES_TEMP_ABSPATH.$file);

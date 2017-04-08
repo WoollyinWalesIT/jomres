@@ -408,7 +408,7 @@ function saveSiteConfig($overrides = array())
         include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'site_config.php';
         $tmpConfig = $jrConfig;
     }
-    if (count($overrides) > 0) {
+    if (!empty($overrides)) {
         foreach ($overrides as $key => $val) {
             $tmpConfig[$key] = $val;
         }
@@ -445,7 +445,7 @@ $jrConfig = ' .var_export($tmpConfig, true).';
     $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
     $c->eraseAll();
 
-    if (count($overrides) == 0) { // If we've come from the Site Config page, we want to redirect the user back to the site configuration page, otherwise we don't redirect.
+    if (empty($overrides)) { // If we've come from the Site Config page, we want to redirect the user back to the site configuration page, otherwise we don't redirect.
         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=site_settings'), 'Configuration saved');
     }
 }
