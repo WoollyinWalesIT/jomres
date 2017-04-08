@@ -2656,7 +2656,6 @@ function hotelSettings()
     $componentArgs[ 'weekenddayDropdown' ] = $weekenddayDropdown;
     //$componentArgs['templateNamesDropdownList']=$templateNamesDropdownList;
     $componentArgs[ 'paymentAmounts' ] = $paymentAmounts;
-    $componentArgs[ 'gatewayNames' ] = $gatewayNames;
     $componentArgs[ 'editIconSize' ] = $editIconSize;
     $componentArgs[ 'fixedArrivalDatesRecurring' ] = $fixedArrivalDatesRecurring;
     $componentArgs[ 'tariffModelsDropdown' ] = $tariffModelsDropdown;
@@ -3264,29 +3263,6 @@ function savePlugin($plugin)
     $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
     $tmpl->readTemplatesFromInput('plugin_save.html');
     $tmpl->displayParsedTemplate();
-}
-
-/**
- * depreciated.
- */
-function listGateways()
-{
-    $listdir = JOMRESCONFIG_ABSOLUTE_PATH.'/administrator/'.JOMRES_ROOT_DIRECTORY.'/plugins/gateways/';
-    $d = @dir($listdir);
-    $folders = array();
-    if ($d) {
-        $folders = array();
-        //$docs = array();
-        while (false !== ($entry = $d->read())) {
-            $gateway_folder = $entry;
-            if (is_dir($listdir.'/'.$gateway_folder) && substr($entry, 0, 1) != '.' && strtolower($entry) !== 'cvs') {
-                $folders[ ] = $gateway_folder;
-            }
-        }
-        $d->close();
-    }
-
-    return $folders;
 }
 
 //---------------------------------
