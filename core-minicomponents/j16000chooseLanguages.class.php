@@ -25,37 +25,35 @@ class j16000chooseLanguages
 
             return;
         }
+
         $output = array();
-        $output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_CHOOSELANGUAGES', '_JOMRES_COM_CHOOSELANGUAGES', false);
+		$active_languages = array();
+        
+		$output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_CHOOSELANGUAGES', '_JOMRES_COM_CHOOSELANGUAGES', false);
         $output[ 'INFO' ] = jr_gettext('_JOMRES_COM_CHOOSELANGUAGES_INFO', '_JOMRES_COM_CHOOSELANGUAGES_INFO', false);
         $output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = JOMRES_SITEPAGE_URL_ADMIN;
-        $langDropdownFile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'langDropdown.php';
-        if (file_exists($langDropdownFile)) {
-            require_once $langDropdownFile;
-            $langfiles = getLangDropdownString();
-        } else {
-            $langfiles = array();
-        }
 
-        $jomreslang = jomres_singleton_abstract::getInstance('jomres_language');
-        $languagesArray = $jomreslang->define_langfile_to_languages_array();
+        $jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
+        $languagesArray = $jomres_language->define_langfile_to_languages_array();
 
         $rows = array();
         foreach ($languagesArray as $key => $val) {
             $r = array();
+
             $selected = '';
-            if (in_array($key, $langfiles)) {
+			if (in_array($key, $jomres_language->active_languages)) {
                 $selected = ' checked="yes" ';
             }
-            $r[ 'SHORTCODE' ] = $key;
+            
+			$r[ 'SHORTCODE' ] = $key;
             $r[ 'LONGCODE' ] = $val;
             $r[ 'CHECKBOX' ] = '<input type="checkbox" id="cb'.$key.'" name="idarray[]" value="'.$key.'" '.$selected.'>';
-            $rows[ ] = $r;
+            
+			$rows[ ] = $r;
         }
 
         $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
         $jrtb = $jrtbar->startTable();
-
         $jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN, '');
         $jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'save_languageChoiceSelection');
         $jrtb .= $jrtbar->endTable();
