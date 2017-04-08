@@ -122,6 +122,11 @@ class minicomponent_registry
 		if (file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
 			unlink(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
 		}
+		
+		//delete the classes registry
+		if (file_exists(JOMRES_TEMP_ABSPATH.'registry_classes.php')) {
+			unlink(JOMRES_TEMP_ABSPATH.'registry_classes.php');
+		}
 
         //rebuild the shortcodes list
         if (!defined('AUTO_UPGRADE')) {
