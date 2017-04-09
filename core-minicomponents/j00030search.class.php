@@ -322,7 +322,7 @@ class j00030search
 
         // -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('propertyname', $searchOptions) && $showSearchOptions) {
-            if (count($sch->prep[ 'propertyname' ]) > 0) {
+            if (!empty($sch->prep[ 'propertyname' ])) {
                 $propertyname = array();
                 if (empty($sch->filter[ 'propertyname' ])) {
                     $selectOption = $sch->prep[ 'propertyname' ][ 0 ][ 'pn' ];
@@ -358,7 +358,7 @@ class j00030search
         // -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('country', $searchOptions) && $showSearchOptions && !in_array('selectcombo', $searchOptions)) {
             $countryArray = array();
-            if (count($sch->prep[ 'country' ]) > 0) {
+            if (!empty($sch->prep[ 'country' ])) {
                 if (empty($sch->filter[ 'country' ])) {
                     $selectOption = $sch->prep[ 'country' ][ 0 ][ 'countrycode' ];
                 } else {
@@ -392,7 +392,7 @@ class j00030search
         // -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('region', $searchOptions) && $showSearchOptions && !in_array('selectcombo', $searchOptions)) {
             $regionArray = array();
-            if (count($sch->prep[ 'region' ]) > 0) {
+            if (!empty($sch->prep[ 'region' ])) {
                 if (empty($sch->filter[ 'region' ])) {
                     $selectOption = $sch->prep[ 'region' ][ 0 ][ 'region' ];
                 } else {
@@ -433,7 +433,7 @@ class j00030search
             $townArray = array();
             //var_dump($sch->prep['town']);
             $ta = $sch->prep[ 'town' ];
-            if (count($sch->prep[ 'town' ]) > 0) {
+            if (!empty($sch->prep[ 'town' ])) {
                 if (empty($sch->filter[ 'town' ])) {
                     $selectOption = $ta[ 0 ][ 'town' ];
                 } else {
@@ -477,7 +477,7 @@ class j00030search
         // -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('feature_uids', $searchOptions) && $showSearchOptions) {
             $featureArray = array();
-            if (count($sch->prep[ 'features' ]) > 0) {
+            if (!empty($sch->prep[ 'features' ])) {
                 if (empty($sch->filter[ 'feature_uids' ])) {
                     $selectOption = $sch->prep[ 'features' ][ 0 ];
                 } else {
@@ -522,7 +522,7 @@ class j00030search
         // -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('room_type', $searchOptions) && $showSearchOptions) {
             $rtypeArray = array();
-            if (count($sch->prep[ 'rtypes' ]) > 0) {
+            if (!empty($sch->prep[ 'rtypes' ])) {
                 $r = '';
                 if (empty($sch->filter[ 'room_type' ])) {
                     $selectOption = $sch->prep[ 'rtypes' ][ 0 ][ 'id' ];
@@ -556,7 +556,7 @@ class j00030search
         // -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('ptype', $searchOptions) && $showSearchOptions) {
             $ptypeArray = array();
-            if (count($sch->prep[ 'ptypes' ]) > 0) {
+            if (!empty($sch->prep[ 'ptypes' ])) {
                 if (empty($sch->filter[ 'ptype' ])) {
                     $selectOption = $sch->prep[ 'ptypes' ][ 0 ][ 'id' ];
                 } else {
@@ -592,7 +592,7 @@ class j00030search
         // -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('priceranges', $searchOptions) && $showSearchOptions) {
             $rangeArray = array();
-            if (count($sch->prep[ 'priceranges' ]) > 0) {
+            if (!empty($sch->prep[ 'priceranges' ])) {
                 if (empty($sch->filter[ 'priceranges' ])) {
                     $selectOption = $sch->prep[ 'priceranges' ][ 0 ];
                 } else {
@@ -616,7 +616,7 @@ class j00030search
         // -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('guestnumber', $searchOptions) && $showSearchOptions) {
             $guestnumberArray = array();
-            if (count($sch->prep[ 'guestnumber' ]) > 0) {
+            if (!empty($sch->prep[ 'guestnumber' ])) {
                 if (empty($sch->filter[ 'guestnumber' ])) {
                     $selectOption = $sch->prep[ 'guestnumber' ][ 0 ][ 'id' ];
                 } else {
@@ -635,7 +635,7 @@ class j00030search
         // -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('stars', $searchOptions) && $showSearchOptions) {
             $starsArray = array();
-            if (count($sch->prep[ 'stars' ]) > 0) {
+            if (!empty($sch->prep[ 'stars' ])) {
                 if (empty($sch->filter[ 'stars' ])) {
                     $selectOption = $sch->prep[ 'stars' ][ 0 ][ 'id' ];
                 } else {

@@ -41,7 +41,7 @@ class j16000view_property_reviews
         $Reviews = new jomres_reviews();
         $all_reviews = $Reviews->get_all_reviews_index_by_property_uid();
 
-        if (is_array($all_reviews) && count($all_reviews) > 0) {
+        if (is_array($all_reviews) && !empty($all_reviews)) {
             $property_reviews = $all_reviews[ $property_uid ];
             $all_reports = $Reviews->get_all_reports_index_by_rating_id();
             $all_users = jomres_cmsspecific_getCMSUsers();

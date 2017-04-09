@@ -22,15 +22,6 @@ class jomres_custom_field_handler
     {
         $this->custom_fields = false;
         $this->custom_fields_by_ptype_id = false;
-
-        //retrieve custom fields from cache, if available
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $custom_fields_data = $c->retrieve('custom_fields_data');
-
-        if ($custom_fields_data !== false) {
-            $this->custom_fields = $custom_fields_data['custom_fields'];
-            $this->custom_fields_by_ptype_id = $custom_fields_data['custom_fields_by_ptype_id'];
-        }
     }
 
     public static function getInstance()
@@ -48,19 +39,17 @@ class jomres_custom_field_handler
             $this->custom_fields = array();
             $this->custom_fields_by_ptype_id = array();
 
-            $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-
             $query = 'SELECT `uid`, `fieldname`, `default_value`, `description`, `required`, `ptype_xref` FROM #__jomres_custom_fields';
             $fields = doSelectSql($query);
 
-            if (count($fields) > 0) {
+            if (!empty($fields)) {
                 foreach ($fields as $t) {
                     $this->custom_fields[ $t->uid ] = array('uid' => $t->uid, 'fieldname' => $t->fieldname, 'default_value' => $t->default_value, 'description' => $t->description, 'required' => $t->required, 'ptype_xref' => $t->ptype_xref);
 
                     if ($t->ptype_xref != '') {
                         $ptype_xref = unserialize($t->ptype_xref);
 
-                        if (is_array($ptype_xref) && count($ptype_xref) > 0) {
+                        if (is_array($ptype_xref) && !empty($ptype_xref)) {
                             foreach ($ptype_xref as $xref) {
                                 $this->custom_fields_by_ptype_id[ $xref ][ $t->uid ] = array('uid' => $t->uid, 'fieldname' => $t->fieldname, 'default_value' => $t->default_value, 'description' => $t->description, 'required' => $t->required, 'ptype_xref' => $t->ptype_xref);
                             }
@@ -71,8 +60,6 @@ class jomres_custom_field_handler
                     }
                 }
             }
-
-            $c->store('custom_fields_data', array('custom_fields' => $this->custom_fields, 'custom_fields_by_ptype_id' => $this->custom_fields_by_ptype_id));
         }
 
         return $this->custom_fields;

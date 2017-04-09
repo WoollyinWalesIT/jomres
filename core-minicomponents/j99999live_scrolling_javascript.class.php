@@ -28,7 +28,7 @@ class j99999live_scrolling_javascript
         if (AJAXCALL) {
             $endrun_javascript_for_eval_by_live_scrolling = get_showtime('endrun_javascript_for_eval_by_live_scrolling');
 
-            if (count($endrun_javascript_for_eval_by_live_scrolling) > 0 && get_showtime('task') == 'ajax_list_properties') {
+            if (!empty($endrun_javascript_for_eval_by_live_scrolling) && get_showtime('task') == 'ajax_list_properties') {
                 $javascript = '^';
 
                 foreach ($endrun_javascript_for_eval_by_live_scrolling as $js) {

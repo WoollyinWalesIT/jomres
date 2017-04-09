@@ -30,7 +30,7 @@ class j99999handlereq_javascript
         if (AJAXCALL && get_showtime('task') == 'handlereq' && $mrConfig[ 'booking_form_rooms_list_style' ] == '1') {
             $endrun_javascript_for_eval_by_handlereq = get_showtime('endrun_javascript_for_eval_by_handlereq');
 
-            if (count($endrun_javascript_for_eval_by_handlereq) > 0) {
+            if (!empty($endrun_javascript_for_eval_by_handlereq)) {
                 $javascript = '';
                 foreach ($endrun_javascript_for_eval_by_handlereq as $js) {
                     $javascript .= $js;

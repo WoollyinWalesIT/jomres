@@ -20,9 +20,9 @@ class call
     {
     }
 
-    public function call_server($options)
+    public function call_server($options = array())
     {
-        if (count($options) == 0) {
+        if (empty($options)) {
             throw new Exception('Error, no request elements set ');
         }
 

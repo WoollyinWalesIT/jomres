@@ -86,8 +86,9 @@ class j06001list_bookings_ajax
          */
         $sWhere = '';
         if (isset($_GET['sSearch']) && $_GET['sSearch'] != '') {
+			$n = count($aColumns);
             $sWhere = 'AND (';
-            for ($i = 0; $i < count($aColumns); ++$i) {
+            for ($i = 0; $i < $n; ++$i) {
                 $sWhere .= ''.$aColumns[$i]." LIKE '%".jomresGetParam($_GET, 'sSearch', '')."%' OR ";
             }
             $sWhere = substr_replace($sWhere, '', -3);

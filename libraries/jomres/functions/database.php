@@ -42,7 +42,7 @@ function doSelectSql($query, $mode = false)
             }
 
             if ($num == 1) {
-                if (count($jomres_db->result[0]) == 0) {
+                if (empty($jomres_db->result[0])) {
                     return false;
                 } else {
                     foreach ($jomres_db->result[0] as $k => $v) {

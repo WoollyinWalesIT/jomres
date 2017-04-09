@@ -84,7 +84,7 @@ class jomres_obsolete_file_handling
     {
         // New for 5.6.1, we'll now allow plugins to report obsolete files
         $obsolete_plugin_files = get_showtime('obsolete_plugin_files');
-        if (count($obsolete_plugin_files) > 0) {
+        if (!empty($obsolete_plugin_files)) {
             foreach ($obsolete_plugin_files as $file) {
                 if (file_exists($file)) {
                     $this->add_obs_file($file);

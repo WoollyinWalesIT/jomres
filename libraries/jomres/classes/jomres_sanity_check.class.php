@@ -132,7 +132,7 @@ class jomres_sanity_check
                 }
             }
 
-            if (count($future_tours) == 0) {
+            if (empty($future_tours)) {
                 $message = jr_gettext('_JOMRES_JINTOUR_SANITY_CHECK', '_JOMRES_JINTOUR_SANITY_CHECK', false);
                 $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=jintour');
                 $button_text = jr_gettext('_JOMRES_JINTOUR_SANITY_CHECK_LINK', '_JOMRES_JINTOUR_SANITY_CHECK_LINK', false);
@@ -210,7 +210,7 @@ class jomres_sanity_check
             if (!in_array(get_showtime('task'), $ignore_on_tasks)) {
                 $query = 'SELECT `id` FROM `#__jomres_customertypes` where property_uid = '.(int) $this->property_uid.' AND published = 1';
                 $result = doSelectSql($query);
-                if ((int) $this->mrConfig[ 'perPersonPerNight' ] == 1 && count($result) == 0) {
+                if ((int) $this->mrConfig[ 'perPersonPerNight' ] == 1 && empty($result)) {
                     $message = jr_gettext('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', '_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', false);
                     $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=listCustomerTypes');
                     $button_text = jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', false);
@@ -233,7 +233,7 @@ class jomres_sanity_check
             if (!in_array(get_showtime('task'), $ignore_on_tasks)) {
                 $query = 'SELECT `rates_uid` FROM `#__jomres_rates` where property_uid = '.(int) $this->property_uid.'';
                 $result = doSelectSql($query);
-                if (count($result) == 0) {
+                if (empty($result)) {
                     if ($this->mrConfig[ 'singleRoomProperty' ] == 0) {
                         $message = jr_gettext('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', false);
                     } else {
@@ -331,7 +331,7 @@ class jomres_sanity_check
             if (get_showtime('task') != 'edit_resource') {
                 $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
                 $current_property_details->gather_data($this->property_uid);
-                if (!isset($current_property_details->rooms) || count($current_property_details->rooms) == 0) {
+                if (!isset($current_property_details->rooms) || empty($current_property_details->rooms)) {
                     $message = jr_gettext('_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK', '_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK', false);
                     if ($this->mrConfig['tariffmode'] == 0) {
                         $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_tariffs_normal');

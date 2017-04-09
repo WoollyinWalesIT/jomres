@@ -42,35 +42,27 @@ class jomres_regions
 		
 		$this->regions = array();
 
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		
+		if (!isset($jrConfig[ 'region_names_are_translatable' ])) {
+			$jrConfig[ 'region_names_are_translatable' ] = 0;
+		}
 
-        if ($c->isCached('regions')) {
-            $this->regions = $c->retrieve('regions');
-        } else {
-            $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-            $jrConfig = $siteConfig->get();
-            
-			if (!isset($jrConfig[ 'region_names_are_translatable' ])) {
-                $jrConfig[ 'region_names_are_translatable' ] = 0;
-            }
-
-            $query = "SELECT `id`,`countrycode`,`regionname` FROM #__jomres_regions ORDER BY `countrycode`,`regionname`";
-            $result = doSelectSql($query);
-            
-			if (!empty($result)) {
-                foreach ($result as $region) {
-                    if ((int)$jrConfig[ 'region_names_are_translatable' ] == 1) {
-                        $this->regions[ $region->id ] = array('id' => $region->id, 'countrycode' => $region->countrycode, 'regionname' => jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$region->id, $region->regionname, false, false));
-                    } else {
-                        $this->regions[ $region->id ] = array('id' => $region->id, 'countrycode' => $region->countrycode, 'regionname' => $region->regionname);
-                    }
-                }
-            }
-			
-			unset($result);
-            
-			$c->store('regions', $this->regions);
-        }
+		$query = "SELECT `id`,`countrycode`,`regionname` FROM #__jomres_regions ORDER BY `countrycode`,`regionname`";
+		$result = doSelectSql($query);
+		
+		if (!empty($result)) {
+			foreach ($result as $region) {
+				if ((int)$jrConfig[ 'region_names_are_translatable' ] == 1) {
+					$this->regions[ $region->id ] = array('id' => $region->id, 'countrycode' => $region->countrycode, 'regionname' => jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$region->id, $region->regionname, false, false));
+				} else {
+					$this->regions[ $region->id ] = array('id' => $region->id, 'countrycode' => $region->countrycode, 'regionname' => $region->regionname);
+				}
+			}
+		}
+		
+		unset($result);
 
         return true;
     }

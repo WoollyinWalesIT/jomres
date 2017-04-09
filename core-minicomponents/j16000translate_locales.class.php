@@ -34,7 +34,7 @@ class j16000translate_locales
 
         $query = 'SELECT id,countrycode,countryname FROM #__jomres_countries ORDER BY countryname';
         $countryList = doSelectSql($query);
-        if (count($countryList) > 0) {
+        if (!empty($countryList)) {
             foreach ($countryList as $country) {
                 $output[ ] = jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRIES_'.$country->id, $country->countryname);
             }
@@ -45,7 +45,7 @@ class j16000translate_locales
         if ($jrConfig[ 'region_names_are_translatable' ] == '1') {
             $query = 'SELECT id,countrycode,regionname FROM #__jomres_regions ORDER BY countrycode,regionname';
             $regionList = doSelectSql($query);
-            if (count($regionList) > 0) {
+            if (!empty($regionList)) {
                 foreach ($regionList as $region) {
                     $output[ ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$region->id, $region->regionname);
                 }

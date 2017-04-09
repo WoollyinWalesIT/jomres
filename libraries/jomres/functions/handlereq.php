@@ -293,7 +293,7 @@ switch ($field) {
             if (isset($selected_rooms[ 1 ])) {
                 $clearing_tariff_id = (int) $selected_rooms[ 1 ];
 
-                if (count($bkg->requestedRoom) > 0) {
+                if (!empty($bkg->requestedRoom)) {
                     foreach ($bkg->requestedRoom as $index => $rm) {
                         $currently_selected_rooms = explode('^', $rm);
                         $current_tariff_id = $currently_selected_rooms[ 1 ];
@@ -413,7 +413,7 @@ if ($field != 'heartbeat' && $field != 'show_log' && $field != 'email_usage_chec
             $room_tax = $bkg->getTax();
             $extra_tax = 0.00;
             if (isset($bkg->extra_taxs)) {
-                if (count($bkg->extra_taxs) > 0) {
+                if (!empty($bkg->extra_taxs)) {
                     foreach ($bkg->extra_taxs as $extax) {
                         $extra_tax = $extra_tax + $extax;
                     }
@@ -541,20 +541,21 @@ function bookingformlistRooms($isSingleRoomProperty, &$bkg)
         $freeRoomsArray = array();
         $dateRangeIncludesWeekend = $bkg->dateRangeIncludesWeekends();
         $freeRoomsArray = $bkg->getAllRoomUidsForProperty();
-        if (count($freeRoomsArray) > 0) {
+		$freeRoomsArray_count = count($freeRoomsArray);
+        if (!empty($freeRoomsArray)) {
             $freeRoomsArray = $bkg->findFreeRoomsInDateRange($freeRoomsArray);
         }
 
-        $bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.count($freeRoomsArray));
-        if (count($freeRoomsArray) > 0) { // This must be before the rest of these functions
+        $bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
+        if (!empty($freeRoomsArray)) { // This must be before the rest of these functions
         $freeRoomsArray = $bkg->checkPeopleNumbers($freeRoomsArray);
         }
-        $bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.count($freeRoomsArray));
-        if (count($freeRoomsArray) > 0) {
+        $bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
+        if (!empty($freeRoomsArray)) {
             $freeRoomsArray = $bkg->checkRoomFeatureOption($freeRoomsArray);
         }
 
-        $bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.count($freeRoomsArray));
+        $bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
         // Added to enable the room to remain in the selected rooms list if it's still available after a particular (date, guest numbers etc) has been changed
         $selectedRoomUids = array();
         foreach ($bkg->requestedRoom as $rt) {
@@ -572,17 +573,17 @@ function bookingformlistRooms($isSingleRoomProperty, &$bkg)
             }
         }
         if ($bkg->cfg_booking_form_rooms_list_style == '1') {
-            $bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.count($freeRoomsArray));
-            if (count($freeRoomsArray) > 0) {
+            $bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
+            if (!empty($freeRoomsArray)) {
                 $freeRoomsArray = $bkg->removeRoomuidsAlreadyInThisBooking($freeRoomsArray);
             }
         }
-        if (count($freeRoomsArray) > 0) {
+        if (!empty($freeRoomsArray)) {
             $freeRoomsArray = $bkg->extractLockedRooms($freeRoomsArray);
         }
-        $bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.count($freeRoomsArray));
-        $bkg->number_of_free_rooms = count($freeRoomsArray);
-        if (count($freeRoomsArray) > 0) {
+        $bkg->setErrorLog('handlereq-bookingformlistRooms:: Number of free rooms '.$freeRoomsArray_count);
+        $bkg->number_of_free_rooms = $freeRoomsArray_count;
+        if (!empty($freeRoomsArray)) {
             $roomAndTariffArray = $bkg->getTariffsForRoomUids($freeRoomsArray);
         }
 
@@ -607,7 +608,7 @@ function bookingformlistRooms($isSingleRoomProperty, &$bkg)
             $output = "populateDiv('selectedRooms','".$selected_rooms_text.$currently_selected."');";
             $output .= "populateDiv('availRooms','".$available_rooms_text."');";
 
-            if (count($freeRoomsArray) > 0) {
+            if (!empty($freeRoomsArray)) {
                 $output .= ";jomresJquery('#availRooms').fadeIn();";
             } else {
                 $output .= ";jomresJquery('#availRooms').fadeOut();";

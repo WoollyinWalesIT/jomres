@@ -103,10 +103,6 @@ class minicomponent_registry
 
         $this->new_filesize = filesize($this->registry_file);
 
-        //clear cache
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $c->eraseAll();
-
         //delete js files in /jomres/temp dir
         if (isset($_REQUEST['task']) && ($_REQUEST['task'] == 'rebuildregistry' || $_REQUEST['task'] == 'save_site_settings')) {
             $javascript_files_in_temp_dir = scandir_getfiles(JOMRES_TEMP_ABSPATH, $extension = 'js');
@@ -200,7 +196,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
             }
 
             $d->close();
-            if (count($docs) > 0) {
+            if (!empty($docs)) {
                 sort($docs);
                 foreach ($docs as $doc) {
                     $listdir = $jrePath.$doc.JRDS;
@@ -231,7 +227,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
                 }
             }
             $d->close();
-            if (count($docs) > 0) {
+            if (!empty($docs)) {
                 sort($docs);
                 foreach ($docs as $doc) {
                     $listdir = $jrePath.$doc.JRDS;
@@ -288,7 +284,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
                 }
             }
             $d->close();
-            if (count($docs) > 0) {
+            if (!empty($docs)) {
                 sort($docs);
                 foreach ($docs as $doc) {
                     $listdir = $jrePath.$doc.JRDS;

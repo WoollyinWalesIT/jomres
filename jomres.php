@@ -318,7 +318,7 @@ try {
 
                 $query = "SELECT id FROM #__jomres_booking_data_archive WHERE `tag` = '".$tag."'";
                 $result = doSelectSql($query);
-                if (count($result) == 0) {
+                if (empty($result)) {
                     $tmpbooking = $tmpBookingHandler->tmpbooking;
                     $tmpguest = $tmpBookingHandler->tmpguest;
 
@@ -344,7 +344,7 @@ try {
                     $query = 'SELECT id,plugin FROM #__jomres_pluginsettings WHERE (prid = '.(int) $property_uid." OR prid = 0)  AND `plugin` = '".(string) $plugin."' AND setting = 'active' AND value = '1'";
                     $gatewayDeets = doSelectSql($query);
 
-                    if (count($gatewayDeets) > 0 || $paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
+                    if (!empty($gatewayDeets) || $paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
 /*                         if ($paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
                             $plugin = 'paypal';
                         } */

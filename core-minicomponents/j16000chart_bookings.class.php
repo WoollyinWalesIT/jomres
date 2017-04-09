@@ -63,7 +63,7 @@ class j16000chart_bookings
 				';
         $result = doSelectSql($query);
 
-        if (count($result) > 0) { //no bookings in db, so we`ll output a demo chart
+        if (!empty($result)) { //no bookings in db, so we`ll output a demo chart
             $results = array();
 
             //now we create an array of amounts for each year/month

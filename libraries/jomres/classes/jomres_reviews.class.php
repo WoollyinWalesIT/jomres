@@ -88,7 +88,7 @@ class jomres_reviews
         $sql = 'SELECT count(rating_id) as cnt1 FROM #__jomres_reviews_ratings WHERE item_id = '.(int) $this->property_uid." and rating_ip = '".$this->ip."' ";
         $sql .= 'UNION SELECT count(rating_id) as cnt2 FROM #__jomres_reviews_ratings WHERE item_id = '.(int) $this->property_uid.' and user_id = '.(int) $this->userid.' ';
         $result = doSelectSql($sql);
-        if (count($result == 0)) {
+        if (empty($result)) {
             return true;
         }
 
@@ -254,7 +254,7 @@ class jomres_reviews
         $reviews = array();
         $query = 'SELECT * FROM #__jomres_reviews_ratings ORDER BY rating_date';
         $result = DoSelectSql($query);
-        if (count($result) > 0) {
+        if (!empty($result)) {
             foreach ($result as $res) {
                 $property_uid = $res->item_id;
                 $reviews[ $property_uid ][ $res->rating_id ][ 'rating_id' ] = $res->rating_id;
@@ -326,7 +326,7 @@ class jomres_reviews
         $sql = 'SELECT item_id, AVG(rating) as avg_rating, COUNT(rating) as counter, SUM(rating) as sumrating FROM #__jomres_reviews_ratings WHERE item_id IN ('.jomres_implode($property_uids).') AND published = 1 GROUP BY item_id';
         $result = doSelectSql($sql);
         $arr = array();
-        if (count($result) > 0) {
+        if (!empty($result)) {
             foreach ($result as $res) {
                 $arr[ $res->item_id ][ 'property_uid' ] = $res->item_id;
                 $arr[ $res->item_id ][ 'avg_rating' ] = $res->avg_rating;
@@ -352,7 +352,7 @@ class jomres_reviews
             $arr = array();
             $sql = 'SELECT item_id, AVG(rating) as avg_rating, COUNT(rating) as counter, SUM(rating) as sumrating FROM #__jomres_reviews_ratings WHERE item_id = '.(int) $this->property_uid.' AND published = 1 GROUP BY item_id';
             $result = doSelectSql($sql);
-            if (count($result) > 0) {
+            if (!empty($result)) {
                 foreach ($result as $res) {
                     $arr[ 'property_uid' ] = $res->item_id;
                     $arr[ 'avg_rating' ] = $res->avg_rating;
@@ -452,7 +452,7 @@ class jomres_reviews
         $reports = array();
         $query = 'SELECT * FROM #__jomres_reviews_reports';
         $result = doSelectSql($query);
-        if (count($result) > 0) {
+        if (!empty($result)) {
             foreach ($result as $res) {
                 $rating_id = $res->rating_id;
                 $reports[ $rating_id ][ $res->report_id ][ 'report_id' ] = $res->report_id;

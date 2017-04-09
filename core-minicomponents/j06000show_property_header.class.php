@@ -204,7 +204,7 @@ class j06000show_property_header
             $query = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE `my_id` = '".(int) $thisJRUser->id."'";
             $propys = doSelectSql($query);
 
-            if (count($propys) > 0) {
+            if (!empty($propys)) {
                 foreach ($propys as $p) {
                     if (!in_array($p->property_uid, $shortlist_items)) {
                         $shortlist_items[] = (int) $p->property_uid;
@@ -318,7 +318,7 @@ class j06000show_property_header
         $tmpl->readTemplatesFromInput('property_header.html');
         $tmpl->displayParsedTemplate();
 
-        if (!isset($componentArgs) || count($componentArgs) == 0) {
+        if (!isset($componentArgs) || empty($componentArgs)) {
             $componentArgs = array('property_uid' => $property_uid);
         }
 

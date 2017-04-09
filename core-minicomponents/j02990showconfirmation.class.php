@@ -193,7 +193,7 @@ class j02990showconfirmation
         $allCustomFields = $jomres_custom_field_handler->getAllCustomFieldsByPtypeId($ptype_id);
 
         $customFields = array();
-        if (count($allCustomFields) > 0 && !$secret_key_payment) {
+        if (!empty($allCustomFields) && !$secret_key_payment) {
             foreach ($allCustomFields as $f) {
                 $required = $f[ 'required' ];
                 $fieldname = $f[ 'fieldname' ];
@@ -280,7 +280,7 @@ class j02990showconfirmation
             $mrp_room_details[0][ 'PROPERTYNAME' ] = $booking_parts[ 'PROPERTYNAME' ];
             $mrp_room_details[0][ 'NUMROOMS' ] = $booking_parts[ 'NUMROOMS' ];
 
-            if (count($rmids) > 0) {
+            if (!empty($rmids)) {
                 $query = 'SELECT room_number,room_name,room_classes_uid FROM #__jomres_rooms WHERE room_uid IN ('.jomres_implode($rmids).') ORDER BY room_classes_uid';
                 $roomList = doSelectSql($query);
                 $roomNumber = '';
@@ -314,14 +314,14 @@ class j02990showconfirmation
                         $query = "SELECT room_class_full_desc FROM #__jomres_room_classes WHERE property_uid = '".(int) $property_uid."' and room_classes_uid = '".(int) $room_classes_uid."' ";
                         $roomclass = doSelectSql($query);
 
-                        if (count($roomclass) > 0) {
+                        if (!empty($roomclass)) {
                             foreach ($roomclass as $class) {
                                 $fulldesc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $room_classes_uid, stripslashes($class->room_class_full_desc), false, false);
                             }
                         } else {
                             $query = "SELECT room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 and room_classes_uid = '$room_classes_uid'";
                             $roomclass = doSelectSql($query);
-                            if (count($roomclass) > 0) {
+                            if (!empty($roomclass)) {
                                 foreach ($roomclass as $class) {
                                     $fulldesc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.$room_classes_uid, stripslashes($class->room_class_abbv), false, false);
                                 }
@@ -450,7 +450,7 @@ class j02990showconfirmation
         }
 
         $third_party_extras = unserialize($tmpBookingHandler->getBookingFieldVal('third_party_extras'));
-        if (count($third_party_extras) > 0 && $third_party_extras !== false) {
+        if ($third_party_extras !== false && !empty($third_party_extras)) {
             foreach ($third_party_extras as $plugin) {
                 foreach ($plugin as $tpextra) {
                     $extra_parts = array();
@@ -612,7 +612,7 @@ class j02990showconfirmation
                                 $gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.gif" border="0">';
 
                                 $gw_configuration_script = '00509'.$gateway_name;
-                                if (count($MiniComponents->registeredClasses[$gw_configuration_script]) > 0) { // Let's check that the site manager hasn't uninstalled the plugin. If count == 0, then they have, we don't want to attempt to show this gateway
+                                if (isset($MiniComponents->registeredClasses[$gw_configuration_script])) { // Let's check that the site manager hasn't uninstalled the plugin. If count == 0, then they have, we don't want to attempt to show this gateway
                                     $gateways[ ] = $gw;
                                     }
                                 ++$counter;
@@ -620,7 +620,7 @@ class j02990showconfirmation
                         }
                     }
 
-                if (count($gateways) > 0) {
+                if (!empty($gateways)) {
                     $gwo[ 'GATEWAYCHOICEINTRO' ] = jr_gettext('_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', '_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE');
                     $gateway_output[] = $gwo;
                     }
@@ -640,7 +640,7 @@ class j02990showconfirmation
         $cartoutput = array();
         if (isset($MiniComponents->registeredClasses[ '06000show_cart' ])) {
             $site_paypal_settings = get_plugin_settings('paypal', 0);
-            if ( (isset($site_paypal_settings['override']) && $site_paypal_settings['override'] == '1' && $jrConfig[ 'useshoppingcart' ] == '1') || count($gatewayDeets) == 0) {
+            if ( (isset($site_paypal_settings['override']) && $site_paypal_settings['override'] == '1' && $jrConfig[ 'useshoppingcart' ] == '1') || empty($gatewayDeets)) {
                 $booking_parts[ '_JOMRES_CART_OR' ] = jr_gettext('_JOMRES_CART_OR', '_JOMRES_CART_OR');
                 $booking_parts[ '_JOMRES_SAVEFORLATER' ] = '<input class="fg-button ui-state-default ui-corner-all" type="submit" id="send" name="send" value="'.jr_gettext('_JOMRES_CART_SAVEFORLATER', '_JOMRES_CART_SAVEFORLATER', false, false).'" class="button" onclick="return confirmation_validate(true);" />';
                 $cartoutput[ ] = array('_JOMRES_SAVEFORLATER' => jr_gettext('_JOMRES_CART_SAVEFORLATER', '_JOMRES_CART_SAVEFORLATER', false, false), '_JOMRES_CART_OR' => $booking_parts[ '_JOMRES_CART_OR' ]);
@@ -702,7 +702,7 @@ class j02990showconfirmation
         $tmpl->addRows('booking_extratext', $extrastext);
 
         $tmpl->addRows('cartoutput', $cartoutput);
-        if (count($gateways) > 0) {
+        if (!empty($gateways)) {
             $tmpl->addRows('gateway_output', $gateway_output);
             $tmpl->addRows('gateways', $gateways);
         }

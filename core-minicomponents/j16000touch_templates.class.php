@@ -32,7 +32,7 @@ class j16000touch_templates
 
         $basic_subscription_package_details = jomres_singleton_abstract::getInstance('basic_subscription_package_details');
 
-        if (count($basic_subscription_package_details->allPackages) > 0) {
+        if (!empty($basic_subscription_package_details->allPackages)) {
             echo jr_gettext('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE', '_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE').'<br/>';
 
             foreach ($basic_subscription_package_details->allPackages as $package) {
@@ -77,7 +77,7 @@ class j16000touch_templates
         //property features categories
         $query = 'SELECT `id`,`title` FROM #__jomres_hotel_features_categories ORDER BY title ';
         $result = doSelectSql($query);
-        if (count($result) > 0) {
+        if (!empty($result)) {
             echo jr_gettext('_JOMRES_PROPERTYFEATURES_HCATEGORIES', '_JOMRES_PROPERTYFEATURES_HCATEGORIES').'<br/>';
             foreach ($result as $r) {
                 echo jr_gettext('_JOMRES_PROPERTY_FEATURES_CATEGORY'.(int) $r->id, stripslashes($r->title));

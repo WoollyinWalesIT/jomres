@@ -28,7 +28,7 @@ class j16000deleteGlobalroomTypes
 
         $idarray = jomresGetParam($_POST, 'idarray', array());
 
-        if (count($idarray) == 0) {
+        if (empty($idarray)) {
             return;
         }
 
@@ -40,9 +40,6 @@ class j16000deleteGlobalroomTypes
         } else {
             $save_message = 'Unable to delete room type. It may still be used by some properties.';
         }
-
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $c->eraseAll();
 
         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listGlobalroomTypes'), $save_message);
     }

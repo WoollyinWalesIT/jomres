@@ -44,7 +44,7 @@ class j06005mulistbookings
 
             $guests_uids = doSelectSql($query);
             // Because a new record is made in the guests table for each new property the guest registers in, we need to find all the guest uids for this user
-            if (count($guests_uids) > 0) {
+            if (!empty($guests_uids)) {
                 foreach ($guests_uids as $g) {
                     $allGuestUids[ ] = $g->guests_uid;
                 }
@@ -66,7 +66,7 @@ class j06005mulistbookings
             $output[ 'HMOREINFO' ] = jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', $editable = false, $isLink = false);
             $output[ 'TITLE' ] = jr_gettext('_JOMCOMP_MYUSER_MYBOOKINGS', '_JOMCOMP_MYUSER_MYBOOKINGS', $editable = false, $isLink = false);
 
-            if (count($contracts) > 0) {
+            if (!empty($contracts)) {
                 $basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
                 $jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 

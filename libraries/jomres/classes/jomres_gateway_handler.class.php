@@ -74,7 +74,7 @@ class jomres_gateway_handler
                 // Make sure duplicate transactions are ignored
                 $query = 'SELECT transaction_id FROM #__jomresportal_invoices_transactions WHERE payment_ref = "'.$pp_sent_txn_id.'" AND payment_result = "Payment: Completed"';
                 $transaction = doSelectSql($query);
-                if (count($transaction) == 0) {
+                if (empty($transaction)) {
                     jr_import('jrportal_invoice');
                     $invoice = new jrportal_invoice();
                     $invoice->id = $pp_sent_invoice_id;
@@ -206,9 +206,10 @@ class jomres_gateway_handler
                                             $subscription->commitUpdateSubscription();
                                             $allowedProperties = subscribers_getAvailablePropertySlots($subscription->cms_user_id);
                                             $existingPublishedProperties = subscribers_getManagersPublishedProperties($subscription->cms_user_id);
-                                            $difference = count($existingPublishedProperties) - $allowedProperties;
+											$existingPublishedProperties_count = count($existingPublishedProperties);
+                                            $difference = $existingPublishedProperties_count - $allowedProperties;
                                             // Let's unpublish a few properties
-                                            if ($allowedProperties <= count($existingPublishedProperties) && $difference > 0) {
+                                            if ($allowedProperties <= $existingPublishedProperties_count && $difference > 0) {
                                                 gateway_log('Unpublishing '.$difference.' properties due to unsubscribe from '.(int) $subscription->cms_user_id);
                                                 subscribers_unpublishNproperties($difference, $subscription->cms_user_id);
                                             }
@@ -227,9 +228,10 @@ class jomres_gateway_handler
                                         $subscription->commitUpdateSubscription();
                                         $allowedProperties = subscribers_getAvailablePropertySlots($subscription->cms_user_id);
                                         $existingPublishedProperties = subscribers_getManagersPublishedProperties($subscription->cms_user_id);
-                                        $difference = count($existingPublishedProperties) - $allowedProperties;
+										$existingPublishedProperties_count = count($existingPublishedProperties);
+                                        $difference = $existingPublishedProperties_count - $allowedProperties;
                                         // Let's unpublish a few properties
-                                        if ($allowedProperties <= count($existingPublishedProperties) && $difference > 0) {
+                                        if ($allowedProperties <= $existingPublishedProperties_count && $difference > 0) {
                                             gateway_log('Unpublishing '.$difference.' properties due to unsubscribe from '.(int) $subscription->cms_user_id);
                                             subscribers_unpublishNproperties($difference, $subscription->cms_user_id);
                                         }

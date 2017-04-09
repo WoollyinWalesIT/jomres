@@ -28,7 +28,7 @@ class jomres_contract_secret_key
             $secret_key = generateJomresRandomString(50);
         $query = "SELECT secret_key FROM #__jomres_contracts WHERE secret_key = '".$secret_key."' LIMIT 1";
         $contract_list = doSelectSql($query);
-        if (count($contract_list) == 0) {
+        if (empty($contract_list)) {
             $keeplooking = false;
         }
         endwhile;
@@ -78,7 +78,7 @@ class jomres_contract_secret_key
     {
         $query = "SELECT `secret_key` FROM #__jomres_contracts WHERE `secret_key` = '".$secret_key."' ";
         $secret_keys = doSelectSql($query);
-        if (count($secret_keys) == 0) {
+        if (empty($secret_keys)) {
             return false;
         }
 

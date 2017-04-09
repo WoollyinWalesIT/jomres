@@ -63,15 +63,17 @@ class jomresHTML
         if (!$use_bootstrap_radios) {
             $not_for_these_dropdowns[ ] = $name;
         }
-
-        if (!using_bootstrap() || count($arr) != 2 || in_array($name, $not_for_these_dropdowns) || get_showtime('task') == 'handlereq') {
+		
+		$n = count($arr);
+		
+        if (!using_bootstrap() || $n != 2 || in_array($name, $not_for_these_dropdowns) || get_showtime('task') == 'handlereq') {
             $attribs = str_replace('class="inputbox"', '', $attribs);
             $attribs = str_replace('class="input-medium"', '', $attribs);
 
             $attribs .= ' class="input-medium form-control" ';
 
             $output = '<select name="'.$name.'" id="'.$name.'" '.$attribs.'>';
-            for ($i = 0, $n = count($arr); $i < $n; ++$i) {
+            for ($i = 0; $i < $n; ++$i) {
                 $k = $arr[ $i ]->$key;
                 $txt = $arr[ $i ]->$text;
                 $selected = '';
@@ -85,7 +87,7 @@ class jomresHTML
             $output = '
 			<fieldset id="' .$name.'" class="radio btn-group">
 			';
-            for ($i = 0, $n = count($arr); $i < $n; ++$i) {
+            for ($i = 0; $i < $n; ++$i) {
                 $k = $arr[ $i ]->$key;
                 $txt = $arr[ $i ]->$text;
                 //$output .= '<button type="button" value="'.$k.'" class="btn" data-toggle="button">'.$txt.'</button>';

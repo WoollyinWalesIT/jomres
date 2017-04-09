@@ -34,7 +34,7 @@ class j99996mainmenu_buttons
         $jomres_mainmenu_user_options = get_showtime('jomres_mainmenu_user_options');
 
         $control_panel_buttons_categorised = array();
-        if (count($jomres_mainmenu_thirdparty_options) > 0) {
+        if (!empty($jomres_mainmenu_thirdparty_options)) {
             foreach ($jomres_mainmenu_thirdparty_options as $button) {
                 if (isset($button[ 'OPTIONS' ]) && $button[ 'OPTIONS' ] != '') {
                     $category = jr_strtolower($button[ 'OPTIONS' ][ 'category' ]);
@@ -43,7 +43,7 @@ class j99996mainmenu_buttons
             }
         }
 
-        if (count($jomres_mainmenu_reception_options) > 0) {
+        if (!empty($jomres_mainmenu_reception_options)) {
             foreach ($jomres_mainmenu_reception_options as $button) {
                 if (isset($button[ 'OPTIONS' ]) && $button[ 'OPTIONS' ] != '') {
                     $category = jr_strtolower($button[ 'OPTIONS' ][ 'category' ]);
@@ -52,7 +52,7 @@ class j99996mainmenu_buttons
             }
         }
 
-        if (count($jomres_mainmenu_manager_options) > 0) {
+        if (!empty($jomres_mainmenu_manager_options)) {
             foreach ($jomres_mainmenu_manager_options as $button) {
                 if (isset($button[ 'OPTIONS' ]) && $button[ 'OPTIONS' ] != '') {
                     $category = jr_strtolower($button[ 'OPTIONS' ][ 'category' ]);
@@ -61,7 +61,7 @@ class j99996mainmenu_buttons
             }
         }
 
-        if (count($jomres_mainmenu_user_options) > 0) {
+        if (!empty($jomres_mainmenu_user_options)) {
             foreach ($jomres_mainmenu_user_options as $button) {
                 if (isset($button[ 'OPTIONS' ]) && $button[ 'OPTIONS' ] != '') {
                     $category = jr_strtolower($button[ 'OPTIONS' ][ 'category' ]);
@@ -85,7 +85,7 @@ class j99996mainmenu_buttons
         }
         $management_view = jomresGetParam($_REQUEST, 'tmpl', false);
 
-        if (count($control_panel_buttons_categorised) > 0) {
+        if (!empty($control_panel_buttons_categorised)) {
             $this->ret_vals = $MiniComponents->triggerEvent('99997', array('jomres_mainmenu_buttons_categorised' => $control_panel_buttons_categorised, 'management_view' => $management_view));
             
         }

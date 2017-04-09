@@ -88,7 +88,7 @@ class jomres_generic_booking_insert
 
         $query = "SELECT contract_uid FROM #__jomres_contracts WHERE tag LIKE '".$this->booking_details['booking_number']."' LIMIT 1";
         $bklist = doSelectSql($query);
-        if (count($bklist) > 0) {
+        if (!empty($bklist)) {
             throw new Exception(' Error booking_number '.$this->booking_details['booking_number'].' already exists in the database.');
         }
 

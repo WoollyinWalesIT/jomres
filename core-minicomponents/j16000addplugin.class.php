@@ -77,7 +77,7 @@ class j16000addplugin
 
         if (!$this->key_valid) {
             $current_licenses = array();
-            if (count($key_validation->plugin_licenses) > 0) {
+            if (!empty($key_validation->plugin_licenses)) {
                 foreach ($key_validation->plugin_licenses as $key => $val) {
                     if ($val['status'] == 1) {
                         $current_licenses[ $key ] = $val['key'];

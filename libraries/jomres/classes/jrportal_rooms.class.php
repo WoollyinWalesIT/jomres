@@ -236,7 +236,7 @@ class jrportal_rooms
         $query = 'SELECT `room_bookings_uid` FROM #__jomres_room_bookings WHERE `room_uid` = '.(int)$this->room_uid.' AND property_uid = '.(int)$this->propertys_uid." AND DATE_FORMAT(`date`, '%Y/%m/%d') >= DATE_FORMAT('".date('Y/m/d')."', '%Y/%m/%d') LIMIT 1";
         $result = doSelectSql($query);
 
-        if (count($result) > 0) {
+        if (!empty($result)) {
             return false;
         }
 

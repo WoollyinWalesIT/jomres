@@ -135,7 +135,7 @@ class jomres_charts
         $output['LABELS'] = '"'.implode('", "', $this->labels).'"';
 
         //if there`s no data in the dataset, use sample data
-        if (count($this->datasets) < 1) {
+        if (empty($this->datasets)) {
             $this->datasets[0] = $this->data;
         }
 

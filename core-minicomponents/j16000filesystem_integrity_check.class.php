@@ -65,7 +65,7 @@ class j16000filesystem_integrity_check
                 $rows[] = $hash;
             }
         }
-        if (count($rows) > 0) {
+        if (!empty($rows)) {
             $pageoutput[ ] = $output;
             $tmpl = new patTemplate();
             $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);

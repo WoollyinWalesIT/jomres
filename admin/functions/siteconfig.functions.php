@@ -152,7 +152,7 @@ function showSiteConfig()
     $ptype_descs = array();
     $language_context[ ] = jomresHTML::makeOption('', '');
 
-    if (count($basic_property_details->all_property_types) > 0) {
+    if (!empty($basic_property_details->all_property_types)) {
         foreach ($basic_property_details->all_property_types as $k => $v) {
             $ptype_descs[] = $v;
         }
@@ -442,9 +442,6 @@ $jrConfig = ' .var_export($tmpConfig, true).';
     $registry = jomres_singleton_abstract::getInstance('minicomponent_registry');
     $registry->regenerate_registry();
 
-    $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-    $c->eraseAll();
-
     if (empty($overrides)) { // If we've come from the Site Config page, we want to redirect the user back to the site configuration page, otherwise we don't redirect.
         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=site_settings'), 'Configuration saved');
     }
@@ -463,7 +460,7 @@ function searchCSSThemesDirForCSSFiles()
             }
         }
         $d->close();
-        if (count($docs) > 0) {
+        if (!empty($docs)) {
             sort($docs);
             foreach ($docs as $doc) {
                 $listdir = $jrePath.$doc.JRDS;

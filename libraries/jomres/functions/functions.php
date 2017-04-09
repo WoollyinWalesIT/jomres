@@ -559,7 +559,7 @@ function import_images_to_media_centre_directories()
     $resource_types[] = array('resource_type' => 'slideshow', 'resource_id_required' => false, 'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', false));
     $resource_types[] = array('resource_type' => 'property', 'resource_id_required' => false, 'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', false), 'notes' => jr_gettext('_JOMRES_MEDIA_CENTRE_NOTES_CORE', '_JOMRES_MEDIA_CENTRE_NOTES_CORE', false));
 
-    if (count($resource_types) > 0 && count($all_propertys) > 0) {
+    if (!empty($resource_types) && !empty($all_propertys)) {
         foreach ($all_propertys as $property_id) {
             $base_path = JOMRES_IMAGELOCATION_ABSPATH.$property_id.JRDS;
 
@@ -612,7 +612,7 @@ function import_images_to_media_centre_directories()
             // Now any slideshow images
             $slideshow_images = scandir_getfiles($base_path);
 
-            if (count($slideshow_images) > 0) {
+            if (!empty($slideshow_images)) {
                 if (!is_dir($base_path.'slideshow'.JRDS.'0')) {
                     mkdir($base_path.'slideshow'.JRDS.'0');
                 }
@@ -648,7 +648,7 @@ function import_images_to_media_centre_directories()
 
             // Finally we'll look for room images
             $room_images = scandir_getfiles(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS);
-            if (count($room_images) > 0) {
+            if (!empty($room_images)) {
                 $pattern = $property_id.'_room';
                 foreach ($room_images as $image) {
                     $pos1 = strpos($image, '_thumbnail');
@@ -755,15 +755,16 @@ function genericLike($idArray, $fieldToSearch, $idArrayisInteger = true)
         $newArr[ ] = $id;
     }
     $idArray = $newArr;
+	$n = count($idArray);
     $txt = ' ( `'.$fieldToSearch.'` LIKE ';
-    for ($i = 0, $n = count($idArray); $i < $n; ++$i) {
+    for ($i = 0; $i < $n; ++$i) {
         if ($idArrayisInteger) {
             $id = (int) $idArray[ $i ];
         } else {
             $id = $idArray[ $i ];
         }
         $txt .= " '%$id%' ";
-        if ($i < count($idArray) - 1) {
+        if ($i < $n - 1) {
             $txt .= ' OR `'.$fieldToSearch.'` LIKE ';
         }
     }
@@ -825,23 +826,16 @@ function build_property_manager_xref_array()
 {
     $arr = array();
 
-    $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-    $jomres_managers_propertys_xref = $c->retrieve('jomres_managers_propertys_xref');
+	$query = 'SELECT property_uid,manager_id FROM #__jomres_managers_propertys_xref';
+	$managersToPropertyList = doSelectSql($query);
+	if (!empty($managersToPropertyList)) {
+		foreach ($managersToPropertyList as $x) {
+			if (!array_key_exists($x->property_uid, $arr)) {
+				$arr[ $x->property_uid ] = $x->manager_id;
+			}
+		}
+	}
 
-    if (true === is_array($jomres_managers_propertys_xref)) {
-        $arr = $jomres_managers_propertys_xref;
-    } else {
-        $query = 'SELECT property_uid,manager_id FROM #__jomres_managers_propertys_xref';
-        $managersToPropertyList = doSelectSql($query);
-        if (count($managersToPropertyList) > 0) {
-            foreach ($managersToPropertyList as $x) {
-                if (!array_key_exists($x->property_uid, $arr)) {
-                    $arr[ $x->property_uid ] = $x->manager_id;
-                }
-            }
-        }
-        $c->store('jomres_managers_propertys_xref', $arr);
-    }
     set_showtime('property_manager_xref', $arr);
 
     return $arr;
@@ -1226,7 +1220,8 @@ function jomres_nicetime($date)
         $tense = jr_gettext('_JOMRES_DATEPERIOD_FROMNOW', '_JOMRES_DATEPERIOD_FROMNOW', false, false);
     }
 
-    for ($j = 0; $difference >= $lengths[ $j ] && $j < count($lengths) - 1; ++$j) {
+	$n = count($lengths) - 1;
+    for ($j = 0; $difference >= $lengths[ $j ] && $j < $n; ++$j) {
         $difference /= $lengths[ $j ];
     }
 
@@ -2094,7 +2089,7 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 
         //$mail->AltBody		= "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 
-        if (count($attachments) > 0) {
+        if (!empty($attachments)) {
             foreach ($attachments as $attachment) {
                 switch ($attachment[ 'type' ]) { // Use a switch as it allows us to expand this later if we wish
                     case 'image':
@@ -2174,7 +2169,7 @@ function getGuestDetailsForContract($contract_uid)
     $query = 'SELECT rate_rules FROM #__jomres_contracts WHERE contract_uid = '.(int) $contract_uid.' LIMIT 1';
     $bookingData = doSelectSql($query);
 
-    if (count($bookingData) > 0) {
+    if (!empty($bookingData)) {
         foreach ($bookingData as $booking) {
             $guesttypeOutput = array();
             $varianceArray = explode(',', $booking->rate_rules);
@@ -2192,7 +2187,7 @@ function getGuestDetailsForContract($contract_uid)
                 }
             }
         }
-        if (count($guesttypeOutput) > 0) {
+        if (!empty($guesttypeOutput)) {
             sort($guesttypeOutput);
         }
 
@@ -2227,7 +2222,7 @@ function getCurrentBookingData($jomressession = '')
     $obj->tempBookingDataList = $tempBookingDataList;
     $arr = array();
     $ob = $tempBookingDataList;
-    if (count($ob) > 0) {
+    if (!empty($ob)) {
         foreach ($ob as $k => $v) {
             $arr[ $k ] = $v;
         }
@@ -2371,7 +2366,7 @@ function error_logging($message, $emailMessage = true)
 function request_log()
 {
     $log = '';
-    if (count($_REQUEST) > 0) {
+    if (!empty($_REQUEST)) {
         $log .= '';
         foreach ($_REQUEST as $key => $value) {
             if (is_array($value)) {
@@ -2797,7 +2792,7 @@ function saveHotelSettings()
                 if ($oldSettingVal != $v) {
                     $query = "SELECT uid FROM #__jomres_settings WHERE property_uid = '".(int) $property_uid."' and akey = '".substr($k, 4)."'";
                     $result = doSelectSql($query);
-                    if (count($result) == 0) {
+                    if (empty($result)) {
                         $query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('".(int) $property_uid."','".substr($k, 4)."','".$v."')";
                     } else {
                         $query = "UPDATE #__jomres_settings SET `value`='".$v."' WHERE property_uid = '".(int) $property_uid."' and akey = '".substr($k, 4)."'";
@@ -2818,9 +2813,6 @@ function saveHotelSettings()
         $webhook_notification->data->property_uid           = $property_uid;
         add_webhook_notification($webhook_notification);
     }
-            
-    $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-    $c->eraseAll();
 
     if (trim($_POST['cfg_property_vat_number']) != '') {
         jr_import('vat_number_validation');
@@ -2996,7 +2988,7 @@ function insertGuestDeets($jomressession)
     if ($mos_userid > 0) {
         $query = "SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '".(int) $mos_userid."' AND `property_uid`= $property_uid LIMIT 1";
         $xistingGuests = doSelectSql($query);
-        if (count($xistingGuests) > 0) {
+        if (!empty($xistingGuests)) {
             foreach ($xistingGuests as $g) {
                 $guests_uid = $g->guests_uid;
             }
@@ -3213,7 +3205,7 @@ function insertSetting($property_uid, $k, $v)
 {
     $query = "SELECT value FROM #__jomres_settings WHERE property_uid = '".(int) $property_uid."' AND akey = '".$k."'";
     $settingsList = doSelectSql($query);
-    if (count($settingsList) == 0) {
+    if (empty($settingsList)) {
         $query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('".(int) $property_uid."','".$k."','".$v."')";
     } else {
         $query = "UPDATE #__jomres_settings SET `value`='".$v."' WHERE property_uid = '".(int) $property_uid."' and akey = '".$k."'";
@@ -3242,7 +3234,7 @@ function savePlugin($plugin)
     foreach ($values as $k => $v) {
         $query = "SELECT id FROM #__jomres_pluginsettings WHERE prid = '".(int) $defaultProperty."' AND plugin = '$plugin' AND setting = '$k'";
         $settingList = doSelectSql($query);
-        if (count($settingList) > 0) {
+        if (!empty($settingList)) {
             /*
             foreach ($settingList as $set)
                 {
@@ -3319,7 +3311,7 @@ function filterForm($selectname, $value, $format, $task = '')
     $selecthtml = "\n<form action=\"\" method=\"get\" name=\"jomresFilter".$selectname."\"><span class=\"inputbox_wrapper\"><select class=\"inputbox\" name=\"$selectname\" onchange=\"window.open(this.options[this.selectedIndex].value,'_top')\">";
     $selecthtml .= "\n<option value=\"".jomresURL(JOMRES_SITEPAGE_URL.'&task='.$task).'"></option>';
     $selecthtml .= "\n<option value=\"".jomresURL(JOMRES_SITEPAGE_URL.'&task='.$task).'">'.jr_gettext('_JOMRES_COM_A_RESET', '_JOMRES_COM_A_RESET', false).'</option>';
-    if (count($value) > 0) {
+    if (!empty($value)) {
         foreach ($value as $v) {
             $v_output = $v;
             $selected = '';
@@ -4113,7 +4105,7 @@ function sendAdminEmail($subject, $message, $send_post = false)
     $jomresConfig_fromname = get_showtime('fromname');
 
     $m = '';
-    if (is_array($message) && count($message) > 0) {
+    if (is_array($message) && !empty($message)) {
         foreach ($message as $k => $v) {
             $m .= $k.' - '.$v.'\n';
         }
@@ -4372,7 +4364,7 @@ function updateCustomText($theConstant, $theValue, $audit = true, $property_uid 
     if (strlen($theValue) == 0) {
         $query = "DELETE FROM	#__jomres_custom_text WHERE constant = '".$theConstant."' AND property_uid = '".(int) $property_uid."' AND language = '".get_showtime('lang')."'";
     } else {
-        if (count($textList) < 1) {
+        if (empty($textList)) {
             $query = "INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('".$theConstant."','".$theValue."','".(int) $property_uid."','".get_showtime('lang')."')";
         } else {
             $query = "UPDATE #__jomres_custom_text SET `customtext`='".$theValue."' WHERE constant = '".$theConstant."' AND property_uid = '".(int) $property_uid."' AND language = '".get_showtime('lang')."'";
@@ -4387,9 +4379,6 @@ function updateCustomText($theConstant, $theValue, $audit = true, $property_uid 
 
     //$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = '".(int)$property_uid."' AND language = '".get_showtime('lang')."'";
     //echo doSelectSql($query,1);
-
-    $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-    $c->eraseAll();
 
     return true;
 }
@@ -4415,7 +4404,8 @@ function parseConfiguration()
     $s = preg_replace('/<td[^>]*>([^<]+)<\/td>/', '<info>\\1</info>', $s);
     $vTmp = preg_split('/(<h2>[^<]+<\/h2>)/', $s, -1, PREG_SPLIT_DELIM_CAPTURE);
     $vModules = array();
-    for ($i = 1; $i < count($vTmp); ++$i) {
+	$n=count($vTmp);
+    for ($i = 1; $i < $n; ++$i) {
         if (preg_match('/<h2>([^<]+)<\/h2>/', $vTmp[ $i ], $vMat)) {
             $vName = trim($vMat[ 1 ]);
             $vTmp2 = explode("\n", $vTmp[ $i + 1 ]);
@@ -4444,7 +4434,7 @@ function createNewAPIKey()
     $plist = doSelectSql($query);
     $query = "SELECT manager_uid FROM #__jomres_managers WHERE apikey = '".$apikey."' LIMIT 1";
     $clist = doSelectSql($query);
-    if (count($plist) == 0 && count($clist) == 0) {
+    if (empty($plist) && empty($clist)) {
         $keeplooking = false;
     }
     if ($keeplooking) {
@@ -4776,7 +4766,7 @@ function jomresAccessControlSanityCheck()
         $jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
 
         // Now, it's possible that a minicomponent has been uninstalled, therefore we must go through the $jomres_access_control->controlled array and remove those records that refer to minicomps that aren't found in the $controllable array
-        if (count($jomres_access_control->controlled) > 0) {
+        if (!empty($jomres_access_control->controlled)) {
             $removed = false;
             foreach ($jomres_access_control->controlled as $key => $val) {
                 if (!array_key_exists($key, $controllable)) {
@@ -4785,8 +4775,6 @@ function jomresAccessControlSanityCheck()
                 }
             }
             if ($removed) {
-                $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-                $c->eraseAll();
                 $jomres_access_control->recount_controlled_scripts();
             }
         } else {

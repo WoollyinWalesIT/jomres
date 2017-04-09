@@ -54,7 +54,7 @@ class j06005muviewbooking
 
             $guests_uids = doSelectSql($query);
             // Because a new record is made in the guests table for each new property the guest registers in, we need to find all the guest uids for this user
-            if (count($guests_uids) > 0) {
+            if (!empty($guests_uids)) {
                 foreach ($guests_uids as $g) {
                     $allGuestUids[ ] = $g->guests_uid;
                 }
@@ -93,7 +93,7 @@ class j06005muviewbooking
                         $room_features_uids = $room->room_features_uid;
                         if (!empty($room->room_features_uid)) {
                             $featuresArray = explode(',', $room->room_features_uid);
-                            if (count($featuresArray) > 0) {
+                            if (!empty($featuresArray)) {
                                 $query = 'SELECT * FROM #__jomres_room_features WHERE room_features_uid IN ('.jomres_implode($featuresArray).') ';
                                 $rFeatures = doSelectSql($query);
                                 $numberOfRoomFeatures = count($rFeatures);
@@ -475,7 +475,7 @@ class j06005muviewbooking
 
         $other_services_rows = array();
         $otherServiceTotal = 0.00;
-        if (count($extraBillingData) > 0) {
+        if (!empty($extraBillingData)) {
             foreach ($extraBillingData as $extras) {
                 $service_description = $extras->service_description;
                 $service_value = $extras->service_value;

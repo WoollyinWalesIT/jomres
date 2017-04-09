@@ -66,7 +66,7 @@ class j06005list_gateways_for_invoice
                     }
                 }
             }
-        if (count($rows) > 0) {
+        if (!empty($rows)) {
             $output['PAGETITLE'] = jr_gettext('_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', '_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', false);
 
             $pageoutput[ ] = $output;

@@ -109,33 +109,24 @@ class jomres_config_property_singleton
             include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php';
             $this->default_config = $mrConfig;
         }
-
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $all_mrconfig_settings = $c->retrieve('all_mrconfig_settings');
-
-        if ($all_mrconfig_settings) {
-            $this->default_config = array_merge($this->default_config, $all_mrconfig_settings['default_config']);
-            $this->all_property_settings = $all_mrconfig_settings['all_property_settings'];
-        } else {
-            $query = 'SELECT property_uid,akey,value FROM #__jomres_settings';
-            $settingsList = doSelectSql($query);
-            if (count($settingsList) > 0) {
-                foreach ($settingsList as $setting) {
-                    $akey = $setting->akey;
-                    $value = $setting->value;
-                    $property_uid = $setting->property_uid;
-                    if ($property_uid == 0) {
-                        $this->default_config[ $akey ] = $value;
-                    } else {
-                        $this->all_property_settings[ $property_uid ][ $akey ] = $value;
-                    }
-                }
-                if ($jrConfig[ 'useGlobalCurrency' ] == '1') {
-                    $this->default_config[ 'currency' ] = $jrConfig[ 'globalCurrency' ];
-                    $this->default_config[ 'currencyCode' ] = $jrConfig[ 'globalCurrencyCode' ];
-                }
-                $c->store('all_mrconfig_settings', array('default_config' => $this->default_config, 'all_property_settings' => $this->all_property_settings));
-            }
-        }
+		
+		$query = 'SELECT `property_uid`,`akey`,`value` FROM #__jomres_settings';
+		$settingsList = doSelectSql($query);
+		if (!empty($settingsList)) {
+			foreach ($settingsList as $setting) {
+				$akey = $setting->akey;
+				$value = $setting->value;
+				$property_uid = $setting->property_uid;
+				if ($property_uid == 0) {
+					$this->default_config[ $akey ] = $value;
+				} else {
+					$this->all_property_settings[ $property_uid ][ $akey ] = $value;
+				}
+			}
+			if ($jrConfig[ 'useGlobalCurrency' ] == '1') {
+				$this->default_config[ 'currency' ] = $jrConfig[ 'globalCurrency' ];
+				$this->default_config[ 'currencyCode' ] = $jrConfig[ 'globalCurrencyCode' ];
+			}
+		}
     }
 }

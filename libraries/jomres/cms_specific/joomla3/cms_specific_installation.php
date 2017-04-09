@@ -87,7 +87,7 @@ if ($folderChecksPassed) {
 // Don't need to run this again if the table's already populated
 $query = 'SELECT userid FROM #__jomres_managers LIMIT 2';
 $existing_users = doSelectSql($query);
-if (count($existing_users) > 0) {
+if (!empty($existing_users)) {
     return;
 }
 
@@ -138,7 +138,7 @@ $component_id = doInsertSql($query, '');
 if ($component_id) {
     $query = "SELECT title FROM #__menu WHERE `link` = 'index.php?option=com_jomres' LIMIT 1";
     $result = doSelectSql($query);
-    if (count($result) < 1) {
+    if (empty($result)) {
         $query = 'SELECT max(rgt) FROM #__menu';
         $highest = (int) doSelectSql($query, 1);
         $lft = $highest + 1;

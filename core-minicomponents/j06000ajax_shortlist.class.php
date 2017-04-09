@@ -61,7 +61,7 @@ class j06000ajax_shortlist
                 $query = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE property_uid = '".(int) $property_uid."' AND `my_id` = '".(int) $thisJRUser->id."'";
                 $propys = doSelectSql($query);
 
-                if (count($propys) < 1) {
+                if (empty($propys)) {
                     $query = "INSERT INTO #__jomcomp_mufavourites (`my_id`,`property_uid`) VALUES ('".(int) $thisJRUser->id."','".(int) $property_uid."')";
                     doInsertSql($query, '');
                 }

@@ -47,7 +47,7 @@ class jomres_cart
         
 		$jomres_currency_conversion = jomres_singleton_abstract::getInstance('jomres_currency_conversion');
 		
-        if (count($tmpBookingHandler->cart_data) > 0) {
+        if (!empty($tmpBookingHandler->cart_data)) {
             //var_dump($tmpBookingHandler->cart_data);exit;
             foreach ($tmpBookingHandler->cart_data as $key => $data) {
                 $contract_total = (float) $data[ 'contract_total' ];

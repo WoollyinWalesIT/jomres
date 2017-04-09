@@ -103,7 +103,7 @@ class jomres_toolbar_bootstrap
             }
         }
 
-        if (count($first) > 0) {
+        if (!empty($first)) {
             $this->items = array_merge($first, $new_arr);
         } else {
             $this->items = $new_arr;

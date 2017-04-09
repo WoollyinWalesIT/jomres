@@ -97,11 +97,6 @@ class jomres_suspensions
                 $webhook_notification->data->property_uid           = $property_uid;
                 add_webhook_notification($webhook_notification);
             }
-
-                        
-            //clear cache
-            $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-            $c->eraseAll();
         }
     }
 

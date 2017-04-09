@@ -62,7 +62,7 @@ class jrportal_invoice
     //Create a new invoice
     public function create_new_invoice($invoice_data, $line_items = array())
     {
-        if (count($line_items) < 1) {
+        if (empty($line_items)) {
             error_logging('No line items passed for new invoice.');
 
             return false;
@@ -311,7 +311,7 @@ class jrportal_invoice
 
             return true;
         } else {
-            if (count($result) == 0) {
+            if (empty($result)) {
                 error_logging('No Invoices were found with that id');
 
                 return false;
@@ -378,7 +378,7 @@ class jrportal_invoice
 
             return true;
         } else {
-            if (count($result) == 0) {
+            if (empty($result)) {
                 error_logging('No Line Items were found with that id');
 
                 return false;

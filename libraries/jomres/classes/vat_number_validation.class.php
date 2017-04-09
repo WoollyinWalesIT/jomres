@@ -34,7 +34,7 @@ class vat_number_validation
                     $property_uid = $arguments['property_uid'];
                     $query = 'SELECT `vat_number`,`vat_number_validated`,`country`,`vat_number_validation_response` FROM #__jomres_guests WHERE guests_uid = '.(int) $id.' AND property_uid = '.(int) $property_uid.' LIMIT 1';
                     $result = doSelectSql($query, 2);
-                    if (count($result) > 0) {
+                    if (!empty($result)) {
                         $this->vat_number = $result[ 'vat_number' ];
                         $this->vat_number_validated = $result[ 'vat_number_validated' ];
                         $this->country = $result[ 'country' ];
@@ -51,7 +51,7 @@ class vat_number_validation
                     $id = $arguments['profile_id'];
                     $query = 'SELECT `vat_number`,`vat_number_validated`,`country`,`vat_number_validation_response` FROM #__jomres_guest_profile WHERE cms_user_id = '.(int) $id.' LIMIT 1';
                     $result = doSelectSql($query, 2);
-                    if (count($result) > 0) {
+                    if (!empty($result)) {
                         $this->vat_number = $result[ 'vat_number' ];
                         $this->vat_number_validated = $result[ 'vat_number_validated' ];
                         $this->country = $result[ 'country' ];
@@ -128,7 +128,7 @@ class vat_number_validation
                     $property_uid = $arguments['property_uid'];
                     $query = "SELECT uid FROM #__jomres_settings WHERE property_uid = '".(int) $property_uid."' and akey = 'property_vat_number'";
                     $result = doSelectSql($query);
-                    if (count($result) == 0) {
+                    if (empty($result)) {
                         $query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('".(int) $property_uid."','property_vat_number','".$this->validation_messages[ 'clean_vat_no' ]."')";
                     } else {
                         $query = "UPDATE #__jomres_settings SET `value`='".$this->validation_messages[ 'clean_vat_no' ]."' WHERE property_uid = '".(int) $property_uid."' and akey = 'property_vat_number'";
@@ -136,7 +136,7 @@ class vat_number_validation
                     doInsertSql($query, '');
                     $query = "SELECT uid FROM #__jomres_settings WHERE property_uid = '".(int) $property_uid."' and akey = 'vat_number_validated'";
                     $result = doSelectSql($query);
-                    if (count($result) == 0) {
+                    if (empty($result)) {
                         $query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('".(int) $property_uid."','vat_number_validated','".$validated."')";
                     } else {
                         $query = "UPDATE #__jomres_settings SET `value`='".$validated."' WHERE property_uid = '".(int) $property_uid."' and akey = 'vat_number_validated'";

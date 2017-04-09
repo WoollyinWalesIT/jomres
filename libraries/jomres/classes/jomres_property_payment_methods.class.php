@@ -55,7 +55,7 @@ class jomres_property_payment_methods
         $property_uids = $temp_array;
         unset($temp_array);
 
-        if (count($property_uids) > 0) {
+        if (!empty($property_uids)) {
             $query = "SELECT id,prid,plugin FROM #__jomres_pluginsettings WHERE setting = 'active' AND value = '1' AND prid IN (".jomres_implode($property_uids).') ';
             $propertyData = doSelectSql($query);
 
@@ -86,7 +86,7 @@ class jomres_property_payment_methods
 
     public function get_property_gateways($property_uid)
     {
-        if (count($this->multi_query_result[ $property_uid ] < 1)) {
+        if (empty($this->multi_query_result[ $property_uid ])) {
             $this->get_gateways_multi($property_uid);
         }
 

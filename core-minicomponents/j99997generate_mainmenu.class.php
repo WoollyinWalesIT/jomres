@@ -88,7 +88,7 @@ class j99997generate_mainmenu
 
                     $r[ 'BADGES' ] = '';
                     $items_requiring_attention = get_number_of_items_requiring_attention_for_menu_option($button_task);
-                    if (count($items_requiring_attention) > 0) {
+                    if (!empty($items_requiring_attention)) {
                         foreach ($items_requiring_attention as $colour => $number) {
                             $tmpl = new patTemplate();
                             $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);

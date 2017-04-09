@@ -55,7 +55,7 @@ class j06000selectcombo
                     // $regions[$t]=$t;
                 }
             }
-            if (count($regions) > 0) {
+            if (!empty($regions)) {
                 $ret_array = array_unique($regions);
             }
         }
@@ -73,7 +73,7 @@ class j06000selectcombo
                     // $towns[$t]=$t;
                 }
             }
-            if (count($towns) > 0) {
+            if (!empty($towns)) {
                 $ret_array = array_unique($towns);
             }
         }

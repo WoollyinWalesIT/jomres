@@ -38,9 +38,6 @@ class j16000save_property_type
 
         $jomres_property_types->save_property_type();
 
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $c->eraseAll();
-
         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_property_types'), jr_gettext('_JOMRES_COM_PTYPES_SAVED', '_JOMRES_COM_PTYPES_SAVED', false));
     }
 

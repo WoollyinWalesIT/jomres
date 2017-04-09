@@ -30,9 +30,6 @@ class j16000delete_tax_rule
             $query = 'DELETE FROM #__jomres_tax_rules WHERE id = '.$id;
             $result = doInsertSql($query);
 
-            $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-            $c->eraseAll();
-
             jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_tax_rules'), $saveMessage);
         } else {
             echo jr_gettext('_JRPORTAL_TAXRATES_CANNOTDELETE', '_JRPORTAL_TAXRATES_CANNOTDELETE', false);

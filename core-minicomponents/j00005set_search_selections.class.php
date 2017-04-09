@@ -47,7 +47,7 @@ class j00005set_search_selections
             $pricerange_value_to = (int) jomresGetParam($_REQUEST, 'pricerange_value_to', 0);
 
             $priceranges = jomresGetParam($_REQUEST, 'priceranges', array());
-            if (count($priceranges) > 0) {
+            if (!empty($priceranges)) {
                 $all_ranges = array();
                 foreach ($priceranges as $ranges) {
                     $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['priceranges'][] = $ranges;

@@ -242,7 +242,7 @@ class j06001dashboard
         $existingCustomers = doSelectSql($query);
 
         $ec = array();
-        if (count($existingCustomers) > 0) {
+        if (!empty($existingCustomers)) {
             $ec[] = jomresHTML::makeOption('0', '&nbsp;');
             foreach ($existingCustomers as $customer) {
                 $ec[] = jomresHTML::makeOption($customer->guests_uid, stripslashes($customer->surname).' '.stripslashes($customer->firstname));

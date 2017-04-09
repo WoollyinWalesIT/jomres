@@ -50,7 +50,7 @@ class j00035tabcontent_01_main_details
         //property discounts
         $MiniComponents->triggerEvent('01011', array('property_uids' => array('0' => $property_uid)));
         $discount = get_showtime('propertylist_discounts');
-        if (count($discount) > 0) {
+        if (!empty($discount)) {
             if ($discount[$property_uid]['discount_type'] == 'lastminuteactive') { // Using last minute calculations
                 $lastminutethreshold = $discount[$property_uid]['lastminutethreshold'];
                 $lastminutediscount = $discount[$property_uid]['lastminutediscount'];

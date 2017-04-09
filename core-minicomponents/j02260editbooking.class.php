@@ -70,7 +70,7 @@ class j02260editbooking
             $query = substr_replace($query, '', -4);
             $result = doSelectSql($query);
 
-            if (count($result) > 0) {
+            if (!empty($result)) {
                 $can_be_approved = false;
 
                 if (using_bootstrap()) {
