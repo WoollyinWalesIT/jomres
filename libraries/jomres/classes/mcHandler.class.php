@@ -254,12 +254,10 @@ class mcHandler
     public function getAllEventPointsData($ePoint)
     {
         $retVal = array();
-        if (isset($this->miniComponentData[ $ePoint ])) {
-            if (!empty($this->miniComponentData[ $ePoint ])) {
-                foreach ($this->miniComponentData[ $ePoint ] as $key => $val) {
-                    $retVal[ $key ] = $this->getEventPointData($ePoint, $key);
-                }
-            }
+        if (isset($this->miniComponentData[ $ePoint ]) && !empty($this->miniComponentData[ $ePoint ])) {
+           foreach ($this->miniComponentData[ $ePoint ] as $key => $val) {
+				$retVal[ $key ] = $this->getEventPointData($ePoint, $key);
+			}
         }
 
         return $retVal;
