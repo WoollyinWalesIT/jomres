@@ -1357,6 +1357,7 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file($this->dir_minicomponents.'j10002pseudocron.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000pseudocron.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06002delslideshowimages.class.php');
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'cron.html');
 		$this->add_obs_file($this->dir_classes.'javascript_cache.class.php');
 		
