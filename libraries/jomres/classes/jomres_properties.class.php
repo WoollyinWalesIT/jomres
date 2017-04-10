@@ -22,6 +22,8 @@ class jomres_properties
 
     public function __construct()
     {
+		$this->all_property_uids = false;
+
         $this->init_property();
     }
 
@@ -70,8 +72,6 @@ class jomres_properties
         $this->approved = 0;
         $this->property_site_id = '';
         $this->permit_number = '';
-
-        $this->all_property_uids = false;
     }
 
     //Get all properties in the system

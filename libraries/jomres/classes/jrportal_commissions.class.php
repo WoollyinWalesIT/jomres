@@ -65,7 +65,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
         $query = 'SELECT `id`,`title`,`type`,`value`,`currencycode`,`tax_rate` FROM #__jomresportal_c_rates '.$clause;
         $result = doSelectSql($query);
 
-        if (count($result) > 0) {
+        if (!empty($result)) {
             foreach ($result as $r) {
                 $this->crates[ $r->id ][ 'id' ] = $r->id;
                 $this->crates[ $r->id ][ 'title' ] = $r->title;
@@ -97,7 +97,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 
                 return true;
             } else {
-                if (count($result) == 0) {
+                if (empty($result)) {
                     $this->error = 'No Commission rates were found with that id';
 
                     return false;
@@ -182,7 +182,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 
         if ($id) {
             if (is_array($id)) {
-                if (count($id) > 0) {
+                if (!empty($id)) {
                     $clause = 'id IN ('.jomres_implode($id).') ';
                 }
             } elseif ((int) $id > 0) {
@@ -214,7 +214,7 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
             $options[] = jomresHTML::makeOption($v[ 'id' ], $v[ 'title' ]);
         }
 
-        if (count($params) > 0) {
+        if (!empty($params)) {
             if (isset($params['property_uid'])) {
                 $js = 'onchange="savecrates(\''.$params['property_uid'].'\', this.value );"';
             }

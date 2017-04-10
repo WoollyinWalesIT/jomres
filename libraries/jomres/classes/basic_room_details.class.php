@@ -68,7 +68,7 @@ class basic_room_details
 					';
         $result = doSelectSql($query);
 
-        if (count($result) < 1) {
+        if (empty($result)) {
             return false;
         }
 
@@ -132,7 +132,7 @@ class basic_room_details
 					';
         $result = doSelectSql($query);
 
-        if (count($result) < 1) {
+        if (empty($result)) {
             return false;
         }
 
@@ -160,7 +160,7 @@ class basic_room_details
 
     public function get_rooms_features($room_feature_uids = array())
     {
-        if (count($room_feature_uids) < 1) {
+        if (empty($room_feature_uids)) {
             throw new Exception('Error: Room feature uids not set.');
         }
 
@@ -175,7 +175,7 @@ class basic_room_details
 					';
         $result = doSelectSql($query);
 
-        if (count($result) > 0) {
+        if (!empty($result)) {
             //get the room feature images for tooltips
             $jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
             $jomres_media_centre_images->get_images($this->property_uid, array('room_features'));

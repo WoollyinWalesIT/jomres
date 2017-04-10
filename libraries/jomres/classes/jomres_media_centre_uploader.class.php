@@ -492,9 +492,10 @@ class UploadHandler
         $quality = 100; // 0 = worst / smaller file, 100 = better / bigger file
 
         $image_name_array = explode(JRDS, $newly_created_png);
-        $image_name = $image_name_array[count($image_name_array) - 1];
+		$image_name_array_count = count($image_name_array);
+        $image_name = $image_name_array[$image_name_array_count - 1];
         $image_path = '';
-        for ($i = 0; $i < count($image_name_array) - 1; ++$i) {
+        for ($i = 0; $i < $image_name_array_count - 1; ++$i) {
             $image_path .= $image_name_array[$i].JRDS;
         }
 

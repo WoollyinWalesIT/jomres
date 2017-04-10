@@ -251,7 +251,7 @@ class j06000viewproperty
         //generate the tabs
         $tmpl = new patTemplate();
 
-        if (count($MiniComponents->miniComponentData[ '00035' ]) > 0) {
+        if (!empty($MiniComponents->miniComponentData[ '00035' ])) {
             $tab_titles = array();
             $tab_contents = array();
             $tab_active = false;

@@ -483,7 +483,8 @@ class patTemplate_Reader extends patTemplate_Module
 		$attributes = array ();
 		$match      = array ();
 		preg_match_all( '/([a-zA-Z_0-9]+)="((?:\\\.|[^"\\\])*)"/U', $string, $match );
-		for ( $i = 0; $i < count( $match[ 1 ] ); $i++ )
+		$n = count( $match[ 1 ] );
+		for ( $i = 0; $i < $n; $i++ )
 			{
 			$attributes[ strtolower( $match[ 1 ][ $i ] ) ] = strtr( (string) $match[ 2 ][ $i ], $entities );
 			}

@@ -50,7 +50,7 @@ class jrportal_sms_clickatell_message
 
                 return true;
             } else {
-                if (count($result) == 0) {
+                if (empty($result)) {
                     error_logging('No Messages were found with that id');
 
                     return false;

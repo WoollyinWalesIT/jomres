@@ -29,9 +29,6 @@ class j16000import_eu_tax_rates
         $jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
         $result = $jrportal_taxrate->deleteAllTaxRates();
 
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $c->eraseAll();
-
         if ($result) {
             // http://en.wikipedia.org/wiki/European_Union_value_added_tax#EU_VAT_area
 

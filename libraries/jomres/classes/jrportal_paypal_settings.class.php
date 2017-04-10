@@ -61,7 +61,7 @@ class jrportal_paypal_settings
         foreach ($values as $k => $v) {
             $query = "SELECT id FROM #__jomres_pluginsettings WHERE prid = 0 AND plugin = 'backend_paypal_settings' AND setting = '$k'";
             $settingList = doSelectSql($query);
-            if (count($settingList) > 0) {
+            if (!empty($settingList)) {
                 foreach ($settingList as $set) {
                     $id = $set->id;
                 }

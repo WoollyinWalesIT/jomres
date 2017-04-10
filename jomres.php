@@ -65,9 +65,10 @@ try {
     //user object
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
-    //TODO: here we can add a query to automatically remove the manager that has 0 properties
-    if (count($thisJRUser->authorisedProperties) == 0 && $thisJRUser->userIsManager) {
-        throw new Exception('This manager '.jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id((int) $thisJRUser->id)."  hasn't got any properties.");
+	//silently remove all access rights for this user if he is a manager/receptionist with no properties
+    if (empty($thisJRUser->authorisedProperties) && $thisJRUser->userIsManager) {
+		$jomres_users = jomres_singleton_abstract::getInstance('jomres_users');
+		$jomres_users->delete_user( $thisJRUser->id );
     }
 
     //jomres timezones - mostly unused with an exception
@@ -317,7 +318,7 @@ try {
 
                 $query = "SELECT id FROM #__jomres_booking_data_archive WHERE `tag` = '".$tag."'";
                 $result = doSelectSql($query);
-                if (count($result) == 0) {
+                if (empty($result)) {
                     $tmpbooking = $tmpBookingHandler->tmpbooking;
                     $tmpguest = $tmpBookingHandler->tmpguest;
 
@@ -343,7 +344,7 @@ try {
                     $query = 'SELECT id,plugin FROM #__jomres_pluginsettings WHERE (prid = '.(int) $property_uid." OR prid = 0)  AND `plugin` = '".(string) $plugin."' AND setting = 'active' AND value = '1'";
                     $gatewayDeets = doSelectSql($query);
 
-                    if (count($gatewayDeets) > 0 || $paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
+                    if (!empty($gatewayDeets) || $paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
 /*                         if ($paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
                             $plugin = 'paypal';
                         } */

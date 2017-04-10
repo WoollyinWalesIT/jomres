@@ -41,10 +41,10 @@ class all_api_features
             }
         }
 
-        if (count($api_feature_directories) > 0) {
+        if (!empty($api_feature_directories)) {
             foreach ($api_feature_directories as $plugin) {
                 $plugin_dir_contents = scandir($path.DIRECTORY_SEPARATOR.$plugin);
-                if (count($plugin_dir_contents) > 0) {
+                if (!empty($plugin_dir_contents)) {
                     foreach ($plugin_dir_contents as $method_dir) {
                         if ($method_dir === '.' or $method_dir === '..' or $method_dir === 'language') {
                             continue;

@@ -41,9 +41,6 @@ class j16000savePfeatureCategory
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=editPfeatureCategory'), 'Please enter a category title');
 		}
 
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $c->eraseAll();
-
         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), '');
     }
 

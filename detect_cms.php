@@ -46,7 +46,7 @@ if (!defined('_JOMRES_DETECTED_CMS')) {
             }
         }
         $d->close();
-        if (count($docs) > 0) {
+        if (!empty($docs)) {
             sort($docs);
             foreach ($docs as $doc) {
                 $listdir = $jrePath.$doc.JRDS;

@@ -145,15 +145,14 @@ function showSiteConfig()
     $guestnumbersearchList[ ] = jomresHTML::makeOption('greaterthan', '>=');
     $guestnumbersearchDropdownList = jomresHTML::selectList($guestnumbersearchList, 'cfg_guestnumbersearch', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'guestnumbersearch' ]);
 
-    jr_import('currency_codes');
-    $c_codes = new currency_codes($jrConfig[ 'globalCurrencyCode' ], true);
-    $currency_codes_dropdown = $c_codes->makeCodesDropdown();
+    $currency_codes = jomres_singleton_abstract::getInstance('currency_codes');
+    $currency_codes_dropdown = $currency_codes->makeCodesDropdown($jrConfig[ 'globalCurrencyCode' ], true);
 
     $language_context = array();
     $ptype_descs = array();
     $language_context[ ] = jomresHTML::makeOption('', '');
 
-    if (count($basic_property_details->all_property_types) > 0) {
+    if (!empty($basic_property_details->all_property_types)) {
         foreach ($basic_property_details->all_property_types as $k => $v) {
             $ptype_descs[] = $v;
         }
@@ -232,7 +231,6 @@ function showSiteConfig()
     $lists[ 'integratedSearch_guestnumber' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_guestnumber', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_guestnumber' ]);
     $lists[ 'integratedSearch_stars' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_stars', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_stars' ]);
 
-    $lists[ 'useArrayCaching' ] = jomresHTML::selectList($yesno, 'cfg_useArrayCaching', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useArrayCaching' ]);
     $lists[ 'showLangDropdown' ] = jomresHTML::selectList($yesno, 'cfg_showLangDropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'showLangDropdown' ]);
     $lists[ 'useNewusers' ] = jomresHTML::selectList($yesno, 'cfg_useNewusers', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useNewusers' ]);
     $lists[ 'outputHeadersInline' ] = jomresHTML::selectList($yesno, 'cfg_outputHeadersInline', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'outputHeadersInline' ]);
@@ -409,7 +407,7 @@ function saveSiteConfig($overrides = array())
         include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'site_config.php';
         $tmpConfig = $jrConfig;
     }
-    if (count($overrides) > 0) {
+    if (!empty($overrides)) {
         foreach ($overrides as $key => $val) {
             $tmpConfig[$key] = $val;
         }
@@ -443,10 +441,7 @@ $jrConfig = ' .var_export($tmpConfig, true).';
     $registry = jomres_singleton_abstract::getInstance('minicomponent_registry');
     $registry->regenerate_registry();
 
-    $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-    $c->eraseAll();
-
-    if (count($overrides) == 0) { // If we've come from the Site Config page, we want to redirect the user back to the site configuration page, otherwise we don't redirect.
+    if (empty($overrides)) { // If we've come from the Site Config page, we want to redirect the user back to the site configuration page, otherwise we don't redirect.
         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=site_settings'), 'Configuration saved');
     }
 }
@@ -464,7 +459,7 @@ function searchCSSThemesDirForCSSFiles()
             }
         }
         $d->close();
-        if (count($docs) > 0) {
+        if (!empty($docs)) {
             sort($docs);
             foreach ($docs as $doc) {
                 $listdir = $jrePath.$doc.JRDS;

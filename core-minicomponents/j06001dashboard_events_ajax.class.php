@@ -98,7 +98,7 @@ class j06001dashboard_events_ajax
         $query .= 'GROUP BY a.contract_uid,b.room_uid ';
 
         $contractList = doSelectSql($query);
-        if (count($contractList) > 0) {
+        if (!empty($contractList)) {
             
 
             $all_booking_notes = array();
@@ -119,7 +119,7 @@ class j06001dashboard_events_ajax
                 $guest_uids[] = $contract->guest_uid;
                 $room_uids[$contract->contract_uid][] = $contract->room_uid;
             }
-            if (count($guest_uids) > 0) {
+            if (!empty($guest_uids)) {
                 $query = 'SELECT guests_uid,firstname,surname FROM #__jomres_guests WHERE guests_uid IN ('.jomres_implode($guest_uids).') ';
                 $guestsList = doSelectSql($query);
 

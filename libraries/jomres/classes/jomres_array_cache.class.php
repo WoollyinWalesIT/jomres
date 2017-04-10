@@ -16,6 +16,8 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_array_cache
 {
+	private static $configInstance;
+
     /**
      * The path to the cache file folder.
      *
@@ -65,12 +67,15 @@ class jomres_array_cache
      */
     public function __construct($config = null)
     {
+		$this->_cachedData = array();
+		
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
         if (!isset($jrConfig[ 'useArrayCaching' ])) {
             $jrConfig[ 'useArrayCaching' ] = '0';
         }
-        $this->_useCaching = (bool) $jrConfig[ 'useArrayCaching' ];
+        
+		$this->_useCaching = (bool) $jrConfig[ 'useArrayCaching' ];
 
         if (!$this->_useCaching) {
             return false;
@@ -90,6 +95,15 @@ class jomres_array_cache
         $this->lang = $this->get_cache_lang();
         $this->_loadCache();
         //$this->eraseExpired();
+    }
+	
+	public static function getInstance()
+    {
+        if (!self::$configInstance) {
+            self::$configInstance = new self();
+        }
+
+        return self::$configInstance;
     }
 
     /**
@@ -174,7 +188,7 @@ class jomres_array_cache
         }
         if ($meta === false) {
             $results = array();
-            if ($this->_cachedData) {
+            if (!empty($this->_cachedData)) {
                 foreach ($cachedData as $k => $v) {
                     $results[$k] = $v['data'];
                 }
@@ -246,7 +260,7 @@ class jomres_array_cache
         if (!$this->_useCaching) {
             return false;
         }
-        if (count($this->_cachedData) > 0) {
+        if (!empty($this->_cachedData)) {
             $cacheDir = $this->getCacheDir();
             if (true === file_exists($cacheDir)) {
                 $cacheFile = fopen($cacheDir, 'w');

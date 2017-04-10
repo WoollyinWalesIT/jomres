@@ -64,7 +64,7 @@ class jrportal_guest_types
 				WHERE `id` = ".(int) $this->id." AND `property_uid` = ".(int)$this->property_uid;
         $result = doSelectSql($query);
 
-        if (count($result) < 1) {
+        if (empty($result)) {
             return false;
         }
 

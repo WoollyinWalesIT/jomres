@@ -67,7 +67,7 @@ class j06000mrp_calendar
         $query = 'SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = '.$property_uid.' ';
         $roomUids = doSelectSql($query);
 
-        if (count($roomUids) == 0) {
+        if (empty($roomUids)) {
             // Nothing we can do here to legitimately show availability, we'll return out as it's pointless to continue
             return;
         }

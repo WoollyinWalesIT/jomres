@@ -31,9 +31,6 @@ class j16000delete_taxrate
             $jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
             $jrportal_taxrate->deleteTaxRate($id);
 
-            $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-            $c->eraseAll();
-
             jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_taxrates'), $saveMessage);
         } else {
             echo jr_gettext('_JRPORTAL_TAXRATES_CANNOTDELETE', '_JRPORTAL_TAXRATES_CANNOTDELETE', false);

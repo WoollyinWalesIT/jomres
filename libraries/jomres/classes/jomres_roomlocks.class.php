@@ -41,7 +41,7 @@ class jomres_roomlocks
         foreach ($dates_array as $sess => $d) {
             $all_sessions[ ] = $sess;
         }
-        if (count($dates_array) > 0) {
+        if (!empty($dates_array)) {
             foreach ($dates_array as $sess_id => $session) {
                 foreach ($session as $date => $room) {
                     foreach ($room as $room_uid => $timestamp) {
@@ -94,7 +94,7 @@ class jomres_roomlocks
         $jomressession = get_showtime('jomressession');
         $dateRangeArray = explode(',', $date_range_string);
 
-        if (count($dateRangeArray) > 0) {
+        if (!empty($dateRangeArray)) {
             foreach ($dateRangeArray as $date) {
                 foreach ($all_sessions as $sess) {
                     if (isset($dates_array[ $sess ][ $date ][ $room_uid ])) {
@@ -156,7 +156,7 @@ class jomres_roomlocks
         $tmpBookingHandler = jomres_getSingleton('jomres_temp_booking_handler');
         $jomressession = get_showtime('jomressession');
         $this->rooms_already_in_cart = array();
-        if (count($tmpBookingHandler->cart_data) > 0) {
+        if (!empty($tmpBookingHandler->cart_data)) {
             foreach ($tmpBookingHandler->cart_data as $cart) {
                 $requestedRooms = $cart['requestedRoom'];
                 $roomBang = explode(',', $requestedRooms);

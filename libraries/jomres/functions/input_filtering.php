@@ -286,7 +286,8 @@ function jomres_remove_HTML($s, $keep = 'p|br', $expand = 'script|style|noframes
      //initialize keep tag logic
     if (strlen($keep) > 0) {
         $k = explode('|', $keep);
-        for ($i = 0; $i < count($k); ++$i) {
+		$n = count($k);
+        for ($i = 0; $i < $n; ++$i) {
             $s = str_replace('<'.$k[ $i ], '[{('.$k[ $i ], $s);
             $s = str_replace('</'.$k[ $i ], '[{(/'.$k[ $i ], $s);
         }
@@ -305,7 +306,8 @@ function jomres_remove_HTML($s, $keep = 'p|br', $expand = 'script|style|noframes
      //remove tags with content between them
     if (strlen($expand) > 0) {
         $e = explode('|', $expand);
-        for ($i = 0; $i < count($e); ++$i) {
+		$n = count($e);
+        for ($i = 0; $i < $n; ++$i) {
             while (stripos($s, '<'.$e[ $i ]) > 0) {
                 $len[ 1 ] = strlen('<'.$e[ $i ]);
                 $pos[ 1 ] = stripos($s, '<'.$e[ $i ]);
@@ -328,7 +330,8 @@ function jomres_remove_HTML($s, $keep = 'p|br', $expand = 'script|style|noframes
 
      //finalize keep tag
     if (isset($k)) {
-        for ($i = 0; $i < count($k); ++$i) {
+		$n = count($k);
+        for ($i = 0; $i < $n; ++$i) {
             $s = str_replace('[{('.$k[ $i ], '<'.$k[ $i ], $s);
             $s = str_replace('[{(/'.$k[ $i ], '</'.$k[ $i ], $s);
         }
@@ -357,7 +360,7 @@ function strip_tags_except($text, $strip = true)
         return $text;
     }
 
-    if (!count($allowedTags)) {
+    if (empty($allowedTags)) {
         return $text;
     }
     $open = $strip ? '' : '&lt;';

@@ -214,7 +214,7 @@ class j01025showtariffs
         $tmpl->addRows('show_tariffs', $tariff_deets);
 
         $mcOutput = $MiniComponents->getAllEventPointsData('01020');
-        if (count($mcOutput) > 0) {
+        if (!empty($mcOutput)) {
             foreach ($mcOutput as $key => $val) {
                 $tmpl->addRows('customOutput_'.$key, array($val));
             }

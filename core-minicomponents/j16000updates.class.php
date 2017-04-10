@@ -242,7 +242,7 @@ class j16000updates
         $this->directoryScanResults = array();
         $jomresFrontDir = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY;
         $files_array = $this->recur_dir($jomresFrontDir);
-        if (count($this->directoryScanResults) > 0) {
+        if (!empty($this->directoryScanResults)) {
             return false;
         }
 

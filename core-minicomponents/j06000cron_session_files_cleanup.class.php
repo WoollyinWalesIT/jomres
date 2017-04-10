@@ -31,7 +31,7 @@ class j06000cron_session_files_cleanup
             $session_path = JOMRES_SESSION_ABSPATH;
             $files = scandir_getfiles_recursive($session_path);
 
-            if (count($files) > 0) {
+            if (!empty($files)) {
                 foreach ($files as $f) {
                     if ($f != '.htaccess' && $f != 'web.config' && time() - filemtime($f) >= 24 * 60 * 60) { // 1 day
                         unlink($f);

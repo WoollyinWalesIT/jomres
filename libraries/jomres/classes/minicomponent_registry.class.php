@@ -103,12 +103,8 @@ class minicomponent_registry
 
         $this->new_filesize = filesize($this->registry_file);
 
-        //clear cache
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $c->eraseAll();
-
         //delete js files in /jomres/temp dir
-        if (isset($_REQUEST['task']) && $_REQUEST['task'] == 'rebuildregistry') {
+        if (isset($_REQUEST['task']) && ($_REQUEST['task'] == 'rebuildregistry' || $_REQUEST['task'] == 'save_site_settings')) {
             $javascript_files_in_temp_dir = scandir_getfiles(JOMRES_TEMP_ABSPATH, $extension = 'js');
             foreach ($javascript_files_in_temp_dir as $file) {
                 unlink(JOMRES_TEMP_ABSPATH.$file);
@@ -121,6 +117,11 @@ class minicomponent_registry
 		}
 		if (file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
 			unlink(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
+		}
+		
+		//delete the classes registry
+		if (file_exists(JOMRES_TEMP_ABSPATH.'registry_classes.php')) {
+			unlink(JOMRES_TEMP_ABSPATH.'registry_classes.php');
 		}
 
         //rebuild the shortcodes list
@@ -195,7 +196,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
             }
 
             $d->close();
-            if (count($docs) > 0) {
+            if (!empty($docs)) {
                 sort($docs);
                 foreach ($docs as $doc) {
                     $listdir = $jrePath.$doc.JRDS;
@@ -226,7 +227,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
                 }
             }
             $d->close();
-            if (count($docs) > 0) {
+            if (!empty($docs)) {
                 sort($docs);
                 foreach ($docs as $doc) {
                     $listdir = $jrePath.$doc.JRDS;
@@ -283,7 +284,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
                 }
             }
             $d->close();
-            if (count($docs) > 0) {
+            if (!empty($docs)) {
                 sort($docs);
                 foreach ($docs as $doc) {
                     $listdir = $jrePath.$doc.JRDS;

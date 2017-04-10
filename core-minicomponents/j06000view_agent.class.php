@@ -97,7 +97,7 @@ class j06000view_agent
         $query = 'SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email FROM #__jomres_guest_profile WHERE cms_user_id = '.(int) $manager_id.' LIMIT 1';
         $managerData = doSelectSql($query);
 
-        if (count($managerData) > 0) {
+        if (!empty($managerData)) {
             foreach ($managerData as $data) {
                 $output[ 'FIRSTNAME' ] = $data->firstname;
                 $output[ 'SURNAME' ] = $data->surname;

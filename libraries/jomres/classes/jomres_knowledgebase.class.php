@@ -78,7 +78,7 @@ class jomres_knowledgebase
 
     public function build_faq($faq = array())
     {
-        if (count($faq) < 1) {
+        if (empty($faq)) {
             return false;
         }
 

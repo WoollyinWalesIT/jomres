@@ -33,7 +33,7 @@ class j02160cancelbooking
         $today = date('Y/m/d');
         $query = "SELECT arrival,deposit_paid,contract_total,deposit_required,booked_in,property_uid FROM #__jomres_contracts WHERE contract_uid = '".(int) $contract_uid."' AND property_uid = '".(int) $defaultProperty."'";
         $arrivalList = doSelectSql($query);
-        if (count($arrivalList) > 0) {
+        if (!empty($arrivalList)) {
             foreach ($arrivalList as $cancellationFigures) {
                 $arrival = $cancellationFigures->arrival;
                 $deposit_paid = $cancellationFigures->deposit_paid;

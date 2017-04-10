@@ -68,7 +68,7 @@ class j16000partners
 
                 $partner_plugins = json_decode($response, true);
 
-                if (count($partner_plugins) > 0) {
+                if (!empty($partner_plugins)) {
                     $partner_data[$key] = $p;
                     $partner_data[$key]['id'] = $key;
                     foreach ($partner_plugins as $plugin) {

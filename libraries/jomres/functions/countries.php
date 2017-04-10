@@ -144,7 +144,7 @@ function setupRegions($countryCode = 'GB', $currentRegion = 'Pembrokeshire', $fi
     }
 
     $regionDropdown = '';
-    if (count($regionArray) > 0) {
+    if (!empty($regionArray)) {
         natcasesort($regionArray);
         if ($firstBlank) {
             $regions[ ] = jomresHTML::makeOption('', '');

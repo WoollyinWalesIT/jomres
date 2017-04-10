@@ -44,7 +44,7 @@ class j06002create_multiple_resources
         $basic_property_details->gather_data($defaultProperty);
 
         $output['RESOURCES_OF_TYPE'] = '';
-        if (count($basic_property_details->this_property_room_classes) > 0) {
+        if (!empty($basic_property_details->this_property_room_classes)) {
             $classOptions = array();
             foreach ($basic_property_details->this_property_room_classes as $key => $roomClass) {
                 if (!is_null($roomClass)) {

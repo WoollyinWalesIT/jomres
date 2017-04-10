@@ -84,7 +84,7 @@ class jomres_obsolete_file_handling
     {
         // New for 5.6.1, we'll now allow plugins to report obsolete files
         $obsolete_plugin_files = get_showtime('obsolete_plugin_files');
-        if (count($obsolete_plugin_files) > 0) {
+        if (!empty($obsolete_plugin_files)) {
             foreach ($obsolete_plugin_files as $file) {
                 if (file_exists($file)) {
                     $this->add_obs_file($file);
@@ -1357,9 +1357,12 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file($this->dir_minicomponents.'j10002pseudocron.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000pseudocron.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06002delslideshowimages.class.php');
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'cron.html');
+		$this->add_obs_file($this->dir_classes.'javascript_cache.class.php');
 		
 		$this->add_obs_dir($this->dir_libraries.'MobileDetect'.JRDS);
+		
     }
 
     public function add_obs_file($path_and_file)

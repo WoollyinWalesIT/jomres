@@ -44,10 +44,7 @@ class j16000savePfeature
 		} else {
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=editPfeature&id=' . $jomres_property_features->id), '');
 		}
-		
-		$c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $c->eraseAll();
-		
+
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeatures'), jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', false));
     }
 

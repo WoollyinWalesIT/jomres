@@ -32,10 +32,10 @@ class j06005muremovefavourite
             $output = array();
             $query = "SELECT propertys_uid FROM #__jomres_propertys WHERE propertys_uid = '".(int) $property_uid."'";
             $props = doSelectSql($query);
-            if (count($props) > 0) {
+            if (!empty($props)) {
                 $query = "SELECT property_uid FROM #__jomcomp_mufavourites WHERE property_uid = '".(int) $property_uid."' AND `my_id` = '".(int) $thisJRUser->id."'";
                 $propys = doSelectSql($query);
-                if (count($propys) > 0) {
+                if (!empty($propys)) {
                     $query = 'DELETE FROM #__jomcomp_mufavourites WHERE `my_id`='.(int) $thisJRUser->id.' AND `property_uid`='.(int) $property_uid.' LIMIT 1';
                     if (!doInsertSql($query, '')) {
                         $a = 0;

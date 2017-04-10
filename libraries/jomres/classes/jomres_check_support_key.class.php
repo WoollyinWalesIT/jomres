@@ -95,7 +95,7 @@ class jomres_check_support_key
 
         if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.$this->user_plugin_license_temp_file_name)) {
             $str = '';
-            if (count($current_licenses) > 0) {
+            if (!empty($current_licenses)) {
                 foreach ($current_licenses as $key => $val) {
                     $str .= '$current_licenses["'.$key.'"] = array ( "key" => "'.$val['key'].'" , "status" => "'.$val['status'].'" );
 ';

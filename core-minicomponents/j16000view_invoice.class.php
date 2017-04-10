@@ -60,7 +60,7 @@ class j16000view_invoice
         $query = 'SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email,vat_number FROM #__jomres_guest_profile WHERE cms_user_id = '.(int) $invoice->cms_user_id.'';
         $managerData = doSelectSql($query);
 
-        if (count($managerData) > 0) {
+        if (!empty($managerData)) {
             foreach ($managerData as $data) {
                 $output[ 'FIRSTNAME' ] = $data->firstname;
                 $output[ 'SURNAME' ] = $data->surname;
@@ -176,7 +176,7 @@ class j16000view_invoice
         $output[ 'HLI_TAX_RATE' ] = jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE');
         $output[ 'HLI_TAX_AMOUNT' ] = jr_gettext('_JOMRES_COM_FRONT_ROOMTAX', '_JOMRES_COM_FRONT_ROOMTAX');
 
-        if (count($invoice->lineitems) > 0) {
+        if (!empty($invoice->lineitems)) {
             foreach ($invoice->lineitems as $li) {
                 $r = array();
                 $r[ 'ID' ] = $li[ 'id' ];

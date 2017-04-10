@@ -24,82 +24,42 @@ class jomres_singleton_abstract
 
     public static function getInstance($class, $arg1 = null)
     {
-        if (!isset(self::$_instances[ $class ])) {
-            if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php')) {
-                $result = require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php';
-                self::$_instances[ $class ] = new $class($arg1);
-            } else {
-                $classfilefound = false;
-
-                $jrePath = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS;
-                $d = @dir($jrePath);
-                $docs = array();
-                if ($d) {
-                    while (false !== ($entry = $d->read())) {
-                        $filename = $entry;
-                        if (substr($entry, 0, 1) != '.') {
-                            $docs[ ] = $entry;
-                        }
-                    }
-                    $d->close();
-                    if (count($docs) > 0) {
-                        sort($docs);
-                        foreach ($docs as $doc) {
-                            $listdir = $jrePath.$doc.JRDS;
-                            if (file_exists($listdir.$class.'.class.php')) {
-                                $result = require_once $listdir.$class.'.class.php';
-                                self::$_instances[ $class ] = new $class($arg1);
-                                $classfilefound = true;
-                            }
-                        }
-                    }
-                }
-
-                if (!$classfilefound) {
-                    $jrePath = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
-                    $d = @dir($jrePath);
-                    $docs = array();
-                    if ($d) {
-                        while (false !== ($entry = $d->read())) {
-                            $filename = $entry;
-                            if (substr($entry, 0, 1) != '.') {
-                                $docs[ ] = $entry;
-                            }
-                        }
-                        $d->close();
-                        if (count($docs) > 0) {
-                            sort($docs);
-                            foreach ($docs as $doc) {
-                                $listdir = $jrePath.$doc.JRDS;
-                                if (file_exists($listdir.$class.'.class.php')) {
-                                    $result = require_once $listdir.$class.'.class.php';
-                                    self::$_instances[ $class ] = new $class($arg1);
-                                    $classfilefound = true;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (!$classfilefound && file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php')) {
-                    $result = require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php';
-                    self::$_instances[ $class ] = new $class($arg1);
-                    $classfilefound = true;
-                }
-
-                if (!$classfilefound) {
-                    echo 'Class file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php'." doesn't exist";
-                    exit;
-                }
-            }
-        }
-
-        //var_dump(self::$_instances);
-        return self::$_instances[ $class ];
+		//instance already available
+		if (isset(self::$_instances[ $class ])) {
+			return self::$_instances[ $class ];
+		}
+        
+		//first check custom code dir
+		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php')) {
+			require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php';
+			
+			self::$_instances[ $class ] = new $class($arg1);
+			
+			return self::$_instances[ $class ];
+		}
+		
+		global $classes;
+		
+		//check core and remote plugins dirs
+		if (isset($classes[$class])) {
+			require_once $classes[$class].$class.'.class.php';
+			
+			self::$_instances[ $class ] = new $class($arg1);
+		
+			return self::$_instances[ $class ];
+		}
+		
+		//last place to check is jomres core classes dir
+		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php')) {
+			require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php';
+			
+			self::$_instances[ $class ] = new $class($arg1);
+			
+			return self::$_instances[ $class ];
+		}
+		
+		//class doesn`t exist so we`ll echo a message and exit
+		echo 'Error, class '.$class." doesn't exist.";
+		exit;
     }
-}
-
-function jomres_getSingleton($class, $args = array())
-{
-    return jomres_singleton_abstract::getInstance($class, $args);
 }

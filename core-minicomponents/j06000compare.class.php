@@ -63,7 +63,7 @@ class j06000compare
         $output[ '_JOMRES_TARIFFSFROM' ] = jr_gettext('_JOMRES_TARIFFSFROM', '_JOMRES_TARIFFSFROM', false, false);
         $output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', false, false);
 
-        if (count($property_uids) > 0) {
+        if (!empty($property_uids)) {
             $tick = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Tick.png';
             $cross = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Cancel.png';
 
@@ -98,7 +98,7 @@ class j06000compare
             $all_used_features = array();
             foreach ($current_property_details->multi_query_result as $property) {
                 $propertyFeaturesArray = explode(',', ($property[ 'property_features' ]));
-                if (count($propertyFeaturesArray) > 0) {
+                if (!empty($propertyFeaturesArray)) {
                     foreach ($propertyFeaturesArray as $v) {
                         if ($v > 0) {
                             $all_used_features[ $v ] = $v;
@@ -129,7 +129,7 @@ class j06000compare
                 $r[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images ['property'][0][0]['medium'];
 
                 $propertyFeaturesArray = explode(',', ($property[ 'property_features' ]));
-                if (count($propertyFeaturesArray) > 0) {
+                if (!empty($propertyFeaturesArray)) {
                     $fs = array();
                     foreach ($featuresArray as $k => $v) {
                         if (in_array($k, $all_used_features)) {

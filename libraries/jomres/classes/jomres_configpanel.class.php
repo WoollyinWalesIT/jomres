@@ -30,9 +30,7 @@ class jomres_configpanel extends jomres_content_tabs
     public function insertSetting()
     {
         $rowclass = '';
-        if (!$this->counter) {
-            $this->counter = 0;
-        }
+
         if (!using_bootstrap()) {
             if ($this->counter % 2) {
                 $rowclass = 'odd';

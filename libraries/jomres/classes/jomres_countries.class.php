@@ -16,10 +16,22 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_countries
 {
+	private static $configInstance;
+	
     public function __construct()
     {
         $this->countries = false;
-        $this->get_countries();
+        
+		$this->get_countries();
+    }
+	
+	public static function getInstance()
+    {
+        if (!self::$configInstance) {
+            self::$configInstance = new self();
+        }
+
+        return self::$configInstance;
     }
 
     public function get_countries()
@@ -30,24 +42,16 @@ class jomres_countries
 		
 		$this->countries = array();
 
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-
-        if ($c->isCached('countries')) {
-            $this->countries = $c->retrieve('countries');
-        } else {
-            $query = "SELECT `id`,`countrycode`,`countryname` FROM #__jomres_countries ORDER BY `countryname`";
-            $result = doSelectSql($query);
-            
-			if (!empty($result)) {
-                foreach ($result as $country) {
-                    $this->countries[ strtoupper($country->countrycode) ] = array('id' => $country->id, 'countrycode' => strtoupper($country->countrycode), 'countryname' => jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRIES_'.$country->id, $country->countryname, false, false));
-                }
-            }
-			
-			unset($result);
-            
-			$c->store('countries', $this->countries);
-        }
+        $query = "SELECT `id`,`countrycode`,`countryname` FROM #__jomres_countries ORDER BY `countryname`";
+		$result = doSelectSql($query);
+		
+		if (!empty($result)) {
+			foreach ($result as $country) {
+				$this->countries[ strtoupper($country->countrycode) ] = array('id' => $country->id, 'countrycode' => strtoupper($country->countrycode), 'countryname' => jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRIES_'.$country->id, $country->countryname, false, false));
+			}
+		}
+		
+		unset($result);
 
         return true;
     }

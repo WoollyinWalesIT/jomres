@@ -59,7 +59,7 @@ class j06000show_property_room_types
 
         $output = array();
 
-        if (count($basic_property_details->room_types) > 0) {
+        if (!empty($basic_property_details->room_types)) {
             $room_types = array();
             $output[ '_JOMRES_SEARCH_RTYPES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', false);
 

@@ -39,8 +39,6 @@ class j16000ajax_change_access_level
             trigger_error("Error saving new access control level $new_level for $minicomp", 'mysql db failure', E_USER_ERROR);
         }
 
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $c->eraseAll();
         $jomres_access_control->recount_controlled_scripts();
     }
 

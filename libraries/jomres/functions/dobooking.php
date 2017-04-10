@@ -79,7 +79,7 @@ $MiniComponents->triggerEvent('00101'); // Pre-form generation. Optional
 $query = "SELECT propertys_uid FROM #__jomres_propertys WHERE propertys_uid = '".(int) $selectedProperty."'";
 
 $result = doSelectSql($query);
-if (count($result) > 0) {
+if (!empty($result)) {
     if ($selectedProperty > 0) {
         dobooking($selectedProperty, $thisdate, $remus);
     } else {
@@ -148,7 +148,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
     if (get_showtime('include_room_booking_functionality')) {
         $query = 'SELECT `rates_uid` FROM `#__jomres_rates` where property_uid = '.(int) $selectedProperty.'';
         $result = doSelectSql($query);
-        if (count($result) == 0) {
+        if (empty($result)) {
             jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=contactowner&amp;selectedProperty='.$selectedProperty.'&amp;arrivalDate='.$thisdate));
         }
     }
@@ -160,7 +160,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
         if (is_null($current_property_details->rooms)) {
             jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=contactowner&amp;selectedProperty='.$selectedProperty.'&amp;arrivalDate='.$thisdate));
         }
-        if (count($bkg->allPropertyTariffs) == 0) {
+        if (empty($bkg->allPropertyTariffs)) {
             jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=contactowner&amp;selectedProperty='.$selectedProperty.'&amp;arrivalDate='.$thisdate));
         }
     } elseif (get_showtime('is_jintour_property')) {
@@ -174,7 +174,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
                 $future_tours[] = $tour;
             }
         }
-        if (count($future_tours) == 0) {
+        if (empty($future_tours)) {
             jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=contactowner&amp;selectedProperty='.$selectedProperty.'&amp;arrivalDate='.$thisdate));
         }
     }
@@ -379,7 +379,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
             ++$counter;
         }
     }
-    if (count($guestTypes) == 0) {
+    if (empty($guestTypes)) {
         $output[ 'BILLING_TOTALINPARTY' ] = '';
     }
 
@@ -391,7 +391,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
     $extrasHeader = array();
     $extrasH = array();
 
-    if ((count($extra_details) > 0 || count($third_party_extras) > 0) && $mrConfig[ 'showExtras' ] == '1') {
+    if ((!empty($extra_details) || !empty($third_party_extras)) && $mrConfig[ 'showExtras' ] == '1') {
         $output[ 'EXTRAS_INFO' ] = '<img border="0" style="vertical-align:top;" src="'.get_showtime('live_site').'/components/com_jomres/images/info.png" />';
         $output[ 'AJAXFORM_EXTRAS' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS', '_JOMRES_AJAXFORM_EXTRAS'));
         $output[ 'AJAXFORM_EXTRAS_DESC' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_DESC', '_JOMRES_AJAXFORM_EXTRAS_DESC', false));
@@ -482,7 +482,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 
     $allCustomFields = $custom_fields->getAllCustomFieldsByPtypeId($ptype_id);
     $customFields = array();
-    if (count($allCustomFields) > 0) {
+    if (!empty($allCustomFields)) {
         $icon = '*';
         foreach ($allCustomFields as $f) {
             $tempHandlerFieldName = $f[ 'fieldname' ].'_'.$f[ 'uid' ];
@@ -687,13 +687,13 @@ function dobooking($selectedProperty, $thisdate, $remus)
     $tmpl->addRows('onload', $toload);
     $MiniComponents->triggerEvent('05019');
     $mcOutput = $MiniComponents->getAllEventPointsData('05019');
-    if (count($mcOutput) > 0) {
+    if (!empty($mcOutput)) {
         foreach ($mcOutput as $key => $val) {
             $tmpl->addRows('customOutput_'.$key, array($val));
         }
     }
 
-    if (count($third_party_extras) > 0) {
+    if (!empty($third_party_extras)) {
         $tmpl->addRows('third_party_extras', $third_party_extras);
     }
     if ($mrConfig[ 'showExtras' ] == '1') {

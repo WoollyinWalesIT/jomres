@@ -44,17 +44,18 @@ class jomres_cart
         // $do_conversion = false;
 
         $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-        jr_import('jomres_currency_conversion');
-        $conversion = new jomres_currency_conversion();
-        if (count($tmpBookingHandler->cart_data) > 0) {
+        
+		$jomres_currency_conversion = jomres_singleton_abstract::getInstance('jomres_currency_conversion');
+		
+        if (!empty($tmpBookingHandler->cart_data)) {
             //var_dump($tmpBookingHandler->cart_data);exit;
             foreach ($tmpBookingHandler->cart_data as $key => $data) {
                 $contract_total = (float) $data[ 'contract_total' ];
                 $deposit_required = (float) $data[ 'deposit_required' ];
                 $currencycode = $data[ 'property_currencycode' ];
-                if ($conversion->this_code_can_be_converted($currencycode) && $do_conversion) {
-                    $contract_total = $conversion->convert_sum($contract_total, $currencycode, $this->currency_code);
-                    $deposit_required = $conversion->convert_sum($deposit_required, $currencycode, $this->currency_code);
+                if ($jomres_currency_conversion->this_code_can_be_converted($currencycode) && $do_conversion) {
+                    $contract_total = $jomres_currency_conversion->convert_sum($contract_total, $currencycode, $this->currency_code);
+                    $deposit_required = $jomres_currency_conversion->convert_sum($deposit_required, $currencycode, $this->currency_code);
                 }
                 ++$this->number_of_bookings;
                 $this->items[ $key ] = array('total' => $contract_total, 'deposit' => $deposit_required);

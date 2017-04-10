@@ -77,7 +77,7 @@ class jomres_call_api
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
         $query = "SELECT client_id,scope FROM #__jomres_oauth_clients WHERE client_id = '".$thisJRUser->username."' LIMIT 1";
         $result = doSelectSql($query);
-        if (count($result) == 0) {
+        if (empty($result)) {
             $query = "INSERT INTO #__jomres_oauth_clients 
                 (`client_id`,`client_secret`,`redirect_uri`,`grant_types`,`scope`,`user_id`) 
                 VALUES 

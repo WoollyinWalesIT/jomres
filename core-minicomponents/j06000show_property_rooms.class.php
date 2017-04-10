@@ -68,7 +68,7 @@ class j06000show_property_rooms
 
         $output = array();
 
-        if (count($basic_room_details->rooms) > 0) {
+        if (!empty($basic_room_details->rooms)) {
             //get room and room feature images
             $jomres_media_centre_images->get_images($property_uid, array('rooms', 'room_features'));
 
@@ -93,7 +93,7 @@ class j06000show_property_rooms
 
                 //room features
                 $r[ 'ROOM_FEATURES' ] = '';
-                if (count($basic_room_details->all_room_features) > 0) {
+                if (!empty($basic_room_details->all_room_features)) {
                     foreach ($roomFeatureUidsArray as $f) {
                         if (isset($basic_room_details->all_room_features[ $f ]['tooltip'])) {
                             $r[ 'ROOM_FEATURES' ] .= $basic_room_details->all_room_features[ $f ]['tooltip'];

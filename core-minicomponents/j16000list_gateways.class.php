@@ -29,13 +29,13 @@ class j16000list_gateways
 
         $MiniComponents->triggerEvent('10509', array('show_anyway' => true));
         $mcOutput = $MiniComponents->getAllEventPointsData('10509');
-        if (count($mcOutput) > 0) {
+        if (!empty($mcOutput)) {
             foreach ($mcOutput as $key => $val) {
                 $gateway_plugins[] = $val;
             }
         }
 
-        if (count($gateway_plugins) > 0) {
+        if (!empty($gateway_plugins)) {
             $output[ '_JOMRES_COM_A_GATEWAY_ENABLED' ] = jr_gettext('_JOMRES_COM_A_GATEWAY_ENABLED', '_JOMRES_COM_A_GATEWAY_ENABLED', false);
             $output[ 'TOUR_ID_TAB_GATEWAYS_TITLE' ] = jr_gettext('_JOMRES_COM_A_GATEWAYLIST', '_JOMRES_COM_A_GATEWAYLIST', false);
             $output[ 'GATEWAYS_INSTRUCTIONS' ] = jr_gettext('GATEWAYS_INSTRUCTIONS', 'GATEWAYS_INSTRUCTIONS', false);

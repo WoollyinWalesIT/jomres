@@ -16,6 +16,8 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_language_definitions
 {
+	private static $configInstance;
+	
     public function __construct()
     {
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -37,6 +39,15 @@ class jomres_language_definitions
         $this->default_ptype = $this->ptype;
 
         $this->definitions = array();
+    }
+	
+	public static function getInstance()
+    {
+        if (!self::$configInstance) {
+            self::$configInstance = new self();
+        }
+
+        return self::$configInstance;
     }
 
     public function set_language($lang = 'en-GB')

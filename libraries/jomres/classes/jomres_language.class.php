@@ -16,6 +16,8 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_language
 {
+	private static $configInstance;
+	
     public function __construct()
     {
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -55,6 +57,20 @@ class jomres_language
         $this->shortcodes = $this->get_shortcodes();
         $key = array_search($jomresConfig_lang, $this->shortcodes);
         set_showtime('lang_shortcode', $key);
+		
+		//active languages
+		$this->active_languages_file = JOMRES_TEMP_ABSPATH.'jomres_languages.php';
+		
+		$this->active_languages = $this->get_active_languages();
+    }
+	
+	public static function getInstance()
+    {
+        if (!self::$configInstance) {
+            self::$configInstance = new self();
+        }
+
+        return self::$configInstance;
     }
 
     public function get_language($property_type = '')
@@ -106,6 +122,7 @@ class jomres_language
         return false;
     }
 
+	//this should be executed just once, then after we have the jomres_languages.php tmp file, no need for this anymore
     public function get_current_lang_files()
     {
         $langfiles = array();
@@ -116,15 +133,9 @@ class jomres_language
             while (false !== ($entry = $d->read())) {
                 $filename = $entry;
                 if (is_file(JOMRESPATH_BASE.JRDS.'language'.JRDS.$filename) && !in_array(strtolower($filename), $this->unWantedFolderContents)) {
-                    $langfiles[ ] = $filename;
+                    //we`ll just save the basename
+					$langfiles[] = basename($filename, '.php');
                 }
-            }
-        }
-
-        $language_plugins = get_showtime('language_plugins');
-        if (count($language_plugins) > 0) {
-            foreach ($language_plugins as $code => $propertytype) {
-                $langfiles[ ] = $code;
             }
         }
 
@@ -133,33 +144,12 @@ class jomres_language
 
     public function get_languageselection_dropdown($config_option = false, $default_lang = '')
     {
-        $task = get_showtime('task');
+		$langfile_options = array();
 
-        $langDropdownFile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'langDropdown.php';
-        $langfile_crossref = $this->define_langfile_to_languages_array();
+        $language_names = $this->define_langfile_to_languages_array();
 
-        if (file_exists($langDropdownFile)) {
-            require_once $langDropdownFile;
-            $langfiles = getLangDropdownString();
-        } else {
-            $langfile_options = array();
-            $langfiles = $this->get_current_lang_files();
-            if (count($langfiles) == 0) {
-                return false;
-            }
-        }
-
-        $tempOptions = array();
-        foreach ($langfiles as $filename) {
-            $langfileexplode = explode('.', $filename);
-            $langshortcode = $langfileexplode[ 0 ];
-            $langlong = $langfile_crossref[ $langshortcode ];
-            $tempOptions[ $langshortcode ] = $langlong;
-        }
-
-        natsort($tempOptions);
-        foreach ($tempOptions as $key => $val) {
-            $langfile_options[ ] = jomresHTML::makeOption($key, $val);
+        foreach ($this->active_languages as $language_code) {
+            $langfile_options[] = jomresHTML::makeOption($language_code, $language_names[$language_code]);
         }
 
         if (!$config_option) {
@@ -230,34 +220,13 @@ class jomres_language
         $langs[ 'az-AZ' ] = 'Azərbaycan dili';
         $langs[ 'tr-TR' ] = 'Türkçe';
 
-        $language_plugins = get_showtime('language_plugins');
-        if (count($language_plugins) > 0) {
-            foreach ($language_plugins as $code => $propertytype) {
-                foreach ($propertytype as $language_settings) {
-                    $langs[ $code ] = $language_settings[ 'langfile_to_languages' ];
-                }
-            }
-        }
-
         return $langs;
     }
 
     public function get_shortcode_to_longcode($lang)
     {
-        $langs = $this->get_shortcodes();
-
-        $language_plugins = get_showtime('language_plugins');
-        if (count($language_plugins) > 0) {
-            foreach ($language_plugins as $code => $propertytype) {
-                foreach ($propertytype as $language_settings) {
-                    $shortcode = $language_settings[ 'shortcode_to_longcode' ];
-                    $langs[ $shortcode ] = $code;
-                }
-            }
-        }
-
-        if (array_key_exists($lang, $langs)) {
-            return $langs[ $lang ];
+        if ( isset($this->shortcodes[ $lang ] )) {
+            return $this->shortcodes[ $lang ];
         }
 
         return 'en-GB';
@@ -345,15 +314,44 @@ class jomres_language
         $langs[ 'az-AZ' ] = 'az';
         $langs[ 'tr-TR' ] = 'tr';
 
-        $language_plugins = get_showtime('language_plugins');
-        if (count($language_plugins) > 0) {
-            foreach ($language_plugins as $code => $propertytype) {
-                foreach ($propertytype as $language_settings) {
-                    $langs[ $code ] = $language_settings[ 'langfile_to_datepicker' ];
-                }
-            }
-        }
-
         return $langs;
     }
+	
+	public function get_active_languages() 
+	{   
+		if (file_exists($this->active_languages_file)) {
+			//include the jomres active languages file. This sets $this->active_languages automatically
+            include_once $this->active_languages_file;
+        } else {
+			//generate the jomres_languages.php file and make all languages active_languages
+			$this->set_active_languages();
+		}
+		
+		return $this->active_languages;
+	}
+	
+	public function set_active_languages($selected_languages = array())
+	{
+		if (empty($selected_languages)) {
+			$this->active_languages = $this->get_current_lang_files(); //we`ll set all languages to be active
+		} else {
+			$this->active_languages = $selected_languages;
+		}
+		
+		natsort($this->active_languages);
+
+		if (!file_put_contents($this->active_languages_file,
+'<?php
+##################################################################
+defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
+##################################################################
+
+$this->active_languages = ' .var_export($this->active_languages, true).';
+')) {
+            trigger_error('ERROR: '.$this->active_languages_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
+            exit;
+        }
+		
+		return true;
+	}
 }

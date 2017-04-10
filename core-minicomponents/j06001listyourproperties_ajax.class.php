@@ -34,6 +34,8 @@ class j06001listyourproperties_ajax
         $published = (int) jomresGetParam($_GET, 'published', '2');
         $approved = (int) jomresGetParam($_GET, 'approved', '2');
         $ptype_id = (int) jomresGetParam($_GET, 'ptype', '0');
+		
+		$authorisedProperties_count = count($thisJRUser->authorisedProperties);
 
         $rows = array();
 
@@ -75,8 +77,9 @@ class j06001listyourproperties_ajax
          */
         $sWhere = '';
         if (isset($_GET['sSearch']) && $_GET['sSearch'] != '') {
+			$n = count($aColumns);
             $sWhere = 'AND (';
-            for ($i = 0; $i < count($aColumns); ++$i) {
+            for ($i = 0; $i < $n; ++$i) {
                 $sWhere .= '`'.$aColumns[$i]."` LIKE '%".jomresGetParam($_GET, 'sSearch', '')."%' OR ";
             }
             $sWhere .= "`customtext` LIKE '%".jomresGetParam($_GET, 'sSearch', '')."%' ";
@@ -191,7 +194,7 @@ class j06001listyourproperties_ajax
                         $jrtb .= $jrtbar->toolbarItem('publish', jomresURL(JOMRES_SITEPAGE_URL.'&task=publishProperty'.'&property_uid='.$p->propertys_uid), jr_gettext('_JOMRES_COM_MR_VRCT_UNPUBLISH', '_JOMRES_COM_MR_VRCT_UNPUBLISH', false));
                     }
                     $jrtb .= $jrtbar->toolbarItem('edit', jomresURL(JOMRES_SITEPAGE_URL.'&task=editProperty'.'&thisProperty='.$p->propertys_uid), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
-                    if (count($thisJRUser->authorisedProperties) > 1) {
+                    if ($authorisedProperties_count > 1) {
                         $jrtb .= $jrtbar->toolbarItem('delete', jomresURL(JOMRES_SITEPAGE_URL.'&task=deleteProperty'.'&thisProperty='.$p->propertys_uid), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
                     }
                 }
@@ -226,7 +229,7 @@ class j06001listyourproperties_ajax
                     $toolbar->addSecondaryItem('fa fa-pencil-square-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=editProperty'.'&thisProperty='.$p->propertys_uid), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
                     $url = get_property_details_url($p->propertys_uid);
                     $toolbar->addSecondaryItem('fa fa-arrows-alt', '', '', $url, jr_gettext('_JOMRES_FRONT_PREVIEW', '_JOMRES_FRONT_PREVIEW', false));
-                    if (count($thisJRUser->authorisedProperties) > 1) {
+                    if ($authorisedProperties_count > 1) {
                         $toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=deleteProperty'.'&thisProperty='.$p->propertys_uid), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
                     }
                 }

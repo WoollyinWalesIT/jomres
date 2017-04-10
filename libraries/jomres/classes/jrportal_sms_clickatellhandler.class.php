@@ -39,7 +39,7 @@ class jrportal_sms_clickatellhandler
         $fields_string .= 'api_id='.urlencode($this->settings[ 'api_id' ]);
         $fields_string .= '&user='.urlencode($this->settings[ 'username' ]);
         $fields_string .= '&password='.urlencode($this->settings[ 'password' ]).'&';
-        if (count($this->getVars) > 0) {
+        if (!empty($this->getVars)) {
             foreach ($this->getVars as $key => $value) {
                 $fields_string .= $key.'='.urlencode($value).'&';
             }

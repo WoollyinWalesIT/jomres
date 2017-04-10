@@ -32,9 +32,6 @@ class j16000deletePfeatureCategory
 
         if ($jomres_property_features_categories->id > 0) {
 			if ($jomres_property_features_categories->delete_property_features_category()) {
-				$c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-				$c->eraseAll();
-				
 				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), 'Category deleted');
 			} else {
 				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), 'Could not delete category, it may still be assigned to some property features');

@@ -58,7 +58,7 @@ class custom_text
 
     public function gather_data($property_uids = array())
     {
-        if (count($property_uids) == 0) {
+        if (empty($property_uids)) {
             return false;
         }
 
@@ -87,7 +87,7 @@ class custom_text
             $clause = " `language` = '".$this->lang."'";
         }
 
-        if (count($property_uids) > 0) {
+        if (!empty($property_uids)) {
             $query = 'SELECT `constant` AS language_constant, `customtext`, `language`, `property_uid` FROM #__jomres_custom_text WHERE `property_uid` IN ('.jomres_implode($property_uids).") AND $clause ";
             $customTextList = doSelectSql($query);
 

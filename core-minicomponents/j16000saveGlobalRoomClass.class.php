@@ -36,9 +36,6 @@ class j16000saveGlobalRoomClass
 
         $jomres_room_types->save_room_type();
 
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $c->eraseAll();
-
         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listGlobalroomTypes'), jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', false));
     }
 
