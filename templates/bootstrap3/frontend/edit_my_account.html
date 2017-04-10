@@ -1,58 +1,55 @@
-
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="javascript" type="text/javascript">
-	<!--
-	jomresJquery(function(){
-		jomresJquery("#guest_country").change(function(){
-			var selectedValue = jomresJquery(this).find(":selected").val();
-			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
-			jomresJquery.get(live_site_ajax + clause, function (data) {
-				populateDiv("guest_region_div",data);
-				});
+<!--
+jomresJquery(document).ready(function () {
+	jomresJquery("#guest_country").change(function(){
+		var selectedValue = jomresJquery(this).find(":selected").val();
+		clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+		jomresJquery.get(live_site_ajax + clause, function (data) {
+			populateDiv("guest_region_div",data);
 			});
 		});
 
-	jomresJquery(document).ready(function () {
-		jomresJquery("#reviewForm").validate({
-			rules: {
-				firstname: "required",
-				surname: "required",
-				house: "required",
-				street: "required",
-				postcode: "required",
-				town: "required",
-				region: "required",
-				email: "required",
-			},
-			messages: {
-				firstname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME}",
-				surname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME}",
-				house: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO}",
-				street: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET}",
-				postcode: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE}",
-				town: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN}",
-				region: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION}",
-				email: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL}",
-			},
-			errorLabelContainer: "#messageBox",
-			wrapper: "p",
-			submitHandler: function (form) {
-				form.submit();
-			},
-		});
-		
-		jomresJquery.validator.setDefaults({
-			highlight: function (input) {
-				jomresJquery(input).addClass("alert alert-warning");
-			},
-			unhighlight: function (input) {
-				jomresJquery(input).removeClass("alert alert-warning");
-			}
-		});
-		
-		jomresJquery("#messageBox").hide();
+	jomresJquery("#reviewForm").validate({
+		rules: {
+			firstname: "required",
+			surname: "required",
+			house: "required",
+			street: "required",
+			postcode: "required",
+			town: "required",
+			region: "required",
+			email: "required",
+		},
+		messages: {
+			firstname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME}",
+			surname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME}",
+			house: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO}",
+			street: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET}",
+			postcode: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE}",
+			town: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN}",
+			region: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION}",
+			email: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL}",
+		},
+		errorLabelContainer: "#messageBox",
+		wrapper: "p",
+		submitHandler: function (form) {
+			form.submit();
+		},
 	});
-	//-->
+	
+	jomresJquery.validator.setDefaults({
+		highlight: function (input) {
+			jomresJquery(input).addClass("alert alert-warning");
+		},
+		unhighlight: function (input) {
+			jomresJquery(input).removeClass("alert alert-warning");
+		}
+	});
+	
+	jomresJquery("#messageBox").hide();
+});
+//-->
 </script>
 
 <div id="messageBox" class="alert alert-error"></div>
