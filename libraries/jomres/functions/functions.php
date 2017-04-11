@@ -2450,7 +2450,7 @@ function hotelSettings()
 
     $componentArgs = array();
     $componentArgs[ 'mrConfig' ] = $mrConfig;
-    $MiniComponents->triggerEvent('0500', $componentArgs); // Generate configuration options. Optional
+    $MiniComponents->triggerEvent('00500', $componentArgs); // Generate configuration options. Optional
 
     // the default view
     $lists = array();
@@ -2696,7 +2696,7 @@ function hotelSettings()
 
     $configurationPanel->startTabs();
 
-    $MiniComponents->triggerEvent('0501', $componentArgs); // Generate configuration options tabs
+    $MiniComponents->triggerEvent('00501', $componentArgs); // Generate configuration options tabs
 
             $configurationPanel->endTabs(); ?>
 			<input type="hidden" name="no_html" value="1">
