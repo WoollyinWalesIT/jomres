@@ -109,7 +109,7 @@ class j02260editbooking
             $jrtb = $jrtbar->startTable();
             if (!$popup) {
                 //booking approvals
-                if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['approved'] == 0 && isset($MiniComponents->registeredClasses['00005booking_enquiries'])) {
+                if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['approved'] == 0 && isset($MiniComponents->registeredClasses['00005']['booking_enquiries'])) {
                     if ($can_be_approved) {
                         $output[ 'HAPPROVEBOOKING' ] = jr_gettext('_JOMRES_BOOKING_APPROVE_INQUIRY', '_JOMRES_BOOKING_APPROVE_INQUIRY', $editable = false, $isLink = true);
                         $link = JOMRES_SITEPAGE_URL.'&task=approve_enquiry&contractUid='.$contract_uid;
@@ -196,7 +196,7 @@ class j02260editbooking
                 $notesLink = JOMRES_SITEPAGE_URL.'&task=addnote&contract_uid='.$contract_uid;
                 $jrtb .= $jrtbar->toolbarItem('note', $notesLink, jr_gettext('_JOMCOMP_BOOKINGNOTES_ADD', '_JOMCOMP_BOOKINGNOTES_ADD', $editable = false, $isLink = false));
 
-                if (get_showtime('include_room_booking_functionality') && (int) $current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 && isset($MiniComponents->registeredClasses['00005jomres_ical'])) {
+                if (get_showtime('include_room_booking_functionality') && (int) $current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 && isset($MiniComponents->registeredClasses['00005']['jomres_ical'])) {
                     $output[ 'ICAL_EXPORT' ] = jr_gettext('_JOMRES_ICAL_EVENT', '_JOMRES_ICAL_EVENT', $editable = false, $isLink = true);
                     $link = JOMRES_SITEPAGE_URL.'&task=ical_export_contract&contract_uid='.$contract_uid.'&property_uid='.$defaultProperty;
                     $targetTask = 'ical_export_contract';

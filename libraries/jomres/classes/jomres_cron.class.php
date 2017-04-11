@@ -117,8 +117,8 @@ class jomres_cron
         $allJobs = array();
 
         if (!defined('AUTO_UPGRADE') && isset($MiniComponents->registeredClasses) && !empty($MiniComponents->registeredClasses)) {
-            foreach ($MiniComponents->registeredClasses as $key => $val) {
-                if (substr($key, 0, 10) == '06000cron_') {
+            foreach ($MiniComponents->registeredClasses['06000'] as $key => $val) {
+                if (substr($key, 0, 5) == 'cron_') {
                     $allJobs[ ] = $key;
                 }
             }

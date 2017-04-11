@@ -58,7 +58,7 @@ class jomres_call_api
         }
 
         $MiniComponents = jomres_getSingleton('mcHandler');
-        if (isset($MiniComponents->registeredClasses['06005oauth']) && isset($client_secret) && trim($client_secret) != '' ) {
+        if (isset($MiniComponents->registeredClasses['06005']['oauth']) && isset($client_secret) && trim($client_secret) != '' ) {
             $this->server = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/';
             $data = array('grant_type' => 'client_credentials', 'client_id' => $client_id, 'client_secret' => $client_secret);
             $token_request = $this->query_api('POST', '/', $data);

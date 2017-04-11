@@ -217,7 +217,7 @@ class jomres_generic_booking_email
 
         //get custom template
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if (isset($MiniComponents->registeredClasses['03150'.$email_type])) {
+        if (isset($MiniComponents->registeredClasses['03150'][$email_type])) {
             $MiniComponents->specificEvent('03150', $email_type);
         } else {
             return;

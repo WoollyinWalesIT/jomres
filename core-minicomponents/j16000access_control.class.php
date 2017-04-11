@@ -31,36 +31,28 @@ class j16000access_control
 
         $levels = array('anybody', 'registered', 'manager', 'supermanager', 'nobody');
 
-        jr_import('jomres_access_control_controlable');
-        $jomres_access_control_controlable = new jomres_access_control_controlable();
-        // Minicomponents that should never be forbidden from running
-        $uncontrollable_patterns = $jomres_access_control_controlable->uncontrollable_patterns;
-        $uncontrollable_scripts = $jomres_access_control_controlable->uncontrollable_scripts;
-        $menu_patterns = $jomres_access_control_controlable->menu_patterns;
-
         $controllable = array();
 
         $thisJRUser = $MiniComponents->triggerEvent('00002'); // Register user
 
-        $count = count($MiniComponents->registeredClasses);
-        foreach ($MiniComponents->registeredClasses as $key => $val) {
-            if (!in_array($key, $uncontrollable_scripts)) {
-                $pattern = substr($key, 0, 5);
-
-                if ($jomres_access_control->limit_to_menus_only && in_array($pattern, $menu_patterns) && !in_array($pattern, $uncontrollable_patterns)) {
-                    $controllable[ $key ] = $val;
-                } elseif (!in_array($pattern, $uncontrollable_patterns) && !$jomres_access_control->limit_to_menus_only) {
-                    $controllable[ $key ] = $val;
-                }
-            }
+        foreach ($MiniComponents->registeredClasses as $eventPoint => $ev) {
+			foreach ($ev as $eventName => $eventDetails) {
+				if (!in_array($eventPoint.$eventName, $jomres_access_control->uncontrollable_scripts)) {
+					if ($jomres_access_control->limit_to_menus_only && in_array($eventPoint, $jomres_access_control->menu_patterns) && !in_array($eventPoint, $jomres_access_control->uncontrollable_patterns)) {
+						$controllable[ $eventPoint.$eventName ] = $eventDetails;
+					} elseif (!in_array($eventPoint, $jomres_access_control->uncontrollable_patterns) && !$jomres_access_control->limit_to_menus_only) {
+						$controllable[ $eventPoint.$eventName ] = $eventDetails;
+					}
+				}
+			}
         }
 
-        foreach ($controllable as $minicomp) {
+        foreach ($controllable as $k => $v) {
             $r = array();
 
             //$access_control
-            $r[ 'SCRIPTNAME' ] = $minicomp[ 'eventPoint' ].$minicomp[ 'eventName' ];
-            $r[ 'DROPDOWN' ] = $jomres_access_control->generate_access_control_dropdown($minicomp);
+            $r[ 'SCRIPTNAME' ] = $k;
+            $r[ 'DROPDOWN' ] = $jomres_access_control->generate_access_control_dropdown($k);
 
             $rows[ ] = $r;
         }

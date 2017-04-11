@@ -611,8 +611,7 @@ class j02990showconfirmation
                                 $gatewaydir = str_replace('\\', '/', $gatewaydir);
                                 $gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.gif" border="0">';
 
-                                $gw_configuration_script = '00509'.$gateway_name;
-                                if (isset($MiniComponents->registeredClasses[$gw_configuration_script])) { // Let's check that the site manager hasn't uninstalled the plugin. If count == 0, then they have, we don't want to attempt to show this gateway
+                                if (isset($MiniComponents->registeredClasses['00509'][$gateway_name])) { // Let's check that the site manager hasn't uninstalled the plugin. If count == 0, then they have, we don't want to attempt to show this gateway
                                     $gateways[ ] = $gw;
                                     }
                                 ++$counter;
@@ -638,7 +637,7 @@ class j02990showconfirmation
         }
 
         $cartoutput = array();
-        if (isset($MiniComponents->registeredClasses[ '06000show_cart' ])) {
+        if (isset($MiniComponents->registeredClasses[ '06000']['show_cart' ])) {
             $site_paypal_settings = get_plugin_settings('paypal', 0);
             if ( (isset($site_paypal_settings['override']) && $site_paypal_settings['override'] == '1' && $jrConfig[ 'useshoppingcart' ] == '1') || empty($gatewayDeets)) {
                 $booking_parts[ '_JOMRES_CART_OR' ] = jr_gettext('_JOMRES_CART_OR', '_JOMRES_CART_OR');

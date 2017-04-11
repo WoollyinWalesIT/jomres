@@ -54,28 +54,27 @@ class shortcode_parser
 
             $eventArgs = null;
 
-            foreach ($MiniComponents->registeredClasses as $eClass) {
-                $classFileSuffix = '.class.php';
-                $filename = 'j'.$eClass[ 'eventPoint' ].$eClass[ 'eventName' ].$classFileSuffix;
+            foreach ($MiniComponents->registeredClasses as $eventPoint => $ev) {
+				foreach ($ev as $eventName => $eventDetails) {
+					$classFileSuffix = '.class.php';
+					$filename = 'j'.$eventPoint.$eventName.$classFileSuffix;
 
-                if (file_exists($eClass[ 'filepath' ].$filename)) {
-                    $ePoint = $eClass[ 'eventPoint' ];
+					if (file_exists($eventDetails[ 'filepath' ].$filename)) {
+						if ($eventPoint == '06000' || $eventPoint == '06001' || $eventPoint == '06002' || $eventPoint == '06005') {
+							$event = 'j'.$eventPoint.$eventName;
 
-                    if ($ePoint == '06000' || $ePoint == '06001' || $ePoint == '06002' || $ePoint == '06005') {
-                        $eName = $eClass[ 'eventName' ];
-                        $event = 'j'.$ePoint.$eName;
+							include_once $eventDetails[ 'filepath' ].$filename;
 
-                        include_once $eClass[ 'filepath' ].$filename;
+							$e = new $event($eventArgs);
 
-                        $e = new $event($eventArgs);
+							if (isset($e->shortcode_data)) {
+								$this->shortcodes[$eventPoint][] = $e->shortcode_data;
+							}
 
-                        if (isset($e->shortcode_data)) {
-                            $this->shortcodes[$ePoint][] = $e->shortcode_data;
-                        }
-
-                        unset($e);
-                    }
-                }
+							unset($e);
+						}
+					}
+				}
             }
 
             if (!file_put_contents($this->shortcodes_file,

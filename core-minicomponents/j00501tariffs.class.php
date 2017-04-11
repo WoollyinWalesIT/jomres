@@ -102,7 +102,7 @@ class j00501tariffs
         }
 
         if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
-            if (isset($MiniComponents->registeredClasses[ '00011manager_option_04_guesttypeadmin' ])) {
+            if (isset($MiniComponents->registeredClasses['00011']['manager_option_04_guesttypeadmin' ])) {
                 if ($mrConfig[ 'wholeday_booking' ] == '1') {
                     $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', false));
                     $configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);

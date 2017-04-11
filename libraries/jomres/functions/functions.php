@@ -1322,10 +1322,8 @@ function jomres_validate_gateway_plugin()
         }
     
     $installed_gateway_plugins = array();
-    foreach ($MiniComponents->registeredClasses as $event ) {
-        if ($event['eventPoint'] == "00509" ) {
-            $installed_gateway_plugins[] = $event['eventName'];
-        }
+    foreach ($MiniComponents->registeredClasses['00509'] as $eventName => $e ) {
+        $installed_gateway_plugins[] = $eventName;
     }
    // No gateways are installed
     if ( empty($installed_gateway_plugins) ) {
@@ -1412,11 +1410,11 @@ function get_plugin_settings($plugin, $prop_id = 0)
 {
     // This function is exclusively for gateway plugins
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-    $gw_configuration_script = '00509'.$plugin;
-    if (!isset($MiniComponents->registeredClasses[$gw_configuration_script])) {
+    
+	if (!isset($MiniComponents->registeredClasses['00509'][$plugin])) {
         return false; // Gateway isn´t installed
     }
-    if (isset($MiniComponents->registeredClasses[$gw_configuration_script]) && count($MiniComponents->registeredClasses[$gw_configuration_script]) == 0) { // Let's check to see that the gateway hasn't been uninstalled. It's possible that the settings exist, but the gateway code itself doesn't.
+    if (isset($MiniComponents->registeredClasses['00509'][$plugin]) && count($MiniComponents->registeredClasses['00509'][$plugin]) == 0) { // Let's check to see that the gateway hasn't been uninstalled. It's possible that the settings exist, but the gateway code itself doesn't.
         return false; // Can't "throw" an error here, any failure needs to be handled by the calling function/method
     }
 
@@ -2515,7 +2513,7 @@ function hotelSettings()
     $tariffMode = array();
     $tariffMode[ ] = jomresHTML::makeOption('0', jr_gettext('JOMRES_COM_A_TARIFFMODE_NORMAL', 'JOMRES_COM_A_TARIFFMODE_NORMAL', false));
 
-    if (isset($MiniComponents->registeredClasses[ '06002edit_tariff_micromanage' ])) {
+    if (isset($MiniComponents->registeredClasses[ '06002']['edit_tariff_micromanage' ])) {
         $tariffMode[ ] = jomresHTML::makeOption('2', jr_gettext('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', false));
         $tariffMode[ ] = jomresHTML::makeOption('1', jr_gettext('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'JOMRES_COM_A_TARIFFMODE_ADVANCED', false));
     }
@@ -4628,7 +4626,7 @@ function max_input_vars_test()
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
     $response = '';
     $max_vars = (int) ini_get('max_input_vars');
-    if ($max_vars < 1001 && isset($MiniComponents->registeredClasses[ '00005advanced_micromanage_tariff_editing_modes' ])) { // The default is 1000 on most installations
+    if ($max_vars < 1001 && isset($MiniComponents->registeredClasses[ '00005']['advanced_micromanage_tariff_editing_modes' ])) { // The default is 1000 on most installations
         $highlight = (using_bootstrap() ? 'alert' : 'ui-state-highlight');
         $response = "<div class='".$highlight."'>Please note, your max_input_vars setting seems to be set to 1000, which is the default setting. If you're using the Micromanage tariff editing mode and wish to save prices for more than a year in advance, we recommend that you change this setting to 3000 or more. <a href=\"https://tickets.jomres.net/index.php?/Knowledgebase/Article/View/115/15/too-many-variables\" target=\"_blank\">This page </a>has  more information.</div>";
     }
@@ -4654,18 +4652,17 @@ function plugin_check()
 {
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
     $recommended_plugins = array();
-    $recommended_plugins[ 'advanced_micromanage_tariff_editing_modes' ] = array('minicomponent_name' => 'j00005advanced_micromanage_tariff_editing_modes', 'message' => 'Offers the Advanced and Micromanage tariff editing modes, allowing property managers to construct much more detailed tariffs which mirror their real-world prices, for example different prices that cover different seasons.');
-    $recommended_plugins[ 'core_gateway_paypal' ] = array('minicomponent_name' => 'j00605paypal', 'message' => 'Offers the ability for property managers to take payments online via paypal.');
-    $recommended_plugins[ 'guest_types' ] = array('minicomponent_name' => 'j02114listcustomertypes', 'message' => 'If a property manager wants to charge per person per night, or if they don\'t want to charge per person per night but need to know numbers of guests, you will need this plugin to create guest types.');
-    $recommended_plugins[ 'optional_extras' ] = array('minicomponent_name' => 'j02142listextras', 'message' => 'Optional extras can be added to bookings using the Optional Extras plugin. This provides the ability to create extras which can be charged using different models (e.g. per night, per booking, per guest etc).');
-    $recommended_plugins[ 'property_creation_plugins' ] = array('minicomponent_name' => 'j02300regprop1', 'message' => 'If you need to create more properties then you will need the Property Creation Plugin.');
+    $recommended_plugins[ 'advanced_micromanage_tariff_editing_modes' ] = array('eventPoint'=>'00005', 'eventName' => 'advanced_micromanage_tariff_editing_modes', 'message' => 'Offers the Advanced and Micromanage tariff editing modes, allowing property managers to construct much more detailed tariffs which mirror their real-world prices, for example different prices that cover different seasons.');
+    $recommended_plugins[ 'core_gateway_paypal' ] = array('eventPoint'=>'00605', 'eventName' => 'paypal', 'message' => 'Offers the ability for property managers to take payments online via paypal.');
+    $recommended_plugins[ 'guest_types' ] = array('eventPoint'=>'02114', 'eventName' => 'listcustomertypes', 'message' => 'If a property manager wants to charge per person per night, or if they don\'t want to charge per person per night but need to know numbers of guests, you will need this plugin to create guest types.');
+    $recommended_plugins[ 'optional_extras' ] = array('eventPoint'=>'02142', 'eventName' => 'listextras', 'message' => 'Optional extras can be added to bookings using the Optional Extras plugin. This provides the ability to create extras which can be charged using different models (e.g. per night, per booking, per guest etc).');
+    $recommended_plugins[ 'property_creation_plugins' ] = array('eventPoint'=>'02300', 'eventName' => 'regprop1', 'message' => 'If you need to create more properties then you will need the Property Creation Plugin.');
 
     $messages = '';
     $highlight = (using_bootstrap() ? 'alert alert-info' : 'ui-state-highlight');
-    foreach ($recommended_plugins as $plugin_name => $plugin) {
-        $event_point = substr($plugin[ 'minicomponent_name' ], 1, strlen($plugin[ 'minicomponent_name' ]));
-        if (!array_key_exists($event_point, $MiniComponents->registeredClasses)) {
-            $messages .= "<div class='".$highlight."'><strong> Recommended plugin </strong>: ".$plugin_name.'<strong><br/> Functionality : </strong>'.$plugin[ 'message' ].'</div>';
+    foreach ($recommended_plugins as $k => $v) {
+        if (!isset($MiniComponents->registeredClasses[$v['eventPoint']][$v['eventName']])) {
+            $messages .= "<div class='".$highlight."'><strong> Recommended plugin </strong>: ".$k.'<strong><br/> Functionality : </strong>'.$v[ 'message' ].'</div>';
         }
     }
     if ($messages != '') {
@@ -4740,31 +4737,26 @@ function jomresAccessControlSanityCheck()
     $pass = false;
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
+	
+	$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
 
     if ($jrConfig[ 'full_access_control' ] == '1') {
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        jr_import('jomres_access_control_controlable');
-        $jomres_access_control_controlable = new jomres_access_control_controlable();
-        // Minicomponents that should never be forbidden from running
-        $uncontrollable_patterns = $jomres_access_control_controlable->uncontrollable_patterns;
-        $uncontrollable_scripts = $jomres_access_control_controlable->uncontrollable_scripts;
-        $menu_patterns = $jomres_access_control_controlable->menu_patterns;
 
         // First we'll find how many minicomponents should be controllable
-        foreach ($MiniComponents->registeredClasses as $key => $val) {
-            if (!in_array($key, $uncontrollable_scripts)) {
-                $pattern = substr($key, 0, 5);
+        foreach ($MiniComponents->registeredClasses as $eventPoint => $ev) {
+			foreach ($ev as $eventName => $eventDetails) {
+				if (!in_array($eventPoint.$eventName, $jomres_access_control->uncontrollable_scripts)) {
+					if ($jomres_access_control->limit_to_menus_only && in_array($eventPoint, $jomres_access_control->menu_patterns) && !in_array($eventPoint, $jomres_access_control->uncontrollable_patterns)) {
+						$controllable[ $eventPoint.$eventName ] = $eventDetails;
+					} elseif (!in_array($eventPoint, $jomres_access_control->uncontrollable_patterns) && !$jomres_access_control->limit_to_menus_only) {
+						$controllable[ $eventPoint.$eventName ] = $eventDetails;
+					}
+				}
+			}
+		}
 
-                if ($jomres_access_control->limit_to_menus_only && in_array($pattern, $menu_patterns) && !in_array($pattern, $uncontrollable_patterns)) {
-                    $controllable[ $key ] = $val;
-                } elseif (!in_array($pattern, $uncontrollable_patterns) && !$jomres_access_control->limit_to_menus_only) {
-                    $controllable[ $key ] = $val;
-                }
-            }
-        }
         // Next we'll find how many minicomponents actually have settings in the access control table
-        $jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
-
         // Now, it's possible that a minicomponent has been uninstalled, therefore we must go through the $jomres_access_control->controlled array and remove those records that refer to minicomps that aren't found in the $controllable array
         if (!empty($jomres_access_control->controlled)) {
             $removed = false;
