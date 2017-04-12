@@ -323,7 +323,6 @@ class jrportal_guests
                     `guests_uid`
 				FROM `#__jomres_guests` 
 				WHERE `mos_userid` = ".(int)$cms_id." AND `property_uid` = ".(int)$this->property_uid;
-                // echo $query;exit;
         return doSelectSql($query, 1  ) ;
 	}
 }
