@@ -2949,13 +2949,12 @@ function insertGuestDeets($jomressession)
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
     $userIsManager = checkUserIsManager();
-    echo "HI";exit;
     $xCustomers = $tmpBookingHandler->getGuestData();
 
     if (isset($xCustomers[ 'guests_uid' ])) {
         $guests_uid = (int) $xCustomers[ 'guests_uid' ];
     }
-var_dump($xCustomers);exit;
+
     $mos_userid = (int) $xCustomers[ 'mos_userid' ];
     $existing_id = (int) $xCustomers[ 'existing_id' ];
     $email = $xCustomers[ 'email' ];
@@ -3000,7 +2999,7 @@ var_dump($xCustomers);exit;
     } else {
         $guests_uid = 0;
     }
-var_dump($guests_uid);exit;
+
     if ($guests_uid > 0) {
         $query = "UPDATE	#__jomres_guests SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',
 		`town`= '$town',`county`= '$region',`country`= '$country',`postcode`= '$postcode',`tel_landline`= '$landline',`tel_mobile`= '$mobile',
@@ -3015,7 +3014,6 @@ var_dump($guests_uid);exit;
         $query .= ") VALUES ('$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$property_uid','$email'";
         $query .= ",'".(int) $mos_userid."'";
         $query .= ')';
-        echo $query;exit;
         $returnid = doInsertSql($query, false);
     }
 
