@@ -58,13 +58,13 @@ class j02150addservicetobill
         } else {
             $contract_uid = jomresGetParam($_POST, 'contract_uid', 0);
             $service_description = ucfirst(jomresGetParam($_POST, 'service_description', ''));
-            $service_value = convert_entered_price_into_safe_float(jomresGetParam($_POST, 'service_value', ''));
+            $service_value = convert_entered_price_into_safe_float(jomresGetParam($_POST, 'service_value', 0.00));
             $taxrate = jomresGetParam($_POST, 'taxrate', 0);
             $service_qty = jomresGetParam($_POST, 'service_qty', 1.00);
 
             $jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
             $jrportal_taxrate->gather_data($taxrate);
-            $tax_value = (float) $jrportal_taxrate->rate;
+            $tax_value = $jrportal_taxrate->rate;
 
             //if prices are set to gross, we need to convert $service_value to the nett amount, so it can be used as initial price in the invoice
             if ($mrConfig['prices_inclusive'] == '1') {
@@ -73,7 +73,7 @@ class j02150addservicetobill
             }
 
             if ($contract_uid && $service_description) {
-                $query = "INSERT INTO #__jomres_extraservices (`service_description`,`service_value`,`contract_uid`,`tax_rate_val`,`tax_code`, `service_qty`) VALUES ('$service_description','".(float) $service_value."','".(int) $contract_uid."',".$tax_value.','.$taxrate.','.$service_qty.')';
+                $query = "INSERT INTO #__jomres_extraservices (`service_description`,`service_value`,`contract_uid`,`tax_rate_val`,`tax_code`, `service_qty`) VALUES ('$service_description','".$service_value."','".(int) $contract_uid."',".$tax_value.','.$taxrate.','.$service_qty.')';
                 if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_ADDSERVICE', '_JOMRES_MR_AUDIT_ADDSERVICE', false))) {
                     trigger_error('Unable to insert into extraservices table, mysql db failure', E_USER_ERROR);
                 } else {
@@ -84,7 +84,7 @@ class j02150addservicetobill
                     $line_item = array('tax_code_id' => $taxrate,
                                          'name' => $service_description,
                                          'description' => '',
-                                         'init_price' => number_format($service_value, 2, '.', ''),
+                                         'init_price' => $service_value,
                                          'init_qty' => number_format($service_qty, 2, '.', ''),
                                          'init_discount' => 0,
                                          );
