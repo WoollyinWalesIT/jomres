@@ -34,7 +34,6 @@ class j06000cronjobs
             $cron = new jomres_cron();
             if ($cron->method == 'Cron') {
                 $cron->triggerJobs();
-                $cron->displayDebug();
             }
         }
     }

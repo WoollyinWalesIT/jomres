@@ -29,15 +29,12 @@ class j16000translate_locales
         }
         echo '<h2>'.jr_gettext('_JOMRES_TOUCHTEMPLATES', '_JOMRES_TOUCHTEMPLATES', false).'</h2>';
         echo '<br/><h3>'.get_showtime('lang').'</h3><br/>';
-        // $jomreslang = $jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
-        // echo $jomreslang->get_languageselection_dropdown();
-        // echo "<hr>";
 
         $output = array();
 
         $query = 'SELECT id,countrycode,countryname FROM #__jomres_countries ORDER BY countryname';
         $countryList = doSelectSql($query);
-        if (count($countryList) > 0) {
+        if (!empty($countryList)) {
             foreach ($countryList as $country) {
                 $output[ ] = jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRIES_'.$country->id, $country->countryname);
             }
@@ -48,7 +45,7 @@ class j16000translate_locales
         if ($jrConfig[ 'region_names_are_translatable' ] == '1') {
             $query = 'SELECT id,countrycode,regionname FROM #__jomres_regions ORDER BY countrycode,regionname';
             $regionList = doSelectSql($query);
-            if (count($regionList) > 0) {
+            if (!empty($regionList)) {
                 foreach ($regionList as $region) {
                     $output[ ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$region->id, $region->regionname);
                 }

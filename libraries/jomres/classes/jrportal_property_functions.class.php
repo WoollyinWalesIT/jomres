@@ -27,7 +27,7 @@ class jrportal_property_functions // Functions supplied as a class so that they 
 		FROM #__jomres_propertys ' .$caveat;
         //echo $query;exit;
         $result = doSelectSql($query);
-        if (count($result) > 0) {
+        if (!empty($result)) {
             foreach ($result as $r) {
                 if (is_numeric($r->property_region)) {
                     $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');

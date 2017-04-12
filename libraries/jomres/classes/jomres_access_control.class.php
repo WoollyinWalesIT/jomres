@@ -40,13 +40,50 @@ class jomres_access_control
             $this->limit_to_menus_only = false;
         }
 
-        jr_import('jomres_access_control_controlable');
-        $jomres_access_control_controlable = new jomres_access_control_controlable();
         // Minicomponents that should never be forbidden from running
-        $this->uncontrollable_patterns = $jomres_access_control_controlable->uncontrollable_patterns;
-        $this->uncontrollable_scripts = $jomres_access_control_controlable->uncontrollable_scripts;
+        $this->uncontrollable_patterns = array('00001', '00002', '00005', '01009', '01010', '00021', '16010', '16020', '99995', '99996', '99997', '99999', '10001', '10002', '10002', '10003', '10004', '16000');
+
+        $this->uncontrollable_scripts = array('00001start', '00002usermanagement', '00006sanity_checks', '00012managelogs', '00012manager_first_run', '06000cron_exchangerates', '06000cron_invoice', '06000cron_optimise', '06000cron_subscriptions', '06000cronjobs', '00060toptemplate', '00061bottomtemplate', '05000bookingobject', '03020insertbooking');
+
+        $this->menu_patterns = array('00009', '00010', '00011', '01004');
 
         $this->init();
+    }
+	
+	public static function getInstance()
+    {
+        if (!self::$configInstance) {
+            self::$configInstance = new self();
+        }
+
+        return self::$configInstance;
+    }
+
+    public function __clone()
+    {
+        trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
+    }
+
+    public function __set($setting, $value)
+    {
+        if (self::$internal_debugging) {
+            echo 'Setting '.$setting.' to '.$value.' <br>';
+        }
+        $this->$setting = $value;
+
+        return true;
+    }
+
+    public function __get($setting)
+    {
+        if (self::$internal_debugging) {
+            echo 'Getting '.$setting.' which is '.$this->$setting.'<br>';
+        }
+        if (isset($this->$setting)) {
+            return $this->$setting;
+        }
+
+        return null;
     }
 
     public function remove_minicomp_from_access_control_table($minicomp)
@@ -88,7 +125,7 @@ class jomres_access_control
                 exit;
                 }
 
-                if (count($this->controlled) > 0) {
+                if (!empty($this->controlled)) {
                     if (array_key_exists($minicomp, $this->controlled)) {
                         //var_dump($minicomp." ".$this->controlled[$minicomp]['access_level']);exit;
 
@@ -141,23 +178,14 @@ class jomres_access_control
     {
         $this->controlled = array();
         $controlled = false;
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        if ($c->isCached('jomres_access_control_scripts')) {
-            $controlled = $c->retrieve('jomres_access_control_scripts');
-        }
-
-        if ($controlled) {
-            $this->controlled = $controlled;
-        } else {
-            $query = 'SELECT id,scriptname,access_level FROM #__jomres_access_control';
-            $scripts = doSelectSql($query);
-            if (count($scripts) > 0) {
-                foreach ($scripts as $script) {
-                    $this->controlled[ $script->scriptname ] = array('scriptname' => $script->scriptname, 'access_level' => $script->access_level);
-                }
-            }
-            $c->store('jomres_access_control_scripts', $this->controlled);
-        }
+        
+		$query = 'SELECT id,scriptname,access_level FROM #__jomres_access_control';
+		$scripts = doSelectSql($query);
+		if (!empty($scripts)) {
+			foreach ($scripts as $script) {
+				$this->controlled[ $script->scriptname ] = array('scriptname' => $script->scriptname, 'access_level' => $script->access_level);
+			}
+		}
     }
 
     public function recount_controlled_scripts()
@@ -168,9 +196,9 @@ class jomres_access_control
     public function generate_access_control_dropdown($minicomp)
     {
         $this->levels = array('default' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_DEFAULT', '_JOMRES_ACCESS_CONTROL_LEVELS_DEFAULT'), 'anybody' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_ANYBODY', '_JOMRES_ACCESS_CONTROL_LEVELS_ANYBODY'), 'registered' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_REGISTERED', '_JOMRES_ACCESS_CONTROL_LEVELS_REGISTERED'), 'receptionist' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_RECEPTIONIST', '_JOMRES_ACCESS_CONTROL_LEVELS_RECEPTIONIST'), 'manager' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_MANAGER', '_JOMRES_ACCESS_CONTROL_LEVELS_MANAGER'), 'supermanager' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_SUPERMANAGER', '_JOMRES_ACCESS_CONTROL_LEVELS_SUPERMANAGER'), 'nobody' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_NOBODY', '_JOMRES_ACCESS_CONTROL_LEVELS_NOBODY'));
-        if (count($this->controlled) > 0) {
-            if (array_key_exists($minicomp[ 'eventPoint' ].$minicomp[ 'eventName' ], $this->controlled)) {
-                $current_level = $this->controlled[ $minicomp[ 'eventPoint' ].$minicomp[ 'eventName' ] ][ 'access_level' ];
+        if (!empty($this->controlled)) {
+            if (array_key_exists($minicomp, $this->controlled)) {
+                $current_level = $this->controlled[$minicomp][ 'access_level' ];
             } else {
                 $current_level = 'default';
             }
@@ -190,7 +218,7 @@ class jomres_access_control
         $mode_options[ ] = jomresHTML::makeOption('supermanager', $this->levels[ 'supermanager' ]);
         $mode_options[ ] = jomresHTML::makeOption('nobody', $this->levels[ 'nobody' ]);
 
-        $javascript = 'onChange="change_access_level(\''.$minicomp[ 'eventPoint' ].$minicomp[ 'eventName' ].'\',this.value)";';
+        $javascript = 'onChange="change_access_level(\''.$minicomp.'\',this.value)";';
 
         return jomresHTML::selectList($mode_options, '', ' autocomplete="off" class="inputbox" size="1" '.$javascript.'', 'value', 'text', $current_level);
     }
@@ -212,41 +240,5 @@ class jomres_access_control
         }
 
         return $access_level;
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new showtime();
-        }
-
-        return self::$configInstance;
-    }
-
-    public function __clone()
-    {
-        trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
-    }
-
-    public function __set($setting, $value)
-    {
-        if (self::$internal_debugging) {
-            echo 'Setting '.$setting.' to '.$value.' <br>';
-        }
-        $this->$setting = $value;
-
-        return true;
-    }
-
-    public function __get($setting)
-    {
-        if (self::$internal_debugging) {
-            echo 'Getting '.$setting.' which is '.$this->$setting.'<br>';
-        }
-        if (isset($this->$setting)) {
-            return $this->$setting;
-        }
-
-        return null;
     }
 }

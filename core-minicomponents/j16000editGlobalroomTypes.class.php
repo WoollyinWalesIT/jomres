@@ -42,7 +42,7 @@ class j16000editGlobalroomTypes
         $output[ 'CLASSABBV' ] = stripslashes($jomres_room_types->room_type['room_class_abbv']);
         $output[ 'CLASSDESC' ] = stripslashes($jomres_room_types->room_type['room_class_full_desc']);
 
-        if (count($jomres_property_types->property_types) > 0) {
+        if (!empty($jomres_property_types->property_types)) {
             foreach ($jomres_property_types->property_types as $ptype) {
                 $r = array();
                 $r[ 'propertytype_id' ] = $ptype['id'];

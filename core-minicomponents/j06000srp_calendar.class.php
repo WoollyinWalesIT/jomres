@@ -91,7 +91,7 @@ class j06000srp_calendar
             $contracts[] = $b->contract_uid;
         }
 
-        if (count($contracts) > 0) {
+        if (!empty($contracts)) {
             $query = 'SELECT `arrival`,`departure` FROM #__jomres_contracts WHERE `contract_uid` IN ('.jomres_implode($contracts).')';
             $contractList = doSelectSql($query);
 

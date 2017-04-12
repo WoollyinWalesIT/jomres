@@ -42,9 +42,6 @@ class j16000unsuspend_user
 			$jomres_suspensions->set_manager_id( $cms_user_id );
 			$jomres_suspensions->unsuspend_manager();
 			$jomres_suspensions->publish_managers_properties();
-			
-			$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
-			$c->eraseAll();
 			}
 
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_users" ), "" );

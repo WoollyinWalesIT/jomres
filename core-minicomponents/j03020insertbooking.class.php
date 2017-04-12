@@ -60,11 +60,11 @@ class j03020insertbooking
 
         $datetime = date('Y-m-d H:i:s');
 
-        if (count($guestDetails) == 0) {
+        if (empty($guestDetails)) {
             trigger_error('Failed to insert booking: No guest details ', E_USER_ERROR);
             $this->insertSuccessful = false;
         }
-        if (count($tempBookingDataList) == 0) {
+        if (empty($tempBookingDataList)) {
             system_log('j03020insertbooking :: Failed to insert booking: Booking data not found. Probably already booking inserted. '.get_showtime('jomressession'));
             $this->insertSuccessful = false;
             echo 'Booking already made';
@@ -109,7 +109,7 @@ class j03020insertbooking
                     // The extras quantites is passed with ALL extra uids and default quanties. At this point we will strip out the extra uid that weren't actually selected before adding the serialized extras quantities to the db
                     $tmpextrasquantities = array();
                     $currentExtras = explode(',', $extras);
-                    if (count($currentExtras) > 0 && is_array($extrasquantities)) {
+                    if (!empty($currentExtras) && is_array($extrasquantities)) {
                         foreach ($extrasquantities as $id => $quan) {
                             if (in_array($id, $currentExtras)) {
                                 $tmpextrasquantities[ $id ] = $quan;
@@ -126,7 +126,8 @@ class j03020insertbooking
                     $varianceuids = explode(',', $tempBookingData->varianceuids);
                     $varianceqty = explode(',', $tempBookingData->varianceqty);
                     $variancevals = explode(',', $tempBookingData->variancevals);
-                    for ($i = 0; $i < count($variancetypes); ++$i) {
+					$n = count($variancetypes);
+                    for ($i = 0; $i < $n; ++$i) {
                         if ($variancetypes[ $i ] == 'guesttype' && $varianceqty[ $i ] > 0) {
                             $id = $varianceuids[ $i ];
                             $qty = $varianceqty[ $i ];
@@ -136,7 +137,7 @@ class j03020insertbooking
                     }
 
                     $rateRules = '';
-                    if (count($tmpArray) > 0) {
+                    if (!empty($tmpArray)) {
                         foreach ($tmpArray as $guestTypes) {
                             $rateRules .= 'guesttype'.'_'.$guestTypes[ 'id' ].'_'.$guestTypes[ 'qty' ].'_'.$guestTypes[ 'val' ].',';
                         }
@@ -209,9 +210,8 @@ class j03020insertbooking
                 jomres_audit(get_showtime('jomressession'), 'Amend booking - updated room booking '.$amend_contractuid);
                 $jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
                 $jomres_messaging->set_message('Amend booking - updated room booking '.$amend_contractuid);
-                if (count($rates_uids) > 1) {
-                    $rates_uids = array_unique($rates_uids);
-                }
+                
+				$rates_uids = array_unique($rates_uids);
 
                 $this->insertBookingEventValues[ 'cartnumber' ] = $amend_contractuid;
                 $this->insertBookingEventValues[ 'tempBookingDataList' ] = $tempBookingDataList;
@@ -309,7 +309,7 @@ class j03020insertbooking
                     // The extras quantites is passed with ALL extra uids and default quanties. At this point we will strip out the extra uid that weren't actually selected before adding the serialized extras quantities to the db
                     $tmpextrasquantities = array();
                     $currentExtras = explode(',', $extras);
-                    if (count($currentExtras) > 0 && is_array($extrasquantities)) {
+                    if (!empty($currentExtras) && is_array($extrasquantities)) {
                         foreach ($extrasquantities as $id => $quan) {
                             if (in_array($id, $currentExtras)) {
                                 $tmpextrasquantities[ $id ] = $quan;
@@ -326,7 +326,7 @@ class j03020insertbooking
                     }
 
                     $discount_details = '';
-                    if (count($discount) > 0) {
+                    if (!empty($discount)) {
                         foreach ($discount as $d) {
                             $discount_details .= serialize($d);
                         }
@@ -346,7 +346,7 @@ class j03020insertbooking
                                     $rates_uids[ ] = $rm[ 1 ];
                                     $query = "SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE `room_uid` = '".(int) $rmuid."' AND `date` = '".$roomBookedDate."'";
                                     $result = doSelectSql($query);
-                                    if (count($result) > 0) {
+                                    if (!empty($result)) {
                                         system_log('j03020insertbooking :: Failed to insert booking looks like the room has been double booked ');
                                         trigger_error('Failed to insert booking looks like the room has been double booked ', E_USER_ERROR);
                                         $this->insertSuccessful = false;
@@ -366,7 +366,8 @@ class j03020insertbooking
                     $varianceuids = explode(',', $tempBookingData->varianceuids);
                     $varianceqty = explode(',', $tempBookingData->varianceqty);
                     $variancevals = explode(',', $tempBookingData->variancevals);
-                    for ($i = 0; $i < count($variancetypes); ++$i) {
+					$n = count($variancetypes);
+                    for ($i = 0; $i < $n; ++$i) {
                         if ($variancetypes[ $i ] == 'guesttype' && $varianceqty[ $i ] > 0) {
                             $id = $varianceuids[ $i ];
                             $qty = $varianceqty[ $i ];
@@ -460,9 +461,8 @@ class j03020insertbooking
                             doInsertSql($query);
                         }
 
-                        if (count($rates_uids) > 1) {
-                            $rates_uids = array_unique($rates_uids);
-                        }
+                        $rates_uids = array_unique($rates_uids);
+
                         jomres_audit($cartnumber, jr_gettext('_JOMRES_MR_AUDIT_BOOKED_ROOM', '_JOMRES_MR_AUDIT_BOOKED_ROOM', false));
                     }
                 } else {
@@ -598,7 +598,7 @@ class j03020insertbooking
                 $jomres_custom_field_handler = jomres_singleton_abstract::getInstance('jomres_custom_field_handler');
                 $allCustomFields = $jomres_custom_field_handler->getAllCustomFieldsByPtypeId($ptype_id);
 
-                if (count($allCustomFields) > 0) {
+                if (!empty($allCustomFields)) {
                     $note = '';
                     foreach ($allCustomFields as $f) {
                         $formfieldname = $f[ 'fieldname' ].'_'.$f[ 'uid' ];

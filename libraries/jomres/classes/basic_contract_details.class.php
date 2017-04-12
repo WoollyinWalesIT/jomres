@@ -107,7 +107,7 @@ class basic_contract_details
 					WHERE a.contract_uid = '" .(int) $contract_uid."' AND a.property_uid = '".(int) $defaultProperty."' ";
         $contractData = doSelectSql($query);
 
-        if (count($contractData) < 1) {
+        if (empty($contractData)) {
             return false;
         }
 
@@ -245,7 +245,7 @@ class basic_contract_details
             }
         }
 
-        if (count($tariffs) > 0 && $room_and_tariff_info != array(0 => '')) {
+        if (!empty($tariffs) && $room_and_tariff_info != array(0 => '')) {
             $query = 'SELECT `rates_uid`,`rate_title` FROM #__jomres_rates WHERE `rates_uid` IN ('.jomres_implode($tariffs).') ';
             $tariff_names = doSelectSql($query);
 
@@ -274,7 +274,7 @@ class basic_contract_details
             }
         }
 
-        if (count($guesttype_ids) > 0) {
+        if (!empty($guesttype_ids)) {
             $query = 'SELECT `id`, `type` FROM #__jomres_customertypes WHERE id IN ('.jomres_implode($guesttype_ids).') ';
             $guesttype_titles = doSelectSql($query);
 
@@ -299,14 +299,14 @@ class basic_contract_details
         $extras_rows = array();
         $extraOptionsArray = explode(',', $this->contract[$contract_uid]['contractdeets']['extras']);
 
-        if (count($extraOptionsArray) > 0) {
+        if (!empty($extraOptionsArray)) {
             foreach ($extraOptionsArray as $k => $v) {
                 if ((int) $v == 0) {
                     unset($extraOptionsArray[$k]);
                 }
             }
 
-            if (count($extraOptionsArray) > 0) {
+            if (!empty($extraOptionsArray)) {
                 $query = "SELECT 
 								uid, 
 								name,
@@ -338,7 +338,7 @@ class basic_contract_details
 					WHERE contract_uid = '" .(int) $contract_uid."' AND property_uid = '".(int) $defaultProperty."'";
         $notesData = doSelectSql($query);
 
-        if (count($notesData) > 0) {
+        if (!empty($notesData)) {
             foreach ($notesData as $note) {
                 $this->contract[$contract_uid]['notedeets'][$note->id]['id'] = $note->id;
                 $this->contract[$contract_uid]['notedeets'][$note->id]['timestamp'] = $note->timestamp;

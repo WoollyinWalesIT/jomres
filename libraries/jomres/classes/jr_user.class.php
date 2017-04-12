@@ -290,8 +290,6 @@ class jr_user
         $this->userIsManager = false;
         $this->superPropertyManager = false;
         $this->userIsSuspended = false;
-
-        set_user_feedback_message(jr_gettext('_JOMRES_MANAGER_HAS_NO_PROPERTIES', '_JOMRES_MANAGER_HAS_NO_PROPERTIES', false, false), 'danger');
     }
 
     /**

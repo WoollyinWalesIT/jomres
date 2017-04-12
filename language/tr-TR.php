@@ -2167,7 +2167,7 @@ jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_COUNTRY_CONTENT', "Burada mülkiye
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROPERTY_TYPE_TITLE', "Mülk türü.");
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROPERTY_TYPE_CONTENT', "Bu açılır menüden mülk türünüzü seçin. Tüm mülkünü kiralıyorsanız veya mülkünüzde oda kiralıyorsanız, villa veya daire gibi bir şey olabilir. Muhtemelen otel veya yatak ve kahvaltı seçecektir. ");
 
-if (isset($MiniComponents->registeredClasses['00001jintour_start'])) {
+if (isset($MiniComponents->registeredClasses['00001']['jintour_start'])) {
    jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROCESS_TITLE', "Yönetim süreci.");
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROCESS_CONTENT', "Yönetim işlemi, mülkünüzün sitedeki ziyaretçiler tarafından nasıl kullanılacağıyla ilgilidir. Bir mülk ya da mülkte bir oda kiralıyorsanız, Kiralık\'ı seçersiniz. Turlar / Aynı rezervasyon formunda ayrılmış sonlu kaynak rezervasyonu (örneğin kayaklar), o halde yine de bu seçeneği seçersiniz. Sadece oda olmadan turlar / sonlu odalar teklif ediyorsanız, Turlar seçeneğini seçin. Kiralama işlevselliği ve yalnızca bilgi amaçlı olarak mülkiyet ekliyor, ardından Gayrimenkul\'ü seçin. ");
 }else {
@@ -2223,7 +2223,7 @@ jr_define('TOUR_ID_TOUR_TARGET_BOOKING_PARTICULARS_CONTENT', "Bu seçeneklerin h
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_ROOM_FEATURES_TITLE', "Oda özellikleri filtresi.");
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_ROOM_FEATURES_CONTENT', "Mülkü Klasik Odalar listesini kullanacak şekilde yapılandırdıysanız, misafirler belirli bir oda için değil, yalnızca rezerve etmek istedikleri oda seçebilir. -market özellikleri.Oda listesinde tıklanabilir görüntüler vardır, bu tıklandığında o tek kişilik oda hakkında daha fazla bilgi açılır.Eğer bu düzenin ek bir bonusu, bazı oda özelliklerini yarattıysanız ve bir odayı belirli bir özelliğe sahip olarak işaretlediyseniz, o zaman ziyaretçi Oda özelliklerini kullanarak, tam olarak ne istediklerini almalarını sağlamak için mevcut odaları filtrelemek için kullanabilirsiniz Not: Oda listesinde gösterilen her tipteki oda sayısını Ayarlar -> Mülk Yapılandırması - > Oda rezervasyonu bölümünde, Kullanılabilir oda / tarife limit seçeneğini değiştirerek, daha küçük bir oda listesini gösterecektir, ancak mülk yöneticisi olarak halen oda listesini tam olarak göreceksiniz."); 
 
-if (isset($MiniComponents->registeredClasses['00001jintour_start'])) {
+if (isset($MiniComponents->registeredClasses['00001']['jintour_start'])) {
     jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_TITLE', 'İsteğe bağlı ekstralar.');
     jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_CONTENT', "Burada gösterecek iki tür isteğe bağlı ekstralar oluşturabilirsiniz: Birinci tip, birkaç farklı modele göre oluşturulabilen basit bir isteğe bağlı ekstradır, örn. Per night, per person, per person per night Vs. Bunlar, konukların rezervasyona ekstra şeyler eklemek istediklerinde yararlıdır, ancak bu öğeler sonlu odalar değildir.Böylece örneğin Varış Üzerinde Çiçek Çiçekleri veya Havaalanı Transferi ekleyebilirsiniz.Diğer ekstralar yapılandırılmıştır Ayarlar bölümündeki Tour / Activity Profiles Management (Tur / Etkinlik Profilleri Yönetimi) menü seçeneğinden ve sonlu odalı öğeler oluşturmak için kullanılır.Örneğin bu, müzelere ve diğer sitelere yapılan yerel turlar gibi şeyler için kullanılır.Teşekkür ederiz, yalnızca birkaç boşluğun olduğu her tür kaynak Belirli bir tarihte kullanılabilir.");
 } else {

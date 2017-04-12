@@ -65,7 +65,7 @@ class basic_guest_type_details
 				ORDER BY `order`, `type` ';
         $result = doSelectSql($query);
 
-        if (count($result) < 1) {
+        if (empty($result)) {
             return false;
         }
 

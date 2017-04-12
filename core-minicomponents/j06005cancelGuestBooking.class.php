@@ -40,7 +40,7 @@ class j06005cancelGuestBooking
             $query = "SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '".(int) $thisJRUser->id."' ";
             $guests_uids = doSelectSql($query);
             // Because a new record is made in the guests table for each new property the guest registers in, we need to find all the guest uids for this user
-            if (count($guests_uids) > 0) {
+            if (!empty($guests_uids)) {
                 foreach ($guests_uids as $g) {
                     $allGuestUids[ ] = $g->guests_uid;
                 }
@@ -433,7 +433,7 @@ class j06005cancelGuestBooking
 			<tr>
 				<td>' .jr_gettext('_JOMRES_COM_ADDSERVICE_BOOKINGDESC', '_JOMRES_COM_ADDSERVICE_BOOKINGDESC').'</td>
 				<td>');
-        if (count($extraBillingData) > 0) {
+        if (!empty($extraBillingData)) {
             foreach ($extraBillingData as $extras) {
                 $service_description = $extras->service_description;
                 $service_value = $extras->service_value;

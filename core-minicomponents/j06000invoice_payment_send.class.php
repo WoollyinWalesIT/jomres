@@ -42,8 +42,7 @@ class j06000invoice_payment_send
 
         $obj = $jrportal_payment_reference->get_invoice_data($invoice_number);
 
-        $event = '10510'.$gateway;
-        $path_to_classfile = $MiniComponents->registeredClasses[$event]['filepath'];
+        $path_to_classfile = $MiniComponents->registeredClasses['10510'][$gateway]['filepath'];
         require_once $path_to_classfile.'invoice_payment_send.class.php';
 
         try {

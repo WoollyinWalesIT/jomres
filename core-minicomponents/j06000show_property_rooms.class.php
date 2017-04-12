@@ -37,6 +37,9 @@ class j06000show_property_rooms
         }
         $this->retVals = '';
 
+        jr_import('jomres_markdown');
+        $jomres_markdown = new jomres_markdown();
+        
         if (isset($componentArgs[ 'property_uid' ])) {
             $property_uid = (int) $componentArgs[ 'property_uid' ];
         } elseif (isset($_REQUEST['property_uid'])) {
@@ -68,7 +71,7 @@ class j06000show_property_rooms
 
         $output = array();
 
-        if (count($basic_room_details->rooms) > 0) {
+        if (!empty($basic_room_details->rooms)) {
             //get room and room feature images
             $jomres_media_centre_images->get_images($property_uid, array('rooms', 'room_features'));
 
@@ -93,7 +96,7 @@ class j06000show_property_rooms
 
                 //room features
                 $r[ 'ROOM_FEATURES' ] = '';
-                if (count($basic_room_details->all_room_features) > 0) {
+                if (!empty($basic_room_details->all_room_features)) {
                     foreach ($roomFeatureUidsArray as $f) {
                         if (isset($basic_room_details->all_room_features[ $f ]['tooltip'])) {
                             $r[ 'ROOM_FEATURES' ] .= $basic_room_details->all_room_features[ $f ]['tooltip'];
@@ -114,6 +117,10 @@ class j06000show_property_rooms
 
                 $r[ 'AVLCALLINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=show_property_room&id='.$room['room_uid']);
 
+                $r[ 'DESCRIPTION_INTRO' ] = $jomres_markdown->get_markdown($room['description_intro']);
+                $r[ 'DESCRIPTION' ] = $jomres_markdown->get_markdown($room['description']);
+
+            
                 $rows[ ] = $r;
             }
 

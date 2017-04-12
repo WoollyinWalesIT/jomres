@@ -33,12 +33,12 @@ class j00003x_input_filtering
 
         $showtime_inputs = get_showtime('inputs_allowing_html');
         $site_config_inputs = explode(' ', $jrConfig[ 'inputs_allowing_html' ]);
-        if (count($showtime_inputs) > 0 && count($site_config_inputs) > 0) {
+        if (!empty($showtime_inputs) && !empty($site_config_inputs)) {
             $inputs_allowing_html = array_merge($showtime_inputs, $site_config_inputs);
         } else {
-            if (count($site_config_inputs) > 0) {
+            if (!empty($site_config_inputs)) {
                 $inputs_allowing_html = $site_config_inputs;
-            } elseif (count($showtime_inputs) > 0) {
+            } elseif (!empty($showtime_inputs)) {
                 $inputs_allowing_html = $showtime_inputs;
             } else {
                 $inputs_allowing_html = array();

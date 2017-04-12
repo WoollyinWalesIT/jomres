@@ -57,8 +57,6 @@ try {
     //user object
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
-    logging::log_message('Jomres admin started', 'Core', 'INFO');
-
     //input filtering
     $MiniComponents->triggerEvent('00003');
 
@@ -66,7 +64,6 @@ try {
     $cron = jomres_singleton_abstract::getInstance('jomres_cron');
     if ($cron->method == 'Minicomponent' && !AJAXCALL) {
         $cron->triggerJobs();
-        $cron->displayDebug();
     }
 
     //session
@@ -83,15 +80,6 @@ try {
 
     //currency conversion object
     $jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance('jomres_currency_exchange_rates');
-
-    //clean up temp js files if we`re saving the site config
-    if ($task == 'save_site_settings') {
-        // We're going to silently delete any .js files in the temp dir. This is a basic cleanup, if a server's moved from A to B or an upgrade changes something then we'll delete .js files that might cause problems if they're wrong. Any .js files that don't exist are automatically recreated so this will ensure that the js remains fresh.
-        $javascript_files_in_temp_dir = scandir_getfiles(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS, $extension = 'js');
-        foreach ($javascript_files_in_temp_dir as $file) {
-            unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.$file);
-        }
-    }
 
     require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'admin'.JRDS.'functions'.JRDS.'siteconfig.functions.php';
 

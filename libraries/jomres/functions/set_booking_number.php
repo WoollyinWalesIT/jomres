@@ -22,9 +22,9 @@ function set_booking_number()
         $keeplooking = true;
         while ($keeplooking):
             $cartnumber = mt_rand(10000000, 99999999);
-        $query = "SELECT contract_uid FROM #__jomres_contracts WHERE tag = '".$cartnumber."' LIMIT 1";
+        $query = "SELECT `contract_uid` FROM #__jomres_contracts WHERE `tag` = '".$cartnumber."' LIMIT 1";
         $bklist = doSelectSql($query);
-        if (count($bklist) == 0) {
+        if (empty($bklist)) {
             $keeplooking = false;
         }
         endwhile;

@@ -188,11 +188,6 @@ class j00004a_init_javascript_css_files
             $ls = $IDN->decode($ls);
         }
 
-        /* jr_import('javascript_cache');
-        $cache = new javascript_cache();
-        $cache->cache_javascript($javascript_files);
-        $javascript_files = $cache->get_files(); */
-
         //now let`s add the js and css in the head
         foreach ($javascript_files as $file) {
             jomres_cmsspecific_addheaddata('javascript', $file[0], $file[1]);
@@ -203,11 +198,6 @@ class j00004a_init_javascript_css_files
         }
     }
 
-/**
- * Must be included in every mini-component.
- #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {

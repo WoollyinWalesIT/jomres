@@ -279,7 +279,7 @@ function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($id)
     $user = array();
     $query = 'SELECT id,name,username,email FROM #__users WHERE id='.(int) $id;
     $userList = doSelectSql($query);
-    if (count($userList) > 0) {
+    if (!empty($userList)) {
         foreach ($userList as $u) {
             $user[ $id ] = array('id' => $u->id, 'name' => $u->name, 'username' => $u->username, 'email' => $u->email);
         }
@@ -294,7 +294,7 @@ function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username($usern
     $user = array();
     $query = "SELECT id,username FROM #__users WHERE username='".(string) $username."'";
     $userList = doSelectSql($query);
-    if (count($userList) > 0) {
+    if (!empty($userList)) {
         foreach ($userList as $u) {
             $user[ $id ] = array('id' => $u->id, 'username' => $u->username, 'email' => $u->username);
         }
@@ -309,7 +309,7 @@ function jomres_cmsspecific_getCMS_users_admin_userdetails_by_id($id)
     $user = array();
     $query = 'SELECT id,username,email FROM #__users WHERE id='.(int) $id;
     $userList = doSelectSql($query);
-    if (count($userList) > 0) {
+    if (!empty($userList)) {
         foreach ($userList as $u) {
             $user[ $id ] = array('id' => $u->id, 'username' => $u->username, 'email' => $u->email);
         }
@@ -334,7 +334,7 @@ function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids()
     $ids = $db->loadObjectList();
 
     $users = array();
-    if (count($ids) > 0) {
+    if (!empty($ids)) {
         foreach ($ids as $u) {
             $users[ $u->id ] = array('id' => $u->id, 'username' => $u->username, 'email' => $u->email);
         }
@@ -354,7 +354,7 @@ function jomres_cmsspecific_getSearchModuleParameters($moduleName = '')
 
             $vals = array();
             $arr = explode(',', $p);
-            if (count($arr) > 0) {
+            if (!empty($arr)) {
                 foreach ($arr as $str) {
                     $dat = explode(':', $str);
 
@@ -391,7 +391,7 @@ function jomres_cmsspecific_getCMSUsers($cms_user_id = 0)
     $query = 'SELECT `id`,`name`,`username`,`email` FROM #__users '.$clause;
     $userList = doSelectSql($query);
 
-    if (count($userList) > 0) {
+    if (!empty($userList)) {
         foreach ($userList as $u) {
             $users[ $u->id ] = array('id' => $u->id, 'username' => $u->username, 'email' => $u->email);
         }
@@ -516,7 +516,7 @@ function jomres_cmsspecific_find_cms_users($search_term = '')
     $query = 'SELECT `id`, `name`, `username`, `email` FROM #__users '.$clause;
     $userList = doSelectSql($query);
 
-    if (count($userList) > 0) {
+    if (!empty($userList)) {
         foreach ($userList as $u) {
             $users[ $u->id ] = array('id' => $u->id, 'username' => $u->username, 'email' => $u->email);
         }

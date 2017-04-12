@@ -216,7 +216,7 @@ class j06005view_invoice
             }
         }
 
-        if (count($invoice->lineitems) > 0) {
+        if (!empty($invoice->lineitems)) {
             foreach ($invoice->lineitems as $li) {
                 $r = array();
                 $r[ 'ID' ] = $li[ 'id' ];

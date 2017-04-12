@@ -110,7 +110,7 @@ class j06000ui_availability_calendar
 
         $booking_dates = array();
 
-        if (count($bookings) > 0) {
+        if (!empty($bookings)) {
             foreach ($bookings as $booking) {
                 if (isset($booking_dates[ $booking->date ])) {
                     ++$booking_dates[ $booking->date ];
@@ -141,7 +141,7 @@ class j06000ui_availability_calendar
         $random_identifier = generateJomresRandomString(10);
 
         $quarter_output = '';
-        if (count($quarter_dates) > 0) {
+        if (!empty($quarter_dates)) {
             $quarter_output = 'var quarter_dates_'.$random_identifier.' = [';
             foreach ($quarter_dates as $date) {
                 $quarter_output .= "'".$date."',";
@@ -151,7 +151,7 @@ class j06000ui_availability_calendar
         }
 
         $half_output = '';
-        if (count($half_dates) > 0) {
+        if (!empty($half_dates)) {
             $half_output = 'var half_dates_'.$random_identifier.' = [';
             foreach ($half_dates as $date) {
                 $half_output .= '"'.$date.'",';
@@ -161,7 +161,7 @@ class j06000ui_availability_calendar
         }
 
         $threequarter_output = '';
-        if (count($threequarter_dates) > 0) {
+        if (!empty($threequarter_dates)) {
             $threequarter_output = 'var threequarter_dates_'.$random_identifier.' = [';
             foreach ($threequarter_dates as $date) {
                 $threequarter_output .= "'".$date."',";
@@ -171,7 +171,7 @@ class j06000ui_availability_calendar
         }
 
         $full_output = '';
-        if (count($full_dates) > 0) {
+        if (!empty($full_dates)) {
             $full_output = 'var full_dates_'.$random_identifier.' = [';
             foreach ($full_dates as $date) {
                 $full_output .= "'".$date."',";
@@ -180,7 +180,7 @@ class j06000ui_availability_calendar
             $full_output .= '];';
         }
 
-		$url = get_booking_url($property_uid,'','&pdetails_cal=1&arrivalDate=');
+		$url = get_booking_url($property_uid,'','&pdetails_cal=1');
         $inline_calendar = '
 			<script>
 			' .$quarter_output.'
@@ -245,7 +245,7 @@ class j06000ui_availability_calendar
 						if ( el.hasClass("calendar_background_full") ) {
 							return true;
 						} else {
-							window.location = booking_form_url_' .$random_identifier.'+date;
+                            window.location = booking_form_url_' .$random_identifier.'+\'&arrivalDate=\'+date;
 							}
 						}
 					});

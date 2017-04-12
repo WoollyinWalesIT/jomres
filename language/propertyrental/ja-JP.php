@@ -2155,7 +2155,7 @@ jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_COUNTRY_CONTENT', 'プロパティ
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROPERTY_TYPE_TITLE', 'プロパティ タイプ');
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROPERTY_TYPE_CONTENT', 'プロパティの種類をドロップダウン リストから選択できます。全館を貸し切るSRP（Single Resource Property）の場合にはチャレー、アパート等を、部屋ごとを間貸しするMRP（Multi-Resource Property）の場合にはホテル、ペンション、旅館等をプロパティに応じて選択できます。');
 
-if (isset($MiniComponents->registeredClasses['00001jintour_start'])) {
+if (isset($MiniComponents->registeredClasses['00001']['jintour_start'])) {
     jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROCESS_TITLE', '経営方式');
     jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROCESS_CONTENT', '経営方式は、どのようなリソースをどのように顧客に提供するかにより設定します。以下の３選択肢から選べます。１）部屋等のレンタル又は部屋等のレンタル＋限りあるレンタル・ツアー（例えばスキーレンタル又はツアーバス席の予約）を同フォームで予約できるようにしたい場合には「レンタル」を　２）限りあるレンタル・ツアーのみの予約を行う場合には「ツアー」を　３）プロパティを貸さずに、その情報のみを提供する場合には「不動産」を選択します。');
 } else {
@@ -2211,7 +2211,7 @@ jr_define('TOUR_ID_TOUR_TARGET_BOOKING_PARTICULARS_CONTENT', '予約条件のい
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_ROOM_FEATURES_TITLE', '部屋アメニティのフィルター');
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_ROOM_FEATURES_CONTENT', '部屋リストの表示スタイルが「クラシック」に設定される場合には、部屋タイプではなく、部屋ごとが表示され（一流ホテルによく使われます）、個別な部屋のフォトをクリックするとその部屋の特有情報がポップアプで表示されます。顧客が部屋を見比べられるし、こだわり条件で指定の部屋アメニティのある部屋の検索もできます。部屋タイプ当たり表示される部屋の数を制限することが「設定」→「経営設定」での「予約フォーム」タブで「表示リソース数の制限」を記入すると、ユーザ・顧客に表示される部屋リストが短くなります。（プロパティ管理者には全ての部屋は表示されます。）');
 
-if (isset($MiniComponents->registeredClasses['00001jintour_start'])) {
+if (isset($MiniComponents->registeredClasses['00001']['jintour_start'])) {
     jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_TITLE', '追加オプション');
     jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_CONTENT', 'ここに表示される追加オプションは２種類提供できます。第一種は「基本」の追加オプションであり、「1泊に付き」、「一人当たり」、「1泊に付き一人当たり」の３貸し借り方式にるチャージを設定できます。基本の追加オプションは限りのないリソース（例えば、割引リフト券の販売）に相当です。第二種は、「限りあり」の追加オプションで、MTB・スキー等のレンタル、バス ツアーでの座席等の様に、ある日に予約の数が限られるリソースに相当です。');
 } else {

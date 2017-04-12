@@ -52,7 +52,7 @@ class j16000asamodule_report
 
             $rows = array();
             foreach ($shortcode_parser->shortcodes as $key => $trigger) {
-                if (count($trigger) > 0) {
+                if (!empty($trigger)) {
                     foreach ($trigger as $task) {
                         $r = array();
 
@@ -63,7 +63,7 @@ class j16000asamodule_report
                         $r['ARGUMENTS'] = '';
                         $arguments = array();
 
-                        if (count($task['arguments']) > 0) {
+                        if (!empty($task['arguments'])) {
                             foreach ($task['arguments'] as $arg) {
                                 $o = array();
                                 $po = array();
@@ -85,7 +85,7 @@ class j16000asamodule_report
                         }
 
                         $arg_str = '';
-                        if (count($arguments) > 0) {
+                        if (!empty($arguments)) {
                             foreach ($arguments as $parameter => $example) {
                                 $arg_str .= '&'.$parameter.'='.$example;
                             }

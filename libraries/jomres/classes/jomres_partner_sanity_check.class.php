@@ -21,18 +21,13 @@ class jomres_partner_sanity_check
         if (get_showtime('no_html', $no_html) == 1 || get_showtime('popup', $popup) == 1) {
             return;
         }
-        if ($autorun) {
-            $this->warnings = '';
-            $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-            $this->jrConfig = $siteConfig->get();
-            $this->mrConfig = getPropertySpecificSettings();
-            $this->property_uid = getDefaultProperty();
-        }
+        
+		$this->warnings = '';
     }
 
     public function do_sanity_checks()
     {
-        $this->warnings .= $this->check_details_completed();
+        $this->warnings = $this->check_details_completed();
 
         return $this->warnings;
     }

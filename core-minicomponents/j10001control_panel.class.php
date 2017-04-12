@@ -56,13 +56,13 @@ class j10001control_panel
 
         //commissions chart
         $output['COMMISSIONS_CHART'] = '';
-        if (isset($MiniComponents->registeredClasses['16000chart_commission']) && (int) $jrConfig['use_commission'] == 1) {
+        if (isset($MiniComponents->registeredClasses['16000']['chart_commission']) && (int) $jrConfig['use_commission'] == 1) {
             $output['COMMISSIONS_CHART'] = $MiniComponents->specificEvent('16000', 'chart_commission', array('output_now' => false));
         }
 
         //subscriptions chart
         $output['SUBSCRIPTIONS_CHART'] = '';
-        if (isset($MiniComponents->registeredClasses['16000chart_subscriptions']) && (int) $jrConfig['useSubscriptions'] == 1) {
+        if (isset($MiniComponents->registeredClasses['16000']['chart_subscriptions']) && (int) $jrConfig['useSubscriptions'] == 1) {
             $output['SUBSCRIPTIONS_CHART'] = $MiniComponents->specificEvent('16000', 'chart_subscriptions', array('output_now' => false));
         }
 

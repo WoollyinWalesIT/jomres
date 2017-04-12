@@ -162,7 +162,7 @@ class jomres_generic_booking_email
         $jomres_custom_field_handler = jomres_singleton_abstract::getInstance('jomres_custom_field_handler');
         $allCustomFields = $jomres_custom_field_handler->getAllCustomFieldsByPtypeId($ptype_id);
 
-        if (count($allCustomFields) > 0) {
+        if (!empty($allCustomFields)) {
             $this->data[$contract_uid]['CUSTOM_FIELDS'] = '';
             foreach ($allCustomFields as $f) {
                 $formfieldname = $f[ 'fieldname' ].'_'.$f[ 'uid' ];
@@ -217,7 +217,7 @@ class jomres_generic_booking_email
 
         //get custom template
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if (isset($MiniComponents->registeredClasses['03150'.$email_type])) {
+        if (isset($MiniComponents->registeredClasses['03150'][$email_type])) {
             $MiniComponents->specificEvent('03150', $email_type);
         } else {
             return;

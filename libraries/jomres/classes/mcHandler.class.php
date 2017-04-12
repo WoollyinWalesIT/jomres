@@ -54,7 +54,7 @@ class mcHandler
 
         $registry = jomres_singleton_abstract::getInstance('minicomponent_registry');
 
-        if (!isset($registry->registeredClasses[ '00001start' ][ 'filepath' ])) {
+        if (!isset($registry->registeredClasses[ '00001' ]['start'])) {
             $registry->regenerate_registry();
         }
 
@@ -77,39 +77,45 @@ class mcHandler
         $mrConfig = getPropertySpecificSettings(0);
         $eventArgs = null;
         $mrConfig[ 'editingOn' ] = '1';
-        $eventClasses = $this->registeredClasses;
         $this->template_touch = true;
-        echo jr_gettext('_JOMRES_CUSTOMTEXT_TOUCHTEMPLATES', 'This feature allows you to edit language text for any template configured to allow you to edit text. You will be editing the default text for every property and saving that text to the database. HTML code is not allowed. To change the language that the text is saved for, change the default language in the Site Settings -> Misc tab. Click on a line to edit the text.');
+		$classFileSuffix = '.class.php';
+        
+		echo jr_gettext('_JOMRES_CUSTOMTEXT_TOUCHTEMPLATES', 'This feature allows you to edit language text for any template configured to allow you to edit text. You will be editing the default text for every property and saving that text to the database. HTML code is not allowed. To change the language that the text is saved for, change the default language in the Site Settings -> Misc tab. Click on a line to edit the text.');
         echo '<br/>';
-        foreach ($eventClasses as $eClass) {
-            $ePointFilepath = $eClass[ 'filepath' ];
-            set_showtime('ePointFilepath', $eClass[ 'filepath' ]);
-            $classFileSuffix = '.class.php';
-            $filename = 'j'.$eClass[ 'eventPoint' ].$eClass[ 'eventName' ].$classFileSuffix;
-            //echo $filename;exit;
-            if (file_exists($eClass[ 'filepath' ].$filename)) {
-                include_once $eClass[ 'filepath' ].$filename;
-                if ($this->logging_enbled) {
-                    $this->log[ ] = $eClass[ 'filepath' ].$filename;
-                }
-                $event = new stdClass();
-                $ePoint = $eClass[ 'eventPoint' ];
-                $eName = $eClass[ 'eventName' ];
-                $eLiveSite = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $eClass[ 'filepath' ]);
-                $eLiveSite = str_replace(JRDS, '/', $eLiveSite);
-                set_showtime('eLiveSite', $eLiveSite);
-                $event = 'j'.$ePoint.$eName;
-                $e = new $event($eventArgs);
-                if (isset($e->template_touchable) && $e->template_touchable) {
-                    echo '<br/>'.$event.'<br/>';
-                    if (method_exists($e, 'touch_template_language')) {
-                        echo $e->touch_template_language();
-                    } else {
-                        echo "Ooops, you tried to run 'touch_template_language' in the minicomponent ".$event.' but that method does not exist';
-                    }
-                }
-                unset($e);
-            }
+        
+		foreach ($this->registeredClasses as $eventPoint => $ev) {
+			foreach ($ev as $eventName => $eventDetails) {
+				$ePointFilepath = $eventDetails[ 'filepath' ];
+				set_showtime('ePointFilepath', $eventDetails[ 'filepath' ]);
+
+				$filename = 'j'.$eventPoint.$eventName.$classFileSuffix;
+
+				if (file_exists($eventDetails[ 'filepath' ].$filename)) {
+					include_once $eventDetails[ 'filepath' ].$filename;
+					
+					if ($this->logging_enbled) {
+						$this->log[ ] = $eventDetails[ 'filepath' ].$filename;
+					}
+					
+					$eLiveSite = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $eClass[ 'filepath' ]);
+					$eLiveSite = str_replace(JRDS, '/', $eLiveSite);
+					set_showtime('eLiveSite', $eLiveSite);
+					
+					$event = 'j'.$eventPoint.$eventName;
+					
+					$e = new $event($eventArgs);
+					
+					if (isset($e->template_touchable) && $e->template_touchable) {
+						echo '<br/>'.$event.'<br/>';
+						if (method_exists($e, 'touch_template_language')) {
+							echo $e->touch_template_language();
+						} else {
+							echo "Ooops, you tried to run 'touch_template_language' in the minicomponent ".$event.' but that method does not exist';
+						}
+					}
+					unset($e);
+				}
+			}
         }
     }
 
@@ -119,45 +125,46 @@ class mcHandler
         $jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
 
         $retVal = null;
-        $eventClasses = $this->registeredClasses;
-        if (!empty($this->registeredClasses)) {
-            foreach ($eventClasses as $eClass) {
-                if ($eClass[ 'eventPoint' ] == $eventPoint) {
-                    $ePointFilepath = $eClass[ 'filepath' ];
-                    set_showtime('ePointFilepath', $eClass[ 'filepath' ]);
-                    $classFileSuffix = '.class.php';
-                    $filename = 'j'.$eClass[ 'eventPoint' ].$eClass[ 'eventName' ].$classFileSuffix;
-                    if ($jomres_access_control->can_user_access_this_script($eClass[ 'eventPoint' ].$eClass[ 'eventName' ])) {
-                        if (file_exists($eClass[ 'filepath' ].$filename)) {
-                            include_once $eClass[ 'filepath' ].$filename;
+		$classFileSuffix = '.class.php';
 
-                            if ($this->logging_enbled) {
-                                $this->log[ ] = $eClass[ 'filepath' ].$filename;
-                            }
-                            $this->currentEvent = $eClass[ 'filepath' ].$filename;
-                            $ePoint = $eClass[ 'eventPoint' ];
-                            $eName = $eClass[ 'eventName' ];
-                            $eLiveSite = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $ePointFilepath);
-                            $eLiveSite = str_replace(JRDS, '/', $eLiveSite);
-                            set_showtime('eLiveSite', $eLiveSite);
-                            $event = 'j'.$ePoint.$eName;
+        if (!empty($this->registeredClasses && isset($this->registeredClasses[$eventPoint]))) {
+            foreach ($this->registeredClasses[$eventPoint] as $eventName => $eClass) {
+                $ePointFilepath = $eClass[ 'filepath' ];
+				set_showtime('ePointFilepath', $eClass[ 'filepath' ]);
+				
+				$filename = 'j'.$eventPoint.$eventName.$classFileSuffix;
+				
+				if ($jomres_access_control->can_user_access_this_script($eventPoint.$eventName)) {
+					if (file_exists($eClass[ 'filepath' ].$filename)) {
+						include_once $eClass[ 'filepath' ].$filename;
 
-                            if (!class_exists($event)) {
-                                echo 'Error, class '.$event." does not exist. Most likely you've renamed a minicomponent file, but not the class in that file";
+						if ($this->logging_enbled) {
+							$this->log[ ] = $eClass[ 'filepath' ].$filename;
+						}
+						
+						$this->currentEvent = $eClass[ 'filepath' ].$filename;
+						
+						$eLiveSite = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $ePointFilepath);
+						$eLiveSite = str_replace(JRDS, '/', $eLiveSite);
+						set_showtime('eLiveSite', $eLiveSite);
+						
+						$event = 'j'.$eventPoint.$eventName;
 
-                                return;
-                            }
-                            set_showtime('current_minicomp', $event);
-                            $e = new $event($eventArgs);
-                            $retVal = $e->getRetVals();
-                            $this->miniComponentData[ $ePoint ][ $eName ] = $retVal;
-                            set_showtime('current_minicomp', '');
-                            unset($e);
-                        }
-                    } else {
-                        system_log('Access control prevented system from running '.$eClass[ 'eventPoint' ].$eClass[ 'eventName' ]);
-                    }
-                }
+						if (!class_exists($event)) {
+							echo 'Error, class '.$event." does not exist. Most likely you've renamed a minicomponent file, but not the class in that file";
+
+							return;
+						}
+						set_showtime('current_minicomp', $event);
+						$e = new $event($eventArgs);
+						$retVal = $e->getRetVals();
+						$this->miniComponentData[ $eventPoint ][ $eventName ] = $retVal;
+						set_showtime('current_minicomp', '');
+						unset($e);
+					}
+				} else {
+					system_log('Access control prevented system from running '.$eventPoint.$eventName);
+				}
             }
         }
         $this->currentEvent = '';
@@ -170,39 +177,39 @@ class mcHandler
     {
         $jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
         $retVal = null;
-        $eventClasses = $this->registeredClasses;
-        if (!empty($this->registeredClasses)) {
-            foreach ($eventClasses as $eClass) {
-                if ($eClass[ 'eventPoint' ] == $eventPoint && $eClass[ 'eventName' ] == $eventName) {
-                    $ePointFilepath = $eClass[ 'filepath' ];
-                    set_showtime('ePointFilepath', $eClass[ 'filepath' ]);
-                    $classFileSuffix = '.class.php';
-                    $filename = 'j'.$eClass[ 'eventPoint' ].$eClass[ 'eventName' ].$classFileSuffix;
-                    if ($jomres_access_control->can_user_access_this_script($eClass[ 'eventPoint' ].$eClass[ 'eventName' ])) {
-                        if (file_exists($eClass[ 'filepath' ].$filename)) {
-                            include_once $eClass[ 'filepath' ].$filename;
-                            if ($this->logging_enbled) {
-                                $this->log[ ] = $eClass[ 'filepath' ].$filename;
-                            }
-                            $this->currentEvent = $eClass[ 'filepath' ].$filename;
-                            $ePoint = $eClass[ 'eventPoint' ];
-                            $eName = $eClass[ 'eventName' ];
-                            $eLiveSite = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $ePointFilepath);
-                            $eLiveSite = str_replace(JRDS, '/', $eLiveSite);
-                            set_showtime('eLiveSite', $eLiveSite);
-                            $event = 'j'.$ePoint.$eName;
-                            set_showtime('current_minicomp', $event);
-                            $e = new $event($eventArgs);
-                            $retVal = $e->getRetVals();
-                            $this->miniComponentData[ $ePoint ][ $eName ] = $retVal;
-                            set_showtime('current_minicomp', '');
-                            unset($e);
-                        }
-                    } else {
-                        system_log('Access control prevented system from running '.$eClass[ 'eventPoint' ].$eClass[ 'eventName' ]);
-                    }
-                }
-            }
+		$classFileSuffix = '.class.php';
+		$filename = 'j'.$eventPoint.$eventName.$classFileSuffix;
+		
+        if (!empty($this->registeredClasses) && isset($this->registeredClasses[$eventPoint][$eventName])) {
+			$ePointFilepath = $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ];
+			
+			set_showtime('ePointFilepath', $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ]);
+			
+			if ($jomres_access_control->can_user_access_this_script($eventPoint.$eventName)) {
+				if (file_exists($this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename)) {
+					include_once $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename;
+					
+					if ($this->logging_enbled) {
+						$this->log[ ] = $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename;
+					}
+					
+					$this->currentEvent = $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename;
+					
+					$eLiveSite = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $ePointFilepath);
+					$eLiveSite = str_replace(JRDS, '/', $eLiveSite);
+					set_showtime('eLiveSite', $eLiveSite);
+					
+					$event = 'j'.$eventPoint.$eventName;
+					set_showtime('current_minicomp', $event);
+					$e = new $event($eventArgs);
+					$retVal = $e->getRetVals();
+					$this->miniComponentData[ $eventPoint ][ $eventName ] = $retVal;
+					set_showtime('current_minicomp', '');
+					unset($e);
+				}
+			} else {
+				system_log('Access control prevented system from running '.$eventPoint.$eventName);
+			}
         }
         $this->currentEvent = '';
 
@@ -212,12 +219,9 @@ class mcHandler
     //  This function is used to see if a mini-component exists for a given event point
     public function eventFileExistsCheck($eventPoint)
     {
-        $eventClasses = $this->registeredClasses;
         if (!empty($this->registeredClasses)) {
-            foreach ($eventClasses as $eClass) {
-                if ($eClass[ 'eventPoint' ] == $eventPoint) {
-                    return true;
-                }
+			if (isset($this->registeredClasses[$eventPoint])) {
+				return true;
             }
         }
 
@@ -227,14 +231,10 @@ class mcHandler
     //  This function is used to see if a mini-component exists.
     public function eventSpecificlyExistsCheck($eventPoint, $eventName)
     {
-        $eventClasses = $this->registeredClasses;
         if (!empty($this->registeredClasses)) {
-            foreach ($eventClasses as $eClass) {
-                //echo $eClass['eventPoint'].$eClass['eventName']." || " .$eventPoint.$eventName."<br>";
-                if ($eClass[ 'eventPoint' ] == $eventPoint && $eClass[ 'eventName' ] == $eventName) {
-                    return true;
-                }
-            }
+            if (isset($this->registeredClasses[$eventPoint][$eventName])) {
+				return true;
+			}
         }
 
         return false;
@@ -243,12 +243,9 @@ class mcHandler
     //  This function is used to see if a mini-component file exists.
     public function eventFileLocate($eventPoint, $eventName)
     {
-        $eventClasses = $this->registeredClasses;
-        if (!empty($this->registeredClasses)) {
-            foreach ($eventClasses as $eClass) {
-                if ($eClass[ 'eventPoint' ] == $eventPoint && $eClass[ 'eventName' ] == $eventName) {
-                    return true;
-                }
+		if (!empty($this->registeredClasses)) {
+            if (isset($this->registeredClasses[$eventPoint][$eventName])) {
+				return true;
             }
         }
 
@@ -258,12 +255,10 @@ class mcHandler
     public function getAllEventPointsData($ePoint)
     {
         $retVal = array();
-        if (isset($this->miniComponentData[ $ePoint ])) {
-            if (!empty($this->miniComponentData[ $ePoint ])) {
-                foreach ($this->miniComponentData[ $ePoint ] as $key => $val) {
-                    $retVal[ $key ] = $this->getEventPointData($ePoint, $key);
-                }
-            }
+        if (isset($this->miniComponentData[ $ePoint ]) && !empty($this->miniComponentData[ $ePoint ])) {
+           foreach ($this->miniComponentData[ $ePoint ] as $key => $val) {
+				$retVal[ $key ] = $this->getEventPointData($ePoint, $key);
+			}
         }
 
         return $retVal;

@@ -41,7 +41,7 @@ class j06002edit_email
             return;
         }
 
-        if (isset($MiniComponents->registeredClasses['03150'.$email_type])) {
+        if (isset($MiniComponents->registeredClasses['03150'][$email_type])) {
             $MiniComponents->specificEvent('03150', $email_type);
         } else {
             return;

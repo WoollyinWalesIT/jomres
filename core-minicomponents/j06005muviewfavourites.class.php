@@ -38,7 +38,7 @@ class j06005muviewfavourites
 
         $query = 'SELECT `property_uid` FROM #__jomcomp_mufavourites WHERE `my_id` = '.(int) $thisJRUser->id.' AND property_uid > 0';
         $propys = doSelectSql($query);
-        if (count($propys) > 0) {
+        if (!empty($propys)) {
             foreach ($propys as $p) {
                 if (!in_array($p->property_uid, $shortlist_items)) {
                     $shortlist_items[] = (int) $p->property_uid;

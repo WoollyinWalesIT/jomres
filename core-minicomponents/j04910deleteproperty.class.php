@@ -87,9 +87,6 @@ class j04910deleteproperty
                 $query = 'DELETE FROM #__jomres_propertys WHERE `propertys_uid` = '.$property_uid.' LIMIT 1';
                 $result = doInsertSql($query);
 
-                $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-                $c->eraseAll();
-
                 $resetProperty = $thisJRUser->check_currentproperty();
                 $jomres_messaging = jomres_getSingleton('jomres_messages');
                 $jomres_messaging->set_message($saveMessage);

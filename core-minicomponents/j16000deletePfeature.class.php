@@ -36,9 +36,6 @@ class j16000deletePfeature
 			if ($messages != '') {
 				echo $messages;
 			}
-			
-			$c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-            $c->eraseAll();
 		}
 		
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeatures'), jr_gettext('_JOMRES_COM_MR_PROPERTYFEATURE_DELETED', '_JOMRES_COM_MR_PROPERTYFEATURE_DELETED', false));

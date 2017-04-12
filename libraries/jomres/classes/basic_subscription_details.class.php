@@ -40,7 +40,7 @@ class basic_subscription_details
         }
 
         //check if we already have this cms user id subscription details
-        if (count($this->subscription) > 0) {
+        if (!empty($this->subscription)) {
             return true;
         }
 
@@ -70,7 +70,7 @@ class basic_subscription_details
 					LIMIT 1 ";
         $result = doSelectSql($query);
 
-        if (count($result) > 0) {
+        if (!empty($result)) {
             foreach ($result as $s) {
                 $this->subscription['id'] = $s->subscription_id;
                 $this->subscription['cms_user_id'] = $s->cms_user_id;

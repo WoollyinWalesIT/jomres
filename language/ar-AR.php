@@ -2197,7 +2197,7 @@ jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_COUNTRY_CONTENT', 'Aquí seleciona
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROPERTY_TYPE_TITLE', 'El tipo de propiedad.');
 jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROPERTY_TYPE_CONTENT', 'De este desplegable selecciona el tipo de propiedad. Puede ser algo como Villa o Apartamento si estás rentando la propiedad entera, o si estás rentando habitaciones, probablemente elijas hotel.');
 
-if (isset($MiniComponents->registeredClasses['00001jintour_start'])) {
+if (isset($MiniComponents->registeredClasses['00001']['jintour_start'])) {
     jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROCESS_TITLE', 'Proceso de administración.');
     jr_define('TOUR_ID_TOUR_TARGET_REGISTRATION_1_PROCESS_CONTENT', 'El proceso de administración trata sobre cómo los visitantes usarán tu propiedad. Si tu estás ofreciendo alquilar la propiedad o sus cuartos, entonces elejirás Alquilar. Si quieres ofrecer tours o alquiler de servicios (por ejemplo ski), que serán contratados en el mismo formulario de reserva, debes seleccionar esta opción. Si estás ofreciendo tours/servicios únicamente (sin el alquiler de habitción), entonces elije la opción tour. Si no estás ofreciendo la propiedad para alquiler y solo estás añadiendo la propiedad con el propósito de informar, entonces elije Servicios Inmobiliarios.');
 } else {
@@ -2253,7 +2253,7 @@ jr_define('TOUR_ID_TOUR_TARGET_BOOKING_PARTICULARS_CONTENT', 'Changing any of th
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_ROOM_FEATURES_TITLE', 'Filtro de características de habitación.');
 jr_define('TOUR_ID_TOUR_TARGET_BOOKING_ROOM_FEATURES_CONTENT', 'Si has configurado la propiedad para usar el listado de habitaciones clásicas, los pasajeros pueden elegir un cuarto específico para reserva, en lugar de simplemente un cuarto de un tipo determinado. La lista de cuartos tiene imágenes clickeables que mostrarán más información sobre ese cuarto en particular. Otra ventaja de esta disposición es que si has creado algunas características de habitación y marcado una habitación con cierta característica, entonces quien reserva puede usar las características de habitación para filtrar entre las habitaciones disponibles para asegurarse que obtienen exactamente lo que quieren. Puedes seleccionar la cantidad de habitaciones que se muetran de cada tipo a través de Ajustes -> Configuración de Propiedad -> Reserva de habitaciones.');
 
-if (isset($MiniComponents->registeredClasses['00001jintour_start'])) {
+if (isset($MiniComponents->registeredClasses['00001']['jintour_start'])) {
     jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_TITLE', 'Extras opcionales.');
     jr_define('TOUR_ID_TOUR_TARGET_BOOKING_EXTRAS_CONTENT', 'Puedes crear dos tipos de Extras opcionales que se mostrarán aquí. El primer tipo es un extra básico, que puede ser creado de acuerdo a diferentes modelos; por ejmplo Por Noche, Por Persona, etc. Esto es útil cuando quieres que el pasajero añada un extra a la reserva, pero estos extras son infinitos. Por ejemplo, puedes añadir un Ramo de Flores en la Llegada, o una Transferencia al Aeropuerto. El otro tipo de extra se configura a través del menú Administración de perfiles de Tour/Actividades dentro de Ajustes, y se usa para crear items con recursos finitos. Típicamente esto es usado para cosas como tours a museos, etc. En resumen, cualquier tipo de recurosas donde haya disponibilidad limitada.');
 } else {

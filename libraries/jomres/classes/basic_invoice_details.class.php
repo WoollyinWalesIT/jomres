@@ -68,7 +68,7 @@ class basic_invoice_details
         $this->amount_already_paid = 0.00;
         $this->balance = 0.00;
 
-        if (count($this->lineitems) > 0) {
+        if (!empty($this->lineitems)) {
             foreach ($this->lineitems as $li) {
                 if ($li[ 'is_payment' ] == 0) {
                     $this->grand_total_ex_tax += $li[ 'init_total' ];
@@ -114,7 +114,7 @@ class basic_invoice_details
 
         $result = doSelectSql($query);
 
-        if (count($result) < 1) {
+        if (empty($result)) {
             return false;
         }
 
@@ -159,7 +159,7 @@ class basic_invoice_details
 					WHERE `inv_id` = ' .(int) $invoice_id;
         $result = doSelectSql($query);
 
-        if (count($result) < 1) {
+        if (empty($result)) {
             return false;
         }
 

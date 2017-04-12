@@ -111,7 +111,7 @@ class jrportal_subscriptions
 
             return true;
         } else {
-            if (count($result) == 0) {
+            if (empty($result)) {
                 error_logging('No Subscription packages were found with that id');
 
                 return false;
@@ -253,7 +253,7 @@ class jrportal_subscriptions
 
             return true;
         } else {
-            if (count($result) == 0) {
+            if (empty($result)) {
                 error_logging('No Subscriptions were found with that id '.$query);
 
                 return false;

@@ -59,12 +59,11 @@ class j00501tariffs
             if (!isset($mrConfig[ 'property_currencycode' ])) { // for v4.5 converting the old currencyCode value to property_currencycode
             $mrConfig[ 'property_currencycode' ] = $mrConfig[ 'currencyCode' ];
             }
-            jr_import('currency_codes');
-            $c_codes = new currency_codes($mrConfig[ 'property_currencycode' ]);
-
-            $dropdown = $c_codes->makeCodesDropdown();
+            $currency_codes = jomres_singleton_abstract::getInstance('currency_codes');
+			$currency_codes_dropdown = $currency_codes->makeCodesDropdown($mrConfig[ 'property_currencycode' ]);
+			
             $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_CURRENCYCODE', '_JOMRES_COM_A_CURRENCYCODE', false));
-            $configurationPanel->setmiddle($dropdown);
+            $configurationPanel->setmiddle($currency_codes_dropdown);
             $configurationPanel->setright();
             $configurationPanel->insertSetting();
 
@@ -103,7 +102,7 @@ class j00501tariffs
         }
 
         if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
-            if (isset($MiniComponents->registeredClasses[ '00011manager_option_04_guesttypeadmin' ])) {
+            if (isset($MiniComponents->registeredClasses['00011']['manager_option_04_guesttypeadmin' ])) {
                 if ($mrConfig[ 'wholeday_booking' ] == '1') {
                     $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', false));
                     $configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);

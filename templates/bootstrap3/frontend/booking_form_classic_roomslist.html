@@ -23,8 +23,11 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-6">
 			{FEATURES}
+		</div>
+		<div class="col-md-6">
+			{DESCRIPTION_INTRO}
 		</div>
 	</div>
 </div>
@@ -44,41 +47,49 @@ jomresJquery(document).ready(function(){
 			</div>
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-md-5">
-						<div class="thumbnail"><img src="{ROOM_IMAGE_MEDIUM}" alt="room image" class="img-responsive"/></div>
-					</div>
-					<div class="col-md-7">
-						<h4 class="page-header">{HROOM_DETAILS}</h4>
-						<p>
-							<!--<img src="{ROOM_TYPE_IMAGE}" alt="room type image"/><br />-->
-							{HEADER_ROOMTYPE}: {ROOMTYPE}<br />
-							{HEADER_ROOMNAME}: {ROOMNAME}<br />
-							{HEADER_ROOMNUMBER}: {ROOMNUMBER}<br />
-							{HEADER_MAXPEOPLE}: {MAXPEOPLE_INROOM}<br />
-							{HEADER_ROOMFLOOR}: {ROOMFLOOR}<br />
-							{HEADER_FEATURES}:<br /> {FEATURES}
-						</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-5" align="center">
-						<div class="well">
-							<p>{HRATEPERNIGHT}<span class="big-price">{FORMATTED_PRICE}</span></p>
-						</div>
-					</div>
-					<div class="col-md-7">
-						<h4 class="page-header">{HTARIFF_DETAILS}</h4>
-						<p>
-							{HTITLE}: {TITLE}<br />
-							{HSTARTS}: {VALIDFROM}<br />
-							{HENDS}: {VALIDTO}<br />
-							{HMINDAYS}: {MINDAYS}<br />
-							{HMAXDAYS}: {MAXDAYS}<br />
-							{HMINPEEPS}: {MINPEOPLE}<br />
-							{HMAXPEEPS}: {MAXPEOPLE}
-						</p>
-					</div>
-				</div>
+					<div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="thumbnail"><img src="{ROOM_IMAGE_MEDIUM}" alt="room image" class="img-responsive"/></div>
+                            </div>
+                            <div class="col-md-7">
+                                <h4 class="page-header">{HROOM_DETAILS}</h4>
+                                <p>
+                                    <!--<img src="{ROOM_TYPE_IMAGE}" alt="room type image"/><br />-->
+                                    {HEADER_ROOMTYPE}: {ROOMTYPE}<br />
+                                    {HEADER_ROOMNAME}: {ROOMNAME}<br />
+                                    {HEADER_ROOMNUMBER}: {ROOMNUMBER}<br />
+                                    {HEADER_MAXPEOPLE}: {MAXPEOPLE_INROOM}<br />
+                                    {HEADER_ROOMFLOOR}: {ROOMFLOOR}<br />
+                                    {HEADER_FEATURES}:<br /> {FEATURES}
+                                </p>
+                            </div>
+                        </div>
+                
+                        <div class="row">
+                            <div class="col-md-5" align="center">
+                                <div class="well">
+                                    <p>{HRATEPERNIGHT}<span class="big-price">{FORMATTED_PRICE}</span></p>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <h4 class="page-header">{HTARIFF_DETAILS}</h4>
+                                <p>
+                                    {HTITLE}: {TITLE}<br />
+                                    {HSTARTS}: {VALIDFROM}<br />
+                                    {HENDS}: {VALIDTO}<br />
+                                    {HMINDAYS}: {MINDAYS}<br />
+                                    {HMAXDAYS}: {MAXDAYS}<br />
+                                    {HMINPEEPS}: {MINPEOPLE}<br />
+                                    {HMAXPEEPS}: {MAXPEOPLE}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{DESCRIPTION}</p>
+                    </div>
+                </div>
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-default" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</a>

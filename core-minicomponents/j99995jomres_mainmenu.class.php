@@ -74,7 +74,7 @@ class j99995jomres_mainmenu
                 $MiniComponents->triggerEvent('00011', $componentArgs);
                 $mcOutput = $MiniComponents->getAllEventPointsData('00011');
 
-                if (count($mcOutput) > 0) {
+                if (!empty($mcOutput)) {
                     foreach ($mcOutput as $key => $val) {
                         if (isset($val['MULTIDIM'])) {
                             foreach ($val['MULTIDIM'] as $v) {

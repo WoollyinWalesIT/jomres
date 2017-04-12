@@ -29,14 +29,6 @@ class jomres_property_features
 		$this->ptype_xref			= array();				// property types xref array
 		$this->cat_id				= 0;					// property feature category id
 		$this->cat_title			= 0;					// property feature category id
-		
-		//retrieve property features data from cache, if available
-		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
-		
-		if ( $c->isCached('property_features') )
-			{
-			$this->property_features = $c->retrieve('property_features');
-			}
 		}
 
 	public static function getInstance()
@@ -58,9 +50,7 @@ class jomres_property_features
 			}
 		else
 			$this->property_features = array();
-		
-		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
-		
+
 		$query = "SELECT `hotel_features_uid`, `hotel_feature_abbv`, `hotel_feature_full_desc`, `image`, `property_uid`, `ptype_xref`, `cat_id` FROM #__jomres_hotel_features WHERE `property_uid` = 0 ORDER BY `hotel_feature_abbv`";
 		$result = doSelectSql( $query );
 		
@@ -102,9 +92,7 @@ class jomres_property_features
 			else
 				$this->property_features[$r->hotel_features_uid]['cat_title']	= '';
 			}
-
-		$c->store('property_features',$this->property_features);
-		
+	
 		return true;
 		}
 	
@@ -116,7 +104,7 @@ class jomres_property_features
 			return true;
 			}
 		
-		if ( is_array($this->property_features) && array_key_exists( (int)$id, $this->property_features ) )
+		if ( is_array($this->property_features) && isset($this->property_features[(int)$id]) )
 			{
 			$this->property_feature = $this->property_features[ (int)$id ];
 			

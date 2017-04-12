@@ -138,14 +138,12 @@ class j00060toptemplate
         $jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
         $messages = $jomres_messaging->get_messages();
 
-        if (count($messages) > 0) {
+        if (!empty($messages)) {
             foreach ($messages as $mes) {
                 $m[ 'MESSAGE' ] = $mes;
                 $messaging[ ] = $m;
             }
         }
-
-        $output[ 'DEVICE_TYPE' ] = trim(get_showtime('device_type'));
 
         if (using_bootstrap()) {
             $output[ 'USING_BOOTSTRAP' ] = 'true';

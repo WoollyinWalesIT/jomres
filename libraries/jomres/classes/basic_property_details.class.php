@@ -92,11 +92,10 @@ class basic_property_details
     public function get_property_name_multi($property_uids = array(), $database_obj = false)
     {
         //return false if there are no property uids in the array/object
-        if (count($property_uids) == 0) {
+        if (empty($property_uids)) {
             return false;
         }
 
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
         $customTextObj = jomres_singleton_abstract::getInstance('custom_text');
 
         //change $property_uids object to array
@@ -105,7 +104,7 @@ class basic_property_details
             foreach ($property_uids as $id) {
                 $tmp_arr[] = $id->propertys_uid;
             }
-            if (count($tmp_arr) > 0) {
+            if (!empty($tmp_arr)) {
                 $property_uids = array();
                 $property_uids = $tmp_arr;
                 unset($tmp_arr);
@@ -122,59 +121,43 @@ class basic_property_details
             $diff = array();
         }
 
-        //check if property names are cached
-        $cached_property_names = $c->isCached('all_property_names_in_system');
+		$performance_monitor = jomres_singleton_abstract::getInstance('jomres_performance_monitor');
+		$performance_monitor->set_point('pre-property name multi');
 
-        //set property names from cache if available
-        if ($cached_property_names) {
-            $this->property_names = $c->retrieve('all_property_names_in_system');
+		$original_property_uid = get_showtime('property_uid');
 
-            return $this->property_names;
-        }
+		//unset property uids that already have been handled by $this->gather_data_multi() function
+		$temp_array = array();
+		foreach ($property_uids as $id) {
+			if (!array_key_exists($id, $this->multi_query_result) && !isset($this->property_names[ $id ])) {
+				$temp_array[] = $id;
+			} else {
+				if (isset($this->multi_query_result[$id]['property_name'])) {
+					$this->property_names[ $id ] = $this->multi_query_result[$id]['property_name'];
+				}
+			}
+		}
+		$property_uids = $temp_array;
+		unset($temp_array);
 
-        if (!$cached_property_names) {
-            $performance_monitor = jomres_singleton_abstract::getInstance('jomres_performance_monitor');
-            $performance_monitor->set_point('pre-property name multi');
+		if (!empty($property_uids)) {
+			$query = 'SELECT `propertys_uid`, `property_name`, `ptype_id` FROM #__jomres_propertys WHERE `propertys_uid` IN ('.jomres_implode($property_uids).') ';
+			$property_names = doSelectSql($query);
+			if (!get_showtime('heavyweight_system')) {
+				//get custom text for these properties
+				$customTextObj->gather_data($property_uids);
 
-            $original_property_uid = get_showtime('property_uid');
+				foreach ($property_names as $p) {
+					// We need to set showtime here otherwise the jr_gettext function won't know which property's info we're looking for
+					set_showtime('property_uid', $p->propertys_uid);
 
-            //unset property uids that already have been handled by $this->gather_data_multi() function
-            $temp_array = array();
-            foreach ($property_uids as $id) {
-                if (!array_key_exists($id, $this->multi_query_result) && !isset($this->property_names[ $id ])) {
-                    $temp_array[] = $id;
-                } else {
-                    if (isset($this->multi_query_result[$id]['property_name'])) {
-                        $this->property_names[ $id ] = $this->multi_query_result[$id]['property_name'];
-                    }
-                }
-            }
-            $property_uids = $temp_array;
-            unset($temp_array);
-
-            if (count($property_uids) > 0) {
-                $query = 'SELECT `propertys_uid`, `property_name`, `ptype_id` FROM #__jomres_propertys WHERE `propertys_uid` IN ('.jomres_implode($property_uids).') ';
-                $property_names = doSelectSql($query);
-                if (!get_showtime('heavyweight_system')) {
-                    //get custom text for these properties
-                    $customTextObj->gather_data($property_uids);
-
-                    foreach ($property_names as $p) {
-                        // We need to set showtime here otherwise the jr_gettext function won't know which property's info we're looking for
-                        set_showtime('property_uid', $p->propertys_uid);
-
-                        $this->property_names[ $p->propertys_uid ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $p->property_name, false);
-                    }
-                } else {
-                    foreach ($property_names as $p) {
-                        $this->property_names[ $p->propertys_uid ] = $p->property_name;
-                    }
-                }
-            }
-
-            if (count($diff) == 0 && get_showtime('all_properties_in_system')) {
-                $c->store('all_property_names_in_system', $this->property_names);
-            }
+					$this->property_names[ $p->propertys_uid ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $p->property_name, false);
+				}
+			} else {
+				foreach ($property_names as $p) {
+					$this->property_names[ $p->propertys_uid ] = $p->property_name;
+				}
+			}
 
             //set back the initial property uid
             set_showtime('property_uid', $original_property_uid);
@@ -289,7 +272,7 @@ class basic_property_details
         }
 
         $this->features = array();
-        if (count($propertyFeaturesArray) > 0) {
+        if (!empty($propertyFeaturesArray)) {
             foreach ($propertyFeaturesArray as $f) {
                 $this->features[$f]['abbv'] = $this->all_property_features[$f]['abbv'];
                 $this->features[$f]['desc'] = $this->all_property_features[$f]['desc'];
@@ -363,7 +346,7 @@ class basic_property_details
         $customTextObj = jomres_singleton_abstract::getInstance('custom_text');
         $jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
 
-        if (count($property_uids) > 0) {
+        if (!empty($property_uids)) {
             $query = 'SELECT 
 							`propertys_uid`,
 							`property_name`,
@@ -508,36 +491,25 @@ class basic_property_details
         $this->all_room_types = array();
         $this->roomtypes_propertytypes_xref = array();
 
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $all_room_types_details = $c->retrieve('all_room_types_details');
+        $jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
+		$jomres_room_types->get_all_room_types();
 
-        if (true === is_array($all_room_types_details)) {
-            $this->all_room_types = $all_room_types_details['all_room_types'];
-            $this->classAbbvs = $all_room_types_details['classAbbvs'];
-            $this->roomtypes_propertytypes_xref = $all_room_types_details['roomtypes_propertytypes_xref'];
-        } else {
-            $jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
-            $jomres_room_types->get_all_room_types();
+		if (!empty($jomres_room_types->room_types)) {
+			foreach ($jomres_room_types->room_types as $rt) {
+				$this->all_room_types[ $rt['room_classes_uid'] ][ 'room_classes_uid' ] = $rt['room_classes_uid'];
+				$this->all_room_types[ $rt['room_classes_uid'] ][ 'room_class_abbv' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.$rt['room_classes_uid'], stripslashes($rt['room_class_abbv']), false);
+				$this->all_room_types[ $rt['room_classes_uid'] ][ 'room_class_full_desc' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.$rt['room_classes_uid'], stripslashes($rt['room_class_full_desc']), false);
+				$this->all_room_types[ $rt['room_classes_uid'] ][ 'image' ] = $rt['image'];
 
-            if (count($jomres_room_types->room_types) > 0) {
-                foreach ($jomres_room_types->room_types as $rt) {
-                    $this->all_room_types[ $rt['room_classes_uid'] ][ 'room_classes_uid' ] = $rt['room_classes_uid'];
-                    $this->all_room_types[ $rt['room_classes_uid'] ][ 'room_class_abbv' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.$rt['room_classes_uid'], stripslashes($rt['room_class_abbv']), false);
-                    $this->all_room_types[ $rt['room_classes_uid'] ][ 'room_class_full_desc' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.$rt['room_classes_uid'], stripslashes($rt['room_class_full_desc']), false);
-                    $this->all_room_types[ $rt['room_classes_uid'] ][ 'image' ] = $rt['image'];
+				// To a degree, this is a duplication of effort, however we don't know if other scripts are using the $this->classAbbvs variable, so we'll reuse this code from the previous gather_data method.
+				$this->classAbbvs[ $rt['room_classes_uid'] ][ 'abbv' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.$rt['room_classes_uid'], stripslashes($rt['room_class_abbv']), false);
+				$this->classAbbvs[ $rt['room_classes_uid'] ][ 'desc' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.$rt['room_classes_uid'], stripslashes($rt['room_class_full_desc']), false);
+				$this->classAbbvs[ $rt['room_classes_uid'] ][ 'image' ] = $rt['image'];
+			}
+		}
 
-                    // To a degree, this is a duplication of effort, however we don't know if other scripts are using the $this->classAbbvs variable, so we'll reuse this code from the previous gather_data method.
-                    $this->classAbbvs[ $rt['room_classes_uid'] ][ 'abbv' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.$rt['room_classes_uid'], stripslashes($rt['room_class_abbv']), false);
-                    $this->classAbbvs[ $rt['room_classes_uid'] ][ 'desc' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.$rt['room_classes_uid'], stripslashes($rt['room_class_full_desc']), false);
-                    $this->classAbbvs[ $rt['room_classes_uid'] ][ 'image' ] = $rt['image'];
-                }
-            }
-
-            //each property type with it`s assigned room types.
-            $this->roomtypes_propertytypes_xref = $jomres_room_types->all_ptype_rtype_xrefs;
-
-            $c->store('all_room_types_details', array('all_room_types' => $this->all_room_types, 'classAbbvs' => $this->classAbbvs, 'roomtypes_propertytypes_xref' => $this->roomtypes_propertytypes_xref));
-        }
+		//each property type with it`s assigned room types.
+		$this->roomtypes_propertytypes_xref = $jomres_room_types->all_ptype_rtype_xrefs;
     }
 
     private function get_all_property_types()
@@ -548,7 +520,7 @@ class basic_property_details
         $jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
         $jomres_property_types->get_all_property_types();
 
-        if (count($jomres_property_types->property_types) > 0) {
+        if (!empty($jomres_property_types->property_types)) {
             foreach ($jomres_property_types->property_types as $pt) {
                 $this->all_property_types[ $pt['id'] ] = $pt['ptype_desc'];
                 $this->all_property_type_titles[ $pt['id'] ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPE'.(int) $pt['id'], $pt['ptype'], false);
@@ -578,7 +550,7 @@ class basic_property_details
 
         $query = 'SELECT `room_features_uid`, `feature_description`, `property_uid`, `ptype_xref`, `image` FROM #__jomres_room_features WHERE '.$clause;
         $roomFeatures = doSelectSql($query);
-        if (count($roomFeatures) > 0) {
+        if (!empty($roomFeatures)) {
             foreach ($roomFeatures as $f) {
                 $this->all_room_features[ $f->room_features_uid ][ 'room_features_uid' ] = (int) $f->room_features_uid;
                 $this->all_room_features[ $f->room_features_uid ][ 'feature_description' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $f->room_features_uid, stripslashes($f->feature_description));

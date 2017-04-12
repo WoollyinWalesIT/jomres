@@ -60,7 +60,7 @@ class j10004generate_control_panel
                         $bang[ 1 ] = 'notask';
                     }
                     $items_requiring_attention = get_number_of_items_requiring_attention_for_menu_option($bang[ 1 ]);
-                    if (count($items_requiring_attention) > 0) {
+                    if (!empty($items_requiring_attention)) {
                         foreach ($items_requiring_attention as $colour => $number) {
                             if ($number > 0) {
                                 $tmpl = new patTemplate();

@@ -66,7 +66,7 @@ class j06002chart_bookings
 				';
         $result = doSelectSql($query);
 
-        if (count($result) == 0) {
+        if (empty($result)) {
             return;
         } else {
             $results = array();

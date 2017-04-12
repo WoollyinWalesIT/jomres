@@ -29,7 +29,7 @@ class call_self
 
     public function call($elements = array())
     {
-        if (count($elements) == 0) {
+        if (empty($elements)) {
             throw new Exception('Error, no request elements set ');
         }
 

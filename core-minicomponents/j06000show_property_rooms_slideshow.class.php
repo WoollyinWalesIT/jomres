@@ -63,7 +63,7 @@ class j06000show_property_rooms_slideshow
         $query = 'SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,max_people FROM #__jomres_rooms WHERE propertys_uid = '.(int) $property_uid.' ORDER BY room_number,room_name';
         $roomList = doSelectSql($query);
 
-        if (count($roomList) > 0) {
+        if (!empty($roomList)) {
             $jomres_media_centre_images->get_images($property_uid, array('rooms'));
 
             $room_images = array();

@@ -43,9 +43,6 @@ class j02272publishprop
                 $defaultProperty = jomresGetParam($_REQUEST, 'property_uid', 0);
             }
 
-            $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-            $c->eraseAll();
-
             if (in_array($defaultProperty, $thisJRUser->authorisedProperties)) {
                 $query = 'SELECT published FROM #__jomres_propertys WHERE propertys_uid = '.(int) $defaultProperty.' LIMIT 1';
                 $published = doSelectSql($query, 1);

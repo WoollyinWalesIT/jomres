@@ -30,9 +30,6 @@ class jomres_configpanel_bootstrap3 extends jomres_content_tabs
     public function insertSetting()
     {
         $rowclass = '';
-        if (!$this->counter) {
-            $this->counter = 0;
-        }
 
         if ($this->counter % 2) {
             $rowclass = 'row-even';

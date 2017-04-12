@@ -26,7 +26,6 @@ class minicomponent_registry
         $this->miniComponentDirectories = array();
         $this->eventPoints = array();
         $this->new_filesize = 0;
-        $this->nonOverridableEventClasses = array();
         $this->error_detected = false;
         $this->unWantedFolderContents = array('.', '..', 'cvs', '.svn', 'registry.php');
         $this->temp_directory = JOMRES_TEMP_ABSPATH;
@@ -103,12 +102,8 @@ class minicomponent_registry
 
         $this->new_filesize = filesize($this->registry_file);
 
-        //clear cache
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $c->eraseAll();
-
         //delete js files in /jomres/temp dir
-        if (isset($_REQUEST['task']) && $_REQUEST['task'] == 'rebuildregistry') {
+        if (isset($_REQUEST['task']) && ($_REQUEST['task'] == 'rebuildregistry' || $_REQUEST['task'] == 'save_site_settings')) {
             $javascript_files_in_temp_dir = scandir_getfiles(JOMRES_TEMP_ABSPATH, $extension = 'js');
             foreach ($javascript_files_in_temp_dir as $file) {
                 unlink(JOMRES_TEMP_ABSPATH.$file);
@@ -121,6 +116,11 @@ class minicomponent_registry
 		}
 		if (file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
 			unlink(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
+		}
+		
+		//delete the classes registry
+		if (file_exists(JOMRES_TEMP_ABSPATH.'registry_classes.php')) {
+			unlink(JOMRES_TEMP_ABSPATH.'registry_classes.php');
 		}
 
         //rebuild the shortcodes list
@@ -149,6 +149,8 @@ class minicomponent_registry
         }
 
         $this->miniComponentDirectories = array_unique($this->miniComponentDirectories);
+		sort($this->miniComponentDirectories);
+		ksort($this->registeredClasses);
 
         if (!file_put_contents($this->registry_file,
 '<?php
@@ -195,7 +197,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
             }
 
             $d->close();
-            if (count($docs) > 0) {
+            if (!empty($docs)) {
                 sort($docs);
                 foreach ($docs as $doc) {
                     $listdir = $jrePath.$doc.JRDS;
@@ -226,7 +228,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
                 }
             }
             $d->close();
-            if (count($docs) > 0) {
+            if (!empty($docs)) {
                 sort($docs);
                 foreach ($docs as $doc) {
                     $listdir = $jrePath.$doc.JRDS;
@@ -283,7 +285,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
                 }
             }
             $d->close();
-            if (count($docs) > 0) {
+            if (!empty($docs)) {
                 sort($docs);
                 foreach ($docs as $doc) {
                     $listdir = $jrePath.$doc.JRDS;
@@ -306,39 +308,41 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
         $strippedName = substr($strippedName, 0, -8);
 
         $classfileEventPoint = substr($strippedName, 1, 5);
-        $epi = $classfileEventPoint;
-        settype($epi, 'integer');
+
         $classfileEventName = substr($strippedName, 6);
-        $path_parts = pathinfo($filePath.$filename);
+        
+		$path_parts = pathinfo($filePath.$filename);
         if (isset($path_parts[ 'extension' ])) {
             $extension = $path_parts[ 'extension' ];
         }
-        if (is_array($this->unWantedFolderContents)) {
-            if (is_file($filePath.$filename) && !in_array(strtolower($filename), $this->unWantedFolderContents) && ($epi > 0 && $epi < 100000) && (strtolower($extension) == 'php')) {
-                if ($eventType != 'core' && in_array($classfileEventPoint.$classfileEventName, $this->nonOverridableEventClasses)) {
-                    return;
-                } else {
-                    if (array_key_exists($classfileEventPoint.$classfileEventName, $this->registeredClasses)) {
-                        if ((
-                            $this->registeredClasses[ $classfileEventPoint.$classfileEventName ][ 'eventtype' ] == 'component' ||
-                            $this->registeredClasses[ $classfileEventPoint.$classfileEventName ][ 'eventtype' ] == 'remotecomponent') ||
-                            $this->registeredClasses[ $classfileEventPoint.$classfileEventName ][ 'eventtype' ] == 'cms_specific_component') {
-                            $text = '';
-                            $text .= '<font color="red" face="arial" size="1">Warning: Event override collision. You have two or more mini-components attempting to perform the same override function. System behaviour may be unpredictable'.'</font><br>';
-                            $text .= '<b>'.$this->registeredClasses[ $classfileEventPoint.$classfileEventName ][ 'eventName' ].'</b><br>';
-                            $text .= '<b>'.$this->registeredClasses[ $classfileEventPoint.$classfileEventName ][ 'filepath' ].'</b><br>';
-                            $text .= 'Collides with this and possibly more mini-components: '.'<br>';
-                            $text .= '<b>'.$classfileEventName.'</b><br>';
-                            $text .= '<b>'.$filePath.'</b><br>';
-                            echo $text;
-                            $this->error_detected = true;
-                            error_logging('Minicomponent collision :: '.$text);
-                        }
-                    }
-                    $this->miniComponentDirectories[ ] = $filePath;
-                    $this->registeredClasses[ $classfileEventPoint.$classfileEventName ] = array('eventPoint' => $classfileEventPoint, 'eventName' => $classfileEventName, 'filepath' => $filePath, 'eventtype' => $eventType);
-                }
-            }
-        }
+        
+		if (
+			is_file($filePath.$filename) && 
+			!in_array(strtolower($filename), $this->unWantedFolderContents) && 
+			(int)$classfileEventPoint > 0 && 
+			(int)$classfileEventPoint <= 99999 && 
+			strtolower($extension) == 'php'
+			) {
+			if (
+				isset($this->registeredClasses[ $classfileEventPoint][$classfileEventName]) && 
+				($this->registeredClasses[ $classfileEventPoint ][$classfileEventName][ 'eventtype' ] == 'component' ||
+				$this->registeredClasses[ $classfileEventPoint ][$classfileEventName][ 'eventtype' ] == 'remotecomponent' ||
+				$this->registeredClasses[ $classfileEventPoint ][$classfileEventName][ 'eventtype' ] == 'cms_specific_component' )
+				) {
+				$text = '';
+				$text .= '<font color="red" face="arial" size="1">Warning: Event override collision. You have two or more mini-components attempting to perform the same override function. System behaviour may be unpredictable'.'</font><br>';
+				$text .= '<b>'.$classfileEventPoint.$classfileEventName.'</b><br>';
+				$text .= '<b>'.$this->registeredClasses[ $classfileEventPoint ][$classfileEventName][ 'filepath' ].'</b><br>';
+				$text .= 'Collides with this and possibly more mini-components: '.'<br>';
+				$text .= '<b>'.$classfileEventPoint.$classfileEventName.'</b><br>';
+				$text .= '<b>'.$filePath.'</b><br>';
+				echo $text;
+				$this->error_detected = true;
+				error_logging('Minicomponent collision :: '.$text);
+			}
+
+			$this->miniComponentDirectories[ ] = $filePath;
+			$this->registeredClasses[ $classfileEventPoint ][$classfileEventName] = array('filepath' => $filePath, 'eventtype' => $eventType);
+		}
     }
 }

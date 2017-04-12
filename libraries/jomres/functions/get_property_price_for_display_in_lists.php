@@ -31,7 +31,7 @@ function get_property_price_for_display_in_lists($property_uid)
 
     $mcOutput = $MiniComponents->getAllEventPointsData('07015');
 
-    if (count($mcOutput) > 0) {
+    if (!empty($mcOutput)) {
         foreach ($mcOutput as $key => $val) {
             if ($val == true) {
                 $plugin_will_provide_lowest_price = true;
@@ -85,7 +85,7 @@ function get_property_price_for_display_in_lists($property_uid)
 
         $query = 'SELECT property_uid, roomrateperday FROM #__jomres_rates WHERE property_uid = '.(int) $property_uid." AND DATE_FORMAT('".$searchDate."', '%Y/%m/%d') BETWEEN DATE_FORMAT(`validfrom`, '%Y/%m/%d') AND DATE_FORMAT(`validto`, '%Y/%m/%d') AND roomrateperday > '0' ";
         $tariffList = doSelectSql($query);
-        if (count($tariffList) > 0) {
+        if (!empty($tariffList)) {
             foreach ($tariffList as $t) {
                 if (!isset($pricesFromArray[ $t->property_uid ])) {
                     $pricesFromArray[ $t->property_uid ] = $t->roomrateperday;
