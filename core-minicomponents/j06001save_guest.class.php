@@ -46,6 +46,8 @@ class j06001save_guest
         $jrportal_guests->email = jomresGetParam($_REQUEST, 'email', '');
         $jrportal_guests->vat_number = jomresGetParam($_REQUEST, 'vat_number', '');
         $jrportal_guests->discount = (int) jomresGetParam($_REQUEST, 'discount', 0);
+        $jrportal_guests->blacklisted = (int) jomresGetParam($_REQUEST, 'blacklisted', 0);
+        
 
         if ( $id > 0 )
 			$jrportal_guests->commit_update_guest();

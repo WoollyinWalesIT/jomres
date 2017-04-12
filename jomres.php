@@ -135,31 +135,42 @@ try {
             }
 
             if (get_showtime('task') != 'handlereq' && get_showtime('task') != 'completebk' && get_showtime('task') != 'processpayment' && get_showtime('task') != 'confirmbooking') {
-                if ($thisJRUser->profile_id == 0) {
+
+                if ($thisJRUser->profile_id == 0) 
+                {
+                    // In case the guest has created a booking, the guest data is then used to populate the guest profile table
                     $query = "SELECT guests_uid,firstname,surname,house,street,town,postcode,county,country,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE mos_userid = '".(int) $thisJRUser->id."' LIMIT 1";
                     $guestData = doSelectSql($query, 2);
-
+          
+                    
                     if ($guestData) {
                         $query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`email`) VALUES ('".(int) $thisJRUser->id."','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$email')";
                         doInsertSql($query, '');
-
-                        $tmpBookingHandler->updateGuestField('guests_uid', $guestData[ 'id' ]);
-                        $tmpBookingHandler->updateGuestField('firstname', $guestData[ 'firstname' ]);
-                        $tmpBookingHandler->updateGuestField('surname', $guestData[ 'surname' ]);
-                        $tmpBookingHandler->updateGuestField('house', $guestData[ 'house' ]);
-                        $tmpBookingHandler->updateGuestField('street', $guestData[ 'street' ]);
-                        $tmpBookingHandler->updateGuestField('town', $guestData[ 'town' ]);
-                        $tmpBookingHandler->updateGuestField('region', $guestData[ 'county' ]);
-                        $tmpBookingHandler->updateGuestField('country', $guestData[ 'country' ]);
-                        $tmpBookingHandler->updateGuestField('postcode', $guestData[ 'postcode' ]);
-                        $tmpBookingHandler->updateGuestField('tel_landline', $guestData[ 'tel_landline' ]);
-                        $tmpBookingHandler->updateGuestField('tel_mobile', $guestData[ 'tel_mobile' ]);
-                        $tmpBookingHandler->updateGuestField('email', $guestData[ 'email' ]);
                     } else {
                         $user_details = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($thisJRUser->id);
                         $tmpBookingHandler->updateGuestField('email', $user_details[ $thisJRUser->id ][ 'email' ]);
                     }
                 }
+                
+                if ($thisJRUser->id > 0 )
+                    {
+                        // Added so that users who have added details to their account, but not created a booking yet, properly have the booking form details created.
+                        $thisJRUser->get_user_profile();
+
+                        $tmpBookingHandler->updateGuestField('guests_uid', $thisJRUser->cms_user_id );
+                        $tmpBookingHandler->updateGuestField('firstname', $thisJRUser->firstname);
+                        $tmpBookingHandler->updateGuestField('surname', $thisJRUser->surname);
+                        $tmpBookingHandler->updateGuestField('house', $thisJRUser->house);
+                        $tmpBookingHandler->updateGuestField('street', $thisJRUser->street);
+                        $tmpBookingHandler->updateGuestField('town', $thisJRUser->town);
+                        $tmpBookingHandler->updateGuestField('region', $thisJRUser->county);
+                        $tmpBookingHandler->updateGuestField('country', $thisJRUser->country);
+                        $tmpBookingHandler->updateGuestField('postcode', $thisJRUser->postcode);
+                        $tmpBookingHandler->updateGuestField('tel_landline', $thisJRUser->tel_landline);
+                        $tmpBookingHandler->updateGuestField('tel_mobile', $thisJRUser->tel_mobile);
+                        $tmpBookingHandler->updateGuestField('email', $thisJRUser->email); 
+                    }
+                    
             }
         }
         $tmpBookingHandler->saveGuestData();

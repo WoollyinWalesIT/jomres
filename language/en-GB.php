@@ -3101,3 +3101,6 @@ jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', 'Here you can set an externa
 
 jr_define('_JOMRES_ROOM_DESCRIPTION_SHORT', 'Room introduction text (max 200 characters) ');
 jr_define('_JOMRES_ROOM_DESCRIPTION_LONG', 'Room Description (max 3000 characters) ');
+
+jr_define('_JOMRES_GUEST_BLACKLISTED', 'Guest blacklisted');
+jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'If this guest is black listed then they will no longer be able to make bookings in this property.');

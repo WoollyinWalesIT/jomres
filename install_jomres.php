@@ -599,6 +599,10 @@ function doTableUpdates()
         alterPtypesMarkerCol();
     }
 
+    if (!checkGuestsBlacklistedColExists()) {
+        alterGuestsBlacklistedCol();
+    }
+    
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
     drop_room_images_table();
@@ -608,6 +612,24 @@ function doTableUpdates()
     
 }
 
+function alterGuestsBlacklistedCol()
+{
+    $query = 'ALTER TABLE `#__jomres_guests` ADD `blacklisted` tinyint( 1 ) default 0 NOT NULL ';
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_guests blacklisted', 'danger');
+    }
+}
+
+function checkGuestsBlacklistedColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_guests LIKE 'blacklisted'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+
+    return false;
+}
 
 function checkRoomDescriptionColExists()
 {
@@ -3731,6 +3753,7 @@ function createJomresTables()
 		`vat_number_validated` BOOL NOT NULL DEFAULT '0',
 		`vat_number_validation_response` TEXT NULL,
 		`partner_id` INT(11) NOT NULL DEFAULT 0 NOT NULL,
+        `blacklisted` tinyint( 1 ) default 0 NOT NULL,
 		PRIMARY KEY(guests_uid)
 		) ";
     if (!doInsertSql($query)) {

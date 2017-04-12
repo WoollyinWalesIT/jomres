@@ -3118,6 +3118,7 @@ class dobooking
         $guest_tel_mobile	=	"";
         $guest_email		=	"";
         */
+
         $guest_firstname = $this->firstname;
         $guest_surname = $this->surname;
         $guest_house = $this->house;

@@ -2945,6 +2945,7 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
  */
 function insertGuestDeets($jomressession)
 {
+
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
     $userIsManager = checkUserIsManager();
@@ -2954,7 +2955,7 @@ function insertGuestDeets($jomressession)
     if (isset($xCustomers[ 'guests_uid' ])) {
         $guests_uid = (int) $xCustomers[ 'guests_uid' ];
     }
-
+var_dump($xCustomers);exit;
     $mos_userid = (int) $xCustomers[ 'mos_userid' ];
     $existing_id = (int) $xCustomers[ 'existing_id' ];
     $email = $xCustomers[ 'email' ];
@@ -2968,9 +2969,10 @@ function insertGuestDeets($jomressession)
     $postcode = $xCustomers[ 'postcode' ];
     $landline = $xCustomers[ 'tel_landline' ];
     $mobile = $xCustomers[ 'tel_mobile' ];
+    echo "HI";exit;
     $property_uid = (int) $tmpBookingHandler->getBookingPropertyId($tmpBookingHandler);
     $defaultProperty = $property_uid;
-
+    
     if ($mos_userid == 0) {
         if (!$userIsManager && $thisJRUser->id > 0) {
             $mos_userid = $thisJRUser->id;
@@ -2998,7 +3000,7 @@ function insertGuestDeets($jomressession)
     } else {
         $guests_uid = 0;
     }
-
+var_dump($guests_uid);exit;
     if ($guests_uid > 0) {
         $query = "UPDATE	#__jomres_guests SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',
 		`town`= '$town',`county`= '$region',`country`= '$country',`postcode`= '$postcode',`tel_landline`= '$landline',`tel_mobile`= '$mobile',
@@ -3013,6 +3015,7 @@ function insertGuestDeets($jomressession)
         $query .= ") VALUES ('$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$property_uid','$email'";
         $query .= ",'".(int) $mos_userid."'";
         $query .= ')';
+        echo $query;exit;
         $returnid = doInsertSql($query, false);
     }
 
