@@ -161,9 +161,21 @@ try {
                     }
                 }
             }
-			$tmpBookingHandler->saveGuestData();
         }
-	}
+        $tmpBookingHandler->saveGuestData();
+    } else {
+        $thisJRUser = new stdClass();
+        $thisJRUser->jomres_manager_id = 0;
+        $thisJRUser->userid = 0;
+        $thisJRUser->username = '';
+        $thisJRUser->accesslevel = 0;
+        $thisJRUser->currentproperty = 0;
+        $thisJRUser->authorisedProperties = array();
+        $thisJRUser->userIsSuspended = false;
+        $thisJRUser->userIsRegistered = false;
+        $thisJRUser->userIsManager = false;
+        $thisJRUser->superPropertyMaager = false;
+    }
 
     //handle suspended managers
     if ($thisJRUser->userIsSuspended) {
