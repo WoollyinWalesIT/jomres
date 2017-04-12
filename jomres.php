@@ -157,7 +157,7 @@ try {
                         // Added so that users who have added details to their account, but not created a booking yet, properly have the booking form details created.
                         $thisJRUser->get_user_profile();
 
-                        $tmpBookingHandler->updateGuestField('guests_uid', $thisJRUser->cms_user_id );
+                        $tmpBookingHandler->updateGuestField('mos_userid', $thisJRUser->cms_user_id );
                         $tmpBookingHandler->updateGuestField('firstname', $thisJRUser->firstname);
                         $tmpBookingHandler->updateGuestField('surname', $thisJRUser->surname);
                         $tmpBookingHandler->updateGuestField('house', $thisJRUser->house);

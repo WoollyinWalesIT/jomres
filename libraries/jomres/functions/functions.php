@@ -2949,7 +2949,7 @@ function insertGuestDeets($jomressession)
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
     $userIsManager = checkUserIsManager();
-
+    echo "HI";exit;
     $xCustomers = $tmpBookingHandler->getGuestData();
 
     if (isset($xCustomers[ 'guests_uid' ])) {
@@ -2969,7 +2969,7 @@ var_dump($xCustomers);exit;
     $postcode = $xCustomers[ 'postcode' ];
     $landline = $xCustomers[ 'tel_landline' ];
     $mobile = $xCustomers[ 'tel_mobile' ];
-    echo "HI";exit;
+
     $property_uid = (int) $tmpBookingHandler->getBookingPropertyId($tmpBookingHandler);
     $defaultProperty = $property_uid;
     
