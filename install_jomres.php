@@ -589,12 +589,20 @@ function doTableUpdates()
         doUserRolesUpdates();
     }
 
+    if (!checkRoomDescriptionColExists()) {
+        alterRoomsDescriptionCol();
+    }
+    
     change_default_date_value_for_subscriptions_table();
 
     if (!checkPtypesMarkerColExists()) {
         alterPtypesMarkerCol();
     }
 
+    if (!checkGuestsBlacklistedColExists()) {
+        alterGuestsBlacklistedCol();
+    }
+    
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
     drop_room_images_table();
@@ -602,6 +610,48 @@ function doTableUpdates()
     add_api_tables();
     updateSiteSettings('update_time', time());
     
+}
+
+function alterGuestsBlacklistedCol()
+{
+    $query = 'ALTER TABLE `#__jomres_guests` ADD `blacklisted` tinyint( 1 ) default 0 NOT NULL ';
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_guests blacklisted', 'danger');
+    }
+}
+
+function checkGuestsBlacklistedColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_guests LIKE 'blacklisted'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+
+    return false;
+}
+
+function checkRoomDescriptionColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_rooms LIKE 'description'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+
+    return false;
+}
+
+function alterRoomsDescriptionCol()
+{
+    $query = 'ALTER TABLE #__jomres_rooms ADD `description_intro` VARCHAR(1000) DEFAULT NULL';
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_rooms description_intro column', 'danger');
+    }
+    $query = 'ALTER TABLE #__jomres_rooms ADD `description` VARCHAR(3000) DEFAULT NULL';
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_rooms descriptions column', 'danger');
+    }
 }
 
 function drop_cronlog_table() {
@@ -3703,6 +3753,7 @@ function createJomresTables()
 		`vat_number_validated` BOOL NOT NULL DEFAULT '0',
 		`vat_number_validation_response` TEXT NULL,
 		`partner_id` INT(11) NOT NULL DEFAULT 0 NOT NULL,
+        `blacklisted` tinyint( 1 ) default 0 NOT NULL,
 		PRIMARY KEY(guests_uid)
 		) ";
     if (!doInsertSql($query)) {
@@ -3746,6 +3797,8 @@ function createJomresTables()
 		`room_floor` VARCHAR(10) NULL,
 		`max_people` INTEGER NULL,
 		`singleperson_suppliment` DOUBLE DEFAULT '0',
+        `description_intro` VARCHAR(1000) DEFAULT NULL,
+        `description` VARCHAR(3000) DEFAULT NULL,
 		PRIMARY KEY(`room_uid`)
 		) ";
     if (!doInsertSql($query)) {

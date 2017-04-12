@@ -534,6 +534,9 @@ class dobooking
         $basic_room_details = jomres_singleton_abstract::getInstance('basic_room_details');
         $basic_room_details->get_all_rooms($this->property_uid);
 
+        jr_import('jomres_markdown');
+        $jomres_markdown = new jomres_markdown();
+        
         $jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
         $images = $jomres_media_centre_images->get_images($this->property_uid, array('rooms')); // Gets the rooms images
 
@@ -550,6 +553,8 @@ class dobooking
                 'room_floor' => $r['room_floor'],
                 'max_people' => $r['max_people'],
                 'singleperson_suppliment' => $r['singleperson_suppliment'],
+                'description_intro' => $jomres_markdown->get_markdown($r['description_intro']),
+                'description' => $jomres_markdown->get_markdown($r['description']),
                 'small_room_image' => $room_images [ $r['room_uid'] ] [0] ['small'],
                 'medium_room_image' => $room_images [ $r['room_uid'] ] [0] ['medium'],
                 );
@@ -3113,6 +3118,7 @@ class dobooking
         $guest_tel_mobile	=	"";
         $guest_email		=	"";
         */
+
         $guest_firstname = $this->firstname;
         $guest_surname = $this->surname;
         $guest_house = $this->house;
@@ -4591,7 +4597,10 @@ class dobooking
         $roomStuff[ 'ROOM_TYPE_IMAGE' ] = $this->typeImage;
         $roomStuff[ 'ROOM_IMAGE' ] = $this->allPropertyRooms [ $roomUid ] [ 'small_room_image' ];
         $roomStuff[ 'ROOM_IMAGE_MEDIUM' ] = $this->allPropertyRooms [ $roomUid ] [ 'medium_room_image' ];
-
+        
+        $roomStuff[ 'DESCRIPTION_INTRO' ] = $this->allPropertyRooms [ $roomUid ] [ 'description_intro' ];
+        $roomStuff[ 'DESCRIPTION' ] = $this->allPropertyRooms [ $roomUid ] [ 'description' ];
+        
         if ($this->cfg_booking_form_rooms_list_style == '2') {
             $this->rooms_list_style_roomstariffs[ $tariffUid ] = array('room_type_id' => $tariffStuff[ 'TARIFF_ROOMTYPE' ], 'room_id' => $roomUid, 'tariff_id' => $tariffUid, 'roomTariffOutputId' => $roomTariffOutputId, 'tariffStuff' => $tariffStuff, 'roomStuff' => $roomStuff);
 

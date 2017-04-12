@@ -23,6 +23,7 @@ class jomres_markdown {
 
     public function get_markdown($string) {
         $Parsedown = new Parsedown();
+        $Parsedown->setBreaksEnabled(true);
         return $Parsedown->text($string);
     }
 

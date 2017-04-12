@@ -102,6 +102,21 @@ function dobooking($selectedProperty, $thisdate, $remus)
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
+    if ( $thisJRUser->id > 0 ) {
+        jr_import( 'jrportal_guests' );
+        $jrportal_guests = new jrportal_guests();
+        $jrportal_guests->property_uid = $selectedProperty;
+        $previous_guest_uid = $jrportal_guests->get_guest_id_by_cms_id($thisJRUser->id); // Let´s see if this user has been a guest of this property before
+        if ($previous_guest_uid) {
+            $jrportal_guests->id = $previous_guest_uid;
+            $jrportal_guests->get_guest();
+            if ($jrportal_guests->blacklisted == 1 ) {
+                jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=contactowner&amp;selectedProperty='.$selectedProperty.'&amp;arrivalDate='.$thisdate));
+            }
+        }
+    }
+    
+        
     $backWasClicked = false;
     if ($tmpBookingHandler->tmpbooking[ 'confirmationSeen' ] == true) {
         $backWasClicked = true;

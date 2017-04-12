@@ -2945,10 +2945,10 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
  */
 function insertGuestDeets($jomressession)
 {
+
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
     $userIsManager = checkUserIsManager();
-
     $xCustomers = $tmpBookingHandler->getGuestData();
 
     if (isset($xCustomers[ 'guests_uid' ])) {
@@ -2968,9 +2968,10 @@ function insertGuestDeets($jomressession)
     $postcode = $xCustomers[ 'postcode' ];
     $landline = $xCustomers[ 'tel_landline' ];
     $mobile = $xCustomers[ 'tel_mobile' ];
+
     $property_uid = (int) $tmpBookingHandler->getBookingPropertyId($tmpBookingHandler);
     $defaultProperty = $property_uid;
-
+    
     if ($mos_userid == 0) {
         if (!$userIsManager && $thisJRUser->id > 0) {
             $mos_userid = $thisJRUser->id;
