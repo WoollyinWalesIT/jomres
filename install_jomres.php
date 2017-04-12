@@ -589,6 +589,10 @@ function doTableUpdates()
         doUserRolesUpdates();
     }
 
+    if (!checkRoomDescriptionColExists()) {
+        alterRoomsDescriptionCol();
+    }
+    
     change_default_date_value_for_subscriptions_table();
 
     if (!checkPtypesMarkerColExists()) {
@@ -602,6 +606,30 @@ function doTableUpdates()
     add_api_tables();
     updateSiteSettings('update_time', time());
     
+}
+
+
+function checkRoomDescriptionColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_rooms LIKE 'description'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+
+    return false;
+}
+
+function alterRoomsDescriptionCol()
+{
+    $query = 'ALTER TABLE #__jomres_rooms ADD `description_intro` VARCHAR(1000) DEFAULT NULL';
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_rooms description_intro column', 'danger');
+    }
+    $query = 'ALTER TABLE #__jomres_rooms ADD `description` VARCHAR(3000) DEFAULT NULL';
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_rooms descriptions column', 'danger');
+    }
 }
 
 function drop_cronlog_table() {
@@ -3746,6 +3774,8 @@ function createJomresTables()
 		`room_floor` VARCHAR(10) NULL,
 		`max_people` INTEGER NULL,
 		`singleperson_suppliment` DOUBLE DEFAULT '0',
+        `description_intro` VARCHAR(1000) DEFAULT NULL,
+        `description` VARCHAR(3000) DEFAULT NULL,
 		PRIMARY KEY(`room_uid`)
 		) ";
     if (!doInsertSql($query)) {

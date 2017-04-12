@@ -50,22 +50,29 @@ class j06002edit_resource
         $saveText = jr_gettext('_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE', false);
 
         if ($mrConfig[ 'singleRoomProperty' ] == '0') { //MRPs
-            $room_features_uid = '';
-            $room_name = '';
-            $room_number = '';
-            $room_floor = '';
-            $room_classes_uid = false;
-            $max_people = '10';
-            $singleperson_suppliment = 0;
+        
+            $room_features_uid          = '';
+            $room_name                  = '';
+            $room_number                = '';
+            $room_floor                 = '';
+            $room_classes_uid           = false;
+            $max_people                 = '10';
+            $singleperson_suppliment    = 0;
+            $room_description_intro     = '';
+            $room_description           = '';
 
             if ($roomUid > 0 && $basic_room_details->get_room($roomUid)) {
-                $room_classes_uid = $basic_room_details->room['room_classes_uid'];
-                $room_features_uid = $basic_room_details->room['room_features_uid'];
-                $room_name = $basic_room_details->room['room_name'];
-                $room_number = $basic_room_details->room['room_number'];
-                $room_floor = $basic_room_details->room['room_floor'];
-                $max_people = $basic_room_details->room['max_people'];
-                $singleperson_suppliment = $basic_room_details->room['singleperson_suppliment'];
+
+                $room_classes_uid           = $basic_room_details->room['room_classes_uid'];
+                $room_features_uid          = $basic_room_details->room['room_features_uid'];
+                $room_name                  = $basic_room_details->room['room_name'];
+                $room_number                = $basic_room_details->room['room_number'];
+                $room_floor                 = $basic_room_details->room['room_floor'];
+                $max_people                 = $basic_room_details->room['max_people'];
+                $singleperson_suppliment    = $basic_room_details->room['singleperson_suppliment'];
+                $room_description_intro     = $basic_room_details->room['description_intro'];
+                $room_description           = $basic_room_details->room['description'];
+                
             }
 
             //dropdown with room types assigned to this property type
@@ -109,11 +116,14 @@ class j06002edit_resource
 
             $output[ 'MAXPEOPLE_DROPDOWN' ] = jomresHTML::integerSelectList(1, $max_max_people, 1, 'max_people', '', $max_people);
 
-            $output[ 'ROOMNAME' ] = $room_name;
-            $output[ 'ROOMNUMBER' ] = $room_number;
-            $output[ 'ROOMFLOOR' ] = $room_floor;
-            $output[ 'FEATURES' ] = $featureListTxt;
-            $output[ 'SUPPLIMENT' ] = $singleperson_suppliment;
+            $output[ 'ROOMNAME' ]                   = $room_name;
+            $output[ 'ROOMNUMBER' ]                 = $room_number;
+            $output[ 'ROOMFLOOR' ]                  = $room_floor;
+            $output[ 'FEATURES' ]                   = $featureListTxt;
+            $output[ 'SUPPLIMENT' ]                 = $singleperson_suppliment;
+            $output[ 'ROOM_DESCRIPTION_INTRO' ]     = $room_description_intro;
+            $output[ 'ROOM_DESCRIPTION' ]           = $room_description;
+            
             $output[ 'IMAGE' ] = '<img src="'.getImageForProperty('room', $defaultProperty, (int) $roomUid).'" />';
 
             $output[ 'HTYPE' ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', false, false);
@@ -125,7 +135,36 @@ class j06002edit_resource
             $output[ 'HSUPPLIMENT' ] = jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON', '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON', false, false);
             $output[ 'SUPPLIMENT_DESC' ] = jr_gettext('_JOMRES_COM_SPS_EDITROOM_DESC', '_JOMRES_COM_SPS_EDITROOM_DESC', false, false);
             $output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_MR_EB_HROOM_DETAILS', '_JOMRES_COM_MR_EB_HROOM_DETAILS', false);
-			
+            $output[ '_JOMRES_ROOM_DESCRIPTION_SHORT' ] = jr_gettext('_JOMRES_ROOM_DESCRIPTION_SHORT', '_JOMRES_ROOM_DESCRIPTION_SHORT', false);
+            $output[ '_JOMRES_ROOM_DESCRIPTION_LONG' ] = jr_gettext('_JOMRES_ROOM_DESCRIPTION_LONG', '_JOMRES_ROOM_DESCRIPTION_LONG', false);
+
+            if ($jrConfig[ 'allowHTMLeditor' ] == '1') {
+                $width = '95%';
+                $height = '250';
+                $col = '20';
+                $row = '3';
+
+                $output[ 'ROOM_DESCRIPTION_INTRO' ] = editorAreaText('room_description_intro', $room_description_intro, 'room_description_intro', $width, $height, $col, $row);
+                $output[ 'ROOM_DESCRIPTION' ] = editorAreaText('room_description', $room_description, 'room_description', $width, $height, $col, $row);
+            } else {
+                jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/libraries/simpleMDE/dist/', 'simplemde.min.js');
+                jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/libraries/simpleMDE/dist/', 'simplemde.min.css');
+                
+                $output['SIMPLEMDE_JAVASCRIPT'] = '
+                    <script type="text/javascript">
+                    jomresJquery(document).ready(function () {
+                        var buttons =  ["bold", "italic", "heading", "strikethrough" , "|" , "unordered-list" , "ordered-list" , "clean-block" , "image" , "table" , "horizontal-rule" , "|", "preview" ];
+                        var simplemde = new SimpleMDE({ element: document.getElementById("room_description_intro") ,toolbar: buttons, });
+                        var simplemde = new SimpleMDE({ element: document.getElementById("room_description") ,toolbar: buttons, });
+                    });
+                    </script>';
+
+                $output[ 'MARKDOWN_BUTTON' ] = $MiniComponents->specificEvent('06000', 'show_markdown_modal', array('output_now' => false));
+                
+                $output[ 'ROOM_DESCRIPTION_INTRO' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="room_description_intro" name="room_description_intro">'.jomres_remove_HTML($room_description_intro , '').'</textarea>';
+                $output[ 'ROOM_DESCRIPTION' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="room_description" name="room_description">'.jomres_remove_HTML( $room_description , '').'</textarea>';
+            }
+
 			if ($clone > 0) {
 				$output[ 'ROOMUID' ] = 0;
 			} else {

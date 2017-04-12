@@ -37,6 +37,9 @@ class j06000show_property_rooms
         }
         $this->retVals = '';
 
+        jr_import('jomres_markdown');
+        $jomres_markdown = new jomres_markdown();
+        
         if (isset($componentArgs[ 'property_uid' ])) {
             $property_uid = (int) $componentArgs[ 'property_uid' ];
         } elseif (isset($_REQUEST['property_uid'])) {
@@ -114,6 +117,10 @@ class j06000show_property_rooms
 
                 $r[ 'AVLCALLINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=show_property_room&id='.$room['room_uid']);
 
+                $r[ 'DESCRIPTION_INTRO' ] = $jomres_markdown->get_markdown($room['description_intro']);
+                $r[ 'DESCRIPTION' ] = $jomres_markdown->get_markdown($room['description']);
+
+            
                 $rows[ ] = $r;
             }
 
