@@ -791,6 +791,13 @@ try {
     jr_import('jomres_usage_reporting');
     $tracking = new jomres_usage_reporting();
 
+/*     if ( $task != "background_process" && !strstr( $task ,"cron_" ) && !AJAXCALL ) {
+        jr_import('jomres_deferred_tasks');{}
+        $jomres_deferred_tasks = new jomres_deferred_tasks();
+        $jomres_deferred_tasks->construct_background_message( "06000" , "deferred_jomres_version_check" , array("task" => $task ) );
+        $jomres_deferred_tasks->dispatch_mesage();
+    } */
+
     //done
     endrun();
     if (AJAXCALL) {

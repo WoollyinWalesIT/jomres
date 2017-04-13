@@ -4531,7 +4531,7 @@ function get_jomres_current_version()
     return $mrConfig[ 'version' ];
 }
 
-function get_latest_jomres_version()
+function get_latest_jomres_version($outputText = true)
 {
     if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'latest_version.php')) {
         $last_modified = filemtime(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'latest_version.php');
@@ -4572,18 +4572,27 @@ function get_latest_jomres_version()
     }
 
     if (empty($buffer)) {
-        echo 'Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ? Alternatively, please check that CURL is enabled on this webserver<p>';
+        if ( $outputText )
+            echo 'Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ? Alternatively, please check that CURL is enabled on this webserver<p>';
+        else
+            return false;
     } else {
         return $buffer;
     }
 }
 
-// Returns true if this version is latest, otherwise returns false
-function check_jomres_version()
+/*
+Returns true if this version is latest, otherwise returns false
+outputText flag is for use by deferred tasks that will email admin if the system has been updated.
+*/
+
+function check_jomres_version( $outputText = true )
 {
     $this_version = get_jomres_current_version();
-    $latest_version = get_latest_jomres_version();
-
+    $latest_version = get_latest_jomres_version($outputText);
+    if ($latest_version == false ) { // Comms error talking to Jomres.net server, can't do anything else so we'll return NULL because we don't want the system doing anything else.
+        return null;
+    }
     $latest_jomres_version = explode('.', $latest_version);
     $this_jomres_version = explode('.', $this_version);
 
