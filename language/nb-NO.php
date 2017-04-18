@@ -3140,3 +3140,9 @@ jr_define('_JOMRES_ROUTER_ROOMTYPES', 'Room Types');
 
 jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL', 'External booking form URL');
 jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', 'Here you can set an external URL if you want to use a 3rd party website for making bookings. All jomres booking buttons will point to this URL. Leave this field blank if you want to use the Jomres booking form.');
+
+jr_define('_JOMRES_ROOM_TAGLINE', 'Tagline (short room description/subtitle)');
+jr_define('_JOMRES_ROOM_DESCRIPTION', 'Room Description');
+
+jr_define('_JOMRES_GUEST_BLACKLISTED', 'Guest blacklisted');
+jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'If this guest is black listed then they will no longer be able to make bookings in this property.');
