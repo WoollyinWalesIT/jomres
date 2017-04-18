@@ -644,7 +644,7 @@ function checkRoomDescriptionColExists()
 
 function alterRoomsDescriptionCol()
 {
-    $query = 'ALTER TABLE #__jomres_rooms ADD `tagline` VARCHAR(1000) DEFAULT NULL';
+    $query = 'ALTER TABLE #__jomres_rooms ADD `tagline` VARCHAR(255) DEFAULT NULL';
     if (!doInsertSql($query, '')) {
         output_message('Error, unable to add __jomres_rooms tagline column', 'danger');
     }
