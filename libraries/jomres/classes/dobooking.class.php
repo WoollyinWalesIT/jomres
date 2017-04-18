@@ -553,7 +553,7 @@ class dobooking
                 'room_floor' => $r['room_floor'],
                 'max_people' => $r['max_people'],
                 'singleperson_suppliment' => $r['singleperson_suppliment'],
-                'description_intro' => $jomres_markdown->get_markdown($r['description_intro']),
+                'tagline' => $r['tagline'],
                 'description' => $jomres_markdown->get_markdown($r['description']),
                 'small_room_image' => $room_images [ $r['room_uid'] ] [0] ['small'],
                 'medium_room_image' => $room_images [ $r['room_uid'] ] [0] ['medium'],
@@ -4598,7 +4598,7 @@ class dobooking
         $roomStuff[ 'ROOM_IMAGE' ] = $this->allPropertyRooms [ $roomUid ] [ 'small_room_image' ];
         $roomStuff[ 'ROOM_IMAGE_MEDIUM' ] = $this->allPropertyRooms [ $roomUid ] [ 'medium_room_image' ];
         
-        $roomStuff[ 'DESCRIPTION_INTRO' ] = $this->allPropertyRooms [ $roomUid ] [ 'description_intro' ];
+        $roomStuff[ 'TAGLINE' ] = $this->allPropertyRooms [ $roomUid ] [ 'tagline' ];
         $roomStuff[ 'DESCRIPTION' ] = $this->allPropertyRooms [ $roomUid ] [ 'description' ];
         
         if ($this->cfg_booking_form_rooms_list_style == '2') {

@@ -45,16 +45,13 @@ class j06002save_resource
         $jrportal_rooms->room_floor                 = getEscaped(jomresGetParam($_POST, 'room_floor', ''));
         $jrportal_rooms->singleperson_suppliment    = (float) jomresGetParam($_POST, 'singleperson_suppliment', 0.0);
         $jrportal_rooms->room_features_uid          = jomresGetParam($_POST, 'features_list', array());
+		$jrportal_rooms->tagline					= getEscaped(jomresGetParam($_POST, 'room_tagline', ''));
 
         //html editor fields
         if ($jrConfig[ 'allowHTMLeditor' ] == '0') {
-            $jrportal_rooms->description_intro      = $this->convert_greaterthans(jomresGetParam($_POST, 'room_description_intro', '')); // The input here is called room_description_intro and not just description_intro because the input filtering settings in site config need a nice to identify value
             $jrportal_rooms->description            = $this->convert_greaterthans(jomresGetParam($_POST, 'room_description', ''));
-
-            $jrportal_rooms->description_intro      = strip_tags($jrportal_rooms->description_intro, '<p><br>');
             $jrportal_rooms->description            = strip_tags($jrportal_rooms->description, '<p><br>');
         } else {
-            $jrportal_rooms->description_intro      = jomresGetParam($_POST, 'room_description_intro', '');
             $jrportal_rooms->description            = jomresGetParam($_POST, 'room_description', '');
         }
         

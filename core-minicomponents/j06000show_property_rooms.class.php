@@ -117,7 +117,7 @@ class j06000show_property_rooms
 
                 $r[ 'AVLCALLINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=show_property_room&id='.$room['room_uid']);
 
-                $r[ 'DESCRIPTION_INTRO' ] = $jomres_markdown->get_markdown($room['description_intro']);
+                $r[ 'TAGLINE' ] = $room['tagline'];
                 $r[ 'DESCRIPTION' ] = $jomres_markdown->get_markdown($room['description']);
 
             

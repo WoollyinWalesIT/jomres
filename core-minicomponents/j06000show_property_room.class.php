@@ -100,7 +100,7 @@ class j06000show_property_room
             $output[ 'ROOMFLOOR' ] = stripslashes($basic_room_details->room['room_floor']);
             $output[ 'MAXPEOPLE' ] = $basic_room_details->room['max_people'];
             
-            $output[ 'DESCRIPTION_INTRO' ] = $jomres_markdown->get_markdown($basic_room_details->room['description_intro']);
+            $output[ 'TAGLINE' ] = $basic_room_details->room['tagline'];
             $output[ 'DESCRIPTION' ] = $jomres_markdown->get_markdown($basic_room_details->room['description']);
 
             $output[ 'ROOMTYPE' ] = $current_property_details->all_room_types[ $basic_room_details->room['room_classes_uid'] ]['room_class_abbv'];

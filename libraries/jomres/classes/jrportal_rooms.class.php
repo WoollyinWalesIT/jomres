@@ -32,7 +32,7 @@ class jrportal_rooms
         $this->room_floor = '';                 // room floor
         $this->max_people = 1;                  // room`s max guests
         $this->singleperson_suppliment = '';    // single person suppliment
-        $this->description_intro = '';          // 1000 chars maximum
+        $this->tagline = '';          // 1000 chars maximum
         $this->description = '';                // 3000 chars maximum
         
         //multiple rooms creation
@@ -77,7 +77,7 @@ class jrportal_rooms
 							`room_floor`,
 							`max_people`,
 							`singleperson_suppliment`,
-                            `description_intro`,
+                            `tagline`,
                             `description`
 							)
 						VALUES 
@@ -90,12 +90,12 @@ class jrportal_rooms
 							'".$this->room_floor."',
 							" .(int) $this->max_people.',
 							' .(float) $this->singleperson_suppliment.',
-                            "' .(string) $this->description_intro.'",
+                            "' .(string) $this->tagline.'",
                             "' .(string) $this->description.'"
 							)';
         $this->room_uid = doInsertSql($query, '');
 
-        updateCustomText('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_INTRO'.$this->room_uid, $this->description_intro, true);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$this->room_uid, $this->tagline, true);
         updateCustomText('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$this->room_uid, $this->description, true);
         
         if (!$this->room_uid) {
@@ -150,7 +150,7 @@ class jrportal_rooms
 						`room_floor`                = '".$this->room_floor."',
 						`max_people`                = " .(int) $this->max_people.',
 						`singleperson_suppliment`   = ' .(float) $this->singleperson_suppliment.' ,
-                        `description_intro`         = "' .(string) $this->description_intro.'",
+                        `tagline`         			= "' .(string) $this->tagline.'",
                         `description`               = "' .(string) $this->description.'" 
 					WHERE `room_uid` = ' .(int) $this->room_uid.' 
 						AND `propertys_uid` = ' .(int) $this->propertys_uid;
