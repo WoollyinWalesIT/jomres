@@ -184,6 +184,7 @@ jomresJquery(document).ready(function() {
 			jomresJquery('#blackBookingForm')[0].reset();
 			reset_booking_modal();
 			reset_region_dropdown();
+			reset_guest_details();
 			
 			//set the new hidden values
 			jomresJquery('#blackBookingModal #start').val(startDate);
@@ -560,6 +561,22 @@ function reset_booking_modal() {
 	jomresJquery('#blackBookingForm #blackBookingSubmitButton').removeClass("hide");
 	jomresJquery('#blackBookingForm #blackBookingRetryButton').addClass("hide");
 	return true;
+}
+
+function reset_guest_details() {
+	jomresJquery('#existing_id').val('');
+	jomresJquery('#mos_userid').val('');
+	jomresJquery('#firstname').val('');
+	jomresJquery('#surname').val('');
+	jomresJquery('#house').val('');
+	jomresJquery('#street').val('');
+	//jomresJquery('#guest_country').val(guestDeets.country).trigger('change');
+	//jomresJquery.when(d1).done(function() {jomresJquery('#region').val(guestDeets.county)});
+	jomresJquery('#town').val('');
+	jomresJquery('#postcode').val('');
+	jomresJquery('#landline').val('');
+	jomresJquery('#mobile').val('');
+	jomresJquery('#email').val('');
 }
 </script>
 
