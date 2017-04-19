@@ -81,14 +81,8 @@ class custom_text
         }
         $property_uids = $tmp_array;
 
-        //language clause
-        $clause = '';
-        if ($this->lang != '') {
-            $clause = " `language` = '".$this->lang."'";
-        }
-
         if (!empty($property_uids)) {
-            $query = 'SELECT `constant` AS language_constant, `customtext`, `language`, `property_uid` FROM #__jomres_custom_text WHERE `property_uid` IN ('.jomres_implode($property_uids).") AND $clause ";
+            $query = 'SELECT `constant` AS language_constant, `customtext`, `property_uid` FROM #__jomres_custom_text WHERE `property_uid` IN ('.jomres_implode($property_uids).") AND `language` = '".$this->lang."'";
             $customTextList = doSelectSql($query);
 
             if ($customTextList) {

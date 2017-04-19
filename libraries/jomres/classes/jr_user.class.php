@@ -35,24 +35,24 @@ class jr_user
     {
         self::$internal_debugging = false;
 
-        $this->superPropertyManagersAreGods = true;                    //Change this to false to prevent super property managers from having rights to ALL properties
+        $this->superPropertyManagersAreGods 	= true;                    //Change this to false to prevent super property managers from having rights to ALL properties
 
         //jomres user role
-        $this->jomres_manager_id = 0;                        //user/manager id in the _jomres_managers table
-        $this->id = 0;                        //cms user id TODO: remove duplicate from the entire codebase
-        $this->userid = 0;                        //cms user id TODO: remove duplicate from the entire codebase
-        $this->username = '';                        //logged in user`s username
-        $this->accesslevel = 0;                        //user access level
-        $this->currentproperty = 0;                        //user`s current property
-        $this->last_active = '1970-01-01 00:00:01';    //last active
-        $this->authorisedProperties = array();                    //array of properties that this user has access to
+        $this->jomres_manager_id 				= 0;                        //user/manager id in the _jomres_managers table
+        $this->id 								= 0;                        //cms user id TODO: remove duplicate from the entire codebase
+        $this->userid 							= 0;                        //cms user id TODO: remove duplicate from the entire codebase
+        $this->username 						= '';                        //logged in user`s username
+        $this->accesslevel 						= 0;                        //user access level
+        $this->currentproperty 					= 0;                        //user`s current property
+        $this->last_active 						= '1970-01-01 00:00:01';    //last active
+        $this->authorisedProperties 			= array();                    //array of properties that this user has access to
         //$this->users_timezone					= "America/Lima";			//user timezone - not used anymore
-        $this->simple_configuration = false;                    //simple configuration true/false
-        $this->userIsSuspended = false;                    //user is suspended true/false
+        $this->simple_configuration 			= false;                    //simple configuration true/false
+        $this->userIsSuspended 					= false;                    //user is suspended true/false
 
-        $this->userIsRegistered = false;                    //user is registered true/false
-        $this->userIsManager = false;                    //user is manaager true/false TODO: separate this for receptionists to userIsReceptionist
-        $this->superPropertyManager = false;                    //user is super property manager true/false
+        $this->userIsRegistered 				= false;                    //user is registered true/false
+        $this->userIsManager 					= false;                    //user is manaager true/false TODO: separate this for receptionists to userIsReceptionist
+        $this->superPropertyManager 			= false;                    //user is super property manager true/false
         //$this->userIsReceptionist				= false;					//user is receptionist true/false
         //$this->userIsPartner					= false;					//user is partner true/false TODO: add support for partners in jr_user
         //$this->userIsAgency					= false;					//user is travel agency true/false TODO: add support for travel agencies
