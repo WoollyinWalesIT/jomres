@@ -231,7 +231,8 @@ class jomres_temp_booking_handler
             $session_id = jomres_cmsspecific_getsessionid();
         }
 
-        if (strlen($session_id) > 0) {
+		//we`ll check to see if session id is set and if we haven`t already loaded it..
+        if (strlen($session_id) > 0 && $this->jomressession != $session_id) {
             $this->jomressession = $session_id;
 
             $hash = sha1($this->jomressession);
