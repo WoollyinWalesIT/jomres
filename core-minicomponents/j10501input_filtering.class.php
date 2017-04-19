@@ -32,18 +32,23 @@ class j10501input_filtering
         $configurationPanel = $componentArgs[ 'configurationPanel' ];
         $lists = $componentArgs[ 'lists' ];
         $filtering_level_dropdown = $componentArgs[ 'filtering_level_dropdown' ];
+		
+		$configurationPanel->startPanel(jr_gettext('_JOMRES_INPUTFILTERING', '_JOMRES_INPUTFILTERING', false));
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_ALLOWHTMLEDITOR', '_JOMRES_COM_ALLOWHTMLEDITOR', false));
+		$configurationPanel->setmiddle($lists[ 'allowHTMLeditor' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_COM_ALLOWHTMLEDITOR_DESC', '_JOMRES_COM_ALLOWHTMLEDITOR_DESC', false));
+		$configurationPanel->insertSetting();
 
         if ($jrConfig[ 'advanced_site_config' ] == 1) {
-            if (!isset($jrConfig[ 'html_purifier_allowed_tags' ])) {
+			if (!isset($jrConfig[ 'html_purifier_allowed_tags' ])) {
                 $jrConfig[ 'html_purifier_allowed_tags' ] = 'p,b,strong,a[href],i,img[src]';
             }
 
             if (!isset($jrConfig[ 'inputs_allowing_html' ])) {
                 $jrConfig[ 'inputs_allowing_html' ] = 'property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers email_text description';
             }
-
-            $configurationPanel->startPanel(jr_gettext('_JOMRES_INPUTFILTERING', '_JOMRES_INPUTFILTERING', false));
-
+			
             $configurationPanel->setleft(jr_gettext('_JOMRES_INPUTFILTERING_LEVEL_TITLE', '_JOMRES_INPUTFILTERING_LEVEL_TITLE', false));
             $configurationPanel->setmiddle($filtering_level_dropdown);
             $configurationPanel->setright(jr_gettext('_JOMRES_INPUTFILTERING_LEVEL_DESC', '_JOMRES_INPUTFILTERING_LEVEL_DESC', false));
@@ -58,9 +63,9 @@ class j10501input_filtering
             $configurationPanel->setmiddle('<textarea class="input-large" name="cfg_inputs_allowing_html" >'.$jrConfig[ 'inputs_allowing_html' ].'</textarea>');
             $configurationPanel->setright(jr_gettext('_JOMRES_INPUTFILTERING_INPUTS_DESC', '_JOMRES_INPUTFILTERING_INPUTS_DESC', false));
             $configurationPanel->insertSetting();
-
-            $configurationPanel->endPanel();
         }
+		
+		$configurationPanel->endPanel();
     }
 
     // This must be included in every Event/Mini-component

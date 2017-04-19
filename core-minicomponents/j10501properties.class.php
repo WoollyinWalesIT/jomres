@@ -1,0 +1,82 @@
+<?php
+/**
+ * Core file.
+ *
+ * @author Vince Wooll <sales@jomres.net>
+ *
+ * @version Jomres 9.8.29
+ *
+ * @copyright	2005-2017 Vince Wooll
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
+ **/
+
+// ################################################################
+defined('_JOMRES_INITCHECK') or die('');
+// ################################################################
+
+class j10501properties
+{
+    public function __construct($componentArgs)
+    {
+        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+        if ($MiniComponents->template_touch) {
+            $this->template_touchable = false;
+
+            return;
+        }
+
+        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
+
+        $configurationPanel = $componentArgs[ 'configurationPanel' ];
+        $lists = $componentArgs[ 'lists' ];
+
+        $configurationPanel->startPanel(jr_gettext('_JOMRES_FAQ_ADMIN_CATEGORY_PROPERTIES', '_JOMRES_FAQ_ADMIN_CATEGORY_PROPERTIES', false));
+		
+		if ($jrConfig[ 'advanced_site_config' ] == 1) {
+			$configurationPanel->setleft(jr_gettext('_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', '_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', false));
+            $configurationPanel->setmiddle($lists[ 'is_single_property_installation' ]);
+            $configurationPanel->setright(jr_gettext('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', '_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', false));
+            $configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_SELFREGISTRATION', '_JOMRES_COM_SELFREGISTRATION', false));
+            $configurationPanel->setmiddle($lists[ 'selfRegistrationAllowed' ]);
+            $configurationPanel->setright(jr_gettext('_JOMRES_COM_SELFREGISTRATION_DESC', '_JOMRES_COM_SELFREGISTRATION_DESC', false));
+            $configurationPanel->insertSetting();
+			
+            $configurationPanel->setleft(jr_gettext('_JOMRES_APPROVALS_CONFIG_TITLE', '_JOMRES_APPROVALS_CONFIG_TITLE', false));
+            $configurationPanel->setmiddle($lists[ 'automatically_approve_new_properties' ]);
+            $configurationPanel->setright(jr_gettext('_JOMRES_APPROVALS_CONFIG_DESC', '_JOMRES_APPROVALS_CONFIG_DESC', false));
+            $configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft(jr_gettext('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO', '_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO', false));
+            $configurationPanel->setmiddle($lists[ 'limit_property_country' ]);
+            $configurationPanel->setright(jr_gettext('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO_DESC', '_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO_DESC', false));
+            $configurationPanel->insertSetting();
+
+            $configurationPanel->setleft(jr_gettext('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_COUNTRY', '_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_COUNTRY', false));
+            $configurationPanel->setmiddle(limitCountriesDropdown());
+            $configurationPanel->setright();
+            $configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft(jr_gettext('JOMRES_COM_A_MINIMALCONFIG', 'JOMRES_COM_A_MINIMALCONFIG', false));
+            $configurationPanel->setmiddle($lists[ 'minimalconfiguration' ]);
+            $configurationPanel->setright(jr_gettext('JOMRES_COM_A_MINIMALCONFIG_DESC', 'JOMRES_COM_A_MINIMALCONFIG_DESC', false));
+            $configurationPanel->insertSetting();
+		}
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_PROPERTYDETAILS_INTABS_TITLE', '_JOMRES_PROPERTYDETAILS_INTABS_TITLE', false));
+        $configurationPanel->setmiddle($lists[ 'property_details_in_tabs' ]);
+        $configurationPanel->setright(jr_gettext('_JOMRES_PROPERTYDETAILS_INTABS_DESC', '_JOMRES_PROPERTYDETAILS_INTABS_DESC', false));
+        $configurationPanel->insertSetting();
+
+        $configurationPanel->endPanel();
+    }
+
+    // This must be included in every Event/Mini-component
+    public function getRetVals()
+    {
+        return null;
+    }
+}

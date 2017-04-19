@@ -129,7 +129,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
     }
     $tmpBookingHandler->tmpbooking[ 'property_uid' ] = (int) $selectedProperty;
     $tmpBookingHandler->tmpbooking[ 'total_discount' ] = '';
-    //$tmpBookingHandler->saveBookingData();
+
     $amend_contract = $tmpBookingHandler->getBookingFieldVal('amend_contract');
 
     if ($amend_contract) {

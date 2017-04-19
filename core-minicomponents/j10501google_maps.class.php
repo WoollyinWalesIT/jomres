@@ -46,6 +46,16 @@ class j10501google_maps
         $configurationPanel->setmiddle($map_styles_dropdown);
         $configurationPanel->setright();
         $configurationPanel->insertSetting();
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_DEFAULT_LAT_STARTPOINT', '_JOMRES_DEFAULT_LAT_STARTPOINT', false));
+        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_default_lat" value="'.$jrConfig[ 'default_lat' ].'" />');
+        $configurationPanel->setright(jr_gettext('_JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC', '_JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC', false));
+        $configurationPanel->insertSetting();
+
+        $configurationPanel->setleft(jr_gettext('_JOMRES_DEFAULT_LONG_STARTPOINT', '_JOMRES_DEFAULT_LONG_STARTPOINT', false));
+        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_default_long" value="'.$jrConfig[ 'default_long' ].'" />');
+        $configurationPanel->setright();
+        $configurationPanel->insertSetting();
 
         $configurationPanel->setleft(jr_gettext('JOMRES_GOOGLE_MAPS_POIS', 'JOMRES_GOOGLE_MAPS_POIS', false));
         $configurationPanel->setmiddle($lists[ 'gmap_pois' ]);

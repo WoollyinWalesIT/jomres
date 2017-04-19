@@ -205,6 +205,9 @@ try {
 
     $componentArgs = array();
     $MiniComponents->triggerEvent('99999', $componentArgs);
+	
+	//close/save jomres session
+    $tmpBookingHandler->close_jomres_session();
 
     //done
     endrun();

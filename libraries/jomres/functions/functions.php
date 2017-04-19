@@ -1298,7 +1298,6 @@ function detect_property_uid()
         if (isset($_POST[ 'specialReqs' ])) {
             $specialReqs = getEscaped(jomresGetParam($_POST, 'specialReqs', ''));
             $tmpBookingHandler->updateBookingField('error_log', $specialReqs);
-            $tmpBookingHandler->saveBookingData();
         }
     }
 
@@ -2409,6 +2408,11 @@ function jomresRedirect($url, $msg = '', $code = 302)
     logging::log_message($msg, 'Core', 'INFO');
     $MiniComponents = jomres_getSingleton('mcHandler');
     $MiniComponents->triggerEvent('08000'); // Optional, post run items that *must* be run ( watchers ).
+	
+	//we have to save the session data every time we redirect
+	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+	$tmpBookingHandler->close_jomres_session();
+	
     if (strncmp('cli', PHP_SAPI, 3) !== 0) {
         if (headers_sent() !== true) {
             if (strncmp('cgi', PHP_SAPI, 3) === 0) {

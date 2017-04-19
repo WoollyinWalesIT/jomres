@@ -38,7 +38,6 @@ class j03000amendBooking
             if (isset($tmpBookingHandler->tmpbooking[ 'override_contract_deposit' ]) && ($tmpBookingHandler->tmpbooking[ 'override_contract_deposit' ] != '')) {
                 $tmpBookingHandler->tmpbooking[ 'deposit_required' ] = $tmpBookingHandler->tmpbooking[ 'override_contract_deposit' ];
             }
-            $tmpBookingHandler->saveBookingData();
         }
     }
 

@@ -1238,7 +1238,6 @@ function prepAvailabilitySearch()
         if ($arrivalDate != '' && $departureDate != '') {
             $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] = $arrivalDate;
             $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = $departureDate;
-            $tmpBookingHandler->close_jomres_session();
         }
 
         return $result;

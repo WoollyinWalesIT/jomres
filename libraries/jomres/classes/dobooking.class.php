@@ -451,8 +451,6 @@ class dobooking
         $tmpBookingHandler->tmpguest[ 'email' ] = $this->email;
         $tmpBookingHandler->tmpguest[ 'discount' ] = getEscaped($this->guest_specific_discount);
 
-        $tmpBookingHandler->saveGuestData();
-
         $rr = implode(',', $this->requestedRoom);
         $this->implodeVariances();
 
@@ -525,8 +523,6 @@ class dobooking
         //store the new search dates
         $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] = $this->arrivalDate;
         $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = $this->departureDate;
-
-        $tmpBookingHandler->saveBookingData();
     }
 
     public function getAllRoomsData()
@@ -5502,8 +5498,6 @@ class dobooking
             $tmpBookingHandler->updateBookingField('discounts', $this->discounts);
         }
 
-        $tmpBookingHandler->saveBookingData();
-
         $this->setErrorLog('makeNightlyRoomCharges::Room total calculated as '.$this->room_total);
         $this->setErrorLog('makeNightlyRoomCharges:: Ended');
 
@@ -6054,7 +6048,6 @@ class dobooking
         $tmpBookingHandler = jomres_getSingleton('jomres_temp_booking_handler');
         $disc = array();
         $tmpBookingHandler->updateBookingField('wiseprice_discount', $disc);
-        $tmpBookingHandler->saveBookingData();
         $rpn = 0.00;
         $total = 0.00;
         $total_nodiscount = 0.00;
@@ -6123,7 +6116,7 @@ class dobooking
                 $tmpRate = $this->allPropertyTariffs[ $t ][ 'roomrateperday' ];
             }
             $tmpBookingHandler->updateBookingField('wiseprice_discount', $disc);
-            $tmpBookingHandler->saveBookingData();
+
             $rates[ ] = $rate;
             $rates_nodiscount[] = $tmpRate;
         }
@@ -6172,7 +6165,6 @@ class dobooking
                     $discountOutput .= ' '.$roomtype_abbr.jr_gettext('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', '_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', false).output_price($roomrate_foroutput).jr_gettext('_JOMCOMP_WISEPRICE_TO', '_JOMCOMP_WISEPRICE_TO', false).output_price($discountedate_foroutput).' <br/>';
                     $tmpBookingHandler->updateBookingField('wisepricediscount', $discountOutput);
                     $this->discounts[ ] = array('type' => 'MRP', 'roomtypeabbr' => $roomtype_abbr, 'discountfrom' => $roomrate, 'discountto' => $d[ 'discountedRate' ]);
-                    $tmpBookingHandler->saveBookingData();
                 } else {
                     $tmpBookingHandler->updateBookingField('wisepricediscount', jr_gettext('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false));
                 }
@@ -6274,7 +6266,7 @@ class dobooking
             }
             $wisepricethreshold = (int) $mrConfig[ 'wisepricethreshold' ];
             $tmpBookingHandler->updateBookingField('wiseprice_discount', $disc);
-            $tmpBookingHandler->saveBookingData();
+
             $this->setErrorLog('setAverageRate:: Started');
             //$datesToRateArray=array();
             //$rates=array();
@@ -6342,7 +6334,6 @@ class dobooking
                                 }
                                 $disc[ ] = array('roomrate' => $tmpRate, 'discountedRate' => $r, 'roomType' => $roomType, 'isDiscounted' => $isDiscounted);
                                 $tmpBookingHandler->updateBookingField('wiseprice_discount', $disc);
-                                $tmpBookingHandler->saveBookingData();
                             } else {
                                 $total += $rate->roomrateperday;
                                 $total_nodiscount += $rate->roomrateperday;
@@ -6517,7 +6508,6 @@ class dobooking
             $this->echo_populate_div('; populateDiv("discount","&nbsp;")');
             $tmpBookingHandler->updateBookingField('lastminutediscount', jr_gettext('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false));
         }
-        $tmpBookingHandler->saveBookingData();
     }
 
     public function generateBilling()

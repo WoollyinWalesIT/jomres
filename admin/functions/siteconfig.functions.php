@@ -338,6 +338,11 @@ function showSiteConfig()
 	$method[ ] = jomresHTML::makeOption('Minicomponent', 'Minicomponent');
 	$method[ ] = jomresHTML::makeOption('Cron', 'Cron job');
 	$lists[ 'cron_method' ] = jomresHTML::selectList($method, 'method', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'cron_method' ]);
+	
+	$method = array();
+	$method[ ] = jomresHTML::makeOption('file', 'File');
+	$method[ ] = jomresHTML::makeOption('database', 'Database');
+	$lists[ 'session_handler' ] = jomresHTML::selectList($method, 'method', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'session_handler' ]);
 
     $componentArgs = array();
     $componentArgs[ 'lists' ] = $lists;

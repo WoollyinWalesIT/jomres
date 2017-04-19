@@ -28,7 +28,6 @@ class j00102wiseprice
         $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
         $tmpBookingHandler->addNewBookingField('wiseprice_discount');
         $tmpBookingHandler->updateBookingField('wiseprice_discount', array());
-        $tmpBookingHandler->saveBookingData();
     }
 
 /**
