@@ -78,9 +78,7 @@ class jomres_cart
 
         $tmpBookingHandler->resetTempBookingData();
         $tmpBookingHandler->resetTempGuestData();
-        $tmpBookingHandler->saveAllData();
-        // Have to do this here, because the redirect will exit the script from running before we get to the end of jomres.php, and the latter "close session" functionality will not be triggered
-        $tmpBookingHandler->close_jomres_session();
+
         $this->calc_totals();
     }
 
@@ -90,9 +88,7 @@ class jomres_cart
         if (isset($tmpBookingHandler->cart_data[ $identifier ])) {
             unset($tmpBookingHandler->cart_data[ $identifier ]);
         }
-        $tmpBookingHandler->saveAllData();
-        // Have to do this here, because the redirect will exit the script from running before we get to the end of jomres.php, and the latter "close session" functionality will not be triggered
-        $tmpBookingHandler->close_jomres_session();
+
         $this->calc_totals();
     }
 
@@ -107,9 +103,6 @@ class jomres_cart
         $tmpBookingHandler->updateBookingField('deposit_required', $this->deposit_required);
         $tmpBookingHandler->updateBookingField('cart_payment', true);
         $tmpBookingHandler->updateBookingField('property_currencycode', $jrConfig[ 'globalCurrencyCode' ]);
-
-        $tmpBookingHandler->saveAllData();
-        $tmpBookingHandler->close_jomres_session();
 
         return array('contract_total' => $this->contract_total, 'deposit_required' => $this->deposit_required);
     }

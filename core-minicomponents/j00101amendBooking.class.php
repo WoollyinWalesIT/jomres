@@ -104,7 +104,6 @@ class j00101amendBooking
                         $tmpBookingHandler->tmpguest[ 'tel_landline' ] = getEscaped($g->tel_landline);
                         $tmpBookingHandler->tmpguest[ 'tel_mobile' ] = getEscaped($g->tel_mobile);
                         $tmpBookingHandler->tmpguest[ 'email' ] = getEscaped($g->email);
-                        $tmpBookingHandler->saveGuestData();
                     }
 
                     if ($c->property_uid != $selectedProperty) {
@@ -143,7 +142,6 @@ class j00101amendBooking
                         $tmpBookingHandler->tmpbooking[ 'lang' ] = (string) get_showtime('lang');
                         $tmpBookingHandler->tmpbooking[ 'timestamp' ] = '';
                         $tmpBookingHandler->tmpbooking[ 'mininterval' ] = '';
-                        $tmpBookingHandler->saveBookingData();
                     } else {
                         //Same property so carry over all possible fields
 
@@ -187,7 +185,6 @@ class j00101amendBooking
                         $tmpBookingHandler->tmpbooking[ 'lang' ] = (string) get_showtime('lang');
                         $tmpBookingHandler->tmpbooking[ 'timestamp' ] = '';
                         $tmpBookingHandler->tmpbooking[ 'mininterval' ] = '';
-                        $tmpBookingHandler->saveBookingData();
                     }
                 }
 
@@ -254,8 +251,6 @@ class j00101amendBooking
             if (isset($tmpBookingHandler->tmpbooking[ 'override_contract_total' ])) {
                 $tmpBookingHandler->updateBookingField('override_contract_total', '');
             }
-
-            $tmpBookingHandler->saveBookingData();
         }
     }
 

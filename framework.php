@@ -87,8 +87,9 @@ function load_jomres_environment()
 
     //jomres session
     if (is_null($tmpBookingHandler->jomressession) || $tmpBookingHandler->jomressession == '') {
-        $tmpBookingHandler->initBookingSession(get_showtime('jomressession'));
-        $jomressession = $tmpBookingHandler->getJomressession();
+        $tmpBookingHandler->initBookingSession();
+        
+		$jomressession = $tmpBookingHandler->getJomressession();
         set_showtime('jomressession', $jomressession);
     }
 

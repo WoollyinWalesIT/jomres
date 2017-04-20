@@ -14,17 +14,8 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-/**
- * Stores and retrieves temporary booking information in session variables.
- #
- *
- * @since 2.6.1.1
- */
 class jomres_temp_booking_handler
 {
-    /**
-     * Constructor. Sets the default variables.
-     */
     private static $configInstance;
 
     public function __construct()
@@ -35,139 +26,163 @@ class jomres_temp_booking_handler
 
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
-        $this->task = get_showtime('task');
-
+        
+		$this->task = get_showtime('task');
         $this->jomressession = '';
-
         $this->sessionfile = '';
         $this->timeout = (int) $jrConfig[ 'lifetime' ];
         $this->session_directory = JOMRES_SESSION_ABSPATH;
+		$this->session_handler = $jrConfig['session_handler'];
 
-        if (!is_dir($this->session_directory)) {
-            if (!@mkdir($this->session_directory)) {
-                echo 'Error, unable to make folder '.$this->session_directory." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server";
-                exit;
-            }
-        }
-        if (!is_dir($this->session_directory.JRDS.'admin')) {
-            if (!@mkdir($this->session_directory.JRDS.'admin')) {
-                echo 'Error, unable to make folder '.$this->session_directory.JRDS.'admin'." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server";
-                exit;
-            }
-        }
+		//check and create the session dirs if necessary
+		if ($this->session_handler == 'file') {
+			if (!is_dir($this->session_directory)) {
+				if (!@mkdir($this->session_directory)) {
+					echo 'Error, unable to make folder '.$this->session_directory." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server";
+					exit;
+				}
+			}
+			
+			if (!is_dir($this->session_directory.JRDS.'admin')) {
+				if (!@mkdir($this->session_directory.JRDS.'admin')) {
+					echo 'Error, unable to make folder '.$this->session_directory.JRDS.'admin'." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server";
+					exit;
+				}
+			}
+			
+			if (!is_writable($this->session_directory)) {
+				echo 'Error, '.$this->session_directory." is not writable therefore cannot store booking session data. Please ensure that it's writable by the web server";
+				exit;
+			}
+			
+			if (jomres_cmsspecific_areweinadminarea()) {
+				$this->session_directory .= 'admin'.JRDS;
+			}
+		}
 
-        if (jomres_cmsspecific_areweinadminarea()) {
-            $this->session_directory .= 'admin'.JRDS;
-        }
+        $this->tmpbooking = array(
+			'requestedRoom' => '',
+			'rate_pernight' => '',
+			'variancetypes' => '',
+			'varianceuids' => '',
+			'varianceqty' => '',
+			'variancevals' => '',
+			'variancevals_nodiscount' => '',
+			'lastminute_id' => '',
+			'agent_booking' => '',
+			'arrivalDate' => '',
+			'departureDate' => '',
+			'stayDays' => '',
+			'dateRangeString' => '',
+			'guests_uid' => '',
+			'property_uid' => '',
+			'rates_uid' => '',
+			'tag' => '',
+			'resource' => '',
+			'single_person_suppliment' => '',
+			'deposit_required' => '',
+			'contract_total' => '',
+			'extrasvalue' => '',
+			'extrasvalues_items' => '',
+			'extras' => '',
+			'extrasquantities' => '',
+			'third_party_extras' => '',
+			'third_party_extras_private_data' => '',
+			'room_allocations' => '',
+			'room_allocations_note' => '',
+			'total_discount' => '',
+			'booking_discounted' => false,
+			'depositpaidsuccessfully' => false,
+			'tax' => '',
+			'booker_class' => '',
+			'ok_to_book' => '',
+			'beds_available' => '',
+			'referrer' => '',
+			'error_log' => '',
+			'total_in_party' => '',
+			'room_total' => '',
+			'room_total_nodiscount' => '',
+			'lang' => '',
+			'timestamp' => '',
+			'wisepricediscount' => '',
+			'lastminutediscount' => '',
+			'confirmationSeen' => false,
+			'mininterval' => '',
+			'discounts' => array(),
+			'coupon_id' => '',
+			'coupon_code' => '',
+			'coupon_details' => array(),
+			'coupon_discount_value' => '',
+			'cfg_showExtras' => false,
+			'booking_notes' => array(),
+			'additional_line_items' => '',
+			'booking_number' => 0,
+			'room_feature_filter' => '',
+			'override_room_total' => null,
+			'override_deposit' => null,
+			'property_currencycode' => null,
+			'booked_in' => 0,
+			'sendGuestEmail' => true,
+			'sendHotelEmail' => true,
+			'secret_key_payment' => false,
+			);
 
-        if (!is_writable($this->session_directory)) {
-            echo 'Error, '.$this->session_directory." is not writable therefore cannot store booking session data. Please ensure that it's writable by the web server";
-            exit;
-        }
+        $this->tmpguest = array(
+			'guests_uid' => '',
+			'mos_userid' => '',
+			'existing_id' => '',
+			'firstname' => '',
+			'surname' => '',
+			'house' => '',
+			'street' => '',
+			'town' => '',
+			'region' => '',
+			'country' => '',
+			'postcode' => '',
+			'tel_landline' => '',
+			'tel_mobile' => '',
+			'tel_fax' => '',
+			'ccard_no' => '',
+			'ccard_issued' => '',
+			'ccard_expiry' => '',
+			'ccard_iss_no' => '',
+			'ccard_name' => '',
+			'ccv' => '',
+			'type' => '',
+			'property_uid' => '',
+			'email' => '',
+			'discount' => '0',
+			'tag' => '',
+			'timestamp' => '',
+			);
 
-        $this->tmpbooking = array('requestedRoom' => '',
-                                   'rate_pernight' => '',
-                                   'variancetypes' => '',
-                                   'varianceuids' => '',
-                                   'varianceqty' => '',
-                                   'variancevals' => '',
-                                   'variancevals_nodiscount' => '',
-                                   'lastminute_id' => '',
-                                   'agent_booking' => '',
-                                   'arrivalDate' => '',
-                                   'departureDate' => '',
-                                   'stayDays' => '',
-                                   'dateRangeString' => '',
-                                   'guests_uid' => '',
-                                   'property_uid' => '',
-                                   'rates_uid' => '',
-                                   'tag' => '',
-                                   'resource' => '',
-                                   'single_person_suppliment' => '',
-                                   'deposit_required' => '',
-                                   'contract_total' => '',
-                                   'extrasvalue' => '',
-                                   'extrasvalues_items' => '',
-                                   'extras' => '',
-                                   'extrasquantities' => '',
-                                   'third_party_extras' => '',
-                                   'third_party_extras_private_data' => '',
-                                   'room_allocations' => '',
-                                   'room_allocations_note' => '',
-                                   'total_discount' => '',
-                                   'booking_discounted' => false,
-                                   'depositpaidsuccessfully' => false,
-                                   'tax' => '',
-                                   'booker_class' => '',
-                                   'ok_to_book' => '',
-                                   'beds_available' => '',
-                                   'referrer' => '',
-                                   'error_log' => '',
-                                   'total_in_party' => '',
-                                   'room_total' => '',
-                                   'room_total_nodiscount' => '',
-                                   'lang' => '',
-                                   'timestamp' => '',
-                                   'wisepricediscount' => '',
-                                   'lastminutediscount' => '',
-                                   'confirmationSeen' => false,
-                                   'mininterval' => '',
-                                   'discounts' => array(),
-                                   'coupon_id' => '',
-                                   'coupon_code' => '',
-                                   'coupon_details' => array(),
-                                   'coupon_discount_value' => '',
-                                   'cfg_showExtras' => false,
-                                   'booking_notes' => array(),
-                                   'additional_line_items' => '',
-                                   'booking_number' => 0,
-                                   'room_feature_filter' => '',
-                                   'override_room_total' => null,
-                                   'override_deposit' => null,
-                                   'property_currencycode' => null,
-                                   'booked_in' => 0,
-                                   'sendGuestEmail' => true,
-                                   'sendHotelEmail' => true,
-                                   'secret_key_payment' => false,
-                                   );
+        $this->tmpsearch_data = array(
+			'jomsearch_availability' => '', 
+			'jomsearch_availability_departure' => ''
+			);
+        
 
-        $this->tmpguest = array('guests_uid' => '',
-                                 'mos_userid' => '',
-                                 'existing_id' => '',
-                                 'firstname' => '',
-                                 'surname' => '',
-                                 'house' => '',
-                                 'street' => '',
-                                 'town' => '',
-                                 'region' => '',
-                                 'country' => '',
-                                 'postcode' => '',
-                                 'tel_landline' => '',
-                                 'tel_mobile' => '',
-                                 'tel_fax' => '',
-                                 'ccard_no' => '',
-                                 'ccard_issued' => '',
-                                 'ccard_expiry' => '',
-                                 'ccard_iss_no' => '',
-                                 'ccard_name' => '',
-                                 'ccv' => '',
-                                 'type' => '',
-                                 'property_uid' => '',
-                                 'email' => '',
-                                 'discount' => '0',
-                                 'tag' => '',
-                                 'timestamp' => '',
-                                 );
-
-        $this->cart_data = array();
-
-        $this->tmpsearch_data = array('jomsearch_availability' => '', 'jomsearch_availability_departure' => '');
-        $this->previous_searches = array();
-
-        $this->tmplang = array('jomreslang' => get_showtime('lang'));
-        $this->user_settings = array('editing_on' => false, 'property_management_view' => false, 'last_viewed_property_uid' => 0);
+        $this->tmplang = array(
+			'jomreslang' => get_showtime('lang')
+			);
+        
+		$this->user_settings = array(
+			'editing_on' => false, 
+			'property_management_view' => false, 
+			'last_viewed_property_uid' => 0
+			);
 
         $this->customFieldValues = array();
+		$this->cart_data = array();
+		$this->previous_searches = array();
+		
+		//we`ll store here the duplicates of the session data so we can compare with these for changes. If there are no changes, we don`t need to write the session data again
+		$this->_tmpbooking = $this->tmpbooking;
+		$this->_tmpguest = $this->tmpguest;
+		$this->_cart_data = $this->cart_data;
+		$this->_tmpsearch_data = $this->tmpsearch_data;
+		$this->_tmplang = $this->tmplang;
+		$this->_user_settings = $this->user_settings;
     }
 
     public static function getInstance()
@@ -179,19 +194,20 @@ class jomres_temp_booking_handler
         return self::$configInstance;
     }
 
-    public function initCustomFields($allCustomFields)
+    public function initCustomFields($allCustomFields = array())
     {
         $data = array();
-        foreach ($allCustomFields as $f) {
+        
+		foreach ($allCustomFields as $f) {
             $uid = $f[ 'uid' ];
             $newBookingfieldName = $f[ 'fieldname' ].'_'.$uid;
-            if (!isset($this->tmpbooking[ $newBookingfieldName ])) {
+			if (!isset($this->tmpbooking[ $newBookingfieldName ])) {
                 $this->addNewBookingField($newBookingfieldName);
             }
         }
     }
 
-    public function saveCustomFields($allCustomFields)
+    public function saveCustomFields($allCustomFields = array())
     {
         $data = array();
         foreach ($allCustomFields as $f) {
@@ -208,17 +224,18 @@ class jomres_temp_booking_handler
     public function initBookingSession($jomressession = '')
     {
         if (isset($_REQUEST[ 'jsid' ])) { // jsid is passed by gateway services sending response codes
-            $this->part = jomresGetParam($_REQUEST, 'jsid', '');
+            $session_id = jomresGetParam($_REQUEST, 'jsid', '');
         } elseif (strlen($jomressession) > 0) {
-            $this->part = $jomressession;
+            $session_id = $jomressession;
         } else {
-            $this->part = jomres_cmsspecific_getsessionid();
+            $session_id = jomres_cmsspecific_getsessionid();
         }
 
-        if (strlen($this->part) > 0) {
-            $this->jomressession = $this->part;
+		//we`ll check to see if session id is set and if we haven`t already loaded it..
+        if (strlen($session_id) > 0 && $this->jomressession != $session_id) {
+            $this->jomressession = $session_id;
 
-            $hash = sha1($this->part);
+            $hash = sha1($this->jomressession);
             $this->sessionfile = $this->session_directory.$hash.'.txt';
 
             $jomres_custom_field_handler = jomres_singleton_abstract::getInstance('jomres_custom_field_handler');
@@ -232,30 +249,117 @@ class jomres_temp_booking_handler
 
     public function session_jomres_start()
     {
-        if (file_exists($this->sessionfile)) {
-            $data = file_get_contents($this->sessionfile);
-            $dataArrays = unserialize($data);
-            $this->tmpbooking = $dataArrays[ 'tmpbooking' ];
-            $this->tmpguest = $dataArrays[ 'tmpguest' ];
-            $this->cart_data = $dataArrays[ 'cart_data' ];
-            $this->tmpsearch_data = $dataArrays[ 'tmpsearch_data' ];
-            $this->tmplang = $dataArrays[ 'tmplang' ];
-            $this->user_settings = $dataArrays[ 'user_settings' ];
-
-            $data = array('tmpbooking' => $this->tmpbooking, 'cart_data' => $this->cart_data, 'tmpguest' => $this->tmpguest, 'tmpsearch_data' => $this->tmpsearch_data, 'tmplang' => $this->tmplang, 'user_settings' => $this->user_settings);
-            file_put_contents($this->sessionfile, serialize($data));
-        } else { // session file doesn't exist, let's create it
-            $data = array('tmpbooking' => $this->tmpbooking, 'cart_data' => $this->cart_data, 'tmpguest' => $this->tmpguest, 'tmpsearch_data' => $this->tmpsearch_data, 'tmplang' => $this->tmplang, 'user_settings' => $this->user_settings);
-            file_put_contents($this->sessionfile, serialize($data));
-        }
+		if ($this->session_handler == 'file') {
+			$this->_jomres_session_start_file();
+		} else {
+			$this->_jomres_session_start_database();
+		}
     }
+	
+	private function _jomres_session_start_file() 
+	{
+		if (file_exists($this->sessionfile)) {
+			$data = file_get_contents($this->sessionfile);
+			
+			$data = unserialize($data);
+			
+			$this->tmpbooking 		= $data[ 'tmpbooking' ];
+			$this->tmpguest 		= $data[ 'tmpguest' ];
+			$this->cart_data 		= $data[ 'cart_data' ];
+			$this->tmpsearch_data 	= $data[ 'tmpsearch_data' ];
+			$this->tmplang 			= $data[ 'tmplang' ];
+			$this->user_settings 	= $data[ 'user_settings' ];
+
+			//we`ll store here the duplicates of the session data so we can compare with these for changes. If there are no changes, we don`t need to write the session data again
+			$this->_tmpbooking 		= $this->tmpbooking;
+			$this->_tmpguest 		= $this->tmpguest;
+			$this->_cart_data 		= $this->cart_data;
+			$this->_tmpsearch_data 	= $this->tmpsearch_data;
+			$this->_tmplang 		= $this->tmplang;
+			$this->_user_settings 	= $this->user_settings;
+		} else { // session file doesn't exist, let's create it
+			$data = array(
+				'tmpbooking' => $this->tmpbooking, 
+				'cart_data' => $this->cart_data, 
+				'tmpguest' => $this->tmpguest, 
+				'tmpsearch_data' => $this->tmpsearch_data, 
+				'tmplang' => $this->tmplang, 
+				'user_settings' => $this->user_settings
+				);
+			
+			if ($this->sessionfile != '') {
+				file_put_contents($this->sessionfile, serialize($data));
+			}
+		}
+	}
+	
+	private function _jomres_session_start_database()
+	{
+		$query = "SELECT `data` FROM #__jomres_sessions WHERE `session_id` = '".$this->jomressession."'";
+		$result = doSelectSql($query);
+
+		if (!empty($result)) {
+			$result = unserialize($result[0]->data);
+
+			$this->tmpbooking 		= $result[ 'tmpbooking' ];
+			$this->tmpguest 		= $result[ 'tmpguest' ];
+			$this->cart_data 		= $result[ 'cart_data' ];
+			$this->tmpsearch_data 	= $result[ 'tmpsearch_data' ];
+			$this->tmplang 			= $result[ 'tmplang' ];
+			$this->user_settings 	= $result[ 'user_settings' ];
+			
+			//we`ll store here the duplicates of the session data so we can compare with these for changes. If there are no changes, we don`t need to write the session data again
+			$this->_tmpbooking 		= $this->tmpbooking;
+			$this->_tmpguest 		= $this->tmpguest;
+			$this->_cart_data 		= $this->cart_data;
+			$this->_tmpsearch_data 	= $this->tmpsearch_data;
+			$this->_tmplang 		= $this->tmplang;
+			$this->_user_settings 	= $this->user_settings;
+		} else {
+			$data = array(
+				'tmpbooking' => $this->tmpbooking, 
+				'cart_data' => $this->cart_data, 
+				'tmpguest' => $this->tmpguest, 
+				'tmpsearch_data' => $this->tmpsearch_data, 
+				'tmplang' => $this->tmplang, 
+				'user_settings' => $this->user_settings
+				);
+			
+			$query = "INSERT INTO #__jomres_sessions (`session_id`, `data`) VALUES ('".$this->jomressession."','".serialize($data)."')";
+			if (!doInsertSql($query, '')) {
+				throw new Exception('Error: Could not save session data');
+			}
+		}
+	}
 
     public function close_jomres_session()
     {
-        $data = array('tmpbooking' => $this->tmpbooking, 'cart_data' => $this->cart_data, 'tmpguest' => $this->tmpguest, 'tmpsearch_data' => $this->tmpsearch_data, 'tmplang' => $this->tmplang, 'user_settings' => $this->user_settings);
-        if ($this->sessionfile != '') { // In certain circumstances the session file might not have been created (typically administrator area functionality)
-        file_put_contents($this->sessionfile, serialize($data));
-        }
+		if (
+			$this->tmpbooking != $this->_tmpbooking || 
+			$this->cart_data != $this->_cart_data || 
+			$this->tmpguest != $this->_tmpguest || 
+			$this->tmpsearch_data != $this->_tmpsearch_data || 
+			$this->tmplang != $this->_tmplang || 
+			$this->user_settings != $this->_user_settings
+			) {
+			$data = array(
+				'tmpbooking' => $this->tmpbooking, 
+				'cart_data' => $this->cart_data, 
+				'tmpguest' => $this->tmpguest, 
+				'tmpsearch_data' => $this->tmpsearch_data, 
+				'tmplang' => $this->tmplang, 
+				'user_settings' => $this->user_settings
+				);
+
+			if ($this->session_handler == 'file') {
+				file_put_contents($this->sessionfile, serialize($data));
+			} else {
+				$query = "UPDATE #__jomres_sessions SET `data` = '".serialize($data)."' WHERE `session_id` = '".$this->jomressession."'";
+				if (!doInsertSql($query, '')) {
+					throw new Exception('Error: Could not update session data');
+				}
+			}
+		}
     }
 
     public function getJomressession()
@@ -297,18 +401,13 @@ class jomres_temp_booking_handler
         }
     }
 
-    public function saveAllData()
-    {
-        $this->saveBookingData();
-        $this->saveGuestData();
-    }
-
     public function updateBookingField($fieldname, $value)
     {
         if (!isset($this->tmpbooking[ $fieldname ])) {
             $this->addNewBookingField($fieldname);
         }
-        $this->tmpbooking[ $fieldname ] = $value;
+        
+		$this->tmpbooking[ $fieldname ] = $value;
     }
 
     public function updateGuestField($fieldname, $value)
@@ -328,120 +427,121 @@ class jomres_temp_booking_handler
 
     public function resetCreditCardDetails()
     {
-        $this->tmpguest = array('ccard_no' => '',
-                                 'ccard_issued' => '',
-                                 'ccard_expiry' => '',
-                                 'ccard_iss_no' => '',
-                                 'ccard_name' => '',
-                                 'ccv' => '',
-                                 'type' => '',
-                                 );
-        $this->saveGuestData();
+        $this->tmpguest = array(
+			'ccard_no' => '',
+			'ccard_issued' => '',
+			'ccard_expiry' => '',
+			'ccard_iss_no' => '',
+			'ccard_name' => '',
+			'ccv' => '',
+			'type' => '',
+			);
     }
 
     public function resetTempGuestData()
     {
-        $this->tmpguest = array('guests_uid' => '',
-                                 'mos_userid' => '',
-                                 'existing_id' => '',
-                                 'firstname' => '',
-                                 'surname' => '',
-                                 'house' => '',
-                                 'street' => '',
-                                 'town' => '',
-                                 'region' => '',
-                                 'country' => '',
-                                 'postcode' => '',
-                                 'tel_landline' => '',
-                                 'tel_mobile' => '',
-                                 'tel_fax' => '',
-                                 'ccard_no' => '',
-                                 'ccard_issued' => '',
-                                 'ccard_expiry' => '',
-                                 'ccard_iss_no' => '',
-                                 'ccard_name' => '',
-                                 'ccv' => '',
-                                 'type' => '',
-                                 'property_uid' => '',
-                                 'email' => '',
-                                 'discount' => '0',
-                                 'tag' => '',
-                                 'timestamp' => '',
-                                 );
-        $this->saveGuestData();
+        $this->tmpguest = array(
+			'guests_uid' => '',
+			'mos_userid' => '',
+			'existing_id' => '',
+			'firstname' => '',
+			'surname' => '',
+			'house' => '',
+			'street' => '',
+			'town' => '',
+			'region' => '',
+			'country' => '',
+			'postcode' => '',
+			'tel_landline' => '',
+			'tel_mobile' => '',
+			'tel_fax' => '',
+			'ccard_no' => '',
+			'ccard_issued' => '',
+			'ccard_expiry' => '',
+			'ccard_iss_no' => '',
+			'ccard_name' => '',
+			'ccv' => '',
+			'type' => '',
+			'property_uid' => '',
+			'email' => '',
+			'discount' => '0',
+			'tag' => '',
+			'timestamp' => '',
+			);
     }
 
     public function resetTempBookingData()
     {
         $pid = $this->tmpbooking[ 'property_uid' ];
-        $this->tmpbooking = array('property_uid' => $pid,
-                                   'requestedRoom' => '',
-                                   'rate_pernight' => '',
-                                   'variancetypes' => '',
-                                   'varianceuids' => '',
-                                   'varianceqty' => '',
-                                   'variancevals' => '',
-                                   'variancevals_nodiscount' => '',
-                                   'lastminute_id' => '',
-                                   'agent_booking' => '',
-                                   'stayDays' => '',
-                                   'dateRangeString' => '',
-                                   'guests_uid' => '',
-                                   'rates_uid' => '',
-                                   'tag' => '',
-                                   'resource' => '',
-                                   'single_person_suppliment' => '',
-                                   'deposit_required' => '',
-                                   'contract_total' => '',
-                                   'extrasvalue' => '',
-                                   'extrasvalues_items' => '',
-                                   'extras' => '',
-                                   'extrasquantities' => '',
-                                   'third_party_extras' => '',
-                                   'third_party_extras_private_data' => '',
-                                   'room_allocations' => '',
-                                   'room_allocations_note' => '',
-                                   'total_discount' => '',
-                                   'booking_discounted' => false,
-                                   'depositpaidsuccessfully' => false,
-                                   'tax' => '',
-                                   'booker_class' => '',
-                                   'ok_to_book' => '',
-                                   'beds_available' => '',
-                                   'referrer' => '',
-                                   'error_log' => '',
-                                   'total_in_party' => '',
-                                   'room_total' => '',
-                                   'room_total_nodiscount' => '',
-                                   'lang' => '',
-                                   'timestamp' => '',
-                                   'wisepricediscount' => '',
-                                   'lastminutediscount' => '',
-                                   'confirmationSeen' => false,
-                                   'mininterval' => '',
-                                   'discounts' => array(),
-                                   'coupon_id' => '',
-                                   'coupon_code' => '',
-                                   'coupon_details' => array(),
-                                   'coupon_discount_value' => '',
-                                   'cfg_showExtras' => false,
-                                   'booking_notes' => array(),
-                                   'additional_line_items' => '',
-                                   'booking_number' => 0,
-                                   'room_feature_filter' => '',
-                                   'override_room_total' => null,
-                                   'override_deposit' => null,
-                                   'property_currencycode' => null,
-                                   'booked_in' => 0,
-                                   'sendGuestEmail' => true,
-                                   'sendHotelEmail' => true,
-                                   'secret_key_payment' => false, );
-        $this->saveBookingData();
+        
+		$this->tmpbooking = array(
+			'property_uid' => $pid,
+			'requestedRoom' => '',
+			'rate_pernight' => '',
+			'variancetypes' => '',
+			'varianceuids' => '',
+			'varianceqty' => '',
+			'variancevals' => '',
+			'variancevals_nodiscount' => '',
+			'lastminute_id' => '',
+			'agent_booking' => '',
+			'stayDays' => '',
+			'dateRangeString' => '',
+			'guests_uid' => '',
+			'rates_uid' => '',
+			'tag' => '',
+			'resource' => '',
+			'single_person_suppliment' => '',
+			'deposit_required' => '',
+			'contract_total' => '',
+			'extrasvalue' => '',
+			'extrasvalues_items' => '',
+			'extras' => '',
+			'extrasquantities' => '',
+			'third_party_extras' => '',
+			'third_party_extras_private_data' => '',
+			'room_allocations' => '',
+			'room_allocations_note' => '',
+			'total_discount' => '',
+			'booking_discounted' => false,
+			'depositpaidsuccessfully' => false,
+			'tax' => '',
+			'booker_class' => '',
+			'ok_to_book' => '',
+			'beds_available' => '',
+			'referrer' => '',
+			'error_log' => '',
+			'total_in_party' => '',
+			'room_total' => '',
+			'room_total_nodiscount' => '',
+			'lang' => '',
+			'timestamp' => '',
+			'wisepricediscount' => '',
+			'lastminutediscount' => '',
+			'confirmationSeen' => false,
+			'mininterval' => '',
+			'discounts' => array(),
+			'coupon_id' => '',
+			'coupon_code' => '',
+			'coupon_details' => array(),
+			'coupon_discount_value' => '',
+			'cfg_showExtras' => false,
+			'booking_notes' => array(),
+			'additional_line_items' => '',
+			'booking_number' => 0,
+			'room_feature_filter' => '',
+			'override_room_total' => null,
+			'override_deposit' => null,
+			'property_currencycode' => null,
+			'booked_in' => 0,
+			'sendGuestEmail' => true,
+			'sendHotelEmail' => true,
+			'secret_key_payment' => false
+			);
     }
 
     public function resetCart()
     {
         $this->cart_data = array();
-        $this->saveBookingData();
     }
 }

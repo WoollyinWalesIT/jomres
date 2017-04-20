@@ -162,7 +162,6 @@ try {
                 }
             }
         }
-        $tmpBookingHandler->saveGuestData();
     } else {
         $thisJRUser = new stdClass();
         $thisJRUser->jomres_manager_id = 0;
@@ -203,8 +202,6 @@ try {
             set_showtime('last_viewed_property_uid', $property_uid); // showtime's property_uid variable can change, for example in the property list the property uid will change while the system is viewing different properties and finding language strings for each. We'll set a specific variable here that can be reliably be used to take the user back to the last viewed property. Typically for cancel buttons, we can use the patTemplate common definition COMMON_LAST_VIEWED_PROPERTY_UID to allow cancel buttons to take us back to the last viewed property without having to specifically code for it in the script calling the template.
             $tmpBookingHandler->user_settings[ 'last_viewed_property_uid' ] = $property_uid;
         }
-
-        $tmpBookingHandler->saveBookingData();
 
         //since we have a property uid, we also have a property type, so let`s set a showtime
         set_showtime('property_type', $current_property_details->property_type);
@@ -316,21 +313,17 @@ try {
 
                 $plugin = jomres_validate_gateway_plugin();
 
-                $query = "SELECT id FROM #__jomres_booking_data_archive WHERE `tag` = '".$tag."'";
+                $query = "SELECT `id` FROM #__jomres_booking_data_archive WHERE `tag` = '".$tag."'";
                 $result = doSelectSql($query);
                 if (empty($result)) {
-                    $tmpbooking = $tmpBookingHandler->tmpbooking;
-                    $tmpguest = $tmpBookingHandler->tmpguest;
-
-                    $data = array('tmpbooking' => $tmpbooking, 'tmpguest' => $tmpguest);
+                    $data = array('tmpbooking' => $tmpBookingHandler->tmpbooking, 'tmpguest' => $tmpBookingHandler->tmpguest);
                     $data = str_replace("'", "''", serialize($data));
 
                     $query = "INSERT INTO #__jomres_booking_data_archive SET `data`='".$data."',`date`='".date('Y-m-d H:i:s')."', `tag` = '".$tag."'";
                     doInsertSql($query, '');
                 }
 
-                $bookingdata = gettempBookingdata();
-                $MiniComponents->triggerEvent('00599', array('bookingdata' => $bookingdata)); // Optional
+                $MiniComponents->triggerEvent('00599', array('bookingdata' => $tmpBookingHandler->tmpbooking)); // Optional
 
                 // We'll let bookings of 0 value passed the gateway plugin handling as some users offer 100% discounts via coupons
                 if ($bookingdata[ 'contract_total' ] == 0.00) {
@@ -790,13 +783,6 @@ try {
     //jomres usage reporting
     jr_import('jomres_usage_reporting');
     $tracking = new jomres_usage_reporting();
-
-/*     if ( $task != "background_process" && !strstr( $task ,"cron_" ) && !AJAXCALL ) {
-        jr_import('jomres_deferred_tasks');{}
-        $jomres_deferred_tasks = new jomres_deferred_tasks();
-        $jomres_deferred_tasks->construct_background_message( "06000" , "deferred_jomres_version_check" , array("task" => $task ) );
-        $jomres_deferred_tasks->dispatch_mesage();
-    } */
 
     //done
     endrun();

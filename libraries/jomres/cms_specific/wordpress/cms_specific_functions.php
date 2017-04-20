@@ -122,7 +122,6 @@ function jomres_cmsspecific_createNewUser()
             //$thisJRUser->userIsRegistered=true; // Disabled as this setting would be incorrect during the booking phase. We want newly created users to have their details recorded by the insertGuestDeets function in insertbookings
             $thisJRUser->id = $id;
             $tmpBookingHandler->updateGuestField('mos_userid', $id);
-            $tmpBookingHandler->saveGuestData();
 
             $subject = jr_gettext('_JRPORTAL_NEWUSER_SUBJECT', '_JRPORTAL_NEWUSER_SUBJECT', false, false);
 

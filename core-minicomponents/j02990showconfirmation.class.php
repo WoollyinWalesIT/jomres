@@ -67,8 +67,6 @@ class j02990showconfirmation
         }
         $tmpBookingHandler->updateBookingField('confirmationSeen', true);
 
-        $tmpBookingHandler->saveBookingData();
-
         $bookingDeets = gettempBookingdata();
 
         $guestList = $tmpBookingHandler->getGuestData();
@@ -211,7 +209,6 @@ class j02990showconfirmation
                 $customFields[ ] = $fielddata;
             }
         }
-        $tmpBookingHandler->saveBookingData();
 
         $booking_parts[ 'PROPERTYNAME' ] = getPropertyName($bookingDeets[ 'property_uid' ]);
 

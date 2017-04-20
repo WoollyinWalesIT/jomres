@@ -46,6 +46,8 @@ class j01050x_geocoder
         $pageoutput = array();
 
         $output['MAP_STYLE'] = file_get_contents(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'map_styles'.JRDS.$jrConfig['map_style'].'.style');
+		$output['ZOOMLEVEL'] = (int)$jrConfig['map_zoom'];
+		$output['MAPTYPE'] = strtoupper($jrConfig['map_type']);
 
         $output[ 'DISABLE_UI' ] = '';
         if (isset($componentArgs[ 'disable_ui' ])) {
@@ -96,7 +98,7 @@ class j01050x_geocoder
             } // If we're editing it's ok to use the default data. If we're not, it isn't and it's best to simply not show the map at all
         }
 
-        if (!isset($jrConfig[ 'gmap_layer_weather' ])) {
+        if (!isset($jrConfig[ 'gmap_layer_transit' ])) {
             $jrConfig[ 'gmap_layer_transit' ] = '0';
         }
 

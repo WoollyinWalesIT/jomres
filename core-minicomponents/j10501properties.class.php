@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j10501contact_settings
+class j10501properties
 {
     public function __construct($componentArgs)
     {
@@ -32,9 +32,48 @@ class j10501contact_settings
         $configurationPanel = $componentArgs[ 'configurationPanel' ];
         $lists = $componentArgs[ 'lists' ];
 
-        if ($jrConfig[ 'advanced_site_config' ] == 1) {
-            $configurationPanel->startPanel(jr_gettext('_JOMRES_CONTACT_SETTINGS', '_JOMRES_CONTACT_SETTINGS', false));
+        $configurationPanel->startPanel(jr_gettext('_JOMRES_FAQ_ADMIN_CATEGORY_PROPERTIES', '_JOMRES_FAQ_ADMIN_CATEGORY_PROPERTIES', false));
+		
+		if ($jrConfig[ 'advanced_site_config' ] == 1) {
+			$configurationPanel->setleft(jr_gettext('_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', '_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', false));
+            $configurationPanel->setmiddle($lists[ 'is_single_property_installation' ]);
+            $configurationPanel->setright(jr_gettext('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', '_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', false));
+            $configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_SELFREGISTRATION', '_JOMRES_COM_SELFREGISTRATION', false));
+            $configurationPanel->setmiddle($lists[ 'selfRegistrationAllowed' ]);
+            $configurationPanel->setright(jr_gettext('_JOMRES_COM_SELFREGISTRATION_DESC', '_JOMRES_COM_SELFREGISTRATION_DESC', false));
+            $configurationPanel->insertSetting();
+			
+            $configurationPanel->setleft(jr_gettext('_JOMRES_APPROVALS_CONFIG_TITLE', '_JOMRES_APPROVALS_CONFIG_TITLE', false));
+            $configurationPanel->setmiddle($lists[ 'automatically_approve_new_properties' ]);
+            $configurationPanel->setright(jr_gettext('_JOMRES_APPROVALS_CONFIG_DESC', '_JOMRES_APPROVALS_CONFIG_DESC', false));
+            $configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft(jr_gettext('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO', '_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO', false));
+            $configurationPanel->setmiddle($lists[ 'limit_property_country' ]);
+            $configurationPanel->setright(jr_gettext('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO_DESC', '_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO_DESC', false));
+            $configurationPanel->insertSetting();
 
+            $configurationPanel->setleft(jr_gettext('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_COUNTRY', '_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_COUNTRY', false));
+            $configurationPanel->setmiddle(limitCountriesDropdown());
+            $configurationPanel->setright();
+            $configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft(jr_gettext('JOMRES_COM_A_MINIMALCONFIG', 'JOMRES_COM_A_MINIMALCONFIG', false));
+            $configurationPanel->setmiddle($lists[ 'minimalconfiguration' ]);
+            $configurationPanel->setright(jr_gettext('JOMRES_COM_A_MINIMALCONFIG_DESC', 'JOMRES_COM_A_MINIMALCONFIG_DESC', false));
+            $configurationPanel->insertSetting();
+		}
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_PROPERTYDETAILS_INTABS_TITLE', '_JOMRES_PROPERTYDETAILS_INTABS_TITLE', false));
+        $configurationPanel->setmiddle($lists[ 'property_details_in_tabs' ]);
+        $configurationPanel->setright(jr_gettext('_JOMRES_PROPERTYDETAILS_INTABS_DESC', '_JOMRES_PROPERTYDETAILS_INTABS_DESC', false));
+        $configurationPanel->insertSetting();
+		
+		if ($jrConfig[ 'advanced_site_config' ] == '1') {
+			$configurationPanel->insertHeading(jr_gettext('_JOMRES_CONTACT_SETTINGS', '_JOMRES_CONTACT_SETTINGS', false));
+			
             $configurationPanel->insertDescription(jr_gettext('_JOMRES_CONTACT_SETTINGS_DESC', '_JOMRES_CONTACT_SETTINGS_DESC', false));
 
             $configurationPanel->setleft(jr_gettext('_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS', '_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS', false));
@@ -56,9 +95,9 @@ class j10501contact_settings
             $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_override_property_contact_fax" value="'.$jrConfig[ 'override_property_contact_fax' ].'" />');
             $configurationPanel->setright();
             $configurationPanel->insertSetting();
-
-            $configurationPanel->endPanel();
         }
+
+        $configurationPanel->endPanel();
     }
 
     // This must be included in every Event/Mini-component

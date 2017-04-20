@@ -60,7 +60,7 @@ class j06000ajax_list_properties
             }
         }
 
-        if (count($this->resultBucket) > 0) {
+        if (!empty($this->resultBucket)) {
             $componentArgs = array();
             $componentArgs[ 'propertys_uid' ] = $this->resultBucket;
             $MiniComponents->specificEvent('01010', 'listpropertys', $componentArgs);

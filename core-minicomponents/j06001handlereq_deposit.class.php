@@ -43,7 +43,6 @@ class j06001handlereq_deposit
                 $tmpBookingHandler->addNewBookingField('override_contract_deposit');
             }
             $tmpBookingHandler->updateBookingField('override_contract_deposit', $deposit);
-            $tmpBookingHandler->saveBookingData();
         }
     }
 

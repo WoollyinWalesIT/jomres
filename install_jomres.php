@@ -608,8 +608,22 @@ function doTableUpdates()
     drop_room_images_table();
 	drop_cronlog_table();
     add_api_tables();
+	add_jomres_sessions_table();
     updateSiteSettings('update_time', time());
     
+}
+
+function add_jomres_sessions_table()
+{
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_sessions (
+        `session_id` VARCHAR(50) NOT NULL, 
+        `data` TEXT, 
+        `last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+        PRIMARY KEY (`session_id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_sessions table', 'danger');
+    }
 }
 
 function alterGuestsBlacklistedCol()
@@ -4042,6 +4056,16 @@ function createJomresTables()
     }
     if (!checkPartnerBookingsTableExists()) {
         createPartnerBookingsTable();
+    }
+	
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_sessions (
+        `session_id` VARCHAR(50) NOT NULL, 
+        `data` TEXT, 
+        `last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+        PRIMARY KEY (`session_id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_sessions table', 'danger');
     }
 
     //create the configuration file and drop _site_settings

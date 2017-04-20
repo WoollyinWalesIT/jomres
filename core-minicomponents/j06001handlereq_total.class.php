@@ -45,7 +45,6 @@ class j06001handlereq_total
                     $tmpBookingHandler->addNewBookingField('override_contract_total');
                 }
                 $tmpBookingHandler->updateBookingField('override_contract_total', $total);
-                $tmpBookingHandler->saveBookingData();
             }
         }
     }

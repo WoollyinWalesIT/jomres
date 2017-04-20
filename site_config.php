@@ -213,5 +213,9 @@ $jrConfig = array(
   'sendErrorEmails' => '0',
   'minimum_deposit_percentage' => '',
   'plist_images_as_slideshow' => '1',
-  'cron_method' => 'Minicomponent'
+  'cron_method' => 'Minicomponent',
+  'session_handler' => 'database',
+  'map_type' => 'ROADMAP',
+  'map_zoom' => '10',
+  'map_height' => '300'
 );
