@@ -1363,8 +1363,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_classes.'jomres_access_control_controlable.class.php');
 		$this->add_obs_file($this->dir_classes.'jomres_array_cache.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j10501contact_settings.class.php');
-		$this->add_obs_file($this->dir_admin.'uninstall.jomres.php');
 		$this->add_obs_file($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla3'.JRDS.'installfiles'.JRDS.'uninstall.jomres.php');
+		$this->add_obs_dir($this->dir_admin);
 		
 		$this->add_obs_dir($this->dir_libraries.'MobileDetect'.JRDS);
 		

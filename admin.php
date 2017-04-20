@@ -81,7 +81,7 @@ try {
     //currency conversion object
     $jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance('jomres_currency_exchange_rates');
 
-    require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'admin'.JRDS.'functions'.JRDS.'siteconfig.functions.php';
+    require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'siteconfig.functions.php';
 
     //add javascript to head
     if (!AJAXCALL) {
