@@ -46,6 +46,10 @@ $today = date('Y/m/d');
 $date_elements = explode('/', $today);
 $unixTodaysDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
 
+if (!isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ])) {
+    $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] = "";
+}
+
 if (!isset($_REQUEST[ 'arrivalDate' ])) {
     if (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) && $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == '') {
         $arrivalDate = JSCalmakeInputDates(date('Y/m/d', $unixTodaysDate), $siteCal = true);
