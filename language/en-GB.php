@@ -3107,3 +3107,7 @@ jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'If this guest is black listed then 
 
 jr_define('_JOMRES_SESSION_HANDLER', 'Session handler');
 jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Save jomres session files to disk or to database. Recommended: database');
+
+jr_define('_JOMRES_MAP_HEIGHT',"Map height (px) ");
+jr_define('_JOMRES_MAP_ZOOMLEVEL',"Map zoom level ");
+jr_define('_JOMRES_MAP_MAPTYPE',"Map type ");

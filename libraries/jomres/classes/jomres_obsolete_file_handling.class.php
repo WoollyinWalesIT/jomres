@@ -1362,6 +1362,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_classes.'javascript_cache.class.php');
 		$this->add_obs_file($this->dir_classes.'jomres_access_control_controlable.class.php');
 		$this->add_obs_file($this->dir_classes.'jomres_array_cache.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10501contact_settings.class.php');
 		
 		$this->add_obs_dir($this->dir_libraries.'MobileDetect'.JRDS);
 		

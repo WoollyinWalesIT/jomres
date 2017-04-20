@@ -334,15 +334,29 @@ function showSiteConfig()
     $lists[ 'sendErrorEmails' ] = jomresHTML::selectList($yesno, 'cfg_sendErrorEmails', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sendErrorEmails' ]);
 	$lists[ 'plist_images_as_slideshow' ] = jomresHTML::selectList($yesno, 'cfg_plist_images_as_slideshow', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'plist_images_as_slideshow' ]);
 
-	$method = array();
-	$method[ ] = jomresHTML::makeOption('Minicomponent', 'Minicomponent');
-	$method[ ] = jomresHTML::makeOption('Cron', 'Cron job');
-	$lists[ 'cron_method' ] = jomresHTML::selectList($method, 'method', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'cron_method' ]);
+	$options = array();
+	$options[ ] = jomresHTML::makeOption('Minicomponent', 'Minicomponent');
+	$options[ ] = jomresHTML::makeOption('Cron', 'Cron job');
+	$lists[ 'cron_method' ] = jomresHTML::selectList($options, 'cfg_cron_method', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'cron_method' ]);
 	
-	$method = array();
-	$method[ ] = jomresHTML::makeOption('file', 'File');
-	$method[ ] = jomresHTML::makeOption('database', 'Database');
-	$lists[ 'session_handler' ] = jomresHTML::selectList($method, 'method', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'session_handler' ]);
+	$options = array();
+	$options[ ] = jomresHTML::makeOption('file', 'File');
+	$options[ ] = jomresHTML::makeOption('database', 'Database');
+	$lists[ 'session_handler' ] = jomresHTML::selectList($options, 'cfg_session_handler', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'session_handler' ]);
+	
+	$options = array();
+	$options[] = jomresHTML::makeOption( 'ROADMAP', 'Roadmap' );
+	$options[] = jomresHTML::makeOption( 'SATELLITE', 'Satellite' );
+	$options[] = jomresHTML::makeOption( 'HYBRID', 'Hybrid' );
+	$options[] = jomresHTML::makeOption( 'TERRAIN', 'Terrain' );
+	$lists[ 'map_type' ] = jomresHTML::selectList($options, 'cfg_map_type', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'map_type' ]);
+	
+	$options = array();
+	for ($i=1;$i<=23;$i++)
+		{
+		$options[] = jomresHTML::makeOption( $i, $i );
+		}
+	$lists[ 'map_zoom' ] = jomresHTML::selectList($options, 'cfg_map_zoom', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'map_zoom' ]);
 
     $componentArgs = array();
     $componentArgs[ 'lists' ] = $lists;

@@ -1,4 +1,3 @@
-
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
 <!--
@@ -21,9 +20,10 @@ function init_map_{RANDOM_IDENTIFIER}()
 	var options_{RANDOM_IDENTIFIER} = {
 		scrollwheel: false,
 		center: latLng,
-		zoom: 12,
+		zoom: {ZOOMLEVEL},
 		{DISABLE_UI}
-		mapTypeId: google.maps.MapTypeId.ROADMAP{SUPPRESS_POIS},{MAP_STYLE}
+		mapTypeId: google.maps.MapTypeId.{MAPTYPE}{SUPPRESS_POIS},
+		{MAP_STYLE}
 		};
 	
 	map = new google.maps.Map(document.getElementById("map_{RANDOM_IDENTIFIER}"),
