@@ -54,6 +54,9 @@ class j10501reviews
         $configurationPanel->setright(jr_gettext('_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC', '_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC', false));
         $configurationPanel->insertSetting();
 
+		//plugins can add options to this tab
+		$MiniComponents->triggerEvent('10528', $componentArgs);
+		
         $configurationPanel->endPanel();
     }
 

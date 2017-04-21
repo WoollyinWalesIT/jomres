@@ -45,6 +45,9 @@ class j10501js_calendar
         $configurationPanel->setmiddle($calendarStartDaysDropdownList);
         $configurationPanel->setright();
         $configurationPanel->insertSetting();
+		
+		//plugins can add options to this tab
+		$MiniComponents->triggerEvent('10526', $componentArgs);
 
         $configurationPanel->endPanel();
     }

@@ -91,6 +91,9 @@ class j10501business_details
             $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_business_email" value="'.jomres_decode($jrConfig[ 'business_email' ]).'" />');
             $configurationPanel->setright();
             $configurationPanel->insertSetting();
+			
+			//plugins can add options to this tab
+			$MiniComponents->triggerEvent('10523', $componentArgs);
 
             $configurationPanel->endPanel();
         }

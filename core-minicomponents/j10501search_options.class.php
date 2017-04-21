@@ -87,6 +87,9 @@ class j10501search_options
             $configurationPanel->setmiddle($lists[ 'plist_images_as_slideshow' ]);
             $configurationPanel->setright(jr_gettext('PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC', 'PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC', false));
             $configurationPanel->insertSetting();
+			
+			//plugins can add options to this tab
+			$MiniComponents->triggerEvent('10529', $componentArgs);
 
             $configurationPanel->endPanel();
         }

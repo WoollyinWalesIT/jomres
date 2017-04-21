@@ -69,6 +69,9 @@ class j10501booking_form
             $configurationPanel->setright(jr_gettext('_JOMRES_BOOKINGFORM_LOCK_DESC', '_JOMRES_BOOKINGFORM_LOCK_DESC', false));
             $configurationPanel->insertSetting();
 
+			//plugins can add options to this tab
+			$MiniComponents->triggerEvent('10522', $componentArgs);
+
             $configurationPanel->endPanel();
         }
     }

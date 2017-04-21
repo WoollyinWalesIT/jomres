@@ -96,6 +96,9 @@ class j10501properties
             $configurationPanel->setright();
             $configurationPanel->insertSetting();
         }
+		
+		//plugins can add options to this tab
+		$MiniComponents->triggerEvent('10527', $componentArgs);
 
         $configurationPanel->endPanel();
     }

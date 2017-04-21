@@ -177,6 +177,9 @@ class j10501a_misc
 			$configurationPanel->insertSetting();
 		}
 
+		//plugins can add options to this tab
+		$MiniComponents->triggerEvent('10521', $componentArgs);
+		
         $configurationPanel->endPanel();
     }
 

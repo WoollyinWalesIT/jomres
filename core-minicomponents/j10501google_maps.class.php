@@ -81,6 +81,9 @@ class j10501google_maps
         $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_map_height" value="'.$jrConfig[ 'map_height' ].'" />');
         $configurationPanel->setright();
         $configurationPanel->insertSetting();
+		
+		//plugins can add options to this tab
+		$MiniComponents->triggerEvent('10525', $componentArgs);
 
         $configurationPanel->endPanel();
     }

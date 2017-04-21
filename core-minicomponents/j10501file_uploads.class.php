@@ -63,6 +63,9 @@ class j10501file_uploads
         $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_fileSize" value="'.$jrConfig[ 'fileSize' ].'">');
         $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_UPLOADS_FILESIZE_DESC', '_JOMRES_COM_A_UPLOADS_FILESIZE_DESC', false));
         $configurationPanel->insertSetting();
+		
+		//plugins can add options to this tab
+		$MiniComponents->triggerEvent('10524', $componentArgs);
 
         $configurationPanel->endPanel();
     }
