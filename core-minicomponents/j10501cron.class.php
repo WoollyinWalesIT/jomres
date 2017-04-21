@@ -44,6 +44,9 @@ class j10501cron
             $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_CRON_METHOD_DESC', '_JOMRES_COM_A_CRON_METHOD_DESC', false));
             $configurationPanel->insertSetting();
 			
+			//plugins can add options to this tab
+			$MiniComponents->triggerEvent('10530', $componentArgs);
+			
 			$configurationPanel->insertHeading("Current Cron Jobs");
 			
 			$configurationPanel->insertDescription(jr_gettext('_JOMRES_COM_A_CRON_IMMEDIATERUN', '_JOMRES_COM_A_CRON_IMMEDIATERUN', false));
