@@ -45,11 +45,6 @@ class j10501js_calendar
         $configurationPanel->setmiddle($calendarStartDaysDropdownList);
         $configurationPanel->setright();
         $configurationPanel->insertSetting();
-		
-		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_CALENDAROUTPUT', '_JOMRES_COM_CALENDAROUTPUT', false));
-		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_cal_output" value="'.$jrConfig[ 'cal_output' ].'" />');
-		$configurationPanel->setright(jr_gettext('_JOMRES_COM_CALENDAROUTPUT_DESC', '_JOMRES_COM_CALENDAROUTPUT_DESC', false));
-		$configurationPanel->insertSetting();
 
         $configurationPanel->endPanel();
     }

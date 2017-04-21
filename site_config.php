@@ -24,7 +24,6 @@ $jrConfig = array(
   'editingModeAffectsAllProperties' => '0',
   'allowHTMLeditor' => '1',
   'selfRegistrationAllowed' => '1',
-  'cal_output' => 'jS M Y',
   'cal_input' => '%d/%m/%Y',
   'isInIframe' => '0',
   'errorChecking' => '0',
