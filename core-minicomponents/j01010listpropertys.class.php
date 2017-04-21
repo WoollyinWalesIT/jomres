@@ -322,8 +322,6 @@ class j01010listpropertys
 
                     $mrConfig = getPropertySpecificSettings($propertys_uid);
 
-                    $property_deets = $MiniComponents->triggerEvent('00042', array('property_uid' => $propertys_uid));
-
                     $property_deets['GATEWAYS'] = '';
                     $payment_methods = $jomres_property_payment_methods->get_property_gateways($propertys_uid);
 
