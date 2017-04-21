@@ -34,6 +34,7 @@ class j10501a_misc
         $bootstrap_ver_dropdown = $componentArgs[ 'bootstrap_ver_dropdown' ];
         $jqueryUIthemesDropdownList = $componentArgs[ 'jqueryUIthemesDropdownList' ];
         $language_context_dropdown = $componentArgs[ 'language_context_dropdown' ];
+		$navbar_location_dropdown = $componentArgs[ 'navbar_location_dropdown' ];
         $support_key_is_trial_license = '';
         $renewal_link = '';
 
@@ -157,6 +158,16 @@ class j10501a_misc
             $configurationPanel->setleft(jr_gettext('_JOMRES_COM_FONTAWESOME', '_JOMRES_COM_FONTAWESOME', false));
             $configurationPanel->setmiddle($lists[ 'load_font_awesome' ]);
             $configurationPanel->setright(jr_gettext('_JOMRES_COM_FONTAWESOME_DESC', '_JOMRES_COM_FONTAWESOME_DESC', false));
+            $configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAP_LOCATION', '_JOMRES_BOOTSTRAP_LOCATION', false));
+            $configurationPanel->setmiddle($navbar_location_dropdown);
+            $configurationPanel->setright();
+            $configurationPanel->insertSetting();
+
+            $configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAP_LOCATION_INVERSE', '_JOMRES_BOOTSTRAP_LOCATION_INVERSE', false));
+            $configurationPanel->setmiddle($lists[ 'navbar_inverse' ]);
+            $configurationPanel->setright();
             $configurationPanel->insertSetting();
 
             $configurationPanel->setleft(jr_gettext('_JOMRES_SHOW_POWEREDBY', '_JOMRES_SHOW_POWEREDBY', false));
