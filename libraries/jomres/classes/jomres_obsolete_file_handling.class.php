@@ -1365,8 +1365,10 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j10501contact_settings.class.php');
 		$this->add_obs_file($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla3'.JRDS.'installfiles'.JRDS.'uninstall.jomres.php');
 		$this->add_obs_dir($this->dir_admin);
-		
+		$this->add_obs_file($this->dir_classes.'jrportal_sms_clickatell_settings.class.php');
 		$this->add_obs_dir($this->dir_libraries.'MobileDetect'.JRDS);
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'sms_clickatell_settings.html');
+		$this->add_obs_file($this->dir_minicomponents.'j10002sms_clickatell.class.php');
 		
     }
 
