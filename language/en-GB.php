@@ -1105,7 +1105,7 @@ jr_define('_JOMRES_MR_AUDIT_UPDATE_COUPON', 'Coupon saved');
 jr_define('_JOMRES_MR_AUDIT_DELETE_COUPON', 'Coupon deleted');
 jr_define('_JOMRES_COM_GROWL', 'Use Jomres messaging');
 jr_define('_JOMRES_COM_GROWL_DESC', 'Many manager updates provide feedback in the form of a javascript message when the page is reloaded, use this option to enable/disable that feature.');
-jr_define('_JRPORTAL_SMS_CLICKATELL_TITLE', 'Jomres -> Clickatell SMS');
+jr_define('_JRPORTAL_SMS_CLICKATELL_TITLE', 'Clickatell SMS Integration');
 jr_define('_JRPORTAL_SMS_CLICKATELL_USERNAME', 'Username');
 jr_define('_JRPORTAL_SMS_CLICKATELL_PASSWORD', 'Password');
 jr_define('_JRPORTAL_SMS_CLICKATELL_APIID', 'API id');

@@ -31,12 +31,10 @@ class jrportal_sms_clickatell_message
     public function getMessage()
     {
         if ($this->id > 0) {
-            $query = "SELECT
-				`id`,`username`,`number`,`message`,`property_uid`,`send_time`,`ack`,`apiMsgid`
-				FROM #__jomresportal_sms_clickatell_messages WHERE `id`='$this->id' LIMIT 1";
-
+            $query = "SELECT `id`,`username`,`number`,`message`,`property_uid`,`send_time`,`ack`,`apiMsgid` FROM #__jomresportal_sms_clickatell_messages WHERE `id` = $this->id LIMIT 1";
             $result = doSelectSql($query);
-            if ($result && count($result) == 1) {
+            
+			if ($result && count($result) == 1) {
                 foreach ($result as $r) {
                     $this->id = $r->id;
                     $this->username = $r->username;
@@ -70,7 +68,7 @@ class jrportal_sms_clickatell_message
 
     public function commitNewMessage()
     {
-        if ($this->id < 1) {
+        if ($this->id == 0) {
             $query = "INSERT INTO #__jomresportal_sms_clickatell_messages
 				(
 				`username`,
@@ -86,23 +84,23 @@ class jrportal_sms_clickatell_message
 				'" .(string) $this->username."',
 				'" .(string) $this->number."',
 				'" .(string) $this->message."',
-				'" .(int) $this->property_uid."',
+				" .(int) $this->property_uid.",
 				'" .date('Y-m-d H:i:s')."',
-				'" .(int) $this->ack."',
+				" .(int) $this->ack.",
 				''
 				)";
             $id = doInsertSql($query, '');
-            if ($id) {
+            
+			if ($id) {
                 $this->id = $id;
-
                 return true;
             } else {
                 error_logging('ID of Message could not be found after apparent successful insert');
-
                 return false;
             }
         }
-        error_logging('ID of Message already available. Are you sure you are creating a new Message?');
+        
+		error_logging('ID of Message already available. Are you sure you are creating a new Message?');
 
         return false;
     }

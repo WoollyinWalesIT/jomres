@@ -16,13 +16,11 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jrportal_sms_clickatellhandler
 {
-    public function __construct($property_uid)
+    public function __construct()
     {
-        //http://api.clickatell.com/http/sendmsg?api_id=xxxx&user=xxxx&password=xxxx&to=xxxx&text=xxxx
+		//http://api.clickatell.com/http/sendmsg?api_id=xxxx&user=xxxx&password=xxxx&to=xxxx&text=xxxx
         $this->clickatell_api_url = 'http://api.clickatell.com/http/sendmsg?';
-        $sms_clickatell_settings = new jrportal_sms_clickatell_settings();
-        $this->settings = $sms_clickatell_settings->get_sms_clickatell_settings();
-        $this->queryResult = false;
+		$this->queryResult = false;
         $this->getVars = '';
         $this->errorText = array();
     }
@@ -34,12 +32,16 @@ class jrportal_sms_clickatellhandler
 
             return false;
         }
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
 
         $fields_string = '';
-        $fields_string .= 'api_id='.urlencode($this->settings[ 'api_id' ]);
-        $fields_string .= '&user='.urlencode($this->settings[ 'username' ]);
-        $fields_string .= '&password='.urlencode($this->settings[ 'password' ]).'&';
-        if (!empty($this->getVars)) {
+        $fields_string .= 'api_id='.urlencode($jrConfig[ 'sms_clickatell_api_id' ]);
+        $fields_string .= '&user='.urlencode($jrConfig[ 'sms_clickatell_username' ]);
+        $fields_string .= '&password='.urlencode($jrConfig[ 'sms_clickatell_password' ]).'&';
+        
+		if (!empty($this->getVars)) {
             foreach ($this->getVars as $key => $value) {
                 $fields_string .= $key.'='.urlencode($value).'&';
             }
@@ -47,23 +49,28 @@ class jrportal_sms_clickatellhandler
         } else {
             return false;
         }
-        //open connection
+        
+		//open connection
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->clickatell_api_url.$fields_string);
+        
+		//set options
+		curl_setopt($ch, CURLOPT_URL, $this->clickatell_api_url.$fields_string);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Jomres');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Without this the response is true, whereas we want the actual contents of the response
-        //execute post
+        
+		//execute post
         $result = curl_exec($ch);
-        // check if any error occured
+        
+		// check if any error occured
         if (curl_errno($ch)) {
             $this->setErrorText(curl_error($ch));
-
             return false;
         } else {
             $this->queryResult = $result;
         }
-        //close connection
+        
+		//close connection
         curl_close($ch);
 
         return true;
