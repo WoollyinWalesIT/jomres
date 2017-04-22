@@ -64,7 +64,7 @@ class jomres_language
 		if ($jrConfig['selected_languages'] != '') {
 			$this->selected_languages = explode(',',$jrConfig['selected_languages']);
 		} else {
-			$this->selected_languages = $this->get_current_lang_files();
+			$this->selected_languages = array_keys($langfile_crossref);
 		}
     }
 	
@@ -124,26 +124,6 @@ class jomres_language
         }
 
         return false;
-    }
-
-	//this should be executed just once, then after we have the jomres_languages.php tmp file, no need for this anymore
-    public function get_current_lang_files()
-    {
-        $langfiles = array();
-
-        $this->unWantedFolderContents = array('.', '..', 'cvs', '.svn', 'index.html');
-        $d = @dir(JOMRESPATH_BASE.JRDS.'language'.JRDS);
-        if ($d) {
-            while (false !== ($entry = $d->read())) {
-                $filename = $entry;
-                if (is_file(JOMRESPATH_BASE.JRDS.'language'.JRDS.$filename) && !in_array(strtolower($filename), $this->unWantedFolderContents)) {
-                    //we`ll just save the basename
-					$langfiles[] = basename($filename, '.php');
-                }
-            }
-        }
-
-        return $langfiles;
     }
 
     public function get_languageselection_dropdown($config_option = false, $default_lang = '')
