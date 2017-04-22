@@ -251,17 +251,14 @@ class basic_property_details
         $jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
         $jomres_room_types->get_all_room_types();
 
-        if (!isset($this->this_property_room_classes)) {
-            $this->this_property_room_classes = array();
-
-            if (isset($jomres_room_types->all_ptype_rtype_xrefs[$this->ptype_id])) {
-                foreach ($jomres_room_types->all_ptype_rtype_xrefs[$this->ptype_id] as $rtype) {
-                    if (isset($this->classAbbvs[ $rtype ])) {
-                        $this->this_property_room_classes[ $rtype ] = $this->classAbbvs[ $rtype ];
-                    }
-                }
-            }
-        }
+        $this->this_property_room_classes = array();
+		if (isset($jomres_room_types->all_ptype_rtype_xrefs[$this->ptype_id])) {
+			foreach ($jomres_room_types->all_ptype_rtype_xrefs[$this->ptype_id] as $rtype) {
+				if (isset($this->classAbbvs[ $rtype ])) {
+					$this->this_property_room_classes[ $rtype ] = $this->classAbbvs[ $rtype ];
+				}
+			}
+		}
 
         $bang = explode(',', $this->property_features);
         $propertyFeaturesArray = array();
