@@ -32,7 +32,7 @@ class j10501properties
         $configurationPanel = $componentArgs[ 'configurationPanel' ];
         $lists = $componentArgs[ 'lists' ];
 
-        $configurationPanel->startPanel(jr_gettext('_JOMRES_FAQ_ADMIN_CATEGORY_PROPERTIES', '_JOMRES_FAQ_ADMIN_CATEGORY_PROPERTIES', false));
+        $configurationPanel->startPanel(ucwords(jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL', false)));
 		
 		if ($jrConfig[ 'advanced_site_config' ] == 1) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', '_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', false));
