@@ -658,11 +658,11 @@ function checkRoomDescriptionColExists()
 
 function alterRoomsDescriptionCol()
 {
-    $query = 'ALTER TABLE #__jomres_rooms ADD `tagline` VARCHAR(255) DEFAULT NULL';
+    $query = 'ALTER TABLE #__jomres_rooms ADD `tagline` VARCHAR(255)';
     if (!doInsertSql($query, '')) {
         output_message('Error, unable to add __jomres_rooms tagline column', 'danger');
     }
-    $query = 'ALTER TABLE #__jomres_rooms ADD `description` VARCHAR(3000) DEFAULT NULL';
+    $query = 'ALTER TABLE #__jomres_rooms ADD `description` TEXT';
     if (!doInsertSql($query, '')) {
         output_message('Error, unable to add __jomres_rooms descriptions column', 'danger');
     }
@@ -3811,8 +3811,8 @@ function createJomresTables()
 		`room_floor` VARCHAR(10) NULL,
 		`max_people` INTEGER NULL,
 		`singleperson_suppliment` DOUBLE DEFAULT '0',
-        `description_intro` VARCHAR(1000) DEFAULT NULL,
-        `description` VARCHAR(3000) DEFAULT NULL,
+        `tagline` VARCHAR(255),
+        `description` TEXT,
 		PRIMARY KEY(`room_uid`)
 		) ";
     if (!doInsertSql($query)) {
