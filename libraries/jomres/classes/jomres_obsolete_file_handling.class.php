@@ -1373,6 +1373,10 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j10501navbar.class.php');
 		$this->add_obs_file($this->dir_classes.'jrportal_sms_clickatell_message.class.php');
 		$this->add_obs_file($this->dir_classes.'jrportal_sms_clickatellhandler.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002chooseLanguages.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j16000save_languageChoiceSelection.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j16000chooseLanguages.class.php');
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'list_languagechoices.html');
     }
 
     public function add_obs_file($path_and_file)

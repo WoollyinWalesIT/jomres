@@ -216,5 +216,6 @@ $jrConfig = array(
   'session_handler' => 'database',
   'map_type' => 'ROADMAP',
   'map_zoom' => '10',
-  'map_height' => '300'
+  'map_height' => '300',
+  'selected_languages' => ''
 );

@@ -435,12 +435,22 @@ function saveSiteConfig($overrides = array())
     foreach ($_POST as $k => $v) {
         if (strpos($k, 'cfg_') !== false) {
             $v = jomresGetParam($_POST, $k, '');
-            $dirty = (string) $k;
-            $k = substr(addslashes($dirty), 4);
-            $v = filter_var($v, FILTER_SANITIZE_SPECIAL_CHARS);
+			
+			$dirty = (string) $k;
+			$k = substr(addslashes($dirty), 4);
+			$v = filter_var($v, FILTER_SANITIZE_SPECIAL_CHARS);
 
-            $tmpConfig[ $k ] = $v;
-        }
+			$tmpConfig[ $k ] = $v;
+        } elseif (strpos($k, 'cfgArr_') !== false) {
+			$v = jomresGetParam($_POST, $k, array());
+			$v = implode(',',$v);
+			
+			$dirty = (string) $k;
+			$k = substr(addslashes($dirty), 7);
+			$v = filter_var($v, FILTER_SANITIZE_SPECIAL_CHARS);
+
+			$tmpConfig[ $k ] = $v;
+		}
     }
 
     //save config to file

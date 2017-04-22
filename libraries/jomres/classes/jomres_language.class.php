@@ -58,10 +58,14 @@ class jomres_language
         $key = array_search($jomresConfig_lang, $this->shortcodes);
         set_showtime('lang_shortcode', $key);
 		
-		//active languages
-		$this->active_languages_file = JOMRES_TEMP_ABSPATH.'jomres_languages.php';
-		
-		$this->active_languages = $this->get_active_languages();
+		//selected languages
+		$this->selected_languages = array();
+
+		if ($jrConfig['selected_languages'] != '') {
+			$this->selected_languages = explode(',',$jrConfig['selected_languages']);
+		} else {
+			$this->selected_languages = $this->get_current_lang_files();
+		}
     }
 	
 	public static function getInstance()
@@ -148,9 +152,15 @@ class jomres_language
 
         $language_names = $this->define_langfile_to_languages_array();
 
-        foreach ($this->active_languages as $language_code) {
-            $langfile_options[] = jomresHTML::makeOption($language_code, $language_names[$language_code]);
-        }
+		if (!empty($this->selected_languages)) {
+			foreach ($this->selected_languages as $lang_code) {
+				$langfile_options[] = jomresHTML::makeOption($lang_code, $language_names[$lang_code]);
+			}
+		} else {
+			foreach ($language_names as $lang_code => $lang_name) {
+				$langfile_options[] = jomresHTML::makeOption($lang_code, $lang_name);
+			}
+		}
 
         if (!$config_option) {
             $javascript = 'onchange="this.form.submit();"';
@@ -316,42 +326,4 @@ class jomres_language
 
         return $langs;
     }
-	
-	public function get_active_languages() 
-	{   
-		if (file_exists($this->active_languages_file)) {
-			//include the jomres active languages file. This sets $this->active_languages automatically
-            include_once $this->active_languages_file;
-        } else {
-			//generate the jomres_languages.php file and make all languages active_languages
-			$this->set_active_languages();
-		}
-		
-		return $this->active_languages;
-	}
-	
-	public function set_active_languages($selected_languages = array())
-	{
-		if (empty($selected_languages)) {
-			$this->active_languages = $this->get_current_lang_files(); //we`ll set all languages to be active
-		} else {
-			$this->active_languages = $selected_languages;
-		}
-		
-		natsort($this->active_languages);
-
-		if (!file_put_contents($this->active_languages_file,
-'<?php
-##################################################################
-defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
-##################################################################
-
-$this->active_languages = ' .var_export($this->active_languages, true).';
-')) {
-            trigger_error('ERROR: '.$this->active_languages_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
-            exit;
-        }
-		
-		return true;
-	}
 }
