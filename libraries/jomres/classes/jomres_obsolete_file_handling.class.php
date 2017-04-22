@@ -1371,6 +1371,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j10002sms_clickatell.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j10501recaptcha.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j10501navbar.class.php');
+		$this->add_obs_file($this->dir_classes.'jrportal_sms_clickatell_message.class.php');
+		$this->add_obs_file($this->dir_classes.'jrportal_sms_clickatellhandler.class.php');
     }
 
     public function add_obs_file($path_and_file)
