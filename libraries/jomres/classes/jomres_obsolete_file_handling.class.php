@@ -1385,6 +1385,9 @@ class jomres_obsolete_file_handling
         $this->add_obs_file($this->dir_minicomponents.'j04910deleteproperty.class.php');
         $this->add_obs_file($this->dir_functions.'build_product_tour_files.php');
         $this->add_obs_file($this->dir_minicomponents.'j00010reception_option_04_blackbookings.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j00011manager_option_05_extrasadmin.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02148deleteextra.class.php');
+        
         
     }
 
