@@ -266,7 +266,7 @@ jr_define('_JOMRES_COM_MR_ROOMCLASS_DELETE', 'Delete resource/property type');
 jr_define('_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_ROOMS', 'Unable to remove this resource/property type, it is assigned to a resource. Try re-assigning the resource to another resource/property type then try again.');
 jr_define('_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_TARIFFS', 'Unable to remove this resource/property type, it is assigned to a tariff. Try re-assigning the tariff to another resource/property type then try again.');
 jr_define('_JOMRES_COM_MR_ROOMCLASS_DELETED', 'Resource/property type deleted');
-jr_define('_JOMRES_COM_MR_PROPERTY_DELETE', 'Delete business');
+jr_define('_JOMRES_COM_MR_PROPERTY_DELETE', 'Delete Property');
 jr_define('_JOMRES_COM_MR_PROPERTY_DELETED', 'Property deleted');
 jr_define('_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS', 'You do not have rights to delete this business.');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE', 'Image width after Jomres resizes uploaded images');
