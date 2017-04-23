@@ -112,6 +112,10 @@ try {
     $no_html = (int) jomresGetParam($_REQUEST, 'no_html', 0);
     $task = str_replace('&#60;x&#62;', '', jomresGetParam($_REQUEST, 'task', ''));
 
+    if ($task == "savePlugin") { // 9.9 task names were changed, and savePlugin was renumbered and renamed to save_plugin. As many 3rd party gateways will use savePlugin (and it may never be updated ) we'll change the task name here so that they continue to work.
+        $task = "save_plugin";
+    }
+    
     set_showtime('task', $task);
     set_showtime('no_html', $no_html);
     set_showtime('popup', $popup);

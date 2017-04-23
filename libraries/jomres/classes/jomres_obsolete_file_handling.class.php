@@ -1378,6 +1378,7 @@ class jomres_obsolete_file_handling
         $this->add_obs_file($this->dir_templates_bootstrap3_backend.'register_property1.html');
         $this->add_obs_file($this->dir_templates_bootstrap_backend.'register_property1.html');
         $this->add_obs_file($this->dir_templates_jqueryui_backend.JRDS.'register_property1.html');
+        $this->add_obs_file($this->dir_minicomponents.'j03310save_plugin.class.php');
         
     }
 

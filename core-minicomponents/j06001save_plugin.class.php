@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j03310save_plugin
+class j06001save_plugin
 {
     public function __construct($componentArgs)
     {
