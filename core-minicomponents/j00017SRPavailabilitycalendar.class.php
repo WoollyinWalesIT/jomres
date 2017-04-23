@@ -493,7 +493,7 @@ jomresJquery(function(){
                     } else {
                         if ($userIsManager) {
                             if ($contract_uid != '') {
-                                $link = "<a $target href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&amp;contract_uid=$contract_uid").'" class=rescal >'.(date('j', $currdate)).'</a>';
+                                $link = "<a $target href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=edit_booking&amp;contract_uid=$contract_uid").'" class=rescal >'.(date('j', $currdate)).'</a>';
                                 $this->retVals .= $link;
                             } else {
                                 $this->retVals .= date('j', $currdate);

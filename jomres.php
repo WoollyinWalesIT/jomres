@@ -315,33 +315,6 @@ try {
                 }
                 break;
             //########################################################################################
-            case 'saveCancellation':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02162');
-                } //saveCancellation();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'cancelBooking':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02160');
-                } //cancelBooking();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'editBooking':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02260');
-                } //editBooking();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
             case 'listguests':
                 if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
                     $MiniComponents->triggerEvent('02220');

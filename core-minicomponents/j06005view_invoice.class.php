@@ -141,7 +141,7 @@ class j06005view_invoice
         $viewbooking_link = array();
         if ($thisJRUser->userIsManager && (int) $invoice->contract_id > 0) {
             $viewbooking = jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', false, false);
-            $viewbooking_link[] = array('VIEWBOOKING_LINK' => JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$invoice->contract_id, 'VIEWBOOKING_TEXT' => $viewbooking);
+            $viewbooking_link[] = array('VIEWBOOKING_LINK' => JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$invoice->contract_id, 'VIEWBOOKING_TEXT' => $viewbooking);
         }
 
         $output[ 'ID' ] = $invoice->id;

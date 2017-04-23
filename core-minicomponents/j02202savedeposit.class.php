@@ -50,7 +50,7 @@ class j02202savedeposit
             $webhook_notification->data->depositref             = $depositRef;
             add_webhook_notification($webhook_notification);
             
-            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.(int) $contractUid), $saveMessage);
+            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.(int) $contractUid), $saveMessage);
         } else {
             trigger_error('Incorrect contract uid when saving deposit', E_USER_ERROR);
         }

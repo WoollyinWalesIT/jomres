@@ -3425,8 +3425,8 @@ function showLiveBookings($contractsList, $title, $arrivaldateDropdown)
         }
 
         $r[ 'STATE_IMAGE' ] = $imgToShow;
-        $r[ 'EDIT_LINK' ] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.($row->contract_uid)).'" class="btn btn-info"><i class="icon-edit icon-white"></i> '.jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE', false).'</a>';
-        $r[ 'EDIT_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.($row->contract_uid));
+        $r[ 'EDIT_LINK' ] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.($row->contract_uid)).'" class="btn btn-info"><i class="icon-edit icon-white"></i> '.jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE', false).'</a>';
+        $r[ 'EDIT_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.($row->contract_uid));
         $r[ 'EDIT_TEXT' ] = jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE', false);
 
         $r[ 'FIRSTNAME' ] = $row->firstname;

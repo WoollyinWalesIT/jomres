@@ -44,7 +44,7 @@ class j06001add_service_to_bill
 
             $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
             $jrtb = $jrtbar->startTable();
-            $jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contract_uid"), '');
+            $jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL."&task=edit_booking&contract_uid=$contract_uid"), '');
             $jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'add_service_to_bill');
             $jrtb .= $jrtbar->endTable();
             $output[ 'JOMRESTOOLBAR' ] = $jrtb;
@@ -101,7 +101,7 @@ class j06001add_service_to_bill
 
                         return;
                     }
-                    jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contract_uid"), $saveMessage);
+                    jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=edit_booking&contract_uid=$contract_uid"), $saveMessage);
                 }
             } else {
                 echo 'Ooops, no description or value entered. ';

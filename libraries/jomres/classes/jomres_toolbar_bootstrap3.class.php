@@ -248,7 +248,7 @@ class jomres_toolbar_bootstrap
 
         $array[ 'enterdeposit' ] = array('image' => 'enterDeposit', 'label' => jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', $editable = false, $isLink = true));
         $array[ 'editbooking' ] = array('image' => 'ContactCardEdit', 'label' => jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT', '_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT', false));
-        $array[ 'cancelbooking' ] = array('image' => 'HotelReservationStop', 'label' => jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', $editable = false, $isLink = false));
+        $array[ 'cancel_booking' ] = array('image' => 'HotelReservationStop', 'label' => jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', $editable = false, $isLink = false));
         $array[ 'addservice' ] = array('image' => 'addService', 'label' => jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE', '_JOMRES_COM_ADDSERVICE_TITLE', $editable = false, $isLink = false));
         $array[ 'printer' ] = array('image' => 'Printer', 'label' => 'Print');
         $array[ 'emailsend' ] = array('image' => 'EmailSend', 'label' => 'Email');

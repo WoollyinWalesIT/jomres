@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j02160cancelbooking
+class j06002cancel_booking
 {
     public function __construct()
     {
@@ -28,7 +28,7 @@ class j02160cancelbooking
         $mrConfig = getPropertySpecificSettings();
         $contract_uid = jomresGetParam($_REQUEST, 'contract_uid', 0);
 
-        $jsLink = jomresURL(JOMRES_SITEPAGE_URL."&task=saveCancellation&contract_uid=$contract_uid");
+        $jsLink = jomresURL(JOMRES_SITEPAGE_URL."&task=save_cancellation&contract_uid=$contract_uid");
         $defaultProperty = getDefaultProperty();
         $today = date('Y/m/d');
         $query = "SELECT arrival,deposit_paid,contract_total,deposit_required,booked_in,property_uid FROM #__jomres_contracts WHERE contract_uid = '".(int) $contract_uid."' AND property_uid = '".(int) $defaultProperty."'";
@@ -68,8 +68,8 @@ class j02160cancelbooking
                 $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
                 $jrtb = $jrtbar->startTable();
 
-                $jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$contract_uid), '');
-                $jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'saveCancellation');
+                $jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$contract_uid), '');
+                $jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'save_cancellation');
                 $jrtb .= $jrtbar->endTable();
                 $output[ 'JOMRESTOOLBAR' ] = $jrtb;
 

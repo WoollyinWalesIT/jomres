@@ -51,7 +51,7 @@ class j02200editdeposit
             $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
             $jrtb = $jrtbar->startTable();
 
-            $jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$contract_uid), '');
+            $jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$contract_uid), '');
             $jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'saveDeposit');
 
             $jrtb .= $jrtbar->endTable();
