@@ -1383,7 +1383,7 @@ class jomres_obsolete_file_handling
         $this->add_obs_file($this->dir_minicomponents.'j04200editproperty.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j04900saveproperty.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j04910deleteproperty.class.php');
-        
+        $this->add_obs_file($this->dir_functions.'build_product_tour_files.php');
     }
 
     public function add_obs_file($path_and_file)
