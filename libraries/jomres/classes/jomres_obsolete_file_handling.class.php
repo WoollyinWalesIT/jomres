@@ -1355,6 +1355,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_classes.'map_markers.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00012managelogs.class.php');
 		
+        // Jomres 9.9
+        
 		$this->add_obs_file($this->dir_minicomponents.'j10002pseudocron.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000pseudocron.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j06002delslideshowimages.class.php');
@@ -1369,8 +1371,6 @@ class jomres_obsolete_file_handling
 		$this->add_obs_dir($this->dir_libraries.'MobileDetect'.JRDS);
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'sms_clickatell_settings.html');
 		$this->add_obs_file($this->dir_minicomponents.'j10002sms_clickatell.class.php');
-		
-        // Jomres 9.9
         $this->add_obs_file($this->dir_functions.'handlereq.php');
         $this->add_obs_file($this->dir_minicomponents.'j01060slideshow.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j02300regprop1.class.php');
