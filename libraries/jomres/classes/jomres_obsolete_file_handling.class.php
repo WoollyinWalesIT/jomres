@@ -1390,6 +1390,9 @@ class jomres_obsolete_file_handling
         $this->add_obs_file($this->dir_minicomponents.'j02150addservicetobill.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j02162savecancellation.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j02160cancelbooking.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02260editbooking.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02220listguests.class.php');
+        
         
         
     }
