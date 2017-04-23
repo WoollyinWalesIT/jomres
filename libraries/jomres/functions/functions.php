@@ -4008,14 +4008,6 @@ function editorAreaText($name, $content, $hiddenField, $width, $height, $col, $r
     return jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width, $height, $col, $row);
 }
 
-/**
- * Triggers the search functionality, set's "$randomSearch" to true.
- */
-function jomresShowSearch()
-{
-    $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-    $MiniComponents->triggerEvent('00030'); //Search mini-comp
-}
 
 /**
  * Creates data for displaying an image. If $retString is true it will return <img etc, if false then it will return the same text in an array variable for passing to patTemplate.

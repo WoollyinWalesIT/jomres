@@ -1397,8 +1397,7 @@ class jomres_obsolete_file_handling
         $this->add_obs_file($this->dir_minicomponents.'j02270error.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j01025showtariffs.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j02272publishprop.class.php');
-        
-        
+        $this->add_obs_file($this->dir_minicomponents.'j00030search.class.php');
         
     }
 

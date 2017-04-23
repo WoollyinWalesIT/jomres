@@ -488,7 +488,7 @@ function no_task_set($property_uid = 0)
     $jrConfig = $siteConfig->get();
 
     if ((isset($_REQUEST[ 'calledByModule' ]) || isset($_REQUEST[ 'plistpage' ])) && $thisJRUser->userIsManager) {
-        jomresShowSearch();
+        $MiniComponents->specificEvent('06000', "search");
     } else {
         if ($thisJRUser->userIsManager) {
             $MiniComponents->triggerEvent('00013'); // Show dashboard
@@ -505,7 +505,7 @@ function no_task_set($property_uid = 0)
             $MiniComponents->triggerEvent('05020');
         } else {
             set_showtime('task', '');
-            jomresShowSearch();
+            $MiniComponents->specificEvent('06000', "search");
         }
     }
 }
