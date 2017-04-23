@@ -336,17 +336,6 @@ try {
                 }
                 $MiniComponents->triggerEvent('01010', $componentArgs); // listPropertys
                 break;
-            //########################################################################################
-            case 'preview':
-                if ($thisJRUser->userIsManager) {
-                    property_header($property_uid);
-                    $componentArgs = array();
-                    $componentArgs[ 'property_uid' ] = $property_uid;
-                    $MiniComponents->specificEvent('06000', 'view_property', array('property_uid' => $property_uid));
-                } else {
-                    userHasBeenLoggedOut();
-                }
-                break;
 
             //########################################################################################
             default:
