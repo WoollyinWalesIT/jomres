@@ -315,14 +315,6 @@ try {
                 }
                 break;
             //########################################################################################
-            case 'publishProperty':
-            if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                $MiniComponents->triggerEvent('03340');
-            } else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
             case 'editProperty':
                 if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
                     $MiniComponents->triggerEvent('04200');
