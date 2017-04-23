@@ -26,6 +26,7 @@ class j06002publish_property
             return;
         }
         publishProperty();
+        jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=listyourproperties'), '');
     }
 
     // This must be included in every Event/Mini-component
