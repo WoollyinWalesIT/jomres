@@ -172,7 +172,7 @@ class j02260editbooking
                 $link = JOMRES_SITEPAGE_URL.'&task=confirmation_letter&popup=1&tmpl='.get_showtime('tmplcomponent').'&contract_uid='.$contract_uid.'&lang='.$lang;
 
                 if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int) $current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1) {
-                    $jrtb .= $jrtbar->toolbarItem('addservice', jomresURL(JOMRES_SITEPAGE_URL.'&task=addServiceToBill&contract_uid='.$contract_uid), jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE', '_JOMRES_COM_ADDSERVICE_TITLE', $editable = false, $isLink = false));
+                    $jrtb .= $jrtbar->toolbarItem('addservice', jomresURL(JOMRES_SITEPAGE_URL.'&task=add_service_to_bill&contract_uid='.$contract_uid), jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE', '_JOMRES_COM_ADDSERVICE_TITLE', $editable = false, $isLink = false));
                 }
 
                 if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int) $current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1) {
