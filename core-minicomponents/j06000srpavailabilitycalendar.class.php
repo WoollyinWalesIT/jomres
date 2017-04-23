@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j00017SRPavailabilitycalendar
+class j06000srpavailabilitycalendar
 {
     public function __construct($componentArgs = null)
     {
@@ -56,6 +56,10 @@ class j00017SRPavailabilitycalendar
             }
         }
 
+        if (!user_can_view_this_property($property_uid)) {
+            return;
+        }
+        
         $this->pop = jomresGetParam($_REQUEST, 'popup', 0);
         if ($this->pop == 1) {
             property_header($property_uid);

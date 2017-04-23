@@ -4123,14 +4123,6 @@ function showSingleRoomPropAvl($property_uid)
 function showAvailability($roomUid, $requestedDate, $property_uid, $showFullYear = 12, $room_avl_enquiry = false)
 {
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-/* 	$componentArgs					   = array ();
-    $componentArgs[ 'roomUid' ]		  = $roomUid;
-    $componentArgs[ 'requestedDate' ]	= $requestedDate;
-    $componentArgs[ 'property_uid' ]	 = $property_uid;
-    $componentArgs[ 'showFullYear' ]	 = $showFullYear;
-    $componentArgs[ 'room_avl_enquiry' ] = $room_avl_enquiry;
-    $MiniComponents->triggerEvent( '00017', $componentArgs ); // Availability calendar */
-
     $MiniComponents->specificEvent('06000', 'srp_calendar', array('output_now' => true, 'property_uid' => $property_uid, 'months_to_show' => 24, 'show_just_month' => false, 'room_uid' => $roomUid));
 }
 

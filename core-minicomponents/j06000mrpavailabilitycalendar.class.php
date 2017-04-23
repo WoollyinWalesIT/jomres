@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j00018MRPavailabilitycalendar
+class j06000mrpavailabilitycalendar
 {
     public function __construct($componentArgs = null)
     {
@@ -41,6 +41,11 @@ class j00018MRPavailabilitycalendar
         $roomUid = $componentArgs[ 'roomUid' ];
         $requestedDate = $componentArgs[ 'requestedDate' ];
         $property_uid = (int) $componentArgs[ 'property_uid' ];
+        
+        if (!user_can_view_this_property($property_uid)) {
+            return;
+        }
+        
         $showFullYear = $componentArgs[ 'showFullYear' ];
         if (isset($mrConfig[ 'CalendarMonthsToShow' ])) {
             $showFullYear = $mrConfig[ 'CalendarMonthsToShow' ];

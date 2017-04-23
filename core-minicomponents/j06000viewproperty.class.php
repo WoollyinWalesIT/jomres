@@ -49,7 +49,7 @@ class j06000viewproperty
             if ($mrConfig['singleRoomProperty'] == '1') {
                 echo $MiniComponents->specificEvent('06000', 'srp_calendar', array('output_now' => false, 'property_uid' => $property_uid, 'months_to_show' => 24));
             } else {
-                echo $MiniComponents->triggerEvent('00018', $componentArgs);
+                echo $MiniComponents->specificEvent('06000', 'mrpavailabilitycalendar' , array('property_uid' => $property_uid) );
             }
 
             return;
