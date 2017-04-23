@@ -84,7 +84,7 @@ class j06000show_property_room
             $jomres_media_centre_images->get_images($property_uid, array('rooms', 'room_features'));
 
             if (!empty($jomres_media_centre_images->images['rooms'][$room_uid])) {
-                $result = $MiniComponents->specificEvent('01060', 'slideshow', array('images' => $jomres_media_centre_images->images['rooms'][$room_uid]));
+                $result = $MiniComponents->specificEvent('06000', 'slideshow', array('images' => $jomres_media_centre_images->images['rooms'][$room_uid]));
                 $output[ 'SLIDESHOW' ] = $result ['slideshow'];
             } else {
                 $output['SLIDESHOW'] = '';

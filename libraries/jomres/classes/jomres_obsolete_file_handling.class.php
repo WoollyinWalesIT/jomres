@@ -1370,6 +1370,9 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'sms_clickatell_settings.html');
 		$this->add_obs_file($this->dir_minicomponents.'j10002sms_clickatell.class.php');
 		
+        // Jomres 9.9
+        $this->add_obs_file($this->dir_functions.'handlereq.php');
+        $this->add_obs_file($this->dir_minicomponents.'j01060slideshow.class.php');
     }
 
     public function add_obs_file($path_and_file)
