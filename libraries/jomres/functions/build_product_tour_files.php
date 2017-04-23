@@ -98,7 +98,7 @@ function build_product_tour_javascript_file()
             $target_ids['tour_target_table_tools'] = 'top';
             $target_ids['tour_target_end'] = 'top';
         break;
-        case 'registerProp_step1':
+        case 'new_property':
             $target_ids['tour_target_registration_1'] = 'top';
             $target_ids['tour_target_registration_1_country'] = 'left';
             $target_ids['tour_target_registration_1_property_type'] = 'left';

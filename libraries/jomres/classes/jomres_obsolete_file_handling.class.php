@@ -1373,6 +1373,12 @@ class jomres_obsolete_file_handling
         // Jomres 9.9
         $this->add_obs_file($this->dir_functions.'handlereq.php');
         $this->add_obs_file($this->dir_minicomponents.'j01060slideshow.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02300regprop1.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02320regprop3.class.php');
+        $this->add_obs_file($this->dir_templates_bootstrap3_backend.'register_property1.html');
+        $this->add_obs_file($this->dir_templates_bootstrap_backend.'register_property1.html');
+        $this->add_obs_file($this->dir_templates_jqueryui_backend.JRDS.'register_property1.html');
+        
     }
 
     public function add_obs_file($path_and_file)

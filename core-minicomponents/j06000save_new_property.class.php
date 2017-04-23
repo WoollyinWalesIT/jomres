@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
 
-class j02320regprop3
+class j06000save_new_property
 {
     public function __construct()
     {
@@ -37,7 +37,7 @@ class j02320regprop3
 
         $property_name = trim(jomresGetParam($_POST, 'property_name', ''));
         if ($property_name == '') {
-            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=registerProp_step1'), '');
+            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=new_property'), '');
 
             return;
         }

@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
 
-class j02300regprop1
+class j06000new_property
 {
     public function __construct()
     {
@@ -70,7 +70,7 @@ class j02300regprop1
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
-        $tmpl->readTemplatesFromInput('register_property1.html');
+        $tmpl->readTemplatesFromInput('new_property.html');
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->displayParsedTemplate();
     }

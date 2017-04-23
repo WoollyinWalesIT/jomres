@@ -48,9 +48,6 @@ class j06000feature_not_available
             case 'listBlackBookings':
                 $plugin_name = 'black_bookings';
                 break;
-            case 'registerProp_step1':
-                $plugin_name = 'property_creation_plugins';
-                break;
             case 'bookGuestIn':
                 $plugin_name = 'book_guest_in_out';
                 break;

@@ -157,7 +157,7 @@ class j99997generate_mainmenu
         }
 
         if (using_bootstrap()) {
-            if ($thisJRUser->userIsManager || $task == 'registerProp_step1') {
+            if ($thisJRUser->userIsManager || $task == 'new_property') {
                 $fullscreen = false;
                 $fullscreen_view = '_windowed';
 

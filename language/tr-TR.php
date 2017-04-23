@@ -1176,7 +1176,7 @@ jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES5', ' mülkiyet yuvaları. 
 jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES6', "Mevcut işletmelerinizin listesini görmek için <a href='".JOMRES_SITEPAGE_URL."&task=listyourbusinesses'>buraya </a> tıklayın. ");
 jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7', "Mevcut mevcut abonelik paketlerinin bir listesini görmek için tıklayın <a href='".JOMRES_SITEPAGE_URL."&task=list_subscription_packages'>here</a>. ");
 jr_define('_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR', 'Ne yazık ki, maksimum müsait alana ulaştığınızda bu mülkü yayınlayamazsınız.');
-jr_define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', "Mülkünüzü sunucumuzda listelemek için bir abonelik oluşturduğunuz için teşekkür ederiz. Faturanız ücretli olarak işaretlendiğinde (Paypal'a bağlı olarak bir gecikme olabilir) lütfen <a href='". JOMRES_SITEPAGE_URL. "& Task = registerProp_step1'> işletme (larınızı) oluşturmaya devam etmek için burayı tıklayın </a>");
+jr_define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', "Mülkünüzü sunucumuzda listelemek için bir abonelik oluşturduğunuz için teşekkür ederiz. Faturanız ücretli olarak işaretlendiğinde (Paypal'a bağlı olarak bir gecikme olabilir) lütfen <a href='". JOMRES_SITEPAGE_URL. "& Task = new_property'> işletme (larınızı) oluşturmaya devam etmek için burayı tıklayın </a>");
 jr_define('_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE', "Hizmetimize abone olmayı seçmediğiniz için üzgünüz. Size daha fazla yardımcı olabilmemiz için herhangi bir yol varsa lütfen bize bildirin.");
 jr_define('_JRPORTAL_SUBSCRIPTIONS_USE', 'Abonelik taşıma işlevini kullan');
 jr_define('_JOMRES_COM_NEWUSER', 'Rezervasyon sırasında yeni kullanıcı yarat');
