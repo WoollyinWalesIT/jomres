@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j02202savedeposit
+class j06001save_deposit
 {
     public function __construct()
     {
@@ -25,6 +25,8 @@ class j02202savedeposit
 
             return;
         }
+        $MiniComponents->triggerEvent('02202'); // There is a 02202 script that will update the invoice
+        
         $defaultProperty = getDefaultProperty();
         $contractUid = intval(jomresGetParam($_POST, 'contractUid', 0));
         $depositRef = getEscaped(jomresGetParam($_POST, 'depositRef', ''));

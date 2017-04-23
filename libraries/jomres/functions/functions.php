@@ -2898,7 +2898,7 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
                 echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE', '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE').'<br />';
                 $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
                 $jrtb = $jrtbar->startTable();
-                $jrtb .= $jrtbar->toolbarItem('editbooking', jomresURL(JOMRES_SITEPAGE_URL.'&task=editDeposit&contractUid='.$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ]), '');
+                $jrtb .= $jrtbar->toolbarItem('editbooking', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_deposit&contractUid='.$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ]), '');
                 $jrtb .= $jrtbar->endTable();
                 echo $jrtb;
             }
@@ -2922,10 +2922,9 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
                 $MiniComponents->triggerEvent('03030', $componentArgs); // Booking completed message
                 if ($userIsManager) {
                     echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE', '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE').'<br />';
-                    //echo "<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=$contract_uid")."\">".jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE)."</a>";
                     $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
                     $jrtb = $jrtbar->startTable();
-                    $jrtb .= $jrtbar->toolbarItem('editbooking', jomresURL(JOMRES_SITEPAGE_URL.'&task=editDeposit&contractUid='.$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ]), '');
+                    $jrtb .= $jrtbar->toolbarItem('editbooking', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_deposit&contractUid='.$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ]), '');
                     $jrtb .= $jrtbar->endTable();
                     echo $jrtb;
                 }

@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j02200editdeposit
+class j06001edit_deposit
 {
     public function __construct()
     {
@@ -52,7 +52,7 @@ class j02200editdeposit
             $jrtb = $jrtbar->startTable();
 
             $jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$contract_uid), '');
-            $jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'saveDeposit');
+            $jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'save_deposit');
 
             $jrtb .= $jrtbar->endTable();
             $output[ 'JOMRESTOOLBAR' ] = $jrtb;

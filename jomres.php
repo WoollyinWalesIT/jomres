@@ -315,24 +315,6 @@ try {
                 }
                 break;
             //########################################################################################
-            case 'editDeposit':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02200');
-                } //editDeposit();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'saveDeposit':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02202');
-                } //saveDeposit();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
             case 'tagSearch':
                 if ($thisJRUser->userIsManager || $jrConfig[ 'full_access_control' ] == '1') {
                     $componentArgs = array();

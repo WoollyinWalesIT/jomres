@@ -292,7 +292,7 @@ class j06001list_bookings_ajax
                         $toolbar->addSecondaryItem('fa fa-usd', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=add_service_to_bill&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE', '_JOMRES_COM_ADDSERVICE_TITLE', false));
                     }
                     if ($p->deposit_paid == 0 && $p->bookedout == 0 && $p->cancelled == 0) {
-                        $toolbar->addSecondaryItem('fa fa-usd', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=editDeposit&contractUid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', false));
+                        $toolbar->addSecondaryItem('fa fa-usd', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_deposit&contractUid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', false));
                     }
                     if ($p->booked_in == 0) {
                         $toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancelBooking&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', false));

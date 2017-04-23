@@ -165,7 +165,7 @@ class j06002edit_booking
                 }
 
                 if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_paid'] != 1 && (int) $current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int) $current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1) {
-                    $jrtb .= $jrtbar->toolbarItem('enterdeposit', jomresURL(JOMRES_SITEPAGE_URL.'&task=editDeposit&contractUid='.$contract_uid), '');
+                    $jrtb .= $jrtbar->toolbarItem('enterdeposit', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_deposit&contractUid='.$contract_uid), '');
                 }
 
                 $status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=yes,menubar=yes,resizable=yes,width=710,height=500,directories=no,location=no';
