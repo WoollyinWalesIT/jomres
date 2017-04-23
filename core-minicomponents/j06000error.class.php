@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j02270error
+class j06000error
 {
     public function __construct()
     {

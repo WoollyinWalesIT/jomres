@@ -347,11 +347,7 @@ try {
                     userHasBeenLoggedOut();
                 }
                 break;
-            //########################################################################################
-            case 'error':
-                $componentArgs = array();
-                $MiniComponents->triggerEvent('02270', $componentArgs);
-                break;
+
             //########################################################################################
             default:
                 if ($jrConfig[ 'full_access_control' ] == '1') {
